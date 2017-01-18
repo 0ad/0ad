@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -471,9 +471,7 @@ void CCmpPathfinder::UpdateGrid()
 		m_Grid = new Grid<NavcellData>(m_MapSize * Pathfinding::NAVCELLS_PER_TILE, m_MapSize * Pathfinding::NAVCELLS_PER_TILE);
 		m_TerrainOnlyGrid = new Grid<NavcellData>(m_MapSize * Pathfinding::NAVCELLS_PER_TILE, m_MapSize * Pathfinding::NAVCELLS_PER_TILE);
 
-		m_ObstructionsDirty.dirty = true;
-		m_ObstructionsDirty.globallyDirty = true;
-		m_ObstructionsDirty.globalRecompute = true;
+		m_ObstructionsDirty = { true, true, true, Grid<u8>(m_MapSize * Pathfinding::NAVCELLS_PER_TILE, m_MapSize * Pathfinding::NAVCELLS_PER_TILE) };
 
 		m_TerrainDirty = true;
 	}
@@ -508,8 +506,8 @@ void CCmpPathfinder::UpdateGrid()
 		ENSURE(m_Grid->m_W == m_ObstructionsDirty.dirtinessGrid.m_W && m_Grid->m_H == m_ObstructionsDirty.dirtinessGrid.m_H);
 		ENSURE(m_Grid->m_W == m_TerrainOnlyGrid->m_W && m_Grid->m_H == m_TerrainOnlyGrid->m_H);
 
-		for (u16 i = 0; i < m_ObstructionsDirty.dirtinessGrid.m_W; ++i)
-			for (u16 j = 0; j < m_ObstructionsDirty.dirtinessGrid.m_H; ++j)
+		for (u16 j = 0; j < m_ObstructionsDirty.dirtinessGrid.m_H; ++j)
+			for (u16 i = 0; i < m_ObstructionsDirty.dirtinessGrid.m_W; ++i)
 				if (m_ObstructionsDirty.dirtinessGrid.get(i, j) == 1)
 					m_Grid->set(i, j, m_TerrainOnlyGrid->get(i, j));
 	}

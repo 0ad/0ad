@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -858,7 +858,7 @@ entity_id_t CComponentManager::AddEntity(const std::wstring& templateName, entit
 		return INVALID_ENTITY;
 	}
 
-	const CParamNode* tmpl = cmpTemplateManager->LoadTemplate(ent, utf8_from_wstring(templateName), -1);
+	const CParamNode* tmpl = cmpTemplateManager->LoadTemplate(ent, utf8_from_wstring(templateName));
 	if (!tmpl)
 		return INVALID_ENTITY; // LoadTemplate will have reported the error
 

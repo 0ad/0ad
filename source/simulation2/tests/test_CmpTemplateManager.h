@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -64,19 +64,19 @@ public:
 		ICmpTemplateManager* tempMan = static_cast<ICmpTemplateManager*> (man.QueryInterface(ent1, IID_TemplateManager));
 		TS_ASSERT(tempMan != NULL);
 
-		const CParamNode* basic = tempMan->LoadTemplate(ent2, "basic", -1);
+		const CParamNode* basic = tempMan->LoadTemplate(ent2, "basic");
 		TS_ASSERT(basic != NULL);
 		TS_ASSERT_WSTR_EQUALS(basic->ToXML(), L"<Test1A>12345</Test1A>");
 
-		const CParamNode* inherit2 = tempMan->LoadTemplate(ent2, "inherit2", -1);
+		const CParamNode* inherit2 = tempMan->LoadTemplate(ent2, "inherit2");
 		TS_ASSERT(inherit2 != NULL);
 		TS_ASSERT_WSTR_EQUALS(inherit2->ToXML(), L"<Test1A a=\"a2\" b=\"b1\" c=\"c1\"><d>d2</d><e>e1</e><f>f1</f><g>g2</g></Test1A>");
 
-		const CParamNode* inherit1 = tempMan->LoadTemplate(ent2, "inherit1", -1);
+		const CParamNode* inherit1 = tempMan->LoadTemplate(ent2, "inherit1");
 		TS_ASSERT(inherit1 != NULL);
 		TS_ASSERT_WSTR_EQUALS(inherit1->ToXML(), L"<Test1A a=\"a1\" b=\"b1\" c=\"c1\"><d>d1</d><e>e1</e><f>f1</f></Test1A>");
 
-		const CParamNode* actor = tempMan->LoadTemplate(ent2, "actor|example1", -1);
+		const CParamNode* actor = tempMan->LoadTemplate(ent2, "actor|example1");
 		TS_ASSERT(actor != NULL);
 		TS_ASSERT_WSTR_EQUALS(actor->ToXML(),
 				L"<Footprint><Circle radius=\"2.0\"></Circle><Height>1.0</Height></Footprint><Selectable><EditorOnly></EditorOnly><Overlay><Texture><MainTexture>actor.png</MainTexture><MainTextureMask>actor_mask.png</MainTextureMask></Texture></Overlay></Selectable>"
@@ -104,25 +104,25 @@ public:
 
 		// This is testing some bugs in the template JS object caching
 
-		const CParamNode* inherit1 = tempMan->LoadTemplate(ent2, "inherit1", -1);
+		const CParamNode* inherit1 = tempMan->LoadTemplate(ent2, "inherit1");
 		JS::RootedValue val(cx);
 		ScriptInterface::ToJSVal(cx, &val, inherit1);
 		TS_ASSERT_STR_EQUALS(man.GetScriptInterface().ToString(&val), "({Test1A:{'@a':\"a1\", '@b':\"b1\", '@c':\"c1\", d:\"d1\", e:\"e1\", f:\"f1\"}})");
 
-		const CParamNode* inherit2 = tempMan->LoadTemplate(ent2, "inherit2", -1);
+		const CParamNode* inherit2 = tempMan->LoadTemplate(ent2, "inherit2");
 		ScriptInterface::ToJSVal(cx, &val, inherit2);
 		TS_ASSERT_STR_EQUALS(man.GetScriptInterface().ToString(&val), "({'@parent':\"inherit1\", Test1A:{'@a':\"a2\", '@b':\"b1\", '@c':\"c1\", d:\"d2\", e:\"e1\", f:\"f1\", g:\"g2\"}})");
 
-		const CParamNode* actor = tempMan->LoadTemplate(ent2, "actor|example1", -1);
+		const CParamNode* actor = tempMan->LoadTemplate(ent2, "actor|example1");
 		ScriptInterface::ToJSVal(cx, &val, &actor->GetChild("VisualActor"));
 		TS_ASSERT_STR_EQUALS(man.GetScriptInterface().ToString(&val), "({Actor:\"example1\", ActorOnly:(void 0), SilhouetteDisplay:\"false\", SilhouetteOccluder:\"false\", VisibleInAtlasOnly:\"false\"})");
 
-		const CParamNode* foundation = tempMan->LoadTemplate(ent2, "foundation|actor|example1", -1);
+		const CParamNode* foundation = tempMan->LoadTemplate(ent2, "foundation|actor|example1");
 		ScriptInterface::ToJSVal(cx, &val, &foundation->GetChild("VisualActor"));
 		TS_ASSERT_STR_EQUALS(man.GetScriptInterface().ToString(&val), "({Actor:\"example1\", ActorOnly:(void 0), Foundation:(void 0), SilhouetteDisplay:\"false\", SilhouetteOccluder:\"false\", VisibleInAtlasOnly:\"false\"})");
 
 #define GET_FIRST_ELEMENT(n, templateName) \
-		const CParamNode* n = tempMan->LoadTemplate(ent2, templateName, -1); \
+		const CParamNode* n = tempMan->LoadTemplate(ent2, templateName); \
 		for (CParamNode::ChildrenMap::const_iterator it = n->GetChildren().begin(); it != n->GetChildren().end(); ++it) \
 		{ \
 			if (it->first[0] == '@') \
@@ -161,19 +161,19 @@ public:
 
 		TestLogger logger;
 
-		TS_ASSERT(tempMan->LoadTemplate(ent2, "illformed", -1) == NULL);
+		TS_ASSERT(tempMan->LoadTemplate(ent2, "illformed") == NULL);
 
-		TS_ASSERT(tempMan->LoadTemplate(ent2, "invalid", -1) == NULL);
+		TS_ASSERT(tempMan->LoadTemplate(ent2, "invalid") == NULL);
 
-		TS_ASSERT(tempMan->LoadTemplate(ent2, "nonexistent", -1) == NULL);
+		TS_ASSERT(tempMan->LoadTemplate(ent2, "nonexistent") == NULL);
 
-		TS_ASSERT(tempMan->LoadTemplate(ent2, "inherit-loop", -1) == NULL);
+		TS_ASSERT(tempMan->LoadTemplate(ent2, "inherit-loop") == NULL);
 
-		TS_ASSERT(tempMan->LoadTemplate(ent2, "inherit-broken", -1) == NULL);
+		TS_ASSERT(tempMan->LoadTemplate(ent2, "inherit-broken") == NULL);
 
-		TS_ASSERT(tempMan->LoadTemplate(ent2, "inherit-special", -1) == NULL);
+		TS_ASSERT(tempMan->LoadTemplate(ent2, "inherit-special") == NULL);
 
-		TS_ASSERT(tempMan->LoadTemplate(ent2, "preview|nonexistent", -1) == NULL);
+		TS_ASSERT(tempMan->LoadTemplate(ent2, "preview|nonexistent") == NULL);
 	}
 
 	void test_LoadTemplate_multiple()
@@ -191,28 +191,28 @@ public:
 		ICmpTemplateManager* tempMan = static_cast<ICmpTemplateManager*> (man.QueryInterface(ent1, IID_TemplateManager));
 		TS_ASSERT(tempMan != NULL);
 
-		const CParamNode* basicA = tempMan->LoadTemplate(ent2, "basic", -1);
+		const CParamNode* basicA = tempMan->LoadTemplate(ent2, "basic");
 		TS_ASSERT(basicA != NULL);
 
-		const CParamNode* basicB = tempMan->LoadTemplate(ent2, "basic", -1);
+		const CParamNode* basicB = tempMan->LoadTemplate(ent2, "basic");
 		TS_ASSERT(basicA == basicB);
 
-		const CParamNode* inherit2A = tempMan->LoadTemplate(ent2, "inherit2", -1);
+		const CParamNode* inherit2A = tempMan->LoadTemplate(ent2, "inherit2");
 		TS_ASSERT(inherit2A != NULL);
 
-		const CParamNode* inherit2B = tempMan->LoadTemplate(ent2, "inherit2", -1);
+		const CParamNode* inherit2B = tempMan->LoadTemplate(ent2, "inherit2");
 		TS_ASSERT(inherit2A == inherit2B);
 
 		TestLogger logger;
 
-		TS_ASSERT(tempMan->LoadTemplate(ent2, "nonexistent", -1) == NULL);
-		TS_ASSERT(tempMan->LoadTemplate(ent2, "nonexistent", -1) == NULL);
+		TS_ASSERT(tempMan->LoadTemplate(ent2, "nonexistent") == NULL);
+		TS_ASSERT(tempMan->LoadTemplate(ent2, "nonexistent") == NULL);
 
-		TS_ASSERT(tempMan->LoadTemplate(ent2, "inherit-loop", -1) == NULL);
-		TS_ASSERT(tempMan->LoadTemplate(ent2, "inherit-loop", -1) == NULL);
+		TS_ASSERT(tempMan->LoadTemplate(ent2, "inherit-loop") == NULL);
+		TS_ASSERT(tempMan->LoadTemplate(ent2, "inherit-loop") == NULL);
 
-		TS_ASSERT(tempMan->LoadTemplate(ent2, "inherit-broken", -1) == NULL);
-		TS_ASSERT(tempMan->LoadTemplate(ent2, "inherit-broken", -1) == NULL);
+		TS_ASSERT(tempMan->LoadTemplate(ent2, "inherit-broken") == NULL);
+		TS_ASSERT(tempMan->LoadTemplate(ent2, "inherit-broken") == NULL);
 	}
 };
 

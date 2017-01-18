@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -54,21 +54,35 @@ public:
 
 	Grid& operator=(const Grid& g)
 	{
-		if (this != &g)
+		if (this == &g)
+			return *this;
+
+		m_DirtyID = g.m_DirtyID;
+		if (m_W == g.m_W && m_H == g.m_H)
 		{
-			m_W = g.m_W;
-			m_H = g.m_H;
-			m_DirtyID = g.m_DirtyID;
-			delete[] m_Data;
-			if (g.m_Data)
-			{
-				m_Data = new T[m_W * m_H];
-				memcpy(m_Data, g.m_Data, m_W*m_H*sizeof(T));
-			}
-			else
-				m_Data = NULL;
+			memcpy(m_Data, g.m_Data, m_W*m_H*sizeof(T));
+			return *this;
 		}
+
+		m_W = g.m_W;
+		m_H = g.m_H;
+		delete[] m_Data;
+		if (g.m_Data)
+		{
+			m_Data = new T[m_W * m_H];
+			memcpy(m_Data, g.m_Data, m_W*m_H*sizeof(T));
+		}
+		else
+			m_Data = NULL;
 		return *this;
+	}
+
+	void swap(Grid& g)
+	{
+		std::swap(m_DirtyID, g.m_DirtyID);
+		std::swap(m_Data, g.m_Data);
+		std::swap(m_H, g.m_H);
+		std::swap(m_W, g.m_W);
 	}
 
 	~Grid()
@@ -197,6 +211,14 @@ struct GridUpdateInformation
 	bool globallyDirty;
 	bool globalRecompute;
 	Grid<u8> dirtinessGrid;
+
+	void swap(GridUpdateInformation& b)
+	{
+		std::swap(dirty, b.dirty);
+		std::swap(globallyDirty, b.globallyDirty);
+		std::swap(globalRecompute, b.globalRecompute);
+		dirtinessGrid.swap(b.dirtinessGrid);
+	}
 
 	/**
 	 * Mark everything as clean

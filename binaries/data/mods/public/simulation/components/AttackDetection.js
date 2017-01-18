@@ -96,7 +96,7 @@ AttackDetection.prototype.AttackAlert = function(target, attacker, attackerOwner
 
 		// If the new attack is within suppression distance of this element,
 		// then check if the element should be updated and return
-		var dist = SquaredDistance(element.position, event.position);
+		var dist = element.position.horizDistanceToSquared(event.position);
 		if (dist >= this.suppressionRangeSquared)
 			continue;
 
@@ -156,13 +156,5 @@ AttackDetection.prototype.GetIncomingAttacks = function()
 {
 	return this.suppressedList;
 };
-
-// Utility function for calculating the squared-distance between two attack events
-function SquaredDistance(pos1, pos2)
-{
-	var xs = pos2.x - pos1.x;
-	var zs = pos2.z - pos1.z;
-	return xs*xs + zs*zs;
-}
 
 Engine.RegisterComponentType(IID_AttackDetection, "AttackDetection", AttackDetection);

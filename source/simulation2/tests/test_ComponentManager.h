@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -837,7 +837,7 @@ entities:\n\
 		TS_ASSERT(man.AddComponent(man.GetSystemEntity(), CID_TemplateManager, noParam));
 		ICmpTemplateManager* tempMan = static_cast<ICmpTemplateManager*> (man.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager));
 
-		const CParamNode* testParam = tempMan->LoadTemplate(ent2, "template-serialize", -1);
+		const CParamNode* testParam = tempMan->LoadTemplate(ent2, "template-serialize");
 
 		man.AddComponent(hnd2, man.LookupCID("TestScript1_consts"), testParam->GetChild("TestScript1_consts"));
 

@@ -42,6 +42,7 @@
 # Robert Wolniak <robert.wolniak@gmail.com>, 2014
 # Robert Wolniak <robert.wolniak@gmail.com>, 2014
 # RosiakPL <Rosiak7777777@gmail.com>, 2014
+# Pitong, 2017
 # slodki12341 <slodki1234@gmail.com>, 2014
 # slodki12341 <slodki1234@gmail.com>, 2014
 # Tomasz Pudło <wptom@wp.pl>, 2016
@@ -54,8 +55,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-01-09 09:02+0100\n"
-"PO-Revision-Date: 2017-01-09 09:35+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-01-15 14:55+0000\n"
+"Last-Translator: Pitong\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -781,14 +782,14 @@ msgstr "%(population)s %(neededSlots)s"
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(number)s instancja klasy %(class)s"
+msgstr[1] "%(number)s instancji klasy %(class)s"
+msgstr[2] "%(number)s instancji klasy %(class)s"
 
 #: gui/session/selection_panels.js:865
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
-msgstr ""
+msgstr "Pozostało %(entityCounts)s"
 
 #: gui/session/selection_panels.js:1174
 #, javascript-format

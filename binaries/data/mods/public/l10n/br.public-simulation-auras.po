@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-01-09 09:03+0100\n"
-"PO-Revision-Date: 2017-01-11 16:51+0000\n"
+"PO-Revision-Date: 2017-01-13 09:19+0000\n"
 "Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -353,7 +353,7 @@ msgstr "Aora Llarches"
 
 #: simulation/data/auras/sele_hero_antiochus_great.jsonauraDescription
 msgid "All cavalry gains +2 levels of all armor types."
-msgstr "Ober a ra an holl c'hounidoù marc'hegerezh +2 live evit n'eus forzh peseurt armoù."
+msgstr "An holl varc'heien a c'hounez +2 live evit an holl doareoù houarnwisk."
 
 #: simulation/data/auras/sele_hero_antiochus_righteous.jsonauraName
 msgid "Conquest Aura"
@@ -363,7 +363,7 @@ msgstr "Aora an Alouberezh"
 msgid ""
 "All nearby enemy buildings, siege engines, and ships have their health "
 "reduced by 20%."
-msgstr "O yec'hed digresket dre 20% o deus an holl savadurioù enebour tost, ijinoù seziz ha listri."
+msgstr "An holl savadurioù enebour,  mekanikoù seziz,  hag ar bigi a vez digresket o buhez eus 20%."
 
 #: simulation/data/auras/sele_hero_seleucus_victor.jsonauraName
 msgid "Zooiarchos Aura"
@@ -371,7 +371,7 @@ msgstr "Aora Zooiarkos"
 
 #: simulation/data/auras/sele_hero_seleucus_victor.jsonauraDescription
 msgid "Boosts war elephant attack and speed +20% within his aura."
-msgstr "Kreskaat a ra argad olifant brezel ha tizh eus +20% en e aora."
+msgstr "Kreskiñ a ra tagusted ha tizh an olifanted-brezel +20% en e aora."
 
 #: simulation/data/auras/spart_hero_brasidas.jsonauraName
 msgid "Helot Reforms"
@@ -379,7 +379,7 @@ msgstr "Adstummoù Hiloted"
 
 #: simulation/data/auras/spart_hero_brasidas.jsonauraDescription
 msgid "Javelin infantry in his aura gains +20% attack and +1 all armor types."
-msgstr "Gounezet eo +20% a argad ha +1 eus holl batromoù armoù gant Troadegiezh Speg."
+msgstr "Ar spegerien war-droad en e aora a c'hounez +20% a dagusted ha +1 evit an holl doareoù houarnwisk."
 
 #: simulation/data/auras/spart_hero_leonidas.jsonauraName
 msgid "Last Stand Aura"
@@ -387,11 +387,11 @@ msgstr "Aora an Hini Diwezhañ War-Sav"
 
 #: simulation/data/auras/spart_hero_leonidas.jsonauraDescription
 msgid "+20% attack and +1 capture for nearby Spearmen."
-msgstr "+20% a argad ha +1 a bakusted evit ar C'hoafeien tost."
+msgstr "+20% a dagusted ha +1 a bakusted evit ar C'hoaferien tost."
 
 #: simulation/data/auras/temple_heal.jsonauraDescription
 msgid "Heals nearby units at 1 HP per second."
-msgstr "Pareañ a ra unvezioù tost eus 1 PB an eilenn."
+msgstr "Pareañ a ra unanennoù tost eus 1 PB an eilenn."
 
 #: simulation/data/auras/theatron.jsonauraName
 msgid "Hellenization."
@@ -399,7 +399,7 @@ msgstr "Hellenegerezh."
 
 #: simulation/data/auras/theatron.jsonauraDescription
 msgid "Increase territory influence by 20% per theatron owned."
-msgstr "Kreskaat levezon an tiriad gant 20% dre deatr miret."
+msgstr "Kreskaat levezon an tiriad eus 20% dre deatr miret."
 
 #: simulation/data/auras/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -407,7 +407,7 @@ msgstr "Moger Wareziñ"
 
 #: simulation/data/auras/wall_garrisoned.jsonauraDescription
 msgid "Soldiers on walls have +3 armor and higher vision."
-msgstr "+3 a armoù hag ur gwel uheloc'h o deus ar soudarded war ar mogerioù."
+msgstr "Ar soudarded war ar mogerioù o deus +3 a houarnwisk hag un hed-sell brasoc'h."
 
 #: simulation/data/auras/wonder_pop_1.jsonauraName
 msgid "Wonder Aura"
@@ -415,7 +415,7 @@ msgstr "Aora ar Varzenn"
 
 #: simulation/data/auras/wonder_pop_1.jsonauraDescription
 msgid "Increase the population limit by 10 per wonder owned."
-msgstr "Lakaat da greskiñ bevenn ar boblañs eus 10 dre varzhenn perc'hennet."
+msgstr "Lakaat da greskiñ bevenn ar boblañs eus 10 dre varzenn perc'hennet."
 
 #: simulation/data/auras/wonder_pop_2.jsonauraName
 msgid "Glorious Expansion Aura"
@@ -425,7 +425,7 @@ msgstr "Aora an Aztenn C'hlorius"
 msgid ""
 "Further increase the population limit by 40 per wonder owned (requires "
 "\"Glorious Expansion\" tech)."
-msgstr "Lakaat da greskiñ bevenn ar boblañs muioc'h eus 40 dre varzhenn perc'hennet (rekiset eo an teknologiezh  \"Astenn C'hlorius\")."
+msgstr "Lakaat da greskiñ bevenn ar boblañs eus 40 dre varzenn perc'hennet (rekiset eo an teknologiezh  \"Astenn C'hlorius\")."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -455,7 +455,7 @@ msgstr "Saripeko"
 msgid ""
 "Reduces the cost for citizen-soldier skirmishers with 20% for allies of "
 "Iberian players"
-msgstr "Digreskiñ ar c'houst evit ar geodedourien-soudarded-tennerien eus 20% evit ar re zo kevredet gant ar c'hoarierien Iberek"
+msgstr "Digreskiñ ar c'houst evit ar geodedourien-soudarded-dennerien eus 20% evit ar re zo kevredet gant ar c'hoarierien Iberek"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
@@ -464,11 +464,11 @@ msgstr "Skoazell Relijiel Ashoka"
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
 msgid ""
 "Allied temples and temple technologies -50% cost, in resources and time."
-msgstr "Templ ar re gevredet ha teknologiezhioù an templ -50% a goust e mammenn hag e amzer."
+msgstr "Templ ar re gevredet ha teknologiezhioù an templ a goust -50% e mammenn hag e amzer."
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "The Royal Road"
-msgstr "An Hent-Roueel "
+msgstr "An Hent-Roueel"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
 msgid "Higher income (+15%) from land trade routes for ally's traders."
@@ -484,7 +484,7 @@ msgstr "An holl re gevredet a c'hounez en un doare emgefreek ur buzad moan a vou
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
-msgstr "Tetrapolis sirian"
+msgstr "Tetrapolis Sirian"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
 msgid ""

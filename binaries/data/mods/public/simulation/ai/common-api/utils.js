@@ -23,37 +23,6 @@ m.SquareVectorDistance = function(a, b)
 	return dx*dx + dz*dz;
 };
 
-/**
- * A is the reference, B must be in "range" of A
- * this supposes the range is already squared
- */
-m.inRange = function(a, b, range)// checks for X distance
-{
-	// will avoid unnecessary checking for position in some rare cases... I'm lazy
-	if (a === undefined || b === undefined || range === undefined)
-		return undefined;
-
-	let dx = a[0] - b[0];
-	let dz = a[1] - b[1];
-	return dx*dx + dz*dz < range;
-};
-
-/** Slower than SquareVectorDistance, faster than VectorDistance but not exactly accurate. */
-m.ManhattanDistance = function(a, b)
-{
-	let dx = a[0] - b[0];
-	let dz = a[1] - b[1];
-	return Math.abs(dx) + Math.abs(dz);
-};
-
-m.AssocArraytoArray = function(assocArray)
-{
-	let endArray = [];
-	for (let i in assocArray)
-		endArray.push(assocArray[i]);
-	return endArray;
-};
-
 /** Utility functions for conversions of maps of different sizes */
 
 /**

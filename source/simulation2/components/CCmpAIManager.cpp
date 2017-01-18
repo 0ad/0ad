@@ -1106,7 +1106,7 @@ public:
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 		if (cmpPathfinder)
 		{
-			GridUpdateInformation dirtinessInformations = cmpPathfinder->GetDirtinessData();
+			const GridUpdateInformation& dirtinessInformations = cmpPathfinder->GetDirtinessData();
 
 			if (dirtinessInformations.dirty || m_JustDeserialized)
 			{

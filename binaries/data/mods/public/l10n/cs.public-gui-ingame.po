@@ -13,7 +13,7 @@
 # Jaroslav Lichtblau <dragonlord@seznam.cz>, 2016
 # Martin Kříž <liberte.czech@gmail.com>, 2015
 # OndraK <kajinond@fjfi.cvut.cz>, 2014
-# fri, 2014-2016
+# fri, 2014-2017
 # Pavel Šindelář <pavelsin123@gmail.com>, 2015
 # Petr Hála <halapetr@selfnet.cz>, 2014,2016-2017
 # Robin Kriebel <kriebel.robin@gmail.com>, 2016-2017
@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-01-09 09:02+0100\n"
-"PO-Revision-Date: 2017-01-09 09:35+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-01-15 07:42+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -293,7 +293,7 @@ msgstr "%(player)s zahajuje návrat zpět ke hře."
 #: gui/session/messages.js:88
 #, javascript-format
 msgid "%(player)s is starting to join the game."
-msgstr "%(player)s se začíná připojovat do hry."
+msgstr "%(player)s se začíná připojovat ke hře."
 
 #: gui/session/messages.js:92
 #, javascript-format
@@ -751,14 +751,14 @@ msgstr "%(population)s %(neededSlots)s"
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(number)s entita třídy %(class)s"
+msgstr[1] "%(number)s entity třídy %(class)s"
+msgstr[2] "%(number)s entit třídy %(class)s"
 
 #: gui/session/selection_panels.js:865
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
-msgstr ""
+msgstr "Zůstává: %(entityCounts)s"
 
 #: gui/session/selection_panels.js:1174
 #, javascript-format

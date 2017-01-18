@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-12-16 09:00+0100\n"
-"PO-Revision-Date: 2017-01-05 16:54+0000\n"
+"PO-Revision-Date: 2017-01-14 00:34+0000\n"
 "Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -133,12 +133,12 @@ msgstr "Ya"
 #: gui/lobby/lobby.js:702
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
-msgstr "Chomlec'h ar c'hoari  '%(ip)s' na seblant ket bezañ unan mat."
+msgstr "Ne seblant ket chomlec'h ar c'hoari-mañ bezañ unan mat '%(ip)s'."
 
 #: gui/lobby/lobby.js:821
 #, javascript-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
-msgstr "Digarezit ac'hanomp, an urzhiad '%(cmd)s' na vez ket skoret."
+msgstr "Ne vez ket degemeret an urzhiad '%(cmd)s', digarezit ac'hanomp."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
 #: gui/lobby/lobby.js:903

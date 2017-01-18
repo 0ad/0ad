@@ -553,7 +553,7 @@ Attack.prototype.PerformAttack = function(type, target)
 			return;
 
 		let strength = this.GetAttackStrengths("Capture").value * multiplier;
-		if (cmpCapturable.Reduce(strength, attackerOwner))
+		if (cmpCapturable.Reduce(strength, attackerOwner) && IsOwnedByEnemyOfPlayer(attackerOwner, target))
 			Engine.PostMessage(target, MT_Attacked, {
 				"attacker": this.entity,
 				"target": target,

@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -100,7 +100,7 @@ public:
 		m_DisableValidation = true;
 	}
 
-	virtual const CParamNode* LoadTemplate(entity_id_t ent, const std::string& templateName, int playerID);
+	virtual const CParamNode* LoadTemplate(entity_id_t ent, const std::string& templateName);
 
 	virtual const CParamNode* GetTemplate(const std::string& templateName);
 
@@ -135,23 +135,16 @@ private:
 
 	// Remember the template used by each entity, so we can return them
 	// again for deserialization.
-	// TODO: should store player ID etc.
 	std::map<entity_id_t, std::string> m_LatestTemplates;
 };
 
 REGISTER_COMPONENT_TYPE(TemplateManager)
 
-const CParamNode* CCmpTemplateManager::LoadTemplate(entity_id_t ent, const std::string& templateName, int UNUSED(playerID))
+const CParamNode* CCmpTemplateManager::LoadTemplate(entity_id_t ent, const std::string& templateName)
 {
 	m_LatestTemplates[ent] = templateName;
 
-	const CParamNode* templateRoot = GetTemplate(templateName);
-	if (!templateRoot)
-		return NULL;
-
-	// TODO: Eventually we need to support techs in here, and return a different template per playerID
-
-	return templateRoot;
+	return GetTemplate(templateName);
 }
 
 const CParamNode* CCmpTemplateManager::GetTemplate(const std::string& templateName)
@@ -206,7 +199,7 @@ const CParamNode* CCmpTemplateManager::LoadLatestTemplate(entity_id_t ent)
 	std::map<entity_id_t, std::string>::const_iterator it = m_LatestTemplates.find(ent);
 	if (it == m_LatestTemplates.end())
 		return NULL;
-	return LoadTemplate(ent, it->second, -1);
+	return LoadTemplate(ent, it->second);
 }
 
 std::string CCmpTemplateManager::GetCurrentTemplateName(entity_id_t ent)

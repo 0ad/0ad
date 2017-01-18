@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -55,7 +55,7 @@ public:
 	 *
 	 * @return NULL on error
 	 */
-	virtual const CParamNode* LoadTemplate(entity_id_t ent, const std::string& templateName, int playerID) = 0;
+	virtual const CParamNode* LoadTemplate(entity_id_t ent, const std::string& templateName) = 0;
 
 	/**
 	 * Loads the template XML file identified by 'templateName' (including inheritance

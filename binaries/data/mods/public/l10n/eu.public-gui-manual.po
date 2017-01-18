@@ -4,14 +4,15 @@
 # 
 # Translators:
 # Thadah D. Denyse <juchuf@gmail.com>, 2016
+# Mielanjel Iraeta <pospolos@gmail.com>, 2017
 # Osoitz <oelkoro@gmail.com>, 2015
 # Thadah D. Denyse <juchuf@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-30 09:00+0200\n"
-"PO-Revision-Date: 2016-10-20 07:48+0000\n"
-"Last-Translator: Thadah D. Denyse <juchuf@gmail.com>\n"
+"PO-Revision-Date: 2017-01-15 16:58+0000\n"
+"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -58,7 +59,7 @@ msgid ""
 "file: look for binaries/data/config/default.cfg in the location where the "
 "game is installed, which gives instructions for editing, and try disabling "
 "the \"fancywater\" and \"shadows\" options."
-msgstr ""
+msgstr "[font=\"sans-14\"]Leiho edo pantaila osoa  modua alda dezakezu Alt + Intro zapalduz. Leiho moduan neurriak alda ditzakezu iskinetatik tiraka. Jokoa motelegi doala baderitzozu ezarpenetako menuko doikuntzaren bat egin ahal duzu: bilatu hemen binaries/data/config/default.cfg jokoa instalatzeko karpetan, barruan aldaketetako jarraibideak datoz, saia zaitez benetako ura desgaituz \"fancywater\"kin eta itzalak \"shadow\" aukerarekin."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
@@ -70,7 +71,7 @@ msgid ""
 " traditional RTS games. There are currently a lot of missing features and "
 "poorly-balanced stats – you will probably have to wait until a beta release "
 "for it to work well."
-msgstr ""
+msgstr "[font=\"sans-14\"]Kontrolak eta jokatzeko erraztasuna arruntak izan behar dute ohiko RTS jokalarientzat. Oraintxe bertan ezaugarri piloa falta da, eta jokoa ez dago oso orekaturik. Jokoaren garapenaren zain jarri beharko duzu zuk nahi zenukeen bezala funtzionatzeko."
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
@@ -115,13 +116,13 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Jokalari bakarra[font=\"sans-14\"] — jolastu froga partida bat edo AIko aurkari bat edo gehiagoren kontra. AI garapenean dago eta baliteke azken ezarpenekin ondo ez ibiltzea, baino behintzat beste aurkari baten kontra borrokatzen utziko lizuke ezingo bazenuke beste pertsonaren batekin jolastu."
 
 #: gui/manual/intro.txt:24
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Jokalari Anitza[font=\"sans-14\"] — benetako beste jokalarien aurka jolastu internetez."
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -129,7 +130,7 @@ msgid ""
 "option. The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
 "and enter the host's IP address."
-msgstr ""
+msgstr "Partida bat jokalari anitzetan gauzatzeko jokalarietako batek «Partida sortu» aukerari eman behar lioke. Jokoak UDP 20595 portua erabiltzen du, beraz, anfitrioiak NAT/firewall/etc konfiguratu beharko luke sarrera emateko. Beste jokalariek «Partidara batu» aukeratu dezakete eta zerbitzariaren IPa sartu."
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
@@ -139,7 +140,7 @@ msgstr "[font=\"sans-bold-16\"]Partidaren ezarpena"
 msgid ""
 "[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
 "setup options."
-msgstr ""
+msgstr "[font=\"sans-14\"]Jokalari anitzen partidetan anfitrioiak baino ezin ditu partidaren doikuntzak aldatu. "
 
 #: gui/manual/intro.txt:31
 msgid "First, select what type of map you want to play:"
@@ -149,19 +150,19 @@ msgstr "Lehenik, aukeratu zein mapa mota jokatu nahi duzun:"
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] — A map created "
 "automatically from a script"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Ausazko mapa[font=\"sans-14\"] — Script batek automatikoki sortutako mapa artifiziala"
 
 #: gui/manual/intro.txt:33
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] — A map created by "
 "map designers and with fixed civilisations"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Antzeztoki mapa[font=\"sans-14\"] — Pertsona batek sortutako mapa eta zibilizazioak ezarrita datorrena"
 
 #: gui/manual/intro.txt:34
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] — A map created by "
 "map designers but where the civilisations can be chosen"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Borrokatxo mapa[font=\"sans-14\"] — Pertsona batek sortutako mapa non jokalaria taldea hautatzeko libre den."
 
 #: gui/manual/intro.txt:36
 msgid ""
@@ -170,7 +171,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The \"All Maps\" filter shows all maps together in one "
 "list."
-msgstr ""
+msgstr "Mapak are gehiago filtratu daitezke. Jatorrizko mapak izan ohi dira jostagarrienak. Ur mapatan lurreko mapetako etsai askorengana ezin da jo, eta erakusteko mapak horretarako dira, ez jolasteko. «Mapa guztiak» filtrazioan bestela erakutsiko ez diren mapetarako sarbidea izango duzu."
 
 #: gui/manual/intro.txt:38
 msgid ""
@@ -179,7 +180,7 @@ msgid ""
 "controls which player (decides where you start on the map etc). The options "
 "are either a human player, an AI or no player at all (the opponent will just"
 " be idle)."
-msgstr ""
+msgstr "Bukatzeko ezarpenen aldatzea. Ausazko mapentzako jokalarien kopurua maparen tamaina...sartzen da. Eszenarioentzat jokalari bakoitza nork kontrolatzen duen baino ezin duzu aukeratu (mapa non hasten den aukeratu, etab). Aukerak giza jokalaria da, AI edo hautatu gabeko jokalaria (dauden unitateek eskura dituzten unitateak erasotuko dituzte, baino ez dira unitate berriak sortuko eta inor erasotuko)"
 
 #: gui/manual/intro.txt:40
 msgid "When you are ready to start, click the \"Start game\" button."
@@ -187,11 +188,11 @@ msgstr "Hasteko prest zaudenean, egin klik \"Partida hasi\" botoian."
 
 #: gui/manual/intro.txt:42
 msgid "[font=\"sans-bold-16\"]Hotkeys:"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Lasterbideak:"
 
 #: gui/manual/intro.txt:43
 msgid "[font=\"sans-bold-14\"]Global"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Orokorra"
 
 #: gui/manual/intro.txt:44
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
@@ -199,7 +200,7 @@ msgstr "[font=\"sans-14\"]Alt + F4: Jokoa itxi, konfirmaziorik gabe"
 
 #: gui/manual/intro.txt:45
 msgid "Alt + Enter: Toggle between fullscreen and windowed"
-msgstr ""
+msgstr "Alt + Intro: Pantaila osoa edo leihoa aldatu"
 
 #: gui/manual/intro.txt:46
 msgid "~ or F9: Show/hide console"
@@ -213,25 +214,25 @@ msgstr "Alt + F: Erakutsi/ezkutatu fotograma-kontagailua (FPS)"
 msgid ""
 "F11: Enable/disable real-time profiler (toggles through the displays of "
 "information)"
-msgstr ""
+msgstr "F11: Gaitu/desgaitu denbora errealeko lan analizatzailea ( informazio pantailen artean txandakatzen du)"
 
 #: gui/manual/intro.txt:49
 msgid "Shift + F11: Save current profiler data to \"logs/profile.txt\""
-msgstr ""
+msgstr "Maius + F11: Momentuko profilen datuak gordetzen ditu «logs/profile.txt»n"
 
 #: gui/manual/intro.txt:50
 msgid ""
 "F2: Take screenshot (in .png format, location is displayed in the top left "
 "of the GUI after the file has been saved, and can also be seen in the "
 "console/logs if you miss it there)"
-msgstr ""
+msgstr "F2: Pantaila atzematea ( .png formatuan, gorde ondoren kokapena interfazaren goi eskuin iskinean erakusten da, baita ere kontsola/gertakariak-n ikus daiteke)"
 
 #: gui/manual/intro.txt:51
 msgid ""
 "Shift + F2: Take huge screenshot (6400px*4800px, in .bmp format, location is"
 " displayed in the top left of the GUI after the file has been saved, and can"
 " also be seen in the console/logs if you miss it there)"
-msgstr ""
+msgstr "Maius + F2: Pantaila atzemate oso handia egiten du (6400x4800, .bmp formatuan, gorde ondoren kokapena pantailaren goi eskuin iskinean erakusten da, kontsola eta gertakarietan ere ikus daiteke)"
 
 #: gui/manual/intro.txt:53
 msgid "[font=\"sans-bold-14\"]In Game"
@@ -241,25 +242,25 @@ msgstr "[font=\"sans-bold-14\"]Joko barruan"
 msgid ""
 "[font=\"sans-14\"]Double Left Click \\[on unit]: Select all of your units of"
 " the same kind on the screen (even if they're different ranks)"
-msgstr ""
+msgstr "[font=\"sans-14\"]Ezker klik bikoitza \\[Unitatean]: Mapan zure mota berdineko unitateak erakusteko ( maila ezberdinekoak badira ere bai)"
 
 #: gui/manual/intro.txt:55
 msgid ""
 "Triple Left Click \\[on unit]: Select all of your units of the same kind and"
 " the same rank on the screen"
-msgstr ""
+msgstr "Ezker klik hirukoitza \\[Unitatean]: Mapan mota eta maila berdineko unitate guztiak aukeratzeko"
 
 #: gui/manual/intro.txt:56
 msgid ""
 "Alt + Double Left Click \\[on unit]: Select all your units of the same kind "
 "on the entire map (even if they have different ranks)"
-msgstr ""
+msgstr "Alt + bitan sakatu\\[unitatean]: Aukeratu mota berdineko zure unitate guztiak mapan ( maila desberdinekoak izanda ere)"
 
 #: gui/manual/intro.txt:57
 msgid ""
 "Alt + Triple Left Click \\[on unit]: Select all your units of the same kind "
 "and rank on the entire map"
-msgstr ""
+msgstr "Alt + Ezker klik hirukoitza \\[unitatean]: Zure maila eta mota berdineko unitate guztiak aukeratzen ditu mapan"
 
 #: gui/manual/intro.txt:58
 msgid "Shift + F5: Quicksave"
@@ -279,7 +280,7 @@ msgstr "F12: Erakutsi/ezkutatu igarotako denboraren kontagailua"
 
 #: gui/manual/intro.txt:62
 msgid "ESC: Close all dialogs (chat, menu) or clear selected units"
-msgstr ""
+msgstr "ESC: Elkarrizketa denak itxi (txata, menua) edo ezeztatu oraingo aukera"
 
 #: gui/manual/intro.txt:63
 msgid "Enter/return: Open/send chat"
@@ -291,33 +292,33 @@ msgstr "T: Bidali mezua taldeari"
 
 #: gui/manual/intro.txt:65
 msgid "Pause: Pause/resume the game"
-msgstr ""
+msgstr "Etena: Eten/berrabiarazi jokoa"
 
 #: gui/manual/intro.txt:66
 msgid "Delete: Delete currently selected units/buildings"
-msgstr ""
+msgstr "Ezabatu: Aukeratutako unitate eta eraikinak ezabatzen ditu"
 
 #: gui/manual/intro.txt:67
 msgid ""
 "Shift + Delete: Delete currently selected units/buildings without "
 "confirmation"
-msgstr ""
+msgstr "Maius + Ezabatu: ezabatutako unitate/eraikinak galdetu gabe ezabatzen ditu"
 
 #: gui/manual/intro.txt:68
 msgid "/ (ForwardSlash): Select idle fighter"
-msgstr ""
+msgstr "/ (marra diagonala): Hautatu ezer egin gabe dagoen borrokalaria"
 
 #: gui/manual/intro.txt:69
 msgid "Shift + /: add idle fighter to selection"
-msgstr ""
+msgstr "Maius + /: Ezer egin gabe dagoen borrokalaria aukeraketan gehitzen du"
 
 #: gui/manual/intro.txt:70
 msgid ". (Period): Select idle worker (including citizen soldiers)"
-msgstr ""
+msgstr ". (puntua): Geldirik dagoen langilea aukeratzen du (baita hiritar gudariak ere)"
 
 #: gui/manual/intro.txt:71
 msgid "Shift + .: add idle worker to selection (including citizen soldiers)"
-msgstr ""
+msgstr "Maius + .: Geldirik dauden langileak aukeraketara gehitzen ditu (baita hiritar gudariak ere)"
 
 #: gui/manual/intro.txt:72
 msgid "H: Stop (halt) the currently selected units."
@@ -329,7 +330,7 @@ msgstr "Y: Unitatea lanera bueltatuko da"
 
 #: gui/manual/intro.txt:74
 msgid "U: Unload the garrisoned units of the selected buildings"
-msgstr ""
+msgstr "U: Unitateak aukeratutako eraikinetatik botatzen ditu"
 
 #: gui/manual/intro.txt:75
 msgid ""
@@ -345,7 +346,7 @@ msgstr "1 (eta 0ra artekoak): Hautatu 1 (eta 0ra arte) kontrol-taldeko unitateak
 #: gui/manual/intro.txt:77
 msgid ""
 "Shift + 1 (to 0): Add control group 1 (to 0) to the selected units/buildings"
-msgstr ""
+msgstr "Maius + 1 (0 arte): 1 (0 arte) kontrol taldeari aukeratutako unitate edo eraikinak gehitzen dizkio"
 
 #: gui/manual/intro.txt:78
 msgid ""
@@ -363,65 +364,65 @@ msgstr "F5, F6, F7 eta F8: Mugitu kamera markatutako kokaleku batera. Itzuli ber
 msgid ""
 "Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, ..."
 " unit shown to the training queue for all the selected buildings."
-msgstr ""
+msgstr "Z, X, C, V, B, N, M: Aukeratutako erreklutatze eraikin batekin. Gehitu 1., 2., ....unitatea erreklutatze ilarari aukeratutako eraikin guztientzat."
 
 #: gui/manual/intro.txt:81
 msgid ""
 "PageUp with units selected: Highlights the units/buildings guarded by the "
 "selection."
-msgstr ""
+msgstr "Re Pág aukeratutako unitateekin: Aukeraketak babestutako eraikin eta unitateak nabarmentzen ditu."
 
 #: gui/manual/intro.txt:82
 msgid ""
 "PageDown with units/buildings selected: Highlights the units guarding the "
 "selection."
-msgstr ""
+msgstr "Av Pág aukeratutako eraikin eta unitateekin: unitateak nabarmentzen ditu aukeraketa babestuz."
 
 #: gui/manual/intro.txt:83
 msgid "Tab: See all status bars (which would also show the building progress)"
-msgstr ""
+msgstr "Tab: Egoera marra guztiak ikusi (baita eraikitze aurrerapenak ere)"
 
 #: gui/manual/intro.txt:85
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Saguaren akzioa aldatzen du "
 
 #: gui/manual/intro.txt:86
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
-msgstr ""
+msgstr "[font=\"sans-14\"]Ctrl + Eskuin klika eraikinean: Babestu"
 
 #: gui/manual/intro.txt:87
 msgid "J + Right Click on building: Repair"
-msgstr ""
+msgstr "J + Eskuin klika eraikinean: Konpondu"
 
 #: gui/manual/intro.txt:88
 msgid "P + Right Click: Patrol"
-msgstr ""
+msgstr "P + eskuin klika: Patruilatu"
 
 #: gui/manual/intro.txt:89
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
-msgstr ""
+msgstr "Maius + ezker klika: Mugitu/eraiki/bildu/beste bat ordena ilaran jarri"
 
 #: gui/manual/intro.txt:90
 msgid "Shift + Left click when training unit/s: Add units in batches of five"
-msgstr ""
+msgstr "Maius + ezker klika unitateak erreklutatzean: Unitateak bosnaka gehitzen ditu"
 
 #: gui/manual/intro.txt:91
 msgid ""
 "Shift + Left Click or Left Drag over unit on map: Add unit to selection"
-msgstr ""
+msgstr "Maius + ezker klika edo laukizuzen aukeraketa bidez  ezker klikaz arrastatuz: Aukeraketari unitatea gehitu "
 
 #: gui/manual/intro.txt:92
 msgid ""
 "Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
-msgstr ""
+msgstr "Ctrl + Ezker klika edo laukizuzen aukera arrastatuz: Unitateari aukera kendu"
 
 #: gui/manual/intro.txt:93
 msgid "Alt + Left Drag over units on map: Only select military units"
-msgstr ""
+msgstr "Alt + Laukizuzen aukeraketa mapako unitateen gainean: Militarren unitateak aukeratzen ditu soilik"
 
 #: gui/manual/intro.txt:94
 msgid "I + Left Drag over units on map: Only select idle units"
-msgstr ""
+msgstr "I + Laukizuzen aukeraketa mapako unitateen gainean: Aktibo ez dauden unitateak aukeratzen ditu soilik"
 
 #: gui/manual/intro.txt:95
 msgid ""
