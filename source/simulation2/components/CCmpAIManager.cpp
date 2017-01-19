@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -42,6 +42,8 @@
 #include "simulation2/serialization/StdDeserializer.h"
 #include "simulation2/serialization/StdSerializer.h"
 #include "simulation2/serialization/SerializeTemplates.h"
+
+extern void kill_mainloop();
 
 /**
  * @file
@@ -223,6 +225,7 @@ public:
 		m_ScriptInterface->RegisterFunction<void, int, JS::HandleValue, CAIWorker::PostCommand>("PostCommand");
 		m_ScriptInterface->RegisterFunction<void, std::wstring, CAIWorker::IncludeModule>("IncludeModule");
 		m_ScriptInterface->RegisterFunction<void, CAIWorker::ForceGC>("ForceGC");
+		m_ScriptInterface->RegisterFunction<void, CAIWorker::ExitProgram>("Exit");
 
 		m_ScriptInterface->RegisterFunction<JS::Value, JS::HandleValue, JS::HandleValue, pass_class_t, CAIWorker::ComputePath>("ComputePath");
 
@@ -326,6 +329,11 @@ public:
 	{
 		PROFILE3("AI compute GC");
 		JS_GC(pCxPrivate->pScriptInterface->GetJSRuntime());
+	}
+
+	static void ExitProgram(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+	{
+		kill_mainloop();
 	}
 
 	/**

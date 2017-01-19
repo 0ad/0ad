@@ -9,6 +9,14 @@ m.warn = function(output)
 		warn("PlayerID " + PlayerID + " |   " + uneval(output));
 };
 
+/**
+ * Useful for simulating consecutive AI matches.
+ */
+m.exit = function()
+{
+	Engine.Exit();
+};
+
 m.VectorDistance = function(a, b)
 {
 	let dx = a[0] - b[0];
