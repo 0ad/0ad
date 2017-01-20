@@ -5,14 +5,15 @@
 # Translators:
 # Ibai Oihanguren Sala <ibai@oihanguren.com>, 2014
 # Thadah D. Denyse <juchuf@gmail.com>, 2015-2016
+# Mielanjel Iraeta <pospolos@gmail.com>, 2017
 # Osoitz <oelkoro@gmail.com>, 2015
 # Thadah D. Denyse <juchuf@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-12-23 11:16+0100\n"
-"PO-Revision-Date: 2017-01-08 16:26+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-01-17 19:28+0000\n"
+"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -92,7 +93,7 @@ msgstr "Mapa berriak"
 
 #: gui/gamesetup/gamesetup.js:90
 msgid "Trigger Maps"
-msgstr ""
+msgstr "Trigger Mapak"
 
 #: gui/gamesetup/gamesetup.js:95
 msgid "All Maps"
@@ -302,7 +303,7 @@ msgstr "Taldea"
 
 #: gui/gamesetup/gamesetup.xml:(caption):141
 msgid "Show this message in the future"
-msgstr ""
+msgstr "Erakutsi mezu hau etorkizunean"
 
 #: gui/gamesetup/gamesetup.xml:(caption):151
 msgid "Map Type:"
@@ -355,7 +356,7 @@ msgstr "Irabazteko baldintza:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):342
 msgid "Wonder Victory:"
-msgstr ""
+msgstr "Garaipena mirariz:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):352
 msgid "Population Cap:"
@@ -391,7 +392,7 @@ msgstr "Taldeak blokeatu:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):422
 msgid "Last Man Standing:"
-msgstr ""
+msgstr "Bizirik Dirauen Azkena:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):432
 msgid "Cheats:"
@@ -408,11 +409,11 @@ msgstr "Ikusi zibilizazioaren informazioa"
 #: gui/gamesetup/gamesetup.xml:(tooltip):82
 msgid ""
 "Reset any civilizations that have been selected to the default (random)"
-msgstr ""
+msgstr "Aukeratutako zibilizazioa hasierako doikuntzetara eramaten ditu (ausaz)"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):97
 msgid "Reset all teams to the default."
-msgstr ""
+msgstr "Talde guztiak hasierako baloreetara eramaten ditu"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):108
 msgid "Pick a color."
@@ -473,7 +474,7 @@ msgstr "Hautatu irabazteko baldintza."
 #: gui/gamesetup/gamesetup.xml:(tooltip):346
 msgid ""
 "Number of minutes that the player has to keep the wonder in order to win."
-msgstr ""
+msgstr "Miraria zutik iraun behar dituen minutuak irabazteko."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):356
 msgid "Select population cap."
@@ -491,13 +492,13 @@ msgstr "Ezarri erasoak zilegi ez diren denbora tartea."
 #. options!
 #: gui/gamesetup/gamesetup.xml:(tooltip):386
 msgid "Toggle revealed map (see everything)."
-msgstr ""
+msgstr "Mapa osoa ikusi (edo ez)"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:(tooltip):396
 msgid "Toggle explored map (see initial map)."
-msgstr ""
+msgstr "Ikusi edo ez ikusi miatutako mapa (hasierako mapa erakusten du) "
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):406
 msgid "Disable all treasures on the map."
@@ -511,7 +512,7 @@ msgstr "Taldeak blokeatu edo ez."
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
-msgstr ""
+msgstr "Aukeratu nahi duzun bizirik dirauen azken jokalariak edo zutik gelditzen den azken aliatuen taldeak irabazten duen."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):436
 msgid "Toggle the usability of cheats."
@@ -519,7 +520,7 @@ msgstr "Trikimailuak erabiltzea baimendu edo ez."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):446
 msgid "Toggle if this game will be rated for the leaderboard."
-msgstr ""
+msgstr "Markatu aukera hau partida jokalarien sailkapen orokorrerako balio izatea nahi baduzu."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):460
 msgid "Close more game options window"
@@ -562,7 +563,7 @@ msgstr "Jarraitu"
 #: gui/gamesetup/gamesetup_mp.xml:(tooltip):54
 #: gui/gamesetup/gamesetup_mp.xml:(tooltip):101
 msgid "Leave blank to use the default port."
-msgstr ""
+msgstr "Txuri utzi hasierako portua erabiltzeko. "
 
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"
@@ -570,23 +571,23 @@ msgstr "Eguneko aipua:"
 
 #: gui/text/quotes.txt:1
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus"
-msgstr ""
+msgstr "\"Ergel aberats bat karga krudela da.\" - Eskilo"
 
 #: gui/text/quotes.txt:2
 msgid ""
 "\"From him \\[Death] alone of all the powers of heaven Persuasion holds "
 "aloof.\" - Aeschylus"
-msgstr ""
+msgstr "\"Bera \\[Herioa] zeruko botere guztietan bakarra Persuasionek ere bazter uzten ez duena.\" - Eskilo"
 
 #: gui/text/quotes.txt:3
 msgid "\"To be rather than to seem.\" - Aeschylus, \"Seven Against Thebes\""
-msgstr ""
+msgstr "\"Izan, itxura izan baino gehiago.\" - Eskilo, \"Zazpiak Tebasen aurka\"n"
 
 #: gui/text/quotes.txt:4
 msgid ""
 "\"It is not the oath that makes us believe the man, but the man the oath.\" "
 "- Aeschylus"
-msgstr ""
+msgstr "\"Ez da zina gizona zilegi egiten diguna, baizik eta gizonak zina.\" - Eskilo"
 
 #: gui/text/quotes.txt:5
 msgid ""

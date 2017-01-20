@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-12-23 11:16+0100\n"
-"PO-Revision-Date: 2017-01-14 00:34+0000\n"
+"PO-Revision-Date: 2017-01-17 11:15+0000\n"
 "Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -54,7 +54,7 @@ msgstr "%(username)s a zo stlepet kuit"
 #: gui/gamesetup/gamesetup.js:50
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr "%(username)s a zo bet skarzhet kuit da viken"
+msgstr "%(username)s a zo bet forbannet"
 
 #: gui/gamesetup/gamesetup.js:51
 #, javascript-format
@@ -95,7 +95,7 @@ msgstr "Kartennoù nevez"
 
 #: gui/gamesetup/gamesetup.js:90
 msgid "Trigger Maps"
-msgstr "Kartennoù distenn"
+msgstr "Kartennoù Distenn"
 
 #: gui/gamesetup/gamesetup.js:95
 msgid "All Maps"
@@ -273,7 +273,7 @@ msgstr "Mat eo"
 
 #: gui/gamesetup/gamesetup.xml:(caption):21
 msgid "Match Setup"
-msgstr "Kefluniadur ar c'hrogad"
+msgstr "Kefluniadur ar C'hrogad"
 
 #: gui/gamesetup/gamesetup.xml:(caption):27
 msgid "Loading"
@@ -293,7 +293,7 @@ msgstr "Liv"
 
 #: gui/gamesetup/gamesetup.xml:(caption):55
 msgid "Player Placement"
-msgstr "Lec'hiadur ar c'hoarier"
+msgstr "Lec'hiadur ar C'hoarier"
 
 #: gui/gamesetup/gamesetup.xml:(caption):59
 msgid "Civilization"
@@ -309,19 +309,19 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(caption):151
 msgid "Map Type:"
-msgstr "Doare kartenn:"
+msgstr "Doare Kartenn:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):154
 msgid "Map Filter:"
-msgstr "Sil kartenn:"
+msgstr "Sil Kartenn:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):157
 msgid "Select Map:"
-msgstr "Dibab ur gartenn:"
+msgstr "Dibab ur Gartenn:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):160
 msgid "Number of Players:"
-msgstr "Niver a c'hoarierien:"
+msgstr "Niver a C'hoarierien:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):163
 msgid "Map Size:"
@@ -370,7 +370,7 @@ msgstr "Mammennoù el Loc'hañ:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):372
 msgid "Ceasefire:"
-msgstr "Harz-tennañ :"
+msgstr "Harz-tennañ:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
@@ -402,7 +402,7 @@ msgstr "Truchadurioù:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):442
 msgid "Rated Game:"
-msgstr "C'hoariadenn renket:"
+msgstr "C'hoariadenn Renket:"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):69
 msgid "View civilization info"

@@ -11,12 +11,13 @@
 # niektb <niektb95@gmail.com>, 2014,2016
 # Reginas - <reginas@hotmail.nl>, 2016
 # Sander Deryckere, 2016
+# SuperVipers <camerongeuzinge@hotmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-12-16 09:00+0100\n"
-"PO-Revision-Date: 2016-12-16 10:11+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-01-19 22:43+0000\n"
+"Last-Translator: SuperVipers <camerongeuzinge@hotmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -100,7 +101,7 @@ msgstr "%(nick)s (%(rating)s)"
 #: gui/lobby/lobby.js:453
 #, javascript-format
 msgid "Player \"%(nick)s\" not found."
-msgstr ""
+msgstr "Speler \"%(nick)s\" niet gevonden."
 
 #. Translation: %(time)s is the hour and minute here.
 #: gui/lobby/lobby.js:634
@@ -119,7 +120,7 @@ msgstr "Spelers: %(current)s/%(total)s"
 
 #: gui/lobby/lobby.js:681
 msgid "The game has already started. Do you want to join as observer?"
-msgstr ""
+msgstr "Het spel is al begonnen. Wil je als waarnemer deelnemen?"
 
 #: gui/lobby/lobby.js:682
 msgid "Confirmation"
@@ -349,7 +350,7 @@ msgstr "Bekijk profiel"
 
 #: gui/lobby/lobby.xml:(caption):350
 msgid "Please enter a player name."
-msgstr ""
+msgstr "Voer een gebruikersnaam in."
 
 #: gui/lobby/lobby.xml:(heading):40
 msgid "Status"

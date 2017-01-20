@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-01-09 09:02+0100\n"
-"PO-Revision-Date: 2017-01-14 00:34+0000\n"
+"PO-Revision-Date: 2017-01-18 15:04+0000\n"
 "Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -81,7 +81,7 @@ msgstr "Dizerc'hel a ran"
 
 #: gui/session/menu.js:177
 msgid "Destroy everything currently selected?"
-msgstr ""
+msgstr "Distruj kement-tra a zo diuzet?"
 
 #: gui/session/menu.js:178
 msgid "Delete"
@@ -117,7 +117,7 @@ msgstr "x"
 
 #: gui/session/menu.js:448
 msgid "Request your allies to attack this enemy"
-msgstr ""
+msgstr "Goulenn gant ar re gevredet ganeoc'h tagañ an enebour-mañ"
 
 #: gui/session/menu.js:591
 #, javascript-format
@@ -208,8 +208,8 @@ msgstr "N'eus bag kenwerzh ebet."
 #, javascript-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
-msgstr[0] "Bez 'zo %(numberTrading)s bag genwerzh oc'h ober kenwerzh"
-msgstr[1] "Bez 'zo %(numberTrading)s bag genwerzh oc'h ober kenwerzh"
+msgstr[0] "Bez 'zo %(numberTrading)s vag genwerzh oc'h ober kenwerzh"
+msgstr[1] "Bez 'zo %(numberTrading)s a vig kenwerzh oc'h ober kenwerzh"
 
 #: gui/session/menu.js:686
 #, javascript-format
@@ -222,8 +222,8 @@ msgstr[1] "%(numberOfShipTraders)s dioberiant"
 #, javascript-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
-msgstr[0] "%(numberOfShipTraders)s bag kenwerzh dioberiant"
-msgstr[1] "%(numberOfShipTraders)s bag kenwerzh dioberiant"
+msgstr[0] "%(numberOfShipTraders)s vag kenwerzh dioberiant"
+msgstr[1] "%(numberOfShipTraders)s a vigi kenwerzh dioberiant"
 
 #: gui/session/menu.js:867
 msgid "Resume"
@@ -248,11 +248,11 @@ msgstr "Dornlevr"
 
 #: gui/session/menu.js:901
 msgid "The Developer Overlay was closed."
-msgstr "Dreistlakaadenn an diorroerien a zo bet serret warni."
+msgstr "Dreistgwiskad an diorroerien a zo bet serret warni."
 
 #: gui/session/menu.js:902
 msgid "The Developer Overlay was opened."
-msgstr "Dreistlakaadenn an diorroerien a zo bet digoret warni."
+msgstr "Dreistgwiskad an diorroerien a zo bet digoret warni."
 
 #: gui/session/menu.js:925
 #, javascript-format
@@ -293,7 +293,7 @@ msgstr "%(player)s en deus staget gant ar c'hoariadenn."
 #: gui/session/messages.js:107
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr "%(username)s a zo bet skarzhet kuit"
+msgstr "%(username)s a zo bet forbannet"
 
 #: gui/session/messages.js:108
 #, javascript-format
@@ -320,7 +320,7 @@ msgstr "Abeg: %(reason)s."
 
 #: gui/session/messages.js:137
 msgid "Waiting for other players to connect..."
-msgstr "O c'hortoz e vefe kevreet ar c'hoarierien all ..."
+msgstr "O c'hortoz ma vefe kevreet ar c'hoarierien all..."
 
 #: gui/session/messages.js:138
 msgid "Synchronising gameplay with other players..."
@@ -361,7 +361,7 @@ msgstr "Prevez"
 #: gui/session/messages.js:197
 msgctxt "chat history filter"
 msgid "Chat and notifications"
-msgstr "Flapva ha kemennadennoù"
+msgstr "Flapva ha kemennoù"
 
 #: gui/session/messages.js:202
 msgctxt "chat history filter"
@@ -424,7 +424,7 @@ msgstr "%(player)s a zo bremañ kevredet ganeoc'h."
 #: gui/session/messages.js:256
 #, javascript-format
 msgid "%(player)s is now at war with you."
-msgstr "%(player)s a zo o vrezeliñ a-enep ac'hanoc'h bremañ."
+msgstr "%(player)s a zo o vrezeliñ a-enep deoc'h bremañ."
 
 #: gui/session/messages.js:257
 #, javascript-format
@@ -434,7 +434,7 @@ msgstr "%(player)s a zo bremañ neptu en ho keñver."
 #: gui/session/messages.js:260
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
-msgstr "%(player)s a zo kevredet gant  %(player2)s brema."
+msgstr "%(player)s a zo kevredet gant  %(player2)s bremañ."
 
 #: gui/session/messages.js:261
 #, javascript-format
@@ -482,7 +482,7 @@ msgstr "HH:mm"
 
 #: gui/session/messages.js:838
 msgid "Unknown Player"
-msgstr "C'hoarier dianav"
+msgstr "C'hoarier Dianav"
 
 #: gui/session/messages.js:845
 #, javascript-format
@@ -537,7 +537,7 @@ msgstr "%(label)s %(current)s / %(max)s"
 
 #: gui/session/selection_details.js:55 gui/session/selection_details.js:368
 msgid "Hitpoints:"
-msgstr "Poentoù buhez :"
+msgstr "Poentoù Buhez:"
 
 #: gui/session/selection_details.js:71
 #, javascript-format
@@ -664,7 +664,7 @@ msgstr "Uhelaat al live kloc'h-galv a-benn gwareziñ muioc'h a unanennoù."
 
 #: gui/session/selection_panels.js:87
 msgid "End of alert."
-msgstr "Echu eo ar c'hloc'h-galv."
+msgstr "Echu gant ar c'hloc'h-galv."
 
 #: gui/session/selection_panels.js:144
 #, javascript-format
@@ -696,11 +696,11 @@ msgstr "Morailhañ an nor"
 
 #: gui/session/selection_panels.js:514
 msgid "Unlock Gate"
-msgstr "Divorailhañ an nor."
+msgstr "Divorailhañ an Nor."
 
 #: gui/session/selection_panels.js:587
 msgid "Pack"
-msgstr "Paka"
+msgstr "Pakañ"
 
 #: gui/session/selection_panels.js:595
 msgid "Unpack"
@@ -716,7 +716,7 @@ msgstr "Nullañ an Dibakadur"
 
 #: gui/session/selection_panels.js:694
 msgid "Insufficient population capacity:"
-msgstr ""
+msgstr "Diouer a boblañs:"
 
 #: gui/session/selection_panels.js:695
 #, javascript-format
@@ -727,31 +727,31 @@ msgstr "%(population)s %(neededSlots)s"
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(number)s a dud er rummad %(class)s"
+msgstr[1] "%(number)s a dud er rummad %(class)s"
 
 #: gui/session/selection_panels.js:865
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
-msgstr ""
+msgstr "Chom a ra: %(entityCounts)s"
 
 #: gui/session/selection_panels.js:1174
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
-msgstr ""
+msgstr "Gwellaat en ur %(name)s. %(tooltip)s"
 
 #: gui/session/selection_panels.js:1179
 #, javascript-format
 msgid "Upgrade into a %(name)s."
-msgstr ""
+msgstr "Gwellaat en ur %(name)s."
 
 #: gui/session/selection_panels.js:1195
 msgid "Cancel Upgrading"
-msgstr ""
+msgstr "Nullañ ar Welladenn"
 
 #: gui/session/selection_panels.js:1200
 msgid "Cannot upgrade when the entity is already upgrading."
-msgstr ""
+msgstr "N'eo ket posupl d'ober ar gwelladennoù keit ha ma vez graet unan all."
 
 #: gui/session/selection_panels_helpers.js:26
 msgctxt "stance"
@@ -761,7 +761,7 @@ msgstr "Feuls"
 #: gui/session/selection_panels_helpers.js:28
 msgctxt "stance"
 msgid "Aggressive"
-msgstr "Jahinus"
+msgstr "Tagus"
 
 #: gui/session/selection_panels_helpers.js:30
 msgctxt "stance"
@@ -776,49 +776,49 @@ msgstr "Gouzañvus"
 #: gui/session/selection_panels_helpers.js:34
 msgctxt "stance"
 msgid "Standground"
-msgstr ""
+msgstr "Derc'hel war-blas"
 
 #: gui/session/selection_panels_helpers.js:46
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
-msgstr ""
+msgstr "Tagañ an enebourien tost, sipañ war an dagerien ha redek war-lerc'h an unanennoù gweladus c'hoazh"
 
 #: gui/session/selection_panels_helpers.js:48
 msgctxt "stance"
 msgid "Attack nearby opponents"
-msgstr ""
+msgstr "Tagañ an enebourien tost"
 
 #: gui/session/selection_panels_helpers.js:50
 msgctxt "stance"
 msgid ""
 "Attack nearby opponents, chase a short distance and return to the original "
 "location"
-msgstr ""
+msgstr "Tagañ an enebourien tost, redek war-o-lerc'h war un hed-vihan ha distreiñ d'al lec'hiadur orin"
 
 #: gui/session/selection_panels_helpers.js:52
 msgctxt "stance"
 msgid "Flee if attacked"
-msgstr ""
+msgstr "Tec'hout pa vezer taget"
 
 #: gui/session/selection_panels_helpers.js:54
 msgctxt "stance"
 msgid "Attack opponents in range, but don't move"
-msgstr ""
+msgstr "Tagañ an enbourien e-barzh an hed-tenn, nemet hep fiñval"
 
 #: gui/session/selection_panels_helpers.js:68
 #, javascript-format
 msgid "Current Count: %(count)s, Limit: %(limit)s."
-msgstr ""
+msgstr "Kont-Red:  %(count)s, Bevenn: %(limit)s"
 
 #: gui/session/selection_panels_helpers.js:82
 #, javascript-format
 msgid "%(changer)s enlarges the limit with %(change)s."
-msgstr ""
+msgstr "%(changer)s brasaat ar vevenn eus %(change)s."
 
 #: gui/session/selection_panels_helpers.js:83
 #, javascript-format
 msgid "%(changer)s lessens the limit with %(change)s."
-msgstr ""
+msgstr "%(changer)s bihanaat ar vevenn eus %(change)s."
 
 #: gui/session/selection_panels_helpers.js:116
 #, javascript-format
@@ -828,21 +828,21 @@ msgstr "%(buildings)s*%(batchSize)s"
 #: gui/session/selection_panels_helpers.js:132
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
-msgstr ""
+msgstr "%(action)s evit stummañ %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 
 #: gui/session/selection_panels_helpers.js:134
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
-msgstr ""
+msgstr "%(action)s evit stummañ %(number)s (%(fullBatch)s)."
 
 #: gui/session/selection_panels_helpers.js:137
 #, javascript-format
 msgid "%(action)s to train %(number)s."
-msgstr ""
+msgstr "%(action)s evit stummañ %(number)s."
 
 #: gui/session/selection_panels_helpers.js:140
 msgid "Shift-click"
-msgstr ""
+msgstr "Pennlizh-Klik"
 
 #: gui/session/session.js:271
 msgid "Gaia"
@@ -851,54 +851,54 @@ msgstr "Gaia"
 #: gui/session/session.js:335
 msgctxt "chat input"
 msgid "Type the message to send."
-msgstr ""
+msgstr "Bizskrivit ar gemennadenn da gas."
 
 #: gui/session/session.js:337
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
-msgstr ""
+msgstr "Pouezit war %(hotkey)s evit digeriñ ar flapva foran."
 
 #: gui/session/session.js:340
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr ""
+msgstr "Pouezit war %(hotkey)s evit digeriñ flapva an arsellerien."
 
 #: gui/session/session.js:341
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr ""
+msgstr "Pouezit war %(hotkey)s evit digeriñ ar flapva ar re gevredet."
 
 #: gui/session/session.js:346
 msgid "Find idle worker"
-msgstr ""
+msgstr "Kavout ul labourer dioberiant"
 
 #: gui/session/session.js:349
 msgid ""
 "Select one type of goods as origin of the changes, then use the arrows of "
 "the target type of goods to make the changes."
-msgstr ""
+msgstr "Diuzit un doare madoù evel orin ar c'hemmoù, implijit goude-se birroù ar madoù c'hoantaet a-benn ober ar c'hemmoù."
 
 #: gui/session/session.js:351
 #, javascript-format
 msgid "Using %(hotkey)s will put the selected resource to 100%%."
-msgstr ""
+msgstr "Implijit %(hotkey)s a-benn lakaat ar vammenn diuzet da 100%%."
 
 #: gui/session/session.js:499
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
-msgstr ""
+msgstr "%(civ)s - Gwezenn an Teknologiezhioù"
 
 #: gui/session/session.js:738
 msgid "Do you want to quit?"
-msgstr ""
+msgstr "Ha c'hoant ho peus kuitaat?"
 
 #: gui/session/session.js:744
 msgid "VICTORIOUS!"
-msgstr ""
+msgstr "AR MAOUT A ZO AET GANEOC'H!"
 
 #: gui/session/session.js:745
 msgid "DEFEATED!"
-msgstr ""
+msgstr "FLASTRET OC'H BET!"
 
 #: gui/session/session.js:746
 msgid "Ok"
@@ -907,7 +907,7 @@ msgstr "Mat eo"
 #: gui/session/session.js:797
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
-msgstr ""
+msgstr "Echu emañ ar video ar c'hoariadenn. Ha c'hoant ho peus da guitaat?"
 
 #: gui/session/session.js:798
 msgctxt "replayFinished"
@@ -946,12 +946,12 @@ msgstr "%(popCount)s/%(popLimit)s"
 
 #: gui/session/session.js:1051
 msgid "Population (current / limit)"
-msgstr ""
+msgstr "Poblañs (red/bevenn)"
 
 #: gui/session/session.js:1052
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
-msgstr ""
+msgstr "Poblañs maksimom:  %(popCap)s"
 
 #: gui/session/session.js:1204
 #, javascript-format
@@ -963,131 +963,131 @@ msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
-msgstr ""
+msgstr "Evezhiadennig: Ar mod 'distummidigezh amzerel' a zo un dibarzh diorroer anezhañ, ha n'eo ket graet evit bezañ graet gantañ war padelezhioù hir. Gellout a ra un implij fall bezañ kaoz eus un diouer a vemor pe ur sac'hadenn zoken."
 
 #: gui/session/session.js:1215
 msgid "Time warp mode"
-msgstr ""
+msgstr "Mod distummidiezh amzerel"
 
 #: gui/session/unit_actions.js:572
 msgid "Origin trade market."
-msgstr ""
+msgstr "Marc'had orin."
 
 #: gui/session/unit_actions.js:578
 msgid "Right-click on another market to set it as a destination trade market."
-msgstr ""
+msgstr "Klik-dehou war ur marc'had all evit lakaat anezhañ evel marc'had-pal."
 
 #: gui/session/unit_actions.js:582
 msgid "Destination trade market."
-msgstr ""
+msgstr "Marc'had-pal."
 
 #: gui/session/unit_actions.js:589
 msgid "Right-click to set as origin trade market"
-msgstr ""
+msgstr "Klik-dehou evit lakaat evel marc'had-orin."
 
 #: gui/session/unit_actions.js:596
 msgid "Right-click to set as destination trade market."
-msgstr ""
+msgstr "Klik-dehou evit lakaat evel marc'had-pal."
 
 #: gui/session/unit_actions.js:650 gui/session/unit_actions.js:865
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
-msgstr ""
+msgstr "Gwarnizon-red:  %(garrisoned)s/ %(capacity)s"
 
 #: gui/session/unit_actions.js:912
 msgid "Right-click to establish a default route for new traders."
-msgstr ""
+msgstr "Klik-dehou evit diazezañ un hent dre-ziouer evit ar genwerzhourien nevez."
 
 #: gui/session/unit_actions.js:916
 #, javascript-format
 msgid "Expected gain: %(gain)s"
-msgstr ""
+msgstr "Gounid gortozet: %(gain)s"
 
 #: gui/session/unit_actions.js:1049 gui/session/unit_actions.js:1351
 msgid "Unload All."
-msgstr ""
+msgstr "Diskargañ an Holl."
 
 #: gui/session/unit_actions.js:1071
 msgid "Destroy the selected units or buildings."
-msgstr ""
+msgstr "Distruj an unanennoù hag ar savadurioù diuzet."
 
 #: gui/session/unit_actions.js:1073
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
-msgstr ""
+msgstr "Grit gant %(hotkey)s a-benn tremen e-biou ar prenestr kadarnadenn."
 
 #: gui/session/unit_actions.js:1105
 msgid "Abort the current order."
-msgstr ""
+msgstr "Dilezel ar gargadenn-red."
 
 #: gui/session/unit_actions.js:1125
 msgid "Order the selected units to garrison in a building or unit."
-msgstr ""
+msgstr "Reiñ an urzh d'an unanennoù diuzet da vont e gwarnizon e-barzh ur savadur pe un unanenn."
 
 #: gui/session/unit_actions.js:1147
 msgid "Unload"
-msgstr ""
+msgstr "Diskargañ"
 
 #: gui/session/unit_actions.js:1165
 msgid "Order the selected units to repair a building or mechanical unit."
-msgstr ""
+msgstr "Reiñ an urzh d'an unanennoù diuzet da gempenn ur savadur pe un unanenn mekanikel."
 
 #: gui/session/unit_actions.js:1184
 msgid "Focus on Rally Point."
-msgstr ""
+msgstr "Kreizañ war ar Poent-Bodañ."
 
 #: gui/session/unit_actions.js:1209
 msgid "Back to Work"
-msgstr ""
+msgstr "Distreiñ d'al Labour"
 
 #: gui/session/unit_actions.js:1228
 msgid "Order the selected units to guard a building or unit."
-msgstr ""
+msgstr "Reiñ an urzh d'an unanennoù diuzet da wardoniañ ur savadur pe un unanenn."
 
 #: gui/session/unit_actions.js:1246
 msgid "Remove guard"
-msgstr ""
+msgstr "Na gwardoniañ ken"
 
 #: gui/session/unit_actions.js:1263
 msgid "Select trading goods"
-msgstr ""
+msgstr "Dibab ar madoù da eskemm"
 
 #: gui/session/unit_actions.js:1280
 msgid "Patrol"
-msgstr ""
+msgstr "Bagad-ged"
 
 #: gui/session/unit_actions.js:1281
 msgid "Attack all encountered enemy units while avoiding buildings."
-msgstr ""
+msgstr "Tagañ an holl unanennoù kejet outo en ur dremen e-biou d'ar savadurioù."
 
 #: gui/session/unit_actions.js:1304
 msgid "Press to prevent allies from using this dropsite"
-msgstr ""
+msgstr "Klikit a-benn mirout ouzh ar re gevredet ganeoc'h da implijout al lec'h-daspugn-mañ"
 
 #: gui/session/unit_actions.js:1309
 msgid "Press to allow allies to use this dropsite"
-msgstr ""
+msgstr "Klikit a-benn reiñ an aotre d'ar re gevredet ganeoc'h da ober gant al lec'h-daspugn-mañ"
 
 #: gui/session/unit_actions.js:1372
 msgid "You are allowed to use this dropsite"
-msgstr ""
+msgstr "Aotreet emaoc'h da ober gant al lec'h-daspugn-mañ"
 
 #: gui/session/unit_actions.js:1377
 msgid "The use of this dropsite is prohibited"
-msgstr ""
+msgstr "Difennet eo da ober gant al lec'h-daspugn-mañ"
 
 #: gui/session/unit_actions.js:1437
 msgid "The entity has to be killed before it can be gathered from"
-msgstr ""
+msgstr "Rankout a ra bezañ lazhet ar boud a-raok kregiñ da zaspugn madoù diwarni"
 
 #: gui/session/unit_actions.js:1440
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
-msgstr ""
+msgstr "N'hallit ket distruj an hennad-mañ keit ha ma vezec'h perc'henn war nebeutoc'h evit hanter ar poentoù-pakadur"
 
 #: gui/session/unit_actions.js:1443
 msgid "This entity is undeletable"
-msgstr ""
+msgstr "An hennad-mañ n'hall ket bezañ distrujet"
 
 #: gui/session/utility_functions.js:85 gui/session/utility_functions.js:87
 msgid "+"
@@ -1107,12 +1107,12 @@ msgstr ","
 #: gui/session/chat_window.xml:(caption):16
 msgctxt "chat input"
 msgid "Filter:"
-msgstr ""
+msgstr "Sil:"
 
 #: gui/session/chat_window.xml:(caption):44
 msgctxt "chat input"
 msgid "To:"
-msgstr ""
+msgstr "Evit:"
 
 #: gui/session/chat_window.xml:(caption):58
 msgctxt "chat input"
@@ -1135,48 +1135,48 @@ msgstr "Kas"
 #: gui/session/chat_window.xml:(tooltip):26
 msgctxt "chat input"
 msgid "Filter the chat history."
-msgstr ""
+msgstr "Silañ roll-istor ar flapva."
 
 #: gui/session/chat_window.xml:(tooltip):53
 msgctxt "chat input"
 msgid "Select chat addressee."
-msgstr ""
+msgstr "Diuzit ar resever."
 
 #: gui/session/developer_overlay.xml:(caption):18
 msgid "Control all units"
-msgstr ""
+msgstr "Kontrollañ an holl unanennoù"
 
 #: gui/session/developer_overlay.xml:(caption):31
 msgid "Change perspective"
-msgstr ""
+msgstr "Cheñch ar perspektiverezh"
 
 #: gui/session/developer_overlay.xml:(caption):41
 msgid "Display selection state"
-msgstr ""
+msgstr "Diskouez stad an diuzadenn"
 
 #: gui/session/developer_overlay.xml:(caption):47
 msgid "Pathfinder overlay"
-msgstr ""
+msgstr "Kaver-gwenodenn gourloet"
 
 #: gui/session/developer_overlay.xml:(caption):57
 msgid "Obstruction overlay"
-msgstr ""
+msgstr "Stankañ gourloet"
 
 #: gui/session/developer_overlay.xml:(caption):67
 msgid "Unit motion overlay"
-msgstr ""
+msgstr "Fiñvadusted an unanennoù gourloet"
 
 #: gui/session/developer_overlay.xml:(caption):77
 msgid "Range overlay"
-msgstr ""
+msgstr "Hed-tenn gourloet"
 
 #: gui/session/developer_overlay.xml:(caption):87
 msgid "Bounding box overlay"
-msgstr ""
+msgstr "Stern-bevenner gourloet"
 
 #: gui/session/developer_overlay.xml:(caption):97
 msgid "Restrict camera"
-msgstr ""
+msgstr "Bevennañ ar c'hamera"
 
 #: gui/session/developer_overlay.xml:(caption):107
 msgid "Reveal map"
@@ -1184,15 +1184,15 @@ msgstr "Dizoloiñ ar gartenn"
 
 #: gui/session/developer_overlay.xml:(caption):123
 msgid "Enable time warp"
-msgstr ""
+msgstr "Gweredekaat an distummidigezh amzerel"
 
 #: gui/session/developer_overlay.xml:(caption):135
 msgid "Promote selected units"
-msgstr ""
+msgstr "Uhelaat an unanennoù diuzet"
 
 #: gui/session/developer_overlay.xml:(caption):148
 msgid "Hierarchical pathfinder overlay"
-msgstr ""
+msgstr "Kaver-gwenodenn hierarkiezh gourloet"
 
 #: gui/session/diplomacy_window.xml:(caption):10
 #: gui/session/top_panel/button_diplomacy.xml:(tooltip):8
@@ -1209,7 +1209,7 @@ msgstr "Sevenadur"
 
 #: gui/session/diplomacy_window.xml:(caption):24
 msgid "Theirs"
-msgstr ""
+msgstr "Int"
 
 #: gui/session/diplomacy_window.xml:(caption):27
 msgid "A"
@@ -1225,7 +1225,7 @@ msgstr "E"
 
 #: gui/session/diplomacy_window.xml:(caption):39
 msgid "Tribute"
-msgstr ""
+msgstr "Truaj"
 
 #: gui/session/diplomacy_window.xml:(caption):75
 #: gui/session/objectives_window.xml:(caption):44
@@ -1243,15 +1243,15 @@ msgstr "Enrollañ"
 
 #: gui/session/menu.xml:(caption):52
 msgid "Summary"
-msgstr ""
+msgstr "E berr-ha-berr"
 
 #: gui/session/menu.xml:(caption):63
 msgid "Options"
-msgstr ""
+msgstr "Dibarzhioù"
 
 #: gui/session/menu.xml:(caption):87
 msgid "Resign"
-msgstr ""
+msgstr "Dizerc'hel"
 
 #: gui/session/menu.xml:(caption):98 gui/session/session.xml:(caption):158
 msgid "Exit"
@@ -1264,16 +1264,16 @@ msgstr "Palioù"
 
 #: gui/session/session.xml:(caption):58
 msgid "Game Paused"
-msgstr ""
+msgstr "C'hoariadenn Ehanet"
 
 #: gui/session/session.xml:(caption):61
 msgid "Click to Resume Game"
-msgstr ""
+msgstr "Klikañ Evit Adkregiñ Ganti"
 
 #: gui/session/top_panel.xml:(caption):22
 msgctxt "observer mode"
 msgid "Follow Player"
-msgstr ""
+msgstr "Heuliañ ar C'hoarier"
 
 #: gui/session/top_panel.xml:(caption):46
 msgid "Observer Mode"
@@ -1286,15 +1286,15 @@ msgstr "Dibab ur c'hoarier da sellet"
 #: gui/session/trade_window.xml:(caption):9
 #: gui/session/top_panel/button_trade.xml:(tooltip):10
 msgid "Trade"
-msgstr ""
+msgstr "Kenwerzh"
 
 #: gui/session/trade_window.xml:(caption):15
 msgid "Trading goods selection:"
-msgstr ""
+msgstr "Diuzadenn ar madoù da eskemm:"
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"
-msgstr ""
+msgstr "Goulenn"
 
 #: gui/session/dialogs/yes_no.xml:(caption):15
 msgid "Yes or no?"
@@ -1311,11 +1311,11 @@ msgstr "Poentoù pakadur"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):54
 msgid "Attack and Armor"
-msgstr ""
+msgstr "Tagusted hag Houarnwisk"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):69
 msgid "Experience"
-msgstr ""
+msgstr "Skiant-prenet"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):77
 msgid "Rank"
@@ -1329,19 +1329,19 @@ msgstr "Steudad-c'hortoz"
 msgid ""
 "Click to select grouped units, double-click to focus the grouped units and "
 "right-click to disband the group."
-msgstr ""
+msgstr "Klikit da ziuziñ unanennoù strollaet, daou-glikit evit kreizañ ar c'hamera war an unanennoù diuziet ha klikit dehou evit divodañ ar strollad."
 
 #: gui/session/top_panel/button_game_speed.xml:(tooltip):10
 msgid "Game speed"
-msgstr ""
+msgstr "Tizh ar c'hoari"
 
 #: gui/session/top_panel/button_game_speed.xml:(tooltip):18
 msgid "Choose game speed"
-msgstr ""
+msgstr "Diuzit tizh ar c'hoari."
 
 #: gui/session/top_panel/button_menu.xml:(caption):14
 msgid "Menu"
-msgstr ""
+msgstr "Lañser"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XXI : Ulysses"

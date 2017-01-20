@@ -25,6 +25,7 @@
 # Григорий Световидов <grin.sv@gmail.com>, 2015
 # Igor <ggg2134@mail.ru>, 2013
 # insolor, 2014
+# Ivan Korovin <i.d.korovin@gmail.com>, 2017
 # Ivan <lis84@mail.ru>, 2013
 # John Smith <mae_mbllo@mail.ru>, 2016
 # Maksim Oreshkov <oreshkovmv@mail.ru>, 2014
@@ -55,8 +56,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-01-09 09:02+0100\n"
-"PO-Revision-Date: 2017-01-13 11:12+0000\n"
-"Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
+"PO-Revision-Date: 2017-01-16 22:09+0000\n"
+"Last-Translator: Ivan Korovin <i.d.korovin@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -795,10 +796,10 @@ msgstr "%(population)s %(neededSlots)s"
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(number)s объект класса %(class)s"
+msgstr[1] "%(number)s объектов класса %(class)s"
+msgstr[2] "%(number)s объектов класса %(class)s"
+msgstr[3] "%(number)s объекта класса %(class)s"
 
 #: gui/session/selection_panels.js:865
 #, javascript-format
