@@ -3,6 +3,7 @@
 	<object size="0 0 100% 100%">
 		<repeat count="12">
 			<object name="unitGarrisonButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36" tooltip_style="sessionToolTipBottomBold" z="100">
+				<object name="unitGarrisonSelection[n]" type="image" ghost="true" size="0 0 100% 100%"/>
 				<object name="unitGarrisonIcon[n]" type="image" ghost="true" size="3 3 33 33"/>
 				<object name="unitGarrisonCount[n]" ghost="true" style="groupIconsText" type="text" size="0 0 100% 100%"/>
 			</object>

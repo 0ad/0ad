@@ -35,6 +35,11 @@ let g_SelectionPanels = {};
 
 let g_BarterSell;
 
+function getPlayerHighlightColor(player)
+{
+	return "color:" + rgbToGuiColor(g_Players[player].color) + " 160";
+}
+
 g_SelectionPanels.Alert = {
 	"getMaxNumberOfItems": function()
 	{
@@ -476,7 +481,7 @@ g_SelectionPanels.Garrison = {
 
 		data.button.tooltip = tooltip;
 
-		data.button.sprite = "color:" + rgbToGuiColor(g_Players[garrisonedUnitOwner].color) + ":";
+		data.guiSelection.sprite = getPlayerHighlightColor(garrisonedUnitOwner);
 		data.button.sprite_disabled = data.button.sprite;
 
 		// Selection panel buttons only appear disabled if they
@@ -978,7 +983,9 @@ g_SelectionPanels.Selection = {
 				"playername": g_Players[unitOwner].name
 			});
 		data.button.tooltip = tooltip;
-		data.guiSelection.sprite = "color:" + (g_IsObserver ? rgbToGuiColor(g_Players[unitOwner].color) + " 120": "0 0 0 0");
+
+		data.guiSelection.sprite = getPlayerHighlightColor(unitOwner);
+		data.guiSelection.hidden = !g_IsObserver;
 
 		data.countDisplay.caption = data.item.ents.length || "";
 
