@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -50,7 +50,7 @@ public:
 	/**
 	 * Returns true if the entity is only selectable in Atlas editor, e.g. a decorative visual actor.
 	 */
-	virtual bool IsEditorOnly() = 0;
+	virtual bool IsEditorOnly() const = 0;
 
 	/**
 	 * Set the selection highlight state.

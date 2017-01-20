@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -439,32 +439,32 @@ public:
 		GetSimContext().GetComponentManager().DynamicSubscriptionNonsync(MT_RenderSubmit, this, needRender);
 	}
 
-	virtual bool IsMoving()
+	virtual bool IsMoving() const
 	{
 		return m_Moving;
 	}
 
-	virtual fixed GetWalkSpeed()
+	virtual fixed GetWalkSpeed() const
 	{
 		return m_WalkSpeed;
 	}
 
-	virtual fixed GetRunSpeed()
+	virtual fixed GetRunSpeed() const
 	{
 		return m_RunSpeed;
 	}
 
-	virtual pass_class_t GetPassabilityClass()
+	virtual pass_class_t GetPassabilityClass() const
 	{
 		return m_PassClass;
 	}
 
-	virtual std::string GetPassabilityClassName()
+	virtual std::string GetPassabilityClassName() const
 	{
 		return m_PassClassName;
 	}
 
-	virtual void SetPassabilityClassName(std::string passClassName)
+	virtual void SetPassabilityClassName(const std::string& passClassName)
 	{
 		m_PassClassName = passClassName;
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
@@ -472,7 +472,7 @@ public:
 			m_PassClass = cmpPathfinder->GetPassabilityClass(passClassName);
 	}
 
-	virtual fixed GetCurrentSpeed()
+	virtual fixed GetCurrentSpeed() const
 	{
 		return m_CurSpeed;
 	}
@@ -494,9 +494,9 @@ public:
 	}
 
 	virtual bool MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange);
-	virtual bool IsInPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange);
+	virtual bool IsInPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange) const;
 	virtual bool MoveToTargetRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange);
-	virtual bool IsInTargetRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange);
+	virtual bool IsInTargetRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange) const;
 	virtual void MoveToFormationOffset(entity_id_t target, entity_pos_t x, entity_pos_t z);
 
 	virtual void FaceTowardsPoint(entity_pos_t x, entity_pos_t z);
@@ -511,7 +511,7 @@ public:
 		m_ShortPath.m_Waypoints.clear();
 	}
 
-	virtual entity_pos_t GetUnitClearance()
+	virtual entity_pos_t GetUnitClearance() const
 	{
 		return m_Clearance;
 	}
@@ -613,7 +613,7 @@ private:
 	 * Computes the current location of our target entity (plus offset).
 	 * Returns false if no target entity or no valid position.
 	 */
-	bool ComputeTargetPosition(CFixedVector2D& out);
+	bool ComputeTargetPosition(CFixedVector2D& out) const;
 
 	/**
 	 * Attempts to replace the current path with a straight line to the goal,
@@ -1063,7 +1063,7 @@ void CCmpUnitMotion::Move(fixed dt)
 	}
 }
 
-bool CCmpUnitMotion::ComputeTargetPosition(CFixedVector2D& out)
+bool CCmpUnitMotion::ComputeTargetPosition(CFixedVector2D& out) const
 {
 	if (m_TargetEntity == INVALID_ENTITY)
 		return false;
@@ -1455,7 +1455,7 @@ bool CCmpUnitMotion::MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos
 	return true;
 }
 
-bool CCmpUnitMotion::IsInPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange)
+bool CCmpUnitMotion::IsInPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange) const
 {
 	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 	if (!cmpPosition || !cmpPosition->IsInWorld())
@@ -1668,7 +1668,7 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 	return true;
 }
 
-bool CCmpUnitMotion::IsInTargetRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange)
+bool CCmpUnitMotion::IsInTargetRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange) const
 {
 	// This function closely mirrors MoveToTargetRange - it needs to return true
 	// after that Move has completed

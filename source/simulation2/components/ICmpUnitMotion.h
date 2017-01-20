@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -50,13 +50,13 @@ public:
 	 * Determine wether the givven point is within the given range, using the same measurement
 	 * as MoveToPointRange.
 	 */
-	virtual bool IsInPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange) = 0;
+	virtual bool IsInPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange) const = 0;
 
 	/**
 	 * Determine whether the target is within the given range, using the same measurement
 	 * as MoveToTargetRange.
 	 */
-	virtual bool IsInTargetRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange) = 0;
+	virtual bool IsInTargetRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange) const = 0;
 
 	/**
 	 * Attempt to walk into range of a given target entity, or as close as possible.
@@ -89,7 +89,7 @@ public:
 	/**
 	 * Get the current movement speed.
 	 */
-	virtual fixed GetCurrentSpeed() = 0;
+	virtual fixed GetCurrentSpeed() const = 0;
 
 	/**
 	 * Set the current movement speed.
@@ -99,17 +99,17 @@ public:
 	/**
 	 * Get whether the unit is moving.
 	 */
-	virtual bool IsMoving() = 0;
+	virtual bool IsMoving() const = 0;
 
 	/**
 	 * Get the default speed that this unit will have when walking, in metres per second.
 	 */
-	virtual fixed GetWalkSpeed() = 0;
+	virtual fixed GetWalkSpeed() const = 0;
 
 	/**
 	 * Get the default speed that this unit will have when running, in metres per second.
 	 */
-	virtual fixed GetRunSpeed() = 0;
+	virtual fixed GetRunSpeed() const = 0;
 
 	/**
 	 * Set whether the unit will turn to face the target point after finishing moving.
@@ -119,17 +119,17 @@ public:
 	/**
 	 * Get the unit's passability class.
 	 */
-	virtual pass_class_t GetPassabilityClass() = 0;
+	virtual pass_class_t GetPassabilityClass() const = 0;
 
 	/**
 	 * Get the passability class name (as defined in pathfinder.xml)
 	 */
-	virtual std::string GetPassabilityClassName() = 0;
+	virtual std::string GetPassabilityClassName() const = 0;
 
 	/**
 	 * Get the unit clearance (used by the Obstruction component)
 	 */
-	virtual entity_pos_t GetUnitClearance() = 0;
+	virtual entity_pos_t GetUnitClearance() const = 0;
 
 	/**
 	 * Toggle the rendering of debug info.

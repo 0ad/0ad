@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -256,9 +256,9 @@ public:
 	void Interpolate(float frameTime, float frameOffset);
 	void RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling);
 
-	void UpdateVisibility(SUnit& unit);
+	void UpdateVisibility(SUnit& unit) const;
 
-	virtual float GetFrameOffset()
+	virtual float GetFrameOffset() const
 	{
 		return m_FrameOffset;
 	}
@@ -268,14 +268,13 @@ public:
 		m_EnableDebugOverlays = enabled;
 	}
 
-	virtual void PickAllEntitiesAtPoint(std::vector<std::pair<CEntityHandle, CVector3D> >& outEntities, const CVector3D& origin, const CVector3D& dir, bool allowEditorSelectables)
+	virtual void PickAllEntitiesAtPoint(std::vector<std::pair<CEntityHandle, CVector3D> >& outEntities, const CVector3D& origin, const CVector3D& dir, bool allowEditorSelectables) const
 	{
 		// First, make a rough test with the worst-case bounding boxes to pick all
 		// entities/models that could possibly be hit by the ray.
-		std::vector<SUnit*> candidates;
-		for (size_t i = 0; i < m_Units.size(); ++i)
+		std::vector<const SUnit*> candidates;
+		for (const SUnit& unit : m_Units)
 		{
-			SUnit& unit = m_Units[i];
 			if (!unit.actor || !unit.inWorld)
 				continue;
 			if (unit.sweptBounds.RayIntersect(origin, dir))
@@ -442,7 +441,7 @@ void CCmpUnitRenderer::RenderSubmit(SceneCollector& collector, const CFrustum& f
 		collector.Submit(&m_DebugSpheres[i]);
 }
 
-void CCmpUnitRenderer::UpdateVisibility(SUnit& unit)
+void CCmpUnitRenderer::UpdateVisibility(SUnit& unit) const
 {
 	if (unit.inWorld)
 	{

@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -66,7 +66,7 @@ public:
 	 * Get the tag for a given passability class name.
 	 * Logs an error and returns something acceptable if the name is unrecognised.
 	 */
-	virtual pass_class_t GetPassabilityClass(const std::string& name) = 0;
+	virtual pass_class_t GetPassabilityClass(const std::string& name) const = 0;
 
 	virtual entity_pos_t GetClearance(pass_class_t passClass) const = 0;
 
@@ -129,7 +129,7 @@ public:
 	 * or impassable terrain.
 	 * Returns true if the movement is okay.
 	 */
-	virtual bool CheckMovement(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, pass_class_t passClass) = 0;
+	virtual bool CheckMovement(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, pass_class_t passClass) const = 0;
 
 	/**
 	 * Check whether a unit placed here is valid and doesn't hit any obstructions
@@ -138,7 +138,7 @@ public:
 	 * @return ICmpObstruction::FOUNDATION_CHECK_SUCCESS if the placement is okay, else
 	 *	a value describing the type of failure.
 	 */
-	virtual ICmpObstruction::EFoundationCheck CheckUnitPlacement(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t r, pass_class_t passClass, bool onlyCenterPoint = false) = 0;
+	virtual ICmpObstruction::EFoundationCheck CheckUnitPlacement(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t r, pass_class_t passClass, bool onlyCenterPoint = false) const = 0;
 
 	/**
 	 * Check whether a building placed here is valid and doesn't hit any obstructions
@@ -146,7 +146,7 @@ public:
 	 * @return ICmpObstruction::FOUNDATION_CHECK_SUCCESS if the placement is okay, else
 	 *	a value describing the type of failure.
 	 */
-	virtual ICmpObstruction::EFoundationCheck CheckBuildingPlacement(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h, entity_id_t id, pass_class_t passClass) = 0;
+	virtual ICmpObstruction::EFoundationCheck CheckBuildingPlacement(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h, entity_id_t id, pass_class_t passClass) const = 0;
 
 	/**
 	 * Check whether a building placed here is valid and doesn't hit any obstructions
@@ -155,7 +155,7 @@ public:
 	 * @return ICmpObstruction::FOUNDATION_CHECK_SUCCESS if the placement is okay, else
 	 *	a value describing the type of failure.
 	 */
-	virtual ICmpObstruction::EFoundationCheck CheckBuildingPlacement(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h, entity_id_t id, pass_class_t passClass, bool onlyCenterPoint) = 0;
+	virtual ICmpObstruction::EFoundationCheck CheckBuildingPlacement(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h, entity_id_t id, pass_class_t passClass, bool onlyCenterPoint) const = 0;
 
 
 	/**
@@ -186,7 +186,7 @@ public:
 	/**
 	 * Returns some stats about the last ComputePath.
 	 */
-	virtual void GetDebugData(u32& steps, double& time, Grid<u8>& grid) = 0;
+	virtual void GetDebugData(u32& steps, double& time, Grid<u8>& grid) const = 0;
 
 	/**
 	 * Sets up the pathfinder passability overlay in Atlas.

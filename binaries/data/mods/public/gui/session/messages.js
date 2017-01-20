@@ -340,10 +340,6 @@ var g_NotificationsTypes =
 
 		updateDiplomacy();
 	},
-	"quit": function(notification, player)
-	{
-		Engine.Exit();
-	},
 	"tribute": function(notification, player)
 	{
 		addChatMessage({

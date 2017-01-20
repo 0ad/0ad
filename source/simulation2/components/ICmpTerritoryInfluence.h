@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,11 +23,11 @@
 class ICmpTerritoryInfluence : public IComponent
 {
 public:
-	virtual bool IsRoot() = 0;
+	virtual bool IsRoot() const = 0;
 
-	virtual u16 GetWeight() = 0;
+	virtual u16 GetWeight() const = 0;
 
-	virtual u32 GetRadius() = 0;
+	virtual u32 GetRadius() const = 0;
 
 	DECLARE_INTERFACE_TYPE(TerritoryInfluence)
 };

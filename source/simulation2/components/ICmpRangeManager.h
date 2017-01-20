@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -149,7 +149,7 @@ public:
 	 * @param range the distance to compare terrain height with
 	 * @return a fixed number representing the average difference. It's positive when the entity is on average higher than the terrain surrounding it.
 	 */
-	virtual entity_pos_t GetElevationAdaptedRange(const CFixedVector3D& pos, const CFixedVector3D& rot, entity_pos_t range, entity_pos_t elevationBonus, entity_pos_t angle) = 0;
+	virtual entity_pos_t GetElevationAdaptedRange(const CFixedVector3D& pos, const CFixedVector3D& rot, entity_pos_t range, entity_pos_t elevationBonus, entity_pos_t angle) const = 0;
 
 	/**
 	 * Destroy a query and clean up resources. This must be called when an entity no longer needs its
@@ -174,7 +174,7 @@ public:
 	 * Check if the processing of a query is enabled.
 	 * @param tag identifier of a query.
 	 */
-	virtual bool IsActiveQueryEnabled(tag_t tag) = 0;
+	virtual bool IsActiveQueryEnabled(tag_t tag) const = 0;
 
 	/**
 	 * Immediately execute a query, and re-enable it if disabled.
@@ -191,12 +191,12 @@ public:
 	 * Maybe it should be extended to be more like ExecuteQuery without
 	 * the range parameter.)
 	 */
-	virtual std::vector<entity_id_t> GetEntitiesByPlayer(player_id_t player) = 0;
+	virtual std::vector<entity_id_t> GetEntitiesByPlayer(player_id_t player) const = 0;
 
 	/**
 	 * Returns a list of all entities of all players except gaia.
 	 */
-	virtual std::vector<entity_id_t> GetNonGaiaEntities() = 0;
+	virtual std::vector<entity_id_t> GetNonGaiaEntities() const = 0;
 
 	/**
 	 * Toggle the rendering of debug info.
@@ -206,7 +206,7 @@ public:
 	/**
 	 * Returns the mask for the specified identifier.
 	 */
-	virtual u8 GetEntityFlagMask(const std::string& identifier) = 0;
+	virtual u8 GetEntityFlagMask(const std::string& identifier) const = 0;
 
 	/**
 	 * Set the flag specified by the identifier to the supplied value for the entity
@@ -256,7 +256,7 @@ public:
 		/**
 		 * Returns whether the given vertex is visible (i.e. is within a unit's LOS).
 		 */
-		inline bool IsVisible(ssize_t i, ssize_t j)
+		inline bool IsVisible(ssize_t i, ssize_t j) const
 		{
 			if (!(i >= 0 && j >= 0 && i < m_VerticesPerSide && j < m_VerticesPerSide))
 				return false;
@@ -271,7 +271,7 @@ public:
 		/**
 		 * Returns whether the given vertex is explored (i.e. was (or still is) within a unit's LOS).
 		 */
-		inline bool IsExplored(ssize_t i, ssize_t j)
+		inline bool IsExplored(ssize_t i, ssize_t j) const
 		{
 			if (!(i >= 0 && j >= 0 && i < m_VerticesPerSide && j < m_VerticesPerSide))
 				return false;
@@ -287,7 +287,7 @@ public:
 		 * Returns whether the given vertex is visible (i.e. is within a unit's LOS).
 		 * i and j must be in the range [0, verticesPerSide), else behaviour is undefined.
 		 */
-		inline bool IsVisible_UncheckedRange(ssize_t i, ssize_t j)
+		inline bool IsVisible_UncheckedRange(ssize_t i, ssize_t j) const
 		{
 #ifndef NDEBUG
 			ENSURE(i >= 0 && j >= 0 && i < m_VerticesPerSide && j < m_VerticesPerSide);
@@ -303,7 +303,7 @@ public:
 		 * Returns whether the given vertex is explored (i.e. was (or still is) within a unit's LOS).
 		 * i and j must be in the range [0, verticesPerSide), else behaviour is undefined.
 		 */
-		inline bool IsExplored_UncheckedRange(ssize_t i, ssize_t j)
+		inline bool IsExplored_UncheckedRange(ssize_t i, ssize_t j) const
 		{
 #ifndef NDEBUG
 			ENSURE(i >= 0 && j >= 0 && i < m_VerticesPerSide && j < m_VerticesPerSide);
@@ -325,7 +325,7 @@ public:
 	 * Returns a CLosQuerier for checking whether vertex positions are visible to the given player
 	 *	(or other players it shares LOS with).
 	 */
-	virtual CLosQuerier GetLosQuerier(player_id_t player) = 0;
+	virtual CLosQuerier GetLosQuerier(player_id_t player) const = 0;
 
 	/**
 	 * Toggle the scripted Visibility component activation for entity ent.
@@ -337,8 +337,8 @@ public:
 	 * Returns VIS_HIDDEN if the entity doesn't exist or is not in the world.
 	 * This respects the GetLosRevealAll flag.
 	 */
-	virtual ELosVisibility GetLosVisibility(CEntityHandle ent, player_id_t player) = 0;
-	virtual ELosVisibility GetLosVisibility(entity_id_t ent, player_id_t player) = 0;
+	virtual ELosVisibility GetLosVisibility(CEntityHandle ent, player_id_t player) const = 0;
+	virtual ELosVisibility GetLosVisibility(entity_id_t ent, player_id_t player) const = 0;
 
 	/**
 	 * Request the update of the visibility cache of ent at next turn.
@@ -351,7 +351,7 @@ public:
 	 * GetLosVisibility wrapped for script calls.
 	 * Returns "hidden", "fogged" or "visible".
 	 */
-	std::string GetLosVisibility_wrapper(entity_id_t ent, player_id_t player);
+	std::string GetLosVisibility_wrapper(entity_id_t ent, player_id_t player) const;
 
 	/**
 	 * Explore all tiles (but leave them in the FoW) for player p
@@ -381,7 +381,7 @@ public:
 	/**
 	 * Returns whether the whole map has been made visible to the given player.
 	 */
-	virtual bool GetLosRevealAll(player_id_t player) = 0;
+	virtual bool GetLosRevealAll(player_id_t player) const = 0;
 
 	/**
 	 * Set the LOS to be restricted to a circular map.
@@ -391,7 +391,7 @@ public:
 	/**
 	 * Returns whether the LOS is restricted to a circular map.
 	 */
-	virtual bool GetLosCircular() = 0;
+	virtual bool GetLosCircular() const = 0;
 
 	/**
 	 * Sets shared LOS data for player to the given list of players.
@@ -401,18 +401,18 @@ public:
 	/**
 	 * Returns shared LOS mask for player.
 	 */
-	virtual u32 GetSharedLosMask(player_id_t player) = 0;
+	virtual u32 GetSharedLosMask(player_id_t player) const = 0;
 
 	/**
 	 * Get percent map explored statistics for specified player.
 	 */
-	virtual u8 GetPercentMapExplored(player_id_t player) = 0;
+	virtual u8 GetPercentMapExplored(player_id_t player) const = 0;
 
 	/**
 	 * Get percent map explored statistics for specified set of players.
 	 * Note: this function computes statistics from scratch and should not be called too often.
 	 */
-	virtual u8 GetUnionPercentMapExplored(const std::vector<player_id_t>& players) = 0;
+	virtual u8 GetUnionPercentMapExplored(const std::vector<player_id_t>& players) const = 0;
 
 
 	/**

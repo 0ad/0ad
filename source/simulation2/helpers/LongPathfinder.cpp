@@ -1040,7 +1040,7 @@ void LongPathfinder::ImprovePathWaypoints(WaypointPath& path, pass_class_t passC
 	path.m_Waypoints.swap(newWaypoints);
 }
 
-void LongPathfinder::GetDebugDataJPS(u32& steps, double& time, Grid<u8>& grid)
+void LongPathfinder::GetDebugDataJPS(u32& steps, double& time, Grid<u8>& grid) const
 {
 	steps = m_DebugSteps;
 	time = m_DebugTime;

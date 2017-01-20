@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -130,12 +130,12 @@ public:
 		GetSimContext().GetComponentManager().BroadcastMessage(msg);
 	}
 
-	virtual entity_pos_t GetRange()
+	virtual entity_pos_t GetRange() const
 	{
 		return m_Range;
 	}
 
-	virtual bool GetRevealShore()
+	virtual bool GetRevealShore() const
 	{
 		return m_RevealShore;
 	}

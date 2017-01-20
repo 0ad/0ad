@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@
 class ICmpOwnership : public IComponent
 {
 public:
-	virtual player_id_t GetOwner() = 0;
+	virtual player_id_t GetOwner() const = 0;
 
 	virtual void SetOwner(player_id_t playerID) = 0;
 

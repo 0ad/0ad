@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -38,27 +38,27 @@ public:
 		FOUNDATION_CHECK_FAIL_TERRAIN_CLASS
 	};
 
-	virtual ICmpObstructionManager::tag_t GetObstruction() = 0;
+	virtual ICmpObstructionManager::tag_t GetObstruction() const = 0;
 
 	/**
 	 * Gets the square corresponding to this obstruction shape.
 	 * @return true and updates @p out on success;
 	 *         false on failure (e.g. object not in the world).
 	 */
-	virtual bool GetObstructionSquare(ICmpObstructionManager::ObstructionSquare& out) = 0;
+	virtual bool GetObstructionSquare(ICmpObstructionManager::ObstructionSquare& out) const = 0;
 
 	/**
 	 * Same as the method above, but returns an obstruction shape for the previous turn
 	 */
-	virtual bool GetPreviousObstructionSquare(ICmpObstructionManager::ObstructionSquare& out) = 0;
+	virtual bool GetPreviousObstructionSquare(ICmpObstructionManager::ObstructionSquare& out) const = 0;
 
-	virtual entity_pos_t GetSize() = 0;
+	virtual entity_pos_t GetSize() const = 0;
 
-	virtual entity_pos_t GetUnitRadius() = 0;
+	virtual entity_pos_t GetUnitRadius() const = 0;
 
 	virtual void SetUnitClearance(const entity_pos_t& clearance) = 0;
 
-	virtual bool IsControlPersistent() = 0;
+	virtual bool IsControlPersistent() const = 0;
 
 	/**
 	 * Test whether this entity is colliding with any obstruction that are set to
@@ -67,33 +67,33 @@ public:
 	 * @return FOUNDATION_CHECK_SUCCESS if check passes, else an EFoundationCheck
 	 *	value describing the type of failure.
 	 */
-	virtual EFoundationCheck CheckFoundation(std::string className) = 0;
-	virtual EFoundationCheck CheckFoundation(std::string className, bool onlyCenterPoint) = 0;
+	virtual EFoundationCheck CheckFoundation(const std::string& className) const = 0;
+	virtual EFoundationCheck CheckFoundation(const std::string& className, bool onlyCenterPoint) const = 0;
 
 	/**
 	 * CheckFoundation wrapper for script calls, to return friendly strings instead of an EFoundationCheck.
 	 * @return "success" if check passes, else a string describing the type of failure.
 	 */
-	virtual std::string CheckFoundation_wrapper(const std::string& className, bool onlyCenterPoint);
+	virtual std::string CheckFoundation_wrapper(const std::string& className, bool onlyCenterPoint) const;
 
 	/**
 	 * Test whether this entity is colliding with any obstructions that share its
 	 * control groups and block the creation of foundations.
 	 * @return true if foundation is valid (not obstructed)
 	 */
-	virtual bool CheckDuplicateFoundation() = 0;
+	virtual bool CheckDuplicateFoundation() const = 0;
 
 	/**
 	 * Returns a list of units that are colliding with this entity,
 	 * @return vector of blocking units
 	 */
-	virtual std::vector<entity_id_t> GetUnitCollisions() = 0;
+	virtual std::vector<entity_id_t> GetUnitCollisions() const = 0;
 
 	/**
 	 * Detects collisions between foundation-blocking entities and
 	 * tries to fix them by setting control groups, if appropriate.
 	 */
-	virtual void ResolveFoundationCollisions() = 0;
+	virtual void ResolveFoundationCollisions() const = 0;
 
 	virtual void SetActive(bool active) = 0;
 
@@ -101,7 +101,7 @@ public:
 
 	virtual void SetDisableBlockMovementPathfinding(bool movementDisabled, bool pathfindingDisabled, int32_t shape) = 0;
 
-	virtual bool GetBlockMovementFlag() = 0;
+	virtual bool GetBlockMovementFlag() const = 0;
 
 	/**
 	 * Change the control group that the entity belongs to.
@@ -111,10 +111,10 @@ public:
 	virtual void SetControlGroup(entity_id_t group) = 0;
 
 	/// See SetControlGroup.
-	virtual entity_id_t GetControlGroup() = 0;
+	virtual entity_id_t GetControlGroup() const = 0;
 
 	virtual void SetControlGroup2(entity_id_t group2) = 0;
-	virtual entity_id_t GetControlGroup2() = 0;
+	virtual entity_id_t GetControlGroup2() const = 0;
 
 	DECLARE_INTERFACE_TYPE(Obstruction)
 };

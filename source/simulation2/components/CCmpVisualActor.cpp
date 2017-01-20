@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -347,7 +347,7 @@ public:
 		}
 	}
 
-	virtual CBoundingBoxAligned GetBounds()
+	virtual CBoundingBoxAligned GetBounds() const
 	{
 		if (!m_Unit)
 			return CBoundingBoxAligned::EMPTY;
@@ -359,35 +359,35 @@ public:
 		return m_Unit;
 	}
 
-	virtual CBoundingBoxOriented GetSelectionBox()
+	virtual CBoundingBoxOriented GetSelectionBox() const
 	{
 		if (!m_Unit)
 			return CBoundingBoxOriented::EMPTY;
 		return m_Unit->GetModel().GetSelectionBox();
 	}
 
-	virtual CVector3D GetPosition()
+	virtual CVector3D GetPosition() const
 	{
 		if (!m_Unit)
 			return CVector3D(0, 0, 0);
 		return m_Unit->GetModel().GetTransform().GetTranslation();
 	}
 
-	virtual std::wstring GetActorShortName()
+	virtual std::wstring GetActorShortName() const
 	{
 		if (!m_Unit)
 			return L"";
 		return m_Unit->GetObject().m_Base->m_ShortName;
 	}
 
-	virtual std::wstring GetProjectileActor()
+	virtual std::wstring GetProjectileActor() const
 	{
 		if (!m_Unit)
 			return L"";
 		return m_Unit->GetObject().m_ProjectileModelName;
 	}
 
-	virtual CVector3D GetProjectileLaunchPoint()
+	virtual CVector3D GetProjectileLaunchPoint() const
 	{
 		if (!m_Unit)
 			return CVector3D();
@@ -492,7 +492,7 @@ public:
 			m_Unit->GetModel().SetEntityVariable(name, value);
 	}
 
-	virtual u32 GetActorSeed()
+	virtual u32 GetActorSeed() const
 	{
 		return m_Seed;
 	}
@@ -506,7 +506,7 @@ public:
 		ReloadActor();
 	}
 
-	virtual bool HasConstructionPreview()
+	virtual bool HasConstructionPreview() const
 	{
 		return m_ConstructionPreview;
 	}

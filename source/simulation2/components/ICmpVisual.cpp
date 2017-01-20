@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,7 +31,7 @@ DEFINE_INTERFACE_METHOD_1("SetAnimationSyncRepeat", void, ICmpVisual, SetAnimati
 DEFINE_INTERFACE_METHOD_1("SetAnimationSyncOffset", void, ICmpVisual, SetAnimationSyncOffset, fixed)
 DEFINE_INTERFACE_METHOD_4("SetShadingColor", void, ICmpVisual, SetShadingColor, fixed, fixed, fixed, fixed)
 DEFINE_INTERFACE_METHOD_2("SetVariable", void, ICmpVisual, SetVariable, std::string, float)
-DEFINE_INTERFACE_METHOD_0("GetActorSeed", u32, ICmpVisual, GetActorSeed)
+DEFINE_INTERFACE_METHOD_CONST_0("GetActorSeed", u32, ICmpVisual, GetActorSeed)
 DEFINE_INTERFACE_METHOD_1("SetActorSeed", void, ICmpVisual, SetActorSeed, u32)
-DEFINE_INTERFACE_METHOD_0("HasConstructionPreview", bool, ICmpVisual, HasConstructionPreview)
+DEFINE_INTERFACE_METHOD_CONST_0("HasConstructionPreview", bool, ICmpVisual, HasConstructionPreview)
 END_INTERFACE_WRAPPER(Visual)

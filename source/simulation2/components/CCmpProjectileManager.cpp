@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -149,11 +149,11 @@ private:
 
 	uint32_t LaunchProjectile(entity_id_t source, CFixedVector3D targetPoint, fixed speed, fixed gravity);
 
-	void AdvanceProjectile(Projectile& projectile, float dt);
+	void AdvanceProjectile(Projectile& projectile, float dt) const;
 
 	void Interpolate(float frameTime);
 
-	void RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling);
+	void RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling) const;
 };
 
 REGISTER_COMPONENT_TYPE(ProjectileManager)
@@ -215,7 +215,7 @@ uint32_t CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVecto
 	return projectile.id;
 }
 
-void CCmpProjectileManager::AdvanceProjectile(Projectile& projectile, float dt)
+void CCmpProjectileManager::AdvanceProjectile(Projectile& projectile, float dt) const
 {
 	projectile.time += dt;
 	if (projectile.stopped)
@@ -316,7 +316,7 @@ void CCmpProjectileManager::RemoveProjectile(uint32_t id)
 	}
 }
 
-void CCmpProjectileManager::RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling)
+void CCmpProjectileManager::RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling) const
 {
 	CmpPtr<ICmpRangeManager> cmpRangeManager(GetSystemEntity());
 	int player = GetSimContext().GetCurrentDisplayedPlayer();

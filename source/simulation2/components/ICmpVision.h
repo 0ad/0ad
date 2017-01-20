@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,8 +28,8 @@
 class ICmpVision : public IComponent
 {
 public:
-	virtual entity_pos_t GetRange() = 0;
-	virtual bool GetRevealShore() = 0;
+	virtual entity_pos_t GetRange() const = 0;
+	virtual bool GetRevealShore() const = 0;
 
 	DECLARE_INTERFACE_TYPE(Vision)
 };

@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -120,7 +120,8 @@ struct ScriptInterface_NativeMethodWrapper<void, TC> {
 // JSFastNative-compatible function that wraps the function identified in the template argument list
 #define OVERLOADS(z, i, data) \
 	template <typename R, TYPENAME_T0_HEAD(z,i)  R (*fptr) ( ScriptInterface::CxPrivate* T0_TAIL_MAYBE_REF(z,i) )> \
-	bool ScriptInterface::call(JSContext* cx, uint argc, jsval* vp) { \
+	bool ScriptInterface::call(JSContext* cx, uint argc, jsval* vp) \
+	{ \
 		JS::CallArgs args = JS::CallArgsFromVp(argc, vp); \
 		JSAutoRequest rq(cx); \
 		BOOST_PP_REPEAT_##z (i, CONVERT_ARG, ~) \
@@ -135,7 +136,8 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 // Same idea but for methods
 #define OVERLOADS(z, i, data) \
 	template <typename R, TYPENAME_T0_HEAD(z,i)  JSClass* CLS, typename TC, R (TC::*fptr) ( T0_MAYBE_REF(z,i) )> \
-	bool ScriptInterface::callMethod(JSContext* cx, uint argc, jsval* vp) { \
+	bool ScriptInterface::callMethod(JSContext* cx, uint argc, jsval* vp) \
+	{ \
 		JS::CallArgs args = JS::CallArgsFromVp(argc, vp); \
 		JSAutoRequest rq(cx); \
 		JS::RootedObject thisObj(cx, JS_THIS_OBJECT(cx, vp)); \
@@ -151,11 +153,31 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 #undef OVERLOADS
 
+// const methods
+#define OVERLOADS(z, i, data) \
+	template <typename R, TYPENAME_T0_HEAD(z,i)  JSClass* CLS, typename TC, R (TC::*fptr) ( T0_MAYBE_REF(z,i) ) const> \
+	bool ScriptInterface::callMethodConst(JSContext* cx, uint argc, jsval* vp) \
+	{ \
+		JS::CallArgs args = JS::CallArgsFromVp(argc, vp); \
+		JSAutoRequest rq(cx); \
+		JS::RootedObject thisObj(cx, JS_THIS_OBJECT(cx, vp)); \
+		if (ScriptInterface::GetClass(thisObj) != CLS) return false; \
+		TC* c = static_cast<TC*>(ScriptInterface::GetPrivate(thisObj)); \
+		if (! c) return false; \
+		BOOST_PP_REPEAT_##z (i, CONVERT_ARG, ~) \
+		JS::RootedValue rval(cx); \
+		ScriptInterface_NativeMethodWrapper<R, TC>::template call<T0_HEAD(z,i) R (TC::*)(T0_MAYBE_REF(z,i)) const>(cx, &rval, c, fptr A0_TAIL(z,i)); \
+		args.rval().set(rval); \
+		return !ScriptInterface::IsExceptionPending(cx); \
+	}
+BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
+#undef OVERLOADS
+
 #define ASSIGN_OR_TO_JS_VAL(z, i, data) AssignOrToJSVal(cx, argv[i], a##i);
 
 #define OVERLOADS(z, i, data) \
 template<typename R TYPENAME_T0_TAIL(z, i)> \
-bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name, T0_A0_CONST_REF(z,i) R& ret) \
+bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name  T0_A0_TAIL_CONST_REF(z,i), R& ret) const \
 { \
 	JSContext* cx = GetContext(); \
 	JSAutoRequest rq(cx); \
@@ -173,7 +195,7 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 
 #define OVERLOADS(z, i, data) \
 template<typename R TYPENAME_T0_TAIL(z, i)> \
-bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name, T0_A0_CONST_REF(z,i) JS::Rooted<R>* ret) \
+bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name  T0_A0_TAIL_CONST_REF(z,i), JS::Rooted<R>* ret) const \
 { \
 	JSContext* cx = GetContext(); \
 	JSAutoRequest rq(cx); \
@@ -181,17 +203,14 @@ bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name, T0_A0_
 	JS::AutoValueVector argv(cx); \
 	argv.resize(i); \
 	BOOST_PP_REPEAT_##z (i, ASSIGN_OR_TO_JS_VAL, ~) \
-	bool ok = CallFunction_(val, name, argv, jsRet); \
-	if (!ok) \
-		return false; \
-	return true; \
+	return CallFunction_(val, name, argv, jsRet); \
 }
 BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 #undef OVERLOADS
 
 #define OVERLOADS(z, i, data) \
 template<typename R TYPENAME_T0_TAIL(z, i)> \
-bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name, T0_A0_CONST_REF(z,i) JS::MutableHandle<R> ret) \
+bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name  T0_A0_TAIL_CONST_REF(z,i), JS::MutableHandle<R> ret) const \
 { \
 	JSContext* cx = GetContext(); \
 	JSAutoRequest rq(cx); \
@@ -226,6 +245,6 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 #undef T0_TAIL_MAYBE_REF
 #undef T0_A0
 #undef T0_A0_MAYBE_REF
-#undef T0_A0_CONST_REF
+#undef T0_A0_TAIL_CONST_REF
 #undef A0
 #undef A0_TAIL

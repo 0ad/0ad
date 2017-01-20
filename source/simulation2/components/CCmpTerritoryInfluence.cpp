@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -73,17 +73,17 @@ public:
 		Init(paramNode);
 	}
 
-	virtual bool IsRoot()
+	virtual bool IsRoot() const
 	{
 		return m_Root;
 	}
 
-	virtual u16 GetWeight()
+	virtual u16 GetWeight() const
 	{
 		return m_Weight;
 	}
 
-	virtual u32 GetRadius()
+	virtual u32 GetRadius() const
 	{
 		CmpPtr<ICmpValueModificationManager> cmpValueModificationManager(GetSystemEntity());
 		if (!cmpValueModificationManager)

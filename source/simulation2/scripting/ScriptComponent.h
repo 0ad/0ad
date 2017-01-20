@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -46,17 +46,20 @@ public:
 	void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize, entity_id_t ent);
 
 	// Use Boost.PP to define:
-	//   template<typename R> R Call(const char* funcname);
-	//   template<typename R, typename T0> R Call(const char* funcname, const T0& a0);
+	//   template<typename R> R Call(const char* funcname) const;
+	//   template<typename R, typename T0> R Call(const char* funcname, const T0& a0) const;
 	//   ...
-	//   void CallVoid(const char* funcname);
-	//   template<typename T0> void CallVoid(const char* funcname, const T0& a0);
+	//   template<typename R> void CallRef(const char* funcname, R ret) const;
+	//   template<typename R, typename T0> void CallRef(const char* funcname, const T0& a0, R ret) const;
+	//   ...
+	//   void CallVoid(const char* funcname) const;
+	//   template<typename T0> void CallVoid(const char* funcname, const T0& a0) const;
 	//   ...
 
 // CallRef is mainly used for returning script values with correct stack rooting.
 #define OVERLOADS(z, i, data) \
 	template<typename R  BOOST_PP_ENUM_TRAILING_PARAMS(i, typename T)> \
-	R Call(const char* funcname  BOOST_PP_ENUM_TRAILING_BINARY_PARAMS(i, const T, &a)) \
+	R Call(const char* funcname  BOOST_PP_ENUM_TRAILING_BINARY_PARAMS(i, const T, &a)) const \
 	{ \
 		R ret; \
 		if (m_ScriptInterface.CallFunction(m_Instance, funcname  BOOST_PP_ENUM_TRAILING_PARAMS(i, a), ret)) \
@@ -65,13 +68,13 @@ public:
 		return R(); \
 	} \
 	template<typename R  BOOST_PP_ENUM_TRAILING_PARAMS(i, typename T)> \
-	void CallRef(const char* funcname  BOOST_PP_ENUM_TRAILING_BINARY_PARAMS(i, const T, &a), R ret) \
+	void CallRef(const char* funcname  BOOST_PP_ENUM_TRAILING_BINARY_PARAMS(i, const T, &a), R ret) const \
 	{ \
 		if (!m_ScriptInterface.CallFunction(m_Instance, funcname  BOOST_PP_ENUM_TRAILING_PARAMS(i, a), ret)) \
 			LOGERROR("Error calling component script function %s", funcname); \
 	} \
 	BOOST_PP_IF(i, template<, ) BOOST_PP_ENUM_PARAMS(i, typename T) BOOST_PP_IF(i, >, ) \
-	void CallVoid(const char* funcname  BOOST_PP_ENUM_TRAILING_BINARY_PARAMS(i, const T, &a)) \
+	void CallVoid(const char* funcname  BOOST_PP_ENUM_TRAILING_BINARY_PARAMS(i, const T, &a)) const \
 	{ \
 		if (m_ScriptInterface.CallFunctionVoid(m_Instance, funcname  BOOST_PP_ENUM_TRAILING_PARAMS(i, a))) \
 			return; \

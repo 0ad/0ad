@@ -569,7 +569,8 @@ bool ScriptInterface::CallFunctionVoid(JS::HandleValue val, const char* name)
 	return CallFunction_(val, name, JS::HandleValueArray::empty(), &jsRet);
 }
 
-bool ScriptInterface::CallFunction_(JS::HandleValue val, const char* name, JS::HandleValueArray argv, JS::MutableHandleValue ret)
+
+bool ScriptInterface::CallFunction_(JS::HandleValue val, const char* name, JS::HandleValueArray argv, JS::MutableHandleValue ret) const
 {
 	JSAutoRequest rq(m->m_cx);
 	JS::RootedObject obj(m->m_cx);

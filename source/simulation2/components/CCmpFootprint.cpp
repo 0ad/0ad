@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -119,7 +119,7 @@ public:
 		Init(paramNode);
 	}
 
-	virtual void GetShape(EShape& shape, entity_pos_t& size0, entity_pos_t& size1, entity_pos_t& height)
+	virtual void GetShape(EShape& shape, entity_pos_t& size0, entity_pos_t& size1, entity_pos_t& height) const
 	{
 		shape = m_Shape;
 		size0 = m_Size0;
@@ -127,7 +127,7 @@ public:
 		height = m_Height;
 	}
 
-	virtual CFixedVector3D PickSpawnPoint(entity_id_t spawned)
+	virtual CFixedVector3D PickSpawnPoint(entity_id_t spawned) const
 	{
 		// Try to find a free space around the building's footprint.
 		// (Note that we use the footprint, not the obstruction shape - this might be a bit dodgy
@@ -257,7 +257,7 @@ public:
 		return error;
 	}
 
-	virtual CFixedVector3D PickSpawnPointBothPass(entity_id_t spawned)
+	virtual CFixedVector3D PickSpawnPointBothPass(entity_id_t spawned) const
 	{
 		// Try to find a free space inside and around this footprint
 		// at the intersection between the footprint passability and the unit passability.

@@ -203,15 +203,16 @@ void CCmpPathfinder::SetAtlasOverlay(bool enable, pass_class_t passClass)
 		SAFE_DELETE(m_AtlasOverlay);
 }
 
-pass_class_t CCmpPathfinder::GetPassabilityClass(const std::string& name)
+pass_class_t CCmpPathfinder::GetPassabilityClass(const std::string& name) const
 {
-	if (m_PassClassMasks.find(name) == m_PassClassMasks.end())
+	std::map<std::string, pass_class_t>::const_iterator it = m_PassClassMasks.find(name);
+	if (it == m_PassClassMasks.end())
 	{
 		LOGERROR("Invalid passability class name '%s'", name.c_str());
 		return 0;
 	}
 
-	return m_PassClassMasks[name];
+	return it->second;
 }
 
 void CCmpPathfinder::GetPassabilityClasses(std::map<std::string, pass_class_t>& passClasses) const
@@ -221,7 +222,7 @@ void CCmpPathfinder::GetPassabilityClasses(std::map<std::string, pass_class_t>& 
 
 void CCmpPathfinder::GetPassabilityClasses(std::map<std::string, pass_class_t>& nonPathfindingPassClasses, std::map<std::string, pass_class_t>& pathfindingPassClasses) const
 {
-	for (auto& pair : m_PassClassMasks)
+	for (const std::pair<std::string, pass_class_t>& pair : m_PassClassMasks)
 	{
 		if ((GetPassabilityFromMask(pair.second)->m_Obstructions == PathfinderPassability::PATHFINDING))
 			pathfindingPassClasses[pair.first] = pair.second;
@@ -791,7 +792,7 @@ void CCmpPathfinder::ProcessSameTurnMoves()
 
 bool CCmpPathfinder::CheckMovement(const IObstructionTestFilter& filter,
 	entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r,
-	pass_class_t passClass)
+	pass_class_t passClass) const
 {
 	PROFILE2_IFSPIKE("Check Movement", 0.001);
 
@@ -808,7 +809,7 @@ bool CCmpPathfinder::CheckMovement(const IObstructionTestFilter& filter,
 }
 
 ICmpObstruction::EFoundationCheck CCmpPathfinder::CheckUnitPlacement(const IObstructionTestFilter& filter,
-	entity_pos_t x, entity_pos_t z, entity_pos_t r,	pass_class_t passClass, bool UNUSED(onlyCenterPoint))
+	entity_pos_t x, entity_pos_t z, entity_pos_t r,	pass_class_t passClass, bool UNUSED(onlyCenterPoint)) const
 {
 	// Check unit obstruction
 	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
@@ -834,7 +835,7 @@ ICmpObstruction::EFoundationCheck CCmpPathfinder::CheckUnitPlacement(const IObst
 
 ICmpObstruction::EFoundationCheck CCmpPathfinder::CheckBuildingPlacement(const IObstructionTestFilter& filter,
 	entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w,
-	entity_pos_t h, entity_id_t id, pass_class_t passClass)
+	entity_pos_t h, entity_id_t id, pass_class_t passClass) const
 {
 	return CCmpPathfinder::CheckBuildingPlacement(filter, x, z, a, w, h, id, passClass, false);
 }
@@ -842,7 +843,7 @@ ICmpObstruction::EFoundationCheck CCmpPathfinder::CheckBuildingPlacement(const I
 
 ICmpObstruction::EFoundationCheck CCmpPathfinder::CheckBuildingPlacement(const IObstructionTestFilter& filter,
 	entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w,
-	entity_pos_t h, entity_id_t id, pass_class_t passClass, bool UNUSED(onlyCenterPoint))
+	entity_pos_t h, entity_id_t id, pass_class_t passClass, bool UNUSED(onlyCenterPoint)) const
 {
 	// Check unit obstruction
 	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());

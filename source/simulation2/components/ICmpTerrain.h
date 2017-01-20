@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,27 +30,27 @@ class CVector3D;
 class ICmpTerrain : public IComponent
 {
 public:
-	virtual bool IsLoaded() = 0;
+	virtual bool IsLoaded() const = 0;
 
-	virtual CFixedVector3D CalcNormal(entity_pos_t x, entity_pos_t z) = 0;
+	virtual CFixedVector3D CalcNormal(entity_pos_t x, entity_pos_t z) const = 0;
 
-	virtual CVector3D CalcExactNormal(float x, float z) = 0;
+	virtual CVector3D CalcExactNormal(float x, float z) const = 0;
 
-	virtual entity_pos_t GetGroundLevel(entity_pos_t x, entity_pos_t z) = 0;
+	virtual entity_pos_t GetGroundLevel(entity_pos_t x, entity_pos_t z) const = 0;
 
-	virtual float GetExactGroundLevel(float x, float z) = 0;
+	virtual float GetExactGroundLevel(float x, float z) const = 0;
 
 	/**
 	 * Returns number of tiles per side on the terrain.
 	 * Return value is always non-zero.
 	 */
-	virtual u16 GetTilesPerSide() = 0;
+	virtual u16 GetTilesPerSide() const = 0;
 
 	/**
 	 * Returns number of vertices per side on the terrain.
 	 * Return value is always non-zero.
 	 */
-	virtual u16 GetVerticesPerSide() = 0;
+	virtual u16 GetVerticesPerSide() const = 0;
 
 	virtual CTerrain* GetCTerrain() = 0;
 

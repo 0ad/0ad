@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -319,12 +319,12 @@ public:
 		UpdateTurretPosition();
 	}
 
-	virtual entity_id_t GetTurretParent()
+	virtual entity_id_t GetTurretParent() const
 	{
 		return m_TurretParent;
 	}
 
-	virtual bool IsInWorld()
+	virtual bool IsInWorld() const
 	{
 		return m_InWorld;
 	}
@@ -396,7 +396,7 @@ public:
 		AdvertiseInterpolatedPositionChanges();
 	}
 
-	virtual entity_pos_t GetHeightOffset()
+	virtual entity_pos_t GetHeightOffset() const
 	{
 		if (m_RelativeToGround)
 			return m_Y;
@@ -423,7 +423,7 @@ public:
 		AdvertiseInterpolatedPositionChanges();
 	}
 
-	virtual entity_pos_t GetHeightFixed()
+	virtual entity_pos_t GetHeightFixed() const
 	{
 		if (!m_RelativeToGround)
 			return m_Y;
@@ -442,7 +442,7 @@ public:
 		return m_Y + baseY;
 	}
 
-	virtual bool IsHeightRelative()
+	virtual bool IsHeightRelative() const
 	{
 		return m_RelativeToGround;
 	}
@@ -456,7 +456,7 @@ public:
 		AdvertiseInterpolatedPositionChanges();
 	}
 
-	virtual bool IsFloating()
+	virtual bool IsFloating() const
 	{
 		return m_Floating;
 	}
@@ -479,7 +479,7 @@ public:
 		AdvertiseInterpolatedPositionChanges();
 	}
 
-	virtual CFixedVector3D GetPosition()
+	virtual CFixedVector3D GetPosition() const
 	{
 		if (!m_InWorld)
 		{
@@ -490,7 +490,7 @@ public:
 		return CFixedVector3D(m_X, GetHeightFixed(), m_Z);
 	}
 
-	virtual CFixedVector2D GetPosition2D()
+	virtual CFixedVector2D GetPosition2D() const
 	{
 		if (!m_InWorld)
 		{
@@ -501,7 +501,7 @@ public:
 		return CFixedVector2D(m_X, m_Z);
 	}
 
-	virtual CFixedVector3D GetPreviousPosition()
+	virtual CFixedVector3D GetPreviousPosition() const
 	{
 		if (!m_InWorld)
 		{
@@ -512,7 +512,7 @@ public:
 		return CFixedVector3D(m_PrevX, GetHeightFixed(), m_PrevZ);
 	}
 
-	virtual CFixedVector2D GetPreviousPosition2D()
+	virtual CFixedVector2D GetPreviousPosition2D() const
 	{
 		if (!m_InWorld)
 		{
@@ -574,7 +574,7 @@ public:
 		}
 	}
 
-	virtual CFixedVector3D GetRotation()
+	virtual CFixedVector3D GetRotation() const
 	{
 		entity_angle_t y = m_RotY;
 		if (m_TurretParent != INVALID_ENTITY)
@@ -586,7 +586,7 @@ public:
 		return CFixedVector3D(m_RotX, y, m_RotZ);
 	}
 
-	virtual fixed GetDistanceTravelled()
+	virtual fixed GetDistanceTravelled() const
 	{
 		if (!m_InWorld)
 		{
@@ -597,7 +597,7 @@ public:
 		return CFixedVector2D(m_X - m_LastX, m_Z - m_LastZ).Length();
 	}
 
-	float GetConstructionProgressOffset(const CVector3D& pos)
+	float GetConstructionProgressOffset(const CVector3D& pos) const
 	{
 		if (m_ConstructionProgress.IsZero())
 			return 0.0f;
@@ -627,7 +627,7 @@ public:
 		return (m_ConstructionProgress.ToFloat() - 1.0f) * dy;
 	}
 
-	virtual void GetInterpolatedPosition2D(float frameOffset, float& x, float& z, float& rotY)
+	virtual void GetInterpolatedPosition2D(float frameOffset, float& x, float& z, float& rotY) const
 	{
 		if (!m_InWorld)
 		{
@@ -641,7 +641,7 @@ public:
 		rotY = m_InterpolatedRotY;
 	}
 
-	virtual CMatrix3D GetInterpolatedTransform(float frameOffset)
+	virtual CMatrix3D GetInterpolatedTransform(float frameOffset) const
 	{
 		if (m_TurretParent != INVALID_ENTITY)
 		{
@@ -715,7 +715,7 @@ public:
 		return m;
 	}
 
-	void GetInterpolatedPositions(CVector3D& pos0, CVector3D& pos1)
+	void GetInterpolatedPositions(CVector3D& pos0, CVector3D& pos1) const
 	{
 		float baseY0 = 0;
 		float baseY1 = 0;
@@ -876,7 +876,7 @@ private:
 	 *  - m_X, m_Z
 	 *  - m_RotY
 	 */
-	void AdvertisePositionChanges()
+	void AdvertisePositionChanges() const
 	{
 		for (std::set<entity_id_t>::const_iterator it = m_Turrets.begin(); it != m_Turrets.end(); ++it)
 		{
@@ -906,7 +906,7 @@ private:
 	 *  - If m_RelativeToGround, then the ground under this unit
 	 *  - If m_RelativeToGround && m_Float, then the water level
 	 */
-	void AdvertiseInterpolatedPositionChanges()
+	void AdvertiseInterpolatedPositionChanges() const
 	{
 		if (m_InWorld)
 		{
