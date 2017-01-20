@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,7 +24,7 @@
 #include "simulation2/system/SimContext.h"
 #include "maths/FixedVector3D.h"
 
-JS::Value ICmpFootprint::GetShape_wrapper()
+JS::Value ICmpFootprint::GetShape_wrapper() const
 {
 	EShape shape;
 	entity_pos_t size0, size1, height;
@@ -69,7 +69,7 @@ JS::Value ICmpFootprint::GetShape_wrapper()
 }
 
 BEGIN_INTERFACE_WRAPPER(Footprint)
-DEFINE_INTERFACE_METHOD_1("PickSpawnPoint", CFixedVector3D, ICmpFootprint, PickSpawnPoint, entity_id_t)
-DEFINE_INTERFACE_METHOD_1("PickSpawnPointBothPass", CFixedVector3D, ICmpFootprint, PickSpawnPointBothPass, entity_id_t)
-DEFINE_INTERFACE_METHOD_0("GetShape", JS::Value, ICmpFootprint, GetShape_wrapper)
+DEFINE_INTERFACE_METHOD_CONST_1("PickSpawnPoint", CFixedVector3D, ICmpFootprint, PickSpawnPoint, entity_id_t)
+DEFINE_INTERFACE_METHOD_CONST_1("PickSpawnPointBothPass", CFixedVector3D, ICmpFootprint, PickSpawnPointBothPass, entity_id_t)
+DEFINE_INTERFACE_METHOD_CONST_0("GetShape", JS::Value, ICmpFootprint, GetShape_wrapper)
 END_INTERFACE_WRAPPER(Footprint)

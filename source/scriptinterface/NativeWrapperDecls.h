@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -33,7 +33,7 @@ template <typename T> struct MaybeRef;
 // Some other things
 #define TYPED_ARGS(z, i, data) , T##i a##i
 #define TYPED_ARGS_MAYBE_REF(z, i, data) , typename MaybeRef<T##i>::Type a##i
-#define TYPED_ARGS_CONST_REF(z, i, data) const T##i& a##i,
+#define TYPED_ARGS_CONST_REF(z, i, data) , const T##i& a##i
 
 // TODO: We allow optional parameters when the C++ type can be converted from JS::UndefinedValue.
 // FromJSVal is expected to either set a##i or return false (otherwise we could get undefined
@@ -62,7 +62,7 @@ template <typename T> struct MaybeRef;
 #define T0_TAIL_MAYBE_REF(z, i) BOOST_PP_REPEAT_##z (i, NUMBERED_LIST_TAIL_MAYBE_REF, T) // ", const T0&, T1"
 #define T0_A0(z, i) BOOST_PP_REPEAT_##z (i, TYPED_ARGS, ~) // ",T0 a0, T1 a1"
 #define T0_A0_MAYBE_REF(z, i) BOOST_PP_REPEAT_##z (i, TYPED_ARGS_MAYBE_REF, ~) // ",const T0& a0, T1 a1"
-#define T0_A0_CONST_REF(z, i) BOOST_PP_REPEAT_##z (i, TYPED_ARGS_CONST_REF, ~) // ", const T0& a0, const T1& a1, "
+#define T0_A0_TAIL_CONST_REF(z, i) BOOST_PP_REPEAT_##z (i, TYPED_ARGS_CONST_REF, ~) // ", const T0& a0, const T1& a1"
 #define A0(z, i) BOOST_PP_REPEAT_##z (i, NUMBERED_LIST_BALANCED, a) // "a0, a1"
 #define A0_TAIL(z, i) BOOST_PP_REPEAT_##z (i, NUMBERED_LIST_TAIL, a) // ", a0, a1"
 
@@ -90,6 +90,13 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 #undef OVERLOADS
 
+// const methods
+#define OVERLOADS(z, i, data) \
+	template <typename R, TYPENAME_T0_HEAD(z,i)  JSClass* CLS, typename TC, R (TC::*fptr) ( T0_MAYBE_REF(z,i) ) const> \
+	static bool callMethodConst(JSContext* cx, uint argc, jsval* vp);
+BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
+#undef OVERLOADS
+
 // Argument-number counter
 #define OVERLOADS(z, i, data) \
 	template <int dummy TYPENAME_T0_TAIL(z,i)> /* add a dummy parameter so we still compile with 0 template args */ \
@@ -100,7 +107,7 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 // Call the named property on the given object
 #define OVERLOADS(z, i, data) \
 	template <typename R TYPENAME_T0_TAIL(z, i)> \
-	bool CallFunction(JS::HandleValue val, const char* name, T0_A0_CONST_REF(z,i) R& ret);
+	bool CallFunction(JS::HandleValue val, const char* name  T0_A0_TAIL_CONST_REF(z,i), R& ret) const;
 BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 #undef OVERLOADS
 
@@ -109,7 +116,7 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 // (as people would expect it to work based on the SpiderMonkey rooting guide).
 #define OVERLOADS(z, i, data) \
 	template <typename R TYPENAME_T0_TAIL(z, i)> \
-	bool CallFunction(JS::HandleValue val, const char* name, T0_A0_CONST_REF(z,i) JS::Rooted<R>* ret);
+	bool CallFunction(JS::HandleValue val, const char* name  T0_A0_TAIL_CONST_REF(z,i), JS::Rooted<R>* ret) const;
 BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 #undef OVERLOADS
 
@@ -117,7 +124,7 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 // without requiring implicit conversion.
 #define OVERLOADS(z, i, data) \
 	template <typename R TYPENAME_T0_TAIL(z, i)> \
-	bool CallFunction(JS::HandleValue val, const char* name, T0_A0_CONST_REF(z,i) JS::MutableHandle<R> ret);
+	bool CallFunction(JS::HandleValue val, const char* name  T0_A0_TAIL_CONST_REF(z,i), JS::MutableHandle<R> ret) const;
 BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 #undef OVERLOADS
 

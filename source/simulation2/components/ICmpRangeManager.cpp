@@ -21,7 +21,7 @@
 
 #include "simulation2/system/InterfaceScripted.h"
 
-std::string ICmpRangeManager::GetLosVisibility_wrapper(entity_id_t ent, int player)
+std::string ICmpRangeManager::GetLosVisibility_wrapper(entity_id_t ent, int player) const
 {
 	ELosVisibility visibility = GetLosVisibility(ent, player);
 	switch (visibility)
@@ -41,24 +41,24 @@ DEFINE_INTERFACE_METHOD_7("CreateActiveParabolicQuery", ICmpRangeManager::tag_t,
 DEFINE_INTERFACE_METHOD_1("DestroyActiveQuery", void, ICmpRangeManager, DestroyActiveQuery, ICmpRangeManager::tag_t)
 DEFINE_INTERFACE_METHOD_1("EnableActiveQuery", void, ICmpRangeManager, EnableActiveQuery, ICmpRangeManager::tag_t)
 DEFINE_INTERFACE_METHOD_1("DisableActiveQuery", void, ICmpRangeManager, DisableActiveQuery, ICmpRangeManager::tag_t)
-DEFINE_INTERFACE_METHOD_1("IsActiveQueryEnabled", bool, ICmpRangeManager, IsActiveQueryEnabled, ICmpRangeManager::tag_t)
+DEFINE_INTERFACE_METHOD_CONST_1("IsActiveQueryEnabled", bool, ICmpRangeManager, IsActiveQueryEnabled, ICmpRangeManager::tag_t)
 DEFINE_INTERFACE_METHOD_1("ResetActiveQuery", std::vector<entity_id_t>, ICmpRangeManager, ResetActiveQuery, ICmpRangeManager::tag_t)
 DEFINE_INTERFACE_METHOD_3("SetEntityFlag", void, ICmpRangeManager, SetEntityFlag, entity_id_t, std::string, bool)
-DEFINE_INTERFACE_METHOD_1("GetEntityFlagMask", u8, ICmpRangeManager, GetEntityFlagMask, std::string)
-DEFINE_INTERFACE_METHOD_1("GetEntitiesByPlayer", std::vector<entity_id_t>, ICmpRangeManager, GetEntitiesByPlayer, player_id_t)
-DEFINE_INTERFACE_METHOD_0("GetNonGaiaEntities", std::vector<entity_id_t>, ICmpRangeManager, GetNonGaiaEntities)
+DEFINE_INTERFACE_METHOD_CONST_1("GetEntityFlagMask", u8, ICmpRangeManager, GetEntityFlagMask, std::string)
+DEFINE_INTERFACE_METHOD_CONST_1("GetEntitiesByPlayer", std::vector<entity_id_t>, ICmpRangeManager, GetEntitiesByPlayer, player_id_t)
+DEFINE_INTERFACE_METHOD_CONST_0("GetNonGaiaEntities", std::vector<entity_id_t>, ICmpRangeManager, GetNonGaiaEntities)
 DEFINE_INTERFACE_METHOD_1("SetDebugOverlay", void, ICmpRangeManager, SetDebugOverlay, bool)
 DEFINE_INTERFACE_METHOD_1("ExploreAllTiles", void, ICmpRangeManager, ExploreAllTiles, player_id_t)
 DEFINE_INTERFACE_METHOD_0("ExploreTerritories", void, ICmpRangeManager, ExploreTerritories)
 DEFINE_INTERFACE_METHOD_2("SetLosRevealAll", void, ICmpRangeManager, SetLosRevealAll, player_id_t, bool)
-DEFINE_INTERFACE_METHOD_1("GetLosRevealAll", bool, ICmpRangeManager, GetLosRevealAll, player_id_t)
-DEFINE_INTERFACE_METHOD_5("GetElevationAdaptedRange", entity_pos_t, ICmpRangeManager, GetElevationAdaptedRange, CFixedVector3D, CFixedVector3D, entity_pos_t, entity_pos_t, entity_pos_t)
+DEFINE_INTERFACE_METHOD_CONST_1("GetLosRevealAll", bool, ICmpRangeManager, GetLosRevealAll, player_id_t)
+DEFINE_INTERFACE_METHOD_CONST_5("GetElevationAdaptedRange", entity_pos_t, ICmpRangeManager, GetElevationAdaptedRange, CFixedVector3D, CFixedVector3D, entity_pos_t, entity_pos_t, entity_pos_t)
 DEFINE_INTERFACE_METHOD_2("ActivateScriptedVisibility", void, ICmpRangeManager, ActivateScriptedVisibility, entity_id_t, bool)
-DEFINE_INTERFACE_METHOD_2("GetLosVisibility", std::string, ICmpRangeManager, GetLosVisibility_wrapper, entity_id_t, player_id_t)
+DEFINE_INTERFACE_METHOD_CONST_2("GetLosVisibility", std::string, ICmpRangeManager, GetLosVisibility_wrapper, entity_id_t, player_id_t)
 DEFINE_INTERFACE_METHOD_1("RequestVisibilityUpdate", void, ICmpRangeManager, RequestVisibilityUpdate, entity_id_t)
 DEFINE_INTERFACE_METHOD_1("SetLosCircular", void, ICmpRangeManager, SetLosCircular, bool)
-DEFINE_INTERFACE_METHOD_0("GetLosCircular", bool, ICmpRangeManager, GetLosCircular)
+DEFINE_INTERFACE_METHOD_CONST_0("GetLosCircular", bool, ICmpRangeManager, GetLosCircular)
 DEFINE_INTERFACE_METHOD_2("SetSharedLos", void, ICmpRangeManager, SetSharedLos, player_id_t, std::vector<player_id_t>)
-DEFINE_INTERFACE_METHOD_1("GetPercentMapExplored", u8, ICmpRangeManager, GetPercentMapExplored, player_id_t)
-DEFINE_INTERFACE_METHOD_1("GetUnionPercentMapExplored", u8, ICmpRangeManager, GetUnionPercentMapExplored, std::vector<player_id_t>)
+DEFINE_INTERFACE_METHOD_CONST_1("GetPercentMapExplored", u8, ICmpRangeManager, GetPercentMapExplored, player_id_t)
+DEFINE_INTERFACE_METHOD_CONST_1("GetUnionPercentMapExplored", u8, ICmpRangeManager, GetUnionPercentMapExplored, std::vector<player_id_t>)
 END_INTERFACE_WRAPPER(RangeManager)

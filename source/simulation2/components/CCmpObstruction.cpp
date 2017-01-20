@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,9 +25,6 @@
 #include "simulation2/components/ICmpObstructionManager.h"
 #include "simulation2/components/ICmpUnitMotion.h"
 #include "simulation2/serialization/SerializeTemplates.h"
-
-#define MAX(x,y) x>y ? x : y
-#define MIN(x,y) x>y ? y : x
 
 /**
  * Obstruction implementation. This keeps the ICmpPathfinder's model of the world updated when the
@@ -237,13 +234,13 @@ public:
 				b.da = entity_angle_t::FromInt(0);
 				b.flags = m_Flags;
 				m_Shapes.push_back(b);
-				max.X = MAX(max.X, b.dx + b.size0/2);
-				max.Y = MAX(max.Y, b.dz + b.size1/2);
-				min.X = MIN(min.X, b.dx - b.size0/2);
-				min.Y = MIN(min.Y, b.dz - b.size1/2);
+				max.X = std::max(max.X, b.dx + b.size0/2);
+				max.Y = std::max(max.Y, b.dz + b.size1/2);
+				min.X = std::min(min.X, b.dx - b.size0/2);
+				min.Y = std::min(min.Y, b.dz - b.size1/2);
 			}
-			m_Size0 = fixed::FromInt(2).Multiply(MAX(max.X, -min.X));
-			m_Size1 = fixed::FromInt(2).Multiply(MAX(max.Y, -min.Y));
+			m_Size0 = fixed::FromInt(2).Multiply(std::max(max.X, -min.X));
+			m_Size1 = fixed::FromInt(2).Multiply(std::max(max.Y, -min.Y));
 		}
 
 		m_Active = paramNode.GetChild("Active").ToBool();
@@ -451,27 +448,27 @@ public:
 		}
 	}
 
-	virtual bool GetBlockMovementFlag()
+	virtual bool GetBlockMovementFlag() const
 	{
 		return (m_TemplateFlags & ICmpObstructionManager::FLAG_BLOCK_MOVEMENT) != 0;
 	}
 
-	virtual ICmpObstructionManager::tag_t GetObstruction()
+	virtual ICmpObstructionManager::tag_t GetObstruction() const
 	{
 		return m_Tag;
 	}
 
-	virtual bool GetPreviousObstructionSquare(ICmpObstructionManager::ObstructionSquare& out)
+	virtual bool GetPreviousObstructionSquare(ICmpObstructionManager::ObstructionSquare& out) const
 	{
 		return GetObstructionSquare(out, true);
 	}
 
-	virtual bool GetObstructionSquare(ICmpObstructionManager::ObstructionSquare& out)
+	virtual bool GetObstructionSquare(ICmpObstructionManager::ObstructionSquare& out) const
 	{
 		return GetObstructionSquare(out, false);
 	}
 
-	virtual bool GetObstructionSquare(ICmpObstructionManager::ObstructionSquare& out, bool previousPosition)
+	virtual bool GetObstructionSquare(ICmpObstructionManager::ObstructionSquare& out, bool previousPosition) const
 	{
 		CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 		if (!cmpPosition)
@@ -496,7 +493,7 @@ public:
 		return true;
 	}
 
-	virtual entity_pos_t GetUnitRadius()
+	virtual entity_pos_t GetUnitRadius() const
 	{
 		if (m_Type == UNIT)
 			return m_Clearance;
@@ -504,7 +501,7 @@ public:
 			return entity_pos_t::Zero();
 	}
 
-	virtual entity_pos_t GetSize()
+	virtual entity_pos_t GetSize() const
 	{
 		if (m_Type == UNIT)
 			return m_Clearance;
@@ -518,17 +515,17 @@ public:
 			m_Clearance = clearance;
 	}
 
-	virtual bool IsControlPersistent()
+	virtual bool IsControlPersistent() const
 	{
 		return m_ControlPersist;
 	}
 
-	virtual EFoundationCheck CheckFoundation(std::string className)
+	virtual EFoundationCheck CheckFoundation(const std::string& className) const
 	{
 		return  CheckFoundation(className, false);
 	}
 
-	virtual EFoundationCheck CheckFoundation(std::string className, bool onlyCenterPoint)
+	virtual EFoundationCheck CheckFoundation(const std::string& className, bool onlyCenterPoint) const
 	{
 		CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 		if (!cmpPosition)
@@ -565,7 +562,7 @@ public:
 			return cmpPathfinder->CheckBuildingPlacement(filter, pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, GetEntityId(), passClass, onlyCenterPoint);
 	}
 
-	virtual bool CheckDuplicateFoundation()
+	virtual bool CheckDuplicateFoundation() const
 	{
 		CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 		if (!cmpPosition)
@@ -597,7 +594,7 @@ public:
 			return !cmpObstructionManager->TestStaticShape(filter, pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, NULL );
 	}
 
-	virtual std::vector<entity_id_t> GetUnitCollisions()
+	virtual std::vector<entity_id_t> GetUnitCollisions() const
 	{
 		std::vector<entity_id_t> ret;
 
@@ -648,12 +645,12 @@ public:
 		UpdateControlGroups();
 	}
 
-	virtual entity_id_t GetControlGroup()
+	virtual entity_id_t GetControlGroup() const
 	{
 		return m_ControlGroup;
 	}
 
-	virtual entity_id_t GetControlGroup2()
+	virtual entity_id_t GetControlGroup2() const
 	{
 		return m_ControlGroup2;
 	}
@@ -685,7 +682,7 @@ public:
 		}
 	}
 
-	void ResolveFoundationCollisions()
+	void ResolveFoundationCollisions() const
 	{
 		if (m_Type == UNIT)
 			return;

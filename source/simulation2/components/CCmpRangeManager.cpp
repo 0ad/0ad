@@ -269,7 +269,7 @@ struct EntityDistanceOrdering
 	{
 	}
 
-	bool operator()(entity_id_t a, entity_id_t b)
+	bool operator()(entity_id_t a, entity_id_t b) const
 	{
 		const EntityData& da = m_EntityData.find(a)->second;
 		const EntityData& db = m_EntityData.find(b)->second;
@@ -854,7 +854,7 @@ public:
 		q.enabled = false;
 	}
 
-	virtual bool IsActiveQueryEnabled(tag_t tag)
+	virtual bool IsActiveQueryEnabled(tag_t tag) const
 	{
 		std::map<tag_t, Query>::const_iterator it = m_Queries.find(tag);
 		if (it == m_Queries.end())
@@ -942,17 +942,17 @@ public:
 		return r;
 	}
 
-	virtual std::vector<entity_id_t> GetEntitiesByPlayer(player_id_t player)
+	virtual std::vector<entity_id_t> GetEntitiesByPlayer(player_id_t player) const
 	{
 		return GetEntitiesByMask(CalcOwnerMask(player));
 	}
 
-	virtual std::vector<entity_id_t> GetNonGaiaEntities()
+	virtual std::vector<entity_id_t> GetNonGaiaEntities() const
 	{
 		return GetEntitiesByMask(((1 << MAX_LOS_PLAYER_ID) - 1) << 1);
 	}
 
-	std::vector<entity_id_t> GetEntitiesByMask(u32 ownerMask)
+	std::vector<entity_id_t> GetEntitiesByMask(u32 ownerMask) const
 	{
 		std::vector<entity_id_t> entities;
 
@@ -1035,7 +1035,7 @@ public:
 	/**
 	 * Returns whether the given entity matches the given query (ignoring maxRange)
 	 */
-	bool TestEntityQuery(const Query& q, entity_id_t id, const EntityData& entity)
+	bool TestEntityQuery(const Query& q, entity_id_t id, const EntityData& entity) const
 	{
 		// Quick filter to ignore entities with the wrong owner
 		if (!(CalcOwnerMask(entity.owner) & q.ownersMask))
@@ -1152,7 +1152,7 @@ public:
 		}
 	}
 
-	virtual entity_pos_t GetElevationAdaptedRange(const CFixedVector3D& pos1, const CFixedVector3D& rot, entity_pos_t range, entity_pos_t elevationBonus, entity_pos_t angle)
+	virtual entity_pos_t GetElevationAdaptedRange(const CFixedVector3D& pos1, const CFixedVector3D& rot, entity_pos_t range, entity_pos_t elevationBonus, entity_pos_t angle) const
 	{
 		CFixedVector3D pos(pos1);
 		entity_pos_t r = entity_pos_t::Zero() ;
@@ -1179,14 +1179,12 @@ public:
 
 	}
 
-	virtual std::vector<entity_pos_t> getParabolicRangeForm(CFixedVector3D pos, entity_pos_t maxRange, entity_pos_t cutoff, entity_pos_t minAngle, entity_pos_t maxAngle, int numberOfSteps)
+	virtual std::vector<entity_pos_t> getParabolicRangeForm(CFixedVector3D pos, entity_pos_t maxRange, entity_pos_t cutoff, entity_pos_t minAngle, entity_pos_t maxAngle, int numberOfSteps) const
 	{
+		std::vector<entity_pos_t> r;
 
 		// angle = 0 goes in the positive Z direction
 		entity_pos_t precision = entity_pos_t::FromInt((int)TERRAIN_TILE_SIZE)/8;
-
-		std::vector<entity_pos_t> r;
-
 
 		CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
 		CmpPtr<ICmpWaterManager> cmpWaterManager(GetSystemEntity());
@@ -1252,12 +1250,11 @@ public:
 
 		}
 		return r;
-
 	}
 
 	Query ConstructQuery(entity_id_t source,
 		entity_pos_t minRange, entity_pos_t maxRange,
-		const std::vector<int>& owners, int requiredInterface, u8 flagsMask)
+		const std::vector<int>& owners, int requiredInterface, u8 flagsMask) const
 	{
 		// Min range must be non-negative
 		if (minRange < entity_pos_t::Zero())
@@ -1290,7 +1287,7 @@ public:
 
 	Query ConstructParabolicQuery(entity_id_t source,
 		entity_pos_t minRange, entity_pos_t maxRange, entity_pos_t elevationBonus,
-		const std::vector<int>& owners, int requiredInterface, u8 flagsMask)
+		const std::vector<int>& owners, int requiredInterface, u8 flagsMask) const
 	{
 		Query q = ConstructQuery(source,minRange,maxRange,owners,requiredInterface,flagsMask);
 		q.parabolic = true;
@@ -1434,7 +1431,7 @@ public:
 			collector.Submit(&m_DebugOverlayLines[i]);
 	}
 
-	virtual u8 GetEntityFlagMask(const std::string& identifier)
+	virtual u8 GetEntityFlagMask(const std::string& identifier) const
 	{
 		if (identifier == "normal")
 			return 1;
@@ -1472,7 +1469,7 @@ public:
 
 	// LOS implementation:
 
-	virtual CLosQuerier GetLosQuerier(player_id_t player)
+	virtual CLosQuerier GetLosQuerier(player_id_t player) const
 	{
 		if (GetLosRevealAll(player))
 			return CLosQuerier(0xFFFFFFFFu, m_LosStateRevealed, m_TerrainVerticesPerSide);
@@ -1487,7 +1484,7 @@ public:
 			it->second.scriptedVisibility = status ? 1 : 0;
 	}
 
-	ELosVisibility ComputeLosVisibility(CEntityHandle ent, player_id_t player)
+	ELosVisibility ComputeLosVisibility(CEntityHandle ent, player_id_t player) const
 	{
 		// Entities not with positions in the world are never visible
 		if (ent.GetId() == INVALID_ENTITY)
@@ -1520,7 +1517,7 @@ public:
 		CmpPtr<ICmpVisibility> cmpVisibility(ent);
 
 		// Possibly ask the scripted Visibility component
-		EntityMap<EntityData>::iterator it = m_EntityData.find(ent.GetId());
+		EntityMap<EntityData>::const_iterator it = m_EntityData.find(ent.GetId());
 		if (it != m_EntityData.end())
 		{
 			if (it->second.scriptedVisibility == 1 && cmpVisibility)
@@ -1585,13 +1582,13 @@ public:
 		return VIS_FOGGED;
 	}
 
-	ELosVisibility ComputeLosVisibility(entity_id_t ent, player_id_t player)
+	ELosVisibility ComputeLosVisibility(entity_id_t ent, player_id_t player) const
 	{
 		CEntityHandle handle = GetSimContext().GetComponentManager().LookupEntityHandle(ent);
 		return ComputeLosVisibility(handle, player);
 	}
 
-	virtual ELosVisibility GetLosVisibility(CEntityHandle ent, player_id_t player)
+	virtual ELosVisibility GetLosVisibility(CEntityHandle ent, player_id_t player) const
 	{
 		entity_id_t entId = ent.GetId();
 
@@ -1615,20 +1612,20 @@ public:
 		if (std::find(m_ModifiedEntities.begin(), m_ModifiedEntities.end(), entId) != m_ModifiedEntities.end())
 			return ComputeLosVisibility(ent, player);
 
-		EntityMap<EntityData>::iterator it = m_EntityData.find(entId);
+		EntityMap<EntityData>::const_iterator it = m_EntityData.find(entId);
 		if (it == m_EntityData.end())
 			return ComputeLosVisibility(ent, player);
 
 		return static_cast<ELosVisibility>(GetPlayerVisibility(it->second.visibilities, player));
 	}
 
-	virtual ELosVisibility GetLosVisibility(entity_id_t ent, player_id_t player)
+	virtual ELosVisibility GetLosVisibility(entity_id_t ent, player_id_t player) const
 	{
 		CEntityHandle handle = GetSimContext().GetComponentManager().LookupEntityHandle(ent);
 		return GetLosVisibility(handle, player);
 	}
 
-	i32 PosToLosTilesHelper(entity_pos_t x, entity_pos_t z)
+	i32 PosToLosTilesHelper(entity_pos_t x, entity_pos_t z) const
 	{
 		i32 i = Clamp(
 			(x/(entity_pos_t::FromInt(TERRAIN_TILE_SIZE * LOS_TILES_RATIO))).ToInt_RoundToZero(),
@@ -1736,7 +1733,7 @@ public:
 		m_GlobalVisibilityUpdate = true;
 	}
 
-	virtual bool GetLosRevealAll(player_id_t player)
+	virtual bool GetLosRevealAll(player_id_t player) const
 	{
 		// Special player value can force reveal-all for every player
 		if (m_LosRevealAll[MAX_LOS_PLAYER_ID+1] || player == -1)
@@ -1756,7 +1753,7 @@ public:
 		ResetDerivedData();
 	}
 
-	virtual bool GetLosCircular()
+	virtual bool GetLosCircular() const
 	{
 		return m_LosCircular;
 	}
@@ -1783,7 +1780,7 @@ public:
 			m_GlobalPlayerVisibilityUpdate[player-1] = 1;
 	}
 
-	virtual u32 GetSharedLosMask(player_id_t player)
+	virtual u32 GetSharedLosMask(player_id_t player) const
 	{
 		return m_SharedLosMasks[player];
 	}
@@ -1854,7 +1851,7 @@ public:
 	 * This is useful for miraging entities inside the territory borders at the beginning of a game,
 	 * or if the "Explore Map" option has been set.
 	 */
-	void SeeExploredEntities(player_id_t p)
+	void SeeExploredEntities(player_id_t p) const
 	{
 		// Warning: Code related to fogging (like ForceMiraging) shouldn't be
 		// invoked while iterating through m_EntityData.
@@ -1863,7 +1860,7 @@ public:
 		// So we just remember what entities to mirage and do that later.
 		std::vector<entity_id_t> miragableEntities;
 
-		for (EntityMap<EntityData>::iterator it = m_EntityData.begin(); it != m_EntityData.end(); ++it)
+		for (EntityMap<EntityData>::const_iterator it = m_EntityData.begin(); it != m_EntityData.end(); ++it)
 		{
 			CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), it->first);
 			if (!cmpPosition || !cmpPosition->IsInWorld())
@@ -1925,7 +1922,7 @@ public:
 	 * Returns whether the given vertex is outside the normal bounds of the world
 	 * (i.e. outside the range of a circular map)
 	 */
-	inline bool LosIsOffWorld(ssize_t i, ssize_t j)
+	inline bool LosIsOffWorld(ssize_t i, ssize_t j) const
 	{
 		// WARNING: CCmpPathfinder::UpdateGrid needs to be kept in sync with this
 		const ssize_t edgeSize = 3; // number of vertexes around the edge that will be off-world
@@ -2288,12 +2285,12 @@ public:
 			LosUpdateHelperIncremental((u8)owner, visionRange, from, to);
 	}
 
-	virtual u8 GetPercentMapExplored(player_id_t player)
+	virtual u8 GetPercentMapExplored(player_id_t player) const
 	{
 		return m_ExploredVertices.at((u8)player) * 100 / m_TotalInworldVertices;
 	}
 
-	virtual u8 GetUnionPercentMapExplored(const std::vector<player_id_t>& players)
+	virtual u8 GetUnionPercentMapExplored(const std::vector<player_id_t>& players) const
 	{
 		u32 exploredVertices = 0;
 		std::vector<player_id_t>::const_iterator playerIt;

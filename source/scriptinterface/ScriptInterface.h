@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -379,7 +379,7 @@ public:
 
 private:
 
-	bool CallFunction_(JS::HandleValue val, const char* name, JS::HandleValueArray argv, JS::MutableHandleValue ret);
+	bool CallFunction_(JS::HandleValue val, const char* name, JS::HandleValueArray argv, JS::MutableHandleValue ret) const;
 	bool Eval_(const char* code, JS::MutableHandleValue ret);
 	bool Eval_(const wchar_t* code, JS::MutableHandleValue ret);
 	bool SetGlobal_(const char* name, JS::HandleValue value, bool replace);
@@ -439,6 +439,9 @@ public:
 	//
 	//   template <R, T0..., JSClass*, TC, TR (TC:*fptr) (T0...)>
 	//   static JSNative callMethod;
+	//
+	//   template <R, T0..., JSClass*, TC, TR (TC:*fptr) const (T0...)>
+	//   static JSNative callMethodConst;
 	//
 	//   template <dummy, T0...>
 	//   static size_t nargs();

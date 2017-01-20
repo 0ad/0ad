@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -220,7 +220,7 @@ public:
 	/**
 	 * Rotate the vector by the given angle (anticlockwise).
 	 */
-	CFixedVector2D Rotate(fixed angle)
+	CFixedVector2D Rotate(fixed angle) const
 	{
 		fixed s, c;
 		sincos_approx(angle, s, c);

@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -68,7 +68,7 @@ public:
 	/**
 	 * Get the turret parent of this entity
 	 */
-	virtual entity_id_t GetTurretParent() = 0;
+	virtual entity_id_t GetTurretParent() const = 0;
 
 	/**
 	 * Has to be called to update the simulation position of the turret
@@ -83,7 +83,7 @@ public:
 	/**
 	 * Returns true if the entity currently exists at a defined position in the world.
 	 */
-	virtual bool IsInWorld() = 0;
+	virtual bool IsInWorld() const = 0;
 
 	/**
 	 * Causes IsInWorld to return false. (Use MoveTo() or JumpTo() to move back into the world.)
@@ -113,7 +113,7 @@ public:
 	/**
 	 * Returns the current vertical offset above the terrain/water surface.
 	 */
-	virtual entity_pos_t GetHeightOffset() = 0;
+	virtual entity_pos_t GetHeightOffset() const = 0;
 
 	/**
 	 * Set the vertical position above the map zero point
@@ -123,12 +123,12 @@ public:
 	/**
 	 * Returns the vertical offset above the map zero point
 	 */
-	virtual entity_pos_t GetHeightFixed() = 0;
+	virtual entity_pos_t GetHeightFixed() const = 0;
 
 	/**
 	 * Returns true iff the entity will follow the terrain height (possibly with an offset)
 	 */
-	virtual bool IsHeightRelative() = 0;
+	virtual bool IsHeightRelative() const = 0;
 
 	/**
 	 * When set to true, the entity will follow the terrain height (possibly with an offset)
@@ -139,7 +139,7 @@ public:
 	/**
 	 * Returns whether the entity floats on water.
 	 */
-	virtual bool IsFloating() = 0;
+	virtual bool IsFloating() const = 0;
 
 	/**
 	 * Set the entity to float on water
@@ -163,26 +163,26 @@ public:
 	 * Depends on the current terrain heightmap.
 	 * Must not be called unless IsInWorld is true.
 	 */
-	virtual CFixedVector3D GetPosition() = 0;
+	virtual CFixedVector3D GetPosition() const = 0;
 
 	/**
 	 * Returns the current x,z position (no interpolation).
 	 * Must not be called unless IsInWorld is true.
 	 */
-	virtual CFixedVector2D GetPosition2D() = 0;
+	virtual CFixedVector2D GetPosition2D() const = 0;
 
 	/**
 	 * Returns the previous turn's x,y,z position (no interpolation).
 	 * Depends on the current terrain heightmap.
 	 * Must not be called unless IsInWorld is true.
 	 */
-	virtual CFixedVector3D GetPreviousPosition() = 0;
+	virtual CFixedVector3D GetPreviousPosition() const = 0;
 
 	/**
 	 * Returns the previous turn's x,z position (no interpolation).
 	 * Must not be called unless IsInWorld is true.
 	 */
-	virtual CFixedVector2D GetPreviousPosition2D() = 0;
+	virtual CFixedVector2D GetPreviousPosition2D() const = 0;
 
 	/**
 	 * Rotate smoothly to the given angle around the upwards axis.
@@ -212,25 +212,25 @@ public:
 	 * Returns the current rotation (relative to the upwards axis), as Euler
 	 * angles with X=pitch, Y=yaw, Z=roll. (TODO: is that the right way round?)
 	 */
-	virtual CFixedVector3D GetRotation() = 0;
+	virtual CFixedVector3D GetRotation() const = 0;
 
 	/**
 	 * Returns the distance that the unit will be interpolated over,
 	 * i.e. the distance travelled since the start of the turn.
 	 */
-	virtual fixed GetDistanceTravelled() = 0;
+	virtual fixed GetDistanceTravelled() const = 0;
 
 	/**
 	 * Get the current interpolated 2D position and orientation, for rendering.
 	 * Must not be called unless IsInWorld is true.
 	 */
-	virtual void GetInterpolatedPosition2D(float frameOffset, float& x, float& z, float& rotY) = 0;
+	virtual void GetInterpolatedPosition2D(float frameOffset, float& x, float& z, float& rotY) const = 0;
 
 	/**
 	 * Get the current interpolated transform matrix, for rendering.
 	 * Must not be called unless IsInWorld is true.
 	 */
-	virtual CMatrix3D GetInterpolatedTransform(float frameOffset) = 0;
+	virtual CMatrix3D GetInterpolatedTransform(float frameOffset) const = 0;
 
 	DECLARE_INTERFACE_TYPE(Position)
 };

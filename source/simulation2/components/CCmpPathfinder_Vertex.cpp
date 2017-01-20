@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -501,7 +501,7 @@ struct SquareSort
 {
 	CFixedVector2D src;
 	SquareSort(CFixedVector2D src) : src(src) { }
-	bool operator()(const Square& a, const Square& b)
+	bool operator()(const Square& a, const Square& b) const
 	{
 		if ((a.p0 - src).CompareLength(b.p0 - src) < 0)
 			return true;
@@ -862,7 +862,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 			xz.push_back(npos.X.ToFloat());
 			xz.push_back(npos.Y.ToFloat());
 			SimRender::ConstructLineOnGround(GetSimContext(), xz, m_DebugOverlayShortPathLines.back(), false);
-			//*/
+			*/
 
 			if (visible)
 			{

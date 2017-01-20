@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -38,12 +38,12 @@ public:
 	/**
 	 * Get the current water level at the given point.
 	 */
-	virtual entity_pos_t GetWaterLevel(entity_pos_t x, entity_pos_t z) = 0;
+	virtual entity_pos_t GetWaterLevel(entity_pos_t x, entity_pos_t z) const = 0;
 
 	/**
 	 * Get the current water level at the given point.
 	 */
-	virtual float GetExactWaterLevel(float x, float z) = 0;
+	virtual float GetExactWaterLevel(float x, float z) const = 0;
 
 	DECLARE_INTERFACE_TYPE(WaterManager)
 };

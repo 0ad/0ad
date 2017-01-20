@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,7 +27,7 @@
 class ICmpTerritoryManager : public IComponent
 {
 public:
-	virtual bool NeedUpdate(size_t* dirtyID) = 0;
+	virtual bool NeedUpdate(size_t* dirtyID) const = 0;
 
 	/**
 	 * Number of pathfinder navcells per territory tile.

@@ -76,7 +76,7 @@ public:
 	/**
 	 * Check if the template XML file exists, without trying to load it.
 	 */
-	virtual bool TemplateExists(const std::string& templateName) = 0;
+	virtual bool TemplateExists(const std::string& templateName) const = 0;
 
 	/**
 	 * Returns the template most recently specified for the entity 'ent'.
@@ -89,21 +89,21 @@ public:
 	/**
 	 * Returns the name of the template most recently specified for the entity 'ent'.
 	 */
-	virtual std::string GetCurrentTemplateName(entity_id_t ent) = 0;
+	virtual std::string GetCurrentTemplateName(entity_id_t ent) const = 0;
 
 	/**
 	 * Returns the list of entities having the specified template.
 	 */
-	virtual std::vector<entity_id_t> GetEntitiesUsingTemplate(const std::string& templateName) = 0;
+	virtual std::vector<entity_id_t> GetEntitiesUsingTemplate(const std::string& templateName) const = 0;
 
 	/**
 	 * Returns a list of strings that could be validly passed as @c templateName to LoadTemplate.
 	 * (This includes "actor|foo" etc names).
 	 * Intended for use by the map editor. This is likely to be quite slow.
 	 */
-	virtual std::vector<std::string> FindAllTemplates(bool includeActors) = 0;
+	virtual std::vector<std::string> FindAllTemplates(bool includeActors) const = 0;
 
-	virtual std::vector<std::string> FindAllPlaceableTemplates(bool includeActors) = 0;
+	virtual std::vector<std::string> FindAllPlaceableTemplates(bool includeActors) const = 0;
 
 	/**
 	 * Permanently disable XML validation (intended solely for test cases).

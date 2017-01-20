@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,5 +24,5 @@
 BEGIN_INTERFACE_WRAPPER(WaterManager)
 DEFINE_INTERFACE_METHOD_0("RecomputeWaterData", void, ICmpWaterManager, RecomputeWaterData)
 DEFINE_INTERFACE_METHOD_1("SetWaterLevel", void, ICmpWaterManager, SetWaterLevel, entity_pos_t)
-DEFINE_INTERFACE_METHOD_2("GetWaterLevel", entity_pos_t, ICmpWaterManager, GetWaterLevel, entity_pos_t, entity_pos_t)
+DEFINE_INTERFACE_METHOD_CONST_2("GetWaterLevel", entity_pos_t, ICmpWaterManager, GetWaterLevel, entity_pos_t, entity_pos_t)
 END_INTERFACE_WRAPPER(WaterManager)

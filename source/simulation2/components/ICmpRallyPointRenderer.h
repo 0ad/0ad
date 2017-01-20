@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -48,7 +48,7 @@ public:
 	virtual void Reset() = 0;
 
 	/// Returns true if at least one display rally point is set
-	virtual bool IsSet() = 0;
+	virtual bool IsSet() const = 0;
 
 	DECLARE_INTERFACE_TYPE(RallyPointRenderer)
 };

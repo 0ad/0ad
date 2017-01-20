@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -47,14 +47,14 @@ public:
 	 * @param[out] size1 if CIRCLE then radius, else depth (size in Z axis)
 	 * @param[out] height size in Y axis
 	 */
-	virtual void GetShape(EShape& shape, entity_pos_t& size0, entity_pos_t& size1, entity_pos_t& height) = 0;
+	virtual void GetShape(EShape& shape, entity_pos_t& size0, entity_pos_t& size1, entity_pos_t& height) const = 0;
 
 	/**
 	 * GetShape wrapper for script calls.
 	 * Returns { "type": "circle", "radius": 5.0, "height": 1.0 }
 	 * or { "type": "square", "width": 5.0, "depth": 5.0, "height": 1.0 }
 	 */
-	JS::Value GetShape_wrapper();
+	JS::Value GetShape_wrapper() const;
 
 	/**
 	 * Pick a sensible position to place a newly-spawned entity near this footprint,
@@ -62,14 +62,14 @@ public:
 	 * orientation.
 	 * @return the X and Z coordinates of the spawn point, with Y = 0; or the special value (-1, -1, -1) if there's no space
 	 */
-	virtual CFixedVector3D PickSpawnPoint(entity_id_t spawned) = 0;
+	virtual CFixedVector3D PickSpawnPoint(entity_id_t spawned) const = 0;
 
 	/**
 	 * Pick a sensible position to place a newly-spawned entity near this footprint,
 	 * at the intersection between the footprint passability and the entity one.
 	 * @return the X and Z coordinates of the spawn point, with Y = 0; or the special value (-1, -1, -1) if there's no space
 	 */
-	virtual CFixedVector3D PickSpawnPointBothPass(entity_id_t spawned) = 0;
+	virtual CFixedVector3D PickSpawnPointBothPass(entity_id_t spawned) const = 0;
 
 	DECLARE_INTERFACE_TYPE(Footprint)
 };

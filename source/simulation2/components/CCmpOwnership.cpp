@@ -77,7 +77,7 @@ public:
 		}
 	}
 
-	virtual player_id_t GetOwner()
+	virtual player_id_t GetOwner() const
 	{
 		return m_Owner;
 	}

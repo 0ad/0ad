@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,7 +23,7 @@
 
 #include "simulation2/system/SimContext.h"
 
-std::string ICmpObstruction::CheckFoundation_wrapper(const std::string& className, bool onlyCenterPoint)
+std::string ICmpObstruction::CheckFoundation_wrapper(const std::string& className, bool onlyCenterPoint) const
 {
 	EFoundationCheck check = CheckFoundation(className, onlyCenterPoint);
 
@@ -46,15 +46,15 @@ std::string ICmpObstruction::CheckFoundation_wrapper(const std::string& classNam
 }
 
 BEGIN_INTERFACE_WRAPPER(Obstruction)
-DEFINE_INTERFACE_METHOD_0("GetUnitRadius", entity_pos_t, ICmpObstruction, GetUnitRadius)
-DEFINE_INTERFACE_METHOD_2("CheckFoundation", std::string, ICmpObstruction, CheckFoundation_wrapper, std::string, bool)
-DEFINE_INTERFACE_METHOD_0("CheckDuplicateFoundation", bool, ICmpObstruction, CheckDuplicateFoundation)
-DEFINE_INTERFACE_METHOD_0("GetUnitCollisions", std::vector<entity_id_t>, ICmpObstruction, GetUnitCollisions)
+DEFINE_INTERFACE_METHOD_CONST_0("GetUnitRadius", entity_pos_t, ICmpObstruction, GetUnitRadius)
+DEFINE_INTERFACE_METHOD_CONST_2("CheckFoundation", std::string, ICmpObstruction, CheckFoundation_wrapper, std::string, bool)
+DEFINE_INTERFACE_METHOD_CONST_0("CheckDuplicateFoundation", bool, ICmpObstruction, CheckDuplicateFoundation)
+DEFINE_INTERFACE_METHOD_CONST_0("GetUnitCollisions", std::vector<entity_id_t>, ICmpObstruction, GetUnitCollisions)
 DEFINE_INTERFACE_METHOD_1("SetActive", void, ICmpObstruction, SetActive, bool)
 DEFINE_INTERFACE_METHOD_3("SetDisableBlockMovementPathfinding", void, ICmpObstruction, SetDisableBlockMovementPathfinding, bool, bool, int32_t)
-DEFINE_INTERFACE_METHOD_0("GetBlockMovementFlag", bool, ICmpObstruction, GetBlockMovementFlag)
+DEFINE_INTERFACE_METHOD_CONST_0("GetBlockMovementFlag", bool, ICmpObstruction, GetBlockMovementFlag)
 DEFINE_INTERFACE_METHOD_1("SetControlGroup", void, ICmpObstruction, SetControlGroup, entity_id_t)
-DEFINE_INTERFACE_METHOD_0("GetControlGroup", entity_id_t, ICmpObstruction, GetControlGroup)
+DEFINE_INTERFACE_METHOD_CONST_0("GetControlGroup", entity_id_t, ICmpObstruction, GetControlGroup)
 DEFINE_INTERFACE_METHOD_1("SetControlGroup2", void, ICmpObstruction, SetControlGroup2, entity_id_t)
-DEFINE_INTERFACE_METHOD_0("GetControlGroup2", entity_id_t, ICmpObstruction, GetControlGroup2)
+DEFINE_INTERFACE_METHOD_CONST_0("GetControlGroup2", entity_id_t, ICmpObstruction, GetControlGroup2)
 END_INTERFACE_WRAPPER(Obstruction)

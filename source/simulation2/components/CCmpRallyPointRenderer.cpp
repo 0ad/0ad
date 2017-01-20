@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -60,7 +60,7 @@ struct SVisibilitySegment
 		return !(*this == other);
 	}
 
-	bool IsSinglePoint()
+	bool IsSinglePoint() const
 	{
 		return (m_StartIndex == m_EndIndex);
 	}
@@ -326,7 +326,7 @@ public:
 	/**
 	 * Returns true if at least one display rally point is set; i.e., if we have a point to render our marker/line at.
 	 */
-	bool IsSet()
+	bool IsSet() const
 	{
 		return !m_RallyPoints.empty();
 	}
@@ -405,18 +405,18 @@ private:
 	 * nicely to the edge of the building's footprint. Only needed if the pathfinder can possibly return obstructed tile waypoints,
 	 * i.e. when pathfinding is started from an obstructed tile.
 	 */
-	void FixFootprintWaypoints(std::vector<CVector2D>& coords, CmpPtr<ICmpPosition> cmpPosition, CmpPtr<ICmpFootprint> cmpFootprint);
+	void FixFootprintWaypoints(std::vector<CVector2D>& coords, CmpPtr<ICmpPosition> cmpPosition, CmpPtr<ICmpFootprint> cmpFootprint) const;
 
 	/**
 	 * Get the point on the footprint edge that's as close from "start" as possible.
 	 */
-	void GetClosestsEdgePointFrom(CFixedVector2D& result, CFixedVector2D& start, CmpPtr<ICmpPosition> cmpPosition, CmpPtr<ICmpFootprint> cmpFootprint);
+	void GetClosestsEdgePointFrom(CFixedVector2D& result, CFixedVector2D& start, CmpPtr<ICmpPosition> cmpPosition, CmpPtr<ICmpFootprint> cmpFootprint) const;
 
 	/**
 	 * Returns a list of indices of waypoints in the current path (m_Path[index]) where the LOS visibility changes, ordered from
 	 * building/previous rally point to rally point. Used to construct the overlay line segments and track changes to the SoD.
 	 */
-	void GetVisibilitySegments(std::deque<SVisibilitySegment>& out, size_t index);
+	void GetVisibilitySegments(std::deque<SVisibilitySegment>& out, size_t index) const;
 
 	/**
 	 * Simplifies the path by removing waypoints that lie between two points that are visible from one another. This is primarily
@@ -430,7 +430,7 @@ private:
 	 *                    at most 3 consecutive node links will be joined into a single link.
 	 * @p floating whether to consider nodes who are under the water level as floating on top of the water
 	 */
-	void ReduceSegmentsByVisibility(std::vector<CVector2D>& coords, unsigned maxSegmentLinks = 0, bool floating = true);
+	void ReduceSegmentsByVisibility(std::vector<CVector2D>& coords, unsigned maxSegmentLinks = 0, bool floating = true) const;
 
 	/**
 	 * Helper function to GetVisibilitySegments, factored out for testing. Merges single-point segments with its neighbouring
@@ -920,7 +920,7 @@ void CCmpRallyPointRenderer::UpdateOverlayLines()
 	}
 }
 
-void CCmpRallyPointRenderer::GetClosestsEdgePointFrom(CFixedVector2D& result, CFixedVector2D& start, CmpPtr<ICmpPosition> cmpPosition, CmpPtr<ICmpFootprint> cmpFootprint)
+void CCmpRallyPointRenderer::GetClosestsEdgePointFrom(CFixedVector2D& result, CFixedVector2D& start, CmpPtr<ICmpPosition> cmpPosition, CmpPtr<ICmpFootprint> cmpFootprint) const
 {
 	ENSURE(cmpPosition);
 	ENSURE(cmpFootprint);
@@ -967,7 +967,7 @@ void CCmpRallyPointRenderer::GetClosestsEdgePointFrom(CFixedVector2D& result, CF
 	}
 }
 
-void CCmpRallyPointRenderer::FixFootprintWaypoints(std::vector<CVector2D>& coords, CmpPtr<ICmpPosition> cmpPosition, CmpPtr<ICmpFootprint> cmpFootprint)
+void CCmpRallyPointRenderer::FixFootprintWaypoints(std::vector<CVector2D>& coords, CmpPtr<ICmpPosition> cmpPosition, CmpPtr<ICmpFootprint> cmpFootprint) const
 {
 	ENSURE(cmpPosition);
 	ENSURE(cmpFootprint);
@@ -1052,7 +1052,7 @@ void CCmpRallyPointRenderer::FixFootprintWaypoints(std::vector<CVector2D>& coord
 	}
 }
 
-void CCmpRallyPointRenderer::ReduceSegmentsByVisibility(std::vector<CVector2D>& coords, unsigned maxSegmentLinks, bool floating)
+void CCmpRallyPointRenderer::ReduceSegmentsByVisibility(std::vector<CVector2D>& coords, unsigned maxSegmentLinks, bool floating) const
 {
 	CmpPtr<ICmpPathfinder> cmpPathFinder(GetSystemEntity());
 	CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
@@ -1146,7 +1146,7 @@ void CCmpRallyPointRenderer::ReduceSegmentsByVisibility(std::vector<CVector2D>& 
 	coords.swap(newCoords);
 }
 
-void CCmpRallyPointRenderer::GetVisibilitySegments(std::deque<SVisibilitySegment>& out, size_t index)
+void CCmpRallyPointRenderer::GetVisibilitySegments(std::deque<SVisibilitySegment>& out, size_t index) const
 {
 	out.clear();
 

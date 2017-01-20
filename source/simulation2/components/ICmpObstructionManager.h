@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -61,7 +61,7 @@ public:
 	{
 		tag_t() : n(0) {}
 		explicit tag_t(u32 n) : n(n) {}
-		bool valid() { return n != 0; }
+		bool valid() const { return n != 0; }
 
 		u32 n;
 	};
@@ -171,7 +171,7 @@ public:
 	 * @param relaxClearanceForUnits whether unit-unit collisions should be more permissive.
 	 * @return true if there is a collision
 	 */
-	virtual bool TestLine(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, bool relaxClearanceForUnits) = 0;
+	virtual bool TestLine(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, bool relaxClearanceForUnits) const = 0;
 
 	/**
 	 * Collision test a static square shape against the current set of shapes.
@@ -186,7 +186,7 @@ public:
 	 */
 	virtual bool TestStaticShape(const IObstructionTestFilter& filter,
 		entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h,
-		std::vector<entity_id_t>* out) = 0;
+		std::vector<entity_id_t>* out) const = 0;
 
 	/**
 	 * Collision test a unit shape against the current set of registered shapes, and optionally writes a list of the colliding
@@ -202,7 +202,7 @@ public:
 	 */
 	virtual bool TestUnitShape(const IObstructionTestFilter& filter,
 		entity_pos_t x, entity_pos_t z, entity_pos_t clearance,
-		std::vector<entity_id_t>* out) = 0;
+		std::vector<entity_id_t>* out) const = 0;
 
 	/**
 	 * Convert the current set of shapes onto a navcell grid, for all passability classes contained in @p passClasses.
@@ -237,9 +237,9 @@ public:
 	 * @param z1 Z coordinate of top edge of range
 	 * @param squares output list of obstructions
 	 */
-	virtual void GetObstructionsInRange(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, std::vector<ObstructionSquare>& squares) = 0;
-	virtual void GetStaticObstructionsInRange(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, std::vector<ObstructionSquare>& squares) = 0;
-	virtual void GetUnitObstructionsInRange(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, std::vector<ObstructionSquare>& squares) = 0;
+	virtual void GetObstructionsInRange(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, std::vector<ObstructionSquare>& squares) const = 0;
+	virtual void GetStaticObstructionsInRange(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, std::vector<ObstructionSquare>& squares) const = 0;
+	virtual void GetUnitObstructionsInRange(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, std::vector<ObstructionSquare>& squares) const = 0;
 
 	/**
 	 * Returns the entity IDs of all unit shapes that intersect the given
@@ -249,17 +249,17 @@ public:
 	 * @param filter filter for the obstructing units
 	 * @param strict whether to be strict in the check or more permissive (ie rasterize more or less). Default false.
 	 */
-	virtual void GetUnitsOnObstruction(const ObstructionSquare& square, std::vector<entity_id_t>& out, const IObstructionTestFilter& filter, bool strict = false) = 0;
+	virtual void GetUnitsOnObstruction(const ObstructionSquare& square, std::vector<entity_id_t>& out, const IObstructionTestFilter& filter, bool strict = false) const = 0;
 
 	/**
 	 * Get the obstruction square representing the given shape.
 	 * @param tag tag of shape (must be valid)
 	 */
-	virtual ObstructionSquare GetObstruction(tag_t tag) = 0;
+	virtual ObstructionSquare GetObstruction(tag_t tag) const = 0;
 
-	virtual ObstructionSquare GetUnitShapeObstruction(entity_pos_t x, entity_pos_t z, entity_pos_t clearance) = 0;
+	virtual ObstructionSquare GetUnitShapeObstruction(entity_pos_t x, entity_pos_t z, entity_pos_t clearance) const = 0;
 
-	virtual ObstructionSquare GetStaticShapeObstruction(entity_pos_t x, entity_pos_t z, entity_angle_t a, entity_pos_t w, entity_pos_t h) = 0;
+	virtual ObstructionSquare GetStaticShapeObstruction(entity_pos_t x, entity_pos_t z, entity_angle_t a, entity_pos_t w, entity_pos_t h) const = 0;
 
 	/**
 	 * Set the passability to be restricted to a circular map.
