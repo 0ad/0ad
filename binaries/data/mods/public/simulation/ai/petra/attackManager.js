@@ -455,6 +455,26 @@ m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 	return enemyPlayer;
 };
 
+/** f.e. if we have changed diplomacy with another player. */
+m.AttackManager.prototype.cancelAttacksAgainstPlayer = function(player)
+{
+	for (let attackType in this.upcomingAttacks)
+		for (let attack of this.upcomingAttacks[attackType])
+			if (attack.targetPlayer === player)
+				attack.targetPlayer = undefined;
+
+	for (let attackType in this.startedAttacks)
+		for (let i = 0; i < this.startedAttacks[attackType].length; ++i)
+		{
+			let attack = this.startedAttacks[attackType][i];
+			if (attack.targetPlayer === player)
+			{
+				attack.Abort(gameState);
+				this.startedAttacks[attackType].splice(i--, 1);
+			}
+		}
+};
+
 m.AttackManager.prototype.Serialize = function()
 {
 	let properties = {
