@@ -77,14 +77,17 @@ void in_push_priority_event(const SDL_Event_* event)
 	priority_events.push_back(*event);
 }
 
+int in_poll_priority_event(SDL_Event_* event)
+{
+	if (priority_events.empty())
+		return 0;
+
+	*event = priority_events.front();
+	priority_events.pop_front();
+	return 1;
+}
+
 int in_poll_event(SDL_Event_* event)
 {
-	if (!priority_events.empty())
-	{
-		*event = priority_events.front();
-		priority_events.pop_front();
-		return 1;
-	}
-
-	return SDL_PollEvent(&event->ev);
+	return in_poll_priority_event(event) ? 1 : SDL_PollEvent(&event->ev);
 }

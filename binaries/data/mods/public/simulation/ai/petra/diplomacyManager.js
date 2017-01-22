@@ -10,7 +10,7 @@ var PETRA = function(m)
  */
 
 /**
- * If a player sends us an ally request, an Object in this.allyRequests will be created
+ * If a player sends us an ally or neutral request, an Object in this.diplomacyRequests will be created
  * that includes the request status, and the amount and type of the resource tribute (if any)
  * that they must send in order for us to accept their request.
  * In addition, a message will be sent if the player has not sent us a tribute within a minute.
@@ -24,24 +24,29 @@ m.DiplomacyManager = function(Config)
 	this.nextTributeRequest.set("all", 240);
 	this.betrayLapseTime = -1;
 	this.waitingToBetray = false;
-	this.allyRequests = new Map();
+	this.diplomacyRequests = new Map();
 };
 
 /**
- * If there are any players that are allied with us but we are not allied with them,
- * treat this situation like an ally request.
+ * If there are any players that are allied/neutral with us but we are not allied/neutral with them,
+ * treat this situation like an ally/neutral request.
  */
 m.DiplomacyManager.prototype.init = function(gameState)
 {
+	if (!gameState.getAlliedVictory() && !gameState.isCeasefireActive())
+		this.lastManStandingCheck(gameState);
+
 	for (let i = 1; i < gameState.sharedScript.playersData.length; ++i)
 	{
 		if (i === PlayerID)
 			continue;
 
 		if (gameState.isPlayerMutualAlly(i))
-			this.allyRequests.set(i, { "status": "accepted" });
+			this.diplomacyRequests.set(i, { "requestType": "ally", "status": "accepted" });
 		else if (gameState.sharedScript.playersData[i].isAlly[PlayerID])
-			this.handleAllyRequest(gameState, i);
+			this.handleDiplomacyRequest(gameState, i, "ally");
+		else if (gameState.sharedScript.playersData[i].isNeutral[PlayerID] && gameState.isPlayerEnemy(i))
+			this.handleDiplomacyRequest(gameState, i, "neutral");
 	}
 };
 
@@ -114,9 +119,9 @@ m.DiplomacyManager.prototype.checkEvents = function (gameState, events)
 	// or if our allies attack enemies inside our territory
 	for (let evt of events.TributeExchanged)
 	{
-		if (evt.to === PlayerID && !gameState.isPlayerAlly(evt.from) && this.allyRequests.has(evt.from))
+		if (evt.to === PlayerID && !gameState.isPlayerAlly(evt.from) && this.diplomacyRequests.has(evt.from))
 		{
-			let request = this.allyRequests.get(evt.from);
+			let request = this.diplomacyRequests.get(evt.from);
 			if (request.status === "waitingForTribute")
 			{
 				request.wanted -= evt.amounts[request.type];
@@ -126,10 +131,10 @@ m.DiplomacyManager.prototype.checkEvents = function (gameState, events)
 					if (this.Config.debug > 1)
 						API3.warn("Player " + uneval(evt.from) + " has sent the required tribute amount");
 
-					this.changePlayerDiplomacy(gameState, evt.from, "ally");
+					this.changePlayerDiplomacy(gameState, evt.from, request.requestType);
 					request.status = "accepted";
 				}
-				else
+				else if (evt.amounts[request.type] > 0)
 				{
 					// Reset the warning sent to the player that reminds them to speed up the tributes
 					request.warnTime = gameState.ai.elapsedTime + 60;
@@ -172,29 +177,22 @@ m.DiplomacyManager.prototype.checkEvents = function (gameState, events)
 		if (evt.otherPlayer !== PlayerID)
 			continue;
 
-		if (this.allyRequests.has(evt.player) && !gameState.sharedScript.playersData[evt.player].isAlly[PlayerID])
+		if (this.diplomacyRequests.has(evt.player) && !gameState.sharedScript.playersData[evt.player].isAlly[PlayerID])
 		{
 			// a player that had requested to be allies changed their stance with us
-			let request = this.allyRequests.get(evt.player);
+			let request = this.diplomacyRequests.get(evt.player);
 			if (request.status === "accepted")
 				request.status = "allianceBroken";
 			else if (request.status !== "allianceBroken")
 				request.status = "declinedRequest";
 		}
 		else if (gameState.sharedScript.playersData[evt.player].isAlly[PlayerID] && gameState.isPlayerEnemy(evt.player))
-			m.chatAnswerRequestAlly(gameState, evt.player, "declineSuggestNeutral");
+			m.chatAnswerRequestDiplomacy(gameState, evt.player, "ally", "declineSuggestNeutral");
 		else if (gameState.sharedScript.playersData[evt.player].isAlly[PlayerID] && gameState.isPlayerNeutral(evt.player))
-			this.handleAllyRequest(gameState, evt.player);
+			this.handleDiplomacyRequest(gameState, evt.player, "ally");
+		else if (gameState.sharedScript.playersData[evt.player].isNeutral[PlayerID] && gameState.isPlayerEnemy(evt.player))
+			this.handleDiplomacyRequest(gameState, evt.player, "neutral");
 	}
-};
-
-/**
- * Check the diplomacy at the start of the game
- */
-m.DiplomacyManager.prototype.diplomacyCheck = function(gameState)
-{
-	if (!gameState.getAlliedVictory() && !gameState.isCeasefireActive())
-		this.lastManStandingCheck(gameState);
 };
 
 /**
@@ -253,30 +251,39 @@ m.DiplomacyManager.prototype.lastManStandingCheck = function(gameState)
 	}
 
 	if (playerToTurnAgainst)
+	{
 		this.changePlayerDiplomacy(gameState, playerToTurnAgainst, "enemy");
+		let request = this.diplomacyRequests.get(playerToTurnAgainst);
+		if (request && request.status !== "allianceBroken")
+		{
+			if (request.status === "waitingForTribute")
+				m.chatAnswerRequestDiplomacy(gameState, player, request.requestType, "decline");
+			request.status = request.status === "accepted" ? "allianceBroken" : "declinedRequest";
+		}
+	}
 	this.betrayLapseTime = -1;
 	this.waitingToBetray = false;
 };
 
 /**
  * Do not become allies with a player if the game would be over.
- * Overall, be reluctant to become allies with any one player.
+ * Overall, be reluctant to become allies with any one player, but be more likely to accept neutral requests.
  */
-m.DiplomacyManager.prototype.handleAllyRequest = function(gameState, player)
+m.DiplomacyManager.prototype.handleDiplomacyRequest = function(gameState, player, requestType)
 {
 	let response;
 	let requiredTribute;
-	let request = this.allyRequests.get(player);
+	let request = this.diplomacyRequests.get(player);
+	let moreEnemiesThanAllies = gameState.getEnemies().length > gameState.getMutualAllies().length;
 
-	// For any given ally request be likely to permanently decline
+	// For any given diplomacy request be likely to permanently decline
 	if (!request && gameState.getPlayerCiv() !== gameState.getPlayerCiv(player) && Math.random() > 0.4 ||
-	    gameState.getEnemies().length < gameState.getMutualAllies().length ||
-	    gameState.ai.HQ.attackManager.currentEnemyPlayer === player)
+	    !moreEnemiesThanAllies || gameState.ai.HQ.attackManager.currentEnemyPlayer === player)
 	{
-		this.allyRequests.set(player, { "status": "declinedRequest" });
+		this.diplomacyRequests.set(player, { "requestType": requestType, "status": "declinedRequest" });
 		response = "decline";
 	}
-	else if (request)
+	else if (request && request.status !== "accepted" && request.requestType !== "ally")
 	{
 		if (request.status === "declinedRequest")
 			response = "decline";
@@ -288,30 +295,34 @@ m.DiplomacyManager.prototype.handleAllyRequest = function(gameState, player)
 			requiredTribute = request;
 		}
 	}
-	else if (gameState.getEntities(player).length < gameState.getOwnEntities().length && Math.random() > 0.6)
+	else if (requestType === "ally" && gameState.getEntities(player).length < gameState.getOwnEntities().length &&
+	    Math.random() > 0.6 || requestType === "neutral" && moreEnemiesThanAllies && Math.random() > 0.2)
 	{
 		response = "accept";
-		this.changePlayerDiplomacy(gameState, player, "ally");
-		this.allyRequests.set(player, { "status": "accepted" });
+		this.changePlayerDiplomacy(gameState, player, requestType);
+		this.diplomacyRequests.set(player, { "requestType": requestType, "status": "accepted" });
 	}
 	else
 	{
 		response = "acceptWithTribute";
 		requiredTribute = gameState.ai.HQ.pickMostNeededResources(gameState)[0];
-		requiredTribute.wanted = Math.max(1000, gameState.getOwnUnits().length * 10);
-		this.allyRequests.set(player, {
+		requiredTribute.wanted = Math.max(1000, gameState.getOwnUnits().length * requestType === "ally" ? 10 : 5)
+		this.diplomacyRequests.set(player, {
 			"status": "waitingForTribute",
 			"wanted": requiredTribute.wanted,
 			"type": requiredTribute.type,
 			"warnTime": gameState.ai.elapsedTime + 60,
-			"sentWarning": false
+			"sentWarning": false,
+			"requestType": requestType
 		});
 	}
-	m.chatAnswerRequestAlly(gameState, player, response, requiredTribute);
+	m.chatAnswerRequestDiplomacy(gameState, player, requestType, response, requiredTribute);
 };
 
 m.DiplomacyManager.prototype.changePlayerDiplomacy = function(gameState, player, newDiplomaticStance)
 {
+	if (gameState.isPlayerEnemy(player) && (newDiplomaticStance === "ally" || newDiplomaticStance === "neutral"))
+		gameState.ai.HQ.attackManager.cancelAttacksAgainstPlayer(player);
 	Engine.PostCommand(PlayerID, { "type": "diplomacy", "player": player, "to": newDiplomaticStance });
 	if (this.Config.debug > 1)
 		API3.warn("diplomacy stance with player " + player + " is now " + newDiplomaticStance);
@@ -321,19 +332,19 @@ m.DiplomacyManager.prototype.changePlayerDiplomacy = function(gameState, player,
 
 m.DiplomacyManager.prototype.checkRequestedTributes = function(gameState)
 {
-	for (let [player, data] of this.allyRequests.entries())
+	for (let [player, data] of this.diplomacyRequests)
 		if (data.status === "waitingForTribute" && gameState.ai.elapsedTime > data.warnTime)
 		{
 			if (data.sentWarning)
 			{
-				this.allyRequests.delete(player);
-				m.chatAnswerRequestAlly(gameState, player, "decline");
+				this.diplomacyRequests.delete(player);
+				m.chatAnswerRequestDiplomacy(gameState, player, data.requestType, "decline");
 			}
 			else
 			{
 				data.sentWarning = true;
 				data.warnTime = gameState.ai.elapsedTime + 60;
-				m.chatAnswerRequestAlly(gameState, player, "waitingForTribute", {
+				m.chatAnswerRequestDiplomacy(gameState, player, data.requestType, "waitingForTribute", {
 					"wanted": data.wanted,
 					"type": data.type
 				});
@@ -361,7 +372,7 @@ m.DiplomacyManager.prototype.Serialize = function()
 		"nextTributeRequest": this.nextTributeRequest,
 		"betrayLapseTime": this.betrayLapseTime,
 		"waitingToBetray": this.waitingToBetray,
-		"allyRequests": this.allyRequests
+		"diplomacyRequests": this.diplomacyRequests
 	};
 };
 

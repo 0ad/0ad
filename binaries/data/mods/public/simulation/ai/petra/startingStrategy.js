@@ -55,8 +55,6 @@ m.HQ.prototype.gameAnalysis = function(gameState)
 	// configure our first base strategy
 	if (this.baseManagers.length > 1)
 		this.configFirstBase(gameState);
-
-	this.diplomacyManager.diplomacyCheck(gameState);
 };
 
 /**

@@ -63,26 +63,50 @@ m.newDiplomacyMessages = {
 	]
 };
 
-m.answerAllyRequestMessages = {
-	"decline": [
-		markForTranslation("I cannot accept your offer to be allies %(_player_)s.")
-	],
-	"declineSuggestNeutral": [
-		markForTranslation("I will not ally with you %(_player_)s, but I will consider a neutrality pact.")
-	],
-	"declineRepeatedOffer": [
-		markForTranslation("%(_player_)s, our previous alliance did not work out, so I must decline your offer.")
-	],
-	"accept": [
-		markForTranslation("I will accept your offer to become allies %(_player_)s. We will both benefit from this alliance.")
-	],
-	"acceptWithTribute": [
-		markForTranslation("I will ally with you %(_player_)s, but only if you send me a tribute of %(_amount_)s %(_resource_)s."),
-		markForTranslation("%(_player_)s, you must send me a tribute of %(_amount_)s %(_resource_)s for me to accept an alliance.")
-	],
-	"waitingForTribute": [
-		markForTranslation("%(_player_)s, my offer still stands. I will ally with you if you send me a tribute of %(_amount_)s %(_resource_)s.")
-	]
+m.answerDiplomacyRequestMessages = {
+	"ally": {
+		"decline": [
+			markForTranslation("I cannot accept your offer to be allies %(_player_)s.")
+		],
+		"declineSuggestNeutral": [
+			markForTranslation("I will not ally with you %(_player_)s, but I will consider a neutrality pact.")
+		],
+		"declineRepeatedOffer": [
+			markForTranslation("%(_player_)s, our previous alliance did not work out, so I must decline your offer.")
+		],
+		"accept": [
+			markForTranslation("I will accept your offer to become allies %(_player_)s. We will both benefit from this alliance.")
+		],
+		"acceptWithTribute": [
+			markForTranslation("I will ally with you %(_player_)s, but only if you send me a tribute of %(_amount_)s %(_resource_)s."),
+			markForTranslation("%(_player_)s, you must send me a tribute of %(_amount_)s %(_resource_)s for me to accept an alliance.")
+		],
+		"waitingForTribute": [
+			markForTranslation("%(_player_)s, my offer still stands. I will ally with you if you send me a tribute of %(_amount_)s %(_resource_)s."),
+			markForTranslation("%(_player_)s, if you do not send me part of the %(_amount_)s %(_resource_)s tribute soon, I will break off our negotiations.")
+		]		
+	},
+	"neutral": {
+		"decline": [
+			markForTranslation("I will not become neutral with you %(_player_)s."),
+			markForTranslation("%(_player_)s, I must decline your request for a neutrality pact.")
+		],
+		"declineRepeatedOffer": [
+			markForTranslation("Our previous neutrality agreement ended in failure %(_player_)s; I will not consider another one.")
+		],
+		"accept": [
+			markForTranslation("I welcome your request for peace between our civilizations %(_player_)s. I will accept."),
+			markForTranslation("%(_player_)s, I will accept your neutrality request. May both our civilizations benefit.")
+		],
+		"acceptWithTribute": [
+			markForTranslation("If you tribute me %(_amount_)s %(_resource_)s, I will accept your neutrality request %(_player_)s."),
+			markForTranslation("%(_player_)s, if you send me %(_amount_)s %(_resource_)s, I will accept a neutrality pact.")
+		],
+		"waitingForTribute": [
+			markForTranslation("%(_player_)s, I will not accept your neutrality request unless you tribute me %(_amount_)s %(_resource_)s soon."),
+			markForTranslation("%(_player_)s, if you do not send me part of the %(_amount_)s %(_resource_)s tribute soon, I will break off our negotiations.")
+		]		
+	}
 };
 
 m.chatLaunchAttack = function(gameState, player, type)
@@ -162,12 +186,12 @@ m.chatNewDiplomacy = function(gameState, player, newDiplomaticStance)
 	});
 };
 
-m.chatAnswerRequestAlly = function(gameState, player, response, requiredTribute)
+m.chatAnswerRequestDiplomacy = function(gameState, player, requestType, response, requiredTribute)
 {
 	Engine.PostCommand(PlayerID, {
 		"type": "aichat",
 		"message": "/msg " + gameState.sharedScript.playersData[player].name + " " +
-			pickRandom(this.answerAllyRequestMessages[response]),
+			pickRandom(this.answerDiplomacyRequestMessages[requestType][response]),
 		"translateMessage": true,
 		"translateParameters": requiredTribute ? ["_amount_", "_resource_", "_player_"] : ["_player_"],
 		"parameters": requiredTribute ?
