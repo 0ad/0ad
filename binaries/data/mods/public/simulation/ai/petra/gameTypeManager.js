@@ -145,7 +145,7 @@ m.GameTypeManager.prototype.checkEvents = function(gameState, events)
 		for (let entId of evt.entities)
 		{
 			let ent = gameState.getEntityById(entId);
-			if (ent || ent.isOwn(PlayerID) || ent.getMetadata(PlayerID, "role") === "criticalEntHealer")
+			if (ent && ent.isOwn(PlayerID) && ent.getMetadata(PlayerID, "role") === "criticalEntHealer")
 				this.assignGuardToCriticalEnt(gameState, ent);
 		}
 
