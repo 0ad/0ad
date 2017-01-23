@@ -6,13 +6,14 @@
 # DanSnow <dododavid006@gmail.com>, 2014
 # Jeff Huang <s8321414@gmail.com>, 2014-2016
 # Mysterelee <8161525@qq.com>, 2014
+# neil000 <neil200063@gmail.com>, 2017
 # nigelinux <nnigelinux@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-01-13 09:03+0100\n"
-"PO-Revision-Date: 2017-01-14 09:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-01-21 08:40+0000\n"
+"Last-Translator: neil000 <neil200063@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -136,7 +137,7 @@ msgstr "防禦塔"
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly "
 "converts to Gaia while in neutral territory."
-msgstr "建造在中立或自己的領土上以偵查該區域的地圖。在中立領土上會緩慢的轉換所有權為大地之母。"
+msgstr "建造在中立或自己的領土上以偵查該區域的地圖。在中立領土上會緩慢的損失生命值。"
 
 #: simulation/templates/template_structure_defense_outpost.xml:65
 #: simulation/templates/template_structure_defense_outpost.xml:33
@@ -168,12 +169,12 @@ msgstr "允許單位通過城市的牆。可以鎖住以避免通過。"
 
 #: simulation/templates/template_structure_defense_wall_long.xml:40
 msgid "Long wall segments can be converted to gates."
-msgstr "長的城牆區段可以被轉換為閘門。"
+msgstr "常城牆可以被轉換為城門。"
 
 #: simulation/templates/template_structure_defense_wall_long.xml:45
 msgid ""
 "This will allow you to let units circulate through your fortifications."
-msgstr "這將會讓您的單位可以在防禦公事旁繞圈。"
+msgstr "這將會讓您的單位在防禦工事旁繞圈。"
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:50
 msgid "Wall Turret"
