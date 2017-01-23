@@ -388,7 +388,7 @@ m.DefenseManager.prototype.assignDefenders = function(gameState)
 			return;
 		if (ent.getMetadata(PlayerID, "transport") !== undefined || ent.getMetadata(PlayerID, "transporter") !== undefined)
 			return;
-		if (gameState.getGameType() === "regicide" && ent.hasClass("Hero"))
+		if (gameState.ai.HQ.gameTypeManager.criticalEnts.has(ent.id()))
 			return;
 		if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") !== -1)
 		{

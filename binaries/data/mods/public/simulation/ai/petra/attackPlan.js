@@ -677,8 +677,7 @@ m.AttackPlan.prototype.isAvailableUnit = function(gameState, ent)
 	if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") !== -1 ||
 	    ent.getMetadata(PlayerID, "transport") !== undefined || ent.getMetadata(PlayerID, "transporter") !== undefined)
 		return false;
-	// TODO if more than one hero in regicide, prevent only the "right one" from being affected
-	if (gameState.getGameType() === "regicide" && ent.hasClass("Hero") && (this.overseas || ent.healthLevel() < 0.8))
+	if (gameState.ai.HQ.gameTypeManager.criticalEnts.has(ent.id()) && (this.overseas || ent.healthLevel() < 0.8))
 		return false;
 	return true;
 };
