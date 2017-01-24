@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_infantry_ranged_archer">
+  <Identity>
+    <Civ>ptol</Civ>
+    <SelectionGroupName>units/ptol_infantry_archer_nubian</SelectionGroupName>
+    <GenericName>Nubian Mercenary Archer</GenericName>
+    <SpecificName>Kousít Misthophóros Toxótēs</SpecificName>
+    <Icon>units/ptol_infantry_archer.png</Icon>
+    <RequiredTechnology>phase_village</RequiredTechnology>
+  </Identity>
+  <Promotion disable=""/>
+  <VisualActor>
+    <Actor>units/ptolemies/infantry_archer_b.xml</Actor>
+  </VisualActor>
+</Entity>
