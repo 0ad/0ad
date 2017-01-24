@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,7 +29,6 @@
 #include "lib/timer.h"
 #include "network/NetClient.h"
 #include "network/NetServer.h"
-#include "network/NetTurnManager.h"
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
@@ -47,6 +46,7 @@
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpPlayer.h"
 #include "simulation2/components/ICmpPlayerManager.h"
+#include "simulation2/system/ReplayTurnManager.h"
 #include "soundmanager/ISoundManager.h"
 
 #include "tools/atlas/GameInterface/GameLoop.h"
@@ -87,7 +87,7 @@ CGame::CGame(bool disableGraphics, bool replayLog):
 	if (m_GameView)
 		m_World->GetUnitManager().SetObjectManager(m_GameView->GetObjectManager());
 
-	m_TurnManager = new CNetLocalTurnManager(*m_Simulation2, GetReplayLogger()); // this will get replaced if we're a net server/client
+	m_TurnManager = new CLocalTurnManager(*m_Simulation2, GetReplayLogger()); // this will get replaced if we're a net server/client
 
 	m_Simulation2->LoadDefaultScripts();
 }
@@ -110,7 +110,7 @@ CGame::~CGame()
 	delete m_ReplayStream;
 }
 
-void CGame::SetTurnManager(CNetTurnManager* turnManager)
+void CGame::SetTurnManager(CTurnManager* turnManager)
 {
 	if (m_TurnManager)
 		delete m_TurnManager;
@@ -127,7 +127,7 @@ int CGame::LoadVisualReplayData()
 	ENSURE(!m_ReplayPath.empty());
 	ENSURE(m_ReplayStream);
 
-	CNetReplayTurnManager* replayTurnMgr = static_cast<CNetReplayTurnManager*>(GetTurnManager());
+	CReplayTurnManager* replayTurnMgr = static_cast<CReplayTurnManager*>(GetTurnManager());
 
 	u32 currentTurn = 0;
 	std::string type;
@@ -175,7 +175,7 @@ bool CGame::StartVisualReplay(const std::string& replayPath)
 	m_IsVisualReplay = true;
 	ScriptInterface& scriptInterface = m_Simulation2->GetScriptInterface();
 
-	SetTurnManager(new CNetReplayTurnManager(*m_Simulation2, GetReplayLogger()));
+	SetTurnManager(new CReplayTurnManager(*m_Simulation2, GetReplayLogger()));
 
 	m_ReplayPath = replayPath;
 	m_ReplayStream = new std::ifstream(m_ReplayPath.c_str());

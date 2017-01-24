@@ -15,25 +15,27 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PS_UTIL_H
-#define PS_UTIL_H
+#ifndef INCLUDED_LOCALTURNMANAGER
+#define INCLUDED_LOCALTURNMANAGER
 
-#include "lib/os_path.h"
-#include "lib/file/vfs/vfs_path.h"
+#include "TurnManager.h"
 
-struct Tex;
+/**
+ * Implementation of CTurnManager for offline games.
+ */
+class CLocalTurnManager : public CTurnManager
+{
+public:
+	CLocalTurnManager(CSimulation2& simulation, IReplayLogger& replay);
 
-void WriteSystemInfo();
+	void OnSimulationMessage(CSimulationMessage* msg) override;
 
-const wchar_t* ErrorString(int err);
+	void PostCommand(JS::HandleValue data) override;
 
-OsPath createDateIndexSubdirectory(const OsPath& parentDir);
+protected:
+	void NotifyFinishedOwnCommands(u32 turn) override;
 
-void WriteScreenshot(const VfsPath& extension);
-void WriteBigScreenshot(const VfsPath& extension, int tiles);
+	virtual void NotifyFinishedUpdate(u32 turn) override;
+};
 
-Status tex_write(Tex* t, const VfsPath& filename);
-
-std::string Hexify(const std::string& s);
-
-#endif // PS_UTIL_H
+#endif // INCLUDED_LOCALTURNMANAGER

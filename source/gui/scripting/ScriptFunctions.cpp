@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -37,8 +37,8 @@
 #include "lobby/scripting/JSInterface_Lobby.h"
 #include "maths/FixedVector3D.h"
 #include "network/NetClient.h"
+#include "network/NetMessage.h"
 #include "network/NetServer.h"
-#include "network/NetTurnManager.h"
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
 #include "ps/Errors.h"
@@ -70,6 +70,7 @@
 #include "simulation2/components/ICmpSelectable.h"
 #include "simulation2/components/ICmpTemplateManager.h"
 #include "simulation2/helpers/Selection.h"
+#include "simulation2/system/TurnManager.h"
 #include "soundmanager/SoundManager.h"
 #include "soundmanager/scripting/JSInterface_Sound.h"
 #include "tools/atlas/GameInterface/GameLoop.h"

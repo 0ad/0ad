@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,7 +23,6 @@
 #include "lib/tex/tex.h"
 #include "network/NetServer.h"
 #include "network/NetClient.h"
-#include "network/NetTurnManager.h"
 #include "network/NetMessage.h"
 #include "network/NetMessages.h"
 #include "ps/CLogger.h"
@@ -33,6 +32,7 @@
 #include "ps/XML/Xeromyces.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
+#include "simulation2/system/TurnManager.h"
 
 class TestNetComms : public CxxTest::TestSuite
 {
@@ -310,7 +310,7 @@ public:
 		wait(clients, 100);
 
 		// (This SetTurnLength thing doesn't actually detect errors unless you change
-		// CNetTurnManager::TurnNeedsFullHash to always return true)
+		// CTurnManager::TurnNeedsFullHash to always return true)
 
 		{
 			JS::RootedValue cmd(cx);

@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,8 +22,8 @@
 #include "NetClient.h"
 #include "NetMessage.h"
 #include "NetSession.h"
+#include "NetServerTurnManager.h"
 #include "NetStats.h"
-#include "NetTurnManager.h"
 
 #include "lib/external_libraries/enet.h"
 #include "ps/CLogger.h"
@@ -32,6 +32,7 @@
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptRuntime.h"
 #include "simulation2/Simulation2.h"
+#include "simulation2/system/TurnManager.h"
 
 #if CONFIG2_MINIUPNPC
 #include <miniupnpc/miniwget.h>
