@@ -71,7 +71,7 @@ void CNetServerTurnManager::CheckClientsReady()
 	CEndCommandBatchMessage msg;
 	msg.m_TurnLength = m_TurnLength;
 	msg.m_Turn = m_ReadyTurn;
-	m_NetServer.Broadcast(&msg);
+	m_NetServer.Broadcast(&msg, { NSS_INGAME });
 
 	ENSURE(m_SavedTurnLengths.size() == m_ReadyTurn);
 	m_SavedTurnLengths.push_back(m_TurnLength);
@@ -130,7 +130,7 @@ void CNetServerTurnManager::NotifyFinishedClientUpdate(int client, const CStrW& 
 				h.m_Name = playername;
 				msg.m_PlayerNames.push_back(h);
 			}
-			m_NetServer.Broadcast(&msg);
+			m_NetServer.Broadcast(&msg, { NSS_INGAME });
 			break;
 		}
 	}
