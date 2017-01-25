@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,7 +27,7 @@
 class CWorld;
 class CSimulation2;
 class CGameView;
-class CNetTurnManager;
+class CTurnManager;
 class IReplayLogger;
 struct CColor;
 
@@ -77,7 +77,7 @@ class CGame
 	 */
 	player_id_t m_ViewedPlayerID;
 
-	CNetTurnManager* m_TurnManager;
+	CTurnManager* m_TurnManager;
 
 public:
 	CGame(bool disableGraphics = false, bool replayLog = true);
@@ -185,9 +185,9 @@ public:
 	 * Replace the current turn manager.
 	 * This class will take ownership of the pointer.
 	 */
-	void SetTurnManager(CNetTurnManager* turnManager);
+	void SetTurnManager(CTurnManager* turnManager);
 
-	CNetTurnManager* GetTurnManager() const
+	CTurnManager* GetTurnManager() const
 	{	return m_TurnManager; }
 
 	IReplayLogger& GetReplayLogger() const

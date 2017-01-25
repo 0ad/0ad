@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,9 +19,9 @@
 
 #include "NetClient.h"
 
+#include "NetClientTurnManager.h"
 #include "NetMessage.h"
 #include "NetSession.h"
-#include "NetTurnManager.h"
 
 #include "lib/byte_order.h"
 #include "lib/sysdep/sysdep.h"

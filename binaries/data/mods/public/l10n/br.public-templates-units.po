@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-01-13 09:03+0100\n"
-"PO-Revision-Date: 2017-01-17 11:49+0000\n"
+"PO-Revision-Date: 2017-01-20 14:22+0000\n"
 "Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -227,7 +227,7 @@ msgstr "Pikerom Kampion"
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:30
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:28
 msgid "Counters: 3x vs. Cavalry."
-msgstr ""
+msgstr "Enep: 3x vs. Marc'hegerezh."
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:32
 msgid "Champion Spearman"
@@ -247,7 +247,7 @@ msgstr "Ki brezel"
 
 #: simulation/templates/template_unit_dog.xml:46
 msgid "Cannot attack structures."
-msgstr ""
+msgstr "N'hall ket tagañ ar savadurioù."
 
 #: simulation/templates/template_unit_fauna.xml:12
 msgid "Fauna"
@@ -263,7 +263,7 @@ msgstr "Morviled"
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:12
 msgid "Kill, then collect food from this bountiful oceanic resource."
-msgstr ""
+msgstr "Lazhit, ha goude-se dastumit boued diouzh ar vammenn-vor-puilh-mañ."
 
 #: simulation/templates/template_unit_hero.xml:30
 #: simulation/templates/template_unit_hero.xml:28
@@ -372,21 +372,21 @@ msgstr "Bag-Brezel"
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:51
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:49
 msgid "Garrison units for transport and to increase firepower."
-msgstr ""
+msgstr "Lakait e gwarnizon unanennoù evit o zreuzdougen ha kreskiñ ar galloud-tennañ."
 
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:32
 msgid "Fire Ship"
-msgstr "Lestr-Taner"
+msgstr "Lestr-Enflamet"
 
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:33
 msgid "Fireship"
-msgstr "Lestr-taner"
+msgstr "Lestr-Enflamet"
 
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:34
 msgid ""
 "Rapidly drain the health of enemy ships. Slowly loses health due to being on"
 " fire, so use the Fire Ship quickly."
-msgstr ""
+msgstr "Lakaat a ra da zigreskiñ buan yec'hed ar bigi enebour. An tan a lak anezhañ da goll goustadik he foentoù-buhez, ret eo implij al Lestr-Enflammet buan-tre."
 
 #: simulation/templates/template_unit_mechanical_ship_fishing.xml:32
 msgid "Fishing Boat"
@@ -396,7 +396,7 @@ msgstr "Bag Pesketa"
 msgid ""
 "Fish the waters for Food. Garrison a support or infantry unit inside to "
 "boost fishing rate."
-msgstr ""
+msgstr "Pesketait a-benn dastum boued. Lakait e gwarnizon un unanenn war-droad pe unan skoazell evit lakaat da greskiñ ar feur dastum."
 
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:27
 msgid "Merchantman"
@@ -406,7 +406,7 @@ msgstr "Marc'hadour"
 msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures."
-msgstr ""
+msgstr "Kenwerzh etre ar porzhioù. Gwarnizon ur vag-kenwerzh a ro dezhañ gounidoù ouzhpenn (+20% evit pep gwarnizon). Dastum a ra ivez an teñzorioù-mor."
 
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:29
 #: simulation/templates/template_unit_support_trader.xml:15
@@ -429,11 +429,11 @@ msgstr "Seziz"
 
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:36
 msgid "Bolt Shooter"
-msgstr ""
+msgstr "Bangounell"
 
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:37
 msgid "BoltShooter"
-msgstr ""
+msgstr "Bangouneller"
 
 #: simulation/templates/template_unit_mechanical_siege_onager.xml:43
 msgid "Siege Catapult"
@@ -445,7 +445,7 @@ msgstr "Gwinterez"
 
 #: simulation/templates/template_unit_mechanical_siege_ram.xml:33
 msgid "Battering Ram"
-msgstr ""
+msgstr "Tourz"
 
 #: simulation/templates/template_unit_mechanical_siege_ram.xml:34
 msgid "Ram"
@@ -463,7 +463,7 @@ msgstr "TourSeziz"
 #: simulation/templates/template_unit_support.xml:12
 #: simulation/templates/units/maur_hero_chanakya.xml:30
 msgid "Support"
-msgstr ""
+msgstr "Skoazell"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:43
 msgid "Female Citizen"
@@ -486,7 +486,7 @@ msgstr "Sklav"
 
 #: simulation/templates/template_unit_support_slave.xml:42
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
-msgstr ""
+msgstr "Kouer gant ur vuhez bevennet. Bonuz evit eztennañ mein ha koad."
 
 #: simulation/templates/template_unit_support_trader.xml:18
 msgid "Trade resources between your own markets and those of your allies."
@@ -1303,7 +1303,7 @@ msgstr "Ahariburu"
 
 #: simulation/templates/units/iber_ship_fire.xml:5
 msgid "Iberian Fire Ship"
-msgstr "Lestr-Taner Iberian"
+msgstr "Lestr-Enflamet Iberian"
 
 #: simulation/templates/units/iber_ship_fishing.xml:5
 msgid "Arrantza Ontzi"

@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,6 +18,7 @@
 #ifndef PS_UTIL_H
 #define PS_UTIL_H
 
+#include "lib/os_path.h"
 #include "lib/file/vfs/vfs_path.h"
 
 struct Tex;

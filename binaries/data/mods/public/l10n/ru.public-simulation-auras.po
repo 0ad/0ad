@@ -5,6 +5,7 @@
 # Translators:
 # Alexey Solodovnikov <sklent@outlook.com>, 2017
 # Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2016-2017
+# Ilya Andreev <ilia@liuch.ru>, 2017
 # Ivan Korovin <i.d.korovin@gmail.com>, 2017
 # Nergal Sham <sham-nergal@mail.ru>, 2016
 # Prince Moth <princemoth@rambler.ru>, 2016
@@ -17,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-01-09 09:03+0100\n"
-"PO-Revision-Date: 2017-01-18 09:15+0000\n"
-"Last-Translator: Ivan Korovin <i.d.korovin@gmail.com>\n"
+"PO-Revision-Date: 2017-01-22 09:42+0000\n"
+"Last-Translator: Ilya Andreev <ilia@liuch.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,7 +41,7 @@ msgstr "Улучшения пельтастов"
 
 #: simulation/data/auras/athen_hero_iphicrates_2.jsonauraDescription
 msgid "All javelin infantry +15% speed."
-msgstr "Вся стрелковая кавалерия +15 к скорости."
+msgstr "Вся стрелковая кавалерия +15% к скорости."
 
 #: simulation/data/auras/athen_hero_pericles_1.jsonauraName
 msgid "Builder Aura"
@@ -98,7 +99,7 @@ msgstr "Все воины и осадные орудия получат +15% к 
 
 #: simulation/data/auras/brit_hero_cunobelin.jsonauraDescription
 msgid "+1 HP per second healing rate for all units."
-msgstr "+1 к скорости восстановления здоровья в секунду для все юнитов."
+msgstr "+1 к скорости восстановления здоровья в секунду для всех юнитов."
 
 #: simulation/data/auras/cart_hero_hamilcar.jsonauraName
 msgid "Lightning Aura"
@@ -196,7 +197,7 @@ msgstr "Аура лояльности"
 
 #: simulation/data/auras/loyalty_regen.jsonauraDescription
 msgid "All structures in range +50% garrisoned loyalty regeneration rate."
-msgstr ""
+msgstr "На +50% увеличивается скорость восстановления лояльности гаринизонов всех построек в радиусе действия."
 
 #: simulation/data/auras/mace_hero_alexander.jsonauraName
 msgid "Imperialism Aura"
@@ -212,7 +213,7 @@ msgstr "Таксиарх"
 
 #: simulation/data/auras/mace_hero_craterus.jsonauraDescription
 msgid "Pike Infantry +20% attack and +20% capture within range of him."
-msgstr ""
+msgstr "Копейщики получают +20% к атаке и +20% к захвату в области его видимости."
 
 #: simulation/data/auras/mace_hero_demetrius.jsonauraName
 msgid "Besieger Aura"
@@ -384,7 +385,7 @@ msgstr "Реформы Илотов"
 
 #: simulation/data/auras/spart_hero_brasidas.jsonauraDescription
 msgid "Javelin infantry in his aura gains +20% attack and +1 all armor types."
-msgstr ""
+msgstr "Застрельщики-пехотинцы получают +20% к атаке и +1 ко всем типам защиты под его аурой."
 
 #: simulation/data/auras/spart_hero_leonidas.jsonauraName
 msgid "Last Stand Aura"
@@ -404,7 +405,7 @@ msgstr "Эллинизация."
 
 #: simulation/data/auras/theatron.jsonauraDescription
 msgid "Increase territory influence by 20% per theatron owned."
-msgstr ""
+msgstr "Влияние на территорию увеличивается на 20% за каждый Театрон."
 
 #: simulation/data/auras/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -420,7 +421,7 @@ msgstr "Аура чуда"
 
 #: simulation/data/auras/wonder_pop_1.jsonauraDescription
 msgid "Increase the population limit by 10 per wonder owned."
-msgstr ""
+msgstr "Увеличивается лимит населения на 10 за каждое чудо."
 
 #: simulation/data/auras/wonder_pop_2.jsonauraName
 msgid "Glorious Expansion Aura"
@@ -430,7 +431,7 @@ msgstr "Расширение ауры славы"
 msgid ""
 "Further increase the population limit by 40 per wonder owned (requires "
 "\"Glorious Expansion\" tech)."
-msgstr ""
+msgstr "Дальнейшее увеличение лимита населения на 40 за каждое принадлежащее Вам чудо (необходима технология \"Славное расширение\")."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -464,7 +465,7 @@ msgstr "Снижает затраты на граждан-солдат стре�
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
-msgstr ""
+msgstr "Религиозная поддержка Ашоки"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
 msgid ""
@@ -477,7 +478,7 @@ msgstr "Царская дорога"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
 msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr ""
+msgstr "Более высокий (+15%) доход от сухопутных торговых путей для торговцев союзников."
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"

@@ -18,15 +18,15 @@
     <Civ>ptol</Civ>
     <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <SelectionGroupName>units/ptol_infantry_archer_b</SelectionGroupName>
-    <GenericName>Nubian Mercenary Archer</GenericName>
-    <SpecificName>Kousít Misthophóros Toxótēs</SpecificName>
-    <Icon>units/ptol_infantry_archer.png</Icon>
-    <RequiredTechnology>phase_village</RequiredTechnology>
+    <GenericName>Cretan Mercenary Archer</GenericName>
+    <SpecificName>Toxótēs Krētikós</SpecificName>
+    <Icon>units/hele_infantry_archer.png</Icon>
+    <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Promotion>
     <Entity>units/ptol_infantry_archer_a</Entity>
   </Promotion>
   <VisualActor>
-    <Actor>units/ptolemies/infantry_archer_b.xml</Actor>
+    <Actor>units/macedonians/infantry_archer_b.xml</Actor>
   </VisualActor>
 </Entity>
