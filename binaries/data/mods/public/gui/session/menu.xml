@@ -71,9 +71,7 @@
 			size="0 160 100% 188"
 			tooltip_style="sessionToolTip"
 		>
-			<object name="pauseButtonText" type="text" style="CenteredButtonText" ghost="true">
-				<translatableAttribute id="caption">Pause</translatableAttribute>
-			</object>
+			<translatableAttribute id="caption">Pause</translatableAttribute>
 			<action on="Press">togglePause();</action>
 		</object>
 

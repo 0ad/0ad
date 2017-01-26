@@ -864,7 +864,7 @@ function setClientPauseState(guid, paused)
  */
 function updatePauseOverlay()
 {
-	Engine.GetGUIObjectByName("pauseButtonText").caption = g_Paused ? translate("Resume") : translate("Pause");
+	Engine.GetGUIObjectByName("pauseButton").caption = g_Paused ? translate("Resume") : translate("Pause");
 	Engine.GetGUIObjectByName("resumeMessage").hidden = !g_Paused;
 
 	Engine.GetGUIObjectByName("pausedByText").hidden = !g_IsNetworked;
