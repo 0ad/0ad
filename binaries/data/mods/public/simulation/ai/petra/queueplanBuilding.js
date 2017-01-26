@@ -238,7 +238,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 			{
 				let value = placement.map[j] - gameState.sharedScript.resourceMaps.wood.map[j]/3;
 				placement.map[j] = value >= 0 ? value : 0;
-				if (gameState.ai.HQ.borderMap.map[j] > 0)
+				if (gameState.ai.HQ.borderMap.map[j] & m.fullBorder_Mask)
 					placement.map[j] /= 2;	// we need space around farmstead, so disfavor map border
 			}
 		}
@@ -256,9 +256,9 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 		{
 			if (gameState.ai.HQ.basesMap.map[j] != base)
 				placement.map[j] = 0;
-			else if (favorBorder && gameState.ai.HQ.borderMap.map[j] > 0)
+			else if (favorBorder && gameState.ai.HQ.borderMap.map[j] & m.border_Mask)
 				placement.map[j] += 50;
-			else if (disfavorBorder && gameState.ai.HQ.borderMap.map[j] === 0 && placement.map[j] > 0)
+			else if (disfavorBorder && !(gameState.ai.HQ.borderMap.map[j] & m.fullBorder_Mask) && placement.map[j] > 0)
 				placement.map[j] += 10;
 
 			if (placement.map[j] > 0)
@@ -276,9 +276,9 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 		{
 			if (gameState.ai.HQ.basesMap.map[j] === 0)
 				placement.map[j] = 0;
-			else if (favorBorder && gameState.ai.HQ.borderMap.map[j] > 0)
+			else if (favorBorder && gameState.ai.HQ.borderMap.map[j] & m.border_Mask)
 				placement.map[j] += 50;
-			else if (disfavorBorder && gameState.ai.HQ.borderMap.map[j] === 0 && placement.map[j] > 0)
+			else if (disfavorBorder && !(gameState.ai.HQ.borderMap.map[j] & m.fullBorder_Mask) && placement.map[j] > 0)
 				placement.map[j] += 10;
 
 			if (preferredBase && gameState.ai.HQ.basesMap.map[j] == this.metadata.preferredBase)
@@ -435,7 +435,7 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 			dist += 0.6 * (maxRes - res);
 
 		// Add a penalty if on the map border as ship movement will be difficult
-		if (gameState.ai.HQ.borderMap.map[j] > 0)
+		if (gameState.ai.HQ.borderMap.map[j] & m.fullBorder_Mask)
 			dist += 2;
 		// do a pre-selection, supposing we will have the best possible water
 		if (bestIdx !== undefined && dist > bestVal + maxWater)
@@ -669,8 +669,10 @@ m.ConstructionPlan.prototype.isDockLocation = function(gameState, j, dimension, 
  */
 m.ConstructionPlan.prototype.getFrontierProximity = function(gameState, j)
 {
+	let alliedVictory = gameState.getAlliedVictory();
 	let territoryMap = gameState.ai.HQ.territoryMap;
-	if (gameState.isPlayerAlly(territoryMap.getOwnerIndex(j)))
+	let territoryOwner = territoryMap.getOwnerIndex(j);
+	if (territoryOwner === PlayerID || alliedVictory && gameState.isPlayerAlly(territoryOwner))
 		return 0;
 
 	let borderMap = gameState.ai.HQ.borderMap;
@@ -689,9 +691,10 @@ m.ConstructionPlan.prototype.getFrontierProximity = function(gameState, j)
 			let jz = iz + Math.round(i*step*a[1]);
 			if (jz < 0 || jz >= width)
 				continue;
-			if (borderMap.map[jx+width*jz] > 1)
+			if (borderMap.map[jx+width*jz] & m.outside_Mask)
 				continue;
-			if (gameState.isPlayerAlly(territoryMap.getOwnerIndex(jx+width*jz)))
+			territoryOwner = territoryMap.getOwnerIndex(jx+width*jz);
+			if (alliedVictory && gameState.isPlayerAlly(territoryOwner) || territoryOwner === PlayerID)
 			{
 				best = Math.min(best, i);
 				break;

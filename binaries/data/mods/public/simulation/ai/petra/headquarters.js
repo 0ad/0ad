@@ -60,10 +60,9 @@ m.HQ.prototype.init = function(gameState, queues)
 	this.territoryMap = m.createTerritoryMap(gameState);
 	// initialize base map. Each pixel is a base ID, or 0 if not or not accessible
 	this.basesMap = new API3.Map(gameState.sharedScript, "territory");
-	// area of n cells on the border of the map : 0=inside map, 1=border map, 2=border+inaccessible
+	// create borderMap: flag cells on the border of the map
+	// then this map will be completed with our frontier in updateTerritories
 	this.borderMap = m.createBorderMap(gameState);
-	// initialize frontier map. Each cell is 2 if on the near frontier, 1 on the frontier and 0 otherwise
-	this.frontierMap = m.createFrontierMap(gameState);
 	// list of allowed regions
 	this.landRegions = {};
 	// try to determine if we have a water map
@@ -836,7 +835,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 				continue;
 		}
 
-		if (this.borderMap.map[j] > 0)	// disfavor the borders of the map
+		if (this.borderMap.map[j] & m.fullBorder_Mask)	// disfavor the borders of the map
 			norm *= 0.5;
 
 		let val = 2*gameState.sharedScript.ccResourceMaps[resource].map[j];
@@ -988,7 +987,7 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 			currentVal += delta*delta;
 		}
 		// disfavor border of the map
-		if (this.borderMap.map[j] > 0)
+		if (this.borderMap.map[j] & m.fullBorder_Mask)
 			currentVal += 10000;
 
 		if (bestVal !== undefined && currentVal > bestVal)
@@ -1060,8 +1059,8 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 
 	for (let j = 0; j < this.territoryMap.length; ++j)
 	{
-		// do not try on the border of our territory
-		if (this.frontierMap.map[j] === 2)
+		// do not try on the narrow border of our territory
+		if (this.borderMap.map[j] & m.narrowFrontier_Mask)
 			continue;
 		if (this.basesMap.map[j] === 0)   // only in our territory
 			continue;
@@ -1186,9 +1185,9 @@ m.HQ.prototype.findDefensiveLocation = function(gameState, template)
 		if (!wonderMode)
 		{
 			// do not try if well inside or outside territory
-			if (this.frontierMap.map[j] === 0)
+			if (!(this.borderMap.map[j] & m.fullFrontier_Mask))
 				continue;
-			if (this.frontierMap.map[j] === 1 && isTower)
+			if (this.borderMap.map[j] & m.largeFrontier_Mask && isTower)
 				continue;
 		}
 		if (this.basesMap.map[j] === 0)   // inaccessible cell
@@ -1883,16 +1882,25 @@ m.HQ.prototype.restartBuild = function(gameState, structure)
 
 m.HQ.prototype.updateTerritories = function(gameState)
 {
+	const around = [ [-0.7,0.7], [0,1], [0.7,0.7], [1,0], [0.7,-0.7], [0,-1], [-0.7,-0.7], [-1,0] ];
+	let alliedVictory = gameState.getAlliedVictory();
 	let passabilityMap = gameState.getMap();
 	let width = this.territoryMap.width;
 	let cellSize = this.territoryMap.cellSize;
+	let insideSmall = Math.round(45 / cellSize);
+	let insideLarge = Math.round(80 / cellSize);	// should be about the range of towers
 	let expansion = 0;
+
 	for (let j = 0; j < this.territoryMap.length; ++j)
 	{
-		if (this.borderMap.map[j] > 1)
+		if (this.borderMap.map[j] & m.outside_Mask)
 			continue;
+		if (this.borderMap.map[j] & m.fullFrontier_Mask)
+			this.borderMap.map[j] &= ~m.fullFrontier_Mask;	// reset the frontier
+
 		if (this.territoryMap.getOwnerIndex(j) != PlayerID)
 		{
+			// If this tile was already accounted, remove it
 			if (this.basesMap.map[j] === 0)
 				continue;
 			let base = this.getBaseByID(this.basesMap.map[j]);
@@ -1905,8 +1913,46 @@ m.HQ.prototype.updateTerritories = function(gameState)
 			base.territoryIndices.splice(index, 1);
 			this.basesMap.map[j] = 0;
 		}
-		else if (this.basesMap.map[j] === 0)
+		else
 		{
+			// Update the frontier
+			let ix = j%width;
+			let iz = Math.floor(j/width);
+			let onFrontier = false;
+			for (let a of around)
+			{
+				let jx = ix + Math.round(insideSmall*a[0]);
+				if (jx < 0 || jx >= width)
+					continue;
+				let jz = iz + Math.round(insideSmall*a[1]);
+				if (jz < 0 || jz >= width)
+					continue;
+				if (this.borderMap.map[jx+width*jz] & m.outside_Mask)
+					continue;
+				let territoryOwner = this.territoryMap.getOwnerIndex(jx+width*jz);
+				if (territoryOwner !== PlayerID && !(alliedVictory && gameState.isPlayerAlly(territoryOwner)))
+				{
+					this.borderMap.map[j] |= m.narrowFrontier_Mask;
+					break;
+				}
+				jx = ix + Math.round(insideLarge*a[0]);
+				if (jx < 0 || jx >= width)
+					continue;
+				jz = iz + Math.round(insideLarge*a[1]);
+				if (jz < 0 || jz >= width)
+					continue;
+				if (this.borderMap.map[jx+width*jz] & m.outside_Mask)
+					continue;
+				territoryOwner = this.territoryMap.getOwnerIndex(jx+width*jz);
+				if (territoryOwner !== PlayerID && !(alliedVictory && gameState.isPlayerAlly(territoryOwner)))
+					onFrontier = true;
+			}
+			if (onFrontier && !(this.borderMap.map[j] & m.narrowFrontier_Mask))
+				this.borderMap.map[j] |= m.largeFrontier_Mask;
+
+			// If this tile was not already accounted, add it
+			if (this.basesMap.map[j] !== 0)
+				continue;
 			let landPassable = false;
 			let ind = API3.getMapIndices(j, this.territoryMap, passabilityMap);
 			let access;
@@ -1942,8 +1988,6 @@ m.HQ.prototype.updateTerritories = function(gameState)
 			expansion++;
 		}
 	}
-
-	this.frontierMap = m.createFrontierMap(gameState);
 
 	if (!expansion)
 		return;
