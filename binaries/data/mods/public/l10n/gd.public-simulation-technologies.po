@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# GunChleoc, 2014-2016
+# GunChleoc, 2014-2017
 # GunChleoc, 2014
 # GunChleoc, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-12-30 09:02+0100\n"
-"PO-Revision-Date: 2016-12-30 09:23+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-01-24 08:43+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +25,7 @@ msgid ""
 "health, 1 extra armour level of every type, 20% extra attack for melee "
 "units, 4m extra range and 5% better precision for ranged units, faster "
 "movement speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "Nuair a thèid aonadan àrdachadh dhan chlas adhartach, gheibh iad iomadh buannachd às: 20% a shlàinte a bharrachd, 1 leibheil de dh’armachd a bharrachd airson gach seòrsa dhi, 20% a dh’ionnsaigh dhlùth a bharrachd, meudachadh de 4m air an astar agus piseach de 5% air a’ phongalachd do dh’aonadan astair, gluasad agus slànachadh nas luaithe agus meudachadh air an astar dha lighichean."
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -808,7 +808,7 @@ msgstr "Crìonadh ranntair de -50% airson ghearastanan."
 
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
-msgstr "Bonn cloiche"
+msgstr "Buinn cloiche"
 
 #: simulation/data/technologies/elite_unit_bonus.jsontooltip
 msgid ""
@@ -816,7 +816,7 @@ msgid ""
 "extra armour level of every type, 20% extra attack for melee units, extra "
 "range and better precision for ranged units, faster movement speeds and "
 "extra heal speed and range for healers."
-msgstr ""
+msgstr "Nuair a thèid aonadan a thrèanadh ’nan seann-ghaisgich, gheibh iad iomadh buannachd às: 20% a shlàinte a bharrachd, 1 leibheil de dh’armachd a bharrachd airson gach seòrsa dhi, 20% a dh’ionnsaigh dhlùth a bharrachd, meudachadh air an astar agus piseach air a’ phongalachd do dh’aonadan astair, gluasad agus slànachadh nas luaithe agus meudachadh air an astar dha lighichean."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
@@ -1054,11 +1054,11 @@ msgstr "Cliabhan"
 
 #: simulation/data/technologies/heal_barracks.jsondescription
 msgid "Units garrisoned in barracks heal over time."
-msgstr "Gheibh aonadan a tha ’nan gearastan ann an taighean-feachd slànachadh rè ama."
+msgstr "Gheibh aonadan a tha ’nan gearastan ann an taigh-feachd slànachadh rè ama."
 
 #: simulation/data/technologies/heal_barracks.jsontooltip
 msgid "Units gain health over time while garrisoned in barracks."
-msgstr "Gheibh aonadan slànachadh fad ’s a bhios iad ’nan gearastan ann an taighean-feachd."
+msgstr "Gheibh aonadan slànachadh fad ’s a bhios iad ’nan gearastan ann an taigh-feachd."
 
 #: simulation/data/technologies/heal_barracks.jsongenericName
 msgid "Living Conditions"
@@ -1889,13 +1889,13 @@ msgid ""
 "Carthaginians built their city walls in three concentric circuits. These "
 "walls were never breached. Even when the city was taken by the Romans, it "
 "was via the city's harbor, not by storming its walls."
-msgstr ""
+msgstr "Thogadh na Cartagaich ballachan a’ bhaile aca ann an trì cuairtean co-mheadhanach. Cha deach briseadh tro na ballachan ud a-riamh. Fiù ’s nuair a cheannsaich na Ròmanaich am baile, ’s ann gun d’ fhuair iad a-steach tron phort seach na ballachan."
 
 #: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsontooltip
 msgid ""
 "Carthaginian walls, gates, and wall towers have 3x the health of a standard "
 "wall, but also cost twice as much and take twice as long to build."
-msgstr ""
+msgstr "Tha 3x de shlàinte air ballachan, geataichean ’s tùir nan Cartagach an coimeas na fheadhainn aig càch, ach cosgaidh iad an a dhà uimhir a stòrasan is ùine togail."
 
 #: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsongenericName
 msgid "Triple Walls"
@@ -2205,13 +2205,13 @@ msgstr "Saighdearan-duaise Eadailteach seann-ghaisgeach."
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
-msgstr ""
+msgstr "Chaidh a’ mhòrchuid de thogalaichean nan Ceilteach a dhèanamh de dh’fhiodh le bonn sprùillich."
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsontooltip
 msgid ""
 "Celtic buildings have 20% less health, but are also 20% cheaper and faster "
 "to construct."
-msgstr ""
+msgstr "Tha 20% as lugha a shlàinte aig togalaichean nan Ceilteach ach tha iad 20% nas saoire cuideachd agus thèid an togail nas luaithe."
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
 msgid "Wooden Construction"
@@ -2243,7 +2243,7 @@ msgstr "Cleachdadh na Greugaich togail le clach o chionn tràth ann an linn Mhyc
 msgid ""
 "All structures have 10% more health and capture points, but also take 10% "
 "longer to build."
-msgstr ""
+msgstr "Buannaichidh na h-uile togalach 10% de shlàinte is puingean glacaidh ach bheir e 10% a bharrachd de dh’ùine gus an togail cuideachd."
 
 #: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
 msgid "Hellenic Architecture"
@@ -2259,7 +2259,7 @@ msgstr "Cha bhiodh am feachd as motha fon ghrèin aig na Spartaich ach ’s ann 
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
 msgid "Spartans have 10% less maximum population"
-msgstr ""
+msgstr "Tha 10% nas lugha a shluagh ceadaichte dha na Spartaich"
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
 msgid "Underdogs"
@@ -2321,7 +2321,7 @@ msgstr "Ghabh impireachd nam Mauraidheach a-steach dusanan de rìoghachdan a bhi
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsontooltip
 msgid "Mauryans have a 10% higher maximum population limit."
-msgstr ""
+msgstr "Tha 10% nas motha  a shluagh ceadaichte dha na Mauraidhich."
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
 msgid "Emperor of Emperors"
@@ -2353,11 +2353,11 @@ msgstr "Gnàth nam boghadairean"
 msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
 "resource in India."
-msgstr ""
+msgstr "Bhiodh na Mauraidhich a’ togail ballachan nam bailtean de dh’fhiodh on a bha fiodh pailt sna h-Innseachan."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
 msgid "Mauryan city walls have 20% less health and 20% less build time."
-msgstr ""
+msgstr "Tha 20% as lugha a shlàinte aig ballachan-baile nam Mauraidheach ach thèid an togail nas luaithe le 20%."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"
@@ -2375,7 +2375,7 @@ msgstr "Thogadh na Pearsaich mòran choisridh rè àm a’ chogaidh ’s b’ ur
 
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsontooltip
 msgid "Persians have a 10% higher maximum population limit."
-msgstr ""
+msgstr "Tha 10% nas motha  a shluagh ceadaichte dha na Pearsaich."
 
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
 msgid "Great King's Levy"

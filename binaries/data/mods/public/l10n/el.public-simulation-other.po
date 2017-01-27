@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Angelos Georgalas <ageorgal@gmail.com>, 2017
 # Archie Mc <archiemc1@gmail.com>, 2015
 # Christo Keller <christoniancoder@gmail.com>, 2014
 # Ilias Giannaros <iliasgnrs@gmail.com>, 2015
@@ -16,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-01-09 09:03+0100\n"
-"PO-Revision-Date: 2017-01-09 18:00+0000\n"
-"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
+"POT-Creation-Date: 2017-01-23 09:03+0100\n"
+"PO-Revision-Date: 2017-01-25 12:32+0000\n"
+"Last-Translator: Angelos Georgalas <ageorgal@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,7 +39,7 @@ msgstr "Ξεκινάω μια τεράστια στρατιωτική εκστρ
 msgid ""
 "I have set up a huge army to crush %(_player_)s. Join me and you will have "
 "your share of the loot."
-msgstr "Έχω φτιάξει ένα τεράστιο στρατό για να συνθλίψω των  %(_player_)s. Έλα μαζί μου και θα μοιραστούμε τα λάφυρα."
+msgstr "Έχω φτιάξει ένα τεράστιο στρατό για να συνθλίψω τoν  %(_player_)s. Έλα μαζί μου και θα μοιραστούμε τα λάφυρα."
 
 #: simulation/ai/petra/chatHelper.js:10
 #, javascript-format
@@ -53,7 +54,7 @@ msgstr "Μόλις έστειλα στρατό ενάντια στον %(_player
 #: simulation/ai/petra/chatHelper.js:17
 #, javascript-format
 msgid "Let me regroup my army and I am with you against %(_player_)s."
-msgstr "Επιτρέψτε μου να ανασυντάξω το στρατό μου και είμαι μαζί σου ενάντια %(_player_)s."
+msgstr "Επιτρέψτε μου να ανασυντάξω το στρατό μου και είμαι μαζί σου ενάντια στον %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:18
 #, javascript-format
@@ -77,7 +78,7 @@ msgstr "Δεν μπορώ να σε βοηθήσω εναντίον του %(_pl
 #: simulation/ai/petra/chatHelper.js:29
 #, javascript-format
 msgid "Here is a gift for %(_player_)s, make a good use of it."
-msgstr "Ένα δωρώ για τον %(_player_)s, κάνε καλή χρίση."
+msgstr "Ένα δώρο για τον %(_player_)s, κάνε καλή χρήση."
 
 #: simulation/ai/petra/chatHelper.js:30
 #, javascript-format
@@ -101,13 +102,13 @@ msgstr "Χρειάζομαι μερικά %(resource)s, μπορείς να με
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
-msgstr "Θα συμμετάσχει πιο αποτελεσματικά στο κοινό μας πόλεμο αν μπορούσες να δώσεις μερικά %(resource)s. "
+msgstr "Θα συμμετείχες πιο αποτελεσματικά στο κοινό μας πόλεμο αν μπορούσες να δώσεις μερικά %(resource)s. "
 
 #: simulation/ai/petra/chatHelper.js:37
 #, javascript-format
 msgid ""
 "If you have some %(resource)s excess, that would help me strengthen my army."
-msgstr "Άμα έχεις λίγο %(resource)s παραπάνω, αυτό θα με βοηθήσει να δυναμώσω τον στρατό μου."
+msgstr "Άμα έχεις λίγο %(resource)s περίσσευμα, αυτό θα με βοηθήσει να δυναμώσω τον στρατό μου."
 
 #: simulation/ai/petra/chatHelper.js:41
 #, javascript-format
@@ -131,69 +132,128 @@ msgstr "Προχωράω προς το %(phase)s. "
 #: simulation/ai/petra/chatHelper.js:50
 #, javascript-format
 msgid "I have reached the %(phase)s."
-msgstr "Έχω εξερεύνηση το %(phase)s. "
+msgstr "Έχω εξερευνήσει το %(phase)s. "
 
 #: simulation/ai/petra/chatHelper.js:56
 #, javascript-format
 msgid "%(_player_)s and I are now allies."
-msgstr "Ο %(_player_)s και Εσύ τώρα είστε Σύμμαχοι."
+msgstr "Ο %(_player_)s και εγώ τώρα είμαστε σύμμαχοι."
 
 #: simulation/ai/petra/chatHelper.js:59
 #, javascript-format
 msgid "%(_player_)s and I are now neutral."
-msgstr "Ο %(_player_)s και Εσύ τώρα είστε ουδέτεροι."
+msgstr "Ο %(_player_)s και εγώ τώρα είμαστε ουδέτεροι."
 
 #: simulation/ai/petra/chatHelper.js:62
 #, javascript-format
 msgid "%(_player_)s and I are now enemies."
-msgstr "Ο %(_player_)s και Εσύ τώρα είστε εχθροί."
+msgstr "Ο %(_player_)s και εγώ τώρα είμαστε εχθροί."
 
-#: simulation/ai/petra/chatHelper.js:68
+#: simulation/ai/petra/chatHelper.js:69
 #, javascript-format
 msgid "I cannot accept your offer to be allies %(_player_)s."
-msgstr "Δεν μπορώ να δεχθώ την προσφορά σου να γίνω σύμμαχος με %(_player_)s."
+msgstr "Δεν μπορώ να δεχθώ την προσφορά σου να γίνω σύμμαχος %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:71
+#: simulation/ai/petra/chatHelper.js:72
 #, javascript-format
 msgid ""
 "I will not ally with you %(_player_)s, but I will consider a neutrality "
 "pact."
 msgstr "Δεν θα συμμαχήσω μαζί σου %(_player_)s, αλλά θα εξετάσω ένα σύμφωνο ουδετερότητας."
 
-#: simulation/ai/petra/chatHelper.js:74
+#: simulation/ai/petra/chatHelper.js:75
 #, javascript-format
 msgid ""
 "%(_player_)s, our previous alliance did not work out, so I must decline your"
 " offer."
 msgstr "%(_player_)s, η προηγούμενη συμμαχία μας δεν δούλεψε, έτσι πρέπει να αρνηθώ τη προσφορά σου. "
 
-#: simulation/ai/petra/chatHelper.js:77
+#: simulation/ai/petra/chatHelper.js:78
 #, javascript-format
 msgid ""
 "I will accept your offer to become allies %(_player_)s. We will both benefit"
 " from this alliance."
-msgstr "Θα δεχτώ την προσφορά σου για να γίνω σύμμαχος με %(_player_)s. Θα έχουμε και οι δύο όφελος από αυτή τη συμμαχία."
+msgstr "Θα δεχτώ την προσφορά σου για να γίνω σύμμαχος %(_player_)s. Θα έχουμε και οι δύο όφελος από αυτή τη συμμαχία."
 
-#: simulation/ai/petra/chatHelper.js:80
+#: simulation/ai/petra/chatHelper.js:81
 #, javascript-format
 msgid ""
 "I will ally with you %(_player_)s, but only if you send me a tribute of "
 "%(_amount_)s %(_resource_)s."
 msgstr "Θα συμμαχήσω μαζί σου %(_player_)s, αλλά μόνο αν μου στείλεις ως φόρο %(_amount_)s %(_resource_)s."
 
-#: simulation/ai/petra/chatHelper.js:81
+#: simulation/ai/petra/chatHelper.js:82
 #, javascript-format
 msgid ""
 "%(_player_)s, you must send me a tribute of %(_amount_)s %(_resource_)s for "
 "me to accept an alliance."
 msgstr "%(_player_)s, πρέπει να μου στείλεις ένα φόρο από %(_amount_)s %(_resource_)s για να αποδεχτώ τη συμμαχία."
 
-#: simulation/ai/petra/chatHelper.js:84
+#: simulation/ai/petra/chatHelper.js:85
 #, javascript-format
 msgid ""
 "%(_player_)s, my offer still stands. I will ally with you if you send me a "
 "tribute of %(_amount_)s %(_resource_)s."
 msgstr "%(_player_)s, η προσφορά μου εξακολουθεί να ισχύει. Θα συμμαχήσω μαζί σου αν μου στείλεις ένα φόρο από %(_amount_)s %(_resource_)s."
+
+#: simulation/ai/petra/chatHelper.js:86 simulation/ai/petra/chatHelper.js:107
+#, javascript-format
+msgid ""
+"%(_player_)s, if you do not send me part of the %(_amount_)s %(_resource_)s "
+"tribute soon, I will break off our negotiations."
+msgstr "%(_player_)s, αν δεν μου στείλεις μέρος από  %(_amount_)s %(_resource_)s ως φόρο σύντομα, θα διακόψω τις διαπραγματεύσεις μας."
+
+#: simulation/ai/petra/chatHelper.js:91
+#, javascript-format
+msgid "I will not become neutral with you %(_player_)s."
+msgstr "Δεν θα γίνω ουδέτερος με σένα %(_player_)s"
+
+#: simulation/ai/petra/chatHelper.js:92
+#, javascript-format
+msgid "%(_player_)s, I must decline your request for a neutrality pact."
+msgstr "%(_player_)s, πρέπει να αρνηθώ το αίτημά σου για σύμφωνο ουδετερότητας."
+
+#: simulation/ai/petra/chatHelper.js:95
+#, javascript-format
+msgid ""
+"Our previous neutrality agreement ended in failure %(_player_)s; I will not "
+"consider another one."
+msgstr "Η προηγούμενη συμφωνία μας για ουδετερότητα έληξε σε αποτυχία  %(_player_)s, δεν θα προβώ σε άλλη."
+
+#: simulation/ai/petra/chatHelper.js:98
+#, javascript-format
+msgid ""
+"I welcome your request for peace between our civilizations %(_player_)s. I "
+"will accept."
+msgstr "Χαιρετίζω το αίτημά σου για ειρήνη μεταξύ των πολιτισμών μας  %(_player_)s. Θα δεχθώ."
+
+#: simulation/ai/petra/chatHelper.js:99
+#, javascript-format
+msgid ""
+"%(_player_)s, I will accept your neutrality request. May both our "
+"civilizations benefit."
+msgstr "%(_player_)s, θα δεχθώ το αίτημά σου για ουδετερότητα. Ας ωφεληθούν και οι δύο πολιτισμοί μας."
+
+#: simulation/ai/petra/chatHelper.js:102
+#, javascript-format
+msgid ""
+"If you tribute me %(_amount_)s %(_resource_)s, I will accept your neutrality"
+" request %(_player_)s."
+msgstr "Αν μου πληρώσεις φόρους  %(_amount_)s %(_resource_)s, θα δεχθώ το αίτημά σου για ουδετερότητα  %(_player_)s."
+
+#: simulation/ai/petra/chatHelper.js:103
+#, javascript-format
+msgid ""
+"%(_player_)s, if you send me %(_amount_)s %(_resource_)s, I will accept a "
+"neutrality pact."
+msgstr "%(_player_)s, αν μου στείλεις  %(_amount_)s %(_resource_)s, θα δεχθώ μια συμφωνία ουδετερότητας."
+
+#: simulation/ai/petra/chatHelper.js:106
+#, javascript-format
+msgid ""
+"%(_player_)s, I will not accept your neutrality request unless you tribute "
+"me %(_amount_)s %(_resource_)s soon."
+msgstr "%(_player_)s, δεν θα δεχθώ το αίτημά σου για ουδετερότητα εκτός κι αν μου στείλεις φόρο  %(_amount_)s %(_resource_)s σύντομα."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -791,42 +851,42 @@ msgstr "Δεν μπορεί να βρεθεί ελεύθερος χώρος γι
 msgid "You need to select a building that trains units."
 msgstr "Πρέπει να επιλεγεί ένα κτίριο που να εκπαιδεύει μονάδες."
 
-#: simulation/helpers/Commands.js:128
+#: simulation/helpers/Commands.js:121
 msgid "(Cheat - control all units)"
 msgstr "(Απάτη - Έλεγχος όλων των μονάδων)"
 
-#: simulation/helpers/Commands.js:140
+#: simulation/helpers/Commands.js:133
 msgid "(Cheat - reveal map)"
 msgstr "(Απάτη -  αποκάλυψης χάρτη)"
 
-#: simulation/helpers/Commands.js:581
+#: simulation/helpers/Commands.js:574
 msgid "(Cheat - promoted units)"
 msgstr "(Απάτη - προώθηση μονάδων)"
 
-#: simulation/helpers/Commands.js:691
+#: simulation/helpers/Commands.js:688
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Δεν μπορύν να αναβαθμιστούν διότι η απαιτούμενη αποστασή δεν έχει επαληθευτή ή εμποδίζεται απο το έδαφος."
 
-#: simulation/helpers/Commands.js:701
+#: simulation/helpers/Commands.js:698
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "Δεν μπορεί να αναβαθμιστεί μια οντότητα που ανίκει σε φρουρά."
 
-#: simulation/helpers/Commands.js:747
+#: simulation/helpers/Commands.js:744
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Ζητείτε επίθεση εναντίον του παίχτη %(_player_)s."
 
-#: simulation/helpers/Commands.js:784
+#: simulation/helpers/Commands.js:781
 msgid "Unable to ungarrison unit(s)"
 msgstr "Δεν είναι δυνατή η κατάργηση της φρουράς για τη μονάδα(ες)"
 
-#: simulation/helpers/Commands.js:798
+#: simulation/helpers/Commands.js:795
 msgid "Some unit(s) can't go back to work"
 msgstr "Μερικές μονάδες δεν μπορούν να επιστρέψουν στην εργασία τους."
 
-#: simulation/helpers/Commands.js:1052
+#: simulation/helpers/Commands.js:1049
 msgid "The building's technology requirements are not met."
 msgstr "Οι απαιτήσεις της τεχνολογίας του κτιρίου δεν πληρούνται."
 

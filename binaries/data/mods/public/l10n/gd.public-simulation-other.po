@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# GunChleoc, 2015-2016
+# GunChleoc, 2015-2017
 # GunChleoc, 2014-2015
 # GunChleoc, 2014-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-01-09 09:03+0100\n"
-"PO-Revision-Date: 2017-01-09 08:38+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-01-23 09:03+0100\n"
+"PO-Revision-Date: 2017-01-25 09:28+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,7 +31,7 @@ msgstr "Tha airson ionnsaigh mhòr a thoirt an aghaidh %(_player_)s, an dig thu 
 msgid ""
 "I have set up a huge army to crush %(_player_)s. Join me and you will have "
 "your share of the loot."
-msgstr ""
+msgstr "Tha mi air feachd mòr a thrusadh gus crìoch a chur air %(_player_)s. Aoin rium agus gheibh thu do chuid dhen spùinn."
 
 #: simulation/ai/petra/chatHelper.js:10
 #, javascript-format
@@ -134,59 +134,118 @@ msgstr "Tha %(_player_)s 's mi fhìn 'nar caidreabhaich a-nis."
 #: simulation/ai/petra/chatHelper.js:59
 #, javascript-format
 msgid "%(_player_)s and I are now neutral."
-msgstr ""
+msgstr "Tha %(_player_)s 's mi fhìn neo-phàirteach a-nis."
 
 #: simulation/ai/petra/chatHelper.js:62
 #, javascript-format
 msgid "%(_player_)s and I are now enemies."
 msgstr "Tha %(_player_)s 's mi fhìn 'nar nàimhdean a-nis."
 
-#: simulation/ai/petra/chatHelper.js:68
+#: simulation/ai/petra/chatHelper.js:69
 #, javascript-format
 msgid "I cannot accept your offer to be allies %(_player_)s."
-msgstr ""
+msgstr "Cha ghabh mi riut mar chaidreabhach, %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:71
+#: simulation/ai/petra/chatHelper.js:72
 #, javascript-format
 msgid ""
 "I will not ally with you %(_player_)s, but I will consider a neutrality "
 "pact."
-msgstr ""
+msgstr "Cha ghabh mi riut mar chaidreabhach, %(_player_)s, ach bithinn deònach nan robh aonta neo-phàirteachais againn."
 
-#: simulation/ai/petra/chatHelper.js:74
+#: simulation/ai/petra/chatHelper.js:75
 #, javascript-format
 msgid ""
 "%(_player_)s, our previous alliance did not work out, so I must decline your"
 " offer."
-msgstr ""
+msgstr "%(_player_)s, cha do dh’ obraich an caidreabhas a bh’ againn roimhe agus cha ghabh mi ris."
 
-#: simulation/ai/petra/chatHelper.js:77
+#: simulation/ai/petra/chatHelper.js:78
 #, javascript-format
 msgid ""
 "I will accept your offer to become allies %(_player_)s. We will both benefit"
 " from this alliance."
-msgstr ""
-
-#: simulation/ai/petra/chatHelper.js:80
-#, javascript-format
-msgid ""
-"I will ally with you %(_player_)s, but only if you send me a tribute of "
-"%(_amount_)s %(_resource_)s."
-msgstr ""
+msgstr "Gabhaidh mi riut mar chaidreabhach, %(_player_)s. Gheibh an dithis againn buannachd às a’ chaidreabhas seo."
 
 #: simulation/ai/petra/chatHelper.js:81
 #, javascript-format
 msgid ""
+"I will ally with you %(_player_)s, but only if you send me a tribute of "
+"%(_amount_)s %(_resource_)s."
+msgstr "Gabhaidh mi riut mar chaidreabhach, %(_player_)s, ach iarraidh mi cìs dhe %(_amount_)s %(_resource_)s ort."
+
+#: simulation/ai/petra/chatHelper.js:82
+#, javascript-format
+msgid ""
 "%(_player_)s, you must send me a tribute of %(_amount_)s %(_resource_)s for "
 "me to accept an alliance."
-msgstr ""
+msgstr "%(_player_)s, feumaidh tu cìs dhe %(_amount_)s %(_resource_)s a thoirt dhomh mus gabh mi ri caidreabhas."
 
-#: simulation/ai/petra/chatHelper.js:84
+#: simulation/ai/petra/chatHelper.js:85
 #, javascript-format
 msgid ""
 "%(_player_)s, my offer still stands. I will ally with you if you send me a "
 "tribute of %(_amount_)s %(_resource_)s."
-msgstr ""
+msgstr "Gabhaidh mi riut mar chaidreabhach fhathast, %(_player_)s, ma bheir thu cìs dhe %(_amount_)s %(_resource_)s dhomh."
+
+#: simulation/ai/petra/chatHelper.js:86 simulation/ai/petra/chatHelper.js:107
+#, javascript-format
+msgid ""
+"%(_player_)s, if you do not send me part of the %(_amount_)s %(_resource_)s "
+"tribute soon, I will break off our negotiations."
+msgstr "%(_player_)s, mura cuir thu pàir dhen chìs dhe %(_amount_)s %(_resource_)s a dh’aithghearr, sguiridh mi dhen cho-rèiteachadh."
+
+#: simulation/ai/petra/chatHelper.js:91
+#, javascript-format
+msgid "I will not become neutral with you %(_player_)s."
+msgstr "Cha bhi mi neo-phàirteach riut, %(_player_)s."
+
+#: simulation/ai/petra/chatHelper.js:92
+#, javascript-format
+msgid "%(_player_)s, I must decline your request for a neutrality pact."
+msgstr "%(_player_)s, cha ghabh mi ri d’ iarrtas airson aonta neo-phàirteachais."
+
+#: simulation/ai/petra/chatHelper.js:95
+#, javascript-format
+msgid ""
+"Our previous neutrality agreement ended in failure %(_player_)s; I will not "
+"consider another one."
+msgstr "Dh’fhàillig leis an aonta neo-phàirteachaidh a bha eadarainn roimhe, %(_player_)s; cha ghabh mi ri fear a-rithist."
+
+#: simulation/ai/petra/chatHelper.js:98
+#, javascript-format
+msgid ""
+"I welcome your request for peace between our civilizations %(_player_)s. I "
+"will accept."
+msgstr "Tha mi a’ cur fàilte ri d’ iarrtas airson sìth eadarainn, %(_player_)s. Gabhaidh mi ris."
+
+#: simulation/ai/petra/chatHelper.js:99
+#, javascript-format
+msgid ""
+"%(_player_)s, I will accept your neutrality request. May both our "
+"civilizations benefit."
+msgstr "%(_player_)s, gabhaidh mi ri aonta neo-phàirteachais riut. Gum faigheadh an dà shìobhaltas againn buannachd às."
+
+#: simulation/ai/petra/chatHelper.js:102
+#, javascript-format
+msgid ""
+"If you tribute me %(_amount_)s %(_resource_)s, I will accept your neutrality"
+" request %(_player_)s."
+msgstr "Ma bheir thu cìr dhe %(_amount_)s %(_resource_)s dhomh, gabhaidh mi ris an neo-phàirteachas a dh’iarr thu, %(_player_)s."
+
+#: simulation/ai/petra/chatHelper.js:103
+#, javascript-format
+msgid ""
+"%(_player_)s, if you send me %(_amount_)s %(_resource_)s, I will accept a "
+"neutrality pact."
+msgstr "%(_player_)s, ma bheir tu cìs dhe %(_amount_)s %(_resource_)s dhomh, gabhaidh mi ri aonta neo-phàirteachais."
+
+#: simulation/ai/petra/chatHelper.js:106
+#, javascript-format
+msgid ""
+"%(_player_)s, I will not accept your neutrality request unless you tribute "
+"me %(_amount_)s %(_resource_)s soon."
+msgstr "%(_player_)s, cha ghabh mi ri aonta neo-phàirteachais riut ach ma bheir thu cìs dhe %(_amount_)s %(_resource_)s dhomh a dh’aithghearr."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -372,7 +431,7 @@ msgid ""
 "When you have advanced, use a single citizen soldier to place a barracks "
 "foundation. Then use the rest of the non food or house building female "
 "citizens to construct it."
-msgstr "Nuair a bhios tu air àrdachadh, cleachd aonar shaighdear-dùthcha gus bunait thaighean-feachd a chur ann. Cleachd an corr dhe na boireannaich nach eil a’ cruinneachadh bìdh no a’ togail taighe gus an togail."
+msgstr "Nuair a bhios tu air àrdachadh, cleachd aonar shaighdear-dùthcha gus bonn thaigh-fheachd a chur ann. Cleachd an corr dhe na boireannaich nach eil a’ cruinneachadh bìdh no a’ togail taighe gus an togail."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:208
 msgid "Queue 5 more females for construction work."
@@ -542,13 +601,13 @@ msgstr "Tòisich air 5 shaoranach boireann a thrèanadh san ionad shìobhalta ag
 msgid ""
 "Build a Barracks nearby. Whenever your population limit is reached, build an"
 " extra house using any available builder units."
-msgstr "Tog taighean-feachd am fagas. Tog taigh a bharrachd le aonad togail sam bith a bhios ri làimh dhut gach turas a ruigeas tu na tha ceadaichte dhut de shluagh."
+msgstr "Tog taigh-feachd am fagas. Tog taigh a bharrachd le aonad togail sam bith a bhios ri làimh dhut gach turas a ruigeas tu na tha ceadaichte dhut de shluagh."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:80
 msgid ""
 "Prepare for an attack by an enemy player. Build more soldiers using the "
 "Barracks, and get idle soldiers to build a Defense Tower near your Outpost."
-msgstr "Ullaich airson ionnsaigh le cluicheadair nàmhad. Trèanaidh barrachd shaighdearan sna taighean-feachd agus faigh greim air saighdearan ’nan tàmh gus tùr dìona a thogail faisg air a’ ghearastan agad."
+msgstr "Ullaich airson ionnsaigh le cluicheadair nàmhad. Trèanaidh barrachd shaighdearan san taigh-fheachd agus faigh greim air saighdearan ’nan tàmh gus tùr dìona a thogail faisg air a’ ghearastan agad."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:86
 msgid ""
@@ -788,42 +847,42 @@ msgstr "Cha do lorg sinn rum saor gus na h-aonadan air an trèanadh a shìoladh"
 msgid "You need to select a building that trains units."
 msgstr "Feumaidh tu togalach a thaghadh a thrèanaicheas aonadan."
 
-#: simulation/helpers/Commands.js:128
+#: simulation/helpers/Commands.js:121
 msgid "(Cheat - control all units)"
 msgstr "(Cealgaireachd – stiùirich a h‑uile aonad)"
 
-#: simulation/helpers/Commands.js:140
+#: simulation/helpers/Commands.js:133
 msgid "(Cheat - reveal map)"
 msgstr "(Gealgaireachd – nochd am mapa)"
 
-#: simulation/helpers/Commands.js:581
+#: simulation/helpers/Commands.js:574
 msgid "(Cheat - promoted units)"
 msgstr "(Cealgaireachd – aonad air an àrdachadh)"
 
-#: simulation/helpers/Commands.js:691
+#: simulation/helpers/Commands.js:688
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Cha ghabh àrdachadh o nach deach riatanasan an astair a dhearbadh no air sgàth ’s gu bheil bacadh air an tìr."
 
-#: simulation/helpers/Commands.js:701
+#: simulation/helpers/Commands.js:698
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "Tha aonad ’na ghearastan ann nach gabh àrdachadh."
 
-#: simulation/helpers/Commands.js:747
+#: simulation/helpers/Commands.js:744
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Chaidh ionnsaigh an aghaidh %(_player_)s iarraidh."
 
-#: simulation/helpers/Commands.js:784
+#: simulation/helpers/Commands.js:781
 msgid "Unable to ungarrison unit(s)"
 msgstr "Chan urrainn dhan aonad/dha na h-aonadan an gearastan falbh"
 
-#: simulation/helpers/Commands.js:798
+#: simulation/helpers/Commands.js:795
 msgid "Some unit(s) can't go back to work"
 msgstr "Chan urrainn dhan a h-uile aonad tilleadh dhan obair"
 
-#: simulation/helpers/Commands.js:1052
+#: simulation/helpers/Commands.js:1049
 msgid "The building's technology requirements are not met."
 msgstr "Cha deach na riatanasan teicneòlais airson an togalaich a choileanadh."
 

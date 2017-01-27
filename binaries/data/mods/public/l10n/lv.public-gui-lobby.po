@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Beāte Lakševica <tava.unochka@inbox.lv>, 2016
+# Jānis Ločmelis <minimenlatvia@gmail.com>, 2017
 # Vladimirs Kuzmins, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-12-16 09:00+0100\n"
-"PO-Revision-Date: 2016-12-20 11:24+0000\n"
-"Last-Translator: Vladimirs Kuzmins\n"
+"PO-Revision-Date: 2017-01-26 01:33+0000\n"
+"Last-Translator: Jānis Ločmelis <minimenlatvia@gmail.com>\n"
 "Language-Team: Latvian (http://www.transifex.com/wildfire-games/0ad/language/lv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -192,7 +193,7 @@ msgstr "%(time)s %(message)s"
 
 #: gui/lobby/lobby.js:1065
 msgid "Please do not spam. You have been blocked for thirty seconds."
-msgstr ""
+msgstr "Lūdzu nespamot. Jūs esat nobloķēts 30 sekundes"
 
 #: gui/lobby/lobby.js:1132
 msgctxt "Used for an undefined winning rate"
@@ -218,7 +219,7 @@ msgstr "Lūdzu ievadiet savu lietotājvārdu"
 
 #: gui/lobby/prelobby.js:98
 msgid "Usernames can't contain \\[, ], unicode, whitespace, or commas"
-msgstr ""
+msgstr "Lietotājvārdi nedrīkst saturēt \\[, ], unikodu, baltās atstarpes vai komatus"
 
 #: gui/lobby/prelobby.js:104
 msgid "Please enter your password"
@@ -234,15 +235,15 @@ msgstr "Paroles nesakrīt"
 
 #: gui/lobby/prelobby.js:129
 msgid "Please read the Terms of Service"
-msgstr ""
+msgstr "Lūdzu izlasiet Pakalpojumu sniegšanas noteikumus"
 
 #: gui/lobby/prelobby.js:135
 msgid "Please read the Terms of Use"
-msgstr ""
+msgstr "Lūdzu izlasiet lietošanas noteikumus"
 
 #: gui/lobby/prelobby.js:141
 msgid "Please agree to the Terms of Service and Terms of Use"
-msgstr ""
+msgstr "Lūdzu piekrītiet pakalpojumu sniegšanas noteikumiem un lietošanas noteikumiem"
 
 #: gui/lobby/prelobby.js:171
 msgid "Registered"
@@ -258,11 +259,11 @@ msgstr "Pieslēgties"
 
 #: gui/lobby/prelobby.js:249 gui/lobby/prelobby.xml:(caption):78
 msgid "Terms of Service"
-msgstr ""
+msgstr "Pakalpojumu sniegšanas noteikumi"
 
 #: gui/lobby/prelobby.js:258 gui/lobby/prelobby.xml:(caption):83
 msgid "Terms of Use"
-msgstr ""
+msgstr "Lietošanas noteikumi"
 
 #: gui/lobby/lobby.xml:(caption):18 gui/lobby/prelobby.xml:(caption):18
 msgid "Multiplayer Lobby"
@@ -270,7 +271,7 @@ msgstr "Vairāku spēlētāju priekšnams"
 
 #: gui/lobby/lobby.xml:(caption):63 gui/lobby/lobby.xml:(caption):325
 msgid "Current Rank:"
-msgstr ""
+msgstr "Pašreizējais rangs:"
 
 #: gui/lobby/lobby.xml:(caption):67 gui/lobby/lobby.xml:(caption):329
 msgid "Highest Rating:"
@@ -298,7 +299,7 @@ msgstr "Līderu tabula"
 
 #: gui/lobby/lobby.xml:(caption):101 gui/lobby/lobby.xml:(caption):308
 msgid "User Profile Lookup"
-msgstr ""
+msgstr "Lietotāja profils uzmeklēt"
 
 #: gui/lobby/lobby.xml:(caption):130
 msgid "Map Type:"
@@ -323,7 +324,7 @@ msgstr "Galvenā izvēle"
 
 #: gui/lobby/lobby.xml:(caption):245
 msgid "Show full games"
-msgstr ""
+msgstr "Parādīt pilnās spēles"
 
 #: gui/lobby/lobby.xml:(caption):293 gui/lobby/lobby.xml:(caption):355
 msgid "Back"
@@ -331,7 +332,7 @@ msgstr "Atpakaļ"
 
 #: gui/lobby/lobby.xml:(caption):301
 msgid "Update"
-msgstr ""
+msgstr "Atjaunināt"
 
 #: gui/lobby/lobby.xml:(caption):311
 msgid "Enter username:"
@@ -410,7 +411,7 @@ msgstr "Parole atkārtoti:"
 
 #: gui/lobby/prelobby.xml:(caption):88
 msgid "I have read and agree to the Terms of Service and Terms of Use:"
-msgstr ""
+msgstr "Esmu izlasījis un piekrītu pakalpojumu sniegšanas noteikumiem un lietošanas noteikumiem:"
 
 #: gui/lobby/prelobby.xml:(caption):97
 msgid "Cancel"
@@ -432,35 +433,35 @@ msgstr "* \"serviss\" ir 0 A.D. impērijas augstākais vairāku spēlētāju pri
 
 #: gui/lobby/Terms_of_Service.txt:4 gui/lobby/Terms_of_Use.txt:4
 msgid " * \"You\" are the user of the service."
-msgstr ""
+msgstr "* \"\"Jūs\" esat pakalpojuma lietotājs"
 
 #: gui/lobby/Terms_of_Service.txt:5
 msgid " * \"We\" are the collective of all Wildfire Games (WFG) team members."
-msgstr ""
+msgstr "* \"Mēs\" esam Wildfire Games (WFG) komandas biedri."
 
 #: gui/lobby/Terms_of_Service.txt:6
 msgid ""
 " * \"Rating\" refers to the process of analyzing various user statistics for"
 " the purpose of generating a single comprehensive score."
-msgstr ""
+msgstr "* \"Novērtējums\" atsaucas uz dažādiem lietotāja statistikas analizēšanu kura mērķis ir ģenerēt vienu vienotu rādītāju"
 
 #: gui/lobby/Terms_of_Service.txt:7
 msgid " * \"Moderate\" refers to the process of enforcing usage policies."
-msgstr ""
+msgstr "* \"Mērens\" atsaucas uz izmantošanas politikas lietošanas procesu."
 
 #: gui/lobby/Terms_of_Service.txt:8
 msgid "By using the service you agree to:"
-msgstr ""
+msgstr "Lietojot pakalpojumu jūs piekrītat:"
 
 #: gui/lobby/Terms_of_Service.txt:9
 msgid " 1. Follow all usage policies."
-msgstr ""
+msgstr "1. Sekojiet visām lietošanas politikām."
 
 #: gui/lobby/Terms_of_Service.txt:10
 msgid ""
 " 2. Allow user identifiable statistics to be gathered for the purposes of "
 "rating, user profiles, and community statistics."
-msgstr ""
+msgstr "2. Atļaut lietotāja idetificējamajai statistikai tikt sakopotai priekš rādītājiem, lietotāju profiliem un sabiedrības statistika."
 
 #: gui/lobby/Terms_of_Service.txt:11 gui/lobby/Terms_of_Use.txt:18
 msgid "We also reserve the right to:"

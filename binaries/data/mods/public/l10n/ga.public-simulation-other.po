@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-01-09 09:03+0100\n"
-"PO-Revision-Date: 2017-01-09 08:38+0000\n"
+"POT-Creation-Date: 2017-01-23 09:03+0100\n"
+"PO-Revision-Date: 2017-01-23 08:51+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
 "MIME-Version: 1.0\n"
@@ -139,51 +139,110 @@ msgstr ""
 msgid "%(_player_)s and I are now enemies."
 msgstr ""
 
-#: simulation/ai/petra/chatHelper.js:68
+#: simulation/ai/petra/chatHelper.js:69
 #, javascript-format
 msgid "I cannot accept your offer to be allies %(_player_)s."
 msgstr ""
 
-#: simulation/ai/petra/chatHelper.js:71
+#: simulation/ai/petra/chatHelper.js:72
 #, javascript-format
 msgid ""
 "I will not ally with you %(_player_)s, but I will consider a neutrality "
 "pact."
 msgstr ""
 
-#: simulation/ai/petra/chatHelper.js:74
+#: simulation/ai/petra/chatHelper.js:75
 #, javascript-format
 msgid ""
 "%(_player_)s, our previous alliance did not work out, so I must decline your"
 " offer."
 msgstr ""
 
-#: simulation/ai/petra/chatHelper.js:77
+#: simulation/ai/petra/chatHelper.js:78
 #, javascript-format
 msgid ""
 "I will accept your offer to become allies %(_player_)s. We will both benefit"
 " from this alliance."
 msgstr ""
 
-#: simulation/ai/petra/chatHelper.js:80
+#: simulation/ai/petra/chatHelper.js:81
 #, javascript-format
 msgid ""
 "I will ally with you %(_player_)s, but only if you send me a tribute of "
 "%(_amount_)s %(_resource_)s."
 msgstr ""
 
-#: simulation/ai/petra/chatHelper.js:81
+#: simulation/ai/petra/chatHelper.js:82
 #, javascript-format
 msgid ""
 "%(_player_)s, you must send me a tribute of %(_amount_)s %(_resource_)s for "
 "me to accept an alliance."
 msgstr ""
 
-#: simulation/ai/petra/chatHelper.js:84
+#: simulation/ai/petra/chatHelper.js:85
 #, javascript-format
 msgid ""
 "%(_player_)s, my offer still stands. I will ally with you if you send me a "
 "tribute of %(_amount_)s %(_resource_)s."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:86 simulation/ai/petra/chatHelper.js:107
+#, javascript-format
+msgid ""
+"%(_player_)s, if you do not send me part of the %(_amount_)s %(_resource_)s "
+"tribute soon, I will break off our negotiations."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:91
+#, javascript-format
+msgid "I will not become neutral with you %(_player_)s."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:92
+#, javascript-format
+msgid "%(_player_)s, I must decline your request for a neutrality pact."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:95
+#, javascript-format
+msgid ""
+"Our previous neutrality agreement ended in failure %(_player_)s; I will not "
+"consider another one."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:98
+#, javascript-format
+msgid ""
+"I welcome your request for peace between our civilizations %(_player_)s. I "
+"will accept."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:99
+#, javascript-format
+msgid ""
+"%(_player_)s, I will accept your neutrality request. May both our "
+"civilizations benefit."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:102
+#, javascript-format
+msgid ""
+"If you tribute me %(_amount_)s %(_resource_)s, I will accept your neutrality"
+" request %(_player_)s."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:103
+#, javascript-format
+msgid ""
+"%(_player_)s, if you send me %(_amount_)s %(_resource_)s, I will accept a "
+"neutrality pact."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:106
+#, javascript-format
+msgid ""
+"%(_player_)s, I will not accept your neutrality request unless you tribute "
+"me %(_amount_)s %(_resource_)s soon."
 msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
@@ -788,42 +847,42 @@ msgstr ""
 msgid "You need to select a building that trains units."
 msgstr ""
 
-#: simulation/helpers/Commands.js:128
+#: simulation/helpers/Commands.js:121
 msgid "(Cheat - control all units)"
 msgstr ""
 
-#: simulation/helpers/Commands.js:140
+#: simulation/helpers/Commands.js:133
 msgid "(Cheat - reveal map)"
 msgstr ""
 
-#: simulation/helpers/Commands.js:581
+#: simulation/helpers/Commands.js:574
 msgid "(Cheat - promoted units)"
 msgstr ""
 
-#: simulation/helpers/Commands.js:691
+#: simulation/helpers/Commands.js:688
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr ""
 
-#: simulation/helpers/Commands.js:701
+#: simulation/helpers/Commands.js:698
 msgid "Cannot upgrade a garrisoned entity."
 msgstr ""
 
-#: simulation/helpers/Commands.js:747
+#: simulation/helpers/Commands.js:744
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr ""
 
-#: simulation/helpers/Commands.js:784
+#: simulation/helpers/Commands.js:781
 msgid "Unable to ungarrison unit(s)"
 msgstr ""
 
-#: simulation/helpers/Commands.js:798
+#: simulation/helpers/Commands.js:795
 msgid "Some unit(s) can't go back to work"
 msgstr ""
 
-#: simulation/helpers/Commands.js:1052
+#: simulation/helpers/Commands.js:1049
 msgid "The building's technology requirements are not met."
 msgstr ""
 

@@ -42,7 +42,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-12-30 09:02+0100\n"
-"PO-Revision-Date: 2017-01-20 12:06+0000\n"
+"PO-Revision-Date: 2017-01-24 23:16+0000\n"
 "Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -593,7 +593,7 @@ msgstr "Обучение конницы дальнему бою"
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsontooltip
 msgid ""
 "Equip your ranged cavalry with better weapons. +20% ranged cavalry attack."
-msgstr "Вооружите конницу дальнего боя лучшим оружием. Конница получает +20% к атаке ближнего боя."
+msgstr "Вооружите конницу дальнего боя лучшим оружием. +20% к атаке конницы дальнего боя."
 
 #: simulation/data/technologies/attack_champions_elite.jsondescription
 msgid "Guard units have uncommon bravery and valor in battle."
@@ -664,13 +664,13 @@ msgstr "Использование железа вместо бронзы даё
 #: simulation/data/technologies/attack_infantry_ranged_02.jsondescription
 #: simulation/data/technologies/ranged_inf_irregulars.jsondescription
 msgid "Training increases damage of ranged infantry units."
-msgstr "Обучение пеших воинов дальнего боя увеличивает наносимый ими урон."
+msgstr "Обучение увеличивает урон, наносимый пехотой дальнего боя."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_ranged_02.jsontooltip
 #: simulation/data/technologies/ranged_inf_irregulars.jsontooltip
 msgid "+20% ranged infantry attack."
-msgstr "Пехота получает +20% к атаке дальнего боя."
+msgstr "+20% к атаке пехоты дальнего боя."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsongenericName
 #: simulation/data/technologies/ranged_inf_irregulars.jsongenericName
@@ -701,7 +701,7 @@ msgstr "Мастер-класс для пехоты дальнего боя"
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid "The will to fight is crucial to victory."
-msgstr "Воля к борьбе важна для победы."
+msgstr "Воля к борьбе чрезвычайно важна для победы."
 
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
 msgid ""
@@ -1035,7 +1035,7 @@ msgstr "Шахтный ствол"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 msgid "Strike a vein of precious silver. +50% metal gathering rate."
-msgstr "Найти жилу благородного серебра. Повышается на +50% скорость добычи металла."
+msgstr "Найти жилу драгоценного серебра. Повышается на +50% скорость добычи металла."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsongenericName
 msgid "Silver Mining"
@@ -1183,7 +1183,7 @@ msgid ""
 "settlement. Women of the household were taught from a young age how to weave"
 " on the loom, and subsequently spent a large  share of their lives working "
 "with it."
-msgstr "Ткацкий станок позволил создавать лёгкие одежды для поселенцев. Женщин учили с самого раннего возраста работать на ткацком станке, чтобы затем они провели большую часть своей жизни в работе с ним."
+msgstr "Ткацкий станок позволил создавать более качественные одежды для поселенцев. Женщины с малых лет обучались обращению с ткацким станком, чтобы затем провести большую часть своей жизни за работой с ним."
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "Female Citizens +50% Health."
@@ -1207,11 +1207,11 @@ msgstr "Военно-полевая медицина"
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsondescription
 msgid "Using geometric masonry increases the sturdiness of defensive walls."
-msgstr "Используя геометрическую кладку, повышается прочность оборонительных стен."
+msgstr "При использовании геометрической кладки повышается прочность оборонительных стен."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsontooltip
 msgid "City walls +2 crush armor levels, but +10% build time."
-msgstr "Городские стены получают +2 к защите от крушащего урона, но при этом строятся на +10% дольше."
+msgstr "Городские стены получают +2 к защите от крушащего урона, но возводятся на +10% дольше."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsongenericName
 msgid "Geometric Masonry"
@@ -1355,7 +1355,7 @@ msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology. This is the Athenian city phase, where metal "
 "gathering rates are boosted because of the 'Silver Owls' bonus."
-msgstr "Расширь шумный городок в настоящий метрополис, полный чудес современной техники. Это этап афинского города, в котором скорость сбора металлов повышается из-за бонуса \"Серебряные совы\"."
+msgstr "Расширьте шумный городок до настоящего метрополиса, полного чудес современной технологии. Это этап афинского города, в котором скорость сбора металлов повышается из-за бонуса \"Серебряные совы\"."
 
 #: simulation/data/technologies/phase_city_athen.jsontooltip
 msgid ""
@@ -1440,7 +1440,7 @@ msgid ""
 "open-aired assembly place in the great Forum Romanum called the Comitium. "
 "Here citizens could air grievances and present petitions to the patrician "
 "politicians who ruled their city in the Senate."
-msgstr "Места общественных собраний часто были также и центром общественной жизни древних обществ. В Афинах была экклесия, народное собрание граждан на холме Пникс возле агоры с видом на Акрополь. Римляне собирались под открытым небом на Римcком форуме в месте Комиций. Там граждане могли высказывать обиды и заявлять ходатайства патрициям - политикам, правящим своим ​​городом в Сенате."
+msgstr "Места общественных собраний часто были также и центром общественной жизни древних обществ. В Афинах существовала экклесия - народное собрание граждан на холме Пникс возле агоры с видом на Акрополь. Римляне собирались под открытым небом на Римcком форуме в месте, называемом Комиций. Там граждане могли высказывать обиды и заявлять ходатайства патрициям - политикам, правящим своим ​​городом в Сенате."
 
 #: simulation/data/technologies/pop_civic_02.jsongenericName
 msgid "Public Assembly"
@@ -1673,7 +1673,7 @@ msgstr "Скорость движения торговцев на +25% быст�
 #: simulation/data/technologies/trade_gain_01.jsondescription
 #: simulation/data/technologies/trade_gain_02.jsondescription
 msgid "The progress in handicraft improves the trading profit."
-msgstr "Прогресс в ремесле увеличивает прибыль обмена."
+msgstr "Развитие ремёсел увеличивает доход от торговли."
 
 #: simulation/data/technologies/trade_gain_01.jsontooltip
 msgid "Traders +10% gain."
@@ -1779,7 +1779,7 @@ msgstr "Когорта региа"
 
 #: simulation/data/technologies/unlock_females_house.jsondescription
 msgid "A festival attended by women-only, to celebrate female fertility."
-msgstr "На празднике, посвящённому женской плодовитости, принимали участие только женщины."
+msgstr "Празднество, посвящённое женской плодовитости, в котором принимали участие только женщины."
 
 #: simulation/data/technologies/unlock_females_house.jsontooltip
 msgid "Unlock the ability to train women from houses."
@@ -1829,7 +1829,7 @@ msgstr "Желание торговать и путешествовать поб
 msgid ""
 "See what your allies see, browse their summary and check their resources and"
 " population count in the top panel."
-msgstr "Смотреть в верхней панели то, что видят ваши союзники, просматривать их сводку, проверять количество ресурсов и размер населения."
+msgstr "Вы можете видеть то, что видят Ваши союзники, просматривать в верхней панели их сводки, контролировать количество ресурсов, которым они обладают, а также размер населения."
 
 #: simulation/data/technologies/unlock_shared_los.jsongenericName
 msgid "Cartography"

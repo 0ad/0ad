@@ -24,8 +24,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-01-09 09:03+0100\n"
-"PO-Revision-Date: 2017-01-13 11:22+0000\n"
+"POT-Creation-Date: 2017-01-23 09:03+0100\n"
+"PO-Revision-Date: 2017-01-25 15:03+0000\n"
 "Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -156,52 +156,111 @@ msgstr "%(_player_)s и я теперь в нейтральных отношен
 msgid "%(_player_)s and I are now enemies."
 msgstr "%(_player_)s и я теперь враги."
 
-#: simulation/ai/petra/chatHelper.js:68
+#: simulation/ai/petra/chatHelper.js:69
 #, javascript-format
 msgid "I cannot accept your offer to be allies %(_player_)s."
 msgstr "Я не могу принять Ваше предложение о союзничестве, %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:71
+#: simulation/ai/petra/chatHelper.js:72
 #, javascript-format
 msgid ""
 "I will not ally with you %(_player_)s, but I will consider a neutrality "
 "pact."
 msgstr "Я не стану твоим союзником, %(_player_)s, но буду сохранять нейтралитет."
 
-#: simulation/ai/petra/chatHelper.js:74
+#: simulation/ai/petra/chatHelper.js:75
 #, javascript-format
 msgid ""
 "%(_player_)s, our previous alliance did not work out, so I must decline your"
 " offer."
 msgstr "%(_player_)s, наш предыдущий союз завершился ничем, поэтому я должен отклонить твоё предложение."
 
-#: simulation/ai/petra/chatHelper.js:77
+#: simulation/ai/petra/chatHelper.js:78
 #, javascript-format
 msgid ""
 "I will accept your offer to become allies %(_player_)s. We will both benefit"
 " from this alliance."
 msgstr "Я принимаю твоё предложение о союзничестве, %(_player_)s. Мы оба выиграем от этого союза."
 
-#: simulation/ai/petra/chatHelper.js:80
+#: simulation/ai/petra/chatHelper.js:81
 #, javascript-format
 msgid ""
 "I will ally with you %(_player_)s, but only if you send me a tribute of "
 "%(_amount_)s %(_resource_)s."
 msgstr "Я стану твоим союзником, %(_player_)s, но только после того, как получу от тебя %(_amount_)s %(_resource_)s."
 
-#: simulation/ai/petra/chatHelper.js:81
+#: simulation/ai/petra/chatHelper.js:82
 #, javascript-format
 msgid ""
 "%(_player_)s, you must send me a tribute of %(_amount_)s %(_resource_)s for "
 "me to accept an alliance."
 msgstr "%(_player_)s, ты должен отправить мне %(_amount_)s %(_resource_)s в качестве дани, чтобы я принял твое предложение о союзе."
 
-#: simulation/ai/petra/chatHelper.js:84
+#: simulation/ai/petra/chatHelper.js:85
 #, javascript-format
 msgid ""
 "%(_player_)s, my offer still stands. I will ally with you if you send me a "
 "tribute of %(_amount_)s %(_resource_)s."
 msgstr "%(_player_)s, моё предложение всё еще в силе. Я стану твоим союзником, если ты отправишь мне %(_amount_)s %(_resource_)s в качестве дани."
+
+#: simulation/ai/petra/chatHelper.js:86 simulation/ai/petra/chatHelper.js:107
+#, javascript-format
+msgid ""
+"%(_player_)s, if you do not send me part of the %(_amount_)s %(_resource_)s "
+"tribute soon, I will break off our negotiations."
+msgstr "%(_player_)s, если ты как можно скорее не отправишь мне часть дани %(_amount_)s %(_resource_)s, я разорву наши переговоры."
+
+#: simulation/ai/petra/chatHelper.js:91
+#, javascript-format
+msgid "I will not become neutral with you %(_player_)s."
+msgstr "Я не стану нейтральным по отношению к тебе, %(_player_)s."
+
+#: simulation/ai/petra/chatHelper.js:92
+#, javascript-format
+msgid "%(_player_)s, I must decline your request for a neutrality pact."
+msgstr "%(_player_)s, я вынужден отклонить твое предложение о нейтралитете."
+
+#: simulation/ai/petra/chatHelper.js:95
+#, javascript-format
+msgid ""
+"Our previous neutrality agreement ended in failure %(_player_)s; I will not "
+"consider another one."
+msgstr "Наше предыдущее соглашение о нейтралитете завершилось неудачей, %(_player_)s; я не собираюсь рассматривать еще одно."
+
+#: simulation/ai/petra/chatHelper.js:98
+#, javascript-format
+msgid ""
+"I welcome your request for peace between our civilizations %(_player_)s. I "
+"will accept."
+msgstr "Я приветствую твое предложение установить мир между нашими народами,  %(_player_)s. Я принимаю его."
+
+#: simulation/ai/petra/chatHelper.js:99
+#, javascript-format
+msgid ""
+"%(_player_)s, I will accept your neutrality request. May both our "
+"civilizations benefit."
+msgstr "%(_player_)s, я приму твое предложение о нейтралитете. Пусть оба наших народа выиграют от этого соглашения."
+
+#: simulation/ai/petra/chatHelper.js:102
+#, javascript-format
+msgid ""
+"If you tribute me %(_amount_)s %(_resource_)s, I will accept your neutrality"
+" request %(_player_)s."
+msgstr "Если ты выплатишь мне %(_amount_)s %(_resource_)s, я приму твое предложение о нейтралитете, %(_player_)s."
+
+#: simulation/ai/petra/chatHelper.js:103
+#, javascript-format
+msgid ""
+"%(_player_)s, if you send me %(_amount_)s %(_resource_)s, I will accept a "
+"neutrality pact."
+msgstr "%(_player_)s, если ты отправишь мне %(_amount_)s %(_resource_)s, я приму договор о нейтралитете."
+
+#: simulation/ai/petra/chatHelper.js:106
+#, javascript-format
+msgid ""
+"%(_player_)s, I will not accept your neutrality request unless you tribute "
+"me %(_amount_)s %(_resource_)s soon."
+msgstr "%(_player_)s, я не приму твое предложение о нейтралитете, пока ты как можно скорее не выплатишь мне %(_amount_)s %(_resource_)s."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -213,7 +272,7 @@ msgstr "Предупреждение: это продвинутое руково
 msgid ""
 "Lets get started, first train a batch (shift click) of 5 female citizens "
 "from the CC (Civil Center)."
-msgstr "Давайте начнем, сначала натренируйте группу (Shift + ЛКМ) из 5 женщин в ГЦ (городской центр)."
+msgstr "Давайте начнем. Сначала натренируйте группу (Shift + ЛКМ) из 5 женщин в ГЦ (Городской Центр)."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:13
 msgid ""
@@ -223,7 +282,7 @@ msgstr "Теперь поручите женщинам собирать ягод
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:18
 msgid "Now set the rally point of your civil center on the berries."
-msgstr "Теперь установите точку сбора своего центра цивилизации на ягодах."
+msgstr "Теперь установите точку сбора своего городского центра на ягодах."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:23
 msgid ""
@@ -294,7 +353,7 @@ msgstr "Добавьте ещё один дом."
 msgid ""
 "The berry bushes are getting crowded, send some female citizens to work the "
 "field, set the rally point there."
-msgstr "Кусты с ягодами заканчиваются, пошлите нескольких женщин работать в поле, установите точку сбора на нём."
+msgstr "Кусты с ягодами заканчиваются, отправьте нескольких женщин работать в поле, установите точку сбора на нём."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:93
 msgid "Queue another 5 female citizens, these should gather stone."
@@ -330,11 +389,11 @@ msgstr "Постройте ещё одно поле, это уменьшит с�
 msgid ""
 "Train some more slingers, send them to gather stone. Train about 5, you may "
 "not have enough resources for a batch right now."
-msgstr "Обучите ещё несколько пращников и отправьте их добывать камни. Обучите около 5 юнитов. Вам может не хватить ресурсов для обучения сразу группой."
+msgstr "Обучите ещё несколько пращников и отправьте их добывать камни. Обучите около 5 юнитов. Вам может не хватить ресурсов для всей группы сразу."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:133
 msgid "Queue another batch of 5 female citizens. These will gather wood."
-msgstr "Добавьте в очередь ещё группу из 5 женщин, этих — для добычи дерева. "
+msgstr "Добавьте в очередь ещё группу из 5 женщин. Эти займутся добычей дерева. "
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:143
 msgid "Queue a batch of spearmen."
@@ -380,7 +439,7 @@ msgstr "Начинаем фазу 2."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:198
 msgid "Queue some slingers."
-msgstr "Обучите немного пращников."
+msgstr "Обучите нескольких пращников."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:203
 msgid ""
@@ -431,19 +490,19 @@ msgstr "- Не допускайте простоя юнитов. Обучайт�
 msgid ""
 " - Use all of your resources, stockpiled resources are waste, having too "
 "much of a resource is waste."
-msgstr "- Используйте ресурсы - накопление ресурсов ничего не даёт."
+msgstr "- Используйте все имеющиеся в Вашем распоряжении ресурсы. Накопление слишком большого количества ресурсов ничего не даёт."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:248
 msgid ""
 " - Use the right units for the right task, female citizens gather food, "
 "cavalry hunt, citizen soldiers do the rest."
-msgstr "- Всем своё место - женщины собирают пищу, кавалерия охотится, солдаты делают остальную работу."
+msgstr "- Всем своё место - женщины занимаются сбором еды, кавалерия - охотой, солдаты делают остальную работу."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:253
 msgid ""
 " - Don't be afraid to swap units from one resource to another, see point 2. "
 "Make sure they deposit what they are carrying first though."
-msgstr "- Не  бойтесь перенаправлять сборщиков на разные ресурсы (см. п. 2). Убедитесь, что они уже с пустыми руками."
+msgstr "- Не  бойтесь перенаправлять сборщиков с одних ресурсов на другие (см. п. 2), но прежде чем это сделать, убедитесь, что они сдали всё имееющееся у них на руках в точку сбора ресурсов."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:258
 msgid ""
@@ -466,73 +525,73 @@ msgstr "- Не увлекайтесь последним советом - вдр
 msgid ""
 "Each map is different, so you will need to play slightly differently on "
 "each. This should give an outline for a high resource map."
-msgstr "Все карты разные и стиль игры на каждой из них отличается. Так можно понять как играть на богатых ресурсами картах."
+msgstr "Все карты разные и манера игры на каждой из них отличается. Так можно понять как играть на богатых ресурсами картах."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:4
 msgid ""
 "Welcome to the 0 A.D. tutorial. First left-click on a female citizen, then "
 "Right-click on a berry bush nearby to make the unit collect food. Female "
 "citizens gather food faster than other units."
-msgstr "Добро пожаловать в руководство к игре 0 A.D. Щёлкните на горожанке и следом уже правой кнопкой щёлкните по кустам, чтобы отправить её собирать пищу. Женщины собирают пищу быстрее других юнитов."
+msgstr "Добро пожаловать в руководство к игре 0 A.D. Щёлкните на горожанке, а затем правой кнопкой щёлкните по кустам, чтобы отправить её собирать пищу. Женщины собирают пищу быстрее других юнитов."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:7
 msgid ""
 "Select the citizen-soldier, right-click on a tree near the Civil Center to "
 "begin collecting wood. Citizen-soldiers gather wood faster than female "
 "citizens."
-msgstr "Выберете солдата и нажмите ПКМ на дереве возле ЦЦ для начала рубки дерева. Солдаты собирают древесину быстрее женщин."
+msgstr "Выберете солдата и щеклните правой кнопкой мыши на дереве возле ГЦ для начала рубки дерева. Солдаты собирают древесину быстрее женщин."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:11
 msgid ""
 "Select the Civil Center building, and shift-click on the Hoplite icon (2nd "
 "in the row) once to begin training 5 Hoplites."
-msgstr "Выберите здание центра цивилизации и один раз с Shift кликните иконку гоплита (2-я в ряду), чтобы начать обучать сразу 5 гоплитов."
+msgstr "Выберите здание городского цента и зажав клавишу с Shift кликните на иконку гоплита (2-я в ряду), чтобы добавить в очередь обучения сразу 5 гоплитов."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:15
 msgid ""
 "Select the two idle female citizens and build a house nearby by selecting "
 "the house icon. Place the house by left-clicking on a piece of land."
-msgstr "Выберите парочку бездельничающих женщин и предложите им построить рядом дом, выбрав его иконку. Разместите дом на клочке земли левой кнопкой."
+msgstr "Выберите парочку бездельничающих женщин и предложите им построить рядом дом, выбрав его иконку. Начните постройку дома, щелкнув левой кнопкой мыши в том месте, где хотите его построить."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:21
 msgid ""
 "Select the newly trained Hoplites and assign them to build a storehouse "
 "beside some nearby trees. They will begin to gather wood when it's "
 "constructed."
-msgstr "Выберите только что обученных гоплитов и отправьте из строить склад где-нибудь рядом с деревьями. Они начнут рубить деревья сразу после постройки склада."
+msgstr "Выберите только что обученных гоплитов и отправьте их строить склад где-нибудь рядом с деревьями. Они начнут рубить деревья сразу после постройки склада."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:27
 msgid ""
 "Build a set of 5 skirmishers by shift-clicking on the skirmisher icon (3rd "
 "in the row) in the Civil Center."
-msgstr "Обучите группу из 5 стрелков кликнув по их иконке в ЦЦ (3-я в ряду) с зажатым Shift."
+msgstr "Обучите группу из 5 стрелков, кликнув по их иконке в городском центре (3-я в ряду) с зажатой клавишей Shift."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:33
 msgid ""
 "Build a farmstead in an open space beside the Civil Center using any idle "
 "builders."
-msgstr "Постройте усадьбу на свободном месте рядом с центром посредством свободных юнитов."
+msgstr "Постройте усадьбу на свободном месте рядом с Городским Центром, используя незанятых юнитов."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:39
 msgid ""
 "Once the farmstead is constructed, its builders will automatically begin "
 "gathering food if there is any nearby. Select the builders and instead make "
 "them construct a field beside the farmstead."
-msgstr "Как только усадьба построится, её строители автоматически начнут собирать пищу, если она есть поблизости. Выберите строителей и перенаправьте их на создание поля поблизости с усадьбой."
+msgstr "Как только усадьба построится, её строители автоматически начнут собирать пищу, если она есть поблизости. Выберите строителей и перенаправьте их на создание поля рядом с усадьбой."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:45
 msgid ""
 "The field's builders will now automatically begin collecting food from the "
 "field. Using the newly created group of skirmishers, get them to build "
 "another house nearby."
-msgstr "Как поле будет готово, строители сразу начнут собирать урожай. Используя вновь испечённых стрелков, постройте дом рядом."
+msgstr "Как только поле будет готово, строители сразу примутся собирать урожай. Используя вновь испечённых стрелков, постройте дом рядом."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:51
 msgid ""
 "Train 5 Hoplites from the Civil Center. Select the Civil Center and with it "
 "selected right click on a tree nearby. Units from the Civil Center will now "
 "automatically gather wood."
-msgstr "Обучите 5 гоплитов в ЦЦ. Выберите здание центра и после правой кнопкой укажите на ближайшее дерево. Новые юниты будут автоматически начинать сбор древесины."
+msgstr "Обучите 5 гоплитов в Городском Центре. Выберите здание Городского Центра, а затем правой кнопкой укажите на ближайшее дерево. Новые юниты будут автоматически направляться на сбор древесины."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:57
 msgid ""
@@ -545,13 +604,13 @@ msgstr "Прикажите свободным стрелкам построит�
 msgid ""
 "Select the Civil Center again and advance to Town Phase by clicking on the "
 "'II' icon. This will allow Town Phase buildings to be constructed."
-msgstr "Выберите ЦЦ снова и улучшите его до небольшого города кликнув на иконку \"II\". Это даст доступ к строительству новых зданий."
+msgstr "Снова выберите Городской центр и улучшите его до небольшого города, кликнув на иконку \"II\". Это откроет доступ к строительству новых зданий."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:69
 msgid ""
 "Start building 5 female citizens in the Civil Center and set its rally point"
 " to the farm (right click on it)."
-msgstr "Начните обучать 5 женщин в ЦЦ и направьте их на ферму (правой кнопкой на ней)."
+msgstr "Начните обучать 5 женщин в Городском Центре и направьте их на ферму (кликнув правой кнопкой мыши на ней)."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:74
 msgid ""
@@ -585,7 +644,7 @@ msgstr "Вражеская атака отражена. Теперь постр�
 msgid ""
 "Now that City Phase requirements have been reached, select your Civil Center"
 " and advance to City Phase."
-msgstr "Теперь все требования этапа небольшого города соблюдены и можно расширить центр до большого города."
+msgstr "Теперь все требования этапа небольшого города соблюдены и можно расширить Городской Центр до большого города."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:110
 msgid ""
@@ -803,42 +862,42 @@ msgstr "Невозможно найти свободное место для п�
 msgid "You need to select a building that trains units."
 msgstr "Вам нужно выбрать здание, тренирующее юнитов."
 
-#: simulation/helpers/Commands.js:128
+#: simulation/helpers/Commands.js:121
 msgid "(Cheat - control all units)"
 msgstr "(Обман - управлять всеми юнитами)"
 
-#: simulation/helpers/Commands.js:140
+#: simulation/helpers/Commands.js:133
 msgid "(Cheat - reveal map)"
 msgstr "(Обман - открыть всю карту)"
 
-#: simulation/helpers/Commands.js:581
+#: simulation/helpers/Commands.js:574
 msgid "(Cheat - promoted units)"
 msgstr "(Обман - помогать юнитам)"
 
-#: simulation/helpers/Commands.js:691
+#: simulation/helpers/Commands.js:688
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Не удаётся улучшить, так как требования к расстоянию неверны или имеются препятствия на местности. "
 
-#: simulation/helpers/Commands.js:701
+#: simulation/helpers/Commands.js:698
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "Невозможно добавить гарнизон"
 
-#: simulation/helpers/Commands.js:747
+#: simulation/helpers/Commands.js:744
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Запрос атаки на %(_player_)s."
 
-#: simulation/helpers/Commands.js:784
+#: simulation/helpers/Commands.js:781
 msgid "Unable to ungarrison unit(s)"
 msgstr "Невозможно вывести гарнизон"
 
-#: simulation/helpers/Commands.js:798
+#: simulation/helpers/Commands.js:795
 msgid "Some unit(s) can't go back to work"
 msgstr "Некоторые юниты не могут вернуться к работе"
 
-#: simulation/helpers/Commands.js:1052
+#: simulation/helpers/Commands.js:1049
 msgid "The building's technology requirements are not met."
 msgstr "Технологии, необходимые для здания, отсутствуют."
 

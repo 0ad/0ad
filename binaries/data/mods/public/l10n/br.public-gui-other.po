@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-01-09 09:02+0100\n"
-"PO-Revision-Date: 2017-01-18 14:42+0000\n"
+"PO-Revision-Date: 2017-01-25 18:52+0000\n"
 "Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -377,7 +377,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:285
 msgid "Starting Resources"
-msgstr ""
+msgstr "Mammennoù el Loc'hañ"
 
 #: gui/common/gamedescription.js:286
 #, javascript-format
@@ -386,7 +386,7 @@ msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
 #: gui/common/gamedescription.js:296
 msgid "Population Limit"
-msgstr ""
+msgstr "Bevenn ar Boblañs"
 
 #: gui/common/gamedescription.js:304
 msgid "Disable Treasure"
@@ -663,15 +663,15 @@ msgstr ""
 
 #: gui/common/tooltips.js:15
 msgid "Hack"
-msgstr ""
+msgstr "Troc'husted"
 
 #: gui/common/tooltips.js:16
 msgid "Pierce"
-msgstr ""
+msgstr "Toullusted"
 
 #: gui/common/tooltips.js:17
 msgid "Crush"
-msgstr ""
+msgstr "Flastrañ"
 
 #: gui/common/tooltips.js:59
 msgid "Health:"
@@ -717,7 +717,7 @@ msgstr "%(percentage)s%%"
 
 #: gui/common/tooltips.js:106
 msgid "Armor:"
-msgstr ""
+msgstr "Houarnwisk:"
 
 #: gui/common/tooltips.js:109
 #, javascript-format
@@ -744,7 +744,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:152 gui/common/tooltips.js:555
 msgid "Rate:"
-msgstr ""
+msgstr "Feur:"
 
 #: gui/common/tooltips.js:159
 #, javascript-format
@@ -766,7 +766,7 @@ msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(rangeString)s, %(rate)
 
 #: gui/common/tooltips.js:181 gui/common/tooltips.js:550
 msgid "Range:"
-msgstr ""
+msgstr "Hed-Tenn:"
 
 #: gui/common/tooltips.js:183
 #, javascript-format
@@ -1128,7 +1128,7 @@ msgstr ""
 #: gui/replaymenu/replay_actions.js:95
 #, javascript-format
 msgid "Your version: %(version)s"
-msgstr "Ho stumm : %(version)s"
+msgstr "Ho stumm: %(version)s"
 
 #: gui/replaymenu/replay_actions.js:96
 #, javascript-format
@@ -1322,7 +1322,7 @@ msgstr "Hollek"
 
 #: gui/summary/layout.js:23
 msgid "Houses"
-msgstr "Tiez"
+msgstr "Ti"
 
 #: gui/summary/layout.js:24
 msgid "Economic"
@@ -1338,7 +1338,7 @@ msgstr "Mirourel"
 
 #: gui/summary/layout.js:27
 msgid "Fortresses"
-msgstr "Kreñvlec'hioù"
+msgstr "Kreñvlec'h"
 
 #: gui/summary/layout.js:28
 msgid "Civ centers"
@@ -1438,7 +1438,7 @@ msgstr "Statistikoù an Danvezioù (%(gathered)s / %(used)s)"
 
 #: gui/summary/layout.js:120
 msgid "Gathered"
-msgstr "Eostet"
+msgstr "Dastumet"
 
 #: gui/summary/layout.js:121
 msgid "Used"
@@ -3220,7 +3220,7 @@ msgstr ""
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
-msgstr "SPARTIATES"
+msgstr "SPARTED"
 
 #: gui/text/tips/spartan_hoplites.txt:2
 msgid "- Strongest infantry unit in the game."
@@ -3280,7 +3280,7 @@ msgstr ""
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
-msgstr "Etrepaouezioù"
+msgstr "ETREPAOUEZIOÙ"
 
 #: gui/text/tips/storehouses.txt:2
 msgid "- A cheap dropsite for non-food resources (wood, stone, metal)."
@@ -3434,7 +3434,7 @@ msgstr ""
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
-msgstr "Olifantoù brezel"
+msgstr "OLIFANTED BREZEL"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "- Huge beasts from Africa and India, trained for war."
@@ -3464,7 +3464,7 @@ msgstr ""
 
 #: gui/text/tips/whales.txt:4
 msgid "- 2000 Food."
-msgstr "- 2000 a voued."
+msgstr "- 2000 a Voued."
 
 #: gui/text/tips/whales.txt:6
 msgid "- Gatherable by Fishing Boats after the whale is killed."

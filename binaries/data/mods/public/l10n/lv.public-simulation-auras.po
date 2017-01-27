@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Beāte Lakševica <tava.unochka@inbox.lv>, 2016
+# Jānis Ločmelis <minimenlatvia@gmail.com>, 2017
 # Vladimirs Kuzmins, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-01-09 09:03+0100\n"
-"PO-Revision-Date: 2017-01-09 09:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-01-26 01:12+0000\n"
+"Last-Translator: Jānis Ločmelis <minimenlatvia@gmail.com>\n"
 "Language-Team: Latvian (http://www.transifex.com/wildfire-games/0ad/language/lv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,11 +21,11 @@ msgstr ""
 
 #: simulation/data/auras/athen_hero_iphicrates_1.jsonauraName
 msgid "Formation Reforms"
-msgstr "Struktūras reformas"
+msgstr "Struktūru reformas"
 
 #: simulation/data/auras/athen_hero_iphicrates_1.jsonauraDescription
 msgid "All soldiers in his formation +15% speed and +1 armor."
-msgstr ""
+msgstr "Visi karavīri viņa ierindā +15% ātruma un +1 bruņas"
 
 #: simulation/data/auras/athen_hero_iphicrates_2.jsonauraName
 msgid "Peltast Reforms"
@@ -32,7 +33,7 @@ msgstr "Peltasta reformas"
 
 #: simulation/data/auras/athen_hero_iphicrates_2.jsonauraDescription
 msgid "All javelin infantry +15% speed."
-msgstr ""
+msgstr "Visi šķēpmetēju kājnieki +15% ātrums"
 
 #: simulation/data/auras/athen_hero_pericles_1.jsonauraName
 msgid "Builder Aura"
@@ -40,7 +41,7 @@ msgstr "Celtnieka Aura"
 
 #: simulation/data/auras/athen_hero_pericles_1.jsonauraDescription
 msgid "Buildings construct 15% faster within his aura."
-msgstr ""
+msgstr "Ēkas tiek pabeigtas 15% ātrāk ar iekš viņa aura"
 
 #: simulation/data/auras/athen_hero_pericles_2.jsonauraName
 msgid "Acropolis Aura"
@@ -72,7 +73,7 @@ msgstr "Čempionu Armija"
 
 #: simulation/data/auras/brit_hero_boudicca.jsonauraDescription
 msgid "+20% attack, +2 capture and +25% speed for champion units."
-msgstr ""
+msgstr "+20% uzbrukums, +2 sagūstīšana un +25% čempiona vienību ātrums"
 
 #: simulation/data/auras/brit_hero_caratacos.jsonauraName
 #: simulation/data/auras/brit_hero_cunobelin.jsonauraName
@@ -86,11 +87,11 @@ msgstr "Varoņa Aura"
 #: simulation/data/auras/brit_hero_caratacos.jsonauraDescription
 #: simulation/data/auras/cart_hero_hamilcar.jsonauraDescription
 msgid "All soldiers and siege engines +15% speed."
-msgstr ""
+msgstr "Visiem karavīriem un aplenkuma tehnikai +15% ātrums"
 
 #: simulation/data/auras/brit_hero_cunobelin.jsonauraDescription
 msgid "+1 HP per second healing rate for all units."
-msgstr "+1 VP sekundē dziedēšanas ātrumam visām vienībām."
+msgstr "+1 VP sekundē dziedēšanas ātrums visām vienībām."
 
 #: simulation/data/auras/cart_hero_hamilcar.jsonauraName
 msgid "Lightning Aura"
@@ -104,7 +105,7 @@ msgstr "Taktiķa Aura"
 msgid ""
 "All allied soldiers and siege engines +20% attack and +1 capture within his "
 "vision range."
-msgstr ""
+msgstr "Visiem sabiedroto karavīriem un aplenkuma tehnikai +20% uzbrukums un +1 sagūstīšana viņs redzes lokā"
 
 #: simulation/data/auras/cart_hero_maharbal.jsonauraName
 msgid "Commander Aura"
@@ -112,7 +113,7 @@ msgstr "Komandiera Aura"
 
 #: simulation/data/auras/cart_hero_maharbal.jsonauraDescription
 msgid "+20% cavalry melee attack within his aura."
-msgstr ""
+msgstr "+20% kavalērijas tuvcīņas uzbrukumam iekš viņa auras"
 
 #: simulation/data/auras/cart_super_dock_repair.jsonauraName
 msgid "Repairing Ship aura"
@@ -120,7 +121,7 @@ msgstr "Kuģa remonta aura"
 
 #: simulation/data/auras/cart_super_dock_repair.jsonauraDescription
 msgid "Heals garrisoned ship at 10 HP per second."
-msgstr ""
+msgstr "Izārstē garnizona kuģus 10 VP sekundē"
 
 #: simulation/data/auras/epic_temple_heal.jsonauraName
 #: simulation/data/auras/temple_heal.jsonauraName
@@ -137,7 +138,7 @@ msgstr "Iedvesmas aura"
 
 #: simulation/data/auras/female_inspiration.jsonauraDescription
 msgid "Nearby citizen soldiers work 10% faster."
-msgstr ""
+msgstr "Tuvējie iedzīvotāju karavīri strādā 10% ātrāk"
 
 #: simulation/data/auras/gaul_hero_brennus.jsonauraDescription
 msgid "+10 Metal loot for every enemy unit killed."
@@ -151,7 +152,7 @@ msgstr "Savākšanas ātrums palielinās par +15% viņa dzīves laikā."
 msgid ""
 "+20% attack and +1 capture for all soldiers and siege engines within his "
 "aura."
-msgstr ""
+msgstr "+20% uzbrukums un +1 sagūstīšana visiem karavīriem un aplenkuma tehnikai iekš viņa auras"
 
 #: simulation/data/auras/hero_garrison.jsonauraName
 msgid "Garrisoned Capture Aura"
@@ -161,7 +162,7 @@ msgstr "Ieņemot garnizonā aura"
 msgid ""
 "When garrisoned in a structure or a siege engine, the hero gives it a bonus "
 "of +2 capture points recovery rate."
-msgstr ""
+msgstr "Kad varonis ir ievietots kādā ēkā vai aplenkuma tehnikā, varonis tam dod +2 sagūstīšanas punktu atjaunināšanās bonusu"
 
 #: simulation/data/auras/iber_monument.jsonauraName
 msgid "Defensive Aura"
@@ -171,7 +172,7 @@ msgstr "Aizsardzības Aura"
 msgid ""
 "Gives all iberian soldiers in aura +20% attack boost. Effect Range: 50 "
 "meters"
-msgstr ""
+msgstr "dod visiem ibēriešu karavīriem aurā +20% uzbrukuma.\nEfekta rādiuss: 50 metri"
 
 #: simulation/data/auras/library.jsonauraName
 msgid "Library Aura"
@@ -180,7 +181,7 @@ msgstr "Bibliotēkas Aura"
 #: simulation/data/auras/library.jsonauraDescription
 msgid ""
 "Reduce the cost and research time of technologies by 10% per library owned."
-msgstr ""
+msgstr "Samazina tehnoloģiju izpētes cenu par 10% par katru bibliotēku kura jums pieder."
 
 #: simulation/data/auras/loyalty_regen.jsonauraName
 msgid "Loyalty Aura"
@@ -188,7 +189,7 @@ msgstr "Lojalitātes Aura"
 
 #: simulation/data/auras/loyalty_regen.jsonauraDescription
 msgid "All structures in range +50% garrisoned loyalty regeneration rate."
-msgstr ""
+msgstr "Visas ēkas ietekmes laukumā +50% garnizona uzticības reģenerācijas ātrums."
 
 #: simulation/data/auras/mace_hero_alexander.jsonauraName
 msgid "Imperialism Aura"
@@ -200,40 +201,40 @@ msgstr "+10% teritorijas ietekmes visām būvēm viņa dzīves laikā."
 
 #: simulation/data/auras/mace_hero_craterus.jsonauraName
 msgid "Taxiarchès"
-msgstr ""
+msgstr "Taksiarks"
 
 #: simulation/data/auras/mace_hero_craterus.jsonauraDescription
 msgid "Pike Infantry +20% attack and +20% capture within range of him."
-msgstr ""
+msgstr "Šķēpu kājniekiem +20% uzbrukums un +20% sagūstīšana viņa rādiusā"
 
 #: simulation/data/auras/mace_hero_demetrius.jsonauraName
 msgid "Besieger Aura"
-msgstr ""
+msgstr "Aplenkuma Aura"
 
 #: simulation/data/auras/mace_hero_demetrius.jsonauraDescription
 msgid "+15% range and +10% crush attack for siege engines."
-msgstr ""
+msgstr "+15% diapazona un +10% sagraušanas uzbrukums aplenkuma tehnikai"
 
 #: simulation/data/auras/mace_hero_philip.jsonauraDescription
 msgid "+20% attack and +2 capture for champion units."
-msgstr ""
+msgstr "+20% uzbrukums un +2 sagūstīšana čempionu vienībām"
 
 #: simulation/data/auras/mace_hero_pyrrhus.jsonauraName
 msgid "Pyrrhic Victory"
-msgstr ""
+msgstr "Pirrhika uzvara (Par mata tiesu)"
 
 #: simulation/data/auras/mace_hero_pyrrhus.jsonauraDescription
 msgid ""
 "All soldiers +20% attack as long as Pyrrhos lives, but also -15% health."
-msgstr ""
+msgstr "Visiem karavīriem +20% uzbrukuma kamēr Pyrrhos ir dzīvs, bet arī -15% dzīvības"
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraName
 msgid "Buddhism Aura"
-msgstr ""
+msgstr "Budisma Aura"
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraDescription
 msgid "Temples and temple technologies -50% cost, in resources and time."
-msgstr ""
+msgstr "Tempļi un tempļu tehnoloģijas -50% cena, resursos un laikā"
 
 #: simulation/data/auras/maur_hero_chanakya.jsonauraName
 msgid "Teacher Aura"
@@ -246,7 +247,7 @@ msgstr "Apvelta ēku ar -50% izpētes laikam, kamēr viņš atrodas tās garnizo
 
 #: simulation/data/auras/maur_pillar.jsonauraDescription
 msgid "All traders in range +20% speed."
-msgstr ""
+msgstr "Visi tirgotāji diapazonā +20% ātruma"
 
 #: simulation/data/auras/pers_hero_cyrus.jsonauraName
 msgid "Lead from the Front Aura"
@@ -254,7 +255,7 @@ msgstr "Izceļas no Frontes auras"
 
 #: simulation/data/auras/pers_hero_cyrus.jsonauraDescription
 msgid "+20% attack and +1 capture for nearby cavalry units."
-msgstr ""
+msgstr "+20% uzbrukuma un +1 sagūstīšana tuvumā esošajām kavalērijas vienībām."
 
 #: simulation/data/auras/pers_hero_darius.jsonauraName
 msgid "Leadership Aura"
@@ -262,7 +263,7 @@ msgstr "Vadības Aura"
 
 #: simulation/data/auras/pers_hero_darius.jsonauraDescription
 msgid "+15% movement speed for all soldiers and siege engines."
-msgstr ""
+msgstr "+15% kustības ātruma visiem karavīriem un aplenkuma tehnikai."
 
 #: simulation/data/auras/pers_hero_xerxes.jsonauraName
 msgid "Administrator Aura"
@@ -270,7 +271,7 @@ msgstr "Administratora Aura"
 
 #: simulation/data/auras/pers_hero_xerxes.jsonauraDescription
 msgid "+15% gather rate and build rate of nearby workers."
-msgstr ""
+msgstr "+15% vākšanas ātrums un celtniecības ātrums tuvumā esošajiem strādniekiem."
 
 #: simulation/data/auras/ptol_hero_cleopatra_1.jsonauraName
 msgid "Patriot Aura"
@@ -279,20 +280,20 @@ msgstr "Patriota Aura"
 #: simulation/data/auras/ptol_hero_cleopatra_1.jsonauraDescription
 msgid ""
 "-20% attack repeat time for Egyptian soldiers and siege engines in her aura."
-msgstr ""
+msgstr "-20% uzbrukuma atkārtošanas laiks ēģiptiešu karavīriem un aplenkuma tehnikai viņas auras diapazonā."
 
 #: simulation/data/auras/ptol_hero_cleopatra_2.jsonauraName
 #: simulation/data/auras/ptol_hero_cleopatra_3.jsonauraName
 msgid "Consort"
-msgstr ""
+msgstr "Konsorts"
 
 #: simulation/data/auras/ptol_hero_cleopatra_2.jsonauraDescription
 msgid "Allied heroes +10% health when near her."
-msgstr ""
+msgstr "Sabiedroto varoņiem +10% dzīvības viņas tuvumā."
 
 #: simulation/data/auras/ptol_hero_cleopatra_3.jsonauraDescription
 msgid "Enemy heroes -10% health when near her."
-msgstr ""
+msgstr "Ienaidnieka varoņiem -10% dzīvības viņas tuvumā."
 
 #: simulation/data/auras/ptol_hero_ptolemy_IV.jsonauraName
 msgid "Raphia Aura"
@@ -300,7 +301,7 @@ msgstr "Raphia Aura"
 
 #: simulation/data/auras/ptol_hero_ptolemy_IV.jsonauraDescription
 msgid "Egyptian pikemen have 40% greater health during his lifetime."
-msgstr ""
+msgstr "Ēģiptiešu šķēpnešiem ir 40% vairāk dzīvības kamēr viņš ir dzīvs."
 
 #: simulation/data/auras/ptol_hero_ptolemy_I_1.jsonauraName
 msgid "Construction Aura"
@@ -308,7 +309,7 @@ msgstr "Būvniecības Aura"
 
 #: simulation/data/auras/ptol_hero_ptolemy_I_1.jsonauraDescription
 msgid "Buildings construct 10% faster within his aura."
-msgstr ""
+msgstr "Ēkas celtniecība 10% ātrāka viņa auras diapazonā."
 
 #: simulation/data/auras/ptol_hero_ptolemy_I_2.jsonauraName
 msgid "Mercenary Patron Aura"
@@ -326,7 +327,7 @@ msgstr "Romas Zobena Aura"
 msgid ""
 "+20% attack and +2 capture for Roman soldiers and siege engines within his "
 "range."
-msgstr ""
+msgstr "+20% uzbrukuma un +2 sagūstīšana romiešu karavīriem un aplenkuma tehnikai viņa ietekmes diapazona."
 
 #: simulation/data/auras/rome_hero_maximus.jsonauraName
 msgid "Shield of Rome Aura"
@@ -350,7 +351,7 @@ msgstr "Ilarchès Aura"
 
 #: simulation/data/auras/sele_hero_antiochus_great.jsonauraDescription
 msgid "All cavalry gains +2 levels of all armor types."
-msgstr ""
+msgstr "Visa kavalērija iegūst +2 līmeņus visa veida bruņām."
 
 #: simulation/data/auras/sele_hero_antiochus_righteous.jsonauraName
 msgid "Conquest Aura"
@@ -360,7 +361,7 @@ msgstr "Iekarošanas Aura"
 msgid ""
 "All nearby enemy buildings, siege engines, and ships have their health "
 "reduced by 20%."
-msgstr ""
+msgstr "Visas tuvumā esošās ienaidnieka ēkas, aplenkuma tehnika un kuģi -20% dzīvības"
 
 #: simulation/data/auras/sele_hero_seleucus_victor.jsonauraName
 msgid "Zooiarchos Aura"
@@ -368,7 +369,7 @@ msgstr "Zooiarchos Aura"
 
 #: simulation/data/auras/sele_hero_seleucus_victor.jsonauraDescription
 msgid "Boosts war elephant attack and speed +20% within his aura."
-msgstr ""
+msgstr "Kara ziloņu uzbrukums un ātrums +20% viņa auras diapazonā."
 
 #: simulation/data/auras/spart_hero_brasidas.jsonauraName
 msgid "Helot Reforms"
@@ -376,7 +377,7 @@ msgstr "Helotu Reformas"
 
 #: simulation/data/auras/spart_hero_brasidas.jsonauraDescription
 msgid "Javelin infantry in his aura gains +20% attack and +1 all armor types."
-msgstr ""
+msgstr "Šķēpmetēju kājniekiem viņa auras diapazonā +20% uzbrukuma un +1 visiem bruņu veidiem."
 
 #: simulation/data/auras/spart_hero_leonidas.jsonauraName
 msgid "Last Stand Aura"
@@ -384,7 +385,7 @@ msgstr "Pēdējā palikušā aura"
 
 #: simulation/data/auras/spart_hero_leonidas.jsonauraDescription
 msgid "+20% attack and +1 capture for nearby Spearmen."
-msgstr ""
+msgstr "+20% uzbrukuma un +1 sagūstīšana tuvumā esošajiem šķēpnešiem."
 
 #: simulation/data/auras/temple_heal.jsonauraDescription
 msgid "Heals nearby units at 1 HP per second."
@@ -396,7 +397,7 @@ msgstr "Helenizācija."
 
 #: simulation/data/auras/theatron.jsonauraDescription
 msgid "Increase territory influence by 20% per theatron owned."
-msgstr ""
+msgstr "Palielina teritorijas ietekmi par 20% pa katru theatronu."
 
 #: simulation/data/auras/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -404,7 +405,7 @@ msgstr "Mūra Aizsardzība"
 
 #: simulation/data/auras/wall_garrisoned.jsonauraDescription
 msgid "Soldiers on walls have +3 armor and higher vision."
-msgstr ""
+msgstr "Karavīriem uz mūriem +3 bruņas un tālāka redzamība."
 
 #: simulation/data/auras/wonder_pop_1.jsonauraName
 msgid "Wonder Aura"
@@ -412,7 +413,7 @@ msgstr "Brīnuma Aura"
 
 #: simulation/data/auras/wonder_pop_1.jsonauraDescription
 msgid "Increase the population limit by 10 per wonder owned."
-msgstr ""
+msgstr "Paaugstina iedzīvotāju limitu par 10 par katru uzcelto brīnumu."
 
 #: simulation/data/auras/wonder_pop_2.jsonauraName
 msgid "Glorious Expansion Aura"
@@ -422,11 +423,11 @@ msgstr "Lieliskās Izplešanās Aura"
 msgid ""
 "Further increase the population limit by 40 per wonder owned (requires "
 "\"Glorious Expansion\" tech)."
-msgstr ""
+msgstr "Tālāk palielina iedzīvotāju limitu par 40 par katru uzcelto brīnumu (nepieciešams \"Slavenās Ekspansijas\" tehnoloģija)."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
-msgstr "Delians līga"
+msgstr "Deliana līga"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid ""
@@ -434,15 +435,15 @@ msgid ""
 "city-states instituted the so-called Delian League in 478 BC, whose purpose "
 "was to push the Persians out of the Aegean region. The allied states "
 "contributed ships and money, while the Athenians offered their entire navy."
-msgstr "Īsi pēc lielām jūras uzvarām pie Salami un Mikales, Grieķu pilsētvalstis nodibinājušas tā saucāmo Deli Līgu 478 g.p.m.ē., kuras mērķis bija izspiest Persiešus no Egejas reģiona. Sabiedroto valstis valtīja kuģus un naudu, un Atēņieši veltīja pilnīgi visu floti. "
+msgstr "Īsi pēc lielām jūras uzvarām pie Salami un Mikales, Grieķu pilsētvalstis nodibinājušas tā saucāmo Deli Līgu 478 g.p.m.ē., kuras mērķis bija izspiest Persiešus no Egejas reģiona. Sabiedroto valstis veltīja kuģus un naudu, un Atēnieši veltīja pilnīgi visu floti."
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
-msgstr ""
+msgstr "Tirgus meistri"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "10% bonus of trade profit for ally's international routes."
-msgstr ""
+msgstr "10% tirdzniecības peļņai no starptautiskajiem maršrutiem."
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
@@ -456,20 +457,20 @@ msgstr "Samazina pilsoņu strēlnieku izmaksas par 20% visiem Ibēriešu spēlē
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
-msgstr ""
+msgstr "Ashokas reliģiskais atbalsts"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
 msgid ""
 "Allied temples and temple technologies -50% cost, in resources and time."
-msgstr ""
+msgstr "Sabiedroto tempļiem un tempļu tehnoloģijām -50% cena, resursos un laikā."
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "The Royal Road"
-msgstr ""
+msgstr "Karaliskais ceļš"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
 msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr ""
+msgstr "Augstāki ienākumi (+15%) no zemes tirdzniecības ceļiem par sabiedroto tirgotājiem."
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"
