@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -45,7 +45,7 @@ class TestScriptConversions : public CxxTest::TestSuite
 		// since they might not be objects. So just use uneval.
 		std::string source;
 		JS::RootedValue global(cx, script.GetGlobalObject());
-		TS_ASSERT(script.CallFunction(global, "uneval", v1, source));
+		TS_ASSERT(script.CallFunction(global, "uneval", source, v1));
 
 		TS_ASSERT_STR_EQUALS(source, expected);
 	}
@@ -63,7 +63,7 @@ class TestScriptConversions : public CxxTest::TestSuite
 
 		std::string source;
 		JS::RootedValue global(cx, script.GetGlobalObject());
-		TS_ASSERT(script.CallFunction(global, "uneval", v1, source));
+		TS_ASSERT(script.CallFunction(global, "uneval", source, v1));
 
 		if (expected)
 			TS_ASSERT_STR_EQUALS(source, expected);
@@ -89,12 +89,12 @@ class TestScriptConversions : public CxxTest::TestSuite
 		T r;
 		JS::RootedValue r1(cx);
 
-		TS_ASSERT(script.CallFunction(u1, func.c_str(), v1, r));
+		TS_ASSERT(script.CallFunction(u1, func.c_str(), r, v1));
 		ScriptInterface::ToJSVal(cx, &r1, r);
 
 		std::string source;
 		JS::RootedValue global(cx, script.GetGlobalObject());
-		TS_ASSERT(script.CallFunction(global, "uneval", r1, source));
+		TS_ASSERT(script.CallFunction(global, "uneval", source, r1));
 
 		TS_ASSERT_STR_EQUALS(source, expected);
 	}

@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -170,7 +170,7 @@ public:
 		TS_ASSERT_EQUALS(4, nbr);
 
 		// CallFunction const JS::RootedValue& parameter overload
-		script.CallFunction(val, "add", nbrVal, nbr);
+		script.CallFunction(val, "add", nbr, nbrVal);
 		TS_ASSERT_EQUALS(7, nbr);
 
 		// GetProperty JS::RootedValue* overload
@@ -202,7 +202,7 @@ public:
 		TS_ASSERT_EQUALS(4, nbr);
 
 		// CallFunction const JS::HandleValue& parameter overload
-		script.CallFunction(val, "add", nbrVal, nbr);
+		script.CallFunction(val, "add", nbr, nbrVal);
 		TS_ASSERT_EQUALS(7, nbr);
 
 		// GetProperty JS::MutableHandleValue overload
