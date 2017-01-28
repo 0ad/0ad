@@ -632,7 +632,7 @@ function updateGameSelection()
 		sgGameStartTime.caption = sprintf(
 			// Translation: %(time)s is the hour and minute here.
 			translate("Game started at %(time)s"), {
-				"time": Engine.FormatMillisecondsIntoDateString(+game.startTime*1000, translate("HH:mm"))
+				"time": Engine.FormatMillisecondsIntoDateStringLocal(+game.startTime*1000, translate("HH:mm"))
 			});
 
 	sgNbPlayers.caption = sprintf(
@@ -993,7 +993,7 @@ function ircFormat(msg)
 	// Translation: Time as shown in the multiplayer lobby (when you enable it in the options page).
 	// For a list of symbols that you can use, see:
 	// https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1#TOC-Date-Field-Symbol-Table
-	let timeString = Engine.FormatMillisecondsIntoDateString(time.getTime(), translate("HH:mm"));
+	let timeString = Engine.FormatMillisecondsIntoDateStringLocal(time.getTime(), translate("HH:mm"));
 
 	// Translation: Time prefix as shown in the multiplayer lobby (when you enable it in the options page).
 	let timePrefixString = sprintf(translate("\\[%(time)s]"), {

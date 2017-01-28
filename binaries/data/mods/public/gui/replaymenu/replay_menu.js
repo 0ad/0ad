@@ -300,7 +300,7 @@ function greyout(text, isCompatible)
  */
 function getReplayDateTime(replay)
 {
-	return Engine.FormatMillisecondsIntoDateString(replay.timestamp * 1000, translate("yyyy-MM-dd HH:mm"));
+	return Engine.FormatMillisecondsIntoDateStringLocal(replay.timestamp * 1000, translate("yyyy-MM-dd HH:mm"));
 }
 
 /**
@@ -330,7 +330,7 @@ function getReplayMapName(replay)
  */
 function getReplayMonth(replay)
 {
-	return Engine.FormatMillisecondsIntoDateString(replay.timestamp * 1000, translate("yyyy-MM"));
+	return Engine.FormatMillisecondsIntoDateStringLocal(replay.timestamp * 1000, translate("yyyy-MM"));
 }
 
 /**

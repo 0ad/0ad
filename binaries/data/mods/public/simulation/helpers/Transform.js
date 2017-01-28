@@ -88,7 +88,7 @@ function ChangeEntityTemplate(oldEnt, newTemplate)
 			{
 				let cmpEntUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 				if (cmpEntUnitAI)
-					cmpEntUnitAI.SetGuardOf(NewEnt);
+					cmpEntUnitAI.SetGuardOf(newEnt);
 			}
 		}
 	}
