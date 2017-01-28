@@ -1328,7 +1328,9 @@ void CNetServerWorker::CheckGameLoadStatus(CNetServerSession* changedSession)
 	// Inform clients that everyone has loaded the map and that the game can start
 	CLoadedGameMessage loaded;
 	loaded.m_CurrentTurn = 0;
-	Broadcast(&loaded, { NSS_PREGAME });
+
+	// Notice the changedSession is still in the NSS_PREGAME state
+	Broadcast(&loaded, { NSS_PREGAME, NSS_INGAME });
 
 	m_State = SERVER_STATE_INGAME;
 }
