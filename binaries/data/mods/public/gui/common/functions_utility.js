@@ -132,7 +132,7 @@ function timeToString(time)
 		var format = translate("mm:ss");
 	else
 		var format = translate("HH:mm:ss");
-	return Engine.FormatMillisecondsIntoDateString(time, format);
+	return Engine.FormatMillisecondsIntoDateStringGMT(time, format);
 }
 
 function removeDupes(array)

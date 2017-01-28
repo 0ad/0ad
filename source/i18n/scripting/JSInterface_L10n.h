@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -172,7 +172,29 @@ namespace JSI_L10n
 	 * @sa http://en.wikipedia.org/wiki/Unix_time
 	 * @sa https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1#TOC-Date-Field-Symbol-Table
 	 */
-	std::wstring FormatMillisecondsIntoDateString(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), UDate milliseconds, const std::wstring& formatString);
+	std::wstring FormatMillisecondsIntoDateStringLocal(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), UDate milliseconds, const std::wstring& formatString);
+
+	/**
+	* Returns the specified date in GMT using the specified date format.
+	*
+	* This is a JavaScript interface to
+	* L10n::FormatMillisecondsIntoDateString().
+	*
+	* @param pCxPrivate JavaScript context.
+	* @param milliseconds Date specified as a UNIX timestamp in milliseconds
+	*        (not seconds). If you have a JavaScript @c ​Date object, you can
+	*        use @c ​Date.getTime() to obtain the UNIX time in milliseconds.
+	* @param formatString Date format string defined using ICU date formatting
+	*        symbols. Usually, you internationalize the format string and
+	*        get it translated before you pass it to
+	*        FormatMillisecondsIntoDateString().
+	* @return String containing the specified date with the specified date
+	*         format.
+	*
+	* @sa http://en.wikipedia.org/wiki/Unix_time
+	* @sa https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1#TOC-Date-Field-Symbol-Table
+	*/
+	std::wstring FormatMillisecondsIntoDateStringGMT(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), UDate milliseconds, const std::wstring& formatString);
 
 	/**
 	 * Returns the specified floating-point number as a string, with the number

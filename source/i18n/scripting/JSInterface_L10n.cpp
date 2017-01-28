@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -69,9 +69,15 @@ std::wstring JSI_L10n::GetFallbackToAvailableDictLocale(ScriptInterface::CxPriva
 }
 
 // Return a localized version of a time given in milliseconds.
-std::wstring JSI_L10n::FormatMillisecondsIntoDateString(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), UDate milliseconds, const std::wstring& formatString)
+std::wstring JSI_L10n::FormatMillisecondsIntoDateStringLocal(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), UDate milliseconds, const std::wstring& formatString)
 {
-	return wstring_from_utf8(g_L10n.FormatMillisecondsIntoDateString(milliseconds, utf8_from_wstring(formatString)));
+	return wstring_from_utf8(g_L10n.FormatMillisecondsIntoDateString(milliseconds, utf8_from_wstring(formatString), true));
+}
+
+// Return a localized version of a duration or a time in GMT given in milliseconds.
+std::wstring JSI_L10n::FormatMillisecondsIntoDateStringGMT(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), UDate milliseconds, const std::wstring& formatString)
+{
+	return wstring_from_utf8(g_L10n.FormatMillisecondsIntoDateString(milliseconds, utf8_from_wstring(formatString), false));
 }
 
 // Return a localized version of the given decimal number.
@@ -159,7 +165,8 @@ void JSI_L10n::RegisterScriptFunctions(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<std::wstring, std::string, std::wstring, std::wstring, int, &TranslatePluralWithContext>("TranslatePluralWithContext");
 	scriptInterface.RegisterFunction<std::wstring, std::wstring, &TranslateLines>("TranslateLines");
 	scriptInterface.RegisterFunction<std::vector<std::wstring>, std::vector<std::wstring>, &TranslateArray>("TranslateArray");
-	scriptInterface.RegisterFunction<std::wstring, UDate, std::wstring, &FormatMillisecondsIntoDateString>("FormatMillisecondsIntoDateString");
+	scriptInterface.RegisterFunction<std::wstring, UDate, std::wstring, &FormatMillisecondsIntoDateStringLocal>("FormatMillisecondsIntoDateStringLocal");
+	scriptInterface.RegisterFunction<std::wstring, UDate, std::wstring, &FormatMillisecondsIntoDateStringGMT>("FormatMillisecondsIntoDateStringGMT");
 	scriptInterface.RegisterFunction<std::wstring, double, &FormatDecimalNumberIntoString>("FormatDecimalNumberIntoString");
 
 	scriptInterface.RegisterFunction<std::vector<std::string>, &GetSupportedLocaleBaseNames>("GetSupportedLocaleBaseNames");

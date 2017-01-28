@@ -1,4 +1,4 @@
-/* Copyright (c) 2016 Wildfire Games
+/* Copyright (c) 2017 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -360,7 +360,7 @@ UDate L10n::ParseDateTime(const std::string& dateTimeString, const std::string& 
 	return date;
 }
 
-std::string L10n::LocalizeDateTime(const UDate& dateTime, const DateTimeType& type, const DateFormat::EStyle& style) const
+std::string L10n::LocalizeDateTime(const UDate dateTime, const DateTimeType& type, const DateFormat::EStyle& style) const
 {
 	UnicodeString utf16Date;
 
@@ -375,7 +375,7 @@ std::string L10n::LocalizeDateTime(const UDate& dateTime, const DateTimeType& ty
 	return std::string(utf8Date, sink.NumberOfBytesWritten());
 }
 
-std::string L10n::FormatMillisecondsIntoDateString(const UDate& milliseconds, const std::string& formatString) const
+std::string L10n::FormatMillisecondsIntoDateString(const UDate milliseconds, const std::string& formatString, bool useLocalTimezone) const
 {
 	UErrorCode status = U_ZERO_ERROR;
 	UnicodeString dateString;
@@ -386,7 +386,7 @@ std::string L10n::FormatMillisecondsIntoDateString(const UDate& milliseconds, co
 	if (U_FAILURE(status))
 		LOGERROR("Error creating SimpleDateFormat: %s", u_errorName(status));
 
-	const TimeZone* timeZone = TimeZone::createDefault();
+	const TimeZone* timeZone = useLocalTimezone ? TimeZone::createDefault() : TimeZone::getGMT() ;
 
 	status = U_ZERO_ERROR;
 	Calendar* calendar = Calendar::createInstance(*timeZone, currentLocale, status);
