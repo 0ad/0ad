@@ -120,7 +120,23 @@ m.createTerritoryMap = function(gameState)
 	return ret;
 };
 
-/** flag cells around the border of the map (2 if all points into that cell are inaccessible, 1 otherwise) */
+/**
+ *  The borderMap contains some border and frontier information:
+ *  - border of the map filled once:
+ *     - all mini-cells (1x1) from the big cell (8x8) inaccessibles => bit 0
+ *     - inside a given distance to the border                      => bit 1
+ *  - frontier of our territory (updated regularly in updateFrontierMap)
+ *     - narrow border (inside our territory)                       => bit 2
+ *     - large border (inside our territory, exclusive of narrow)   => bit 3
+ */
+
+m.outside_Mask = 1;
+m.border_Mask = 2;
+m.fullBorder_Mask = m.outside_Mask | m.border_Mask;
+m.narrowFrontier_Mask = 4;
+m.largeFrontier_Mask = 8;
+m.fullFrontier_Mask = m.narrowFrontier_Mask | m.largeFrontier_Mask;
+
 m.createBorderMap = function(gameState)
 {
 	let map = new API3.Map(gameState.sharedScript, "territory");
@@ -139,13 +155,13 @@ m.createBorderMap = function(gameState)
 			let radius = dx*dx + dy*dy;
 			if (radius < radcut)
 				continue;
-			map.map[j] = 2;
+			map.map[j] = m.outside_Mask;
 			let ind = API3.getMapIndices(j, map, passabilityMap);
 			for (let k of ind)
 			{
 				if (passabilityMap.data[k] & obstructionMask)
 					continue;
-				map.map[j] = 1;
+				map.map[j] = m.border_Mask;
 				break;
 			}
 		}
@@ -159,13 +175,13 @@ m.createBorderMap = function(gameState)
 			let iy = Math.floor(j/width);
 			if (ix < border || ix >= borderCut || iy < border || iy >= borderCut)
 			{
-				map.map[j] = 2;
+				map.map[j] = m.outside_Mask;
 				let ind = API3.getMapIndices(j, map, passabilityMap);
 				for (let k of ind)
 				{
 					if (passabilityMap.data[k] & obstructionMask)
 						continue;
-					map.map[j] = 1;
+					map.map[j] = m.border_Mask;
 					break;
 				}
 			}
@@ -173,61 +189,6 @@ m.createBorderMap = function(gameState)
 	}
 
 //	map.dumpIm("border.png", 5);
-	return map;
-};
-
-/** map of our frontier : 2 means narrow border, 1 means large border */
-m.createFrontierMap = function(gameState)
-{
-	let alliedVictory = gameState.getAlliedVictory();
-	let territoryMap = gameState.ai.HQ.territoryMap;
-	let borderMap = gameState.ai.HQ.borderMap;
-	const around = [ [-0.7,0.7], [0,1], [0.7,0.7], [1,0], [0.7,-0.7], [0,-1], [-0.7,-0.7], [-1,0] ];
-
-	let map = new API3.Map(gameState.sharedScript, "territory");
-	let width = map.width;
-	let insideSmall = Math.round(45 / map.cellSize);
-	let insideLarge = Math.round(80 / map.cellSize);	// should be about the range of towers
-
-	for (let j = 0; j < territoryMap.length; ++j)
-	{
-		if (territoryMap.getOwnerIndex(j) !== PlayerID || borderMap.map[j] > 1)
-			continue;
-		let ix = j%width;
-		let iz = Math.floor(j/width);
-		for (let a of around)
-		{
-			let jx = ix + Math.round(insideSmall*a[0]);
-			if (jx < 0 || jx >= width)
-				continue;
-			let jz = iz + Math.round(insideSmall*a[1]);
-			if (jz < 0 || jz >= width)
-				continue;
-			if (borderMap.map[jx+width*jz] > 1)
-				continue;
-			let territoryOwner = territoryMap.getOwnerIndex(jx+width*jz);
-			let safe = (alliedVictory && gameState.isPlayerAlly(territoryOwner)) || territoryOwner === PlayerID;
-			if (!safe)
-			{
-				map.map[j] = 2;
-				break;
-			}
-			jx = ix + Math.round(insideLarge*a[0]);
-			if (jx < 0 || jx >= width)
-				continue;
-			jz = iz + Math.round(insideLarge*a[1]);
-			if (jz < 0 || jz >= width)
-				continue;
-			if (borderMap.map[jx+width*jz] > 1)
-				continue;
-			territoryOwner = territoryMap.getOwnerIndex(jx+width*jz);
-			safe = (alliedVictory && gameState.isPlayerAlly(territoryOwner)) || territoryOwner === PlayerID;
-			if (!safe)
-				map.map[j] = 1;
-		}
-	}
-
-//    m.debugMap(gameState, map);
 	return map;
 };
 

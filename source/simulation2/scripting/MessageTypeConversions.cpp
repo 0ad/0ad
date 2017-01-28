@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -455,6 +455,24 @@ CMessage* CMessageVisionRangeChanged::FromJSVal(ScriptInterface& scriptInterface
 	GET_MSG_PROPERTY(entity_pos_t, oldRange);
 	GET_MSG_PROPERTY(entity_pos_t, newRange);
 	return new CMessageVisionRangeChanged(entity, oldRange, newRange);
+}
+
+JS::Value CMessageVisionSharingChanged::ToJSVal(ScriptInterface& scriptInterface) const
+{
+	TOJSVAL_SETUP();
+	SET_MSG_PROPERTY(entity);
+	SET_MSG_PROPERTY(player);
+	SET_MSG_PROPERTY(add);
+	return JS::ObjectValue(*obj);
+}
+
+CMessage* CMessageVisionSharingChanged::FromJSVal(ScriptInterface& scriptInterface, JS::HandleValue val)
+{
+	FROMJSVAL_SETUP();
+	GET_MSG_PROPERTY(entity_id_t, entity);
+	GET_MSG_PROPERTY(player_id_t, player);
+	GET_MSG_PROPERTY(bool, add);
+	return new CMessageVisionSharingChanged(entity, player, add);
 }
 
 ////////////////////////////////

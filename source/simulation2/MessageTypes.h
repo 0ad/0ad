@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -478,9 +478,9 @@ public:
 	DEFAULT_MESSAGE_IMPL(ValueModification)
 
 	CMessageValueModification(const std::vector<entity_id_t>& entities, std::wstring component, const std::vector<std::wstring>& valueNames) :
-	entities(entities),
-	component(component),
-	valueNames(valueNames)
+		entities(entities),
+		component(component),
+		valueNames(valueNames)
 	{
 	}
 
@@ -498,9 +498,9 @@ public:
 	DEFAULT_MESSAGE_IMPL(TemplateModification)
 
 	CMessageTemplateModification(player_id_t player, std::wstring component, const std::vector<std::wstring>& valueNames) :
-	player(player),
-	component(component),
-	valueNames(valueNames)
+		player(player),
+		component(component),
+		valueNames(valueNames)
 	{
 	}
 
@@ -518,13 +518,31 @@ public:
 	DEFAULT_MESSAGE_IMPL(VisionRangeChanged)
 
 	CMessageVisionRangeChanged(entity_id_t entity, entity_pos_t oldRange, entity_pos_t newRange) :
-	entity(entity), oldRange(oldRange), newRange(newRange)
+		entity(entity), oldRange(oldRange), newRange(newRange)
 	{
 	}
 
 	entity_id_t entity;
 	entity_pos_t oldRange;
 	entity_pos_t newRange;
+};
+
+/**
+ * Sent by CCmpVision when an entity's vision sharing changes.
+ */
+class CMessageVisionSharingChanged : public CMessage
+{
+public:
+	DEFAULT_MESSAGE_IMPL(VisionSharingChanged)
+
+	CMessageVisionSharingChanged(entity_id_t entity, player_id_t player, bool add) :
+		entity(entity), player(player), add(add)
+	{
+	}
+
+	entity_id_t entity;
+	player_id_t player;
+	bool add;
 };
 
 /**

@@ -25,6 +25,7 @@
 # JulioBianor <mr.logan1@yahoo.com.br>, 2014
 # Leonardo Augusto Suzin <leonardosuzin@gmail.com>, 2014
 # Leonardo Tada Antunes <leonardo_tada@hotmail.com>, 2014
+# Lourenço Gaiteiro <loredal@gmail.com>, 2017
 # Lucas Simões <inactive+kaslusimoes@transifex.com>, 2013
 # Marcelo Augusto Kniss <marcelo.kniss@outlook.com>, 2016
 # Marcos Correa <mcorrea.jr28@gmail.com>, 2014
@@ -51,8 +52,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-01-09 09:02+0100\n"
-"PO-Revision-Date: 2017-01-09 09:35+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-01-24 17:09+0000\n"
+"Last-Translator: Lourenço Gaiteiro <loredal@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -309,7 +310,7 @@ msgstr "%(player)s está retornando ao jogo."
 #: gui/session/messages.js:88
 #, javascript-format
 msgid "%(player)s is starting to join the game."
-msgstr ""
+msgstr "%(player)s está entrando no jogo."
 
 #: gui/session/messages.js:92
 #, javascript-format
@@ -326,7 +327,7 @@ msgstr "%(player)s retornou ao jogo."
 #: gui/session/messages.js:101
 #, javascript-format
 msgid "%(player)s has joined the game."
-msgstr ""
+msgstr "%(player)s entrou no jogo."
 
 #: gui/session/messages.js:107
 #, javascript-format
@@ -765,13 +766,13 @@ msgstr "%(population)s %(neededSlots)s"
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(number)s entidade da classe %(class)s"
+msgstr[1] "%(number)s entidades da classe %(class)s"
 
 #: gui/session/selection_panels.js:865
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
-msgstr ""
+msgstr "Remanescente: %(entityCounts)s"
 
 #: gui/session/selection_panels.js:1174
 #, javascript-format
@@ -940,7 +941,7 @@ msgstr "DERROTADO!"
 
 #: gui/session/session.js:746
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: gui/session/session.js:797
 msgctxt "replayFinished"

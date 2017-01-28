@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -136,6 +136,22 @@ static inline bool IsVisibilityDirty(u16 dirty, player_id_t player)
 }
 
 /**
+ * Test whether a player share this vision
+ */
+static inline bool HasVisionSharing(u16 visionSharing, player_id_t player)
+{
+	return visionSharing & 1 << (player-1);
+}
+
+/**
+ * Computes the shared vision mask for the player
+ */
+static inline u16 CalcVisionSharingMask(player_id_t player)
+{
+	return 1 << (player-1);
+}
+
+/**
  * Checks whether v is in a parabolic range of (0,0,0)
  * The highest point of the paraboloid is (0,range/2,0)
  * and the circle of distance 'range' around (0,0,0) on height y=0 is part of the paraboloid
@@ -178,23 +194,25 @@ static std::map<entity_id_t, EntityParabolicRangeOutline> ParabolicRangesOutline
 struct EntityData
 {
 	EntityData() :
-		visibilities(0), size(0),
+		visibilities(0), size(0), visionSharing(0),
 		owner(-1), retainInFog(0), inWorld(0), revealShore(0),
-		flags(1), scriptedVisibility(0)
+		flags(1), scriptedVisibility(0), sharedVision(0)
 		{ }
 	entity_pos_t x, z;
 	entity_pos_t visionRange;
 	u32 visibilities; // 2-bit visibility, per player
 	u32 size;
+	u16 visionSharing; // 1-bit per player
 	i8 owner;
 	u8 retainInFog; // boolean
 	u8 inWorld; // boolean
 	u8 revealShore; // boolean
 	u8 flags; // See GetEntityFlagMask
 	u8 scriptedVisibility; // boolean, see ComputeLosVisibility
+	u8 sharedVision; // boolean for shared vision
 };
 
-cassert(sizeof(EntityData) == 28);
+cassert(sizeof(EntityData) == 32);
 
 /**
  * Serialization helper template for Query
@@ -248,12 +266,14 @@ struct SerializeEntityData
 		serialize.NumberFixed_Unbounded("vision", value.visionRange);
 		serialize.NumberU32_Unbounded("visibilities", value.visibilities);
 		serialize.NumberU32_Unbounded("size", value.size);
+		serialize.NumberU16_Unbounded("vision sharing", value.visionSharing);
 		serialize.NumberI8_Unbounded("owner", value.owner);
 		serialize.NumberU8("retain in fog", value.retainInFog, 0, 1);
 		serialize.NumberU8("in world", value.inWorld, 0, 1);
 		serialize.NumberU8("reveal shore", value.revealShore, 0, 1);
 		serialize.NumberU8_Unbounded("flags", value.flags);
 		serialize.NumberU8("scripted visibility", value.scriptedVisibility, 0, 1);
+		serialize.NumberU8("shared vision", value.sharedVision, 0, 1);
 	}
 };
 
@@ -304,6 +324,7 @@ public:
 		componentManager.SubscribeGloballyToMessageType(MT_OwnershipChanged);
 		componentManager.SubscribeGloballyToMessageType(MT_Destroy);
 		componentManager.SubscribeGloballyToMessageType(MT_VisionRangeChanged);
+		componentManager.SubscribeGloballyToMessageType(MT_VisionSharingChanged);
 
 		componentManager.SubscribeToMessageType(MT_Deserialized);
 		componentManager.SubscribeToMessageType(MT_Update);
@@ -524,7 +545,10 @@ public:
 					CFixedVector2D from(it->second.x, it->second.z);
 					CFixedVector2D to(msgData.x, msgData.z);
 					m_Subdivision.Move(ent, from, to, it->second.size);
-					LosMove(it->second.owner, it->second.visionRange, from, to);
+					if (it->second.sharedVision)
+						SharingLosMove(it->second.visionSharing, it->second.visionRange, from, to);
+					else
+						LosMove(it->second.owner, it->second.visionRange, from, to);
 					i32 oldLosTile = PosToLosTilesHelper(it->second.x, it->second.z);
 					i32 newLosTile = PosToLosTilesHelper(msgData.x, msgData.z);
 					if (oldLosTile != newLosTile)
@@ -537,7 +561,10 @@ public:
 				{
 					CFixedVector2D to(msgData.x, msgData.z);
 					m_Subdivision.Add(ent, to, it->second.size);
-					LosAdd(it->second.owner, it->second.visionRange, to);
+					if (it->second.sharedVision)
+						SharingLosAdd(it->second.visionSharing, it->second.visionRange, to);
+					else
+						LosAdd(it->second.owner, it->second.visionRange, to);
 					AddToTile(PosToLosTilesHelper(msgData.x, msgData.z), ent);
 				}
 
@@ -551,7 +578,10 @@ public:
 				{
 					CFixedVector2D from(it->second.x, it->second.z);
 					m_Subdivision.Remove(ent, from, it->second.size);
-					LosRemove(it->second.owner, it->second.visionRange, from);
+					if (it->second.sharedVision)
+						SharingLosRemove(it->second.visionSharing, it->second.visionRange, from);
+					else
+						LosRemove(it->second.owner, it->second.visionRange, from);
 					RemoveFromTile(PosToLosTilesHelper(it->second.x, it->second.z), ent);
 				}
 
@@ -577,9 +607,14 @@ public:
 
 			if (it->second.inWorld)
 			{
-				CFixedVector2D pos(it->second.x, it->second.z);
-				LosRemove(it->second.owner, it->second.visionRange, pos);
-				LosAdd(msgData.to, it->second.visionRange, pos);
+				// Entity vision is taken into account in VisionSharingChanged
+				// when sharing component activated
+				if (!it->second.sharedVision)
+				{
+					CFixedVector2D pos(it->second.x, it->second.z);
+					LosRemove(it->second.owner, it->second.visionRange, pos);
+					LosAdd(msgData.to, it->second.visionRange, pos);
+				}
 
 				if (it->second.revealShore)
 				{
@@ -638,15 +673,63 @@ public:
 
 			// If the range changed and the entity's in-world, we need to manually adjust it
 			//	but if it's not in-world, we only need to set the new vision range
-			CFixedVector2D pos(it->second.x, it->second.z);
-			if (it->second.inWorld)
-				LosRemove(it->second.owner, oldRange, pos);
 
 			it->second.visionRange = newRange;
 
 			if (it->second.inWorld)
-				LosAdd(it->second.owner, newRange, pos);
+			{
+				CFixedVector2D pos(it->second.x, it->second.z);
+				if (it->second.sharedVision)
+				{
+					SharingLosRemove(it->second.visionSharing, oldRange, pos);
+					SharingLosAdd(it->second.visionSharing, newRange, pos);
+				}
+				else
+				{
+					LosRemove(it->second.owner, oldRange, pos);
+					LosAdd(it->second.owner, newRange, pos);
+				}
+			}
 
+			break;
+		}
+		case MT_VisionSharingChanged:
+		{
+			const CMessageVisionSharingChanged& msgData = static_cast<const CMessageVisionSharingChanged&> (msg);
+			entity_id_t ent = msgData.entity;
+
+			EntityMap<EntityData>::iterator it = m_EntityData.find(ent);
+
+			// Ignore if we're not already tracking this entity
+			if (it == m_EntityData.end())
+				break;
+
+			ENSURE(msgData.player > 0 && msgData.player < MAX_LOS_PLAYER_ID+1);
+			u16 visionChanged = CalcVisionSharingMask(msgData.player);
+
+			if (!it->second.sharedVision)
+			{
+				// Activation of the Vision Sharing
+				ENSURE(it->second.owner == (i8)msgData.player);
+				it->second.visionSharing = visionChanged;
+				it->second.sharedVision = 1;
+				break;
+			}
+
+			if (it->second.inWorld)
+			{
+				entity_pos_t range = it->second.visionRange;
+				CFixedVector2D pos(it->second.x, it->second.z);
+				if (msgData.add)
+					LosAdd(msgData.player, range, pos);
+				else
+					LosRemove(msgData.player, range, pos);
+			}
+
+			if (msgData.add)
+				it->second.visionSharing |= visionChanged;
+			else
+				it->second.visionSharing &= ~visionChanged;
 			break;
 		}
 		case MT_Update:
@@ -767,7 +850,10 @@ public:
 		for (EntityMap<EntityData>::const_iterator it = m_EntityData.begin(); it != m_EntityData.end(); ++it)
 			if (it->second.inWorld)
 			{
-				LosAdd(it->second.owner, it->second.visionRange, CFixedVector2D(it->second.x, it->second.z));
+				if (it->second.sharedVision)
+					SharingLosAdd(it->second.visionSharing, it->second.visionRange, CFixedVector2D(it->second.x, it->second.z));
+				else
+					LosAdd(it->second.owner, it->second.visionRange, CFixedVector2D(it->second.x, it->second.z));
 				AddToTile(PosToLosTilesHelper(it->second.x, it->second.z), it->first);
 
 				if (it->second.revealShore)
@@ -2260,12 +2346,32 @@ public:
 		LosUpdateHelper<true>((u8)owner, visionRange, pos);
 	}
 
+	void SharingLosAdd(u16 visionSharing, entity_pos_t visionRange, CFixedVector2D pos)
+	{
+		if (visionRange.IsZero())
+			return;
+
+		for (player_id_t i = 1; i < MAX_LOS_PLAYER_ID+1; ++i)
+			if (HasVisionSharing(visionSharing, i))
+				LosAdd(i, visionRange, pos);
+	}
+
 	void LosRemove(player_id_t owner, entity_pos_t visionRange, CFixedVector2D pos)
 	{
 		if (visionRange.IsZero() || owner <= 0 || owner > MAX_LOS_PLAYER_ID)
 			return;
 
 		LosUpdateHelper<false>((u8)owner, visionRange, pos);
+	}
+
+	void SharingLosRemove(u16 visionSharing, entity_pos_t visionRange, CFixedVector2D pos)
+	{
+		if (visionRange.IsZero())
+			return;
+
+		for (player_id_t i = 1; i < MAX_LOS_PLAYER_ID+1; ++i)
+			if (HasVisionSharing(visionSharing, i))
+				LosRemove(i, visionRange, pos);
 	}
 
 	void LosMove(player_id_t owner, entity_pos_t visionRange, CFixedVector2D from, CFixedVector2D to)
@@ -2276,13 +2382,22 @@ public:
 		if ((from - to).CompareLength(visionRange) > 0)
 		{
 			// If it's a very large move, then simply remove and add to the new position
-
 			LosUpdateHelper<false>((u8)owner, visionRange, from);
 			LosUpdateHelper<true>((u8)owner, visionRange, to);
 		}
 		else
 			// Otherwise use the version optimised for mostly-overlapping circles
 			LosUpdateHelperIncremental((u8)owner, visionRange, from, to);
+	}
+
+	void SharingLosMove(u16 visionSharing, entity_pos_t visionRange, CFixedVector2D from, CFixedVector2D to)
+	{
+		if (visionRange.IsZero())
+			return;
+
+		for (player_id_t i = 1; i < MAX_LOS_PLAYER_ID+1; ++i)
+			if (HasVisionSharing(visionSharing, i))
+				LosMove(i, visionRange, from, to);
 	}
 
 	virtual u8 GetPercentMapExplored(player_id_t player) const
