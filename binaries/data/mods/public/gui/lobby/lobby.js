@@ -436,10 +436,7 @@ function updateProfile()
 {
 	let attributes = Engine.GetProfile()[0];
 
-	let user = sprintf(translate("%(nick)s (%(rating)s)"), {
-		"nick": attributes.player,
-		"rating": attributes.rating
-	});
+	let user = colorPlayerName(attributes.player, attributes.rating);
 
 	if (!Engine.GetGUIObjectByName("profileFetch").hidden)
 	{
@@ -1114,11 +1111,17 @@ function getPlayerColor(playername)
  * Returns the given playername wrapped in an appropriate color-tag.
  *
  *  @param {string} playername
+ *  @param {string} rating
  */
-function colorPlayerName(playername)
+function colorPlayerName(playername, rating)
 {
 	return '[color="' + getPlayerColor(playername.replace(g_ModeratorPrefix, "")) + '"]' +
-		playername + '[/color]';
+		(rating ? sprintf(
+			translate("%(nick)s (%(rating)s)"), {
+				"nick": playername,
+				"rating": rating
+			}) :
+		playername) + '[/color]';
 }
 
 function senderFont(text)
