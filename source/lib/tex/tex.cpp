@@ -1,4 +1,4 @@
-/* Copyright (c) 2015 Wildfire Games
+/* Copyright (c) 2017 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -733,7 +733,7 @@ Status Tex::decode(const shared_ptr<u8>& Data, size_t DataSize)
 	m_DataSize = DataSize;
 	m_Ofs = hdr_size;
 
-	RETURN_STATUS_IF_ERR(c->decode((rpU8)Data.get(), DataSize, this));
+	RETURN_STATUS_IF_ERR(c->decode(Data.get(), DataSize, this));
 
 	// sanity checks
 	if(!m_Width || !m_Height || m_Bpp > 32)
