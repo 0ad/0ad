@@ -360,7 +360,7 @@ function moveCurrItem(objectName, up)
 function areDependenciesMet(mod)
 {
 	var guiObject = Engine.GetGUIObjectByName("message");
-	for each (var dependency in g_mods[mod].dependencies)
+	for (var dependency of g_mods[mod].dependencies)
 	{
 		if (isDependencyMet(dependency))
 			continue;
@@ -397,7 +397,7 @@ function isDependencyMet(dependency_idAndVersion, modsEnabled = null)
 		var dependency_id = dependency_idAndVersion;
 
 	// modsEnabled_key currently is the mod folder name.
-	for each (var modsEnabled_key in modsEnabled)
+	for (var modsEnabled_key of modsEnabled)
 	{
 		var modJson = g_mods[modsEnabled_key];
 		if (modJson.name != dependency_id)

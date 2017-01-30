@@ -1738,23 +1738,23 @@ function unloadTemplate(template)
 
 function unloadSelection()
 {
-	var parent = 0;
-	var ents = [];
-	for each (var ent in g_Selection.selected)
+	let parent = 0;
+	let ents = [];
+	for (let ent in g_Selection.selected)
 	{
-		var state = GetExtendedEntityState(ent);
+		let state = GetExtendedEntityState(+ent);
 		if (!state || !state.turretParent)
 			continue;
 		if (!parent)
 		{
 			parent = state.turretParent;
-			ents.push(ent);
+			ents.push(+ent);
 		}
 		else if (state.turretParent == parent)
-			ents.push(ent);
+			ents.push(+ent);
 	}
 	if (parent)
-		Engine.PostNetworkCommand({ "type": "unload", "entities":ents, "garrisonHolder": parent });
+		Engine.PostNetworkCommand({ "type": "unload", "entities": ents, "garrisonHolder": parent });
 }
 
 function unloadAllByOwner()

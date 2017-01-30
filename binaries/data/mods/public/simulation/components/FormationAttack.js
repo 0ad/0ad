@@ -25,7 +25,7 @@ FormationAttack.prototype.GetRange = function(target)
 		return result;
 	}
 	var members = cmpFormation.GetMembers();
-	for each (var ent in members)
+	for (var ent of members)
 	{
 		var cmpAttack = Engine.QueryInterface(ent, IID_Attack);
 		if (!cmpAttack)

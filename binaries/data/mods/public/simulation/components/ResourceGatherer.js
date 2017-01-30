@@ -68,7 +68,7 @@ ResourceGatherer.prototype.GetCarryingStatus = function()
  */
 ResourceGatherer.prototype.GiveResources = function(resources)
 {
-	for each (let resource in resources)
+	for (let resource of resources)
 	{
 		this.carrying[resource.type] = +(resource.amount);
 	}
@@ -307,7 +307,7 @@ ResourceGatherer.prototype.CommitResources = function(types)
 	let cmpPlayer = QueryOwnerInterface(this.entity);
 
 	if (cmpPlayer)
-		for each (let type in types)
+		for (let type of types)
 			if (type in this.carrying)
 			{
 				cmpPlayer.AddResource(type, this.carrying[type]);

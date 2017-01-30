@@ -829,7 +829,7 @@ GuiInterface.prototype.GetFormationInfoFromTemplate = function(player, data)
 
 GuiInterface.prototype.IsFormationSelected = function(player, data)
 {
-	for each (let ent in data.ents)
+	for (let ent of data.ents)
 	{
 		let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 		// GetLastFormationName is named in a strange way as it (also) is
@@ -842,7 +842,7 @@ GuiInterface.prototype.IsFormationSelected = function(player, data)
 
 GuiInterface.prototype.IsStanceSelected = function(player, data)
 {
-	for each (let ent in data.ents)
+	for (let ent of data.ents)
 	{
 		let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 		if (cmpUnitAI && cmpUnitAI.GetStanceName() == data.stance)
@@ -854,7 +854,7 @@ GuiInterface.prototype.IsStanceSelected = function(player, data)
 GuiInterface.prototype.GetAllBuildableEntities = function(player, cmd)
 {
 	let buildableEnts = [];
-	for each (let ent in cmd.entities)
+	for (let ent of cmd.entities)
 	{
 		let cmpBuilder = Engine.QueryInterface(ent, IID_Builder);
 		if (!cmpBuilder)
@@ -871,7 +871,7 @@ GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 {
 	let playerColors = {}; // cache of owner -> color map
 
-	for each (let ent in cmd.entities)
+	for (let ent of cmd.entities)
 	{
 		let cmpSelectable = Engine.QueryInterface(ent, IID_Selectable);
 		if (!cmpSelectable)
@@ -961,7 +961,7 @@ GuiInterface.prototype.DisplayRallyPoint = function(player, cmd)
 	let cmpPlayer = QueryPlayerIDInterface(player);
 
 	// If there are some rally points already displayed, first hide them
-	for each (let ent in this.entsRallyPointsDisplayed)
+	for (let ent of this.entsRallyPointsDisplayed)
 	{
 		let cmpRallyPointRenderer = Engine.QueryInterface(ent, IID_RallyPointRenderer);
 		if (cmpRallyPointRenderer)
@@ -971,7 +971,7 @@ GuiInterface.prototype.DisplayRallyPoint = function(player, cmd)
 	this.entsRallyPointsDisplayed = [];
 
 	// Show the rally points for the passed entities
-	for each (let ent in cmd.entities)
+	for (let ent of cmd.entities)
 	{
 		let cmpRallyPointRenderer = Engine.QueryInterface(ent, IID_RallyPointRenderer);
 		if (!cmpRallyPointRenderer)
@@ -1008,7 +1008,7 @@ GuiInterface.prototype.DisplayRallyPoint = function(player, cmd)
 
 			// rebuild the renderer when not set (when reading saved game or in case of building update)
 			else if (!cmpRallyPointRenderer.IsSet())
-				for each (let posi in cmpRallyPoint.GetPositions())
+				for (let posi of cmpRallyPoint.GetPositions())
 					cmpRallyPointRenderer.AddPosition({ 'x': posi.x, 'y': posi.z });
 
 			cmpRallyPointRenderer.SetDisplayed(true);
@@ -1188,7 +1188,7 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 		// we're clearing the preview, clear the entity cache and bail
 		for (let tpl in this.placementWallEntities)
 		{
-			for each (let ent in this.placementWallEntities[tpl].entities)
+			for (let ent of this.placementWallEntities[tpl].entities)
 				Engine.DestroyEntity(ent);
 
 			this.placementWallEntities[tpl].numUsed = 0;
@@ -1203,7 +1203,7 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 		// Move all existing cached entities outside of the world and reset their use count
 		for (let tpl in this.placementWallEntities)
 		{
-			for each (let ent in this.placementWallEntities[tpl].entities)
+			for (let ent of this.placementWallEntities[tpl].entities)
 			{
 				let pos = Engine.QueryInterface(ent, IID_Position);
 				if (pos)
@@ -1214,8 +1214,9 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 		}
 
 		// Create cache entries for templates we haven't seen before
-		for each (let tpl in wallSet.templates)
+		for (let type in wallSet.templates)
 		{
+			let tpl = wallSet.templates[type];
 			if (!(tpl in this.placementWallEntities))
 			{
 				this.placementWallEntities[tpl] = {
@@ -1642,7 +1643,7 @@ GuiInterface.prototype.GetFoundationSnapData = function(player, data)
 		let minDistEntitySnapData = null;
 		let radius2 = data.snapRadius * data.snapRadius;
 
-		for each (let ent in data.snapEntities)
+		for (let ent of data.snapEntities)
 		{
 			let cmpPosition = Engine.QueryInterface(ent, IID_Position);
 			if (!cmpPosition || !cmpPosition.IsInWorld())
@@ -1897,7 +1898,7 @@ GuiInterface.prototype.SetObstructionDebugOverlay = function(player, enabled)
 
 GuiInterface.prototype.SetMotionDebugOverlay = function(player, data)
 {
-	for each (let ent in data.entities)
+	for (let ent of data.entities)
 	{
 		let cmpUnitMotion = Engine.QueryInterface(ent, IID_UnitMotion);
 		if (cmpUnitMotion)
@@ -1918,7 +1919,7 @@ GuiInterface.prototype.GetTraderNumber = function(player)
 	let landTrader = { "total": 0, "trading": 0, "garrisoned": 0 };
 	let shipTrader = { "total": 0, "trading": 0 };
 
-	for each (let ent in traders)
+	for (let ent of traders)
 	{
 		let cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
 		let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);

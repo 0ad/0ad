@@ -165,7 +165,7 @@ function FSM(spec)
 		{
 			var refpath = node.split(".");
 			var refd = spec;
-			for each (var p in refpath)
+			for (var p of refpath)
 			{
 				refd = refd[p];
 				if (!refd)

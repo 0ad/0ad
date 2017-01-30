@@ -89,7 +89,7 @@ PlayerManager.prototype.GetNumPlayers = function()
 PlayerManager.prototype.RemoveAllPlayers = function()
 {
 	// Destroy existing player entities
-	for each (var id in this.playerEntities)
+	for (var id of this.playerEntities)
 		Engine.DestroyEntity(id);
 
 	this.playerEntities = [];

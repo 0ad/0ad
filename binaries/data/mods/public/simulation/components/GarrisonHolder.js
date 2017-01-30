@@ -62,17 +62,18 @@ GarrisonHolder.prototype.Init = function()
 	// Garrisoned Units
 	this.entities = [];
 	this.timer = undefined;
-	this.allowGarrisoning = {};
+	this.allowGarrisoning = new Map();
 	this.visibleGarrisonPoints = [];
 	if (this.template.VisibleGarrisonPoints)
 	{
-		for each (var offset in this.template.VisibleGarrisonPoints)
+		let points = this.template.VisibleGarrisonPoints;
+		for (let i in points)
 		{
-			var o = {};
-			o.x = +offset.X;
-			o.y = +offset.Y;
-			o.z = +offset.Z;
-			this.visibleGarrisonPoints.push({"offset":o, "entity": null});
+			let o = {};
+			o.x = +points[i].X;
+			o.y = +points[i].Y;
+			o.z = +points[i].Z;
+			this.visibleGarrisonPoints.push({ "offset": o, "entity": null });
 		}
 	}
 };
@@ -154,7 +155,7 @@ GarrisonHolder.prototype.GetHealRate = function()
  */
 GarrisonHolder.prototype.AllowGarrisoning = function(allow, callerID)
 {
-	this.allowGarrisoning[callerID] = allow;
+	this.allowGarrisoning.set(callerID, allow);
 };
 
 /**
@@ -163,11 +164,10 @@ GarrisonHolder.prototype.AllowGarrisoning = function(allow, callerID)
  */
 GarrisonHolder.prototype.IsGarrisoningAllowed = function()
 {
-	for each (var allow in this.allowGarrisoning)
-	{
+	for (let [callerID, allow] of this.allowGarrisoning)
 		if (!allow)
 			return false;
-	}
+
 	return true;
 };
 
@@ -177,7 +177,7 @@ GarrisonHolder.prototype.IsGarrisoningAllowed = function()
 GarrisonHolder.prototype.GetGarrisonedEntitiesCount = function()
 {
 	var count = 0;
-	for each (var ent in this.entities)
+	for (var ent of this.entities)
 	{
 		count++;
 		var cmpGarrisonHolder = Engine.QueryInterface(ent, IID_GarrisonHolder);
@@ -377,7 +377,7 @@ GarrisonHolder.prototype.OrderWalkToRallyPoint = function(entities)
 			// ignore the rally point if it is autogarrison
 			if (commands[0].type == "garrison" && commands[0].target == this.entity)
 				return;
-			for each (var com in commands)
+			for (var com of commands)
 			{
 				ProcessCommand(cmpOwnership.GetOwner(), com);
 			}
@@ -463,7 +463,7 @@ GarrisonHolder.prototype.UnloadTemplate = function(extendedTemplate, all, forced
 
 	var entities = [];
 	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-	for each (var entity in this.entities)
+	for (var entity of this.entities)
 	{
 		var cmpIdentity = Engine.QueryInterface(entity, IID_Identity);
 
@@ -549,7 +549,7 @@ GarrisonHolder.prototype.HealTimeout = function(data)
 	}
 	else
 	{
-		for each (var entity in this.entities)
+		for (var entity of this.entities)
 		{
 			var cmpHealth = Engine.QueryInterface(entity, IID_Health);
 			if (cmpHealth)
@@ -596,7 +596,7 @@ GarrisonHolder.prototype.OnGlobalOwnershipChanged = function(msg)
 	if (this.entity == msg.entity)
 	{
 		var entities = [];
-		for each (var entity in this.entities)
+		for (var entity of this.entities)
 		{
 			if (msg.to == -1 || !IsOwnedByMutualAllyOfEntity(this.entity, entity))
 				entities.push(entity);
@@ -694,7 +694,7 @@ GarrisonHolder.prototype.EjectOrKill = function(entities)
 
 	// And destroy all remaining entities
 	var killedEntities = [];
-	for each (var entity in entities)
+	for (var entity of entities)
 	{
 		var entityIndex = this.entities.indexOf(entity);
 		if (entityIndex == -1)
@@ -716,14 +716,12 @@ GarrisonHolder.prototype.EjectOrKill = function(entities)
  */
 GarrisonHolder.prototype.IsEjectable = function(entity)
 {
-	var ejectableClasses = this.template.EjectClassesOnDestroy._string;
+	let ejectableClasses = this.template.EjectClassesOnDestroy._string;
 	ejectableClasses = ejectableClasses ? ejectableClasses.split(/\s+/) : [];
-	var entityClasses = (Engine.QueryInterface(entity, IID_Identity)).GetClassesList();
-	for each (var ejectableClass in ejectableClasses)
-		if (entityClasses.indexOf(ejectableClass) != -1)
-			return true;
+	let entityClasses = Engine.QueryInterface(entity, IID_Identity).GetClassesList();
 
-	return false;
+	return ejectableClasses.some(
+		ejectableClass => entityClasses.indexOf(ejectableClass) != -1);
 };
 
 /**

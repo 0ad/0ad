@@ -473,7 +473,7 @@ ProductionQueue.prototype.RemoveBatch = function(id)
 ProductionQueue.prototype.GetQueue = function()
 {
 	var out = [];
-	for each (var item in this.queue)
+	for (var item of this.queue)
 	{
 		out.push({
 			"id": item.id,
@@ -648,7 +648,7 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 			if (rallyPos)
 			{
 				var commands = GetRallyPointCommands(cmpRallyPoint, spawnedEnts);
-				for each(var com in commands)
+				for (var com of commands)
 					ProcessCommand(cmpOwnership.GetOwner(), com);
 			}
 		}

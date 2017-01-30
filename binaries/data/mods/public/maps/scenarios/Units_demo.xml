@@ -13,36 +13,43 @@
 	var maxh = 0;
 	var gap = 14;
 
-	for each (var template in entityTemplates) {
-		if (template.match(/^(rubble\/|special\/|actor\|)/)) continue;
+	for (let template of entityTemplates)
+	{
+		if (template.match(/^(rubble\/|special\/|actor\|)/))
+			continue;
 
 		// Exclude common templates used for inheritance only.
-		if (template.match(/_common$/)) continue;
+		if (template.match(/_common$/))
+			continue;
 
 		print(template+"...\n");
 
 		var ent = Engine.AddEntity(template);
 
-		if (!ent) {
+		if (!ent)
+		{
 			print("Failed to load "+template+"\n");
 			continue;
 		}
 
 		var cmpFootprint = Engine.QueryInterface(ent, IID_Footprint);
-		if (!cmpFootprint) {
+		if (!cmpFootprint)
+		{
 			print(template+" has no footprint\n");
 			continue;
 		}
 		var shape = cmpFootprint.GetShape();
 		var w, h;
-		if (shape.type == 'circle') {
+		if (shape.type == 'circle')
 			w = h = shape.radius*2;
-		} else {
+		else
+		{
 			w = shape.width;
 			h = shape.depth;
 		}
 
-		if (x + w >= x1) {
+		if (x + w >= x1)
+		{
 			// Start a new row
 			x = x0;
 			z += maxh + gap;

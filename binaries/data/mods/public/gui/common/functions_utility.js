@@ -38,12 +38,9 @@ function getXMLFileList(pathname)
 
 function getJSONFileList(pathname)
 {
-	var files = Engine.BuildDirEntList(pathname, "*.json", false);
-
 	// Remove the path and extension from each name, since we just want the filename
-	files = [ n.substring(pathname.length, n.length-5) for each (n in files) ];
-
-	return files;
+	return Engine.BuildDirEntList(pathname, "*.json", false).map(
+		filename => filename.substring(pathname.length, filename.length-5));
 }
 
 // A sorting function for arrays of objects with 'name' properties, ignoring case

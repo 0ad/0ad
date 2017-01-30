@@ -52,7 +52,7 @@ function updateTimers()
 		if (g_Timers[id][0] <= g_Time)
 			run.push(id);
 	}
-	for each (var id in run)
+	for (var id of run)
 	{
 		var t = g_Timers[id];
 		if (!t)
