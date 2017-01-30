@@ -125,11 +125,8 @@ function translateMapTitle(mapTitle)
  */
 function timeToString(time)
 {
-	if (time < 1000 * 60 * 60)
-		var format = translate("mm:ss");
-	else
-		var format = translate("HH:mm:ss");
-	return Engine.FormatMillisecondsIntoDateStringGMT(time, format);
+	return Engine.FormatMillisecondsIntoDateStringGMT(time, time < 1000 * 60 * 60 ?
+		translate("mm:ss") : translate("HH:mm:ss"));
 }
 
 function removeDupes(array)
