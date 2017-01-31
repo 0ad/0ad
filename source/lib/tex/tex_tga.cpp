@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2017 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -112,7 +112,7 @@ size_t TexCodecTga::hdr_size(const u8* file) const
 
 
 // requirements: uncompressed, direct color, bottom up
-Status TexCodecTga::decode(rpU8 data, size_t UNUSED(size), Tex* RESTRICT t) const
+Status TexCodecTga::decode(u8* RESTRICT data, size_t UNUSED(size), Tex* RESTRICT t) const
 {
 	const TgaHeader* hdr = (const TgaHeader*)data;
 	const u8 type  = hdr->img_type;

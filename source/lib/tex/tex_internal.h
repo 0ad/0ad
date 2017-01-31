@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2017 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,7 +27,6 @@
 #ifndef INCLUDED_TEX_INTERNAL
 #define INCLUDED_TEX_INTERNAL
 
-#include "lib/pointer_typedefs.h"
 #include "lib/allocators/dynarray.h"
 #include "lib/file/io/io.h"	// io::Allocate
 

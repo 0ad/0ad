@@ -131,29 +131,6 @@ public:
 	 */
 	void CallConstructor(JS::HandleValue ctor, JS::HandleValueArray argv, JS::MutableHandleValue out);
 
-	/**
-	 * Call the named property on the given object, with void return type and 0 arguments
-	 */
-	bool CallFunctionVoid(JS::HandleValue val, const char* name);
-
-	/**
-	 * Call the named property on the given object, with void return type and 1 argument
-	 */
-	template<typename T0>
-	bool CallFunctionVoid(JS::HandleValue val, const char* name, const T0& a0);
-
-	/**
-	 * Call the named property on the given object, with void return type and 2 arguments
-	 */
-	template<typename T0, typename T1>
-	bool CallFunctionVoid(JS::HandleValue val, const char* name, const T0& a0, const T1& a1);
-
-	/**
-	 * Call the named property on the given object, with void return type and 3 arguments
-	 */
-	template<typename T0, typename T1, typename T2>
-	bool CallFunctionVoid(JS::HandleValue val, const char* name, const T0& a0, const T1& a1, const T2& a2);
-
 	JSObject* CreateCustomObject(const std::string & typeName) const;
 	void DefineCustomObjectType(JSClass *clasp, JSNative constructor, uint minArgs, JSPropertySpec *ps, JSFunctionSpec *fs, JSPropertySpec *static_ps, JSFunctionSpec *static_fs);
 
@@ -443,8 +420,20 @@ public:
 	//   template <R, T0..., JSClass*, TC, TR (TC:*fptr) const (T0...)>
 	//   static JSNative callMethodConst;
 	//
-	//   template <dummy, T0...>
+	//   template <T0...>
 	//   static size_t nargs();
+	//
+	//   template <R, T0...>
+	//   bool CallFunction(JS::HandleValue val, const char* name, R& ret, const T0&...) const;
+	//
+	//   template <R, T0...>
+	//   bool CallFunction(JS::HandleValue val, const char* name, JS::Rooted<R>* ret, const T0&...) const;
+	//
+	//   template <R, T0...>
+	//   bool CallFunction(JS::HandleValue val, const char* name, JS::MutableHandle<R> ret, const T0&...) const;
+	//
+	//   template <T0...>
+	//   bool CallFunctionVoid(JS::HandleValue val, const char* name, const T0&...) const;
 };
 
 // Implement those declared functions
@@ -493,45 +482,6 @@ inline JS::HandleValue ScriptInterface::AssignOrFromJSVal<JS::HandleValue>(JSCon
 {
 	ret = true;
 	return val;
-}
-
-template<typename T0>
-bool ScriptInterface::CallFunctionVoid(JS::HandleValue val, const char* name, const T0& a0)
-{
-	JSContext* cx = GetContext();
-	JSAutoRequest rq(cx);
-	JS::RootedValue jsRet(cx);
-	JS::AutoValueVector argv(cx);
-	argv.resize(1);
-	AssignOrToJSVal(cx, argv[0], a0);
-	return CallFunction_(val, name, argv, &jsRet);
-}
-
-template<typename T0, typename T1>
-bool ScriptInterface::CallFunctionVoid(JS::HandleValue val, const char* name, const T0& a0, const T1& a1)
-{
-	JSContext* cx = GetContext();
-	JSAutoRequest rq(cx);
-	JS::RootedValue jsRet(cx);
-	JS::AutoValueVector argv(cx);
-	argv.resize(2);
-	AssignOrToJSVal(cx, argv[0], a0);
-	AssignOrToJSVal(cx, argv[1], a1);
-	return CallFunction_(val, name, argv, &jsRet);
-}
-
-template<typename T0, typename T1, typename T2>
-bool ScriptInterface::CallFunctionVoid(JS::HandleValue val, const char* name, const T0& a0, const T1& a1, const T2& a2)
-{
-	JSContext* cx = GetContext();
-	JSAutoRequest rq(cx);
-	JS::RootedValue jsRet(cx);
-	JS::AutoValueVector argv(cx);
-	argv.resize(3);
-	AssignOrToJSVal(cx, argv[0], a0);
-	AssignOrToJSVal(cx, argv[1], a1);
-	AssignOrToJSVal(cx, argv[2], a2);
-	return CallFunction_(val, name, argv, &jsRet);
 }
 
 template<typename T>

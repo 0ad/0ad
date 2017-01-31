@@ -183,7 +183,7 @@ Foundation.prototype.Build = function(builderEnt, work)
 		if (collisions.length)
 		{
 			var cmpFoundationOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-			for each (var ent in collisions)
+			for (var ent of collisions)
 			{
 				var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 				if (cmpUnitAI)

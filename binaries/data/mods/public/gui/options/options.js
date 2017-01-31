@@ -8,7 +8,7 @@ function init(data)
 	g_Controls = {};
 
 	var options = Engine.ReadJSONFile("gui/options/options.json");
-	for (let category of Object.keys(options))
+	for (let category in options)
 	{
 		let lastSize;
 		for (let i = 0; i < options[category].length; ++i)
@@ -84,7 +84,7 @@ function setupControl(option, i, category)
 		let checked;
 		let keyRenderer;
 
-		for (let param of Object.keys(option.parameters))
+		for (let param in option.parameters)
 		{
 			switch (param)
 			{
@@ -140,7 +140,7 @@ function setupControl(option, i, category)
 		let minval;
 		let maxval;
 
-		for (let param of Object.keys(option.parameters))
+		for (let param in option.parameters)
 		{
 			switch (param)
 			{
@@ -192,7 +192,7 @@ function setupControl(option, i, category)
 		control = Engine.GetGUIObjectByName(category + "Dropdown[" + i + "]");
 		control.onSelectionChange = function(){};  // just the time to setup the value
 
-		for (let param of Object.keys(option.parameters))
+		for (let param in option.parameters)
 		{
 			switch (param)
 			{

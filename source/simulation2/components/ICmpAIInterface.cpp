@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,11 +32,11 @@ public:
 
 	virtual void GetRepresentation(JS::MutableHandleValue ret)
 	{
-		return m_Script.CallRef("GetRepresentation", ret);
+		m_Script.CallRef("GetRepresentation", ret);
 	}
 	virtual void GetFullRepresentation(JS::MutableHandleValue ret, bool flushEvents = false)
 	{
-		return m_Script.CallRef("GetFullRepresentation",flushEvents, ret);
+		m_Script.CallRef("GetFullRepresentation", ret, flushEvents);
 	}
 
 };

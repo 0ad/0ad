@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -45,7 +45,7 @@ class TestScriptConversions : public CxxTest::TestSuite
 		// since they might not be objects. So just use uneval.
 		std::string source;
 		JS::RootedValue global(cx, script.GetGlobalObject());
-		TS_ASSERT(script.CallFunction(global, "uneval", v1, source));
+		TS_ASSERT(script.CallFunction(global, "uneval", source, v1));
 
 		TS_ASSERT_STR_EQUALS(source, expected);
 	}
@@ -63,7 +63,7 @@ class TestScriptConversions : public CxxTest::TestSuite
 
 		std::string source;
 		JS::RootedValue global(cx, script.GetGlobalObject());
-		TS_ASSERT(script.CallFunction(global, "uneval", v1, source));
+		TS_ASSERT(script.CallFunction(global, "uneval", source, v1));
 
 		if (expected)
 			TS_ASSERT_STR_EQUALS(source, expected);
@@ -89,12 +89,12 @@ class TestScriptConversions : public CxxTest::TestSuite
 		T r;
 		JS::RootedValue r1(cx);
 
-		TS_ASSERT(script.CallFunction(u1, func.c_str(), v1, r));
+		TS_ASSERT(script.CallFunction(u1, func.c_str(), r, v1));
 		ScriptInterface::ToJSVal(cx, &r1, r);
 
 		std::string source;
 		JS::RootedValue global(cx, script.GetGlobalObject());
-		TS_ASSERT(script.CallFunction(global, "uneval", r1, source));
+		TS_ASSERT(script.CallFunction(global, "uneval", source, r1));
 
 		TS_ASSERT_STR_EQUALS(source, expected);
 	}
@@ -140,6 +140,22 @@ public:
 			roundtrip<i32>(-1073741825, "-1073741825"); // JSVAL_INT_MIN-1
 			roundtrip<u32>(1073741824, "1073741824"); // JSVAL_INT_MAX+1
 		}
+
+		roundtrip<i64>(0, "0");
+		roundtrip<i64>(123, "123");
+		roundtrip<i64>(-123, "-123");
+		roundtrip<i64>(1073741822, "1073741822"); // JSVAL_INT_MAX-1
+		roundtrip<i64>(1073741823, "1073741823"); // JSVAL_INT_MAX
+		roundtrip<i64>(-1073741823, "-1073741823"); // JSVAL_INT_MIN+1
+		roundtrip<i64>(-1073741824, "-1073741824"); // JSVAL_INT_MIN
+		roundtrip<i64>(1073741824, "1073741824"); // JSVAL_INT_MAX+1
+		roundtrip<i64>(-1073741825, "-1073741825"); // JSVAL_INT_MIN-1
+
+		roundtrip<u64>(0, "0");
+		roundtrip<u64>(123, "123");
+		roundtrip<u64>(1073741822, "1073741822"); // JSVAL_INT_MAX-1
+		roundtrip<u64>(1073741823, "1073741823"); // JSVAL_INT_MAX
+		roundtrip<u64>(1073741824, "1073741824"); // JSVAL_INT_MAX+1
 
 		std::string s1 = "test";
 		s1[1] = '\0';
@@ -202,6 +218,27 @@ public:
 		TS_ASSERT(val6.isInt32());
 		TS_ASSERT(val7.isInt32());
 		TS_ASSERT(val8.isDouble());
+
+		JS::RootedValue val9(cx), val10(cx), val11(cx), val12(cx), val13(cx), val14(cx), val15(cx), val16(cx), val17(cx);
+		ScriptInterface::ToJSVal<i64>(cx, &val9, 0);
+		ScriptInterface::ToJSVal<i64>(cx, &val10, 2147483646); // JSVAL_INT_MAX-1
+		ScriptInterface::ToJSVal<i64>(cx, &val11, 2147483647); // JSVAL_INT_MAX
+		ScriptInterface::ToJSVal<i64>(cx, &val12, -2147483647); // JSVAL_INT_MIN+1
+		ScriptInterface::ToJSVal<i64>(cx, &val13, -(i64)2147483648u); // JSVAL_INT_MIN
+		TS_ASSERT(val9.isInt32());
+		TS_ASSERT(val10.isInt32());
+		TS_ASSERT(val11.isInt32());
+		TS_ASSERT(val12.isInt32());
+		TS_ASSERT(val13.isInt32());
+
+		ScriptInterface::ToJSVal<u64>(cx, &val14, 0);
+		ScriptInterface::ToJSVal<u64>(cx, &val15, 2147483646u); // JSVAL_INT_MAX-1
+		ScriptInterface::ToJSVal<u64>(cx, &val16, 2147483647u); // JSVAL_INT_MAX
+		ScriptInterface::ToJSVal<u64>(cx, &val17, 2147483648u); // JSVAL_INT_MAX+1
+		TS_ASSERT(val14.isInt32());
+		TS_ASSERT(val15.isInt32());
+		TS_ASSERT(val16.isInt32());
+		TS_ASSERT(val17.isInt32());
 	}
 
 	void test_nonfinite()

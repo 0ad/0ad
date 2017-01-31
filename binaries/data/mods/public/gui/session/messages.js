@@ -296,14 +296,7 @@ var g_NotificationsTypes =
 		{
 			message.translateParameters = notification.translateParameters;
 			message.parameters = notification.parameters;
-			// special case for formatting of player names which are transmitted as _player_num
-			for (let param in message.parameters)
-			{
-				if (!param.startsWith("_player_"))
-					continue;
-
-				message.parameters[param] = colorizePlayernameByID(message.parameters[param]);
-			}
+			colorizePlayernameParameters(notification.parameters);
 		}
 
 		addChatMessage(message);
@@ -545,6 +538,8 @@ function updateTimeNotifications()
 			translateObjectKeys(parameters, n.translateParameters);
 
 		parameters.time = timeToString(n.endTime - g_SimState.timeElapsed);
+
+		colorizePlayernameParameters(parameters);
 
 		notificationText += sprintf(message, parameters) + "\n";
 	}
@@ -832,6 +827,16 @@ function colorizePlayernameHelper(username, playerID)
 {
 	let playerColor = playerID > -1 ? rgbToGuiColor(g_Players[playerID].color) : "white";
 	return '[color="' + playerColor + '"]' + (username || translate("Unknown Player")) + "[/color]";
+}
+
+/**
+ * Insert the colorized playername to chat messages sent by the AI and time notifications.
+ */
+function colorizePlayernameParameters(parameters)
+{
+	for (let param in parameters)
+		if (param.startsWith("_player_"))
+			parameters[param] = colorizePlayernameByID(parameters[param]);
 }
 
 function formatDefeatMessage(msg)

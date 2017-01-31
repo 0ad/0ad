@@ -106,21 +106,9 @@ configurations { "Release", "Debug" }
 
 -- Get some environement specific information used later.
 if os.is("windows") then
-	nasmpath(rootdir.."/build/bin/nasm.exe")
 	lcxxtestpath = rootdir.."/build/bin/cxxtestgen.exe"
 else
-
 	lcxxtestpath = rootdir.."/libraries/source/cxxtest-4.4/bin/cxxtestgen"
-
-	if os.is("linux") and arch == "amd64" then
-		nasmformat "elf64"
-	elseif os.is("macosx") and arch == "amd64" then
-		nasmformat "macho64"
-	elseif os.is("macosx") then
-		nasmformat "macho"
-	else
-		nasmformat "elf"
-	end
 end
 
 source_root = rootdir.."/source/" -- default for most projects - overridden by local in others

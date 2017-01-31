@@ -5527,7 +5527,7 @@ UnitAI.prototype.FindWalkAndFightTargets = function()
 	{
 		var cmpUnitAI;
 		var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-		for each (var ent in cmpFormation.members)
+		for (var ent of cmpFormation.members)
 		{
 			if (!(cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI)))
 				continue;

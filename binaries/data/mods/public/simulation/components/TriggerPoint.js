@@ -74,7 +74,7 @@ TriggerPoint.prototype.OnRangeUpdate = function(msg)
 			collection.splice(index, 1);
 	}
 
-	for each (var entity in msg.added)
+	for (var entity of msg.added)
 		collection.push(entity);
 
 	var r = {"currentCollection": collection.slice()};

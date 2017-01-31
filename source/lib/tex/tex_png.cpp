@@ -52,7 +52,7 @@
 class MemoryStream
 {
 public:
-	MemoryStream(rpU8 data, size_t size)
+	MemoryStream(u8* RESTRICT data, size_t size)
 		: data(data), size(size), pos(0)
 	{
 	}
@@ -63,21 +63,21 @@ public:
 		return size-pos;
 	}
 
-	void CopyTo(rpU8 dst, size_t dstSize)
+	void CopyTo(u8* RESTRICT dst, size_t dstSize)
 	{
 		memcpy(dst, data+pos, dstSize);
 		pos += dstSize;
 	}
 
 private:
-	rpU8 data;
+	u8* RESTRICT data;
 	size_t size;
 	size_t pos;
 };
 
 
 // pass data from PNG file in memory to libpng
-static void io_read(png_struct* png_ptr, rpU8 data, png_size_t size)
+static void io_read(png_struct* png_ptr, u8* RESTRICT data, png_size_t size)
 {
 	MemoryStream* stream = (MemoryStream*)png_get_io_ptr(png_ptr);
 	if(stream->RemainingSize() < size)
@@ -269,7 +269,7 @@ static void user_warning_fn(png_structp UNUSED(png_ptr), png_const_charp warning
 TIMER_ADD_CLIENT(tc_png_decode);
 
 // limitation: palette images aren't supported
-Status TexCodecPng::decode(rpU8 data, size_t size, Tex* RESTRICT t) const
+Status TexCodecPng::decode(u8* RESTRICT data, size_t size, Tex* RESTRICT t) const
 {
 TIMER_ACCRUE(tc_png_decode);
 

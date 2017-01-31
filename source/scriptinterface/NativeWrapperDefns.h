@@ -57,10 +57,8 @@ PASS_BY_VALUE_IN_NATIVE_WRAPPER(double)
 // remove them from here and check if this causes error C2244 when compiling.
 #undef NUMBERED_LIST_TAIL_MAYBE_REF
 #undef NUMBERED_LIST_BALANCED_MAYBE_REF
-#undef TYPED_ARGS_MAYBE_REF
 #define NUMBERED_LIST_TAIL_MAYBE_REF(z, i, data) , typename ScriptInterface::MaybeRef<data##i>::Type
 #define NUMBERED_LIST_BALANCED_MAYBE_REF(z, i, data) BOOST_PP_COMMA_IF(i) typename ScriptInterface::MaybeRef<data##i>::Type
-#define TYPED_ARGS_MAYBE_REF(z, i, data) , typename ScriptInterface::MaybeRef<T##i>::Type a##i
 
 // (NativeWrapperDecls.h set up a lot of the macros we use here)
 
@@ -69,52 +67,46 @@ PASS_BY_VALUE_IN_NATIVE_WRAPPER(double)
 
 // Templated on the return type so void can be handled separately
 template <typename R>
-struct ScriptInterface_NativeWrapper {
-	#define OVERLOADS(z, i, data) \
-		template<TYPENAME_T0_HEAD(z,i)  typename F> \
-		static void call(JSContext* cx, JS::MutableHandleValue rval, F fptr  T0_A0_MAYBE_REF(z,i)) { \
-			ScriptInterface::AssignOrToJSValUnrooted<R>(cx, rval, fptr(ScriptInterface::GetScriptInterfaceAndCBData(cx) A0_TAIL(z,i))); \
-		}
-
-	BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
-	#undef OVERLOADS
+struct ScriptInterface_NativeWrapper
+{
+	template<typename F, typename... Ts>
+	static void call(JSContext* cx, JS::MutableHandleValue rval, F fptr, Ts... params)
+	{
+		ScriptInterface::AssignOrToJSValUnrooted<R>(cx, rval, fptr(ScriptInterface::GetScriptInterfaceAndCBData(cx), params...));
+	}
 };
 
 // Overloaded to ignore the return value from void functions
 template <>
-struct ScriptInterface_NativeWrapper<void> {
-	#define OVERLOADS(z, i, data) \
-		template<TYPENAME_T0_HEAD(z,i)  typename F> \
-		static void call(JSContext* cx, JS::MutableHandleValue /*rval*/, F fptr  T0_A0_MAYBE_REF(z,i)) { \
-			fptr(ScriptInterface::GetScriptInterfaceAndCBData(cx) A0_TAIL(z,i)); \
-		}
-	BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
-	#undef OVERLOADS
+struct ScriptInterface_NativeWrapper<void>
+{
+	template<typename F, typename... Ts>
+	static void call(JSContext* cx, JS::MutableHandleValue UNUSED(rval), F fptr, Ts... params)
+	{
+		fptr(ScriptInterface::GetScriptInterfaceAndCBData(cx), params...);
+	}
 };
 
 // Same idea but for method calls:
 
 template <typename R, typename TC>
-struct ScriptInterface_NativeMethodWrapper {
-	#define OVERLOADS(z, i, data) \
-		template<TYPENAME_T0_HEAD(z,i)  typename F> \
-		static void call(JSContext* cx, JS::MutableHandleValue rval, TC* c, F fptr  T0_A0_MAYBE_REF(z,i)) { \
-			ScriptInterface::AssignOrToJSValUnrooted<R>(cx, rval, (c->*fptr)( A0(z,i) )); \
-		}
-
-	BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
-	#undef OVERLOADS
+struct ScriptInterface_NativeMethodWrapper
+{
+	template<typename F, typename... Ts>
+	static void call(JSContext* cx, JS::MutableHandleValue rval, TC* c, F fptr, Ts... params)
+	{
+		ScriptInterface::AssignOrToJSValUnrooted<R>(cx, rval, (c->*fptr)(params...));
+	}
 };
 
 template <typename TC>
-struct ScriptInterface_NativeMethodWrapper<void, TC> {
-	#define OVERLOADS(z, i, data) \
-		template<TYPENAME_T0_HEAD(z,i)  typename F> \
-		static void call(JSContext* /*cx*/, JS::MutableHandleValue /*rval*/, TC* c, F fptr  T0_A0_MAYBE_REF(z,i)) { \
-			(c->*fptr)( A0(z,i) ); \
-		}
-	BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
-	#undef OVERLOADS
+struct ScriptInterface_NativeMethodWrapper<void, TC>
+{
+	template<typename F, typename... Ts>
+	static void call(JSContext* UNUSED(cx), JS::MutableHandleValue UNUSED(rval), TC* c, F fptr, Ts... params)
+	{
+		(c->*fptr)(params...);
+	}
 };
 
 // JSFastNative-compatible function that wraps the function identified in the template argument list
@@ -126,7 +118,7 @@ struct ScriptInterface_NativeMethodWrapper<void, TC> {
 		JSAutoRequest rq(cx); \
 		BOOST_PP_REPEAT_##z (i, CONVERT_ARG, ~) \
 		JS::RootedValue rval(cx); \
-		ScriptInterface_NativeWrapper<R>::template call<T0_HEAD(z,i) R( ScriptInterface::CxPrivate* T0_TAIL_MAYBE_REF(z,i))>(cx, &rval, fptr  A0_TAIL(z,i)); \
+		ScriptInterface_NativeWrapper<R>::template call<R( ScriptInterface::CxPrivate* T0_TAIL_MAYBE_REF(z,i))  T0_TAIL(z,i)>(cx, &rval, fptr  A0_TAIL(z,i)); \
 		args.rval().set(rval); \
 		return !ScriptInterface::IsExceptionPending(cx); \
 	}
@@ -146,7 +138,7 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 		if (! c) return false; \
 		BOOST_PP_REPEAT_##z (i, CONVERT_ARG, ~) \
 		JS::RootedValue rval(cx); \
-		ScriptInterface_NativeMethodWrapper<R, TC>::template call<T0_HEAD(z,i) R (TC::*)(T0_MAYBE_REF(z,i))>(cx, &rval, c, fptr A0_TAIL(z,i)); \
+		ScriptInterface_NativeMethodWrapper<R, TC>::template call<R (TC::*)(T0_MAYBE_REF(z,i))  T0_TAIL(z,i)>(cx, &rval, c, fptr A0_TAIL(z,i)); \
 		args.rval().set(rval); \
 		return !ScriptInterface::IsExceptionPending(cx); \
 	}
@@ -166,65 +158,77 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 		if (! c) return false; \
 		BOOST_PP_REPEAT_##z (i, CONVERT_ARG, ~) \
 		JS::RootedValue rval(cx); \
-		ScriptInterface_NativeMethodWrapper<R, TC>::template call<T0_HEAD(z,i) R (TC::*)(T0_MAYBE_REF(z,i)) const>(cx, &rval, c, fptr A0_TAIL(z,i)); \
+		ScriptInterface_NativeMethodWrapper<R, TC>::template call<R (TC::*)(T0_MAYBE_REF(z,i)) const  T0_TAIL(z,i)>(cx, &rval, c, fptr A0_TAIL(z,i)); \
 		args.rval().set(rval); \
 		return !ScriptInterface::IsExceptionPending(cx); \
 	}
 BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 #undef OVERLOADS
 
-#define ASSIGN_OR_TO_JS_VAL(z, i, data) AssignOrToJSVal(cx, argv[i], a##i);
-
-#define OVERLOADS(z, i, data) \
-template<typename R TYPENAME_T0_TAIL(z, i)> \
-bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name  T0_A0_TAIL_CONST_REF(z,i), R& ret) const \
-{ \
-	JSContext* cx = GetContext(); \
-	JSAutoRequest rq(cx); \
-	JS::RootedValue jsRet(cx); \
-	JS::AutoValueVector argv(cx); \
-	argv.resize(i); \
-	BOOST_PP_REPEAT_##z (i, ASSIGN_OR_TO_JS_VAL, ~) \
-	bool ok = CallFunction_(val, name, argv, &jsRet); \
-	if (!ok) \
-		return false; \
-	return FromJSVal(cx, jsRet, ret); \
+template<int i, typename T, typename... Ts>
+static void AssignOrToJSValHelper(JSContext* cx, JS::AutoValueVector& argv, const T& a, const Ts&... params)
+{
+	ScriptInterface::AssignOrToJSVal(cx, argv[i], a);
+	AssignOrToJSValHelper<i+1>(cx, argv, params...);
 }
-BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
-#undef OVERLOADS
 
-#define OVERLOADS(z, i, data) \
-template<typename R TYPENAME_T0_TAIL(z, i)> \
-bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name  T0_A0_TAIL_CONST_REF(z,i), JS::Rooted<R>* ret) const \
-{ \
-	JSContext* cx = GetContext(); \
-	JSAutoRequest rq(cx); \
-	JS::MutableHandle<R> jsRet(ret); \
-	JS::AutoValueVector argv(cx); \
-	argv.resize(i); \
-	BOOST_PP_REPEAT_##z (i, ASSIGN_OR_TO_JS_VAL, ~) \
-	return CallFunction_(val, name, argv, jsRet); \
+template<int i, typename... Ts>
+static void AssignOrToJSValHelper(JSContext* UNUSED(cx), JS::AutoValueVector& UNUSED(argv))
+{
+	cassert(sizeof...(Ts) == 0);
+	// Nop, for terminating the template recursion.
 }
-BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
-#undef OVERLOADS
 
-#define OVERLOADS(z, i, data) \
-template<typename R TYPENAME_T0_TAIL(z, i)> \
-bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name  T0_A0_TAIL_CONST_REF(z,i), JS::MutableHandle<R> ret) const \
-{ \
-	JSContext* cx = GetContext(); \
-	JSAutoRequest rq(cx); \
-	JS::AutoValueVector argv(cx); \
-	argv.resize(i); \
-	BOOST_PP_REPEAT_##z (i, ASSIGN_OR_TO_JS_VAL, ~) \
-	bool ok = CallFunction_(val, name, argv, ret); \
-	if (!ok) \
-		return false; \
-	return true; \
+template<typename R, typename... Ts>
+bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name, R& ret, const Ts&... params) const
+{
+	JSContext* cx = GetContext();
+	JSAutoRequest rq(cx);
+	JS::RootedValue jsRet(cx);
+	JS::AutoValueVector argv(cx);
+	argv.resize(sizeof...(Ts));
+	AssignOrToJSValHelper<0>(cx, argv, params...);
+	bool ok = CallFunction_(val, name, argv, &jsRet);
+	if (!ok)
+		return false;
+	return FromJSVal(cx, jsRet, ret);
 }
-BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
-#undef OVERLOADS
-#undef ASSIGN_OR_TO_JS_VAL
+
+template<typename R, typename... Ts>
+bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name, JS::Rooted<R>* ret, const Ts&... params) const
+{
+	JSContext* cx = GetContext();
+	JSAutoRequest rq(cx);
+	JS::MutableHandle<R> jsRet(ret);
+	JS::AutoValueVector argv(cx);
+	argv.resize(sizeof...(Ts));
+	AssignOrToJSValHelper<0>(cx, argv, params...);
+	return CallFunction_(val, name, argv, jsRet);
+}
+
+template<typename R, typename... Ts>
+bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name, JS::MutableHandle<R> ret, const Ts&... params) const
+{
+	JSContext* cx = GetContext();
+	JSAutoRequest rq(cx);
+	JS::AutoValueVector argv(cx);
+	argv.resize(sizeof...(Ts));
+	AssignOrToJSValHelper<0>(cx, argv, params...);
+	return CallFunction_(val, name, argv, ret);
+}
+
+// Call the named property on the given object, with void return type
+template<typename... Ts>
+bool ScriptInterface::CallFunctionVoid(JS::HandleValue val, const char* name, const Ts&... params) const
+{
+	JSContext* cx = GetContext();
+	JSAutoRequest rq(cx);
+	JS::RootedValue jsRet(cx);
+	JS::AutoValueVector argv(cx);
+	argv.resize(sizeof...(Ts));
+	AssignOrToJSValHelper<0>(cx, argv, params...);
+	return CallFunction_(val, name, argv, &jsRet);
+}
 
 // Clean up our mess
 #undef NUMBERED_LIST_HEAD
@@ -232,19 +236,10 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 #undef NUMBERED_LIST_TAIL_MAYBE_REF
 #undef NUMBERED_LIST_BALANCED
 #undef NUMBERED_LIST_BALANCED_MAYBE_REF
-#undef TYPED_ARGS
-#undef TYPED_ARGS_MAYBE_REF
-#undef TYPED_ARGS_CONST_REF
 #undef CONVERT_ARG
 #undef TYPENAME_T0_HEAD
-#undef TYPENAME_T0_TAIL
 #undef T0
 #undef T0_MAYBE_REF
-#undef T0_HEAD
 #undef T0_TAIL
 #undef T0_TAIL_MAYBE_REF
-#undef T0_A0
-#undef T0_A0_MAYBE_REF
-#undef T0_A0_TAIL_CONST_REF
-#undef A0
 #undef A0_TAIL

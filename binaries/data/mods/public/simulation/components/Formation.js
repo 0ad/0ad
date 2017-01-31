@@ -97,7 +97,7 @@ Formation.prototype.Init = function()
 		var differentAnimations = animations[animationName].split(/\s*;\s*/);
 		this.animations[animationName] = [];
 		// loop over the different rectangulars that will map to different animations
-		for each (var rectAnimation in differentAnimations)
+		for (var rectAnimation of differentAnimations)
 		{
 			var rect, replacementAnimationName;
 			[rect, replacementAnimationName] = rectAnimation.split(/\s*:\s*/);
@@ -171,7 +171,7 @@ Formation.prototype.GetClosestMember = function(ent, filter)
 	var entPosition = cmpEntPosition.GetPosition2D();
 	var closestMember = INVALID_ENTITY;
 	var closestDistance = Infinity;
-	for each (var member in this.members)
+	for (var member of this.members)
 	{
 		if (filter && !filter(ent))
 			continue;
@@ -297,7 +297,7 @@ Formation.prototype.SetMembers = function(ents)
 	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	var templateName = cmpTemplateManager.GetCurrentTemplateName(this.entity);
 
-	for each (var ent in this.members)
+	for (var ent of this.members)
 	{
 		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 		cmpUnitAI.SetFormationController(this.entity);
@@ -329,14 +329,14 @@ Formation.prototype.RemoveMembers = function(ents)
 	this.members = this.members.filter(function(e) { return ents.indexOf(e) == -1; });
 	this.inPosition = this.inPosition.filter(function(e) { return ents.indexOf(e) == -1; });
 
-	for each (var ent in ents)
+	for (var ent of ents)
 	{
 		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 		cmpUnitAI.UpdateWorkOrders();
 		cmpUnitAI.SetFormationController(INVALID_ENTITY);
 	}
 
-	for each (var ent in this.formationMembersWithAura)
+	for (var ent of this.formationMembersWithAura)
 	{
 		var cmpAuras = Engine.QueryInterface(ent, IID_Auras);
 		cmpAuras.RemoveFormationBonus(ents);
@@ -369,7 +369,7 @@ Formation.prototype.AddMembers = function(ents)
 	this.offsets = undefined;
 	this.inPosition = [];
 
-	for each (var ent in this.formationMembersWithAura)
+	for (var ent of this.formationMembersWithAura)
 	{
 		var cmpAuras = Engine.QueryInterface(ent, IID_Auras);
 		cmpAuras.RemoveFormationBonus(ents);
@@ -381,7 +381,7 @@ Formation.prototype.AddMembers = function(ents)
 
 	this.members = this.members.concat(ents);
 
-	for each (var ent in this.members)
+	for (var ent of this.members)
 	{
 		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 		cmpUnitAI.SetFormationController(this.entity);
@@ -421,13 +421,13 @@ Formation.prototype.FindInPosition = function()
  */
 Formation.prototype.Disband = function()
 {
-	for each (var ent in this.members)
+	for (var ent of this.members)
 	{
 		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 		cmpUnitAI.SetFormationController(INVALID_ENTITY);
 	}
 
-	for each (var ent in this.formationMembersWithAura)
+	for (var ent of this.formationMembersWithAura)
 	{
 		var cmpAuras = Engine.QueryInterface(ent, IID_Auras);
 		cmpAuras.RemoveFormationBonus(this.members);
@@ -457,7 +457,7 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force)
 	var active = [];
 	var positions = [];
 
-	for each (var ent in this.members)
+	for (var ent of this.members)
 	{
 		var cmpPosition = Engine.QueryInterface(ent, IID_Position);
 		if (!cmpPosition || !cmpPosition.IsInWorld())
@@ -538,7 +538,7 @@ Formation.prototype.MoveToMembersCenter = function()
 {
 	var positions = [];
 
-	for each (var ent in this.members)
+	for (var ent of this.members)
 	{
 		var cmpPosition = Engine.QueryInterface(ent, IID_Position);
 		if (!cmpPosition || !cmpPosition.IsInWorld())
@@ -564,7 +564,7 @@ Formation.prototype.MoveToMembersCenter = function()
 Formation.prototype.GetAvgFootprint = function(active)
 {
 	var footprints = [];
-	for each (var ent in active)
+	for (var ent of active)
 	{
 		var cmpFootprint = Engine.QueryInterface(ent, IID_Footprint);
 		if (cmpFootprint)
@@ -574,7 +574,7 @@ Formation.prototype.GetAvgFootprint = function(active)
 		return {"width":1, "depth": 1};
 
 	var r = {"width": 0, "depth": 0};
-	for each (var shape in footprints)
+	for (var shape of footprints)
 	{
 		if (shape.type == "circle")
 		{
@@ -769,7 +769,7 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions)
 			continue;
 		var usedOffsets = offsets.splice(-t.length);
 		var usedRealPositions = realPositions.splice(-t.length);
-		for each (var entPos in t)
+		for (var entPos of t)
 		{
 			var closestOffsetId = this.TakeClosestOffset(entPos, usedRealPositions, usedOffsets);
 			usedRealPositions.splice(closestOffsetId, 1);
@@ -813,7 +813,7 @@ Formation.prototype.GetRealOffsetPositions = function(offsets, pos)
 	var offsetPositions = [];
 	var {sin, cos} = this.GetEstimatedOrientation(pos);
 	// calculate the world positions
-	for each (var o in offsets)
+	for (var o of offsets)
 		offsetPositions.push(new Vector2D(pos.x + o.y * sin + o.x * cos, pos.y + o.y * cos - o.x * sin));
 
 	return offsetPositions;
@@ -861,7 +861,7 @@ Formation.prototype.ComputeMotionParameters = function()
 	var maxRadius = 0;
 	var minSpeed = Infinity;
 
-	for each (var ent in this.members)
+	for (var ent of this.members)
 	{
 		var cmpUnitMotion = Engine.QueryInterface(ent, IID_UnitMotion);
 		if (cmpUnitMotion)
@@ -968,7 +968,7 @@ Formation.prototype.RegisterTwinFormation = function(entity)
 
 Formation.prototype.DeleteTwinFormations = function()
 {
-	for each (var ent in this.twinFormations)
+	for (var ent of this.twinFormations)
 	{
 		var cmpFormation = Engine.QueryInterface(ent, IID_Formation);
 		if (cmpFormation)

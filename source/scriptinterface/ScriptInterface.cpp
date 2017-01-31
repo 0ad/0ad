@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -561,14 +561,6 @@ JSObject* ScriptInterface::CreateCustomObject(const std::string& typeName) const
 	JS::RootedObject prototype(m->m_cx, it->second.m_Prototype.get());
 	return JS_NewObjectWithGivenProto(m->m_cx, it->second.m_Class, prototype);
 }
-
-bool ScriptInterface::CallFunctionVoid(JS::HandleValue val, const char* name)
-{
-	JSAutoRequest rq(m->m_cx);
-	JS::RootedValue jsRet(m->m_cx);
-	return CallFunction_(val, name, JS::HandleValueArray::empty(), &jsRet);
-}
-
 
 bool ScriptInterface::CallFunction_(JS::HandleValue val, const char* name, JS::HandleValueArray argv, JS::MutableHandleValue ret) const
 {

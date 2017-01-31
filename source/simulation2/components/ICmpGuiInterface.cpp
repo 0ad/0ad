@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,7 +32,7 @@ public:
 
 	virtual void ScriptCall(int player, const std::wstring& cmd, JS::HandleValue data, JS::MutableHandleValue ret)
 	{
-		m_Script.CallRef("ScriptCall", player, cmd, data, ret);
+		m_Script.CallRef("ScriptCall", ret, player, cmd, data);
 	}
 };
 

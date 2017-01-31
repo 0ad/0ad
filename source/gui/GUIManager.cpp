@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -347,7 +347,7 @@ InReaction CGUIManager::HandleEvent(const SDL_Event_* ev)
 		JSContext* cx = top()->GetScriptInterface()->GetContext();
 		JSAutoRequest rq(cx);
 		JS::RootedValue global(cx, top()->GetGlobalObject());
-		if (top()->GetScriptInterface()->CallFunction(global, "handleInputBeforeGui", *ev, top()->FindObjectUnderMouse(), handled))
+		if (top()->GetScriptInterface()->CallFunction(global, "handleInputBeforeGui", handled, *ev, top()->FindObjectUnderMouse()))
 			if (handled)
 				return IN_HANDLED;
 	}
@@ -366,7 +366,7 @@ InReaction CGUIManager::HandleEvent(const SDL_Event_* ev)
 		JS::RootedValue global(cx, top()->GetGlobalObject());
 
 		PROFILE("handleInputAfterGui");
-		if (top()->GetScriptInterface()->CallFunction(global, "handleInputAfterGui", *ev, handled))
+		if (top()->GetScriptInterface()->CallFunction(global, "handleInputAfterGui", handled, *ev))
 			if (handled)
 				return IN_HANDLED;
 	}

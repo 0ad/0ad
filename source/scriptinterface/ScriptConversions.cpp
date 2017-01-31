@@ -116,21 +116,21 @@ template<> bool ScriptInterface::FromJSVal<u8>(JSContext* cx, JS::HandleValue v,
 	return true;
 }
 
-template<> bool ScriptInterface::FromJSVal<long>(JSContext* cx, JS::HandleValue v, long& out)
+template<> bool ScriptInterface::FromJSVal<i64>(JSContext* cx, JS::HandleValue v, i64& out)
 {
 	JSAutoRequest rq(cx);
 	i64 tmp;
 	bool ok = JS::ToInt64(cx, v, &tmp);
-	out = (long)tmp;
+	out = (i64)tmp;
 	return ok;
 }
 
-template<> bool ScriptInterface::FromJSVal<unsigned long>(JSContext* cx, JS::HandleValue v, unsigned long& out)
+template<> bool ScriptInterface::FromJSVal<u64>(JSContext* cx, JS::HandleValue v, u64& out)
 {
 	JSAutoRequest rq(cx);
 	u64 tmp;
 	bool ok = JS::ToUint64(cx, v, &tmp);
-	out = (unsigned long)tmp;
+	out = (u64)tmp;
 	return ok;
 }
 
@@ -294,12 +294,12 @@ template<> void ScriptInterface::ToJSVal<u32>(JSContext* UNUSED(cx), JS::Mutable
 	ret.set(JS::NumberValue(val));
 }
 
-template<> void ScriptInterface::ToJSVal<long>(JSContext* UNUSED(cx), JS::MutableHandleValue ret, const long& val)
+template<> void ScriptInterface::ToJSVal<i64>(JSContext* UNUSED(cx), JS::MutableHandleValue ret, const i64& val)
 {
 	ret.set(JS::NumberValue((int)val));
 }
 
-template<> void ScriptInterface::ToJSVal<unsigned long>(JSContext* UNUSED(cx), JS::MutableHandleValue ret, const unsigned long& val)
+template<> void ScriptInterface::ToJSVal<u64>(JSContext* UNUSED(cx), JS::MutableHandleValue ret, const u64& val)
 {
 	ret.set(JS::NumberValue((int)val));
 }

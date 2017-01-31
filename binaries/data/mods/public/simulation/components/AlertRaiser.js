@@ -37,10 +37,14 @@ AlertRaiser.prototype.SoundAlert = function()
 	PlaySound(alertString, this.entity);
 };
 
+/**
+ * Used when units are spawned and need to follow alert orders.
+ *  @param {number[]} units - Entity IDs of spawned units.
+ */
 AlertRaiser.prototype.UpdateUnits = function(units)
 {
 	var level = this.GetLevel();
-	for each (var unit in units)
+	for (var unit of units)
 	{
 		var cmpUnitAI = Engine.QueryInterface(unit, IID_UnitAI);
 		if (!cmpUnitAI || !cmpUnitAI.ReactsToAlert(level))
@@ -71,7 +75,7 @@ AlertRaiser.prototype.IncreaseAlertLevel = function()
 	if (Engine.QueryInterface(this.entity, IID_ProductionQueue))
 		buildings.push(this.entity);
 
-	for each (var building in buildings)
+	for (var building of buildings)
 	{
 		var cmpProductionQueue = Engine.QueryInterface(building, IID_ProductionQueue);
 		cmpProductionQueue.PutUnderAlert(this.entity);
@@ -85,7 +89,7 @@ AlertRaiser.prototype.IncreaseAlertLevel = function()
 		return !cmpUnitAI.IsUnderAlert() && cmpUnitAI.ReactsToAlert(level);
 	});
 
-	for each (var unit in units)
+	for (var unit of units)
 	{
 		var cmpUnitAI = Engine.QueryInterface(unit, IID_UnitAI);
 		cmpUnitAI.ReplaceOrder("Alert", {"raiser": this.entity, "force": true});
@@ -110,7 +114,7 @@ AlertRaiser.prototype.EndOfAlert = function()
 	this.SoundAlert();
 
 	// First, handle units not yet garrisoned
-	for each (var unit in this.walkingUnits)
+	for (var unit of this.walkingUnits)
 	{
 		var cmpUnitAI = Engine.QueryInterface(unit, IID_UnitAI);
 		if (!cmpUnitAI)
@@ -126,7 +130,7 @@ AlertRaiser.prototype.EndOfAlert = function()
 	this.walkingUnits = [];
 
 	// Then, eject garrisoned units
-	for each (var slot in this.garrisonedUnits)
+	for (var slot of this.garrisonedUnits)
 	{
 		var cmpGarrisonHolder = Engine.QueryInterface(slot.holder, IID_GarrisonHolder);
 		var cmpUnitAI = Engine.QueryInterface(slot.unit, IID_UnitAI);
@@ -144,7 +148,7 @@ AlertRaiser.prototype.EndOfAlert = function()
 	this.garrisonedUnits = [];
 
 	// Finally, reset production buildings state
-	for each (var building in this.prodBuildings)
+	for (var building of this.prodBuildings)
 	{
 		var cmpProductionQueue = Engine.QueryInterface(building, IID_ProductionQueue);
 		if (cmpProductionQueue)

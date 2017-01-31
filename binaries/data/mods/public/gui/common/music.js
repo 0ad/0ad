@@ -108,7 +108,7 @@ Music.prototype.updateState = function()
 Music.prototype.storeTracks = function(civMusic)
 {
 	this.resetTracks();
-	for each (var music in civMusic)
+	for (var music of civMusic)
 	{
 		var type = undefined;
 		for (var i in this.MUSIC)
