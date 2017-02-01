@@ -14,27 +14,28 @@ m.launchAttackMessages = {
 
 m.answerRequestAttackMessages = {
 	"join": [
-		markForTranslation("Let me regroup my army and I am with you against %(_player_)s."),
-		markForTranslation("I am doing the final preparation and I will attack %(_player_)s.")
+		markForTranslation("Let me regroup my army and I will then join you against %(_player_)s."),
+		markForTranslation("I am finishing preparations to attack %(_player_)s.")
 	],
 	"decline": [
-		markForTranslation("Sorry, I do not have enough soldiers currently, but my next attack will target %(_player_)s.")
+		markForTranslation("Sorry, I do not have enough soldiers currently; but my next attack will target %(_player_)s."),
+		markForTranslation("Sorry, I still need to strengthen my army. However, I will attack %(_player_)s next.")
 	],
 	"other": [
-		markForTranslation("I cannot help you against %(_player_)s for the time being, as I have another attack foreseen against %(_player_2)s.")
+		markForTranslation("I cannot help you against %(_player_)s for the time being, I am planning to attack %(_player_2)s first.")
 	]
 };
 
 m.sentTributeMessages = [
-	markForTranslation("Here is a gift for %(_player_)s, make a good use of it."),
-	markForTranslation("I see you are in a bad situation %(_player_)s, I hope this will help."),
-	markForTranslation("I can help you this time %(_player_)s, but try to assemble more resources in the future.")
+	markForTranslation("Here is a gift for you, %(_player_)s. Make good use of it."),
+	markForTranslation("I see you are in a bad situation, %(_player_)s. I hope this helps."),
+	markForTranslation("I can help you this time, %(_player_)s, but you should manage your resources more carefully in the future.")
 ];
 
 m.requestTributeMessages = [
 	markForTranslation("I am in need of %(resource)s, can you help? I will make it up to you."),
 	markForTranslation("I would participate more efficiently in our common war effort if you could provide me some %(resource)s."),
-	markForTranslation("If you have some %(resource)s excess, that would help me strengthen my army.")
+	markForTranslation("If you can spare me some %(resource)s, I will be able to strengthen my army.")
 ];
 
 m.newTradeRouteMessages = [
@@ -66,40 +67,52 @@ m.newDiplomacyMessages = {
 m.answerDiplomacyRequestMessages = {
 	"ally": {
 		"decline": [
-			markForTranslation("I cannot accept your offer to be allies %(_player_)s.")
+			markForTranslation("I cannot accept your offer to become allies, %(_player_)s.")
 		],
 		"declineSuggestNeutral": [
-			markForTranslation("I will not ally with you %(_player_)s, but I will consider a neutrality pact.")
+			markForTranslation("I will not be your ally, %(_player_)s. However, I will consider a neutrality pact."),
+			markForTranslation("I reject your request for alliance, %(_player_)s, but we could become neutral."),
+			markForTranslation("%(_player_)s, only a neutrality agreement is conceivable to me.")
 		],
 		"declineRepeatedOffer": [
-			markForTranslation("%(_player_)s, our previous alliance did not work out, so I must decline your offer.")
+			markForTranslation("Our previous alliance did not work out, %(_player_)s. I must decline your offer."),
+			markForTranslation("I won’t ally you again, %(_player_)s!"),
+			markForTranslation("No more alliances between us, %(_player_)s!"),
+			markForTranslation("Your request for peace means nothing to me anymore, %(_player_)s!"),
+			markForTranslation("My answer to your repeated peace proposal will remain war, %(_player_)s!")
 		],
 		"accept": [
-			markForTranslation("I will accept your offer to become allies %(_player_)s. We will both benefit from this alliance.")
+			markForTranslation("I will accept your offer to become allies, %(_player_)s. We will both benefit from this partnership."),
+			markForTranslation("An alliance between us is a good idea, %(_player_)s."),
+			markForTranslation("Let both of our people prosper from a peaceful association, %(_player_)s."),
+			markForTranslation("We have found common ground, %(_player)s. I accept the alliance."),
+			markForTranslation("%(_player_)s, consider us allies from now on.")
 		],
 		"acceptWithTribute": [
-			markForTranslation("I will ally with you %(_player_)s, but only if you send me a tribute of %(_amount_)s %(_resource_)s."),
-			markForTranslation("%(_player_)s, you must send me a tribute of %(_amount_)s %(_resource_)s for me to accept an alliance.")
+			markForTranslation("I will ally with you, %(_player_)s, but only if you send me a tribute of %(_amount_)s %(_resource_)s."),
+			markForTranslation("%(_player_)s, you must send me a tribute of %(_amount_)s %(_resource_)s before I accept an alliance with you."),
+			markForTranslation("Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed, %(_player_)s,")
 		],
 		"waitingForTribute": [
-			markForTranslation("%(_player_)s, my offer still stands. I will ally with you if you send me a tribute of %(_amount_)s %(_resource_)s."),
+			markForTranslation("%(_player_)s, my offer still stands. I will ally with you only if you send me a tribute of %(_amount_)s %(_resource_)s."),
+			markForTranslation("I’m still waiting for %(_amount_)s %(_resource_)s before accepting your alliance, %(_player_)s."),
 			markForTranslation("%(_player_)s, if you do not send me part of the %(_amount_)s %(_resource_)s tribute soon, I will break off our negotiations.")
 		]		
 	},
 	"neutral": {
 		"decline": [
-			markForTranslation("I will not become neutral with you %(_player_)s."),
+			markForTranslation("I will not become neutral with you, %(_player_)s."),
 			markForTranslation("%(_player_)s, I must decline your request for a neutrality pact.")
 		],
 		"declineRepeatedOffer": [
-			markForTranslation("Our previous neutrality agreement ended in failure %(_player_)s; I will not consider another one.")
+			markForTranslation("Our previous neutrality agreement ended in failure, %(_player_)s; I will not consider another one.")
 		],
 		"accept": [
-			markForTranslation("I welcome your request for peace between our civilizations %(_player_)s. I will accept."),
+			markForTranslation("I welcome your request for peace between our civilizations, %(_player_)s. I will accept."),
 			markForTranslation("%(_player_)s, I will accept your neutrality request. May both our civilizations benefit.")
 		],
 		"acceptWithTribute": [
-			markForTranslation("If you tribute me %(_amount_)s %(_resource_)s, I will accept your neutrality request %(_player_)s."),
+			markForTranslation("If you send me a tribute of %(_amount_)s %(_resource_)s, I will accept your neutrality request, %(_player_)s."),
 			markForTranslation("%(_player_)s, if you send me %(_amount_)s %(_resource_)s, I will accept a neutrality pact.")
 		],
 		"waitingForTribute": [
