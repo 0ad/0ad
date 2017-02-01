@@ -87,17 +87,28 @@ Upgrade.prototype.ChangeUpgradedEntityCount = function(amount)
 	let cmpTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	let template = cmpTempMan.GetTemplate(this.upgrading);
 
-	let category;
+	let categoryTo;
 	if (template.TrainingRestrictions)
-		category = template.TrainingRestrictions.Category;
+		categoryTo = template.TrainingRestrictions.Category;
 	else if (template.BuildRestrictions)
-		category = template.BuildRestrictions.Category;
+		categoryTo = template.BuildRestrictions.Category;
 
-	if (!category)
+	if (!categoryTo)
+		return;
+
+	let categoryFrom;
+	let cmpTrainingRestrictions = Engine.QueryInterface(this.entity, IID_TrainingRestrictions);
+	let cmpBuildRestrictions = Engine.QueryInterface(this.entity, IID_BuildRestrictions);
+	if (cmpTrainingRestrictions)
+		categoryFrom = cmpTrainingRestrictions.GetCategory();
+	else if (cmpBuildRestrictions)
+		categoryFrom = cmpBuildRestrictions.GetCategory();
+	
+	if (categoryTo == categoryFrom)
 		return;
 
 	let cmpEntityLimits = QueryPlayerIDInterface(this.owner, IID_EntityLimits);
-	cmpEntityLimits.ChangeCount(category, amount);
+	cmpEntityLimits.ChangeCount(categoryTo, amount);
 };
 
 Upgrade.prototype.CanUpgradeTo = function(template)

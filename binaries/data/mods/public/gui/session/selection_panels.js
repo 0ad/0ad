@@ -1213,7 +1213,8 @@ g_SelectionPanels.Upgrade = {
 		let modifier = "";
 		if (!isUpgrading)
 		{
-			if (progress || !technologyEnabled || limits.canBeAddedCount == 0)
+			if (progress || !technologyEnabled || limits.canBeAddedCount == 0 &&
+				!hasSameRestrictionCategory(data.item.entity, data.unitEntStates[0].template))
 			{
 				data.button.enabled = false;
 				modifier = "color:0 0 0 127:grayscale:";
