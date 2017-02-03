@@ -58,6 +58,18 @@ function hasClass(entState, className)
 	return false;
 }
 
+function hasSameRestrictionCategory(templateName1, templateName2)
+{
+	let template1 = GetTemplateData(templateName1);
+	let template2 = GetTemplateData(templateName2);
+
+	if (template1.trainingRestrictions && template2.trainingRestrictions)
+		return template1.trainingRestrictions.category == template2.trainingRestrictions.category;
+	if (template1.buildRestrictions && template2.buildRestrictions)
+		return template1.buildRestrictions.category == template2.buildRestrictions.category;
+	return false;
+}
+
 function getRankIconSprite(entState)
 {
 	if ("Elite" == entState.identity.rank)

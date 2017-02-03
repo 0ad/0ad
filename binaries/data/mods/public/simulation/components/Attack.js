@@ -128,8 +128,8 @@ Attack.prototype.Schema =
 				"<element name='RepeatTime' a:help='Time between attacks (in milliseconds). The attack animation will be stretched to match this time'>" +
 					"<data type='positiveInteger'/>" +
 				"</element>" +
-				"<element name='ProjectileSpeed' a:help='Speed of projectiles (in metres per second). If unspecified, then it is a melee attack instead'>" +
-					"<ref name='nonNegativeDecimal'/>" +
+				"<element name='ProjectileSpeed' a:help='Speed of projectiles (in metres per second)'>" +
+					"<ref name='positiveDecimal'/>" +
 				"</element>" +
 				"<element name='Spread' a:help='Radius over which missiles will tend to land (when shooting to the maximum range). Roughly 2/3 will land inside this radius (in metres). Spread is linearly diminished as the target gets closer.'><ref name='nonNegativeDecimal'/></element>" +
 				Attack.prototype.bonusesSchema +

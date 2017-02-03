@@ -741,5 +741,22 @@ GarrisonHolder.prototype.OnGlobalInitGame = function(msg)
 	this.initGarrison = undefined;
 };
 
+GarrisonHolder.prototype.OnValueModification = function(msg)
+{
+	if (msg.component != "GarrisonHolder" || msg.valueNames.indexOf("GarrisonHolder/BuffHeal") == -1)
+		return;
+	if (this.timer && this.GetHealRate() == 0)
+	{
+		let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+		cmpTimer.CancelTimer(this.timer);
+	}
+	else if (!this.timer && this.GetHealRate() > 0)
+	{
+		let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+		this.timer = cmpTimer.SetTimeout(this.entity, IID_GarrisonHolder, "HealTimeout", 1000, {});
+	}
+
+};
+
 Engine.RegisterComponentType(IID_GarrisonHolder, "GarrisonHolder", GarrisonHolder);
 
