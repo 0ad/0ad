@@ -343,8 +343,11 @@ function diplomacySetupTexts(i, rowsize)
 	size.top = rowsize * (i-1);
 	size.bottom = rowsize * i;
 	row.size = size;
+	row.hidden = false;
 
 	row.sprite = "color: " + rgbToGuiColor(g_Players[i].color) + " 32";
+
+	setOutcomeIcon(g_Players[i].state, "diplomacyPlayerOutcome["+(i-1)+"]");
 
 	Engine.GetGUIObjectByName("diplomacyPlayerName["+(i-1)+"]").caption = colorizePlayernameByID(i);
 	Engine.GetGUIObjectByName("diplomacyPlayerCiv["+(i-1)+"]").caption = g_CivData[g_Players[i].civ].Name;
