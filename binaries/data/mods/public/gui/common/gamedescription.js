@@ -329,3 +329,24 @@ function getGameDescription(extended = false)
 			title.value
 	})).join("\n");
 }
+
+/**
+ * Sets the win/defeat icon to indicate current player's state.
+ * @param {string} state - The current in-game state of the player.
+ * @param {string} imageID - The name of the XML image object to update.
+ */
+function setOutcomeIcon(state, imageID)
+{
+	let image = Engine.GetGUIObjectByName(imageID);
+
+	if (state == "won")
+	{
+		image.sprite = "stretched:session/icons/stances/violent.png";
+		image.tooltip = translate("Victory");
+	}
+	else if (state == "defeated")
+	{
+		image.sprite = "stretched:session/icons/stances/passive.png";
+		image.tooltip = translate("Defeated");
+	}
+}

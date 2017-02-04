@@ -118,17 +118,7 @@ function updatePanelData(panelInfo)
 		boxSize.right = rowPlayerObjectWidth;
 		rowPlayerObject.size = boxSize;
 
-		let outcome = Engine.GetGUIObjectByName(playerOutcome);
-		if (playerState.state == "won")
-		{
-			outcome.sprite = "stretched:session/icons/stances/violent.png";
-			outcome.tooltip = translate("Victory");
-		}
-		else if (playerState.state == "defeated")
-		{
-			outcome.sprite = "stretched:session/icons/stances/passive.png";
-			outcome.tooltip = translate("Defeated");
-		}
+		setOutcomeIcon(playerState.state, playerOutcome);
 
 		Engine.GetGUIObjectByName(playerNameColumn).caption = g_GameData.sim.playerStates[i+1].name;
 

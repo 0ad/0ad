@@ -9,6 +9,8 @@
 # Ernan, 2014
 # Guilherme Dias <guilherme325@gmail.com>, 2014
 # Igor Aleixo <igor.pavao@gmail.com>, 2016
+# Jose Victor <josevictor@openmailbox.org>, 2017
+# Junior Lage <junimslage@gmail.com>, 2017
 # Leonardo Augusto Suzin <leonardosuzin@gmail.com>, 2015
 # Leonardo Barcihello <barichello@gmail.com>, 2014
 # Leonardo Tada Antunes <leonardo_tada@hotmail.com>, 2014
@@ -23,8 +25,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-12-30 09:02+0100\n"
-"PO-Revision-Date: 2016-12-30 09:23+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-02-02 03:04+0000\n"
+"Last-Translator: Junior Lage <junimslage@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,7 +40,7 @@ msgid ""
 "health, 1 extra armour level of every type, 20% extra attack for melee "
 "units, 4m extra range and 5% better precision for ranged units, faster "
 "movement speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "As unidades promovidas para a classe avançada ganham atributos: 20% de saúde extra, 1 nível de armadura extra de cada tipo, 20% de ataque extra para unidades de combate corpo a corpo, 4m de alcance extra, 5% de precisão para unidades à distância, velocidades de movimento mais rápidas, velocidade de cura aumentada e alcance para curandeiros."
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -687,7 +689,7 @@ msgstr "A vontade de lutar é crucial para vitória."
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
 msgid ""
 "Inspire your troops with higher pay. All land and naval army +25% attack."
-msgstr ""
+msgstr "Inspire suas trocar com um maior pagamento. Todas tropas navais e terrestres ganham +25% de ataque."
 
 #: simulation/data/technologies/attack_soldiers_will.jsongenericName
 msgid "Will to fight"
@@ -829,7 +831,7 @@ msgid ""
 "extra armour level of every type, 20% extra attack for melee units, extra "
 "range and better precision for ranged units, faster movement speeds and "
 "extra heal speed and range for healers."
-msgstr ""
+msgstr "As unidades treinadas para a classe de elite ganham atributos: 20% de saúde extra, 1 nível de armadura extra de cada tipo, 20% de ataque extra para unidades de combate corpo a corpo, alcance extra e melhor precisão para unidades a distância, velocidades de movimento, velocidade de cura e alcance para curandeiros."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
@@ -1902,13 +1904,13 @@ msgid ""
 "Carthaginians built their city walls in three concentric circuits. These "
 "walls were never breached. Even when the city was taken by the Romans, it "
 "was via the city's harbor, not by storming its walls."
-msgstr ""
+msgstr "Os Cartagineses construíram suas muralhas em três circuitos concêntricos. Essas muralhas nunca foram derrubadas. Mesmo quando a cidade foi tomada pelos romanos, foi através do porto, e não por uma brecha. Consequentemente, muros, portões e guaritas cartagineses possuem 3x mais pontos de vida que as versões comuns, mas também custam o dobro e demoram duas vezes mais para construir."
 
 #: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsontooltip
 msgid ""
 "Carthaginian walls, gates, and wall towers have 3x the health of a standard "
 "wall, but also cost twice as much and take twice as long to build."
-msgstr ""
+msgstr "Muralhas, portões e torres Cartagineses têm 3x mais pontos de vida que um muro comum."
 
 #: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsongenericName
 msgid "Triple Walls"
@@ -2218,13 +2220,13 @@ msgstr "Mercenários Italiotas de Elite"
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
-msgstr ""
+msgstr "Na maioria das vezes as estruturas celtas eram feitas de madeira com fundações de cascalho."
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsontooltip
 msgid ""
 "Celtic buildings have 20% less health, but are also 20% cheaper and faster "
 "to construct."
-msgstr ""
+msgstr "Construções celtas tem 20% menos vida, mas também são 20% mais baratas e rápidas de construir."
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
 msgid "Wooden Construction"
@@ -2256,7 +2258,7 @@ msgstr "Os gregos usavam a construção de pedra dos tempos antigos micênicos."
 msgid ""
 "All structures have 10% more health and capture points, but also take 10% "
 "longer to build."
-msgstr ""
+msgstr "Todas estruturas têm 10% mais vida e pontos de captura, mas também levam 10% mais tempo para serem construídas."
 
 #: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
 msgid "Hellenic Architecture"
@@ -2272,7 +2274,7 @@ msgstr "Os Espartanos não tinham o maior exército do mundo, mas tinham o melho
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
 msgid "Spartans have 10% less maximum population"
-msgstr ""
+msgstr "Espartanos têm um limite de população máxima 10% menor."
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
 msgid "Underdogs"
@@ -2334,7 +2336,7 @@ msgstr "O Império Máuria abrangia dezenas de reinos previamente independentes 
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsontooltip
 msgid "Mauryans have a 10% higher maximum population limit."
-msgstr ""
+msgstr "Maurianos têm um limite de população máxima 10% maior."
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
 msgid "Emperor of Emperors"
@@ -2366,11 +2368,11 @@ msgstr "Tradição em Arco e Flecha"
 msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
 "resource in India."
-msgstr ""
+msgstr "Os Maurianos construíram os muros das suas cidades com madeira, um recurso natural abundante na Índia."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
 msgid "Mauryan city walls have 20% less health and 20% less build time."
-msgstr ""
+msgstr "Muralhas Maurianas têm 20% menos vida e levam 20% menos tempo para serem construídas."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"
@@ -2388,7 +2390,7 @@ msgstr "Os Persas recrutavam um grande número de pessoas para integrarem seus r
 
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsontooltip
 msgid "Persians have a 10% higher maximum population limit."
-msgstr ""
+msgstr "Persas têm um limite de população máxima 10% maior."
 
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
 msgid "Great King's Levy"
@@ -2526,7 +2528,7 @@ msgstr "Começando por Alexandre, os monarcas helenísticos fundaram muitas cida
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
 msgid "Civic centers +100% health and capture points, double default arrows."
-msgstr ""
+msgstr "Centros cívicos têm +100% de saúde e pontos de captura, dobro de flechas padrão."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"
