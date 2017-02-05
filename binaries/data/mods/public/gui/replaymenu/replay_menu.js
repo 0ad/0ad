@@ -87,8 +87,6 @@ function loadReplays(replaySelectionData)
 	for (let replay of g_Replays)
 	{
 		let nonAIPlayers = 0;
-		// Use time saved in file, otherwise file mod date
-		replay.timestamp = replay.attribs.timestamp ? +replay.attribs.timestamp : +replay.filemod_timestamp-replay.duration;
 
 		// Check replay for compatibility
 		replay.isCompatible = isReplayCompatible(replay);
@@ -300,7 +298,7 @@ function greyout(text, isCompatible)
  */
 function getReplayDateTime(replay)
 {
-	return Engine.FormatMillisecondsIntoDateStringLocal(replay.timestamp * 1000, translate("yyyy-MM-dd HH:mm"));
+	return Engine.FormatMillisecondsIntoDateStringLocal(replay.attribs.timestamp * 1000, translate("yyyy-MM-dd HH:mm"));
 }
 
 /**
@@ -330,7 +328,7 @@ function getReplayMapName(replay)
  */
 function getReplayMonth(replay)
 {
-	return Engine.FormatMillisecondsIntoDateStringLocal(replay.timestamp * 1000, translate("yyyy-MM"));
+	return Engine.FormatMillisecondsIntoDateStringLocal(replay.attribs.timestamp * 1000, translate("yyyy-MM"));
 }
 
 /**

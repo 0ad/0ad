@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -129,7 +129,7 @@ inline int goBackToLineBeginning(std::istream* replayStream, const CStr& fileNam
 }
 
 /**
- * Compute game duration. Assume constant turn length.
+ * Compute game duration in seconds. Assume constant turn length.
  * Find the last line that starts with "turn" by reading the file backwards.
  *
  * @return seconds or -1 on error
@@ -184,7 +184,6 @@ JS::Value VisualReplay::LoadReplayData(ScriptInterface& scriptInterface, OsPath&
 	// Get file size and modification date
 	CFileInfo fileInfo;
 	GetFileInfo(replayFile, &fileInfo);
-	const u64 fileTime = (u64)fileInfo.MTime() & ~1; // skip lowest bit, since zip and FAT don't preserve it (according to CCacheLoader::LooseCachePath)
 	const u64 fileSize = (u64)fileInfo.Size();
 
 	if (fileSize == 0)
@@ -251,7 +250,6 @@ JS::Value VisualReplay::LoadReplayData(ScriptInterface& scriptInterface, OsPath&
 	scriptInterface.Eval("({})", &replayData);
 	scriptInterface.SetProperty(replayData, "file", replayFile);
 	scriptInterface.SetProperty(replayData, "directory", directory);
-	scriptInterface.SetProperty(replayData, "filemod_timestamp", std::to_string(fileTime));
 	scriptInterface.SetProperty(replayData, "attribs", attribs);
 	scriptInterface.SetProperty(replayData, "duration", duration);
 	return replayData;
