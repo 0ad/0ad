@@ -27,13 +27,14 @@
 # Traumflut <sophiareg95@gmail.com>, 2014
 # Vasilis Drosos <basilisd@gmail.com>, 2016
 # Κωνσταντίνος Φωκιανός <lost-in-illusions@hotmail.com>, 2015
+# Μιχάλης <mikem132@protonmail.com>, 2017
 # Steven Gikas <stevengk123@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-01-13 09:03+0100\n"
-"PO-Revision-Date: 2017-01-14 09:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-02-03 14:44+0000\n"
+"Last-Translator: Μιχάλης <mikem132@protonmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -273,7 +274,7 @@ msgstr "Στρατιωτική Κατασκευή"
 
 #: simulation/templates/template_structure_military.xml:15
 msgid "Military"
-msgstr "Στρατιωτική"
+msgstr "Στρατός"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
 msgid "Train citizen-soldiers. Research training improvements."
@@ -334,7 +335,7 @@ msgstr "Δομή Πόρων"
 
 #: simulation/templates/template_structure_resource.xml:19
 msgid "Resource"
-msgstr "Πόρος"
+msgstr "Πόροι"
 
 #: simulation/templates/template_structure_resource_corral.xml:19
 msgid ""
@@ -375,11 +376,11 @@ msgstr "Έρευνα ειδικών τεχνολογιών"
 
 #: simulation/templates/template_structure_special_rotarymill.xml:20
 msgid "Rotary Mill"
-msgstr "Μύλος"
+msgstr "Περιστροφικός Μύλος"
 
 #: simulation/templates/template_structure_special_rotarymill.xml:21
 msgid "Melonas"
-msgstr "Μέλανας"
+msgstr "Μέλονας"
 
 #: simulation/templates/template_structure_special_theatron.xml:23
 msgid "Greek Theater"
@@ -387,7 +388,7 @@ msgstr "Ελληνικό Θέατρο"
 
 #: simulation/templates/template_structure_special_theatron.xml:24
 msgid "Théātron"
-msgstr "Θέατρο"
+msgstr "Θέατρον"
 
 #: simulation/templates/template_structure_wonder.xml:48
 msgid ""
@@ -404,12 +405,12 @@ msgstr "Θαύμα"
 #: simulation/templates/structures/mace_barracks.xml:18
 #: simulation/templates/structures/spart_barracks.xml:18
 msgid "Stratēgeîon"
-msgstr "Στρατηγείο"
+msgstr "Στρατηγείον"
 
 #: simulation/templates/structures/athen_blacksmith.xml:5
 #: simulation/templates/structures/spart_blacksmith.xml:5
 msgid "Khalkeṓn"
-msgstr "Χαλκορουργίο"
+msgstr "Χαλκουργείον"
 
 #: simulation/templates/structures/athen_civil_centre.xml:8
 #: simulation/templates/structures/mace_civil_centre.xml:8
@@ -422,14 +423,14 @@ msgstr "Αγορά"
 #: simulation/templates/structures/sele_corral.xml:12
 #: simulation/templates/structures/spart_corral.xml:12
 msgid "Épaulos"
-msgstr "Έπαυλη"
+msgstr "Έπαυλος"
 
 #: simulation/templates/structures/athen_defense_tower.xml:9
 #: simulation/templates/structures/mace_defense_tower.xml:9
 #: simulation/templates/structures/sele_defense_tower.xml:9
 #: simulation/templates/structures/spart_defense_tower.xml:9
 msgid "Pyrgíon"
-msgstr "Πύργιο"
+msgstr "Πύργιον"
 
 #: simulation/templates/structures/athen_dock.xml:12
 #: simulation/templates/structures/mace_dock.xml:12
@@ -441,7 +442,7 @@ msgstr "Λιμένας"
 #: simulation/templates/structures/mace_farmstead.xml:12
 #: simulation/templates/structures/spart_farmstead.xml:12
 msgid "Sitobólion"
-msgstr "Φάρμα"
+msgstr "Σιτοβόλειον"
 
 #: simulation/templates/structures/athen_field.xml:5
 #: simulation/templates/structures/mace_field.xml:5
@@ -460,7 +461,7 @@ msgstr "Κατασκευάσετε πολιορκητικές μηχανές. Ο
 
 #: simulation/templates/structures/athen_gymnasion.xml:23
 msgid "Gymnasium"
-msgstr "Γυμνάσιο"
+msgstr "Γυμνάσιον"
 
 #: simulation/templates/structures/athen_gymnasion.xml:24
 msgid "Gymnásion"
@@ -555,7 +556,7 @@ msgstr "Πύργος"
 #: simulation/templates/structures/mace_wonder.xml:15
 #: simulation/templates/structures/spart_wonder.xml:15
 msgid "Naós Parthenṓn"
-msgstr "Παρθενώνας"
+msgstr "Ναός Παρθενών "
 
 #: simulation/templates/structures/athen_wonder.xml:17
 #: simulation/templates/structures/cart_wonder.xml:17
@@ -575,7 +576,7 @@ msgstr "Gwersyllty"
 #: simulation/templates/structures/brit_blacksmith.xml:8
 #: simulation/templates/structures/gaul_blacksmith.xml:8
 msgid "Amoridas"
-msgstr "Amoridas"
+msgstr "Αμορίδας"
 
 #: simulation/templates/structures/brit_civil_centre.xml:12
 #: simulation/templates/structures/gaul_civil_centre.xml:12
@@ -599,7 +600,7 @@ msgstr "Αυξάνει το όριο πληθυσμού και υπερασπί�
 #: simulation/templates/structures/brit_dock.xml:15
 #: simulation/templates/structures/gaul_dock.xml:15
 msgid "Crannóc"
-msgstr "Crannóc"
+msgstr "Κράννος"
 
 #: simulation/templates/structures/brit_defense_tower.xml:9
 #: simulation/templates/structures/brit_wall_tower.xml:11
@@ -676,12 +677,12 @@ msgstr "πολιορκία"
 #: simulation/templates/structures/brit_wall_tower.xml:13
 #: simulation/templates/structures/gaul_wall_tower.xml:13
 msgid "Does not shoot or garrison."
-msgstr "Δεν ρίχνει ή οχυρώνει."
+msgstr "Δεν πυροδοτεί ή οχυρώνει."
 
 #: simulation/templates/structures/brit_wonder.xml:9
 #: simulation/templates/structures/gaul_wonder.xml:9
 msgid "Stonehenge"
-msgstr "Στόουνχεντζ"
+msgstr "Κρεμαστοί λίθοι"
 
 #: simulation/templates/structures/cart_apartment.xml:17
 msgid "Apartment Building"
@@ -810,7 +811,7 @@ msgstr "Κατασκεύασε και επισκεύασε ισχυρά πολε
 
 #: simulation/templates/structures/cart_temple.xml:14
 msgid "Maqdaš"
-msgstr "Maqdaš"
+msgstr "Μάγδας"
 
 #: simulation/templates/structures/cart_temple.xml:16
 msgid ""
@@ -867,7 +868,7 @@ msgstr "Duro"
 
 #: simulation/templates/structures/iber_barracks.xml:11
 msgid "Kaserna"
-msgstr "Κασέρι"
+msgstr "Στρατώνας"
 
 #: simulation/templates/structures/iber_blacksmith.xml:5
 msgid "Harotz"
@@ -896,7 +897,7 @@ msgstr "αγρόκτημα"
 
 #: simulation/templates/structures/iber_field.xml:5
 msgid "Soro"
-msgstr "ορρός"
+msgstr "Σορός "
 
 #: simulation/templates/structures/iber_fortress.xml:15
 msgid "Castro"
@@ -908,7 +909,7 @@ msgstr "Οικία"
 
 #: simulation/templates/structures/iber_market.xml:12
 msgid "Arruga"
-msgstr "Ρυτίδα"
+msgstr "Ζάρωμα"
 
 #: simulation/templates/structures/iber_monument.xml:28
 msgid "Revered Monument"
@@ -930,7 +931,7 @@ msgstr "Ιβηρική Προφυλακή"
 
 #: simulation/templates/structures/iber_storehouse.xml:5
 msgid "Ola"
-msgstr "Ola"
+msgstr "Όλα"
 
 #: simulation/templates/structures/iber_temple.xml:12
 msgid "Loki"
@@ -954,11 +955,11 @@ msgstr "Cancho Roano"
 
 #: simulation/templates/structures/mace_blacksmith.xml:5
 msgid "Sidērourgeîon"
-msgstr "Σιδηρουργίο"
+msgstr "Σιδηρουργείον"
 
 #: simulation/templates/structures/mace_fortress.xml:15
 msgid "Teíchisma"
-msgstr "Τόιχισμα"
+msgstr "Τείχισμα"
 
 #: simulation/templates/structures/mace_fortress.xml:16
 msgid ""
@@ -972,7 +973,7 @@ msgstr "Βιβλιοθήκη"
 
 #: simulation/templates/structures/mace_siege_workshop.xml:17
 msgid "Synergeîon Poliorkētṓn"
-msgstr "Συνεργείο Π"
+msgstr "Συνεργείον Πολιορκητών "
 
 #: simulation/templates/structures/mace_siege_workshop.xml:18
 msgid "Siege Workshop"
@@ -985,7 +986,7 @@ msgstr "Δημιουργία πολιορκητικών μηχανών. Έρευ
 #: simulation/templates/structures/mace_temple.xml:9
 #: simulation/templates/structures/spart_temple.xml:9
 msgid "Asklēpieîon"
-msgstr "Ασκληπιοίο"
+msgstr "Ασκληπιείον"
 
 #: simulation/templates/structures/maur_barracks.xml:9
 msgid "Sainyavasa"
@@ -1037,7 +1038,7 @@ msgstr "Durg"
 
 #: simulation/templates/structures/maur_fortress.xml:6
 msgid "Train heroes and champion units."
-msgstr "Εκπαίδευσε ήρωες και πρωταθλητές."
+msgstr "Εκπαίδευσε μονάδες ηρώων και πρωταθλητών."
 
 #: simulation/templates/structures/maur_house.xml:9
 msgid "Griham"
@@ -1168,7 +1169,7 @@ msgstr "Kaštrya"
 
 #: simulation/templates/structures/pers_fortress.xml:5
 msgid "Didā"
-msgstr "Didā"
+msgstr "Διδά"
 
 #: simulation/templates/structures/pers_fortress.xml:7
 msgid "Train Champion Cavalry and Construct Siege Rams."
@@ -1222,11 +1223,11 @@ msgstr "Paraspa"
 
 #: simulation/templates/structures/pers_stables.xml:20
 msgid "Stables"
-msgstr "Στάβλοι"
+msgstr "Στάβλος"
 
 #: simulation/templates/structures/pers_stables.xml:22
 msgid "Train citizen-cavalry units."
-msgstr "Εκπαίδευσε υπηκόους-ιππείς."
+msgstr "Εκπαίδευσε μονάδες πολιτών-ιππέων."
 
 #: simulation/templates/structures/pers_storehouse.xml:5
 msgid "Asiyah"
@@ -1402,7 +1403,7 @@ msgstr "Armamentarium"
 
 #: simulation/templates/structures/rome_civil_centre.xml:12
 msgid "Forum"
-msgstr "Φόρουμ"
+msgstr "Τόπος Δημόσιας συζητήσεως"
 
 #: simulation/templates/structures/rome_corral.xml:12
 msgid "Saeptum"
@@ -1414,11 +1415,11 @@ msgstr "Turris Lignea"
 
 #: simulation/templates/structures/rome_dock.xml:12
 msgid "Portus"
-msgstr "Portus"
+msgstr "Λιμάνι"
 
 #: simulation/templates/structures/rome_farmstead.xml:12
 msgid "Villa"
-msgstr "Villa"
+msgstr "Βίλα"
 
 #: simulation/templates/structures/rome_field.xml:5
 msgid "Ager"
@@ -1426,19 +1427,19 @@ msgstr "Ager"
 
 #: simulation/templates/structures/rome_fortress.xml:5
 msgid "Castellum"
-msgstr "Castellum"
+msgstr "Xωριό"
 
 #: simulation/templates/structures/rome_house.xml:5
 msgid "Domus"
-msgstr "Domus"
+msgstr "Σπίτι"
 
 #: simulation/templates/structures/rome_market.xml:12
 msgid "Mercatus"
-msgstr "Mercatus"
+msgstr "Αγορά"
 
 #: simulation/templates/structures/rome_outpost.xml:5
 msgid "Vigilarium"
-msgstr "Vigilarium"
+msgstr "Εποπτείο "
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:25
 msgid "Siege Wall Gate"
@@ -1522,23 +1523,23 @@ msgstr "Ένα προσωρινό καταφύγιο για στρατιώτες
 #: simulation/templates/structures/rome_wall_short.xml:10
 #: simulation/templates/structures/rome_wallset_stone.xml:5
 msgid "Moenia"
-msgstr "Moenia"
+msgstr "Τείχος"
 
 #: simulation/templates/structures/rome_wall_gate.xml:9
 msgid "Porta"
-msgstr "Porta"
+msgstr "Πύλη"
 
 #: simulation/templates/structures/rome_wall_tower.xml:9
 msgid "Turris Lapidea"
-msgstr "Turris Lapidea"
+msgstr "Πύργος Λαπιδέα"
 
 #: simulation/templates/structures/rome_wallset_siege.xml:6
 msgid "Murus Latericius"
-msgstr "Murus Latericius"
+msgstr "Σινικό τείχος Λατερίσιους"
 
 #: simulation/templates/structures/rome_wonder.xml:13
 msgid "Aedes Iovis Optimi Maximi"
-msgstr "Αήδες Διός Όπτιμουμ Μάξιμου"
+msgstr "Ο μεγάλος ναός του Διά"
 
 #: simulation/templates/structures/sele_barracks.xml:18
 msgid "Stratones"
@@ -1554,11 +1555,11 @@ msgstr "Αγορά"
 
 #: simulation/templates/structures/sele_dock.xml:12
 msgid "Liménas"
-msgstr "Λιμήν"
+msgstr "Λιμένας"
 
 #: simulation/templates/structures/sele_farmstead.xml:12
 msgid "Sītobólion"
-msgstr "Σιτοβολώνας"
+msgstr "Σιτοβολείον  "
 
 #: simulation/templates/structures/sele_fortress.xml:9
 msgid "Phrourion"
@@ -1616,7 +1617,7 @@ msgstr "Γεροντία"
 
 #: simulation/templates/structures/spart_gerousia.xml:23
 msgid "Train heroes."
-msgstr "Εκπαιδεύστε ήρωες."
+msgstr "Εκπαίδευση ηρώων."
 
 #: simulation/templates/structures/spart_syssiton.xml:24
 msgid "Military Mess Hall"
@@ -1628,7 +1629,7 @@ msgstr "Συσσίτιον"
 
 #: simulation/templates/structures/spart_syssiton.xml:27
 msgid "Train Spartan heroes and Spartiate champion hoplites."
-msgstr "Εκπαίδευσε Σπαρτιάτες ήρωες και Σπαρτιάτες πρωταθλητές οπλίτες."
+msgstr "Εκπαίδευση Σπαρτιατών ηρώων και πρωταθλητών οπλιτών."
 
 #: simulation/templates/structures/spart_wonder.xml:17
 msgid ""

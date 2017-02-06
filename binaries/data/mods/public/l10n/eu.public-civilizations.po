@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Ibai Oihanguren Sala <ibai@oihanguren.com>, 2014
-# Thadah D. Denyse <juchuf@gmail.com>, 2016
+# Gontzal M. Pujana <juchuf@gmail.com>, 2016
 # Mielanjel Iraeta <pospolos@gmail.com>, 2017
 # Osoitz <oelkoro@gmail.com>, 2015
 # Quintana Salazar <quintana.salazar.unai@gmail.com>, 2015
@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-11-28 09:00+0100\n"
-"PO-Revision-Date: 2017-01-28 17:15+0000\n"
+"PO-Revision-Date: 2017-02-04 18:31+0000\n"
 "Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -198,7 +198,7 @@ msgstr "Atenarrak zilar-meategietako irabaziak 200 trirremeko itsas-armada bat s
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[1].History
 msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
-msgstr ""
+msgstr "Perikles K.a. 5. Mendeko atenastar politikari  garrantzitsuena izan zen. "
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[2].History
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[0].History
@@ -228,7 +228,7 @@ msgstr "Antzokia"
 msgid ""
 "The Hellenization civ bonus. Building a Theatron increases the territory "
 "effect of all buildings by 25%."
-msgstr ""
+msgstr "Heleniar zibilizazioaren hobaria. Antzerki baten eraikuntzak eraikin guztien lurraldetasun eragina %25 handitzen du."
 
 #: simulation/data/civs/athen.jsonStructures[0].History
 #: simulation/data/civs/mace.jsonStructures[0].History
@@ -284,22 +284,22 @@ msgstr "Bretoiak"
 #: simulation/data/civs/brit.jsonCivBonuses[0].Description
 #: simulation/data/civs/gaul.jsonCivBonuses[0].Description
 msgid "Enhanced food gained from ranching and farming. "
-msgstr ""
+msgstr "Hobekuntza animali jakia eta ereindakoa lortzean."
 
 #: simulation/data/civs/brit.jsonCivBonuses[0].Name
 #: simulation/data/civs/gaul.jsonCivBonuses[0].Name
 msgid "Ardiosmanae"
-msgstr ""
+msgstr "Ardiosmanae"
 
 #: simulation/data/civs/brit.jsonCivBonuses[0].History
 #: simulation/data/civs/gaul.jsonCivBonuses[0].History
 msgid "Represents Celtic farming methods. "
-msgstr ""
+msgstr "Zelten landatzeko joerak adierazten du."
 
 #: simulation/data/civs/brit.jsonCivBonuses[1].Description
 #: simulation/data/civs/gaul.jsonCivBonuses[1].Description
 msgid "Druids increase attack rates of soldiers near them slightly."
-msgstr ""
+msgstr "Druidek soldaduen abiadura apur bat hobetzen dute inguruetan."
 
 #: simulation/data/civs/brit.jsonCivBonuses[1].Name
 #: simulation/data/civs/gaul.jsonCivBonuses[1].Name
@@ -309,12 +309,12 @@ msgstr "Deas Celtica "
 #: simulation/data/civs/brit.jsonCivBonuses[1].History
 #: simulation/data/civs/gaul.jsonCivBonuses[1].History
 msgid "Celtic religion and druidry inspired their warlike mindset. "
-msgstr ""
+msgstr "Zelta erlijioak eta druiden egiteak bere borroka izpiritua pizten zuten"
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
 msgid "Bonus to tech speed."
-msgstr ""
+msgstr "Ikerketa abiadura apur bat hobetzen du."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
@@ -326,54 +326,54 @@ msgstr "Aztiak"
 msgid ""
 "The Druids of the Celts maintained an organized religion that advanced the "
 "technology of their people even during wartime."
-msgstr ""
+msgstr "Druida Zeltek erlijioa antolaturik mantentzen zuten bere jendearen teknologia hobetuz baita guda garaietan ere."
 
 #: simulation/data/civs/brit.jsonAINames[0]
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[0].Name
 msgid "Karatakos"
-msgstr ""
+msgstr "Karatakos"
 
 #: simulation/data/civs/brit.jsonAINames[1]
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[1].Name
 msgid "Kunobelinos"
-msgstr ""
+msgstr "Kunobelinos"
 
 #: simulation/data/civs/brit.jsonAINames[2]
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[2].Name
 msgid "Boudicca"
-msgstr ""
+msgstr "Boudicca"
 
 #: simulation/data/civs/brit.jsonAINames[3]
 msgid "Prasutagus"
-msgstr ""
+msgstr "Prasutagus"
 
 #: simulation/data/civs/brit.jsonAINames[4]
 msgid "Venutius"
-msgstr ""
+msgstr "Venutius"
 
 #: simulation/data/civs/brit.jsonAINames[5]
 msgid "Cogidubnus"
-msgstr ""
+msgstr "Cogidubnus"
 
 #: simulation/data/civs/brit.jsonAINames[6]
 msgid "Commius"
-msgstr ""
+msgstr "Commius"
 
 #: simulation/data/civs/brit.jsonAINames[7]
 msgid "Comux"
-msgstr ""
+msgstr "Comux"
 
 #: simulation/data/civs/brit.jsonAINames[8]
 msgid "Adminius"
-msgstr ""
+msgstr "Adminius"
 
 #: simulation/data/civs/brit.jsonAINames[9]
 msgid "Dubnovellaunus"
-msgstr ""
+msgstr "Dubnovellaunus"
 
 #: simulation/data/civs/brit.jsonAINames[10]
 msgid "Vosenius"
-msgstr ""
+msgstr "Vosenius"
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[0].Description
 msgid "Increased attack and movement rate for melee soldiers."
@@ -381,29 +381,29 @@ msgstr "Hobetutako erasoa eta mugitzeko abiadura buruz-buruko soldaduentzat."
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[0].Name
 msgid "Sevili Dusios"
-msgstr ""
+msgstr "Sevili Dusios"
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[0].History
 msgid ""
 "The Britons took up the practice of either making permanent marks on their "
 "body in the form of tattoos or temporarily painted their bodies with woad "
 "paint. The effect was very frightening."
-msgstr ""
+msgstr "Britaniarrek azalean tatuaiak egin eta tinturaz margotzeko ohitura hartu zuten. Eragina oso iluna zen eta etsaiei beldurra ematen zien."
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[1].Description
 msgid "Increases the height bonus of units garrisoned in a tower."
-msgstr ""
+msgstr "Talaian babestutako unitateen alturako hobaria handitzen du."
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[1].Name
 msgid "Turos Maros"
-msgstr ""
+msgstr "Turos Maros"
 
 #: simulation/data/civs/brit.jsonFactions[0].Technologies[1].History
 msgid ""
 "'Great Tower'; Celtic legends abound with stories of massive tall towers "
 "built by the most powerful kings, and the remains of some very large towers "
 "have been found."
-msgstr ""
+msgstr "'Dorre Handia'; Zelten kondairek errege boteretsuenek egindako dorre erraldoiez beterik daude, eta oso dorre handien aztarna batzuk aurkitu izan dira."
 
 #: simulation/data/civs/brit.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -520,7 +520,7 @@ msgid ""
 "longswordsmen and powerful melee soldiers, they staged fearsome revolts "
 "against Rome to protect their customs and interests. Also, they built "
 "thousands of unique structures such as hill forts, crannogs and brochs."
-msgstr ""
+msgstr "Britanikok Britaniar Uhartetako tribu zeltak ziren. Borrokarako gurdiak, ezpatariak eta aurrez aurreko borrokalari indartsuak erabiliz Erromaren kontrako altxamendu ugari egin zituzten beren ohitura eta interesak babesteko. Kastro, crannogs eta brochs bezalako milaka eraikin jaso zituzten."
 
 #: simulation/data/civs/cart.jsonName
 msgid "Carthaginians"
@@ -530,7 +530,7 @@ msgstr "Kartagoarrak"
 msgid ""
 "Carthaginian walls, gates, and towers have 3x health of a standard wall, but"
 " also 2x build time."
-msgstr ""
+msgstr "Kartagoarren harresi, ate eta dorreek harresi arrunt batek baino 3 aldiz osasun handiagoa dute baino, eraikitzeak denbora x2 behar du."
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Name
 msgid "Triple Walls"
@@ -545,23 +545,23 @@ msgid ""
 "The resource cost of training elephant-mounted (war elephant) or horse-"
 "mounted units (cavalry) is reduced by 5% per animal corralled (as "
 "appropriate)."
-msgstr ""
+msgstr "Elefantetan (guda-elefanteak) igotako edo zaldietan (zalditeria) igotako unitateak erreklutatzeko baliabideen kostua %5 gutxitzen da ukuiluan gordetako animali bakoitzeko(kasua kasu). "
 
 #: simulation/data/civs/cart.jsonCivBonuses[1].Name
 #: simulation/data/civs/ptol.jsonCivBonuses[2].Name
 msgid "Roundup"
-msgstr ""
+msgstr "Laburpena"
 
 #: simulation/data/civs/cart.jsonCivBonuses[1].History
 msgid ""
 "Not unlike the Iberian Peninsula, North Africa was known as horse country, "
 "capable of producing up to 100,000 new mounts each year. It was also the "
 "home of the North African Forest Elephant."
-msgstr ""
+msgstr "Iberiar Penintsulan nola, Afrika Iparraldea zaldi aberria bezala ezaguna zen, urtero 100.000 zela sortzeko gai zelarik. Basoko iparafrikar elefantearen bizilekua ere izan zen."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
 msgid "+33% trade profit international routes."
-msgstr ""
+msgstr "%33+ irabazia nazioarteko bide trukeengatik."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
