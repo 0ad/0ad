@@ -449,18 +449,9 @@ GarrisonHolder.prototype.Unload = function(entity, forced)
  * Unload one or all units that match a template and owner from
  * the garrisoning entity and order them to move to the Rally Point
  * Returns true if successful, false if not
- *
- * extendedTemplate has the format "p"+ownerid+"&"+template
  */
-GarrisonHolder.prototype.UnloadTemplate = function(extendedTemplate, all, forced)
+GarrisonHolder.prototype.UnloadTemplate = function(template, owner, all, forced)
 {
-	var index = extendedTemplate.indexOf("&");
-	if (index == -1)
-		return false;
-
-	var owner = +extendedTemplate.slice(1,index);
-	var template = extendedTemplate.slice(index+1);
-
 	var entities = [];
 	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	for (var entity of this.entities)
