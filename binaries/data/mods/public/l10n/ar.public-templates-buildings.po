@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-01-13 09:03+0100\n"
-"PO-Revision-Date: 2017-01-19 21:53+0000\n"
+"PO-Revision-Date: 2017-02-05 13:48+0000\n"
 "Last-Translator: Omar Anwar <omaraglan91@yahoo.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -952,11 +952,11 @@ msgstr "درب الابطال والمغاوير. عزز بالجنود من ا�
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
 msgid "Bibliothḗkē"
-msgstr ""
+msgstr "مكتبه او كتاب مقدس"
 
 #: simulation/templates/structures/mace_siege_workshop.xml:17
 msgid "Synergeîon Poliorkētṓn"
-msgstr ""
+msgstr "سينتكون بريكتاون"
 
 #: simulation/templates/structures/mace_siege_workshop.xml:18
 msgid "Siege Workshop"
@@ -964,36 +964,36 @@ msgstr "ورشة حصار"
 
 #: simulation/templates/structures/mace_siege_workshop.xml:20
 msgid "Build siege engines. Research siege technologies."
-msgstr ""
+msgstr "يبنى ادوات الحصار. يطور تقنيات الحصار."
 
 #: simulation/templates/structures/mace_temple.xml:9
 #: simulation/templates/structures/spart_temple.xml:9
 msgid "Asklēpieîon"
-msgstr ""
+msgstr "اسكليبيون"
 
 #: simulation/templates/structures/maur_barracks.xml:9
 msgid "Sainyavasa"
-msgstr "ساينياڤاسا"
+msgstr "ثكنات\"ساينيافاسا\""
 
 #: simulation/templates/structures/maur_blacksmith.xml:5
 msgid "Lohakāra"
-msgstr "لوهاكارا"
+msgstr "حداد\"لوكهارا\""
 
 #: simulation/templates/structures/maur_civil_centre.xml:12
 msgid "Rajadhanika"
-msgstr "راجادانكا"
+msgstr "قصر\"راجادانكا\""
 
 #: simulation/templates/structures/maur_corral.xml:12
 msgid "Gotra"
-msgstr ""
+msgstr "عشيرة"
 
 #: simulation/templates/structures/maur_defense_tower.xml:5
 msgid "Udarka"
-msgstr "أوداركا"
+msgstr "وزير الحرب\"أوداركا\""
 
 #: simulation/templates/structures/maur_dock.xml:9
 msgid "Naukasthanaka"
-msgstr "ناوكاستاناكا"
+msgstr "حوض السفن\"ناوكاستاناكا\""
 
 #: simulation/templates/structures/maur_elephant_stables.xml:24
 msgid "Elephant Stables"
@@ -1001,7 +1001,7 @@ msgstr "اصطبلات الفيلة"
 
 #: simulation/templates/structures/maur_elephant_stables.xml:25
 msgid "Vāraṇaśālā"
-msgstr "ڤاراناسالا"
+msgstr "أصطبلات الفيله\"ڤاراناسالا\""
 
 #: simulation/templates/structures/maur_elephant_stables.xml:28
 msgid "Train elephant units."
@@ -1025,11 +1025,11 @@ msgstr "درِّب وحدات الخارقين والأبطال."
 
 #: simulation/templates/structures/maur_house.xml:9
 msgid "Griham"
-msgstr ""
+msgstr "جرهام"
 
 #: simulation/templates/structures/maur_market.xml:12
 msgid "Vipana"
-msgstr ""
+msgstr "فابانا"
 
 #: simulation/templates/structures/maur_outpost.xml:5
 msgid "Uparaksana"
@@ -1037,25 +1037,25 @@ msgstr "أوپاراكسانا"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:27
 msgid "Edict Pillar of Ashoka"
-msgstr ""
+msgstr "مرسوم عمودى من أشوكا"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:28
 msgid "Śāsana Stambha Aśokā"
-msgstr ""
+msgstr "مرسوم عمودى من اشوكا"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:31
 msgid ""
 "The famous pillar of Ashoka. Increases the walk speed of traders. Buildings "
 "in the territory of the monument do not decay."
-msgstr ""
+msgstr "المرسوم العمودى المشهور من أشوكا. يزيد سرعه المشى للمتاجرين. النصب التذكاريه فى الاقليم لا تضمحل."
 
 #: simulation/templates/structures/maur_storehouse.xml:5
 msgid "Khalla"
-msgstr ""
+msgstr "خالا"
 
 #: simulation/templates/structures/maur_temple.xml:12
 msgid "Devalaya"
-msgstr ""
+msgstr "ديفلايا"
 
 #: simulation/templates/structures/maur_wall.xml:9
 #: simulation/templates/structures/maur_wall_long.xml:35
@@ -1071,16 +1071,16 @@ msgstr "دوارا"
 
 #: simulation/templates/structures/maur_wall_tower.xml:18
 msgid "Puratta"
-msgstr ""
+msgstr "بيورتا"
 
 #: simulation/templates/structures/maur_wonder.xml:9
 msgid "Great Stupa"
-msgstr ""
+msgstr "ستوبا العظمى"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:7
 #: simulation/templates/structures/ptol_mercenary_camp.xml:7
 msgid "MercenaryCamp"
-msgstr ""
+msgstr "مخيم المرتزقه"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:29
 msgid "Mercenary Camp (Egyptian)"
@@ -1088,11 +1088,11 @@ msgstr "مخيّم المرتزقة (مصريّ)"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:30
 msgid "Stratópedo Misthophóron Aigyptiakós"
-msgstr ""
+msgstr "مخيم المرتزقه المصرى"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:33
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
-msgstr ""
+msgstr "احتل هذا المبنى لتدرب مرتزقه من مصر الهيلنيه."
 
 #: simulation/templates/structures/pers_apadana.xml:29
 #: simulation/templates/structures/pers_tacara.xml:26
@@ -1101,13 +1101,13 @@ msgstr "قصر فارسي"
 
 #: simulation/templates/structures/pers_apadana.xml:30
 msgid "Apadana"
-msgstr ""
+msgstr "قاعه الاعمده الكبرى"
 
 #: simulation/templates/structures/pers_apadana.xml:34
 msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
 "resources. Train Persian heroes and their \"Immortals\" bodyguards."
-msgstr ""
+msgstr "\"تحيه المزربانيه\": أكسب قطر من الطعام, الخشب, الحجاره, و المصادر المعدنيه. درب الابطال الفارسيين و حراسهم \"الخالدون\"."
 
 #: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
@@ -1127,11 +1127,11 @@ msgstr "حاكم مقاطعة"
 
 #: simulation/templates/structures/pers_civil_centre.xml:9
 msgid "Xšaçapāvan"
-msgstr ""
+msgstr "حامى المقاطعه"
 
 #: simulation/templates/structures/pers_corral.xml:12
 msgid "Gaiāšta"
-msgstr ""
+msgstr "جالستا"
 
 #: simulation/templates/structures/pers_defense_tower.xml:5
 #: simulation/templates/structures/pers_wall_tower.xml:9
