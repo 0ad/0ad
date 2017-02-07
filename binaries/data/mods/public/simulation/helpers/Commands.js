@@ -495,10 +495,6 @@ var g_Commands = {
 
 	"unload-template": function(player, cmd, data)
 	{
-		var index = cmd.template.indexOf("&");  // Templates for garrisoned units are extended
-		if (index == -1)
-			return;
-
 		var entities = FilterEntityListWithAllies(cmd.garrisonHolders, player, data.controlAllUnits);
 		for (let garrisonHolder of entities)
 		{
@@ -507,10 +503,10 @@ var g_Commands = {
 			{
 				// Only the owner of the garrisonHolder may unload entities from any owners
 				if (!IsOwnedByPlayer(player, garrisonHolder) && !data.controlAllUnits
-				    && player != +cmd.template.slice(1,index))
+				    && player != +cmd.owner)
 						continue;
 
-				if (!cmpGarrisonHolder.UnloadTemplate(cmd.template, cmd.all))
+				if (!cmpGarrisonHolder.UnloadTemplate(cmd.template, cmd.owner, cmd.all))
 					notifyUnloadFailure(player, garrisonHolder);
 			}
 		}

@@ -48,46 +48,43 @@ EntityGroups.prototype.add = function(ents)
 {
 	for (let ent of ents)
 	{
-		if (!this.ents[ent])
-		{
-			var entState = GetEntityState(ent);
+		if (this.ents[ent])
+			continue;
+		var entState = GetEntityState(ent);
 
-			// When this function is called during group rebuild, deleted
-			// entities will not yet have been removed, so entities might
-			// still be present in the group despite not existing.
-			if (!entState)
-				continue;
+		// When this function is called during group rebuild, deleted
+		// entities will not yet have been removed, so entities might
+		// still be present in the group despite not existing.
+		if (!entState)
+			continue;
 
-			var templateName = entState.template;
-			var key = GetTemplateData(templateName).selectionGroupName || templateName;
+		var templateName = entState.template;
+		var key = GetTemplateData(templateName).selectionGroupName || templateName;
 
-			// TODO ugly hack, just group them by player too.
-			// Prefix garrisoned unit's selection name with the player they belong to
-			var index = templateName.indexOf("&");
-			if (index != -1 && key.indexOf("&") == -1)
-				key = templateName.slice(0, index+1) + key;
+		// Group the ents by player and template
+		if (entState.player !== undefined)
+			key = "p" + entState.player + "&" + key;
 
-			if (this.groups[key])
-				this.groups[key] += 1;
-			else
-				this.groups[key] = 1;
+		if (this.groups[key])
+			this.groups[key] += 1;
+		else
+			this.groups[key] = 1;
 
-			this.ents[ent] = key;
-		}
+		this.ents[ent] = key;
 	}
 };
 
 EntityGroups.prototype.removeEnt = function(ent)
 {
-	var templateName = this.ents[ent];
+	var key = this.ents[ent];
 
 	// Remove the entity
 	delete this.ents[ent];
-	--this.groups[templateName];
+	--this.groups[key];
 
 	// Remove the entire group
-	if (this.groups[templateName] == 0)
-		delete this.groups[templateName];
+	if (this.groups[key] == 0)
+		delete this.groups[key];
 };
 
 EntityGroups.prototype.rebuildGroup = function(renamed)
@@ -102,55 +99,55 @@ EntityGroups.prototype.rebuildGroup = function(renamed)
 	this.add(toAdd);
 };
 
-EntityGroups.prototype.getCount = function(templateName)
+EntityGroups.prototype.getCount = function(key)
 {
-	return this.groups[templateName];
+	return this.groups[key];
 };
 
 EntityGroups.prototype.getTotalCount = function()
 {
 	let totalCount = 0;
-	for (let templateName in this.groups)
-		totalCount += this.groups[templateName];
+	for (let key in this.groups)
+		totalCount += this.groups[key];
 	return totalCount;
 };
 
-EntityGroups.prototype.getTemplateNames = function()
+EntityGroups.prototype.getKeys = function()
 {
 	//Preserve order even when shuffling units around
 	//Can be optimized by moving the sorting elsewhere
 	return Object.keys(this.groups).sort();
 };
 
-EntityGroups.prototype.getEntsByName = function(templateName)
+EntityGroups.prototype.getEntsByKey = function(key)
 {
 	var ents = [];
 	for (var ent in this.ents)
-		if (this.ents[ent] == templateName)
+		if (this.ents[ent] == key)
 			ents.push(+ent);
 
 	return ents;
 };
 
 /**
- * get a list of entities grouped by templateName
+ * get a list of entities grouped by a key
  */
 EntityGroups.prototype.getEntsGrouped = function()
 {
-	return this.getTemplateNames().map(template => ({
-		"ents": this.getEntsByName(template),
-		"template": template
+	return this.getKeys().map(key => ({
+		"ents": this.getEntsByKey(key),
+		"key": key
 	}));
 };
 
 /**
  * Gets all ents in every group except ones of the specified group
  */
-EntityGroups.prototype.getEntsByNameInverse = function(templateName)
+EntityGroups.prototype.getEntsByKeyInverse = function(key)
 {
 	var ents = [];
 	for (var ent in this.ents)
-		if (this.ents[ent] != templateName)
+		if (this.ents[ent] != key)
 			ents.push(+ent);
 
 	return ents;
@@ -176,13 +173,13 @@ function EntitySelection()
 }
 
 /**
- * Deselect everything but entities of the chosen type if the modifier is true otherwise deselect just the chosen entity
+ * Deselect everything but entities of the chosen type if inverse is true otherwise deselect just the chosen entity
  */
-EntitySelection.prototype.makePrimarySelection = function(templateName, modifierKey)
+EntitySelection.prototype.makePrimarySelection = function(key, inverse)
 {
-	let ents = modifierKey ?
-		this.groups.getEntsByNameInverse(templateName) :
-		this.groups.getEntsByName(templateName);
+	let ents = inverse ?
+		this.groups.getEntsByKeyInverse(key) :
+		this.groups.getEntsByKey(key);
 
 	this.reset();
 	this.addList(ents);

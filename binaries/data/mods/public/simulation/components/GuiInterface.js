@@ -375,7 +375,6 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 
 	let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 	if (cmpUnitAI)
-	{
 		ret.unitAI = {
 			"state": cmpUnitAI.GetCurrentState(),
 			"orders": cmpUnitAI.GetOrders(),
@@ -385,10 +384,6 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"possibleStances": cmpUnitAI.GetPossibleStances(),
 			"isIdle":cmpUnitAI.IsIdle(),
 		};
-		// Add some information to differentiate between owner
-		if (ret.player !== undefined)
-			ret.template = "p" + ret.player + "&" + ret.template;
-	}
 
 	let cmpGuard = Engine.QueryInterface(ent, IID_Guard);
 	if (cmpGuard)
@@ -621,13 +616,8 @@ GuiInterface.prototype.GetAverageRangeForBuildings = function(player, cmd)
 	return cmpRangeManager.GetElevationAdaptedRange(pos, rot, range, elevationBonus, 2*Math.PI);
 };
 
-GuiInterface.prototype.GetTemplateData = function(player, extendedName)
+GuiInterface.prototype.GetTemplateData = function(player, name)
 {
-	let name = extendedName;
-	// Special case for garrisoned units which have a extended template
-	if (extendedName.indexOf("&") != -1)
-		name = extendedName.slice(extendedName.indexOf("&")+1);
-
 	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	let template = cmpTemplateManager.GetTemplate(name);
 

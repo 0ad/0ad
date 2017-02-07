@@ -1013,11 +1013,6 @@ function handleInputAfterGui(ev)
 						// Select units matching exact template name (same rank)
 						templateToMatch = GetEntityState(selectedEntity).template;
 
-					// Remove the player prefix (e.g. "p3&")
-					let index = templateToMatch.indexOf("&");
-					if (index != -1)
-						templateToMatch = templateToMatch.slice(index+1);
-
 					// TODO: Should we handle "control all units" here as well?
 					ents = Engine.PickSimilarPlayerEntities(templateToMatch, showOffscreen, matchRank, false);
 				}
@@ -1718,7 +1713,7 @@ function unload(garrisonHolder, entities)
 		Engine.PostNetworkCommand({ "type": "unload", "entities": [entities[0]], "garrisonHolder": garrisonHolder });
 }
 
-function unloadTemplate(template)
+function unloadTemplate(template, owner)
 {
 	// Filter out all entities that aren't garrisonable.
 	var garrisonHolders = g_Selection.toList().filter(e => {
@@ -1732,6 +1727,7 @@ function unloadTemplate(template)
 		"type": "unload-template",
 		"all": Engine.HotkeyIsPressed("session.unloadtype"),
 		"template": template,
+		"owner": owner,
 		"garrisonHolders": garrisonHolders
 	});
 }

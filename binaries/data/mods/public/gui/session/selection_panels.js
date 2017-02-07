@@ -451,17 +451,19 @@ g_SelectionPanels.Garrison = {
 	},
 	"setupButton": function(data)
 	{
-		let template = GetTemplateData(data.item.template);
+		let entState = GetEntityState(data.item.ents[0]);
+
+		let template = GetTemplateData(entState.template);
 		if (!template)
 			return false;
 
 		data.button.onPress = function() {
-			unloadTemplate(data.item.template);
+			unloadTemplate(template.selectionGroupName || entState.template, entState.player);
 		};
 
 		data.countDisplay.caption = data.item.ents.length || "";
 
-		let garrisonedUnitOwner = GetEntityState(data.item.ents[0]).player;
+		let garrisonedUnitOwner = entState.player;
 
 		let canUngarrison =
 			g_ViewedPlayer == data.player ||
@@ -935,7 +937,8 @@ g_SelectionPanels.Selection = {
 	},
 	"setupButton": function(data)
 	{
-		let template = GetTemplateData(data.item.template);
+		let entState = GetEntityState(data.item.ents[0]);
+		let template = GetTemplateData(entState.template);
 		if (!template)
 			return false;
 
@@ -989,8 +992,8 @@ g_SelectionPanels.Selection = {
 
 		data.countDisplay.caption = data.item.ents.length || "";
 
-		data.button.onPress = function() { changePrimarySelectionGroup(data.item.template, false); };
-		data.button.onPressRight = function() { changePrimarySelectionGroup(data.item.template, true); };
+		data.button.onPress = function() { changePrimarySelectionGroup(data.item.key, false); };
+		data.button.onPressRight = function() { changePrimarySelectionGroup(data.item.key, true); };
 
 		if (template.icon)
 			data.icon.sprite = "stretched:session/portraits/" + template.icon;

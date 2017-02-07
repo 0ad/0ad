@@ -143,25 +143,18 @@ function addBases(type, distance, groupedDistance)
 	groupedDistance = groupedDistance || 0.05;
 
 	var playerIDs = randomizePlayers();
-	var players = {};
 
 	switch(type)
 	{
 		case "line":
-			players = placeLine(playerIDs, distance, groupedDistance);
-			break;
+			return placeLine(playerIDs, distance, groupedDistance);
 		case "radial":
-			players = placeRadial(playerIDs, distance);
-			break;
+			return placeRadial(playerIDs, distance);
 		case "random":
-			players = placeRandom(playerIDs);
-			break;
+			return placeRandom(playerIDs) || placeRadial(playerIDs, distance);
 		case "stronghold":
-			players = placeStronghold(playerIDs, distance, groupedDistance);
-			break;
+			return placeStronghold(playerIDs, distance, groupedDistance);
 	}
-
-	return players;
 }
 
 /**
@@ -415,10 +408,15 @@ function placeRandom(playerIDs)
 	var players = [];
 	var placed = [];
 
+	var attempts = 0;
+	var resets = 0;
+
 	for (var i = 0; i < g_MapInfo.numPlayers; ++i)
 	{
-		var attempts = 0;
 		var playerAngle = randFloat(0, TWO_PI);
+
+		// Distance from the center of the map in percent
+		// Mapsize being used as a diameter, so 0.5 is the edge of the map
 		var distance = randFloat(0, 0.42);
 		var x = 0.5 + distance * cos(playerAngle);
 		var z = 0.5 + distance * sin(playerAngle);
@@ -426,6 +424,7 @@ function placeRandom(playerIDs)
 		var tooClose = false;
 		for (var j = 0; j < placed.length; ++j)
 		{
+			// Minimum distance between initial bases must be a quarter of the map diameter
 			var sep = getDistance(x, z, placed[j].x, placed[j].z);
 			if (sep < 0.25)
 			{
@@ -446,8 +445,12 @@ function placeRandom(playerIDs)
 				placed = [];
 				i = -1;
 				attempts = 0;
-			}
+				++resets;
 
+				// If we only pick bad locations, stop trying to place randomly
+				if (resets == 100)
+					return undefined;
+			}
 			continue;
 		}
 
@@ -461,7 +464,6 @@ function placeRandom(playerIDs)
 		placed.push(players[i]);
 	}
 
-	// Create the bases
 	for (var i = 0; i < g_MapInfo.numPlayers; ++i)
 		createBase(players[i]);
 
