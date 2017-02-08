@@ -1094,7 +1094,7 @@ std::string XmppClient::RegistrationResultToString(gloox::RegistrationResult res
 	DEBUG_CASE(RegistrationUnexpectedRequest, "This client is unregistered with the server");
 	DEBUG_CASE(RegistrationNotAllowed, "Server does not permit password changes");
 	default:
-		return g_L10n.Translate("Unknown error");
+		return "";
 	}
 #undef DEBUG_CASE
 #undef CASE

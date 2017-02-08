@@ -8,7 +8,7 @@
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" z="0" sprite="ModernFade"/>
 
-	<object name="dialog" type="image" style="ModernDialog" size="50%-230 50%-120 50%+230 50%+120">
+	<object name="dialog" type="image" style="ModernDialog" size="50%-230 50%-130 50%+230 50%+130">
 
 		<action on="Tick">
 			onTick();
@@ -92,7 +92,7 @@
 			</object>
 
 		</object>
-		<object name="feedback" type="text" size="50 100%-90 100%-50 100%-50" style="ModernLabelText" textcolor="red" text_align="center"/>
+		<object name="feedback" type="text" size="50 100%-110 100%-50 100%-50" style="ModernLabelText" textcolor="red" text_align="center"/>
 		<object name="cancel" type="button" size="18 100%-45 50%-5 100%-17" style="ModernButtonRed" hotkey="cancel">
 			<translatableAttribute id="caption">Cancel</translatableAttribute>
 			<action on="Press">
