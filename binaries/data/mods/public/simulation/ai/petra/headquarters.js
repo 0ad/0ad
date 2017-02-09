@@ -2106,11 +2106,14 @@ m.HQ.prototype.updateCaptureStrength = function(gameState)
 		if (!target || !target.isCapturable())
 			continue;
 		if (!this.capturableTargets.has(targetId))
-			this.capturableTargets.set(targetId, { "strength": ent.captureStrength(), "ents": new Set([ent.id()]) });
+			this.capturableTargets.set(targetId, {
+				"strength": ent.captureStrength() * m.getAttackBonus(ent, target, "Capture"),
+				"ents": new Set([ent.id()])
+			});
 		else
 		{
 			let capturableTarget = this.capturableTargets.get(target.id());
-			capturableTarget.strength += ent.captureStrength();
+			capturableTarget.strength += ent.captureStrength() * m.getAttackBonus(ent, target, "Capture");
 			capturableTarget.ents.add(ent.id());
 		}
 	}

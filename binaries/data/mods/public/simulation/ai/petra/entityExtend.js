@@ -138,7 +138,7 @@ m.allowCapture = function(gameState, ent, target)
 	let capturableTargets = gameState.ai.HQ.capturableTargets;
 	if (!capturableTargets.has(target.id()))
 	{
-		capture = ent.captureStrength();
+		capture = ent.captureStrength() * m.getAttackBonus(ent, target, "Capture");
 		capturableTargets.set(target.id(), { "strength": capture, "ents": new Set([ent.id()]) });
 	}
 	else
@@ -146,7 +146,7 @@ m.allowCapture = function(gameState, ent, target)
 		let capturable = capturableTargets.get(target.id());
 		if (!capturable.ents.has(ent.id()))
 		{
-			capturable.strength += ent.captureStrength();
+			capturable.strength += ent.captureStrength() * m.getAttackBonus(ent, target, "Capture");
 			capturable.ents.add(ent.id());
 		}
 		capture = capturable.strength;
@@ -156,6 +156,25 @@ m.allowCapture = function(gameState, ent, target)
 	if (target.hasDefensiveFire() && target.isGarrisonHolder() && target.garrisoned())
 		return capture > antiCapture + sumCapturePoints/50;
 	return capture > antiCapture + sumCapturePoints/80;
+};
+
+/** copy of GetAttackBonus from Attack.js */
+m.getAttackBonus = function(ent, target, type)
+{
+	let attackBonus = 1;
+	if (!ent.get("Attack/" + type) || !ent.get("Attack/" + type + "/Bonuses"))
+		return attackBonus;
+	let bonuses = ent.get("Attack/" + type + "/Bonuses");
+	for (let key in bonuses)
+	{
+		let bonus = bonuses[key];
+		if (bonus.Civ && bonus.Civ !== target.civ())
+			continue;
+		if (bonus.Classes && bonus.Classes.split(/\s+/).some(cls => !target.hasClass(cls)))
+			continue;
+		attackBonus *= bonus.Multiplier;
+	}
+	return attackBonus;
 };
 
 /** Makes the worker deposit the currently carried resources at the closest accessible dropsite */

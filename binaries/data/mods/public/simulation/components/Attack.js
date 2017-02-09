@@ -422,16 +422,11 @@ Attack.prototype.GetAttackBonus = function(type, target)
 		for (let key in template.Bonuses)
 		{
 			let bonus = template.Bonuses[key];
-
-			let hasClasses = true;
-			if (bonus.Classes){
-				let classes = bonus.Classes.split(/\s+/);
-				for (let key in classes)
-					hasClasses = hasClasses && cmpIdentity.HasClass(classes[key]);
-			}
-
-			if (hasClasses && (!bonus.Civ || bonus.Civ === cmpIdentity.GetCiv()))
-				attackBonus *= bonus.Multiplier;
+			if (bonus.Civ && bonus.Civ !== cmpIdentity.GetCiv())
+				continue;
+			if (bonus.Classes && bonus.Classes.split(/\s+/).some(cls => !cmpIdentity.HasClass(cls)))
+				continue;
+			attackBonus *= bonus.Multiplier;
 		}
 	}
 
