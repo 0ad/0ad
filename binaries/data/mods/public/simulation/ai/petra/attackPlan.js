@@ -197,9 +197,6 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	this.position5TurnsAgo = [0,0];
 	this.lastPosition = [0,0];
 	this.position = [0,0];
-	this.captureStrength = 0;
-	this.captureTime = -1000;
-	this.noCapture = new Set();  // list of structure we won't try to capture
 	this.isBlocked = false;	     // true when this attack faces walls
 
 	return true;
@@ -1224,13 +1221,13 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				{
 					if (this.isSiegeUnit(gameState, ent))	// needed as mauryan elephants are not filtered out
 						continue;
-					ent.attack(attacker.id(), !this.noCapture.has(attacker.id()));
+					ent.attack(attacker.id(), m.allowCapture(gameState, ent, attacker));
 					ent.setMetadata(PlayerID, "lastAttackPlanUpdateTime", time);
 				}
 				// And if this attacker is a non-ranged siege unit and our unit also, attack it
 				if (this.isSiegeUnit(gameState, attacker) && attacker.hasClass("Melee") && ourUnit.hasClass("Melee"))
 				{
-					ourUnit.attack(attacker.id(), false);
+					ourUnit.attack(attacker.id(), m.allowCapture(gameState, ourUnit, attacker));
 					ourUnit.setMetadata(PlayerID, "lastAttackPlanUpdateTime", time);
 				}
 			}
@@ -1247,7 +1244,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 					let collec = this.unitCollection.filter(API3.Filters.byClass("Melee")).filterNearest(ourUnit.position(), 5);
 					for (let ent of collec.values())
 					{
-						ent.attack(attacker.id(), false);
+						ent.attack(attacker.id(), m.allowCapture(gameState, ent, attacker));
 						ent.setMetadata(PlayerID, "lastAttackPlanUpdateTime", time);
 					}
 				}
@@ -1266,7 +1263,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 								continue;
 						}
 					}
-					ourUnit.attack(attacker.id(), !this.noCapture.has(attacker.id()));
+					ourUnit.attack(attacker.id(), m.allowCapture(gameState, ourUnit, attacker));
 					ourUnit.setMetadata(PlayerID, "lastAttackPlanUpdateTime", time);
 				}
 			}
@@ -1374,7 +1371,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 					needsUpdate = true;
 					--unitTargets[targetId];
 				}
-				else if (target.hasClass("Structure") || (target.hasClass("Ship") && !ent.hasClass("Ship")))
+				else if (target.hasClass("Ship") && !ent.hasClass("Ship"))
 					maybeUpdate = true;
 				else if (!ent.hasClass("Cavalry") && !ent.hasClass("Ranged") &&
 					 target.hasClass("Female") && target.unitAIState().split(".")[1] == "FLEEING")
@@ -1382,15 +1379,13 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			}
 
 			// don't update too soon if not necessary
-			// and when not updating, we check if the unit is trying to capture and if it should continue
 			if (!needsUpdate)
 			{
-				if (!maybeUpdate && this.CheckCapture(gameState, ent))
+				if (!maybeUpdate)
 					continue;
 				let deltat = ent.unitAIState() === "INDIVIDUAL.COMBAT.APPROACHING" ? 10 : 5;
 				let lastAttackPlanUpdateTime = ent.getMetadata(PlayerID, "lastAttackPlanUpdateTime");
-				if (lastAttackPlanUpdateTime && time - lastAttackPlanUpdateTime < deltat &&
-					this.CheckCapture(gameState, ent))
+				if (lastAttackPlanUpdateTime && time - lastAttackPlanUpdateTime < deltat)
 					continue;
 			}
 			ent.setMetadata(PlayerID, "lastAttackPlanUpdateTime", time);
@@ -1446,12 +1441,11 @@ m.AttackPlan.prototype.update = function(gameState, events)
 						return valb - vala;
 					});
 					if (mStruct[0].hasClass("Gates"))
-						ent.attack(mStruct[0].id(), false);
+						ent.attack(mStruct[0].id(), m.allowCapture(gameState, ent, mStruct[0]));
 					else
 					{
 						let rand = Math.floor(Math.random() * mStruct.length * 0.2);
-						let newTargetId = mStruct[rand].id();
-						ent.attack(newTargetId, !this.noCapture.has(newTargetId));
+						ent.attack(mStruct[rand].id(), m.allowCapture(gameState, ent, mStruct[rand]));
 					}
 				}
 				else
@@ -1509,8 +1503,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 						return valb - vala;
 					});
 					let rand = Math.floor(Math.random() * mUnit.length * 0.1);
-					let newTargetId = mUnit[rand].id();
-					ent.attack(newTargetId, !this.noCapture.has(newTargetId));
+					ent.attack(mUnit[rand].id(), m.allowCapture(gameState, ent, mUnit[rand]));
 				}
 				else if (this.isBlocked)
 					ent.attack(this.target.id(), false);
@@ -1561,28 +1554,29 @@ m.AttackPlan.prototype.update = function(gameState, events)
 						else
 						{
 							let rand = Math.floor(Math.random() * mStruct.length * 0.2);
-							let newTargetId = mStruct[rand].id();
-							ent.attack(newTargetId, !this.noCapture.has(newTargetId));
+							ent.attack(mStruct[rand].id(), m.allowCapture(gameState, ent, mStruct[rand]));
 						}
 					}
 					else if (needsUpdate)  // really nothing   let's try to help our nearest unit
 					{
 						let distmin = Math.min();
-						let attackerId;
+						let attacker;
 						this.unitCollection.forEach( function (unit) {
 							if (!unit.position())
 								return;
 							if (unit.unitAIState().split(".")[1] !== "COMBAT" || !unit.unitAIOrderData().length ||
 								!unit.unitAIOrderData()[0].target)
 								return;
+							if (!gameState.getEntityById(unit.unitAIOrderData()[0].target))
+								return;
 							let dist = API3.SquareVectorDistance(unit.position(), ent.position());
 							if (dist > distmin)
 								return;
 							distmin = dist;
-							attackerId = unit.unitAIOrderData()[0].target;
+							attacker = gameState.getEntityById(unit.unitAIOrderData()[0].target);
 						});
-						if (attackerId)
-							ent.attack(attackerId, !this.noCapture.has(attackerId));
+						if (attacker)
+							ent.attack(attacker.id(), m.allowCapture(gameState, ent, attacker));
 					}
 				}
 			}
@@ -1635,7 +1629,7 @@ m.AttackPlan.prototype.UpdateTransporting = function(gameState, events)
 				continue;
 			if (!ent.isIdle())
 				continue;
-			ent.attack(attacker.id(), !this.noCapture.has(attacker.id()));
+			ent.attack(attacker.id(), m.allowCapture(gameState, ent, attacker));
 		}
 		break;
 	}
@@ -1960,84 +1954,6 @@ m.AttackPlan.prototype.debugAttack = function()
 	API3.warn("------------------------------");
 };
 
-m.AttackPlan.prototype.ComputeCaptureStrength = function(gameState)
-{
-	let strength = 0;
-	for (let ent of this.unitCollection.values())
-	{
-		let entStr = ent.captureStrength();
-		if (entStr)
-			strength += entStr;
-	}
-	this.captureTime = gameState.ai.elapsedTime;
-	this.captureStrength = strength;
-};
-
-/**
- * returns true if the entity should continue its current order, otherwise false
- */
-m.AttackPlan.prototype.CheckCapture = function(gameState, ent)
-{
-	let state = ent.unitAIState();
-	if (!state || !state.split(".")[1] || state.split(".")[1] !== "COMBAT")
-		return true;
-	let orderData = ent.unitAIOrderData();
-	if (!orderData || !orderData.length || !orderData[0].target ||
-		!orderData[0].attackType || orderData[0].attackType !== "Capture")
-		return true;
-
-	let targetId = orderData[0].target;
-	let target = gameState.getEntityById(targetId);
-	if (!target)
-		return false;
-
-	if (this.noCapture.has(targetId))
-	{
-		ent.attack(targetId, false);
-		return true;
-	}
-
-	// Do not try to (re)capture an allied decaying structuring
-	if (gameState.isPlayerAlly(target.owner()))
-		return !target.decaying();
-
-	// For the time being, do not try to capture rams
-	if (target.hasClass("Siege") && target.hasClass("Melee"))
-	{
-		this.noCapture.add(targetId);
-		ent.attack(targetId, false);
-		return true;
-	}
-
-	// TODO need to know how many units are currently capturing this target
-	// For the time being, we check on our full army
-	if (gameState.ai.elapsedTime > this.captureTime + 4)
-		this.ComputeCaptureStrength(gameState);
-
-	let antiCapture = target.defaultRegenRate();
-	if (target.isGarrisonHolder() && target.garrisoned())
-		antiCapture += target.garrisonRegenRate() * target.garrisoned().length;
-	if (target.decaying())
-		antiCapture -= target.territoryDecayRate();
-	if (antiCapture >= this.captureStrength)
-	{
-		this.noCapture.add(targetId);
-		ent.attack(targetId, false);
-		return true;
-	}
-
-	// If the structure has defensive fire, require a minimal army size
-	if (target.hasDefensiveFire() && target.isGarrisonHolder() && target.garrisoned() &&
-		this.unitCollection.length < 2*target.garrisoned().length)
-	{
-		this.noCapture.add(targetId);
-		ent.attack(targetId, false);
-		return true;
-	}
-
-	return true;
-};
-
 m.AttackPlan.prototype.Serialize = function()
 {
 	let properties = {
@@ -2053,9 +1969,6 @@ m.AttackPlan.prototype.Serialize = function()
 		"position5TurnsAgo": this.position5TurnsAgo,
 		"lastPosition": this.lastPosition,
 		"position": this.position,
-		"captureStrength": this.captureStrength,
-		"captureTime": this.captureTime,
-		"noCapture": this.noCapture,
 		"isBlocked": this.isBlocked,
 		"targetPlayer": this.targetPlayer,
 		"target": this.target !== undefined ? this.target.id() : undefined,

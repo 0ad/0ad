@@ -52,6 +52,9 @@ m.HQ = function(Config)
 	this.diplomacyManager = new m.DiplomacyManager(this.Config);
 	this.garrisonManager = new m.GarrisonManager();
 	this.gameTypeManager = new m.GameTypeManager(this.Config);
+
+	this.capturableTargets = new Map();
+	this.capturableTargetsTime = 0;
 };
 
 /** More initialisation for stuff that needs the gameState */
@@ -2080,6 +2083,57 @@ m.HQ.prototype.isUnderEnemyFire = function(gameState, pos, radius = 0)
 	return false;
 };
 
+/** Compute the capture strength of all units attacking a capturable target */
+m.HQ.prototype.updateCaptureStrength = function(gameState)
+{
+//- temporary for old savedgames
+	if (!this.capturableTargets)
+		this.capturableTargets = new Map();
+//- temporary for old savedgames
+	this.capturableTargets.clear();
+	for (let ent of gameState.getOwnUnits().values())
+	{
+		if (!ent.canCapture())
+			continue;
+		let state = ent.unitAIState();
+		if (!state || !state.split(".")[1] || state.split(".")[1] !== "COMBAT")
+			continue;
+		let orderData = ent.unitAIOrderData();
+		if (!orderData || !orderData.length || !orderData[0].target)
+			continue;
+		let targetId = orderData[0].target;
+		let target = gameState.getEntityById(targetId);
+		if (!target || !target.isCapturable())
+			continue;
+		if (!this.capturableTargets.has(targetId))
+			this.capturableTargets.set(targetId, { "strength": ent.captureStrength(), "ents": new Set([ent.id()]) });
+		else
+		{
+			let capturableTarget = this.capturableTargets.get(target.id());
+			capturableTarget.strength += ent.captureStrength();
+			capturableTarget.ents.add(ent.id());
+		}
+	}
+
+	for (let [targetId, capturableTarget] of this.capturableTargets)
+	{
+		let target = gameState.getEntityById(targetId);
+		let allowCapture;
+		for (let entId of capturableTarget.ents)
+		{
+			let ent = gameState.getEntityById(entId);
+			if (allowCapture === undefined)
+				allowCapture = m.allowCapture(gameState, ent, target);
+			let orderData = ent.unitAIOrderData();
+			if (!orderData || !orderData.length || !orderData[0].attackType)
+				continue;
+			if ((orderData[0].attackType === "Capture") !== allowCapture)
+				ent.attack(targetId, allowCapture);
+		}
+	}
+
+	this.capturableTargetsTime = gameState.ai.elapsedTime;
+};
 
 /** Some functions that register that we assigned a gatherer to a resource this turn */
 
@@ -2231,6 +2285,10 @@ m.HQ.prototype.update = function(gameState, queues, events)
 
 	this.gameTypeManager.update(gameState, events, queues);
 
+	// We update the capture strength at the end as it can change attack orders
+	if (gameState.ai.elapsedTime - this.capturableTargetsTime > 3)
+		this.updateCaptureStrength(gameState);
+
 	Engine.ProfileStop();
 };
 
@@ -2259,7 +2317,9 @@ m.HQ.prototype.Serialize = function()
 		"navalMap": this.navalMap,
 		"landRegions": this.landRegions,
 		"navalRegions": this.navalRegions,
-		"decayingStructures": this.decayingStructures
+		"decayingStructures": this.decayingStructures,
+		"capturableTargets": this.capturableTargets,
+		"capturableTargetsTime": this.capturableTargetsTime
 	};
 
 	let baseManagers = [];

@@ -67,7 +67,7 @@ m.Worker.prototype.update = function(gameState, ent)
 				// and UnitAI sent it fight back with allowCapture=true
 				let target = gameState.getEntityById(orderData.target);
 				if (target && target.owner() > 0 && !gameState.isPlayerAlly(target.owner()))
-					ent.attack(orderData.target, false);
+					ent.attack(orderData.target, m.allowCapture(gameState, ent, target));
 			}
 		}
 		return;

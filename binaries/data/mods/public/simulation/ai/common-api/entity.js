@@ -745,6 +745,9 @@ m.Entity = m.Class({
 	garrisoned: function() { return this._entity.garrisoned; },
 	canGarrisonInside: function() { return this._entity.garrisoned.length < this.garrisonMax(); },
 
+	"canCapture": function() { return this.get("Attack/Capture") !== undefined; },
+	"isCapturable": function() { return this.get("Capturable") !== undefined; },
+
 	"canGuard": function() { return this.get("UnitAI/CanGuard") === "true"; },
 
 	move: function(x, z, queued = false) {

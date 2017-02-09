@@ -65,6 +65,7 @@ m.g_FoundationForbiddenComponents = {
 	"ResourceSupply": 1,
 	"ResourceDropsite": 1,
 	"GarrisonHolder": 1,
+	"Capturable": 1
 };
 
 /**

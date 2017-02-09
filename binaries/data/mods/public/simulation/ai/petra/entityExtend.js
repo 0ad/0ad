@@ -119,11 +119,43 @@ m.getSeaAccess = function(gameState, ent)
 	return sea;
 };
 
-/** Decide if we should try to capture or destroy */
-m.allowCapture = function(ent, target)
+/** Decide if we should try to capture (returns true) or destroy (return false) */
+m.allowCapture = function(gameState, ent, target)
 {
-	return !target.hasClass("Siege") || !ent.hasClass("Melee") ||
-		!target.isGarrisonHolder() || !target.garrisoned().length;
+	if (!ent.canCapture() || !target.isCapturable())
+		return false;
+	// always try to recapture cp from an allied, except if it's decaying
+	if (gameState.isPlayerAlly(target.owner()))
+		return !target.decaying();
+
+	let antiCapture = target.defaultRegenRate();
+	if (target.isGarrisonHolder() && target.garrisoned())
+		antiCapture += target.garrisonRegenRate() * target.garrisoned().length;
+	if (target.decaying())
+		antiCapture -= target.territoryDecayRate();
+
+	let capture;
+	let capturableTargets = gameState.ai.HQ.capturableTargets;
+	if (!capturableTargets.has(target.id()))
+	{
+		capture = ent.captureStrength();
+		capturableTargets.set(target.id(), { "strength": capture, "ents": new Set([ent.id()]) });
+	}
+	else
+	{
+		let capturable = capturableTargets.get(target.id());
+		if (!capturable.ents.has(ent.id()))
+		{
+			capturable.strength += ent.captureStrength();
+			capturable.ents.add(ent.id());
+		}
+		capture = capturable.strength;
+	}
+	capture *= 1 / ( 0.1 + 0.9*target.healthLevel());
+	let sumCapturePoints = target.capturePoints().reduce((a, b) => a + b);
+	if (target.hasDefensiveFire() && target.isGarrisonHolder() && target.garrisoned())
+		return capture > antiCapture + sumCapturePoints/50;
+	return capture > antiCapture + sumCapturePoints/80;
 };
 
 /** Makes the worker deposit the currently carried resources at the closest accessible dropsite */
@@ -251,7 +283,8 @@ m.dumpEntity = function(ent)
 		  " state " + ent.unitAIState());
 	API3.warn(" base " + ent.getMetadata(PlayerID, "base") + " >>> role " + ent.getMetadata(PlayerID, "role") +
 		  " subrole " + ent.getMetadata(PlayerID, "subrole"));
-	API3.warn("owner " + ent.owner() + " health " + ent.hitpoints() + " healthMax " + ent.maxHitpoints());
+	API3.warn("owner " + ent.owner() + " health " + ent.hitpoints() + " healthMax " + ent.maxHitpoints() +
+	          " foundationProgress " + ent.foundationProgress());
 	API3.warn(" garrisoning " + ent.getMetadata(PlayerID, "garrisoning") + " garrisonHolder " + ent.getMetadata(PlayerID, "garrisonHolder") +
 		  " plan " + ent.getMetadata(PlayerID, "plan")	+ " transport " + ent.getMetadata(PlayerID, "transport") +
 		  " gather-type " + ent.getMetadata(PlayerID, "gather-type") + " target-foundation " + ent.getMetadata(PlayerID, "target-foundation") +

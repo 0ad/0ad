@@ -77,7 +77,7 @@ m.DefenseArmy.prototype.assignUnit = function (gameState, entID)
 	{
 		this.assignedTo[entID] = idFoe;
 		this.assignedAgainst[idFoe].push(entID);
-		ent.attack(idFoe, m.allowCapture(ent, foeEnt), queued);
+		ent.attack(idFoe, m.allowCapture(gameState, ent, foeEnt), queued);
 	}
 	else
 		gameState.ai.HQ.navalManager.requireTransport(gameState, ent, ownIndex, foeIndex, foePosition);
@@ -115,7 +115,7 @@ m.DefenseArmy.prototype.update = function (gameState)
 		else if (orderData.length && orderData[0].target && orderData[0].attackType && orderData[0].attackType === "Capture")
 		{
 			let target = gameState.getEntityById(orderData[0].target);
-			if (target && !m.allowCapture(ent, target))
+			if (target && !m.allowCapture(gameState, ent, target))
 				ent.attack(orderData[0].target, false);
 		}
 	}

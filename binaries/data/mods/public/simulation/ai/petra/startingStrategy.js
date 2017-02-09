@@ -512,7 +512,7 @@ m.HQ.prototype.configFirstBase = function(gameState)
 			// same thing if our pop exceed the allowed one, as we will need several houses
 			let numWorkers = gameState.getOwnUnits().filter(API3.Filters.byClass("Worker")).length;
 			if ((numWorkers > 12 && newDP.quality > 60) ||
-				(gameState.getPopulation() > gameState.getPopulationLimit() + 20))
+				gameState.getPopulation() > gameState.getPopulationLimit() + 20)
 			{
 				let cost = new API3.Resources(gameState.getTemplate(template).cost());
 				gameState.ai.queueManager.setAccounts(gameState, cost, "dropsites");
