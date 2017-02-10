@@ -245,8 +245,19 @@ function selectCiv(civCode)
 		buildList[phase].push(structCode);
 	}
 	for (let unitCode of g_Lists.units)
-		if (g_ParsedData.units[unitCode] && g_ParsedData.units[unitCode].production)
+		if (g_ParsedData.units[unitCode] && g_ParsedData.units[unitCode].production && Object.keys(g_ParsedData.units[unitCode].production).length)
+		{
+			// Replace any pair techs with the actual techs of that pair
+			if (g_ParsedData.units[unitCode].production.techs)
+				for (let prod of g_ParsedData.units[unitCode].production.techs)
+					if (prod in techPairs)
+						g_ParsedData.units[unitCode].production.techs.splice(
+							g_ParsedData.units[unitCode].production.techs.indexOf(prod),
+							1, ...techPairs[prod].techs
+						);
+
 			trainerList.push(unitCode);
+		}
 
 	g_CivData[g_SelectedCiv].buildList = buildList;
 	g_CivData[g_SelectedCiv].trainList = trainerList;

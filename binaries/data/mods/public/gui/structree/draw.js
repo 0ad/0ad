@@ -183,7 +183,7 @@ function draw()
 					prod = g_ParsedData.units[prod];
 					break;
 				case "techs":
-					prod = clone(g_ParsedData.techs[civCode][prod]);
+					prod = clone(g_ParsedData.techs[g_SelectedCiv][prod]);
 					for (let res in trainer.techCostMultiplier)
 						if (prod.cost[res])
 							prod.cost[res] *= trainer.techCostMultiplier[res];
