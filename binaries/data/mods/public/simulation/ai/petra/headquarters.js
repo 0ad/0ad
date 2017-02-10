@@ -35,7 +35,7 @@ m.HQ = function(Config)
 
 	this.stopBuilding = new Map(); // list of buildings to stop (temporarily) production because no room
 
-	this.fortStartTime = 180;	// wooden defense towers, will start at fortStartTime + towerLapseTime
+	this.fortStartTime = 180;	// sentry defense towers, will start at fortStartTime + towerLapseTime
 	this.towerStartTime = 0;	// stone defense towers, will start as soon as available
 	this.towerLapseTime = this.Config.Military.towerLapseTime;
 	this.fortressStartTime = 0;	// will start as soon as available
@@ -1570,13 +1570,13 @@ m.HQ.prototype.buildDefenses = function(gameState, queues)
 		}
 	}
 
-	if (this.Config.Military.numWoodenTowers && gameState.currentPhase() < 2 && this.canBuild(gameState, "structures/{civ}_wooden_tower"))
+	if (this.Config.Military.numSentryTowers && gameState.currentPhase() < 2 && this.canBuild(gameState, "structures/{civ}_sentry_tower"))
 	{
 		let numTowers = gameState.getOwnEntitiesByClass("Tower", true).length;	// we count all towers, including wall towers
-		if (numTowers < this.Config.Military.numWoodenTowers && gameState.ai.elapsedTime > this.towerLapseTime + this.fortStartTime)
+		if (numTowers < this.Config.Military.numSentryTowers && gameState.ai.elapsedTime > this.towerLapseTime + this.fortStartTime)
 		{
 			this.fortStartTime = gameState.ai.elapsedTime;
-			queues.defenseBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_wooden_tower"));
+			queues.defenseBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_sentry_tower"));
 		}
 		return;
 	}

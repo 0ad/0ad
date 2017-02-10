@@ -19,7 +19,7 @@ m.Config = function(difficulty)
 		"popForBarracks1" : 25,
 		"popForBarracks2" : 95,
 		"popForBlacksmith" : 65,
-		"numWoodenTowers" : 1
+		"numSentryTowers" : 1
 	};
 	this.Economy = {
 		"popForTown" : 40,	// How many units we want before aging to town.
@@ -146,27 +146,27 @@ m.Config.prototype.setConfig = function(gameState)
 		this.Economy.cityPhase = 240000;
 		this.Economy.supportRatio = 0.5;
 		this.Economy.provisionFields = 1;
-		this.Military.numWoodenTowers = this.personality.defensive > 0.66 ? 1 : 0;
+		this.Military.numSentryTowers = this.personality.defensive > 0.66 ? 1 : 0;
 	}
 	else if (this.difficulty < 3)
 	{
 		this.Economy.cityPhase = 1800;
 		this.Economy.supportRatio = 0.4;
 		this.Economy.provisionFields = 1;
-		this.Military.numWoodenTowers = this.personality.defensive > 0.66 ? 1 : 0;
+		this.Military.numSentryTowers = this.personality.defensive > 0.66 ? 1 : 0;
 	}
 	else
 	{
 		this.Military.towerLapseTime += Math.round(20*(this.personality.defensive - 0.5));
 		this.Military.fortressLapseTime += Math.round(60*(this.personality.defensive - 0.5));
 		if (this.difficulty == 3)
-			this.Military.numWoodenTowers = 1;
+			this.Military.numSentryTowers = 1;
 		else
-			this.Military.numWoodenTowers = 2;
+			this.Military.numSentryTowers = 2;
 		if (this.personality.defensive > 0.66)
-			++this.Military.numWoodenTowers;
+			++this.Military.numSentryTowers;
 		else if (this.personality.defensive < 0.33)
-			--this.Military.numWoodenTowers;
+			--this.Military.numSentryTowers;
 
 		if (this.personality.aggressive > 0.7)
 		{
