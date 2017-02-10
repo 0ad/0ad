@@ -25,6 +25,33 @@ const g_MapPath = {
 };
 
 /**
+ * Containing the colors to highlight the ready status of players,
+ * the chat ready messages and
+ * the tooltips and captions for the ready button
+ */
+
+const g_ReadyData = [
+	{
+		"color": "",
+		"chat": translate("* %(username)s is not ready."),
+		"caption": translate("I'm ready"),
+		"tooltip": translate("State that you are ready to play.")
+	},
+	{
+		"color": "green",
+		"chat": translate("* %(username)s is ready!"),
+		"caption": translate("Stay ready"),
+		"tooltip": translate("Stay ready even when the game settings change.")
+	},
+	{
+		"color": "150 150 250",
+		"chat": "",
+		"caption": translate("I'm not ready!"),
+		"tooltip": translate("State that you are not ready to play.")
+	}
+];
+
+/**
  * Processes a CNetMessage (see NetMessage.h, NetMessages.h) sent by the CNetServer.
  */
 const g_NetMessageTypes = {
@@ -52,12 +79,7 @@ const g_FormatChatMessage = {
 		"username": senderFont(sprintf(translate("<%(username)s>"), { "username": user })),
 		"message": escapeText(msg.text || "")
 	}),
-	"ready": (msg, user) => sprintf(translate("* %(username)s is ready!"), {
-		"username": user
-	}),
-	"not-ready": (msg, user) => sprintf(translate("* %(username)s is not ready."), {
-		"username": user
-	}),
+	"ready": (msg, user) => sprintf(g_ReadyData[msg.status].chat, { "username": user }),
 	"clientlist": (msg, user) => getUsernameList()
 };
 
@@ -134,11 +156,6 @@ const g_UnassignedColor = "140 140 140";
 const g_UnassignedPlayerColor = "170 170 250";
 
 /**
- * Highlight ready players.
- */
-const g_ReadyColor = "green";
-
-/**
  * Placeholder item for the map-dropdownlist.
  */
 const g_RandomMap = '[color="' + g_ColorRandom + '"]' + translateWithContext("map selection", "Random") + "[/color]";
@@ -172,6 +189,9 @@ var g_IsInGuiUpdate;
 
 /**
  * Whether the current player is ready to start the game.
+ * 0 - not ready
+ * 1 - ready
+ * 2 - stay ready
  */
 var g_IsReady;
 
@@ -708,7 +728,8 @@ function handleReadyMessage(message)
 
 	if (g_ReadyChanged < 1 && g_PlayerAssignments[message.guid].player != -1)
 		addChatMessage({
-			"type": message.status == 1 ? "ready" : "not-ready",
+			"type": "ready",
+			"status": message.status,
 			"guid": message.guid
 		});
 
@@ -1820,6 +1841,9 @@ function addChatMessage(msg)
 
 	let text = g_FormatChatMessage[msg.type](msg, user);
 
+	if (!text)
+		return;
+
 	if (Engine.ConfigDB_GetValue("user", "chat.timestamp") == "true")
 		text = sprintf(translate("%(time)s %(message)s"), {
 			"time": sprintf(translate("\\[%(time)s]"), {
@@ -1857,28 +1881,22 @@ function resetTeams()
 
 function toggleReady()
 {
-	setReady(!g_IsReady);
+	setReady((g_IsReady + 1) % 3, true);
 }
 
-function setReady(ready, sendMessage = true)
+function setReady(ready, sendMessage)
 {
 	g_IsReady = ready;
 
 	if (sendMessage)
-		Engine.SendNetworkReady(+g_IsReady);
+		Engine.SendNetworkReady(g_IsReady);
 
 	if (g_IsController)
 		return;
 
 	let button = Engine.GetGUIObjectByName("startGame");
-
-	button.caption = g_IsReady ?
-		translate("I'm not ready!") :
-		translate("I'm ready");
-
-	button.tooltip = g_IsReady ?
-		translate("State that you are not ready to play.") :
-		translate("State that you are ready to play!");
+	button.caption = g_ReadyData[g_IsReady].caption;
+	button.tooltip = g_ReadyData[g_IsReady].tooltip;
 }
 
 function updateReadyUI()
@@ -1896,8 +1914,10 @@ function updateReadyUI()
 		let pData = g_GameAttributes.settings.PlayerData ? g_GameAttributes.settings.PlayerData[g_PlayerAssignments[guid].player - 1] : {};
 		let pDefs = g_DefaultPlayerData ? g_DefaultPlayerData[g_PlayerAssignments[guid].player - 1] : {};
 		isAI[g_PlayerAssignments[guid].player] = false;
-		if (g_PlayerAssignments[guid].status || !g_IsNetworked)
-			Engine.GetGUIObjectByName("playerName[" + (g_PlayerAssignments[guid].player - 1) + "]").caption = '[color="' + g_ReadyColor + '"]' + translate(getSetting(pData, pDefs, "Name")) + '[/color]';
+		if (g_PlayerAssignments[guid].status)
+			Engine.GetGUIObjectByName("playerName[" + (g_PlayerAssignments[guid].player - 1) + "]").caption =
+				'[color="' + g_ReadyData[+g_PlayerAssignments[guid].status].color + '"]' +
+				translate(getSetting(pData, pDefs, "Name")) + '[/color]';
 		else
 		{
 			Engine.GetGUIObjectByName("playerName[" + (g_PlayerAssignments[guid].player - 1) + "]").caption = translate(getSetting(pData, pDefs, "Name"));
@@ -1913,7 +1933,8 @@ function updateReadyUI()
 		let pData = g_GameAttributes.settings.PlayerData ? g_GameAttributes.settings.PlayerData[playerid] : {};
 		let pDefs = g_DefaultPlayerData ? g_DefaultPlayerData[playerid] : {};
 		if (isAI[playerid + 1])
-			Engine.GetGUIObjectByName("playerName[" + playerid + "]").caption = '[color="' + g_ReadyColor + '"]' + translate(getSetting(pData, pDefs, "Name")) + '[/color]';
+			Engine.GetGUIObjectByName("playerName[" + playerid + "]").caption =
+				'[color="' + g_ReadyData[2].color + '"]' + translate(getSetting(pData, pDefs, "Name")) + '[/color]';
 	}
 
 	// The host is not allowed to start until everyone is ready.
@@ -1944,14 +1965,14 @@ function resetReadyData()
 
 	g_ReadyChanged = 2;
 	if (!g_IsNetworked)
-		g_IsReady = true;
+		g_IsReady = 2;
 	else if (g_IsController)
 	{
 		Engine.ClearAllPlayerReady();
-		setReady(true);
+		setReady(2, true);
 	}
-	else
-		setReady(false, false);
+	else if (g_IsReady != 2)
+		setReady(0, false);
 }
 
 /**
