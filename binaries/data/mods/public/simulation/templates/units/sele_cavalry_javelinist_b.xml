@@ -4,15 +4,15 @@
     <Civ>sele</Civ>
     <Lang>greek</Lang>
     <SelectionGroupName>units/sele_cavalry_javelinist_b</SelectionGroupName>
-    <GenericName>Median Light Cavalry</GenericName>
-    <SpecificName>Hippeus Medikos</SpecificName>
-    <Icon>units/pers_cavalry_javelinist.png</Icon>
-    <RequiredTechnology>phase_village</RequiredTechnology>
+    <GenericName>Militia Cavalry</GenericName>
+    <SpecificName>Hippakontistès Politès</SpecificName>
+    <History>Along with the citizen militia infantry there were also cavalry regiments of militia from the cities, known as Politikoi. The citizen cavalry was recruited from the richest citizens of the cities who did not hold the legal status of 'Macedonians'. Citizen cavalry of this sort are seen at the Daphne parade and, in this case, probably from Antioch and not collected from all the coastal cities. The Politikoi were probably not a unitary regiment of horse, but a collection of separate squadrons with each squadron having its own distinctive dress and equipment.</History>
+    <Icon>units/sele_cavalry_javelinist.png</Icon>
   </Identity>
   <Promotion>
     <Entity>units/sele_cavalry_javelinist_a</Entity>
   </Promotion>
   <VisualActor>
-    <Actor>units/persians/cavalry_javelinist_b.xml</Actor>
+    <Actor>units/athenians/cavalry_javelinist_b.xml</Actor>
   </VisualActor>
 </Entity>

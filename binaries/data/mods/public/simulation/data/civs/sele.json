@@ -128,7 +128,7 @@
 			"Count": 4
 		},
 		{
-			"Template": "units/sele_cavalry_javelinist"
+			"Template": "units/sele_cavalry_javelinist_b"
 		}
 	],
 	"Formations":
@@ -181,7 +181,6 @@
 	],
 	"SkirmishReplacements":
 	{
-		"skirmish/units/default_cavalry" : "units/sele_cavalry_javelinist",
 		"skirmish/structures/default_house_10" : "structures/{civ}_house"
 	},
 	"SelectableInGameSetup": true
