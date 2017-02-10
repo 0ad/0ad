@@ -794,18 +794,18 @@ function onClientJoin(newGUID, newAssignments)
 		"username": newAssignments[newGUID].name
 	});
 
-	// Assign joining observers to unused player numbers
-	if (!g_IsController || newAssignments[newGUID].player != -1)
-		return;
-
 	let freeSlot = g_GameAttributes.settings.PlayerData.findIndex((v,i) =>
 		Object.keys(g_PlayerAssignments).every(guid => g_PlayerAssignments[guid].player != i+1)
 	);
 
-	if (freeSlot == -1)
+	// Client is not and cannot assigned as player
+	if (newAssignments[newGUID].player == -1 && freeSlot == -1)
 		return;
 
-	Engine.AssignNetworkPlayer(freeSlot + 1, newGUID);
+	// Assign the joining client to the free slot
+	if (g_IsController && newAssignments[newGUID].player == -1)
+		Engine.AssignNetworkPlayer(freeSlot + 1, newGUID);
+
 	resetReadyData();
 }
 
