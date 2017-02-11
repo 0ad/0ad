@@ -2086,10 +2086,6 @@ m.HQ.prototype.isUnderEnemyFire = function(gameState, pos, radius = 0)
 /** Compute the capture strength of all units attacking a capturable target */
 m.HQ.prototype.updateCaptureStrength = function(gameState)
 {
-//- temporary for old savedgames
-	if (!this.capturableTargets)
-		this.capturableTargets = new Map();
-//- temporary for old savedgames
 	this.capturableTargets.clear();
 	for (let ent of gameState.getOwnUnits().values())
 	{
