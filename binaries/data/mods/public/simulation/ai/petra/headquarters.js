@@ -102,7 +102,12 @@ m.HQ.prototype.postinit = function(gameState)
 	{
 		if (!ent.resourceDropsiteTypes() || ent.hasClass("Elephant"))
 			continue;
-		let base = this.getBaseByID(ent.getMetadata(PlayerID, "base"));
+		// Entities which have been built or have changed ownership after the last AI turn have no base.
+		// they will be dealt with in the next checkEvents
+		let baseID = ent.getMetadata(PlayerID, "base");
+		if (baseID === undefined)
+			continue;
+		let base = this.getBaseByID(baseID);
 		base.assignResourceToDropsite(gameState, ent);
 	}
 
