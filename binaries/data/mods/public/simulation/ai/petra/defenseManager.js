@@ -468,10 +468,21 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 	for (let evt of events.Attacked)
 	{
 		let target = gameState.getEntityById(evt.target);
-		if (!target || !gameState.isEntityOwn(target) || !target.position())
+		if (!target || !target.position())
 			continue;
-		// If attacked by one of our allies (he must trying to recover capture points), do not react
+
 		let attacker = gameState.getEntityById(evt.attacker);
+		if (attacker && gameState.isEntityOwn(attacker) && gameState.isEntityEnemy(target) && !attacker.hasClass("Ship"))
+		{
+			// If enemies are in range of one of our defensive structures, garrison it for arrow multiplier
+			if (attacker.position() && attacker.isGarrisonHolder() && attacker.getArrowMultiplier())
+				this.garrisonRangedUnitsInside(gameState, attacker, {"attacker": target});
+		}
+
+		if (!gameState.isEntityOwn(target))
+			continue;
+
+		// If attacked by one of our allies (he must trying to recover capture points), do not react
 		if (attacker && gameState.isEntityAlly(attacker))
 			continue;
 
@@ -580,16 +591,26 @@ m.DefenseManager.prototype.garrisonRangedUnitsInside = function(gameState, targe
 			continue;
 		if (ent.getMetadata(PlayerID, "transport") !== undefined)
 			continue;
-		if (ent.getMetadata(PlayerID, "plan") === -2 || ent.getMetadata(PlayerID, "plan") === -3)
+		let army = ent.getMetadata(PlayerID, "PartOfArmy") ? this.getArmy(ent.getMetadata(PlayerID, "PartOfArmy")) : undefined;
+		if (!army && (ent.getMetadata(PlayerID, "plan") === -2 || ent.getMetadata(PlayerID, "plan") === -3))
 			continue;
-		if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") !== -1)
+		if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") >= 0)
 		{
 			let subrole = ent.getMetadata(PlayerID, "subrole");
-			if (subrole && (subrole === "completing" || subrole === "walking" || subrole === "attacking"))
+			// when structure decaying (usually because we've just captured it in enemy territory), also allow units from an attack plan
+			if (typeGarrison !== "decay" && subrole && (subrole === "completing" || subrole === "walking" || subrole === "attacking"))
 				continue;
 		}
 		if (gameState.ai.accessibility.getAccessValue(ent.position()) !== index)
 			continue;
+		if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") >= 0)
+		{
+			let attackPlan = gameState.ai.HQ.attackManager.getPlan(ent.getMetadata(PlayerID, "plan"));
+			if (attackPlan)
+				attackPlan.removeUnit(ent, true);
+		}
+		if (army)
+			army.removeOwn(gameState, ent.id());
 		garrisonManager.garrison(gameState, ent, target, typeGarrison);
 	}
 };
