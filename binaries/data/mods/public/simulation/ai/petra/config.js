@@ -139,6 +139,8 @@ m.Config.prototype.setConfig = function(gameState)
 		this.personality.aggressive = 0.1;
 		this.personality.cooperative = 0.9;
 	}
+	if (gameState.getAlliedVictory())
+		this.personality.cooperative = Math.min(1, this.personality.cooperative + 0.15);
 
 	// changing settings based on difficulty or personality
 	if (this.difficulty < 2)
