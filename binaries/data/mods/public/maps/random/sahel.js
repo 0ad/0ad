@@ -29,28 +29,6 @@ const oMetalLarge = "gaia/geology_metal_savanna_slabs";
 const aBush = "actor|props/flora/bush_medit_sm_dry.xml";
 const aRock = "actor|geology/stone_savanna_med.xml";
 
-const PI12 = PI / 6;
-
-function placeStoneMineFormation(x, z)
-{
-	var placer = new ChainPlacer(1, 2, 2, 1, x, z, undefined, [5]);
-	var painter = new TerrainPainter(tDirt4);
-	createArea(placer, painter, null);
-
-	var bbAngle = randFloat(0, TWO_PI);
-	const bbDist = 2.5;
-
-	for (var i = 0; i < 8; ++i)
-	{
-		var bbX = round(x + (bbDist + randFloat(0,1)) * cos(bbAngle));
-		var bbZ = round(z + (bbDist + randFloat(0,1)) * sin(bbAngle));
-
-		placeObject(bbX, bbZ, oStoneSmall, 0, randFloat(0, TWO_PI));
-
-		bbAngle += PI12;
-	}
-}
-
 log("Initializing map...");
 
 InitMap();
@@ -150,7 +128,7 @@ for (var i = 0; i < numPlayers; i++)
 	mAngle += randFloat(PI/8, PI/4);
 	mX = round(fx + mDist * cos(mAngle));
 	mZ = round(fz + mDist * sin(mAngle));
-	placeStoneMineFormation(mX, mZ);
+	createStoneMineFormation(mX, mZ, tDirt4);
 	addToClass(mX, mZ, clPlayer);
 	// create the city patch
 	var cityRadius = radius/3;
@@ -239,7 +217,7 @@ for (var i = 0; i < scaleByMapSize(12,30); ++i)
 	var mZ = randInt(mapSize);
 	if (playerConstraint.allows(mX, mZ) && minesConstraint.allows(mX, mZ) && waterConstraint.allows(mX, mZ))
 	{
-		placeStoneMineFormation(mX, mZ);
+		createStoneMineFormation(mX, mZ, tDirt4);
 		addToClass(mX, mZ, clRock);
 	}
 }
