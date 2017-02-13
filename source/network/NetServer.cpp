@@ -774,8 +774,9 @@ void CNetServerWorker::SetPlayerReady(const CStr& guid, const int ready)
 
 void CNetServerWorker::ClearAllPlayerReady()
 {
-	for (PlayerAssignmentMap::iterator it = m_PlayerAssignments.begin(); it != m_PlayerAssignments.end(); ++it)
-		it->second.m_Status = 0;
+	for (std::pair<const CStr, PlayerAssignment>& p : m_PlayerAssignments)
+		if (p.second.m_Status != 2)
+			p.second.m_Status = 0;
 
 	SendPlayerAssignments();
 }

@@ -585,7 +585,7 @@ m.TransportPlan.prototype.resetUnit = function(gameState, ent)
 	ent.setMetadata(PlayerID, "onBoard", undefined);
 	ent.setMetadata(PlayerID, "endPos", undefined);
 	// if from an army or attack, remove it
-	if (ent.getMetadata(PlayerID, "plan") >= 0)
+	if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") >= 0)
 	{
 		let attackPlan = gameState.ai.HQ.attackManager.getPlan(ent.getMetadata(PlayerID, "plan"));
 		if (attackPlan)

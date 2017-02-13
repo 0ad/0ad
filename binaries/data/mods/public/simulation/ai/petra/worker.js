@@ -67,7 +67,7 @@ m.Worker.prototype.update = function(gameState, ent)
 				// and UnitAI sent it fight back with allowCapture=true
 				let target = gameState.getEntityById(orderData.target);
 				if (target && target.owner() > 0 && !gameState.isPlayerAlly(target.owner()))
-					ent.attack(orderData.target, false);
+					ent.attack(orderData.target, m.allowCapture(gameState, ent, target));
 			}
 		}
 		return;
@@ -183,8 +183,9 @@ m.Worker.prototype.update = function(gameState, ent)
 		{
 			let access = gameState.ai.accessibility.getAccessValue(ent.position());
 			let goalAccess = m.getLandAccess(gameState, target);
+			let queued = m.returnResources(gameState, ent);
 			if (access === goalAccess)
-				ent.repair(target, target.hasClass("House"));  // autocontinue=true for houses
+				ent.repair(target, target.hasClass("House"), queued);  // autocontinue=true for houses
 			else
 				gameState.ai.HQ.navalManager.requireTransport(gameState, ent, access, goalAccess, target.position());
 		}

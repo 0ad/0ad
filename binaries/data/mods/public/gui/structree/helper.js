@@ -72,7 +72,7 @@ function GetPhaseOfTechnology(techName)
 {
 	let phaseIdx = -1;
 
-	if (basename(techName).slice(0, 5) === "phase")
+	if (basename(techName).startsWith("phase"))
 	{
 		phaseIdx = g_ParsedData.phaseList.indexOf(GetActualPhase(techName));
 		if (phaseIdx > 0)
@@ -80,7 +80,13 @@ function GetPhaseOfTechnology(techName)
 	}
 
 	if (!g_ParsedData.techs[g_SelectedCiv][techName])
-		warn(g_SelectedCiv + " : " + techName);
+	{
+		let techData = loadTechnology(techName);
+		g_ParsedData.techs[g_SelectedCiv][techName] = techData;
+		warn("The \"" + techData.name.generic + "\" technology is not researchable in any structure buildable by the " +
+			g_SelectedCiv + " civilisation, but is required by something that this civ can research, train or build!");
+	}
+
 	let techReqs = g_ParsedData.techs[g_SelectedCiv][techName].reqs;
 	if (!techReqs)
 		return false;
@@ -89,8 +95,10 @@ function GetPhaseOfTechnology(techName)
 		if (option.techs)
 			for (let tech of option.techs)
 			{
-				if (basename(tech).slice(0, 5) === "phase")
+				if (basename(tech).startsWith("phase"))
 					return tech;
+				if (basename(tech).startsWith("pair"))
+					continue;
 				phaseIdx = Math.max(phaseIdx, g_ParsedData.phaseList.indexOf(GetPhaseOfTechnology(tech)));
 			}
 	return g_ParsedData.phaseList[phaseIdx] || false;

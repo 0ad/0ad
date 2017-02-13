@@ -195,6 +195,27 @@ function createMines(mines, constraint, tileclass, count)
 	}
 }
 
+/**
+ * Places 8 stone mines in a small circular shape.
+ */
+function createStoneMineFormation(x, z, tileclass)
+{
+	var placer = new ChainPlacer(1, 2, 2, 1, x, z, undefined, [5]);
+	var painter = new TerrainPainter(tileclass);
+	createArea(placer, painter, null);
+
+	var bbAngle = randFloat(0, TWO_PI);
+	const bbDist = 2.5;
+
+	for (var i = 0; i < 8; ++i)
+	{
+		var bbX = round(x + (bbDist + randFloat(0,1)) * cos(bbAngle));
+		var bbZ = round(z + (bbDist + randFloat(0,1)) * sin(bbAngle));
+		placeObject(bbX, bbZ, oStoneSmall, 0, randFloat(0, TWO_PI));
+		bbAngle += PI / 6;
+	}
+}
+
 function createDecoration(objects, counts, constraint)
 {
 	log("Creating decoration...");

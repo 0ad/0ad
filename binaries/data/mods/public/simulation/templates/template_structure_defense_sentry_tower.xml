@@ -39,8 +39,7 @@
     <SpecificName>Sentry Tower</SpecificName>
     <GenericName>Sentry Tower</GenericName>
     <Icon>structures/sentry_tower.png</Icon>
-    <Classes datatype="tokens">WoodenTower</Classes>
-    <VisibleClasses datatype="tokens">Village -Town</VisibleClasses>
+    <VisibleClasses datatype="tokens">Village -Town SentryTower</VisibleClasses>
     <RequiredTechnology>phase_village</RequiredTechnology>
   </Identity>
   <Loot>
