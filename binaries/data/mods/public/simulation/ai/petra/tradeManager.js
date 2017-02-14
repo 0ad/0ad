@@ -332,13 +332,13 @@ m.TradeManager.prototype.checkEvents = function(gameState, events)
 		}
 	}
 
-	// if one market is destroyed, we should look for a better route
+	// if one market (or market-foundation) is destroyed, we should look for a better route
 	for (let evt of events.Destroy)
 	{
 		if (!evt.entityObj)
 			continue;
 		let ent = evt.entityObj;
-		if (!ent || ent.foundationProgress() !== undefined || !ent.hasClass("Market") || !gameState.isPlayerAlly(ent.owner()))
+		if (!ent || !ent.hasClass("Market") || !gameState.isPlayerAlly(ent.owner()))
 			continue;
 		this.routeProspection = true;
 		gameState.ai.HQ.restartBuild(gameState, "structures/{civ}_market");
