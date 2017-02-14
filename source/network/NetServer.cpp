@@ -903,6 +903,7 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 
 	CAuthenticateMessage* message = (CAuthenticateMessage*)event->GetParamRef();
 	CStrW username = SanitisePlayerName(message->m_Name);
+	CStr guid = message->m_GUID;
 
 	// Either deduplicate or prohibit join if name is in use
 	bool duplicatePlayernames = false;
@@ -916,6 +917,16 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 		!= server.m_Sessions.end())
 	{
 		session->Disconnect(NDR_PLAYERNAME_IN_USE);
+		return true;
+	}
+
+	// Disconnect user if the provided GUID is already in use
+	if (std::find_if(
+		server.m_Sessions.begin(), server.m_Sessions.end(),
+		[&guid] (const CNetServerSession* session)
+		{ return session->GetGUID() == guid; }) != server.m_Sessions.end())
+	{
+		session->Disconnect(NDR_PLAYERGUID_IN_USE);
 		return true;
 	}
 
