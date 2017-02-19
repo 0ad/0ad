@@ -770,7 +770,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		});
 	}
 
-	if (workers.length < 2)
+	if (workers.length < 3)
 	{
 		let fromOtherBase = gameState.ai.HQ.bulkPickWorkers(gameState, this, 2);
 		if (fromOtherBase)
@@ -803,6 +803,8 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 
 		let assigned = gameState.getOwnEntitiesByMetadata("target-foundation", target.id()).length;
 		let maxTotalBuilders = Math.ceil(workers.length * 0.2);
+		if (maxTotalBuilders < 2 && workers.length > 1)
+			maxTotalBuilders = 2;
 		if (target.hasClass("House") && gameState.getPopulationLimit() < gameState.getPopulation() + 5 &&
 			gameState.getPopulationLimit() < gameState.getPopulationMax())
 			maxTotalBuilders = maxTotalBuilders + 2;
