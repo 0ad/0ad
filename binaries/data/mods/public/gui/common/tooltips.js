@@ -1,20 +1,25 @@
-const g_TooltipTextFormats = {
+var g_TooltipTextFormats = {
 	"unit": ['[font="sans-10"][color="orange"]', '[/color][/font]'],
 	"header": ['[font="sans-bold-13"]', '[/font]'],
 	"body": ['[font="sans-13"]', '[/font]'],
 	"comma": ['[font="sans-12"]', '[/font]']
 };
 
-const g_AttackTypes = {
+var g_AttackTypes = {
 	"Melee": translate("Melee Attack:"),
 	"Ranged": translate("Ranged Attack:"),
 	"Capture": translate("Capture Attack:")
 };
 
-const g_DamageTypes = {
+var g_DamageTypes = {
 	"hack": translate("Hack"),
 	"pierce": translate("Pierce"),
 	"crush": translate("Crush"),
+};
+
+var g_SplashDamageTypes = {
+	"Circular": translate("Circular Splash Damage"),
+	"Linear": translate("Linear Splash Damage")
 };
 
 function resourceIcon(resource)
@@ -204,9 +209,9 @@ function getSplashDamageTooltip(template)
 			continue;
 
 		tooltips.push([
-			sprintf(translate("%(attackLabel)s %(damageTypes)s"), {
-				"attackLabel": headerFont(translate("Splash Damage:")),
-				"damageTypes": damageTypesToText(splash)
+			sprintf(translate("%(label)s: %(value)s"), {
+				"label": headerFont(g_SplashDamageTypes[splash.shape]),
+				"value": damageTypesToText(splash)
 			}),
 			sprintf(translate("Friendly Fire: %(enabled)s"), {
 				"enabled": splash.friendlyFire ? translate("Yes") : translate("No")
