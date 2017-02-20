@@ -22,20 +22,27 @@ m.GameTypeManager = function(Config)
  */
 m.GameTypeManager.prototype.init = function(gameState)
 {
-	if (gameState.getGameType() !== "regicide")
-		return;
-
-	let heroEnts = gameState.getOwnEntitiesByClass("Hero", true).toEntityArray();
-	for (let hero of heroEnts)
+	if (gameState.getGameType() === "wonder")
 	{
-		let heroStance = hero.hasClass("Soldier") ? "aggressive" : "passive";
-		hero.setStance(heroStance);
-		this.criticalEnts.set(hero.id(), {
-			"garrisonEmergency": false,
-			"stance": heroStance,
-			"healersAssigned": 0,
-			"guards": new Map() // ids of ents who are currently guarding this hero
-		});
+		let wonderEnts = gameState.getOwnEntitiesByClass("Wonder", true).toEntityArray();
+		for (let wonder of wonderEnts)
+			this.criticalEnts.set(ent.id(), { "guardsAssigned": 0, "guards": new Map() });
+	}
+
+	if (gameState.getGameType() === "regicide")
+	{
+		let heroEnts = gameState.getOwnEntitiesByClass("Hero", true).toEntityArray();
+		for (let hero of heroEnts)
+		{
+			let heroStance = hero.hasClass("Soldier") ? "aggressive" : "passive";
+			hero.setStance(heroStance);
+			this.criticalEnts.set(hero.id(), {
+				"garrisonEmergency": false,
+				"stance": heroStance,
+				"healersAssigned": 0,
+				"guards": new Map() // ids of ents who are currently guarding this hero
+			});
+		}
 	}
 };
 
@@ -179,6 +186,9 @@ m.GameTypeManager.prototype.checkEvents = function(gameState, events)
 					guardEnt.setMetadata(PlayerID, "role", undefined);
 					this.guardEnts.delete(guardId);
 				}
+
+				if (guardEnt.getMetadata(PlayerID, "guardedEnt"))
+					guardEnt.setMetadata(PlayerID, "guardedEnt", undefined);
 			}
 
 			this.criticalEnts.delete(entId);
@@ -196,6 +206,7 @@ m.GameTypeManager.prototype.checkEvents = function(gameState, events)
 					--data.healersAssigned;
 				else
 					--data.guardsAssigned;
+				break;
 			}
 
 		this.guardEnts.delete(entId);
@@ -214,7 +225,7 @@ m.GameTypeManager.prototype.checkEvents = function(gameState, events)
 		if ((ent.getMetadata(PlayerID, "role") === "criticalEntHealer" ||
 		     ent.getMetadata(PlayerID, "role") === "criticalEntGuard") && !this.guardEnts.get(evt.entity))
 		{
-			this.assignGuardToCriticalEnt(gameState, ent);
+			this.assignGuardToCriticalEnt(gameState, ent, ent.getMetadata(PlayerID, "guardedEnt"));
 			continue;
 		}
 
@@ -278,7 +289,9 @@ m.GameTypeManager.prototype.manageCriticalEntGuards = function(gameState)
 				    m.getLandAccess(gameState, criticalEnt) !== m.getLandAccess(gameState, entity)))
 					continue;
 
-				this.assignGuardToCriticalEnt(gameState, entity, id);
+				if (!this.assignGuardToCriticalEnt(gameState, entity, id))
+					continue;
+
 				entity.setMetadata(PlayerID, "plan", -2);
 				entity.setMetadata(PlayerID, "role", "criticalEntGuard");
 				if (++data.guardsAssigned >= militaryGuardsPerCriticalEnt)
@@ -291,12 +304,14 @@ m.GameTypeManager.prototype.manageCriticalEntGuards = function(gameState)
 			for (let entity of gameState.getOwnEntitiesByClass("Soldier", true).values())
 			{
 				if (entity.getMetadata(PlayerID, "plan") !== undefined ||
-					entity.getMetadata(PlayerID, "transport") !== undefined ||
+				    entity.getMetadata(PlayerID, "transport") !== undefined ||
 				    checkForSameAccess && (!entity.position() || !criticalEnt.position() ||
 				    m.getLandAccess(gameState, criticalEnt) !== m.getLandAccess(gameState, entity)))
 					continue;
 
-				this.assignGuardToCriticalEnt(gameState, entity, id);
+				if (!this.assignGuardToCriticalEnt(gameState, entity, id))
+					continue;
+
 				entity.setMetadata(PlayerID, "plan", -2);
 				entity.setMetadata(PlayerID, "role", "criticalEntGuard");
 				if (++data.guardsAssigned >= militaryGuardsPerCriticalEnt)
@@ -343,12 +358,15 @@ m.GameTypeManager.prototype.trainCriticalEntHealer = function(gameState, queues,
 /**
  * Only send the guard command if the guard's accessIndex is the same as the critical ent
  * and the critical ent has a position (i.e. not garrisoned).
- * Request a transport if the accessIndex value is different
+ * Request a transport if the accessIndex value is different, and if a transport is needed,
+ * the guardEnt will be given metadata describing which entity it is being sent to guard,
+ * which will be used once its transport has finished.
+ * Return false if the guardEnt is not a valid guard unit (i.e. cannot guard or is being transported).
  */
 m.GameTypeManager.prototype.assignGuardToCriticalEnt = function(gameState, guardEnt, criticalEntId)
 {
 	if (guardEnt.getMetadata(PlayerID, "transport") !== undefined || !guardEnt.canGuard())
-		return;
+		return false;
 
 	if (!criticalEntId)
 	{
@@ -365,14 +383,21 @@ m.GameTypeManager.prototype.assignGuardToCriticalEnt = function(gameState, guard
 	}
 
 	if (!criticalEntId)
-		return;
+	{
+		if (guardEnt.getMetadata(PlayerID, "guardedEnt"))
+			guardEnt.setMetadata(PlayerID, "guardedEnt", undefined);
+		return false;
+	}
 
 	let criticalEnt = gameState.getEntityById(criticalEntId);
 	if (!criticalEnt || !criticalEnt.position() || !guardEnt.position())
 	{
 		this.guardEnts.set(guardEnt.id(), false);
-		return;
+		return false;
 	}
+
+	if (guardEnt.getMetadata(PlayerID, "guardedEnt") !== criticalEntId)
+		guardEnt.setMetadata(PlayerID, "guardedEnt", criticalEntId);
 
 	let guardEntAccess = gameState.ai.accessibility.getAccessValue(guardEnt.position());
 	let criticalEntAccess = gameState.ai.accessibility.getAccessValue(criticalEnt.position());
@@ -385,7 +410,9 @@ m.GameTypeManager.prototype.assignGuardToCriticalEnt = function(gameState, guard
 	}
 	else
 		gameState.ai.HQ.navalManager.requireTransport(gameState, guardEnt, guardEntAccess, criticalEntAccess, criticalEnt.position());
+
 	this.guardEnts.set(guardEnt.id(), guardEntAccess === criticalEntAccess);
+	return true;
 };
 
 m.GameTypeManager.prototype.update = function(gameState, events, queues)
@@ -396,7 +423,7 @@ m.GameTypeManager.prototype.update = function(gameState, events, queues)
 
 	this.checkEvents(gameState, events);
 
-	if (gameState.getGameType() === "wonder")
+	if (gameState.getGameType() === "wonder" && gameState.ai.playedTurn % 10 === 0)
 	{
 		this.buildWonder(gameState, queues);
 		this.manageCriticalEntGuards(gameState);
