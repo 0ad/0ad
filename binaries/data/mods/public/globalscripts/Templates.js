@@ -136,7 +136,8 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources)
 					"pierce": getAttackStat("Splash/Pierce"),
 					"crush": getAttackStat("Splash/Crush"),
 					// true if undefined
-					"friendlyFire": template.Attack[type].Splash.FriendlyFire != "false"
+					"friendlyFire": template.Attack[type].Splash.FriendlyFire != "false",
+					"shape": template.Attack[type].Splash.Shape
 				};
 		}
 	}

@@ -387,6 +387,7 @@ Attack.prototype.GetSplashDamage = function(type)
 
 	let splash = this.GetAttackStrengths(type + ".Splash");
 	splash.friendlyFire = this.template[type].Splash.FriendlyFire != "false";
+	splash.shape = this.template[type].Splash.Shape;
 	return splash;
 };
 
