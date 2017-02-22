@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -461,10 +461,12 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 
 		case SDLK_PAGEUP:
 			GetScrollBar(0).ScrollMinusPlenty();
+			UpdateAutoScroll();
 			break;
 
 		case SDLK_PAGEDOWN:
 			GetScrollBar(0).ScrollPlusPlenty();
+			UpdateAutoScroll();
 			break;
 		/* END: Message History Lookup */
 
@@ -551,6 +553,7 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 			UpdateText(m_iBufferPos, m_iBufferPos, m_iBufferPos+1);
 
 			m_iBufferPos += (int)wcslen(text);
+			UpdateAutoScroll();
 			UpdateBufferPositionSetting();
 
 			sys_clipboard_free(text);
@@ -585,6 +588,7 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 			if (hotkey == "cut")
 			{
 				DeleteCurSelection();
+				UpdateAutoScroll();
 			}
 		}
 
@@ -630,6 +634,7 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 			UpdateBufferPositionSetting();
 			DeleteCurSelection();
 		}
+		UpdateAutoScroll();
 		return IN_HANDLED;
 	}
 	else if (hotkey == "text.delete.right")
@@ -663,6 +668,7 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 			UpdateBufferPositionSetting();
 			DeleteCurSelection();
 		}
+		UpdateAutoScroll();
 		return IN_HANDLED;
 	}
 	else if (hotkey == "text.move.left")
@@ -840,6 +846,7 @@ void CInput::HandleMessage(SGUIMessage& Message)
 
 			UpdateText();
 		}
+		UpdateAutoScroll();
 		break;
 	}
 
@@ -987,6 +994,7 @@ void CInput::HandleMessage(SGUIMessage& Message)
 					break;
 			}
 		}
+		UpdateAutoScroll();
 		break;
 	}
 
@@ -1022,6 +1030,7 @@ void CInput::HandleMessage(SGUIMessage& Message)
 		GetScrollBar(0).SetScrollBarStyle(scrollbar_style);
 
 		UpdateText();
+		UpdateAutoScroll();
 		break;
 	}
 
