@@ -341,12 +341,12 @@ function setOutcomeIcon(state, imageID)
 
 	if (state == "won")
 	{
-		image.sprite = "stretched:session/icons/stances/violent.png";
-		image.tooltip = translate("Victory");
+		image.sprite = "stretched:session/icons/victory.png";
+		image.tooltip = translate("Victorious");
 	}
 	else if (state == "defeated")
 	{
-		image.sprite = "stretched:session/icons/stances/passive.png";
+		image.sprite = "stretched:session/icons/defeat.png";
 		image.tooltip = translate("Defeated");
 	}
 }
