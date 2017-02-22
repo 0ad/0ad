@@ -272,6 +272,11 @@ Capturable.prototype.OnTerritoryDecayChanged = function(msg)
 		this.CheckTimer();
 };
 
+Capturable.prototype.OnDiplomacyChanged = function(msg)
+{
+	this.CheckTimer();
+};
+
 Capturable.prototype.OnOwnershipChanged = function(msg)
 {
 	if (msg.to == -1)
