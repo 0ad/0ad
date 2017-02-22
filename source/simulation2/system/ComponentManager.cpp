@@ -525,7 +525,7 @@ void CComponentManager::ResetState()
 	m_ComponentsByTypeId.clear();
 
 	// Delete all SEntityComponentCaches
-	std::map<entity_id_t, SEntityComponentCache*>::iterator ccit = m_ComponentCaches.begin();
+	std::unordered_map<entity_id_t, SEntityComponentCache*>::iterator ccit = m_ComponentCaches.begin();
 	for (; ccit != m_ComponentCaches.end(); ++ccit)
 		free(ccit->second);
 	m_ComponentCaches.clear();
@@ -829,7 +829,7 @@ CEntityHandle CComponentManager::AllocateEntityHandle(entity_id_t ent)
 
 CEntityHandle CComponentManager::LookupEntityHandle(entity_id_t ent, bool allowCreate)
 {
-	std::map<entity_id_t, SEntityComponentCache*>::iterator it;
+	std::unordered_map<entity_id_t, SEntityComponentCache*>::iterator it;
 	it = m_ComponentCaches.find(ent);
 	if (it == m_ComponentCaches.end())
 	{

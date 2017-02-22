@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,6 +29,7 @@
 #include <boost/unordered_map.hpp>
 
 #include <map>
+#include <unordered_map>
 
 class IComponent;
 class CParamNode;
@@ -372,7 +373,7 @@ private:
 	std::map<MessageTypeId, CDynamicSubscription> m_DynamicMessageSubscriptionsNonsync;
 	std::map<IComponent*, std::set<MessageTypeId> > m_DynamicMessageSubscriptionsNonsyncByComponent;
 
-	std::map<entity_id_t, SEntityComponentCache*> m_ComponentCaches;
+	std::unordered_map<entity_id_t, SEntityComponentCache*> m_ComponentCaches;
 
 	// TODO: maintaining both ComponentsBy* is nasty; can we get rid of one,
 	// while keeping QueryInterface and PostMessage sufficiently efficient?
