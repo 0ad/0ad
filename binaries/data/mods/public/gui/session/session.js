@@ -265,7 +265,7 @@ function init(initData, hotloadData)
 			g_PlayerAssignments.local.player = -1;
 	}
 
-	g_Players = getPlayerData();
+	updatePlayerData();
 
 	g_CivData = loadCivData();
 	g_CivData.gaia = { "Code": "gaia", "Name": translate("Gaia") };
@@ -326,6 +326,54 @@ function init(initData, hotloadData)
 	//setTimeout(function() { reportPerformance(60); }, 60000);
 }
 
+function updatePlayerData()
+{
+	let simState = GetSimState();
+	if (!simState)
+		return;
+
+	let playerData = [];
+
+	for (let i = 0; i < simState.players.length; ++i)
+	{
+		let playerState = simState.players[i];
+
+		playerData.push({
+			"name": playerState.name,
+			"civ": playerState.civ,
+			"color": {
+				"r": playerState.color.r * 255,
+				"g": playerState.color.g * 255,
+				"b": playerState.color.b * 255,
+				"a": playerState.color.a * 255
+			},
+			"team": playerState.team,
+			"teamsLocked": playerState.teamsLocked,
+			"cheatsEnabled": playerState.cheatsEnabled,
+			"state": playerState.state,
+			"isAlly": playerState.isAlly,
+			"isMutualAlly": playerState.isMutualAlly,
+			"isNeutral": playerState.isNeutral,
+			"isEnemy": playerState.isEnemy,
+			"guid": undefined, // network guid for players controlled by hosts
+			"offline": g_Players[i] && !!g_Players[i].offline
+		});
+	}
+
+	for (let guid in g_PlayerAssignments)
+	{
+		let playerID = g_PlayerAssignments[guid].player;
+
+		if (!playerData[playerID])
+			continue;
+
+		playerData[playerID].guid = guid;
+		playerData[playerID].name = g_PlayerAssignments[guid].name;
+	}
+
+	g_Players = playerData;
+}
+
 /**
  * Depends on the current player (g_IsObserver).
  */
@@ -372,6 +420,19 @@ function initGUIHeroes(slot)
 		if (hero)
 			selectAndMoveTo(getEntityOrHolder(hero.ent));
 	};
+}
+
+/**
+ * Returns the entity itself except when garrisoned where it returns its garrisonHolder
+ */
+function getEntityOrHolder(ent)
+{
+	let entState = GetEntityState(ent);
+	if (entState && !entState.position && entState.unitAI && entState.unitAI.orders.length &&
+			(entState.unitAI.orders[0].type == "Garrison" || entState.unitAI.orders[0].type == "Autogarrison"))
+		return getEntityOrHolder(entState.unitAI.orders[0].data.target);
+
+	return ent;
 }
 
 function initializeMusic()
@@ -1214,6 +1275,64 @@ function showTimeWarpMessageBox()
 		translate("Note: time warp mode is a developer option, and not intended for use over long periods of time. Using it incorrectly may cause the game to run out of memory or crash."),
 		translate("Time warp mode")
 	);
+}
+
+/**
+ * Send the current list of players, teams, AIs, observers and defeated/won and offline states to the lobby.
+ * The playerData format from g_GameAttributes is kept to reuse the GUI function presenting the data.
+ */
+function sendLobbyPlayerlistUpdate()
+{
+	if (!g_IsController || !Engine.HasXmppClient())
+		return;
+
+	// Extract the relevant player data and minimize packet load
+	let minPlayerData = [];
+	for (let playerID in g_GameAttributes.settings.PlayerData)
+	{
+		if (+playerID == 0)
+			continue;
+
+		let pData = g_GameAttributes.settings.PlayerData[playerID];
+
+		let minPData = { "Name": pData.Name };
+
+		if (g_GameAttributes.settings.LockTeams)
+			minPData.Team = pData.Team;
+
+		if (pData.AI)
+		{
+			minPData.AI = pData.AI;
+			minPData.AIDiff = pData.AIDiff;
+		}
+
+		if (g_Players[playerID].offline)
+			minPData.Offline = true;
+
+		// Whether the player has won or was defeated
+		let state = g_Players[playerID].state;
+		if (state != "active")
+			minPData.State = state;
+
+		minPlayerData.push(minPData);
+	}
+
+	// Add observers
+	let connectedPlayers = 0;
+	for (let guid in g_PlayerAssignments)
+	{
+		let pData = g_GameAttributes.settings.PlayerData[g_PlayerAssignments[guid].player];
+
+		if (pData)
+			++connectedPlayers;
+		else
+			minPlayerData.push({
+				"Name": g_PlayerAssignments[guid].name,
+				"Team": "observer"
+			});
+	}
+
+	Engine.SendChangeStateGame(connectedPlayers, playerDataToStringifiedTeamList(minPlayerData));
 }
 
 /**

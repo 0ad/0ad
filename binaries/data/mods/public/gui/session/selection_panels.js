@@ -35,11 +35,6 @@ let g_SelectionPanels = {};
 
 let g_BarterSell;
 
-function getPlayerHighlightColor(player)
-{
-	return "color:" + rgbToGuiColor(g_Players[player].color) + " 160";
-}
-
 g_SelectionPanels.Alert = {
 	"getMaxNumberOfItems": function()
 	{
