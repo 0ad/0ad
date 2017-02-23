@@ -368,7 +368,7 @@ var g_NotificationsTypes =
 				g_Selection.addList([notification.target]);
 		}
 
-		if (Engine.ConfigDB_GetValue("user", "gui.session.attacknotificationmessage") !== "true")
+		if (Engine.ConfigDB_GetValue("user", "gui.session.notifications.attack") !== "true")
 			return;
 
 		addChatMessage({
@@ -875,14 +875,22 @@ function formatDiplomacyMessage(msg)
 	});
 }
 
+/**
+ * Optionally show all tributes sent in observer mode and tributes sent between allied players.
+ * Otherwise, only show tributes sent directly to us, and tributes that we send.
+ */
 function formatTributeMessage(msg)
 {
-	// Check observer first, since we also want to see if the selected player in the developer-overlay has sent tributes
 	let message = "";
-	if (g_IsObserver)
-		message = translate("%(player)s has sent %(player2)s %(amounts)s.");
-	else if (msg.targetPlayer == Engine.GetPlayerID())
+	if (msg.targetPlayer == Engine.GetPlayerID())
 		message = translate("%(player)s has sent you %(amounts)s.");
+	else if (msg.sourcePlayer == Engine.GetPlayerID())
+		message = translate("You have sent %(player2)s %(amounts)s.")
+	else if (Engine.ConfigDB_GetValue("user", "gui.session.notifications.tribute") == "true" &&
+	        (g_IsObserver || g_GameAttributes.settings.LockTeams &&
+	           g_Players[msg.sourcePlayer].isMutualAlly[Engine.GetPlayerID()] &&
+	           g_Players[msg.targetPlayer].isMutualAlly[Engine.GetPlayerID()]))
+			message = translate("%(player)s has sent %(player2)s %(amounts)s.");
 
 	return sprintf(message, {
 		"player": colorizePlayernameByID(msg.sourcePlayer),
@@ -893,7 +901,7 @@ function formatTributeMessage(msg)
 
 function formatBarterMessage(msg)
 {
-	if (!g_IsObserver)
+	if (!g_IsObserver || Engine.ConfigDB_GetValue("user", "gui.session.notifications.barter") != "true")
 		return "";
 
 	let amountsSold = {};
