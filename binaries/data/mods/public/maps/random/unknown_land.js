@@ -597,17 +597,6 @@ else if (md == 4) //central river
 				}
 			}
 		}
-
-		if (mdd1 == 1)
-		{
-			passageMaker(floor(fractionToTiles(0.2)), floor(fractionToTiles(0.25)), floor(fractionToTiles(0.8)), floor(fractionToTiles(0.25)), scaleByMapSize(4,8), -2, -2, 2, clShallow, undefined, -4);
-			passageMaker(floor(fractionToTiles(0.2)), floor(fractionToTiles(0.75)), floor(fractionToTiles(0.8)), floor(fractionToTiles(0.75)), scaleByMapSize(4,8), -2, -2, 2, clShallow, undefined, -4);
-		}
-		else
-		{
-			passageMaker(floor(fractionToTiles(0.25)), floor(fractionToTiles(0.2)), floor(fractionToTiles(0.25)), floor(fractionToTiles(0.8)), scaleByMapSize(4,8), -2, -2, 2, clShallow, undefined, -4);
-			passageMaker(floor(fractionToTiles(0.75)), floor(fractionToTiles(0.2)), floor(fractionToTiles(0.75)), floor(fractionToTiles(0.8)), scaleByMapSize(4,8), -2, -2, 2, clShallow, undefined, -4);
-		}
 	}
 }
 //********************************************************************************************************

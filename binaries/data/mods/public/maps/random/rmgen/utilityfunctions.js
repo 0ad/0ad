@@ -266,7 +266,7 @@ function createStragglerTrees(types, constraint, tileclass)
 	var num = floor(g_numStragglerTrees / types.length);
 	for (var i = 0; i < types.length; ++i)
 	{
-		group = new SimpleGroup(
+		let group = new SimpleGroup(
 			[new SimpleObject(types[i], 1,1, 0,3)],
 			true, tileclass
 		);
