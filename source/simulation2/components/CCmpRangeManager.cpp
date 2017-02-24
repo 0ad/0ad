@@ -191,12 +191,29 @@ static std::map<entity_id_t, EntityParabolicRangeOutline> ParabolicRangesOutline
 /**
  * Representation of an entity, with the data needed for queries.
  */
+enum FlagMasks
+{
+	// flags used for queries
+	None = 0x00,
+	Normal = 0x01,
+	Injured = 0x02,
+	AllQuery = Normal | Injured,
+
+	// 0x04 reserved for future use
+
+	// general flags
+	InWorld = 0x08,
+	RetainInFog = 0x10,
+	RevealShore = 0x20,
+	ScriptedVisibility = 0x40,
+	SharedVision = 0x80
+};
+
 struct EntityData
 {
 	EntityData() :
 		visibilities(0), size(0), visionSharing(0),
-		owner(-1), retainInFog(0), inWorld(0), revealShore(0),
-		flags(1), scriptedVisibility(0), sharedVision(0)
+		owner(-1), flags(FlagMasks::Normal)
 		{ }
 	entity_pos_t x, z;
 	entity_pos_t visionRange;
@@ -204,15 +221,18 @@ struct EntityData
 	u32 size;
 	u16 visionSharing; // 1-bit per player
 	i8 owner;
-	u8 retainInFog; // boolean
-	u8 inWorld; // boolean
-	u8 revealShore; // boolean
-	u8 flags; // See GetEntityFlagMask
-	u8 scriptedVisibility; // boolean, see ComputeLosVisibility
-	u8 sharedVision; // boolean for shared vision
+	u8 flags; // See the FlagMasks enum
+
+	template<int mask>
+	inline bool HasFlag() const { return (flags & mask) != 0; }
+
+	template<int mask>
+	inline void SetFlag(bool val) { flags = val ? (flags | mask) : (flags & ~mask); }
+
+	inline void SetFlag(u8 mask, bool val) { flags = val ? (flags | mask) : (flags & ~mask); }
 };
 
-cassert(sizeof(EntityData) == 32);
+cassert(sizeof(EntityData) == 24);
 
 /**
  * Serialization helper template for Query
@@ -268,12 +288,7 @@ struct SerializeEntityData
 		serialize.NumberU32_Unbounded("size", value.size);
 		serialize.NumberU16_Unbounded("vision sharing", value.visionSharing);
 		serialize.NumberI8_Unbounded("owner", value.owner);
-		serialize.NumberU8("retain in fog", value.retainInFog, 0, 1);
-		serialize.NumberU8("in world", value.inWorld, 0, 1);
-		serialize.NumberU8("reveal shore", value.revealShore, 0, 1);
 		serialize.NumberU8_Unbounded("flags", value.flags);
-		serialize.NumberU8("scripted visibility", value.scriptedVisibility, 0, 1);
-		serialize.NumberU8("shared vision", value.sharedVision, 0, 1);
 	}
 };
 
@@ -512,11 +527,11 @@ public:
 			if (cmpVision)
 			{
 				entdata.visionRange = cmpVision->GetRange();
-				entdata.revealShore = cmpVision->GetRevealShore() ? 1 : 0;
+				entdata.SetFlag<FlagMasks::RevealShore>(cmpVision->GetRevealShore());
 			}
 			CmpPtr<ICmpVisibility> cmpVisibility(GetSimContext(), ent);
 			if (cmpVisibility)
-				entdata.retainInFog = (cmpVisibility->GetRetainInFog() ? 1 : 0);
+				entdata.SetFlag<FlagMasks::RetainInFog>(cmpVisibility->GetRetainInFog());
 
 			// Store the size
 			CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), ent);
@@ -540,12 +555,12 @@ public:
 
 			if (msgData.inWorld)
 			{
-				if (it->second.inWorld)
+				if (it->second.HasFlag<FlagMasks::InWorld>())
 				{
 					CFixedVector2D from(it->second.x, it->second.z);
 					CFixedVector2D to(msgData.x, msgData.z);
 					m_Subdivision.Move(ent, from, to, it->second.size);
-					if (it->second.sharedVision)
+					if (it->second.HasFlag<FlagMasks::SharedVision>())
 						SharingLosMove(it->second.visionSharing, it->second.visionRange, from, to);
 					else
 						LosMove(it->second.owner, it->second.visionRange, from, to);
@@ -561,31 +576,31 @@ public:
 				{
 					CFixedVector2D to(msgData.x, msgData.z);
 					m_Subdivision.Add(ent, to, it->second.size);
-					if (it->second.sharedVision)
+					if (it->second.HasFlag<FlagMasks::SharedVision>())
 						SharingLosAdd(it->second.visionSharing, it->second.visionRange, to);
 					else
 						LosAdd(it->second.owner, it->second.visionRange, to);
 					AddToTile(PosToLosTilesHelper(msgData.x, msgData.z), ent);
 				}
 
-				it->second.inWorld = 1;
+				it->second.SetFlag<FlagMasks::InWorld>(true);
 				it->second.x = msgData.x;
 				it->second.z = msgData.z;
 			}
 			else
 			{
-				if (it->second.inWorld)
+				if (it->second.HasFlag<FlagMasks::InWorld>())
 				{
 					CFixedVector2D from(it->second.x, it->second.z);
 					m_Subdivision.Remove(ent, from, it->second.size);
-					if (it->second.sharedVision)
+					if (it->second.HasFlag<FlagMasks::SharedVision>())
 						SharingLosRemove(it->second.visionSharing, it->second.visionRange, from);
 					else
 						LosRemove(it->second.owner, it->second.visionRange, from);
 					RemoveFromTile(PosToLosTilesHelper(it->second.x, it->second.z), ent);
 				}
 
-				it->second.inWorld = 0;
+				it->second.SetFlag<FlagMasks::InWorld>(false);
 				it->second.x = entity_pos_t::Zero();
 				it->second.z = entity_pos_t::Zero();
 			}
@@ -605,18 +620,18 @@ public:
 			if (it == m_EntityData.end())
 				break;
 
-			if (it->second.inWorld)
+			if (it->second.HasFlag<FlagMasks::InWorld>())
 			{
 				// Entity vision is taken into account in VisionSharingChanged
 				// when sharing component activated
-				if (!it->second.sharedVision)
+				if (!it->second.HasFlag<FlagMasks::SharedVision>())
 				{
 					CFixedVector2D pos(it->second.x, it->second.z);
 					LosRemove(it->second.owner, it->second.visionRange, pos);
 					LosAdd(msgData.to, it->second.visionRange, pos);
 				}
 
-				if (it->second.revealShore)
+				if (it->second.HasFlag<FlagMasks::RevealShore>())
 				{
 					RevealShore(it->second.owner, false);
 					RevealShore(msgData.to, true);
@@ -639,7 +654,7 @@ public:
 			if (it == m_EntityData.end())
 				break;
 
-			if (it->second.inWorld)
+			if (it->second.HasFlag<FlagMasks::InWorld>())
 			{
 				m_Subdivision.Remove(ent, CFixedVector2D(it->second.x, it->second.z), it->second.size);
 				RemoveFromTile(PosToLosTilesHelper(it->second.x, it->second.z), ent);
@@ -676,10 +691,10 @@ public:
 
 			it->second.visionRange = newRange;
 
-			if (it->second.inWorld)
+			if (it->second.HasFlag<FlagMasks::InWorld>())
 			{
 				CFixedVector2D pos(it->second.x, it->second.z);
-				if (it->second.sharedVision)
+				if (it->second.HasFlag<FlagMasks::SharedVision>())
 				{
 					SharingLosRemove(it->second.visionSharing, oldRange, pos);
 					SharingLosAdd(it->second.visionSharing, newRange, pos);
@@ -707,16 +722,16 @@ public:
 			ENSURE(msgData.player > 0 && msgData.player < MAX_LOS_PLAYER_ID+1);
 			u16 visionChanged = CalcVisionSharingMask(msgData.player);
 
-			if (!it->second.sharedVision)
+			if (!it->second.HasFlag<FlagMasks::SharedVision>())
 			{
 				// Activation of the Vision Sharing
 				ENSURE(it->second.owner == (i8)msgData.player);
 				it->second.visionSharing = visionChanged;
-				it->second.sharedVision = 1;
+				it->second.SetFlag<FlagMasks::SharedVision>(true);
 				break;
 			}
 
-			if (it->second.inWorld)
+			if (it->second.HasFlag<FlagMasks::InWorld>())
 			{
 				entity_pos_t range = it->second.visionRange;
 				CFixedVector2D pos(it->second.x, it->second.z);
@@ -848,15 +863,15 @@ public:
 		m_LosTiles.resize(m_LosTilesPerSide*m_LosTilesPerSide);
 
 		for (EntityMap<EntityData>::const_iterator it = m_EntityData.begin(); it != m_EntityData.end(); ++it)
-			if (it->second.inWorld)
+			if (it->second.HasFlag<FlagMasks::InWorld>())
 			{
-				if (it->second.sharedVision)
+				if (it->second.HasFlag<FlagMasks::SharedVision>())
 					SharingLosAdd(it->second.visionSharing, it->second.visionRange, CFixedVector2D(it->second.x, it->second.z));
 				else
 					LosAdd(it->second.owner, it->second.visionRange, CFixedVector2D(it->second.x, it->second.z));
 				AddToTile(PosToLosTilesHelper(it->second.x, it->second.z), it->first);
 
-				if (it->second.revealShore)
+				if (it->second.HasFlag<FlagMasks::RevealShore>())
 					RevealShore(it->second.owner, true);
 			}
 
@@ -879,7 +894,7 @@ public:
 		m_Subdivision.Reset(x1, z1);
 
 		for (EntityMap<EntityData>::const_iterator it = m_EntityData.begin(); it != m_EntityData.end(); ++it)
-			if (it->second.inWorld)
+			if (it->second.HasFlag<FlagMasks::InWorld>())
 				m_Subdivision.Add(it->first, CFixedVector2D(it->second.x, it->second.z), it->second.size);
 	}
 
@@ -1128,11 +1143,11 @@ public:
 			return false;
 
 		// Ignore entities not present in the world
-		if (!entity.inWorld)
+		if (!entity.HasFlag<FlagMasks::InWorld>())
 			return false;
 
 		// Ignore entities that don't match the current flags
-		if (!(entity.flags & q.flagsMask))
+		if (!((entity.flags & FlagMasks::AllQuery) & q.flagsMask))
 			return false;
 
 		// Ignore self
@@ -1520,12 +1535,12 @@ public:
 	virtual u8 GetEntityFlagMask(const std::string& identifier) const
 	{
 		if (identifier == "normal")
-			return 1;
+			return FlagMasks::Normal;
 		if (identifier == "injured")
-			return 2;
+			return FlagMasks::Injured;
 
 		LOGWARNING("CCmpRangeManager: Invalid flag identifier %s", identifier.c_str());
-		return 0;
+		return FlagMasks::None;
 	}
 
 	virtual void SetEntityFlag(entity_id_t ent, const std::string& identifier, bool value)
@@ -1538,17 +1553,10 @@ public:
 
 		u8 flag = GetEntityFlagMask(identifier);
 
-		// We don't have a flag set
-		if (flag == 0)
-		{
+		if (flag == FlagMasks::None)
 			LOGWARNING("CCmpRangeManager: Invalid flag identifier %s for entity %u", identifier.c_str(), ent);
-			return;
-		}
-
-		if (value)
-			it->second.flags |= flag;
 		else
-			it->second.flags &= ~flag;
+			it->second.SetFlag(flag, value);
 	}
 
 	// ****************************************************************
@@ -1567,7 +1575,7 @@ public:
 	{
 		EntityMap<EntityData>::iterator it = m_EntityData.find(ent);
 		if (it != m_EntityData.end())
-			it->second.scriptedVisibility = status ? 1 : 0;
+			it->second.SetFlag<FlagMasks::ScriptedVisibility>(status);
 	}
 
 	ELosVisibility ComputeLosVisibility(CEntityHandle ent, player_id_t player) const
@@ -1606,7 +1614,7 @@ public:
 		EntityMap<EntityData>::const_iterator it = m_EntityData.find(ent.GetId());
 		if (it != m_EntityData.end())
 		{
-			if (it->second.scriptedVisibility == 1 && cmpVisibility)
+			if (it->second.HasFlag<FlagMasks::ScriptedVisibility>() && cmpVisibility)
 				return cmpVisibility->GetVisibility(player, los.IsVisible(i, j), los.IsExplored(i, j));
 		}
 		else
@@ -1632,7 +1640,7 @@ public:
 		// Try using the 'retainInFog' flag in m_EntityData to save a script call
 		if (it != m_EntityData.end())
 		{
-			if (it->second.retainInFog != 1)
+			if (!it->second.HasFlag<FlagMasks::RetainInFog>())
 				return VIS_HIDDEN;
 		}
 		else
@@ -1681,16 +1689,17 @@ public:
 		// Entities not with positions in the world are never visible
 		if (entId == INVALID_ENTITY)
 			return VIS_HIDDEN;
+
 		CmpPtr<ICmpPosition> cmpPosition(ent);
 		if (!cmpPosition || !cmpPosition->IsInWorld())
 			return VIS_HIDDEN;
 
-		CFixedVector2D pos = cmpPosition->GetPosition2D();
-		i32 n = PosToLosTilesHelper(pos.X, pos.Y);
-
 		// Gaia and observers do not have a visibility cache
 		if (player <= 0)
 			return ComputeLosVisibility(ent, player);
+
+		CFixedVector2D pos = cmpPosition->GetPosition2D();
+		i32 n = PosToLosTilesHelper(pos.X, pos.Y);
 
 		if (IsVisibilityDirty(m_DirtyVisibility[n], player))
 			return ComputeLosVisibility(ent, player);
