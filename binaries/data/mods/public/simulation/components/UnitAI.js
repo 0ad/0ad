@@ -5357,15 +5357,14 @@ UnitAI.prototype.PerformTradeAndMoveToNextMarket = function(currentMarket)
 	}
 
 	let cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
-	cmpTrader.PerformTrade(currentMarket);
+	let nextMarket = cmpTrader.PerformTrade(currentMarket);
 	let amount = cmpTrader.GetGoods().amount;
-	if (!amount || !amount.traderGain)
+	if (!nextMarket || !amount || !amount.traderGain)
 	{
 		this.StopTrading();
 		return;
 	}
 
-	let nextMarket = cmpTrader.markets[cmpTrader.index];
 	this.order.data.target = nextMarket;
 
 	if (this.order.data.route && this.order.data.route.length)

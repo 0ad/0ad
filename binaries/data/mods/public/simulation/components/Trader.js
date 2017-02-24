@@ -164,15 +164,15 @@ Trader.prototype.CanTrade = function(target)
 
 Trader.prototype.PerformTrade = function(currentMarket)
 {
-	let previousMarket = this.markets[(this.index+this.markets.length) % this.markets.length];
+	let previousMarket = this.markets[this.index];
 	if (previousMarket != currentMarket)  // Inconsistent markets
 	{
 		this.goods.amount = null;
-		return;
+		return INVALID_ENTITY;
 	}
 
 	this.index = ++this.index % this.markets.length;
-	let nextMarket = this.markets[(this.index+this.markets.length) % this.markets.length];
+	let nextMarket = this.markets[this.index];
 
 	if (this.goods.amount && this.goods.amount.traderGain)
 	{
@@ -209,11 +209,13 @@ Trader.prototype.PerformTrade = function(currentMarket)
 
 	let cmpPlayer = QueryOwnerInterface(this.entity);
 	if (!cmpPlayer)
-		return;
+		return INVALID_ENTITY;
 
 	this.goods.type = cmpPlayer.GetNextTradingGoods();
 	this.goods.amount = this.CalculateGain(currentMarket, nextMarket);
 	this.goods.origin = currentMarket;
+
+	return nextMarket;
 };
 
 Trader.prototype.GetGoods = function()
