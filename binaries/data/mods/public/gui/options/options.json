@@ -88,7 +88,7 @@
 		{
 			"type": "number",
 			"label": "Observer Limit",
-			"tooltip": "Prevent further observer from joining if the limit is reached",
+			"tooltip": "Prevent further observers from joining if the limit is reached",
 			"parameters": { "config": "network.observerlimit", "min": 0, "max": 32 }
 		},
 		{
@@ -257,6 +257,27 @@
 			"label": "Chat Backlog",
 			"tooltip": "Number of backlogged messages to load when joining the lobby",
 			"parameters": { "config": "lobby.history", "min": "0" }
+		}
+	],
+	"notificationSetting":
+	[
+		{
+			"type": "boolean",
+			"label": "Attack",
+			"tooltip": "Show a chat notification if you are attacked by another player",
+			"parameters": { "config": "gui.session.notifications.attack" }
+		},
+		{
+			"type": "boolean",
+			"label": "Tribute",
+			"tooltip": "Show a chat notification if an ally tributes resources to another team member if teams are locked, and all tributes in observer mode",
+			"parameters": { "config": "gui.session.notifications.tribute" }
+		},
+		{
+			"type": "boolean",
+			"label": "Barter",
+			"tooltip": "Show a chat notification to observers when a player bartered resources",
+			"parameters": { "config": "gui.session.notifications.barter" }
 		}
 	]
 }

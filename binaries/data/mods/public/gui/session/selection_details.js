@@ -226,7 +226,9 @@ function displaySingle(entState)
 		if (entState.trader.goods.amount.market2Gain)
 			totalGain += entState.trader.goods.amount.market2Gain;
 		Engine.GetGUIObjectByName("resourceCarryingText").caption = totalGain;
-		Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = sprintf(translate("Gain: %(gain)s"), { "gain": getTradingTooltip(entState.trader.goods.amount) });
+		Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = sprintf(translate("Gain: %(gain)s"), {
+			"gain": getTradingTooltip(entState.trader.goods.amount)
+		});
 	}
 	// And for number of workers
 	else if (entState.foundation && entState.visibility == "visible")
@@ -474,4 +476,58 @@ function updateSelectionDetails()
 	// Show health bar for garrisoned units if the garrison panel is visible
 	if (Engine.GetGUIObjectByName("unitGarrisonPanel") && !Engine.GetGUIObjectByName("unitGarrisonPanel").hidden)
 		updateGarrisonHealthBar(entStates[0], g_Selection.toList());
+}
+
+function getRankIconSprite(entState)
+{
+	if (entState.identity.rank == "Elite")
+		return "stretched:session/icons/rank3.png";
+
+	if (entState.identity.rank == "Advanced")
+		return "stretched:session/icons/rank2.png";
+
+	if (entState.identity.classes.indexOf("CitizenSoldier") != -1)
+		return "stretched:session/icons/rank1.png";
+
+	return "";
+}
+
+function tradingGainString(gain, owner)
+{
+	// Translation: Used in the trading gain tooltip
+	return sprintf(translate("%(gain)s (%(player)s)"), {
+		"gain": gain,
+		"player": GetSimState().players[owner].name
+	});
+}
+
+/**
+ * Returns a message with the details of the trade gain.
+ */
+function getTradingTooltip(gain)
+{
+	if (!gain)
+		return "";
+
+	let markets = [
+		{ "gain": gain.market1Gain, "owner": gain.market1Owner },
+		{ "gain": gain.market2Gain, "owner": gain.market2Owner }
+	];
+
+	let primaryGain = gain.traderGain;
+
+	for (let market of markets)
+		if (market.gain && market.owner == gain.traderOwner)
+			// Translation: Used in the trading gain tooltip to concatenate profits of different players
+			primaryGain += translate("+") + market.gain;
+
+	let tooltip = tradingGainString(primaryGain, gain.traderOwner);
+
+	for (let market of markets)
+		if (market.gain && market.owner != gain.traderOwner)
+			tooltip +=
+				translateWithContext("Separation mark in an enumeration", ", ") +
+				tradingGainString(market.gain, market.owner);
+
+	return tooltip;
 }

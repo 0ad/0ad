@@ -43,7 +43,7 @@
 				</object>
 			</repeat>
 		</object>
-		<object name="SoundSettings" type="image" sprite="ModernDarkBoxGold" size="620 16 916 50%-4">
+		<object name="SoundSettings" type="image" sprite="ModernDarkBoxGold" size="620 16 916 40%">
 			<object style="ModernLabelText" type="text" size="0 5 100% 25">
 				<translatableAttribute id="caption">Sound Settings</translatableAttribute>
 			</object>
@@ -56,16 +56,29 @@
 				</object>
 			</repeat>
 		</object>
-		<object name="LobbySettings" type="image" sprite="ModernDarkBoxGold" size="620 50%+4 916 100%-52">
+		<object name="LobbySettings" type="image" sprite="ModernDarkBoxGold" size="620 40%+8 916 65%">
 			<object style="ModernLabelText" type="text" size="0 5 100% 25">
 				<translatableAttribute id="caption">Lobby Settings</translatableAttribute>
 			</object>
-			<repeat count="10">
+			<repeat count="5">
 				<object name="lobbySetting[n]" size="0 25 100% 50" hidden="true">
 					<object name="lobbySettingLabel[n]" size="0 0 65% 100%" type="text" style="ModernLabelText" text_align="left"/>
 					<object name="lobbySettingTickbox[n]" size="90% 5 100% 100%+5" type="checkbox" style="ModernTickBox" hidden="true"/>
 					<object name="lobbySettingInput[n]" size="70% 0 100%-8 100%" type="input" style="ModernInput" hidden="true"/>
 					<object name="lobbySettingDropdown[n]" size="70% 0 100%-8 100%" type="dropdown" style="ModernDropDown" hidden="true"/>
+				</object>
+			</repeat>
+		</object>
+		<object name="NotificationsSettings" type="image" sprite="ModernDarkBoxGold" size="620 65%+8 916 100%-52">
+			<object style="ModernLabelText" type="text" size="0 5 100% 25">
+				<translatableAttribute id="caption">Chat Notification Settings</translatableAttribute>
+			</object>
+			<repeat count="10">
+				<object name="notificationSetting[n]" size="0 25 100% 50" hidden="true">
+					<object name="notificationSettingLabel[n]" size="0 0 65% 100%" type="text" style="ModernLabelText" text_align="left"/>
+					<object name="notificationSettingTickbox[n]" size="90% 5 100% 100%+5" type="checkbox" style="ModernTickBox" hidden="true"/>
+					<object name="notificationSettingInput[n]" size="70% 0 100%-8 100%" type="input" style="ModernInput" hidden="true"/>
+					<object name="notificationSettingDropdown[n]" size="70% 0 100%-8 100%" type="dropdown" style="ModernDropDown" hidden="true"/>
 				</object>
 			</repeat>
 		</object>

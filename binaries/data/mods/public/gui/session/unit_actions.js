@@ -1398,6 +1398,12 @@ function playerCheck(entState, targetState, validPlayers)
 	return false;
 }
 
+function hasClass(entState, className)
+{
+	// note: use the functions in globalscripts/Templates.js for more versatile matching
+	return entState.identity && entState.identity.classes.indexOf(className) != -1;
+}
+
 /**
  * Work out whether at least part of the selected entities have UnitAI.
  */
