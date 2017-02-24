@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -250,7 +250,7 @@ private:
 	/// Parses a string representation of a grid into an actual Grid structure, such that the (i,j) axes are located in the bottom
 	/// left hand side of the map. Note: leaves all custom bits in the grid values at zero (anything outside
 	/// ICmpTerritoryManager::TERRITORY_PLAYER_MASK).
-	Grid<u8> GetGrid(std::string def, u16 w, u16 h)
+	Grid<u8> GetGrid(const std::string& def, u16 w, u16 h)
 	{
 		Grid<u8> grid(w, h);
 		const char* chars = def.c_str();
@@ -272,7 +272,7 @@ private:
 		return grid;
 	}
 
-	void TestBoundaryPointsEqual(std::vector<CVector2D> points, int expectedPoints[][2])
+	void TestBoundaryPointsEqual(const std::vector<CVector2D>& points, int expectedPoints[][2])
 	{
 		// TODO: currently relies on an exact point match, i.e. expectedPoints must be specified going CCW or CW (depending on
 		// whether we're testing an inner or an outer edge) starting from the exact same point that the algorithm happened to
