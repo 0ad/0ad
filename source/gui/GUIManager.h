@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -142,7 +142,7 @@ public:
  	 */
 	std::string GetSavedGameData();
 
-	void RestoreSavedGameData(std::string jsonData);
+	void RestoreSavedGameData(const std::string& jsonData);
 
 	/**
 	 * Check if a template with this name exists

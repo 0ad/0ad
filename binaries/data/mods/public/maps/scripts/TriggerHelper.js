@@ -51,6 +51,7 @@ TriggerHelper.SpawnUnits = function(source, template, count, owner)
 		let cmpEntPosition = Engine.QueryInterface(ent, IID_Position);
 		if (!cmpEntPosition)
 		{
+			Engine.DestroyEntity(ent);
 			error("tried to create entity without position");
 			continue;
 		}

@@ -319,7 +319,7 @@ std::string CGUIManager::GetSavedGameData()
 	return scriptInterface->StringifyJSON(&data, false);
 }
 
-void CGUIManager::RestoreSavedGameData(std::string jsonData)
+void CGUIManager::RestoreSavedGameData(const std::string& jsonData)
 {
 	shared_ptr<ScriptInterface> scriptInterface = top()->GetScriptInterface();
 	JSContext* cx = scriptInterface->GetContext();
