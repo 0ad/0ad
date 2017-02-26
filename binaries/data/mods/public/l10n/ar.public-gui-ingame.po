@@ -5,6 +5,7 @@
 # Translators:
 # Majid Al-Dharrab, 2014
 # mustapha ali abdulkarim <baghdadhost@gmail.com>, 2014
+# Omar Anwar <omaraglan91@yahoo.com>, 2017
 # Rayan <nitro361@gmail.com>, 2015
 # Safa Alfulaij <safa1996alfulaij@gmail.com>, 2014
 # salama <salamacast@yahoo.com>, 2014
@@ -15,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-01-09 09:02+0100\n"
-"PO-Revision-Date: 2017-01-29 23:46+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-02-12 16:06+0000\n"
+"Last-Translator: Omar Anwar <omaraglan91@yahoo.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,12 +40,12 @@ msgstr[5] "المدى الأساسيّ: %(range)s متر"
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "متوسط نقاط الزياده: %(range)s متر"
+msgstr[1] "متوسط نقاط الزياده: %(range)s متر"
+msgstr[2] "متوسط نقاط الزياده: %(range)s متر"
+msgstr[3] "متوسط نقاط الزياده: %(range)s متر"
+msgstr[4] "متوسط نقاط الزياده: %(range)s متر"
+msgstr[5] "متوسط نقاط الزياده: %(range)s متر "
 
 #: gui/session/input.js:705
 msgid "Cannot build wall here!"
@@ -100,7 +101,7 @@ msgstr "احذف"
 #: gui/session/menu.js:288
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/session/menu.js:353
 msgctxt "team"
@@ -305,7 +306,7 @@ msgstr "فتحت غطاء المطور."
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
-msgstr ""
+msgstr "تبرع %(resourceAmount)s %(resourceType)s الى %(playerName)s. Shift-click to tribute %(greaterAmount)s."
 
 #. Translation: A player that left the game joins again
 #: gui/session/messages.js:86
@@ -317,7 +318,7 @@ msgstr "بدأ %(player)s بإعادة الانضمام إلى اللعبة."
 #: gui/session/messages.js:88
 #, javascript-format
 msgid "%(player)s is starting to join the game."
-msgstr ""
+msgstr "%(player)s قد بدأ الدخول الى اللعبه."
 
 #: gui/session/messages.js:92
 #, javascript-format
@@ -334,7 +335,7 @@ msgstr "أعاد %(player)s الانضمام إلى اللعبة."
 #: gui/session/messages.js:101
 #, javascript-format
 msgid "%(player)s has joined the game."
-msgstr ""
+msgstr "%(player)s قد انضم الى اللعبة."
 
 #: gui/session/messages.js:107
 #, javascript-format
@@ -398,7 +399,7 @@ msgstr "الفريق"
 
 #: gui/session/messages.js:160 gui/session/session.js:290
 msgid "Observer"
-msgstr ""
+msgstr "مشاهد"
 
 #: gui/session/messages.js:161
 msgid "Private"
@@ -407,37 +408,37 @@ msgstr "خاصّ"
 #: gui/session/messages.js:197
 msgctxt "chat history filter"
 msgid "Chat and notifications"
-msgstr ""
+msgstr "الشات و الاشعارات"
 
 #: gui/session/messages.js:202
 msgctxt "chat history filter"
 msgid "Chat messages"
-msgstr ""
+msgstr "رسائل الشات"
 
 #: gui/session/messages.js:207
 msgctxt "chat history filter"
 msgid "Players chat"
-msgstr ""
+msgstr "شات اللاعبين"
 
 #: gui/session/messages.js:214
 msgctxt "chat history filter"
 msgid "Ally chat"
-msgstr ""
+msgstr "شات الحلفاء"
 
 #: gui/session/messages.js:221
 msgctxt "chat history filter"
 msgid "Enemy chat"
-msgstr ""
+msgstr "شات الاعداء"
 
 #: gui/session/messages.js:228
 msgctxt "chat history filter"
 msgid "Observer chat"
-msgstr ""
+msgstr "شات المشاهدين"
 
 #: gui/session/messages.js:235
 msgctxt "chat history filter"
 msgid "Private chat"
-msgstr ""
+msgstr "شات خاص"
 
 #: gui/session/messages.js:241
 msgid "You have won!"
@@ -490,27 +491,27 @@ msgstr "%(player)s يخوض حربًا مع %(player2)s الآن."
 #: gui/session/messages.js:262
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
-msgstr ""
+msgstr "%(player)s هو الان عادى مع %(player2)s."
 
 #: gui/session/messages.js:669
 msgctxt "chat addressee"
 msgid "Everyone"
-msgstr ""
+msgstr "الجميع"
 
 #: gui/session/messages.js:677
 msgctxt "chat addressee"
 msgid "Allies"
-msgstr ""
+msgstr "الحلفاء"
 
 #: gui/session/messages.js:681
 msgctxt "chat addressee"
 msgid "Enemies"
-msgstr ""
+msgstr "الاعداء"
 
 #: gui/session/messages.js:687
 msgctxt "chat addressee"
 msgid "Observers"
-msgstr ""
+msgstr "المشاهدين"
 
 #: gui/session/messages.js:716 gui/session/selection_details.js:82
 #, javascript-format
@@ -520,7 +521,7 @@ msgstr "\\[غير متّصل] %(player)s"
 #: gui/session/messages.js:793
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #: gui/session/messages.js:794
 msgid "HH:mm"
@@ -533,7 +534,7 @@ msgstr "لاعب غير معروف"
 #: gui/session/messages.js:845
 #, javascript-format
 msgid "%(player)s has resigned."
-msgstr ""
+msgstr "%(player)s قد استقال."
 
 #: gui/session/messages.js:846
 #, javascript-format
@@ -548,7 +549,7 @@ msgstr "فاز %(player)s."
 #: gui/session/messages.js:882
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
-msgstr ""
+msgstr "%(player)s قد ارسل %(player2)s %(amounts)s."
 
 #: gui/session/messages.js:884
 #, javascript-format
@@ -558,12 +559,12 @@ msgstr "%(player)s أرسل إليك %(amounts)s."
 #: gui/session/messages.js:904
 #, javascript-format
 msgid "%(player)s bartered %(amountsBought)s for %(amountsSold)s."
-msgstr ""
+msgstr "%(player)s قايض %(amountsBought)s بــ %(amountsSold)s."
 
 #: gui/session/messages.js:917
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
-msgstr ""
+msgstr "مواشيك قد هوجمت من  %(attacker)s!"
 
 #: gui/session/messages.js:918
 #, javascript-format
@@ -614,7 +615,7 @@ msgstr "%(hitpoints)s / %(maxHitpoints)s"
 #: gui/session/selection_details.js:149
 #, javascript-format
 msgid "%(capturePoints)s / %(maxCapturePoints)s"
-msgstr ""
+msgstr "%(capturePoints)s / %(maxCapturePoints)s"
 
 #: gui/session/selection_details.js:165
 #, javascript-format
@@ -660,12 +661,12 @@ msgid ""
 msgid_plural ""
 "Number of builders.\n"
 "Tasking another to this foundation would speed construction up by %(speedup)s seconds."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "عدد البنائين.\nاضف بناى  اخر الى المؤسسه يزيد البناء بمعدل: %(speedup)s ثانيه"
+msgstr[1] "عدد البنائين.\nاضف بناى  اخر الى المؤسسه يزيد البناء بمعدل: %(speedup)s ثانيه"
+msgstr[2] "عدد البنائين.\nاضف بناى  اخر الى المؤسسه يزيد البناء بمعدل: %(speedup)s ثانيه"
+msgstr[3] "عدد البنائين.\nاضف بناى  اخر الى المؤسسه يزيد البناء بمعدل: %(speedup)s ثانيه"
+msgstr[4] "عدد البنائين.\nاضف بناى  اخر الى المؤسسه يزيد البناء بمعدل: %(speedup)s ثانيه"
+msgstr[5] "عدد البنائين.\nاضف بناى  اخر الى المؤسسه يزيد البناء بمعدل: %(speedup)s ثانيه"
 
 #: gui/session/selection_details.js:246 gui/session/selection_details.js:254
 msgid "Number of builders."
@@ -688,25 +689,25 @@ msgstr "نقاط الالتقاط:"
 #: gui/session/selection_details.js:411
 #, javascript-format
 msgid "%(label)s %(details)s\n"
-msgstr ""
+msgstr "%(label)s %(details)s\n"
 
 #: gui/session/selection_details.js:412
 msgid "Carrying:"
-msgstr ""
+msgstr "حمل:"
 
 #: gui/session/selection_details.js:415 gui/session/selection_details.js:424
 #, javascript-format
 msgid "%(type)s %(amount)s"
-msgstr ""
+msgstr "%(type)s %(amount)s"
 
 #: gui/session/selection_details.js:420
 #, javascript-format
 msgid "%(label)s %(details)s"
-msgstr ""
+msgstr "%(label)s %(details)s"
 
 #: gui/session/selection_details.js:421
 msgid "Loot:"
-msgstr ""
+msgstr "غنيمه:"
 
 #: gui/session/selection_panels.js:80
 msgid "Raise an alert!"
@@ -781,27 +782,27 @@ msgstr "%(population)s %(neededSlots)s"
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "%(number)s مضمون الفئه %(class)s"
+msgstr[1] "%(number)s مضمون الفئه %(class)s"
+msgstr[2] "%(number)s مضمون الفئه %(class)s"
+msgstr[3] "%(number)s مضمون الفئه %(class)s"
+msgstr[4] "%(number)s مضمون الفئه %(class)s"
+msgstr[5] "%(number)s مضمون الفئه %(class)s"
 
 #: gui/session/selection_panels.js:865
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
-msgstr ""
+msgstr "المتبقى: %(entityCounts)s"
 
 #: gui/session/selection_panels.js:1174
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
-msgstr ""
+msgstr "تطوير ألى %(name)s. %(tooltip)s"
 
 #: gui/session/selection_panels.js:1179
 #, javascript-format
 msgid "Upgrade into a %(name)s."
-msgstr ""
+msgstr "تطوير ألى %(name)s."
 
 #: gui/session/selection_panels.js:1195
 msgid "Cancel Upgrading"
@@ -809,7 +810,7 @@ msgstr "ألغِ التّرقية"
 
 #: gui/session/selection_panels.js:1200
 msgid "Cannot upgrade when the entity is already upgrading."
-msgstr ""
+msgstr "لا يمكن التطوير حينما يكون الكيان طور مسبقا."
 
 #: gui/session/selection_panels_helpers.js:26
 msgctxt "stance"
@@ -839,29 +840,29 @@ msgstr "الثبات في المكان"
 #: gui/session/selection_panels_helpers.js:46
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
-msgstr ""
+msgstr "اهجم على الخصوم القرباء, ركز على المهاجمين وطاردهم حالة ظهروهم"
 
 #: gui/session/selection_panels_helpers.js:48
 msgctxt "stance"
 msgid "Attack nearby opponents"
-msgstr ""
+msgstr "يهاجم الاعداء القربيين "
 
 #: gui/session/selection_panels_helpers.js:50
 msgctxt "stance"
 msgid ""
 "Attack nearby opponents, chase a short distance and return to the original "
 "location"
-msgstr ""
+msgstr "يهاجم الاعداء القربيين, لاحقهم بمسافه صغيره و من ثم ارجع الى المكان الاساسى  "
 
 #: gui/session/selection_panels_helpers.js:52
 msgctxt "stance"
 msgid "Flee if attacked"
-msgstr ""
+msgstr "اهرب اذا هوجمت"
 
 #: gui/session/selection_panels_helpers.js:54
 msgctxt "stance"
 msgid "Attack opponents in range, but don't move"
-msgstr ""
+msgstr "اهجم على الخصم فى المجال, لكن لا تتحرك"
 
 #: gui/session/selection_panels_helpers.js:68
 #, javascript-format
@@ -909,22 +910,22 @@ msgstr "الطّبيعة"
 #: gui/session/session.js:335
 msgctxt "chat input"
 msgid "Type the message to send."
-msgstr ""
+msgstr "اكتب الرساله لكى ترسل"
 
 #: gui/session/session.js:337
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
-msgstr ""
+msgstr "اضغط %(hotkey)s لكى تفتح الشات العام."
 
 #: gui/session/session.js:340
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr ""
+msgstr "اضغط  %(hotkey)s لكى تفتح شات المشاهدين."
 
 #: gui/session/session.js:341
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr ""
+msgstr "اضغط %(hotkey)s لكى تفتح شات الحلفاء."
 
 #: gui/session/session.js:346
 msgid "Find idle worker"
@@ -934,12 +935,12 @@ msgstr "جِد عاملًا خاملًا"
 msgid ""
 "Select one type of goods as origin of the changes, then use the arrows of "
 "the target type of goods to make the changes."
-msgstr ""
+msgstr "اختر نوع واحد من حاجيات كما الاصل للتغير, ثم استخدم الاسهم للهدف الحاجيات لكى تحدث التغير"
 
 #: gui/session/session.js:351
 #, javascript-format
 msgid "Using %(hotkey)s will put the selected resource to 100%%."
-msgstr ""
+msgstr "استخدام %(hotkey)s سوف يضع الموارد المحدده الى 100%%."
 
 #: gui/session/session.js:499
 #, javascript-format
@@ -960,7 +961,7 @@ msgstr "هُزمت!"
 
 #: gui/session/session.js:746
 msgid "Ok"
-msgstr ""
+msgstr "حسنا"
 
 #: gui/session/session.js:797
 msgctxt "replayFinished"
@@ -990,17 +991,17 @@ msgstr "الصّحّة:"
 #: gui/session/session.js:1021
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
-msgstr ""
+msgstr "%(playername)s: %(statValue)s"
 
 #: gui/session/session.js:1024
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
-msgstr ""
+msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
 #: gui/session/session.js:1050
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
-msgstr ""
+msgstr "%(popCount)s/%(popLimit)s"
 
 #: gui/session/session.js:1051
 msgid "Population (current / limit)"
@@ -1009,7 +1010,7 @@ msgstr "السّكّانيّة (الحاليّة / الحدّ)"
 #: gui/session/session.js:1052
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
-msgstr ""
+msgstr "اقصى عدد للسكان: %(popCap)s"
 
 #: gui/session/session.js:1204
 #, javascript-format
@@ -1063,24 +1064,24 @@ msgstr "الكسب المتوقع: %(gain)s"
 
 #: gui/session/unit_actions.js:1049 gui/session/unit_actions.js:1351
 msgid "Unload All."
-msgstr ""
+msgstr "فرغ الكل."
 
 #: gui/session/unit_actions.js:1071
 msgid "Destroy the selected units or buildings."
-msgstr ""
+msgstr "دمر الوحدات او المبانى المحدده."
 
 #: gui/session/unit_actions.js:1073
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
-msgstr ""
+msgstr "استخدم %(hotkey)s لكى تتحاشى حوار التأكيد."
 
 #: gui/session/unit_actions.js:1105
 msgid "Abort the current order."
-msgstr ""
+msgstr "ألغى الامر الحالى."
 
 #: gui/session/unit_actions.js:1125
 msgid "Order the selected units to garrison in a building or unit."
-msgstr ""
+msgstr "اعطى الامر للوحدات لكى تصبح حاميه للمبنى او الوحده."
 
 #: gui/session/unit_actions.js:1147
 msgid "Unload"
@@ -1088,11 +1089,11 @@ msgstr "أزل التّحميل"
 
 #: gui/session/unit_actions.js:1165
 msgid "Order the selected units to repair a building or mechanical unit."
-msgstr ""
+msgstr "اعطى الامر لوحدات المحدده لكى تصلح مبنى او وحده ميكانيكيه."
 
 #: gui/session/unit_actions.js:1184
 msgid "Focus on Rally Point."
-msgstr ""
+msgstr "ركز على نقطه التجمع."
 
 #: gui/session/unit_actions.js:1209
 msgid "Back to Work"
@@ -1100,7 +1101,7 @@ msgstr "ارجع إلى العمل"
 
 #: gui/session/unit_actions.js:1228
 msgid "Order the selected units to guard a building or unit."
-msgstr ""
+msgstr "اعطى الوحده المحدده امر لحمايه المبنى او الوحده."
 
 #: gui/session/unit_actions.js:1246
 msgid "Remove guard"
@@ -1112,40 +1113,40 @@ msgstr "اختر بضائع التجارة"
 
 #: gui/session/unit_actions.js:1280
 msgid "Patrol"
-msgstr ""
+msgstr "دورية"
 
 #: gui/session/unit_actions.js:1281
 msgid "Attack all encountered enemy units while avoiding buildings."
-msgstr ""
+msgstr "هاجم كل وحدات الاعداء المقابله ريثما يتخطى المبانى."
 
 #: gui/session/unit_actions.js:1304
 msgid "Press to prevent allies from using this dropsite"
-msgstr ""
+msgstr "اضغط لكى تمنع الحلفاء من استخدام نقطه الاسقاط هذه."
 
 #: gui/session/unit_actions.js:1309
 msgid "Press to allow allies to use this dropsite"
-msgstr ""
+msgstr "اضغط لكى تسمح للحلفاء باستخدام نقطه الاسقاط هذه"
 
 #: gui/session/unit_actions.js:1372
 msgid "You are allowed to use this dropsite"
-msgstr ""
+msgstr "انت مسموح لك باستخدام نقطه الاسقاط هذه"
 
 #: gui/session/unit_actions.js:1377
 msgid "The use of this dropsite is prohibited"
-msgstr ""
+msgstr "الاستخدام لنقطه الاسقاط هذه ممنوع"
 
 #: gui/session/unit_actions.js:1437
 msgid "The entity has to be killed before it can be gathered from"
-msgstr ""
+msgstr "الكيان يجب ان يقتل قبل ان يجمع منه"
 
 #: gui/session/unit_actions.js:1440
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
-msgstr ""
+msgstr "لا يمكنك تدميرهذا الكيان عندما يكون معك اقل من نصف نقاط السيطره"
 
 #: gui/session/unit_actions.js:1443
 msgid "This entity is undeletable"
-msgstr ""
+msgstr "هذا الكيان غير قابل للمسح"
 
 #: gui/session/utility_functions.js:85 gui/session/utility_functions.js:87
 msgid "+"
@@ -1165,7 +1166,7 @@ msgstr "، و"
 #: gui/session/chat_window.xml:(caption):16
 msgctxt "chat input"
 msgid "Filter:"
-msgstr ""
+msgstr "تصنيف:"
 
 #: gui/session/chat_window.xml:(caption):44
 msgctxt "chat input"
@@ -1184,7 +1185,7 @@ msgstr "ألغِ"
 #: gui/session/chat_window.xml:(caption):95
 msgctxt "chat"
 msgid "History"
-msgstr ""
+msgstr "تاريخ"
 
 #: gui/session/chat_window.xml:(caption):100
 msgid "Send"
@@ -1193,12 +1194,12 @@ msgstr "أرسِل"
 #: gui/session/chat_window.xml:(tooltip):26
 msgctxt "chat input"
 msgid "Filter the chat history."
-msgstr ""
+msgstr "صنف تاريخ الشات"
 
 #: gui/session/chat_window.xml:(tooltip):53
 msgctxt "chat input"
 msgid "Select chat addressee."
-msgstr ""
+msgstr "حدد شات المرسل اليه"
 
 #: gui/session/developer_overlay.xml:(caption):18
 msgid "Control all units"
@@ -1250,7 +1251,7 @@ msgstr "رقِّ الوحدات المحدّدة"
 
 #: gui/session/developer_overlay.xml:(caption):148
 msgid "Hierarchical pathfinder overlay"
-msgstr ""
+msgstr "مستكشف هرمى طلائى"
 
 #: gui/session/diplomacy_window.xml:(caption):10
 #: gui/session/top_panel/button_diplomacy.xml:(tooltip):8
@@ -1301,7 +1302,7 @@ msgstr "احفظ"
 
 #: gui/session/menu.xml:(caption):52
 msgid "Summary"
-msgstr ""
+msgstr "ملخص"
 
 #: gui/session/menu.xml:(caption):63
 msgid "Options"
@@ -1318,7 +1319,7 @@ msgstr "اخرج"
 #: gui/session/objectives_window.xml:(caption):15
 #: gui/session/top_panel/button_objectives.xml:(tooltip):15
 msgid "Objectives"
-msgstr ""
+msgstr "الاهداف"
 
 #: gui/session/session.xml:(caption):58
 msgid "Game Paused"
@@ -1331,11 +1332,11 @@ msgstr "انقر لاستئناف اللعبة"
 #: gui/session/top_panel.xml:(caption):22
 msgctxt "observer mode"
 msgid "Follow Player"
-msgstr ""
+msgstr "اتبع اللاعب"
 
 #: gui/session/top_panel.xml:(caption):46
 msgid "Observer Mode"
-msgstr ""
+msgstr "وضع المشاهده"
 
 #: gui/session/top_panel.xml:(tooltip):38
 msgid "Choose player to view"
@@ -1365,7 +1366,7 @@ msgstr "نقاط الصحة"
 
 #: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):39
 msgid "Capture points"
-msgstr ""
+msgstr "نقاط السيطره"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):54
 msgid "Attack and Armor"
@@ -1403,4 +1404,4 @@ msgstr "قائمة"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XXI : Ulysses"
-msgstr ""
+msgstr "ألفا\"21\":أوليسيس"

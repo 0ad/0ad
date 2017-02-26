@@ -6,17 +6,20 @@
 # Christian Xia <wood_elf@126.com>, 2016
 # helinb <1696060289@qq.com>, 2015
 # Kelvin Cooper <Zhu-Zhe-Yong@live.com>, 2016
+# liulitchi <xingzuo88@qq.com>, 2017
+# loms126 <loms126@126.com>, 2014
 # loms126 <loms126@126.com>, 2014
 # Shinyu Wu <shinyu@gnu.hk>, 2016
 # Tianran Yao <yaotianran@gmail.com>, 2016
+# liulitchi <xingzuo88@qq.com>, 2017
 # 呂正 <jack.lvzheng@gmail.com>, 2015
 # 玉堂白鹤 <yjwork@qq.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-01-09 09:02+0100\n"
-"PO-Revision-Date: 2017-01-09 10:04+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-02-26 04:01+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -60,12 +63,12 @@ msgstr "%(civilization)s 的历史"
 #: gui/common/color.js:154
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames."
-msgstr ""
+msgstr "按 %(hotkey)s 自动输入玩家名字。"
 
 #: gui/common/color.js:157
 msgctxt "hotkey"
 msgid "Tab"
-msgstr ""
+msgstr "Tab"
 
 #: gui/common/functions_global_object.js:57
 #, javascript-format
@@ -164,12 +167,12 @@ msgstr "是"
 #: gui/common/functions_utility_loadsave.js:104
 #, javascript-format
 msgid "Delete the selected entry using %(hotkey)s."
-msgstr ""
+msgstr "使用 %(hotkey)s 删除选取单位。"
 
 #: gui/common/functions_utility_loadsave.js:109
 #, javascript-format
 msgid "Hold %(hotkey)s to delete without confirmation."
-msgstr ""
+msgstr "按 %(hotkey)s 直接删除。"
 
 #: gui/common/gamedescription.js:13
 msgid "A randomly selected map."
@@ -291,7 +294,7 @@ msgstr[0] "观察者"
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
 msgid_plural "Wonder (%(min)s minutes)"
-msgstr[0] ""
+msgstr[0] "奇观分钟数 %(min)s"
 
 #: gui/common/gamedescription.js:211
 msgid "Rated game"
@@ -305,43 +308,43 @@ msgstr ""
 
 #: gui/common/gamedescription.js:217
 msgid "Locked Teams"
-msgstr ""
+msgstr "锁定组队"
 
 #: gui/common/gamedescription.js:218
 msgid "Players can't change the initial teams."
-msgstr ""
+msgstr "玩家不能更改初始团队。"
 
 #: gui/common/gamedescription.js:222
 msgid "Diplomacy"
-msgstr ""
+msgstr "政策"
 
 #: gui/common/gamedescription.js:223
 msgid "Players can make alliances and declare war on allies."
-msgstr ""
+msgstr "玩家可结盟，也可对盟友宣战。"
 
 #: gui/common/gamedescription.js:228
 msgid "Last Man Standing"
-msgstr ""
+msgstr "笑到最后的人"
 
 #: gui/common/gamedescription.js:229
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
-msgstr ""
+msgstr "胜者只有一人。如果有同盟存活，游戏继续，直到只剩一家时结束。"
 
 #: gui/common/gamedescription.js:233
 msgid "Allied Victory"
-msgstr ""
+msgstr "同盟胜利"
 
 #: gui/common/gamedescription.js:234
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr ""
+msgstr "有玩家获胜时，盟友一起获胜。"
 
 #: gui/common/gamedescription.js:240
 msgid "Ceasefire"
-msgstr ""
+msgstr "停火"
 
 #: gui/common/gamedescription.js:243 gui/pregame/mainmenu.js:86
 msgid "disabled"
@@ -350,31 +353,31 @@ msgstr "关闭"
 #: gui/common/gamedescription.js:244
 msgid "For the first minute, enemies will stay neutral."
 msgid_plural "For the first %(min)s minutes, enemies will stay neutral."
-msgstr[0] ""
+msgstr[0] "开始设定时间 %(min)s 内 ，不允许互相攻击。"
 
 #: gui/common/gamedescription.js:252
 msgid "Map Name"
-msgstr ""
+msgstr "地图名称"
 
 #: gui/common/gamedescription.js:257
 msgid "Map Type"
-msgstr ""
+msgstr "地图类型"
 
 #: gui/common/gamedescription.js:266
 msgid "Map Size"
-msgstr ""
+msgstr "地图大小"
 
 #: gui/common/gamedescription.js:273
 msgid "Map Description"
-msgstr ""
+msgstr "地图描述"
 
 #: gui/common/gamedescription.js:276
 msgid "Randomly selects a map from the list"
-msgstr ""
+msgstr "从列表随机选择地图。"
 
 #: gui/common/gamedescription.js:285
 msgid "Starting Resources"
-msgstr ""
+msgstr "初始资源"
 
 #: gui/common/gamedescription.js:286
 #, javascript-format
@@ -383,23 +386,23 @@ msgstr ""
 
 #: gui/common/gamedescription.js:296
 msgid "Population Limit"
-msgstr ""
+msgstr "人偶限制"
 
 #: gui/common/gamedescription.js:304
 msgid "Disable Treasure"
-msgstr ""
+msgstr "取消宝藏系统"
 
 #: gui/common/gamedescription.js:309
 msgid "Revealed Map"
-msgstr ""
+msgstr "显示地图"
 
 #: gui/common/gamedescription.js:314
 msgid "Explored Map"
-msgstr ""
+msgstr "探索地图"
 
 #: gui/common/gamedescription.js:319
 msgid "Cheats"
-msgstr ""
+msgstr "作弊"
 
 #: gui/common/gamedescription.js:324 gui/common/tooltips.js:58
 #: gui/common/tooltips.js:105 gui/common/tooltips.js:147
@@ -411,12 +414,12 @@ msgstr "%(label)s %(details)s"
 #: gui/common/gamedescription.js:327
 msgctxt "gamesetup option"
 msgid "enabled"
-msgstr ""
+msgstr "加载"
 
 #: gui/common/gamedescription.js:328
 msgctxt "gamesetup option"
 msgid "disabled"
-msgstr ""
+msgstr "取消"
 
 #: gui/common/l10n.js:13
 #, javascript-format
@@ -481,7 +484,7 @@ msgstr "网络协议版本错误"
 
 #: gui/common/network.js:68
 msgid "Game is loading, please try again later"
-msgstr ""
+msgstr "游戏正加载，请稍后重试。"
 
 #: gui/common/network.js:69
 msgid "Game has already started, no observers allowed"
@@ -528,14 +531,14 @@ msgstr "断开"
 
 #: gui/common/network.js:104
 msgid "Only the host can kick clients!"
-msgstr ""
+msgstr "只有主机有踢人权限"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
 #: gui/common/network.js:158
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
-msgstr ""
+msgstr "玩家 "
 
 #: gui/common/settings.js:108
 msgctxt "aiDiff"
@@ -604,11 +607,11 @@ msgstr "场景"
 #: gui/common/settings.js:228
 msgctxt "victory condition"
 msgid "None"
-msgstr ""
+msgstr "无"
 
 #: gui/common/settings.js:229
 msgid "Endless game."
-msgstr ""
+msgstr "未完成的游戏"
 
 #: gui/common/settings.js:270
 msgid "Unlimited"
@@ -805,7 +808,7 @@ msgstr "治疗："
 #: gui/common/tooltips.js:238 gui/common/tooltips.js:287
 #: gui/common/tooltips.js:301
 msgid "Health"
-msgstr ""
+msgstr "生命值"
 
 #: gui/common/tooltips.js:262 gui/common/tooltips.js:267
 #: gui/common/tooltips.js:272
@@ -884,7 +887,7 @@ msgstr "塔楼:  %(costs)s"
 #: gui/common/tooltips.js:467
 #, javascript-format
 msgid "Requires %(technology)s"
-msgstr ""
+msgstr "需要 %(technology)s"
 
 #: gui/common/tooltips.js:479
 #, javascript-format
@@ -966,11 +969,11 @@ msgstr "类型："
 #: gui/common/tooltips.js:640
 #, javascript-format
 msgid "%(component)s %(loot)s"
-msgstr ""
+msgstr "%(component)s %(loot)s"
 
 #: gui/common/tooltips.js:647
 msgid "Loot:"
-msgstr ""
+msgstr "战利品："
 
 #: gui/credits/credits.js:69
 #, javascript-format
@@ -1370,7 +1373,7 @@ msgstr "步行骑士"
 
 #: gui/summary/layout.js:65
 msgid "Siege"
-msgstr ""
+msgstr "攻城"
 
 #: gui/summary/layout.js:66
 msgid "Navy"
@@ -1383,7 +1386,7 @@ msgstr "贸易商人"
 #: gui/summary/layout.js:71
 #, javascript-format
 msgid "Units Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
-msgstr ""
+msgstr "单位数据  (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:73
 msgid "Trained"
@@ -1433,7 +1436,7 @@ msgstr "已使用的"
 #: gui/summary/layout.js:147
 #, javascript-format
 msgid "%(resourceFirstWord)s exchanged"
-msgstr ""
+msgstr "%(resourceFirstWord)s  改变"
 
 #: gui/summary/layout.js:155
 msgid "Barter efficiency"
@@ -1483,11 +1486,11 @@ msgstr "队伍总计"
 
 #: gui/summary/summary.js:125
 msgid "Victory"
-msgstr ""
+msgstr "胜利"
 
 #: gui/summary/summary.js:130
 msgid "Defeated"
-msgstr ""
+msgstr "失败"
 
 #: gui/summary/summary.js:154
 msgid "Are you sure you want to quit the lobby?"
@@ -1694,7 +1697,7 @@ msgstr "状态: $status."
 
 #: gui/pregame/mainmenu.xml:535
 msgid "Alpha XXI: Ulysses"
-msgstr ""
+msgstr "内测版 21 ：尤利西斯"
 
 #: gui/pregame/mainmenu.xml:537
 msgid ""
@@ -2274,19 +2277,19 @@ msgstr "窗口失去焦点时暂停"
 msgid ""
 "When disabled, the welcome screen will nevertheless be shown once when a new"
 " version is available and you can always launch it from the main menu."
-msgstr ""
+msgstr "禁用此项时，当有可用新版本时，将再显示一次欢迎界面。不过你也可以始终从主菜单启动。"
 
 #: gui/options/options.jsongeneralSetting[4].label
 msgid "Enable Welcome Screen"
-msgstr ""
+msgstr "激活欢迎界面"
 
 #: gui/options/options.jsongeneralSetting[5].tooltip
 msgid "Show tips when setting up a game."
-msgstr ""
+msgstr "设定游戏时显示提示。"
 
 #: gui/options/options.jsongeneralSetting[5].label
 msgid "Enable Game Setting Tips"
-msgstr ""
+msgstr "执行设置提示"
 
 #: gui/options/options.jsongeneralSetting[6].tooltip
 msgid ""
@@ -2373,7 +2376,7 @@ msgstr "每批训练规模"
 #: gui/options/options.jsongeneralSetting[16].tooltip
 msgid ""
 "Show time that messages are posted in the lobby, gamesetup and ingame chat."
-msgstr ""
+msgstr "在游戏大厅显示设置及聊天的时间信息。"
 
 #: gui/options/options.jsongeneralSetting[16].label
 msgid "Chat Timestamp"
@@ -2757,7 +2760,7 @@ msgid ""
 "or very easy) when beginning with the game. Changing the AI level is done by"
 " clicking on the gear icon next to each AI player in the player selection "
 "panel above."
-msgstr ""
+msgstr "在他们掌握游戏的基本机制之前，默认的AI水平对于新手来说是相当具有挑战性的。 建议在开始游戏时，从较低级别(沙盒或非常容易)开始。 通过在上面的游戏选择面板中点击每个AI选手 旁边的齿轮图标，可以更改AI级别。"
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
@@ -3235,7 +3238,7 @@ msgstr "- 游戏中的每一个阵营都有基本的近战步兵。"
 
 #: gui/text/tips/spearmen.txt:4
 msgid "- Used against cavalry for an attack bonus."
-msgstr ""
+msgstr "-反骑兵有攻击加成。"
 
 #: gui/text/tips/spearmen.txt:6
 msgid "- Decent hack attack make them good front line troops."

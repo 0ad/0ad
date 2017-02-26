@@ -7,12 +7,13 @@
 # Christian Xia <wood_elf@126.com>, 2016
 # Kelvin Cooper <Zhu-Zhe-Yong@live.com>, 2016
 # TonyChyi <tonychee1989@gmail.com>, 2016
+# TonyChyi <tonychee1989@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-01-09 09:03+0100\n"
-"PO-Revision-Date: 2017-01-11 02:00+0000\n"
-"Last-Translator: Andersson Yang <calvinyang2002@icloud.com>\n"
+"PO-Revision-Date: 2017-02-23 12:10+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,7 +43,7 @@ msgstr "建筑者光环"
 
 #: simulation/data/auras/athen_hero_pericles_1.jsonauraDescription
 msgid "Buildings construct 15% faster within his aura."
-msgstr ""
+msgstr "光环可使建筑速度加快 15%"
 
 #: simulation/data/auras/athen_hero_pericles_2.jsonauraName
 msgid "Acropolis Aura"
@@ -74,7 +75,7 @@ msgstr "精英军队"
 
 #: simulation/data/auras/brit_hero_boudicca.jsonauraDescription
 msgid "+20% attack, +2 capture and +25% speed for champion units."
-msgstr ""
+msgstr "精英单位+20%攻击，+2 capture ，+25% 的速度"
 
 #: simulation/data/auras/brit_hero_caratacos.jsonauraName
 #: simulation/data/auras/brit_hero_cunobelin.jsonauraName
@@ -114,7 +115,7 @@ msgstr "指挥官光环"
 
 #: simulation/data/auras/cart_hero_maharbal.jsonauraDescription
 msgid "+20% cavalry melee attack within his aura."
-msgstr ""
+msgstr "骑兵 +20% 战斗力。"
 
 #: simulation/data/auras/cart_super_dock_repair.jsonauraName
 msgid "Repairing Ship aura"
@@ -122,7 +123,7 @@ msgstr "船只修复光环"
 
 #: simulation/data/auras/cart_super_dock_repair.jsonauraDescription
 msgid "Heals garrisoned ship at 10 HP per second."
-msgstr ""
+msgstr "卫戍舰 每秒回复 10点生命值。"
 
 #: simulation/data/auras/epic_temple_heal.jsonauraName
 #: simulation/data/auras/temple_heal.jsonauraName
@@ -153,7 +154,7 @@ msgstr "在他的生命周期内采集速度+15%。"
 msgid ""
 "+20% attack and +1 capture for all soldiers and siege engines within his "
 "aura."
-msgstr ""
+msgstr "所有士兵和攻城器械 +20% 攻击， +1 捕获。 "
 
 #: simulation/data/auras/hero_garrison.jsonauraName
 msgid "Garrisoned Capture Aura"
@@ -173,7 +174,7 @@ msgstr "防御光环"
 msgid ""
 "Gives all iberian soldiers in aura +20% attack boost. Effect Range: 50 "
 "meters"
-msgstr ""
+msgstr "所有伊比利亚士兵攻击 +20%， 范围50米。"
 
 #: simulation/data/auras/library.jsonauraName
 msgid "Library Aura"
@@ -182,7 +183,7 @@ msgstr "文库光环"
 #: simulation/data/auras/library.jsonauraDescription
 msgid ""
 "Reduce the cost and research time of technologies by 10% per library owned."
-msgstr ""
+msgstr "每拥有一个图书馆，科技的花费和时间-10%。"
 
 #: simulation/data/auras/loyalty_regen.jsonauraName
 msgid "Loyalty Aura"
@@ -206,36 +207,36 @@ msgstr ""
 
 #: simulation/data/auras/mace_hero_craterus.jsonauraDescription
 msgid "Pike Infantry +20% attack and +20% capture within range of him."
-msgstr ""
+msgstr "范围内的长矛兵 +20%攻击，+20 捕获。"
 
 #: simulation/data/auras/mace_hero_demetrius.jsonauraName
 msgid "Besieger Aura"
-msgstr ""
+msgstr "围城光环"
 
 #: simulation/data/auras/mace_hero_demetrius.jsonauraDescription
 msgid "+15% range and +10% crush attack for siege engines."
-msgstr ""
+msgstr "攻城器械 +15% 范围 和 +10%攻击。"
 
 #: simulation/data/auras/mace_hero_philip.jsonauraDescription
 msgid "+20% attack and +2 capture for champion units."
-msgstr ""
+msgstr "精英单位+20%攻击，+2 捕获。"
 
 #: simulation/data/auras/mace_hero_pyrrhus.jsonauraName
 msgid "Pyrrhic Victory"
-msgstr ""
+msgstr "皮洛士的胜利（意为得不偿失的胜利）"
 
 #: simulation/data/auras/mace_hero_pyrrhus.jsonauraDescription
 msgid ""
 "All soldiers +20% attack as long as Pyrrhos lives, but also -15% health."
-msgstr ""
+msgstr "当皮洛士活着时，所有 士兵 +20% 攻击，-15%生命值。"
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraName
 msgid "Buddhism Aura"
-msgstr ""
+msgstr "佛法光环"
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraDescription
 msgid "Temples and temple technologies -50% cost, in resources and time."
-msgstr ""
+msgstr "寺庙和它的科技 -50%资源和建造时间。"
 
 #: simulation/data/auras/maur_hero_chanakya.jsonauraName
 msgid "Teacher Aura"
@@ -248,7 +249,7 @@ msgstr "当他有驻军驻扎于内是，授权一个建筑拥有 -50%的研发�
 
 #: simulation/data/auras/maur_pillar.jsonauraDescription
 msgid "All traders in range +20% speed."
-msgstr ""
+msgstr "范围内所有商人 +20% 移动速度。"
 
 #: simulation/data/auras/pers_hero_cyrus.jsonauraName
 msgid "Lead from the Front Aura"
@@ -256,7 +257,7 @@ msgstr "身先士卒光环"
 
 #: simulation/data/auras/pers_hero_cyrus.jsonauraDescription
 msgid "+20% attack and +1 capture for nearby cavalry units."
-msgstr ""
+msgstr "附近的骑兵 +20%攻击，+1 捕获。"
 
 #: simulation/data/auras/pers_hero_darius.jsonauraName
 msgid "Leadership Aura"
@@ -264,7 +265,7 @@ msgstr "领导光环"
 
 #: simulation/data/auras/pers_hero_darius.jsonauraDescription
 msgid "+15% movement speed for all soldiers and siege engines."
-msgstr ""
+msgstr "所有士兵和攻城器械 +15% 移动速度。"
 
 #: simulation/data/auras/pers_hero_xerxes.jsonauraName
 msgid "Administrator Aura"
@@ -272,7 +273,7 @@ msgstr "行政者光环"
 
 #: simulation/data/auras/pers_hero_xerxes.jsonauraDescription
 msgid "+15% gather rate and build rate of nearby workers."
-msgstr ""
+msgstr "增加附近工人 15%的采集率和建造速度。"
 
 #: simulation/data/auras/ptol_hero_cleopatra_1.jsonauraName
 msgid "Patriot Aura"
@@ -281,20 +282,20 @@ msgstr "爱国者光环"
 #: simulation/data/auras/ptol_hero_cleopatra_1.jsonauraDescription
 msgid ""
 "-20% attack repeat time for Egyptian soldiers and siege engines in her aura."
-msgstr ""
+msgstr "在她周围的埃及士兵和攻城器械 -20%攻击。"
 
 #: simulation/data/auras/ptol_hero_cleopatra_2.jsonauraName
 #: simulation/data/auras/ptol_hero_cleopatra_3.jsonauraName
 msgid "Consort"
-msgstr ""
+msgstr "王后"
 
 #: simulation/data/auras/ptol_hero_cleopatra_2.jsonauraDescription
 msgid "Allied heroes +10% health when near her."
-msgstr ""
+msgstr "附近同盟英雄 +10% 生命值。"
 
 #: simulation/data/auras/ptol_hero_cleopatra_3.jsonauraDescription
 msgid "Enemy heroes -10% health when near her."
-msgstr ""
+msgstr "附近敌方英雄 -10% 生命值。"
 
 #: simulation/data/auras/ptol_hero_ptolemy_IV.jsonauraName
 msgid "Raphia Aura"
@@ -302,7 +303,7 @@ msgstr "棕竹属光环"
 
 #: simulation/data/auras/ptol_hero_ptolemy_IV.jsonauraDescription
 msgid "Egyptian pikemen have 40% greater health during his lifetime."
-msgstr ""
+msgstr "在她的时代里，埃及长矛兵 +40%生命值。"
 
 #: simulation/data/auras/ptol_hero_ptolemy_I_1.jsonauraName
 msgid "Construction Aura"
@@ -310,7 +311,7 @@ msgstr "建筑光环"
 
 #: simulation/data/auras/ptol_hero_ptolemy_I_1.jsonauraDescription
 msgid "Buildings construct 10% faster within his aura."
-msgstr ""
+msgstr "建筑速度加快 10%"
 
 #: simulation/data/auras/ptol_hero_ptolemy_I_2.jsonauraName
 msgid "Mercenary Patron Aura"
@@ -328,7 +329,7 @@ msgstr "罗马之剑光环"
 msgid ""
 "+20% attack and +2 capture for Roman soldiers and siege engines within his "
 "range."
-msgstr ""
+msgstr "范围内的罗马士兵和攻城器械 +20攻击， +2捕获。"
 
 #: simulation/data/auras/rome_hero_maximus.jsonauraName
 msgid "Shield of Rome Aura"
@@ -336,7 +337,7 @@ msgstr "罗马之盾光环"
 
 #: simulation/data/auras/rome_hero_maximus.jsonauraDescription
 msgid "+1 armor for all units and structures."
-msgstr ""
+msgstr "所有单位和建筑 +1 护甲。"
 
 #: simulation/data/auras/rotary_mill.jsonauraName
 msgid "Farming bonus"
@@ -352,7 +353,7 @@ msgstr "骑兵中校光环"
 
 #: simulation/data/auras/sele_hero_antiochus_great.jsonauraDescription
 msgid "All cavalry gains +2 levels of all armor types."
-msgstr ""
+msgstr "所有骑兵的护甲类型+2级。"
 
 #: simulation/data/auras/sele_hero_antiochus_righteous.jsonauraName
 msgid "Conquest Aura"
@@ -362,7 +363,7 @@ msgstr "征服光环"
 msgid ""
 "All nearby enemy buildings, siege engines, and ships have their health "
 "reduced by 20%."
-msgstr ""
+msgstr "所有附近的敌方建筑物，攻城器械和船只的生命值-20％。"
 
 #: simulation/data/auras/sele_hero_seleucus_victor.jsonauraName
 msgid "Zooiarchos Aura"
@@ -370,7 +371,7 @@ msgstr "苏阿拉克光环"
 
 #: simulation/data/auras/sele_hero_seleucus_victor.jsonauraDescription
 msgid "Boosts war elephant attack and speed +20% within his aura."
-msgstr ""
+msgstr "战象 +20% 攻击和速度。"
 
 #: simulation/data/auras/spart_hero_brasidas.jsonauraName
 msgid "Helot Reforms"
@@ -378,7 +379,7 @@ msgstr "农奴改革"
 
 #: simulation/data/auras/spart_hero_brasidas.jsonauraDescription
 msgid "Javelin infantry in his aura gains +20% attack and +1 all armor types."
-msgstr ""
+msgstr "标枪兵 +20%攻击，所有护甲+1。"
 
 #: simulation/data/auras/spart_hero_leonidas.jsonauraName
 msgid "Last Stand Aura"
@@ -386,7 +387,7 @@ msgstr "最终屹立光环"
 
 #: simulation/data/auras/spart_hero_leonidas.jsonauraDescription
 msgid "+20% attack and +1 capture for nearby Spearmen."
-msgstr ""
+msgstr "附近的长矛兵 +20%攻击，+1 捕获。"
 
 #: simulation/data/auras/temple_heal.jsonauraDescription
 msgid "Heals nearby units at 1 HP per second."
@@ -398,7 +399,7 @@ msgstr "希腊文明。"
 
 #: simulation/data/auras/theatron.jsonauraDescription
 msgid "Increase territory influence by 20% per theatron owned."
-msgstr ""
+msgstr "每获得一个戏院，领土影响+20%。"
 
 #: simulation/data/auras/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -406,7 +407,7 @@ msgstr "防御城墙"
 
 #: simulation/data/auras/wall_garrisoned.jsonauraDescription
 msgid "Soldiers on walls have +3 armor and higher vision."
-msgstr ""
+msgstr "城墙士兵 +3 护甲 ，以及更大的视野。"
 
 #: simulation/data/auras/wonder_pop_1.jsonauraName
 msgid "Wonder Aura"
@@ -414,7 +415,7 @@ msgstr "奇迹光环"
 
 #: simulation/data/auras/wonder_pop_1.jsonauraDescription
 msgid "Increase the population limit by 10 per wonder owned."
-msgstr ""
+msgstr "每拥有一个奇迹，人口限制+10。"
 
 #: simulation/data/auras/wonder_pop_2.jsonauraName
 msgid "Glorious Expansion Aura"
@@ -424,7 +425,7 @@ msgstr "光荣扩张光环"
 msgid ""
 "Further increase the population limit by 40 per wonder owned (requires "
 "\"Glorious Expansion\" tech)."
-msgstr ""
+msgstr "每拥有一个奇观，人口数量限制+40(需解锁“光荣扩张”科技)。"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -440,11 +441,11 @@ msgstr "在萨拉米斯及麦凯尔的海军大胜利后不久，希腊城邦就
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
-msgstr ""
+msgstr "贸易家"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "10% bonus of trade profit for ally's international routes."
-msgstr ""
+msgstr "所有盟友间的贸易路线 +10%的利润。"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
@@ -458,32 +459,32 @@ msgstr "为伊比利亚玩家的盟友减少训练民兵散兵的花费 20%。"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
-msgstr ""
+msgstr "阿育王的宗教支持"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
 msgid ""
 "Allied temples and temple technologies -50% cost, in resources and time."
-msgstr ""
+msgstr "同盟的寺庙和它的科技 -50%资源和建造时间。"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "The Royal Road"
-msgstr ""
+msgstr "皇家大道"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
 msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr ""
+msgstr "所有盟友的商人由陆路获取 +15%的收入。"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"
-msgstr ""
+msgstr "地中海的福地"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraDescription
 msgid "All allies automatically gain a slow trickle of food income."
-msgstr ""
+msgstr "所有盟友自动获得缓慢增加粮食收入的加成。"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
-msgstr ""
+msgstr "叙利亚四城区"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
 msgid ""

@@ -31,7 +31,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pl\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #: simulation/ai/petra/chatHelper.js:6
 #, javascript-format
@@ -828,6 +828,7 @@ msgid_plural ""
 msgstr[0] "%(name)s za blisko %(category)s, musi być przynajmniej w odległości %(distance)s metrów"
 msgstr[1] "%(name)s za blisko %(category)s, musi być przynajmniej w odległości %(distance)s metrów"
 msgstr[2] "%(name)s za blisko %(category)s, musi być przynajmniej w odległości %(distance)s metrów"
+msgstr[3] "%(name)s za blisko %(category)s, musi być przynajmniej w odległości %(distance)s metrów"
 
 #: simulation/components/BuildRestrictions.js:299
 #, javascript-format
@@ -838,6 +839,7 @@ msgid_plural ""
 msgstr[0] "%(name)s za daleko od %(category)s, musi być w promieniu %(distance)s metrów"
 msgstr[1] "%(name)s za daleko od %(category)s, musi być w promieniu %(distance)s metrów"
 msgstr[2] "%(name)s za daleko od %(category)s, musi być w promieniu %(distance)s metrów"
+msgstr[3] "%(name)s za daleko od %(category)s, musi być w promieniu %(distance)s metrów"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".

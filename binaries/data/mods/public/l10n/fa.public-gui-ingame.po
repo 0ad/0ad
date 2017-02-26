@@ -6,6 +6,7 @@
 # amirrezaw hosseini <amirrezaw15@yahoo.com>, 2016
 # hamed farri <hamed.farri@gmail.com>, 2016
 # Hessam Shahpouri, 2014
+# mohammad khodadadi <asmanp2012@gmail.com>, 2017
 # Mohsen Nouri <mohsen.nouri1372@gmail.com>, 2014
 # omidh <omid_h28@hotmail.com>, 2013
 # VAHID SOHRABLOO <vahid4134@gmail.com>, 2014
@@ -13,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-01-09 09:02+0100\n"
-"PO-Revision-Date: 2017-01-09 09:35+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-02-20 05:21+0000\n"
+"Last-Translator: mohammad khodadadi <asmanp2012@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -282,12 +283,12 @@ msgstr ""
 #: gui/session/messages.js:107
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr ""
+msgstr "%(username)s تحریم شده است."
 
 #: gui/session/messages.js:108
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr ""
+msgstr "%(username)s اخراج شده است."
 
 #: gui/session/messages.js:130
 msgid "Connection to the server has been authenticated."
@@ -463,15 +464,15 @@ msgstr ""
 #: gui/session/messages.js:793
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #: gui/session/messages.js:794
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #: gui/session/messages.js:838
 msgid "Unknown Player"
-msgstr ""
+msgstr "بازیکنی شناسایی نشد."
 
 #: gui/session/messages.js:845
 #, javascript-format
@@ -729,7 +730,7 @@ msgstr ""
 #: gui/session/selection_panels.js:1179
 #, javascript-format
 msgid "Upgrade into a %(name)s."
-msgstr ""
+msgstr "ارتقاء به %(name)s."
 
 #: gui/session/selection_panels.js:1195
 msgid "Cancel Upgrading"
@@ -888,7 +889,7 @@ msgstr "شکست!"
 
 #: gui/session/session.js:746
 msgid "Ok"
-msgstr ""
+msgstr "باشه"
 
 #: gui/session/session.js:797
 msgctxt "replayFinished"
@@ -1103,7 +1104,7 @@ msgstr ""
 #: gui/session/chat_window.xml:(caption):58
 msgctxt "chat input"
 msgid "Text:"
-msgstr ""
+msgstr "متن:"
 
 #: gui/session/chat_window.xml:(caption):78
 msgid "Cancel"

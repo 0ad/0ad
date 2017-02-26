@@ -10,11 +10,12 @@
 # Pavel Šindelář <pavelsin123@gmail.com>, 2015
 # Petr Hála <halapetr@selfnet.cz>, 2016-2017
 # Robin Kriebel <kriebel.robin@gmail.com>, 2016-2017
+# Vojtěch Valigura <Encounter@seznam.cz>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-02-03 09:03+0100\n"
-"PO-Revision-Date: 2017-02-03 11:28+0000\n"
+"PO-Revision-Date: 2017-02-22 13:51+0000\n"
 "Last-Translator: Robin Kriebel <kriebel.robin@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -55,14 +56,14 @@ msgstr "Nech mě přeskupit moje vojsko a půjdu s tebou proti %(_player_)s."
 #: simulation/ai/petra/chatHelper.js:18
 #, javascript-format
 msgid "I am finishing preparations to attack %(_player_)s."
-msgstr "Dokončuju přípravy k útoku na %(_player_)s."
+msgstr "Dokončuji přípravy k útoku na %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:21
 #, javascript-format
 msgid ""
 "Sorry, I do not have enough soldiers currently; but my next attack will "
 "target %(_player_)s."
-msgstr ""
+msgstr "Omlouvám se, ale teď nemám dost vojáků. Cílem mého příštího útoku však bude %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:22
 #, javascript-format
@@ -76,7 +77,7 @@ msgstr ""
 msgid ""
 "I cannot help you against %(_player_)s for the time being, I am planning to "
 "attack %(_player_2)s first."
-msgstr ""
+msgstr "Nemůžu ti prozatím pomoci proti %(_player_)s, protože mám v plánu nejprve zaútočit proti %(_player_2)s."
 
 #: simulation/ai/petra/chatHelper.js:30
 #, javascript-format
@@ -86,14 +87,14 @@ msgstr "Tady je dar pro tebe, %(_player_)s. Dobře si jej užij."
 #: simulation/ai/petra/chatHelper.js:31
 #, javascript-format
 msgid "I see you are in a bad situation, %(_player_)s. I hope this helps."
-msgstr "Vidím, že jsi ve špatné situaci %(_player_)s. Doufám že tohle pomůže."
+msgstr "Vidím, že jsi ve špatné situaci %(_player_)s. Doufám, že tohle pomůže."
 
 #: simulation/ai/petra/chatHelper.js:32
 #, javascript-format
 msgid ""
 "I can help you this time, %(_player_)s, but you should manage your resources"
 " more carefully in the future."
-msgstr ""
+msgstr "Tentokrát ti mohu pomoci %(_player_)s, ale zkus se v budoucnu lépe starat o správu svých zdrojů."
 
 #: simulation/ai/petra/chatHelper.js:36
 #, javascript-format
@@ -111,7 +112,7 @@ msgstr "Účastnil bych se účinněji na tvém běžném válečném úsilí, p
 #, javascript-format
 msgid ""
 "If you can spare me some %(resource)s, I will be able to strengthen my army."
-msgstr ""
+msgstr "Pokud byste mi mohl uvolnit %(resource)s, mohl bych posílit svoji armádu."
 
 #: simulation/ai/petra/chatHelper.js:42
 #, javascript-format
@@ -162,19 +163,19 @@ msgstr "Nemohu přijmout tvoji nabídku, abychom byli spojenci %(_player_)s."
 msgid ""
 "I will not be your ally, %(_player_)s. However, I will consider a neutrality"
 " pact."
-msgstr ""
+msgstr "Nespojím se s tebou %(_player_)s,. Nicméně zvážím smlouvu o neutralitě."
 
 #: simulation/ai/petra/chatHelper.js:74
 #, javascript-format
 msgid ""
 "I reject your request for alliance, %(_player_)s, but we could become "
 "neutral."
-msgstr ""
+msgstr "Odmítám tvoji žádost o uzavření spojenectví, %(_player_)s, ale mohli bychom být navzájem neutrální."
 
 #: simulation/ai/petra/chatHelper.js:75
 #, javascript-format
 msgid "%(_player_)s, only a neutrality agreement is conceivable to me."
-msgstr ""
+msgstr "%(_player_)s, pro mě je myslitelná pouze dohoda o neutralitě."
 
 #: simulation/ai/petra/chatHelper.js:78
 #, javascript-format
@@ -186,12 +187,12 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:79
 #, javascript-format
 msgid "I won’t ally you again, %(_player_)s!"
-msgstr "Neuzavřu s tebou znova spojenectí,  %(_player_)s!"
+msgstr "Neuzavřu s tebou znovu spojenectví,  %(_player_)s!"
 
 #: simulation/ai/petra/chatHelper.js:80
 #, javascript-format
 msgid "No more alliances between us, %(_player_)s!"
-msgstr "Mezi námi nebude nadále spojectví, %(_player_)s!"
+msgstr "Mezi námi již nadále spojectví nebude, %(_player_)s!"
 
 #: simulation/ai/petra/chatHelper.js:81
 #, javascript-format
@@ -214,7 +215,7 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:86
 #, javascript-format
 msgid "An alliance between us is a good idea, %(_player_)s."
-msgstr ""
+msgstr "Spojenectví mezi námi je skvělý nápad, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:87
 #, javascript-format
@@ -225,12 +226,12 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:88
 #, javascript-format
 msgid "We have found common ground, %(_player)s. I accept the alliance."
-msgstr ""
+msgstr "Máme společné zájmy, %(_player)s. Toto spojenectví přijímám."
 
 #: simulation/ai/petra/chatHelper.js:89
 #, javascript-format
 msgid "%(_player_)s, consider us allies from now on."
-msgstr ""
+msgstr "%(_player_)s, považuj nás nyní za spojence."
 
 #: simulation/ai/petra/chatHelper.js:92
 #, javascript-format
@@ -277,7 +278,7 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:104
 #, javascript-format
 msgid "I will not become neutral with you, %(_player_)s."
-msgstr ""
+msgstr "Neuzavřu s Vámi neutralitu,  %(_player_)s!"
 
 #: simulation/ai/petra/chatHelper.js:105
 #, javascript-format
@@ -303,7 +304,7 @@ msgstr ""
 msgid ""
 "%(_player_)s, I will accept your neutrality request. May both our "
 "civilizations benefit."
-msgstr ""
+msgstr "%(_player_)s, přijímám Váš požadavek na neutralitu. Obě naše civilizace z toho mohou čerpat."
 
 #: simulation/ai/petra/chatHelper.js:115
 #, javascript-format

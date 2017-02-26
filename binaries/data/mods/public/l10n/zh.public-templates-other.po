@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-01-02 09:05+0100\n"
-"PO-Revision-Date: 2017-01-02 09:52+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-02-26 03:54+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -205,7 +205,7 @@ msgstr "方阵"
 
 #: simulation/templates/formations/column_closed.xml:5
 msgid "Forced March"
-msgstr ""
+msgstr "强行军"
 
 #: simulation/templates/formations/column_open.xml:5
 msgid "Column Open"
@@ -221,11 +221,11 @@ msgstr "翼形"
 
 #: simulation/templates/formations/line_closed.xml:5
 msgid "Close Order"
-msgstr ""
+msgstr "关闭命令"
 
 #: simulation/templates/formations/line_open.xml:5
 msgid "Open Order"
-msgstr ""
+msgstr "开启命令"
 
 #: simulation/templates/formations/null.xml:5
 msgid "None"
@@ -233,7 +233,7 @@ msgstr "无"
 
 #: simulation/templates/formations/phalanx.xml:6
 msgid "10 hoplite infantry required"
-msgstr ""
+msgstr "需要10个重步兵"
 
 #: simulation/templates/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -253,7 +253,7 @@ msgstr "散兵"
 
 #: simulation/templates/formations/syntagma.xml:6
 msgid "16 pike infantry units required"
-msgstr ""
+msgstr "需要16个长枪兵"
 
 #: simulation/templates/formations/syntagma.xml:8
 msgid "Syntagma"
@@ -269,7 +269,7 @@ msgstr "陆龟"
 
 #: simulation/templates/formations/wedge.xml:6
 msgid "6 cavalry units required"
-msgstr ""
+msgstr "需要6个骑兵。"
 
 #: simulation/templates/formations/wedge.xml:7
 msgid "Wedge"
@@ -281,11 +281,11 @@ msgstr "熊"
 
 #: simulation/templates/gaia/fauna_boar.xml:18
 msgid "Wild Boar"
-msgstr ""
+msgstr "野猪"
 
 #: simulation/templates/gaia/fauna_boar.xml:19
 msgid "Sus scrofa"
-msgstr ""
+msgstr "野猪"
 
 #: simulation/templates/gaia/fauna_camel.xml:9
 msgid "Camel"
@@ -379,7 +379,7 @@ msgstr "孔雀"
 
 #: simulation/templates/gaia/fauna_peacock.xml:15
 msgid "Pavo cristatus"
-msgstr ""
+msgstr "蓝孔雀"
 
 #: simulation/templates/gaia/fauna_pig.xml:15
 msgid "Pig"

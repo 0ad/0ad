@@ -7,11 +7,13 @@
 # Brett Dong <brett.browning.dong@gmail.com>, 2016
 # Christian Xia <wood_elf@126.com>, 2016
 # helinb <1696060289@qq.com>, 2015
+# hiahoo lee (leaber) <zodiac8765@gmail.com>, 2014
 # hyln9 <hyln9@live.cn>, 2014
 # jiajinming <bfsujiajinming@hotmail.com>, 2014
 # jiegec <jiegec@qq.com>, 2015
+# jiegec <jiegec@qq.com>, 2015
 # Kelvin Cooper <Zhu-Zhe-Yong@live.com>, 2016
-# liulitchi <xingzuo88@qq.com>, 2014
+# liulitchi <xingzuo88@qq.com>, 2014,2017
 # loms126 <loms126@126.com>, 2014
 # loms126 <loms126@126.com>, 2014
 # relaxbsd <relaxbsd@gmail.com>, 2014
@@ -21,11 +23,11 @@
 # wuxb <wuxb45@gmail.com>, 2014
 # wuxb <wuxb45@gmail.com>, 2014
 # xingtong, 2013
-# liulitchi <xingzuo88@qq.com>, 2014
+# liulitchi <xingzuo88@qq.com>, 2014,2017
 # yhcvb <yhcvb@126.com>, 2014
 # yhcvb <yhcvb@126.com>, 2014
 # yukisola <yolandaapply@gmail.com>, 2014
-# zodiac lee (喜乐) <zodiac8765@gmail.com>, 2014
+# hiahoo lee (leaber) <zodiac8765@gmail.com>, 2014
 # 吴善俊 <sjwuny@126.com>, 2014
 # 李武军 <lwj7863439@gmail.com>, 2016
 # 玉堂白鹤 <yjwork@qq.com>, 2015
@@ -33,8 +35,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-01-09 09:02+0100\n"
-"PO-Revision-Date: 2017-01-09 09:35+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-02-26 04:01+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -280,7 +282,7 @@ msgstr "%(player)s 正在开始重新加入游戏。"
 #: gui/session/messages.js:88
 #, javascript-format
 msgid "%(player)s is starting to join the game."
-msgstr ""
+msgstr "%(player)s 正在连接游戏。"
 
 #: gui/session/messages.js:92
 #, javascript-format
@@ -297,7 +299,7 @@ msgstr "%(player)s 已重新加入游戏"
 #: gui/session/messages.js:101
 #, javascript-format
 msgid "%(player)s has joined the game."
-msgstr ""
+msgstr "%(player)s 已加入游戏。"
 
 #: gui/session/messages.js:107
 #, javascript-format
@@ -521,7 +523,7 @@ msgstr "%(player)s 给你 %(amounts)s。"
 #: gui/session/messages.js:904
 #, javascript-format
 msgid "%(player)s bartered %(amountsBought)s for %(amountsSold)s."
-msgstr ""
+msgstr "%(player)s 以 %(amountsSold)s  交换 %(amountsBought)s 。"
 
 #: gui/session/messages.js:917
 #, javascript-format
@@ -641,25 +643,25 @@ msgstr "捕获点:"
 #: gui/session/selection_details.js:411
 #, javascript-format
 msgid "%(label)s %(details)s\n"
-msgstr ""
+msgstr "%(label)s %(details)s\n"
 
 #: gui/session/selection_details.js:412
 msgid "Carrying:"
-msgstr ""
+msgstr "携带："
 
 #: gui/session/selection_details.js:415 gui/session/selection_details.js:424
 #, javascript-format
 msgid "%(type)s %(amount)s"
-msgstr ""
+msgstr "%(type)s %(amount)s"
 
 #: gui/session/selection_details.js:420
 #, javascript-format
 msgid "%(label)s %(details)s"
-msgstr ""
+msgstr "%(label)s %(details)s"
 
 #: gui/session/selection_details.js:421
 msgid "Loot:"
-msgstr ""
+msgstr "战利品："
 
 #: gui/session/selection_panels.js:80
 msgid "Raise an alert!"
@@ -734,12 +736,12 @@ msgstr "%(population)s %(neededSlots)s"
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
-msgstr[0] ""
+msgstr[0] "%(number)s 进入  %(class)s "
 
 #: gui/session/selection_panels.js:865
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
-msgstr ""
+msgstr "剩余：%(entityCounts)s "
 
 #: gui/session/selection_panels.js:1174
 #, javascript-format
@@ -862,17 +864,17 @@ msgstr "键入要发送的消息。"
 #: gui/session/session.js:337
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
-msgstr ""
+msgstr "按 %(hotkey)s 开启全员聊天窗口。"
 
 #: gui/session/session.js:340
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr ""
+msgstr "按 %(hotkey)s 开启观察者聊天窗口。"
 
 #: gui/session/session.js:341
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr ""
+msgstr "按 %(hotkey)s 开启盟友聊天窗口。"
 
 #: gui/session/session.js:346
 msgid "Find idle worker"
@@ -908,7 +910,7 @@ msgstr "战败!"
 
 #: gui/session/session.js:746
 msgid "Ok"
-msgstr ""
+msgstr "好的"
 
 #: gui/session/session.js:797
 msgctxt "replayFinished"
@@ -1028,7 +1030,7 @@ msgstr "中止当前的命令。"
 
 #: gui/session/unit_actions.js:1125
 msgid "Order the selected units to garrison in a building or unit."
-msgstr ""
+msgstr "命令所选单位守卫建筑或单位。"
 
 #: gui/session/unit_actions.js:1147
 msgid "Unload"
@@ -1036,11 +1038,11 @@ msgstr "卸载"
 
 #: gui/session/unit_actions.js:1165
 msgid "Order the selected units to repair a building or mechanical unit."
-msgstr ""
+msgstr "命令所选单位修复建筑或机械单位。"
 
 #: gui/session/unit_actions.js:1184
 msgid "Focus on Rally Point."
-msgstr ""
+msgstr "关注集合点。"
 
 #: gui/session/unit_actions.js:1209
 msgid "Back to Work"
@@ -1060,11 +1062,11 @@ msgstr "选择交易的商品"
 
 #: gui/session/unit_actions.js:1280
 msgid "Patrol"
-msgstr ""
+msgstr "巡逻"
 
 #: gui/session/unit_actions.js:1281
 msgid "Attack all encountered enemy units while avoiding buildings."
-msgstr ""
+msgstr "攻击敌方的所有非建筑单位。"
 
 #: gui/session/unit_actions.js:1304
 msgid "Press to prevent allies from using this dropsite"
@@ -1146,7 +1148,7 @@ msgstr "筛选聊天历史。"
 #: gui/session/chat_window.xml:(tooltip):53
 msgctxt "chat input"
 msgid "Select chat addressee."
-msgstr ""
+msgstr "选择聊天地址。"
 
 #: gui/session/developer_overlay.xml:(caption):18
 msgid "Control all units"
@@ -1351,4 +1353,4 @@ msgstr "菜单"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XXI : Ulysses"
-msgstr ""
+msgstr "内测版21：尤利西斯"

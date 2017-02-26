@@ -5,6 +5,7 @@
 # Translators:
 # eulerleibniz <dariush.karamati@gmail.com>, 2014
 # hamed farri <hamed.farri@gmail.com>, 2016
+# mohammad khodadadi <asmanp2012@gmail.com>, 2017
 # Mohsen Nouri <mohsen.nouri1372@gmail.com>, 2014
 # omidh <omid_h28@hotmail.com>, 2013
 # VAHID SOHRABLOO <vahid4134@gmail.com>, 2014
@@ -12,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-12-23 11:16+0100\n"
-"PO-Revision-Date: 2016-12-29 09:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-02-20 05:47+0000\n"
+"Last-Translator: mohammad khodadadi <asmanp2012@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -47,12 +48,12 @@ msgstr "%(username)s خارج شد"
 #: gui/gamesetup/gamesetup.js:49
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr ""
+msgstr "%(username)s اخراج شده است."
 
 #: gui/gamesetup/gamesetup.js:50
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr ""
+msgstr "%(username)s تحریم شده است."
 
 #: gui/gamesetup/gamesetup.js:51
 #, javascript-format
@@ -67,17 +68,17 @@ msgstr "<%(username)s>"
 #: gui/gamesetup/gamesetup.js:55
 #, javascript-format
 msgid "* %(username)s is ready!"
-msgstr ""
+msgstr "* %(username)s آماده است!"
 
 #: gui/gamesetup/gamesetup.js:58
 #, javascript-format
 msgid "* %(username)s is not ready."
-msgstr ""
+msgstr "* %(username)s آماده نیستند."
 
 #: gui/gamesetup/gamesetup.js:70
 msgctxt "map filter"
 msgid "Default"
-msgstr ""
+msgstr "پیش فرض"
 
 #: gui/gamesetup/gamesetup.js:75
 msgid "Naval Maps"
@@ -89,7 +90,7 @@ msgstr "نقشه های نمایشی"
 
 #: gui/gamesetup/gamesetup.js:85
 msgid "New Maps"
-msgstr ""
+msgstr "نقشه های جدید"
 
 #: gui/gamesetup/gamesetup.js:90
 msgid "Trigger Maps"
@@ -138,7 +139,7 @@ msgstr "%(playerName)s %(romanNumber)s"
 #: gui/gamesetup/gamesetup.js:1413
 msgctxt "map size"
 msgid "Default"
-msgstr ""
+msgstr "پیش فرض"
 
 #: gui/gamesetup/gamesetup.js:1483
 msgid "Loading..."
@@ -156,11 +157,11 @@ msgstr "نا مشخص"
 #: gui/gamesetup/gamesetup.js:1781
 #, javascript-format
 msgid "== %(message)s"
-msgstr ""
+msgstr "== %(message)s"
 
 #: gui/gamesetup/gamesetup.js:1788
 msgid "Unknown Player"
-msgstr ""
+msgstr "بازیکنی شناسایی نشد."
 
 #: gui/gamesetup/gamesetup.js:1824
 #, javascript-format
@@ -170,7 +171,7 @@ msgstr "%(time)s %(message)s"
 #: gui/gamesetup/gamesetup.js:1825
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #: gui/gamesetup/gamesetup.js:1826
 msgid "HH:mm"
@@ -178,24 +179,24 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:1876
 msgid "I'm not ready!"
-msgstr ""
+msgstr "من آماده نیستم!"
 
 #: gui/gamesetup/gamesetup.js:1877
 msgid "I'm ready"
-msgstr ""
+msgstr "من حاضرم"
 
 #: gui/gamesetup/gamesetup.js:1880
 msgid "State that you are not ready to play."
-msgstr ""
+msgstr "مکانی که شما قرار گرفته اید برای بازی آماده نیست."
 
 #: gui/gamesetup/gamesetup.js:1881
 msgid "State that you are ready to play!"
-msgstr ""
+msgstr "مکانی که شما قرار گرفته اید برای بازی آماده است."
 
 #: gui/gamesetup/gamesetup_mp.js:49
 #, javascript-format
 msgid "%(name)s's game"
-msgstr ""
+msgstr "%(name)s's بازی"
 
 #: gui/gamesetup/gamesetup_mp.js:114
 msgid "Connecting to server..."
@@ -230,22 +231,22 @@ msgstr "خطا"
 #: gui/gamesetup/gamesetup_mp.js:321
 #, javascript-format
 msgid "Cannot join game: %(message)s."
-msgstr ""
+msgstr "نمیتوانید به بازی ملحق شوید: %(message)s."
 
 #: gui/gamesetup/gamesetup_mp.js:346
 #, javascript-format
 msgid "%(playername)s's game"
-msgstr ""
+msgstr "%(playername)s's  بازی"
 
 #: gui/loading/loading.js:48
 #, javascript-format
 msgid "Loading “%(map)s”"
-msgstr ""
+msgstr "در حال بارگزاری “%(map)s”"
 
 #: gui/loading/loading.js:52
 #, javascript-format
 msgid "Generating “%(map)s”"
-msgstr ""
+msgstr "در حال ایجاد “%(map)s”"
 
 #: gui/aiconfig/aiconfig.xml:(caption):16
 msgid "AI Configuration"
@@ -287,7 +288,7 @@ msgstr "نام بازیکن"
 
 #: gui/gamesetup/gamesetup.xml:(caption):51
 msgid "Color"
-msgstr ""
+msgstr "رنگ"
 
 #: gui/gamesetup/gamesetup.xml:(caption):55
 msgid "Player Placement"
@@ -303,7 +304,7 @@ msgstr "تیم"
 
 #: gui/gamesetup/gamesetup.xml:(caption):141
 msgid "Show this message in the future"
-msgstr ""
+msgstr "نمایش این پیغام در آینده"
 
 #: gui/gamesetup/gamesetup.xml:(caption):151
 msgid "Map Type:"
@@ -331,7 +332,7 @@ msgstr "ارسال"
 
 #: gui/gamesetup/gamesetup.xml:(caption):260
 msgid "Cheats enabled."
-msgstr ""
+msgstr "کد تقلب فعال شد."
 
 #: gui/gamesetup/gamesetup.xml:(caption):273
 msgid "Start game!"
@@ -356,7 +357,7 @@ msgstr "شروط پیروزی:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):342
 msgid "Wonder Victory:"
-msgstr ""
+msgstr "تعجب می کنم پیروزی:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):352
 msgid "Population Cap:"
@@ -368,7 +369,7 @@ msgstr "منابع اولیه:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):372
 msgid "Ceasefire:"
-msgstr ""
+msgstr "آتش بس:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
@@ -400,7 +401,7 @@ msgstr "کد‌های تقلب:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):442
 msgid "Rated Game:"
-msgstr ""
+msgstr "امتیاز بازی:"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):69
 msgid "View civilization info"
@@ -413,11 +414,11 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):97
 msgid "Reset all teams to the default."
-msgstr ""
+msgstr "بازگردانی همه تیم ها به حالت اولیه."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):108
 msgid "Pick a color."
-msgstr ""
+msgstr "یک رنگ رو انتخاب کن."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):111
 msgid "Select player."
@@ -486,13 +487,13 @@ msgstr "انتخاب منابع اولیه ی بازی."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):376
 msgid "Set time where no attacks are possible."
-msgstr ""
+msgstr "تنظیم زمانی که هیچ حمله ای امکان پذیر است."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:(tooltip):386
 msgid "Toggle revealed map (see everything)."
-msgstr ""
+msgstr "تعویض نحوه نمایش نقشه( همه چیز را ببینید )."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
@@ -546,7 +547,7 @@ msgstr "اسم یا آی‌پی سرور:"
 #: gui/gamesetup/gamesetup_mp.xml:(caption):50
 #: gui/gamesetup/gamesetup_mp.xml:(caption):97
 msgid "Server Port:"
-msgstr ""
+msgstr "پورت سرور:"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):67
 msgid "Set up your server to host."
@@ -563,7 +564,7 @@ msgstr "ادامه"
 #: gui/gamesetup/gamesetup_mp.xml:(tooltip):54
 #: gui/gamesetup/gamesetup_mp.xml:(tooltip):101
 msgid "Leave blank to use the default port."
-msgstr ""
+msgstr "خالی بگذارید تا از پورت پیش فرض استفاده شود."
 
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"
@@ -571,7 +572,7 @@ msgstr "نقل قول روز:"
 
 #: gui/text/quotes.txt:1
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus"
-msgstr ""
+msgstr "\"احمق موفق یک مسئولیت دردناک است.\" - آیسخولوس"
 
 #: gui/text/quotes.txt:2
 msgid ""
@@ -597,13 +598,13 @@ msgstr ""
 
 #: gui/text/quotes.txt:6
 msgid "\"Time as he grows old teaches all things.\" - Aeschylus, \"Prometheus Bound\""
-msgstr ""
+msgstr "\"زمان میگذرد و همه چیز را به او می آموزد.\" - آیسخولوس، \"پرومته کران\""
 
 #: gui/text/quotes.txt:7
 msgid ""
 "\"Wisdom comes through suffering... Favours come to us from gods.\" - "
 "Aeschylus, \"Agamemnon\""
-msgstr ""
+msgstr "حکمت از طریق درد و رنج توسط خدایان برای ما می آید. \" - آیسخولوس، \"آگاممنون\""
 
 #: gui/text/quotes.txt:8
 msgid ""
@@ -625,7 +626,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:11
 msgid "\"Any excuse will serve a tyrant.\" - Aesop"
-msgstr ""
+msgstr "\"ظالم هر بهانه ای می خواهد پیش خدمتی می کنند.\" - ازوپ"
 
 #: gui/text/quotes.txt:12
 msgid "\"Better be wise by the misfortunes of others than by your own.\" - Aesop"
