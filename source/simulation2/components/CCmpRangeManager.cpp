@@ -1050,7 +1050,7 @@ public:
 
 	virtual std::vector<entity_id_t> GetNonGaiaEntities() const
 	{
-		return GetEntitiesByMask(((1 << MAX_LOS_PLAYER_ID) - 1) << 1);
+		return GetEntitiesByMask(~3); // bit 0 for owner=-1 and bit 1 for gaia
 	}
 
 	std::vector<entity_id_t> GetEntitiesByMask(u32 ownerMask) const
