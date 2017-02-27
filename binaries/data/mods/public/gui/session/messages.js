@@ -353,6 +353,11 @@ var g_NotificationsTypes =
 			"resourceBought": notification.resourceBought
 		});
 	},
+	"spy-response": function(notification, player)
+	{
+		if (g_ViewedPlayer == player)
+			setCameraFollow(notification.entity);
+	},
 	"attack": function(notification, player)
 	{
 		if (player != g_ViewedPlayer)

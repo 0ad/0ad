@@ -751,15 +751,23 @@ var g_Commands = {
 	"spy-request": function(player, cmd, data)
 	{
 		let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-		let ents = cmpRangeManager.GetEntitiesByPlayer(cmd.player).filter(ent => {
+		let ent = pickRandom(cmpRangeManager.GetEntitiesByPlayer(cmd.player).filter(ent => {
 			let cmpVisionSharing = Engine.QueryInterface(ent, IID_VisionSharing);
 			return cmpVisionSharing && cmpVisionSharing.IsBribable() && !cmpVisionSharing.ShareVisionWith(player);
-		});
-		let ent = pickRandom(ents);
+		}));
+
+		let cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 		if (ent)
+		{
 			Engine.QueryInterface(ent, IID_VisionSharing).AddSpy(cmd.source);
+			cmpGUIInterface.PushNotification({
+				"type": "spy-response",
+				"players": [player],
+				"entity": ent
+			});
+		}
 		else
-			Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface).PushNotification({
+			cmpGUIInterface.PushNotification({
 				"type": "text",
 				"players": [player],
 				"message": markForTranslation("There are no bribable units"),
