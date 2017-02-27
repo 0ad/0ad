@@ -847,6 +847,8 @@ function updateGUIObjects()
 		if (battleState)
 			global.music.setState(global.music.states[battleState]);
 	}
+
+	updateDiplomacyPanel();
 }
 
 function onReplayFinished()

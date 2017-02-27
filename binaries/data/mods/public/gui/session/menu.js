@@ -314,7 +314,16 @@ function openDiplomacy()
 
 	g_IsDiplomacyOpen = true;
 
+	updateDiplomacyPanel(true);
+}
+
+function updateDiplomacyPanel(opening = false)
+{
+	if (g_ViewedPlayer < 1 || !g_IsDiplomacyOpen)
+		return;
+
 	let isCeasefireActive = GetSimState().ceasefireActive;
+	let hasSharedLos = GetSimState().players[g_ViewedPlayer].hasSharedLos;
 
 	// Get offset for one line
 	let onesize = Engine.GetGUIObjectByName("diplomacyPlayer[0]").size;
@@ -329,8 +338,11 @@ function openDiplomacy()
 
 		diplomacySetupTexts(i, rowsize);
 		diplomacyFormatStanceButtons(i, myself || playerInactive || isCeasefireActive || g_Players[g_ViewedPlayer].teamsLocked);
-		diplomacyFormatTributeButtons(i, myself || playerInactive);
+		// Tribute buttons do not need to be updated onTick, and should not because of massTributing
+		if (opening)
+			diplomacyFormatTributeButtons(i, myself || playerInactive);
 		diplomacyFormatAttackRequestButton(i, myself || playerInactive || isCeasefireActive || !hasAllies || !g_Players[i].isEnemy[g_ViewedPlayer]);
+		diplomacyFormatSpyRequestButton(i, myself || playerInactive || g_Players[i].isMutualAlly[g_ViewedPlayer] && hasSharedLos);
 	}
 	Engine.GetGUIObjectByName("diplomacyDialogPanel").hidden = false;
 }
@@ -449,8 +461,61 @@ function diplomacyFormatAttackRequestButton(i, hidden)
 
 	button.enabled = controlsPlayer(g_ViewedPlayer);
 	button.tooltip = translate("Request your allies to attack this enemy");
-	button.onpress = (function(i) { return function() {
-		Engine.PostNetworkCommand({ "type": "attack-request", "source": g_ViewedPlayer, "target": i });
+	button.onPress = (function(i) { return function() {
+		Engine.PostNetworkCommand({ "type": "attack-request", "source": g_ViewedPlayer, "player": i });
+	}; })(i);
+}
+
+function diplomacyFormatSpyRequestButton(i, hidden)
+{
+	let button = Engine.GetGUIObjectByName("diplomacySpyRequest["+(i-1)+"]");
+	let template = GetTemplateData("special/spy");
+	button.hidden = hidden || !template || GetSimState().players[g_ViewedPlayer].disabledTemplates["special/spy"];
+	if (button.hidden)
+		return;
+
+	button.enabled = controlsPlayer(g_ViewedPlayer);
+	let modifier = "";
+	let tooltips = [translate("Bribe a random unit from this player and share its vision during a limited period.")];
+	if (!button.enabled)
+		modifier = "color:0 0 0 127:grayscale:";
+	else
+	{
+		if (template.requiredTechnology)
+		{
+			let technologyEnabled = Engine.GuiInterfaceCall("IsTechnologyResearched", {
+				"tech": template.requiredTechnology,
+				"player": g_ViewedPlayer
+			});
+			if (!technologyEnabled)
+			{
+				modifier = "color:0 0 0 127:grayscale:"
+				button.enabled = false;
+				tooltips.push(getRequiredTechnologyTooltip(technologyEnabled, template.requiredTechnology, GetSimState().players[g_ViewedPlayer].civ));
+			}
+		}
+
+		if (template.cost)
+		{
+			let neededResources = Engine.GuiInterfaceCall("GetNeededResources", {
+				"cost": template.cost,
+				"player": g_ViewedPlayer
+			});
+			if (neededResources)
+			{
+				if (button.enabled)
+					modifier = resourcesToAlphaMask(neededResources) +":";
+				button.enabled = false;
+				tooltips.push(getNeededResourcesTooltip(neededResources));
+			}
+		}
+	}
+	let icon = Engine.GetGUIObjectByName("diplomacySpyRequestImage["+(i-1)+"]");
+	icon.sprite = modifier + "stretched:session/icons/economics.png";
+	button.tooltip = tooltips.filter(tip => tip).join("\n");
+	button.onPress = (function(i) { return function() {
+		Engine.PostNetworkCommand({ "type": "spy-request", "source": g_ViewedPlayer, "player": i });
+		closeDiplomacy();
 	}; })(i);
 }
 
@@ -540,7 +605,7 @@ function openTrade()
 
 		let buttonResource = Engine.GetGUIObjectByName("tradeResourceButton["+i+"]");
 		buttonResource.enabled = controlsPlayer(g_ViewedPlayer);
-		buttonResource.onpress = (function(resource){
+		buttonResource.onPress = (function(resource){
 			return function() {
 				if (Engine.HotkeyIsPressed("session.fulltradeswap"))
 				{
@@ -555,7 +620,7 @@ function openTrade()
 		})(resCode);
 
 		buttonUp.enabled = controlsPlayer(g_ViewedPlayer);
-		buttonUp.onpress = (function(resource){
+		buttonUp.onPress = (function(resource){
 			return function() {
 				proba[resource] += Math.min(STEP, proba[selec]);
 				proba[selec]    -= Math.min(STEP, proba[selec]);
@@ -565,7 +630,7 @@ function openTrade()
 		})(resCode);
 
 		buttonDn.enabled = controlsPlayer(g_ViewedPlayer);
-		buttonDn.onpress = (function(resource){
+		buttonDn.onPress = (function(resource){
 			return function() {
 				proba[selec]    += Math.min(STEP, proba[resource]);
 				proba[resource] -= Math.min(STEP, proba[resource]);

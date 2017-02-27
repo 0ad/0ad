@@ -515,9 +515,6 @@ function handleNotifications()
 function updateDiplomacy()
 {
 	updatePlayerData();
-
-	if (g_IsDiplomacyOpen)
-		openDiplomacy();
 }
 
 /**

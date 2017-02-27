@@ -1,12 +1,21 @@
 function VisionSharing() {}
 
 VisionSharing.prototype.Schema =
-	"<empty/>";
+	"<element name='Bribable'>" +
+		"<data type='boolean'/>" +
+	"</element>" +
+	"<optional>" +
+		"<element name='Duration' a:help='Duration (in second) of the vision sharing for spies'>" +
+			"<ref name='positiveDecimal'/>" +
+		"</element>" +
+	"</optional>";
 
 VisionSharing.prototype.Init = function()
 {
 	this.activated = false;
-	this.shared = new Set();
+	this.shared = undefined;
+	this.spyId = 0;
+	this.spies = undefined;
 };
 
 /**
@@ -20,7 +29,7 @@ VisionSharing.prototype.Activate = function()
 	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	if (!cmpOwnership || cmpOwnership.GetOwner() <= 0)
 		return;
-	this.shared.add(cmpOwnership.GetOwner());
+	this.shared = new Set([cmpOwnership.GetOwner()]);
 	Engine.PostMessage(this.entity, MT_VisionSharingChanged,
 		{ "entity": this.entity, "player": cmpOwnership.GetOwner(), "add": true });
 	this.activated = true;
@@ -56,6 +65,12 @@ VisionSharing.prototype.CheckVisionSharings = function()
 				}
 			}
 		}
+
+		// vision sharing due to spies
+		if (this.spies)
+			for (let spy of this.spies.values())
+				if (spy > 0 && spy != owner)
+					shared.add(spy);
 	}
 
 	if (!this.activated)
@@ -73,9 +88,9 @@ VisionSharing.prototype.CheckVisionSharings = function()
 	this.shared = shared;
 };
 
-VisionSharing.prototype.OnDiplomacyChanged = function(msg)
+VisionSharing.prototype.IsBribable = function()
 {
-	this.CheckVisionSharings();
+	return this.template.Bribable == "true";
 };
 
 VisionSharing.prototype.OnGarrisonedUnitsChanged = function(msg)
@@ -87,6 +102,71 @@ VisionSharing.prototype.OnOwnershipChanged = function(msg)
 {
 	if (this.activated)
 		this.CheckVisionSharings();
+};
+
+VisionSharing.prototype.AddSpy = function(player, timeLength)
+{
+	if (!this.IsBribable())
+		return;
+
+	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (!cmpOwnership || cmpOwnership.GetOwner() == player || player <= 0)
+		return;
+
+	let cmpTechnologyManager = QueryPlayerIDInterface(player, IID_TechnologyManager);
+	if (!cmpTechnologyManager || !cmpTechnologyManager.CanProduce("special/spy"))
+		return;
+
+	let template = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager).GetTemplate("special/spy");
+	let costs = {};
+	for (let res in template.Cost.Resources)
+		costs[res] = Math.floor(ApplyValueModificationsToTemplate("Cost/Resources/"+res, +template.Cost.Resources[res], player, template));
+	let cmpPlayer = QueryPlayerIDInterface(player);
+	if (!cmpPlayer || !cmpPlayer.TrySubtractResources(costs))
+		return;
+
+	// If no duration given, take it from the spy template and scale it with the ent vision
+	// When no duration argument nor in spy template, it is a permanent spy
+	let duration = timeLength;
+	if (!duration && template.VisionSharing && template.VisionSharing.Duration)
+	{
+		duration = ApplyValueModificationsToTemplate("VisionSharing/Duration", +template.VisionSharing.Duration, player, template);
+		let cmpVision = Engine.QueryInterface(this.entity, IID_Vision);
+		if (cmpVision)
+			duration *= 60 / Math.max(30, cmpVision.GetRange());
+	}
+
+	if (!this.spies)
+		this.spies = new Map();
+
+	this.spies.set(++this.spyId, player);
+	if (duration)
+	{
+		let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+		cmpTimer.SetTimeout(this.entity, IID_VisionSharing, "RemoveSpy", duration * 1000, { "id": this.spyId });
+	}
+	this.Activate();
+	this.CheckVisionSharings();
+
+	return this.spyId;
+};
+
+VisionSharing.prototype.RemoveSpy = function(data)
+{
+	this.spies.delete(data.id);
+	this.CheckVisionSharings();
+};
+
+/**
+ * Returns true if this entity share its vision with player
+ */
+VisionSharing.prototype.ShareVisionWith = function(player)
+{
+	if (this.activated)
+		return this.shared.has(player);
+
+	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	return cmpOwnership && cmpOwnership.GetOwner() == player;
 };
 
 Engine.RegisterComponentType(IID_VisionSharing, "VisionSharing", VisionSharing);

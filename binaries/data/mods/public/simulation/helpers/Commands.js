@@ -748,6 +748,25 @@ var g_Commands = {
 			cmpAIInterface.PushEvent("AttackRequest", cmd);
 	},
 
+	"spy-request": function(player, cmd, data)
+	{
+		let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+		let ents = cmpRangeManager.GetEntitiesByPlayer(cmd.player).filter(ent => {
+			let cmpVisionSharing = Engine.QueryInterface(ent, IID_VisionSharing);
+			return cmpVisionSharing && cmpVisionSharing.IsBribable() && !cmpVisionSharing.ShareVisionWith(player);
+		});
+		let ent = pickRandom(ents);
+		if (ent)
+			Engine.QueryInterface(ent, IID_VisionSharing).AddSpy(cmd.source);
+		else
+			Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface).PushNotification({
+				"type": "text",
+				"players": [player],
+				"message": markForTranslation("There are no bribable units"),
+				"translateMessage": true
+			});
+	},
+
 	"dialog-answer": function(player, cmd, data)
 	{
 		// Currently nothing. Triggers can read it anyway, and send this

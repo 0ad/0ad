@@ -538,6 +538,7 @@ function initRadioButtons()
 		"RevealMap": "revealMap",
 		"ExploreMap": "exploreMap",
 		"DisableTreasures": "disableTreasures",
+		"DisableSpies": "disableSpies",
 		"LockTeams": "lockTeams",
 		"LastManStanding" : "lastManStanding",
 		"CheatsEnabled": "enableCheats"
@@ -1442,6 +1443,7 @@ function updateGUIObjects()
 
 	setGUIBoolean("enableCheats", "enableCheatsText", !!mapSettings.CheatsEnabled);
 	setGUIBoolean("disableTreasures", "disableTreasuresText", !!mapSettings.DisableTreasures);
+	setGUIBoolean("disableSpies", "disableSpiesText", !!mapSettings.DisableSpies);
 	setGUIBoolean("exploreMap", "exploreMapText", !!mapSettings.ExploreMap);
 	setGUIBoolean("revealMap", "revealMapText", !!mapSettings.RevealMap);
 	setGUIBoolean("lockTeams", "lockTeamsText", !!mapSettings.LockTeams);
@@ -1469,7 +1471,7 @@ function updateGUIObjects()
 
 	for (let ctrl of ["victoryCondition", "wonderDuration", "populationCap",
 	                  "startingResources", "ceasefire", "revealMap",
-	                  "exploreMap", "disableTreasures", "lockTeams", "lastManStanding"])
+	                  "exploreMap", "disableTreasures", "disableSpies", "lockTeams", "lastManStanding"])
 		hideControl(ctrl, ctrl + "Text", notScenario);
 
 	Engine.GetGUIObjectByName("civResetButton").hidden = !notScenario;

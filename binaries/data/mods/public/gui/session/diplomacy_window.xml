@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <object name="diplomacyDialogPanel"
-	size="50%-260 50%-200 50%+260 50%+150"
+	size="50%-280 50%-200 50%+280 50%+150"
 	type="image"
 	hidden="true"
 	sprite="ModernDialog"
@@ -35,7 +35,7 @@
 			<translatableAttribute id="caption">E</translatableAttribute>
 			<translatableAttribute id="tooltip">Enemy</translatableAttribute>
 		</object>
-		<object name="diplomacyHeaderTribute" size="430 0 100%-30 100%" type="text" style="DiplomacyText" text_align="center">
+		<object name="diplomacyHeaderTribute" size="430 0 100%-70 100%" type="text" style="DiplomacyText" text_align="center">
 			<translatableAttribute id="caption">Tribute</translatableAttribute>
 		</object>
 	</object>
@@ -55,7 +55,7 @@
 				<object name="diplomacyPlayerEnemy[n]" size="400 0 420 100%" type="button" style="StoneButton" hidden="true"/>
 
 				<!-- Tribute -->
-				<object size="430 0 100%-40 100%">
+				<object size="430 0 100%-80 100%">
 					<repeat count="8" var="r">
 						<object name="diplomacyPlayer[n]_tribute[r]" size="0 0 20 100%" type="button" style="iconButton" tooltip_style="sessionToolTipBold" hidden="true">
 							<object name="diplomacyPlayer[n]_tribute[r]_image" type="image" size="0 0 100% 100%" ghost="true"/>
@@ -63,8 +63,12 @@
 					</repeat>
 				</object>
 
-				<object name="diplomacyAttackRequest[n]" size="100%-20 0 100% 100%" type="button" style="iconButton" tooltip_style="sessionToolTipBold" hidden="true">
+				<object name="diplomacyAttackRequest[n]" size="100%-58 0 100%-38 100%" type="button" style="iconButton" tooltip_style="sessionToolTipBold" hidden="true">
 					<object name="diplomacyAttackRequestImage[n]" type="image" size="0 0 100% 100%" sprite="stretched:session/icons/attack-request.png" ghost="true"/>
+				</object>
+
+				<object name="diplomacySpyRequest[n]" size="100%-30 0 100%-10 100%" type="button" style="iconButton" tooltip_style="sessionToolTipBold" hidden="true">
+					<object name="diplomacySpyRequestImage[n]" type="image" size="2 2 100%-2 100%-2" ghost="true"/>
 				</object>
 			</object>
 		</repeat>
