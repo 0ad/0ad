@@ -5,6 +5,7 @@
 # Translators:
 # Ahmed Saadawi <9597011@gmail.com>, 2015
 # Odai Alali <odai.massar@gmail.com>, 2015
+# Omar Anwar <omaraglan91@yahoo.com>, 2017
 # Rayan <nitro361@gmail.com>, 2015
 # Safa Alfulaij <safa1996alfulaij@gmail.com>, 2014
 # صفا الفليج <safaalfulaij@hotmail.com>, 2015
@@ -12,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-09-30 09:00+0200\n"
-"PO-Revision-Date: 2016-09-30 10:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-02-11 16:24+0000\n"
+"Last-Translator: Omar Anwar <omaraglan91@yahoo.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,7 +36,7 @@ msgstr "اعرض على الإنترنت"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
-msgstr "[font=\"sans-bold-18\"]كتيّب «0م» لداخل اللعبة"
+msgstr "[font=\"sans-bold-18\"]كتيّب «0ad» لداخل اللعبة"
 
 #: gui/manual/intro.txt:2
 msgid "[font=\"sans-14\"]"
@@ -145,25 +146,25 @@ msgstr "[font=\"sans-14\"]في الألعاب المتعدّدة اللاعبي�
 
 #: gui/manual/intro.txt:31
 msgid "First, select what type of map you want to play:"
-msgstr ""
+msgstr "أولا. اختر نوع الخريطه التى تريد ان تلعب فيها:"
 
 #: gui/manual/intro.txt:32
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] — A map created "
 "automatically from a script"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] — خريطه أنتجت تلقائيا من ملف برمجى"
 
 #: gui/manual/intro.txt:33
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] — A map created by "
 "map designers and with fixed civilisations"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] — خريطه انتجت بواسطه مصممى الخرائط و مع الحضارات الثابته"
 
 #: gui/manual/intro.txt:34
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] — A map created by "
 "map designers but where the civilisations can be chosen"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] — خريطه انتجت بواسطه مصممى الخرائط لكن يمكنك اختيار الحضارة التى تريدها"
 
 #: gui/manual/intro.txt:36
 msgid ""
@@ -172,7 +173,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The \"All Maps\" filter shows all maps together in one "
 "list."
-msgstr ""
+msgstr "أذا  الخرائط يمكن تصنيفها. الخرائط الافتراضيه خرائط للعب عامه. خرائط البحر هى خرائط حيث ليس كل الخصوم يمكنهم الوصول عبر اليابسه و الخرائط التجريبيه هى خرائط بغرض التجربه(غالبا ليست صالحه للعب فيها). تصنيف\"كل الخرائط\" يظهر كل الخرائط مع بعضهم فى قائمه واحده."
 
 #: gui/manual/intro.txt:38
 msgid ""
@@ -181,7 +182,7 @@ msgid ""
 "controls which player (decides where you start on the map etc). The options "
 "are either a human player, an AI or no player at all (the opponent will just"
 " be idle)."
-msgstr ""
+msgstr "أخيرا غير الاعدادات. من اجل خرائط عشوائيه من حيث اعداد اللاعبين, حجم الخريطه, ألخ. من السيناريو يمكن فقط اختيار من يتحكم بالاعب(تقرر اين تبدأ على الخريطه ألخ). الخيارات اما أن تكون لاعب بشرى, كمبيوتر او لا لاعب على الاطلاق (الخصم سوف يكون خامل)."
 
 #: gui/manual/intro.txt:40
 msgid "When you are ready to start, click the \"Start game\" button."
@@ -193,7 +194,7 @@ msgstr "[font=\"sans-bold-16\"]المفاتيح السريعة:"
 
 #: gui/manual/intro.txt:43
 msgid "[font=\"sans-bold-14\"]Global"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]عالمى"
 
 #: gui/manual/intro.txt:44
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
@@ -297,29 +298,29 @@ msgstr "Pause لإلباث اللعبة أو استكمالها"
 
 #: gui/manual/intro.txt:66
 msgid "Delete: Delete currently selected units/buildings"
-msgstr ""
+msgstr "delete: أزاله الوحدات/ المبانى المحدده حاليا"
 
 #: gui/manual/intro.txt:67
 msgid ""
 "Shift + Delete: Delete currently selected units/buildings without "
 "confirmation"
-msgstr ""
+msgstr "shift + delete: أزاله الوحدات / المبانى المحدده حاليا من غير تأكيد"
 
 #: gui/manual/intro.txt:68
 msgid "/ (ForwardSlash): Select idle fighter"
-msgstr ""
+msgstr "/(سلاش مأئل): حدد محارب خامل"
 
 #: gui/manual/intro.txt:69
 msgid "Shift + /: add idle fighter to selection"
-msgstr ""
+msgstr "Shift + /: أضف محارب خامل الى المحددين"
 
 #: gui/manual/intro.txt:70
 msgid ". (Period): Select idle worker (including citizen soldiers)"
-msgstr ""
+msgstr ". (حقبه): حدد عامل خامل (يشمل المحاربين المدنين)"
 
 #: gui/manual/intro.txt:71
 msgid "Shift + .: add idle worker to selection (including citizen soldiers)"
-msgstr ""
+msgstr "Shift + . : أضف عامل خامل الى التحديد (يشمل المحاربين المدنين)"
 
 #: gui/manual/intro.txt:72
 msgid "H: Stop (halt) the currently selected units."
@@ -327,11 +328,11 @@ msgstr "H لإيقاف الوحدات المحدّدة حاليًّا"
 
 #: gui/manual/intro.txt:73
 msgid "Y: The unit will go back to work"
-msgstr ""
+msgstr "Y: الوحده سوف تعود الى العمل"
 
 #: gui/manual/intro.txt:74
 msgid "U: Unload the garrisoned units of the selected buildings"
-msgstr ""
+msgstr "U: أخرج الوحدات الحاميه من المبنى المحدد"
 
 #: gui/manual/intro.txt:75
 msgid ""
@@ -371,17 +372,17 @@ msgstr "Z،و X، وC، وV، وB، وN، وM أثناء تحديد مباني �
 msgid ""
 "PageUp with units selected: Highlights the units/buildings guarded by the "
 "selection."
-msgstr ""
+msgstr "PageUp مع الوحدات المحدده: تسليط الضوء على الوحدات/ المبانى المحدده."
 
 #: gui/manual/intro.txt:82
 msgid ""
 "PageDown with units/buildings selected: Highlights the units guarding the "
 "selection."
-msgstr ""
+msgstr "PageDown مع الوحدات/ المبانى المحدده: تسليط الضوء للوحدات الحاميه للمحدد."
 
 #: gui/manual/intro.txt:83
 msgid "Tab: See all status bars (which would also show the building progress)"
-msgstr ""
+msgstr "Tab: إظهار كل التقارير (ايضا سوف يظهر تقدم المبنى)"
 
 #: gui/manual/intro.txt:85
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
@@ -393,11 +394,11 @@ msgstr "[font=\"sans-14\"]Ctrl + النّقر باليمين على بناء ل�
 
 #: gui/manual/intro.txt:87
 msgid "J + Right Click on building: Repair"
-msgstr ""
+msgstr "J + النقر باليمين على المبانى: تصليح"
 
 #: gui/manual/intro.txt:88
 msgid "P + Right Click: Patrol"
-msgstr ""
+msgstr "P + النقر باليمين: دوريه"
 
 #: gui/manual/intro.txt:89
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
@@ -562,7 +563,7 @@ msgstr "Alt + W: تبديل بواسطة الأسلوب السلكي"
 
 #: gui/manual/intro.txt:127
 msgid "Middle Mouse Button: Keep pressed and move the mouse to pan"
-msgstr ""
+msgstr "الزر الاوسط للفأره: ابقى ضاغط و حرك الفاره لى تؤشر"
 
 #: gui/manual/intro.txt:129
 msgid "[font=\"sans-bold-14\"]During Building Placement"
@@ -613,7 +614,7 @@ msgid ""
 "• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
 "~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports "
 "from the same user."
-msgstr ""
+msgstr "• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, ~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports from the same user."
 
 #: gui/manual/userreport.txt:6
 msgid ""

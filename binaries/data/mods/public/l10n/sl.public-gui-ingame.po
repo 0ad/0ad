@@ -9,14 +9,14 @@
 # Nenad Latinović <latinovic87@gmail.com>, 2013
 # Nikolina Bursać <nikolinabursac@gmail.com>, 2013
 # Rok Kepa <rokkepa@gmail.com>, 2014
-# Tilen Nosan <tilenn@gmail.com>, 2015
+# Tilen Nosan <tilenn@gmail.com>, 2015,2017
 # TimB, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-01-09 09:02+0100\n"
-"PO-Revision-Date: 2017-01-09 09:35+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-02-15 00:12+0000\n"
+"Last-Translator: Tilen Nosan <tilenn@gmail.com>\n"
 "Language-Team: Slovenian (http://www.transifex.com/wildfire-games/0ad/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -96,7 +96,7 @@ msgstr "Zbriši"
 #: gui/session/menu.js:288
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/session/menu.js:353
 msgctxt "team"
@@ -167,7 +167,7 @@ msgstr[3] "Trenutno jih je %(inactiveString)s."
 
 #: gui/session/menu.js:606
 msgid "There are no land traders."
-msgstr "Ni trgovcev."
+msgstr "Ni kopenskih trgovcev."
 
 #: gui/session/menu.js:614
 #, javascript-format
@@ -176,7 +176,7 @@ msgid_plural "There are %(numberTrading)s land traders trading"
 msgstr[0] "Trguje %(numberTrading)s trgovec"
 msgstr[1] "Trgujeta %(numberTrading)s trgovca"
 msgstr[2] "Trgujejo %(numberTrading)s trgovci"
-msgstr[3] "Trguje %(numberTrading)s trgovcev"
+msgstr[3] "Trguje %(numberTrading)s kopenskih trgovcev"
 
 #: gui/session/menu.js:623
 #, javascript-format
@@ -194,7 +194,7 @@ msgid_plural "%(numberOfLandTraders)s land traders inactive"
 msgstr[0] "%(numberOfLandTraders)s trgovec neaktiven."
 msgstr[1] "%(numberOfLandTraders)s trgovca neaktivna."
 msgstr[2] "%(numberOfLandTraders)s trgovci neaktivni."
-msgstr[3] "%(numberOfLandTraders)s trgovcev neaktivnih."
+msgstr[3] "%(numberOfLandTraders)s kopenskih trgovcev neaktivnih."
 
 #: gui/session/menu.js:637
 #, javascript-format
@@ -255,7 +255,7 @@ msgstr "Nadaljuj"
 
 #: gui/session/menu.js:867 gui/session/menu.xml:(caption):75
 msgid "Pause"
-msgstr "Pavza"
+msgstr "Premor"
 
 #: gui/session/menu.js:871
 #, javascript-format

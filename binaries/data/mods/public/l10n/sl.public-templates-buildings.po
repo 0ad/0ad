@@ -5,14 +5,14 @@
 # Translators:
 # Miha <miha.kosi@amis.net>, 2014
 # Rok Kepa <rokkepa@gmail.com>, 2014
-# Tilen Nosan <tilenn@gmail.com>, 2015
+# Tilen Nosan <tilenn@gmail.com>, 2015,2017
 # TimB, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-01-13 09:03+0100\n"
-"PO-Revision-Date: 2017-01-14 09:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-02-14 23:23+0000\n"
+"Last-Translator: Tilen Nosan <tilenn@gmail.com>\n"
 "Language-Team: Slovenian (http://www.transifex.com/wildfire-games/0ad/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,11 +30,11 @@ msgstr "Civilna"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:73
 msgid "Civic Center"
-msgstr "Mestni forum"
+msgstr "Upravno središče"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:74
 msgid "Build to acquire large tracts of territory. Train citizens."
-msgstr ""
+msgstr "Z izgradnjo pridobite veliko ozemlja. Izurite prebivalce. Garnizon: 20"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:76
 #: simulation/templates/template_structure_civic_civil_centre.xml:38
@@ -56,15 +56,15 @@ msgstr "Klēroukhía"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:33
 msgid "Stoa"
-msgstr ""
+msgstr "Stoa"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:34
 msgid "Hellenic Royal Stoa"
-msgstr ""
+msgstr "Stoa Basileios"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:36
 msgid "Recruit special units."
-msgstr ""
+msgstr "Dopolni posebne enote."
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:39
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -106,7 +106,7 @@ msgstr "Hiša"
 msgid ""
 "Train healers. Garrison units to heal them at a quick rate (3 HP per "
 "second). Research healing and religious improvements."
-msgstr ""
+msgstr "Izuri zdravilce. Namesti enote za njihovo hitro zdravljenje (3 ZT na sekundo). Razišči izboljšave zdravljenja in vere."
 
 #: simulation/templates/template_structure_civic_temple.xml:33
 #: simulation/templates/template_structure_civic_temple.xml:31
@@ -125,7 +125,7 @@ msgstr "Obrambni stolp"
 msgid ""
 "Shoots arrows. Garrison to provide extra defense. Needs the murder holes "
 "tech to protect its foot."
-msgstr ""
+msgstr "Strelja puščice. Namestite za dodatno obrambo. Obvezna tehnologija morilnih lukenj za obrambo spodnjega dela."
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_defense_defense_tower.xml:26
@@ -136,7 +136,7 @@ msgstr "Obrambni stolp"
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly "
 "converts to Gaia while in neutral territory."
-msgstr ""
+msgstr "Zgradite na nevtralnih in lastnih ozemljih za razgledovanje po delih zemljevida. Če stoji na nevtralnem ozemlju, se počasi preobraža v Gajo."
 
 #: simulation/templates/template_structure_defense_outpost.xml:65
 #: simulation/templates/template_structure_defense_outpost.xml:33
@@ -150,12 +150,12 @@ msgstr "Oporišče"
 #: simulation/templates/structures/cart_s_wall_short.xml:7
 #: simulation/templates/structures/cart_s_wall_tower.xml:7
 msgid "Stone Wall"
-msgstr "Kamnita stena"
+msgstr "Kamniti zid"
 
 #: simulation/templates/template_structure_defense_wall.xml:25
 #: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "Wall off your town for a stout defense."
-msgstr "Zagradite svoje mesto za trdno obrambo"
+msgstr "Obzidajte svoje mesto za trdno obrambo"
 
 #: simulation/templates/template_structure_defense_wall_gate.xml:9
 msgid "City Gate"
@@ -168,12 +168,12 @@ msgstr "Omogočite dostop skozi mestni zid. Mogoče ga je zakleniti in onemogoč
 
 #: simulation/templates/template_structure_defense_wall_long.xml:40
 msgid "Long wall segments can be converted to gates."
-msgstr "Daljše odseke obzidja se lahko spremeni v vrata."
+msgstr "Daljše odseke zidu je mogoče spremeniti v vrata."
 
 #: simulation/templates/template_structure_defense_wall_long.xml:45
 msgid ""
 "This will allow you to let units circulate through your fortifications."
-msgstr ""
+msgstr "To vam omogoča, da enote krožijo skozi vaše urtdbe."
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:50
 msgid "Wall Turret"
@@ -181,7 +181,7 @@ msgstr "Obzidni stolp"
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:51
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
-msgstr ""
+msgstr "Strelja puščice. Namestite za obrambo mestnega obzidja pred napadalci."
 
 #: simulation/templates/template_structure_defense_wallset.xml:10
 msgid "City Wall"
@@ -190,11 +190,11 @@ msgstr "Mestno obzidje"
 #: simulation/templates/template_structure_defense_wooden_tower.xml:40
 #: simulation/templates/template_structure_defense_wooden_tower.xml:39
 msgid "Sentry Tower"
-msgstr ""
+msgstr "Stražni stolp."
 
 #: simulation/templates/template_structure_defense_wooden_tower.xml:70
 msgid "Reinforce with stone and upgrade to a defense tower."
-msgstr ""
+msgstr "Ojačaj s kamnom in nadgradi v obrambni stolp."
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
@@ -207,7 +207,7 @@ msgstr "Ekonomski"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:25
 msgid "Dropsite for the food resource. Research food gathering improvements."
-msgstr "Odložišče za hrano. Raziskovanje napredka pri nabiranju hrane."
+msgstr "Odložišče za hrano. Razišči izboljšave nabiranja hrane."
 
 #: simulation/templates/template_structure_economic_farmstead.xml:27
 #: simulation/templates/template_structure_economic_farmstead.xml:24
@@ -218,7 +218,7 @@ msgstr "Kmetija"
 msgid ""
 "Create trade units to trade between other markets. Barter resources. "
 "Research trading and bartering improvements."
-msgstr "Ustvarite trgovske enote za trgovanje z drugimi tržišči. Menjalni viri. Raziščite trgovske in menjalne napredke."
+msgstr "Ustvari trgovske enote za trgovanje z drugimi tržišči. Izmenjuj vire. Razišči izboljšave trgovanja in menjave."
 
 #: simulation/templates/template_structure_economic_market.xml:24
 #: simulation/templates/template_structure_economic_market.xml:21
@@ -230,7 +230,7 @@ msgstr "Tržnica"
 msgid ""
 "Dropsite for wood, stone, and metal resources. Research gathering "
 "improvements for these resources."
-msgstr "Odložišče za les, kamnine in kovine. Raziščite napredke pri pridobivanju teh virov"
+msgstr "Odložišče za les, kamnine in kovine. Raziščite izboljšave pridobivanja teh virov."
 
 #: simulation/templates/template_structure_economic_storehouse.xml:27
 #: simulation/templates/template_structure_economic_storehouse.xml:24
@@ -244,7 +244,7 @@ msgstr "Naselbina"
 
 #: simulation/templates/template_structure_gaia_settlement.xml:11
 msgid "Build a Civic Center at this location to expand your territory."
-msgstr "Zgradite Civilno središče na tej točki, da razširite svoje ozemlje."
+msgstr "Zgradite upravno središče na tej točki, da razširite svoje ozemlje."
 
 #: simulation/templates/template_structure_military.xml:14
 msgid "Military Structure"
@@ -256,7 +256,7 @@ msgstr "Vojska"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
 msgid "Train citizen-soldiers. Research training improvements."
-msgstr ""
+msgstr "Izuri državljane-vojake. Razišči izboljšave urjenja."
 
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_barracks.xml:29
@@ -265,7 +265,7 @@ msgstr "Vojašnica"
 
 #: simulation/templates/template_structure_military_blacksmith.xml:30
 msgid "Research weapons and armor improvements."
-msgstr "Raziščite napredke pri orožju in oklepu. "
+msgstr "Razišči izboljšave orožja in oklepov. "
 
 #: simulation/templates/template_structure_military_blacksmith.xml:32
 #: simulation/templates/template_structure_military_blacksmith.xml:29
@@ -276,7 +276,7 @@ msgstr "Kovačnica"
 msgid ""
 "Build upon a shoreline to construct naval vessels and to open sea trade. "
 "Research naval improvements."
-msgstr "Sezidajte na obali za graditev mornarice in za odprtje morskega trgovanja. Raziščite napredke pri mornarici."
+msgstr "Sezidajte na obali za graditev mornarice in za odprtje morskega trgovanja. Raziščite izboljšave mornarice."
 
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_military_dock.xml:24
@@ -299,7 +299,7 @@ msgstr "Utrdba"
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements."
-msgstr ""
+msgstr "Izuri heroje, prvake in oblegovalna orožja. Raziščite izboljšave oblegovalnih orožij."
 
 #: simulation/templates/template_structure_military_fortress.xml:65
 #: simulation/templates/template_structure_special.xml:45
@@ -319,12 +319,12 @@ msgstr "Vir"
 msgid ""
 "Raise herd animals for food. Task domestic animals here to gain a trickle of"
 " food or other bonus (Not yet implemented)."
-msgstr ""
+msgstr "Vzredi čredne živali za hrano. Izberi domače živali za oskrbo zaloge s hrano ali drugim bonusom (Ni še izvedeno)."
 
 #: simulation/templates/template_structure_resource_corral.xml:20
 #: simulation/templates/template_structure_resource_corral.xml:18
 msgid "Corral"
-msgstr "Tamar"
+msgstr "Obor"
 
 #: simulation/templates/template_structure_resource_field.xml:28
 #: simulation/templates/template_structure_resource_field.xml:27
@@ -350,11 +350,11 @@ msgstr "Knjižnica"
 
 #: simulation/templates/template_structure_special_library.xml:17
 msgid "Research special technologies."
-msgstr ""
+msgstr "Razišči posebne tehnologije."
 
 #: simulation/templates/template_structure_special_rotarymill.xml:20
 msgid "Rotary Mill"
-msgstr ""
+msgstr "Krožni mlin"
 
 #: simulation/templates/template_structure_special_rotarymill.xml:21
 msgid "Melonas"
@@ -362,7 +362,7 @@ msgstr "Melonas"
 
 #: simulation/templates/template_structure_special_theatron.xml:23
 msgid "Greek Theater"
-msgstr ""
+msgstr "Grško gledališče."
 
 #: simulation/templates/template_structure_special_theatron.xml:24
 msgid "Théātron"
@@ -372,7 +372,7 @@ msgstr "Théātron"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
-msgstr "Prinesite slavo svoji civilizaciji in dodajte velike površine zemlje svojemu imperiju."
+msgstr "Prinesite slavo svoji civilizaciji in dodajte velike površine ozemlja svojemu imperiju."
 
 #: simulation/templates/template_structure_wonder.xml:49
 #: simulation/templates/template_structure_wonder.xml:47
@@ -435,11 +435,11 @@ msgstr "Epiteíkhisma"
 
 #: simulation/templates/structures/athen_fortress.xml:10
 msgid "Build siege engines. Garrison soldiers inside for stout defense."
-msgstr ""
+msgstr "Izgradi oblegovalne naprave. Namesti vojake znotraj za močno obrambo."
 
 #: simulation/templates/structures/athen_gymnasion.xml:23
 msgid "Gymnasium"
-msgstr ""
+msgstr "Gymnasium"
 
 #: simulation/templates/structures/athen_gymnasion.xml:24
 msgid "Gymnásion"
@@ -447,7 +447,7 @@ msgstr "Gymnásion"
 
 #: simulation/templates/structures/athen_gymnasion.xml:25
 msgid "Train champion units."
-msgstr ""
+msgstr "Izuri enote prvakov."
 
 #: simulation/templates/structures/athen_house.xml:5
 #: simulation/templates/structures/mace_house.xml:5
@@ -466,7 +466,7 @@ msgstr "Empórios"
 #: simulation/templates/structures/mace_outpost.xml:5
 #: simulation/templates/structures/spart_outpost.xml:5
 msgid "Greek Outpost"
-msgstr ""
+msgstr "Grško oporišče."
 
 #: simulation/templates/structures/athen_outpost.xml:6
 #: simulation/templates/structures/mace_outpost.xml:6
@@ -476,7 +476,7 @@ msgstr "Prophylakḗ"
 
 #: simulation/templates/structures/athen_prytaneion.xml:24
 msgid "Council Chamber"
-msgstr ""
+msgstr "Sejna dvorana."
 
 #: simulation/templates/structures/athen_prytaneion.xml:25
 msgid "Prytaneîon"
@@ -484,7 +484,7 @@ msgstr "Prytaneîon"
 
 #: simulation/templates/structures/athen_prytaneion.xml:26
 msgid "Train heroes. Research special technologies."
-msgstr ""
+msgstr "Izuri heroje. Razišči izboljšave posebnih tehnologij."
 
 #: simulation/templates/structures/athen_storehouse.xml:5
 #: simulation/templates/structures/mace_storehouse.xml:5
@@ -495,7 +495,7 @@ msgstr "Apothḗkē"
 
 #: simulation/templates/structures/athen_temple.xml:9
 msgid "Naṓs"
-msgstr ""
+msgstr "Naṓs"
 
 #: simulation/templates/structures/athen_wall_gate.xml:9
 #: simulation/templates/structures/mace_wall_gate.xml:9
@@ -544,7 +544,7 @@ msgstr "Naós Parthenṓn"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at an extremely quick rate."
-msgstr ""
+msgstr "Prinesite slavo svoji civilizaciji in dodajte velike površine ozemlja svojemu imperiju. Namestite enote za njihovo skrajno hitro zdravljenje."
 
 #: simulation/templates/structures/brit_barracks.xml:15
 #: simulation/templates/structures/gaul_barracks.xml:15
@@ -572,7 +572,7 @@ msgstr "Otoška naselbina"
 
 #: simulation/templates/structures/brit_crannog.xml:17
 msgid "Increase population limit and defend waterways."
-msgstr ""
+msgstr "Povečajte omejitev prebivalstva in obranite vodne poti."
 
 #: simulation/templates/structures/brit_crannog.xml:18
 #: simulation/templates/structures/brit_dock.xml:15
@@ -599,11 +599,11 @@ msgstr "Varmo"
 
 #: simulation/templates/structures/brit_fortress.xml:21
 msgid "Brythonic Broch"
-msgstr ""
+msgstr "Britanski stolp"
 
 #: simulation/templates/structures/brit_fortress.xml:22
 msgid "Train Brythonic heroes and champions. Construct siege rams."
-msgstr ""
+msgstr "Izuri britanske heroje in prvake. Sestavi oblegovalne ovne."
 
 #: simulation/templates/structures/brit_house.xml:9
 #: simulation/templates/structures/gaul_house.xml:9
@@ -612,11 +612,11 @@ msgstr "Annedd"
 
 #: simulation/templates/structures/brit_kennel.xml:34
 msgid "Kennel"
-msgstr ""
+msgstr "Pesjak"
 
 #: simulation/templates/structures/brit_kennel.xml:37
 msgid "Train Celtic war dogs."
-msgstr ""
+msgstr "Izuri keltske vojne pse."
 
 #: simulation/templates/structures/brit_market.xml:15
 #: simulation/templates/structures/gaul_market.xml:15
@@ -625,7 +625,7 @@ msgstr "Marchnaty"
 
 #: simulation/templates/structures/brit_outpost.xml:5
 msgid "Brythonic Outpost"
-msgstr ""
+msgstr "Britansko oporišče."
 
 #: simulation/templates/structures/brit_storehouse.xml:8
 #: simulation/templates/structures/gaul_storehouse.xml:8
@@ -655,7 +655,7 @@ msgstr "Gwarchglawdd"
 #: simulation/templates/structures/brit_wall_tower.xml:13
 #: simulation/templates/structures/gaul_wall_tower.xml:13
 msgid "Does not shoot or garrison."
-msgstr ""
+msgstr "Ne strelja. Nameščanje ni mogoče."
 
 #: simulation/templates/structures/brit_wonder.xml:9
 #: simulation/templates/structures/gaul_wonder.xml:9
@@ -664,7 +664,7 @@ msgstr "Stonehenge"
 
 #: simulation/templates/structures/cart_apartment.xml:17
 msgid "Apartment Building"
-msgstr ""
+msgstr "Stanovanjska zgradba"
 
 #: simulation/templates/structures/cart_barracks.xml:18
 msgid "Maḥanēt"
@@ -674,7 +674,7 @@ msgstr "Maḥanēt"
 msgid ""
 "Train North African citizen-soldiers. Research improvements for North "
 "African units."
-msgstr ""
+msgstr "Izuri severnoafriške državljane-vojake. Razišči izboljšave za severnoafriške enote."
 
 #: simulation/templates/structures/cart_civil_centre.xml:8
 msgid "Merkāz"
@@ -691,7 +691,7 @@ msgstr "Mijdil"
 
 #: simulation/templates/structures/cart_dock.xml:17
 msgid "Commercial Port"
-msgstr ""
+msgstr "Trgovsko pristanišče"
 
 #: simulation/templates/structures/cart_dock.xml:18
 msgid "Namel"
@@ -701,7 +701,7 @@ msgstr "Namel"
 msgid ""
 "Construct fishing boats to gather meat and merchant ships to trade with "
 "other docks."
-msgstr ""
+msgstr "Sestavi ribiške ladje za pridobivanje mesa in trgovske ladje za trgovanje z drugimi pristanišči."
 
 #: simulation/templates/structures/cart_embassy.xml:22
 msgid "Hire mercenaries."
@@ -713,23 +713,23 @@ msgstr "Keltska ambasada"
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:22
 msgid "Hire Celtic mercenaries. Research improvements for these mercenaries."
-msgstr ""
+msgstr "Najemi keltske plačance. Razišči izboljšave za le-te."
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:13
 msgid "Iberian Embassy"
-msgstr "Iberijska ambasada."
+msgstr "Iberska ambasada."
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:15
 msgid "Hire Iberian mercenaries. Research improvements for these mercenaries."
-msgstr ""
+msgstr "Najemi iberske plačance. Razišči izboljšave za le-te."
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:20
 msgid "Italian Embassy"
-msgstr ""
+msgstr "Italijanska ambasada"
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:22
 msgid "Hire Italian mercenaries. Research improvements for these mercenaries."
-msgstr ""
+msgstr "Najemi italijanske plačance. Razišči izboljšave za le-te."
 
 #: simulation/templates/structures/cart_farmstead.xml:9
 msgid "Aḥuzāh"
@@ -741,7 +741,7 @@ msgstr "Šadd"
 
 #: simulation/templates/structures/cart_fortress.xml:9
 msgid "Blockhouse Fort"
-msgstr ""
+msgstr "Brunasta trdnjava"
 
 #: simulation/templates/structures/cart_fortress.xml:10
 msgid "Ḥamet"
@@ -757,7 +757,7 @@ msgstr "Šūq"
 
 #: simulation/templates/structures/cart_outpost.xml:5
 msgid "Carthaginian Outpost"
-msgstr ""
+msgstr "Kartažansko oporišče"
 
 #: simulation/templates/structures/cart_s_wall_long.xml:6
 #: simulation/templates/structures/cart_s_wall_medium.xml:6
@@ -765,7 +765,7 @@ msgstr ""
 #: simulation/templates/structures/cart_s_wall_tower.xml:6
 #: simulation/templates/structures/cart_wallset_short.xml:5
 msgid "Low Wall"
-msgstr ""
+msgstr "Nizek zid"
 
 #: simulation/templates/structures/cart_storehouse.xml:9
 msgid "Maḥṣabah"
@@ -781,11 +781,11 @@ msgstr "Cothon"
 
 #: simulation/templates/structures/cart_super_dock.xml:37
 msgid "Shipyard"
-msgstr ""
+msgstr "Ladjedelnica"
 
 #: simulation/templates/structures/cart_super_dock.xml:39
 msgid "Construct and repair mighty warships."
-msgstr ""
+msgstr "Sestavi in popravi mogočne vojne ladje."
 
 #: simulation/templates/structures/cart_temple.xml:14
 msgid "Maqdaš"
@@ -795,7 +795,7 @@ msgstr "Maqdaš"
 msgid ""
 "Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
 "units to heal them at a quick rate."
-msgstr ""
+msgstr "Izuri svečenice za zdravljenje svojih čet. Izuri svete čete kopjanikov. Namesti enote za njihovo hitro zdravljenje."
 
 #: simulation/templates/structures/cart_wall.xml:9
 #: simulation/templates/structures/cart_wallset_stone.xml:5
@@ -822,11 +822,11 @@ msgstr "Galski dun"
 
 #: simulation/templates/structures/gaul_fortress.xml:9
 msgid "Train Gallic heroes and champions. Construct siege rams."
-msgstr ""
+msgstr "Izuri galske heroje in prvake. Sestavi oblegovalne ovne."
 
 #: simulation/templates/structures/gaul_outpost.xml:5
 msgid "Gallic Outpost"
-msgstr ""
+msgstr "Galsko oporišče."
 
 #: simulation/templates/structures/gaul_tavern.xml:23
 msgid "Tavern"
@@ -838,7 +838,7 @@ msgstr "Taberna"
 
 #: simulation/templates/structures/gaul_tavern.xml:26
 msgid "Recruit Naked Fanatics."
-msgstr ""
+msgstr "Novači Gole fanatike."
 
 #: simulation/templates/structures/gaul_wall_gate.xml:9
 msgid "Duro"
@@ -891,7 +891,7 @@ msgstr "Arruga"
 
 #: simulation/templates/structures/iber_monument.xml:28
 msgid "Revered Monument"
-msgstr ""
+msgstr "Spomenik strahospoštovanja"
 
 #: simulation/templates/structures/iber_monument.xml:29
 msgid "Gur Oroigarri"
@@ -901,11 +901,11 @@ msgstr "Gur Oroigarri"
 msgid ""
 "All units within vision of this monument will fight harder. Buildings in the"
 " territory of the monument do not decay."
-msgstr ""
+msgstr "Vse enote znoraj vidljivosti tega spomenika se bodo borile močneje. Zgradbe znotraj ozemlja spomenika ne razpadajo."
 
 #: simulation/templates/structures/iber_outpost.xml:5
 msgid "Iberian Outpost"
-msgstr ""
+msgstr "Ibersko oporišče"
 
 #: simulation/templates/structures/iber_storehouse.xml:5
 msgid "Ola"
@@ -942,7 +942,7 @@ msgstr "Teíchisma"
 #: simulation/templates/structures/mace_fortress.xml:16
 msgid ""
 "Train Champions and Heroes. Garrison soldiers inside for stout defense."
-msgstr ""
+msgstr "Izuri prvake in heroje. Noter namesti vojake za močno obrambo."
 
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
@@ -955,11 +955,11 @@ msgstr "Synergeîon Poliorkētṓn"
 
 #: simulation/templates/structures/mace_siege_workshop.xml:18
 msgid "Siege Workshop"
-msgstr ""
+msgstr "Oblegovalna delavnica."
 
 #: simulation/templates/structures/mace_siege_workshop.xml:20
 msgid "Build siege engines. Research siege technologies."
-msgstr ""
+msgstr "Zgradi oblegovalne naprave. Razišči oblegovalne tehnologije."
 
 #: simulation/templates/structures/mace_temple.xml:9
 #: simulation/templates/structures/spart_temple.xml:9
@@ -992,7 +992,7 @@ msgstr "Naukasthanaka"
 
 #: simulation/templates/structures/maur_elephant_stables.xml:24
 msgid "Elephant Stables"
-msgstr ""
+msgstr "Hlevi za slone"
 
 #: simulation/templates/structures/maur_elephant_stables.xml:25
 msgid "Vāraṇaśālā"
@@ -1000,7 +1000,7 @@ msgstr "Vāraṇaśālā"
 
 #: simulation/templates/structures/maur_elephant_stables.xml:28
 msgid "Train elephant units."
-msgstr ""
+msgstr "Izuri slonje enote."
 
 #: simulation/templates/structures/maur_farmstead.xml:12
 msgid "Kantu"
@@ -1016,7 +1016,7 @@ msgstr "Durg"
 
 #: simulation/templates/structures/maur_fortress.xml:6
 msgid "Train heroes and champion units."
-msgstr ""
+msgstr "Izuri enote junakov in prvakov."
 
 #: simulation/templates/structures/maur_house.xml:9
 msgid "Griham"
@@ -1032,7 +1032,7 @@ msgstr "Uparaksana"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:27
 msgid "Edict Pillar of Ashoka"
-msgstr ""
+msgstr "Posvetilni stebri Ašoke"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:28
 msgid "Śāsana Stambha Aśokā"
@@ -1042,7 +1042,7 @@ msgstr "Śāsana Stambha Aśokā"
 msgid ""
 "The famous pillar of Ashoka. Increases the walk speed of traders. Buildings "
 "in the territory of the monument do not decay."
-msgstr ""
+msgstr "Slavni Ašokov steber. Poveča hitrost hoje trgovcev. Zgradbe v območju spomenika ne razpadajo."
 
 #: simulation/templates/structures/maur_storehouse.xml:5
 msgid "Khalla"
@@ -1075,11 +1075,11 @@ msgstr "Velika stupa"
 #: simulation/templates/structures/merc_camp_egyptian.xml:7
 #: simulation/templates/structures/ptol_mercenary_camp.xml:7
 msgid "MercenaryCamp"
-msgstr ""
+msgstr "Tabor plačancev"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:29
 msgid "Mercenary Camp (Egyptian)"
-msgstr ""
+msgstr "Tabor plačancev (egipčanski)"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:30
 msgid "Stratópedo Misthophóron Aigyptiakós"
@@ -1087,7 +1087,7 @@ msgstr "Stratópedo Misthophóron Aigyptiakós"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:33
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
-msgstr ""
+msgstr "Zavzemi to zgradbo za urjenje plačancev iz Helenističnega Egipta."
 
 #: simulation/templates/structures/pers_apadana.xml:29
 #: simulation/templates/structures/pers_tacara.xml:26
@@ -1102,7 +1102,7 @@ msgstr "Apadana"
 msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
 "resources. Train Persian heroes and their \"Immortals\" bodyguards."
-msgstr ""
+msgstr "\"Satrapska dajatev:\" oskrbovanje zalog s hrano, lesom, kamnom, in kovinskimi viri. Izuri perzijske heroje in njihovo telesno stražo - \"Nesmrtnike\". "
 
 #: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
@@ -1110,7 +1110,7 @@ msgstr "Padgan"
 
 #: simulation/templates/structures/pers_barracks.xml:7
 msgid "Levy citizen-infantry units."
-msgstr ""
+msgstr "Vpokliči enote državljanov-pehotnikov."
 
 #: simulation/templates/structures/pers_blacksmith.xml:5
 msgid "Arštišta"
@@ -1151,19 +1151,19 @@ msgstr "Didā"
 
 #: simulation/templates/structures/pers_fortress.xml:7
 msgid "Train Champion Cavalry and Construct Siege Rams."
-msgstr ""
+msgstr "Izuri prvaško konjenico in sestavi oblegovalne ovne."
 
 #: simulation/templates/structures/pers_hall.xml:28
 msgid "Persian Hall"
-msgstr ""
+msgstr "Perzijska dvorana"
 
 #: simulation/templates/structures/pers_hall.xml:29
 msgid "Duvarthi Visadahyu"
-msgstr ""
+msgstr "Duvarthi Visadahyu"
 
 #: simulation/templates/structures/pers_hall.xml:31
 msgid "Train War Elephants and Kardakes mercenaries."
-msgstr ""
+msgstr "Izuri vojne slone in kardakeške plačance."
 
 #: simulation/templates/structures/pers_house.xml:9
 msgid "Huvādā"
@@ -1181,7 +1181,7 @@ msgstr "Babilonska Ištarina vrata"
 msgid ""
 "Increases the loyalty regeneration of nearby structures, making them harder "
 "to capture."
-msgstr ""
+msgstr "Poveča obnavljanje bližnjih zgradb in s tem oteži njihovo zavzetje."
 
 #: simulation/templates/structures/pers_market.xml:12
 msgid "Ardatašta"
@@ -1201,11 +1201,11 @@ msgstr "Paraspa"
 
 #: simulation/templates/structures/pers_stables.xml:20
 msgid "Stables"
-msgstr "Konjušnica"
+msgstr "Konjušnice"
 
 #: simulation/templates/structures/pers_stables.xml:22
 msgid "Train citizen-cavalry units."
-msgstr ""
+msgstr "Izuri enote državljanov-konjenikov."
 
 #: simulation/templates/structures/pers_storehouse.xml:5
 msgid "Asiyah"
@@ -1213,7 +1213,7 @@ msgstr "Asiyah"
 
 #: simulation/templates/structures/pers_tacara.xml:27
 msgid "Taçara"
-msgstr ""
+msgstr "Taçara"
 
 #: simulation/templates/structures/pers_temple.xml:12
 msgid "Ayadana"
@@ -1243,7 +1243,7 @@ msgstr "ḥwt-n-mš'"
 msgid ""
 "Train Egyptian and Middle-Eastern citizen-soldiers. Research training "
 "improvements."
-msgstr ""
+msgstr "Izuri Egipčanske in Srednjevzhodne državljane-vojake. Razišči izboljšave urjenja."
 
 #: simulation/templates/structures/ptol_civil_centre.xml:12
 msgid "pr-'a"
@@ -1277,7 +1277,7 @@ msgstr "ḥwt"
 msgid ""
 "Increase the population limit. Since they are made of mud brick, Egyptian "
 "houses are free of cost, but are very weak."
-msgstr ""
+msgstr "Povečaj omejitev populacije. Ker so narejene iz blatnih opek, so egipčanske hiše brezplačne, vendar so zelo šibke."
 
 #: simulation/templates/structures/ptol_lighthouse.xml:17
 msgid "Lighthouse"
@@ -1291,7 +1291,7 @@ msgstr "Pháros"
 msgid ""
 "Build along the shore to reveal the shorelines over the entire map. Very "
 "large vision range: 180 meters."
-msgstr ""
+msgstr "Z gradnjo ob obali le-to razkriješ po celotnemu zemljevidu. Zelo velik obseg vidljivosti: 180 metrov."
 
 #: simulation/templates/structures/ptol_market.xml:9
 msgid "ḥwt-n-ḫt.w-wḫa.w"
@@ -1309,18 +1309,18 @@ msgstr "Stratopedeía Misthophórōn"
 msgid ""
 "Cheap barracks-like structure that is buildable in neutral territory, but "
 "casts no territory influence. Train Mercenaries."
-msgstr ""
+msgstr "Poceni zgradba tipa vojašnice, ki jo je mogoče zgraditi na nevtralnem ozemlju, vendar nima vpliva na ozemlje. Izuri plačance."
 
 #: simulation/templates/structures/ptol_military_colony.xml:10
 msgid "Klēroukhia"
-msgstr ""
+msgstr "Klēroukhia"
 
 #: simulation/templates/structures/ptol_military_colony.xml:12
 msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other"
 " factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster. Train settler-soldiers of various nationalities."
-msgstr ""
+msgstr "Ptolemejska razširitvena zgradba, podobna upravnim središčem za druge ločine. Je šibkejša in ima manjši vpliv na ozemlje, vendar je cenejša in hitreje zgradljiva. Izuri vojake-naseljence različnih narodnosti."
 
 #: simulation/templates/structures/ptol_outpost.xml:5
 msgid "mktr-n-ḫt"
@@ -1369,7 +1369,7 @@ msgstr "Castrum Vallum"
 msgid ""
 "Build anywhere on the map, even in enemy territory. Construct siege weapons "
 "and train citizen-soldiers. Heal garrisoned units slowly."
-msgstr ""
+msgstr "Gradi kjerkoli na zemljevidu, tudi na sovražnikovem ozemlju. Sestavi oblegovalna orožja in izuri državljane-vojake. Namesti enote za njihovo počasno zdravljenje."
 
 #: simulation/templates/structures/rome_barracks.xml:18
 msgid "Castrum"
@@ -1421,7 +1421,7 @@ msgstr "Vigilarium"
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:25
 msgid "Siege Wall Gate"
-msgstr ""
+msgstr "Vrata oblegovalnega zidu."
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:26
 msgid "Porta Circummunitionis"
@@ -1432,7 +1432,7 @@ msgstr "Porta Circummunitionis"
 #: simulation/templates/structures/rome_siege_wall_short.xml:32
 #: simulation/templates/structures/rome_wallset_siege.xml:5
 msgid "Siege Wall"
-msgstr ""
+msgstr "Oblegovalni zid."
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:52
 #: simulation/templates/structures/rome_siege_wall_medium.xml:46
@@ -1445,11 +1445,11 @@ msgstr "Murus Circummunitionis"
 #: simulation/templates/structures/rome_siege_wall_short.xml:36
 #: simulation/templates/structures/rome_wallset_siege.xml:8
 msgid "A wooden and turf palisade buildable in enemy and neutral territories."
-msgstr ""
+msgstr "Lesena in travnata palisada, ki jo je mogoče zgraditi na sovražnikovem in nevtralnem ozemlju."
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:31
 msgid "Siege Wall Tower"
-msgstr ""
+msgstr "Stolp oblegovalnega zidu."
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:32
 msgid "Turris Circummunitionis"
@@ -1473,7 +1473,7 @@ msgstr "Aedes Martis"
 
 #: simulation/templates/structures/rome_temple_mars.xml:15
 msgid "Train healers. Garrison units to heal them at a quick rate."
-msgstr ""
+msgstr "Izuri zdravilce. Namesti enote za njihovo hitro zdravljenje."
 
 #: simulation/templates/structures/rome_temple_vesta.xml:15
 msgid "Temple of Vesta"
@@ -1493,7 +1493,7 @@ msgstr "Tabernāculum"
 
 #: simulation/templates/structures/rome_tent.xml:32
 msgid "A temporary shelter for soldiers."
-msgstr ""
+msgstr "Začasno zaklonišče za vojake."
 
 #: simulation/templates/structures/rome_wall.xml:9
 #: simulation/templates/structures/rome_wall_long.xml:29
@@ -1547,7 +1547,7 @@ msgstr "Phrourion"
 msgid ""
 "Build siege engines and train Champions. Garrison soldiers inside for stout "
 "defense."
-msgstr ""
+msgstr "Zgradi oblegovalne naprave in izuri prvake. Noter namesti vojake za močno obrambo."
 
 #: simulation/templates/structures/sele_library.xml:9
 msgid "Bibliothikon"
@@ -1562,7 +1562,7 @@ msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other "
 "factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster. Train settler-soldiers of various nationalities."
-msgstr ""
+msgstr "Selevkidska razširitvena zgradba, podobna upravnim središčem za druge ločine. Je šibkejša in ima manjši vpliv na ozemlje, vendar je cenejša in hitreje zgradljiva. Izuri vojake-naseljence različnih narodnosti."
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"
@@ -1574,7 +1574,7 @@ msgstr "Naós"
 
 #: simulation/templates/structures/sele_wonder.xml:12
 msgid "Temple of Pythian Apollo"
-msgstr ""
+msgstr "Tempelj Apolona Pitijskega"
 
 #: simulation/templates/structures/spart_fortress.xml:9
 msgid "Teíkhisma"
@@ -1583,7 +1583,7 @@ msgstr "Teíkhisma"
 #: simulation/templates/structures/spart_fortress.xml:10
 msgid ""
 "Build siege engines. Garrison up to 20 soldiers inside for stout defense."
-msgstr ""
+msgstr "Zgradi oblegovalne naprave. Noter namesti do 20 vojakov za močno zaščito."
 
 #: simulation/templates/structures/spart_gerousia.xml:21
 msgid "Spartan Senate"
@@ -1595,11 +1595,11 @@ msgstr "Gerontía"
 
 #: simulation/templates/structures/spart_gerousia.xml:23
 msgid "Train heroes."
-msgstr ""
+msgstr "Izuri heroje."
 
 #: simulation/templates/structures/spart_syssiton.xml:24
 msgid "Military Mess Hall"
-msgstr ""
+msgstr "Vojaška jedilnica"
 
 #: simulation/templates/structures/spart_syssiton.xml:25
 msgid "Syssítion"
@@ -1607,10 +1607,10 @@ msgstr "Syssítion"
 
 #: simulation/templates/structures/spart_syssiton.xml:27
 msgid "Train Spartan heroes and Spartiate champion hoplites."
-msgstr ""
+msgstr "Izuri špartanske heroje in spartiatske prvake hoplite."
 
 #: simulation/templates/structures/spart_wonder.xml:17
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at a quick rate."
-msgstr ""
+msgstr "Prinesite slavo svoji civilizaciji in dodajte velike površine ozemlja svojemu imperiju. Namestite enote za njihovo hitro zdravljenje."

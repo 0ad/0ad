@@ -62,7 +62,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pl\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #: gui/session/input.js:147
 #, javascript-format
@@ -71,6 +71,7 @@ msgid_plural "Basic range: %(range)s meters"
 msgstr[0] "Zasięg podstawowy: %(range)s metr"
 msgstr[1] "Zasięg podstawowy: %(range)s metry"
 msgstr[2] "Zasięg podstawowy: %(range)s metrów"
+msgstr[3] "Zasięg podstawowy: %(range)s metrów"
 
 #: gui/session/input.js:148
 #, javascript-format
@@ -79,6 +80,7 @@ msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] "Średni bonus do zasięgu: %(range)s metr"
 msgstr[1] "Średni bonus do zasięgu: %(range)s metry"
 msgstr[2] "Średni bonus do zasięgu: %(range)s metrów"
+msgstr[3] "Średni bonus do zasięgu: %(range)s metrów"
 
 #: gui/session/input.js:705
 msgid "Cannot build wall here!"
@@ -201,6 +203,7 @@ msgid_plural "There are %(inactiveString)s."
 msgstr[0] "Jest %(inactiveString)s."
 msgstr[1] "Jest %(inactiveString)s."
 msgstr[2] "Jest %(inactiveString)s."
+msgstr[3] "Jest %(inactiveString)s."
 
 #: gui/session/menu.js:606
 msgid "There are no land traders."
@@ -213,6 +216,7 @@ msgid_plural "There are %(numberTrading)s land traders trading"
 msgstr[0] "Istnieje %(numberTrading)s kupiec lądowy"
 msgstr[1] "Istnieje %(numberTrading)s kupców lądowych"
 msgstr[2] "Istnieje %(numberTrading)s kupców lądowych"
+msgstr[3] "Istnieje %(numberTrading)s kupców lądowych"
 
 #: gui/session/menu.js:623
 #, javascript-format
@@ -221,6 +225,7 @@ msgid_plural "%(numberOfLandTraders)s inactive"
 msgstr[0] "%(numberOfLandTraders)s nieaktywny"
 msgstr[1] "%(numberOfLandTraders)s nieaktywnych"
 msgstr[2] "%(numberOfLandTraders)s nieaktywnych"
+msgstr[3] "%(numberOfLandTraders)s nieaktywnych"
 
 #: gui/session/menu.js:628
 #, javascript-format
@@ -229,6 +234,7 @@ msgid_plural "%(numberOfLandTraders)s land traders inactive"
 msgstr[0] "%(numberOfLandTraders)s kupiec lądowy nieaktywny"
 msgstr[1] "%(numberOfLandTraders)s kupców lądowych nieaktywnych"
 msgstr[2] "%(numberOfLandTraders)s kupców lądowych nieaktywnych"
+msgstr[3] "%(numberOfLandTraders)s kupców lądowych nieaktywnych"
 
 #: gui/session/menu.js:637
 #, javascript-format
@@ -237,6 +243,7 @@ msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgstr[0] "%(numberGarrisoned)s jednostka znajduje się na statku handlowym"
 msgstr[1] "Liczba jednostek na statku handlowym wynosi %(numberGarrisoned)s"
 msgstr[2] "Liczba jednostek na statku handlowym wynosi %(numberGarrisoned)s"
+msgstr[3] "Liczba jednostek na statku handlowym wynosi %(numberGarrisoned)s"
 
 #: gui/session/menu.js:642
 #, javascript-format
@@ -249,6 +256,7 @@ msgid_plural ""
 msgstr[0] "Jest %(numberGarrisoned)s kupiec lądowy na statku handlowym"
 msgstr[1] "Liczba kupców lądowych na statku handlowym wynosi %(numberGarrisoned)s"
 msgstr[2] "Liczba kupców lądowych na statku handlowym wynosi %(numberGarrisoned)s"
+msgstr[3] "Liczba kupców lądowych na statku handlowym wynosi %(numberGarrisoned)s"
 
 #: gui/session/menu.js:670
 msgid "There are no merchant ships."
@@ -261,6 +269,7 @@ msgid_plural "There are %(numberTrading)s merchant ships trading"
 msgstr[0] "Jest %(numberTrading)s statek handlowy"
 msgstr[1] "Liczba statków handlowych wynosi %(numberTrading)s"
 msgstr[2] "Liczba statków handlowych wynosi %(numberTrading)s"
+msgstr[3] "Liczba statków handlowych wynosi %(numberTrading)s"
 
 #: gui/session/menu.js:686
 #, javascript-format
@@ -269,6 +278,7 @@ msgid_plural "%(numberOfShipTraders)s inactive"
 msgstr[0] "%(numberOfShipTraders)s nieaktywny"
 msgstr[1] "%(numberOfShipTraders)s nieaktywnych"
 msgstr[2] "%(numberOfShipTraders)s nieaktywnych"
+msgstr[3] "%(numberOfShipTraders)s nieaktywnych"
 
 #: gui/session/menu.js:691
 #, javascript-format
@@ -277,6 +287,7 @@ msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] "Jest %(numberOfShipTraders)s nieaktywny statek handlowy"
 msgstr[1] "Liczba nieaktywnych statków handlowych wynosi %(numberOfShipTraders)s"
 msgstr[2] "Liczba nieaktywnych statków handlowych wynosi %(numberOfShipTraders)s"
+msgstr[3] "Liczba nieaktywnych statków handlowych wynosi %(numberOfShipTraders)s"
 
 #: gui/session/menu.js:867
 msgid "Resume"
@@ -609,6 +620,7 @@ msgid_plural "This foundation will be completed in %(seconds)s seconds."
 msgstr[0] "Budowla ukończona będzie w %(seconds)s sekundę."
 msgstr[1] "Budowla ukończona będzie w %(seconds)s sekund."
 msgstr[2] "Budowla ukończona będzie w %(seconds)s sekund."
+msgstr[3] "Budowla ukończona będzie w %(seconds)s sekund."
 
 #: gui/session/selection_details.js:119
 #, javascript-format
@@ -667,6 +679,7 @@ msgid_plural ""
 msgstr[0] "Liczba budowniczych.\nPrzydzielenie kolejnego do tej budowy przyspieszy konstrukcję o %(speedup)s sekundę."
 msgstr[1] "Liczba budowniczych.\nPrzydzielenie kolejnego do tej budowy przyspieszy konstrukcję o %(speedup)s sekund."
 msgstr[2] "Liczba budowniczych.\nPrzydzielenie kolejnego do tej budowy przyspieszy konstrukcję o %(speedup)s sekund."
+msgstr[3] "Liczba budowniczych.\nPrzydzielenie kolejnego do tej budowy przyspieszy konstrukcję o %(speedup)s sekund."
 
 #: gui/session/selection_details.js:246 gui/session/selection_details.js:254
 msgid "Number of builders."
@@ -785,6 +798,7 @@ msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] "%(number)s instancja klasy %(class)s"
 msgstr[1] "%(number)s instancji klasy %(class)s"
 msgstr[2] "%(number)s instancji klasy %(class)s"
+msgstr[3] "%(number)s instancji klasy %(class)s"
 
 #: gui/session/selection_panels.js:865
 #, javascript-format

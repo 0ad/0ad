@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-01-13 09:03+0100\n"
-"PO-Revision-Date: 2017-02-05 13:48+0000\n"
+"PO-Revision-Date: 2017-02-15 21:28+0000\n"
 "Last-Translator: Omar Anwar <omaraglan91@yahoo.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -27,19 +27,19 @@ msgstr ""
 
 #: simulation/templates/template_structure_civic.xml:14
 msgid "Civic Structure"
-msgstr "مبنى البلدية"
+msgstr "مبنى مدني"
 
 #: simulation/templates/template_structure_civic.xml:15
 msgid "Civic"
-msgstr "بلدية"
+msgstr "مدني"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:73
 msgid "Civic Center"
-msgstr "مركز البلدية"
+msgstr "مركز المدينة"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:74
 msgid "Build to acquire large tracts of territory. Train citizens."
-msgstr "أبنى لتحجز مساحه كبيره من المنطقه.درب مواطنين."
+msgstr "أبنى لتحجز مساحة كبيره من المنطقة.درب مواطنين."
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:76
 #: simulation/templates/template_structure_civic_civil_centre.xml:38
@@ -53,7 +53,7 @@ msgstr "مستعمره"
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:33
 #: simulation/templates/structures/ptol_military_colony.xml:9
 msgid "Military Colony"
-msgstr "مستعمره عسكريه"
+msgstr "مستعمره عسكرية"
 
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:34
 msgid "Klēroukhía"
@@ -69,7 +69,7 @@ msgstr "رواق مقدس هيليني معمد"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:36
 msgid "Recruit special units."
-msgstr "جند وحدات خاصه."
+msgstr "جند وحدات خاصة."
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:39
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -111,7 +111,7 @@ msgstr "منزل"
 msgid ""
 "Train healers. Garrison units to heal them at a quick rate (3 HP per "
 "second). Research healing and religious improvements."
-msgstr "درب معالجون. الجنود داخل المبنى يعالجون بسرعه عاليه(3 نقاط فى الثانيه). طور المعالجه و الديانه."
+msgstr "درب معالجون. الجنود داخل المبنى يعالجون بسرعه عاليه(3 نقاط فى الثانية). طور المعالجه و الديانه."
 
 #: simulation/templates/template_structure_civic_temple.xml:33
 #: simulation/templates/template_structure_civic_temple.xml:31
@@ -195,7 +195,7 @@ msgstr "سور المدينة"
 #: simulation/templates/template_structure_defense_wooden_tower.xml:40
 #: simulation/templates/template_structure_defense_wooden_tower.xml:39
 msgid "Sentry Tower"
-msgstr "برج حراسه"
+msgstr "برج حراسة"
 
 #: simulation/templates/template_structure_defense_wooden_tower.xml:70
 msgid "Reinforce with stone and upgrade to a defense tower."
@@ -212,7 +212,7 @@ msgstr "الاقتصاد"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:25
 msgid "Dropsite for the food resource. Research food gathering improvements."
-msgstr "مخزن الموارد الغذائية، وابحاث زيادة المحاصيل وتحسينها"
+msgstr "موقع الإسقاط للموارد الغذائية، أبحاث طرق جمع الطعام وتحسينه."
 
 #: simulation/templates/template_structure_economic_farmstead.xml:27
 #: simulation/templates/template_structure_economic_farmstead.xml:24
@@ -1140,11 +1140,11 @@ msgstr "پاياود"
 
 #: simulation/templates/structures/pers_dock.xml:12
 msgid "Nāvašta"
-msgstr ""
+msgstr "نافستى"
 
 #: simulation/templates/structures/pers_farmstead.xml:12
 msgid "Kaštašta"
-msgstr ""
+msgstr "كاستاستا"
 
 #: simulation/templates/structures/pers_field.xml:5
 msgid "Kaštrya"
@@ -1160,15 +1160,15 @@ msgstr "درِّب خيالة أبطال وأنشئ مدقات حصار."
 
 #: simulation/templates/structures/pers_hall.xml:28
 msgid "Persian Hall"
-msgstr ""
+msgstr "قاعة فارسية"
 
 #: simulation/templates/structures/pers_hall.xml:29
 msgid "Duvarthi Visadahyu"
-msgstr ""
+msgstr "ديفادى فيزدهالهو"
 
 #: simulation/templates/structures/pers_hall.xml:31
 msgid "Train War Elephants and Kardakes mercenaries."
-msgstr ""
+msgstr "درب فيلة حرب ومرتزقة كركيدون"
 
 #: simulation/templates/structures/pers_house.xml:9
 msgid "Huvādā"
@@ -1186,15 +1186,15 @@ msgstr "بوابة عشتار لبابل"
 msgid ""
 "Increases the loyalty regeneration of nearby structures, making them harder "
 "to capture."
-msgstr ""
+msgstr "يزيد أعادة الولاء للمباني القريبة, ويجعلها أصعب للاحتلال."
 
 #: simulation/templates/structures/pers_market.xml:12
 msgid "Ardatašta"
-msgstr ""
+msgstr "أرديتاستا"
 
 #: simulation/templates/structures/pers_outpost.xml:5
 msgid "Didebani"
-msgstr ""
+msgstr "ديباني"
 
 #: simulation/templates/structures/pers_stables.xml:18
 msgid "Cavalry Stables"
@@ -1206,7 +1206,7 @@ msgstr "پاراسپا"
 
 #: simulation/templates/structures/pers_stables.xml:20
 msgid "Stables"
-msgstr ""
+msgstr "أسطبلات"
 
 #: simulation/templates/structures/pers_stables.xml:22
 msgid "Train citizen-cavalry units."
@@ -1218,11 +1218,11 @@ msgstr "أسياه"
 
 #: simulation/templates/structures/pers_tacara.xml:27
 msgid "Taçara"
-msgstr ""
+msgstr "تاكارا"
 
 #: simulation/templates/structures/pers_temple.xml:12
 msgid "Ayadana"
-msgstr ""
+msgstr "ايادانا"
 
 #: simulation/templates/structures/pers_wall.xml:9
 #: simulation/templates/structures/pers_wall_long.xml:29
@@ -1234,7 +1234,7 @@ msgstr "پارا"
 
 #: simulation/templates/structures/pers_wall_gate.xml:9
 msgid "Duvitaparnam"
-msgstr ""
+msgstr "ديفتاربانام"
 
 #: simulation/templates/structures/pers_wonder.xml:12
 msgid "Hanging Gardens of Babylon"
@@ -1242,13 +1242,13 @@ msgstr "حدائق بابل المعلقة"
 
 #: simulation/templates/structures/ptol_barracks.xml:17
 msgid "ḥwt-n-mš'"
-msgstr ""
+msgstr "ḥwt-n-mš'"
 
 #: simulation/templates/structures/ptol_barracks.xml:18
 msgid ""
 "Train Egyptian and Middle-Eastern citizen-soldiers. Research training "
 "improvements."
-msgstr ""
+msgstr "درب جنودا مدنيين مصريين وشرق أوسطي . طور تقنيات التدريب. "
 
 #: simulation/templates/structures/ptol_civil_centre.xml:12
 msgid "pr-'a"
@@ -1256,33 +1256,33 @@ msgstr "بر عا - قصر الفرعون"
 
 #: simulation/templates/structures/ptol_corral.xml:19
 msgid "h-n-ssmt.w"
-msgstr ""
+msgstr "h-n-ssmt.w"
 
 #: simulation/templates/structures/ptol_defense_tower.xml:9
 msgid "mktr-n-ḏw"
-msgstr ""
+msgstr "mktr-n-ḏw"
 
 #: simulation/templates/structures/ptol_dock.xml:12
 msgid "ḥwt-n-dpt.w"
-msgstr ""
+msgstr "ḥwt-n-dpt.w"
 
 #: simulation/templates/structures/ptol_farmstead.xml:19
 msgid "pr-n-t"
-msgstr ""
+msgstr "pr-n-t"
 
 #: simulation/templates/structures/ptol_fortress.xml:9
 msgid "mktr-'a"
-msgstr ""
+msgstr "mktr-'a"
 
 #: simulation/templates/structures/ptol_house.xml:19
 msgid "ḥwt"
-msgstr ""
+msgstr "ḥwt"
 
 #: simulation/templates/structures/ptol_house.xml:20
 msgid ""
 "Increase the population limit. Since they are made of mud brick, Egyptian "
 "houses are free of cost, but are very weak."
-msgstr ""
+msgstr "زيادة الحد السكانى. لانها مصنوعة من قوالب الطين، المنازل المصرية مجانية للبناء، لكنها فى المقابل ضعيفة جدا."
 
 #: simulation/templates/structures/ptol_lighthouse.xml:17
 msgid "Lighthouse"
@@ -1290,69 +1290,69 @@ msgstr "منارة"
 
 #: simulation/templates/structures/ptol_lighthouse.xml:18
 msgid "Pháros"
-msgstr ""
+msgstr "منارة الاسكندرية"
 
 #: simulation/templates/structures/ptol_lighthouse.xml:21
 msgid ""
 "Build along the shore to reveal the shorelines over the entire map. Very "
 "large vision range: 180 meters."
-msgstr ""
+msgstr "ابنيها على طول الشاطئ لكي تكشف خط الشاطئ على الخريطة كلها. مجال الرؤية كبير جدا:180 متر"
 
 #: simulation/templates/structures/ptol_market.xml:9
 msgid "ḥwt-n-ḫt.w-wḫa.w"
-msgstr ""
+msgstr "ḥwt-n-ḫt.w-wḫa.w"
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:29
 msgid "Mercenary Camp"
-msgstr ""
+msgstr "مخيم المرتزقة"
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:30
 msgid "Stratopedeía Misthophórōn"
-msgstr ""
+msgstr "ستربوديا مستفون"
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:33
 msgid ""
 "Cheap barracks-like structure that is buildable in neutral territory, but "
 "casts no territory influence. Train Mercenaries."
-msgstr ""
+msgstr "ثكنات رخيصة مثل المبنى الذى يبنى فى منطقة طبيعية، لكن لا يتطلب سيطره مكانية. يدرب المرتزقة."
 
 #: simulation/templates/structures/ptol_military_colony.xml:10
 msgid "Klēroukhia"
-msgstr ""
+msgstr "كلانكوريا"
 
 #: simulation/templates/structures/ptol_military_colony.xml:12
 msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other"
 " factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster. Train settler-soldiers of various nationalities."
-msgstr ""
+msgstr "هذا مبنى توسيع بطلمي ، يشبه المبنى المدني للقبائل الأخرى. لكنه أضعف ويحمل سيطرة على المناطق أقل، لكنه ارخص ويبنى أسرع. يدرب العاملين-الجنود من جنسيات مختلفة."
 
 #: simulation/templates/structures/ptol_outpost.xml:5
 msgid "mktr-n-ḫt"
-msgstr ""
+msgstr "mktr-n-ḫt"
 
 #: simulation/templates/structures/ptol_storehouse.xml:18
 msgid "h-n-ḫt.w"
-msgstr ""
+msgstr "h-n-ḫt.w"
 
 #: simulation/templates/structures/ptol_wall_gate.xml:9
 msgid "sba-n-njwt"
-msgstr ""
+msgstr "sba-n-njwt"
 
 #: simulation/templates/structures/ptol_wall_long.xml:30
 #: simulation/templates/structures/ptol_wall_medium.xml:24
 #: simulation/templates/structures/ptol_wall_short.xml:11
 #: simulation/templates/structures/ptol_wallset_stone.xml:5
 msgid "h-n-njwt"
-msgstr ""
+msgstr "h-n-njwt"
 
 #: simulation/templates/structures/ptol_wall_tower.xml:9
 msgid "mktr"
-msgstr ""
+msgstr "mktr"
 
 #: simulation/templates/structures/ptol_wonder.xml:15
 msgid "Temple of Edfu"
-msgstr ""
+msgstr "معبد إدفو"
 
 #: simulation/templates/structures/rome_arch.xml:22
 msgid "Triumphal Arch"
@@ -1368,7 +1368,7 @@ msgstr "معسكر جيش مطوق بخندق"
 
 #: simulation/templates/structures/rome_army_camp.xml:60
 msgid "Castrum Vallum"
-msgstr ""
+msgstr "معسكر روماني"
 
 #: simulation/templates/structures/rome_army_camp.xml:63
 msgid ""
@@ -1378,59 +1378,59 @@ msgstr "ابنه في أي مكان على الخريطة، حتى في أراض
 
 #: simulation/templates/structures/rome_barracks.xml:18
 msgid "Castrum"
-msgstr ""
+msgstr "معسكر محصن"
 
 #: simulation/templates/structures/rome_blacksmith.xml:5
 msgid "Armamentarium"
-msgstr ""
+msgstr "أدوات التسليح"
 
 #: simulation/templates/structures/rome_civil_centre.xml:12
 msgid "Forum"
-msgstr "فورم"
+msgstr "المنتدى"
 
 #: simulation/templates/structures/rome_corral.xml:12
 msgid "Saeptum"
-msgstr "سپتم"
+msgstr "الحواجز"
 
 #: simulation/templates/structures/rome_defense_tower.xml:9
 msgid "Turris Lignea"
-msgstr ""
+msgstr "برج دفاعى"
 
 #: simulation/templates/structures/rome_dock.xml:12
 msgid "Portus"
-msgstr ""
+msgstr "مرفأ"
 
 #: simulation/templates/structures/rome_farmstead.xml:12
 msgid "Villa"
-msgstr "ڤييا"
+msgstr "فيلا"
 
 #: simulation/templates/structures/rome_field.xml:5
 msgid "Ager"
-msgstr ""
+msgstr "اجير"
 
 #: simulation/templates/structures/rome_fortress.xml:5
 msgid "Castellum"
-msgstr "كاستيلوم"
+msgstr "قلعة صفيرة"
 
 #: simulation/templates/structures/rome_house.xml:5
 msgid "Domus"
-msgstr "دوموس"
+msgstr "منزل طبقة عالية "
 
 #: simulation/templates/structures/rome_market.xml:12
 msgid "Mercatus"
-msgstr "ميركاتوس"
+msgstr "المتجر"
 
 #: simulation/templates/structures/rome_outpost.xml:5
 msgid "Vigilarium"
-msgstr ""
+msgstr "برج السور"
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:25
 msgid "Siege Wall Gate"
-msgstr "بوابة سور حصار"
+msgstr "بوابة سور الحصار"
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:26
 msgid "Porta Circummunitionis"
-msgstr ""
+msgstr "باب الحصار"
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:51
 #: simulation/templates/structures/rome_siege_wall_medium.xml:45
@@ -1443,7 +1443,7 @@ msgstr "سور حصار"
 #: simulation/templates/structures/rome_siege_wall_medium.xml:46
 #: simulation/templates/structures/rome_siege_wall_short.xml:33
 msgid "Murus Circummunitionis"
-msgstr ""
+msgstr "جدار الحصار العظيم"
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:55
 #: simulation/templates/structures/rome_siege_wall_medium.xml:49
@@ -1458,7 +1458,7 @@ msgstr "برج سور حصار"
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:32
 msgid "Turris Circummunitionis"
-msgstr ""
+msgstr "برج الحصار"
 
 #: simulation/templates/structures/rome_storehouse.xml:5
 msgid "Receptaculum"
@@ -1470,23 +1470,23 @@ msgstr "إيديس"
 
 #: simulation/templates/structures/rome_temple_mars.xml:12
 msgid "Temple of Mars"
-msgstr "هيكل مارس"
+msgstr "منتدى أغسطس"
 
 #: simulation/templates/structures/rome_temple_mars.xml:13
 msgid "Aedes Martis"
-msgstr ""
+msgstr "أديس مارتيس"
 
 #: simulation/templates/structures/rome_temple_mars.xml:15
 msgid "Train healers. Garrison units to heal them at a quick rate."
-msgstr ""
+msgstr "يدرب المعالجين. ادخل الوحدات لكي تعالجهم بسرعه."
 
 #: simulation/templates/structures/rome_temple_vesta.xml:15
 msgid "Temple of Vesta"
-msgstr "هيكل ڤستا"
+msgstr "معبد فيستا"
 
 #: simulation/templates/structures/rome_temple_vesta.xml:17
 msgid "Aedes Vestae"
-msgstr ""
+msgstr "أديس فيستا"
 
 #: simulation/templates/structures/rome_tent.xml:29
 msgid "Tent"
@@ -1494,11 +1494,11 @@ msgstr "خيمة"
 
 #: simulation/templates/structures/rome_tent.xml:30
 msgid "Tabernāculum"
-msgstr ""
+msgstr "تابرنكيلم"
 
 #: simulation/templates/structures/rome_tent.xml:32
 msgid "A temporary shelter for soldiers."
-msgstr ""
+msgstr "مؤى مؤقت للجنود."
 
 #: simulation/templates/structures/rome_wall.xml:9
 #: simulation/templates/structures/rome_wall_long.xml:29
@@ -1506,27 +1506,27 @@ msgstr ""
 #: simulation/templates/structures/rome_wall_short.xml:10
 #: simulation/templates/structures/rome_wallset_stone.xml:5
 msgid "Moenia"
-msgstr "مينيا"
+msgstr "موينيا"
 
 #: simulation/templates/structures/rome_wall_gate.xml:9
 msgid "Porta"
-msgstr ""
+msgstr "باب"
 
 #: simulation/templates/structures/rome_wall_tower.xml:9
 msgid "Turris Lapidea"
-msgstr ""
+msgstr "برج حجرى"
 
 #: simulation/templates/structures/rome_wallset_siege.xml:6
 msgid "Murus Latericius"
-msgstr ""
+msgstr "ميورس لاتيرتوس"
 
 #: simulation/templates/structures/rome_wonder.xml:13
 msgid "Aedes Iovis Optimi Maximi"
-msgstr ""
+msgstr "معبد جوبيتر كابيتولينوس"
 
 #: simulation/templates/structures/sele_barracks.xml:18
 msgid "Stratones"
-msgstr ""
+msgstr "ستارتونز"
 
 #: simulation/templates/structures/sele_blacksmith.xml:5
 msgid "Sidirourgeíon"
@@ -1538,7 +1538,7 @@ msgstr "أجورا"
 
 #: simulation/templates/structures/sele_dock.xml:12
 msgid "Liménas"
-msgstr ""
+msgstr "ليمنس"
 
 #: simulation/templates/structures/sele_farmstead.xml:12
 msgid "Sītobólion"
@@ -1546,17 +1546,17 @@ msgstr "سيتوبوليون"
 
 #: simulation/templates/structures/sele_fortress.xml:9
 msgid "Phrourion"
-msgstr ""
+msgstr "فيوريون"
 
 #: simulation/templates/structures/sele_fortress.xml:10
 msgid ""
 "Build siege engines and train Champions. Garrison soldiers inside for stout "
 "defense."
-msgstr ""
+msgstr "يبنى آلات الحصار ويدرب الابطال. حصن بالجنود للدفاع اقوى."
 
 #: simulation/templates/structures/sele_library.xml:9
 msgid "Bibliothikon"
-msgstr ""
+msgstr "بيبليثكون"
 
 #: simulation/templates/structures/sele_market.xml:5
 msgid "Empórion"
@@ -1567,23 +1567,23 @@ msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other "
 "factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster. Train settler-soldiers of various nationalities."
-msgstr ""
+msgstr "هذا مبنى توسيع سلوقى, مشابة الى المبانى الرئيسية للقبائل الاخرى. لكنه أضعف ويحمل مناطق سيطرة أقل، لكنه ارخص ويبنى بسرعه. يدرب العاملين-الجنود من جنسيات مختلفة."
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"
-msgstr ""
+msgstr "بروفلاكس"
 
 #: simulation/templates/structures/sele_temple.xml:9
 msgid "Naós"
-msgstr ""
+msgstr "ناوس"
 
 #: simulation/templates/structures/sele_wonder.xml:12
 msgid "Temple of Pythian Apollo"
-msgstr ""
+msgstr "معبد أبولو البيثية"
 
 #: simulation/templates/structures/spart_fortress.xml:9
 msgid "Teíkhisma"
-msgstr ""
+msgstr "تيكشيما"
 
 #: simulation/templates/structures/spart_fortress.xml:10
 msgid ""
@@ -1596,7 +1596,7 @@ msgstr "مجلس شيوخ أسبارطي"
 
 #: simulation/templates/structures/spart_gerousia.xml:22
 msgid "Gerontía"
-msgstr ""
+msgstr "جيرونتيا"
 
 #: simulation/templates/structures/spart_gerousia.xml:23
 msgid "Train heroes."
@@ -1608,7 +1608,7 @@ msgstr "صالة طعام عسكرية"
 
 #: simulation/templates/structures/spart_syssiton.xml:25
 msgid "Syssítion"
-msgstr ""
+msgstr "سيستون"
 
 #: simulation/templates/structures/spart_syssiton.xml:27
 msgid "Train Spartan heroes and Spartiate champion hoplites."
@@ -1618,4 +1618,4 @@ msgstr "درِّب الخارقين الأسبارطيين وهوبليت أبط
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at a quick rate."
-msgstr ""
+msgstr "يحضر العظمة إلى حضارتنا ويضيف مناطق شاسعة من الأرض إلى امبراطوريتنا. حصن بالوحدات لكى تعالجهم بسرعه."

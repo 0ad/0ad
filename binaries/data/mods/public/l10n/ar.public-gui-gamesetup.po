@@ -8,6 +8,7 @@
 # Majid Al-Dharrab, 2014
 # mustapha ali abdulkarim <baghdadhost@gmail.com>, 2014
 # Rayan <nitro361@gmail.com>, 2015
+# Omar Anwar <omaraglan91@yahoo.com>, 2017
 # Rayan <nitro361@gmail.com>, 2015
 # Safa Alfulaij <safa1996alfulaij@gmail.com>, 2014
 # slimkhan, 2014
@@ -18,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-12-23 11:16+0100\n"
-"PO-Revision-Date: 2017-01-29 23:51+0000\n"
-"Last-Translator: abdelbaseer shaheen <abdelbaseershaheen4553@gmail.com>\n"
+"PO-Revision-Date: 2017-02-15 22:04+0000\n"
+"Last-Translator: Omar Anwar <omaraglan91@yahoo.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -99,7 +100,7 @@ msgstr "خرائط جديدة "
 
 #: gui/gamesetup/gamesetup.js:90
 msgid "Trigger Maps"
-msgstr ""
+msgstr "خريطة اثرية"
 
 #: gui/gamesetup/gamesetup.js:95
 msgid "All Maps"
@@ -171,12 +172,12 @@ msgstr "لاعب غير معروف"
 #: gui/gamesetup/gamesetup.js:1824
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/gamesetup/gamesetup.js:1825
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #: gui/gamesetup/gamesetup.js:1826
 msgid "HH:mm"
@@ -227,7 +228,7 @@ msgstr "اسم اللعبة مُستخدم بالفعل."
 #: gui/gamesetup/gamesetup_mp.js:292
 #, javascript-format
 msgid "Cannot host game: %(message)s."
-msgstr "لا تستطيع استضافة اللعبه %(message)s"
+msgstr "لا تستطيع استضافة اللعبة: %(message)s"
 
 #: gui/gamesetup/gamesetup_mp.js:293 gui/gamesetup/gamesetup_mp.js:322
 msgid "Error"
@@ -236,7 +237,7 @@ msgstr "خطأ"
 #: gui/gamesetup/gamesetup_mp.js:321
 #, javascript-format
 msgid "Cannot join game: %(message)s."
-msgstr ""
+msgstr "لايمكن الدخول للعبة: %(message)s."
 
 #: gui/gamesetup/gamesetup_mp.js:346
 #, javascript-format
@@ -423,7 +424,7 @@ msgstr "اعد تعين كل الفرق الى الخيار الافتراضى "
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):108
 msgid "Pick a color."
-msgstr ""
+msgstr "أختر لون."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):111
 msgid "Select player."
@@ -480,7 +481,7 @@ msgstr "اختر شرط النّصر."
 #: gui/gamesetup/gamesetup.xml:(tooltip):346
 msgid ""
 "Number of minutes that the player has to keep the wonder in order to win."
-msgstr ""
+msgstr "عدد الدقائق التي على اللاعب إبقاء الأعجوبة ليفوز."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):356
 msgid "Select population cap."
@@ -492,19 +493,19 @@ msgstr "اختر موارد بدء اللعبة."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):376
 msgid "Set time where no attacks are possible."
-msgstr ""
+msgstr "ضع الوقت حيث لا يمكن الهجوم خلاله."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:(tooltip):386
 msgid "Toggle revealed map (see everything)."
-msgstr "كشفت تبديل الخريطة (ترى كل شيء)."
+msgstr "رجح الخرائط المظهرة(ترى كل شيء)."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:(tooltip):396
 msgid "Toggle explored map (see initial map)."
-msgstr ""
+msgstr "رجح الخرائط المكتشفة(رؤيه الخرائط الأولية)."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):406
 msgid "Disable all treasures on the map."
@@ -518,7 +519,7 @@ msgstr "بدّل قفل الفِرق."
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
-msgstr ""
+msgstr "رجح اللاعب الأخير أو الحلفاء الباقين هم الفائزون."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):436
 msgid "Toggle the usability of cheats."
@@ -569,7 +570,7 @@ msgstr "تابع"
 #: gui/gamesetup/gamesetup_mp.xml:(tooltip):54
 #: gui/gamesetup/gamesetup_mp.xml:(tooltip):101
 msgid "Leave blank to use the default port."
-msgstr ""
+msgstr "أتركها فارغة لكي تستعمل المنفذ الافتراضي."
 
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"
@@ -583,7 +584,7 @@ msgstr "\"الجاهل الناجح هو عبء جسيم.\" - إسخيلوس"
 msgid ""
 "\"From him \\[Death] alone of all the powers of heaven Persuasion holds "
 "aloof.\" - Aeschylus"
-msgstr ""
+msgstr "\"من له [الموت]/ وحده من كل قوى السماء الإقناع يبقى بمعزل.\" - إسخيلوس"
 
 #: gui/text/quotes.txt:3
 msgid "\"To be rather than to seem.\" - Aeschylus, \"Seven Against Thebes\""
@@ -609,7 +610,7 @@ msgstr "\"الوقت وهو يَكْبُر يُعلِّم كلّ شيء.\" - إ�
 msgid ""
 "\"Wisdom comes through suffering... Favours come to us from gods.\" - "
 "Aeschylus, \"Agamemnon\""
-msgstr ""
+msgstr "\"الحكمة تأتى من المعاناة... التفضيل يأتي من الرب.\" -إسخيلوس, \"أجاممنون\""
 
 #: gui/text/quotes.txt:8
 msgid ""
@@ -1419,21 +1420,21 @@ msgstr ""
 
 #: gui/text/quotes.txt:161
 msgid "\"Numbers rule the Universe.\" - Pythagoras"
-msgstr ""
+msgstr "\"\"الأرقام تحكُم الكّون.\" - فيثاغورس"
 
 #: gui/text/quotes.txt:162
 msgid ""
 "\"Rest satisfied with doing well, and leave others to talk of you as they "
 "please.\" - Pythagoras"
-msgstr ""
+msgstr "\"استِرح راضياً على ما يرام، واترك الآخرين يتكلمون عنك كما يشاؤون.\" - فيثاغورس"
 
 #: gui/text/quotes.txt:163
 msgid "\"Anger begins in folly, and ends in repentance.\" - Pythagoras"
-msgstr ""
+msgstr "\"الغضب يبدأ بحماقة، وينتهي بحسرة.\" - فيثاغورس"
 
 #: gui/text/quotes.txt:164
 msgid "\"There is no word or action but has its echo in Eternity.\" - Pythagoras"
-msgstr ""
+msgstr "\"ليس هناك كلمة او عمل ليس لديه صدى فى الابدية.\" - فيثاغورس"
 
 #: gui/text/quotes.txt:165
 msgid ""
@@ -1455,7 +1456,7 @@ msgstr "\"أبدًا لا تفكّر بفعل ما يجب ألّا يُفعل.\"
 msgid ""
 "\"When the wise man opens his mouth, the beauties of his soul present "
 "themselves to the view, like the statues in a temple.\" - Pythagoras"
-msgstr ""
+msgstr "\"عندما يفتح الرجل الحكيم فمه، جمال روحه تقدم نفسها للناظرين، مثل التماثيل فى متحف.\" - فيثاغورس"
 
 #: gui/text/quotes.txt:169
 msgid ""
@@ -1466,7 +1467,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:170
 msgid "\"Without Justice, no realm may prosper.\" - Pythagoras"
-msgstr ""
+msgstr "\"من غير العدل، لا مملكة يمكنها الازدهار.\" - فيثاغورس"
 
 #: gui/text/quotes.txt:171
 msgid ""
@@ -1485,7 +1486,7 @@ msgstr ""
 msgid ""
 "\"Prepare for war, since you have been unable to endure a peace.\" - Scipio "
 "Africanus"
-msgstr ""
+msgstr "\"جهز من أجل الحرب، حالما لا يمكنك إبرام السلام .\" - سكيبيو الإفريقي"
 
 #: gui/text/quotes.txt:174
 msgid ""
