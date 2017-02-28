@@ -107,6 +107,11 @@ var g_SelectedGameIP = "";
 var g_SelectedGamePort = "";
 
 /**
+ * Whether the current user has been kicked or banned.
+ */
+var g_Kicked = false;
+
+/**
  * Notifications sent by XmppClient.cpp
  */
 var g_NetMessageTypes = {
@@ -117,22 +122,24 @@ var g_NetMessageTypes = {
 		"connected": msg => {
 		},
 		"disconnected": msg => {
+
 			updateGameList();
 			updateLeaderboard();
 			updatePlayerList();
-			Engine.GetGUIObjectByName("hostButton").enabled = false;
 
-			addChatMessage({
-				"from": "system",
-				"text": translate("Disconnected.") + msg.text,
-				"color": g_SystemColor
-			});
+			for (let button of ["host", "leaderboard", "userprofile"])
+				Engine.GetGUIObjectByName(button + "Button").enabled = false;
+
+			if (!g_Kicked)
+				addChatMessage({
+					"from": "system",
+					"text": translate("Disconnected.") + " " + msg.text
+				});
 		},
 		"error": msg => {
 			addChatMessage({
 				"from": "system",
-				"text": msg.text,
-				"color": g_SystemColor
+				"text": msg.text
 			});
 		}
 	},
@@ -156,6 +163,9 @@ var g_NetMessageTypes = {
 				}),
 				"isSpecial": true
 			});
+
+			if (msg.text == g_Username)
+				Engine.DisconnectXmppClient();
 		},
 		"presence": msg => {
 		},
@@ -167,6 +177,12 @@ var g_NetMessageTypes = {
 				}),
 				"isSpecial": true
 			});
+		},
+		"kicked": msg => {
+			handleKick(false, msg.text, msg.data || "");
+		},
+		"banned": msg => {
+			handleKick(true, msg.text, msg.data || "");
 		},
 		"room-message": msg => {
 			addChatMessage({
@@ -193,6 +209,46 @@ var g_NetMessageTypes = {
 		"ratinglist": msg => updatePlayerList()
 	}
 };
+
+function handleKick(banned, nick, reason)
+{
+	let kickString = nick == g_Username ?
+		banned ?
+			translate("You have been banned from the lobby!") :
+			translate("You have been kicked from the lobby!") :
+		banned ?
+			translate("%(nick)s has been banned from the lobby.") :
+			translate("%(nick)s has been kicked from the lobby.");
+
+	if (reason)
+		reason = sprintf(translateWithContext("lobby kick", "Reason: %(reason)s"), {
+			"reason": reason
+		});
+
+	if (nick != g_Username)
+	{
+		addChatMessage({
+			"text": "/special " + sprintf(kickString, { "nick": nick }) + " " + reason,
+			"isSpecial": true
+		});
+		return;
+	}
+
+	addChatMessage({
+		"from": "system",
+		"text": kickString + " " + reason,
+	});
+
+	g_Kicked = true;
+
+	Engine.DisconnectXmppClient();
+
+	messageBox(
+		400, 250,
+		kickString + "\n" + reason,
+		banned ? translate("BANNED") : translate("KICKED")
+	);
+}
 
 /**
  * Called after the XmppConnection succeeded and when returning from a game.
@@ -785,7 +841,8 @@ function handleSpecialCommand(text)
 	if (text[0] != '/')
 		return false;
 
-	let [cmd, nick] = ircSplit(text);
+	let [cmd, args] = ircSplit(text);
+	let [nick, reason] = ircSplit("/" + args);
 
 	switch (cmd)
 	{
@@ -796,11 +853,10 @@ function handleSpecialCommand(text)
 		Engine.LobbySetPlayerPresence("available");
 		break;
 	case "kick":
-		// TODO: Split reason from nick and pass it too
-		Engine.LobbyKick(nick, "");
+		Engine.LobbyKick(nick, reason);
 		break;
 	case "ban":
-		Engine.LobbyBan(nick, "");
+		Engine.LobbyBan(nick, reason);
 		break;
 	case "quit":
 		returnToMainMenu();
@@ -859,7 +915,6 @@ function addChatMessage(msg)
 	Engine.GetGUIObjectByName("chatText").caption = g_ChatMessages.join("\n");
 }
 
-
 /**
  * Splits given input into command and argument.
  */
@@ -882,11 +937,7 @@ function ircSplit(string)
 function ircFormat(msg)
 {
 	let formattedMessage = "";
-
-	let coloredFrom = !msg.from ? "" :
-		msg.color ?
-			'[color="' + msg.color + '"]' + msg.from + "[/color]" :
-			colorPlayerName(msg.from);
+	let coloredFrom = msg.from && colorPlayerName(msg.from);
 
 	// Handle commands allowed past handleSpecialCommand.
 	if (msg.text[0] == '/')
@@ -1094,6 +1145,9 @@ function checkSpamMonitor()
  */
 function getPlayerColor(playername)
 {
+	if (playername == "system")
+		return g_SystemColor;
+
 	// Generate a probably-unique hash for the player name and use that to create a color.
 	let hash = 0;
 	for (let i in playername)

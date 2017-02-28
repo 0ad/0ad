@@ -88,7 +88,7 @@
 		</object>
 
 		<object name="leftButtonPanel" size="20 100%-75 20% 100%-20">
-			<object type="button" style="ModernButtonRed" size="0 0 100% 25">
+			<object name="leaderboardButton" type="button" style="ModernButtonRed" size="0 0 100% 25">
 				<translatableAttribute id="caption">Leaderboard</translatableAttribute>
 				<action on="Press">
 					Engine.SendGetBoardList();
@@ -97,7 +97,7 @@
 					displayProfile("leaderboard");
 				</action>
 			</object>
-			<object type="button" style="ModernButtonRed" size="0 30 100% 100%">
+			<object name="userprofileButton" type="button" style="ModernButtonRed" size="0 30 100% 100%">
 				<translatableAttribute id="caption">User Profile Lookup</translatableAttribute>
 				<action on="Press">
 					Engine.GetGUIObjectByName("profileFetch").hidden = false;

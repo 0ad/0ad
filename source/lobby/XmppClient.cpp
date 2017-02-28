@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -797,11 +797,24 @@ void XmppClient::handleMUCParticipantPresence(glooxwrapper::MUCRoom*, const gloo
 			m_PlayerMap[newNick][0] = presenceString;
 			m_PlayerMap[newNick][2] = roleString;
 			CreateGUIMessage("chat", "nick", nick, participant.newNick.to_string());
+			DbgXMPP(nick << " is now known as " << participant.newNick.to_string());
+		}
+		else if (participant.flags & gloox::UserKicked)
+		{
+			DbgXMPP(nick << " was kicked. Reason: " << participant.reason.to_string());
+			CreateGUIMessage("chat", "kicked", nick, participant.reason.to_string());
+		}
+		else if (participant.flags & gloox::UserBanned)
+		{
+			DbgXMPP(nick << " was banned. Reason: " << participant.reason.to_string());
+			CreateGUIMessage("chat", "banned", nick, participant.reason.to_string());
 		}
 		else
+		{
+			DbgXMPP(nick << " left the room (flags " << flags << participant.flags << ")");
 			CreateGUIMessage("chat", "leave", nick);
+		}
 
-		DbgXMPP(nick << " left the room");
 		m_PlayerMap.erase(nick);
 	}
 	else
