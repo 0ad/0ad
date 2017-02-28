@@ -146,7 +146,7 @@
 				</object>
 			</object>
 
-			<!--  -->
+			<!-- Right panel: Replay details -->
 			<object name="replayInfo" size="0 120 100% 100%-60" type="image" sprite="ModernDarkBoxGold" hidden="true">
 
 				<!-- Map Name Label -->
@@ -204,22 +204,22 @@
 				<object size="5 284 100%-5 285" type="image" sprite="ModernWhiteLine" z="25"/>
 
 				<!-- Map Description Text -->
-				<object type="image" sprite="ModernDarkBoxWhite" size="3% 290 97% 60%">
-					<object name="sgMapDescription" size="0 0 100% 100%" type="text" style="ModernText" font="sans-12"/>
+				<object type="image" sprite="ModernDarkBoxWhite" size="5 290 100%-5 40%+170">
+					<object name="sgMapDescription" size="0 1 100% 100%-1" type="text" style="ModernText" font="sans-12"/>
 				</object>
 
-				<object type="image" sprite="ModernDarkBoxWhite" size="3% 60%+5 97% 100%-30">
+				<object type="image" sprite="ModernDarkBoxWhite" size="5 40%+175 100%-5 100%-30">
 
 					<!-- Number of Players Caption-->
-					<object size="0% 3% 57% 12%" type="text" style="ModernRightLabelText">
+					<object size="0 3 57% 18" type="text" style="ModernRightLabelText">
 						<translatableAttribute id="caption">Players:</translatableAttribute>
 					</object>
 
 					<!-- Number of Players Label-->
-					<object name="sgNbPlayers" size="58% 3% 70% 12%" type="text" style="ModernLeftLabelText" text_align="left"/>
+					<object name="sgNbPlayers" size="58% 3 70% 18" type="text" style="ModernLeftLabelText" text_align="left"/>
 
 					<!-- Player Names -->
-					<object name="sgPlayersNames" size="0 15% 100% 100%" type="text" style="MapPlayerList"/>
+					<object name="sgPlayersNames" size="0 19 100% 100%-1" type="text" style="MapPlayerList"/>
 				</object>
 
 				<!-- "Show Spoiler" Checkbox -->
