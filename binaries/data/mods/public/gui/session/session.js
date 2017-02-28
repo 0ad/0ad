@@ -393,11 +393,9 @@ function updateHotkeyTooltips()
 		colorizeHotkey("%(hotkey)s" + " ", "selection.idleworker") +
 		translate("Find idle worker");
 
-	Engine.GetGUIObjectByName("tradeHelp").tooltip =
-		translate("Select one type of goods as origin of the changes, then use the arrows of the target type of goods to make the changes.") +
-		colorizeHotkey(
-			"\n" + translate("Using %(hotkey)s will put the selected resource to 100%%."),
-			"session.fulltradeswap");
+	Engine.GetGUIObjectByName("tradeHelp").tooltip = colorizeHotkey(
+		translate("Select one type of goods you want to modify by clicking on it (Pressing %(hotkey)s while selecting will also bring its share to 100%%) and then use the arrows of the other types to modify their shares."),
+		"session.fulltradeswap");
 }
 
 function initGUIHeroes(slot)
