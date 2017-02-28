@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity>
+  <Cost>
+    <Population>0</Population>
+    <PopulationBonus>0</PopulationBonus>
+    <BuildTime>0</BuildTime>
+    <Resources>
+      <food>0</food>
+      <wood>0</wood>
+      <stone>0</stone>
+      <metal>900</metal>
+    </Resources>
+  </Cost>
+  <Identity>
+    <Civ>gaia</Civ>
+    <Classes datatype="tokens">Spy</Classes>
+    <GenericName>Spy</GenericName>
+    <RequiredTechnology>unlock_spies</RequiredTechnology>
+  </Identity>
+  <VisionSharing>
+    <Bribable>false</Bribable>
+    <Duration>15</Duration>
+  </VisionSharing>
+</Entity>
