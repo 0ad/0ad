@@ -265,7 +265,8 @@ function displayReplayDetails()
 	Engine.GetGUIObjectByName("sgMapSize").caption = translateMapSize(replay.attribs.settings.Size);
 	Engine.GetGUIObjectByName("sgMapType").caption = translateMapType(replay.attribs.settings.mapType);
 	Engine.GetGUIObjectByName("sgVictory").caption = translateVictoryCondition(replay.attribs.settings.GameType);
-	Engine.GetGUIObjectByName("sgNbPlayers").caption = replay.attribs.settings.PlayerData.length;
+	Engine.GetGUIObjectByName("sgNbPlayers").caption = sprintf(translate("Players: %(numberOfPlayers)s"),
+		{ "numberOfPlayers": replay.attribs.settings.PlayerData.length });
 
 	let metadata = Engine.GetReplayMetadata(replay.directory);
 	Engine.GetGUIObjectByName("sgPlayersNames").caption =
