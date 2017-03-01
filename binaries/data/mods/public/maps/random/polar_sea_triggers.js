@@ -32,12 +32,6 @@ Trigger.prototype.SpawnWolvesAndAttack = function()
 	print("Spawned " + waveSize + " " + attackerTemplate + " at " + Object.keys(attackers).length + " points\n");
 
 	let targets = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).GetNonGaiaEntities().filter(ent => {
-
-		// TODO: This shouldn't occur by definition of GetNonGaiaEntities
-		let cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
-		if (cmpOwnership.GetOwner() == 0)
-			return false;
-
 		let cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
 		return cmpIdentity && MatchesClassList(cmpIdentity.GetClassesList(), targetClasses)
 	});
