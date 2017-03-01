@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -69,7 +69,7 @@ void JSI_Lobby::RegisterScriptFunctions(ScriptInterface& scriptInterface)
 
 bool JSI_Lobby::HasXmppClient(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
-	return (g_XmppClient ? true : false);
+	return g_XmppClient;
 }
 
 bool JSI_Lobby::IsRankedGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))

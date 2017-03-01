@@ -107,15 +107,15 @@ VisionSharing.prototype.OnOwnershipChanged = function(msg)
 VisionSharing.prototype.AddSpy = function(player, timeLength)
 {
 	if (!this.IsBribable())
-		return;
+		return 0;
 
 	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	if (!cmpOwnership || cmpOwnership.GetOwner() == player || player <= 0)
-		return;
+		return 0;
 
 	let cmpTechnologyManager = QueryPlayerIDInterface(player, IID_TechnologyManager);
 	if (!cmpTechnologyManager || !cmpTechnologyManager.CanProduce("special/spy"))
-		return;
+		return 0;
 
 	let template = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager).GetTemplate("special/spy");
 	let costs = {};
@@ -123,7 +123,7 @@ VisionSharing.prototype.AddSpy = function(player, timeLength)
 		costs[res] = Math.floor(ApplyValueModificationsToTemplate("Cost/Resources/"+res, +template.Cost.Resources[res], player, template));
 	let cmpPlayer = QueryPlayerIDInterface(player);
 	if (!cmpPlayer || !cmpPlayer.TrySubtractResources(costs))
-		return;
+		return 0;
 
 	// If no duration given, take it from the spy template and scale it with the ent vision
 	// When no duration argument nor in spy template, it is a permanent spy
