@@ -331,7 +331,7 @@ var g_NotificationsTypes =
 			"status": notification.status
 		});
 
-		updateDiplomacy();
+		updatePlayerData();
 	},
 	"tribute": function(notification, player)
 	{
@@ -512,14 +512,6 @@ function handleNotifications()
 		for (let player of notification.players)
 			g_NotificationsTypes[notification.type](notification, player);
 	}
-}
-
-/**
- * Updates playerdata cache and refresh diplomacy panel.
- */
-function updateDiplomacy()
-{
-	updatePlayerData();
 }
 
 /**

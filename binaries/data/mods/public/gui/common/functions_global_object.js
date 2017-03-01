@@ -115,10 +115,7 @@ function updateCounters()
 			}
 		}
 		else if (!diplomacyCeasefireCounter.hidden)
-		{
 			diplomacyCeasefireCounter.hidden = true;
-			updateDiplomacy();
-		}
 
 		g_ResearchListTop = 4;
 		if (linesCount)

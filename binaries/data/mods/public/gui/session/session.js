@@ -521,7 +521,7 @@ function playerFinished(player, won)
 	if (player == Engine.GetPlayerID())
 		reportGame();
 
-	updateDiplomacy();
+	updatePlayerData();
 	updateChatAddressees();
 
 	if (player != g_ViewedPlayer)
@@ -846,7 +846,7 @@ function updateGUIObjects()
 			global.music.setState(global.music.states[battleState]);
 	}
 
-	updateDiplomacyPanel();
+	updateDiplomacy();
 }
 
 function onReplayFinished()

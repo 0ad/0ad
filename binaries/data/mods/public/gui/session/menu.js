@@ -314,10 +314,10 @@ function openDiplomacy()
 
 	g_IsDiplomacyOpen = true;
 
-	updateDiplomacyPanel(true);
+	updateDiplomacy(true);
 }
 
-function updateDiplomacyPanel(opening = false)
+function updateDiplomacy(opening = false)
 {
 	if (g_ViewedPlayer < 1 || !g_IsDiplomacyOpen)
 		return;
