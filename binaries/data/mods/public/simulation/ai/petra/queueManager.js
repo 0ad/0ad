@@ -426,7 +426,7 @@ m.QueueManager.prototype.checkPausedQueues = function(gameState)
 			toBePaused = (q !== "citizenSoldier" && q !== "villager" && q !== "emergency");
 		else if (numWorkers < workersMin * 2 / 3)
 			toBePaused = (q === "civilCentre" || q === "economicBuilding" ||
-				q === "militaryBuilding" || q === "defenseBuilding" ||
+				q === "militaryBuilding" || q === "defenseBuilding" || q === "healer" ||
 				q === "majorTech" || q === "minorTech" || q.indexOf("plan_") !== -1);
 		else if (numWorkers < workersMin)
 			toBePaused = (q === "civilCentre" || q === "defenseBuilding" ||
