@@ -55,14 +55,20 @@ Create an ACL for the bot (or bots):
 Add an access rule (name it `ipbots` since that is what the module expects):
     {access, ipbots, [{allow, bots}]}.
 
+Due to the amount of traffic the bot may process, give the group containing bots either unlimited or a very high traffic shaper.
+    {access, c2s_shaper, [{none, admin},
+                      {none, bots},
+                      {normal, all}]}.
+
+
 MUC room setup
 ==============
 To enable the bot to send the game list to players it needs the JIDs of the players, so the room should be configured as such. In case that you want to host multiple lobby rooms adding an ACL for MUC admins to which the bots are added, which is used for `access_admin` in the `mod_muc` configuration would be advisable.
 
 Run XpartaMuPP - XMPP Multiplayer Game Manager
 ==============================================
-You need to have python 3 and SleekXmpp installed (tested for 1.0-beta5)
-    $ sudo apt-get install python3 python3-sleekxmpp
+You need to have python 3 and SleekXmpp installed (tested for 1.3.1, not compatible with 1.0-beta5). You will most likely need to use pip to install 1.3.1, as it is not in most default repositories.
+    $ sudo apt-get install python3
 
 If you would like to run the leaderboard database,
     $ sudo apt-get install python3-sqlalchemy
@@ -70,10 +76,12 @@ If you would like to run the leaderboard database,
 Then execute the following command to setup the database.
     $ python3 LobbyRanking.py
 
-Execute the following command to run the bot with default options
+Execute the following command to run the bot with default options:
     $ python3 XpartaMuPP.py
-or rather a similar command to run a properly configured program
+or rather a similar command to run a properly configured program:
     $ python3 XpartaMuPP.py --domain localhost --login wfgbot --password XXXXXX --nickname WFGbot --room arena
+or if you want to run XpartaMuPP with the corresponding rating bot detailed in the next section:
+    $ python3 XpartaMuPP.py --domain localhost --login wfgbot --password XXXXXX --nickname WFGbot --room arena --elo echelonBot
 
 Run `python3 XpartaMuPP.py --help` for the full list of options
 
@@ -85,6 +93,10 @@ If everything is fine you should see something along these lines in your console
 
 Congratulations, you are running XpartaMuPP - the 0ad Multiplayer Game Manager.
 
-Rating bot
+Run EcheLOn - XMPP Rating Bot
 ==========
-TODO
+This bot can be thought of as a module of XpartaMuPP in that IQs stanzas sent to XpartaMuPP are forwarded onto EcheLOn if its corresponding EcheLOn is online and ignored otherwise. This is by no means necessary for the operation of a lobby in terms of creating/joining/listing games.
+EcheLOn handles all aspects of operation related to ELO.
+
+To run EcheLOn:
+    $ python3 EcheLOn.py --domain localhost --login echelon --password XXXXXX --nickname Ratings --room arena
