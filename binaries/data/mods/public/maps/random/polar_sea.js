@@ -92,7 +92,7 @@ for (let i = 0; i < numPlayers; ++i)
 	let painter = new LayeredPainter([tRoadWild, tRoad], [1]);
 	createArea(placer, painter, null);
 
-	placeCivDefaultEntities(fx, fz, id);
+	placeCivDefaultEntities(fx, fz, id, { 'iberWall': 'towers' });
 
 	placeDefaultChicken(fx, fz, clBaseResource, undefined, oMuskox);
 
