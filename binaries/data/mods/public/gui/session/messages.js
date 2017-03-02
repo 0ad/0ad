@@ -882,7 +882,7 @@ function formatTributeMessage(msg)
 	if (msg.targetPlayer == Engine.GetPlayerID())
 		message = translate("%(player)s has sent you %(amounts)s.");
 	else if (msg.sourcePlayer == Engine.GetPlayerID())
-		message = translate("You have sent %(player2)s %(amounts)s.")
+		message = translate("You have sent %(player2)s %(amounts)s.");
 	else if (Engine.ConfigDB_GetValue("user", "gui.session.notifications.tribute") == "true" &&
 	        (g_IsObserver || g_GameAttributes.settings.LockTeams &&
 	           g_Players[msg.sourcePlayer].isMutualAlly[Engine.GetPlayerID()] &&
