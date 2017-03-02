@@ -330,7 +330,10 @@ var g_NotificationsTypes =
 			"targetPlayer": notification.targetPlayer,
 			"status": notification.status
 		});
-
+		updatePlayerData();
+	},
+	"ceasefire-ended": function(notification, player)
+	{
 		updatePlayerData();
 	},
 	"tribute": function(notification, player)
