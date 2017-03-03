@@ -1278,6 +1278,33 @@ function showTimeWarpMessageBox()
 }
 
 /**
+ * Adds the ingame time and ceasefire counter to the global FPS and
+ * realtime counters shown in the top right corner.
+ */
+function appendSessionCounters(counters)
+{
+	let simState = GetSimState();
+
+	if (Engine.ConfigDB_GetValue("user", "gui.session.timeelapsedcounter") === "true")
+	{
+		let currentSpeed = Engine.GetSimRate();
+		if (currentSpeed != 1.0)
+			// Translation: The "x" means "times", with the mathematical meaning of multiplication.
+			counters.push(sprintf(translate("%(time)s (%(speed)sx)"), {
+				"time": timeToString(simState.timeElapsed),
+				"speed": Engine.FormatDecimalNumberIntoString(currentSpeed)
+			}));
+		else
+			counters.push(timeToString(simState.timeElapsed));
+	}
+
+	if (simState.ceasefireActive && Engine.ConfigDB_GetValue("user", "gui.session.ceasefirecounter") === "true")
+		counters.push(timeToString(simState.ceasefireTimeRemaining));
+
+	g_ResearchListTop = 4 + 14 * counters.length;
+}
+
+/**
  * Send the current list of players, teams, AIs, observers and defeated/won and offline states to the lobby.
  * The playerData format from g_GameAttributes is kept to reuse the GUI function presenting the data.
  */

@@ -63,69 +63,27 @@ function openURL(url)
 
 function updateCounters()
 {
-	var caption = "";
-	var linesCount = 0;
-	var researchCount = 0;
+	let counters = [];
 
 	if (Engine.ConfigDB_GetValue("user", "overlay.fps") === "true")
-	{
-		caption += sprintf(translate("FPS: %(fps)4s"), { "fps": Engine.GetFPS() }) + "\n";
-		++linesCount;
-	}
+		counters.push(sprintf(translate("FPS: %(fps)4s"), { "fps": Engine.GetFPS() }));
+
 	if (Engine.ConfigDB_GetValue("user", "overlay.realtime") === "true")
-	{
-		caption += (new Date()).toLocaleTimeString() + "\n";
-		++linesCount;
-	}
+		counters.push((new Date()).toLocaleTimeString());
 
 	// If game has been started
-	if (typeof g_SimState != "undefined")
-	{
-		if (Engine.ConfigDB_GetValue("user", "gui.session.timeelapsedcounter") === "true")
-		{
-			var currentSpeed = Engine.GetSimRate();
-			if (currentSpeed != 1.0)
-				// Translation: The "x" means "times", with the mathematical meaning of multiplication.
-				caption += sprintf(translate("%(time)s (%(speed)sx)"), {
-					"time": timeToString(g_SimState.timeElapsed),
-					"speed": Engine.FormatDecimalNumberIntoString(currentSpeed)
-				});
-			else
-				caption += timeToString(g_SimState.timeElapsed);
-			caption += "\n";
-			++linesCount;
-		}
+	if (typeof appendSessionCounters != "undefined")
+		appendSessionCounters(counters);
 
-		var diplomacyCeasefireCounter = Engine.GetGUIObjectByName("diplomacyCeasefireCounter");
-		if (g_SimState.ceasefireActive)
-		{
-			// Update ceasefire counter in the diplomacy window
-			var remainingTimeString = timeToString(g_SimState.ceasefireTimeRemaining);
-
-			diplomacyCeasefireCounter.caption = sprintf(
-				translateWithContext("ceasefire", "Time remaining until ceasefire is over: %(time)s."),
-				{ "time": remainingTimeString }
-			);
-
-			// Update ceasefire overlay counter
-			if (Engine.ConfigDB_GetValue("user", "gui.session.ceasefirecounter") === "true")
-			{
-				caption += remainingTimeString + "\n";
-				++linesCount;
-			}
-		}
-		else if (!diplomacyCeasefireCounter.hidden)
-			diplomacyCeasefireCounter.hidden = true;
-
-		g_ResearchListTop = 4;
-		if (linesCount)
-			g_ResearchListTop += 14 * linesCount;
-	}
-
-	var dataCounter = Engine.GetGUIObjectByName("dataCounter");
-	dataCounter.caption = caption;
-	dataCounter.size = sprintf("100%%-100 40 100%%-5 %(bottom)s", { "bottom": 40 + 14 * linesCount });
-	dataCounter.hidden = linesCount == 0;
+	let dataCounter = Engine.GetGUIObjectByName("dataCounter");
+	dataCounter.caption = counters.join("\n") + "\n";
+	dataCounter.hidden = !counters.length;
+	dataCounter.size = sprintf("%(left)s %(top)s %(right)s %(bottom)s", {
+		"left": "100%%-100",
+		"top": "40",
+		"right": "100%%-5",
+		"bottom": 40 + 14 * counters.length
+	});
 }
 
 /**
@@ -165,6 +123,7 @@ function displayGamestateNotifications()
 
 /**
  * Also called from the C++ side when ending the game.
+ * The current page can be the summary screen or a message box, so it can't be moved to session/.
  */
 function getReplayMetadata()
 {

@@ -315,6 +315,23 @@ function openDiplomacy()
 	g_IsDiplomacyOpen = true;
 
 	updateDiplomacy(true);
+
+	Engine.GetGUIObjectByName("diplomacyDialogPanel").hidden = false;
+}
+
+function closeDiplomacy()
+{
+	g_IsDiplomacyOpen = false;
+	Engine.GetGUIObjectByName("diplomacyDialogPanel").hidden = true;
+}
+
+function toggleDiplomacy()
+{
+	let open = g_IsDiplomacyOpen;
+	closeOpenDialogs();
+
+	if (!open)
+		openDiplomacy();
 }
 
 function updateDiplomacy(opening = false)
@@ -322,7 +339,8 @@ function updateDiplomacy(opening = false)
 	if (g_ViewedPlayer < 1 || !g_IsDiplomacyOpen)
 		return;
 
-	let isCeasefireActive = GetSimState().ceasefireActive;
+	let simState = GetSimState();
+	let isCeasefireActive = simState.ceasefireActive;
 	let hasSharedLos = GetSimState().players[g_ViewedPlayer].hasSharedLos;
 
 	// Get offset for one line
@@ -344,7 +362,13 @@ function updateDiplomacy(opening = false)
 		diplomacyFormatAttackRequestButton(i, myself || playerInactive || isCeasefireActive || !hasAllies || !g_Players[i].isEnemy[g_ViewedPlayer]);
 		diplomacyFormatSpyRequestButton(i, myself || playerInactive || g_Players[i].isMutualAlly[g_ViewedPlayer] && hasSharedLos);
 	}
-	Engine.GetGUIObjectByName("diplomacyDialogPanel").hidden = false;
+
+	let diplomacyCeasefireCounter = Engine.GetGUIObjectByName("diplomacyCeasefireCounter");
+	diplomacyCeasefireCounter.caption = sprintf(
+		translateWithContext("ceasefire", "Time remaining until ceasefire is over: %(time)s."),
+		{ "time": timeToString(simState.ceasefireTimeRemaining) }
+	);
+	diplomacyCeasefireCounter.hidden = !isCeasefireActive;
 }
 
 function diplomacySetupTexts(i, rowsize)
@@ -517,21 +541,6 @@ function diplomacyFormatSpyRequestButton(i, hidden)
 		Engine.PostNetworkCommand({ "type": "spy-request", "source": g_ViewedPlayer, "player": i });
 		closeDiplomacy();
 	}; })(i);
-}
-
-function closeDiplomacy()
-{
-	g_IsDiplomacyOpen = false;
-	Engine.GetGUIObjectByName("diplomacyDialogPanel").hidden = true;
-}
-
-function toggleDiplomacy()
-{
-	let open = g_IsDiplomacyOpen;
-	closeOpenDialogs();
-
-	if (!open)
-		openDiplomacy();
 }
 
 function resizeTradeDialog()
