@@ -66,9 +66,9 @@ function selectCiv(civCode)
 	// get initial units
 	for (let entity of g_CivData[civCode].StartEntities)
 	{
-		if (entity.Template.slice(0, 5) == "units")
+		if (entity.Template.startsWith("units"))
 			g_Lists.units.push(entity.Template);
-		else if (entity.Template.slice(0, 6) == "struct")
+		else if (entity.Template.startsWith("struct"))
 			g_Lists.structures.push(entity.Template);
 	}
 
@@ -94,9 +94,9 @@ function selectCiv(civCode)
 	{
 		let realcode = basename(techcode);
 
-		if (realcode.slice(0,4) == "pair" || realcode.indexOf("_pair") > -1)
+		if (realcode.startsWith("pair") || realcode.indexOf("_pair") > -1)
 			techPairs[techcode] = loadTechnologyPair(techcode);
-		else if (realcode.slice(0,5) == "phase")
+		else if (realcode.startsWith("phase"))
 			g_ParsedData.phases[techcode] = loadPhase(techcode);
 		else
 			g_ParsedData.techs[civCode][techcode] = loadTechnology(techcode);
@@ -111,7 +111,7 @@ function selectCiv(civCode)
 
 		for (let techcode of pair.techs)
 		{
-			if (basename(techcode).slice(0, 5) === "phase")
+			if (basename(techcode).startsWith("phase"))
 				g_ParsedData.phases[techcode] = loadPhase(techcode);
 			else
 			{
@@ -263,6 +263,7 @@ function selectCiv(civCode)
 	g_CivData[g_SelectedCiv].trainList = trainerList;
 
 	draw();
+	drawPhaseIcons();
 }
 
 function closeStrucTree()

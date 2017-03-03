@@ -118,7 +118,7 @@ function GetPhaseOfTemplate(template)
 	if (!template.requiredTechnology)
 		return g_ParsedData.phaseList[0];
 
-	if (basename(template.requiredTechnology).slice(0, 5) == "phase")
+	if (basename(template.requiredTechnology).startsWith("phase"))
 		return GetActualPhase(template.requiredTechnology);
 
 	return GetPhaseOfTechnology(template.requiredTechnology);

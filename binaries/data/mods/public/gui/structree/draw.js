@@ -97,7 +97,7 @@ function draw()
 				if (stru.production.technology[prod_pha])
 					for (let prod of stru.production.technology[prod_pha])
 					{
-						prod = clone(basename(prod).slice(0,5) == "phase" ?
+						prod = clone(basename(prod).startsWith("phase") ?
 							g_ParsedData.phases[prod] :
 							g_ParsedData.techs[g_SelectedCiv][prod]);
 
@@ -274,18 +274,14 @@ function predraw()
 
 		// Set phase icon
 		let phaseIcon = Engine.GetGUIObjectByName("phase["+i+"]_phase");
-		phaseIcon.sprite = "stretched:session/portraits/"+g_ParsedData.phases[pha].icon;
 		phaseIcon.size = "16 32+"+offset+" 48+16 48+32+"+offset;
 
-		// Set initial prod bar size and icon
+		// Set initial prod bar size
 		let j = 1;
 		for (; j < phaseList.length - i; ++j)
 		{
 			let prodBar = Engine.GetGUIObjectByName("phase["+i+"]_bar["+(j-1)+"]");
 			prodBar.size = "40 1+"+(24*j)+"+98+"+offset+" 0 1+"+(24*j)+"+98+"+offset+"+22";
-
-			let prodBarIcon = Engine.GetGUIObjectByName("phase["+i+"]_bar["+(j-1)+"]_icon");
-			prodBarIcon.sprite = "stretched:session/portraits/"+g_ParsedData.phases[phaseList[i+j]].icon;
 		}
 		// Hide remaining prod bars
 		hideRemaining("phase["+i+"]_bars", j-1);
@@ -390,4 +386,25 @@ function predraw()
 function assembleTooltip(template)
 {
 	return g_TooltipFunctions.map(func => func(template)).filter(tip => tip).join("\n");
+}
+
+function drawPhaseIcons()
+{
+	for (let i = 0; i < g_ParsedData.phaseList.length; ++i)
+	{
+		drawPhaseIcon("phase["+i+"]_phase", i);
+
+		for (let j = 1; j < g_ParsedData.phaseList.length - i; ++j)
+			drawPhaseIcon("phase["+i+"]_bar["+(j-1)+"]_icon", j+i);
+	}
+}
+
+function drawPhaseIcon(guiObjectName, phaseIndex)
+{
+	let phaseName = g_ParsedData.phaseList[phaseIndex];
+	let prodPhaseTemplate = g_ParsedData.phases[phaseName + "_" + g_SelectedCiv] || g_ParsedData.phases[phaseName];
+
+	let phaseIcon = Engine.GetGUIObjectByName(guiObjectName);
+	phaseIcon.sprite = "stretched:session/portraits/" + prodPhaseTemplate.icon;
+	phaseIcon.tooltip = getEntityNamesFormatted(prodPhaseTemplate);
 }
