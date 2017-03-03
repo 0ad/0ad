@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-02-03 09:03+0100\n"
-"PO-Revision-Date: 2017-02-20 08:33+0000\n"
+"POT-Creation-Date: 2017-02-26 21:12+0100\n"
+"PO-Revision-Date: 2017-03-01 15:59+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -930,34 +930,34 @@ msgstr "(Cealgaireachd – stiùirich a h‑uile aonad)"
 msgid "(Cheat - reveal map)"
 msgstr "(Gealgaireachd – nochd am mapa)"
 
-#: simulation/helpers/Commands.js:574
+#: simulation/helpers/Commands.js:570
 msgid "(Cheat - promoted units)"
 msgstr "(Cealgaireachd – aonad air an àrdachadh)"
 
-#: simulation/helpers/Commands.js:688
+#: simulation/helpers/Commands.js:684
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Cha ghabh àrdachadh o nach deach riatanasan an astair a dhearbadh no air sgàth ’s gu bheil bacadh air an tìr."
 
-#: simulation/helpers/Commands.js:698
+#: simulation/helpers/Commands.js:694
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "Tha aonad ’na ghearastan ann nach gabh àrdachadh."
 
-#: simulation/helpers/Commands.js:744
+#: simulation/helpers/Commands.js:740
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Chaidh ionnsaigh an aghaidh %(_player_)s iarraidh."
 
-#: simulation/helpers/Commands.js:781
+#: simulation/helpers/Commands.js:777
 msgid "Unable to ungarrison unit(s)"
 msgstr "Chan urrainn dhan aonad/dha na h-aonadan an gearastan falbh"
 
-#: simulation/helpers/Commands.js:795
+#: simulation/helpers/Commands.js:791
 msgid "Some unit(s) can't go back to work"
 msgstr "Chan urrainn dhan a h-uile aonad tilleadh dhan obair"
 
-#: simulation/helpers/Commands.js:1049
+#: simulation/helpers/Commands.js:1045
 msgid "The building's technology requirements are not met."
 msgstr "Cha deach na riatanasan teicneòlais airson an togalaich a choileanadh."
 
@@ -1149,8 +1149,8 @@ msgstr "Bot Peadra"
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
-"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
-msgstr "’S e am bot tùsail aig 0 A.D. a th’ ann am Peadra. An aithris thu duilgheadas sam bith gu Wildfire Games (faic an ceangal air a’ phrìomh chlàr-taice)?\n\nTha sgeama buannachd ’s peanais aig an IF airson glèidheadh stòrasan (air reat a’ chruinneachaidh no air a’ mhalart) eadar 0.5 aig a’ Bhogsa-ghainmhich gu 1.6 airson Dùbhlanach (Meadhanach = 1.0). A bharrachd air sin, cha dèan leibheil a’ Bhogsa-ghainmhich leudachadh ’s cha doir e ionnsaigh."
+"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -50% for Sandbox to +60% for Very Hard (Medium 0%). In addition, the Sandbox level does not expand nor attack."
+msgstr "’S e am bot tùsail aig 0 A.D. a th’ ann am Peadra. An aithris thu duilgheadas sam bith gu Wildfire Games (faic an ceangal air a’ phrìomh chlàr-taice)?\n\nTha sgeama buannachd ’s peanais aig an IF airson glèidheadh stòrasan (air reat a’ chruinneachaidh no air a’ mhalart) eadar -50% aig a’ Bhogsa-ghainmhich gu +60% airson Dùbhlanach (Meadhanach = 0%). A bharrachd air sin, cha dèan leibheil a’ Bhogsa-ghainmhich leudachadh ’s cha doir e ionnsaigh."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"

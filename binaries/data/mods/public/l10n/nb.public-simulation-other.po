@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-02-03 09:03+0100\n"
-"PO-Revision-Date: 2017-02-03 09:37+0000\n"
+"POT-Creation-Date: 2017-02-26 21:12+0100\n"
+"PO-Revision-Date: 2017-02-27 08:30+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -926,34 +926,34 @@ msgstr "(Juksekode - kontroller alle enheter)"
 msgid "(Cheat - reveal map)"
 msgstr "(Juks - avslør kart)"
 
-#: simulation/helpers/Commands.js:574
+#: simulation/helpers/Commands.js:570
 msgid "(Cheat - promoted units)"
 msgstr "(Juksekode - forfremmede enheter)"
 
-#: simulation/helpers/Commands.js:688
+#: simulation/helpers/Commands.js:684
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Kan ikke oppgradere siden distansekrav ikke er bekreftet eller terrenget har hindringer."
 
-#: simulation/helpers/Commands.js:698
+#: simulation/helpers/Commands.js:694
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "Kan ikke oppgradere en forskanset enhet."
 
-#: simulation/helpers/Commands.js:744
+#: simulation/helpers/Commands.js:740
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Angrep mot %(_player_)s forespurt."
 
-#: simulation/helpers/Commands.js:781
+#: simulation/helpers/Commands.js:777
 msgid "Unable to ungarrison unit(s)"
 msgstr "Kan ikke stasjonere enhet(er)"
 
-#: simulation/helpers/Commands.js:795
+#: simulation/helpers/Commands.js:791
 msgid "Some unit(s) can't go back to work"
 msgstr "Enhet(er) kan ikke gå tilbake til arbeid"
 
-#: simulation/helpers/Commands.js:1049
+#: simulation/helpers/Commands.js:1045
 msgid "The building's technology requirements are not met."
 msgstr "Bygningens teknologikrav er ikke oppfylt."
 
@@ -1145,8 +1145,8 @@ msgstr "Petra boten"
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
-"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra er 0 A.D.s forhåndsvalgte AI-bot. Vennligst rapporter problemer til Wildfire Games (se link i hovedmenyen).\n\nAI-en har en bonus/straff på ressurslagring (enten sankingsrate eller handelsvinning), som varierer fra 0.5 for sandkasse til 1.6 for veldig vanskelig (middels = 1.0). I tillegg vil ikke sandkassemodus ekspandere eller angripe. "
+"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -50% for Sandbox to +60% for Very Hard (Medium 0%). In addition, the Sandbox level does not expand nor attack."
+msgstr ""
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"

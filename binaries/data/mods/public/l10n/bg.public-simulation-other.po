@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-02-03 09:03+0100\n"
-"PO-Revision-Date: 2017-02-03 17:17+0000\n"
+"POT-Creation-Date: 2017-02-26 21:12+0100\n"
+"PO-Revision-Date: 2017-02-27 11:18+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -927,34 +927,34 @@ msgstr "(Измама — управляване на всички единиц�
 msgid "(Cheat - reveal map)"
 msgstr "(Измама — открита карта)"
 
-#: simulation/helpers/Commands.js:574
+#: simulation/helpers/Commands.js:570
 msgid "(Cheat - promoted units)"
 msgstr "(Измама — повишени единици)"
 
-#: simulation/helpers/Commands.js:688
+#: simulation/helpers/Commands.js:684
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Надграждането е невъзможно, тъй като изискванията за разстояние не са потвърдени или теренът пречи."
 
-#: simulation/helpers/Commands.js:698
+#: simulation/helpers/Commands.js:694
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "Подобряването на единица на гарнизон не е възможно."
 
-#: simulation/helpers/Commands.js:744
+#: simulation/helpers/Commands.js:740
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Предложено е нападение срещу %(_player_)s."
 
-#: simulation/helpers/Commands.js:781
+#: simulation/helpers/Commands.js:777
 msgid "Unable to ungarrison unit(s)"
 msgstr "Неуспешно пускане от гарнизон"
 
-#: simulation/helpers/Commands.js:795
+#: simulation/helpers/Commands.js:791
 msgid "Some unit(s) can't go back to work"
 msgstr "Има единица (или единици), която не може да се върне обратно към работата си."
 
-#: simulation/helpers/Commands.js:1049
+#: simulation/helpers/Commands.js:1045
 msgid "The building's technology requirements are not met."
 msgstr "Не са изпълнени технологичните изисквания на сградата."
 
@@ -1146,8 +1146,8 @@ msgstr "Петра бот"
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
-"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
-msgstr "Петра е изкуственият интелект по подразбиране на 0 A.D. Моля, докладвайте за проблеми на Wildfire Games (вижте връзката в главното меню).\n\nИзкуственият интелект бива затруднен или подкрепен при трупането на ресурси (скорост на събиране или коефициенти при търгуване), като множителят може да бъде от 0,5 за трудност „пясъчник“ до 1,6 за много голямата трудност (при средна трудност той е 1,0). Освен това, при трудност „пясъчник“ изкуственият интелект няма да разширява територията си или да напада."
+"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -50% for Sandbox to +60% for Very Hard (Medium 0%). In addition, the Sandbox level does not expand nor attack."
+msgstr "Петра е изкуственият интелект по подразбиране на 0 A.D. Моля, докладвайте за проблеми на Wildfire Games (вижте връзката в главното меню).\n\nИзкуственият интелект бива затруднен или подкрепен при трупането на ресурси (скорост на събиране или коефициенти при търгуване), като разликата може да бъде от -50% за трудност „пясъчник“ до +60% за много голямата трудност (при средна трудност няма разлика, тоест 0%). Освен това, при трудност „пясъчник“ изкуственият интелект няма да разширява територията си или да напада."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"

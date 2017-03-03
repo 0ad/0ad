@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-02-03 09:03+0100\n"
-"PO-Revision-Date: 2017-02-16 09:10+0000\n"
-"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
+"POT-Creation-Date: 2017-02-26 21:12+0100\n"
+"PO-Revision-Date: 2017-02-27 08:30+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -934,34 +934,34 @@ msgstr "(Απάτη - Έλεγχος όλων των μονάδων)"
 msgid "(Cheat - reveal map)"
 msgstr "(Απάτη -  αποκάλυψης χάρτη)"
 
-#: simulation/helpers/Commands.js:574
+#: simulation/helpers/Commands.js:570
 msgid "(Cheat - promoted units)"
 msgstr "(Απάτη - προώθηση μονάδων)"
 
-#: simulation/helpers/Commands.js:688
+#: simulation/helpers/Commands.js:684
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Δεν μπορύν να αναβαθμιστούν διότι η απαιτούμενη αποστασή δεν έχει επαληθευτή ή εμποδίζεται απο το έδαφος."
 
-#: simulation/helpers/Commands.js:698
+#: simulation/helpers/Commands.js:694
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "Δεν μπορεί να αναβαθμιστεί μια οντότητα που ανίκει σε φρουρά."
 
-#: simulation/helpers/Commands.js:744
+#: simulation/helpers/Commands.js:740
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Ζητείτε επίθεση εναντίον του παίχτη %(_player_)s."
 
-#: simulation/helpers/Commands.js:781
+#: simulation/helpers/Commands.js:777
 msgid "Unable to ungarrison unit(s)"
 msgstr "Δεν είναι δυνατή η κατάργηση της φρουράς για τη μονάδα(ες)"
 
-#: simulation/helpers/Commands.js:795
+#: simulation/helpers/Commands.js:791
 msgid "Some unit(s) can't go back to work"
 msgstr "Μερικές μονάδες δεν μπορούν να επιστρέψουν στην εργασία τους."
 
-#: simulation/helpers/Commands.js:1049
+#: simulation/helpers/Commands.js:1045
 msgid "The building's technology requirements are not met."
 msgstr "Οι απαιτήσεις της τεχνολογίας του κτιρίου δεν πληρούνται."
 
@@ -1153,8 +1153,8 @@ msgstr "Πέτρα ΤΝ"
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
-"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
-msgstr "Η Πέτρα είναι η προεπιλεγμένη Τεχνητή Νοημοσύνη του 0 A.D. Παρακαλώ αναφέρετε δυσλειτουργίες στην Wildfire Games (ο σύνδεσμος είναι στο κεντρικό μενού).\n\nΗ Τεχνική Νοημοσύνη έχει ένα προβάδισμα/κύρωση στην αποθήκευση των πόρων (είτε στο ποσοστό συγκομιδής ή στο εμπορικό κέρδος) που κυμαίνεται από 0,5 για Περιβάλλον Δοκιμών (Sandbox) σε 1,6 για Πολύ Δύσκολο (Μεσαίο = 1,0). Επιπλέον, στο επίπεδο Περιβάλλοντος Δοκιμών δεν επεκτείνει ούτε επιτίθεται."
+"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -50% for Sandbox to +60% for Very Hard (Medium 0%). In addition, the Sandbox level does not expand nor attack."
+msgstr ""
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"

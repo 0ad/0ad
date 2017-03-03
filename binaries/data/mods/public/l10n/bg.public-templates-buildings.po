@@ -11,14 +11,14 @@
 # AccountKiller, 2015
 # Yordan Grigorov <yoreei.grigorov@gmail.com>, 2016
 # Yordan Grigorov <yoreei.grigorov@gmail.com>, 2014-2015
-# Любомир Василев, 2016
+# Любомир Василев, 2016-2017
 # Симонъ Болокановъ <sbolokanov@abv.bg>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-01-13 09:03+0100\n"
-"PO-Revision-Date: 2017-01-14 09:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-02-26 21:11+0100\n"
+"PO-Revision-Date: 2017-02-27 11:12+0000\n"
+"Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -94,7 +94,7 @@ msgstr "Увеличете максималното население."
 
 #: simulation/templates/template_structure_civic_house.xml:36
 #: simulation/templates/template_structure_defense_outpost.xml:65
-#: simulation/templates/template_structure_defense_wooden_tower.xml:43
+#: simulation/templates/template_structure_defense_sentry_tower.xml:42
 #: simulation/templates/template_structure_economic_farmstead.xml:27
 #: simulation/templates/template_structure_economic_storehouse.xml:27
 #: simulation/templates/template_structure_military_barracks.xml:31
@@ -150,6 +150,19 @@ msgstr "Постройте в неутрална или собствена те�
 msgid "Outpost"
 msgstr "Аванпост"
 
+#: simulation/templates/template_structure_defense_sentry_tower.xml:40
+#: simulation/templates/template_structure_defense_sentry_tower.xml:39
+msgid "Sentry Tower"
+msgstr "Караулна кула"
+
+#: simulation/templates/template_structure_defense_sentry_tower.xml:42
+msgid "SentryTower"
+msgstr "КараулнаКула"
+
+#: simulation/templates/template_structure_defense_sentry_tower.xml:69
+msgid "Reinforce with stone and upgrade to a defense tower."
+msgstr "Подсилете с камък и надградете до защитна кула."
+
 #: simulation/templates/template_structure_defense_wall.xml:24
 #: simulation/templates/structures/cart_s_wall_long.xml:7
 #: simulation/templates/structures/cart_s_wall_medium.xml:7
@@ -192,15 +205,6 @@ msgstr "Изстрелва стрели. Поставете гарнизон з�
 #: simulation/templates/template_structure_defense_wallset.xml:10
 msgid "City Wall"
 msgstr "Градска стена"
-
-#: simulation/templates/template_structure_defense_wooden_tower.xml:40
-#: simulation/templates/template_structure_defense_wooden_tower.xml:39
-msgid "Sentry Tower"
-msgstr "Караулна кула"
-
-#: simulation/templates/template_structure_defense_wooden_tower.xml:70
-msgid "Reinforce with stone and upgrade to a defense tower."
-msgstr "Подсилете с камък и надградете до защитна кула."
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"

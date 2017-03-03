@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-12-23 11:16+0100\n"
-"PO-Revision-Date: 2017-02-20 05:47+0000\n"
-"Last-Translator: mohammad khodadadi <asmanp2012@gmail.com>\n"
+"POT-Creation-Date: 2017-02-26 21:10+0100\n"
+"PO-Revision-Date: 2017-02-27 09:16+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,167 +31,175 @@ msgstr "هیچ"
 msgid "AI will be disabled for this player."
 msgstr "هوش مصنوعی برای این بازیکن غیر فعال خواهد بود."
 
-#: gui/gamesetup/gamesetup.js:46
-msgid "Game settings have been changed"
-msgstr "تنظیمات بازی تغییر داده شد"
-
-#: gui/gamesetup/gamesetup.js:47
-#, javascript-format
-msgid "%(username)s has joined"
-msgstr "%(username)s وارد شد"
-
-#: gui/gamesetup/gamesetup.js:48
-#, javascript-format
-msgid "%(username)s has left"
-msgstr "%(username)s خارج شد"
-
-#: gui/gamesetup/gamesetup.js:49
-#, javascript-format
-msgid "%(username)s has been kicked"
-msgstr "%(username)s اخراج شده است."
-
-#: gui/gamesetup/gamesetup.js:50
-#, javascript-format
-msgid "%(username)s has been banned"
-msgstr "%(username)s تحریم شده است."
-
-#: gui/gamesetup/gamesetup.js:51
-#, javascript-format
-msgid "%(username)s %(message)s"
-msgstr "%(username)s %(message)s"
-
-#: gui/gamesetup/gamesetup.js:52
-#, javascript-format
-msgid "<%(username)s>"
-msgstr "<%(username)s>"
-
-#: gui/gamesetup/gamesetup.js:55
-#, javascript-format
-msgid "* %(username)s is ready!"
-msgstr "* %(username)s آماده است!"
-
-#: gui/gamesetup/gamesetup.js:58
+#: gui/gamesetup/gamesetup.js:36
 #, javascript-format
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s آماده نیستند."
 
-#: gui/gamesetup/gamesetup.js:70
+#: gui/gamesetup/gamesetup.js:37
+msgid "I'm ready"
+msgstr "من حاضرم"
+
+#: gui/gamesetup/gamesetup.js:38
+msgid "State that you are ready to play."
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:42
+#, javascript-format
+msgid "* %(username)s is ready!"
+msgstr "* %(username)s آماده است!"
+
+#: gui/gamesetup/gamesetup.js:43
+msgid "Stay ready"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:44
+msgid "Stay ready even when the game settings change."
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:49
+msgid "I'm not ready!"
+msgstr "من آماده نیستم!"
+
+#: gui/gamesetup/gamesetup.js:50
+msgid "State that you are not ready to play."
+msgstr "مکانی که شما قرار گرفته اید برای بازی آماده نیست."
+
+#: gui/gamesetup/gamesetup.js:73
+msgid "Game settings have been changed"
+msgstr "تنظیمات بازی تغییر داده شد"
+
+#: gui/gamesetup/gamesetup.js:74
+#, javascript-format
+msgid "%(username)s has joined"
+msgstr "%(username)s وارد شد"
+
+#: gui/gamesetup/gamesetup.js:75
+#, javascript-format
+msgid "%(username)s has left"
+msgstr "%(username)s خارج شد"
+
+#: gui/gamesetup/gamesetup.js:76
+#, javascript-format
+msgid "%(username)s has been kicked"
+msgstr "%(username)s اخراج شده است."
+
+#: gui/gamesetup/gamesetup.js:77
+#, javascript-format
+msgid "%(username)s has been banned"
+msgstr "%(username)s تحریم شده است."
+
+#: gui/gamesetup/gamesetup.js:78
+#, javascript-format
+msgid "%(username)s %(message)s"
+msgstr "%(username)s %(message)s"
+
+#: gui/gamesetup/gamesetup.js:79
+#, javascript-format
+msgid "<%(username)s>"
+msgstr "<%(username)s>"
+
+#: gui/gamesetup/gamesetup.js:92
 msgctxt "map filter"
 msgid "Default"
 msgstr "پیش فرض"
 
-#: gui/gamesetup/gamesetup.js:75
+#: gui/gamesetup/gamesetup.js:97
 msgid "Naval Maps"
 msgstr "نقشه های دریایی"
 
-#: gui/gamesetup/gamesetup.js:80
+#: gui/gamesetup/gamesetup.js:102
 msgid "Demo Maps"
 msgstr "نقشه های نمایشی"
 
-#: gui/gamesetup/gamesetup.js:85
+#: gui/gamesetup/gamesetup.js:107
 msgid "New Maps"
 msgstr "نقشه های جدید"
 
-#: gui/gamesetup/gamesetup.js:90
+#: gui/gamesetup/gamesetup.js:112
 msgid "Trigger Maps"
 msgstr "رها کردن نقشه ها"
 
-#: gui/gamesetup/gamesetup.js:95
+#: gui/gamesetup/gamesetup.js:117
 msgid "All Maps"
 msgstr "همه نقشه‌ها"
 
-#: gui/gamesetup/gamesetup.js:144
+#: gui/gamesetup/gamesetup.js:161
 msgctxt "map selection"
 msgid "Random"
 msgstr "تصادفی"
 
-#: gui/gamesetup/gamesetup.js:149
+#: gui/gamesetup/gamesetup.js:166
 msgctxt "civilization"
 msgid "Random"
 msgstr "تصادفی"
 
-#: gui/gamesetup/gamesetup.js:272
+#: gui/gamesetup/gamesetup.js:292
 msgid "Return to the lobby."
 msgstr "بازگشت به لابی."
 
-#: gui/gamesetup/gamesetup.js:272
+#: gui/gamesetup/gamesetup.js:292
 msgid "Return to the main menu."
 msgstr "بازگشت به منو اصلی."
 
-#: gui/gamesetup/gamesetup.js:618
+#: gui/gamesetup/gamesetup.js:638
 msgid "Yes"
 msgstr "بله"
 
-#: gui/gamesetup/gamesetup.js:618
+#: gui/gamesetup/gamesetup.js:638
 msgid "No"
 msgstr "خیر"
 
-#: gui/gamesetup/gamesetup.js:657
+#: gui/gamesetup/gamesetup.js:677
 msgctxt "team"
 msgid "None"
 msgstr "هیچ"
 
-#: gui/gamesetup/gamesetup.js:1321
+#: gui/gamesetup/gamesetup.js:1342
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1413
+#: gui/gamesetup/gamesetup.js:1434
 msgctxt "map size"
 msgid "Default"
 msgstr "پیش فرض"
 
-#: gui/gamesetup/gamesetup.js:1483
+#: gui/gamesetup/gamesetup.js:1504
 msgid "Loading..."
 msgstr "در حال بارگذاری..."
 
-#: gui/gamesetup/gamesetup.js:1616
+#: gui/gamesetup/gamesetup.js:1637
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "هوش: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1621
+#: gui/gamesetup/gamesetup.js:1642
 msgid "Unassigned"
 msgstr "نا مشخص"
 
-#: gui/gamesetup/gamesetup.js:1781
+#: gui/gamesetup/gamesetup.js:1802
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1788
+#: gui/gamesetup/gamesetup.js:1809
 msgid "Unknown Player"
 msgstr "بازیکنی شناسایی نشد."
 
-#: gui/gamesetup/gamesetup.js:1824
+#: gui/gamesetup/gamesetup.js:1848
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1825
+#: gui/gamesetup/gamesetup.js:1849
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:1826
+#: gui/gamesetup/gamesetup.js:1850
 msgid "HH:mm"
 msgstr ""
-
-#: gui/gamesetup/gamesetup.js:1876
-msgid "I'm not ready!"
-msgstr "من آماده نیستم!"
-
-#: gui/gamesetup/gamesetup.js:1877
-msgid "I'm ready"
-msgstr "من حاضرم"
-
-#: gui/gamesetup/gamesetup.js:1880
-msgid "State that you are not ready to play."
-msgstr "مکانی که شما قرار گرفته اید برای بازی آماده نیست."
-
-#: gui/gamesetup/gamesetup.js:1881
-msgid "State that you are ready to play!"
-msgstr "مکانی که شما قرار گرفته اید برای بازی آماده است."
 
 #: gui/gamesetup/gamesetup_mp.js:49
 #, javascript-format
