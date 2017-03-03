@@ -308,7 +308,7 @@ Player.prototype.TrySubtractResources = function(amounts)
 
 Player.prototype.GetNextTradingGoods = function()
 {
-	var value = 100*Math.random();
+	var value = randFloat(0, 100);
 	var last = this.tradingGoods.length - 1;
 	var sumProba = 0;
 	for (var i = 0; i < last; ++i)

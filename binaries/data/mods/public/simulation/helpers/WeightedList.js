@@ -31,9 +31,9 @@ WeightedList.prototype.itemAt = function(index)
 };
 
 WeightedList.prototype.randomIndex = function() {
-	var element,
-	targetWeight = Math.random() * this.totalWeight,
-	cumulativeWeight = 0;
+	var element;
+	var targetWeight = randFloat(0, this.totalWeight);
+	var cumulativeWeight = 0;
 	for (var index = 0; index < this.elements.length; index++)
 	{
 		element = this.elements[index];

@@ -3225,7 +3225,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				this.SelectAnimation("walk", false, this.GetWalkSpeed());
 				this.MoveRandomly(+this.template.RoamDistance);
 				// Set a random timer to switch to feeding state
-				this.StartTimer(RandomInt(+this.template.RoamTimeMin, +this.template.RoamTimeMax));
+				this.StartTimer(randIntInclusive(+this.template.RoamTimeMin, +this.template.RoamTimeMax));
 				this.SetFacePointAfterMove(false);
 			},
 
@@ -3270,7 +3270,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				// Stop and eat for a while
 				this.SelectAnimation("feeding");
 				this.StopMoving();
-				this.StartTimer(RandomInt(+this.template.FeedTimeMin, +this.template.FeedTimeMax));
+				this.StartTimer(randIntInclusive(+this.template.FeedTimeMin, +this.template.FeedTimeMax));
 			},
 
 			"leave": function() {
@@ -5989,8 +5989,8 @@ UnitAI.prototype.MoveRandomly = function(distance)
 
 	// Randomly adjust the range's center a bit, so we tend to prefer
 	// moving in random directions (if there's nothing in the way)
-	var tx = pos.x + (2*Math.random()-1)*jitter;
-	var tz = pos.z + (2*Math.random()-1)*jitter;
+	var tx = pos.x + randFloat(-1, 1) * jitter;
+	var tz = pos.z + randFloat(-1, 1) * jitter;
 
 	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 	cmpMotion.MoveToPointRange(tx, tz, distance, distance);

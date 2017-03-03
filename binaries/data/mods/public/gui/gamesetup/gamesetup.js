@@ -1298,8 +1298,7 @@ function launchGame()
 	{
 		let victoryScriptsSelected = g_GameAttributes.settings.VictoryScripts;
 		let gameTypeSelected = g_GameAttributes.settings.GameType;
-		selectMap(Engine.GetGUIObjectByName("mapSelection").list_data[Math.floor(Math.random() *
-			(Engine.GetGUIObjectByName("mapSelection").list.length - 1)) + 1]);
+		selectMap(pickRandom(Engine.GetGUIObjectByName("mapSelection").list_data.slice(1)));
 		g_GameAttributes.settings.VictoryScripts = victoryScriptsSelected;
 		g_GameAttributes.settings.GameType = gameTypeSelected;
 	}
@@ -1322,9 +1321,8 @@ function launchGame()
 		let chosenCiv = g_GameAttributes.settings.PlayerData[i].Civ || "random";
 		if (chosenCiv == "random")
 		{
-			let culture = cultures[Math.floor(Math.random() * cultures.length)];
-			let civs = Object.keys(g_CivData).filter(civ => g_CivData[civ].Culture == culture);
-			chosenCiv = civs[Math.floor(Math.random() * civs.length)];
+			let culture = pickRandom(cultures);
+			chosenCiv = pickRandom(Object.keys(g_CivData).filter(civ => g_CivData[civ].Culture == culture));
 		}
 		g_GameAttributes.settings.PlayerData[i].Civ = chosenCiv;
 
@@ -1332,7 +1330,7 @@ function launchGame()
 		if (g_GameAttributes.mapType === "scenario" || !g_GameAttributes.settings.PlayerData[i].AI)
 			continue;
 
-		let chosenName = g_CivData[chosenCiv].AINames[Math.floor(Math.random() * g_CivData[chosenCiv].AINames.length)];
+		let chosenName = pickRandom(g_CivData[chosenCiv].AINames);
 
 		if (!g_IsNetworked)
 			chosenName = translate(chosenName);
@@ -1352,8 +1350,8 @@ function launchGame()
 	}
 
 	// Seed used for both map generation and simulation
-	g_GameAttributes.settings.Seed = Math.floor(Math.random() * Math.pow(2, 32));
-	g_GameAttributes.settings.AISeed = Math.floor(Math.random() * Math.pow(2, 32));
+	g_GameAttributes.settings.Seed = randIntExclusive(0, Math.pow(2, 32));
+	g_GameAttributes.settings.AISeed = randIntExclusive(0, Math.pow(2, 32));
 
 	// Used for identifying rated game reports for the lobby
 	g_GameAttributes.matchID = Engine.GetMatchID();

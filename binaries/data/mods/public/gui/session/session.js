@@ -1257,7 +1257,7 @@ function updateAdditionalHighlight()
 
 function playAmbient()
 {
-	Engine.PlayAmbientSound(g_Ambient[Math.floor(Math.random() * g_Ambient.length)], true);
+	Engine.PlayAmbientSound(pickRandom(g_Ambient), true);
 }
 
 function getBuildString()

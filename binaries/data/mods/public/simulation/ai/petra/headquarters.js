@@ -504,12 +504,8 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 			requirements = [ ["strength", 1] ];
 
 		let classes = ["CitizenSoldier", "Infantry"];
-		let proba = Math.random();
-		//  we require at least 30% ranged and 30% melee
-		if ( proba < 0.3 )
-			classes.push("Ranged");
-		else if ( proba < 0.6 )
-			classes.push("Melee");
+		//  We want at least 33% ranged and 33% melee
+		classes.push(pickRandom(["Ranged", "Melee", "Infantry"]));
 
 		template = this.findBestTrainableUnit(gameState, classes, requirements);
 	}
@@ -1770,7 +1766,7 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 	}
 	let autogarrison = numGarrisoned < nearestAnchor.garrisonMax() &&
 	                   nearestAnchor.hitpoints() > nearestAnchor.garrisonEjectHealth() * nearestAnchor.maxHitpoints();
-	let rangedWanted = Math.random() > 0.5 && autogarrison;
+	let rangedWanted = randBool() && autogarrison;
 
 	let total = gameState.getResources();
 	let templateFound;

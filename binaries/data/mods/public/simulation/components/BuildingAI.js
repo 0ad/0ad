@@ -300,7 +300,7 @@ BuildingAI.prototype.FireArrows = function()
 		arrowsToFire = this.arrowsLeft;
 	else
 		arrowsToFire = Math.min(
-		    Math.round(2 * Math.random() * this.GetArrowCount() / roundCount),
+		    randIntInclusive(0, 2 * this.GetArrowCount() / roundCount),
 		    this.arrowsLeft
 		);
 

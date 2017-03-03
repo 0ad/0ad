@@ -158,7 +158,7 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	}
 
 	// Put some randomness on the attack size
-	let variation = 0.8 + 0.4*Math.random();
+	let variation = randFloat(0.8, 1.2);
 	// and lower priority and smaller sizes for easier difficulty levels
 	if (this.Config.difficulty < 2)
 	{
@@ -1444,7 +1444,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 						ent.attack(mStruct[0].id(), m.allowCapture(gameState, ent, mStruct[0]));
 					else
 					{
-						let rand = Math.floor(Math.random() * mStruct.length * 0.2);
+						let rand = randIntExclusive(0, mStruct.length * 0.2);
 						ent.attack(mStruct[rand].id(), m.allowCapture(gameState, ent, mStruct[rand]));
 					}
 				}
@@ -1502,7 +1502,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 							valb -= 20000;
 						return valb - vala;
 					});
-					let rand = Math.floor(Math.random() * mUnit.length * 0.1);
+					let rand = randIntExclusive(0, mUnit.length * 0.1);
 					ent.attack(mUnit[rand].id(), m.allowCapture(gameState, ent, mUnit[rand]));
 				}
 				else if (this.isBlocked)
@@ -1553,7 +1553,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 							ent.attack(mStruct[0].id(), false);
 						else
 						{
-							let rand = Math.floor(Math.random() * mStruct.length * 0.2);
+							let rand = randIntExclusive(0, mStruct.length * 0.2);
 							ent.attack(mStruct[rand].id(), m.allowCapture(gameState, ent, mStruct[rand]));
 						}
 					}
