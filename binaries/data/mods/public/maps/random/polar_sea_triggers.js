@@ -1,16 +1,18 @@
+const debugLog = false;
+
 var attackerTemplate = "gaia/fauna_wolf_snow";
 
 var minWaveSize = 1;
 var maxWaveSize = 3;
 
-var firstWaveTime = 3;
+var firstWaveTime = 5;
 var minWaveTime = 2;
 var maxWaveTime = 4;
 
 /**
  * Attackers will focus the targetCount closest units that have the targetClasses type.
  */
-var targetClasses = "Organic";
+var targetClasses = "Organic+!Domestic";
 var targetCount = 3;
 
 var disabledTechnologies = [
@@ -23,17 +25,19 @@ Trigger.prototype.InitDisableTechnologies = function()
 {
 	for (let i = 1; i < TriggerHelper.GetNumberOfPlayers(); ++i)
 		QueryPlayerIDInterface(i).SetDisabledTechnologies(disabledTechnologies);
-}
+};
 
 Trigger.prototype.SpawnWolvesAndAttack = function()
 {
 	let waveSize = Math.round(Math.random() * (maxWaveSize - minWaveSize) + minWaveSize);
 	let attackers = TriggerHelper.SpawnUnitsFromTriggerPoints("A", attackerTemplate, waveSize, 0);
-	print("Spawned " + waveSize + " " + attackerTemplate + " at " + Object.keys(attackers).length + " points\n");
+
+	if (debugLog)
+		print("Spawned " + waveSize + " " + attackerTemplate + " at " + Object.keys(attackers).length + " points\n");
 
 	let targets = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).GetNonGaiaEntities().filter(ent => {
 		let cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
-		return cmpIdentity && MatchesClassList(cmpIdentity.GetClassesList(), targetClasses)
+		return cmpIdentity && MatchesClassList(cmpIdentity.GetClassesList(), targetClasses);
 	});
 
 	let getDistance = (attacker, target) => {

@@ -124,6 +124,11 @@ CeasefireManager.prototype.StopCeasefire = function()
 	this.diplomacyBeforeCeasefire = [];
 
 	Engine.PostMessage(SYSTEM_ENTITY, MT_CeasefireEnded);
+
+	cmpGuiInterface.PushNotification({
+		"type": "ceasefire-ended",
+		"players": [-1] // processed globally
+	});
 };
 
 Engine.RegisterSystemComponentType(IID_CeasefireManager, "CeasefireManager", CeasefireManager);

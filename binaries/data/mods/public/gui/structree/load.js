@@ -154,7 +154,7 @@ function loadTechnologyPair(pairCode)
 }
 
 /**
- * Unravel phases
+ * Loads the names of all phases required to research the given technologies.
  *
  * @param techs The current available store of techs
  *
@@ -176,15 +176,17 @@ function unravelPhases(techs)
 		if (!techs[reqTech] || !techs[reqTech].reqs.length)
 			continue;
 
+		// Assume the first tech to be a phase
 		let reqPhase = techs[reqTech].reqs[0].techs[0];
 		let myPhase = techs[techcode].reqs[0].techs[0];
 
-		if (reqPhase == myPhase || basename(reqPhase).slice(0,5) !== "phase" || basename(myPhase).slice(0,5) !== "phase")
+		if (reqPhase == myPhase || !basename(reqPhase).startsWith("phase") || !basename(myPhase).startsWith("phase"))
 			continue;
 
 		let reqPhasePos = phaseList.indexOf(reqPhase);
 		let myPhasePos = phaseList.indexOf(myPhase);
 
+		// Sort the phases in the order they can be researched
 		if (!phaseList.length)
 			phaseList = [reqPhase, myPhase];
 		else if (reqPhasePos < 0 && myPhasePos > -1)
@@ -197,5 +199,6 @@ function unravelPhases(techs)
 			phaseList.splice(myPhasePos, 1);
 		}
 	}
+
 	return phaseList;
 }

@@ -489,7 +489,7 @@ function diplomacyFormatSpyRequestButton(i, hidden)
 			});
 			if (!technologyEnabled)
 			{
-				modifier = "color:0 0 0 127:grayscale:"
+				modifier = "color:0 0 0 127:grayscale:";
 				button.enabled = false;
 				tooltips.push(getRequiredTechnologyTooltip(technologyEnabled, template.requiredTechnology, GetSimState().players[g_ViewedPlayer].civ));
 			}
