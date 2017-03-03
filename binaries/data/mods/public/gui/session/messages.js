@@ -610,6 +610,7 @@ function handlePlayerAssignmentsMessage(message)
 		onClientJoin(guid);
 	});
 
+	updateGUIObjects();
 	updateChatAddressees();
 	sendLobbyPlayerlistUpdate();
 }
