@@ -30,6 +30,11 @@ var g_ChatHistory = [];
 var g_ChatTimers = [];
 
 /**
+ * Command to send to the previously selected private chat partner.
+ */
+var g_LastChatAddressee = "";
+
+/**
  * Handle all netmessage types that can occur.
  */
 var g_NetMessageTypes = {
@@ -749,6 +754,10 @@ function submitChatInput()
 	let chatAddressee = Engine.GetGUIObjectByName("chatAddressee");
 	if (chatAddressee.selected > 0 && (text.indexOf("/") != 0 || text.indexOf("/me ") == 0))
 		text = chatAddressee.list_data[chatAddressee.selected] + " " + text;
+
+	let selectedChat = chatAddressee.list_data[chatAddressee.selected]
+	if (selectedChat.startsWith("/msg"))
+		g_LastChatAddressee = selectedChat;
 
 	submitChatDirectly(text);
 }

@@ -203,7 +203,7 @@ function openOptions()
 	});
 }
 
-function openChat(teamChat = false)
+function openChat(command = "")
 {
 	if (g_Disconnected)
 		return;
@@ -211,7 +211,6 @@ function openChat(teamChat = false)
 	closeOpenDialogs();
 
 	let chatAddressee = Engine.GetGUIObjectByName("chatAddressee");
-	let command = teamChat ? (g_IsObserver ? "/observers" : "/allies") : "";
 	chatAddressee.selected = chatAddressee.list_data.indexOf(command);
 
 	Engine.GetGUIObjectByName("chatInput").focus();
