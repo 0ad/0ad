@@ -79,7 +79,7 @@ Music.prototype.updateState = function()
 			break;
 
 		case this.states.MENU:
-			this.switchMusic(this.getRandomTrack(this.tracks.MENU), 0.0, true);
+			this.switchMusic(pickRandom(this.tracks.MENU), 0, true);
 			break;
 
 		case this.states.PEACE:
@@ -128,11 +128,6 @@ Music.prototype.storeTracks = function(civMusic)
 
 		this.tracks[type].push(music.File);
 	}
-};
-
-Music.prototype.getRandomTrack = function(tracks)
-{
-	return tracks[getRandom(0, tracks.length-1)];
 };
 
 Music.prototype.startPlayList = function(tracks, fadeInPeriod, isLooping)

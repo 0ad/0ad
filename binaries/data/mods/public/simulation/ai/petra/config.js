@@ -131,9 +131,9 @@ m.Config.prototype.setConfig = function(gameState)
 	// initialize personality traits
 	if (this.difficulty > 1)
 	{
-		this.personality.aggressive = Math.random();
-		this.personality.cooperative = Math.random();
-		this.personality.defensive = Math.random();
+		this.personality.aggressive = randFloat(0, 1);
+		this.personality.cooperative = randFloat(0, 1);
+		this.personality.defensive = randFloat(0, 1);
 	}
 	else
 	{

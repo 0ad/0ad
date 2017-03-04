@@ -235,9 +235,9 @@ m.ResearchManager.prototype.update = function(gameState, queues)
 	}
 	if (!techs.length)
 		return;
+
 	// randomly pick one. No worries about pairs in that case.
-	let p = Math.floor(Math.random()*techs.length);
-	queues.minorTech.addPlan(new m.ResearchPlan(gameState, techs[p][0]));
+	queues.minorTech.addPlan(new m.ResearchPlan(gameState, pickRandom(techs)[0]));
 };
 
 m.ResearchManager.prototype.CostSum = function(cost)

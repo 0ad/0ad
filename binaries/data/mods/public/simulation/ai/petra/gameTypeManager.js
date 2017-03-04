@@ -23,15 +23,13 @@ m.GameTypeManager.prototype.init = function(gameState)
 {
 	if (gameState.getGameType() === "wonder")
 	{
-		let wonderEnts = gameState.getOwnEntitiesByClass("Wonder", true).toEntityArray();
-		for (let wonder of wonderEnts)
-			this.criticalEnts.set(ent.id(), { "guardsAssigned": 0, "guards": new Map() });
+		for (let wonder of gameState.getOwnEntitiesByClass("Wonder", true).values())
+			this.criticalEnts.set(wonder.id(), { "guardsAssigned": 0, "guards": new Map() });
 	}
 
 	if (gameState.getGameType() === "regicide")
 	{
-		let heroEnts = gameState.getOwnEntitiesByClass("Hero", true).toEntityArray();
-		for (let hero of heroEnts)
+		for (let hero of gameState.getOwnEntitiesByClass("Hero", true).values())
 		{
 			let heroStance = hero.hasClass("Soldier") ? "aggressive" : "passive";
 			hero.setStance(heroStance);

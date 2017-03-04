@@ -216,7 +216,7 @@ m.DiplomacyManager.prototype.lastManStandingCheck = function(gameState)
 	// wait a bit before turning
 	if (!this.waitingToBetray)
 	{
-		this.betrayLapseTime = gameState.ai.elapsedTime + Math.random() * 100 + 10;
+		this.betrayLapseTime = gameState.ai.elapsedTime + randFloat(10, 110);
 		this.waitingToBetray = true;
 		return;
 	}
@@ -277,7 +277,7 @@ m.DiplomacyManager.prototype.handleDiplomacyRequest = function(gameState, player
 	let moreEnemiesThanAllies = gameState.getEnemies().length > gameState.getMutualAllies().length;
 
 	// For any given diplomacy request be likely to permanently decline
-	if (!request && gameState.getPlayerCiv() !== gameState.getPlayerCiv(player) && Math.random() > 0.4 ||
+	if (!request && gameState.getPlayerCiv() !== gameState.getPlayerCiv(player) && randFloat(0, 1) > 0.4 ||
 	    !moreEnemiesThanAllies || gameState.ai.HQ.attackManager.currentEnemyPlayer === player)
 	{
 		this.diplomacyRequests.set(player, { "requestType": requestType, "status": "declinedRequest" });
@@ -296,7 +296,7 @@ m.DiplomacyManager.prototype.handleDiplomacyRequest = function(gameState, player
 		}
 	}
 	else if (requestType === "ally" && gameState.getEntities(player).length < gameState.getOwnEntities().length &&
-	    Math.random() > 0.6 || requestType === "neutral" && moreEnemiesThanAllies && Math.random() > 0.2)
+	    randFloat(0, 1) > 0.6 || requestType === "neutral" && moreEnemiesThanAllies && randFloat(0, 1) > 0.2)
 	{
 		response = "accept";
 		this.changePlayerDiplomacy(gameState, player, requestType);

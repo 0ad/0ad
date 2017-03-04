@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-12-16 09:00+0100\n"
-"PO-Revision-Date: 2016-12-16 10:11+0000\n"
+"POT-Creation-Date: 2017-02-26 21:10+0100\n"
+"PO-Revision-Date: 2017-02-27 08:33+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/wildfire-games/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -86,120 +86,120 @@ msgstr ""
 msgid "N/A"
 msgstr ""
 
-#: gui/lobby/lobby.js:439
-#, javascript-format
-msgid "%(nick)s (%(rating)s)"
-msgstr ""
-
-#: gui/lobby/lobby.js:453
+#: gui/lobby/lobby.js:450
 #, javascript-format
 msgid "Player \"%(nick)s\" not found."
 msgstr ""
 
 #. Translation: %(time)s is the hour and minute here.
-#: gui/lobby/lobby.js:634
+#: gui/lobby/lobby.js:631
 #, javascript-format
 msgid "Game started at %(time)s"
 msgstr ""
 
-#: gui/lobby/lobby.js:635 gui/lobby/lobby.js:996
+#: gui/lobby/lobby.js:632 gui/lobby/lobby.js:993
 msgid "HH:mm"
 msgstr ""
 
-#: gui/lobby/lobby.js:639
+#: gui/lobby/lobby.js:636
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
 msgstr ""
 
-#: gui/lobby/lobby.js:681
+#: gui/lobby/lobby.js:678
 msgid "The game has already started. Do you want to join as observer?"
 msgstr ""
 
-#: gui/lobby/lobby.js:682
+#: gui/lobby/lobby.js:679
 msgid "Confirmation"
 msgstr ""
 
-#: gui/lobby/lobby.js:683
+#: gui/lobby/lobby.js:680
 msgid "No"
 msgstr ""
 
-#: gui/lobby/lobby.js:683
+#: gui/lobby/lobby.js:680
 msgid "Yes"
 msgstr ""
 
-#: gui/lobby/lobby.js:702
+#: gui/lobby/lobby.js:699
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr ""
 
-#: gui/lobby/lobby.js:821
+#: gui/lobby/lobby.js:818
 #, javascript-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
 msgstr ""
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:903
+#: gui/lobby/lobby.js:900
 #, javascript-format
 msgid "* %(sender)s"
 msgstr ""
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:908
+#: gui/lobby/lobby.js:905
 #, javascript-format
 msgid "%(sender)s %(action)s"
 msgstr ""
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:917 gui/lobby/lobby.js:938 gui/lobby/lobby.js:964
+#: gui/lobby/lobby.js:914 gui/lobby/lobby.js:935 gui/lobby/lobby.js:961
 #, javascript-format
 msgid "<%(sender)s>"
 msgstr ""
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:922 gui/lobby/lobby.js:943 gui/lobby/lobby.js:969
+#: gui/lobby/lobby.js:919 gui/lobby/lobby.js:940 gui/lobby/lobby.js:966
 #, javascript-format
 msgid "%(sender)s %(message)s"
 msgstr ""
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:932
+#: gui/lobby/lobby.js:929
 #, javascript-format
 msgid "== %(message)s"
 msgstr ""
 
-#: gui/lobby/lobby.js:958
+#: gui/lobby/lobby.js:955
 #, javascript-format
 msgctxt "lobby private message"
 msgid "(%(private)s) <%(sender)s>"
 msgstr ""
 
-#: gui/lobby/lobby.js:960
+#: gui/lobby/lobby.js:957
 msgid "Private"
 msgstr ""
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
-#: gui/lobby/lobby.js:999
+#: gui/lobby/lobby.js:996
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr ""
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:1004
+#: gui/lobby/lobby.js:1001
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr ""
 
-#: gui/lobby/lobby.js:1065
+#: gui/lobby/lobby.js:1062
 msgid "Please do not spam. You have been blocked for thirty seconds."
 msgstr ""
 
-#: gui/lobby/lobby.js:1132
+#: gui/lobby/lobby.js:1120
+#, javascript-format
+msgid "%(nick)s (%(rating)s)"
+msgstr ""
+
+#: gui/lobby/lobby.js:1135
 msgctxt "Used for an undefined winning rate"
 msgid "-"
 msgstr ""
 
-#: gui/lobby/lobby.js:1134
+#: gui/lobby/lobby.js:1137
 #, javascript-format
 msgid "%(percentage)s%%"
 msgstr ""
@@ -244,23 +244,29 @@ msgstr ""
 msgid "Please agree to the Terms of Service and Terms of Use"
 msgstr ""
 
-#: gui/lobby/prelobby.js:171
+#: gui/lobby/prelobby.js:166
+msgid ""
+"Unknown error. This usually occurs because the same IP address is not "
+"allowed to register more than one account within one hour."
+msgstr ""
+
+#: gui/lobby/prelobby.js:172
 msgid "Registered"
 msgstr ""
 
-#: gui/lobby/prelobby.js:233
+#: gui/lobby/prelobby.js:234
 msgid "Register"
 msgstr "Registruotis"
 
-#: gui/lobby/prelobby.js:239 gui/lobby/prelobby.xml:(caption):109
+#: gui/lobby/prelobby.js:240 gui/lobby/prelobby.xml:(caption):109
 msgid "Connect"
 msgstr "Jungtis"
 
-#: gui/lobby/prelobby.js:249 gui/lobby/prelobby.xml:(caption):78
+#: gui/lobby/prelobby.js:250 gui/lobby/prelobby.xml:(caption):78
 msgid "Terms of Service"
 msgstr ""
 
-#: gui/lobby/prelobby.js:258 gui/lobby/prelobby.xml:(caption):83
+#: gui/lobby/prelobby.js:259 gui/lobby/prelobby.xml:(caption):83
 msgid "Terms of Use"
 msgstr ""
 

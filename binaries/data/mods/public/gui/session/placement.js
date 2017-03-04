@@ -36,7 +36,7 @@ PlacementSupport.prototype.SetDefaultAngle = function()
 
 PlacementSupport.prototype.RandomizeActorSeed = function()
 {
-	this.actorSeed = Math.floor(65535 * Math.random());
+	this.actorSeed = randIntExclusive(0, Math.pow(2, 16));
 };
 
 var placementSupport = new PlacementSupport();

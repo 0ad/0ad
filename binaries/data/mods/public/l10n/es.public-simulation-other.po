@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-02-03 09:03+0100\n"
-"PO-Revision-Date: 2017-02-03 17:14+0000\n"
+"POT-Creation-Date: 2017-02-26 21:12+0100\n"
+"PO-Revision-Date: 2017-03-01 18:20+0000\n"
 "Last-Translator: Swyter <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -930,34 +930,34 @@ msgstr "(Truco: Controlar todas las unidades)"
 msgid "(Cheat - reveal map)"
 msgstr "(Truco - revelar mapa)"
 
-#: simulation/helpers/Commands.js:574
+#: simulation/helpers/Commands.js:570
 msgid "(Cheat - promoted units)"
 msgstr "(Truco: Ascender unidades)"
 
-#: simulation/helpers/Commands.js:688
+#: simulation/helpers/Commands.js:684
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "No puedes mejorar al no cumplir los requisitos de distancia u obstrucción del terreno."
 
-#: simulation/helpers/Commands.js:698
+#: simulation/helpers/Commands.js:694
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "No puedes mejorar una entidad guarnecida."
 
-#: simulation/helpers/Commands.js:744
+#: simulation/helpers/Commands.js:740
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Se ha solicitado un ataque contra %(_player_)s."
 
-#: simulation/helpers/Commands.js:781
+#: simulation/helpers/Commands.js:777
 msgid "Unable to ungarrison unit(s)"
 msgstr "No se han podido desguarnecer las unidades"
 
-#: simulation/helpers/Commands.js:795
+#: simulation/helpers/Commands.js:791
 msgid "Some unit(s) can't go back to work"
 msgstr "Alguna unidad (unidades) no pueden volver al trabajo"
 
-#: simulation/helpers/Commands.js:1049
+#: simulation/helpers/Commands.js:1045
 msgid "The building's technology requirements are not met."
 msgstr "Todavía no se han cumplido los requisitos tecnológicos del edificio."
 
@@ -1149,8 +1149,8 @@ msgstr "Petra Bot"
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
-"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra es la inteligencia artificial por defecto de 0 AD. Si encuentras algún fallo sería de agradecer que se lo notificaras al equipo de Wildfire Games (el enlace está en el menú principal).\n\nLa IA penaliza o bonifica la acumulación de recursos (por velocidad de recogida o valor de mercancía) con una variación mínima de 0,5 para la modalidad «de prueba» hasta un multiplicador máximo de 1,6 puntos para «muy difícil» (en «intermedio» es 1,0). Además en la modalidad de prueba ni expande su territorio ni ataca."
+"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -50% for Sandbox to +60% for Very Hard (Medium 0%). In addition, the Sandbox level does not expand nor attack."
+msgstr "Petra es la inteligencia artificial por defecto de 0 AD. Si encuentras algún fallo sería de agradecer que se lo notificaras al equipo de Wildfire Games (el enlace está en el menú principal).\n\nLa IA penaliza o bonifica la acumulación de recursos (por velocidad de recogida o valor de mercancía) con una variación mínima de -50% para la modalidad «de prueba» hasta un multiplicador máximo de +60% puntos para «muy difícil» (en «intermedio» es 0%). Además en la modalidad de prueba ni expande su territorio ni ataca."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"

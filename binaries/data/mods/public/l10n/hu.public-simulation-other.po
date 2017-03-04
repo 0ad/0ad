@@ -8,12 +8,13 @@
 # Gyuris Gellért <gellert.gyuris@gmail.com>, 2015-2016
 # Mátyás Demeter <mathias.demeter@gmail.com>, 2015
 # Pista Joska <jojoskapi@freemail.hu>, 2015
+# Tibor Buzási, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-02-03 09:03+0100\n"
-"PO-Revision-Date: 2017-02-03 12:40+0000\n"
-"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
+"POT-Creation-Date: 2017-02-26 21:12+0100\n"
+"PO-Revision-Date: 2017-03-02 09:39+0000\n"
+"Last-Translator: Tibor Buzási\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -53,45 +54,45 @@ msgstr "Hadd csoportosítsam át a seregem, és utána csatlakozom hozzád %(_pl
 #: simulation/ai/petra/chatHelper.js:18
 #, javascript-format
 msgid "I am finishing preparations to attack %(_player_)s."
-msgstr ""
+msgstr "Befejezem az előkészületeket %(_player_)s megtámadásához."
 
 #: simulation/ai/petra/chatHelper.js:21
 #, javascript-format
 msgid ""
 "Sorry, I do not have enough soldiers currently; but my next attack will "
 "target %(_player_)s."
-msgstr ""
+msgstr "Sajnálom, jelenleg nincs elég katonám, de a következő támadásom célpontja %(_player_)s lesz."
 
 #: simulation/ai/petra/chatHelper.js:22
 #, javascript-format
 msgid ""
 "Sorry, I still need to strengthen my army. However, I will attack "
 "%(_player_)s next."
-msgstr ""
+msgstr "Sajnálom, még meg kell erősítenem a hadseregem. De következő támadásom célpontja  %(_player_)s lesz."
 
 #: simulation/ai/petra/chatHelper.js:25
 #, javascript-format
 msgid ""
 "I cannot help you against %(_player_)s for the time being, I am planning to "
 "attack %(_player_2)s first."
-msgstr ""
+msgstr "Egyelőre nem tudok segíteni %(_player_)s ellen, mivel támadást tervezek %(_player_2)s ellen."
 
 #: simulation/ai/petra/chatHelper.js:30
 #, javascript-format
 msgid "Here is a gift for you, %(_player_)s. Make good use of it."
-msgstr ""
+msgstr "Itt egy ajándék számodra %(_player_)s. Vedd hasznát."
 
 #: simulation/ai/petra/chatHelper.js:31
 #, javascript-format
 msgid "I see you are in a bad situation, %(_player_)s. I hope this helps."
-msgstr ""
+msgstr "%(_player_)s, úgy látom vacak helyzetben vagy. Remélem ez segít."
 
 #: simulation/ai/petra/chatHelper.js:32
 #, javascript-format
 msgid ""
 "I can help you this time, %(_player_)s, but you should manage your resources"
 " more carefully in the future."
-msgstr ""
+msgstr "%(_player_)s, ezúttal tudok segíteni, de a jövőben jobban kellene gazdálkodnod a nyersanyagaiddal."
 
 #: simulation/ai/petra/chatHelper.js:36
 #, javascript-format
@@ -109,7 +110,7 @@ msgstr "Eredményesebben tudnék részt venni a közös háborúnkban, ha tudná
 #, javascript-format
 msgid ""
 "If you can spare me some %(resource)s, I will be able to strengthen my army."
-msgstr ""
+msgstr "Segítene nekem a hadsereg megerősítésében, ha megszánnál egy kicsit az alábbi nyersanyaggal: %(resource)s."
 
 #: simulation/ai/petra/chatHelper.js:42
 #, javascript-format
@@ -153,117 +154,117 @@ msgstr "%(_player_)s és én most már ellenségek vagyunk."
 #: simulation/ai/petra/chatHelper.js:70
 #, javascript-format
 msgid "I cannot accept your offer to become allies, %(_player_)s."
-msgstr ""
+msgstr "%(_player_)s, nem fogadhatom el az ajánlatod, hogy szövetségesekké váljunk."
 
 #: simulation/ai/petra/chatHelper.js:73
 #, javascript-format
 msgid ""
 "I will not be your ally, %(_player_)s. However, I will consider a neutrality"
 " pact."
-msgstr ""
+msgstr "%(_player_)s, nem leszek a szövetségesed, de megfontolok egy semlegességi paktumot."
 
 #: simulation/ai/petra/chatHelper.js:74
 #, javascript-format
 msgid ""
 "I reject your request for alliance, %(_player_)s, but we could become "
 "neutral."
-msgstr ""
+msgstr "%(_player_)s, visszautasítom szövetség megkötésére vonatkozó kérésed, de semlegessé válhatunk."
 
 #: simulation/ai/petra/chatHelper.js:75
 #, javascript-format
 msgid "%(_player_)s, only a neutrality agreement is conceivable to me."
-msgstr ""
+msgstr "%(_player_)s, csak egy semlegességi egyezmény elképzelhető számomra."
 
 #: simulation/ai/petra/chatHelper.js:78
 #, javascript-format
 msgid ""
 "Our previous alliance did not work out, %(_player_)s. I must decline your "
 "offer."
-msgstr ""
+msgstr "%(_player_)s, az előző szövetségünk nem működött, így vissza kell utasítanom az ajánlatod."
 
 #: simulation/ai/petra/chatHelper.js:79
 #, javascript-format
 msgid "I won’t ally you again, %(_player_)s!"
-msgstr ""
+msgstr "%(_player_)s, nem szövetkezek veled többé!"
 
 #: simulation/ai/petra/chatHelper.js:80
 #, javascript-format
 msgid "No more alliances between us, %(_player_)s!"
-msgstr ""
+msgstr "%(_player_)s, nem leszek a szövetségesed többé!"
 
 #: simulation/ai/petra/chatHelper.js:81
 #, javascript-format
 msgid "Your request for peace means nothing to me anymore, %(_player_)s!"
-msgstr ""
+msgstr "%(_player_)s, békére vontakozó kérelmed már nem jelent számomra semmit!"
 
 #: simulation/ai/petra/chatHelper.js:82
 #, javascript-format
 msgid ""
 "My answer to your repeated peace proposal will remain war, %(_player_)s!"
-msgstr ""
+msgstr "%(_player_)s, ismételt békejavaslatodra a válaszom háború marad!"
 
 #: simulation/ai/petra/chatHelper.js:85
 #, javascript-format
 msgid ""
 "I will accept your offer to become allies, %(_player_)s. We will both "
 "benefit from this partnership."
-msgstr ""
+msgstr "%(_player_)s, elfogadom szövetségi ajánlatod. Mindkettőnknek hasznára válik ez a szövetkezés."
 
 #: simulation/ai/petra/chatHelper.js:86
 #, javascript-format
 msgid "An alliance between us is a good idea, %(_player_)s."
-msgstr ""
+msgstr "%(_player_)s, jó ötlet szövetséget kötnünk."
 
 #: simulation/ai/petra/chatHelper.js:87
 #, javascript-format
 msgid ""
 "Let both of our people prosper from a peaceful association, %(_player_)s."
-msgstr ""
+msgstr "%(_player_)s, virágozzanak népeink e békés szövetségben!"
 
 #: simulation/ai/petra/chatHelper.js:88
 #, javascript-format
 msgid "We have found common ground, %(_player)s. I accept the alliance."
-msgstr ""
+msgstr "Megtaláltuk a közös nevezőt, %(_player)s. Elfogadom a szövetséget."
 
 #: simulation/ai/petra/chatHelper.js:89
 #, javascript-format
 msgid "%(_player_)s, consider us allies from now on."
-msgstr ""
+msgstr "%(_player_)s, tekints ránk mostantól szövetségesként!"
 
 #: simulation/ai/petra/chatHelper.js:92
 #, javascript-format
 msgid ""
 "I will ally with you, %(_player_)s, but only if you send me a tribute of "
 "%(_amount_)s %(_resource_)s."
-msgstr ""
+msgstr "Szövetségre lépek veled, %(_player_)s, de csak akkor, ha %(_amount_)s %(_resource_)s sarcot küldesz."
 
 #: simulation/ai/petra/chatHelper.js:93
 #, javascript-format
 msgid ""
 "%(_player_)s, you must send me a tribute of %(_amount_)s %(_resource_)s "
 "before I accept an alliance with you."
-msgstr ""
+msgstr "%(_player_)s, %(_amount_)s %(_resource_)s sarcot kell küldened, mielőtt szövetségre lépnék veled."
 
 #: simulation/ai/petra/chatHelper.js:94
 #, javascript-format
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
 " %(_player_)s,"
-msgstr ""
+msgstr "%(_player_)s, amennyiben nem küldesz %(_amount_)s %(_resource_)s, szövetségünk nem jön létre."
 
 #: simulation/ai/petra/chatHelper.js:97
 #, javascript-format
 msgid ""
 "%(_player_)s, my offer still stands. I will ally with you only if you send "
 "me a tribute of %(_amount_)s %(_resource_)s."
-msgstr ""
+msgstr "%(_player_)s, ajánlat még mindig áll. Csak akkor lépek veled szövetségre, ha küldesz %(_amount_)s %(_resource_)s sarcot."
 
 #: simulation/ai/petra/chatHelper.js:98
 #, javascript-format
 msgid ""
 "I’m still waiting for %(_amount_)s %(_resource_)s before accepting your "
 "alliance, %(_player_)s."
-msgstr ""
+msgstr "%(_player_)s, még mindig várom a  %(_amount_)s %(_resource_)s, mielőtt elfogadnálak szövetségesemként."
 
 #: simulation/ai/petra/chatHelper.js:99 simulation/ai/petra/chatHelper.js:120
 #, javascript-format
@@ -275,7 +276,7 @@ msgstr "%(_player_)s, ha nem küldöd el a %(_amount_)s %(_resource_)s sarc egy 
 #: simulation/ai/petra/chatHelper.js:104
 #, javascript-format
 msgid "I will not become neutral with you, %(_player_)s."
-msgstr ""
+msgstr "%(_player_)s, nem leszek veled semleges."
 
 #: simulation/ai/petra/chatHelper.js:105
 #, javascript-format
@@ -287,14 +288,14 @@ msgstr "%(_player_)s, vissza kell utasítanom a semlegességi megállapodási k�
 msgid ""
 "Our previous neutrality agreement ended in failure, %(_player_)s; I will not"
 " consider another one."
-msgstr ""
+msgstr "Az előző semlegességi megegyezésünk sikertelen volt, %(_player_)s. Nem veszek fontolóra még egyet."
 
 #: simulation/ai/petra/chatHelper.js:111
 #, javascript-format
 msgid ""
 "I welcome your request for peace between our civilizations, %(_player_)s. I "
 "will accept."
-msgstr ""
+msgstr "Üdvözlöm békekötési kérelmed civilizációink közt, %(_player_)s. Elfogadom."
 
 #: simulation/ai/petra/chatHelper.js:112
 #, javascript-format
@@ -308,7 +309,7 @@ msgstr "%(_player_)s, elfogadom a semlegességi kérésed. Reméljük mindkettő
 msgid ""
 "If you send me a tribute of %(_amount_)s %(_resource_)s, I will accept your "
 "neutrality request, %(_player_)s."
-msgstr ""
+msgstr "Ha küldesz nekem %(_amount_)s %(_resource_)s sarcot, akkor elfogadom a semlegességi kérelmed, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:116
 #, javascript-format
@@ -928,34 +929,34 @@ msgstr "(Csalás - összes egység irányítása)"
 msgid "(Cheat - reveal map)"
 msgstr "(Csalás - térkép felfedése)"
 
-#: simulation/helpers/Commands.js:574
+#: simulation/helpers/Commands.js:570
 msgid "(Cheat - promoted units)"
 msgstr "(Csalás - előléptetett egységek)"
 
-#: simulation/helpers/Commands.js:688
+#: simulation/helpers/Commands.js:684
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Nem fejleszthető, mivel a távolsági követelmények nincsenek ellenőrizve, vagy a terep akadályozza."
 
-#: simulation/helpers/Commands.js:698
+#: simulation/helpers/Commands.js:694
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "A beszállásolt egység nem fejleszthető."
 
-#: simulation/helpers/Commands.js:744
+#: simulation/helpers/Commands.js:740
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "%(_player_)s ellen támadást kértek."
 
-#: simulation/helpers/Commands.js:781
+#: simulation/helpers/Commands.js:777
 msgid "Unable to ungarrison unit(s)"
 msgstr "Nem lehet kiengedni az egységeket"
 
-#: simulation/helpers/Commands.js:795
+#: simulation/helpers/Commands.js:791
 msgid "Some unit(s) can't go back to work"
 msgstr "Néhány egység nem tud visszamenni dolgozni"
 
-#: simulation/helpers/Commands.js:1049
+#: simulation/helpers/Commands.js:1045
 msgid "The building's technology requirements are not met."
 msgstr "Az épület technológiai követelményei nincsenek teljesítve."
 
@@ -1147,8 +1148,8 @@ msgstr "Petra bot"
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
-"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra a 0 A.D. alapértelmezett MI botja. Kérjük a hibákat a Wildfire Games számára jelentsd (lásd a hivatkozást a főmenüben).\n\nA MI változó bónusz/büntetés rendszert alkalmaz a nyersanyagok készletezésére (gyűjtésre és kereskedésre is) a homokozótól (0,5) a nagyon nehéz (1,6) szintig (közepes = 1,0). Továbbá a homokozó szinten nincs terjeszkedés és támadás."
+"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -50% for Sandbox to +60% for Very Hard (Medium 0%). In addition, the Sandbox level does not expand nor attack."
+msgstr "Petra a 0 A.D. alapértelmezett MI botja. Kérjük jelentsd a hibákat a Wildfire Games-nek (lásd a hivatkozást a főmenüben).\n\nA MI bónusz/büntetés rendszert alkalmaz a nyersanyagok felhalmozására (gyűjtési sebességre és kereskedés növekedésre is) -50%-tól a homokozóban +60%-ig nagyon nehéz szinten (a közepes szint 0%). Továbbá a homokozó szinten nincs terjeszkedés és támadás."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"

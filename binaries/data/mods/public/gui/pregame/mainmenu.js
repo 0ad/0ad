@@ -1,10 +1,18 @@
 var userReportEnabledText; // contains the original version with "$status" placeholder
 var currentSubmenuType; // contains submenu type
 const MARGIN = 4; // menu border size
-var g_BackgroundCode; // Background type.
 
 var g_ShowSplashScreens;
+
+/**
+ * Available backdrops
+ */
 var g_BackgroundLayerData = [];
+
+/**
+ * Chosen backdrop
+ */
+var g_BackgroundLayerset;
 
 var g_T0 = +(new Date());
 var g_LastTickTime = new Date();
@@ -26,13 +34,12 @@ function init(initData, hotloadData)
 	g_ShowSplashScreens = hotloadData ? hotloadData.showSplashScreens : initData && initData.isStartup;
 
 	// Pick a random background and initialise it
-	g_BackgroundCode = Math.floor(Math.random() * g_BackgroundLayerData.length);
-	var layerset = g_BackgroundLayerData[g_BackgroundCode];
-	for (var i = 0; i < layerset.length; ++i)
+	g_BackgroundLayerset = pickRandom(g_BackgroundLayerData);
+	for (let i = 0; i < g_BackgroundLayerset.length; ++i)
 	{
 		var guiObj = Engine.GetGUIObjectByName("background["+i+"]");
 		guiObj.hidden = false;
-		guiObj.sprite = layerset[i].sprite;
+		guiObj.sprite = g_BackgroundLayerset[i].sprite;
 		guiObj.z = i;
 	}
 }
@@ -44,10 +51,8 @@ function getHotloadData()
 
 function scrollBackgrounds()
 {
-	var layerset = g_BackgroundLayerData[g_BackgroundCode];
-	for (var i = 0; i < layerset.length; ++i)
+	for (let i = 0; i < g_BackgroundLayerset.length; ++i)
 	{
-		var layer = layerset[i];
 		var guiObj = Engine.GetGUIObjectByName("background["+i+"]");
 
 		var screen = guiObj.parent.getComputedSize();
@@ -56,8 +61,8 @@ function scrollBackgrounds()
 		var iw = h * 2;
 
 		var time = (new Date() - g_T0) / 1000;
-		var offset = layer.offset(time, w);
-		if (layer.tiling)
+		var offset = g_BackgroundLayerset[i].offset(time, w);
+		if (g_BackgroundLayerset[i].tiling)
 		{
 			var left = offset % iw;
 			if (left >= 0)

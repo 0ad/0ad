@@ -667,7 +667,7 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions)
 
 		for (var i = 0; i < count; ++i)
 		{
-			var obj = new Vector2D(Math.random()*width, Math.random()*width);
+			var obj = new Vector2D(randFloat(0, width), randFloat(0, width));
 			obj.row = 1;
 			obj.column = i + 1;
 			offsets.push(obj);
@@ -720,13 +720,9 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions)
 					x += side * centerGap / 2;
 				}
 				var column = Math.ceil(n/2) + Math.ceil(c/2) * side;
-				var r1 = 0;
-				var r2 = 0;
-				if (this.sloppyness != 0)
-				{
-					r1 = (Math.random() * 2 - 1) * this.sloppyness;
-					r2 = (Math.random() * 2 - 1) * this.sloppyness;
-				}
+				var r1 = randFloat(-1, 1) * this.sloppyness;
+				var r2 = randFloat(-1, 1) * this.sloppyness;
+
 				offsets.push(new Vector2D(x + r1, z + r2));
 				offsets[offsets.length - 1].row = r+1;
 				offsets[offsets.length - 1].column = column;

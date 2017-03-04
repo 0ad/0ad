@@ -21,12 +21,13 @@
 # Yegor <revolver45@inbox.ru>, 2014
 # Григорий Световидов <grin.sv@gmail.com>, 2015
 # Николай Авдеев <nickkolok@mail.ru>, 2016
+# Олег Шевченко <olegrock@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-02-03 09:03+0100\n"
-"PO-Revision-Date: 2017-02-03 12:42+0000\n"
-"Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
+"POT-Creation-Date: 2017-02-26 21:12+0100\n"
+"PO-Revision-Date: 2017-03-01 09:49+0000\n"
+"Last-Translator: Олег Шевченко <olegrock@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -945,34 +946,34 @@ msgstr "(Обман - управлять всеми юнитами)"
 msgid "(Cheat - reveal map)"
 msgstr "(Обман - открыть всю карту)"
 
-#: simulation/helpers/Commands.js:574
+#: simulation/helpers/Commands.js:570
 msgid "(Cheat - promoted units)"
 msgstr "(Обман - помогать юнитам)"
 
-#: simulation/helpers/Commands.js:688
+#: simulation/helpers/Commands.js:684
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Не удаётся улучшить, так как требования к расстоянию неверны или имеются препятствия на местности. "
 
-#: simulation/helpers/Commands.js:698
+#: simulation/helpers/Commands.js:694
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "Невозможно добавить гарнизон"
 
-#: simulation/helpers/Commands.js:744
+#: simulation/helpers/Commands.js:740
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Запрос атаки на %(_player_)s."
 
-#: simulation/helpers/Commands.js:781
+#: simulation/helpers/Commands.js:777
 msgid "Unable to ungarrison unit(s)"
 msgstr "Невозможно вывести гарнизон"
 
-#: simulation/helpers/Commands.js:795
+#: simulation/helpers/Commands.js:791
 msgid "Some unit(s) can't go back to work"
 msgstr "Некоторые юниты не могут вернуться к работе"
 
-#: simulation/helpers/Commands.js:1049
+#: simulation/helpers/Commands.js:1045
 msgid "The building's technology requirements are not met."
 msgstr "Технологии, необходимые для здания, отсутствуют."
 
@@ -1164,8 +1165,8 @@ msgstr "Бот Petra"
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
-"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from 0.5 for Sandbox to 1.6 for Very Hard (Medium = 1.0). In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra - бот ИИ по умолчанию в 0 A.D. Пожалуйста, сообщайте о неполадках и предложениях в Wildfire Games (см. ссылку в главном меню).\n\nБот ИИ имеет повышающий/понижающий коэффициент  при получении ресурсов (как при сборе, так и при торговле) от 0.5 для \"Песочницы\" до 1.6 для \"Очень сложно\" (1.0 для \"Среднего\"). Кроме того, на уровне \"Песочница\" бот не расширяет свою территорию и не атакует."
+"The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -50% for Sandbox to +60% for Very Hard (Medium 0%). In addition, the Sandbox level does not expand nor attack."
+msgstr "Петра - стандартный 0 A.D. бот ИИ. Пожалуйста, сообщите о проблемах в Wildfire Games (см. ссылку в главном меню).\nИИ имеет штраф/бонус на накопление ресурсов (либо уровня накопления или торговая прибыли) в диапазоне от -50% для Песочницы до +60% на Очень сложном уровне (на среднем - 0%).  Кроме того, на уровень \"Песочница\" он не расширяется и не атакует.\n"
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"

@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-12-23 11:16+0100\n"
-"PO-Revision-Date: 2017-01-17 11:15+0000\n"
+"POT-Creation-Date: 2017-02-26 21:10+0100\n"
+"PO-Revision-Date: 2017-03-02 11:51+0000\n"
 "Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -32,167 +32,175 @@ msgstr "Hini ebet"
 msgid "AI will be disabled for this player."
 msgstr "An NA a vo diwerekaet evit ar c'hoarier-mañ."
 
-#: gui/gamesetup/gamesetup.js:46
-msgid "Game settings have been changed"
-msgstr "Kemmet eo bet dibarzhioù ar c'hoari"
-
-#: gui/gamesetup/gamesetup.js:47
-#, javascript-format
-msgid "%(username)s has joined"
-msgstr "%(username)s a zo o paouez kemer-perzh"
-
-#: gui/gamesetup/gamesetup.js:48
-#, javascript-format
-msgid "%(username)s has left"
-msgstr "%(username)s en deus kuitaet"
-
-#: gui/gamesetup/gamesetup.js:49
-#, javascript-format
-msgid "%(username)s has been kicked"
-msgstr "%(username)s a zo stlepet kuit"
-
-#: gui/gamesetup/gamesetup.js:50
-#, javascript-format
-msgid "%(username)s has been banned"
-msgstr "%(username)s a zo bet forbannet"
-
-#: gui/gamesetup/gamesetup.js:51
-#, javascript-format
-msgid "%(username)s %(message)s"
-msgstr "%(username)s %(message)s"
-
-#: gui/gamesetup/gamesetup.js:52
-#, javascript-format
-msgid "<%(username)s>"
-msgstr "<%(username)s>"
-
-#: gui/gamesetup/gamesetup.js:55
-#, javascript-format
-msgid "* %(username)s is ready!"
-msgstr "* %(username)s a zo prest!"
-
-#: gui/gamesetup/gamesetup.js:58
+#: gui/gamesetup/gamesetup.js:36
 #, javascript-format
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s n'eo ket prest."
 
-#: gui/gamesetup/gamesetup.js:70
+#: gui/gamesetup/gamesetup.js:37
+msgid "I'm ready"
+msgstr "Prest on"
+
+#: gui/gamesetup/gamesetup.js:38
+msgid "State that you are ready to play."
+msgstr "Lavarit emaoc'h prest da c'hoari."
+
+#: gui/gamesetup/gamesetup.js:42
+#, javascript-format
+msgid "* %(username)s is ready!"
+msgstr "* %(username)s a zo prest!"
+
+#: gui/gamesetup/gamesetup.js:43
+msgid "Stay ready"
+msgstr "Bezit prest"
+
+#: gui/gamesetup/gamesetup.js:44
+msgid "Stay ready even when the game settings change."
+msgstr "Bezit prest 'zoken ma cheñchfe dibarzhioù ar c'hoari."
+
+#: gui/gamesetup/gamesetup.js:49
+msgid "I'm not ready!"
+msgstr "N'on ket prest !"
+
+#: gui/gamesetup/gamesetup.js:50
+msgid "State that you are not ready to play."
+msgstr "Lavarit n'emaoc'h ket prest da c'hoari."
+
+#: gui/gamesetup/gamesetup.js:73
+msgid "Game settings have been changed"
+msgstr "Kemmet eo bet dibarzhioù ar c'hoari"
+
+#: gui/gamesetup/gamesetup.js:74
+#, javascript-format
+msgid "%(username)s has joined"
+msgstr "%(username)s a zo o paouez kemer-perzh"
+
+#: gui/gamesetup/gamesetup.js:75
+#, javascript-format
+msgid "%(username)s has left"
+msgstr "%(username)s en deus kuitaet"
+
+#: gui/gamesetup/gamesetup.js:76
+#, javascript-format
+msgid "%(username)s has been kicked"
+msgstr "%(username)s a zo stlepet kuit"
+
+#: gui/gamesetup/gamesetup.js:77
+#, javascript-format
+msgid "%(username)s has been banned"
+msgstr "%(username)s a zo bet forbannet"
+
+#: gui/gamesetup/gamesetup.js:78
+#, javascript-format
+msgid "%(username)s %(message)s"
+msgstr "%(username)s %(message)s"
+
+#: gui/gamesetup/gamesetup.js:79
+#, javascript-format
+msgid "<%(username)s>"
+msgstr "<%(username)s>"
+
+#: gui/gamesetup/gamesetup.js:92
 msgctxt "map filter"
 msgid "Default"
 msgstr "Dre Ziouer"
 
-#: gui/gamesetup/gamesetup.js:75
+#: gui/gamesetup/gamesetup.js:97
 msgid "Naval Maps"
 msgstr "Kartennoù-Mor"
 
-#: gui/gamesetup/gamesetup.js:80
+#: gui/gamesetup/gamesetup.js:102
 msgid "Demo Maps"
 msgstr "Kartenn Diskouez"
 
-#: gui/gamesetup/gamesetup.js:85
+#: gui/gamesetup/gamesetup.js:107
 msgid "New Maps"
 msgstr "Kartennoù nevez"
 
-#: gui/gamesetup/gamesetup.js:90
+#: gui/gamesetup/gamesetup.js:112
 msgid "Trigger Maps"
 msgstr "Kartennoù Distenn"
 
-#: gui/gamesetup/gamesetup.js:95
+#: gui/gamesetup/gamesetup.js:117
 msgid "All Maps"
 msgstr "An holl gartennoù"
 
-#: gui/gamesetup/gamesetup.js:144
+#: gui/gamesetup/gamesetup.js:161
 msgctxt "map selection"
 msgid "Random"
 msgstr "Dre-zegouezh"
 
-#: gui/gamesetup/gamesetup.js:149
+#: gui/gamesetup/gamesetup.js:166
 msgctxt "civilization"
 msgid "Random"
 msgstr "Dre-zegouezh"
 
-#: gui/gamesetup/gamesetup.js:272
+#: gui/gamesetup/gamesetup.js:292
 msgid "Return to the lobby."
 msgstr "Distreiñ d'an hall."
 
-#: gui/gamesetup/gamesetup.js:272
+#: gui/gamesetup/gamesetup.js:292
 msgid "Return to the main menu."
 msgstr "Distreiñ d'al lañser pennañ."
 
-#: gui/gamesetup/gamesetup.js:618
+#: gui/gamesetup/gamesetup.js:638
 msgid "Yes"
 msgstr "Ya"
 
-#: gui/gamesetup/gamesetup.js:618
+#: gui/gamesetup/gamesetup.js:638
 msgid "No"
 msgstr "Ket"
 
-#: gui/gamesetup/gamesetup.js:657
+#: gui/gamesetup/gamesetup.js:677
 msgctxt "team"
 msgid "None"
 msgstr "Hini ebet"
 
-#: gui/gamesetup/gamesetup.js:1321
+#: gui/gamesetup/gamesetup.js:1342
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1413
+#: gui/gamesetup/gamesetup.js:1434
 msgctxt "map size"
 msgid "Default"
 msgstr "Dre Ziouer"
 
-#: gui/gamesetup/gamesetup.js:1483
+#: gui/gamesetup/gamesetup.js:1504
 msgid "Loading..."
 msgstr "O kargañ..."
 
-#: gui/gamesetup/gamesetup.js:1616
+#: gui/gamesetup/gamesetup.js:1637
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "NA: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1621
+#: gui/gamesetup/gamesetup.js:1642
 msgid "Unassigned"
 msgstr "Nann-dereet"
 
-#: gui/gamesetup/gamesetup.js:1781
+#: gui/gamesetup/gamesetup.js:1802
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1788
+#: gui/gamesetup/gamesetup.js:1809
 msgid "Unknown Player"
 msgstr "C'hoarier dianav"
 
-#: gui/gamesetup/gamesetup.js:1824
+#: gui/gamesetup/gamesetup.js:1848
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1825
+#: gui/gamesetup/gamesetup.js:1849
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:1826
+#: gui/gamesetup/gamesetup.js:1850
 msgid "HH:mm"
 msgstr "HH:mm"
-
-#: gui/gamesetup/gamesetup.js:1876
-msgid "I'm not ready!"
-msgstr "N'on ket prest !"
-
-#: gui/gamesetup/gamesetup.js:1877
-msgid "I'm ready"
-msgstr "Prest on"
-
-#: gui/gamesetup/gamesetup.js:1880
-msgid "State that you are not ready to play."
-msgstr "Lavarit n'emaoc'h ket prest da c'hoari."
-
-#: gui/gamesetup/gamesetup.js:1881
-msgid "State that you are ready to play!"
-msgstr "Lavarit emaoc'h prest da c'hoari."
 
 #: gui/gamesetup/gamesetup_mp.js:49
 #, javascript-format
@@ -281,7 +289,7 @@ msgstr "O kargañ"
 
 #: gui/gamesetup/gamesetup.xml:(caption):31
 msgid "Loading map data. Please wait..."
-msgstr ""
+msgstr "O kargañ roadennoù ar gartenn. Gortozit mar plij..."
 
 #: gui/gamesetup/gamesetup.xml:(caption):47
 msgid "Player Name"
@@ -305,7 +313,7 @@ msgstr "Skipailh"
 
 #: gui/gamesetup/gamesetup.xml:(caption):141
 msgid "Show this message in the future"
-msgstr ""
+msgstr "Diskouez ar gemennadenn-mañ en amzer da zont"
 
 #: gui/gamesetup/gamesetup.xml:(caption):151
 msgid "Map Type:"
@@ -573,7 +581,7 @@ msgstr "Arroudenn an Deiz:"
 
 #: gui/text/quotes.txt:1
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus"
-msgstr ""
+msgstr "\"Ur sod en e verzh a zo ur samm ponner.\" - Echil"
 
 #: gui/text/quotes.txt:2
 msgid ""
@@ -627,7 +635,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:11
 msgid "\"Any excuse will serve a tyrant.\" - Aesop"
-msgstr ""
+msgstr "\"Kement digarez a servijo d'an diraned\" - Ezop"
 
 #: gui/text/quotes.txt:12
 msgid "\"Better be wise by the misfortunes of others than by your own.\" - Aesop"

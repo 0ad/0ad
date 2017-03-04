@@ -3,16 +3,6 @@
  */
 var g_LastNickNotification = -1;
 
-function getRandom(randomMin, randomMax)
-{
-	// Returns a random whole number in a min..max range.
-	// NOTE: There should probably be an engine function for this,
-	// since we'd need to keep track of random seeds for replays.
-
-	var randomNum = randomMin + (randomMax-randomMin)*Math.random();  // num is random, from A to B
-	return Math.round(randomNum);
-}
-
 // Get list of XML files in pathname with recursion, excepting those starting with _
 function getXMLFileList(pathname)
 {
