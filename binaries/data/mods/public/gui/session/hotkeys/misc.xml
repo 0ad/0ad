@@ -5,11 +5,15 @@
 	</object>
 
 	<object hotkey="chat">
-		<action on="Press">openChat(false);</action>
+		<action on="Press">openChat();</action>
 	</object>
 
 	<object hotkey="teamchat">
-		<action on="Press">openChat(true);</action>
+		<action on="Press">openChat(g_IsObserver ? "/observers" : "/allies");</action>
+	</object>
+
+	<object hotkey="privatechat">
+		<action on="Press">openChat(g_LastChatAddressee);</action>
 	</object>
 
 	<object hotkey="menu.toggle">

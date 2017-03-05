@@ -387,7 +387,8 @@ function updateHotkeyTooltips()
 			"\n" + (g_IsObserver ?
 				translate("Press %(hotkey)s to open the observer chat.") :
 				translate("Press %(hotkey)s to open the ally chat.")),
-			"teamchat");
+			"teamchat") +
+		colorizeHotkey("\n" + translate("Press %(hotkey)s to open the previously selected private chat."), "privatechat");
 
 	Engine.GetGUIObjectByName("idleWorkerButton").tooltip =
 		colorizeHotkey("%(hotkey)s" + " ", "selection.idleworker") +
