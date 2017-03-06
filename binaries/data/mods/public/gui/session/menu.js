@@ -534,7 +534,7 @@ function diplomacyFormatSpyRequestButton(i, hidden)
 		}
 	}
 	let icon = Engine.GetGUIObjectByName("diplomacySpyRequestImage["+(i-1)+"]");
-	icon.sprite = modifier + "stretched:session/icons/economics.png";
+	icon.sprite = modifier + "stretched:session/icons/bribes.png";
 	button.tooltip = tooltips.filter(tip => tip).join("\n");
 	button.onPress = (function(i) { return function() {
 		Engine.PostNetworkCommand({ "type": "spy-request", "source": g_ViewedPlayer, "player": i });
