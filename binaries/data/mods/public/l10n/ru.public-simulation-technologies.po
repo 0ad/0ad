@@ -41,8 +41,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-12-30 09:02+0100\n"
-"PO-Revision-Date: 2017-01-24 23:16+0000\n"
+"POT-Creation-Date: 2017-03-03 09:02+0100\n"
+"PO-Revision-Date: 2017-03-04 13:43+0000\n"
 "Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -1835,6 +1835,20 @@ msgstr "Вы можете видеть то, что видят Ваши союз
 msgid "Cartography"
 msgstr "Картография"
 
+#: simulation/data/technologies/unlock_spies.jsondescription
+msgid ""
+"Merchants' first goal was trading, but they also gathered information about "
+"the countries they crossed."
+msgstr "Первостепенной задачей купцов была торговля, но они также собирали информацию о тех странах, которые пересекали."
+
+#: simulation/data/technologies/unlock_spies.jsontooltip
+msgid "Allows to bribe other players' units to share their vision."
+msgstr "Позволяет подкупать юнитов других игроков, чтобы видеть то, что видят они."
+
+#: simulation/data/technologies/unlock_spies.jsongenericName
+msgid "Espionage"
+msgstr "Шпионаж"
+
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsondescription
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsondescription
 msgid "Promote all of your citizen-soldier cavalrymen to Advanced rank."
@@ -2208,13 +2222,13 @@ msgstr "Элитные кельтские наёмники"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsondescription
 msgid "Upgrade all of your Iberian Mercenaries to Elite rank."
-msgstr "Повысь всех иберийских наёмников в ранге до элитного."
+msgstr "Повысьте всех иберийских наёмников в ранге до элитного."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsontooltip
 msgid ""
 "Upgrade all of your Iberian mercenaries to Elite rank. This increases their "
 "military prowess, but decreases their resource gathering rates another -25%."
-msgstr "Повысь всех иберийских наёмников в ранге до элитного. Это повысит их воинскую доблесть, но снизит скорость сбора ресурсов ещё на -25%."
+msgstr "Повысьте всех иберийских наёмников в ранге до элитного. Это повысит их воинскую доблесть, но снизит скорость сбора ресурсов ещё на -25%."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsongenericName
 msgid "Elite Iberian Mercenaries"
@@ -2222,14 +2236,14 @@ msgstr "Элитные иберийские наёмники"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsondescription
 msgid "Upgrade all of your Italiote Mercenaries to Elite rank."
-msgstr "Повысь всех италиотских наёмников в ранге до элитного."
+msgstr "Повысьте всех италиотских наёмников в ранге до элитного."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsontooltip
 msgid ""
 "Upgrade all of your Italiote mercenaries to Elite rank. This increases their"
 " military prowess, but decreases their resource gathering rates another "
 "-25%."
-msgstr "Повысь всех италиотских наёмников в ранге до элитного. Это повысит их воинскую доблесть, но снизит скорость сбора ресурсов ещё на -25%."
+msgstr "Повысьте всех италиотских наёмников в ранге до элитного. Это повысит их воинскую доблесть, но снизит скорость сбора ресурсов ещё на -25%."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsongenericName
 msgid "Elite Italiote Mercenaries"
@@ -2287,7 +2301,7 @@ msgid ""
 "the best army in the world for their time. What they didn't have in "
 "quantity, they made up with quality. It was said that Sparta did not need "
 "strong city walls, for its men were its walls."
-msgstr "У спартанцев была не самая большая армия в мире, но она была самой лучшей в те времена. Недостаток количества они восполняли качеством. Говорили, что Спарте не нужны крепкие городские стены, поскольку её мужчины служили ей стенами. "
+msgstr "У спартанцев была не самая большая армия в мире, но она была самой лучшей в те времена. Недостаток количества они восполняли качеством. Говорили, что Спарте не нужны крепкие городские стены, поскольку стенами ей служили её мужчины. "
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
 msgid "Spartans have 10% less maximum population"
@@ -2460,7 +2474,7 @@ msgid ""
 "example, a canal was built in Egypt and a Persian navy was sent exploring "
 "the Indus river. According to Herodotus, some 300 ships in the Persian navy "
 "were retrofitted to carry horses and their riders."
-msgstr "Первые Ахеменидские правители стремились сделать Персию первой великой Азиатской империей, которая правит морями. Великий Король благосклонно относился к различным народам морей, защищая их жизнь, а также претворяя в жизнь различные морские проекты. Во времена правления Дариуса Великого, например, был построен канал в Египте, а персидский флот был отправлен для исследования реки Инд. По записям Геродота, около 300 кораблей персидского флота были модифицированы для перевозки лошадей и их наездников."
+msgstr "Первые Ахеменидские правители стремились сделать Персию первой великой Азиатской империей, которая правит морями. Великий царь благосклонно относился к различным народам моря, защищая их жизнь, а также претворяя в жизнь различные морские проекты. Во времена правления Дария Великого, например, был построен канал в Египте, а персидский флот был отправлен для исследования реки Инд. По записям Геродота, около 300 кораблей персидского флота были модифицированы для перевозки лошадей и их наездников."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsontooltip
 msgid "Phoenician Triremes gain the ability to train cavalry units."
@@ -2518,7 +2532,7 @@ msgid ""
 "utterances, set out in Greek hexameters, purchased from a sibyl by the last "
 "king of Rome, Tarquinius Superbus, and consulted at momentous crises through"
 " the history of the Republic and the Empire."
-msgstr "Книги Сивилл или \"Либри Сивиллини\" были набором пророческих высказываний, написанных гексаметром, приобретённых у сибилл последним царем Рима Тарквинием Гордым, консультировавших в судьбоносных исторических кризисах Республики и Империи."
+msgstr "Книги Сивилл или \"Либри Сивиллини\" были стихотворными сборниками пророческих высказываний, написанными греческим гексаметром, и приобретёнными у сибилл последним римским царём Тарквинием Гордым. К их мудрости обращались во времена судьбоносных исторических кризисов Республики и Империи."
 
 #: simulation/data/technologies/romans/vision_sibylline.jsontooltip
 msgid "+25% Vision range for all units."
@@ -2541,7 +2555,7 @@ msgid ""
 "Beginning with Alexander, the Hellenistic monarchs founded many cities "
 "throughout their empires, where Greek culture and art blended with local "
 "customs to create the motley Hellenistic civilization."
-msgstr "Начиная с Александра, эллинские монархи основали много городов за время существования империи, в которых греческая культура и искусство смешались с местными обычаями, создавая пёструю эллинскую цивилизацию."
+msgstr "Начиная с Александра, эллинские монархи за время существования их империй основали много городов, в которых греческая культура и искусство смешались с местными обычаями, создавая пёструю эллинскую цивилизацию."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
 msgid "Civic centers +100% health and capture points, double default arrows."

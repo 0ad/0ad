@@ -7,13 +7,13 @@
 # Albert, 2016
 # Ghenadi Avricenco <gplushentr@gmx.us>, 2014
 # Luis Torrecilla <l_torrecilla@yahoo.es>, 2016
-# Swyter <Swyterzone@gmail.com>, 2014-2016
+# Swyter <Swyterzone@gmail.com>, 2014-2017
 # vega93 <arkadas_llisa@hotmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-12-30 09:02+0100\n"
-"PO-Revision-Date: 2016-12-31 00:29+0000\n"
+"POT-Creation-Date: 2017-03-03 09:02+0100\n"
+"PO-Revision-Date: 2017-03-03 13:49+0000\n"
 "Last-Translator: Swyter <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -1805,6 +1805,20 @@ msgstr "Ve lo mismo que tus aliados, comparte el conocimiento geográfico y otro
 #: simulation/data/technologies/unlock_shared_los.jsongenericName
 msgid "Cartography"
 msgstr "Cartografía"
+
+#: simulation/data/technologies/unlock_spies.jsondescription
+msgid ""
+"Merchants' first goal was trading, but they also gathered information about "
+"the countries they crossed."
+msgstr ""
+
+#: simulation/data/technologies/unlock_spies.jsontooltip
+msgid "Allows to bribe other players' units to share their vision."
+msgstr ""
+
+#: simulation/data/technologies/unlock_spies.jsongenericName
+msgid "Espionage"
+msgstr "Espionaje"
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsondescription
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsondescription

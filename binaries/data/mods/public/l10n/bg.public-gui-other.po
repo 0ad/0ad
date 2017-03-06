@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-02-26 21:11+0100\n"
-"PO-Revision-Date: 2017-02-27 11:27+0000\n"
+"POT-Creation-Date: 2017-03-03 09:01+0100\n"
+"PO-Revision-Date: 2017-03-04 14:28+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -1248,11 +1248,16 @@ msgstr "Игри без класация"
 msgid "Filter replays by typing one or more, partial or complete playernames."
 msgstr "Филтрирайте повторенията като напишете едно или повече, частични или пълни имена на играчи."
 
-#: gui/replaymenu/replay_menu.js:301
+#: gui/replaymenu/replay_menu.js:268
+#, javascript-format
+msgid "Players: %(numberOfPlayers)s"
+msgstr "Играчи: %(numberOfPlayers)s"
+
+#: gui/replaymenu/replay_menu.js:302
 msgid "yyyy-MM-dd HH:mm"
 msgstr "yyyy-MM-dd HH:mm"
 
-#: gui/replaymenu/replay_menu.js:331
+#: gui/replaymenu/replay_menu.js:332
 msgid "yyyy-MM"
 msgstr "yyyy-MM"
 
@@ -1956,30 +1961,25 @@ msgstr "Размер на картата:"
 msgid "Victory:"
 msgstr "Победа:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):215
-#: gui/savedgames/load.xml:(caption):50
-msgid "Players:"
-msgstr "Играчи:"
-
-#: gui/replaymenu/replay_menu.xml:(caption):232
+#: gui/replaymenu/replay_menu.xml:(caption):227
 msgid "Spoiler"
 msgstr "Разкриване на резултатите"
 
-#: gui/replaymenu/replay_menu.xml:(caption):244
+#: gui/replaymenu/replay_menu.xml:(caption):239
 msgid "Main Menu"
 msgstr "Главно меню"
 
-#: gui/replaymenu/replay_menu.xml:(caption):250
+#: gui/replaymenu/replay_menu.xml:(caption):245
 #: gui/savedgames/load.xml:(caption):34 gui/savedgames/save.xml:(caption):43
 msgid "Delete"
 msgstr "Изтриване"
 
-#: gui/replaymenu/replay_menu.xml:(caption):256
+#: gui/replaymenu/replay_menu.xml:(caption):251
 #: gui/summary/summary.xml:(caption):23
 msgid "Summary"
 msgstr "Обобщение"
 
-#: gui/replaymenu/replay_menu.xml:(caption):262
+#: gui/replaymenu/replay_menu.xml:(caption):257
 msgid "Start Replay"
 msgstr "Пускане"
 
@@ -2016,6 +2016,10 @@ msgstr "Времетраене"
 #: gui/savedgames/load.xml:(caption):39
 msgid "Load"
 msgstr "Зареждане"
+
+#: gui/savedgames/load.xml:(caption):50
+msgid "Players:"
+msgstr "Играчи:"
 
 #: gui/savedgames/load.xml:(caption):54
 msgid "Played time:"

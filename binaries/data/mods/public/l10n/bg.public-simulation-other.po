@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-02-26 21:12+0100\n"
-"PO-Revision-Date: 2017-02-27 11:18+0000\n"
+"POT-Creation-Date: 2017-03-03 09:03+0100\n"
+"PO-Revision-Date: 2017-03-04 14:28+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -946,15 +946,19 @@ msgstr "Подобряването на единица на гарнизон н�
 msgid "Attack against %(_player_)s requested."
 msgstr "Предложено е нападение срещу %(_player_)s."
 
-#: simulation/helpers/Commands.js:777
+#: simulation/helpers/Commands.js:773
+msgid "There are no bribable units"
+msgstr "Няма единици, които могат да бъдат подкупени"
+
+#: simulation/helpers/Commands.js:804
 msgid "Unable to ungarrison unit(s)"
 msgstr "Неуспешно пускане от гарнизон"
 
-#: simulation/helpers/Commands.js:791
+#: simulation/helpers/Commands.js:818
 msgid "Some unit(s) can't go back to work"
 msgstr "Има единица (или единици), която не може да се върне обратно към работата си."
 
-#: simulation/helpers/Commands.js:1045
+#: simulation/helpers/Commands.js:1072
 msgid "The building's technology requirements are not met."
 msgstr "Не са изпълнени технологичните изисквания на сградата."
 

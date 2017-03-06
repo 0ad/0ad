@@ -11,8 +11,8 @@
 # ike20 <mvaldman@seznam.cz>, 2014
 # Martin Kříž <liberte.czech@gmail.com>, 2015
 # OndraK <kajinond@fjfi.cvut.cz>, 2014
-# fri, 2014-2016
-# Petr Hála <halapetr@selfnet.cz>, 2014,2016
+# fri, 2014-2017
+# Petr Hála <halapetr@selfnet.cz>, 2014,2016-2017
 # Robin Kriebel <kriebel.robin@gmail.com>, 2016
 # Rodeo65 <Rodeo65@centrum.cz>, 2014
 # Vit Pelcak, 2014
@@ -20,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-02-26 21:10+0100\n"
-"PO-Revision-Date: 2017-02-27 09:16+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-03-03 09:01+0100\n"
+"PO-Revision-Date: 2017-03-05 18:13+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -50,7 +50,7 @@ msgstr "Jsem připraven"
 
 #: gui/gamesetup/gamesetup.js:38
 msgid "State that you are ready to play."
-msgstr ""
+msgstr "Oznamte, že jste připraven hrát."
 
 #: gui/gamesetup/gamesetup.js:42
 #, javascript-format
@@ -59,11 +59,11 @@ msgstr "* %(username)s je připraven!"
 
 #: gui/gamesetup/gamesetup.js:43
 msgid "Stay ready"
-msgstr ""
+msgstr "Zůstat připraven"
 
 #: gui/gamesetup/gamesetup.js:44
 msgid "Stay ready even when the game settings change."
-msgstr ""
+msgstr "Zůstat připraven, i když se změní nastavení hry."
 
 #: gui/gamesetup/gamesetup.js:49
 msgid "I'm not ready!"
@@ -150,62 +150,62 @@ msgstr "Návrat k zájmové skupině."
 msgid "Return to the main menu."
 msgstr "Vrátit se do hlavní nabídky."
 
-#: gui/gamesetup/gamesetup.js:638
+#: gui/gamesetup/gamesetup.js:639
 msgid "Yes"
 msgstr "Ano"
 
-#: gui/gamesetup/gamesetup.js:638
+#: gui/gamesetup/gamesetup.js:639
 msgid "No"
 msgstr "Ne"
 
-#: gui/gamesetup/gamesetup.js:677
+#: gui/gamesetup/gamesetup.js:678
 msgctxt "team"
 msgid "None"
 msgstr "Žádný"
 
-#: gui/gamesetup/gamesetup.js:1342
+#: gui/gamesetup/gamesetup.js:1343
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1434
+#: gui/gamesetup/gamesetup.js:1435
 msgctxt "map size"
 msgid "Default"
 msgstr "Výchozí"
 
-#: gui/gamesetup/gamesetup.js:1504
+#: gui/gamesetup/gamesetup.js:1506
 msgid "Loading..."
 msgstr "Nahrává se..."
 
-#: gui/gamesetup/gamesetup.js:1637
+#: gui/gamesetup/gamesetup.js:1639
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "UI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1642
+#: gui/gamesetup/gamesetup.js:1644
 msgid "Unassigned"
 msgstr "Nepřiřazeno"
 
-#: gui/gamesetup/gamesetup.js:1802
+#: gui/gamesetup/gamesetup.js:1804
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1809
+#: gui/gamesetup/gamesetup.js:1811
 msgid "Unknown Player"
 msgstr "Neznámý hráč"
 
-#: gui/gamesetup/gamesetup.js:1848
+#: gui/gamesetup/gamesetup.js:1850
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1849
+#: gui/gamesetup/gamesetup.js:1851
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:1850
+#: gui/gamesetup/gamesetup.js:1852
 msgid "HH:mm"
 msgstr "HH:mm"
 
@@ -282,7 +282,7 @@ msgid "Cancel"
 msgstr "Zrušit"
 
 #: gui/aiconfig/aiconfig.xml:(caption):46
-#: gui/gamesetup/gamesetup.xml:(caption):459
+#: gui/gamesetup/gamesetup.xml:(caption):469
 msgid "OK"
 msgstr "OK"
 
@@ -404,18 +404,22 @@ msgid "Disable Treasures:"
 msgstr "Zakázat poklady:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):412
+msgid "Disable Spies:"
+msgstr "Zakázat špiony:"
+
+#: gui/gamesetup/gamesetup.xml:(caption):422
 msgid "Teams Locked:"
 msgstr "Pevné týmy:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):422
+#: gui/gamesetup/gamesetup.xml:(caption):432
 msgid "Last Man Standing:"
 msgstr "Každý proti každému:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):432
+#: gui/gamesetup/gamesetup.xml:(caption):442
 msgid "Cheats:"
 msgstr "Kódy:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):442
+#: gui/gamesetup/gamesetup.xml:(caption):452
 msgid "Rated Game:"
 msgstr "Hodnocená hra:"
 
@@ -522,24 +526,28 @@ msgid "Disable all treasures on the map."
 msgstr "Zakázat všechny poklady na mapě."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):416
+msgid "Disable spies during the game."
+msgstr "Zakázat během hry špiony."
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):426
 msgid "Toggle locked teams."
 msgstr "Přepnout uzamknutí týmů."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):426
+#: gui/gamesetup/gamesetup.xml:(tooltip):436
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
 msgstr "Přepnout, zda poslední zbývající hráč nebo poslední zbývající skupina spojenců vyhrává."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):436
+#: gui/gamesetup/gamesetup.xml:(tooltip):446
 msgid "Toggle the usability of cheats."
 msgstr "Zapnout použitelnost kódů."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):446
+#: gui/gamesetup/gamesetup.xml:(tooltip):456
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "Přepnout, pokud bude tato hra hodnocena pro seznam hodností"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):460
+#: gui/gamesetup/gamesetup.xml:(tooltip):470
 msgid "Close more game options window"
 msgstr "Zavřít okno s dalšími herními možnostmi"
 

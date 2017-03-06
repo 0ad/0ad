@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-02-26 21:12+0100\n"
-"PO-Revision-Date: 2017-03-02 09:39+0000\n"
-"Last-Translator: Tibor Buzási\n"
+"POT-Creation-Date: 2017-03-03 09:03+0100\n"
+"PO-Revision-Date: 2017-03-03 14:45+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -948,15 +948,19 @@ msgstr "A beszállásolt egység nem fejleszthető."
 msgid "Attack against %(_player_)s requested."
 msgstr "%(_player_)s ellen támadást kértek."
 
-#: simulation/helpers/Commands.js:777
+#: simulation/helpers/Commands.js:773
+msgid "There are no bribable units"
+msgstr "Nincsenek lefizethető egységek."
+
+#: simulation/helpers/Commands.js:804
 msgid "Unable to ungarrison unit(s)"
 msgstr "Nem lehet kiengedni az egységeket"
 
-#: simulation/helpers/Commands.js:791
+#: simulation/helpers/Commands.js:818
 msgid "Some unit(s) can't go back to work"
 msgstr "Néhány egység nem tud visszamenni dolgozni"
 
-#: simulation/helpers/Commands.js:1045
+#: simulation/helpers/Commands.js:1072
 msgid "The building's technology requirements are not met."
 msgstr "Az épület technológiai követelményei nincsenek teljesítve."
 

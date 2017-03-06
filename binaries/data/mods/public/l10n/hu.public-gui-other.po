@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-02-26 21:11+0100\n"
-"PO-Revision-Date: 2017-03-01 22:52+0000\n"
-"Last-Translator: Tibor Buzási\n"
+"POT-Creation-Date: 2017-03-03 09:01+0100\n"
+"PO-Revision-Date: 2017-03-03 14:46+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1250,11 +1250,16 @@ msgstr "Nem pontozott játékok"
 msgid "Filter replays by typing one or more, partial or complete playernames."
 msgstr "A visszajátszások szűrése egy vagy több részleges vagy teljes játékosnév beírásával."
 
-#: gui/replaymenu/replay_menu.js:301
+#: gui/replaymenu/replay_menu.js:268
+#, javascript-format
+msgid "Players: %(numberOfPlayers)s"
+msgstr "Játékosok: %(numberOfPlayers)s"
+
+#: gui/replaymenu/replay_menu.js:302
 msgid "yyyy-MM-dd HH:mm"
 msgstr "éééé-HH-nn ÓÓ:pp"
 
-#: gui/replaymenu/replay_menu.js:331
+#: gui/replaymenu/replay_menu.js:332
 msgid "yyyy-MM"
 msgstr "éééé-HH"
 
@@ -1958,30 +1963,25 @@ msgstr "Térkép mérete:"
 msgid "Victory:"
 msgstr "Győzelem:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):215
-#: gui/savedgames/load.xml:(caption):50
-msgid "Players:"
-msgstr "Játékosok:"
-
-#: gui/replaymenu/replay_menu.xml:(caption):232
+#: gui/replaymenu/replay_menu.xml:(caption):227
 msgid "Spoiler"
 msgstr "Végkifejlet"
 
-#: gui/replaymenu/replay_menu.xml:(caption):244
+#: gui/replaymenu/replay_menu.xml:(caption):239
 msgid "Main Menu"
 msgstr "Főmenü"
 
-#: gui/replaymenu/replay_menu.xml:(caption):250
+#: gui/replaymenu/replay_menu.xml:(caption):245
 #: gui/savedgames/load.xml:(caption):34 gui/savedgames/save.xml:(caption):43
 msgid "Delete"
 msgstr "Törlés"
 
-#: gui/replaymenu/replay_menu.xml:(caption):256
+#: gui/replaymenu/replay_menu.xml:(caption):251
 #: gui/summary/summary.xml:(caption):23
 msgid "Summary"
 msgstr "Összefoglaló"
 
-#: gui/replaymenu/replay_menu.xml:(caption):262
+#: gui/replaymenu/replay_menu.xml:(caption):257
 msgid "Start Replay"
 msgstr "Visszajátszás kezdése"
 
@@ -2018,6 +2018,10 @@ msgstr "Időtartam"
 #: gui/savedgames/load.xml:(caption):39
 msgid "Load"
 msgstr "Betöltés"
+
+#: gui/savedgames/load.xml:(caption):50
+msgid "Players:"
+msgstr "Játékosok:"
 
 #: gui/savedgames/load.xml:(caption):54
 msgid "Played time:"

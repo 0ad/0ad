@@ -10,15 +10,15 @@
 # Lukas Koutsky <tekumseh65@seznam.cz>, 2015
 # fri, 2014-2017
 # Pavel Šindelář <pavelsin123@gmail.com>, 2015
-# Petr Hála <halapetr@selfnet.cz>, 2016
+# Petr Hála <halapetr@selfnet.cz>, 2016-2017
 # Robin Kriebel <kriebel.robin@gmail.com>, 2016
 # Vojtěch Valigura <Encounter@seznam.cz>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-02-26 21:11+0100\n"
-"PO-Revision-Date: 2017-02-27 08:30+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-03-03 09:01+0100\n"
+"PO-Revision-Date: 2017-03-05 18:11+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -434,7 +434,7 @@ msgstr "zakázáno"
 
 #: gui/common/gamedescription.js:345
 msgid "Victorious"
-msgstr ""
+msgstr "Vítězný"
 
 #: gui/common/gamedescription.js:350
 msgid "Defeated"
@@ -527,7 +527,7 @@ msgstr "Plný server"
 
 #: gui/common/network.js:74
 msgid "Player identifier in use, retry connecting"
-msgstr ""
+msgstr "Identifikátor hráče se používá. Zkuste se připojit ještě jednou"
 
 #: gui/common/network.js:77
 #, javascript-format
@@ -700,11 +700,11 @@ msgstr "Úder"
 
 #: gui/common/tooltips.js:21
 msgid "Circular Splash Damage"
-msgstr ""
+msgstr "Kruhové plošné škody"
 
 #: gui/common/tooltips.js:22
 msgid "Linear Splash Damage"
-msgstr ""
+msgstr "Přímočaré plošné škody"
 
 #: gui/common/tooltips.js:64
 msgid "Health:"
@@ -1268,11 +1268,16 @@ msgstr "Nehodnocené hry"
 msgid "Filter replays by typing one or more, partial or complete playernames."
 msgstr "Filtrování záznamů her, podle jednoho či více anebo částečných jmen hráčů."
 
-#: gui/replaymenu/replay_menu.js:301
+#: gui/replaymenu/replay_menu.js:268
+#, javascript-format
+msgid "Players: %(numberOfPlayers)s"
+msgstr "Hráči: %(numberOfPlayers)s"
+
+#: gui/replaymenu/replay_menu.js:302
 msgid "yyyy-MM-dd HH:mm"
 msgstr "rrrr-MM-dd HH:mm"
 
-#: gui/replaymenu/replay_menu.js:331
+#: gui/replaymenu/replay_menu.js:332
 msgid "yyyy-MM"
 msgstr "rrrr-MM"
 
@@ -1685,7 +1690,7 @@ msgstr "Nastavení herní skupiny"
 
 #: gui/options/options.xml:(caption):74
 msgid "Chat Notification Settings"
-msgstr ""
+msgstr "Nastavení upozornění přes rozhovor"
 
 #: gui/options/options.xml:(caption):86
 msgid "Reset"
@@ -1976,30 +1981,25 @@ msgstr "Velikost mapy:"
 msgid "Victory:"
 msgstr "Vítězství:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):215
-#: gui/savedgames/load.xml:(caption):50
-msgid "Players:"
-msgstr "Hráči:"
-
-#: gui/replaymenu/replay_menu.xml:(caption):232
+#: gui/replaymenu/replay_menu.xml:(caption):227
 msgid "Spoiler"
 msgstr "Vyzrazení děje"
 
-#: gui/replaymenu/replay_menu.xml:(caption):244
+#: gui/replaymenu/replay_menu.xml:(caption):239
 msgid "Main Menu"
 msgstr "Hlavní nabídka"
 
-#: gui/replaymenu/replay_menu.xml:(caption):250
+#: gui/replaymenu/replay_menu.xml:(caption):245
 #: gui/savedgames/load.xml:(caption):34 gui/savedgames/save.xml:(caption):43
 msgid "Delete"
 msgstr "Smazat"
 
-#: gui/replaymenu/replay_menu.xml:(caption):256
+#: gui/replaymenu/replay_menu.xml:(caption):251
 #: gui/summary/summary.xml:(caption):23
 msgid "Summary"
 msgstr "Shrnutí"
 
-#: gui/replaymenu/replay_menu.xml:(caption):262
+#: gui/replaymenu/replay_menu.xml:(caption):257
 msgid "Start Replay"
 msgstr "Začít přehrávání záznamu"
 
@@ -2036,6 +2036,10 @@ msgstr "Trvání"
 #: gui/savedgames/load.xml:(caption):39
 msgid "Load"
 msgstr "Načíst"
+
+#: gui/savedgames/load.xml:(caption):50
+msgid "Players:"
+msgstr "Hráči:"
 
 #: gui/savedgames/load.xml:(caption):54
 msgid "Played time:"
@@ -2401,7 +2405,7 @@ msgstr "Přistoupení pozdního pozorovatele"
 
 #: gui/options/options.jsongeneralSetting[14].tooltip
 msgid "Prevent further observers from joining if the limit is reached"
-msgstr ""
+msgstr "Zabránit dalším pozorovatelům v připojení se, pokud je dosaženo hranice počtu pozorovatelů"
 
 #: gui/options/options.jsongeneralSetting[14].label
 msgid "Observer Limit"
@@ -2474,29 +2478,29 @@ msgstr "Upozornění na přezdívku"
 
 #: gui/options/options.jsonnotificationSetting[0].tooltip
 msgid "Show a chat notification if you are attacked by another player"
-msgstr ""
+msgstr "Ukázat upozornění přes rozhovor, pokud na vás zaútočil jiný hráč"
 
 #: gui/options/options.jsonnotificationSetting[0].label
 msgid "Attack"
-msgstr ""
+msgstr "Útok"
 
 #: gui/options/options.jsonnotificationSetting[1].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode"
-msgstr ""
+msgstr "Ukázat upozornění přes rozhovor, když spojenec věnuje zdroje jinému členu týmu, pokud jsou týmy zamknuty a všechny poplatky v režimu pozorovatele"
 
 #: gui/options/options.jsonnotificationSetting[1].label
 msgid "Tribute"
-msgstr ""
+msgstr "Poplatek"
 
 #: gui/options/options.jsonnotificationSetting[2].tooltip
 msgid "Show a chat notification to observers when a player bartered resources"
-msgstr ""
+msgstr "Ukázat upozornění přes rozhovor pro pozorovatele, když hráč směnil zdroje"
 
 #: gui/options/options.jsonnotificationSetting[2].label
 msgid "Barter"
-msgstr ""
+msgstr "Směňovat"
 
 #: gui/options/options.jsongraphicsSetting[0].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)"

@@ -6,7 +6,7 @@
 # Alexander Olkhovskiy, 2016
 # Alexey Solodovnikov <sklent@outlook.com>, 2017
 # Boris Karalnik <eyesucker@gmail.com>, 2015
-# Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015-2016
+# Dmitry Oshkalo <dmitry.oshkalo@gmail.com>, 2015-2017
 # Максим Дронь <dronmax@gmail.com>, 2014
 # Максим Дронь <dronmax@gmail.com>, 2014
 # Григорий Световидов <grin.sv@gmail.com>, 2015
@@ -35,9 +35,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-02-26 21:11+0100\n"
-"PO-Revision-Date: 2017-03-01 08:24+0000\n"
-"Last-Translator: Олег Шевченко <olegrock@gmail.com>\n"
+"POT-Creation-Date: 2017-03-03 09:01+0100\n"
+"PO-Revision-Date: 2017-03-03 12:26+0000\n"
+"Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1305,11 +1305,16 @@ msgstr "Не рейтинговые игры"
 msgid "Filter replays by typing one or more, partial or complete playernames."
 msgstr "Фильтровать повторы по набору одного, или нескольких, частичных или полных имен участников. "
 
-#: gui/replaymenu/replay_menu.js:301
+#: gui/replaymenu/replay_menu.js:268
+#, javascript-format
+msgid "Players: %(numberOfPlayers)s"
+msgstr "Игроков: %(numberOfPlayers)s"
+
+#: gui/replaymenu/replay_menu.js:302
 msgid "yyyy-MM-dd HH:mm"
 msgstr "dd.MM.yyyy HH:mm"
 
-#: gui/replaymenu/replay_menu.js:331
+#: gui/replaymenu/replay_menu.js:332
 msgid "yyyy-MM"
 msgstr "yyyy-MM"
 
@@ -2013,30 +2018,25 @@ msgstr "Размер карты:"
 msgid "Victory:"
 msgstr "Победа:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):215
-#: gui/savedgames/load.xml:(caption):50
-msgid "Players:"
-msgstr "Игроки:"
-
-#: gui/replaymenu/replay_menu.xml:(caption):232
+#: gui/replaymenu/replay_menu.xml:(caption):227
 msgid "Spoiler"
 msgstr "Спойлер"
 
-#: gui/replaymenu/replay_menu.xml:(caption):244
+#: gui/replaymenu/replay_menu.xml:(caption):239
 msgid "Main Menu"
 msgstr "Главное меню"
 
-#: gui/replaymenu/replay_menu.xml:(caption):250
+#: gui/replaymenu/replay_menu.xml:(caption):245
 #: gui/savedgames/load.xml:(caption):34 gui/savedgames/save.xml:(caption):43
 msgid "Delete"
 msgstr "Удалить"
 
-#: gui/replaymenu/replay_menu.xml:(caption):256
+#: gui/replaymenu/replay_menu.xml:(caption):251
 #: gui/summary/summary.xml:(caption):23
 msgid "Summary"
 msgstr "Итог"
 
-#: gui/replaymenu/replay_menu.xml:(caption):262
+#: gui/replaymenu/replay_menu.xml:(caption):257
 msgid "Start Replay"
 msgstr "Начать Повтор"
 
@@ -2073,6 +2073,10 @@ msgstr "Продолжительность"
 #: gui/savedgames/load.xml:(caption):39
 msgid "Load"
 msgstr "Загрузить"
+
+#: gui/savedgames/load.xml:(caption):50
+msgid "Players:"
+msgstr "Игроки:"
 
 #: gui/savedgames/load.xml:(caption):54
 msgid "Played time:"

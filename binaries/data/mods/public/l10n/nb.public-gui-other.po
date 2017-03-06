@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Allan Nordhøy <epost@anotheragency.no>, 2016
+# Allan Nordhøy <epost@anotheragency.no>, 2016-2017
 # Henrik Hovrud <henrik.h@online.no>, 2015
 # Jarl Arntzen <jarl.arntzen@gmail.com>, 2014-2015
 # Kurt-Håkon Eilertsen <kurt@kheds.com>, 2014
@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-02-26 21:11+0100\n"
-"PO-Revision-Date: 2017-02-27 08:30+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-03-03 09:01+0100\n"
+"PO-Revision-Date: 2017-03-03 15:15+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -424,7 +424,7 @@ msgstr "avskrudd"
 
 #: gui/common/gamedescription.js:345
 msgid "Victorious"
-msgstr ""
+msgstr "Seirende"
 
 #: gui/common/gamedescription.js:350
 msgid "Defeated"
@@ -1246,11 +1246,16 @@ msgstr "Poengløse spill"
 msgid "Filter replays by typing one or more, partial or complete playernames."
 msgstr "Filtrer gjentakelsessekvenser ved å skrive ett eller flere, delvise eller hele spillernavn."
 
-#: gui/replaymenu/replay_menu.js:301
+#: gui/replaymenu/replay_menu.js:268
+#, javascript-format
+msgid "Players: %(numberOfPlayers)s"
+msgstr ""
+
+#: gui/replaymenu/replay_menu.js:302
 msgid "yyyy-MM-dd HH:mm"
 msgstr "åååå-MM-dd TT:mm"
 
-#: gui/replaymenu/replay_menu.js:331
+#: gui/replaymenu/replay_menu.js:332
 msgid "yyyy-MM"
 msgstr "åååå-MM"
 
@@ -1954,30 +1959,25 @@ msgstr "Kartstørrelse:"
 msgid "Victory:"
 msgstr "Seier:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):215
-#: gui/savedgames/load.xml:(caption):50
-msgid "Players:"
-msgstr "Spillere:"
-
-#: gui/replaymenu/replay_menu.xml:(caption):232
+#: gui/replaymenu/replay_menu.xml:(caption):227
 msgid "Spoiler"
 msgstr "Spoiler"
 
-#: gui/replaymenu/replay_menu.xml:(caption):244
+#: gui/replaymenu/replay_menu.xml:(caption):239
 msgid "Main Menu"
 msgstr "Hovedmeny"
 
-#: gui/replaymenu/replay_menu.xml:(caption):250
+#: gui/replaymenu/replay_menu.xml:(caption):245
 #: gui/savedgames/load.xml:(caption):34 gui/savedgames/save.xml:(caption):43
 msgid "Delete"
 msgstr "Slett"
 
-#: gui/replaymenu/replay_menu.xml:(caption):256
+#: gui/replaymenu/replay_menu.xml:(caption):251
 #: gui/summary/summary.xml:(caption):23
 msgid "Summary"
 msgstr "Oppsummering"
 
-#: gui/replaymenu/replay_menu.xml:(caption):262
+#: gui/replaymenu/replay_menu.xml:(caption):257
 msgid "Start Replay"
 msgstr "Start reprise"
 
@@ -2014,6 +2014,10 @@ msgstr "Varighet"
 #: gui/savedgames/load.xml:(caption):39
 msgid "Load"
 msgstr "Last"
+
+#: gui/savedgames/load.xml:(caption):50
+msgid "Players:"
+msgstr "Spillere:"
 
 #: gui/savedgames/load.xml:(caption):54
 msgid "Played time:"
@@ -2968,7 +2972,7 @@ msgstr "- Øker ildkraften til stasjonert infanteri."
 
 #: gui/text/tips/celtic_war_barge.txt:10
 msgid "- Cannot ram, like other triremes, but has greater health and armor."
-msgstr "- Kan ikke bruke rambukk som andre triremes men har bedre helse og panser."
+msgstr "Oppgrader mesterskjoldbærerinfanteri med sølvskjold, med bedre angrep, helse og pansring."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -3272,7 +3276,7 @@ msgstr "- Bruk for å slakte fientlig kavaleri eller som en sjokkstyrke for å s
 
 #: gui/text/tips/spartan_hoplites.txt:8
 msgid "- Use the 'Phalanx' formation for extra armor bonuses."
-msgstr "- Bruk 'Falanks'-formasjonen for ekstra panser-bonus."
+msgstr "- Bruk 'Falanks'-formasjonen for ekstra rustnings-bonus."
 
 #: gui/text/tips/spearmen.txt:1
 msgid "SPEARMEN"

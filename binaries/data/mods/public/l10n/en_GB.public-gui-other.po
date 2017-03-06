@@ -13,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-02-26 21:11+0100\n"
-"PO-Revision-Date: 2017-02-27 08:30+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-03-03 09:01+0100\n"
+"PO-Revision-Date: 2017-03-05 20:51+0000\n"
+"Last-Translator: pilino1234 <mhilgendrf@aol.com>\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -425,7 +425,7 @@ msgstr "disabled"
 
 #: gui/common/gamedescription.js:345
 msgid "Victorious"
-msgstr ""
+msgstr "Victorious"
 
 #: gui/common/gamedescription.js:350
 msgid "Defeated"
@@ -518,7 +518,7 @@ msgstr "Server full"
 
 #: gui/common/network.js:74
 msgid "Player identifier in use, retry connecting"
-msgstr ""
+msgstr "Player identifier in use, retry connecting"
 
 #: gui/common/network.js:77
 #, javascript-format
@@ -689,11 +689,11 @@ msgstr "Crush"
 
 #: gui/common/tooltips.js:21
 msgid "Circular Splash Damage"
-msgstr ""
+msgstr "Circular Splash Damage"
 
 #: gui/common/tooltips.js:22
 msgid "Linear Splash Damage"
-msgstr ""
+msgstr "Linear Splash Damage"
 
 #: gui/common/tooltips.js:64
 msgid "Health:"
@@ -1247,11 +1247,16 @@ msgstr "Unrated games"
 msgid "Filter replays by typing one or more, partial or complete playernames."
 msgstr "Filter replays by typing one or more, partial or complete playernames."
 
-#: gui/replaymenu/replay_menu.js:301
+#: gui/replaymenu/replay_menu.js:268
+#, javascript-format
+msgid "Players: %(numberOfPlayers)s"
+msgstr "Players: %(numberOfPlayers)s"
+
+#: gui/replaymenu/replay_menu.js:302
 msgid "yyyy-MM-dd HH:mm"
 msgstr "yyyy-MM-dd HH:mm"
 
-#: gui/replaymenu/replay_menu.js:331
+#: gui/replaymenu/replay_menu.js:332
 msgid "yyyy-MM"
 msgstr "yyyy-MM"
 
@@ -1664,7 +1669,7 @@ msgstr "Lobby Settings"
 
 #: gui/options/options.xml:(caption):74
 msgid "Chat Notification Settings"
-msgstr ""
+msgstr "Chat Notification Settings"
 
 #: gui/options/options.xml:(caption):86
 msgid "Reset"
@@ -1955,30 +1960,25 @@ msgstr "Map Size:"
 msgid "Victory:"
 msgstr "Victory:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):215
-#: gui/savedgames/load.xml:(caption):50
-msgid "Players:"
-msgstr "Players:"
-
-#: gui/replaymenu/replay_menu.xml:(caption):232
+#: gui/replaymenu/replay_menu.xml:(caption):227
 msgid "Spoiler"
 msgstr "Spoiler"
 
-#: gui/replaymenu/replay_menu.xml:(caption):244
+#: gui/replaymenu/replay_menu.xml:(caption):239
 msgid "Main Menu"
 msgstr "Main Menu"
 
-#: gui/replaymenu/replay_menu.xml:(caption):250
+#: gui/replaymenu/replay_menu.xml:(caption):245
 #: gui/savedgames/load.xml:(caption):34 gui/savedgames/save.xml:(caption):43
 msgid "Delete"
 msgstr "Delete"
 
-#: gui/replaymenu/replay_menu.xml:(caption):256
+#: gui/replaymenu/replay_menu.xml:(caption):251
 #: gui/summary/summary.xml:(caption):23
 msgid "Summary"
 msgstr "Summary"
 
-#: gui/replaymenu/replay_menu.xml:(caption):262
+#: gui/replaymenu/replay_menu.xml:(caption):257
 msgid "Start Replay"
 msgstr "Start Replay"
 
@@ -2015,6 +2015,10 @@ msgstr "Duration"
 #: gui/savedgames/load.xml:(caption):39
 msgid "Load"
 msgstr "Load"
+
+#: gui/savedgames/load.xml:(caption):50
+msgid "Players:"
+msgstr "Players:"
 
 #: gui/savedgames/load.xml:(caption):54
 msgid "Played time:"
@@ -2380,7 +2384,7 @@ msgstr "Late Observer Joins"
 
 #: gui/options/options.jsongeneralSetting[14].tooltip
 msgid "Prevent further observers from joining if the limit is reached"
-msgstr ""
+msgstr "Prevent further observers from joining if the limit is reached"
 
 #: gui/options/options.jsongeneralSetting[14].label
 msgid "Observer Limit"
@@ -2453,29 +2457,29 @@ msgstr "Nick Notification"
 
 #: gui/options/options.jsonnotificationSetting[0].tooltip
 msgid "Show a chat notification if you are attacked by another player"
-msgstr ""
+msgstr "Show a chat notification if you are attacked by another player"
 
 #: gui/options/options.jsonnotificationSetting[0].label
 msgid "Attack"
-msgstr ""
+msgstr "Attack"
 
 #: gui/options/options.jsonnotificationSetting[1].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode"
-msgstr ""
+msgstr "Show a chat notification if an ally tributes resources to another team member if teams are locked, and all tributes in observer mode"
 
 #: gui/options/options.jsonnotificationSetting[1].label
 msgid "Tribute"
-msgstr ""
+msgstr "Tribute"
 
 #: gui/options/options.jsonnotificationSetting[2].tooltip
 msgid "Show a chat notification to observers when a player bartered resources"
-msgstr ""
+msgstr "Show a chat notification to observers when a player bartered resources"
 
 #: gui/options/options.jsonnotificationSetting[2].label
 msgid "Barter"
-msgstr ""
+msgstr "Barter"
 
 #: gui/options/options.jsongraphicsSetting[0].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)"

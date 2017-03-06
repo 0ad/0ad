@@ -25,9 +25,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-02-26 21:12+0100\n"
-"PO-Revision-Date: 2017-03-01 09:49+0000\n"
-"Last-Translator: Олег Шевченко <olegrock@gmail.com>\n"
+"POT-Creation-Date: 2017-03-03 09:03+0100\n"
+"PO-Revision-Date: 2017-03-03 12:26+0000\n"
+"Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -965,15 +965,19 @@ msgstr "Невозможно добавить гарнизон"
 msgid "Attack against %(_player_)s requested."
 msgstr "Запрос атаки на %(_player_)s."
 
-#: simulation/helpers/Commands.js:777
+#: simulation/helpers/Commands.js:773
+msgid "There are no bribable units"
+msgstr "Нет юнитов, которых можно было бы подкупить"
+
+#: simulation/helpers/Commands.js:804
 msgid "Unable to ungarrison unit(s)"
 msgstr "Невозможно вывести гарнизон"
 
-#: simulation/helpers/Commands.js:791
+#: simulation/helpers/Commands.js:818
 msgid "Some unit(s) can't go back to work"
 msgstr "Некоторые юниты не могут вернуться к работе"
 
-#: simulation/helpers/Commands.js:1045
+#: simulation/helpers/Commands.js:1072
 msgid "The building's technology requirements are not met."
 msgstr "Технологии, необходимые для здания, отсутствуют."
 

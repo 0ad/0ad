@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-02-26 21:10+0100\n"
-"PO-Revision-Date: 2017-02-27 08:55+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-03-03 09:01+0100\n"
+"PO-Revision-Date: 2017-03-05 17:03+0000\n"
+"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -48,12 +48,12 @@ msgid "Confirmation"
 msgstr "Berrespena"
 
 #: gui/session/menu.js:114 gui/session/menu.js:146 gui/session/menu.js:179
-#: gui/session/session.js:807 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:805 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Ez"
 
 #: gui/session/menu.js:114 gui/session/menu.js:146 gui/session/menu.js:179
-#: gui/session/session.js:807 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:805 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Bai"
 
@@ -91,104 +91,110 @@ msgstr "Ezabatu"
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/session/menu.js:356
+#: gui/session/menu.js:368
 msgctxt "team"
 msgid "None"
 msgstr "Ezer ez"
 
-#: gui/session/menu.js:360 gui/session/messages.js:158
+#: gui/session/menu.js:372 gui/session/messages.js:158
 #: gui/session/diplomacy_window.xml:(tooltip):28
 msgid "Ally"
 msgstr "Aliatua"
 
-#: gui/session/menu.js:361 gui/session/diplomacy_window.xml:(tooltip):32
+#: gui/session/menu.js:373 gui/session/diplomacy_window.xml:(tooltip):32
 msgid "Neutral"
 msgstr "Neutrala"
 
-#: gui/session/menu.js:361 gui/session/messages.js:159
+#: gui/session/menu.js:373 gui/session/messages.js:159
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr "Etsaia"
 
-#: gui/session/menu.js:373
+#: gui/session/menu.js:385
 msgid "x"
 msgstr "x"
 
-#: gui/session/menu.js:451
+#: gui/session/menu.js:463
 msgid "Request your allies to attack this enemy"
 msgstr "Eskatu zure aliatuei etsai hau erasotzea"
 
-#: gui/session/menu.js:594
+#: gui/session/menu.js:479
+msgid ""
+"Bribe a random unit from this player and share its vision during a limited "
+"period."
+msgstr "Jokalari honen unitate bati eskupekoa eman eta erabili bere ikuspegia denbora batez."
+
+#: gui/session/menu.js:659
 #, javascript-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
 msgstr "%(openingTradingString)s, eta %(garrisonedString)s."
 
-#: gui/session/menu.js:595
+#: gui/session/menu.js:660
 #, javascript-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s, %(garrisonedString)s, eta %(inactiveString)s."
 
-#: gui/session/menu.js:598 gui/session/menu.js:669
+#: gui/session/menu.js:663 gui/session/menu.js:734
 #, javascript-format
 msgid "%(openingTradingString)s."
 msgstr "%(openingTradingString)s."
 
-#: gui/session/menu.js:599 gui/session/menu.js:668
+#: gui/session/menu.js:664 gui/session/menu.js:733
 #, javascript-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s, eta %(inactiveString)s."
 
-#: gui/session/menu.js:604
+#: gui/session/menu.js:669
 #, javascript-format
 msgid "%(openingGarrisonedString)s."
 msgstr "%(openingGarrisonedString)s."
 
-#: gui/session/menu.js:605
+#: gui/session/menu.js:670
 #, javascript-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingGarrisonedString)s, eta %(inactiveString)s."
 
-#: gui/session/menu.js:608 gui/session/menu.js:672
+#: gui/session/menu.js:673 gui/session/menu.js:737
 #, javascript-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
 msgstr[0] "%(inactiveString)s dago."
 msgstr[1] "%(inactiveString)s daude."
 
-#: gui/session/menu.js:609
+#: gui/session/menu.js:674
 msgid "There are no land traders."
 msgstr "Ez dago lurreko merkataririk"
 
-#: gui/session/menu.js:617
+#: gui/session/menu.js:682
 #, javascript-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
 msgstr[0] "Lurreko merkatar %(numberTrading)s dago salerosten"
 msgstr[1] "%(numberTrading)s lurreko merkatari daude salerosten"
 
-#: gui/session/menu.js:626
+#: gui/session/menu.js:691
 #, javascript-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
 msgstr[0] "%(numberOfLandTraders)s geldi"
 msgstr[1] "%(numberOfLandTraders)s geldi"
 
-#: gui/session/menu.js:631
+#: gui/session/menu.js:696
 #, javascript-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
 msgstr[0] "lurreko merkatari %(numberOfLandTraders)s geldi"
 msgstr[1] "%(numberOfLandTraders)s lurreko merkatari geldi"
 
-#: gui/session/menu.js:640
+#: gui/session/menu.js:705
 #, javascript-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgstr[0] "%(numberGarrisoned)s babestuta on a merkantzia onzti batean"
 msgstr[1] "%(numberGarrisoned)s babestuta merkantzia ontzi batean"
 
-#: gui/session/menu.js:645
+#: gui/session/menu.js:710
 #, javascript-format
 msgid ""
 "There is %(numberGarrisoned)s land trader garrisoned on a trading merchant "
@@ -199,61 +205,61 @@ msgid_plural ""
 msgstr[0] "Lurreko merkatari %(numberGarrisoned)s dago babestuta merkantzia ontzi batean"
 msgstr[1] "%(numberGarrisoned)s lurreko merkatari daude babestuta merkantzia ontzi batean"
 
-#: gui/session/menu.js:673
+#: gui/session/menu.js:738
 msgid "There are no merchant ships."
 msgstr "Ez dago merkantzia ontzirik"
 
-#: gui/session/menu.js:680
+#: gui/session/menu.js:745
 #, javascript-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
 msgstr[0] "Merkantzia ontzi %(numberTrading)s dago salerosten"
 msgstr[1] "%(numberTrading)s merkantzia ontzi daude salerosten"
 
-#: gui/session/menu.js:689
+#: gui/session/menu.js:754
 #, javascript-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
 msgstr[0] "%(numberOfShipTraders)s geldi"
 msgstr[1] "%(numberOfShipTraders)s geldi"
 
-#: gui/session/menu.js:694
+#: gui/session/menu.js:759
 #, javascript-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] "Merkantzia ontzi %(numberOfShipTraders)s geldi"
 msgstr[1] "%(numberOfShipTraders)s merkantzia ontzi geldi"
 
-#: gui/session/menu.js:870
+#: gui/session/menu.js:935
 msgid "Resume"
 msgstr "Berrekin"
 
-#: gui/session/menu.js:870 gui/session/menu.xml:(caption):74
+#: gui/session/menu.js:935 gui/session/menu.xml:(caption):74
 msgid "Pause"
 msgstr "Pausatu"
 
-#: gui/session/menu.js:874
+#: gui/session/menu.js:939
 #, javascript-format
 msgid "Paused by %(players)s"
 msgstr "%(players)s-engatik gelditua"
 
-#: gui/session/menu.js:875 gui/session/selection_panels.js:868
+#: gui/session/menu.js:940 gui/session/selection_panels.js:868
 msgid ", "
 msgstr ", "
 
-#: gui/session/menu.js:888 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:953 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr "Gidaliburua"
 
-#: gui/session/menu.js:904
+#: gui/session/menu.js:969
 msgid "The Developer Overlay was closed."
 msgstr "Sustatzaile-geruza itxi egin da."
 
-#: gui/session/menu.js:905
+#: gui/session/menu.js:970
 msgid "The Developer Overlay was opened."
 msgstr "Sustatzaile-geruza zabaldu egin da."
 
-#: gui/session/menu.js:928
+#: gui/session/menu.js:993
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -445,90 +451,90 @@ msgstr "%(player)s orain %(player2)s-(r)ekin gerran dago."
 msgid "%(player)s is now neutral with %(player2)s."
 msgstr "%(player)s orain %(player2)s-(r)ekin neutrala da."
 
-#: gui/session/messages.js:660
+#: gui/session/messages.js:658
 msgctxt "chat addressee"
 msgid "Everyone"
 msgstr "Guztiak"
 
-#: gui/session/messages.js:668
+#: gui/session/messages.js:666
 msgctxt "chat addressee"
 msgid "Allies"
 msgstr "Aliatuak"
 
-#: gui/session/messages.js:672
+#: gui/session/messages.js:670
 msgctxt "chat addressee"
 msgid "Enemies"
 msgstr "Etsaiak"
 
-#: gui/session/messages.js:678
+#: gui/session/messages.js:676
 msgctxt "chat addressee"
 msgid "Observers"
 msgstr "Ikuskariak"
 
-#: gui/session/messages.js:707 gui/session/selection_details.js:82
+#: gui/session/messages.js:705 gui/session/selection_details.js:82
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
 msgstr "\\[DESKONEKTATUTA] %(player)s"
 
-#: gui/session/messages.js:784
+#: gui/session/messages.js:782
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/session/messages.js:785
+#: gui/session/messages.js:783
 msgid "HH:mm"
 msgstr "HH:mm"
 
-#: gui/session/messages.js:829
+#: gui/session/messages.js:827
 msgid "Unknown Player"
 msgstr "Jokalari ezezaguna"
 
-#: gui/session/messages.js:846
+#: gui/session/messages.js:844
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr "%(player)s amore eman du."
 
-#: gui/session/messages.js:847
+#: gui/session/messages.js:845
 #, javascript-format
 msgid "%(player)s has been defeated."
 msgstr "%(player)s menderatua izan da."
 
-#: gui/session/messages.js:854
+#: gui/session/messages.js:852
 #, javascript-format
 msgid "%(player)s has won."
 msgstr "%(player)s irabazi egin du."
 
-#: gui/session/messages.js:886
+#: gui/session/messages.js:884
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s %(amounts)s bidali dizkizu."
 
-#: gui/session/messages.js:888
+#: gui/session/messages.js:886
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
-msgstr ""
+msgstr "Bidali duzu %(player2)s(e)ra %(amounts)s."
 
-#: gui/session/messages.js:893
+#: gui/session/messages.js:891
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
 msgstr "%(player)s %(player2)s-(r)i %(amounts)s bidali dizkio."
 
-#: gui/session/messages.js:913
+#: gui/session/messages.js:911
 #, javascript-format
 msgid "%(player)s bartered %(amountsBought)s for %(amountsSold)s."
 msgstr "%(player)s aldatu du %(amountsBought)s honengatik %(amountsSold)s."
 
-#: gui/session/messages.js:926
+#: gui/session/messages.js:924
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
 msgstr "Zure abereak %(attacker)s-(r)engatik erasotua izan dira!"
 
-#: gui/session/messages.js:927
+#: gui/session/messages.js:925
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "%(attacker)s-(r)engatik erasotua izan zara!"
 
-#: gui/session/messages.js:978
+#: gui/session/messages.js:976
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
@@ -894,34 +900,31 @@ msgid "Find idle worker"
 msgstr "Aurkitu langile libre bat"
 
 #: gui/session/session.js:397
-msgid ""
-"Select one type of goods as origin of the changes, then use the arrows of "
-"the target type of goods to make the changes."
-msgstr "Ondasun motetako bat aukeratu  hartu-eman iturburu gisa, gero helburu ondasunen geziak erabili trukeak egiteko."
-
-#: gui/session/session.js:399
 #, javascript-format
-msgid "Using %(hotkey)s will put the selected resource to 100%%."
-msgstr "%(hotkey)s aukeratutako baliabidea %100era jarriko du."
+msgid ""
+"Select one type of goods you want to modify by clicking on it (Pressing "
+"%(hotkey)s while selecting will also bring its share to 100%%) and then use "
+"the arrows of the other types to modify their shares."
+msgstr "Eraldatu nahi duzun merkantzia mota aukeratu gainean klikatuz (Sakatu %(hotkey)s aukeratzen duzunean zure partea ere %%100era eramango duzu ) eta gero erabili beste motetako geziak bere ekintzak aldatzeko."
 
-#: gui/session/session.js:560
+#: gui/session/session.js:558
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - Egitura zuhaitza"
 
-#: gui/session/session.js:799
+#: gui/session/session.js:797
 msgid "Do you want to quit?"
 msgstr "Irten nahi duzu?"
 
-#: gui/session/session.js:805
+#: gui/session/session.js:803
 msgid "VICTORIOUS!"
 msgstr "GARAILE!"
 
-#: gui/session/session.js:806
+#: gui/session/session.js:804
 msgid "DEFEATED!"
 msgstr "PORROTA!"
 
-#: gui/session/session.js:807
+#: gui/session/session.js:805
 msgid "Ok"
 msgstr "Ados"
 
@@ -1233,7 +1236,7 @@ msgstr "E"
 msgid "Tribute"
 msgstr "Tributoa"
 
-#: gui/session/diplomacy_window.xml:(caption):76
+#: gui/session/diplomacy_window.xml:(caption):80
 #: gui/session/objectives_window.xml:(caption):44
 #: gui/session/trade_window.xml:(caption):46
 msgid "Close"

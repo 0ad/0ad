@@ -38,9 +38,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-02-26 21:11+0100\n"
-"PO-Revision-Date: 2017-02-27 08:34+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-03-03 09:02+0100\n"
+"PO-Revision-Date: 2017-03-04 13:17+0000\n"
+"Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -256,7 +256,7 @@ msgstr "Пикинёр-чемпион"
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:30
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:28
 msgid "Counters: 3x vs. Cavalry."
-msgstr "Контрудары: 3-х кратный против Конницы."
+msgstr "Контрудары: 3-х кратный бонус к урону против Конницы."
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:32
 msgid "Champion Spearman"
@@ -442,6 +442,11 @@ msgstr "Торгует с причалами. Разместите торгов�
 #: simulation/templates/template_unit_support_trader.xml:16
 msgid "Trader"
 msgstr "Торговец"
+
+#: simulation/templates/template_unit_mechanical_ship_merchant.xml:29
+#: simulation/templates/template_unit_support_trader.xml:15
+msgid "Bribable"
+msgstr "Подкупной"
 
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:57
 msgid "Heavy Warship"
@@ -1061,7 +1066,7 @@ msgstr "Хаййал Ромах Рахув"
 
 #: simulation/templates/units/cart_cavalry_swordsman_gaul_b.xml:12
 msgid "Gallic Mercenary Cavalry"
-msgstr "Галльская наёмный кавалерия"
+msgstr "Галльская наёмная кавалерия"
 
 #: simulation/templates/units/cart_cavalry_swordsman_gaul_b.xml:13
 #: simulation/templates/units/cart_cavalry_swordsman_iber_b.xml:13
@@ -1532,7 +1537,7 @@ msgstr "Ратх"
 
 #: simulation/templates/units/maur_champion_chariot.xml:14
 msgid "Deals Trample Damage."
-msgstr "Большой урон от растаптывания."
+msgstr "Наносит большой урон растаптыванием."
 
 #: simulation/templates/units/maur_champion_elephant.xml:5
 #: simulation/templates/units/pers_champion_elephant.xml:5
@@ -1758,7 +1763,7 @@ msgstr "Варканайа Асабара"
 
 #: simulation/templates/units/pers_champion_cavalry.xml:5
 msgid "Bactrian Heavy Lancer"
-msgstr "Бактрианский тяжелый копейщик"
+msgstr "Бактрийский тяжелый копейщик"
 
 #: simulation/templates/units/pers_champion_cavalry.xml:6
 #: simulation/templates/units/pers_champion_cavalry_archer.xml:6
@@ -1767,7 +1772,7 @@ msgstr "Бакхтриш Асабара"
 
 #: simulation/templates/units/pers_champion_cavalry_archer.xml:5
 msgid "Bactrian Heavy Cavalry Archer"
-msgstr "Бактрианский тяжёлый конный лучник"
+msgstr "Бактрийский тяжёлый конный лучник"
 
 #: simulation/templates/units/pers_champion_elephant.xml:6
 msgid "Hinduya Pila"
@@ -2489,7 +2494,7 @@ msgstr "Копейщик-чемпион"
 
 #: simulation/templates/units/thespian_melanochitones.xml:6
 msgid "Thespian Black Cloak"
-msgstr "Феспианский чёрный плащ"
+msgstr "Феспийский чёрный плащ"
 
 #: simulation/templates/units/thespian_melanochitones.xml:7
 msgid "Melanochitones"

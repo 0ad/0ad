@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-02-26 21:12+0100\n"
-"PO-Revision-Date: 2017-03-02 04:30+0000\n"
+"POT-Creation-Date: 2017-03-03 09:03+0100\n"
+"PO-Revision-Date: 2017-03-04 13:16+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -941,15 +941,19 @@ msgstr "無法升級已駐守的實體。"
 msgid "Attack against %(_player_)s requested."
 msgstr "請攻擊 %(_player_)s。"
 
-#: simulation/helpers/Commands.js:777
+#: simulation/helpers/Commands.js:773
+msgid "There are no bribable units"
+msgstr "沒有可賄賂的單位"
+
+#: simulation/helpers/Commands.js:804
 msgid "Unable to ungarrison unit(s)"
 msgstr "無法解除單位駐軍"
 
-#: simulation/helpers/Commands.js:791
+#: simulation/helpers/Commands.js:818
 msgid "Some unit(s) can't go back to work"
 msgstr "部份單位無法回到工作崗位"
 
-#: simulation/helpers/Commands.js:1045
+#: simulation/helpers/Commands.js:1072
 msgid "The building's technology requirements are not met."
 msgstr "建築物的科技需求不符合。"
 
