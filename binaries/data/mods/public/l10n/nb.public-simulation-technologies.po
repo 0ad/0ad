@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Allan Nordhøy <epost@anotheragency.no>, 2016
+# Allan Nordhøy <epost@anotheragency.no>, 2016-2017
 # Jarl Arntzen <jarl.arntzen@gmail.com>, 2015
 # Kurt-Håkon Eilertsen <kurt@kheds.com>, 2014
 # Matias Lavik <matias.lavik@hotmail.com>, 2016
@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-12-30 09:02+0100\n"
-"PO-Revision-Date: 2016-12-30 09:23+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-03-03 09:02+0100\n"
+"PO-Revision-Date: 2017-03-03 15:13+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,14 +33,14 @@ msgstr ""
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
 msgid "Metal armor for a horse's face."
-msgstr "Metallpanser for hestens ansikt."
+msgstr "Metallrustning for hestens ansikt."
 
 #: simulation/data/technologies/armor_cav_01.jsontooltip
 #: simulation/data/technologies/armor_cav_02.jsontooltip
 msgid ""
 "Equip your cavalry mounts with armor. All Cavalry +1 Hack and Pierce armor "
 "level."
-msgstr "Utstyr ditt kavaleri med panser. Alt kavaleri får +1 i pansernivå mot hugg og stikk."
+msgstr "Utstyr ditt kavaleri med rustning. Alt kavaleri får +1 rustningsgrad mot hugg og stikk."
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -117,7 +117,7 @@ msgstr "Prometōpídion"
 
 #: simulation/data/technologies/armor_cav_02.jsondescription
 msgid "Metal armor for a horse's body."
-msgstr "Metallpanser for hestens kropp."
+msgstr "Metallrustning for hestens kropp."
 
 #: simulation/data/technologies/armor_cav_02.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_hero_01.jsonrequirementsTooltip
@@ -194,19 +194,19 @@ msgstr "Låses opp i storby-fasen"
 
 #: simulation/data/technologies/armor_cav_chamfron.jsontooltip
 msgid "Equip your cavalry mounts with armor. All Cavalry +1 Hack armor level."
-msgstr "Utstyr ditt kavaleri med panser. Alt kavaleri får +1 i pansernivå mot hugg."
+msgstr "Utstyr ditt kavaleri med rustning. Alt kavaleri får +1 rustningsgrad mot hugg."
 
 #: simulation/data/technologies/armor_hero_01.jsondescription
 msgid ""
 "Body armor fashioned completely of iron, the hardest workable metal known to"
 " the ancients."
-msgstr "Kroppsrustning tilvirket kun av jern, det hardeste formbare metallet de gamle kjente."
+msgstr "Kroppsrustning tilvirket kun av jern, det hardeste formbare metallet kjent fra oldtiden."
 
 #: simulation/data/technologies/armor_hero_01.jsontooltip
 msgid ""
 "All heroes +2 Hack Armor Levels and +2 Pierce Armor Levels, but also +50 "
 "Metal Cost."
-msgstr "Alle helter +2 i panser mot hugg og +2 i panser mot stikk men også +50 metall-kostnad."
+msgstr "Alle helter +2 i rustning mot hugg og +2 rustningsgrad mot stikk men også +50 metall-kostnad."
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
@@ -232,7 +232,7 @@ msgstr "Vattert lin- eller lærrustning for infanteri."
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
 msgid "All Infantry +1 Hack and Pierce Armor Level."
-msgstr "Alt infanteri +1 i panser mot hugg og stikk."
+msgstr "Alt infanteri +1 rustningsgrad mot hugg og stikk."
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 #: simulation/data/technologies/armor_infantry_hack_01.jsongenericName
@@ -297,15 +297,15 @@ msgstr "Linothorakes"
 #: simulation/data/technologies/armor_infantry_hack_02.jsontooltip
 #: simulation/data/technologies/armor_infantry_hack_03.jsontooltip
 msgid "All Infantry +1 Hack Armor Level."
-msgstr "Alt infanteri +1 panser mot hugg."
+msgstr "Alt infanteri +1 rustningsgrad mot hugg."
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsondescription
 msgid "Body armor reinforced with bronze scales."
-msgstr "Kroppsrustning forsterket med bronseskjell"
+msgstr "Brynje forsterket med bronseskjell"
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsongenericName
 msgid "Scale Body Armor"
-msgstr "Skjellrustning"
+msgstr "Skjellbrynje"
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsonspecificName.rome
 msgid "Lorica Squamata"
@@ -316,15 +316,15 @@ msgid ""
 "Body armor fashioned completely of bronze. Only the best soldiers were "
 "equipped with such body armor, as it was very expensive and time-consuming "
 "to fabricate."
-msgstr "Kroppsrustning fullstendig tilvirket av bronse. Kun de beste soldatene var utstyrt med denne typen kroppsrustning siden den var veldig dyr og tidkrevende å produsere."
+msgstr "Brynje fullstendig tilvirket av bronse. Kun de beste soldatene var utstyrt med denne typen kroppsrustning siden den var veldig kostbar og tidkrevende å produsere."
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsontooltip
 msgid "Champions +2 Hack Armor Levels, but also +10 Metal Cost."
-msgstr "Mestere +2 panser mot hugg men også +10 i metall-kostnad."
+msgstr "Mestere +2 rustningsgrad mot hugg men også +10 i metall-kostnad."
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsongenericName
 msgid "Bronze Cuirass Body Armor"
-msgstr "Bronseharniskrustning"
+msgstr "Bronseharniskbrynje"
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsonspecificName.rome
 msgid "Lorica Musculata"
@@ -336,7 +336,7 @@ msgstr "Konstruksjon i kryssfinér for store skjold."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsontooltip
 msgid "Infantry Spearmen +2 Pierce Armor Levels."
-msgstr "Infanteri spydmenn +2 i panser mot stikk."
+msgstr "Infanteri spydmenn +2 rustningsgrad mot stikk."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsongenericName
 msgid "Plywood Shield Construction"
@@ -358,7 +358,7 @@ msgstr "De beste skjoldene har forsterkninger, enter på hjørnene (Romersk scut
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsontooltip
 msgid "Infantry Spearmen +1 Pierce Armor Levels."
-msgstr "Infanteri spydmann +1 i panser mot stikk."
+msgstr "Infanteri spydmann +1 rustningsgrad mot stikk."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsongenericName
 msgid "Reinforced Shield"
@@ -378,7 +378,7 @@ msgstr "Et bronseskinn hamret over forsiden av skjoldet."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsontooltip
 msgid "Infantry Spearmen +1 Pierce Armor Level."
-msgstr "Infanterispydmenn +1 i panser mot stikk."
+msgstr "Infanterispydmenn +1 rustningsgrad mot stikk."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsongenericName
 msgid "Bronze Shield Facing"
@@ -403,7 +403,7 @@ msgstr "Bare de mest beryktede soldatene hadde skjold med overflate i sølv, som
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsontooltip
 msgid "Champions +2 Pierce Armor Levels, but also +10 Metal Cost."
-msgstr "Mestere +2 beskyttelse mot stikk, men også +10 metallkostnad."
+msgstr "Mestere +2 rustningsgrad mot stikk, men også +10 metallkostnad."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsongenericName
 msgid "Silver Shields"
@@ -423,7 +423,7 @@ msgstr "Blyplater beskytter skipsskrog."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsontooltip
 msgid "Lead sheathing protects ship hulls. +2 levels to all ship armor types."
-msgstr "Blyplater beskytter skipsskrog. +2 for alle pansertyper til skip."
+msgstr "Blyplater beskytter skipsskrog. +2 rustningsgrad for skip."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
@@ -437,7 +437,7 @@ msgstr "Hypozomataen forsterker et skips struktur."
 msgid ""
 "The hypozomata braces the ship's structure. +2 levels to all ship armor "
 "types."
-msgstr "Hypozomataen forsterker skipets struktur. +2 for alle pansertyper til skip."
+msgstr "Hypozomataen forsterker skipets struktur. +2 rustningsgrad for skip."
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsongenericName
 msgid "Hypozomata undergirding"
@@ -450,7 +450,7 @@ msgstr "Tømmerbjelker for å forsterke skipsskrog."
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
 msgid ""
 "Wooden reinforcement beams for hulls. +2 levels to all ship armor types."
-msgstr "Tømmerbjelker for å forsterke skrog. +2 for alle pansertyper til skip."
+msgstr "Tømmerbjelker for å forsterke skrog. +2 rustningsgrad for skip."
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsongenericName
 msgid "Reinforced hull"
@@ -735,7 +735,7 @@ msgstr "Forsterk fundamentene for å forberede et angrep. "
 
 #: simulation/data/technologies/attack_tower_defense.jsontooltip
 msgid "Increases armor level of the defense tower by 2 levels."
-msgstr "Øker pansernivået til forsvarstårnet med 2 nivåer."
+msgstr "Øker rustningsgraden til forsvarstårnet med 2 nivåer."
 
 #: simulation/data/technologies/attack_tower_defense.jsongenericName
 msgid "Sturdy Foundations"
@@ -795,7 +795,7 @@ msgstr "Bruk av skrapmateriale reduserer kostnaden og byggetiden av vegger."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
 msgid "City walls -20% build time, but -1 crush armor level."
-msgstr "Byvegger -20% byggetid men -1 i panser mot knusing."
+msgstr "Byvegger -20% byggetid men -1 rustningsgrad mot knusing."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
@@ -1182,7 +1182,7 @@ msgstr "Bruk av geometrisk muring gjør forsvarsvegger mer solide."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsontooltip
 msgid "City walls +2 crush armor levels, but +10% build time."
-msgstr "Byvegger +2 panser mot knusing men +10% byggetid."
+msgstr "Byvegger +2 rustningsgrad mot knusing, men +10% byggetid."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsongenericName
 msgid "Geometric Masonry"
@@ -1266,7 +1266,7 @@ msgstr "Spydkamp mot fortroppskamp"
 #: simulation/data/technologies/pair_inf_armor_03.jsongenericName
 #: simulation/data/technologies/pair_inf_armor_04.jsongenericName
 msgid "Infantry Hack Armor vs. Spearmen Pierce Armor"
-msgstr "Infanteri panser mot hugg mot spydmann panser mot stikk."
+msgstr "Infanterirustning mot hugg mot spydmannsrustning mot stikk."
 
 #: simulation/data/technologies/pair_levy_01.jsongenericName
 msgid "Levy Infantry vs. Levy Cavalry"
@@ -1516,7 +1516,7 @@ msgstr "Amentum"
 
 #: simulation/data/technologies/siege_armor.jsondescription
 msgid "Increased armor on siege weapons"
-msgstr "Forbedret panser på beleringsvåpen"
+msgstr "Forbedret rustning på beleringsvåpen"
 
 #: simulation/data/technologies/siege_armor.jsontooltip
 msgid "All Siege weapons +2 Hack armor levels."
@@ -1625,7 +1625,7 @@ msgstr "Økt forsvarsevne for handelsmenn."
 
 #: simulation/data/technologies/trade_convoys_armor.jsontooltip
 msgid "Traders +2 Hack and Pierce armor levels."
-msgstr "Kjøpmenn +2 i pansernivå mot hugg og stikk."
+msgstr "Kjøpmenn +2 rustningsgrad mot hugg og stikk."
 
 #: simulation/data/technologies/trade_convoys_armor.jsongenericName
 #: simulation/data/technologies/trade_convoys_speed.jsongenericName
@@ -1805,6 +1805,20 @@ msgstr "Se hva dine allierte ser, se gjennom deres sammendrag og sjekk deres res
 #: simulation/data/technologies/unlock_shared_los.jsongenericName
 msgid "Cartography"
 msgstr "Kartografi"
+
+#: simulation/data/technologies/unlock_spies.jsondescription
+msgid ""
+"Merchants' first goal was trading, but they also gathered information about "
+"the countries they crossed."
+msgstr ""
+
+#: simulation/data/technologies/unlock_spies.jsontooltip
+msgid "Allows to bribe other players' units to share their vision."
+msgstr ""
+
+#: simulation/data/technologies/unlock_spies.jsongenericName
+msgid "Espionage"
+msgstr ""
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsondescription
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsondescription
@@ -2541,7 +2555,7 @@ msgid ""
 "The now-extinct Nisian breed of horse was one of the largest and robust "
 "horses of ancient times. They were highly sought after by the Seleucids and "
 "Persians as both rider and mount gained heavier armor as time progressed."
-msgstr "Den nå utdødde nisearasen var en av de største og mest robuste hestene i oldtiden. Den var høyt ettertraktet av Selevkiderne og Perserne ettersom både rytter og hest fikk sterkere pansring etterhvert som tiden gikk."
+msgstr "Den nå utdødde nisearasen var en av de største og mest robuste hestene i oldtiden. Den var høyt ettertraktet av Selevkiderne og Perserne ettersom både rytter og hest fikk sterkere rustningsgrad etterhvert som tiden gikk."
 
 #: simulation/data/technologies/successors/special_war_horses.jsontooltip
 msgid "All cavalry +20% health."

@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-02-26 21:10+0100\n"
-"PO-Revision-Date: 2017-02-27 09:16+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-03-03 09:01+0100\n"
+"PO-Revision-Date: 2017-03-05 20:50+0000\n"
+"Last-Translator: pilino1234 <mhilgendrf@aol.com>\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -46,7 +46,7 @@ msgstr "I'm ready"
 
 #: gui/gamesetup/gamesetup.js:38
 msgid "State that you are ready to play."
-msgstr ""
+msgstr "State that you are ready to play."
 
 #: gui/gamesetup/gamesetup.js:42
 #, javascript-format
@@ -55,11 +55,11 @@ msgstr "* %(username)s is ready!"
 
 #: gui/gamesetup/gamesetup.js:43
 msgid "Stay ready"
-msgstr ""
+msgstr "Stay ready"
 
 #: gui/gamesetup/gamesetup.js:44
 msgid "Stay ready even when the game settings change."
-msgstr ""
+msgstr "Stay ready even when the game settings change."
 
 #: gui/gamesetup/gamesetup.js:49
 msgid "I'm not ready!"
@@ -146,62 +146,62 @@ msgstr "Return to the lobby."
 msgid "Return to the main menu."
 msgstr "Return to the main menu."
 
-#: gui/gamesetup/gamesetup.js:638
+#: gui/gamesetup/gamesetup.js:639
 msgid "Yes"
 msgstr "Yes"
 
-#: gui/gamesetup/gamesetup.js:638
+#: gui/gamesetup/gamesetup.js:639
 msgid "No"
 msgstr "No"
 
-#: gui/gamesetup/gamesetup.js:677
+#: gui/gamesetup/gamesetup.js:678
 msgctxt "team"
 msgid "None"
 msgstr "None"
 
-#: gui/gamesetup/gamesetup.js:1342
+#: gui/gamesetup/gamesetup.js:1343
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1434
+#: gui/gamesetup/gamesetup.js:1435
 msgctxt "map size"
 msgid "Default"
 msgstr "Default"
 
-#: gui/gamesetup/gamesetup.js:1504
+#: gui/gamesetup/gamesetup.js:1506
 msgid "Loading..."
 msgstr "Loading..."
 
-#: gui/gamesetup/gamesetup.js:1637
+#: gui/gamesetup/gamesetup.js:1639
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1642
+#: gui/gamesetup/gamesetup.js:1644
 msgid "Unassigned"
 msgstr "Unassigned"
 
-#: gui/gamesetup/gamesetup.js:1802
+#: gui/gamesetup/gamesetup.js:1804
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1809
+#: gui/gamesetup/gamesetup.js:1811
 msgid "Unknown Player"
 msgstr "Unknown Player"
 
-#: gui/gamesetup/gamesetup.js:1848
+#: gui/gamesetup/gamesetup.js:1850
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1849
+#: gui/gamesetup/gamesetup.js:1851
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:1850
+#: gui/gamesetup/gamesetup.js:1852
 msgid "HH:mm"
 msgstr "HH:mm"
 
@@ -278,7 +278,7 @@ msgid "Cancel"
 msgstr "Cancel"
 
 #: gui/aiconfig/aiconfig.xml:(caption):46
-#: gui/gamesetup/gamesetup.xml:(caption):459
+#: gui/gamesetup/gamesetup.xml:(caption):469
 msgid "OK"
 msgstr "OK"
 
@@ -400,18 +400,22 @@ msgid "Disable Treasures:"
 msgstr "Disable Treasures:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):412
+msgid "Disable Spies:"
+msgstr "Disable Spies:"
+
+#: gui/gamesetup/gamesetup.xml:(caption):422
 msgid "Teams Locked:"
 msgstr "Teams Locked:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):422
+#: gui/gamesetup/gamesetup.xml:(caption):432
 msgid "Last Man Standing:"
 msgstr "Last Man Standing:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):432
+#: gui/gamesetup/gamesetup.xml:(caption):442
 msgid "Cheats:"
 msgstr "Cheats:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):442
+#: gui/gamesetup/gamesetup.xml:(caption):452
 msgid "Rated Game:"
 msgstr "Rated Game:"
 
@@ -518,24 +522,28 @@ msgid "Disable all treasures on the map."
 msgstr "Disable all treasures on the map."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):416
+msgid "Disable spies during the game."
+msgstr "Disable spies during the game."
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):426
 msgid "Toggle locked teams."
 msgstr "Toggle locked teams."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):426
+#: gui/gamesetup/gamesetup.xml:(tooltip):436
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
 msgstr "Toggle whether the last remaining player or the last remaining set of allies wins."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):436
+#: gui/gamesetup/gamesetup.xml:(tooltip):446
 msgid "Toggle the usability of cheats."
 msgstr "Toggle the usability of cheats."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):446
+#: gui/gamesetup/gamesetup.xml:(tooltip):456
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "Toggle if this game will be rated for the leaderboard."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):460
+#: gui/gamesetup/gamesetup.xml:(tooltip):470
 msgid "Close more game options window"
 msgstr "Close more game options window"
 

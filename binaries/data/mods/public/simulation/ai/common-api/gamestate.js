@@ -203,6 +203,9 @@ m.GameState.prototype.isResearching = function(template)
 /** this is an "in-absolute" check that doesn't check if we have a building to research from. */
 m.GameState.prototype.canResearch = function(techTemplateName, noRequirementCheck)
 {
+	if (this.playerData.disabledTechnologies[techTemplateName])
+		return false;
+
 	let template = this.getTemplate(techTemplateName);
 	if (!template)
 		return false;
@@ -739,14 +742,15 @@ m.GameState.prototype.findAvailableTech = function()
 {
 	let allResearchable = [];
 	let civ = this.playerData.civ;
-	this.getOwnEntities().forEach(function(ent) {
+	for (let ent of this.getOwnEntities().values())
+	{
 		let searchable = ent.researchableTechs(civ);
 		if (!searchable)
-			return;
+			continue;
 		for (let tech of searchable)
-			if (allResearchable.indexOf(tech) === -1)
+			if (!this.playerData.disabledTechnologies[tech] && allResearchable.indexOf(tech) === -1)
 				allResearchable.push(tech);
-	});
+	}
 
 	let ret = [];
 	for (let tech of allResearchable)

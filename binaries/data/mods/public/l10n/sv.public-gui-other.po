@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-02-26 21:11+0100\n"
-"PO-Revision-Date: 2017-02-27 08:30+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-03-03 09:01+0100\n"
+"PO-Revision-Date: 2017-03-05 20:38+0000\n"
+"Last-Translator: pilino1234 <mhilgendrf@aol.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -426,7 +426,7 @@ msgstr "inaktiverat"
 
 #: gui/common/gamedescription.js:345
 msgid "Victorious"
-msgstr ""
+msgstr "Segerrik"
 
 #: gui/common/gamedescription.js:350
 msgid "Defeated"
@@ -507,7 +507,7 @@ msgstr "Du har blivit utsparkad"
 
 #: gui/common/network.js:71
 msgid "You have been banned"
-msgstr "Du har blivit bannlyst"
+msgstr "Du har blivit bannad"
 
 #: gui/common/network.js:72
 msgid "Playername in use. If you were disconnected, retry in few seconds"
@@ -519,7 +519,7 @@ msgstr "Server full"
 
 #: gui/common/network.js:74
 msgid "Player identifier in use, retry connecting"
-msgstr ""
+msgstr "Spelareidentifierare i bruk, försöka ansluta igen"
 
 #: gui/common/network.js:77
 #, javascript-format
@@ -690,11 +690,11 @@ msgstr "Krossa"
 
 #: gui/common/tooltips.js:21
 msgid "Circular Splash Damage"
-msgstr ""
+msgstr "Cirkulär Skvättskada"
 
 #: gui/common/tooltips.js:22
 msgid "Linear Splash Damage"
-msgstr ""
+msgstr "Lineär Skvättskada"
 
 #: gui/common/tooltips.js:64
 msgid "Health:"
@@ -1248,11 +1248,16 @@ msgstr "Icke-värderade spel"
 msgid "Filter replays by typing one or more, partial or complete playernames."
 msgstr "Filtrera replays genom att skriva en eller flera, hela eller delvis spelarnamn."
 
-#: gui/replaymenu/replay_menu.js:301
+#: gui/replaymenu/replay_menu.js:268
+#, javascript-format
+msgid "Players: %(numberOfPlayers)s"
+msgstr "Spelare: %(numberOfPlayers)s"
+
+#: gui/replaymenu/replay_menu.js:302
 msgid "yyyy-MM-dd HH:mm"
 msgstr "yyyy-MM-dd HH:mm"
 
-#: gui/replaymenu/replay_menu.js:331
+#: gui/replaymenu/replay_menu.js:332
 msgid "yyyy-MM"
 msgstr "yyyy-MM"
 
@@ -1665,7 +1670,7 @@ msgstr "Lobbyinställningar"
 
 #: gui/options/options.xml:(caption):74
 msgid "Chat Notification Settings"
-msgstr ""
+msgstr "Chattmeddelande Inställningar"
 
 #: gui/options/options.xml:(caption):86
 msgid "Reset"
@@ -1956,30 +1961,25 @@ msgstr "Kartstorlek:"
 msgid "Victory:"
 msgstr "Segervillkor:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):215
-#: gui/savedgames/load.xml:(caption):50
-msgid "Players:"
-msgstr "Spelare:"
-
-#: gui/replaymenu/replay_menu.xml:(caption):232
+#: gui/replaymenu/replay_menu.xml:(caption):227
 msgid "Spoiler"
 msgstr "Spoiler"
 
-#: gui/replaymenu/replay_menu.xml:(caption):244
+#: gui/replaymenu/replay_menu.xml:(caption):239
 msgid "Main Menu"
 msgstr "Huvudmeny"
 
-#: gui/replaymenu/replay_menu.xml:(caption):250
+#: gui/replaymenu/replay_menu.xml:(caption):245
 #: gui/savedgames/load.xml:(caption):34 gui/savedgames/save.xml:(caption):43
 msgid "Delete"
 msgstr "Ta bort"
 
-#: gui/replaymenu/replay_menu.xml:(caption):256
+#: gui/replaymenu/replay_menu.xml:(caption):251
 #: gui/summary/summary.xml:(caption):23
 msgid "Summary"
 msgstr "Sammanfattning"
 
-#: gui/replaymenu/replay_menu.xml:(caption):262
+#: gui/replaymenu/replay_menu.xml:(caption):257
 msgid "Start Replay"
 msgstr "Starta replayen"
 
@@ -2016,6 +2016,10 @@ msgstr "Längd"
 #: gui/savedgames/load.xml:(caption):39
 msgid "Load"
 msgstr "Ladda"
+
+#: gui/savedgames/load.xml:(caption):50
+msgid "Players:"
+msgstr "Spelare:"
 
 #: gui/savedgames/load.xml:(caption):54
 msgid "Played time:"
@@ -2381,7 +2385,7 @@ msgstr "Sen Observatöranslutning"
 
 #: gui/options/options.jsongeneralSetting[14].tooltip
 msgid "Prevent further observers from joining if the limit is reached"
-msgstr ""
+msgstr "Förhindra ytterligare observatörer från att ansluta sig om gränsen är nådd"
 
 #: gui/options/options.jsongeneralSetting[14].label
 msgid "Observer Limit"
@@ -2454,29 +2458,29 @@ msgstr "Namn Meddelande"
 
 #: gui/options/options.jsonnotificationSetting[0].tooltip
 msgid "Show a chat notification if you are attacked by another player"
-msgstr ""
+msgstr "Visa ett chattmeddelande om du attackeras av en annan spelare"
 
 #: gui/options/options.jsonnotificationSetting[0].label
 msgid "Attack"
-msgstr ""
+msgstr "Attack"
 
 #: gui/options/options.jsonnotificationSetting[1].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode"
-msgstr ""
+msgstr "Visa ett chattmeddelande om en allierad spelare skickar resurser till en annan lagmedlem om lagen är låsta, och alla tributer i obervatörläge."
 
 #: gui/options/options.jsonnotificationSetting[1].label
 msgid "Tribute"
-msgstr ""
+msgstr "Tribut"
 
 #: gui/options/options.jsonnotificationSetting[2].tooltip
 msgid "Show a chat notification to observers when a player bartered resources"
-msgstr ""
+msgstr "Visa ett chattmeddelande till observatörer om en spelare bedriver byteshandel."
 
 #: gui/options/options.jsonnotificationSetting[2].label
 msgid "Barter"
-msgstr ""
+msgstr "Byteshandel"
 
 #: gui/options/options.jsongraphicsSetting[0].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)"

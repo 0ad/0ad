@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-02-26 21:10+0100\n"
-"PO-Revision-Date: 2017-02-27 09:16+0000\n"
+"POT-Creation-Date: 2017-03-03 09:01+0100\n"
+"PO-Revision-Date: 2017-03-03 08:42+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -149,62 +149,62 @@ msgstr "Întoarceți-vă la foaier."
 msgid "Return to the main menu."
 msgstr "Întoarceți-vă lameniul principal."
 
-#: gui/gamesetup/gamesetup.js:638
+#: gui/gamesetup/gamesetup.js:639
 msgid "Yes"
 msgstr "Da"
 
-#: gui/gamesetup/gamesetup.js:638
+#: gui/gamesetup/gamesetup.js:639
 msgid "No"
 msgstr "Nu"
 
-#: gui/gamesetup/gamesetup.js:677
+#: gui/gamesetup/gamesetup.js:678
 msgctxt "team"
 msgid "None"
 msgstr "Nimic"
 
-#: gui/gamesetup/gamesetup.js:1342
+#: gui/gamesetup/gamesetup.js:1343
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1434
+#: gui/gamesetup/gamesetup.js:1435
 msgctxt "map size"
 msgid "Default"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1504
+#: gui/gamesetup/gamesetup.js:1506
 msgid "Loading..."
 msgstr "Se incarca..."
 
-#: gui/gamesetup/gamesetup.js:1637
+#: gui/gamesetup/gamesetup.js:1639
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "Al: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1642
+#: gui/gamesetup/gamesetup.js:1644
 msgid "Unassigned"
 msgstr "Neatribuit"
 
-#: gui/gamesetup/gamesetup.js:1802
+#: gui/gamesetup/gamesetup.js:1804
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1809
+#: gui/gamesetup/gamesetup.js:1811
 msgid "Unknown Player"
 msgstr "Jucător necunoscut"
 
-#: gui/gamesetup/gamesetup.js:1848
+#: gui/gamesetup/gamesetup.js:1850
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1849
+#: gui/gamesetup/gamesetup.js:1851
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:1850
+#: gui/gamesetup/gamesetup.js:1852
 msgid "HH:mm"
 msgstr "HH:mm"
 
@@ -281,7 +281,7 @@ msgid "Cancel"
 msgstr "Anulează"
 
 #: gui/aiconfig/aiconfig.xml:(caption):46
-#: gui/gamesetup/gamesetup.xml:(caption):459
+#: gui/gamesetup/gamesetup.xml:(caption):469
 msgid "OK"
 msgstr "OK"
 
@@ -403,18 +403,22 @@ msgid "Disable Treasures:"
 msgstr "Dezactivați comorile:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):412
+msgid "Disable Spies:"
+msgstr ""
+
+#: gui/gamesetup/gamesetup.xml:(caption):422
 msgid "Teams Locked:"
 msgstr "Echipe încuiate:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):422
+#: gui/gamesetup/gamesetup.xml:(caption):432
 msgid "Last Man Standing:"
 msgstr "Ultimul om în picioare:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):432
+#: gui/gamesetup/gamesetup.xml:(caption):442
 msgid "Cheats:"
 msgstr "Coduri:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):442
+#: gui/gamesetup/gamesetup.xml:(caption):452
 msgid "Rated Game:"
 msgstr "Joc evaluat:"
 
@@ -521,24 +525,28 @@ msgid "Disable all treasures on the map."
 msgstr "Dezactivează toate comorile de pe hartă:"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):416
+msgid "Disable spies during the game."
+msgstr ""
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):426
 msgid "Toggle locked teams."
 msgstr "Comuta încuiarea echipelor."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):426
+#: gui/gamesetup/gamesetup.xml:(tooltip):436
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
 msgstr "Comuta daca ultimul jucător rămas sau ultimul set de aliați rămași câștigă."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):436
+#: gui/gamesetup/gamesetup.xml:(tooltip):446
 msgid "Toggle the usability of cheats."
 msgstr "Comutați foloirea de coduri."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):446
+#: gui/gamesetup/gamesetup.xml:(tooltip):456
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "Comutați dacă acest joc va fi evaluat în clasament."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):460
+#: gui/gamesetup/gamesetup.xml:(tooltip):470
 msgid "Close more game options window"
 msgstr "Închideți fereastra cu mai multe opțiuni de joc"
 
