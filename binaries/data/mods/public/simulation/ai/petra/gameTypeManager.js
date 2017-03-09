@@ -270,6 +270,7 @@ m.GameTypeManager.prototype.manageCriticalEntGuards = function(gameState)
 	if (numWorkers < 20)
 	{
 		for (let data of this.criticalEnts.values())
+		{
 			for (let guardId of data.guards.keys())
 			{
 				let guardEnt = gameState.getEntityById(guardId);
@@ -285,7 +286,13 @@ m.GameTypeManager.prototype.manageCriticalEntGuards = function(gameState)
 
 				if (guardEnt.getMetadata(PlayerID, "guardedEnt"))
 					guardEnt.setMetadata(PlayerID, "guardedEnt", undefined);
+				
+				if (++numWorkers >= 20)
+					break;
 			}
+			if (numWorkers >= 20)
+				break;
+		}
 	}
 
 	for (let [id, data] of this.criticalEnts)
@@ -319,22 +326,24 @@ m.GameTypeManager.prototype.manageCriticalEntGuards = function(gameState)
 			{
 				if (!this.tryAssignMilitaryGuard(gameState, entity, criticalEnt, checkForSameAccess))
 					continue;
-				if (++data.guardsAssigned >= militaryGuardsPerCriticalEnt)
+				--numWorkers;
+				if (++data.guardsAssigned >= militaryGuardsPerCriticalEnt || numWorkers <= 25)
 					break;
 			}
 
-			if (data.guardsAssigned >= militaryGuardsPerCriticalEnt)
+			if (data.guardsAssigned >= militaryGuardsPerCriticalEnt || numWorkers <= 25)
 				break;
 
 			for (let entity of gameState.getOwnEntitiesByClass("Soldier", true).values())
 			{
 				if (!this.tryAssignMilitaryGuard(gameState, entity, criticalEnt, checkForSameAccess))
 					continue;
-				if (++data.guardsAssigned >= militaryGuardsPerCriticalEnt)
+				--numWorkers;
+				if (++data.guardsAssigned >= militaryGuardsPerCriticalEnt || numWorkers <= 25)
 					break;
 			}
 
-			if (data.guardsAssigned >= militaryGuardsPerCriticalEnt)
+			if (data.guardsAssigned >= militaryGuardsPerCriticalEnt || numWorkers <= 25)
 				break;
 		}
 	}
@@ -441,7 +450,7 @@ m.GameTypeManager.prototype.assignGuardToCriticalEnt = function(gameState, guard
 		this.criticalEnts.get(criticalEntId).guards.set(guardEnt.id(), guardRole);
 
 		// Switch this guard ent to the criticalEnt's base
-		if (criticalEnt.hasClass("Wonder") && criticalEnt.getMetadata(PlayerID, "base") !== undefined)
+		if (criticalEnt.hasClass("Structure") && criticalEnt.getMetadata(PlayerID, "base") !== undefined)
 			guardEnt.setMetadata(PlayerID, "base", criticalEnt.getMetadata(PlayerID, "base"));
 	}
 	else
