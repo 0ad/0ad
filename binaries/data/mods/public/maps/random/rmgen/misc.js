@@ -228,6 +228,28 @@ function placeDefaultChicken(playerX, playerZ, tileClass, constraint = undefined
 				break;
 		}
 }
+
+/**
+ * Typically used for placing grass tufts around the civic centers.
+ */
+function placeDefaultDecoratives(playerX, playerZ, template, tileclass, radius, constraint = undefined)
+{
+	for (let i = 0; i < PI * radius * radius / 250; ++i)
+	{
+		let angle = randFloat(0, 2 * PI);
+		let dist = radius - randIntInclusive(5, 11);
+
+		createObjectGroup(
+			new SimpleGroup(
+				[new SimpleObject(template, 2, 5, 0, 1, -PI/8, PI/8)],
+				false,
+				tileclass,
+				Math.round(playerX + dist * Math.cos(angle)),
+				Math.round(playerZ + dist * Math.sin(angle))
+			), 0, constraint);
+	}
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////
 // paintTerrainBasedOnHeight
 //

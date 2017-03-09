@@ -206,20 +206,7 @@ for (let i = 0; i < numPlayers; ++i)
 			break;
 	}
 
-	// Create grass tufts
-	num = (PI * radius * radius) / 250;
-	for (let j = 0; j < num; ++j)
-	{
-		let gAngle = randFloat(0, TWO_PI);
-		let gDist = radius - (5 + randInt(7));
-		let gX = round(fx + gDist * cos(gAngle));
-		let gZ = round(fz + gDist * sin(gAngle));
-		group = new SimpleGroup(
-			[new SimpleObject(aGrassShort, 2, 5, 0, 1, -PI/8, PI/8)],
-			false, clBaseResource, gX, gZ
-		);
-		createObjectGroup(group, 0);
-	}
+	placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, radius);
 }
 
 RMS.SetProgress(40);
@@ -407,21 +394,6 @@ createForests(
 	0.1,
 	random_terrain
 );
-
-log("Creating grass tufts...");
-let num = (PI * radius * radius) / 250;
-for (let j = 0; j < num; ++j)
-{
-	let gAngle = randFloat(0, TWO_PI);
-	let gDist = radius - (5 + randInt(7));
-	let gX = round(fx + gDist * cos(gAngle));
-	let gZ = round(fz + gDist * sin(gAngle));
-	group = new SimpleGroup(
-		[new SimpleObject(aGrassShort, 2, 5, 0, 1, -PI / 8, PI / 8)],
-		false, clBaseResource, gX, gZ
-	);
-	createObjectGroup(group, 0, [avoidClasses(clMountain, 2, clPlayer, 2, clDirt, 0), stayClasses(clHill, 8)]);
-}
 
 log("Creating small grass tufts...");
 group = new SimpleGroup(

@@ -203,7 +203,7 @@ for (var i=0; i < numIslands; i++)
 		true, clBaseResource, mX, mZ
 	);
 	createObjectGroup(group, 0);
-	var hillSize = PI * radius * radius;
+
 	// create starting trees
 	var num = 2;
 	var tAngle = randFloat(-PI/3, 4*PI/3);

@@ -117,9 +117,6 @@ for (var i = 0; i < numPlayers; i++)
 	addToClass(ix-5, iz, clPlayer);
 	addToClass(ix, iz-5, clPlayer);
 
-	// calculate size based on the radius
-	var hillSize = PI * radius * radius;
-
 	// create the city patch
 	var cityRadius = radius/3;
 	var placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, ix, iz);
@@ -179,20 +176,7 @@ for (var i = 0; i < numPlayers; i++)
 	);
 	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
 
-	// create grass tufts
-	var num = hillSize / 250;
-	for (var j = 0; j < num; j++)
-	{
-		var gAngle = randFloat(0, TWO_PI);
-		var gDist = radius - (5 + randInt(7));
-		var gX = round(fx + gDist * cos(gAngle));
-		var gZ = round(fz + gDist * sin(gAngle));
-		group = new SimpleGroup(
-			[new SimpleObject(aGrassShort, 2,5, 0,1, -PI/8,PI/8)],
-			false, clBaseResource, gX, gZ
-		);
-		createObjectGroup(group, 0);
-	}
+	placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, radius);
 }
 RMS.SetProgress(10);
 
