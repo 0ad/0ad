@@ -235,8 +235,6 @@ function createBase(player, walls = true)
 		g_Gaia.chicken
 	);
 
-	var hillSize = PI * g_MapInfo.mapRadius * g_MapInfo.mapRadius;
-
 	// Create starting trees
 	var num = g_MapInfo.biome == g_BiomeSavanna ? 5 : 15;
 	for (var tries = 0; tries < 10; ++tries)
@@ -255,20 +253,13 @@ function createBase(player, walls = true)
 			break;
 	}
 
-	// Create grass tufts
-	var num = hillSize / 250;
-	for (var j = 0; j < num; ++j)
-	{
-		var gAngle = randFloat(0, TWO_PI);
-		var gDist = g_MapInfo.mapRadius - (5 + randInt(7));
-		var gX = round(fx + gDist * cos(gAngle));
-		var gZ = round(fz + gDist * sin(gAngle));
-		group = new SimpleGroup(
-			[new SimpleObject(g_Decoratives.grassShort, 2, 5, 0, 1, -PI / 8, PI / 8)],
-			false, g_TileClasses.baseResource, gX, gZ
-		);
-		createObjectGroup(group, 0, avoidClasses(g_TileClasses.baseResource, 4));
-	}
+	placeDefaultDecoratives(
+		fx,
+		fz,
+		g_Decoratives.grassShort,
+		g_TileClasses.baseResource,
+		g_MapInfo.mapRadius,
+		avoidClasses(g_TileClasses.baseResource, 4));
 }
 
 /**

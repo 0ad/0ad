@@ -169,20 +169,7 @@ for (var i = 0; i < numPlayers; i++)
 		placeObject(ux, uz, "skirmish/units/default_infantry_melee_b", id, uAngle);
 	}
 
-	// create grass tufts
-	var num = radius * radius * 3.14 / 250;
-	for (var j = 0; j < num; j++)
-	{
-		var gAngle = randFloat(0, TWO_PI);
-		var gDist = radius - (5 + randInt(7));
-		var gX = round(fx + gDist * cos(gAngle));
-		var gZ = round(fz + gDist * sin(gAngle));
-		var group = new SimpleGroup(
-			[new SimpleObject(aGrassShort, 2,5, 0,1, -PI/8,PI/8)],
-			false, clBaseResource, gX, gZ
-		);
-		createObjectGroup(group, 0);
-	}
+	placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, radius);
 
 	var tang = startAngle + (i+0.5)*TWO_PI/numPlayers;
 	var placer = new PathPlacer(fractionToTiles(0.5), fractionToTiles(0.5), fractionToTiles(0.5 + 0.5*cos(tang)), fractionToTiles(0.5 + 0.5*sin(tang)), scaleByMapSize(14,24), 0.4, 3*(scaleByMapSize(1,3)), 0.2, 0.05);
@@ -210,7 +197,7 @@ paintTerrainBasedOnHeight(3.12, 29, 1, tCliff);
 paintTileClassBasedOnHeight(3.12, 29, 1, clHill);
 
 // create trigger points for treasures
-group = new SimpleGroup( [new SimpleObject("special/trigger_point_B", 1,1, 0,0)], true, clWomen);
+var group = new SimpleGroup( [new SimpleObject("special/trigger_point_B", 1,1, 0,0)], true, clWomen);
 createObjectGroups(group, 0,
 	[avoidClasses(clForest, 5, clPlayer, 5, clHill, 5), stayClasses(clLand, 5)],
 	scaleByMapSize(40, 140), 100

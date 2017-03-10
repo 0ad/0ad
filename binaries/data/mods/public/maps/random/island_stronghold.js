@@ -525,20 +525,7 @@ createObjectGroups(group, 0,
 	scaleByMapSize(10, 20), 100
 );
 
-log("Creating grass tufts...");
-let num = (PI * radius * radius) / 250;
-for (let j = 0; j < num; ++j)
-{
-	let gAngle = randFloat(0, TWO_PI);
-	let gDist = radius - (5 + randInt(7));
-	let gX = round(fx + gDist * cos(gAngle));
-	let gZ = round(fz + gDist * sin(gAngle));
-	group = new SimpleGroup(
-		[new SimpleObject(aGrassShort, 2, 5, 0, 1, -PI / 8, PI / 8)],
-		false, clBaseResource, gX, gZ
-	);
-	createObjectGroup(group, 0, [stayClasses(clLand, 5)]);
-}
+placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, radius, [stayClasses(clLand, 5)]);
 
 log("Creating small grass tufts...");
 let planetm = random_terrain == 7 ? 8 : 1;

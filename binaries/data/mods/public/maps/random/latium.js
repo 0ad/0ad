@@ -411,8 +411,6 @@ for (var i = 1; i <= numPlayers; i++)
 	);
 	createObjectGroup(group, 0);
 
-	var radius = scaleByMapSize(15,25);
-	var hillSize = PI * radius * radius;
 	// create starting trees
 	var num = 5;
 	var tAngle = randFloat(-PI/3, 4*PI/3);
