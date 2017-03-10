@@ -16,6 +16,7 @@
 # Jos Arends <Tekno23@hotmail.nl>, 2014
 # LTom, 2014
 # luuk2305 <luuk@medenblik.net>, 2014
+# Mark Martines <mark-martines@hotmail.com>, 2017
 # MathiasB, 2013
 # Matthijs de Rijk <MrTheRich@gmail.com>, 2013
 # niektb <niektb95@gmail.com>, 2015
@@ -34,8 +35,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-03 09:01+0100\n"
-"PO-Revision-Date: 2017-03-03 08:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-03-07 18:29+0000\n"
+"Last-Translator: Mark Martines <mark-martines@hotmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -63,7 +64,7 @@ msgstr "Ik ben gereed"
 
 #: gui/gamesetup/gamesetup.js:38
 msgid "State that you are ready to play."
-msgstr ""
+msgstr "Stel in dat u klaar bent om te spelen"
 
 #: gui/gamesetup/gamesetup.js:42
 #, javascript-format
@@ -72,11 +73,11 @@ msgstr "* %(username)s is gereed!"
 
 #: gui/gamesetup/gamesetup.js:43
 msgid "Stay ready"
-msgstr ""
+msgstr "Sta klaar"
 
 #: gui/gamesetup/gamesetup.js:44
 msgid "Stay ready even when the game settings change."
-msgstr ""
+msgstr "Sta klaar zelfs wanneer de spelinstellingen veranderen"
 
 #: gui/gamesetup/gamesetup.js:49
 msgid "I'm not ready!"
@@ -418,7 +419,7 @@ msgstr "Schatten uitschakelen:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):412
 msgid "Disable Spies:"
-msgstr ""
+msgstr "Schakel spionnen uit:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):422
 msgid "Teams Locked:"
@@ -540,7 +541,7 @@ msgstr "Schakel alle schatten op de kaart uit."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):416
 msgid "Disable spies during the game."
-msgstr ""
+msgstr "Schakel spionnen uit tijdens het spel"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):426
 msgid "Toggle locked teams."

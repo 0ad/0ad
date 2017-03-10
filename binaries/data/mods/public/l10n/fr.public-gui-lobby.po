@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Antoine Sobocinski <antoine.sobocinski@live.fr>, 2016
+# Arnaud Rochés <roches.arn@gmail.com>, 2017
 # Arthur Jaouen <arthur.jaouen@gmail.com>, 2014
 # SecondCloud500 <eddieven2000@gmail.com>, 2014
 # François Poirotte <clicky@erebot.net>, 2016
@@ -19,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-03 09:01+0100\n"
-"PO-Revision-Date: 2017-03-03 08:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-03-07 11:30+0000\n"
+"Last-Translator: Arnaud Rochés <roches.arn@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -70,35 +71,35 @@ msgstr "%(oldnick)s est maintenant connu en tant que %(newnick)s."
 
 #: gui/lobby/lobby.js:217
 msgid "You have been banned from the lobby!"
-msgstr ""
+msgstr "Vous avez été banni(e) du hall !"
 
 #: gui/lobby/lobby.js:218
 msgid "You have been kicked from the lobby!"
-msgstr ""
+msgstr "Vous avez été éjecté(e) du hall !"
 
 #: gui/lobby/lobby.js:220
 #, javascript-format
 msgid "%(nick)s has been banned from the lobby."
-msgstr ""
+msgstr "%(nick)s a été banni(e) du hall."
 
 #: gui/lobby/lobby.js:221
 #, javascript-format
 msgid "%(nick)s has been kicked from the lobby."
-msgstr ""
+msgstr "%(nick)s a été éjecté(e) du hall."
 
 #: gui/lobby/lobby.js:224
 #, javascript-format
 msgctxt "lobby kick"
 msgid "Reason: %(reason)s"
-msgstr ""
+msgstr "Raison : %(reason)s"
 
 #: gui/lobby/lobby.js:249
 msgid "BANNED"
-msgstr ""
+msgstr "BANNI(E)"
 
 #: gui/lobby/lobby.js:249
 msgid "KICKED"
-msgstr ""
+msgstr "ÉJECTÉ(E)"
 
 #: gui/lobby/lobby.js:291
 msgctxt "map size"
@@ -290,7 +291,7 @@ msgstr "Veuillez accepter les Conditions Générales de Service et d'Utilisation
 msgid ""
 "Unknown error. This usually occurs because the same IP address is not "
 "allowed to register more than one account within one hour."
-msgstr ""
+msgstr "Erreur inconnue. Cela arrive le plus souvent parce que la même adresse IP n'est pas autorisée à enregistrer plus d'un compte en une heure."
 
 #: gui/lobby/prelobby.js:172
 msgid "Registered"
