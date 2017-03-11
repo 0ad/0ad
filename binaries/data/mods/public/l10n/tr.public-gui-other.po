@@ -11,14 +11,15 @@
 # Hüseyin Cem Aras <hcemaras@gmail.com>, 2015
 # Muha Aliss <muhaaliss@gmail.com>, 2017
 # sicey <sicey224@hotmail.com>, 2015
+# Typhoon das <info@typhoonwebexpert.com>, 2017
 # Volkan Gezer <volkangezer@gmail.com>, 2014-2015
 # yakup <mutouk@yandex.ru>, 2014-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-03 09:01+0100\n"
-"PO-Revision-Date: 2017-03-03 15:33+0000\n"
-"Last-Translator: Muha Aliss <muhaaliss@gmail.com>\n"
+"POT-Creation-Date: 2017-03-06 09:29+0100\n"
+"PO-Revision-Date: 2017-03-09 23:11+0000\n"
+"Last-Translator: Typhoon das <info@typhoonwebexpert.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -83,34 +84,21 @@ msgstr "Açılıyor %(url)s\ninternet tarayıcısında. Lütfen bekleyin..."
 msgid "Opening page"
 msgstr "Sayfa açılıyor"
 
-#: gui/common/functions_global_object.js:72
+#: gui/common/functions_global_object.js:69
 #, javascript-format
 msgid "FPS: %(fps)4s"
 msgstr "FPS: %(fps)4s"
 
-#. Translation: The "x" means "times", with the mathematical meaning of
-#. multiplication.
-#: gui/common/functions_global_object.js:89
-#, javascript-format
-msgid "%(time)s (%(speed)sx)"
-msgstr "%(time)s (%(speed)sx)"
-
-#: gui/common/functions_global_object.js:106
-#, javascript-format
-msgctxt "ceasefire"
-msgid "Time remaining until ceasefire is over: %(time)s."
-msgstr "Ateşkesin bitmesine kalan zaman: %(time)s."
-
-#: gui/common/functions_utility.js:118
+#: gui/common/functions_utility.js:108
 msgctxt "map selection"
 msgid "Random"
 msgstr "Rastgele"
 
-#: gui/common/functions_utility.js:129
+#: gui/common/functions_utility.js:119
 msgid "mm:ss"
 msgstr "dd:ss"
 
-#: gui/common/functions_utility.js:129
+#: gui/common/functions_utility.js:119
 msgid "HH:mm:ss"
 msgstr "SS:dd:ss"
 
@@ -152,7 +140,7 @@ msgstr "SİL"
 
 #: gui/common/functions_utility_loadsave.js:87 gui/common/tooltips.js:217
 #: gui/options/options.js:279 gui/options/options.js:346
-#: gui/pregame/mainmenu.js:256 gui/replaymenu/replay_actions.js:159
+#: gui/pregame/mainmenu.js:261 gui/replaymenu/replay_actions.js:159
 #: gui/savedgames/load.js:128 gui/savedgames/save.js:65
 #: gui/summary/summary.js:146
 msgid "No"
@@ -160,7 +148,7 @@ msgstr "Hayır"
 
 #: gui/common/functions_utility_loadsave.js:87 gui/common/tooltips.js:217
 #: gui/options/options.js:279 gui/options/options.js:346
-#: gui/pregame/mainmenu.js:256 gui/replaymenu/replay_actions.js:159
+#: gui/pregame/mainmenu.js:261 gui/replaymenu/replay_actions.js:159
 #: gui/savedgames/load.js:128 gui/savedgames/save.js:65
 #: gui/summary/summary.js:146
 msgid "Yes"
@@ -350,7 +338,7 @@ msgstr "Bir oyuncu kazanırsa, müttefikleri de kazanır. Bir müttefik grubu ka
 msgid "Ceasefire"
 msgstr "Ateşkes"
 
-#: gui/common/gamedescription.js:243 gui/pregame/mainmenu.js:86
+#: gui/common/gamedescription.js:243 gui/pregame/mainmenu.js:91
 msgid "disabled"
 msgstr "devre dışı bırakılmış"
 
@@ -521,7 +509,7 @@ msgstr "Sunucu dolu"
 
 #: gui/common/network.js:74
 msgid "Player identifier in use, retry connecting"
-msgstr ""
+msgstr "Kullanılan oynatıcı tanımlayıcısını, yeniden bağlanmayı deneyin."
 
 #: gui/common/network.js:77
 #, javascript-format
@@ -692,11 +680,11 @@ msgstr "Ezmek"
 
 #: gui/common/tooltips.js:21
 msgid "Circular Splash Damage"
-msgstr ""
+msgstr "Dairesel sıçrama hasarı"
 
 #: gui/common/tooltips.js:22
 msgid "Linear Splash Damage"
-msgstr ""
+msgstr "Doğrusal sıçrama hasarı"
 
 #: gui/common/tooltips.js:64
 msgid "Health:"
@@ -1015,7 +1003,7 @@ msgstr "Yok"
 msgid "<invalid>"
 msgstr "<geçersiz>"
 
-#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:157
+#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:162
 #: gui/splashscreen/splashscreen.xml:(caption):28
 msgid "OK"
 msgstr "Tamam"
@@ -1035,34 +1023,34 @@ msgstr "Uyarı"
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Kaydedilmemiş değişiklikler var, pencereyi kapatmak istiyor musun?"
 
-#: gui/pregame/mainmenu.js:89
+#: gui/pregame/mainmenu.js:94
 msgid "connecting to server"
 msgstr "sunucuya bağlanıyor"
 
-#: gui/pregame/mainmenu.js:92
+#: gui/pregame/mainmenu.js:97
 #, javascript-format
 msgid "uploading (%f%%)"
 msgstr "yükleniyor (%f%%)"
 
-#: gui/pregame/mainmenu.js:98
+#: gui/pregame/mainmenu.js:103
 msgid "upload succeeded"
 msgstr "yükleme başarılı"
 
-#: gui/pregame/mainmenu.js:100
+#: gui/pregame/mainmenu.js:105
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
 msgstr "yükleme başarısız (%(errorCode)s)"
 
-#: gui/pregame/mainmenu.js:104
+#: gui/pregame/mainmenu.js:109
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
 msgstr "yükleme başarısız (%(errorMessage)s)"
 
-#: gui/pregame/mainmenu.js:106
+#: gui/pregame/mainmenu.js:111
 msgid "unknown"
 msgstr "bilinmiyor"
 
-#: gui/pregame/mainmenu.js:146
+#: gui/pregame/mainmenu.js:151
 #, javascript-format
 msgid ""
 "%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
@@ -1075,57 +1063,57 @@ msgstr "%(startWarning)sUyarı:%(endWarning)s Gölgesiz(sabit işlevli) grafik k
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:155
+#: gui/pregame/mainmenu.js:160
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "Lütfen daha fazla bilgi için \"Devamını Oku\"ya basın ya da devam etmek için \"Tamam\"a basın."
 
-#: gui/pregame/mainmenu.js:156
+#: gui/pregame/mainmenu.js:161
 msgid "WARNING!"
 msgstr "DİKKAT!"
 
-#: gui/pregame/mainmenu.js:157
+#: gui/pregame/mainmenu.js:162
 msgid "Read More"
 msgstr "Daha Fazlasını Oku"
 
-#: gui/pregame/mainmenu.js:242
+#: gui/pregame/mainmenu.js:247
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Yapı: %(buildDate)s (%(revision)s)"
 
-#: gui/pregame/mainmenu.js:254
+#: gui/pregame/mainmenu.js:259
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "0 A.D.'den çıkmak istediğinize emin misiniz?"
 
-#: gui/pregame/mainmenu.js:255 gui/summary/summary.js:145
+#: gui/pregame/mainmenu.js:260 gui/summary/summary.js:145
 msgid "Confirmation"
 msgstr "Onay"
 
-#: gui/pregame/mainmenu.js:270
+#: gui/pregame/mainmenu.js:275
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "Senaryo editörü mevcut değil ya da yüklenmesi başarısız. Daha fazla bilgi için oyun günlük dosyasına bakınız."
 
-#: gui/pregame/mainmenu.js:271 gui/replaymenu/replay_actions.js:116
+#: gui/pregame/mainmenu.js:276 gui/replaymenu/replay_actions.js:116
 msgid "Error"
 msgstr "Hata"
 
-#: gui/pregame/mainmenu.js:277
+#: gui/pregame/mainmenu.js:282
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "Çoklu oyuncu lobisi başlat. \\[DISABLED BY BUILD]"
 
-#: gui/pregame/mainmenu.js:282 gui/pregame/mainmenu.xml:(caption):72
+#: gui/pregame/mainmenu.js:287 gui/pregame/mainmenu.xml:(caption):72
 #: gui/pregame/mainmenu.xml:(caption):103
 msgid "Technical Details"
 msgstr "Teknik Detaylar"
 
-#: gui/pregame/mainmenu.js:287 gui/pregame/mainmenu.xml:(caption):149
+#: gui/pregame/mainmenu.js:292 gui/pregame/mainmenu.xml:(caption):149
 msgid "Manual"
 msgstr "Kılavuz"
 
 #: gui/replaymenu/replay_actions.js:88
 msgid "You don't have the same mods active as the replay does."
-msgstr ""
+msgstr "Oynatmanın yaptığı gibi aynı modlara sahip değilsiniz."
 
 #: gui/replaymenu/replay_actions.js:89 gui/savedgames/load.js:114
 #, javascript-format
@@ -1296,7 +1284,7 @@ msgstr "O 0 A.D. %(requiredVersion)s kayıtlı oyun sürümüne ihtiyaç duyuyor
 
 #: gui/savedgames/load.js:113
 msgid "The savegame needs a different set of mods:"
-msgstr ""
+msgstr "Savegame'in farklı mod modlarına ihtiyacı var:"
 
 #: gui/savedgames/load.js:122
 msgid "Do you still want to proceed?"
@@ -2387,7 +2375,7 @@ msgstr "Geç Katılan İzleyiciler"
 
 #: gui/options/options.jsongeneralSetting[14].tooltip
 msgid "Prevent further observers from joining if the limit is reached"
-msgstr ""
+msgstr "Limit ulaşıldığında diğer gözlemcilerin katılmasını engelleyin"
 
 #: gui/options/options.jsongeneralSetting[14].label
 msgid "Observer Limit"
@@ -2460,7 +2448,7 @@ msgstr "İsim bildirimi"
 
 #: gui/options/options.jsonnotificationSetting[0].tooltip
 msgid "Show a chat notification if you are attacked by another player"
-msgstr ""
+msgstr "Başka bir oyuncu tarafından saldırıya uğradığınızda bir sohbet bildirimi göster"
 
 #: gui/options/options.jsonnotificationSetting[0].label
 msgid "Attack"
@@ -2470,7 +2458,7 @@ msgstr "Atak:"
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode"
-msgstr ""
+msgstr "Bir müttefik, ekipler kilitli ise başka bir takım üyesine kaynak tahakkuk ediyorsa ve gözlemci modunda tüm haraçları paylaştığında bir sohbet bildirimi göster"
 
 #: gui/options/options.jsonnotificationSetting[1].label
 msgid "Tribute"
@@ -2478,7 +2466,7 @@ msgstr "Haraç"
 
 #: gui/options/options.jsonnotificationSetting[2].tooltip
 msgid "Show a chat notification to observers when a player bartered resources"
-msgstr ""
+msgstr "Bir oyuncu kaynak takas ettiği zaman gözlemcilere bir sohbet bildirimi göster"
 
 #: gui/options/options.jsonnotificationSetting[2].label
 msgid "Barter"
@@ -2814,7 +2802,7 @@ msgid ""
 "or very easy) when beginning with the game. Changing the AI level is done by"
 " clicking on the gear icon next to each AI player in the player selection "
 "panel above."
-msgstr ""
+msgstr "Deneyimli bir oyuncu için makul derecede kolay olmasına rağmen, varsayılan AI seviyesi oyunun temel mekanizmalarını öğrenmeden yeni oyuncular için oldukça zorlayıcıdır. Oyun başlangıcında daha düşük bir seviyeye (kum havuzuna veya çok kolay) karşı oynamaya başlamanız önerilir. AI seviyesinin değiştirilmesi, yukarıdaki oyuncu seçimi panelindeki her AI oynatıcının yanındaki dişli çark simgesine tıklanarak yapılır."
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
@@ -2976,7 +2964,7 @@ msgstr "Garnizon piyadeleri ile ateş gücü artar."
 
 #: gui/text/tips/celtic_war_barge.txt:10
 msgid "- Cannot ram, like other triremes, but has greater health and armor."
-msgstr ""
+msgstr "- Diğer üçlüler gibi koç olamaz, ancak daha fazla sağlık ve zırh vardır."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -3415,7 +3403,7 @@ msgstr "- O yaşarken bütün gemiler daha hızlı inşa edilir."
 
 #: gui/text/tips/themistocles.txt:6
 msgid "- The ship he is garrisoned inside sails much faster."
-msgstr ""
+msgstr "- İçinde görevlendirilen gemi çok daha hızlı yelken açıyor."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"

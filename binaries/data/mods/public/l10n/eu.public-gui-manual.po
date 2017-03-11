@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-09-30 09:00+0200\n"
-"PO-Revision-Date: 2017-01-28 20:42+0000\n"
+"POT-Creation-Date: 2017-03-06 09:29+0100\n"
+"PO-Revision-Date: 2017-03-08 17:06+0000\n"
 "Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -291,306 +291,310 @@ msgid "T: Send team chat"
 msgstr "T: Bidali mezua taldeari"
 
 #: gui/manual/intro.txt:65
+msgid "L: Chat with the previously selected private chat partner"
+msgstr "L: Txat pribatuko azken lagunarekin hitz egin."
+
+#: gui/manual/intro.txt:66
 msgid "Pause: Pause/resume the game"
 msgstr "Etena: Eten/berrabiarazi jokoa"
 
-#: gui/manual/intro.txt:66
+#: gui/manual/intro.txt:67
 msgid "Delete: Delete currently selected units/buildings"
 msgstr "Ezabatu: Aukeratutako unitate eta eraikinak ezabatzen ditu"
 
-#: gui/manual/intro.txt:67
+#: gui/manual/intro.txt:68
 msgid ""
 "Shift + Delete: Delete currently selected units/buildings without "
 "confirmation"
 msgstr "Maius + Ezabatu: ezabatutako unitate/eraikinak galdetu gabe ezabatzen ditu"
 
-#: gui/manual/intro.txt:68
+#: gui/manual/intro.txt:69
 msgid "/ (ForwardSlash): Select idle fighter"
 msgstr "/ (marra diagonala): Hautatu ezer egin gabe dagoen borrokalaria"
 
-#: gui/manual/intro.txt:69
+#: gui/manual/intro.txt:70
 msgid "Shift + /: add idle fighter to selection"
 msgstr "Maius + /: Ezer egin gabe dagoen borrokalaria aukeraketan gehitzen du"
 
-#: gui/manual/intro.txt:70
+#: gui/manual/intro.txt:71
 msgid ". (Period): Select idle worker (including citizen soldiers)"
 msgstr ". (puntua): Geldirik dagoen langilea aukeratzen du (baita hiritar gudariak ere)"
 
-#: gui/manual/intro.txt:71
+#: gui/manual/intro.txt:72
 msgid "Shift + .: add idle worker to selection (including citizen soldiers)"
 msgstr "Maius + .: Geldirik dauden langileak aukeraketara gehitzen ditu (baita hiritar gudariak ere)"
 
-#: gui/manual/intro.txt:72
+#: gui/manual/intro.txt:73
 msgid "H: Stop (halt) the currently selected units."
 msgstr "H: Geldiarazi hautatutako unitateak."
 
-#: gui/manual/intro.txt:73
+#: gui/manual/intro.txt:74
 msgid "Y: The unit will go back to work"
 msgstr "Y: Unitatea lanera bueltatuko da"
 
-#: gui/manual/intro.txt:74
+#: gui/manual/intro.txt:75
 msgid "U: Unload the garrisoned units of the selected buildings"
 msgstr "U: Unitateak aukeratutako eraikinetatik botatzen ditu"
 
-#: gui/manual/intro.txt:75
+#: gui/manual/intro.txt:76
 msgid ""
 "Ctrl + 1 (and so on up to Ctrl + 0): Create control group 1 (to 0) from the "
 "selected units/buildings"
 msgstr "Ktrl + 1 (eta Ktrl + 0ra artekoak): Sortu 1 (eta 0ra arte) kontrol-taldea hautatutako unitateekin/eraikinekin"
 
-#: gui/manual/intro.txt:76
+#: gui/manual/intro.txt:77
 msgid ""
 "1 (and so on up to 0): Select the units/buildings in control group 1 (to 0)"
 msgstr "1 (eta 0ra artekoak): Hautatu 1 (eta 0ra arte) kontrol-taldeko unitateak/eraikinak"
 
-#: gui/manual/intro.txt:77
+#: gui/manual/intro.txt:78
 msgid ""
 "Shift + 1 (to 0): Add control group 1 (to 0) to the selected units/buildings"
 msgstr "Maius + 1 (0 arte): 1 (0 arte) kontrol taldeari aukeratutako unitate edo eraikinak gehitzen dizkio"
 
-#: gui/manual/intro.txt:78
+#: gui/manual/intro.txt:79
 msgid ""
 "Ctrl + F5 (and so on up to F8): Mark the current camera position, for "
 "jumping back to later."
 msgstr "Ktrl + F5 (eta F8ra arte): Markatu kameraren uneko kokalekua gero bertara itzultzeko."
 
-#: gui/manual/intro.txt:79
+#: gui/manual/intro.txt:80
 msgid ""
 "F5, F6, F7, and F8: Move the camera to a marked position. Jump back to the "
 "last location if the camera is already over the marked position."
 msgstr "F5, F6, F7 eta F8: Mugitu kamera markatutako kokaleku batera. Itzuli berriro azken kokalekura, kamera dagoeneko markatutako kokalekuan badago."
 
-#: gui/manual/intro.txt:80
+#: gui/manual/intro.txt:81
 msgid ""
 "Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, ..."
 " unit shown to the training queue for all the selected buildings."
 msgstr "Z, X, C, V, B, N, M: Aukeratutako erreklutatze eraikin batekin. Gehitu 1., 2., ....unitatea erreklutatze ilarari aukeratutako eraikin guztientzat."
 
-#: gui/manual/intro.txt:81
+#: gui/manual/intro.txt:82
 msgid ""
 "PageUp with units selected: Highlights the units/buildings guarded by the "
 "selection."
 msgstr "Re Pág aukeratutako unitateekin: Aukeraketak babestutako eraikin eta unitateak nabarmentzen ditu."
 
-#: gui/manual/intro.txt:82
+#: gui/manual/intro.txt:83
 msgid ""
 "PageDown with units/buildings selected: Highlights the units guarding the "
 "selection."
 msgstr "Av Pág aukeratutako eraikin eta unitateekin: unitateak nabarmentzen ditu aukeraketa babestuz."
 
-#: gui/manual/intro.txt:83
+#: gui/manual/intro.txt:84
 msgid "Tab: See all status bars (which would also show the building progress)"
 msgstr "Tab: Egoera marra guztiak ikusi (baita eraikitze aurrerapenak ere)"
 
-#: gui/manual/intro.txt:85
+#: gui/manual/intro.txt:86
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
 msgstr "[font=\"sans-bold-14\"]Saguaren akzioa aldatzen du "
 
-#: gui/manual/intro.txt:86
+#: gui/manual/intro.txt:87
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
 msgstr "[font=\"sans-14\"]Ctrl + Eskuin klika eraikinean: Babestu"
 
-#: gui/manual/intro.txt:87
+#: gui/manual/intro.txt:88
 msgid "J + Right Click on building: Repair"
 msgstr "J + Eskuin klika eraikinean: Konpondu"
 
-#: gui/manual/intro.txt:88
+#: gui/manual/intro.txt:89
 msgid "P + Right Click: Patrol"
 msgstr "P + eskuin klika: Patruilatu"
 
-#: gui/manual/intro.txt:89
+#: gui/manual/intro.txt:90
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
 msgstr "Maius + ezker klika: Mugitu/eraiki/bildu/beste bat ordena ilaran jarri"
 
-#: gui/manual/intro.txt:90
+#: gui/manual/intro.txt:91
 msgid "Shift + Left click when training unit/s: Add units in batches of five"
 msgstr "Maius + ezker klika unitateak erreklutatzean: Unitateak bosnaka gehitzen ditu"
 
-#: gui/manual/intro.txt:91
+#: gui/manual/intro.txt:92
 msgid ""
 "Shift + Left Click or Left Drag over unit on map: Add unit to selection"
 msgstr "Maius + ezker klika edo laukizuzen aukeraketa bidez  ezker klikaz arrastatuz: Aukeraketari unitatea gehitu "
 
-#: gui/manual/intro.txt:92
+#: gui/manual/intro.txt:93
 msgid ""
 "Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
 msgstr "Ctrl + Ezker klika edo laukizuzen aukera arrastatuz: Unitateari aukera kendu"
 
-#: gui/manual/intro.txt:93
+#: gui/manual/intro.txt:94
 msgid "Alt + Left Drag over units on map: Only select military units"
 msgstr "Alt + Laukizuzen aukeraketa mapako unitateen gainean: Militarren unitateak aukeratzen ditu soilik"
 
-#: gui/manual/intro.txt:94
+#: gui/manual/intro.txt:95
 msgid "I + Left Drag over units on map: Only select idle units"
 msgstr "I + Laukizuzen aukeraketa mapako unitateen gainean: Aktibo ez dauden unitateak aukeratzen ditu soilik"
 
-#: gui/manual/intro.txt:95
+#: gui/manual/intro.txt:96
 msgid ""
 "Ctrl + Left Click on unit/group icon with multiple units selected: Deselect"
 msgstr "Ctrl + ezker klika unitate/talde ikono baten gainean aukeratutako unitate anitzekin: Aukera kendu"
 
-#: gui/manual/intro.txt:96
+#: gui/manual/intro.txt:97
 msgid ""
 "Right Click with a building/buildings selected: sets a rally point for units"
 " created/ungarrisoned from that building."
 msgstr "Eskuin klika jada aukeratutako eraikin batekin: sortutako unitateei edo eraikinean babesgabe daudenei elkartze puntu bat ematen die."
 
-#: gui/manual/intro.txt:97
+#: gui/manual/intro.txt:98
 msgid "Ctrl + Right Click with units selected:"
 msgstr "Ctrl + eskuin klika aukeratutako unitateekin:"
 
-#: gui/manual/intro.txt:98
+#: gui/manual/intro.txt:99
 msgid "    - If the cursor is over an allied structure: Garrison"
 msgstr "- Erakuslea eraikin aliatuaren gainean badago: Babestu"
 
-#: gui/manual/intro.txt:99
+#: gui/manual/intro.txt:100
 msgid ""
 "    - If the cursor is over a non-allied unit or building: Attack (instead "
 "of capture or gather)"
 msgstr "- Erakuslea eraikin edo unitate ez aliatu baten gainean badago: Erasotu ( atzitu edo bildu partez)"
 
-#: gui/manual/intro.txt:100
+#: gui/manual/intro.txt:101
 msgid ""
 "    - Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
 "units). "
 msgstr "- Bestela: Mugituz erasotu (berez, bidean topatutako etsaien eraikin eta unitate guztiak erasotuko dira, sakatu Ctrl + Q + eskuin klika unitateak baino ez erasotzeko)"
 
-#: gui/manual/intro.txt:102
+#: gui/manual/intro.txt:103
 msgid "[font=\"sans-bold-14\"]Overlays"
 msgstr "[font=\"sans-bold-14\"]Estaldurak"
 
-#: gui/manual/intro.txt:103
+#: gui/manual/intro.txt:104
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
 msgstr "[font=\"sans-14\"]Alt + G: Erakutsi/ezkutatu interfaza"
 
-#: gui/manual/intro.txt:104
+#: gui/manual/intro.txt:105
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
 msgstr "Alt +D: Erakutsi edo ezkutatzen du garapen panela (aukera teknikoekin)"
 
-#: gui/manual/intro.txt:105
+#: gui/manual/intro.txt:106
 msgid ""
 "Alt + W: Toggle wireframe mode (press once to get wireframes overlaid over "
 "the textured models, twice to get just the wireframes colored by the "
 "textures, thrice to get back to normal textured mode)"
 msgstr "Alt + W: Wireframe modua gaitzen du ( sakatu behin wireframeak  eredu testurizatuen gainean gainjartzeko, bitan ereduaren kolorean ikusteko, hirutan testura arruntaren modura itzultzeko)"
 
-#: gui/manual/intro.txt:106
+#: gui/manual/intro.txt:107
 msgid ""
 "Alt + S: Toggle unit silhouettes (might give a small performance boost)"
 msgstr "Alt + S: Gaitu edo desgaitzen ditu unitateen siluetak (desgaitzeak errendimendua hobetu dezake)"
 
-#: gui/manual/intro.txt:107
+#: gui/manual/intro.txt:108
 msgid "Alt + Z: Toggle sky"
 msgstr "Alt + Z: Zerua erakutsi edo ezkutatu"
 
-#: gui/manual/intro.txt:109
+#: gui/manual/intro.txt:110
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
 msgstr "[font=\"sans-bold-14\"]Kameraren erabilera"
 
-#: gui/manual/intro.txt:110
+#: gui/manual/intro.txt:111
 msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
 msgstr "[font=\"sans-14\"]W or \\[gora]: Kamera goraka eraman"
 
-#: gui/manual/intro.txt:111
+#: gui/manual/intro.txt:112
 msgid "S or \\[down]: Pan screen down"
 msgstr "S or \\[behera]: Kamera beheraka eraman"
 
-#: gui/manual/intro.txt:112
+#: gui/manual/intro.txt:113
 msgid "A or \\[left]: Pan screen left"
 msgstr "A or \\[ezkerra]: Kamera ezkerrera eraman"
 
-#: gui/manual/intro.txt:113
+#: gui/manual/intro.txt:114
 msgid "D or \\[right]: Pan screen right"
 msgstr "D or \\[eskuina]: Kamera eskuinera eraman"
 
-#: gui/manual/intro.txt:114
+#: gui/manual/intro.txt:115
 msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
 msgstr "Ctrl + W or \\[gora]: Kamera biratu goraka ikusteko"
 
-#: gui/manual/intro.txt:115
+#: gui/manual/intro.txt:116
 msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
 msgstr "Ctrl + S or \\[behera]: Kamera biratu beheraka ikusteko"
 
-#: gui/manual/intro.txt:116
+#: gui/manual/intro.txt:117
 msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
 msgstr "Ctrl + A edo \\[ezkerra]: Kamera biratu lurraren inguruan erlojuaren zentzuan"
 
-#: gui/manual/intro.txt:117
+#: gui/manual/intro.txt:118
 msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
 msgstr "Ctrl + A edo \\[ezkerra]: Kamera biratu lurraren inguruan erlojuaren kontrako zentzuan"
 
-#: gui/manual/intro.txt:118
+#: gui/manual/intro.txt:119
 msgid "Q: Rotate camera clockwise around terrain"
 msgstr "Q: Biratu kamera erlojuaren zentzuan"
 
-#: gui/manual/intro.txt:119
+#: gui/manual/intro.txt:120
 msgid "E: Rotate camera anticlockwise around terrain"
 msgstr "E: Biratu kamera erlojuaren kontrako zentzuan"
 
-#: gui/manual/intro.txt:120
+#: gui/manual/intro.txt:121
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
 msgstr "Maius + Saguaren gurpila goraka: Kamera biratu lurraren inguruan erlojuaren zentzuan"
 
-#: gui/manual/intro.txt:121
+#: gui/manual/intro.txt:122
 msgid ""
 "Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
 msgstr "Maius + Saguaren gurpila beheraka: Kamera biratu lurraren inguruan erlojuaren kontrako zentzuan"
 
-#: gui/manual/intro.txt:122
+#: gui/manual/intro.txt:123
 msgid ""
 "F: Follow the selected unit (move the camera to stop the camera from "
 "following the unit/s)"
 msgstr "F: Aukeratutako unitatea jarraitu (kamera mugitzen du unitateak jarraitzen uzteko)"
 
-#: gui/manual/intro.txt:123
+#: gui/manual/intro.txt:124
 msgid "R: Reset camera zoom/orientation"
 msgstr "R: Kamera bere hasierako balioetara eta norabidera eraman"
 
-#: gui/manual/intro.txt:124
+#: gui/manual/intro.txt:125
 msgid "+: Zoom in (keep pressed for continuous zoom)"
 msgstr "+: Kamera lurrera gerturatu (Jarraitu sakatzen polikiago egiteko)"
 
-#: gui/manual/intro.txt:125
+#: gui/manual/intro.txt:126
 msgid "-: Zoom out (keep pressed for continuous zoom)"
 msgstr "-: Kamera lurretik urrutiratu (jarraitu sakatzen polikiago joateko)"
 
-#: gui/manual/intro.txt:126
-msgid "Alt + W: Toggle through wireframe modes"
-msgstr ""
-
 #: gui/manual/intro.txt:127
+msgid "Alt + W: Toggle through wireframe modes"
+msgstr "Alt + W: Wireframe moduen artean txandakatu."
+
+#: gui/manual/intro.txt:128
 msgid "Middle Mouse Button: Keep pressed and move the mouse to pan"
 msgstr "Saguaren erdiko botoia: Sakatuta eduki sagua mugitzean eta kamera norabide horretara joango da"
 
-#: gui/manual/intro.txt:129
+#: gui/manual/intro.txt:130
 msgid "[font=\"sans-bold-14\"]During Building Placement"
 msgstr "[font=\"sans-bold-14\"]Eraikina Kokatu Bitartean"
 
-#: gui/manual/intro.txt:130
+#: gui/manual/intro.txt:131
 msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
 msgstr "[font=\"sans-14\"]\\[: Biratu eraikina 15 gradu erlojuaren kontrako norabidean"
 
-#: gui/manual/intro.txt:131
+#: gui/manual/intro.txt:132
 msgid "]: Rotate building 15 degrees clockwise"
 msgstr "]: Biratu eraikina 15 gradu erlojuaren norabidean"
 
-#: gui/manual/intro.txt:132
+#: gui/manual/intro.txt:133
 msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
 msgstr "Ezker botoiaz arrastatu: Biratu eraikina sagua erabiliz (oinarriak kokatuko dira botoia askatzean)"
 
-#: gui/manual/intro.txt:134
+#: gui/manual/intro.txt:135
 msgid "[font=\"sans-bold-14\"]When loading a saved game"
 msgstr "[font=\"sans-bold-14\"]Gordetako jokoa bat kargatzean"
 
-#: gui/manual/intro.txt:135
+#: gui/manual/intro.txt:136
 msgid ""
 "[font=\"sans-14\"]Delete: delete the selected saved game asking confirmation"
 msgstr "[font=\"sans-14\"]Ezabatu: gordetako partida ezabatzen da onarpena eskatuz"
 
-#: gui/manual/intro.txt:136
+#: gui/manual/intro.txt:137
 msgid "Shift: do not ask confirmation when deleting a saved game"
 msgstr "Maius: onarpenik ez eskatzea gordetako partida bat ezabatzean"
 
@@ -618,25 +622,25 @@ msgstr "• Erabiltzaile ID ausazkoa (hemen gordea %APPDATA%\\0ad\\config\\user.
 msgid ""
 "• Game version number and basic build settings (optimisation mode, CPU "
 "architecture, timestamp, compiler version)."
-msgstr ""
+msgstr "• Jokoaren bertsio zenbakia eta konpilatze aukerak (optimizatze metodoak, CPU arkitektura, eguna eta ordua, konpilatze bertsioa)."
 
 #: gui/manual/userreport.txt:7
 msgid ""
 "• Hardware details: OS version, graphics driver version, OpenGL "
 "capabilities, screen size, CPU details, RAM size."
-msgstr ""
+msgstr "• Hardware detaileak: S.O.ren bertsioa, kontrolatzaile grafikoen bertsioa, OpenGL funtzionalitatea, pantailaren tamaina, prozesatzailearen detaileak, RAMaren tamaina."
 
 #: gui/manual/userreport.txt:8
 msgid ""
 "• Performance details: a snapshot of timing data a few seconds after you "
 "start a match or change graphics settings."
-msgstr ""
+msgstr "• Errendimendu detaileak: errendimendu zenbat zenbaki guri igorri partida bat hastean edo ezarpen grafikoak aldatzen dituzunean."
 
 #: gui/manual/userreport.txt:10
 msgid ""
 "The data will only be a few kilobytes each time you run the game, so "
 "bandwidth usage is minimal."
-msgstr ""
+msgstr "Bidalitako datuak Kb gutxi batzuen kostua baino ez da jokoa hasten den bakoitzean. zure banda zabaleko erabilera eskasa da."
 
 #: gui/manual/userreport.txt:12
 msgid ""
@@ -645,4 +649,4 @@ msgid ""
 "questions. We will store the IP address that submitted the data, to help "
 "detect abuse of the service, but will not publish it. The published data can"
 " be seen at http://feedback.wildfiregames.com/"
-msgstr ""
+msgstr "Gure zerbitzarian jasotako datuak gordetzen ditugu, eta posible da zenbat estatistika edo inoren detaileak publikatzea beste joko garatzaile batzuk antzeko dudekin laguntzeko. Datuak bidali zituen IP helbidea gordeko dugu zerbitzuaren gehiegikeriei aurre egiteko, baina ez dugu publikatuko. Bidalitako datuak http://feedback.wildfiregames.com/ en ikus daitezke."

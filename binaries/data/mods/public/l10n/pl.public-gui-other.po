@@ -30,8 +30,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-03 09:01+0100\n"
-"PO-Revision-Date: 2017-03-03 09:00+0000\n"
+"POT-Creation-Date: 2017-03-06 09:29+0100\n"
+"PO-Revision-Date: 2017-03-06 08:55+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -103,34 +103,21 @@ msgstr "Otwieranie %(url)s\nw domyślnej przeglądarce. Proszę czekać...."
 msgid "Opening page"
 msgstr "Strona startowa"
 
-#: gui/common/functions_global_object.js:72
+#: gui/common/functions_global_object.js:69
 #, javascript-format
 msgid "FPS: %(fps)4s"
 msgstr "FPS: %(fps)4s"
 
-#. Translation: The "x" means "times", with the mathematical meaning of
-#. multiplication.
-#: gui/common/functions_global_object.js:89
-#, javascript-format
-msgid "%(time)s (%(speed)sx)"
-msgstr "%(time)s (%(speed)sx)"
-
-#: gui/common/functions_global_object.js:106
-#, javascript-format
-msgctxt "ceasefire"
-msgid "Time remaining until ceasefire is over: %(time)s."
-msgstr "Pozostały czas do zakończenia zawieszenia broni: %(time)s."
-
-#: gui/common/functions_utility.js:118
+#: gui/common/functions_utility.js:108
 msgctxt "map selection"
 msgid "Random"
 msgstr "Losowe"
 
-#: gui/common/functions_utility.js:129
+#: gui/common/functions_utility.js:119
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:129
+#: gui/common/functions_utility.js:119
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -172,7 +159,7 @@ msgstr "USUŃ"
 
 #: gui/common/functions_utility_loadsave.js:87 gui/common/tooltips.js:217
 #: gui/options/options.js:279 gui/options/options.js:346
-#: gui/pregame/mainmenu.js:256 gui/replaymenu/replay_actions.js:159
+#: gui/pregame/mainmenu.js:261 gui/replaymenu/replay_actions.js:159
 #: gui/savedgames/load.js:128 gui/savedgames/save.js:65
 #: gui/summary/summary.js:146
 msgid "No"
@@ -180,7 +167,7 @@ msgstr "Nie"
 
 #: gui/common/functions_utility_loadsave.js:87 gui/common/tooltips.js:217
 #: gui/options/options.js:279 gui/options/options.js:346
-#: gui/pregame/mainmenu.js:256 gui/replaymenu/replay_actions.js:159
+#: gui/pregame/mainmenu.js:261 gui/replaymenu/replay_actions.js:159
 #: gui/savedgames/load.js:128 gui/savedgames/save.js:65
 #: gui/summary/summary.js:146
 msgid "Yes"
@@ -374,7 +361,7 @@ msgstr "Jeśli jeden gracz wygra, jego lub jej sojusznicy też wygrywają. Jeśl
 msgid "Ceasefire"
 msgstr "Zawieszenie broni"
 
-#: gui/common/gamedescription.js:243 gui/pregame/mainmenu.js:86
+#: gui/common/gamedescription.js:243 gui/pregame/mainmenu.js:91
 msgid "disabled"
 msgstr "zablokowane"
 
@@ -1061,7 +1048,7 @@ msgstr "Żaden"
 msgid "<invalid>"
 msgstr "<niepoprawny>"
 
-#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:157
+#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:162
 #: gui/splashscreen/splashscreen.xml:(caption):28
 msgid "OK"
 msgstr "OK"
@@ -1081,34 +1068,34 @@ msgstr "Uwaga"
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Posiadasz niezapisane zmiany, chcesz zamknąć to okno?"
 
-#: gui/pregame/mainmenu.js:89
+#: gui/pregame/mainmenu.js:94
 msgid "connecting to server"
 msgstr "łączenie z serwerem"
 
-#: gui/pregame/mainmenu.js:92
+#: gui/pregame/mainmenu.js:97
 #, javascript-format
 msgid "uploading (%f%%)"
 msgstr "wysyłanie (%f%%)"
 
-#: gui/pregame/mainmenu.js:98
+#: gui/pregame/mainmenu.js:103
 msgid "upload succeeded"
 msgstr "wysłano poprawnie"
 
-#: gui/pregame/mainmenu.js:100
+#: gui/pregame/mainmenu.js:105
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
 msgstr "błąd wysyłania (%(errorCode)s)"
 
-#: gui/pregame/mainmenu.js:104
+#: gui/pregame/mainmenu.js:109
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
 msgstr "błąd wysyłania (%(errorMessage)s)"
 
-#: gui/pregame/mainmenu.js:106
+#: gui/pregame/mainmenu.js:111
 msgid "unknown"
 msgstr "nieznany"
 
-#: gui/pregame/mainmenu.js:146
+#: gui/pregame/mainmenu.js:151
 #, javascript-format
 msgid ""
 "%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
@@ -1121,51 +1108,51 @@ msgstr "%(startWarning)sOstrzeżenie:%(endWarning)s Zdaje się że używasz graf
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:155
+#: gui/pregame/mainmenu.js:160
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "Kliknij \"Czytaj więcej\" aby uzyskać więcej informacji lub \"OK\" aby kontynuować."
 
-#: gui/pregame/mainmenu.js:156
+#: gui/pregame/mainmenu.js:161
 msgid "WARNING!"
 msgstr "UWAGA!"
 
-#: gui/pregame/mainmenu.js:157
+#: gui/pregame/mainmenu.js:162
 msgid "Read More"
 msgstr "Czytaj więcej"
 
-#: gui/pregame/mainmenu.js:242
+#: gui/pregame/mainmenu.js:247
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Kompilacja: %(buildDate)s (%(revision)s)"
 
-#: gui/pregame/mainmenu.js:254
+#: gui/pregame/mainmenu.js:259
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Czy na pewno chcesz wyjść z 0 A.D.?"
 
-#: gui/pregame/mainmenu.js:255 gui/summary/summary.js:145
+#: gui/pregame/mainmenu.js:260 gui/summary/summary.js:145
 msgid "Confirmation"
 msgstr "Potwierdzenie"
 
-#: gui/pregame/mainmenu.js:270
+#: gui/pregame/mainmenu.js:275
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "Edytor scenariusza jest niedostępny lub nie mógł zostać załadowany. Sprawdź logi gry aby znaleźć dodatkowe informacje."
 
-#: gui/pregame/mainmenu.js:271 gui/replaymenu/replay_actions.js:116
+#: gui/pregame/mainmenu.js:276 gui/replaymenu/replay_actions.js:116
 msgid "Error"
 msgstr "Błąd"
 
-#: gui/pregame/mainmenu.js:277
+#: gui/pregame/mainmenu.js:282
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "Uruchom poczekalnię trybu wieloosobowego. [WYŁĄCZONE W DANEJ WERSJI]"
 
-#: gui/pregame/mainmenu.js:282 gui/pregame/mainmenu.xml:(caption):72
+#: gui/pregame/mainmenu.js:287 gui/pregame/mainmenu.xml:(caption):72
 #: gui/pregame/mainmenu.xml:(caption):103
 msgid "Technical Details"
 msgstr "Szczegóły techniczne"
 
-#: gui/pregame/mainmenu.js:287 gui/pregame/mainmenu.xml:(caption):149
+#: gui/pregame/mainmenu.js:292 gui/pregame/mainmenu.xml:(caption):149
 msgid "Manual"
 msgstr "Poradnik"
 

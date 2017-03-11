@@ -25,6 +25,7 @@
 # Serkan <fkserkank@gmail.com>, 2013
 # Sinan Özgün <ozgunsinan@gmail.com>, 2014
 # Taha Karadoğan <tahakaradogan@gmail.com>, 2016
+# Typhoon das <info@typhoonwebexpert.com>, 2017
 # ubuntuki <aleverzurumlu@gmail.com>, 2014
 # utkugun <utkugundogan@gmail.com>, 2015
 # Butterfly <gokhanlnx@gmail.com>, 2013
@@ -38,8 +39,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-03 09:01+0100\n"
-"PO-Revision-Date: 2017-03-03 15:23+0000\n"
-"Last-Translator: Muha Aliss <muhaaliss@gmail.com>\n"
+"PO-Revision-Date: 2017-03-09 23:06+0000\n"
+"Last-Translator: Typhoon das <info@typhoonwebexpert.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -80,7 +81,7 @@ msgstr "Hazırda bekleyin"
 
 #: gui/gamesetup/gamesetup.js:44
 msgid "Stay ready even when the game settings change."
-msgstr ""
+msgstr "Oyun ayarları değiştiğinde, hazır ol."
 
 #: gui/gamesetup/gamesetup.js:49
 msgid "I'm not ready!"
@@ -422,7 +423,7 @@ msgstr "Gizlenecek hazineler:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):412
 msgid "Disable Spies:"
-msgstr ""
+msgstr "Casusları devre dışı bırak:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):422
 msgid "Teams Locked:"
@@ -512,7 +513,7 @@ msgstr "Galibiyet koşulunu seç."
 #: gui/gamesetup/gamesetup.xml:(tooltip):346
 msgid ""
 "Number of minutes that the player has to keep the wonder in order to win."
-msgstr ""
+msgstr "Oyunun kazanılması için oyuncunun merakını tutması gereken dakika sayısı."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):356
 msgid "Select population cap."
@@ -544,7 +545,7 @@ msgstr "Hazineleri haritada gösterme."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):416
 msgid "Disable spies during the game."
-msgstr ""
+msgstr "Oyun sırasında casusları devre dışı bırak."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):426
 msgid "Toggle locked teams."

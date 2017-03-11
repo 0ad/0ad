@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-03 09:01+0100\n"
-"PO-Revision-Date: 2017-03-03 09:00+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-03-06 09:29+0100\n"
+"PO-Revision-Date: 2017-03-08 11:25+0000\n"
+"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -83,34 +83,21 @@ msgstr "Ανοιγμα  %(url)s\nστον προκαθορισμένο εξυπ�
 msgid "Opening page"
 msgstr "Αρχική σελίδα"
 
-#: gui/common/functions_global_object.js:72
+#: gui/common/functions_global_object.js:69
 #, javascript-format
 msgid "FPS: %(fps)4s"
 msgstr "FPS: %(fps)4s"
 
-#. Translation: The "x" means "times", with the mathematical meaning of
-#. multiplication.
-#: gui/common/functions_global_object.js:89
-#, javascript-format
-msgid "%(time)s (%(speed)sx)"
-msgstr "%(time)s (%(speed)sx)"
-
-#: gui/common/functions_global_object.js:106
-#, javascript-format
-msgctxt "ceasefire"
-msgid "Time remaining until ceasefire is over: %(time)s."
-msgstr "Ο χρόνος που απομένει για τη λήξη της εκεχειρίας: %(time)s."
-
-#: gui/common/functions_utility.js:118
+#: gui/common/functions_utility.js:108
 msgctxt "map selection"
 msgid "Random"
 msgstr "Τυχαίος"
 
-#: gui/common/functions_utility.js:129
+#: gui/common/functions_utility.js:119
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:129
+#: gui/common/functions_utility.js:119
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -152,7 +139,7 @@ msgstr "ΔΙΑΓΡΑΦΗ"
 
 #: gui/common/functions_utility_loadsave.js:87 gui/common/tooltips.js:217
 #: gui/options/options.js:279 gui/options/options.js:346
-#: gui/pregame/mainmenu.js:256 gui/replaymenu/replay_actions.js:159
+#: gui/pregame/mainmenu.js:261 gui/replaymenu/replay_actions.js:159
 #: gui/savedgames/load.js:128 gui/savedgames/save.js:65
 #: gui/summary/summary.js:146
 msgid "No"
@@ -160,7 +147,7 @@ msgstr "Όχι"
 
 #: gui/common/functions_utility_loadsave.js:87 gui/common/tooltips.js:217
 #: gui/options/options.js:279 gui/options/options.js:346
-#: gui/pregame/mainmenu.js:256 gui/replaymenu/replay_actions.js:159
+#: gui/pregame/mainmenu.js:261 gui/replaymenu/replay_actions.js:159
 #: gui/savedgames/load.js:128 gui/savedgames/save.js:65
 #: gui/summary/summary.js:146
 msgid "Yes"
@@ -350,7 +337,7 @@ msgstr "Αν ένας παίχτης κερδίσει, αυτός ή οι σύμ
 msgid "Ceasefire"
 msgstr "Παύση Πυρός"
 
-#: gui/common/gamedescription.js:243 gui/pregame/mainmenu.js:86
+#: gui/common/gamedescription.js:243 gui/pregame/mainmenu.js:91
 msgid "disabled"
 msgstr "απενεργοπ."
 
@@ -1015,7 +1002,7 @@ msgstr "Καμία"
 msgid "<invalid>"
 msgstr "<invalid>"
 
-#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:157
+#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:162
 #: gui/splashscreen/splashscreen.xml:(caption):28
 msgid "OK"
 msgstr "ΟΚ"
@@ -1035,34 +1022,34 @@ msgstr "Προειδοποίηση"
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Δεν έχετε αποθηκεύσει όλες τις αλλαγές, θέλετε να κλείσετε αυτό το παράθυρο;"
 
-#: gui/pregame/mainmenu.js:89
+#: gui/pregame/mainmenu.js:94
 msgid "connecting to server"
 msgstr "σύνδεση με διακομιστή"
 
-#: gui/pregame/mainmenu.js:92
+#: gui/pregame/mainmenu.js:97
 #, javascript-format
 msgid "uploading (%f%%)"
 msgstr "αποστολή (%f%%)"
 
-#: gui/pregame/mainmenu.js:98
+#: gui/pregame/mainmenu.js:103
 msgid "upload succeeded"
 msgstr "αποστολή επιτυχής"
 
-#: gui/pregame/mainmenu.js:100
+#: gui/pregame/mainmenu.js:105
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
 msgstr "το ανέβασμα απέτυχε (%(errorCode)s)"
 
-#: gui/pregame/mainmenu.js:104
+#: gui/pregame/mainmenu.js:109
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
 msgstr "το ανέβασμα απέτυχε (%(errorMessage)s)"
 
-#: gui/pregame/mainmenu.js:106
+#: gui/pregame/mainmenu.js:111
 msgid "unknown"
 msgstr "άγνωστο"
 
-#: gui/pregame/mainmenu.js:146
+#: gui/pregame/mainmenu.js:151
 #, javascript-format
 msgid ""
 "%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
@@ -1075,51 +1062,51 @@ msgstr "%(startWarning)sΠροειδοποίηση:%(endWarning)s Φαίνετα
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:155
+#: gui/pregame/mainmenu.js:160
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "Πατήστε \"Περισσότερα\" για περισσότερες πληροφορίες ή \"OK\" για να συνεχίσετε."
 
-#: gui/pregame/mainmenu.js:156
+#: gui/pregame/mainmenu.js:161
 msgid "WARNING!"
 msgstr "ΠΡΟΕΙΔΟΠΟΙΗΣΗ!"
 
-#: gui/pregame/mainmenu.js:157
+#: gui/pregame/mainmenu.js:162
 msgid "Read More"
 msgstr "Διαβάστε περισσότερα"
 
-#: gui/pregame/mainmenu.js:242
+#: gui/pregame/mainmenu.js:247
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Έκδοση: %(buildDate)s (%(revision)s)"
 
-#: gui/pregame/mainmenu.js:254
+#: gui/pregame/mainmenu.js:259
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Θέλετε σίγουρα να αποχωρήσετε από το 0 A.D.;"
 
-#: gui/pregame/mainmenu.js:255 gui/summary/summary.js:145
+#: gui/pregame/mainmenu.js:260 gui/summary/summary.js:145
 msgid "Confirmation"
 msgstr "Επιβεβαίωση"
 
-#: gui/pregame/mainmenu.js:270
+#: gui/pregame/mainmenu.js:275
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "Ο Επεξεργαστής Σεναρίων δεν είναι διαθέσιμος ή η φόρτωσή του απέτυχε.Κοιτάξτε τις εγγραφές παιχνιδιού για περισσότερες πληροφορίες."
 
-#: gui/pregame/mainmenu.js:271 gui/replaymenu/replay_actions.js:116
+#: gui/pregame/mainmenu.js:276 gui/replaymenu/replay_actions.js:116
 msgid "Error"
 msgstr "Σφάλμα"
 
-#: gui/pregame/mainmenu.js:277
+#: gui/pregame/mainmenu.js:282
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "Εκκίνηση του λόμπι πολλαπλών παικτών. \\[DISABLED BY BUILD]"
 
-#: gui/pregame/mainmenu.js:282 gui/pregame/mainmenu.xml:(caption):72
+#: gui/pregame/mainmenu.js:287 gui/pregame/mainmenu.xml:(caption):72
 #: gui/pregame/mainmenu.xml:(caption):103
 msgid "Technical Details"
 msgstr "Τεχνικές λεπτομέριες"
 
-#: gui/pregame/mainmenu.js:287 gui/pregame/mainmenu.xml:(caption):149
+#: gui/pregame/mainmenu.js:292 gui/pregame/mainmenu.xml:(caption):149
 msgid "Manual"
 msgstr "Εγχειρίδιο χρήσης"
 
@@ -1253,7 +1240,7 @@ msgstr "Φιλτράρετε τις επαναλήψεις πληκτρολογ�
 #: gui/replaymenu/replay_menu.js:268
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
-msgstr ""
+msgstr "Παίχτης: %(numberOfPlayers)s"
 
 #: gui/replaymenu/replay_menu.js:302
 msgid "yyyy-MM-dd HH:mm"
@@ -1672,7 +1659,7 @@ msgstr "Ρυθμίσεις Λόμπι"
 
 #: gui/options/options.xml:(caption):74
 msgid "Chat Notification Settings"
-msgstr ""
+msgstr "Ρυθμίσεις Ειδοποιήσεων Συνομιλίας"
 
 #: gui/options/options.xml:(caption):86
 msgid "Reset"
