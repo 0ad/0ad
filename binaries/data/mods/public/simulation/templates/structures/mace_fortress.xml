@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_fortress">
-  <Cost>
-    <BuildTime op="mul">0.7</BuildTime>
-    <Resources>
-      <stone>800</stone>
-    </Resources>
-  </Cost>
   <Footprint>
     <Square width="26.0" depth="28.0"/>
     <Height>8.0</Height>
