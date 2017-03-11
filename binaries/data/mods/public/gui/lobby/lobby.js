@@ -269,7 +269,6 @@ function init(attribs)
 	initGameFilters();
 
 	Engine.LobbySetPlayerPresence("available");
-	Engine.SendGetGameList();
 
 	// When rejoining the lobby after a game, we don't need to process presence changes
 	Engine.LobbyClearPresenceUpdates();
