@@ -404,7 +404,7 @@ createObjectGroups(group, 0,
 	planetm * scaleByMapSize(13, 200)
 );
 
-setSkySet(shuffleArray(["cloudless", "cumulus", "overcast"])[0]);
+setSkySet(pickRandom(["cloudless", "cumulus", "overcast"]));
 setWaterMurkiness(0.4);
 
 ExportMap();

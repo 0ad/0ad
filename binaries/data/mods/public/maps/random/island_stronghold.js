@@ -551,8 +551,7 @@ createObjectGroups(group, 0,
 paintTerrainBasedOnHeight(1, 2, 0, tShore);
 paintTerrainBasedOnHeight(getMapBaseHeight(), 1, 3, tWater);
 
-setSkySet(shuffleArray(["cloudless", "cumulus", "overcast"])[0]);
-
+setSkySet(pickRandom(["cloudless", "cumulus", "overcast"]));
 setSunRotation(randFloat(0, TWO_PI));
 setSunElevation(randFloat(PI/5, PI/3));
 setWaterWaviness(2);
