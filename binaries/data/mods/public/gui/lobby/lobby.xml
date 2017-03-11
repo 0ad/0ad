@@ -250,7 +250,10 @@
 					style="ModernTickBox"
 					size="0 0 20 20"
 					font="sans-bold-13">
-					<action on="Press">applyFilters();</action>
+					<action on="Press">
+						applyFilters();
+						selectGameFromSelectedPlayername();
+					</action>
 				</object>
 			</object>
 
