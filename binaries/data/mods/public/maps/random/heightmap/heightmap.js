@@ -102,41 +102,61 @@ function getStartLocationsByHeightmap(heightRange, maxTries = 1000, minDistToBor
  * Meant to place e.g. resource spots within a height range
  * @param {array} [heightRange] - The height range in which to place the entities (An associative array with keys "min" and "max" each containing a float)
  * @param {array} [avoidPoints] - An array of 2D points (arrays of length 2), points that will be avoided in the given minDistance e.g. start locations
- * @param {integer} [minDistance=30] - How many tile widths the entities to place have to be away from each other, start locations and the map border
+ * @param {number} [minDistance=30] - How many tile widths the entities to place have to be away from each other, start locations and the map border
  * @param {array} [heightmap=g_Map.height] - The reliefmap the entities should be distributed on
  * @param {array} [entityList=[g_Gaia.stoneLarge, g_Gaia.metalLarge]] - Entity/actor strings to be placed with placeObject()
- * @param {integer} [maxTries=1000] - How often random player distributions are rolled to be compared
+ * @param {number} [playerID=0] - Index of the player the entities should be placed for. Gaia is 0.
+ * @param {number} [maxTries=1000] - How often random player distributions are rolled to be compared
  * @param {boolean} [isCircular=g_MapSettings.CircularMap] - If the map is circular or rectangular
+ * @return {array} [placements] Array of points where entities were placed
  */
-function distributeEntitiesByHeight(heightRange, avoidPoints, minDistance = 30, entityList = [g_Gaia.stoneLarge, g_Gaia.metalLarge], maxTries = 1000, heightmap = g_Map.height, isCircular = g_MapSettings.CircularMap)
+function distributeEntitiesByHeight(heightRange, avoidPoints, minDistance = 30, entityList = [g_Gaia.stoneLarge, g_Gaia.metalLarge],
+	playerID = 0, maxTries = 1000, heightmap = g_Map.height, isCircular = g_MapSettings.CircularMap)
 {
-	let placements = deepcopy(avoidPoints);
-	let validTiles = [];
+	let validPoints = [];
 	let r = 0.5 * (heightmap.length - 1); // Map center x/y as well as radius
 	for (let x = minDistance; x < heightmap.length - minDistance; ++x)
+	{
 		for (let y = minDistance; y < heightmap[0].length - minDistance; ++y)
-			if (heightmap[x][y] > heightRange.min && heightmap[x][y] < heightRange.max) // Has the right height
-				if (!isCircular || r - getDistance(x, y, r, r) >= minDistance) // Is far enough away from map border
-					validTiles.push({ "x": x, "y": y });
+		{
+			if (heightmap[x][y] < heightRange.min || heightmap[x][y] > heightRange.max)
+				continue; // Out of height range
+			let checkpoint = { "x" : x + 0.5, "y" : y + 0.5 };
+			if (isCircular && r - getDistance(checkpoint.x, checkpoint.y, r, r) < minDistance)
+				continue; // Too close to map border
+			// Avoid points by minDistance, else add to validPoints
+			if (avoidPoints.every(ap => getDistance(checkpoint.x, checkpoint.y, ap.x, ap.y) > minDistance))
+				validPoints.push(checkpoint);
+		}
+	}
+
+	let placements = [];
+	if (!validPoints.length)
+	{
+		log("No placement points found for the given arguments (entityList=" + uneval(entityList) + "):\n" + new Error().stack);
+		return placements;
+	}
 
 	for (let tries = 0; tries < maxTries; ++tries)
 	{
-		let tile = validTiles[randInt(validTiles.length)];
-		let isValid = true;
-		for (let p = 0; p < placements.length; ++p)
+		
+		let checkPointIndex = randInt(validPoints.length);
+		let checkPoint = validPoints[checkPointIndex];
+		if (placements.every(p => getDistance(p.x, p.y, checkPoint.x, checkPoint.y) > minDistance))
 		{
-			if (getDistance(placements[p].x, placements[p].y, tile.x, tile.y) < minDistance)
-			{
-				isValid = false;
-				break;
-			}
+			placeObject(checkPoint.x, checkPoint.y, pickRandom(entityList), playerID, randFloat(0, 2*PI));
+			placements.push(checkPoint);
 		}
-		if (isValid)
-		{
-			placeObject(tile.x, tile.y, entityList[randInt(entityList.length)], 0, randFloat(0, 2*PI));
-			placements.push(tile);
-		}
+		
+		validPoints.splice(checkPointIndex);
+		if (!validPoints.length)
+			break; // No more valid points left
 	}
+
+	if (!placements.length)
+		log("Nothing was placed:\n" + new Error().stack);
+
+	return placements;
 }
 
 /**
