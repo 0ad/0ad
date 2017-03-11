@@ -72,13 +72,7 @@ function randomizeBiome(avoid = [])
 
 function setBiome(biomeIndex)
 {
-	var random_sky = randInt(1,3);
-	if (random_sky==1)
-		setSkySet("cirrus");
-	else if (random_sky ==2)
-		setSkySet("cumulus");
-	else if (random_sky ==3)
-		setSkySet("sunny");
+	setSkySet(pickRandom(["cirrus", "cumulus", "sunny"]));
 
 	setSunRotation(randFloat(0, TWO_PI));
 	setSunElevation(randFloat(PI/ 6, PI / 3));

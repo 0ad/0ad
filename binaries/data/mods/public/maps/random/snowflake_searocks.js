@@ -1885,14 +1885,7 @@ createObjectGroups(group, 0,
 	planetm * scaleByMapSize(13, 200), 50
 );
 
-random_terrain = randInt(1,3);
-if (random_terrain == 1)
-	setSkySet("cirrus");
-else if (random_terrain == 2)
-	setSkySet("cumulus");
-else if (random_terrain == 3)
-	setSkySet("sunny");
-
+setSkySet(pickRandom(["cirrus", "cumulus", "sunny"]));
 setSunRotation(randFloat(0, TWO_PI));
 setSunElevation(randFloat(PI/ 5, PI / 3));
 

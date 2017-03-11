@@ -591,10 +591,9 @@ createObjectGroups( group, 0, [avoidClasses(clCreek,3,clShore,3),stayClasses(clW
 RMS.SetProgress(90);
 
 RMS.SetProgress(95);
-if (randFloat(0,1) > 0.5)
-	setSkySet("cumulus");
-else
-	setSkySet("sunny");
+
+setSkySet(pickRandom(["cumulus", "sunny"]));
+
 setSunColor(0.8,0.66,0.48);
 setSunElevation(0.828932);
 if (!swap)
