@@ -444,6 +444,49 @@ function updatePlayerList()
 }
 
 /**
+ * Select the game listing the selected player when toggling the full games filter.
+ */
+function selectGameFromSelectedPlayername()
+{
+	let playerList = Engine.GetGUIObjectByName("playersBox");
+	if (playerList.selected >= 0)
+		selectGameFromPlayername(playerList.list[playerList.selected]);
+}
+
+/**
+ * Select the game where the given player is currently playing, observing or offline.
+ * Selects in that order to account for players that occur in multiple games.
+ */
+function selectGameFromPlayername(playerName)
+{
+	let gameList = Engine.GetGUIObjectByName("gamesBox");
+	let foundAsObserver = false;
+
+	for (let i = 0; i < g_GameList.length; ++i)
+		for (let player of stringifiedTeamListToPlayerData(g_GameList[i].players))
+		{
+			let result = /^(\S+)\ \(\d+\)$/g.exec(player.Name);
+			let nick = result ? result[1] : player.Name;
+
+			if (playerName != nick)
+				continue;
+
+			if (player.Team == "observer")
+			{
+				foundAsObserver = true;
+				gameList.selected = i;
+			}
+			else if (!player.Offline)
+			{
+				gameList.selected = i;
+				return;
+			}
+			else if (!foundAsObserver)
+				gameList.selected = i;
+		}
+}
+
+/**
  * Display the profile of the selected player.
  * Displays N/A for all stats until updateProfile is called when the stats
  * are actually received from the bot.
@@ -457,7 +500,10 @@ function displayProfile(caller)
 	if (caller == "leaderboard")
 		playerList = Engine.GetGUIObjectByName("leaderboardBox");
 	else if (caller == "lobbylist")
+	{
 		playerList = Engine.GetGUIObjectByName("playersBox");
+		selectGameFromPlayername(playerList.list[playerList.selected]);
+	}
 	else if (caller == "fetch")
 	{
 		Engine.SendGetProfile(Engine.GetGUIObjectByName("fetchInput").caption);
