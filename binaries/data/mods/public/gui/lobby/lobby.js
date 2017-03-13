@@ -210,46 +210,6 @@ var g_NetMessageTypes = {
 	}
 };
 
-function handleKick(banned, nick, reason)
-{
-	let kickString = nick == g_Username ?
-		banned ?
-			translate("You have been banned from the lobby!") :
-			translate("You have been kicked from the lobby!") :
-		banned ?
-			translate("%(nick)s has been banned from the lobby.") :
-			translate("%(nick)s has been kicked from the lobby.");
-
-	if (reason)
-		reason = sprintf(translateWithContext("lobby kick", "Reason: %(reason)s"), {
-			"reason": reason
-		});
-
-	if (nick != g_Username)
-	{
-		addChatMessage({
-			"text": "/special " + sprintf(kickString, { "nick": nick }) + " " + reason,
-			"isSpecial": true
-		});
-		return;
-	}
-
-	addChatMessage({
-		"from": "system",
-		"text": kickString + " " + reason,
-	});
-
-	g_Kicked = true;
-
-	Engine.DisconnectXmppClient();
-
-	messageBox(
-		400, 250,
-		kickString + "\n" + reason,
-		banned ? translate("BANNED") : translate("KICKED")
-	);
-}
-
 /**
  * Called after the XmppConnection succeeded and when returning from a game.
  *
@@ -348,6 +308,46 @@ function filterGame(game)
 		return true;
 
 	return false;
+}
+
+function handleKick(banned, nick, reason)
+{
+	let kickString = nick == g_Username ?
+		banned ?
+			translate("You have been banned from the lobby!") :
+			translate("You have been kicked from the lobby!") :
+		banned ?
+			translate("%(nick)s has been banned from the lobby.") :
+			translate("%(nick)s has been kicked from the lobby.");
+
+	if (reason)
+		reason = sprintf(translateWithContext("lobby kick", "Reason: %(reason)s"), {
+			"reason": reason
+		});
+
+	if (nick != g_Username)
+	{
+		addChatMessage({
+			"text": "/special " + sprintf(kickString, { "nick": nick }) + " " + reason,
+			"isSpecial": true
+		});
+		return;
+	}
+
+	addChatMessage({
+		"from": "system",
+		"text": kickString + " " + reason,
+	});
+
+	g_Kicked = true;
+
+	Engine.DisconnectXmppClient();
+
+	messageBox(
+		400, 250,
+		kickString + "\n" + reason,
+		banned ? translate("BANNED") : translate("KICKED")
+	);
 }
 
 /**
