@@ -22,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-03 09:03+0100\n"
-"PO-Revision-Date: 2017-03-03 12:51+0000\n"
-"Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
+"POT-Creation-Date: 2017-03-10 09:03+0100\n"
+"PO-Revision-Date: 2017-03-10 09:46+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -856,7 +856,6 @@ msgstr "Весна в Аркадии, в Греции. Дожди напитал
 #: maps/scenarios/WallTest.xml:PlayerData[0].Name:27
 #: maps/scenarios/Walls.xml:PlayerData[0].Name:27
 #: maps/scenarios/reservoir.xml:PlayerData[0].Name:27
-#: maps/scenarios/starting_economy_walkthrough.xml:PlayerData[0].Name:39
 #: maps/skirmishes/Acropolis Bay (2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Alpine_Valleys_(2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Bactria (2).xml:PlayerData[0].Name:39
@@ -923,9 +922,8 @@ msgstr "Игрок 1"
 #: Islands.xml:PlayerData[1].Name:39 maps/scenarios/Tropical
 #: Island.xml:PlayerData[1].Name:39
 #: maps/scenarios/WallTest.xml:PlayerData[1].Name:27
-#: maps/scenarios/Walls.xml:PlayerData[1].Name:27
-#: maps/scenarios/starting_economy_walkthrough.xml:PlayerData[1].Name:39
-#: maps/skirmishes/Acropolis Bay (2).xml:PlayerData[1].Name:39
+#: maps/scenarios/Walls.xml:PlayerData[1].Name:27 maps/skirmishes/Acropolis
+#: Bay (2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Alpine_Valleys_(2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Bactria (2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Barcania (3).xml:PlayerData[1].Name:27
@@ -1886,17 +1884,6 @@ msgstr "Перемещайте корабли повсюду. Атакуйте �
 #: maps/scenarios/shipattacks.xml:Name:27
 msgid "Ships Demo"
 msgstr "Корабли Демо"
-
-#: maps/scenarios/starting_economy_walkthrough.xml:Description:39
-msgid ""
-"This map will give a rough guide for starting the game effectively.  Early in the game the most important thing is to gather resources as fast as possible so you are able to build enough troops later.\n"
-"\n"
-"Warning: This is very fast at the start, be prepared to run through the initial bit several times."
-msgstr "Эта карта даст грубое руководство для эффективного начала игры. В начале игры самое важное чтобы сбор ресурсов был быстрым насколько возможно и позже Вы могли построить армию.\n\nПредупреждение: Все происходит очень быстро в начале и подготовтесь пройти через это несколько раз.  "
-
-#: maps/scenarios/starting_economy_walkthrough.xml:Name:39
-msgid "Starting Economy Walkthrough"
-msgstr "Анализ стартовой экономики"
 
 #: maps/scenarios/temperate map.xml:Name:27
 msgid "Base Temperate Map"

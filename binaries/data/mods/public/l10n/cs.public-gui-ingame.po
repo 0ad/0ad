@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-06 09:29+0100\n"
-"PO-Revision-Date: 2017-03-06 09:14+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-03-11 17:43+0000\n"
+"Last-Translator: Petr Hála <halapetr@selfnet.cz>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -109,7 +109,7 @@ msgstr "%(time)s %(message)s"
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
-msgstr ""
+msgstr "Čas zbývající do konce klidu zbraní: %(time)s."
 
 #: gui/session/menu.js:391
 msgctxt "team"
@@ -142,7 +142,7 @@ msgstr "Požádat své spojence o útok na tohoto nepřítele"
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
-msgstr ""
+msgstr "Podplať náhodnou jednotku tohoto hráče a ona ti poskytne její vizi po omezenou dobu."
 
 #: gui/session/menu.js:667
 #, javascript-format
@@ -930,7 +930,7 @@ msgstr "Zmáčkni %(hotkey)s pro otevření spojeneckého rozhovoru."
 #: gui/session/session.js:391
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
-msgstr ""
+msgstr "Zmáčkni %(hotkey)s aby si otevřel dříve vybraný soukromý rozhovor."
 
 #: gui/session/session.js:395
 msgid "Find idle worker"
