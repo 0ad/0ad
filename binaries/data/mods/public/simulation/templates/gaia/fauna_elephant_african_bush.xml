@@ -1,25 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_fauna_hunt_defensive">
-  <Armour>
-    <Hack>3</Hack>
-    <Pierce>4</Pierce>
-    <Crush>5</Crush>
-  </Armour>
-  <Attack>
-    <Melee>
-      <Hack>25.0</Hack>
-      <Pierce>10.0</Pierce>
-      <Crush>20.0</Crush>
-      <MaxRange>6.0</MaxRange>
-      <RepeatTime>1000</RepeatTime>
-      <Bonuses>
-        <BonusCav>
-          <Classes>Cavalry</Classes>
-          <Multiplier>1.5</Multiplier>
-        </BonusCav>
-      </Bonuses>
-    </Melee>
-  </Attack>
+<Entity parent="template_unit_fauna_hunt_defensive_elephant">
   <Footprint>
     <Square width="4.6" depth="9.2"/>
     <Height>4.0</Height>
@@ -28,42 +8,16 @@
     <Max>300</Max>
   </Health>
   <Identity>
-    <Civ>gaia</Civ>
-    <Classes datatype="tokens">Elephant</Classes>
     <SpecificName>African Bush Elephant</SpecificName>
     <Icon>gaia/fauna_elephant_african_bush.png</Icon>
   </Identity>
   <Loot>
     <xp>75</xp>
   </Loot>
-  <Position>
-    <Anchor>pitch</Anchor>
-  </Position>
   <ResourceSupply>
     <Amount>800</Amount>
     <Type>food.meat</Type>
   </ResourceSupply>
-  <Selectable>
-    <Overlay>
-      <Texture>
-        <MainTexture>circle/256x256.png</MainTexture>
-        <MainTextureMask>circle/256x256_mask.png</MainTextureMask>
-      </Texture>
-    </Overlay>
-  </Selectable>
-  <Sound>
-    <SoundGroups>
-      <select>actor/fauna/animal/elephant_select.xml</select>
-      <order_walk>actor/fauna/animal/elephant_order.xml</order_walk>
-      <order_attack>actor/fauna/animal/elephant_attack.xml</order_attack>
-      <attack>actor/fauna/animal/elephant_attack.xml</attack>
-      <death>actor/fauna/animal/elephant_death.xml</death>
-      <trained>actor/fauna/animal/elephant_trained.xml</trained>
-    </SoundGroups>
-  </Sound>
-  <UnitMotion>
-    <PassabilityClass>large</PassabilityClass>
-  </UnitMotion>
   <VisualActor>
     <Actor>fauna/elephant_african_bush.xml</Actor>
   </VisualActor>
