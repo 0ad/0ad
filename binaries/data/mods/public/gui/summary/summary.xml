@@ -120,9 +120,9 @@
 					<object size="0 30 100% 100%">
 						<repeat count="8" var="n">
 							<object type="image" name="playerBoxt[i][n]" size="10 0 10 30" hidden="true">
-								<object name="playerOutcomet[i][n]" type="image" size="4 8 30 35"/>
-								<object name="playerNamet[i][n]" type="text" size="40 2 208 100%" style="ModernLeftLabelText"/>
-								<object name="civIcont[i][n]" type="image" size="208 5 240 37" />
+								<object name="playerOutcomet[i][n]" type="image" size="4 5 36 37"/>
+								<object name="playerNamet[i][n]" type="text" size="46 2 214 100%" style="ModernLeftLabelText"/>
+								<object name="civIcont[i][n]" type="image" size="214 5 246 37" />
 								<repeat var="x" count="9">
 									<object name="valueDataTeam[i][n][x]" type="text" style="ModernTabLabelText">
 									</object>
@@ -141,9 +141,9 @@
 			<object type="image" name="noTeamsBox" size="0 65 100% 100%-50" hidden="true">
 				<repeat count="8">
 					<object type="image" name="playerBox[n]" size="10 0 10 30" hidden="true">
-						<object name="playerOutcome[n]" type="image" size="4 8 30 35"/>
-						<object name="playerName[n]" type="text" size="40 2 208 100%" style="ModernLeftLabelText"/>
-						<object name="civIcon[n]" type="image" size="208 5 240 37"/>
+						<object name="playerOutcome[n]" type="image" size="4 5 36 37"/>
+						<object name="playerName[n]" type="text" size="46 2 214 100%" style="ModernLeftLabelText"/>
+						<object name="civIcon[n]" type="image" size="214 5 246 37"/>
 						<repeat var="x" count="9">
 							<object name="valueData[n][x]" type="text" style="ModernTabLabelText">
 							</object>
