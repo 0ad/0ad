@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-03 09:03+0100\n"
-"PO-Revision-Date: 2017-03-05 17:54+0000\n"
-"Last-Translator: fri\n"
+"PO-Revision-Date: 2017-03-11 17:47+0000\n"
+"Last-Translator: Petr Hála <halapetr@selfnet.cz>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -182,7 +182,7 @@ msgstr "%(_player_)s, pro mě je myslitelná pouze dohoda o neutralitě."
 msgid ""
 "Our previous alliance did not work out, %(_player_)s. I must decline your "
 "offer."
-msgstr ""
+msgstr "Naše předchozí spojenectví nedopadlo dobře, %(_player_)s. Musím tedy tvoji nabídku odmítnout."
 
 #: simulation/ai/petra/chatHelper.js:79
 #, javascript-format
@@ -210,7 +210,7 @@ msgstr ""
 msgid ""
 "I will accept your offer to become allies, %(_player_)s. We will both "
 "benefit from this partnership."
-msgstr ""
+msgstr "Přijmu tvoji nabídku spojenectví %(_player_)s. Toto partnerství nám oběma přinese prospěch."
 
 #: simulation/ai/petra/chatHelper.js:86
 #, javascript-format
@@ -221,7 +221,7 @@ msgstr "Spojenectví mezi námi je skvělý nápad, %(_player_)s."
 #, javascript-format
 msgid ""
 "Let both of our people prosper from a peaceful association, %(_player_)s."
-msgstr ""
+msgstr "Nechť obě naše země prosperují z tohoto míru, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:88
 #, javascript-format
@@ -954,7 +954,7 @@ msgstr "Požadován útok proti %(_player_)s."
 
 #: simulation/helpers/Commands.js:773
 msgid "There are no bribable units"
-msgstr ""
+msgstr "Nejsou tu žádné podplatitelné jednotky"
 
 #: simulation/helpers/Commands.js:804
 msgid "Unable to ungarrison unit(s)"

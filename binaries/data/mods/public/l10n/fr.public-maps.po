@@ -24,9 +24,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-03 09:03+0100\n"
-"PO-Revision-Date: 2017-03-07 11:52+0000\n"
-"Last-Translator: Arnaud Rochés <roches.arn@gmail.com>\n"
+"POT-Creation-Date: 2017-03-10 09:03+0100\n"
+"PO-Revision-Date: 2017-03-10 09:46+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -858,7 +858,6 @@ msgstr "Printemps dans Arcadie, en Grèce. Les pluies de printemps ont gorgé ce
 #: maps/scenarios/WallTest.xml:PlayerData[0].Name:27
 #: maps/scenarios/Walls.xml:PlayerData[0].Name:27
 #: maps/scenarios/reservoir.xml:PlayerData[0].Name:27
-#: maps/scenarios/starting_economy_walkthrough.xml:PlayerData[0].Name:39
 #: maps/skirmishes/Acropolis Bay (2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Alpine_Valleys_(2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Bactria (2).xml:PlayerData[0].Name:39
@@ -925,9 +924,8 @@ msgstr "Joueur 1"
 #: Islands.xml:PlayerData[1].Name:39 maps/scenarios/Tropical
 #: Island.xml:PlayerData[1].Name:39
 #: maps/scenarios/WallTest.xml:PlayerData[1].Name:27
-#: maps/scenarios/Walls.xml:PlayerData[1].Name:27
-#: maps/scenarios/starting_economy_walkthrough.xml:PlayerData[1].Name:39
-#: maps/skirmishes/Acropolis Bay (2).xml:PlayerData[1].Name:39
+#: maps/scenarios/Walls.xml:PlayerData[1].Name:27 maps/skirmishes/Acropolis
+#: Bay (2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Alpine_Valleys_(2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Bactria (2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Barcania (3).xml:PlayerData[1].Name:27
@@ -1888,17 +1886,6 @@ msgstr "Déplacer des navires dans les environs. Attaquer d'autres navires."
 #: maps/scenarios/shipattacks.xml:Name:27
 msgid "Ships Demo"
 msgstr "Démo - Navires"
-
-#: maps/scenarios/starting_economy_walkthrough.xml:Description:39
-msgid ""
-"This map will give a rough guide for starting the game effectively.  Early in the game the most important thing is to gather resources as fast as possible so you are able to build enough troops later.\n"
-"\n"
-"Warning: This is very fast at the start, be prepared to run through the initial bit several times."
-msgstr "Cette carte donnera une indication approximative pour commencer le jeu efficacement. Au début du jeu, le plus important est de collecter des ressources aussi vite que possible afin d'être en mesure de construire suffisamment de troupes par la suite.\n\nAttention: C'est très rapide au début. Attendez vous à reprendre le départ plusieurs fois."
-
-#: maps/scenarios/starting_economy_walkthrough.xml:Name:39
-msgid "Starting Economy Walkthrough"
-msgstr "Guide - Lancer l'économie"
 
 #: maps/scenarios/temperate map.xml:Name:27
 msgid "Base Temperate Map"
