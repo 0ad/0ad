@@ -5,6 +5,7 @@
   </BuildRestrictions>
   <Capturable>
     <CapturePoints>300</CapturePoints>
+    <GarrisonRegenRate>4.0</GarrisonRegenRate>
   </Capturable>
   <Cost>
     <PopulationBonus>5</PopulationBonus>
@@ -47,6 +48,7 @@
     <Technologies datatype="tokens">
       health_females_01
       pop_house_01
+      pop_house_02
       unlock_females_house
     </Technologies>
   </ProductionQueue>
@@ -62,6 +64,9 @@
     <BarHeight>0.6</BarHeight>
     <HeightOffset>8.0</HeightOffset>
   </StatusBars>
+  <TerritoryDecay>
+    <DecayRate>10</DecayRate>
+  </TerritoryDecay>
   <TerritoryInfluence>
     <Root>false</Root>
     <Radius>20</Radius>
