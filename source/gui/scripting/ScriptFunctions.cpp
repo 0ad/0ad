@@ -341,16 +341,6 @@ void SaveGamePrefix(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& 
 		LOGERROR("Failed to save game");
 }
 
-JS::Value GetSavedGames(ScriptInterface::CxPrivate* pCxPrivate)
-{
-	return SavedGames::GetSavedGames(*(pCxPrivate->pScriptInterface));
-}
-
-bool DeleteSavedGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& name)
-{
-	return SavedGames::DeleteSavedGame(name);
-}
-
 void SetNetworkGameAttributes(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue attribs1)
 {
 	ENSURE(g_NetClient);
@@ -480,6 +470,16 @@ void SendNetworkReady(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int messag
 JS::Value GetAIs(ScriptInterface::CxPrivate* pCxPrivate)
 {
 	return ICmpAIManager::GetAIs(*(pCxPrivate->pScriptInterface));
+}
+
+JS::Value GetSavedGames(ScriptInterface::CxPrivate* pCxPrivate)
+{
+	return SavedGames::GetSavedGames(*(pCxPrivate->pScriptInterface));
+}
+
+bool DeleteSavedGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& name)
+{
+	return SavedGames::DeleteSavedGame(name);
 }
 
 void OpenURL(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& url)
