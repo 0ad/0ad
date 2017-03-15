@@ -80,7 +80,13 @@ function loadCurrentCampaignSave()
 		return false;
 
 	// actually fetch the menu
-	Engine.SwitchGuiPage(g_CampaignTemplate.Interface, {"ID" : g_CampaignID, "template" : g_CampaignTemplate, "save": g_CampaignSave, "data" : g_CampaignData});
+	Engine.SwitchGuiPage(g_CampaignTemplate.Interface,
+		{
+			"ID" : g_CampaignID,
+			"template" : g_CampaignTemplate,
+			"save": g_CampaignSave,
+			"data" : g_CampaignData
+		});
 
 	return true;
 }

@@ -208,7 +208,7 @@ GuiInterface.prototype.GetEndGameCampaignData = function(player)
 	let cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
 	let status = cmpPlayer.GetState();
 
-	return {"status" : status};
+	return { "status" : status };
 }
 
 GuiInterface.prototype.GetRenamedEntities = function(player)

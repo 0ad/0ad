@@ -19,7 +19,7 @@ function startLevel(level)
 	saveCurrentCampaign();
 }
 
-// this function is called by session.js at the end of a game. It should save the campaign save state immediately.
+// This function is called by session.js at the end of a game. It should save the campaign save state immediately.
 function campaignGameEnded(data)
 {
 	g_CampaignID = data.ID;
@@ -46,7 +46,7 @@ function campaignGameEnded(data)
 	saveCurrentCampaign();
 }
 
-// returns true if the level "level" is available.
+// @returns true if the level "level" is available.
 function hasRequirements(level)
 {
 	if (!level.Requires)
@@ -62,7 +62,7 @@ function hasRequirements(level)
 	return true;
 }
 
-// return true if the player has completed the level with ID "level"
+// @returns true if the player has completed the level with ID "level"
 function hasCompleted(level)
 {
 	if (!g_CampaignData.completed)

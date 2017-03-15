@@ -1,38 +1,38 @@
 {
-	"Name" : "Example Campaign",
-	"Description" : "Lorem Ipsum and so on and so on",
-	"Interface" : "campaign/simple_campaign/page_menu.xml",
-	"Levels" : {
-		"Example_1" : {
-			"Name" : "Example 1",
-			"Map" : "scenarios/Serengeti.xml",
-			"Description" : "Whatever"
+	"Name": "Example Campaign",
+	"Description": "Lorem Ipsum and so on and so on",
+	"Interface": "campaign/simple_campaign/page_menu.xml",
+	"Levels": {
+		"Example_1": {
+			"Name": "Example 1",
+			"Map": "scenarios/Serengeti.xml",
+			"Description": "Whatever"
 		},
-		"Example_2" : {
-			"Name" : "Example 2",
-			"Map" : "",
-			"Description" : "None",
-			"Requires" : "Example_1"
+		"Example_2": {
+			"Name": "Example 2",
+			"Map": "",
+			"Description": "None",
+			"Requires": "Example_1"
 		},
-		"Example_3" : {
-			"Name" : "This one requires 1 and 2",
-			"Map" : "",
-			"Description" : "None",
-			"Requires" : "Example_1+Example_2"
+		"Example_3": {
+			"Name": "This one requires 1 and 2",
+			"Map": "",
+			"Description": "None",
+			"Requires": "Example_1+Example_2"
 		},
-		"Example_4" : {
-			"Name" : "This one requires 2 or 3",
-			"Map" : "",
-			"Description" : "None",
-			"Requires" : "Example_2 Example_3"
+		"Example_4": {
+			"Name": "This one requires 2 or 3",
+			"Map": "",
+			"Description": "None",
+			"Requires": "Example_2 Example_3"
 		},
-		"Example_5" : {
-			"Name" : "This one unavailable if 1",
-			"Map" : "",
-			"Description" : "None",
-			"Requires" : "!Example_1"
+		"Example_5": {
+			"Name": "This one unavailable if 1",
+			"Map": "",
+			"Description": "None",
+			"Requires": "!Example_1"
 		}
 	},
-	"Order" : ["Example_1", "Example_2", "Example_3", "Example_4", "Example_5"],
-	"ShowUnavailable" : true
+	"Order": ["Example_1", "Example_2", "Example_3", "Example_4", "Example_5"],
+	"ShowUnavailable": true
 }
