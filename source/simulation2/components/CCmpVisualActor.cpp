@@ -421,6 +421,11 @@ public:
 			m_Unit->SetEntitySelection(key, selection);
 	}
 
+	virtual std::string GetAnimationName()
+	{
+		return m_AnimName;
+	}
+
 	virtual void SelectAnimation(const std::string& name, bool once, fixed speed, const std::wstring& soundgroup)
 	{
 		m_AnimRunThreshold = fixed::Zero();

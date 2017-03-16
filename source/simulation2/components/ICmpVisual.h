@@ -87,6 +87,11 @@ public:
 	virtual void SetVariant(const CStr& key, const CStr& selection) = 0;
 
 	/**
+	 * Returns the name of the currently played animation.
+	 */
+	virtual std::string GetAnimationName() = 0;
+
+	/**
 	 * Start playing the given animation. If there are multiple possible animations then it will
 	 * pick one at random (not network-synchronised).
 	 * If @p soundgroup is specified, then the sound will be played at each 'event' point in the
