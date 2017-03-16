@@ -251,7 +251,7 @@ for (var i = 0; i < numLakes; ++i)
 	if (!lakeAreaLen)
 		break;
 
-	chosenPoint = lakeAreas[randInt(lakeAreaLen)];
+	chosenPoint = pickRandom(lakeAreas);
 
 	placer = new ChainPlacer(1, floor(scaleByMapSize(4, 8)), floor(scaleByMapSize(40, 180)), 0.7, chosenPoint[0], chosenPoint[1]);
 	var terrainPainter = new LayeredPainter(

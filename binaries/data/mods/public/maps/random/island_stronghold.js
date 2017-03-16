@@ -265,7 +265,7 @@ for (let i = 0; i < numIslands; ++i)
 	if (!landAreaLen)
 		break;
 
-	chosenPoint = landAreas[randInt(landAreaLen)];
+	chosenPoint = pickRandom(landAreas);
 
 	// create big islands
 	let placer = new ChainPlacer(floor(scaleByMapSize(4, 8)), floor(scaleByMapSize(8, 14)), floor(scaleByMapSize(25, 60)), 0.07, chosenPoint[0], chosenPoint[1], scaleByMapSize(30, 70));
@@ -308,7 +308,7 @@ for (let i = 0; i < numIslands; ++i)
 	if (!landAreaLen)
 		break;
 
-	chosenPoint = landAreas[randInt(0, landAreaLen)];
+	chosenPoint = pickRandom(landAreas);
 
 	let placer = new ChainPlacer(floor(scaleByMapSize(4, 7)), floor(scaleByMapSize(7, 10)), floor(scaleByMapSize(16, 40)), 0.07, chosenPoint[0], chosenPoint[1], scaleByMapSize(22, 40));
 	let terrainPainter = new LayeredPainter(

@@ -634,8 +634,7 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraint,
 	for (var i = 0; i < numCircles; ++i)
 	{
 		var badPoint = false;
-		var point = edges[randInt(edges.length)];
-		var cx = point[0], cz = point[1];
+		var [cx, cz] = pickRandom(edges);
 
 		if (queueEmpty)
 		{

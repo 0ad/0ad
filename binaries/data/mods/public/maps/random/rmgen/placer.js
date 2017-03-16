@@ -156,9 +156,7 @@ ChainPlacer.prototype.place = function(constraint)
 	var edges = [[this.x, this.z]];
 	for (var i = 0; i < this.numCircles; ++i)
 	{
-		var point = edges[randInt(edges.length)];
-		var cx = point[0], cz = point[1];
-
+		var [cx, cz] = pickRandom(edges);
 		if (queueEmpty)
 			var radius = randInt(this.minRadius, this.maxRadius);
 		else
@@ -475,10 +473,7 @@ RandomObject.prototype.place = function(cx, cz, player, avoidSelf, constraint, m
 					else
 					{
 						var angle = randFloat(this.minAngle, this.maxAngle);
-
-						//Randomly select entity
-						var type = this.types[randInt(this.types.length)];
-						resultObjs.push(new Entity(type, player, x, z, angle));
+						resultObjs.push(new Entity(pickRandom(this.types), player, x, z, angle));
 						break;
 					}
 				}
@@ -569,10 +564,7 @@ function RandomGroup(elements, avoidSelf, tileClass, x, z)
 
 RandomGroup.prototype.place = function(player, constraint)
 {
-	// Pick one of the object placers at random
-	var placer = this.elements[randInt(this.elements.length)];
-
-	var resultObjs = placer.place(this.x, this.z, player, this.avoidSelf, constraint);
+	var resultObjs = pickRandom(this.elements).place(this.x, this.z, player, this.avoidSelf, constraint);
 	if (resultObjs === undefined)
 		return false;
 

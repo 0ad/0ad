@@ -68,5 +68,5 @@ RandomTerrain.prototype = new Terrain();
 RandomTerrain.prototype.constructor = RandomTerrain;
 RandomTerrain.prototype.placeNew = function(x, z)
 {
-	this.terrains[randInt(this.terrains.length)].placeNew(x, z);
+	pickRandom(this.terrains).placeNew(x, z);
 };

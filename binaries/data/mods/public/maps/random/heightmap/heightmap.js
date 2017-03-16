@@ -78,7 +78,7 @@ function getStartLocationsByHeightmap(heightRange, maxTries = 1000, minDistToBor
 		let startLoc = [];
 		let minDist = Infinity;
 		for (let p = 0; p < numberOfPlayers; ++p)
-			startLoc.push(validStartLoc[randInt(validStartLoc.length)]);
+			startLoc.push(pickRandom(validStartLoc));
 		for (let p1 = 0; p1 < numberOfPlayers - 1; ++p1)
 		{
 			for (let p2 = p1 + 1; p2 < numberOfPlayers; ++p2)
@@ -139,7 +139,6 @@ function distributeEntitiesByHeight(heightRange, avoidPoints, minDistance = 30, 
 
 	for (let tries = 0; tries < maxTries; ++tries)
 	{
-		
 		let checkPointIndex = randInt(validPoints.length);
 		let checkPoint = validPoints[checkPointIndex];
 		if (placements.every(p => getDistance(p.x, p.y, checkPoint.x, checkPoint.y) > minDistance))
@@ -147,7 +146,7 @@ function distributeEntitiesByHeight(heightRange, avoidPoints, minDistance = 30, 
 			placeObject(checkPoint.x, checkPoint.y, pickRandom(entityList), playerID, randFloat(0, 2*PI));
 			placements.push(checkPoint);
 		}
-		
+
 		validPoints.splice(checkPointIndex);
 		if (!validPoints.length)
 			break; // No more valid points left

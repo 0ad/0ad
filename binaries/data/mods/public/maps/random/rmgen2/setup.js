@@ -78,7 +78,7 @@ function addElements(elements)
  */
 function pickAmount(amounts)
 {
-	var amount = amounts[randInt(amounts.length)];
+	let amount = pickRandom(amounts);
 
 	if (amount in g_Amounts)
 		return g_Amounts[amount];
@@ -91,7 +91,7 @@ function pickAmount(amounts)
  */
 function pickMix(mixes)
 {
-	var mix = mixes[randInt(mixes.length)];
+	let mix = pickRandom(mixes);
 
 	if (mix in g_Mixes)
 		return g_Mixes[mix];
@@ -104,7 +104,7 @@ function pickMix(mixes)
  */
 function pickSize(sizes)
 {
-	var size = sizes[randInt(sizes.length)];
+	let size = pickRandom(sizes);
 
 	if (size in g_Sizes)
 		return g_Sizes[size];
@@ -310,7 +310,7 @@ function randomStartingPositionPattern()
 		formats.push("line");
 
 	return {
-		"setup": formats[randInt(formats.length)],
+		"setup": pickRandom(formats),
 		"distance": randFloat(0.2, 0.35),
 		"separation": randFloat(0.05, 0.1)
 	};
