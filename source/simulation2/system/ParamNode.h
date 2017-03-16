@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -58,6 +58,15 @@ class XMBElement;
  *   <Example4 datatype="tokens">
  *     one two three
  *   </Example4>
+ *   <Example5>
+ *     <E/>
+ *     <F>
+ *       <I>test</I>
+ *     </F>
+ *     <H>
+ *       <J>example</J>
+ *     </H>
+ *   </Example5>
  * </Entity>
  * @endcode
  * then a second like:
@@ -75,6 +84,15 @@ class XMBElement;
  *     four             <!-- add a token to the parent's set -->
  *     -two             <!-- remove a token from the parent's set -->
  *   </Example4>
+ *   <Example5 filtered=""> <!-- drop all children of this node that are not in this file -->
+ *     <F merge="">  <!-- only add this element if it is also present in the parent -->
+ *       <K>example</K> <!-- if F is present merge its children normally -->
+ *     </F>
+ *     <G merge=""/>  <!-- keep the G element of the parent if it exists -->
+ *     <H>
+ *       <J>text</J>
+ *     </H>
+ *   </Example5>
  * </Entity>
  * @endcode
  * is equivalent to loading a single file like:
@@ -90,6 +108,15 @@ class XMBElement;
  *   <Example4>
  *     one three four
  *   </Example4>
+ *   <Example5>
+ *     <F>
+ *       <I>test</I>
+ *       <K>example</K>
+ *     </F>
+ *     <H>
+ *       <J>text</J>
+ *     </H>
+ *   </Example5>
  * </Entity>
  * @endcode
  *
@@ -103,7 +130,16 @@ class XMBElement;
  *     "Example3": {
  *       "D": "new"
  *     },
- *     "Example4": { "@datatype": "tokens", "_string": "one three four" }
+ *     "Example4": { "@datatype": "tokens", "_string": "one three four" },
+ *     "Example5": {
+ *       "F": {
+ *         "I": "test",
+ *         "K": "example"
+ *       },
+ *       "H": {
+ *         "J": "text"
+ *       }
+ *     }
  *   }
  * }
  * @endcode
@@ -144,14 +180,6 @@ public:
 	 *        the data getting loaded. Used for output to log messages if an error occurs.
 	 */
 	static PSRETURN LoadXMLString(CParamNode& ret, const char* xml, const wchar_t* sourceIdentifier = NULL);
-
-	/**
-	 * Finds the childs named @a name from @a src and from @a this, and copies the source child's children
-	 * which are in the @a permitted set into this node's child.
-	 * Intended for use as a filtered clone of XML files.
-	 * @a this and @a src must have childs named @a name.
-	 */
-	void CopyFilteredChildrenOfChild(const CParamNode& src, const char* name, const std::set<std::string>& permitted);
 
 	/**
 	 * Returns the (unique) child node with the given name, or a node with IsOk() == false if there is none.

@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -133,6 +133,35 @@ public:
 		CParamNode node;
 		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(node, "<test> <a datatype='tokens'>  Y  -  X </a></test>"), PSRETURN_OK);
 		TS_ASSERT_WSTR_EQUALS(node.ToXML(), L"<test><a datatype=\"tokens\">Y X</a></test>");
+	}
+
+	void test_overlay_filtered()
+	{
+		CParamNode node;
+		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(node, "<test> <a><b/></a> <c>toberemoved</c> <d><e/></d> </test>"), PSRETURN_OK);
+		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(node, "<test filtered=\"\"> <a/> <d><f/></d> <g/> </test>"), PSRETURN_OK);
+		TS_ASSERT_WSTR_EQUALS(node.ToXML(), L"<test><a><b></b></a><d><e></e><f></f></d><g></g></test>");
+
+		CParamNode node2;
+		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(node2, "<test> <a><b>b</b><c>c</c><d>d</d><e>e</e></a> <f/> </test>"), PSRETURN_OK);
+		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(node2, "<test filtered=\"\"> <a filtered=\"\"><b merge=\"\"/><c>c2</c><d/></a> </test>"), PSRETURN_OK);
+		TS_ASSERT_WSTR_EQUALS(node2.ToXML(), L"<test><a><b>b</b><c>c2</c><d></d></a></test>");
+	}
+
+	void test_overlay_merge()
+	{
+		CParamNode node;
+		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(node, "<test> <a><b>foo</b><c>bar</c></a> <x><y><z>foo</z></y></x> </test>"), PSRETURN_OK);
+		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(node, "<test> <a merge=\"\"><b>test</b><d>baz</d></a> <i merge=\"\"><j>willnotbeincluded</j></i> <x merge=\"\"><y merge=\"\"><v>text</v></y><w>more text</w></x> </test>"), PSRETURN_OK);
+		TS_ASSERT_WSTR_EQUALS(node.ToXML(), L"<test><a><b>test</b><c>bar</c><d>baz</d></a><x><w>more text</w><y><v>text</v><z>foo</z></y></x></test>");
+	}
+
+	void test_overlay_filtered_merge()
+	{
+		CParamNode node;
+		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(node, "<test> <a><b/></a> <c><x/></c> <Health><Max>1200</Max></Health> </test>"), PSRETURN_OK);
+		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(node, "<test filtered=\"\"> <c merge=\"\"/> <d>bar</d> <e merge=\"\"/> <Health><Initial>1</Initial></Health> </test>"), PSRETURN_OK);
+		TS_ASSERT_WSTR_EQUALS(node.ToXML(), L"<test><Health><Initial>1</Initial><Max>1200</Max></Health><c><x></x></c><d>bar</d></test>");
 	}
 
 	void test_types()

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity filtered="">
+  <!-- We only want to include components which are necessary (for the visual previewing of an entity)
+       and safe (i.e. won't do anything that affects the synchronised simulation state), so additions
+       to this list should be carefully considered -->
+  <Attack merge=""/> <!-- Needed for the Actor Viewer -->
+  <BuildRestrictions merge=""/>
+  <Decay merge=""/>
+  <Footprint merge=""/>
+  <Identity merge=""/>
+  <!-- Disable the Obstruction component (if there is one) so it doesn't affect pathfinding
+       (but can still be used for testing this entity for collisions against others) -->
+  <Obstruction merge="">
+    <Active>false</Active>
+  </Obstruction>
+  <Ownership merge=""/>
+  <Position merge=""/>
+  <Sound merge=""/> <!-- Needed for the Actor Viewer -->
+  <UnitMotion merge=""/> <!-- Needed for the Actor Viewer -->
+  <!-- Previews should always be visible in fog-of-war/etc -->
+  <Visibility>
+    <AlwaysVisible>true</AlwaysVisible>
+    <Preview>true</Preview>
+  </Visibility>
+  <!-- Previews should not cast shadows -->
+  <VisualActor merge="">
+    <DisableShadows/>
+  </VisualActor>
+</Entity>
