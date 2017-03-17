@@ -101,6 +101,22 @@ function confirmSetup()
 		let hostServerName = Engine.GetGUIObjectByName("hostServerName").caption;
 		let hostPort = Engine.GetGUIObjectByName("hostPort").caption;
 
+		if (!hostServerName)
+		{
+			Engine.GetGUIObjectByName("hostFeedback").caption = translate("Please enter a valid server name.");
+			return;
+		}
+
+		if (getValidPort(hostPort) != +hostPort)
+		{
+			Engine.GetGUIObjectByName("hostFeedback").caption = sprintf(
+				translate("Server port number must be between %(min)s and %(max)s."), {
+					"min": g_ValidPorts.min,
+					"max": g_ValidPorts.max
+				});
+			return;
+		}
+
 		if (startHost(hostPlayerName, hostServerName, getValidPort(hostPort)))
 			switchSetupPage("pageConnecting");
 	}
