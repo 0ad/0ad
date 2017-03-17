@@ -16,13 +16,13 @@
 # Natalia V <inactive+irida@transifex.com>, 2016
 # Savvas Nesseris <nesseris@yahoo.com>, 2016
 # csparta <scoon405@gmail.com>, 2016
-# Vasilis Drosos <basilisd@gmail.com>, 2016
+# Vasilis Drosos <basilisd@gmail.com>, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-03 09:01+0100\n"
-"PO-Revision-Date: 2017-03-03 08:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-03-15 22:20+0000\n"
+"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -72,35 +72,35 @@ msgstr "Ο χρήστης %(oldnick)s είναι τώρα γνωστός/ή ώς
 
 #: gui/lobby/lobby.js:217
 msgid "You have been banned from the lobby!"
-msgstr ""
+msgstr "Έχεις αποκλειστεί από το λόμπι!"
 
 #: gui/lobby/lobby.js:218
 msgid "You have been kicked from the lobby!"
-msgstr ""
+msgstr "Έχεις αποβληθεί από το λόμπι!"
 
 #: gui/lobby/lobby.js:220
 #, javascript-format
 msgid "%(nick)s has been banned from the lobby."
-msgstr ""
+msgstr "Ο παίκτης %(nick)s αποβλήθηκε από το λόμπι."
 
 #: gui/lobby/lobby.js:221
 #, javascript-format
 msgid "%(nick)s has been kicked from the lobby."
-msgstr ""
+msgstr "Ο παίκτης %(nick)s εκδιώχθηκε από το λόμπι."
 
 #: gui/lobby/lobby.js:224
 #, javascript-format
 msgctxt "lobby kick"
 msgid "Reason: %(reason)s"
-msgstr ""
+msgstr "Αιτία: %(reason)s"
 
 #: gui/lobby/lobby.js:249
 msgid "BANNED"
-msgstr ""
+msgstr "ΑΠΟΚΛΕΙΣΜΕΝΟΣ"
 
 #: gui/lobby/lobby.js:249
 msgid "KICKED"
-msgstr ""
+msgstr "ΕΚΔΙΩΓΜΕΝΟΣ"
 
 #: gui/lobby/lobby.js:291
 msgctxt "map size"
@@ -292,7 +292,7 @@ msgstr "Παρακαλώ συμφωνείστε με τους Όρους Χρή�
 msgid ""
 "Unknown error. This usually occurs because the same IP address is not "
 "allowed to register more than one account within one hour."
-msgstr ""
+msgstr "Άγνωστο σφάλμα. Αυτό συνήθως συμβαίνει επειδή η ίδια διεύθυνση IP δεν επιτρέπει να εγγράψετε περισσότερους από έναν λογαριασμό μέσα σε μία ώρα."
 
 #: gui/lobby/prelobby.js:172
 msgid "Registered"

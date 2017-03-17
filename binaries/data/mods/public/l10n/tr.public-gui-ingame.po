@@ -37,7 +37,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-06 09:29+0100\n"
-"PO-Revision-Date: 2017-03-09 23:38+0000\n"
+"PO-Revision-Date: 2017-03-15 16:06+0000\n"
 "Last-Translator: Typhoon das <info@typhoonwebexpert.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -785,8 +785,8 @@ msgstr "%(population)s %(neededSlots)s"
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(class)s sınıfındaki %(number)s varlıkları"
+msgstr[1] "%(class)s  sınıftaki %(number)s varlıkları  "
 
 #: gui/session/selection_panels.js:867
 #, javascript-format
@@ -1034,7 +1034,7 @@ msgstr "Zaman tüneli modu"
 #: gui/session/session.js:1294
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
-msgstr ""
+msgstr "%(time)s (%(speed)sx)"
 
 #: gui/session/unit_actions.js:572
 msgid "Origin trade market."
@@ -1081,7 +1081,7 @@ msgstr "Seçili olan bina/birimleri sil"
 #: gui/session/unit_actions.js:1073
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
-msgstr ""
+msgstr "Onay iletişim kutularından kaçınmak için kısayol tuşlarını kullanın; %(hotkey)s "
 
 #: gui/session/unit_actions.js:1105
 msgid "Abort the current order."

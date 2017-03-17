@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-06 09:29+0100\n"
-"PO-Revision-Date: 2017-03-08 11:25+0000\n"
+"PO-Revision-Date: 2017-03-15 22:47+0000\n"
 "Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -415,7 +415,7 @@ msgstr "απενεργοποιήθηκε"
 
 #: gui/common/gamedescription.js:345
 msgid "Victorious"
-msgstr ""
+msgstr "Νικηφόρος"
 
 #: gui/common/gamedescription.js:350
 msgid "Defeated"
@@ -508,7 +508,7 @@ msgstr "Ο διακομιστής είναι γεμάτος"
 
 #: gui/common/network.js:74
 msgid "Player identifier in use, retry connecting"
-msgstr ""
+msgstr "Το αναγνωριστικό του παίχτη χρησιμοποιείτε, δοκίμασε πάλι να συνδεθείς."
 
 #: gui/common/network.js:77
 #, javascript-format
@@ -679,11 +679,11 @@ msgstr "Συντριβή"
 
 #: gui/common/tooltips.js:21
 msgid "Circular Splash Damage"
-msgstr ""
+msgstr "Κυκλική Ζημιά Σε Περιοχή"
 
 #: gui/common/tooltips.js:22
 msgid "Linear Splash Damage"
-msgstr ""
+msgstr "Ευθεία Ζημιά Σε Περιοχή"
 
 #: gui/common/tooltips.js:64
 msgid "Health:"
@@ -2374,7 +2374,7 @@ msgstr "Καθυστερημένη Σύνδεση Παρατηρητών"
 
 #: gui/options/options.jsongeneralSetting[14].tooltip
 msgid "Prevent further observers from joining if the limit is reached"
-msgstr ""
+msgstr "Αποτρέπει την περαιτέρω σύνδεση παρατηρητών εφόσον επιτευχθεί το όριο"
 
 #: gui/options/options.jsongeneralSetting[14].label
 msgid "Observer Limit"
@@ -2447,7 +2447,7 @@ msgstr "Προειδοποίηση για το Ψευδώνυμο"
 
 #: gui/options/options.jsonnotificationSetting[0].tooltip
 msgid "Show a chat notification if you are attacked by another player"
-msgstr ""
+msgstr "Δείχνει μία ειδοποίηση στη συζήτηση αν δεχθείς επίθεση από άλλον παίχτη"
 
 #: gui/options/options.jsonnotificationSetting[0].label
 msgid "Attack"
@@ -2457,7 +2457,7 @@ msgstr "Επίθεση"
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode"
-msgstr ""
+msgstr "Δείχνει μια ειδοποίηση στη συζήτηση αν ένας σύμμαχος προσφέρει πόρους σε ένα μέλος μίας άλλης ομάδας αν οι ομάδες είναι κλειδωμένες και όλοι οι φόροι σε λειτουργία παρατήρησης"
 
 #: gui/options/options.jsonnotificationSetting[1].label
 msgid "Tribute"
@@ -2465,7 +2465,7 @@ msgstr "Φόρος"
 
 #: gui/options/options.jsonnotificationSetting[2].tooltip
 msgid "Show a chat notification to observers when a player bartered resources"
-msgstr ""
+msgstr "Δείχνει μία ειδοποίηση στη συζήτηση των παρατηρητών όταν ένας παίχτης κάνει ανταλλαγή πόρων"
 
 #: gui/options/options.jsonnotificationSetting[2].label
 msgid "Barter"

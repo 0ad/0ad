@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-03 09:03+0100\n"
-"PO-Revision-Date: 2017-03-09 23:34+0000\n"
+"PO-Revision-Date: 2017-03-15 16:15+0000\n"
 "Last-Translator: Typhoon das <info@typhoonwebexpert.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -247,35 +247,35 @@ msgstr "Bana yalnızca %(_amount_)s %(_resource_)s. bir yardım gönderirsen, sa
 msgid ""
 "%(_player_)s, you must send me a tribute of %(_amount_)s %(_resource_)s "
 "before I accept an alliance with you."
-msgstr ""
+msgstr "%(_player_)s, bana bir ittifak kabul etmeden önce  %(_amount_)s %(_resource_)s bir haraç göndermeniz gerekir."
 
 #: simulation/ai/petra/chatHelper.js:94
 #, javascript-format
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
 " %(_player_)s,"
-msgstr ""
+msgstr "%(_amount_)s %(_resource_)s,  göndermediğiniz sürece, bir ittifak oluşturulmayacak, %(_player_)s,"
 
 #: simulation/ai/petra/chatHelper.js:97
 #, javascript-format
 msgid ""
 "%(_player_)s, my offer still stands. I will ally with you only if you send "
 "me a tribute of %(_amount_)s %(_resource_)s."
-msgstr ""
+msgstr "%(_player_)s, teklifim hala geçerli. Bana yalnızca %(_amount_)s %(_resource_)s. bir haraçını gönderirsen, sizinle müttefik olacağım."
 
 #: simulation/ai/petra/chatHelper.js:98
 #, javascript-format
 msgid ""
 "I’m still waiting for %(_amount_)s %(_resource_)s before accepting your "
 "alliance, %(_player_)s."
-msgstr ""
+msgstr "İttifakınızı kabul etmeden önce hala %(_amount_)s %(_resource_)s bekliyorum, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:99 simulation/ai/petra/chatHelper.js:120
 #, javascript-format
 msgid ""
 "%(_player_)s, if you do not send me part of the %(_amount_)s %(_resource_)s "
 "tribute soon, I will break off our negotiations."
-msgstr ""
+msgstr "%(_player_)s, %(_amount_)s %(_resource_)s övgüsünün bir parçasını bir daha göndermezseniz, görüşmelerimi yarıda keserim."
 
 #: simulation/ai/petra/chatHelper.js:104
 #, javascript-format
@@ -313,21 +313,21 @@ msgstr "%(_player_)s, tarafsızlık isteğini kabul edeceğim. Hem medeniyetleri
 msgid ""
 "If you send me a tribute of %(_amount_)s %(_resource_)s, I will accept your "
 "neutrality request, %(_player_)s."
-msgstr ""
+msgstr "Bana %(_amount_)s %(_resource_)s, bir haraç gönderirseniz, tarafsızlık isteğiniz %(_player_)s. sını kabul ederim."
 
 #: simulation/ai/petra/chatHelper.js:116
 #, javascript-format
 msgid ""
 "%(_player_)s, if you send me %(_amount_)s %(_resource_)s, I will accept a "
 "neutrality pact."
-msgstr ""
+msgstr "%(_player_)s,  bana %(_amount_)s %(_resource_)s, gönderirsen, tarafsızlık sözleşmesini kabul edeceğim."
 
 #: simulation/ai/petra/chatHelper.js:119
 #, javascript-format
 msgid ""
 "%(_player_)s, I will not accept your neutrality request unless you tribute "
 "me %(_amount_)s %(_resource_)s soon."
-msgstr ""
+msgstr "%(_player_)s, Yakında %(_amount_)s %(_resource_)s sana teklif verdikten sonra tarafsızlık isteğini kabul etmeyeceğim."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -827,8 +827,8 @@ msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
 msgid_plural ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(name)s  bir %(category)s'den çok uzakta,  %(distance)s metre içinde olmalı"
+msgstr[1] "%(name)s bir %(category)s den çok uzakta, %(distance)s metre içinde olmalı."
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
@@ -1157,7 +1157,7 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -50% for Sandbox to +60% for Very Hard (Medium 0%). In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "Petra, AI avaat botunun varsayılan 0'dır. Lütfen sorunları Wildfire Games'e bildirin (ana menüdeki bağlantıya bakın) .\n\nAI, Sandbox için -50% ila Very Hard için +60% (Orta 0%) arasında değişen bir şekilde kaynak topluluğunda (toplama oranı veya ticaret kazancı) bir ikramiye / cezaya sahiptir. Buna ek olarak, Sandbox seviyesi de büyümüyor veya saldırmıyor."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"
