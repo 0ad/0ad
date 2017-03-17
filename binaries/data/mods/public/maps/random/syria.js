@@ -163,7 +163,7 @@ for (var i = 0; i < numPlayers; i++)
 	var tX = round(fx + tDist * cos(tAngle));
 	var tZ = round(fz + tDist * sin(tAngle));
 	group = new SimpleGroup(
-		[new SimpleObject([oPalm, oTamarix][randInt(0,1)], num, num, 0,5)],
+		[new SimpleObject(pickRandom([oPalm, oTamarix]), num, num, 0,5)],
 		false, clBaseResource, tX, tZ
 	);
 	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));

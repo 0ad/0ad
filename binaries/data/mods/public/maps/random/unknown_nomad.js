@@ -1292,17 +1292,13 @@ for (var i = 0; i < numPlayers; i++)
 	}
 
 	if (!placableArea.length)
-	{
 		for (var mx = 0; mx < mapSize; ++mx)
 			for (var mz = 0; mz < mapSize; ++mz)
 				if (g_Map.getHeight(mx, mz) >= 3 && g_Map.getHeight(mx, mz) <= 3.12)
 					placableArea.push([mx, mz]);
-	}
-	var chosen = floor(Math.random()*placableArea.length);
-	playerX[i] = placableArea[chosen][0];
-	playerZ[i] = placableArea[chosen][1];
-}
 
+	[playerX[i], playerZ[i]] = pickRandom(placableArea);
+}
 
 for (var i = 0; i < numPlayers; ++i)
 {

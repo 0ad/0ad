@@ -1,9 +1,7 @@
 Trigger.prototype.SpawnAndAttack = function()
 {
-	var rand = Math.random();
-	// randomize spawn points
-	var spawnPoint = rand > 0.5 ? "B" : "C";
-	var intruders = TriggerHelper.SpawnUnitsFromTriggerPoints(spawnPoint, "units/rome_legionnaire_marian", this.attackSize, 0);
+	var intruders = TriggerHelper.SpawnUnitsFromTriggerPoints(
+			pickRandom(["B", "C"]), "units/rome_legionnaire_marian", this.attackSize, 0);
 
 	for (var origin in intruders)
 	{

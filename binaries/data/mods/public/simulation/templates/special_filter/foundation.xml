@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity filtered="">
+  <AIProxy merge=""/>
+  <Armour merge=""/>
+  <BuildRestrictions merge=""/>
+  <!-- Don't provide population bonuses yet (but still do take up population cost) -->
+  <Cost merge="">
+    <PopulationBonus>0</PopulationBonus>
+  </Cost>
+  <Decay merge=""/>
+  <Fogging merge=""/>
+  <Footprint merge=""/>
+  <!-- Add the Foundation component, to deal with the construction process -->
+  <Foundation replace=""/>
+  <Health>
+    <Initial>1</Initial>
+  </Health>
+  <Identity merge=""/>
+  <Market merge=""/>
+  <!-- Foundations shouldn't initially block unit movement -->
+  <Obstruction merge="">
+    <DisableBlockMovement>true</DisableBlockMovement>
+    <DisableBlockPathfinding>true</DisableBlockPathfinding>
+  </Obstruction>
+  <OverlayRenderer merge=""/>
+  <Ownership merge=""/>
+  <Position merge=""/>
+  <RallyPoint merge=""/>
+  <RallyPointRenderer merge=""/>
+  <Selectable merge=""/>
+  <Sound merge=""/>
+  <StatusBars merge=""/>
+  <Visibility merge=""/>
+  <!-- Foundations should be visible themselves in fog-of-war if their base template is,
+       but shouldn't have any vision range -->
+  <Vision merge="">
+    <Range>0</Range>
+    <RevealShore>false</RevealShore>
+  </Vision>
+  <!-- Switch the actor to foundation mode -->
+  <VisualActor>
+    <Foundation/>
+  </VisualActor>
+</Entity>

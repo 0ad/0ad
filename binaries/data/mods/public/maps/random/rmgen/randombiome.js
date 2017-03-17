@@ -530,21 +530,17 @@ function setBiome(biomeIndex)
 			"fruitBush": "gaia/flora_bush_grapes",
 			"chicken": "gaia/fauna_chicken",
 			"fish": "gaia/fauna_fish",
+			"mainHuntableAnimal": pickRandom([
+				"gaia/fauna_wildebeest",
+				"gaia/fauna_zebra",
+				"gaia/fauna_giraffe",
+				"gaia/fauna_elephant_african_bush"
+			]),
 			"secondaryHuntableAnimal": "gaia/fauna_gazelle",
 			"stoneLarge": "gaia/geology_stonemine_desert_quarry",
 			"stoneSmall": "gaia/geology_stone_savanna_small",
 			"metalLarge": "gaia/geology_metal_savanna_slabs"
 		};
-
-		var rts = randInt(1,4);
-		if (rts == 1)
-			g_Gaia.mainHuntableAnimal = "gaia/fauna_wildebeest";
-		else if (rts == 2)
-			g_Gaia.mainHuntableAnimal = "gaia/fauna_zebra";
-		else if (rts == 3)
-			g_Gaia.mainHuntableAnimal = "gaia/fauna_giraffe";
-		else if (rts == 4)
-			g_Gaia.mainHuntableAnimal = "gaia/fauna_elephant_african_bush";
 
 		g_Decoratives = {
 			"grass": "actor|props/flora/grass_savanna.xml",

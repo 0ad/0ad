@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity filtered="">
+  <Footprint merge=""/>
+  <Identity filtered="">
+    <Civ merge=""/>
+    <GenericName merge=""/>
+    <SpecificName merge=""/>
+    <Tooltip merge=""/>
+    <History merge=""/>
+    <Icon merge=""/>
+  </Identity>
+  <Minimap merge=""/>
+  <Mirage replace=""/>
+  <Obstruction merge="">
+    <BlockMovement>false</BlockMovement>
+    <BlockPathfinding>false</BlockPathfinding>
+    <BlockFoundation>false</BlockFoundation>
+    <BlockConstruction>false</BlockConstruction>
+  </Obstruction>
+  <Ownership merge=""/>
+  <OverlayRenderer merge=""/>
+  <Position merge=""/>
+  <Selectable merge=""/>
+  <StatusBars merge=""/>
+  <Visibility merge=""/>
+  <VisualActor merge=""/>
+</Entity>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity filtered="">
+  <AIProxy merge=""/>
+  <Footprint merge=""/>
+  <Identity merge=""/>
+  <Minimap merge=""/>
+  <!-- When dying, resources lose the unitMotion component, this causes them to have no clearance.
+       Since unit obstructions no longer have a radius, this makes them unreachable in some cases (see #3530).
+       Instead, create a static, unblocking (see #3530 for why) static obstruction.
+       TODO: this should probably be generalized as a parameter on entity death or something.
+  -->
+  <Obstruction replace="">
+    <Active>true</Active>
+    <BlockMovement>false</BlockMovement>
+    <BlockPathfinding>false</BlockPathfinding>
+    <BlockFoundation>false</BlockFoundation>
+    <BlockConstruction>false</BlockConstruction>
+    <DisableBlockMovement>false</DisableBlockMovement>
+    <DisableBlockPathfinding>false</DisableBlockPathfinding>
+    <Static width="2.0" depth="2.0"/>
+  </Obstruction>
+  <OverlayRenderer merge=""/>
+  <Ownership merge=""/>
+  <Position merge=""/>
+  <ResourceSupply merge=""/>
+  <Selectable merge=""/>
+  <StatusBars merge=""/>
+  <VisualActor merge=""/>
+</Entity>

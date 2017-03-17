@@ -61,7 +61,7 @@ function init(data)
 	Engine.GetGUIObjectByName("progressbar").caption = 0;
 
 	// Pick a random quote of the day (each line is a separate tip).
-	let quoteArray = Engine.ReadFileLines("gui/text/quotes.txt");
+	let quoteArray = Engine.ReadFileLines("gui/text/quotes.txt").filter(line => line);
 	Engine.GetGUIObjectByName("quoteText").caption = translate(pickRandom(quoteArray));
 }
 

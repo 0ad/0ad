@@ -49,93 +49,33 @@ bool CTemplateLoader::LoadTemplateFile(const std::string& templateName, int dept
 		return true;
 	}
 
-	// Handle special case "preview|foo"
-	if (templateName.find("preview|") == 0)
+	// Handle special case "bar|foo"
+	size_t pos = templateName.find_first_of('|');
+	if (pos != std::string::npos)
 	{
-		// Load the base entity template, if it wasn't already loaded
-		std::string baseName = templateName.substr(8);
-		if (!LoadTemplateFile(baseName, depth+1))
-		{
-			LOGERROR("Failed to load entity template '%s'", baseName.c_str());
-			return false;
-		}
-		// Copy a subset to the requested template
-		CopyPreviewSubset(m_TemplateFileData[templateName], m_TemplateFileData[baseName], false);
-		return true;
-	}
+		std::string prefix = templateName.substr(0, pos);
+		std::string baseName = templateName.substr(pos+1);
 
-	// Handle special case "corpse|foo"
-	if (templateName.find("corpse|") == 0)
-	{
-		// Load the base entity template, if it wasn't already loaded
-		std::string baseName = templateName.substr(7);
 		if (!LoadTemplateFile(baseName, depth+1))
 		{
 			LOGERROR("Failed to load entity template '%s'", baseName.c_str());
 			return false;
 		}
-		// Copy a subset to the requested template
-		CopyPreviewSubset(m_TemplateFileData[templateName], m_TemplateFileData[baseName], true);
-		return true;
-	}
 
-	// Handle special case "mirage|foo"
-	if (templateName.find("mirage|") == 0)
-	{
-		// Load the base entity template, if it wasn't already loaded
-		std::string baseName = templateName.substr(7);
-		if (!LoadTemplateFile(baseName, depth+1))
+		VfsPath path = VfsPath(TEMPLATE_ROOT) / L"special_filter" / wstring_from_utf8(prefix + ".xml");
+		if (!VfsFileExists(path))
 		{
-			LOGERROR("Failed to load entity template '%s'", baseName.c_str());
+			LOGERROR("Invalid subset '%s'", prefix.c_str());
 			return false;
 		}
-		// Copy a subset to the requested template
-		CopyMirageSubset(m_TemplateFileData[templateName], m_TemplateFileData[baseName]);
-		return true;
-	}
 
-	// Handle special case "foundation|foo"
-	if (templateName.find("foundation|") == 0)
-	{
-		// Load the base entity template, if it wasn't already loaded
-		std::string baseName = templateName.substr(11);
-		if (!LoadTemplateFile(baseName, depth+1))
-		{
-			LOGERROR("Failed to load entity template '%s'", baseName.c_str());
-			return false;
-		}
-		// Copy a subset to the requested template
-		CopyFoundationSubset(m_TemplateFileData[templateName], m_TemplateFileData[baseName]);
-		return true;
-	}
+		CXeromyces xero;
+		PSRETURN ok = xero.Load(g_VFS, path);
+		if (ok != PSRETURN_OK)
+			return false; // (Xeromyces already logged an error with the full filename)
 
-	// Handle special case "construction|foo"
-	if (templateName.find("construction|") == 0)
-	{
-		// Load the base entity template, if it wasn't already loaded
-		std::string baseName = templateName.substr(13);
-		if (!LoadTemplateFile(baseName, depth+1))
-		{
-			LOGERROR("Failed to load entity template '%s'", baseName.c_str());
-			return false;
-		}
-		// Copy a subset to the requested template
-		CopyConstructionSubset(m_TemplateFileData[templateName], m_TemplateFileData[baseName]);
-		return true;
-	}
-
-	// Handle special case "resource|foo"
-	if (templateName.find("resource|") == 0)
-	{
-		// Load the base entity template, if it wasn't already loaded
-		std::string baseName = templateName.substr(9);
-		if (!LoadTemplateFile(baseName, depth+1))
-		{
-			LOGERROR("Failed to load entity template '%s'", baseName.c_str());
-			return false;
-		}
-		// Copy a subset to the requested template
-		CopyResourceSubset(m_TemplateFileData[templateName], m_TemplateFileData[baseName]);
+		m_TemplateFileData[templateName] = m_TemplateFileData[baseName];
+		CParamNode::LoadXML(m_TemplateFileData[templateName], xero, path.string().c_str());
 		return true;
 	}
 
@@ -347,204 +287,4 @@ void CTemplateLoader::ConstructTemplateActor(const std::string& actorName, CPara
 	                  "</Entity>";
 
 	CParamNode::LoadXMLString(out, xml.c_str(), actorNameW.c_str());
-}
-
-void CTemplateLoader::CopyPreviewSubset(CParamNode& out, const CParamNode& in, bool corpse)
-{
-	// We only want to include components which are necessary (for the visual previewing of an entity)
-	// and safe (i.e. won't do anything that affects the synchronised simulation state), so additions
-	// to this list should be carefully considered
-	std::set<std::string> permittedComponentTypes;
-	permittedComponentTypes.insert("Identity");
-	permittedComponentTypes.insert("Ownership");
-	permittedComponentTypes.insert("Position");
-	permittedComponentTypes.insert("Visibility");
-	permittedComponentTypes.insert("VisualActor");
-	permittedComponentTypes.insert("Footprint");
-	permittedComponentTypes.insert("Obstruction");
-	permittedComponentTypes.insert("Decay");
-	permittedComponentTypes.insert("BuildRestrictions");
-
-	// Need these for the Actor Viewer:
-	permittedComponentTypes.insert("Attack");
-	permittedComponentTypes.insert("UnitMotion");
-	permittedComponentTypes.insert("Sound");
-
-	// (This set could be initialised once and reused, but it's not worth the effort)
-
-	CParamNode::LoadXMLString(out, "<Entity/>");
-	out.CopyFilteredChildrenOfChild(in, "Entity", permittedComponentTypes);
-
-	// Disable the Obstruction component (if there is one) so it doesn't affect pathfinding
-	// (but can still be used for testing this entity for collisions against others)
-	if (out.GetChild("Entity").GetChild("Obstruction").IsOk())
-		CParamNode::LoadXMLString(out, "<Entity><Obstruction><Active>false</Active></Obstruction></Entity>");
-
-	if (!corpse)
-	{
-		// Previews should not cast shadows
-		if (out.GetChild("Entity").GetChild("VisualActor").IsOk())
-			CParamNode::LoadXMLString(out, "<Entity><VisualActor><DisableShadows/></VisualActor></Entity>");
-
-		// Previews should always be visible in fog-of-war/etc
-		CParamNode::LoadXMLString(out, "<Entity><Visibility><AlwaysVisible>true</AlwaysVisible><Preview>true</Preview></Visibility></Entity>");
-	}
-
-	if (corpse)
-	{
-		// Corpses should include decay components and activate them
-		if (out.GetChild("Entity").GetChild("Decay").IsOk())
-			CParamNode::LoadXMLString(out, "<Entity><Decay><Active>true</Active></Decay></Entity>");
-
-		// Corpses shouldn't display silhouettes (especially since they're often half underground)
-		if (out.GetChild("Entity").GetChild("VisualActor").IsOk())
-			CParamNode::LoadXMLString(out, "<Entity><VisualActor><SilhouetteDisplay>false</SilhouetteDisplay></VisualActor></Entity>");
-
-		// Corpses should remain visible in fog-of-war (for the owner only)
-		CParamNode::LoadXMLString(out, "<Entity><Visibility><Corpse>true</Corpse></Visibility></Entity>");
-	}
-}
-
-void CTemplateLoader::CopyMirageSubset(CParamNode& out, const CParamNode& in)
-{
-	// Currently used for mirage entities replacing real ones in fog-of-war
-
-	std::set<std::string> permittedComponentTypes;
-	permittedComponentTypes.insert("Footprint");
-	permittedComponentTypes.insert("Minimap");
-	permittedComponentTypes.insert("Obstruction");
-	permittedComponentTypes.insert("Ownership");
-	permittedComponentTypes.insert("OverlayRenderer");
-	permittedComponentTypes.insert("Position");
-	permittedComponentTypes.insert("Selectable");
-	permittedComponentTypes.insert("StatusBars");
-	permittedComponentTypes.insert("Visibility");
-	permittedComponentTypes.insert("VisualActor");
-
-	CParamNode::LoadXMLString(out, "<Entity/>");
-	out.CopyFilteredChildrenOfChild(in, "Entity", permittedComponentTypes);
-
-	// Select a subset of identity data. We don't want to have, for example, a CC mirage
-	// that has also the CC class and then prevents construction of other CCs
-	std::set<std::string> identitySubset;
-	identitySubset.insert("Civ");
-	identitySubset.insert("GenericName");
-	identitySubset.insert("SpecificName");
-	identitySubset.insert("Tooltip");
-	identitySubset.insert("History");
-	identitySubset.insert("Icon");
-	CParamNode identity;
-	CParamNode::LoadXMLString(identity, "<Identity/>");
-	identity.CopyFilteredChildrenOfChild(in.GetChild("Entity"), "Identity", identitySubset);
-	CParamNode::LoadXMLString(out, ("<Entity>"+utf8_from_wstring(identity.ToXML())+"</Entity>").c_str());
-
-	// Mirages obstruction shouldn't block anything
-	if (out.GetChild("Entity").GetChild("Obstruction").IsOk())
-		CParamNode::LoadXMLString(out, "<Entity><Obstruction><BlockMovement>false</BlockMovement><BlockPathfinding>false</BlockPathfinding><BlockFoundation>false</BlockFoundation><BlockConstruction>false</BlockConstruction></Obstruction></Entity>");
-
-	// Set the entity as mirage entity
-	CParamNode::LoadXMLString(out, "<Entity><Mirage/></Entity>");
-}
-
-void CTemplateLoader::CopyFoundationSubset(CParamNode& out, const CParamNode& in)
-{
-	// TODO: this is all kind of yucky and hard-coded; it'd be nice to have a more generic
-	// extensible scriptable way to define these subsets
-
-	std::set<std::string> permittedComponentTypes;
-	permittedComponentTypes.insert("Ownership");
-	permittedComponentTypes.insert("Position");
-	permittedComponentTypes.insert("VisualActor");
-	permittedComponentTypes.insert("Identity");
-	permittedComponentTypes.insert("BuildRestrictions");
-	permittedComponentTypes.insert("Obstruction");
-	permittedComponentTypes.insert("Selectable");
-	permittedComponentTypes.insert("Footprint");
-	permittedComponentTypes.insert("Fogging");
-	permittedComponentTypes.insert("Armour");
-	permittedComponentTypes.insert("Health");
-	permittedComponentTypes.insert("Market");
-	permittedComponentTypes.insert("StatusBars");
-	permittedComponentTypes.insert("OverlayRenderer");
-	permittedComponentTypes.insert("Decay");
-	permittedComponentTypes.insert("Cost");
-	permittedComponentTypes.insert("Sound");
-	permittedComponentTypes.insert("Visibility");
-	permittedComponentTypes.insert("Vision");
-	permittedComponentTypes.insert("AIProxy");
-	permittedComponentTypes.insert("RallyPoint");
-	permittedComponentTypes.insert("RallyPointRenderer");
-
-	CParamNode::LoadXMLString(out, "<Entity/>");
-	out.CopyFilteredChildrenOfChild(in, "Entity", permittedComponentTypes);
-
-	// Switch the actor to foundation mode
-	CParamNode::LoadXMLString(out, "<Entity><VisualActor><Foundation/></VisualActor></Entity>");
-
-	// Add the Foundation component, to deal with the construction process
-	CParamNode::LoadXMLString(out, "<Entity><Foundation/></Entity>");
-
-	// Initialise health to 1
-	CParamNode::LoadXMLString(out, "<Entity><Health><Initial>1</Initial></Health></Entity>");
-
-	// Foundations shouldn't initially block unit movement
-	if (out.GetChild("Entity").GetChild("Obstruction").IsOk())
-		CParamNode::LoadXMLString(out, "<Entity><Obstruction><DisableBlockMovement>true</DisableBlockMovement><DisableBlockPathfinding>true</DisableBlockPathfinding></Obstruction></Entity>");
-
-	// Don't provide population bonuses yet (but still do take up population cost)
-	if (out.GetChild("Entity").GetChild("Cost").IsOk())
-		CParamNode::LoadXMLString(out, "<Entity><Cost><PopulationBonus>0</PopulationBonus></Cost></Entity>");
-
-	// Foundations should be visible themselves in fog-of-war if their base template is,
-	// but shouldn't have any vision range
-	if (out.GetChild("Entity").GetChild("Vision").IsOk())
-	{
-		CParamNode::LoadXMLString(out, "<Entity><Vision><Range>0</Range></Vision></Entity>");
-		// Foundations should not have special vision capabilities either
-		if (out.GetChild("Entity").GetChild("Vision").GetChild("RevealShore").IsOk())
-			CParamNode::LoadXMLString(out, "<Entity><Vision><RevealShore>false</RevealShore></Vision></Entity>");
-	}
-}
-
-void CTemplateLoader::CopyConstructionSubset(CParamNode& out, const CParamNode& in)
-{
-	// Currently used for buildings rising during construction
-	// Mostly serves to filter out components like Vision, UnitAI, etc.
-	std::set<std::string> permittedComponentTypes;
-	permittedComponentTypes.insert("Footprint");
-	permittedComponentTypes.insert("Ownership");
-	permittedComponentTypes.insert("Position");
-	permittedComponentTypes.insert("VisualActor");
-
-	CParamNode::LoadXMLString(out, "<Entity/>");
-	out.CopyFilteredChildrenOfChild(in, "Entity", permittedComponentTypes);
-}
-
-void CTemplateLoader::CopyResourceSubset(CParamNode& out, const CParamNode& in)
-{
-	// Currently used for animals which die and leave a gatherable corpse.
-	// Mostly serves to filter out components like Vision, UnitAI, etc.
-	// Don't emit sound as our samples only apply to living animals.
-	std::set<std::string> permittedComponentTypes;
-	permittedComponentTypes.insert("Ownership");
-	permittedComponentTypes.insert("Position");
-	permittedComponentTypes.insert("VisualActor");
-	permittedComponentTypes.insert("Identity");
-	permittedComponentTypes.insert("Minimap");
-	permittedComponentTypes.insert("ResourceSupply");
-	permittedComponentTypes.insert("Selectable");
-	permittedComponentTypes.insert("Footprint");
-	permittedComponentTypes.insert("StatusBars");
-	permittedComponentTypes.insert("OverlayRenderer");
-	permittedComponentTypes.insert("AIProxy");
-
-	CParamNode::LoadXMLString(out, "<Entity/>");
-	out.CopyFilteredChildrenOfChild(in, "Entity", permittedComponentTypes);
-
-	// When dying, resources lose the unitMotion component
-	// This causes them to have no clearance. Since unit obstructions no longer have a radius,
-	// this makes them unreachable in some cases (see #3530).
-	// Instead, create a static, unblocking (see #3530 for why) static obstruction.
-	// TODO: this should probably be generalized as a parameter on entity death or something.
-	CParamNode::LoadXMLString(out, "<Entity><Obstruction><Active>true</Active><BlockMovement>false</BlockMovement><BlockPathfinding>false</BlockPathfinding><BlockFoundation>false</BlockFoundation><BlockConstruction>false</BlockConstruction><DisableBlockMovement>false</DisableBlockMovement><DisableBlockPathfinding>false</DisableBlockPathfinding><Static width=\"2.0\" depth=\"2.0\"/></Obstruction></Entity>");
 }

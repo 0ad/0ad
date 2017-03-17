@@ -144,9 +144,7 @@ function randomizePlacerCoordinates(placer, halfMapSize)
  */
 function randomizePlacerCoordinatesFromAreas(placer, areas)
 {
-	let i = randInt(areas.length);
-	let pt = areas[i].points[randInt(areas[i].points.length)];
-
+	let pt = pickRandom(pickRandom(areas).points);
 	placer.x = pt.x;
 	placer.z = pt.z;
 }

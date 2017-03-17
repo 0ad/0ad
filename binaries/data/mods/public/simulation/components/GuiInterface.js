@@ -1763,7 +1763,7 @@ GuiInterface.prototype.IdleUnitFilter = function(unit, idleClasses, excludeUnits
 	if(!cmpIdentity)
 		return { "idle": false };
 
-	let bucket = idleClasses.findIndex(elem => cmpIdentity.HasClass(elem));
+	let bucket = idleClasses.findIndex(elem => MatchesClassList(cmpIdentity.GetClassesList(), elem));
 	if (bucket == -1 || excludeUnits.indexOf(unit) > -1)
 		return { "idle": false };
 

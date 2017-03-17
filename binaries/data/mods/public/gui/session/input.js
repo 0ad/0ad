@@ -1696,7 +1696,7 @@ function findIdleUnit(classes)
 	if (position)
 		Engine.CameraMoveTo(position.x, position.z);
 	// Move the idle class index to the first class an idle unit was found for.
-	var indexChange = data.idleClasses.findIndex(elem => hasClass(entityState, elem));
+	var indexChange = data.idleClasses.findIndex(elem => MatchesClassList(entityState.identity.classes, elem));
 	currIdleClassIndex = (currIdleClassIndex + indexChange) % classes.length;
 }
 

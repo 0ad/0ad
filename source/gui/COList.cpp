@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -86,16 +86,25 @@ void COList::SetupText()
 	for (size_t i = 0; i < pList->m_Items.size(); ++i)
 	{
 		m_ItemsYPositions[i] = buffered_y;
+		float shift = 0.0f;
 		for (size_t c = 0; c < m_Columns.size(); ++c)
 		{
 			CGUIList* pList_c;
 			GUI<CGUIList>::GetSettingPointer(this, "list_" + m_Columns[c].m_Id, pList_c);
 			SGUIText* text = new SGUIText();
-			*text = GetGUI()->GenerateText(pList_c->m_Items[i], font, width, buffer_zone, this);
-			if (c == 0)
-				buffered_y += text->m_Size.cy;
+			if (!pList_c->m_Items[i].GetOriginalString().empty())
+				*text = GetGUI()->GenerateText(pList_c->m_Items[i], font, width, buffer_zone, this);
+			else
+			{
+				// Minimum height of a space character of the current font size
+				CGUIString align_string;
+				align_string.SetValue(L" ");
+				*text = GetGUI()->GenerateText(align_string, font, width, buffer_zone, this);
+			}
+			shift = std::max(shift, text->m_Size.cy);
 			AddText(text);
 		}
+		buffered_y += shift;
 	}
 
 	m_ItemsYPositions[pList->m_Items.size()] = buffered_y;
