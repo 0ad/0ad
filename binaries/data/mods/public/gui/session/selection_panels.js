@@ -387,11 +387,19 @@ g_SelectionPanels.Formation = {
 	"conflictsWith": ["Garrison"],
 	"getItems": function(unitEntStates)
 	{
-		if (unitEntStates.some(state => !hasClass(state, "Unit") || hasClass(state, "Animal")))
+		if (unitEntStates.some(state => !hasClass(state, "Unit")))
 			return [];
+
 		if (!g_AvailableFormations.has(unitEntStates[0].player))
 			g_AvailableFormations.set(unitEntStates[0].player, Engine.GuiInterfaceCall("GetAvailableFormations", unitEntStates[0].player));
-		return g_AvailableFormations.get(unitEntStates[0].player);
+
+		let availableFormations = g_AvailableFormations.get(unitEntStates[0].player);
+
+		// Hide the panel if all formations are disabled
+		if (availableFormations.some(formation => canMoveSelectionIntoFormation(formation)))
+			return availableFormations;
+
+		return [];
 	},
 	"setupButton": function(data)
 	{
