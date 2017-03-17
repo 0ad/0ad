@@ -45,9 +45,11 @@ var g_NetworkCommands = {
 	"/clear": argument => clearChatMessages()
 };
 
+var g_ValidPorts = { "min": 1, "max": 65535 };
+
 function getValidPort(port)
 {
-	if (isNaN(+port) || +port <= 0 || +port > 65535)
+	if (isNaN(+port) || +port < g_ValidPorts.min || +port > g_ValidPorts.max)
 		return Engine.GetDefaultPort();
 
 	return +port;
