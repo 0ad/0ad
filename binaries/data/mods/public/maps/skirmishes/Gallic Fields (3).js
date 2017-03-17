@@ -28,8 +28,7 @@ Trigger.prototype.SpawnAndAttack = function()
 	}
 
 	// enlarge the attack time and size
-	// multiply with a number between 1 and 3
-	rand = Math.random() * 2 + 1;
+	var rand = randFloat(1, 3);
 	this.attackTime *= rand;
 	this.attackSize = Math.round(this.attackSize * rand);
 	this.DoAfterDelay(this.attackTime, "SpawnAndAttack", {});
