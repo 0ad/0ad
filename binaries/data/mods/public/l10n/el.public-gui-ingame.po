@@ -32,7 +32,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-06 09:29+0100\n"
-"PO-Revision-Date: 2017-03-08 11:23+0000\n"
+"PO-Revision-Date: 2017-03-15 22:50+0000\n"
 "Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -115,7 +115,7 @@ msgstr "%(time)s %(message)s"
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
-msgstr ""
+msgstr "Ο χρόνος που απομένει για τη λήξη της εκεχειρίας: %(time)s."
 
 #: gui/session/menu.js:391
 msgctxt "team"
@@ -148,7 +148,7 @@ msgstr "Ζήτησε από τους συμμάχους σου να επιτεθ
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
-msgstr ""
+msgstr "Δωροδόκησε μια τυχαία μονάδα από αυτόν τον παίκτη και μοιράσου αυτό που βλέπει για περιορισμένο χρονικό διάστημα."
 
 #: gui/session/menu.js:667
 #, javascript-format
@@ -538,7 +538,7 @@ msgstr "Ο %(player)s σου έστειλε %(amounts)s."
 #: gui/session/messages.js:895
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
-msgstr ""
+msgstr "Έχεις στείλει %(player2)s %(amounts)s."
 
 #: gui/session/messages.js:900
 #, javascript-format
@@ -924,7 +924,7 @@ msgstr "Πάτησε %(hotkey)s για την έναρξη συζήτησης μ
 #: gui/session/session.js:391
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
-msgstr ""
+msgstr "Πάτα %(hotkey)s για να ανοίξεις τη προηγούμενη επιλεγμένη ιδιωτική συζήτηση."
 
 #: gui/session/session.js:395
 msgid "Find idle worker"
@@ -936,7 +936,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it (Pressing "
 "%(hotkey)s while selecting will also bring its share to 100%%) and then use "
 "the arrows of the other types to modify their shares."
-msgstr ""
+msgstr "Επιλέξτε ένα είδος των προϊόντων που θέλετε να τροποποιήσετε κάνοντας κλικ σε αυτό (Πατώντας %(hotkey)s ενώ είναι επιλεγμένο θα φέρει το μερίδιο στο 100%%) και στη συνέχεια χρησιμοποιήστε τα βέλη από τα άλλα είδη για την τροποποίηση των μεριδίων τους."
 
 #: gui/session/session.js:559
 #, javascript-format
