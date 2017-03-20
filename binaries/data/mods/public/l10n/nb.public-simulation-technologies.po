@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-03 09:02+0100\n"
-"PO-Revision-Date: 2017-03-03 15:13+0000\n"
+"PO-Revision-Date: 2017-03-18 22:50+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -336,7 +336,7 @@ msgstr "Konstruksjon i kryssfinér for store skjold."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsontooltip
 msgid "Infantry Spearmen +2 Pierce Armor Levels."
-msgstr "Infanteri spydmenn +2 rustningsgrad mot stikk."
+msgstr "Infanterispydmenn +2 rustningsgrad mot stikk."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsongenericName
 msgid "Plywood Shield Construction"
@@ -358,7 +358,7 @@ msgstr "De beste skjoldene har forsterkninger, enter på hjørnene (Romersk scut
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsontooltip
 msgid "Infantry Spearmen +1 Pierce Armor Levels."
-msgstr "Infanteri spydmann +1 rustningsgrad mot stikk."
+msgstr "Infanterispydmenn +1 rustningsgrad mot stikk."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsongenericName
 msgid "Reinforced Shield"
@@ -869,7 +869,7 @@ msgstr "Salter fisk"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase. Requires Fishing Net."
-msgstr "Låses opp i byfasen. Krever fiske-garn."
+msgstr "Låses opp i byfasen. Krever fiskegarn."
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers use wheelbarrows. +5 shuttle capacity for all resources."
@@ -909,7 +909,7 @@ msgstr "Opptrening for arbeidere for å øke matinnsamlingshastigheten."
 
 #: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +15% farming rate."
-msgstr "Arbeidere +15% jordbruks-hastighet."
+msgstr "Arbeidere +15% jordbrukshastighet."
 
 #: simulation/data/technologies/gather_farming_training.jsongenericName
 msgid "Gather Training"
@@ -1070,7 +1070,7 @@ msgstr "Leveforhold"
 #: simulation/data/technologies/heal_range.jsondescription
 #: simulation/data/technologies/heal_range_2.jsondescription
 msgid "Increases the healing and vision range of all healers."
-msgstr "Øker rekkevidden for helbredelse og syn for alle helbredere."
+msgstr "Øker rekkevidden for helbredelse og synsrekkevidde for alle helbredere."
 
 #: simulation/data/technologies/heal_range.jsontooltip
 #: simulation/data/technologies/heal_range_2.jsontooltip
@@ -1714,7 +1714,7 @@ msgstr "Utskrevet infanteri"
 
 #: simulation/data/technologies/training_naval_architects.jsondescription
 msgid "Significantly increase build speed of batches of ships at the Dock."
-msgstr "Betydelig økt byggningshastighet på skipsordrer av samme typer i dokken.."
+msgstr "Betydelig økt byggningshastighet på skipsordrer av samme typer i dokken."
 
 #: simulation/data/technologies/training_naval_architects.jsontooltip
 msgid "Docks increased batch construction speed bonus."
@@ -1818,7 +1818,7 @@ msgstr ""
 
 #: simulation/data/technologies/unlock_spies.jsongenericName
 msgid "Espionage"
-msgstr ""
+msgstr "Spionering"
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsondescription
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsondescription
@@ -1838,7 +1838,7 @@ msgstr "Avansert borger-kavaleri"
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsondescription
 msgid "Upgrade all of your citizen-soldier infantrymen to Advanced rank."
-msgstr "Opgrader alle dine borger-soldatinfanterister til avansert rang."
+msgstr "Oppgrader alle dine borger-soldatinfanterister til avansert rang."
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsontooltip
 msgid ""
@@ -2021,7 +2021,7 @@ msgstr "Italiensk leiesoldatkostnad vs. rekrutteringstid #2"
 msgid ""
 "Carthaginians established many trading centers as colonies and ultimately "
 "held dominion over 300 cities and towns in North Africa alone."
-msgstr "Kartagerne etablerte mange handelssentrum som kolonier og hersket til slutt over 300 byer og småbyer bare i nord-Afrika."
+msgstr "Kartagerne etablerte mange handelssentrum som kolonier og hersket til slutt over 300 byer og småbyer bare i Nord-Afrika."
 
 #: simulation/data/technologies/carthaginians/special_colonisation.jsontooltip
 msgid ""
@@ -2156,7 +2156,7 @@ msgid ""
 "Upgrade all of your Iberian mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Iberian Mercenaries technology."
-msgstr "Oppgrader alle dine iberiske leiesoldater til Avansert rang. Dette øker deres militære djervhet, men reduserer deres ressurs-sanking med -25%.\nLåser opp elite iberisk leisoldat-teknologi."
+msgstr "Oppgrader alle dine Iberiske leiesoldater til Avansert rang. Dette øker deres militære djervhet, men reduserer deres ressurs-sanking med -25%.\nLåser opp iberisk elite-leisoldat-teknologi."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsongenericName
 msgid "Advanced Iberian Mercenaries"
@@ -2171,7 +2171,7 @@ msgid ""
 "Upgrade all of your Italiote mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Italiote Mercenaries technology."
-msgstr "Oppgrader alle dine italiotiske leiesoldater til avansert rang. Dette øker deres militære djervhet, men reduserer hastigheten på ressurs-sanking med -25%.\nLåser opp italiotisk elite leisoldat-teknologi."
+msgstr "Oppgrader alle dine italiotiske leiesoldater til avansert rang. Dette øker deres militære djervhet, men reduserer hastigheten på ressurs-sanking med -25%.\nLåser opp italiotisk elite-leisoldat-teknologi."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsongenericName
 msgid "Advanced Italiote Mercenaries"
