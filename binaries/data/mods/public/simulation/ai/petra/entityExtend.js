@@ -235,7 +235,7 @@ m.IsSupplyFull = function(gameState, ent)
 /**
  * get the best base (in terms of distance and accessIndex) for an entity
  */
-m.getBestBase = function(gameState, ent)
+m.getBestBase = function(gameState, ent, onlyConstructedBase = false)
 {
 	let pos = ent.position();
 	if (!pos)
@@ -254,7 +254,7 @@ m.getBestBase = function(gameState, ent)
 	let accessIndex = gameState.ai.accessibility.getAccessValue(pos);
 	for (let base of gameState.ai.HQ.baseManagers)
 	{
-		if (!base.anchor)
+		if (!base.anchor || onlyConstructedBase && base.anchor.foundationProgress() !== undefined)
 			continue;
 		let dist = API3.SquareVectorDistance(base.anchor.position(), pos);
 		if (base.accessIndex !== accessIndex)

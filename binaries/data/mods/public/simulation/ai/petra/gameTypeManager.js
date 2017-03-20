@@ -376,7 +376,7 @@ m.GameTypeManager.prototype.pickCriticalEntRetreatLocation = function(gameState,
 	// Couldn't find a place to garrison, so the ent will flee from attacks
 	criticalEnt.setStance("passive");
 	let accessIndex = gameState.ai.accessibility.getAccessValue(criticalEnt.position());
-	let basePos = m.getBestBase(gameState, criticalEnt);
+	let basePos = m.getBestBase(gameState, criticalEnt, true);
 	if (basePos && basePos.accessIndex == accessIndex)
 		criticalEnt.move(basePos.anchor.position()[0], basePos.anchor.position()[1]);
 };
