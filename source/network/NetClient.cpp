@@ -119,12 +119,14 @@ CNetClient::CNetClient(CGame* game, bool isLocalClient) :
 	AddTransition(NCS_LOADING, (uint)NMT_KICKED, NCS_LOADING, (void*)&OnKicked, context);
 	AddTransition(NCS_LOADING, (uint)NMT_CLIENT_TIMEOUT, NCS_LOADING, (void*)&OnClientTimeout, context);
 	AddTransition(NCS_LOADING, (uint)NMT_CLIENT_PERFORMANCE, NCS_LOADING, (void*)&OnClientPerformance, context);
+	AddTransition(NCS_LOADING, (uint)NMT_CLIENTS_LOADING, NCS_LOADING, (void*)&OnClientsLoading, context);
 	AddTransition(NCS_LOADING, (uint)NMT_LOADED_GAME, NCS_INGAME, (void*)&OnLoadedGame, context);
 
 	AddTransition(NCS_INGAME, (uint)NMT_REJOINED, NCS_INGAME, (void*)&OnRejoined, context);
 	AddTransition(NCS_INGAME, (uint)NMT_KICKED, NCS_INGAME, (void*)&OnKicked, context);
 	AddTransition(NCS_INGAME, (uint)NMT_CLIENT_TIMEOUT, NCS_INGAME, (void*)&OnClientTimeout, context);
 	AddTransition(NCS_INGAME, (uint)NMT_CLIENT_PERFORMANCE, NCS_INGAME, (void*)&OnClientPerformance, context);
+	AddTransition(NCS_INGAME, (uint)NMT_CLIENTS_LOADING, NCS_INGAME, (void*)&OnClientsLoading, context);
 	AddTransition(NCS_INGAME, (uint)NMT_CLIENT_PAUSED, NCS_INGAME, (void*)&OnClientPaused, context);
 	AddTransition(NCS_INGAME, (uint)NMT_CHAT, NCS_INGAME, (void*)&OnChat, context);
 	AddTransition(NCS_INGAME, (uint)NMT_GAME_SETUP, NCS_INGAME, (void*)&OnGameSetup, context);
@@ -775,6 +777,28 @@ bool CNetClient::OnClientPerformance(void *context, CFsmEvent* event)
 		client->PushGuiMessage(msg);
 	}
 
+	return true;
+}
+
+bool CNetClient::OnClientsLoading(void *context, CFsmEvent *event)
+{
+	ENSURE(event->GetType() == (uint)NMT_CLIENTS_LOADING);
+
+	CClientsLoadingMessage* message = (CClientsLoadingMessage*)event->GetParamRef();
+
+	std::vector<CStr> guids;
+	guids.reserve(message->m_Clients.size());
+	for (const CClientsLoadingMessage::S_m_Clients& client : message->m_Clients)
+		guids.push_back(client.m_GUID);
+
+	CNetClient* client = (CNetClient*)context;
+	JSContext* cx = client->GetScriptInterface().GetContext();
+	JSAutoRequest rq(cx);
+
+	JS::RootedValue msg(cx);
+	client->GetScriptInterface().Eval("({ 'type':'clients-loading' })", &msg);
+	client->GetScriptInterface().SetProperty(msg, "guids", guids);
+	client->PushGuiMessage(msg);
 	return true;
 }
 

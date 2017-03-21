@@ -1178,13 +1178,29 @@ bool CNetServerWorker::OnLoadedGame(void* context, CFsmEvent* event)
 {
 	ENSURE(event->GetType() == (uint)NMT_LOADED_GAME);
 
-	CNetServerSession* session = (CNetServerSession*)context;
-	CNetServerWorker& server = session->GetServer();
+	CNetServerSession* loadedSession = (CNetServerSession*)context;
+	CNetServerWorker& server = loadedSession->GetServer();
 
-	// We're in the loading state, so wait until every player has loaded before
-	// starting the game
+	// We're in the loading state, so wait until every client has loaded
+	// before starting the game
 	ENSURE(server.m_State == SERVER_STATE_LOADING);
-	server.CheckGameLoadStatus(session);
+	if (server.CheckGameLoadStatus(loadedSession))
+		return true;
+
+	CClientsLoadingMessage message;
+	// We always send all GUIDs of clients in the loading state
+	// so that we don't have to bother about switching GUI pages
+	for (CNetServerSession* session : server.m_Sessions)
+		if (session->GetCurrState() != NSS_INGAME && loadedSession->GetGUID() != session->GetGUID())
+		{
+			CClientsLoadingMessage::S_m_Clients client;
+			client.m_GUID = session->GetGUID();
+			message.m_Clients.push_back(client);
+		}
+
+	// Send to the client who has loaded the game but did not reach the NSS_INGAME state yet
+	loadedSession->SendMessage(&message);
+	server.Broadcast(&message, { NSS_INGAME });
 
 	return true;
 }
@@ -1331,11 +1347,11 @@ bool CNetServerWorker::OnClientPaused(void* context, CFsmEvent* event)
 	return true;
 }
 
-void CNetServerWorker::CheckGameLoadStatus(CNetServerSession* changedSession)
+bool CNetServerWorker::CheckGameLoadStatus(CNetServerSession* changedSession)
 {
 	for (const CNetServerSession* session : m_Sessions)
 		if (session != changedSession && session->GetCurrState() != NSS_INGAME)
-			return;
+			return false;
 
 	// Inform clients that everyone has loaded the map and that the game can start
 	CLoadedGameMessage loaded;
@@ -1345,6 +1361,7 @@ void CNetServerWorker::CheckGameLoadStatus(CNetServerSession* changedSession)
 	Broadcast(&loaded, { NSS_PREGAME, NSS_INGAME });
 
 	m_State = SERVER_STATE_INGAME;
+	return true;
 }
 
 void CNetServerWorker::StartGame()
