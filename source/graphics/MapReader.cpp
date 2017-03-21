@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -859,14 +859,15 @@ void CXMLReader::ReadPaths(XMBElement parent)
 			CCinemaData pathData;
 			XMBAttributeList attrs = element.GetAttributes();
 			CStrW pathName(attrs.GetNamedItem(at_name).FromUTF8());
-			pathData.m_Timescale = fixed::FromString(attrs.GetNamedItem(at_timescale));
-			TNSpline pathSpline, targetSpline;
-			fixed lastTargetTime = fixed::Zero();
-
 			pathData.m_Name = pathName;
+			pathData.m_Timescale = fixed::FromString(attrs.GetNamedItem(at_timescale));
 			pathData.m_Orientation = attrs.GetNamedItem(at_orientation).FromUTF8();
 			pathData.m_Mode = attrs.GetNamedItem(at_mode).FromUTF8();
 			pathData.m_Style = attrs.GetNamedItem(at_style).FromUTF8();
+
+			TNSpline positionSpline, targetSpline;
+			fixed lastPositionTime = fixed::Zero();
+			fixed lastTargetTime = fixed::Zero();
 
 			XERO_ITER_EL(element, pathChild)
 			{
@@ -876,9 +877,7 @@ void CXMLReader::ReadPaths(XMBElement parent)
 				// Load node data used for spline
 				if (elementName == el_node)
 				{
-					bool positionDeclared = false;
-					SplineData data;
-					data.Distance = fixed::FromString(attrs.GetNamedItem(at_deltatime));
+					lastPositionTime += fixed::FromString(attrs.GetNamedItem(at_deltatime));
 					lastTargetTime += fixed::FromString(attrs.GetNamedItem(at_deltatime));
 					XERO_ITER_EL(pathChild, nodeChild)
 					{
@@ -887,16 +886,17 @@ void CXMLReader::ReadPaths(XMBElement parent)
 
 						if (elementName == el_position)
 						{
-							data.Position.X = fixed::FromString(attrs.GetNamedItem(at_x));
-							data.Position.Y = fixed::FromString(attrs.GetNamedItem(at_y));
-							data.Position.Z = fixed::FromString(attrs.GetNamedItem(at_z));
-							positionDeclared = true;
+							CFixedVector3D position;
+							position.X = fixed::FromString(attrs.GetNamedItem(at_x));
+							position.Y = fixed::FromString(attrs.GetNamedItem(at_y));
+							position.Z = fixed::FromString(attrs.GetNamedItem(at_z));
+
+							positionSpline.AddNode(position, CFixedVector3D(), lastPositionTime);
+							lastPositionTime = fixed::Zero();
 						}
 						else if (elementName == el_rotation)
 						{
-							data.Rotation.X = fixed::FromString(attrs.GetNamedItem(at_x));
-							data.Rotation.Y = fixed::FromString(attrs.GetNamedItem(at_y));
-							data.Rotation.Z = fixed::FromString(attrs.GetNamedItem(at_z));
+							// TODO: Implement rotation slerp/spline as another object
 						}
 						else if (elementName == el_target)
 						{
@@ -911,17 +911,13 @@ void CXMLReader::ReadPaths(XMBElement parent)
 						else
 							LOGWARNING("Invalid cinematic element for node child");
 					}
-
-					// Skip the node if no position
-					if (positionDeclared)
-						pathSpline.AddNode(data.Position, data.Rotation, data.Distance);
 				}
 				else
 					LOGWARNING("Invalid cinematic element for path child");
 			}
 
 			// Construct cinema path with data gathered
-			CCinemaPath path(pathData, pathSpline, targetSpline);
+			CCinemaPath path(pathData, positionSpline, targetSpline);
 			if (path.Empty())
 			{
 				LOGWARNING("Path with name '%s' is empty", pathName.ToUTF8());

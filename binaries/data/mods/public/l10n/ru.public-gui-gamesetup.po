@@ -72,8 +72,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-03 09:01+0100\n"
-"PO-Revision-Date: 2017-03-03 12:30+0000\n"
+"POT-Creation-Date: 2017-03-17 09:01+0100\n"
+"PO-Revision-Date: 2017-03-17 20:22+0000\n"
 "Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -215,49 +215,49 @@ msgctxt "team"
 msgid "None"
 msgstr "Нет"
 
-#: gui/gamesetup/gamesetup.js:1343
+#: gui/gamesetup/gamesetup.js:1341
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1435
+#: gui/gamesetup/gamesetup.js:1433
 msgctxt "map size"
 msgid "Default"
 msgstr "По умолчанию"
 
-#: gui/gamesetup/gamesetup.js:1506
+#: gui/gamesetup/gamesetup.js:1504
 msgid "Loading..."
 msgstr "Загрузка…"
 
-#: gui/gamesetup/gamesetup.js:1639
+#: gui/gamesetup/gamesetup.js:1637
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "ИИ: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1644
+#: gui/gamesetup/gamesetup.js:1642
 msgid "Unassigned"
 msgstr "Не назначено"
 
-#: gui/gamesetup/gamesetup.js:1804
+#: gui/gamesetup/gamesetup.js:1802
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1811
+#: gui/gamesetup/gamesetup.js:1809
 msgid "Unknown Player"
 msgstr "Неизвестный Игрок"
 
-#: gui/gamesetup/gamesetup.js:1850
+#: gui/gamesetup/gamesetup.js:1848
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1851
+#: gui/gamesetup/gamesetup.js:1849
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:1852
+#: gui/gamesetup/gamesetup.js:1850
 msgid "HH:mm"
 msgstr "HH:mm"
 
@@ -266,42 +266,51 @@ msgstr "HH:mm"
 msgid "%(name)s's game"
 msgstr "Игра %(name)s"
 
-#: gui/gamesetup/gamesetup_mp.js:114
+#: gui/gamesetup/gamesetup_mp.js:106
+msgid "Please enter a valid server name."
+msgstr "Пожалуйста, введите корректное имя сервера."
+
+#: gui/gamesetup/gamesetup_mp.js:113
+#, javascript-format
+msgid "Server port number must be between %(min)s and %(max)s."
+msgstr "Номер порта сервера должен находиться в диапазоне от %(min)s до %(max)s."
+
+#: gui/gamesetup/gamesetup_mp.js:130
 msgid "Connecting to server..."
 msgstr "Соединение с сервером..."
 
-#: gui/gamesetup/gamesetup_mp.js:133
+#: gui/gamesetup/gamesetup_mp.js:149
 #, javascript-format
 msgid "Net message: %(message)s"
 msgstr "Новое сообщение: %(message)s"
 
-#: gui/gamesetup/gamesetup_mp.js:202
+#: gui/gamesetup/gamesetup_mp.js:218
 msgid "Registering with server..."
 msgstr "Регистрация на сервере..."
 
-#: gui/gamesetup/gamesetup_mp.js:208
+#: gui/gamesetup/gamesetup_mp.js:224
 msgid "Game has already started, rejoining..."
 msgstr "Игра уже началась, подключение..."
 
-#: gui/gamesetup/gamesetup_mp.js:276
+#: gui/gamesetup/gamesetup_mp.js:292
 msgid "Game name already in use."
 msgstr "Название игры уже используется"
 
-#: gui/gamesetup/gamesetup_mp.js:292
+#: gui/gamesetup/gamesetup_mp.js:308
 #, javascript-format
 msgid "Cannot host game: %(message)s."
 msgstr "Не удалось создать игру: %(message)s."
 
-#: gui/gamesetup/gamesetup_mp.js:293 gui/gamesetup/gamesetup_mp.js:322
+#: gui/gamesetup/gamesetup_mp.js:309 gui/gamesetup/gamesetup_mp.js:338
 msgid "Error"
 msgstr "Ошибка"
 
-#: gui/gamesetup/gamesetup_mp.js:321
+#: gui/gamesetup/gamesetup_mp.js:337
 #, javascript-format
 msgid "Cannot join game: %(message)s."
 msgstr "Не удалось подключится к игре: %(message)s."
 
-#: gui/gamesetup/gamesetup_mp.js:346
+#: gui/gamesetup/gamesetup_mp.js:362
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "игра игрока %(playername)s"

@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-06 09:29+0100\n"
-"PO-Revision-Date: 2017-03-11 17:43+0000\n"
-"Last-Translator: Petr Hála <halapetr@selfnet.cz>\n"
+"PO-Revision-Date: 2017-03-18 08:18+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -142,7 +142,7 @@ msgstr "Požádat své spojence o útok na tohoto nepřítele"
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
-msgstr "Podplať náhodnou jednotku tohoto hráče a ona ti poskytne její vizi po omezenou dobu."
+msgstr "Podplaťte náhodnou jednotku tohoto hráče a ona ti na omezenou dobu poskytne svůj výhled."
 
 #: gui/session/menu.js:667
 #, javascript-format
@@ -930,7 +930,7 @@ msgstr "Zmáčkni %(hotkey)s pro otevření spojeneckého rozhovoru."
 #: gui/session/session.js:391
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
-msgstr "Zmáčkni %(hotkey)s aby si otevřel dříve vybraný soukromý rozhovor."
+msgstr "Stiskněte %(hotkey)s pro otevření dříve vybraného soukromého rozhovoru."
 
 #: gui/session/session.js:395
 msgid "Find idle worker"
@@ -942,7 +942,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it (Pressing "
 "%(hotkey)s while selecting will also bring its share to 100%%) and then use "
 "the arrows of the other types to modify their shares."
-msgstr ""
+msgstr "Vyberte jeden druh zboží, jež chcete změnit klepnutím na něj (stisknutí %(hotkey)s v okamžiku výběru vyzvedne jeho podíl na 100%%), a pak použijte šipky jiných druhů pro změnění jejich podílů."
 
 #: gui/session/session.js:559
 #, javascript-format
@@ -1035,7 +1035,7 @@ msgstr "Režim zrychlení času"
 #: gui/session/session.js:1294
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
-msgstr ""
+msgstr "%(time)s (%(speed)sx)"
 
 #: gui/session/unit_actions.js:572
 msgid "Origin trade market."

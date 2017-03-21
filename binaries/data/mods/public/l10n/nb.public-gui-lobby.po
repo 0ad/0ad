@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-03 09:01+0100\n"
-"PO-Revision-Date: 2017-03-03 13:31+0000\n"
+"PO-Revision-Date: 2017-03-18 21:39+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -72,7 +72,7 @@ msgstr "Du har blitt kastet ut fra lobbyen!"
 #: gui/lobby/lobby.js:220
 #, javascript-format
 msgid "%(nick)s has been banned from the lobby."
-msgstr ""
+msgstr "%(nick)s har blitt utestengt fra lobbyen."
 
 #: gui/lobby/lobby.js:221
 #, javascript-format
@@ -384,7 +384,7 @@ msgstr "Vis profil"
 
 #: gui/lobby/lobby.xml:(caption):350
 msgid "Please enter a player name."
-msgstr ""
+msgstr "Skriv inn et spillernavn"
 
 #: gui/lobby/lobby.xml:(heading):40
 msgid "Status"

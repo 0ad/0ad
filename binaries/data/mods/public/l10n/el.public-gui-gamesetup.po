@@ -30,8 +30,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-03 09:01+0100\n"
-"PO-Revision-Date: 2017-03-15 22:39+0000\n"
+"POT-Creation-Date: 2017-03-17 09:01+0100\n"
+"PO-Revision-Date: 2017-03-17 13:02+0000\n"
 "Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -173,49 +173,49 @@ msgctxt "team"
 msgid "None"
 msgstr "Καμία"
 
-#: gui/gamesetup/gamesetup.js:1343
+#: gui/gamesetup/gamesetup.js:1341
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1435
+#: gui/gamesetup/gamesetup.js:1433
 msgctxt "map size"
 msgid "Default"
 msgstr "Προεπιλογή"
 
-#: gui/gamesetup/gamesetup.js:1506
+#: gui/gamesetup/gamesetup.js:1504
 msgid "Loading..."
 msgstr "Φόρτωση..."
 
-#: gui/gamesetup/gamesetup.js:1639
+#: gui/gamesetup/gamesetup.js:1637
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1644
+#: gui/gamesetup/gamesetup.js:1642
 msgid "Unassigned"
 msgstr "Δεν ορίστηκε"
 
-#: gui/gamesetup/gamesetup.js:1804
+#: gui/gamesetup/gamesetup.js:1802
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1811
+#: gui/gamesetup/gamesetup.js:1809
 msgid "Unknown Player"
 msgstr "Άγνωστος παίκτης"
 
-#: gui/gamesetup/gamesetup.js:1850
+#: gui/gamesetup/gamesetup.js:1848
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1851
+#: gui/gamesetup/gamesetup.js:1849
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:1852
+#: gui/gamesetup/gamesetup.js:1850
 msgid "HH:mm"
 msgstr "HH:mm"
 
@@ -224,42 +224,51 @@ msgstr "HH:mm"
 msgid "%(name)s's game"
 msgstr "Παιχνίδι του %(name)s"
 
-#: gui/gamesetup/gamesetup_mp.js:114
+#: gui/gamesetup/gamesetup_mp.js:106
+msgid "Please enter a valid server name."
+msgstr "Παρακαλώ πληκτρολογήστε ένα έγκυρο όνομα διακομιστή."
+
+#: gui/gamesetup/gamesetup_mp.js:113
+#, javascript-format
+msgid "Server port number must be between %(min)s and %(max)s."
+msgstr "Ο αριθμός της θύρας του διακομιστή πρέπει να είναι μεταξύ %(min)s και %(max)s."
+
+#: gui/gamesetup/gamesetup_mp.js:130
 msgid "Connecting to server..."
 msgstr "Σύνδεση με διακομιστή..."
 
-#: gui/gamesetup/gamesetup_mp.js:133
+#: gui/gamesetup/gamesetup_mp.js:149
 #, javascript-format
 msgid "Net message: %(message)s"
 msgstr "Μήνυμα διαδικτύου: %(message)s"
 
-#: gui/gamesetup/gamesetup_mp.js:202
+#: gui/gamesetup/gamesetup_mp.js:218
 msgid "Registering with server..."
 msgstr "Εγγραφή με τον διακομιστή ..."
 
-#: gui/gamesetup/gamesetup_mp.js:208
+#: gui/gamesetup/gamesetup_mp.js:224
 msgid "Game has already started, rejoining..."
 msgstr "Το παιχνίδι έχει ήδη ξεκινήσει , επανασύνδεση ..."
 
-#: gui/gamesetup/gamesetup_mp.js:276
+#: gui/gamesetup/gamesetup_mp.js:292
 msgid "Game name already in use."
 msgstr "Το όνομα παιχνιδιού είναι ήδη σε χρήση."
 
-#: gui/gamesetup/gamesetup_mp.js:292
+#: gui/gamesetup/gamesetup_mp.js:308
 #, javascript-format
 msgid "Cannot host game: %(message)s."
 msgstr "Δεν μπορεί να φιλοξενήσει παιχνίδι: %(message)s."
 
-#: gui/gamesetup/gamesetup_mp.js:293 gui/gamesetup/gamesetup_mp.js:322
+#: gui/gamesetup/gamesetup_mp.js:309 gui/gamesetup/gamesetup_mp.js:338
 msgid "Error"
 msgstr "Σφάλμα"
 
-#: gui/gamesetup/gamesetup_mp.js:321
+#: gui/gamesetup/gamesetup_mp.js:337
 #, javascript-format
 msgid "Cannot join game: %(message)s."
 msgstr "Δεν μπορεί να συνδεθεί στο παιχνίδι: %(message)s."
 
-#: gui/gamesetup/gamesetup_mp.js:346
+#: gui/gamesetup/gamesetup_mp.js:362
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "Το παιχνίδι του/ων %(playername)s"

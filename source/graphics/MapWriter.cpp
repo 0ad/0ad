@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -409,7 +409,7 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 			for ( ; it != paths.end(); ++it )
 			{
 				fixed timescale = it->second.GetTimescale();
-				const std::vector<SplineData>& nodes = it->second.GetAllNodes();
+				const std::vector<SplineData>& position_nodes = it->second.GetAllNodes();
 				const std::vector<SplineData>& target_nodes = it->second.GetTargetSpline().GetAllNodes();
 				const CCinemaData* data = it->second.GetData();
 
@@ -420,46 +420,55 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 				XML_Attribute("mode", data->m_Mode);
 				XML_Attribute("style", data->m_Style);
 
+				struct SEvent
+				{
+					fixed time;
+					const char* type;
+					CFixedVector3D value;
+					SEvent(fixed time, const char* type, CFixedVector3D value)
+						: time(time), type(type), value(value)
+					{}
+					bool operator<(const SEvent& another)
+					{
+						return time < another.time;
+					}
+				};
+
+				// All events of a manipulating of camera (position/rotation/target)
+				std::vector<SEvent> events;
+
+				fixed last_position = fixed::Zero();
+				for (size_t i = 0; i < position_nodes.size(); ++i)
+				{
+					fixed distance = i > 0 ? position_nodes[i - 1].Distance : fixed::Zero();
+					last_position += distance;
+					events.emplace_back(last_position, "Position", position_nodes[i].Position);
+				}
+
 				fixed last_target = fixed::Zero();
-				for (size_t i = 0, j = 0; i < nodes.size(); ++i)
+				for (size_t i = 0; i < target_nodes.size(); ++i)
+				{
+					fixed distance = i > 0 ? target_nodes[i - 1].Distance : fixed::Zero();
+					last_target += distance;
+					events.emplace_back(last_target, "Target", target_nodes[i].Position);
+				}
+
+				std::sort(events.begin(), events.end());
+				for (size_t i = 0; i < events.size();)
 				{
 					XML_Element("Node");
-					fixed distance = i > 0 ? nodes[i - 1].Distance : fixed::Zero();
-					last_target += distance;
-
-					XML_Attribute("deltatime", distance);
-
+					fixed deltatime = i > 0 ? (events[i].time - events[i - 1].time) : fixed::Zero();
+					XML_Attribute("deltatime", deltatime);
+					size_t j = i;
+					for (; j < events.size() && events[j].time == events[i].time; ++j)
 					{
-						XML_Element("Position");
-						XML_Attribute("x", nodes[i].Position.X);
-						XML_Attribute("y", nodes[i].Position.Y);
-						XML_Attribute("z", nodes[i].Position.Z);
+						// Types: Position/Rotation/Target
+						XML_Element(events[j].type);
+						XML_Attribute("x", events[j].value.X);
+						XML_Attribute("y", events[j].value.Y);
+						XML_Attribute("z", events[j].value.Z);
 					}
-
-					{
-						XML_Element("Rotation");
-						XML_Attribute("x", nodes[i].Rotation.X);
-						XML_Attribute("y", nodes[i].Rotation.Y);
-						XML_Attribute("z", nodes[i].Rotation.Z);
-					}
-
-					if (j >= target_nodes.size())
-						continue;
-
-					fixed target_distance = j > 0 ? target_nodes[j - 1].Distance : fixed::Zero();
-
-					if (target_distance > last_target)
-						continue;
-
-					{
-						XML_Element("Target");
-						XML_Attribute("x", target_nodes[j].Position.X);
-						XML_Attribute("y", target_nodes[j].Position.Y);
-						XML_Attribute("z", target_nodes[j].Position.Z);
-					}
-
-					last_target = fixed::Zero();
-					++j;
+					i = j;
 				}
 			}
 		}

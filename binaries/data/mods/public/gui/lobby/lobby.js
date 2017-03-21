@@ -502,7 +502,8 @@ function displayProfile(caller)
 	else if (caller == "lobbylist")
 	{
 		playerList = Engine.GetGUIObjectByName("playersBox");
-		selectGameFromPlayername(playerList.list[playerList.selected]);
+		if (playerList.selected != -1)
+			selectGameFromPlayername(playerList.list[playerList.selected]);
 	}
 	else if (caller == "fetch")
 	{
