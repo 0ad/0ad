@@ -66,6 +66,15 @@
       pop_wonder
     </Technologies>
   </ProductionQueue>
+  <ResourceTrickle>
+    <Rates>
+      <food>1.0</food>
+      <wood>1.0</wood>
+      <stone>1.0</stone>
+      <metal>1.0</metal>
+    </Rates>
+    <Interval>2000</Interval>
+  </ResourceTrickle>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_wonder.xml</select>
