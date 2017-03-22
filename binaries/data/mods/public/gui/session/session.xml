@@ -60,7 +60,7 @@
 		<object name="resumeMessage" size="50%-128 40%+20 50%+128 40%+40" type="text" style="ResumeMessageText" ghost="true" z="0">
 			<translatableAttribute id="caption">Click to Resume Game</translatableAttribute>
 		</object>
-		<object name="pausedByText" size="30% 40%+50 70% 100%" type="text" style="PausedByText" ghost="true" hidden="true" z="0"/>
+		<object name="pausedByText" size="30% 40%+50 70% 100%" type="text" style="netStatusPlayersText" ghost="true" hidden="true" z="0"/>
 		<action on="Press">togglePause();</action>
 	</object>
 
@@ -159,6 +159,7 @@
 		</object>
 		<action on="Press">leaveGame();</action>
 	</object>
+	<object name="loadingClientsText" size="50%-300 50%+60 50%+300 50%+110" type="text" style="netStatusPlayersText" hidden="true" z="0"/>
 </object>
 
 </objects>

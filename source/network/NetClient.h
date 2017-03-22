@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -233,6 +233,7 @@ private:
 	static bool OnKicked(void* context, CFsmEvent* event);
 	static bool OnClientTimeout(void* context, CFsmEvent* event);
 	static bool OnClientPerformance(void* context, CFsmEvent* event);
+	static bool OnClientsLoading(void* context, CFsmEvent* event);
 	static bool OnClientPaused(void* context, CFsmEvent* event);
 	static bool OnLoadedGame(void* context, CFsmEvent* event);
 

@@ -50,6 +50,9 @@ var g_NetMessageTypes = {
 	"paused": msg => {
 		setClientPauseState(msg.guid, msg.pause);
 	},
+	"clients-loading": msg => {
+		handleClientsLoadingMessage(msg.guids);
+	},
 	"rejoined": msg => {
 		addChatMessage({
 			"type": "rejoined",
@@ -139,7 +142,7 @@ var g_StatusMessageTypes = {
 		sprintf(translate("Reason: %(reason)s."), {
 			"reason": getDisconnectReason(msg.reason, true)
 		}),
-	"waiting_for_players": msg => translate("Waiting for other players to connect..."),
+	"waiting_for_players": msg => translate("Waiting for players to connect:"),
 	"join_syncing": msg => translate("Synchronising gameplay with other players..."),
 	"active": msg => ""
 };
@@ -585,10 +588,13 @@ function handleNetStatusMessage(message)
 
 	g_IsNetworkedActive = message.status == "active";
 
-	let label = Engine.GetGUIObjectByName("netStatus");
+	let netStatus = Engine.GetGUIObjectByName("netStatus");
 	let statusMessage = g_StatusMessageTypes[message.status](message);
-	label.caption = statusMessage;
-	label.hidden = !statusMessage;
+	netStatus.caption = statusMessage;
+	netStatus.hidden = !statusMessage;
+
+	let loadingClientsText = Engine.GetGUIObjectByName("loadingClientsText");
+	loadingClientsText.hidden = message.status != "waiting_for_players";
 
 	if (message.status == "disconnected")
 	{
@@ -599,6 +605,12 @@ function handleNetStatusMessage(message)
 		g_Disconnected = true;
 		closeOpenDialogs();
 	}
+}
+
+function handleClientsLoadingMessage(guids)
+{
+	let loadingClientsText = Engine.GetGUIObjectByName("loadingClientsText");
+	loadingClientsText.caption = guids.map(guid => colorizePlayernameByGUID(guid)).join(translate(", "));
 }
 
 function handlePlayerAssignmentsMessage(message)

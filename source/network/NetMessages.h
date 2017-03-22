@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,7 +28,7 @@
 
 #define PS_PROTOCOL_MAGIC				0x5073013f		// 'P', 's', 0x01, '?'
 #define PS_PROTOCOL_MAGIC_RESPONSE		0x50630121		// 'P', 'c', 0x01, '!'
-#define PS_PROTOCOL_VERSION				0x01010014		// Arbitrary protocol
+#define PS_PROTOCOL_VERSION				0x01010015		// Arbitrary protocol
 #define PS_DEFAULT_PORT					0x5073			// 'P', 's'
 
 // Defines the list of message types. The order of the list must not change.
@@ -67,6 +67,7 @@ enum NetMessageType
 
 	NMT_CLIENT_TIMEOUT,
 	NMT_CLIENT_PERFORMANCE,
+	NMT_CLIENTS_LOADING,
 	NMT_CLIENT_PAUSED,
 
 	NMT_LOADED_GAME,
@@ -190,6 +191,12 @@ START_NMT_CLASS_(ClientPerformance, NMT_CLIENT_PERFORMANCE)
 	NMT_START_ARRAY(m_Clients)
 		NMT_FIELD(CStr, m_GUID)
 		NMT_FIELD_INT(m_MeanRTT, u32, 4)
+	NMT_END_ARRAY()
+END_NMT_CLASS()
+
+START_NMT_CLASS_(ClientsLoading, NMT_CLIENTS_LOADING)
+	NMT_START_ARRAY(m_Clients)
+		NMT_FIELD(CStr, m_GUID)
 	NMT_END_ARRAY()
 END_NMT_CLASS()
 

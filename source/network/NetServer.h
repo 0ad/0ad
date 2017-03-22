@@ -255,7 +255,13 @@ private:
 	static bool OnDisconnect(void* context, CFsmEvent* event);
 	static bool OnClientPaused(void* context, CFsmEvent* event);
 
-	void CheckGameLoadStatus(CNetServerSession* changedSession);
+	/**
+	 * Checks if all clients have finished loading.
+	 * If so informs the clients about that and change the server state.
+	 *
+	 * Returns if all clients finished loading.
+	 */
+	bool CheckGameLoadStatus(CNetServerSession* changedSession);
 
 	void ConstructPlayerAssignmentMessage(CPlayerAssignmentMessage& message);
 
