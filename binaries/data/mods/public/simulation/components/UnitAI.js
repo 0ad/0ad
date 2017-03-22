@@ -182,7 +182,8 @@ UnitAI.prototype.UnitFsmSpec = {
 
 	// Called when being told to walk as part of a formation
 	"Order.FormationWalk": function(msg) {
-		if (this.IsTurret())
+		// Let players move captured domestic animals around
+		if (this.IsAnimal() && !this.IsDomestic() || this.IsTurret())
 		{
 			this.FinishOrder();
 			return;
@@ -254,7 +255,8 @@ UnitAI.prototype.UnitFsmSpec = {
 	},
 
 	"Order.Walk": function(msg) {
-		if (this.IsTurret())
+		// Let players move captured domestic animals around
+		if (this.IsAnimal() && !this.IsDomestic() || this.IsTurret())
 		{
 			this.FinishOrder();
 			return;
@@ -282,7 +284,8 @@ UnitAI.prototype.UnitFsmSpec = {
 	},
 
 	"Order.WalkAndFight": function(msg) {
-		if (this.IsTurret())
+		// Let players move captured domestic animals around
+		if (this.IsAnimal() && !this.IsDomestic() || this.IsTurret())
 		{
 			this.FinishOrder();
 			return;
@@ -308,7 +311,8 @@ UnitAI.prototype.UnitFsmSpec = {
 
 
 	"Order.WalkToTarget": function(msg) {
-		if (this.IsTurret())
+		// Let players move captured domestic animals around
+		if (this.IsAnimal() && !this.IsDomestic() || this.IsTurret())
 		{
 			this.FinishOrder();
 			return;
@@ -511,7 +515,7 @@ UnitAI.prototype.UnitFsmSpec = {
 	},
 
 	"Order.Patrol": function(msg) {
-		if (this.IsTurret())
+		if (this.IsAnimal() || this.IsTurret())
 		{
 			this.FinishOrder();
 			return;

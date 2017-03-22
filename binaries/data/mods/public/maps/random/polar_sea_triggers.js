@@ -1,6 +1,6 @@
 const debugLog = false;
 
-var attackerTemplate = "gaia/fauna_wolf_snow";
+var attackerTemplate = "trigger/fauna_wolf_snow_domestic";
 
 var minWaveSize = 1;
 var maxWaveSize = 3;
