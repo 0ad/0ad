@@ -84,16 +84,7 @@
 				name="userReportEnabledText"
 				type="text"
 				style="userReportText"
-			>
-				<attribute id="caption">
-					<keep>[font="sans-bold-16"]</keep>
-					<translate>Thank you for helping improve 0 A.D.!</translate>
-					<keep>[/font]\n\n</keep>
-					<translate>Anonymous feedback is currently enabled.</translate>
-					<keep>\n</keep>
-					<translate>Status: $status.</translate>
-				</attribute>
-			</object>
+			/>
 
 			<object type="button" style="StoneButton" size="8 100%-36 146 100%-8">
 				<translatableAttribute id="caption">Disable Feedback</translatableAttribute>
