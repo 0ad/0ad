@@ -75,7 +75,7 @@ function calculateTeamCounters(playerState)
 		g_TeamHelperData[playerState.team] = {
 			"food": 0,
 			"vegetarianFood": 0,
-			"female": 0,
+			"femaleCitizen": 0,
 			"worker": 0,
 			"enemyUnitsKilled": 0,
 			"unitsLost": 0,
@@ -89,7 +89,7 @@ function calculateTeamCounters(playerState)
 	g_TeamHelperData[playerState.team].food += playerState.statistics.resourcesGathered.food;
 	g_TeamHelperData[playerState.team].vegetarianFood += playerState.statistics.resourcesGathered.vegetarianFood;
 
-	g_TeamHelperData[playerState.team].female += playerState.statistics.unitsTrained.Female;
+	g_TeamHelperData[playerState.team].femaleCitizen += playerState.statistics.unitsTrained.FemaleCitizen;
 	g_TeamHelperData[playerState.team].worker += playerState.statistics.unitsTrained.Worker;
 
 	g_TeamHelperData[playerState.team].enemyUnitsKilled += playerState.statistics.enemyUnitsKilled.total;
@@ -439,7 +439,7 @@ function calculateVegetarianRatio(playerState)
 function calculateFeminization(playerState)
 {
 	return formatPercent(
-		playerState.statistics.unitsTrained.Female,
+		playerState.statistics.unitsTrained.FemaleCitizen,
 		playerState.statistics.unitsTrained.Worker);
 }
 
@@ -479,7 +479,7 @@ function calculateMiscellaneous(counters)
 			if (w == 0)
 				teamTotal = formatPercent(g_TeamHelperData[t].vegetarianFood, g_TeamHelperData[t].food);
 			else if (w == 1)
-				teamTotal = formatPercent(g_TeamHelperData[t].female, g_TeamHelperData[t].worker);
+				teamTotal = formatPercent(g_TeamHelperData[t].femaleCitizen, g_TeamHelperData[t].worker);
 			else if (w == 2)
 				teamTotal = formatRatio(g_TeamHelperData[t].enemyUnitsKilled, g_TeamHelperData[t].unitsLost);
 			else if (w == 3)

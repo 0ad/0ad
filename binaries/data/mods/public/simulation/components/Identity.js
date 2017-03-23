@@ -54,7 +54,7 @@ Identity.prototype.Schema =
 		"</element>" +
 	"</optional>" +
 	"<optional>" +
-		"<element name='Classes' a:help='Optional list of space-separated classes applying to this entity. Choices include: Animal, Apadana, ArmyCamp, Ashoka, BarterMarket, Celt, CitizenSoldier, CivCentre, Colony, ConquestCritical, Defensive, Domestic, DropsiteFood, DropsiteMetal, DropsiteStone, DropsiteWood, Elephant, Female, FishingBoat, ForestPlant, Fortress, GarrisonFortress, GarrisonTower, Gates, Human, Iberian, Immortal, Italian, Juggernaut, Kennel, Lighthouse, LongWall, MercenaryCamp, Naval, NavalMarket, Organic, Palace, Palisade, Player, PtolemyIV, SeaCreature, SiegeWall, SpecialBuilding, StoneWall, Structure, Syssiton, Theater, Tower, Unit'>" +
+		"<element name='Classes' a:help='Optional list of space-separated classes applying to this entity. Choices include: Animal, Apadana, ArmyCamp, Ashoka, BarterMarket, Celt, CitizenSoldier, CivCentre, Colony, ConquestCritical, Defensive, Domestic, DropsiteFood, DropsiteMetal, DropsiteStone, DropsiteWood, Elephant, FemaleCitizen, FishingBoat, ForestPlant, Fortress, GarrisonFortress, GarrisonTower, Gates, Human, Iberian, Immortal, Italian, Juggernaut, Kennel, Lighthouse, LongWall, MercenaryCamp, Naval, NavalMarket, Organic, Palace, Palisade, Player, PtolemyIV, SeaCreature, SiegeWall, SpecialBuilding, StoneWall, Structure, Syssiton, Theater, Tower, Unit'>" +
 			"<attribute name='datatype'>" +
 				"<value>tokens</value>" +
 			"</attribute>" +

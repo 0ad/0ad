@@ -8,7 +8,7 @@ StatisticsTracker.prototype.Init = function()
 	this.unitsClasses = [
 		"Infantry",
 		"Worker",
-		"Female",
+		"FemaleCitizen",
 		"Cavalry",
 		"Champion",
 		"Hero",
@@ -19,7 +19,7 @@ StatisticsTracker.prototype.Init = function()
 	this.unitsTrained = {
 		"Infantry": 0,
 		"Worker": 0,
-		"Female": 0,
+		"FemaleCitizen": 0,
 		"Cavalry": 0,
 		"Champion": 0,
 		"Hero": 0,
@@ -31,7 +31,7 @@ StatisticsTracker.prototype.Init = function()
 	this.unitsLost = {
 		"Infantry": 0,
 		"Worker": 0,
-		"Female": 0,
+		"FemaleCitizen": 0,
 		"Cavalry": 0,
 		"Champion": 0,
 		"Hero": 0,
@@ -44,7 +44,7 @@ StatisticsTracker.prototype.Init = function()
 	this.enemyUnitsKilled = {
 		"Infantry": 0,
 		"Worker": 0,
-		"Female": 0,
+		"FemaleCitizen": 0,
 		"Cavalry": 0,
 		"Champion": 0,
 		"Hero": 0,
@@ -57,7 +57,7 @@ StatisticsTracker.prototype.Init = function()
 	this.unitsCaptured = {
 		"Infantry": 0,
 		"Worker": 0,
-		"Female": 0,
+		"FemaleCitizen": 0,
 		"Cavalry": 0,
 		"Champion": 0,
 		"Hero": 0,
