@@ -421,7 +421,7 @@ public:
 			m_Unit->SetEntitySelection(key, selection);
 	}
 
-	virtual std::string GetAnimationName()
+	virtual std::string GetAnimationName() const
 	{
 		return m_AnimName;
 	}

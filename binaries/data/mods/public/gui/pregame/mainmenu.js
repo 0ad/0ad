@@ -122,11 +122,12 @@ function onTick()
 	updateMenuPosition(tickLength);
 
 	if (Engine.IsUserReportEnabled())
-	{
 		Engine.GetGUIObjectByName("userReportEnabledText").caption =
-			userReportEnabledText.replace(/\$status/,
-				formatUserReportStatus(Engine.GetUserReportStatus()));
-	}
+			'[font="sans-bold-16"]' + translate("Thank you for helping improve 0 A.D.!") + "[/font]\n\n" +
+			translate("Anonymous feedback is currently enabled.") + "\n" +
+			sprintf(translate("Status: %(status)s."), {
+				"status": formatUserReportStatus(Engine.GetUserReportStatus())
+			});
 
 	// Show splash screens here, so we don't interfere with main menu hotloading
 	if (g_ShowSplashScreens)

@@ -89,7 +89,7 @@ public:
 	/**
 	 * Returns the name of the currently played animation.
 	 */
-	virtual std::string GetAnimationName() = 0;
+	virtual std::string GetAnimationName() const = 0;
 
 	/**
 	 * Start playing the given animation. If there are multiple possible animations then it will
