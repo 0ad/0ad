@@ -2,7 +2,7 @@
 <Entity parent="template_unit">
   <Armour>
     <Hack>1</Hack>
-    <Pierce>1</Pierce>
+    <Pierce>2</Pierce>
     <Crush>1</Crush>
   </Armour>
   <Attack>
@@ -14,7 +14,7 @@
     </Slaughter>
     <Melee>
       <Hack>7</Hack>
-      <Pierce>0</Pierce>
+      <Pierce>2</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>3.0</MaxRange>
       <RepeatTime>1000</RepeatTime>
@@ -22,7 +22,7 @@
     </Melee>
   </Attack>
   <Cost>
-    <BuildTime>12</BuildTime>
+    <BuildTime>15</BuildTime>
     <Population>0</Population>
     <Resources>
       <food>100</food>
@@ -36,7 +36,7 @@
     <Height>3.0</Height>
   </Footprint>
   <Health>
-    <Max>80</Max>
+    <Max>90</Max>
   </Health>
   <Identity>
     <Classes datatype="tokens">Organic Human</Classes>
@@ -46,7 +46,7 @@
     <Tooltip>Cannot attack structures.</Tooltip>
   </Identity>
   <Loot>
-    <xp>130</xp>
+    <xp>100</xp>
     <food>10</food>
     <wood>0</wood>
     <stone>0</stone>
