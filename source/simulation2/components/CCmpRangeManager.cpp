@@ -1289,7 +1289,7 @@ public:
 
 		CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
 		CmpPtr<ICmpWaterManager> cmpWaterManager(GetSystemEntity());
-		entity_pos_t waterLevel = cmpWaterManager->GetWaterLevel(pos.X,pos.Z);
+		entity_pos_t waterLevel = cmpWaterManager ? cmpWaterManager->GetWaterLevel(pos.X,pos.Z) : entity_pos_t::Zero();
 		entity_pos_t thisHeight = pos.Y > waterLevel ? pos.Y : waterLevel;
 
 		if (cmpTerrain)

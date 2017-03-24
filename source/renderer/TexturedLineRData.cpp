@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -85,9 +85,6 @@ void CTexturedLineRData::Update(const SOverlayTexturedLine& line)
 		return;
 	}
 
-	const CTerrain& terrain = line.m_SimContext->GetTerrain();
-	CmpPtr<ICmpWaterManager> cmpWaterManager(*line.m_SimContext, SYSTEM_ENTITY);
-
 	float v = 0.f;
 	std::vector<SVertex> vertices;
 	std::vector<u16> indices;
@@ -120,7 +117,10 @@ void CTexturedLineRData::Update(const SOverlayTexturedLine& line)
 	// each point was floating on water, for normal computation later)
 
 	// TODO: if we ever support more than one water level per map, recompute this per point
-	float w = cmpWaterManager->GetExactWaterLevel(p0.X, p0.Z);
+	CmpPtr<ICmpWaterManager> cmpWaterManager(*line.m_SimContext, SYSTEM_ENTITY);
+	float w = cmpWaterManager ? cmpWaterManager->GetExactWaterLevel(p0.X, p0.Z) : 0.f;
+
+	const CTerrain& terrain = line.m_SimContext->GetTerrain();
 
 	p0.Y = terrain.GetExactGroundLevel(p0.X, p0.Z);
 	if (p0.Y < w)
