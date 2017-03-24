@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Rayan <nitro361@gmail.com>, 2015
+# Omar Anwar <omaraglan91@yahoo.com>, 2017
 # Rayan <nitro361@gmail.com>, 2015
 # Safa Alfulaij <safa1996alfulaij@gmail.com>, 2014
 # صفا الفليج <safaalfulaij@hotmail.com>, 2014-2016
@@ -11,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-06 09:29+0100\n"
-"PO-Revision-Date: 2017-03-06 08:55+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-03-20 16:46+0000\n"
+"Last-Translator: Omar Anwar <omaraglan91@yahoo.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -71,12 +72,12 @@ msgstr "تاريخ %(civilization)s"
 #: gui/common/color.js:154
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames."
-msgstr ""
+msgstr "إضغط %(hotkey)s لكى تكمل تلقائياً أسماء اللاعبين."
 
 #: gui/common/color.js:157
 msgctxt "hotkey"
 msgid "Tab"
-msgstr ""
+msgstr "Tab"
 
 #: gui/common/functions_global_object.js:57
 #, javascript-format
@@ -162,12 +163,12 @@ msgstr "نعم"
 #: gui/common/functions_utility_loadsave.js:104
 #, javascript-format
 msgid "Delete the selected entry using %(hotkey)s."
-msgstr ""
+msgstr "أمسح المحتوى المحدد بأستخدام %(hotkey)s."
 
 #: gui/common/functions_utility_loadsave.js:109
 #, javascript-format
 msgid "Hold %(hotkey)s to delete without confirmation."
-msgstr ""
+msgstr "أضغط %(hotkey)s للمسح من غير تأكيد."
 
 #: gui/common/gamedescription.js:13
 msgid "A randomly selected map."
@@ -182,70 +183,70 @@ msgstr "آسفون، لا وصف متوفّر."
 #: gui/common/gamedescription.js:70
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:73
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:79
 #, javascript-format
 msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:82
 #, javascript-format
 msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:92
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
-msgstr ""
+msgstr "%(playerName)s (غير متصل)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:95
 #, javascript-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (غير متصل, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:102
 #, javascript-format
 msgid "%(playerName)s (%(civ)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:105
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:109
 #, javascript-format
 msgid "%(playerName)s"
-msgstr ""
+msgstr "%(playerName)s"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:112
 #, javascript-format
 msgid "%(playerName)s (%(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(state)s)"
 
 #: gui/common/gamedescription.js:130
 msgid "Unknown Civilization"
@@ -254,12 +255,12 @@ msgstr "حضارة مجهولة"
 #: gui/common/gamedescription.js:137
 msgctxt "playerstate"
 msgid "defeated"
-msgstr ""
+msgstr "هزمت"
 
 #: gui/common/gamedescription.js:138
 msgctxt "playerstate"
 msgid "won"
-msgstr ""
+msgstr "فزت"
 
 #: gui/common/gamedescription.js:160
 msgid "No Team"
@@ -282,74 +283,74 @@ msgstr "%(team)s:\n%(playerDescriptions)s"
 #: gui/common/gamedescription.js:172
 msgid "Observer"
 msgid_plural "Observers"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "لا مشاهدين"
+msgstr[1] "مشاهد"
+msgstr[2] "مشاهدان"
+msgstr[3] "مشاهدين"
+msgstr[4] "مشاهدين"
+msgstr[5] "مشاهدين"
 
 #: gui/common/gamedescription.js:194
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
 msgid_plural "Wonder (%(min)s minutes)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "اعجوبة( %(min)s دقيقة)"
+msgstr[1] "اعجوبة( %(min)s دقيقة)"
+msgstr[2] "اعجوبة( %(min)s دقيقة)"
+msgstr[3] "اعجوبة( %(min)s دقيقة)"
+msgstr[4] "اعجوبة( %(min)s دقيقة)"
+msgstr[5] "اعجوبة( %(min)s دقيقة)"
 
 #: gui/common/gamedescription.js:211
 msgid "Rated game"
-msgstr ""
+msgstr "لعبة مقيمة"
 
 #: gui/common/gamedescription.js:212
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
-msgstr ""
+msgstr "حينما الفائز بالمباراة يُحدد، القناة سوف تحتسب الدرجات له."
 
 #: gui/common/gamedescription.js:217
 msgid "Locked Teams"
-msgstr ""
+msgstr "فرق مغلقة"
 
 #: gui/common/gamedescription.js:218
 msgid "Players can't change the initial teams."
-msgstr ""
+msgstr "اللاعبين لا يمكنهم تغيير الفرق الداخلية."
 
 #: gui/common/gamedescription.js:222
 msgid "Diplomacy"
-msgstr ""
+msgstr "الدبلوماسية"
 
 #: gui/common/gamedescription.js:223
 msgid "Players can make alliances and declare war on allies."
-msgstr ""
+msgstr "اللاعبيين يمكنهم صنع حلفاء واعلان الحرب على الحلفاء."
 
 #: gui/common/gamedescription.js:228
 msgid "Last Man Standing"
-msgstr ""
+msgstr "الباقى الاخير"
 
 #: gui/common/gamedescription.js:229
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
-msgstr ""
+msgstr "فقط لاعب واحد يمكنه الفوز بهذه اللعبة. اذا كان اللاعبيين الباقيين حلفاء، سوف تبقى اللعبة شغالة حتى يبقى واحد فقط منهم."
 
 #: gui/common/gamedescription.js:233
 msgid "Allied Victory"
-msgstr ""
+msgstr "فوز حليف"
 
 #: gui/common/gamedescription.js:234
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr ""
+msgstr "اذا لاعب واحد فاز، هو او هى وحلفائهم يفوزون ايضاً. اذا مجموعة واحدة من الحلفاء بقوا، هم يفوزون."
 
 #: gui/common/gamedescription.js:240
 msgid "Ceasefire"
-msgstr ""
+msgstr "وقف اطلاق النار"
 
 #: gui/common/gamedescription.js:243 gui/pregame/mainmenu.js:91
 msgid "disabled"
@@ -367,52 +368,52 @@ msgstr[5] ""
 
 #: gui/common/gamedescription.js:252
 msgid "Map Name"
-msgstr ""
+msgstr "اسم الخريطة"
 
 #: gui/common/gamedescription.js:257
 msgid "Map Type"
-msgstr ""
+msgstr "نوع الخريطة"
 
 #: gui/common/gamedescription.js:266
 msgid "Map Size"
-msgstr ""
+msgstr "حجم الخريطة"
 
 #: gui/common/gamedescription.js:273
 msgid "Map Description"
-msgstr ""
+msgstr "وصف الخريطة"
 
 #: gui/common/gamedescription.js:276
 msgid "Randomly selects a map from the list"
-msgstr ""
+msgstr "عشوائياً أختر خريطة من القائمة"
 
 #: gui/common/gamedescription.js:285
 msgid "Starting Resources"
-msgstr ""
+msgstr "موارد البدء"
 
 #: gui/common/gamedescription.js:286
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
-msgstr ""
+msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
 #: gui/common/gamedescription.js:296
 msgid "Population Limit"
-msgstr ""
+msgstr "حد السكان"
 
 #: gui/common/gamedescription.js:304
 msgid "Disable Treasure"
-msgstr ""
+msgstr "تعطيل الكنوز"
 
 #: gui/common/gamedescription.js:309
 msgid "Revealed Map"
-msgstr ""
+msgstr "خريطة مكشوفة"
 
 #: gui/common/gamedescription.js:314
 msgid "Explored Map"
-msgstr ""
+msgstr "خريطة مُكتشفة"
 
 #: gui/common/gamedescription.js:319
 msgid "Cheats"
-msgstr ""
+msgstr "الغشّ"
 
 #: gui/common/gamedescription.js:324 gui/common/tooltips.js:63
 #: gui/common/tooltips.js:110 gui/common/tooltips.js:152
@@ -424,30 +425,30 @@ msgstr "%(label)s %(details)s"
 #: gui/common/gamedescription.js:327
 msgctxt "gamesetup option"
 msgid "enabled"
-msgstr ""
+msgstr "مُفعل"
 
 #: gui/common/gamedescription.js:328
 msgctxt "gamesetup option"
 msgid "disabled"
-msgstr ""
+msgstr "مُفعل"
 
 #: gui/common/gamedescription.js:345
 msgid "Victorious"
-msgstr ""
+msgstr "الفائز"
 
 #: gui/common/gamedescription.js:350
 msgid "Defeated"
-msgstr ""
+msgstr "المهزوم"
 
 #: gui/common/l10n.js:13
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
-msgstr ""
+msgstr "%(amount)s %(resourceType)s"
 
 #: gui/common/l10n.js:21
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
-msgstr ""
+msgstr "%(previousAmounts)s و %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
@@ -502,11 +503,11 @@ msgstr "إصدار ميفاق الشّبكة غير صحيح"
 
 #: gui/common/network.js:68
 msgid "Game is loading, please try again later"
-msgstr ""
+msgstr "اللعبة تُحمل، من فضلك حاول مرة أخرى لاحقاً"
 
 #: gui/common/network.js:69
 msgid "Game has already started, no observers allowed"
-msgstr ""
+msgstr "اللعبة قد بدأت، لا مشاهدين مسموحيين"
 
 #: gui/common/network.js:70
 msgid "You have been kicked"
@@ -526,7 +527,7 @@ msgstr "الخادم ممتلئ"
 
 #: gui/common/network.js:74
 msgid "Player identifier in use, retry connecting"
-msgstr ""
+msgstr "مُعرف اللاعب مُستخدم، يحاول الاتصال مجدداً"
 
 #: gui/common/network.js:77
 #, javascript-format
@@ -553,44 +554,44 @@ msgstr "قُطع الاتّصال"
 
 #: gui/common/network.js:105
 msgid "Only the host can kick clients!"
-msgstr ""
+msgstr "فقط المُضيف يمكنه طرد المستخدميين!"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
 #: gui/common/network.js:159
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
-msgstr ""
+msgstr "المستخدمون (%(num)s): %(users)s"
 
 #: gui/common/settings.js:108
 msgctxt "aiDiff"
 msgid "Sandbox"
-msgstr ""
+msgstr "لعب حر"
 
 #: gui/common/settings.js:112
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr ""
+msgstr "سهل جداً"
 
 #: gui/common/settings.js:116
 msgctxt "aiDiff"
 msgid "Easy"
-msgstr ""
+msgstr "سهل"
 
 #: gui/common/settings.js:120
 msgctxt "aiDiff"
 msgid "Medium"
-msgstr ""
+msgstr "متوسط"
 
 #: gui/common/settings.js:125
 msgctxt "aiDiff"
 msgid "Hard"
-msgstr ""
+msgstr "صعب"
 
 #: gui/common/settings.js:129
 msgctxt "aiDiff"
 msgid "Very Hard"
-msgstr ""
+msgstr "صعب جداً"
 
 #: gui/common/settings.js:151
 #, javascript-format
@@ -607,7 +608,7 @@ msgstr[5] "%(min)s دقيقة"
 #: gui/common/settings.js:173
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr ""
+msgstr "لا وقف لاطلاق النار"
 
 #: gui/common/settings.js:174
 #, javascript-format
@@ -624,7 +625,7 @@ msgstr[5] "%(minutes)s دقيقة"
 #: gui/common/settings.js:188
 msgctxt "map"
 msgid "Skirmish"
-msgstr ""
+msgstr "مناوشة"
 
 #: gui/common/settings.js:193
 msgctxt "map"
@@ -634,35 +635,35 @@ msgstr "عشوائيّة"
 #: gui/common/settings.js:197
 msgctxt "map"
 msgid "Scenario"
-msgstr ""
+msgstr "سيناريو"
 
 #: gui/common/settings.js:228
 msgctxt "victory condition"
 msgid "None"
-msgstr ""
+msgstr "لا شئ"
 
 #: gui/common/settings.js:229
 msgid "Endless game."
-msgstr ""
+msgstr "لعبة لا نهائية."
 
 #: gui/common/settings.js:270
 msgid "Unlimited"
-msgstr ""
+msgstr "غير محدود"
 
 #: gui/common/settings.js:318
 msgctxt "AI name"
 msgid "Unknown"
-msgstr ""
+msgstr "غير معروف"
 
 #: gui/common/settings.js:329
 msgctxt "AI difficulty"
 msgid "Unknown"
-msgstr ""
+msgstr "غير معروف"
 
 #: gui/common/settings.js:341
 msgctxt "map type"
 msgid "Unknown"
-msgstr ""
+msgstr "غير معروف"
 
 #: gui/common/settings.js:353
 msgctxt "map size"
@@ -672,12 +673,12 @@ msgstr "افتراضى "
 #: gui/common/settings.js:365
 msgctxt "population capacity"
 msgid "Unknown"
-msgstr ""
+msgstr "غير معروف"
 
 #: gui/common/settings.js:377
 msgctxt "victory condition"
 msgid "Unknown"
-msgstr ""
+msgstr "غير معروف"
 
 #: gui/common/tooltips.js:9
 msgid "Melee Attack:"

@@ -5,6 +5,7 @@
 # Translators:
 # Kamil Łapiński <k.lapinski@onet.pl>, 2016
 # Marcin S <dzidek1003@o2.pl>, 2016-2017
+# Mateusz Kubicz <zabsik1@wp.pl>, 2017
 # Michał Karol, 2016
 # Pitong, 2017
 # Tomasz Goljat <goljat@protonmail.com>, 2016
@@ -12,14 +13,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-01-09 09:03+0100\n"
-"PO-Revision-Date: 2017-01-31 13:58+0000\n"
-"Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
+"PO-Revision-Date: 2017-03-21 13:06+0000\n"
+"Last-Translator: Mateusz Kubicz <zabsik1@wp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pl\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #: simulation/data/auras/athen_hero_iphicrates_1.jsonauraName
 msgid "Formation Reforms"
@@ -27,7 +28,7 @@ msgstr "Reformy Formacji"
 
 #: simulation/data/auras/athen_hero_iphicrates_1.jsonauraDescription
 msgid "All soldiers in his formation +15% speed and +1 armor."
-msgstr ""
+msgstr "Wszyscy żołnierze w jego formacji +15% szybkości oraz +1 pancerza."
 
 #: simulation/data/auras/athen_hero_iphicrates_2.jsonauraName
 msgid "Peltast Reforms"
@@ -75,7 +76,7 @@ msgstr "Elitarna Armia"
 
 #: simulation/data/auras/brit_hero_boudicca.jsonauraDescription
 msgid "+20% attack, +2 capture and +25% speed for champion units."
-msgstr ""
+msgstr "+20% ataku, +2 prędkości zajmowania oraz +25% szybkości dla jednostek bohaterskich."
 
 #: simulation/data/auras/brit_hero_caratacos.jsonauraName
 #: simulation/data/auras/brit_hero_cunobelin.jsonauraName
@@ -89,7 +90,7 @@ msgstr "Aura Bohatera"
 #: simulation/data/auras/brit_hero_caratacos.jsonauraDescription
 #: simulation/data/auras/cart_hero_hamilcar.jsonauraDescription
 msgid "All soldiers and siege engines +15% speed."
-msgstr ""
+msgstr "Wszyscy żołnierze i machiny oblężnicze +15% szybkości."
 
 #: simulation/data/auras/brit_hero_cunobelin.jsonauraDescription
 msgid "+1 HP per second healing rate for all units."
@@ -107,7 +108,7 @@ msgstr "Aura Taktyka"
 msgid ""
 "All allied soldiers and siege engines +20% attack and +1 capture within his "
 "vision range."
-msgstr ""
+msgstr "Wszyscy sprzymierzeni żołnierze oraz machiny oblężnicze w zasięgu jego wzroku +20% ataku oraz +1 prędkości zajmowania."
 
 #: simulation/data/auras/cart_hero_maharbal.jsonauraName
 msgid "Commander Aura"
@@ -164,7 +165,7 @@ msgstr "Garnizon przechwycił Aurę"
 msgid ""
 "When garrisoned in a structure or a siege engine, the hero gives it a bonus "
 "of +2 capture points recovery rate."
-msgstr ""
+msgstr "Podczas stacjonowania w budynku lub machinie oblężniczej, bohater dodaje jej bonus w postaci +2 szybkości odnowienia punktów przejęcia."
 
 #: simulation/data/auras/iber_monument.jsonauraName
 msgid "Defensive Aura"
@@ -174,7 +175,7 @@ msgstr "Aura Defensywy"
 msgid ""
 "Gives all iberian soldiers in aura +20% attack boost. Effect Range: 50 "
 "meters"
-msgstr ""
+msgstr "Daje wszystkim Iberyjskim żołnierzom w zasięgu aury +20% obrażeń. Zasięg efektu: 50 metrów."
 
 #: simulation/data/auras/library.jsonauraName
 msgid "Library Aura"
@@ -183,7 +184,7 @@ msgstr "Aura biblioteki"
 #: simulation/data/auras/library.jsonauraDescription
 msgid ""
 "Reduce the cost and research time of technologies by 10% per library owned."
-msgstr ""
+msgstr "Obniża koszt opracowania oraz czas opracowania technologii o 10% za każdą posiadaną bibliotekę."
 
 #: simulation/data/auras/loyalty_regen.jsonauraName
 msgid "Loyalty Aura"
@@ -207,11 +208,11 @@ msgstr ""
 
 #: simulation/data/auras/mace_hero_craterus.jsonauraDescription
 msgid "Pike Infantry +20% attack and +20% capture within range of him."
-msgstr ""
+msgstr "Pikinierzy +20% ataku oraz +20% prędkości zajmowania w jego zasięgu."
 
 #: simulation/data/auras/mace_hero_demetrius.jsonauraName
 msgid "Besieger Aura"
-msgstr ""
+msgstr "Aura oblężnicza"
 
 #: simulation/data/auras/mace_hero_demetrius.jsonauraDescription
 msgid "+15% range and +10% crush attack for siege engines."
@@ -228,7 +229,7 @@ msgstr "Pyrrusowe zwycięstwo "
 #: simulation/data/auras/mace_hero_pyrrhus.jsonauraDescription
 msgid ""
 "All soldiers +20% attack as long as Pyrrhos lives, but also -15% health."
-msgstr ""
+msgstr "Wszyscy żołnierze otrzymują +20% obrażeń oraz -15% życia tak długo jak Phyrrhos żyje."
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraName
 msgid "Buddhism Aura"
@@ -236,7 +237,7 @@ msgstr "Aura Buddystów"
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraDescription
 msgid "Temples and temple technologies -50% cost, in resources and time."
-msgstr ""
+msgstr "Obniża koszt świątyń oraz czas opracowywania technologii w świątyniach o 50%."
 
 #: simulation/data/auras/maur_hero_chanakya.jsonauraName
 msgid "Teacher Aura"
@@ -282,16 +283,16 @@ msgstr "Aura Patriotyzmu"
 #: simulation/data/auras/ptol_hero_cleopatra_1.jsonauraDescription
 msgid ""
 "-20% attack repeat time for Egyptian soldiers and siege engines in her aura."
-msgstr ""
+msgstr "Wszyscy egipscy żołnierze oraz machiny oblężnicze w zasięgu jej aury tracą 20% prędkości ataku."
 
 #: simulation/data/auras/ptol_hero_cleopatra_2.jsonauraName
 #: simulation/data/auras/ptol_hero_cleopatra_3.jsonauraName
 msgid "Consort"
-msgstr ""
+msgstr "Małżonek"
 
 #: simulation/data/auras/ptol_hero_cleopatra_2.jsonauraDescription
 msgid "Allied heroes +10% health when near her."
-msgstr ""
+msgstr "Pobliscy sprzymierzeni bohaterowie otrzymują +10% życia."
 
 #: simulation/data/auras/ptol_hero_cleopatra_3.jsonauraDescription
 msgid "Enemy heroes -10% health when near her."
