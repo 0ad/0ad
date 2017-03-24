@@ -10,6 +10,9 @@
       <Crush>2.0</Crush>
     </Foundation>
   </Armour>
+  <BuildRestrictions>
+    <Category>Kennel</Category>
+  </BuildRestrictions>
   <Cost>
     <BuildTime>50</BuildTime>
     <Resources>
@@ -47,7 +50,7 @@
   <ProductionQueue>
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
-      units/brit_war_dog_b
+      units/{civ}_war_dog_b
     </Entities>
   </ProductionQueue>
   <Sound>

@@ -26,7 +26,7 @@ TechnologyManager.prototype.Init = function()
 
 	// This stores the modifications to unit stats from researched technologies
 	// Example data: {"ResourceGatherer/Rates/food.grain": [
-	//                     {"multiply": 1.15, "affects": ["Female", "Infantry Swordsman"]},
+	//                     {"multiply": 1.15, "affects": ["FemaleCitizen", "Infantry Swordsman"]},
 	//                     {"add": 2}
 	//                 ]}
 	this.modifications = {};

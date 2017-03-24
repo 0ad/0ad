@@ -45,7 +45,7 @@ function attackComponentTest(defenderClass, test_function)
 			"MinRange": 3,
 			"MaxRange": 5,
 			"PreferredClasses": {
-				"_string": "Female"
+				"_string": "FemaleCitizen"
 			},
 			"RestrictedClasses": {
 				"_string": "Elephant Archer"
@@ -99,7 +99,7 @@ function attackComponentTest(defenderClass, test_function)
 attackComponentTest(undefined, (attacker, cmpAttack, defender) => {
 
 	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackTypes(), ["Melee", "Ranged", "Capture"]);
-	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetPreferredClasses("Melee"), ["Female"]);
+	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetPreferredClasses("Melee"), ["FemaleCitizen"]);
 	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetRestrictedClasses("Melee"), ["Elephant", "Archer"]);
 	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetFullAttackRange(), { "min": 0, "max": 80 });
 	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackStrengths("Capture"), { "value": 8 });
@@ -157,7 +157,7 @@ function testGetBestAttackAgainst(defenderClass, bestAttack, isBuilding = false)
 	});
 }
 
-testGetBestAttackAgainst("Female", "Melee");
+testGetBestAttackAgainst("FemaleCitizen", "Melee");
 testGetBestAttackAgainst("Archer", "Ranged");
 testGetBestAttackAgainst("Domestic", "Slaughter");
 testGetBestAttackAgainst("Structure", "Capture", true);

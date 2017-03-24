@@ -1374,7 +1374,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				else if (target.hasClass("Ship") && !ent.hasClass("Ship"))
 					maybeUpdate = true;
 				else if (!ent.hasClass("Cavalry") && !ent.hasClass("Ranged") &&
-					 target.hasClass("Female") && target.unitAIState().split(".")[1] == "FLEEING")
+					 target.hasClass("FemaleCitizen") && target.unitAIState().split(".")[1] == "FLEEING")
 					maybeUpdate = true;
 			}
 
@@ -1467,7 +1467,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 						return false;
 					if (enemy.hasClass("Animal"))
 						return false;
-					if (nearby && enemy.hasClass("Female") && enemy.unitAIState().split(".")[1] == "FLEEING")
+					if (nearby && enemy.hasClass("FemaleCitizen") && enemy.unitAIState().split(".")[1] == "FLEEING")
 						return false;
 					let dist = API3.SquareVectorDistance(enemy.position(), ent.position());
 					if (dist > range)

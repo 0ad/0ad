@@ -171,7 +171,7 @@ Trigger.prototype.InitGame = function()
 		{
 			if (TriggerHelper.EntityHasClass(entity, "CivilCentre"))
 				this.playerCivicCenter[i] = entity;
-			else if (TriggerHelper.EntityHasClass(entity, "Female"))
+			else if (TriggerHelper.EntityHasClass(entity, "FemaleCitizen"))
 			{
 				let cmpDamageReceiver = Engine.QueryInterface(entity, IID_DamageReceiver);
 				cmpDamageReceiver.SetInvulnerability(true);

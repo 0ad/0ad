@@ -31,8 +31,7 @@
     <Max>2000</Max>
   </Health>
   <Identity>
-    <Classes datatype="tokens">Elephant</Classes>
-    <VisibleClasses datatype="tokens">Melee</VisibleClasses>
+    <VisibleClasses datatype="tokens">Elephant Melee</VisibleClasses>
   </Identity>
   <Sound>
     <SoundGroups>
@@ -49,6 +48,7 @@
     </SoundGroups>
   </Sound>
   <UnitMotion>
+    <PassabilityClass>large</PassabilityClass>
     <WalkSpeed>8.5</WalkSpeed>
     <Run>
       <Speed>14.0</Speed>

@@ -159,7 +159,8 @@ var g_Heroes = [];
 /**
  * Unit classes to be checked for the idle-worker-hotkey.
  */
-var g_WorkerTypes = ["Female+Support", "Trader", "FishingBoat", "CitizenSoldier"];
+var g_WorkerTypes = ["FemaleCitizen", "Trader", "FishingBoat", "CitizenSoldier"];
+
 /**
  * Unit classes to be checked for the military-only-selection modifier and for the idle-warrior-hotkey.
  */
@@ -1379,7 +1380,7 @@ function reportGame()
 		"total",
 		"Infantry",
 		"Worker",
-		"Female",
+		"FemaleCitizen",
 		"Cavalry",
 		"Champion",
 		"Hero",

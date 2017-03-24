@@ -611,8 +611,8 @@ m.BaseManager.prototype.setWorkersIdleByPriority = function(gameState)
 				if (lessNeed.type === "food" && gatherers.filter(API3.Filters.byClass("CitizenSoldier")).hasEntities())
 					only = "CitizenSoldier";
 				else if ((lessNeed.type === "stone" || lessNeed.type === "metal") && moreNeed.type !== "stone" && moreNeed.type !== "metal" &&
-					gatherers.filter(API3.Filters.byClass("Female")).hasEntities())
-					only = "Female";
+					gatherers.filter(API3.Filters.byClass("FemaleCitizen")).hasEntities())
+					only = "FemaleCitizen";
 
 				gatherers.forEach( function (ent) {
 					if (!ent.canGather(moreNeed.type))
