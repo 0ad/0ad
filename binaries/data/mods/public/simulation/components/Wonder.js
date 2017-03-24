@@ -1,6 +1,6 @@
 function Wonder() {}
 
-Wonder.prototype.Schema = "<a:component type='system'/><empty/>";
+Wonder.prototype.Schema = "<empty/>";
 
 Wonder.prototype.Init = function()
 {

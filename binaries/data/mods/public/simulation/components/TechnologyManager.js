@@ -1,7 +1,7 @@
 function TechnologyManager() {}
 
 TechnologyManager.prototype.Schema =
-	"<a:component type='system'/><empty/>";
+	"<empty/>";
 
 TechnologyManager.prototype.Serialize = function()
 {

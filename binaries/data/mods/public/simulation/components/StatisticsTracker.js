@@ -1,7 +1,7 @@
 function StatisticsTracker() {}
 
 StatisticsTracker.prototype.Schema =
-	"<a:component type='system'/><empty/>";
+	"<empty/>";
 
 StatisticsTracker.prototype.Init = function()
 {
