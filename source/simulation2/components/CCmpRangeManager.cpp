@@ -1255,8 +1255,8 @@ public:
 
 	virtual entity_pos_t GetElevationAdaptedRange(const CFixedVector3D& pos1, const CFixedVector3D& rot, entity_pos_t range, entity_pos_t elevationBonus, entity_pos_t angle) const
 	{
+		entity_pos_t r = entity_pos_t::Zero();
 		CFixedVector3D pos(pos1);
-		entity_pos_t r = entity_pos_t::Zero() ;
 
 		pos.Y += elevationBonus;
 		entity_pos_t orientation = rot.Y;
@@ -1271,9 +1271,9 @@ public:
 
 		std::vector<entity_pos_t> coords = getParabolicRangeForm(pos, range, range*2, minAngle, maxAngle, numberOfSteps);
 
-		entity_pos_t part =  entity_pos_t::FromInt(numberOfSteps);
+		entity_pos_t part = entity_pos_t::FromInt(numberOfSteps);
 
-		for (int i = 0; i < numberOfSteps; i++)
+		for (int i = 0; i < numberOfSteps; ++i)
 			r = r + CFixedVector2D(coords[2*i],coords[2*i+1]).Length() / part;
 
 		return r;
@@ -1284,72 +1284,72 @@ public:
 	{
 		std::vector<entity_pos_t> r;
 
+		CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
+		if (!cmpTerrain)
+			return r;
+
 		// angle = 0 goes in the positive Z direction
 		entity_pos_t precision = entity_pos_t::FromInt((int)TERRAIN_TILE_SIZE)/8;
 
-		CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
 		CmpPtr<ICmpWaterManager> cmpWaterManager(GetSystemEntity());
-		entity_pos_t waterLevel = cmpWaterManager ? cmpWaterManager->GetWaterLevel(pos.X,pos.Z) : entity_pos_t::Zero();
+		entity_pos_t waterLevel = cmpWaterManager ? cmpWaterManager->GetWaterLevel(pos.X, pos.Z) : entity_pos_t::Zero();
 		entity_pos_t thisHeight = pos.Y > waterLevel ? pos.Y : waterLevel;
 
-		if (cmpTerrain)
+		for (int i = 0; i < numberOfSteps; ++i)
 		{
-			for (int i = 0; i < numberOfSteps; i++)
+			entity_pos_t angle = minAngle + (maxAngle - minAngle) / numberOfSteps * i;
+			entity_pos_t sin;
+			entity_pos_t cos;
+			entity_pos_t minDistance = entity_pos_t::Zero();
+			entity_pos_t maxDistance = cutoff;
+			sincos_approx(angle, sin, cos);
+
+			CFixedVector2D minVector = CFixedVector2D(entity_pos_t::Zero(), entity_pos_t::Zero());
+			CFixedVector2D maxVector = CFixedVector2D(sin, cos).Multiply(cutoff);
+			entity_pos_t targetHeight = cmpTerrain->GetGroundLevel(pos.X+maxVector.X, pos.Z+maxVector.Y);
+			// use water level to display range on water
+			targetHeight = targetHeight > waterLevel ? targetHeight : waterLevel;
+
+			if (InParabolicRange(CFixedVector3D(maxVector.X, targetHeight-thisHeight, maxVector.Y), maxRange))
 			{
-				entity_pos_t angle = minAngle + (maxAngle - minAngle) / numberOfSteps * i;
-				entity_pos_t sin;
-				entity_pos_t cos;
-				entity_pos_t minDistance = entity_pos_t::Zero();
-				entity_pos_t maxDistance = cutoff;
-				sincos_approx(angle,sin,cos);
-
-				CFixedVector2D minVector = CFixedVector2D(entity_pos_t::Zero(),entity_pos_t::Zero());
-				CFixedVector2D maxVector = CFixedVector2D(sin,cos).Multiply(cutoff);
-				entity_pos_t targetHeight = cmpTerrain->GetGroundLevel(pos.X+maxVector.X,pos.Z+maxVector.Y);
-				// use water level to display range on water
-				targetHeight = targetHeight > waterLevel ? targetHeight : waterLevel;
-
-				if (InParabolicRange(CFixedVector3D(maxVector.X,targetHeight-thisHeight,maxVector.Y),maxRange))
-				{
-					r.push_back(maxVector.X);
-					r.push_back(maxVector.Y);
-					continue;
-				}
-
-				// Loop until vectors come close enough
-				while ((maxVector - minVector).CompareLength(precision) > 0)
-				{
-					// difference still bigger than precision, bisect to get smaller difference
-					entity_pos_t newDistance = (minDistance+maxDistance)/entity_pos_t::FromInt(2);
-
-					CFixedVector2D newVector = CFixedVector2D(sin,cos).Multiply(newDistance);
-
-					// get the height of the ground
-					targetHeight = cmpTerrain->GetGroundLevel(pos.X+newVector.X,pos.Z+newVector.Y);
-					targetHeight = targetHeight > waterLevel ? targetHeight : waterLevel;
-
-					if (InParabolicRange(CFixedVector3D(newVector.X,targetHeight-thisHeight,newVector.Y),maxRange))
-					{
-						// new vector is in parabolic range, so this is a new minVector
-						minVector = newVector;
-						minDistance = newDistance;
-					}
-					else
-					{
-						// new vector is out parabolic range, so this is a new maxVector
-						maxVector = newVector;
-						maxDistance = newDistance;
-					}
-
-				}
 				r.push_back(maxVector.X);
 				r.push_back(maxVector.Y);
+				continue;
+			}
+
+			// Loop until vectors come close enough
+			while ((maxVector - minVector).CompareLength(precision) > 0)
+			{
+				// difference still bigger than precision, bisect to get smaller difference
+				entity_pos_t newDistance = (minDistance+maxDistance)/entity_pos_t::FromInt(2);
+
+				CFixedVector2D newVector = CFixedVector2D(sin, cos).Multiply(newDistance);
+
+				// get the height of the ground
+				targetHeight = cmpTerrain->GetGroundLevel(pos.X+newVector.X, pos.Z+newVector.Y);
+				targetHeight = targetHeight > waterLevel ? targetHeight : waterLevel;
+
+				if (InParabolicRange(CFixedVector3D(newVector.X, targetHeight-thisHeight, newVector.Y), maxRange))
+				{
+					// new vector is in parabolic range, so this is a new minVector
+					minVector = newVector;
+					minDistance = newDistance;
+				}
+				else
+				{
+					// new vector is out parabolic range, so this is a new maxVector
+					maxVector = newVector;
+					maxDistance = newDistance;
+				}
 
 			}
-			r.push_back(r[0]);
-			r.push_back(r[1]);
+			r.push_back(maxVector.X);
+			r.push_back(maxVector.Y);
 
 		}
+		r.push_back(r[0]);
+		r.push_back(r[1]);
+
 		return r;
 	}
 
@@ -1740,16 +1740,9 @@ public:
 
 	void RemoveFromTile(i32 tile, entity_id_t ent)
 	{
-		for (std::set<entity_id_t>::iterator tileIt = m_LosTiles[tile].begin();
-			tileIt != m_LosTiles[tile].end();
-			++tileIt)
-		{
-			if (*tileIt == ent)
-			{
-				m_LosTiles[tile].erase(tileIt);
-				return;
-			}
-		}
+		std::set<entity_id_t>::const_iterator tileIt = m_LosTiles[tile].find(ent);
+		if (tileIt != m_LosTiles[tile].end())
+			m_LosTiles[tile].erase(tileIt);
 	}
 
 	void UpdateVisibilityData()
