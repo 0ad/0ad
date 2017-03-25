@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -63,6 +63,12 @@ entity_id_t PickEntityAtPoint(CSimulation2& simulation, const CCamera& camera, i
  * @return unordered list of selected entities.
  */
 std::vector<entity_id_t> PickEntitiesInRect(CSimulation2& simulation, const CCamera& camera, int sx0, int sy0, int sx1, int sy1, player_id_t owner, bool allowEditorSelectables);
+
+/**
+ * Finds all selectable entities within the given screen coordinate rectangle,
+ * belonging to any given player (excluding Gaia). Used for status bars.
+ */
+std::vector<entity_id_t> PickNonGaiaEntitiesInRect(CSimulation2& simulation, const CCamera& camera, int sx0, int sy0, int sx1, int sy1, bool allowEditorSelectables);
 
 /**
  * Finds all entities with the given entity template name, belonging to the given player.

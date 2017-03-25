@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -51,7 +51,7 @@ public:
 
 	static std::string GetSchema()
 	{
-		return "<a:component type='system'/><empty/>";
+		return "<empty/>";
 	}
 
 	virtual void Init(const CParamNode& UNUSED(paramNode))

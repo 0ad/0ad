@@ -11,6 +11,7 @@
 # Marcin Kozłowski <martinkoaz@gmail.com>, 2014
 # Marcin S <dzidek1003@o2.pl>, 2016
 # Mateusz Klaczynski <onufryklaczynski@gmail.com>, 2017
+# Mateusz Kubicz <zabsik1@wp.pl>, 2017
 # miragae <miragae@gmail.com>, 2014
 # zyxist <nightstorm@tlen.pl>, 2014
 # Robert Wolniak <robert.wolniak@gmail.com>, 2014
@@ -19,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-03 09:01+0100\n"
-"PO-Revision-Date: 2017-03-19 22:24+0000\n"
-"Last-Translator: Mateusz Klaczynski <onufryklaczynski@gmail.com>\n"
+"PO-Revision-Date: 2017-03-21 13:12+0000\n"
+"Last-Translator: Mateusz Kubicz <zabsik1@wp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -70,21 +71,21 @@ msgstr "%(oldnick)s nazywa się teraz %(newnick)s."
 
 #: gui/lobby/lobby.js:217
 msgid "You have been banned from the lobby!"
-msgstr ""
+msgstr "Zostałeś zablokowany w tej poczekalni!"
 
 #: gui/lobby/lobby.js:218
 msgid "You have been kicked from the lobby!"
-msgstr ""
+msgstr "Zostałeś wyrzucony z tej poczekalni!"
 
 #: gui/lobby/lobby.js:220
 #, javascript-format
 msgid "%(nick)s has been banned from the lobby."
-msgstr ""
+msgstr "%(nick)s został zablokowany w tej poczekalni."
 
 #: gui/lobby/lobby.js:221
 #, javascript-format
 msgid "%(nick)s has been kicked from the lobby."
-msgstr ""
+msgstr "%(nick)s został wyrzucony z tej poczekalni."
 
 #: gui/lobby/lobby.js:224
 #, javascript-format
@@ -94,11 +95,11 @@ msgstr "Powód: %(reason)s."
 
 #: gui/lobby/lobby.js:249
 msgid "BANNED"
-msgstr ""
+msgstr "ZABLOKOWANY"
 
 #: gui/lobby/lobby.js:249
 msgid "KICKED"
-msgstr ""
+msgstr "WYRZUCONY"
 
 #: gui/lobby/lobby.js:291
 msgctxt "map size"
@@ -290,7 +291,7 @@ msgstr "Proszę wyrazić zgodę na Warunki Usługi oraz Warunki Użytkowania"
 msgid ""
 "Unknown error. This usually occurs because the same IP address is not "
 "allowed to register more than one account within one hour."
-msgstr ""
+msgstr "Nieznany błąd. Występuje on przeważnie ponieważ używanie jednego adresu IP do rejestracji więcej niż jednego konta w przeciągu godziny jest niedozwolone."
 
 #: gui/lobby/prelobby.js:172
 msgid "Registered"

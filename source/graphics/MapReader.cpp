@@ -886,10 +886,9 @@ void CXMLReader::ReadPaths(XMBElement parent)
 
 						if (elementName == el_position)
 						{
-							CFixedVector3D position;
-							position.X = fixed::FromString(attrs.GetNamedItem(at_x));
-							position.Y = fixed::FromString(attrs.GetNamedItem(at_y));
-							position.Z = fixed::FromString(attrs.GetNamedItem(at_z));
+							CFixedVector3D position(fixed::FromString(attrs.GetNamedItem(at_x)),
+								fixed::FromString(attrs.GetNamedItem(at_y)),
+								fixed::FromString(attrs.GetNamedItem(at_z)));
 
 							positionSpline.AddNode(position, CFixedVector3D(), lastPositionTime);
 							lastPositionTime = fixed::Zero();
@@ -900,10 +899,9 @@ void CXMLReader::ReadPaths(XMBElement parent)
 						}
 						else if (elementName == el_target)
 						{
-							CFixedVector3D targetPosition;
-							targetPosition.X = fixed::FromString(attrs.GetNamedItem(at_x));
-							targetPosition.Y = fixed::FromString(attrs.GetNamedItem(at_y));
-							targetPosition.Z = fixed::FromString(attrs.GetNamedItem(at_z));
+							CFixedVector3D targetPosition(fixed::FromString(attrs.GetNamedItem(at_x)),
+								fixed::FromString(attrs.GetNamedItem(at_y)),
+								fixed::FromString(attrs.GetNamedItem(at_z)));
 
 							targetSpline.AddNode(targetPosition, CFixedVector3D(), lastTargetTime);
 							lastTargetTime = fixed::Zero();

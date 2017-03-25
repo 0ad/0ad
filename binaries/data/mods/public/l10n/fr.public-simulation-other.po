@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Arnaud Rochés <roches.arn@gmail.com>, 2017
+# Arnaud Rochés <roches.arn@gmail.com>, 2017
 # Arthur Jaouen <arthur.jaouen@gmail.com>, 2015
 # Cajetan Bouchard <cajetan.bouchard@gmail.com>, 2014-2015
 # François Poirotte <clicky@erebot.net>, 2016
@@ -23,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-03 09:03+0100\n"
-"PO-Revision-Date: 2017-03-03 09:38+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-03-23 14:56+0000\n"
+"Last-Translator: Arnaud Rochés <roches.arn@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -960,7 +961,7 @@ msgstr "Une attaque contre %(_player_)s a été demandée."
 
 #: simulation/helpers/Commands.js:773
 msgid "There are no bribable units"
-msgstr ""
+msgstr "Il n'y as pas d'unités à soudoyées"
 
 #: simulation/helpers/Commands.js:804
 msgid "Unable to ungarrison unit(s)"
@@ -1163,7 +1164,7 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -50% for Sandbox to +60% for Very Hard (Medium 0%). In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "Petra est le bot par défaut de 0 A.D. Merci de signaler tout problème à Wildfire Games (lien dans le menu principal).\n\nL'intelligence artificielle est affectée d'un bonus/malus pour le stockage des ressources (taux de collecte des ressources ou gain issu des échanges commerciaux) variant de -50% pour le niveau Bac à sable à +60% pour le niveau Très Difficile (Moyen 0%). De plus, le bot de niveau Bac à sable ne s'étend pas et n'attaque pas."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"

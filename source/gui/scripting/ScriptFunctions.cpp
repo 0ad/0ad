@@ -65,7 +65,6 @@
 #include "simulation2/components/ICmpAIManager.h"
 #include "simulation2/components/ICmpCommandQueue.h"
 #include "simulation2/components/ICmpGuiInterface.h"
-#include "simulation2/components/ICmpPlayerManager.h"
 #include "simulation2/components/ICmpRangeManager.h"
 #include "simulation2/components/ICmpSelectable.h"
 #include "simulation2/components/ICmpTemplateManager.h"
@@ -167,27 +166,14 @@ std::vector<entity_id_t> PickPlayerEntitiesInRect(ScriptInterface::CxPrivate* UN
 	return EntitySelection::PickEntitiesInRect(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), x0, y0, x1, y1, player, false);
 }
 
-std::vector<entity_id_t> PickPlayerEntitiesOnScreen(ScriptInterface::CxPrivate* pCxPrivate, int player)
+std::vector<entity_id_t> PickPlayerEntitiesOnScreen(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int player)
 {
-	return PickPlayerEntitiesInRect(pCxPrivate, 0, 0, g_xres, g_yres, player);
+	return EntitySelection::PickEntitiesInRect(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), 0, 0, g_xres, g_yres, player, false);
 }
 
-std::vector<entity_id_t> PickNonGaiaEntitiesOnScreen(ScriptInterface::CxPrivate* pCxPrivate)
+std::vector<entity_id_t> PickNonGaiaEntitiesOnScreen(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
-	std::vector<entity_id_t> entities;
-
-	CmpPtr<ICmpPlayerManager> cmpPlayerManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
-	if (!cmpPlayerManager)
-		return entities;
-
-	i32 numPlayers = cmpPlayerManager->GetNumPlayers();
-	for (i32 player = 1; player < numPlayers; ++player)
-	{
-		std::vector<entity_id_t> ents = PickPlayerEntitiesOnScreen(pCxPrivate, player);
-		entities.insert(entities.end(), ents.begin(), ents.end());
-	}
-
-	return entities;
+	return EntitySelection::PickNonGaiaEntitiesInRect(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), 0, 0, g_xres, g_yres, false);
 }
 
 std::vector<entity_id_t> PickSimilarPlayerEntities(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& templateName, bool includeOffScreen, bool matchRank, bool allowFoundations)

@@ -765,6 +765,10 @@ void CCmpTerritoryManager::SetTerritoryBlinking(entity_pos_t x, entity_pos_t z, 
 
 bool CCmpTerritoryManager::IsTerritoryBlinking(entity_pos_t x, entity_pos_t z)
 {
+	CalculateTerritories();
+	if (!m_Territories)
+		return false;
+
 	u16 i, j;
 	NearestTerritoryTile(x, z, i, j, m_Territories->m_W, m_Territories->m_H);
 	return (m_Territories->get(i, j) & TERRITORY_BLINKING_MASK) != 0;

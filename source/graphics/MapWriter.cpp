@@ -428,7 +428,7 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 					SEvent(fixed time, const char* type, CFixedVector3D value)
 						: time(time), type(type), value(value)
 					{}
-					bool operator<(const SEvent& another)
+					bool operator<(const SEvent& another) const
 					{
 						return time < another.time;
 					}
@@ -436,6 +436,7 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 
 				// All events of a manipulating of camera (position/rotation/target)
 				std::vector<SEvent> events;
+				events.reserve(position_nodes.size() + target_nodes.size());
 
 				fixed last_position = fixed::Zero();
 				for (size_t i = 0; i < position_nodes.size(); ++i)
