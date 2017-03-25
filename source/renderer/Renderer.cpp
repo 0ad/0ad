@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -673,6 +673,10 @@ void CRenderer::Resize(int width, int height)
 // SetOptionBool: set boolean renderer option
 void CRenderer::SetOptionBool(enum Option opt,bool value)
 {
+	// Don't do anything if the option didn't change from its previous value.
+	if (value == GetOptionBool(opt))
+		return;
+
 	switch (opt) {
 		case OPT_NOVBO:
 			m_Options.m_NoVBO = value;

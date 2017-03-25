@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -83,6 +83,12 @@ public:
 	bool GroundEnabled;
 	bool WaterEnabled;
 	bool ShadowsEnabled;
+
+	// Whether shadows, sky and water are enabled outside of the actor viewer.
+	bool OldShadows;
+	bool OldSky;
+	bool OldWater;
+
 	bool SelectionBoxEnabled;
 	bool AxesMarkerEnabled;
 	int PropPointsMode; // 0 disabled, 1 for point markers, 2 for point markers + axes
@@ -296,10 +302,25 @@ ActorViewer::ActorViewer()
 	CmpPtr<ICmpRangeManager> cmpRangeManager(m.Simulation2, SYSTEM_ENTITY);
 	if (cmpRangeManager)
 		cmpRangeManager->SetLosRevealAll(-1, true);
+
+	// Set shadows, sky and water.
+	m.OldShadows = g_Renderer.GetOptionBool(CRenderer::OPT_SHADOWS);
+	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS, m.ShadowsEnabled);
+
+	m.OldSky = g_Renderer.GetSkyManager()->m_RenderSky;
+	g_Renderer.GetSkyManager()->m_RenderSky = false;
+
+	m.OldWater = g_Renderer.GetWaterManager()->m_RenderWater;
+	g_Renderer.GetWaterManager()->m_RenderWater = m.WaterEnabled;
 }
 
 ActorViewer::~ActorViewer()
 {
+	// Restore the old renderer state
+	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS, m.OldShadows);
+	g_Renderer.GetSkyManager()->m_RenderSky = m.OldSky;
+	g_Renderer.GetWaterManager()->m_RenderWater = m.OldWater;
+
 	delete &m;
 }
 
@@ -476,16 +497,6 @@ void ActorViewer::Render()
 
 	g_Renderer.SetClearColor(m.Background);
 
-	// Set shadows, sky and water locally (avoid clobbering global state)
-	bool oldShadows = g_Renderer.GetOptionBool(CRenderer::OPT_SHADOWS);
-	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS, m.ShadowsEnabled);
-
-	bool oldSky = g_Renderer.GetSkyManager()->m_RenderSky;
-	g_Renderer.GetSkyManager()->m_RenderSky = false;
-
-	bool oldWater = g_Renderer.GetWaterManager()->m_RenderWater;
-	g_Renderer.GetWaterManager()->m_RenderWater = m.WaterEnabled;
-
 	// Set simulation context for rendering purposes
 	g_Renderer.SetSimulation(&m.Simulation2);
 
@@ -515,11 +526,6 @@ void ActorViewer::Render()
 	glEnable(GL_DEPTH_TEST);
 
 	g_Renderer.EndFrame();
-
-	// Restore the old renderer state
-	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS, oldShadows);
-	g_Renderer.GetSkyManager()->m_RenderSky = oldSky;
-	g_Renderer.GetWaterManager()->m_RenderWater = oldWater;
 
 	ogl_WarnIfError();
 }
