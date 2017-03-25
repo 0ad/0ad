@@ -138,5 +138,21 @@ public:
 			{ CMessagePositionChanged msg(100, true, entity_pos_t::FromDouble(x), entity_pos_t::FromDouble(z), entity_angle_t::Zero()); cmp->HandleMessage(msg, false); }
 			cmp->Verify();
 		}
+
+		// Test OwnershipChange, GetEntitiesByPlayer, GetNonGaiaEntities
+		{
+			player_id_t previousOwner = -1;
+			for (player_id_t newOwner = 0; newOwner < 8; ++newOwner)
+			{
+				CMessageOwnershipChanged msg(100, previousOwner, newOwner);
+				cmp->HandleMessage(msg, false);
+
+				for (player_id_t i = 0; i < 8; ++i)
+					TS_ASSERT_EQUALS(cmp->GetEntitiesByPlayer(i).size(), i == newOwner ? 1 : 0);
+
+				TS_ASSERT_EQUALS(cmp->GetNonGaiaEntities().size(), newOwner > 0 ? 1 : 0);
+				previousOwner = newOwner;
+			}
+		}
 	}
 };
