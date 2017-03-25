@@ -1,0 +1,15 @@
+{
+	"TranslatedKeys": ["Title", "Description"],
+	"Data":
+	{
+		"Title": "Capture The Relic",
+		"Description": "Capture all relics spread across the map and keep them for a certain time to win the game.",
+		"Scripts":
+		[
+			"scripts/TriggerHelper.js",
+			"scripts/ConquestCommon.js",
+			"scripts/Conquest.js",
+			"scripts/CaptureTheRelic.js"
+		]
+	}
+}

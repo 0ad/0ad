@@ -45,8 +45,8 @@ function LoadMapSettings(settings)
 
 	let cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
 	let gameTypeSettings = {};
-	if (settings.WonderDuration)
-		gameTypeSettings.wonderDuration = settings.WonderDuration * 60 * 1000;
+	if (settings.VictoryDuration)
+		gameTypeSettings.victoryDuration = settings.VictoryDuration * 60 * 1000;
 	if (settings.GameType)
 		cmpEndGameManager.SetGameType(settings.GameType, gameTypeSettings);
 

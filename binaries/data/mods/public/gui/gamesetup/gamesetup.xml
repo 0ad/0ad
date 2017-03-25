@@ -337,13 +337,13 @@
 					</object>
 				</object>
 
-				<object name="optionWonderDuration" size="14 188 94% 216">
+				<object name="optionVictoryDuration" size="14 188 94% 216">
 					<object size="0 0 40% 28" type="text" style="ModernRightLabelText">
-						<translatableAttribute id="caption">Wonder Victory:</translatableAttribute>
+						<translatableAttribute id="caption">Victory Duration:</translatableAttribute>
 					</object>
-					<object name="wonderDurationText" size="40% 0 100% 100%" type="text" style="ModernLeftLabelText"/>
-					<object name="wonderDuration" size="40%+10 0 100% 28" type="dropdown" style="ModernDropDown" hidden="true" tooltip_style="onscreenToolTip">
-						<translatableAttribute id="tooltip">Number of minutes that the player has to keep the wonder in order to win.</translatableAttribute>
+					<object name="victoryDurationText" size="40% 0 100% 100%" type="text" style="ModernLeftLabelText"/>
+					<object name="victoryDuration" size="40%+10 0 100% 28" type="dropdown" style="ModernDropDown" hidden="true" tooltip_style="onscreenToolTip">
+						<translatableAttribute id="tooltip">Number of minutes until the player has won.</translatableAttribute>
 					</object>
 				</object>
 

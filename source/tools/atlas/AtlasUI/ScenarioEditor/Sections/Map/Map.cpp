@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -149,6 +149,7 @@ void MapSettingsControl::CreateWidgets()
 	gameTypes.Add(_T("wonder"));
 	gameTypes.Add(_T("endless"));
 	gameTypes.Add(_T("regicide"));
+	gameTypes.Add(_T("capture_the_relic"));
 
 	wxFlexGridSizer* gridSizer = new wxFlexGridSizer(2, 5, 5);
 	gridSizer->AddGrowableCol(1);
