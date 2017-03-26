@@ -3,7 +3,12 @@
   <Auras datatype="tokens">maur_pillar</Auras>
   <BuildRestrictions>
     <Category>Pillar</Category>
+    <Distance>
+      <FromClass>Pillar</FromClass>
+      <MinDistance>75</MinDistance>
+    </Distance>
   </BuildRestrictions>
+  <Capturable disable=""/>
   <Cost>
     <BuildTime>80</BuildTime>
     <Resources>
@@ -26,7 +31,7 @@
     <Civ>maur</Civ>
     <GenericName>Edict Pillar of Ashoka</GenericName>
     <SpecificName>Śāsana Stambha Aśokā</SpecificName>
-    <Classes datatype="tokens">-ConquestCritical</Classes>
+    <Classes datatype="tokens">Pillar -ConquestCritical</Classes>
     <Icon>structures/ashoka_pillar.png</Icon>
     <Tooltip>The famous pillar of Ashoka. Increases the walk speed of traders. Buildings in the territory of the monument do not decay.</Tooltip>
   </Identity>
