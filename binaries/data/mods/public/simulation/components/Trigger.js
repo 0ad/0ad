@@ -11,6 +11,7 @@ Trigger.prototype.eventNames =
 	"CinemaPathEnded",
 	"CinemaQueueEnded",
 	"ConstructionStarted",
+	"DiplomacyChanged",
 	"InitGame",
 	"Interval",
 	"OwnershipChanged",
@@ -269,6 +270,11 @@ Trigger.prototype.OnGlobalPlayerDefeated = function(msg)
 Trigger.prototype.OnGlobalPlayerWon = function(msg)
 {
 	this.CallEvent("PlayerWon", msg);
+};
+
+Trigger.prototype.OnGlobalDiplomacyChanged = function(msg)
+{
+	this.CallEvent("DiplomacyChanged", msg);
 };
 
 /**

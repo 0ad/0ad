@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit">
+  <Capturable>
+    <CapturePoints>250</CapturePoints>
+    <GarrisonRegenRate>0</GarrisonRegenRate>
+    <RegenRate>10</RegenRate>
+  </Capturable>
+  <Cost>
+    <Population>0</Population>
+  </Cost>
+  <Footprint replace="">
+    <Height>2.0</Height>
+    <Square width="5.0" depth="12.0"/>
+  </Footprint>
+  <Health>
+    <Undeletable>true</Undeletable>
+  </Health>
+  <Identity>
+    <Civ>gaia</Civ>
+    <Classes datatype="tokens">-ConquestCritical</Classes>
+    <Formations disable=""/>
+    <GenericName>Catafalque</GenericName>
+    <Icon>units/catafalque.png</Icon>
+    <Tooltip>A catafalque that holds the remains of a great leader.</Tooltip>
+    <VisibleClasses datatype="tokens">Relic</VisibleClasses>
+  </Identity>
+  <Minimap>
+    <Color r="148" g="0" b="211"/>
+  </Minimap>
+  <ResourceGatherer disable=""/>
+  <Sound>
+    <SoundGroups>
+      <order_walk>actor/singlesteps/steps_grass.xml</order_walk>
+      <run>actor/singlesteps/steps_grass.xml</run>
+      <select>attack/siege/siege_select.xml</select>
+      <walk>actor/singlesteps/steps_grass.xml</walk>
+    </SoundGroups>
+  </Sound>
+  <UnitAI>
+    <DefaultStance>standground</DefaultStance>
+    <CanGuard>false</CanGuard>
+  </UnitAI>
+  <UnitMotion>
+    <PassabilityClass>large</PassabilityClass>
+    <Run>
+      <Speed>8</Speed>
+    </Run>
+    <WalkSpeed>5</WalkSpeed>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>units/global/catafalque.xml</Actor>
+  </VisualActor>
+</Entity>

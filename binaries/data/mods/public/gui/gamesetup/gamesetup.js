@@ -8,7 +8,7 @@ const g_MapTypes = prepareForDropdown(g_Settings && g_Settings.MapTypes);
 const g_PopulationCapacities = prepareForDropdown(g_Settings && g_Settings.PopulationCapacities);
 const g_StartingResources = prepareForDropdown(g_Settings && g_Settings.StartingResources);
 const g_VictoryConditions = prepareForDropdown(g_Settings && g_Settings.VictoryConditions);
-const g_WonderDurations = prepareForDropdown(g_Settings && g_Settings.WonderDurations);
+const g_VictoryDurations = prepareForDropdown(g_Settings && g_Settings.VictoryDurations);
 
 /**
  * All selectable playercolors except gaia.
@@ -306,8 +306,8 @@ function initGUIObjects()
 		initPopulationCaps();
 		initStartingResources();
 		initCeasefire();
-		initWonderDurations();
 		initVictoryConditions();
+		initVictoryDurations();
 		initMapSizes();
 		initRadioButtons();
 	}
@@ -380,7 +380,7 @@ function saveSPTipsSetting()
 }
 
 /**
- * Remove empty space in case of hidden options (like cheats, rating or wonder duration)
+ * Remove empty space in case of hidden options (like cheats, rating or victory duration)
  */
 function resizeMoreOptionsWindow()
 {
@@ -501,19 +501,19 @@ function initVictoryConditions()
 	victoryConditions.selected = g_VictoryConditions.Default;
 }
 
-function initWonderDurations()
+function initVictoryDurations()
 {
-	let wonderConditions = Engine.GetGUIObjectByName("wonderDuration");
-	wonderConditions.list = g_WonderDurations.Title;
-	wonderConditions.list_data = g_WonderDurations.Duration;
-	wonderConditions.onSelectionChange = function()
+	let victoryDurationsConditions = Engine.GetGUIObjectByName("victoryDuration");
+	victoryDurationsConditions.list = g_VictoryDurations.Title;
+	victoryDurationsConditions.list_data = g_VictoryDurations.Duration;
+	victoryDurationsConditions.onSelectionChange = function()
 	{
 		if (this.selected != -1)
-			g_GameAttributes.settings.WonderDuration = g_WonderDurations.Duration[this.selected];
+			g_GameAttributes.settings.VictoryDuration = g_VictoryDurations.Duration[this.selected];
 
 		updateGameAttributes();
 	};
-	wonderConditions.selected = g_WonderDurations.Default;
+	victoryDurationsConditions.selected = g_VictoryDurations.Default;
 }
 
 function initMapSizes()
@@ -1261,7 +1261,7 @@ function selectMap(name)
 
 	if (g_GameAttributes.mapType == "scenario")
 	{
-		delete g_GameAttributes.settings.WonderDuration;
+		delete g_GameAttributes.settings.VictoryDuration;
 		delete g_GameAttributes.settings.LastManStanding;
 	}
 
@@ -1401,7 +1401,7 @@ function updateGUIObjects()
 	// These dropdowns might set the default (as they ignore g_IsInGuiUpdate)
 	let mapSizeIdx = mapSettings.Size !== undefined ? g_MapSizes.Tiles.indexOf(mapSettings.Size) : g_MapSizes.Default;
 	let victoryIdx = mapSettings.GameType !== undefined ? g_VictoryConditions.Name.indexOf(mapSettings.GameType) : g_VictoryConditions.Default;
-	let wonderDurationIdx = mapSettings.WonderDuration !== undefined ? g_WonderDurations.Duration.indexOf(mapSettings.WonderDuration) : g_WonderDurations.Default;
+	let victoryDurationIdx = mapSettings.VictoryDuration !== undefined ? g_VictoryDurations.Duration.indexOf(mapSettings.VictoryDuration) : g_VictoryDurations.Default;
 	let popIdx = mapSettings.PopulationCap !== undefined ? g_PopulationCapacities.Population.indexOf(mapSettings.PopulationCap) : g_PopulationCapacities.Default;
 	let startingResIdx = mapSettings.StartingResources !== undefined ? g_StartingResources.Resources.indexOf(mapSettings.StartingResources) : g_StartingResources.Default;
 	let ceasefireIdx = mapSettings.Ceasefire !== undefined ? g_Ceasefire.Duration.indexOf(mapSettings.Ceasefire) : g_Ceasefire.Default;
@@ -1415,7 +1415,7 @@ function updateGUIObjects()
 		Engine.GetGUIObjectByName("mapSize").selected = mapSizeIdx;
 		Engine.GetGUIObjectByName("numPlayers").selected = numPlayers - 1;
 		Engine.GetGUIObjectByName("victoryCondition").selected = victoryIdx;
-		Engine.GetGUIObjectByName("wonderDuration").selected = wonderDurationIdx;
+		Engine.GetGUIObjectByName("victoryDuration").selected = victoryDurationIdx;
 		Engine.GetGUIObjectByName("populationCap").selected = popIdx;
 		Engine.GetGUIObjectByName("gameSpeed").selected = gameSpeedIdx;
 		Engine.GetGUIObjectByName("ceasefire").selected = ceasefireIdx;
@@ -1433,7 +1433,7 @@ function updateGUIObjects()
 	Engine.GetGUIObjectByName("mapSizeText").caption = g_GameAttributes.mapType == "random" ? g_MapSizes.Name[mapSizeIdx] : translateWithContext("map size", "Default");
 	Engine.GetGUIObjectByName("numPlayersText").caption = numPlayers;
 	Engine.GetGUIObjectByName("victoryConditionText").caption = g_VictoryConditions.Title[victoryIdx];
-	Engine.GetGUIObjectByName("wonderDurationText").caption = g_WonderDurations.Title[wonderDurationIdx];
+	Engine.GetGUIObjectByName("victoryDurationText").caption = g_VictoryDurations.Title[victoryDurationIdx];
 	Engine.GetGUIObjectByName("populationCapText").caption = g_PopulationCapacities.Title[popIdx];
 	Engine.GetGUIObjectByName("startingResourcesText").caption = g_StartingResources.Title[startingResIdx];
 	Engine.GetGUIObjectByName("ceasefireText").caption = g_Ceasefire.Title[ceasefireIdx];
@@ -1448,9 +1448,9 @@ function updateGUIObjects()
 	setGUIBoolean("lastManStanding", "lastManStandingText", !!mapSettings.LastManStanding);
 	setGUIBoolean("enableRating", "enableRatingText", !!mapSettings.RatingEnabled);
 
-	Engine.GetGUIObjectByName("optionWonderDuration").hidden =
+	Engine.GetGUIObjectByName("optionVictoryDuration").hidden =
 		g_GameAttributes.settings.GameType &&
-		g_GameAttributes.settings.GameType != "wonder";
+		g_GameAttributes.settings.GameType != "wonder" && g_GameAttributes.settings.GameType != "capture_the_relic";
 
 	Engine.GetGUIObjectByName("cheatWarningText").hidden = !g_IsNetworked || !mapSettings.CheatsEnabled;
 
@@ -1467,7 +1467,7 @@ function updateGUIObjects()
 
 	let notScenario = g_GameAttributes.mapType != "scenario" && g_IsController ;
 
-	for (let ctrl of ["victoryCondition", "wonderDuration", "populationCap",
+	for (let ctrl of ["victoryCondition", "victoryDuration", "populationCap",
 	                  "startingResources", "ceasefire", "revealMap",
 	                  "exploreMap", "disableTreasures", "disableSpies", "lockTeams", "lastManStanding"])
 		hideControl(ctrl, ctrl + "Text", notScenario);

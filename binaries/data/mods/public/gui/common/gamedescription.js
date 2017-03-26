@@ -195,10 +195,22 @@ function getGameDescription(extended = false)
 					"victory condition",
 					"Wonder (%(min)s minute)",
 					"Wonder (%(min)s minutes)",
-					g_GameAttributes.settings.WonderDuration
+					g_GameAttributes.settings.VictoryDuration
 				),
-				{ "min": g_GameAttributes.settings.WonderDuration }
+				{ "min": g_GameAttributes.settings.VictoryDuration }
 			);
+
+		else if (g_VictoryConditions.Name[victoryIdx] == "capture_the_relic")
+			title = sprintf(
+				translatePluralWithContext(
+					"victory condition",
+					"Capture The Relic (%(min)s minute)",
+					"Capture The Relic (%(min)s minutes)",
+					g_GameAttributes.settings.VictoryDuration
+				),
+				{ "min": g_GameAttributes.settings.VictoryDuration }
+			);
+
 		titles.push({
 			"label": title,
 			"value": g_VictoryConditions.Description[victoryIdx]
