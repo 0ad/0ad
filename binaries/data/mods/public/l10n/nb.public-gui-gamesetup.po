@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-17 09:01+0100\n"
-"PO-Revision-Date: 2017-03-18 23:23+0000\n"
+"PO-Revision-Date: 2017-03-26 15:04+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -213,12 +213,12 @@ msgstr "%(name)ss spill"
 
 #: gui/gamesetup/gamesetup_mp.js:106
 msgid "Please enter a valid server name."
-msgstr ""
+msgstr "Skriv inn et gyldig tjenernavn."
 
 #: gui/gamesetup/gamesetup_mp.js:113
 #, javascript-format
 msgid "Server port number must be between %(min)s and %(max)s."
-msgstr ""
+msgstr "Tjenerporten må være mellom %(min)s og %(max)s."
 
 #: gui/gamesetup/gamesetup_mp.js:130
 msgid "Connecting to server..."
@@ -533,7 +533,7 @@ msgstr "Deaktiver alle skatter på kartet."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):416
 msgid "Disable spies during the game."
-msgstr ""
+msgstr "Skru av spioner under spillet."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):426
 msgid "Toggle locked teams."

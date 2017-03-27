@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-03 09:03+0100\n"
-"PO-Revision-Date: 2017-03-23 19:53+0000\n"
+"PO-Revision-Date: 2017-03-26 15:29+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -31,7 +31,7 @@ msgstr "Jeg starter et massivt militærfelttog mot %(_player_)s, kom og bli med 
 msgid ""
 "I have set up a huge army to crush %(_player_)s. Join me and you will have "
 "your share of the loot."
-msgstr ""
+msgstr "Jeg har formet en stor hær for å knuse %(_player_)s. Gå med meg og ta din del av byttet."
 
 #: simulation/ai/petra/chatHelper.js:10
 #, javascript-format
@@ -198,7 +198,7 @@ msgstr "Dine stendige fredsformaninger faller for døve ører, %(_player_)s!"
 #, javascript-format
 msgid ""
 "My answer to your repeated peace proposal will remain war, %(_player_)s!"
-msgstr ""
+msgstr "Mitt svar på dine gjentatte fredsformaninger er fremdeles krig, %(_player_)s!"
 
 #: simulation/ai/petra/chatHelper.js:85
 #, javascript-format
@@ -216,7 +216,7 @@ msgstr "En allianse mellom oss er en god idé, %(_player_)s!"
 #, javascript-format
 msgid ""
 "Let both of our people prosper from a peaceful association, %(_player_)s."
-msgstr ""
+msgstr "La begge våre folk nyte godt av denne fredfulle overenkommelsen, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:88
 #, javascript-format
@@ -247,7 +247,7 @@ msgstr ""
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
 " %(_player_)s,"
-msgstr ""
+msgstr "Om du ikke sender meg %(_amount_)s %(_resource_)s, har vi ingen allianse, %(_player_)s,"
 
 #: simulation/ai/petra/chatHelper.js:97
 #, javascript-format
@@ -261,7 +261,7 @@ msgstr ""
 msgid ""
 "I’m still waiting for %(_amount_)s %(_resource_)s before accepting your "
 "alliance, %(_player_)s."
-msgstr ""
+msgstr "Jeg venter fremdeles på %(_amount_)s %(_resource_)s før vi har en allianse, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:99 simulation/ai/petra/chatHelper.js:120
 #, javascript-format
@@ -273,12 +273,12 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:104
 #, javascript-format
 msgid "I will not become neutral with you, %(_player_)s."
-msgstr ""
+msgstr "Jeg ønsker ikke nøytralitet med deg, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:105
 #, javascript-format
 msgid "%(_player_)s, I must decline your request for a neutrality pact."
-msgstr ""
+msgstr "%(_player_)s, jeg avslår din forespørsel om en nøytralitetspakt."
 
 #: simulation/ai/petra/chatHelper.js:108
 #, javascript-format
@@ -947,7 +947,7 @@ msgstr "Angrep mot %(_player_)s forespurt."
 
 #: simulation/helpers/Commands.js:773
 msgid "There are no bribable units"
-msgstr ""
+msgstr "Ingen enheter kan bestikkes"
 
 #: simulation/helpers/Commands.js:804
 msgid "Unable to ungarrison unit(s)"

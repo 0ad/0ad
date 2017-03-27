@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-06 09:29+0100\n"
-"PO-Revision-Date: 2017-03-06 08:55+0000\n"
+"POT-Creation-Date: 2017-03-24 09:07+0100\n"
+"PO-Revision-Date: 2017-03-25 08:58+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Georgian (http://www.transifex.com/wildfire-games/0ad/language/ka/)\n"
 "MIME-Version: 1.0\n"
@@ -127,7 +127,7 @@ msgstr "წაშლა"
 
 #: gui/common/functions_utility_loadsave.js:87 gui/common/tooltips.js:217
 #: gui/options/options.js:279 gui/options/options.js:346
-#: gui/pregame/mainmenu.js:261 gui/replaymenu/replay_actions.js:159
+#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:159
 #: gui/savedgames/load.js:128 gui/savedgames/save.js:65
 #: gui/summary/summary.js:146
 msgid "No"
@@ -135,7 +135,7 @@ msgstr "არა"
 
 #: gui/common/functions_utility_loadsave.js:87 gui/common/tooltips.js:217
 #: gui/options/options.js:279 gui/options/options.js:346
-#: gui/pregame/mainmenu.js:261 gui/replaymenu/replay_actions.js:159
+#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:159
 #: gui/savedgames/load.js:128 gui/savedgames/save.js:65
 #: gui/summary/summary.js:146
 msgid "Yes"
@@ -418,7 +418,7 @@ msgstr ""
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/common/l10n.js:23 gui/common/network.js:160 gui/common/tooltips.js:123
+#: gui/common/l10n.js:23 gui/common/network.js:162 gui/common/tooltips.js:123
 #: gui/common/tooltips.js:137 gui/common/tooltips.js:219
 #: gui/common/tooltips.js:248 gui/common/tooltips.js:281
 #: gui/common/tooltips.js:530 gui/common/tooltips.js:564
@@ -448,83 +448,83 @@ msgstr ""
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
 msgstr ""
 
-#: gui/common/network.js:64
+#: gui/common/network.js:66
 msgctxt "network disconnect"
 msgid "Unknown reason"
 msgstr ""
 
-#: gui/common/network.js:65
+#: gui/common/network.js:67
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software"
 msgstr ""
 
-#: gui/common/network.js:66
+#: gui/common/network.js:68
 msgid "The host has ended the game"
 msgstr ""
 
-#: gui/common/network.js:67
+#: gui/common/network.js:69
 msgid "Incorrect network protocol version"
 msgstr "არასწორი ქსელის პროტოკოლის ვერსია"
 
-#: gui/common/network.js:68
+#: gui/common/network.js:70
 msgid "Game is loading, please try again later"
 msgstr ""
 
-#: gui/common/network.js:69
+#: gui/common/network.js:71
 msgid "Game has already started, no observers allowed"
 msgstr ""
 
-#: gui/common/network.js:70
+#: gui/common/network.js:72
 msgid "You have been kicked"
 msgstr ""
 
-#: gui/common/network.js:71
+#: gui/common/network.js:73
 msgid "You have been banned"
 msgstr ""
 
-#: gui/common/network.js:72
+#: gui/common/network.js:74
 msgid "Playername in use. If you were disconnected, retry in few seconds"
 msgstr ""
 
-#: gui/common/network.js:73
+#: gui/common/network.js:75
 msgid "Server full"
 msgstr ""
 
-#: gui/common/network.js:74
+#: gui/common/network.js:76
 msgid "Player identifier in use, retry connecting"
 msgstr ""
 
-#: gui/common/network.js:77
+#: gui/common/network.js:79
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr ""
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:89
+#: gui/common/network.js:91
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "მიზეზი: %(reason)s."
 
-#: gui/common/network.js:94
+#: gui/common/network.js:96
 msgid "Lost connection to the server."
 msgstr "მომსახურესთან კავშირი დაიკარგა."
 
-#: gui/common/network.js:95
+#: gui/common/network.js:97
 msgid "Failed to connect to the server."
 msgstr ""
 
-#: gui/common/network.js:97
+#: gui/common/network.js:99
 msgid "Disconnected"
 msgstr "გამოერთებულია"
 
-#: gui/common/network.js:105
+#: gui/common/network.js:107
 msgid "Only the host can kick clients!"
 msgstr ""
 
 #. Translation: Number of currently connected players/observers and their
 #. names
-#: gui/common/network.js:159
+#: gui/common/network.js:161
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
 msgstr ""
@@ -977,7 +977,7 @@ msgstr "არცერთი"
 msgid "<invalid>"
 msgstr "<არასწორი>"
 
-#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:162
+#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:163
 #: gui/splashscreen/splashscreen.xml:(caption):28
 msgid "OK"
 msgstr "კარგი"
@@ -1024,7 +1024,20 @@ msgstr "ატვირთვა ჩავარდა (%(errorMessage)s)"
 msgid "unknown"
 msgstr "უცნობი"
 
-#: gui/pregame/mainmenu.js:151
+#: gui/pregame/mainmenu.js:126
+msgid "Thank you for helping improve 0 A.D.!"
+msgstr "მადლობა, რომ ეხმარები 0 A.D.-ს!"
+
+#: gui/pregame/mainmenu.js:127
+msgid "Anonymous feedback is currently enabled."
+msgstr "უსახელო უკუძახილი ჩართულია."
+
+#: gui/pregame/mainmenu.js:128
+#, javascript-format
+msgid "Status: %(status)s."
+msgstr ""
+
+#: gui/pregame/mainmenu.js:152
 #, javascript-format
 msgid ""
 "%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
@@ -1037,51 +1050,51 @@ msgstr "%(startWarning)s გაფრთხილება:%(endWarning)s ჩა
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:160
+#: gui/pregame/mainmenu.js:161
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "გთხოვ, დააჭირე \"წაიკითხე მეტი\"-ს მეტი ინფორმაციისთვის, ან \"OK\"-ს რომ გააგრძელო."
 
-#: gui/pregame/mainmenu.js:161
+#: gui/pregame/mainmenu.js:162
 msgid "WARNING!"
 msgstr "გაფრთხილება!"
 
-#: gui/pregame/mainmenu.js:162
+#: gui/pregame/mainmenu.js:163
 msgid "Read More"
 msgstr "წაიკითხე მეტი"
 
-#: gui/pregame/mainmenu.js:247
+#: gui/pregame/mainmenu.js:248
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "ააშენე: %(buildDate)s (%(revision)s)"
 
-#: gui/pregame/mainmenu.js:259
+#: gui/pregame/mainmenu.js:260
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "დარწმუნებული ხარ რომ 0 A.D.-დან გასვლა?"
 
-#: gui/pregame/mainmenu.js:260 gui/summary/summary.js:145
+#: gui/pregame/mainmenu.js:261 gui/summary/summary.js:145
 msgid "Confirmation"
 msgstr "დამოწმება"
 
-#: gui/pregame/mainmenu.js:275
+#: gui/pregame/mainmenu.js:276
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "სცენარის შემსწორებელი არ არის წვდომადი ან ვერ ჩაიტვირთა. დამატებითი ინფორმაციისთვის ნახე თამაშის ჩანაწერები."
 
-#: gui/pregame/mainmenu.js:276 gui/replaymenu/replay_actions.js:116
+#: gui/pregame/mainmenu.js:277 gui/replaymenu/replay_actions.js:116
 msgid "Error"
 msgstr "შეცდომა"
 
-#: gui/pregame/mainmenu.js:282
+#: gui/pregame/mainmenu.js:283
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr ""
 
-#: gui/pregame/mainmenu.js:287 gui/pregame/mainmenu.xml:(caption):72
-#: gui/pregame/mainmenu.xml:(caption):103
+#: gui/pregame/mainmenu.js:288 gui/pregame/mainmenu.xml:(caption):72
+#: gui/pregame/mainmenu.xml:(caption):94
 msgid "Technical Details"
 msgstr "ტექნიკური წვრილმანები"
 
-#: gui/pregame/mainmenu.js:292 gui/pregame/mainmenu.xml:(caption):149
+#: gui/pregame/mainmenu.js:293 gui/pregame/mainmenu.xml:(caption):140
 msgid "Manual"
 msgstr "სახელმძღვანელო"
 
@@ -1181,11 +1194,11 @@ msgstr ""
 msgid "Single- and multiplayer"
 msgstr ""
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):467
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):458
 msgid "Single Player"
 msgstr "მარტო მოთამაშე"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):482
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):473
 msgid "Multiplayer"
 msgstr "ბევრი მოთამაშე"
 
@@ -1539,7 +1552,7 @@ msgstr ""
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
-#: gui/pregame/mainmenu.xml:(caption):339
+#: gui/pregame/mainmenu.xml:(caption):330
 msgid "Language"
 msgstr "ენა"
 
@@ -1672,23 +1685,11 @@ msgid ""
 " and improve performance and compatibility."
 msgstr "შენ შეგიძლია ავტომატურად გამოგზავნო უსახელო უკუკავშირი, რაც დაგვეხმარება გავასწოროთ წუნები, განვავითაროთ წარმოდგენა და შეთავსებადობა."
 
-#: gui/pregame/mainmenu.xml:90
-msgid "Thank you for helping improve 0 A.D.!"
-msgstr "მადლობა, რომ ეხმარები 0 A.D.-ს!"
-
-#: gui/pregame/mainmenu.xml:92
-msgid "Anonymous feedback is currently enabled."
-msgstr "უსახელო უკუძახილი ჩართულია."
-
-#: gui/pregame/mainmenu.xml:94
-msgid "Status: $status."
-msgstr "მდგომარეობა: $status."
-
-#: gui/pregame/mainmenu.xml:535
+#: gui/pregame/mainmenu.xml:526
 msgid "Alpha XXI: Ulysses"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:537
+#: gui/pregame/mainmenu.xml:528
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
@@ -1698,205 +1699,205 @@ msgstr "გაფრთხილება: ეს არის ადრეუ�
 msgid "Enable Feedback"
 msgstr "ჩართე უკუძახილი"
 
-#: gui/pregame/mainmenu.xml:(caption):99
+#: gui/pregame/mainmenu.xml:(caption):90
 msgid "Disable Feedback"
 msgstr "გამორთე უკუძახილი"
 
-#: gui/pregame/mainmenu.xml:(caption):166
+#: gui/pregame/mainmenu.xml:(caption):157
 #: gui/structree/structree.xml:(caption):18
 msgid "Structure Tree"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):183
+#: gui/pregame/mainmenu.xml:(caption):174
 msgid "History"
 msgstr "ისტორია"
 
-#: gui/pregame/mainmenu.xml:(caption):208
+#: gui/pregame/mainmenu.xml:(caption):199
 msgid "Matches"
 msgstr "თამაშები"
 
-#: gui/pregame/mainmenu.xml:(caption):222
+#: gui/pregame/mainmenu.xml:(caption):213
 msgid "Campaigns"
 msgstr "ლაშქრობები"
 
-#: gui/pregame/mainmenu.xml:(caption):239 gui/savedgames/load.xml:(caption):20
+#: gui/pregame/mainmenu.xml:(caption):230 gui/savedgames/load.xml:(caption):20
 msgid "Load Game"
 msgstr "ჩატვირთე თამაში"
 
 #. Join a game by specifying the host's IP address.
-#: gui/pregame/mainmenu.xml:(caption):262
+#: gui/pregame/mainmenu.xml:(caption):253
 msgid "Join Game"
 msgstr "შეუერთდი თამაშს"
 
-#: gui/pregame/mainmenu.xml:(caption):277
+#: gui/pregame/mainmenu.xml:(caption):268
 msgid "Host Game"
 msgstr "უმასპინძლე თამაშს"
 
-#: gui/pregame/mainmenu.xml:(caption):292
+#: gui/pregame/mainmenu.xml:(caption):283
 msgid "Game Lobby"
 msgstr "თამაშის ვესტიბიული"
 
-#: gui/pregame/mainmenu.xml:(caption):322
+#: gui/pregame/mainmenu.xml:(caption):313
 msgid "Options"
 msgstr "ასარჩევები"
 
-#: gui/pregame/mainmenu.xml:(caption):355
+#: gui/pregame/mainmenu.xml:(caption):346
 msgid "Replays"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):369
+#: gui/pregame/mainmenu.xml:(caption):360
 msgid "Scenario Editor"
 msgstr "სცენარის გამომცემელი"
 
-#: gui/pregame/mainmenu.xml:(caption):382
+#: gui/pregame/mainmenu.xml:(caption):373
 msgid "Welcome Screen"
 msgstr "მისალმების მსახავი"
 
-#: gui/pregame/mainmenu.xml:(caption):397
+#: gui/pregame/mainmenu.xml:(caption):388
 msgid "Mod Selection"
 msgstr "ცვლილების არჩევა"
 
-#: gui/pregame/mainmenu.xml:(caption):452
+#: gui/pregame/mainmenu.xml:(caption):443
 msgid "Learn To Play"
 msgstr "ისწავლე თამაში"
 
-#: gui/pregame/mainmenu.xml:(caption):497
+#: gui/pregame/mainmenu.xml:(caption):488
 msgid "Tools & Options"
 msgstr "ხელსაწყოები და ასარჩევები"
 
-#: gui/pregame/mainmenu.xml:(caption):512
+#: gui/pregame/mainmenu.xml:(caption):503
 msgid "Exit"
 msgstr "გასვლა"
 
-#: gui/pregame/mainmenu.xml:(caption):547
+#: gui/pregame/mainmenu.xml:(caption):538
 msgid "Website"
 msgstr "ქსელნაკვეთი"
 
-#: gui/pregame/mainmenu.xml:(caption):559
+#: gui/pregame/mainmenu.xml:(caption):550
 msgid "Chat"
 msgstr "ლაყბობა"
 
-#: gui/pregame/mainmenu.xml:(caption):571
+#: gui/pregame/mainmenu.xml:(caption):562
 msgid "Report a Bug"
 msgstr "შეატყობინე წუნის შესახებ"
 
-#: gui/pregame/mainmenu.xml:(caption):583
+#: gui/pregame/mainmenu.xml:(caption):574
 msgid "Translate the game"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):595
+#: gui/pregame/mainmenu.xml:(caption):586
 msgid "Credits"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):624
+#: gui/pregame/mainmenu.xml:(caption):615
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
-#: gui/pregame/mainmenu.xml:(tooltip):150
+#: gui/pregame/mainmenu.xml:(tooltip):141
 msgid "Open the 0 A.D. Game Manual."
 msgstr "გახსენი 0 A.D. თამაშის სახელმძღვანელო."
 
-#: gui/pregame/mainmenu.xml:(tooltip):167
+#: gui/pregame/mainmenu.xml:(tooltip):158
 msgid "View the structure tree of civilizations featured in 0 A.D."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):184
+#: gui/pregame/mainmenu.xml:(tooltip):175
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "ისწავლე 0 A.D.-ში გამოსახული ბევრი ცივილიზაციის შესახებ."
 
-#: gui/pregame/mainmenu.xml:(tooltip):209
+#: gui/pregame/mainmenu.xml:(tooltip):200
 msgid "Click here to start a new single player game."
 msgstr "აქ დაწკაპე, რომ დაიწყო ახალი მარტო მოთამაშის თამაში. "
 
-#: gui/pregame/mainmenu.xml:(tooltip):223
+#: gui/pregame/mainmenu.xml:(tooltip):214
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):240
+#: gui/pregame/mainmenu.xml:(tooltip):231
 msgid "Click here to load a saved game."
 msgstr "აქ დაწკაპე, რომ ჩატვირთო შენახული თამაში."
 
-#: gui/pregame/mainmenu.xml:(tooltip):263
+#: gui/pregame/mainmenu.xml:(tooltip):254
 msgid "Joining an existing multiplayer game."
 msgstr "შეუერთდი არსებული მრავალ მოთამაშიან თამაშს."
 
-#: gui/pregame/mainmenu.xml:(tooltip):278
+#: gui/pregame/mainmenu.xml:(tooltip):269
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr "უმასპინძლე მრავალ მოთამაშიან თამაშს.\\n\\nUDP 20595 უნდა იყოს გახსნილი."
 
-#: gui/pregame/mainmenu.xml:(tooltip):293
+#: gui/pregame/mainmenu.xml:(tooltip):284
 msgid "Launch the multiplayer lobby."
 msgstr "გაუშვი მრავალი მოთამაშის ვესტიბიული."
 
-#: gui/pregame/mainmenu.xml:(tooltip):323
+#: gui/pregame/mainmenu.xml:(tooltip):314
 msgid "Adjust game settings."
 msgstr "მოარგე თამაშის გარემოცვები."
 
-#: gui/pregame/mainmenu.xml:(tooltip):340
+#: gui/pregame/mainmenu.xml:(tooltip):331
 msgid "Choose the language of the game."
 msgstr "აირჩიე თამაშის ენა."
 
-#: gui/pregame/mainmenu.xml:(tooltip):356
+#: gui/pregame/mainmenu.xml:(tooltip):347
 msgid "Playback previous games."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):370
+#: gui/pregame/mainmenu.xml:(tooltip):361
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "გახსენი Atlas სცენარის გამომცემი ახალ ფანჯარაში. შენ ეს შეგიძლია უფრო სანდოდ გახსნა თამაშის დაწყებისას ბრძანების ხაზში \"-editor\" არგუმენტის მიწოდებით."
 
-#: gui/pregame/mainmenu.xml:(tooltip):383
+#: gui/pregame/mainmenu.xml:(tooltip):374
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "აჩვენე მისალმების მსახავი. გამოსადეგია, თუ ის შემთხვევით დამალე."
 
-#: gui/pregame/mainmenu.xml:(tooltip):398
+#: gui/pregame/mainmenu.xml:(tooltip):389
 msgid "Select mods to use."
 msgstr "აირჩიე ცვლილება რომ გამოიყენო."
 
-#: gui/pregame/mainmenu.xml:(tooltip):453
+#: gui/pregame/mainmenu.xml:(tooltip):444
 msgid ""
 "Learn how to play, discover the technology trees, and the history behind the"
 " civilizations"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):468
+#: gui/pregame/mainmenu.xml:(tooltip):459
 msgid "Challenge the computer player to a single player match."
 msgstr "გამოიწვიე გამომთვლელის მოთამაშე მარტო თამაშში."
 
-#: gui/pregame/mainmenu.xml:(tooltip):483
+#: gui/pregame/mainmenu.xml:(tooltip):474
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "იბრძოლე ერთი ან მეტი ადამიანის წინააღმდეგ მრავალმოთამაშიან თამაშში."
 
-#: gui/pregame/mainmenu.xml:(tooltip):498
+#: gui/pregame/mainmenu.xml:(tooltip):489
 msgid "Game options and scenario design tools."
 msgstr "თამაშის ასარჩევები და სცენარის ჩანაფიქრის ხელსაწყოები."
 
-#: gui/pregame/mainmenu.xml:(tooltip):513
+#: gui/pregame/mainmenu.xml:(tooltip):504
 msgid "Exits the game."
 msgstr "გადის თამაშიდან."
 
-#: gui/pregame/mainmenu.xml:(tooltip):548
+#: gui/pregame/mainmenu.xml:(tooltip):539
 msgid "Click to open play0ad.com in your web browser."
 msgstr "დაწკაპე რომ გახსნა play0ad.com შენს მნახველში."
 
-#: gui/pregame/mainmenu.xml:(tooltip):560
+#: gui/pregame/mainmenu.xml:(tooltip):551
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "დაწკაპე რომ გახსნა 0 A.D. IRC ლაყბობა შენს მნახველში. (#0ad webchat.quakenet.org-ზე)"
 
-#: gui/pregame/mainmenu.xml:(tooltip):572
+#: gui/pregame/mainmenu.xml:(tooltip):563
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "დაწკაპე 0 A.D.-ს Trac-ზე შესასვლელად, რომ შეავსო წუნი, მარცხი, ან შეცდომა."
 
-#: gui/pregame/mainmenu.xml:(tooltip):584
+#: gui/pregame/mainmenu.xml:(tooltip):575
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "დაწკაპე რომ გახსნა 0 A.D.-ს თარგმნის გვერდი შენს მნახველში."
 
-#: gui/pregame/mainmenu.xml:(tooltip):596
+#: gui/pregame/mainmenu.xml:(tooltip):587
 msgid "Click to see the 0 A.D. credits."
 msgstr ""
 

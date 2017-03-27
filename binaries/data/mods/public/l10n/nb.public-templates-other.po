@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-03 09:02+0100\n"
-"PO-Revision-Date: 2017-03-18 21:53+0000\n"
+"POT-Creation-Date: 2017-03-24 09:08+0100\n"
+"PO-Revision-Date: 2017-03-26 15:18+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -220,11 +220,11 @@ msgstr "Flanke"
 
 #: simulation/templates/formations/line_closed.xml:5
 msgid "Close Order"
-msgstr ""
+msgstr "Lukket formasjon"
 
 #: simulation/templates/formations/line_open.xml:5
 msgid "Open Order"
-msgstr ""
+msgstr "Åpen formasjon"
 
 #: simulation/templates/formations/null.xml:5
 msgid "None"
@@ -252,7 +252,7 @@ msgstr "Trefning"
 
 #: simulation/templates/formations/syntagma.xml:6
 msgid "16 pike infantry units required"
-msgstr ""
+msgstr "16 pikenérinfanteri-enheter kreves"
 
 #: simulation/templates/formations/syntagma.xml:8
 msgid "Syntagma"
@@ -306,19 +306,23 @@ msgstr "Krokodille fra Nilen"
 msgid "Deer"
 msgstr "Hjort"
 
-#: simulation/templates/gaia/fauna_elephant_african_bush.xml:33
+#: simulation/templates/gaia/fauna_elephant_african_bush.xml:11
 msgid "African Bush Elephant"
 msgstr "Afrikansk busk-elefant"
+
+#: simulation/templates/gaia/fauna_elephant_african_infant.xml:14
+msgid "Elephant"
+msgstr "Elefant"
 
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:15
 msgid "African Elephant (Infant)"
 msgstr "Afrikansk elefant (unge)"
 
-#: simulation/templates/gaia/fauna_elephant_asian.xml:33
+#: simulation/templates/gaia/fauna_elephant_asian.xml:11
 msgid "Asian Elephant"
 msgstr "Asiatisk elefant"
 
-#: simulation/templates/gaia/fauna_elephant_north_african.xml:33
+#: simulation/templates/gaia/fauna_elephant_north_african.xml:11
 msgid "North African Elephant"
 msgstr "Nord-afrikansk elefant"
 
@@ -416,7 +420,7 @@ msgstr "Sau"
 msgid "Tiger"
 msgstr "Tiger"
 
-#: simulation/templates/gaia/fauna_walrus.xml:23
+#: simulation/templates/gaia/fauna_walrus.xml:24
 msgid "Walrus"
 msgstr "Hvalross"
 
@@ -836,7 +840,7 @@ msgstr "Vakttårn"
 
 #: simulation/templates/other/palisades_small_spikes.xml:16
 msgid "Spikes Small"
-msgstr "Pigger Små"
+msgstr "Pigger små"
 
 #: simulation/templates/other/palisades_small_spikes.xml:17
 msgid "Small Spikes"
@@ -976,7 +980,7 @@ msgstr "Endringer i et 5-innbyggershus for sivilisasjoner med disse husene slett
 msgid "Marker"
 msgstr "Markør"
 
-#: simulation/templates/special/player.xml:56
+#: simulation/templates/special/player.xml:57
 msgid "Player"
 msgstr "Spiller"
 
