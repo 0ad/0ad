@@ -36,7 +36,8 @@ function init(data)
 	for (let game of savedGames)
 		g_Descriptions[game.id] = game.metadata.description || "";
 
-	gameSelection.list = savedGames.map(game => generateLabel(game.metadata));
+	let engineInfo = Engine.GetEngineInfo();
+	gameSelection.list = savedGames.map(game => generateSavegameLabel(game.metadata, engineInfo));
 	gameSelection.list_data = savedGames.map(game => game.id);
 	gameSelection.selected = -1;
 

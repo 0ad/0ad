@@ -14,15 +14,47 @@
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" z="0" sprite="BackgroundTranslucent"/>
 
-	<object type="image" style="ModernDialog" size="50%-420 50%-325 50%+420 50%+325">
+	<object type="image" style="ModernDialog" size="50%-460 50%-325 50%+460 50%+325">
 
 		<object type="text" style="TitleText" size="50%-128 -18 50%+128 14">
 			<translatableAttribute id="caption">Load Game</translatableAttribute>
 		</object>
 
-		<object type="image" size="0 20 550 100%">
-			<object name="gameSelection" style="ModernList" type="list" size="24 12 100%-24 100%-90">
+		<object type="image" size="0 20 630 100%">
+			<object name="gameSelection"
+				selected_column="date"
+				selected_column_order="-1"
+				sortable="true"
+				size="24 4 100%-24 100%-70"
+				sprite_asc="ModernArrowDown"
+				sprite_desc="ModernArrowUp"
+				sprite_not_sorted="ModernNotSorted"
+				style="ModernList"
+				type="olist"
+			>
 				<action on="SelectionChange">selectionChanged();</action>
+				<action on="SelectionColumnChange">init();</action>
+				<action on="MouseLeftDoubleClickItem">loadGame();</action>
+
+				<column id="date" color="255 255 255" width="25%">
+					<translatableAttribute id="heading" context="replay">Date / Time</translatableAttribute>
+				</column>
+
+				<column id="mapType" color="255 255 255" width="15%">
+					<translatableAttribute id="heading" context="replay">Map Type</translatableAttribute>
+				</column>
+
+				<column id="mapName" color="255 255 255" width="35%">
+					<translatableAttribute id="heading" context="replay">Map Name</translatableAttribute>
+				</column>
+
+				<column id="description" color="255 255 255" width="25%">
+					<translatableAttribute id="heading" context="replay">Description</translatableAttribute>
+				</column>
+			</object>
+
+			<object name="gameSelectionFeedback" size="24 12 100%-24 100" type="text" style="ModernLabelText" hidden="true">
+				<translatableAttribute id="caption">No saved games found.</translatableAttribute>
 			</object>
 
 			<object type="button" size="0%+25 100%-60 33%+10 100%-32" style="StoneButton" hotkey="cancel">
@@ -42,7 +74,18 @@
 
 		</object>
 
-		<object name="validGame" type="image" size="550 20 100%-20 100%">
+		<object name="filterPanel" size="630 25 100%-20 60">
+			<object name="compatibilityFilter" type="checkbox" checked="true" style="ModernTickBox" size="0 0 20 20">
+				<action on="Press">init();</action>
+			</object>
+
+			<object type="text" size="25 0 100% 100%" text_align="left" textcolor="white">
+				<translatableAttribute id="caption">Filter compatible saved games</translatableAttribute>
+			</object>
+		</object>
+
+		<object name="validGame" type="image" size="630 60 100%-20 100%">
+			<object size="0 0 100%-15 1" type="image" sprite="ModernWhiteLine" z="25" />
 			<object name="savedMapName" size="0 0 100% 20" type="text" style="ModernLabelText" />
 			<object name="savedInfoPreview" size="20 20 240 240" type="image" sprite="" />
 
@@ -76,7 +119,7 @@
 			<object size="0 100%-32 100%-15 100%-31" type="image" sprite="ModernWhiteLine" z="25" />
 		</object>
 
-		<object name="invalidGame" size="570 55 790 155" type="image" sprite="logo" />
+		<object name="invalidGame" size="650 105 870 205" type="image" sprite="logo" />
 	</object>
 
 </objects>

@@ -212,12 +212,12 @@ function displayReplayList()
 		let works = replay.isCompatible;
 		return {
 			"directories": replay.directory,
-			"months": greyout(getReplayDateTime(replay), works),
-			"popCaps": greyout(translatePopulationCapacity(replay.attribs.settings.PopulationCap), works),
-			"mapNames": greyout(getReplayMapName(replay), works),
-			"mapSizes": greyout(translateMapSize(replay.attribs.settings.Size), works),
-			"durations": greyout(getReplayDuration(replay), works),
-			"playerNames": greyout(getReplayPlayernames(replay), works)
+			"months": compatibilityColor(getReplayDateTime(replay), works),
+			"popCaps": compatibilityColor(translatePopulationCapacity(replay.attribs.settings.PopulationCap), works),
+			"mapNames": compatibilityColor(getReplayMapName(replay), works),
+			"mapSizes": compatibilityColor(translateMapSize(replay.attribs.settings.Size), works),
+			"durations": compatibilityColor(getReplayDuration(replay), works),
+			"playerNames": compatibilityColor(getReplayPlayernames(replay), works)
 		};
 	});
 
@@ -284,14 +284,6 @@ function displayReplayDetails()
 	Engine.GetGUIObjectByName("summaryButton").hidden = !Engine.HasReplayMetadata(replay.directory);
 
 	setMapPreviewImage("sgMapPreview", mapData.preview);
-}
-
-/**
- * Adds grey font if replay is not compatible.
- */
-function greyout(text, isCompatible)
-{
-	return isCompatible ? text : '[color="96 96 96"]' + text + '[/color]';
 }
 
 /**
