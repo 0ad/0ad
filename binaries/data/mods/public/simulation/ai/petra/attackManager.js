@@ -360,6 +360,29 @@ m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 			return enemyPlayer;
 		}
 	}
+	else if (gameState.getGameType() === "capture_the_relic")
+	{
+		// Target the player with the most relics
+		let maxRelicsOwned = 0;
+		// TODO: target gaia relics
+		for (let i = 1; i < gameState.sharedScript.playersData.length; ++i)
+		{
+			if (!gameState.isPlayerEnemy(i) || this.defeated[i])
+				continue;
+
+			let relicsCount = gameState.getEnemyUnits(i).filter(API3.Filters.byClass("Relic")).length;
+			if (relicsCount <= maxRelicsOwned)
+				continue;
+			maxRelicsOwned = relicsCount;
+			enemyPlayer = i;
+		}
+		if (enemyPlayer)
+		{
+			if (attack.targetPlayer === undefined)
+				this.currentEnemyPlayer = enemyPlayer;
+			return enemyPlayer;
+		}
+	}
 
 	let veto = {};
 	for (let i in this.defeated)

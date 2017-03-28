@@ -834,6 +834,8 @@ m.AttackPlan.prototype.defaultTargetFinder = function(gameState, playerEnemy)
 		targets = gameState.getEnemyStructures(playerEnemy).filter(API3.Filters.byClass("Wonder"));
 	else if (gameState.getGameType() === "regicide")
 		targets = gameState.getEnemyUnits(playerEnemy).filter(API3.Filters.byClass("Hero"));
+	else if (gameState.getGameType() === "capture_the_relic")
+		targets = gameState.getEnemyUnits(playerEnemy).filter(API3.Filters.byClass("Relic"));
 	if (targets && targets.hasEntities())
 		return targets;
 
