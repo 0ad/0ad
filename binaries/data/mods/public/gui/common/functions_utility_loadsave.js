@@ -3,25 +3,27 @@ function sortDecreasingDate(a, b)
 	return b.metadata.time - a.metadata.time;
 }
 
-function generateLabel(metadata, engineInfo)
+function isCompatibleSavegame(metadata, engineInfo)
 {
-	let dateTimeString = Engine.FormatMillisecondsIntoDateStringLocal(metadata.time*1000, translate("yyyy-MM-dd HH:mm:ss"));
-	let dateString = sprintf(translate("\\[%(date)s]"), { "date": dateTimeString });
+	return engineInfo && hasSameSavegameVersion(metadata, engineInfo) &&
+		hasSameEngineVersion(metadata, engineInfo) & hasSameMods(metadata, engineInfo);
+}
 
-	if (engineInfo)
-	{
-		if (!hasSameSavegameVersion(metadata, engineInfo) || !hasSameEngineVersion(metadata, engineInfo))
-			dateString = "[color=\"red\"]" + dateString + "[/color]";
-		else if (!hasSameMods(metadata, engineInfo))
-			dateString = "[color=\"orange\"]" + dateString + "[/color]";
-	}
+function generateSavegameDateString(metadata, engineInfo)
+{
+	return compatibilityColor(
+		Engine.FormatMillisecondsIntoDateStringLocal(metadata.time * 1000, translate("yyyy-MM-dd HH:mm:ss")),
+		isCompatibleSavegame(metadata, engineInfo));
+}
 
+function generateSavegameLabel(metadata, engineInfo)
+{
 	return sprintf(
 		metadata.description ?
 			translate("%(dateString)s %(map)s - %(description)s") :
 			translate("%(dateString)s %(map)s"),
 		{
-			"dateString": dateString,
+			"dateString": generateSavegameDateString(metadata, engineInfo),
 			"map": metadata.initAttributes.map,
 			"description": metadata.description || ""
 		}

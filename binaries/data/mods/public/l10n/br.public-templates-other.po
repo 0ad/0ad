@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-03 09:02+0100\n"
-"PO-Revision-Date: 2017-03-06 11:18+0000\n"
+"POT-Creation-Date: 2017-03-24 09:08+0100\n"
+"PO-Revision-Date: 2017-03-25 14:59+0000\n"
 "Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -271,7 +271,7 @@ msgstr "6 marc'heg a zo rekiset"
 
 #: simulation/templates/formations/wedge.xml:7
 msgid "Wedge"
-msgstr "Korn"
+msgstr "Genn"
 
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Bear"
@@ -305,19 +305,23 @@ msgstr "Krokodil an Nil"
 msgid "Deer"
 msgstr "Karv"
 
-#: simulation/templates/gaia/fauna_elephant_african_bush.xml:33
+#: simulation/templates/gaia/fauna_elephant_african_bush.xml:11
 msgid "African Bush Elephant"
 msgstr "Olifant eus ar Savanenn Afrikan"
+
+#: simulation/templates/gaia/fauna_elephant_african_infant.xml:14
+msgid "Elephant"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:15
 msgid "African Elephant (Infant)"
 msgstr "Olifantig Afrikan (Yaouank)"
 
-#: simulation/templates/gaia/fauna_elephant_asian.xml:33
+#: simulation/templates/gaia/fauna_elephant_asian.xml:11
 msgid "Asian Elephant"
 msgstr "Olifant Azian"
 
-#: simulation/templates/gaia/fauna_elephant_north_african.xml:33
+#: simulation/templates/gaia/fauna_elephant_north_african.xml:11
 msgid "North African Elephant"
 msgstr "Olifant Norzh-Afrikan"
 
@@ -397,7 +401,7 @@ msgstr "Lapin"
 
 #: simulation/templates/gaia/fauna_rhino.xml:18
 msgid "Rhinoceros"
-msgstr "Frikorneg"
+msgstr "Rinoseros"
 
 #: simulation/templates/gaia/fauna_shark.xml:13
 msgid "Great White"
@@ -415,7 +419,7 @@ msgstr "Dañvad"
 msgid "Tiger"
 msgstr "Tigr"
 
-#: simulation/templates/gaia/fauna_walrus.xml:23
+#: simulation/templates/gaia/fauna_walrus.xml:24
 msgid "Walrus"
 msgstr "Kole-mor"
 
@@ -445,7 +449,7 @@ msgstr "Zebr"
 
 #: simulation/templates/gaia/flora_bush_badlands.xml:8
 msgid "Hardy Bush"
-msgstr "Brousgwez"
+msgstr "Brousgwez Postek"
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Forage"
@@ -975,7 +979,7 @@ msgstr "Kemm en un ti  gant 5 a boblañs evit ar sevenadurezhioù o devez an tie
 msgid "Marker"
 msgstr "Merker"
 
-#: simulation/templates/special/player.xml:56
+#: simulation/templates/special/player.xml:57
 msgid "Player"
 msgstr "C'hoarier"
 

@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-03 09:02+0100\n"
-"PO-Revision-Date: 2017-03-18 21:39+0000\n"
+"POT-Creation-Date: 2017-03-24 09:07+0100\n"
+"PO-Revision-Date: 2017-03-26 14:23+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -70,7 +70,7 @@ msgstr "Grunnleggende"
 #: simulation/templates/template_unit_dog.xml:43
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:18
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:18
-#: simulation/templates/template_unit_hero_elephant_melee.xml:35
+#: simulation/templates/template_unit_hero_elephant_melee.xml:34
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:24
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:18
@@ -193,9 +193,17 @@ msgstr "Ridende mesterspydmann"
 msgid "Champion Cavalry Swordsman"
 msgstr "Ridende mestersverdmann"
 
-#: simulation/templates/template_unit_champion_elephant.xml:27
+#: simulation/templates/template_unit_champion_elephant.xml:26
 msgid "War Elephant"
 msgstr "Krigselefant"
+
+#: simulation/templates/template_unit_champion_elephant.xml:27
+#: simulation/templates/template_unit_fauna_hunt_defensive_elephant.xml:26
+#: simulation/templates/template_unit_hero_elephant_melee.xml:34
+#: simulation/templates/units/maur_elephant_archer_b.xml:12
+#: simulation/templates/units/maur_support_elephant.xml:27
+msgid "Elephant"
+msgstr "Elefant"
 
 #: simulation/templates/template_unit_champion_infantry.xml:21
 #: simulation/templates/template_unit_hero_infantry.xml:23
@@ -220,7 +228,7 @@ msgstr "Mesterfrontsoldat"
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:27
 msgid "Pike"
-msgstr "Lanse"
+msgstr "Pike"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:34
 msgid "Champion Pikeman"
@@ -926,10 +934,6 @@ msgstr "Britonsk langsverdmann"
 msgid "Delamokludda"
 msgstr "Delamokludda"
 
-#: simulation/templates/units/brit_hero_boudicca.xml:10
-msgid "Female"
-msgstr "Kvinnelig"
-
 #: simulation/templates/units/brit_hero_boudicca.xml:11
 msgid "Boudicca (Chariot)"
 msgstr ""
@@ -1546,15 +1550,15 @@ msgstr "Visha Kanya"
 msgid "Maiden Guard Archer"
 msgstr "Jomfruvaktbueskytter"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:15
+#: simulation/templates/units/maur_elephant_archer_b.xml:14
 msgid "Elephant Archer"
 msgstr "Bueskyttere på elefant"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:16
+#: simulation/templates/units/maur_elephant_archer_b.xml:15
 msgid "Vachii Gaja"
 msgstr "Vachii Gaja"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:18
+#: simulation/templates/units/maur_elephant_archer_b.xml:17
 msgid "Can run amok."
 msgstr "Kan gå amok."
 

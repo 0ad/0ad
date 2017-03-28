@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-03 09:02+0100\n"
-"PO-Revision-Date: 2017-03-04 13:19+0000\n"
+"POT-Creation-Date: 2017-03-24 09:07+0100\n"
+"PO-Revision-Date: 2017-03-25 09:36+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -67,7 +67,7 @@ msgstr "基本"
 #: simulation/templates/template_unit_dog.xml:43
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:18
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:18
-#: simulation/templates/template_unit_hero_elephant_melee.xml:35
+#: simulation/templates/template_unit_hero_elephant_melee.xml:34
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:24
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:18
@@ -190,9 +190,17 @@ msgstr "精英槍騎兵"
 msgid "Champion Cavalry Swordsman"
 msgstr "精英騎兵劍士"
 
-#: simulation/templates/template_unit_champion_elephant.xml:27
+#: simulation/templates/template_unit_champion_elephant.xml:26
 msgid "War Elephant"
 msgstr "戰象"
+
+#: simulation/templates/template_unit_champion_elephant.xml:27
+#: simulation/templates/template_unit_fauna_hunt_defensive_elephant.xml:26
+#: simulation/templates/template_unit_hero_elephant_melee.xml:34
+#: simulation/templates/units/maur_elephant_archer_b.xml:12
+#: simulation/templates/units/maur_support_elephant.xml:27
+msgid "Elephant"
+msgstr "大象"
 
 #: simulation/templates/template_unit_champion_infantry.xml:21
 #: simulation/templates/template_unit_hero_infantry.xml:23
@@ -923,10 +931,6 @@ msgstr "布立吞長劍兵"
 msgid "Delamokludda"
 msgstr "Delamokludda"
 
-#: simulation/templates/units/brit_hero_boudicca.xml:10
-msgid "Female"
-msgstr "女性"
-
 #: simulation/templates/units/brit_hero_boudicca.xml:11
 msgid "Boudicca (Chariot)"
 msgstr "Boudicca（雙輪戰車）"
@@ -1543,15 +1547,15 @@ msgstr "Visha Kanya"
 msgid "Maiden Guard Archer"
 msgstr "少女衛隊弓箭手"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:15
+#: simulation/templates/units/maur_elephant_archer_b.xml:14
 msgid "Elephant Archer"
 msgstr "戰象射手"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:16
+#: simulation/templates/units/maur_elephant_archer_b.xml:15
 msgid "Vachii Gaja"
 msgstr "Vachii Gaja"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:18
+#: simulation/templates/units/maur_elephant_archer_b.xml:17
 msgid "Can run amok."
 msgstr "可以衝撞。"
 

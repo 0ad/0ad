@@ -18,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-03 09:02+0100\n"
-"PO-Revision-Date: 2017-03-15 22:34+0000\n"
-"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
+"POT-Creation-Date: 2017-03-24 09:07+0100\n"
+"PO-Revision-Date: 2017-03-26 21:55+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -73,7 +73,7 @@ msgstr "Βασικό"
 #: simulation/templates/template_unit_dog.xml:43
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:18
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:18
-#: simulation/templates/template_unit_hero_elephant_melee.xml:35
+#: simulation/templates/template_unit_hero_elephant_melee.xml:34
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:24
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:18
@@ -196,9 +196,17 @@ msgstr "Πρωταθλητής Έφιππος Λογχοφόρος"
 msgid "Champion Cavalry Swordsman"
 msgstr "Πρωταθλητής Έφιππος ξιφομάχος"
 
-#: simulation/templates/template_unit_champion_elephant.xml:27
+#: simulation/templates/template_unit_champion_elephant.xml:26
 msgid "War Elephant"
 msgstr "Πολεμικός Ελέφαντας"
+
+#: simulation/templates/template_unit_champion_elephant.xml:27
+#: simulation/templates/template_unit_fauna_hunt_defensive_elephant.xml:26
+#: simulation/templates/template_unit_hero_elephant_melee.xml:34
+#: simulation/templates/units/maur_elephant_archer_b.xml:12
+#: simulation/templates/units/maur_support_elephant.xml:27
+msgid "Elephant"
+msgstr "Ελέφαντας"
 
 #: simulation/templates/template_unit_champion_infantry.xml:21
 #: simulation/templates/template_unit_hero_infantry.xml:23
@@ -929,10 +937,6 @@ msgstr "Βρετόνος με μακρύ ξίφος"
 msgid "Delamokludda"
 msgstr "Ντελαμοκλίδα"
 
-#: simulation/templates/units/brit_hero_boudicca.xml:10
-msgid "Female"
-msgstr "Θηλυκό"
-
 #: simulation/templates/units/brit_hero_boudicca.xml:11
 msgid "Boudicca (Chariot)"
 msgstr "Βοαδίκεια (Άρμα)"
@@ -1549,15 +1553,15 @@ msgstr "Κορίτσι Δηλητήριο"
 msgid "Maiden Guard Archer"
 msgstr "Τοξότης Παρθενικής Φρουράς"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:15
+#: simulation/templates/units/maur_elephant_archer_b.xml:14
 msgid "Elephant Archer"
 msgstr "Τοξότης Ελέφαντα"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:16
+#: simulation/templates/units/maur_elephant_archer_b.xml:15
 msgid "Vachii Gaja"
 msgstr "Βάσι Γκάτζα"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:18
+#: simulation/templates/units/maur_elephant_archer_b.xml:17
 msgid "Can run amok."
 msgstr "Μπορεί να αφηνιάσουν."
 

@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-06 09:29+0100\n"
-"PO-Revision-Date: 2017-03-06 08:55+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-03-24 09:07+0100\n"
+"PO-Revision-Date: 2017-03-25 09:38+0000\n"
+"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -130,7 +130,7 @@ msgstr "刪除"
 
 #: gui/common/functions_utility_loadsave.js:87 gui/common/tooltips.js:217
 #: gui/options/options.js:279 gui/options/options.js:346
-#: gui/pregame/mainmenu.js:261 gui/replaymenu/replay_actions.js:159
+#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:159
 #: gui/savedgames/load.js:128 gui/savedgames/save.js:65
 #: gui/summary/summary.js:146
 msgid "No"
@@ -138,7 +138,7 @@ msgstr "否"
 
 #: gui/common/functions_utility_loadsave.js:87 gui/common/tooltips.js:217
 #: gui/options/options.js:279 gui/options/options.js:346
-#: gui/pregame/mainmenu.js:261 gui/replaymenu/replay_actions.js:159
+#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:159
 #: gui/savedgames/load.js:128 gui/savedgames/save.js:65
 #: gui/summary/summary.js:146
 msgid "Yes"
@@ -421,7 +421,7 @@ msgstr "%(previousAmounts)s 和 %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/common/l10n.js:23 gui/common/network.js:160 gui/common/tooltips.js:123
+#: gui/common/l10n.js:23 gui/common/network.js:162 gui/common/tooltips.js:123
 #: gui/common/tooltips.js:137 gui/common/tooltips.js:219
 #: gui/common/tooltips.js:248 gui/common/tooltips.js:281
 #: gui/common/tooltips.js:530 gui/common/tooltips.js:564
@@ -451,83 +451,83 @@ msgstr "伺服器連線不佳（%(milliseconds)s 毫秒）"
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
 msgstr "連線至 %(player)s 不佳（%(milliseconds)s 毫秒）"
 
-#: gui/common/network.js:64
+#: gui/common/network.js:66
 msgctxt "network disconnect"
 msgid "Unknown reason"
 msgstr "未知原因"
 
-#: gui/common/network.js:65
+#: gui/common/network.js:67
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software"
 msgstr "這通常是因為主機端未轉發 UDP 20595 埠所造成的，可能是由防火牆或防毒軟體阻擋。"
 
-#: gui/common/network.js:66
+#: gui/common/network.js:68
 msgid "The host has ended the game"
 msgstr "主機已結束遊戲"
 
-#: gui/common/network.js:67
+#: gui/common/network.js:69
 msgid "Incorrect network protocol version"
 msgstr "網路協定版本不正確"
 
-#: gui/common/network.js:68
+#: gui/common/network.js:70
 msgid "Game is loading, please try again later"
 msgstr "遊戲載入中，請稍後再試"
 
-#: gui/common/network.js:69
+#: gui/common/network.js:71
 msgid "Game has already started, no observers allowed"
 msgstr "遊戲已經開始，不允許觀察者"
 
-#: gui/common/network.js:70
+#: gui/common/network.js:72
 msgid "You have been kicked"
 msgstr "您已被踢出"
 
-#: gui/common/network.js:71
+#: gui/common/network.js:73
 msgid "You have been banned"
 msgstr "您已被封禁"
 
-#: gui/common/network.js:72
+#: gui/common/network.js:74
 msgid "Playername in use. If you were disconnected, retry in few seconds"
 msgstr "玩家名使用中。若您曾經斷線，請等待數秒再重試"
 
-#: gui/common/network.js:73
+#: gui/common/network.js:75
 msgid "Server full"
 msgstr "伺服器已滿"
 
-#: gui/common/network.js:74
+#: gui/common/network.js:76
 msgid "Player identifier in use, retry connecting"
 msgstr "玩家的識別碼已使用，嘗試重新連線"
 
-#: gui/common/network.js:77
+#: gui/common/network.js:79
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[無效的值 %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:89
+#: gui/common/network.js:91
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "原因：%(reason)s。"
 
-#: gui/common/network.js:94
+#: gui/common/network.js:96
 msgid "Lost connection to the server."
 msgstr "失去與伺服器的連線。"
 
-#: gui/common/network.js:95
+#: gui/common/network.js:97
 msgid "Failed to connect to the server."
 msgstr "連線至伺服器失敗。"
 
-#: gui/common/network.js:97
+#: gui/common/network.js:99
 msgid "Disconnected"
 msgstr "已中斷連線"
 
-#: gui/common/network.js:105
+#: gui/common/network.js:107
 msgid "Only the host can kick clients!"
 msgstr "只有主持人可以踢出玩家！"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
-#: gui/common/network.js:159
+#: gui/common/network.js:161
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
 msgstr "使用者 (%(num)s)：%(users)s"
@@ -980,7 +980,7 @@ msgstr "無"
 msgid "<invalid>"
 msgstr "<無效>"
 
-#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:162
+#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:163
 #: gui/splashscreen/splashscreen.xml:(caption):28
 msgid "OK"
 msgstr "確定"
@@ -1027,7 +1027,20 @@ msgstr "上傳失敗 (%(errorMessage)s)"
 msgid "unknown"
 msgstr "未知"
 
-#: gui/pregame/mainmenu.js:151
+#: gui/pregame/mainmenu.js:126
+msgid "Thank you for helping improve 0 A.D.!"
+msgstr "感謝您幫助我們改善 0 A.D.！"
+
+#: gui/pregame/mainmenu.js:127
+msgid "Anonymous feedback is currently enabled."
+msgstr "匿名回饋已啓用。"
+
+#: gui/pregame/mainmenu.js:128
+#, javascript-format
+msgid "Status: %(status)s."
+msgstr "狀態：%(status)s。"
+
+#: gui/pregame/mainmenu.js:152
 #, javascript-format
 msgid ""
 "%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
@@ -1040,51 +1053,51 @@ msgstr "%(startWarning)s 警告： %(endWarning)s 您似乎正使用非著色器
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:160
+#: gui/pregame/mainmenu.js:161
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "請按「閱讀更多」來閱讀更多資訊，或按「確定」來繼續。"
 
-#: gui/pregame/mainmenu.js:161
+#: gui/pregame/mainmenu.js:162
 msgid "WARNING!"
 msgstr "警告！"
 
-#: gui/pregame/mainmenu.js:162
+#: gui/pregame/mainmenu.js:163
 msgid "Read More"
 msgstr "閱讀更多"
 
-#: gui/pregame/mainmenu.js:247
+#: gui/pregame/mainmenu.js:248
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "組建： %(buildDate)s (%(revision)s)"
 
-#: gui/pregame/mainmenu.js:259
+#: gui/pregame/mainmenu.js:260
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "您確定要退出 0 A.D.嗎？"
 
-#: gui/pregame/mainmenu.js:260 gui/summary/summary.js:145
+#: gui/pregame/mainmenu.js:261 gui/summary/summary.js:145
 msgid "Confirmation"
 msgstr "確認"
 
-#: gui/pregame/mainmenu.js:275
+#: gui/pregame/mainmenu.js:276
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "劇情編輯器無法使用或載入失敗。見遊戲日誌以獲得更多資訊。"
 
-#: gui/pregame/mainmenu.js:276 gui/replaymenu/replay_actions.js:116
+#: gui/pregame/mainmenu.js:277 gui/replaymenu/replay_actions.js:116
 msgid "Error"
 msgstr "錯誤"
 
-#: gui/pregame/mainmenu.js:282
+#: gui/pregame/mainmenu.js:283
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "啟動多人遊戲大廳。 \\[構建時被禁用]"
 
-#: gui/pregame/mainmenu.js:287 gui/pregame/mainmenu.xml:(caption):72
-#: gui/pregame/mainmenu.xml:(caption):103
+#: gui/pregame/mainmenu.js:288 gui/pregame/mainmenu.xml:(caption):72
+#: gui/pregame/mainmenu.xml:(caption):94
 msgid "Technical Details"
 msgstr "技術詳情"
 
-#: gui/pregame/mainmenu.js:292 gui/pregame/mainmenu.xml:(caption):149
+#: gui/pregame/mainmenu.js:293 gui/pregame/mainmenu.xml:(caption):140
 msgid "Manual"
 msgstr "手冊"
 
@@ -1184,11 +1197,11 @@ msgstr "%(min)s - %(max)s 分鐘"
 msgid "Single- and multiplayer"
 msgstr "單人與多人"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):467
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):458
 msgid "Single Player"
 msgstr "單人遊戲"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):482
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):473
 msgid "Multiplayer"
 msgstr "多人遊戲"
 
@@ -1542,7 +1555,7 @@ msgstr "0 A.D. 感謝名單"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
-#: gui/pregame/mainmenu.xml:(caption):339
+#: gui/pregame/mainmenu.xml:(caption):330
 msgid "Language"
 msgstr "語言"
 
@@ -1675,23 +1688,11 @@ msgid ""
 " and improve performance and compatibility."
 msgstr "您可以自動向我們發送能幫我們修復臭蟲並改善效能和相容性的匿名回饋。"
 
-#: gui/pregame/mainmenu.xml:90
-msgid "Thank you for helping improve 0 A.D.!"
-msgstr "感謝您幫助我們改善 0 A.D.！"
-
-#: gui/pregame/mainmenu.xml:92
-msgid "Anonymous feedback is currently enabled."
-msgstr "匿名回饋已啓用。"
-
-#: gui/pregame/mainmenu.xml:94
-msgid "Status: $status."
-msgstr "狀態：$status。"
-
-#: gui/pregame/mainmenu.xml:535
+#: gui/pregame/mainmenu.xml:526
 msgid "Alpha XXI: Ulysses"
 msgstr "Alpha XXI：Ulysses"
 
-#: gui/pregame/mainmenu.xml:537
+#: gui/pregame/mainmenu.xml:528
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
@@ -1701,205 +1702,205 @@ msgstr "警告：這是一個尚處於開發階段的遊戲。仍有很多特性
 msgid "Enable Feedback"
 msgstr "啟用回饋"
 
-#: gui/pregame/mainmenu.xml:(caption):99
+#: gui/pregame/mainmenu.xml:(caption):90
 msgid "Disable Feedback"
 msgstr "停用回饋"
 
-#: gui/pregame/mainmenu.xml:(caption):166
+#: gui/pregame/mainmenu.xml:(caption):157
 #: gui/structree/structree.xml:(caption):18
 msgid "Structure Tree"
 msgstr "結構樹"
 
-#: gui/pregame/mainmenu.xml:(caption):183
+#: gui/pregame/mainmenu.xml:(caption):174
 msgid "History"
 msgstr "歷史"
 
-#: gui/pregame/mainmenu.xml:(caption):208
+#: gui/pregame/mainmenu.xml:(caption):199
 msgid "Matches"
 msgstr "配對競賽"
 
-#: gui/pregame/mainmenu.xml:(caption):222
+#: gui/pregame/mainmenu.xml:(caption):213
 msgid "Campaigns"
 msgstr "戰役"
 
-#: gui/pregame/mainmenu.xml:(caption):239 gui/savedgames/load.xml:(caption):20
+#: gui/pregame/mainmenu.xml:(caption):230 gui/savedgames/load.xml:(caption):20
 msgid "Load Game"
 msgstr "載入遊戲"
 
 #. Join a game by specifying the host's IP address.
-#: gui/pregame/mainmenu.xml:(caption):262
+#: gui/pregame/mainmenu.xml:(caption):253
 msgid "Join Game"
 msgstr "加入遊戲"
 
-#: gui/pregame/mainmenu.xml:(caption):277
+#: gui/pregame/mainmenu.xml:(caption):268
 msgid "Host Game"
 msgstr "主創遊戲"
 
-#: gui/pregame/mainmenu.xml:(caption):292
+#: gui/pregame/mainmenu.xml:(caption):283
 msgid "Game Lobby"
 msgstr "遊戲大廳"
 
-#: gui/pregame/mainmenu.xml:(caption):322
+#: gui/pregame/mainmenu.xml:(caption):313
 msgid "Options"
 msgstr "選項"
 
-#: gui/pregame/mainmenu.xml:(caption):355
+#: gui/pregame/mainmenu.xml:(caption):346
 msgid "Replays"
 msgstr "重玩"
 
-#: gui/pregame/mainmenu.xml:(caption):369
+#: gui/pregame/mainmenu.xml:(caption):360
 msgid "Scenario Editor"
 msgstr "劇情編輯器"
 
-#: gui/pregame/mainmenu.xml:(caption):382
+#: gui/pregame/mainmenu.xml:(caption):373
 msgid "Welcome Screen"
 msgstr "歡迎畫面"
 
-#: gui/pregame/mainmenu.xml:(caption):397
+#: gui/pregame/mainmenu.xml:(caption):388
 msgid "Mod Selection"
 msgstr "Mod 選擇"
 
-#: gui/pregame/mainmenu.xml:(caption):452
+#: gui/pregame/mainmenu.xml:(caption):443
 msgid "Learn To Play"
 msgstr "遊戲指南"
 
-#: gui/pregame/mainmenu.xml:(caption):497
+#: gui/pregame/mainmenu.xml:(caption):488
 msgid "Tools & Options"
 msgstr "工具與選項"
 
-#: gui/pregame/mainmenu.xml:(caption):512
+#: gui/pregame/mainmenu.xml:(caption):503
 msgid "Exit"
 msgstr "結束"
 
-#: gui/pregame/mainmenu.xml:(caption):547
+#: gui/pregame/mainmenu.xml:(caption):538
 msgid "Website"
 msgstr "網站"
 
-#: gui/pregame/mainmenu.xml:(caption):559
+#: gui/pregame/mainmenu.xml:(caption):550
 msgid "Chat"
 msgstr "聊天"
 
-#: gui/pregame/mainmenu.xml:(caption):571
+#: gui/pregame/mainmenu.xml:(caption):562
 msgid "Report a Bug"
 msgstr "回報臭蟲"
 
-#: gui/pregame/mainmenu.xml:(caption):583
+#: gui/pregame/mainmenu.xml:(caption):574
 msgid "Translate the game"
 msgstr "翻譯本遊戲"
 
-#: gui/pregame/mainmenu.xml:(caption):595
+#: gui/pregame/mainmenu.xml:(caption):586
 msgid "Credits"
 msgstr "感謝"
 
-#: gui/pregame/mainmenu.xml:(caption):624
+#: gui/pregame/mainmenu.xml:(caption):615
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
-#: gui/pregame/mainmenu.xml:(tooltip):150
+#: gui/pregame/mainmenu.xml:(tooltip):141
 msgid "Open the 0 A.D. Game Manual."
 msgstr "開啟0 A.D. 遊戲手冊。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):167
+#: gui/pregame/mainmenu.xml:(tooltip):158
 msgid "View the structure tree of civilizations featured in 0 A.D."
 msgstr "觀看 0 A.D. 中文明的結構樹。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):184
+#: gui/pregame/mainmenu.xml:(tooltip):175
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "瞭解 0 A.D. 中文明的特色。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):209
+#: gui/pregame/mainmenu.xml:(tooltip):200
 msgid "Click here to start a new single player game."
 msgstr "點擊這裏開始新的單人遊戲。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):223
+#: gui/pregame/mainmenu.xml:(tooltip):214
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
 msgstr "透過歷史戰役重溫歷史事件。\\[尚未提供]"
 
-#: gui/pregame/mainmenu.xml:(tooltip):240
+#: gui/pregame/mainmenu.xml:(tooltip):231
 msgid "Click here to load a saved game."
 msgstr "點擊這裏來載入保存的遊戲。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):263
+#: gui/pregame/mainmenu.xml:(tooltip):254
 msgid "Joining an existing multiplayer game."
 msgstr "加入已存在的多人遊戲。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):278
+#: gui/pregame/mainmenu.xml:(tooltip):269
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr "創建多人遊戲。\\n\\n需要 UDP 埠 20595 開啓。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):293
+#: gui/pregame/mainmenu.xml:(tooltip):284
 msgid "Launch the multiplayer lobby."
 msgstr "啟動多人遊戲大廳。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):323
+#: gui/pregame/mainmenu.xml:(tooltip):314
 msgid "Adjust game settings."
 msgstr "調整遊戲設定。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):340
+#: gui/pregame/mainmenu.xml:(tooltip):331
 msgid "Choose the language of the game."
 msgstr "選擇遊戲語言。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):356
+#: gui/pregame/mainmenu.xml:(tooltip):347
 msgid "Playback previous games."
 msgstr "播放先前的遊戲。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):370
+#: gui/pregame/mainmenu.xml:(tooltip):361
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "在新視窗中開啟地圖編輯器。您可以利用命令列執行遊戲並在其後加上 \"-editor\" 的參數以較可靠的執行編輯器。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):383
+#: gui/pregame/mainmenu.xml:(tooltip):374
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "顯示歡迎畫面。如果您不小心隱藏它的時候很有用。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):398
+#: gui/pregame/mainmenu.xml:(tooltip):389
 msgid "Select mods to use."
 msgstr "選取要使用的 mods。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):453
+#: gui/pregame/mainmenu.xml:(tooltip):444
 msgid ""
 "Learn how to play, discover the technology trees, and the history behind the"
 " civilizations"
 msgstr "了解如何遊玩，探索科技樹，以及文明背後的歷史"
 
-#: gui/pregame/mainmenu.xml:(tooltip):468
+#: gui/pregame/mainmenu.xml:(tooltip):459
 msgid "Challenge the computer player to a single player match."
 msgstr "挑戰電腦玩家進行單人遊戲。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):483
+#: gui/pregame/mainmenu.xml:(tooltip):474
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "與一個或多個人類玩家進行多人遊戲。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):498
+#: gui/pregame/mainmenu.xml:(tooltip):489
 msgid "Game options and scenario design tools."
 msgstr "遊戲選項和劇情設計工具。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):513
+#: gui/pregame/mainmenu.xml:(tooltip):504
 msgid "Exits the game."
 msgstr "結束遊戲。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):548
+#: gui/pregame/mainmenu.xml:(tooltip):539
 msgid "Click to open play0ad.com in your web browser."
 msgstr "點擊以在瀏覽器中打開 play0ad.com。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):560
+#: gui/pregame/mainmenu.xml:(tooltip):551
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "點擊以在瀏覽器中打開 0 A.D. IRC 聊天。（#0ad on webchat.quakenet.org）"
 
-#: gui/pregame/mainmenu.xml:(tooltip):572
+#: gui/pregame/mainmenu.xml:(tooltip):563
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "點擊以連結至0 A.D. Trac 回報臭蟲、當機、或是錯誤。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):584
+#: gui/pregame/mainmenu.xml:(tooltip):575
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "點擊以在您的瀏覽器中開啟0 A.D. 的翻譯頁面。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):596
+#: gui/pregame/mainmenu.xml:(tooltip):587
 msgid "Click to see the 0 A.D. credits."
 msgstr "點選以觀看 0 A.D. 感謝名單。"
 

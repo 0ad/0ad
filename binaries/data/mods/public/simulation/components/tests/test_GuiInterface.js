@@ -58,7 +58,8 @@ AddMock(SYSTEM_ENTITY, IID_Barter, {
 			"buy": { "food": 150 },
 			"sell": { "food": 25 }
 		};
-	}
+	},
+	PlayerHasMarket: function () { return false; }
 });
 
 AddMock(SYSTEM_ENTITY, IID_EndGameManager, {
@@ -293,6 +294,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			researchedTechs: {},
 			classCounts: {},
 			typeCountsByClass: {},
+			canBarter: false,
 			statistics: {
 				resourcesGathered: {
 					food: 100,
@@ -336,6 +338,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			researchedTechs: {},
 			classCounts: {},
 			typeCountsByClass: {},
+			canBarter: false,
 			statistics: {
 				resourcesGathered: {
 					food: 100,
@@ -407,6 +410,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 			researchedTechs: {},
 			classCounts: {},
 			typeCountsByClass: {},
+			canBarter: false,
 			statistics: {
 				unitsTrained: 10,
 				unitsLost: 9,
@@ -463,6 +467,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 			researchedTechs: {},
 			classCounts: {},
 			typeCountsByClass: {},
+			canBarter: false,
 			statistics: {
 				unitsTrained: 10,
 				unitsLost: 9,
@@ -591,11 +596,9 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetEntityState(-1, 10), {
 TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedEntityState(-1, 10), {
 	armour: null,
 	attack: null,
-	barterMarket: {
-		prices: { "buy": {"food":150}, "sell": {"food":25} },
-	},
 	buildingAI: null,
 	heal: null,
+	isBarterMarket: true,
 	loot: null,
 	obstruction: null,
 	turretParent: null,

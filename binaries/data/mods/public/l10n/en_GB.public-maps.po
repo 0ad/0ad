@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-10 09:03+0100\n"
-"PO-Revision-Date: 2017-03-10 09:46+0000\n"
+"POT-Creation-Date: 2017-03-24 09:08+0100\n"
+"PO-Revision-Date: 2017-03-24 10:10+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
@@ -188,6 +188,7 @@ msgstr "Continent"
 
 #: maps/random/corinthian_isthmus.jsonsettings.Description
 #: maps/skirmishes/Corinthian Isthmus (2).xml:Description:39
+#: maps/skirmishes/Corinthian Isthmus (4).xml:Description:40
 msgid ""
 "Two Mediterranean land masses connected by a narrow spit of land, called an "
 "'Isthmus'."
@@ -764,6 +765,10 @@ msgstr "An enemy wave is attacking!"
 msgid "The first wave will start in %(time)s!"
 msgstr "The first wave will start in %(time)s!"
 
+#: maps/scenarios/Cinema_Demo.js:6
+msgid "Cutscene starts after 5 seconds"
+msgstr ""
+
 #: maps/scenarios/Triggers_demo.js:73
 msgid "Testing the yes-no dialog. Do you want to say sure or rather not?"
 msgstr "Testing the yes-no dialog. Do you want to say sure or rather not?"
@@ -855,7 +860,7 @@ msgstr "Springtime in Arcadia, Greece. Spring rains have gorged what would other
 #: maps/skirmishes/Belgian Bog (2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Caspian Sea (2v2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Corinthian Isthmus (2).xml:PlayerData[0].Name:39
-#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[0].Name:39
+#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[1].Name:40
 #: maps/skirmishes/Corsica and Sardinia (4).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Cycladic Archipelago (2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Death Canyon (2).xml:PlayerData[0].Name:39
@@ -922,7 +927,7 @@ msgstr "Player 1"
 #: maps/skirmishes/Belgian Bog (2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Caspian Sea (2v2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Corinthian Isthmus (2).xml:PlayerData[1].Name:39
-#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[1].Name:39
+#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[2].Name:40
 #: maps/skirmishes/Corsica and Sardinia (4).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Cycladic Archipelago (2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Death Canyon (2).xml:PlayerData[1].Name:39
@@ -1130,6 +1135,22 @@ msgstr "Religious Institutions"
 msgid "Strategic Campaign Proof of Concept"
 msgstr "Strategic Campaign Proof of Concept"
 
+#: maps/scenarios/Cinema_Demo.xml:Description:40
+msgid "Demo map for cinematic camera movements."
+msgstr ""
+
+#: maps/scenarios/Cinema_Demo.xml:PlayerData[1].Name:40
+msgid "Xerxes I"
+msgstr ""
+
+#: maps/scenarios/Cinema_Demo.xml:PlayerData[2].Name:40
+msgid "Yuu"
+msgstr ""
+
+#: maps/scenarios/Cinema_Demo.xml:Name:40
+msgid "Cinema Demo"
+msgstr ""
+
 #: maps/scenarios/Combat_demo.xml:Name:27
 msgid "Combat Demo"
 msgstr "Combat Demo"
@@ -1172,7 +1193,7 @@ msgstr "Invasion Force"
 #: Oasis.xml:PlayerData[2].Name:27 maps/skirmishes/Barcania
 #: (3).xml:PlayerData[2].Name:27 maps/skirmishes/Caspian Sea
 #: (2v2).xml:PlayerData[2].Name:39 maps/skirmishes/Corinthian Isthmus
-#: (4).xml:PlayerData[2].Name:39 maps/skirmishes/Corsica and Sardinia
+#: (4).xml:PlayerData[3].Name:40 maps/skirmishes/Corsica and Sardinia
 #: (4).xml:PlayerData[2].Name:39 maps/skirmishes/Gallic Fields
 #: (3).xml:PlayerData[2].Name:39 maps/skirmishes/Gambia River
 #: (3).xml:PlayerData[2].Name:39 maps/skirmishes/Greek Acropolis
@@ -1226,7 +1247,7 @@ msgstr "A small desert map. Each player starts near an oasis spotted about an ot
 #: Oases.xml:PlayerData[3].Name:27 maps/scenarios/Siwa
 #: Oasis.xml:PlayerData[3].Name:27 maps/skirmishes/Caspian Sea
 #: (2v2).xml:PlayerData[3].Name:39 maps/skirmishes/Corinthian Isthmus
-#: (4).xml:PlayerData[3].Name:39 maps/skirmishes/Corsica and Sardinia
+#: (4).xml:PlayerData[4].Name:40 maps/skirmishes/Corsica and Sardinia
 #: (4).xml:PlayerData[3].Name:39 maps/skirmishes/Greek Acropolis
 #: (4).xml:PlayerData[3].Name:39 maps/skirmishes/Libyan Oases
 #: (4).xml:PlayerData[3].Name:39 maps/skirmishes/Median Oasis
@@ -1824,8 +1845,7 @@ msgstr "Every unit in the game."
 
 #: maps/scenarios/WallTest.xml:Description:27
 #: maps/scenarios/_default.xml:Description:28 maps/scenarios/temperate
-#: map.xml:Description:27 maps/skirmishes/Corinthian Isthmus
-#: (4).xml:Description:39
+#: map.xml:Description:27
 msgid "Give an interesting description of your map."
 msgstr "Give an interesting description of your map."
 
@@ -1962,7 +1982,7 @@ msgstr "Caspian Sea (2v2)"
 msgid "Corinthian Isthmus (2)"
 msgstr "Corinthian Isthmus (2)"
 
-#: maps/skirmishes/Corinthian Isthmus (4).xml:Name:39
+#: maps/skirmishes/Corinthian Isthmus (4).xml:Name:40
 msgid "Corinthian Isthmus (4)"
 msgstr "Corinthian Isthmus (4)"
 

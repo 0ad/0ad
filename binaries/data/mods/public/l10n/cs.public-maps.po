@@ -7,7 +7,7 @@
 # Filip Kružík <fildakr@gmail.com>, 2015
 # javier mayo reina <thedirtylord@gmail.com>, 2015
 # Lukas Koutsky <tekumseh65@seznam.cz>, 2015
-# fri, 2014-2016
+# fri, 2014-2017
 # Pavel Šindelář <pavelsin123@gmail.com>, 2015
 # Petr Hála <halapetr@selfnet.cz>, 2015-2017
 # Robin Kriebel <kriebel.robin@gmail.com>, 2016
@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-10 09:03+0100\n"
-"PO-Revision-Date: 2017-03-13 23:05+0000\n"
-"Last-Translator: Tomáš Machala <haman3k@gmail.com>\n"
+"POT-Creation-Date: 2017-03-24 09:08+0100\n"
+"PO-Revision-Date: 2017-03-26 07:35+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,7 +39,7 @@ msgstr "Egejské moře"
 msgid ""
 "The central region of the vast continent of Africa, birthplace of humanity. "
 "Players start in a lush area teeming with vegetation and wildlife."
-msgstr "Centrální region rozsáhlého Afrického kontinentu, kolébka lidstva. Hráči začínají v bujné oblasti hemžící se vegetací a zvěří."
+msgstr "Středová oblast rozsáhlého afrického světadílu, kolébka lidstva. Hráči začínají v bujné oblasti plné rostlinstva a zvěře."
 
 #: maps/random/african_plains.jsonsettings.Name
 msgid "African Plains"
@@ -191,6 +191,7 @@ msgstr "Kontinent"
 
 #: maps/random/corinthian_isthmus.jsonsettings.Description
 #: maps/skirmishes/Corinthian Isthmus (2).xml:Description:39
+#: maps/skirmishes/Corinthian Isthmus (4).xml:Description:40
 msgid ""
 "Two Mediterranean land masses connected by a narrow spit of land, called an "
 "'Isthmus'."
@@ -767,6 +768,10 @@ msgstr "Vlna nepřátel útočí!"
 msgid "The first wave will start in %(time)s!"
 msgstr "První vlna začne za %(time)s!"
 
+#: maps/scenarios/Cinema_Demo.js:6
+msgid "Cutscene starts after 5 seconds"
+msgstr "Střihová scéna začne po 5 sekundách"
+
 #: maps/scenarios/Triggers_demo.js:73
 msgid "Testing the yes-no dialog. Do you want to say sure or rather not?"
 msgstr "Zkouška dialogu Ano-Ne. Chcete říci ano anebo raději ne?"
@@ -858,7 +863,7 @@ msgstr "Jaro v Arkádii v Řecku. Jarní deště rozvodnily to, co je po zbytek 
 #: maps/skirmishes/Belgian Bog (2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Caspian Sea (2v2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Corinthian Isthmus (2).xml:PlayerData[0].Name:39
-#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[0].Name:39
+#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[1].Name:40
 #: maps/skirmishes/Corsica and Sardinia (4).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Cycladic Archipelago (2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Death Canyon (2).xml:PlayerData[0].Name:39
@@ -925,7 +930,7 @@ msgstr "Hráč 1"
 #: maps/skirmishes/Belgian Bog (2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Caspian Sea (2v2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Corinthian Isthmus (2).xml:PlayerData[1].Name:39
-#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[1].Name:39
+#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[2].Name:40
 #: maps/skirmishes/Corsica and Sardinia (4).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Cycladic Archipelago (2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Death Canyon (2).xml:PlayerData[1].Name:39
@@ -1133,6 +1138,22 @@ msgstr "Náboženské instituce"
 msgid "Strategic Campaign Proof of Concept"
 msgstr "Zkouška konceptu kampaně"
 
+#: maps/scenarios/Cinema_Demo.xml:Description:40
+msgid "Demo map for cinematic camera movements."
+msgstr "Ukázková mapa s pohyby filmové kamery."
+
+#: maps/scenarios/Cinema_Demo.xml:PlayerData[1].Name:40
+msgid "Xerxes I"
+msgstr "Xerxes I."
+
+#: maps/scenarios/Cinema_Demo.xml:PlayerData[2].Name:40
+msgid "Yuu"
+msgstr "Yuu"
+
+#: maps/scenarios/Cinema_Demo.xml:Name:40
+msgid "Cinema Demo"
+msgstr ""
+
 #: maps/scenarios/Combat_demo.xml:Name:27
 msgid "Combat Demo"
 msgstr "Ukázka boje"
@@ -1175,7 +1196,7 @@ msgstr "Invazní armáda"
 #: Oasis.xml:PlayerData[2].Name:27 maps/skirmishes/Barcania
 #: (3).xml:PlayerData[2].Name:27 maps/skirmishes/Caspian Sea
 #: (2v2).xml:PlayerData[2].Name:39 maps/skirmishes/Corinthian Isthmus
-#: (4).xml:PlayerData[2].Name:39 maps/skirmishes/Corsica and Sardinia
+#: (4).xml:PlayerData[3].Name:40 maps/skirmishes/Corsica and Sardinia
 #: (4).xml:PlayerData[2].Name:39 maps/skirmishes/Gallic Fields
 #: (3).xml:PlayerData[2].Name:39 maps/skirmishes/Gambia River
 #: (3).xml:PlayerData[2].Name:39 maps/skirmishes/Greek Acropolis
@@ -1229,7 +1250,7 @@ msgstr "Malá pouštní mapa. Každý hráč začíná u oázy spatřené v jina
 #: Oases.xml:PlayerData[3].Name:27 maps/scenarios/Siwa
 #: Oasis.xml:PlayerData[3].Name:27 maps/skirmishes/Caspian Sea
 #: (2v2).xml:PlayerData[3].Name:39 maps/skirmishes/Corinthian Isthmus
-#: (4).xml:PlayerData[3].Name:39 maps/skirmishes/Corsica and Sardinia
+#: (4).xml:PlayerData[4].Name:40 maps/skirmishes/Corsica and Sardinia
 #: (4).xml:PlayerData[3].Name:39 maps/skirmishes/Greek Acropolis
 #: (4).xml:PlayerData[3].Name:39 maps/skirmishes/Libyan Oases
 #: (4).xml:PlayerData[3].Name:39 maps/skirmishes/Median Oasis
@@ -1827,8 +1848,7 @@ msgstr "Každá jednotka ve hře."
 
 #: maps/scenarios/WallTest.xml:Description:27
 #: maps/scenarios/_default.xml:Description:28 maps/scenarios/temperate
-#: map.xml:Description:27 maps/skirmishes/Corinthian Isthmus
-#: (4).xml:Description:39
+#: map.xml:Description:27
 msgid "Give an interesting description of your map."
 msgstr "Podejte zajímavý popis své mapy."
 
@@ -1965,7 +1985,7 @@ msgstr "Kaspické moře (2v2)"
 msgid "Corinthian Isthmus (2)"
 msgstr "Korintská úžina (2)"
 
-#: maps/skirmishes/Corinthian Isthmus (4).xml:Name:39
+#: maps/skirmishes/Corinthian Isthmus (4).xml:Name:40
 msgid "Corinthian Isthmus (4)"
 msgstr "Korintská úžina (4)"
 

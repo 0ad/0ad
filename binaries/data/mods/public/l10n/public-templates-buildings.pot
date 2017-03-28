@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2017-02-26 21:11+0100\n"
-"PO-Revision-Date: 2017-02-26 21:11+0100\n"
+"POT-Creation-Date: 2017-03-27 09:02+0200\n"
+"PO-Revision-Date: 2017-03-27 09:02+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -65,7 +65,7 @@ msgstr ""
 #: simulation/templates/template_structure_military_blacksmith.xml:32
 #: simulation/templates/template_structure_military_embassy.xml:26
 #: simulation/templates/structures/brit_blacksmith.xml:11
-#: simulation/templates/structures/brit_kennel.xml:36
+#: simulation/templates/structures/brit_kennel.xml:39
 #: simulation/templates/structures/cart_super_dock.xml:37
 #: simulation/templates/structures/gaul_blacksmith.xml:11
 #: simulation/templates/structures/gaul_tavern.xml:29
@@ -74,11 +74,11 @@ msgstr ""
 msgid "Town"
 msgstr ""
 
-#: simulation/templates/template_structure_civic_house.xml:34
+#: simulation/templates/template_structure_civic_house.xml:35
 msgid "Increase the population limit."
 msgstr ""
 
-#: simulation/templates/template_structure_civic_house.xml:36
+#: simulation/templates/template_structure_civic_house.xml:37
 #: simulation/templates/template_structure_defense_outpost.xml:65
 #: simulation/templates/template_structure_defense_sentry_tower.xml:42
 #: simulation/templates/template_structure_economic_farmstead.xml:27
@@ -89,8 +89,8 @@ msgstr ""
 msgid "Village"
 msgstr ""
 
-#: simulation/templates/template_structure_civic_house.xml:36
-#: simulation/templates/template_structure_civic_house.xml:33
+#: simulation/templates/template_structure_civic_house.xml:37
+#: simulation/templates/template_structure_civic_house.xml:34
 msgid "House"
 msgstr ""
 
@@ -331,7 +331,7 @@ msgid "Harvest vegetables for food. Max gatherers: 5."
 msgstr ""
 
 #: simulation/templates/template_structure_special.xml:42
-#: simulation/templates/structures/brit_kennel.xml:33
+#: simulation/templates/structures/brit_kennel.xml:36
 msgid "Special Building"
 msgstr ""
 
@@ -604,11 +604,11 @@ msgstr ""
 msgid "Annedd"
 msgstr ""
 
-#: simulation/templates/structures/brit_kennel.xml:34
+#: simulation/templates/structures/brit_kennel.xml:37
 msgid "Kennel"
 msgstr ""
 
-#: simulation/templates/structures/brit_kennel.xml:37
+#: simulation/templates/structures/brit_kennel.xml:40
 msgid "Train Celtic war dogs."
 msgstr ""
 
@@ -883,15 +883,19 @@ msgstr ""
 msgid "Arruga"
 msgstr ""
 
-#: simulation/templates/structures/iber_monument.xml:28
-msgid "Revered Monument"
-msgstr ""
-
-#: simulation/templates/structures/iber_monument.xml:29
-msgid "Gur Oroigarri"
+#: simulation/templates/structures/iber_monument.xml:7
+msgid "Monument"
 msgstr ""
 
 #: simulation/templates/structures/iber_monument.xml:32
+msgid "Revered Monument"
+msgstr ""
+
+#: simulation/templates/structures/iber_monument.xml:33
+msgid "Gur Oroigarri"
+msgstr ""
+
+#: simulation/templates/structures/iber_monument.xml:36
 msgid ""
 "All units within vision of this monument will fight harder. Buildings in the "
 "territory of the monument do not decay."
@@ -929,11 +933,11 @@ msgstr ""
 msgid "Sidērourgeîon"
 msgstr ""
 
-#: simulation/templates/structures/mace_fortress.xml:15
+#: simulation/templates/structures/mace_fortress.xml:9
 msgid "Teíchisma"
 msgstr ""
 
-#: simulation/templates/structures/mace_fortress.xml:16
+#: simulation/templates/structures/mace_fortress.xml:10
 msgid "Train Champions and Heroes. Garrison soldiers inside for stout defense."
 msgstr ""
 
@@ -1023,15 +1027,19 @@ msgstr ""
 msgid "Uparaksana"
 msgstr ""
 
-#: simulation/templates/structures/maur_pillar_ashoka.xml:27
+#: simulation/templates/structures/maur_pillar_ashoka.xml:7
+msgid "Pillar"
+msgstr ""
+
+#: simulation/templates/structures/maur_pillar_ashoka.xml:32
 msgid "Edict Pillar of Ashoka"
 msgstr ""
 
-#: simulation/templates/structures/maur_pillar_ashoka.xml:28
+#: simulation/templates/structures/maur_pillar_ashoka.xml:33
 msgid "Śāsana Stambha Aśokā"
 msgstr ""
 
-#: simulation/templates/structures/maur_pillar_ashoka.xml:31
+#: simulation/templates/structures/maur_pillar_ashoka.xml:36
 msgid ""
 "The famous pillar of Ashoka. Increases the walk speed of traders. Buildings "
 "in the territory of the monument do not decay."

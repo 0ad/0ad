@@ -5,9 +5,8 @@
 	style="iconButton"
 	tooltip_style="sessionToolTip"
 >
-	<!-- TODO make the button less ugly -->
 	<object size="0 0 100% 100%" name="tradeButtonImage" type="image" sprite="stretched:session/icons/economics.png" ghost="true"/>
-	<translatableAttribute id="tooltip">Trade</translatableAttribute>
+	<translatableAttribute id="tooltip">Barter &amp; Trade</translatableAttribute>
 	<action on="Press">
 		toggleTrade();
 	</action>

@@ -158,3 +158,11 @@ function colorizeAutocompleteHotkey()
 			"[/color]"
 	});
 }
+
+/**
+ * Adds grey font if savegame/replay is not compatible.
+ */
+function compatibilityColor(text, isCompatible)
+{
+	return isCompatible ? text : '[color="96 96 96"]' + text + '[/color]';
+}

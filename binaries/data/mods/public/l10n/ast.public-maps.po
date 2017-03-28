@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# David Sowa <isithere2@yahoo.com>, 2016
+# David Sowa <isithere2@yahoo.com>, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-10 09:03+0100\n"
-"PO-Revision-Date: 2017-03-10 09:46+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-03-24 09:08+0100\n"
+"PO-Revision-Date: 2017-03-25 03:05+0000\n"
+"Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,11 +19,11 @@ msgstr ""
 
 #: maps/random/aegean_sea.jsonsettings.Description
 msgid "Players start on two sides of a sea with scattered islands."
-msgstr ""
+msgstr "Los xugadores entamen a entrambos llaos d'una mar con islles esperdigaes."
 
 #: maps/random/aegean_sea.jsonsettings.Name
 msgid "Aegean Sea"
-msgstr ""
+msgstr "Mar Exéu"
 
 #: maps/random/african_plains.jsonsettings.Description
 msgid ""
@@ -33,7 +33,7 @@ msgstr ""
 
 #: maps/random/african_plains.jsonsettings.Name
 msgid "African Plains"
-msgstr ""
+msgstr "Llaneres africanes"
 
 #: maps/random/alpine_lakes.jsonsettings.Description
 msgid ""
@@ -43,7 +43,7 @@ msgstr ""
 
 #: maps/random/alpine_lakes.jsonsettings.Name
 msgid "Alpine Lakes"
-msgstr ""
+msgstr "Llagos alpinos"
 
 #: maps/random/alpine_valley.jsonsettings.Description
 msgid "High Alpine mountains bordering deep valleys."
@@ -51,7 +51,7 @@ msgstr ""
 
 #: maps/random/alpine_valley.jsonsettings.Name
 msgid "Alpine Valley"
-msgstr ""
+msgstr "Valle alpín"
 
 #: maps/random/amazon.jsonsettings.Description
 msgid ""
@@ -63,7 +63,7 @@ msgstr ""
 
 #: maps/random/amazon.jsonsettings.Name
 msgid "Amazon"
-msgstr ""
+msgstr "L'Amazonia"
 
 #: maps/random/ambush.jsonsettings.Description
 msgid ""
@@ -83,7 +83,7 @@ msgstr ""
 
 #: maps/random/anatolian_plateau.jsonsettings.Name
 msgid "Anatolian Plateau"
-msgstr ""
+msgstr "Meseta d'Anatolia"
 
 #: maps/random/archipelago.jsonsettings.Description
 msgid ""
@@ -93,7 +93,7 @@ msgstr ""
 
 #: maps/random/archipelago.jsonsettings.Name
 msgid "Archipelago"
-msgstr ""
+msgstr "Archipiélagu"
 
 #: maps/random/ardennes_forest.jsonsettings.Description
 msgid ""
@@ -104,7 +104,7 @@ msgstr ""
 
 #: maps/random/ardennes_forest.jsonsettings.Name
 msgid "Ardennes Forest"
-msgstr ""
+msgstr "Viesca Ardenes"
 
 #: maps/random/atlas_mountains.jsonsettings.Description
 msgid ""
@@ -114,7 +114,7 @@ msgstr ""
 
 #: maps/random/atlas_mountains.jsonsettings.Name
 msgid "Atlas Mountains"
-msgstr ""
+msgstr "Montes d'Atles"
 
 #: maps/random/bahrain.jsonsettings.Description
 msgid ""
@@ -129,7 +129,7 @@ msgstr ""
 
 #: maps/random/bahrain.jsonsettings.Name
 msgid "Bahrain"
-msgstr ""
+msgstr "Baḥréin"
 
 #: maps/random/belgian_uplands.jsonsettings.Description
 msgid ""
@@ -181,6 +181,7 @@ msgstr "Continente"
 
 #: maps/random/corinthian_isthmus.jsonsettings.Description
 #: maps/skirmishes/Corinthian Isthmus (2).xml:Description:39
+#: maps/skirmishes/Corinthian Isthmus (4).xml:Description:40
 msgid ""
 "Two Mediterranean land masses connected by a narrow spit of land, called an "
 "'Isthmus'."
@@ -757,6 +758,10 @@ msgstr ""
 msgid "The first wave will start in %(time)s!"
 msgstr ""
 
+#: maps/scenarios/Cinema_Demo.js:6
+msgid "Cutscene starts after 5 seconds"
+msgstr ""
+
 #: maps/scenarios/Triggers_demo.js:73
 msgid "Testing the yes-no dialog. Do you want to say sure or rather not?"
 msgstr ""
@@ -848,7 +853,7 @@ msgstr ""
 #: maps/skirmishes/Belgian Bog (2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Caspian Sea (2v2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Corinthian Isthmus (2).xml:PlayerData[0].Name:39
-#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[0].Name:39
+#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[1].Name:40
 #: maps/skirmishes/Corsica and Sardinia (4).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Cycladic Archipelago (2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Death Canyon (2).xml:PlayerData[0].Name:39
@@ -915,7 +920,7 @@ msgstr "Xugador 1"
 #: maps/skirmishes/Belgian Bog (2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Caspian Sea (2v2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Corinthian Isthmus (2).xml:PlayerData[1].Name:39
-#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[1].Name:39
+#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[2].Name:40
 #: maps/skirmishes/Corsica and Sardinia (4).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Cycladic Archipelago (2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Death Canyon (2).xml:PlayerData[1].Name:39
@@ -1123,6 +1128,22 @@ msgstr ""
 msgid "Strategic Campaign Proof of Concept"
 msgstr ""
 
+#: maps/scenarios/Cinema_Demo.xml:Description:40
+msgid "Demo map for cinematic camera movements."
+msgstr ""
+
+#: maps/scenarios/Cinema_Demo.xml:PlayerData[1].Name:40
+msgid "Xerxes I"
+msgstr ""
+
+#: maps/scenarios/Cinema_Demo.xml:PlayerData[2].Name:40
+msgid "Yuu"
+msgstr ""
+
+#: maps/scenarios/Cinema_Demo.xml:Name:40
+msgid "Cinema Demo"
+msgstr ""
+
 #: maps/scenarios/Combat_demo.xml:Name:27
 msgid "Combat Demo"
 msgstr ""
@@ -1165,7 +1186,7 @@ msgstr ""
 #: Oasis.xml:PlayerData[2].Name:27 maps/skirmishes/Barcania
 #: (3).xml:PlayerData[2].Name:27 maps/skirmishes/Caspian Sea
 #: (2v2).xml:PlayerData[2].Name:39 maps/skirmishes/Corinthian Isthmus
-#: (4).xml:PlayerData[2].Name:39 maps/skirmishes/Corsica and Sardinia
+#: (4).xml:PlayerData[3].Name:40 maps/skirmishes/Corsica and Sardinia
 #: (4).xml:PlayerData[2].Name:39 maps/skirmishes/Gallic Fields
 #: (3).xml:PlayerData[2].Name:39 maps/skirmishes/Gambia River
 #: (3).xml:PlayerData[2].Name:39 maps/skirmishes/Greek Acropolis
@@ -1219,7 +1240,7 @@ msgstr ""
 #: Oases.xml:PlayerData[3].Name:27 maps/scenarios/Siwa
 #: Oasis.xml:PlayerData[3].Name:27 maps/skirmishes/Caspian Sea
 #: (2v2).xml:PlayerData[3].Name:39 maps/skirmishes/Corinthian Isthmus
-#: (4).xml:PlayerData[3].Name:39 maps/skirmishes/Corsica and Sardinia
+#: (4).xml:PlayerData[4].Name:40 maps/skirmishes/Corsica and Sardinia
 #: (4).xml:PlayerData[3].Name:39 maps/skirmishes/Greek Acropolis
 #: (4).xml:PlayerData[3].Name:39 maps/skirmishes/Libyan Oases
 #: (4).xml:PlayerData[3].Name:39 maps/skirmishes/Median Oasis
@@ -1817,8 +1838,7 @@ msgstr ""
 
 #: maps/scenarios/WallTest.xml:Description:27
 #: maps/scenarios/_default.xml:Description:28 maps/scenarios/temperate
-#: map.xml:Description:27 maps/skirmishes/Corinthian Isthmus
-#: (4).xml:Description:39
+#: map.xml:Description:27
 msgid "Give an interesting description of your map."
 msgstr ""
 
@@ -1955,7 +1975,7 @@ msgstr ""
 msgid "Corinthian Isthmus (2)"
 msgstr ""
 
-#: maps/skirmishes/Corinthian Isthmus (4).xml:Name:39
+#: maps/skirmishes/Corinthian Isthmus (4).xml:Name:40
 msgid "Corinthian Isthmus (4)"
 msgstr ""
 

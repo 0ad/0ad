@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-06 09:29+0100\n"
-"PO-Revision-Date: 2017-03-19 23:25+0000\n"
+"POT-Creation-Date: 2017-03-24 09:07+0100\n"
+"PO-Revision-Date: 2017-03-26 14:46+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -135,7 +135,7 @@ msgstr "SLETT"
 
 #: gui/common/functions_utility_loadsave.js:87 gui/common/tooltips.js:217
 #: gui/options/options.js:279 gui/options/options.js:346
-#: gui/pregame/mainmenu.js:261 gui/replaymenu/replay_actions.js:159
+#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:159
 #: gui/savedgames/load.js:128 gui/savedgames/save.js:65
 #: gui/summary/summary.js:146
 msgid "No"
@@ -143,7 +143,7 @@ msgstr "Nei"
 
 #: gui/common/functions_utility_loadsave.js:87 gui/common/tooltips.js:217
 #: gui/options/options.js:279 gui/options/options.js:346
-#: gui/pregame/mainmenu.js:261 gui/replaymenu/replay_actions.js:159
+#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:159
 #: gui/savedgames/load.js:128 gui/savedgames/save.js:65
 #: gui/summary/summary.js:146
 msgid "Yes"
@@ -429,7 +429,7 @@ msgstr "%(previousAmounts)s og %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/common/l10n.js:23 gui/common/network.js:160 gui/common/tooltips.js:123
+#: gui/common/l10n.js:23 gui/common/network.js:162 gui/common/tooltips.js:123
 #: gui/common/tooltips.js:137 gui/common/tooltips.js:219
 #: gui/common/tooltips.js:248 gui/common/tooltips.js:281
 #: gui/common/tooltips.js:530 gui/common/tooltips.js:564
@@ -459,83 +459,83 @@ msgstr "Dårlig tilkobling til tjeneren (%(milliseconds)sms)"
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
 msgstr "Dårlig tilkobling til %(player)s (%(milliseconds)sms)"
 
-#: gui/common/network.js:64
+#: gui/common/network.js:66
 msgctxt "network disconnect"
 msgid "Unknown reason"
 msgstr "Ukjent grunn"
 
-#: gui/common/network.js:65
+#: gui/common/network.js:67
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software"
 msgstr "Dette har ofte sin årsak i at UDP-port nummer 20595 ikke er åpen på vertsskapets side, av brannmur, eller antivirusprogramvare."
 
-#: gui/common/network.js:66
+#: gui/common/network.js:68
 msgid "The host has ended the game"
 msgstr "Tjeneren har avsluttet spillet"
 
-#: gui/common/network.js:67
+#: gui/common/network.js:69
 msgid "Incorrect network protocol version"
 msgstr "Feil versjon av nettverksprotokoll"
 
-#: gui/common/network.js:68
+#: gui/common/network.js:70
 msgid "Game is loading, please try again later"
 msgstr "Spillet laster, prøv igjen senere"
 
-#: gui/common/network.js:69
+#: gui/common/network.js:71
 msgid "Game has already started, no observers allowed"
 msgstr "Spillet har allerede startet, ingen observatører tillatt"
 
-#: gui/common/network.js:70
+#: gui/common/network.js:72
 msgid "You have been kicked"
 msgstr "Du har blitt kastet ut"
 
-#: gui/common/network.js:71
+#: gui/common/network.js:73
 msgid "You have been banned"
 msgstr "Du har blitt utestengt"
 
-#: gui/common/network.js:72
+#: gui/common/network.js:74
 msgid "Playername in use. If you were disconnected, retry in few seconds"
 msgstr "Spillernavn allerede i bruk. Hvis du ble frakoblet, prøv igjen om noen sekund"
 
-#: gui/common/network.js:73
+#: gui/common/network.js:75
 msgid "Server full"
 msgstr "Tjeneren er full"
 
-#: gui/common/network.js:74
+#: gui/common/network.js:76
 msgid "Player identifier in use, retry connecting"
 msgstr ""
 
-#: gui/common/network.js:77
+#: gui/common/network.js:79
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[Ugyldig verdi %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:89
+#: gui/common/network.js:91
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Grunn: %(reason)s."
 
-#: gui/common/network.js:94
+#: gui/common/network.js:96
 msgid "Lost connection to the server."
 msgstr "Mistet tilkobling til tjeneren."
 
-#: gui/common/network.js:95
+#: gui/common/network.js:97
 msgid "Failed to connect to the server."
 msgstr "Klarte ikke å koble til tjeneren."
 
-#: gui/common/network.js:97
+#: gui/common/network.js:99
 msgid "Disconnected"
 msgstr "Frakoblet"
 
-#: gui/common/network.js:105
+#: gui/common/network.js:107
 msgid "Only the host can kick clients!"
 msgstr "Bare verten kan kaste ut klienter!"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
-#: gui/common/network.js:159
+#: gui/common/network.js:161
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
 msgstr "Brukere (%(num)s): %(users)s"
@@ -998,7 +998,7 @@ msgstr "Ingen"
 msgid "<invalid>"
 msgstr "<invalid>"
 
-#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:162
+#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:163
 #: gui/splashscreen/splashscreen.xml:(caption):28
 msgid "OK"
 msgstr "OK"
@@ -1045,7 +1045,20 @@ msgstr "opplasting sviktet (%(errorMessage)s)"
 msgid "unknown"
 msgstr "ukjent"
 
-#: gui/pregame/mainmenu.js:151
+#: gui/pregame/mainmenu.js:126
+msgid "Thank you for helping improve 0 A.D.!"
+msgstr "Takk for at du hjelper til med å forbedre 0 A.D.!"
+
+#: gui/pregame/mainmenu.js:127
+msgid "Anonymous feedback is currently enabled."
+msgstr "Anonyme tilbakemeldinger er påslått."
+
+#: gui/pregame/mainmenu.js:128
+#, javascript-format
+msgid "Status: %(status)s."
+msgstr "Status: %(status)s."
+
+#: gui/pregame/mainmenu.js:152
 #, javascript-format
 msgid ""
 "%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
@@ -1058,51 +1071,51 @@ msgstr "%(startWarning)sWarning:%(endWarning)s Det ser ut til at du bruker non-s
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:160
+#: gui/pregame/mainmenu.js:161
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "Vennligst trykk \"Les Mer\" for mer informasjon eller \"OK\" for å fortsette."
 
-#: gui/pregame/mainmenu.js:161
+#: gui/pregame/mainmenu.js:162
 msgid "WARNING!"
 msgstr "ADVARSEL!"
 
-#: gui/pregame/mainmenu.js:162
+#: gui/pregame/mainmenu.js:163
 msgid "Read More"
 msgstr "Les mer"
 
-#: gui/pregame/mainmenu.js:247
+#: gui/pregame/mainmenu.js:248
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Bygg: %(buildDate)s (%(revision)s)"
 
-#: gui/pregame/mainmenu.js:259
+#: gui/pregame/mainmenu.js:260
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Er du sikker på at du vil avslutte 0 A.D.?"
 
-#: gui/pregame/mainmenu.js:260 gui/summary/summary.js:145
+#: gui/pregame/mainmenu.js:261 gui/summary/summary.js:145
 msgid "Confirmation"
 msgstr "Bekreftelse"
 
-#: gui/pregame/mainmenu.js:275
+#: gui/pregame/mainmenu.js:276
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "Kartverktøyet er ikke tilgjengelig eller kunne ikke lastes inn. Se loggene for spillet for ytterligere informasjon."
 
-#: gui/pregame/mainmenu.js:276 gui/replaymenu/replay_actions.js:116
+#: gui/pregame/mainmenu.js:277 gui/replaymenu/replay_actions.js:116
 msgid "Error"
 msgstr "Feil"
 
-#: gui/pregame/mainmenu.js:282
+#: gui/pregame/mainmenu.js:283
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "Start flerspillerlobbyen. \\[DEAKTIVERT AV BYGG]"
 
-#: gui/pregame/mainmenu.js:287 gui/pregame/mainmenu.xml:(caption):72
-#: gui/pregame/mainmenu.xml:(caption):103
+#: gui/pregame/mainmenu.js:288 gui/pregame/mainmenu.xml:(caption):72
+#: gui/pregame/mainmenu.xml:(caption):94
 msgid "Technical Details"
 msgstr "Tekniske detaljer"
 
-#: gui/pregame/mainmenu.js:292 gui/pregame/mainmenu.xml:(caption):149
+#: gui/pregame/mainmenu.js:293 gui/pregame/mainmenu.xml:(caption):140
 msgid "Manual"
 msgstr "Manual"
 
@@ -1204,11 +1217,11 @@ msgstr "%(min)s - %(max)s min"
 msgid "Single- and multiplayer"
 msgstr "Enkelt- og fler-spiller"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):467
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):458
 msgid "Single Player"
 msgstr "Énspiller"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):482
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):473
 msgid "Multiplayer"
 msgstr "Flerspiller"
 
@@ -1562,7 +1575,7 @@ msgstr "0 A.D-bidragsytere"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
-#: gui/pregame/mainmenu.xml:(caption):339
+#: gui/pregame/mainmenu.xml:(caption):330
 msgid "Language"
 msgstr "Språk"
 
@@ -1695,23 +1708,11 @@ msgid ""
 " and improve performance and compatibility."
 msgstr "Du kan automatisk sende oss anonyme tilbakemeldinger som vil hjelpe oss med å fikse feil og forbedre ytelse og kompatibilitet."
 
-#: gui/pregame/mainmenu.xml:90
-msgid "Thank you for helping improve 0 A.D.!"
-msgstr "Takk for at du hjelper til med å forbedre 0 A.D.!"
-
-#: gui/pregame/mainmenu.xml:92
-msgid "Anonymous feedback is currently enabled."
-msgstr "Anonyme tilbakemeldinger er påslått."
-
-#: gui/pregame/mainmenu.xml:94
-msgid "Status: $status."
-msgstr "Status: $status."
-
-#: gui/pregame/mainmenu.xml:535
+#: gui/pregame/mainmenu.xml:526
 msgid "Alpha XXI: Ulysses"
 msgstr "Alpha XXI: Ulysses"
 
-#: gui/pregame/mainmenu.xml:537
+#: gui/pregame/mainmenu.xml:528
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
@@ -1721,205 +1722,205 @@ msgstr "ADVARSEL: Dette er en tidlig utvikler-versjon av spillet. Mange funksjon
 msgid "Enable Feedback"
 msgstr "Skru på tilbakemeldinger"
 
-#: gui/pregame/mainmenu.xml:(caption):99
+#: gui/pregame/mainmenu.xml:(caption):90
 msgid "Disable Feedback"
 msgstr "Skru av tilbakemeldinger"
 
-#: gui/pregame/mainmenu.xml:(caption):166
+#: gui/pregame/mainmenu.xml:(caption):157
 #: gui/structree/structree.xml:(caption):18
 msgid "Structure Tree"
 msgstr "Bygningstre"
 
-#: gui/pregame/mainmenu.xml:(caption):183
+#: gui/pregame/mainmenu.xml:(caption):174
 msgid "History"
 msgstr "Historie"
 
-#: gui/pregame/mainmenu.xml:(caption):208
+#: gui/pregame/mainmenu.xml:(caption):199
 msgid "Matches"
 msgstr "Kamper"
 
-#: gui/pregame/mainmenu.xml:(caption):222
+#: gui/pregame/mainmenu.xml:(caption):213
 msgid "Campaigns"
 msgstr "Kampanjer"
 
-#: gui/pregame/mainmenu.xml:(caption):239 gui/savedgames/load.xml:(caption):20
+#: gui/pregame/mainmenu.xml:(caption):230 gui/savedgames/load.xml:(caption):20
 msgid "Load Game"
 msgstr "Last inn spill"
 
 #. Join a game by specifying the host's IP address.
-#: gui/pregame/mainmenu.xml:(caption):262
+#: gui/pregame/mainmenu.xml:(caption):253
 msgid "Join Game"
 msgstr "Delta i spillet"
 
-#: gui/pregame/mainmenu.xml:(caption):277
+#: gui/pregame/mainmenu.xml:(caption):268
 msgid "Host Game"
 msgstr "Arranger spill"
 
-#: gui/pregame/mainmenu.xml:(caption):292
+#: gui/pregame/mainmenu.xml:(caption):283
 msgid "Game Lobby"
 msgstr "Spill-lobby"
 
-#: gui/pregame/mainmenu.xml:(caption):322
+#: gui/pregame/mainmenu.xml:(caption):313
 msgid "Options"
 msgstr "Valg"
 
-#: gui/pregame/mainmenu.xml:(caption):355
+#: gui/pregame/mainmenu.xml:(caption):346
 msgid "Replays"
 msgstr "Repriser"
 
-#: gui/pregame/mainmenu.xml:(caption):369
+#: gui/pregame/mainmenu.xml:(caption):360
 msgid "Scenario Editor"
 msgstr "Kartverktøy"
 
-#: gui/pregame/mainmenu.xml:(caption):382
+#: gui/pregame/mainmenu.xml:(caption):373
 msgid "Welcome Screen"
 msgstr "Velkomstskjerm"
 
-#: gui/pregame/mainmenu.xml:(caption):397
+#: gui/pregame/mainmenu.xml:(caption):388
 msgid "Mod Selection"
 msgstr "Modvalg"
 
-#: gui/pregame/mainmenu.xml:(caption):452
+#: gui/pregame/mainmenu.xml:(caption):443
 msgid "Learn To Play"
 msgstr "Lær å spille"
 
-#: gui/pregame/mainmenu.xml:(caption):497
+#: gui/pregame/mainmenu.xml:(caption):488
 msgid "Tools & Options"
 msgstr "Verktøy & innstillinger"
 
-#: gui/pregame/mainmenu.xml:(caption):512
+#: gui/pregame/mainmenu.xml:(caption):503
 msgid "Exit"
 msgstr "Avslutt"
 
-#: gui/pregame/mainmenu.xml:(caption):547
+#: gui/pregame/mainmenu.xml:(caption):538
 msgid "Website"
 msgstr "Nettsted"
 
-#: gui/pregame/mainmenu.xml:(caption):559
+#: gui/pregame/mainmenu.xml:(caption):550
 msgid "Chat"
 msgstr "Nettprat"
 
-#: gui/pregame/mainmenu.xml:(caption):571
+#: gui/pregame/mainmenu.xml:(caption):562
 msgid "Report a Bug"
 msgstr "Rapporter en feil"
 
-#: gui/pregame/mainmenu.xml:(caption):583
+#: gui/pregame/mainmenu.xml:(caption):574
 msgid "Translate the game"
 msgstr "Oversett spillet"
 
-#: gui/pregame/mainmenu.xml:(caption):595
+#: gui/pregame/mainmenu.xml:(caption):586
 msgid "Credits"
 msgstr "Æreshenvisninger"
 
-#: gui/pregame/mainmenu.xml:(caption):624
+#: gui/pregame/mainmenu.xml:(caption):615
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
-#: gui/pregame/mainmenu.xml:(tooltip):150
+#: gui/pregame/mainmenu.xml:(tooltip):141
 msgid "Open the 0 A.D. Game Manual."
 msgstr "Åpner spillmanualen for 0 A.D."
 
-#: gui/pregame/mainmenu.xml:(tooltip):167
+#: gui/pregame/mainmenu.xml:(tooltip):158
 msgid "View the structure tree of civilizations featured in 0 A.D."
 msgstr "Se bygningstreet til sivilisasjonene i 0 A.D."
 
-#: gui/pregame/mainmenu.xml:(tooltip):184
+#: gui/pregame/mainmenu.xml:(tooltip):175
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "Lær om de mange sivilisasjonene i 0 A.D."
 
-#: gui/pregame/mainmenu.xml:(tooltip):209
+#: gui/pregame/mainmenu.xml:(tooltip):200
 msgid "Click here to start a new single player game."
 msgstr "Klikk her for å starte et nytt énspiller-spill."
 
-#: gui/pregame/mainmenu.xml:(tooltip):223
+#: gui/pregame/mainmenu.xml:(tooltip):214
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
 msgstr "Opplev historien gjennom historiske militære tokt.  \\[NOT YET IMPLEMENTED]"
 
-#: gui/pregame/mainmenu.xml:(tooltip):240
+#: gui/pregame/mainmenu.xml:(tooltip):231
 msgid "Click here to load a saved game."
 msgstr "Klikk her for å laste inn et lagret spill."
 
-#: gui/pregame/mainmenu.xml:(tooltip):263
+#: gui/pregame/mainmenu.xml:(tooltip):254
 msgid "Joining an existing multiplayer game."
 msgstr "Deltar i et eksisterende flerspiller-spill."
 
-#: gui/pregame/mainmenu.xml:(tooltip):278
+#: gui/pregame/mainmenu.xml:(tooltip):269
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr "Arrangér et flerspiller-spill.\\n\\nKrever at UDP port 20595 er åpen."
 
-#: gui/pregame/mainmenu.xml:(tooltip):293
+#: gui/pregame/mainmenu.xml:(tooltip):284
 msgid "Launch the multiplayer lobby."
 msgstr "Start flerspiller-lobbyen"
 
-#: gui/pregame/mainmenu.xml:(tooltip):323
+#: gui/pregame/mainmenu.xml:(tooltip):314
 msgid "Adjust game settings."
 msgstr "Juster spillinstillinger."
 
-#: gui/pregame/mainmenu.xml:(tooltip):340
+#: gui/pregame/mainmenu.xml:(tooltip):331
 msgid "Choose the language of the game."
 msgstr "Velg språket i spillet."
 
-#: gui/pregame/mainmenu.xml:(tooltip):356
+#: gui/pregame/mainmenu.xml:(tooltip):347
 msgid "Playback previous games."
 msgstr "Se avspillinger av tidligere spill."
 
-#: gui/pregame/mainmenu.xml:(tooltip):370
+#: gui/pregame/mainmenu.xml:(tooltip):361
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Åpne Atlas-kartverktøyet i et nytt vindu. Start spillet ved hjelp av kommando-linjen \"-editor\" for å kjøre kartverktøyet på en mer stabil måte."
 
-#: gui/pregame/mainmenu.xml:(tooltip):383
+#: gui/pregame/mainmenu.xml:(tooltip):374
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "Vis velkomstskjermen. Nyttig dersom du valgte å skjule den ved en feil."
 
-#: gui/pregame/mainmenu.xml:(tooltip):398
+#: gui/pregame/mainmenu.xml:(tooltip):389
 msgid "Select mods to use."
 msgstr "Velg modifiseringene som skal brukes"
 
-#: gui/pregame/mainmenu.xml:(tooltip):453
+#: gui/pregame/mainmenu.xml:(tooltip):444
 msgid ""
 "Learn how to play, discover the technology trees, and the history behind the"
 " civilizations"
 msgstr "Lær hvordan du spiller, oppdag teknologitrær og lær om historien bak de ulike sivilisasjonene"
 
-#: gui/pregame/mainmenu.xml:(tooltip):468
+#: gui/pregame/mainmenu.xml:(tooltip):459
 msgid "Challenge the computer player to a single player match."
 msgstr "Utfordre datamaskinen til en énspillerkamp."
 
-#: gui/pregame/mainmenu.xml:(tooltip):483
+#: gui/pregame/mainmenu.xml:(tooltip):474
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Kjemp mot én eller flere menneskelige spillere i en flerspillerkamp."
 
-#: gui/pregame/mainmenu.xml:(tooltip):498
+#: gui/pregame/mainmenu.xml:(tooltip):489
 msgid "Game options and scenario design tools."
 msgstr "Spillinnstillinger og kartverktøy."
 
-#: gui/pregame/mainmenu.xml:(tooltip):513
+#: gui/pregame/mainmenu.xml:(tooltip):504
 msgid "Exits the game."
 msgstr "Går ut av spillet."
 
-#: gui/pregame/mainmenu.xml:(tooltip):548
+#: gui/pregame/mainmenu.xml:(tooltip):539
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Klikk for å åpne play0ad.com i nettleseren din"
 
-#: gui/pregame/mainmenu.xml:(tooltip):560
+#: gui/pregame/mainmenu.xml:(tooltip):551
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "Klikk for å åpne 0 A.D. IRC-sludder i din nettleser. (#0ad på webchat.quakenet.org)"
 
-#: gui/pregame/mainmenu.xml:(tooltip):572
+#: gui/pregame/mainmenu.xml:(tooltip):563
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "Klikk for å besøke 0 A.D.-Trac for å rapportere en programfeil, krasj eller annet."
 
-#: gui/pregame/mainmenu.xml:(tooltip):584
+#: gui/pregame/mainmenu.xml:(tooltip):575
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "Klikk for å åpne 0 A.D-oversettelsesiden i din nettleser."
 
-#: gui/pregame/mainmenu.xml:(tooltip):596
+#: gui/pregame/mainmenu.xml:(tooltip):587
 msgid "Click to see the 0 A.D. credits."
 msgstr "Klikk for å se 0 A.D æreshenvisninger"
 
@@ -2292,15 +2293,15 @@ msgstr "Når avskrudd, vil velkomstskjermen uansett bli vist når en ny versjon 
 
 #: gui/options/options.jsongeneralSetting[4].label
 msgid "Enable Welcome Screen"
-msgstr ""
+msgstr "Skru på velkomstskjerm"
 
 #: gui/options/options.jsongeneralSetting[5].tooltip
 msgid "Show tips when setting up a game."
-msgstr ""
+msgstr "Vis tips når du setter opp et spill."
 
 #: gui/options/options.jsongeneralSetting[5].label
 msgid "Enable Game Setting Tips"
-msgstr ""
+msgstr "Skru på spillinnstillings-tips"
 
 #: gui/options/options.jsongeneralSetting[6].tooltip
 msgid ""
@@ -2370,7 +2371,7 @@ msgstr "Sen observatør finner seg til rette"
 
 #: gui/options/options.jsongeneralSetting[14].tooltip
 msgid "Prevent further observers from joining if the limit is reached"
-msgstr ""
+msgstr "Forhindre ytterligere observatører fra å ta del i spillet når grensen er nådd"
 
 #: gui/options/options.jsongeneralSetting[14].label
 msgid "Observer Limit"
@@ -3323,7 +3324,7 @@ msgstr "SYNTAGMA-FORMASJONEN"
 
 #: gui/text/tips/syntagma.txt:2
 msgid "- A formation for 'pikeman' style infantry."
-msgstr "- En formasjon for 'pikener'-oppstilt infanteri."
+msgstr "- En formasjon for 'pikenér'-oppstilt infanteri."
 
 #: gui/text/tips/syntagma.txt:4
 msgid "- Formation is slow and cumbersome."

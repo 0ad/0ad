@@ -8,11 +8,12 @@
 # Thierry Vignaud <thierry.vignaud@gmail.com>, 2017
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
 # Yann-Vari Gwiader <yannvari.gwiader@gmail.com>, 2016
+# Younn Keravel <goulvenbreizh@hotmail.fr>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-10 09:03+0100\n"
-"PO-Revision-Date: 2017-03-16 15:11+0000\n"
+"POT-Creation-Date: 2017-03-24 09:08+0100\n"
+"PO-Revision-Date: 2017-03-25 13:48+0000\n"
 "Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -108,7 +109,7 @@ msgstr ""
 
 #: maps/random/ardennes_forest.jsonsettings.Name
 msgid "Ardennes Forest"
-msgstr "Koad Ardenne"
+msgstr "Koad Ardennes"
 
 #: maps/random/atlas_mountains.jsonsettings.Description
 msgid ""
@@ -144,7 +145,7 @@ msgstr ""
 
 #: maps/random/belgian_uplands.jsonsettings.Name
 msgid "Belgian Uplands"
-msgstr "Uheldirioù belj"
+msgstr "Uheldirioù Belj"
 
 #: maps/random/caledonian_meadows.jsonsettings.Description
 msgid ""
@@ -177,7 +178,7 @@ msgstr "Kanienn"
 
 #: maps/random/continent.jsonsettings.Description
 msgid "All players starts on a continent surrounded by water."
-msgstr ""
+msgstr "An holl c'hoarierien a gomañs war ur c'hevandir gourizet gant ar mor."
 
 #: maps/random/continent.jsonsettings.Name
 msgid "Continent"
@@ -185,6 +186,7 @@ msgstr "Kevandir"
 
 #: maps/random/corinthian_isthmus.jsonsettings.Description
 #: maps/skirmishes/Corinthian Isthmus (2).xml:Description:39
+#: maps/skirmishes/Corinthian Isthmus (4).xml:Description:40
 msgid ""
 "Two Mediterranean land masses connected by a narrow spit of land, called an "
 "'Isthmus'."
@@ -221,7 +223,7 @@ msgstr "Koadoù don ha teñval e Germania."
 
 #: maps/random/deep_forest.jsonsettings.Name
 msgid "Deep Forest"
-msgstr "Koad don"
+msgstr "Koad stank"
 
 #: maps/random/empire.jsonsettings.Description
 msgid ""
@@ -267,7 +269,7 @@ msgstr ""
 
 #: maps/random/frontier.jsonsettings.Name
 msgid "Frontier"
-msgstr "Bevenn"
+msgstr "Harz"
 
 #: maps/random/gear.jsonsettings.Description
 msgid "A land with waterways decorated in a manner similar to spider web."
@@ -286,7 +288,7 @@ msgstr ""
 
 #: maps/random/guadalquivir_river.jsonsettings.Name
 msgid "Guadalquivir River"
-msgstr "Ster Guadalkivir"
+msgstr "Stêr Guadalkivir"
 
 #: maps/random/gulf_of_bothnia.jsonsettings.Description
 msgid ""
@@ -392,7 +394,7 @@ msgstr ""
 
 #: maps/random/latium.jsonsettings.Name
 msgid "Latium"
-msgstr "Lazio"
+msgstr "Latium"
 
 #: maps/random/lions_den.jsonsettings.Description
 msgid ""
@@ -761,6 +763,10 @@ msgstr ""
 msgid "The first wave will start in %(time)s!"
 msgstr ""
 
+#: maps/scenarios/Cinema_Demo.js:6
+msgid "Cutscene starts after 5 seconds"
+msgstr ""
+
 #: maps/scenarios/Triggers_demo.js:73
 msgid "Testing the yes-no dialog. Do you want to say sure or rather not?"
 msgstr ""
@@ -852,7 +858,7 @@ msgstr ""
 #: maps/skirmishes/Belgian Bog (2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Caspian Sea (2v2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Corinthian Isthmus (2).xml:PlayerData[0].Name:39
-#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[0].Name:39
+#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[1].Name:40
 #: maps/skirmishes/Corsica and Sardinia (4).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Cycladic Archipelago (2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Death Canyon (2).xml:PlayerData[0].Name:39
@@ -919,7 +925,7 @@ msgstr "C'hoarier 1"
 #: maps/skirmishes/Belgian Bog (2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Caspian Sea (2v2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Corinthian Isthmus (2).xml:PlayerData[1].Name:39
-#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[1].Name:39
+#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[2].Name:40
 #: maps/skirmishes/Corsica and Sardinia (4).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Cycladic Archipelago (2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Death Canyon (2).xml:PlayerData[1].Name:39
@@ -1091,7 +1097,7 @@ msgstr ""
 
 #: maps/scenarios/Campaign Test Map.xml:PlayerData[0].Name:39
 msgid "Delian League"
-msgstr "Kevre Delian"
+msgstr "Kevre Delios"
 
 #: maps/scenarios/Campaign Test Map.xml:PlayerData[1].Name:39
 #: maps/scenarios/Peloponnese.xml:PlayerData[3].Name:39
@@ -1125,6 +1131,22 @@ msgstr ""
 
 #: maps/scenarios/Campaign Test Map.xml:Name:39
 msgid "Strategic Campaign Proof of Concept"
+msgstr ""
+
+#: maps/scenarios/Cinema_Demo.xml:Description:40
+msgid "Demo map for cinematic camera movements."
+msgstr ""
+
+#: maps/scenarios/Cinema_Demo.xml:PlayerData[1].Name:40
+msgid "Xerxes I"
+msgstr "Gzerses I"
+
+#: maps/scenarios/Cinema_Demo.xml:PlayerData[2].Name:40
+msgid "Yuu"
+msgstr ""
+
+#: maps/scenarios/Cinema_Demo.xml:Name:40
+msgid "Cinema Demo"
 msgstr ""
 
 #: maps/scenarios/Combat_demo.xml:Name:27
@@ -1169,7 +1191,7 @@ msgstr "Nerzh Aloubiñ"
 #: Oasis.xml:PlayerData[2].Name:27 maps/skirmishes/Barcania
 #: (3).xml:PlayerData[2].Name:27 maps/skirmishes/Caspian Sea
 #: (2v2).xml:PlayerData[2].Name:39 maps/skirmishes/Corinthian Isthmus
-#: (4).xml:PlayerData[2].Name:39 maps/skirmishes/Corsica and Sardinia
+#: (4).xml:PlayerData[3].Name:40 maps/skirmishes/Corsica and Sardinia
 #: (4).xml:PlayerData[2].Name:39 maps/skirmishes/Gallic Fields
 #: (3).xml:PlayerData[2].Name:39 maps/skirmishes/Gambia River
 #: (3).xml:PlayerData[2].Name:39 maps/skirmishes/Greek Acropolis
@@ -1223,7 +1245,7 @@ msgstr ""
 #: Oases.xml:PlayerData[3].Name:27 maps/scenarios/Siwa
 #: Oasis.xml:PlayerData[3].Name:27 maps/skirmishes/Caspian Sea
 #: (2v2).xml:PlayerData[3].Name:39 maps/skirmishes/Corinthian Isthmus
-#: (4).xml:PlayerData[3].Name:39 maps/skirmishes/Corsica and Sardinia
+#: (4).xml:PlayerData[4].Name:40 maps/skirmishes/Corsica and Sardinia
 #: (4).xml:PlayerData[3].Name:39 maps/skirmishes/Greek Acropolis
 #: (4).xml:PlayerData[3].Name:39 maps/skirmishes/Libyan Oases
 #: (4).xml:PlayerData[3].Name:39 maps/skirmishes/Median Oasis
@@ -1413,7 +1435,7 @@ msgstr "Elis"
 
 #: maps/scenarios/Peloponnese.xml:PlayerData[4].Name:39
 msgid "Corinth"
-msgstr "Korinthos"
+msgstr "Korintos"
 
 #: maps/scenarios/Peloponnese.xml:Name:39
 msgid "Peloponnesian Wars"
@@ -1821,8 +1843,7 @@ msgstr ""
 
 #: maps/scenarios/WallTest.xml:Description:27
 #: maps/scenarios/_default.xml:Description:28 maps/scenarios/temperate
-#: map.xml:Description:27 maps/skirmishes/Corinthian Isthmus
-#: (4).xml:Description:39
+#: map.xml:Description:27
 msgid "Give an interesting description of your map."
 msgstr ""
 
@@ -1959,7 +1980,7 @@ msgstr "Mor Kaspian (2v2)"
 msgid "Corinthian Isthmus (2)"
 msgstr "Strizh-douar Korintian (2)"
 
-#: maps/skirmishes/Corinthian Isthmus (4).xml:Name:39
+#: maps/skirmishes/Corinthian Isthmus (4).xml:Name:40
 msgid "Corinthian Isthmus (4)"
 msgstr "Strizh-douar Korintian (4)"
 

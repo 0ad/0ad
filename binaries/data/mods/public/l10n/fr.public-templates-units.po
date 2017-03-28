@@ -16,6 +16,7 @@
 # Nexus nexus <neocrysis@gmail.com>, 2016
 # Nicolas Auvray <na.itms76@gmail.com>, 2014-2016
 # nicolas t <phidias2052@yahoo.fr>, 2016
+# polien delamarque <m.oleil@laposte.net>, 2017
 # Romain Mesnil <bnb6avekk6@protonmail.com>, 2016
 # Polakrity <sxk-fr@live.fr>, 2014
 # Thierry Vignaud <thierry.vignaud@gmail.com>, 2017
@@ -24,9 +25,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-03 09:02+0100\n"
-"PO-Revision-Date: 2017-03-07 12:17+0000\n"
-"Last-Translator: Arnaud Rochés <roches.arn@gmail.com>\n"
+"POT-Creation-Date: 2017-03-24 09:07+0100\n"
+"PO-Revision-Date: 2017-03-25 11:55+0000\n"
+"Last-Translator: polien delamarque <m.oleil@laposte.net>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -79,7 +80,7 @@ msgstr "Basique"
 #: simulation/templates/template_unit_dog.xml:43
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:18
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:18
-#: simulation/templates/template_unit_hero_elephant_melee.xml:35
+#: simulation/templates/template_unit_hero_elephant_melee.xml:34
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:24
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:18
@@ -202,9 +203,17 @@ msgstr "Lancier monté champion"
 msgid "Champion Cavalry Swordsman"
 msgstr "Épéiste monté champion"
 
-#: simulation/templates/template_unit_champion_elephant.xml:27
+#: simulation/templates/template_unit_champion_elephant.xml:26
 msgid "War Elephant"
 msgstr "Éléphant de guerre"
+
+#: simulation/templates/template_unit_champion_elephant.xml:27
+#: simulation/templates/template_unit_fauna_hunt_defensive_elephant.xml:26
+#: simulation/templates/template_unit_hero_elephant_melee.xml:34
+#: simulation/templates/units/maur_elephant_archer_b.xml:12
+#: simulation/templates/units/maur_support_elephant.xml:27
+msgid "Elephant"
+msgstr "Éléphant "
 
 #: simulation/templates/template_unit_champion_infantry.xml:21
 #: simulation/templates/template_unit_hero_infantry.xml:23
@@ -935,10 +944,6 @@ msgstr "Épéiste breton à longue épée"
 msgid "Delamokludda"
 msgstr "Delamokludda"
 
-#: simulation/templates/units/brit_hero_boudicca.xml:10
-msgid "Female"
-msgstr "Femme"
-
 #: simulation/templates/units/brit_hero_boudicca.xml:11
 msgid "Boudicca (Chariot)"
 msgstr "Boudicca (char)"
@@ -1555,15 +1560,15 @@ msgstr "Visha Kanya"
 msgid "Maiden Guard Archer"
 msgstr "Jeune archère garde"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:15
+#: simulation/templates/units/maur_elephant_archer_b.xml:14
 msgid "Elephant Archer"
 msgstr "Archer à dos d'éléphant"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:16
+#: simulation/templates/units/maur_elephant_archer_b.xml:15
 msgid "Vachii Gaja"
 msgstr "Vachii Gaja"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:18
+#: simulation/templates/units/maur_elephant_archer_b.xml:17
 msgid "Can run amok."
 msgstr "Capable de folie meurtrière."
 

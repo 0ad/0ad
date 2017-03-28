@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-03 09:02+0100\n"
-"PO-Revision-Date: 2017-03-11 17:42+0000\n"
-"Last-Translator: Petr Hála <halapetr@selfnet.cz>\n"
+"POT-Creation-Date: 2017-03-24 09:08+0100\n"
+"PO-Revision-Date: 2017-03-26 07:48+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -308,19 +308,23 @@ msgstr "Krokodýl nilský"
 msgid "Deer"
 msgstr "Jelen"
 
-#: simulation/templates/gaia/fauna_elephant_african_bush.xml:33
+#: simulation/templates/gaia/fauna_elephant_african_bush.xml:11
 msgid "African Bush Elephant"
 msgstr "Africký divoký slon"
+
+#: simulation/templates/gaia/fauna_elephant_african_infant.xml:14
+msgid "Elephant"
+msgstr "Slon"
 
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:15
 msgid "African Elephant (Infant)"
 msgstr "Africký slon (mládě)"
 
-#: simulation/templates/gaia/fauna_elephant_asian.xml:33
+#: simulation/templates/gaia/fauna_elephant_asian.xml:11
 msgid "Asian Elephant"
 msgstr "Asijský slon"
 
-#: simulation/templates/gaia/fauna_elephant_north_african.xml:33
+#: simulation/templates/gaia/fauna_elephant_north_african.xml:11
 msgid "North African Elephant"
 msgstr "Severoafrický slon"
 
@@ -418,7 +422,7 @@ msgstr "Ovce"
 msgid "Tiger"
 msgstr "Tygr"
 
-#: simulation/templates/gaia/fauna_walrus.xml:23
+#: simulation/templates/gaia/fauna_walrus.xml:24
 msgid "Walrus"
 msgstr "Mrož"
 
@@ -978,7 +982,7 @@ msgstr "Změny v pátém obytném domě pro civilizace s těmito domy. U jiných
 msgid "Marker"
 msgstr "Značka"
 
-#: simulation/templates/special/player.xml:56
+#: simulation/templates/special/player.xml:57
 msgid "Player"
 msgstr "Hráč"
 

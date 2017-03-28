@@ -7,30 +7,89 @@ const g_CivData = loadCivData();
 
 function init()
 {
-	let gameSelection = Engine.GetGUIObjectByName("gameSelection");
-	let savedGames = Engine.GetSavedGames().sort(sortDecreasingDate);
-	gameSelection.enabled = !!savedGames.length;
-	if (!savedGames.length)
-	{
-		gameSelection.list = [translate("No saved games found")];
-		gameSelection.selected = -1;
-		return;
-	}
+	let savedGames = Engine.GetSavedGames();
 
 	// Get current game version and loaded mods
 	let engineInfo = Engine.GetEngineInfo();
 
-	g_SavedGamesMetadata = savedGames.map(game => game.metadata);
+	if (Engine.GetGUIObjectByName("compatibilityFilter").checked)
+		savedGames = savedGames.filter(game => isCompatibleSavegame(game.metadata, engineInfo));
 
-	gameSelection.list = savedGames.map(game => generateLabel(game.metadata, engineInfo));
-	gameSelection.list_data = savedGames.map(game => game.id);
+	let gameSelection = Engine.GetGUIObjectByName("gameSelection");
+	gameSelection.enabled = !!savedGames.length;
+	Engine.GetGUIObjectByName("gameSelectionFeedback").hidden = !!savedGames.length;
 
-	if (gameSelection.selected == -1)
+	let selectedGameId = gameSelection.list_data[gameSelection.selected];
+
+	// Save metadata for the detailed view
+	g_SavedGamesMetadata = savedGames.map(game =>
+	{
+		game.metadata.id = game.id;
+		return game.metadata;
+	});
+
+	const sortKey = gameSelection.selected_column;
+	const sortOrder = gameSelection.selected_column_order;
+	g_SavedGamesMetadata = g_SavedGamesMetadata.sort((a, b) =>
+	{
+		let cmpA, cmpB;
+		switch (sortKey)
+		{
+		case 'date':
+			cmpA = +a.time;
+			cmpB = +b.time;
+			break;
+		case 'mapName':
+			cmpA = translate(a.initAttributes.settings.Name);
+			cmpB = translate(b.initAttributes.settings.Name);
+			break;
+		case 'mapType':
+			cmpA = translateMapType(a.initAttributes.mapType);
+			cmpB = translateMapType(b.initAttributes.mapType);
+			break;
+		case 'description':
+			cmpA = a.description;
+			cmpB = b.description;
+			break;
+		}
+
+		if (cmpA < cmpB)
+			return -sortOrder;
+		else if (cmpA > cmpB)
+			return +sortOrder;
+
+		return 0;
+	});
+
+	let list = g_SavedGamesMetadata.map(metadata => {
+		let isCompatible = isCompatibleSavegame(metadata, engineInfo);
+		return {
+			"date": generateSavegameDateString(metadata, engineInfo),
+			"mapName": compatibilityColor(translate(metadata.initAttributes.settings.Name), isCompatible),
+			"mapType": compatibilityColor(translateMapType(metadata.initAttributes.mapType), isCompatible),
+			"description": compatibilityColor(metadata.description, isCompatible)
+		};
+	});
+
+	if (list.length)
+		list = prepareForDropdown(list);
+
+	gameSelection.list_date = list.date || [];
+	gameSelection.list_mapName = list.mapName || [];
+	gameSelection.list_mapType = list.mapType || [];
+	gameSelection.list_description = list.description || [];
+
+	// Change these last, otherwise crash
+	// list strings used in the delete dialog
+	gameSelection.list = g_SavedGamesMetadata.map(metadata => generateSavegameLabel(metadata, engineInfo));
+	gameSelection.list_data = g_SavedGamesMetadata.map(metadata => metadata.id);
+
+	if (gameSelection.selected == -1 && savedGames.length)
 		gameSelection.selected = 0;
-	else if (gameSelection.selected >= savedGames.length) // happens when deleting the last saved game
-		gameSelection.selected = savedGames.length - 1;
+	else if (gameSelection.selected >= g_SavedGamesMetadata.length) // happens when deleting the last saved game
+		gameSelection.selected = g_SavedGamesMetadata.length - 1;
 	else
-		selectionChanged();
+		gameSelection.selected = g_SavedGamesMetadata.findIndex(metadata => metadata.id == selectedGameId);
 
 	Engine.GetGUIObjectByName("deleteGameButton").tooltip = deleteTooltip();
 }

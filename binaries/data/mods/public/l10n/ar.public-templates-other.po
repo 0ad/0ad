@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-03 09:02+0100\n"
-"PO-Revision-Date: 2017-03-15 11:14+0000\n"
+"POT-Creation-Date: 2017-03-24 09:08+0100\n"
+"PO-Revision-Date: 2017-03-26 21:54+0000\n"
 "Last-Translator: Omar Anwar <omaraglan91@yahoo.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -304,19 +304,23 @@ msgstr "تمساح النيل"
 msgid "Deer"
 msgstr "غزال"
 
-#: simulation/templates/gaia/fauna_elephant_african_bush.xml:33
+#: simulation/templates/gaia/fauna_elephant_african_bush.xml:11
 msgid "African Bush Elephant"
 msgstr "فيل الشجيرات الافريقي"
+
+#: simulation/templates/gaia/fauna_elephant_african_infant.xml:14
+msgid "Elephant"
+msgstr "فيل"
 
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:15
 msgid "African Elephant (Infant)"
 msgstr "الفيل الافريقيي (صغير)"
 
-#: simulation/templates/gaia/fauna_elephant_asian.xml:33
+#: simulation/templates/gaia/fauna_elephant_asian.xml:11
 msgid "Asian Elephant"
 msgstr "فيل آسيوي"
 
-#: simulation/templates/gaia/fauna_elephant_north_african.xml:33
+#: simulation/templates/gaia/fauna_elephant_north_african.xml:11
 msgid "North African Elephant"
 msgstr "فيل شماليّ إفريقيّ"
 
@@ -414,7 +418,7 @@ msgstr "خروف"
 msgid "Tiger"
 msgstr "نمر"
 
-#: simulation/templates/gaia/fauna_walrus.xml:23
+#: simulation/templates/gaia/fauna_walrus.xml:24
 msgid "Walrus"
 msgstr "فظ"
 
@@ -507,7 +511,7 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_tree_fig.xml:8
 msgid "Fig"
-msgstr ""
+msgstr "تّين"
 
 #: simulation/templates/gaia/flora_tree_fig.xml:10
 msgid "Gather figs for Food."
@@ -974,7 +978,7 @@ msgstr ""
 msgid "Marker"
 msgstr ""
 
-#: simulation/templates/special/player.xml:56
+#: simulation/templates/special/player.xml:57
 msgid "Player"
 msgstr "لاعب"
 

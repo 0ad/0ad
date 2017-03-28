@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-03 09:02+0100\n"
-"PO-Revision-Date: 2017-03-03 15:35+0000\n"
-"Last-Translator: Muha Aliss <muhaaliss@gmail.com>\n"
+"POT-Creation-Date: 2017-03-24 09:08+0100\n"
+"PO-Revision-Date: 2017-03-25 08:50+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -308,19 +308,23 @@ msgstr "Nil Timsahı"
 msgid "Deer"
 msgstr "Geyik"
 
-#: simulation/templates/gaia/fauna_elephant_african_bush.xml:33
+#: simulation/templates/gaia/fauna_elephant_african_bush.xml:11
 msgid "African Bush Elephant"
 msgstr "Afrika Çalı Fili"
+
+#: simulation/templates/gaia/fauna_elephant_african_infant.xml:14
+msgid "Elephant"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:15
 msgid "African Elephant (Infant)"
 msgstr "Afrika Fili (Yavru)"
 
-#: simulation/templates/gaia/fauna_elephant_asian.xml:33
+#: simulation/templates/gaia/fauna_elephant_asian.xml:11
 msgid "Asian Elephant"
 msgstr "Asya Fili"
 
-#: simulation/templates/gaia/fauna_elephant_north_african.xml:33
+#: simulation/templates/gaia/fauna_elephant_north_african.xml:11
 msgid "North African Elephant"
 msgstr "Kuzey Afrika Fili"
 
@@ -418,7 +422,7 @@ msgstr "Koyun"
 msgid "Tiger"
 msgstr "Kaplan"
 
-#: simulation/templates/gaia/fauna_walrus.xml:23
+#: simulation/templates/gaia/fauna_walrus.xml:24
 msgid "Walrus"
 msgstr "Deniz Ayısı"
 
@@ -978,7 +982,7 @@ msgstr "Bu evler ile medeniyetteki ev için 5 nüfusluık değişimde, diğer ki
 msgid "Marker"
 msgstr "İşaretleyici"
 
-#: simulation/templates/special/player.xml:56
+#: simulation/templates/special/player.xml:57
 msgid "Player"
 msgstr "Oyuncu"
 
