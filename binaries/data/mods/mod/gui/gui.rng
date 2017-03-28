@@ -301,7 +301,9 @@
         <attribute name="selected_column_order"/>
       </optional>
       <optional>
-        <attribute name="sortable"/>
+        <attribute name="sortable">
+          <ref name="bool"/>
+        </attribute>
       </optional>
       <optional>
         <attribute name="sound_closed"/>
@@ -331,6 +333,9 @@
         <attribute name="sprite2"/>
       </optional>
       <optional>
+        <attribute name="sprite_asc"/>
+      </optional>
+      <optional>
         <attribute name="sprite_heading"/>
       </optional>
       <optional>
@@ -340,6 +345,9 @@
         <attribute name="sprite_background"/>
       </optional>
       <optional>
+        <attribute name="sprite_desc"/>
+      </optional>
+      <optional>
         <attribute name="sprite_disabled"/>
       </optional>
       <optional>
@@ -347,6 +355,9 @@
       </optional>
       <optional>
         <attribute name="sprite2_disabled"/>
+      </optional>
+      <optional>
+        <attribute name="sprite_not_sorted"/>
       </optional>
       <optional>
         <attribute name="sprite_over"/>
@@ -362,15 +373,6 @@
       </optional>
       <optional>
         <attribute name="sprite_selectarea"/>
-      </optional>
-      <optional>
-        <attribute name="sprite_asc"/>
-      </optional>
-      <optional>
-        <attribute name="sprite_desc"/>
-      </optional>
-      <optional>
-        <attribute name="sprite_not_sorted"/>
       </optional>
       <optional>
         <attribute name="square_side">
