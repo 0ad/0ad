@@ -106,7 +106,7 @@ for (var ix = 0; ix < mapSize; ix++)
 }
 
 // let's decide if we swap
-var swap = Math.round(Math.random());	// should return about 50/50 a 0 or a 1
+var swap = randBool();
 // let's create Corsica
 log("Creating Corsica");
 var CorsicaX = fractionToTiles(0.99);
@@ -189,11 +189,8 @@ for (var island = 0; island <= 1; island++)
 		fz = radius * sin(angle);
 		fx = round(islandX[island] + fx);
 		fz = round(islandZ[island] + fz);
-		var size = scaleByMapSize(75,100);
-		if (Math.random() > 0.5)
-			size = Math.random() * 40 + 10;
-		else
-			size += Math.random() * 20;
+
+		var size = randBool() ? randFloat(10, 50) : scaleByMapSize(75, 100) + randFloat(0, 20);
 		var placer = new ClumpPlacer(size, 0.4, 0.01, 10, fx,fz);
 		var terrainPainter = new TerrainPainter(tSteepCliffs);
 		var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -5,0);	// base height is -10

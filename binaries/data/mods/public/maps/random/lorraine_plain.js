@@ -218,19 +218,14 @@ for (var i = 0; i <= randInt(3, scaleByMapSize(4,6)); i++)
 
 // create tributaries
 log("Creating tributaries");
-
-for (var i = 0; i <= randInt(8, (scaleByMapSize(12,20))); i++)
+for (let i = 0; i <= randIntInclusive(8, scaleByMapSize(12, 20)); ++i)
 {
-	var cLocation = randFloat(0.05,0.95);
-	var tang = randFloat(PI*0.2, PI*0.8)*((randInt(2)-0.5)*2);
-	if (tang > 0)
-	{
-		var cDistance = 0.05;
-	}
-	else
-	{
-		var cDistance = -0.05;
-	}
+	let cLocation = randFloat(0.05, 0.95);
+
+	let sign = randBool() ? 1 : -1;
+	let tang = sign * PI * randFloat(0.2, 0.8);
+	let cDistance = sign * 0.05;
+
 	var point = getTIPIADBON([fractionToTiles(cLocation), fractionToTiles(0.5 + cDistance)], [fractionToTiles(cLocation), fractionToTiles(0.5 - cDistance)], [-6, -1.5], 0.5, 5, 0.01);
 	if (point !== undefined)
 	{

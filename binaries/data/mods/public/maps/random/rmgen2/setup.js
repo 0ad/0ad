@@ -518,7 +518,7 @@ function randomPlayerPlacementAt(singleBases, strongholdBases, heightmapScale, g
 	let strongholdBasesRandom = shuffleArray(strongholdBases);
 	let singleBasesRandom = shuffleArray(singleBases);
 
-	if (randInt(2) == 1 &&
+	if (randBool() &&
 	    g_MapInfo.mapSize >= 256 &&
 	    g_MapInfo.teams.length >= 2 &&
 	    g_MapInfo.teams.length < g_MapInfo.numPlayers &&

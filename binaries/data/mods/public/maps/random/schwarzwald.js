@@ -432,7 +432,7 @@ for (var x = 0; x < mapSize; x++)
 		var tDensFactRad = abs((resourceRadius - radius) / resourceRadius);
 		var tDensActual = (maxTreeDensity * tDensFactSL * tDensFactRad)*0.75;
 
-		if (randFloat() < tDensActual && radius < playableMapRadius)
+		if (randBool(tDensActual) && radius < playableMapRadius)
 		{
 			if (tDensActual < bushChance*randFloat()*maxTreeDensity)
 			{

@@ -1,8 +1,8 @@
 RMS.LoadLibrary("rmgen");
 
 const tCity = "desert_city_tile_pers_dirt";
-var random_season = randInt(0,1);
-if (random_season) //summer
+
+if (randBool()) // summer
 {
 	var tDirtMain = ["desert_dirt_persia_1", "desert_dirt_persia_2", "grass_field_dry"];
 	var tLakebed1 = ["desert_lakebed_dry_b", "desert_lakebed_dry"];
@@ -27,6 +27,8 @@ else //spring
 	var tRocks = "desert_plants_a";
 	var tGrass = "desert_dirt_persia_rocky";
 	var tHill = "desert_cliff_persia_base";
+
+	setTerrainAmbientColor(0.329412, 0.419608, 0.501961);
 }
 
 // gaia entities
@@ -425,9 +427,6 @@ for (var i = 0; i < types.length; ++i)
 		num
 	);
 }
-
-if (!random_season)
-	setTerrainAmbientColor(0.329412, 0.419608, 0.501961);
 
 setSunColor(1.0, 0.796, 0.374);
 setSunElevation(PI / 6);

@@ -350,7 +350,7 @@ else
 createBumps(avoidClasses(clWater, 2, clPlayer, 10));
 
 // create hills
-if (randInt(1,2) == 1)
+if (randBool())
 	createHills([tPrimary, tCliff, tPrimary], avoidClasses(clPlayer, 20, clHill, 15, clWater, 0), clHill, scaleByMapSize(1, 4) * numPlayers);
 else
 	createMountains(tCliff, avoidClasses(clPlayer, 20, clHill, 15, clWater, 0), clHill, scaleByMapSize(1, 4) * numPlayers);

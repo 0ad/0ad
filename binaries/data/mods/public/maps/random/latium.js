@@ -299,7 +299,7 @@ for (var ix = 0; ix < mapSize; ix++)
 			var forestNoise = (noise6.get(x,z) + 0.5*noise7.get(x,z)) / 1.5 * pn - 0.59;
 
 			// Thin out trees a bit
-			if (forestNoise > 0 && randFloat() < 0.5)
+			if (forestNoise > 0 && randBool())
 			{
 				if (minH < 11 && minH >= 4)
 				{
@@ -333,14 +333,14 @@ for (var ix = 0; ix < mapSize; ix++)
 			else if (grassNoise < 0.34)
 			{
 				t = (diffH > 1.2) ? tGrassCliff : tGrassDry;
-				if (diffH < 0.5 && randFloat() < 0.02)
+				if (diffH < 0.5 && randBool(0.02))
 					placeObject(ix+randFloat(), iz+randFloat(), aGrassDry, 0, randFloat(0, TWO_PI));
 			}
 			else if (grassNoise > 0.61)
 			{
 				t = (diffH > 1.2 ? tGrassRock : tGrassShrubs);
 			}
-			else if (diffH < 0.5 && randFloat() < 0.02)
+			else if (diffH < 0.5 && randBool(0.02))
 				placeObject(ix+randFloat(), iz+randFloat(), aGrass, 0, randFloat(0, TWO_PI));
 		}
 

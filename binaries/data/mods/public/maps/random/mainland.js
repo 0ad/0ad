@@ -187,7 +187,7 @@ RMS.SetProgress(20);
 createBumps();
 
 // create hills
-if (randInt(1,2) == 1)
+if (randBool())
 	createHills([tCliff, tCliff, tHill], avoidClasses(clPlayer, 20, clHill, 15), clHill, scaleByMapSize(3, 15));
 else
 	createMountains(tCliff, avoidClasses(clPlayer, 20, clHill, 15), clHill, scaleByMapSize(3, 15));

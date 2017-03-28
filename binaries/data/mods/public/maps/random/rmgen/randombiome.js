@@ -110,7 +110,7 @@ function setBiome(biomeIndex)
 			"water": "medit_sand_wet"
 		};
 
-		if (randInt(2))
+		if (randBool())
 		{
 			g_Terrains.mainTerrain = "alpine_grass";
 			g_Terrains.forestFloor1 = "temp_forestfloor_pine";
@@ -296,7 +296,8 @@ function setBiome(biomeIndex)
 			"stoneSmall": "gaia/geology_stone_desert_small",
 			"metalLarge": "gaia/geology_metal_desert_slabs"
 		};
-		if (randInt(2))
+
+		if (randBool())
 		{
 			g_Gaia.tree1 = "gaia/flora_tree_cretan_date_palm_short";
 			g_Gaia.tree2 = "gaia/flora_tree_cretan_date_palm_tall";
@@ -307,7 +308,8 @@ function setBiome(biomeIndex)
 			g_Gaia.tree2 = "gaia/flora_tree_date_palm";
 		}
 		g_Gaia.tree3 = "gaia/flora_tree_fig";
-		if (randInt(2))
+
+		if (randBool())
 		{
 			g_Gaia.tree4 = "gaia/flora_tree_tamarix";
 			g_Gaia.tree5 = "gaia/flora_tree_tamarix";
@@ -454,12 +456,12 @@ function setBiome(biomeIndex)
 			g_Gaia.tree2 = "gaia/flora_tree_medit_fan_palm";
 		}
 
-		if (randInt(2))
+		if (randBool())
 			g_Gaia.tree3 = "gaia/flora_tree_apple";
 		else
 			g_Gaia.tree3 = "gaia/flora_tree_poplar_lombardy";
 
-		if (randInt(2))
+		if (randBool())
 		{
 			g_Gaia.tree4 = "gaia/flora_tree_cypress";
 			g_Gaia.tree5 = "gaia/flora_tree_cypress";
@@ -470,7 +472,7 @@ function setBiome(biomeIndex)
 			g_Gaia.tree5 = "gaia/flora_tree_aleppo_pine";
 		}
 
-		if (randInt(2))
+		if (randBool())
 			g_Gaia.fruitBush = "gaia/flora_bush_berry";
 		else
 			g_Gaia.fruitBush = "gaia/flora_bush_grapes";

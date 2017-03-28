@@ -321,7 +321,7 @@ createObjectGroups(
 );
 RMS.SetProgress(95);
 
-if (randInt(0, 2) == 0)
+if (randBool(1/3))
 {
 	setSkySet("sunset 1");
 	setSunColor(0.8, 0.7, 0.6);

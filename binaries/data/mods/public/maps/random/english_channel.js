@@ -223,11 +223,13 @@ for (var ix = 0; ix < mapSize; ix++)
 RMS.SetProgress(20);
 
 log("Creating rivers");
-for (var i = 0; i <= randInt(8, (scaleByMapSize(12,20))); i++)
+for (let i = 0; i <= randIntInclusive(8, scaleByMapSize(12, 20)); ++i)
 {
-	var cLocation = randFloat(0.05,0.95);
-	var tang = 2*PI * randFloat(0.2, 0.8) * (randInt(2) - 0.5);
-	var cDistance = 0.05 * (tang > 0 ? 1 : -1);
+	var cLocation = randFloat(0.05, 0.95);
+
+	var sign = randBool() ? 1 : -1;
+	var tang = sign * PI * randFloat(0.2, 0.8);
+	var cDistance = sign * 0.05;
 
 	var point = getTIPIADBON([fractionToTiles(cLocation), fractionToTiles(0.5 + cDistance)], [fractionToTiles(cLocation), fractionToTiles(0.5 - cDistance)], [-6, -1.5], 0.5, 4, 0.01);
 	if (point !== undefined)

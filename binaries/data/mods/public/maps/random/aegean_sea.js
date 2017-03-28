@@ -252,7 +252,7 @@ createForests(
 RMS.SetProgress(50);
 
 // create hills
-if (randInt(1,2) == 1)
+if (randBool())
 	createHills([tGrass, tCliff, tHill], avoidClasses(clPlayer, 20, clForest, 1, clHill, 15, clWater, 3), clHill, scaleByMapSize(3, 15));
 else
 	createMountains(tCliff, avoidClasses(clPlayer, 20, clForest, 1, clHill, 15, clWater, 3), clHill, scaleByMapSize(3, 15));

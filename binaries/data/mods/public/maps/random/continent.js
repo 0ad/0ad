@@ -226,8 +226,7 @@ for (var i = 0; i < numPlayers; ++i)
 // create bumps
 createBumps([avoidClasses(clPlayer, 10), stayClasses(clLand, 5)]);
 
-// create hills
-if (randInt(1,2) == 1)
+if (randBool())
 	createHills([tMainTerrain, tCliff, tHill], [avoidClasses(clPlayer, 20, clHill, 15, clBaseResource, 3), stayClasses(clLand, 5)], clHill, scaleByMapSize(1, 4) * numPlayers);
 else
 	createMountains(tCliff, [avoidClasses(clPlayer, 20, clHill, 15, clBaseResource, 3), stayClasses(clLand, 5)], clHill, scaleByMapSize(1, 4) * numPlayers);
