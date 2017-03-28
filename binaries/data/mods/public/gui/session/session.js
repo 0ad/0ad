@@ -271,6 +271,8 @@ function init(initData, hotloadData)
 	g_CivData = loadCivData();
 	g_CivData.gaia = { "Code": "gaia", "Name": translate("Gaia") };
 
+	g_BarterSell = g_ResourceData.GetCodes()[0];
+
 	initializeMusic(); // before changing the perspective
 
 	let gameSpeed = Engine.GetGUIObjectByName("gameSpeed");
@@ -398,6 +400,13 @@ function updateHotkeyTooltips()
 	Engine.GetGUIObjectByName("tradeHelp").tooltip = colorizeHotkey(
 		translate("Select one type of goods you want to modify by clicking on it (Pressing %(hotkey)s while selecting will also bring its share to 100%%) and then use the arrows of the other types to modify their shares."),
 		"session.fulltradeswap");
+
+	Engine.GetGUIObjectByName("barterHelp").tooltip = sprintf(
+		translate("Start by selecting the resource from the upper row that you wish to sell. Upon each press on one of the lower buttons, %(quantity)s of the upper resource will be sold for the displayed quantity of the lower. Press and hold %(hotkey)s to temporarily multiply all quantities by %(multiplier)s."), {
+			"quantity": g_BarterResourceSellQuantity,
+			"hotkey": colorizeHotkey("%(hotkey)s", "session.massbarter"),
+			"multiplier": g_BarterMultiplier
+		});
 }
 
 function initGUIHeroes(slot)
@@ -832,6 +841,12 @@ function updateGUIObjects()
 	updateBuildingPlacementPreview();
 	updateTimeNotifications();
 	updateIdleWorkerButton();
+
+	if (g_IsTradeOpen)
+	{
+		updateTraderTexts();
+		updateBarterButtons();
+	}
 
 	if (g_ViewedPlayer > 0)
 	{

@@ -33,8 +33,6 @@ let g_FormationsInfo = new Map();
 
 let g_SelectionPanels = {};
 
-let g_BarterSell;
-
 g_SelectionPanels.Alert = {
 	"getMaxNumberOfItems": function()
 	{
@@ -104,86 +102,19 @@ g_SelectionPanels.Barter = {
 	"conflictsWith": ["Alert", "Garrison"],
 	"getItems": function(unitEntStates)
 	{
-		if (unitEntStates.every(state => !state.barterMarket))
+		// If more than `rowLength` resources, don't display icons.
+		if (unitEntStates.every(state => !state.isBarterMarket) || g_ResourceData.GetCodes().length > this.rowLength)
 			return [];
 		return g_ResourceData.GetCodes();
 	},
 	"setupButton": function(data)
 	{
-		// data.item is the resource name in this case
+		barterOpenCommon(data.item, data.i, "unitBarter");
+		barterUpdateCommon(data.item, data.i, "unitBarter", data.player);
+
 		let button = {};
-		let icon = {};
-		let amount = {};
-		for (let a of BARTER_ACTIONS)
-		{
-			button[a] = Engine.GetGUIObjectByName("unitBarter" + a + "Button[" + data.i + "]");
-			icon[a] = Engine.GetGUIObjectByName("unitBarter" + a + "Icon[" + data.i + "]");
-			amount[a] = Engine.GetGUIObjectByName("unitBarter" + a + "Amount[" + data.i + "]");
-		}
-		let selectionIcon = Engine.GetGUIObjectByName("unitBarterSellSelection[" + data.i + "]");
-
-		let amountToSell = BARTER_RESOURCE_AMOUNT_TO_SELL;
-		if (Engine.HotkeyIsPressed("session.massbarter"))
-			amountToSell *= BARTER_BUNCH_MULTIPLIER;
-
-		if (!g_BarterSell)
-			g_BarterSell = g_ResourceData.GetCodes()[0];
-
-		amount.Sell.caption = "-" + amountToSell;
-		let prices;
-		for (let state of data.unitEntStates)
-			if (state.barterMarket)
-			{
-				prices = state.barterMarket.prices;
-				break;
-			}
-
-		amount.Buy.caption = "+" + Math.round(prices.sell[g_BarterSell] / prices.buy[data.item] * amountToSell);
-
-		let resource = getLocalizedResourceName(g_ResourceData.GetNames()[data.item], "withinSentence");
-		button.Buy.tooltip = sprintf(translate("Buy %(resource)s"), { "resource": resource });
-		button.Sell.tooltip = sprintf(translate("Sell %(resource)s"), { "resource": resource });
-
-		button.Sell.onPress = function() {
-			g_BarterSell = data.item;
-			updateSelectionDetails();
-		};
-
-		button.Buy.onPress = function() {
-			Engine.PostNetworkCommand({
-				"type": "barter",
-				"sell": g_BarterSell,
-				"buy": data.item,
-				"amount": amountToSell
-			});
-		};
-
-		let isSelected = data.item == g_BarterSell;
-		let grayscale = isSelected ? "color: 0 0 0 100:grayscale:" : "";
-
-		// do we have enough of this resource to sell?
-		let neededRes = {};
-		neededRes[data.item] = amountToSell;
-		let canSellCurrent = Engine.GuiInterfaceCall("GetNeededResources", {
-			"cost": neededRes,
-			"player": data.player
-		}) ? "color:255 0 0 80:" : "";
-
-		// Let's see if we have enough resources to barter.
-		neededRes = {};
-		neededRes[g_BarterSell] = amountToSell;
-		let canBuyAny = Engine.GuiInterfaceCall("GetNeededResources", {
-			"cost": neededRes,
-			"player": data.player
-		}) ? "color:255 0 0 80:" : "";
-
-		icon.Sell.sprite = canSellCurrent + "stretched:" + grayscale + "session/icons/resources/" + data.item + ".png";
-		icon.Buy.sprite = canBuyAny + "stretched:" + grayscale + "session/icons/resources/" + data.item + ".png";
-
-		button.Buy.hidden = isSelected;
-		button.Buy.enabled = controlsPlayer(data.player);
-		button.Sell.hidden = false;
-		selectionIcon.hidden = !isSelected;
+		for (let action of g_BarterActions)
+			button[action] = Engine.GetGUIObjectByName("unitBarter" + action + "Button[" + data.i + "]");
 
 		setPanelObjectPosition(button.Sell, data.i, data.rowLength);
 		setPanelObjectPosition(button.Buy, data.i + data.rowLength, data.rowLength);

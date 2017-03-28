@@ -16,8 +16,12 @@
 		<action on="Press">openChat(g_LastChatAddressee);</action>
 	</object>
 
-	<object hotkey="menu.toggle">
+	<object hotkey="session.gui.menu.toggle">
 		<action on="Press">toggleMenu();</action>
+	</object>
+
+	<object hotkey="session.gui.barter.toggle">
+		<action on="Press">toggleTrade();</action>
 	</object>
 
 	<object hotkey="silhouettes">
@@ -72,8 +76,15 @@
 	</object>
 
 	<object hotkey="session.massbarter">
-		<action on="Press">updateSelectionDetails();</action>
-		<action on="Release">updateSelectionDetails();</action>
+		<action on="Press">
+			updateSelectionDetails();
+			updateBarterButtons();
+		</action>
+
+		<action on="Release">
+			updateSelectionDetails();
+			updateBarterButtons();
+		</action>
 	</object>
 
 	<!-- Find idle warrior - TODO: Potentially move this to own UI button? -->

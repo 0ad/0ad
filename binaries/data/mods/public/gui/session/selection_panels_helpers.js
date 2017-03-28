@@ -1,6 +1,3 @@
-const BARTER_RESOURCE_AMOUNT_TO_SELL = 100;
-const BARTER_BUNCH_MULTIPLIER = 5;
-const BARTER_ACTIONS = ["Sell", "Buy"];
 const GATE_ACTIONS = ["lock", "unlock"];
 
 const UPGRADING_NOT_STARTED = -2;
