@@ -128,6 +128,7 @@ AddMock(14, IID_TechnologyManager, {
 	"ApplyModificationsTemplate": (valueName, curValue, template) => curValue
 });
 AddMock(14, IID_Player, {
+	"GetSpyCostMultiplier": () => 1,
 	"TrySubtractResources": costs => false
 });
 cmpVisionSharing.AddSpy(4, 25);
@@ -136,6 +137,7 @@ TS_ASSERT_UNEVAL_EQUALS([...cmpVisionSharing.spies], [[5, 2], [17, 5]]);
 TS_ASSERT_EQUALS(cmpVisionSharing.spyId, 20);
 
 AddMock(14, IID_Player, {
+	"GetSpyCostMultiplier": () => 1,
 	"TrySubtractResources": costs => true
 });
 AddMock(SYSTEM_ENTITY, IID_Timer, {

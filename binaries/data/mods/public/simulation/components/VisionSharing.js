@@ -119,10 +119,13 @@ VisionSharing.prototype.AddSpy = function(player, timeLength)
 
 	let template = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager).GetTemplate("special/spy");
 	let costs = {};
+	// Additional cost for this owner
+	let cmpPlayerBribed = QueryPlayerIDInterface(cmpOwnership.GetOwner());
+	let multiplier = cmpPlayerBribed.GetSpyCostMultiplier();
 	for (let res in template.Cost.Resources)
-		costs[res] = Math.floor(ApplyValueModificationsToTemplate("Cost/Resources/"+res, +template.Cost.Resources[res], player, template));
-	let cmpPlayer = QueryPlayerIDInterface(player);
-	if (!cmpPlayer || !cmpPlayer.TrySubtractResources(costs))
+		costs[res] = Math.floor(multiplier * ApplyValueModificationsToTemplate("Cost/Resources/" + res, +template.Cost.Resources[res], player, template));
+	let cmpPlayerSpy = QueryPlayerIDInterface(player);
+	if (!cmpPlayerSpy || !cmpPlayerSpy.TrySubtractResources(costs))
 		return 0;
 
 	// If no duration given, take it from the spy template and scale it with the ent vision

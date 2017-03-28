@@ -6,6 +6,9 @@ Player.prototype.Schema =
 	"</element>" +
 	"<element name='SharedDropsitesTech' a:help='Allies will share dropsites when this technology is researched. Leave empty to never share dropsites.'>" +
 		"<text/>" +
+	"</element>" +
+	"<element name='SpyCostMultiplier'>" +
+		"<ref name='nonNegativeDecimal'/>" +
 	"</element>";
 
 Player.prototype.Init = function()
@@ -38,6 +41,7 @@ Player.prototype.Init = function()
 	this.disabledTemplates = {};
 	this.disabledTechnologies = {};
 	this.startingTechnologies = [];
+	this.spyCostMultiplier = +this.template.SpyCostMultiplier;
 
 	// Initial resources and trading goods probability in steps of 5
 	let resCodes = Resources.GetCodes();
@@ -173,6 +177,11 @@ Player.prototype.SetTradeRateMultiplier = function(value)
 Player.prototype.GetTradeRateMultiplier = function()
 {
 	return this.tradeRateMultiplier;
+};
+
+Player.prototype.GetSpyCostMultiplier = function()
+{
+	return this.spyCostMultiplier;
 };
 
 Player.prototype.GetHeroes = function()
@@ -723,6 +732,13 @@ Player.prototype.OnResearchFinished = function(msg)
 Player.prototype.OnDiplomacyChanged = function()
 {
 	this.UpdateSharedLos();
+};
+
+Player.prototype.OnValueModification = function(msg)
+{
+	if (msg.component != "Player" || msg.valueNames.indexOf("Player/SpyCostMultiplier") === -1)
+		return;
+	this.spyCostMultiplier = ApplyValueModificationsToPlayer("Player/SpyCostMultiplier", +this.template.SpyCostMultiplier, this.entity, this.playerID);
 };
 
 Player.prototype.SetCheatsEnabled = function(flag)

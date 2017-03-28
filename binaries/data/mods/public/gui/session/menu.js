@@ -540,8 +540,12 @@ function diplomacyFormatSpyRequestButton(i, hidden)
 
 		if (template.cost)
 		{
+			let modifiedTemplate = clone(template);
+			for (let res in template.cost)
+				modifiedTemplate.cost[res] = Math.floor(GetSimState().players[i].spyCostMultiplier * template.cost[res]);
+			tooltips.push(getEntityCostTooltip(modifiedTemplate));
 			let neededResources = Engine.GuiInterfaceCall("GetNeededResources", {
-				"cost": template.cost,
+				"cost": modifiedTemplate.cost,
 				"player": g_ViewedPlayer
 			});
 			if (neededResources)

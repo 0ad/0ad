@@ -109,6 +109,7 @@ GuiInterface.prototype.GetSimulationState = function()
 			"disabledTechnologies": cmpPlayer.GetDisabledTechnologies(),
 			"hasSharedDropsites": cmpPlayer.HasSharedDropsites(),
 			"hasSharedLos": cmpPlayer.HasSharedLos(),
+			"spyCostMultiplier": cmpPlayer.GetSpyCostMultiplier(),
 			"phase": phase,
 			"isAlly": allies,
 			"isMutualAlly": mutualAllies,
