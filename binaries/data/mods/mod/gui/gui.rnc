@@ -152,7 +152,8 @@ column =
     attribute id { text }&
     attribute color { ccolor }?&
     attribute heading { text }?&
-    attribute width { text }?
+    attribute width { text }?&
+    attribute hidden { bool }?
     )
   }
 \include =

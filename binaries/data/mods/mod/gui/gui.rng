@@ -508,6 +508,11 @@
         <optional>
           <attribute name="width"/>
         </optional>
+        <optional>
+          <attribute name="hidden">
+            <ref name="bool"/>
+          </attribute>
+        </optional>
       </interleave>
     </element>
   </define>
