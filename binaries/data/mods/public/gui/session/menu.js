@@ -793,7 +793,11 @@ function barterUpdateCommon(resourceCode, idx, prefix, player)
 
 function updateBarterButtons()
 {
-	let canBarter = GetSimState().players[g_ViewedPlayer].canBarter;
+	let playerState = GetSimState().players[g_ViewedPlayer];
+	if (!playerState)
+		return;
+
+	let canBarter = playerState.canBarter;
 	Engine.GetGUIObjectByName("barterNoMarketsMessage").hidden = canBarter;
 	Engine.GetGUIObjectByName("barterResources").hidden = !canBarter;
 	Engine.GetGUIObjectByName("barterHelp").hidden = !canBarter;
