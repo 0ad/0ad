@@ -8,7 +8,9 @@ Resources = {
 	"GetResource": () => ({}),
 };
 
-var cmpPlayer = ConstructComponent(10, "Player");
+var cmpPlayer = ConstructComponent(10, "Player", {
+		"SpyCostMultiplier": 1
+	});
 
 TS_ASSERT_EQUALS(cmpPlayer.GetPopulationCount(), 0);
 TS_ASSERT_EQUALS(cmpPlayer.GetPopulationLimit(), 0);
@@ -25,3 +27,5 @@ diplo = [1, 1, 0];
 cmpPlayer.SetDiplomacy(diplo);
 diplo[1] = -1;
 TS_ASSERT(cmpPlayer.IsAlly(1));
+
+TS_ASSERT_EQUALS(cmpPlayer.GetSpyCostMultiplier(), 1);

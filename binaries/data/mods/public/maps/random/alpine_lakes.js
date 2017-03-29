@@ -1,10 +1,7 @@
 RMS.LoadLibrary("rmgen");
 
-//set up the random terrain
-var random_var = randInt(1,2);
-
-//late spring
-if (random_var == 1)
+// late spring
+if (randBool())
 {
 	setFogThickness(0.26);
 	setFogFactor(0.4);

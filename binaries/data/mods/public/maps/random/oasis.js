@@ -243,7 +243,8 @@ terrainPainter = new LayeredPainter( [pOasisForestLight,tShoreBlend, tWater, tWa
 var elevationPainter = new SmoothElevationPainter(ELEVATION_SET,  -3,  15 );
 createArea(placer, [terrainPainter, elevationPainter, paintClass(clWater)], null);
 RMS.SetProgress(50);
-if(mapSize > 150 && randInt(0,1)) {
+if (mapSize > 150 && randBool())
+{
 	log ("creating path through");
 	var pAngle = randFloat(0, TWO_PI);
 	var px = round(fx) + round(fractionToTiles(0.13 * cos(pAngle)));
@@ -354,28 +355,30 @@ for (var sandx = 0; sandx < mapSize; sandx += 4)
 	{
 		if (getHeight(sandx,sandz) > 3.4)
 		{
-			if (Math.random()* 1.4 < getHeight(sandx,sandz) - 3.4)
+			if (randBool((getHeight(sandx,sandz) - 3.4) / 1.4))
 			{
 				group = new SimpleGroup( [new SimpleObject(aSand, 0,1, 0,2)], true, undefined, sandx,sandz );
 				createObjectGroup(group, 0);
 			}
 		} else if (getHeight(sandx,sandz) > -2.5 && getHeight(sandx,sandz) < -1.0)
 		{
-			if (Math.random() < 0.4)
+			if (randBool(0.4))
 			{
 				group = new SimpleGroup( [new SimpleObject(aWaterFlower, 1,4, 1,2)], true, undefined, sandx,sandz );
 				createObjectGroup(group, 0);
-			} else if (Math.random() > 0.3 && getHeight(sandx,sandz) < -1.9)
+			}
+			else if (randBool(0.7) && getHeight(sandx,sandz) < -1.9)
 			{
 				group = new SimpleGroup( [new SimpleObject(aReedsA, 5,12, 0,2),new SimpleObject(aReedsB, 5,12, 0,2)], true, undefined, sandx,sandz );
 				createObjectGroup(group, 0);
 			}
 			if (getTileClass(clPassage).countInRadius(sandx,sandz,2,true) > 0) {
-				if (Math.random() < 0.4)
+				if (randBool(0.4))
 				{
 					group = new SimpleGroup( [new SimpleObject(aWaterFlower, 1,4, 1,2)], true, undefined, sandx,sandz );
 					createObjectGroup(group, 0);
-				} else if (Math.random() > 0.3 && getHeight(sandx,sandz) < -1.9)
+				}
+				else if (randBool(0.7) && getHeight(sandx,sandz) < -1.9)
 				{
 					group = new SimpleGroup( [new SimpleObject(aReedsA, 5,12, 0,2),new SimpleObject(aReedsB, 5,12, 0,2)], true, undefined, sandx,sandz );
 					createObjectGroup(group, 0);

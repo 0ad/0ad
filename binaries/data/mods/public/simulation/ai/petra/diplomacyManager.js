@@ -277,7 +277,7 @@ m.DiplomacyManager.prototype.handleDiplomacyRequest = function(gameState, player
 	let moreEnemiesThanAllies = gameState.getEnemies().length > gameState.getMutualAllies().length;
 
 	// For any given diplomacy request be likely to permanently decline
-	if (!request && gameState.getPlayerCiv() !== gameState.getPlayerCiv(player) && randFloat(0, 1) > 0.4 ||
+	if (!request && gameState.getPlayerCiv() !== gameState.getPlayerCiv(player) && randBool(0.6) ||
 	    !moreEnemiesThanAllies || gameState.ai.HQ.attackManager.currentEnemyPlayer === player)
 	{
 		this.diplomacyRequests.set(player, { "requestType": requestType, "status": "declinedRequest" });
@@ -295,8 +295,8 @@ m.DiplomacyManager.prototype.handleDiplomacyRequest = function(gameState, player
 			requiredTribute = request;
 		}
 	}
-	else if (requestType === "ally" && gameState.getEntities(player).length < gameState.getOwnEntities().length &&
-	    randFloat(0, 1) > 0.6 || requestType === "neutral" && moreEnemiesThanAllies && randFloat(0, 1) > 0.2)
+	else if (requestType === "ally" && gameState.getEntities(player).length < gameState.getOwnEntities().length && randBool(0.4) ||
+	         requestType === "neutral" && moreEnemiesThanAllies && randBool(0.8))
 	{
 		response = "accept";
 		this.changePlayerDiplomacy(gameState, player, requestType);

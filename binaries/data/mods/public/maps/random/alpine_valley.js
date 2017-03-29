@@ -2,11 +2,8 @@ RMS.LoadLibrary("rmgen");
 
 TILE_CENTERED_HEIGHT_MAP = true;
 
-//set up the random terrain
-var random_terrain = randInt(1,2);
-
-//late spring
-if (random_terrain == 1)
+// late spring
+if (randBool())
 {
 	var tPrimary = ["alpine_dirt_grass_50"];
 	var tForestFloor = "alpine_forrestfloor";

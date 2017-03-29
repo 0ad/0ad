@@ -170,26 +170,7 @@ m.GameTypeManager.prototype.checkEvents = function(gameState, events)
 		let entId = evt.entityObj.id();
 		if (this.criticalEnts.has(entId))
 		{
-			for (let [guardId, role] of this.criticalEnts.get(entId).guards)
-			{
-				let guardEnt = gameState.getEntityById(guardId);
-				if (!guardEnt)
-					continue;
-
-				if (role === "healer")
-					this.guardEnts.set(guardId, false);
-				else
-				{
-					guardEnt.setMetadata(PlayerID, "plan", -1);
-					guardEnt.setMetadata(PlayerID, "role", undefined);
-					this.guardEnts.delete(guardId);
-				}
-
-				if (guardEnt.getMetadata(PlayerID, "guardedEnt"))
-					guardEnt.setMetadata(PlayerID, "guardedEnt", undefined);
-			}
-
-			this.criticalEnts.delete(entId);
+			this.removeGuardsFromCriticalEnt(gameState, entId);
 			continue;
 		}
 
@@ -245,6 +226,50 @@ m.GameTypeManager.prototype.checkEvents = function(gameState, events)
 			}
 		}
 	}
+
+	for (let evt of events.OwnershipChanged)
+	{
+		if (evt.from === PlayerID && this.criticalEnts.has(evt.entity))
+		{
+			this.removeGuardsFromCriticalEnt(gameState, evt.entity);
+			continue;
+		}
+		if (evt.to !== PlayerID)
+			continue;
+
+		let ent = gameState.getEntityById(evt.entity);
+		if (ent && (gameState.getGameType() === "wonder" && ent.hasClass("Wonder") ||
+		            gameState.getGameType() === "capture_the_relic" && ent.hasClass("Relic")))
+		{
+			this.criticalEnts.set(ent.id(), { "guardsAssigned": 0, "guards": new Map() });
+			// Move captured relics to the closest base
+			if (ent.hasClass("Unit"))
+				this.pickCriticalEntRetreatLocation(gameState, ent, false);
+		}
+	}
+};
+
+m.GameTypeManager.prototype.removeGuardsFromCriticalEnt = function(gameState, criticalEntId)
+{
+	for (let [guardId, role] of this.criticalEnts.get(criticalEntId).guards)
+	{
+		let guardEnt = gameState.getEntityById(guardId);
+		if (!guardEnt)
+			continue;
+
+		if (role === "healer")
+			this.guardEnts.set(guardId, false);
+		else
+		{
+			guardEnt.setMetadata(PlayerID, "plan", -1);
+			guardEnt.setMetadata(PlayerID, "role", undefined);
+			this.guardEnts.delete(guardId);
+		}
+
+		if (guardEnt.getMetadata(PlayerID, "guardedEnt"))
+			guardEnt.setMetadata(PlayerID, "guardedEnt", undefined);
+	}
+	this.criticalEnts.delete(evt.entity);
 };
 
 m.GameTypeManager.prototype.buildWonder = function(gameState, queues)
@@ -474,24 +499,24 @@ m.GameTypeManager.prototype.update = function(gameState, events, queues)
 		this.manageCriticalEntGuards(gameState);
 	}
 
-	if (gameState.getGameType() === "regicide")
+	if (gameState.getGameType() === "regicide" && gameState.ai.playedTurn % 10 === 0)
 	{
-		if (gameState.ai.playedTurn % 10 === 0)
+		for (let [id, data] of this.criticalEnts)
 		{
-			for (let [id, data] of this.criticalEnts)
-			{
-				let ent = gameState.getEntityById(id);
-				if (ent && ent.healthLevel() > 0.7 && ent.hasClass("Soldier") &&
-				    data.stance !== "aggressive")
-					ent.setStance("aggressive");
+			let ent = gameState.getEntityById(id);
+			if (ent && ent.healthLevel() > 0.7 && ent.hasClass("Soldier") &&
+			    data.stance !== "aggressive")
+				ent.setStance("aggressive");
 
-				if (data.healersAssigned < this.healersPerCriticalEnt &&
-				    this.guardEnts.size < Math.min(gameState.getPopulationMax() / 10, gameState.getPopulation() / 4))
-					this.trainCriticalEntHealer(gameState, queues, id);
-			}
-			this.manageCriticalEntGuards(gameState);
+			if (data.healersAssigned < this.healersPerCriticalEnt &&
+			    this.guardEnts.size < Math.min(gameState.getPopulationMax() / 10, gameState.getPopulation() / 4))
+				this.trainCriticalEntHealer(gameState, queues, id);
 		}
+		this.manageCriticalEntGuards(gameState);
 	}
+
+	if (gameState.getGameType() === "capture_the_relic" && gameState.ai.playedTurn % 10 === 0)
+		this.manageCriticalEntGuards(gameState);
 };
 
 m.GameTypeManager.prototype.Serialize = function()

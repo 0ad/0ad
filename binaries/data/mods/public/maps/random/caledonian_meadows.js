@@ -711,13 +711,13 @@ for (let h = 0; h < heighLimits.length; ++h)
 		let texture = pickRandom(myBiome[h].texture);
 		if (slopeMap[x][y] < 0.4 * (minSlope[h] + maxSlope[h]))
 		{
-			if (randFloat() < myBiome[h].actor[1])
+			if (randBool(myBiome[h].actor[1]))
 				actor = pickRandom(myBiome[h].actor[0]);
 		}
 		else
 		{
 			texture = pickRandom(myBiome[h].textureHS);
-			if (randFloat() < myBiome[h].actorHS[1])
+			if (randBool(myBiome[h].actorHS[1]))
 				actor = pickRandom(myBiome[h].actorHS[0]);
 		}
 		g_Map.setTexture(x, y, texture);

@@ -354,7 +354,7 @@ for (var i = 0; i < numPlayers; i++)
 	createArea(placer, painter, null);
 }
 
-if (randInt(1,2) == 1)
+if (randBool())
 	createHills([tMainTerrain, tCliff, tHill], avoidClasses(clPlayer, 20, clHill, 15, clWater, 2), clHill, scaleByMapSize(1, 4) * numPlayers);
 else
 	createMountains(tCliff, avoidClasses(clPlayer, 20, clHill, 15, clWater, 2), clHill, scaleByMapSize(1, 4) * numPlayers);

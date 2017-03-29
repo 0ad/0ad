@@ -219,7 +219,7 @@ createObjectGroups(group, 0,
 createBumps([avoidClasses(clWater, 2, clPlayer, 10), stayClasses(clLand, 5)]);
 
 // create hills
-if (randInt(1,2) == 1)
+if (randBool())
 	createHills([tMainTerrain, tCliff, tHill], [avoidClasses(clPlayer, 20, clHill, 5, clBaseResource, 3, clWomen, 5), stayClasses(clLand, 5)], clHill, scaleByMapSize(10, 60) * numPlayers);
 else
 	createMountains(tCliff, [avoidClasses(clPlayer, 20, clHill, 5, clBaseResource, 3, clWomen, 5), stayClasses(clLand, 5)], clHill, scaleByMapSize(10, 60) * numPlayers);

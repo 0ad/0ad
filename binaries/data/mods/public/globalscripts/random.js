@@ -57,9 +57,9 @@ function randIntExclusive(min, max)
 }
 
 /**
- * Returns true or false randomly.
+ * Returns a Bernoulli distributed boolean with p chance on true.
  */
-function randBool()
+function randBool(p = 0.5)
 {
-	return Math.random() < 0.5;
+	return Math.random() < p;
 }
