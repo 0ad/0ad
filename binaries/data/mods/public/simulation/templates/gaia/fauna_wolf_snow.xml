@@ -1,27 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_fauna_wild_aggressive">
-  <Attack>
-    <Melee>
-      <Hack>10.0</Hack>
-      <Pierce>10.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>4.0</MaxRange>
-      <RepeatTime>1000</RepeatTime>
-    </Melee>
-  </Attack>
-  <Footprint>
-    <Square width="1.4" depth="2.8"/>
-    <Height>1.5</Height>
-  </Footprint>
+<Entity parent="template_unit_fauna_wolf">
   <Identity>
-    <Civ>gaia</Civ>
     <SpecificName>Snow Wolf</SpecificName>
     <Icon>gaia/fauna_wolf_snow.png</Icon>
   </Identity>
-  <Position>
-    <Anchor>pitch</Anchor>
-  </Position>
   <VisualActor>
     <Actor>fauna/wolf_snow.xml</Actor>
   </VisualActor>
 </Entity>
+
