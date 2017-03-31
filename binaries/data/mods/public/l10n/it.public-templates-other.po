@@ -8,15 +8,15 @@
 # Fabrizio Morotti <famorot@tin.it>, 2016
 # giangy <giancarlo.moi@tiscali.it>, 2014
 # Martin Falanga <iblaim97@hotmail.it>, 2017
-# Me Lazzi, 2015-2016
+# Me Lazzi, 2015-2017
 # Michele Marongiu <michelemarongiu@gmail.com>, 2016
 # Sebastiano Pistore <olatusrooc@virgilio.it>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-24 09:08+0100\n"
-"PO-Revision-Date: 2017-03-25 08:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-03-27 09:02+0200\n"
+"PO-Revision-Date: 2017-03-30 22:00+0000\n"
+"Last-Translator: Me Lazzi\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -316,7 +316,7 @@ msgstr "Elefante africano"
 
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:14
 msgid "Elephant"
-msgstr ""
+msgstr "Elefante"
 
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:15
 msgid "African Elephant (Infant)"
@@ -801,7 +801,7 @@ msgstr "Forte Palizzato"
 
 #: simulation/templates/other/palisades_rocks_fort.xml:7
 msgid "Wooden Tower"
-msgstr ""
+msgstr "Torre in Legno"
 
 #: simulation/templates/other/palisades_rocks_gate.xml:18
 msgid "Palisade Gate"
@@ -904,6 +904,18 @@ msgstr "Colonnato"
 msgid "Corinthian Colonnade"
 msgstr "Colonnato Corinzio"
 
+#: simulation/templates/other/special_catafalque.xml:22
+msgid "Catafalque"
+msgstr "Catafalco"
+
+#: simulation/templates/other/special_catafalque.xml:24
+msgid "A catafalque that holds the remains of a great leader."
+msgstr "Un catafalco che conserva i resti di un grande leader."
+
+#: simulation/templates/other/special_catafalque.xml:25
+msgid "Relic"
+msgstr "Reliquia"
+
 #: simulation/templates/other/special_treasure_shipwreck.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:10
@@ -990,7 +1002,7 @@ msgstr "Giocatore"
 
 #: simulation/templates/special/spy.xml:17
 msgid "Spy"
-msgstr ""
+msgstr "Spia"
 
 #: simulation/templates/special_units/athen_mechanical_siege_lithobolos_common.xml:5
 #: simulation/templates/special_units/mace_mechanical_siege_lithobolos_common.xml:5

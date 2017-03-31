@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-24 09:07+0100\n"
-"PO-Revision-Date: 2017-03-26 21:57+0000\n"
-"Last-Translator: Adrian Pappas <pappasadrian@gmail.com>\n"
+"POT-Creation-Date: 2017-03-27 09:02+0200\n"
+"PO-Revision-Date: 2017-03-27 08:55+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -168,7 +168,7 @@ msgstr "Κράτα πατημένο το πλήκτρο %(hotkey)s για δια
 msgid "A randomly selected map."
 msgstr "Ένας τυχαία επιλεγμένος χάρτης."
 
-#: gui/common/gamedescription.js:20 gui/common/gamedescription.js:279
+#: gui/common/gamedescription.js:20 gui/common/gamedescription.js:291
 msgid "Sorry, no description available."
 msgstr "Δυστυχώς, δεν υπάρχει περιγραφή."
 
@@ -288,137 +288,145 @@ msgid_plural "Wonder (%(min)s minutes)"
 msgstr[0] "Θαύμα ( %(min)s λεπτό)"
 msgstr[1] "Θαύμα (%(min)s λεπτά)"
 
-#: gui/common/gamedescription.js:211
+#: gui/common/gamedescription.js:205
+#, javascript-format
+msgctxt "victory condition"
+msgid "Capture The Relic (%(min)s minute)"
+msgid_plural "Capture The Relic (%(min)s minutes)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: gui/common/gamedescription.js:223
 msgid "Rated game"
 msgstr "Βαθμολογημένο παιχνίδι"
 
-#: gui/common/gamedescription.js:212
+#: gui/common/gamedescription.js:224
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr "Όταν καθοριστεί ο νικητής αυτού του αγώνα, η βαθμολογία του λόμπι θα αναπροσαρμοστεί."
 
-#: gui/common/gamedescription.js:217
+#: gui/common/gamedescription.js:229
 msgid "Locked Teams"
 msgstr "Κλειδωμένες Ομάδες"
 
-#: gui/common/gamedescription.js:218
+#: gui/common/gamedescription.js:230
 msgid "Players can't change the initial teams."
 msgstr "Οι παίκτες δεν μπορούν να αλλάξουν τις αρχικές ομάδες."
 
-#: gui/common/gamedescription.js:222
+#: gui/common/gamedescription.js:234
 msgid "Diplomacy"
 msgstr "Διπλωματία"
 
-#: gui/common/gamedescription.js:223
+#: gui/common/gamedescription.js:235
 msgid "Players can make alliances and declare war on allies."
 msgstr "Οι παίχτες μπορούν να κάνουν συμμαχίες και να κηρύξουν πόλεμο στους συμμάχους."
 
-#: gui/common/gamedescription.js:228
+#: gui/common/gamedescription.js:240
 msgid "Last Man Standing"
 msgstr "Ο Τελευταίος Επιζών"
 
-#: gui/common/gamedescription.js:229
+#: gui/common/gamedescription.js:241
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
 msgstr "Μόνο ένας παίχτης μπορεί να κερδίσει το παιχνίδι. Αν οι εναπομείναντες παίχτες είναι σύμμαχοι, το παιχνίδι συνεχίζεται μέχρι να μείνει μόνο ένας."
 
-#: gui/common/gamedescription.js:233
+#: gui/common/gamedescription.js:245
 msgid "Allied Victory"
 msgstr "Συμμαχική Νίκη"
 
-#: gui/common/gamedescription.js:234
+#: gui/common/gamedescription.js:246
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
 msgstr "Αν ένας παίχτης κερδίσει, αυτός ή οι σύμμαχοί του κερδίζουν επίσης. Αν εναπομείνει μία ομάδα συμμάχων, κερδίζουν."
 
-#: gui/common/gamedescription.js:240
+#: gui/common/gamedescription.js:252
 msgid "Ceasefire"
 msgstr "Παύση Πυρός"
 
-#: gui/common/gamedescription.js:243 gui/pregame/mainmenu.js:91
+#: gui/common/gamedescription.js:255 gui/pregame/mainmenu.js:91
 msgid "disabled"
 msgstr "απενεργοπ."
 
-#: gui/common/gamedescription.js:244
+#: gui/common/gamedescription.js:256
 msgid "For the first minute, enemies will stay neutral."
 msgid_plural "For the first %(min)s minutes, enemies will stay neutral."
 msgstr[0] "Για το πρώτο λεπτό, οι εχθροί παραμένουν ουδέτεροι."
 msgstr[1] "Για τα πρώτα %(min)s λεπτά, οι εχθροί παραμένουν ουδέτεροι."
 
-#: gui/common/gamedescription.js:252
+#: gui/common/gamedescription.js:264
 msgid "Map Name"
 msgstr "Όνομα Χάρτη"
 
-#: gui/common/gamedescription.js:257
+#: gui/common/gamedescription.js:269
 msgid "Map Type"
 msgstr "Τύπος Χάρτη"
 
-#: gui/common/gamedescription.js:266
+#: gui/common/gamedescription.js:278
 msgid "Map Size"
 msgstr "Μέγεθος Χάρτη"
 
-#: gui/common/gamedescription.js:273
+#: gui/common/gamedescription.js:285
 msgid "Map Description"
 msgstr "Περιγραφή Χάρτη"
 
-#: gui/common/gamedescription.js:276
+#: gui/common/gamedescription.js:288
 msgid "Randomly selects a map from the list"
 msgstr "Επιλέγει έναν τυχαίο χάρτη από τη λίστα"
 
-#: gui/common/gamedescription.js:285
+#: gui/common/gamedescription.js:297
 msgid "Starting Resources"
 msgstr "Πόροι Κατά Την Έναρξη"
 
-#: gui/common/gamedescription.js:286
+#: gui/common/gamedescription.js:298
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
-#: gui/common/gamedescription.js:296
+#: gui/common/gamedescription.js:308
 msgid "Population Limit"
 msgstr "Όριο Πληθυσμού"
 
-#: gui/common/gamedescription.js:304
+#: gui/common/gamedescription.js:316
 msgid "Disable Treasure"
 msgstr "Απενεργοποίηση Θησαυρών"
 
-#: gui/common/gamedescription.js:309
+#: gui/common/gamedescription.js:321
 msgid "Revealed Map"
 msgstr "Αποκαλυμμένος Χάρτης"
 
-#: gui/common/gamedescription.js:314
+#: gui/common/gamedescription.js:326
 msgid "Explored Map"
 msgstr "Εξερευνημένος Χάρτης"
 
-#: gui/common/gamedescription.js:319
+#: gui/common/gamedescription.js:331
 msgid "Cheats"
 msgstr "Ζαβολιές"
 
-#: gui/common/gamedescription.js:324 gui/common/tooltips.js:63
+#: gui/common/gamedescription.js:336 gui/common/tooltips.js:63
 #: gui/common/tooltips.js:110 gui/common/tooltips.js:152
 #: gui/common/tooltips.js:375 gui/common/tooltips.js:651
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:327
+#: gui/common/gamedescription.js:339
 msgctxt "gamesetup option"
 msgid "enabled"
 msgstr "ενεργοποιήθηκε"
 
-#: gui/common/gamedescription.js:328
+#: gui/common/gamedescription.js:340
 msgctxt "gamesetup option"
 msgid "disabled"
 msgstr "απενεργοποιήθηκε"
 
-#: gui/common/gamedescription.js:345
+#: gui/common/gamedescription.js:357
 msgid "Victorious"
 msgstr "Νικηφόρος"
 
-#: gui/common/gamedescription.js:350
+#: gui/common/gamedescription.js:362
 msgid "Defeated"
 msgstr "Ηττήθηκε"
 
@@ -577,11 +585,11 @@ msgstr "Πολύ δύσκολο"
 
 #: gui/common/settings.js:151
 #, javascript-format
-msgctxt "wonder victory"
+msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] "%(min)s λεπτό"
-msgstr[1] "%(min)s λεπτά"
+msgstr[0] ""
+msgstr[1] ""
 
 #: gui/common/settings.js:173
 msgctxt "ceasefire"

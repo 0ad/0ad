@@ -41,8 +41,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-17 09:01+0100\n"
-"PO-Revision-Date: 2017-03-17 15:44+0000\n"
+"POT-Creation-Date: 2017-03-27 09:01+0200\n"
+"PO-Revision-Date: 2017-03-27 11:26+0000\n"
 "Last-Translator: Swyter <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -402,8 +402,8 @@ msgid "Victory Condition:"
 msgstr "Condición de victoria:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):342
-msgid "Wonder Victory:"
-msgstr "Victoria por maravilla:"
+msgid "Victory Duration:"
+msgstr "Temporizador de victoria:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):352
 msgid "Population Cap:"
@@ -523,9 +523,8 @@ msgid "Select victory condition."
 msgstr "Elige una condición de victoria."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):346
-msgid ""
-"Number of minutes that the player has to keep the wonder in order to win."
-msgstr "Minutos necesarios en los que la maravilla debe permanecer en pie para ganar."
+msgid "Number of minutes until the player has won."
+msgstr "Minutos transcurridos hasta ganar la partida."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):356
 msgid "Select population cap."

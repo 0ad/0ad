@@ -13,6 +13,7 @@
 # Helder Meneses <helder.meneses@gmail.com>, 2013
 # Luís Guedes <luisgguedes@gmail.com>, 2013
 # Luis Neves <luisjneves@gmail.com>, 2015
+# Mário Branco <branco.ana8@gmail.com>, 2017
 # mogafi, 2014
 # Nuno de Mendonça Raimundo <nnraimundo@outlook.com>, 2013-2014
 # Qodek <andre.lucas.silva2468@gmail.com>, 2014
@@ -22,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-24 09:06+0100\n"
-"PO-Revision-Date: 2017-03-24 10:04+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-03-28 03:29+0000\n"
+"Last-Translator: Mário Branco <branco.ana8@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -99,13 +100,13 @@ msgstr "Eliminar"
 #: gui/session/menu.js:287
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/session/menu.js:367
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
-msgstr ""
+msgstr "Tempo restante até ao cessar-fogo está acabado em: %(time)s."
 
 #: gui/session/menu.js:391
 msgctxt "team"
@@ -257,12 +258,12 @@ msgstr "Pausa"
 #: gui/session/menu.js:947
 #, javascript-format
 msgid "Paused by %(players)s"
-msgstr ""
+msgstr "Pausado por %(players)s"
 
 #: gui/session/menu.js:948 gui/session/messages.js:613
 #: gui/session/selection_panels.js:876
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/session/menu.js:961 gui/session/menu.xml:(caption):17
 msgid "Manual"
@@ -293,7 +294,7 @@ msgstr "%(player)s começou a reentrar no jogo."
 #: gui/session/messages.js:96
 #, javascript-format
 msgid "%(player)s is starting to join the game."
-msgstr ""
+msgstr "%(player)s está a começar a entrar no jogo."
 
 #: gui/session/messages.js:100
 #, javascript-format
@@ -342,7 +343,7 @@ msgstr "Razão: %(reason)s."
 
 #: gui/session/messages.js:145
 msgid "Waiting for players to connect:"
-msgstr ""
+msgstr "Aguardando que os jogadores se conectem:"
 
 #: gui/session/messages.js:146
 msgid "Synchronising gameplay with other players..."
@@ -383,45 +384,45 @@ msgstr "Privado"
 #: gui/session/messages.js:205
 msgctxt "chat history filter"
 msgid "Chat and notifications"
-msgstr ""
+msgstr "Conversa e notificações"
 
 #: gui/session/messages.js:210
 msgctxt "chat history filter"
 msgid "Chat messages"
-msgstr ""
+msgstr "Mensagens da conversa"
 
 #: gui/session/messages.js:215
 msgctxt "chat history filter"
 msgid "Players chat"
-msgstr ""
+msgstr "Conversa dos jogadores"
 
 #: gui/session/messages.js:222
 msgctxt "chat history filter"
 msgid "Ally chat"
-msgstr ""
+msgstr "Conversa dos aliados"
 
 #: gui/session/messages.js:229
 msgctxt "chat history filter"
 msgid "Enemy chat"
-msgstr ""
+msgstr "Conversa do inimigo"
 
 #: gui/session/messages.js:236
 msgctxt "chat history filter"
 msgid "Observer chat"
-msgstr ""
+msgstr "Conversa do observador"
 
 #: gui/session/messages.js:243
 msgctxt "chat history filter"
 msgid "Private chat"
-msgstr ""
+msgstr "Conversa privada"
 
 #: gui/session/messages.js:249
 msgid "You have won!"
-msgstr ""
+msgstr "Tu ganhaste!"
 
 #: gui/session/messages.js:250
 msgid "You have been defeated!"
-msgstr ""
+msgstr "Tu foste derrotado!"
 
 #: gui/session/messages.js:258
 #, javascript-format
@@ -496,11 +497,11 @@ msgstr "\\[OFFLINE] %(player)s"
 #: gui/session/messages.js:803
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #: gui/session/messages.js:804
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #: gui/session/messages.js:848
 msgid "Unknown Player"
@@ -519,7 +520,7 @@ msgstr "%(player)s foi derrotado."
 #: gui/session/messages.js:873
 #, javascript-format
 msgid "%(player)s has won."
-msgstr ""
+msgstr "%(player)s ganhou."
 
 #: gui/session/messages.js:905
 #, javascript-format
@@ -529,7 +530,7 @@ msgstr "%(player)s enviou-lhe %(amounts)s."
 #: gui/session/messages.js:907
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
-msgstr ""
+msgstr "Você enviou %(player2)s %(amounts)s."
 
 #: gui/session/messages.js:912
 #, javascript-format

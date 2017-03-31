@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-03 09:03+0100\n"
-"PO-Revision-Date: 2017-03-03 10:08+0000\n"
+"POT-Creation-Date: 2017-03-27 09:03+0200\n"
+"PO-Revision-Date: 2017-03-27 11:30+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -1044,6 +1044,16 @@ msgstr "Toinn air adhart (10x)"
 #: simulation/data/settings/game_speeds.jsonData[10].Title
 msgid "Fast Forward (20x)"
 msgstr "Toinn air adhart (20x)"
+
+#: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Description
+msgid ""
+"Capture all relics spread across the map and keep them for a certain time to"
+" win the game."
+msgstr "Glac gach fear dhe na taisean a tha sgapte air a’ mhapa agus cum iad fad ùine shònraichte gus an geama a bhuannachd."
+
+#: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
+msgid "Capture The Relic"
+msgstr "Glac na taisean"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid "Defeat all opponents to win."

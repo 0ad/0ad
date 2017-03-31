@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-24 09:07+0100\n"
-"PO-Revision-Date: 2017-03-25 08:58+0000\n"
+"POT-Creation-Date: 2017-03-27 09:02+0200\n"
+"PO-Revision-Date: 2017-03-27 08:55+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -168,7 +168,7 @@ msgstr "Onay olmadan silmek için %(hotkey)s ye basılı tutun."
 msgid "A randomly selected map."
 msgstr "Rasgele seçilen harita."
 
-#: gui/common/gamedescription.js:20 gui/common/gamedescription.js:279
+#: gui/common/gamedescription.js:20 gui/common/gamedescription.js:291
 msgid "Sorry, no description available."
 msgstr "Üzgünüm, herhangi bir açıklama mevcut değil."
 
@@ -288,137 +288,145 @@ msgid_plural "Wonder (%(min)s minutes)"
 msgstr[0] "Merak etme (%(min)s dakika)"
 msgstr[1] "Merak etme (%(min)s dakika)"
 
-#: gui/common/gamedescription.js:211
+#: gui/common/gamedescription.js:205
+#, javascript-format
+msgctxt "victory condition"
+msgid "Capture The Relic (%(min)s minute)"
+msgid_plural "Capture The Relic (%(min)s minutes)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: gui/common/gamedescription.js:223
 msgid "Rated game"
 msgstr "Oylanmış oyun"
 
-#: gui/common/gamedescription.js:212
+#: gui/common/gamedescription.js:224
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr "Bu maçın galibi belirlendiğinde, lobi puanı uyarlanır."
 
-#: gui/common/gamedescription.js:217
+#: gui/common/gamedescription.js:229
 msgid "Locked Teams"
 msgstr "Kilitli Takımlar"
 
-#: gui/common/gamedescription.js:218
+#: gui/common/gamedescription.js:230
 msgid "Players can't change the initial teams."
 msgstr "Oyuncular ilk takımları değiştiremezler."
 
-#: gui/common/gamedescription.js:222
+#: gui/common/gamedescription.js:234
 msgid "Diplomacy"
 msgstr "Diplomasi"
 
-#: gui/common/gamedescription.js:223
+#: gui/common/gamedescription.js:235
 msgid "Players can make alliances and declare war on allies."
 msgstr "Oyuncular müttefikler üzerinde ittifaklar kurabilir ve savaş ilan edebilir."
 
-#: gui/common/gamedescription.js:228
+#: gui/common/gamedescription.js:240
 msgid "Last Man Standing"
 msgstr "Son Kalan Kişi"
 
-#: gui/common/gamedescription.js:229
+#: gui/common/gamedescription.js:241
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
 msgstr "Oyunu sadece bir oyuncu kazanabilir. Kalan oyuncular müttefikleriyse, oyun yalnızca bir kalana kadar devam eder."
 
-#: gui/common/gamedescription.js:233
+#: gui/common/gamedescription.js:245
 msgid "Allied Victory"
 msgstr "Müttefik Zaferi"
 
-#: gui/common/gamedescription.js:234
+#: gui/common/gamedescription.js:246
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
 msgstr "Bir oyuncu kazanırsa, müttefikleri de kazanır. Bir müttefik grubu kalırsa, kazanırlar."
 
-#: gui/common/gamedescription.js:240
+#: gui/common/gamedescription.js:252
 msgid "Ceasefire"
 msgstr "Ateşkes"
 
-#: gui/common/gamedescription.js:243 gui/pregame/mainmenu.js:91
+#: gui/common/gamedescription.js:255 gui/pregame/mainmenu.js:91
 msgid "disabled"
 msgstr "devre dışı bırakılmış"
 
-#: gui/common/gamedescription.js:244
+#: gui/common/gamedescription.js:256
 msgid "For the first minute, enemies will stay neutral."
 msgid_plural "For the first %(min)s minutes, enemies will stay neutral."
 msgstr[0] "İlk dakika, düşmanlar tarafsız kalacak."
 msgstr[1] "İlk %(min)s dakika için, düşmanlar tarafsız kalacak."
 
-#: gui/common/gamedescription.js:252
+#: gui/common/gamedescription.js:264
 msgid "Map Name"
 msgstr "Harita İsmi"
 
-#: gui/common/gamedescription.js:257
+#: gui/common/gamedescription.js:269
 msgid "Map Type"
 msgstr "Harita Tipi"
 
-#: gui/common/gamedescription.js:266
+#: gui/common/gamedescription.js:278
 msgid "Map Size"
 msgstr "Harita Boyutu"
 
-#: gui/common/gamedescription.js:273
+#: gui/common/gamedescription.js:285
 msgid "Map Description"
 msgstr "Harita Açıklaması"
 
-#: gui/common/gamedescription.js:276
+#: gui/common/gamedescription.js:288
 msgid "Randomly selects a map from the list"
 msgstr "Listeden bir haritayı rastgele seçer"
 
-#: gui/common/gamedescription.js:285
+#: gui/common/gamedescription.js:297
 msgid "Starting Resources"
 msgstr "Başlangıç Kaynakları"
 
-#: gui/common/gamedescription.js:286
+#: gui/common/gamedescription.js:298
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
-#: gui/common/gamedescription.js:296
+#: gui/common/gamedescription.js:308
 msgid "Population Limit"
 msgstr "Nüfus Limiti"
 
-#: gui/common/gamedescription.js:304
+#: gui/common/gamedescription.js:316
 msgid "Disable Treasure"
 msgstr "Hazineyi Devre Dışı Bırak"
 
-#: gui/common/gamedescription.js:309
+#: gui/common/gamedescription.js:321
 msgid "Revealed Map"
 msgstr "Açığa Çıkmış Harita"
 
-#: gui/common/gamedescription.js:314
+#: gui/common/gamedescription.js:326
 msgid "Explored Map"
 msgstr "Keşfedilmiş Harita"
 
-#: gui/common/gamedescription.js:319
+#: gui/common/gamedescription.js:331
 msgid "Cheats"
 msgstr "Hileler"
 
-#: gui/common/gamedescription.js:324 gui/common/tooltips.js:63
+#: gui/common/gamedescription.js:336 gui/common/tooltips.js:63
 #: gui/common/tooltips.js:110 gui/common/tooltips.js:152
 #: gui/common/tooltips.js:375 gui/common/tooltips.js:651
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:327
+#: gui/common/gamedescription.js:339
 msgctxt "gamesetup option"
 msgid "enabled"
 msgstr "Aktif"
 
-#: gui/common/gamedescription.js:328
+#: gui/common/gamedescription.js:340
 msgctxt "gamesetup option"
 msgid "disabled"
 msgstr "Devre Dışı"
 
-#: gui/common/gamedescription.js:345
+#: gui/common/gamedescription.js:357
 msgid "Victorious"
 msgstr "Zafer"
 
-#: gui/common/gamedescription.js:350
+#: gui/common/gamedescription.js:362
 msgid "Defeated"
 msgstr "Yenilgi"
 
@@ -577,11 +585,11 @@ msgstr "Çok Zor"
 
 #: gui/common/settings.js:151
 #, javascript-format
-msgctxt "wonder victory"
+msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] "%(min)s dakika"
-msgstr[1] "%(min)s dakika"
+msgstr[0] ""
+msgstr[1] ""
 
 #: gui/common/settings.js:173
 msgctxt "ceasefire"

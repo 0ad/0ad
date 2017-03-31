@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-17 09:01+0100\n"
-"PO-Revision-Date: 2017-03-17 16:11+0000\n"
+"POT-Creation-Date: 2017-03-27 09:01+0200\n"
+"PO-Revision-Date: 2017-03-27 11:44+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -371,8 +371,8 @@ msgid "Victory Condition:"
 msgstr "Cumha na buaidhe:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):342
-msgid "Wonder Victory:"
-msgstr "Buaidh mìorbhaile:"
+msgid "Victory Duration:"
+msgstr "Fad na buaidhe:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):352
 msgid "Population Cap:"
@@ -492,9 +492,8 @@ msgid "Select victory condition."
 msgstr "Tagh cumha na buaidhe."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):346
-msgid ""
-"Number of minutes that the player has to keep the wonder in order to win."
-msgstr "An àireamh de mhionaidean a dh’fheumas an cluicheadair a’ mhìorbhail a chumail mus buannaich e."
+msgid "Number of minutes until the player has won."
+msgstr "An àireamh de mhionaidean mus buannaich an cluicheadair."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):356
 msgid "Select population cap."

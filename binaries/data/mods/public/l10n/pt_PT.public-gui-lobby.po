@@ -5,6 +5,7 @@
 # Translators:
 # alfalb.as, 2015
 # Danny Reese <danny@angolateam.org>, 2016
+# Mário Branco <branco.ana8@gmail.com>, 2017
 # mogafi, 2014
 # Pedro matias <pmsm1100@gmail.com>, 2015
 # Sérgio Marques <smarquespt@gmail.com>, 2015
@@ -13,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-03 09:01+0100\n"
-"PO-Revision-Date: 2017-03-03 08:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-03-28 03:29+0000\n"
+"Last-Translator: Mário Branco <branco.ana8@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,35 +65,35 @@ msgstr "%(oldnick)s é agora conhecido como %(newnick)s."
 
 #: gui/lobby/lobby.js:217
 msgid "You have been banned from the lobby!"
-msgstr ""
+msgstr "Você foi banido da sala de espera!"
 
 #: gui/lobby/lobby.js:218
 msgid "You have been kicked from the lobby!"
-msgstr ""
+msgstr "Você foi expulso da sala de espera !"
 
 #: gui/lobby/lobby.js:220
 #, javascript-format
 msgid "%(nick)s has been banned from the lobby."
-msgstr ""
+msgstr "%(nick)s foi banido da sala de espera."
 
 #: gui/lobby/lobby.js:221
 #, javascript-format
 msgid "%(nick)s has been kicked from the lobby."
-msgstr ""
+msgstr "%(nick)s foi expulso da sala de espera."
 
 #: gui/lobby/lobby.js:224
 #, javascript-format
 msgctxt "lobby kick"
 msgid "Reason: %(reason)s"
-msgstr ""
+msgstr "Motivo: %(reason)s"
 
 #: gui/lobby/lobby.js:249
 msgid "BANNED"
-msgstr ""
+msgstr "BANIDO"
 
 #: gui/lobby/lobby.js:249
 msgid "KICKED"
-msgstr ""
+msgstr "EXPULSO"
 
 #: gui/lobby/lobby.js:291
 msgctxt "map size"
@@ -131,7 +132,7 @@ msgstr ""
 #: gui/lobby/lobby.js:687
 #, javascript-format
 msgid "Game started at %(time)s"
-msgstr ""
+msgstr "Jogo iniciou à %(time)s"
 
 #: gui/lobby/lobby.js:688 gui/lobby/lobby.js:1044
 msgid "HH:mm"
@@ -140,11 +141,11 @@ msgstr "HH:mm "
 #: gui/lobby/lobby.js:692
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
-msgstr ""
+msgstr "Jogadores: %(current)s/%(total)s"
 
 #: gui/lobby/lobby.js:734
 msgid "The game has already started. Do you want to join as observer?"
-msgstr ""
+msgstr "O jogo já começou. Você quer participar como observador?"
 
 #: gui/lobby/lobby.js:735
 msgid "Confirmation"
@@ -202,11 +203,11 @@ msgstr "== %(message)s "
 #, javascript-format
 msgctxt "lobby private message"
 msgid "(%(private)s) <%(sender)s>"
-msgstr ""
+msgstr "(%(private)s) <%(sender)s>"
 
 #: gui/lobby/lobby.js:1008
 msgid "Private"
-msgstr ""
+msgstr "Privado"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
