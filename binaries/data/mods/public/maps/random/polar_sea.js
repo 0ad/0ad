@@ -12,7 +12,7 @@ var tShore = "polar_ice_snow";
 var tWater = "polar_ice_c";
 
 // gaia entities
-var oWolf = "gaia/fauna_wolf_snow";
+var oWolf = "trigger/fauna_wolf_snow_attack";
 var oMuskox = "gaia/fauna_muskox";
 var oWalrus = "gaia/fauna_walrus";
 var oWhaleFin = "gaia/fauna_whale_fin";

@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_melee_spearman">
   <Builder>
-    <Rate>1.0</Rate>
     <Entities datatype="tokens">
       structures/maur_elephant_stables
       structures/maur_pillar_ashoka
       structures/{civ}_wonder
     </Entities>
   </Builder>
-  <Cost>
-    <BuildTime>8</BuildTime>
-  </Cost>
   <Identity>
     <Civ>maur</Civ>
     <SelectionGroupName>units/maur_infantry_spearman_b</SelectionGroupName>
