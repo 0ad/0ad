@@ -11,7 +11,7 @@
 # Neagoe Ciprian <banditulrto@gmail.com>, 2016
 # Nicolae Crefelean, 2016
 # nokzor25 <darkex_gamer@hotmail.com>, 2014
-# nyquist <nyquist@vaspun.eu>, 2013
+# nyquist <inactive+nyquist@transifex.com>, 2013
 # oltean bogdan <elementalprojectcrew@gmail.com>, 2015
 # Ramm <info@rammbase.com>, 2014
 # Raul Malea <raul.malea@gmail.com>, 2014
@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-17 09:01+0100\n"
-"PO-Revision-Date: 2017-03-17 09:59+0000\n"
+"POT-Creation-Date: 2017-03-27 09:01+0200\n"
+"PO-Revision-Date: 2017-03-27 08:37+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -380,8 +380,8 @@ msgid "Victory Condition:"
 msgstr "Conditia de Victorie"
 
 #: gui/gamesetup/gamesetup.xml:(caption):342
-msgid "Wonder Victory:"
-msgstr "Victorie prin minune:"
+msgid "Victory Duration:"
+msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(caption):352
 msgid "Population Cap:"
@@ -501,9 +501,8 @@ msgid "Select victory condition."
 msgstr "Selectați condiția victoriei."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):346
-msgid ""
-"Number of minutes that the player has to keep the wonder in order to win."
-msgstr "Numărul de minute in care un jucător trebuie să dețină minunea pentru a câștiga."
+msgid "Number of minutes until the player has won."
+msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):356
 msgid "Select population cap."

@@ -5,6 +5,7 @@
 # Translators:
 # Wuzzy <almikes@aol.com>, 2016-2017
 # Enno Holz <eh@idh20.de>, 2017
+# Fabian Gref <fabian.gref@gmail.com>, 2017
 # Maximilian Wagenbach <foaly.f@web.de>, 2016
 # Maximilian von Lindern <hobbituhukai@live.de>, 2017
 # Maximilian Wagenbach <foaly.f@web.de>, 2016
@@ -17,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-01-09 09:03+0100\n"
-"PO-Revision-Date: 2017-02-27 18:26+0000\n"
-"Last-Translator: Enno Holz <eh@idh20.de>\n"
+"POT-Creation-Date: 2017-03-27 09:02+0200\n"
+"PO-Revision-Date: 2017-03-28 18:43+0000\n"
+"Last-Translator: Fabian Gref <fabian.gref@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -252,6 +253,10 @@ msgstr "Lehreraura"
 msgid ""
 "Empower a building with -50% research time while he is garrisoned in it."
 msgstr "Reduziert die Forschungszeit eines Gebäudes um -50%, wenn er einquartiert ist."
+
+#: simulation/data/auras/maur_pillar.jsonauraName
+msgid "Edict of Ashoka"
+msgstr "Ashokas Erlass"
 
 #: simulation/data/auras/maur_pillar.jsonauraDescription
 msgid "All traders in range +20% speed."

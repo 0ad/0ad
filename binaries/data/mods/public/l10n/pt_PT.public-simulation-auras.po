@@ -5,14 +5,15 @@
 # Translators:
 # Djassi Fonseca <djassi.fonseca@gmail.com>, 2016
 # Drew Melim <nokostya.translation@gmail.com>, 2016
+# Mário Branco <branco.ana8@gmail.com>, 2017
 # Nuno Menezes <nuno.menezes12@gmail.com>, 2017
 # Pedro M <pedrofernando94@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-01-09 09:03+0100\n"
-"PO-Revision-Date: 2017-01-09 09:54+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-03-27 09:02+0200\n"
+"PO-Revision-Date: 2017-03-28 03:29+0000\n"
+"Last-Translator: Mário Branco <branco.ana8@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -173,7 +174,7 @@ msgstr "Atitude defensiva"
 msgid ""
 "Gives all iberian soldiers in aura +20% attack boost. Effect Range: 50 "
 "meters"
-msgstr ""
+msgstr "Dá a todos os soldados ibéricos em aura +20% de ataque. Alcance do efeito: 50 metros"
 
 #: simulation/data/auras/library.jsonauraName
 msgid "Library Aura"
@@ -182,7 +183,7 @@ msgstr "Aura de Biblioteca"
 #: simulation/data/auras/library.jsonauraDescription
 msgid ""
 "Reduce the cost and research time of technologies by 10% per library owned."
-msgstr ""
+msgstr "Reduza o custo e o tempo de pesquisa das tecnologias em 10% por biblioteca de possuída."
 
 #: simulation/data/auras/loyalty_regen.jsonauraName
 msgid "Loyalty Aura"
@@ -202,11 +203,11 @@ msgstr "+10% de efeito territorial para todos os edifícios enquanto ele viver."
 
 #: simulation/data/auras/mace_hero_craterus.jsonauraName
 msgid "Taxiarchès"
-msgstr ""
+msgstr "Taxiarchès"
 
 #: simulation/data/auras/mace_hero_craterus.jsonauraDescription
 msgid "Pike Infantry +20% attack and +20% capture within range of him."
-msgstr ""
+msgstr "Infantaria Pike +20% de ataque e +20% de captura dentro do alcance dele."
 
 #: simulation/data/auras/mace_hero_demetrius.jsonauraName
 msgid "Besieger Aura"
@@ -222,20 +223,20 @@ msgstr "\n+20% de ataque e +2 pontos de captura para as unidades campeãs."
 
 #: simulation/data/auras/mace_hero_pyrrhus.jsonauraName
 msgid "Pyrrhic Victory"
-msgstr ""
+msgstr "Vitória de Pyrrhic"
 
 #: simulation/data/auras/mace_hero_pyrrhus.jsonauraDescription
 msgid ""
 "All soldiers +20% attack as long as Pyrrhos lives, but also -15% health."
-msgstr ""
+msgstr "Todos os soldados +20% de ataque enquanto o Pyrrhos estiver vivo, mas também -15% de saúde."
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraName
 msgid "Buddhism Aura"
-msgstr ""
+msgstr "Aura do Budismo"
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraDescription
 msgid "Temples and temple technologies -50% cost, in resources and time."
-msgstr ""
+msgstr "Templos e tecnologias de templo -50% custo, em recursos e tempo."
 
 #: simulation/data/auras/maur_hero_chanakya.jsonauraName
 msgid "Teacher Aura"
@@ -244,11 +245,15 @@ msgstr "Aura de Professor "
 #: simulation/data/auras/maur_hero_chanakya.jsonauraDescription
 msgid ""
 "Empower a building with -50% research time while he is garrisoned in it."
-msgstr ""
+msgstr "Delega um edifício com tempo de pesquisa -50% enquanto ele está guarnecido nele."
+
+#: simulation/data/auras/maur_pillar.jsonauraName
+msgid "Edict of Ashoka"
+msgstr "Decretode Ashoka"
 
 #: simulation/data/auras/maur_pillar.jsonauraDescription
 msgid "All traders in range +20% speed."
-msgstr ""
+msgstr "Todos os comerciantes no alcance têm +20% de velocidade."
 
 #: simulation/data/auras/pers_hero_cyrus.jsonauraName
 msgid "Lead from the Front Aura"
@@ -256,7 +261,7 @@ msgstr "Aura de liderança da Frente"
 
 #: simulation/data/auras/pers_hero_cyrus.jsonauraDescription
 msgid "+20% attack and +1 capture for nearby cavalry units."
-msgstr ""
+msgstr "+20% de ataque e +1 de captura para unidades de cavalaria nas proximidades."
 
 #: simulation/data/auras/pers_hero_darius.jsonauraName
 msgid "Leadership Aura"
@@ -264,7 +269,7 @@ msgstr "Aura de liderança"
 
 #: simulation/data/auras/pers_hero_darius.jsonauraDescription
 msgid "+15% movement speed for all soldiers and siege engines."
-msgstr ""
+msgstr "+15% de velocidade de movimento para todos os soldados e motores de cerco."
 
 #: simulation/data/auras/pers_hero_xerxes.jsonauraName
 msgid "Administrator Aura"
@@ -272,7 +277,7 @@ msgstr "Aura de Administrador"
 
 #: simulation/data/auras/pers_hero_xerxes.jsonauraDescription
 msgid "+15% gather rate and build rate of nearby workers."
-msgstr ""
+msgstr "+15% taxa de recolhimento e taxa de construção de trabalhadores próximos."
 
 #: simulation/data/auras/ptol_hero_cleopatra_1.jsonauraName
 msgid "Patriot Aura"
@@ -281,20 +286,20 @@ msgstr "Aura Patriótica"
 #: simulation/data/auras/ptol_hero_cleopatra_1.jsonauraDescription
 msgid ""
 "-20% attack repeat time for Egyptian soldiers and siege engines in her aura."
-msgstr ""
+msgstr "-20% ataque repetição tempo para soldados Egípcios e motores de cerco em sua aura."
 
 #: simulation/data/auras/ptol_hero_cleopatra_2.jsonauraName
 #: simulation/data/auras/ptol_hero_cleopatra_3.jsonauraName
 msgid "Consort"
-msgstr ""
+msgstr "Consorte"
 
 #: simulation/data/auras/ptol_hero_cleopatra_2.jsonauraDescription
 msgid "Allied heroes +10% health when near her."
-msgstr ""
+msgstr "Heróis aliados +10% de saúde quando perto dela."
 
 #: simulation/data/auras/ptol_hero_cleopatra_3.jsonauraDescription
 msgid "Enemy heroes -10% health when near her."
-msgstr ""
+msgstr "Heróis inimigos -10% saúde quando perto dela."
 
 #: simulation/data/auras/ptol_hero_ptolemy_IV.jsonauraName
 msgid "Raphia Aura"
@@ -302,7 +307,7 @@ msgstr "Aura de Raphia"
 
 #: simulation/data/auras/ptol_hero_ptolemy_IV.jsonauraDescription
 msgid "Egyptian pikemen have 40% greater health during his lifetime."
-msgstr ""
+msgstr "Os piqueiros egípcios têm mais 40% de saúde durante sua vida."
 
 #: simulation/data/auras/ptol_hero_ptolemy_I_1.jsonauraName
 msgid "Construction Aura"
@@ -310,7 +315,7 @@ msgstr "Aura de Construção"
 
 #: simulation/data/auras/ptol_hero_ptolemy_I_1.jsonauraDescription
 msgid "Buildings construct 10% faster within his aura."
-msgstr ""
+msgstr "Edifícios construídos 10% mais rápido dentro de sua aura."
 
 #: simulation/data/auras/ptol_hero_ptolemy_I_2.jsonauraName
 msgid "Mercenary Patron Aura"
@@ -328,7 +333,7 @@ msgstr "Aura da Espada de Roma"
 msgid ""
 "+20% attack and +2 capture for Roman soldiers and siege engines within his "
 "range."
-msgstr ""
+msgstr "+20% de ataque e +2 de captura para soldados Romanos e motores de cerco dentro de seu alcance."
 
 #: simulation/data/auras/rome_hero_maximus.jsonauraName
 msgid "Shield of Rome Aura"
@@ -352,7 +357,7 @@ msgstr "Aura de Ilarchès"
 
 #: simulation/data/auras/sele_hero_antiochus_great.jsonauraDescription
 msgid "All cavalry gains +2 levels of all armor types."
-msgstr ""
+msgstr "Toda a cavalaria ganha +2 níveis de todos os tipos de armadura."
 
 #: simulation/data/auras/sele_hero_antiochus_righteous.jsonauraName
 msgid "Conquest Aura"
@@ -362,7 +367,7 @@ msgstr "Aura de Conquista"
 msgid ""
 "All nearby enemy buildings, siege engines, and ships have their health "
 "reduced by 20%."
-msgstr ""
+msgstr "Todos os edifícios inimigos próximos, motores de cerco e navios têm sua saúde reduzida em 20%."
 
 #: simulation/data/auras/sele_hero_seleucus_victor.jsonauraName
 msgid "Zooiarchos Aura"
@@ -378,7 +383,7 @@ msgstr "Reformas de Hilota"
 
 #: simulation/data/auras/spart_hero_brasidas.jsonauraDescription
 msgid "Javelin infantry in his aura gains +20% attack and +1 all armor types."
-msgstr ""
+msgstr "Infantaria Javelin em sua aura ganha +20% de ataque e +1 em todos os tipos de armadura."
 
 #: simulation/data/auras/spart_hero_leonidas.jsonauraName
 msgid "Last Stand Aura"
@@ -467,7 +472,7 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "The Royal Road"
-msgstr ""
+msgstr "Estrada Real"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
 msgid "Higher income (+15%) from land trade routes for ally's traders."
@@ -479,7 +484,7 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraDescription
 msgid "All allies automatically gain a slow trickle of food income."
-msgstr ""
+msgstr "Todos os aliados ganham automaticamente um rendimento lento da renda dos alimentos."
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"

@@ -5,6 +5,7 @@
 # Translators:
 # Dominik Novosel <vortextardis@gmail.com>, 2017
 # Ivan Bistrović <ivan_1@gmx.com>, 2016
+# Jan Švigir <svigirjan@gmail.com>, 2017
 # Chris_Kay_083, 2015
 # Gifmaster <necrotico31@gmail.com>, 2015
 # Tomislav Kaučić, 2014
@@ -13,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-03 09:01+0100\n"
-"PO-Revision-Date: 2017-03-26 09:53+0000\n"
-"Last-Translator: Dominik Novosel <vortextardis@gmail.com>\n"
+"PO-Revision-Date: 2017-03-29 17:43+0000\n"
+"Last-Translator: Jan Švigir <svigirjan@gmail.com>\n"
 "Language-Team: Croatian (http://www.transifex.com/wildfire-games/0ad/language/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,27 +65,27 @@ msgstr "%(oldnick)s se sada zove %(newnick)s. "
 
 #: gui/lobby/lobby.js:217
 msgid "You have been banned from the lobby!"
-msgstr ""
+msgstr "Ti si banan iz lobija!"
 
 #: gui/lobby/lobby.js:218
 msgid "You have been kicked from the lobby!"
-msgstr ""
+msgstr "Ti si izbačen iz lobija!"
 
 #: gui/lobby/lobby.js:220
 #, javascript-format
 msgid "%(nick)s has been banned from the lobby."
-msgstr ""
+msgstr "%(nick)s je zabranjen iz lobija"
 
 #: gui/lobby/lobby.js:221
 #, javascript-format
 msgid "%(nick)s has been kicked from the lobby."
-msgstr ""
+msgstr "%(nick)s je izbačen iz lobija"
 
 #: gui/lobby/lobby.js:224
 #, javascript-format
 msgctxt "lobby kick"
 msgid "Reason: %(reason)s"
-msgstr ""
+msgstr "Razlog: %(reason)s"
 
 #: gui/lobby/lobby.js:249
 msgid "BANNED"
@@ -131,7 +132,7 @@ msgstr "Igrač \"%(nick)s\" nije pronađen."
 #: gui/lobby/lobby.js:687
 #, javascript-format
 msgid "Game started at %(time)s"
-msgstr ""
+msgstr "Igra je počela  %(time)s"
 
 #: gui/lobby/lobby.js:688 gui/lobby/lobby.js:1044
 msgid "HH:mm"
@@ -140,7 +141,7 @@ msgstr "HH:mm"
 #: gui/lobby/lobby.js:692
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
-msgstr ""
+msgstr "Igrači: %(current)s/%(total)s"
 
 #: gui/lobby/lobby.js:734
 msgid "The game has already started. Do you want to join as observer?"
@@ -202,7 +203,7 @@ msgstr "== %(message)s"
 #, javascript-format
 msgctxt "lobby private message"
 msgid "(%(private)s) <%(sender)s>"
-msgstr ""
+msgstr "%(private)s %(sender)s"
 
 #: gui/lobby/lobby.js:1008
 msgid "Private"
@@ -284,7 +285,7 @@ msgstr "Molimo Vas da pristanete na Uvjete Usluge i Uvjete Korištenja."
 msgid ""
 "Unknown error. This usually occurs because the same IP address is not "
 "allowed to register more than one account within one hour."
-msgstr ""
+msgstr "Nepoznata pogreška. To se obično događa jer je ista IP adresa ne smije registrirati više od jednog računa u roku od jednog sata."
 
 #: gui/lobby/prelobby.js:172
 msgid "Registered"

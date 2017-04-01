@@ -23,7 +23,7 @@
 # Marco <inactive+Vamos@transifex.com>, 2013
 # Martin Falanga <iblaim97@hotmail.it>, 2017
 # Me Lazzi, 2014
-# Me Lazzi, 2014-2016
+# Me Lazzi, 2014-2017
 # Michele Lasala <michi.android1012@gmail.com>, 2016
 # Michele Marongiu <michelemarongiu@gmail.com>, 2016
 # Raptor86 <raptor86@inwind.it>, 2014
@@ -37,9 +37,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-17 09:01+0100\n"
-"PO-Revision-Date: 2017-03-17 09:59+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-03-27 09:01+0200\n"
+"PO-Revision-Date: 2017-03-30 21:55+0000\n"
+"Last-Translator: Me Lazzi\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -67,7 +67,7 @@ msgstr "Sono pronto"
 
 #: gui/gamesetup/gamesetup.js:38
 msgid "State that you are ready to play."
-msgstr ""
+msgstr "Indica che sei pronto per giocare."
 
 #: gui/gamesetup/gamesetup.js:42
 #, javascript-format
@@ -76,11 +76,11 @@ msgstr "* %(username)s è pronto!"
 
 #: gui/gamesetup/gamesetup.js:43
 msgid "Stay ready"
-msgstr ""
+msgstr "Stai pronto"
 
 #: gui/gamesetup/gamesetup.js:44
 msgid "Stay ready even when the game settings change."
-msgstr ""
+msgstr "Rimani pronto anche quando cambiano le impostazioni di gioco."
 
 #: gui/gamesetup/gamesetup.js:49
 msgid "I'm not ready!"
@@ -233,7 +233,7 @@ msgstr "partita di %(name)s"
 
 #: gui/gamesetup/gamesetup_mp.js:106
 msgid "Please enter a valid server name."
-msgstr ""
+msgstr "Per favore inserisci un nome server valido."
 
 #: gui/gamesetup/gamesetup_mp.js:113
 #, javascript-format
@@ -398,8 +398,8 @@ msgid "Victory Condition:"
 msgstr "Condizione di Vittoria:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):342
-msgid "Wonder Victory:"
-msgstr "Vittoria della Meraviglia:"
+msgid "Victory Duration:"
+msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(caption):352
 msgid "Population Cap:"
@@ -431,7 +431,7 @@ msgstr "Disabilita Tesori:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):412
 msgid "Disable Spies:"
-msgstr ""
+msgstr "Disabilita spie:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):422
 msgid "Teams Locked:"
@@ -519,9 +519,8 @@ msgid "Select victory condition."
 msgstr "Seleziona la condizione di vittoria."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):346
-msgid ""
-"Number of minutes that the player has to keep the wonder in order to win."
-msgstr "Numero dei minuti in cui il giocatore deve mantenere la meraviglia per vincere."
+msgid "Number of minutes until the player has won."
+msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):356
 msgid "Select population cap."
@@ -553,7 +552,7 @@ msgstr "Disattiva tutti i tesori sulla mappa."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):416
 msgid "Disable spies during the game."
-msgstr ""
+msgstr "Disabilita le spie nel gioco."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):426
 msgid "Toggle locked teams."

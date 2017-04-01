@@ -25,9 +25,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-17 09:01+0100\n"
-"PO-Revision-Date: 2017-03-18 11:13+0000\n"
-"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
+"POT-Creation-Date: 2017-03-27 09:01+0200\n"
+"PO-Revision-Date: 2017-03-27 08:37+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -386,8 +386,8 @@ msgid "Victory Condition:"
 msgstr "Győzelmi feltétel:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):342
-msgid "Wonder Victory:"
-msgstr "Győzelem csodával:"
+msgid "Victory Duration:"
+msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(caption):352
 msgid "Population Cap:"
@@ -507,9 +507,8 @@ msgid "Select victory condition."
 msgstr "Győzelmi feltétel kiválasztása."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):346
-msgid ""
-"Number of minutes that the player has to keep the wonder in order to win."
-msgstr "A percek száma, ameddig egy játékos csodájának fenn kell maradnia a győzelemhez."
+msgid "Number of minutes until the player has won."
+msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):356
 msgid "Select population cap."

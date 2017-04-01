@@ -7,13 +7,14 @@
 # Danny Reese <danny@angolateam.org>, 2016
 # Luis Neves <luisjneves@gmail.com>, 2015
 # Luis Neves <luisjneves@gmail.com>, 2015
+# Mário Branco <branco.ana8@gmail.com>, 2017
 # mogafi, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-24 09:07+0100\n"
-"PO-Revision-Date: 2017-03-24 10:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-03-28 02:44+0000\n"
+"Last-Translator: Mário Branco <branco.ana8@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -199,7 +200,7 @@ msgstr "Elefante de Guerra"
 #: simulation/templates/units/maur_elephant_archer_b.xml:12
 #: simulation/templates/units/maur_support_elephant.xml:27
 msgid "Elephant"
-msgstr ""
+msgstr "Elefante"
 
 #: simulation/templates/template_unit_champion_infantry.xml:21
 #: simulation/templates/template_unit_hero_infantry.xml:23
@@ -382,7 +383,7 @@ msgstr "Navio de Guerra"
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:51
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:49
 msgid "Garrison units for transport and to increase firepower."
-msgstr ""
+msgstr "Soldados no interior para transporte e aumentar o poder de fogo."
 
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:32
 msgid "Fire Ship"
@@ -390,7 +391,7 @@ msgstr "Brulote"
 
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:33
 msgid "Fireship"
-msgstr ""
+msgstr "Navio de guerra"
 
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:34
 msgid ""
@@ -427,7 +428,7 @@ msgstr "Comerciante"
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:29
 #: simulation/templates/template_unit_support_trader.xml:15
 msgid "Bribable"
-msgstr ""
+msgstr "Subornado"
 
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:57
 msgid "Heavy Warship"
@@ -448,7 +449,7 @@ msgstr "Oxibeles"
 
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:45
 msgid "BoltShooter"
-msgstr ""
+msgstr "Atirador de parafusos"
 
 #: simulation/templates/template_unit_mechanical_siege_onager.xml:43
 msgid "Siege Catapult"
@@ -456,7 +457,7 @@ msgstr "Catapulta"
 
 #: simulation/templates/template_unit_mechanical_siege_onager.xml:44
 msgid "Catapult"
-msgstr ""
+msgstr "Catapulta"
 
 #: simulation/templates/template_unit_mechanical_siege_ram.xml:33
 msgid "Battering Ram"
@@ -464,7 +465,7 @@ msgstr "Aríete"
 
 #: simulation/templates/template_unit_mechanical_siege_ram.xml:34
 msgid "Ram"
-msgstr ""
+msgstr "Ram"
 
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:47
 msgid "Siege Tower"
@@ -472,7 +473,7 @@ msgstr "Torre de Assalto"
 
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:48
 msgid "SiegeTower"
-msgstr ""
+msgstr "Torre de cerco"
 
 #: simulation/templates/template_unit_support.xml:14
 #: simulation/templates/template_unit_support.xml:12
@@ -932,16 +933,16 @@ msgstr "Delamokludda"
 
 #: simulation/templates/units/brit_hero_boudicca.xml:11
 msgid "Boudicca (Chariot)"
-msgstr ""
+msgstr "Carruagem de guerra"
 
 #: simulation/templates/units/brit_hero_boudicca.xml:12
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:7
 msgid "Boadicea"
-msgstr ""
+msgstr "Boadicea"
 
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:6
 msgid "Boudicca (Sword)"
-msgstr ""
+msgstr "Boudicca (Espada)"
 
 #: simulation/templates/units/brit_hero_caratacos.xml:6
 msgid "Caratacos"
@@ -1570,7 +1571,7 @@ msgstr "Aśoka Devānāmpriya"
 msgid ""
 "Hero Special: \"Edicts of Ashoka\" - Edict Pillars of Ashoka can be built "
 "during Ashoka's lifetime."
-msgstr ""
+msgstr "Heroi Especial: \"Edicts of Ashoka\" - Os Edict pilares de Ashoka podem ser construídos durante a vida de Ashoka."
 
 #: simulation/templates/units/maur_hero_chanakya.xml:31
 msgid "Acharya Chanakya"
@@ -1947,11 +1948,11 @@ msgstr "Polémou Eléphantos"
 
 #: simulation/templates/units/ptol_champion_infantry_pikeman.xml:6
 msgid "Royal Guard Infantry"
-msgstr ""
+msgstr "Cavalaria da Guarda Real"
 
 #: simulation/templates/units/ptol_champion_infantry_pikeman.xml:7
 msgid "Phalangitès Agema"
-msgstr ""
+msgstr "Phalangitès Agema"
 
 #: simulation/templates/units/ptol_champion_juggernaut.xml:20
 msgid "Juggernaut"
@@ -2370,7 +2371,7 @@ msgstr "Pródromos Perioïkós"
 
 #: simulation/templates/units/spart_cavalry_spearman_b.xml:7
 msgid "Greek Allied Cavalry"
-msgstr ""
+msgstr "Cavaleiro grego aliado"
 
 #: simulation/templates/units/spart_cavalry_spearman_b.xml:8
 msgid "Hippeús Symmakhikós"
@@ -2463,7 +2464,7 @@ msgstr "Hoplita do Batalhão Sagrado de Tebas"
 
 #: simulation/templates/units/thebes_sacred_band_hoplitai.xml:7
 msgid "Hieroû Thebaíou Lókhou Hoplítai"
-msgstr ""
+msgstr "Hieroû Thebaíou Lókhou Hoplítai"
 
 #: simulation/templates/units/thebes_sacred_band_hoplitai.xml:9
 msgid "Champion Spearman."

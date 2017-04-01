@@ -37,9 +37,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-02-26 21:11+0100\n"
-"PO-Revision-Date: 2017-03-01 05:34+0000\n"
-"Last-Translator: Олег Шевченко <olegrock@gmail.com>\n"
+"POT-Creation-Date: 2017-03-27 09:02+0200\n"
+"PO-Revision-Date: 2017-03-27 09:25+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -100,7 +100,7 @@ msgstr "Нанимайте специальные юниты. "
 #: simulation/templates/template_structure_military_blacksmith.xml:32
 #: simulation/templates/template_structure_military_embassy.xml:26
 #: simulation/templates/structures/brit_blacksmith.xml:11
-#: simulation/templates/structures/brit_kennel.xml:36
+#: simulation/templates/structures/brit_kennel.xml:39
 #: simulation/templates/structures/cart_super_dock.xml:37
 #: simulation/templates/structures/gaul_blacksmith.xml:11
 #: simulation/templates/structures/gaul_tavern.xml:29
@@ -109,11 +109,11 @@ msgstr "Нанимайте специальные юниты. "
 msgid "Town"
 msgstr "Город"
 
-#: simulation/templates/template_structure_civic_house.xml:34
+#: simulation/templates/template_structure_civic_house.xml:35
 msgid "Increase the population limit."
 msgstr "Увеличивает предел населения."
 
-#: simulation/templates/template_structure_civic_house.xml:36
+#: simulation/templates/template_structure_civic_house.xml:37
 #: simulation/templates/template_structure_defense_outpost.xml:65
 #: simulation/templates/template_structure_defense_sentry_tower.xml:42
 #: simulation/templates/template_structure_economic_farmstead.xml:27
@@ -124,8 +124,8 @@ msgstr "Увеличивает предел населения."
 msgid "Village"
 msgstr "Деревня"
 
-#: simulation/templates/template_structure_civic_house.xml:36
-#: simulation/templates/template_structure_civic_house.xml:33
+#: simulation/templates/template_structure_civic_house.xml:37
+#: simulation/templates/template_structure_civic_house.xml:34
 msgid "House"
 msgstr "Дом"
 
@@ -367,7 +367,7 @@ msgid "Harvest vegetables for food. Max gatherers: 5."
 msgstr "Позволяет выращивать овощи для получения пищи. Максимальное количество сборщиков: 5."
 
 #: simulation/templates/template_structure_special.xml:42
-#: simulation/templates/structures/brit_kennel.xml:33
+#: simulation/templates/structures/brit_kennel.xml:36
 msgid "Special Building"
 msgstr "Особое строение"
 
@@ -641,11 +641,11 @@ msgstr "Позволяет обучать Бриттских героев и ч�
 msgid "Annedd"
 msgstr "Аннедд"
 
-#: simulation/templates/structures/brit_kennel.xml:34
+#: simulation/templates/structures/brit_kennel.xml:37
 msgid "Kennel"
 msgstr "Конура"
 
-#: simulation/templates/structures/brit_kennel.xml:37
+#: simulation/templates/structures/brit_kennel.xml:40
 msgid "Train Celtic war dogs."
 msgstr "Позволяет обучать Кельтских боевых псов."
 
@@ -920,15 +920,19 @@ msgstr "Эче"
 msgid "Arruga"
 msgstr "Арруга"
 
-#: simulation/templates/structures/iber_monument.xml:28
+#: simulation/templates/structures/iber_monument.xml:7
+msgid "Monument"
+msgstr ""
+
+#: simulation/templates/structures/iber_monument.xml:32
 msgid "Revered Monument"
 msgstr "Почитаемый монумент"
 
-#: simulation/templates/structures/iber_monument.xml:29
+#: simulation/templates/structures/iber_monument.xml:33
 msgid "Gur Oroigarri"
 msgstr "Гур Ороигарри"
 
-#: simulation/templates/structures/iber_monument.xml:32
+#: simulation/templates/structures/iber_monument.xml:36
 msgid ""
 "All units within vision of this monument will fight harder. Buildings in the"
 " territory of the monument do not decay."
@@ -966,11 +970,11 @@ msgstr "Канчо-Роано"
 msgid "Sidērourgeîon"
 msgstr "Сидерургеон"
 
-#: simulation/templates/structures/mace_fortress.xml:15
+#: simulation/templates/structures/mace_fortress.xml:9
 msgid "Teíchisma"
 msgstr "Тейхисма"
 
-#: simulation/templates/structures/mace_fortress.xml:16
+#: simulation/templates/structures/mace_fortress.xml:10
 msgid ""
 "Train Champions and Heroes. Garrison soldiers inside for stout defense."
 msgstr "Позволяет обучать чемпионов и героев. Позволяет разместить гарнизон для усиления защиты. "
@@ -1061,15 +1065,19 @@ msgstr "Випана"
 msgid "Uparaksana"
 msgstr "Упараксана"
 
-#: simulation/templates/structures/maur_pillar_ashoka.xml:27
+#: simulation/templates/structures/maur_pillar_ashoka.xml:7
+msgid "Pillar"
+msgstr ""
+
+#: simulation/templates/structures/maur_pillar_ashoka.xml:32
 msgid "Edict Pillar of Ashoka"
 msgstr "Колонна эдиктов Ашоки"
 
-#: simulation/templates/structures/maur_pillar_ashoka.xml:28
+#: simulation/templates/structures/maur_pillar_ashoka.xml:33
 msgid "Śāsana Stambha Aśokā"
 msgstr "Сасана Стамбха Ашока"
 
-#: simulation/templates/structures/maur_pillar_ashoka.xml:31
+#: simulation/templates/structures/maur_pillar_ashoka.xml:36
 msgid ""
 "The famous pillar of Ashoka. Increases the walk speed of traders. Buildings "
 "in the territory of the monument do not decay."

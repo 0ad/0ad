@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-17 09:01+0100\n"
-"PO-Revision-Date: 2017-03-27 03:14+0000\n"
+"POT-Creation-Date: 2017-03-27 09:01+0200\n"
+"PO-Revision-Date: 2017-03-27 19:46+0000\n"
 "Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -49,7 +49,7 @@ msgstr "أنا جاهز"
 
 #: gui/gamesetup/gamesetup.js:38
 msgid "State that you are ready to play."
-msgstr "صرح باستعدادك للعب."
+msgstr "صرّح باستعدادك للّعب."
 
 #: gui/gamesetup/gamesetup.js:42
 #, javascript-format
@@ -66,11 +66,11 @@ msgstr "أظهر استعدادك لبدء اللعب حتى مع تغير إع�
 
 #: gui/gamesetup/gamesetup.js:49
 msgid "I'm not ready!"
-msgstr "لست جاهزًا!"
+msgstr "لستُ جاهزًا!"
 
 #: gui/gamesetup/gamesetup.js:50
 msgid "State that you are not ready to play."
-msgstr "حالة كونك غير جاهز للّعب."
+msgstr "صرّح بعدم استعدادك للّعب."
 
 #: gui/gamesetup/gamesetup.js:73
 msgid "Game settings have been changed"
@@ -192,7 +192,7 @@ msgstr "== %(message)s"
 
 #: gui/gamesetup/gamesetup.js:1809
 msgid "Unknown Player"
-msgstr "لاعب غير معروف"
+msgstr "لاعب مجهول"
 
 #: gui/gamesetup/gamesetup.js:1848
 #, javascript-format
@@ -380,8 +380,8 @@ msgid "Victory Condition:"
 msgstr "شرط النّصر:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):342
-msgid "Wonder Victory:"
-msgstr "انتصار عجيب "
+msgid "Victory Duration:"
+msgstr "مدّة النّصر:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):352
 msgid "Population Cap:"
@@ -413,7 +413,7 @@ msgstr "تعطيل الكنوز  "
 
 #: gui/gamesetup/gamesetup.xml:(caption):412
 msgid "Disable Spies:"
-msgstr "عدم تمكين الجواسيس"
+msgstr "عطّل الجواسيس:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):422
 msgid "Teams Locked:"
@@ -442,7 +442,7 @@ msgstr "صفّر كلّ الحضارات المحدّدة إلى الافترا�
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):97
 msgid "Reset all teams to the default."
-msgstr "اعد تعين كل الفرق الى الخيار الافتراضى "
+msgstr "صفّر كلّ الفِرق إلى الافتراضيّات."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):108
 msgid "Pick a color."
@@ -501,9 +501,8 @@ msgid "Select victory condition."
 msgstr "اختر شرط النّصر."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):346
-msgid ""
-"Number of minutes that the player has to keep the wonder in order to win."
-msgstr "عدد الدقائق التي على اللاعب إبقاء الأعجوبة ليفوز."
+msgid "Number of minutes until the player has won."
+msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):356
 msgid "Select population cap."
