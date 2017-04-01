@@ -54,7 +54,7 @@ CReplayLogger::~CReplayLogger()
 void CReplayLogger::StartGame(JS::MutableHandleValue attribs)
 {
 	// Add timestamp, since the file-modification-date can change
-	m_ScriptInterface.SetProperty(attribs, "timestamp", std::time(nullptr));
+	m_ScriptInterface.SetProperty(attribs, "timestamp", (double)std::time(nullptr));
 
 	// Add engine version and currently loaded mods for sanity checks when replaying
 	m_ScriptInterface.SetProperty(attribs, "engine_version", CStr(engine_version));
