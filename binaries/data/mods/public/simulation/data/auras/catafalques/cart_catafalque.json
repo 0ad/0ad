@@ -1,0 +1,12 @@
+{
+	"type": "global",
+	"affects": ["Melee Cavalry"],
+	"modifications": [
+		{ "value": "Armour/Pierce", "add": 1 },
+		{ "value": "Armour/Hack", "add": 1 },
+		{ "value": "Armour/Crush", "add": 1 },
+		{ "value": "Health/Max", "multiply": 1.1 }
+	],
+	"auraName": "Commander of Heavy Cavalry",
+	"auraDescription": "Leader of the Carthaginian heavy cavalry at Trebia and Cannae, where his triple charge had devastating effects on the enemy.\n+1 armor, +10% health for melee cavalry."
+}

@@ -1,0 +1,12 @@
+{
+	"type": "global",
+	"affects": ["Soldier", "Mechanical"],
+	"modifications": [
+		{ "value": "Promotion/RequiredXp", "multiply": 0.75 },
+		{ "value": "Attack/Melee/Hack", "multiply": 1.05 },
+		{ "value": "Attack/Melee/Pierce", "multiply": 1.05 },
+		{ "value": "Attack/Melee/Crush", "multiply": 1.05 }
+	],
+	"auraName": "Ambush Slaughter",
+	"auraDescription": "Warring with the Romans, Ambiorix realized the futility of open warfare and instead resorted to ambush tactics. The Gauls quickly learned where and when to execute surprise attacks.\nUnits promote 25% faster and gain a 5% attack bonus."
+}

@@ -1,0 +1,10 @@
+{
+	"type": "global",
+	"affects": ["FemaleCitizen"],
+	"modifications": [
+		{ "value": "Cost/Resources/food", "multiply": 0.8 },
+		{ "value": "ResourceGatherer/BaseSpeed", "multiply": 1.1 }
+	],
+	"auraName": "Avenger of Lucretia",
+	"auraDescription": "After the rape of Lucretia by the son of King Tarquinius Superbus and her subsequent suicide, Brutus vowed to avenge her and overthrow the monarchy.\nFemale citizens cost 20% less and work 10% faster."
+}

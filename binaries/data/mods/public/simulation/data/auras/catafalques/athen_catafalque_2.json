@@ -1,0 +1,12 @@
+{
+	"type": "global",
+	"affects": ["Economic"],
+	"modifications": [
+		{ "value": "ProductionQueue/TechCostMultiplier/wood", "multiply": 0.9 },
+		{ "value": "ProductionQueue/TechCostMultiplier/food", "multiply": 0.9 },
+		{ "value": "ProductionQueue/TechCostMultiplier/metal", "multiply": 0.9 },
+		{ "value": "ProductionQueue/TechCostMultiplier/stone", "multiply": 0.9 }
+	],
+	"auraName": "Economic Fortune",
+	"auraDescription": "Solon brought in a new system of weights and measures, fathers were encouraged to find trades for their sons.\n-10% cost for economic technologies."
+}
