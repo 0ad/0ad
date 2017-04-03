@@ -36,6 +36,9 @@ UnitMotionFlying.prototype.Schema =
 	"</element>" +
 	"<element name='DiesInWater'>" +
 		"<data type='boolean'/>" +
+	"</element>" +
+	"<element name='PassabilityClass'>" +
+		"<text/>" +
 	"</element>";
 
 UnitMotionFlying.prototype.Init = function()
@@ -52,6 +55,7 @@ UnitMotionFlying.prototype.Init = function()
 	this.pitch = 0;
 	this.roll = 0;
 	this.waterDeath = false;
+	this.passabilityClass = Engine.QueryInterface(SYSTEM_ENTITY, IID_Pathfinder).GetPassabilityClass(this.template.PassabilityClass);
 };
 
 UnitMotionFlying.prototype.OnUpdate = function(msg)
@@ -313,6 +317,16 @@ UnitMotionFlying.prototype.GetRunSpeed = function()
 UnitMotionFlying.prototype.GetCurrentSpeed = function()
 {
 	return this.speed;
+};
+
+UnitMotionFlying.prototype.GetPassabilityClassName = function()
+{
+	return this.template.PassabilityClass;
+};
+
+UnitMotionFlying.prototype.GetPassabilityClass = function()
+{
+	return this.passabilityClass;
 };
 
 UnitMotionFlying.prototype.FaceTowardsPoint = function(x, z)
