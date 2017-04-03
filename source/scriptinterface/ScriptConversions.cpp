@@ -116,53 +116,6 @@ template<> bool ScriptInterface::FromJSVal<u8>(JSContext* cx, JS::HandleValue v,
 	return true;
 }
 
-template<> bool ScriptInterface::FromJSVal<i64>(JSContext* cx, JS::HandleValue v, i64& out)
-{
-	JSAutoRequest rq(cx);
-	i64 tmp;
-	bool ok = JS::ToInt64(cx, v, &tmp);
-	out = (i64)tmp;
-	return ok;
-}
-
-template<> bool ScriptInterface::FromJSVal<u64>(JSContext* cx, JS::HandleValue v, u64& out)
-{
-	JSAutoRequest rq(cx);
-	u64 tmp;
-	bool ok = JS::ToUint64(cx, v, &tmp);
-	out = (u64)tmp;
-	return ok;
-}
-
-// see comment below (where the same preprocessor condition is used)
-#if MSC_VERSION && ARCH_AMD64
-
-template<> bool ScriptInterface::FromJSVal<size_t>(JSContext* cx, JS::HandleValue v, size_t& out)
-{
-	JSAutoRequest rq(cx);
-	int tmp;
-	if(!FromJSVal<int>(cx, v, tmp))
-		return false;
-	if(temp < 0)
-		return false;
-	out = (size_t)tmp;
-	return true;
-}
-
-template<> bool ScriptInterface::FromJSVal<ssize_t>(JSContext* cx, JS::HandleValue v, ssize_t& out)
-{
-	JSAutoRequest rq(cx);
-	int tmp;
-	if(!FromJSVal<int>(cx, v, tmp))
-		return false;
-	if(tmp < 0)
-		return false;
-	out = (ssize_t)tmp;
-	return true;
-}
-
-#endif
-
 template<> bool ScriptInterface::FromJSVal<std::wstring>(JSContext* cx, JS::HandleValue v, std::wstring& out)
 {
 	JSAutoRequest rq(cx);
@@ -293,35 +246,6 @@ template<> void ScriptInterface::ToJSVal<u32>(JSContext* UNUSED(cx), JS::Mutable
 {
 	ret.set(JS::NumberValue(val));
 }
-
-template<> void ScriptInterface::ToJSVal<i64>(JSContext* UNUSED(cx), JS::MutableHandleValue ret, const i64& val)
-{
-	ret.set(JS::NumberValue((int)val));
-}
-
-template<> void ScriptInterface::ToJSVal<u64>(JSContext* UNUSED(cx), JS::MutableHandleValue ret, const u64& val)
-{
-	ret.set(JS::NumberValue((int)val));
-}
-
-// (s)size_t are considered to be identical to (unsigned) int by GCC and
-// their specializations would cause conflicts there. On x86_64 GCC, s/size_t
-// is equivalent to (unsigned) long, but the same solution applies; use the
-// long and unsigned long specializations instead of s/size_t.
-// for some reason, x64 MSC treats size_t as distinct from unsigned long:
-#if MSC_VERSION && ARCH_AMD64
-
-template<> void ScriptInterface::ToJSVal<size_t>(JSContext* UNUSED(cx), JS::MutableHandleValue ret, const size_t& val)
-{
-	ret.set(JS::NumberValue((int)val));
-}
-
-template<> void ScriptInterface::ToJSVal<ssize_t>(JSContext* UNUSED(cx), JS::MutableHandleValue ret, const ssize_t& val)
-{
-	ret.set(JS::NumberValue((int)val));
-}
-
-#endif
 
 template<> void ScriptInterface::ToJSVal<std::wstring>(JSContext* cx, JS::MutableHandleValue ret, const std::wstring& val)
 {

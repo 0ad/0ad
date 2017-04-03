@@ -1,0 +1,11 @@
+{
+	"type": "global",
+	"affects": ["Soldier"],
+	"modifications": [
+		{ "value": "Vision/Range", "multiply": 1.15 },
+		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.15 },
+		{ "value": "UnitMotion/Run/Speed", "multiply": 1.15 }
+	],
+	"auraName": "Guerilla Tactics",
+	"auraDescription": "Seeing entrenched defense to be useless against the Roman army, Cassivellanus resorted to gurerilla tactics. This was later employed by other cheiftains too.\n+15% speed and vision range for soldiers."
+}

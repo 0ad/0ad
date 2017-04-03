@@ -1,13 +1,14 @@
-let g_CatafalqueTemplate = "other/special_catafalque";
-
 Trigger.prototype.InitCaptureTheRelic = function()
 {
+	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+	let catafalqueTemplates = shuffleArray(cmpTemplateManager.FindAllTemplates(false).filter(
+			name => name.startsWith("other/catafalque/")));
+
 	// Attempt to spawn relics using gaia entities in neutral territory
 	// If there are none, try to spawn using gaia entities in non-neutral territory
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	let cmpWaterManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_WaterManager);
 	let cmpTerritoryManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TerritoryManager);
-	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 
 	let potentialGaiaSpawnPoints = [];
 
@@ -47,7 +48,7 @@ Trigger.prototype.InitCaptureTheRelic = function()
 
 	for (let i = 0; i < numSpawnedRelics; ++i)
 	{
-		this.relics[i] = TriggerHelper.SpawnUnits(pickRandom(potentialSpawnPoints), g_CatafalqueTemplate, 1, 0)[0];
+		this.relics[i] = TriggerHelper.SpawnUnits(pickRandom(potentialSpawnPoints), catafalqueTemplates[i], 1, 0)[0];
 
 		let cmpDamageReceiver = Engine.QueryInterface(this.relics[i], IID_DamageReceiver);
 		cmpDamageReceiver.SetInvulnerability(true);

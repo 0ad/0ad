@@ -1,0 +1,16 @@
+{
+	"type": "global",
+	"affects": ["Temple"],
+	"modifications": [
+		{ "value": "ProductionQueue/TechCostMultiplier/wood", "multiply": 0.9 },
+		{ "value": "ProductionQueue/TechCostMultiplier/food", "multiply": 0.9 },
+		{ "value": "ProductionQueue/TechCostMultiplier/metal", "multiply": 0.9 },
+		{ "value": "ProductionQueue/TechCostMultiplier/stone", "multiply": 0.9 },
+		{ "value": "Cost/Resources/food", "multiply": 0.9 },
+		{ "value": "Cost/Resources/wood", "multiply": 0.9 },
+		{ "value": "Cost/Resources/metal", "multiply": 0.9 },
+		{ "value": "Cost/Resources/stone", "multiply": 0.9 }
+	],
+	"auraName": "Founder of the Ezida Temple",
+	"auraDescription": "Antiochus I laid the foundation for the Ezida Temple in Borsippa.\n-10% resource cost for temples and temple technologies."
+}

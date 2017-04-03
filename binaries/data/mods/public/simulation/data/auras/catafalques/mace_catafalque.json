@@ -1,0 +1,12 @@
+{
+	"type": "global",
+	"affects": ["Human", "Mechanical", "Structure"],
+	"modifications": [
+		{ "value": "Looter/Resource/metal", "mutiply": 1.25 },
+		{ "value": "Looter/Resource/wood", "mutiply": 1.25 },
+		{ "value": "Looter/Resource/stone", "mutiply": 1.25 },
+		{ "value": "Looter/Resource/metal", "multiply": 1.25 }
+	],
+	"auraName": "Sacker of Cities",
+	"auraDescription": "During the First Macedonian War, Philip and his troops sacked Thermum, the religious and political centre of Aetolia.\n+25% loot for every enemy unit killed or structure destroyed."
+}

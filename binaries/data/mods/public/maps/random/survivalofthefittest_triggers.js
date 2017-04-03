@@ -274,23 +274,28 @@ Trigger.prototype.StartAnEnemyWave = function()
 			break;
 		}
 
-		let cmpPlayer = QueryOwnerInterface(point, IID_Player);
-
-		// Trigger point owned by Gaia if the player is defeated
-		if (cmpPlayer.GetPlayerID() == 0)
+		// Don't spawn attackers for defeated players and players that lost there cc after win
+		let playerID = QueryOwnerInterface(point, IID_Player).GetPlayerID();
+		let civicCentre = this.playerCivicCenter[playerID];
+		if (!civicCentre)
 			continue;
 
-		let targetPos = Engine.QueryInterface(this.playerCivicCenter[cmpPlayer.GetPlayerID()], IID_Position).GetPosition2D();
+		// Check in case the cc is garrisoned in another building
+		let cmpPosition = Engine.QueryInterface(civicCentre, IID_Position);
+		if (!cmpPosition || !cmpPosition.IsInWorld())
+			continue;
+
+		let targetPos = cmpPosition.GetPosition2D();
 
 		for (let attackerTemplate of attackerTemplates)
 		{
 			// Don't spawn gaia hero if the previous one is still alive
-			if (attackerTemplate.hero && this.gaiaHeroes[cmpPlayer.GetPlayerID()])
+			if (attackerTemplate.hero && this.gaiaHeroes[playerID])
 			{
-				let cmpHealth = Engine.QueryInterface(this.gaiaHeroes[cmpPlayer.GetPlayerID()], IID_Health);
+				let cmpHealth = Engine.QueryInterface(this.gaiaHeroes[playerID], IID_Health);
 				if (cmpHealth && cmpHealth.GetHitpoints() != 0)
 				{
-					this.debugLog("Not spawning hero for player " + cmpPlayer.GetPlayerID() + " as the previous one is still alive");
+					this.debugLog("Not spawning hero for player " + playerID + " as the previous one is still alive");
 					continue;
 				}
 			}
@@ -309,7 +314,7 @@ Trigger.prototype.StartAnEnemyWave = function()
 			});
 
 			if (attackerTemplate.hero)
-				this.gaiaHeroes[cmpPlayer.GetPlayerID()] = entities[0];
+				this.gaiaHeroes[playerID] = entities[0];
 		}
 		spawned = true;
 	}
@@ -338,7 +343,10 @@ Trigger.prototype.PlaceTreasures = function()
 Trigger.prototype.OnOwnershipChanged = function(data)
 {
 	if (data.entity == this.playerCivicCenter[data.from])
+	{
+		this.playerCivicCenter[data.from] = undefined;
 		TriggerHelper.DefeatPlayer(data.from);
+	}
 	else if (data.entity == this.treasureFemale[data.from])
 	{
 		this.treasureFemale[data.from] = undefined;

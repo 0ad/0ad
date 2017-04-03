@@ -131,7 +131,7 @@ Attack.prototype.Schema =
 				"<element name='ProjectileSpeed' a:help='Speed of projectiles (in metres per second)'>" +
 					"<ref name='positiveDecimal'/>" +
 				"</element>" +
-				"<element name='Spread' a:help='Radius over which missiles will tend to land (when shooting to the maximum range). Roughly 2/3 will land inside this radius (in metres). Spread is linearly diminished as the target gets closer.'><ref name='nonNegativeDecimal'/></element>" +
+				"<element name='Spread' a:help='Radius over which missiles will tend to land (when shooting to the MaxRange). Roughly 2/3 will land inside this radius (in metres). Spread is linearly diminished as the target gets closer.'><ref name='nonNegativeDecimal'/></element>" +
 				Attack.prototype.bonusesSchema +
 				Attack.prototype.preferredClassesSchema +
 				Attack.prototype.restrictedClassesSchema +
@@ -453,13 +453,8 @@ Attack.prototype.PerformAttack = function(type, target)
 		//  * Obstacles like trees could reduce the probability of the target being hit
 		//  * Obstacles like walls should block projectiles entirely
 
-		// Get some data about the entity
 		let horizSpeed = +this.template[type].ProjectileSpeed;
 		let gravity = 9.81; // this affects the shape of the curve; assume it's constant for now
-
-		let spread = +this.template.Ranged.Spread;
-		spread = ApplyValueModificationsToEntity("Attack/Ranged/Spread", spread, this.entity);
-
 		//horizSpeed /= 2; gravity /= 2; // slow it down for testing
 
 		let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
@@ -471,28 +466,14 @@ Attack.prototype.PerformAttack = function(type, target)
 			return;
 		let targetPosition = cmpTargetPosition.GetPosition();
 
-		let relativePosition = Vector3D.sub(targetPosition, selfPosition);
 		let previousTargetPosition = Engine.QueryInterface(target, IID_Position).GetPreviousPosition();
-
 		let targetVelocity = Vector3D.sub(targetPosition, previousTargetPosition).div(turnLength);
-		// The component of the targets velocity radially away from the archer
-		let radialSpeed = relativePosition.dot(targetVelocity) / relativePosition.length();
 
-		let horizDistance = targetPosition.horizDistanceTo(selfPosition);
+		let predictedPosition = this.PredictTargetPosition(selfPosition, horizSpeed, targetPosition, targetVelocity);
 
-		// This is an approximation of the time to reach the target, it assumes that the target has a constant radial
-		// velocity, but since units move in straight lines this is not true. The exact value would be more
-		// difficult to calculate and this is sufficiently accurate.
-		let timeToTarget = horizDistance / (horizSpeed - radialSpeed);
-
-		// Predict where the unit is when the missile lands.
-		let predictedPosition = Vector3D.mult(targetVelocity, timeToTarget).add(targetPosition);
-
-		// Compute the real target point (based on spread and target speed)
-		let range = this.GetRange(type);
-		let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-		let elevationAdaptedMaxRange = cmpRangeManager.GetElevationAdaptedRange(selfPosition, cmpPosition.GetRotation(), range.max, range.elevationBonus, 0);
-		let distanceModifiedSpread = spread * horizDistance/elevationAdaptedMaxRange;
+		// Add inaccuracy based on spread.
+		let distanceModifiedSpread = ApplyValueModificationsToEntity("Attack/Ranged/Spread", +this.template.Ranged.Spread, this.entity) *
+			targetPosition.horizDistanceTo(selfPosition) / this.GetRange(type).max;
 
 		let randNorm = randomNormal2D();
 		let offsetX = randNorm[0] * distanceModifiedSpread;
@@ -500,13 +481,13 @@ Attack.prototype.PerformAttack = function(type, target)
 
 		let realTargetPosition = new Vector3D(predictedPosition.x + offsetX, targetPosition.y, predictedPosition.z + offsetZ);
 
-		// Calculate when the missile will hit the target position
+		// Recalculate when the missile will hit the target position.
 		let realHorizDistance = realTargetPosition.horizDistanceTo(selfPosition);
-		timeToTarget = realHorizDistance / horizSpeed;
+		let timeToTarget = realHorizDistance / horizSpeed;
 
 		let missileDirection = Vector3D.sub(realTargetPosition, selfPosition).div(realHorizDistance);
 
-		// Launch the graphical projectile
+		// Launch the graphical projectile.
 		let cmpProjectileManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ProjectileManager);
 		let id = cmpProjectileManager.LaunchProjectileAtPoint(this.entity, realTargetPosition, horizSpeed, gravity);
 
@@ -571,6 +552,34 @@ Attack.prototype.PerformAttack = function(type, target)
 		});
 	}
 };
+
+/**
+ * Get the predicted position of the collision between a projectile (or a chaser)
+ * and its target, assuming they both move in straight line at a constant speed.
+ * Vertical component of movement is ignored.
+ * @param {Vector3D} selfPosition - the 3D position of the projectile (or chaser).
+ * @param {number} horizSpeed - the horizontal speed of the projectile (or chaser).
+ * @param {Vector3D} targetPosition - the 3D position of the target.
+ * @param {Vector3D} targetVelocity - the 3D velocity vector of the target.
+ * @return {Vector3D} - the 3D predicted position.
+ */
+Attack.prototype.PredictTargetPosition = function(selfPosition, horizSpeed, targetPosition, targetVelocity)
+{
+	let relativePosition = Vector3D.sub(targetPosition, selfPosition);
+
+	// The component of the targets velocity radially away from the archer.
+	let radialSpeed = relativePosition.dot(targetVelocity) / relativePosition.length();
+
+	let horizDistance = targetPosition.horizDistanceTo(selfPosition);
+
+	// This is an approximation of the time to reach the target, it assumes that the target has a constant radial
+	// velocity, but since units move in straight lines this is not true. The exact value would be more
+	// difficult to calculate and this is sufficiently accurate.
+	let timeToTarget = horizDistance / (horizSpeed - radialSpeed);
+
+	// Predict where the unit is when the missile lands.
+	return Vector3D.mult(targetVelocity, timeToTarget).add(targetPosition);
+}
 
 Attack.prototype.OnValueModification = function(msg)
 {

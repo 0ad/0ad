@@ -1,0 +1,9 @@
+{
+	"type": "global",
+	"affects": ["Worker"],
+	"modifications": [
+		{ "value": "ResourceGatherer/Rates/food.grain", "multiply": 0.9 }
+	],
+	"auraName": "Tribute to Rome",
+	"auraDescription": "When the Roman Army fell short of food supplies, the Gallic tribes were ordered to give up a part of their already meagre harvest. The Eburones under Ambiorix were reluctant to do so, therefore Caesar sent troops to take them by foce.\n-10% farming rate."
+}

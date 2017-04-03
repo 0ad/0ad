@@ -1,0 +1,11 @@
+{
+	"type": "global",
+	"affects": ["Soldier"],
+	"modifications": [
+		{ "value": "Health/Max", "multiply": 1.1 },
+		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.15 },
+		{ "value": "UnitMotion/Run/Speed", "multiply": 1.15 }
+	],
+	"auraName": "Saver of Lives",
+	"auraDescription": "Following the fall of Indibil in battle, Mandonius led the survivors to safety.\n+15% movement speed and +10% health for all soldiers."
+}
