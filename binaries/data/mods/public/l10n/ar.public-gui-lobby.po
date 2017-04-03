@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-03 09:01+0100\n"
-"PO-Revision-Date: 2017-03-27 03:22+0000\n"
-"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
+"PO-Revision-Date: 2017-04-01 01:06+0000\n"
+"Last-Translator: Omar Anwar <omaraglan91@yahoo.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -65,21 +65,21 @@ msgstr "%(oldnick)s معروف الآن ب‍ %(newnick)s."
 
 #: gui/lobby/lobby.js:217
 msgid "You have been banned from the lobby!"
-msgstr "لقد حظرت من الرواق!"
+msgstr "لقد حُظرت من الرواق!"
 
 #: gui/lobby/lobby.js:218
 msgid "You have been kicked from the lobby!"
-msgstr "لقد طردت من الرواق!"
+msgstr "لقد طُردت من الرواق!"
 
 #: gui/lobby/lobby.js:220
 #, javascript-format
 msgid "%(nick)s has been banned from the lobby."
-msgstr "%(nick)s قد حظر من الرواق."
+msgstr "%(nick)s قد حُظر من الرواق."
 
 #: gui/lobby/lobby.js:221
 #, javascript-format
 msgid "%(nick)s has been kicked from the lobby."
-msgstr "%(nick)s قد طرد من الرواق."
+msgstr "%(nick)s قد طُرد من الرواق."
 
 #: gui/lobby/lobby.js:224
 #, javascript-format
@@ -145,11 +145,11 @@ msgstr "اللاعبون: %(current)s/%(total)s"
 
 #: gui/lobby/lobby.js:734
 msgid "The game has already started. Do you want to join as observer?"
-msgstr "اللعبه قد بدأت مسبقا. هل تود ان تنضم كمشاهد؟"
+msgstr "اللعبة قد بدأت مُسبقاً. هل تود أن تنضم كمُشاهد؟"
 
 #: gui/lobby/lobby.js:735
 msgid "Confirmation"
-msgstr "أكّد"
+msgstr "تأكيد"
 
 #: gui/lobby/lobby.js:736
 msgid "No"
@@ -255,7 +255,7 @@ msgstr "فضلًا أدخل اسم المستخدم"
 
 #: gui/lobby/prelobby.js:98
 msgid "Usernames can't contain \\[, ], unicode, whitespace, or commas"
-msgstr "لا يمكن أن تحوي أسماء المستخدمين \\[، أو ]، أو يونيكود، أو المسافات أو الفواصل"
+msgstr "لا يمكن أن تحتوي أسماء المستخدمين علي \\[، أو ]، أو يونيكود، أو المسافات أو الفواصل"
 
 #: gui/lobby/prelobby.js:104
 msgid "Please enter your password"
@@ -285,7 +285,7 @@ msgstr "فضلًا وافق على شروط الخدمة والاستخدام"
 msgid ""
 "Unknown error. This usually occurs because the same IP address is not "
 "allowed to register more than one account within one hour."
-msgstr "خطأ غير معروف. هذا يحدث غالباً لأن IP غير مسموح له بالتسجيل اكثر من حساب واحد فى الساعة الواحدة."
+msgstr "خطأ مجهول. هذا يحدث غالباً لأن IP غير مسموح له بالتسجيل أكثر من حساب واحد في الساعة الواحدة."
 
 #: gui/lobby/prelobby.js:172
 msgid "Registered"

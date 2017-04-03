@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-03 09:02+0100\n"
-"PO-Revision-Date: 2017-03-04 14:30+0000\n"
+"POT-Creation-Date: 2017-03-31 09:22+0200\n"
+"PO-Revision-Date: 2017-03-31 10:45+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -76,7 +76,7 @@ msgstr "Шамфрон"
 #: simulation/data/technologies/health_walls_geometric_masonry.jsonrequirementsTooltip
 #: simulation/data/technologies/melee_inf_sidearms.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_civic_01.jsonrequirementsTooltip
-#: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
+#: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
 #: simulation/data/technologies/ranged_inf_irregulars.jsonrequirementsTooltip
 #: simulation/data/technologies/speed_cavalry_01.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
@@ -147,6 +147,7 @@ msgstr "Метална броня за тялото на кон."
 #: simulation/data/technologies/health_regen_units.jsonrequirementsTooltip
 #: simulation/data/technologies/melee_inf_spearheads.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_civic_02.jsonrequirementsTooltip
+#: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_wonder.jsonrequirementsTooltip
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_armor.jsonrequirementsTooltip
@@ -463,7 +464,6 @@ msgstr "Подсилен корпус"
 #: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
-#: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/special_archery_tradition.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
@@ -1606,6 +1606,18 @@ msgstr "Трениране на конете за по-бързо придвиж
 #: simulation/data/technologies/speed_cavalry_02.jsongenericName
 msgid "Cavalry Speed Training"
 msgstr "Трениране на конницата за бързина"
+
+#: simulation/data/technologies/spy_counter.jsondescription
+msgid "Recruit a network of informants to watch over your people."
+msgstr "Създаване на мрежа от информатори, които да наблюдават хората Ви."
+
+#: simulation/data/technologies/spy_counter.jsontooltip
+msgid "Make your units 50% more expensive to bribe."
+msgstr "Единиците Ви са 50% по-скъпи за подкупване."
+
+#: simulation/data/technologies/spy_counter.jsongenericName
+msgid "Counter Espionage"
+msgstr "Контрашпионаж"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsondescription
 msgid "Improve the international trading profit."
