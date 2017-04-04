@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-27 09:03+0200\n"
-"PO-Revision-Date: 2017-03-27 09:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-04-03 01:03+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -170,7 +170,7 @@ msgstr "Jeg avviser din allianseforespørsel, %(_player_)s, men vi kan bli nøyt
 #: simulation/ai/petra/chatHelper.js:75
 #, javascript-format
 msgid "%(_player_)s, only a neutrality agreement is conceivable to me."
-msgstr ""
+msgstr "%(_player_)s, jeg anser det eneste tenkelige utfallet for nøytralitetspakt å være."
 
 #: simulation/ai/petra/chatHelper.js:78
 #, javascript-format
@@ -233,14 +233,14 @@ msgstr "%(_player_)s, anse oss for å være allierte fra nå av."
 msgid ""
 "I will ally with you, %(_player_)s, but only if you send me a tribute of "
 "%(_amount_)s %(_resource_)s."
-msgstr ""
+msgstr "Jeg vil alliere meg med deg, %(_player_)s, men bare hvis du sender meg et bidrag på %(_amount_)s %(_resource_)s."
 
 #: simulation/ai/petra/chatHelper.js:93
 #, javascript-format
 msgid ""
 "%(_player_)s, you must send me a tribute of %(_amount_)s %(_resource_)s "
 "before I accept an alliance with you."
-msgstr ""
+msgstr "%(_player_)s, du må sende meg et bidrag på %(_amount_)s %(_resource_)s før jeg kan godta en allianse med deg."
 
 #: simulation/ai/petra/chatHelper.js:94
 #, javascript-format
@@ -254,7 +254,7 @@ msgstr "Om du ikke sender meg %(_amount_)s %(_resource_)s, har vi ingen allianse
 msgid ""
 "%(_player_)s, my offer still stands. I will ally with you only if you send "
 "me a tribute of %(_amount_)s %(_resource_)s."
-msgstr ""
+msgstr "%(_player_)s, mitt tilbud står ved lag. Jeg vil bare alliere meg med deg om du sender et bidrag på %(_amount_)s %(_resource_)s."
 
 #: simulation/ai/petra/chatHelper.js:98
 #, javascript-format
@@ -268,7 +268,7 @@ msgstr "Jeg venter fremdeles på %(_amount_)s %(_resource_)s før vi har en alli
 msgid ""
 "%(_player_)s, if you do not send me part of the %(_amount_)s %(_resource_)s "
 "tribute soon, I will break off our negotiations."
-msgstr ""
+msgstr "%(_player_)s, hvis du ikke sender meg deler av %(_amount_)s %(_resource_)s-bidraget snart, vil jeg tre ut av forhandlingene."
 
 #: simulation/ai/petra/chatHelper.js:104
 #, javascript-format
@@ -299,28 +299,28 @@ msgstr "Jeg ønsker velkomment ditt ønske om fred våre sivilisasjoner imellom,
 msgid ""
 "%(_player_)s, I will accept your neutrality request. May both our "
 "civilizations benefit."
-msgstr ""
+msgstr "%(_player_)s, Jeg vil godta din nøytralitetsforespørsel. Måtte begge våre sivilasjoner dra nytte."
 
 #: simulation/ai/petra/chatHelper.js:115
 #, javascript-format
 msgid ""
 "If you send me a tribute of %(_amount_)s %(_resource_)s, I will accept your "
 "neutrality request, %(_player_)s."
-msgstr ""
+msgstr "Hvis du sender meg et bidrag på %(_amount_)s %(_resource_)s, vil jeg godta din nøytralitetsforespørsel, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:116
 #, javascript-format
 msgid ""
 "%(_player_)s, if you send me %(_amount_)s %(_resource_)s, I will accept a "
 "neutrality pact."
-msgstr ""
+msgstr "%(_player_)s, hvis du sender meg %(_amount_)s %(_resource_)s, vil jeg godta en nøytralitetspakt."
 
 #: simulation/ai/petra/chatHelper.js:119
 #, javascript-format
 msgid ""
 "%(_player_)s, I will not accept your neutrality request unless you tribute "
 "me %(_amount_)s %(_resource_)s soon."
-msgstr ""
+msgstr "%(_player_)s, jeg vil ikke godta din nøytralitetsforespørsel om du ikke sender meg et bidra på %(_amount_)s %(_resource_)s snart."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -457,7 +457,7 @@ msgstr "Legg enda en gruppe med 5 kvinnelige borgere i køen. Disse vil sanke t�
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:143
 msgid "Queue a batch of spearmen."
-msgstr "Legg en gruppe (Shift+klikk) spydkastere i treningskøen."
+msgstr "Legg en gruppe spydmenn i treningskøen."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:148
 msgid "Research the stone mining technology from the storehouse."
@@ -482,7 +482,7 @@ msgstr "Slyngekasterne du la i køen tidligere burde sanke stein straks de er tr
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:173
 msgid "Queue a batch of spearmen, they should gather wood."
-msgstr "Legg en gruppe spydkastere i treningskøen. Disse skal sanke tømmer."
+msgstr "Legg en gruppe spydmenn i treningskøen. Disse skal sanke tømmer."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:178
 msgid "Next queue a batch of slingers."
@@ -618,7 +618,7 @@ msgid ""
 "Select the newly trained Hoplites and assign them to build a storehouse "
 "beside some nearby trees. They will begin to gather wood when it's "
 "constructed."
-msgstr "Velg de nytrenede hoplittene og beordre dem til å lage et lager ved siden av noen trær i nærheten. De vil begynne å sanke tømmer når lagere er ferdig."
+msgstr "Velg de nytrente hoplittene og beordre dem til å lage et lager ved siden av noen trær i nærheten. De vil begynne å sanke tømmer når lageret er ferdig."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:27
 msgid ""
@@ -651,7 +651,7 @@ msgid ""
 "Train 5 Hoplites from the Civil Center. Select the Civil Center and with it "
 "selected right click on a tree nearby. Units from the Civil Center will now "
 "automatically gather wood."
-msgstr "Tren 5 Hoplitter fra borgersenteret. Klikk på borgersenteret og når du har klikket på det, høyre-klikk på et tre i nærheten. Enheter fra borgersenteret vil automatisk samle trevirke."
+msgstr "Tren 5 hoplitter fra borgersenteret. Klikk på borgersenteret og når du har klikket på det, høyre-klikk på et tre i nærheten. Enheter fra borgersenteret vil automatisk samle trevirke."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:57
 msgid ""
@@ -1045,11 +1045,11 @@ msgstr "Spol hurtig (20x)"
 msgid ""
 "Capture all relics spread across the map and keep them for a certain time to"
 " win the game."
-msgstr ""
+msgstr "Ta alle relikvier spredt på kartet og behold dem en gitt periode for å vinne spillet."
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
 msgid "Capture The Relic"
-msgstr ""
+msgstr "Ta relikviet"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid "Defeat all opponents to win."
@@ -1160,7 +1160,7 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -50% for Sandbox to +60% for Very Hard (Medium 0%). In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "Petra er 0 A.D.s forhåndsvalgte AI-bot. Rapporter problemer til Wildfire Games (se link i hovedmenyen).\n\nAI-en har en bonus/straff på ressurslagring (enten sankingsrate eller handelsvinning), som varierer fra -50% for sandkasse til +60% for veldig vanskelig (middels = 0%). I tillegg vil ikke sandkassemodus ekspandere eller angripe. "
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"

@@ -18,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-03 09:02+0100\n"
-"PO-Revision-Date: 2017-03-03 14:47+0000\n"
-"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
+"POT-Creation-Date: 2017-03-31 09:22+0200\n"
+"PO-Revision-Date: 2017-03-31 10:10+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -82,7 +82,7 @@ msgstr "Chamfron"
 #: simulation/data/technologies/health_walls_geometric_masonry.jsonrequirementsTooltip
 #: simulation/data/technologies/melee_inf_sidearms.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_civic_01.jsonrequirementsTooltip
-#: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
+#: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
 #: simulation/data/technologies/ranged_inf_irregulars.jsonrequirementsTooltip
 #: simulation/data/technologies/speed_cavalry_01.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
@@ -153,6 +153,7 @@ msgstr "Fémpáncél egy ló testére."
 #: simulation/data/technologies/health_regen_units.jsonrequirementsTooltip
 #: simulation/data/technologies/melee_inf_spearheads.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_civic_02.jsonrequirementsTooltip
+#: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_wonder.jsonrequirementsTooltip
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_armor.jsonrequirementsTooltip
@@ -469,7 +470,6 @@ msgstr "Megerősített hajótest"
 #: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
-#: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/special_archery_tradition.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
@@ -1612,6 +1612,18 @@ msgstr "A lovak kiképzése a gyorsabb mozgáshoz."
 #: simulation/data/technologies/speed_cavalry_02.jsongenericName
 msgid "Cavalry Speed Training"
 msgstr "Lovassági sebesség képzése"
+
+#: simulation/data/technologies/spy_counter.jsondescription
+msgid "Recruit a network of informants to watch over your people."
+msgstr ""
+
+#: simulation/data/technologies/spy_counter.jsontooltip
+msgid "Make your units 50% more expensive to bribe."
+msgstr ""
+
+#: simulation/data/technologies/spy_counter.jsongenericName
+msgid "Counter Espionage"
+msgstr ""
 
 #: simulation/data/technologies/trade_commercial_treaty.jsondescription
 msgid "Improve the international trading profit."
