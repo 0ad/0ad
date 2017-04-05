@@ -38,6 +38,7 @@
 #include "renderer/SkyManager.h"
 #include "renderer/WaterManager.h"
 #include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpCinemaManager.h"
 #include "simulation2/components/ICmpObstruction.h"
 #include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/components/ICmpPosition.h"
@@ -55,7 +56,7 @@ CMapWriter::CMapWriter()
 // SaveMap: try to save the current map to the given file
 void CMapWriter::SaveMap(const VfsPath& pathname, CTerrain* pTerrain,
 						 WaterManager* pWaterMan, SkyManager* pSkyMan,
-						 CLightEnv* pLightEnv, CCamera* pCamera, CCinemaManager* pCinema,
+						 CLightEnv* pLightEnv, CCamera* pCamera, CCinemaManager* UNUSED(pCinema),
 						 CPostprocManager* pPostproc,
 						 CSimulation2* pSimulation2)
 {
@@ -76,7 +77,7 @@ void CMapWriter::SaveMap(const VfsPath& pathname, CTerrain* pTerrain,
 	}
 
 	VfsPath pathnameXML = pathname.ChangeExtension(L".xml");
-	WriteXML(pathnameXML, pWaterMan, pSkyMan, pLightEnv, pCamera, pCinema, pPostproc, pSimulation2);
+	WriteXML(pathnameXML, pWaterMan, pSkyMan, pLightEnv, pCamera, pPostproc, pSimulation2);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -184,7 +185,7 @@ void CMapWriter::PackTerrain(CFilePacker& packer, CTerrain* pTerrain)
 
 void CMapWriter::WriteXML(const VfsPath& filename,
 						  WaterManager* pWaterMan, SkyManager* pSkyMan,
-						  CLightEnv* pLightEnv, CCamera* pCamera, CCinemaManager* pCinema,
+						  CLightEnv* pLightEnv, CCamera* pCamera,
 						  CPostprocManager* pPostproc,
 						  CSimulation2* pSimulation2)
 {
@@ -400,10 +401,12 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 			}
 		}
 
-		const std::map<CStrW, CCinemaPath>& paths = pCinema->GetAllPaths();
-		std::map<CStrW, CCinemaPath>::const_iterator it = paths.begin();
 
+		CmpPtr<ICmpCinemaManager> cmpCinemaManager(sim, SYSTEM_ENTITY);
+		if (cmpCinemaManager)
 		{
+			const std::map<CStrW, CCinemaPath>& paths = cmpCinemaManager->GetPaths();
+			std::map<CStrW, CCinemaPath>::const_iterator it = paths.begin();
 			XML_Element("Paths");
 
 			for ( ; it != paths.end(); ++it )

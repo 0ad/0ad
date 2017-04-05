@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,10 +22,18 @@
 
 #include "graphics/GameView.h"
 #include "graphics/CinemaManager.h"
+#include "gui/CGUI.h"
+#include "gui/GUIManager.h"
+#include "gui/IGUIObject.h"
 #include "ps/CLogger.h"
 #include "ps/Game.h"
+#include "simulation2/components/ICmpOverlayRenderer.h"
+#include "simulation2/components/ICmpRangeManager.h"
+#include "simulation2/components/ICmpSelectable.h"
+#include "simulation2/components/ICmpTerritoryManager.h"
 #include "simulation2/MessageTypes.h"
 #include "simulation2/Simulation2.h"
+#include "renderer/Renderer.h"
 
 
 class CCmpCinemaManager : public ICmpCinemaManager
@@ -40,32 +48,29 @@ public:
 
 	static std::string GetSchema()
 	{
-		return "<a:component type='system'/>"
-			"<empty/>"
-			;
+		return "<a:component type='system'/><empty/>";
 	}
 
 	virtual void Init(const CParamNode& UNUSED(paramNode))
 	{
-		// ...
+		m_Enabled = false;
+		m_MapRevealed = false;
+		m_ElapsedTime = fixed::Zero();
+		m_TotalTime = fixed::Zero();
+		m_CurrentPathElapsedTime = fixed::Zero();
 	}
 
 	virtual void Deinit()
 	{
-		// ...
 	}
 
 	virtual void Serialize(ISerializer& serialize)
 	{
-		if (!g_Game || !g_Game->GetView())
-			return;
-
-		CinematicSimulationData* p_CinematicSimulationData = g_Game->GetView()->GetCinema()->GetCinematicSimulationData();
-		serialize.Bool("MapRevealed", p_CinematicSimulationData->m_MapRevealed);
-		serialize.NumberU32_Unbounded("NumberOfPaths", p_CinematicSimulationData->m_Paths.size());
-		for (auto it : p_CinematicSimulationData->m_Paths)
+		serialize.Bool("MapRevealed", m_MapRevealed);
+		serialize.NumberU32_Unbounded("NumberOfPaths", m_Paths.size());
+		for (const std::pair<CStrW, CCinemaPath>& it : m_Paths)
 		{
-			CCinemaPath& path = it.second;
+			const CCinemaPath& path = it.second;
 			const CCinemaData* data = path.GetData();
 
 			// TODO: maybe implement String_Unbounded
@@ -113,11 +118,7 @@ public:
 
 	virtual void Deserialize(const CParamNode& UNUSED(paramNode), IDeserializer& deserialize)
 	{
-		if (!g_Game || !g_Game->GetView())
-			return;
-
-		CinematicSimulationData* p_CinematicSimulationData = g_Game->GetView()->GetCinema()->GetCinematicSimulationData();
-		deserialize.Bool("MapRevealed", p_CinematicSimulationData->m_MapRevealed);
+		deserialize.Bool("MapRevealed", m_MapRevealed);
 		uint32_t numberOfPaths = 0;
 		deserialize.NumberU32_Unbounded("NumberOfPaths", numberOfPaths);
 		for (uint32_t i = 0; i < numberOfPaths; ++i)
@@ -168,45 +169,43 @@ public:
 			}
 
 			// Construct cinema path with data gathered
-			CCinemaPath path(data, pathSpline, targetSpline);
-			p_CinematicSimulationData->m_Paths[data.m_Name] = path;
+			m_Paths[data.m_Name] = CCinemaPath(data, pathSpline, targetSpline);
 		}
-		g_Game->GetView()->GetCinema()->SetEnabled(p_CinematicSimulationData->m_Enabled);
+		SetEnabled(m_Enabled);
 	}
 
 	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
 	{
-		if (!g_Game || !g_Game->GetView())
-			return;
-
 		switch (msg.GetType())
 		{
 		case MT_Update:
 		{
 			const CMessageUpdate &msgData = static_cast<const CMessageUpdate&>(msg);
-			CinematicSimulationData* pCinematicSimulationData = g_Game->GetView()->GetCinema()->GetCinematicSimulationData();
-			if (!pCinematicSimulationData->m_Enabled)
+			if (!m_Enabled)
 				break;
 
-			pCinematicSimulationData->m_ElapsedTime += msgData.turnLength;
-			pCinematicSimulationData->m_CurrentPathElapsedTime += msgData.turnLength;
-			if (pCinematicSimulationData->m_CurrentPathElapsedTime >= pCinematicSimulationData->m_PathQueue.front().GetDuration())
+			m_ElapsedTime += msgData.turnLength;
+			m_CurrentPathElapsedTime += msgData.turnLength;
+			if (m_CurrentPathElapsedTime >= m_PathQueue.front().GetDuration())
 			{
-				CMessageCinemaPathEnded msgCinemaPathEnded(pCinematicSimulationData->m_PathQueue.front().GetName());
-				pCinematicSimulationData->m_PathQueue.pop_front();
-				g_Game->GetSimulation2()->PostMessage(SYSTEM_ENTITY, msgCinemaPathEnded);
-				pCinematicSimulationData->m_CurrentPathElapsedTime = fixed::Zero();
-				if (!pCinematicSimulationData->m_PathQueue.empty())
-					pCinematicSimulationData->m_PathQueue.front().Reset();
+				CMessageCinemaPathEnded msgCinemaPathEnded(m_PathQueue.front().GetName());
+				m_PathQueue.pop_front();
+				GetSimContext().GetComponentManager().PostMessage(SYSTEM_ENTITY, msgCinemaPathEnded);
+				m_CurrentPathElapsedTime = fixed::Zero();
+
+				if (!m_PathQueue.empty())
+					m_PathQueue.front().Reset();
 			}
-			if (pCinematicSimulationData->m_ElapsedTime >= pCinematicSimulationData->m_TotalTime)
+
+			if (m_ElapsedTime >= m_TotalTime)
 			{
-				pCinematicSimulationData->m_CurrentPathElapsedTime = fixed::Zero();
-				pCinematicSimulationData->m_ElapsedTime = fixed::Zero();
-				pCinematicSimulationData->m_TotalTime = fixed::Zero();
-				g_Game->GetView()->GetCinema()->SetEnabled(false);
-				g_Game->GetSimulation2()->PostMessage(SYSTEM_ENTITY, CMessageCinemaQueueEnded());
+				m_CurrentPathElapsedTime = fixed::Zero();
+				m_ElapsedTime = fixed::Zero();
+				m_TotalTime = fixed::Zero();
+				SetEnabled(false);
+				GetSimContext().GetComponentManager().PostMessage(SYSTEM_ENTITY, CMessageCinemaQueueEnded());
 			}
+
 			break;
 		}
 		default:
@@ -214,33 +213,113 @@ public:
 		}
 	}
 
+	virtual void AddPath(const CStrW& name, const CCinemaPath& path)
+	{
+		if (m_Paths.find(name) != m_Paths.end())
+		{
+			LOGWARNING("Path with name '%s' already exists", name.ToUTF8());
+			return;
+		}
+		m_Paths[name] = path;
+	}
+
 	virtual void AddCinemaPathToQueue(const CStrW& name)
 	{
-		if (!g_Game || !g_Game->GetView())
+		if (!HasPath(name))
+		{
+			LOGWARNING("Path with name '%s' doesn't exist", name.ToUTF8());
 			return;
-		g_Game->GetView()->GetCinema()->AddPathToQueue(name);
-		CinematicSimulationData* pCinematicSimulationData = g_Game->GetView()->GetCinema()->GetCinematicSimulationData();
-		if (pCinematicSimulationData->m_PathQueue.size() == 1)
-			pCinematicSimulationData->m_PathQueue.front().Reset();
-		pCinematicSimulationData->m_TotalTime += pCinematicSimulationData->m_Paths[name].GetDuration();
+		}
+		m_PathQueue.push_back(m_Paths[name]);
+
+		if (m_PathQueue.size() == 1)
+			m_PathQueue.front().Reset();
+		m_TotalTime += m_Paths[name].GetDuration();
 	}
 
 	virtual void Play()
 	{
-		if (!g_Game || !g_Game->GetView())
-			return;
-		g_Game->GetView()->GetCinema()->Play();
-		g_Game->GetView()->GetCinema()->SetEnabled(true);
+		SetEnabled(true);
 	}
 
 	virtual void Stop()
 	{
-		if (!g_Game || !g_Game->GetView())
-			return;
-		g_Game->GetView()->GetCinema()->Stop();
-		g_Game->GetView()->GetCinema()->SetEnabled(false);
+		SetEnabled(false);
 	}
 
+	virtual bool HasPath(const CStrW& name) const
+	{
+		return m_Paths.find(name) != m_Paths.end();
+	}
+
+	virtual void ClearQueue()
+	{
+		m_PathQueue.clear();
+	}
+
+	virtual const std::map<CStrW, CCinemaPath>& GetPaths() const
+	{
+		return m_Paths;
+	}
+
+	virtual void SetPaths(const std::map<CStrW, CCinemaPath>& newPaths)
+	{
+		m_Paths = newPaths;
+	}
+
+	virtual const std::list<CCinemaPath>& GetQueue() const
+	{
+		return m_PathQueue;
+	}
+
+	virtual bool IsEnabled() const
+	{
+		return m_Enabled;
+	}
+
+	virtual void SetEnabled(bool enabled)
+	{
+		if (m_PathQueue.empty() && enabled)
+			enabled = false;
+
+		if (m_Enabled == enabled)
+			return;
+
+		CmpPtr<ICmpRangeManager> cmpRangeManager(GetSimContext().GetSystemEntity());
+		CmpPtr<ICmpTerritoryManager> cmpTerritoryManager(GetSimContext().GetSystemEntity());
+		if (cmpRangeManager)
+		{
+			if (enabled)
+				m_MapRevealed = cmpRangeManager->GetLosRevealAll(-1);
+			// TODO: improve m_MapRevealed state and without fade in
+			cmpRangeManager->SetLosRevealAll(-1, enabled);
+		}
+		if (cmpTerritoryManager)
+			cmpTerritoryManager->SetVisibility(!enabled);
+		ICmpSelectable::SetOverrideVisibility(!enabled);
+		ICmpOverlayRenderer::SetOverrideVisibility(!enabled);
+
+		m_Enabled = enabled;
+	}
+
+	virtual void PlayQueue(const float deltaRealTime, CCamera* camera)
+	{
+		if (m_PathQueue.empty())
+			return;
+		m_PathQueue.front().Play(deltaRealTime, camera);
+	}
+
+private:
+	bool m_Enabled;
+	std::map<CStrW, CCinemaPath> m_Paths;
+	std::list<CCinemaPath> m_PathQueue;
+
+	// States before playing
+	bool m_MapRevealed;
+
+	fixed m_ElapsedTime;
+	fixed m_TotalTime;
+	fixed m_CurrentPathElapsedTime;
 };
 
 REGISTER_COMPONENT_TYPE(CinemaManager)

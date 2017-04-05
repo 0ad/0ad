@@ -40,6 +40,7 @@
 #include "renderer/SkyManager.h"
 #include "renderer/WaterManager.h"
 #include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpCinemaManager.h"
 #include "simulation2/components/ICmpObstruction.h"
 #include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/components/ICmpPlayer.h"
@@ -850,6 +851,7 @@ void CXMLReader::ReadPaths(XMBElement parent)
 #undef EL
 #undef AT
 
+	CmpPtr<ICmpCinemaManager> cmpCinemaManager(*m_MapReader.pSimContext, SYSTEM_ENTITY);
 	XERO_ITER_EL(parent, element)
 	{
 		int elementName = element.GetNodeName();
@@ -922,8 +924,10 @@ void CXMLReader::ReadPaths(XMBElement parent)
 				return;
 			}
 
-			if (!m_MapReader.pCinema->HasPath(pathName))
-				m_MapReader.pCinema->AddPath(pathName, path);
+			if (!cmpCinemaManager)
+				continue;
+			if (!cmpCinemaManager->HasPath(pathName))
+				cmpCinemaManager->AddPath(pathName, path);
 			else
 				LOGWARNING("Path with name '%s' already exists", pathName.ToUTF8());
 		}

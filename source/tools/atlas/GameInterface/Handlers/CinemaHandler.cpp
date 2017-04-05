@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,6 +29,8 @@
 #include "maths/MathUtil.h"
 #include "maths/Quaternion.h"
 #include "lib/res/graphics/ogl_tex.h"
+#include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpCinemaManager.h"
 
 
 namespace AtlasMessage {
@@ -73,8 +75,11 @@ sCinemaSplineNode ConstructCinemaNode(const SplineData& data)
 
 std::vector<sCinemaPath> GetCurrentPaths()
 {
-	const std::map<CStrW, CCinemaPath>& paths = g_Game->GetView()->GetCinema()->GetAllPaths();
 	std::vector<sCinemaPath> atlasPaths;
+	CmpPtr<ICmpCinemaManager> cmpCinemaManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+	if (!cmpCinemaManager)
+		return atlasPaths;
+	const std::map<CStrW, CCinemaPath>& paths = cmpCinemaManager->GetPaths();
 
 	for ( std::map<CStrW, CCinemaPath>::const_iterator it=paths.begin(); it!=paths.end(); ++it  )
 	{
@@ -127,7 +132,9 @@ void SetCurrentPaths(const std::vector<sCinemaPath>& atlasPaths)
 		paths[pathName] = CCinemaPath(data, spline, TNSpline());
 	}
 
-	g_Game->GetView()->GetCinema()->SetAllPaths(paths);
+	CmpPtr<ICmpCinemaManager> cmpCinemaManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+	if (cmpCinemaManager)
+		cmpCinemaManager->SetPaths(paths);
 }
 QUERYHANDLER(GetCameraInfo)
 {
@@ -153,12 +160,13 @@ QUERYHANDLER(GetCameraInfo)
 
 MESSAGEHANDLER(CinemaEvent)
 {
-	CCinemaManager* manager = g_Game->GetView()->GetCinema();
+	CmpPtr<ICmpCinemaManager> cmpCinemaManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+	if (!cmpCinemaManager)
+		return;
 
 	if (msg->mode == eCinemaEventMode::SMOOTH)
 	{
-		manager->ClearQueue();
-		manager->AddPathToQueue(*msg->path);
+		cmpCinemaManager->AddCinemaPathToQueue(*msg->path);
 	}
 	else if ( msg->mode == eCinemaEventMode::RESET )
 	{

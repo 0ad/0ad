@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -64,7 +64,7 @@ private:
 	// WriteXML: output some other data (entities, etc) in XML format
 	void WriteXML(const VfsPath& pathname, WaterManager* pWaterMan,
 								SkyManager* pSkyMan, CLightEnv* pLightEnv, CCamera* pCamera,
-								CCinemaManager* pCinema, CPostprocManager* pPostproc,
+								CPostprocManager* pPostproc,
 								CSimulation2* pSimulation2);
 };
 
