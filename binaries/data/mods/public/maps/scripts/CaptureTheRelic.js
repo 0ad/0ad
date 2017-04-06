@@ -42,6 +42,12 @@ Trigger.prototype.InitCaptureTheRelic = function()
 	if (potentialGaiaSpawnPoints.length)
 		potentialSpawnPoints = potentialGaiaSpawnPoints;
 
+	if (!potentialSpawnPoints.length)
+	{
+		error("No gaia entities found on this map that could be used as spawn points!");
+		return;
+	}
+
 	let numSpawnedRelics = Math.ceil(TriggerHelper.GetNumberOfPlayers() / 2);
 	this.playerRelicsCount = new Array(TriggerHelper.GetNumberOfPlayers()).fill(0, 1);
 	this.playerRelicsCount[0] = numSpawnedRelics;
@@ -64,14 +70,15 @@ Trigger.prototype.CheckCaptureTheRelicVictory = function(data)
 	if (!cmpIdentity || !cmpIdentity.HasClass("Relic") || data.from == -1)
 		return;
 
+	--this.playerRelicsCount[data.from];
+
 	if (data.to == -1)
 	{
-		error("Relic entity " + data.entity + " has been destroyed");
-		return;
+		warn("Relic entity " + data.entity + " has been destroyed");
+		this.relics.splice(this.relics.indexOf(data.entity), 1);
 	}
-
-	--this.playerRelicsCount[data.from];
-	++this.playerRelicsCount[data.to];
+	else
+		++this.playerRelicsCount[data.to];
 
 	this.CheckCaptureTheRelicCountdown();
 };
@@ -125,6 +132,9 @@ Trigger.prototype.StartCaptureTheRelicCountdown = function(playerAndAllies)
 		cmpGuiInterface.DeleteTimeNotification(this.ownRelicsVictoryMessage);
 		cmpGuiInterface.DeleteTimeNotification(this.othersRelicsVictoryMessage);
 	}
+
+	if (!this.relics.length)
+		return;
 
 	let others = [-1];
 	for (let playerID = 1; playerID < TriggerHelper.GetNumberOfPlayers(); ++playerID)
