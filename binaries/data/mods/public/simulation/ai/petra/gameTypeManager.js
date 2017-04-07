@@ -269,7 +269,7 @@ m.GameTypeManager.prototype.removeGuardsFromCriticalEnt = function(gameState, cr
 		if (guardEnt.getMetadata(PlayerID, "guardedEnt"))
 			guardEnt.setMetadata(PlayerID, "guardedEnt", undefined);
 	}
-	this.criticalEnts.delete(evt.entity);
+	this.criticalEnts.delete(criticalEntId);
 };
 
 m.GameTypeManager.prototype.buildWonder = function(gameState, queues)
