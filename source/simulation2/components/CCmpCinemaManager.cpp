@@ -64,113 +64,53 @@ public:
 	{
 	}
 
-	virtual void Serialize(ISerializer& serialize)
+	virtual void Serialize(ISerializer& serializer)
 	{
-		serialize.Bool("MapRevealed", m_MapRevealed);
-		serialize.NumberU32_Unbounded("NumberOfPaths", m_Paths.size());
+		serializer.Bool("Enabled", m_Enabled);
+		serializer.NumberFixed_Unbounded("ElapsedTime", m_ElapsedTime);
+		serializer.NumberFixed_Unbounded("CurrentPathElapsedTime", m_CurrentPathElapsedTime);
+		serializer.Bool("MapRevealed", m_MapRevealed);
+
+		serializer.NumberU32_Unbounded("NumberOfPaths", m_Paths.size());
 		for (const std::pair<CStrW, CCinemaPath>& it : m_Paths)
-		{
-			const CCinemaPath& path = it.second;
-			const CCinemaData* data = path.GetData();
+			SerializePath(it.second, serializer);
 
-			// TODO: maybe implement String_Unbounded
-			serialize.String("PathName", data->m_Name, 1, 2048);
-			serialize.String("PathOrientation", data->m_Orientation, 1, 2048);
-			serialize.String("PathMode", data->m_Mode, 1, 2048);
-			serialize.String("PathStyle", data->m_Style, 1, 2048);
-			serialize.NumberFixed_Unbounded("PathTimescale", data->m_Timescale);
-			serialize.Bool("LookAtTarget", data->m_LookAtTarget);
-
-			serialize.NumberU32("NumberOfNodes", path.GetAllNodes().size(), 1, MAX_SPLINE_NODES);
-			const std::vector<SplineData>& nodes = path.GetAllNodes();
-			for (size_t i = 0; i < nodes.size(); ++i)
-			{
-				if (i > 0)
-					serialize.NumberFixed_Unbounded("NodeDeltaTime", nodes[i - 1].Distance);
-				else
-					serialize.NumberFixed_Unbounded("NodeDeltaTime", fixed::Zero());
-				serialize.NumberFixed_Unbounded("PositionX", nodes[i].Position.X);
-				serialize.NumberFixed_Unbounded("PositionY", nodes[i].Position.Y);
-				serialize.NumberFixed_Unbounded("PositionZ", nodes[i].Position.Z);
-
-				serialize.NumberFixed_Unbounded("RotationX", nodes[i].Rotation.X);
-				serialize.NumberFixed_Unbounded("RotationY", nodes[i].Rotation.Y);
-				serialize.NumberFixed_Unbounded("RotationZ", nodes[i].Rotation.Z);
-			}
-
-			if (!data->m_LookAtTarget)
-				continue;
-
-			const std::vector<SplineData>& targetNodes = path.GetTargetSpline().GetAllNodes();
-			serialize.NumberU32("NumberOfTargetNodes", targetNodes.size(), 1, MAX_SPLINE_NODES);
-			for (size_t i = 0; i < targetNodes.size(); ++i)
-			{
-				if (i > 0)
-					serialize.NumberFixed_Unbounded("NodeDeltaTime", targetNodes[i - 1].Distance);
-				else
-					serialize.NumberFixed_Unbounded("NodeDeltaTime", fixed::Zero());
-				serialize.NumberFixed_Unbounded("PositionX", targetNodes[i].Position.X);
-				serialize.NumberFixed_Unbounded("PositionY", targetNodes[i].Position.Y);
-				serialize.NumberFixed_Unbounded("PositionZ", targetNodes[i].Position.Z);
-			}
-		}
+		serializer.NumberU32_Unbounded("NumberOfQueuedPaths", m_PathQueue.size());
+		for (const CCinemaPath& path : m_PathQueue)
+			serializer.String("PathName", path.GetName(), 1, 128);
 	}
 
-	virtual void Deserialize(const CParamNode& UNUSED(paramNode), IDeserializer& deserialize)
+	virtual void Deserialize(const CParamNode& UNUSED(paramNode), IDeserializer& deserializer)
 	{
-		deserialize.Bool("MapRevealed", m_MapRevealed);
+		deserializer.Bool("Enabled", m_Enabled);
+		deserializer.NumberFixed_Unbounded("ElapsedTime", m_ElapsedTime);
+		deserializer.NumberFixed_Unbounded("CurrentPathElapsedTime", m_CurrentPathElapsedTime);
+		deserializer.Bool("MapRevealed", m_MapRevealed);
+
 		uint32_t numberOfPaths = 0;
-		deserialize.NumberU32_Unbounded("NumberOfPaths", numberOfPaths);
+		deserializer.NumberU32_Unbounded("NumberOfPaths", numberOfPaths);
 		for (uint32_t i = 0; i < numberOfPaths; ++i)
 		{
-			CCinemaData data;
-
-			deserialize.String("PathName", data.m_Name, 1, 2048);
-			deserialize.String("PathOrientation", data.m_Orientation, 1, 2048);
-			deserialize.String("PathMode", data.m_Mode, 1, 2048);
-			deserialize.String("PathStyle", data.m_Style, 1, 2048);
-			deserialize.NumberFixed_Unbounded("PathTimescale", data.m_Timescale);
-			deserialize.Bool("LookAtTarget", data.m_LookAtTarget);
-
-			TNSpline pathSpline, targetSpline;
-			uint32_t numberOfNodes = 0;
-			deserialize.NumberU32("NumberOfNodes", numberOfNodes, 1, MAX_SPLINE_NODES);
-			for (uint32_t j = 0; j < numberOfNodes; ++j)
-			{
-				SplineData node;
-				deserialize.NumberFixed_Unbounded("NodeDeltaTime", node.Distance);
-
-				deserialize.NumberFixed_Unbounded("PositionX", node.Position.X);
-				deserialize.NumberFixed_Unbounded("PositionY", node.Position.Y);
-				deserialize.NumberFixed_Unbounded("PositionZ", node.Position.Z);
-
-				deserialize.NumberFixed_Unbounded("RotationX", node.Rotation.X);
-				deserialize.NumberFixed_Unbounded("RotationY", node.Rotation.Y);
-				deserialize.NumberFixed_Unbounded("RotationZ", node.Rotation.Z);
-
-				pathSpline.AddNode(node.Position, node.Rotation, node.Distance);
-			}
-
-			if (data.m_LookAtTarget)
-			{
-				uint32_t numberOfTargetNodes = 0;
-				deserialize.NumberU32("NumberOfTargetNodes", numberOfTargetNodes, 1, MAX_SPLINE_NODES);
-				for (uint32_t j = 0; j < numberOfTargetNodes; ++j)
-				{
-					SplineData node;
-					deserialize.NumberFixed_Unbounded("NodeDeltaTime", node.Distance);
-
-					deserialize.NumberFixed_Unbounded("PositionX", node.Position.X);
-					deserialize.NumberFixed_Unbounded("PositionY", node.Position.Y);
-					deserialize.NumberFixed_Unbounded("PositionZ", node.Position.Z);
-
-					targetSpline.AddNode(node.Position, CFixedVector3D(), node.Distance);
-				}
-			}
-
-			// Construct cinema path with data gathered
-			m_Paths[data.m_Name] = CCinemaPath(data, pathSpline, targetSpline);
+			CCinemaPath path = DeserializePath(deserializer);
+			m_Paths[path.GetName()] = path;
 		}
+
+		uint32_t numberOfQueuedPaths = 0;
+		deserializer.NumberU32_Unbounded("NumberOfQueuedPaths", numberOfQueuedPaths);
+		for (uint32_t i = 0; i < numberOfQueuedPaths; ++i)
+		{
+			CStrW pathName;
+			deserializer.String("PathName", pathName, 1, 128);
+			ENSURE(HasPath(pathName));
+			AddCinemaPathToQueue(pathName);
+		}
+
+		if (!m_PathQueue.empty())
+		{
+			m_PathQueue.front().m_TimeElapsed = m_CurrentPathElapsedTime.ToFloat();
+			m_PathQueue.front().Validate();
+		}
+
 		SetEnabled(m_Enabled);
 	}
 
@@ -310,6 +250,103 @@ public:
 	}
 
 private:
+
+	void SerializePath(const CCinemaPath& path, ISerializer& serializer)
+	{
+		const CCinemaData* data = path.GetData();
+
+		serializer.String("PathName", data->m_Name, 1, 128);
+		serializer.String("PathOrientation", data->m_Orientation, 1, 128);
+		serializer.String("PathMode", data->m_Mode, 1, 128);
+		serializer.String("PathStyle", data->m_Style, 1, 128);
+		serializer.NumberFixed_Unbounded("PathTimescale", data->m_Timescale);
+		serializer.Bool("LookAtTarget", data->m_LookAtTarget);
+
+		serializer.NumberU32("NumberOfNodes", path.GetAllNodes().size(), 1, MAX_SPLINE_NODES);
+		const std::vector<SplineData>& nodes = path.GetAllNodes();
+		for (size_t i = 0; i < nodes.size(); ++i)
+		{
+			if (i > 0)
+				serializer.NumberFixed_Unbounded("NodeDeltaTime", nodes[i - 1].Distance);
+			else
+				serializer.NumberFixed_Unbounded("NodeDeltaTime", fixed::Zero());
+
+			serializer.NumberFixed_Unbounded("PositionX", nodes[i].Position.X);
+			serializer.NumberFixed_Unbounded("PositionY", nodes[i].Position.Y);
+			serializer.NumberFixed_Unbounded("PositionZ", nodes[i].Position.Z);
+
+			serializer.NumberFixed_Unbounded("RotationX", nodes[i].Rotation.X);
+			serializer.NumberFixed_Unbounded("RotationY", nodes[i].Rotation.Y);
+			serializer.NumberFixed_Unbounded("RotationZ", nodes[i].Rotation.Z);
+		}
+
+		if (!data->m_LookAtTarget)
+			return;
+
+		const std::vector<SplineData>& targetNodes = path.GetTargetSpline().GetAllNodes();
+		serializer.NumberU32("NumberOfTargetNodes", targetNodes.size(), 1, MAX_SPLINE_NODES);
+		for (size_t i = 0; i < targetNodes.size(); ++i)
+		{
+			if (i > 0)
+				serializer.NumberFixed_Unbounded("NodeDeltaTime", targetNodes[i - 1].Distance);
+			else
+				serializer.NumberFixed_Unbounded("NodeDeltaTime", fixed::Zero());
+			serializer.NumberFixed_Unbounded("PositionX", targetNodes[i].Position.X);
+			serializer.NumberFixed_Unbounded("PositionY", targetNodes[i].Position.Y);
+			serializer.NumberFixed_Unbounded("PositionZ", targetNodes[i].Position.Z);
+		}
+	}
+
+	CCinemaPath DeserializePath(IDeserializer& deserializer)
+	{
+		CCinemaData data;
+
+		deserializer.String("PathName", data.m_Name, 1, 128);
+		deserializer.String("PathOrientation", data.m_Orientation, 1, 128);
+		deserializer.String("PathMode", data.m_Mode, 1, 128);
+		deserializer.String("PathStyle", data.m_Style, 1, 128);
+		deserializer.NumberFixed_Unbounded("PathTimescale", data.m_Timescale);
+		deserializer.Bool("LookAtTarget", data.m_LookAtTarget);
+
+		TNSpline pathSpline, targetSpline;
+		uint32_t numberOfNodes = 0;
+		deserializer.NumberU32("NumberOfNodes", numberOfNodes, 1, MAX_SPLINE_NODES);
+		for (uint32_t j = 0; j < numberOfNodes; ++j)
+		{
+			SplineData node;
+			deserializer.NumberFixed_Unbounded("NodeDeltaTime", node.Distance);
+
+			deserializer.NumberFixed_Unbounded("PositionX", node.Position.X);
+			deserializer.NumberFixed_Unbounded("PositionY", node.Position.Y);
+			deserializer.NumberFixed_Unbounded("PositionZ", node.Position.Z);
+
+			deserializer.NumberFixed_Unbounded("RotationX", node.Rotation.X);
+			deserializer.NumberFixed_Unbounded("RotationY", node.Rotation.Y);
+			deserializer.NumberFixed_Unbounded("RotationZ", node.Rotation.Z);
+
+			pathSpline.AddNode(node.Position, node.Rotation, node.Distance);
+		}
+
+		if (data.m_LookAtTarget)
+		{
+			uint32_t numberOfTargetNodes = 0;
+			deserializer.NumberU32("NumberOfTargetNodes", numberOfTargetNodes, 1, MAX_SPLINE_NODES);
+			for (uint32_t j = 0; j < numberOfTargetNodes; ++j)
+			{
+				SplineData node;
+				deserializer.NumberFixed_Unbounded("NodeDeltaTime", node.Distance);
+
+				deserializer.NumberFixed_Unbounded("PositionX", node.Position.X);
+				deserializer.NumberFixed_Unbounded("PositionY", node.Position.Y);
+				deserializer.NumberFixed_Unbounded("PositionZ", node.Position.Z);
+
+				targetSpline.AddNode(node.Position, CFixedVector3D(), node.Distance);
+			}
+		}
+
+		return CCinemaPath(data, pathSpline, targetSpline);
+	}
+
 	bool m_Enabled;
 	std::map<CStrW, CCinemaPath> m_Paths;
 	std::list<CCinemaPath> m_PathQueue;
