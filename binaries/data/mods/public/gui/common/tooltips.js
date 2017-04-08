@@ -62,6 +62,14 @@ function commaFont(text)
 	return g_TooltipTextFormats.comma[0] + text + g_TooltipTextFormats.comma[1];
 }
 
+function getSecondsString(seconds)
+{
+	return sprintf(translatePlural("%(time)s %(second)s", "%(time)s %(second)s", seconds), {
+		"time": seconds,
+		"second": unitFont(translatePlural("second", "seconds", seconds))
+	});
+}
+
 function getEntityTooltip(template)
 {
 	if (!template.tooltip)
@@ -84,11 +92,7 @@ function getHealthTooltip(template)
 function attackRateDetails(template, type)
 {
 	// Either one arrow shot by UnitAI,
-	let time = template.attack[type].repeatTime / 1000;
-	let timeString = sprintf(translatePlural("%(time)s %(second)s", "%(time)s %(second)s", time), {
-		"time": time,
-		"second": unitFont(translatePlural("second", "seconds", time))
-	});
+	let timeString = getSecondsString(template.attack[type].repeatTime / 1000);
 
 	// or multiple arrows shot by BuildingAI
 	if (!template.buildingAI || type != "Ranged")
@@ -397,6 +401,30 @@ function getGatherTooltip(template)
 	});
 }
 
+function getResourceTrickleTooltip(template)
+{
+	if (!template.resourceTrickle)
+		return "";
+
+	let resCodes = Object.keys(template.resourceTrickle.rates).filter(res => template.resourceTrickle.rates[res]);
+	if (!resCodes.length)
+		return "";
+
+	return sprintf(translate("%(label)s %(details)s"), {
+		"label": headerFont(translate("Resource Trickle:")),
+		"details": sprintf(translate("%(resources)s / %(time)s"), {
+			"resources":
+				resCodes.map(
+					res => sprintf(translate("%(resourceIcon)s %(rate)s"), {
+						"resourceIcon": resourceIcon(res),
+						"rate": template.resourceTrickle.rates[res]
+					})
+				).join("  "),
+			"time": getSecondsString(template.resourceTrickle.interval / 1000)
+		})
+	});
+}
+
 /**
  * Returns an array of strings for a set of wall pieces. If the pieces share
  * resource type requirements, output will be of the form '10 to 30 Stone',
@@ -660,6 +688,9 @@ function getLootTooltip(template)
 			"loot": loot
 		}));
 	}
+
+	if (!lootLabels.length)
+		return "";
 
 	return sprintf(translate("%(label)s %(details)s"), {
 		"label": headerFont(translate("Loot:")),

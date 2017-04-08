@@ -298,6 +298,7 @@ function displaySingle(entState)
 		getSpeedTooltip,
 		getGarrisonTooltip,
 		getProjectilesTooltip,
+		getResourceTrickleTooltip,
 		getLootTooltip
 	].map(func => func(entState)).filter(tip => tip).join("\n");
 

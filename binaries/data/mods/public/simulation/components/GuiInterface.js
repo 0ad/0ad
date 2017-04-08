@@ -436,6 +436,7 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 		"resourceDropsite": null,
 		"resourceGatherRates": null,
 		"resourceSupply": null,
+		"resourceTrickle": null,
 		"speed": null,
 	};
 
@@ -578,12 +579,23 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 	{
 		let resources = cmpLoot.GetResources();
 		ret.loot = {
-			"xp": cmpLoot.GetXp(),
-			"food": resources.food,
-			"wood": resources.wood,
-			"stone": resources.stone,
-			"metal": resources.metal
+			"xp": cmpLoot.GetXp()
 		};
+		for (let res of Resources.GetCodes())
+			ret.loot[res] = resources[res];
+	}
+
+	let cmpResourceTrickle = Engine.QueryInterface(ent, IID_ResourceTrickle);
+	if (cmpResourceTrickle)
+	{
+		ret.resourceTrickle = {
+			"interval": cmpResourceTrickle.GetTimer(),
+			"rates": {}
+		};
+
+		let rates = cmpResourceTrickle.GetRates();
+		for (let res in rates)
+			ret.resourceTrickle.rates[res] = rates[res];
 	}
 
 	let cmpUnitMotion = Engine.QueryInterface(ent, IID_UnitMotion);
