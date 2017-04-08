@@ -1,6 +1,6 @@
 {
 	"type": "global",
-	"affects": ["Champion Spear"],
+	"affects": ["Champion Spear Infantry"],
 	"modifications": [
 		{ "value": "Cost/Resources/food", "multiply": 0.95 },
 		{ "value": "Cost/Resources/wood", "multiply": 0.95 },
@@ -8,5 +8,5 @@
 		{ "value": "Cost/Resources/stone", "multiply": 0.95 }
 	],
 	"auraName": "Lycurgan Military Reforms",
-	"auraDescription": "-5% resource cost for spear champions."
+	"auraDescription": "-5% resource cost for spear infantry champions."
 }
