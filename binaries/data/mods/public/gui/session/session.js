@@ -152,9 +152,14 @@ var g_ShowGuarded = false;
 var g_AdditionalHighlight = [];
 
 /**
- * Display data of the current players heroes.
+ * Display data of the current players entities shown in the top panel.
  */
-var g_Heroes = [];
+var g_PanelEntities = [];
+
+/**
+ * Order in which the panel entities are shown.
+ */
+var g_PanelEntityOrder = ["Hero", "Relic"];
 
 /**
  * Unit classes to be checked for the idle-worker-hotkey.
@@ -286,8 +291,8 @@ function init(initData, hotloadData)
 	resizeDiplomacyDialog();
 	resizeTradeDialog();
 
-	for (let slot in Engine.GetGUIObjectByName("unitHeroPanel").children)
-		initGUIHeroes(slot);
+	for (let slot in Engine.GetGUIObjectByName("panelEntityPanel").children)
+		initPanelEntities(slot);
 
 	// Populate player selection dropdown
 	let playerNames = [translate("Observer")];
@@ -409,25 +414,25 @@ function updateHotkeyTooltips()
 		});
 }
 
-function initGUIHeroes(slot)
+function initPanelEntities(slot)
 {
-	let button = Engine.GetGUIObjectByName("unitHeroButton[" + slot + "]");
+	let button = Engine.GetGUIObjectByName("panelEntityButton[" + slot + "]");
 
 	button.onPress = function() {
-		let hero = g_Heroes.find(hero => hero.slot !== undefined && hero.slot == slot);
-		if (!hero)
+		let panelEnt = g_PanelEntities.find(panelEnt => panelEnt.slot !== undefined && panelEnt.slot == slot);
+		if (!panelEnt)
 			return;
 
 		if (!Engine.HotkeyIsPressed("selection.add"))
 			g_Selection.reset();
 
-		g_Selection.addList([hero.ent]);
+		g_Selection.addList([panelEnt.ent]);
 	};
 
 	button.onDoublePress = function() {
-		let hero = g_Heroes.find(hero => hero.slot !== undefined && hero.slot == slot);
-		if (hero)
-			selectAndMoveTo(getEntityOrHolder(hero.ent));
+		let panelEnt = g_PanelEntities.find(panelEnt => panelEnt.slot !== undefined && panelEnt.slot == slot);
+		if (panelEnt)
+			selectAndMoveTo(getEntityOrHolder(panelEnt.ent));
 	};
 }
 
@@ -830,8 +835,8 @@ function updateGUIObjects()
 	if (g_ShowGuarding || g_ShowGuarded)
 		updateAdditionalHighlight();
 
-	updateHeroes();
-	displayHeroes();
+	updatePanelEntities();
+	displayPanelEntities();
 
 	updateGroups();
 	updateDebug();
@@ -915,99 +920,102 @@ function updateGUIStatusBar(nameOfBar, points, maxPoints, direction)
 	statusBar.size = healthSize;
 }
 
-function updateHeroes()
+function updatePanelEntities()
 {
 	let playerState = GetSimState().players[g_ViewedPlayer];
-	let heroes = playerState ? playerState.heroes : [];
+	let panelEnts = playerState ? playerState.panelEntities : [];
 
-	g_Heroes = g_Heroes.filter(hero => heroes.find(ent => ent == hero.ent));
+	g_PanelEntities = g_PanelEntities.filter(panelEnt => panelEnts.find(ent => ent == panelEnt.ent));
 
-	for (let ent of heroes)
+	for (let ent of panelEnts)
 	{
-		let heroState = GetExtendedEntityState(ent);
-		let template = GetTemplateData(heroState.template);
+		let panelEntState = GetExtendedEntityState(ent);
+		let template = GetTemplateData(panelEntState.template);
 
-		let hero = g_Heroes.find(hero => ent == hero.ent);
-		if (!hero)
+		let panelEnt = g_PanelEntities.find(panelEnt => ent == panelEnt.ent);
+
+		if (!panelEnt)
 		{
-			hero = {
+			panelEnt = {
 				"ent": ent,
 				"tooltip": undefined,
 				"sprite": "stretched:session/portraits/" + template.icon,
 				"maxHitpoints": undefined,
-				"currentHitpoints": heroState.hitpoints,
+				"currentHitpoints": panelEntState.hitpoints,
 				"previousHitpoints": undefined
 			};
-			g_Heroes.push(hero);
+			g_PanelEntities.push(panelEnt);
 		}
 
-		hero.tooltip = createHeroTooltip(heroState, template);
-
-		hero.previousHitpoints = hero.currentHitpoints;
-		hero.currentHitpoints = heroState.hitpoints;
-		hero.maxHitpoints = heroState.maxHitpoints;
+		panelEnt.tooltip = createPanelEntityTooltip(panelEntState, template);
+		panelEnt.previousHitpoints = panelEnt.currentHitpoints;
+		panelEnt.currentHitpoints = panelEntState.hitpoints;
+		panelEnt.maxHitpoints = panelEntState.maxHitpoints;
 	}
+
+	let panelEntIndex = ent => g_PanelEntityOrder.findIndex(entClass =>
+		GetEntityState(ent).identity.classes.indexOf(entClass) != -1);
+
+	g_PanelEntities = g_PanelEntities.sort((panelEntA, panelEntB) => panelEntIndex(panelEntA.ent) - panelEntIndex(panelEntB.ent))
 }
 
-function createHeroTooltip(heroState, template)
+function createPanelEntityTooltip(panelEntState, template)
 {
+	let getPanelEntNameTooltip = panelEntState => "[font=\"sans-bold-16\"]" + template.name.specific + "[/font]";
+
 	return [
-		"[font=\"sans-bold-16\"]" + template.name.specific + "[/font]" + "\n" +
-			sprintf(translate("%(label)s %(current)s / %(max)s"), {
-				"label": "[font=\"sans-bold-13\"]" + translate("Health:") + "[/font]",
-				"current": Math.ceil(heroState.hitpoints),
-				"max": Math.ceil(heroState.maxHitpoints)
-			}),
-		getAttackTooltip(heroState),
-		getArmorTooltip(heroState),
-		getEntityTooltip(heroState)
-	].filter(tip => tip).join("\n");
+		getPanelEntNameTooltip,
+		getCurrentHealthTooltip,
+		getAttackTooltip,
+		getArmorTooltip,
+		getEntityTooltip
+	].map(tooltip => tooltip(panelEntState)).filter(tip => tip).join("\n");
 }
 
-function displayHeroes()
+function displayPanelEntities()
 {
-	let buttons = Engine.GetGUIObjectByName("unitHeroPanel").children;
+	let buttons = Engine.GetGUIObjectByName("panelEntityPanel").children;
 
 	buttons.forEach((button, slot) => {
 
-		if (button.hidden || g_Heroes.some(hero => hero.slot !== undefined && hero.slot == slot))
+		if (button.hidden || g_PanelEntities.some(panelEnt => panelEnt.slot !== undefined && panelEnt.slot == slot))
 			return;
 
 		button.hidden = true;
-		stopColorFade("heroHitOverlay[" + slot + "]");
+		stopColorFade("panelEntityHitOverlay[" + slot + "]");
 	});
 
 	// The slot identifies the button, displayIndex determines its position.
-	for (let displayIndex = 0; displayIndex < Math.min(g_Heroes.length, buttons.length); ++displayIndex)
+	for (let displayIndex = 0; displayIndex < Math.min(g_PanelEntities.length, buttons.length); ++displayIndex)
 	{
-		let hero = g_Heroes[displayIndex];
+		let panelEnt = g_PanelEntities[displayIndex];
 
 		// Find the first unused slot if new, otherwise reuse previous.
-		let slot = hero.slot === undefined ?
+		let slot = panelEnt.slot === undefined ?
 			buttons.findIndex(button => button.hidden) :
-			hero.slot;
+			panelEnt.slot;
 
-		let heroButton = Engine.GetGUIObjectByName("unitHeroButton[" + slot + "]");
-		heroButton.tooltip = hero.tooltip;
+		let panelEntButton = Engine.GetGUIObjectByName("panelEntityButton[" + slot + "]");
+		panelEntButton.tooltip = panelEnt.tooltip;
 
-		updateGUIStatusBar("heroHealthBar[" + slot + "]", hero.currentHitpoints, hero.maxHitpoints);
+		updateGUIStatusBar("panelEntityHealthBar[" + slot + "]", panelEnt.currentHitpoints, panelEnt.maxHitpoints);
 
-		if (hero.slot === undefined)
+		if (panelEnt.slot === undefined)
 		{
-			let heroImage = Engine.GetGUIObjectByName("unitHeroImage[" + slot + "]");
-			heroImage.sprite = hero.sprite;
+			let panelEntImage = Engine.GetGUIObjectByName("panelEntityImage[" + slot + "]");
+			panelEntImage.sprite = panelEnt.sprite;
 
-			heroButton.hidden = false;
-			hero.slot = slot;
+			panelEntButton.hidden = false;
+			panelEnt.slot = slot;
 		}
 
-		// If the health of the hero changed since the last update, trigger the animation.
-		if (hero.previousHitpoints > hero.currentHitpoints)
-			startColorFade("heroHitOverlay[" + slot + "]", 100, 0,
+		// If the health of the panelEnt changed since the last update, trigger the animation.
+		if (panelEnt.previousHitpoints > panelEnt.currentHitpoints)
+			startColorFade("panelEntityHitOverlay[" + slot + "]", 100, 0,
 				colorFade_attackUnit, true, smoothColorFadeRestart_attackUnit);
 
 		// TODO: Instead of instant position changes, animate button movement.
-		setPanelObjectPosition(heroButton, displayIndex, buttons.length);
+		setPanelObjectPosition(panelEntButton, displayIndex, buttons.length);
 	}
 }
 

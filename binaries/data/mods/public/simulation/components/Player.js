@@ -11,6 +11,11 @@ Player.prototype.Schema =
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>";
 
+/**
+ * Which units will be shown with special icons at the top.
+ */
+var panelEntityClasses = "Hero Relic";
+
 Player.prototype.Init = function()
 {
 	this.playerID = undefined;
@@ -36,7 +41,7 @@ Player.prototype.Init = function()
 	this.tradeRateMultiplier = 1;
 	this.cheatsEnabled = false;
 	this.cheatTimeMultiplier = 1;
-	this.heroes = [];
+	this.panelEntities = [];
 	this.resourceNames = {};
 	this.disabledTemplates = {};
 	this.disabledTechnologies = {};
@@ -184,9 +189,9 @@ Player.prototype.GetSpyCostMultiplier = function()
 	return this.spyCostMultiplier;
 };
 
-Player.prototype.GetHeroes = function()
+Player.prototype.GetPanelEntities = function()
 {
-	return this.heroes;
+	return this.panelEntities;
 };
 
 Player.prototype.IsTrainingBlocked = function()
@@ -703,12 +708,11 @@ Player.prototype.OnGlobalOwnershipChanged = function(msg)
 		if (cmpCost)
 			this.popUsed -= cmpCost.GetPopCost();
 
-		if (cmpIdentity && cmpIdentity.HasClass("Hero"))
+		if (cmpIdentity && MatchesClassList(cmpIdentity.GetClassesList(), panelEntityClasses))
 		{
-			//Remove from Heroes list
-			var index = this.heroes.indexOf(msg.entity);
+			let index = this.panelEntities.indexOf(msg.entity);
 			if (index >= 0)
-				this.heroes.splice(index, 1);
+				this.panelEntities.splice(index, 1);
 		}
 	}
 	if (msg.to == this.playerID)
@@ -716,8 +720,8 @@ Player.prototype.OnGlobalOwnershipChanged = function(msg)
 		if (cmpCost)
 			this.popUsed += cmpCost.GetPopCost();
 
-		if (cmpIdentity && cmpIdentity.HasClass("Hero"))
-			this.heroes.push(msg.entity);
+		if (cmpIdentity && MatchesClassList(cmpIdentity.GetClassesList(), panelEntityClasses))
+			this.panelEntities.push(msg.entity);
 	}
 };
 
