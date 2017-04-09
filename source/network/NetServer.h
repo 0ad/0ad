@@ -229,7 +229,6 @@ private:
 
 	void AddPlayer(const CStr& guid, const CStrW& name);
 	void RemovePlayer(const CStr& guid);
-	void SetPlayerReady(const CStr& guid, const int ready);
 	void SendPlayerAssignments();
 	void ClearAllPlayerReady();
 
