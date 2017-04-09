@@ -39,6 +39,7 @@
 #include "ps/Game.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/Hotkey.h"
+#include "ps/World.h"
 #include "simulation2/components/ICmpCinemaManager.h"
 #include "simulation2/components/ICmpOverlayRenderer.h"
 #include "simulation2/components/ICmpRangeManager.h"
@@ -111,7 +112,106 @@ void CCinemaManager::DrawPaths() const
 		return;
 
 	for (const std::pair<CStrW, CCinemaPath>& p : cmpCinemaManager->GetPaths())
-		p.second.Draw();
+	{
+		DrawSpline(p.second, CColor(0.2f, 0.2f, 1.f, 0.9f), 100, true);
+		DrawNodes(p.second, CColor(0.5f, 1.0f, 0.f, 1.0f));
+
+		if (p.second.GetTargetSpline().GetAllNodes().empty())
+			continue;
+
+		DrawSpline(p.second.GetTargetSpline(), CColor(1.0f, 0.2f, 0.2f, 0.9f), 100, true);
+		DrawNodes(p.second.GetTargetSpline(), CColor(1.0f, 0.5f, 0.f, 1.0f));
+	}
+}
+
+void CCinemaManager::DrawSpline(const RNSpline& spline, const CColor& splineColor, int smoothness, bool lines) const
+{
+	if (spline.GetAllNodes().size() < 2)
+		return;
+	if (spline.GetAllNodes().size() == 2 && lines)
+		smoothness = 2;
+
+	float start = spline.MaxDistance.ToFloat() / smoothness;
+	float time = 0;
+
+#if CONFIG2_GLES
+	#warning TODO : implement CCinemaPath on GLES
+#else
+
+	glEnable(GL_BLEND);
+	glColor4f(splineColor.r, splineColor.g, splineColor.b, splineColor.a);
+	if (lines)
+	{
+		glLineWidth(1.8f);
+		glEnable(GL_LINE_SMOOTH);
+		glBegin(GL_LINE_STRIP);
+		for (int i = 0; i <= smoothness; ++i)
+		{
+			time = start * i / spline.MaxDistance.ToFloat();
+			CVector3D tmp = spline.GetPosition(time);
+			glVertex3f(tmp.X, tmp.Y, tmp.Z);
+		}
+		glEnd();
+
+		// Height indicaor
+		if (g_Game && g_Game->GetWorld() && g_Game->GetWorld()->GetTerrain())
+		{
+			glLineWidth(1.1f);
+			glBegin(GL_LINES);
+			for (int i = 0; i <= smoothness; ++i)
+			{
+				time = start * i / spline.MaxDistance.ToFloat();
+				CVector3D tmp = spline.GetPosition(time);
+				float groundY = g_Game->GetWorld()->GetTerrain()->GetExactGroundLevel(tmp.X, tmp.Z);
+				glVertex3f(tmp.X, tmp.Y, tmp.Z);
+				glVertex3f(tmp.X, groundY, tmp.Z);
+			}
+			glEnd();
+		}
+
+		glDisable(GL_LINE_SMOOTH);
+		glLineWidth(1.0f);
+	}
+	else
+	{
+		smoothness /= 2;
+		start = spline.MaxDistance.ToFloat() / smoothness;
+		glEnable(GL_POINT_SMOOTH);
+		glPointSize(3.0f);
+		glBegin(GL_POINTS);
+		for (int i = 0; i <= smoothness; ++i)
+		{
+			time = start * i / spline.MaxDistance.ToFloat();
+			CVector3D tmp = spline.GetPosition(time);
+			glVertex3f(tmp.X, tmp.Y, tmp.Z);
+		}
+		glEnd();
+		glPointSize(1.0f);
+		glDisable(GL_POINT_SMOOTH);
+	}
+	glDisable(GL_BLEND);
+
+#endif
+}
+
+void CCinemaManager::DrawNodes(const RNSpline& spline, const CColor& nodeColor) const
+{
+#if CONFIG2_GLES
+	#warning TODO : implement CCinemaPath on GLES
+#else
+
+	glEnable(GL_POINT_SMOOTH);
+	glPointSize(5.0f);
+	glColor4f(nodeColor.r, nodeColor.g, nodeColor.b, nodeColor.a);
+	glBegin(GL_POINTS);
+
+	for (const SplineData& node : spline.GetAllNodes())
+		glVertex3f(node.Position.X.ToFloat(), node.Position.Y.ToFloat(), node.Position.Z.ToFloat());
+
+	glEnd();
+	glPointSize(1.0f);
+	glDisable(GL_POINT_SMOOTH);
+#endif
 }
 
 void CCinemaManager::DrawBars() const

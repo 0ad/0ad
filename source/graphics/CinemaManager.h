@@ -26,6 +26,7 @@
 
 #include "graphics/CinemaPath.h"
 #include "ps/CStr.h"
+#include "ps/Shapes.h"
 
 /**
  * Class for in game playing of cinematics. Should only be instantiated in CGameView.
@@ -42,6 +43,9 @@ public:
 	void Render() const;
 	void DrawBars() const;
 	void DrawPaths() const;
+	void DrawSpline(const RNSpline& spline, const CColor& splineColor, int smoothness, bool lines) const;
+	void DrawNodes(const RNSpline& spline, const CColor& nodesColor) const;
+
 	void UpdateSessionVisibility() const;
 	void UpdateSilhouettesVisibility() const;
 
