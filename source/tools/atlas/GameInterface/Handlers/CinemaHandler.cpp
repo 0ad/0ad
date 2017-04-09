@@ -196,6 +196,24 @@ BEGIN_COMMAND(SetCinemaPaths)
 };
 END_COMMAND(SetCinemaPaths)
 
+BEGIN_COMMAND(SetCinemaPathsDrawing)
+{
+	void Do()
+	{
+		if (g_Game && g_Game->GetView() && g_Game->GetView()->GetCinema())
+			g_Game->GetView()->GetCinema()->SetPathsDrawing(msg->drawPaths);
+	}
+
+	void Redo()
+	{
+	}
+
+	void Undo()
+	{
+	}
+};
+END_COMMAND(SetCinemaPathsDrawing)
+
 QUERYHANDLER(GetCinemaPaths)
 {
 	msg->paths = GetCurrentPaths();

@@ -247,6 +247,16 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources)
 			ret.resourceGatherRates[type] = getEntityValue("ResourceGatherer/Rates/"+ type);
 	}
 
+	if (template.ResourceTrickle)
+	{
+		ret.resourceTrickle = {
+			"interval": +template.ResourceTrickle.Interval,
+			"rates": {}
+		};
+		for (let type in template.ResourceTrickle.Rates)
+			ret.resourceTrickle.rates[type] = getEntityValue("ResourceTrickle/Rates/" + type);
+	}
+
 	if (template.Loot)
 	{
 		ret.loot = {};

@@ -24,6 +24,7 @@ Engine.LoadComponentScript("interfaces/RallyPoint.js");
 Engine.LoadComponentScript("interfaces/Repairable.js");
 Engine.LoadComponentScript("interfaces/ResourceDropsite.js");
 Engine.LoadComponentScript("interfaces/ResourceGatherer.js");
+Engine.LoadComponentScript("interfaces/ResourceTrickle.js");
 Engine.LoadComponentScript("interfaces/ResourceSupply.js");
 Engine.LoadComponentScript("interfaces/TechnologyManager.js");
 Engine.LoadComponentScript("interfaces/Trader.js");
@@ -560,6 +561,16 @@ AddMock(10, IID_Position, {
 	},
 });
 
+AddMock(10, IID_ResourceTrickle, {
+	"GetTimer": () => 1250,
+	"GetRates": () => ({
+		"food": 2,
+		"wood": 3,
+		"stone": 5,
+		"metal": 9
+	})
+});
+
 // Note: property order matters when using TS_ASSERT_UNEVAL_EQUALS,
 //	because uneval preserves property order. So make sure this object
 //	matches the ordering in GuiInterface.
@@ -614,5 +625,14 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedEntityState(-1, 10), {
 	resourceDropsite: null,
 	resourceGatherRates: null,
 	resourceSupply: null,
+	resourceTrickle: {
+		"interval": 1250,
+		"rates": {
+			"food": 2,
+			"wood": 3,
+			"stone": 5,
+			"metal": 9
+		}
+	},
 	speed: null,
 });

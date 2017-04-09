@@ -1115,7 +1115,7 @@ function setup_atlas_projects()
 		"Misc",
 		"ScenarioEditor",
 		"ScenarioEditor/Sections/Common",
-		"ScenarioEditor/Sections/Cinematic",
+		"ScenarioEditor/Sections/Cinema",
 		"ScenarioEditor/Sections/Environment",
 		"ScenarioEditor/Sections/Map",
 		"ScenarioEditor/Sections/Object",
