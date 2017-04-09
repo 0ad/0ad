@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,6 +26,7 @@
 
 #include "ScenarioEditor.h"
 
+#include "Sections/Cinema/Cinema.h"
 #include "Sections/Environment/Environment.h"
 #include "Sections/Map/Map.h"
 #include "Sections/Object/Object.h"
@@ -290,6 +291,7 @@ void SectionLayout::Build(ScenarioEditor& scenarioEditor)
 	ADD_SIDEBAR(TerrainSidebar,         _T("terrain.png"),     _("Terrain"));
 	ADD_SIDEBAR(ObjectSidebar,          _T("object.png"),      _("Object"));
 	ADD_SIDEBAR(EnvironmentSidebar,     _T("environment.png"), _("Environment"));
+	ADD_SIDEBAR(CinemaSidebar,          _T("cinematic.png"),   _("Cinema"));
 
 	#undef ADD_SIDEBAR
 
