@@ -2,73 +2,6 @@
 
 <Scenario version="6">
 	<Terrain patches="25" texture="blackness" priority="0" height="16384"/>
-	<Script><![CDATA[//
-
-	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-	var entityTemplates = cmpTemplateManager.FindAllTemplates(true);
-
-	var patches = 25;
-	var x0 = 20, z0 = 20, x1 = patches*16*4-20;
-	var x = x0, z = z0;
-	var maxh = 0;
-	var gap = 14;
-
-	for (let template of entityTemplates)
-	{
-		if (template.match(/^(rubble\/|special\/|actor\|)/))
-			continue;
-
-		// Exclude common templates used for inheritance only.
-		if (template.match(/_common$/))
-			continue;
-
-		print(template+"...\n");
-
-		var ent = Engine.AddEntity(template);
-
-		if (!ent)
-		{
-			print("Failed to load "+template+"\n");
-			continue;
-		}
-
-		var cmpFootprint = Engine.QueryInterface(ent, IID_Footprint);
-		if (!cmpFootprint)
-		{
-			print(template+" has no footprint\n");
-			continue;
-		}
-		var shape = cmpFootprint.GetShape();
-		var w, h;
-		if (shape.type == 'circle')
-			w = h = shape.radius*2;
-		else
-		{
-			w = shape.width;
-			h = shape.depth;
-		}
-
-		if (x + w >= x1)
-		{
-			// Start a new row
-			x = x0;
-			z += maxh + gap;
-			maxh = 0;
-		}
-
-		var cmpPosition = Engine.QueryInterface(ent, IID_Position);
-		cmpPosition.MoveTo(x + w/2, z);
-		cmpPosition.SetYRotation(Math.PI*3/4);
-
-		var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
-		if (cmpOwnership)
-			cmpOwnership.SetOwner(1);
-
-		x += w + gap;
-		maxh = Math.max(maxh, h);
-	}
-
-	//]]></Script>
 	<Environment>
 		<SkySet>default</SkySet>
 		<SunColor r="0.811765" g="0.792157" b="0.701961"/>
@@ -97,7 +30,7 @@
 		"Name":"Units Demo",
 		"Description":"Every unit in the game.",
 		"Keywords": [
-		  "demo"
+			"demo"
 		],
 		"PlayerData":
 		[
@@ -106,7 +39,10 @@
 			}
 		],
 		"RevealMap":true,
-		"GameType":"endless"
+		"GameType":"endless",
+		"TriggerScripts": [
+			"scenarios/Units_demo.js"
+		]
 	}
 	]]></ScriptSettings>
 	<Entities/>
