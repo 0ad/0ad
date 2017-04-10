@@ -590,31 +590,31 @@ public:
 	// Map the various fixed-function Pointer functions onto generic vertex attributes
 	// (matching the attribute indexes from ShaderManager's ParseAttribSemantics):
 
-	virtual void VertexPointer(GLint size, GLenum type, GLsizei stride, void* pointer)
+	virtual void VertexPointer(GLint size, GLenum type, GLsizei stride, const void* pointer)
 	{
 		pglVertexAttribPointerARB(0, size, type, GL_FALSE, stride, pointer);
 		m_ValidStreams |= STREAM_POS;
 	}
 
-	virtual void NormalPointer(GLenum type, GLsizei stride, void* pointer)
+	virtual void NormalPointer(GLenum type, GLsizei stride, const void* pointer)
 	{
 		pglVertexAttribPointerARB(2, 3, type, GL_TRUE, stride, pointer);
 		m_ValidStreams |= STREAM_NORMAL;
 	}
 
-	virtual void ColorPointer(GLint size, GLenum type, GLsizei stride, void* pointer)
+	virtual void ColorPointer(GLint size, GLenum type, GLsizei stride, const void* pointer)
 	{
 		pglVertexAttribPointerARB(3, size, type, GL_TRUE, stride, pointer);
 		m_ValidStreams |= STREAM_COLOR;
 	}
 
-	virtual void TexCoordPointer(GLenum texture, GLint size, GLenum type, GLsizei stride, void* pointer)
+	virtual void TexCoordPointer(GLenum texture, GLint size, GLenum type, GLsizei stride, const void* pointer)
 	{
 		pglVertexAttribPointerARB(8 + texture - GL_TEXTURE0, size, type, GL_FALSE, stride, pointer);
 		m_ValidStreams |= STREAM_UV0 << (texture - GL_TEXTURE0);
 	}
 
-	virtual void VertexAttribPointer(attrib_id_t id, GLint size, GLenum type, GLboolean normalized, GLsizei stride, void* pointer)
+	virtual void VertexAttribPointer(attrib_id_t id, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void* pointer)
 	{
 		std::map<CStrIntern, int>::iterator it = m_VertexAttribs.find(id);
 		if (it != m_VertexAttribs.end())
@@ -623,7 +623,7 @@ public:
 		}
 	}
 
-	virtual void VertexAttribIPointer(attrib_id_t id, GLint size, GLenum type, GLsizei stride, void* pointer)
+	virtual void VertexAttribIPointer(attrib_id_t id, GLint size, GLenum type, GLsizei stride, const void* pointer)
 	{
 		std::map<CStrIntern, int>::iterator it = m_VertexAttribs.find(id);
 		if (it != m_VertexAttribs.end())
@@ -770,13 +770,13 @@ void CShaderProgram::Uniform(uniform_id_t id, size_t count, const CMatrix3D* v)
 // if a non-GLSL shader was loaded instead:
 
 void CShaderProgram::VertexAttribPointer(attrib_id_t UNUSED(id), GLint UNUSED(size), GLenum UNUSED(type),
-	GLboolean UNUSED(normalized), GLsizei UNUSED(stride), void* UNUSED(pointer))
+	GLboolean UNUSED(normalized), GLsizei UNUSED(stride), const void* UNUSED(pointer))
 {
 	debug_warn("Shader type doesn't support VertexAttribPointer");
 }
 
 void CShaderProgram::VertexAttribIPointer(attrib_id_t UNUSED(id), GLint UNUSED(size), GLenum UNUSED(type),
-	GLsizei UNUSED(stride), void* UNUSED(pointer))
+	GLsizei UNUSED(stride), const void* UNUSED(pointer))
 {
 	debug_warn("Shader type doesn't support VertexAttribIPointer");
 }
@@ -786,19 +786,19 @@ void CShaderProgram::VertexAttribIPointer(attrib_id_t UNUSED(id), GLint UNUSED(s
 // These should all be overridden by CShaderProgramGLSL
 // (GLES doesn't support any other types of shader program):
 
-void CShaderProgram::VertexPointer(GLint UNUSED(size), GLenum UNUSED(type), GLsizei UNUSED(stride), void* UNUSED(pointer))
+void CShaderProgram::VertexPointer(GLint UNUSED(size), GLenum UNUSED(type), GLsizei UNUSED(stride), const void* UNUSED(pointer))
 {
 	debug_warn("CShaderProgram::VertexPointer should be overridden");
 }
-void CShaderProgram::NormalPointer(GLenum UNUSED(type), GLsizei UNUSED(stride), void* UNUSED(pointer))
+void CShaderProgram::NormalPointer(GLenum UNUSED(type), GLsizei UNUSED(stride), const void* UNUSED(pointer))
 {
 	debug_warn("CShaderProgram::NormalPointer should be overridden");
 }
-void CShaderProgram::ColorPointer(GLint UNUSED(size), GLenum UNUSED(type), GLsizei UNUSED(stride), void* UNUSED(pointer))
+void CShaderProgram::ColorPointer(GLint UNUSED(size), GLenum UNUSED(type), GLsizei UNUSED(stride), const void* UNUSED(pointer))
 {
 	debug_warn("CShaderProgram::ColorPointer should be overridden");
 }
-void CShaderProgram::TexCoordPointer(GLenum UNUSED(texture), GLint UNUSED(size), GLenum UNUSED(type), GLsizei UNUSED(stride), void* UNUSED(pointer))
+void CShaderProgram::TexCoordPointer(GLenum UNUSED(texture), GLint UNUSED(size), GLenum UNUSED(type), GLsizei UNUSED(stride), const void* UNUSED(pointer))
 {
 	debug_warn("CShaderProgram::TexCoordPointer should be overridden");
 }
@@ -809,25 +809,25 @@ void CShaderProgram::TexCoordPointer(GLenum UNUSED(texture), GLint UNUSED(size),
 // both use the fixed-function vertex attribute pointers so we'll share their
 // definitions here:
 
-void CShaderProgram::VertexPointer(GLint size, GLenum type, GLsizei stride, void* pointer)
+void CShaderProgram::VertexPointer(GLint size, GLenum type, GLsizei stride, const void* pointer)
 {
 	glVertexPointer(size, type, stride, pointer);
 	m_ValidStreams |= STREAM_POS;
 }
 
-void CShaderProgram::NormalPointer(GLenum type, GLsizei stride, void* pointer)
+void CShaderProgram::NormalPointer(GLenum type, GLsizei stride, const void* pointer)
 {
 	glNormalPointer(type, stride, pointer);
 	m_ValidStreams |= STREAM_NORMAL;
 }
 
-void CShaderProgram::ColorPointer(GLint size, GLenum type, GLsizei stride, void* pointer)
+void CShaderProgram::ColorPointer(GLint size, GLenum type, GLsizei stride, const void* pointer)
 {
 	glColorPointer(size, type, stride, pointer);
 	m_ValidStreams |= STREAM_COLOR;
 }
 
-void CShaderProgram::TexCoordPointer(GLenum texture, GLint size, GLenum type, GLsizei stride, void* pointer)
+void CShaderProgram::TexCoordPointer(GLenum texture, GLint size, GLenum type, GLsizei stride, const void* pointer)
 {
 	pglClientActiveTextureARB(texture);
 	glTexCoordPointer(size, type, stride, pointer);
