@@ -611,7 +611,7 @@ function updateTopPanel()
 	alphaLabel.hidden = isPlayer && !viewPlayer.hidden;
 	alphaLabel.size = isPlayer ? "50%+20 0 100%-226 100%" : "200 0 100%-475 100%";
 
-	Engine.GetGUIObjectByName("pauseButton").enabled = !g_IsObserver || !g_IsNetworked;
+	Engine.GetGUIObjectByName("pauseButton").enabled = !g_IsObserver || !g_IsNetworked || g_IsController;
 	Engine.GetGUIObjectByName("menuResignButton").enabled = !g_IsObserver;
 }
 

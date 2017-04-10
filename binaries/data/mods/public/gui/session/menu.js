@@ -776,7 +776,7 @@ function barterUpdateCommon(resourceCode, idx, prefix, player)
 	let prices = GetSimState().barterPrices;
 	barterAmount.Buy.caption = "+" + Math.round(prices.sell[g_BarterSell] / prices.buy[resourceCode] * amountToSell);
 
-	barterButton.Buy.onPress = function() { 
+	barterButton.Buy.onPress = function() {
 		Engine.PostNetworkCommand({
 			"type": "barter",
 			"sell": g_BarterSell,
