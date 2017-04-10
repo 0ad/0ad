@@ -5,7 +5,7 @@
 # Translators:
 # alfalb.as, 2015
 # André Rodrigues, 2013
-# crolidge, 2015
+# Carlos Moreira, 2015
 # Danny Reese <danny@angolateam.org>, 2016
 # Ernan, 2014
 # G N <nunes.guilherme@gmail.com>, 2016
@@ -23,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-31 09:20+0200\n"
-"PO-Revision-Date: 2017-03-31 08:23+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-04-08 00:38+0000\n"
+"Last-Translator: Mário Branco <branco.ana8@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -321,7 +321,7 @@ msgstr "%(player)s reentrou no jogo."
 #: gui/session/messages.js:109
 #, javascript-format
 msgid "%(player)s has joined the game."
-msgstr ""
+msgstr "%(player)s entrou no jogo."
 
 #: gui/session/messages.js:115
 #, javascript-format
@@ -672,7 +672,7 @@ msgstr "Pontos de captura:"
 #: gui/session/selection_details.js:413
 #, javascript-format
 msgid "%(label)s %(details)s\n"
-msgstr ""
+msgstr "%(label)s %(details)s\n"
 
 #: gui/session/selection_details.js:414
 msgid "Carrying:"
@@ -906,12 +906,12 @@ msgstr ""
 #: gui/session/session.js:391
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr ""
+msgstr "Clique %(hotkey)s para abrir a conversa de observador."
 
 #: gui/session/session.js:392
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr ""
+msgstr "Clique %(hotkey)s para abrir a conversa com os Aliados."
 
 #: gui/session/session.js:394
 #, javascript-format
@@ -958,7 +958,7 @@ msgstr "DERROTADO!"
 
 #: gui/session/session.js:816
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: gui/session/session.js:875
 msgctxt "replayFinished"
@@ -988,17 +988,17 @@ msgstr "Saúde:"
 #: gui/session/session.js:1099
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
-msgstr ""
+msgstr "%(playername)s: %(statValue)s"
 
 #: gui/session/session.js:1102
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
-msgstr ""
+msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
 #: gui/session/session.js:1128
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
-msgstr ""
+msgstr "%(popCount)s/%(popLimit)s"
 
 #: gui/session/session.js:1129
 msgid "Population (current / limit)"
@@ -1030,7 +1030,7 @@ msgstr "Modo de alteração do tempo"
 #: gui/session/session.js:1310
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
-msgstr ""
+msgstr "%(time)s (%(speed)sx)"
 
 #: gui/session/unit_actions.js:572
 msgid "Origin trade market."
@@ -1068,20 +1068,20 @@ msgstr "Ganho esperado: %(gain)s"
 
 #: gui/session/unit_actions.js:1049 gui/session/unit_actions.js:1351
 msgid "Unload All."
-msgstr ""
+msgstr "Descarregar todos."
 
 #: gui/session/unit_actions.js:1071
 msgid "Destroy the selected units or buildings."
-msgstr ""
+msgstr "Destruir as unidades seleccionas ou edifícios."
 
 #: gui/session/unit_actions.js:1073
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
-msgstr ""
+msgstr "Utilize %(hotkey)s para evitar o dialogo de confirmação."
 
 #: gui/session/unit_actions.js:1105
 msgid "Abort the current order."
-msgstr ""
+msgstr "Cancelar o pedido actual."
 
 #: gui/session/unit_actions.js:1125
 msgid "Order the selected units to garrison in a building or unit."
@@ -1093,7 +1093,7 @@ msgstr "Descarregar"
 
 #: gui/session/unit_actions.js:1165
 msgid "Order the selected units to repair a building or mechanical unit."
-msgstr ""
+msgstr "Ordenar as unidades seleccionadas para reparar um edifício ou uma unidade mecânica."
 
 #: gui/session/unit_actions.js:1184
 msgid "Focus on Rally Point."
@@ -1105,7 +1105,7 @@ msgstr "Voltar a trabalhar"
 
 #: gui/session/unit_actions.js:1228
 msgid "Order the selected units to guard a building or unit."
-msgstr ""
+msgstr "Ordenar as unidades seleccionadas para vigiar um edifício ou unidade"
 
 #: gui/session/unit_actions.js:1246
 msgid "Remove guard"
@@ -1118,7 +1118,7 @@ msgstr ""
 
 #: gui/session/unit_actions.js:1280
 msgid "Patrol"
-msgstr ""
+msgstr "Patrulha"
 
 #: gui/session/unit_actions.js:1281
 msgid "Attack all encountered enemy units while avoiding buildings."
@@ -1151,12 +1151,12 @@ msgstr "Não pode destruir esta entidade porque controla menos que uma metade do
 
 #: gui/session/unit_actions.js:1449
 msgid "This entity is undeletable"
-msgstr ""
+msgstr "Esta entidade não é possível apagar"
 
 #: gui/session/chat_window.xml:(caption):16
 msgctxt "chat input"
 msgid "Filter:"
-msgstr ""
+msgstr "Filtro:"
 
 #: gui/session/chat_window.xml:(caption):44
 msgctxt "chat input"
@@ -1175,7 +1175,7 @@ msgstr "Cancelar"
 #: gui/session/chat_window.xml:(caption):95
 msgctxt "chat"
 msgid "History"
-msgstr ""
+msgstr "História"
 
 #: gui/session/chat_window.xml:(caption):100
 msgid "Send"
@@ -1184,12 +1184,12 @@ msgstr "Enviar"
 #: gui/session/chat_window.xml:(tooltip):26
 msgctxt "chat input"
 msgid "Filter the chat history."
-msgstr ""
+msgstr "Filtrar o histórico da conversação"
 
 #: gui/session/chat_window.xml:(tooltip):53
 msgctxt "chat input"
 msgid "Select chat addressee."
-msgstr ""
+msgstr "Selecciona o destinatário da mensagem"
 
 #: gui/session/developer_overlay.xml:(caption):18
 msgid "Control all units"
@@ -1309,7 +1309,7 @@ msgstr "Sair"
 #: gui/session/objectives_window.xml:(caption):15
 #: gui/session/top_panel/button_objectives.xml:(tooltip):15
 msgid "Objectives"
-msgstr ""
+msgstr "Objectivos"
 
 #: gui/session/session.xml:(caption):58
 msgid "Game Paused"
@@ -1342,15 +1342,15 @@ msgstr ""
 
 #: gui/session/trade_window.xml:(caption):24
 msgid "Sell:"
-msgstr ""
+msgstr "Vender:"
 
 #: gui/session/trade_window.xml:(caption):28
 msgid "Buy:"
-msgstr ""
+msgstr "Comprar:"
 
 #: gui/session/trade_window.xml:(caption):32
 msgid "No Markets Available"
-msgstr ""
+msgstr "Sem Mercados disponíveis "
 
 #: gui/session/trade_window.xml:(caption):67
 msgid "Trade"
@@ -1358,7 +1358,7 @@ msgstr "Comercializar"
 
 #: gui/session/trade_window.xml:(caption):75
 msgid "Goods:"
-msgstr ""
+msgstr "Bens:"
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"
@@ -1413,4 +1413,4 @@ msgstr "Menu"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XXI : Ulysses"
-msgstr ""
+msgstr "ALPHA XIX : Syllepsis"

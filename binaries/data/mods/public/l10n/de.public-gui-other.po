@@ -35,7 +35,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-31 09:21+0200\n"
-"PO-Revision-Date: 2017-04-02 01:07+0000\n"
+"PO-Revision-Date: 2017-04-03 15:10+0000\n"
 "Last-Translator: Wuzzy <almikes@aol.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -1781,7 +1781,7 @@ msgstr "Feedback aus"
 #: gui/pregame/mainmenu.xml:(caption):157
 #: gui/structree/structree.xml:(caption):18
 msgid "Structure Tree"
-msgstr "Strukturbaum"
+msgstr "Gebäudebaum"
 
 #: gui/pregame/mainmenu.xml:(caption):174
 msgid "History"
@@ -1874,7 +1874,7 @@ msgstr "Das 0 A.D. Spielhandbuch öffnen."
 
 #: gui/pregame/mainmenu.xml:(tooltip):158
 msgid "View the structure tree of civilizations featured in 0 A.D."
-msgstr "Zeige Strukturbaum der Kulturen in 0 A.D. an."
+msgstr "Zeige Gebäudebaum der Kulturen in 0 A.D. an."
 
 #: gui/pregame/mainmenu.xml:(tooltip):175
 msgid "Learn about the many civilizations featured in 0 A.D."
@@ -2109,7 +2109,7 @@ msgstr "Zivilisation:"
 
 #: gui/structree/structree.xml:(caption):97
 msgid "Trainer Units"
-msgstr "Ausbildereinheiten"
+msgstr "Ausbildereinh."
 
 #: gui/summary/summary.xml:(caption):63
 msgid "Score"
@@ -2398,7 +2398,7 @@ msgstr "Bildrate in der oberen rechten Ecke anzeigen."
 
 #: gui/options/options.jsongeneralSetting[8].label
 msgid "FPS Overlay"
-msgstr "FPS-Overlay"
+msgstr "FPS anzeigen"
 
 #: gui/options/options.jsongeneralSetting[9].tooltip
 msgid "Show current system time in top right corner."
@@ -2455,7 +2455,7 @@ msgstr "Anzahl der Einheiten pro Gruppe"
 
 #: gui/options/options.jsongeneralSetting[15].label
 msgid "Batch Training Size"
-msgstr "Gruppen Trainingsgröße"
+msgstr "Gruppen-Trainingsgröße"
 
 #: gui/options/options.jsongeneralSetting[16].tooltip
 msgid ""
@@ -2472,7 +2472,7 @@ msgstr "Allgemeine Lautstärke"
 
 #: gui/options/options.jsonsoundSetting[0].label
 msgid "Master Gain"
-msgstr "Masterverstärkung"
+msgstr "Hauptverstärkung"
 
 #: gui/options/options.jsonsoundSetting[1].tooltip
 msgid "In game music gain"
@@ -2626,7 +2626,7 @@ msgstr "Detailliertere Effekte für Wasser, Rendern von Küstenwellen, Gischt un
 
 #: gui/options/options.jsongraphicsSetting[8].label
 msgid "HQ Water Effects"
-msgstr "HQ-Wasser-Effekte"
+msgstr "HQ-Wassereffekte"
 
 #: gui/options/options.jsongraphicsSetting[9].tooltip
 msgid "Use actual water depth in rendering calculations"
@@ -2686,11 +2686,11 @@ msgstr "Vertikale Synchronisation"
 
 #: gui/options/options.jsongraphicsSetting[16].tooltip
 msgid "Limit FPS to 50 in all menus, to save power."
-msgstr "Limitiere auf 50 FPS in allen Menüs, um Strom zu sparen."
+msgstr "Bildwiederholrate auf 50 FPS in allen Menüs begrenzen, um Strom zu sparen."
 
 #: gui/options/options.jsongraphicsSetting[16].label
 msgid "Limit FPS in Menus"
-msgstr "Limitiere FPS in Menüs"
+msgstr "FPS in Menüs begrenzen"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -3366,7 +3366,7 @@ msgstr "STOA"
 
 #: gui/text/tips/stoa.txt:2
 msgid "- A special structure for Greek factions."
-msgstr "- Ein besonderes Gebäude für die griechischen Fraktionen."
+msgstr "– Ein besonderes Gebäude für die griechischen Fraktionen."
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Trains Heavy Skirmishers and Sword Infantry Champions."

@@ -37,8 +37,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-31 09:21+0200\n"
-"PO-Revision-Date: 2017-03-31 08:32+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-04-07 21:47+0000\n"
+"Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -317,10 +317,10 @@ msgstr[3] "Чудо (%(min)s мин.)"
 msgctxt "victory condition"
 msgid "Capture The Relic (%(min)s minute)"
 msgid_plural "Capture The Relic (%(min)s minutes)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Захватить реликвию ( %(min)s минута)"
+msgstr[1] "Захватить реликвию ( %(min)s минут)"
+msgstr[2] "Захватить реликвию ( %(min)s минут)"
+msgstr[3] "Захватить реликвию ( %(min)s минут)"
 
 #: gui/common/gamedescription.js:223
 msgid "Rated game"
@@ -616,10 +616,10 @@ msgstr "Очень сложно"
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(min)s минута"
+msgstr[1] "%(min)s минут"
+msgstr[2] "%(min)s минут"
+msgstr[3] "%(min)s минут"
 
 #: gui/common/settings.js:173
 msgctxt "ceasefire"
@@ -733,7 +733,7 @@ msgstr "Линейный урон"
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s"
 " (%(relativeRange)s) %(rangeUnit)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s - %(maxRange)s (%(relativeRange)s) %(rangeUnit)s, %(rate)s"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 10 (+2)
 #. meters, Interval: 3 arrows / 2 seconds
@@ -742,7 +742,7 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s "
 "(%(relativeRange)s) %(rangeUnit)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s, %(rate)s"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 2 to 10
 #. meters, Interval: 3 arrows / 2 seconds
@@ -751,7 +751,7 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s"
 " %(rangeUnit)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s - %(maxRange)s %(rangeUnit)s, %(rate)s"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 10 meters,
 #. Interval: 3 arrows / 2 seconds
@@ -760,7 +760,7 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s %(rangeUnit)s, "
 "%(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s %(rangeUnit)s, %(rate)s"
 
 #: gui/common/tooltips.js:79
 msgid "Health:"
@@ -855,13 +855,13 @@ msgstr "Дальность:"
 #: gui/common/tooltips.js:200
 #, javascript-format
 msgid "+%(number)s"
-msgstr ""
+msgstr "+%(number)s"
 
 #. Translation: For example "0.5 to 1 meters", "1 (+1) meters" or "1 to 2 (+3)
 #. meters"
 #: gui/common/tooltips.js:204
 msgid "meters"
-msgstr ""
+msgstr "метров"
 
 #: gui/common/tooltips.js:205 gui/common/tooltips.js:570
 msgid "meter"
@@ -2094,16 +2094,16 @@ msgstr "Продолжительность"
 #: gui/savedgames/load.xml:(heading):44
 msgctxt "replay"
 msgid "Map Type"
-msgstr ""
+msgstr "Тип карты"
 
 #: gui/savedgames/load.xml:(heading):52
 msgctxt "replay"
 msgid "Description"
-msgstr ""
+msgstr "Описание"
 
 #: gui/savedgames/load.xml:(caption):57
 msgid "No saved games found."
-msgstr ""
+msgstr "Сохранённые игры не обнаружены."
 
 #: gui/savedgames/load.xml:(caption):71
 msgid "Load"
@@ -2111,7 +2111,7 @@ msgstr "Загрузить"
 
 #: gui/savedgames/load.xml:(caption):83
 msgid "Filter compatible saved games"
-msgstr ""
+msgstr "Показать только совместимые сохранения"
 
 #: gui/savedgames/load.xml:(caption):93
 msgid "Players:"

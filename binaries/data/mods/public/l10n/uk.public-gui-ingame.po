@@ -22,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-31 09:20+0200\n"
-"PO-Revision-Date: 2017-03-31 08:23+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-04-03 19:33+0000\n"
+"Last-Translator: Dmytro Ryl'kov <tverdislav@ukr.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -107,7 +107,7 @@ msgstr "%(time)s %(message)s"
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
-msgstr ""
+msgstr "Залишилось часу до відновлення бойових дій: %(time)s."
 
 #: gui/session/menu.js:411
 msgctxt "team"
@@ -140,7 +140,7 @@ msgstr "Закликати союзників атакувати цього во
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
-msgstr ""
+msgstr "Підкупити випадкового юніта даного гравця і бачити усе протягом певного періоду."
 
 #: gui/session/menu.js:716
 #, javascript-format
@@ -363,7 +363,7 @@ msgstr "Причина: %(reason)s."
 
 #: gui/session/messages.js:145
 msgid "Waiting for players to connect:"
-msgstr ""
+msgstr "Очікуємо на підключення гравців:"
 
 #: gui/session/messages.js:146
 msgid "Synchronising gameplay with other players..."
@@ -550,7 +550,7 @@ msgstr "%(player)s надіслав вам %(amounts)s."
 #: gui/session/messages.js:907
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
-msgstr ""
+msgstr "Ви надіслали %(player2)s %(amounts)s."
 
 #: gui/session/messages.js:912
 #, javascript-format
@@ -929,7 +929,7 @@ msgstr "Натисніть %(hotkey)s, щоб відкрити чат альян
 #: gui/session/session.js:394
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
-msgstr ""
+msgstr "Натисніть %(hotkey)s, щоб відкрити попередній вибраний приватний чат."
 
 #: gui/session/session.js:398
 msgid "Find idle worker"
@@ -1043,7 +1043,7 @@ msgstr "Режим викривлення часу"
 #: gui/session/session.js:1310
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
-msgstr ""
+msgstr "%(time)s (%(speed)sx)"
 
 #: gui/session/unit_actions.js:572
 msgid "Origin trade market."
@@ -1127,7 +1127,7 @@ msgstr "Прибрати охорону"
 #: gui/session/unit_actions.js:1263
 #: gui/session/top_panel/button_trade.xml:(tooltip):9
 msgid "Barter & Trade"
-msgstr ""
+msgstr "Обмін та торгівля"
 
 #: gui/session/unit_actions.js:1280
 msgid "Patrol"
@@ -1347,23 +1347,23 @@ msgstr "Виберіть гравця для перегляду"
 
 #: gui/session/trade_window.xml:(caption):9
 msgid "Barter & Trade Goods"
-msgstr ""
+msgstr "Обмін та торгівля товарами"
 
 #: gui/session/trade_window.xml:(caption):17
 msgid "Barter"
-msgstr ""
+msgstr "Обмін"
 
 #: gui/session/trade_window.xml:(caption):24
 msgid "Sell:"
-msgstr ""
+msgstr "Продаж:"
 
 #: gui/session/trade_window.xml:(caption):28
 msgid "Buy:"
-msgstr ""
+msgstr "Купівля:"
 
 #: gui/session/trade_window.xml:(caption):32
 msgid "No Markets Available"
-msgstr ""
+msgstr "Немає доступний ринків"
 
 #: gui/session/trade_window.xml:(caption):67
 msgid "Trade"
@@ -1371,7 +1371,7 @@ msgstr "Торгівля"
 
 #: gui/session/trade_window.xml:(caption):75
 msgid "Goods:"
-msgstr ""
+msgstr "Товари:"
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"

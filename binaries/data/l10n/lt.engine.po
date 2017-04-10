@@ -6,14 +6,15 @@
 # Adomas Jackevičius, 2014
 # banginis <asesuarbanesu@gmail.com>, 2014-2015
 # banginis <asesuarbanesu@gmail.com>, 2014
+# Kristupas Kristupas <karthus.kart@gmail.com>, 2017
 # Paulius Damaška <pauldam000@gmail.com>, 2016
 # Serafim Mockus <serafimas96@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2016-03-19 09:25+0100\n"
-"PO-Revision-Date: 2016-05-08 08:56+0000\n"
-"Last-Translator: Paulius Damaška <pauldam000@gmail.com>\n"
+"PO-Revision-Date: 2017-04-07 17:57+0000\n"
+"Last-Translator: Kristupas Kristupas <karthus.kart@gmail.com>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/wildfire-games/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -54,7 +55,7 @@ msgstr "Klaida"
 
 #: lobby/XmppClient.cpp:1004 lobby/XmppClient.cpp:1048
 msgid "No error"
-msgstr ""
+msgstr "Jokios klaidos"
 
 #: lobby/XmppClient.cpp:1006
 msgid "Player already logged in"
@@ -78,7 +79,7 @@ msgstr "Neautorizuota"
 
 #: lobby/XmppClient.cpp:1018
 msgid "Recipient temporarily unavailable"
-msgstr ""
+msgstr "Gavėjas laikinai nepasiekiamas"
 
 #: lobby/XmppClient.cpp:1020
 msgid "Registration required"
@@ -91,69 +92,69 @@ msgstr "Servisas nepasiekiamas"
 #: lobby/XmppClient.cpp:1029 lobby/XmppClient.cpp:1068
 #: lobby/XmppClient.cpp:1097
 msgid "Unknown error"
-msgstr ""
+msgstr "Nežinoma klaida"
 
 #: lobby/XmppClient.cpp:1049
 msgid "Stream error"
-msgstr ""
+msgstr "Transliacijos klaida"
 
 #: lobby/XmppClient.cpp:1050
 msgid "The incoming stream version is unsupported"
-msgstr ""
+msgstr "Įeinanti transliacijos versija yra nepalaikoma"
 
 #: lobby/XmppClient.cpp:1051
 msgid "The stream has been closed by the server"
-msgstr ""
+msgstr "Transliacija buvo uždaryta serverio"
 
 #: lobby/XmppClient.cpp:1055
 msgid "An I/O error occured"
-msgstr ""
+msgstr "Įvyko I/O klaida"
 
 #: lobby/XmppClient.cpp:1057
 msgid "The connection was refused by the server"
-msgstr ""
+msgstr "Prisijungimas buvo atmestas serverio"
 
 #: lobby/XmppClient.cpp:1058
 msgid "Resolving the server's hostname failed"
-msgstr ""
+msgstr "Nepavyko rasti tokio serverio vardo"
 
 #: lobby/XmppClient.cpp:1059
 msgid "This system is out of memory"
-msgstr ""
+msgstr "Sistemoje trūksta atminties"
 
 #: lobby/XmppClient.cpp:1061
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
-msgstr ""
+msgstr "Serverio sertifikato nebuvo galima patvirtinti arba \"TLS handshake\" nepavyko įvykdyti sėkmingai"
 
 #: lobby/XmppClient.cpp:1062
 msgid "The server did not offer required TLS encryption"
-msgstr ""
+msgstr "Serveris nepasiūlė reikiamo TLS šifravimo"
 
 #: lobby/XmppClient.cpp:1064
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr ""
+msgstr "Autentifikavimo klaida. Neteisingas slaptažodis arba paskyra neegzistuoja"
 
 #: lobby/XmppClient.cpp:1065
 msgid "The user or system requested a disconnect"
-msgstr ""
+msgstr "Sistema arba vartotojas paprašė atsijungimo"
 
 #: lobby/XmppClient.cpp:1066
 msgid "There is no active connection"
-msgstr ""
+msgstr "Nėra aktyvios jungties"
 
 #: lobby/XmppClient.cpp:1087
 msgid "Success"
-msgstr ""
+msgstr "Pavyko"
 
 #: lobby/XmppClient.cpp:1088
 msgid "Not all necessary information provided"
-msgstr ""
+msgstr "Trūksta būtinos informacijos"
 
 #: lobby/XmppClient.cpp:1089
 msgid "Username already exists"
-msgstr ""
+msgstr "Vartotojo vardas jau egzistuoja"
 
 #: ps/SavedGame.cpp:133
 #, c-format

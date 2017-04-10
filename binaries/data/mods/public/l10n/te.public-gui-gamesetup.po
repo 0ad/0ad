@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# జయంత్ వర్మ బెల్లపుకొండ <jayanthvarma.b@gmail.com>, 2017
 # ప్రవీణ్ ఇళ్ళ <mail2ipn@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-27 09:01+0200\n"
-"PO-Revision-Date: 2017-03-27 08:37+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-04-08 17:27+0000\n"
+"Last-Translator: జయంత్ వర్మ బెల్లపుకొండ <jayanthvarma.b@gmail.com>\n"
 "Language-Team: Telugu (http://www.transifex.com/wildfire-games/0ad/language/te/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,24 +30,24 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:36
 #, javascript-format
 msgid "* %(username)s is not ready."
-msgstr ""
+msgstr "* %(username)s సిద్ధంగా లేరు."
 
 #: gui/gamesetup/gamesetup.js:37
 msgid "I'm ready"
-msgstr ""
+msgstr "నేను సిద్ధం"
 
 #: gui/gamesetup/gamesetup.js:38
 msgid "State that you are ready to play."
-msgstr ""
+msgstr "మీరు ఆడుటకు సిద్ధమే అని వారికి తెలపండి."
 
 #: gui/gamesetup/gamesetup.js:42
 #, javascript-format
 msgid "* %(username)s is ready!"
-msgstr ""
+msgstr "* %(username)s సిద్ధంగా ఉన్నారు!"
 
 #: gui/gamesetup/gamesetup.js:43
 msgid "Stay ready"
-msgstr ""
+msgstr "సిద్ధంగా ఉండండి"
 
 #: gui/gamesetup/gamesetup.js:44
 msgid "Stay ready even when the game settings change."
@@ -54,11 +55,11 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:49
 msgid "I'm not ready!"
-msgstr ""
+msgstr "నేను సిద్ధంగా లేను!"
 
 #: gui/gamesetup/gamesetup.js:50
 msgid "State that you are not ready to play."
-msgstr ""
+msgstr "మీరు ఆడుటకు సిద్ధంగా లేరని వారికి తెలపండి."
 
 #: gui/gamesetup/gamesetup.js:73
 msgid "Game settings have been changed"
@@ -67,27 +68,27 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:74
 #, javascript-format
 msgid "%(username)s has joined"
-msgstr ""
+msgstr "%(username)s వచ్చి చేరారు"
 
 #: gui/gamesetup/gamesetup.js:75
 #, javascript-format
 msgid "%(username)s has left"
-msgstr ""
+msgstr "%(username)s వదిలి వెళ్ళిపోయారు"
 
 #: gui/gamesetup/gamesetup.js:76
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr ""
+msgstr "%(username)s వెళ్ళగొట్టబడ్డారు"
 
 #: gui/gamesetup/gamesetup.js:77
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr ""
+msgstr "%(username)s నిషేదించబడ్డారు"
 
 #: gui/gamesetup/gamesetup.js:78
 #, javascript-format
 msgid "%(username)s %(message)s"
-msgstr ""
+msgstr "%(username)s %(message)s"
 
 #: gui/gamesetup/gamesetup.js:79
 #, javascript-format
@@ -101,15 +102,15 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:97
 msgid "Naval Maps"
-msgstr ""
+msgstr "నావికా పటాలు"
 
 #: gui/gamesetup/gamesetup.js:102
 msgid "Demo Maps"
-msgstr ""
+msgstr "ఉదాహరణా పటాలు"
 
 #: gui/gamesetup/gamesetup.js:107
 msgid "New Maps"
-msgstr ""
+msgstr "కొత్త పటాలు"
 
 #: gui/gamesetup/gamesetup.js:112
 msgid "Trigger Maps"
@@ -122,7 +123,7 @@ msgstr "అన్ని పటాలు"
 #: gui/gamesetup/gamesetup.js:161
 msgctxt "map selection"
 msgid "Random"
-msgstr ""
+msgstr "యాదృచ్ఛికం"
 
 #: gui/gamesetup/gamesetup.js:166
 msgctxt "civilization"
@@ -131,7 +132,7 @@ msgstr "యాదృచ్ఛికం"
 
 #: gui/gamesetup/gamesetup.js:292
 msgid "Return to the lobby."
-msgstr ""
+msgstr "ప్రవేశపు గదికి తిరిగి వెళ్ళు."
 
 #: gui/gamesetup/gamesetup.js:292
 msgid "Return to the main menu."
@@ -153,7 +154,7 @@ msgstr "ఏదీకాదు"
 #: gui/gamesetup/gamesetup.js:1341
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
-msgstr ""
+msgstr "%(playerName)s %(romanNumber)s"
 
 #: gui/gamesetup/gamesetup.js:1433
 msgctxt "map size"
@@ -180,7 +181,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:1809
 msgid "Unknown Player"
-msgstr ""
+msgstr "అపరిచిత ఆటగాడు"
 
 #: gui/gamesetup/gamesetup.js:1848
 #, javascript-format

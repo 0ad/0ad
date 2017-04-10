@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Dmytro Ryl'kov <tverdislav@ukr.net>, 2016
+# Dmytro Ryl'kov <tverdislav@ukr.net>, 2016-2017
 # Olexandr Yaremenko <ua.limitless@gmail.com>, 2016
 # Victor Butko <victor.butko@gmail.com>, 2014
 # Victor Ptah, 2015
@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-03 09:01+0100\n"
-"PO-Revision-Date: 2017-03-03 08:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-04-03 19:47+0000\n"
+"Last-Translator: Dmytro Ryl'kov <tverdislav@ukr.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,35 +64,35 @@ msgstr "%(oldnick)s тепер відомий як %(newnick)s."
 
 #: gui/lobby/lobby.js:217
 msgid "You have been banned from the lobby!"
-msgstr ""
+msgstr "Вас заблокували у лобі!"
 
 #: gui/lobby/lobby.js:218
 msgid "You have been kicked from the lobby!"
-msgstr ""
+msgstr "Вас викинули з лобі!"
 
 #: gui/lobby/lobby.js:220
 #, javascript-format
 msgid "%(nick)s has been banned from the lobby."
-msgstr ""
+msgstr "%(nick)s був заблокований у лобі."
 
 #: gui/lobby/lobby.js:221
 #, javascript-format
 msgid "%(nick)s has been kicked from the lobby."
-msgstr ""
+msgstr "%(nick)s був викинутий з лобі."
 
 #: gui/lobby/lobby.js:224
 #, javascript-format
 msgctxt "lobby kick"
 msgid "Reason: %(reason)s"
-msgstr ""
+msgstr "Причина: %(reason)s"
 
 #: gui/lobby/lobby.js:249
 msgid "BANNED"
-msgstr ""
+msgstr "Заблоковано"
 
 #: gui/lobby/lobby.js:249
 msgid "KICKED"
-msgstr ""
+msgstr "Викинуто"
 
 #: gui/lobby/lobby.js:291
 msgctxt "map size"
@@ -284,7 +284,7 @@ msgstr "Будь ласка погодьтеся з Умовами Послуг�
 msgid ""
 "Unknown error. This usually occurs because the same IP address is not "
 "allowed to register more than one account within one hour."
-msgstr ""
+msgstr "Невідома помилка. Це зазвичай відбувається через те, що з однієї IP-адреси не дозволено реєструвати більше одного облікового запису, протягом однієї години."
 
 #: gui/lobby/prelobby.js:172
 msgid "Registered"
@@ -613,7 +613,7 @@ msgstr "5. Не видавати себе за іншого користувач
 
 #: gui/lobby/Terms_of_Use.txt:15
 msgid " 6. Not spam the service."
-msgstr "6. Не спаміти в послузі."
+msgstr "6. Не спамити в послузі."
 
 #: gui/lobby/Terms_of_Use.txt:16
 msgid ""

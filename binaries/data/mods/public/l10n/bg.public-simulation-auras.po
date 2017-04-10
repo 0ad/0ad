@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-27 09:02+0200\n"
-"PO-Revision-Date: 2017-03-27 10:57+0000\n"
+"POT-Creation-Date: 2017-04-03 09:02+0200\n"
+"PO-Revision-Date: 2017-04-03 14:01+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -426,6 +426,221 @@ msgid ""
 "Further increase the population limit by 40 per wonder owned (requires "
 "\"Glorious Expansion\" tech)."
 msgstr "Максималното население се увеличава с още 40 за всяко притежавано чудо (изисква технологията „Славно разрастване“)."
+
+#: simulation/data/auras/catafalques/athen_catafalque_1.jsonauraName
+msgid "Economic Reforms"
+msgstr "Икономически реформи"
+
+#: simulation/data/auras/catafalques/athen_catafalque_1.jsonauraDescription
+msgid ""
+"Solon instituted several economic reforms encouraging commerce and agriculture.\n"
+"+10% gather rate of workers within an 80 meter range."
+msgstr "Солон направил няколко икономически реформи, насърчаващи търговията и земеделието.\n+10% бързина на събиране на ресурси за работниците в радиус 80м."
+
+#: simulation/data/auras/catafalques/athen_catafalque_2.jsonauraName
+msgid "Economic Fortune"
+msgstr "Икономически успех"
+
+#: simulation/data/auras/catafalques/athen_catafalque_2.jsonauraDescription
+msgid ""
+"Solon brought in a new system of weights and measures, fathers were encouraged to find trades for their sons.\n"
+"-10% cost for economic technologies."
+msgstr "Солон създал нова система от мерни единици, бащите били насърчени да търсят работа на синовете си.\n-10% цената на икономическите технологии."
+
+#: simulation/data/auras/catafalques/brit_catafalque_1.jsonauraName
+msgid "Guerilla Tactics"
+msgstr "Партизански тактики"
+
+#: simulation/data/auras/catafalques/brit_catafalque_1.jsonauraDescription
+msgid ""
+"Seeing entrenched defense to be useless against the Roman army, Cassivellanus resorted to gurerilla tactics. This was later employed by other cheiftains too.\n"
+"+15% speed and vision range for soldiers."
+msgstr "Виждайки, че укрепленията са безполезни срещу римската империя, Касивелаун наблегнал на използването на партизански тактики. Това скоро било възприето и от останалите вождове.\n+15% бързина и обхват на видимост за во̀ините."
+
+#: simulation/data/auras/catafalques/brit_catafalque_2.jsonauraName
+msgid "Skirmisher Harassment"
+msgstr "Копиехвъргачески тормоз"
+
+#: simulation/data/auras/catafalques/brit_catafalque_2.jsonauraDescription
+msgid ""
+"Cassivellanus deployed fast-moving skirmishers to harass Roman troops and foragers.\n"
+"+20% attack range for skirmisher javelins."
+msgstr "Касивелаун изпратил лесно подвижни копиехвъргачи, които да тормозят римските войници и фуражири.\n+20% обхват на атаката за копиехвържачите."
+
+#: simulation/data/auras/catafalques/cart_catafalque.jsonauraName
+msgid "Commander of Heavy Cavalry"
+msgstr "Командир на тежка конница"
+
+#: simulation/data/auras/catafalques/cart_catafalque.jsonauraDescription
+msgid ""
+"Leader of the Carthaginian heavy cavalry at Trebia and Cannae, where his triple charge had devastating effects on the enemy.\n"
+"+1 armor, +10% health for melee cavalry."
+msgstr "Водач на картагенската войска при Требия и Кана, където тройният му щурм разгромил врага.\n+1 защита, +10% здраве за близкобойната конница."
+
+#: simulation/data/auras/catafalques/gaul_catafalque_1.jsonauraName
+msgid "Ambush Slaughter"
+msgstr "Клане то засада"
+
+#: simulation/data/auras/catafalques/gaul_catafalque_1.jsonauraDescription
+msgid ""
+"Warring with the Romans, Ambiorix realized the futility of open warfare and instead resorted to ambush tactics. The Gauls quickly learned where and when to execute surprise attacks.\n"
+"Units promote 25% faster and gain a 5% attack bonus."
+msgstr "Воювайки с римляните, Амбиорикс осъзнал, че е безсилен в директна битка и вместо това започнал да прави нападения от засада. Галите бързо разбрали къде и кога е най-добре да се правят изненадващи нападения.\nЕдиниците се повишават 25% по-бързо и получават 5% допълнителна атака."
+
+#: simulation/data/auras/catafalques/gaul_catafalque_2.jsonauraName
+msgid "Tribute to Rome"
+msgstr "Римски данък"
+
+#: simulation/data/auras/catafalques/gaul_catafalque_2.jsonauraDescription
+msgid ""
+"When the Roman Army fell short of food supplies, the Gallic tribes were ordered to give up a part of their already meagre harvest. The Eburones under Ambiorix were reluctant to do so, therefore Caesar sent troops to take them by foce.\n"
+"-10% farming rate."
+msgstr "Когато на римската войска не ѝ достигала храна, галските племена били заставяни да дадат част от реколтата си, която и иначе била много оскъдна. Ебуроните при Амбиорикс отказали да направят това, така че Цезар изпратил войници да вземат храната насила.\n-10% бързина на работниците при земеделие."
+
+#: simulation/data/auras/catafalques/iber_catafalque_1.jsonauraName
+msgid "Mercenary Commander"
+msgstr "Наемнически командир"
+
+#: simulation/data/auras/catafalques/iber_catafalque_1.jsonauraDescription
+msgid ""
+"Along with his brother Indibil, Mandonius commanded the Iberian recruits and mercenaries that took part in the Punic Wars.\n"
+"-25% metal cost for all allied citizen-soldier mercenaries."
+msgstr "Заедно с брат си Андобал, Мандросий командвал иберските наборници и наемници, които участвали в Пуническите войни.\n-25% цена в метал за всички съюзнически наемници, които са граждани-во̀ини."
+
+#: simulation/data/auras/catafalques/iber_catafalque_2.jsonauraName
+msgid "Saver of Lives"
+msgstr "Спасител на животи"
+
+#: simulation/data/auras/catafalques/iber_catafalque_2.jsonauraDescription
+msgid ""
+"Following the fall of Indibil in battle, Mandonius led the survivors to safety.\n"
+"+15% movement speed and +10% health for all soldiers."
+msgstr "След като Андобал паднал в битка, Мандоний отвел оцелелите на безопасно място.\n+15% бързина на придвижване и +10% здраве за всички во̀ини."
+
+#: simulation/data/auras/catafalques/mace_catafalque.jsonauraName
+msgid "Sacker of Cities"
+msgstr "Грабител на градове"
+
+#: simulation/data/auras/catafalques/mace_catafalque.jsonauraDescription
+msgid ""
+"During the First Macedonian War, Philip and his troops sacked Thermum, the religious and political centre of Aetolia.\n"
+"+25% loot for every enemy unit killed or structure destroyed."
+msgstr "По време на Първата македонска война, Филип и войниците му плячкосали Термо, религиозният и политически център на Етолия.\n+25% плячка от всяка убита вражеска единица или унищожена сграда."
+
+#: simulation/data/auras/catafalques/maur_catafalque_1.jsonauraName
+msgid "Consolidator of the Empire"
+msgstr "Обединител на империята"
+
+#: simulation/data/auras/catafalques/maur_catafalque_1.jsonauraDescription
+msgid ""
+"Son of Chandragupta Maurya, Bindusara consolidated the empire, creating a stable state for his son Ashoka to inherit.\n"
+"+20% territory influence."
+msgstr "Синът на Чандрагупта Маурия, Биндусара, обединил империята, създавайки стабилна държава, която била наследена от сина му Ашока.\n+20% териториално влияние."
+
+#: simulation/data/auras/catafalques/maur_catafalque_2.jsonauraName
+msgid "Vamba Moriyar"
+msgstr "Маурски завоевания"
+
+#: simulation/data/auras/catafalques/maur_catafalque_2.jsonauraDescription
+msgid ""
+"Bindusara is said to have conquered lands to the south of the empire.\n"
+"+15% unit capture rate."
+msgstr "Твърди се, че Биндусара е завладял земи на юг от империята.\n+15% бързина на пленяване на единици."
+
+#: simulation/data/auras/catafalques/pers_catafalque.jsonauraName
+msgid "Great Builder"
+msgstr "Велик строител"
+
+#: simulation/data/auras/catafalques/pers_catafalque.jsonauraDescription
+msgid ""
+"Throughout his reign, much of Artaxerxes' wealth was spent on building projects. He restored the Palace of Darius I at Susa, and restored the ancient city of Ecbatana.\n"
+"+5% health and -5% resource cost for all buildings."
+msgstr "По време на управлението си, Артаксеркс похарчил повечето от богатството си за строежи. Той възстановил палатът на Дарий I в Суза, както и древния град Екбатана.\n+5% здраве и -5% цена за всички сгради."
+
+#: simulation/data/auras/catafalques/ptol_catafalque.jsonauraName
+msgid "Great Librarian"
+msgstr "Велик библиотекар"
+
+#: simulation/data/auras/catafalques/ptol_catafalque.jsonauraDescription
+msgid ""
+"Continuing his predecessors' work on the Great Library at Alexandria, he seized every book brought to Alexandria, thus leaving to his people a vast amount of hoarded wisdom.\n"
+"-10% resource cost for all technologies."
+msgstr "Продължавайки работата на предшественика си по Александрийската библиотека, той конфискувал всяка книга, донесена в Александрия, давайки на хората си достъп до огромен запас от мъдрост.\n-10% цена на всички тефнологии."
+
+#: simulation/data/auras/catafalques/rome_catafalque_1.jsonauraName
+msgid "Avenger of Lucretia"
+msgstr "Отмъстителят на Лукреция"
+
+#: simulation/data/auras/catafalques/rome_catafalque_1.jsonauraDescription
+msgid ""
+"After the rape of Lucretia by the son of King Tarquinius Superbus and her subsequent suicide, Brutus vowed to avenge her and overthrow the monarchy.\n"
+"Female citizens cost 20% less and work 10% faster."
+msgstr "След изнасилването на Лукреция от сина на цар Тарквиний Горди и последващото ѝ самоубийство, Брут се заклел да отмъсти за нея и да свали монархията.\nЖените са по-евтини с 20% и работят 10% по-бързо."
+
+#: simulation/data/auras/catafalques/rome_catafalque_2.jsonauraName
+msgid "Founder and Defender of the Republic Aura"
+msgstr "Аура на основателя и защитник на републиката"
+
+#: simulation/data/auras/catafalques/rome_catafalque_2.jsonauraDescription
+msgid ""
+"Brutus was one of the key figures in the overthrow of the monarchy and the founding of the Roman Republic. Later, as consul he led a Roman army to victory against the Etruscan King Tarquinius who sought to retake the throne.\n"
+"+10% armor for all units and siege engines."
+msgstr "Брут бил една от ключовите фигури в свалянето на монархията и създаването на Римската република. По-късно, като консул, той повел армията на Рим и победил етруския цар Тарквиний, който искал да си върне трона.\n+10% защита за всички единици и обсадни машини."
+
+#: simulation/data/auras/catafalques/sele_catafalque_1.jsonauraName
+msgid "Founder of the Ezida Temple"
+msgstr "Основател на храма на Езида"
+
+#: simulation/data/auras/catafalques/sele_catafalque_1.jsonauraDescription
+msgid ""
+"Antiochus I laid the foundation for the Ezida Temple in Borsippa.\n"
+"-10% resource cost for temples and temple technologies."
+msgstr "Антиох I изградил основите на храма на Езида в Борсипа.\n-10% цена на храмовете и технологиите в тях."
+
+#: simulation/data/auras/catafalques/sele_catafalque_2.jsonauraName
+msgid "Immigration"
+msgstr "Имиграция"
+
+#: simulation/data/auras/catafalques/sele_catafalque_2.jsonauraDescription
+msgid ""
+"Antiochus encouraged Greek immigration to his realm and established many new cities in Asia Minor to serve as counterweights to the Gauls.\n"
+"+5% maximum population."
+msgstr "Антиох насърчил миграцията на гърците в царството му и създал много нови градове в Мала Азия, които да бъдат в противовес на галите.\n+5% максимално население."
+
+#: simulation/data/auras/catafalques/sele_catafalque_3.jsonauraName
+msgid "Basileus Megas (Great King)"
+msgstr "Басилеус мегас (Велик цар)"
+
+#: simulation/data/auras/catafalques/sele_catafalque_3.jsonauraDescription
+msgid ""
+"Son of Selecus Nicator, Antiochus succeeded in the formidable task of keeping the empire together, meanwhile founding temples and defeating the invading Gauls with war elephants.\n"
+"-10% cost for War Elephants."
+msgstr "Синът на Селевк I Никатор, Антиох, успял в трудната задача да запази империята цяла, като в същото време създавал храмове и победил нахлуващите гали с бойни слонове.\n-10% цена на бойните слонове."
+
+#: simulation/data/auras/catafalques/spart_catafalque_1.jsonauraName
+#: simulation/data/auras/catafalques/spart_catafalque_2.jsonauraName
+msgid "Lycurgan Military Reforms"
+msgstr "Военните реформи на Ликург"
+
+#: simulation/data/auras/catafalques/spart_catafalque_1.jsonauraDescription
+msgid ""
+"Lycurgus instituted several military reforms, thus the complete and undivided allegiance to Sparta from its citizens was implemented under his form of government.\n"
+"-10% resource cost for spear citizen units."
+msgstr "Ликург направил няколко военни реформи; той успял да получи пълната преданост на Спарта и гражданите ѝ по време на управлението си.\n-10% цена на единиците-граждани с копие."
+
+#: simulation/data/auras/catafalques/spart_catafalque_2.jsonauraDescription
+msgid "-5% resource cost for spear champions."
+msgstr "-5% цена на гвардейците с копие."
+
+#: simulation/data/auras/catafalques/spart_catafalque_3.jsonauraName
+msgid "Iron Pelanors"
+msgstr "Железни пеланори"
+
+#: simulation/data/auras/catafalques/spart_catafalque_3.jsonauraDescription
+msgid ""
+"To further support equality, Lycurgus forbade the use of gold and silver, instead introducing new iron money called pellanors.\n"
+"+15% metal mining rate for workers within an 80 meter range."
+msgstr "За да подсили чувството за равенство, Ликург забранил да се използва злато и сребно, като вместо това въвел нов вид пари, наречени „пеланори“.\n+15% бързина на добиване на метал за работниците в радиус от 80м."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
