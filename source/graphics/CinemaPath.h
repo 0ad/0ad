@@ -83,10 +83,6 @@ public:
 
 public:
 
-	void Draw() const;
-	void DrawSpline(const RNSpline& spline, const CVector4D& RGBA, int smoothness, bool lines) const;
-	void DrawNodes(const RNSpline& spline, const CVector4D& RGBA) const;
-
 	CVector3D GetNodePosition(const int index) const;
 	fixed GetNodeDuration(const int index) const;
 	fixed GetDuration() const;

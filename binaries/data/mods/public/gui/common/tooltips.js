@@ -89,6 +89,18 @@ function getHealthTooltip(template)
 	});
 }
 
+function getCurrentHealthTooltip(entState, label)
+{
+	if (!entState.maxHitpoints)
+		return "";
+
+	return sprintf(translate("%(healthLabel)s %(current)s / %(max)s"), {
+		"healthLabel": headerFont(label || translate("Health:")),
+		"current": Math.round(entState.hitpoints),
+		"max": Math.round(entState.maxHitpoints)
+	});
+}
+
 function attackRateDetails(template, type)
 {
 	// Either one arrow shot by UnitAI,

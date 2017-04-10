@@ -27,5 +27,6 @@ DEFINE_INTERFACE_METHOD_1("GetTemplateWithoutValidation", const CParamNode*, ICm
 DEFINE_INTERFACE_METHOD_CONST_1("TemplateExists", bool, ICmpTemplateManager, TemplateExists, std::string)
 DEFINE_INTERFACE_METHOD_CONST_1("GetCurrentTemplateName", std::string, ICmpTemplateManager, GetCurrentTemplateName, entity_id_t)
 DEFINE_INTERFACE_METHOD_CONST_1("FindAllTemplates", std::vector<std::string>, ICmpTemplateManager, FindAllTemplates, bool)
+DEFINE_INTERFACE_METHOD_CONST_1("FindAllPlaceableTemplates", std::vector<std::string>, ICmpTemplateManager, FindAllPlaceableTemplates, bool)
 DEFINE_INTERFACE_METHOD_CONST_1("GetEntitiesUsingTemplate", std::vector<entity_id_t>, ICmpTemplateManager, GetEntitiesUsingTemplate, std::string)
 END_INTERFACE_WRAPPER(TemplateManager)

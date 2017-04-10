@@ -51,10 +51,10 @@ function updateGarrisonHealthBar(entState, selection)
 		let healthSize = healthBarGarrison.size;
 		healthSize.rtop = 100-100*Math.max(0, Math.min(1, totalGarrisonHealth / maxGarrisonHealth));
 		healthBarGarrison.size = healthSize;
-		healthGarrison.tooltip = sprintf(translate("%(label)s %(current)s / %(max)s"), {
-			"label": "[font=\"sans-bold-13\"]" + translate("Hitpoints:") + "[/font]",
-			"current": Math.ceil(totalGarrisonHealth),
-			"max": Math.ceil(maxGarrisonHealth)
+
+		healthGarrison.tooltip = getCurrentHealthTooltip({
+			"hitpoints": totalGarrisonHealth,
+			"maxHitpoints": maxGarrisonHealth
 		});
 	}
 }
@@ -367,10 +367,9 @@ function displayMultiple(entStates)
 		healthSize.rtop = 100-100*Math.max(0, Math.min(1, averageHealth / maxHealth));
 		unitHealthBar.size = healthSize;
 
-		Engine.GetGUIObjectByName("healthMultiple").tooltip = sprintf(translate("%(label)s %(current)s / %(max)s"), {
-			"label": "[font=\"sans-bold-13\"]" + translate("Hitpoints:") + "[/font]",
-			"current": Math.ceil(averageHealth),
-			"max": Math.ceil(maxHealth)
+		Engine.GetGUIObjectByName("healthMultiple").tooltip = getCurrentHealthTooltip({
+			"hitpoints": averageHealth,
+			"maxHitpoints": maxHealth
 		});
 	}
 
@@ -399,11 +398,11 @@ function displayMultiple(entStates)
 		// last handle the owner's points, to keep those points on the bottom for clarity
 		setCaptureBarPart(playerID, size);
 
-		Engine.GetGUIObjectByName("captureMultiple").tooltip = sprintf(translate("%(label)s %(current)s / %(max)s"), {
-			"label": "[font=\"sans-bold-13\"]" + translate("Capture points:") + "[/font]",
-			"current": Math.ceil(capturePoints[playerID]),
-			"max": Math.ceil(maxCapturePoints)
-		});
+		Engine.GetGUIObjectByName("captureMultiple").tooltip = getCurrentHealthTooltip({
+				"hitpoints": capturePoints[playerID],
+				"maxHitpoints": maxCapturePoints
+			},
+			translate("Capture points:"));
 	}
 
 	let numberOfUnits = Engine.GetGUIObjectByName("numberOfUnits");
