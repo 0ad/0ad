@@ -5,6 +5,7 @@
 # Translators:
 # alrope <alexandre.rp@gmail.com>, 2014
 # Arthur Paim Arnold <arthurpaimarnold@gmail.com>, 2014
+# borg 2k <estevanborg@gmail.com>, 2017
 # Caio Northfleet <caio.northfleet@gmail.com>, 2014
 # Diana K. Cury <dianakac@gmail.com>, 2014
 # Elisa Silva Ramos <inactive+elisasr@transifex.com>, 2014
@@ -49,8 +50,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-27 09:01+0200\n"
-"PO-Revision-Date: 2017-03-27 08:37+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-04-09 05:35+0000\n"
+"Last-Translator: borg 2k <estevanborg@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -78,7 +79,7 @@ msgstr "Estou pronto"
 
 #: gui/gamesetup/gamesetup.js:38
 msgid "State that you are ready to play."
-msgstr ""
+msgstr "Indique que você está pronto para jogar."
 
 #: gui/gamesetup/gamesetup.js:42
 #, javascript-format
@@ -87,11 +88,11 @@ msgstr "* %(username)s está pronto!"
 
 #: gui/gamesetup/gamesetup.js:43
 msgid "Stay ready"
-msgstr ""
+msgstr "Fique pronto"
 
 #: gui/gamesetup/gamesetup.js:44
 msgid "Stay ready even when the game settings change."
-msgstr ""
+msgstr "Manter-se pronto mesmo se houver modificações nas configurações da partida."
 
 #: gui/gamesetup/gamesetup.js:49
 msgid "I'm not ready!"
@@ -244,12 +245,12 @@ msgstr "Jogo do %(name)s"
 
 #: gui/gamesetup/gamesetup_mp.js:106
 msgid "Please enter a valid server name."
-msgstr ""
+msgstr "Por favor entre com um nome de servidor valido."
 
 #: gui/gamesetup/gamesetup_mp.js:113
 #, javascript-format
 msgid "Server port number must be between %(min)s and %(max)s."
-msgstr ""
+msgstr "Número da porta do servidor deve ser entre %(min)s e %(max)s."
 
 #: gui/gamesetup/gamesetup_mp.js:130
 msgid "Connecting to server..."
@@ -270,7 +271,7 @@ msgstr "O jogo já começou, juntando-se novamente..."
 
 #: gui/gamesetup/gamesetup_mp.js:292
 msgid "Game name already in use."
-msgstr "Nome já em uso."
+msgstr "Este nome já está em uso."
 
 #: gui/gamesetup/gamesetup_mp.js:308
 #, javascript-format
@@ -410,7 +411,7 @@ msgstr "Condição de Vitória:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):342
 msgid "Victory Duration:"
-msgstr ""
+msgstr "Duração da Vitória:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):352
 msgid "Population Cap:"
@@ -442,7 +443,7 @@ msgstr "Desativar Tesouros:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):412
 msgid "Disable Spies:"
-msgstr ""
+msgstr "Desabilitar Espiões"
 
 #: gui/gamesetup/gamesetup.xml:(caption):422
 msgid "Teams Locked:"
@@ -531,7 +532,7 @@ msgstr "Selecionar condição de vitória."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):346
 msgid "Number of minutes until the player has won."
-msgstr ""
+msgstr "Número de minutos necessarios até o jogador vencer"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):356
 msgid "Select population cap."
@@ -563,11 +564,11 @@ msgstr "Desativar todos os tesouros no mapa."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):416
 msgid "Disable spies during the game."
-msgstr ""
+msgstr "Desabilitar espiões durante o jogo"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):426
 msgid "Toggle locked teams."
-msgstr "Alternar trancar times."
+msgstr "Alternar equipes bloqueado."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):436
 msgid ""

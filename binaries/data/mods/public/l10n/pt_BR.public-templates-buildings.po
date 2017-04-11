@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# borg 2k <estevanborg@gmail.com>, 2017
 # Dalcio Marçal <dalciomarcal@gmail.com>, 2016
 # Erick Alves <erickalves@outlook.com>, 2014
 # Gustavo Moitinho <gustavo.moitinho@outlook.com>, 2016
@@ -24,8 +25,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-27 09:02+0200\n"
-"PO-Revision-Date: 2017-03-27 09:25+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-04-09 05:23+0000\n"
+"Last-Translator: borg 2k <estevanborg@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -138,18 +139,18 @@ msgstr "Torre de Defesa"
 msgid ""
 "Shoots arrows. Garrison to provide extra defense. Needs the murder holes "
 "tech to protect its foot."
-msgstr "Atira flechas. Garnecer para fornecer defesa extra. Presisa de buracos de assassinato para proteger a base."
+msgstr "Atira flechas. Guarnecer com soldados para fornecer flechas extras. Pesquise buracos de assassinato para proteger a base da torre."
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_defense_defense_tower.xml:26
 msgid "DefenseTower"
-msgstr "TorreDefensiva"
+msgstr "Torre Defensiva"
 
 #: simulation/templates/template_structure_defense_outpost.xml:63
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly "
 "converts to Gaia while in neutral territory."
-msgstr "Construa em território neutro ou aliado para patrulhar áreas do mapa. Converte-se lentamente em Gaia enquanto em território neutro."
+msgstr "Construa em território neutro ou aliado para patrulhar áreas do mapa. Converte-se lentamente em Gaia enquanto está em território neutro."
 
 #: simulation/templates/template_structure_defense_outpost.xml:65
 #: simulation/templates/template_structure_defense_outpost.xml:33
@@ -164,11 +165,11 @@ msgstr "Torre Sentinela"
 
 #: simulation/templates/template_structure_defense_sentry_tower.xml:42
 msgid "SentryTower"
-msgstr ""
+msgstr "Torre Sentinela"
 
 #: simulation/templates/template_structure_defense_sentry_tower.xml:69
 msgid "Reinforce with stone and upgrade to a defense tower."
-msgstr "Reforçar com pedra e evoluir para torre de defesa."
+msgstr "Reforçar com pedras e evoluir para torre de defesa."
 
 #: simulation/templates/template_structure_defense_wall.xml:24
 #: simulation/templates/structures/cart_s_wall_long.xml:7
@@ -199,15 +200,15 @@ msgstr "Segmentos longos de parede podem ser convertidos em portões."
 #: simulation/templates/template_structure_defense_wall_long.xml:45
 msgid ""
 "This will allow you to let units circulate through your fortifications."
-msgstr "Isto deixará você fazer unidades circularem por suas fortificações"
+msgstr "Isto deixará você faça unidades circularem por suas fortificações"
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:50
 msgid "Wall Turret"
-msgstr "Guarita"
+msgstr "Torre da Muralha"
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:51
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
-msgstr "Lança flechas. Abrigue para defender sua muralha contra atacantes."
+msgstr "Lança flechas. Abrigue com soldados para defender sua muralha contra atacantes."
 
 #: simulation/templates/template_structure_defense_wallset.xml:10
 msgid "City Wall"
@@ -257,7 +258,7 @@ msgstr "Armazém"
 #: simulation/templates/template_structure_gaia_settlement.xml:9
 #: simulation/templates/template_structure_gaia_settlement.xml:10
 msgid "Settlement"
-msgstr "Povoado"
+msgstr "Assentamento"
 
 #: simulation/templates/template_structure_gaia_settlement.xml:11
 msgid "Build a Civic Center at this location to expand your territory."
@@ -316,7 +317,7 @@ msgstr "Fortaleza"
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements."
-msgstr "Treine heróis, campeões e armas de cerco. Pesquise melhorias de arma de cerco."
+msgstr "Treine heróis, soldados campeões e armas de cerco. Pesquise melhorias de arma de cerco."
 
 #: simulation/templates/template_structure_military_fortress.xml:65
 #: simulation/templates/template_structure_special.xml:45
@@ -336,7 +337,7 @@ msgstr "Recursos"
 msgid ""
 "Raise herd animals for food. Task domestic animals here to gain a trickle of"
 " food or other bonus (Not yet implemented)."
-msgstr "Crie animais de rebanho por comida. Ordene animais domésticos aqui para ganhar bônus (Não implementado ainda)."
+msgstr "Crie animais de rebanho para comida. Ordene animais domésticos aqui para ganhar bônus (Não implementado ainda)."
 
 #: simulation/templates/template_structure_resource_corral.xml:20
 #: simulation/templates/template_structure_resource_corral.xml:18
@@ -350,7 +351,7 @@ msgstr "Campo"
 
 #: simulation/templates/template_structure_resource_field.xml:29
 msgid "Harvest vegetables for food. Max gatherers: 5."
-msgstr "Colher vegetais para alimentação. Máximo de coletas: 5"
+msgstr "Colher vegetais para alimentação. Máximo de coletores: 5"
 
 #: simulation/templates/template_structure_special.xml:42
 #: simulation/templates/structures/brit_kennel.xml:36
@@ -452,7 +453,7 @@ msgstr "Epiteíkhisma"
 
 #: simulation/templates/structures/athen_fortress.xml:10
 msgid "Build siege engines. Garrison soldiers inside for stout defense."
-msgstr "Construa mecanismos de cerco. Abrigue soldados em seu interior para uma defesa mais forte."
+msgstr "Construa mecanismos de cerco. Abrigue soldados em seu interior para aumentar suas defesas."
 
 #: simulation/templates/structures/athen_gymnasion.xml:23
 msgid "Gymnasium"
@@ -589,7 +590,7 @@ msgstr "Povoado Insular"
 
 #: simulation/templates/structures/brit_crannog.xml:17
 msgid "Increase population limit and defend waterways."
-msgstr "Aumenta o limite populacional e defende as hidrovias."
+msgstr "Aumenta o limite populacional e defenda as hidrovias."
 
 #: simulation/templates/structures/brit_crannog.xml:18
 #: simulation/templates/structures/brit_dock.xml:15
@@ -718,7 +719,7 @@ msgstr "Namel"
 msgid ""
 "Construct fishing boats to gather meat and merchant ships to trade with "
 "other docks."
-msgstr "Construa barcos de pesca para coletar carne e barcos mercadores para comercializar com outras docas."
+msgstr "Construa barcos de pesca para coletar alimento e barcos mercadores para comercializar com outras docas."
 
 #: simulation/templates/structures/cart_embassy.xml:22
 msgid "Hire mercenaries."
@@ -812,7 +813,7 @@ msgstr "Maqdaš"
 msgid ""
 "Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
 "units to heal them at a quick rate."
-msgstr "Treine sacerdotisas para curar suas tropas. Treine Legiões Sacras piqueiras. Abrigue unidades para curá-las rapidamente."
+msgstr "Treine sacerdotisas para curar suas tropas. Treine piqueiros das Legiões Sacras. Abrigue unidades para curá-las rapidamente."
 
 #: simulation/templates/structures/cart_wall.xml:9
 #: simulation/templates/structures/cart_wallset_stone.xml:5
@@ -908,7 +909,7 @@ msgstr "Arruga"
 
 #: simulation/templates/structures/iber_monument.xml:7
 msgid "Monument"
-msgstr ""
+msgstr "Monumento"
 
 #: simulation/templates/structures/iber_monument.xml:32
 msgid "Revered Monument"
@@ -922,7 +923,7 @@ msgstr "Gur Oroigarri"
 msgid ""
 "All units within vision of this monument will fight harder. Buildings in the"
 " territory of the monument do not decay."
-msgstr "Todas as unidades dentro da visão deste monumento vai lutar mais . Edifícios no território do monumento não decadência."
+msgstr "Todas as unidades dentro da visão deste monumento ficam mais fortes e lutam melhor. Edifícios no território do monumento não decaem."
 
 #: simulation/templates/structures/iber_outpost.xml:5
 msgid "Iberian Outpost"
@@ -963,7 +964,7 @@ msgstr "Teíchisma"
 #: simulation/templates/structures/mace_fortress.xml:10
 msgid ""
 "Train Champions and Heroes. Garrison soldiers inside for stout defense."
-msgstr "Treinar Campeões e Heróis. Abrigue soldados em seu interior para uma defesa mais forte."
+msgstr "Treinar soldados Campeões e Heróis. Abrigue soldados em seu interior para melhorar suas defesas."
 
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
@@ -980,7 +981,7 @@ msgstr "Construção de Cerco"
 
 #: simulation/templates/structures/mace_siege_workshop.xml:20
 msgid "Build siege engines. Research siege technologies."
-msgstr "Construa mecanismos de cerco. Tecnologias de cerco de pesquisa."
+msgstr "Construa mecanismos de cerco. Pesquise Tecnologias de cerco. "
 
 #: simulation/templates/structures/mace_temple.xml:9
 #: simulation/templates/structures/spart_temple.xml:9
@@ -1053,7 +1054,7 @@ msgstr "Uparaksana"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:7
 msgid "Pillar"
-msgstr ""
+msgstr "Pilar"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:32
 msgid "Edict Pillar of Ashoka"
@@ -1067,7 +1068,7 @@ msgstr "Śāsana Stambha Aśokā"
 msgid ""
 "The famous pillar of Ashoka. Increases the walk speed of traders. Buildings "
 "in the territory of the monument do not decay."
-msgstr "O famoso pilar de Ashoka. Aumenta a velocidade de caminhada dos comerciantes. Edifícios no território do monumento não se deterioram."
+msgstr "O famoso pilar de Ashoka. Aumenta a velocidade de movimento dos comerciantes. Edifícios no território do monumento não decaem."
 
 #: simulation/templates/structures/maur_storehouse.xml:5
 msgid "Khalla"
@@ -1100,7 +1101,7 @@ msgstr "Grande Estupa"
 #: simulation/templates/structures/merc_camp_egyptian.xml:7
 #: simulation/templates/structures/ptol_mercenary_camp.xml:7
 msgid "MercenaryCamp"
-msgstr "AcampamentoMercenário"
+msgstr "Acampamento Mercenário"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:29
 msgid "Mercenary Camp (Egyptian)"
@@ -1127,7 +1128,7 @@ msgstr "Apadana"
 msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
 "resources. Train Persian heroes and their \"Immortals\" bodyguards."
-msgstr "\" Satrapy Tribute \" : ganhar um fio de recursos de alimentos, madeira, pedra e metal. Treinar heróis persas e seus \"imortais \" guarda-costas."
+msgstr "\" Satrapy Tribute \" : ganhe um pouco de alimentos, madeira, pedra e metal por segundo. Treine heróis persas e seus \"imortais \" guarda-costas."
 
 #: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
@@ -1176,7 +1177,7 @@ msgstr "Didā"
 
 #: simulation/templates/structures/pers_fortress.xml:7
 msgid "Train Champion Cavalry and Construct Siege Rams."
-msgstr "Treine Cavaleiros de Elite e construa Aríetes."
+msgstr "Treine Cavalaria de Elite e construa Aríetes."
 
 #: simulation/templates/structures/pers_hall.xml:28
 msgid "Persian Hall"
@@ -1206,7 +1207,7 @@ msgstr "Portão Babilônico de Istar"
 msgid ""
 "Increases the loyalty regeneration of nearby structures, making them harder "
 "to capture."
-msgstr "Aumenta a regeneração de lealdade de estruturas próximas, tornando-as mais difíceis de capturar."
+msgstr "Aumenta a regeneração de lealdade das estruturas próximas, tornando-as mais difíceis de serem capturar."
 
 #: simulation/templates/structures/pers_market.xml:12
 msgid "Ardatašta"
@@ -1474,7 +1475,7 @@ msgstr "Uma palisada de madeira que pode ser construída em territórios hostil 
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:31
 msgid "Siege Wall Tower"
-msgstr "Torre do Muro de Cerco"
+msgstr "Torre de cerco"
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:32
 msgid "Turris Circummunitionis"
@@ -1572,7 +1573,7 @@ msgstr "Phrourion"
 msgid ""
 "Build siege engines and train Champions. Garrison soldiers inside for stout "
 "defense."
-msgstr "Construa Armas de Cerco e treine Campeões. Abrigue soldados em seu interior para uma defesa mais forte."
+msgstr "Construa Armas de Cerco e treine soldados Campeões. Abrigue soldados em seu interior para melhorar suas defesas."
 
 #: simulation/templates/structures/sele_library.xml:9
 msgid "Bibliothikon"
@@ -1608,7 +1609,7 @@ msgstr "Teíkhisma"
 #: simulation/templates/structures/spart_fortress.xml:10
 msgid ""
 "Build siege engines. Garrison up to 20 soldiers inside for stout defense."
-msgstr "Construa mecanismos de cerco. Abrigue até 20 soldados em seu interior para uma defesa forte."
+msgstr "Construa mecanismos de cerco. Abrigue até 20 soldados em seu interior para melhorar suas defesas."
 
 #: simulation/templates/structures/spart_gerousia.xml:21
 msgid "Spartan Senate"

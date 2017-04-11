@@ -1103,6 +1103,11 @@ bool CNetServerWorker::OnReady(void* context, CFsmEvent* event)
 	CNetServerSession* session = (CNetServerSession*)context;
 	CNetServerWorker& server = session->GetServer();
 
+	// Occurs if a client presses not-ready
+	// in the very last moment before the hosts starts the game
+	if (server.m_State == SERVER_STATE_LOADING)
+		return true;
+
 	CReadyMessage* message = (CReadyMessage*)event->GetParamRef();
 	message->m_GUID = session->GetGUID();
 	server.Broadcast(message, { NSS_PREGAME });

@@ -927,7 +927,7 @@ void CXMLReader::ReadPaths(XMBElement parent)
 			if (!cmpCinemaManager)
 				continue;
 			if (!cmpCinemaManager->HasPath(pathName))
-				cmpCinemaManager->AddPath(pathName, path);
+				cmpCinemaManager->AddPath(path);
 			else
 				LOGWARNING("Path with name '%s' already exists", pathName.ToUTF8());
 		}

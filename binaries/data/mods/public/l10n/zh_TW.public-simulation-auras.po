@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-27 09:02+0200\n"
-"PO-Revision-Date: 2017-03-28 12:14+0000\n"
+"POT-Creation-Date: 2017-04-03 09:02+0200\n"
+"PO-Revision-Date: 2017-04-06 13:46+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -427,6 +427,221 @@ msgid ""
 "Further increase the population limit by 40 per wonder owned (requires "
 "\"Glorious Expansion\" tech)."
 msgstr "每擁有一座奇觀就會讓人口上限 +40（需要「光榮擴展」科技）。"
+
+#: simulation/data/auras/catafalques/athen_catafalque_1.jsonauraName
+msgid "Economic Reforms"
+msgstr "經濟改革"
+
+#: simulation/data/auras/catafalques/athen_catafalque_1.jsonauraDescription
+msgid ""
+"Solon instituted several economic reforms encouraging commerce and agriculture.\n"
+"+10% gather rate of workers within an 80 meter range."
+msgstr "梭倫推行了幾項鼓勵商業與農業的經濟改革。\n在 80 公尺範圍內的工人 +10% 採集速率。"
+
+#: simulation/data/auras/catafalques/athen_catafalque_2.jsonauraName
+msgid "Economic Fortune"
+msgstr "經濟財富"
+
+#: simulation/data/auras/catafalques/athen_catafalque_2.jsonauraDescription
+msgid ""
+"Solon brought in a new system of weights and measures, fathers were encouraged to find trades for their sons.\n"
+"-10% cost for economic technologies."
+msgstr "梭倫帶來了新的度量衡系統，父親們都被鼓勵為他們的兒子找到好交易。\n經濟科技 -10% 研發成本。"
+
+#: simulation/data/auras/catafalques/brit_catafalque_1.jsonauraName
+msgid "Guerilla Tactics"
+msgstr "游擊戰術"
+
+#: simulation/data/auras/catafalques/brit_catafalque_1.jsonauraDescription
+msgid ""
+"Seeing entrenched defense to be useless against the Roman army, Cassivellanus resorted to gurerilla tactics. This was later employed by other cheiftains too.\n"
+"+15% speed and vision range for soldiers."
+msgstr "看到堅強的防守對羅馬軍隊毫無用處，Cassivellanus 採用了游擊戰術。後來又被其他將軍所採用。\n士兵 +15% 速度與視野。"
+
+#: simulation/data/auras/catafalques/brit_catafalque_2.jsonauraName
+msgid "Skirmisher Harassment"
+msgstr "偷襲戰術"
+
+#: simulation/data/auras/catafalques/brit_catafalque_2.jsonauraDescription
+msgid ""
+"Cassivellanus deployed fast-moving skirmishers to harass Roman troops and foragers.\n"
+"+20% attack range for skirmisher javelins."
+msgstr "Cassivellanus 部署了快速移動的散兵來偷襲羅馬人的軍隊與遠征隊。\n長矛散兵 +20% 攻擊範圍。"
+
+#: simulation/data/auras/catafalques/cart_catafalque.jsonauraName
+msgid "Commander of Heavy Cavalry"
+msgstr "重騎兵指揮官"
+
+#: simulation/data/auras/catafalques/cart_catafalque.jsonauraDescription
+msgid ""
+"Leader of the Carthaginian heavy cavalry at Trebia and Cannae, where his triple charge had devastating effects on the enemy.\n"
+"+1 armor, +10% health for melee cavalry."
+msgstr "Trebia 與 Cannae 魁北克重騎兵的領導者，他的三重衝鋒對敵人產生了毀滅性的傷害。\n近戰騎兵 +1 裝甲並 +10% 生命值。"
+
+#: simulation/data/auras/catafalques/gaul_catafalque_1.jsonauraName
+msgid "Ambush Slaughter"
+msgstr "埋伏暗殺"
+
+#: simulation/data/auras/catafalques/gaul_catafalque_1.jsonauraDescription
+msgid ""
+"Warring with the Romans, Ambiorix realized the futility of open warfare and instead resorted to ambush tactics. The Gauls quickly learned where and when to execute surprise attacks.\n"
+"Units promote 25% faster and gain a 5% attack bonus."
+msgstr "與羅馬人交戰時，Ambiorix 意識到開放戰爭的徒勞，其改採伏擊戰術。高廬人很快就知道要在哪裡以及什麼時候執行埋伏。\n單位速度提升 25%，並有 5% 的攻擊加成。"
+
+#: simulation/data/auras/catafalques/gaul_catafalque_2.jsonauraName
+msgid "Tribute to Rome"
+msgstr "向羅馬進貢"
+
+#: simulation/data/auras/catafalques/gaul_catafalque_2.jsonauraDescription
+msgid ""
+"When the Roman Army fell short of food supplies, the Gallic tribes were ordered to give up a part of their already meagre harvest. The Eburones under Ambiorix were reluctant to do so, therefore Caesar sent troops to take them by foce.\n"
+"-10% farming rate."
+msgstr "當羅馬軍隊糧食供應不足時，高廬部路被命令放棄已經不多的收成中的一部份。在 Ambiorix 治下的厄勃隆尼斯人不願意這麼做，所以凱撒派軍隊強行把他們帶走。\n-10% 耕種速度。"
+
+#: simulation/data/auras/catafalques/iber_catafalque_1.jsonauraName
+msgid "Mercenary Commander"
+msgstr "傭兵指揮官"
+
+#: simulation/data/auras/catafalques/iber_catafalque_1.jsonauraDescription
+msgid ""
+"Along with his brother Indibil, Mandonius commanded the Iberian recruits and mercenaries that took part in the Punic Wars.\n"
+"-25% metal cost for all allied citizen-soldier mercenaries."
+msgstr "Mandonius 與他的兄弟 Indibil 一起指揮參與布匿戰爭的伊比利新兵與傭兵。\n所有盟友的傭兵 -25% 金屬花費。"
+
+#: simulation/data/auras/catafalques/iber_catafalque_2.jsonauraName
+msgid "Saver of Lives"
+msgstr "生命救助者"
+
+#: simulation/data/auras/catafalques/iber_catafalque_2.jsonauraDescription
+msgid ""
+"Following the fall of Indibil in battle, Mandonius led the survivors to safety.\n"
+"+15% movement speed and +10% health for all soldiers."
+msgstr "隨著 Indibil 在戰爭中的隕落，Mandonius 帶領了倖存者到安全的地方。\n所有士兵 +15% 移動速度並 +10% 生命值。"
+
+#: simulation/data/auras/catafalques/mace_catafalque.jsonauraName
+msgid "Sacker of Cities"
+msgstr "城市掠奪者"
+
+#: simulation/data/auras/catafalques/mace_catafalque.jsonauraDescription
+msgid ""
+"During the First Macedonian War, Philip and his troops sacked Thermum, the religious and political centre of Aetolia.\n"
+"+25% loot for every enemy unit killed or structure destroyed."
+msgstr "在第一次馬其頓戰爭期間，腓力國王與他的軍隊掠奪了埃托利亞的宗教與政治中心，Thermum。\n每個被殺死的單位或被摧毀的建築物 +25% 戰利品。"
+
+#: simulation/data/auras/catafalques/maur_catafalque_1.jsonauraName
+msgid "Consolidator of the Empire"
+msgstr "帝國統治者"
+
+#: simulation/data/auras/catafalques/maur_catafalque_1.jsonauraDescription
+msgid ""
+"Son of Chandragupta Maurya, Bindusara consolidated the empire, creating a stable state for his son Ashoka to inherit.\n"
+"+20% territory influence."
+msgstr "旃陀羅笈多·孔雀的兒子，賓頭娑羅鞏固了整個帝國，為他的兒子阿育王建立了一個穩定的國家。\n領土影響力 +20%。"
+
+#: simulation/data/auras/catafalques/maur_catafalque_2.jsonauraName
+msgid "Vamba Moriyar"
+msgstr "Vamba Moriyar"
+
+#: simulation/data/auras/catafalques/maur_catafalque_2.jsonauraDescription
+msgid ""
+"Bindusara is said to have conquered lands to the south of the empire.\n"
+"+15% unit capture rate."
+msgstr "據說賓頭娑羅征服了帝國南部的土地。\n+15% 單位捕捉速度。"
+
+#: simulation/data/auras/catafalques/pers_catafalque.jsonauraName
+msgid "Great Builder"
+msgstr "偉大的建築師"
+
+#: simulation/data/auras/catafalques/pers_catafalque.jsonauraDescription
+msgid ""
+"Throughout his reign, much of Artaxerxes' wealth was spent on building projects. He restored the Palace of Darius I at Susa, and restored the ancient city of Ecbatana.\n"
+"+5% health and -5% resource cost for all buildings."
+msgstr "在阿爾塔薛西斯統治期間，他大部份的財富都用於建築物上。他在蘇薩重建了大流士一世的宮殿，並重建了埃克巴坦那古城。\n所有建築物 +5% 生命值且 -5% 花費。"
+
+#: simulation/data/auras/catafalques/ptol_catafalque.jsonauraName
+msgid "Great Librarian"
+msgstr "偉大的圖書管理者"
+
+#: simulation/data/auras/catafalques/ptol_catafalque.jsonauraDescription
+msgid ""
+"Continuing his predecessors' work on the Great Library at Alexandria, he seized every book brought to Alexandria, thus leaving to his people a vast amount of hoarded wisdom.\n"
+"-10% resource cost for all technologies."
+msgstr "繼續著他的前輩在亞歷山大圖書館的工作，他把每一本書帶到了亞歷山大，為他的人民留下了大量的智慧結晶。\n所有技術的資源成本 -10%。"
+
+#: simulation/data/auras/catafalques/rome_catafalque_1.jsonauraName
+msgid "Avenger of Lucretia"
+msgstr "盧克萊西婭的復仇"
+
+#: simulation/data/auras/catafalques/rome_catafalque_1.jsonauraDescription
+msgid ""
+"After the rape of Lucretia by the son of King Tarquinius Superbus and her subsequent suicide, Brutus vowed to avenge her and overthrow the monarchy.\n"
+"Female citizens cost 20% less and work 10% faster."
+msgstr "在被塔奎尼烏斯·蘇培布斯國王的兒子強姦後，她就自殺了，布魯圖斯誓言復仇並推翻君主制。\n女性公民花費 -20% 且工作速度 +10%。"
+
+#: simulation/data/auras/catafalques/rome_catafalque_2.jsonauraName
+msgid "Founder and Defender of the Republic Aura"
+msgstr "共和國的奠基者與保衛者靈氣"
+
+#: simulation/data/auras/catafalques/rome_catafalque_2.jsonauraDescription
+msgid ""
+"Brutus was one of the key figures in the overthrow of the monarchy and the founding of the Roman Republic. Later, as consul he led a Roman army to victory against the Etruscan King Tarquinius who sought to retake the throne.\n"
+"+10% armor for all units and siege engines."
+msgstr "布魯圖斯是推翻君主制與羅馬共和國成立的關鍵人物之一。後來，作為領事，他率領了一支軍隊對抗試圖奪取王位的伊特魯里亞國王塔克尼烏斯並獲得勝利。\n所有單位與攻城武器 +10% 裝甲。"
+
+#: simulation/data/auras/catafalques/sele_catafalque_1.jsonauraName
+msgid "Founder of the Ezida Temple"
+msgstr "亞茲迪神殿的奠基者"
+
+#: simulation/data/auras/catafalques/sele_catafalque_1.jsonauraDescription
+msgid ""
+"Antiochus I laid the foundation for the Ezida Temple in Borsippa.\n"
+"-10% resource cost for temples and temple technologies."
+msgstr "安條克一世為在波爾西帕的亞茲迪神殿打下了基礎。\n神廟與神廟科技 -10% 資源消耗。"
+
+#: simulation/data/auras/catafalques/sele_catafalque_2.jsonauraName
+msgid "Immigration"
+msgstr "移民"
+
+#: simulation/data/auras/catafalques/sele_catafalque_2.jsonauraDescription
+msgid ""
+"Antiochus encouraged Greek immigration to his realm and established many new cities in Asia Minor to serve as counterweights to the Gauls.\n"
+"+5% maximum population."
+msgstr "安條克鼓勵希臘人移民到他的王國，並在亞太地區建立了許多新城市來與高廬平衡。\n人口上限 +5%。"
+
+#: simulation/data/auras/catafalques/sele_catafalque_3.jsonauraName
+msgid "Basileus Megas (Great King)"
+msgstr "Basileus Megas（偉大的國王）"
+
+#: simulation/data/auras/catafalques/sele_catafalque_3.jsonauraDescription
+msgid ""
+"Son of Selecus Nicator, Antiochus succeeded in the formidable task of keeping the empire together, meanwhile founding temples and defeating the invading Gauls with war elephants.\n"
+"-10% cost for War Elephants."
+msgstr "做為塞琉古一世的兒子，安條克成功地完成了將帝國保持為一的艱難任務，同時建立了神廟，並利用戰象打敗了入侵的高廬。\n戰象成本 -10%。"
+
+#: simulation/data/auras/catafalques/spart_catafalque_1.jsonauraName
+#: simulation/data/auras/catafalques/spart_catafalque_2.jsonauraName
+msgid "Lycurgan Military Reforms"
+msgstr "來古格士軍事改革"
+
+#: simulation/data/auras/catafalques/spart_catafalque_1.jsonauraDescription
+msgid ""
+"Lycurgus instituted several military reforms, thus the complete and undivided allegiance to Sparta from its citizens was implemented under his form of government.\n"
+"-10% resource cost for spear citizen units."
+msgstr "來古格士推行了許多次軍事改革，從而讓斯巴達公民完全且唯一地效忠政府。\n長矛民兵單位 -10% 資源花費。"
+
+#: simulation/data/auras/catafalques/spart_catafalque_2.jsonauraDescription
+msgid "-5% resource cost for spear champions."
+msgstr "長矛精英 -5% 資源花費。"
+
+#: simulation/data/auras/catafalques/spart_catafalque_3.jsonauraName
+msgid "Iron Pelanors"
+msgstr "鐵貨幣"
+
+#: simulation/data/auras/catafalques/spart_catafalque_3.jsonauraDescription
+msgid ""
+"To further support equality, Lycurgus forbade the use of gold and silver, instead introducing new iron money called pellanors.\n"
+"+15% metal mining rate for workers within an 80 meter range."
+msgstr "為了進一步支援平等，來古格士禁止使用黃金與白銀，取而代之的是採用稱為 pellanors 的鐵製貨幣。\n在 80 公尺範圍內的工人金屬採集速度 +15%。"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"

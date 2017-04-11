@@ -180,12 +180,12 @@ public:
 
 	// Vertex attribute pointers (equivalent to glVertexPointer etc):
 
-	virtual void VertexPointer(GLint size, GLenum type, GLsizei stride, void* pointer);
-	virtual void NormalPointer(GLenum type, GLsizei stride, void* pointer);
-	virtual void ColorPointer(GLint size, GLenum type, GLsizei stride, void* pointer);
-	virtual void TexCoordPointer(GLenum texture, GLint size, GLenum type, GLsizei stride, void* pointer);
-	virtual void VertexAttribPointer(attrib_id_t id, GLint size, GLenum type, GLboolean normalized, GLsizei stride, void* pointer);
-	virtual void VertexAttribIPointer(attrib_id_t id, GLint size, GLenum type, GLsizei stride, void* pointer);
+	virtual void VertexPointer(GLint size, GLenum type, GLsizei stride, const void* pointer);
+	virtual void NormalPointer(GLenum type, GLsizei stride, const void* pointer);
+	virtual void ColorPointer(GLint size, GLenum type, GLsizei stride, const void* pointer);
+	virtual void TexCoordPointer(GLenum texture, GLint size, GLenum type, GLsizei stride, const void* pointer);
+	virtual void VertexAttribPointer(attrib_id_t id, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void* pointer);
+	virtual void VertexAttribIPointer(attrib_id_t id, GLint size, GLenum type, GLsizei stride, const void* pointer);
 
 	/**
 	 * Checks that all the required vertex attributes have been set.

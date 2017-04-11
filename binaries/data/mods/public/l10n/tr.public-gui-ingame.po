@@ -5,7 +5,7 @@
 # Translators:
 # Abdullah Ilgaz <abdullahilgaz@live.com>, 2013-2014
 # Berke Güvenç <ybguvenc@yandex.com>, 2016
-# Cem Aktas <cemwstone@gmail.com>, 2015
+# Cem Aktas <cemwstone@gmail.com>, 2015,2017
 # Ebubekir Tabak <tec.1905@windowslive.com>, 2013
 # Emre AYTAÇ <eaytac@gmail.com>, 2013
 # Erdem Aydogan <erdemaydogann@gmail.com>, 2016
@@ -37,8 +37,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-31 09:20+0200\n"
-"PO-Revision-Date: 2017-03-31 08:23+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-04-05 15:16+0000\n"
+"Last-Translator: Cem Aktas <cemwstone@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -367,7 +367,7 @@ msgstr "Sebep: %(reason)s."
 
 #: gui/session/messages.js:145
 msgid "Waiting for players to connect:"
-msgstr ""
+msgstr "Oyuncuların bağlanması bekleniyor:"
 
 #: gui/session/messages.js:146
 msgid "Synchronising gameplay with other players..."
@@ -1128,7 +1128,7 @@ msgstr "Korumayı kaldır"
 #: gui/session/unit_actions.js:1263
 #: gui/session/top_panel/button_trade.xml:(tooltip):9
 msgid "Barter & Trade"
-msgstr ""
+msgstr "Takas & Ticaret"
 
 #: gui/session/unit_actions.js:1280
 msgid "Patrol"
@@ -1348,23 +1348,23 @@ msgstr "Görüntülenecek oyuncuyu seçin"
 
 #: gui/session/trade_window.xml:(caption):9
 msgid "Barter & Trade Goods"
-msgstr ""
+msgstr "Takas & Ticaret Malları"
 
 #: gui/session/trade_window.xml:(caption):17
 msgid "Barter"
-msgstr ""
+msgstr "Takas"
 
 #: gui/session/trade_window.xml:(caption):24
 msgid "Sell:"
-msgstr ""
+msgstr "Satış:"
 
 #: gui/session/trade_window.xml:(caption):28
 msgid "Buy:"
-msgstr ""
+msgstr "Alış:"
 
 #: gui/session/trade_window.xml:(caption):32
 msgid "No Markets Available"
-msgstr ""
+msgstr "Pazaryeri bulunmamaktadır"
 
 #: gui/session/trade_window.xml:(caption):67
 msgid "Trade"
@@ -1372,7 +1372,7 @@ msgstr "Ticaret"
 
 #: gui/session/trade_window.xml:(caption):75
 msgid "Goods:"
-msgstr ""
+msgstr "Mallar:"
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"

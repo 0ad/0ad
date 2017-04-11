@@ -5,6 +5,7 @@
 # Translators:
 # alrope <alexandre.rp@gmail.com>, 2014
 # Arthur Paim Arnold <arthurpaimarnold@gmail.com>, 2015
+# borg 2k <estevanborg@gmail.com>, 2017
 # Caio Northfleet <caio.northfleet@gmail.com>, 2014
 # Dalcio Marçal <dalciomarcal@gmail.com>, 2016
 # Diana K. Cury <dianakac@gmail.com>, 2014
@@ -53,8 +54,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-31 09:20+0200\n"
-"PO-Revision-Date: 2017-03-31 08:23+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-04-09 07:01+0000\n"
+"Last-Translator: borg 2k <estevanborg@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -136,7 +137,7 @@ msgstr "%(time)s %(message)s"
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
-msgstr ""
+msgstr "Tempo restante para o cessar fogo acabar é: %(time)s."
 
 #: gui/session/menu.js:411
 msgctxt "team"
@@ -169,7 +170,7 @@ msgstr "Pedir aos seus aliados para atacar este inimigo"
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
-msgstr ""
+msgstr "Subornar uma unidade aleatória desse jogador e compartilhar sua visão durante um período limitado."
 
 #: gui/session/menu.js:716
 #, javascript-format
@@ -383,7 +384,7 @@ msgstr "Razão: %(reason)s."
 
 #: gui/session/messages.js:145
 msgid "Waiting for players to connect:"
-msgstr ""
+msgstr "Esperando jogadores se conectarem."
 
 #: gui/session/messages.js:146
 msgid "Synchronising gameplay with other players..."
@@ -570,7 +571,7 @@ msgstr "%(player)s lhe enviou %(amounts)s."
 #: gui/session/messages.js:907
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
-msgstr ""
+msgstr "Você enviou %(player2)s %(amounts)s."
 
 #: gui/session/messages.js:912
 #, javascript-format
@@ -946,7 +947,7 @@ msgstr "Aperte %(hotkey)s para abrir o chat de aliados."
 #: gui/session/session.js:394
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
-msgstr ""
+msgstr "Pressione %(hotkey)s para abrir a conversa privada com previamente selecionado."
 
 #: gui/session/session.js:398
 msgid "Find idle worker"
@@ -958,7 +959,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it (Pressing "
 "%(hotkey)s while selecting will also bring its share to 100%%) and then use "
 "the arrows of the other types to modify their shares."
-msgstr ""
+msgstr "Selecione um tipo de mercadoria que você deseja modificar, (usando %(hotkey)s poderá selecionar o seu valor em 100%%) e depois use as setas para modificar suas ações."
 
 #: gui/session/session.js:405
 #, javascript-format
@@ -967,7 +968,7 @@ msgid ""
 "Upon each press on one of the lower buttons, %(quantity)s of the upper "
 "resource will be sold for the displayed quantity of the lower. Press and "
 "hold %(hotkey)s to temporarily multiply all quantities by %(multiplier)s."
-msgstr ""
+msgstr "Comece selecionando o recurso a partir da linha superior que você deseja vender. Após cada pressão sobre um dos botões inferiores, %(quantity)s do recurso superior irá ser vendida para a quantidade mostrada da parte inferior. Pressione e segure %(hotkey)s para multiplicar temporariamente todas as quantidades por %(multiplier)s."
 
 #: gui/session/session.js:569
 #, javascript-format
@@ -1060,7 +1061,7 @@ msgstr "Modo túnel do tempo"
 #: gui/session/session.js:1310
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
-msgstr ""
+msgstr "%(time)s (%(speed)sx)"
 
 #: gui/session/unit_actions.js:572
 msgid "Origin trade market."
@@ -1144,7 +1145,7 @@ msgstr "Remover guarda"
 #: gui/session/unit_actions.js:1263
 #: gui/session/top_panel/button_trade.xml:(tooltip):9
 msgid "Barter & Trade"
-msgstr ""
+msgstr "Troca & Comércio"
 
 #: gui/session/unit_actions.js:1280
 msgid "Patrol"
@@ -1364,23 +1365,23 @@ msgstr "Escolher jogador para ver"
 
 #: gui/session/trade_window.xml:(caption):9
 msgid "Barter & Trade Goods"
-msgstr ""
+msgstr "Troca & Comércio de Bens"
 
 #: gui/session/trade_window.xml:(caption):17
 msgid "Barter"
-msgstr ""
+msgstr "Troca"
 
 #: gui/session/trade_window.xml:(caption):24
 msgid "Sell:"
-msgstr ""
+msgstr "Vender"
 
 #: gui/session/trade_window.xml:(caption):28
 msgid "Buy:"
-msgstr ""
+msgstr "Comprar"
 
 #: gui/session/trade_window.xml:(caption):32
 msgid "No Markets Available"
-msgstr ""
+msgstr "Não há mercados disponíveis."
 
 #: gui/session/trade_window.xml:(caption):67
 msgid "Trade"
@@ -1388,7 +1389,7 @@ msgstr "Comércio"
 
 #: gui/session/trade_window.xml:(caption):75
 msgid "Goods:"
-msgstr ""
+msgstr "Bens"
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"
