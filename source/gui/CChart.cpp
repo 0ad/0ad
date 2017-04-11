@@ -49,6 +49,20 @@ void CChart::HandleMessage(SGUIMessage& Message)
 
 }
 
+void CChart::DrawLine(const CShaderProgramPtr& shader, const CColor& color, const std::vector<float>& vertices) const
+{
+	shader->Uniform(str_color, color);
+	shader->VertexPointer(3, GL_FLOAT, 0, &vertices[0]);
+	shader->AssertPointersBound();
+
+	glEnable(GL_LINE_SMOOTH);
+	glLineWidth(1.1f);
+	if (!g_Renderer.m_SkipSubmit)
+		glDrawArrays(GL_LINE_STRIP, 0, vertices.size() / 3);
+	glLineWidth(1.0f);
+	glDisable(GL_LINE_SMOOTH);
+}
+
 void CChart::Draw()
 {
 	PROFILE3("render chart");
@@ -81,16 +95,21 @@ void CChart::Draw()
 	for (const CChartData& data : m_Series)
 		for (const CVector2D& point : data.m_Points)
 		{
-			if (point.X < leftBottom.X)
+			if (fabs(point.X) != std::numeric_limits<float>::infinity() && point.X < leftBottom.X)
 				leftBottom.X = point.X;
-			if (point.Y < leftBottom.Y)
+			if (fabs(point.Y) != std::numeric_limits<float>::infinity() && point.Y < leftBottom.Y)
 				leftBottom.Y = point.Y;
 
-			if (point.X > rightTop.X)
+			if (fabs(point.X) != std::numeric_limits<float>::infinity() && point.X > rightTop.X)
 				rightTop.X = point.X;
-			if (point.Y > rightTop.Y)
+			if (fabs(point.Y) != std::numeric_limits<float>::infinity() && point.Y > rightTop.Y)
 				rightTop.Y = point.Y;
 		}
+
+	if (rightTop.Y == leftBottom.Y)
+		rightTop.Y += 1;
+	if (rightTop.X == leftBottom.X)
+		rightTop.X += 1;
 
 	CVector2D scale(width / (rightTop.X - leftBottom.X), height / (rightTop.Y - leftBottom.Y));
 
@@ -100,23 +119,22 @@ void CChart::Draw()
 			continue;
 
 		std::vector<float> vertices;
-		vertices.reserve(data.m_Points.size() * 3);
 		for (const CVector2D& point : data.m_Points)
 		{
-			vertices.push_back(rect.left + (point.X - leftBottom.X) * scale.X);
-			vertices.push_back(rect.bottom - (point.Y - leftBottom.Y) * scale.Y);
-			vertices.push_back(bz + 0.5f);
+			if (fabs(point.Y) != std::numeric_limits<float>::infinity() && fabs(point.Y) != std::numeric_limits<float>::infinity())
+			{
+				vertices.push_back(rect.left + (point.X - leftBottom.X) * scale.X);
+				vertices.push_back(rect.bottom - (point.Y - leftBottom.Y) * scale.Y);
+				vertices.push_back(bz + 0.5f);
+			}
+			else
+			{
+				DrawLine(shader, data.m_Color, vertices);
+				vertices.clear();
+			}
 		}
-		shader->Uniform(str_color, data.m_Color);
-		shader->VertexPointer(3, GL_FLOAT, 0, &vertices[0]);
-		shader->AssertPointersBound();
-
-		glEnable(GL_LINE_SMOOTH);
-		glLineWidth(1.1f);
-		if (!g_Renderer.m_SkipSubmit)
-			glDrawArrays(GL_LINE_STRIP, 0, vertices.size() / 3);
-		glLineWidth(1.0f);
-		glDisable(GL_LINE_SMOOTH);
+		if (!vertices.empty())
+			DrawLine(shader, data.m_Color, vertices);
 	}
 
 	tech->EndPass();
