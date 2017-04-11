@@ -8,6 +8,7 @@ var g_ParsedData = {
 var g_Lists = {};
 var g_CivData = {};
 var g_SelectedCiv = "";
+var g_CurrentModifiers = {};
 var g_CallbackSet = false;
 var g_ResourceData = new Resources();
 
@@ -48,6 +49,8 @@ function selectCiv(civCode)
 		return;
 
 	g_SelectedCiv = civCode;
+
+	g_CurrentModifiers = deriveModifications(g_AutoResearchTechList);
 
 	// If a buildList already exists, then this civ has already been parsed
 	if (g_CivData[g_SelectedCiv].buildList)

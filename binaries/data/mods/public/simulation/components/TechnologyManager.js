@@ -270,48 +270,18 @@ TechnologyManager.prototype.ResearchTechnology = function(tech)
 	// store the modifications in an easy to access structure
 	if (template.modifications)
 	{
-		var affects = [];
-		if (template.affects && template.affects.length > 0)
+		let derivedModifiers = DeriveModificationsFromTech(template);
+		for (let modifierPath in derivedModifiers)
 		{
-			for (let affect of template.affects)
-			{
-				// Put the list of classes into an array for convenient access
-				affects.push(affect.split(/\s+/));
-			}
-		}
-		else
-		{
-			affects.push([]);
-		}
+			if (!this.modifications[modifierPath])
+				this.modifications[modifierPath] = [];
+			this.modifications[modifierPath] = this.modifications[modifierPath].concat(derivedModifiers[modifierPath]);
 
-		// We add an item to this.modifications for every modification in the template.modifications array
-		for (var i in template.modifications)
-		{
-			var modification = template.modifications[i];
-			if (!this.modifications[modification.value])
-				this.modifications[modification.value] = [];
-
-			var modAffects = affects.slice();
-			if (modification.affects)
-			{
-				var extraAffects = modification.affects.split(/\s+/);
-				for (var a in modAffects)
-					modAffects[a] = modAffects[a].concat(extraAffects);
-			}
-
-			var mod = {"affects": modAffects};
-
-			// copy the modification data into our new data structure
-			for (var j in modification)
-				if (j !== "value" && j !== "affects")
-					mod[j] = modification[j];
-
-			this.modifications[modification.value].push(mod);
-			var component = modification.value.split("/")[0];
+			let component = modifierPath.split("/")[0];
 			if (!modifiedComponents[component])
 				modifiedComponents[component] = [];
-			modifiedComponents[component].push(modification.value);
-			this.modificationCache[modification.value] = {};
+			modifiedComponents[component].push(modifierPath);
+			this.modificationCache[modifierPath] = {};
 		}
 	}
 

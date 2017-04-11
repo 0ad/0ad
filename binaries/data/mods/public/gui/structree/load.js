@@ -4,7 +4,7 @@ function loadUnit(templateName)
 		return null;
 
 	let template = loadTemplate(templateName);
-	let unit = GetTemplateDataHelper(template, null, g_AuraData, g_ResourceData);
+	let unit = GetTemplateDataHelper(template, null, g_AuraData, g_ResourceData, g_CurrentModifiers);
 
 	if (template.ProductionQueue)
 	{
@@ -46,7 +46,7 @@ function loadUnit(templateName)
 function loadStructure(templateName)
 {
 	let template = loadTemplate(templateName);
-	let structure = GetTemplateDataHelper(template, null, g_AuraData, g_ResourceData);
+	let structure = GetTemplateDataHelper(template, null, g_AuraData, g_ResourceData, g_CurrentModifiers);
 
 	structure.production = {
 		"technology": [],

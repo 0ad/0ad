@@ -66,31 +66,67 @@ function MatchesClassList(classes, match)
 }
 
 /**
+ * Gets the value originating at the value_path as-is, with no modifiers applied.
+ *
+ * @param {object} template - A valid template as returned from a template loader.
+ * @param {string} value_path - Route to value within the xml template structure.
+ * @return {number}
+ */
+function GetBaseTemplateDataValue(template, value_path)
+{
+	let current_value = template;
+	for (let property of value_path.split("/"))
+		current_value = current_value[property] || 0;
+	return +current_value;
+}
+
+/**
+ * Gets the value originating at the value_path with the modifiers dictated by the mod_key applied.
+ *
+ * @param {object} template - A valid template as returned from a template loader.
+ * @param {string} value_path - Route to value within the xml template structure.
+ * @param {string} mod_key - Tech modification key, if different from value_path.
+ * @param {number} player - Optional player id.
+ * @param {object} modifiers - Value modifiers from auto-researched techs, unit upgrades,
+ *                             etc. Optional as only used if no player id provided.
+ * @return {number} Modifier altered value.
+ */
+function GetModifiedTemplateDataValue(template, value_path, mod_key, player, modifiers={})
+{
+	let current_value = GetBaseTemplateDataValue(template, value_path);
+	mod_key = mod_key || value_path;
+
+	if (player)
+		current_value = ApplyValueModificationsToTemplate(mod_key, current_value, player, template);
+	else if (modifiers)
+		current_value = GetTechModifiedProperty(modifiers, GetIdentityClasses(template.Identity), mod_key, current_value);
+
+	// Using .toFixed() to get around spidermonkey's treatment of numbers (3 * 1.1 = 3.3000000000000003 for instance).
+	return +current_value.toFixed(8);
+}
+
+/**
  * Get information about a template with or without technology modifications.
  *
  * NOTICE: The data returned here should have the same structure as
  * the object returned by GetEntityState and GetExtendedEntityState!
  *
- * @param template A valid template as returned by the template loader.
- * @param player An optional player id to get the technology modifications
- *               of properties.
- * @param auraTemplates An object in the form of {key: {auraName: "", auraDescription: ""}}
- * @param resources An instance of the Resources prototype
+ * @param {object} template - A valid template as returned by the template loader.
+ * @param {number} player - An optional player id to get the technology modifications
+ *                          of properties.
+ * @param {object} auraTemplates - In the form of { key: { "auraName": "", "auraDescription": "" } }.
+ * @param {object} resources - An instance of the Resources prototype.
+ * @param {object} modifiers - Modifications from auto-researched techs, unit upgrades
+ *                             etc. Optional as only used if there's no player
+ *                             id provided.
  */
-function GetTemplateDataHelper(template, player, auraTemplates, resources)
+function GetTemplateDataHelper(template, player, auraTemplates, resources, modifiers={})
 {
-	// Return data either from template (in tech tree) or sim state (ingame)
-	let getEntityValue = function(tech_type) {
-
-		let current_value = template;
-		for (let property of tech_type.split("/"))
-			current_value = current_value[property] || 0;
-		current_value = +current_value;
-
-		if (!player)
-			return current_value;
-
-		return ApplyValueModificationsToTemplate(tech_type, current_value, player, template);
+	// Return data either from template (in tech tree) or sim state (ingame).
+	// @param {string} value_path - Route to the value within the template.
+	// @param {string} mod_key - Modification key, if not the same as the value_path.
+	let getEntityValue = function(value_path, mod_key) {
+		return GetModifiedTemplateDataValue(template, value_path, mod_key, player, modifiers);
 	};
 
 	let ret = {};
@@ -243,8 +279,9 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources)
 	if (template.ResourceGatherer)
 	{
 		ret.resourceGatherRates = {};
+		let baseSpeed = getEntityValue("ResourceGatherer/BaseSpeed");
 		for (let type in template.ResourceGatherer.Rates)
-			ret.resourceGatherRates[type] = getEntityValue("ResourceGatherer/Rates/"+ type);
+			ret.resourceGatherRates[type] = getEntityValue("ResourceGatherer/Rates/"+ type) * baseSpeed;
 	}
 
 	if (template.ResourceTrickle)
@@ -309,7 +346,7 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources)
 			"generic": template.Identity.GenericName
 		};
 		ret.icon = template.Identity.Icon;
-		ret.tooltip =  template.Identity.Tooltip;
+		ret.tooltip = template.Identity.Tooltip;
 		ret.requiredTechnology = template.Identity.RequiredTechnology;
 		ret.visibleIdentityClasses = GetVisibleIdentityClasses(template.Identity);
 	}
@@ -355,26 +392,35 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources)
 }
 
 /**
+ * Get basic information about a technology template.
+ * @param {object} template - A valid template as obtained by loading the tech JSON file.
+ * @param {string} civ - Civilization for which the tech requirements should be calculated.
+ */
+function GetTechnologyBasicDataHelper(template, civ)
+{
+	return {
+		"name": {
+			"generic": template.genericName
+		},
+		"icon": template.icon ? "technologies/" + template.icon : undefined,
+		"description": template.description,
+		"reqs": DeriveTechnologyRequirements(template, civ),
+		"modifications": template.modifications,
+		"affects": template.affects
+	};
+}
+
+/**
  * Get information about a technology template.
- * @param template A valid template as obtained by loading the tech JSON file.
- * @param civ Civilization for which the specific name should be returned.
- * @param resources An instance of the Resources prototype.
+ * @param {object} template - A valid template as obtained by loading the tech JSON file.
+ * @param {string} civ - Civilization for which the specific name and tech requirements should be returned.
  */
 function GetTechnologyDataHelper(template, civ, resources)
 {
-	let ret = {};
+	let ret = GetTechnologyBasicDataHelper(template, civ);
 
-	// Get specific name for this civ or else the generic specific name
-	let specific;
 	if (template.specificName)
-		specific = template.specificName[civ] || template.specificName.generic;
-
-	ret.name = {
-		"specific": specific,
-		"generic": template.genericName,
-	};
-
-	ret.icon = template.icon ? "technologies/" + template.icon : null;
+		ret.name.specific = template.specificName[civ] || template.specificName.generic;
 
 	ret.cost = { "time": template.researchTime ? +template.researchTime : 0 };
 	for (let type of resources.GetCodes())
@@ -382,10 +428,6 @@ function GetTechnologyDataHelper(template, civ, resources)
 
 	ret.tooltip = template.tooltip;
 	ret.requirementsTooltip = template.requirementsTooltip || "";
-
-	ret.reqs = DeriveTechnologyRequirements(template, civ);
-
-	ret.description = template.description;
 
 	return ret;
 }

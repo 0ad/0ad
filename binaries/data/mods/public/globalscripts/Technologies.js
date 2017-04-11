@@ -44,6 +44,74 @@ function GetTechModifiedProperty(currentTechModifications, classes, propertyName
 }
 
 /**
+ * Derives modifications (to be applied to entities) from a given technology.
+ * 
+ * @param {Object} techTemplate - The technology template to derive the modifications from.
+ * @return {Object} containing the relevant modifications.
+ */
+function DeriveModificationsFromTech(techTemplate)
+{
+	if (!techTemplate.modifications)
+		return {};
+
+	let techMods = {};
+	let techAffects = [];
+	if (techTemplate.affects && techTemplate.affects.length)
+		for (let affected of techTemplate.affects)
+			techAffects.push(affected.split(/\s+/));
+	else
+		techAffects.push([]);
+
+	for (let mod of techTemplate.modifications)
+	{
+		let affects = techAffects.slice();
+		if (mod.affects)
+		{
+			let specAffects = mod.affects.split(/\s+/);
+			for (let a in affects)
+				affects[a] = affects[a].concat(specAffects);
+		}
+
+		let newModifier = { "affects": affects };
+		for (let idx in mod)
+			if (idx !== "value" && idx !== "affects")
+				newModifier[idx] = mod[idx];
+
+		if (!techMods[mod.value])
+			techMods[mod.value] = [];
+		techMods[mod.value].push(newModifier);
+	}
+	return techMods;
+}
+
+/**
+ * Derives modifications (to be applied to entities) from a provided array
+ * of technology template data.
+ *
+ * @param {array} techsDataArray
+ * @return {object} containing the combined relevant modifications of all
+ *                  the technologies.
+ */
+function DeriveModificationsFromTechnologies(techsDataArray)
+{
+	let derivedModifiers = {};
+	for (let technology of techsDataArray)
+	{
+		if (!technology.reqs)
+			continue;
+
+		let modifiers = DeriveModificationsFromTech(technology);
+		for (let modPath in modifiers)
+		{
+			if (!derivedModifiers[modPath])
+				derivedModifiers[modPath] = [];
+			derivedModifiers[modPath] = derivedModifiers[modPath].concat(modifiers[modPath]);
+		}
+	}
+	return derivedModifiers;
+}
+
+/**
  * Returns whether the given modification applies to the entity containing the given class list
  */
 function DoesModificationApply(modification, classes)
