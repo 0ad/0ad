@@ -90,7 +90,7 @@ public:
 	float GetNodeFraction() const;
 	float GetElapsedTime() const;
 
-	CStrW GetName() const;
+	const CStrW& GetName() const;
 
 	void SetTimescale(fixed scale);
 

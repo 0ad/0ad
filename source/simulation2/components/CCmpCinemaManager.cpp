@@ -153,14 +153,14 @@ public:
 		}
 	}
 
-	virtual void AddPath(const CStrW& name, const CCinemaPath& path)
+	virtual void AddPath(const CCinemaPath& path)
 	{
-		if (m_Paths.find(name) != m_Paths.end())
+		if (m_Paths.find(path.GetName()) != m_Paths.end())
 		{
-			LOGWARNING("Path with name '%s' already exists", name.ToUTF8());
+			LOGWARNING("Path with name '%s' already exists", path.GetName().ToUTF8());
 			return;
 		}
-		m_Paths[name] = path;
+		m_Paths[path.GetName()] = path;
 	}
 
 	virtual void AddCinemaPathToQueue(const CStrW& name)

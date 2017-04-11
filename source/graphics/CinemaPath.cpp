@@ -109,7 +109,7 @@ float CCinemaPath::GetElapsedTime() const
 	return m_TimeElapsed;
 }
 
-CStrW CCinemaPath::GetName() const
+const CStrW& CCinemaPath::GetName() const
 {
 	return m_Name;
 }

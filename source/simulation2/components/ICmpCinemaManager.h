@@ -33,10 +33,9 @@ class ICmpCinemaManager : public IComponent
 public:
 	/**
 	* Adds the path to the path list
-	* @param name path name
 	* @param CCinemaPath path data
 	*/
-	virtual void AddPath(const CStrW& name, const CCinemaPath& path) = 0;
+	virtual void AddPath(const CCinemaPath& path) = 0;
 
 	/**
 	* Adds the path to the playlist
