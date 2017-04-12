@@ -31,10 +31,10 @@ struct CChartData
 };
 
 /**
-* Chart for a data visualization as lines or points
-*
-* @see IGUIObject
-*/
+ * Chart for a data visualization as lines or points
+ *
+ * @see IGUIObject
+ */
 class CChart : public IGUIObject
 {
 	GUI_OBJECT(CChart)
@@ -45,13 +45,13 @@ public:
 
 protected:
 	/**
-	* @see IGUIObject#HandleMessage()
-	*/
+	 * @see IGUIObject#HandleMessage()
+	 */
 	virtual void HandleMessage(SGUIMessage& Message);
 
 	/**
-	* Draws the Chart
-	*/
+	 * Draws the Chart
+	 */
 	virtual void Draw();
 
 	virtual CRect GetChartRect() const;
@@ -59,6 +59,12 @@ protected:
 	void UpdateSeries();
 
 	std::vector<CChartData> m_Series;
+
+private:
+	/**
+	 * Helper function
+	 */
+	void DrawLine(const CShaderProgramPtr& shader, const CColor& color, const std::vector<float>& vertices) const;
 };
 
 #endif // INCLUDED_CCHART

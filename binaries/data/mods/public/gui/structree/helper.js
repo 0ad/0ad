@@ -1,6 +1,12 @@
+const g_TechnologyPath = "simulation/data/technologies/";
+const g_AuraPath = "simulation/data/auras/";
+
 var g_TemplateData = {};
 var g_TechnologyData = {};
 var g_AuraData = {};
+
+// Must be defined after g_TechnologyData object is declared.
+const g_AutoResearchTechList = findAllAutoResearchedTechs();
 
 function loadTemplate(templateName)
 {
@@ -24,9 +30,8 @@ function loadTechData(templateName)
 {
 	if (!(templateName in g_TechnologyData))
 	{
-		var filename = "simulation/data/technologies/" + templateName + ".json";
-		var data = Engine.ReadJSONFile(filename);
-		translateObjectKeys(data, ["genericName", "tooltip"]);
+		let data = Engine.ReadJSONFile(g_TechnologyPath + templateName + ".json");
+		translateObjectKeys(data, ["genericName", "tooltip", "description"]);
 
 		g_TechnologyData[templateName] = data;
 	}
@@ -38,14 +43,39 @@ function loadAuraData(templateName)
 {
 	if (!(templateName in g_AuraData))
 	{
-		let filename = "simulation/data/auras/" + templateName + ".json";
-		let data = Engine.ReadJSONFile(filename);
+		let data = Engine.ReadJSONFile(g_AuraPath + templateName + ".json");
 		translateObjectKeys(data, ["auraName", "auraDescription"]);
 
 		g_AuraData[templateName] = data;
 	}
 
 	return g_AuraData[templateName];
+}
+
+function findAllAutoResearchedTechs()
+{
+	let techList = [];
+
+	for (let filename of Engine.BuildDirEntList(g_TechnologyPath, "*.json", true))
+	{
+		// -5 to strip off the file extension
+		let templateName = filename.slice(g_TechnologyPath.length, -5);
+		let data = loadTechData(templateName);
+
+		if (data && data.autoResearch)
+			techList.push(templateName);
+	}
+
+	return techList;
+}
+
+function deriveModifications(techList)
+{
+	let techData = [];
+	for (let techName of techList)
+		techData.push(GetTechnologyBasicDataHelper(loadTechData(techName), g_SelectedCiv));
+
+	return DeriveModificationsFromTechnologies(techData);
 }
 
 /**
@@ -56,7 +86,7 @@ function loadAuraData(templateName)
 function GetTemplateData(templateName)
 {
 	var template = loadTemplate(templateName);
-	return GetTemplateDataHelper(template, null, g_AuraData, g_ResourceData);
+	return GetTemplateDataHelper(template, null, g_AuraData, g_ResourceData, g_CurrentModifiers);
 }
 
 /**
