@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-27 09:01+0200\n"
-"PO-Revision-Date: 2017-03-27 10:59+0000\n"
-"Last-Translator: Любомир Василев\n"
+"POT-Creation-Date: 2017-04-10 09:05+0200\n"
+"PO-Revision-Date: 2017-04-10 08:44+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -157,105 +157,51 @@ msgctxt "team"
 msgid "None"
 msgstr "Без"
 
-#: gui/gamesetup/gamesetup.js:1341
+#: gui/gamesetup/gamesetup.js:1338
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1433
+#: gui/gamesetup/gamesetup.js:1430
 msgctxt "map size"
 msgid "Default"
 msgstr "По подразбиране"
 
-#: gui/gamesetup/gamesetup.js:1504
+#: gui/gamesetup/gamesetup.js:1501
 msgid "Loading..."
 msgstr "Зареждане…"
 
-#: gui/gamesetup/gamesetup.js:1637
+#: gui/gamesetup/gamesetup.js:1634
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "ИИ: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1642
+#: gui/gamesetup/gamesetup.js:1639
 msgid "Unassigned"
 msgstr "Неопределен"
 
-#: gui/gamesetup/gamesetup.js:1802
+#: gui/gamesetup/gamesetup.js:1799
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1809
+#: gui/gamesetup/gamesetup.js:1806
 msgid "Unknown Player"
 msgstr "Неизвестен играч"
 
-#: gui/gamesetup/gamesetup.js:1848
+#: gui/gamesetup/gamesetup.js:1845
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1849
+#: gui/gamesetup/gamesetup.js:1846
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:1850
+#: gui/gamesetup/gamesetup.js:1847
 msgid "HH:mm"
 msgstr "HH:mm"
-
-#: gui/gamesetup/gamesetup_mp.js:49
-#, javascript-format
-msgid "%(name)s's game"
-msgstr "Играта на %(name)s"
-
-#: gui/gamesetup/gamesetup_mp.js:106
-msgid "Please enter a valid server name."
-msgstr "Моля, въведете правилно име на сървър."
-
-#: gui/gamesetup/gamesetup_mp.js:113
-#, javascript-format
-msgid "Server port number must be between %(min)s and %(max)s."
-msgstr "Портът на сървъра трябва да бъде число между %(min)s и %(max)s."
-
-#: gui/gamesetup/gamesetup_mp.js:130
-msgid "Connecting to server..."
-msgstr "Свързване към сървъра…"
-
-#: gui/gamesetup/gamesetup_mp.js:149
-#, javascript-format
-msgid "Net message: %(message)s"
-msgstr "Мрежово съобщение: %(message)s"
-
-#: gui/gamesetup/gamesetup_mp.js:218
-msgid "Registering with server..."
-msgstr "Регистриране в сървъра…"
-
-#: gui/gamesetup/gamesetup_mp.js:224
-msgid "Game has already started, rejoining..."
-msgstr "Играта вече е започнала, повторно присъединяване…"
-
-#: gui/gamesetup/gamesetup_mp.js:292
-msgid "Game name already in use."
-msgstr "Името на играта вече е заето."
-
-#: gui/gamesetup/gamesetup_mp.js:308
-#, javascript-format
-msgid "Cannot host game: %(message)s."
-msgstr "Неуспешно създаване на мрежова игра: %(message)s."
-
-#: gui/gamesetup/gamesetup_mp.js:309 gui/gamesetup/gamesetup_mp.js:338
-msgid "Error"
-msgstr "Грешка"
-
-#: gui/gamesetup/gamesetup_mp.js:337
-#, javascript-format
-msgid "Cannot join game: %(message)s."
-msgstr "Неуспешно присъединяване към мрежова игра: %(message)s."
-
-#: gui/gamesetup/gamesetup_mp.js:362
-#, javascript-format
-msgid "%(playername)s's game"
-msgstr "Играта на %(playername)s"
 
 #: gui/loading/loading.js:48
 #, javascript-format
@@ -280,7 +226,6 @@ msgid "AI Difficulty:"
 msgstr "Трудност на ИИ:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):41
-#: gui/gamesetup/gamesetup_mp.xml:(caption):120
 msgid "Cancel"
 msgstr "Отказ"
 
@@ -552,45 +497,6 @@ msgstr "Определя дали резултатът от тази игра щ
 #: gui/gamesetup/gamesetup.xml:(tooltip):470
 msgid "Close more game options window"
 msgstr "Затваря прозореца с допълнителните настройки на играта."
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):20
-msgid "Multiplayer"
-msgstr "Мрежова игра"
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):26
-msgid "Joining an existing game."
-msgstr "Присъединяване към съществуваща игра."
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):30
-#: gui/gamesetup/gamesetup_mp.xml:(caption):72
-msgid "Player name:"
-msgstr "Име на играча:"
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):40
-msgid "Server Hostname or IP:"
-msgstr "Име или IP адрес на сървъра:"
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):50
-#: gui/gamesetup/gamesetup_mp.xml:(caption):97
-msgid "Server Port:"
-msgstr "Сървърен порт:"
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):67
-msgid "Set up your server to host."
-msgstr "Настройте сървъра, който създавате."
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):85
-msgid "Server name:"
-msgstr "Име на съвъра:"
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):115
-msgid "Continue"
-msgstr "Продължаване"
-
-#: gui/gamesetup/gamesetup_mp.xml:(tooltip):54
-#: gui/gamesetup/gamesetup_mp.xml:(tooltip):101
-msgid "Leave blank to use the default port."
-msgstr "Оставете празно за използване на порта по подразбиране."
 
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"

@@ -20,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-31 09:20+0200\n"
-"PO-Revision-Date: 2017-03-31 08:23+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-04-10 09:05+0200\n"
+"PO-Revision-Date: 2017-04-10 15:37+0000\n"
+"Last-Translator: pilino1234 <mhilgendrf@aol.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -57,12 +57,12 @@ msgid "Confirmation"
 msgstr "Bekräfta"
 
 #: gui/session/menu.js:134 gui/session/menu.js:166 gui/session/menu.js:199
-#: gui/session/session.js:816 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:821 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Nej"
 
 #: gui/session/menu.js:134 gui/session/menu.js:166 gui/session/menu.js:199
-#: gui/session/session.js:816 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:821 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Ja"
 
@@ -351,7 +351,7 @@ msgstr "Anledning: %(reason)s."
 
 #: gui/session/messages.js:145
 msgid "Waiting for players to connect:"
-msgstr "Waiting for players to connect:"
+msgstr "Väntar på att spelare ska ansluta:"
 
 #: gui/session/messages.js:146
 msgid "Synchronising gameplay with other players..."
@@ -381,7 +381,7 @@ msgstr "* %(user)s %(message)s"
 msgid "Team"
 msgstr "Lag"
 
-#: gui/session/messages.js:168 gui/session/session.js:293
+#: gui/session/messages.js:168 gui/session/session.js:298
 msgid "Observer"
 msgstr "Observatör"
 
@@ -565,16 +565,6 @@ msgstr "Du har blivit attackerad av %(attacker)s!"
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/selection_details.js:54 gui/session/selection_details.js:369
-#: gui/session/selection_details.js:401 gui/session/session.js:956
-#, javascript-format
-msgid "%(label)s %(current)s / %(max)s"
-msgstr "%(label)s %(current)s / %(max)s"
-
-#: gui/session/selection_details.js:55 gui/session/selection_details.js:370
-msgid "Hitpoints:"
-msgstr "Hälsopoäng:"
-
 #: gui/session/selection_details.js:71
 #, javascript-format
 msgid "%(genericName)s — Packed"
@@ -662,7 +652,7 @@ msgstr "Aktuella/max samlare"
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:402
+#: gui/session/selection_details.js:405
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):26
 msgid "Capture points:"
 msgstr "Erövringspoäng:"
@@ -887,40 +877,40 @@ msgstr "%(action)s för att träna %(number)s."
 msgid "Shift-click"
 msgstr "Skift-klicka"
 
-#: gui/session/session.js:272
+#: gui/session/session.js:277
 msgid "Gaia"
 msgstr "Gaia"
 
-#: gui/session/session.js:386
+#: gui/session/session.js:391
 msgctxt "chat input"
 msgid "Type the message to send."
 msgstr "Skriv ditt meddelande."
 
-#: gui/session/session.js:388
+#: gui/session/session.js:393
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
 msgstr "Tryck %(hotkey)s för att öppna den offentliga chatten."
 
-#: gui/session/session.js:391
+#: gui/session/session.js:396
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
 msgstr "Tryck %(hotkey)s för att öppna observatör chatten."
 
-#: gui/session/session.js:392
+#: gui/session/session.js:397
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
 msgstr "Tryck %(hotkey)s för att öppna allierade chatten."
 
-#: gui/session/session.js:394
+#: gui/session/session.js:399
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
 msgstr "Tryck %(hotkey)s för att öppna den senaste valda privata chatten."
 
-#: gui/session/session.js:398
+#: gui/session/session.js:403
 msgid "Find idle worker"
 msgstr "Hitta sysslolös arbetare"
 
-#: gui/session/session.js:401
+#: gui/session/session.js:406
 #, javascript-format
 msgid ""
 "Select one type of goods you want to modify by clicking on it (Pressing "
@@ -928,104 +918,99 @@ msgid ""
 "the arrows of the other types to modify their shares."
 msgstr "Välj typen av varor du vill ändra genom att klicka på den (om du trycker %(hotkey)s samtidigt som du väljer kommer andelen sättas till 100%%) och använd sedan pilarna i de andra typerna att ändra deras andelar."
 
-#: gui/session/session.js:405
+#: gui/session/session.js:410
 #, javascript-format
 msgid ""
 "Start by selecting the resource from the upper row that you wish to sell. "
 "Upon each press on one of the lower buttons, %(quantity)s of the upper "
 "resource will be sold for the displayed quantity of the lower. Press and "
 "hold %(hotkey)s to temporarily multiply all quantities by %(multiplier)s."
-msgstr ""
+msgstr "Börja med att välja resursen i den översta raden som du vill sälja. Vid varje klick på en av knapparna i den nedersta raden, säljs %(quantity)s av den övre resursen för den visade mängden av den nedre. Tryck och håll %(hotkey)s för att tillfälligt multiplicera alla mängder med %(multiplier)s."
 
-#: gui/session/session.js:569
+#: gui/session/session.js:574
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - Strukturträd"
 
-#: gui/session/session.js:808
+#: gui/session/session.js:813
 msgid "Do you want to quit?"
 msgstr "Vill du avsluta?"
 
-#: gui/session/session.js:814
+#: gui/session/session.js:819
 msgid "VICTORIOUS!"
 msgstr "SEGRARE!"
 
-#: gui/session/session.js:815
+#: gui/session/session.js:820
 msgid "DEFEATED!"
 msgstr "BESEGRAD!"
 
-#: gui/session/session.js:816
+#: gui/session/session.js:821
 msgid "Ok"
 msgstr "Ok"
 
-#: gui/session/session.js:875
+#: gui/session/session.js:880
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "Replayen är över. Vill du avsluta?"
 
-#: gui/session/session.js:876
+#: gui/session/session.js:881
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Bekräftelse"
 
-#: gui/session/session.js:877
+#: gui/session/session.js:882
 msgctxt "replayFinished"
 msgid "No"
 msgstr "Nej"
 
-#: gui/session/session.js:877
+#: gui/session/session.js:882
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Ja"
 
-#: gui/session/session.js:957
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
-msgid "Health:"
-msgstr "Hälsa:"
-
-#: gui/session/session.js:1099
+#: gui/session/session.js:1107
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
 msgstr "%(playername)s: %(statValue)s"
 
-#: gui/session/session.js:1102
+#: gui/session/session.js:1110
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
-#: gui/session/session.js:1128
+#: gui/session/session.js:1136
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
 msgstr "%(popCount)s/%(popLimit)s"
 
-#: gui/session/session.js:1129
+#: gui/session/session.js:1137
 msgid "Population (current / limit)"
 msgstr "Befolkning (nuvarande / gräns)"
 
-#: gui/session/session.js:1130
+#: gui/session/session.js:1138
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Maximal befolkning: %(popCap)s"
 
-#: gui/session/session.js:1282
+#: gui/session/session.js:1290
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Build: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:1292
+#: gui/session/session.js:1300
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "OBS: Time Warp Läge är ett utvecklaralternativ och är inte avsett att användas över längre perioder. Felaktig användning kan få spelet att kräva för mycket minne och crasha."
 
-#: gui/session/session.js:1293
+#: gui/session/session.js:1301
 msgid "Time warp mode"
 msgstr "Time warp läge"
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
-#: gui/session/session.js:1310
+#: gui/session/session.js:1318
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)sx)"
@@ -1112,7 +1097,7 @@ msgstr "Ta bort vakt"
 #: gui/session/unit_actions.js:1263
 #: gui/session/top_panel/button_trade.xml:(tooltip):9
 msgid "Barter & Trade"
-msgstr ""
+msgstr "Byte & Handel"
 
 #: gui/session/unit_actions.js:1280
 msgid "Patrol"
@@ -1332,23 +1317,23 @@ msgstr "Välj spelare att visa"
 
 #: gui/session/trade_window.xml:(caption):9
 msgid "Barter & Trade Goods"
-msgstr ""
+msgstr "Bytes & Handelsgods"
 
 #: gui/session/trade_window.xml:(caption):17
 msgid "Barter"
-msgstr ""
+msgstr "Byteshandel"
 
 #: gui/session/trade_window.xml:(caption):24
 msgid "Sell:"
-msgstr ""
+msgstr "Sälj:"
 
 #: gui/session/trade_window.xml:(caption):28
 msgid "Buy:"
-msgstr ""
+msgstr "Köp:"
 
 #: gui/session/trade_window.xml:(caption):32
 msgid "No Markets Available"
-msgstr ""
+msgstr "Inga marknader tillgängliga"
 
 #: gui/session/trade_window.xml:(caption):67
 msgid "Trade"
@@ -1356,7 +1341,7 @@ msgstr "Handel"
 
 #: gui/session/trade_window.xml:(caption):75
 msgid "Goods:"
-msgstr ""
+msgstr "Varor:"
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"
@@ -1374,6 +1359,10 @@ msgstr "Hälsopoäng"
 #: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):39
 msgid "Capture points"
 msgstr "Erövringspoäng"
+
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
+msgid "Health:"
+msgstr "Hälsa:"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):54
 msgid "Attack and Armor"

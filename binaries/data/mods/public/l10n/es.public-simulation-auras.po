@@ -5,13 +5,14 @@
 # Translators:
 # Albert, 2017
 # Albert, 2016
+# Mihai Pantazi <malexandru_70@hotmail.com>, 2017
 # Swyter <Swyterzone@gmail.com>, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-04-03 09:02+0200\n"
-"PO-Revision-Date: 2017-04-03 11:38+0000\n"
-"Last-Translator: Swyter <Swyterzone@gmail.com>\n"
+"POT-Creation-Date: 2017-04-10 09:07+0200\n"
+"PO-Revision-Date: 2017-04-13 10:55+0000\n"
+"Last-Translator: Mihai Pantazi <malexandru_70@hotmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -526,7 +527,7 @@ msgstr "Saqueador de ciudades"
 #: simulation/data/auras/catafalques/mace_catafalque.jsonauraDescription
 msgid ""
 "During the First Macedonian War, Philip and his troops sacked Thermum, the religious and political centre of Aetolia.\n"
-"+25% loot for every enemy unit killed or structure destroyed."
+"+5 food and wood for every enemy unit killed or structure destroyed."
 msgstr ""
 
 #: simulation/data/auras/catafalques/maur_catafalque_1.jsonauraName
@@ -547,7 +548,7 @@ msgstr "Vamba Moriyar"
 msgid ""
 "Bindusara is said to have conquered lands to the south of the empire.\n"
 "+15% unit capture rate."
-msgstr ""
+msgstr "Se dice que Bindusara conquistó tierras al sur del imperio.\n+15% de velocidad de captura de unidades."
 
 #: simulation/data/auras/catafalques/pers_catafalque.jsonauraName
 msgid "Great Builder"
@@ -567,7 +568,7 @@ msgstr "Gran bibliotecario"
 msgid ""
 "Continuing his predecessors' work on the Great Library at Alexandria, he seized every book brought to Alexandria, thus leaving to his people a vast amount of hoarded wisdom.\n"
 "-10% resource cost for all technologies."
-msgstr ""
+msgstr "Continuando el trabajo de sus predecesores en la Gran Biblioteca de Alejandría, se apoderó de cada libro traído a Alejandría, dejando así a su pueblo una gran cantidad de sabiduría acumulada.\n-10% de coste de recursos para todas las tecnologías."
 
 #: simulation/data/auras/catafalques/rome_catafalque_1.jsonauraName
 msgid "Avenger of Lucretia"
@@ -586,7 +587,7 @@ msgstr "Aura de fundador y protector de la república"
 #: simulation/data/auras/catafalques/rome_catafalque_2.jsonauraDescription
 msgid ""
 "Brutus was one of the key figures in the overthrow of the monarchy and the founding of the Roman Republic. Later, as consul he led a Roman army to victory against the Etruscan King Tarquinius who sought to retake the throne.\n"
-"+10% armor for all units and siege engines."
+"+1 armor for all units and siege engines."
 msgstr ""
 
 #: simulation/data/auras/catafalques/sele_catafalque_1.jsonauraName
@@ -597,7 +598,7 @@ msgstr "El fundador del templo Ezida."
 msgid ""
 "Antiochus I laid the foundation for the Ezida Temple in Borsippa.\n"
 "-10% resource cost for temples and temple technologies."
-msgstr ""
+msgstr "Antíoco I sentó las bases del templo Ezida en Borsippa.\n-10% de coste de recursos para los templos y las tecnologías del templo."
 
 #: simulation/data/auras/catafalques/sele_catafalque_2.jsonauraName
 msgid "Immigration"
@@ -607,7 +608,7 @@ msgstr "Inmigración"
 msgid ""
 "Antiochus encouraged Greek immigration to his realm and established many new cities in Asia Minor to serve as counterweights to the Gauls.\n"
 "+5% maximum population."
-msgstr ""
+msgstr "Antíoco alentó la Inmigración Griega a su reino y estableció nuevas ciudades en Asia Menor para servir de contrapeso a los Galos.\n+5% de población máxima."
 
 #: simulation/data/auras/catafalques/sele_catafalque_3.jsonauraName
 msgid "Basileus Megas (Great King)"
@@ -631,8 +632,8 @@ msgid ""
 msgstr ""
 
 #: simulation/data/auras/catafalques/spart_catafalque_2.jsonauraDescription
-msgid "-5% resource cost for spear champions."
-msgstr "El coste de las lanzas campeonas se reduce un -5%."
+msgid "-5% resource cost for spear infantry champions."
+msgstr "El coste de los lanceros campeones se reduce un -5%."
 
 #: simulation/data/auras/catafalques/spart_catafalque_3.jsonauraName
 msgid "Iron Pelanors"
@@ -642,7 +643,7 @@ msgstr "Pelanores de hierro"
 msgid ""
 "To further support equality, Lycurgus forbade the use of gold and silver, instead introducing new iron money called pellanors.\n"
 "+15% metal mining rate for workers within an 80 meter range."
-msgstr ""
+msgstr "Para apoyar aún más la igualdad, Licurgo prohibió el uso de oro y plata, y en su lugar introdujo una nueva moneda de hierro.\n+15% de velocidad de extracción de metales para los trabajadores en un área de 80 metros."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"

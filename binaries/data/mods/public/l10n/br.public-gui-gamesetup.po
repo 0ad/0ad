@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-27 09:01+0200\n"
-"PO-Revision-Date: 2017-03-28 14:42+0000\n"
-"Last-Translator: Feñch Gallig <ducraig@hotmail.fr>\n"
+"POT-Creation-Date: 2017-04-10 09:05+0200\n"
+"PO-Revision-Date: 2017-04-12 09:44+0000\n"
+"Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -157,105 +157,51 @@ msgctxt "team"
 msgid "None"
 msgstr "Hini ebet"
 
-#: gui/gamesetup/gamesetup.js:1341
+#: gui/gamesetup/gamesetup.js:1338
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1433
+#: gui/gamesetup/gamesetup.js:1430
 msgctxt "map size"
 msgid "Default"
 msgstr "Dre Ziouer"
 
-#: gui/gamesetup/gamesetup.js:1504
+#: gui/gamesetup/gamesetup.js:1501
 msgid "Loading..."
 msgstr "O kargañ..."
 
-#: gui/gamesetup/gamesetup.js:1637
+#: gui/gamesetup/gamesetup.js:1634
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "NA: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1642
+#: gui/gamesetup/gamesetup.js:1639
 msgid "Unassigned"
 msgstr "Nann-dereet"
 
-#: gui/gamesetup/gamesetup.js:1802
+#: gui/gamesetup/gamesetup.js:1799
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1809
+#: gui/gamesetup/gamesetup.js:1806
 msgid "Unknown Player"
 msgstr "C'hoarier dianav"
 
-#: gui/gamesetup/gamesetup.js:1848
+#: gui/gamesetup/gamesetup.js:1845
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1849
+#: gui/gamesetup/gamesetup.js:1846
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:1850
+#: gui/gamesetup/gamesetup.js:1847
 msgid "HH:mm"
 msgstr "HH:mm"
-
-#: gui/gamesetup/gamesetup_mp.js:49
-#, javascript-format
-msgid "%(name)s's game"
-msgstr "c'hoariadenn %(name)s"
-
-#: gui/gamesetup/gamesetup_mp.js:106
-msgid "Please enter a valid server name."
-msgstr "Skrivit anv ur servijer dereat, mar plij."
-
-#: gui/gamesetup/gamesetup_mp.js:113
-#, javascript-format
-msgid "Server port number must be between %(min)s and %(max)s."
-msgstr ""
-
-#: gui/gamesetup/gamesetup_mp.js:130
-msgid "Connecting to server..."
-msgstr "O kevreañ d'ar servijer..."
-
-#: gui/gamesetup/gamesetup_mp.js:149
-#, javascript-format
-msgid "Net message: %(message)s"
-msgstr "Kemennadenn ar rouedad:  %(message)s"
-
-#: gui/gamesetup/gamesetup_mp.js:218
-msgid "Registering with server..."
-msgstr "Marilhadur ouzh ar servijer..."
-
-#: gui/gamesetup/gamesetup_mp.js:224
-msgid "Game has already started, rejoining..."
-msgstr "Kroget he deus ar c'hoariadenn dija, oc'h emezelañ..."
-
-#: gui/gamesetup/gamesetup_mp.js:292
-msgid "Game name already in use."
-msgstr "Anv ar c'hoariadenn a zo implijet dija."
-
-#: gui/gamesetup/gamesetup_mp.js:308
-#, javascript-format
-msgid "Cannot host game: %(message)s."
-msgstr "Dibosupl eo da herbrec'hiañ ur c'hoariadenn: %(message)s."
-
-#: gui/gamesetup/gamesetup_mp.js:309 gui/gamesetup/gamesetup_mp.js:338
-msgid "Error"
-msgstr "Fazi"
-
-#: gui/gamesetup/gamesetup_mp.js:337
-#, javascript-format
-msgid "Cannot join game: %(message)s."
-msgstr "Dibosupl eo da emezelañ ouzh ar c'hoariadenn: %(message)s."
-
-#: gui/gamesetup/gamesetup_mp.js:362
-#, javascript-format
-msgid "%(playername)s's game"
-msgstr "c'hoariadenn %(playername)s"
 
 #: gui/loading/loading.js:48
 #, javascript-format
@@ -280,7 +226,6 @@ msgid "AI Difficulty:"
 msgstr "Diaester an NA:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):41
-#: gui/gamesetup/gamesetup_mp.xml:(caption):120
 msgid "Cancel"
 msgstr "Nullañ"
 
@@ -408,7 +353,7 @@ msgstr "Diweredekaat an Teñzorioù:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):412
 msgid "Disable Spies:"
-msgstr ""
+msgstr "Diweredekaat ar Spierien:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):422
 msgid "Teams Locked:"
@@ -552,45 +497,6 @@ msgstr "Dibab ma vo kemeret e kont ar c'hoariadenn-mañ e-barzh ar renkadur-holl
 #: gui/gamesetup/gamesetup.xml:(tooltip):470
 msgid "Close more game options window"
 msgstr "Serriñ prenestr dibarzhioù araokaet ar c'hoariadenn"
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):20
-msgid "Multiplayer"
-msgstr "Lies-c'hoarier"
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):26
-msgid "Joining an existing game."
-msgstr "Emezelañ ouzh ur c'hoariadenn a zo anezhi."
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):30
-#: gui/gamesetup/gamesetup_mp.xml:(caption):72
-msgid "Player name:"
-msgstr "Anv ar c'hoarier:"
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):40
-msgid "Server Hostname or IP:"
-msgstr "Anv pe IP an Herbrec'h-servijer:"
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):50
-#: gui/gamesetup/gamesetup_mp.xml:(caption):97
-msgid "Server Port:"
-msgstr "Porzh ar Servijer:"
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):67
-msgid "Set up your server to host."
-msgstr "Keflunit ho herbrec'h-servijer."
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):85
-msgid "Server name:"
-msgstr "Anv ar servijer:"
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):115
-msgid "Continue"
-msgstr "Kenderc'hel"
-
-#: gui/gamesetup/gamesetup_mp.xml:(tooltip):54
-#: gui/gamesetup/gamesetup_mp.xml:(tooltip):101
-msgid "Leave blank to use the default port."
-msgstr "Laoskit goullo a-benn implijout ar servijer dre ziouer."
 
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"

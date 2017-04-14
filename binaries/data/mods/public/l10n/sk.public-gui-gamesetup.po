@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-27 09:01+0200\n"
-"PO-Revision-Date: 2017-03-27 08:37+0000\n"
+"POT-Creation-Date: 2017-04-10 09:05+0200\n"
+"PO-Revision-Date: 2017-04-10 08:44+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
@@ -162,105 +162,51 @@ msgctxt "team"
 msgid "None"
 msgstr "Žiadny"
 
-#: gui/gamesetup/gamesetup.js:1341
+#: gui/gamesetup/gamesetup.js:1338
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1433
+#: gui/gamesetup/gamesetup.js:1430
 msgctxt "map size"
 msgid "Default"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1504
+#: gui/gamesetup/gamesetup.js:1501
 msgid "Loading..."
 msgstr "Načítava sa..."
 
-#: gui/gamesetup/gamesetup.js:1637
+#: gui/gamesetup/gamesetup.js:1634
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1642
+#: gui/gamesetup/gamesetup.js:1639
 msgid "Unassigned"
 msgstr "Nepridelený"
 
-#: gui/gamesetup/gamesetup.js:1802
+#: gui/gamesetup/gamesetup.js:1799
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1809
+#: gui/gamesetup/gamesetup.js:1806
 msgid "Unknown Player"
 msgstr "Neznámy hráč"
 
-#: gui/gamesetup/gamesetup.js:1848
+#: gui/gamesetup/gamesetup.js:1845
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1849
+#: gui/gamesetup/gamesetup.js:1846
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:1850
+#: gui/gamesetup/gamesetup.js:1847
 msgid "HH:mm"
 msgstr "HH:mm"
-
-#: gui/gamesetup/gamesetup_mp.js:49
-#, javascript-format
-msgid "%(name)s's game"
-msgstr "Hra hráča %(name)s"
-
-#: gui/gamesetup/gamesetup_mp.js:106
-msgid "Please enter a valid server name."
-msgstr ""
-
-#: gui/gamesetup/gamesetup_mp.js:113
-#, javascript-format
-msgid "Server port number must be between %(min)s and %(max)s."
-msgstr ""
-
-#: gui/gamesetup/gamesetup_mp.js:130
-msgid "Connecting to server..."
-msgstr "Pripája sa na server..."
-
-#: gui/gamesetup/gamesetup_mp.js:149
-#, javascript-format
-msgid "Net message: %(message)s"
-msgstr "Sieťová správa: %(message)s"
-
-#: gui/gamesetup/gamesetup_mp.js:218
-msgid "Registering with server..."
-msgstr "Registrujem sa na serveri..."
-
-#: gui/gamesetup/gamesetup_mp.js:224
-msgid "Game has already started, rejoining..."
-msgstr "Hra sa už začala, pripája sa odznova..."
-
-#: gui/gamesetup/gamesetup_mp.js:292
-msgid "Game name already in use."
-msgstr "Názov hry sa už používa."
-
-#: gui/gamesetup/gamesetup_mp.js:308
-#, javascript-format
-msgid "Cannot host game: %(message)s."
-msgstr "Nemôžem hosťovať hru: %(message)s."
-
-#: gui/gamesetup/gamesetup_mp.js:309 gui/gamesetup/gamesetup_mp.js:338
-msgid "Error"
-msgstr "Chyba"
-
-#: gui/gamesetup/gamesetup_mp.js:337
-#, javascript-format
-msgid "Cannot join game: %(message)s."
-msgstr "Nedá sa pripojiť k hre: %(message)s."
-
-#: gui/gamesetup/gamesetup_mp.js:362
-#, javascript-format
-msgid "%(playername)s's game"
-msgstr "Hra hráča %(playername)s"
 
 #: gui/loading/loading.js:48
 #, javascript-format
@@ -285,7 +231,6 @@ msgid "AI Difficulty:"
 msgstr "Úroveň AI:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):41
-#: gui/gamesetup/gamesetup_mp.xml:(caption):120
 msgid "Cancel"
 msgstr "Zrušiť"
 
@@ -557,45 +502,6 @@ msgstr "Prepnúť, či bude hra hodnotená a umiestnená v rebríčku."
 #: gui/gamesetup/gamesetup.xml:(tooltip):470
 msgid "Close more game options window"
 msgstr "Zavrieť okno s viac možnosťami hry"
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):20
-msgid "Multiplayer"
-msgstr "Hra viacerých hráčov"
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):26
-msgid "Joining an existing game."
-msgstr "Pripojiť sa k existujúcej hre."
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):30
-#: gui/gamesetup/gamesetup_mp.xml:(caption):72
-msgid "Player name:"
-msgstr "Meno hráča:"
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):40
-msgid "Server Hostname or IP:"
-msgstr "Názov hostiteľa alebo IP:"
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):50
-#: gui/gamesetup/gamesetup_mp.xml:(caption):97
-msgid "Server Port:"
-msgstr "Port servera:"
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):67
-msgid "Set up your server to host."
-msgstr "Nastaviť váš server ako hostiteľa."
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):85
-msgid "Server name:"
-msgstr "Názov servera:"
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):115
-msgid "Continue"
-msgstr "Pokračovať"
-
-#: gui/gamesetup/gamesetup_mp.xml:(tooltip):54
-#: gui/gamesetup/gamesetup_mp.xml:(tooltip):101
-msgid "Leave blank to use the default port."
-msgstr "Ak ponecháte prázdne, použije sa predvolený port."
 
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"

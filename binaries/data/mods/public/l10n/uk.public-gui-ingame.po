@@ -21,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-31 09:20+0200\n"
-"PO-Revision-Date: 2017-04-03 19:33+0000\n"
-"Last-Translator: Dmytro Ryl'kov <tverdislav@ukr.net>\n"
+"POT-Creation-Date: 2017-04-10 09:05+0200\n"
+"PO-Revision-Date: 2017-04-10 09:07+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -60,12 +60,12 @@ msgid "Confirmation"
 msgstr "Підтвердження"
 
 #: gui/session/menu.js:134 gui/session/menu.js:166 gui/session/menu.js:199
-#: gui/session/session.js:816 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:821 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Ні"
 
 #: gui/session/menu.js:134 gui/session/menu.js:166 gui/session/menu.js:199
-#: gui/session/session.js:816 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:821 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Так"
 
@@ -393,7 +393,7 @@ msgstr "* %(user)s %(message)s"
 msgid "Team"
 msgstr "Команда"
 
-#: gui/session/messages.js:168 gui/session/session.js:293
+#: gui/session/messages.js:168 gui/session/session.js:298
 msgid "Observer"
 msgstr "Спостерігач"
 
@@ -577,16 +577,6 @@ msgstr "Ви були атаковані %(attacker)s"
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/selection_details.js:54 gui/session/selection_details.js:369
-#: gui/session/selection_details.js:401 gui/session/session.js:956
-#, javascript-format
-msgid "%(label)s %(current)s / %(max)s"
-msgstr "%(label)s %(current)s / %(max)s"
-
-#: gui/session/selection_details.js:55 gui/session/selection_details.js:370
-msgid "Hitpoints:"
-msgstr "Очок здоров’я:"
-
 #: gui/session/selection_details.js:71
 #, javascript-format
 msgid "%(genericName)s — Packed"
@@ -676,7 +666,7 @@ msgstr "Поточна / максимальна кількість збирач�
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:402
+#: gui/session/selection_details.js:405
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):26
 msgid "Capture points:"
 msgstr "Очки захвату:"
@@ -902,40 +892,40 @@ msgstr "%(action)s тренувати %(number)s."
 msgid "Shift-click"
 msgstr "Shift-клік"
 
-#: gui/session/session.js:272
+#: gui/session/session.js:277
 msgid "Gaia"
 msgstr "Гая"
 
-#: gui/session/session.js:386
+#: gui/session/session.js:391
 msgctxt "chat input"
 msgid "Type the message to send."
 msgstr "Введіть повідомлення для надсилання."
 
-#: gui/session/session.js:388
+#: gui/session/session.js:393
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
 msgstr "Натисніть %(hotkey)s, щоб відкрити загальний чат."
 
-#: gui/session/session.js:391
+#: gui/session/session.js:396
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
 msgstr "Натисніть %(hotkey)s, щоб відкрити чат спостерігачів"
 
-#: gui/session/session.js:392
+#: gui/session/session.js:397
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
 msgstr "Натисніть %(hotkey)s, щоб відкрити чат альянсу"
 
-#: gui/session/session.js:394
+#: gui/session/session.js:399
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
 msgstr "Натисніть %(hotkey)s, щоб відкрити попередній вибраний приватний чат."
 
-#: gui/session/session.js:398
+#: gui/session/session.js:403
 msgid "Find idle worker"
 msgstr "Знайти вільних робітників"
 
-#: gui/session/session.js:401
+#: gui/session/session.js:406
 #, javascript-format
 msgid ""
 "Select one type of goods you want to modify by clicking on it (Pressing "
@@ -943,7 +933,7 @@ msgid ""
 "the arrows of the other types to modify their shares."
 msgstr ""
 
-#: gui/session/session.js:405
+#: gui/session/session.js:410
 #, javascript-format
 msgid ""
 "Start by selecting the resource from the upper row that you wish to sell. "
@@ -952,95 +942,90 @@ msgid ""
 "hold %(hotkey)s to temporarily multiply all quantities by %(multiplier)s."
 msgstr ""
 
-#: gui/session/session.js:569
+#: gui/session/session.js:574
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - Дерево Структури"
 
-#: gui/session/session.js:808
+#: gui/session/session.js:813
 msgid "Do you want to quit?"
 msgstr "Бажаєте вийти?"
 
-#: gui/session/session.js:814
+#: gui/session/session.js:819
 msgid "VICTORIOUS!"
 msgstr "ПЕРЕМОГА!"
 
-#: gui/session/session.js:815
+#: gui/session/session.js:820
 msgid "DEFEATED!"
 msgstr "ПОРАЗКА!"
 
-#: gui/session/session.js:816
+#: gui/session/session.js:821
 msgid "Ok"
 msgstr "Гаразд"
 
-#: gui/session/session.js:875
+#: gui/session/session.js:880
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "Перегляд закінчився. Ви хочете вийти?"
 
-#: gui/session/session.js:876
+#: gui/session/session.js:881
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Підтвердження"
 
-#: gui/session/session.js:877
+#: gui/session/session.js:882
 msgctxt "replayFinished"
 msgid "No"
 msgstr "Ні"
 
-#: gui/session/session.js:877
+#: gui/session/session.js:882
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Так"
 
-#: gui/session/session.js:957
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
-msgid "Health:"
-msgstr "Здоров'я:"
-
-#: gui/session/session.js:1099
+#: gui/session/session.js:1107
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
 msgstr "%(playername)s: %(statValue)s"
 
-#: gui/session/session.js:1102
+#: gui/session/session.js:1110
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
-#: gui/session/session.js:1128
+#: gui/session/session.js:1136
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
 msgstr "%(popCount)s/%(popLimit)s"
 
-#: gui/session/session.js:1129
+#: gui/session/session.js:1137
 msgid "Population (current / limit)"
 msgstr "Населення (поточне / межа)"
 
-#: gui/session/session.js:1130
+#: gui/session/session.js:1138
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Максимальна чисельність населення: %(popCap)s"
 
-#: gui/session/session.js:1282
+#: gui/session/session.js:1290
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Версія: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:1292
+#: gui/session/session.js:1300
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Примітка: режим викривлення часу це опція для розробників, і не призначена для використання в тривалих періодах. Використання може стати причиною переповнення пам'яті або краху."
 
-#: gui/session/session.js:1293
+#: gui/session/session.js:1301
 msgid "Time warp mode"
 msgstr "Режим викривлення часу"
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
-#: gui/session/session.js:1310
+#: gui/session/session.js:1318
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)sx)"
@@ -1389,6 +1374,10 @@ msgstr "Бали здоров'я"
 #: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):39
 msgid "Capture points"
 msgstr "Очки захвату"
+
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
+msgid "Health:"
+msgstr "Здоров'я:"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):54
 msgid "Attack and Armor"

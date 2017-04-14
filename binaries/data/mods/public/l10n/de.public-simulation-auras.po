@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-04-03 09:02+0200\n"
-"PO-Revision-Date: 2017-04-03 15:00+0000\n"
+"POT-Creation-Date: 2017-04-10 09:07+0200\n"
+"PO-Revision-Date: 2017-04-11 12:23+0000\n"
 "Last-Translator: Wuzzy <almikes@aol.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -535,8 +535,8 @@ msgstr "Plünderer der Städte"
 #: simulation/data/auras/catafalques/mace_catafalque.jsonauraDescription
 msgid ""
 "During the First Macedonian War, Philip and his troops sacked Thermum, the religious and political centre of Aetolia.\n"
-"+25% loot for every enemy unit killed or structure destroyed."
-msgstr "Während des ersten Mazedonischen Krieges plünderten Philip und seine Truppen Thermum, das religiöse und politische Zentrum von Ätolien.\n+25% Beute für jede getötete feindliche Einheit sowie jedes zerstörte feindliche Gebäude."
+"+5 food and wood for every enemy unit killed or structure destroyed."
+msgstr "Während des ersten Mazedonischen Krieges plünderten Philip und seine Truppen Thermum, das religiöse und politische Zentrum von Ätolien.\n+5 Nahrung und Holz für jede getötete feindliche Einheit sowie jedes zerstörte feindliche Gebäude."
 
 #: simulation/data/auras/catafalques/maur_catafalque_1.jsonauraName
 msgid "Consolidator of the Empire"
@@ -595,8 +595,8 @@ msgstr "Aura des Gründers und Verteidigers der Republik"
 #: simulation/data/auras/catafalques/rome_catafalque_2.jsonauraDescription
 msgid ""
 "Brutus was one of the key figures in the overthrow of the monarchy and the founding of the Roman Republic. Later, as consul he led a Roman army to victory against the Etruscan King Tarquinius who sought to retake the throne.\n"
-"+10% armor for all units and siege engines."
-msgstr "Brutus war einer der Hauptakteure im Sturz der Monarchie und der Gründung der römischen Republik. Später führte er als Konsul eine römische Armee in den Sieg gegen den etruskischen König Tarquinius, welcher versuchte, den Thron zurückzuerobern.\n+10% Rüstung für alle Einheiten und Belagerungsmaschinen."
+"+1 armor for all units and siege engines."
+msgstr "Brutus war einer der Hauptakteure im Sturz der Monarchie und der Gründung der römischen Republik. Später führte er als Konsul eine römische Armee in den Sieg gegen den etruskischen König Tarquinius, welcher versuchte, den Thron zurückzuerobern.\n+1 Rüstung für alle Einheiten und Belagerungsmaschinen."
 
 #: simulation/data/auras/catafalques/sele_catafalque_1.jsonauraName
 msgid "Founder of the Ezida Temple"
@@ -640,8 +640,8 @@ msgid ""
 msgstr "Lykurg veranlasste diverse Militärreformen, wodurch die totale Loyalität gegenüber Sparta von dessen Bürgern unter seiner Regierungsform eingeführt wurde.\n-10% Rohstoffkosten für Speerbürgereinheiten."
 
 #: simulation/data/auras/catafalques/spart_catafalque_2.jsonauraDescription
-msgid "-5% resource cost for spear champions."
-msgstr "-5% Rohstoffkosten für Speergardisten."
+msgid "-5% resource cost for spear infantry champions."
+msgstr "-5% Rohstoffkosten für Speerinfanteriegardisten."
 
 #: simulation/data/auras/catafalques/spart_catafalque_3.jsonauraName
 msgid "Iron Pelanors"
@@ -706,7 +706,7 @@ msgstr "Kornkammer des Mittelmeerraumes"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraDescription
 msgid "All allies automatically gain a slow trickle of food income."
-msgstr "Alle Verbündeten bekommen automatisch einen kleinen stetigen Zuwachs an Nahrung."
+msgstr "Alle Verbündeten bekommen automatisch einen kleinen stetigen Zufluss an Nahrung."
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"

@@ -6,10 +6,13 @@
 # adrien vigneron <adrienvigneron@ml1.net>, 2017
 # Arnaud Rochés <roches.arn@gmail.com>, 2017
 # Arnaud Rochés <roches.arn@gmail.com>, 2017
+# Arnaud Schmeltz <arnaud-sch5@hotmail.fr>, 2017
 # François Poirotte <clicky@erebot.net>, 2016
+# Hamza ESSAD <essadhamza@outlook.fr>, 2017
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2017
 # Loki <tontonloul@hotmail.fr>, 2016
 # Louis Parramon <taonasb@live.fr>, 2016
+# Luc <luc.absil2@gmail.com>, 2017
 # Inperpetuammemoriam, 2016
 # Micky Jault <micky037@hotmail.fr>, 2016
 # Nicolas Auvray <na.itms76@gmail.com>, 2016
@@ -20,9 +23,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-04-03 09:02+0200\n"
-"PO-Revision-Date: 2017-04-09 08:27+0000\n"
-"Last-Translator: Arnaud Rochés <roches.arn@gmail.com>\n"
+"POT-Creation-Date: 2017-04-10 09:07+0200\n"
+"PO-Revision-Date: 2017-04-11 13:32+0000\n"
+"Last-Translator: Hamza ESSAD <essadhamza@outlook.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,7 +39,7 @@ msgstr "Réformes des formations"
 
 #: simulation/data/auras/athen_hero_iphicrates_1.jsonauraDescription
 msgid "All soldiers in his formation +15% speed and +1 armor."
-msgstr "Tous les soldats dans sa formation gagnent +15% de vitesse et +1 point d'armure."
+msgstr "Toutes les unités dans sa formation gagnent +15% de vitesse et +1 point d'armure."
 
 #: simulation/data/auras/athen_hero_iphicrates_2.jsonauraName
 msgid "Peltast Reforms"
@@ -472,7 +475,7 @@ msgstr "Aux vues de l’inefficacité des défenses de retranchement face aux ar
 
 #: simulation/data/auras/catafalques/brit_catafalque_2.jsonauraName
 msgid "Skirmisher Harassment"
-msgstr ""
+msgstr "Harcèlement de tirailleurs"
 
 #: simulation/data/auras/catafalques/brit_catafalque_2.jsonauraDescription
 msgid ""
@@ -492,23 +495,23 @@ msgstr "Dirigeant de la cavalerie lourde Carthaginoise à Trebbia et Canne, où 
 
 #: simulation/data/auras/catafalques/gaul_catafalque_1.jsonauraName
 msgid "Ambush Slaughter"
-msgstr ""
+msgstr "Massacre par embuscade"
 
 #: simulation/data/auras/catafalques/gaul_catafalque_1.jsonauraDescription
 msgid ""
 "Warring with the Romans, Ambiorix realized the futility of open warfare and instead resorted to ambush tactics. The Gauls quickly learned where and when to execute surprise attacks.\n"
 "Units promote 25% faster and gain a 5% attack bonus."
-msgstr ""
+msgstr "En combattant les Romains, Ambiorix réalisa que la lutte armée contre armée n’était pas efficace. Il prôna ainsi une tactique à base d’embuscades. Les Gaulois apprirent rapidement où et quand effectuer des attaques surprises.\nLes unités bougent 25% de fois plus rapidement et obtiennent un bonus d’attaque de 5%."
 
 #: simulation/data/auras/catafalques/gaul_catafalque_2.jsonauraName
 msgid "Tribute to Rome"
-msgstr ""
+msgstr "Tribut à Rome"
 
 #: simulation/data/auras/catafalques/gaul_catafalque_2.jsonauraDescription
 msgid ""
 "When the Roman Army fell short of food supplies, the Gallic tribes were ordered to give up a part of their already meagre harvest. The Eburones under Ambiorix were reluctant to do so, therefore Caesar sent troops to take them by foce.\n"
 "-10% farming rate."
-msgstr ""
+msgstr "Quand l'armée romaine s'est retrouvée sans ravitaillements, les tribus gauloises étaient ordonnées d'abandonner une partie de leur récolte assez insuffisante. Les Eburones sous Ambiotrix hésitaient à le faire, par conséquent César a envoyé des troupes pour les prendre par force.\n-10% taux d'agriculture."
 
 #: simulation/data/auras/catafalques/iber_catafalque_1.jsonauraName
 msgid "Mercenary Commander"
@@ -518,7 +521,7 @@ msgstr "Commandant Mercenaire"
 msgid ""
 "Along with his brother Indibil, Mandonius commanded the Iberian recruits and mercenaries that took part in the Punic Wars.\n"
 "-25% metal cost for all allied citizen-soldier mercenaries."
-msgstr ""
+msgstr "En compagnie de son frère Indibil, Mandonius a commandé les recrues Ibériques et les mercenaires ayant pris part dans les guerres puniques.\n-25% coût de Métal pour tous les mercenaires citoyen-soldat alliés."
 
 #: simulation/data/auras/catafalques/iber_catafalque_2.jsonauraName
 msgid "Saver of Lives"
@@ -528,7 +531,7 @@ msgstr "Sauveur de vies"
 msgid ""
 "Following the fall of Indibil in battle, Mandonius led the survivors to safety.\n"
 "+15% movement speed and +10% health for all soldiers."
-msgstr ""
+msgstr "Suivant la chute d'Indibil en combat, Mandonius a mené les survivants à lieu sûr.\n+15% vitesse de mouvement et +10% santé pour tous les soldats. "
 
 #: simulation/data/auras/catafalques/mace_catafalque.jsonauraName
 msgid "Sacker of Cities"
@@ -537,8 +540,8 @@ msgstr "Saccageur des villes"
 #: simulation/data/auras/catafalques/mace_catafalque.jsonauraDescription
 msgid ""
 "During the First Macedonian War, Philip and his troops sacked Thermum, the religious and political centre of Aetolia.\n"
-"+25% loot for every enemy unit killed or structure destroyed."
-msgstr ""
+"+5 food and wood for every enemy unit killed or structure destroyed."
+msgstr "Durant la première guerre macédonienne, Phillip et ses unités ont saccagé Thermum, le centre politique et religieux d'Aetolia.\n+5 Nourriture et bois pour toute unité ennemie tuée ou structure détruite."
 
 #: simulation/data/auras/catafalques/maur_catafalque_1.jsonauraName
 msgid "Consolidator of the Empire"
@@ -582,7 +585,7 @@ msgstr ""
 
 #: simulation/data/auras/catafalques/rome_catafalque_1.jsonauraName
 msgid "Avenger of Lucretia"
-msgstr ""
+msgstr "Vengeur de Lucretia"
 
 #: simulation/data/auras/catafalques/rome_catafalque_1.jsonauraDescription
 msgid ""
@@ -597,7 +600,7 @@ msgstr "Fondateur et Défenseur de l'aura de la République"
 #: simulation/data/auras/catafalques/rome_catafalque_2.jsonauraDescription
 msgid ""
 "Brutus was one of the key figures in the overthrow of the monarchy and the founding of the Roman Republic. Later, as consul he led a Roman army to victory against the Etruscan King Tarquinius who sought to retake the throne.\n"
-"+10% armor for all units and siege engines."
+"+1 armor for all units and siege engines."
 msgstr ""
 
 #: simulation/data/auras/catafalques/sele_catafalque_1.jsonauraName
@@ -608,7 +611,7 @@ msgstr "Fondateur du Temple d'Ezida"
 msgid ""
 "Antiochus I laid the foundation for the Ezida Temple in Borsippa.\n"
 "-10% resource cost for temples and temple technologies."
-msgstr ""
+msgstr "Antiochus I a jeté les bases du temple Ezida à Borsippa.\n-10% des coûts de ressources pour les temples et les technologies du temple."
 
 #: simulation/data/auras/catafalques/sele_catafalque_2.jsonauraName
 msgid "Immigration"
@@ -639,11 +642,11 @@ msgstr "Réformes Militaires Lycurgienne"
 msgid ""
 "Lycurgus instituted several military reforms, thus the complete and undivided allegiance to Sparta from its citizens was implemented under his form of government.\n"
 "-10% resource cost for spear citizen units."
-msgstr ""
+msgstr "Lycurgus a institué plusieurs réformes militaires, ainsi l'allégeance complète et indivise à Sparte de ses citoyens a été mise en œuvre sous sa forme de gouvernement.\n-10% de coût de ressources pour les unités de citoyens à lances."
 
 #: simulation/data/auras/catafalques/spart_catafalque_2.jsonauraDescription
-msgid "-5% resource cost for spear champions."
-msgstr "-5% du coûts des ressources pour les champions à lance"
+msgid "-5% resource cost for spear infantry champions."
+msgstr "-5% des Coûts en ressources pour les champions en infanterie à la lance."
 
 #: simulation/data/auras/catafalques/spart_catafalque_3.jsonauraName
 msgid "Iron Pelanors"

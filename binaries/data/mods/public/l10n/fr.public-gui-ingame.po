@@ -15,6 +15,7 @@
 # foufy much <foufy68@hotmail.com>, 2016
 # François Poirotte <clicky@erebot.net>, 2014,2016
 # Hadrien Titeux <hadwarez@gmail.com>, 2013
+# Hamza ESSAD <essadhamza@outlook.fr>, 2017
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2017
 # Jibi, 2013
 # Julien Bernard, 2013
@@ -59,9 +60,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-31 09:20+0200\n"
-"PO-Revision-Date: 2017-04-09 08:01+0000\n"
-"Last-Translator: adrien vigneron <adrienvigneron@ml1.net>\n"
+"POT-Creation-Date: 2017-04-10 09:05+0200\n"
+"PO-Revision-Date: 2017-04-11 13:39+0000\n"
+"Last-Translator: Hamza ESSAD <essadhamza@outlook.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -96,12 +97,12 @@ msgid "Confirmation"
 msgstr "Confirmation"
 
 #: gui/session/menu.js:134 gui/session/menu.js:166 gui/session/menu.js:199
-#: gui/session/session.js:816 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:821 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Non"
 
 #: gui/session/menu.js:134 gui/session/menu.js:166 gui/session/menu.js:199
-#: gui/session/session.js:816 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:821 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Oui"
 
@@ -420,7 +421,7 @@ msgstr "* %(user)s %(message)s"
 msgid "Team"
 msgstr "Équipe"
 
-#: gui/session/messages.js:168 gui/session/session.js:293
+#: gui/session/messages.js:168 gui/session/session.js:298
 msgid "Observer"
 msgstr "Spectateur"
 
@@ -604,16 +605,6 @@ msgstr "Vous avez été attaqué(e) par %(attacker)s !"
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/selection_details.js:54 gui/session/selection_details.js:369
-#: gui/session/selection_details.js:401 gui/session/session.js:956
-#, javascript-format
-msgid "%(label)s %(current)s / %(max)s"
-msgstr "%(label)s %(current)s / %(max)s"
-
-#: gui/session/selection_details.js:55 gui/session/selection_details.js:370
-msgid "Hitpoints:"
-msgstr "Points de vie :"
-
 #: gui/session/selection_details.js:71
 #, javascript-format
 msgid "%(genericName)s — Packed"
@@ -701,7 +692,7 @@ msgstr "Ramasseurs actuels/max"
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:402
+#: gui/session/selection_details.js:405
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):26
 msgid "Capture points:"
 msgstr "Points de capture :"
@@ -926,40 +917,40 @@ msgstr "%(action)s pour en former %(number)s."
 msgid "Shift-click"
 msgstr "Maj+clic"
 
-#: gui/session/session.js:272
+#: gui/session/session.js:277
 msgid "Gaia"
 msgstr "Gaia"
 
-#: gui/session/session.js:386
+#: gui/session/session.js:391
 msgctxt "chat input"
 msgid "Type the message to send."
 msgstr "Tapez le message à envoyer."
 
-#: gui/session/session.js:388
+#: gui/session/session.js:393
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
 msgstr "Appuyez sur %(hotkey)s pour ouvrir le salon de discussion public."
 
-#: gui/session/session.js:391
+#: gui/session/session.js:396
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
 msgstr "Appuyez sur %(hotkey)s pour ouvrir le salon de discussion des observateurs."
 
-#: gui/session/session.js:392
+#: gui/session/session.js:397
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
 msgstr "Appuyez sur %(hotkey)s pour ouvrir le salon de discussion des alliés."
 
-#: gui/session/session.js:394
+#: gui/session/session.js:399
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
 msgstr "Appuyez sur %(hotkey)s pour ouvrir la dernière discutions privée."
 
-#: gui/session/session.js:398
+#: gui/session/session.js:403
 msgid "Find idle worker"
 msgstr "Trouver un travailleur inactif"
 
-#: gui/session/session.js:401
+#: gui/session/session.js:406
 #, javascript-format
 msgid ""
 "Select one type of goods you want to modify by clicking on it (Pressing "
@@ -967,104 +958,99 @@ msgid ""
 "the arrows of the other types to modify their shares."
 msgstr "Sélectionnez le type de bien que vous voulez modifier en cliquant dessus (Appuyez sur %(hotkey)s lorsque vous le sélectionnez vous fera le partager à 100%) et utilisez les flèches pour modifier leur part."
 
-#: gui/session/session.js:405
+#: gui/session/session.js:410
 #, javascript-format
 msgid ""
 "Start by selecting the resource from the upper row that you wish to sell. "
 "Upon each press on one of the lower buttons, %(quantity)s of the upper "
 "resource will be sold for the displayed quantity of the lower. Press and "
 "hold %(hotkey)s to temporarily multiply all quantities by %(multiplier)s."
-msgstr ""
+msgstr "Commencez par sélectionner la ressource à partir de la ligne supérieure que vous souhaitez vendre. Chaque fois que vous appuyez sur l'un des boutons inférieurs, %(quantity)s de la ressource supérieure sera vendue pour la quantité affichée de la partie inférieure. Appuyez et maintenez la touche %(hotkey)s pour multiplier temporairement toutes les quantités par %(multiplier)s."
 
-#: gui/session/session.js:569
+#: gui/session/session.js:574
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - Arbre technologique"
 
-#: gui/session/session.js:808
+#: gui/session/session.js:813
 msgid "Do you want to quit?"
 msgstr "Voulez-vous quitter ?"
 
-#: gui/session/session.js:814
+#: gui/session/session.js:819
 msgid "VICTORIOUS!"
 msgstr "VICTOIRE !"
 
-#: gui/session/session.js:815
+#: gui/session/session.js:820
 msgid "DEFEATED!"
 msgstr "DÉFAITE !"
 
-#: gui/session/session.js:816
+#: gui/session/session.js:821
 msgid "Ok"
 msgstr "Ok"
 
-#: gui/session/session.js:875
+#: gui/session/session.js:880
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "La vidéo est terminée. Voulez-vous quitter ?"
 
-#: gui/session/session.js:876
+#: gui/session/session.js:881
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Confirmation"
 
-#: gui/session/session.js:877
+#: gui/session/session.js:882
 msgctxt "replayFinished"
 msgid "No"
 msgstr "Non"
 
-#: gui/session/session.js:877
+#: gui/session/session.js:882
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Oui"
 
-#: gui/session/session.js:957
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
-msgid "Health:"
-msgstr "Santé :"
-
-#: gui/session/session.js:1099
+#: gui/session/session.js:1107
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
 msgstr "%(playername)s : %(statValue)s"
 
-#: gui/session/session.js:1102
+#: gui/session/session.js:1110
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
-#: gui/session/session.js:1128
+#: gui/session/session.js:1136
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
 msgstr "%(popCount)s/%(popLimit)s"
 
-#: gui/session/session.js:1129
+#: gui/session/session.js:1137
 msgid "Population (current / limit)"
 msgstr "Population (actuelle / limite)"
 
-#: gui/session/session.js:1130
+#: gui/session/session.js:1138
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Population maximale : %(popCap)s"
 
-#: gui/session/session.js:1282
+#: gui/session/session.js:1290
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Version : %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:1292
+#: gui/session/session.js:1300
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Remarque : Le mode 'déformation du temps' est une option de développeur, et n'est pas fait pour être utilisé sur de longues durées. Son utilisation incorrecte peut provoquer un manque de mémoire ou un plantage."
 
-#: gui/session/session.js:1293
+#: gui/session/session.js:1301
 msgid "Time warp mode"
 msgstr "Déformation du temps"
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
-#: gui/session/session.js:1310
+#: gui/session/session.js:1318
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)sx)"
@@ -1413,6 +1399,10 @@ msgstr "Points de vie"
 #: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):39
 msgid "Capture points"
 msgstr "Points de capture"
+
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
+msgid "Health:"
+msgstr "Santé :"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):54
 msgid "Attack and Armor"
