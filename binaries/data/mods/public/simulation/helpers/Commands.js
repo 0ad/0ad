@@ -739,7 +739,7 @@ var g_Commands = {
 			"players": [player],
 			"message": "/allies " + markForTranslation("Attack against %(_player_)s requested."),
 			"translateParameters": ["_player_"],
-			"parameters": { "_player_": cmd.target }
+			"parameters": { "_player_": cmd.player }
 		});
 
 		// And send an attackRequest event to the AIs

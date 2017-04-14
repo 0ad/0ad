@@ -56,9 +56,9 @@ m.AttackManager.prototype.checkEvents = function(gameState, events)
 	let targetPlayer;
 	for (let evt of events.AttackRequest)
 	{
-		if (evt.source === PlayerID || !gameState.isPlayerAlly(evt.source) || !gameState.isPlayerEnemy(evt.target))
+		if (evt.source === PlayerID || !gameState.isPlayerAlly(evt.source) || !gameState.isPlayerEnemy(evt.player))
 			continue;
-		targetPlayer = evt.target;
+		targetPlayer = evt.player;
 		let available = 0;
 		for (let attackType in this.upcomingAttacks)
 		{
