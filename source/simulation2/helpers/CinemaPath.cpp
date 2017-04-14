@@ -22,22 +22,12 @@
 #include <sstream>
 #include <string>
 
-#include "Camera.h"
-#include "CinemaManager.h"
-#include "GameView.h"
-#include "gui/CGUI.h"
-#include "gui/GUIManager.h"
-#include "gui/IGUIObject.h"
-#include "lib/ogl.h"
+#include "graphics/Camera.h"
 #include "maths/MathUtil.h"
 #include "maths/Quaternion.h"
 #include "maths/Vector3D.h"
-#include "maths/Vector4D.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
-#include "ps/Game.h"
-#include "renderer/Renderer.h"
-
 
 CCinemaPath::CCinemaPath(const CCinemaData& data, const TNSpline& spline, const TNSpline& targetSpline)
 	: CCinemaData(data), TNSpline(spline), m_TargetSpline(targetSpline), m_TimeElapsed(0.f)

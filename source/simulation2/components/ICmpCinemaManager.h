@@ -18,7 +18,7 @@
 #ifndef INCLUDED_ICMPCINEMAMANAGER
 #define INCLUDED_ICMPCINEMAMANAGER
 
-#include "graphics/CinemaPath.h"
+#include "simulation2/helpers/CinemaPath.h"
 #include "simulation2/system/Interface.h"
 
 #include "ps/CStr.h"
