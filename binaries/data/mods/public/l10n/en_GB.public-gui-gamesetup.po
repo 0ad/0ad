@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-27 09:01+0200\n"
-"PO-Revision-Date: 2017-03-27 08:37+0000\n"
+"POT-Creation-Date: 2017-04-10 09:05+0200\n"
+"PO-Revision-Date: 2017-04-10 08:44+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
@@ -159,105 +159,51 @@ msgctxt "team"
 msgid "None"
 msgstr "None"
 
-#: gui/gamesetup/gamesetup.js:1341
+#: gui/gamesetup/gamesetup.js:1338
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1433
+#: gui/gamesetup/gamesetup.js:1430
 msgctxt "map size"
 msgid "Default"
 msgstr "Default"
 
-#: gui/gamesetup/gamesetup.js:1504
+#: gui/gamesetup/gamesetup.js:1501
 msgid "Loading..."
 msgstr "Loading..."
 
-#: gui/gamesetup/gamesetup.js:1637
+#: gui/gamesetup/gamesetup.js:1634
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1642
+#: gui/gamesetup/gamesetup.js:1639
 msgid "Unassigned"
 msgstr "Unassigned"
 
-#: gui/gamesetup/gamesetup.js:1802
+#: gui/gamesetup/gamesetup.js:1799
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1809
+#: gui/gamesetup/gamesetup.js:1806
 msgid "Unknown Player"
 msgstr "Unknown Player"
 
-#: gui/gamesetup/gamesetup.js:1848
+#: gui/gamesetup/gamesetup.js:1845
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1849
+#: gui/gamesetup/gamesetup.js:1846
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:1850
+#: gui/gamesetup/gamesetup.js:1847
 msgid "HH:mm"
 msgstr "HH:mm"
-
-#: gui/gamesetup/gamesetup_mp.js:49
-#, javascript-format
-msgid "%(name)s's game"
-msgstr "%(name)s's game"
-
-#: gui/gamesetup/gamesetup_mp.js:106
-msgid "Please enter a valid server name."
-msgstr ""
-
-#: gui/gamesetup/gamesetup_mp.js:113
-#, javascript-format
-msgid "Server port number must be between %(min)s and %(max)s."
-msgstr ""
-
-#: gui/gamesetup/gamesetup_mp.js:130
-msgid "Connecting to server..."
-msgstr "Connecting to server..."
-
-#: gui/gamesetup/gamesetup_mp.js:149
-#, javascript-format
-msgid "Net message: %(message)s"
-msgstr "Net message: %(message)s"
-
-#: gui/gamesetup/gamesetup_mp.js:218
-msgid "Registering with server..."
-msgstr "Registering with server..."
-
-#: gui/gamesetup/gamesetup_mp.js:224
-msgid "Game has already started, rejoining..."
-msgstr "Game has already started, rejoining..."
-
-#: gui/gamesetup/gamesetup_mp.js:292
-msgid "Game name already in use."
-msgstr "Game name already in use."
-
-#: gui/gamesetup/gamesetup_mp.js:308
-#, javascript-format
-msgid "Cannot host game: %(message)s."
-msgstr "Cannot host game: %(message)s."
-
-#: gui/gamesetup/gamesetup_mp.js:309 gui/gamesetup/gamesetup_mp.js:338
-msgid "Error"
-msgstr "Error"
-
-#: gui/gamesetup/gamesetup_mp.js:337
-#, javascript-format
-msgid "Cannot join game: %(message)s."
-msgstr "Cannot join game: %(message)s."
-
-#: gui/gamesetup/gamesetup_mp.js:362
-#, javascript-format
-msgid "%(playername)s's game"
-msgstr "%(playername)s's game"
 
 #: gui/loading/loading.js:48
 #, javascript-format
@@ -282,7 +228,6 @@ msgid "AI Difficulty:"
 msgstr "AI Difficulty:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):41
-#: gui/gamesetup/gamesetup_mp.xml:(caption):120
 msgid "Cancel"
 msgstr "Cancel"
 
@@ -554,45 +499,6 @@ msgstr "Toggle if this game will be rated for the leaderboard."
 #: gui/gamesetup/gamesetup.xml:(tooltip):470
 msgid "Close more game options window"
 msgstr "Close more game options window"
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):20
-msgid "Multiplayer"
-msgstr "Multiplayer"
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):26
-msgid "Joining an existing game."
-msgstr "Joining an existing game."
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):30
-#: gui/gamesetup/gamesetup_mp.xml:(caption):72
-msgid "Player name:"
-msgstr "Player name:"
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):40
-msgid "Server Hostname or IP:"
-msgstr "Server Hostname or IP:"
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):50
-#: gui/gamesetup/gamesetup_mp.xml:(caption):97
-msgid "Server Port:"
-msgstr "Server Port:"
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):67
-msgid "Set up your server to host."
-msgstr "Set up your server to host."
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):85
-msgid "Server name:"
-msgstr "Server name:"
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):115
-msgid "Continue"
-msgstr "Continue"
-
-#: gui/gamesetup/gamesetup_mp.xml:(tooltip):54
-#: gui/gamesetup/gamesetup_mp.xml:(tooltip):101
-msgid "Leave blank to use the default port."
-msgstr "Leave blank to use the default port."
 
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"

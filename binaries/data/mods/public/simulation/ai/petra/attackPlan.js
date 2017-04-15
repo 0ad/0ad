@@ -461,7 +461,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 			this.maxCompletingTime = gameState.ai.elapsedTime + 60;
 		// warn our allies so that they can help if possible
 		if (!this.requested)
-			Engine.PostCommand(PlayerID, {"type": "attack-request", "source": PlayerID, "target": this.targetPlayer});
+			Engine.PostCommand(PlayerID, {"type": "attack-request", "source": PlayerID, "player": this.targetPlayer});
 	}
 
 	let rallyPoint = this.rallyPoint;

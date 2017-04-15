@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-04-03 09:02+0200\n"
-"PO-Revision-Date: 2017-04-07 21:43+0000\n"
+"POT-Creation-Date: 2017-04-10 09:07+0200\n"
+"PO-Revision-Date: 2017-04-13 11:19+0000\n"
 "Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -57,7 +57,7 @@ msgstr "Аура акрополя"
 
 #: simulation/data/auras/athen_hero_pericles_2.jsonauraDescription
 msgid "Temples are 50 stone cheaper during his lifetime."
-msgstr "Затраты на строительство храмов меньше на 50 камней. "
+msgstr "Затраты на строительство храмов уменьшаются на 50 единиц камня, пока он жив."
 
 #: simulation/data/auras/athen_hero_themistocles_1.jsonauraName
 msgid "Naval Commander Aura"
@@ -65,7 +65,7 @@ msgstr "Аура флотоводца"
 
 #: simulation/data/auras/athen_hero_themistocles_1.jsonauraDescription
 msgid "When garrisoned in a ship, his ship is +50% faster."
-msgstr "Когда на корабле есть гарнизон, его корабль на +50% быстрее."
+msgstr "Корабль, на котором он размещен, движется на +50% быстрее."
 
 #: simulation/data/auras/athen_hero_themistocles_2.jsonauraName
 msgid "Naval Architect Aura"
@@ -113,7 +113,7 @@ msgstr "Аура тактика"
 msgid ""
 "All allied soldiers and siege engines +20% attack and +1 capture within his "
 "vision range."
-msgstr "Все союзные солдаты и осадные машины +20% атаки и +1 захвата в пределах своей видимости."
+msgstr "Все союзные солдаты и осадные орудия получают +20% к атаке и +1 к захвату в пределах его видимости."
 
 #: simulation/data/auras/cart_hero_maharbal.jsonauraName
 msgid "Commander Aura"
@@ -146,7 +146,7 @@ msgstr "Аура воодушевления"
 
 #: simulation/data/auras/female_inspiration.jsonauraDescription
 msgid "Nearby citizen soldiers work 10% faster."
-msgstr "Близлежащие ополченцы работают на 10% быстрее."
+msgstr "Находящиеся рядом ополченцы работают на 10% быстрее."
 
 #: simulation/data/auras/gaul_hero_brennus.jsonauraDescription
 msgid "+10 Metal loot for every enemy unit killed."
@@ -180,7 +180,7 @@ msgstr "Аура защиты"
 msgid ""
 "Gives all iberian soldiers in aura +20% attack boost. Effect Range: 50 "
 "meters"
-msgstr "Дает всем Пиренейским солдатам под своей аурой +20% к атаке. Радиус эффекта: 50 метров"
+msgstr "Иберийские солдаты получают +20% к скорости атаки в пределах ауры. Радиус воздействия: 50 метров"
 
 #: simulation/data/auras/library.jsonauraName
 msgid "Library Aura"
@@ -189,7 +189,7 @@ msgstr "Аура библиотеки"
 #: simulation/data/auras/library.jsonauraDescription
 msgid ""
 "Reduce the cost and research time of technologies by 10% per library owned."
-msgstr "Сокращение стоимости и времени исследований технологий на 10% за каждую свою библиотеку."
+msgstr "Сокращает стоимость и время исследования технологий на 10% за каждую свою библиотеку."
 
 #: simulation/data/auras/loyalty_regen.jsonauraName
 msgid "Loyalty Aura"
@@ -205,7 +205,7 @@ msgstr "Аура империализма"
 
 #: simulation/data/auras/mace_hero_alexander.jsonauraDescription
 msgid "+10% territory effect for all buildings while he lives."
-msgstr "Пока жив +10% к влиянию территории на здания."
+msgstr "+10% к влиянию территории на здания, пока он жив."
 
 #: simulation/data/auras/mace_hero_craterus.jsonauraName
 msgid "Taxiarchès"
@@ -221,7 +221,7 @@ msgstr "Аура осаждающей стороны"
 
 #: simulation/data/auras/mace_hero_demetrius.jsonauraDescription
 msgid "+15% range and +10% crush attack for siege engines."
-msgstr "+15% к расстоянию и +10% сокрушительности для осадных машин"
+msgstr "+15% к дальности и +10% сокрушительности для осадных орудий."
 
 #: simulation/data/auras/mace_hero_philip.jsonauraDescription
 msgid "+20% attack and +2 capture for champion units."
@@ -238,7 +238,7 @@ msgstr "Пока Пирр жив, все солдаты получают +20% к
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraName
 msgid "Buddhism Aura"
-msgstr "аура Буддизма"
+msgstr "Аура Буддизма"
 
 #: simulation/data/auras/maur_hero_ashoka.jsonauraDescription
 msgid "Temples and temple technologies -50% cost, in resources and time."
@@ -267,7 +267,7 @@ msgstr "Аура командира с передовой"
 
 #: simulation/data/auras/pers_hero_cyrus.jsonauraDescription
 msgid "+20% attack and +1 capture for nearby cavalry units."
-msgstr "+20% атаки и +1 захват для близлежащей конницы."
+msgstr "+20% к атаке и +1 к захвату для находящейся поблизости конницы."
 
 #: simulation/data/auras/pers_hero_darius.jsonauraName
 msgid "Leadership Aura"
@@ -275,7 +275,7 @@ msgstr "Аура лидерства"
 
 #: simulation/data/auras/pers_hero_darius.jsonauraDescription
 msgid "+15% movement speed for all soldiers and siege engines."
-msgstr "+15% к скорости для всех войск и осадных машин."
+msgstr "+15% к скорости передвижения для всех войск и осадных орудий."
 
 #: simulation/data/auras/pers_hero_xerxes.jsonauraName
 msgid "Administrator Aura"
@@ -283,7 +283,7 @@ msgstr "Аура управленца"
 
 #: simulation/data/auras/pers_hero_xerxes.jsonauraDescription
 msgid "+15% gather rate and build rate of nearby workers."
-msgstr "+15% к скорости сбора и строительства для близлежащих работников."
+msgstr "+15% к скорости сбора и строительства для находящихся рядом работников."
 
 #: simulation/data/auras/ptol_hero_cleopatra_1.jsonauraName
 msgid "Patriot Aura"
@@ -309,7 +309,7 @@ msgstr "Вражеские герои получают -10% к здоровью,
 
 #: simulation/data/auras/ptol_hero_ptolemy_IV.jsonauraName
 msgid "Raphia Aura"
-msgstr "Аура рафия"
+msgstr "Аура рафии"
 
 #: simulation/data/auras/ptol_hero_ptolemy_IV.jsonauraDescription
 msgid "Egyptian pikemen have 40% greater health during his lifetime."
@@ -329,7 +329,7 @@ msgstr "Аура покровителя наёмников"
 
 #: simulation/data/auras/ptol_hero_ptolemy_I_2.jsonauraDescription
 msgid "Mercenaries cost -50% resources during his lifetime."
-msgstr "Стоимость найма наёмников меньше на -50%."
+msgstr "Стоимость найма наёмников меньше на -50%, пока он жив."
 
 #: simulation/data/auras/rome_hero_marcellus.jsonauraName
 msgid "Sword of Rome Aura"
@@ -339,7 +339,7 @@ msgstr "Аура \"Меч Рима\""
 msgid ""
 "+20% attack and +2 capture for Roman soldiers and siege engines within his "
 "range."
-msgstr "Римские солдаты и осадные орудия, находящиеся в поле его зрения, получают +20% к атаке и +2 к захвату "
+msgstr "Римские солдаты и осадные орудия, находящиеся в поле его зрения, получают +20% к атаке и +2 к захвату."
 
 #: simulation/data/auras/rome_hero_maximus.jsonauraName
 msgid "Shield of Rome Aura"
@@ -534,8 +534,8 @@ msgstr "Разграбление городов"
 #: simulation/data/auras/catafalques/mace_catafalque.jsonauraDescription
 msgid ""
 "During the First Macedonian War, Philip and his troops sacked Thermum, the religious and political centre of Aetolia.\n"
-"+25% loot for every enemy unit killed or structure destroyed."
-msgstr "Во время Первой Македонской войны войска Филиппа V разграбили Фермон - центр релизиозной и политической жизни Этолии.\n+25% добычи с каждого убитого вражеского солдата или уничтоженной постройки."
+"+5 food and wood for every enemy unit killed or structure destroyed."
+msgstr ""
 
 #: simulation/data/auras/catafalques/maur_catafalque_1.jsonauraName
 msgid "Consolidator of the Empire"
@@ -594,8 +594,8 @@ msgstr "Аура основателя и защитника республики
 #: simulation/data/auras/catafalques/rome_catafalque_2.jsonauraDescription
 msgid ""
 "Brutus was one of the key figures in the overthrow of the monarchy and the founding of the Roman Republic. Later, as consul he led a Roman army to victory against the Etruscan King Tarquinius who sought to retake the throne.\n"
-"+10% armor for all units and siege engines."
-msgstr "Луций Юний Брут был одной из ключевых фигур в свержении монархии и создании Римской республики. Позднее в должности консула он привел римскую армию к победе в войне с этрусским царём Тарквинием, стремившимся вернуть трон.\n+10% к броне для всех юнитов и осадных орудий."
+"+1 armor for all units and siege engines."
+msgstr "Луций Юний Брут был одной из ключевых фигур в свержении монархии и создании Римской республики. Позднее в должности консула он привел римскую армию к победе в войне с этрусским царём Тарквинием, стремившимся вернуть трон.\n+1 к броне для всех юнитов и осадных орудий."
 
 #: simulation/data/auras/catafalques/sele_catafalque_1.jsonauraName
 msgid "Founder of the Ezida Temple"
@@ -639,18 +639,18 @@ msgid ""
 msgstr "Ликург предложил несколько военных реформ, таким образом, полная и безраздельная преданность Спарте со стороны её граждан была претворена при его форме правления.\n-10% к стоимости создания горожан-копейщиков."
 
 #: simulation/data/auras/catafalques/spart_catafalque_2.jsonauraDescription
-msgid "-5% resource cost for spear champions."
-msgstr "-5% к стоимости копейщиков-чемпионов."
+msgid "-5% resource cost for spear infantry champions."
+msgstr ""
 
 #: simulation/data/auras/catafalques/spart_catafalque_3.jsonauraName
 msgid "Iron Pelanors"
-msgstr ""
+msgstr "Железные пеланоры"
 
 #: simulation/data/auras/catafalques/spart_catafalque_3.jsonauraDescription
 msgid ""
 "To further support equality, Lycurgus forbade the use of gold and silver, instead introducing new iron money called pellanors.\n"
 "+15% metal mining rate for workers within an 80 meter range."
-msgstr ""
+msgstr "В целях борьбы с роскошью и поддержания равенства, Ликург запретил использование золотых и серебряных момент и ввел вместо них железные, называемые пеланорами.\n+15% к скорости добычи металла для работникв в радиусе 80 метров."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"

@@ -425,7 +425,9 @@ function updateBandbox(bandbox, ev, hidden)
 	if (x0 > x1) { let t = x0; x0 = x1; x1 = t; }
 	if (y0 > y1) { let t = y0; y0 = y1; y1 = t; }
 
-	bandbox.size = [x0, y0, x1, y1].join(" ");
+	let scale = +Engine.ConfigDB_GetValue("user", "gui.scale");
+
+	bandbox.size = [x0 * scale, y0 * scale, x1 * scale, y1 * scale].join(" ");
 	bandbox.hidden = hidden;
 
 	return [x0, y0, x1, y1];

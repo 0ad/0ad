@@ -24,7 +24,7 @@
 
 #include "lib/input.h" // InReaction - can't forward-declare enum
 
-#include "graphics/CinemaPath.h"
+#include "simulation2/helpers/CinemaPath.h"
 #include "ps/CStr.h"
 #include "ps/Shapes.h"
 

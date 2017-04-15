@@ -22,10 +22,8 @@
 #include "ps/CStr.h"
 
 class CVector3D;
-class CVector4D;
 class CCamera;
 
-// For loading data
 class CCinemaData
 {
 public:

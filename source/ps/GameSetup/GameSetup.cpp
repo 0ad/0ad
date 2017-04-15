@@ -36,7 +36,6 @@
 #endif
 
 #include "graphics/CinemaManager.h"
-#include "graphics/CinemaPath.h"
 #include "graphics/FontMetrics.h"
 #include "graphics/GameView.h"
 #include "graphics/LightEnv.h"
