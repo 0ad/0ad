@@ -140,7 +140,7 @@ m.chatAnswerRequestAttack = function(gameState, player, answer, other)
 		"message": "/allies " + pickRandom(this.answerRequestAttackMessages[answer]),
 		"translateMessage": true,
 		"translateParameters": answer != "other" ? ["_player_"] : ["_player_", "_player_2"],
-		"parameters": answer != "other" ? { "_player_": player } : { "_player_": player, "_player2_": other }
+		"parameters": answer != "other" ? { "_player_": player } : { "_player_": player, "_player_2": other }
 	});
 };
 
