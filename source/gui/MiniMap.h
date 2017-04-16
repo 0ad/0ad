@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -87,6 +87,8 @@ protected:
 
 	// maximal water height to allow the passage of a unit (for underwater shallows).
 	float m_ShallowPassageHeight;
+
+	float m_WaterHeight;
 
 	void DrawTexture(CShaderProgramPtr shader, float coordMax, float angle, float x, float y, float x2, float y2, float z);
 
