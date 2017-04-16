@@ -248,10 +248,11 @@ StatisticsTracker.prototype.IncreaseConstructedBuildingsCounter = function(const
 StatisticsTracker.prototype.KilledEntity = function(targetEntity)
 {
 	var cmpTargetEntityIdentity = Engine.QueryInterface(targetEntity, IID_Identity);
-	var cmpCost = Engine.QueryInterface(targetEntity, IID_Cost);
-	var costs = cmpCost.GetResourceCosts();
 	if (!cmpTargetEntityIdentity)
 		return;
+
+	var cmpCost = Engine.QueryInterface(targetEntity, IID_Cost);
+	var costs = cmpCost && cmpCost.GetResourceCosts();
 
 	var cmpTargetOwnership = Engine.QueryInterface(targetEntity, IID_Ownership);
 
@@ -266,6 +267,9 @@ StatisticsTracker.prototype.KilledEntity = function(targetEntity)
 
 		++this.enemyUnitsKilled.total;
 
+		if (!cmpCost)
+			return;
+
 		for (let type in costs)
 			this.enemyUnitsKilledValue += costs[type];
 	}
@@ -278,6 +282,9 @@ StatisticsTracker.prototype.KilledEntity = function(targetEntity)
 
 		++this.enemyBuildingsDestroyed.total;
 
+		if (!costs)
+			return;
+
 		for (let type in costs)
 			this.enemyBuildingsDestroyedValue += costs[type];
 	}
@@ -286,10 +293,11 @@ StatisticsTracker.prototype.KilledEntity = function(targetEntity)
 StatisticsTracker.prototype.LostEntity = function(lostEntity)
 {
 	var cmpLostEntityIdentity = Engine.QueryInterface(lostEntity, IID_Identity);
-	var cmpCost = Engine.QueryInterface(lostEntity, IID_Cost);
-	var costs = cmpCost.GetResourceCosts();
 	if (!cmpLostEntityIdentity)
 		return;
+
+	var cmpCost = Engine.QueryInterface(lostEntity, IID_Cost);
+	var costs = cmpCost && cmpCost.GetResourceCosts();
 
 	if (cmpLostEntityIdentity.HasClass("Unit") && !cmpLostEntityIdentity.HasClass("Domestic"))
 	{
@@ -297,6 +305,9 @@ StatisticsTracker.prototype.LostEntity = function(lostEntity)
 			this.CounterIncrement(cmpLostEntityIdentity, "unitsLost", type);
 
 		++this.unitsLost.total;
+
+		if (!costs)
+			return;
 
 		for (let type in costs)
 			this.unitsLostValue += costs[type];
@@ -310,6 +321,9 @@ StatisticsTracker.prototype.LostEntity = function(lostEntity)
 
 		++this.buildingsLost.total;
 
+		if (!costs)
+			return;
+
 		for (let type in costs)
 			this.buildingsLostValue += costs[type];
 	}
@@ -321,6 +335,9 @@ StatisticsTracker.prototype.CapturedEntity = function(capturedEntity)
 	if (!cmpCapturedEntityIdentity)
 		return;
 
+	let cmpCost = Engine.QueryInterface(capturedEntity, IID_Cost);
+	let costs = cmpCost && cmpCost.GetResourceCosts();
+
 	if (cmpCapturedEntityIdentity.HasClass("Unit"))
 	{
 		for (let type of this.unitsClasses)
@@ -328,11 +345,9 @@ StatisticsTracker.prototype.CapturedEntity = function(capturedEntity)
 
 		++this.unitsCaptured.total;
 
-		let cmpCost = Engine.QueryInterface(capturedEntity, IID_Cost);
 		if (!cmpCost)
 			return;
 
-		let costs = cmpCost.GetResourceCosts();
 		for (let type in costs)
 			this.unitsCapturedValue += costs[type];
 	}
@@ -344,11 +359,9 @@ StatisticsTracker.prototype.CapturedEntity = function(capturedEntity)
 
 		++this.buildingsCaptured.total;
 
-		let cmpCost = Engine.QueryInterface(capturedEntity, IID_Cost);
 		if (!cmpCost)
 			return;
 
-		let costs = cmpCost.GetResourceCosts();
 		for (let type in costs)
 			this.buildingsCapturedValue += costs[type];
 	}
