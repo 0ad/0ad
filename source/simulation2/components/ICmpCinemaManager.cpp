@@ -22,6 +22,7 @@
 #include "simulation2/system/InterfaceScripted.h"
 
 BEGIN_INTERFACE_WRAPPER(CinemaManager)
+DEFINE_INTERFACE_METHOD_1("AddPath", void, ICmpCinemaManager, AddPath, CCinemaPath)
 DEFINE_INTERFACE_METHOD_1("AddCinemaPathToQueue", void, ICmpCinemaManager, AddCinemaPathToQueue, CStrW)
 DEFINE_INTERFACE_METHOD_0("Play", void, ICmpCinemaManager, Play)
 DEFINE_INTERFACE_METHOD_0("Stop", void, ICmpCinemaManager, Stop)
