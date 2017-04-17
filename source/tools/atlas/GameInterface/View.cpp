@@ -115,6 +115,11 @@ bool AtlasViewActor::WantsHighFramerate()
 	return false;
 }
 
+void AtlasViewActor::SetEnabled(bool enabled)
+{
+	m_ActorViewer->SetEnabled(enabled);
+}
+
 void AtlasViewActor::SetSpeedMultiplier(float speedMultiplier)
 {
 	m_SpeedMultiplier = speedMultiplier;

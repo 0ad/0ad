@@ -123,7 +123,9 @@ QUERYHANDLER(Exit)
 
 MESSAGEHANDLER(RenderEnable)
 {
+	g_AtlasGameLoop->view->SetEnabled(false);
 	g_AtlasGameLoop->view = AtlasView::GetView(msg->view);
+	g_AtlasGameLoop->view->SetEnabled(true);
 }
 
 MESSAGEHANDLER(SetViewParamB)
