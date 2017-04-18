@@ -267,11 +267,9 @@ StatisticsTracker.prototype.KilledEntity = function(targetEntity)
 
 		++this.enemyUnitsKilled.total;
 
-		if (!cmpCost)
-			return;
-
-		for (let type in costs)
-			this.enemyUnitsKilledValue += costs[type];
+		if (costs)
+			for (let type in costs)
+				this.enemyUnitsKilledValue += costs[type];
 	}
 
 	let cmpFoundation = Engine.QueryInterface(targetEntity, IID_Foundation);
@@ -282,11 +280,9 @@ StatisticsTracker.prototype.KilledEntity = function(targetEntity)
 
 		++this.enemyBuildingsDestroyed.total;
 
-		if (!costs)
-			return;
-
-		for (let type in costs)
-			this.enemyBuildingsDestroyedValue += costs[type];
+		if (costs)
+			for (let type in costs)
+				this.enemyBuildingsDestroyedValue += costs[type];
 	}
 };
 
@@ -306,11 +302,9 @@ StatisticsTracker.prototype.LostEntity = function(lostEntity)
 
 		++this.unitsLost.total;
 
-		if (!costs)
-			return;
-
-		for (let type in costs)
-			this.unitsLostValue += costs[type];
+		if (costs)
+			for (let type in costs)
+				this.unitsLostValue += costs[type];
 	}
 
 	let cmpFoundation = Engine.QueryInterface(lostEntity, IID_Foundation);
@@ -321,11 +315,9 @@ StatisticsTracker.prototype.LostEntity = function(lostEntity)
 
 		++this.buildingsLost.total;
 
-		if (!costs)
-			return;
-
-		for (let type in costs)
-			this.buildingsLostValue += costs[type];
+		if (costs)
+			for (let type in costs)
+				this.buildingsLostValue += costs[type];
 	}
 };
 
@@ -345,11 +337,9 @@ StatisticsTracker.prototype.CapturedEntity = function(capturedEntity)
 
 		++this.unitsCaptured.total;
 
-		if (!cmpCost)
-			return;
-
-		for (let type in costs)
-			this.unitsCapturedValue += costs[type];
+		if (costs)
+			for (let type in costs)
+				this.unitsCapturedValue += costs[type];
 	}
 
 	if (cmpCapturedEntityIdentity.HasClass("Structure"))
@@ -359,11 +349,9 @@ StatisticsTracker.prototype.CapturedEntity = function(capturedEntity)
 
 		++this.buildingsCaptured.total;
 
-		if (!cmpCost)
-			return;
-
-		for (let type in costs)
-			this.buildingsCapturedValue += costs[type];
+		if (costs)
+			for (let type in costs)
+				this.buildingsCapturedValue += costs[type];
 	}
 };
 
