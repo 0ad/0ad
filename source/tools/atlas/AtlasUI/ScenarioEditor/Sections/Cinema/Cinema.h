@@ -24,6 +24,10 @@ public:
 
 	virtual void OnMapReload();
 	virtual void OnTogglePathsDrawing(wxCommandEvent& evt);
+	virtual void OnAddPath(wxCommandEvent& evt);
+	virtual void OnDeletePath(wxCommandEvent& evt);
+
+	void ReloadPathList();
 
 protected:
 	virtual void OnFirstDisplay();
@@ -31,6 +35,8 @@ protected:
 private:
 	wxScrolledWindow* scrolledWindow;
 	wxCheckBox* m_DrawPath;
+	wxListBox* m_PathList;
+	wxTextCtrl* m_NewPathName;
 
 	DECLARE_EVENT_TABLE();
 };

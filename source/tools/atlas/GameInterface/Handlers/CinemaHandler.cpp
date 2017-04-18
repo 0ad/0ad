@@ -176,6 +176,71 @@ MESSAGEHANDLER(CinemaEvent)
 		ENSURE(false);
 }
 
+BEGIN_COMMAND(AddCinemaPath)
+{
+	void Do()
+	{
+		CmpPtr<ICmpCinemaManager> cmpCinemaManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+		if (!cmpCinemaManager)
+			return;
+
+		CCinemaData pathData;
+		pathData.m_Name = *msg->pathName;
+		pathData.m_Timescale = fixed::FromInt(1);
+		pathData.m_Orientation = L"target";
+		pathData.m_Mode = L"ease_inout";
+		pathData.m_Style = L"default";
+
+		CVector3D focus = g_Game->GetView()->GetCamera()->GetFocus();
+		CFixedVector3D target(
+			fixed::FromFloat(focus.X),
+			fixed::FromFloat(focus.Y),
+			fixed::FromFloat(focus.Z)
+		);
+
+		CVector3D camera = g_Game->GetView()->GetCamera()->GetOrientation().GetTranslation();
+		CFixedVector3D position(
+			fixed::FromFloat(camera.X),
+			fixed::FromFloat(camera.Y),
+			fixed::FromFloat(camera.Z)
+		);
+
+		TNSpline positionSpline;
+		positionSpline.AddNode(position, CFixedVector3D(), fixed::FromInt(0));
+
+		TNSpline targetSpline;
+		targetSpline.AddNode(target, CFixedVector3D(), fixed::FromInt(0));
+
+		cmpCinemaManager->AddPath(CCinemaPath(pathData, positionSpline, targetSpline));
+	}
+	void Redo()
+	{
+	}
+	void Undo()
+	{
+	}
+};
+END_COMMAND(AddCinemaPath)
+
+BEGIN_COMMAND(DeleteCinemaPath)
+{
+	void Do()
+	{
+		CmpPtr<ICmpCinemaManager> cmpCinemaManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+		if (!cmpCinemaManager)
+			return;
+
+		cmpCinemaManager->DeletePath(*msg->pathName);
+	}
+	void Redo()
+	{
+	}
+	void Undo()
+	{
+	}
+};
+END_COMMAND(DeleteCinemaPath)
+
 BEGIN_COMMAND(SetCinemaPaths)
 {
 	std::vector<sCinemaPath> m_oldPaths, m_newPaths;

@@ -197,6 +197,17 @@ public:
 		m_PathQueue.clear();
 	}
 
+	virtual void DeletePath(const CStrW& name)
+	{
+		if (!HasPath(name))
+		{
+			LOGWARNING("Path with name '%s' doesn't exist", name.ToUTF8());
+			return;
+		}
+		m_PathQueue.remove_if([name](const CCinemaPath& path) { return path.GetName() == name; });
+		m_Paths.erase(name);
+	}
+
 	virtual const std::map<CStrW, CCinemaPath>& GetPaths() const
 	{
 		return m_Paths;

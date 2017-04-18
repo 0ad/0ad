@@ -27,6 +27,9 @@ using AtlasMessage::Shareable;
 
 enum {
 	ID_PathsDrawing,
+	ID_PathsList,
+	ID_AddPath,
+	ID_DeletePath
 };
 
 // Helper function for adding tooltips
@@ -52,19 +55,34 @@ CinemaSidebar::CinemaSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarCo
 	gridSizer->AddGrowableCol(1);
 
 	gridSizer->Add(Tooltipped(m_DrawPath = new wxCheckBox(scrolledWindow, ID_PathsDrawing, _("Draw all paths")),
-			_("Display every cinematic path added to the map")));
+		_("Display every cinematic path added to the map")));
 
 	commonSizer->Add(gridSizer, wxSizerFlags().Expand());
+
+	// Paths list panel
+	wxSizer* pathsSizer = new wxStaticBoxSizer(wxVERTICAL, scrolledWindow, _T("Paths"));
+	scrollSizer->Add(pathsSizer, wxSizerFlags().Proportion(1).Expand());
+
+	pathsSizer->Add(m_PathList = new wxListBox(scrolledWindow, ID_PathsList, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE | wxLB_SORT), wxSizerFlags().Proportion(1).Expand());
+	scrollSizer->AddSpacer(3);
+	pathsSizer->Add(Tooltipped(new wxButton(scrolledWindow, ID_DeletePath, _("Delete")), _T("Delete selected path")), wxSizerFlags().Expand());
+
+	pathsSizer->Add(m_NewPathName = new wxTextCtrl(scrolledWindow, wxID_ANY), wxSizerFlags().Expand());
+	pathsSizer->Add(new wxButton(scrolledWindow, ID_AddPath, _("Add")), wxSizerFlags().Expand());
 }
 
 void CinemaSidebar::OnFirstDisplay()
 {
 	m_DrawPath->SetValue(false);
+
+	ReloadPathList();
 }
 
 void CinemaSidebar::OnMapReload()
 {
 	m_DrawPath->SetValue(false);
+
+	ReloadPathList();
 }
 
 void CinemaSidebar::OnTogglePathsDrawing(wxCommandEvent& evt)
@@ -72,6 +90,47 @@ void CinemaSidebar::OnTogglePathsDrawing(wxCommandEvent& evt)
 	POST_COMMAND(SetCinemaPathsDrawing, (evt.IsChecked()));
 }
 
+void CinemaSidebar::OnAddPath(wxCommandEvent&)
+{
+	if (m_NewPathName->GetValue().empty())
+		return;
+
+	POST_COMMAND(AddCinemaPath, (m_NewPathName->GetValue().ToStdWstring()));
+	m_NewPathName->Clear();
+	ReloadPathList();
+}
+
+void CinemaSidebar::OnDeletePath(wxCommandEvent&)
+{
+	int index = m_PathList->GetSelection();
+	if (index < 0)
+		return;
+
+	wxString pathName = m_PathList->GetString(index);
+	if (pathName.empty())
+		return;
+
+	POST_COMMAND(DeleteCinemaPath, (pathName.ToStdWstring()));
+	ReloadPathList();
+}
+
+void CinemaSidebar::ReloadPathList()
+{
+	int index = m_PathList->GetSelection();
+	wxString pathName;
+	if (index >= 0)
+		pathName = m_PathList->GetString(index);
+
+	AtlasMessage::qGetCinemaPaths query_paths;
+	query_paths.Post();
+
+	m_PathList->Clear();
+	for (const AtlasMessage::sCinemaPath& path : *query_paths.paths)
+		m_PathList->Append(*path.name);
+}
+
 BEGIN_EVENT_TABLE(CinemaSidebar, Sidebar)
 EVT_CHECKBOX(ID_PathsDrawing, CinemaSidebar::OnTogglePathsDrawing)
+EVT_BUTTON(ID_AddPath, CinemaSidebar::OnAddPath)
+EVT_BUTTON(ID_DeletePath, CinemaSidebar::OnDeletePath)
 END_EVENT_TABLE();
