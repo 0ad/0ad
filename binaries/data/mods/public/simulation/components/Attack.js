@@ -472,7 +472,8 @@ Attack.prototype.PerformAttack = function(type, target)
 		let previousTargetPosition = Engine.QueryInterface(target, IID_Position).GetPreviousPosition();
 		let targetVelocity = Vector3D.sub(targetPosition, previousTargetPosition).div(turnLength);
 
-		let predictedPosition = this.PredictTargetPosition(selfPosition, horizSpeed, targetPosition, targetVelocity);
+		let timeToTarget = this.PredictTimeToTarget(selfPosition, horizSpeed, targetPosition, targetVelocity);
+		let predictedPosition = (timeToTarget !== false) ? Vector3D.mult(targetVelocity, timeToTarget).add(targetPosition) : targetPosition;
 
 		// Add inaccuracy based on spread.
 		let distanceModifiedSpread = ApplyValueModificationsToEntity("Attack/Ranged/Spread", +this.template.Ranged.Spread, this.entity) *
@@ -486,7 +487,7 @@ Attack.prototype.PerformAttack = function(type, target)
 
 		// Recalculate when the missile will hit the target position.
 		let realHorizDistance = realTargetPosition.horizDistanceTo(selfPosition);
-		let timeToTarget = realHorizDistance / horizSpeed;
+		timeToTarget = realHorizDistance / horizSpeed;
 
 		let missileDirection = Vector3D.sub(realTargetPosition, selfPosition).div(realHorizDistance);
 
@@ -557,31 +558,33 @@ Attack.prototype.PerformAttack = function(type, target)
 };
 
 /**
- * Get the predicted position of the collision between a projectile (or a chaser)
+ * Get the predicted time of collision between a projectile (or a chaser)
  * and its target, assuming they both move in straight line at a constant speed.
  * Vertical component of movement is ignored.
  * @param {Vector3D} selfPosition - the 3D position of the projectile (or chaser).
  * @param {number} horizSpeed - the horizontal speed of the projectile (or chaser).
  * @param {Vector3D} targetPosition - the 3D position of the target.
  * @param {Vector3D} targetVelocity - the 3D velocity vector of the target.
- * @return {Vector3D} - the 3D predicted position.
+ * @return {Vector3D|boolean} - the 3D predicted position or false if the collision will not happen.
  */
-Attack.prototype.PredictTargetPosition = function(selfPosition, horizSpeed, targetPosition, targetVelocity)
+Attack.prototype.PredictTimeToTarget = function(selfPosition, horizSpeed, targetPosition, targetVelocity)
 {
-	let relativePosition = Vector3D.sub(targetPosition, selfPosition);
+	let relativePosition = new Vector3D.sub(targetPosition, selfPosition);
+	let a = targetVelocity.x * targetVelocity.x + targetVelocity.z * targetVelocity.z - horizSpeed * horizSpeed;
+	let b = relativePosition.x * targetVelocity.x + relativePosition.z * targetVelocity.z;
+	let c = relativePosition.x * relativePosition.x + relativePosition.z * relativePosition.z;
+	// The predicted time to reach the target is the smallest non negative solution
+	// (when it exists) of the equation a t^2 + 2 b t + c = 0.
+	// Using c>=0, we can straightly compute the right solution.
 
-	// The component of the targets velocity radially away from the archer.
-	let radialSpeed = relativePosition.dot(targetVelocity) / relativePosition.length();
+	if (c == 0)
+		return 0;
 
-	let horizDistance = targetPosition.horizDistanceTo(selfPosition);
+	let disc = b * b - a * c;
+	if (a < 0 || b < 0 && disc >= 0)
+		return c / (Math.sqrt(disc) - b);
 
-	// This is an approximation of the time to reach the target, it assumes that the target has a constant radial
-	// velocity, but since units move in straight lines this is not true. The exact value would be more
-	// difficult to calculate and this is sufficiently accurate.
-	let timeToTarget = horizDistance / (horizSpeed - radialSpeed);
-
-	// Predict where the unit is when the missile lands.
-	return Vector3D.mult(targetVelocity, timeToTarget).add(targetPosition);
+	return false;
 }
 
 Attack.prototype.OnValueModification = function(msg)
