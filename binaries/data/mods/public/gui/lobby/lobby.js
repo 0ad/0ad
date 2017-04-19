@@ -382,23 +382,34 @@ function updatePlayerList()
 	if (playersBox.selected > -1)
 		g_SelectedPlayer = playersBox.list[playersBox.selected];
 
+	let buddyStatusList = [];
 	let playerList = [];
 	let presenceList = [];
 	let nickList = [];
 	let ratingList = [];
 
-	let cleanPlayerList = Engine.GetPlayerList().sort((a, b) => {
+	let cleanPlayerList = Engine.GetPlayerList().map(player => {
+		player.isBuddy = g_Buddies.indexOf(player.name) != -1;
+		return player;
+	}).sort((a, b) => {
 		let sortA, sortB;
+		let statusOrder = Object.keys(g_PlayerStatuses);
+		let statusA = statusOrder.indexOf(a.presence) + a.name.toLowerCase();
+		let statusB = statusOrder.indexOf(b.presence) + b.name.toLowerCase();
+
 		switch (sortBy)
 		{
+		case 'buddy':
+			sortA = (a.isBuddy ? 1 : 2) + statusA;
+			sortB = (b.isBuddy ? 1 : 2) + statusB;
+			break;
 		case 'rating':
 			sortA = +a.rating;
 			sortB = +b.rating;
 			break;
 		case 'status':
-			let statusOrder = Object.keys(g_PlayerStatuses);
-			sortA = statusOrder.indexOf(a.presence);
-			sortB = statusOrder.indexOf(b.presence);
+			sortA = statusA;
+			sortB = statusB;
 			break;
 		case 'name':
 		default:
@@ -427,12 +438,14 @@ function updatePlayerList()
 		let coloredPresence = '[color="' + statusColor + '"]' + g_PlayerStatuses[presence].status + "[/color]";
 		let coloredRating = '[color="' + statusColor + '"]' + rating + "[/color]";
 
+		buddyStatusList.push(player.isBuddy ? '[color="' + statusColor + '"]' + g_BuddySymbol + '[/color]' : "");
 		playerList.push(coloredName);
 		presenceList.push(coloredPresence);
 		ratingList.push(coloredRating);
 		nickList.push(player.name);
 	}
 
+	playersBox.list_buddy = buddyStatusList;
 	playersBox.list_name = playerList;
 	playersBox.list_status = presenceList;
 	playersBox.list_rating = ratingList;
@@ -441,6 +454,31 @@ function updatePlayerList()
 	// To reduce rating-server load, only send the GUI event if the selection actually changed
 	if (playersBox.selected != playersBox.list.indexOf(g_SelectedPlayer))
 		playersBox.selected = playersBox.list.indexOf(g_SelectedPlayer);
+}
+
+/**
+* Toggle buddy state for a player in playerlist within the user config
+*/
+function toggleBuddy()
+{
+	let playerList = Engine.GetGUIObjectByName("playersBox");
+	let name = playerList.list[playerList.selected];
+
+	if (!name || name == g_Username || name.indexOf(g_BuddyListDelimiter) != -1)
+		return;
+
+	let index = g_Buddies.indexOf(name);
+	if (index != -1)
+		g_Buddies.splice(index, 1);
+	else
+		g_Buddies.push(name);
+
+	let buddies = g_Buddies.filter(nick => nick).join(g_BuddyListDelimiter);
+	Engine.ConfigDB_CreateValue("user", "lobby.buddies", buddies);
+	Engine.ConfigDB_WriteValueToFile("user", "lobby.buddies", buddies, "config/user.cfg");
+
+	updatePlayerList();
+	updateGameList();
 }
 
 /**
@@ -465,9 +503,7 @@ function selectGameFromPlayername(playerName)
 	for (let i = 0; i < g_GameList.length; ++i)
 		for (let player of stringifiedTeamListToPlayerData(g_GameList[i].players))
 		{
-			let result = /^(\S+)\ \(\d+\)$/g.exec(player.Name);
-			let nick = result ? result[1] : player.Name;
-
+			let nick = removeRatingFromNick(player.Name);
 			if (playerName != nick)
 				continue;
 
@@ -632,7 +668,18 @@ function updateGameList()
 		g_SelectedGamePort = g_GameList[gamesBox.selected].port;
 	}
 
-	g_GameList = Engine.GetGameList().filter(game => !filterGame(game)).sort((a, b) => {
+	g_GameList = Engine.GetGameList().map(game => {
+		game.hasBuddies = 0;
+		for (let player of stringifiedTeamListToPlayerData(game.players))
+		{
+			let nick = removeRatingFromNick(player.Name);
+
+			// Sort games with playing buddies above games with spectating buddies
+			if (game.hasBuddies < 2 && g_Buddies.indexOf(nick) != -1)
+				game.hasBuddies = player.Team == "observer" ? 1 : 2;
+		}
+		return game;
+	}).filter(game => !filterGame(game)).sort((a, b) => {
 		let sortA, sortB;
 		switch (sortBy)
 		{
@@ -641,6 +688,10 @@ function updateGameList()
 		case 'mapType':
 			sortA = a[sortBy];
 			sortB = b[sortBy];
+			break;
+		case 'buddy':
+			sortA = String(b.hasBuddies) + g_GameStatusOrder.indexOf(a.state) + a.name.toLowerCase();
+			sortB = String(a.hasBuddies) + g_GameStatusOrder.indexOf(b.state) + b.name.toLowerCase();
 			break;
 		case 'mapName':
 			sortA = translate(a.niceMapName);
@@ -661,6 +712,7 @@ function updateGameList()
 		return 0;
 	});
 
+	let list_buddy = [];
 	let list_name = [];
 	let list_mapName = [];
 	let list_mapSize = [];
@@ -679,6 +731,7 @@ function updateGameList()
 		if (game.ip == g_SelectedGameIP && game.port == g_SelectedGamePort)
 			selectedGameIndex = +i;
 
+		list_buddy.push(game.hasBuddies ? '[color="' + g_GameColors[game.state] + '"]' + g_BuddySymbol + '[/color]' : "");
 		list_name.push('[color="' + g_GameColors[game.state] + '"]' + gameName);
 		list_mapName.push(translateMapTitle(game.niceMapName));
 		list_mapSize.push(translateMapSize(game.mapSize));
@@ -688,6 +741,7 @@ function updateGameList()
 		list_data.push(i);
 	}
 
+	gamesBox.list_buddy = list_buddy;
 	gamesBox.list_name = list_name;
 	gamesBox.list_mapName = list_mapName;
 	gamesBox.list_mapSize = list_mapSize;

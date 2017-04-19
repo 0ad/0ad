@@ -4,6 +4,22 @@
 var g_DescriptionHighlight = "orange";
 
 /**
+ * XEP-0172 doesn't restrict nicknames, but our lobby policy does.
+ * So use this human readable delimiter to separate buddy names in the config file.
+ */
+var g_BuddyListDelimiter = ",";
+
+/**
+ * Array of playernames that the current user has marked as buddies.
+ */
+var g_Buddies = Engine.ConfigDB_GetValue("user", "lobby.buddies").split(g_BuddyListDelimiter);
+
+/**
+ * Denotes which players are a lobby buddy of the current user.
+ */
+var g_BuddySymbol = '•';
+
+/**
  * Returns map description and preview image or placeholder.
  */
 function getMapDescriptionAndPreview(mapType, mapName)
@@ -123,7 +139,10 @@ function formatPlayerInfo(playerDataArray, playerStates)
 				(typeof getPlayerColor == 'function' ?
 					(isAI ? "white" : getPlayerColor(playerData.Name)) :
 					rgbToGuiColor(playerData.Color || g_Settings.PlayerDefaults[playerIdx].Color)) +
-				'"]' + escapeText(playerData.Name) + "[/color]",
+				'"]' +
+				(g_Buddies.indexOf(removeRatingFromNick(playerData.Name)) != -1 ? g_BuddySymbol + " " : "") +
+				escapeText(playerData.Name) +
+				"[/color]",
 
 			"civ":
 				!playerData.Civ ?
