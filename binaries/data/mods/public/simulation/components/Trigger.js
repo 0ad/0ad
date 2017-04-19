@@ -280,15 +280,34 @@ Trigger.prototype.OnGlobalDiplomacyChanged = function(msg)
 /**
  * Execute a function after a certain delay.
  *
- * @param {Number} time - delay in milleseconds
- * @param {String} action - Name of the action function
- * @param {Object} data - will be passed to the action function
+ * @param {Number} time - Delay in milliseconds.
+ * @param {String} action - Name of the action function.
+ * @param {Object} data - Arbitrary object that will be passed to the action function.
+ * @return {Number} The ID of the timer, so it can be stopped later.
  */
-Trigger.prototype.DoAfterDelay = function(miliseconds, action, data)
+Trigger.prototype.DoAfterDelay = function(time, action, data)
 {
 	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	return cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_Trigger, "DoAction", time, {
+		"action": action,
+		"data": data
+	});
+};
 
-	return cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_Trigger, "DoAction", miliseconds, {
+/**
+ * Execute a function each time a certain delay has passed.
+ *
+ * @param {Number} interval - Interval in milleseconds between consecutive calls.
+ * @param {String} action - Name of the action function.
+ * @param {Object} data - Arbitrary object that will be passed to the action function.
+ * @param {Number} [start] - Optional initial delay in milleseconds before starting the calls.
+ *                           If not given, interval will be used.
+ * @return {Number} the ID of the timer, so it can be stopped later.
+ */
+Trigger.prototype.DoRepeatedly = function(time, action, data, start)
+{
+	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	return cmpTimer.SetInterval(SYSTEM_ENTITY, IID_Trigger, "DoAction", start !== undefined ? start : time, time, {
 		"action": action,
 		"data": data
 	});
