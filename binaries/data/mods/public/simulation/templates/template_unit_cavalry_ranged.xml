@@ -2,16 +2,7 @@
 <Entity parent="template_unit_cavalry">
   <Attack>
     <Ranged>
-      <Hack>0.0</Hack>
-      <Pierce>9.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>16.0</MaxRange>
-      <MinRange>0.0</MinRange>
-      <ProjectileSpeed>75.0</ProjectileSpeed>
-      <PrepareTime>1000</PrepareTime>
-      <RepeatTime>1500</RepeatTime>
       <PreferredClasses datatype="tokens">Human</PreferredClasses>
-      <Spread>1.6</Spread>
     </Ranged>
   </Attack>
   <Health>

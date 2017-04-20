@@ -134,7 +134,7 @@ Attack.prototype.Schema =
 				"<element name='ProjectileSpeed' a:help='Speed of projectiles (in metres per second)'>" +
 					"<ref name='positiveDecimal'/>" +
 				"</element>" +
-				"<element name='Spread' a:help='Radius over which missiles will tend to land (when shooting to the MaxRange). Roughly 2/3 will land inside this radius (in metres). Spread is linearly diminished as the target gets closer.'><ref name='nonNegativeDecimal'/></element>" +
+				"<element name='Spread' a:help='Standard deviation of the bivariate normal distribution of hits at 100 meters. A disk at 100 meters from the attacker with this radius (2x this radius, 3x this radius) is expected to include the landing points of 39.3% (86.5%, 98.9%) of the rounds.'><ref name='nonNegativeDecimal'/></element>" +
 				Attack.prototype.bonusesSchema +
 				Attack.prototype.preferredClassesSchema +
 				Attack.prototype.restrictedClassesSchema +
@@ -477,7 +477,7 @@ Attack.prototype.PerformAttack = function(type, target)
 
 		// Add inaccuracy based on spread.
 		let distanceModifiedSpread = ApplyValueModificationsToEntity("Attack/Ranged/Spread", +this.template.Ranged.Spread, this.entity) *
-			targetPosition.horizDistanceTo(selfPosition) / this.GetRange(type).max;
+			targetPosition.horizDistanceTo(selfPosition) / 100;
 
 		let randNorm = randomNormal2D();
 		let offsetX = randNorm[0] * distanceModifiedSpread;

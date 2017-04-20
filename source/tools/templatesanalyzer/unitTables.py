@@ -244,7 +244,7 @@ def WriteUnit(Name, UnitDict):
 
 	if UnitDict["Ranged"] == True and UnitDict["Range"] > 0:
 		ret += "<td>" + str("%.1f" % float(UnitDict["Range"])) + "</td>"
-		spread = (float(UnitDict["Spread"]) / float(UnitDict["Range"]))*100.0
+		spread = float(UnitDict["Spread"])
 		ret += "<td>" + str("%.1f" % spread) + "</td>"
 	else:
 		ret += "<td> - </td><td> - </td>"
@@ -425,8 +425,8 @@ for parent in TemplatesByParent:
 			# range and spread
 			if tp[1]["Ranged"] == True:
 				WriteColouredDiff(f, float(tp[1]["Range"]) - float(templates[parent]["Range"]), "negative")
-				mySpread = (float(tp[1]["Spread"]) / (float(tp[1]["Range"]))*100.0)
-				parentSpread = (float(templates[parent]["Spread"]) / (float(templates[parent]["Range"]))*100.0)
+				mySpread = float(tp[1]["Spread"])
+				parentSpread = float(templates[parent]["Spread"])
 				WriteColouredDiff(f,  mySpread - parentSpread, "positive")
 			else:
 				f.write("<td></td><td></td>")
