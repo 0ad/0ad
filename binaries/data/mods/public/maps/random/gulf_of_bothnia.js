@@ -1,7 +1,7 @@
 RMS.LoadLibrary("rmgen");
 
 TILE_CENTERED_HEIGHT_MAP = true;
-var random_terrain = randInt(1,3);
+var random_terrain = randIntInclusive(1, 3);
 if (random_terrain == 1)
 {
 	setFogThickness(0.26);
@@ -453,7 +453,7 @@ createFood
   [new SimpleObject(oBerryBush, 5,7, 0,4)]
  ],
  [
-  randInt(1, 4) * numPlayers + 2
+  randIntInclusive(1, 4) * numPlayers + 2
  ],
  avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 10)
 );

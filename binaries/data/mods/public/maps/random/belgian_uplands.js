@@ -230,7 +230,7 @@ while (!goodStartPositionsFound)
 		{
 			var vector = [];
 			for (var p = 0; p < numPlayers; p++)
-				vector.push(randInt(possibleStartPositions.length));
+				vector.push(randIntExclusive(0, possibleStartPositions.length));
 			possibleDerivations.push(vector);
 		}
 

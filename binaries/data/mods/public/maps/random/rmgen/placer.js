@@ -158,7 +158,7 @@ ChainPlacer.prototype.place = function(constraint)
 	{
 		var [cx, cz] = pickRandom(edges);
 		if (queueEmpty)
-			var radius = randInt(this.minRadius, this.maxRadius);
+			var radius = randIntInclusive(this.minRadius, this.maxRadius);
 		else
 		{
 			var radius = this.q.pop();
@@ -344,11 +344,9 @@ function SimpleObject(type, minCount, maxCount, minDistance, maxDistance, minAng
 SimpleObject.prototype.place = function(cx, cz, player, avoidSelf, constraint, maxFailCount = 20)
 {
 	var failCount = 0;
-	var count = randInt(this.minCount, this.maxCount);
 	var resultObjs = [];
 
-	for (var i=0; i < count; i++)
-	{
+	for (var i = 0; i < randIntInclusive(this.minCount, this.maxCount); ++i)
 		while(true)
 		{
 			var distance = randFloat(this.minDistance, this.maxDistance);
@@ -395,7 +393,6 @@ SimpleObject.prototype.place = function(cx, cz, player, avoidSelf, constraint, m
 					return undefined;
 			}
 		}
-	}
 
 	return resultObjs;
 };
@@ -435,11 +432,9 @@ function RandomObject(types, minCount, maxCount, minDistance, maxDistance, minAn
 RandomObject.prototype.place = function(cx, cz, player, avoidSelf, constraint, maxFailCount = 20)
 {
 	var failCount = 0;
-	var count = randInt(this.minCount, this.maxCount);
 	var resultObjs = [];
 
-	for (var i=0; i < count; i++)
-	{
+	for (var i = 0; i < randIntInclusive(this.minCount, this.maxCount); ++i)
 		while(true)
 		{
 			var distance = randFloat(this.minDistance, this.maxDistance);
@@ -486,7 +481,6 @@ RandomObject.prototype.place = function(cx, cz, player, avoidSelf, constraint, m
 					return undefined;
 			}
 		}
-	}
 
 	return resultObjs;
 };

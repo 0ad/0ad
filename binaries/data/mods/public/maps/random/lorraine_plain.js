@@ -210,7 +210,7 @@ createArea(placer, [painter, elevationPainter], avoidClasses(clPlayer, 8));
 // create the shallows of the main river
 log("Creating the shallows of the main river");
 
-for (var i = 0; i <= randInt(3, scaleByMapSize(4,6)); i++)
+for (let i = 0; i <= randIntInclusive(3, scaleByMapSize(4, 6)); ++i)
 {
 	var cLocation = randFloat(0.15,0.85);
 	passageMaker(floor(fractionToTiles(cLocation)), floor(fractionToTiles(0.35)), floor(fractionToTiles(cLocation)), floor(fractionToTiles(0.65)), scaleByMapSize(4,8), -2, -2, 2, clShallow, undefined, -4);
@@ -427,7 +427,7 @@ group = new SimpleGroup(
 );
 createObjectGroups(group, 0,
 	avoidClasses(clWater, 3, clForest, 0, clPlayer, 15, clHill, 1, clFood, 10),
-	randInt(1, 4) * numPlayers + 2, 50
+	randIntInclusive(1, 4) * numPlayers + 2, 50
 );
 
 // create straggler trees

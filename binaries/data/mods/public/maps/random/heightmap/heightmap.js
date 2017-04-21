@@ -139,7 +139,7 @@ function distributeEntitiesByHeight(heightRange, avoidPoints, minDistance = 30, 
 
 	for (let tries = 0; tries < maxTries; ++tries)
 	{
-		let checkPointIndex = randInt(validPoints.length);
+		let checkPointIndex = randIntExclusive(0, validPoints.length);
 		let checkPoint = validPoints[checkPointIndex];
 		if (placements.every(p => getDistance(p.x, p.y, checkPoint.x, checkPoint.y) > minDistance))
 		{

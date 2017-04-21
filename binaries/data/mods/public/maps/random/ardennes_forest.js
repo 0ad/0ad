@@ -566,7 +566,7 @@ group = new SimpleGroup(
 );
 createObjectGroups(group, 0,
 	avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 20),
-	randInt(3, 12) * numPlayers + 2, 50
+	randIntInclusive(3, 12) * numPlayers + 2, 50
 );
 
 log("Creating decorative props...");

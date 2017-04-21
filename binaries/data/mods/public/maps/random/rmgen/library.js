@@ -134,8 +134,8 @@ function randomizePlacerCoordinates(placer, halfMapSize)
 	else
 	{
 		// Rectangular coordinates
-		placer.x = randInt(g_Map.size);
-		placer.z = randInt(g_Map.size);
+		placer.x = randIntExclusive(0, g_Map.size);
+		placer.z = randIntExclusive(0, g_Map.size);
 	}
 }
 

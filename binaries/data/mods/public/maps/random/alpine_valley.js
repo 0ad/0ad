@@ -251,7 +251,7 @@ for (var i = 0; i < numPoints; ++i)
 //find and place the edges
 while (possibleEdges.length)
 {
-	var index = randInt(0, possibleEdges.length - 1);
+	var index = randIntExclusive(0, possibleEdges.length);
 
 	//ensure that a point is connected to a maximum of 3 others
 	if (edgesConncetedToPoints[possibleEdges[index][0]] > 2 || edgesConncetedToPoints[possibleEdges[index][1]] > 2)
@@ -567,7 +567,7 @@ group = new SimpleGroup(
 );
 createObjectGroups(group, 0,
 	avoidClasses(clForest, 0, clPlayer, 20, clHill, 1, clFood, 10),
-	randInt(1, 4) * numPlayers + 2, 50
+	randIntInclusive(1, 4) * numPlayers + 2, 50
 );
 
 log("Creating rabbit...");

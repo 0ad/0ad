@@ -339,7 +339,7 @@ var size = 5; //size
 var num = scaleByMapSize(10, 64); //number
 for (var i = 0; i < types.length; ++i)
 {
-	placer = new ClumpPlacer(6+randInt(12), 0.1, 0.1, 1);
+	placer = new ClumpPlacer(randIntInclusive(6, 17), 0.1, 0.1, 1);
 	painter = new LayeredPainter(
 		types[i],		// terrains
 		[2]											// widths
