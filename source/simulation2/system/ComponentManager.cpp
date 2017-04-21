@@ -909,10 +909,6 @@ void CComponentManager::FlushDestroyedComponents()
 		std::vector<entity_id_t> queue;
 		queue.swap(m_DestructionQueue);
 
-		// Flatten all the dynamic subscriptions to ensure there are no dangling
-		// references in the 'removed' lists to components we're going to delete
-		FlattenDynamicSubscriptions();
-
 		for (std::vector<entity_id_t>::iterator it = queue.begin(); it != queue.end(); ++it)
 		{
 			entity_id_t ent = *it;
@@ -920,6 +916,11 @@ void CComponentManager::FlushDestroyedComponents()
 
 			CMessageDestroy msg(ent);
 			PostMessage(ent, msg);
+
+			// Flatten all the dynamic subscriptions to ensure there are no dangling
+			// references in the 'removed' lists to components we're going to delete
+			// Some components may have dynamically unsubscribed following the Destroy message
+			FlattenDynamicSubscriptions();
 
 			// Destroy the components, and remove from m_ComponentsByTypeId:
 			std::map<ComponentTypeId, std::map<entity_id_t, IComponent*> >::iterator iit = m_ComponentsByTypeId.begin();

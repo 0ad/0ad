@@ -654,6 +654,10 @@ QUERY(GetCameraInfo,
 	  ((AtlasMessage::sCameraInfo, info))
 	  );
 
+COMMAND(AddCinemaPath, NOMERGE, ((std::wstring, pathName)));
+
+COMMAND(DeleteCinemaPath, NOMERGE, ((std::wstring, pathName)));
+
 COMMAND(SetCinemaPaths, NOMERGE,
 		((std::vector<AtlasMessage::sCinemaPath>, paths))
 		);

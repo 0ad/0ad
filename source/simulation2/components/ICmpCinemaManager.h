@@ -54,6 +54,8 @@ public:
 	*/
 	virtual bool HasPath(const CStrW& name) const = 0;
 
+	virtual void DeletePath(const CStrW& name) = 0;
+
 	/**
 	* Clears the playlist
 	*/

@@ -29,6 +29,10 @@
     <Icon>gaia/special_palisade.png</Icon>
     <RequiredTechnology>phase_village</RequiredTechnology>
   </Identity>
+  <Loot>
+    <wood>10</wood>
+    <stone>0</stone>
+  </Loot>
   <Obstruction>
     <Static width="4.0" depth="4.0"/>
     <ControlPersist/>

@@ -21,6 +21,10 @@
     <Icon>structures/wooden_gate.png</Icon>
     <RequiredTechnology>phase_village</RequiredTechnology>
   </Identity>
+  <Loot>
+    <wood>10</wood>
+    <stone>0</stone>
+  </Loot>
   <Obstruction>
     <Obstructions>
       <Right width="2" depth="2" x="6" z="0"/>

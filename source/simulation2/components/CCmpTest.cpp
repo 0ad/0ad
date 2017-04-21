@@ -32,6 +32,7 @@ public:
 	{
 		componentManager.SubscribeToMessageType(MT_TurnStart);
 		componentManager.SubscribeToMessageType(MT_Interpolate);
+		componentManager.SubscribeToMessageType(MT_Destroy);
 	}
 
 	DEFAULT_COMPONENT_ALLOCATOR(Test1A)
@@ -74,6 +75,9 @@ public:
 	{
 		switch (msg.GetType())
 		{
+		case MT_Destroy:
+			GetSimContext().GetComponentManager().DynamicSubscriptionNonsync(MT_RenderSubmit, this, false);
+			break;
 		case MT_TurnStart:
 			m_x += 1;
 			break;

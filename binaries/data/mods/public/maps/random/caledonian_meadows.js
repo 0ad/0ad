@@ -1,8 +1,3 @@
-/**
- * ToDo:
- * Place start locations of one team close to each other
- */
-
 RMS.LoadLibrary("rmgen");
 RMS.LoadLibrary("heightmap");
 
@@ -29,9 +24,7 @@ function getTileCenteredHeightmap(heightmap = g_Map.height)
 	{
 		tchm[x] = new Float32Array(max_y);
 		for (let y = 0; y < max_y; ++y)
-		{
 			tchm[x][y] = 0.25 * (heightmap[x][y] + heightmap[x + 1][y] + heightmap[x][y + 1] + heightmap[x + 1][y + 1]);
-		}
 	}
 	return tchm;
 }
@@ -188,6 +181,7 @@ function getGrad(wrapped = true, scalarField = g_Map.height)
 		max_x -= 1;
 		max_y -= 1;
 	}
+	
 	for (let x = 0; x < max_x; ++x)
 	{
 		vectorField.push([]);
@@ -260,8 +254,10 @@ function getPointsByHeight(heightRange, avoidPoints = [], avoidClass = undefined
 	let validVertices = [];
 	let r = 0.5 * (heightmap.length - 1); // Map center x/y as well as radius
 	let avoidMap;
+	
 	if (avoidClass !== undefined)
 		avoidMap = g_Map.tileClasses[avoidClass].inclusionCount;
+	
 	for (let x = minDistance; x < heightmap.length - minDistance; ++x)
 	{
 		for (let y = minDistance; y < heightmap[0].length - minDistance; ++y)
@@ -287,7 +283,7 @@ function getPointsByHeight(heightRange, avoidPoints = [], avoidClass = undefined
 			points.push(point);
 			placements.push(point);
 		}
-		if ((tries != 0) && (tries % 100 == 0)) // Time Check
+		if (tries != 0 && tries % 100 == 0) // Time Check
 			log(points.length + " points found after " + tries + " tries after " + ((new Date().getTime() - genStartTime) / 1000) + "s");
 	}
 
@@ -320,10 +316,10 @@ function placeMine(point, centerEntity)
 }
 
 // Food, fences with domestic animals
-wallStyles["other"]["sheepIn"] = new WallElement("sheepIn", "gaia/fauna_sheep", PI / 4, -1.5, 0.75, PI/2);
-wallStyles["other"]["foodBin"] = new WallElement("foodBin", "gaia/special_treasure_food_bin", PI/2, 1.5);
-wallStyles["other"]["sheep"] = new WallElement("sheep", "gaia/fauna_sheep", 0, 0, 0.75);
-wallStyles["other"]["farm"] = new WallElement("farm", "structures/brit_farmstead", PI, 0, -3);
+wallStyles.other.sheepIn = new WallElement("sheepIn", "gaia/fauna_sheep", PI / 4, -1.5, 0.75, PI/2);
+wallStyles.other.foodBin = new WallElement("foodBin", "gaia/special_treasure_food_bin", PI/2, 1.5);
+wallStyles.other.sheep = new WallElement("sheep", "gaia/fauna_sheep", 0, 0, 0.75);
+wallStyles.other.farm = new WallElement("farm", "structures/brit_farmstead", PI, 0, -3);
 let fences = [
 	new Fortress("fence", ["foodBin", "farm", "bench", "sheepIn", "fence", "sheepIn", "fence", "sheepIn", "fence"]),
 	new Fortress("fence", ["foodBin", "farm", "fence", "sheepIn", "fence", "sheepIn", "bench", "sheep", "fence", "sheepIn", "fence"]),
@@ -391,7 +387,6 @@ function placeCamp(point,
 		placeObject(point.x + dist * Math.cos(angle), point.y + dist * Math.sin(angle), pickRandom(otherEntities), 0, randFloat(0, 2 * PI));
 	}
 }
-
 
 function placeStartLocationResources(point, foodEntities = ["gaia/flora_bush_berry", "gaia/fauna_chicken", "gaia/fauna_chicken"])
 {
@@ -462,18 +457,22 @@ g_Environment.Water.WaterBody.Murkiness = 0.4;
  // Height range by map size
 let heightScale = (g_Map.size + 256) / 768 / 4;
 let heightRange = { "min": MIN_HEIGHT * heightScale, "max": MAX_HEIGHT * heightScale };
+
 // Water coverage
 let averageWaterCoverage = 1/5; // NOTE: Since terrain generation is quite unpredictable actual water coverage might vary much with the same value
 let waterHeight = -MIN_HEIGHT + heightRange.min + averageWaterCoverage * (heightRange.max - heightRange.min); // Water height in environment and the engine
 let waterHeightAdjusted = waterHeight + MIN_HEIGHT; // Water height in RMGEN
 setWaterHeight(waterHeight);
+
 // Generate base terrain shape
 let medH = (heightRange.min + heightRange.max) / 2;
 let initialHeightmap = [[medH, medH], [medH, medH]];
 setBaseTerrainDiamondSquare(heightRange.min, heightRange.max, initialHeightmap, 0.8);
+
 // Apply simple erosion
 for (let i = 0; i < 5; ++i)
 	splashErodeMap(0.1);
+
 // Final rescale
 rescaleHeightmap(heightRange.min, heightRange.max);
 
@@ -495,6 +494,7 @@ let heighLimits = [
 	waterHeightAdjusted + 7/8 * (heightRange.max - waterHeightAdjusted), // 9 Upper forest border
 	waterHeightAdjusted + (heightRange.max - waterHeightAdjusted)]; // 10 Hilltop
 let playerHeight = (heighLimits[4] + heighLimits[5]) / 2; // Average player height
+
 // Texture and actor presets
 let myBiome = [];
 myBiome.push({ // 0 Deep water
@@ -559,12 +559,14 @@ log("Terrain shape generation and texture presets after " + ((new Date().getTime
  * Get start locations
  */
 let startLocations = getStartLocationsByHeightmap({ "min": heighLimits[4], "max": heighLimits[5] }, 1000, 30);
+
 // Sort start locations to form a "ring"
 let startLocationOrder = getOrderOfPointsForShortestClosePath(startLocations);
 let newStartLocations = [];
 for (let i = 0; i < startLocations.length; ++i)
 	newStartLocations.push(startLocations[startLocationOrder[i]]);
 startLocations = newStartLocations;
+
 // Sort players by team
 let playerIDs = [];
 let teams = [];
@@ -576,6 +578,7 @@ for (let i = 0; i < g_MapSettings.PlayerData.length - 1; ++i)
 		teams.push(t);
 }
 playerIDs = sortPlayers(playerIDs);
+
 // Minimize maximum distance between players within a team
 if (teams.length)
 {
@@ -588,14 +591,17 @@ if (teams.length)
 		{
 			let p1 = playerIDs[(pi + s) % playerIDs.length] - 1;
 			let t1 = getPlayerTeam(p1);
+			
 			if (teams.indexOf(t1) === -1)
 				continue;
+			
 			for (let pj = pi + 1; pj < playerIDs.length; ++pj)
 			{
 				let p2 = playerIDs[(pj + s) % playerIDs.length] - 1;
 				let t2 = getPlayerTeam(p2);
 				if (t2 != t1)
 					continue;
+				
 				let l1 = startLocations[pi];
 				let l2 = startLocations[pj];
 				let dist = getDistance(l1.x, l1.y, l2.x, l2.y);
@@ -603,6 +609,7 @@ if (teams.length)
 					maxTeamDist = dist;
 			}
 		}
+		
 		if (maxTeamDist < minDistance)
 		{
 			minDistance = maxTeamDist;
@@ -654,6 +661,7 @@ RMS.SetProgress(55);
 let areas = [];
 for (let h = 0; h < heighLimits.length; ++h)
 	areas.push([]);
+
 for (let x = 0; x < tchm.length; ++x)
 {
 	for (let y = 0; y < tchm[0].length; ++y)
@@ -690,8 +698,10 @@ for (let h = 0; h < heighLimits.length; ++h)
 		let x = areas[h][t].x;
 		let y = areas[h][t].y;
 		let slope = slopeMap[x][y];
+		
 		if (slope > maxSlope[h])
 			maxSlope[h] = slope;
+		
 		if (slope < minSlope[h])
 			minSlope[h] = slope;
 	}
@@ -707,8 +717,8 @@ for (let h = 0; h < heighLimits.length; ++h)
 		let x = areas[h][t].x;
 		let y = areas[h][t].y;
 		let actor = undefined;
-
 		let texture = pickRandom(myBiome[h].texture);
+		
 		if (slopeMap[x][y] < 0.4 * (minSlope[h] + maxSlope[h]))
 		{
 			if (randBool(myBiome[h].actor[1]))
@@ -720,7 +730,9 @@ for (let h = 0; h < heighLimits.length; ++h)
 			if (randBool(myBiome[h].actorHS[1]))
 				actor = pickRandom(myBiome[h].actorHS[0]);
 		}
-		g_Map.setTexture(x, y, texture);
+		
+		g_Map.texture[x][y] = g_Map.getTextureID(texture);
+		
 		if (actor)
 			placeObject(x + randFloat(), y + randFloat(), actor, 0, randFloat() * TWO_PI);
 	}
@@ -739,6 +751,7 @@ for (let p = 0; p < playerIDs.length; ++p)
 	placeCivDefaultEntities(point.x, point.y, playerIDs[p], { "iberWall": true });
 	placeStartLocationResources(startLocations[p]);
 }
+
 for (let i = 0; i < resourceSpots.length; ++i)
 {
 	let choice = i % 5;

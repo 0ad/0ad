@@ -25,6 +25,7 @@
 #include "ps/CLogger.h"
 #include "ps/Shapes.h"
 #include "ps/utf16string.h"
+#include "simulation2/helpers/CinemaPath.h"
 #include "simulation2/helpers/Grid.h"
 #include "simulation2/system/IComponent.h"
 #include "simulation2/system/ParamNode.h"
@@ -296,6 +297,81 @@ template<> void ScriptInterface::ToJSVal<Grid<u16> >(JSContext* cx, JS::MutableH
 	JS_SetProperty(cx, obj, "data", data);
 
 	ret.setObject(*obj);
+}
+
+template<> bool ScriptInterface::FromJSVal<TNSpline>(JSContext* cx, JS::HandleValue v, TNSpline& out)
+{
+	if (!v.isObject())
+		FAIL("Argument must be an object");
+
+	JSAutoRequest rq(cx);
+	JS::RootedObject obj(cx, &v.toObject());
+	if (!JS_IsArrayObject(cx, obj))
+		FAIL("Argument must be an array");
+
+	u32 numberOfNodes = 0;
+	if (!JS_GetArrayLength(cx, obj, &numberOfNodes))
+		FAIL("Failed to get array length");
+
+	for (u32 i = 0; i < numberOfNodes; ++i)
+	{
+		JS::RootedValue node(cx);
+		if (!JS_GetElement(cx, obj, i, &node))
+			FAIL("Failed to read array element");
+
+		fixed deltaTime;
+		if (!FromJSProperty(cx, node, "deltaTime", deltaTime))
+			FAIL("Failed to read Spline.deltaTime property");
+
+		CFixedVector3D position;
+		if (!FromJSProperty(cx, node, "position", position))
+			FAIL("Failed to read Spline.position property");
+
+		out.AddNode(position, CFixedVector3D(), deltaTime);
+	}
+
+	if (out.GetAllNodes().empty())
+		FAIL("Spline must contain at least one node");
+
+	return true;
+}
+
+template<> bool ScriptInterface::FromJSVal<CCinemaPath>(JSContext* cx, JS::HandleValue v, CCinemaPath& out)
+{
+	if (!v.isObject())
+		FAIL("Argument must be an object");
+
+	JSAutoRequest rq(cx);
+	JS::RootedObject obj(cx, &v.toObject());
+
+	CCinemaData pathData;
+	TNSpline positionSpline, targetSpline;
+
+	if (!FromJSProperty(cx, v, "name", pathData.m_Name))
+		FAIL("Failed to get CCinemaPath.name property");
+
+	if (!FromJSProperty(cx, v, "orientation", pathData.m_Orientation))
+		FAIL("Failed to get CCinemaPath.orientation property");
+
+	if (!FromJSProperty(cx, v, "positionNodes", positionSpline))
+		FAIL("Failed to get CCinemaPath.positionNodes property");
+
+	if (pathData.m_Orientation == L"target" && !FromJSProperty(cx, v, "targetNodes", targetSpline))
+		FAIL("Failed to get CCinemaPath.targetNodes property");
+
+	// Other properties are not necessary to be defined
+	if (!FromJSProperty(cx, v, "timescale", pathData.m_Timescale))
+		pathData.m_Timescale = fixed::FromInt(1);
+
+	if (!FromJSProperty(cx, v, "mode", pathData.m_Mode))
+		pathData.m_Mode = L"ease_inout";
+
+	if (!FromJSProperty(cx, v, "style", pathData.m_Style))
+		pathData.m_Style = L"default";
+
+	out = CCinemaPath(pathData, positionSpline, targetSpline);
+
+	return true;
 }
 
 // define vectors
