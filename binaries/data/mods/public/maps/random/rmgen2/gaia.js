@@ -63,7 +63,7 @@ function addBluffs(constraint, size, deviation, fill)
 		var bb = createBoundingBox(points, corners);
 
 		// Get a random starting position for the baseline and the endline
-		var angle = randInt(4);
+		var angle = randIntInclusive(0, 3);
 		var opAngle = angle - 2;
 		if (angle < 2)
 			opAngle = angle + 2;
@@ -390,7 +390,7 @@ function addElevation(constraint, el)
 
 	for (var i = 0; i < count; ++i)
 	{
-		var elevation = el.minElevation + randInt(el.maxElevation - el.minElevation);
+		var elevation = randIntExclusive(el.minElevation, el.maxElevation);
 		var smooth = Math.floor(elevation / el.steepness);
 
 		var offset = getRandomDeviation(size, el.deviation);
@@ -592,7 +592,7 @@ function addPlateaus(constraint, size, deviation, fill)
 	{
 		var placer = new ChainPlacer(3, 15, 1, 0.5);
 		var terrainPainter = new LayeredPainter([plateauTile, plateauTile], [3]);
-		var hillElevation = 4 + randInt(15);
+		var hillElevation = randIntInclusive(4, 18);
 		var elevationPainter = new SmoothElevationPainter(ELEVATION_MODIFY, hillElevation, hillElevation - 2);
 
 		createAreas(
@@ -1263,7 +1263,7 @@ function nextToFeature(bb, x, z)
 function getRandomDeviation(base, deviation)
 {
 	deviation = Math.min(base, deviation);
-	deviation = base + randInt(20 * deviation) / 10 - deviation;
+	deviation = base + randIntExclusive(0, 20 * deviation) / 10 - deviation;
 	return deviation.toFixed(2);
 }
 

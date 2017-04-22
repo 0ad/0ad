@@ -243,8 +243,8 @@ for (var i = 0; i < numHills; ++i)
 		floor(scaleByMapSize(6, 12)),
 		floor(scaleByMapSize(4, 10)),
 		avoidClasses(clPlayer, 7, clCP, 5, clHill, floor(scaleByMapSize(18, 25))),
-		randInt(mapSize),
-		randInt(mapSize),
+		randIntExclusive(0, mapSize),
+		randIntExclusive(0, mapSize),
 		tCliff,
 		clHill,
 		14
@@ -395,7 +395,7 @@ group = new SimpleGroup(
 );
 createObjectGroups(group, 0,
 	avoidClasses(clForest, 0, clPlayer, 20, clHill, 1, clFood, 10, clCP, 2),
-	randInt(1, 4) * numPlayers + 2, 50
+	randIntInclusive(1, 4) * numPlayers + 2, 50
 );
 
 // create camels

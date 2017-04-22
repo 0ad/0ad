@@ -191,7 +191,7 @@ createAreas(
 	placer,
 	[terrainPainter, elevationPainter, paintClass(clLand)],
 	null,
-	scaleByMapSize(1, 5)*randInt(5,10)
+	scaleByMapSize(1, 5) * randIntInclusive(5, 10)
 );
 
 paintTerrainBasedOnHeight(2.4, 3.4, 3, tMainTerrain);

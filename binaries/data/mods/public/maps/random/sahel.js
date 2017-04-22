@@ -213,8 +213,8 @@ log("Creating stone mines...");
 // create stone mines
 for (var i = 0; i < scaleByMapSize(12,30); ++i)
 {
-	var mX = randInt(mapSize);
-	var mZ = randInt(mapSize);
+	var mX = randIntExclusive(0, mapSize);
+	var mZ = randIntExclusive(0, mapSize);
 	if (playerConstraint.allows(mX, mZ) && minesConstraint.allows(mX, mZ) && waterConstraint.allows(mX, mZ))
 	{
 		createStoneMineFormation(mX, mZ, tDirt4);
@@ -309,7 +309,7 @@ group = new SimpleGroup(
 );
 createObjectGroups(group, 0,
 	avoidClasses(clWater, 3, clPlayer, 20, clFood, 12, clRock, 7, clMetal, 6),
-	randInt(1, 4) * numPlayers + 2, 50
+	randIntInclusive(1, 4) * numPlayers + 2, 50
 );
 
 RMS.SetProgress(85);

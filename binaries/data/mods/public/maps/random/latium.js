@@ -501,20 +501,26 @@ RMS.SetProgress(85);
 log("Creating fish...");
 var num = scaleByMapSize(4, 16);
 var offsetX = mapSize * WATER_WIDTH/2;
-for (var i = 0; i < num; ++i)
-{
-	var cX = round(offsetX + offsetX/2 * randFloat(-1, 1));
-	var cY = round((i + 0.5) * mapSize/num);
-	group = new SimpleGroup([new SimpleObject(oFish, 1,1, 0,1)], true, clFood, cX, cY);
-	createObjectGroup(group, 0);
-}
-for (var i = 0; i < num; ++i)
-{
-	var cX = round(mapSize - offsetX + offsetX/2 * randFloat(-1, 1));
-	var cY = round((i + 0.5) * mapSize/num);
-	group = new SimpleGroup([new SimpleObject(oFish, 1,1, 0,1)], true, clFood, cX, cY);
-	createObjectGroup(group, 0);
-}
+for (let i = 0; i < num; ++i)
+	createObjectGroup(
+		new SimpleGroup(
+			[new SimpleObject(oFish, 1, 1, 0, 1)],
+			true,
+			clFood,
+			randIntInclusive(offsetX / 2, offsetX * 3/2),
+			Math.round((i + 0.5) * mapSize / num)),
+		0);
+
+for (let i = 0; i < num; ++i)
+	createObjectGroup(
+		new SimpleGroup(
+			[new SimpleObject(oFish, 1, 1, 0, 1)],
+			true,
+			clFood,
+			randIntInclusive(mapSize - offsetX * 3/2, mapSize - offsetX / 2),
+			Math.round((i + 0.5) * mapSize / num)),
+		0);
+
 RMS.SetProgress(90);
 
 log("Creating deer...");

@@ -102,6 +102,7 @@ template<> void ScriptInterface::ToJSVal<SDL_Event_>(JSContext* cx, JS::MutableH
 		SET(obj, "state", (int)val.ev.button.state);
 		SET(obj, "x", (int)val.ev.button.x);
 		SET(obj, "y", (int)val.ev.button.y);
+		SET(obj, "clicks", (int)val.ev.button.clicks);
 		break;
 	}
 	case SDL_HOTKEYDOWN:

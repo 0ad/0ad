@@ -273,7 +273,7 @@ createFood
   [new SimpleObject(oBerryBush, 5,7, 0,4)]
  ],
  [
-  randInt(3, 12) * numPlayers + 2
+  randIntInclusive(3, 12) * numPlayers + 2
  ],
  avoidClasses(clForest, 0, clPlayer, 20, clHill, 1, clFood, 10)
 );

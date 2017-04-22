@@ -861,7 +861,7 @@ function placeIrregularPolygonalWall(centerX, centerY, radius, cornerWallElement
 	style = style || "palisades";
 	playerId = playerId || 0;
 	orientation = orientation || 0;
-	numCorners = numCorners || randInt(5, 7);
+	numCorners = numCorners || randIntInclusive(5, 7);
 	irregularity = irregularity || 0.5;
 	skipFirstWall = skipFirstWall || false;
 

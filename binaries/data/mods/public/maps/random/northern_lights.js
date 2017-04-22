@@ -180,7 +180,14 @@ for (var ix = 0; ix < mapSize; ix++)
 log("Creating shores...");
 for (var i = 0; i < scaleByMapSize(20,120); i++)
 {
-	placer = new ChainPlacer(1, floor(scaleByMapSize(4, 6)), floor(scaleByMapSize(16, 30)), 1, floor(randFloat(0.1,0.9)*mapSize), floor(randFloat(0.67,0.74)*mapSize));
+	placer = new ChainPlacer(
+		1,
+		Math.floor(scaleByMapSize(4, 6)),
+		Math.floor(scaleByMapSize(16, 30)),
+		1,
+		randIntExclusive(0.1 * mapSize, 0.9 * mapSize),
+		randIntExclusive(0.67 * mapSize, 0.74 * mapSize));
+
 	var terrainPainter = new LayeredPainter(
 		[tSnowA, tSnowA],		// terrains
 		[2]								// widths
