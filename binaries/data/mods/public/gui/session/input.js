@@ -42,12 +42,8 @@ var mouseIsOverObject = false;
 // Number of pixels the mouse can move before the action is considered a drag
 var maxDragDelta = 4;
 
-// Time in milliseconds in which a double click is recognized
-const doubleClickTime = 500;
-var doubleClickTimer = 0;
-var doubleClicked = false;
-// Store the previously clicked entity - ensure a double/triple click happens on the same entity
-var prevClickedEntity = 0;
+// Store the clicked entity on mousedown or mouseup
+var clickedEntity = 0;
 
 // Same double-click behaviour for hotkey presses
 const doublePressTime = 500;
@@ -862,6 +858,10 @@ function handleInputAfterGui(ev)
 			{
 				dragStart = [ ev.x, ev.y ];
 				inputState = INPUT_SELECTING;
+				// If a single click occured, reset the clickedEntity.
+				// Also set it if we're double/triple clicking and missed the unit earlier.
+				if (ev.clicks == 1 || clickedEntity == INVALID_ENTITY)
+					clickedEntity = Engine.PickEntityAtPoint(ev.x, ev.y);
 				return true;
 			}
 			else if (ev.button == SDL_BUTTON_RIGHT)
@@ -966,9 +966,9 @@ function handleInputAfterGui(ev)
 		case "mousebuttonup":
 			if (ev.button == SDL_BUTTON_LEFT)
 			{
-				var ents = [];
-				var selectedEntity = Engine.PickEntityAtPoint(ev.x, ev.y);
-				if (selectedEntity == INVALID_ENTITY)
+				if (clickedEntity == INVALID_ENTITY)
+					clickedEntity = Engine.PickEntityAtPoint(ev.x, ev.y);
+				if (clickedEntity == INVALID_ENTITY)
 				{
 					if (!Engine.HotkeyIsPressed("selection.add") && !Engine.HotkeyIsPressed("selection.remove"))
 					{
@@ -979,15 +979,14 @@ function handleInputAfterGui(ev)
 					return true;
 				}
 
-				var now = new Date();
-
 				// If camera following and we select different unit, stop
-				if (Engine.GetFollowedEntity() != selectedEntity)
-				{
+				if (Engine.GetFollowedEntity() != clickedEntity)
 					Engine.CameraFollow(0);
-				}
 
-				if (now.getTime() - doubleClickTimer < doubleClickTime && selectedEntity == prevClickedEntity)
+				var ents = [];
+				if (ev.clicks == 1)
+					ents = [clickedEntity];
+				else
 				{
 					// Double click or triple click has occurred
 					var showOffscreen = Engine.HotkeyIsPressed("selection.offscreen");
@@ -995,38 +994,24 @@ function handleInputAfterGui(ev)
 					var templateToMatch;
 
 					// Check for double click or triple click
-					if (!doubleClicked)
+					if (ev.clicks == 2)
 					{
-						// If double click hasn't already occurred, this is a double click.
 						// Select similar units regardless of rank
-						templateToMatch = GetEntityState(selectedEntity).identity.selectionGroupName;
+						templateToMatch = GetEntityState(clickedEntity).identity.selectionGroupName;
 						if (templateToMatch)
 							matchRank = false;
 						else
 							// No selection group name defined, so fall back to exact match
-							templateToMatch = GetEntityState(selectedEntity).template;
+							templateToMatch = GetEntityState(clickedEntity).template;
 
-						doubleClicked = true;
-						// Reset the timer so the user has an extra period 'doubleClickTimer' to do a triple-click
-						doubleClickTimer = now.getTime();
 					}
 					else
-						// Double click has already occurred, so this is a triple click.
+						// Triple click
 						// Select units matching exact template name (same rank)
-						templateToMatch = GetEntityState(selectedEntity).template;
+						templateToMatch = GetEntityState(clickedEntity).template;
 
 					// TODO: Should we handle "control all units" here as well?
 					ents = Engine.PickSimilarPlayerEntities(templateToMatch, showOffscreen, matchRank, false);
-				}
-				else
-				{
-					// It's single click right now but it may become double or triple click
-					doubleClicked = false;
-					doubleClickTimer = now.getTime();
-					prevClickedEntity = selectedEntity;
-
-					// We only want to include the first picked unit in the selection
-					ents = [selectedEntity];
 				}
 
 				// Update the list of selected units
