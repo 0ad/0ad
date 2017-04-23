@@ -124,7 +124,7 @@ AddMock(100, IID_EntityLimits, {
 AddMock(100, IID_TechnologyManager, {
 	IsTechnologyResearched: function(tech) { if (tech == "phase_village") return true; else return false; },
 	GetQueuedResearch: function() { return {}; },
-	GetStartedResearch: function() { return {}; },
+	GetStartedTechs: function() { return {}; },
 	GetResearchedTechs: function() { return {}; },
 	GetClassCounts: function() { return {}; },
 	GetTypeCountsByClass: function() { return {}; },
@@ -210,7 +210,7 @@ AddMock(101, IID_EntityLimits, {
 AddMock(101, IID_TechnologyManager, {
 		IsTechnologyResearched: function(tech) { if (tech == "phase_village") return true; else return false; },
 		GetQueuedResearch: function() { return {}; },
-		GetStartedResearch: function() { return {}; },
+		GetStartedTechs: function() { return {}; },
 		GetResearchedTechs: function() { return {}; },
 		GetClassCounts: function() { return {}; },
 		GetTypeCountsByClass: function() { return {}; },

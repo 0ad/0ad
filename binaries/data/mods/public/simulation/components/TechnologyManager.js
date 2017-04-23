@@ -434,7 +434,7 @@ TechnologyManager.prototype.IsInProgress = function(tech)
 };
 
 // Get all techs that are currently being researched
-TechnologyManager.prototype.GetTechsStarted = function()
+TechnologyManager.prototype.GetStartedTechs = function()
 {
 	return this.researchStarted;
 };
@@ -457,10 +457,6 @@ TechnologyManager.prototype.GetTechModifications = function()
 TechnologyManager.prototype.GetQueuedResearch = function()
 {
 	return this.researchQueued;
-};
-TechnologyManager.prototype.GetStartedResearch = function()
-{
-	return this.researchStarted;
 };
 TechnologyManager.prototype.GetResearchedTechs = function()
 {
