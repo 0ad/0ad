@@ -128,7 +128,8 @@ var g_FormatChatMessage = {
 	"diplomacy": msg => formatDiplomacyMessage(msg),
 	"tribute": msg => formatTributeMessage(msg),
 	"barter": msg => formatBarterMessage(msg),
-	"attack": msg => formatAttackMessage(msg)
+	"attack": msg => formatAttackMessage(msg),
+	"phase": msg => formatPhaseMessage(msg)
 };
 
 /**
@@ -392,6 +393,15 @@ var g_NotificationsTypes =
 			"player": player,
 			"attacker": notification.attacker,
 			"targetIsDomesticAnimal": notification.targetIsDomesticAnimal
+		});
+	},
+	"phase": function(notification, player)
+	{
+		addChatMessage({
+			"type": "phase",
+			"player": player,
+			"phaseName": notification.phaseName,
+			"phaseState": notification.phaseState
 		});
 	},
 	"dialog": function(notification, player)
@@ -947,6 +957,29 @@ function formatAttackMessage(msg)
 
 	return sprintf(message, {
 		"attacker": colorizePlayernameByID(msg.attacker)
+	});
+}
+
+function formatPhaseMessage(msg)
+{
+	let notifyPhase = Engine.ConfigDB_GetValue("user", "gui.session.notifications.phase");
+	if (notifyPhase == 0 || msg.player != g_ViewedPlayer && !g_IsObserver && !g_Players[msg.player].isMutualAlly[g_ViewedPlayer])
+		return "";
+
+	let message = "";
+	if (notifyPhase == 2)
+	{
+		if (msg.phaseState == "started")
+			message = translate("%(player)s is advancing to the %(phaseName)s.");
+		else if (msg.phaseState == "aborted")
+			message = translate("The %(phaseName)s of %(player)s has been aborted.");
+	}
+	if (msg.phaseState == "completed")
+		message = translate("%(player)s has reached the %(phaseName)s.");
+
+	return sprintf(message, {
+		"player": colorizePlayernameByID(msg.player),
+		"phaseName": getEntityNames(GetTechnologyData(msg.phaseName, g_Players[msg.player].civ))
 	});
 }
 

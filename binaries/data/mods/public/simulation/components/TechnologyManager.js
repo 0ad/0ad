@@ -255,7 +255,7 @@ TechnologyManager.prototype.OnGlobalOwnershipChanged = function(msg)
 // Marks a technology as researched.  Note that this does not verify that the requirements are met.
 TechnologyManager.prototype.ResearchTechnology = function(tech)
 {
-	this.StoppedResearch(tech); // The tech is no longer being currently researched
+	this.StoppedResearch(tech, false);
 
 	var template = this.GetTechnologyTemplate(tech);
 
@@ -329,6 +329,17 @@ TechnologyManager.prototype.ResearchTechnology = function(tech)
 		Engine.PostMessage(SYSTEM_ENTITY, MT_TemplateModification, { "player": playerID, "component": component, "valueNames": modifiedComponents[component]});
 		Engine.BroadcastMessage(MT_ValueModification, { "entities": ents, "component": component, "valueNames": modifiedComponents[component]});
 	}
+
+	if (tech.startsWith("phase") && !template.autoResearch)
+	{
+		let cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+		cmpGUIInterface.PushNotification({
+			"type": "phase",
+			"players": [playerID],
+			"phaseName": tech,
+			"phaseState": "completed"
+		});
+	}
 };
 
 // Clears the cached data for an entity from the modifications cache
@@ -377,14 +388,38 @@ TechnologyManager.prototype.QueuedResearch = function(tech, researcher)
 };
 
 // Marks a technology as actively being researched
-TechnologyManager.prototype.StartedResearch = function(tech)
+TechnologyManager.prototype.StartedResearch = function(tech, notification)
 {
 	this.researchStarted[tech] = true;
+
+	if (notification && tech.startsWith("phase"))
+	{
+		let cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+		let cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+		cmpGuiInterface.PushNotification({
+			"type": "phase",
+			"players": [cmpPlayer.GetPlayerID()],
+			"phaseName": tech,
+			"phaseState": "started"
+		});
+	}
 };
 
 // Marks a technology as not being currently researched
-TechnologyManager.prototype.StoppedResearch = function(tech)
+TechnologyManager.prototype.StoppedResearch = function(tech, notification)
 {
+	if (notification && tech.startsWith("phase") && this.researchStarted[tech])
+	{
+		let cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+		let cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+		cmpGUIInterface.PushNotification({
+			"type": "phase",
+			"players": [cmpPlayer.GetPlayerID()],
+			"phaseName": tech,
+			"phaseState": "aborted"
+		});
+	}
+
 	delete this.researchQueued[tech];
 	delete this.researchStarted[tech];
 };
