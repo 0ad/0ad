@@ -6,6 +6,10 @@
 		"BaseTerrain" : ["grass1"],
 		"BaseHeight" : 0,
 		"Keywords": ["demo"],
-		"CircularMap" : false
+		"CircularMap" : false,
+		"TriggerScripts" : [
+			"random/wall_demo_triggers.js"
+		]
 	}
 }
+
