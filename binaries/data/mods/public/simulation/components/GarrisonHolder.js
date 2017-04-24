@@ -634,7 +634,7 @@ GarrisonHolder.prototype.OnGlobalEntityRenamed = function(msg)
 			vgpRenamed = vgp;
 			break;
 		}
-		this.Eject(msg.entity);
+		this.Eject(msg.entity, true);
 		this.Garrison(msg.newentity, vgpRenamed);
 	}
 
