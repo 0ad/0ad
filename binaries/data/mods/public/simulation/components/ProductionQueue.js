@@ -358,7 +358,7 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 			var cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
 			cmpTechnologyManager.QueuedResearch(templateName, this.entity);
 			if (this.queue.length == 0)
-				cmpTechnologyManager.StartedResearch(templateName);
+				cmpTechnologyManager.StartedResearch(templateName, false);
 
 			this.queue.push({
 				"id": this.nextID++,
@@ -455,7 +455,7 @@ ProductionQueue.prototype.RemoveBatch = function(id)
 		{
 			// item.player is used as this.entity's owner may be invalid (deletion, etc.)
 			var cmpTechnologyManager = QueryPlayerIDInterface(item.player, IID_TechnologyManager);
-			cmpTechnologyManager.StoppedResearch(item.technologyTemplate);
+			cmpTechnologyManager.StoppedResearch(item.technologyTemplate, true);
 		}
 
 		// Remove from the queue
@@ -721,7 +721,7 @@ ProductionQueue.prototype.ProgressTimeout = function(data)
 			{
 				// Mark the research as started.
 				var cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
-				cmpTechnologyManager.StartedResearch(item.technologyTemplate);
+				cmpTechnologyManager.StartedResearch(item.technologyTemplate, true);
 			}
 
 			item.productionStarted = true;

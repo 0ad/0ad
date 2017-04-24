@@ -43,15 +43,6 @@ m.newTradeRouteMessages = [
 	markForTranslation("A new trade route is set up with %(_player_)s. Take your share of the profits.")
 ];
 
-m.newPhaseMessages = {
-	"started": [
-		markForTranslation("I am advancing to the %(phase)s.")
-	],
-	"completed": [
-		markForTranslation("I have reached the %(phase)s.")
-	]
-};
-
 m.newDiplomacyMessages = {
 	"ally": [
 		markForTranslation("%(_player_)s and I are now allies.")

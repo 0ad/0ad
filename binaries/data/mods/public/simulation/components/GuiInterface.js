@@ -119,7 +119,7 @@ GuiInterface.prototype.GetSimulationState = function()
 			"entityCounts": cmpPlayerEntityLimits ? cmpPlayerEntityLimits.GetCounts() : null,
 			"entityLimitChangers": cmpPlayerEntityLimits ? cmpPlayerEntityLimits.GetLimitChangers() : null,
 			"researchQueued": cmpTechnologyManager ? cmpTechnologyManager.GetQueuedResearch() : null,
-			"researchStarted": cmpTechnologyManager ? cmpTechnologyManager.GetStartedResearch() : null,
+			"researchStarted": cmpTechnologyManager ? cmpTechnologyManager.GetStartedTechs() : null,
 			"researchedTechs": cmpTechnologyManager ? cmpTechnologyManager.GetResearchedTechs() : null,
 			"classCounts": cmpTechnologyManager ? cmpTechnologyManager.GetClassCounts() : null,
 			"typeCountsByClass": cmpTechnologyManager ? cmpTechnologyManager.GetTypeCountsByClass() : null,
@@ -706,7 +706,7 @@ GuiInterface.prototype.GetStartedResearch = function(player)
 		return {};
 
 	let ret = {};
-	for (let tech in cmpTechnologyManager.GetTechsStarted())
+	for (let tech in cmpTechnologyManager.GetStartedTechs())
 	{
 		ret[tech] = { "researcher": cmpTechnologyManager.GetResearcher(tech) };
 		let cmpProductionQueue = Engine.QueryInterface(ret[tech].researcher, IID_ProductionQueue);
