@@ -232,11 +232,14 @@ var unitActions =
 		},
 		"getActionInfo": function(entState, targetState)
 		{
+			if (!entState.unitAI || !entState.unitAI.canPatrol)
+				return false;
+
 			return { "possible": true };
 		},
 		"hotkeyActionCheck": function(target, selection)
 		{
-			if (!someUnitAI(selection) ||
+			if (!someCanPatrol(selection) ||
 			    !Engine.HotkeyIsPressed("session.patrol") ||
 			    !getActionInfo("patrol", target).possible)
 				return false;
@@ -1273,8 +1276,9 @@ var g_EntityCommands =
 	"patrol": {
 		"getInfo": function(entState)
 		{
-			if (g_Selection.toList().every(ent => !GetEntityState(ent).unitAI))
+			if (!someCanPatrol(g_Selection.toList()))
 				return false;
+
 			return {
 				"tooltip": colorizeHotkey("%(hotkey)s" + " ", "session.patrol") +
 				           translate("Patrol") + "\n" +
@@ -1428,6 +1432,14 @@ function someGuarding(entities)
 	return entities.some(ent => {
 		let entState = GetEntityState(ent);
 		return entState && entState.unitAI && entState.unitAI.isGuarding;
+	});
+}
+
+function someCanPatrol(entities)
+{
+	return entities.some(ent => {
+		let entState = GetEntityState(ent);
+		return entState && entState.unitAI && entState.unitAI.canPatrol;
 	});
 }
 
