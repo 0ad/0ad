@@ -176,8 +176,8 @@ var waterConstraint = new AvoidTileClassConstraint(clWater, 10);
 log("Creating stone mines...");
 for (let i = 0; i < scaleByMapSize(12, 30); ++i)
 {
-	let mX = randIntInclusive(0, mapSize);
-	let mZ = randIntInclusive(0, mapSize);
+	let mX = randIntInclusive(1, mapSize - 1);
+	let mZ = randIntInclusive(1, mapSize - 1);
 	if (playerConstraint.allows(mX, mZ) && minesConstraint.allows(mX, mZ) && waterConstraint.allows(mX, mZ))
 	{
 		createStoneMineFormation(mX, mZ, tDirt4);
