@@ -7,7 +7,7 @@ TrainingRestrictions.prototype.Schema =
 			"<Category>Hero</Category>" +
 		"</TrainingRestrictions>" +
 	"</a:example>" +
-	"<element name='Category' a:help='Specifies the category of this unit, for satisfying special constraints. Choices include: Hero, UniqueBuilding, WarDog'>" +
+	"<element name='Category' a:help='Specifies the category of this unit, for satisfying special constraints. Choices include: Hero, Juggernaut, WarDog'>" +
 		"<text/>" +
 	"</element>";
 
