@@ -35,7 +35,7 @@ m.TradeManager.prototype.assignTrader = function(ent)
 
 m.TradeManager.prototype.trainMoreTraders = function(gameState, queues)
 {
-	if (!this.tradeRoute || queues.trader.hasQueuedUnits())
+	if (!this.hasTradeRoute() || queues.trader.hasQueuedUnits())
 		return;
 
 	let numTraders = this.traders.length;
@@ -113,7 +113,7 @@ m.TradeManager.prototype.trainMoreTraders = function(gameState, queues)
 
 m.TradeManager.prototype.updateTrader = function(gameState, ent)
 {
-	if (!this.tradeRoute || !ent.isIdle() || !ent.position())
+	if (!this.hasTradeRoute() || !ent.isIdle() || !ent.position())
 		return;
 	if (ent.getMetadata(PlayerID, "transport") !== undefined)
 		return;
@@ -593,7 +593,11 @@ m.TradeManager.prototype.isNewMarketWorth = function(expectedGain)
 
 m.TradeManager.prototype.update = function(gameState, events, queues)
 {
-	this.performBarter(gameState);
+	if (gameState.ai.HQ.canBarter)
+		this.performBarter(gameState);
+
+	if (this.Config.difficulty <= 1)
+		return;
 
 	if (this.routeProspection)
 		this.prospectForNewMarket(gameState, queues);
