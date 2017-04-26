@@ -17,7 +17,9 @@
       <MaxRange>4.0</MaxRange>
     </Slaughter>
   </Attack>
-  <Auras datatype="tokens">female_inspiration</Auras>
+  <Auras datatype="tokens">
+    units/female_inspiration
+  </Auras>
   <Builder>
     <Rate>1.0</Rate>
     <Entities datatype="tokens">

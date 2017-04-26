@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_elephant_melee">
-  <Auras datatype="tokens">cart_hero_hannibal</Auras>
+  <Auras datatype="tokens">
+    units/heroes/cart_hero_hannibal
+  </Auras>
   <Identity>
     <Civ>cart</Civ>
     <GenericName>Hannibal Barca</GenericName>

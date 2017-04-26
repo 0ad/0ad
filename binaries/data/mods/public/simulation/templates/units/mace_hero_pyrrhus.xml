@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_spearman">
-  <Auras datatype="tokens">mace_hero_pyrrhus</Auras>
+  <Auras datatype="tokens">
+    units/heroes/mace_hero_pyrrhus
+  </Auras>
   <Identity>
     <Civ>mace</Civ>
     <Lang>greek</Lang>

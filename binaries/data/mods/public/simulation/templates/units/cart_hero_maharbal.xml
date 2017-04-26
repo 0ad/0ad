@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_spearman">
-  <Auras datatype="tokens">cart_hero_maharbal</Auras>
+  <Auras datatype="tokens">
+    units/heroes/cart_hero_maharbal
+  </Auras>
   <Identity>
     <Civ>cart</Civ>
     <GenericName>Maharbal</GenericName>

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_infantry_swordsman">
-  <Auras datatype="tokens">brit_hero_boudicca</Auras>
+  <Auras datatype="tokens">
+    units/heroes/brit_hero_boudicca
+  </Auras>
   <Identity>
     <Civ>brit</Civ>
     <GenericName>Boudicca (Sword)</GenericName>

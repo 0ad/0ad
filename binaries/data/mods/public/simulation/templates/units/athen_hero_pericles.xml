@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_infantry_spearman">
-  <Auras datatype="tokens">athen_hero_pericles_1 athen_hero_pericles_2</Auras>
+  <Auras datatype="tokens">
+    units/heroes/athen_hero_pericles_1
+    units/heroes/athen_hero_pericles_2
+  </Auras>
   <Identity>
     <Civ>athen</Civ>
     <Lang>greek</Lang>
