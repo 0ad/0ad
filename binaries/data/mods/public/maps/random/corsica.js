@@ -221,6 +221,11 @@ for (var island = 0; island <= 1; island++)
 		var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -1,5);	// base height is -10
 		createArea(placer, [elevationPainter], null);
 
+		startX = Math.max(0, Math.min(startX, mapSize));
+		startZ = Math.max(0, Math.min(startZ, mapSize));
+		endX = Math.max(0, Math.min(endX, mapSize));
+		endZ = Math.max(0, Math.min(endZ, mapSize));
+
 		straightPassageMaker(startX, startZ,endX,endZ, 25, 18, 4,clShore,null);
 	}
 }
