@@ -14,6 +14,7 @@ const oTiger = "gaia/fauna_tiger";
 const oCrocodile = "gaia/fauna_crocodile";
 const oFish = "gaia/fauna_fish";
 const oElephant = "gaia/fauna_elephant_asian";
+const oElephantInfant = "gaia/fauna_elephant_asian_infant";
 const oBoar = "gaia/fauna_boar";
 const oStoneSmall = "gaia/geology_stone_savanna_small";
 const oMetalLarge = "gaia/geology_metal_savanna_slabs";
@@ -241,7 +242,10 @@ createObjectGroups(
 log("Creating elephants...");
 createObjectGroups(
 	new SimpleGroup(
-		[new SimpleObject(oElephant, 2, 4, 0, 4)],
+		[
+			new SimpleObject(oElephant, 2, 4, 0, 4),
+			new SimpleObject(oElephantInfant, 1, 2, 0, 4)
+		],
 		true, clFood
 	),
 	0,
