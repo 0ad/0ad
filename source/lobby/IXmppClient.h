@@ -33,7 +33,6 @@ public:
 	virtual void recv() = 0;
 	virtual void SendIqGetGameList() = 0;
 	virtual void SendIqGetBoardList() = 0;
-	virtual void SendIqGetRatingList() = 0;
 	virtual void SendIqGetProfile(const std::string& player) = 0;
 	virtual void SendIqGameReport(ScriptInterface& scriptInterface, JS::HandleValue data) = 0;
 	virtual void SendIqRegisterGame(ScriptInterface& scriptInterface, JS::HandleValue data) = 0;
