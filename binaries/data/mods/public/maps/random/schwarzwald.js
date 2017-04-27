@@ -434,7 +434,7 @@ for (var x = 0; x < mapSize; x++)
 
 		if (randBool(tDensActual) && radius < playableMapRadius)
 		{
-			if (tDensActual < bushChance*randFloat()*maxTreeDensity)
+			if (tDensActual < randFloat(0, bushChance * maxTreeDensity))
 			{
 				var placer = new ClumpPlacer(1, 1.0, 1.0, 1, x, z);
 				var painter = [new TerrainPainter(terrainWoodBorder), paintClass(clForest)];

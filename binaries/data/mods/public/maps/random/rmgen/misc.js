@@ -775,7 +775,7 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraint,
 		var radius2 = radius * radius;
 		var dx, dz, distance2;
 
-		var clumpHeight = (radius/maxRadius)*maxHeight*randFloat(0.8,1.2);
+		var clumpHeight = radius / maxRadius * maxHeight * randFloat(0.8, 1.2);
 
 		for (var ix = sx; ix <= lx; ++ix)
 		{

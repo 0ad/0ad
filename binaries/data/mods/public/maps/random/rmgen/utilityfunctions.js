@@ -209,9 +209,12 @@ function createStoneMineFormation(x, z, tileclass)
 
 	for (var i = 0; i < 8; ++i)
 	{
-		var bbX = round(x + (bbDist + randFloat(0,1)) * cos(bbAngle));
-		var bbZ = round(z + (bbDist + randFloat(0,1)) * sin(bbAngle));
-		placeObject(bbX, bbZ, oStoneSmall, 0, randFloat(0, TWO_PI));
+		placeObject(
+			Math.round(x + randFloat(bbDist, bbDist + 1) * Math.cos(bbAngle)),
+			Math.round(z + randFloat(bbDist, bbDist + 1) * Math.sin(bbAngle)),
+			oStoneSmall,
+			0,
+			randFloat(0, 2 * PI));
 		bbAngle += PI / 6;
 	}
 }

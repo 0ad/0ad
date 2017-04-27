@@ -181,7 +181,7 @@ var islandZ = [SardiniaZ,CorsicaZ];
 for (var island = 0; island <= 1; island++)
 	for (var i = 0; i <= nbCreeks; i++)
 	{
-		var radius = fractionToTiles( (Math.random()/17) + 0.49);
+		var radius = fractionToTiles(randFloat(0.49, 0.55));
 		var angle = PI*island + i*(PI/(nbCreeks*2));
 		if (swap)
 			angle += PI/2;
@@ -338,7 +338,7 @@ for (var i = 0; i < numPlayers; i++)
 	placeDefaultChicken(fx, fz, clBaseResource);
 
 	// create berry bushes
-	var bbAngle = randFloat(0, TWO_PI);
+	var bbAngle = randFloat(0, 2 * PI);
 	var bbDist = 11;
 	var bbX = round(fx + bbDist * cos(bbAngle));
 	var bbZ = round(fz + bbDist * sin(bbAngle));
