@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2017-03-24 09:08+0100\n"
-"PO-Revision-Date: 2017-03-24 09:08+0100\n"
+"POT-Creation-Date: 2017-04-28 09:02+0200\n"
+"PO-Revision-Date: 2017-04-28 09:02+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -217,6 +217,21 @@ msgstr ""
 msgid "Cycladic Archipelago"
 msgstr ""
 
+#: maps/random/danubius.json:settings.Description
+msgid ""
+"Players start along the banks of the river Danube in the period following "
+"the expansion into Pannonia by the Celtic Boii tribe. Seeking to consolidate "
+"their hold on this land, celtic reinforcements have been sent to root out "
+"the remaining foreign cultures. Players not only have to vie for power "
+"amongst themselves, but also beat back these ruthless invaders. Ultimately, "
+"the Boii were defeated by the rising power of the Dacians, hence leading to "
+"the reemergence of the Geto-Dacian Confederation under King Burebista."
+msgstr ""
+
+#: maps/random/danubius.json:settings.Name
+msgid "Danubius"
+msgstr ""
+
 #: maps/random/deep_forest.json:settings.Description
 msgid "A deep dark forest in Germania."
 msgstr ""
@@ -353,6 +368,18 @@ msgstr ""
 
 #: maps/random/hyrcanian_shores.json:settings.Name
 msgid "Hyrcanian Shores"
+msgstr ""
+
+#: maps/random/india.json:settings.Description
+msgid ""
+"Central India just before the monsoon season - a parched land awaits the "
+"life-bringing rain which is already two months late. Due to the extended "
+"dryness and scorching heat, only the largest lake remains. The hardy trees "
+"which have survived the climate are spread out, yet not too scarce."
+msgstr ""
+
+#: maps/random/india.json:settings.Name
+msgid "India"
 msgstr ""
 
 #: maps/random/island_stronghold.json:settings.Description
@@ -792,13 +819,13 @@ msgstr ""
 msgid "Wall Demo"
 msgstr ""
 
-#: maps/random/survivalofthefittest_triggers.js:155
-msgid "An enemy wave is attacking!"
-msgstr ""
-
-#: maps/random/survivalofthefittest_triggers.js:212
+#: maps/random/survivalofthefittest_triggers.js:193
 #, javascript-format
 msgid "The first wave will start in %(time)s!"
+msgstr ""
+
+#: maps/random/survivalofthefittest_triggers.js:327
+msgid "An enemy wave is attacking!"
 msgstr ""
 
 #: maps/scenarios/Cinema_Demo.js:6
@@ -899,7 +926,7 @@ msgstr ""
 #: maps/skirmishes/Belgian Bog (2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Caspian Sea (2v2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Corinthian Isthmus (2).xml:PlayerData[0].Name:39
-#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[1].Name:40
+#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[0].Name:40
 #: maps/skirmishes/Corsica and Sardinia (4).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Cycladic Archipelago (2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Death Canyon (2).xml:PlayerData[0].Name:39
@@ -966,7 +993,7 @@ msgstr ""
 #: maps/skirmishes/Belgian Bog (2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Caspian Sea (2v2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Corinthian Isthmus (2).xml:PlayerData[1].Name:39
-#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[2].Name:40
+#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[1].Name:40
 #: maps/skirmishes/Corsica and Sardinia (4).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Cycladic Archipelago (2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Death Canyon (2).xml:PlayerData[1].Name:39
@@ -1235,7 +1262,7 @@ msgstr ""
 #: maps/scenarios/Siwa Oasis.xml:PlayerData[2].Name:27
 #: maps/skirmishes/Barcania (3).xml:PlayerData[2].Name:27
 #: maps/skirmishes/Caspian Sea (2v2).xml:PlayerData[2].Name:39
-#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[3].Name:40
+#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[2].Name:40
 #: maps/skirmishes/Corsica and Sardinia (4).xml:PlayerData[2].Name:39
 #: maps/skirmishes/Gallic Fields (3).xml:PlayerData[2].Name:39
 #: maps/skirmishes/Gambia River (3).xml:PlayerData[2].Name:39
@@ -1290,7 +1317,7 @@ msgstr ""
 #: maps/scenarios/Saharan Oases.xml:PlayerData[3].Name:27
 #: maps/scenarios/Siwa Oasis.xml:PlayerData[3].Name:27
 #: maps/skirmishes/Caspian Sea (2v2).xml:PlayerData[3].Name:39
-#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[4].Name:40
+#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[3].Name:40
 #: maps/skirmishes/Corsica and Sardinia (4).xml:PlayerData[3].Name:39
 #: maps/skirmishes/Greek Acropolis (4).xml:PlayerData[3].Name:39
 #: maps/skirmishes/Libyan Oases (4).xml:PlayerData[3].Name:39
@@ -1889,11 +1916,11 @@ msgstr ""
 msgid "Tropical Island"
 msgstr ""
 
-#: maps/scenarios/Units_demo.xml:Name:95
+#: maps/scenarios/Units_demo.xml:Name:28
 msgid "Units Demo"
 msgstr ""
 
-#: maps/scenarios/Units_demo.xml:Description:95
+#: maps/scenarios/Units_demo.xml:Description:28
 msgid "Every unit in the game."
 msgstr ""
 

@@ -4,7 +4,7 @@
 # 
 # Translators:
 # acac97 <aleksandar.cvetic97@gmail.com>, 2014
-# Aca G. <martel.gilgames@gmail.com>, 2016
+# Aca G. <martel.gilgames@gmail.com>, 2016-2017
 # acac97 <aleksandar.cvetic97@gmail.com>, 2014
 # Janko Bosnjakovic <jankoeve@gmail.com>, 2016
 # Matija Kokotovic <matijakokotovic@gmail.com>, 2016
@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-03 09:01+0100\n"
-"PO-Revision-Date: 2017-03-03 08:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-04-17 23:05+0000\n"
+"Last-Translator: Aca G. <martel.gilgames@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/wildfire-games/0ad/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -85,15 +85,15 @@ msgstr ""
 #, javascript-format
 msgctxt "lobby kick"
 msgid "Reason: %(reason)s"
-msgstr ""
+msgstr "Разлог: %(reason)s"
 
 #: gui/lobby/lobby.js:249
 msgid "BANNED"
-msgstr ""
+msgstr "ЗАБРАЊЕН"
 
 #: gui/lobby/lobby.js:249
 msgid "KICKED"
-msgstr ""
+msgstr "ИЗБАЧЕН"
 
 #: gui/lobby/lobby.js:291
 msgctxt "map size"
@@ -126,7 +126,7 @@ msgstr "Н/А"
 #: gui/lobby/lobby.js:506
 #, javascript-format
 msgid "Player \"%(nick)s\" not found."
-msgstr ""
+msgstr "Играч \"%(nick)s\" није пронађен."
 
 #. Translation: %(time)s is the hour and minute here.
 #: gui/lobby/lobby.js:687
@@ -145,7 +145,7 @@ msgstr "Играчи: %(current)s/%(total)s"
 
 #: gui/lobby/lobby.js:734
 msgid "The game has already started. Do you want to join as observer?"
-msgstr ""
+msgstr "Игра је већ почела. Желиш ли се придружити као посматрач?"
 
 #: gui/lobby/lobby.js:735
 msgid "Confirmation"
@@ -285,7 +285,7 @@ msgstr "Молимо вас да прихватите услове услуге 
 msgid ""
 "Unknown error. This usually occurs because the same IP address is not "
 "allowed to register more than one account within one hour."
-msgstr ""
+msgstr "Непозната грешка. Ово се обично дешава јер истој ИП адреси није дозвољено да се региструје више пута током истог сата."
 
 #: gui/lobby/prelobby.js:172
 msgid "Registered"
