@@ -13,6 +13,7 @@
 # foufy much <foufy68@hotmail.com>, 2016
 # François Poirotte <clicky@erebot.net>, 2016
 # tavariz <guipoi@yahoo.fr>, 2016
+# Hamza ESSAD <essadhamza@outlook.fr>, 2017
 # Leyto Leyto <machin237@yahoo.fr>, 2016
 # Loki <tontonloul@hotmail.fr>, 2016
 # Louis Parramon <taonasb@live.fr>, 2016
@@ -29,7 +30,7 @@
 # polien delamarque <m.oleil@laposte.net>, 2017
 # robin moussu <robin.moussu+transifex@gmail.com>, 2015
 # Romain Mesnil <bnb6avekk6@protonmail.com>, 2016
-# Polakrity <sxk-fr@live.fr>, 2014
+# Polakrity <sxk-fr@live.fr>, 2014,2017
 # Valentin Ambroise <valentin.amb@hotmail.com>, 2015
 # Vincent Pouliquen <vins_om@hotmail.fr>, 2014
 # Xavier Tardieu <xapitoun@gmail.com>, 2016
@@ -37,8 +38,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-04-10 09:06+0200\n"
-"PO-Revision-Date: 2017-04-10 10:10+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-04-17 18:42+0000\n"
+"Last-Translator: Polakrity <sxk-fr@live.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -307,8 +308,8 @@ msgstr[1] "Merveille (%(min)s minutes)"
 msgctxt "victory condition"
 msgid "Capture The Relic (%(min)s minute)"
 msgid_plural "Capture The Relic (%(min)s minutes)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Capturer la Relique (%(min)s minute)"
+msgstr[1] "Capture la Relique (%(min)s minutes)"
 
 #: gui/common/gamedescription.js:223
 msgid "Rated game"
@@ -603,8 +604,8 @@ msgstr "Très difficile"
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(min)s minute"
+msgstr[1] "%(min)s minutes"
 
 #: gui/common/settings.js:173
 msgctxt "ceasefire"
@@ -716,7 +717,7 @@ msgstr "Dégâts de zone linéaire"
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s"
 " (%(relativeRange)s) %(rangeUnit)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s à %(maxRange)s (%(relativeRange)s) %(rangeUnit)s, %(rate)s"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 10 (+2)
 #. meters, Interval: 3 arrows / 2 seconds
@@ -725,7 +726,7 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s "
 "(%(relativeRange)s) %(rangeUnit)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s, %(rate)s"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 2 to 10
 #. meters, Interval: 3 arrows / 2 seconds
@@ -734,7 +735,7 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s"
 " %(rangeUnit)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s à %(maxRange)s %(rangeUnit)s, %(rate)s"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 10 meters,
 #. Interval: 3 arrows / 2 seconds
@@ -743,7 +744,7 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s %(rangeUnit)s, "
 "%(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s %(rangeUnit)s, %(rate)s"
 
 #: gui/common/tooltips.js:67
 #, javascript-format
@@ -767,7 +768,7 @@ msgstr "Santé :"
 #: gui/common/tooltips.js:97
 #, javascript-format
 msgid "%(healthLabel)s %(current)s / %(max)s"
-msgstr ""
+msgstr "%(healthLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:115
 #, javascript-format
@@ -835,7 +836,7 @@ msgstr "Portée :"
 #: gui/common/tooltips.js:216
 #, javascript-format
 msgid "+%(number)s"
-msgstr ""
+msgstr "+%(number)s"
 
 #. Translation: For example "0.5 to 1 meters", "1 (+1) meters" or "1 to 2 (+3)
 #. meters"
@@ -936,12 +937,12 @@ msgstr "%(resourceIcon)s %(rate)s"
 
 #: gui/common/tooltips.js:426
 msgid "Resource Trickle:"
-msgstr ""
+msgstr "Flux de ressources:"
 
 #: gui/common/tooltips.js:427
 #, javascript-format
 msgid "%(resources)s / %(time)s"
-msgstr ""
+msgstr "%(resources)s / %(time)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
@@ -1737,7 +1738,7 @@ msgstr "Paramètres du hall"
 
 #: gui/options/options.xml:(caption):74
 msgid "Chat Notification Settings"
-msgstr "Options de notification de discution"
+msgstr "Options de notification de discussion"
 
 #: gui/options/options.xml:(caption):86
 msgid "Reset"
@@ -2352,7 +2353,7 @@ msgstr "Nom du joueur (Solo)"
 
 #: gui/options/options.jsongeneralSetting[1].tooltip
 msgid "How you want to be addressed in Multiplayer matches (except lobby)."
-msgstr "Comment voulez-vous être considéré en matchs multijoueur? (excepté en lobby)"
+msgstr "Comment voulez-vous être considéré dans les matchs multijoueur? (excepté dans le hall)"
 
 #: gui/options/options.jsongeneralSetting[1].label
 msgid "Playername (Multiplayer)"
@@ -2382,7 +2383,7 @@ msgstr "Quand il est désactivé, l'écran d'accueil apparait tout de même lors
 
 #: gui/options/options.jsongeneralSetting[4].label
 msgid "Enable Welcome Screen"
-msgstr "Activer l'écran d'acceuil"
+msgstr "Activer l'écran d'accueil"
 
 #: gui/options/options.jsongeneralSetting[5].tooltip
 msgid "Show tips when setting up a game."
@@ -2525,15 +2526,15 @@ msgstr "Interface utilisateur"
 
 #: gui/options/options.jsonsoundSetting[5].tooltip
 msgid "Receive audio notification when someone types your nick"
-msgstr "Recevoir une notification audio si quelqu'un écrit votre nom d'utilisateur dans le tchat."
+msgstr "Recevoir une notification audio lorsqu'une personne écrit votre nom d'utilisateur dans le tchat."
 
 #: gui/options/options.jsonsoundSetting[5].label
 msgid "Nick Notification"
-msgstr "Notification de nom d'utilisateur."
+msgstr "Notification de nom d'utilisateur"
 
 #: gui/options/options.jsonnotificationSetting[0].tooltip
 msgid "Show a chat notification if you are attacked by another player"
-msgstr "Affiche une notification dans la discutions si vous êtes attaqué par un autre joueur"
+msgstr "Affiche une notification dans la discussion lorsque vous êtes attaqué par un autre joueur"
 
 #: gui/options/options.jsonnotificationSetting[0].label
 msgid "Attack"
@@ -2543,7 +2544,7 @@ msgstr "Attaque"
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode"
-msgstr "Affiche une notification dans la discutions si un allié donne des ressources à un autre membre de l'équipe si les équipes sont verrouillées , et que tout les dons sont en mode affiché"
+msgstr "Affiche une notification dans la discussion si un allié donne des ressources à un autre membre de l'équipe lorsque les équipes sont verrouillées, et affiche les notifications en mode spectateur."
 
 #: gui/options/options.jsonnotificationSetting[1].label
 msgid "Tribute"
@@ -2551,7 +2552,7 @@ msgstr "Don"
 
 #: gui/options/options.jsonnotificationSetting[2].tooltip
 msgid "Show a chat notification to observers when a player bartered resources"
-msgstr "Affiche une notification dans la discutions aux spectateurs lorsqu'un joueur troc des ressources"
+msgstr "Affiche une notification dans la discussion aux spectateurs lorsqu'un joueur troc des ressources"
 
 #: gui/options/options.jsonnotificationSetting[2].label
 msgid "Barter"

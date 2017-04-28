@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_infantry_swordsman">
-  <Auras datatype="tokens">mace_hero_demetrius</Auras>
+  <Auras datatype="tokens">
+    units/heroes/mace_hero_demetrius
+  </Auras>
   <Identity>
     <Civ>mace</Civ>
     <Lang>greek</Lang>

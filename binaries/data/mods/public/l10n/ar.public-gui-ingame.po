@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Hamza ESSAD <essadhamza@outlook.fr>, 2017
 # Majid Al-Dharrab, 2014
 # mustapha ali abdulkarim <baghdadhost@gmail.com>, 2014
 # Omar Anwar <omaraglan91@yahoo.com>, 2017
@@ -16,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-04-10 09:05+0200\n"
-"PO-Revision-Date: 2017-04-10 09:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-04-27 06:16+0000\n"
+"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -318,11 +319,11 @@ msgstr "الكتيّب"
 
 #: gui/session/menu.js:1132
 msgid "The Developer Overlay was closed."
-msgstr "أغلقت غطاء المطور."
+msgstr "أُغلق تراكب المطوّرين."
 
 #: gui/session/menu.js:1133
 msgid "The Developer Overlay was opened."
-msgstr "فتحت غطاء المطور."
+msgstr "فُتح تراكب المطوّرين."
 
 #: gui/session/menu.js:1156
 #, javascript-format
@@ -422,7 +423,7 @@ msgstr "الفريق"
 
 #: gui/session/messages.js:168 gui/session/session.js:298
 msgid "Observer"
-msgstr "مشاهد"
+msgstr "مراقِب"
 
 #: gui/session/messages.js:169
 msgid "Private"
@@ -431,32 +432,32 @@ msgstr "خاصّ"
 #: gui/session/messages.js:205
 msgctxt "chat history filter"
 msgid "Chat and notifications"
-msgstr "الشات و الاشعارات"
+msgstr "الدّردشة والإخطارات"
 
 #: gui/session/messages.js:210
 msgctxt "chat history filter"
 msgid "Chat messages"
-msgstr "رسائل الشات"
+msgstr "رسائل الدّردشة"
 
 #: gui/session/messages.js:215
 msgctxt "chat history filter"
 msgid "Players chat"
-msgstr "شات اللاعبين"
+msgstr "دردشة اللاعبون"
 
 #: gui/session/messages.js:222
 msgctxt "chat history filter"
 msgid "Ally chat"
-msgstr "شات الحلفاء"
+msgstr "دردشة الحلفاء"
 
 #: gui/session/messages.js:229
 msgctxt "chat history filter"
 msgid "Enemy chat"
-msgstr "شات الاعداء"
+msgstr "دردشة العدوّ"
 
 #: gui/session/messages.js:236
 msgctxt "chat history filter"
 msgid "Observer chat"
-msgstr "شات المشاهدين"
+msgstr "دردشة المراقبون"
 
 #: gui/session/messages.js:243
 msgctxt "chat history filter"
@@ -504,12 +505,12 @@ msgstr "أصبح %(player)s محايدًا معك."
 #: gui/session/messages.js:268
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
-msgstr "%(player)s حليف مع %(player2)s الآن."
+msgstr "أصبح %(player)s حليفًا مع %(player2)s الآن."
 
 #: gui/session/messages.js:269
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
-msgstr "%(player)s يخوض حربًا مع %(player2)s الآن."
+msgstr "يخوض %(player)s حربًا مع %(player2)s الآن."
 
 #: gui/session/messages.js:270
 #, javascript-format
@@ -519,7 +520,7 @@ msgstr "%(player)s هو الان عادى مع %(player2)s."
 #: gui/session/messages.js:675
 msgctxt "chat addressee"
 msgid "Everyone"
-msgstr "الجميع"
+msgstr "الكلّ"
 
 #: gui/session/messages.js:683
 msgctxt "chat addressee"
@@ -529,12 +530,12 @@ msgstr "الحلفاء"
 #: gui/session/messages.js:687
 msgctxt "chat addressee"
 msgid "Enemies"
-msgstr "الاعداء"
+msgstr "الأعداء"
 
 #: gui/session/messages.js:693
 msgctxt "chat addressee"
 msgid "Observers"
-msgstr "المشاهدين"
+msgstr "المراقبون"
 
 #: gui/session/messages.js:722 gui/session/selection_details.js:82
 #, javascript-format
@@ -572,7 +573,7 @@ msgstr "فاز %(player)s."
 #: gui/session/messages.js:905
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
-msgstr "%(player)s أرسل إليك %(amounts)s."
+msgstr "أرسل %(player)s إليك %(amounts)s."
 
 #: gui/session/messages.js:907
 #, javascript-format
@@ -592,7 +593,7 @@ msgstr "%(player)s قايض %(amountsBought)s بــ %(amountsSold)s."
 #: gui/session/messages.js:945
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
-msgstr "مواشيك قد هوجمت من  %(attacker)s!"
+msgstr "هاجم %(attacker)s ماشيتك!"
 
 #: gui/session/messages.js:946
 #, javascript-format
@@ -679,12 +680,12 @@ msgid ""
 msgid_plural ""
 "Number of builders.\n"
 "Tasking another to this foundation would speed construction up by %(speedup)s seconds."
-msgstr[0] "عدد البنائين.\nاضف بناى  اخر الى المؤسسه يزيد البناء بمعدل: %(speedup)s ثانيه"
-msgstr[1] "عدد البنائين.\nاضف بناى  اخر الى المؤسسه يزيد البناء بمعدل: %(speedup)s ثانيه"
-msgstr[2] "عدد البنائين.\nاضف بناى  اخر الى المؤسسه يزيد البناء بمعدل: %(speedup)s ثانيه"
-msgstr[3] "عدد البنائين.\nاضف بناى  اخر الى المؤسسه يزيد البناء بمعدل: %(speedup)s ثانيه"
-msgstr[4] "عدد البنائين.\nاضف بناى  اخر الى المؤسسه يزيد البناء بمعدل: %(speedup)s ثانيه"
-msgstr[5] "عدد البنائين.\nاضف بناى  اخر الى المؤسسه يزيد البناء بمعدل: %(speedup)s ثانيه"
+msgstr[0] "عدد البنّاؤون.\nتكليف أحدٍ آخر بهذا الأساس سيسرّع التّشييد بمعدّل %(speedup)s ثانية."
+msgstr[1] "عدد البنّاؤون.\nتكليف أحدٍ آخر بهذا الأساس سيسرّع التّشييد بمعدّل ثانية واحدة."
+msgstr[2] "عدد البنّاؤون.\nتكليف أحدٍ آخر بهذا الأساس سيسرّع التّشييد بمعدّل ثانيتين."
+msgstr[3] "عدد البنّاؤون.\nتكليف أحدٍ آخر بهذا الأساس سيسرّع التّشييد بمعدّل %(speedup)s ثوان."
+msgstr[4] "عدد البنّاؤون.\nتكليف أحدٍ آخر بهذا الأساس سيسرّع التّشييد بمعدّل %(speedup)s ثانية."
+msgstr[5] "عدد البنّاؤون.\nتكليف أحدٍ آخر بهذا الأساس سيسرّع التّشييد بمعدّل %(speedup)s ثانية."
 
 #: gui/session/selection_details.js:248 gui/session/selection_details.js:256
 msgid "Number of builders."
@@ -807,12 +808,12 @@ msgstr "%(population)s %(neededSlots)s"
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
-msgstr[0] "%(number)s مضمون الفئه %(class)s"
-msgstr[1] "%(number)s مضمون الفئه %(class)s"
-msgstr[2] "%(number)s مضمون الفئه %(class)s"
-msgstr[3] "%(number)s مضمون الفئه %(class)s"
-msgstr[4] "%(number)s مضمون الفئه %(class)s"
-msgstr[5] "%(number)s مضمون الفئه %(class)s"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: gui/session/selection_panels.js:806
 #, javascript-format
@@ -892,7 +893,7 @@ msgstr "اهجم على الخصم فى المجال, لكن لا تتحرك"
 #: gui/session/selection_panels_helpers.js:95
 #, javascript-format
 msgid "Current Count: %(count)s, Limit: %(limit)s."
-msgstr "العدد الحالي: %(count)s، الحد: %(limit)s."
+msgstr "العدد الحاليّ: %(count)s، الحدّ: %(limit)s."
 
 #: gui/session/selection_panels_helpers.js:109
 #, javascript-format
@@ -940,17 +941,17 @@ msgstr "اكتب الرساله لكى ترسل"
 #: gui/session/session.js:393
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
-msgstr "اضغط %(hotkey)s لكى تفتح الشات العام."
+msgstr "اضغط %(hotkey)s لفتح الدّردشة العامّة."
 
 #: gui/session/session.js:396
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr "اضغط  %(hotkey)s لكى تفتح شات المشاهدين."
+msgstr "اضغط  %(hotkey)s لفتح دردشة المراقبين."
 
 #: gui/session/session.js:397
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr "اضغط %(hotkey)s لكى تفتح شات الحلفاء."
+msgstr "اضغط %(hotkey)s لفتح دردشة الحلفاء."
 
 #: gui/session/session.js:399
 #, javascript-format
@@ -997,7 +998,7 @@ msgstr "هُزمت!"
 
 #: gui/session/session.js:821
 msgid "Ok"
-msgstr "حسنا"
+msgstr "حسنًا"
 
 #: gui/session/session.js:880
 msgctxt "replayFinished"
@@ -1148,7 +1149,7 @@ msgstr "أزل الحارس"
 #: gui/session/unit_actions.js:1263
 #: gui/session/top_panel/button_trade.xml:(tooltip):9
 msgid "Barter & Trade"
-msgstr ""
+msgstr "تجارة و مقايضة"
 
 #: gui/session/unit_actions.js:1280
 msgid "Patrol"
@@ -1280,11 +1281,11 @@ msgstr "مستكشف هرمى طلائى"
 #: gui/session/diplomacy_window.xml:(caption):10
 #: gui/session/top_panel/button_diplomacy.xml:(tooltip):8
 msgid "Diplomacy"
-msgstr "الدبلوماسية"
+msgstr "الدّبلوماسيّة"
 
 #: gui/session/diplomacy_window.xml:(caption):15
 msgid "Name"
-msgstr "الأسم"
+msgstr "الاسم"
 
 #: gui/session/diplomacy_window.xml:(caption):18
 msgid "Civilization"
@@ -1292,7 +1293,7 @@ msgstr "الحضارة"
 
 #: gui/session/diplomacy_window.xml:(caption):24
 msgid "Theirs"
-msgstr "لديهم"
+msgstr "هوَ"
 
 #: gui/session/diplomacy_window.xml:(caption):27
 msgid "A"
@@ -1318,7 +1319,7 @@ msgstr "أغلق"
 
 #: gui/session/menu.xml:(caption):28
 msgid "Chat"
-msgstr "الدردشة"
+msgstr "الدّردشة"
 
 #: gui/session/menu.xml:(caption):39
 msgid "Save"
@@ -1326,11 +1327,11 @@ msgstr "احفظ"
 
 #: gui/session/menu.xml:(caption):52
 msgid "Summary"
-msgstr "ملخص"
+msgstr "الملخّص"
 
 #: gui/session/menu.xml:(caption):63
 msgid "Options"
-msgstr "إعدادت"
+msgstr "خيارات"
 
 #: gui/session/menu.xml:(caption):85
 msgid "Resign"
@@ -1338,12 +1339,12 @@ msgstr "استسلام"
 
 #: gui/session/menu.xml:(caption):96 gui/session/session.xml:(caption):158
 msgid "Exit"
-msgstr "خروج"
+msgstr "اخرج"
 
 #: gui/session/objectives_window.xml:(caption):15
 #: gui/session/top_panel/button_objectives.xml:(tooltip):15
 msgid "Objectives"
-msgstr "الاهداف"
+msgstr "الأهداف"
 
 #: gui/session/session.xml:(caption):58
 msgid "Game Paused"
@@ -1360,7 +1361,7 @@ msgstr "اتبع اللاعب"
 
 #: gui/session/top_panel.xml:(caption):46
 msgid "Observer Mode"
-msgstr "وضع المشاهدة"
+msgstr "وضع المراقبة"
 
 #: gui/session/top_panel.xml:(tooltip):38
 msgid "Choose player to view"
@@ -1368,23 +1369,23 @@ msgstr "اختر لاعبًا لعرضه"
 
 #: gui/session/trade_window.xml:(caption):9
 msgid "Barter & Trade Goods"
-msgstr ""
+msgstr "التجارة و المقايضة بالبضائع"
 
 #: gui/session/trade_window.xml:(caption):17
 msgid "Barter"
-msgstr ""
+msgstr "مقايضة"
 
 #: gui/session/trade_window.xml:(caption):24
 msgid "Sell:"
-msgstr ""
+msgstr "بيع:"
 
 #: gui/session/trade_window.xml:(caption):28
 msgid "Buy:"
-msgstr ""
+msgstr "شراء:"
 
 #: gui/session/trade_window.xml:(caption):32
 msgid "No Markets Available"
-msgstr ""
+msgstr "لا توجد أسواق متاحة"
 
 #: gui/session/trade_window.xml:(caption):67
 msgid "Trade"
@@ -1392,7 +1393,7 @@ msgstr "تبادل تجاري"
 
 #: gui/session/trade_window.xml:(caption):75
 msgid "Goods:"
-msgstr ""
+msgstr "بضائع"
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"
@@ -1451,4 +1452,4 @@ msgstr "قائمة"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XXI : Ulysses"
-msgstr "ألفا\"21\":أوليسيس"
+msgstr "ألفا 21: أوليسيس"

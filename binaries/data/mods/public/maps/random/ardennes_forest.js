@@ -121,7 +121,7 @@ var playerX = new Array(numPlayers);
 var playerZ = new Array(numPlayers);
 var playerAngle = new Array(numPlayers);
 
-var startAngle = randFloat() * 2 * PI;
+var startAngle = randFloat(0, 2 * PI);
 for (var i=0; i < numPlayers; i++)
 {
 	playerAngle[i] = startAngle + i*2*PI/numPlayers;

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_javelinist">
-  <Auras datatype="tokens">brit_hero_boudicca</Auras>
+  <Auras datatype="tokens">
+    units/heroes/brit_hero_boudicca
+  </Auras>
   <Footprint replace="">
     <Square width="4.5" depth="9.0"/>
     <Height>5.0</Height>

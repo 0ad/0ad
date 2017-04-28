@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_swordsman">
-  <Auras datatype="tokens">cart_hero_hamilcar</Auras>
+  <Auras datatype="tokens">
+    units/heroes/cart_hero_hamilcar
+  </Auras>
   <Identity>
     <Civ>cart</Civ>
     <SpecificName>Ḥimelqart Baraq</SpecificName>

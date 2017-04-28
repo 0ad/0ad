@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_infantry_spearman">
-  <Auras datatype="tokens">gaul_hero_britomartus</Auras>
+  <Auras datatype="tokens">
+    units/heroes/gaul_hero_britomartus
+  </Auras>
   <Identity>
     <Civ>gaul</Civ>
     <SpecificName>Britomartus</SpecificName>

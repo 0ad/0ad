@@ -299,22 +299,6 @@ void XmppClient::SendIqGetProfile(const std::string& player)
 }
 
 /**
- * Request the rating data from the server.
- */
-void XmppClient::SendIqGetRatingList()
-{
-	glooxwrapper::JID xpartamuppJid(m_xpartamuppId);
-
-	// Send IQ
-	BoardListQuery* b = new BoardListQuery();
-	b->m_Command = "getratinglist";
-	glooxwrapper::IQ iq(gloox::IQ::Get, xpartamuppJid);
-	iq.addExtension(b);
-	DbgXMPP("SendIqGetRatingList [" << tag_xml(iq) << "]");
-	m_client->send(iq);
-}
-
-/**
  * Send game report containing numerous game properties to the server.
  *
  * @param data A JS array of game statistics

@@ -164,7 +164,7 @@ function placeRandomPathToHeight(
 		if (getDistance(position.x, position.y, target.x, target.y) < distance / 2)
 			break;
 		let angleToTarget = getAngle(position.x, position.y, target.x, target.y);
-		let angleOff = PI * (randFloat() - 0.5);
+		let angleOff = randFloat(-PI/2, PI/2);
 		position.x += distance * cos(angleToTarget + angleOff);
 		position.y += distance * sin(angleToTarget + angleOff);
 	}
@@ -309,7 +309,7 @@ function placeMine(point, centerEntity)
 	let dAngle = TWO_PI / quantity;
 	for (let i = 0; i < quantity; ++i)
 	{
-		let angle = i * dAngle + randFloat(0, dAngle);
+		let angle = dAngle * randFloat(i, i + 1);
 		let dist = randFloat(2, 5);
 		placeObject(point.x + dist * Math.cos(angle), point.y + dist * Math.sin(angle), pickRandom(decorations), 0, randFloat(0, 2 * PI));
 	}
@@ -356,7 +356,7 @@ function placeGrove(point)
 	let dAngle = TWO_PI / quantity;
 	for (let i = 0; i < quantity; ++i)
 	{
-		let angle = dAngle * randFloat(i, i+1);
+		let angle = dAngle * randFloat(i, i + 1);
 		let dist = randFloat(2, 5);
 		let objectList = groveEntities;
 		if (i % 3 == 0)
@@ -382,7 +382,7 @@ function placeCamp(point,
 	let dAngle = TWO_PI / quantity;
 	for (let i = 0; i < quantity; ++i)
 	{
-		let angle = i * dAngle + randFloat(0, dAngle);
+		let angle = dAngle * randFloat(i, i + 1);
 		let dist = randFloat(1, 3);
 		placeObject(point.x + dist * Math.cos(angle), point.y + dist * Math.sin(angle), pickRandom(otherEntities), 0, randFloat(0, 2 * PI));
 	}
@@ -734,7 +734,7 @@ for (let h = 0; h < heighLimits.length; ++h)
 		g_Map.texture[x][y] = g_Map.getTextureID(texture);
 		
 		if (actor)
-			placeObject(x + randFloat(), y + randFloat(), actor, 0, randFloat() * TWO_PI);
+			placeObject(randFloat(x, x + 1), randFloat(y, y + 1), actor, 0, randFloat(0, 2 * PI));
 	}
 }
 

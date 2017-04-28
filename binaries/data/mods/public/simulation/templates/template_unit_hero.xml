@@ -12,7 +12,9 @@
       <RepeatTime>1000</RepeatTime>
     </Capture>
   </Attack>
-  <Auras datatype="tokens">hero_garrison</Auras>
+  <Auras datatype="tokens">
+    units/heroes/hero_garrison
+  </Auras>
   <Cost>
     <Population>2</Population>
     <BuildTime>40</BuildTime>

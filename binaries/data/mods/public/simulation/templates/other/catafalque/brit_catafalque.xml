@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="other/special_catafalque">
-  <Auras datatype="tokens">catafalques/brit_catafalque_1 catafalques/brit_catafalque_2</Auras>
+  <Auras datatype="tokens">
+    units/catafalques/brit_catafalque_1
+    units/catafalques/brit_catafalque_2
+  </Auras>
   <Identity>
     <Civ>brit</Civ>
     <SpecificName>Cassivellaunus</SpecificName>

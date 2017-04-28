@@ -102,7 +102,7 @@ var islandAngle = new Array(numIslands);
 //holds all land areas
 var areas = [];
 
-var startAngle = randFloat() * 2 * PI;
+var startAngle = randFloat(0, 2 * PI);
 for (var i=0; i < numIslands; i++)
 {
 	islandAngle[i] = startAngle + i*2*PI/numIslands;
@@ -246,7 +246,7 @@ RMS.SetProgress(20);
 
 // get the x and z in tiles
 var nCenter = floor(scaleByMapSize(1,4));
-var startAngle = randFloat() * 2 * PI;
+startAngle = randFloat(0, 2 * PI);
 for (var i = 0; i < nCenter; ++i)
 {
 	var fx = 0.5;
@@ -254,7 +254,7 @@ for (var i = 0; i < nCenter; ++i)
 
 	if (nCenter != 1)
 	{
-		let isangle = startAngle + i*2*PI/nCenter + PI/8 * randFloat(-1, -1);
+		let isangle = startAngle + i * 2 * PI / nCenter + randFloat(-PI/8, PI/8);
 		let dRadius = randFloat(0.1, 0.16);
 		fx = 0.5 + dRadius * cos(isangle);
 		fz = 0.5 + dRadius * sin(isangle);

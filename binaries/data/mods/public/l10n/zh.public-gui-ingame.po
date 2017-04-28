@@ -29,14 +29,14 @@
 # yukisola <yolandaapply@gmail.com>, 2014
 # hiahoo lee (leaber) <zodiac8765@gmail.com>, 2014
 # 吴善俊 <sjwuny@126.com>, 2014
-# 李武军 <lwj7863439@gmail.com>, 2016
+# 李武军 <lwj7863439@gmail.com>, 2016-2017
 # 玉堂白鹤 <yjwork@qq.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-04-10 09:05+0200\n"
-"PO-Revision-Date: 2017-04-10 09:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-04-21 08:17+0000\n"
+"Last-Translator: 李武军 <lwj7863439@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -116,7 +116,7 @@ msgstr "%(time)s %(message)s"
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
-msgstr ""
+msgstr "直到停火结束的剩余时间：%(time)s。"
 
 #: gui/session/menu.js:411
 msgctxt "team"
@@ -149,7 +149,7 @@ msgstr "请求你的盟友攻击敌人"
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
-msgstr ""
+msgstr "贿赂该玩家的一个随机单位并在有限期间内共享其视野。"
 
 #: gui/session/menu.js:716
 #, javascript-format
@@ -354,7 +354,7 @@ msgstr "原因: %(reason)s."
 
 #: gui/session/messages.js:145
 msgid "Waiting for players to connect:"
-msgstr ""
+msgstr "等待玩家连接："
 
 #: gui/session/messages.js:146
 msgid "Synchronising gameplay with other players..."
@@ -541,7 +541,7 @@ msgstr "%(player)s 给你 %(amounts)s。"
 #: gui/session/messages.js:907
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
-msgstr ""
+msgstr "您已给予 %(player2)s %(amounts)s。"
 
 #: gui/session/messages.js:912
 #, javascript-format
@@ -904,7 +904,7 @@ msgstr "按 %(hotkey)s 开启盟友聊天窗口。"
 #: gui/session/session.js:399
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
-msgstr ""
+msgstr "按 %(hotkey)s 开启之前选择的私人聊天窗口。"
 
 #: gui/session/session.js:403
 msgid "Find idle worker"
@@ -1013,7 +1013,7 @@ msgstr "时空隧道模式"
 #: gui/session/session.js:1318
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
-msgstr ""
+msgstr "%(time)s (%(speed)sx)"
 
 #: gui/session/unit_actions.js:572
 msgid "Origin trade market."
@@ -1325,15 +1325,15 @@ msgstr ""
 
 #: gui/session/trade_window.xml:(caption):24
 msgid "Sell:"
-msgstr ""
+msgstr "出售："
 
 #: gui/session/trade_window.xml:(caption):28
 msgid "Buy:"
-msgstr ""
+msgstr "购买："
 
 #: gui/session/trade_window.xml:(caption):32
 msgid "No Markets Available"
-msgstr ""
+msgstr "无可用市场"
 
 #: gui/session/trade_window.xml:(caption):67
 msgid "Trade"
@@ -1341,7 +1341,7 @@ msgstr "贸易"
 
 #: gui/session/trade_window.xml:(caption):75
 msgid "Goods:"
-msgstr ""
+msgstr "货物："
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"

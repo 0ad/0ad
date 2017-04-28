@@ -154,7 +154,6 @@ var g_NetMessageTypes = {
 				}),
 				"isSpecial": true
 			});
-			Engine.SendGetRatingList();
 		},
 		"leave": msg => {
 			addChatMessage({

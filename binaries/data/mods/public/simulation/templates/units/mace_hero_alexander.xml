@@ -10,7 +10,9 @@
       </Bonuses>
     </Melee>
   </Attack>
-  <Auras datatype="tokens">mace_hero_alexander</Auras>
+  <Auras datatype="tokens">
+    units/heroes/mace_hero_alexander
+  </Auras>
   <Identity>
     <Civ>mace</Civ>
     <Lang>greek</Lang>

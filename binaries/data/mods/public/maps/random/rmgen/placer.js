@@ -48,7 +48,7 @@ ClumpPlacer.prototype.place = function(constraint)
 	for (var i=0; i < ctrlPts; i++)
 	{
 		ctrlCoords[i] = i * perim / ctrlPts;
-		ctrlVals[i] = 2.0*randFloat();
+		ctrlVals[i] = randFloat(0, 2);
 	}
 
 	var c = 0;

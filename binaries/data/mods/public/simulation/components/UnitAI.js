@@ -24,6 +24,9 @@ UnitAI.prototype.Schema =
 	"<element name='CanGuard'>" +
 		"<data type='boolean'/>" +
 	"</element>" +
+	"<element name='CanPatrol'>" +
+		"<data type='boolean'/>" +
+	"</element>" +
 	"<optional>" +
 		"<interleave>" +
 			"<element name='NaturalBehaviour' a:help='Behaviour of the unit in the absence of player commands (intended for animals)'>" +
@@ -5042,7 +5045,14 @@ UnitAI.prototype.CanGuard = function()
 	if (cmpGuard && cmpGuard.GetEntities().length)
 		return false;
 
-	return (this.template.CanGuard == "true");
+	return this.template.CanGuard == "true";
+};
+
+UnitAI.prototype.CanPatrol = function()
+{
+	// Formation controllers should always respond to commands
+	// (then the individual units can make up their own minds)
+	return this.IsFormationController() || this.template.CanPatrol == "true";
 };
 
 /**
@@ -5093,6 +5103,12 @@ UnitAI.prototype.WalkAndFight = function(x, z, targetClasses, queued)
 
 UnitAI.prototype.Patrol = function(x, z, targetClasses, queued)
 {
+	if (!this.CanPatrol())
+	{
+		this.Walk(x, z, queued);
+		return;
+	}
+
 	this.AddOrder("Patrol", { "x": x, "z": z, "targetClasses": targetClasses, "force": true }, queued);
 };
 

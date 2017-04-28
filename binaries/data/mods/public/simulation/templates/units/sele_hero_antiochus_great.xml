@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_spearman">
-  <Auras datatype="tokens">sele_hero_antiochus_great</Auras>
+  <Auras datatype="tokens">
+    units/heroes/sele_hero_antiochus_great
+  </Auras>
   <Identity>
     <Civ>sele</Civ>
     <Lang>greek</Lang>

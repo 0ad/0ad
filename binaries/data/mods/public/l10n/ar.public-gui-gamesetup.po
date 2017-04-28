@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-04-10 09:05+0200\n"
-"PO-Revision-Date: 2017-04-10 08:44+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-04-27 04:51+0000\n"
+"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -49,7 +49,7 @@ msgstr "أنا جاهز"
 
 #: gui/gamesetup/gamesetup.js:38
 msgid "State that you are ready to play."
-msgstr "صرّح باستعدادك للّعب."
+msgstr "أعلن استعدادك للّعب."
 
 #: gui/gamesetup/gamesetup.js:42
 #, javascript-format
@@ -70,7 +70,7 @@ msgstr "لستُ جاهزًا!"
 
 #: gui/gamesetup/gamesetup.js:50
 msgid "State that you are not ready to play."
-msgstr "صرّح بعدم استعدادك للّعب."
+msgstr "أعلن عدم استعدادك للّعب."
 
 #: gui/gamesetup/gamesetup.js:73
 msgid "Game settings have been changed"
@@ -109,7 +109,7 @@ msgstr "<%(username)s>"
 #: gui/gamesetup/gamesetup.js:92
 msgctxt "map filter"
 msgid "Default"
-msgstr "افتراضى "
+msgstr "الافتراضيّ"
 
 #: gui/gamesetup/gamesetup.js:97
 msgid "Naval Maps"
@@ -117,7 +117,7 @@ msgstr "الخرائط البحريّة"
 
 #: gui/gamesetup/gamesetup.js:102
 msgid "Demo Maps"
-msgstr "خرائط تجريبية"
+msgstr "الخرائط التّجريبيّة"
 
 #: gui/gamesetup/gamesetup.js:107
 msgid "New Maps"
@@ -143,11 +143,11 @@ msgstr "عشوائيّة"
 
 #: gui/gamesetup/gamesetup.js:292
 msgid "Return to the lobby."
-msgstr "ارجع إلى الرّدهة."
+msgstr "عُد إلى الرّدهة."
 
 #: gui/gamesetup/gamesetup.js:292
 msgid "Return to the main menu."
-msgstr "ارجع إلى القائمة الرّئيسيّة."
+msgstr "عُد إلى القائمة الرّئيسيّة."
 
 #: gui/gamesetup/gamesetup.js:639
 msgid "Yes"
@@ -170,7 +170,7 @@ msgstr "%(playerName)s %(romanNumber)s"
 #: gui/gamesetup/gamesetup.js:1430
 msgctxt "map size"
 msgid "Default"
-msgstr "افتراضى "
+msgstr "الافتراضيّ"
 
 #: gui/gamesetup/gamesetup.js:1501
 msgid "Loading..."
@@ -183,7 +183,7 @@ msgstr "الذّكاء الاصطناعيّ: %(ai)s"
 
 #: gui/gamesetup/gamesetup.js:1639
 msgid "Unassigned"
-msgstr "غير مُعيّن"
+msgstr "غير معيّن"
 
 #: gui/gamesetup/gamesetup.js:1799
 #, javascript-format
@@ -211,12 +211,12 @@ msgstr "HH:mm"
 #: gui/loading/loading.js:48
 #, javascript-format
 msgid "Loading “%(map)s”"
-msgstr "يحمّل \"%(map)s\""
+msgstr "يحمّل ”%(map)s“"
 
 #: gui/loading/loading.js:52
 #, javascript-format
 msgid "Generating “%(map)s”"
-msgstr "يولّد \"%(map)s\""
+msgstr "يولّد ”%(map)s“"
 
 #: gui/aiconfig/aiconfig.xml:(caption):16
 msgid "AI Configuration"
@@ -249,7 +249,7 @@ msgstr "يحمّل"
 
 #: gui/gamesetup/gamesetup.xml:(caption):31
 msgid "Loading map data. Please wait..."
-msgstr "يحمّل بيانات الخريطة. فضلًا انتظر..."
+msgstr "يحمّل بيانات الخريطة. رجاءً انتظر..."
 
 #: gui/gamesetup/gamesetup.xml:(caption):47
 msgid "Player Name"
@@ -301,7 +301,7 @@ msgstr "أرسل"
 
 #: gui/gamesetup/gamesetup.xml:(caption):260
 msgid "Cheats enabled."
-msgstr "الشفرات متاحه "
+msgstr "الغشّ مفعّل."
 
 #: gui/gamesetup/gamesetup.xml:(caption):273
 msgid "Start game!"
@@ -309,7 +309,7 @@ msgstr "ابدأ اللعبة!"
 
 #: gui/gamesetup/gamesetup.xml:(caption):291
 msgid "Back"
-msgstr "ارجع"
+msgstr "عُد"
 
 #: gui/gamesetup/gamesetup.xml:(caption):305
 #: gui/gamesetup/gamesetup.xml:(caption):317
@@ -344,17 +344,17 @@ msgstr "وقف إطلاق النار:"
 #. options!
 #: gui/gamesetup/gamesetup.xml:(caption):382
 msgid "Revealed Map:"
-msgstr "كشفت خريطة:"
+msgstr "الخريطة مكشوفة:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:(caption):392
 msgid "Explored Map:"
-msgstr "استكشاف خريطة:"
+msgstr "الخريطة مكتشَفة:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):402
 msgid "Disable Treasures:"
-msgstr "تعطيل الكنوز  "
+msgstr "عطّل الكنوز:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):412
 msgid "Disable Spies:"
@@ -366,7 +366,7 @@ msgstr "الفِرق مقفلة:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):432
 msgid "Last Man Standing:"
-msgstr "ّاخر رجل موجود "
+msgstr "آخر مَن يبقى:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):442
 msgid "Cheats:"
@@ -475,11 +475,11 @@ msgstr "رجح الخرائط المكتشفة(رؤيه الخرائط الأو�
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):406
 msgid "Disable all treasures on the map."
-msgstr "تعطيل كافة الكنوز على الخريطة."
+msgstr "عطّل كلّ الكنوز في الخريطة."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):416
 msgid "Disable spies during the game."
-msgstr "عدم تمكين الجواسيس خلال اللعبة."
+msgstr "عطّل الجواسيس أثناء اللعب."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):426
 msgid "Toggle locked teams."
@@ -489,11 +489,11 @@ msgstr "بدّل قفل الفِرق."
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
-msgstr "رجح اللاعب الأخير أو الحلفاء الباقين هم الفائزون."
+msgstr "بدّل بين إن كان آخر مَن يبقى أو آخر مجموعة حلفاء تبقى هي الفائزة أم لا."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):446
 msgid "Toggle the usability of cheats."
-msgstr "بدّل قابليّة استخدام الغشّ."
+msgstr "بدّل إمكانيّة استخدام الغشّ."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):456
 msgid "Toggle if this game will be rated for the leaderboard."

@@ -24,12 +24,9 @@ function pickRandom(source)
 }
 
 /**
- * Return a random floating point number.
- *
- * If two parameters are given, and the returned float is in the interval [min, max).
- * If no parameter is given, the returned float is in the interval [0, 1).
+ * Return a random floating point number in the interval [min, max).
  */
-function randFloat(min = 0, max = 1)
+function randFloat(min, max)
 {
 	return min + Math.random() * (max - min);
 }

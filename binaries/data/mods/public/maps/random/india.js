@@ -1,12 +1,7 @@
 RMS.LoadLibrary("rmgen");
 
 const tGrass1 = "savanna_grass_a";
-const tGrass2 = "savanna_grass_b";
-const tGrass3 = "savanna_shrubs_a";
-const tCliff = "savanna_cliff_a";
 const tDirt1 = "savanna_dirt_a";
-const tDirt2 = "savanna_dirt_plants_a";
-const tDirt3 = "savanna_dirt_plants_cracked";
 const tDirt4 = "savanna_dirt_b";
 const tCityTiles = "savanna_tile_a_dirt_red";
 const tShore = "savanna_riparian_bank";
@@ -19,6 +14,7 @@ const oTiger = "gaia/fauna_tiger";
 const oCrocodile = "gaia/fauna_crocodile";
 const oFish = "gaia/fauna_fish";
 const oElephant = "gaia/fauna_elephant_asian";
+const oElephantInfant = "gaia/fauna_elephant_asian_infant";
 const oBoar = "gaia/fauna_boar";
 const oStoneSmall = "gaia/geology_stone_savanna_small";
 const oMetalLarge = "gaia/geology_metal_savanna_slabs";
@@ -119,12 +115,12 @@ for (let i = 0; i < numPlayers; ++i)
 	// Create starting trees
 	var num = Math.floor(PI * radius * radius / 300);
 	var tAngle = randFloat(-PI/3, 4 * PI/3);
-	var tDist = randFloat(11, 13);
+	var tDist = randFloat(13, 15);
 	var tX = Math.round(fx + tDist * Math.cos(tAngle));
 	var tZ = Math.round(fz + tDist * Math.sin(tAngle));
 	createObjectGroup(
 		new SimpleGroup(
-			[new SimpleObject(oTree, num, num, 5, 12)],
+			[new SimpleObject(oTree, num, num, 4, 6)],
 			false, clBaseResource, tX, tZ
 		),
 		0,
@@ -140,32 +136,6 @@ createAreas(
 	scaleByMapSize(300, 800)
 );
 
-log("Creating big patches...");
-var patches = [tGrass2, tGrass3];
-for (let i = 0; i < patches.length; ++i)
-	createAreas(
-		new ChainPlacer(
-			Math.floor(scaleByMapSize(3, 6)),
-			Math.floor(scaleByMapSize(10, 20)),
-			Math.floor(scaleByMapSize(15, 60)),
-			1),
-		new TerrainPainter(patches[i]),
-		avoidClasses(clPlayer, 10),
-		scaleByMapSize(5, 20)
-	);
-
-log("Creating small patches...");
-var patches = [tDirt1, tDirt2, tDirt3];
-var sizes = [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)];
-for (let i = 0; i < sizes.length; ++i)
-	for (let j = 0; j < patches.length; ++j)
-		createAreas(
-			new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), sizes[i], 1),
-			new TerrainPainter(patches[j]),
-			avoidClasses(clPlayer, 12),
-			scaleByMapSize(4, 15)
-		);
-
 log("Creating the half dried-up lake...");
 createArea(
 	new ChainPlacer(
@@ -178,7 +148,6 @@ createArea(
 		0,
 		[Math.floor(mapSize * 0.008 * Math.pow(scaleByMapSize(1, 66), 1/8))]),
 	[
-		new LayeredPainter([tShore, tWater, tWater, tWater], [1, 4, 2]),
 		new SmoothElevationPainter(ELEVATION_SET, -3, 4),
 		paintClass(clWater)
 	],
@@ -188,7 +157,6 @@ log("Creating more shore jaggedness...");
 createAreas(
 	new ChainPlacer(2, Math.floor(scaleByMapSize(4, 6)), 3, 1),
 	[
-		new LayeredPainter([tCliff, tDirt1], [2]),
 		new SmoothElevationPainter(ELEVATION_SET, 3, 4),
 		unPaintClass(clWater)
 	],
@@ -209,8 +177,8 @@ var waterConstraint = new AvoidTileClassConstraint(clWater, 10);
 log("Creating stone mines...");
 for (let i = 0; i < scaleByMapSize(12, 30); ++i)
 {
-	let mX = randIntInclusive(0, mapSize);
-	let mZ = randIntInclusive(0, mapSize);
+	let mX = randIntInclusive(1, mapSize - 1);
+	let mZ = randIntInclusive(1, mapSize - 1);
 	if (playerConstraint.allows(mX, mZ) && minesConstraint.allows(mX, mZ) && waterConstraint.allows(mX, mZ))
 	{
 		createStoneMineFormation(mX, mZ, tDirt4);
@@ -274,7 +242,10 @@ createObjectGroups(
 log("Creating elephants...");
 createObjectGroups(
 	new SimpleGroup(
-		[new SimpleObject(oElephant, 2, 4, 0, 4)],
+		[
+			new SimpleObject(oElephant, 2, 4, 0, 4),
+			new SimpleObject(oElephantInfant, 1, 2, 0, 4)
+		],
 		true, clFood
 	),
 	0,

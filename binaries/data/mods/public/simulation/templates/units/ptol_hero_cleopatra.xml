@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_infantry_archer">
-  <Auras datatype="tokens">ptol_hero_cleopatra_1 ptol_hero_cleopatra_2 ptol_hero_cleopatra_3</Auras>
+  <Auras datatype="tokens">
+    units/heroes/ptol_hero_cleopatra_1
+    units/heroes/ptol_hero_cleopatra_2
+    units/heroes/ptol_hero_cleopatra_3
+  </Auras>
   <Identity>
     <Civ>ptol</Civ>
     <Gender>female</Gender>
