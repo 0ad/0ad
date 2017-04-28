@@ -61,7 +61,6 @@ public:
 	void connect();
 	void disconnect();
 	void recv();
-	void SendIqGetGameList();
 	void SendIqGetBoardList();
 	void SendIqGetProfile(const std::string& player);
 	void SendIqGameReport(ScriptInterface& scriptInterface, JS::HandleValue data);

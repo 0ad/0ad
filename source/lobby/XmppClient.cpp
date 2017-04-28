@@ -253,20 +253,6 @@ void XmppClient::handleMUCError(glooxwrapper::MUCRoom*, gloox::StanzaError err)
  *****************************************************/
 
 /**
- * Request a listing of active games from the server.
- */
-void XmppClient::SendIqGetGameList()
-{
-	glooxwrapper::JID xpartamuppJid(m_xpartamuppId);
-
-	// Send IQ
-	glooxwrapper::IQ iq(gloox::IQ::Get, xpartamuppJid);
-	iq.addExtension(new GameListQuery());
-	DbgXMPP("SendIqGetGameList [" << tag_xml(iq) << "]");
-	m_client->send(iq);
-}
-
-/**
  * Request the leaderboard data from the server.
  */
 void XmppClient::SendIqGetBoardList()
