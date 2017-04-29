@@ -269,19 +269,32 @@ function disableMod()
 
 function resetFilters()
 {
-	// Reset states of gui objects.
-	Engine.GetGUIObjectByName("modTypeFilter").selected = 0;
-	Engine.GetGUIObjectByName("negateFilter").checked = false;
 	Engine.GetGUIObjectByName("modGenericFilter").caption = "";
+	Engine.GetGUIObjectByName("negateFilter").checked = false;
 
 	// NOTE: Calling generateModsLists() is not needed as the selection changes and that calls applyFilters()
+	Engine.GetGUIObjectByName("modTypeFilter").selected = 0;
 }
 
 function applyFilters()
 {
-	Engine.GetGUIObjectByName("modsAvailableList").selected = -1;
-	Engine.GetGUIObjectByName("modsEnabledList").selected = -1;
+	// Save selected rows
+	let modsAvailableList = Engine.GetGUIObjectByName("modsAvailableList");
+	let modsEnabledList = Engine.GetGUIObjectByName("modsEnabledList");
+	let selectedModAvailableFolder = modsAvailableList.list_modFolderName[modsAvailableList.selected];
+	let selectedModEnabledFolder = modsEnabledList.list_modFolderName[modsEnabledList.selected];
+
+	// Remove selected rows to prevent a link to a non existing item
+	modsAvailableList.selected = -1;
+	modsEnabledList.selected = -1;
+
 	generateModsLists();
+
+	// Restore previously selected rows
+	modsAvailableList.selected = modsAvailableList.list_modFolderName.indexOf(selectedModAvailableFolder);
+	modsEnabledList.selected = modsEnabledList.list_modFolderName.indexOf(selectedModEnabledFolder);
+
+	Engine.GetGUIObjectByName("globalModDescription").caption = "";
 }
 
 /**
