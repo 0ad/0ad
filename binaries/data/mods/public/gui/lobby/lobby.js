@@ -69,6 +69,11 @@ const g_PrivateMessageColor = "0 150 0";
 const g_SenderFont = "sans-bold-13";
 
 /**
+ * Color to highlight chat commands in the explanation.
+ */
+const g_ChatCommandColor = "200 200 255";
+
+/**
  * All chat messages received since init (i.e. after lobby join and after returning from a game).
  */
 var g_ChatMessages = [];
@@ -206,6 +211,85 @@ var g_NetMessageTypes = {
 		"profile": msg => updateProfile(),
 		"leaderboard": msg => updateLeaderboard(),
 		"ratinglist": msg => updatePlayerList()
+	}
+};
+
+/**
+ * Commands that can be entered by clients via chat input.
+ * A handler returns true if the user input should be sent as a chat message.
+ */
+var g_ChatCommands = {
+	"away": {
+		"description": translate("Set your state to 'Away'."),
+		"handler": args => {
+			Engine.LobbySetPlayerPresence("away");
+			return false;
+		}
+	},
+	"back": {
+		"description": translate("Set your state to 'Online'."),
+		"handler": args => {
+			Engine.LobbySetPlayerPresence("available");
+			return false;
+		}
+	},
+	"kick": {
+		"description": translate("Kick a specified user from the lobby. Usage: /kick nick reason"),
+		"handler": args => {
+			Engine.LobbyKick(args[0] || "", args[1] || "");
+			return false;
+		},
+		"moderatorOnly": true
+	},
+	"ban": {
+		"description": translate("Ban a specified user from the lobby. Usage: /ban nick reason"),
+		"handler": args => {
+			Engine.LobbyBan(args[0] || "", args[1] || "");
+			return false;
+		},
+		"moderatorOnly": true
+	},
+	"help": {
+		"description": translate("Show this help."),
+		"handler": args => {
+			let isModerator = Engine.LobbyGetPlayerRole(g_Username) == "moderator";
+			let text = translate("Chat commands:");
+			for (let command in g_ChatCommands)
+				if (!g_ChatCommands[command].moderatorOnly || isModerator)
+					// Translation: Chat command help format
+					text += "\n" + sprintf(translate("%(command)s - %(description)s"), {
+						"command": '[color="' + g_ChatCommandColor + '"]' + command + '[/color]',
+						"description": g_ChatCommands[command].description
+					});
+
+			addChatMessage({
+				"from": "system",
+				"text": text
+			});
+			return false;
+		}
+	},
+	"me": {
+		"description": translate("Send a chat message about yourself. Example: /me goes swimming."),
+		"handler": args => true
+	},
+	"say": {
+		"description": translate("Send text as a chat message (even if it starts with slash). Example: /say /help is a great command."),
+		"handler": args => true
+	},
+	"clear": {
+		"description": translate("Clear all chat scrollback."),
+		"handler": args => {
+			clearChatMessages();
+			return false;
+		}
+	},
+	"quit": {
+		"description": translate("Return to the main menu."),
+		"handler": args => {
+			returnToMainMenu();
+			return false;
+		}
 	}
 };
 
@@ -923,7 +1007,7 @@ function submitChatInput()
 	if (!text.length)
 		return;
 
-	if (!handleSpecialCommand(text) && !isSpam(text, g_Username))
+	if (handleChatCommand(text) && !isSpam(text, g_Username))
 		Engine.LobbySendMessage(text);
 
 	input.caption = "";
@@ -933,49 +1017,41 @@ function submitChatInput()
  * Handle all '/' commands.
  *
  * @param {string} text - Text to be checked for commands.
- * @returns {boolean} true if more text processing is needed, false otherwise.
+ * @returns {boolean} true if the text should be sent via chat.
  */
-function handleSpecialCommand(text)
+function handleChatCommand(text)
 {
 	if (text[0] != '/')
-		return false;
+		return true;
 
 	let [cmd, args] = ircSplit(text);
-	let [nick, reason] = ircSplit("/" + args);
+	args = ircSplit("/" + args);
 
-	switch (cmd)
+	if (!g_ChatCommands[cmd])
 	{
-	case "away":
-		Engine.LobbySetPlayerPresence("away");
-		break;
-	case "back":
-		Engine.LobbySetPlayerPresence("available");
-		break;
-	case "kick":
-		Engine.LobbyKick(nick, reason);
-		break;
-	case "ban":
-		Engine.LobbyBan(nick, reason);
-		break;
-	case "quit":
-		returnToMainMenu();
-		break;
-	case "clear":
-		clearChatMessages();
-		break;
-	case "say":
-	case "me":
-		return false;
-	default:
 		addChatMessage({
 			"from": "system",
 			"text": sprintf(
-				translate("We're sorry, the '%(cmd)s' command is not supported."),
-				{ "cmd": cmd }
-			)
+				translate("The command '%(cmd)s' is not supported."), {
+					"cmd": '[color="' + g_ChatCommandColor + '"]' + cmd + '[/color]'
+				})
 		});
+		return false;
 	}
-	return true;
+
+	if (g_ChatCommands[cmd].moderatorOnly && Engine.LobbyGetPlayerRole(g_Username) != "moderator")
+	{
+		addChatMessage({
+			"from": "system",
+			"text": sprintf(
+				translate("The command '%(cmd)s' is restricted to moderators."), {
+					"cmd": '[color="' + g_ChatCommandColor + '"]' + cmd + '[/color]'
+				})
+		});
+		return false;
+	}
+
+	return g_ChatCommands[cmd].handler(args);
 }
 
 /**
@@ -1038,7 +1114,7 @@ function ircFormat(msg)
 	let formattedMessage = "";
 	let coloredFrom = msg.from && colorPlayerName(msg.from);
 
-	// Handle commands allowed past handleSpecialCommand.
+	// Handle commands allowed past handleChatCommand.
 	if (msg.text[0] == '/')
 	{
 		let [command, message] = ircSplit(msg.text);
