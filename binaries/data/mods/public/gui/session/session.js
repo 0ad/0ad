@@ -12,8 +12,13 @@ const g_VictoryDurations = prepareForDropdown(g_Settings && g_Settings.VictoryDu
 /**
  * Colors to flash when pop limit reached.
  */
-const g_DefaultPopulationColor = "white";
-const g_PopulationAlertColor = "orange";
+var g_DefaultPopulationColor = "white";
+var g_PopulationAlertColor = "orange";
+
+/**
+ * Seen in the tooltip of the top panel.
+ */
+var g_ResourceTitleFont = "sans-bold-16";
 
 /**
  * A random file will be played. TODO: more variety
@@ -1126,10 +1131,23 @@ function updatePlayerDisplay()
 	let resNames = g_ResourceData.GetNames();
 	for (let r = 0; r < resCodes.length; ++r)
 	{
-		if (!Engine.GetGUIObjectByName("resource["+r+"]"))
+		let resourceObj = Engine.GetGUIObjectByName("resource[" + r + "]");
+		if (!resourceObj)
 			break;
+
 		let res = resCodes[r];
-		Engine.GetGUIObjectByName("resource["+r+"]").tooltip = getLocalizedResourceName(resNames[res], "firstWord") + getAllyStatTooltip(res);
+
+		let tooltip = '[font="' + g_ResourceTitleFont + '"]' +
+			getLocalizedResourceName(resNames[res], "firstWord") + '[/font]';
+
+		let descr = g_ResourceData.GetResource(res).description;
+		if (descr)
+			tooltip += "\n" + translate(descr);
+
+		tooltip += getAllyStatTooltip(res);
+
+		resourceObj.tooltip = tooltip;
+
 		Engine.GetGUIObjectByName("resource["+r+"]_count").caption = Math.floor(playerState.resourceCounts[res]);
 	}
 
