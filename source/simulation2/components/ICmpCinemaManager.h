@@ -18,6 +18,9 @@
 #ifndef INCLUDED_ICMPCINEMAMANAGER
 #define INCLUDED_ICMPCINEMAMANAGER
 
+#include <list>
+#include <map>
+
 #include "simulation2/helpers/CinemaPath.h"
 #include "simulation2/system/Interface.h"
 
