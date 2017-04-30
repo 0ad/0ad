@@ -822,4 +822,16 @@
 			texture_size="0 0 24 24"
 		/>
 	</sprite>
+	<sprite name="ModernSliderButton">
+		<image texture="global/modern/tick-on.png"
+			real_texture_placement="0 0 27 27"
+			size="50%-10 50%-10 50%+11 50%+11"
+		/>
+	</sprite>
+	<sprite name="ModernSliderLine">
+		<image texture="global/modern/gold-separator.png"
+			real_texture_placement="0 0 806 1"
+			size="0 50%-1 100% 50%+1"
+		/>
+	</sprite>
 </sprites>

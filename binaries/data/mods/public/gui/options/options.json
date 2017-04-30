@@ -214,34 +214,34 @@
 	"soundSetting":
 	[
 		{
-			"type": "number",
+			"type": "slider",
 			"label": "Master Gain",
 			"tooltip": "Master audio gain",
-			"parameters": { "config": "sound.mastergain", "function": "SetMasterGain", "min": "0" }
+			"parameters": { "config": "sound.mastergain", "function": "SetMasterGain", "min": 0, "max": 2 }
 		},
 		{
-			"type": "number",
+			"type": "slider",
 			"label": "Music Gain",
 			"tooltip": "In game music gain",
-			"parameters": { "config": "sound.musicgain", "function": "SetMusicGain", "min": "0" }
+			"parameters": { "config": "sound.musicgain", "function": "SetMusicGain", "min": 0, "max": 2 }
 		},
 		{
-			"type": "number",
+			"type": "slider",
 			"label": "Ambient Gain",
 			"tooltip": "In game ambient sound gain",
-			"parameters": { "config": "sound.ambientgain", "function": "SetAmbientGain", "min": "0" }
+			"parameters": { "config": "sound.ambientgain", "function": "SetAmbientGain", "min": 0, "max": 2 }
 		},
 		{
-			"type": "number",
+			"type": "slider",
 			"label": "Action Gain",
 			"tooltip": "In game unit action sound gain",
-			"parameters": { "config": "sound.actiongain", "function": "SetActionGain", "min": "0" }
+			"parameters": { "config": "sound.actiongain", "function": "SetActionGain", "min": 0, "max": 2 }
 		},
 		{
-			"type": "number",
+			"type": "slider",
 			"label": "UI Gain",
 			"tooltip": "UI sound gain",
-			"parameters": { "config": "sound.uigain", "function": "SetUIGain", "min": "0" }
+			"parameters": { "config": "sound.uigain", "function": "SetUIGain", "min": 0, "max": 2 }
 		},
 		{
 			"type": "boolean",
