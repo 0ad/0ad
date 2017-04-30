@@ -99,8 +99,16 @@ Interface methods are defined with the macro:
 corresponding to the C++ method
 <code><var>ReturnType</var> ICmpExample::<var>MethodName</var>(<var>ArgType0</var>, <var>ArgType1</var>, ...)</code>
 
-For methods exposed to scripts like this, the arguments should be simple types and pass-by-value.
-E.g. use <code>std::wstring</code> arguments, not <code>const std::wstring&</code>.
+Const methods are defined with this macro:
+
+  <code>DEFINE_INTERFACE_METHOD_CONST_<var>NumberOfArguments</var>(<var>"MethodName"</var>,
+  <var>ReturnType</var>, ICmpExample, <var>MethodName</var>, <var>ArgType0</var>, <var>ArgType1</var>, ...)</code>
+
+corresponding to the C++ const method
+<code><var>ReturnType</var> ICmpExample::<var>MethodName</var>(<var>ArgType0</var>, <var>ArgType1</var>, ...) const</code>
+
+For methods exposed to scripts like this, the arguments should be simple types or const references.
+Check scriptinterface/NativeWrapperDefns.h for which simple types are pass-by-value.
 
 The arguments and return types will be automatically converted between C++ and JS values.
 To do this, @c ToJSVal<ReturnType> and @c FromJSVal<ArgTypeN> must be defined (if they
@@ -113,7 +121,6 @@ which does some extra conversions or checks or whatever.
 There's a small limit to the number of arguments that are currently supported - if you need more,
 first try to save yourself some pain by using fewer arguments, otherwise you'll need to add a new
 macro into simulation2/system/InterfaceScripted.h and increase @ref SCRIPT_INTERFACE_MAX_ARGS in scriptinterface/ScriptInterface.h.
-(Not sure if anything else needs changing.)
 
 
 
@@ -131,7 +138,7 @@ defined as long as the linker finds them).
 To convert from a C++ type @c T to a JS value, define:
 
 @code
-template<> jsval ScriptInterface::ToJSVal<T>(JSContext* cx, T const& val)
+template<> void ScriptInterface::ToJSVal<T>(JSContext* cx, JS::MutableHandleValue ret, const T& val)
 {
 	...
 }
@@ -139,13 +146,13 @@ template<> jsval ScriptInterface::ToJSVal<T>(JSContext* cx, T const& val)
 
 Use the standard <a href="https://developer.mozilla.org/en/JSAPI_Reference">SpiderMonkey JSAPI functions</a>
 to do the conversion (possibly calling @c ToJSVal recursively).
-On error, you should return @c JSVAL_VOID (JS's @c undefined value) and probably report an error message somehow.
+On error, you should execute @c ret.setUndefined() and probably report an error message somehow.
 Be careful about JS garbage collection (don't let it collect the objects you're constructing before you return them).
 
 To convert from a JS value to a C++ type @c T, define:
 
 @code
-template<> bool ScriptInterface::FromJSVal<T>(JSContext* cx, jsval v, T& out)
+template<> bool ScriptInterface::FromJSVal<T>(JSContext* cx, JS::HandleValue v, T& out)
 {
 	...
 }
@@ -498,15 +505,15 @@ But for now everything is put in there.)
 Now you have to add C++/JS conversions into MessageTypeConversions.cpp, so scripts can send and receive messages:
 
 @code
-jsval CMessageExample::ToJSVal(ScriptInterface& scriptInterface) const
+JS::Value CMessageExample::ToJSVal(ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();
 	SET_MSG_PROPERTY(x);
 	SET_MSG_PROPERTY(y);
-	return OBJECT_TO_JSVAL(obj);
+	return JS::ObjectValue(*obj);
 }
 
-CMessage* CMessageExample::FromJSVal(ScriptInterface& scriptInterface, jsval val)
+CMessage* CMessageExample::FromJSVal(ScriptInterface& scriptInterface, JS::HandleValue val)
 {
 	FROMJSVAL_SETUP();
 	GET_MSG_PROPERTY(int, x);
@@ -521,12 +528,12 @@ with a set of scalar fields.)
 If you don't want to support scripts sending/receiving the message, you can implement stub functions instead:
 
 @code
-jsval CMessageExample::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
+JS::Value CMessageExample::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
 {
-	return JSVAL_VOID;
+	return JS::UndefinedValue();
 }
 
-CMessage* CMessageExample::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
+CMessage* CMessageExample::FromJSVal(ScriptInterface& UNUSED(scriptInterface), JS::HandleValue UNUSED(val))
 {
 	return NULL;
 }
