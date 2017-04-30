@@ -19,9 +19,6 @@
 #ifndef INCLUDED_CINEMAMANAGER
 #define INCLUDED_CINEMAMANAGER
 
-#include <list>
-#include <map>
-
 #include "lib/input.h" // InReaction - can't forward-declare enum
 
 #include "simulation2/helpers/CinemaPath.h"
