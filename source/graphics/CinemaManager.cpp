@@ -113,14 +113,14 @@ void CCinemaManager::DrawPaths() const
 
 	for (const std::pair<CStrW, CCinemaPath>& p : cmpCinemaManager->GetPaths())
 	{
-		DrawSpline(p.second, CColor(0.2f, 0.2f, 1.f, 0.9f), 100, true);
-		DrawNodes(p.second, CColor(0.5f, 1.0f, 0.f, 1.0f));
+		DrawSpline(p.second, CColor(0.2f, 0.2f, 1.f, 0.9f), 128, true);
+		DrawNodes(p.second, CColor(0.1f, 1.f, 0.f, 1.f));
 
 		if (p.second.GetTargetSpline().GetAllNodes().empty())
 			continue;
 
-		DrawSpline(p.second.GetTargetSpline(), CColor(1.0f, 0.2f, 0.2f, 0.9f), 100, true);
-		DrawNodes(p.second.GetTargetSpline(), CColor(1.0f, 0.5f, 0.f, 1.0f));
+		DrawSpline(p.second.GetTargetSpline(), CColor(1.f, 0.3f, 0.4f, 0.9f), 128, true);
+		DrawNodes(p.second.GetTargetSpline(), CColor(1.f, 0.1f, 0.f, 1.f));
 	}
 }
 
@@ -138,6 +138,7 @@ void CCinemaManager::DrawSpline(const RNSpline& spline, const CColor& splineColo
 	#warning TODO : implement CCinemaPath on GLES
 #else
 
+	glDisable(GL_DEPTH_TEST);
 	glEnable(GL_BLEND);
 	glColor4f(splineColor.r, splineColor.g, splineColor.b, splineColor.a);
 	if (lines)
@@ -153,7 +154,7 @@ void CCinemaManager::DrawSpline(const RNSpline& spline, const CColor& splineColo
 		}
 		glEnd();
 
-		// Height indicaor
+		// Height indicator
 		if (g_Game && g_Game->GetWorld() && g_Game->GetWorld()->GetTerrain())
 		{
 			glLineWidth(1.1f);
@@ -190,6 +191,7 @@ void CCinemaManager::DrawSpline(const RNSpline& spline, const CColor& splineColo
 		glDisable(GL_POINT_SMOOTH);
 	}
 	glDisable(GL_BLEND);
+	glEnable(GL_DEPTH_TEST);
 
 #endif
 }
@@ -200,8 +202,9 @@ void CCinemaManager::DrawNodes(const RNSpline& spline, const CColor& nodeColor) 
 	#warning TODO : implement CCinemaPath on GLES
 #else
 
+	glDisable(GL_DEPTH_TEST);
 	glEnable(GL_POINT_SMOOTH);
-	glPointSize(5.0f);
+	glPointSize(7.0f);
 	glColor4f(nodeColor.r, nodeColor.g, nodeColor.b, nodeColor.a);
 	glBegin(GL_POINTS);
 
@@ -211,6 +214,7 @@ void CCinemaManager::DrawNodes(const RNSpline& spline, const CColor& nodeColor) 
 	glEnd();
 	glPointSize(1.0f);
 	glDisable(GL_POINT_SMOOTH);
+	glEnable(GL_DEPTH_TEST);
 #endif
 }
 

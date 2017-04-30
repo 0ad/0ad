@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,6 +27,14 @@ class CVector3D;
 
 namespace AtlasMessage
 {
+
+enum SELECTED_AXIS
+{
+	AXIS_INVALID = -1,
+	AXIS_X = 1,
+	AXIS_Y = 2,
+	AXIS_Z = 4
+};
 
 // Represents a position in the game world, with an interface usable from the
 // UI (which usually knows only about screen space). Typically constructed
@@ -118,6 +126,15 @@ struct sCinemaPath
 	}*/
 };
 SHAREABLE_STRUCT(sCinemaPath);
+
+struct sCinemaPathNode
+{
+	Shareable<std::wstring> name;
+	Shareable<int> index;
+	Shareable<bool> targetNode;
+	sCinemaPathNode() : index(-1), targetNode(false) {}
+};
+SHAREABLE_STRUCT(sCinemaPathNode);
 
 
 struct eCinemaEventMode { enum { SMOOTH, SELECT, IMMEDIATE_PATH, RESET }; };

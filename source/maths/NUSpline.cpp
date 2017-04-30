@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -216,20 +216,19 @@ void TNSpline::AddNode(const CFixedVector3D& pos, const CFixedVector3D& rotation
 }
 
 //Inserts node before position
-void TNSpline::InsertNode(const int index, const CFixedVector3D& pos, const CFixedVector3D& rotation, fixed timePeriod)
+void TNSpline::InsertNode(const int index, const CFixedVector3D& pos, const CFixedVector3D& UNUSED(rotation), fixed timePeriod)
 {
-	if (NodeCount >= MAX_SPLINE_NODES || index < NodeCount - 1)
+	if (NodeCount >= MAX_SPLINE_NODES || index < 0 || index > NodeCount - 1)
 		return;
+
 	if (NodeCount == 0)
 		MaxDistance = fixed::Zero();
 	else
-	{
-		Node[NodeCount-1].Distance = timePeriod;
-		Node[NodeCount-1].Rotation = rotation;
-		MaxDistance += Node[NodeCount-1].Distance;
-	}
+		MaxDistance += timePeriod;
+
 	SplineData temp;
 	temp.Position = pos;
+	temp.Distance = timePeriod;
 	Node.insert(Node.begin() + index, temp);
 	++NodeCount;
 }
@@ -241,9 +240,7 @@ void TNSpline::RemoveNode(const int index)
 		return;
 
 	MaxDistance -= Node[index].Distance;
-	MaxDistance -= Node[index-1].Distance;
-	Node[index-1].Distance = fixed::Zero();
-	Node.erase(Node.begin() + index, Node.begin() + index + 1);
+	Node.erase(Node.begin() + index);
 	--NodeCount;
 }
 

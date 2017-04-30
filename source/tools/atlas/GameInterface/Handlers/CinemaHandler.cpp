@@ -19,6 +19,8 @@
 
 #include "MessageHandler.h"
 #include "../CommandProc.h"
+#include "../GameLoop.h"
+#include "../View.h"
 #include "graphics/Camera.h"
 #include "graphics/CinemaManager.h"
 #include "graphics/GameView.h"
@@ -28,6 +30,8 @@
 #include "ps/Filesystem.h"
 #include "maths/MathUtil.h"
 #include "maths/Quaternion.h"
+#include "maths/Vector2D.h"
+#include "maths/Vector3D.h"
 #include "lib/res/graphics/ogl_tex.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpCinemaManager.h"
@@ -35,6 +39,7 @@
 
 namespace AtlasMessage {
 
+const float MINIMAL_SCREEN_DISTANCE = 5.f;
 
 sCinemaPath ConstructCinemaPath(const CCinemaPath* source)
 {
@@ -279,9 +284,261 @@ BEGIN_COMMAND(SetCinemaPathsDrawing)
 };
 END_COMMAND(SetCinemaPathsDrawing)
 
+static CVector3D GetNearestPointToScreenCoords(const CVector3D& base, const CVector3D& dir, const CVector2D& screen, float lower = -1e5, float upper = 1e5)
+{
+	// It uses a ternary search, because an intersection of cylinders is the complex task
+	for (int i = 0; i < 64; ++i)
+	{
+		float delta = (upper - lower) / 3.0;
+		float middle1 = lower + delta, middle2 = lower + 2.0f * delta;
+		CVector3D p1 = base + dir * middle1, p2 = base + dir * middle2;
+		CVector2D s1, s2;
+		g_Game->GetView()->GetCamera()->GetScreenCoordinates(p1, s1.X, s1.Y);
+		g_Game->GetView()->GetCamera()->GetScreenCoordinates(p2, s2.X, s2.Y);
+		if ((s1 - screen).Length() < (s2 - screen).Length())
+			upper = middle2;
+		else
+			lower = middle1;
+	}
+	return base + dir * upper;
+}
+
+#define GET_PATH_NODE_WITH_VALIDATION() \
+	int index = msg->node->index; \
+	if (index < 0) \
+		return; \
+	CStrW name = *msg->node->name; \
+	CmpPtr<ICmpCinemaManager> cmpCinemaManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY); \
+	if (!cmpCinemaManager || !cmpCinemaManager->HasPath(name)) \
+		return; \
+	const CCinemaPath& path = cmpCinemaManager->GetPaths().find(name)->second; \
+	if (!msg->node->targetNode) \
+	{ \
+		if (index >= (int)path.GetAllNodes().size()) \
+			return; \
+	} \
+	else \
+	{ \
+		if (index >= (int)path.GetTargetSpline().GetAllNodes().size()) \
+			return; \
+	}
+
+BEGIN_COMMAND(AddPathNode)
+{
+	void Do()
+	{
+		GET_PATH_NODE_WITH_VALIDATION();
+
+		CCinemaData data = *path.GetData();
+		TNSpline positionSpline = path;
+		TNSpline targetSpline = path.GetTargetSpline();
+		TNSpline& spline = msg->node->targetNode ? targetSpline : positionSpline;
+
+		CVector3D focus = g_Game->GetView()->GetCamera()->GetFocus();
+		CFixedVector3D target(
+			fixed::FromFloat(focus.X),
+			fixed::FromFloat(focus.Y),
+			fixed::FromFloat(focus.Z)
+		);
+		spline.InsertNode(index, target, CFixedVector3D(), fixed::FromInt(1));
+		
+		spline.BuildSpline();
+		cmpCinemaManager->DeletePath(name);
+		cmpCinemaManager->AddPath(CCinemaPath(data, positionSpline, targetSpline));
+	}
+
+	void Redo()
+	{
+	}
+
+	void Undo()
+	{
+	}
+};
+END_COMMAND(AddPathNode)
+
+BEGIN_COMMAND(DeletePathNode)
+{
+	void Do()
+	{
+		GET_PATH_NODE_WITH_VALIDATION();
+
+		CCinemaData data = *path.GetData();
+		TNSpline positionSpline = path;
+		TNSpline targetSpline = path.GetTargetSpline();
+		TNSpline& spline = msg->node->targetNode ? targetSpline : positionSpline;
+		if (spline.GetAllNodes().size() <= 1)
+			return;
+
+		spline.RemoveNode(index);
+		spline.BuildSpline();
+		cmpCinemaManager->DeletePath(name);
+		cmpCinemaManager->AddPath(CCinemaPath(data, positionSpline, targetSpline));
+
+		g_AtlasGameLoop->view->SetParam(L"movetool", false);
+	}
+
+	void Redo()
+	{
+	}
+
+	void Undo()
+	{
+	}
+};
+END_COMMAND(DeletePathNode)
+
+BEGIN_COMMAND(MovePathNode)
+{
+	void Do()
+	{
+		int axis = msg->axis;
+		if (axis == AXIS_INVALID)
+			return;
+
+		GET_PATH_NODE_WITH_VALIDATION();
+
+		CCinemaData data = *path.GetData();
+		TNSpline positionSpline = path;
+		TNSpline targetSpline = path.GetTargetSpline();
+		TNSpline& spline = msg->node->targetNode ? targetSpline : positionSpline;
+
+		// Get shift of the tool by the cursor movement
+		CFixedVector3D pos = spline.GetAllNodes()[index].Position;
+		CVector3D position(
+			pos.X.ToFloat(),
+			pos.Y.ToFloat(),
+			pos.Z.ToFloat()
+		);
+		CVector3D axisDirection(axis & AXIS_X, axis & AXIS_Y, axis & AXIS_Z);
+		CVector2D from, to;
+		msg->from->GetScreenSpace(from.X, from.Y);
+		msg->to->GetScreenSpace(to.X, to.Y);
+		CVector3D shift(
+			GetNearestPointToScreenCoords(position, axisDirection, to) -
+			GetNearestPointToScreenCoords(position, axisDirection, from)
+		);
+
+		// Change, rebuild and update the path
+		position += shift;
+		pos += CFixedVector3D(
+			fixed::FromFloat(shift.X),
+			fixed::FromFloat(shift.Y),
+			fixed::FromFloat(shift.Z)
+		);
+		spline.UpdateNodePos(index, pos);
+		spline.BuildSpline();
+		cmpCinemaManager->DeletePath(name);
+		cmpCinemaManager->AddPath(CCinemaPath(data, positionSpline, targetSpline));
+
+		// Update visual tool coordinates
+		g_AtlasGameLoop->view->SetParam(L"movetool_x", position.X);
+		g_AtlasGameLoop->view->SetParam(L"movetool_y", position.Y);
+		g_AtlasGameLoop->view->SetParam(L"movetool_z", position.Z);
+	}
+
+	void Redo()
+	{
+	}
+
+	void Undo()
+	{
+	}
+};
+END_COMMAND(MovePathNode)
+
 QUERYHANDLER(GetCinemaPaths)
 {
 	msg->paths = GetCurrentPaths();
+}
+
+static bool isPathNodePicked(const TNSpline& spline, const CVector2D& cursor, AtlasMessage::sCinemaPathNode& node, bool targetNode)
+{
+	for (size_t i = 0; i < spline.GetAllNodes().size(); ++i)
+	{
+		const SplineData& data = spline.GetAllNodes()[i];
+		CVector3D position(
+			data.Position.X.ToFloat(),
+			data.Position.Y.ToFloat(),
+			data.Position.Z.ToFloat()
+		);
+		CVector2D screen_pos;
+		g_Game->GetView()->GetCamera()->GetScreenCoordinates(position, screen_pos.X, screen_pos.Y);
+		if ((screen_pos - cursor).Length() < MINIMAL_SCREEN_DISTANCE)
+		{
+			node.index = i;
+			node.targetNode = targetNode;
+			g_AtlasGameLoop->view->SetParam(L"movetool", true);
+			g_AtlasGameLoop->view->SetParam(L"movetool_x", position.X);
+			g_AtlasGameLoop->view->SetParam(L"movetool_y", position.Y);
+			g_AtlasGameLoop->view->SetParam(L"movetool_z", position.Z);
+			return true;
+		}
+	}
+	return false;
+}
+
+QUERYHANDLER(PickPathNode)
+{
+	AtlasMessage::sCinemaPathNode node;
+	CmpPtr<ICmpCinemaManager> cmpCinemaManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+	if (!cmpCinemaManager)
+	{
+		msg->node = node;
+		return;
+	}
+
+	CVector2D cursor;
+	msg->pos->GetScreenSpace(cursor.X, cursor.Y);
+
+	for (const std::pair<CStrW, CCinemaPath>& p : cmpCinemaManager->GetPaths())
+	{
+		const CCinemaPath& path = p.second;		
+		if (isPathNodePicked(path, cursor, node, false) || isPathNodePicked(path.GetTargetSpline(), cursor, node, true))
+		{
+			node.name = path.GetName();
+			msg->node = node;
+			return;
+		}
+	}
+	msg->node = node;
+	g_AtlasGameLoop->view->SetParam(L"movetool", false);
+}
+
+static bool isAxisPicked(const CVector3D& base, const CVector3D& direction, float length, const CVector2D& cursor)
+{
+	CVector3D position = GetNearestPointToScreenCoords(base, direction, cursor, 0, length);
+	CVector2D screen_position;
+	g_Game->GetView()->GetCamera()->GetScreenCoordinates(position, screen_position.X, screen_position.Y);
+	return (cursor - screen_position).Length() < MINIMAL_SCREEN_DISTANCE;
+}
+
+QUERYHANDLER(PickAxis)
+{
+	msg->axis = AXIS_INVALID;
+
+	GET_PATH_NODE_WITH_VALIDATION();
+
+	const TNSpline& spline = msg->node->targetNode ? path.GetTargetSpline() : path;
+	CFixedVector3D pos = spline.GetAllNodes()[index].Position;
+	CVector3D position(pos.X.ToFloat(), pos.Y.ToFloat(), pos.Z.ToFloat());
+	CVector3D camera = g_Game->GetView()->GetCamera()->GetOrientation().GetTranslation();
+	float scale = (position - camera).Length() / 10.0;
+
+	CVector2D cursor;
+	msg->pos->GetScreenSpace(cursor.X, cursor.Y);
+	if (isAxisPicked(position, CVector3D(1, 0, 0), scale, cursor))
+		msg->axis = AXIS_X;
+	else if (isAxisPicked(position, CVector3D(0, 1, 0), scale, cursor))
+		msg->axis = AXIS_Y;
+	else if (isAxisPicked(position, CVector3D(0, 0, 1), scale, cursor))
+		msg->axis = AXIS_Z;
+}
+
+MESSAGEHANDLER(ClearPathNodePreview)
+{
+	UNUSED2(msg);
+	g_AtlasGameLoop->view->SetParam(L"movetool", false);
 }
 
 }

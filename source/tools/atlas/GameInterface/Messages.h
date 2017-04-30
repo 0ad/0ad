@@ -654,6 +654,34 @@ QUERY(GetCameraInfo,
 	  ((AtlasMessage::sCameraInfo, info))
 	  );
 
+QUERY(PickPathNode,
+	((Position, pos))
+	,
+	((AtlasMessage::sCinemaPathNode, node))
+	);
+
+QUERY(PickAxis,
+	((AtlasMessage::sCinemaPathNode, node))
+	((Position, pos))
+	,
+	((int, axis))
+	);
+
+COMMAND(AddPathNode, NOMERGE,
+	((AtlasMessage::sCinemaPathNode, node))
+	);
+
+COMMAND(DeletePathNode, NOMERGE,
+	((AtlasMessage::sCinemaPathNode, node))
+	);
+
+COMMAND(MovePathNode, NOMERGE,
+	((AtlasMessage::sCinemaPathNode, node))
+	((int, axis))
+	((Position, from))
+	((Position, to))
+	);
+
 COMMAND(AddCinemaPath, NOMERGE, ((std::wstring, pathName)));
 
 COMMAND(DeleteCinemaPath, NOMERGE, ((std::wstring, pathName)));
@@ -671,6 +699,8 @@ MESSAGE(CinemaEvent,
 		((bool, drawCurrent))
 		((bool, lines))
 		);
+
+MESSAGE(ClearPathNodePreview,);
 
 //////////////////////////////////////////////////////////////////////////
 
