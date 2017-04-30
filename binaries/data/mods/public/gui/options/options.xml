@@ -38,6 +38,7 @@
 				<object name="graphicsSetting[n]" size="0 25 100% 50" hidden="true">
 					<object name="graphicsSettingLabel[n]" size="0 0 65% 100%" type="text" style="ModernLabelText" text_align="left"/>
 					<object name="graphicsSettingTickbox[n]" size="90% 5 100% 100%+5" type="checkbox" style="ModernTickBox" hidden="true"/>
+					<object name="graphicsSettingSlider[n]" size="70% 0 100%-8 100%" type="slider" button_width="20" sprite="ModernSliderButton" sprite_bar="ModernSliderLine" hidden="true"/>
 					<object name="graphicsSettingInput[n]" size="70% 0 100%-8 100%" type="input" style="ModernInput" hidden="true"/>
 					<object name="graphicsSettingDropdown[n]" size="70% 0 100%-8 100%" type="dropdown" style="ModernDropDown" hidden="true"/>
 				</object>

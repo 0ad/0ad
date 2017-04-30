@@ -244,10 +244,7 @@ function setupControl(option, i, category)
 			switch (param)
 			{
 			case "config":
-				let val = +Engine.ConfigDB_GetValue("user", key);
-				if (key === "materialmgr.quality")
-					val = val > 5 ? 2 : val > 2 ? 1 : 0;
-				control.selected = val;
+				control.selected = +Engine.ConfigDB_GetValue("user", key);
 				break;
 			case "list":
 				control.list = option.parameters.list.map(e => translate(e));
@@ -264,10 +261,7 @@ function setupControl(option, i, category)
 		{
 			return function()
 			{
-				let val = this.selected;
-				if (key === "materialmgr.quality")
-					val = val == 0 ? 2 : val == 1 ? 5 : 8;
-				Engine.ConfigDB_CreateValue("user", key, val);
+				Engine.ConfigDB_CreateValue("user", key, this.selected);
 				Engine.ConfigDB_SetChanges("user", true);
 				updateOptionPanel();
 			};
