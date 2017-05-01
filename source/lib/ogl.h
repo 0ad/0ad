@@ -160,6 +160,16 @@ extern void ogl_WarnIfErrorLoc(const char *file, int line);
 #endif
 
 /**
+* get a name of the error.
+*
+* useful for debug.
+*
+* @return read-only C string of unspecified length containing
+* the error's name.
+**/
+extern const char* ogl_GetErrorName(GLenum err);
+
+/**
  * ignore and reset the specified OpenGL error.
  *
  * this is useful for suppressing annoying error messages, e.g.

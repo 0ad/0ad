@@ -1628,7 +1628,7 @@ void CRenderer::EndFrame()
 		int err = glGetError();
 		if (err)
 		{
-			ONCE(LOGERROR("CRenderer::EndFrame: GL errors %i occurred", err));
+			ONCE(LOGERROR("CRenderer::EndFrame: GL errors %s (%04x) occurred", ogl_GetErrorName(err), err));
 		}
 	}
 }
