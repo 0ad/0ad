@@ -674,7 +674,7 @@ function onReplayOutOfSync()
 		translate("Out-Of-Sync error!") + "\n" +
 			// Translation: This is shown if replay is out of sync
 			translateWithContext("Out-Of-Sync", "The current game state is different from the original game state."),
-		translate("Out Of Sync")
+		translate("Out of Sync")
 	);
 }
 
@@ -832,7 +832,7 @@ function submitChatInput()
 	if (chatAddressee.selected > 0 && (text.indexOf("/") != 0 || text.indexOf("/me ") == 0))
 		text = chatAddressee.list_data[chatAddressee.selected] + " " + text;
 
-	let selectedChat = chatAddressee.list_data[chatAddressee.selected]
+	let selectedChat = chatAddressee.list_data[chatAddressee.selected];
 	if (selectedChat.startsWith("/msg"))
 		g_LastChatAddressee = selectedChat;
 

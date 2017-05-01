@@ -613,7 +613,7 @@ function openTrade()
 	{
 		let resCode = resCodes[i];
 
-		let barterResource = Engine.GetGUIObjectByName("barterResource[" + i + "]")
+		let barterResource = Engine.GetGUIObjectByName("barterResource[" + i + "]");
 		if (!barterResource)
 		{
 			 warn("Current GUI limits prevent displaying more than " + i + " resources in the barter dialog!");
