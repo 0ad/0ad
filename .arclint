@@ -1,0 +1,18 @@
+{
+  "exclude": [
+    "(^binaries/system/)",
+    "(^source/third_party/)",
+    "(^libraries/)"
+  ],
+  "linters": {
+    "text": {
+      "type": "text",
+      "severity": {
+        "1": "disabled",
+        "2": "disabled",
+        "3": "disabled",
+        "5": "disabled"
+      }
+    }
+  }
+}
