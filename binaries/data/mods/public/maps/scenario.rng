@@ -147,6 +147,11 @@
                   <element name="Tint">
                     <ref name="color_rgb"/>
                   </element>
+                  <optional>
+                    <element name="WindAngle">
+                      <data type="decimal"/>
+                    </element>
+                  </optional>
                 </interleave>
               </element>
             </element>
@@ -198,18 +203,20 @@
             <text/>
           </element>
         </optional>
-        <element name="Camera">
-          <!-- Camera can have weird float values -->
-          <element name="Position">
-            <ref name="pos_xyz"/>
+        <optional>
+          <element name="Camera">
+            <!-- Camera can have weird float values -->
+            <element name="Position">
+              <ref name="pos_xyz"/>
+            </element>
+            <element name="Rotation">
+              <ref name="angle"/>
+            </element>
+            <element name="Declination">
+              <ref name="angle"/>
+            </element>
           </element>
-          <element name="Rotation">
-            <ref name="angle"/>
-          </element>
-          <element name="Declination">
-            <ref name="angle"/>
-          </element>
-        </element>
+        </optional>
         <element name="ScriptSettings">
           <text/>
         </element>
@@ -263,8 +270,40 @@
         </optional>
         <optional>
           <element name="Paths">
-            <!-- Unused -->
-            <empty/>
+            <zeroOrMore>
+              <element name="Path">
+                <interleave>
+                  <attribute name="name"/>
+                  <attribute name="timescale">
+                    <data type="decimal"/>
+                  </attribute>
+                  <attribute name="orientation"/>
+                  <attribute name="mode"/>
+                  <attribute name="style"/>
+                  <zeroOrMore>
+                    <element name="Node">
+                      <interleave>
+                        <attribute name="deltatime">
+                          <data type="decimal">
+                            <param name="minInclusive">0</param>
+                          </data>
+                        </attribute>
+                        <optional>
+                          <element name="Position">
+                            <ref name="pos_xyz"/>
+                          </element>
+                        </optional>
+                        <optional>
+                          <element name="Target">
+                            <ref name="pos_xyz"/>
+                          </element>
+                        </optional>
+                      </interleave>
+                    </element>
+                  </zeroOrMore>
+                </interleave>
+              </element>
+            </zeroOrMore>
           </element>
         </optional>
         <optional>
