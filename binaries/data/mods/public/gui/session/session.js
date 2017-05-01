@@ -457,7 +457,7 @@ function getEntityOrHolder(ent)
 function initializeMusic()
 {
 	initMusic();
-	if (g_ViewedPlayer != -1)
+	if (g_ViewedPlayer != -1 && g_CivData[g_Players[g_ViewedPlayer].civ].Music)
 		global.music.storeTracks(g_CivData[g_Players[g_ViewedPlayer].civ].Music);
 	global.music.setState(global.music.states.PEACE);
 	playAmbient();
