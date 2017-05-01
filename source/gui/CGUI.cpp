@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -33,6 +33,7 @@
 #include "COList.h"
 #include "CProgressBar.h"
 #include "CRadioButton.h"
+#include "CSlider.h"
 #include "CText.h"
 #include "CTooltip.h"
 #include "MiniMap.h"
@@ -325,6 +326,7 @@ void CGUI::Initialize()
 	AddObjectType("dropdown",		&CDropDown::ConstructObject);
 	AddObjectType("tooltip",		&CTooltip::ConstructObject);
 	AddObjectType("chart",			&CChart::ConstructObject);
+	AddObjectType("slider",			&CSlider::ConstructObject);
 }
 
 void CGUI::Draw()

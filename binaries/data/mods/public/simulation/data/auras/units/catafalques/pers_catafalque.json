@@ -2,12 +2,12 @@
 	"type": "global",
 	"affects": ["Structure"],
 	"modifications": [
-		{ "value": "Cost/Resources/food", "multiply": 0.95 },
-		{ "value": "Cost/Resources/wood", "multiply": 0.95 },
-		{ "value": "Cost/Resources/metal", "multiply": 0.95 },
-		{ "value": "Cost/Resources/stone", "multiply": 0.95 },
+		{ "value": "Cost/Resources/food", "multiply": 0.9 },
+		{ "value": "Cost/Resources/wood", "multiply": 0.9 },
+		{ "value": "Cost/Resources/metal", "multiply": 0.9 },
+		{ "value": "Cost/Resources/stone", "multiply": 0.9 },
 		{ "value": "Health/Max", "multiply": 1.05 }
 	],
 	"auraName": "Great Builder",
-	"auraDescription": "Throughout his reign, much of Artaxerxes' wealth was spent on building projects. He restored the Palace of Darius I at Susa, and restored the ancient city of Ecbatana.\n+5% health and -5% resource cost for all buildings."
+	"auraDescription": "Throughout his reign, much of Artaxerxes' wealth was spent on building projects. He restored the Palace of Darius I at Susa and restored the ancient city of Ecbatana.\n+5% health and -10% resource cost for all buildings."
 }

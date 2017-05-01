@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -171,7 +171,7 @@ void AtlasViewActor::SetParam(const std::wstring& name, const AtlasMessage::Colo
 //////////////////////////////////////////////////////////////////////////
 
 AtlasViewGame::AtlasViewGame()
-	: m_SpeedMultiplier(0.f), m_IsTesting(false)
+	: m_SpeedMultiplier(0.f), m_IsTesting(false), m_DrawMoveTool(false)
 {
 	ENSURE(g_Game);
 }
@@ -229,6 +229,46 @@ void AtlasViewGame::Render()
 	Atlas_GLSwapBuffers((void*)g_AtlasGameLoop->glCanvas);
 }
 
+void AtlasViewGame::DrawCinemaPathTool()
+{
+	if (!m_DrawMoveTool)
+		return;
+
+#if CONFIG2_GLES
+	#warning TODO : implement Atlas cinema path tool for GLES
+#else
+	CVector3D focus = m_MoveTool;
+	CVector3D camera = GetCamera().GetOrientation().GetTranslation();
+	float scale = (focus - camera).Length() / 10.0;
+
+	glDisable(GL_DEPTH_TEST);
+	glLineWidth(1.6f);
+	glEnable(GL_LINE_SMOOTH);
+
+	glColor3f(1.0f, 0.0f, 0.0f);
+	glBegin(GL_LINE_STRIP);
+	glVertex3fv(focus.GetFloatArray());
+	glVertex3fv((focus + CVector3D(scale, 0, 0)).GetFloatArray());
+	glEnd();
+
+	glColor3f(0.0f, 1.0f, 0.0f);
+	glBegin(GL_LINE_STRIP);
+	glVertex3fv(focus.GetFloatArray());
+	glVertex3fv((focus + CVector3D(0, scale, 0)).GetFloatArray());
+	glEnd();
+
+	glColor3f(0.0f, 0.0f, 1.0f);
+	glBegin(GL_LINE_STRIP);
+	glVertex3fv(focus.GetFloatArray());
+	glVertex3fv((focus + CVector3D(0, 0, scale)).GetFloatArray());
+	glEnd();
+
+	glDisable(GL_LINE_SMOOTH);
+	glLineWidth(1.0f);
+	glEnable(GL_DEPTH_TEST);
+#endif
+}
+
 void AtlasViewGame::DrawOverlays()
 {
 #if CONFIG2_GLES
@@ -276,6 +316,18 @@ void AtlasViewGame::SetParam(const std::wstring& name, bool value)
 {
 	if (name == L"priorities")
 		g_Renderer.SetDisplayTerrainPriorities(value);
+	else if (name == L"movetool")
+		m_DrawMoveTool = value;
+}
+
+void AtlasViewGame::SetParam(const std::wstring& name, float value)
+{
+	if (name == L"movetool_x")
+		m_MoveTool.X = value;
+	else if (name == L"movetool_y")
+		m_MoveTool.Y = value;
+	else if (name == L"movetool_z")
+		m_MoveTool.Z = value;
 }
 
 void AtlasViewGame::SetParam(const std::wstring& name, const std::wstring& value)

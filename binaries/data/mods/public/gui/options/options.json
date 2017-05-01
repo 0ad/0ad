@@ -119,10 +119,10 @@
 			"parameters": { "config": "postproc", "renderer": "Postproc" }
 		},
 		{
-			"type": "dropdown",
+			"type": "slider",
 			"label": "Graphics quality",
-			"tooltip": "Graphics quality. REQUIRES GAME RESTART",
-			"parameters": { "list": [ "Low", "Medium", "High" ], "config": "materialmgr.quality" }
+			"tooltip": "Number of shader effects. REQUIRES GAME RESTART",
+			"parameters": { "config": "materialmgr.quality", "min": 0, "max": 10 }
 		},
 		{
 			"type": "boolean",
@@ -214,34 +214,34 @@
 	"soundSetting":
 	[
 		{
-			"type": "number",
-			"label": "Master Gain",
+			"type": "slider",
+			"label": "Master Volume",
 			"tooltip": "Master audio gain",
-			"parameters": { "config": "sound.mastergain", "function": "SetMasterGain", "min": "0" }
+			"parameters": { "config": "sound.mastergain", "function": "SetMasterGain", "min": 0, "max": 2 }
 		},
 		{
-			"type": "number",
-			"label": "Music Gain",
+			"type": "slider",
+			"label": "Music Volume",
 			"tooltip": "In game music gain",
-			"parameters": { "config": "sound.musicgain", "function": "SetMusicGain", "min": "0" }
+			"parameters": { "config": "sound.musicgain", "function": "SetMusicGain", "min": 0, "max": 2 }
 		},
 		{
-			"type": "number",
-			"label": "Ambient Gain",
+			"type": "slider",
+			"label": "Ambient Volume",
 			"tooltip": "In game ambient sound gain",
-			"parameters": { "config": "sound.ambientgain", "function": "SetAmbientGain", "min": "0" }
+			"parameters": { "config": "sound.ambientgain", "function": "SetAmbientGain", "min": 0, "max": 2 }
 		},
 		{
-			"type": "number",
-			"label": "Action Gain",
+			"type": "slider",
+			"label": "Action Volume",
 			"tooltip": "In game unit action sound gain",
-			"parameters": { "config": "sound.actiongain", "function": "SetActionGain", "min": "0" }
+			"parameters": { "config": "sound.actiongain", "function": "SetActionGain", "min": 0, "max": 2 }
 		},
 		{
-			"type": "number",
-			"label": "UI Gain",
+			"type": "slider",
+			"label": "UI Volume",
 			"tooltip": "UI sound gain",
-			"parameters": { "config": "sound.uigain", "function": "SetUIGain", "min": "0" }
+			"parameters": { "config": "sound.uigain", "function": "SetUIGain", "min": 0, "max": 2 }
 		},
 		{
 			"type": "boolean",
