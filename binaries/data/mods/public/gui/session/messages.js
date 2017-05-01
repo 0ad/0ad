@@ -44,6 +44,9 @@ var g_NetMessageTypes = {
 	"netwarn": msg => {
 		addNetworkWarning(msg);
 	},
+	"out-of-sync": msg => {
+		onNetworkOutOfSync(msg);
+	},
 	"players": msg => {
 		handlePlayerAssignmentsMessage(msg);
 	},
@@ -621,6 +624,58 @@ function handleClientsLoadingMessage(guids)
 {
 	let loadingClientsText = Engine.GetGUIObjectByName("loadingClientsText");
 	loadingClientsText.caption = guids.map(guid => colorizePlayernameByGUID(guid)).join(translate(", "));
+}
+
+function onNetworkOutOfSync(msg)
+{
+	let txt = [
+		sprintf(translate("Out-Of-Sync error on turn %(turn)s."), {
+			"turn": msg.turn
+		}),
+
+		sprintf(translateWithContext("Out-Of-Sync", "Players: %(players)s"), {
+			"players": msg.players.join(translate(", "))
+		}),
+
+		msg.hash == msg.expectedHash ?
+			translateWithContext("Out-Of-Sync", "Your game state is identical to the hosts game state.") :
+			translateWithContext("Out-Of-Sync", "Your game state differs from the hosts game state."),
+
+		""
+	];
+
+	if (msg.turn > 1 && g_GameAttributes.settings.PlayerData.some(pData => pData && pData.AI))
+		txt.push(translateWithContext("Out-Of-Sync", "Rejoining Multiplayer games with AIs is not supported yet!"));
+	else
+	{
+		txt.push(
+			translateWithContext("Out-Of-Sync", "Ensure all players use the same mods."),
+			translateWithContext("Out-Of-Sync", 'Click on "Report Bugs" in the main menu to help fix this.'),
+			sprintf(translateWithContext("Out-Of-Sync", "Replay saved to %(filepath)s"), {
+				"filepath": escapeText(msg.path_replay)
+			}),
+			sprintf(translateWithContext("Out-Of-Sync", "Dumping current state to %(filepath)s"), {
+				"filepath": escapeText(msg.path_oos_dump)
+			})
+		);
+	}
+
+	messageBox(
+		600, 280,
+		txt.join("\n"),
+		translate("Out of Sync")
+	);
+}
+
+function onReplayOutOfSync()
+{
+	messageBox(
+		500, 140,
+		translate("Out-Of-Sync error!") + "\n" +
+			// Translation: This is shown if replay is out of sync
+			translateWithContext("Out-Of-Sync", "The current game state is different from the original game state."),
+		translate("Out Of Sync")
+	);
 }
 
 function handlePlayerAssignmentsMessage(message)

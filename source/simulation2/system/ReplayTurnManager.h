@@ -41,8 +41,6 @@ private:
 
 	void DoTurn(u32 turn);
 
-	void OnSyncError(u32 turn);
-
 	// Contains the commands of every player on each turn
 	std::map<u32, std::vector<std::pair<player_id_t, std::string>>> m_ReplayCommands;
 
