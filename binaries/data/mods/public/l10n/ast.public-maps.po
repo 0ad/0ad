@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-24 09:08+0100\n"
-"PO-Revision-Date: 2017-04-18 01:20+0000\n"
+"POT-Creation-Date: 2017-04-28 09:02+0200\n"
+"PO-Revision-Date: 2017-04-30 03:05+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -212,6 +212,21 @@ msgstr "Cada xugador entama nuna islla arrodiada d'agua.\n\nLes Cíclades son un
 msgid "Cycladic Archipelago"
 msgstr "Archipiélagu de les Cíclades"
 
+#: maps/random/danubius.jsonsettings.Description
+msgid ""
+"Players start along the banks of the river Danube in the period following "
+"the expansion into Pannonia by the Celtic Boii tribe. Seeking to consolidate"
+" their hold on this land, celtic reinforcements have been sent to root out "
+"the remaining foreign cultures. Players not only have to vie for power "
+"amongst themselves, but also beat back these ruthless invaders. Ultimately, "
+"the Boii were defeated by the rising power of the Dacians, hence leading to "
+"the reemergence of the Geto-Dacian Confederation under King Burebista."
+msgstr ""
+
+#: maps/random/danubius.jsonsettings.Name
+msgid "Danubius"
+msgstr ""
+
 #: maps/random/deep_forest.jsonsettings.Description
 msgid "A deep dark forest in Germania."
 msgstr "Una tupia y escura viesca de Xermania. "
@@ -343,6 +358,18 @@ msgstr "Cada xugador entama nuna fastera costera ente llombes arbolaes y el mar 
 #: maps/random/hyrcanian_shores.jsonsettings.Name
 msgid "Hyrcanian Shores"
 msgstr "Mariña d'Hircania"
+
+#: maps/random/india.jsonsettings.Description
+msgid ""
+"Central India just before the monsoon season - a parched land awaits the "
+"life-bringing rain which is already two months late. Due to the extended "
+"dryness and scorching heat, only the largest lake remains. The hardy trees "
+"which have survived the climate are spread out, yet not too scarce."
+msgstr ""
+
+#: maps/random/india.jsonsettings.Name
+msgid "India"
+msgstr ""
 
 #: maps/random/island_stronghold.jsonsettings.Description
 msgid ""
@@ -749,14 +776,14 @@ msgstr "Una demostranza de los métodos/códigos p'allugar les muries en mapes a
 msgid "Wall Demo"
 msgstr "Demostranza muries"
 
-#: maps/random/survivalofthefittest_triggers.js:155
-msgid "An enemy wave is attacking!"
-msgstr "¡Una onda enemiga ta atacando!"
-
-#: maps/random/survivalofthefittest_triggers.js:212
+#: maps/random/survivalofthefittest_triggers.js:193
 #, javascript-format
 msgid "The first wave will start in %(time)s!"
 msgstr "¡La primer onda va entamar en %(time)s!"
+
+#: maps/random/survivalofthefittest_triggers.js:327
+msgid "An enemy wave is attacking!"
+msgstr "¡Una onda enemiga ta atacando!"
 
 #: maps/scenarios/Cinema_Demo.js:6
 msgid "Cutscene starts after 5 seconds"
@@ -853,7 +880,7 @@ msgstr "La primavera n'Arcadia, Grecia. Los llovios primaverales empicaron los c
 #: maps/skirmishes/Belgian Bog (2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Caspian Sea (2v2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Corinthian Isthmus (2).xml:PlayerData[0].Name:39
-#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[1].Name:40
+#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[0].Name:40
 #: maps/skirmishes/Corsica and Sardinia (4).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Cycladic Archipelago (2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Death Canyon (2).xml:PlayerData[0].Name:39
@@ -920,7 +947,7 @@ msgstr "Xugador 1"
 #: maps/skirmishes/Belgian Bog (2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Caspian Sea (2v2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Corinthian Isthmus (2).xml:PlayerData[1].Name:39
-#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[2].Name:40
+#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[1].Name:40
 #: maps/skirmishes/Corsica and Sardinia (4).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Cycladic Archipelago (2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Death Canyon (2).xml:PlayerData[1].Name:39
@@ -1186,7 +1213,7 @@ msgstr "Fuercia invasión"
 #: Oasis.xml:PlayerData[2].Name:27 maps/skirmishes/Barcania
 #: (3).xml:PlayerData[2].Name:27 maps/skirmishes/Caspian Sea
 #: (2v2).xml:PlayerData[2].Name:39 maps/skirmishes/Corinthian Isthmus
-#: (4).xml:PlayerData[3].Name:40 maps/skirmishes/Corsica and Sardinia
+#: (4).xml:PlayerData[2].Name:40 maps/skirmishes/Corsica and Sardinia
 #: (4).xml:PlayerData[2].Name:39 maps/skirmishes/Gallic Fields
 #: (3).xml:PlayerData[2].Name:39 maps/skirmishes/Gambia River
 #: (3).xml:PlayerData[2].Name:39 maps/skirmishes/Greek Acropolis
@@ -1240,7 +1267,7 @@ msgstr "Un mapa pequeñu del ermu. Cada xugador entama cerca d'un oasis que, ent
 #: Oases.xml:PlayerData[3].Name:27 maps/scenarios/Siwa
 #: Oasis.xml:PlayerData[3].Name:27 maps/skirmishes/Caspian Sea
 #: (2v2).xml:PlayerData[3].Name:39 maps/skirmishes/Corinthian Isthmus
-#: (4).xml:PlayerData[4].Name:40 maps/skirmishes/Corsica and Sardinia
+#: (4).xml:PlayerData[3].Name:40 maps/skirmishes/Corsica and Sardinia
 #: (4).xml:PlayerData[3].Name:39 maps/skirmishes/Greek Acropolis
 #: (4).xml:PlayerData[3].Name:39 maps/skirmishes/Libyan Oases
 #: (4).xml:PlayerData[3].Name:39 maps/skirmishes/Median Oasis
@@ -1828,11 +1855,11 @@ msgstr "Mapa multixugador. Un paraísu tropical."
 msgid "Tropical Island"
 msgstr "Islla tropical"
 
-#: maps/scenarios/Units_demo.xml:Name:95
+#: maps/scenarios/Units_demo.xml:Name:28
 msgid "Units Demo"
 msgstr "Demostranza unidaes"
 
-#: maps/scenarios/Units_demo.xml:Description:95
+#: maps/scenarios/Units_demo.xml:Description:28
 msgid "Every unit in the game."
 msgstr "Toles unidaes del xuegu."
 
@@ -2054,13 +2081,13 @@ msgstr "Un ñubláu terrén de los Alpes camúdase nun campu batalla, yá que ca
 
 #: maps/skirmishes/Dueling Cliffs (3v3).xml:Name:40
 msgid "Dueling Cliffs (3v3)"
-msgstr ""
+msgstr "Galardeyos amarradiegos (3-3)"
 
 #: maps/skirmishes/Forest Battle (4).xml:Description:40
 msgid ""
 "A forest battle map where all players fight for supremacy and control over "
 "the middle."
-msgstr ""
+msgstr "Un mapa batalla forestal u tolos xugadores lluchen pola supremacía y dominiu sobro'l mediu. "
 
 #: maps/skirmishes/Forest Battle (4).xml:Name:40
 msgid "Forest Battle (4)"
@@ -2073,7 +2100,7 @@ msgid ""
 "Each player begins the match with a wooden palisade and some guard towers atop a low embankment.\n"
 "\n"
 "Watch out for Romans passing by!"
-msgstr ""
+msgstr "¡Protex el puestu galu de los ataques de los sos traicioniegos vecinos!\n\nCada xugador entama la partida con una estacada y con delles talayes enriba un baxu terremplén.\n\n¡Guárdate de los romanos que pasen pende!"
 
 #: maps/skirmishes/Gallic Fields (3).xml:Name:39
 msgid "Gallic Fields (3)"
@@ -2084,7 +2111,7 @@ msgid ""
 "All players start on one bank of the river, with minimal harvestable metal. Across the Gambia River is a savanna with many deposits of metal to be claimed. \n"
 "\n"
 "(Warning: Large map. Good computer specs recommended)"
-msgstr ""
+msgstr "Tolos xugadores entamen pela ribera'l ríu con perpocu metal al algame. La sabana del otru llau'l ríu Gambia añera una desinfinidá vetes que reclamar.\n\n(Avisu: Mapa grande. Recomiéndense bones especificaciones d'ordenador)"
 
 #: maps/skirmishes/Gambia River (3).xml:Name:39
 msgid "Gambia River (3)"
@@ -2094,7 +2121,7 @@ msgstr "Ríu Grambia (3)"
 msgid ""
 "A ring of land borders a resource-rich island in the Mediterranean. Players "
 "can access the center via a narrow strip of land or via boat."
-msgstr ""
+msgstr "L'aniellu de tierra arrodia una islla mediterránea, bayurosa de recursos. Los xugadores puen aportar al centru per una estrencha fazuca terrén o per embarcación."
 
 #: maps/skirmishes/Golden Island (2).xml:Name:40
 msgid "Golden Island (2)"
@@ -2105,7 +2132,7 @@ msgid ""
 "Players start around a small oasis in the center of the map which holds much of the available wood on the map.\n"
 "\n"
 "Elsewhere, in the hinterlands, lies great riches, in the form of large deposits of gold and other metals."
-msgstr ""
+msgstr "Los xugadores entamen alredor del pequeñu oasis de metanes el mapa, que contién muncho de la madera disponible.\n\nD'otra miente, n'interior, hai grandes riqueces, na forma de grandes depósitos d'oru y d'otros metales."
 
 #: maps/skirmishes/Golden Oasis (2).xml:Name:39
 msgid "Gold Oasis (2)"
@@ -2117,7 +2144,7 @@ msgid ""
 "Two factions find themselves perched safely atop large rocky plateaus, or acropolises.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
-msgstr ""
+msgstr "Dos faiciones afáyense seguramente asitiaos encima grandes y escambronaes mesetes, o acrópolis.\n\nEsplora'l terrén pa catar ayalgues de baldre y asegurar nuevos recursos.  "
 
 #: maps/skirmishes/Greek Acropolis (2).xml:Name:39
 msgid "Greek Acropolis (2)"
@@ -2128,7 +2155,7 @@ msgid ""
 "Three factions find themselves perched safely atop large rocky plateaus, or acropolises, whereas the fourth one is separated from their foes by a river branch.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources.."
-msgstr ""
+msgstr "Trés faiciones afáyense seguramente asitiaos encima grandes y escambronaes mesetes, o acrópolis, mentanto que la cuarta ta dixebrada de les rivales por un ramal de ríu.\n\nEsplora'l terrén pa catar ayalgues de baldre y asegurar nuevos recursos."
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Name:39
 msgid "Greek Acropolis (4)"
@@ -2143,7 +2170,7 @@ msgid ""
 "An otherwise wide-open, flat desert map is pierced in the center by two lush oases.\n"
 "\n"
 "This represents the Libyan Desert, part of the Saharan Desert, West of the Nile River in Egypt."
-msgstr ""
+msgstr "Un mapa qu'otramiente ye ermu, abiertu y llanu ta caltriáu pel mediu por dos oasis nietos.\n\nRepresenta l'ermu de Libia y parte del desiertu del Sáh.ara al occidente del ríu Nilu d'Exiptu."
 
 #: maps/skirmishes/Libyan Oases (4).xml:Name:39
 msgid "Libyan Oases (4)"
@@ -2156,7 +2183,7 @@ msgid ""
 "This represents the Libyan Desert, part of the Saharan Desert, West of the Nile River in Egypt.\n"
 "\n"
 "Iberians do not receive their circuit walls here. Instead, all factions receive 4 free Defense Towers."
-msgstr ""
+msgstr "Un vieyu favoritu. Un mapa qu'otramiente ye ermu, abiertu y llanu ta caltriáu pel mediu por dos oasis nietos.\n\nRepresenta l'ermu de Libia y parte del desiertu del Sáh.ara al occidente del ríu Nilu d'Exiptu.\n\nLos íberos nun reciben les sos muralles circundantes equí. En clas d'elles, toles faiciones reciben cuatro torruxones."
 
 #: maps/skirmishes/Libyan Oasis (2).xml:Name:39
 msgid "Libyan Oasis (2)"
@@ -2169,7 +2196,7 @@ msgid ""
 "Fairly open-wooded and basically flat. Plenty of building room. Well balanced resources.\n"
 "\n"
 "Civ Territories are divided by main river and tributaries (with necessary shallows for crossings)."
-msgstr ""
+msgstr "El mapa ta trevesáu pel centru por un ríu que cuerre d'oriente a occidente y con dellos vaos.\n\nXeneralmente abiertu, arboláu y llanu. Abondu espaciu pa construcciones. Recursos bien equilibraos.\n\nEl ríu principal y los sos afluentes, (colos vaos precisos pa cruciallu), estremen los territorios de cada civilización."
 
 #: maps/skirmishes/Lorraine Plain (2).xml:Name:40
 msgid "Lorraine Plain (2)"
@@ -2180,7 +2207,7 @@ msgstr "Llanada Lorena (2)"
 msgid ""
 "A large oasis acts as the hub of mountainous spokes that divide the home "
 "territories of each player."
-msgstr ""
+msgstr "El gran oasis sirve de ñuedu p'axuntar los radios montunos que dixebren los dominios de cada xugador."
 
 #: maps/skirmishes/Median Oasis (2).xml:Name:39
 msgid "Median Oasis (2)"
@@ -2194,7 +2221,7 @@ msgstr "Oasis de Media (4)"
 msgid ""
 "A sheltered natural harbour on the Mediterranean coast provides the "
 "resources for battle."
-msgstr ""
+msgstr "Una abellugáu puertu natural de la costa mediterránea forne los recursos pa la batalla."
 
 #: maps/skirmishes/Mediterranean Cove (2).xml:Name:39
 msgid "Mediterranean Coves (2)"

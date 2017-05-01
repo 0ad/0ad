@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-04-03 09:02+0200\n"
-"PO-Revision-Date: 2017-04-10 21:59+0000\n"
+"POT-Creation-Date: 2017-04-28 09:02+0200\n"
+"PO-Revision-Date: 2017-04-28 23:44+0000\n"
 "Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -312,17 +312,17 @@ msgstr "Ελάφι"
 msgid "African Bush Elephant"
 msgstr "Αφρικανικός Eλέφαντας"
 
-#: simulation/templates/gaia/fauna_elephant_african_infant.xml:14
-msgid "Elephant"
-msgstr "Ελέφαντας"
-
-#: simulation/templates/gaia/fauna_elephant_african_infant.xml:15
+#: simulation/templates/gaia/fauna_elephant_african_infant.xml:4
 msgid "African Elephant (Infant)"
 msgstr "Αφρικανικός Ελέφαντας (μωρό)"
 
 #: simulation/templates/gaia/fauna_elephant_asian.xml:11
 msgid "Asian Elephant"
 msgstr "Ασιατικός Ελέφαντας"
+
+#: simulation/templates/gaia/fauna_elephant_asian_infant.xml:4
+msgid "Asian Elephant (Infant)"
+msgstr "Ασιατικός Ελέφαντας (μωρό)"
 
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:11
 msgid "North African Elephant"
@@ -422,7 +422,7 @@ msgstr "Πρόβατα"
 msgid "Tiger"
 msgstr "Τίγρης"
 
-#: simulation/templates/gaia/fauna_walrus.xml:24
+#: simulation/templates/gaia/fauna_walrus.xml:25
 msgid "Walrus"
 msgstr "Φώκια"
 
@@ -902,15 +902,15 @@ msgstr "Κιονοστοιχία"
 msgid "Corinthian Colonnade"
 msgstr "Κορινθιακή Κιονοστοιχία"
 
-#: simulation/templates/other/special_catafalque.xml:22
+#: simulation/templates/other/special_catafalque.xml:20
 msgid "Catafalque"
 msgstr "Κενοτάφιο"
 
-#: simulation/templates/other/special_catafalque.xml:24
+#: simulation/templates/other/special_catafalque.xml:23
 msgid "A catafalque that holds the remains of a great leader."
 msgstr "Ένα κενοτάφιο που διατηρεί τα λείψανα ενός μεγάλου ηγέτη."
 
-#: simulation/templates/other/special_catafalque.xml:25
+#: simulation/templates/other/special_catafalque.xml:24
 msgid "Relic"
 msgstr "Ιερό Λείψανο"
 
@@ -977,58 +977,58 @@ msgstr "Ημιτελής Ελληνικός Ναός"
 msgid "This temple is unfinished and has fallen to ruin."
 msgstr "Αυτός ο ημιτελές ναός έχει μετατραπεί σε ερείπια."
 
-#: simulation/templates/other/catafalque/athen_catafalque.xml:6
+#: simulation/templates/other/catafalque/athen_catafalque.xml:9
 msgid "Solon"
 msgstr "Σόλωνας"
 
-#: simulation/templates/other/catafalque/brit_catafalque.xml:6
+#: simulation/templates/other/catafalque/brit_catafalque.xml:9
 msgid "Cassivellaunus"
 msgstr "Κασιβέλανος"
 
-#: simulation/templates/other/catafalque/cart_catafalque.xml:6
+#: simulation/templates/other/catafalque/cart_catafalque.xml:8
 msgid "Hasdrubal (Quartermaster)"
 msgstr "Ασδρούβας (Φροντιστής)"
 
-#: simulation/templates/other/catafalque/gaul_catafalque.xml:6
+#: simulation/templates/other/catafalque/gaul_catafalque.xml:9
 msgid "Ambiorix"
 msgstr "Αμβιόριξ"
 
-#: simulation/templates/other/catafalque/iber_catafalque.xml:6
+#: simulation/templates/other/catafalque/iber_catafalque.xml:9
 msgid "Mandonius"
 msgstr "Μανδόνιος"
 
-#: simulation/templates/other/catafalque/mace_catafalque.xml:6
+#: simulation/templates/other/catafalque/mace_catafalque.xml:8
 msgid "Philip V"
 msgstr "Φίλιππος Ε'"
 
-#: simulation/templates/other/catafalque/mace_catafalque.xml:7
+#: simulation/templates/other/catafalque/mace_catafalque.xml:9
 msgid ""
 "Financial Reorganization: Allied with Rome, Philip reorganized the country's"
 " internal affairs and finances, leaving as a legacy reopened mines and a new"
 " currency. Gain a slow trickle of metal."
 msgstr "Οικονομική Αναδιοργάνωση: Συμμαχώντας με τη Ρώμη, ο Φίλιππος αναδιοργάνωσε τις εσωτερικές υποθέσεις και τα οικονομικά της χώρας, αφήνοντας ως παρακαταθήκη ξανανοιγμένα ορυχεία και ένα νέο νόμισμα. Αποκτάς μια αργή εισροή από μέταλλα."
 
-#: simulation/templates/other/catafalque/maur_catafalque.xml:6
+#: simulation/templates/other/catafalque/maur_catafalque.xml:9
 msgid "Bindusara"
 msgstr "Μπιντουσάρα"
 
-#: simulation/templates/other/catafalque/pers_catafalque.xml:6
+#: simulation/templates/other/catafalque/pers_catafalque.xml:8
 msgid "Artaxerxes II"
 msgstr "Αρταξέρξης Β'"
 
-#: simulation/templates/other/catafalque/ptol_catafalque.xml:6
+#: simulation/templates/other/catafalque/ptol_catafalque.xml:8
 msgid "Ptolemy III Euergetes (Benefactor)"
 msgstr "Πτολεμαίος Γ' ο Ευεργέτης"
 
-#: simulation/templates/other/catafalque/rome_catafalque.xml:6
+#: simulation/templates/other/catafalque/rome_catafalque.xml:9
 msgid "Lucius Junius Brutus"
 msgstr "Λεύκιος Ιούνιος Βρούτος"
 
-#: simulation/templates/other/catafalque/sele_catafalque.xml:6
+#: simulation/templates/other/catafalque/sele_catafalque.xml:10
 msgid "Antiochus I Soter (Savior)"
 msgstr "Αντίοχος Α' ο Σωτήρ"
 
-#: simulation/templates/other/catafalque/spart_catafalque.xml:6
+#: simulation/templates/other/catafalque/spart_catafalque.xml:10
 msgid "Lycurgus"
 msgstr "Λυκούργος"
 

@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-03 09:01+0100\n"
-"PO-Revision-Date: 2017-03-07 18:24+0000\n"
-"Last-Translator: Mark Martines <mark-martines@hotmail.com>\n"
+"POT-Creation-Date: 2017-04-28 09:01+0200\n"
+"PO-Revision-Date: 2017-04-28 16:54+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -56,190 +56,190 @@ msgstr "Verbinding verbroken."
 msgid "%(nick)s has joined."
 msgstr "%(nick)s heeft zich aangemeld."
 
-#: gui/lobby/lobby.js:161
+#: gui/lobby/lobby.js:160
 #, javascript-format
 msgid "%(nick)s has left."
 msgstr "%(nick)s heeft zich afgemeld."
 
-#: gui/lobby/lobby.js:174
+#: gui/lobby/lobby.js:173
 #, javascript-format
 msgid "%(oldnick)s is now known as %(newnick)s."
 msgstr "%(oldnick)s heet nu %(newnick)s."
 
-#: gui/lobby/lobby.js:217
+#: gui/lobby/lobby.js:249
+msgctxt "map size"
+msgid "Any"
+msgstr "Alles"
+
+#: gui/lobby/lobby.js:254
+msgctxt "player number"
+msgid "Any"
+msgstr "Alles"
+
+#: gui/lobby/lobby.js:258
+msgctxt "map"
+msgid "Any"
+msgstr "Alles"
+
+#: gui/lobby/lobby.js:316
 msgid "You have been banned from the lobby!"
 msgstr "Je bent verbannen van de lobby"
 
-#: gui/lobby/lobby.js:218
+#: gui/lobby/lobby.js:317
 msgid "You have been kicked from the lobby!"
 msgstr "Je bent uit de lobby gezet"
 
-#: gui/lobby/lobby.js:220
+#: gui/lobby/lobby.js:319
 #, javascript-format
 msgid "%(nick)s has been banned from the lobby."
 msgstr "%(nick)s is verbannen uit de lobby"
 
-#: gui/lobby/lobby.js:221
+#: gui/lobby/lobby.js:320
 #, javascript-format
 msgid "%(nick)s has been kicked from the lobby."
 msgstr "%(nick)s is uit de lobby gezet"
 
-#: gui/lobby/lobby.js:224
+#: gui/lobby/lobby.js:323
 #, javascript-format
 msgctxt "lobby kick"
 msgid "Reason: %(reason)s"
 msgstr "Reden:  %(reason)s"
 
-#: gui/lobby/lobby.js:249
+#: gui/lobby/lobby.js:348
 msgid "BANNED"
 msgstr "VERBANNEN"
 
-#: gui/lobby/lobby.js:249
+#: gui/lobby/lobby.js:348
 msgid "KICKED"
 msgstr "ERUITGEZET"
 
-#: gui/lobby/lobby.js:291
-msgctxt "map size"
-msgid "Any"
-msgstr "Alles"
-
-#: gui/lobby/lobby.js:296
-msgctxt "player number"
-msgid "Any"
-msgstr "Alles"
-
-#: gui/lobby/lobby.js:300
-msgctxt "map"
-msgid "Any"
-msgstr "Alles"
-
-#: gui/lobby/lobby.js:479
+#: gui/lobby/lobby.js:560
 msgid "Moderator"
 msgstr "Moderator"
 
-#: gui/lobby/lobby.js:479
+#: gui/lobby/lobby.js:560
 msgid "Player"
 msgstr "Speler"
 
-#: gui/lobby/lobby.js:480 gui/lobby/lobby.js:481 gui/lobby/lobby.js:482
-#: gui/lobby/lobby.js:483 gui/lobby/lobby.js:484 gui/lobby/lobby.js:485
+#: gui/lobby/lobby.js:561 gui/lobby/lobby.js:562 gui/lobby/lobby.js:563
+#: gui/lobby/lobby.js:564 gui/lobby/lobby.js:565 gui/lobby/lobby.js:566
 msgid "N/A"
 msgstr "n.v.t."
 
-#: gui/lobby/lobby.js:506
+#: gui/lobby/lobby.js:587
 #, javascript-format
 msgid "Player \"%(nick)s\" not found."
 msgstr "Speler \"%(nick)s\" niet gevonden."
 
 #. Translation: %(time)s is the hour and minute here.
-#: gui/lobby/lobby.js:687
+#: gui/lobby/lobby.js:786
 #, javascript-format
 msgid "Game started at %(time)s"
 msgstr "Spel gestart om %(time)s"
 
-#: gui/lobby/lobby.js:688 gui/lobby/lobby.js:1044
+#: gui/lobby/lobby.js:787 gui/lobby/lobby.js:1143
 msgid "HH:mm"
 msgstr "HH:mm"
 
-#: gui/lobby/lobby.js:692
+#: gui/lobby/lobby.js:791
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
 msgstr "Spelers: %(current)s/%(total)s"
 
-#: gui/lobby/lobby.js:734
+#: gui/lobby/lobby.js:833
 msgid "The game has already started. Do you want to join as observer?"
 msgstr "Het spel is al begonnen. Wil je als waarnemer deelnemen?"
 
-#: gui/lobby/lobby.js:735
+#: gui/lobby/lobby.js:834
 msgid "Confirmation"
 msgstr "Bevestiging"
 
-#: gui/lobby/lobby.js:736
+#: gui/lobby/lobby.js:835
 msgid "No"
 msgstr "Nee"
 
-#: gui/lobby/lobby.js:736
+#: gui/lobby/lobby.js:835
 msgid "Yes"
 msgstr "Ja"
 
-#: gui/lobby/lobby.js:755
+#: gui/lobby/lobby.js:854
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr "Het adres '%(ip)s' blijkt niet geldig."
 
-#: gui/lobby/lobby.js:874
+#: gui/lobby/lobby.js:973
 #, javascript-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
 msgstr "Onze excuses, het commando '%(cmd)s' wordt niet ondersteund."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:951
+#: gui/lobby/lobby.js:1050
 #, javascript-format
 msgid "* %(sender)s"
 msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:956
+#: gui/lobby/lobby.js:1055
 #, javascript-format
 msgid "%(sender)s %(action)s"
 msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:965 gui/lobby/lobby.js:986 gui/lobby/lobby.js:1012
+#: gui/lobby/lobby.js:1064 gui/lobby/lobby.js:1085 gui/lobby/lobby.js:1111
 #, javascript-format
 msgid "<%(sender)s>"
 msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:970 gui/lobby/lobby.js:991 gui/lobby/lobby.js:1017
+#: gui/lobby/lobby.js:1069 gui/lobby/lobby.js:1090 gui/lobby/lobby.js:1116
 #, javascript-format
 msgid "%(sender)s %(message)s"
 msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:980
+#: gui/lobby/lobby.js:1079
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/lobby/lobby.js:1006
+#: gui/lobby/lobby.js:1105
 #, javascript-format
 msgctxt "lobby private message"
 msgid "(%(private)s) <%(sender)s>"
 msgstr "(%(private)s) <%(sender)s>"
 
-#: gui/lobby/lobby.js:1008
+#: gui/lobby/lobby.js:1107
 msgid "Private"
 msgstr "Privé"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
-#: gui/lobby/lobby.js:1047
+#: gui/lobby/lobby.js:1146
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:1052
+#: gui/lobby/lobby.js:1151
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/lobby/lobby.js:1113
+#: gui/lobby/lobby.js:1212
 msgid "Please do not spam. You have been blocked for thirty seconds."
 msgstr "Gelieve niet te spammen. Je bent voor 30 seconden geblokkeerd."
 
-#: gui/lobby/lobby.js:1174
+#: gui/lobby/lobby.js:1273
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
 msgstr "%(nick)s (%(rating)s)"
 
-#: gui/lobby/lobby.js:1189
+#: gui/lobby/lobby.js:1288
 msgctxt "Used for an undefined winning rate"
 msgid "-"
 msgstr "-"
 
-#: gui/lobby/lobby.js:1191
+#: gui/lobby/lobby.js:1290
 #, javascript-format
 msgid "%(percentage)s%%"
 msgstr "%(percentage)s%%"
@@ -314,115 +314,120 @@ msgstr "Gebruiksvoorwaarden"
 msgid "Multiplayer Lobby"
 msgstr "Multiplayer lobby"
 
-#: gui/lobby/lobby.xml:(caption):63 gui/lobby/lobby.xml:(caption):325
+#: gui/lobby/lobby.xml:(caption):65 gui/lobby/lobby.xml:(caption):337
 msgid "Current Rank:"
 msgstr "Huidige rank:"
 
-#: gui/lobby/lobby.xml:(caption):67 gui/lobby/lobby.xml:(caption):329
+#: gui/lobby/lobby.xml:(caption):69 gui/lobby/lobby.xml:(caption):341
 msgid "Highest Rating:"
 msgstr "Hoogste score:"
 
-#: gui/lobby/lobby.xml:(caption):71 gui/lobby/lobby.xml:(caption):333
+#: gui/lobby/lobby.xml:(caption):73 gui/lobby/lobby.xml:(caption):345
 msgid "Total Games:"
 msgstr "Aantal spellen:"
 
-#: gui/lobby/lobby.xml:(caption):75 gui/lobby/lobby.xml:(caption):337
+#: gui/lobby/lobby.xml:(caption):77 gui/lobby/lobby.xml:(caption):349
 msgid "Wins:"
 msgstr "Overwinningen:"
 
-#: gui/lobby/lobby.xml:(caption):79 gui/lobby/lobby.xml:(caption):341
+#: gui/lobby/lobby.xml:(caption):81 gui/lobby/lobby.xml:(caption):353
 msgid "Losses:"
 msgstr "Verliezen:"
 
-#: gui/lobby/lobby.xml:(caption):83 gui/lobby/lobby.xml:(caption):345
+#: gui/lobby/lobby.xml:(caption):85 gui/lobby/lobby.xml:(caption):357
 msgid "Win Rate:"
 msgstr "Overwinningsratio:"
 
-#: gui/lobby/lobby.xml:(caption):92 gui/lobby/lobby.xml:(caption):273
+#. Toggle Buddy
+#: gui/lobby/lobby.xml:(caption):94
+msgid "Toggle Buddy"
+msgstr ""
+
+#: gui/lobby/lobby.xml:(caption):100 gui/lobby/lobby.xml:(caption):285
 msgid "Leaderboard"
 msgstr "Ranglijst"
 
-#: gui/lobby/lobby.xml:(caption):101 gui/lobby/lobby.xml:(caption):308
+#: gui/lobby/lobby.xml:(caption):109 gui/lobby/lobby.xml:(caption):320
 msgid "User Profile Lookup"
 msgstr "Gebruikersprofiel zoeker"
 
-#: gui/lobby/lobby.xml:(caption):130
+#: gui/lobby/lobby.xml:(caption):138
 msgid "Map Type:"
 msgstr "Kaarttype:"
 
-#: gui/lobby/lobby.xml:(caption):142
+#: gui/lobby/lobby.xml:(caption):150
 msgid "Map Size:"
 msgstr "Kaart grootte:"
 
 #. Join the game currently selected in the list.
-#: gui/lobby/lobby.xml:(caption):167
+#: gui/lobby/lobby.xml:(caption):175
 msgid "Join Game"
 msgstr "Join spel"
 
-#: gui/lobby/lobby.xml:(caption):173
+#: gui/lobby/lobby.xml:(caption):181
 msgid "Host Game"
 msgstr "Host een spel"
 
-#: gui/lobby/lobby.xml:(caption):180
+#: gui/lobby/lobby.xml:(caption):188
 msgid "Main Menu"
 msgstr "Hoofdmenu"
 
-#: gui/lobby/lobby.xml:(caption):245
+#: gui/lobby/lobby.xml:(caption):254
 msgid "Show full games"
 msgstr "Toon ook spellen die vol zitten"
 
-#: gui/lobby/lobby.xml:(caption):293 gui/lobby/lobby.xml:(caption):355
+#: gui/lobby/lobby.xml:(caption):305 gui/lobby/lobby.xml:(caption):367
 msgid "Back"
 msgstr "Terug"
 
-#: gui/lobby/lobby.xml:(caption):301
+#: gui/lobby/lobby.xml:(caption):313
 msgid "Update"
 msgstr "Bijwerken"
 
-#: gui/lobby/lobby.xml:(caption):311
+#: gui/lobby/lobby.xml:(caption):323
 msgid "Enter username:"
 msgstr "Gebruikersnaam invoeren:"
 
-#: gui/lobby/lobby.xml:(caption):317
+#: gui/lobby/lobby.xml:(caption):329
 msgid "View Profile"
 msgstr "Bekijk profiel"
 
-#: gui/lobby/lobby.xml:(caption):350
+#: gui/lobby/lobby.xml:(caption):362
 msgid "Please enter a player name."
 msgstr "Voer een gebruikersnaam in."
 
-#: gui/lobby/lobby.xml:(heading):40
+#: gui/lobby/lobby.xml:(heading):41
 msgid "Status"
 msgstr "Status"
 
-#: gui/lobby/lobby.xml:(heading):43 gui/lobby/lobby.xml:(heading):203
-#: gui/lobby/lobby.xml:(heading):283
+#: gui/lobby/lobby.xml:(heading):44 gui/lobby/lobby.xml:(heading):212
+#: gui/lobby/lobby.xml:(heading):295
 msgid "Name"
 msgstr "Naam"
 
-#: gui/lobby/lobby.xml:(heading):46 gui/lobby/lobby.xml:(heading):286
+#: gui/lobby/lobby.xml:(heading):47 gui/lobby/lobby.xml:(heading):298
 msgid "Rating"
 msgstr "Score"
 
-#: gui/lobby/lobby.xml:(heading):206
+#: gui/lobby/lobby.xml:(heading):215
 msgid "Map Name"
 msgstr "Kaartnaam"
 
-#: gui/lobby/lobby.xml:(heading):209
+#: gui/lobby/lobby.xml:(heading):218
 msgctxt "map"
 msgid "Size"
 msgstr "Grootte"
 
-#: gui/lobby/lobby.xml:(heading):212
+#: gui/lobby/lobby.xml:(heading):221
 msgctxt "map"
 msgid "Type"
 msgstr "Type"
 
-#: gui/lobby/lobby.xml:(heading):215
+#: gui/lobby/lobby.xml:(heading):224
 msgid "Players"
 msgstr "Spelers"
 
-#: gui/lobby/lobby.xml:(heading):280
+#: gui/lobby/lobby.xml:(heading):292
 msgid "Rank"
 msgstr "Rang"
 
