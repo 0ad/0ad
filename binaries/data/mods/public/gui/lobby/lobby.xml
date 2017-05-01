@@ -47,7 +47,7 @@
 					<translatableAttribute id="heading">Rating</translatableAttribute>
 				</column>
 				<action on="SelectionChange">
-					displayProfile("lobbylist");
+					onPlayerListSelection();
 				</action>
 				<action on="SelectionColumnChange">
 					updatePlayerList();
@@ -90,7 +90,7 @@
 		</object>
 
 		<object name="leftButtonPanel" size="20 100%-105 20% 100%-20">
-			<object name="toggleBuddy" type="button" style="ModernButtonRed" size="0 100%-85 100% 100%-60">
+			<object name="toggleBuddyButton" type="button" style="ModernButtonRed" size="0 100%-85 100% 100%-60">
 				<translatableAttribute id="caption" comment="Toggle Buddy">Toggle Buddy</translatableAttribute>
 				<action on="Press">
 					toggleBuddy();
@@ -99,17 +99,13 @@
 			<object name="leaderboardButton" type="button" style="ModernButtonRed" size="0 100%-55 100% 100%-30">
 				<translatableAttribute id="caption">Leaderboard</translatableAttribute>
 				<action on="Press">
-					Engine.SendGetBoardList();
-					Engine.GetGUIObjectByName("leaderboard").hidden = false;
-					Engine.GetGUIObjectByName("fade").hidden = false;
-					displayProfile("leaderboard");
+					setLeaderboardVisibility(true);
 				</action>
 			</object>
 			<object name="userprofileButton" type="button" style="ModernButtonRed" size="0 100%-25 100% 100%">
 				<translatableAttribute id="caption">User Profile Lookup</translatableAttribute>
 				<action on="Press">
-					Engine.GetGUIObjectByName("profileFetch").hidden = false;
-					Engine.GetGUIObjectByName("fade").hidden = false;
+					setUserProfileVisibility(true);
 				</action>
 			</object>
 		</object>
@@ -277,9 +273,10 @@
 			</object>
 		</object>
 
-		<!-- START Window for leaderboard stats -->
-		<!-- Add a translucent black background to fade out the menu page -->
+		<!-- Translucent black background -->
 		<object hidden="true" name="fade" type="image" z="100" sprite="ModernFade"/>
+
+		<!-- Leaderboard -->
 		<object hidden="true" name="leaderboard" type="image" style="ModernDialog" size="50%-224 50%-160 50%+224 50%+160" z="101">
 			<object style="ModernLabelText" type="text" size="50%-128 -18 50%+128 14">
 				<translatableAttribute id="caption">Leaderboard</translatableAttribute>
@@ -298,15 +295,13 @@
 					<translatableAttribute id="heading">Rating</translatableAttribute>
 				</column>
 				<action on="SelectionChange">
-					displayProfile("leaderboard");
+					lookupSelectedUserProfile(this.name);
 				</action>
 			</object>
 			<object type="button" style="ModernButtonRed" size="50%-133 100%-45 50%-5 100%-17" hotkey="cancel">
 				<translatableAttribute id="caption">Back</translatableAttribute>
 				<action on="Press">
-					Engine.GetGUIObjectByName("leaderboard").hidden = true;
-					Engine.GetGUIObjectByName("fade").hidden = true;
-					displayProfile("lobbylist");
+					setLeaderboardVisibility(false);
 				</action>
 			</object>
 			<object type="button" style="ModernButtonRed" size="50%+5 100%-45 50%+133 100%-17">
@@ -314,7 +309,9 @@
 				<action on="Press">Engine.SendGetBoardList();</action>
 			</object>
 		</object>
-		<!-- END Window for leaderboard stats -->
+		<!-- End of leaderboard -->
+
+		<!-- User profile lookup -->
 		<object hidden="true" name="profileFetch" type="image" style="ModernDialog" size="50%-224 50%-160 50%+224 50%+160" z="102">
 			<object style="ModernLabelText" type="text" size="50%-128 -18 50%+128 14">
 				<translatableAttribute id="caption">User Profile Lookup</translatableAttribute>
@@ -323,11 +320,11 @@
 					<translatableAttribute id="caption">Enter username:</translatableAttribute>
 			</object>
 			<object name="fetchInput" size="40%+10 25 100%-25 50" type="input" style="ModernInput" font="sans-13">
-				<action on="Press">displayProfile("fetch");</action>
+				<action on="Press">lookupUserProfile();</action>
 			</object>
 			<object type="button" style="ModernButtonRed" size="50%-64 60 50%+64 85">
 				<translatableAttribute id="caption">View Profile</translatableAttribute>
-				<action on="Press">displayProfile("fetch");</action>
+				<action on="Press">lookupUserProfile();</action>
 			</object>
 			<object name="profileWindowPanel" size="25 95 100%-25 100%-60">
 			<object name="profileWindowBox" type="image" sprite="ModernDarkBoxGold" size="0 0 100% 100%">
@@ -366,10 +363,11 @@
 			<object type="button" style="ModernButtonRed" size="50%-64 100%-50 50%+64 100%-25" hotkey="cancel">
 				<translatableAttribute id="caption">Back</translatableAttribute>
 				<action on="Press">
-					Engine.GetGUIObjectByName("profileFetch").hidden = true;
-					Engine.GetGUIObjectByName("fade").hidden = true;
+					setUserProfileVisibility(false);
 				</action>
 			</object>
 		</object>
+		<!-- End of user profile lookup -->
+
 	</object>
 </objects>

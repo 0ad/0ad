@@ -132,7 +132,9 @@ var g_NetMessageTypes = {
 			updateLeaderboard();
 			updatePlayerList();
 
-			for (let button of ["host", "leaderboard", "userprofile"])
+			Engine.GetGUIObjectByName("chatInput").hidden = true;
+
+			for (let button of ["host", "leaderboard", "userprofile", "toggleBuddy"])
 				Engine.GetGUIObjectByName(button + "Button").enabled = false;
 
 			if (!g_Kicked)
@@ -606,42 +608,57 @@ function selectGameFromPlayername(playerName)
 		}
 }
 
+function onPlayerListSelection()
+{
+	lookupSelectedUserProfile("playersBox");
+
+	let playerList = Engine.GetGUIObjectByName("playersBox")
+	if (playerList.selected != -1)
+		selectGameFromPlayername(playerList.list[playerList.selected]);
+}
+
+function setLeaderboardVisibility(visible)
+{
+	if (visible)
+		Engine.SendGetBoardList();
+
+	lookupSelectedUserProfile(visible ? "leaderboardBox" : "playersBox");
+	Engine.GetGUIObjectByName("leaderboard").hidden = !visible;
+	Engine.GetGUIObjectByName("fade").hidden = !visible;
+}
+
+function setUserProfileVisibility(visible)
+{
+    Engine.GetGUIObjectByName("profileFetch").hidden = !visible;
+    Engine.GetGUIObjectByName("fade").hidden = !visible;
+}
+
 /**
- * Display the profile of the selected player.
+ * Display the profile of the player in the user profile window.
+ */
+function lookupUserProfile()
+{
+	Engine.SendGetProfile(Engine.GetGUIObjectByName("fetchInput").caption);
+}
+
+/**
+ * Display the profile of the selected player in the main window.
  * Displays N/A for all stats until updateProfile is called when the stats
  * are actually received from the bot.
- *
- * @param {string} caller - From which screen is the user requesting data from?
  */
-function displayProfile(caller)
+function lookupSelectedUserProfile(guiObjectName)
 {
-	let playerList;
-
-	if (caller == "leaderboard")
-		playerList = Engine.GetGUIObjectByName("leaderboardBox");
-	else if (caller == "lobbylist")
-	{
-		playerList = Engine.GetGUIObjectByName("playersBox");
-		if (playerList.selected != -1)
-			selectGameFromPlayername(playerList.list[playerList.selected]);
-	}
-	else if (caller == "fetch")
-	{
-		Engine.SendGetProfile(Engine.GetGUIObjectByName("fetchInput").caption);
-		return;
-	}
-	else
-		return;
-
+	let playerList = Engine.GetGUIObjectByName(guiObjectName);
 	let playerName = playerList.list[playerList.selected];
-	Engine.GetGUIObjectByName("profileArea").hidden = !playerName;
+
+	Engine.GetGUIObjectByName("profileArea").hidden = !playerName && !Engine.GetGUIObjectByName("usernameText").caption;
 	if (!playerName)
 		return;
 
 	Engine.SendGetProfile(playerName);
 
 	let isModerator = Engine.LobbyGetPlayerRole(playerName) == "moderator";
-	Engine.GetGUIObjectByName("usernameText").caption = playerList.list_name[playerList.selected];
+	Engine.GetGUIObjectByName("usernameText").caption = playerName;
 	Engine.GetGUIObjectByName("roleText").caption = isModerator ? translate("Moderator") : translate("Player");
 	Engine.GetGUIObjectByName("rankText").caption = translate("N/A");
 	Engine.GetGUIObjectByName("highestRatingText").caption = translate("N/A");
