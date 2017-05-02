@@ -122,18 +122,29 @@ void CNetClientTurnManager::OnSyncError(u32 turn, const CStr& expectedHash, cons
 
 	hash = Hexify(hash);
 
-	std::stringstream msg;
-	msg << "Out of sync on turn " << turn;
-
+	std::stringstream playerNamesString;
+	std::vector<CStr> playerNamesStrings;
+	playerNamesStrings.reserve(playerNames.size());
 	for (size_t i = 0; i < playerNames.size(); ++i)
-		msg << (i == 0 ? "\nPlayers: " : ", ") << utf8_from_wstring(playerNames[i].m_Name);
+	{
+		CStr name = utf8_from_wstring(playerNames[i].m_Name);
+		playerNamesString << (i == 0 ? "" : ", ") << name;
+		playerNamesStrings.push_back(name);
+	}
 
-	msg << "\n\n" << "Your game state is " << (expectedHash == hash ? "identical to" : "different from") << " the hosts game state.";
+	LOGERROR("Out-Of-Sync on turn %d\nPlayers: %s\nDumping state to %s", turn, playerNamesString.str().c_str(), path.string8());
 
-	msg << "\n\n" << "Dumping current state to " << CStr(path.string8()).EscapeToPrintableASCII();
+	ScriptInterface& scriptInterface = m_NetClient.GetScriptInterface();
+	JSContext* cx = scriptInterface.GetContext();
+	JSAutoRequest rq(cx);
 
-	LOGERROR("%s", msg.str());
-
-	if (g_GUI)
-		g_GUI->DisplayMessageBox(600, 350, L"Sync error", wstring_from_utf8(msg.str()));
+	JS::RootedValue msg(cx);
+	scriptInterface.Eval("({ 'type':'out-of-sync' })", &msg);
+	scriptInterface.SetProperty(msg, "turn", turn);
+	scriptInterface.SetProperty(msg, "players", playerNamesStrings);
+	scriptInterface.SetProperty(msg, "expectedHash", expectedHash);
+	scriptInterface.SetProperty(msg, "hash", hash);
+	scriptInterface.SetProperty(msg, "path_oos_dump", path.string8());
+	scriptInterface.SetProperty(msg, "path_replay", m_Replay.GetDirectory().string8());
+	m_NetClient.PushGuiMessage(msg);
 }

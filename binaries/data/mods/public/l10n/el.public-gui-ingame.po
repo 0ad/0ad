@@ -31,8 +31,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-04-10 09:05+0200\n"
-"PO-Revision-Date: 2017-04-10 22:01+0000\n"
+"POT-Creation-Date: 2017-04-28 09:00+0200\n"
+"PO-Revision-Date: 2017-04-29 11:07+0000\n"
 "Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -41,21 +41,21 @@ msgstr ""
 "Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/session/input.js:147
+#: gui/session/input.js:143
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
 msgstr[0] " Βασικό βεληνεκές: %(range)s μέτρα"
 msgstr[1] "Βασική εμβέλεια: %(range)s μέτρα "
 
-#: gui/session/input.js:148
+#: gui/session/input.js:144
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] "Μέσο έυρος μπόνους: %(range)s μέτρα"
 msgstr[1] "Μέσο μπόνους έκτασης: %(range)s μέτρα"
 
-#: gui/session/input.js:705
+#: gui/session/input.js:703
 msgid "Cannot build wall here!"
 msgstr "Δεν μπορείς να χτίσεις τείχος εδώ!"
 
@@ -122,7 +122,7 @@ msgctxt "team"
 msgid "None"
 msgstr "Καμία"
 
-#: gui/session/menu.js:415 gui/session/messages.js:166
+#: gui/session/menu.js:415 gui/session/messages.js:167
 #: gui/session/diplomacy_window.xml:(tooltip):28
 msgid "Ally"
 msgstr "Σύμμαχ"
@@ -131,7 +131,7 @@ msgstr "Σύμμαχ"
 msgid "Neutral"
 msgstr "Ουδέτερος"
 
-#: gui/session/menu.js:416 gui/session/messages.js:167
+#: gui/session/menu.js:416 gui/session/messages.js:168
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr "Εχθρός"
@@ -279,7 +279,7 @@ msgstr "Παύση"
 msgid "Paused by %(players)s"
 msgstr "Σταμάτησε από τον παίκτη %(players)s"
 
-#: gui/session/menu.js:1103 gui/session/messages.js:613
+#: gui/session/menu.js:1103 gui/session/messages.js:623
 #: gui/session/selection_panels.js:807
 msgid ", "
 msgstr ", "
@@ -342,236 +342,251 @@ msgstr "Στον παίκτη %(username)s απαγορεύτηκε η πρόσ�
 msgid "%(username)s has been kicked"
 msgstr "Ο παίκτης %(username)s εκδιώχθηκε από το παιχνίδι."
 
-#: gui/session/messages.js:138
+#: gui/session/messages.js:139
 msgid "Connection to the server has been authenticated."
 msgstr "Η σύνδεση με το διακομιστή έχει επικυρωθεί."
 
-#: gui/session/messages.js:139
+#: gui/session/messages.js:140
 msgid "Connected to the server."
 msgstr "Σύνδεση με διακομιστή."
 
-#: gui/session/messages.js:140
+#: gui/session/messages.js:141
 msgid "Connection to the server has been lost."
 msgstr "Η σύνδεση με το διακομιστή χάθηκε."
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/session/messages.js:142
+#: gui/session/messages.js:143
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Αιτία: %(reason)s."
 
-#: gui/session/messages.js:145
+#: gui/session/messages.js:146
 msgid "Waiting for players to connect:"
 msgstr "Αναμονή για τη σύνδεση των παικτών:"
 
-#: gui/session/messages.js:146
+#: gui/session/messages.js:147
 msgid "Synchronising gameplay with other players..."
 msgstr "Συγχρονισμός παιχνιδιού με άλλους παίκτες ..."
 
-#: gui/session/messages.js:155
+#: gui/session/messages.js:156
 #, javascript-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr "(%(context)s) %(userTag)s %(message)s"
 
-#: gui/session/messages.js:156
+#: gui/session/messages.js:157
 #, javascript-format
 msgid "%(userTag)s %(message)s"
 msgstr "%(userTag)s %(message)s"
 
-#: gui/session/messages.js:159
+#: gui/session/messages.js:160
 #, javascript-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr "(%(context)s) * %(user)s %(message)s"
 
-#: gui/session/messages.js:160
+#: gui/session/messages.js:161
 #, javascript-format
 msgid "* %(user)s %(message)s"
 msgstr "* %(user)s %(message)s"
 
-#: gui/session/messages.js:165 gui/session/diplomacy_window.xml:(caption):21
+#: gui/session/messages.js:166 gui/session/diplomacy_window.xml:(caption):21
 msgid "Team"
 msgstr "Ομάδα"
 
-#: gui/session/messages.js:168 gui/session/session.js:298
+#: gui/session/messages.js:169 gui/session/session.js:298
 msgid "Observer"
 msgstr "Παρατηρητής"
 
-#: gui/session/messages.js:169
+#: gui/session/messages.js:170
 msgid "Private"
 msgstr "Ιδιωτικό"
 
-#: gui/session/messages.js:205
+#: gui/session/messages.js:206
 msgctxt "chat history filter"
 msgid "Chat and notifications"
 msgstr "Συνομιλία και ειδοποιήσεις"
 
-#: gui/session/messages.js:210
+#: gui/session/messages.js:211
 msgctxt "chat history filter"
 msgid "Chat messages"
 msgstr "Μηνύματα συνομιλίας"
 
-#: gui/session/messages.js:215
+#: gui/session/messages.js:216
 msgctxt "chat history filter"
 msgid "Players chat"
 msgstr "Συνομιλία παικτών"
 
-#: gui/session/messages.js:222
+#: gui/session/messages.js:223
 msgctxt "chat history filter"
 msgid "Ally chat"
 msgstr "Συνομιλία συμμάχων"
 
-#: gui/session/messages.js:229
+#: gui/session/messages.js:230
 msgctxt "chat history filter"
 msgid "Enemy chat"
 msgstr "Συνομιλία εχθρών"
 
-#: gui/session/messages.js:236
+#: gui/session/messages.js:237
 msgctxt "chat history filter"
 msgid "Observer chat"
 msgstr "Συνομιλία παρατηρητών"
 
-#: gui/session/messages.js:243
+#: gui/session/messages.js:244
 msgctxt "chat history filter"
 msgid "Private chat"
 msgstr "Ιδιωτική συνομιλία"
 
-#: gui/session/messages.js:249
+#: gui/session/messages.js:250
 msgid "You have won!"
 msgstr "Κερδίσατε !"
 
-#: gui/session/messages.js:250
+#: gui/session/messages.js:251
 msgid "You have been defeated!"
 msgstr "Ηττηθήκατε..."
 
-#: gui/session/messages.js:258
+#: gui/session/messages.js:259
 #, javascript-format
 msgid "You are now allied with %(player)s."
 msgstr "Είσαι τώρα σύμμαχος με %(player)s."
 
-#: gui/session/messages.js:259
+#: gui/session/messages.js:260
 #, javascript-format
 msgid "You are now at war with %(player)s."
 msgstr "Είσαι τώρα σε πόλεμο με %(player)s."
 
-#: gui/session/messages.js:260
+#: gui/session/messages.js:261
 #, javascript-format
 msgid "You are now neutral with %(player)s."
 msgstr "Είσαι τώρα ουδέτερος με %(player)s."
 
-#: gui/session/messages.js:263
+#: gui/session/messages.js:264
 #, javascript-format
 msgid "%(player)s is now allied with you."
 msgstr "%(player)s είναι τώρα σε συμμαχία με εσένα."
 
-#: gui/session/messages.js:264
+#: gui/session/messages.js:265
 #, javascript-format
 msgid "%(player)s is now at war with you."
 msgstr "%(player)s είναι τώρα σε πόλεμο με εσένα."
 
-#: gui/session/messages.js:265
+#: gui/session/messages.js:266
 #, javascript-format
 msgid "%(player)s is now neutral with you."
 msgstr "%(player)s είναι τώρα ουδέτερα με εσένα."
 
-#: gui/session/messages.js:268
+#: gui/session/messages.js:269
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
 msgstr "Ο %(player)s είναι πλέον σύμμαχος με τον %(player2)s."
 
-#: gui/session/messages.js:269
+#: gui/session/messages.js:270
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
 msgstr "Ο %(player)s είναι πλέον σε πόλεμο με τον %(player2)s"
 
-#: gui/session/messages.js:270
+#: gui/session/messages.js:271
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
 msgstr "Ο %(player)s είναι πλέον ουδέτερος με τον %(player2)s."
 
-#: gui/session/messages.js:675
+#: gui/session/messages.js:685
 msgctxt "chat addressee"
 msgid "Everyone"
 msgstr "Όλοι"
 
-#: gui/session/messages.js:683
+#: gui/session/messages.js:693
 msgctxt "chat addressee"
 msgid "Allies"
 msgstr "Σύμμαχοι"
 
-#: gui/session/messages.js:687
+#: gui/session/messages.js:697
 msgctxt "chat addressee"
 msgid "Enemies"
 msgstr "Εχθροί"
 
-#: gui/session/messages.js:693
+#: gui/session/messages.js:703
 msgctxt "chat addressee"
 msgid "Observers"
 msgstr "Παρατηρητές"
 
-#: gui/session/messages.js:722 gui/session/selection_details.js:82
+#: gui/session/messages.js:732 gui/session/selection_details.js:82
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
 msgstr "[ΕΚΤΟΣ ΣΥΝΔΕΣΗΣ] %(player)s"
 
-#: gui/session/messages.js:803
+#: gui/session/messages.js:813
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/session/messages.js:804
+#: gui/session/messages.js:814
 msgid "HH:mm"
 msgstr "ΩΩ:λλ"
 
-#: gui/session/messages.js:848
+#: gui/session/messages.js:858
 msgid "Unknown Player"
 msgstr "Άγνωστος παίκτης"
 
-#: gui/session/messages.js:865
+#: gui/session/messages.js:875
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr "%(player)s παραιτήθηκε."
 
-#: gui/session/messages.js:866
+#: gui/session/messages.js:876
 #, javascript-format
 msgid "%(player)s has been defeated."
 msgstr "%(player)s ηττήθηκε."
 
-#: gui/session/messages.js:873
+#: gui/session/messages.js:883
 #, javascript-format
 msgid "%(player)s has won."
 msgstr "%(player)s νίκησε"
 
-#: gui/session/messages.js:905
+#: gui/session/messages.js:915
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "Ο %(player)s σου έστειλε %(amounts)s."
 
-#: gui/session/messages.js:907
+#: gui/session/messages.js:917
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
 msgstr "Έχεις στείλει %(player2)s %(amounts)s."
 
-#: gui/session/messages.js:912
+#: gui/session/messages.js:922
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
 msgstr "%(player)s έστειλε %(player2)s %(amounts)s."
 
-#: gui/session/messages.js:932
+#: gui/session/messages.js:942
 #, javascript-format
 msgid "%(player)s bartered %(amountsBought)s for %(amountsSold)s."
 msgstr "%(player)s ανταλλάσσονται με %(amountsBought)s για %(amountsSold)s."
 
-#: gui/session/messages.js:945
+#: gui/session/messages.js:955
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
 msgstr "Η κτηνοτροφία σου δέχεται επίθεση από %(attacker)s!"
 
-#: gui/session/messages.js:946
+#: gui/session/messages.js:956
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "Δέχθηκες επίθεση από %(attacker)s!"
 
-#: gui/session/messages.js:997
+#: gui/session/messages.js:973
+#, javascript-format
+msgid "%(player)s is advancing to the %(phaseName)s."
+msgstr "Ο %(player)s προόδευσε στη %(phaseName)s."
+
+#: gui/session/messages.js:975
+#, javascript-format
+msgid "The %(phaseName)s of %(player)s has been aborted."
+msgstr "Έχει ακυρωθεί η %(phaseName)s από τον %(player)s."
+
+#: gui/session/messages.js:978
+#, javascript-format
+msgid "%(player)s has reached the %(phaseName)s."
+msgstr "Ο %(player)s ανακάλυψε την %(phaseName)s."
+
+#: gui/session/messages.js:1030
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
@@ -632,9 +647,9 @@ msgstr "%(amount)s / %(max)s"
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:229 gui/session/unit_actions.js:574
-#: gui/session/unit_actions.js:583 gui/session/unit_actions.js:597
-#: gui/session/unit_actions.js:915
+#: gui/session/selection_details.js:229 gui/session/unit_actions.js:577
+#: gui/session/unit_actions.js:586 gui/session/unit_actions.js:600
+#: gui/session/unit_actions.js:918
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Κέρδος: %(gain)s"
@@ -1026,124 +1041,124 @@ msgstr "Λειτουργία στρέβλωσης του χρόνου"
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)sx)"
 
-#: gui/session/unit_actions.js:572
+#: gui/session/unit_actions.js:575
 msgid "Origin trade market."
 msgstr "Αρχική αγορά εμπορίου"
 
-#: gui/session/unit_actions.js:578
+#: gui/session/unit_actions.js:581
 msgid "Right-click on another market to set it as a destination trade market."
 msgstr "Κάντε δεξί κλικ σε μια άλλη αγορά για να την ορίσετε ως αγορά προορισμού."
 
-#: gui/session/unit_actions.js:582
+#: gui/session/unit_actions.js:585
 msgid "Destination trade market."
 msgstr "Προορισμός της αγοράς."
 
-#: gui/session/unit_actions.js:589
+#: gui/session/unit_actions.js:592
 msgid "Right-click to set as origin trade market"
 msgstr "Κάντε δεξί κλικ για να ορίσετε την αγορά προέλευσης."
 
-#: gui/session/unit_actions.js:596
+#: gui/session/unit_actions.js:599
 msgid "Right-click to set as destination trade market."
 msgstr "Κάντε δεξί κλικ για να ορίσετε την αγορά προορισμού."
 
-#: gui/session/unit_actions.js:650 gui/session/unit_actions.js:865
+#: gui/session/unit_actions.js:653 gui/session/unit_actions.js:868
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Τρέχουσα οχύρωση: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:912
+#: gui/session/unit_actions.js:915
 msgid "Right-click to establish a default route for new traders."
 msgstr "Κάντε δεξί κλικ για να καθοριστεί μια προεπιλεγμένη διαδρομή για τους νέους εμπόρους."
 
-#: gui/session/unit_actions.js:916
+#: gui/session/unit_actions.js:919
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "Αναμενόμενο κέρδος: %(gain)s"
 
-#: gui/session/unit_actions.js:1049 gui/session/unit_actions.js:1351
+#: gui/session/unit_actions.js:1052 gui/session/unit_actions.js:1355
 msgid "Unload All."
 msgstr "Ξεφόρτωμα όλων"
 
-#: gui/session/unit_actions.js:1071
+#: gui/session/unit_actions.js:1074
 msgid "Destroy the selected units or buildings."
 msgstr "Καταστροφή των επιλεγμένων μονάδων ή κτιρίων."
 
-#: gui/session/unit_actions.js:1073
+#: gui/session/unit_actions.js:1076
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Χηση του %(hotkey)s για αποφυγή διαλόγου επιβεβαίωσης."
 
-#: gui/session/unit_actions.js:1105
+#: gui/session/unit_actions.js:1108
 msgid "Abort the current order."
 msgstr "Ακύρωσε την τρέχουσα παραγγελία."
 
-#: gui/session/unit_actions.js:1125
+#: gui/session/unit_actions.js:1128
 msgid "Order the selected units to garrison in a building or unit."
 msgstr "Διέταξε τις επιλεγμένες μονάδες να φρουρήσουν ένα κτίριο ή μονάδα."
 
-#: gui/session/unit_actions.js:1147
+#: gui/session/unit_actions.js:1150
 msgid "Unload"
 msgstr "Ξεφορτώμα"
 
-#: gui/session/unit_actions.js:1165
+#: gui/session/unit_actions.js:1168
 msgid "Order the selected units to repair a building or mechanical unit."
 msgstr "Διέταξε τις επιλεγμένες μονάδες να επισκευάσουν ένα κτίριο ή μηχανική μονάδα."
 
-#: gui/session/unit_actions.js:1184
+#: gui/session/unit_actions.js:1187
 msgid "Focus on Rally Point."
 msgstr "Συγκέντρωση στο επιλεγμένο σημείο."
 
-#: gui/session/unit_actions.js:1209
+#: gui/session/unit_actions.js:1212
 msgid "Back to Work"
 msgstr "Πίσω στη δουλειά"
 
-#: gui/session/unit_actions.js:1228
+#: gui/session/unit_actions.js:1231
 msgid "Order the selected units to guard a building or unit."
 msgstr "Διέταξε τις επιλεγμένες μονάδες να φρουρήσουν ένα κτίριο ή μονάδα."
 
-#: gui/session/unit_actions.js:1246
+#: gui/session/unit_actions.js:1249
 msgid "Remove guard"
 msgstr "Αφαίρεση προφύλαξης"
 
-#: gui/session/unit_actions.js:1263
+#: gui/session/unit_actions.js:1266
 #: gui/session/top_panel/button_trade.xml:(tooltip):9
 msgid "Barter & Trade"
 msgstr "Ανταλλαγή και Εμπόριο"
 
-#: gui/session/unit_actions.js:1280
+#: gui/session/unit_actions.js:1284
 msgid "Patrol"
 msgstr "Περιπολία"
 
-#: gui/session/unit_actions.js:1281
+#: gui/session/unit_actions.js:1285
 msgid "Attack all encountered enemy units while avoiding buildings."
 msgstr "Επίθεση σε όλες τις εχθρικές μονάδες που συναντιούνται ενώ αποφεύγοντας κτήρια."
 
-#: gui/session/unit_actions.js:1304
+#: gui/session/unit_actions.js:1308
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Πληκτρολόγησε για να αποφύγουν οι σύμμαχοι αυτό το καθορισμένο σημείο "
 
-#: gui/session/unit_actions.js:1309
+#: gui/session/unit_actions.js:1313
 msgid "Press to allow allies to use this dropsite"
 msgstr "Πληκτρολόγησε για να επιτραπεί η χρήση του καθορισμένου σημείου από τους συμμάχους. "
 
-#: gui/session/unit_actions.js:1372
+#: gui/session/unit_actions.js:1376
 msgid "You are allowed to use this dropsite"
 msgstr "Σου επιτρέπεται η χρήση του προκαθορισμένου σημείου."
 
-#: gui/session/unit_actions.js:1377
+#: gui/session/unit_actions.js:1381
 msgid "The use of this dropsite is prohibited"
 msgstr "Σου απαγορεύεται η χρήση του προκαθορισμένου σημείου."
 
-#: gui/session/unit_actions.js:1443
+#: gui/session/unit_actions.js:1455
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Η οντότητα πρέπει να εξουδετερωθεί ώστε να συλλεχθεί."
 
-#: gui/session/unit_actions.js:1446
+#: gui/session/unit_actions.js:1458
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Δεν μπορείς να καταστρέψεις αυτήν την οντότητα γιατί εχεις λιγότερους απο τους μισούς πόντους κατάκτησης"
 
-#: gui/session/unit_actions.js:1449
+#: gui/session/unit_actions.js:1461
 msgid "This entity is undeletable"
 msgstr "Η οντότητα δεν διαγράφεται."
 

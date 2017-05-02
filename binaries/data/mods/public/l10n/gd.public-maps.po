@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-24 09:08+0100\n"
-"PO-Revision-Date: 2017-03-24 13:43+0000\n"
+"POT-Creation-Date: 2017-04-28 09:02+0200\n"
+"PO-Revision-Date: 2017-04-29 09:19+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -214,6 +214,21 @@ msgstr "Tòisichidh gach cluicheadair air eilean is uisge timcheall air.\n\n’S
 msgid "Cycladic Archipelago"
 msgstr "Innis-mhuir Siogladas"
 
+#: maps/random/danubius.jsonsettings.Description
+msgid ""
+"Players start along the banks of the river Danube in the period following "
+"the expansion into Pannonia by the Celtic Boii tribe. Seeking to consolidate"
+" their hold on this land, celtic reinforcements have been sent to root out "
+"the remaining foreign cultures. Players not only have to vie for power "
+"amongst themselves, but also beat back these ruthless invaders. Ultimately, "
+"the Boii were defeated by the rising power of the Dacians, hence leading to "
+"the reemergence of the Geto-Dacian Confederation under King Burebista."
+msgstr ""
+
+#: maps/random/danubius.jsonsettings.Name
+msgid "Danubius"
+msgstr ""
+
 #: maps/random/deep_forest.jsonsettings.Description
 msgid "A deep dark forest in Germania."
 msgstr "Coille dhorcha mhòr sa Gearmailt."
@@ -345,6 +360,18 @@ msgstr "Tòisichidh gach cluicheadair air oirthir eadar cnuic choillteach ’s a
 #: maps/random/hyrcanian_shores.jsonsettings.Name
 msgid "Hyrcanian Shores"
 msgstr "Cladaich Hiorcàinia"
+
+#: maps/random/india.jsonsettings.Description
+msgid ""
+"Central India just before the monsoon season - a parched land awaits the "
+"life-bringing rain which is already two months late. Due to the extended "
+"dryness and scorching heat, only the largest lake remains. The hardy trees "
+"which have survived the climate are spread out, yet not too scarce."
+msgstr ""
+
+#: maps/random/india.jsonsettings.Name
+msgid "India"
+msgstr ""
 
 #: maps/random/island_stronghold.jsonsettings.Description
 msgid ""
@@ -751,14 +778,14 @@ msgstr "Seo taisbeanadh air dòighean/còd gus ballachan a chur ann am mapaichea
 msgid "Wall Demo"
 msgstr "Taisbeanadh air ballachan"
 
-#: maps/random/survivalofthefittest_triggers.js:155
-msgid "An enemy wave is attacking!"
-msgstr "Tha an nàmhaid a’ toirt ionnsaigh ort!"
-
-#: maps/random/survivalofthefittest_triggers.js:212
+#: maps/random/survivalofthefittest_triggers.js:193
 #, javascript-format
 msgid "The first wave will start in %(time)s!"
 msgstr "Tòisichidh a’ chiad ionnsaigh an ceann %(time)s!"
+
+#: maps/random/survivalofthefittest_triggers.js:327
+msgid "An enemy wave is attacking!"
+msgstr "Tha an nàmhaid a’ toirt ionnsaigh ort!"
 
 #: maps/scenarios/Cinema_Demo.js:6
 msgid "Cutscene starts after 5 seconds"
@@ -855,7 +882,7 @@ msgstr "Earrach ann an Arcàidea sa Ghreug. Tha tuiltean an earraich air creagan
 #: maps/skirmishes/Belgian Bog (2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Caspian Sea (2v2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Corinthian Isthmus (2).xml:PlayerData[0].Name:39
-#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[1].Name:40
+#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[0].Name:40
 #: maps/skirmishes/Corsica and Sardinia (4).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Cycladic Archipelago (2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Death Canyon (2).xml:PlayerData[0].Name:39
@@ -922,7 +949,7 @@ msgstr "Cluicheadair 1"
 #: maps/skirmishes/Belgian Bog (2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Caspian Sea (2v2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Corinthian Isthmus (2).xml:PlayerData[1].Name:39
-#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[2].Name:40
+#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[1].Name:40
 #: maps/skirmishes/Corsica and Sardinia (4).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Cycladic Archipelago (2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Death Canyon (2).xml:PlayerData[1].Name:39
@@ -1086,7 +1113,7 @@ msgstr "Taisbeanadh dhrochaidean"
 
 #: maps/scenarios/Campaign Test Map 2 - heightmap.xml:Name:39
 msgid "Campaign Map - Test"
-msgstr "Mapa iomairte - Deuchainn"
+msgstr "Mapa iomairte – Deuchainn"
 
 #: maps/scenarios/Campaign Test Map.xml:Description:39
 msgid "A test map for potential Strategic Campaigns."
@@ -1188,7 +1215,7 @@ msgstr "Feachd a’ briseadh a-steach"
 #: Oasis.xml:PlayerData[2].Name:27 maps/skirmishes/Barcania
 #: (3).xml:PlayerData[2].Name:27 maps/skirmishes/Caspian Sea
 #: (2v2).xml:PlayerData[2].Name:39 maps/skirmishes/Corinthian Isthmus
-#: (4).xml:PlayerData[3].Name:40 maps/skirmishes/Corsica and Sardinia
+#: (4).xml:PlayerData[2].Name:40 maps/skirmishes/Corsica and Sardinia
 #: (4).xml:PlayerData[2].Name:39 maps/skirmishes/Gallic Fields
 #: (3).xml:PlayerData[2].Name:39 maps/skirmishes/Gambia River
 #: (3).xml:PlayerData[2].Name:39 maps/skirmishes/Greek Acropolis
@@ -1209,7 +1236,7 @@ msgstr "Cluicheadair 3"
 
 #: maps/scenarios/Death Canyon - Invasion Force.xml:Name:39
 msgid "Death Canyon - Invasion Force"
-msgstr "Sgoltadh a’ bhàis - Feachd a’ briseadh a-steach"
+msgstr "Sgoltadh a’ bhàis – Feachd a’ briseadh a-steach"
 
 #: maps/scenarios/Demo_Trading.xml:Description:27
 msgid "A demonstration of the new trading feature."
@@ -1242,7 +1269,7 @@ msgstr "Mapa fàsaich beag. Tòisichidh gach cluicheadair faisg air aon dhe na h
 #: Oases.xml:PlayerData[3].Name:27 maps/scenarios/Siwa
 #: Oasis.xml:PlayerData[3].Name:27 maps/skirmishes/Caspian Sea
 #: (2v2).xml:PlayerData[3].Name:39 maps/skirmishes/Corinthian Isthmus
-#: (4).xml:PlayerData[4].Name:40 maps/skirmishes/Corsica and Sardinia
+#: (4).xml:PlayerData[3].Name:40 maps/skirmishes/Corsica and Sardinia
 #: (4).xml:PlayerData[3].Name:39 maps/skirmishes/Greek Acropolis
 #: (4).xml:PlayerData[3].Name:39 maps/skirmishes/Libyan Oases
 #: (4).xml:PlayerData[3].Name:39 maps/skirmishes/Median Oasis
@@ -1312,7 +1339,7 @@ msgstr "Ion-phortadh air mapa-àirde fractalach."
 
 #: maps/scenarios/Height Map Import - Demo (Fractal).xml:Name:27
 msgid "Height Map Import Demo - Fractal"
-msgstr "Taisbeanadh air ion-phortadh mapaichean-àirde - Fractalach"
+msgstr "Taisbeanadh air ion-phortadh mapaichean-àirde – Fractalach"
 
 #: maps/scenarios/Height Map Import - Demo (Greece).xml:Description:27
 msgid ""
@@ -1323,7 +1350,7 @@ msgstr "Ball-eisimpleir air ion-phortach mhapaichean-àirde. ’S e PNG liath-sg
 
 #: maps/scenarios/Height Map Import - Demo (Greece).xml:Name:27
 msgid "Height Map Import Demo - Greece"
-msgstr "Taisbeanadh air ion-phortadh mapaichean-àirde - A’ Ghreug"
+msgstr "Taisbeanadh air ion-phortadh mapaichean-àirde – A’ Ghreug"
 
 #: maps/scenarios/Height Map Import - Demo (Greece-Small).xml:Description:27
 msgid ""
@@ -1333,7 +1360,7 @@ msgstr "Ball-eisimpleir air ion-phortach mhapaichean-àirde. ’S e PNG liath-sg
 
 #: maps/scenarios/Height Map Import - Demo (Greece-Small).xml:Name:27
 msgid "Height Map Import Demo - Greece (small)"
-msgstr "Taisbeanadh air ion-phortadh mapaichean-àirde - A’ Ghreug (beag)"
+msgstr "Taisbeanadh air ion-phortadh mapaichean-àirde – A’ Ghreug (beag)"
 
 #: maps/scenarios/Introductory Tutorial.xml:Description:39
 msgid "This is a basic tutorial to get you started playing 0 A.D."
@@ -1521,7 +1548,7 @@ msgstr "Muinntir na Gaille"
 
 #: maps/scenarios/Sandbox - Athenians.xml:Name:39
 msgid "Sandbox - The Athenians"
-msgstr "Bogsa-gainmhich - Muinntir na h‑Àithne"
+msgstr "Bogsa-gainmhich – Muinntir na h‑Àithne"
 
 #: maps/scenarios/Sandbox - Britons.xml:Description:39 maps/scenarios/Sandbox
 #: - Gauls.xml:Description:39
@@ -1535,7 +1562,7 @@ msgstr "Sgimilearan Ròmanach"
 
 #: maps/scenarios/Sandbox - Britons.xml:Name:39
 msgid "Sandbox - The Britons"
-msgstr "Bogsa-gainmhich - Na Breatannaich."
+msgstr "Bogsa-gainmhich – Na Breatannaich."
 
 #: maps/scenarios/Sandbox - Carthaginians.xml:Description:39
 msgid "Explore the Carthaginian Buildings and Units."
@@ -1553,11 +1580,11 @@ msgstr "Na sgreamhaich"
 
 #: maps/scenarios/Sandbox - Carthaginians.xml:Name:39
 msgid "Sandbox - The Carthaginians"
-msgstr "Bogsa-gainmhich - Na Cartagaich"
+msgstr "Bogsa-gainmhich – Na Cartagaich"
 
 #: maps/scenarios/Sandbox - Gauls.xml:Name:39
 msgid "Sandbox - The Gauls"
-msgstr "Bogsa-gainmhich - Muinntir na Gaille"
+msgstr "Bogsa-gainmhich – Muinntir na Gaille"
 
 #: maps/scenarios/Sandbox - Iberians.xml:Description:39
 msgid "A demo map for the Iberians."
@@ -1565,7 +1592,7 @@ msgstr "Mapa taisbeanaidh airson nan Ibèirich."
 
 #: maps/scenarios/Sandbox - Iberians.xml:Name:39
 msgid "Sandbox - The Iberians"
-msgstr "Bogsa-gainmhich - Na h‑Ibèirich"
+msgstr "Bogsa-gainmhich – Na h‑Ibèirich"
 
 #: maps/scenarios/Sandbox - Macedonians.xml:Description:39
 msgid ""
@@ -1578,7 +1605,7 @@ msgstr "Na Masadonaich"
 
 #: maps/scenarios/Sandbox - Macedonians.xml:Name:39
 msgid "Sandbox - The Macedonians"
-msgstr "Bogsa-gainmhich - Na Masadonaich"
+msgstr "Bogsa-gainmhich – Na Masadonaich"
 
 #: maps/scenarios/Sandbox - Mauryans.xml:Description:39
 msgid "Mauryan Indian faction showcase map."
@@ -1594,7 +1621,7 @@ msgstr "An nàmhaid"
 
 #: maps/scenarios/Sandbox - Mauryans.xml:Name:39
 msgid "Sandbox - The Mauryans"
-msgstr "Bogsa-gainmhich - Na Mauraidhich"
+msgstr "Bogsa-gainmhich – Na Mauraidhich"
 
 #: maps/scenarios/Sandbox - Persians.xml:Description:39
 msgid "Demo Map. Play with the Persian civilisation in a sandbox setting."
@@ -1606,7 +1633,7 @@ msgstr "Achaimenich"
 
 #: maps/scenarios/Sandbox - Persians.xml:Name:39
 msgid "Sandbox - The Persians"
-msgstr "Bogsa-gainmhich - Na Pearsaich"
+msgstr "Bogsa-gainmhich – Na Pearsaich"
 
 #: maps/scenarios/Sandbox - Ptolemies 2.xml:Description:39
 msgid ""
@@ -1627,7 +1654,7 @@ msgstr "Libithich"
 
 #: maps/scenarios/Sandbox - Ptolemies 2.xml:Name:39
 msgid "Sandbox - The Ptolemaic Egyptians 2"
-msgstr "Bogsa-gainmhich - Na h-Èipheitich Ptolamach 2"
+msgstr "Bogsa-gainmhich – Na h-Èipheitich Ptolamach 2"
 
 #: maps/scenarios/Sandbox - Ptolemies.xml:Description:39
 #: maps/skirmishes/Sporades Islands (2).xml:Description:39
@@ -1644,7 +1671,7 @@ msgstr "Kautilya"
 
 #: maps/scenarios/Sandbox - Ptolemies.xml:Name:39
 msgid "Sandbox - The Ptolemaic Egyptians"
-msgstr "Bogsa-gainmhich - Na h-Èipheitich Ptolamach"
+msgstr "Bogsa-gainmhich – Na h-Èipheitich Ptolamach"
 
 #: maps/scenarios/Sandbox - Romans.xml:Description:39
 msgid "A sandbox scenario for players to try out the Roman civilisation."
@@ -1652,7 +1679,7 @@ msgstr "Cnàmh-sgeul bogsa-gainmhich gus sìobhaltas nan Ròmanach fheuchainn."
 
 #: maps/scenarios/Sandbox - Romans.xml:Name:39
 msgid "Sandbox - The Republican Romans"
-msgstr "Bogsa-gainmhich - Poblachd na Ròimhe"
+msgstr "Bogsa-gainmhich – Poblachd na Ròimhe"
 
 #: maps/scenarios/Sandbox - Seleucids.xml:Description:39
 msgid "A sandbox scenario for players to try out the Seleucid civilisation."
@@ -1668,7 +1695,7 @@ msgstr "Na Ptolamaich"
 
 #: maps/scenarios/Sandbox - Seleucids.xml:Name:39
 msgid "Sandbox - The Seleucids"
-msgstr "Bogsa-gainmhich - Na Seleucaich"
+msgstr "Bogsa-gainmhich – Na Seleucaich"
 
 #: maps/scenarios/Sandbox - Spartans.xml:Description:39
 msgid ""
@@ -1677,7 +1704,7 @@ msgstr "Cluich ’nad Spartach ann an àrainneachd bogsa-gainmhich neo-bhagarrac
 
 #: maps/scenarios/Sandbox - Spartans.xml:Name:39
 msgid "Sandbox - The Spartans"
-msgstr "Bogsa-gainmhich - Na Spartaich"
+msgstr "Bogsa-gainmhich – Na Spartaich"
 
 #: maps/scenarios/Savanna Ravine.xml:Name:39
 msgid "Savanna Ravine"
@@ -1830,11 +1857,11 @@ msgstr "Mapa ioma-chluicheadair. Pàrras tropaigeach."
 msgid "Tropical Island"
 msgstr "Eilean tropaigeach"
 
-#: maps/scenarios/Units_demo.xml:Name:95
+#: maps/scenarios/Units_demo.xml:Name:28
 msgid "Units Demo"
 msgstr "Taisbeanadh nan aonadan"
 
-#: maps/scenarios/Units_demo.xml:Description:95
+#: maps/scenarios/Units_demo.xml:Description:28
 msgid "Every unit in the game."
 msgstr "Gach aonad a tha sa gheama."
 

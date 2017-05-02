@@ -30,6 +30,10 @@
 		onReplayFinished();
 	</action>
 
+	<action on="ReplayOutOfSync">
+		onReplayOutOfSync();
+	</action>
+
 	<action on="Press">
 		this.hidden = !this.hidden;
 	</action>

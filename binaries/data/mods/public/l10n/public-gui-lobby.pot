@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2017-04-28 09:01+0200\n"
-"PO-Revision-Date: 2017-04-28 09:01+0200\n"
+"POT-Creation-Date: 2017-05-01 10:19+0200\n"
+"PO-Revision-Date: 2017-05-01 10:19+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -33,198 +33,251 @@ msgctxt "lobby presence"
 msgid "Unknown"
 msgstr ""
 
-#: gui/lobby/lobby.js:136
+#: gui/lobby/lobby.js:141
 msgid "Disconnected."
 msgstr ""
 
-#: gui/lobby/lobby.js:152
+#: gui/lobby/lobby.js:157
 #, javascript-format
 msgid "%(nick)s has joined."
 msgstr ""
 
-#: gui/lobby/lobby.js:160
+#: gui/lobby/lobby.js:165
 #, javascript-format
 msgid "%(nick)s has left."
 msgstr ""
 
-#: gui/lobby/lobby.js:173
+#: gui/lobby/lobby.js:178
 #, javascript-format
 msgid "%(oldnick)s is now known as %(newnick)s."
 msgstr ""
 
-#: gui/lobby/lobby.js:249
+#: gui/lobby/lobby.js:223
+msgid "Set your state to 'Away'."
+msgstr ""
+
+#: gui/lobby/lobby.js:230
+msgid "Set your state to 'Online'."
+msgstr ""
+
+#: gui/lobby/lobby.js:237
+msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
+msgstr ""
+
+#: gui/lobby/lobby.js:245
+msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
+msgstr ""
+
+#: gui/lobby/lobby.js:253
+msgid "Show this help."
+msgstr ""
+
+#: gui/lobby/lobby.js:256
+msgid "Chat commands:"
+msgstr ""
+
+#. Translation: Chat command help format
+#: gui/lobby/lobby.js:260
+#, javascript-format
+msgid "%(command)s - %(description)s"
+msgstr ""
+
+#: gui/lobby/lobby.js:273
+msgid "Send a chat message about yourself. Example: /me goes swimming."
+msgstr ""
+
+#: gui/lobby/lobby.js:277
+msgid ""
+"Send text as a chat message (even if it starts with slash). Example: /say /"
+"help is a great command."
+msgstr ""
+
+#: gui/lobby/lobby.js:281
+msgid "Clear all chat scrollback."
+msgstr ""
+
+#: gui/lobby/lobby.js:288
+msgid "Return to the main menu."
+msgstr ""
+
+#: gui/lobby/lobby.js:333
 msgctxt "map size"
 msgid "Any"
 msgstr ""
 
-#: gui/lobby/lobby.js:254
+#: gui/lobby/lobby.js:338
 msgctxt "player number"
 msgid "Any"
 msgstr ""
 
-#: gui/lobby/lobby.js:258
+#: gui/lobby/lobby.js:342
 msgctxt "map"
 msgid "Any"
 msgstr ""
 
-#: gui/lobby/lobby.js:316
+#: gui/lobby/lobby.js:400
 msgid "You have been banned from the lobby!"
 msgstr ""
 
-#: gui/lobby/lobby.js:317
+#: gui/lobby/lobby.js:401
 msgid "You have been kicked from the lobby!"
 msgstr ""
 
-#: gui/lobby/lobby.js:319
+#: gui/lobby/lobby.js:403
 #, javascript-format
 msgid "%(nick)s has been banned from the lobby."
 msgstr ""
 
-#: gui/lobby/lobby.js:320
+#: gui/lobby/lobby.js:404
 #, javascript-format
 msgid "%(nick)s has been kicked from the lobby."
 msgstr ""
 
-#: gui/lobby/lobby.js:323
+#: gui/lobby/lobby.js:407
 #, javascript-format
 msgctxt "lobby kick"
 msgid "Reason: %(reason)s"
 msgstr ""
 
-#: gui/lobby/lobby.js:348
+#: gui/lobby/lobby.js:432
 msgid "BANNED"
 msgstr ""
 
-#: gui/lobby/lobby.js:348
+#: gui/lobby/lobby.js:432
 msgid "KICKED"
 msgstr ""
 
-#: gui/lobby/lobby.js:560
+#: gui/lobby/lobby.js:645
 msgid "Moderator"
 msgstr ""
 
-#: gui/lobby/lobby.js:560
+#: gui/lobby/lobby.js:645
 msgid "Player"
 msgstr ""
 
-#: gui/lobby/lobby.js:561 gui/lobby/lobby.js:562 gui/lobby/lobby.js:563
-#: gui/lobby/lobby.js:564 gui/lobby/lobby.js:565 gui/lobby/lobby.js:566
+#: gui/lobby/lobby.js:646 gui/lobby/lobby.js:647 gui/lobby/lobby.js:648
+#: gui/lobby/lobby.js:649 gui/lobby/lobby.js:650 gui/lobby/lobby.js:651
 msgid "N/A"
 msgstr ""
 
-#: gui/lobby/lobby.js:587
+#: gui/lobby/lobby.js:672
 #, javascript-format
 msgid "Player \"%(nick)s\" not found."
 msgstr ""
 
 #. Translation: %(time)s is the hour and minute here.
-#: gui/lobby/lobby.js:786
+#: gui/lobby/lobby.js:871
 #, javascript-format
 msgid "Game started at %(time)s"
 msgstr ""
 
-#: gui/lobby/lobby.js:787 gui/lobby/lobby.js:1143
+#: gui/lobby/lobby.js:872 gui/lobby/lobby.js:1220
 msgid "HH:mm"
 msgstr ""
 
-#: gui/lobby/lobby.js:791
+#: gui/lobby/lobby.js:876
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
 msgstr ""
 
-#: gui/lobby/lobby.js:833
+#: gui/lobby/lobby.js:918
 msgid "The game has already started. Do you want to join as observer?"
 msgstr ""
 
-#: gui/lobby/lobby.js:834
+#: gui/lobby/lobby.js:919
 msgid "Confirmation"
 msgstr ""
 
-#: gui/lobby/lobby.js:835
+#: gui/lobby/lobby.js:920
 msgid "No"
 msgstr ""
 
-#: gui/lobby/lobby.js:835
+#: gui/lobby/lobby.js:920
 msgid "Yes"
 msgstr ""
 
-#: gui/lobby/lobby.js:854
+#: gui/lobby/lobby.js:939
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr ""
 
-#: gui/lobby/lobby.js:973
+#: gui/lobby/lobby.js:1036
 #, javascript-format
-msgid "We're sorry, the '%(cmd)s' command is not supported."
+msgid "The command '%(cmd)s' is not supported."
+msgstr ""
+
+#: gui/lobby/lobby.js:1048
+#, javascript-format
+msgid "The command '%(cmd)s' is restricted to moderators."
 msgstr ""
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:1050
+#: gui/lobby/lobby.js:1127
 #, javascript-format
 msgid "* %(sender)s"
 msgstr ""
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:1055
+#: gui/lobby/lobby.js:1132
 #, javascript-format
 msgid "%(sender)s %(action)s"
 msgstr ""
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:1064 gui/lobby/lobby.js:1085 gui/lobby/lobby.js:1111
+#: gui/lobby/lobby.js:1141 gui/lobby/lobby.js:1162 gui/lobby/lobby.js:1188
 #, javascript-format
 msgid "<%(sender)s>"
 msgstr ""
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:1069 gui/lobby/lobby.js:1090 gui/lobby/lobby.js:1116
+#: gui/lobby/lobby.js:1146 gui/lobby/lobby.js:1167 gui/lobby/lobby.js:1193
 #, javascript-format
 msgid "%(sender)s %(message)s"
 msgstr ""
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:1079
+#: gui/lobby/lobby.js:1156
 #, javascript-format
 msgid "== %(message)s"
 msgstr ""
 
-#: gui/lobby/lobby.js:1105
+#: gui/lobby/lobby.js:1182
 #, javascript-format
 msgctxt "lobby private message"
 msgid "(%(private)s) <%(sender)s>"
 msgstr ""
 
-#: gui/lobby/lobby.js:1107
+#: gui/lobby/lobby.js:1184
 msgid "Private"
 msgstr ""
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable it in the options page).
-#: gui/lobby/lobby.js:1146
+#: gui/lobby/lobby.js:1223
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr ""
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:1151
+#: gui/lobby/lobby.js:1228
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr ""
 
-#: gui/lobby/lobby.js:1212
+#: gui/lobby/lobby.js:1289
 msgid "Please do not spam. You have been blocked for thirty seconds."
 msgstr ""
 
-#: gui/lobby/lobby.js:1273
+#: gui/lobby/lobby.js:1350
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
 msgstr ""
 
-#: gui/lobby/lobby.js:1288
+#: gui/lobby/lobby.js:1365
 msgctxt "Used for an undefined winning rate"
 msgid "-"
 msgstr ""
 
-#: gui/lobby/lobby.js:1290
+#: gui/lobby/lobby.js:1367
 #, javascript-format
 msgid "%(percentage)s%%"
 msgstr ""
@@ -283,7 +336,7 @@ msgstr ""
 msgid "Register"
 msgstr ""
 
-#: gui/lobby/prelobby.js:240 gui/lobby/prelobby.xml:(caption):109
+#: gui/lobby/prelobby.js:240 gui/lobby/prelobby.xml:(caption):101
 msgid "Connect"
 msgstr ""
 
