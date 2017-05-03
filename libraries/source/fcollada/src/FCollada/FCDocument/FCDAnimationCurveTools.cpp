@@ -254,7 +254,8 @@ namespace FCDAnimationCurveTools
 	float Average(float* values, uint32 count)
 	{
 		float v = 0.0f;
-		for (uint32 i = 0; i < count; ++i) v += values[i]; v /= float(count);
-		return v;
+		for (uint32 i = 0; i < count; ++i)
+			v += values[i];
+		return v / count;
 	}
 };
