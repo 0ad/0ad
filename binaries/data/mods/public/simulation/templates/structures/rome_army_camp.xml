@@ -3,7 +3,7 @@
   <Armour>
     <Hack op="add">-5.0</Hack>
     <Pierce op="add">-5.0</Pierce>
-    <Crush op="add">-2.0</Crush>
+    <Crush op="add">-1.0</Crush>
     <Foundation>
       <Hack>1.0</Hack>
       <Pierce>5.0</Pierce>
@@ -15,7 +15,7 @@
       <Hack>0.0</Hack>
       <Pierce>25.0</Pierce>
       <Crush>0.0</Crush>
-      <MaxRange>80.0</MaxRange>
+      <MaxRange>50.0</MaxRange>
       <MinRange>12.0</MinRange>
       <ProjectileSpeed>75.0</ProjectileSpeed>
       <PrepareTime>1200</PrepareTime>
@@ -29,14 +29,23 @@
     <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
   </BuildingAI>
   <BuildRestrictions>
-    <Territory>own neutral enemy</Territory>
-    <Category>Fortress</Category>
+    <Territory>neutral enemy</Territory>
+    <Category>ArmyCamp</Category>
+    <Distance>
+      <FromClass>ArmyCamp</FromClass>
+      <MinDistance>80</MinDistance>
+    </Distance>
   </BuildRestrictions>
+  <Capturable>
+    <CapturePoints>1500</CapturePoints>
+    <RegenRate>10.0</RegenRate>
+    <GarrisonRegenRate>3.0</GarrisonRegenRate>
+  </Capturable>
   <Cost>
     <PopulationBonus>5</PopulationBonus>
     <BuildTime>250</BuildTime>
     <Resources>
-      <wood>400</wood>
+      <wood>500</wood>
       <stone>0</stone>
     </Resources>
   </Cost>
