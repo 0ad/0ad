@@ -171,6 +171,7 @@ function setupControl(option, i, category)
 				if (callbackFunction)
 					Engine[callbackFunction](+this.value);
 				updateOptionPanel();
+				control.tooltip = this.value;
 			};
 		}(key, callbackFunction, minvalue, maxvalue);
 
