@@ -424,7 +424,7 @@ m.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 			let access2 = m.getLandAccess(gameState, m2);
 			let sea2 = m2.hasClass("NavalMarket") ? m.getSeaAccess(gameState, m2) : undefined;
 			let land = access1 == access2 ? access1 : undefined;
-			let sea = (sea1 && sea1 == sea2) ? sea1 : undefined;
+			let sea = sea1 && sea1 == sea2 ? sea1 : undefined;
 			if (!land && !sea)
 				continue;
 			let gainMultiplier;
@@ -628,7 +628,7 @@ m.TradeManager.prototype.routeEntToId = function(route)
 		return route;
 	let ret = {};
 	for (let key in route)
-		ret[key] = (key == "source" || key == "target") ? route[key].id() : route[key];
+		ret[key] = key == "source" || key == "target" ? route[key].id() : route[key];
 	return ret;
 };
 
@@ -638,7 +638,7 @@ m.TradeManager.prototype.routeIdToEnt = function(gameState, route)
 		return route;
 	let ret = {};
 	for (let key in route)
-		ret[key] = (key == "source" || key == "target") ? gameState.getEntityById(route[key]) : route[key];
+		ret[key] = key == "source" || key == "target" ? gameState.getEntityById(route[key]) : route[key];
 	return ret;
 };
 

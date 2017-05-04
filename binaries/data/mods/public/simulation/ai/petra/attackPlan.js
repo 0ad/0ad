@@ -1332,7 +1332,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			this.unitCollUpdateArray = this.unitCollection.toIdArray();
 
 		// Let's check a few units each time we update (currently 10) except when attack starts
-		let lgth = (this.unitCollUpdateArray.length < 15 || this.startingAttack) ? this.unitCollUpdateArray.length : 10;
+		let lgth = this.unitCollUpdateArray.length < 15 || this.startingAttack ? this.unitCollUpdateArray.length : 10;
 		for (let check = 0; check < lgth; check++)
 		{
 			let ent = gameState.getEntityById(this.unitCollUpdateArray[check]);
