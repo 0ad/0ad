@@ -1109,7 +1109,6 @@ function setup_atlas_projects()
 		"CustomControls/SnapSplitterWindow",
 		"CustomControls/VirtualDirTreeCtrl",
 		"CustomControls/Windows",
-		"ErrorReporter",
 		"General",
 		"General/VideoRecorder",
 		"Misc",
