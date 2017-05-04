@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,6 +30,8 @@ that of Atlas depending on commandline parameters.
 // included there.
 #define MINIMAL_PCH 2
 #include "lib/precompiled.h"
+
+#include <chrono>
 
 #include "lib/debug.h"
 #include "lib/status.h"
@@ -91,6 +93,8 @@ void kill_mainloop();
 // updated the video mode
 static int g_ResizedW;
 static int g_ResizedH;
+
+static std::chrono::high_resolution_clock::time_point lastFrameTime;
 
 // main app message handler
 static InReaction MainInputHandler(const SDL_Event_* ev)
@@ -178,6 +182,31 @@ static void PumpEvents()
 	g_TouchInput.Frame();
 }
 
+/**
+ * Optionally throttle the render frequency in order to
+ * prevent 100% workload of the currently used CPU core.
+ */
+inline static void LimitFPS()
+{
+	if (g_VSync)
+		return;
+
+	double fpsLimit = 0.0;
+	CFG_GET_VAL(g_Game && g_Game->IsGameStarted() ? "adaptivefps.session" : "adaptivefps.menu", fpsLimit);
+
+	// Keep in sync with options.json
+	if (fpsLimit < 20.0 || fpsLimit >= 100.0)
+		return;
+
+	double wait = 1000.0 / fpsLimit -
+		std::chrono::duration_cast<std::chrono::microseconds>(
+			std::chrono::high_resolution_clock::now() - lastFrameTime).count() / 1000.0;
+
+	if (wait > 0.0)
+		SDL_Delay(wait);
+
+	lastFrameTime = std::chrono::high_resolution_clock::now();
+}
 
 static int ProgressiveLoad()
 {
@@ -275,29 +304,13 @@ static void Frame()
 	// If we are not running a multiplayer game, disable updates when the game is
 	// minimized or out of focus and relinquish the CPU a bit, in order to make
 	// debugging easier.
-	if(g_PauseOnFocusLoss && !g_NetClient && !g_app_has_focus)
+	if (g_PauseOnFocusLoss && !g_NetClient && !g_app_has_focus)
 	{
 		PROFILE3("non-focus delay");
 		need_update = false;
 		// don't use SDL_WaitEvent: don't want the main loop to freeze until app focus is restored
 		SDL_Delay(10);
 	}
-
-	// Throttling: limit update and render frequency to the minimum to 50 FPS
-	// in the "inactive" state, so that other windows get enough CPU time,
-	// (and it's always nice for power+thermal management).
-	// TODO: when the game performance is high enough, implementing a limit for
-	// in-game framerate might be sensible.
-	const float maxFPSMenu = 50.0;
-	bool limit_fps = false;
-	CFG_GET_VAL("gui.menu.limitfps", limit_fps);
-	if (limit_fps && (!g_Game || !g_Game->IsGameStarted()))
-	{
-		float remainingFrameTime = (1000.0 / maxFPSMenu) - realTimeSinceLastFrame;
-		if (remainingFrameTime > 0)
-			SDL_Delay(remainingFrameTime);
-	}
-
 
 	// this scans for changed files/directories and reloads them, thus
 	// allowing hotloading (changes are immediately assimilated in-game).
@@ -351,7 +364,7 @@ static void Frame()
 	g_Console->Update(realTimeSinceLastFrame);
 
 	ogl_WarnIfError();
-	if(need_render)
+	if (need_render)
 	{
 		Render();
 
@@ -363,6 +376,8 @@ static void Frame()
 	g_Profiler.Frame();
 
 	g_GameRestarted = false;
+
+	LimitFPS();
 }
 
 

@@ -205,10 +205,16 @@
 			"parameters": { "config": "vsync" }
 		},
 		{
-			"type": "boolean",
-			"label": "Limit FPS in Menus",
-			"tooltip": "Limit FPS to 50 in all menus, to save power.",
-			"parameters": { "config": "gui.menu.limitfps" }
+			"type": "slider",
+			"label": "FPS throttling in menus",
+			"tooltip": "To save CPU workload, throttle render frequency in all menus. Set to maximum to disable throttling.",
+			"parameters": { "config": "adaptivefps.menu", "min": 20, "max": 100 }
+		},
+		{
+			"type": "slider",
+			"label": "FPS throttling in games",
+			"tooltip": "To save CPU workload, throttle render frequency in running games. Set to maximum to disable throttling.",
+			"parameters": { "config": "adaptivefps.session", "min": 20, "max": 100 }
 		}
 	],
 	"soundSetting":
