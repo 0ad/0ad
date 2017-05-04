@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -1030,11 +1030,10 @@ void WaterManager::RecomputeWindStrength()
 				continue;
 
 			// Calculate how dampened our waves should be.
-			float tendency = 0.0f;
 			float oldHeight = std::max(waterLevel,terrain->GetVertexGroundLevel(i+kernel[4][0],j+kernel[4][1]));
 			float currentHeight = std::max(waterLevel,terrain->GetVertexGroundLevel(i+kernel[3][0],j+kernel[3][1]));
 			float avgheight = oldHeight + currentHeight;
-			tendency = currentHeight - oldHeight;
+			float tendency = currentHeight - oldHeight;
 			oldHeight = currentHeight;
 			currentHeight = std::max(waterLevel,terrain->GetVertexGroundLevel(i+kernel[2][0],j+kernel[2][1]));
 			avgheight += currentHeight;
