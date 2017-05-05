@@ -9,20 +9,95 @@ const g_PlayerBoxAlpha = " 50";
 const g_PlayerColorBoxAlpha = " 255";
 const g_TeamsBoxYStart = 40;
 
-// Colors used for units and buildings
-const g_TrainedColor = '[color="201 255 200"]';
-const g_LostColor = '[color="255 213 213"]';
-const g_KilledColor = '[color="196 198 255"]';
-const g_CapturedColor = '[color="255 255 157"]';
+const g_TypeColors = {
+	"blue": "196 198 255",
+	"green": "201 255 200",
+	"red": "255 213 213",
+	"yellow": "255 255 157"
+}
 
-const g_BuildingsTypes = [ "total", "House", "Economic", "Outpost", "Military", "Fortress", "CivCentre", "Wonder" ];
-const g_UnitsTypes = [ "total", "Infantry", "Worker", "Cavalry", "Champion", "Hero", "Siege", "Ship", "Trader" ];
+/**
+ * Colors, captions and format used for units, buildings, etc. types
+ */
+var g_SummaryTypes = {
+	"percent": {
+		"color": "",
+		"caption": "%",
+		"postfix": "%"
+	},
+	"trained": {
+		"color": g_TypeColors.green,
+		"caption": translate("Trained"),
+		"postfix": " / "
+	},
+	"constructed": {
+		"color": g_TypeColors.green,
+		"caption": translate("Constructed"),
+		"postfix": " / "
+	},
+	"gathered": {
+		"color": g_TypeColors.green,
+		"caption": translate("Gathered"),
+		"postfix": " / "
+	},
+	"sent": {
+		"color": g_TypeColors.green,
+		"caption": translate("Sent"),
+		"postfix": " / "
+	},
+	"bought": {
+		"color": g_TypeColors.green,
+		"caption": translate("Bought"),
+		"postfix": " / "
+	},
+	"income": {
+		"color": g_TypeColors.green,
+		"caption": translate("Income"),
+		"postfix": " / "
+	},
+	"captured": {
+		"color": g_TypeColors.yellow,
+		"caption": translate("Captured"),
+		"postfix": " / "
+	},
+	"destroyed": {
+		"color": g_TypeColors.blue,
+		"caption": translate("Destroyed"),
+		"postfix": "\n"
+	},
+	"killed": {
+		"color": g_TypeColors.blue,
+		"caption": translate("Killed"),
+		"postfix": "\n"
+	},
+	"lost": {
+		"color": g_TypeColors.red,
+		"caption": translate("Lost"),
+		"postfix": "\n"
+	},
+	"used": {
+		"color": g_TypeColors.red,
+		"caption": translate("Used"),
+		"postfix": "\n"
+	},
+	"received": {
+		"color": g_TypeColors.red,
+		"caption": translate("Recieved"),
+		"postfix": "\n"
+	},
+	"sold": {
+		"color": g_TypeColors.red,
+		"caption": translate("Sold"),
+		"postfix": "\n"
+	},
+	"outcome": {
+		"color": g_TypeColors.red,
+		"caption": translate("Outcome"),
+		"postfix": "\n"
+	}
+};
 
-// Colors used for gathered and traded resources
-const g_IncomeColor = '[color="201 255 200"]';
-const g_OutcomeColor = '[color="255 213 213"]';
-
-const g_InfiniteSymbol = "\u221E";
+const g_InfinitySymbol = "\u221E";
 
 var g_CivData = loadCivData();
 var g_Teams = [];
@@ -47,7 +122,132 @@ function selectPanel(panel)
 
 	adjustTabDividers(panel.size);
 
-	updatePanelData(g_ScorePanelsData[panel.name.substr(0, panel.name.length - "PanelButton".length)]);
+	let generalPanel = Engine.GetGUIObjectByName("generalPanel");
+	let chartsPanel = Engine.GetGUIObjectByName("chartsPanel");
+	let chartsHidden = panel.name != "chartsPanelButton";
+	generalPanel.hidden = !chartsHidden;
+	chartsPanel.hidden = chartsHidden;
+	if (chartsHidden)
+		updatePanelData(g_ScorePanelsData[panel.name.substr(0, panel.name.length - "PanelButton".length)]);
+	else
+		[0, 1].forEach(updateCategoryDropdown);
+}
+
+function initCharts()
+{
+	let player_colors = [];
+	for (let i = 1; i <= g_PlayerCount; ++i)
+	{
+		let playerState = g_GameData.sim.playerStates[i];
+		player_colors.push(
+			Math.floor(playerState.color.r * 255) + " " +
+			Math.floor(playerState.color.g * 255) + " " +
+			Math.floor(playerState.color.b * 255)
+		);
+	}
+
+	[0, 1].forEach(i => Engine.GetGUIObjectByName("chart[" + i + "]").series_color = player_colors);
+
+	let chartLegend = Engine.GetGUIObjectByName("chartLegend");
+	chartLegend.caption = g_GameData.sim.playerStates.slice(1).map(
+		(state, index) => '[color="' + player_colors[index] + '"]■[/color] ' + state.name
+	).join("  ");
+
+	let chart1Part = Engine.GetGUIObjectByName("chart[1]Part");
+	let chart1PartSize = chart1Part.size;
+	chart1PartSize.rright += 50;
+	chart1PartSize.rleft += 50;
+	chart1PartSize.right -= 5;
+	chart1PartSize.left -= 5;
+	chart1Part.size = chart1PartSize;
+}
+
+function resizeDropdown(dropdown)
+{
+	let size = dropdown.size;
+	size.bottom = dropdown.size.top +
+		(Engine.GetTextWidth(dropdown.font, dropdown.list[dropdown.selected]) >
+			dropdown.size.right - dropdown.size.left - 32 ? 42 : 27);
+	dropdown.size = size;
+}
+
+function updateCategoryDropdown(number)
+{
+	let chartCategory = Engine.GetGUIObjectByName("chart[" + number + "]CategorySelection");
+	chartCategory.list_data = Object.keys(g_ScorePanelsData);
+	chartCategory.list = Object.keys(g_ScorePanelsData).map(panel => g_ScorePanelsData[panel].caption);
+	chartCategory.onSelectionChange = function() {
+		if (!this.list_data[this.selected])
+			return;
+		resizeDropdown(this);
+		updateValueDropdown(number, this.list_data[this.selected]);
+	};
+	chartCategory.selected = 0;
+}
+
+function updateValueDropdown(number, category)
+{
+	let chartValue = Engine.GetGUIObjectByName("chart[" + number + "]ValueSelection");
+	let list = g_ScorePanelsData[category].headings.map(heading => heading.caption);
+	list.shift();
+	chartValue.list = list;
+	let list_data = g_ScorePanelsData[category].headings.map(heading => heading.identifier);
+	list_data.shift();
+	chartValue.list_data = list_data;
+	chartValue.onSelectionChange = function() {
+		if (!this.list_data[this.selected])
+			return;
+		resizeDropdown(this);
+		updateTypeDropdown(number, category, this.list_data[this.selected], this.selected);
+	};
+	chartValue.selected = 0;
+}
+
+function updateTypeDropdown(number, category, item, itemNumber)
+{
+	let testValue = g_ScorePanelsData[category].counters[itemNumber].fn(g_GameData.sim.playerStates[1], 0, item);
+	let hide = !g_ScorePanelsData[category].counters[itemNumber].fn ||
+		typeof testValue != "object" || Object.keys(testValue).length < 2;
+	Engine.GetGUIObjectByName("chart[" + number + "]TypeLabel").hidden = hide;
+	let chartType = Engine.GetGUIObjectByName("chart[" + number + "]TypeSelection");
+	chartType.hidden = hide;
+	if (hide)
+	{
+		updateChart(number, category, item, itemNumber, Object.keys(testValue)[0] || undefined);
+		return;
+	}
+
+	chartType.list = Object.keys(testValue).map(type => g_SummaryTypes[type].caption);
+	chartType.list_data = Object.keys(testValue);
+	chartType.onSelectionChange = function() {
+		if (!this.list_data[this.selected])
+			return;
+		resizeDropdown(this);
+		updateChart(number, category, item, itemNumber, this.list_data[this.selected]);
+	};
+	chartType.selected = 0;
+}
+
+function updateChart(number, category, item, itemNumber, type)
+{
+	if (!g_ScorePanelsData[category].counters[itemNumber].fn)
+		return;
+	let chart = Engine.GetGUIObjectByName("chart[" + number + "]");
+	let series = [];
+	for (let j = 1; j <= g_PlayerCount; ++j)
+	{
+		let playerState = g_GameData.sim.playerStates[j];
+		let data = [];
+		for (let index in playerState.sequences.time)
+		{
+			let value = g_ScorePanelsData[category].counters[itemNumber].fn(playerState, index, item);
+			if (type)
+				value = value[type];
+			data.push([playerState.sequences.time[index], value]);
+		}
+		series.push(data);
+	}
+	chart.series = series;
 }
 
 function adjustTabDividers(tabSize)
@@ -126,14 +326,14 @@ function updatePanelData(panelInfo)
 		civIcon.sprite = "stretched:" + g_CivData[playerState.civ].Emblem;
 		civIcon.tooltip = g_CivData[playerState.civ].Name;
 
-		updateCountersPlayer(playerState, panelInfo.counters, playerCounterValue);
+		updateCountersPlayer(playerState, panelInfo.counters, panelInfo.headings, playerCounterValue);
 
 		calculateTeamCounters(playerState);
 	}
 
 	let teamCounterFn = panelInfo.teamCounterFn;
 	if (g_Teams && teamCounterFn)
-		teamCounterFn(panelInfo.counters);
+		teamCounterFn(panelInfo.counters, g_GameData.sim.playerStates[1].sequences.time.length - 1);
 }
 
 function confirmStartReplay()
@@ -256,5 +456,6 @@ function init(data)
 			g_WithoutTeam -= g_Teams[i] ? g_Teams[i] : 0;
 	}
 
+	initCharts();
 	selectPanel(Engine.GetGUIObjectByName("scorePanelButton"));
 }

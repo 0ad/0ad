@@ -1,11 +1,12 @@
 var g_ScorePanelsData = {
 	"score": {
+		"caption": translate("Score"),
 		"headings": [
-			{ "caption": translate("Player name"), "yStart": 26, "width": 200 },
-			{ "caption": translate("Economy score"), "yStart": 16, "width": 100 },
-			{ "caption": translate("Military score"), "yStart": 16, "width": 100 },
-			{ "caption": translate("Exploration score"), "yStart": 16, "width": 100 },
-			{ "caption": translate("Total score"), "yStart": 16, "width": 100 }
+			{ "identifier": "playername", "caption": translate("Player name"), "yStart": 26, "width": 200 },
+			{ "identifier": "economyScore", "caption": translate("Economy score"), "yStart": 16, "width": 100 },
+			{ "identifier": "militaryScore", "caption": translate("Military score"), "yStart": 16, "width": 100 },
+			{ "identifier": "explorationScore", "caption": translate("Exploration score"), "yStart": 16, "width": 100 },
+			{ "identifier": "totalScore", "caption": translate("Total score"), "yStart": 16, "width": 100 }
 		],
 		"titleHeadings": [],
 		"counters": [
@@ -17,28 +18,29 @@ var g_ScorePanelsData = {
 		"teamCounterFn": calculateScoreTeam
 	},
 	"buildings": {
+		"caption": translate("Buildings"),
 		"headings": [
-			{ "caption": translate("Player name"), "yStart": 26, "width": 200 },
-			{ "caption": translate("Total"), "yStart": 34, "width": 105 },
-			{ "caption": translate("Houses"), "yStart": 34, "width": 85 },
-			{ "caption": translate("Economic"), "yStart": 34, "width": 85 },
-			{ "caption": translate("Outposts"), "yStart": 34, "width": 85 },
-			{ "caption": translate("Military"), "yStart": 34, "width": 85 },
-			{ "caption": translate("Fortresses"), "yStart": 34, "width": 85 },
-			{ "caption": translate("Civ centers"), "yStart": 34, "width": 85 },
-			{ "caption": translate("Wonders"), "yStart": 34, "width": 85 }
+			{ "identifier": "playername", "caption": translate("Player name"), "yStart": 26, "width": 200 },
+			{ "identifier": "total", "caption": translate("Total"), "yStart": 34, "width": 105 },
+			{ "identifier": "House", "caption": translate("Houses"), "yStart": 34, "width": 85 },
+			{ "identifier": "Economic", "caption": translate("Economic"), "yStart": 34, "width": 85 },
+			{ "identifier": "Outpost", "caption": translate("Outposts"), "yStart": 34, "width": 85 },
+			{ "identifier": "Military", "caption": translate("Military"), "yStart": 34, "width": 85 },
+			{ "identifier": "Fortress", "caption": translate("Fortresses"), "yStart": 34, "width": 85 },
+			{ "identifier": "CivCentre", "caption": translate("Civ centers"), "yStart": 34, "width": 85 },
+			{ "identifier": "Wonder", "caption": translate("Wonders"), "yStart": 34, "width": 85 }
 		],
 		"titleHeadings": [
 			{
 				"caption": sprintf(translate("Buildings Statistics (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"),
 					{
-						"constructed": g_TrainedColor + translate("Constructed") + '[/color]',
-						"destroyed": g_KilledColor + translate("Destroyed") + '[/color]',
-						"captured": g_CapturedColor + translate("Captured") + '[/color]',
-						"lost": g_LostColor + translate("Lost") + '[/color]'
+						"constructed": getColoredTypeTranslation("constructed"),
+						"destroyed": getColoredTypeTranslation("destroyed"),
+						"captured": getColoredTypeTranslation("captured"),
+						"lost": getColoredTypeTranslation("lost")
 					}),
 				"yStart": 16,
-				"width": (85 * 7 + 105)
+				"width": 85 * 7 + 105
 			},	// width = 700
 		],
 		"counters": [
@@ -54,71 +56,75 @@ var g_ScorePanelsData = {
 		"teamCounterFn": calculateBuildingsTeam
 	},
 	"units": {
+		"caption": translate("Units"),
 		"headings": [
-			{ "caption": translate("Player name"), "yStart": 26, "width": 200 },
-			{ "caption": translate("Total"), "yStart": 34, "width": 105 },
-			{ "caption": translate("Infantry"), "yStart": 34, "width": 85 },
-			{ "caption": translate("Worker"), "yStart": 34, "width": 85 },
-			{ "caption": translate("Cavalry"), "yStart": 34, "width": 85 },
-			{ "caption": translate("Champion"), "yStart": 34, "width": 85 },
-			{ "caption": translate("Heroes"), "yStart": 34, "width": 85 },
-			{ "caption": translate("Siege"), "yStart": 34, "width": 85 },
-			{ "caption": translate("Navy"), "yStart": 34, "width": 85 },
-			{ "caption": translate("Traders"), "yStart": 34, "width": 85 }
+			{ "identifier": "playername", "caption": translate("Player name"), "yStart": 26, "width": 200 },
+			{ "identifier": "total", "caption": translate("Total"), "yStart": 34, "width": 105 },
+			{ "identifier": "Infantry", "caption": translate("Infantry"), "yStart": 34, "width": 85 },
+			{ "identifier": "Worker", "caption": translate("Worker"), "yStart": 34, "width": 85 },
+			{ "identifier": "Cavalry", "caption": translate("Cavalry"), "yStart": 34, "width": 85 },
+			{ "identifier": "Champion", "caption": translate("Champion"), "yStart": 34, "width": 85 },
+			{ "identifier": "Hero", "caption": translate("Heroes"), "yStart": 34, "width": 85 },
+			{ "identifier": "Siege", "caption": translate("Siege"), "yStart": 34, "width": 85 },
+			{ "identifier": "Ship", "caption": translate("Navy"), "yStart": 34, "width": 85 },
+			{ "identifier": "Trader", "caption": translate("Traders"), "yStart": 34, "width": 85 }
 		],
 		"titleHeadings": [
 			{
 				"caption": sprintf(translate("Units Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"),
 					{
-						"trained": g_TrainedColor + translate("Trained") + '[/color]',
-						"killed": g_KilledColor + translate("Killed") + '[/color]',
-						"captured": g_CapturedColor + translate("Captured") + '[/color]',
-						"lost": g_LostColor + translate("Lost") + '[/color]'
+						"trained": getColoredTypeTranslation("trained"),
+						"killed": getColoredTypeTranslation("killed"),
+						"captured": getColoredTypeTranslation("captured"),
+						"lost": getColoredTypeTranslation("lost")
 					}),
 				"yStart": 16,
-				"width": (100 * 7 + 120)
-			},	// width = 820
+				"width": 85 * 8 + 105
+			},	// width = 785
 		],
 		"counters": [
 			{ "width": 105, "fn": calculateUnitsWithCaptured, "verticalOffset": 3 },
-			{ "width": 85, "fn": calculateUnits, "verticalOffset": 12 },
-			{ "width": 85, "fn": calculateUnits, "verticalOffset": 12 },
-			{ "width": 85, "fn": calculateUnits, "verticalOffset": 12 },
-			{ "width": 85, "fn": calculateUnits, "verticalOffset": 12 },
-			{ "width": 85, "fn": calculateUnits, "verticalOffset": 12 },
-			{ "width": 105, "fn": calculateUnitsWithCaptured, "verticalOffset": 3 },
-			{ "width": 85, "fn": calculateUnits, "verticalOffset": 12 },
-			{ "width": 85, "fn": calculateUnits, "verticalOffset": 12 }
+			{ "width": 85, "fn": calculateUnits, "verticalOffset": 3 },
+			{ "width": 85, "fn": calculateUnits, "verticalOffset": 3 },
+			{ "width": 85, "fn": calculateUnits, "verticalOffset": 3 },
+			{ "width": 85, "fn": calculateUnits, "verticalOffset": 3 },
+			{ "width": 85, "fn": calculateUnits, "verticalOffset": 3 },
+			{ "width": 85, "fn": calculateUnitsWithCaptured, "verticalOffset": 3 },
+			{ "width": 85, "fn": calculateUnits, "verticalOffset": 3 },
+			{ "width": 85, "fn": calculateUnits, "verticalOffset": 3 }
 		],
 		"teamCounterFn": calculateUnitsTeam
 	},
 	"resources": {
+		"caption": translate("Resources"),
 		"headings": [
-			{ "caption": translate("Player name"), "yStart": 26, "width": 200 },
+			{ "identifier": "playername", "caption": translate("Player name"), "yStart": 26, "width": 200 },
 			...g_ResourceData.GetResources().map(res => ({
+				"identifier": res.code,
 				"caption": translateWithContext("firstWord", res.name),
 				"yStart": 34,
 				"width": 100
 			})),
-			{ "caption": translate("Total"), "yStart": 34, "width": 110 },
+			{ "identifier": "total", "caption": translate("Total"), "yStart": 34, "width": 110 },
 			{
+				"identifier": "tributes",
 				"caption": sprintf(translate("Tributes \n(%(sent)s / %(received)s)"),
 					{
-						"sent": g_IncomeColor + translate("Sent") + '[/color]',
-						"received": g_OutcomeColor + translate("Received") + '[/color]'
+						"sent": getColoredTypeTranslation("sent"),
+						"received": getColoredTypeTranslation("received")
 					}),
 				"yStart": 16,
 				"width": 121
 			},
-			{ "caption": translate("Treasures collected"), "yStart": 16, "width": 100 },
-			{ "caption": translate("Loot"), "yStart": 16, "width": 100 }
+			{ "identifier": "treasuresCollected", "caption": translate("Treasures collected"), "yStart": 16, "width": 100 },
+			{ "identifier": "loot", "caption": translate("Loot"), "yStart": 16, "width": 100 }
 		],
 		"titleHeadings": [
 			{
 				"caption": sprintf(translate("Resource Statistics (%(gathered)s / %(used)s)"),
 					{
-						"gathered": g_IncomeColor + translate("Gathered") + '[/color]',
-						"used": g_OutcomeColor + translate("Used") + '[/color]'
+						"gathered": getColoredTypeTranslation("gathered"),
+						"used": getColoredTypeTranslation("used")
 					}),
 				"yStart": 16,
 				"width": 100 * g_ResourceData.GetCodes().length + 110
@@ -138,10 +144,12 @@ var g_ScorePanelsData = {
 		"teamCounterFn": calculateResourcesTeam
 	},
 	"market": {
+		"caption": translate("Market"),
 		"headings": [
-			{ "caption": translate("Player name"), "yStart": 26, "width": 200 },
+			{ "identifier": "playername", "caption": translate("Player name"), "yStart": 26, "width": 200 },
 			...g_ResourceData.GetResources().map(res => {
 				return {
+					"identifier": res.code,
 					"caption":
 						// Translation: use %(resourceWithinSentence)s if needed
 						sprintf(translate("%(resourceFirstWord)s exchanged"), {
@@ -152,8 +160,8 @@ var g_ScorePanelsData = {
 					"width": 100
 				};
 			}),
-			{ "caption": translate("Barter efficiency"), "yStart": 16, "width": 100 },
-			{ "caption": translate("Trade income"), "yStart": 16, "width": 100 }
+			{ "identifier": "barterEfficency", "caption": translate("Barter efficiency"), "yStart": 16, "width": 100 },
+			{ "identifier": "tradeIncome", "caption": translate("Trade income"), "yStart": 16, "width": 100 }
 		],
 		"titleHeadings": [],
 		"counters": [
@@ -168,18 +176,17 @@ var g_ScorePanelsData = {
 		"teamCounterFn": calculateMarketTeam
 	},
 	"misc": {
+		"caption": translate("Miscellaneous"),
 		"headings": [
-			{ "caption": translate("Player name"), "yStart": 26, "width": 200 },
-			{ "caption": translate("Vegetarian\nratio"), "yStart": 16, "width": 100 },
-			{ "caption": translate("Feminization"), "yStart": 16, "width": 100 },
-			{ "caption": translate("Kill / Death\nratio"), "yStart": 16, "width": 100 },
-			{ "caption": translate("Map\nexploration"), "yStart": 16, "width": 100 },
-			{ "caption": translate("At peak"), "yStart": 34, "width": 100 },
-			{ "caption": translate("At finish"), "yStart": 34, "width": 100 }
+			{ "identifier": "playername", "caption": translate("Player name"), "yStart": 26, "width": 200 },
+			{ "identifier": "vegetarianRatio", "caption": translate("Vegetarian ratio"), "yStart": 16, "width": 100 },
+			{ "identifier": "feminization", "caption": translate("Feminization"), "yStart": 16, "width": 100 },
+			{ "identifier": "killDeath", "caption": translate("Kill / Death ratio"), "yStart": 16, "width": 100 },
+			{ "identifier": "mapExploration", "caption": translate("Map exploration"), "yStart": 16, "width": 100 },
+			{ "identifier": "mapControlPeak", "caption": translate("Map control (peak)"), "yStart": 16, "width": 100 },
+			{ "identifier": "mapControlFinish", "caption": translate("Map control (finish)"), "yStart": 16, "width": 100 }
 		],
-		"titleHeadings": [
-			{ "caption": translate("Map control"), "xOffset": 400, "yStart": 16, "width": 200 }
-		],
+		"titleHeadings": [],
 		"counters": [
 			{ "width": 100, "fn": calculateVegetarianRatio, "verticalOffset": 12 },
 			{ "width": 100, "fn": calculateFeminization, "verticalOffset": 12 },
@@ -188,9 +195,14 @@ var g_ScorePanelsData = {
 			{ "width": 100, "fn": calculateMapPeakControl, "verticalOffset": 12 },
 			{ "width": 100, "fn": calculateMapFinalControl, "verticalOffset": 12 }
 		],
-		"teamCounterFn": calculateMiscellaneous
+		"teamCounterFn": calculateMiscellaneousTeam
 	}
 };
+
+function getColoredTypeTranslation(type)
+{
+	return g_SummaryTypes[type].color ? '[color="' + g_SummaryTypes[type].color + '"]' + g_SummaryTypes[type].caption + '[/color]' : g_SummaryTypes[type].caption;
+}
 
 function resetGeneralPanel()
 {

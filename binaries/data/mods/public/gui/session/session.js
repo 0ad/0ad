@@ -1467,6 +1467,15 @@ function reportGame()
 		"resourcesBought"
 	];
 
+	let misc = [
+		"tradeIncome",
+		"tributesSent",
+		"tributesReceived",
+		"treasuresCollected",
+		"lootCollected",
+		"percentMapExplored"
+	];
+
 	let playerStatistics = {};
 
 	// Unit Stats
@@ -1501,19 +1510,13 @@ function reportGame()
 	}
 	playerStatistics.resourcesGathered.vegetarianFood = "";
 
-	playerStatistics.tradeIncome = "";
-	// Tribute
-	playerStatistics.tributesSent = "";
-	playerStatistics.tributesReceived = "";
+	for (let type of misc)
+		playerStatistics[type] = "";
+
 	// Total
 	playerStatistics.economyScore = "";
 	playerStatistics.militaryScore = "";
 	playerStatistics.totalScore = "";
-	// Various
-	playerStatistics.treasuresCollected = "";
-	playerStatistics.lootCollected = "";
-	playerStatistics.feminisation = "";
-	playerStatistics.percentMapExplored = "";
 
 	let mapName = g_GameAttributes.settings.Name;
 	let playerStates = "";
@@ -1526,6 +1529,7 @@ function reportGame()
 	for (let i = 1; i < extendedSimState.players.length; ++i)
 	{
 		let player = extendedSimState.players[i];
+		let maxIndex = player.sequences.time.length - 1;
 
 		playerStates += player.state + ",";
 		playerCivs += player.civ + ",";
@@ -1533,31 +1537,28 @@ function reportGame()
 		teamsLocked = teamsLocked && player.teamsLocked;
 		for (let resourcesCounterType of resourcesCounterTypes)
 			for (let resourcesType of resourcesTypes)
-				playerStatistics[resourcesCounterType][resourcesType] += player.statistics[resourcesCounterType][resourcesType] + ",";
-		playerStatistics.resourcesGathered.vegetarianFood += player.statistics.resourcesGathered.vegetarianFood + ",";
+				playerStatistics[resourcesCounterType][resourcesType] += player.sequences[resourcesCounterType][resourcesType][maxIndex] + ",";
+		playerStatistics.resourcesGathered.vegetarianFood += player.sequences.resourcesGathered.vegetarianFood[maxIndex] + ",";
 
 		for (let unitCounterType of unitsCountersTypes)
 			for (let unitsClass of unitsClasses)
-				playerStatistics[unitCounterType][unitsClass] += player.statistics[unitCounterType][unitsClass] + ",";
+				playerStatistics[unitCounterType][unitsClass] += player.sequences[unitCounterType][unitsClass][maxIndex] + ",";
 
 		for (let buildingCounterType of buildingsCountersTypes)
 			for (let buildingsClass of buildingsClasses)
-				playerStatistics[buildingCounterType][buildingsClass] += player.statistics[buildingCounterType][buildingsClass] + ",";
+				playerStatistics[buildingCounterType][buildingsClass] += player.sequences[buildingCounterType][buildingsClass][maxIndex] + ",";
 		let total = 0;
-		for (let type in player.statistics.resourcesGathered)
-			total += player.statistics.resourcesGathered[type];
+		for (let type in player.sequences.resourcesGathered)
+			total += player.sequences.resourcesGathered[type][maxIndex];
 
 		playerStatistics.economyScore += total + ",";
-		playerStatistics.militaryScore += Math.round((player.statistics.enemyUnitsKilledValue +
-			player.statistics.enemyBuildingsDestroyedValue) / 10)  + ",";
-		playerStatistics.totalScore += (total + Math.round((player.statistics.enemyUnitsKilledValue +
-			player.statistics.enemyBuildingsDestroyedValue) / 10)) + ",";
-		playerStatistics.tradeIncome += player.statistics.tradeIncome + ",";
-		playerStatistics.tributesSent += player.statistics.tributesSent + ",";
-		playerStatistics.tributesReceived += player.statistics.tributesReceived + ",";
-		playerStatistics.percentMapExplored += player.statistics.percentMapExplored + ",";
-		playerStatistics.treasuresCollected += player.statistics.treasuresCollected + ",";
-		playerStatistics.lootCollected += player.statistics.lootCollected + ",";
+		playerStatistics.militaryScore += Math.round((player.sequences.enemyUnitsKilledValue[maxIndex] +
+			player.sequences.enemyBuildingsDestroyedValue[maxIndex]) / 10)  + ",";
+		playerStatistics.totalScore += (total + Math.round((player.sequences.enemyUnitsKilledValue[maxIndex] +
+			player.sequences.enemyBuildingsDestroyedValue[maxIndex]) / 10)) + ",";
+
+		for (let type of misc)
+			playerStatistics[type] += player.sequences[type][maxIndex] + ",";
 	}
 
 	// Send the report with serialized data
@@ -1595,12 +1596,8 @@ function reportGame()
 		reportObject[(type.substr(0,1)).toLowerCase()+type.substr(1)+"BuildingsLost"] = playerStatistics.buildingsLost[type];
 		reportObject["enemy"+type+"BuildingsDestroyed"] = playerStatistics.enemyBuildingsDestroyed[type];
 	}
-	reportObject.tributesSent = playerStatistics.tributesSent;
-	reportObject.tributesReceived = playerStatistics.tributesReceived;
-	reportObject.percentMapExplored = playerStatistics.percentMapExplored;
-	reportObject.treasuresCollected = playerStatistics.treasuresCollected;
-	reportObject.lootCollected = playerStatistics.lootCollected;
-	reportObject.tradeIncome = playerStatistics.tradeIncome;
+	for (let type of misc)
+		reportObject[type] = playerStatistics[type];
 
 	Engine.SendGameReport(reportObject);
 }

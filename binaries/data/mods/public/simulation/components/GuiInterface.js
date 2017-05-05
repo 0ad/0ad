@@ -194,7 +194,7 @@ GuiInterface.prototype.GetExtendedSimulationState = function()
 		let playerEnt = cmpPlayerManager.GetPlayerByID(i);
 		let cmpPlayerStatisticsTracker = Engine.QueryInterface(playerEnt, IID_StatisticsTracker);
 		if (cmpPlayerStatisticsTracker)
-			ret.players[i].statistics = cmpPlayerStatisticsTracker.GetStatistics();
+			ret.players[i].sequences = cmpPlayerStatisticsTracker.GetSequences();
 	}
 
 	return ret;
