@@ -53,6 +53,12 @@ const g_PlayerStatuses = {
 	"unknown":   { "color": "178 178 178", "status": translateWithContext("lobby presence", "Unknown") }
 };
 
+const g_RoleNames = {
+	"moderator": translate("Moderator"),
+	"participant": translate("Player"),
+	"visitor": translate("Muted Player")
+};
+
 /**
  * Color for error messages in the chat.
  */
@@ -136,6 +142,7 @@ var g_NetMessageTypes = {
 
 			for (let button of ["host", "leaderboard", "userprofile", "toggleBuddy"])
 				Engine.GetGUIObjectByName(button + "Button").enabled = false;
+			Engine.GetGUIObjectByName("chatInput").hidden = true;
 
 			if (!g_Kicked)
 				addChatMessage({
@@ -174,6 +181,40 @@ var g_NetMessageTypes = {
 				Engine.DisconnectXmppClient();
 		},
 		"presence": msg => {
+		},
+		"role": msg => {
+			Engine.GetGUIObjectByName("chatInput").hidden = Engine.LobbyGetPlayerRole(g_Username) == "visitor";
+
+			let me = g_Username == msg.text;
+			let role = Engine.LobbyGetPlayerRole(msg.text);
+			let txt =
+				role == "visitor" ?
+					me ?
+						translate("You have been muted.") :
+						translate("%(nick)s has been muted.") :
+				role == "moderator" ?
+					me ?
+						translate("You are now a moderator.") :
+						translate("%(nick)s is now a moderator.") :
+				msg.data == "visitor" ?
+					me ?
+						translate("You have been unmuted.") :
+						translate("%(nick)s has been unmuted.") :
+					me ?
+						translate("You are not a moderator anymore.") :
+						translate("%(nick)s is not a moderator anymore.");
+
+			addChatMessage({
+				"text": "/special " + sprintf(txt, { "nick": msg.text }),
+				"isSpecial": true
+			});
+
+			// Update status information if that player is selected
+			if (g_SelectedPlayer == msg.text)
+			{
+				let playersBox = Engine.GetGUIObjectByName("playersBox");
+				playersBox.selected = playersBox.list.indexOf(g_SelectedPlayer);
+			}
 		},
 		"nick": msg => {
 			addChatMessage({
@@ -657,9 +698,8 @@ function lookupSelectedUserProfile(guiObjectName)
 
 	Engine.SendGetProfile(playerName);
 
-	let isModerator = Engine.LobbyGetPlayerRole(playerName) == "moderator";
 	Engine.GetGUIObjectByName("usernameText").caption = playerName;
-	Engine.GetGUIObjectByName("roleText").caption = isModerator ? translate("Moderator") : translate("Player");
+	Engine.GetGUIObjectByName("roleText").caption = g_RoleNames[Engine.LobbyGetPlayerRole(playerName)]
 	Engine.GetGUIObjectByName("rankText").caption = translate("N/A");
 	Engine.GetGUIObjectByName("highestRatingText").caption = translate("N/A");
 	Engine.GetGUIObjectByName("totalGamesText").caption = translate("N/A");
