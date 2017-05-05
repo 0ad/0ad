@@ -216,7 +216,7 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 		if ((barracksNb >= 1 && (gameState.currentPhase() > 1 || gameState.isResearching(gameState.townPhase()))) ||
 			!gameState.ai.HQ.baseManagers[1])	// if we have no base ... nothing else to do than attack
 		{
-			let type = (this.attackNumber < 2 || this.startedAttacks.HugeAttack.length > 0) ? "Attack" : "HugeAttack";
+			let type = this.attackNumber < 2 || this.startedAttacks.HugeAttack.length > 0 ? "Attack" : "HugeAttack";
 			let attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber, type);
 			if (attackPlan.failed)
 				this.attackPlansEncounteredWater = true; // hack

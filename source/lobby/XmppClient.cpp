@@ -751,12 +751,12 @@ void XmppClient::CreateGUIMessage(const std::string& type, const std::string& le
  */
 void XmppClient::handleMUCParticipantPresence(glooxwrapper::MUCRoom*, const glooxwrapper::MUCRoomParticipant participant, const glooxwrapper::Presence& presence)
 {
-	//std::string jid = participant.jid->full();
 	std::string nick = participant.nick->resource().to_string();
 	gloox::Presence::PresenceType presenceType = presence.presence();
 	std::string presenceString, roleString;
 	GetPresenceString(presenceType, presenceString);
 	GetRoleString(participant.role, roleString);
+
 	if (presenceType == gloox::Presence::Unavailable)
 	{
 		if (!participant.newNick.empty() && (participant.flags & (gloox::UserNickChanged | gloox::UserSelf)))
@@ -800,6 +800,8 @@ void XmppClient::handleMUCParticipantPresence(glooxwrapper::MUCRoom*, const gloo
 		}
 		else if (m_PlayerMap.find(nick) == m_PlayerMap.end())
 			CreateGUIMessage("chat", "join", nick);
+		else if (m_PlayerMap[nick][2] != roleString)
+			CreateGUIMessage("chat", "role", nick, m_PlayerMap[nick][2]);
 		else
 			CreateGUIMessage("chat", "presence", nick);
 

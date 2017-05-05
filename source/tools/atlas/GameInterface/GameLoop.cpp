@@ -57,7 +57,6 @@ void (*Atlas_GLSetCurrent)(void* cavas);
 void (*Atlas_GLSwapBuffers)(void* canvas);
 void (*Atlas_NotifyEndOfFrame)();
 void (*Atlas_DisplayError)(const wchar_t* text, size_t flags);
-void (*Atlas_ReportError)();
 namespace AtlasMessage
 {
 	void* (*ShareableMallocFptr)(size_t);
@@ -285,7 +284,6 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 		dll.LoadSymbol("Atlas_GLSwapBuffers", Atlas_GLSwapBuffers);
 		dll.LoadSymbol("Atlas_NotifyEndOfFrame", Atlas_NotifyEndOfFrame);
 		dll.LoadSymbol("Atlas_DisplayError", Atlas_DisplayError);
-		dll.LoadSymbol("Atlas_ReportError", Atlas_ReportError);
 		dll.LoadSymbol("ShareableMalloc", ShareableMallocFptr);
 		dll.LoadSymbol("ShareableFree", ShareableFreeFptr);
 	}

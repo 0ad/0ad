@@ -774,7 +774,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 		let pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
 
 		if (proximity)	// this is our first cc, let's do it near our units
-			norm /= (1 + API3.SquareVectorDistance(proximity, pos) / scale);
+			norm /= 1 + API3.SquareVectorDistance(proximity, pos) / scale;
 		else
 		{
 			let minDist = Math.min();

@@ -10,7 +10,7 @@ var API3 = function(m)
 m.Map = function Map(sharedScript, type, originalMap, actualCopy)
 {
 	// get the correct dimensions according to the map type
-	let map = (type === "territory" || type === "resource") ? sharedScript.territoryMap : sharedScript.passabilityMap;
+	let map = type === "territory" || type === "resource" ? sharedScript.territoryMap : sharedScript.passabilityMap;
 	this.width = map.width;
 	this.height = map.height;
 	this.cellSize = map.cellSize;
