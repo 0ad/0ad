@@ -219,7 +219,8 @@ function getGameDescription(extended = false)
 				{ "min": g_GameAttributes.settings.VictoryDuration }
 			);
 
-		else if (g_VictoryConditions.Name[victoryIdx] == "capture_the_relic")
+		let isCaptureTheRelic = g_VictoryConditions.Name[victoryIdx] == "capture_the_relic";
+		if (isCaptureTheRelic)
 			title = sprintf(
 				translatePluralWithContext(
 					"victory condition",
@@ -234,6 +235,12 @@ function getGameDescription(extended = false)
 			"label": title,
 			"value": g_VictoryConditions.Description[victoryIdx]
 		});
+
+		if (isCaptureTheRelic)
+			titles.push({
+				"label": translate("Relic Count"),
+				"value": g_GameAttributes.settings.RelicCount
+			});
 	}
 
 	if (g_GameAttributes.settings.RatingEnabled &&
