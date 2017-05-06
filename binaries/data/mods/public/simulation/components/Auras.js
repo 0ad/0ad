@@ -63,6 +63,29 @@ Auras.prototype.GetRange = function(name)
 	return undefined;
 };
 
+/**
+ * Return the names of any range auras - used to render their ranges.
+ */
+Auras.prototype.GetVisualAuraRangeNames = function()
+{
+	return this.GetAuraNames().filter(auraName => this.IsRangeAura(auraName));
+};
+
+Auras.prototype.GetLineTexture = function(name)
+{
+	return this.auras[name].rangeOverlay ? this.auras[name].rangeOverlay.lineTexture : "outline_border.png";
+};
+
+Auras.prototype.GetLineTextureMask = function(name)
+{
+	return this.auras[name].rangeOverlay ? this.auras[name].rangeOverlay.lineTextureMask : "outline_border_mask.png";
+};
+
+Auras.prototype.GetLineThickness = function(name)
+{
+	return this.auras[name].rangeOverlay ? this.auras[name].rangeOverlay.lineThickness : 0.2;
+};
+
 Auras.prototype.GetClasses = function(name)
 {
 	return this.auras[name].affects;

@@ -215,6 +215,12 @@
 			"label": "FPS throttling in games",
 			"tooltip": "To save CPU workload, throttle render frequency in running games. Set to maximum to disable throttling.",
 			"parameters": { "config": "adaptivefps.session", "min": 20, "max": 100 }
+		},
+		{
+			"type": "boolean",
+			"label": "Aura Range Visualization",
+			"tooltip": "Display the range of auras of selected units and structures (can also be toggled in-game with the hotkey).",
+			"parameters": { "config": "gui.session.aurarange" }
 		}
 	],
 	"soundSetting":

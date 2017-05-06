@@ -792,6 +792,11 @@ function onSimulationUpdate()
 	handleNotifications();
 	updateGUIObjects();
 
+	Engine.GuiInterfaceCall("EnableVisualRangeOverlayType", {
+		"type": "Aura",
+		"enabled": Engine.ConfigDB_GetValue("user", "gui.session.aurarange") == "true"
+	});
+
 	if (g_ConfirmExit)
 		confirmExit();
 }
@@ -1247,6 +1252,32 @@ function recalculateStatusBarDisplay(remove = false)
 	Engine.GuiInterfaceCall("SetStatusBars", {
 		"entities": entities,
 		"enabled": g_ShowAllStatusBars && !remove
+	});
+}
+
+/**
+ * Toggles the display of range overlays of selected entities for the given range type.
+ * @param {string} type - for example "Aura"
+ */
+function toggleRangeOverlay(type, currentValue)
+{
+	let configString = "gui.session." + type.toLowerCase() + "range";
+	let enabled = Engine.ConfigDB_GetValue("user", configString) != "true";
+	Engine.ConfigDB_CreateValue("user", configString, String(enabled));
+	Engine.ConfigDB_WriteValueToFile("user", configString, String(enabled), "config/user.cfg");
+
+	Engine.GuiInterfaceCall("EnableVisualRangeOverlayType", {
+		"type": type,
+		"enabled": enabled
+	});
+
+	let selected = g_Selection.toList();
+	for (let ent in g_Selection.highlighted)
+		selected.push(g_Selection.highlighted[ent]);
+
+	Engine.GuiInterfaceCall("SetRangeOverlays", {
+		"entities": selected,
+		"enabled": enabled
 	});
 }
 

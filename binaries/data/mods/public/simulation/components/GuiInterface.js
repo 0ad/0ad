@@ -33,6 +33,7 @@ GuiInterface.prototype.Init = function()
 	this.timeNotifications = [];
 	this.entsRallyPointsDisplayed = [];
 	this.entsWithAuraAndStatusBars = new Set();
+	this.enabledVisualRangeOverlayTypes = {};
 };
 
 /*
@@ -895,7 +896,18 @@ GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 		}
 
 		cmpSelectable.SetSelectionHighlight({ "r": color.r, "g": color.g, "b": color.b, "a": cmd.alpha }, cmd.selected);
+
+		let cmpRangeVisualization = Engine.QueryInterface(ent, IID_RangeVisualization);
+		if (!cmpRangeVisualization || player != owner && player != -1)
+			continue;
+
+		cmpRangeVisualization.SetEnabled(cmd.selected, this.enabledVisualRangeOverlayTypes);
 	}
+};
+
+GuiInterface.prototype.EnableVisualRangeOverlayType = function(player, data)
+{
+	this.enabledVisualRangeOverlayTypes[data.type] = data.enabled;
 };
 
 GuiInterface.prototype.GetEntitiesWithStatusBars = function()
@@ -935,6 +947,16 @@ GuiInterface.prototype.SetStatusBars = function(player, cmd)
 		let cmpStatusBars = Engine.QueryInterface(ent, IID_StatusBars);
 		if (cmpStatusBars)
 			cmpStatusBars.RegenerateSprites();
+	}
+};
+
+GuiInterface.prototype.SetRangeOverlays = function(player, cmd)
+{
+	for (let ent of cmd.entities)
+	{
+		let cmpRangeVisualization = Engine.QueryInterface(ent, IID_RangeVisualization);
+		if (cmpRangeVisualization)
+			cmpRangeVisualization.SetEnabled(cmd.enabled, this.enabledVisualRangeOverlayTypes);
 	}
 };
 
@@ -2017,6 +2039,8 @@ let exposedFunctions = {
 	"SetObstructionDebugOverlay": 1,
 	"SetMotionDebugOverlay": 1,
 	"SetRangeDebugOverlay": 1,
+	"EnableVisualRangeOverlayType": 1,
+	"SetRangeOverlays": 1,
 
 	"GetTraderNumber": 1,
 	"GetTradingGoods": 1,
