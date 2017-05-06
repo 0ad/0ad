@@ -231,7 +231,6 @@ g_SelectionPanels.AllyCommand = {
 		size.right = size.left + size.bottom;
 		data.button.size = size;
 
-		setPanelObjectPosition(data.button, data.i, data.rowLength);
 		return true;
 	}
 };

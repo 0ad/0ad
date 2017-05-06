@@ -45,6 +45,8 @@ function LoadMapSettings(settings)
 
 	let cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
 	let gameTypeSettings = {};
+	if (settings.RelicCount)
+		gameTypeSettings.relicCount = settings.RelicCount;
 	if (settings.VictoryDuration)
 		gameTypeSettings.victoryDuration = settings.VictoryDuration * 60 * 1000;
 	if (settings.GameType)

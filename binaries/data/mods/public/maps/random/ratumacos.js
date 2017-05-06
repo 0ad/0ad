@@ -84,16 +84,17 @@ paintTileClassBasedOnHeight(-100, -3, 3, g_TileClasses.water);
 RMS.SetProgress(40);
 
 log("Placing players...");
+
 //Coordinate system of the heightmap
 var singleBases = [
-	[45, 285],
-	[45, 175],
-	[145, 245],
-	[100, 115],
-	[220, 175],
-	[180, 85],
-	[280, 110],
-	[245, 35]
+	[100, 265],
+	[180, 260],
+	[245, 220],
+	[275, 145],
+	[40, 165],
+	[70, 95],
+	[130, 50],
+	[205, 45]
 ];
 
 var strongholdBases = [

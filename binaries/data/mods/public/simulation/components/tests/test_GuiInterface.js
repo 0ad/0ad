@@ -47,7 +47,7 @@ Resources = {
 		"aiAnalysisInfluenceGroup":
 			resource == "food" ? "ignore" :
 			resource == "wood" ? "abundant" : "sparse"
-	}),
+	})
 };
 
 var cmp = ConstructComponent(SYSTEM_ENTITY, "GuiInterface");
@@ -70,22 +70,22 @@ AddMock(SYSTEM_ENTITY, IID_EndGameManager, {
 
 AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
 	GetNumPlayers: function() { return 2; },
-	GetPlayerByID: function(id) { TS_ASSERT(id === 0 || id === 1); return 100+id; },
+	GetPlayerByID: function(id) { TS_ASSERT(id === 0 || id === 1); return 100+id; }
 });
 
 AddMock(SYSTEM_ENTITY, IID_RangeManager, {
 	GetLosVisibility: function(ent, player) { return "visible"; },
-	GetLosCircular: function() { return false; },
+	GetLosCircular: function() { return false; }
 });
 
 AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
 	GetCurrentTemplateName: function(ent) { return "example"; },
-	GetTemplate: function(name) { return ""; },
+	GetTemplate: function(name) { return ""; }
 });
 
 AddMock(SYSTEM_ENTITY, IID_Timer, {
 	GetTime: function() { return 0; },
-	SetTimeout: function(ent, iid, funcname, time, data) { return 0; },
+	SetTimeout: function(ent, iid, funcname, time, data) { return 0; }
 });
 
 AddMock(100, IID_Player, {
@@ -112,7 +112,7 @@ AddMock(100, IID_Player, {
 	GetDisabledTechnologies: function() { return {}; },
 	GetSpyCostMultiplier: function() { return 1; },
 	HasSharedDropsites: function() { return false; },
-	HasSharedLos: function() { return false; },
+	HasSharedLos: function() { return false; }
 });
 
 AddMock(100, IID_EntityLimits, {
@@ -128,7 +128,7 @@ AddMock(100, IID_TechnologyManager, {
 	GetResearchedTechs: function() { return {}; },
 	GetClassCounts: function() { return {}; },
 	GetTypeCountsByClass: function() { return {}; },
-	GetTechModifications: function() { return {}; },
+	GetTechModifications: function() { return {}; }
 });
 
 AddMock(100, IID_StatisticsTracker, {
@@ -139,39 +139,39 @@ AddMock(100, IID_StatisticsTracker, {
 				"wood": 0,
 				"metal": 0,
 				"stone": 0,
-				"vegetarianFood": 0,
+				"vegetarianFood": 0
 			},
 			"percentMapExplored": 10
 		};
 	},
-	GetStatistics: function() {
+	GetSequences: function() {
 		return {
-			"unitsTrained": 10,
-			"unitsLost": 9,
-			"buildingsConstructed": 5,
-			"buildingsCaptured": 7,
-			"buildingsLost": 4,
-			"civCentresBuilt": 1,
+			"unitsTrained": [0, 10],
+			"unitsLost": [0, 42],
+			"buildingsConstructed": [1, 3],
+			"buildingsCaptured": [3, 7],
+			"buildingsLost": [3, 10],
+			"civCentresBuilt": [4, 10],
 			"resourcesGathered": {
-				"food": 100,
-				"wood": 0,
-				"metal": 0,
-				"stone": 0,
-				"vegetarianFood": 0,
+				"food": [5, 100],
+				"wood": [0, 0],
+				"metal": [0, 0],
+				"stone": [0, 0],
+				"vegetarianFood": [0, 0]
 			},
-			"treasuresCollected": 0,
-			"lootCollected": 0,
-			"percentMapExplored": 10,
-			"teamPercentMapExplored": 10,
-			"percentMapControlled": 10,
-			"teamPercentMapControlled": 10,
-			"peakPercentOfMapControlled": 10,
-			"teamPeakPercentOfMapControlled": 10
+			"treasuresCollected": [1, 20],
+			"lootCollected": [0, 2],
+			"percentMapExplored": [0, 10],
+			"teamPercentMapExplored": [0, 10],
+			"percentMapControlled": [0, 10],
+			"teamPercentMapControlled": [0, 10],
+			"peakPercentOfMapControlled": [0, 10],
+			"teamPeakPercentOfMapControlled": [0, 10]
 		};
 	},
 	IncreaseTrainedUnitsCounter: function() { return 1; },
 	IncreaseConstructedBuildingsCounter: function() { return 1; },
-	IncreaseBuiltCivCentresCounter: function() { return 1; },
+	IncreaseBuiltCivCentresCounter: function() { return 1; }
 });
 
 AddMock(101, IID_Player, {
@@ -198,7 +198,7 @@ AddMock(101, IID_Player, {
 	GetDisabledTechnologies: function() { return {}; },
 	GetSpyCostMultiplier: function() { return 1; },
 	HasSharedDropsites: function() { return false; },
-	HasSharedLos: function() { return false; },
+	HasSharedLos: function() { return false; }
 });
 
 AddMock(101, IID_EntityLimits, {
@@ -214,7 +214,7 @@ AddMock(101, IID_TechnologyManager, {
 		GetResearchedTechs: function() { return {}; },
 		GetClassCounts: function() { return {}; },
 		GetTypeCountsByClass: function() { return {}; },
-		GetTechModifications: function() { return {}; },
+		GetTechModifications: function() { return {}; }
 });
 
 AddMock(101, IID_StatisticsTracker, {
@@ -225,39 +225,39 @@ AddMock(101, IID_StatisticsTracker, {
 				"wood": 0,
 				"metal": 0,
 				"stone": 0,
-				"vegetarianFood": 0,
+				"vegetarianFood": 0
 			},
 			"percentMapExplored": 10
 		};
 	},
-	GetStatistics: function() {
+	GetSequences: function() {
 		return {
-			"unitsTrained": 10,
-			"unitsLost": 9,
-			"buildingsConstructed": 5,
-			"buildingsCaptured": 7,
-			"buildingsLost": 4,
-			"civCentresBuilt": 1,
+			"unitsTrained": [0, 10],
+			"unitsLost": [0, 9],
+			"buildingsConstructed": [0, 5],
+			"buildingsCaptured": [0, 7],
+			"buildingsLost": [0, 4],
+			"civCentresBuilt": [0, 1],
 			"resourcesGathered": {
-				"food": 100,
-				"wood": 0,
-				"metal": 0,
-				"stone": 0,
-				"vegetarianFood": 0,
+				"food": [0, 100],
+				"wood": [0, 0],
+				"metal": [0, 0],
+				"stone": [0, 0],
+				"vegetarianFood": [0, 0]
 			},
-			"treasuresCollected": 0,
-			"lootCollected": 0,
-			"percentMapExplored": 10,
-			"teamPercentMapExplored": 10,
-			"percentMapControlled": 10,
-			"teamPercentMapControlled": 10,
-			"peakPercentOfMapControlled": 10,
-			"teamPeakPercentOfMapControlled": 10
+			"treasuresCollected": [0, 0],
+			"lootCollected": [0, 0],
+			"percentMapExplored": [0, 10],
+			"teamPercentMapExplored": [0, 10],
+			"percentMapControlled": [0, 10],
+			"teamPercentMapControlled": [0, 10],
+			"peakPercentOfMapControlled": [0, 10],
+			"teamPeakPercentOfMapControlled": [0, 10]
 		};
 	},
 	IncreaseTrainedUnitsCounter: function() { return 1; },
 	IncreaseConstructedBuildingsCounter: function() { return 1; },
-	IncreaseBuiltCivCentresCounter: function() { return 1; },
+	IncreaseBuiltCivCentresCounter: function() { return 1; }
 });
 
 // Note: property order matters when using TS_ASSERT_UNEVAL_EQUALS,
@@ -305,10 +305,10 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 					wood: 0,
 					metal: 0,
 					stone: 0,
-					vegetarianFood: 0,
+					vegetarianFood: 0
 				},
 				percentMapExplored: 10
-			},
+			}
 		},
 		{
 			name: "Player 2",
@@ -350,10 +350,10 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 					wood: 0,
 					metal: 0,
 					stone: 0,
-					vegetarianFood: 0,
+					vegetarianFood: 0
 				},
 				percentMapExplored: 10
-			},
+			}
 		}
 	],
 	circularMap: false,
@@ -370,140 +370,160 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			"food": "Food",
 			"metal": "Metal",
 			"stone": "Stone",
-			"wood": "Wood",
+			"wood": "Wood"
 		},
 		"aiInfluenceGroups": {
 			"food": "ignore",
 			"metal": "sparse",
 			"stone": "sparse",
-			"wood": "abundant",
+			"wood": "abundant"
 		}
-	},
+	}
 });
 
 TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
-	players: [
+	"players": [
 		{
-			name: "Player 1",
-			civ: "gaia",
-			color: { r:1, g:1, b:1, a:1 },
-			controlsAll: false,
-			popCount: 10,
-			popLimit: 20,
-			popMax: 200,
-			panelEntities: [],
-			resourceCounts: { food: 100 },
-			trainingBlocked: false,
-			state: "active",
-			team: -1,
-			teamsLocked: false,
-			cheatsEnabled: false,
-			disabledTemplates: {},
-			disabledTechnologies: {},
-			hasSharedDropsites: false,
-			hasSharedLos: false,
-			spyCostMultiplier: 1,
-			phase: "village",
-			isAlly: [false, false],
-			isMutualAlly: [false, false],
-			isNeutral: [false, false],
-			isEnemy: [true, true],
-			entityLimits: {"Foo": 10},
-			entityCounts: {"Foo": 5},
-			entityLimitChangers: {"Foo": {}},
-			researchQueued: {},
-			researchStarted: {},
-			researchedTechs: {},
-			classCounts: {},
-			typeCountsByClass: {},
-			canBarter: false,
-			statistics: {
-				unitsTrained: 10,
-				unitsLost: 9,
-				buildingsConstructed: 5,
-				buildingsCaptured: 7,
-				buildingsLost: 4,
-				civCentresBuilt: 1,
-				resourcesGathered: {
-					food: 100,
-					wood: 0,
-					metal: 0,
-					stone: 0,
-					vegetarianFood: 0,
+			"name": "Player 1",
+			"civ": "gaia",
+			"color": { "r":1, "g":1, "b":1, "a":1 },
+			"controlsAll": false,
+			"popCount": 10,
+			"popLimit": 20,
+			"popMax": 200,
+			"panelEntities": [],
+			"resourceCounts": { "food": 100 },
+			"trainingBlocked": false,
+			"state": "active",
+			"team": -1,
+			"teamsLocked": false,
+			"cheatsEnabled": false,
+			"disabledTemplates": {},
+			"disabledTechnologies": {},
+			"hasSharedDropsites": false,
+			"hasSharedLos": false,
+			"spyCostMultiplier": 1,
+			"phase": "village",
+			"isAlly": [false, false],
+			"isMutualAlly": [false, false],
+			"isNeutral": [false, false],
+			"isEnemy": [true, true],
+			"entityLimits": {"Foo": 10},
+			"entityCounts": {"Foo": 5},
+			"entityLimitChangers": {"Foo": {}},
+			"researchQueued": {},
+			"researchStarted": {},
+			"researchedTechs": {},
+			"classCounts": {},
+			"typeCountsByClass": {},
+			"canBarter": false,
+			"statistics": {
+				"resourcesGathered": {
+					"food": 100,
+					"wood": 0,
+					"metal": 0,
+					"stone": 0,
+					"vegetarianFood": 0
 				},
-				treasuresCollected: 0,
-				lootCollected: 0,
-				percentMapExplored: 10,
-				teamPercentMapExplored: 10,
-				percentMapControlled: 10,
-				teamPercentMapControlled: 10,
-				peakPercentOfMapControlled: 10,
-				teamPeakPercentOfMapControlled: 10
+				"percentMapExplored": 10
 			},
+			"sequences": {
+				"unitsTrained": [0, 10],
+				"unitsLost": [0, 42],
+				"buildingsConstructed": [1, 3],
+				"buildingsCaptured": [3, 7],
+				"buildingsLost": [3, 10],
+				"civCentresBuilt": [4, 10],
+				"resourcesGathered": {
+					"food": [5, 100],
+					"wood": [0, 0],
+					"metal": [0, 0],
+					"stone": [0, 0],
+					"vegetarianFood": [0, 0]
+				},
+				"treasuresCollected": [1, 20],
+				"lootCollected": [0, 2],
+				"percentMapExplored": [0, 10],
+				"teamPercentMapExplored": [0, 10],
+				"percentMapControlled": [0, 10],
+				"teamPercentMapControlled": [0, 10],
+				"peakPercentOfMapControlled": [0, 10],
+				"teamPeakPercentOfMapControlled": [0, 10]
+			}
 		},
 		{
-			name: "Player 2",
-			civ: "mace",
-			color: { r:1, g:0, b:0, a:1 },
-			controlsAll: true,
-			popCount: 40,
-			popLimit: 30,
-			popMax: 300,
-			panelEntities: [],
-			resourceCounts: { food: 200 },
-			trainingBlocked: false,
-			state: "active",
-			team: -1,
-			teamsLocked: false,
-			cheatsEnabled: false,
-			disabledTemplates: {},
-			disabledTechnologies: {},
-			hasSharedDropsites: false,
-			hasSharedLos: false,
-			spyCostMultiplier: 1,
-			phase: "village",
-			isAlly: [true, true],
-			isMutualAlly: [false, false],
-			isNeutral: [false, false],
-			isEnemy: [false, false],
-			entityLimits: {"Bar": 20},
-			entityCounts: {"Bar": 0},
-			entityLimitChangers: {"Bar": {}},
-			researchQueued: {},
-			researchStarted: {},
-			researchedTechs: {},
-			classCounts: {},
-			typeCountsByClass: {},
-			canBarter: false,
-			statistics: {
-				unitsTrained: 10,
-				unitsLost: 9,
-				buildingsConstructed: 5,
-				buildingsCaptured: 7,
-				buildingsLost: 4,
-				civCentresBuilt: 1,
-				resourcesGathered: {
-					food: 100,
-					wood: 0,
-					metal: 0,
-					stone: 0,
-					vegetarianFood: 0,
+			"name": "Player 2",
+			"civ": "mace",
+			"color": { "r":1, "g":0, "b":0, "a":1 },
+			"controlsAll": true,
+			"popCount": 40,
+			"popLimit": 30,
+			"popMax": 300,
+			"panelEntities": [],
+			"resourceCounts": { "food": 200 },
+			"trainingBlocked": false,
+			"state": "active",
+			"team": -1,
+			"teamsLocked": false,
+			"cheatsEnabled": false,
+			"disabledTemplates": {},
+			"disabledTechnologies": {},
+			"hasSharedDropsites": false,
+			"hasSharedLos": false,
+			"spyCostMultiplier": 1,
+			"phase": "village",
+			"isAlly": [true, true],
+			"isMutualAlly": [false, false],
+			"isNeutral": [false, false],
+			"isEnemy": [false, false],
+			"entityLimits": {"Bar": 20},
+			"entityCounts": {"Bar": 0},
+			"entityLimitChangers": {"Bar": {}},
+			"researchQueued": {},
+			"researchStarted": {},
+			"researchedTechs": {},
+			"classCounts": {},
+			"typeCountsByClass": {},
+			"canBarter": false,
+			"statistics": {
+				"resourcesGathered": {
+					"food": 100,
+					"wood": 0,
+					"metal": 0,
+					"stone": 0,
+					"vegetarianFood": 0
 				},
-				treasuresCollected: 0,
-				lootCollected: 0,
-				percentMapExplored: 10,
-				teamPercentMapExplored: 10,
-				percentMapControlled: 10,
-				teamPercentMapControlled: 10,
-				peakPercentOfMapControlled: 10,
-				teamPeakPercentOfMapControlled: 10
+				"percentMapExplored": 10
 			},
+			"sequences": {
+				"unitsTrained": [0, 10],
+				"unitsLost": [0, 9],
+				"buildingsConstructed": [0, 5],
+				"buildingsCaptured": [0, 7],
+				"buildingsLost": [0, 4],
+				"civCentresBuilt": [0, 1],
+				"resourcesGathered": {
+					"food": [0, 100],
+					"wood": [0, 0],
+					"metal": [0, 0],
+					"stone": [0, 0],
+					"vegetarianFood": [0, 0]
+				},
+				"treasuresCollected": [0, 0],
+				"lootCollected": [0, 0],
+				"percentMapExplored": [0, 10],
+				"teamPercentMapExplored": [0, 10],
+				"percentMapControlled": [0, 10],
+				"teamPercentMapControlled": [0, 10],
+				"peakPercentOfMapControlled": [0, 10],
+				"teamPeakPercentOfMapControlled": [0, 10]
+			}
 		}
 	],
-	circularMap: false,
-	timeElapsed: 0,
-	gameType: "conquest",
-	alliedVictory: false,
+	"circularMap": false,
+	"timeElapsed": 0,
+	"gameType": "conquest",
+	"alliedVictory": false,
 	"barterPrices": {
 		"buy": { "food": 150 },
 		"sell": { "food": 25 }
@@ -514,15 +534,15 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 			"food": "Food",
 			"metal": "Metal",
 			"stone": "Stone",
-			"wood": "Wood",
+			"wood": "Wood"
 		},
 		"aiInfluenceGroups": {
 			"food": "ignore",
 			"metal": "sparse",
 			"stone": "sparse",
-			"wood": "abundant",
+			"wood": "abundant"
 		}
-	},
+	}
 });
 
 
@@ -537,7 +557,7 @@ AddMock(10, IID_Health, {
 	GetMaxHitpoints: function() { return 60; },
 	IsRepairable: function() { return false; },
 	IsUnhealable: function() { return false; },
-	IsUndeletable: function() { return false; },
+	IsUndeletable: function() { return false; }
 });
 
 AddMock(10, IID_Identity, {
@@ -545,7 +565,7 @@ AddMock(10, IID_Identity, {
 	GetVisibleClassesList: function() { return ["class3", "class4"]; },
 	GetRank: function() { return "foo"; },
 	GetSelectionGroupName: function() { return "Selection Group Name"; },
-	HasClass: function() { return true; },
+	HasClass: function() { return true; }
 });
 
 AddMock(10, IID_Position, {
@@ -558,7 +578,7 @@ AddMock(10, IID_Position, {
 	},
 	IsInWorld: function() {
 		return true;
-	},
+	}
 });
 
 AddMock(10, IID_ResourceTrickle, {
@@ -583,7 +603,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetEntityState(-1, 10), {
 		rank: "foo",
 		classes: ["class1", "class2"],
 		visibleClasses: ["class3", "class4"],
-		selectionGroupName: "Selection Group Name",
+		selectionGroupName: "Selection Group Name"
 	},
 	fogging: null,
 	foundation: null,
@@ -607,7 +627,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetEntityState(-1, 10), {
 	maxHitpoints: 60,
 	needsRepair: false,
 	needsHeal: true,
-	canDelete: true,
+	canDelete: true
 });
 
 TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedEntityState(-1, 10), {
@@ -634,5 +654,5 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedEntityState(-1, 10), {
 			"metal": 9
 		}
 	},
-	speed: null,
+	speed: null
 });

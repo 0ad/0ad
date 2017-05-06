@@ -62,6 +62,11 @@ var g_PlayerTeamList = prepareForDropdown([{
  */
 var g_CivData = loadCivData();
 
+/**
+ * Number of relics: [1, ..., NumCivs]
+ */
+var g_RelicCountList = Object.keys(g_CivData).map((civ, i) => i + 1);
+
 var g_PlayerCivList = g_CivData && prepareForDropdown([{
 		"name": '[color="' + g_ColorRandom + '"]' + translateWithContext("civilization", "Random") + '[/color]',
 		"code": "random"
@@ -307,6 +312,7 @@ var g_OptionOrderGUI = {
 		"Dropdown": [
 			"gameSpeed",
 			"victoryCondition",
+			"relicCount",
 			"victoryDuration",
 			"populationCap",
 			"startingResources",
@@ -497,6 +503,20 @@ var g_Dropdowns = {
 		},
 		"enabled": () => g_GameAttributes.mapType != "scenario",
 		"autocomplete": true,
+	},
+	"relicCount": {
+		"title": () => translate("Relic Count"),
+		"tooltip": () => translate("Total number of relics spawned on the map."),
+		"labels": () => g_RelicCountList,
+		"ids": () => g_RelicCountList,
+		"default": () => g_RelicCountList.indexOf(5),
+		"defined": () => g_GameAttributes.settings.RelicCount !== undefined,
+		"get": () => g_GameAttributes.settings.RelicCount,
+		"select": (idx) => {
+			g_GameAttributes.settings.RelicCount = g_RelicCountList[idx];
+		},
+		"hidden": () => g_GameAttributes.settings.GameType != "capture_the_relic",
+		"enabled": () => g_GameAttributes.mapType != "scenario",
 	},
 	"victoryDuration": {
 		"title": () => translate("Victory Duration"),

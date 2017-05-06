@@ -99,6 +99,13 @@
 			</object>
 		</object>
 
+		<object name="chartsPanelButton" type="button" sprite="BackgroundTab" style="TabButton" size="762 92 880 120">
+			<action on="Press">selectPanel(this);</action>
+			<object type="text" style="ModernLabelText" ghost="true">
+				<translatableAttribute id="caption">Charts</translatableAttribute>
+			</object>
+		</object>
+
 		<object name="generalPanel" type="image" sprite="ForegroundBody" size="20 120 100%-20 100%-54">
 			<object size="0 0 100% 100%-50">
 				<object name="playerNameHeading" type="text" style="ModernLeftTabLabelText">
@@ -151,6 +158,48 @@
 					</object>
 				</repeat>
 			</object>
+		</object>
+		
+		<object name="chartsPanel" type="image" sprite="ForegroundBody" size="20 120 100%-20 100%-54">
+			<repeat count="2" var="k">
+				<object name="chart[k]Part" size="15 0 50%-10 100%-35">
+					<object type="text" style="ModernLeftLabelText" size="1 6 145 26">
+						<translatableAttribute id="caption" context="summary chart">Category:</translatableAttribute>
+					</object>
+					<object name="chart[k]CategorySelection"
+						type="dropdown"
+						style="ModernDropDown"
+						size="5 28 145 52">
+						<translatableAttribute id="tooltip" context="summary chart">Category</translatableAttribute>
+					</object>
+
+					<object type="text" style="ModernLeftLabelText" size="151 6 295 26">
+						<translatableAttribute id="caption" context="summary chart">Value:</translatableAttribute>
+					</object>
+					<object name="chart[k]ValueSelection"
+						type="dropdown"
+						style="ModernDropDown"
+						size="155 28 295 52">
+						<translatableAttribute id="tooltip" context="summary chart">Value</translatableAttribute>
+					</object>
+
+					<object name="chart[k]TypeLabel" type="text" style="ModernLeftLabelText" size="301 6 445 26">
+						<translatableAttribute id="caption" context="summary chart">Type:</translatableAttribute>
+					</object>
+					<object name="chart[k]TypeSelection"
+						type="dropdown"
+						style="ModernDropDown"
+						hidden="true"
+						size="305 28 445 52">
+						<translatableAttribute id="tooltip" context="summary chart">Type</translatableAttribute>
+					</object>
+
+					<object type="image" sprite="color: 255 255 255 20" size="0 75 100% 100%"/>
+					<object name="chart[k]" type="chart" size="5 80 100%-5 100%-5"/>
+				</object>
+			</repeat>
+
+			<object name="chartLegend" type="text" style="ModernLabelText" size="15 100%-35 100%-15 100%-5"/>
 		</object>
 
 		<object type="button" name="replayButton" style="ModernButtonRed" size="100%-310 100%-48 100%-170 100%-20">

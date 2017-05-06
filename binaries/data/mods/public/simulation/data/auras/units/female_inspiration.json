@@ -8,5 +8,10 @@
 	],
 	"auraName": "Inspiration Aura",
 	"auraDescription": "Nearby citizen soldiers work 10% faster.",
-	"overlayIcon": "art/textures/ui/session/auras/buildgather_bonus.png"
+	"overlayIcon": "art/textures/ui/session/auras/buildgather_bonus.png",
+	"rangeOverlay" : {
+		"lineTexture": "outline_border.png",
+		"lineTextureMask": "outline_border_mask.png",
+		"lineThickness": 0.075
+	}
 }

@@ -48,7 +48,8 @@ Trigger.prototype.InitCaptureTheRelic = function()
 		return;
 	}
 
-	let numSpawnedRelics = Math.ceil(TriggerHelper.GetNumberOfPlayers() / 2);
+	let cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
+	let numSpawnedRelics = cmpEndGameManager.GetGameTypeSettings().relicCount;
 	this.playerRelicsCount = new Array(TriggerHelper.GetNumberOfPlayers()).fill(0, 1);
 	this.playerRelicsCount[0] = numSpawnedRelics;
 
