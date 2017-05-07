@@ -645,18 +645,7 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 	let auraNames = template.Auras._string.split(/\s+/);
 	let cmpDataTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_DataTemplateManager);
 	for (let name of auraNames)
-	{
-		let auraTemplate = cmpDataTemplateManager.GetAuraTemplate(name);
-		if (!auraTemplate)
-		{
-			// The following warning is perhaps useless since it's yet done in DataTemplateManager
-			warn("Tried to get data for invalid aura: " + name);
-			continue;
-		}
-		aurasTemplate[name] = {};
-		aurasTemplate[name].auraName = auraTemplate.auraName || null;
-		aurasTemplate[name].auraDescription = auraTemplate.auraDescription || null;
-	}
+		aurasTemplate[name] = cmpDataTemplateManager.GetAuraTemplate(name);
 	return GetTemplateDataHelper(template, player, aurasTemplate, Resources);
 };
 
