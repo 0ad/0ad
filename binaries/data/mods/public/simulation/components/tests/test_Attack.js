@@ -10,7 +10,7 @@ Engine.LoadComponentScript("Attack.js");
 
 let entityID = 903;
 
-function attackComponentTest(defenderClass, test_function)
+function attackComponentTest(defenderClass, isEnemy, test_function)
 {
 	ResetState();
 
@@ -22,7 +22,8 @@ function attackComponentTest(defenderClass, test_function)
 		});
 
 		AddMock(playerEnt1, IID_Player, {
-			"GetPlayerID": () => 1
+			"GetPlayerID": () => 1,
+			"IsEnemy": () => isEnemy
 		});
 	}
 
@@ -87,6 +88,10 @@ function attackComponentTest(defenderClass, test_function)
 		"HasClass": className => className == defenderClass
 	});
 
+	AddMock(defender, IID_Ownership, {
+		"GetOwner": () => 1
+	});
+
 	AddMock(defender, IID_Position, {
 		"IsInWorld": () => true,
 		"GetHeightOffset": () => 0
@@ -96,9 +101,19 @@ function attackComponentTest(defenderClass, test_function)
 }
 
 // Validate template getter functions
-attackComponentTest(undefined, (attacker, cmpAttack, defender) => {
+attackComponentTest(undefined, true ,(attacker, cmpAttack, defender) => {
 
 	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackTypes(), ["Melee", "Ranged", "Capture"]);
+	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackTypes([]), ["Melee", "Ranged", "Capture"]);
+	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackTypes(["Melee", "Ranged", "Capture"]), ["Melee", "Ranged", "Capture"]);
+	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackTypes(["Melee", "Ranged"]), ["Melee", "Ranged"]);
+	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackTypes(["Capture"]), ["Capture"]);
+	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackTypes(["Melee", "!Melee"]), []);
+	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackTypes(["!Melee"]), ["Ranged", "Capture"]);
+	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackTypes(["!Melee", "!Ranged"]), ["Capture"]);
+	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackTypes(["Capture", "!Ranged"]), ["Capture"]);
+	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackTypes(["Capture", "Melee", "!Ranged"]), ["Melee", "Capture"]);
+
 	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetPreferredClasses("Melee"), ["FemaleCitizen"]);
 	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetRestrictedClasses("Melee"), ["Elephant", "Archer"]);
 	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetFullAttackRange(), { "min": 0, "max": 80 });
@@ -122,7 +137,7 @@ attackComponentTest(undefined, (attacker, cmpAttack, defender) => {
 });
 
 for (let className of ["Infantry", "Cavalry"])
-	attackComponentTest(className, (attacker, cmpAttack, defender) => {
+	attackComponentTest(className, true, (attacker, cmpAttack, defender) => {
 		TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackBonus("Melee", defender), className == "Cavalry" ? 2 : 1);
 		TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackBonus("Ranged", defender), 1);
 		TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackBonus("Capture", defender), 1);
@@ -130,13 +145,13 @@ for (let className of ["Infantry", "Cavalry"])
 	});
 
 // CanAttack rejects elephant attack due to RestrictedClasses
-attackComponentTest("Elephant", (attacker, cmpAttack, defender) => {
+attackComponentTest("Elephant", true, (attacker, cmpAttack, defender) => {
 	TS_ASSERT_EQUALS(cmpAttack.CanAttack(defender), false);
 });
 
 function testGetBestAttackAgainst(defenderClass, bestAttack, isBuilding = false)
 {
-	attackComponentTest(defenderClass, (attacker, cmpAttack, defender) => {
+	attackComponentTest(defenderClass, true, (attacker, cmpAttack, defender) => {
 
 		if (isBuilding)
 			AddMock(defender, IID_Capturable, {
@@ -147,10 +162,52 @@ function testGetBestAttackAgainst(defenderClass, bestAttack, isBuilding = false)
 			});
 
 		TS_ASSERT_EQUALS(cmpAttack.CanAttack(defender), true);
+		TS_ASSERT_EQUALS(cmpAttack.CanAttack(defender, []), true);
+		TS_ASSERT_EQUALS(cmpAttack.CanAttack(defender, ["Ranged"]), true);
+		TS_ASSERT_EQUALS(cmpAttack.CanAttack(defender, ["!Melee"]), true);
+		TS_ASSERT_EQUALS(cmpAttack.CanAttack(defender, ["Capture"]), isBuilding);
+		TS_ASSERT_EQUALS(cmpAttack.CanAttack(defender, ["Melee", "Capture"]), defenderClass != "Archer");
+		TS_ASSERT_EQUALS(cmpAttack.CanAttack(defender, ["Ranged", "Capture"]), true);
+		TS_ASSERT_EQUALS(cmpAttack.CanAttack(defender, ["!Ranged", "!Melee"]), isBuilding || defenderClass == "Domestic");
+		TS_ASSERT_EQUALS(cmpAttack.CanAttack(defender, ["Melee", "!Melee"]), false);
 
 		let allowCapturing = [true];
 		if (!isBuilding)
 			allowCapturing.push(false);
+
+		for (let ac of allowCapturing)
+			TS_ASSERT_EQUALS(cmpAttack.GetBestAttackAgainst(defender, ac), bestAttack);
+	});
+
+	attackComponentTest(defenderClass, false, (attacker, cmpAttack, defender) => {
+
+		if (isBuilding)
+			AddMock(defender, IID_Capturable, {
+				"CanCapture": playerID => {
+					TS_ASSERT_EQUALS(playerID, 1);
+					return true;
+				}
+			});
+
+		TS_ASSERT_EQUALS(cmpAttack.CanAttack(defender), isBuilding || defenderClass == "Domestic");
+		TS_ASSERT_EQUALS(cmpAttack.CanAttack(defender, []), isBuilding || defenderClass == "Domestic");
+		TS_ASSERT_EQUALS(cmpAttack.CanAttack(defender, ["Ranged"]), false);
+		TS_ASSERT_EQUALS(cmpAttack.CanAttack(defender, ["!Melee"]), isBuilding || defenderClass == "Domestic");
+		TS_ASSERT_EQUALS(cmpAttack.CanAttack(defender, ["Capture"]), isBuilding);
+		TS_ASSERT_EQUALS(cmpAttack.CanAttack(defender, ["Melee", "Capture"]), isBuilding);
+		TS_ASSERT_EQUALS(cmpAttack.CanAttack(defender, ["Ranged", "Capture"]), isBuilding);
+		TS_ASSERT_EQUALS(cmpAttack.CanAttack(defender, ["!Ranged", "!Melee"]), isBuilding || defenderClass == "Domestic");
+		TS_ASSERT_EQUALS(cmpAttack.CanAttack(defender, ["Melee", "!Melee"]), false);
+
+		let allowCapturing = [true];
+		if (!isBuilding)
+			allowCapturing.push(false);
+
+		let attack = undefined;
+		if (defenderClass == "Domestic")
+			attack = "Slaughter";
+		else if (defenderClass == "Structure")
+			attack = "Capture";
 
 		for (let ac of allowCapturing)
 			TS_ASSERT_EQUALS(cmpAttack.GetBestAttackAgainst(defender, ac), bestAttack);
