@@ -73,8 +73,7 @@ void CCinemaManager::Render() const
 {
 	if (IsEnabled())
 		DrawBars();
-
-	if (m_DrawPaths)
+	else if (m_DrawPaths)
 		DrawPaths();
 }
 
