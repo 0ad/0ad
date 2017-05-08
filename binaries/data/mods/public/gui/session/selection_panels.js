@@ -986,9 +986,7 @@ g_SelectionPanels.Training = {
 		let [buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch] =
 			getTrainingStatus(data.playerState, data.item, data.unitEntStates.map(status => status.id));
 
-		let trainNum = buildingsCountToTrainFullBatch || 1;
-		if (Engine.HotkeyIsPressed("session.batchtrain"))
-			trainNum = buildingsCountToTrainFullBatch * fullBatchSize + remainderBatch;
+		let trainNum = buildingsCountToTrainFullBatch * fullBatchSize + remainderBatch;
 
 		let neededResources;
 		if (template.cost)
@@ -1010,7 +1008,7 @@ g_SelectionPanels.Training = {
 			getVisibleEntityClassesFormatted(template),
 			getAurasTooltip(template),
 			getEntityTooltip(template),
-			getEntityCostTooltip(template, trainNum, data.unitEntStates[0].id)
+			getEntityCostTooltip(template, data.unitEntStates[0].id, buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch)
 		];
 
 		let limits = getEntityLimitAndCount(data.playerState, data.item);
