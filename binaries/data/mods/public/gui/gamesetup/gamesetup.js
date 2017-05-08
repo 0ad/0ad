@@ -16,19 +16,19 @@ const g_VictoryDurations = prepareForDropdown(g_Settings && g_Settings.VictoryDu
 var g_ColorRandom = "orange";
 
 /**
- * Highlight AIs in the player-dropdownlist.
+ * Color for regular dropdownlist items.
  */
-var g_AIColor = "70 150 70";
+var g_ColorRegular = "white";
 
 /**
  * Color for "Unassigned"-placeholder item in the dropdownlist.
  */
-var g_UnassignedColor = "140 140 140";
-
-/**
- * Highlight observer players in the dropdownlist.
- */
-var g_UnassignedPlayerColor = "170 170 250";
+var g_PlayerAssignmentColors = {
+	"player": g_ColorRegular,
+	"observer": "170 170 250",
+	"unassigned": "140 140 140",
+	"AI": "70 150 70"
+};
 
 /**
  * Used for highlighting the sender of chat messages.
@@ -68,13 +68,15 @@ var g_CivData = loadCivData();
 var g_RelicCountList = Object.keys(g_CivData).map((civ, i) => i + 1);
 
 var g_PlayerCivList = g_CivData && prepareForDropdown([{
-		"name": '[color="' + g_ColorRandom + '"]' + translateWithContext("civilization", "Random") + '[/color]',
+		"name": translateWithContext("civilization", "Random"),
+		"color": g_ColorRandom,
 		"code": "random"
 	}].concat(
 		Object.keys(g_CivData).filter(
 			civ => g_CivData[civ].SelectableInGameSetup
 		).map(civ => ({
 			"name": g_CivData[civ].Name,
+			"color": g_ColorRegular,
 			"code": civ
 		})).sort(sortNameIgnoreCase)
 	)
@@ -102,7 +104,7 @@ var g_MapPath = {
 
 var g_ReadyData = [
 	{
-		"color": "white",
+		"color": g_ColorRegular,
 		"chat": translate("* %(username)s is not ready."),
 		"caption": translate("I'm ready"),
 		"tooltip": translate("State that you are ready to play.")
@@ -358,6 +360,7 @@ var g_OptionOrderInit = {
  * title        - The caption shown in the label.
  * tooltip      - A description shown when hovering the option.
  * labels       - Array of translated strings selectable for this dropdown.
+ * colors       - Optional array of colors to tint the according dropdown items with.
  * hidden       - If hidden, both the label and dropdown won't be visible. (default: false)
  * enabled      - Only the label will be shown if the setting is disabled. (default: true)
  * autocomplete - Whether to autocomplete translated values of the string. (default: false)
@@ -406,6 +409,7 @@ var g_Dropdowns = {
 		"title": () => translate("Select Map"),
 		"tooltip": () => translate("Select a map to play on."),
 		"labels": () => g_MapSelectionList.name,
+		"colors": () => g_MapSelectionList.color,
 		"ids": () => g_MapSelectionList.file,
 		"default": () => 0,
 		"defined": () => g_GameAttributes.map !== undefined,
@@ -555,6 +559,7 @@ var g_Dropdowns = {
 var g_PlayerDropdowns = {
 	"playerAssignment": {
 		"labels": (idx) => g_PlayerAssignmentList.Name || [],
+		"colors": (idx) => g_PlayerAssignmentList.Color || [],
 		"ids": (idx) => g_PlayerAssignmentList.Choice || [],
 		"default": (idx) => "ai:petra",
 		"defined": (idx) => idx < g_GameAttributes.settings.PlayerData.length,
@@ -599,6 +604,7 @@ var g_PlayerDropdowns = {
 	},
 	"playerCiv": {
 		"labels": (idx) => g_PlayerCivList.name,
+		"colors": (idx) => g_PlayerCivList.color,
 		"ids": (idx) => g_PlayerCivList.code,
 		"default": (idx) => 0,
 		"defined": (idx) => g_GameAttributes.settings.PlayerData[idx].Civ !== undefined,
@@ -608,7 +614,8 @@ var g_PlayerDropdowns = {
 		"autocomplete": true,
 	},
 	"playerColorPicker": {
-		"labels": (idx) => g_PlayerColorPickerList.map(color => ' ' + '[color="' + rgbToGuiColor(color) + '"]■[/color]'),
+		"labels": (idx) => g_PlayerColorPickerList.map(color => "■"),
+		"colors": (idx) => g_PlayerColorPickerList.map(color => rgbToGuiColor(color)),
 		"ids": (idx) => g_PlayerColorPickerList.map((color, index) => index),
 		"default": (idx) => idx,
 		"defined": (idx) => g_GameAttributes.settings.PlayerData[idx].Color !== undefined,
@@ -974,7 +981,12 @@ function initDropdown(name, idx)
 	let data = (idx === undefined ? g_Dropdowns : g_PlayerDropdowns)[name];
 
 	let dropdown = Engine.GetGUIObjectByName(guiName + guiIdx + idxName);
-	dropdown.list = data.labels(idx);
+
+	dropdown.list = data.labels(idx).map((label, id) =>
+		data.colors && data.colors(idx) ?
+			'[color="' + data.colors(idx)[id] + '"]' + label + "[/color]" :
+			label);
+
 	dropdown.list_data = data.ids(idx);
 
 	dropdown.onSelectionChange = function() {
@@ -1251,11 +1263,6 @@ function reloadMapList()
 
 	// Apply map filter, if any defined
 	let mapList = [];
-	if (g_GameAttributes.mapType == "random")
-		mapList.push({
-			"file": "random",
-			"name": '[color="' + g_ColorRandom + '"]' + translateWithContext("map selection", "Random") + "[/color]"
-		});
 
 	// TODO: Should verify these are valid maps before adding to list
 	for (let mapFile of mapFiles)
@@ -1270,11 +1277,21 @@ function reloadMapList()
 
 		mapList.push({
 			"file": file,
+			"color": g_ColorRegular,
 			"name": translate(getMapDisplayName(file))
 		});
 	}
 
-	g_MapSelectionList = prepareForDropdown(mapList.sort(sortNameIgnoreCase));
+	mapList = mapList.sort(sortNameIgnoreCase)
+
+	if (g_GameAttributes.mapType == "random")
+		mapList.unshift({
+			"file": "random",
+			"name": translateWithContext("map selection", "Random"),
+			"color": g_ColorRandom
+		});
+
+	g_MapSelectionList = prepareForDropdown(mapList);
 	initDropdown("mapSelection");
 }
 
@@ -1838,10 +1855,8 @@ function updatePlayerAssignmentChoices()
 {
 	let playerChoices = sortGUIDsByPlayerID().map(guid => ({
 		"Choice": "guid:" + guid,
-		"Name":
-			g_PlayerAssignments[guid].player == -1 ?
-				"[color=\""+ g_UnassignedPlayerColor + "\"]" + g_PlayerAssignments[guid].name + "[/color]" :
-				g_PlayerAssignments[guid].name
+		"Color": g_PlayerAssignments[guid].player == -1 ? g_PlayerAssignmentColors.observer : g_PlayerAssignmentColors.player,
+		"Name": g_PlayerAssignments[guid].name
 	}));
 
 	// Only display hidden AIs if the map preselects them
@@ -1849,15 +1864,16 @@ function updatePlayerAssignmentChoices()
 		.filter(ai => !ai.data.hidden || g_GameAttributes.settings.PlayerData.some(pData => pData.AI == ai.id))
 		.map(ai => ({
 			"Choice": "ai:" + ai.id,
-			"Name": "[color=\""+ g_AIColor + "\"]" +
-			          sprintf(translate("AI: %(ai)s"), {
-			              "ai": translate(ai.data.name)
-			          }) + "[/color]"
+			"Name": sprintf(translate("AI: %(ai)s"), {
+				"ai": translate(ai.data.name)
+			}),
+			"Color": g_PlayerAssignmentColors.AI
 	}));
 
 	let unassignedSlot = [{
 		"Choice": "unassigned",
-		"Name": "[color=\""+ g_UnassignedColor + "\"]" + translate("Unassigned") + "[/color]",
+		"Name": translate("Unassigned"),
+		"Color": g_PlayerAssignmentColors.unassigned
 	}];
 	g_PlayerAssignmentList = prepareForDropdown(playerChoices.concat(aiChoices).concat(unassignedSlot));
 
@@ -1939,7 +1955,7 @@ function colorizePlayernameByGUID(guid, username = "")
 		username = g_PlayerAssignments[guid] ? escapeText(g_PlayerAssignments[guid].name) : translate("Unknown Player");
 	let playerID = g_PlayerAssignments[guid] ? g_PlayerAssignments[guid].player : -1;
 
-	let color = "white";
+	let color = g_ColorRegular;
 	if (playerID > 0)
 	{
 		color = g_GameAttributes.settings.PlayerData[playerID - 1].Color;
