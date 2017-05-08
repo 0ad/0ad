@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2017 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -21,6 +21,7 @@
  */
 
 #include "precompiled.h"
+
 #include "lib/utf8.h"
 
 static const StatusDefinition utf8StatusDefinitions[] = {
@@ -81,7 +82,10 @@ static UTF32 RaiseError(Status err, Status* perr)
 			*perr = err;
 	}
 	else
-		DEBUG_WARN_ERR(err);
+	{
+		wchar_t error[200];
+		debug_printf("UTF8 error: %s\n", utf8_from_wstring(StatusDescription(err, error, ARRAY_SIZE(error))).c_str());
+	}
 
 	return 0xFFFDul;	// replacement character
 }
