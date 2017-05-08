@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2017-05-05 09:15+0200\n"
-"PO-Revision-Date: 2017-05-05 09:15+0200\n"
+"POT-Creation-Date: 2017-05-08 09:02+0200\n"
+"PO-Revision-Date: 2017-05-08 09:02+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -39,7 +39,7 @@ msgid_plural "Special Buildings"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/civinfo/civinfo.js:124 gui/summary/layout.js:64
+#: gui/civinfo/civinfo.js:124 gui/summary/layout.js:67
 msgid "Heroes"
 msgstr ""
 
@@ -122,7 +122,7 @@ msgstr ""
 #: gui/options/options.js:321 gui/options/options.js:388
 #: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:159
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
-#: gui/summary/summary.js:146
+#: gui/summary/summary.js:346
 msgid "No"
 msgstr ""
 
@@ -130,7 +130,7 @@ msgstr ""
 #: gui/options/options.js:321 gui/options/options.js:388
 #: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:159
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
-#: gui/summary/summary.js:146
+#: gui/summary/summary.js:346
 msgid "Yes"
 msgstr ""
 
@@ -148,7 +148,7 @@ msgstr ""
 msgid "A randomly selected map."
 msgstr ""
 
-#: gui/common/gamedescription.js:36 gui/common/gamedescription.js:310
+#: gui/common/gamedescription.js:36 gui/common/gamedescription.js:317
 msgid "Sorry, no description available."
 msgstr ""
 
@@ -257,7 +257,7 @@ msgid_plural "Wonder (%(min)s minutes)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/common/gamedescription.js:224
+#: gui/common/gamedescription.js:225
 #, javascript-format
 msgctxt "victory condition"
 msgid "Capture The Relic (%(min)s minute)"
@@ -265,115 +265,119 @@ msgid_plural "Capture The Relic (%(min)s minutes)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/common/gamedescription.js:242
+#: gui/common/gamedescription.js:241
+msgid "Relic Count"
+msgstr ""
+
+#: gui/common/gamedescription.js:249
 msgid "Rated game"
 msgstr ""
 
-#: gui/common/gamedescription.js:243
+#: gui/common/gamedescription.js:250
 msgid ""
 "When the winner of this match is determined, the lobby score will be adapted."
 msgstr ""
 
-#: gui/common/gamedescription.js:248
+#: gui/common/gamedescription.js:255
 msgid "Locked Teams"
 msgstr ""
 
-#: gui/common/gamedescription.js:249
+#: gui/common/gamedescription.js:256
 msgid "Players can't change the initial teams."
 msgstr ""
 
-#: gui/common/gamedescription.js:253
+#: gui/common/gamedescription.js:260
 msgid "Diplomacy"
 msgstr ""
 
-#: gui/common/gamedescription.js:254
+#: gui/common/gamedescription.js:261
 msgid "Players can make alliances and declare war on allies."
 msgstr ""
 
-#: gui/common/gamedescription.js:259
+#: gui/common/gamedescription.js:266
 msgid "Last Man Standing"
 msgstr ""
 
-#: gui/common/gamedescription.js:260
+#: gui/common/gamedescription.js:267
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
 msgstr ""
 
-#: gui/common/gamedescription.js:264
+#: gui/common/gamedescription.js:271
 msgid "Allied Victory"
 msgstr ""
 
-#: gui/common/gamedescription.js:265
+#: gui/common/gamedescription.js:272
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
 msgstr ""
 
-#: gui/common/gamedescription.js:271
+#: gui/common/gamedescription.js:278
 msgid "Ceasefire"
 msgstr ""
 
-#: gui/common/gamedescription.js:274 gui/pregame/mainmenu.js:91
+#: gui/common/gamedescription.js:281 gui/pregame/mainmenu.js:91
 msgid "disabled"
 msgstr ""
 
-#: gui/common/gamedescription.js:275
+#: gui/common/gamedescription.js:282
 msgid "For the first minute, enemies will stay neutral."
 msgid_plural "For the first %(min)s minutes, enemies will stay neutral."
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/common/gamedescription.js:283
+#: gui/common/gamedescription.js:290
 msgid "Map Name"
 msgstr ""
 
-#: gui/common/gamedescription.js:288
+#: gui/common/gamedescription.js:295
 msgid "Map Type"
 msgstr ""
 
-#: gui/common/gamedescription.js:297
+#: gui/common/gamedescription.js:304
 msgid "Map Size"
 msgstr ""
 
-#: gui/common/gamedescription.js:304
+#: gui/common/gamedescription.js:311
 msgid "Map Description"
 msgstr ""
 
-#: gui/common/gamedescription.js:307
+#: gui/common/gamedescription.js:314
 msgid "Randomly selects a map from the list"
 msgstr ""
 
-#: gui/common/gamedescription.js:316
+#: gui/common/gamedescription.js:323
 msgid "Starting Resources"
 msgstr ""
 
-#: gui/common/gamedescription.js:317
+#: gui/common/gamedescription.js:324
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr ""
 
-#: gui/common/gamedescription.js:327
+#: gui/common/gamedescription.js:334
 msgid "Population Limit"
 msgstr ""
 
-#: gui/common/gamedescription.js:335
+#: gui/common/gamedescription.js:342
 msgid "Disable Treasure"
 msgstr ""
 
-#: gui/common/gamedescription.js:340
+#: gui/common/gamedescription.js:347
 msgid "Revealed Map"
 msgstr ""
 
-#: gui/common/gamedescription.js:345
+#: gui/common/gamedescription.js:352
 msgid "Explored Map"
 msgstr ""
 
-#: gui/common/gamedescription.js:350
+#: gui/common/gamedescription.js:357
 msgid "Cheats"
 msgstr ""
 
-#: gui/common/gamedescription.js:355 gui/common/tooltips.js:86
+#: gui/common/gamedescription.js:362 gui/common/tooltips.js:86
 #: gui/common/tooltips.js:141 gui/common/tooltips.js:182
 #: gui/common/tooltips.js:404 gui/common/tooltips.js:425
 #: gui/common/tooltips.js:707
@@ -381,21 +385,21 @@ msgstr ""
 msgid "%(label)s %(details)s"
 msgstr ""
 
-#: gui/common/gamedescription.js:358
+#: gui/common/gamedescription.js:365
 msgctxt "gamesetup option"
 msgid "enabled"
 msgstr ""
 
-#: gui/common/gamedescription.js:359
+#: gui/common/gamedescription.js:366
 msgctxt "gamesetup option"
 msgid "disabled"
 msgstr ""
 
-#: gui/common/gamedescription.js:376
+#: gui/common/gamedescription.js:383
 msgid "Victorious"
 msgstr ""
 
-#: gui/common/gamedescription.js:381
+#: gui/common/gamedescription.js:388
 msgid "Defeated"
 msgstr ""
 
@@ -854,7 +858,7 @@ msgid "Repair Rate:"
 msgstr ""
 
 #: gui/common/tooltips.js:323 gui/common/tooltips.js:337
-#: gui/summary/layout.js:61
+#: gui/summary/layout.js:64
 msgid "Worker"
 msgstr ""
 
@@ -1105,7 +1109,7 @@ msgstr ""
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr ""
 
-#: gui/pregame/mainmenu.js:261 gui/summary/summary.js:145
+#: gui/pregame/mainmenu.js:261 gui/summary/summary.js:345
 msgid "Confirmation"
 msgstr ""
 
@@ -1324,246 +1328,277 @@ msgstr ""
 msgid "%(val1)s to %(val2)s"
 msgstr ""
 
-#: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:58
-#: gui/summary/layout.js:97 gui/summary/layout.js:142
-#: gui/summary/layout.js:172 gui/summary/summary.xml:(caption):105
+#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):63
+msgid "Score"
+msgstr ""
+
+#: gui/summary/layout.js:5 gui/summary/layout.js:23 gui/summary/layout.js:61
+#: gui/summary/layout.js:101 gui/summary/layout.js:149
+#: gui/summary/layout.js:181 gui/summary/summary.xml:(caption):112
 msgid "Player name"
 msgstr ""
 
-#: gui/summary/layout.js:5
+#: gui/summary/layout.js:6
 msgid "Economy score"
 msgstr ""
 
-#: gui/summary/layout.js:6
+#: gui/summary/layout.js:7
 msgid "Military score"
 msgstr ""
 
-#: gui/summary/layout.js:7
+#: gui/summary/layout.js:8
 msgid "Exploration score"
 msgstr ""
 
-#: gui/summary/layout.js:8
+#: gui/summary/layout.js:9
 msgid "Total score"
 msgstr ""
 
-#: gui/summary/layout.js:22 gui/summary/layout.js:59 gui/summary/layout.js:103
+#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):70
+msgid "Buildings"
+msgstr ""
+
+#: gui/summary/layout.js:24 gui/summary/layout.js:62 gui/summary/layout.js:108
 msgid "Total"
 msgstr ""
 
-#: gui/summary/layout.js:23
+#: gui/summary/layout.js:25
 msgid "Houses"
 msgstr ""
 
-#: gui/summary/layout.js:24
+#: gui/summary/layout.js:26
 msgid "Economic"
 msgstr ""
 
-#: gui/summary/layout.js:25
+#: gui/summary/layout.js:27
 msgid "Outposts"
 msgstr ""
 
-#: gui/summary/layout.js:26
+#: gui/summary/layout.js:28
 msgid "Military"
 msgstr ""
 
-#: gui/summary/layout.js:27
+#: gui/summary/layout.js:29
 msgid "Fortresses"
 msgstr ""
 
-#: gui/summary/layout.js:28
+#: gui/summary/layout.js:30
 msgid "Civ centers"
 msgstr ""
 
-#: gui/summary/layout.js:29
+#: gui/summary/layout.js:31
 msgid "Wonders"
 msgstr ""
 
-#: gui/summary/layout.js:33
+#: gui/summary/layout.js:35
 #, javascript-format
 msgid ""
 "Buildings Statistics (%(constructed)s / %(destroyed)s / %(captured)s / %"
 "(lost)s)"
 msgstr ""
 
-#: gui/summary/layout.js:35
-msgid "Constructed"
-msgstr ""
-
-#: gui/summary/layout.js:36
-msgid "Destroyed"
-msgstr ""
-
-#: gui/summary/layout.js:37 gui/summary/layout.js:75
-msgid "Captured"
-msgstr ""
-
-#: gui/summary/layout.js:38 gui/summary/layout.js:76
-msgid "Lost"
-msgstr ""
-
-#: gui/summary/layout.js:60
-msgid "Infantry"
-msgstr ""
-
-#: gui/summary/layout.js:62
-msgid "Cavalry"
+#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):77
+msgid "Units"
 msgstr ""
 
 #: gui/summary/layout.js:63
-msgid "Champion"
+msgid "Infantry"
 msgstr ""
 
 #: gui/summary/layout.js:65
-msgid "Siege"
+msgid "Cavalry"
 msgstr ""
 
 #: gui/summary/layout.js:66
+msgid "Champion"
+msgstr ""
+
+#: gui/summary/layout.js:68
+msgid "Siege"
+msgstr ""
+
+#: gui/summary/layout.js:69
 msgid "Navy"
 msgstr ""
 
-#: gui/summary/layout.js:67
+#: gui/summary/layout.js:70
 msgid "Traders"
 msgstr ""
 
-#: gui/summary/layout.js:71
+#: gui/summary/layout.js:74
 #, javascript-format
 msgid "Units Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 msgstr ""
 
-#: gui/summary/layout.js:73
-msgid "Trained"
+#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):84
+msgid "Resources"
 msgstr ""
 
-#: gui/summary/layout.js:74
-msgid "Killed"
-msgstr ""
-
-#: gui/summary/layout.js:105
+#: gui/summary/layout.js:111
 #, javascript-format
 msgid ""
 "Tributes \n"
 "(%(sent)s / %(received)s)"
 msgstr ""
 
-#: gui/summary/layout.js:107
-msgid "Sent"
-msgstr ""
-
-#: gui/summary/layout.js:108
-msgid "Received"
-msgstr ""
-
-#: gui/summary/layout.js:113
+#: gui/summary/layout.js:119
 msgid "Treasures collected"
 msgstr ""
 
-#: gui/summary/layout.js:114
+#: gui/summary/layout.js:120
 msgid "Loot"
 msgstr ""
 
-#: gui/summary/layout.js:118
+#: gui/summary/layout.js:124
 #, javascript-format
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
 msgstr ""
 
-#: gui/summary/layout.js:120
-msgid "Gathered"
-msgstr ""
-
-#: gui/summary/layout.js:121
-msgid "Used"
+#: gui/summary/layout.js:147 gui/summary/summary.xml:(caption):91
+msgid "Market"
 msgstr ""
 
 #. Translation: use %(resourceWithinSentence)s if needed
-#: gui/summary/layout.js:147
+#: gui/summary/layout.js:155
 #, javascript-format
 msgid "%(resourceFirstWord)s exchanged"
 msgstr ""
 
-#: gui/summary/layout.js:155
+#: gui/summary/layout.js:163
 msgid "Barter efficiency"
 msgstr ""
 
-#: gui/summary/layout.js:156
+#: gui/summary/layout.js:164
 msgid "Trade income"
 msgstr ""
 
-#: gui/summary/layout.js:173
-msgid ""
-"Vegetarian\n"
-"ratio"
+#: gui/summary/layout.js:179 gui/summary/summary.xml:(caption):98
+#: gui/credits/texts/misc.json:Title
+msgid "Miscellaneous"
 msgstr ""
 
-#: gui/summary/layout.js:174
+#: gui/summary/layout.js:182
+msgid "Vegetarian ratio"
+msgstr ""
+
+#: gui/summary/layout.js:183
 msgid "Feminization"
 msgstr ""
 
-#: gui/summary/layout.js:175
-msgid ""
-"Kill / Death\n"
-"ratio"
+#: gui/summary/layout.js:184
+msgid "Kill / Death ratio"
 msgstr ""
 
-#: gui/summary/layout.js:176
-msgid ""
-"Map\n"
-"exploration"
+#: gui/summary/layout.js:185
+msgid "Map exploration"
 msgstr ""
 
-#: gui/summary/layout.js:177
-msgid "At peak"
+#: gui/summary/layout.js:186
+msgid "Map control (peak)"
 msgstr ""
 
-#: gui/summary/layout.js:178
-msgid "At finish"
+#: gui/summary/layout.js:187
+msgid "Map control (finish)"
 msgstr ""
 
-#: gui/summary/layout.js:181
-msgid "Map control"
-msgstr ""
-
-#: gui/summary/layout.js:326
+#: gui/summary/layout.js:338
 msgid "Team total"
 msgstr ""
 
-#: gui/summary/summary.js:144
+#: gui/summary/summary.js:30
+msgid "Trained"
+msgstr ""
+
+#: gui/summary/summary.js:35
+msgid "Constructed"
+msgstr ""
+
+#: gui/summary/summary.js:40
+msgid "Gathered"
+msgstr ""
+
+#: gui/summary/summary.js:45
+msgid "Sent"
+msgstr ""
+
+#: gui/summary/summary.js:50
+msgid "Bought"
+msgstr ""
+
+#: gui/summary/summary.js:55
+msgid "Income"
+msgstr ""
+
+#: gui/summary/summary.js:60
+msgid "Captured"
+msgstr ""
+
+#: gui/summary/summary.js:65
+msgid "Destroyed"
+msgstr ""
+
+#: gui/summary/summary.js:70
+msgid "Killed"
+msgstr ""
+
+#: gui/summary/summary.js:75
+msgid "Lost"
+msgstr ""
+
+#: gui/summary/summary.js:80
+msgid "Used"
+msgstr ""
+
+#: gui/summary/summary.js:85
+msgid "Recieved"
+msgstr ""
+
+#: gui/summary/summary.js:90
+msgid "Sold"
+msgstr ""
+
+#: gui/summary/summary.js:95
+msgid "Outcome"
+msgstr ""
+
+#: gui/summary/summary.js:344
 msgid "Are you sure you want to quit the lobby?"
 msgstr ""
 
-#: gui/summary/summary.js:195
+#: gui/summary/summary.js:395
 msgid "Current Scores"
 msgstr ""
 
-#: gui/summary/summary.js:197
+#: gui/summary/summary.js:397
 msgid "Scores at the end of the game."
 msgstr ""
 
-#: gui/summary/summary.js:199
+#: gui/summary/summary.js:399
 msgid "You have been disconnected."
 msgstr ""
 
-#: gui/summary/summary.js:201
+#: gui/summary/summary.js:401
 msgid "You have left the game."
 msgstr ""
 
-#: gui/summary/summary.js:203
+#: gui/summary/summary.js:403
 msgid "You have won the battle!"
 msgstr ""
 
-#: gui/summary/summary.js:205
+#: gui/summary/summary.js:405
 msgid "You have been defeated..."
 msgstr ""
 
-#: gui/summary/summary.js:206
+#: gui/summary/summary.js:406
 msgid "You have abandoned the game."
 msgstr ""
 
-#: gui/summary/summary.js:211
+#: gui/summary/summary.js:411
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr ""
 
-#: gui/summary/summary.js:219
+#: gui/summary/summary.js:419
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr ""
@@ -2068,36 +2103,46 @@ msgstr ""
 msgid "Trainer Units"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):63
-msgid "Score"
+#: gui/summary/summary.xml:(caption):105
+msgid "Charts"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):70
-msgid "Buildings"
+#: gui/summary/summary.xml:(caption):167
+msgctxt "summary chart"
+msgid "Category:"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):77
-msgid "Units"
+#: gui/summary/summary.xml:(caption):177
+msgctxt "summary chart"
+msgid "Value:"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):84
-msgid "Resources"
+#: gui/summary/summary.xml:(caption):187
+msgctxt "summary chart"
+msgid "Type:"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):91
-msgid "Market"
-msgstr ""
-
-#: gui/summary/summary.xml:(caption):98 gui/credits/texts/misc.json:Title
-msgid "Miscellaneous"
-msgstr ""
-
-#: gui/summary/summary.xml:(caption):157
+#: gui/summary/summary.xml:(caption):206
 msgid "Replay"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):162
+#: gui/summary/summary.xml:(caption):211
 msgid "Continue"
+msgstr ""
+
+#: gui/summary/summary.xml:(tooltip):173
+msgctxt "summary chart"
+msgid "Category"
+msgstr ""
+
+#: gui/summary/summary.xml:(tooltip):183
+msgctxt "summary chart"
+msgid "Value"
+msgstr ""
+
+#: gui/summary/summary.xml:(tooltip):194
+msgctxt "summary chart"
+msgid "Type"
 msgstr ""
 
 #: gui/credits/texts/art.json:Content[0].Content[0].Subtitle
@@ -2668,6 +2713,16 @@ msgstr ""
 
 #: gui/options/options.json:graphicsSetting[17].label
 msgid "FPS throttling in games"
+msgstr ""
+
+#: gui/options/options.json:graphicsSetting[18].tooltip
+msgid ""
+"Display the range of auras of selected units and structures (can also be "
+"toggled in-game with the hotkey)."
+msgstr ""
+
+#: gui/options/options.json:graphicsSetting[18].label
+msgid "Aura Range Visualization"
 msgstr ""
 
 #: simulation/data/resources/food.json:description

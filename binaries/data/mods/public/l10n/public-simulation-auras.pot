@@ -5,15 +5,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2017-05-01 10:20+0200\n"
-"PO-Revision-Date: 2017-05-01 10:20+0200\n"
+"POT-Creation-Date: 2017-05-08 09:03+0200\n"
+"PO-Revision-Date: 2017-05-08 09:03+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.json:auraName
-msgid "Repairing Ship aura"
+msgid "Dockyard Repairs"
 msgstr ""
 
 #: simulation/data/auras/structures/cart_super_dock_repair.json:auraDescription
@@ -21,8 +21,7 @@ msgid "Heals garrisoned ship at 10 HP per second."
 msgstr ""
 
 #: simulation/data/auras/structures/epic_temple_heal.json:auraName
-#: simulation/data/auras/structures/temple_heal.json:auraName
-msgid "Healing Aura"
+msgid "Blessing of the Gods"
 msgstr ""
 
 #: simulation/data/auras/structures/epic_temple_heal.json:auraDescription
@@ -30,7 +29,7 @@ msgid "Heals nearby units at 3 HP per second."
 msgstr ""
 
 #: simulation/data/auras/structures/iber_monument.json:auraName
-msgid "Defensive Aura"
+msgid "Religious Fervor"
 msgstr ""
 
 #: simulation/data/auras/structures/iber_monument.json:auraDescription
@@ -39,7 +38,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/auras/structures/library.json:auraName
-msgid "Library Aura"
+msgid "Power of Knowledge"
 msgstr ""
 
 #: simulation/data/auras/structures/library.json:auraDescription
@@ -48,7 +47,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/auras/structures/loyalty_regen.json:auraName
-msgid "Loyalty Aura"
+msgid "Loyalty"
 msgstr ""
 
 #: simulation/data/auras/structures/loyalty_regen.json:auraDescription
@@ -71,12 +70,16 @@ msgstr ""
 msgid "Boosts nearby farming with +25% gathering rate."
 msgstr ""
 
+#: simulation/data/auras/structures/temple_heal.json:auraName
+msgid "Medical Treatment"
+msgstr ""
+
 #: simulation/data/auras/structures/temple_heal.json:auraDescription
 msgid "Heals nearby units at 1 HP per second."
 msgstr ""
 
 #: simulation/data/auras/structures/theatron.json:auraName
-msgid "Hellenization."
+msgid "Hellenization"
 msgstr ""
 
 #: simulation/data/auras/structures/theatron.json:auraDescription
@@ -92,7 +95,7 @@ msgid "Soldiers on walls have +3 armor and higher vision."
 msgstr ""
 
 #: simulation/data/auras/structures/wonder_pop_1.json:auraName
-msgid "Wonder Aura"
+msgid "Symbol of Greatness"
 msgstr ""
 
 #: simulation/data/auras/structures/wonder_pop_1.json:auraDescription
@@ -100,7 +103,7 @@ msgid "Increase the population limit by 10 per wonder owned."
 msgstr ""
 
 #: simulation/data/auras/structures/wonder_pop_2.json:auraName
-msgid "Glorious Expansion Aura"
+msgid "Glorious Expansion"
 msgstr ""
 
 #: simulation/data/auras/structures/wonder_pop_2.json:auraDescription
@@ -184,7 +187,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/auras/units/female_inspiration.json:auraName
-msgid "Inspiration Aura"
+msgid "Inspiration"
 msgstr ""
 
 #: simulation/data/auras/units/female_inspiration.json:auraDescription
@@ -362,7 +365,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.json:auraName
-msgid "Founder and Defender of the Republic Aura"
+msgid "Founder and Defender of the Republic"
 msgstr ""
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.json:auraDescription
@@ -396,7 +399,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_3.json:auraName
-msgid "Basileus Megas (Great King)"
+msgid "Basileus Megas"
 msgstr ""
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_3.json:auraDescription
@@ -452,7 +455,7 @@ msgid "All javelin infantry +15% speed."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.json:auraName
-msgid "Builder Aura"
+msgid "Periclean Building Program"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.json:auraDescription
@@ -460,7 +463,7 @@ msgid "Buildings construct 15% faster within his aura."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.json:auraName
-msgid "Acropolis Aura"
+msgid "Temple to Athena"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.json:auraDescription
@@ -468,7 +471,7 @@ msgid "Temples are 50 stone cheaper during his lifetime."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.json:auraName
-msgid "Naval Commander Aura"
+msgid "Naval Commander"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.json:auraDescription
@@ -476,7 +479,7 @@ msgid "When garrisoned in a ship, his ship is +50% faster."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.json:auraName
-msgid "Naval Architect Aura"
+msgid "Naval Architect"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.json:auraDescription
@@ -492,12 +495,7 @@ msgid "+20% attack, +2 capture and +25% speed for champion units."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.json:auraName
-#: simulation/data/auras/units/heroes/brit_hero_cunobelin.json:auraName
-#: simulation/data/auras/units/heroes/gaul_hero_brennus.json:auraName
-#: simulation/data/auras/units/heroes/gaul_hero_britomartus.json:auraName
-#: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.json:auraName
-#: simulation/data/auras/units/heroes/mace_hero_philip.json:auraName
-msgid "Hero Aura"
+msgid "Guerrilla Chief"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.json:auraDescription
@@ -505,16 +503,20 @@ msgstr ""
 msgid "All soldiers and siege engines +15% speed."
 msgstr ""
 
+#: simulation/data/auras/units/heroes/brit_hero_cunobelin.json:auraName
+msgid "Britannorum Rex"
+msgstr ""
+
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.json:auraDescription
 msgid "+1 HP per second healing rate. Effect Range: 30 meters."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar.json:auraName
-msgid "Lightning Aura"
+msgid "Lightning General"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.json:auraName
-msgid "Tactician Aura"
+msgid "Tactician"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.json:auraDescription
@@ -524,19 +526,31 @@ msgid ""
 msgstr ""
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.json:auraName
-msgid "Commander Aura"
+msgid "Cavalry Commander"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.json:auraDescription
 msgid "+20% cavalry melee attack within his aura."
 msgstr ""
 
+#: simulation/data/auras/units/heroes/gaul_hero_brennus.json:auraName
+msgid "Sacker of Rome"
+msgstr ""
+
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.json:auraDescription
 msgid "+10 Metal loot for every enemy unit killed."
 msgstr ""
 
+#: simulation/data/auras/units/heroes/gaul_hero_britomartus.json:auraName
+msgid "Preparation for War"
+msgstr ""
+
 #: simulation/data/auras/units/heroes/gaul_hero_britomartus.json:auraDescription
 msgid "Gathering rates increased with +15% during his lifetime."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.json:auraName
+msgid "Celtic Warlord"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.json:auraDescription
@@ -546,7 +560,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/auras/units/heroes/hero_garrison.json:auraName
-msgid "Garrisoned Capture Aura"
+msgid "Inspired Defense"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/hero_garrison.json:auraDescription
@@ -556,7 +570,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander.json:auraName
-msgid "Imperialism Aura"
+msgid "Imperialism"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander.json:auraDescription
@@ -572,11 +586,15 @@ msgid "Pike Infantry +20% attack and +20% capture within range of him."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius.json:auraName
-msgid "Besieger Aura"
+msgid "Besieger"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius.json:auraDescription
 msgid "+15% range and +10% crush attack for siege engines."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/mace_hero_philip.json:auraName
+msgid "Rise of Macedon"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_philip.json:auraDescription
@@ -593,7 +611,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/auras/units/heroes/maur_hero_ashoka.json:auraName
-msgid "Buddhism Aura"
+msgid "Buddhism"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/maur_hero_ashoka.json:auraDescription
@@ -601,7 +619,7 @@ msgid "Temples and temple technologies -50% cost, in resources and time."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya.json:auraName
-msgid "Teacher Aura"
+msgid "Teacher"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya.json:auraDescription
@@ -610,7 +628,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.json:auraName
-msgid "Lead from the Front Aura"
+msgid "Lead from the Front"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.json:auraDescription
@@ -618,7 +636,7 @@ msgid "+20% attack and +1 capture for nearby cavalry units."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.json:auraName
-msgid "Leadership Aura"
+msgid "Leadership"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.json:auraDescription
@@ -626,7 +644,7 @@ msgid "+15% movement speed for all soldiers and siege engines."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.json:auraName
-msgid "Administrator Aura"
+msgid "Administrator"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.json:auraDescription
@@ -634,7 +652,7 @@ msgid "+15% gather rate and build rate of nearby workers."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.json:auraName
-msgid "Patriot Aura"
+msgid "Patriot"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.json:auraDescription
@@ -656,7 +674,7 @@ msgid "Enemy heroes -10% health when near her."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.json:auraName
-msgid "Raphia Aura"
+msgid "Raphia"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.json:auraDescription
@@ -664,7 +682,7 @@ msgid "Egyptian pikemen have 40% greater health during his lifetime."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.json:auraName
-msgid "Construction Aura"
+msgid "Patron of Construction"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.json:auraDescription
@@ -672,7 +690,7 @@ msgid "Buildings construct 10% faster within his aura."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.json:auraName
-msgid "Mercenary Patron Aura"
+msgid "Mercenary Patron"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.json:auraDescription
@@ -680,7 +698,7 @@ msgid "Mercenaries cost -50% resources during his lifetime."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus.json:auraName
-msgid "Sword of Rome Aura"
+msgid "Sword of Rome"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus.json:auraDescription
@@ -690,7 +708,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.json:auraName
-msgid "Shield of Rome Aura"
+msgid "Shield of Rome"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.json:auraDescription
@@ -698,7 +716,7 @@ msgid "+1 armor for all units and structures."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_great.json:auraName
-msgid "Ilarchès Aura"
+msgid "Ilarchès"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_great.json:auraDescription
@@ -706,7 +724,7 @@ msgid "All cavalry gains +2 levels of all armor types."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.json:auraName
-msgid "Conquest Aura"
+msgid "Renowned Conqueror"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.json:auraDescription
@@ -716,7 +734,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.json:auraName
-msgid "Zooiarchos Aura"
+msgid "Zooiarchos"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.json:auraDescription
@@ -732,7 +750,7 @@ msgid "Javelin infantry in his aura gains +20% attack and +1 all armor types."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.json:auraName
-msgid "Last Stand Aura"
+msgid "Last Stand"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.json:auraDescription
