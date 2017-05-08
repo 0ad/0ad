@@ -886,8 +886,12 @@ function initDefaults()
 	g_DefaultPlayerData = g_Settings.PlayerDefaults;
 	g_DefaultPlayerData.shift();
 
+	// Don't change the underlying defaults file, as Atlas uses that file too
 	for (let i in g_DefaultPlayerData)
+	{
 		g_DefaultPlayerData[i].Civ = "random";
+		g_DefaultPlayerData[i].Teams = -1;
+	}
 }
 
 /**
@@ -1360,19 +1364,11 @@ function sanitizePlayerData(playerData)
 	if (playerData.length && !playerData[0])
 		playerData.shift();
 
+	// Use defaults if the map doesn't specify a value
 	playerData.forEach((pData, index) => {
-		pData.Color = pData.Color || g_PlayerColorPickerList[index];
-		pData.Civ = pData.Civ || "random";
-
-		if (!("Team" in pData))
-			pData.Team = -1;
-
-		// Use default AI if the map doesn't specify any explicitly
-		if (!("AI" in pData))
-			pData.AI = g_DefaultPlayerData[index].AI;
-
-		if (!("AIDiff" in pData))
-			pData.AIDiff = g_DefaultPlayerData[index].AIDiff;
+		for (let prop in g_DefaultPlayerData[index])
+			if (!(prop in pData))
+				pData[prop] = g_DefaultPlayerData[index][prop];
 	});
 
 	// Replace colors with the best matching color of PlayerDefaults

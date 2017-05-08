@@ -1,5 +1,7 @@
 function Attack() {}
 
+var g_AttackTypes = ["Melee", "Ranged", "Capture"];
+
 Attack.prototype.bonusesSchema =
 	"<optional>" +
 		"<element name='Bonuses'>" +
@@ -188,9 +190,15 @@ Attack.prototype.Init = function()
 
 Attack.prototype.Serialize = null; // we have no dynamic state to save
 
-Attack.prototype.GetAttackTypes = function()
+Attack.prototype.GetAttackTypes = function(wantedTypes)
 {
-	return ["Melee", "Ranged", "Capture"].filter(type => !!this.template[type]);
+	let types = g_AttackTypes.filter(type => !!this.template[type]);
+	if (!wantedTypes)
+		return types;
+
+	let wantedTypesReal = wantedTypes.filter(wtype => wtype.indexOf("!") != 0);
+	return types.filter(type => wantedTypes.indexOf("!" + type) == -1 &&
+	      (!wantedTypesReal || !wantedTypesReal.length || wantedTypesReal.indexOf(type) != -1));
 };
 
 Attack.prototype.GetPreferredClasses = function(type)
@@ -211,7 +219,7 @@ Attack.prototype.GetRestrictedClasses = function(type)
 	return [];
 };
 
-Attack.prototype.CanAttack = function(target)
+Attack.prototype.CanAttack = function(target, wantedTypes)
 {
 	let cmpFormation = Engine.QueryInterface(target, IID_Formation);
 	if (cmpFormation)
@@ -222,20 +230,36 @@ Attack.prototype.CanAttack = function(target)
 	if (!cmpThisPosition || !cmpTargetPosition || !cmpThisPosition.IsInWorld() || !cmpTargetPosition.IsInWorld())
 		return false;
 
+	let cmpIdentity = Engine.QueryInterface(target, IID_Identity);
+	if (!cmpIdentity)
+		return false;
+
+	let targetClasses = cmpIdentity.GetClassesList();
+	if (targetClasses.indexOf("Domestic") != -1 && this.template.Slaughter &&
+	   (!wantedTypes || !wantedTypes.filter(wType => wType.indexOf("!") != 0).length))
+		return true;
+
+	let cmpEntityPlayer = QueryOwnerInterface(this.entity);
+	let cmpTargetPlayer = QueryOwnerInterface(target);
+	if (!cmpTargetPlayer || !cmpEntityPlayer)
+		return false;
+
+	let types = this.GetAttackTypes(wantedTypes);
+	let entityOwner = cmpEntityPlayer.GetPlayerID();
+	let targetOwner = cmpTargetPlayer.GetPlayerID();
+	let cmpCapturable = QueryMiragedInterface(target, IID_Capturable);
+
 	// Check if the relative height difference is larger than the attack range
 	// If the relative height is bigger, it means they will never be able to
 	// reach each other, no matter how close they come.
 	let heightDiff = Math.abs(cmpThisPosition.GetHeightOffset() - cmpTargetPosition.GetHeightOffset());
 
-	const cmpIdentity = Engine.QueryInterface(target, IID_Identity);
-	if (!cmpIdentity)
-		return undefined;
-
-	const targetClasses = cmpIdentity.GetClassesList();
-
-	for (let type of this.GetAttackTypes())
+	for (let type of types)
 	{
-		if (type == "Capture" && !QueryMiragedInterface(target, IID_Capturable))
+		if (type != "Capture" && !cmpEntityPlayer.IsEnemy(targetOwner))
+			continue;
+
+		if (type == "Capture" && (!cmpCapturable || !cmpCapturable.CanCapture(entityOwner)))
 			continue;
 
 		if (heightDiff > this.GetRange(type).max)
@@ -301,7 +325,7 @@ Attack.prototype.GetBestAttackAgainst = function(target, allowCapture)
 	{
 		// TODO: Formation against formation needs review
 		let types = this.GetAttackTypes();
-		return ["Ranged", "Melee", "Capture"].find(attack => types.indexOf(attack) != -1);
+		return g_AttackTypes.find(attack => types.indexOf(attack) != -1);
 	}
 
 	let cmpIdentity = Engine.QueryInterface(target, IID_Identity);

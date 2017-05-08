@@ -184,8 +184,7 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources, modif
 		for (let auraID of template.Auras._string.split(/\s+/))
 		{
 			let aura = auraTemplates[auraID];
-			if (aura.auraName)
-				ret.auras[auraID] = {
+			ret.auras[auraID] = {
 					"name": aura.auraName,
 					"description": aura.auraDescription || null
 				};

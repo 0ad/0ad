@@ -704,43 +704,6 @@ MESSAGE(ClearPathNodePreview,);
 
 //////////////////////////////////////////////////////////////////////////
 
-enum eTriggerListType
-{
-	CINEMA_LIST,
-	TRIGGER_LIST,
-	TRIG_GROUP_LIST	//list of trigger groups
-	// [Eventually include things like entities and areas as the editor progresses...]
-};
-
-
-QUERY(GetTriggerData,
-	  , //no inputs
-	  ((std::vector<AtlasMessage::sTriggerGroup>, groups))
-	  ((std::vector<AtlasMessage::sTriggerSpec>, conditions))
-	  ((std::vector<AtlasMessage::sTriggerSpec>, effects))
-	  );
-
-QUERY(GetTriggerChoices,
-	  ((std::wstring, name)),
-	  ((std::vector<std::wstring>, choices))
-	  ((std::vector<std::wstring>, translations))
-	  );
-
-COMMAND(SetAllTriggers, NOMERGE,
-	  ((std::vector<AtlasMessage::sTriggerGroup>, groups))
-	  );
-
-QUERY(GetWorldPosition,
-	  ((int, x))
-	  ((int, y)),
-	  ((Position, position))
-	  );
-
-MESSAGE(TriggerToggleSelector,
-		((bool, enable))
-		((Position, position))
-		);
-
 QUERY(GetSelectedObjectsTemplateNames,
 		((std::vector<ObjectID>, ids))
 		,

@@ -32,11 +32,13 @@ Auras.prototype.GetModifierIdentifier = function(name)
 Auras.prototype.GetDescriptions = function()
 {
 	var ret = {};
-	for (let name of this.GetAuraNames())
+	for (let auraID of this.GetAuraNames())
 	{
-		let aura = this.auras[name];
-		if (aura.auraName)
-			ret[aura.auraName] = aura.auraDescription || null;
+		let aura = this.auras[auraID];
+		ret[auraID] = {
+			"name": aura.auraName,
+			"description": aura.auraDescription || null
+		};
 	}
 	return ret;
 };

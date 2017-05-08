@@ -1120,7 +1120,6 @@ function setup_atlas_projects()
 		"ScenarioEditor/Sections/Object",
 		"ScenarioEditor/Sections/Player",
 		"ScenarioEditor/Sections/Terrain",
-		"ScenarioEditor/Sections/Trigger",
 		"ScenarioEditor/Tools",
 		"ScenarioEditor/Tools/Common",
 	}

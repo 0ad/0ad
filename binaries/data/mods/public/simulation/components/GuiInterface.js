@@ -450,6 +450,7 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 		let types = cmpAttack.GetAttackTypes();
 		if (types.length)
 			ret.attack = {};
+
 		for (let type of types)
 		{
 			ret.attack[type] = cmpAttack.GetAttackStrengths(type);
@@ -645,18 +646,7 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 	let auraNames = template.Auras._string.split(/\s+/);
 	let cmpDataTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_DataTemplateManager);
 	for (let name of auraNames)
-	{
-		let auraTemplate = cmpDataTemplateManager.GetAuraTemplate(name);
-		if (!auraTemplate)
-		{
-			// The following warning is perhaps useless since it's yet done in DataTemplateManager
-			warn("Tried to get data for invalid aura: " + name);
-			continue;
-		}
-		aurasTemplate[name] = {};
-		aurasTemplate[name].auraName = auraTemplate.auraName || null;
-		aurasTemplate[name].auraDescription = auraTemplate.auraDescription || null;
-	}
+		aurasTemplate[name] = cmpDataTemplateManager.GetAuraTemplate(name);
 	return GetTemplateDataHelper(template, player, aurasTemplate, Resources);
 };
 
@@ -1854,37 +1844,10 @@ GuiInterface.prototype.GetTradingDetails = function(player, data)
 	return result;
 };
 
-GuiInterface.prototype.CanCapture = function(player, data)
-{
-	let cmpAttack = Engine.QueryInterface(data.entity, IID_Attack);
-	if (!cmpAttack)
-		return false;
-
-	let owner = QueryOwnerInterface(data.entity).GetPlayerID();
-
-	let cmpCapturable = QueryMiragedInterface(data.target, IID_Capturable);
-	if (cmpCapturable && cmpCapturable.CanCapture(owner) && cmpAttack.GetAttackTypes().indexOf("Capture") != -1)
-		return cmpAttack.CanAttack(data.target);
-
-	return false;
-};
-
 GuiInterface.prototype.CanAttack = function(player, data)
 {
 	let cmpAttack = Engine.QueryInterface(data.entity, IID_Attack);
-	if (!cmpAttack)
-		return false;
-
-	let cmpEntityPlayer = QueryOwnerInterface(data.entity, IID_Player);
-	let cmpTargetPlayer = QueryOwnerInterface(data.target, IID_Player);
-	if (!cmpEntityPlayer || !cmpTargetPlayer)
-		return false;
-
-	// if the owner is an enemy, it's up to the attack component to decide
-	if (cmpEntityPlayer.IsEnemy(cmpTargetPlayer.GetPlayerID()))
-		return cmpAttack.CanAttack(data.target);
-
-	return false;
+	return cmpAttack && cmpAttack.CanAttack(data.target, data.types || undefined);
 };
 
 /*
@@ -2029,7 +1992,6 @@ let exposedFunctions = {
 	"HasIdleUnits": 1,
 	"GetTradingRouteGain": 1,
 	"GetTradingDetails": 1,
-	"CanCapture": 1,
 	"CanAttack": 1,
 	"GetBatchTime": 1,
 

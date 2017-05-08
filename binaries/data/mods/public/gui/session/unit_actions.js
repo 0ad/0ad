@@ -136,9 +136,10 @@ var unitActions =
 				return false;
 
 			return {
-				"possible": Engine.GuiInterfaceCall("CanCapture", {
+				"possible": Engine.GuiInterfaceCall("CanAttack", {
 					"entity": entState.id,
-					"target": targetState.id
+					"target": targetState.id,
+					"types": ["Capture"]
 				})
 			};
 		},
@@ -183,7 +184,8 @@ var unitActions =
 			return {
 				"possible": Engine.GuiInterfaceCall("CanAttack", {
 					"entity": entState.id,
-					"target": targetState.id
+					"target": targetState.id,
+					"types": ["!Capture"]
 				})
 			};
 		},
@@ -443,7 +445,7 @@ var unitActions =
 
 			return true;
 		},
-		"getActionInfo":  function(entState, targetState)
+		"getActionInfo": function(entState, targetState)
 		{
 			if (!targetState.resourceSupply)
 				return false;
@@ -1059,6 +1061,7 @@ var g_EntityCommands =
 			unloadAll();
 		},
 	},
+
 	"delete": {
 		"getInfo": function(entState)
 		{
@@ -1097,6 +1100,7 @@ var g_EntityCommands =
 				openDeleteDialog(selection);
 		},
 	},
+
 	"stop": {
 		"getInfo": function(entState)
 		{

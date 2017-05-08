@@ -39,15 +39,60 @@ m.Worker.prototype.update = function(gameState, ent)
 	this.ent = ent;
 
 	let unitAIState = ent.unitAIState();
-	if (unitAIState === "INDIVIDUAL.GATHER.GATHERING" || unitAIState === "INDIVIDUAL.GATHER.APPROACHING" ||
-	    unitAIState === "INDIVIDUAL.COMBAT.APPROACHING")
+	if ((subrole === "hunter" || subrole === "gatherer") &&
+	    (unitAIState === "INDIVIDUAL.GATHER.GATHERING" || unitAIState === "INDIVIDUAL.GATHER.APPROACHING" ||
+	     unitAIState === "INDIVIDUAL.COMBAT.APPROACHING"))
 	{
-		if (this.isInaccessibleSupply(gameState) && ((subrole === "hunter" && !this.startHunting(gameState)) ||
-			(subrole === "gatherer" && !this.startGathering(gameState))))
+		if (this.isInaccessibleSupply(gameState) && !this.retryGathering(gameState, subrole))
 			ent.stopMoving();
+
+		// Check that we have not drifted too far
+		if (unitAIState === "INDIVIDUAL.COMBAT.APPROACHING" && ent.unitAIOrderData().length)
+		{
+			let orderData = ent.unitAIOrderData()[0];
+			if (orderData && orderData.target)
+			{
+				let supply = gameState.getEntityById(orderData.target);
+				if (supply && supply.resourceSupplyType() && supply.resourceSupplyType().generic === "food")
+				{
+					let territoryOwner = gameState.ai.HQ.territoryMap.getOwner(supply.position());
+					if (gameState.isPlayerEnemy(territoryOwner) && !this.retryGathering(gameState, subrole))
+						ent.stopMoving();
+					else if (!gameState.isPlayerAlly(territoryOwner))
+					{
+						let distanceSquare = ent.hasClass("Cavalry") ? 90000 : 30000;
+						let supplyAccess = gameState.ai.accessibility.getAccessValue(supply.position());
+						let foodDropsites = gameState.playerData.hasSharedDropsites ?
+						                    gameState.getAnyDropsites("food") : gameState.getOwnDropsites("food");
+						let hasFoodDropsiteWithinDistance = false;
+						for (let dropsite of foodDropsites.values())
+						{
+							if (!dropsite.position())
+								continue;
+							let owner = dropsite.owner();
+							// owner !== PlayerID can only happen when hasSharedDropsites === true, so no need to test it again
+							if (owner !== PlayerID && (!dropsite.isSharedDropsite() || !gameState.isPlayerMutualAlly(owner)))
+								continue;
+							if (supplyAccess !== m.getLandAccess(gameState, dropsite))
+								continue;
+							if (API3.SquareVectorDistance(supply.position(), dropsite.position()) < distanceSquare)
+							{
+								hasFoodDropsiteWithinDistance = true;
+								break;
+							}
+						}
+						if (!hasFoodDropsiteWithinDistance && !this.retryGathering(gameState, subrole))
+							ent.stopMoving();
+					}
+				}
+			}
+		}
 	}
 	else if (ent.getMetadata(PlayerID, "approachingTarget"))
+	{
 		ent.setMetadata(PlayerID, "approachingTarget", undefined);
+		ent.setMetadata(PlayerID, "alreadyTried", undefined);
+	}
 
 	let unitAIStateOrder = unitAIState.split(".")[1];
 	// If we're fighting or hunting, let's not start gathering
@@ -258,6 +303,21 @@ m.Worker.prototype.update = function(gameState, ent)
 			if (territoryOwner !== 0 && !gameState.isPlayerAlly(territoryOwner))  // player is its own ally
 				this.startFishing(gameState);
 		}
+	}
+};
+
+m.Worker.prototype.retryGathering = function(gameState, subrole)
+{
+	switch (subrole)
+	{
+	case "gatherer":
+		return this.startGathering(gameState)
+	case "hunter":
+		return this.startHunting(gameState);
+	case "fisher":
+		return this.startFishing(gameState);
+	default:
+		return false;
 	}
 };
 
@@ -550,12 +610,12 @@ m.Worker.prototype.startHunting = function(gameState, position)
 	let isRanged = this.ent.hasClass("Ranged");
 	let entPosition = position ? position : this.ent.position();
 	let access = gameState.ai.accessibility.getAccessValue(entPosition);
-	let foodDropsites = (gameState.playerData.hasSharedDropsites ? gameState.getAnyDropsites("food") : gameState.getOwnDropsites("food")).toEntityArray();
+	let foodDropsites = gameState.playerData.hasSharedDropsites ?
+	                    gameState.getAnyDropsites("food") : gameState.getOwnDropsites("food");
 
-	let nearestDropsiteDist = function(supply) {
-		let distMin = 1000000;
-		let pos = supply.position();
-		for (let dropsite of foodDropsites)
+	let hasFoodDropsiteWithinDistance = function(supplyPosition, supplyAccess, distSquare)
+	{
+		for (let dropsite of foodDropsites.values())
 		{
 			if (!dropsite.position())
 				continue;
@@ -563,11 +623,12 @@ m.Worker.prototype.startHunting = function(gameState, position)
 			// owner !== PlayerID can only happen when hasSharedDropsites === true, so no need to test it again
 			if (owner !== PlayerID && (!dropsite.isSharedDropsite() || !gameState.isPlayerMutualAlly(owner)))
 				continue;
-			if (access !== m.getLandAccess(gameState, dropsite))
+			if (supplyAccess !== m.getLandAccess(gameState, dropsite))
 				continue;
-			distMin = Math.min(distMin, API3.SquareVectorDistance(pos, dropsite.position()));
+			if (API3.SquareVectorDistance(supplyPosition, dropsite.position()) < distSquare)
+				return true;
 		}
-		return distMin;
+		return false;
 	};
 
 	resources.forEach(function(supply)
@@ -612,11 +673,11 @@ m.Worker.prototype.startHunting = function(gameState, position)
 		if (territoryOwner !== 0 && territoryOwner !== PlayerID && supply.owner() === territoryOwner)
 			return;
 
-		let dropsiteDist = nearestDropsiteDist(supply);
-		if (dropsiteDist > 35000)
-			return;
 		// Only cavalry should hunt far from dropsite (specially for non domestic animals which flee)
-		if (!isCavalry && (dropsiteDist > 12000 || ((dropsiteDist > 7000 || territoryOwner === 0 ) && canFlee)))
+ 		if (!isCavalry && canFlee && territoryOwner === 0)
+			return;
+		let distanceSquare = isCavalry ? 35000 : ( canFlee ? 7000 : 12000);
+		if (!hasFoodDropsiteWithinDistance(supply.position(), supplyAccess, distanceSquare))
 			return;
 
 		nearestSupplyDist = dist;
@@ -857,22 +918,29 @@ m.Worker.prototype.isInaccessibleSupply = function(gameState)
 	if (!target)
 		return true;
 
+	if (!target.resourceSupplyType())
+		return false;
+
 	let approachingTarget = this.ent.getMetadata(PlayerID, "approachingTarget");
+	let carriedAmount = this.ent.resourceCarrying().length ? this.ent.resourceCarrying()[0].amount : 0;
 	if (!approachingTarget || approachingTarget !== targetId)
 	{
 		this.ent.setMetadata(PlayerID, "approachingTarget", targetId);
 		this.ent.setMetadata(PlayerID, "approachingTime", undefined);
 		this.ent.setMetadata(PlayerID, "approachingPos", undefined);
-		this.ent.setMetadata(PlayerID, "carriedAmount", undefined);
+		this.ent.setMetadata(PlayerID, "carriedBefore", carriedAmount);
+		let alreadyTried = this.ent.getMetadata(PlayerID, "alreadyTried");
+		if (alreadyTried && alreadyTried !== targetId)
+			this.ent.setMetadata(PlayerID, "alreadyTried", undefined);
 	}
 
-	let carriedAmount = this.ent.resourceCarrying().length ? this.ent.resourceCarrying()[0].amount : 0;
-	if (this.ent.getMetadata(PlayerID, "carriedAmount") === undefined ||
-		this.ent.getMetadata(PlayerID, "carriedAmount") !== carriedAmount)
+	let carriedBefore = this.ent.getMetadata(PlayerID, "carriedBefore");
+	if (carriedBefore !== carriedAmount)
 	{
-		this.ent.setMetadata(PlayerID, "carriedAmount", carriedAmount);
-		this.ent.setMetadata(PlayerID, "approachingTime", undefined);
-		this.ent.setMetadata(PlayerID, "approachingPos", undefined);
+		this.ent.setMetadata(PlayerID, "approachingTarget", undefined);
+		this.ent.setMetadata(PlayerID, "alreadyTried", undefined);
+		if (target.getMetadata(PlayerID, "inaccessibleTime"))
+			target.setMetadata(PlayerID, "inaccessibleTime", 0);
 		return false;
 	}
 
@@ -892,9 +960,19 @@ m.Worker.prototype.isInaccessibleSupply = function(gameState)
 		}
 		else if (gameState.ai.elapsedTime - approachingTime > 10)
 		{
-
-			target.setMetadata(PlayerID, "inaccessibleTime", gameState.ai.elapsedTime + 600);
-			return true;
+			if (this.ent.getMetadata(PlayerID, "alreadyTried"))
+			{
+				target.setMetadata(PlayerID, "inaccessibleTime", gameState.ai.elapsedTime + 600);
+				return true;
+			}
+			else
+			{
+				// let's try again to reach it
+				this.ent.setMetadata(PlayerID, "alreadyTried", targetId);
+				this.ent.setMetadata(PlayerID, "approachingTarget", undefined);
+				this.ent.gather(target);
+				return false;
+			}
 		}
 	}
 	return false;
