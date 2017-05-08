@@ -609,7 +609,9 @@ var g_PlayerDropdowns = {
 		"default": (idx) => 0,
 		"defined": (idx) => g_GameAttributes.settings.PlayerData[idx].Civ !== undefined,
 		"get": (idx) => g_GameAttributes.settings.PlayerData[idx].Civ,
-		"select": (selectedIdx, idx) => g_GameAttributes.settings.PlayerData[idx].Civ = g_PlayerCivList.code[selectedIdx],
+		"select": (selectedIdx, idx) => {
+			g_GameAttributes.settings.PlayerData[idx].Civ = g_PlayerCivList.code[selectedIdx];
+		},
 		"enabled": () => g_GameAttributes.mapType != "scenario",
 		"autocomplete": true,
 	},
