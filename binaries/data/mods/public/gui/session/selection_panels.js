@@ -133,15 +133,11 @@ g_SelectionPanels.Command = {
 
 		for (let command in g_EntityCommands)
 		{
-			for (let state of unitEntStates)
+			let info = g_EntityCommands[command].getInfo(unitEntStates);
+			if (info)
 			{
-				let info = g_EntityCommands[command].getInfo(state);
-				if (info)
-				{
-					info.name = command;
-					commands.push(info);
-					break;
-				}
+				info.name = command;
+				commands.push(info);
 			}
 		}
 		return commands;
@@ -154,7 +150,7 @@ g_SelectionPanels.Command = {
 			if (data.item.callback)
 				data.item.callback(data.item);
 			else
-				performCommand(data.unitEntStates[0], data.item.name);
+				performCommand(data.unitEntStates, data.item.name);
 		};
 
 		data.countDisplay.caption = data.item.count || "";

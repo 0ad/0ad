@@ -1036,18 +1036,15 @@ var unitActions =
 var g_EntityCommands =
 {
 	"unload-all": {
-		"getInfo": function(entState)
+		"getInfo": function(entStates)
 		{
-			if (!entState.garrisonHolder)
-				return false;
-
 			let count = 0;
-			for (let ent in g_Selection.selected)
-			{
-				let state = GetEntityState(+ent);
-				if (state.garrisonHolder)
-					count += state.garrisonHolder.entities.length;
-			}
+			for (let entState of entStates)
+				if (entState.garrisonHolder)
+					count += entState.garrisonHolder.entities.length;
+
+			if (!count)
+				return false;
 
 			return {
 				"tooltip": colorizeHotkey("%(hotkey)s" + " ", "session.unload") +
@@ -1056,21 +1053,16 @@ var g_EntityCommands =
 				"count": count,
 			};
 		},
-		"execute": function(entState)
+		"execute": function()
 		{
 			unloadAll();
 		},
 	},
 
 	"delete": {
-		"getInfo": function(entState)
+		"getInfo": function(entStates)
 		{
-			let deleteReason = isUndeletable(entState);
-			return deleteReason ?
-				{
-					"tooltip": deleteReason,
-					"icon": "kill_small_disabled.png"
-				} :
+			return entStates.some(entState => !isUndeletable(entState)) ?
 				{
 					"tooltip":
 						colorizeHotkey("%(hotkey)s" + " ", "session.kill") +
@@ -1080,31 +1072,35 @@ var g_EntityCommands =
 							"session.noconfirmation"
 						),
 					"icon": "kill_small.png"
+				} :
+				{
+					// Get all delete reasons and remove duplications
+					"tooltip": entStates.map(entState => isUndeletable(entState))
+						.filter((reason, pos, self) =>
+							self.indexOf(reason) == pos && reason
+						).join("\n"),
+					"icon": "kill_small_disabled.png"
 				};
 		},
-		"execute": function(entState)
+		"execute": function(entStates)
 		{
-			if (isUndeletable(entState))
-				return;
-
-			let selection = g_Selection.toList();
-			if (!selection.length)
+			if (!entStates.length || entStates.every(entState => isUndeletable(entState)))
 				return;
 
 			if (Engine.HotkeyIsPressed("session.noconfirmation"))
 				Engine.PostNetworkCommand({
 					"type": "delete-entities",
-					"entities": selection
+					"entities": entStates.map(entState => entState.id)
 				});
 			else
-				openDeleteDialog(selection);
+				openDeleteDialog(entStates.map(entState => entState.id));
 		},
 	},
 
 	"stop": {
-		"getInfo": function(entState)
+		"getInfo": function(entStates)
 		{
-			if (!entState.unitAI)
+			if (entStates.every(entState => !entState.unitAI))
 				return false;
 
 			return {
@@ -1113,18 +1109,17 @@ var g_EntityCommands =
 				"icon": "stop.png"
 			};
 		},
-		"execute": function(entState)
+		"execute": function(entStates)
 		{
-			let selection = g_Selection.toList();
-			if (selection.length)
-				stopUnits(selection);
+			if (entStates.length)
+				stopUnits(entStates.map(entState => entState.id));
 		},
 	},
 
 	"garrison": {
-		"getInfo": function(entState)
+		"getInfo": function(entStates)
 		{
-			if (!entState.unitAI || entState.turretParent)
+			if (entStates.every(entState => !entState.unitAI || entState.turretParent))
 				return false;
 
 			return {
@@ -1133,7 +1128,7 @@ var g_EntityCommands =
 				"icon": "garrison.png"
 			};
 		},
-		"execute": function(entState)
+		"execute": function()
 		{
 			inputState = INPUT_PRESELECTEDACTION;
 			preSelectedAction = ACTION_GARRISON;
@@ -1141,13 +1136,14 @@ var g_EntityCommands =
 	},
 
 	"unload": {
-		"getInfo": function(entState)
+		"getInfo": function(entStates)
 		{
-			if (!entState.unitAI || !entState.turretParent)
-				return false;
-
-			let p = GetEntityState(entState.turretParent);
-			if (!p.garrisonHolder || p.garrisonHolder.entities.indexOf(entState.id) == -1)
+			if (entStates.every(entState => {
+				if (!entState.unitAI || !entState.turretParent)
+					return true;
+				let parent = GetEntityState(entState.turretParent);
+				return !parent || !parent.garrisonHolder || parent.garrisonHolder.entities.indexOf(entState.id) == -1;
+			}))
 				return false;
 
 			return {
@@ -1155,16 +1151,16 @@ var g_EntityCommands =
 				"icon": "garrison-out.png"
 			};
 		},
-		"execute": function(entState)
+		"execute": function()
 		{
 			unloadSelection();
 		},
 	},
 
 	"repair": {
-		"getInfo": function(entState)
+		"getInfo": function(entStates)
 		{
-			if (!entState.builder)
+			if (entStates.every(entState => !entState.builder))
 				return false;
 
 			return {
@@ -1173,7 +1169,7 @@ var g_EntityCommands =
 				"icon": "repair.png"
 			};
 		},
-		"execute": function(entState)
+		"execute": function()
 		{
 			inputState = INPUT_PRESELECTEDACTION;
 			preSelectedAction = ACTION_REPAIR;
@@ -1181,9 +1177,9 @@ var g_EntityCommands =
 	},
 
 	"focus-rally": {
-		"getInfo": function(entState)
+		"getInfo": function(entStates)
 		{
-			if (!entState.rallyPoint)
+			if (entStates.every(entState => !entState.rallyPoint))
 				return false;
 
 			return {
@@ -1192,13 +1188,23 @@ var g_EntityCommands =
 				"icon": "focus-rally.png"
 			};
 		},
-		"execute": function(entState)
+		"execute": function(entStates)
 		{
+			// TODO: Would be nicer to cycle between the rallypoints of multiple entities instead of just using the first
 			let focusTarget;
-			if (entState.rallyPoint && entState.rallyPoint.position)
-				focusTarget = entState.rallyPoint.position;
-			else if (entState.position)
-				focusTarget = entState.position;
+			for (let entState of entStates)
+				if (entState.rallyPoint && entState.rallyPoint.position)
+				{
+					focusTarget = entState.rallyPoint.position;
+					break;
+				}
+			if (!focusTarget)
+				for (let entState of entStates)
+					if (entState.position)
+					{
+						focusTarget = entState.position;
+						break;
+					}
 
 			if (focusTarget)
 				Engine.CameraMoveTo(focusTarget.x, focusTarget.z);
@@ -1206,9 +1212,9 @@ var g_EntityCommands =
 	},
 
 	"back-to-work": {
-		"getInfo": function(entState)
+		"getInfo": function(entStates)
 		{
-			if (!entState.unitAI || !entState.unitAI.hasWorkOrders)
+			if (entStates.every(entState => !entState.unitAI || !entState.unitAI.hasWorkOrders))
 				return false;
 
 			return {
@@ -1217,17 +1223,17 @@ var g_EntityCommands =
 				"icon": "production.png"
 			};
 		},
-		"execute": function(entState)
+		"execute": function()
 		{
 			backToWork();
 		},
 	},
 
 	"add-guard": {
-		"getInfo": function(entState)
+		"getInfo": function(entStates)
 		{
-			if (!entState.unitAI || !entState.unitAI.canGuard ||
-			    entState.unitAI.isGuarding)
+			if (entStates.every(entState =>
+				!entState.unitAI || !entState.unitAI.canGuard || entState.unitAI.isGuarding))
 				return false;
 
 			return {
@@ -1236,7 +1242,7 @@ var g_EntityCommands =
 				"icon": "add-guard.png"
 			};
 		},
-		"execute": function(entState)
+		"execute": function()
 		{
 			inputState = INPUT_PRESELECTEDACTION;
 			preSelectedAction = ACTION_GUARD;
@@ -1244,9 +1250,9 @@ var g_EntityCommands =
 	},
 
 	"remove-guard": {
-		"getInfo": function(entState)
+		"getInfo": function(entStates)
 		{
-			if (!entState.unitAI || !entState.unitAI.isGuarding)
+			if (entStates.every(entState => !entState.unitAI || !entState.unitAI.isGuarding))
 				return false;
 
 			return {
@@ -1254,16 +1260,16 @@ var g_EntityCommands =
 				"icon": "remove-guard.png"
 			};
 		},
-		"execute": function(entState)
+		"execute": function()
 		{
 			removeGuard();
 		},
 	},
 
 	"select-trading-goods": {
-		"getInfo": function(entState)
+		"getInfo": function(entStates)
 		{
-			if (!entState.market)
+			if (entStates.every(entState => !entState.market))
 				return false;
 
 			return {
@@ -1271,16 +1277,16 @@ var g_EntityCommands =
 				"icon": "economics.png"
 			};
 		},
-		"execute": function(entState)
+		"execute": function()
 		{
 			toggleTrade();
 		},
 	},
 
 	"patrol": {
-		"getInfo": function(entState)
+		"getInfo": function(entStates)
 		{
-			if (!someCanPatrol(g_Selection.toList()))
+			if (!entStates.some(entState => entState.unitAI && entState.unitAI.canPatrol))
 				return false;
 
 			return {
@@ -1290,7 +1296,7 @@ var g_EntityCommands =
 				"icon": "patrol.png"
 			};
 		},
-		"execute": function(entState)
+		"execute": function()
 		{
 			inputState = INPUT_PRESELECTEDACTION;
 			preSelectedAction = ACTION_PATROL;
@@ -1298,32 +1304,36 @@ var g_EntityCommands =
 	},
 
 	"share-dropsite": {
-		"getInfo": function(entState)
+		"getInfo": function(entStates)
 		{
-			if (!entState.resourceDropsite || !entState.resourceDropsite.sharable)
+			let sharableEntities = entStates.filter(
+				entState => entState.resourceDropsite && entState.resourceDropsite.sharable);
+			if (!sharableEntities.length)
 				return false;
 
-			let playerState = GetSimState().players[entState.player];
-			if (!playerState.isMutualAlly.some((e, i) => e && i != entState.player))
+			// Returns if none of the entities belong to a player with a mutual ally
+			if (entStates.every(entState => !GetSimState().players[entState.player].isMutualAlly.some(
+				(isAlly, playerId) => isAlly && playerId != entState.player)))
 				return false;
 
-			if (entState.resourceDropsite.shared)
-				return {
+			return sharableEntities.some(entState => !entState.resourceDropsite.shared) ?
+				{
+					"tooltip": translate("Press to allow allies to use this dropsite"),
+					"icon": "locked_small.png"
+				} :
+				{
 					"tooltip": translate("Press to prevent allies from using this dropsite"),
 					"icon": "unlocked_small.png"
 				};
-
-			return {
-				"tooltip": translate("Press to allow allies to use this dropsite"),
-				"icon": "locked_small.png"
-			};
 		},
-		"execute": function(entState)
+		"execute": function(entStates)
 		{
+			let sharableEntities = entStates.filter(
+				entState => entState.resourceDropsite && entState.resourceDropsite.sharable);
 			Engine.PostNetworkCommand({
 				"type": "set-dropsite-sharing",
-				"entities": g_Selection.toList(),
-				"shared": !entState.resourceDropsite.shared
+				"entities": sharableEntities.map(entState => entState.id),
+				"shared": sharableEntities.some(entState => !entState.resourceDropsite.shared)
 			});
 		},
 	}
