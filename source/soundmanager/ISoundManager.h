@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -47,7 +47,7 @@ public:
 	virtual void PlayAsUI(const VfsPath& itemPath, bool looping) = 0;
 	virtual void PlayAsMusic(const VfsPath& itemPath, bool looping) = 0;
 	virtual void PlayAsAmbient(const VfsPath& itemPath, bool looping) = 0;
-	virtual void PlayAsGroup(const VfsPath& groupPath, CVector3D sourcePos, entity_id_t source, bool ownedSound) = 0;
+	virtual void PlayAsGroup(const VfsPath& groupPath, const CVector3D& sourcePos, entity_id_t source, bool ownedSound) = 0;
 
 	virtual bool InDistress() = 0;
 };

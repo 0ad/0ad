@@ -6,7 +6,7 @@
 	</object>
 
 	<object hotkey="camera.rallypointfocus">
-		<action on="Press">performCommand(GetExtendedEntityState(g_Selection.getFirstSelected()), "focus-rally");</action>
+		<action on="Press">performCommand(g_Selection.toList().map(ent => GetEntityState(ent)), "focus-rally");</action>
 	</object>
 
 	<!-- Camera jumping - press a hotkey to mark a position and another hotkey to jump back there -->

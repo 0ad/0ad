@@ -353,14 +353,14 @@ function multiplyEntityCosts(template, trainNum)
 /**
  * Helper function for getEntityCostTooltip.
  */
-function getEntityCostComponentsTooltipString(template, trainNum, entity)
+function getEntityCostComponentsTooltipString(template, entity, buildingsCountToTrainFullBatch = 1, fullBatchSize = 1, remainderBatch = 0)
 {
-	if (!trainNum)
-		trainNum = 1;
-
-	let totalCosts = multiplyEntityCosts(template, trainNum);
+	let totalCosts = multiplyEntityCosts(template, buildingsCountToTrainFullBatch * fullBatchSize + remainderBatch);
 	if (template.cost.time)
-		totalCosts.time = Math.ceil(template.cost.time * (entity ? Engine.GuiInterfaceCall("GetBatchTime", { "entity": entity, "batchSize": trainNum }) : 1));
+		totalCosts.time = Math.ceil(template.cost.time * (entity ? Engine.GuiInterfaceCall("GetBatchTime", {
+			"entity": entity,
+			"batchSize": buildingsCountToTrainFullBatch > 0 ? fullBatchSize : remainderBatch
+		}) : 1));
 
 	let costs = [];
 	for (let type in template.cost)
@@ -493,7 +493,7 @@ function getWallPieceTooltip(wallTypes)
 /**
  * Returns the cost information to display in the specified entity's construction button tooltip.
  */
-function getEntityCostTooltip(template, trainNum, entity)
+function getEntityCostTooltip(template, entity, buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch)
 {
 	// Entities with a wallset component are proxies for initiating wall placement and as such do not have a cost of
 	// their own; the individual wall pieces within it do.
@@ -512,7 +512,7 @@ function getEntityCostTooltip(template, trainNum, entity)
 	}
 
 	if (template.cost)
-		return getEntityCostComponentsTooltipString(template, trainNum, entity).join("  ");
+		return getEntityCostComponentsTooltipString(template, entity, buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch).join("  ");
 
 	return "";
 }

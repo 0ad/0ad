@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -639,7 +639,7 @@ void CSoundManager::SetMusicEnabled(bool isEnabled)
 	m_MusicEnabled = isEnabled;
 }
 
-void CSoundManager::PlayAsGroup(const VfsPath& groupPath, CVector3D sourcePos, entity_id_t source, bool ownedSound)
+void CSoundManager::PlayAsGroup(const VfsPath& groupPath, const CVector3D& sourcePos, entity_id_t source, bool ownedSound)
 {
 	// Make sure the sound group is loaded
 	CSoundGroup* group;

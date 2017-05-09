@@ -15,15 +15,14 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef INCLUDED_CINEMAMANAGER
 #define INCLUDED_CINEMAMANAGER
 
 #include "lib/input.h" // InReaction - can't forward-declare enum
-
-#include "simulation2/helpers/CinemaPath.h"
 #include "ps/CStr.h"
 #include "ps/Shapes.h"
+#include "simulation2/helpers/CinemaPath.h"
+
 
 /**
  * Class for in game playing of cinematics. Should only be instantiated in CGameView.

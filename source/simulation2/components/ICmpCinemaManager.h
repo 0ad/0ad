@@ -21,10 +21,10 @@
 #include <list>
 #include <map>
 
+#include "ps/CStr.h"
 #include "simulation2/helpers/CinemaPath.h"
 #include "simulation2/system/Interface.h"
 
-#include "ps/CStr.h"
 
 /**
  * Component for CCinemaManager class

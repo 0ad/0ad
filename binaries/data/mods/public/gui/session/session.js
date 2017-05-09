@@ -978,7 +978,8 @@ function createPanelEntityTooltip(panelEntState, template)
 		getCurrentHealthTooltip,
 		getAttackTooltip,
 		getArmorTooltip,
-		getEntityTooltip
+		getEntityTooltip,
+		getAurasTooltip
 	].map(tooltip => tooltip(panelEntState)).filter(tip => tip).join("\n");
 }
 

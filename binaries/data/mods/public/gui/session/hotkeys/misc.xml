@@ -51,11 +51,7 @@
 	</object>
 
 	<object hotkey="session.kill">
-		<action on="Press">
-			let ent = g_Selection.getFirstSelected();
-			if (ent)
-				performCommand(GetExtendedEntityState(ent), "delete");
-		</action>
+		<action on="Press">performCommand(g_Selection.toList().map(ent => GetExtendedEntityState(ent)), "delete");</action>
 	</object>
 
 	<object hotkey="session.unload">

@@ -213,8 +213,7 @@ void AtlasViewGame::Update(float realFrameLength)
 
 	// Cinematic motion should be independent of simulation update, so we can
 	// preview the cinematics by themselves
-	if (g_Game->GetView()->GetCinema()->IsPlaying())
-		g_Game->GetView()->GetCinema()->Update(realFrameLength);
+	g_Game->GetView()->GetCinema()->Update(realFrameLength);
 }
 
 void AtlasViewGame::Render()
