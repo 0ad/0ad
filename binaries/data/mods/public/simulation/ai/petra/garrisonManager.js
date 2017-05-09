@@ -24,9 +24,9 @@ m.GarrisonManager.prototype.update = function(gameState, events)
 		{
 			if (id !== evt.entity)
 				continue;
-			let list = this.holders.get(id);
+			let data = this.holders.get(id);
 			this.holders.delete(id);
-			this.holders.set(evt.newentity, list);
+			this.holders.set(evt.newentity, data);
 		}
 		for (let id of this.decayingStructures.keys())
 		{
@@ -43,8 +43,9 @@ m.GarrisonManager.prototype.update = function(gameState, events)
 		}
 	}
 
-	for (let [id, list] of this.holders.entries())
+	for (let [id, data] of this.holders.entries())
 	{
+		let list = data.list;
 		let holder = gameState.getEntityById(id);
 		if (!holder || !gameState.isPlayerAlly(holder.owner()))
 		{
@@ -108,7 +109,7 @@ m.GarrisonManager.prototype.update = function(gameState, events)
 		if (gameState.ai.elapsedTime - holder.getMetadata(PlayerID, "holderTimeUpdate") > 3)
 		{
 			let range = holder.attackRange("Ranged") ? holder.attackRange("Ranged").max : 80;
-			let enemiesAround = false;
+			let around = { "defenseStructure": false, "inertStructure": false, "meleeSiege": false, "rangeSiege": false, "unit": false };
 			for (let ent of gameState.getEnemyEntities().values())
 			{
 				if (!ent.position())
@@ -118,20 +119,39 @@ m.GarrisonManager.prototype.update = function(gameState, events)
 				let dist = API3.SquareVectorDistance(ent.position(), holder.position());
 				if (dist > range*range)
 					continue;
-				enemiesAround = true;
-				break;
+				if (ent.hasClass("Structure"))
+				{
+					if (ent.attackRange("Ranged"))	// TODO units on wall are not taken into account
+						around.defenseStructure = true;
+					else
+						around.inertStructure = true;
+				}
+				else if (m.isSiegeUnit(ent))
+				{
+					if (ent.attackTypes().indexOf("Melee") !== -1)
+						around.meleeSiege = true;
+					else
+						around.rangeSiege = true;
+				}
+				else
+				{
+					around.unit = true;
+					break;
+				}
 			}
+			// Keep defenseManager.garrisonUnitsInside in sync to avoid garrisoning-ungarrisoning some units
+			data.allowMelee = around.defenseStructure || around.unit;
 
 			for (let entId of holder.garrisoned())
 			{
 				let ent = gameState.getEntityById(entId);
-				if (ent.owner() === PlayerID && !this.keepGarrisoned(ent, holder, enemiesAround))
+				if (ent.owner() === PlayerID && !this.keepGarrisoned(ent, holder, around))
 					holder.unload(entId);
 			}
 			for (let j = 0; j < list.length; ++j)
 			{
 				let ent = gameState.getEntityById(list[j]);
-				if (this.keepGarrisoned(ent, holder, enemiesAround))
+				if (this.keepGarrisoned(ent, holder, around))
 					continue;
 				if (ent.getMetadata(PlayerID, "garrisonHolder") == id)
 				{
@@ -155,7 +175,7 @@ m.GarrisonManager.prototype.update = function(gameState, events)
 		if (!ent || ent.owner() !== PlayerID)
 			this.decayingStructures.delete(id);
 		else if (this.numberOfGarrisonedUnits(ent) < gmin)
-			gameState.ai.HQ.defenseManager.garrisonRangedUnitsInside(gameState, ent, {"min": gmin, "type": "decay"});
+			gameState.ai.HQ.defenseManager.garrisonUnitsInside(gameState, ent, {"min": gmin, "type": "decay"});
 	}
 };
 
@@ -165,7 +185,15 @@ m.GarrisonManager.prototype.numberOfGarrisonedUnits = function(holder)
 	if (!this.holders.has(holder.id()))
 		return holder.garrisoned().length;
 
-	return holder.garrisoned().length + this.holders.get(holder.id()).length;
+	return holder.garrisoned().length + this.holders.get(holder.id()).list.length;
+};
+
+m.GarrisonManager.prototype.allowMelee = function(holder)
+{
+	if (!this.holders.has(holder.id()))
+		return undefined;
+
+	return this.holders.get(holder.id()).allowMelee;
 };
 
 /** This is just a pre-garrison state, while the entity walk to the garrison holder */
@@ -175,7 +203,7 @@ m.GarrisonManager.prototype.garrison = function(gameState, ent, holder, type)
 		return;
 
 	this.registerHolder(gameState, holder);
-	this.holders.get(holder.id()).push(ent.id());
+	this.holders.get(holder.id()).list.push(ent.id());
 
 	if (gameState.ai.Config.debug > 2)
 	{
@@ -218,13 +246,13 @@ m.GarrisonManager.prototype.cancelGarrison = function(ent)
 	let holderId = ent.getMetadata(PlayerID, "garrisonHolder");
 	if (!holderId || !this.holders.has(holderId))
 		return;
-	let list = this.holders.get(holderId);
+	let list = this.holders.get(holderId).list;
 	let index = list.indexOf(ent.id());
 	if (index !== -1)
 		list.splice(index, 1);
 };
 
-m.GarrisonManager.prototype.keepGarrisoned = function(ent, holder, enemiesAround)
+m.GarrisonManager.prototype.keepGarrisoned = function(ent, holder, around)
 {
 	switch (ent.getMetadata(PlayerID, "garrisonType"))
 	{
@@ -233,14 +261,28 @@ m.GarrisonManager.prototype.keepGarrisoned = function(ent, holder, enemiesAround
 	case 'trade':		// trader garrisoned in ship
 		return true;
 	case 'protection':	// hurt unit for healing or infantry for defense
-		return ent.needsHeal() && holder.buffHeal() ||
-		       enemiesAround && (ent.hasClass("Support") ||
-			       MatchesClassList(ent.classes(), holder.getGarrisonArrowClasses()) ||
-			       MatchesClassList(ent.classes(), "Siege+!Melee"));
+		if (ent.needsHeal() && holder.buffHeal())
+			return true;
+		if (MatchesClassList(ent.classes(), holder.getGarrisonArrowClasses()))
+		{
+			if (around.unit || around.defenseStructure)
+				return true;
+			else if (around.meleeSiege || around.rangeSiege)
+				return ent.attackTypes().indexOf("Melee") === -1;
+			else
+				return false;
+		}
+		if (ent.attackTypes() && ent.attackTypes().indexOf("Melee") !== -1)
+			return false;
+		if (around.unit)
+			return ent.hasClass("Support") || m.isSiegeUnit(ent);	// only ranged siege here and below as melee siege already released above
+		if (m.isSiegeUnit(ent))
+			return around.meleeSiege;
+		return false;
 	case 'decay':
 		return this.decayingStructures.has(holder.id());
 	case 'emergency': // f.e. hero in regicide mode
-		return enemiesAround;
+		return around.unit || around.defenseStructure || around.meleeSiege;
 	default:
 		if (ent.getMetadata(PlayerID, "onBoard") === "onBoard")  // transport is not (yet ?) managed by garrisonManager
 			return true;
@@ -256,7 +298,7 @@ m.GarrisonManager.prototype.registerHolder = function(gameState, holder)
 {
 	if (this.holders.has(holder.id()))    // already registered
 		return;
-	this.holders.set(holder.id(), []);
+	this.holders.set(holder.id(), { "list": [], "allowMelee": true });
 	holder.setMetadata(PlayerID, "holderTimeUpdate", gameState.ai.elapsedTime);
 };
 

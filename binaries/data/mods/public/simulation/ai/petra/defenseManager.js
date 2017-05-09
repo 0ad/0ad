@@ -476,7 +476,7 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 		{
 			// If enemies are in range of one of our defensive structures, garrison it for arrow multiplier
 			if (attacker.position() && attacker.isGarrisonHolder() && attacker.getArrowMultiplier())
-				this.garrisonRangedUnitsInside(gameState, attacker, {"attacker": target});
+				this.garrisonUnitsInside(gameState, attacker, {"attacker": target});
 		}
 
 		if (!gameState.isEntityOwn(target))
@@ -557,11 +557,11 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 			continue;
 
 		if (target.isGarrisonHolder() && target.getArrowMultiplier())
-			this.garrisonRangedUnitsInside(gameState, target, {"attacker": attacker});
+			this.garrisonUnitsInside(gameState, target, {"attacker": attacker});
 	}
 };
 
-m.DefenseManager.prototype.garrisonRangedUnitsInside = function(gameState, target, data)
+m.DefenseManager.prototype.garrisonUnitsInside = function(gameState, target, data)
 {
 	let minGarrison = data.min ? data.min : target.garrisonMax();
 	let typeGarrison = data.type ? data.type : "protection";
@@ -583,11 +583,22 @@ m.DefenseManager.prototype.garrisonRangedUnitsInside = function(gameState, targe
 	let garrisonManager = gameState.ai.HQ.garrisonManager;
 	let garrisonArrowClasses = target.getGarrisonArrowClasses();
 	let units = gameState.getOwnUnits().filter(ent => MatchesClassList(ent.classes(), garrisonArrowClasses)).filterNearest(target.position());
+	let allowMelee = gameState.ai.HQ.garrisonManager.allowMelee(target);
+	if (allowMelee === undefined)
+	{
+		// Should be kept in sync with garrisonManager to avoid garrisoning-ungarrisoning some units
+		if (data.attacker)
+			allowMelee = data.attacker.hasClass("Structure") ? data.attacker.attackRange("Ranged") : !m.isSiegeUnit(data.attacker);
+		else
+			allowMelee = true;
+	}
 	for (let ent of units.values())
 	{
 		if (garrisonManager.numberOfGarrisonedUnits(target) >= minGarrison)
 			break;
 		if (!ent.position())
+			continue;
+		if (typeGarrison !== "decay" && !allowMelee && ent.attackTypes().indexOf("Melee") !== -1)
 			continue;
 		if (ent.getMetadata(PlayerID, "transport") !== undefined)
 			continue;
