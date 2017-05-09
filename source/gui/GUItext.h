@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -289,6 +289,11 @@ public:
 	 * Get String, with tags
 	 */
 	const CStrW& GetOriginalString() const { return m_OriginalString; }
+
+	/**
+	 * Get String, stripped of tags
+	 */
+	const CStrW& GetRawString() const { return m_RawString; }
 
 	/**
 	 * Generate Text Call from specified range. The range
