@@ -311,7 +311,7 @@ m.Worker.prototype.retryGathering = function(gameState, subrole)
 	switch (subrole)
 	{
 	case "gatherer":
-		return this.startGathering(gameState)
+		return this.startGathering(gameState);
 	case "hunter":
 		return this.startHunting(gameState);
 	case "fisher":
@@ -957,22 +957,20 @@ m.Worker.prototype.isInaccessibleSupply = function(gameState)
 		{
 			this.ent.setMetadata(PlayerID, "approachingTime", gameState.ai.elapsedTime);
 			this.ent.setMetadata(PlayerID, "approachingPos", presentPos);
+			return false;
 		}
-		else if (gameState.ai.elapsedTime - approachingTime > 10)
+		if (gameState.ai.elapsedTime - approachingTime > 10)
 		{
 			if (this.ent.getMetadata(PlayerID, "alreadyTried"))
 			{
 				target.setMetadata(PlayerID, "inaccessibleTime", gameState.ai.elapsedTime + 600);
 				return true;
 			}
-			else
-			{
-				// let's try again to reach it
-				this.ent.setMetadata(PlayerID, "alreadyTried", targetId);
-				this.ent.setMetadata(PlayerID, "approachingTarget", undefined);
-				this.ent.gather(target);
-				return false;
-			}
+			// let's try again to reach it
+			this.ent.setMetadata(PlayerID, "alreadyTried", targetId);
+			this.ent.setMetadata(PlayerID, "approachingTarget", undefined);
+			this.ent.gather(target);
+			return false;
 		}
 	}
 	return false;
