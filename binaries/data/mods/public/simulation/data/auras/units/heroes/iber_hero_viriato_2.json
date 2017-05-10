@@ -1,0 +1,13 @@
+{
+	"type": "range",
+	"radius": 60,
+	"affects": ["Soldier", "Siege"],
+	"modifications": [
+		{ "value": "Looter/Resource/food", "multiply": 2.0 },
+		{ "value": "Looter/Resource/wood", "multiply": 2.0 },
+		{ "value": "Looter/Resource/stone", "multiply": 2.0 },
+		{ "value": "Looter/Resource/metal", "multiply": 2.0 }
+	],
+	"auraName": "Swag",
+	"auraDescription": "+100% resources loot increase for every enemy unit killed or structure destroyed."
+}

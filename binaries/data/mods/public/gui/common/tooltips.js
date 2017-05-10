@@ -285,8 +285,8 @@ function getProjectilesTooltip(template)
 	let limit = Math.min(
 		template.buildingAI.maxArrowCount || Infinity,
 		template.buildingAI.defaultArrowCount +
-			template.buildingAI.garrisonArrowMultiplier *
-			template.garrisonHolder.capacity
+			Math.round(template.buildingAI.garrisonArrowMultiplier *
+			template.garrisonHolder.capacity)
 	);
 
 	if (!limit)
@@ -305,7 +305,7 @@ function getProjectilesTooltip(template)
 
 		sprintf(translate("%(label)s: %(value)s"), {
 			"label": headerFont(translateWithContext("projectiles", "Per Unit")),
-			"value": template.buildingAI.garrisonArrowMultiplier
+			"value": +template.buildingAI.garrisonArrowMultiplier.toFixed(2)
 		})
 	].join(commaFont(translate(", ")));
 }
