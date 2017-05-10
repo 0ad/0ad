@@ -186,7 +186,8 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources, modif
 			let aura = auraTemplates[auraID];
 			ret.auras[auraID] = {
 					"name": aura.auraName,
-					"description": aura.auraDescription || null
+					"description": aura.auraDescription || null,
+					"radius": aura.radius || null
 				};
 		}
 	}

@@ -1030,7 +1030,7 @@ m.AttackPlan.prototype.checkTargetObstruction = function(gameState, target, posi
 
 	if (blocker && blocker.hasClass("StoneWall"))
 	{
-/*		if (this.hasSiegeUnits(gameState))
+/*		if (this.hasSiegeUnits())
 		{ */
 			this.isBlocked = true;
 			return blocker;
@@ -1216,18 +1216,18 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			if (!attacker || !attacker.position() || !attacker.hasClass("Unit"))
 				continue;
 			let ourUnit = gameState.getEntityById(evt.target);
-			if (this.isSiegeUnit(gameState, ourUnit))
+			if (m.isSiegeUnit(ourUnit))
 			{	// if our siege units are attacked, we'll send some units to deal with enemies.
 				let collec = this.unitCollection.filter(API3.Filters.not(API3.Filters.byClass("Siege"))).filterNearest(ourUnit.position(), 5);
 				for (let ent of collec.values())
 				{
-					if (this.isSiegeUnit(gameState, ent))	// needed as mauryan elephants are not filtered out
+					if (m.isSiegeUnit(ent))	// needed as mauryan elephants are not filtered out
 						continue;
 					ent.attack(attacker.id(), m.allowCapture(gameState, ent, attacker));
 					ent.setMetadata(PlayerID, "lastAttackPlanUpdateTime", time);
 				}
 				// And if this attacker is a non-ranged siege unit and our unit also, attack it
-				if (this.isSiegeUnit(gameState, attacker) && attacker.hasClass("Melee") && ourUnit.hasClass("Melee"))
+				if (m.isSiegeUnit(attacker) && attacker.hasClass("Melee") && ourUnit.hasClass("Melee"))
 				{
 					ourUnit.attack(attacker.id(), m.allowCapture(gameState, ourUnit, attacker));
 					ourUnit.setMetadata(PlayerID, "lastAttackPlanUpdateTime", time);
@@ -1241,7 +1241,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 					// TODO check that the attacker is from behind the wall
 					continue;
 				}
-				else if (this.isSiegeUnit(gameState, attacker))
+				else if (m.isSiegeUnit(attacker))
 				{	// if our unit is attacked by a siege unit, we'll send some melee units to help it.
 					let collec = this.unitCollection.filter(API3.Filters.byClass("Melee")).filterNearest(ourUnit.position(), 5);
 					for (let ent of collec.values())
@@ -1289,7 +1289,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				continue;
 			if (!(targetId in unitTargets))
 			{
-				if (this.isSiegeUnit(gameState, target) || target.hasClass("Hero"))
+				if (m.isSiegeUnit(target) || target.hasClass("Hero"))
 					unitTargets[targetId] = -8;
 				else if (target.hasClass("Champion") || target.hasClass("Ship"))
 					unitTargets[targetId] = -5;
@@ -1347,7 +1347,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			// update the order if needed
 			let needsUpdate = false;
 			let maybeUpdate = false;
-			let siegeUnit = this.isSiegeUnit(gameState, ent);
+			let siegeUnit = m.isSiegeUnit(ent);
 			if (ent.isIdle())
 				needsUpdate = true;
 			else if (siegeUnit && targetId)
@@ -1658,7 +1658,7 @@ m.AttackPlan.prototype.UpdateWalking = function(gameState, events)
 		}
 	}
 	// Are we arrived at destination ?
-	if (attackedNB > 1 && (attackedUnitNB || this.hasSiegeUnits(gameState)))
+	if (attackedNB > 1 && (attackedUnitNB || this.hasSiegeUnits()))
 	{
 		if (gameState.ai.HQ.territoryMap.getOwner(this.position) === this.targetPlayer || attackedNB > 3)
 		{
@@ -1918,10 +1918,10 @@ m.AttackPlan.prototype.waitingForTransport = function()
 	return false;
 };
 
-m.AttackPlan.prototype.hasSiegeUnits = function(gameState)
+m.AttackPlan.prototype.hasSiegeUnits = function()
 {
 	for (let ent of this.unitCollection.values())
-		if (this.isSiegeUnit(gameState, ent))
+		if (m.isSiegeUnit(ent))
 			return true;
 	return false;
 };
@@ -1938,11 +1938,6 @@ m.AttackPlan.prototype.hasForceOrder = function(data, value)
 				return true;
 	}
 	return false;
-};
-
-m.AttackPlan.prototype.isSiegeUnit = function(gameState, ent)
-{
-	return ent.hasClass("Siege") || (ent.hasClass("Elephant") && ent.hasClass("Champion"));
 };
 
 m.AttackPlan.prototype.debugAttack = function()

@@ -622,13 +622,24 @@ function getAurasTooltip(template)
 	if (!template.auras)
 		return "";
 
-	let tooltips = Object.keys(template.auras).map(
-		aura => sprintf(translate("%(auralabel)s %(aurainfo)s"), {
+	let tooltips = [];
+	for (let auraID in template.auras)
+	{
+		let tooltip = sprintf(translate("%(auralabel)s %(aurainfo)s"), {
 			"auralabel": headerFont(sprintf(translate("%(auraname)s:"), {
-				"auraname": translate(template.auras[aura].name)
+				"auraname": translate(template.auras[auraID].name)
 			})),
-			"aurainfo": bodyFont(translate(template.auras[aura].description))
-		}));
+			"aurainfo": bodyFont(translate(template.auras[auraID].description))
+		});
+		let radius = +template.auras[auraID].radius;
+		if (radius)
+			tooltip += " " + sprintf(translatePlural("%(label)s %(val)s %(unit)s", "%(label)s %(val)s %(unit)s", radius), {
+				"label": translateWithContext("aura", "Range:"),
+				"val": radius,
+				"unit": unitFont(translatePlural("meter", "meters", radius))
+			});
+		tooltips.push(tooltip);
+	}
 	return tooltips.join("\n");
 }
 

@@ -37,7 +37,8 @@ Auras.prototype.GetDescriptions = function()
 		let aura = this.auras[auraID];
 		ret[auraID] = {
 			"name": aura.auraName,
-			"description": aura.auraDescription || null
+			"description": aura.auraDescription || null,
+			"radius": this.GetRange(auraID) || null
 		};
 	}
 	return ret;
