@@ -1,0 +1,13 @@
+{
+	"type": "global",
+	"affects": ["Soldier"],
+	"modifications": [
+		{ "value": "Cost/BuildTime", "multiply": 0.80 },
+		{ "value": "Cost/Resources/food", "multiply": 0.85 },
+		{ "value": "Cost/Resources/wood", "multiply": 0.85 },
+		{ "value": "Cost/Resources/metal", "multiply": 0.85 },
+		{ "value": "Cost/Resources/stone", "multiply": 0.85 }
+	],
+	"auraName": "Mobilization",
+	"auraDescription": "-20% training time and -15% resources cost for soldiers."
+}

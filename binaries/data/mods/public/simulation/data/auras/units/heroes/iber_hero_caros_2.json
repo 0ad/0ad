@@ -1,0 +1,13 @@
+{
+	"type": "range",
+	"radius": 50,
+	"affects": ["Soldier"],
+	"modifications": [
+		{ "value": "Armour/Pierce", "add": 1 },
+		{ "value": "Armour/Hack", "add": 1 },
+		{ "value": "Armour/Crush", "add": 1 }
+	],
+	"auraDescription": "+1 armor for soldiers.",
+	"auraName": "Battle Fervor",
+	"overlayIcon": "art/textures/ui/session/auras/attack_bonus.png"
+}
