@@ -194,9 +194,9 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources, modif
 
 	if (template.BuildingAI)
 		ret.buildingAI = {
-			"defaultArrowCount": getEntityValue("BuildingAI/DefaultArrowCount"),
+			"defaultArrowCount": Math.round(getEntityValue("BuildingAI/DefaultArrowCount")),
 			"garrisonArrowMultiplier": getEntityValue("BuildingAI/GarrisonArrowMultiplier"),
-			"maxArrowCount": getEntityValue("BuildingAI/MaxArrowCount")
+			"maxArrowCount": Math.round(getEntityValue("BuildingAI/MaxArrowCount"))
 		};
 
 	if (template.BuildRestrictions)

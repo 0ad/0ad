@@ -222,7 +222,7 @@ BuildingAI.prototype.StartTimer = function()
 BuildingAI.prototype.GetDefaultArrowCount = function()
 {
 	var arrowCount = +this.template.DefaultArrowCount;
-	return ApplyValueModificationsToEntity("BuildingAI/DefaultArrowCount", arrowCount, this.entity);
+	return Math.round(ApplyValueModificationsToEntity("BuildingAI/DefaultArrowCount", arrowCount, this.entity));
 };
 
 BuildingAI.prototype.GetMaxArrowCount = function()
