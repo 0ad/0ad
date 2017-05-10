@@ -106,7 +106,9 @@ Trigger.prototype.SpawnRegicideHero = function(playerID, heroTemplates, spawnPoi
 	return undefined;
 };
 
-let cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
-cmpTrigger.regicideHeroes = [];
-cmpTrigger.DoAfterDelay(0, "InitRegicideGame", {});
-cmpTrigger.RegisterTrigger("OnOwnershipChanged", "CheckRegicideDefeat", { "enabled": true });
+{
+	let cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
+	cmpTrigger.regicideHeroes = [];
+	cmpTrigger.DoAfterDelay(0, "InitRegicideGame", {});
+	cmpTrigger.RegisterTrigger("OnOwnershipChanged", "CheckRegicideDefeat", { "enabled": true });
+}

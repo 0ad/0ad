@@ -95,8 +95,9 @@ Trigger.prototype.ConquestStartGameCount = function()
 	this.conquestDataInit = true;
 };
 
-var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
-
-cmpTrigger.conquestEntitiesByPlayer = {};
-cmpTrigger.conquestDataInit = false;
-cmpTrigger.conquestClassFilter = "";
+{
+	let cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
+	cmpTrigger.conquestEntitiesByPlayer = {};
+	cmpTrigger.conquestDataInit = false;
+	cmpTrigger.conquestClassFilter = "";
+}
