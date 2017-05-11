@@ -1216,7 +1216,7 @@ CStr8 LoadSettingsOfScenarioMap(const VfsPath &mapPath)
  *
  * Examples:
  * 1) "Bob" will host a 2 player game on the Arcadia map:
- * -autostart="scenarios/Arcadia 02" -autostart-host -autostart-host-players=2 -autostart-playername="Bob"
+ * -autostart="scenarios/Arcadia" -autostart-host -autostart-host-players=2 -autostart-playername="Bob"
  *
  * 2) Load Alpine Lakes random map with random seed, 2 players (Athens and Britons), and player 2 is PetraBot:
  * -autostart="random/alpine_lakes" -autostart-seed=-1 -autostart-players=2 -autostart-civ=1:athen -autostart-civ=2:brit -autostart-ai=2:petra
@@ -1340,6 +1340,7 @@ bool Autostart(const CmdLineArgs& args)
 	scriptInterface.SetProperty(attrs, "mapType", mapType);
 	scriptInterface.SetProperty(attrs, "map", std::string("maps/" + autoStartName));
 	scriptInterface.SetProperty(settings, "mapType", mapType);
+	scriptInterface.SetProperty(settings, "CheatsEnabled", true);
 
 	// Set seed for AIs
 	u32 aiseed = 0;
@@ -1485,9 +1486,7 @@ bool Autostart(const CmdLineArgs& args)
 	// Get optional playername
 	CStrW userName = L"anonymous";
 	if (args.Has("autostart-playername"))
-	{
 		userName = args.Get("autostart-playername").FromUTF8();
-	}
 
 	if (args.Has("autostart-host"))
 	{
