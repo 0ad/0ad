@@ -212,7 +212,7 @@ function openMenu(newSubmenu, position, buttonHeight, numButtons)
 	var submenu = Engine.GetGUIObjectByName("submenu");
 	var top = position - MARGIN;
 	var bottom = position + ((buttonHeight + MARGIN) * numButtons);
-	submenu.size = submenu.size.left + " " + top + " " + submenu.size.right + " " + bottom;
+	submenu.size = new GUISize(submenu.size.left, top, submenu.size.right, bottom);
 
 	// Blend in right border of main menu into the left border of the submenu
 	blendSubmenuIntoMain(top, bottom);
