@@ -546,7 +546,7 @@ void CComponentManager::SetRNGSeed(u32 seed)
 void CComponentManager::RegisterComponentType(InterfaceId iid, ComponentTypeId cid, AllocFunc alloc, DeallocFunc dealloc,
 		const char* name, const std::string& schema)
 {
-	ComponentType c(CT_Native, iid, alloc, dealloc, name, schema, std::move(DefPersistentRooted<JS::Value>()));
+	ComponentType c(CT_Native, iid, alloc, dealloc, name, schema, DefPersistentRooted<JS::Value>());
 	m_ComponentTypesById.insert(std::make_pair(cid, std::move(c)));
 	m_ComponentTypeIdsByName[name] = cid;
 }
@@ -554,7 +554,7 @@ void CComponentManager::RegisterComponentType(InterfaceId iid, ComponentTypeId c
 void CComponentManager::RegisterComponentTypeScriptWrapper(InterfaceId iid, ComponentTypeId cid, AllocFunc alloc,
 		DeallocFunc dealloc, const char* name, const std::string& schema)
 {
-	ComponentType c(CT_ScriptWrapper, iid, alloc, dealloc, name, schema, std::move(DefPersistentRooted<JS::Value>()));
+	ComponentType c(CT_ScriptWrapper, iid, alloc, dealloc, name, schema, DefPersistentRooted<JS::Value>());
 	m_ComponentTypesById.insert(std::make_pair(cid, std::move(c)));
 	m_ComponentTypeIdsByName[name] = cid;
 	// TODO: merge with RegisterComponentType

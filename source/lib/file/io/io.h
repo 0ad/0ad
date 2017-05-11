@@ -1,4 +1,4 @@
-/* Copyright (c) 2011 Wildfire Games
+/* Copyright (c) 2017 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -54,7 +54,7 @@ namespace io {
 // never reused (avoids displacing other items).
 static inline UniqueRange Allocate(size_t size, size_t alignment = maxSectorSize)
 {
-	return std::move(AllocateAligned(size, alignment));
+	return AllocateAligned(size, alignment);
 }
 
 
@@ -190,7 +190,7 @@ public:
 
 		const bool temporaryBuffersRequested = (op.buf == 0);
 		if(temporaryBuffersRequested)
-			buffers = std::move(io::Allocate(blockSize * p.queueDepth, p.alignment));
+			buffers = io::Allocate(blockSize * p.queueDepth, p.alignment);
 
 		for(size_t i = 0; i < ARRAY_SIZE(controlBlocks); i++)
 		{
