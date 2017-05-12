@@ -1,4 +1,4 @@
-/* Copyright (c) 2015 Wildfire Games
+/* Copyright (c) 2017 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -448,7 +448,7 @@ public:
 		size_t cd_numEntries = 0;
 		size_t cd_size = 0;
 		RETURN_STATUS_IF_ERR(LocateCentralDirectory(m_file, m_fileSize, cd_ofs, cd_numEntries, cd_size));
-		UniqueRange buf(std::move(io::Allocate(cd_size)));
+		UniqueRange buf(io::Allocate(cd_size));
 
 		io::Operation op(*m_file.get(), buf.get(), cd_size, cd_ofs);
 		RETURN_STATUS_IF_ERR(io::Run(op));
@@ -533,7 +533,7 @@ private:
 	static Status LocateCentralDirectory(const PFile& file, off_t fileSize, off_t& cd_ofs, size_t& cd_numEntries, size_t& cd_size)
 	{
 		const size_t maxScanSize = 66000u;	// see below
-		UniqueRange buf(std::move(io::Allocate(maxScanSize)));
+		UniqueRange buf(io::Allocate(maxScanSize));
 
 		// expected case: ECDR at EOF; no file comment
 		Status ret = ScanForEcdr(file, fileSize, (u8*)buf.get(), sizeof(ECDR), cd_numEntries, cd_ofs, cd_size);
@@ -662,7 +662,7 @@ public:
 
 		// allocate memory
 		const size_t csizeMax = codec->MaxOutputSize(size_t(usize));
-		UniqueRange buf(std::move(io::Allocate(sizeof(LFH) + pathnameLength + csizeMax)));
+		UniqueRange buf(io::Allocate(sizeof(LFH) + pathnameLength + csizeMax));
 
 		// read and compress file contents
 		size_t csize; u32 checksum;

@@ -1,4 +1,4 @@
-/* Copyright (c) 2015 Wildfire Games
+/* Copyright (c) 2017 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -88,7 +88,7 @@ UniqueRange AllocateAligned(size_t size, size_t alignment)
 	if(idxDeleterAligned == 0)	// (optional optimization)
 		RegisterUniqueRangeDeleter(FreeAligned, &idxDeleterAligned);
 
-	return std::move(UniqueRange(p, size, idxDeleterAligned));
+	return UniqueRange(p, size, idxDeleterAligned);
 }
 
 
@@ -100,5 +100,5 @@ UniqueRange AllocateVM(size_t size, vm::PageType pageType, int prot)
 	if(idxDeleter == 0)	// (optional optimization)
 		RegisterUniqueRangeDeleter(vm::Free, &idxDeleter);
 
-	return std::move(UniqueRange(p, size, idxDeleter));
+	return UniqueRange(p, size, idxDeleter);
 }

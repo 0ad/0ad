@@ -114,6 +114,9 @@ var g_Commands = {
 
 	"control-all": function(player, cmd, data)
 	{
+		if (!data.cmpPlayer.GetCheatsEnabled())
+			return;
+
 		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 		cmpGuiInterface.PushNotification({
 			"type": "aichat",
@@ -126,6 +129,9 @@ var g_Commands = {
 
 	"reveal-map": function(player, cmd, data)
 	{
+		if (!data.cmpPlayer.GetCheatsEnabled())
+			return;
+
 		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 		cmpGuiInterface.PushNotification({
 			"type": "aichat",
@@ -563,6 +569,9 @@ var g_Commands = {
 
 	"promote": function(player, cmd, data)
 	{
+		if (!data.cmpPlayer.GetCheatsEnabled())
+			return;
+
 		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 		cmpGuiInterface.PushNotification({
 			"type": "aichat",

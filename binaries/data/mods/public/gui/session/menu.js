@@ -1121,8 +1121,7 @@ function openManual()
 
 function toggleDeveloperOverlay()
 {
-	// The developer overlay is disabled in ranked games
-	if (Engine.HasXmppClient() && Engine.IsRankedGame())
+	if (!g_GameAttributes.settings.CheatsEnabled)
 		return;
 
 	let devCommands = Engine.GetGUIObjectByName("devCommands");
