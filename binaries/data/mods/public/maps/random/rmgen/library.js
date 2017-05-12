@@ -126,7 +126,8 @@ function randomizePlacerCoordinates(placer, halfMapSize)
 	if (!!g_MapSettings.CircularMap)
 	{
 		// Polar coordinates
-		let r = halfMapSize * Math.sqrt(randFloat()); // uniform distribution
+		// Uniformly distributed on the disk
+		let r = halfMapSize * Math.sqrt(randFloat(0, 1));
 		let theta = randFloat(0, 2 * PI);
 		placer.x = Math.floor(r * Math.cos(theta)) + halfMapSize;
 		placer.z = Math.floor(r * Math.sin(theta)) + halfMapSize;
@@ -134,8 +135,8 @@ function randomizePlacerCoordinates(placer, halfMapSize)
 	else
 	{
 		// Rectangular coordinates
-		placer.x = randInt(g_Map.size);
-		placer.z = randInt(g_Map.size);
+		placer.x = randIntExclusive(0, g_Map.size);
+		placer.z = randIntExclusive(0, g_Map.size);
 	}
 }
 

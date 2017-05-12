@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -36,9 +36,7 @@ namespace JSI_Lobby
 	void StopXmppClient(ScriptInterface::CxPrivate* pCxPrivate);
 	void ConnectXmppClient(ScriptInterface::CxPrivate* pCxPrivate);
 	void DisconnectXmppClient(ScriptInterface::CxPrivate* pCxPrivate);
-	void SendGetGameList(ScriptInterface::CxPrivate* pCxPrivate);
 	void SendGetBoardList(ScriptInterface::CxPrivate* pCxPrivate);
-	void SendGetRatingList(ScriptInterface::CxPrivate* pCxPrivate);
 	void SendGetProfile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& player);
 	void SendGameReport(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue data);
 	void SendRegisterGame(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue data);

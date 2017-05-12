@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -229,6 +229,13 @@ void Render()
 	ogl_WarnIfError();
 
 	g_Renderer.RenderTextOverlays();
+
+	// If we're in Atlas game view, render special tools
+	if (g_AtlasGameLoop && g_AtlasGameLoop->view)
+	{
+		g_AtlasGameLoop->view->DrawCinemaPathTool();
+		ogl_WarnIfError();
+	}
 
 	if (g_Game && g_Game->IsGameStarted())
 		g_Game->GetView()->GetCinema()->Render();

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
-  <Auras datatype="tokens">rotary_mill</Auras>
+  <Auras datatype="tokens">
+    structures/rotary_mill
+  </Auras>
   <Cost>
     <BuildTime>100</BuildTime>
     <PopulationBonus>2</PopulationBonus>

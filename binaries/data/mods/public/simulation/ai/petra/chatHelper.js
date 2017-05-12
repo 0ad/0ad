@@ -43,15 +43,6 @@ m.newTradeRouteMessages = [
 	markForTranslation("A new trade route is set up with %(_player_)s. Take your share of the profits.")
 ];
 
-m.newPhaseMessages = {
-	"started": [
-		markForTranslation("I am advancing to the %(phase)s.")
-	],
-	"completed": [
-		markForTranslation("I have reached the %(phase)s.")
-	]
-};
-
 m.newDiplomacyMessages = {
 	"ally": [
 		markForTranslation("%(_player_)s and I are now allies.")
@@ -140,7 +131,7 @@ m.chatAnswerRequestAttack = function(gameState, player, answer, other)
 		"message": "/allies " + pickRandom(this.answerRequestAttackMessages[answer]),
 		"translateMessage": true,
 		"translateParameters": answer != "other" ? ["_player_"] : ["_player_", "_player_2"],
-		"parameters": answer != "other" ? { "_player_": player } : { "_player_": player, "_player2_": other }
+		"parameters": answer != "other" ? { "_player_": player } : { "_player_": player, "_player_2": other }
 	});
 };
 

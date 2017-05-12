@@ -15,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-24 09:08+0100\n"
-"PO-Revision-Date: 2017-03-24 13:29+0000\n"
-"Last-Translator: Любомир Василев\n"
+"POT-Creation-Date: 2017-04-28 09:02+0200\n"
+"PO-Revision-Date: 2017-04-28 15:43+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -220,6 +220,21 @@ msgstr "Всеки играч започва на остров, заобикол
 msgid "Cycladic Archipelago"
 msgstr "Цикладски архипелаг"
 
+#: maps/random/danubius.jsonsettings.Description
+msgid ""
+"Players start along the banks of the river Danube in the period following "
+"the expansion into Pannonia by the Celtic Boii tribe. Seeking to consolidate"
+" their hold on this land, celtic reinforcements have been sent to root out "
+"the remaining foreign cultures. Players not only have to vie for power "
+"amongst themselves, but also beat back these ruthless invaders. Ultimately, "
+"the Boii were defeated by the rising power of the Dacians, hence leading to "
+"the reemergence of the Geto-Dacian Confederation under King Burebista."
+msgstr ""
+
+#: maps/random/danubius.jsonsettings.Name
+msgid "Danubius"
+msgstr ""
+
 #: maps/random/deep_forest.jsonsettings.Description
 msgid "A deep dark forest in Germania."
 msgstr "Дълбока, тъмна гора в Древна Германия."
@@ -351,6 +366,18 @@ msgstr "Всички играчи започват в крайбрежна ме�
 #: maps/random/hyrcanian_shores.jsonsettings.Name
 msgid "Hyrcanian Shores"
 msgstr "Хиркански брегове"
+
+#: maps/random/india.jsonsettings.Description
+msgid ""
+"Central India just before the monsoon season - a parched land awaits the "
+"life-bringing rain which is already two months late. Due to the extended "
+"dryness and scorching heat, only the largest lake remains. The hardy trees "
+"which have survived the climate are spread out, yet not too scarce."
+msgstr ""
+
+#: maps/random/india.jsonsettings.Name
+msgid "India"
+msgstr ""
 
 #: maps/random/island_stronghold.jsonsettings.Description
 msgid ""
@@ -757,14 +784,14 @@ msgstr "Демонстрация на методите/кода за поста�
 msgid "Wall Demo"
 msgstr "Демонстрация — стени"
 
-#: maps/random/survivalofthefittest_triggers.js:155
-msgid "An enemy wave is attacking!"
-msgstr "Вражеска вълна напада!"
-
-#: maps/random/survivalofthefittest_triggers.js:212
+#: maps/random/survivalofthefittest_triggers.js:193
 #, javascript-format
 msgid "The first wave will start in %(time)s!"
 msgstr "Първата вълна започва след %(time)s!"
+
+#: maps/random/survivalofthefittest_triggers.js:327
+msgid "An enemy wave is attacking!"
+msgstr "Вражеска вълна напада!"
 
 #: maps/scenarios/Cinema_Demo.js:6
 msgid "Cutscene starts after 5 seconds"
@@ -861,7 +888,7 @@ msgstr "Пролет в Аркадия, Гърция. Пролетните дъ�
 #: maps/skirmishes/Belgian Bog (2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Caspian Sea (2v2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Corinthian Isthmus (2).xml:PlayerData[0].Name:39
-#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[1].Name:40
+#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[0].Name:40
 #: maps/skirmishes/Corsica and Sardinia (4).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Cycladic Archipelago (2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Death Canyon (2).xml:PlayerData[0].Name:39
@@ -928,7 +955,7 @@ msgstr "Играч 1"
 #: maps/skirmishes/Belgian Bog (2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Caspian Sea (2v2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Corinthian Isthmus (2).xml:PlayerData[1].Name:39
-#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[2].Name:40
+#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[1].Name:40
 #: maps/skirmishes/Corsica and Sardinia (4).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Cycladic Archipelago (2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Death Canyon (2).xml:PlayerData[1].Name:39
@@ -1194,7 +1221,7 @@ msgstr "Нахлуваща сила"
 #: Oasis.xml:PlayerData[2].Name:27 maps/skirmishes/Barcania
 #: (3).xml:PlayerData[2].Name:27 maps/skirmishes/Caspian Sea
 #: (2v2).xml:PlayerData[2].Name:39 maps/skirmishes/Corinthian Isthmus
-#: (4).xml:PlayerData[3].Name:40 maps/skirmishes/Corsica and Sardinia
+#: (4).xml:PlayerData[2].Name:40 maps/skirmishes/Corsica and Sardinia
 #: (4).xml:PlayerData[2].Name:39 maps/skirmishes/Gallic Fields
 #: (3).xml:PlayerData[2].Name:39 maps/skirmishes/Gambia River
 #: (3).xml:PlayerData[2].Name:39 maps/skirmishes/Greek Acropolis
@@ -1248,7 +1275,7 @@ msgstr "Малка пустинна карта. Всеки от играчите
 #: Oases.xml:PlayerData[3].Name:27 maps/scenarios/Siwa
 #: Oasis.xml:PlayerData[3].Name:27 maps/skirmishes/Caspian Sea
 #: (2v2).xml:PlayerData[3].Name:39 maps/skirmishes/Corinthian Isthmus
-#: (4).xml:PlayerData[4].Name:40 maps/skirmishes/Corsica and Sardinia
+#: (4).xml:PlayerData[3].Name:40 maps/skirmishes/Corsica and Sardinia
 #: (4).xml:PlayerData[3].Name:39 maps/skirmishes/Greek Acropolis
 #: (4).xml:PlayerData[3].Name:39 maps/skirmishes/Libyan Oases
 #: (4).xml:PlayerData[3].Name:39 maps/skirmishes/Median Oasis
@@ -1836,11 +1863,11 @@ msgstr "Карта за мрежова игра. Тропически рай."
 msgid "Tropical Island"
 msgstr "Тропически острови"
 
-#: maps/scenarios/Units_demo.xml:Name:95
+#: maps/scenarios/Units_demo.xml:Name:28
 msgid "Units Demo"
 msgstr "Демонстрация — единици"
 
-#: maps/scenarios/Units_demo.xml:Description:95
+#: maps/scenarios/Units_demo.xml:Description:28
 msgid "Every unit in the game."
 msgstr "Всички единици от играта."
 

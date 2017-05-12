@@ -8,7 +8,7 @@ Identity.prototype.Schema =
 		"<SpecificName>Hoplī́tēs Athēnaïkós</SpecificName>" +
 		"<Icon>units/athen_infantry_spearman.png</Icon>" +
 	"</a:example>" +
-	"<element name='Civ' a:help='Civilisation that this unit is primarily associated with, typically a 4-letter code. Choices include: gaia (world objects), athen (Athenians), brit (Britons), cart (Carthaginians), gaul (Gauls), iber (Iberians), mace (Macedonians), pers (Persians), ptol (Ptolemies), rome (Romans), sele (Seleucids), spart (Spartans)'>" +
+	"<element name='Civ' a:help='Civilisation that this unit is primarily associated with, typically a 4-letter code. Choices include: gaia (world objects), athen (Athenians), brit (Britons), cart (Carthaginians), gaul (Gauls), iber (Iberians), mace (Macedonians), maur (Mauryans), pers (Persians), ptol (Ptolemies), rome (Romans), sele (Seleucids), spart (Spartans)'>" +
 		"<text/>" +
 	"</element>" +
 	"<optional>" +
@@ -21,16 +21,16 @@ Identity.prototype.Schema =
 			"<text/>" +
 		"</element>" +
 	"</optional>" +
-	"<element name='GenericName' a:help='Generic English-language name for this class of unit'>" +
+	"<element name='GenericName' a:help='Generic English-language name for this class of unit.'>" +
 		"<text/>" +
 	"</element>" +
 	"<optional>" +
-		"<element name='SpecificName' a:help='Specific native-language name for this unit type'>" +
+		"<element name='SpecificName' a:help='Specific native-language name for this unit type.'>" +
 			"<text/>" +
 		"</element>" +
 	"</optional>" +
 	"<optional>" +
-		"<element name='SelectionGroupName' a:help='Name used to group ranked entities'>" +
+		"<element name='SelectionGroupName' a:help='Name used to group ranked entities.'>" +
 			"<text/>" +
 		"</element>" +
 	"</optional>" +
@@ -83,7 +83,7 @@ Identity.prototype.Schema =
 		"</element>" +
 	"</optional>" +
 	"<optional>" +
-		"<element name='RequiredTechnology' a:help='Optional name of a technology which must be researched before the entity can be produced'>" +
+		"<element name='RequiredTechnology' a:help='Optional name of a technology which must be researched before the entity can be produced.'>" +
 			"<text/>" +
 		"</element>" +
 	"</optional>";
@@ -91,7 +91,6 @@ Identity.prototype.Schema =
 
 Identity.prototype.Init = function()
 {
-	// caching
 	this.classesList = GetIdentityClasses(this.template);
 	this.visibleClassesList = GetVisibleIdentityClasses(this.template);
 };
@@ -120,7 +119,7 @@ Identity.prototype.GetGender = function()
 
 Identity.prototype.GetRank = function()
 {
-	return (this.template.Rank || "");
+	return this.template.Rank || "";
 };
 
 Identity.prototype.GetClassesList = function()
@@ -140,11 +139,8 @@ Identity.prototype.HasClass = function(name)
 
 Identity.prototype.GetFormationsList = function()
 {
-	if (this.template.Formations && "_string" in this.template.Formations)
-	{
-		var string = this.template.Formations._string;
-		return string.split(/\s+/);
-	}
+	if (this.template.Formations && this.template.Formations._string)
+		return this.template.Formations._string.split(/\s+/);
 	return [];
 };
 
@@ -155,7 +151,7 @@ Identity.prototype.CanUseFormation = function(template)
 
 Identity.prototype.GetSelectionGroupName = function()
 {
-	return (this.template.SelectionGroupName || "");
+	return this.template.SelectionGroupName || "";
 };
 
 Identity.prototype.GetGenericName = function()

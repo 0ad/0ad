@@ -86,4 +86,23 @@ template<> bool ScriptInterface::FromJSVal<std::vector<T> >(JSContext* cx, JS::H
 	return FromJSVal_vector(cx, v, out); \
 }
 
+template<typename T> static bool FromJSProperty(JSContext* cx, JS::HandleValue v, const char* name, T& out)
+{
+	if (!v.isObject())
+		return false;
+
+	JSAutoRequest rq(cx);
+	JS::RootedObject obj(cx, &v.toObject());
+
+	bool hasProperty;
+	if (!JS_HasProperty(cx, obj, name, &hasProperty) || !hasProperty)
+		return false;
+
+	JS::RootedValue value(cx);
+	if (!JS_GetProperty(cx, obj, name, &value))
+		return false;
+
+	return ScriptInterface::FromJSVal(cx, value, out);
+}
+
 #endif //INCLUDED_SCRIPTCONVERSIONS

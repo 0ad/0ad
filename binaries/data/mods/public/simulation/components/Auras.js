@@ -32,11 +32,14 @@ Auras.prototype.GetModifierIdentifier = function(name)
 Auras.prototype.GetDescriptions = function()
 {
 	var ret = {};
-	for (let name of this.GetAuraNames())
+	for (let auraID of this.GetAuraNames())
 	{
-		let aura = this.auras[name];
-		if (aura.auraName)
-			ret[aura.auraName] = aura.auraDescription || null;
+		let aura = this.auras[auraID];
+		ret[auraID] = {
+			"name": aura.auraName,
+			"description": aura.auraDescription || null,
+			"radius": this.GetRange(auraID) || null
+		};
 	}
 	return ret;
 };
@@ -61,6 +64,29 @@ Auras.prototype.GetRange = function(name)
 	if (this.IsRangeAura(name))
 		return +this.auras[name].radius;
 	return undefined;
+};
+
+/**
+ * Return the names of any range auras - used to render their ranges.
+ */
+Auras.prototype.GetVisualAuraRangeNames = function()
+{
+	return this.GetAuraNames().filter(auraName => this.IsRangeAura(auraName));
+};
+
+Auras.prototype.GetLineTexture = function(name)
+{
+	return this.auras[name].rangeOverlay ? this.auras[name].rangeOverlay.lineTexture : "outline_border.png";
+};
+
+Auras.prototype.GetLineTextureMask = function(name)
+{
+	return this.auras[name].rangeOverlay ? this.auras[name].rangeOverlay.lineTextureMask : "outline_border_mask.png";
+};
+
+Auras.prototype.GetLineThickness = function(name)
+{
+	return this.auras[name].rangeOverlay ? this.auras[name].rangeOverlay.lineThickness : 0.2;
 };
 
 Auras.prototype.GetClasses = function(name)

@@ -488,7 +488,8 @@ m.HQ.prototype.configFirstBase = function(gameState)
 	if (startingWood < 6000)
 	{
 		this.saveResources = true;
-		this.Config.Economy.popForTown = 40; // Switch to town phase as soon as possible to be able to expand
+		this.Config.Economy.popForTown = Math.floor(0.75 * this.Config.Economy.popForTown); // Switch to town phase sooner to be able to expand
+
 		if (startingWood < 2000 && this.needFarm)
 		{
 			this.needCorral = true;

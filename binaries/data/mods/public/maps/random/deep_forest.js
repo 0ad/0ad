@@ -160,7 +160,7 @@ for (var i = 0; i < maxI; i++)
 		while (targetReached == false && tries < 2*mapSize)
 		{
 			var placer = new ClumpPlacer(pathWidth, 1, 1, 1, x, z);
-			var painter = [new TerrainPainter(terrainPath), new ElevationPainter(-randFloat()), paintClass(clPath)];
+			var painter = [new TerrainPainter(terrainPath), new ElevationPainter(randFloat(-1, 0)), paintClass(clPath)];
 			createArea(placer, painter, avoidClasses(clHill, 0, clBaseResource, 4));
 			// addToClass(x, z, clPath); // Not needed...
 			// Set vars for next loop
@@ -198,7 +198,7 @@ for (var i=0; i < numPlayers; i++)
 		var placeZ = round(mapCenterX + resourceRadius*sin(playerAngle[i] + (rIndex+1)*angleDist/(resourcePerPlayer.length+1)));
 		placeObject(placeX, placeZ, resourcePerPlayer[rIndex], 0, randFloat(0, 2*PI));
 		var placer = new ClumpPlacer(40, 1/2, 1/8, 1, placeX, placeZ);
-		var painter = [new LayeredPainter([terrainHillBorder, terrainHill], [1]), new ElevationPainter(1+randFloat()), paintClass(clHill)];
+		var painter = [new LayeredPainter([terrainHillBorder, terrainHill], [1]), new ElevationPainter(randFloat(1, 2)), paintClass(clHill)];
 		createArea(placer, painter);
 	}
 }
@@ -208,7 +208,7 @@ RMS.SetProgress(60);
 // Place eyecandy
 placeObject(mapCenterX, mapCenterZ, templateEC, 0, randFloat(0, 2*PI));
 var placer = new ClumpPlacer(radiusEC*radiusEC, 1/2, 1/8, 1, mapCenterX, mapCenterZ);
-var painter = [new LayeredPainter([terrainHillBorder, terrainHill], [radiusEC/4]), new ElevationPainter(1+randFloat()), paintClass(clHill)];
+var painter = [new LayeredPainter([terrainHillBorder, terrainHill], [radiusEC/4]), new ElevationPainter(randFloat(1, 2)), paintClass(clHill)];
 createArea(placer, painter);
 
 // Woods and general hight map
@@ -228,16 +228,16 @@ for (var x = 0; x < mapSize; x++)
 		var tDensActual = maxTreeDensity * tDensFactSL * tDensFactRad * tDensFactEC;
 		if (randBool(tDensActual) && radius < playableMapRadius)
 		{
-			if (tDensActual < bushChance*randFloat()*maxTreeDensity)
+			if (tDensActual < randFloat(0, bushChance * maxTreeDensity))
 			{
 				var placer = new ClumpPlacer(1, 1.0, 1.0, 1, x, z);
-				var painter = [new TerrainPainter(terrainWoodBorder), new ElevationPainter(randFloat()), paintClass(clForest)];
+				var painter = [new TerrainPainter(terrainWoodBorder), new ElevationPainter(randFloat(0, 1)), paintClass(clForest)];
 				createArea(placer, painter, avoidClasses(clPath, 1, clHill, 0));
 			}
 			else
 			{
 				var placer = new ClumpPlacer(1, 1.0, 1.0, 1, x, z);
-				var painter = [new TerrainPainter(terrainWood), new ElevationPainter(randFloat()), paintClass(clForest)];
+				var painter = [new TerrainPainter(terrainWood), new ElevationPainter(randFloat(0, 1)), paintClass(clForest)];
 				createArea(placer, painter, avoidClasses(clPath, 2, clHill, 1));
 			}
 		}

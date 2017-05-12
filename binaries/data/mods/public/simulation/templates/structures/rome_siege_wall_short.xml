@@ -36,6 +36,10 @@
     <Tooltip>A wooden and turf palisade buildable in enemy and neutral territories.</Tooltip>
     <History>Quick building, but expensive wooden and earthen walls used to surround and siege an enemy town or fortified position. The most famous examples are the Roman sieges of the Iberian stronghold of Numantia and the Gallic stronghold of Alesia.</History>
   </Identity>
+  <Loot>
+    <wood>15</wood>
+    <stone>0</stone>
+  </Loot>
   <Obstruction>
     <Static width="13.0" depth="5.0"/>
   </Obstruction>

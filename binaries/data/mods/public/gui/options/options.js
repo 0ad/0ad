@@ -131,8 +131,56 @@ function setupControl(option, i, category)
 		control.checked = checked;
 		control.onPress = onUpdate;
 		break;
+	case "slider":
+		control = Engine.GetGUIObjectByName(category + "Slider[" + i + "]");
+		let value;
+		let callbackFunction;
+		let minvalue;
+		let maxvalue;
+
+		for (let param in option.parameters)
+		{
+			switch (param)
+			{
+			case "config":
+				value = +Engine.ConfigDB_GetValue("user", key);
+				break;
+			case "function":
+				if (Engine[option.parameters.function])
+					callbackFunction = option.parameters.function;
+				break;
+			case "min":
+				minvalue = +option.parameters.min;
+				break;
+			case "max":
+				maxvalue = +option.parameters.max;
+				break;
+			default:
+				warn("Unknown option source type '" + param + "'");
+			}
+		}
+
+		onUpdate = function(key, callbackFunction, minvalue, maxvalue)
+		{
+			return function()
+			{
+				if (Engine.ConfigDB_GetValue("user", key) === this.value)
+					return;
+				Engine.ConfigDB_CreateValue("user", key, this.value);
+				Engine.ConfigDB_SetChanges("user", true);
+				if (callbackFunction)
+					Engine[callbackFunction](+this.value);
+				updateOptionPanel();
+				control.tooltip = this.value;
+			};
+		}(key, callbackFunction, minvalue, maxvalue);
+
+		control.value = value;
+		control.max_value = maxvalue;
+		control.min_value = minvalue;
+		control.onValueChange = onUpdate;
+		break;
 	case "number":
-		// TODO: Slider
 	case "string":
 		control = Engine.GetGUIObjectByName(category + "Input[" + i + "]");
 		let caption;
@@ -197,10 +245,7 @@ function setupControl(option, i, category)
 			switch (param)
 			{
 			case "config":
-				let val = +Engine.ConfigDB_GetValue("user", key);
-				if (key === "materialmgr.quality")
-					val = val > 5 ? 2 : val > 2 ? 1 : 0;
-				control.selected = val;
+				control.selected = +Engine.ConfigDB_GetValue("user", key);
 				break;
 			case "list":
 				control.list = option.parameters.list.map(e => translate(e));
@@ -217,10 +262,7 @@ function setupControl(option, i, category)
 		{
 			return function()
 			{
-				let val = this.selected;
-				if (key === "materialmgr.quality")
-					val = val == 0 ? 2 : val == 1 ? 5 : 8;
-				Engine.ConfigDB_CreateValue("user", key, val);
+				Engine.ConfigDB_CreateValue("user", key, this.selected);
 				Engine.ConfigDB_SetChanges("user", true);
 				updateOptionPanel();
 			};
@@ -310,7 +352,7 @@ function revertChanges()
 		// and the possible function calls (which are of number or string types)
 		if (control.parameters.function)
 		{
-			if (control.type !== "string" && control.type !== "number")
+			if (control.type !== "string" && control.type !== "number" && control.type !== "slider")
 			{
 				warn("Invalid type option " + control.type + " defined with function for " + item + ": will not be reverted");
 				continue;

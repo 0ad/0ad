@@ -8,13 +8,13 @@
 # Omar Anwar <omaraglan91@yahoo.com>, 2017
 # Rayan <nitro361@gmail.com>, 2015
 # Safa Alfulaij <safa1996alfulaij@gmail.com>, 2014
-# صفا الفليج <safaalfulaij@hotmail.com>, 2015
+# صفا الفليج <safaalfulaij@hotmail.com>, 2015,2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-03-06 09:29+0100\n"
-"PO-Revision-Date: 2017-03-15 10:18+0000\n"
-"Last-Translator: Omar Anwar <omaraglan91@yahoo.com>\n"
+"PO-Revision-Date: 2017-04-28 08:14+0000\n"
+"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -73,7 +73,7 @@ msgid ""
 " traditional RTS games. There are currently a lot of missing features and "
 "poorly-balanced stats – you will probably have to wait until a beta release "
 "for it to work well."
-msgstr "[font=\"sans-14\"]يجب أن يكون التحكم واللعب يكون معتاد عند لاعبي العاب RTS التقليدية. هناك حاليا الكثير من الميزات المفقودة واحصائيات سيئة متوازنة - سيكون عليك على الأرجح إلى الانتظار حتى إصدار بيتا من أجل أن تلعب بشكل جيد."
+msgstr "[font=\"sans-14\"]يجب أن يكون التحكم واللعب معتاد عند لاعبي العاب RTS التقليدية. هناك حاليا الكثير من الميزات المفقودة واحصائيات -سيئة متوازنة – سيكون عليك على الأرجح الانتظار حتى إصدار بيتا من أجل أن تلعب بشكل جيد."
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
@@ -607,42 +607,42 @@ msgid ""
 "many players as possible. When you enable automatic feedback, we'll receive "
 "data to help us understand the hardware we should focus on supporting, and "
 "to identify performance problems we should fix."
-msgstr "كلعبة حرة، ومفتوحة المصدر، ليس لدينا الموارد لاختبار على مجموعة واسعة من أنظمة، لكننا نريد لتقديم أفضل تجربة نوعية لأكبر عدد من اللاعبين ممكن. عند تمكين الابلاغ التلقائي، سنقوم استقبال البيانات لمساعدتنا في فهم الأجهزة يتعين علينا أن نركز على الدعم، والتعرف على مشاكل الأداء التي علينا إصلاحها."
+msgstr "باعتبارها لعبة حرّة ومفتوحة المصدر، ليس لدينا الموارد الكافية لاختبارها على مختلف الأنظمة، إلّا أنّنا نريد تقديم أفضل تجربة نوعيّة لأكبر عدد ممكن من اللاعبين. عندما تفعّل التّغذية الاسترجاعيّة الآليّة، فسنستقبل بعض البيانات التي تساعدنا على معرفة الأجهزة التي علينا التّركيز على دعمها، والتّعرّف على مشاكل الأداء التي علينا إصلاحها."
 
 #: gui/manual/userreport.txt:3
 msgid "The following data will be sent to our server:"
-msgstr "سيتم إرسال البيانات التالية إلى خادمنا:"
+msgstr "ستُرسل البيانات الآتية إلى خادومنا:"
 
 #: gui/manual/userreport.txt:5
 msgid ""
 "• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
 "~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports "
 "from the same user."
-msgstr "• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, ~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports from the same user."
+msgstr "• معرّف عشوائيّ للمستخدم (مخزّن في ‎%APPDATA%\\0ad\\config\\user.cfg على وندوز، و ‎~/.config/0ad/config/user.cfg على يونكس)، وذلك لنصنّف التّقارير الآتية من نفس المستخدم."
 
 #: gui/manual/userreport.txt:6
 msgid ""
 "• Game version number and basic build settings (optimisation mode, CPU "
 "architecture, timestamp, compiler version)."
-msgstr "• رقم الإصدار لعبة وإعدادات الإنشاء الأساسية (الوضع الأمثل، والهندسة المعمارية للمعالج، والطابع الزمني، الإصدار المترجم)."
+msgstr "• رقم إصدارة اللعبة وإعدادات البناء الأساسيّة (وضع التّحسين، ومعماريّة المعالج، والطّابع الزّمني وإصدارة المصرّف)."
 
 #: gui/manual/userreport.txt:7
 msgid ""
 "• Hardware details: OS version, graphics driver version, OpenGL "
 "capabilities, screen size, CPU details, RAM size."
-msgstr "• تفاصيل العتاد: إصدار نظام التشغيل، إصدار تعريف الرسوميات، وقدرات برنامج OpenGL، وحجم الشاشة وتفاصيل المعالج، وحجم ذاكرة الوصول العشوائي."
+msgstr "• تفاصيل العتاد: إصدارة نظام التّشغيل، وإصدارة مشغّل الرّسوميّات، وإمكانيّات «أوپن‌جي‌إل»، ومقاس الشّاشة، وتفاصيل عن المعالج وحجم الذّاكرة العشوائيّة."
 
 #: gui/manual/userreport.txt:8
 msgid ""
 "• Performance details: a snapshot of timing data a few seconds after you "
 "start a match or change graphics settings."
-msgstr "• تفاصيل الأداء: لقطة من توقيت بيانات بضع ثوان بعد بداية المباراة أو تغيير إعدادات الرسومات."
+msgstr "• تفاصيل الأداء: لقطة من بيانات التّوقيت بعد بضع ثوان من بداية أوّل مبارزة أو تغيير إعدادات الرّسوميّات."
 
 #: gui/manual/userreport.txt:10
 msgid ""
 "The data will only be a few kilobytes each time you run the game, so "
 "bandwidth usage is minimal."
-msgstr "سوف تكون البيانات سوى بضع كيلو بايت في كل مرة تقوم بتشغيل اللعبة، استخدام الشبكة للحد الادنى."
+msgstr "لن تكون البيانات سوى بضعة كيلوبايتات في كلّ مرّة تشغّل فيها اللعبة، ما يعني أنّ استخدام الشّبكة سيكون أقلّ ما يمكن."
 
 #: gui/manual/userreport.txt:12
 msgid ""
@@ -651,4 +651,4 @@ msgid ""
 "questions. We will store the IP address that submitted the data, to help "
 "detect abuse of the service, but will not publish it. The published data can"
 " be seen at http://feedback.wildfiregames.com/"
-msgstr "سنقوم بتخزين البيانات المقدمة على الخادم لدينا، وقد ننشر إحصاءات أو تفاصيل ليست لتعريف المستخدم لمساعدة مطوري اللعبة الاخرين مع أسئلة مماثلة. سنقوم بتخزين عنوان IP الذي قدم البيانات، للمساعدة في الكشف إساءة لاستعمال الخدمة، ولكن لن نشرها. يمكن رؤية البيانات المنشورة في http://feedback.wildfiregames.com/"
+msgstr "سنخزّن البيانات المستلمة على خادومنا، وقد ننشر الإحصائيّات أو البيانات (حيث لا يُعرف منها المستخدمون) لمساعدة مطوّري بقيّة الألعاب الذين يواجهون نفس المشاكل. سنخزّن عنوان IP الذي استقبلنا منه البيانات، ما يساعد في معرفة أيّة إساءة للخدمة، إلّا أنّنا لن ننشرها. يمكن مشاهدة البيانات المنشورة على http://feedback.wildfiregames.com/‎"

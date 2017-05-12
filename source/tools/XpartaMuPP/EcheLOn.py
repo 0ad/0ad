@@ -126,7 +126,7 @@ class LeaderboardList():
             'treasuresCollected', 'lootCollected', 'tributesSent', 'tributesReceived'}
     unitsStats = {'totalUnitsTrained', 'totalUnitsLost', 'enemytotalUnitsKilled', 'infantryUnitsTrained',
             'infantryUnitsLost', 'enemyInfantryUnitsKilled', 'workerUnitsTrained', 'workerUnitsLost',
-            'enemyWorkerUnitsKilled', 'femaleUnitsTrained', 'femaleUnitsLost', 'enemyFemaleUnitsKilled',
+            'enemyWorkerUnitsKilled', 'femaleCitizenUnitsTrained', 'femaleCitizenUnitsLost', 'enemyFemaleCitizenUnitsKilled',
             'cavalryUnitsTrained', 'cavalryUnitsLost', 'enemyCavalryUnitsKilled', 'championUnitsTrained',
             'championUnitsLost', 'enemyChampionUnitsKilled', 'heroUnitsTrained', 'heroUnitsLost',
             'enemyHeroUnitsKilled', 'shipUnitsTrained', 'shipUnitsLost', 'enemyShipUnitsKilled', 'traderUnitsTrained',

@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -95,7 +95,7 @@ class CCamera
 		void LookAt(const CVector3D& camera, const CVector3D& orientation, const CVector3D& up);
 
 		// Build an orientation matrix from camera position, camera orientation, and up-vector
-		void LookAlong(CVector3D camera, CVector3D focus, CVector3D up);
+		void LookAlong(const CVector3D& camera, CVector3D focus, CVector3D up);
 
 		/**
 		 * Render: Renders the camera's frustum in world space.

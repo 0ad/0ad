@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-04-10 09:06+0200\n"
-"PO-Revision-Date: 2017-04-10 10:10+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-04-28 09:01+0200\n"
+"PO-Revision-Date: 2017-04-28 20:08+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -158,123 +158,123 @@ msgstr "A kiválasztott bejegyzés törlése ezzel: %(hotkey)s."
 msgid "Hold %(hotkey)s to delete without confirmation."
 msgstr "Tartsd lenyomva a megerősítés nélküli törléshez: %(hotkey)s."
 
-#: gui/common/gamedescription.js:13
+#: gui/common/gamedescription.js:29
 msgid "A randomly selected map."
 msgstr "Véletlenszerűen választott térkép."
 
-#: gui/common/gamedescription.js:20 gui/common/gamedescription.js:291
+#: gui/common/gamedescription.js:36 gui/common/gamedescription.js:310
 msgid "Sorry, no description available."
 msgstr "Sajnos nem érhető el leírás."
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:70
+#: gui/common/gamedescription.js:86
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
 msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:73
+#: gui/common/gamedescription.js:89
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
 msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:79
+#: gui/common/gamedescription.js:95
 #, javascript-format
 msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
 msgstr "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:82
+#: gui/common/gamedescription.js:98
 #, javascript-format
 msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
 msgstr "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:92
+#: gui/common/gamedescription.js:108
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
 msgstr "%(playerName)s (Nem elérhető)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:95
+#: gui/common/gamedescription.js:111
 #, javascript-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
 msgstr "%(playerName)s (Nem elérhető, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:102
+#: gui/common/gamedescription.js:118
 #, javascript-format
 msgid "%(playerName)s (%(civ)s)"
 msgstr "%(playerName)s (%(civ)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:105
+#: gui/common/gamedescription.js:121
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(state)s)"
 msgstr "%(playerName)s (%(civ)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:109
+#: gui/common/gamedescription.js:125
 #, javascript-format
 msgid "%(playerName)s"
 msgstr "%(playerName)s"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:112
+#: gui/common/gamedescription.js:128
 #, javascript-format
 msgid "%(playerName)s (%(state)s)"
 msgstr "%(playerName)s (%(state)s)"
 
-#: gui/common/gamedescription.js:130
+#: gui/common/gamedescription.js:149
 msgid "Unknown Civilization"
 msgstr "Ismeretlen civilizáció"
 
-#: gui/common/gamedescription.js:137
+#: gui/common/gamedescription.js:156
 msgctxt "playerstate"
 msgid "defeated"
 msgstr "legyőzve"
 
-#: gui/common/gamedescription.js:138
+#: gui/common/gamedescription.js:157
 msgctxt "playerstate"
 msgid "won"
 msgstr "győzött"
 
-#: gui/common/gamedescription.js:160
+#: gui/common/gamedescription.js:179
 msgid "No Team"
 msgstr "Nincs csapat"
 
-#: gui/common/gamedescription.js:161
+#: gui/common/gamedescription.js:180
 #, javascript-format
 msgid "Team %(team)s"
 msgstr "%(team)s csapat"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or savegame menu or lobby
-#: gui/common/gamedescription.js:164 gui/common/gamedescription.js:171
+#: gui/common/gamedescription.js:183 gui/common/gamedescription.js:190
 #, javascript-format
 msgid ""
 "%(team)s:\n"
 "%(playerDescriptions)s"
 msgstr "%(team)s:\n%(playerDescriptions)s"
 
-#: gui/common/gamedescription.js:172
+#: gui/common/gamedescription.js:191
 msgid "Observer"
 msgid_plural "Observers"
 msgstr[0] "Megfigyelő"
 msgstr[1] "Megfigyelők"
 
-#: gui/common/gamedescription.js:194
+#: gui/common/gamedescription.js:213
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
@@ -282,124 +282,124 @@ msgid_plural "Wonder (%(min)s minutes)"
 msgstr[0] "Csoda (%(min)s perc)"
 msgstr[1] "Csoda (%(min)s perc)"
 
-#: gui/common/gamedescription.js:205
+#: gui/common/gamedescription.js:224
 #, javascript-format
 msgctxt "victory condition"
 msgid "Capture The Relic (%(min)s minute)"
 msgid_plural "Capture The Relic (%(min)s minutes)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Szerezd meg az ereklyéket (%(min)s perc)"
+msgstr[1] "Szerezd meg az ereklyéket (%(min)s perc)"
 
-#: gui/common/gamedescription.js:223
+#: gui/common/gamedescription.js:242
 msgid "Rated game"
 msgstr "Pontozott játék"
 
-#: gui/common/gamedescription.js:224
+#: gui/common/gamedescription.js:243
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr "Amikor kiderül, hogy ki a meccs győztese, akkor a váró pontszám módosulni fog."
 
-#: gui/common/gamedescription.js:229
+#: gui/common/gamedescription.js:248
 msgid "Locked Teams"
 msgstr "Zárolt csapatok"
 
-#: gui/common/gamedescription.js:230
+#: gui/common/gamedescription.js:249
 msgid "Players can't change the initial teams."
 msgstr "A játékosok nem változtathatják meg a kezdeti csapatukat."
 
-#: gui/common/gamedescription.js:234
+#: gui/common/gamedescription.js:253
 msgid "Diplomacy"
 msgstr "Diplomácia"
 
-#: gui/common/gamedescription.js:235
+#: gui/common/gamedescription.js:254
 msgid "Players can make alliances and declare war on allies."
 msgstr "A játékosok szövetségre léphetnek, és hadat üzenhetnek szövetségeseiknek."
 
-#: gui/common/gamedescription.js:240
+#: gui/common/gamedescription.js:259
 msgid "Last Man Standing"
 msgstr "Utolsó emberig"
 
-#: gui/common/gamedescription.js:241
+#: gui/common/gamedescription.js:260
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
 msgstr "Csak egy játékos nyerheti meg a játékot. Ha a megmaradt játékosok szövetségesek, akkor a játék addig folytatódik, amíg csak egy marad."
 
-#: gui/common/gamedescription.js:245
+#: gui/common/gamedescription.js:264
 msgid "Allied Victory"
 msgstr "Szövetséges győzelem"
 
-#: gui/common/gamedescription.js:246
+#: gui/common/gamedescription.js:265
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
 msgstr "Ha egy játékos nyer, akkor a szövetségesei is. Ha csak egy szövetség marad, akkor nyernek."
 
-#: gui/common/gamedescription.js:252
+#: gui/common/gamedescription.js:271
 msgid "Ceasefire"
 msgstr "Tűzszünet"
 
-#: gui/common/gamedescription.js:255 gui/pregame/mainmenu.js:91
+#: gui/common/gamedescription.js:274 gui/pregame/mainmenu.js:91
 msgid "disabled"
 msgstr "letiltva"
 
-#: gui/common/gamedescription.js:256
+#: gui/common/gamedescription.js:275
 msgid "For the first minute, enemies will stay neutral."
 msgid_plural "For the first %(min)s minutes, enemies will stay neutral."
 msgstr[0] "Az első percig az ellenségek semlegesek maradnak."
 msgstr[1] "Az első %(min)s percig az ellenségek semlegesek maradnak."
 
-#: gui/common/gamedescription.js:264
+#: gui/common/gamedescription.js:283
 msgid "Map Name"
 msgstr "Térkép neve"
 
-#: gui/common/gamedescription.js:269
+#: gui/common/gamedescription.js:288
 msgid "Map Type"
 msgstr "Térkép típusa"
 
-#: gui/common/gamedescription.js:278
+#: gui/common/gamedescription.js:297
 msgid "Map Size"
 msgstr "Térkép mérete"
 
-#: gui/common/gamedescription.js:285
+#: gui/common/gamedescription.js:304
 msgid "Map Description"
 msgstr "Térkép leírása"
 
-#: gui/common/gamedescription.js:288
+#: gui/common/gamedescription.js:307
 msgid "Randomly selects a map from the list"
 msgstr "Véletlenszerűen választ a listán szereplő térképekből"
 
-#: gui/common/gamedescription.js:297
+#: gui/common/gamedescription.js:316
 msgid "Starting Resources"
 msgstr "Kezdő nyersanyagok"
 
-#: gui/common/gamedescription.js:298
+#: gui/common/gamedescription.js:317
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
-#: gui/common/gamedescription.js:308
+#: gui/common/gamedescription.js:327
 msgid "Population Limit"
 msgstr "Népességhatár"
 
-#: gui/common/gamedescription.js:316
+#: gui/common/gamedescription.js:335
 msgid "Disable Treasure"
 msgstr "Kincsek letiltása"
 
-#: gui/common/gamedescription.js:321
+#: gui/common/gamedescription.js:340
 msgid "Revealed Map"
 msgstr "Felderített térkép"
 
-#: gui/common/gamedescription.js:326
+#: gui/common/gamedescription.js:345
 msgid "Explored Map"
 msgstr "Felfedezett térkép"
 
-#: gui/common/gamedescription.js:331
+#: gui/common/gamedescription.js:350
 msgid "Cheats"
 msgstr "Csalások"
 
-#: gui/common/gamedescription.js:336 gui/common/tooltips.js:86
+#: gui/common/gamedescription.js:355 gui/common/tooltips.js:86
 #: gui/common/tooltips.js:141 gui/common/tooltips.js:182
 #: gui/common/tooltips.js:404 gui/common/tooltips.js:425
 #: gui/common/tooltips.js:707
@@ -407,21 +407,21 @@ msgstr "Csalások"
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:339
+#: gui/common/gamedescription.js:358
 msgctxt "gamesetup option"
 msgid "enabled"
 msgstr "engedélyezve"
 
-#: gui/common/gamedescription.js:340
+#: gui/common/gamedescription.js:359
 msgctxt "gamesetup option"
 msgid "disabled"
 msgstr "letiltva"
 
-#: gui/common/gamedescription.js:357
+#: gui/common/gamedescription.js:376
 msgid "Victorious"
 msgstr "Győzedelmes"
 
-#: gui/common/gamedescription.js:362
+#: gui/common/gamedescription.js:381
 msgid "Defeated"
 msgstr "Legyőzve"
 
@@ -583,8 +583,8 @@ msgstr "Nagyon nehéz"
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(min)s perc"
+msgstr[1] "%(min)s perc"
 
 #: gui/common/settings.js:173
 msgctxt "ceasefire"
@@ -696,7 +696,7 @@ msgstr "Lineáris területi sebzés"
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s"
 " (%(relativeRange)s) %(rangeUnit)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s (%(relativeRange)s) %(rangeUnit)s, %(rate)s"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 10 (+2)
 #. meters, Interval: 3 arrows / 2 seconds
@@ -705,7 +705,7 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s "
 "(%(relativeRange)s) %(rangeUnit)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s, %(rate)s"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 2 to 10
 #. meters, Interval: 3 arrows / 2 seconds
@@ -714,7 +714,7 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s"
 " %(rangeUnit)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s – %(maxRange)s %(rangeUnit)s, %(rate)s"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 10 meters,
 #. Interval: 3 arrows / 2 seconds
@@ -723,7 +723,7 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s %(rangeUnit)s, "
 "%(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s %(rangeUnit)s, %(rate)s"
 
 #: gui/common/tooltips.js:67
 #, javascript-format
@@ -747,7 +747,7 @@ msgstr "Életerő:"
 #: gui/common/tooltips.js:97
 #, javascript-format
 msgid "%(healthLabel)s %(current)s / %(max)s"
-msgstr ""
+msgstr "%(healthLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:115
 #, javascript-format
@@ -815,13 +815,13 @@ msgstr "Hatótáv:"
 #: gui/common/tooltips.js:216
 #, javascript-format
 msgid "+%(number)s"
-msgstr ""
+msgstr "+%(number)s"
 
 #. Translation: For example "0.5 to 1 meters", "1 (+1) meters" or "1 to 2 (+3)
 #. meters"
 #: gui/common/tooltips.js:220
 msgid "meters"
-msgstr ""
+msgstr "méter"
 
 #: gui/common/tooltips.js:221 gui/common/tooltips.js:610
 msgid "meter"
@@ -916,12 +916,12 @@ msgstr "%(resourceIcon)s %(rate)s"
 
 #: gui/common/tooltips.js:426
 msgid "Resource Trickle:"
-msgstr ""
+msgstr "Folyamatosan érkező nyersanyag:"
 
 #: gui/common/tooltips.js:427
 #, javascript-format
 msgid "%(resources)s / %(time)s"
-msgstr ""
+msgstr "%(resources)s / %(time)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
@@ -1105,7 +1105,7 @@ msgstr "A névtelen visszajelzés engedélyezve van."
 #: gui/pregame/mainmenu.js:128
 #, javascript-format
 msgid "Status: %(status)s."
-msgstr ""
+msgstr "Állapot: %(status)s."
 
 #: gui/pregame/mainmenu.js:152
 #, javascript-format
@@ -2053,16 +2053,16 @@ msgstr "Időtartam"
 #: gui/savedgames/load.xml:(heading):44
 msgctxt "replay"
 msgid "Map Type"
-msgstr ""
+msgstr "Térkép típusa"
 
 #: gui/savedgames/load.xml:(heading):52
 msgctxt "replay"
 msgid "Description"
-msgstr ""
+msgstr "Leírás"
 
 #: gui/savedgames/load.xml:(caption):57
 msgid "No saved games found."
-msgstr ""
+msgstr "Nincsenek mentett játékok."
 
 #: gui/savedgames/load.xml:(caption):71
 msgid "Load"
@@ -2070,7 +2070,7 @@ msgstr "Betöltés"
 
 #: gui/savedgames/load.xml:(caption):83
 msgid "Filter compatible saved games"
-msgstr ""
+msgstr "Kompatibilis mentett játék szűrése"
 
 #: gui/savedgames/load.xml:(caption):93
 msgid "Players:"
@@ -2536,6 +2536,28 @@ msgstr "Chat értesítés megjelenítése, ha egy játékos nyersanyagokkal cser
 #: gui/options/options.jsonnotificationSetting[2].label
 msgid "Barter"
 msgstr "Cserekereskedelem"
+
+#: gui/options/options.jsonnotificationSetting[3].parameters.list[0]
+msgid "Disable"
+msgstr "Letiltás"
+
+#: gui/options/options.jsonnotificationSetting[3].parameters.list[1]
+msgid "Completed"
+msgstr "Befejezve"
+
+#: gui/options/options.jsonnotificationSetting[3].parameters.list[2]
+msgid "All displayed"
+msgstr "Összes megjelenítve"
+
+#: gui/options/options.jsonnotificationSetting[3].tooltip
+msgid ""
+"Show a chat notification if you or an ally have started, aborted or "
+"completed a new phase, and phases of all players in observer mode"
+msgstr ""
+
+#: gui/options/options.jsonnotificationSetting[3].label
+msgid "Phase"
+msgstr "Szakasz"
 
 #: gui/options/options.jsongraphicsSetting[0].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)"

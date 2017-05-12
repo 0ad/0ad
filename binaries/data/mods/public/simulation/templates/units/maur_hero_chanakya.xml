@@ -5,7 +5,10 @@
     <Pierce>8.0</Pierce>
     <Crush>4.0</Crush>
   </Armour>
-  <Auras datatype="tokens">hero_garrison maur_hero_chanakya</Auras>
+  <Auras datatype="tokens">
+    units/heroes/hero_garrison
+    units/heroes/maur_hero_chanakya
+  </Auras>
   <Cost>
     <Population>2</Population>
     <BuildTime>60</BuildTime>

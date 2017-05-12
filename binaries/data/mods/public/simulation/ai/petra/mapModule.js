@@ -44,7 +44,7 @@ m.createObstructionMap = function(gameState, accessIndex, template)
 
 	for (let k = 0; k < territoryMap.data.length; ++k)
 	{
-		let tilePlayer = (territoryMap.data[k] & m.TERRITORY_PLAYER_MASK);
+		let tilePlayer = territoryMap.data[k] & m.TERRITORY_PLAYER_MASK;
 		let isConnected = (territoryMap.data[k] & m.TERRITORY_BLINKING_MASK) == 0;
 		if (tilePlayer === PlayerID)
 		{
@@ -68,7 +68,7 @@ m.createObstructionMap = function(gameState, accessIndex, template)
 		}
 
 		let x = ratio * (k % territoryMap.width);
-		let y = ratio * (Math.floor(k / territoryMap.width));
+		let y = ratio * Math.floor(k / territoryMap.width);
 		for (let ix = 0; ix < ratio; ++ix)
 		{
 			for (let iy = 0; iy < ratio; ++iy)

@@ -3,7 +3,7 @@
 	"description": "By means of trading and travelling people explored beyond the boundaries of their lands and drew maps of it in order to share and memorize their discoveries.",
 	"cost": {"food": 100, "wood": 0, "stone": 0, "metal": 100},
 	"requirements": {"tech": "phase_village"},
-	"icon": "shared_los.png",
+	"icon": "dove.png",
 	"researchTime": 40,
 	"tooltip": "See what your allies see, browse their summary and check their resources and population count in the top panel.",
 	"modifications": [{"value": "Player/sharedLos", "replace": true}],

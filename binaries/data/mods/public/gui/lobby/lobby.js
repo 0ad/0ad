@@ -53,6 +53,12 @@ const g_PlayerStatuses = {
 	"unknown":   { "color": "178 178 178", "status": translateWithContext("lobby presence", "Unknown") }
 };
 
+const g_RoleNames = {
+	"moderator": translate("Moderator"),
+	"participant": translate("Player"),
+	"visitor": translate("Muted Player")
+};
+
 /**
  * Color for error messages in the chat.
  */
@@ -67,6 +73,11 @@ const g_PrivateMessageColor = "0 150 0";
  * Used for highlighting the sender of chat messages.
  */
 const g_SenderFont = "sans-bold-13";
+
+/**
+ * Color to highlight chat commands in the explanation.
+ */
+const g_ChatCommandColor = "200 200 255";
 
 /**
  * All chat messages received since init (i.e. after lobby join and after returning from a game).
@@ -127,8 +138,11 @@ var g_NetMessageTypes = {
 			updateLeaderboard();
 			updatePlayerList();
 
-			for (let button of ["host", "leaderboard", "userprofile"])
+			Engine.GetGUIObjectByName("chatInput").hidden = true;
+
+			for (let button of ["host", "leaderboard", "userprofile", "toggleBuddy"])
 				Engine.GetGUIObjectByName(button + "Button").enabled = false;
+			Engine.GetGUIObjectByName("chatInput").hidden = true;
 
 			if (!g_Kicked)
 				addChatMessage({
@@ -154,7 +168,6 @@ var g_NetMessageTypes = {
 				}),
 				"isSpecial": true
 			});
-			Engine.SendGetRatingList();
 		},
 		"leave": msg => {
 			addChatMessage({
@@ -168,6 +181,40 @@ var g_NetMessageTypes = {
 				Engine.DisconnectXmppClient();
 		},
 		"presence": msg => {
+		},
+		"role": msg => {
+			Engine.GetGUIObjectByName("chatInput").hidden = Engine.LobbyGetPlayerRole(g_Username) == "visitor";
+
+			let me = g_Username == msg.text;
+			let role = Engine.LobbyGetPlayerRole(msg.text);
+			let txt =
+				role == "visitor" ?
+					me ?
+						translate("You have been muted.") :
+						translate("%(nick)s has been muted.") :
+				role == "moderator" ?
+					me ?
+						translate("You are now a moderator.") :
+						translate("%(nick)s is now a moderator.") :
+				msg.data == "visitor" ?
+					me ?
+						translate("You have been unmuted.") :
+						translate("%(nick)s has been unmuted.") :
+					me ?
+						translate("You are not a moderator anymore.") :
+						translate("%(nick)s is not a moderator anymore.");
+
+			addChatMessage({
+				"text": "/special " + sprintf(txt, { "nick": msg.text }),
+				"isSpecial": true
+			});
+
+			// Update status information if that player is selected
+			if (g_SelectedPlayer == msg.text)
+			{
+				let playersBox = Engine.GetGUIObjectByName("playersBox");
+				playersBox.selected = playersBox.list.indexOf(g_SelectedPlayer);
+			}
 		},
 		"nick": msg => {
 			addChatMessage({
@@ -207,6 +254,85 @@ var g_NetMessageTypes = {
 		"profile": msg => updateProfile(),
 		"leaderboard": msg => updateLeaderboard(),
 		"ratinglist": msg => updatePlayerList()
+	}
+};
+
+/**
+ * Commands that can be entered by clients via chat input.
+ * A handler returns true if the user input should be sent as a chat message.
+ */
+var g_ChatCommands = {
+	"away": {
+		"description": translate("Set your state to 'Away'."),
+		"handler": args => {
+			Engine.LobbySetPlayerPresence("away");
+			return false;
+		}
+	},
+	"back": {
+		"description": translate("Set your state to 'Online'."),
+		"handler": args => {
+			Engine.LobbySetPlayerPresence("available");
+			return false;
+		}
+	},
+	"kick": {
+		"description": translate("Kick a specified user from the lobby. Usage: /kick nick reason"),
+		"handler": args => {
+			Engine.LobbyKick(args[0] || "", args[1] || "");
+			return false;
+		},
+		"moderatorOnly": true
+	},
+	"ban": {
+		"description": translate("Ban a specified user from the lobby. Usage: /ban nick reason"),
+		"handler": args => {
+			Engine.LobbyBan(args[0] || "", args[1] || "");
+			return false;
+		},
+		"moderatorOnly": true
+	},
+	"help": {
+		"description": translate("Show this help."),
+		"handler": args => {
+			let isModerator = Engine.LobbyGetPlayerRole(g_Username) == "moderator";
+			let text = translate("Chat commands:");
+			for (let command in g_ChatCommands)
+				if (!g_ChatCommands[command].moderatorOnly || isModerator)
+					// Translation: Chat command help format
+					text += "\n" + sprintf(translate("%(command)s - %(description)s"), {
+						"command": '[color="' + g_ChatCommandColor + '"]' + command + '[/color]',
+						"description": g_ChatCommands[command].description
+					});
+
+			addChatMessage({
+				"from": "system",
+				"text": text
+			});
+			return false;
+		}
+	},
+	"me": {
+		"description": translate("Send a chat message about yourself. Example: /me goes swimming."),
+		"handler": args => true
+	},
+	"say": {
+		"description": translate("Send text as a chat message (even if it starts with slash). Example: /say /help is a great command."),
+		"handler": args => true
+	},
+	"clear": {
+		"description": translate("Clear all chat scrollback."),
+		"handler": args => {
+			clearChatMessages();
+			return false;
+		}
+	},
+	"quit": {
+		"description": translate("Return to the main menu."),
+		"handler": args => {
+			returnToMainMenu();
+			return false;
+		}
 	}
 };
 
@@ -382,23 +508,34 @@ function updatePlayerList()
 	if (playersBox.selected > -1)
 		g_SelectedPlayer = playersBox.list[playersBox.selected];
 
+	let buddyStatusList = [];
 	let playerList = [];
 	let presenceList = [];
 	let nickList = [];
 	let ratingList = [];
 
-	let cleanPlayerList = Engine.GetPlayerList().sort((a, b) => {
+	let cleanPlayerList = Engine.GetPlayerList().map(player => {
+		player.isBuddy = g_Buddies.indexOf(player.name) != -1;
+		return player;
+	}).sort((a, b) => {
 		let sortA, sortB;
+		let statusOrder = Object.keys(g_PlayerStatuses);
+		let statusA = statusOrder.indexOf(a.presence) + a.name.toLowerCase();
+		let statusB = statusOrder.indexOf(b.presence) + b.name.toLowerCase();
+
 		switch (sortBy)
 		{
+		case 'buddy':
+			sortA = (a.isBuddy ? 1 : 2) + statusA;
+			sortB = (b.isBuddy ? 1 : 2) + statusB;
+			break;
 		case 'rating':
 			sortA = +a.rating;
 			sortB = +b.rating;
 			break;
 		case 'status':
-			let statusOrder = Object.keys(g_PlayerStatuses);
-			sortA = statusOrder.indexOf(a.presence);
-			sortB = statusOrder.indexOf(b.presence);
+			sortA = statusA;
+			sortB = statusB;
 			break;
 		case 'name':
 		default:
@@ -427,12 +564,14 @@ function updatePlayerList()
 		let coloredPresence = '[color="' + statusColor + '"]' + g_PlayerStatuses[presence].status + "[/color]";
 		let coloredRating = '[color="' + statusColor + '"]' + rating + "[/color]";
 
+		buddyStatusList.push(player.isBuddy ? '[color="' + statusColor + '"]' + g_BuddySymbol + '[/color]' : "");
 		playerList.push(coloredName);
 		presenceList.push(coloredPresence);
 		ratingList.push(coloredRating);
 		nickList.push(player.name);
 	}
 
+	playersBox.list_buddy = buddyStatusList;
 	playersBox.list_name = playerList;
 	playersBox.list_status = presenceList;
 	playersBox.list_rating = ratingList;
@@ -441,6 +580,32 @@ function updatePlayerList()
 	// To reduce rating-server load, only send the GUI event if the selection actually changed
 	if (playersBox.selected != playersBox.list.indexOf(g_SelectedPlayer))
 		playersBox.selected = playersBox.list.indexOf(g_SelectedPlayer);
+}
+
+/**
+* Toggle buddy state for a player in playerlist within the user config
+*/
+function toggleBuddy()
+{
+	let playerList = Engine.GetGUIObjectByName("playersBox");
+	let name = playerList.list[playerList.selected];
+
+	if (!name || name == g_Username || name.indexOf(g_BuddyListDelimiter) != -1)
+		return;
+
+	let index = g_Buddies.indexOf(name);
+	if (index != -1)
+		g_Buddies.splice(index, 1);
+	else
+		g_Buddies.push(name);
+
+	// Don't save empty strings to the config file
+	let buddies = g_Buddies.filter(nick => nick).join(g_BuddyListDelimiter) || g_BuddyListDelimiter;
+	Engine.ConfigDB_CreateValue("user", "lobby.buddies", buddies);
+	Engine.ConfigDB_WriteValueToFile("user", "lobby.buddies", buddies, "config/user.cfg");
+
+	updatePlayerList();
+	updateGameList();
 }
 
 /**
@@ -465,9 +630,7 @@ function selectGameFromPlayername(playerName)
 	for (let i = 0; i < g_GameList.length; ++i)
 		for (let player of stringifiedTeamListToPlayerData(g_GameList[i].players))
 		{
-			let result = /^(\S+)\ \(\d+\)$/g.exec(player.Name);
-			let nick = result ? result[1] : player.Name;
-
+			let nick = removeRatingFromNick(player.Name);
 			if (playerName != nick)
 				continue;
 
@@ -486,43 +649,57 @@ function selectGameFromPlayername(playerName)
 		}
 }
 
+function onPlayerListSelection()
+{
+	lookupSelectedUserProfile("playersBox");
+
+	let playerList = Engine.GetGUIObjectByName("playersBox")
+	if (playerList.selected != -1)
+		selectGameFromPlayername(playerList.list[playerList.selected]);
+}
+
+function setLeaderboardVisibility(visible)
+{
+	if (visible)
+		Engine.SendGetBoardList();
+
+	lookupSelectedUserProfile(visible ? "leaderboardBox" : "playersBox");
+	Engine.GetGUIObjectByName("leaderboard").hidden = !visible;
+	Engine.GetGUIObjectByName("fade").hidden = !visible;
+}
+
+function setUserProfileVisibility(visible)
+{
+    Engine.GetGUIObjectByName("profileFetch").hidden = !visible;
+    Engine.GetGUIObjectByName("fade").hidden = !visible;
+}
+
 /**
- * Display the profile of the selected player.
+ * Display the profile of the player in the user profile window.
+ */
+function lookupUserProfile()
+{
+	Engine.SendGetProfile(Engine.GetGUIObjectByName("fetchInput").caption);
+}
+
+/**
+ * Display the profile of the selected player in the main window.
  * Displays N/A for all stats until updateProfile is called when the stats
  * are actually received from the bot.
- *
- * @param {string} caller - From which screen is the user requesting data from?
  */
-function displayProfile(caller)
+function lookupSelectedUserProfile(guiObjectName)
 {
-	let playerList;
-
-	if (caller == "leaderboard")
-		playerList = Engine.GetGUIObjectByName("leaderboardBox");
-	else if (caller == "lobbylist")
-	{
-		playerList = Engine.GetGUIObjectByName("playersBox");
-		if (playerList.selected != -1)
-			selectGameFromPlayername(playerList.list[playerList.selected]);
-	}
-	else if (caller == "fetch")
-	{
-		Engine.SendGetProfile(Engine.GetGUIObjectByName("fetchInput").caption);
-		return;
-	}
-	else
-		return;
-
+	let playerList = Engine.GetGUIObjectByName(guiObjectName);
 	let playerName = playerList.list[playerList.selected];
-	Engine.GetGUIObjectByName("profileArea").hidden = !playerName;
+
+	Engine.GetGUIObjectByName("profileArea").hidden = !playerName && !Engine.GetGUIObjectByName("usernameText").caption;
 	if (!playerName)
 		return;
 
 	Engine.SendGetProfile(playerName);
 
-	let isModerator = Engine.LobbyGetPlayerRole(playerName) == "moderator";
-	Engine.GetGUIObjectByName("usernameText").caption = playerList.list_name[playerList.selected];
-	Engine.GetGUIObjectByName("roleText").caption = isModerator ? translate("Moderator") : translate("Player");
+	Engine.GetGUIObjectByName("usernameText").caption = playerName;
+	Engine.GetGUIObjectByName("roleText").caption = g_RoleNames[Engine.LobbyGetPlayerRole(playerName)]
 	Engine.GetGUIObjectByName("rankText").caption = translate("N/A");
 	Engine.GetGUIObjectByName("highestRatingText").caption = translate("N/A");
 	Engine.GetGUIObjectByName("totalGamesText").caption = translate("N/A");
@@ -632,7 +809,18 @@ function updateGameList()
 		g_SelectedGamePort = g_GameList[gamesBox.selected].port;
 	}
 
-	g_GameList = Engine.GetGameList().filter(game => !filterGame(game)).sort((a, b) => {
+	g_GameList = Engine.GetGameList().map(game => {
+		game.hasBuddies = 0;
+		for (let player of stringifiedTeamListToPlayerData(game.players))
+		{
+			let nick = removeRatingFromNick(player.Name);
+
+			// Sort games with playing buddies above games with spectating buddies
+			if (game.hasBuddies < 2 && g_Buddies.indexOf(nick) != -1)
+				game.hasBuddies = player.Team == "observer" ? 1 : 2;
+		}
+		return game;
+	}).filter(game => !filterGame(game)).sort((a, b) => {
 		let sortA, sortB;
 		switch (sortBy)
 		{
@@ -641,6 +829,10 @@ function updateGameList()
 		case 'mapType':
 			sortA = a[sortBy];
 			sortB = b[sortBy];
+			break;
+		case 'buddy':
+			sortA = String(b.hasBuddies) + g_GameStatusOrder.indexOf(a.state) + a.name.toLowerCase();
+			sortB = String(a.hasBuddies) + g_GameStatusOrder.indexOf(b.state) + b.name.toLowerCase();
 			break;
 		case 'mapName':
 			sortA = translate(a.niceMapName);
@@ -661,6 +853,7 @@ function updateGameList()
 		return 0;
 	});
 
+	let list_buddy = [];
 	let list_name = [];
 	let list_mapName = [];
 	let list_mapSize = [];
@@ -679,6 +872,7 @@ function updateGameList()
 		if (game.ip == g_SelectedGameIP && game.port == g_SelectedGamePort)
 			selectedGameIndex = +i;
 
+		list_buddy.push(game.hasBuddies ? '[color="' + g_GameColors[game.state] + '"]' + g_BuddySymbol + '[/color]' : "");
 		list_name.push('[color="' + g_GameColors[game.state] + '"]' + gameName);
 		list_mapName.push(translateMapTitle(game.niceMapName));
 		list_mapSize.push(translateMapSize(game.mapSize));
@@ -688,6 +882,7 @@ function updateGameList()
 		list_data.push(i);
 	}
 
+	gamesBox.list_buddy = list_buddy;
 	gamesBox.list_name = list_name;
 	gamesBox.list_mapName = list_mapName;
 	gamesBox.list_mapSize = list_mapSize;
@@ -870,7 +1065,7 @@ function submitChatInput()
 	if (!text.length)
 		return;
 
-	if (!handleSpecialCommand(text) && !isSpam(text, g_Username))
+	if (handleChatCommand(text) && !isSpam(text, g_Username))
 		Engine.LobbySendMessage(text);
 
 	input.caption = "";
@@ -880,49 +1075,41 @@ function submitChatInput()
  * Handle all '/' commands.
  *
  * @param {string} text - Text to be checked for commands.
- * @returns {boolean} true if more text processing is needed, false otherwise.
+ * @returns {boolean} true if the text should be sent via chat.
  */
-function handleSpecialCommand(text)
+function handleChatCommand(text)
 {
 	if (text[0] != '/')
-		return false;
+		return true;
 
 	let [cmd, args] = ircSplit(text);
-	let [nick, reason] = ircSplit("/" + args);
+	args = ircSplit("/" + args);
 
-	switch (cmd)
+	if (!g_ChatCommands[cmd])
 	{
-	case "away":
-		Engine.LobbySetPlayerPresence("away");
-		break;
-	case "back":
-		Engine.LobbySetPlayerPresence("available");
-		break;
-	case "kick":
-		Engine.LobbyKick(nick, reason);
-		break;
-	case "ban":
-		Engine.LobbyBan(nick, reason);
-		break;
-	case "quit":
-		returnToMainMenu();
-		break;
-	case "clear":
-		clearChatMessages();
-		break;
-	case "say":
-	case "me":
-		return false;
-	default:
 		addChatMessage({
 			"from": "system",
 			"text": sprintf(
-				translate("We're sorry, the '%(cmd)s' command is not supported."),
-				{ "cmd": cmd }
-			)
+				translate("The command '%(cmd)s' is not supported."), {
+					"cmd": '[color="' + g_ChatCommandColor + '"]' + cmd + '[/color]'
+				})
 		});
+		return false;
 	}
-	return true;
+
+	if (g_ChatCommands[cmd].moderatorOnly && Engine.LobbyGetPlayerRole(g_Username) != "moderator")
+	{
+		addChatMessage({
+			"from": "system",
+			"text": sprintf(
+				translate("The command '%(cmd)s' is restricted to moderators."), {
+					"cmd": '[color="' + g_ChatCommandColor + '"]' + cmd + '[/color]'
+				})
+		});
+		return false;
+	}
+
+	return g_ChatCommands[cmd].handler(args);
 }
 
 /**
@@ -985,7 +1172,7 @@ function ircFormat(msg)
 	let formattedMessage = "";
 	let coloredFrom = msg.from && colorPlayerName(msg.from);
 
-	// Handle commands allowed past handleSpecialCommand.
+	// Handle commands allowed past handleChatCommand.
 	if (msg.text[0] == '/')
 	{
 		let [command, message] = ircSplit(msg.text);

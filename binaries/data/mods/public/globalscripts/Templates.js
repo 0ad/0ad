@@ -184,19 +184,19 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources, modif
 		for (let auraID of template.Auras._string.split(/\s+/))
 		{
 			let aura = auraTemplates[auraID];
-			if (aura.auraName)
-				ret.auras[auraID] = {
+			ret.auras[auraID] = {
 					"name": aura.auraName,
-					"description": aura.auraDescription || null
+					"description": aura.auraDescription || null,
+					"radius": aura.radius || null
 				};
 		}
 	}
 
 	if (template.BuildingAI)
 		ret.buildingAI = {
-			"defaultArrowCount": getEntityValue("BuildingAI/DefaultArrowCount"),
+			"defaultArrowCount": Math.round(getEntityValue("BuildingAI/DefaultArrowCount")),
 			"garrisonArrowMultiplier": getEntityValue("BuildingAI/GarrisonArrowMultiplier"),
-			"maxArrowCount": getEntityValue("BuildingAI/MaxArrowCount")
+			"maxArrowCount": Math.round(getEntityValue("BuildingAI/MaxArrowCount"))
 		};
 
 	if (template.BuildRestrictions)

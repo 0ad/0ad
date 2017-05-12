@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="structures/rome_temple">
-  <Auras datatype="tokens">loyalty_regen</Auras>
+  <Auras datatype="tokens">
+    structures/loyalty_regen
+  </Auras>
   <BuildRestrictions>
     <Category>UniqueBuilding</Category>
   </BuildRestrictions>

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_swordsman">
-  <Auras datatype="tokens">rome_hero_maximus</Auras>
+  <Auras datatype="tokens">
+    units/heroes/rome_hero_maximus
+  </Auras>
   <Identity>
     <Civ>rome</Civ>
     <Lang>latin</Lang>

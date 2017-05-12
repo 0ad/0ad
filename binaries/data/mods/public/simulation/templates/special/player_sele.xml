@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="special/player">
-  <Auras datatype="tokens">teambonuses/sele_player_teambonus</Auras>
+  <Auras datatype="tokens">
+    teambonuses/sele_player_teambonus
+  </Auras>
   <EntityLimits>
     <LimitRemovers>
       <CivilCentre>

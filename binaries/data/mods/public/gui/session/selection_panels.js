@@ -133,15 +133,11 @@ g_SelectionPanels.Command = {
 
 		for (let command in g_EntityCommands)
 		{
-			for (let state of unitEntStates)
+			let info = g_EntityCommands[command].getInfo(unitEntStates);
+			if (info)
 			{
-				let info = g_EntityCommands[command].getInfo(state);
-				if (info)
-				{
-					info.name = command;
-					commands.push(info);
-					break;
-				}
+				info.name = command;
+				commands.push(info);
 			}
 		}
 		return commands;
@@ -154,7 +150,7 @@ g_SelectionPanels.Command = {
 			if (data.item.callback)
 				data.item.callback(data.item);
 			else
-				performCommand(data.unitEntStates[0], data.item.name);
+				performCommand(data.unitEntStates, data.item.name);
 		};
 
 		data.countDisplay.caption = data.item.count || "";
@@ -231,7 +227,6 @@ g_SelectionPanels.AllyCommand = {
 		size.right = size.left + size.bottom;
 		data.button.size = size;
 
-		setPanelObjectPosition(data.button, data.i, data.rowLength);
 		return true;
 	}
 };
@@ -991,9 +986,7 @@ g_SelectionPanels.Training = {
 		let [buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch] =
 			getTrainingStatus(data.playerState, data.item, data.unitEntStates.map(status => status.id));
 
-		let trainNum = buildingsCountToTrainFullBatch || 1;
-		if (Engine.HotkeyIsPressed("session.batchtrain"))
-			trainNum = buildingsCountToTrainFullBatch * fullBatchSize + remainderBatch;
+		let trainNum = buildingsCountToTrainFullBatch * fullBatchSize + remainderBatch;
 
 		let neededResources;
 		if (template.cost)
@@ -1015,7 +1008,7 @@ g_SelectionPanels.Training = {
 			getVisibleEntityClassesFormatted(template),
 			getAurasTooltip(template),
 			getEntityTooltip(template),
-			getEntityCostTooltip(template, trainNum, data.unitEntStates[0].id)
+			getEntityCostTooltip(template, data.unitEntStates[0].id, buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch)
 		];
 
 		let limits = getEntityLimitAndCount(data.playerState, data.item);

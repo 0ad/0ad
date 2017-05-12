@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-04-03 09:02+0200\n"
-"PO-Revision-Date: 2017-04-03 19:13+0000\n"
+"POT-Creation-Date: 2017-04-28 09:02+0200\n"
+"PO-Revision-Date: 2017-04-28 15:27+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -313,17 +313,17 @@ msgstr "Олень"
 msgid "African Bush Elephant"
 msgstr "Саванний слон"
 
-#: simulation/templates/gaia/fauna_elephant_african_infant.xml:14
-msgid "Elephant"
-msgstr "Слон"
-
-#: simulation/templates/gaia/fauna_elephant_african_infant.xml:15
+#: simulation/templates/gaia/fauna_elephant_african_infant.xml:4
 msgid "African Elephant (Infant)"
 msgstr "Африканський слон (немовля)"
 
 #: simulation/templates/gaia/fauna_elephant_asian.xml:11
 msgid "Asian Elephant"
 msgstr "Азійський Слон"
+
+#: simulation/templates/gaia/fauna_elephant_asian_infant.xml:4
+msgid "Asian Elephant (Infant)"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:11
 msgid "North African Elephant"
@@ -423,7 +423,7 @@ msgstr "Вівця"
 msgid "Tiger"
 msgstr "Тигр"
 
-#: simulation/templates/gaia/fauna_walrus.xml:24
+#: simulation/templates/gaia/fauna_walrus.xml:25
 msgid "Walrus"
 msgstr "Морж"
 
@@ -800,7 +800,7 @@ msgstr "Фортеця з частоколу"
 
 #: simulation/templates/other/palisades_rocks_fort.xml:7
 msgid "Wooden Tower"
-msgstr ""
+msgstr "Дерев'яна башта"
 
 #: simulation/templates/other/palisades_rocks_gate.xml:18
 msgid "Palisade Gate"
@@ -903,17 +903,17 @@ msgstr "Колонада"
 msgid "Corinthian Colonnade"
 msgstr "Коринфська колонада"
 
-#: simulation/templates/other/special_catafalque.xml:22
+#: simulation/templates/other/special_catafalque.xml:20
 msgid "Catafalque"
-msgstr ""
+msgstr "Катафалк"
+
+#: simulation/templates/other/special_catafalque.xml:23
+msgid "A catafalque that holds the remains of a great leader."
+msgstr "Катафалк, в якому знаходяться рештки великого лідера."
 
 #: simulation/templates/other/special_catafalque.xml:24
-msgid "A catafalque that holds the remains of a great leader."
-msgstr ""
-
-#: simulation/templates/other/special_catafalque.xml:25
 msgid "Relic"
-msgstr ""
+msgstr "Реліквія"
 
 #: simulation/templates/other/special_treasure_shipwreck.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:10
@@ -978,60 +978,60 @@ msgstr "Недобудований грецький храм"
 msgid "This temple is unfinished and has fallen to ruin."
 msgstr "Цей недобудований храм перетворився на руїни."
 
-#: simulation/templates/other/catafalque/athen_catafalque.xml:6
+#: simulation/templates/other/catafalque/athen_catafalque.xml:9
 msgid "Solon"
-msgstr ""
+msgstr "Солон"
 
-#: simulation/templates/other/catafalque/brit_catafalque.xml:6
+#: simulation/templates/other/catafalque/brit_catafalque.xml:9
 msgid "Cassivellaunus"
-msgstr ""
+msgstr "Кассівелаун"
 
-#: simulation/templates/other/catafalque/cart_catafalque.xml:6
+#: simulation/templates/other/catafalque/cart_catafalque.xml:8
 msgid "Hasdrubal (Quartermaster)"
-msgstr ""
+msgstr "Гасдрубал (Інтендант)"
 
-#: simulation/templates/other/catafalque/gaul_catafalque.xml:6
+#: simulation/templates/other/catafalque/gaul_catafalque.xml:9
 msgid "Ambiorix"
-msgstr ""
+msgstr "Амбіорікс"
 
-#: simulation/templates/other/catafalque/iber_catafalque.xml:6
+#: simulation/templates/other/catafalque/iber_catafalque.xml:9
 msgid "Mandonius"
-msgstr ""
+msgstr "Мандоній"
 
-#: simulation/templates/other/catafalque/mace_catafalque.xml:6
+#: simulation/templates/other/catafalque/mace_catafalque.xml:8
 msgid "Philip V"
-msgstr ""
+msgstr "Філіп V"
 
-#: simulation/templates/other/catafalque/mace_catafalque.xml:7
+#: simulation/templates/other/catafalque/mace_catafalque.xml:9
 msgid ""
 "Financial Reorganization: Allied with Rome, Philip reorganized the country's"
 " internal affairs and finances, leaving as a legacy reopened mines and a new"
 " currency. Gain a slow trickle of metal."
-msgstr ""
+msgstr "Фінансові перетворення: Будучи союзником Риму, Філіп провів реорганізацію внутрішньої та фінансової політики своєї держави, залишивши у спадок заново відкриті родовища та нову грошову одиницю. Дозволяє отримати повільний, але постійний приток запасів металу."
 
-#: simulation/templates/other/catafalque/maur_catafalque.xml:6
+#: simulation/templates/other/catafalque/maur_catafalque.xml:9
 msgid "Bindusara"
-msgstr ""
+msgstr "Біндусара"
 
-#: simulation/templates/other/catafalque/pers_catafalque.xml:6
+#: simulation/templates/other/catafalque/pers_catafalque.xml:8
 msgid "Artaxerxes II"
-msgstr ""
+msgstr "Артаксеркс ІІ"
 
-#: simulation/templates/other/catafalque/ptol_catafalque.xml:6
+#: simulation/templates/other/catafalque/ptol_catafalque.xml:8
 msgid "Ptolemy III Euergetes (Benefactor)"
-msgstr ""
+msgstr "Птолемей ІІІ Евергет (Благодійник)"
 
-#: simulation/templates/other/catafalque/rome_catafalque.xml:6
+#: simulation/templates/other/catafalque/rome_catafalque.xml:9
 msgid "Lucius Junius Brutus"
-msgstr ""
+msgstr "Луцій Юній Брут"
 
-#: simulation/templates/other/catafalque/sele_catafalque.xml:6
+#: simulation/templates/other/catafalque/sele_catafalque.xml:10
 msgid "Antiochus I Soter (Savior)"
-msgstr ""
+msgstr "Антіох I Сотер (Спаситель)"
 
-#: simulation/templates/other/catafalque/spart_catafalque.xml:6
+#: simulation/templates/other/catafalque/spart_catafalque.xml:10
 msgid "Lycurgus"
-msgstr ""
+msgstr "Лікург"
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""
@@ -1056,7 +1056,7 @@ msgstr "Гравець"
 
 #: simulation/templates/special/spy.xml:17
 msgid "Spy"
-msgstr ""
+msgstr "Шпигун"
 
 #: simulation/templates/special_units/athen_mechanical_siege_lithobolos_common.xml:5
 #: simulation/templates/special_units/mace_mechanical_siege_lithobolos_common.xml:5

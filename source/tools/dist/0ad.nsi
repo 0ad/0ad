@@ -13,6 +13,9 @@
 ;--------------------------------
 ;General
 
+  ;Properly display all languages (Installer will not work on Windows 95, 98 or ME!)
+  Unicode true
+
   ;Name and file
   Name "0 A.D."
   OutFile "${PREFIX}-win32.exe"
@@ -37,6 +40,15 @@
   !define MUI_WELCOMEFINISHPAGE_BITMAP ${CHECKOUTPATH}\build\resources\installer.bmp
   !define MUI_ICON ${CHECKOUTPATH}\build\resources\ps.ico
   !define MUI_ABORTWARNING
+  !define MUI_LANGDLL_ALLLANGUAGES
+
+;--------------------------------
+;Language Selection Dialog Settings
+
+  ;Remember the installer language
+  !define MUI_LANGDLL_REGISTRY_ROOT "HKCU" 
+  !define MUI_LANGDLL_REGISTRY_KEY "Software\0 A.D." 
+  !define MUI_LANGDLL_REGISTRY_VALUENAME "Installer Language"
 
 ;--------------------------------
 ;Pages
@@ -65,8 +77,29 @@
 
 ;--------------------------------
 ;Languages
+; Keep in sync with remove-incomplete-translations.sh
  
-  !insertmacro MUI_LANGUAGE "English"
+  !insertmacro MUI_LANGUAGE "English" ;first language is the default language
+  !insertmacro MUI_LANGUAGE "Bulgarian"
+  !insertmacro MUI_LANGUAGE "Catalan"
+  !insertmacro MUI_LANGUAGE "Czech"
+  !insertmacro MUI_LANGUAGE "Dutch"
+  !insertmacro MUI_LANGUAGE "French"
+  !insertmacro MUI_LANGUAGE "Galician"
+  !insertmacro MUI_LANGUAGE "German"
+  !insertmacro MUI_LANGUAGE "Hungarian"
+  !insertmacro MUI_LANGUAGE "Indonesian"
+  !insertmacro MUI_LANGUAGE "Italian"
+  !insertmacro MUI_LANGUAGE "Norwegian"
+  !insertmacro MUI_LANGUAGE "Polish"
+  !insertmacro MUI_LANGUAGE "Portuguese"
+  !insertmacro MUI_LANGUAGE "PortugueseBR"
+  !insertmacro MUI_LANGUAGE "Russian"
+  !insertmacro MUI_LANGUAGE "ScotsGaelic"
+  !insertmacro MUI_LANGUAGE "Slovak"
+  !insertmacro MUI_LANGUAGE "Spanish"
+  !insertmacro MUI_LANGUAGE "Swedish"
+  !insertmacro MUI_LANGUAGE "Turkish"
 
 ;--------------------------------
 ;Installer Sections
@@ -142,6 +175,8 @@ SectionEnd
 
 Function .onInit
 
+  !insertmacro MUI_LANGDLL_DISPLAY
+
   ReadRegStr $R0 SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\0 A.D." "UninstallString"
   StrCmp $R0 "" done
  
@@ -208,3 +243,12 @@ Section "Uninstall"
   DeleteRegKey /ifempty SHCTX "Software\0 A.D."
 
 SectionEnd
+
+;--------------------------------
+;Uninstaller Functions
+
+Function un.onInit
+
+  !insertmacro MUI_UNGETLANGUAGE
+
+FunctionEnd

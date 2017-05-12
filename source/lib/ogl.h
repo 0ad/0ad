@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (C) 2017 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -158,6 +158,16 @@ extern void ogl_WarnIfErrorLoc(const char *file, int line);
 #else
 # define ogl_WarnIfError() ogl_WarnIfErrorLoc(__FILE__, __LINE__)
 #endif
+
+/**
+* get a name of the error.
+*
+* useful for debug.
+*
+* @return read-only C string of unspecified length containing
+* the error's name.
+**/
+extern const char* ogl_GetErrorName(GLenum err);
 
 /**
  * ignore and reset the specified OpenGL error.

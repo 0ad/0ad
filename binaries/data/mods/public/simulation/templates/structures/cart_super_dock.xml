@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
-  <Auras datatype="tokens">cart_super_dock_repair</Auras>
+  <Auras datatype="tokens">
+    structures/cart_super_dock_repair
+  </Auras>
   <BuildRestrictions>
     <Territory>own ally neutral</Territory>
     <PlacementType>shore</PlacementType>

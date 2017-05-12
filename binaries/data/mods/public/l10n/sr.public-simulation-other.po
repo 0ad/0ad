@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Aca G. <martel.gilgames@gmail.com>, 2016
+# Aca G. <martel.gilgames@gmail.com>, 2016-2017
 # acac97 <aleksandar.cvetic97@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-27 09:03+0200\n"
-"PO-Revision-Date: 2017-03-27 09:50+0000\n"
+"POT-Creation-Date: 2017-04-28 09:02+0200\n"
+"PO-Revision-Date: 2017-04-28 16:18+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/wildfire-games/0ad/language/sr/)\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr "Покрећем масиван војни поход на %(_player_)s,
 msgid ""
 "I have set up a huge army to crush %(_player_)s. Join me and you will have "
 "your share of the loot."
-msgstr ""
+msgstr "Припремио сам огромну армију да бих срушио %(_player_)s. Придружи ми се и добићеш део плена."
 
 #: simulation/ai/petra/chatHelper.js:10
 #, javascript-format
@@ -45,26 +45,26 @@ msgstr "Управо сам послао војску на %(_player_)s."
 #: simulation/ai/petra/chatHelper.js:17
 #, javascript-format
 msgid "Let me regroup my army and I will then join you against %(_player_)s."
-msgstr ""
+msgstr "Обновићу војску и онда ти се  придружити против %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:18
 #, javascript-format
 msgid "I am finishing preparations to attack %(_player_)s."
-msgstr ""
+msgstr "Завршавам припреме за напад на %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:21
 #, javascript-format
 msgid ""
 "Sorry, I do not have enough soldiers currently; but my next attack will "
 "target %(_player_)s."
-msgstr ""
+msgstr "Опрости, тренутно немам довољно војника, али мој следећи напад биће усмерен против %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:22
 #, javascript-format
 msgid ""
 "Sorry, I still need to strengthen my army. However, I will attack "
 "%(_player_)s next."
-msgstr ""
+msgstr "Опрости, треба ми још времена за оснаживање војске. Чим будем спреман, напашћу %(_player_)s ."
 
 #: simulation/ai/petra/chatHelper.js:25
 #, javascript-format
@@ -76,19 +76,19 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:30
 #, javascript-format
 msgid "Here is a gift for you, %(_player_)s. Make good use of it."
-msgstr ""
+msgstr "Прими овај поклон, %(_player_)s. Употреби га корисно."
 
 #: simulation/ai/petra/chatHelper.js:31
 #, javascript-format
 msgid "I see you are in a bad situation, %(_player_)s. I hope this helps."
-msgstr ""
+msgstr "Видим да си у лошем положају, %(_player_)s. Надам се да ће ово помоћи."
 
 #: simulation/ai/petra/chatHelper.js:32
 #, javascript-format
 msgid ""
 "I can help you this time, %(_player_)s, but you should manage your resources"
 " more carefully in the future."
-msgstr ""
+msgstr "Могу ти помоћи овог пута, %(_player_)s, али би требао пажљивије руковати ресурсима у будућности."
 
 #: simulation/ai/petra/chatHelper.js:36
 #, javascript-format
@@ -106,7 +106,7 @@ msgstr "Био бих ефикаснији у ратним напорима, а�
 #, javascript-format
 msgid ""
 "If you can spare me some %(resource)s, I will be able to strengthen my army."
-msgstr ""
+msgstr "Ако би ми могао дати нешто %(resource)s, ја бих могао ојачати војску."
 
 #: simulation/ai/petra/chatHelper.js:42
 #, javascript-format
@@ -120,201 +120,191 @@ msgstr "Успоставио сам нову руту са %(_player_)s. Трг�
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits."
-msgstr ""
+msgstr "Нова трговачка рута је успостављена са %(_player_)s. Узми свој део профита."
 
 #: simulation/ai/petra/chatHelper.js:48
 #, javascript-format
-msgid "I am advancing to the %(phase)s."
-msgstr "Напредујем ка %(phase)s."
+msgid "%(_player_)s and I are now allies."
+msgstr "%(_player_)s и ја смо сада савезници."
 
 #: simulation/ai/petra/chatHelper.js:51
 #, javascript-format
-msgid "I have reached the %(phase)s."
-msgstr "Достигао сам %(phase)s."
-
-#: simulation/ai/petra/chatHelper.js:57
-#, javascript-format
-msgid "%(_player_)s and I are now allies."
-msgstr ""
-
-#: simulation/ai/petra/chatHelper.js:60
-#, javascript-format
 msgid "%(_player_)s and I are now neutral."
-msgstr ""
+msgstr "%(_player_)s смо сада неутрални."
 
-#: simulation/ai/petra/chatHelper.js:63
+#: simulation/ai/petra/chatHelper.js:54
 #, javascript-format
 msgid "%(_player_)s and I are now enemies."
-msgstr ""
+msgstr "%(_player_)s смо сада непријатељи."
 
-#: simulation/ai/petra/chatHelper.js:70
+#: simulation/ai/petra/chatHelper.js:61
 #, javascript-format
 msgid "I cannot accept your offer to become allies, %(_player_)s."
-msgstr ""
+msgstr "Не могу прихватити твоју понуду за  савезништвом, %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:73
+#: simulation/ai/petra/chatHelper.js:64
 #, javascript-format
 msgid ""
 "I will not be your ally, %(_player_)s. However, I will consider a neutrality"
 " pact."
-msgstr ""
+msgstr "Ја нећу бити твој савезник, %(_player_)s. Ипак, могу размотрити договор о неутралности."
 
-#: simulation/ai/petra/chatHelper.js:74
+#: simulation/ai/petra/chatHelper.js:65
 #, javascript-format
 msgid ""
 "I reject your request for alliance, %(_player_)s, but we could become "
 "neutral."
-msgstr ""
+msgstr "Одбијам твој захтев за савезништвом, %(_player_)s, али бисмо могли постати неутрални."
 
-#: simulation/ai/petra/chatHelper.js:75
+#: simulation/ai/petra/chatHelper.js:66
 #, javascript-format
 msgid "%(_player_)s, only a neutrality agreement is conceivable to me."
-msgstr ""
+msgstr "%(_player_)s, само је договор о неутралности за мене прихватљив."
 
-#: simulation/ai/petra/chatHelper.js:78
+#: simulation/ai/petra/chatHelper.js:69
 #, javascript-format
 msgid ""
 "Our previous alliance did not work out, %(_player_)s. I must decline your "
 "offer."
-msgstr ""
+msgstr "Наше предходно савезништво није најбоље испало, %(_player_)s. Морам одбити твој предлог."
 
-#: simulation/ai/petra/chatHelper.js:79
+#: simulation/ai/petra/chatHelper.js:70
 #, javascript-format
 msgid "I won’t ally you again, %(_player_)s!"
-msgstr ""
+msgstr "Нећу поново бити твој савезник, %(_player_)s!"
 
-#: simulation/ai/petra/chatHelper.js:80
+#: simulation/ai/petra/chatHelper.js:71
 #, javascript-format
 msgid "No more alliances between us, %(_player_)s!"
-msgstr ""
+msgstr "Не може поново бити савеза међу нама, %(_player_)s!"
 
-#: simulation/ai/petra/chatHelper.js:81
+#: simulation/ai/petra/chatHelper.js:72
 #, javascript-format
 msgid "Your request for peace means nothing to me anymore, %(_player_)s!"
-msgstr ""
+msgstr "Твој захтев за миром ми ништа више на значи, %(_player_)s!"
 
-#: simulation/ai/petra/chatHelper.js:82
+#: simulation/ai/petra/chatHelper.js:73
 #, javascript-format
 msgid ""
 "My answer to your repeated peace proposal will remain war, %(_player_)s!"
 msgstr ""
 
-#: simulation/ai/petra/chatHelper.js:85
+#: simulation/ai/petra/chatHelper.js:76
 #, javascript-format
 msgid ""
 "I will accept your offer to become allies, %(_player_)s. We will both "
 "benefit from this partnership."
 msgstr ""
 
-#: simulation/ai/petra/chatHelper.js:86
+#: simulation/ai/petra/chatHelper.js:77
 #, javascript-format
 msgid "An alliance between us is a good idea, %(_player_)s."
-msgstr ""
+msgstr "Савез међу нама је добра идеја, %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:87
+#: simulation/ai/petra/chatHelper.js:78
 #, javascript-format
 msgid ""
 "Let both of our people prosper from a peaceful association, %(_player_)s."
 msgstr ""
 
-#: simulation/ai/petra/chatHelper.js:88
+#: simulation/ai/petra/chatHelper.js:79
 #, javascript-format
 msgid "We have found common ground, %(_player)s. I accept the alliance."
-msgstr ""
+msgstr "Пронашли смо места за заједничку сарадњу, %(_player)s. Прихватам савез."
 
-#: simulation/ai/petra/chatHelper.js:89
+#: simulation/ai/petra/chatHelper.js:80
 #, javascript-format
 msgid "%(_player_)s, consider us allies from now on."
-msgstr ""
+msgstr "%(_player_)s, гледај на нас као на савезнике од сада па надаље."
 
-#: simulation/ai/petra/chatHelper.js:92
+#: simulation/ai/petra/chatHelper.js:83
 #, javascript-format
 msgid ""
 "I will ally with you, %(_player_)s, but only if you send me a tribute of "
 "%(_amount_)s %(_resource_)s."
 msgstr ""
 
-#: simulation/ai/petra/chatHelper.js:93
+#: simulation/ai/petra/chatHelper.js:84
 #, javascript-format
 msgid ""
 "%(_player_)s, you must send me a tribute of %(_amount_)s %(_resource_)s "
 "before I accept an alliance with you."
 msgstr ""
 
-#: simulation/ai/petra/chatHelper.js:94
+#: simulation/ai/petra/chatHelper.js:85
 #, javascript-format
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
 " %(_player_)s,"
-msgstr ""
+msgstr "Све док ми не пошаљеш %(_amount_)s %(_resource_)s, савез неће бити формиран, %(_player_)s,"
 
-#: simulation/ai/petra/chatHelper.js:97
+#: simulation/ai/petra/chatHelper.js:88
 #, javascript-format
 msgid ""
 "%(_player_)s, my offer still stands. I will ally with you only if you send "
 "me a tribute of %(_amount_)s %(_resource_)s."
 msgstr ""
 
-#: simulation/ai/petra/chatHelper.js:98
+#: simulation/ai/petra/chatHelper.js:89
 #, javascript-format
 msgid ""
 "I’m still waiting for %(_amount_)s %(_resource_)s before accepting your "
 "alliance, %(_player_)s."
-msgstr ""
+msgstr "Још увек очекујем %(_amount_)s %(_resource_)s пре него што прихватим савез, %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:99 simulation/ai/petra/chatHelper.js:120
+#: simulation/ai/petra/chatHelper.js:90 simulation/ai/petra/chatHelper.js:111
 #, javascript-format
 msgid ""
 "%(_player_)s, if you do not send me part of the %(_amount_)s %(_resource_)s "
 "tribute soon, I will break off our negotiations."
 msgstr ""
 
-#: simulation/ai/petra/chatHelper.js:104
+#: simulation/ai/petra/chatHelper.js:95
 #, javascript-format
 msgid "I will not become neutral with you, %(_player_)s."
-msgstr ""
+msgstr "Нећу постати неутралан према теби, %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:105
+#: simulation/ai/petra/chatHelper.js:96
 #, javascript-format
 msgid "%(_player_)s, I must decline your request for a neutrality pact."
-msgstr ""
+msgstr "%(_player_)s, морам одбити твој захтев за неутралношћу."
 
-#: simulation/ai/petra/chatHelper.js:108
+#: simulation/ai/petra/chatHelper.js:99
 #, javascript-format
 msgid ""
 "Our previous neutrality agreement ended in failure, %(_player_)s; I will not"
 " consider another one."
-msgstr ""
+msgstr "Наше предходно савезништво се завршило неуспешно, %(_player_)s; нећу ни размотрати понуду за новим."
 
-#: simulation/ai/petra/chatHelper.js:111
+#: simulation/ai/petra/chatHelper.js:102
 #, javascript-format
 msgid ""
 "I welcome your request for peace between our civilizations, %(_player_)s. I "
 "will accept."
 msgstr ""
 
-#: simulation/ai/petra/chatHelper.js:112
+#: simulation/ai/petra/chatHelper.js:103
 #, javascript-format
 msgid ""
 "%(_player_)s, I will accept your neutrality request. May both our "
 "civilizations benefit."
 msgstr ""
 
-#: simulation/ai/petra/chatHelper.js:115
+#: simulation/ai/petra/chatHelper.js:106
 #, javascript-format
 msgid ""
 "If you send me a tribute of %(_amount_)s %(_resource_)s, I will accept your "
 "neutrality request, %(_player_)s."
 msgstr ""
 
-#: simulation/ai/petra/chatHelper.js:116
+#: simulation/ai/petra/chatHelper.js:107
 #, javascript-format
 msgid ""
 "%(_player_)s, if you send me %(_amount_)s %(_resource_)s, I will accept a "
 "neutrality pact."
 msgstr ""
 
-#: simulation/ai/petra/chatHelper.js:119
+#: simulation/ai/petra/chatHelper.js:110
 #, javascript-format
 msgid ""
 "%(_player_)s, I will not accept your neutrality request unless you tribute "
@@ -880,26 +870,26 @@ msgstr ""
 msgid "%(category)s limit of %(limit)s reached"
 msgstr ""
 
-#: simulation/components/Player.js:263
+#: simulation/components/Player.js:277
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr ""
 
-#: simulation/components/Player.js:265
+#: simulation/components/Player.js:279
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr ""
 
-#: simulation/components/Player.js:267
+#: simulation/components/Player.js:281
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr ""
 
-#: simulation/components/Player.js:269
+#: simulation/components/Player.js:283
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "

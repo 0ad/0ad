@@ -321,6 +321,17 @@
                 ],
                 "options": {
                     "keywords": [
+                        "description"
+                    ]
+                }
+            },
+            {
+                "extractor": "json",
+                "filemasks": [
+                    "simulation/data/resources/**.json"
+                ],
+                "options": {
+                    "keywords": [
                         "name",
                         "subtypes"
                     ],

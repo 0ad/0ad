@@ -95,15 +95,7 @@
 		<object name="feedback" type="text" size="50 100%-110 100%-50 100%-50" style="ModernLabelText" textcolor="red" text_align="center"/>
 		<object name="cancel" type="button" size="18 100%-45 50%-5 100%-17" style="ModernButtonRed" hotkey="cancel">
 			<translatableAttribute id="caption">Cancel</translatableAttribute>
-			<action on="Press">
-				if (Engine.GetGUIObjectByName("pageWelcome").hidden)
-					switchPage("welcome");
-				else
-				{
-					lobbyStop();
-					Engine.PopGuiPage();
-				}
-			</action>
+			<action on="Press">prelobbyCancel();</action>
 		</object>
 		<object name="continue" hotkey="confirm" type="button" size="50%+5 100%-45 100%-18 100%-17" style="ModernButtonRed" enabled="false" hidden="true">
 			<translatableAttribute id="caption">Connect</translatableAttribute>

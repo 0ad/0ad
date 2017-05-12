@@ -94,12 +94,12 @@ var playerZ = new Array(numPlayers+1);
 var numLeftPlayers = ceil(numPlayers/2);
 for (var i = 1; i <= numLeftPlayers; i++)
 {
-	playerX[i] = 0.28 + randFloat(-0.01, 0.01);
+	playerX[i] = randFloat(0.27, 0.29);
 	playerZ[i] = (0.5+i-1)/numLeftPlayers + randFloat(-0.01, 0.01);
 }
 for (var i = numLeftPlayers+1; i <= numPlayers; i++)
 {
-	playerX[i] = 0.72 + randFloat(-0.01, 0.01);
+	playerX[i] = randFloat(0.71, 0.73);
 	playerZ[i] = (0.5+i-numLeftPlayers-1)/numLeftPlayers + randFloat(-0.01, 0.01);
 }
 
@@ -334,14 +334,14 @@ for (var ix = 0; ix < mapSize; ix++)
 			{
 				t = (diffH > 1.2) ? tGrassCliff : tGrassDry;
 				if (diffH < 0.5 && randBool(0.02))
-					placeObject(ix+randFloat(), iz+randFloat(), aGrassDry, 0, randFloat(0, TWO_PI));
+					placeObject(randFloat(ix, ix + 1), randFloat(iz, iz + 1), aGrassDry, 0, randFloat(0, 2 * PI));
 			}
 			else if (grassNoise > 0.61)
 			{
 				t = (diffH > 1.2 ? tGrassRock : tGrassShrubs);
 			}
 			else if (diffH < 0.5 && randBool(0.02))
-				placeObject(ix+randFloat(), iz+randFloat(), aGrass, 0, randFloat(0, TWO_PI));
+				placeObject(randFloat(ix, ix + 1), randFloat(iz, iz + 1), aGrass, 0, randFloat(0, 2 * PI));
 		}
 
 		placeTerrain(ix, iz, t);
@@ -501,20 +501,26 @@ RMS.SetProgress(85);
 log("Creating fish...");
 var num = scaleByMapSize(4, 16);
 var offsetX = mapSize * WATER_WIDTH/2;
-for (var i = 0; i < num; ++i)
-{
-	var cX = round(offsetX + offsetX/2 * randFloat(-1, 1));
-	var cY = round((i + 0.5) * mapSize/num);
-	group = new SimpleGroup([new SimpleObject(oFish, 1,1, 0,1)], true, clFood, cX, cY);
-	createObjectGroup(group, 0);
-}
-for (var i = 0; i < num; ++i)
-{
-	var cX = round(mapSize - offsetX + offsetX/2 * randFloat(-1, 1));
-	var cY = round((i + 0.5) * mapSize/num);
-	group = new SimpleGroup([new SimpleObject(oFish, 1,1, 0,1)], true, clFood, cX, cY);
-	createObjectGroup(group, 0);
-}
+for (let i = 0; i < num; ++i)
+	createObjectGroup(
+		new SimpleGroup(
+			[new SimpleObject(oFish, 1, 1, 0, 1)],
+			true,
+			clFood,
+			randIntInclusive(offsetX / 2, offsetX * 3/2),
+			Math.round((i + 0.5) * mapSize / num)),
+		0);
+
+for (let i = 0; i < num; ++i)
+	createObjectGroup(
+		new SimpleGroup(
+			[new SimpleObject(oFish, 1, 1, 0, 1)],
+			true,
+			clFood,
+			randIntInclusive(mapSize - offsetX * 3/2, mapSize - offsetX / 2),
+			Math.round((i + 0.5) * mapSize / num)),
+		0);
+
 RMS.SetProgress(90);
 
 log("Creating deer...");

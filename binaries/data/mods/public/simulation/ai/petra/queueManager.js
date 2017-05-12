@@ -282,7 +282,7 @@ m.QueueManager.prototype.distributeResources = function(gameState)
 			}
 			else if (this.accounts[j][res] > queueCost[res])
 			{
-				availableRes[res] += (this.accounts[j][res] - queueCost[res]);
+				availableRes[res] += this.accounts[j][res] - queueCost[res];
 				this.accounts[j][res] = queueCost[res];
 			}
 		}
@@ -421,16 +421,16 @@ m.QueueManager.prototype.checkPausedQueues = function(gameState)
 	{
 		let toBePaused = false;
 		if (gameState.ai.HQ.numActiveBase() === 0)
-			toBePaused = (q !== "dock" && q !== "civilCentre");
+			toBePaused = q !== "dock" && q !== "civilCentre";
 		else if (numWorkers < workersMin / 3)
-			toBePaused = (q !== "citizenSoldier" && q !== "villager" && q !== "emergency");
+			toBePaused = q !== "citizenSoldier" && q !== "villager" && q !== "emergency";
 		else if (numWorkers < workersMin * 2 / 3)
-			toBePaused = (q === "civilCentre" || q === "economicBuilding" ||
+			toBePaused = q === "civilCentre" || q === "economicBuilding" ||
 				q === "militaryBuilding" || q === "defenseBuilding" || q === "healer" ||
-				q === "majorTech" || q === "minorTech" || q.indexOf("plan_") !== -1);
+				q === "majorTech" || q === "minorTech" || q.indexOf("plan_") !== -1;
 		else if (numWorkers < workersMin)
-			toBePaused = (q === "civilCentre" || q === "defenseBuilding" ||
-				q == "majorTech" || q.indexOf("_siege") != -1 || q.indexOf("_champ") != -1);
+			toBePaused = q === "civilCentre" || q === "defenseBuilding" ||
+				q == "majorTech" || q.indexOf("_siege") != -1 || q.indexOf("_champ") != -1;
 
 		if (toBePaused)
 		{

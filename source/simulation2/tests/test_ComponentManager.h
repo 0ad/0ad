@@ -854,4 +854,26 @@ entities:\n\
 		TS_ASSERT(man2.DeserializeState(stateStream));
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man2.QueryInterface(ent2, IID_Test1))->GetX(), 12347);
 	}
+
+	void test_dynamic_subscription()
+	{
+		CSimContext context;
+		CComponentManager man(context, g_ScriptRuntime);
+		man.LoadComponentTypes();
+
+		entity_id_t ent1 = 1;
+		CEntityHandle hnd1 = man.AllocateEntityHandle(ent1);
+
+		CParamNode noParam;
+
+		man.AddComponent(hnd1, CID_Test1A, noParam);
+		man.AddComponent(hnd1, CID_Test2A, noParam);
+
+		man.DynamicSubscriptionNonsync(MT_RenderSubmit, man.QueryInterface(ent1, IID_Test1), true);
+		man.DynamicSubscriptionNonsync(MT_RenderSubmit, man.QueryInterface(ent1, IID_Test2), true);
+
+		man.DestroyComponentsSoon(ent1);
+		man.FlushDestroyedComponents();
+	}
+
 };

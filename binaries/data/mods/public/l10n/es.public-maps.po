@@ -8,13 +8,14 @@
 # juanda097 <juanda097@openmailbox.org>, 2014
 # Kalrish Bäakjen <kalrish.baakjen@gmail.com>, 2015
 # Luis Torrecilla <l_torrecilla@yahoo.es>, 2016
+# Mihai Pantazi <malexandru_70@hotmail.com>, 2017
 # Swyter <Swyterzone@gmail.com>, 2014-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-24 09:08+0100\n"
-"PO-Revision-Date: 2017-03-24 14:04+0000\n"
-"Last-Translator: Swyter <Swyterzone@gmail.com>\n"
+"POT-Creation-Date: 2017-04-28 09:02+0200\n"
+"PO-Revision-Date: 2017-04-29 14:18+0000\n"
+"Last-Translator: Mihai Pantazi <malexandru_70@hotmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -217,6 +218,21 @@ msgstr "Cada jugador comienza en una isla rodeada por agua. \n\nLas Cícladas so
 msgid "Cycladic Archipelago"
 msgstr "Archipiélago cicládico"
 
+#: maps/random/danubius.jsonsettings.Description
+msgid ""
+"Players start along the banks of the river Danube in the period following "
+"the expansion into Pannonia by the Celtic Boii tribe. Seeking to consolidate"
+" their hold on this land, celtic reinforcements have been sent to root out "
+"the remaining foreign cultures. Players not only have to vie for power "
+"amongst themselves, but also beat back these ruthless invaders. Ultimately, "
+"the Boii were defeated by the rising power of the Dacians, hence leading to "
+"the reemergence of the Geto-Dacian Confederation under King Burebista."
+msgstr ""
+
+#: maps/random/danubius.jsonsettings.Name
+msgid "Danubius"
+msgstr "Danubio"
+
 #: maps/random/deep_forest.jsonsettings.Description
 msgid "A deep dark forest in Germania."
 msgstr "Una profunda y oscura foresta en Germania."
@@ -349,6 +365,18 @@ msgstr "Cada jugador comienza en una zona costera situada entre boscosas colinas
 msgid "Hyrcanian Shores"
 msgstr "Orillas de Hircania"
 
+#: maps/random/india.jsonsettings.Description
+msgid ""
+"Central India just before the monsoon season - a parched land awaits the "
+"life-bringing rain which is already two months late. Due to the extended "
+"dryness and scorching heat, only the largest lake remains. The hardy trees "
+"which have survived the climate are spread out, yet not too scarce."
+msgstr ""
+
+#: maps/random/india.jsonsettings.Name
+msgid "India"
+msgstr "India"
+
 #: maps/random/island_stronghold.jsonsettings.Description
 msgid ""
 "Teams start off with nearly adjacent civic centers on a small island, "
@@ -390,7 +418,7 @@ msgid ""
 "The Italian peninsula \n"
 "\n"
 " Latium is the region of central western Italy in which the city of Rome was founded and grew to be the capital city of the Roman Empire. Latium was originally a small triangle of fertile, volcanic soil on which resided the tribe of the Latins. It was located on the left bank (east and south) of the Tiber river, extending northward to the Anio river (a left-bank tributary of the Tiber) and southeastward to the Pomptina Palus (Pontine Marshes, now the Pontine Fields) as far south as the Circeian promontory. The right bank of the Tiber was occupied by the Etruscan city of Veii, and the other borders were occupied by Italic tribes. Subsequently Rome defeated Veii and then its Italic neighbors, expanding Latium to the Apennine Mountains in the northeast and to the opposite end of the marsh in the southeast. The modern descendant, the Italian Regione of Lazio, also called Latium in Latin, and occasionally in modern English, is somewhat larger still, but not as much as double the original Latium."
-msgstr "La península itálica \n\nLazio es la región del centro occidental de Italia, aquí fue fundada la ciudad de Roma y donde creció hasta convertirse en la capital del Imperio Romano . Lazio fue originalmente un pequeño triángulo de suelo fértil y volcánico en el que residió la tribu de los latinos. Estaba situado en la orilla izquierda (sur y este) del río Tíber, que se extiende hacia el norte hasta el río Anio (afluente de la orilla izquierda del Tíber) y hacia el sureste a la Pomptina Palus (Pontinas Marismas, ahora los Campos pontina) en la medida de sur como el promontorio Circeian. La orilla derecha del Tíber fue ocupada por la ciudad etrusca de Veyes, y las otras fronteras fueron ocupadas por las tribus itálicas . Posteriormente Roma derrotó a Veyes y sus vecinos itálicos , ampliándose la región de Lazio hasta las montañas de los Apeninos en el noreste y en el extremo opuesto de la marisma en el sureste. El descendiente moderno, la Regione italiana de Lazio, también llamada Latium en América, y ocasionalmente en Inglés moderno, es algo más grande todavía, pero no tanto como el doble de la Lazio original."
+msgstr "La península itálica \n\nLazio es la región del centro occidental de Italia, aquí fue fundada la ciudad de Roma y donde creció hasta convertirse en la capital del Imperio Romano. Lazio fue originalmente un pequeño triángulo de suelo fértil y volcánico en el que residió la tribu de los latinos. Estaba situado en la orilla izquierda (sur y este) del río Tíber, que se extiende hacia el norte hasta el río Anio (afluente de la orilla izquierda del Tíber) y hacia el sureste a la Pomptina Palus (Pontinas Marismas, ahora los Campos pontina) en la medida de sur como el promontorio Circeian. La orilla derecha del Tíber fue ocupada por la ciudad etrusca de Veyes, y las otras fronteras fueron ocupadas por las tribus itálicas. Posteriormente Roma derrotó a Veyes y sus vecinos itálicos, ampliándose la región de Lazio hasta las montañas de los Apeninos en el noreste y en el extremo opuesto de la marisma en el sureste. El descendiente moderno, la Regione italiana de Lazio, también llamada Latium en América, y ocasionalmente en Inglés moderno, es algo más grande todavía, pero no tanto como el doble de la Lazio original."
 
 #: maps/random/latium.jsonsettings.Name
 msgid "Latium"
@@ -754,14 +782,14 @@ msgstr "Una demostración de los métodos de colocación de muros en mapas aleat
 msgid "Wall Demo"
 msgstr "Demo de murallas"
 
-#: maps/random/survivalofthefittest_triggers.js:155
-msgid "An enemy wave is attacking!"
-msgstr "¡Oleada enemiga! ¡Se acercan! ¡Nos atacan!"
-
-#: maps/random/survivalofthefittest_triggers.js:212
+#: maps/random/survivalofthefittest_triggers.js:193
 #, javascript-format
 msgid "The first wave will start in %(time)s!"
 msgstr "¡La primera oleada comenzará en %(time)s!"
+
+#: maps/random/survivalofthefittest_triggers.js:327
+msgid "An enemy wave is attacking!"
+msgstr "¡Oleada enemiga! ¡Se acercan! ¡Nos atacan!"
 
 #: maps/scenarios/Cinema_Demo.js:6
 msgid "Cutscene starts after 5 seconds"
@@ -858,7 +886,7 @@ msgstr "Es primavera en Arcadia, Grecia. Las lluvias primaverales hacen fluir ca
 #: maps/skirmishes/Belgian Bog (2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Caspian Sea (2v2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Corinthian Isthmus (2).xml:PlayerData[0].Name:39
-#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[1].Name:40
+#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[0].Name:40
 #: maps/skirmishes/Corsica and Sardinia (4).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Cycladic Archipelago (2).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Death Canyon (2).xml:PlayerData[0].Name:39
@@ -925,7 +953,7 @@ msgstr "Jugador 1"
 #: maps/skirmishes/Belgian Bog (2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Caspian Sea (2v2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Corinthian Isthmus (2).xml:PlayerData[1].Name:39
-#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[2].Name:40
+#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[1].Name:40
 #: maps/skirmishes/Corsica and Sardinia (4).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Cycladic Archipelago (2).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Death Canyon (2).xml:PlayerData[1].Name:39
@@ -1191,7 +1219,7 @@ msgstr "Fuerza invasora"
 #: Oasis.xml:PlayerData[2].Name:27 maps/skirmishes/Barcania
 #: (3).xml:PlayerData[2].Name:27 maps/skirmishes/Caspian Sea
 #: (2v2).xml:PlayerData[2].Name:39 maps/skirmishes/Corinthian Isthmus
-#: (4).xml:PlayerData[3].Name:40 maps/skirmishes/Corsica and Sardinia
+#: (4).xml:PlayerData[2].Name:40 maps/skirmishes/Corsica and Sardinia
 #: (4).xml:PlayerData[2].Name:39 maps/skirmishes/Gallic Fields
 #: (3).xml:PlayerData[2].Name:39 maps/skirmishes/Gambia River
 #: (3).xml:PlayerData[2].Name:39 maps/skirmishes/Greek Acropolis
@@ -1245,7 +1273,7 @@ msgstr "Un pequeño mapa desértico. Cada jugador comienza cerca de un oasis mir
 #: Oases.xml:PlayerData[3].Name:27 maps/scenarios/Siwa
 #: Oasis.xml:PlayerData[3].Name:27 maps/skirmishes/Caspian Sea
 #: (2v2).xml:PlayerData[3].Name:39 maps/skirmishes/Corinthian Isthmus
-#: (4).xml:PlayerData[4].Name:40 maps/skirmishes/Corsica and Sardinia
+#: (4).xml:PlayerData[3].Name:40 maps/skirmishes/Corsica and Sardinia
 #: (4).xml:PlayerData[3].Name:39 maps/skirmishes/Greek Acropolis
 #: (4).xml:PlayerData[3].Name:39 maps/skirmishes/Libyan Oases
 #: (4).xml:PlayerData[3].Name:39 maps/skirmishes/Median Oasis
@@ -1833,11 +1861,11 @@ msgstr "Mapa multijugador. Un paraíso tropical."
 msgid "Tropical Island"
 msgstr "Isla tropical"
 
-#: maps/scenarios/Units_demo.xml:Name:95
+#: maps/scenarios/Units_demo.xml:Name:28
 msgid "Units Demo"
 msgstr "Demo de unidades"
 
-#: maps/scenarios/Units_demo.xml:Description:95
+#: maps/scenarios/Units_demo.xml:Description:28
 msgid "Every unit in the game."
 msgstr "Todas las unidades del juego."
 

@@ -158,6 +158,15 @@ function multiplayerName()
 	return Engine.ConfigDB_GetValue("user", "playername.multiplayer") || Engine.GetSystemUsername();
 }
 
+/**
+ * Returns the nickname without the lobby rating.
+ */
+function removeRatingFromNick(playerName)
+{
+	let result = /^(\S+)\ \(\d+\)$/g.exec(playerName);
+	return result ? result[1] : playerName;
+}
+
 function tryAutoComplete(text, autoCompleteList)
 {
 	if (!text.length)

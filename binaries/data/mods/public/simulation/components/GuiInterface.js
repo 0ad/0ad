@@ -33,6 +33,7 @@ GuiInterface.prototype.Init = function()
 	this.timeNotifications = [];
 	this.entsRallyPointsDisplayed = [];
 	this.entsWithAuraAndStatusBars = new Set();
+	this.enabledVisualRangeOverlayTypes = {};
 };
 
 /*
@@ -119,7 +120,7 @@ GuiInterface.prototype.GetSimulationState = function()
 			"entityCounts": cmpPlayerEntityLimits ? cmpPlayerEntityLimits.GetCounts() : null,
 			"entityLimitChangers": cmpPlayerEntityLimits ? cmpPlayerEntityLimits.GetLimitChangers() : null,
 			"researchQueued": cmpTechnologyManager ? cmpTechnologyManager.GetQueuedResearch() : null,
-			"researchStarted": cmpTechnologyManager ? cmpTechnologyManager.GetStartedResearch() : null,
+			"researchStarted": cmpTechnologyManager ? cmpTechnologyManager.GetStartedTechs() : null,
 			"researchedTechs": cmpTechnologyManager ? cmpTechnologyManager.GetResearchedTechs() : null,
 			"classCounts": cmpTechnologyManager ? cmpTechnologyManager.GetClassCounts() : null,
 			"typeCountsByClass": cmpTechnologyManager ? cmpTechnologyManager.GetTypeCountsByClass() : null,
@@ -194,7 +195,7 @@ GuiInterface.prototype.GetExtendedSimulationState = function()
 		let playerEnt = cmpPlayerManager.GetPlayerByID(i);
 		let cmpPlayerStatisticsTracker = Engine.QueryInterface(playerEnt, IID_StatisticsTracker);
 		if (cmpPlayerStatisticsTracker)
-			ret.players[i].statistics = cmpPlayerStatisticsTracker.GetStatistics();
+			ret.players[i].sequences = cmpPlayerStatisticsTracker.GetSequences();
 	}
 
 	return ret;
@@ -382,6 +383,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"hasWorkOrders": cmpUnitAI.HasWorkOrders(),
 			"canGuard": cmpUnitAI.CanGuard(),
 			"isGuarding": cmpUnitAI.IsGuardOf(),
+			"canPatrol": cmpUnitAI.CanPatrol(),
 			"possibleStances": cmpUnitAI.GetPossibleStances(),
 			"isIdle":cmpUnitAI.IsIdle(),
 		};
@@ -448,6 +450,7 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 		let types = cmpAttack.GetAttackTypes();
 		if (types.length)
 			ret.attack = {};
+
 		for (let type of types)
 		{
 			ret.attack[type] = cmpAttack.GetAttackStrengths(type);
@@ -643,18 +646,7 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 	let auraNames = template.Auras._string.split(/\s+/);
 	let cmpDataTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_DataTemplateManager);
 	for (let name of auraNames)
-	{
-		let auraTemplate = cmpDataTemplateManager.GetAuraTemplate(name);
-		if (!auraTemplate)
-		{
-			// The following warning is perhaps useless since it's yet done in DataTemplateManager
-			warn("Tried to get data for invalid aura: " + name);
-			continue;
-		}
-		aurasTemplate[name] = {};
-		aurasTemplate[name].auraName = auraTemplate.auraName || null;
-		aurasTemplate[name].auraDescription = auraTemplate.auraDescription || null;
-	}
+		aurasTemplate[name] = cmpDataTemplateManager.GetAuraTemplate(name);
 	return GetTemplateDataHelper(template, player, aurasTemplate, Resources);
 };
 
@@ -706,7 +698,7 @@ GuiInterface.prototype.GetStartedResearch = function(player)
 		return {};
 
 	let ret = {};
-	for (let tech in cmpTechnologyManager.GetTechsStarted())
+	for (let tech in cmpTechnologyManager.GetStartedTechs())
 	{
 		ret[tech] = { "researcher": cmpTechnologyManager.GetResearcher(tech) };
 		let cmpProductionQueue = Engine.QueryInterface(ret[tech].researcher, IID_ProductionQueue);
@@ -894,7 +886,18 @@ GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 		}
 
 		cmpSelectable.SetSelectionHighlight({ "r": color.r, "g": color.g, "b": color.b, "a": cmd.alpha }, cmd.selected);
+
+		let cmpRangeVisualization = Engine.QueryInterface(ent, IID_RangeVisualization);
+		if (!cmpRangeVisualization || player != owner && player != -1)
+			continue;
+
+		cmpRangeVisualization.SetEnabled(cmd.selected, this.enabledVisualRangeOverlayTypes);
 	}
+};
+
+GuiInterface.prototype.EnableVisualRangeOverlayType = function(player, data)
+{
+	this.enabledVisualRangeOverlayTypes[data.type] = data.enabled;
 };
 
 GuiInterface.prototype.GetEntitiesWithStatusBars = function()
@@ -934,6 +937,16 @@ GuiInterface.prototype.SetStatusBars = function(player, cmd)
 		let cmpStatusBars = Engine.QueryInterface(ent, IID_StatusBars);
 		if (cmpStatusBars)
 			cmpStatusBars.RegenerateSprites();
+	}
+};
+
+GuiInterface.prototype.SetRangeOverlays = function(player, cmd)
+{
+	for (let ent of cmd.entities)
+	{
+		let cmpRangeVisualization = Engine.QueryInterface(ent, IID_RangeVisualization);
+		if (cmpRangeVisualization)
+			cmpRangeVisualization.SetEnabled(cmd.enabled, this.enabledVisualRangeOverlayTypes);
 	}
 };
 
@@ -1831,37 +1844,10 @@ GuiInterface.prototype.GetTradingDetails = function(player, data)
 	return result;
 };
 
-GuiInterface.prototype.CanCapture = function(player, data)
-{
-	let cmpAttack = Engine.QueryInterface(data.entity, IID_Attack);
-	if (!cmpAttack)
-		return false;
-
-	let owner = QueryOwnerInterface(data.entity).GetPlayerID();
-
-	let cmpCapturable = QueryMiragedInterface(data.target, IID_Capturable);
-	if (cmpCapturable && cmpCapturable.CanCapture(owner) && cmpAttack.GetAttackTypes().indexOf("Capture") != -1)
-		return cmpAttack.CanAttack(data.target);
-
-	return false;
-};
-
 GuiInterface.prototype.CanAttack = function(player, data)
 {
 	let cmpAttack = Engine.QueryInterface(data.entity, IID_Attack);
-	if (!cmpAttack)
-		return false;
-
-	let cmpEntityPlayer = QueryOwnerInterface(data.entity, IID_Player);
-	let cmpTargetPlayer = QueryOwnerInterface(data.target, IID_Player);
-	if (!cmpEntityPlayer || !cmpTargetPlayer)
-		return false;
-
-	// if the owner is an enemy, it's up to the attack component to decide
-	if (cmpEntityPlayer.IsEnemy(cmpTargetPlayer.GetPlayerID()))
-		return cmpAttack.CanAttack(data.target);
-
-	return false;
+	return cmpAttack && cmpAttack.CanAttack(data.target, data.types || undefined);
 };
 
 /*
@@ -2006,7 +1992,6 @@ let exposedFunctions = {
 	"HasIdleUnits": 1,
 	"GetTradingRouteGain": 1,
 	"GetTradingDetails": 1,
-	"CanCapture": 1,
 	"CanAttack": 1,
 	"GetBatchTime": 1,
 
@@ -2016,6 +2001,8 @@ let exposedFunctions = {
 	"SetObstructionDebugOverlay": 1,
 	"SetMotionDebugOverlay": 1,
 	"SetRangeDebugOverlay": 1,
+	"EnableVisualRangeOverlayType": 1,
+	"SetRangeOverlays": 1,
 
 	"GetTraderNumber": 1,
 	"GetTradingGoods": 1,

@@ -1,0 +1,10 @@
+{
+	"type": "global",
+	"affects": ["Soldier", "Siege"],
+	"modifications": [
+		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.15 },
+		{ "value": "UnitMotion/Run/Speed", "multiply": 1.15 }
+	],
+	"auraName": "Lightning General",
+	"auraDescription": "All soldiers and siege engines +15% speed."
+}

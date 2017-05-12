@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-04-03 09:02+0200\n"
-"PO-Revision-Date: 2017-04-03 08:39+0000\n"
+"POT-Creation-Date: 2017-04-28 09:02+0200\n"
+"PO-Revision-Date: 2017-04-28 15:27+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -312,17 +312,17 @@ msgstr "Jelen"
 msgid "African Bush Elephant"
 msgstr "Africký divoký slon"
 
-#: simulation/templates/gaia/fauna_elephant_african_infant.xml:14
-msgid "Elephant"
-msgstr "Slon"
-
-#: simulation/templates/gaia/fauna_elephant_african_infant.xml:15
+#: simulation/templates/gaia/fauna_elephant_african_infant.xml:4
 msgid "African Elephant (Infant)"
 msgstr "Africký slon (mládě)"
 
 #: simulation/templates/gaia/fauna_elephant_asian.xml:11
 msgid "Asian Elephant"
 msgstr "Asijský slon"
+
+#: simulation/templates/gaia/fauna_elephant_asian_infant.xml:4
+msgid "Asian Elephant (Infant)"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:11
 msgid "North African Elephant"
@@ -422,7 +422,7 @@ msgstr "Ovce"
 msgid "Tiger"
 msgstr "Tygr"
 
-#: simulation/templates/gaia/fauna_walrus.xml:24
+#: simulation/templates/gaia/fauna_walrus.xml:25
 msgid "Walrus"
 msgstr "Mrož"
 
@@ -902,17 +902,17 @@ msgstr "Kolonáda"
 msgid "Corinthian Colonnade"
 msgstr "Korintská kolonáda"
 
-#: simulation/templates/other/special_catafalque.xml:22
+#: simulation/templates/other/special_catafalque.xml:20
 msgid "Catafalque"
-msgstr ""
+msgstr "Katafalk"
+
+#: simulation/templates/other/special_catafalque.xml:23
+msgid "A catafalque that holds the remains of a great leader."
+msgstr "Katafalk, který obsahuje pozůstatky velkého vůdce. "
 
 #: simulation/templates/other/special_catafalque.xml:24
-msgid "A catafalque that holds the remains of a great leader."
-msgstr ""
-
-#: simulation/templates/other/special_catafalque.xml:25
 msgid "Relic"
-msgstr ""
+msgstr "Památka"
 
 #: simulation/templates/other/special_treasure_shipwreck.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:10
@@ -977,60 +977,60 @@ msgstr "Nedokončený řecký chrám"
 msgid "This temple is unfinished and has fallen to ruin."
 msgstr "Chrám nebyl dokončen a stala se z něj zřícenina."
 
-#: simulation/templates/other/catafalque/athen_catafalque.xml:6
+#: simulation/templates/other/catafalque/athen_catafalque.xml:9
 msgid "Solon"
-msgstr ""
+msgstr "Solón"
 
-#: simulation/templates/other/catafalque/brit_catafalque.xml:6
+#: simulation/templates/other/catafalque/brit_catafalque.xml:9
 msgid "Cassivellaunus"
-msgstr ""
+msgstr "Cassivellaunus"
 
-#: simulation/templates/other/catafalque/cart_catafalque.xml:6
+#: simulation/templates/other/catafalque/cart_catafalque.xml:8
 msgid "Hasdrubal (Quartermaster)"
-msgstr ""
+msgstr "Hasdrubal (kormidelník)"
 
-#: simulation/templates/other/catafalque/gaul_catafalque.xml:6
+#: simulation/templates/other/catafalque/gaul_catafalque.xml:9
 msgid "Ambiorix"
-msgstr ""
+msgstr "Ambiorix"
 
-#: simulation/templates/other/catafalque/iber_catafalque.xml:6
+#: simulation/templates/other/catafalque/iber_catafalque.xml:9
 msgid "Mandonius"
-msgstr ""
+msgstr "Mandonius"
 
-#: simulation/templates/other/catafalque/mace_catafalque.xml:6
+#: simulation/templates/other/catafalque/mace_catafalque.xml:8
 msgid "Philip V"
-msgstr ""
+msgstr "Filip V"
 
-#: simulation/templates/other/catafalque/mace_catafalque.xml:7
+#: simulation/templates/other/catafalque/mace_catafalque.xml:9
 msgid ""
 "Financial Reorganization: Allied with Rome, Philip reorganized the country's"
 " internal affairs and finances, leaving as a legacy reopened mines and a new"
 " currency. Gain a slow trickle of metal."
 msgstr ""
 
-#: simulation/templates/other/catafalque/maur_catafalque.xml:6
+#: simulation/templates/other/catafalque/maur_catafalque.xml:9
 msgid "Bindusara"
-msgstr ""
+msgstr "Bindusára"
 
-#: simulation/templates/other/catafalque/pers_catafalque.xml:6
+#: simulation/templates/other/catafalque/pers_catafalque.xml:8
 msgid "Artaxerxes II"
-msgstr ""
+msgstr "Artaxerxés II. Mnémon"
 
-#: simulation/templates/other/catafalque/ptol_catafalque.xml:6
+#: simulation/templates/other/catafalque/ptol_catafalque.xml:8
 msgid "Ptolemy III Euergetes (Benefactor)"
-msgstr ""
+msgstr "Ptolemaios III. Euergetés (Dobrotivý)"
 
-#: simulation/templates/other/catafalque/rome_catafalque.xml:6
+#: simulation/templates/other/catafalque/rome_catafalque.xml:9
 msgid "Lucius Junius Brutus"
-msgstr ""
+msgstr "Lucius Junius Brutus"
 
-#: simulation/templates/other/catafalque/sele_catafalque.xml:6
+#: simulation/templates/other/catafalque/sele_catafalque.xml:10
 msgid "Antiochus I Soter (Savior)"
-msgstr ""
+msgstr "Antiochos I. Sótér (Spasitel)"
 
-#: simulation/templates/other/catafalque/spart_catafalque.xml:6
+#: simulation/templates/other/catafalque/spart_catafalque.xml:10
 msgid "Lycurgus"
-msgstr ""
+msgstr "Lykúrgos"
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""

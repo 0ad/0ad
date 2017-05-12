@@ -8,6 +8,7 @@
 # LeviTaule <levi.taule@gmail.com>, 2015-2016
 # Marián Mižik <inactive+marian.mizik@transifex.com>, 2015
 # Mário Bulejko, 2015
+# Martin Plávala <martinplavala@gmail.com>, 2017
 # Michal Ján Mária Polovka <michal.polovka@gmail.com>, 2016
 # MiroslavR <miroslavr256@gmail.com>, 2014
 # MiroslavR <miroslavr256@gmail.com>, 2014
@@ -20,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-04-10 09:05+0200\n"
-"PO-Revision-Date: 2017-04-10 08:44+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-04-21 14:39+0000\n"
+"Last-Translator: Martin Plávala <martinplavala@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -49,7 +50,7 @@ msgstr "Som pripravený"
 
 #: gui/gamesetup/gamesetup.js:38
 msgid "State that you are ready to play."
-msgstr ""
+msgstr "Oznámite, že ste pripravený hrať."
 
 #: gui/gamesetup/gamesetup.js:42
 #, javascript-format
@@ -58,11 +59,11 @@ msgstr "* %(username)s je priravený!"
 
 #: gui/gamesetup/gamesetup.js:43
 msgid "Stay ready"
-msgstr ""
+msgstr "Zostať pripravený."
 
 #: gui/gamesetup/gamesetup.js:44
 msgid "Stay ready even when the game settings change."
-msgstr ""
+msgstr "Zostať pripravený aj keď sa zmenia nastavenia hry."
 
 #: gui/gamesetup/gamesetup.js:49
 msgid "I'm not ready!"
@@ -109,7 +110,7 @@ msgstr "<%(username)s>"
 #: gui/gamesetup/gamesetup.js:92
 msgctxt "map filter"
 msgid "Default"
-msgstr ""
+msgstr "Predvolené"
 
 #: gui/gamesetup/gamesetup.js:97
 msgid "Naval Maps"
@@ -170,7 +171,7 @@ msgstr "%(playerName)s %(romanNumber)s"
 #: gui/gamesetup/gamesetup.js:1430
 msgctxt "map size"
 msgid "Default"
-msgstr ""
+msgstr "Predvolené"
 
 #: gui/gamesetup/gamesetup.js:1501
 msgid "Loading..."
@@ -273,7 +274,7 @@ msgstr "Tím"
 
 #: gui/gamesetup/gamesetup.xml:(caption):141
 msgid "Show this message in the future"
-msgstr ""
+msgstr "Zobraziť túto správu aj v budúcnosti"
 
 #: gui/gamesetup/gamesetup.xml:(caption):151
 msgid "Map Type:"

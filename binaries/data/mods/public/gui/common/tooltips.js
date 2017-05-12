@@ -285,8 +285,8 @@ function getProjectilesTooltip(template)
 	let limit = Math.min(
 		template.buildingAI.maxArrowCount || Infinity,
 		template.buildingAI.defaultArrowCount +
-			template.buildingAI.garrisonArrowMultiplier *
-			template.garrisonHolder.capacity
+			Math.round(template.buildingAI.garrisonArrowMultiplier *
+			template.garrisonHolder.capacity)
 	);
 
 	if (!limit)
@@ -305,7 +305,7 @@ function getProjectilesTooltip(template)
 
 		sprintf(translate("%(label)s: %(value)s"), {
 			"label": headerFont(translateWithContext("projectiles", "Per Unit")),
-			"value": template.buildingAI.garrisonArrowMultiplier
+			"value": +template.buildingAI.garrisonArrowMultiplier.toFixed(2)
 		})
 	].join(commaFont(translate(", ")));
 }
@@ -353,14 +353,14 @@ function multiplyEntityCosts(template, trainNum)
 /**
  * Helper function for getEntityCostTooltip.
  */
-function getEntityCostComponentsTooltipString(template, trainNum, entity)
+function getEntityCostComponentsTooltipString(template, entity, buildingsCountToTrainFullBatch = 1, fullBatchSize = 1, remainderBatch = 0)
 {
-	if (!trainNum)
-		trainNum = 1;
-
-	let totalCosts = multiplyEntityCosts(template, trainNum);
+	let totalCosts = multiplyEntityCosts(template, buildingsCountToTrainFullBatch * fullBatchSize + remainderBatch);
 	if (template.cost.time)
-		totalCosts.time = Math.ceil(template.cost.time * (entity ? Engine.GuiInterfaceCall("GetBatchTime", { "entity": entity, "batchSize": trainNum }) : 1));
+		totalCosts.time = Math.ceil(template.cost.time * (entity ? Engine.GuiInterfaceCall("GetBatchTime", {
+			"entity": entity,
+			"batchSize": buildingsCountToTrainFullBatch > 0 ? fullBatchSize : remainderBatch
+		}) : 1));
 
 	let costs = [];
 	for (let type in template.cost)
@@ -493,7 +493,7 @@ function getWallPieceTooltip(wallTypes)
 /**
  * Returns the cost information to display in the specified entity's construction button tooltip.
  */
-function getEntityCostTooltip(template, trainNum, entity)
+function getEntityCostTooltip(template, entity, buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch)
 {
 	// Entities with a wallset component are proxies for initiating wall placement and as such do not have a cost of
 	// their own; the individual wall pieces within it do.
@@ -512,7 +512,7 @@ function getEntityCostTooltip(template, trainNum, entity)
 	}
 
 	if (template.cost)
-		return getEntityCostComponentsTooltipString(template, trainNum, entity).join("  ");
+		return getEntityCostComponentsTooltipString(template, entity, buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch).join("  ");
 
 	return "";
 }
@@ -622,13 +622,24 @@ function getAurasTooltip(template)
 	if (!template.auras)
 		return "";
 
-	let tooltips = Object.keys(template.auras).map(
-		aura => sprintf(translate("%(auralabel)s %(aurainfo)s"), {
+	let tooltips = [];
+	for (let auraID in template.auras)
+	{
+		let tooltip = sprintf(translate("%(auralabel)s %(aurainfo)s"), {
 			"auralabel": headerFont(sprintf(translate("%(auraname)s:"), {
-				"auraname": translate(template.auras[aura].name)
+				"auraname": translate(template.auras[auraID].name)
 			})),
-			"aurainfo": bodyFont(translate(template.auras[aura].description))
-		}));
+			"aurainfo": bodyFont(translate(template.auras[auraID].description))
+		});
+		let radius = +template.auras[auraID].radius;
+		if (radius)
+			tooltip += " " + sprintf(translatePlural("%(label)s %(val)s %(unit)s", "%(label)s %(val)s %(unit)s", radius), {
+				"label": translateWithContext("aura", "Range:"),
+				"val": radius,
+				"unit": unitFont(translatePlural("meter", "meters", radius))
+			});
+		tooltips.push(tooltip);
+	}
 	return tooltips.join("\n");
 }
 

@@ -10,9 +10,9 @@ initTileClasses();
 RMS.SetProgress(10);
 
 // Pick a random elevation with a bias towards lower elevations
-var randElevation = randInt(30);
+var randElevation = randIntInclusive(0, 29);
 if (randElevation < 25)
-	randElevation = 1 + randInt(4);
+	randElevation = randIntInclusive(1, 4);
 
 resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, randElevation);
 RMS.SetProgress(20);

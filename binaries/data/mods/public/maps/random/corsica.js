@@ -181,7 +181,7 @@ var islandZ = [SardiniaZ,CorsicaZ];
 for (var island = 0; island <= 1; island++)
 	for (var i = 0; i <= nbCreeks; i++)
 	{
-		var radius = fractionToTiles( (Math.random()/17) + 0.49);
+		var radius = fractionToTiles(randFloat(0.49, 0.55));
 		var angle = PI*island + i*(PI/(nbCreeks*2));
 		if (swap)
 			angle += PI/2;
@@ -220,6 +220,11 @@ for (var island = 0; island <= 1; island++)
 		var placer = new ClumpPlacer(130, 0.7, 0.8, 10, round((startX+endX*3)/4),round((startZ+endZ*3)/4));
 		var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -1,5);	// base height is -10
 		createArea(placer, [elevationPainter], null);
+
+		startX = Math.max(0, Math.min(startX, mapSize));
+		startZ = Math.max(0, Math.min(startZ, mapSize));
+		endX = Math.max(0, Math.min(endX, mapSize));
+		endZ = Math.max(0, Math.min(endZ, mapSize));
 
 		straightPassageMaker(startX, startZ,endX,endZ, 25, 18, 4,clShore,null);
 	}
@@ -333,7 +338,7 @@ for (var i = 0; i < numPlayers; i++)
 	placeDefaultChicken(fx, fz, clBaseResource);
 
 	// create berry bushes
-	var bbAngle = randFloat(0, TWO_PI);
+	var bbAngle = randFloat(0, 2 * PI);
 	var bbDist = 11;
 	var bbX = round(fx + bbDist * cos(bbAngle));
 	var bbZ = round(fz + bbDist * sin(bbAngle));

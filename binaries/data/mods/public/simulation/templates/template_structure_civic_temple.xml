@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic">
-  <Auras datatype="tokens">temple_heal</Auras>
+  <Auras datatype="tokens">
+    structures/temple_heal
+  </Auras>
   <BuildRestrictions>
     <Category>Temple</Category>
   </BuildRestrictions>

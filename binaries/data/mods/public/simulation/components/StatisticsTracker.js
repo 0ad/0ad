@@ -1,5 +1,7 @@
 function StatisticsTracker() {}
 
+const g_UpdateSequenceInterval = 30 * 1000;
+
 StatisticsTracker.prototype.Schema =
 	"<empty/>";
 
@@ -142,6 +144,10 @@ StatisticsTracker.prototype.Init = function()
 	this.lootCollected = 0;
 	this.peakPercentMapControlled = 0;
 	this.teamPeakPercentMapControlled = 0;
+
+	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	this.updateTimer = cmpTimer.SetInterval(
+		this.entity, IID_StatisticsTracker, "updateSequences", 0, g_UpdateSequenceInterval);
 };
 
 /**
@@ -195,11 +201,21 @@ StatisticsTracker.prototype.GetStatistics = function()
 	};
 };
 
+StatisticsTracker.prototype.GetSequences = function()
+{
+	let ret = clone(this.sequences);
+	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+
+	ret.time.push(cmpTimer.GetTime() / 1000);
+	this.PushValue(this.GetStatistics(), ret);
+	return ret;
+}
+
 /**
  * Increments counter associated with certain entity/counter and type of given entity.
- * @param cmpIdentity The entity identity component
- * @param counter The name of the counter to increment (e.g. "unitsTrained")
- * @param type The type of the counter (e.g. "workers")
+ * @param cmpIdentity - the entity identity component.
+ * @param counter - the name of the counter to increment (e.g. "unitsTrained").
+ * @param type - the type of the counter (e.g. "workers").
  */
 StatisticsTracker.prototype.CounterIncrement = function(cmpIdentity, counter, type)
 {
@@ -248,10 +264,11 @@ StatisticsTracker.prototype.IncreaseConstructedBuildingsCounter = function(const
 StatisticsTracker.prototype.KilledEntity = function(targetEntity)
 {
 	var cmpTargetEntityIdentity = Engine.QueryInterface(targetEntity, IID_Identity);
-	var cmpCost = Engine.QueryInterface(targetEntity, IID_Cost);
-	var costs = cmpCost.GetResourceCosts();
 	if (!cmpTargetEntityIdentity)
 		return;
+
+	var cmpCost = Engine.QueryInterface(targetEntity, IID_Cost);
+	var costs = cmpCost && cmpCost.GetResourceCosts();
 
 	var cmpTargetOwnership = Engine.QueryInterface(targetEntity, IID_Ownership);
 
@@ -266,8 +283,9 @@ StatisticsTracker.prototype.KilledEntity = function(targetEntity)
 
 		++this.enemyUnitsKilled.total;
 
-		for (let type in costs)
-			this.enemyUnitsKilledValue += costs[type];
+		if (costs)
+			for (let type in costs)
+				this.enemyUnitsKilledValue += costs[type];
 	}
 
 	let cmpFoundation = Engine.QueryInterface(targetEntity, IID_Foundation);
@@ -278,18 +296,20 @@ StatisticsTracker.prototype.KilledEntity = function(targetEntity)
 
 		++this.enemyBuildingsDestroyed.total;
 
-		for (let type in costs)
-			this.enemyBuildingsDestroyedValue += costs[type];
+		if (costs)
+			for (let type in costs)
+				this.enemyBuildingsDestroyedValue += costs[type];
 	}
 };
 
 StatisticsTracker.prototype.LostEntity = function(lostEntity)
 {
 	var cmpLostEntityIdentity = Engine.QueryInterface(lostEntity, IID_Identity);
-	var cmpCost = Engine.QueryInterface(lostEntity, IID_Cost);
-	var costs = cmpCost.GetResourceCosts();
 	if (!cmpLostEntityIdentity)
 		return;
+
+	var cmpCost = Engine.QueryInterface(lostEntity, IID_Cost);
+	var costs = cmpCost && cmpCost.GetResourceCosts();
 
 	if (cmpLostEntityIdentity.HasClass("Unit") && !cmpLostEntityIdentity.HasClass("Domestic"))
 	{
@@ -298,8 +318,9 @@ StatisticsTracker.prototype.LostEntity = function(lostEntity)
 
 		++this.unitsLost.total;
 
-		for (let type in costs)
-			this.unitsLostValue += costs[type];
+		if (costs)
+			for (let type in costs)
+				this.unitsLostValue += costs[type];
 	}
 
 	let cmpFoundation = Engine.QueryInterface(lostEntity, IID_Foundation);
@@ -310,8 +331,9 @@ StatisticsTracker.prototype.LostEntity = function(lostEntity)
 
 		++this.buildingsLost.total;
 
-		for (let type in costs)
-			this.buildingsLostValue += costs[type];
+		if (costs)
+			for (let type in costs)
+				this.buildingsLostValue += costs[type];
 	}
 };
 
@@ -321,6 +343,9 @@ StatisticsTracker.prototype.CapturedEntity = function(capturedEntity)
 	if (!cmpCapturedEntityIdentity)
 		return;
 
+	let cmpCost = Engine.QueryInterface(capturedEntity, IID_Cost);
+	let costs = cmpCost && cmpCost.GetResourceCosts();
+
 	if (cmpCapturedEntityIdentity.HasClass("Unit"))
 	{
 		for (let type of this.unitsClasses)
@@ -328,13 +353,9 @@ StatisticsTracker.prototype.CapturedEntity = function(capturedEntity)
 
 		++this.unitsCaptured.total;
 
-		let cmpCost = Engine.QueryInterface(capturedEntity, IID_Cost);
-		if (!cmpCost)
-			return;
-
-		let costs = cmpCost.GetResourceCosts();
-		for (let type in costs)
-			this.unitsCapturedValue += costs[type];
+		if (costs)
+			for (let type in costs)
+				this.unitsCapturedValue += costs[type];
 	}
 
 	if (cmpCapturedEntityIdentity.HasClass("Structure"))
@@ -344,20 +365,16 @@ StatisticsTracker.prototype.CapturedEntity = function(capturedEntity)
 
 		++this.buildingsCaptured.total;
 
-		let cmpCost = Engine.QueryInterface(capturedEntity, IID_Cost);
-		if (!cmpCost)
-			return;
-
-		let costs = cmpCost.GetResourceCosts();
-		for (let type in costs)
-			this.buildingsCapturedValue += costs[type];
+		if (costs)
+			for (let type in costs)
+				this.buildingsCapturedValue += costs[type];
 	}
 };
 
 /**
- * @param type Generic type of resource (string)
- * @param amount Amount of resource, whick should be added (integer)
- * @param specificType Specific type of resource (string, optional)
+ * @param {string} type - generic type of resource.
+ * @param {number} amount - amount of resource, whick should be added.
+ * @param {string} specificType - specific type of resource.
  */
 StatisticsTracker.prototype.IncreaseResourceGatheredCounter = function(type, amount, specificType)
 {
@@ -368,8 +385,8 @@ StatisticsTracker.prototype.IncreaseResourceGatheredCounter = function(type, amo
 };
 
 /**
- * @param type Generic type of resource (string)
- * @param amount Amount of resource, which should be added (integer)
+ * @param {string} type - generic type of resource.
+ * @param {number} amount - amount of resource, which should be added.
  */
 StatisticsTracker.prototype.IncreaseResourceUsedCounter = function(type, amount)
 {
@@ -491,5 +508,42 @@ StatisticsTracker.prototype.OnTerritoriesChanged = function(msg)
 	if (newPercent > this.teamPeakPercentMapControlled)
 		this.teamPeakPercentMapControlled = newPercent;
 };
+
+/**
+ * Adds the values of fromData to the end of the arrays of toData.
+ * If toData misses the needed array, one will be created.
+ *
+ * @param fromData - an object of values or a value.
+ * @param toData - an object of arrays or an array.
+**/
+StatisticsTracker.prototype.PushValue = function(fromData, toData)
+{
+	if (typeof fromData == "object")
+		for (let prop in fromData)
+		{
+			if (typeof toData[prop] != "object")
+				toData[prop] = [fromData[prop]];
+			else
+				this.PushValue(fromData[prop], toData[prop]);
+		}
+	else
+		toData.push(fromData);
+};
+
+StatisticsTracker.prototype.updateSequences = function()
+{
+	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+
+	// Don't do this on Init, because GetStatistics doesn't work in this state of the game
+	// This is probably, because the simulation hasn't totally started/initialized and we query some simulation values
+	if (!this.sequences)
+	{
+		this.sequences = clone(this.GetStatistics());
+		this.sequences.time = [];
+	}
+
+	this.sequences.time.push(cmpTimer.GetTime() / 1000);
+	this.PushValue(this.GetStatistics(), this.sequences);
+}
 
 Engine.RegisterComponentType(IID_StatisticsTracker, "StatisticsTracker", StatisticsTracker);

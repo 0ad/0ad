@@ -198,7 +198,14 @@ for (var ix = 0; ix < mapSize; ix++)
 log("Creating shores...");
 for (var i = 0; i < scaleByMapSize(20,120); i++)
 {
-	placer = new ChainPlacer(1, floor(scaleByMapSize(4, 6)), floor(scaleByMapSize(16, 30)), 1, floor(randFloat(0.28,0.34)*mapSize), floor(randFloat(0.1,0.9)*mapSize));
+	placer = new ChainPlacer(
+		1,
+		Math.floor(scaleByMapSize(4, 6)),
+		Math.floor(scaleByMapSize(16, 30)),
+		1,
+		randIntExclusive(0.28 * mapSize, 0.34 * mapSize),
+		randIntExclusive(0.1 * mapSize, 0.9 * mapSize));
+
 	var terrainPainter = new LayeredPainter(
 		[tGrass, tGrass],		// terrains
 		[2]								// widths
@@ -426,7 +433,7 @@ group = new SimpleGroup(
 );
 createObjectGroups(group, 0,
 	avoidClasses(clWater, 6, clForest, 0, clPlayer, 20, clHill, 1, clFood, 10),
-	randInt(1, 4) * numPlayers + 2, 50
+	randIntInclusive(1, 4) * numPlayers + 2, 50
 );
 
 // create sheep

@@ -32,8 +32,7 @@ function Noise2D(freq)
 		this.grads[i] = new Array(freq);
 		for (var j=0; j < freq; ++j)
 		{
-			var a = randFloat() * 2 * PI;
-
+			var a = randFloat(0, 2 * PI);
 			this.grads[i][j] = new Vector2D(Math.cos(a), Math.sin(a));
 		}
 	}
@@ -91,7 +90,7 @@ function Noise3D(freq, vfreq)
 				var v = new Vector3D();
 				do
 				{
-					v.set(2*randFloat()-1, 2*randFloat()-1, 2*randFloat()-1);
+					v.set(randFloat(-1, 1), randFloat(-1, 1), randFloat(-1, 1));
 				}
 				while(v.lengthSquared() > 1 || v.lengthSquared() < 0.1);
 

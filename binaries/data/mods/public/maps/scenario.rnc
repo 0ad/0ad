@@ -59,7 +59,8 @@ Scenario = element Scenario {
                 element Height { xsd:decimal } &
                 element Waviness { xsd:decimal } &
                 element Murkiness { xsd:decimal } &
-                element Tint { color_rgb }
+                element Tint { color_rgb } &
+                element WindAngle { xsd:decimal }?
             }
         } &
         element Postproc {
@@ -83,7 +84,7 @@ Scenario = element Scenario {
         element Position { pos_xyz },
         element Rotation { angle },
         element Declination { angle }
-    } &
+    }? &
     element ScriptSettings {
         text
     } &
@@ -107,8 +108,21 @@ Scenario = element Scenario {
             }?
         }*
     }? &
-    element Paths { # Unused
-        empty
+    element Paths {
+        element Path {
+            attribute name { text } &
+            attribute timescale { xsd:decimal } &
+            attribute orientation { text } &
+            attribute mode { text } &
+            attribute style { text } &
+            element Node {
+                attribute deltatime {
+                    xsd:decimal { minInclusive = "0" }
+                } &
+                element Position { pos_xyz }? &
+                element Target { pos_xyz }?
+            }*
+        }*
     }? &
     element Triggers { # Unused
         empty

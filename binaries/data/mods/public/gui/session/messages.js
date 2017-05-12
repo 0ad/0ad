@@ -44,6 +44,9 @@ var g_NetMessageTypes = {
 	"netwarn": msg => {
 		addNetworkWarning(msg);
 	},
+	"out-of-sync": msg => {
+		onNetworkOutOfSync(msg);
+	},
 	"players": msg => {
 		handlePlayerAssignmentsMessage(msg);
 	},
@@ -128,7 +131,8 @@ var g_FormatChatMessage = {
 	"diplomacy": msg => formatDiplomacyMessage(msg),
 	"tribute": msg => formatTributeMessage(msg),
 	"barter": msg => formatBarterMessage(msg),
-	"attack": msg => formatAttackMessage(msg)
+	"attack": msg => formatAttackMessage(msg),
+	"phase": msg => formatPhaseMessage(msg)
 };
 
 /**
@@ -394,6 +398,15 @@ var g_NotificationsTypes =
 			"targetIsDomesticAnimal": notification.targetIsDomesticAnimal
 		});
 	},
+	"phase": function(notification, player)
+	{
+		addChatMessage({
+			"type": "phase",
+			"player": player,
+			"phaseName": notification.phaseName,
+			"phaseState": notification.phaseState
+		});
+	},
 	"dialog": function(notification, player)
 	{
 		if (player == Engine.GetPlayerID())
@@ -613,6 +626,58 @@ function handleClientsLoadingMessage(guids)
 	loadingClientsText.caption = guids.map(guid => colorizePlayernameByGUID(guid)).join(translate(", "));
 }
 
+function onNetworkOutOfSync(msg)
+{
+	let txt = [
+		sprintf(translate("Out-Of-Sync error on turn %(turn)s."), {
+			"turn": msg.turn
+		}),
+
+		sprintf(translateWithContext("Out-Of-Sync", "Players: %(players)s"), {
+			"players": msg.players.join(translate(", "))
+		}),
+
+		msg.hash == msg.expectedHash ?
+			translateWithContext("Out-Of-Sync", "Your game state is identical to the hosts game state.") :
+			translateWithContext("Out-Of-Sync", "Your game state differs from the hosts game state."),
+
+		""
+	];
+
+	if (msg.turn > 1 && g_GameAttributes.settings.PlayerData.some(pData => pData && pData.AI))
+		txt.push(translateWithContext("Out-Of-Sync", "Rejoining Multiplayer games with AIs is not supported yet!"));
+	else
+	{
+		txt.push(
+			translateWithContext("Out-Of-Sync", "Ensure all players use the same mods."),
+			translateWithContext("Out-Of-Sync", 'Click on "Report Bugs" in the main menu to help fix this.'),
+			sprintf(translateWithContext("Out-Of-Sync", "Replay saved to %(filepath)s"), {
+				"filepath": escapeText(msg.path_replay)
+			}),
+			sprintf(translateWithContext("Out-Of-Sync", "Dumping current state to %(filepath)s"), {
+				"filepath": escapeText(msg.path_oos_dump)
+			})
+		);
+	}
+
+	messageBox(
+		600, 280,
+		txt.join("\n"),
+		translate("Out of Sync")
+	);
+}
+
+function onReplayOutOfSync()
+{
+	messageBox(
+		500, 140,
+		translate("Out-Of-Sync error!") + "\n" +
+			// Translation: This is shown if replay is out of sync
+			translateWithContext("Out-Of-Sync", "The current game state is different from the original game state."),
+		translate("Out of Sync")
+	);
+}
+
 function handlePlayerAssignmentsMessage(message)
 {
 	for (let guid in g_PlayerAssignments)
@@ -767,7 +832,7 @@ function submitChatInput()
 	if (chatAddressee.selected > 0 && (text.indexOf("/") != 0 || text.indexOf("/me ") == 0))
 		text = chatAddressee.list_data[chatAddressee.selected] + " " + text;
 
-	let selectedChat = chatAddressee.list_data[chatAddressee.selected]
+	let selectedChat = chatAddressee.list_data[chatAddressee.selected];
 	if (selectedChat.startsWith("/msg"))
 		g_LastChatAddressee = selectedChat;
 
@@ -947,6 +1012,29 @@ function formatAttackMessage(msg)
 
 	return sprintf(message, {
 		"attacker": colorizePlayernameByID(msg.attacker)
+	});
+}
+
+function formatPhaseMessage(msg)
+{
+	let notifyPhase = Engine.ConfigDB_GetValue("user", "gui.session.notifications.phase");
+	if (notifyPhase == 0 || msg.player != g_ViewedPlayer && !g_IsObserver && !g_Players[msg.player].isMutualAlly[g_ViewedPlayer])
+		return "";
+
+	let message = "";
+	if (notifyPhase == 2)
+	{
+		if (msg.phaseState == "started")
+			message = translate("%(player)s is advancing to the %(phaseName)s.");
+		else if (msg.phaseState == "aborted")
+			message = translate("The %(phaseName)s of %(player)s has been aborted.");
+	}
+	if (msg.phaseState == "completed")
+		message = translate("%(player)s has reached the %(phaseName)s.");
+
+	return sprintf(message, {
+		"player": colorizePlayernameByID(msg.player),
+		"phaseName": getEntityNames(GetTechnologyData(msg.phaseName, g_Players[msg.player].civ))
 	});
 }
 

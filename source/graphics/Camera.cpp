@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -357,7 +357,7 @@ void CCamera::LookAt(const CVector3D& camera, const CVector3D& target, const CVe
 	LookAlong(camera, delta, up);
 }
 
-void CCamera::LookAlong(CVector3D camera, CVector3D orientation, CVector3D up)
+void CCamera::LookAlong(const CVector3D& camera, CVector3D orientation, CVector3D up)
 {
 	orientation.Normalize();
 	up.Normalize();

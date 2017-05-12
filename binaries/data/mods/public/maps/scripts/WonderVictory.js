@@ -76,8 +76,10 @@ Trigger.prototype.DeleteWonderVictoryMessages = function(data)
 	}
 };
 
-var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
-cmpTrigger.RegisterTrigger("OnOwnershipChanged", "CheckWonderVictory", { "enabled": true });
-cmpTrigger.RegisterTrigger("OnPlayerWon", "DeleteWonderVictoryMessages", { "enabled": true });
-cmpTrigger.wonderVictoryTimers = {};
-cmpTrigger.wonderVictoryMessages = {};
+{
+	let cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
+	cmpTrigger.RegisterTrigger("OnOwnershipChanged", "CheckWonderVictory", { "enabled": true });
+	cmpTrigger.RegisterTrigger("OnPlayerWon", "DeleteWonderVictoryMessages", { "enabled": true });
+	cmpTrigger.wonderVictoryTimers = {};
+	cmpTrigger.wonderVictoryMessages = {};
+}

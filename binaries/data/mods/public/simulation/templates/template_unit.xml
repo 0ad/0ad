@@ -65,6 +65,7 @@
     <DisableBlockPathfinding>false</DisableBlockPathfinding>
   </Obstruction>
   <OverlayRenderer/>
+  <RangeVisualization/>
   <ResourceGatherer>
     <MaxDistance>2.0</MaxDistance>
     <BaseSpeed>1.0</BaseSpeed>
@@ -102,6 +103,7 @@
     <FleeDistance>12.0</FleeDistance>
     <FormationController>false</FormationController>
     <CanGuard>true</CanGuard>
+    <CanPatrol>true</CanPatrol>
   </UnitAI>
   <UnitMotion>
     <FormationController>false</FormationController>

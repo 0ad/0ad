@@ -745,7 +745,7 @@ createObjectGroups(group, 0, avoidClasses(clWater, 3, clForest, 0, clPlayer, 20,
 
 log("Creating berry bush...");
 group = new SimpleGroup( [new SimpleObject(oBerryBush, 5,7, 0,4)],true, clFood );
-createObjectGroups(group, 0, avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clPyrenneans, 1, clFood, 10), randInt(1, 4) * numPlayers + 2, 50 );
+createObjectGroups(group, 0, avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clPyrenneans, 1, clFood, 10), randIntInclusive(1, 4) * numPlayers + 2, 50);
 
 log("Creating fish...");
 group = new SimpleGroup( [new SimpleObject(oFish, 2,3, 0,2)], true, clFood );

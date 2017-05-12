@@ -1,0 +1,16 @@
+{
+	"settings" : {
+		"Name" : "Danubius",
+		"Script" : "danubius.js",
+		"Description" : "Players start along the banks of the river Danube in the period following the expansion into Pannonia by the Celtic Boii tribe. Seeking to consolidate their hold on this land, celtic reinforcements have been sent to root out the remaining foreign cultures. Players not only have to vie for power amongst themselves, but also beat back these ruthless invaders. Ultimately, the Boii were defeated by the rising power of the Dacians, hence leading to the reemergence of the Geto-Dacian Confederation under King Burebista.",
+		"BaseTerrain" : ["temp_grass_aut", "temp_grass_plants_aut", "temp_grass_c_aut", "temp_grass_d_aut"],
+		"BaseHeight" : 4,
+		"Keywords": ["new", "trigger"],
+		"CircularMap" : true,
+		"Preview" : "danubius.png",
+		"TriggerScripts" : [
+			"scripts/TriggerHelper.js",
+			"random/danubius_triggers.js"
+		]
+	}
+}

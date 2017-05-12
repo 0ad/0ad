@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="other/special_catafalque">
-  <Auras datatype="tokens">catafalques/pers_catafalque</Auras>
+  <Auras datatype="tokens">
+    units/catafalques/pers_catafalque
+  </Auras>
   <Identity>
     <Civ>pers</Civ>
     <SpecificName>Artaxerxes II</SpecificName>

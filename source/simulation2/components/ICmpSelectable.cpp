@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,6 +25,8 @@
 
 BEGIN_INTERFACE_WRAPPER(Selectable)
 DEFINE_INTERFACE_METHOD_2("SetSelectionHighlight", void, ICmpSelectable, SetSelectionHighlight, CColor, bool)
+DEFINE_INTERFACE_METHOD_4("AddRangeOverlay", void, ICmpSelectable, AddRangeOverlay, float, std::string, std::string, float)
+DEFINE_INTERFACE_METHOD_0("ResetRangeOverlays", void, ICmpSelectable, ResetRangeOverlays)
 END_INTERFACE_WRAPPER(Selectable)
 
 bool ICmpSelectable::ms_EnableDebugOverlays = false;

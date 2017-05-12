@@ -18,10 +18,13 @@
 #ifndef INCLUDED_ICMPCINEMAMANAGER
 #define INCLUDED_ICMPCINEMAMANAGER
 
+#include <list>
+#include <map>
+
+#include "ps/CStr.h"
 #include "simulation2/helpers/CinemaPath.h"
 #include "simulation2/system/Interface.h"
 
-#include "ps/CStr.h"
 
 /**
  * Component for CCinemaManager class
@@ -53,6 +56,8 @@ public:
 	* @return true if path with that name exists, else false
 	*/
 	virtual bool HasPath(const CStrW& name) const = 0;
+
+	virtual void DeletePath(const CStrW& name) = 0;
 
 	/**
 	* Clears the playlist

@@ -6,13 +6,14 @@
       <Pierce>10.0</Pierce>
       <Crush>10.0</Crush>
       <MaxRange>8.0</MaxRange>
+      <PrepareTime>50</PrepareTime>
       <RepeatTime>100</RepeatTime>
     </Melee>
   </Attack>
   <Cost>
-    <BuildTime>20</BuildTime>
+    <BuildTime>30</BuildTime>
     <Resources>
-      <wood>200</wood>
+      <wood>300</wood>
     </Resources>
   </Cost>
   <Footprint replace="">
@@ -21,7 +22,7 @@
   </Footprint>
   <Health>
     <Max>500</Max>
-    <RegenRate>-3</RegenRate>
+    <RegenRate>-6</RegenRate>
     <DamageVariants>
       <lightdamage>0.85</lightdamage>
       <mediumdamage>0.65</mediumdamage>

@@ -224,13 +224,19 @@ elevationPainter = new SmoothElevationPainter(
 );
 createArea(placer, [terrainPainter, elevationPainter, paintClass(clHill)], avoidClasses(clPlayer, 40));
 
-let randMountains = 20 + randInt(15);
-for (let m = 0; m < randMountains; ++m)
+for (let m = 0; m < randIntInclusive(20, 34); ++m)
 {
-	let randX = randInt(mapSize);
-	let randY = randInt(mapSize);
-	let placer = new ChainPlacer(floor(scaleByMapSize(7, 7)), floor(scaleByMapSize(15, 15)), floor(scaleByMapSize(15, 20)), 1, randX, randY, 0, [floor(mapSize * 0.01)]);
-	let elevRand = 6 + randInt(15);
+	let placer = new ChainPlacer(
+		Math.floor(scaleByMapSize(7, 7)),
+		Math.floor(scaleByMapSize(15, 15)),
+		Math.floor(scaleByMapSize(15, 20)),
+		1,
+		randIntExclusive(0, mapSize),
+		randIntExclusive(0, mapSize),
+		0,
+		[Math.floor(mapSize * 0.01)]);
+
+	let elevRand = randIntInclusive(6, 20);
 	let terrainPainter = new LayeredPainter(
 		[tDirt, tHill],        // terrains
 		[floor(elevRand / 3), 40]       // widths
@@ -243,13 +249,19 @@ for (let m = 0; m < randMountains; ++m)
 	createArea(placer, [terrainPainter, elevationPainter, paintClass(clHill)], [avoidClasses(clBaseResource, 2, clPlayer, 40), stayClasses(clHill, 6)]);
 }
 
-randMountains = 8 + randInt(10);
-for (let m = 0; m < randMountains; ++m)
+for (let m = 0; m < randIntInclusive(8, 17); ++m)
 {
-	let randX = randInt(mapSize);
-	let randY = randInt(mapSize);
-	let placer = new ChainPlacer(floor(scaleByMapSize(5, 5)), floor(scaleByMapSize(8, 8)), floor(scaleByMapSize(15, 20)), 1, randX, randY, 0, [floor(mapSize * 0.01)]);
-	let elevRand = 15 + randInt(15);
+	let placer = new ChainPlacer(
+		Math.floor(scaleByMapSize(5, 5)),
+		Math.floor(scaleByMapSize(8, 8)),
+		Math.floor(scaleByMapSize(15, 20)),
+		1,
+		randIntExclusive(0, mapSize),
+		randIntExclusive(0, mapSize),
+		0,
+		[Math.floor(mapSize * 0.01)]);
+
+	let elevRand = randIntInclusive(15, 29);
 	let terrainPainter = new LayeredPainter(
 		[tCliff, tForestFloor2],        // terrains
 		[floor(elevRand / 3), 40]       // widths

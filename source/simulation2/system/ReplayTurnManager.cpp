@@ -77,7 +77,11 @@ void CReplayTurnManager::NotifyFinishedUpdate(u32 turn)
 	hash = Hexify(hash);
 
 	if (hash != expectedHash)
-		OnSyncError(turn);
+	{
+		m_HasSyncError = true;
+		LOGERROR("Replay out of sync on turn %d", turn);
+		g_GUI->SendEventToAll("ReplayOutOfSync");
+	}
 }
 
 void CReplayTurnManager::DoTurn(u32 turn)
@@ -99,17 +103,4 @@ void CReplayTurnManager::DoTurn(u32 turn)
 
 	if (turn == m_FinalTurn)
 		g_GUI->SendEventToAll("ReplayFinished");
-}
-
-void CReplayTurnManager::OnSyncError(u32 turn)
-{
-	m_HasSyncError = true;
-
-	std::stringstream msg;
-	msg << "Out of sync on turn " << turn << "\n\n" << "The current game state is different from the original game state.";
-
-	LOGERROR("%s", msg.str());
-
-	if (g_GUI)
-		g_GUI->DisplayMessageBox(600, 350, L"Sync error", wstring_from_utf8(msg.str()));
 }

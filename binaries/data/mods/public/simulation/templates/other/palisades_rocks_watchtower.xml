@@ -16,6 +16,10 @@
     <GenericName>Wooden Watch Tower</GenericName>
     <Classes datatype="tokens">-StoneWall Palisade Tower</Classes>
   </Identity>
+  <Loot>
+    <wood>10</wood>
+    <stone>0</stone>
+  </Loot>
   <Obstruction>
     <Static width="5.0" depth="5.0"/>
     <ControlPersist/>

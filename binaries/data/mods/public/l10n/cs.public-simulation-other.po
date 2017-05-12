@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-27 09:03+0200\n"
-"PO-Revision-Date: 2017-03-27 09:50+0000\n"
+"POT-Creation-Date: 2017-04-28 09:02+0200\n"
+"PO-Revision-Date: 2017-04-28 16:19+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -70,7 +70,7 @@ msgstr "Omlouvám se, ale teď nemám dost vojáků. Cílem mého příštího �
 msgid ""
 "Sorry, I still need to strengthen my army. However, I will attack "
 "%(_player_)s next."
-msgstr ""
+msgstr "Promiňte, ale pořád ještě potřebuji posílit své vojsko. Nicméně, na %(_player_)s zaútočím příště."
 
 #: simulation/ai/petra/chatHelper.js:25
 #, javascript-format
@@ -130,197 +130,187 @@ msgstr "Nová obchodní cesta je zřízena s %(_player_)s. Zajistěte si svůj p
 
 #: simulation/ai/petra/chatHelper.js:48
 #, javascript-format
-msgid "I am advancing to the %(phase)s."
-msgstr "Postupuji do %(phase)s."
-
-#: simulation/ai/petra/chatHelper.js:51
-#, javascript-format
-msgid "I have reached the %(phase)s."
-msgstr "Dosáhl jsem %(phase)s."
-
-#: simulation/ai/petra/chatHelper.js:57
-#, javascript-format
 msgid "%(_player_)s and I are now allies."
 msgstr "%(_player_)s a já jsme nyní spojenci."
 
-#: simulation/ai/petra/chatHelper.js:60
+#: simulation/ai/petra/chatHelper.js:51
 #, javascript-format
 msgid "%(_player_)s and I are now neutral."
 msgstr "%(_player_)s a já jsme nyní neutrální."
 
-#: simulation/ai/petra/chatHelper.js:63
+#: simulation/ai/petra/chatHelper.js:54
 #, javascript-format
 msgid "%(_player_)s and I are now enemies."
 msgstr "%(_player_)s a já jsme nyní nepřáteli."
 
-#: simulation/ai/petra/chatHelper.js:70
+#: simulation/ai/petra/chatHelper.js:61
 #, javascript-format
 msgid "I cannot accept your offer to become allies, %(_player_)s."
 msgstr "Nemohu přijmout tvoji nabídku, abychom byli spojenci %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:73
+#: simulation/ai/petra/chatHelper.js:64
 #, javascript-format
 msgid ""
 "I will not be your ally, %(_player_)s. However, I will consider a neutrality"
 " pact."
 msgstr "Nespojím se s tebou %(_player_)s,. Nicméně zvážím smlouvu o neutralitě."
 
-#: simulation/ai/petra/chatHelper.js:74
+#: simulation/ai/petra/chatHelper.js:65
 #, javascript-format
 msgid ""
 "I reject your request for alliance, %(_player_)s, but we could become "
 "neutral."
 msgstr "Odmítám tvoji žádost o uzavření spojenectví, %(_player_)s, ale mohli bychom být navzájem neutrální."
 
-#: simulation/ai/petra/chatHelper.js:75
+#: simulation/ai/petra/chatHelper.js:66
 #, javascript-format
 msgid "%(_player_)s, only a neutrality agreement is conceivable to me."
 msgstr "%(_player_)s, pro mě je myslitelná pouze dohoda o neutralitě."
 
-#: simulation/ai/petra/chatHelper.js:78
+#: simulation/ai/petra/chatHelper.js:69
 #, javascript-format
 msgid ""
 "Our previous alliance did not work out, %(_player_)s. I must decline your "
 "offer."
 msgstr "Naše předchozí spojenectví nedopadlo dobře, %(_player_)s. Musím tudíž tvoji nabídku odmítnout."
 
-#: simulation/ai/petra/chatHelper.js:79
+#: simulation/ai/petra/chatHelper.js:70
 #, javascript-format
 msgid "I won’t ally you again, %(_player_)s!"
 msgstr "Neuzavřu s tebou znovu spojenectví,  %(_player_)s!"
 
-#: simulation/ai/petra/chatHelper.js:80
+#: simulation/ai/petra/chatHelper.js:71
 #, javascript-format
 msgid "No more alliances between us, %(_player_)s!"
 msgstr "Mezi námi již nadále spojectví nebude, %(_player_)s!"
 
-#: simulation/ai/petra/chatHelper.js:81
+#: simulation/ai/petra/chatHelper.js:72
 #, javascript-format
 msgid "Your request for peace means nothing to me anymore, %(_player_)s!"
 msgstr "Tvoje volání po míru pro mě už nic neznamená, %(_player_)s!"
 
-#: simulation/ai/petra/chatHelper.js:82
+#: simulation/ai/petra/chatHelper.js:73
 #, javascript-format
 msgid ""
 "My answer to your repeated peace proposal will remain war, %(_player_)s!"
 msgstr "Moje odpověd na tvoje opakované nabídky míru je stále stejná. Válka bude pokračovat, %(_player_)s!"
 
-#: simulation/ai/petra/chatHelper.js:85
+#: simulation/ai/petra/chatHelper.js:76
 #, javascript-format
 msgid ""
 "I will accept your offer to become allies, %(_player_)s. We will both "
 "benefit from this partnership."
 msgstr "Přijmu nabídku na spojenectví s tebou, %(_player_)s. Tato spolupráce nám oběma přinese prospěch."
 
-#: simulation/ai/petra/chatHelper.js:86
+#: simulation/ai/petra/chatHelper.js:77
 #, javascript-format
 msgid "An alliance between us is a good idea, %(_player_)s."
 msgstr "Spojenectví mezi námi je skvělý nápad, %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:87
+#: simulation/ai/petra/chatHelper.js:78
 #, javascript-format
 msgid ""
 "Let both of our people prosper from a peaceful association, %(_player_)s."
 msgstr "Nechť obě naše země vzkvétají z tohoto mírového svazku, %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:88
+#: simulation/ai/petra/chatHelper.js:79
 #, javascript-format
 msgid "We have found common ground, %(_player)s. I accept the alliance."
 msgstr "Máme společné zájmy, %(_player)s. Toto spojenectví přijímám."
 
-#: simulation/ai/petra/chatHelper.js:89
+#: simulation/ai/petra/chatHelper.js:80
 #, javascript-format
 msgid "%(_player_)s, consider us allies from now on."
 msgstr "%(_player_)s, považuj nás nyní za spojence."
 
-#: simulation/ai/petra/chatHelper.js:92
+#: simulation/ai/petra/chatHelper.js:83
 #, javascript-format
 msgid ""
 "I will ally with you, %(_player_)s, but only if you send me a tribute of "
 "%(_amount_)s %(_resource_)s."
 msgstr "Přistoupím na spojenectví s tebou, %(_player_)s, ale jen když mi projevíš úctu a pošleš  %(_amount_)s %(_resource_)s."
 
-#: simulation/ai/petra/chatHelper.js:93
+#: simulation/ai/petra/chatHelper.js:84
 #, javascript-format
 msgid ""
 "%(_player_)s, you must send me a tribute of %(_amount_)s %(_resource_)s "
 "before I accept an alliance with you."
-msgstr ""
+msgstr "%(_player_)s, musíš mi poslat tribut (projev úcty, vlastně vazalskou daň :-) %(_amount_)s %(_resource_)s, předtím než přijmu spojenectví s tebou."
 
-#: simulation/ai/petra/chatHelper.js:94
+#: simulation/ai/petra/chatHelper.js:85
 #, javascript-format
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
 " %(_player_)s,"
 msgstr "Dokud mi nepošleš %(_amount_)s %(_resource_)s, tak spojenectví utvořeno nebude, %(_player_)s,"
 
-#: simulation/ai/petra/chatHelper.js:97
+#: simulation/ai/petra/chatHelper.js:88
 #, javascript-format
 msgid ""
 "%(_player_)s, my offer still stands. I will ally with you only if you send "
 "me a tribute of %(_amount_)s %(_resource_)s."
 msgstr "%(_player_)s, má nabídka stále platí. Přistoupím na spojenectví s tebou, pokud mi pošleš %(_amount_)s %(_resource_)s."
 
-#: simulation/ai/petra/chatHelper.js:98
+#: simulation/ai/petra/chatHelper.js:89
 #, javascript-format
 msgid ""
 "I’m still waiting for %(_amount_)s %(_resource_)s before accepting your "
 "alliance, %(_player_)s."
 msgstr "Stále čekám na %(_amount_)s %(_resource_)s, než přijmu spojenectví s tebou,  %(_player_)s."
 
-#: simulation/ai/petra/chatHelper.js:99 simulation/ai/petra/chatHelper.js:120
+#: simulation/ai/petra/chatHelper.js:90 simulation/ai/petra/chatHelper.js:111
 #, javascript-format
 msgid ""
 "%(_player_)s, if you do not send me part of the %(_amount_)s %(_resource_)s "
 "tribute soon, I will break off our negotiations."
-msgstr ""
+msgstr "%(_player_)s, pokud mi brzy nepošleš část poplatku jako projev úcty (daň) %(_amount_)s %(_resource_)s, tak ukončím naše jednání."
 
-#: simulation/ai/petra/chatHelper.js:104
+#: simulation/ai/petra/chatHelper.js:95
 #, javascript-format
 msgid "I will not become neutral with you, %(_player_)s."
 msgstr "Neuzavřu s vámi neutralitu,  %(_player_)s!"
 
-#: simulation/ai/petra/chatHelper.js:105
+#: simulation/ai/petra/chatHelper.js:96
 #, javascript-format
 msgid "%(_player_)s, I must decline your request for a neutrality pact."
 msgstr "%(_player_)s, bohužel musím zamítnout tvoji žádost o dohodu o neutralitě."
 
-#: simulation/ai/petra/chatHelper.js:108
+#: simulation/ai/petra/chatHelper.js:99
 #, javascript-format
 msgid ""
 "Our previous neutrality agreement ended in failure, %(_player_)s; I will not"
 " consider another one."
 msgstr "Naše minulá dohoda o neutralitě skončila smutně, %(_player_)s; Na další tedy nepřistoupím."
 
-#: simulation/ai/petra/chatHelper.js:111
+#: simulation/ai/petra/chatHelper.js:102
 #, javascript-format
 msgid ""
 "I welcome your request for peace between our civilizations, %(_player_)s. I "
 "will accept."
 msgstr "Vítám tvoji žádost o mír mezi našimi civilizacemi %(_player_)s. S radostí přijímám."
 
-#: simulation/ai/petra/chatHelper.js:112
+#: simulation/ai/petra/chatHelper.js:103
 #, javascript-format
 msgid ""
 "%(_player_)s, I will accept your neutrality request. May both our "
 "civilizations benefit."
 msgstr "%(_player_)s, přijímám váš požadavek na neutralitu. Obě naše civilizace z toho mohou čerpat."
 
-#: simulation/ai/petra/chatHelper.js:115
+#: simulation/ai/petra/chatHelper.js:106
 #, javascript-format
 msgid ""
 "If you send me a tribute of %(_amount_)s %(_resource_)s, I will accept your "
 "neutrality request, %(_player_)s."
-msgstr ""
+msgstr "Pokud mi pošleš poplatek jako projev úcty (daň) %(_amount_)s %(_resource_)s, tak přijmu tvoji žádost o dohodu o neutralitě."
 
-#: simulation/ai/petra/chatHelper.js:116
+#: simulation/ai/petra/chatHelper.js:107
 #, javascript-format
 msgid ""
 "%(_player_)s, if you send me %(_amount_)s %(_resource_)s, I will accept a "
 "neutrality pact."
 msgstr "%(_player_)s, pokud mi pošleš %(_amount_)s %(_resource_)s, tak přijmu dohodu o neutralitě."
 
-#: simulation/ai/petra/chatHelper.js:119
+#: simulation/ai/petra/chatHelper.js:110
 #, javascript-format
 msgid ""
 "%(_player_)s, I will not accept your neutrality request unless you tribute "
@@ -886,26 +876,26 @@ msgstr "%(category)s kapacity výcviku %(limit)s dosaženo"
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s limitu %(limit)s dosaženo"
 
-#: simulation/components/Player.js:263
+#: simulation/components/Player.js:277
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "Nedostatek surovin - %(resourceAmount1)s %(resourceType1)s"
 
-#: simulation/components/Player.js:265
+#: simulation/components/Player.js:279
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "Nedostatek surovin - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:267
+#: simulation/components/Player.js:281
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "Nedostatek surovin - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:269
+#: simulation/components/Player.js:283
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -1052,11 +1042,11 @@ msgstr "Rychleji (20x)"
 msgid ""
 "Capture all relics spread across the map and keep them for a certain time to"
 " win the game."
-msgstr ""
+msgstr "Ukořistěte všechny památky po celé mapěa podržte je po určitou dobu, abyste zvítězili ve hře."
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
 msgid "Capture The Relic"
-msgstr ""
+msgstr "Ukořistit památku"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid "Defeat all opponents to win."
@@ -1167,7 +1157,7 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -50% for Sandbox to +60% for Very Hard (Medium 0%). In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "Petra je výchozí počítačový hráč (AI) 0 A.D. Prosím upozorňujte na chyby Wildfire Games (odkaz najdete v hlavní nabídce).\n\nUmělá inteligence má zvýhodnění/znevýhodnění v získávaní zdrojů (rychlost sběru nebo obchodování) začínající od -50% u pískoviště do +60% pro Velmi těžké (střední = 0%). V režimu pískoviště se umělá inteligence nerozšiřuje ani neutočí."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"

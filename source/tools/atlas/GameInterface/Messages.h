@@ -654,6 +654,38 @@ QUERY(GetCameraInfo,
 	  ((AtlasMessage::sCameraInfo, info))
 	  );
 
+QUERY(PickPathNode,
+	((Position, pos))
+	,
+	((AtlasMessage::sCinemaPathNode, node))
+	);
+
+QUERY(PickAxis,
+	((AtlasMessage::sCinemaPathNode, node))
+	((Position, pos))
+	,
+	((int, axis))
+	);
+
+COMMAND(AddPathNode, NOMERGE,
+	((AtlasMessage::sCinemaPathNode, node))
+	);
+
+COMMAND(DeletePathNode, NOMERGE,
+	((AtlasMessage::sCinemaPathNode, node))
+	);
+
+COMMAND(MovePathNode, NOMERGE,
+	((AtlasMessage::sCinemaPathNode, node))
+	((int, axis))
+	((Position, from))
+	((Position, to))
+	);
+
+COMMAND(AddCinemaPath, NOMERGE, ((std::wstring, pathName)));
+
+COMMAND(DeleteCinemaPath, NOMERGE, ((std::wstring, pathName)));
+
 COMMAND(SetCinemaPaths, NOMERGE,
 		((std::vector<AtlasMessage::sCinemaPath>, paths))
 		);
@@ -668,44 +700,9 @@ MESSAGE(CinemaEvent,
 		((bool, lines))
 		);
 
+MESSAGE(ClearPathNodePreview,);
+
 //////////////////////////////////////////////////////////////////////////
-
-enum eTriggerListType
-{
-	CINEMA_LIST,
-	TRIGGER_LIST,
-	TRIG_GROUP_LIST	//list of trigger groups
-	// [Eventually include things like entities and areas as the editor progresses...]
-};
-
-
-QUERY(GetTriggerData,
-	  , //no inputs
-	  ((std::vector<AtlasMessage::sTriggerGroup>, groups))
-	  ((std::vector<AtlasMessage::sTriggerSpec>, conditions))
-	  ((std::vector<AtlasMessage::sTriggerSpec>, effects))
-	  );
-
-QUERY(GetTriggerChoices,
-	  ((std::wstring, name)),
-	  ((std::vector<std::wstring>, choices))
-	  ((std::vector<std::wstring>, translations))
-	  );
-
-COMMAND(SetAllTriggers, NOMERGE,
-	  ((std::vector<AtlasMessage::sTriggerGroup>, groups))
-	  );
-
-QUERY(GetWorldPosition,
-	  ((int, x))
-	  ((int, y)),
-	  ((Position, position))
-	  );
-
-MESSAGE(TriggerToggleSelector,
-		((bool, enable))
-		((Position, position))
-		);
 
 QUERY(GetSelectedObjectsTemplateNames,
 		((std::vector<ObjectID>, ids))

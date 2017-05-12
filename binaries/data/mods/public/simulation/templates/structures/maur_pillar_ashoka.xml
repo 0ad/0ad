@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
-  <Auras datatype="tokens">maur_pillar</Auras>
+  <Auras datatype="tokens">
+    structures/maur_pillar
+  </Auras>
   <BuildRestrictions>
     <Category>Pillar</Category>
     <Distance>

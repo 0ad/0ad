@@ -260,3 +260,12 @@ function openTermsOfUse()
 	});
 }
 
+function prelobbyCancel()
+{
+	lobbyStop();
+
+	if (Engine.GetGUIObjectByName("pageWelcome").hidden)
+		switchPage("welcome");
+	else
+		Engine.PopGuiPage();
+}

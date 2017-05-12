@@ -119,10 +119,10 @@
 			"parameters": { "config": "postproc", "renderer": "Postproc" }
 		},
 		{
-			"type": "dropdown",
+			"type": "slider",
 			"label": "Graphics quality",
-			"tooltip": "Graphics quality. REQUIRES GAME RESTART",
-			"parameters": { "list": [ "Low", "Medium", "High" ], "config": "materialmgr.quality" }
+			"tooltip": "Number of shader effects. REQUIRES GAME RESTART",
+			"parameters": { "config": "materialmgr.quality", "min": 0, "max": 10 }
 		},
 		{
 			"type": "boolean",
@@ -205,43 +205,55 @@
 			"parameters": { "config": "vsync" }
 		},
 		{
+			"type": "slider",
+			"label": "FPS throttling in menus",
+			"tooltip": "To save CPU workload, throttle render frequency in all menus. Set to maximum to disable throttling.",
+			"parameters": { "config": "adaptivefps.menu", "min": 20, "max": 100 }
+		},
+		{
+			"type": "slider",
+			"label": "FPS throttling in games",
+			"tooltip": "To save CPU workload, throttle render frequency in running games. Set to maximum to disable throttling.",
+			"parameters": { "config": "adaptivefps.session", "min": 20, "max": 100 }
+		},
+		{
 			"type": "boolean",
-			"label": "Limit FPS in Menus",
-			"tooltip": "Limit FPS to 50 in all menus, to save power.",
-			"parameters": { "config": "gui.menu.limitfps" }
+			"label": "Aura Range Visualization",
+			"tooltip": "Display the range of auras of selected units and structures (can also be toggled in-game with the hotkey).",
+			"parameters": { "config": "gui.session.aurarange" }
 		}
 	],
 	"soundSetting":
 	[
 		{
-			"type": "number",
-			"label": "Master Gain",
+			"type": "slider",
+			"label": "Master Volume",
 			"tooltip": "Master audio gain",
-			"parameters": { "config": "sound.mastergain", "function": "SetMasterGain", "min": "0" }
+			"parameters": { "config": "sound.mastergain", "function": "SetMasterGain", "min": 0, "max": 2 }
 		},
 		{
-			"type": "number",
-			"label": "Music Gain",
+			"type": "slider",
+			"label": "Music Volume",
 			"tooltip": "In game music gain",
-			"parameters": { "config": "sound.musicgain", "function": "SetMusicGain", "min": "0" }
+			"parameters": { "config": "sound.musicgain", "function": "SetMusicGain", "min": 0, "max": 2 }
 		},
 		{
-			"type": "number",
-			"label": "Ambient Gain",
+			"type": "slider",
+			"label": "Ambient Volume",
 			"tooltip": "In game ambient sound gain",
-			"parameters": { "config": "sound.ambientgain", "function": "SetAmbientGain", "min": "0" }
+			"parameters": { "config": "sound.ambientgain", "function": "SetAmbientGain", "min": 0, "max": 2 }
 		},
 		{
-			"type": "number",
-			"label": "Action Gain",
+			"type": "slider",
+			"label": "Action Volume",
 			"tooltip": "In game unit action sound gain",
-			"parameters": { "config": "sound.actiongain", "function": "SetActionGain", "min": "0" }
+			"parameters": { "config": "sound.actiongain", "function": "SetActionGain", "min": 0, "max": 2 }
 		},
 		{
-			"type": "number",
-			"label": "UI Gain",
+			"type": "slider",
+			"label": "UI Volume",
 			"tooltip": "UI sound gain",
-			"parameters": { "config": "sound.uigain", "function": "SetUIGain", "min": "0" }
+			"parameters": { "config": "sound.uigain", "function": "SetUIGain", "min": 0, "max": 2 }
 		},
 		{
 			"type": "boolean",
@@ -278,6 +290,12 @@
 			"label": "Barter",
 			"tooltip": "Show a chat notification to observers when a player bartered resources",
 			"parameters": { "config": "gui.session.notifications.barter" }
+		},
+		{
+			"type": "dropdown",
+			"label": "Phase",
+			"tooltip": "Show a chat notification if you or an ally have started, aborted or completed a new phase, and phases of all players in observer mode",
+			"parameters": { "config": "gui.session.notifications.phase",  "list": [ "Disable", "Completed", "All displayed" ] }
 		}
 	]
 }

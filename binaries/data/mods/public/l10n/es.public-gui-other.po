@@ -7,16 +7,16 @@
 # ninovolador <ignacio.rodriguez.mo@gmail.com>, 2015
 # juanda097 <juanda097@openmailbox.org>, 2014-2015
 # Master Dark <yochan003@hotmail.com>, 2016
-# Mihai Pantazi <malexandru_70@hotmail.com>, 2016
+# Mihai Pantazi <malexandru_70@hotmail.com>, 2016-2017
 # Pedro Almendros González <pedro.al94@gmail.com>, 2015
 # Swyter <Swyterzone@gmail.com>, 2014-2017
 # vega93 <arkadas_llisa@hotmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-04-10 09:06+0200\n"
-"PO-Revision-Date: 2017-04-10 11:33+0000\n"
-"Last-Translator: Swyter <Swyterzone@gmail.com>\n"
+"POT-Creation-Date: 2017-04-28 09:01+0200\n"
+"PO-Revision-Date: 2017-04-29 14:23+0000\n"
+"Last-Translator: Mihai Pantazi <malexandru_70@hotmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -156,123 +156,123 @@ msgstr "Borrar el elemento seleccionado presionando %(hotkey)s."
 msgid "Hold %(hotkey)s to delete without confirmation."
 msgstr "Presiona %(hotkey)s para borrar sin confirmar."
 
-#: gui/common/gamedescription.js:13
+#: gui/common/gamedescription.js:29
 msgid "A randomly selected map."
 msgstr "Un mapa elegido al azar."
 
-#: gui/common/gamedescription.js:20 gui/common/gamedescription.js:291
+#: gui/common/gamedescription.js:36 gui/common/gamedescription.js:310
 msgid "Sorry, no description available."
 msgstr "No hay ninguna descripción disponible."
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:70
+#: gui/common/gamedescription.js:86
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
 msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:73
+#: gui/common/gamedescription.js:89
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
 msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:79
+#: gui/common/gamedescription.js:95
 #, javascript-format
 msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
 msgstr "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:82
+#: gui/common/gamedescription.js:98
 #, javascript-format
 msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
 msgstr "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:92
+#: gui/common/gamedescription.js:108
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
 msgstr "%(playerName)s (DESCONECTADO)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:95
+#: gui/common/gamedescription.js:111
 #, javascript-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
 msgstr "%(playerName)s (DESCONECTADO, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:102
+#: gui/common/gamedescription.js:118
 #, javascript-format
 msgid "%(playerName)s (%(civ)s)"
 msgstr "%(playerName)s (%(civ)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:105
+#: gui/common/gamedescription.js:121
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(state)s)"
 msgstr "%(playerName)s (%(civ)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:109
+#: gui/common/gamedescription.js:125
 #, javascript-format
 msgid "%(playerName)s"
 msgstr "%(playerName)s"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:112
+#: gui/common/gamedescription.js:128
 #, javascript-format
 msgid "%(playerName)s (%(state)s)"
 msgstr "%(playerName)s (%(state)s)"
 
-#: gui/common/gamedescription.js:130
+#: gui/common/gamedescription.js:149
 msgid "Unknown Civilization"
 msgstr "Civilización desconocida"
 
-#: gui/common/gamedescription.js:137
+#: gui/common/gamedescription.js:156
 msgctxt "playerstate"
 msgid "defeated"
 msgstr "vencido"
 
-#: gui/common/gamedescription.js:138
+#: gui/common/gamedescription.js:157
 msgctxt "playerstate"
 msgid "won"
 msgstr "vencedor"
 
-#: gui/common/gamedescription.js:160
+#: gui/common/gamedescription.js:179
 msgid "No Team"
 msgstr "Sin equipo"
 
-#: gui/common/gamedescription.js:161
+#: gui/common/gamedescription.js:180
 #, javascript-format
 msgid "Team %(team)s"
 msgstr "Equipo %(team)s"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or savegame menu or lobby
-#: gui/common/gamedescription.js:164 gui/common/gamedescription.js:171
+#: gui/common/gamedescription.js:183 gui/common/gamedescription.js:190
 #, javascript-format
 msgid ""
 "%(team)s:\n"
 "%(playerDescriptions)s"
 msgstr "%(team)s:\n%(playerDescriptions)s"
 
-#: gui/common/gamedescription.js:172
+#: gui/common/gamedescription.js:191
 msgid "Observer"
 msgid_plural "Observers"
 msgstr[0] "Observador"
 msgstr[1] "Observadores"
 
-#: gui/common/gamedescription.js:194
+#: gui/common/gamedescription.js:213
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
@@ -280,7 +280,7 @@ msgid_plural "Wonder (%(min)s minutes)"
 msgstr[0] "Maravilla (%(min)s minuto)"
 msgstr[1] "Maravilla (%(min)s minutos)"
 
-#: gui/common/gamedescription.js:205
+#: gui/common/gamedescription.js:224
 #, javascript-format
 msgctxt "victory condition"
 msgid "Capture The Relic (%(min)s minute)"
@@ -288,116 +288,116 @@ msgid_plural "Capture The Relic (%(min)s minutes)"
 msgstr[0] "Captura la reliquia (%(min)s minuto)"
 msgstr[1] "Captura la reliquia (%(min)s minutos)"
 
-#: gui/common/gamedescription.js:223
+#: gui/common/gamedescription.js:242
 msgid "Rated game"
 msgstr "Partida clasificatoria"
 
-#: gui/common/gamedescription.js:224
+#: gui/common/gamedescription.js:243
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr "Cuando aparezca el ganador de la partida se adaptará la clasificación general de la Sala multijugador."
 
-#: gui/common/gamedescription.js:229
+#: gui/common/gamedescription.js:248
 msgid "Locked Teams"
 msgstr "Equipos fijos"
 
-#: gui/common/gamedescription.js:230
+#: gui/common/gamedescription.js:249
 msgid "Players can't change the initial teams."
 msgstr "Los jugadores no pueden cambiar los equipos iniciales."
 
-#: gui/common/gamedescription.js:234
+#: gui/common/gamedescription.js:253
 msgid "Diplomacy"
 msgstr "Diplomacia"
 
-#: gui/common/gamedescription.js:235
+#: gui/common/gamedescription.js:254
 msgid "Players can make alliances and declare war on allies."
 msgstr "Los jugadores pueden aliarse entre sí y entrar en guerra."
 
-#: gui/common/gamedescription.js:240
+#: gui/common/gamedescription.js:259
 msgid "Last Man Standing"
 msgstr "Último superviviente"
 
-#: gui/common/gamedescription.js:241
+#: gui/common/gamedescription.js:260
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
 msgstr "Sólo uno puede ganar la partida. Si los jugadores que quedan son aliados la partida sigue hasta quedar uno en pie."
 
-#: gui/common/gamedescription.js:245
+#: gui/common/gamedescription.js:264
 msgid "Allied Victory"
 msgstr "Victoria aliada"
 
-#: gui/common/gamedescription.js:246
+#: gui/common/gamedescription.js:265
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
 msgstr "Si un jugador gana, también lo hacen sus aliados. Si el grupo permanece unido, ganan todos."
 
-#: gui/common/gamedescription.js:252
+#: gui/common/gamedescription.js:271
 msgid "Ceasefire"
 msgstr "Alto al fuego"
 
-#: gui/common/gamedescription.js:255 gui/pregame/mainmenu.js:91
+#: gui/common/gamedescription.js:274 gui/pregame/mainmenu.js:91
 msgid "disabled"
 msgstr "desactivado"
 
-#: gui/common/gamedescription.js:256
+#: gui/common/gamedescription.js:275
 msgid "For the first minute, enemies will stay neutral."
 msgid_plural "For the first %(min)s minutes, enemies will stay neutral."
 msgstr[0] "Los enemigos mantendrán una posición neutral el primer minuto."
 msgstr[1] "Los enemigos mantendrán una posición neutral los primeros %(min)s minutos."
 
-#: gui/common/gamedescription.js:264
+#: gui/common/gamedescription.js:283
 msgid "Map Name"
 msgstr "Nombre del mapa"
 
-#: gui/common/gamedescription.js:269
+#: gui/common/gamedescription.js:288
 msgid "Map Type"
 msgstr "Tipo de mapa"
 
-#: gui/common/gamedescription.js:278
+#: gui/common/gamedescription.js:297
 msgid "Map Size"
 msgstr "Tamaño del mapa"
 
-#: gui/common/gamedescription.js:285
+#: gui/common/gamedescription.js:304
 msgid "Map Description"
 msgstr "Descripción del mapa"
 
-#: gui/common/gamedescription.js:288
+#: gui/common/gamedescription.js:307
 msgid "Randomly selects a map from the list"
 msgstr "Elige un mapa al azar de la lista"
 
-#: gui/common/gamedescription.js:297
+#: gui/common/gamedescription.js:316
 msgid "Starting Resources"
 msgstr "Recursos iniciales"
 
-#: gui/common/gamedescription.js:298
+#: gui/common/gamedescription.js:317
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
-#: gui/common/gamedescription.js:308
+#: gui/common/gamedescription.js:327
 msgid "Population Limit"
 msgstr "Límite de población"
 
-#: gui/common/gamedescription.js:316
+#: gui/common/gamedescription.js:335
 msgid "Disable Treasure"
 msgstr "Desactivar tesoros"
 
-#: gui/common/gamedescription.js:321
+#: gui/common/gamedescription.js:340
 msgid "Revealed Map"
 msgstr "Revelar mapa"
 
-#: gui/common/gamedescription.js:326
+#: gui/common/gamedescription.js:345
 msgid "Explored Map"
 msgstr "Mapa explorado"
 
-#: gui/common/gamedescription.js:331
+#: gui/common/gamedescription.js:350
 msgid "Cheats"
 msgstr "Trucos"
 
-#: gui/common/gamedescription.js:336 gui/common/tooltips.js:86
+#: gui/common/gamedescription.js:355 gui/common/tooltips.js:86
 #: gui/common/tooltips.js:141 gui/common/tooltips.js:182
 #: gui/common/tooltips.js:404 gui/common/tooltips.js:425
 #: gui/common/tooltips.js:707
@@ -405,21 +405,21 @@ msgstr "Trucos"
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:339
+#: gui/common/gamedescription.js:358
 msgctxt "gamesetup option"
 msgid "enabled"
 msgstr "sí"
 
-#: gui/common/gamedescription.js:340
+#: gui/common/gamedescription.js:359
 msgctxt "gamesetup option"
 msgid "disabled"
 msgstr "no"
 
-#: gui/common/gamedescription.js:357
+#: gui/common/gamedescription.js:376
 msgid "Victorious"
 msgstr "Victoria"
 
-#: gui/common/gamedescription.js:362
+#: gui/common/gamedescription.js:381
 msgid "Defeated"
 msgstr "Derrotado"
 
@@ -2246,7 +2246,7 @@ msgstr "2ª recaudación de fondos"
 msgid ""
 "Indiegogo 2013 campaign\n"
 "More than 1000 donators (!), including:"
-msgstr "Campaña en Indiegogo de 2013\ncon más de mil participantes, incluyendo a:"
+msgstr "Campaña en Indiegogo de 2013\nMás de 1.000 participantes (!), incluyendo a:"
 
 #: gui/credits/texts/donators.jsonTitle
 msgid "Donors"
@@ -2534,6 +2534,28 @@ msgstr "Notificar en el chat de observadores cualquier intercambio de recursos"
 #: gui/options/options.jsonnotificationSetting[2].label
 msgid "Barter"
 msgstr "Intercambio"
+
+#: gui/options/options.jsonnotificationSetting[3].parameters.list[0]
+msgid "Disable"
+msgstr "Deshabilitar"
+
+#: gui/options/options.jsonnotificationSetting[3].parameters.list[1]
+msgid "Completed"
+msgstr "Completado"
+
+#: gui/options/options.jsonnotificationSetting[3].parameters.list[2]
+msgid "All displayed"
+msgstr ""
+
+#: gui/options/options.jsonnotificationSetting[3].tooltip
+msgid ""
+"Show a chat notification if you or an ally have started, aborted or "
+"completed a new phase, and phases of all players in observer mode"
+msgstr "Mostrar una notificación del chat si tú o un aliado habéis comenzado, abortado o completado una nueva fase, y fases de todos los jugadores en el modo observador."
+
+#: gui/options/options.jsonnotificationSetting[3].label
+msgid "Phase"
+msgstr "Fase"
 
 #: gui/options/options.jsongraphicsSetting[0].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)"
@@ -2880,7 +2902,7 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "[imgleft=\"constructionIcon\"]This game is still in development. Features "
 "are missing and it contains bugs."
-msgstr "[imgleft=\"constructionIcon\"] Este juego está todavía en desarrollo. Faltan algunas características y contiene errores."
+msgstr "[imgleft=\"constructionIcon\"]Este juego todavía está en desarrollo. Faltan algunas características y contiene errores."
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid ""

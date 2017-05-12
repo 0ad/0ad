@@ -51,11 +51,7 @@
 	</object>
 
 	<object hotkey="session.kill">
-		<action on="Press">
-			let ent = g_Selection.getFirstSelected();
-			if (ent)
-				performCommand(GetExtendedEntityState(ent), "delete");
-		</action>
+		<action on="Press">performCommand(g_Selection.toList().map(ent => GetExtendedEntityState(ent)), "delete");</action>
 	</object>
 
 	<object hotkey="session.unload">
@@ -94,6 +90,10 @@
 
 	<object hotkey="selection.cancel">
 		<action on="Press">clearSelection();</action>
+	</object>
+
+	<object hotkey="session.toggleaurarange">
+		<action on="Press">toggleRangeOverlay("Aura");</action>
 	</object>
 
 </object>

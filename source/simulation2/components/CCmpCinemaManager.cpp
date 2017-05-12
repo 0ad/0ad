@@ -20,20 +20,13 @@
 #include "simulation2/system/Component.h"
 #include "ICmpCinemaManager.h"
 
-#include "graphics/GameView.h"
-#include "graphics/CinemaManager.h"
-#include "gui/CGUI.h"
-#include "gui/GUIManager.h"
-#include "gui/IGUIObject.h"
 #include "ps/CLogger.h"
-#include "ps/Game.h"
 #include "simulation2/components/ICmpOverlayRenderer.h"
 #include "simulation2/components/ICmpRangeManager.h"
 #include "simulation2/components/ICmpSelectable.h"
 #include "simulation2/components/ICmpTerritoryManager.h"
 #include "simulation2/MessageTypes.h"
 #include "simulation2/Simulation2.h"
-#include "renderer/Renderer.h"
 
 
 class CCmpCinemaManager : public ICmpCinemaManager
@@ -195,6 +188,17 @@ public:
 	virtual void ClearQueue()
 	{
 		m_PathQueue.clear();
+	}
+
+	virtual void DeletePath(const CStrW& name)
+	{
+		if (!HasPath(name))
+		{
+			LOGWARNING("Path with name '%s' doesn't exist", name.ToUTF8());
+			return;
+		}
+		m_PathQueue.remove_if([name](const CCinemaPath& path) { return path.GetName() == name; });
+		m_Paths.erase(name);
 	}
 
 	virtual const std::map<CStrW, CCinemaPath>& GetPaths() const

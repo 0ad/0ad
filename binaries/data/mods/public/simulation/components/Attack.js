@@ -1,5 +1,7 @@
 function Attack() {}
 
+var g_AttackTypes = ["Melee", "Ranged", "Capture"];
+
 Attack.prototype.bonusesSchema =
 	"<optional>" +
 		"<element name='Bonuses'>" +
@@ -102,6 +104,9 @@ Attack.prototype.Schema =
 				"<element name='Pierce' a:help='Pierce damage strength'><ref name='nonNegativeDecimal'/></element>" +
 				"<element name='Crush' a:help='Crush damage strength'><ref name='nonNegativeDecimal'/></element>" +
 				"<element name='MaxRange' a:help='Maximum attack range (in metres)'><ref name='nonNegativeDecimal'/></element>" +
+				"<element name='PrepareTime' a:help='Time from the start of the attack command until the attack actually occurs (in milliseconds). This value relative to RepeatTime should closely match the \"event\" point in the actor&apos;s attack animation'>" +
+					"<data type='nonNegativeInteger'/>" +
+				"</element>" +
 				"<element name='RepeatTime' a:help='Time between attacks (in milliseconds). The attack animation will be stretched to match this time'>" + // TODO: it shouldn't be stretched
 					"<data type='positiveInteger'/>" +
 				"</element>" +
@@ -131,7 +136,7 @@ Attack.prototype.Schema =
 				"<element name='ProjectileSpeed' a:help='Speed of projectiles (in metres per second)'>" +
 					"<ref name='positiveDecimal'/>" +
 				"</element>" +
-				"<element name='Spread' a:help='Radius over which missiles will tend to land (when shooting to the MaxRange). Roughly 2/3 will land inside this radius (in metres). Spread is linearly diminished as the target gets closer.'><ref name='nonNegativeDecimal'/></element>" +
+				"<element name='Spread' a:help='Standard deviation of the bivariate normal distribution of hits at 100 meters. A disk at 100 meters from the attacker with this radius (2x this radius, 3x this radius) is expected to include the landing points of 39.3% (86.5%, 98.9%) of the rounds.'><ref name='nonNegativeDecimal'/></element>" +
 				Attack.prototype.bonusesSchema +
 				Attack.prototype.preferredClassesSchema +
 				Attack.prototype.restrictedClassesSchema +
@@ -185,9 +190,15 @@ Attack.prototype.Init = function()
 
 Attack.prototype.Serialize = null; // we have no dynamic state to save
 
-Attack.prototype.GetAttackTypes = function()
+Attack.prototype.GetAttackTypes = function(wantedTypes)
 {
-	return ["Melee", "Ranged", "Capture"].filter(type => !!this.template[type]);
+	let types = g_AttackTypes.filter(type => !!this.template[type]);
+	if (!wantedTypes)
+		return types;
+
+	let wantedTypesReal = wantedTypes.filter(wtype => wtype.indexOf("!") != 0);
+	return types.filter(type => wantedTypes.indexOf("!" + type) == -1 &&
+	      (!wantedTypesReal || !wantedTypesReal.length || wantedTypesReal.indexOf(type) != -1));
 };
 
 Attack.prototype.GetPreferredClasses = function(type)
@@ -208,7 +219,7 @@ Attack.prototype.GetRestrictedClasses = function(type)
 	return [];
 };
 
-Attack.prototype.CanAttack = function(target)
+Attack.prototype.CanAttack = function(target, wantedTypes)
 {
 	let cmpFormation = Engine.QueryInterface(target, IID_Formation);
 	if (cmpFormation)
@@ -219,20 +230,36 @@ Attack.prototype.CanAttack = function(target)
 	if (!cmpThisPosition || !cmpTargetPosition || !cmpThisPosition.IsInWorld() || !cmpTargetPosition.IsInWorld())
 		return false;
 
+	let cmpIdentity = Engine.QueryInterface(target, IID_Identity);
+	if (!cmpIdentity)
+		return false;
+
+	let targetClasses = cmpIdentity.GetClassesList();
+	if (targetClasses.indexOf("Domestic") != -1 && this.template.Slaughter &&
+	   (!wantedTypes || !wantedTypes.filter(wType => wType.indexOf("!") != 0).length))
+		return true;
+
+	let cmpEntityPlayer = QueryOwnerInterface(this.entity);
+	let cmpTargetPlayer = QueryOwnerInterface(target);
+	if (!cmpTargetPlayer || !cmpEntityPlayer)
+		return false;
+
+	let types = this.GetAttackTypes(wantedTypes);
+	let entityOwner = cmpEntityPlayer.GetPlayerID();
+	let targetOwner = cmpTargetPlayer.GetPlayerID();
+	let cmpCapturable = QueryMiragedInterface(target, IID_Capturable);
+
 	// Check if the relative height difference is larger than the attack range
 	// If the relative height is bigger, it means they will never be able to
 	// reach each other, no matter how close they come.
 	let heightDiff = Math.abs(cmpThisPosition.GetHeightOffset() - cmpTargetPosition.GetHeightOffset());
 
-	const cmpIdentity = Engine.QueryInterface(target, IID_Identity);
-	if (!cmpIdentity)
-		return undefined;
-
-	const targetClasses = cmpIdentity.GetClassesList();
-
-	for (let type of this.GetAttackTypes())
+	for (let type of types)
 	{
-		if (type == "Capture" && !QueryMiragedInterface(target, IID_Capturable))
+		if (type != "Capture" && !cmpEntityPlayer.IsEnemy(targetOwner))
+			continue;
+
+		if (type == "Capture" && (!cmpCapturable || !cmpCapturable.CanCapture(entityOwner)))
 			continue;
 
 		if (heightDiff > this.GetRange(type).max)
@@ -298,7 +325,7 @@ Attack.prototype.GetBestAttackAgainst = function(target, allowCapture)
 	{
 		// TODO: Formation against formation needs review
 		let types = this.GetAttackTypes();
-		return ["Ranged", "Melee", "Capture"].find(attack => types.indexOf(attack) != -1);
+		return g_AttackTypes.find(attack => types.indexOf(attack) != -1);
 	}
 
 	let cmpIdentity = Engine.QueryInterface(target, IID_Identity);
@@ -469,11 +496,12 @@ Attack.prototype.PerformAttack = function(type, target)
 		let previousTargetPosition = Engine.QueryInterface(target, IID_Position).GetPreviousPosition();
 		let targetVelocity = Vector3D.sub(targetPosition, previousTargetPosition).div(turnLength);
 
-		let predictedPosition = this.PredictTargetPosition(selfPosition, horizSpeed, targetPosition, targetVelocity);
+		let timeToTarget = this.PredictTimeToTarget(selfPosition, horizSpeed, targetPosition, targetVelocity);
+		let predictedPosition = (timeToTarget !== false) ? Vector3D.mult(targetVelocity, timeToTarget).add(targetPosition) : targetPosition;
 
 		// Add inaccuracy based on spread.
 		let distanceModifiedSpread = ApplyValueModificationsToEntity("Attack/Ranged/Spread", +this.template.Ranged.Spread, this.entity) *
-			targetPosition.horizDistanceTo(selfPosition) / this.GetRange(type).max;
+			targetPosition.horizDistanceTo(selfPosition) / 100;
 
 		let randNorm = randomNormal2D();
 		let offsetX = randNorm[0] * distanceModifiedSpread;
@@ -483,7 +511,7 @@ Attack.prototype.PerformAttack = function(type, target)
 
 		// Recalculate when the missile will hit the target position.
 		let realHorizDistance = realTargetPosition.horizDistanceTo(selfPosition);
-		let timeToTarget = realHorizDistance / horizSpeed;
+		timeToTarget = realHorizDistance / horizSpeed;
 
 		let missileDirection = Vector3D.sub(realTargetPosition, selfPosition).div(realHorizDistance);
 
@@ -554,31 +582,33 @@ Attack.prototype.PerformAttack = function(type, target)
 };
 
 /**
- * Get the predicted position of the collision between a projectile (or a chaser)
+ * Get the predicted time of collision between a projectile (or a chaser)
  * and its target, assuming they both move in straight line at a constant speed.
  * Vertical component of movement is ignored.
  * @param {Vector3D} selfPosition - the 3D position of the projectile (or chaser).
  * @param {number} horizSpeed - the horizontal speed of the projectile (or chaser).
  * @param {Vector3D} targetPosition - the 3D position of the target.
  * @param {Vector3D} targetVelocity - the 3D velocity vector of the target.
- * @return {Vector3D} - the 3D predicted position.
+ * @return {Vector3D|boolean} - the 3D predicted position or false if the collision will not happen.
  */
-Attack.prototype.PredictTargetPosition = function(selfPosition, horizSpeed, targetPosition, targetVelocity)
+Attack.prototype.PredictTimeToTarget = function(selfPosition, horizSpeed, targetPosition, targetVelocity)
 {
-	let relativePosition = Vector3D.sub(targetPosition, selfPosition);
+	let relativePosition = new Vector3D.sub(targetPosition, selfPosition);
+	let a = targetVelocity.x * targetVelocity.x + targetVelocity.z * targetVelocity.z - horizSpeed * horizSpeed;
+	let b = relativePosition.x * targetVelocity.x + relativePosition.z * targetVelocity.z;
+	let c = relativePosition.x * relativePosition.x + relativePosition.z * relativePosition.z;
+	// The predicted time to reach the target is the smallest non negative solution
+	// (when it exists) of the equation a t^2 + 2 b t + c = 0.
+	// Using c>=0, we can straightly compute the right solution.
 
-	// The component of the targets velocity radially away from the archer.
-	let radialSpeed = relativePosition.dot(targetVelocity) / relativePosition.length();
+	if (c == 0)
+		return 0;
 
-	let horizDistance = targetPosition.horizDistanceTo(selfPosition);
+	let disc = b * b - a * c;
+	if (a < 0 || b < 0 && disc >= 0)
+		return c / (Math.sqrt(disc) - b);
 
-	// This is an approximation of the time to reach the target, it assumes that the target has a constant radial
-	// velocity, but since units move in straight lines this is not true. The exact value would be more
-	// difficult to calculate and this is sufficiently accurate.
-	let timeToTarget = horizDistance / (horizSpeed - radialSpeed);
-
-	// Predict where the unit is when the missile lands.
-	return Vector3D.mult(targetVelocity, timeToTarget).add(targetPosition);
+	return false;
 }
 
 Attack.prototype.OnValueModification = function(msg)

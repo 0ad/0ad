@@ -637,9 +637,7 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraint,
 		var [cx, cz] = pickRandom(edges);
 
 		if (queueEmpty)
-		{
-			var radius = randInt(minRadius, maxRadius);
-		}
+			var radius = randIntInclusive(minRadius, maxRadius);
 		else
 		{
 			var radius = q.pop();
@@ -777,7 +775,7 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraint,
 		var radius2 = radius * radius;
 		var dx, dz, distance2;
 
-		var clumpHeight = (radius/maxRadius)*maxHeight*randFloat(0.8,1.2);
+		var clumpHeight = radius / maxRadius * maxHeight * randFloat(0.8, 1.2);
 
 		for (var ix = sx; ix <= lx; ++ix)
 		{
@@ -787,7 +785,7 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraint,
 				dz = iz - cz;
 				distance2 = dx * dx + dz * dz;
 
-				var newHeight = round((Math.sin(PI*(2*((radius - sqrt(distance2))/radius)/3 - 1/6)) + 0.5) * 2 / 3 *clumpHeight) + randInt(0,2);
+				var newHeight = Math.round((Math.sin(PI * (2 * ((radius - Math.sqrt(distance2)) / radius) / 3 - 1/6)) + 0.5) * 2/3 * clumpHeight) + randIntInclusive(0, 2);
 
 				if (dx * dx + dz * dz <= radius2)
 				{

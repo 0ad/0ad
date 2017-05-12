@@ -29,13 +29,13 @@
 # yukisola <yolandaapply@gmail.com>, 2014
 # hiahoo lee (leaber) <zodiac8765@gmail.com>, 2014
 # 吴善俊 <sjwuny@126.com>, 2014
-# 李武军 <lwj7863439@gmail.com>, 2016
+# 李武军 <lwj7863439@gmail.com>, 2016-2017
 # 玉堂白鹤 <yjwork@qq.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-04-10 09:05+0200\n"
-"PO-Revision-Date: 2017-04-10 09:07+0000\n"
+"POT-Creation-Date: 2017-04-28 09:00+0200\n"
+"PO-Revision-Date: 2017-04-28 15:36+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -44,19 +44,19 @@ msgstr ""
 "Language: zh\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: gui/session/input.js:147
+#: gui/session/input.js:143
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
 msgstr[0] "基本范围: %(range)s 公尺"
 
-#: gui/session/input.js:148
+#: gui/session/input.js:144
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] "额外范围: %(range)s 公尺"
 
-#: gui/session/input.js:705
+#: gui/session/input.js:703
 msgid "Cannot build wall here!"
 msgstr "无法在此筑墙"
 
@@ -116,14 +116,14 @@ msgstr "%(time)s %(message)s"
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
-msgstr ""
+msgstr "直到停火结束的剩余时间：%(time)s。"
 
 #: gui/session/menu.js:411
 msgctxt "team"
 msgid "None"
 msgstr "无"
 
-#: gui/session/menu.js:415 gui/session/messages.js:166
+#: gui/session/menu.js:415 gui/session/messages.js:167
 #: gui/session/diplomacy_window.xml:(tooltip):28
 msgid "Ally"
 msgstr "同盟"
@@ -132,7 +132,7 @@ msgstr "同盟"
 msgid "Neutral"
 msgstr "中立"
 
-#: gui/session/menu.js:416 gui/session/messages.js:167
+#: gui/session/menu.js:416 gui/session/messages.js:168
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr "敌对"
@@ -149,7 +149,7 @@ msgstr "请求你的盟友攻击敌人"
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
-msgstr ""
+msgstr "贿赂该玩家的一个随机单位并在有限期间内共享其视野。"
 
 #: gui/session/menu.js:716
 #, javascript-format
@@ -271,7 +271,7 @@ msgstr "暂停"
 msgid "Paused by %(players)s"
 msgstr "由 %(players)s暂停"
 
-#: gui/session/menu.js:1103 gui/session/messages.js:613
+#: gui/session/menu.js:1103 gui/session/messages.js:623
 #: gui/session/selection_panels.js:807
 msgid ", "
 msgstr "，"
@@ -334,236 +334,251 @@ msgstr "%(username)s  已被封禁"
 msgid "%(username)s has been kicked"
 msgstr "%(username)s 已被踢出"
 
-#: gui/session/messages.js:138
+#: gui/session/messages.js:139
 msgid "Connection to the server has been authenticated."
 msgstr "已建立与服务器的认证连接。"
 
-#: gui/session/messages.js:139
+#: gui/session/messages.js:140
 msgid "Connected to the server."
 msgstr "连接服务器。"
 
-#: gui/session/messages.js:140
+#: gui/session/messages.js:141
 msgid "Connection to the server has been lost."
 msgstr "与服务器失去连接。"
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/session/messages.js:142
+#: gui/session/messages.js:143
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "原因: %(reason)s."
 
-#: gui/session/messages.js:145
-msgid "Waiting for players to connect:"
-msgstr ""
-
 #: gui/session/messages.js:146
+msgid "Waiting for players to connect:"
+msgstr "等待玩家连接："
+
+#: gui/session/messages.js:147
 msgid "Synchronising gameplay with other players..."
 msgstr "与其他玩家同步游戏..."
 
-#: gui/session/messages.js:155
+#: gui/session/messages.js:156
 #, javascript-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr "(%(context)s) %(userTag)s %(message)s"
 
-#: gui/session/messages.js:156
+#: gui/session/messages.js:157
 #, javascript-format
 msgid "%(userTag)s %(message)s"
 msgstr "%(userTag)s %(message)s"
 
-#: gui/session/messages.js:159
+#: gui/session/messages.js:160
 #, javascript-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr "(%(context)s) * %(user)s %(message)s"
 
-#: gui/session/messages.js:160
+#: gui/session/messages.js:161
 #, javascript-format
 msgid "* %(user)s %(message)s"
 msgstr "* %(user)s %(message)s"
 
-#: gui/session/messages.js:165 gui/session/diplomacy_window.xml:(caption):21
+#: gui/session/messages.js:166 gui/session/diplomacy_window.xml:(caption):21
 msgid "Team"
 msgstr "组队"
 
-#: gui/session/messages.js:168 gui/session/session.js:298
+#: gui/session/messages.js:169 gui/session/session.js:298
 msgid "Observer"
 msgstr "观察者"
 
-#: gui/session/messages.js:169
+#: gui/session/messages.js:170
 msgid "Private"
 msgstr "私人"
 
-#: gui/session/messages.js:205
+#: gui/session/messages.js:206
 msgctxt "chat history filter"
 msgid "Chat and notifications"
 msgstr "聊天与通知"
 
-#: gui/session/messages.js:210
+#: gui/session/messages.js:211
 msgctxt "chat history filter"
 msgid "Chat messages"
 msgstr "聊天信息"
 
-#: gui/session/messages.js:215
+#: gui/session/messages.js:216
 msgctxt "chat history filter"
 msgid "Players chat"
 msgstr "玩家聊天"
 
-#: gui/session/messages.js:222
+#: gui/session/messages.js:223
 msgctxt "chat history filter"
 msgid "Ally chat"
 msgstr "同盟聊天"
 
-#: gui/session/messages.js:229
+#: gui/session/messages.js:230
 msgctxt "chat history filter"
 msgid "Enemy chat"
 msgstr "敌人聊天"
 
-#: gui/session/messages.js:236
+#: gui/session/messages.js:237
 msgctxt "chat history filter"
 msgid "Observer chat"
 msgstr "观察者聊天"
 
-#: gui/session/messages.js:243
+#: gui/session/messages.js:244
 msgctxt "chat history filter"
 msgid "Private chat"
 msgstr "私人聊天"
 
-#: gui/session/messages.js:249
+#: gui/session/messages.js:250
 msgid "You have won!"
 msgstr "您已胜出!"
 
-#: gui/session/messages.js:250
+#: gui/session/messages.js:251
 msgid "You have been defeated!"
 msgstr "您已战败！"
 
-#: gui/session/messages.js:258
+#: gui/session/messages.js:259
 #, javascript-format
 msgid "You are now allied with %(player)s."
 msgstr "你已与 %(player)s 结盟。"
 
-#: gui/session/messages.js:259
+#: gui/session/messages.js:260
 #, javascript-format
 msgid "You are now at war with %(player)s."
 msgstr "你已向 %(player)s 宣战。"
 
-#: gui/session/messages.js:260
+#: gui/session/messages.js:261
 #, javascript-format
 msgid "You are now neutral with %(player)s."
 msgstr "你已与 %(player)s 和解。"
 
-#: gui/session/messages.js:263
+#: gui/session/messages.js:264
 #, javascript-format
 msgid "%(player)s is now allied with you."
 msgstr "%(player)s 已与你结盟。"
 
-#: gui/session/messages.js:264
+#: gui/session/messages.js:265
 #, javascript-format
 msgid "%(player)s is now at war with you."
 msgstr "%(player)s 已向你宣战。"
 
-#: gui/session/messages.js:265
+#: gui/session/messages.js:266
 #, javascript-format
 msgid "%(player)s is now neutral with you."
 msgstr "%(player)s 已与你和解。"
 
-#: gui/session/messages.js:268
+#: gui/session/messages.js:269
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
 msgstr "%(player)s 已与 %(player2)s 结盟。"
 
-#: gui/session/messages.js:269
+#: gui/session/messages.js:270
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
 msgstr "%(player)s 正与 %(player2)s 交战。"
 
-#: gui/session/messages.js:270
+#: gui/session/messages.js:271
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
 msgstr "%(player)s 已与 %(player2)s 和解。"
 
-#: gui/session/messages.js:675
+#: gui/session/messages.js:685
 msgctxt "chat addressee"
 msgid "Everyone"
 msgstr "所有人"
 
-#: gui/session/messages.js:683
+#: gui/session/messages.js:693
 msgctxt "chat addressee"
 msgid "Allies"
 msgstr "盟友"
 
-#: gui/session/messages.js:687
+#: gui/session/messages.js:697
 msgctxt "chat addressee"
 msgid "Enemies"
 msgstr "敌方"
 
-#: gui/session/messages.js:693
+#: gui/session/messages.js:703
 msgctxt "chat addressee"
 msgid "Observers"
 msgstr "观察者"
 
-#: gui/session/messages.js:722 gui/session/selection_details.js:82
+#: gui/session/messages.js:732 gui/session/selection_details.js:82
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
 msgstr "\\[离线] %(player)s"
 
-#: gui/session/messages.js:803
+#: gui/session/messages.js:813
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/session/messages.js:804
+#: gui/session/messages.js:814
 msgid "HH:mm"
 msgstr "HH:mm"
 
-#: gui/session/messages.js:848
+#: gui/session/messages.js:858
 msgid "Unknown Player"
 msgstr "未知玩家"
 
-#: gui/session/messages.js:865
+#: gui/session/messages.js:875
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr "%(player)s已退出游戏"
 
-#: gui/session/messages.js:866
+#: gui/session/messages.js:876
 #, javascript-format
 msgid "%(player)s has been defeated."
 msgstr "%(player)s 已战败。"
 
-#: gui/session/messages.js:873
+#: gui/session/messages.js:883
 #, javascript-format
 msgid "%(player)s has won."
 msgstr "%(player)s已胜利。"
 
-#: gui/session/messages.js:905
+#: gui/session/messages.js:915
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s 给你 %(amounts)s。"
 
-#: gui/session/messages.js:907
+#: gui/session/messages.js:917
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
-msgstr ""
+msgstr "您已给予 %(player2)s %(amounts)s。"
 
-#: gui/session/messages.js:912
+#: gui/session/messages.js:922
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
 msgstr "%(player)s 给予 %(player2)s %(amounts)s。"
 
-#: gui/session/messages.js:932
+#: gui/session/messages.js:942
 #, javascript-format
 msgid "%(player)s bartered %(amountsBought)s for %(amountsSold)s."
 msgstr "%(player)s 以 %(amountsSold)s  交换 %(amountsBought)s 。"
 
-#: gui/session/messages.js:945
+#: gui/session/messages.js:955
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
 msgstr "您的家畜正被 %(attacker)s 攻击!"
 
-#: gui/session/messages.js:946
+#: gui/session/messages.js:956
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "您正被 %(attacker)s 攻击!"
 
-#: gui/session/messages.js:997
+#: gui/session/messages.js:973
+#, javascript-format
+msgid "%(player)s is advancing to the %(phaseName)s."
+msgstr ""
+
+#: gui/session/messages.js:975
+#, javascript-format
+msgid "The %(phaseName)s of %(player)s has been aborted."
+msgstr ""
+
+#: gui/session/messages.js:978
+#, javascript-format
+msgid "%(player)s has reached the %(phaseName)s."
+msgstr ""
+
+#: gui/session/messages.js:1030
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
@@ -623,9 +638,9 @@ msgstr "%(amount)s / %(max)s"
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:229 gui/session/unit_actions.js:574
-#: gui/session/unit_actions.js:583 gui/session/unit_actions.js:597
-#: gui/session/unit_actions.js:915
+#: gui/session/selection_details.js:229 gui/session/unit_actions.js:577
+#: gui/session/unit_actions.js:586 gui/session/unit_actions.js:600
+#: gui/session/unit_actions.js:918
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "获得：%(gain)s"
@@ -904,7 +919,7 @@ msgstr "按 %(hotkey)s 开启盟友聊天窗口。"
 #: gui/session/session.js:399
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
-msgstr ""
+msgstr "按 %(hotkey)s 开启之前选择的私人聊天窗口。"
 
 #: gui/session/session.js:403
 msgid "Find idle worker"
@@ -1013,126 +1028,126 @@ msgstr "时空隧道模式"
 #: gui/session/session.js:1318
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
-msgstr ""
+msgstr "%(time)s (%(speed)sx)"
 
-#: gui/session/unit_actions.js:572
+#: gui/session/unit_actions.js:575
 msgid "Origin trade market."
 msgstr "出发贸易市场。"
 
-#: gui/session/unit_actions.js:578
+#: gui/session/unit_actions.js:581
 msgid "Right-click on another market to set it as a destination trade market."
 msgstr "右键单击另外一个市场，把其设为目的贸易市场。"
 
-#: gui/session/unit_actions.js:582
+#: gui/session/unit_actions.js:585
 msgid "Destination trade market."
 msgstr "目的贸易市场。"
 
-#: gui/session/unit_actions.js:589
+#: gui/session/unit_actions.js:592
 msgid "Right-click to set as origin trade market"
 msgstr "右键单击设置为出发贸易市场"
 
-#: gui/session/unit_actions.js:596
+#: gui/session/unit_actions.js:599
 msgid "Right-click to set as destination trade market."
 msgstr "右键单击设置为目的贸易市场"
 
-#: gui/session/unit_actions.js:650 gui/session/unit_actions.js:865
+#: gui/session/unit_actions.js:653 gui/session/unit_actions.js:868
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "当前驻守: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:912
+#: gui/session/unit_actions.js:915
 msgid "Right-click to establish a default route for new traders."
 msgstr "右键单击为贸易者确定一条默认的路线"
 
-#: gui/session/unit_actions.js:916
+#: gui/session/unit_actions.js:919
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "预期收益: %(gain)s"
 
-#: gui/session/unit_actions.js:1049 gui/session/unit_actions.js:1351
+#: gui/session/unit_actions.js:1052 gui/session/unit_actions.js:1355
 msgid "Unload All."
 msgstr "卸载全部。"
 
-#: gui/session/unit_actions.js:1071
+#: gui/session/unit_actions.js:1074
 msgid "Destroy the selected units or buildings."
 msgstr "摧毁选定的单位或建筑。"
 
-#: gui/session/unit_actions.js:1073
+#: gui/session/unit_actions.js:1076
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "使用 %(hotkey)s 以忽略确认对话。"
 
-#: gui/session/unit_actions.js:1105
+#: gui/session/unit_actions.js:1108
 msgid "Abort the current order."
 msgstr "中止当前的命令。"
 
-#: gui/session/unit_actions.js:1125
+#: gui/session/unit_actions.js:1128
 msgid "Order the selected units to garrison in a building or unit."
 msgstr "命令所选单位守卫建筑或单位。"
 
-#: gui/session/unit_actions.js:1147
+#: gui/session/unit_actions.js:1150
 msgid "Unload"
 msgstr "卸载"
 
-#: gui/session/unit_actions.js:1165
+#: gui/session/unit_actions.js:1168
 msgid "Order the selected units to repair a building or mechanical unit."
 msgstr "命令所选单位修复建筑或机械单位。"
 
-#: gui/session/unit_actions.js:1184
+#: gui/session/unit_actions.js:1187
 msgid "Focus on Rally Point."
 msgstr "关注集合点。"
 
-#: gui/session/unit_actions.js:1209
+#: gui/session/unit_actions.js:1212
 msgid "Back to Work"
 msgstr "返回工作"
 
-#: gui/session/unit_actions.js:1228
+#: gui/session/unit_actions.js:1231
 msgid "Order the selected units to guard a building or unit."
 msgstr "命令选定的单位守卫建筑物或单位。"
 
-#: gui/session/unit_actions.js:1246
+#: gui/session/unit_actions.js:1249
 msgid "Remove guard"
 msgstr "移除守卫"
 
-#: gui/session/unit_actions.js:1263
+#: gui/session/unit_actions.js:1266
 #: gui/session/top_panel/button_trade.xml:(tooltip):9
 msgid "Barter & Trade"
 msgstr ""
 
-#: gui/session/unit_actions.js:1280
+#: gui/session/unit_actions.js:1284
 msgid "Patrol"
 msgstr "巡逻"
 
-#: gui/session/unit_actions.js:1281
+#: gui/session/unit_actions.js:1285
 msgid "Attack all encountered enemy units while avoiding buildings."
 msgstr "攻击敌方的所有非建筑单位。"
 
-#: gui/session/unit_actions.js:1304
+#: gui/session/unit_actions.js:1308
 msgid "Press to prevent allies from using this dropsite"
 msgstr "按下以防止盟友使用此资源回收点"
 
-#: gui/session/unit_actions.js:1309
+#: gui/session/unit_actions.js:1313
 msgid "Press to allow allies to use this dropsite"
 msgstr "按下以允许盟友使用此资源回收点"
 
-#: gui/session/unit_actions.js:1372
+#: gui/session/unit_actions.js:1376
 msgid "You are allowed to use this dropsite"
 msgstr "已允许您使用此资源回收点"
 
-#: gui/session/unit_actions.js:1377
+#: gui/session/unit_actions.js:1381
 msgid "The use of this dropsite is prohibited"
 msgstr "已禁止使用此资源回收点"
 
-#: gui/session/unit_actions.js:1443
+#: gui/session/unit_actions.js:1455
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "该独立存在的实体必须在其可以被搜集之前杀死"
 
-#: gui/session/unit_actions.js:1446
+#: gui/session/unit_actions.js:1458
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "您无法破坏此实体，因为您的捕获点不到一半"
 
-#: gui/session/unit_actions.js:1449
+#: gui/session/unit_actions.js:1461
 msgid "This entity is undeletable"
 msgstr "该独立存在的实体是不可删除的"
 
@@ -1325,15 +1340,15 @@ msgstr ""
 
 #: gui/session/trade_window.xml:(caption):24
 msgid "Sell:"
-msgstr ""
+msgstr "出售："
 
 #: gui/session/trade_window.xml:(caption):28
 msgid "Buy:"
-msgstr ""
+msgstr "购买："
 
 #: gui/session/trade_window.xml:(caption):32
 msgid "No Markets Available"
-msgstr ""
+msgstr "无可用市场"
 
 #: gui/session/trade_window.xml:(caption):67
 msgid "Trade"
@@ -1341,7 +1356,7 @@ msgstr "贸易"
 
 #: gui/session/trade_window.xml:(caption):75
 msgid "Goods:"
-msgstr ""
+msgstr "货物："
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"

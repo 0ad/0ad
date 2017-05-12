@@ -7,7 +7,7 @@ randomizeBiome();
 initMapSettings();
 initTileClasses();
 
-resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, randInt(5));
+resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, randIntInclusive(0, 4));
 RMS.SetProgress(10);
 
 addBases("stronghold", 0.37, 0.04);

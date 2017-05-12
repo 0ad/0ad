@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Aca G. <martel.gilgames@gmail.com>, 2016
+# Aca G. <martel.gilgames@gmail.com>, 2016-2017
 # MIlosSD <pirisd@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-04-10 09:06+0200\n"
-"PO-Revision-Date: 2017-04-10 10:10+0000\n"
+"POT-Creation-Date: 2017-04-28 09:01+0200\n"
+"PO-Revision-Date: 2017-04-28 17:09+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/wildfire-games/0ad/language/sr/)\n"
 "MIME-Version: 1.0\n"
@@ -60,7 +60,7 @@ msgstr "Историја  %(civilization)s"
 #: gui/common/color.js:154
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames."
-msgstr ""
+msgstr "Притисни %(hotkey)s ради аутокомплетирања имена играча."
 
 #: gui/common/color.js:157
 msgctxt "hotkey"
@@ -146,131 +146,131 @@ msgstr "Да"
 #: gui/common/functions_utility_loadsave.js:106
 #, javascript-format
 msgid "Delete the selected entry using %(hotkey)s."
-msgstr ""
+msgstr "Избриши одабран унос користећи %(hotkey)s."
 
 #: gui/common/functions_utility_loadsave.js:111
 #, javascript-format
 msgid "Hold %(hotkey)s to delete without confirmation."
-msgstr ""
+msgstr "Држи %(hotkey)s да би избрисао без накнадне потврде."
 
-#: gui/common/gamedescription.js:13
+#: gui/common/gamedescription.js:29
 msgid "A randomly selected map."
 msgstr "Насумично одабрана мапа."
 
-#: gui/common/gamedescription.js:20 gui/common/gamedescription.js:291
+#: gui/common/gamedescription.js:36 gui/common/gamedescription.js:310
 msgid "Sorry, no description available."
 msgstr "Опростите, опис није доступан."
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:70
+#: gui/common/gamedescription.js:86
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
 msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:73
+#: gui/common/gamedescription.js:89
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
 msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:79
+#: gui/common/gamedescription.js:95
 #, javascript-format
 msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
 msgstr "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:82
+#: gui/common/gamedescription.js:98
 #, javascript-format
 msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
 msgstr "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:92
+#: gui/common/gamedescription.js:108
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
 msgstr "%(playerName)s (OFFLINE)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:95
+#: gui/common/gamedescription.js:111
 #, javascript-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
 msgstr "%(playerName)s (OFFLINE, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:102
+#: gui/common/gamedescription.js:118
 #, javascript-format
 msgid "%(playerName)s (%(civ)s)"
 msgstr "%(playerName)s (%(civ)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:105
+#: gui/common/gamedescription.js:121
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(state)s)"
 msgstr "%(playerName)s (%(civ)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:109
+#: gui/common/gamedescription.js:125
 #, javascript-format
 msgid "%(playerName)s"
 msgstr "%(playerName)s"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:112
+#: gui/common/gamedescription.js:128
 #, javascript-format
 msgid "%(playerName)s (%(state)s)"
 msgstr "%(playerName)s (%(state)s)"
 
-#: gui/common/gamedescription.js:130
+#: gui/common/gamedescription.js:149
 msgid "Unknown Civilization"
 msgstr "Непозната цивилизација"
 
-#: gui/common/gamedescription.js:137
+#: gui/common/gamedescription.js:156
 msgctxt "playerstate"
 msgid "defeated"
 msgstr "поражен"
 
-#: gui/common/gamedescription.js:138
+#: gui/common/gamedescription.js:157
 msgctxt "playerstate"
 msgid "won"
 msgstr "победа"
 
-#: gui/common/gamedescription.js:160
+#: gui/common/gamedescription.js:179
 msgid "No Team"
 msgstr "нема тима"
 
-#: gui/common/gamedescription.js:161
+#: gui/common/gamedescription.js:180
 #, javascript-format
 msgid "Team %(team)s"
 msgstr "Tим %(team)s"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or savegame menu or lobby
-#: gui/common/gamedescription.js:164 gui/common/gamedescription.js:171
+#: gui/common/gamedescription.js:183 gui/common/gamedescription.js:190
 #, javascript-format
 msgid ""
 "%(team)s:\n"
 "%(playerDescriptions)s"
 msgstr "%(team)s:\n%(playerDescriptions)s"
 
-#: gui/common/gamedescription.js:172
+#: gui/common/gamedescription.js:191
 msgid "Observer"
 msgid_plural "Observers"
 msgstr[0] "Посматрач"
 msgstr[1] "Посматрачи"
 msgstr[2] "Посматрачи"
 
-#: gui/common/gamedescription.js:194
+#: gui/common/gamedescription.js:213
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
@@ -279,7 +279,7 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: gui/common/gamedescription.js:205
+#: gui/common/gamedescription.js:224
 #, javascript-format
 msgctxt "victory condition"
 msgid "Capture The Relic (%(min)s minute)"
@@ -288,117 +288,117 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: gui/common/gamedescription.js:223
+#: gui/common/gamedescription.js:242
 msgid "Rated game"
-msgstr ""
+msgstr "Оцењена игра"
 
-#: gui/common/gamedescription.js:224
+#: gui/common/gamedescription.js:243
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr ""
 
-#: gui/common/gamedescription.js:229
+#: gui/common/gamedescription.js:248
 msgid "Locked Teams"
-msgstr ""
+msgstr "Закључани тимови"
 
-#: gui/common/gamedescription.js:230
+#: gui/common/gamedescription.js:249
 msgid "Players can't change the initial teams."
-msgstr ""
+msgstr "Играчи не могу променити првобитно изабране тимове."
 
-#: gui/common/gamedescription.js:234
+#: gui/common/gamedescription.js:253
 msgid "Diplomacy"
-msgstr ""
+msgstr "Дипломатија"
 
-#: gui/common/gamedescription.js:235
+#: gui/common/gamedescription.js:254
 msgid "Players can make alliances and declare war on allies."
-msgstr ""
+msgstr "Играчи могу начинити савезе и објавити рат савезницима."
 
-#: gui/common/gamedescription.js:240
+#: gui/common/gamedescription.js:259
 msgid "Last Man Standing"
-msgstr ""
+msgstr "Онај који је задњи остао да стоји"
 
-#: gui/common/gamedescription.js:241
+#: gui/common/gamedescription.js:260
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
-msgstr ""
+msgstr "Само један може победити. Ако су преостали играчи савезници, игра се наставља све док не преостане само један."
 
-#: gui/common/gamedescription.js:245
+#: gui/common/gamedescription.js:264
 msgid "Allied Victory"
-msgstr ""
+msgstr "Савезничка победа"
 
-#: gui/common/gamedescription.js:246
+#: gui/common/gamedescription.js:265
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr ""
+msgstr "Ако играч победи, побеђују и његови савезници. Ако једна група савезника преостане, они побеђују."
 
-#: gui/common/gamedescription.js:252
+#: gui/common/gamedescription.js:271
 msgid "Ceasefire"
-msgstr ""
+msgstr "Примирје"
 
-#: gui/common/gamedescription.js:255 gui/pregame/mainmenu.js:91
+#: gui/common/gamedescription.js:274 gui/pregame/mainmenu.js:91
 msgid "disabled"
 msgstr "онемогућено"
 
-#: gui/common/gamedescription.js:256
+#: gui/common/gamedescription.js:275
 msgid "For the first minute, enemies will stay neutral."
 msgid_plural "For the first %(min)s minutes, enemies will stay neutral."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: gui/common/gamedescription.js:264
+#: gui/common/gamedescription.js:283
 msgid "Map Name"
-msgstr ""
-
-#: gui/common/gamedescription.js:269
-msgid "Map Type"
-msgstr ""
-
-#: gui/common/gamedescription.js:278
-msgid "Map Size"
-msgstr ""
-
-#: gui/common/gamedescription.js:285
-msgid "Map Description"
-msgstr ""
+msgstr "Име Мапе"
 
 #: gui/common/gamedescription.js:288
-msgid "Randomly selects a map from the list"
-msgstr ""
+msgid "Map Type"
+msgstr "Тип Мапе"
 
 #: gui/common/gamedescription.js:297
-msgid "Starting Resources"
-msgstr ""
+msgid "Map Size"
+msgstr "Величина Мапе"
 
-#: gui/common/gamedescription.js:298
-#, javascript-format
-msgid "%(startingResourcesTitle)s (%(amount)s)"
-msgstr ""
+#: gui/common/gamedescription.js:304
+msgid "Map Description"
+msgstr "Опис Мапе"
 
-#: gui/common/gamedescription.js:308
-msgid "Population Limit"
-msgstr ""
+#: gui/common/gamedescription.js:307
+msgid "Randomly selects a map from the list"
+msgstr "Насумично изабира мапу са листе"
 
 #: gui/common/gamedescription.js:316
+msgid "Starting Resources"
+msgstr "Почетни ресурси"
+
+#: gui/common/gamedescription.js:317
+#, javascript-format
+msgid "%(startingResourcesTitle)s (%(amount)s)"
+msgstr "%(startingResourcesTitle)s (%(amount)s)"
+
+#: gui/common/gamedescription.js:327
+msgid "Population Limit"
+msgstr "Ограничење популације"
+
+#: gui/common/gamedescription.js:335
 msgid "Disable Treasure"
-msgstr ""
+msgstr "Онемогући благо"
 
-#: gui/common/gamedescription.js:321
+#: gui/common/gamedescription.js:340
 msgid "Revealed Map"
-msgstr ""
+msgstr "Откривена мапа"
 
-#: gui/common/gamedescription.js:326
+#: gui/common/gamedescription.js:345
 msgid "Explored Map"
-msgstr ""
+msgstr "Истражена мапа"
 
-#: gui/common/gamedescription.js:331
+#: gui/common/gamedescription.js:350
 msgid "Cheats"
 msgstr ""
 
-#: gui/common/gamedescription.js:336 gui/common/tooltips.js:86
+#: gui/common/gamedescription.js:355 gui/common/tooltips.js:86
 #: gui/common/tooltips.js:141 gui/common/tooltips.js:182
 #: gui/common/tooltips.js:404 gui/common/tooltips.js:425
 #: gui/common/tooltips.js:707
@@ -406,23 +406,23 @@ msgstr ""
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:339
+#: gui/common/gamedescription.js:358
 msgctxt "gamesetup option"
 msgid "enabled"
-msgstr ""
+msgstr "омогући"
 
-#: gui/common/gamedescription.js:340
+#: gui/common/gamedescription.js:359
 msgctxt "gamesetup option"
 msgid "disabled"
-msgstr ""
+msgstr "онемогући"
 
-#: gui/common/gamedescription.js:357
+#: gui/common/gamedescription.js:376
 msgid "Victorious"
-msgstr ""
+msgstr "Победник"
 
-#: gui/common/gamedescription.js:362
+#: gui/common/gamedescription.js:381
 msgid "Defeated"
-msgstr ""
+msgstr "Поражен"
 
 #: gui/common/l10n.js:13
 #, javascript-format
@@ -475,7 +475,7 @@ msgstr "Непознат разлог"
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software"
-msgstr ""
+msgstr "Ово се обично дешава јер УДП порт 20595 није послат од стране домаћина (хоста), услед деловања заштитног зида или антивируса."
 
 #: gui/common/network.js:68
 msgid "The host has ended the game"
@@ -487,7 +487,7 @@ msgstr "Нетачна верзија мрежног протокола"
 
 #: gui/common/network.js:70
 msgid "Game is loading, please try again later"
-msgstr ""
+msgstr "Игра се учитава, молимо покушајте касније"
 
 #: gui/common/network.js:71
 msgid "Game has already started, no observers allowed"
@@ -511,7 +511,7 @@ msgstr "Сервер је пун"
 
 #: gui/common/network.js:76
 msgid "Player identifier in use, retry connecting"
-msgstr ""
+msgstr "Ознака играча у употреби, понови повезивање"
 
 #: gui/common/network.js:79
 #, javascript-format
@@ -538,14 +538,14 @@ msgstr "Веза обустављена"
 
 #: gui/common/network.js:107
 msgid "Only the host can kick clients!"
-msgstr ""
+msgstr "Само домаћин може избацити клијенте!"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
 #: gui/common/network.js:161
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
-msgstr ""
+msgstr "Играчи (%(num)s): %(users)s"
 
 #: gui/common/settings.js:108
 msgctxt "aiDiff"
@@ -613,16 +613,16 @@ msgstr "Насумично"
 #: gui/common/settings.js:197
 msgctxt "map"
 msgid "Scenario"
-msgstr ""
+msgstr "Сценарио"
 
 #: gui/common/settings.js:228
 msgctxt "victory condition"
 msgid "None"
-msgstr ""
+msgstr "Ништа"
 
 #: gui/common/settings.js:229
 msgid "Endless game."
-msgstr ""
+msgstr "Неограничена игра"
 
 #: gui/common/settings.js:270
 msgid "Unlimited"
@@ -697,7 +697,7 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s"
 " (%(relativeRange)s) %(rangeUnit)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s (%(relativeRange)s) %(rangeUnit)s, %(rate)s"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 10 (+2)
 #. meters, Interval: 3 arrows / 2 seconds
@@ -706,7 +706,7 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s "
 "(%(relativeRange)s) %(rangeUnit)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s, %(rate)s"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 2 to 10
 #. meters, Interval: 3 arrows / 2 seconds
@@ -715,7 +715,7 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s"
 " %(rangeUnit)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s %(rangeUnit)s, %(rate)s"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 10 meters,
 #. Interval: 3 arrows / 2 seconds
@@ -724,7 +724,7 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s %(rangeUnit)s, "
 "%(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s %(rangeUnit)s, %(rate)s"
 
 #: gui/common/tooltips.js:67
 #, javascript-format
@@ -750,7 +750,7 @@ msgstr "Живот:"
 #: gui/common/tooltips.js:97
 #, javascript-format
 msgid "%(healthLabel)s %(current)s / %(max)s"
-msgstr ""
+msgstr "%(healthLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:115
 #, javascript-format
@@ -820,13 +820,13 @@ msgstr "Домет:"
 #: gui/common/tooltips.js:216
 #, javascript-format
 msgid "+%(number)s"
-msgstr ""
+msgstr "+%(number)s"
 
 #. Translation: For example "0.5 to 1 meters", "1 (+1) meters" or "1 to 2 (+3)
 #. meters"
 #: gui/common/tooltips.js:220
 msgid "meters"
-msgstr ""
+msgstr "метара"
 
 #: gui/common/tooltips.js:221 gui/common/tooltips.js:610
 msgid "meter"
@@ -853,7 +853,7 @@ msgstr "%(label)s: %(garrisonLimit)s"
 
 #: gui/common/tooltips.js:262
 msgid "Garrison Limit"
-msgstr ""
+msgstr "Огра"
 
 #: gui/common/tooltips.js:269
 #, javascript-format
@@ -867,7 +867,7 @@ msgstr "Лечење:"
 #: gui/common/tooltips.js:272 gui/common/tooltips.js:321
 #: gui/common/tooltips.js:335
 msgid "Health"
-msgstr ""
+msgstr "Живот"
 
 #: gui/common/tooltips.js:297
 msgid "Projectile Limit"
@@ -927,7 +927,7 @@ msgstr ""
 #: gui/common/tooltips.js:427
 #, javascript-format
 msgid "%(resources)s / %(time)s"
-msgstr ""
+msgstr "%(resources)s / %(time)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
@@ -949,7 +949,7 @@ msgstr "Ступови:  %(costs)s"
 #: gui/common/tooltips.js:525
 #, javascript-format
 msgid "Requires %(technology)s"
-msgstr ""
+msgstr "Захтева %(technology)s"
 
 #: gui/common/tooltips.js:537
 #, javascript-format
@@ -1035,11 +1035,11 @@ msgstr "Врсте:"
 #: gui/common/tooltips.js:698
 #, javascript-format
 msgid "%(component)s %(loot)s"
-msgstr ""
+msgstr "%(component)s %(loot)s"
 
 #: gui/common/tooltips.js:708
 msgid "Loot:"
-msgstr ""
+msgstr "Плен:"
 
 #: gui/credits/credits.js:69
 #, javascript-format
@@ -2063,7 +2063,7 @@ msgstr "Трајање:"
 #: gui/savedgames/load.xml:(heading):44
 msgctxt "replay"
 msgid "Map Type"
-msgstr ""
+msgstr "Тип Мапе"
 
 #: gui/savedgames/load.xml:(heading):52
 msgctxt "replay"
@@ -2545,6 +2545,28 @@ msgstr ""
 
 #: gui/options/options.jsonnotificationSetting[2].label
 msgid "Barter"
+msgstr ""
+
+#: gui/options/options.jsonnotificationSetting[3].parameters.list[0]
+msgid "Disable"
+msgstr ""
+
+#: gui/options/options.jsonnotificationSetting[3].parameters.list[1]
+msgid "Completed"
+msgstr ""
+
+#: gui/options/options.jsonnotificationSetting[3].parameters.list[2]
+msgid "All displayed"
+msgstr ""
+
+#: gui/options/options.jsonnotificationSetting[3].tooltip
+msgid ""
+"Show a chat notification if you or an ally have started, aborted or "
+"completed a new phase, and phases of all players in observer mode"
+msgstr ""
+
+#: gui/options/options.jsonnotificationSetting[3].label
+msgid "Phase"
 msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[0].tooltip

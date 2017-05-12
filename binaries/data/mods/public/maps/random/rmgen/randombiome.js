@@ -62,7 +62,7 @@ function randomizeBiome(avoid = [])
 {
 	let biomeIndex;
 	do
-		biomeIndex = randInt(1, 8);
+		biomeIndex = randIntInclusive(1, 8);
 	while (avoid.indexOf(biomeIndex) != -1);
 
 	setBiome(biomeIndex);
@@ -142,13 +142,13 @@ function setBiome(biomeIndex)
 			"metalLarge": "gaia/geology_metal_temperate_slabs"
 		};
 
-		var random_trees = randInt(3);
-		if (random_trees == 0)
+		var random_trees = randIntInclusive(1, 3);
+		if (random_trees == 1)
 		{
 			g_Gaia.tree1 = "gaia/flora_tree_oak";
 			g_Gaia.tree2 = "gaia/flora_tree_oak_large";
 		}
-		else if (random_trees == 1)
+		else if (random_trees == 2)
 		{
 			g_Gaia.tree1 = "gaia/flora_tree_poplar";
 			g_Gaia.tree2 = "gaia/flora_tree_poplar";
@@ -159,13 +159,13 @@ function setBiome(biomeIndex)
 			g_Gaia.tree2 = "gaia/flora_tree_euro_beech";
 		}
 		g_Gaia.tree3 = "gaia/flora_tree_apple";
-		random_trees = randInt(3);
-		if (random_trees == 0)
+		random_trees = randIntInclusive(1, 3);
+		if (random_trees == 1)
 		{
 			g_Gaia.tree4 = "gaia/flora_tree_pine";
 			g_Gaia.tree5 = "gaia/flora_tree_aleppo_pine";
 		}
-		else if (random_trees == 1)
+		else if (random_trees == 2)
 		{
 			g_Gaia.tree4 = "gaia/flora_tree_pine";
 			g_Gaia.tree5 = "gaia/flora_tree_pine";
@@ -439,13 +439,13 @@ function setBiome(biomeIndex)
 			"metalLarge": "gaia/geology_metal_mediterranean_slabs"
 		};
 
-		var random_trees = randInt(3);
-		if (random_trees == 0)
+		var random_trees = randIntInclusive(1, 3);
+		if (random_trees == 1)
 		{
 			g_Gaia.tree1 = "gaia/flora_tree_cretan_date_palm_short";
 			g_Gaia.tree2 = "gaia/flora_tree_cretan_date_palm_tall";
 		}
-		else if (random_trees == 1)
+		else if (random_trees == 2)
 		{
 			g_Gaia.tree1 = "gaia/flora_tree_carob";
 			g_Gaia.tree2 = "gaia/flora_tree_carob";

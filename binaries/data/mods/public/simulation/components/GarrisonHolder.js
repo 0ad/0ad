@@ -634,7 +634,7 @@ GarrisonHolder.prototype.OnGlobalEntityRenamed = function(msg)
 			vgpRenamed = vgp;
 			break;
 		}
-		this.Eject(msg.entity);
+		this.Eject(msg.entity, true);
 		this.Garrison(msg.newentity, vgpRenamed);
 	}
 
@@ -740,6 +740,7 @@ GarrisonHolder.prototype.OnValueModification = function(msg)
 	{
 		let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 		cmpTimer.CancelTimer(this.timer);
+		this.timer = undefined;
 	}
 	else if (!this.timer && this.GetHealRate() > 0)
 	{

@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -123,7 +123,9 @@ QUERYHANDLER(Exit)
 
 MESSAGEHANDLER(RenderEnable)
 {
+	g_AtlasGameLoop->view->SetEnabled(false);
 	g_AtlasGameLoop->view = AtlasView::GetView(msg->view);
+	g_AtlasGameLoop->view->SetEnabled(true);
 }
 
 MESSAGEHANDLER(SetViewParamB)

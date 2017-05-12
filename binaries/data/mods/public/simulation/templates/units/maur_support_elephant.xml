@@ -63,6 +63,9 @@
       <trained>actor/fauna/animal/elephant_trained.xml</trained>
     </SoundGroups>
   </Sound>
+  <UnitAI>
+    <CanPatrol>false</CanPatrol>
+  </UnitAI>
   <UnitMotion>
     <PassabilityClass>large</PassabilityClass>
     <WalkSpeed>5.5</WalkSpeed>

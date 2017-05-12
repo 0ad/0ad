@@ -1109,7 +1109,6 @@ function setup_atlas_projects()
 		"CustomControls/SnapSplitterWindow",
 		"CustomControls/VirtualDirTreeCtrl",
 		"CustomControls/Windows",
-		"ErrorReporter",
 		"General",
 		"General/VideoRecorder",
 		"Misc",
@@ -1121,7 +1120,6 @@ function setup_atlas_projects()
 		"ScenarioEditor/Sections/Object",
 		"ScenarioEditor/Sections/Player",
 		"ScenarioEditor/Sections/Terrain",
-		"ScenarioEditor/Sections/Trigger",
 		"ScenarioEditor/Tools",
 		"ScenarioEditor/Tools/Common",
 	}

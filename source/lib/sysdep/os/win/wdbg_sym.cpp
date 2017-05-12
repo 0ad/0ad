@@ -1,4 +1,4 @@
-/* Copyright (c) 2013 Wildfire Games
+/* Copyright (c) 2017 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -210,8 +210,10 @@ static Status ResolveSymbol_lk(void* ptr_of_interest, wchar_t* sym_name, wchar_t
 	// get source file and/or line number (if requested)
 	if(file || line)
 	{
-		file[0] = '\0';
-		*line = 0;
+		if (file)
+			file[0] = '\0';
+		if (line)
+			*line = 0;
 
 		IMAGEHLP_LINEW64 line_info = { sizeof(IMAGEHLP_LINEW64) };
 		DWORD displacement; // unused but required by pSymGetLineFromAddr64!

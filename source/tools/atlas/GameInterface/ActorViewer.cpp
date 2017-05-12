@@ -302,25 +302,10 @@ ActorViewer::ActorViewer()
 	CmpPtr<ICmpRangeManager> cmpRangeManager(m.Simulation2, SYSTEM_ENTITY);
 	if (cmpRangeManager)
 		cmpRangeManager->SetLosRevealAll(-1, true);
-
-	// Set shadows, sky and water.
-	m.OldShadows = g_Renderer.GetOptionBool(CRenderer::OPT_SHADOWS);
-	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS, m.ShadowsEnabled);
-
-	m.OldSky = g_Renderer.GetSkyManager()->m_RenderSky;
-	g_Renderer.GetSkyManager()->m_RenderSky = false;
-
-	m.OldWater = g_Renderer.GetWaterManager()->m_RenderWater;
-	g_Renderer.GetWaterManager()->m_RenderWater = m.WaterEnabled;
 }
 
 ActorViewer::~ActorViewer()
 {
-	// Restore the old renderer state
-	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS, m.OldShadows);
-	g_Renderer.GetSkyManager()->m_RenderSky = m.OldSky;
-	g_Renderer.GetWaterManager()->m_RenderWater = m.OldWater;
-
 	delete &m;
 }
 
@@ -459,6 +444,29 @@ void ActorViewer::SetActor(const CStrW& name, const CStrW& animation, player_id_
 
 	m.CurrentUnitID = id;
 	m.CurrentUnitAnim = animation;
+}
+
+void ActorViewer::SetEnabled(bool enabled)
+{
+	if (enabled)
+	{
+		// Set shadows, sky and water.
+		m.OldShadows = g_Renderer.GetOptionBool(CRenderer::OPT_SHADOWS);
+		g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS, m.ShadowsEnabled);
+
+		m.OldSky = g_Renderer.GetSkyManager()->m_RenderSky;
+		g_Renderer.GetSkyManager()->m_RenderSky = false;
+
+		m.OldWater = g_Renderer.GetWaterManager()->m_RenderWater;
+		g_Renderer.GetWaterManager()->m_RenderWater = m.WaterEnabled;
+	}
+	else
+	{
+		// Restore the old renderer state
+		g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS, m.OldShadows);
+		g_Renderer.GetSkyManager()->m_RenderSky = m.OldSky;
+		g_Renderer.GetWaterManager()->m_RenderWater = m.OldWater;
+	}
 }
 
 void ActorViewer::SetBackgroundColor(const SColor4ub& color)

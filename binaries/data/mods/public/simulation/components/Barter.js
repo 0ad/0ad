@@ -1,29 +1,30 @@
-// The "true price" is a base price of 100 units of resource (for the case of some resources being of more worth than others).
-// With current bartering system only relative values makes sense
-// so if for example stone is two times more expensive than wood,
-// there will 2:1 exchange rate.
-//
-// Constant part of price difference between true price and buy/sell price.
-// In percents.
-// Buy price equal to true price plus constant difference.
-// Sell price equal to true price minus constant difference.
-const CONSTANT_DIFFERENCE = 10;
-
-// Additional difference of prices, added after each deal to specified resource price.
-// In percents.
-const DIFFERENCE_PER_DEAL = 2;
-
-// Price difference which restored each restore timer tick
-// In percents.
-const DIFFERENCE_RESTORE = 0.5;
-
-// Interval of timer which slowly restore prices after deals
-const RESTORE_TIMER_INTERVAL = 5000;
-
 function Barter() {}
 
 Barter.prototype.Schema =
 	"<a:component type='system'/><empty/>";
+
+/**
+ * The "true price" is a base price of 100 units of resource (for the case of some resources being of more worth than others).
+ * With current bartering system only relative values makes sense so if for example stone is two times more expensive than wood,
+ * there will 2:1 exchange rate.
+ *
+ * Constant part of price percentage difference between true price and buy/sell price.
+ * Buy price equal to true price plus constant difference.
+ * Sell price equal to true price minus constant difference.
+ */
+Barter.prototype.CONSTANT_DIFFERENCE = 10;
+/**
+ * Additional difference of prices in percents, added after each deal to specified resource price.
+ */
+Barter.prototype.DIFFERENCE_PER_DEAL = 2;
+/**
+ * Price difference percentage which restored each restore timer tick
+ */
+Barter.prototype.DIFFERENCE_RESTORE = 0.5;
+/**
+ * Interval of timer which slowly restore prices after deals
+ */
+Barter.prototype.RESTORE_TIMER_INTERVAL = 5000;
 
 Barter.prototype.Init = function()
 {
@@ -39,8 +40,8 @@ Barter.prototype.GetPrices = function()
 	for (let resource of Resources.GetCodes())
 	{
 		let truePrice = Resources.GetResource(resource).truePrice;
-		prices.buy[resource] = truePrice * (100 + CONSTANT_DIFFERENCE + this.priceDifferences[resource]) / 100;
-		prices.sell[resource] = truePrice * (100 - CONSTANT_DIFFERENCE + this.priceDifferences[resource]) / 100;
+		prices.buy[resource] = truePrice * (100 + this.CONSTANT_DIFFERENCE + this.priceDifferences[resource]) / 100;
+		prices.sell[resource] = truePrice * (100 - this.CONSTANT_DIFFERENCE + this.priceDifferences[resource]) / 100;
 	}
 	return prices;
 };
@@ -117,16 +118,16 @@ Barter.prototype.ExchangeResources = function(playerEntity, resourceToSell, reso
 		// Increase price difference for both exchange resources.
 		// Overal price difference (constant + dynamic) can't exceed +-99%
 		// so both buy/sell prices limited to [1%; 199%] interval.
-		this.priceDifferences[resourceToSell] -= DIFFERENCE_PER_DEAL * numberOfDeals;
-		this.priceDifferences[resourceToSell] = Math.min(99-CONSTANT_DIFFERENCE, Math.max(CONSTANT_DIFFERENCE-99, this.priceDifferences[resourceToSell]));
-		this.priceDifferences[resourceToBuy] += DIFFERENCE_PER_DEAL * numberOfDeals;
-		this.priceDifferences[resourceToBuy] = Math.min(99-CONSTANT_DIFFERENCE, Math.max(CONSTANT_DIFFERENCE-99, this.priceDifferences[resourceToBuy]));
+		this.priceDifferences[resourceToSell] -= this.DIFFERENCE_PER_DEAL * numberOfDeals;
+		this.priceDifferences[resourceToSell] = Math.min(99 - this.CONSTANT_DIFFERENCE, Math.max(this.CONSTANT_DIFFERENCE - 99, this.priceDifferences[resourceToSell]));
+		this.priceDifferences[resourceToBuy] += this.DIFFERENCE_PER_DEAL * numberOfDeals;
+		this.priceDifferences[resourceToBuy] = Math.min(99 - this.CONSTANT_DIFFERENCE, Math.max(this.CONSTANT_DIFFERENCE - 99, this.priceDifferences[resourceToBuy]));
 	}
 
 	if (this.restoreTimer === undefined)
 	{
 		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-		this.restoreTimer = cmpTimer.SetInterval(this.entity, IID_Barter, "ProgressTimeout", RESTORE_TIMER_INTERVAL, RESTORE_TIMER_INTERVAL, {});
+		this.restoreTimer = cmpTimer.SetInterval(this.entity, IID_Barter, "ProgressTimeout", this.RESTORE_TIMER_INTERVAL, this.RESTORE_TIMER_INTERVAL, {});
 	}
 };
 
@@ -136,7 +137,7 @@ Barter.prototype.ProgressTimeout = function(data)
 	for (let resource of Resources.GetCodes())
 	{
 		// Calculate value to restore, it should be limited to [-DIFFERENCE_RESTORE; DIFFERENCE_RESTORE] interval
-		var differenceRestore = Math.min(DIFFERENCE_RESTORE, Math.max(-DIFFERENCE_RESTORE, this.priceDifferences[resource]));
+		var differenceRestore = Math.min(this.DIFFERENCE_RESTORE, Math.max(-this.DIFFERENCE_RESTORE, this.priceDifferences[resource]));
 		differenceRestore = -differenceRestore;
 		this.priceDifferences[resource] += differenceRestore;
 		// If price difference still exists then set flag to run timer again

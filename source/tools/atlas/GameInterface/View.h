@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -40,14 +40,17 @@ public:
 	virtual ~AtlasView();
 	virtual void Update(float UNUSED(realFrameLength)) { };
 	virtual void Render() { };
+	virtual void DrawCinemaPathTool() { };
 	virtual void DrawOverlays() { };
 	virtual CCamera& GetCamera() = 0;
 	virtual CSimulation2* GetSimulation2() { return NULL; }
 	virtual entity_id_t GetEntityId(AtlasMessage::ObjectID obj) { return (entity_id_t)obj; }
 	virtual bool WantsHighFramerate() { return false; }
+	virtual void SetEnabled(bool UNUSED(enabled)) {}
 
 	virtual void SetParam(const std::wstring& name, bool value);
 	virtual void SetParam(const std::wstring& name, int value);
+	virtual void SetParam(const std::wstring& UNUSED(name), float UNUSED(value)) {}
 	virtual void SetParam(const std::wstring& name, const AtlasMessage::Color& value);
 	virtual void SetParam(const std::wstring& name, const std::wstring& value);
 
@@ -85,12 +88,14 @@ public:
 	virtual ~AtlasViewGame();
 	virtual void Update(float realFrameLength);
 	virtual void Render();
+	virtual void DrawCinemaPathTool();
 	virtual void DrawOverlays();
 	virtual CCamera& GetCamera();
 	virtual CSimulation2* GetSimulation2();
 	virtual bool WantsHighFramerate();
 
 	virtual void SetParam(const std::wstring& name, bool value);
+	virtual void SetParam(const std::wstring& name, float value);
 	virtual void SetParam(const std::wstring& name, const std::wstring& value);
 
 	void SetSpeedMultiplier(float speedMultiplier);
@@ -114,6 +119,8 @@ private:
 	} SBandboxVertex;
 
 	std::vector<SBandboxVertex> m_BandboxArray;
+	bool m_DrawMoveTool;
+	CVector3D m_MoveTool;
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -136,6 +143,7 @@ public:
 	virtual CSimulation2* GetSimulation2();
 	virtual entity_id_t GetEntityId(AtlasMessage::ObjectID obj);
 	virtual bool WantsHighFramerate();
+	virtual void SetEnabled(bool enabled);
 
 	virtual void SetParam(const std::wstring& name, bool value);
 	virtual void SetParam(const std::wstring& name, int value);

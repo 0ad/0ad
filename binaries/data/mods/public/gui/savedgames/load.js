@@ -84,12 +84,13 @@ function init()
 	gameSelection.list = g_SavedGamesMetadata.map(metadata => generateSavegameLabel(metadata, engineInfo));
 	gameSelection.list_data = g_SavedGamesMetadata.map(metadata => metadata.id);
 
-	if (gameSelection.selected == -1 && savedGames.length)
-		gameSelection.selected = 0;
+	let selectedGameIndex = g_SavedGamesMetadata.findIndex(metadata => metadata.id == selectedGameId);
+	if (selectedGameIndex != -1)
+		gameSelection.selected = selectedGameIndex;
 	else if (gameSelection.selected >= g_SavedGamesMetadata.length) // happens when deleting the last saved game
 		gameSelection.selected = g_SavedGamesMetadata.length - 1;
-	else
-		gameSelection.selected = g_SavedGamesMetadata.findIndex(metadata => metadata.id == selectedGameId);
+	else if (gameSelection.selected == -1 && g_SavedGamesMetadata.length)
+		gameSelection.selected = 0;
 
 	Engine.GetGUIObjectByName("deleteGameButton").tooltip = deleteTooltip();
 }

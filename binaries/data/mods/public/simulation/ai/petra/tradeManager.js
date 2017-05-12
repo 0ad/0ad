@@ -35,7 +35,7 @@ m.TradeManager.prototype.assignTrader = function(ent)
 
 m.TradeManager.prototype.trainMoreTraders = function(gameState, queues)
 {
-	if (!this.tradeRoute || queues.trader.hasQueuedUnits())
+	if (!this.hasTradeRoute() || queues.trader.hasQueuedUnits())
 		return;
 
 	let numTraders = this.traders.length;
@@ -113,7 +113,7 @@ m.TradeManager.prototype.trainMoreTraders = function(gameState, queues)
 
 m.TradeManager.prototype.updateTrader = function(gameState, ent)
 {
-	if (!this.tradeRoute || !ent.isIdle() || !ent.position())
+	if (!this.hasTradeRoute() || !ent.isIdle() || !ent.position())
 		return;
 	if (ent.getMetadata(PlayerID, "transport") !== undefined)
 		return;
@@ -424,7 +424,7 @@ m.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 			let access2 = m.getLandAccess(gameState, m2);
 			let sea2 = m2.hasClass("NavalMarket") ? m.getSeaAccess(gameState, m2) : undefined;
 			let land = access1 == access2 ? access1 : undefined;
-			let sea = (sea1 && sea1 == sea2) ? sea1 : undefined;
+			let sea = sea1 && sea1 == sea2 ? sea1 : undefined;
 			if (!land && !sea)
 				continue;
 			let gainMultiplier;
@@ -593,7 +593,11 @@ m.TradeManager.prototype.isNewMarketWorth = function(expectedGain)
 
 m.TradeManager.prototype.update = function(gameState, events, queues)
 {
-	this.performBarter(gameState);
+	if (gameState.ai.HQ.canBarter)
+		this.performBarter(gameState);
+
+	if (this.Config.difficulty <= 1)
+		return;
 
 	if (this.routeProspection)
 		this.prospectForNewMarket(gameState, queues);
@@ -624,7 +628,7 @@ m.TradeManager.prototype.routeEntToId = function(route)
 		return route;
 	let ret = {};
 	for (let key in route)
-		ret[key] = (key == "source" || key == "target") ? route[key].id() : route[key];
+		ret[key] = key == "source" || key == "target" ? route[key].id() : route[key];
 	return ret;
 };
 
@@ -634,7 +638,7 @@ m.TradeManager.prototype.routeIdToEnt = function(gameState, route)
 		return route;
 	let ret = {};
 	for (let key in route)
-		ret[key] = (key == "source" || key == "target") ? gameState.getEntityById(route[key]) : route[key];
+		ret[key] = key == "source" || key == "target" ? gameState.getEntityById(route[key]) : route[key];
 	return ret;
 };
 

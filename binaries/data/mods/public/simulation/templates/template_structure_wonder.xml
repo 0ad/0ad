@@ -10,7 +10,10 @@
       <Crush>2</Crush>
     </Foundation>
   </Armour>
-  <Auras datatype="tokens">wonder_pop_1 wonder_pop_2</Auras>
+  <Auras datatype="tokens">
+    structures/wonder_pop_1
+    structures/wonder_pop_2
+  </Auras>
   <BuildRestrictions>
     <Category>Wonder</Category>
   </BuildRestrictions>

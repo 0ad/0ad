@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -65,7 +65,7 @@ static unsigned int ScaleColor(unsigned int color, float x)
 CMiniMap::CMiniMap() :
 	m_TerrainTexture(0), m_TerrainData(0), m_MapSize(0), m_Terrain(0), m_TerrainDirty(true), m_MapScale(1.f),
 	m_EntitiesDrawn(0), m_IndexArray(GL_STATIC_DRAW), m_VertexArray(GL_DYNAMIC_DRAW),
-	m_NextBlinkTime(0.0), m_PingDuration(25.0), m_BlinkState(false)
+	m_NextBlinkTime(0.0), m_PingDuration(25.0), m_BlinkState(false), m_WaterHeight(0.0)
 {
 	AddSetting(GUIST_CColor,	"fov_wedge_color");
 	AddSetting(GUIST_CStrW,		"tooltip");
@@ -409,7 +409,7 @@ void CMiniMap::Draw()
 	if (doUpdate)
 	{
 		last_time = cur_time;
-		if (m_TerrainDirty)
+		if (m_TerrainDirty || m_WaterHeight != g_Renderer.GetWaterManager()->m_WaterHeight)
 			RebuildTerrainTexture();
 	}
 
@@ -638,7 +638,7 @@ void CMiniMap::RebuildTerrainTexture()
 	u32 y = 0;
 	u32 w = m_MapSize - 1;
 	u32 h = m_MapSize - 1;
-	float waterHeight = g_Renderer.GetWaterManager()->m_WaterHeight;
+	m_WaterHeight = g_Renderer.GetWaterManager()->m_WaterHeight;
 
 	m_TerrainDirty = false;
 
@@ -653,12 +653,12 @@ void CMiniMap::RebuildTerrainTexture()
 					+ m_Terrain->GetVertexGroundLevel((int)i+1, (int)j+1)
 				) / 4.0f;
 
-			if (avgHeight < waterHeight && avgHeight > waterHeight - m_ShallowPassageHeight)
+			if (avgHeight < m_WaterHeight && avgHeight > m_WaterHeight - m_ShallowPassageHeight)
 			{
 				// shallow water
 				*dataPtr++ = 0xffc09870;
 			}
-			else if (avgHeight < waterHeight)
+			else if (avgHeight < m_WaterHeight)
 			{
 				// Set water as constant color for consistency on different maps
 				*dataPtr++ = 0xffa07850;

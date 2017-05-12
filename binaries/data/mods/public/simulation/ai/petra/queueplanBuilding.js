@@ -514,7 +514,7 @@ m.ConstructionPlan.prototype.getDockAngle = function(gameState, x, z, size)
 		let waterPoints = [];
 		for (let i = 0; i < numPoints; ++i)
 		{
-			let angle = (i/numPoints)*2*Math.PI;
+			let angle = 2 * Math.PI * i / numPoints;
 			pos = [x - (1+dist)*size*Math.sin(angle), z + (1+dist)*size*Math.cos(angle)];
 			pos = gameState.ai.accessibility.gamePosToMapPos(pos);
 			if (pos[0] < 0 || pos[0] >= gameState.ai.accessibility.width ||

@@ -153,6 +153,6 @@ cmpPack.Unpack();
 cmpPack.elapsedTime = 2100;
 cmpPack.PackProgress({}, 100);
 
-TS_ASSERT(cmpPack.IsPacking()); // It should be reset? (See StatusBars)
+TS_ASSERT(!cmpPack.IsPacking());
 TS_ASSERT(!cmpPack.timer);
 TS_ASSERT(!timerActivated);

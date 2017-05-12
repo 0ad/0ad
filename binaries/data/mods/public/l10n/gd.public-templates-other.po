@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-04-03 09:02+0200\n"
-"PO-Revision-Date: 2017-04-04 07:59+0000\n"
+"POT-Creation-Date: 2017-04-28 09:02+0200\n"
+"PO-Revision-Date: 2017-04-29 08:53+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -308,17 +308,17 @@ msgstr "Fiadh"
 msgid "African Bush Elephant"
 msgstr "Ailbhean fhàsaichean Afraganach"
 
-#: simulation/templates/gaia/fauna_elephant_african_infant.xml:14
-msgid "Elephant"
-msgstr "Ailbhean"
-
-#: simulation/templates/gaia/fauna_elephant_african_infant.xml:15
+#: simulation/templates/gaia/fauna_elephant_african_infant.xml:4
 msgid "African Elephant (Infant)"
 msgstr "Ailbhean Afraganach (leanaban)"
 
 #: simulation/templates/gaia/fauna_elephant_asian.xml:11
 msgid "Asian Elephant"
 msgstr "Ailbhean Àisianach"
+
+#: simulation/templates/gaia/fauna_elephant_asian_infant.xml:4
+msgid "Asian Elephant (Infant)"
+msgstr "Ailbhean Àisianach (leanaban)"
 
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:11
 msgid "North African Elephant"
@@ -418,7 +418,7 @@ msgstr "Caora"
 msgid "Tiger"
 msgstr "Tìgear"
 
-#: simulation/templates/gaia/fauna_walrus.xml:24
+#: simulation/templates/gaia/fauna_walrus.xml:25
 msgid "Walrus"
 msgstr "Each-mara"
 
@@ -898,15 +898,15 @@ msgstr "Colbh-thrannsa"
 msgid "Corinthian Colonnade"
 msgstr "Colbh-thrannsa Choirinteach"
 
-#: simulation/templates/other/special_catafalque.xml:22
+#: simulation/templates/other/special_catafalque.xml:20
 msgid "Catafalque"
 msgstr "Leabaidh-righe"
 
-#: simulation/templates/other/special_catafalque.xml:24
+#: simulation/templates/other/special_catafalque.xml:23
 msgid "A catafalque that holds the remains of a great leader."
 msgstr "Leabaidh-righe sa bheil iarsmadh sàr-cheannaird."
 
-#: simulation/templates/other/special_catafalque.xml:25
+#: simulation/templates/other/special_catafalque.xml:24
 msgid "Relic"
 msgstr "Taise"
 
@@ -973,58 +973,58 @@ msgstr "Teampall Greugach neo-chrìochnaichte"
 msgid "This temple is unfinished and has fallen to ruin."
 msgstr "Cha deach an teampall seo a choileanadh is chan eil ach fuigheall air fhàgail."
 
-#: simulation/templates/other/catafalque/athen_catafalque.xml:6
+#: simulation/templates/other/catafalque/athen_catafalque.xml:9
 msgid "Solon"
 msgstr "Solon"
 
-#: simulation/templates/other/catafalque/brit_catafalque.xml:6
+#: simulation/templates/other/catafalque/brit_catafalque.xml:9
 msgid "Cassivellaunus"
 msgstr "Cassivellaunus"
 
-#: simulation/templates/other/catafalque/cart_catafalque.xml:6
+#: simulation/templates/other/catafalque/cart_catafalque.xml:8
 msgid "Hasdrubal (Quartermaster)"
 msgstr "Hasdrubal (Neach-cairteil)"
 
-#: simulation/templates/other/catafalque/gaul_catafalque.xml:6
+#: simulation/templates/other/catafalque/gaul_catafalque.xml:9
 msgid "Ambiorix"
 msgstr "Ambiorix"
 
-#: simulation/templates/other/catafalque/iber_catafalque.xml:6
+#: simulation/templates/other/catafalque/iber_catafalque.xml:9
 msgid "Mandonius"
 msgstr "Mandonius"
 
-#: simulation/templates/other/catafalque/mace_catafalque.xml:6
+#: simulation/templates/other/catafalque/mace_catafalque.xml:8
 msgid "Philip V"
 msgstr "Filip V"
 
-#: simulation/templates/other/catafalque/mace_catafalque.xml:7
+#: simulation/templates/other/catafalque/mace_catafalque.xml:9
 msgid ""
 "Financial Reorganization: Allied with Rome, Philip reorganized the country's"
 " internal affairs and finances, leaving as a legacy reopened mines and a new"
 " currency. Gain a slow trickle of metal."
 msgstr "Ath-òrdachadh ionmhais: Ri linn a’ chaidreachais leis an Ròimh, dh’ath-òrdaich Filip cùisean ’s ionmhas na dùthcha agus dh’fhàg e dìleab dhe mhèinnean air an ath-fhosgladh is airgeadra ùir dhan dùthaich. Buannaich beagan meatailt gu cunbhalach."
 
-#: simulation/templates/other/catafalque/maur_catafalque.xml:6
+#: simulation/templates/other/catafalque/maur_catafalque.xml:9
 msgid "Bindusara"
 msgstr "Bindusara"
 
-#: simulation/templates/other/catafalque/pers_catafalque.xml:6
+#: simulation/templates/other/catafalque/pers_catafalque.xml:8
 msgid "Artaxerxes II"
 msgstr "Artaxerxes II"
 
-#: simulation/templates/other/catafalque/ptol_catafalque.xml:6
+#: simulation/templates/other/catafalque/ptol_catafalque.xml:8
 msgid "Ptolemy III Euergetes (Benefactor)"
 msgstr "Ptolamaidh III Eurgetes (Taibheartach)"
 
-#: simulation/templates/other/catafalque/rome_catafalque.xml:6
+#: simulation/templates/other/catafalque/rome_catafalque.xml:9
 msgid "Lucius Junius Brutus"
 msgstr "Lucius Junius Brutus"
 
-#: simulation/templates/other/catafalque/sele_catafalque.xml:6
+#: simulation/templates/other/catafalque/sele_catafalque.xml:10
 msgid "Antiochus I Soter (Savior)"
 msgstr "Antiochus I Soter (Slànaighear)"
 
-#: simulation/templates/other/catafalque/spart_catafalque.xml:6
+#: simulation/templates/other/catafalque/spart_catafalque.xml:10
 msgid "Lycurgus"
 msgstr "Lycurgus"
 

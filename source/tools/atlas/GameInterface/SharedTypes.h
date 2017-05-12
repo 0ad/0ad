@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,6 +27,14 @@ class CVector3D;
 
 namespace AtlasMessage
 {
+
+enum SELECTED_AXIS
+{
+	AXIS_INVALID = -1,
+	AXIS_X = 1,
+	AXIS_Y = 2,
+	AXIS_Z = 4
+};
 
 // Represents a position in the game world, with an interface usable from the
 // UI (which usually knows only about screen space). Typically constructed
@@ -119,6 +127,15 @@ struct sCinemaPath
 };
 SHAREABLE_STRUCT(sCinemaPath);
 
+struct sCinemaPathNode
+{
+	Shareable<std::wstring> name;
+	Shareable<int> index;
+	Shareable<bool> targetNode;
+	sCinemaPathNode() : index(-1), targetNode(false) {}
+};
+SHAREABLE_STRUCT(sCinemaPathNode);
+
 
 struct eCinemaEventMode { enum { SMOOTH, SELECT, IMMEDIATE_PATH, RESET }; };
 struct sCameraInfo
@@ -126,120 +143,6 @@ struct sCameraInfo
 	Shareable<float> pX, pY, pZ, rX, rY, rZ;	// position and rotation
 };
 SHAREABLE_STRUCT(sCameraInfo);
-
-
-//******Triggers*****
-
-
-struct sTriggerParameter
-{
-	Shareable<int> row, column, xPos, yPos, xSize, ySize, parameterOrder;
-	Shareable<std::wstring> name, inputType, windowType;
-};
-SHAREABLE_STRUCT(sTriggerParameter);
-
-struct sTriggerSpec
-{
-	Shareable<std::vector<AtlasMessage::sTriggerParameter> > parameters;
-	Shareable<std::wstring> displayName, functionName;
-
-	bool operator== ( const std::wstring& name) const
-	{
-		return ( *displayName == name );
-	}
-};
-SHAREABLE_STRUCT(sTriggerSpec);
-
-
-struct sTriggerCondition
-{
-	sTriggerCondition() : linkLogic(1), negated(false) {}
-	sTriggerCondition(const std::wstring& _name) : linkLogic(1), negated(false), name(_name) {}
-
-	//displayName is used for selecting choice items in Atlas
-	Shareable<std::wstring> name, functionName, displayName;
-	Shareable< std::vector<std::wstring> > parameters;
-
-	//0 = none, 1 = and, 2 = or
-	Shareable<int> linkLogic;
-	Shareable<bool> negated;
-
-	bool operator== ( const std::wstring& _name ) const
-	{
-		return (*name == _name);
-	}
-};
-
-SHAREABLE_STRUCT(sTriggerCondition);
-
-struct sTriggerEffect
-{
-	sTriggerEffect() {}
-	sTriggerEffect(const std::wstring& _name) : name(_name) {}
-
-	Shareable<std::wstring> name, functionName, displayName;
-	Shareable< std::vector<std::wstring> > parameters;
-	//Shareable<bool> loop;
-
-	bool operator== ( const std::wstring& _name )
-	{
-		return (*name == _name);
-	}
-};
-SHAREABLE_STRUCT(sTriggerEffect);
-
-struct sTrigger
-{
-	Shareable<std::wstring> name, group;
-	Shareable< std::vector<sTriggerCondition> > conditions;
-	Shareable< std::vector<sTriggerEffect> > effects;
-
-	//For beginnings, the index of the term it comes before.  For ends, the index it comes after
-	Shareable< std::vector<int> > logicBlocks, logicBlockEnds;
-	Shareable< std::vector<bool> > logicNots;	//true if logicBlocks are not-ed
-	Shareable<float> timeValue;
-	Shareable<int> maxRuns;
-	Shareable<bool> active;
-
-	sTrigger() : timeValue(0), maxRuns(-1), active(0) {}
-	sTrigger(const std::wstring& _name) : name(_name), timeValue(0), maxRuns(0), active(true) {}
-	bool operator== (const sTrigger& trigger)
-	{
-		return (*name == *trigger.name);
-	}
-	bool operator!= (const sTrigger& trigger)
-	{
-		return (*name != *trigger.name);
-	}
-};
-SHAREABLE_STRUCT(sTrigger);
-
-
-struct sTriggerGroup
-{
-	Shareable<std::wstring> name, parentName;
-	Shareable< std::vector<std::wstring> > children;
-	Shareable< std::vector<sTrigger> > triggers;
-
-	sTriggerGroup() { }
-	sTriggerGroup(const std::wstring& _name) : name(_name) { }
-
-	bool operator== (const sTriggerGroup& group) const
-	{
-		return (*name == *group.name);
-	}
-	bool operator== (const std::wstring& _name) const
-	{
-		return (*name == _name);
-	}
-	/*bool operator!= (const sTriggerGroup& group)
-	{
-		return (*name != *group.name);
-	}*/
-};
-
-SHAREABLE_STRUCT(sTriggerGroup);
-
 
 }
 

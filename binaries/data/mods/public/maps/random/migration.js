@@ -420,7 +420,7 @@ group = new SimpleGroup(
 );
 createObjectGroups(group, 0,
 	[avoidClasses(clForest, 0, clPlayer, 8, clHill, 1, clFood, 20), stayClasses(clLand, 7)],
-	randInt(1, 4) * numPlayers + 2, 50
+	randIntInclusive(1, 4) * numPlayers + 2, 50
 );
 RMS.SetProgress(78);
 

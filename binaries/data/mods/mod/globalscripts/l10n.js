@@ -1,88 +1,74 @@
-var g_translations = {};
-var g_pluralTranslations = {};
-var g_translationsWithContext = {};
-var g_pluralTranslationsWithContext = {};
+/**
+ * These functions rely on the JS cache where possible and
+ * should be prefered over the Engine.Translate ones to optimize the performance.
+ */
+var g_Translations = {};
+var g_PluralTranslations = {};
+var g_TranslationsWithContext = {};
+var g_PluralTranslationsWithContext = {};
 
-// Checks if the specified variable is a string, and if it is, it checks that it
-// is not empty.
-function isNonEmptyString(variable)
+function isTranslatableString(message)
 {
-	if (typeof variable != "string")
-		return false;
-	else if (variable.trim())
-		return true;
-	else
-		return false;
+	return typeof message == "string" && !!message.trim();
 }
 
-// Translates the specified English message into the current language.
-//
-// This function relies on the g_translations cache when possible. You should use this function instead of
-// Engine.Translate() whenever you can to minimize the number of C++ calls and string conversions involved.
+/**
+ * Translates the specified English message into the current language.
+ */
 function translate(message)
 {
-	var translation = g_translations[message];
-	if (!translation)
-		return g_translations[message] = Engine.Translate(message);
-	return translation;
+	if (!g_Translations[message])
+		g_Translations[message] = Engine.Translate(message);
+
+	return g_Translations[message];
 }
 
-
-// Translates the specified English message into the current language for the specified number.
-//
-// This function relies on the g_pluralTranslations cache when possible. You should use this function instead of
-// Engine.TranslatePlural() whenever you can to minimize the number of C++ calls and string conversions involved.
+/**
+ * Translates the specified English message into the current language for the specified number.
+ */
 function translatePlural(singularMessage, pluralMessage, number)
 {
-	var translation = g_pluralTranslations[singularMessage];
-	if (!translation)
-		g_pluralTranslations[singularMessage] = {};
+	if (!g_PluralTranslations[singularMessage])
+		g_PluralTranslations[singularMessage] = {};
 
-	var pluralTranslation = g_pluralTranslations[singularMessage][number];
-	if (!pluralTranslation)
-		return g_pluralTranslations[singularMessage][number] = Engine.TranslatePlural(singularMessage, pluralMessage, number);
+	if (!g_PluralTranslations[singularMessage][number])
+		g_PluralTranslations[singularMessage][number] = Engine.TranslatePlural(singularMessage, pluralMessage, number);
 
-	return pluralTranslation;
+	return g_PluralTranslations[singularMessage][number];
 }
 
 
-// Translates the specified English message into the current language for the specified context.
-//
-// This function relies on the g_translationsWithContext cache when possible. You should use this function instead of
-// Engine.TranslateWithContext() whenever you can to minimize the number of C++ calls and string conversions involved.
+/**
+ * Translates the specified English message into the current language for the specified context.
+ */
 function translateWithContext(context, message)
 {
-	var translationContext = g_translationsWithContext[context];
-	if (!translationContext)
-		g_translationsWithContext[context] = {}
+	if (!g_TranslationsWithContext[context])
+		g_TranslationsWithContext[context] = {}
 
-	var translationWithContext = g_translationsWithContext[context][message];
-	if (!translationWithContext)
-		return g_translationsWithContext[context][message] = Engine.TranslateWithContext(context, message);
+	if (!g_TranslationsWithContext[context][message])
+		g_TranslationsWithContext[context][message] = Engine.TranslateWithContext(context, message);
 
-	return translationWithContext;
+	return g_TranslationsWithContext[context][message];
 }
 
 
-// Translates the specified English message into the current language for the specified context and number.
-//
-// This function relies on the g_pluralTranslationsWithContext cache when possible. You should use this function instead of
-// Engine.TranslatePluralWithContext() whenever you can to minimize the number of C++ calls and string conversions involved.
+/**
+ * Translates the specified English message into the current language for the specified context and number.
+ */
 function translatePluralWithContext(context, singularMessage, pluralMessage, number)
 {
-	var translationContext = g_pluralTranslationsWithContext[context];
-	if (!translationContext)
-		g_pluralTranslationsWithContext[context] = {};
+	if (!g_PluralTranslationsWithContext[context])
+		g_PluralTranslationsWithContext[context] = {};
 
-	var translationWithContext = g_pluralTranslationsWithContext[context][singularMessage];
-	if (!translationWithContext)
-		g_pluralTranslationsWithContext[context][singularMessage] = {};
+	if (!g_PluralTranslationsWithContext[context][singularMessage])
+		g_PluralTranslationsWithContext[context][singularMessage] = {};
 
-	var pluralTranslationWithContext = g_pluralTranslationsWithContext[context][singularMessage][number];
-	if (!pluralTranslationWithContext)
-		return g_pluralTranslationsWithContext[context][singularMessage][number] = Engine.TranslatePluralWithContext(context, singularMessage, pluralMessage, number);
+	if (!g_PluralTranslationsWithContext[context][singularMessage][number])
+		g_PluralTranslationsWithContext[context][singularMessage][number] =
+			Engine.TranslatePluralWithContext(context, singularMessage, pluralMessage, number);
 
-	return pluralTranslationWithContext;
+	return g_PluralTranslationsWithContext[context][singularMessage][number];
 }
 
 /**
@@ -99,18 +85,14 @@ function translatePluralWithContext(context, singularMessage, pluralMessage, num
  */
 function translateMessageObject(object)
 {
-	// the translation function
-	var trans = translate;
+	let trans = translate;
 	if (object.context)
-		trans = function(msg) { return translateWithContext(object.context, msg);};
+		trans = msg => translateWithContext(object.context, msg);
 
 	if (object.message)
 		object = trans(object.message);
 	else if (object.list)
-	{
-		var translatedList = object.list.map(trans);
-		object = translatedList.join(translateWithContext("enumeration", ", "));
-	}
+		object = object.list.map(trans).join(translateWithContext("enumeration", ", "));
 
 	return object;
 }
@@ -161,20 +143,18 @@ function translateMessageObject(object)
  * Also, the keys array may be an object where properties are keys to translate
  * and values are translation contexts to use for each key.
  */
-function translateObjectKeys(object, keys) {
-	// If ‘keys’ is an array, simply translate.
+function translateObjectKeys(object, keys)
+{
 	if (keys instanceof Array)
 	{
-		for (var property in object)
+		for (let property in object)
 		{
 			if (keys.indexOf(property) > -1)
 			{
-				if (isNonEmptyString(object[property]))
+				if (isTranslatableString(object[property]))
 					object[property] = translate(object[property]);
 				else if (object[property] instanceof Object)
-				{
 					object[property] = translateMessageObject(object[property]);
-				}
 			}
 			else if (object[property] instanceof Object)
 				translateObjectKeys(object[property], keys);
@@ -185,11 +165,11 @@ function translateObjectKeys(object, keys) {
 	// An empty value means no context.
 	else
 	{
-		for (var property in object)
+		for (let property in object)
 		{
 			if (property in keys)
 			{
-				if (isNonEmptyString(object[property]))
+				if (isTranslatableString(object[property]))
 					if (keys[property])
 						object[property] = translateWithContext(keys[property], object[property]);
 					else
@@ -226,4 +206,3 @@ function markForPluralTranslation(singularMessage, pluralMessage, number)
 		"pluralCount": number
 	};
 }
-

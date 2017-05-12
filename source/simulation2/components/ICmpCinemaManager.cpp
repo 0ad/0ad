@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,7 +22,9 @@
 #include "simulation2/system/InterfaceScripted.h"
 
 BEGIN_INTERFACE_WRAPPER(CinemaManager)
+DEFINE_INTERFACE_METHOD_1("AddPath", void, ICmpCinemaManager, AddPath, CCinemaPath)
 DEFINE_INTERFACE_METHOD_1("AddCinemaPathToQueue", void, ICmpCinemaManager, AddCinemaPathToQueue, CStrW)
+DEFINE_INTERFACE_METHOD_1("DeletePath", void, ICmpCinemaManager, DeletePath, CStrW)
 DEFINE_INTERFACE_METHOD_0("Play", void, ICmpCinemaManager, Play)
 DEFINE_INTERFACE_METHOD_0("Stop", void, ICmpCinemaManager, Stop)
 END_INTERFACE_WRAPPER(CinemaManager)
