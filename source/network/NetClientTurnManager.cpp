@@ -104,7 +104,8 @@ void CNetClientTurnManager::OnSimulationMessage(CSimulationMessage* msg)
 
 void CNetClientTurnManager::OnSyncError(u32 turn, const CStr& expectedHash, const std::vector<CSyncErrorMessage::S_m_PlayerNames>& playerNames)
 {
-	NETCLIENTTURN_LOG("OnSyncError(%d, %hs)\n", turn, Hexify(expectedHash).c_str());
+	CStr expectedHashHex(Hexify(expectedHash));
+	NETCLIENTTURN_LOG("OnSyncError(%d, %hs)\n", turn, expectedHashHex.c_str());
 
 	// Only complain the first time
 	if (m_HasSyncError)
@@ -119,8 +120,6 @@ void CNetClientTurnManager::OnSyncError(u32 turn, const CStr& expectedHash, cons
 	std::ofstream file (OsString(path).c_str(), std::ofstream::out | std::ofstream::trunc);
 	m_Simulation2.DumpDebugState(file);
 	file.close();
-
-	hash = Hexify(hash);
 
 	std::stringstream playerNamesString;
 	std::vector<CStr> playerNamesStrings;
@@ -142,8 +141,8 @@ void CNetClientTurnManager::OnSyncError(u32 turn, const CStr& expectedHash, cons
 	scriptInterface.Eval("({ 'type':'out-of-sync' })", &msg);
 	scriptInterface.SetProperty(msg, "turn", turn);
 	scriptInterface.SetProperty(msg, "players", playerNamesStrings);
-	scriptInterface.SetProperty(msg, "expectedHash", expectedHash);
-	scriptInterface.SetProperty(msg, "hash", hash);
+	scriptInterface.SetProperty(msg, "expectedHash", expectedHashHex);
+	scriptInterface.SetProperty(msg, "hash", Hexify(hash));
 	scriptInterface.SetProperty(msg, "path_oos_dump", path.string8());
 	scriptInterface.SetProperty(msg, "path_replay", m_Replay.GetDirectory().string8());
 	m_NetClient.PushGuiMessage(msg);
