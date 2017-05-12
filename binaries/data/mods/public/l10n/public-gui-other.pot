@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2017-05-08 09:02+0200\n"
-"PO-Revision-Date: 2017-05-08 09:02+0200\n"
+"POT-Creation-Date: 2017-05-12 09:03+0200\n"
+"PO-Revision-Date: 2017-05-12 09:03+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -380,7 +380,7 @@ msgstr ""
 #: gui/common/gamedescription.js:362 gui/common/tooltips.js:86
 #: gui/common/tooltips.js:141 gui/common/tooltips.js:182
 #: gui/common/tooltips.js:404 gui/common/tooltips.js:425
-#: gui/common/tooltips.js:707
+#: gui/common/tooltips.js:718
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr ""
@@ -418,7 +418,7 @@ msgstr ""
 #: gui/common/tooltips.js:168 gui/common/tooltips.js:248
 #: gui/common/tooltips.js:277 gui/common/tooltips.js:310
 #: gui/common/tooltips.js:583 gui/common/tooltips.js:617
-#: gui/common/tooltips.js:671 gui/replaymenu/replay_actions.js:89
+#: gui/common/tooltips.js:682 gui/replaymenu/replay_actions.js:89
 #: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:119
 #: gui/savedgames/load.js:175 gui/savedgames/load.js:178
 msgid ", "
@@ -795,6 +795,7 @@ msgid "meters"
 msgstr ""
 
 #: gui/common/tooltips.js:221 gui/common/tooltips.js:610
+#: gui/common/tooltips.js:639
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] ""
@@ -952,7 +953,7 @@ msgid "Run"
 msgstr ""
 
 #: gui/common/tooltips.js:601 gui/common/tooltips.js:607
-#: gui/common/tooltips.js:612
+#: gui/common/tooltips.js:612 gui/common/tooltips.js:636
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
@@ -966,38 +967,43 @@ msgid_plural "HP"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/common/tooltips.js:626
+#: gui/common/tooltips.js:628
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr ""
 
-#: gui/common/tooltips.js:627
+#: gui/common/tooltips.js:629
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr ""
 
-#: gui/common/tooltips.js:643
+#: gui/common/tooltips.js:637
+msgctxt "aura"
+msgid "Range:"
+msgstr ""
+
+#: gui/common/tooltips.js:654
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr ""
 
 #. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian Marine)[/font]"
-#: gui/common/tooltips.js:655
+#: gui/common/tooltips.js:666
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 msgstr ""
 
-#: gui/common/tooltips.js:670
+#: gui/common/tooltips.js:681
 msgid "Classes:"
 msgstr ""
 
 #. Translation: %(component) will be the icon for the loot type and %(loot) will be the value.
-#: gui/common/tooltips.js:698
+#: gui/common/tooltips.js:709
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr ""
 
-#: gui/common/tooltips.js:708
+#: gui/common/tooltips.js:719
 msgid "Loot:"
 msgstr ""
 
