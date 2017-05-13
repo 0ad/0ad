@@ -50,7 +50,7 @@ m.HQ = function(Config)
 	this.navalManager = new m.NavalManager(this.Config);
 	this.researchManager = new m.ResearchManager(this.Config);
 	this.diplomacyManager = new m.DiplomacyManager(this.Config);
-	this.garrisonManager = new m.GarrisonManager();
+	this.garrisonManager = new m.GarrisonManager(this.Config);
 	this.gameTypeManager = new m.GameTypeManager(this.Config);
 
 	this.capturableTargets = new Map();
@@ -2397,7 +2397,7 @@ m.HQ.prototype.Deserialize = function(gameState, data)
 	this.diplomacyManager = new m.DiplomacyManager(this.Config);
 	this.diplomacyManager.Deserialize(data.diplomacyManager);
 
-	this.garrisonManager = new m.GarrisonManager();
+	this.garrisonManager = new m.GarrisonManager(this.Config);
 	this.garrisonManager.Deserialize(data.garrisonManager);
 
 	this.gameTypeManager = new m.GameTypeManager(this.Config);

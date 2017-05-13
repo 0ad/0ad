@@ -9,8 +9,9 @@ var PETRA = function(m)
  * Futhermore garrison units have a metadata garrisonType describing its reason (protection, transport, ...)
  */
 
-m.GarrisonManager = function()
+m.GarrisonManager = function(Config)
 {
+	this.Config = Config;
 	this.holders = new Map();
 	this.decayingStructures = new Map();
 };
@@ -109,7 +110,7 @@ m.GarrisonManager.prototype.update = function(gameState, events)
 		if (gameState.ai.elapsedTime - holder.getMetadata(PlayerID, "holderTimeUpdate") > 3)
 		{
 			let range = holder.attackRange("Ranged") ? holder.attackRange("Ranged").max : 80;
-			let around = { "defenseStructure": false, "inertStructure": false, "meleeSiege": false, "rangeSiege": false, "unit": false };
+			let around = { "defenseStructure": false, "meleeSiege": false, "rangeSiege": false, "unit": false };
 			for (let ent of gameState.getEnemyEntities().values())
 			{
 				if (!ent.position())
@@ -123,8 +124,6 @@ m.GarrisonManager.prototype.update = function(gameState, events)
 				{
 					if (ent.attackRange("Ranged"))	// TODO units on wall are not taken into account
 						around.defenseStructure = true;
-					else
-						around.inertStructure = true;
 				}
 				else if (m.isSiegeUnit(ent))
 				{
@@ -261,16 +260,15 @@ m.GarrisonManager.prototype.keepGarrisoned = function(ent, holder, around)
 	case 'trade':		// trader garrisoned in ship
 		return true;
 	case 'protection':	// hurt unit for healing or infantry for defense
-		if (ent.needsHeal() && holder.buffHeal())
+		if (holder.buffHeal() && ent.isHealable() && ent.healthLevel() < this.Config.garrisonHealthLevel.high)
 			return true;
 		if (MatchesClassList(ent.classes(), holder.getGarrisonArrowClasses()))
 		{
 			if (around.unit || around.defenseStructure)
 				return true;
-			else if (around.meleeSiege || around.rangeSiege)
-				return ent.attackTypes().indexOf("Melee") === -1;
-			else
-				return false;
+			if (around.meleeSiege || around.rangeSiege)
+				return ent.attackTypes().indexOf("Melee") === -1 || ent.healthLevel() < this.Config.garrisonHealthLevel.low;
+			return false;
 		}
 		if (ent.attackTypes() && ent.attackTypes().indexOf("Melee") !== -1)
 			return false;
@@ -278,16 +276,22 @@ m.GarrisonManager.prototype.keepGarrisoned = function(ent, holder, around)
 			return ent.hasClass("Support") || m.isSiegeUnit(ent);	// only ranged siege here and below as melee siege already released above
 		if (m.isSiegeUnit(ent))
 			return around.meleeSiege;
-		return false;
+		return holder.buffHeal() && ent.needsHeal();
 	case 'decay':
 		return this.decayingStructures.has(holder.id());
 	case 'emergency': // f.e. hero in regicide mode
-		return around.unit || around.defenseStructure || around.meleeSiege;
+		if (holder.buffHeal() && ent.isHealable() && ent.healthLevel() < this.Config.garrisonHealthLevel.high)
+			return true;
+		if (around.unit || around.defenseStructure || around.meleeSiege ||
+			around.rangeSiege && ent.healthLevel() < this.Config.garrisonHealthLevel.high)
+			return true;
+		return holder.buffHeal() && ent.needsHeal();
 	default:
 		if (ent.getMetadata(PlayerID, "onBoard") === "onBoard")  // transport is not (yet ?) managed by garrisonManager
 			return true;
 		API3.warn("unknown type in garrisonManager " + ent.getMetadata(PlayerID, "garrisonType") +
-			  " for " + ent.id() + " inside " + holder.id());
+		          " for " + ent.genericName() + " id " + ent.id() +
+		          " inside " + holder.genericName() + " id " + holder.id());
 		ent.setMetadata(PlayerID, "garrisonType", "protection");
 		return true;
 	}
