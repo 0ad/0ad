@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,7 +26,7 @@
 #include "ps/Profile.h"
 #include "scriptinterface/ScriptInterface.h"
 
-const u32 NETWORK_WARNING_TIMEOUT = 4000;
+const u32 NETWORK_WARNING_TIMEOUT = 2000;
 
 const u32 MAXIMUM_HOST_TIMEOUT = std::numeric_limits<u32>::max();
 
