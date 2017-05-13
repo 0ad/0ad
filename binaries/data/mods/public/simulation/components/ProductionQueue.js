@@ -533,6 +533,8 @@ ProductionQueue.prototype.OnOwnershipChanged = function(msg)
 	// created from it. Also it means we don't have to worry about
 	// updating the reserved pop slots.)
 	this.ResetQueue();
+
+	this.ResetAlert();
 };
 
 ProductionQueue.prototype.OnCivChanged = function()
@@ -662,10 +664,10 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 			"metadata": metadata,
 		});
 
-		if(this.alertRaiser && spawnedEnts.length > 0)
+		if (this.alertRaiser && spawnedEnts.length > 0)
 		{
 			var cmpAlertRaiser = Engine.QueryInterface(this.alertRaiser, IID_AlertRaiser);
-			if(cmpAlertRaiser)
+			if (cmpAlertRaiser)
 				cmpAlertRaiser.UpdateUnits(spawnedEnts);
 		}
 	}
