@@ -90,7 +90,7 @@ AIInterface.prototype.GetNonEntityRepresentation = function()
 	let cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 
 	// Return the same game state as the GUI uses
-	let state = cmpGuiInterface.GetSimulationState(-1);
+	let state = cmpGuiInterface.GetSimulationState();
 
 	// Add some extra AI-specific data
 	// add custom events and reset them for the next turn

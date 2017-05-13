@@ -1383,22 +1383,21 @@ function sanitizePlayerData(playerData)
 	if (playerData.length && !playerData[0])
 		playerData.shift();
 
-	// Use defaults if the map doesn't specify a value
 	playerData.forEach((pData, index) => {
+
+		// Use defaults if the map doesn't specify a value
 		for (let prop in g_DefaultPlayerData[index])
 			if (!(prop in pData))
 				pData[prop] = g_DefaultPlayerData[index][prop];
-	});
 
-	// Replace colors with the best matching color of PlayerDefaults
-	if (g_GameAttributes.mapType != "scenario")
-	{
-		playerData.forEach((pData, index) => {
+		// Replace colors with the best matching color of PlayerDefaults
+		if (g_GameAttributes.mapType != "scenario")
+		{
 			let colorDistances = g_PlayerColorPickerList.map(color => colorDistance(color, pData.Color));
 			let smallestDistance = colorDistances.find(distance => colorDistances.every(distance2 => (distance2 >= distance)));
 			pData.Color = g_PlayerColorPickerList.find(color => colorDistance(color, pData.Color) == smallestDistance);
-		});
-	}
+		}
+	});
 
 	ensureUniquePlayerColors(playerData);
 }

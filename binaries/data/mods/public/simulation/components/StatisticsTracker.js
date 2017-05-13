@@ -147,7 +147,7 @@ StatisticsTracker.prototype.Init = function()
 
 	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 	this.updateTimer = cmpTimer.SetInterval(
-		this.entity, IID_StatisticsTracker, "updateSequences", 0, g_UpdateSequenceInterval);
+		this.entity, IID_StatisticsTracker, "UpdateSequences", 0, g_UpdateSequenceInterval);
 };
 
 /**
@@ -203,13 +203,16 @@ StatisticsTracker.prototype.GetStatistics = function()
 
 StatisticsTracker.prototype.GetSequences = function()
 {
+	if (!this.sequences)
+		return {};
+
 	let ret = clone(this.sequences);
 	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 
 	ret.time.push(cmpTimer.GetTime() / 1000);
 	this.PushValue(this.GetStatistics(), ret);
 	return ret;
-}
+};
 
 /**
  * Increments counter associated with certain entity/counter and type of given entity.
@@ -530,12 +533,12 @@ StatisticsTracker.prototype.PushValue = function(fromData, toData)
 		toData.push(fromData);
 };
 
-StatisticsTracker.prototype.updateSequences = function()
+StatisticsTracker.prototype.UpdateSequences = function()
 {
 	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 
 	// Don't do this on Init, because GetStatistics doesn't work in this state of the game
-	// This is probably, because the simulation hasn't totally started/initialized and we query some simulation values
+	// This is because the simulation hasn't totally started/initialized and we query some simulation values
 	if (!this.sequences)
 	{
 		this.sequences = clone(this.GetStatistics());
@@ -544,6 +547,6 @@ StatisticsTracker.prototype.updateSequences = function()
 
 	this.sequences.time.push(cmpTimer.GetTime() / 1000);
 	this.PushValue(this.GetStatistics(), this.sequences);
-}
+};
 
 Engine.RegisterComponentType(IID_StatisticsTracker, "StatisticsTracker", StatisticsTracker);

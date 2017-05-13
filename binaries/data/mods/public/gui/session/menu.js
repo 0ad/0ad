@@ -1038,7 +1038,8 @@ function openStrucTree()
  */
 function pauseGame(pause = true, explicit = false)
 {
-	if (g_IsNetworked && !explicit)
+	// The NetServer only supports pausing after all clients finished loading the game.
+	if (g_IsNetworked && (!explicit || !g_IsNetworkedActive))
 		return;
 
 	if (explicit)
