@@ -2111,7 +2111,7 @@ m.HQ.prototype.updateCaptureStrength = function(gameState)
 			continue;
 		let targetId = orderData[0].target;
 		let target = gameState.getEntityById(targetId);
-		if (!target || !target.isCapturable())
+		if (!target || !target.isCapturable() || !ent.canCapture(target))
 			continue;
 		if (!this.capturableTargets.has(targetId))
 			this.capturableTargets.set(targetId, {

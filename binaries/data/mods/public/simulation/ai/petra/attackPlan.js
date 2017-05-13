@@ -1699,7 +1699,7 @@ m.AttackPlan.prototype.UpdateWalking = function(gameState, events)
 				nexttoWalls = true;
 		}
 		// there are walls but we can attack
-		if (nexttoWalls && this.unitCollection.filter(API3.Filters.byCanAttack("StoneWall")).hasEntities())
+		if (nexttoWalls && this.unitCollection.filter(API3.Filters.byCanAttackClass("StoneWall")).hasEntities())
 		{
 			if (this.Config.debug > 1)
 				API3.warn("Attack Plan " + this.type + " " + this.name + " has met walls and is not happy.");

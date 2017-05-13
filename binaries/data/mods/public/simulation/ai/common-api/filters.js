@@ -128,9 +128,10 @@ m.Filters = {
 		"dynamicProperties": ['unitAIOrderData']};
 	},
 
-	byCanAttack: function(saidClass){
+	"byCanAttackClass": function(aClass)
+	{
 		return {"func" : function(ent){
-			return ent.canAttackClass(saidClass);
+			return ent.canAttackClass(aClass);
 		},
 		"dynamicProperties": []};
 	},
