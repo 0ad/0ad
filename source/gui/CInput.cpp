@@ -2077,7 +2077,7 @@ void CInput::UpdateAutoScroll()
 
 			// Get position of m_iBufferPos
 			if ((int)m_CharacterPositions.begin()->m_ListOfX.size() >= m_iBufferPos &&
-				m_iBufferPos != 0)
+				m_iBufferPos > 0)
 				x_position = m_CharacterPositions.begin()->m_ListOfX[m_iBufferPos-1];
 
 			// Get complete length:
