@@ -128,7 +128,7 @@ m.getSeaAccess = function(gameState, ent)
 /** Decide if we should try to capture (returns true) or destroy (return false) */
 m.allowCapture = function(gameState, ent, target)
 {
-	if (!ent.canCapture() || !target.isCapturable())
+	if (!target.isCapturable() || !ent.canCapture(target))
 		return false;
 	// always try to recapture cp from an allied, except if it's decaying
 	if (gameState.isPlayerAlly(target.owner()))

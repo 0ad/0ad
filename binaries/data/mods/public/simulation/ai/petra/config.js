@@ -124,6 +124,8 @@ m.Config = function(difficulty)
 			"default": 0
 		}
 	};
+
+	this.garrisonHealthLevel = { "low": 0.4, "medium": 0.55, "high": 0.7 };
 };
 
 m.Config.prototype.setConfig = function(gameState)

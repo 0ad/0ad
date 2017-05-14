@@ -14,12 +14,6 @@
       units/{civ}_infantry_slinger_b
       units/{civ}_cavalry_javelinist_b
     </Entities>
-    <Technologies datatype="tokens">
-      -phase_town
-      phase_town_athen
-      -phase_city
-      phase_city_athen
-    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/athenians/civil_centre.xml</Actor>

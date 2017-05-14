@@ -318,21 +318,6 @@ m.Template = m.Class({
 		return 1;
 	},
 
-	// returns true if the entity can attack the given class
-	canAttackClass: function(saidClass) {
-		if (!this.get("Attack"))
-			return false;
-
-		for (let type in this.get("Attack"))
-		{
-			let restrictedClasses = this.get("Attack/" + type + "/RestrictedClasses/_string");
-			if (restrictedClasses && !MatchesClassList([saidClass], restrictedClasses))
-				return false;
-		}
-
-		return true;
-	},
-
 	"buildableEntities": function() {
 		let templates = this.get("Builder/Entities/_string");
 		if (!templates)
@@ -745,7 +730,40 @@ m.Entity = m.Class({
 	garrisoned: function() { return this._entity.garrisoned; },
 	canGarrisonInside: function() { return this._entity.garrisoned.length < this.garrisonMax(); },
 
-	"canCapture": function() { return this.get("Attack/Capture") !== undefined; },
+	/**
+	 * returns true if the entity can attack (including capture) the given class.
+	 */
+	"canAttackClass": function(aClass)
+	{
+		if (!this.get("Attack"))
+			return false;
+
+		for (let type in this.get("Attack"))
+		{
+			if (type === "Slaughter")
+				continue;
+			let restrictedClasses = this.get("Attack/" + type + "/RestrictedClasses/_string");
+			if (!restrictedClasses || !MatchesClassList([aClass], restrictedClasses))
+				return true;
+		}
+		return false;
+	},
+
+	/**
+	 * returns true if the entity can capture the given target entity
+	 * if no target is given, returns true if the entity has the Capture attack
+	 */
+	"canCapture": function(target)
+	{
+		if (!this.get("Attack/Capture"))
+			return false;
+
+		if (!target)
+			return true;
+		let restrictedClasses = this.get("Attack/Capture/RestrictedClasses/_string");
+		return !restrictedClasses || !MatchesClassList(target.classes(), restrictedClasses);
+	},
+
 	"isCapturable": function() { return this.get("Capturable") !== undefined; },
 
 	"canGuard": function() { return this.get("UnitAI/CanGuard") === "true"; },

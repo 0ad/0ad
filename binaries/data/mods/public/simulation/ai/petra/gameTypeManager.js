@@ -91,7 +91,7 @@ m.GameTypeManager.prototype.checkEvents = function(gameState, events)
 				continue;
 
 			let target = gameState.getEntityById(evt.target);
-			if (!target || !target.position() || target.healthLevel() > 0.7)
+			if (!target || !target.position() || target.healthLevel() > this.Config.garrisonHealthLevel.high)
 				continue;
 
 			let plan = target.getMetadata(PlayerID, "plan");
@@ -114,10 +114,10 @@ m.GameTypeManager.prototype.checkEvents = function(gameState, events)
 						army.removeOwn(gameState, target.id());
 				}
 
-				hero.garrisonEmergency = target.healthLevel() < 0.4;
+				hero.garrisonEmergency = target.healthLevel() < this.Config.garrisonHealthLevel.low;
 				this.pickCriticalEntRetreatLocation(gameState, target, hero.garrisonEmergency);
 			}
-			else if (target.healthLevel() < 0.4 && !hero.garrisonEmergency)
+			else if (target.healthLevel() < this.Config.garrisonHealthLevel.low && !hero.garrisonEmergency)
 			{
 				// the hero is severely wounded, try to retreat/garrison quicker
 				gameState.ai.HQ.garrisonManager.cancelGarrison(target);
@@ -504,7 +504,7 @@ m.GameTypeManager.prototype.update = function(gameState, events, queues)
 		for (let [id, data] of this.criticalEnts)
 		{
 			let ent = gameState.getEntityById(id);
-			if (ent && ent.healthLevel() > 0.7 && ent.hasClass("Soldier") &&
+			if (ent && ent.healthLevel() > this.Config.garrisonHealthLevel.high && ent.hasClass("Soldier") &&
 			    data.stance !== "aggressive")
 				ent.setStance("aggressive");
 

@@ -538,7 +538,7 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 		}
 
 		// try to garrison any attacked support unit if low healthlevel
-		if (target.hasClass("Support") && target.healthLevel() < 0.55 &&
+		if (target.hasClass("Support") && target.healthLevel() < this.Config.garrisonHealthLevel.medium &&
 			!target.getMetadata(PlayerID, "transport") && plan !== -2 && plan !== -3)
 		{
 			this.garrisonAttackedUnit(gameState, target);

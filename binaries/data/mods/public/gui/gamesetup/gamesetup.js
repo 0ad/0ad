@@ -1491,7 +1491,7 @@ function ensureUniquePlayerColors(playerData)
 function selectMap(name)
 {
 	// Reset some map specific properties which are not necessarily redefined on each map
-	for (let prop of ["TriggerScripts", "CircularMap", "Garrison"])
+	for (let prop of ["TriggerScripts", "CircularMap", "Garrison", "DisabledTemplates"])
 		g_GameAttributes.settings[prop] = undefined;
 
 	let mapData = loadMapData(name);
