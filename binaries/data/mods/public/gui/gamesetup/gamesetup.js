@@ -358,7 +358,7 @@ var g_OptionOrderInit = {
  *
  * GUI
  * title        - The caption shown in the label.
- * tooltip      - A description shown when hovering the option.
+ * tooltip      - A description shown when hovering the dropdown or a specific item.
  * labels       - Array of translated strings selectable for this dropdown.
  * colors       - Optional array of colors to tint the according dropdown items with.
  * hidden       - If hidden, both the label and dropdown won't be visible. (default: false)
@@ -369,7 +369,7 @@ var g_OptionOrderInit = {
 var g_Dropdowns = {
 	"mapType": {
 		"title": () => translate("Map Type"),
-		"tooltip": () => translate("Select a map type."),
+		"tooltip": (hoverIdx) => g_MapTypes.Description[hoverIdx] || translate("Select a map type."),
 		"labels": () => g_MapTypes.Title,
 		"ids": () => g_MapTypes.Name,
 		"default": () => g_MapTypes.Default,
@@ -392,7 +392,7 @@ var g_Dropdowns = {
 	},
 	"mapFilter": {
 		"title": () => translate("Map Filter"),
-		"tooltip": () => translate("Select a map filter."),
+		"tooltip": (hoverIdx) => translate("Select a map filter."),
 		"labels": () => g_MapFilterList.name,
 		"ids": () => g_MapFilterList.id,
 		"default": () => g_MapFilterList.Default,
@@ -407,7 +407,7 @@ var g_Dropdowns = {
 	},
 	"mapSelection": {
 		"title": () => translate("Select Map"),
-		"tooltip": () => translate("Select a map to play on."),
+		"tooltip": (hoverIdx) => translate("Select a map to play on."),
 		"labels": () => g_MapSelectionList.name,
 		"colors": () => g_MapSelectionList.color,
 		"ids": () => g_MapSelectionList.file,
@@ -421,7 +421,7 @@ var g_Dropdowns = {
 	},
 	"mapSize": {
 		"title": () => translate("Map Size"),
-		"tooltip": () => translate("Select map size. (Larger sizes may reduce performance.)"),
+		"tooltip": (hoverIdx) => translate("Select map size. (Larger sizes may reduce performance.)"),
 		"labels": () => g_MapSizes.Name,
 		"ids": () => g_MapSizes.Tiles,
 		"default": () => g_MapSizes.Default,
@@ -435,7 +435,7 @@ var g_Dropdowns = {
 	},
 	"numPlayers": {
 		"title": () => translate("Number of Players"),
-		"tooltip": () => translate("Select number of players."),
+		"tooltip": (hoverIdx) => translate("Select number of players."),
 		"labels": () => g_NumPlayersList,
 		"ids": () => g_NumPlayersList,
 		"default": () => g_MaxPlayers - 1,
@@ -455,7 +455,7 @@ var g_Dropdowns = {
 	},
 	"populationCap": {
 		"title": () => translate("Population Cap"),
-		"tooltip": () => translate("Select population cap."),
+		"tooltip": (hoverIdx) => translate("Select population cap."),
 		"labels": () => g_PopulationCapacities.Title,
 		"ids": () => g_PopulationCapacities.Population,
 		"default": () => g_PopulationCapacities.Default,
@@ -468,7 +468,13 @@ var g_Dropdowns = {
 	},
 	"startingResources": {
 		"title": () => translate("Starting Resources"),
-		"tooltip": () => translate("Select the game's starting resources."),
+		"tooltip": (hoverIdx) => {
+			return hoverIdx >= 0 ?
+				sprintf(translate("Initial amount of each resource: %(resources)s."), {
+					"resources": g_StartingResources.Resources[hoverIdx]
+				}) :
+				translate("Select the game's starting resources.");
+		},
 		"labels": () => g_StartingResources.Title,
 		"ids": () => g_StartingResources.Resources,
 		"default": () => g_StartingResources.Default,
@@ -482,7 +488,7 @@ var g_Dropdowns = {
 	},
 	"ceasefire": {
 		"title": () => translate("Ceasefire"),
-		"tooltip": () => translate("Set time where no attacks are possible."),
+		"tooltip": (hoverIdx) => translate("Set time where no attacks are possible."),
 		"labels": () => g_Ceasefire.Title,
 		"ids": () => g_Ceasefire.Duration,
 		"default": () => g_Ceasefire.Default,
@@ -495,7 +501,7 @@ var g_Dropdowns = {
 	},
 	"victoryCondition": {
 		"title": () => translate("Victory Condition"),
-		"tooltip": () => translate("Select victory condition."),
+		"tooltip": (hoverIdx) => g_VictoryConditions.Description[hoverIdx] || translate("Select victory condition."),
 		"labels": () => g_VictoryConditions.Title,
 		"ids": () => g_VictoryConditions.Name,
 		"default": () => g_VictoryConditions.Default,
@@ -510,7 +516,7 @@ var g_Dropdowns = {
 	},
 	"relicCount": {
 		"title": () => translate("Relic Count"),
-		"tooltip": () => translate("Total number of relics spawned on the map."),
+		"tooltip": (hoverIdx) => translate("Total number of relics spawned on the map."),
 		"labels": () => g_RelicCountList,
 		"ids": () => g_RelicCountList,
 		"default": () => g_RelicCountList.indexOf(5),
@@ -524,7 +530,7 @@ var g_Dropdowns = {
 	},
 	"victoryDuration": {
 		"title": () => translate("Victory Duration"),
-		"tooltip": () => translate("Number of minutes until the player has won."),
+		"tooltip": (hoverIdx) => translate("Number of minutes until the player has won."),
 		"labels": () => g_VictoryDurations.Title,
 		"ids": () => g_VictoryDurations.Duration,
 		"default": () => g_VictoryDurations.Default,
@@ -540,7 +546,7 @@ var g_Dropdowns = {
 	},
 	"gameSpeed": {
 		"title": () => translate("Game Speed"),
-		"tooltip": () => translate("Select game speed."),
+		"tooltip": (hoverIdx) => translate("Select game speed."),
 		"labels": () => g_GameSpeeds.Title,
 		"ids": () => g_GameSpeeds.Speed,
 		"default": () => g_GameSpeeds.Default,
@@ -777,7 +783,7 @@ var g_MiscControls = {
 	"startGame": {
 		"caption": () =>
 			g_IsController ? translate("Start game!") : g_ReadyData[g_IsReady].caption,
-		"tooltip": () =>
+		"tooltip": (hoverIdx) =>
 			!g_IsController ?
 				g_ReadyData[g_IsReady].tooltip :
 				!g_IsNetworked || Object.keys(g_PlayerAssignments).every(guid =>
@@ -1005,6 +1011,11 @@ function initDropdown(name, idx)
 		supplementDefaults();
 		updateGameAttributes();
 	};
+
+	if (data.tooltip)
+		dropdown.onHoverChange = function() {
+			this.tooltip = data.tooltip(this.hovered);
+		};
 }
 
 function initPlayerDropdowns(name)

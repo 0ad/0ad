@@ -45,16 +45,17 @@ CList::CList()
 	AddSetting(GUIST_CColor,				"textcolor");
 	AddSetting(GUIST_CColor,				"textcolor_selected");
 	AddSetting(GUIST_int,					"selected");	// Index selected. -1 is none.
+	AddSetting(GUIST_int,					"hovered");
 	AddSetting(GUIST_CStrW,					"tooltip");
 	AddSetting(GUIST_CStr,					"tooltip_style");
+
 	// Each list item has both a name (in 'list') and an associated data string (in 'list_data')
 	AddSetting(GUIST_CGUIList,				"list");
 	AddSetting(GUIST_CGUIList,				"list_data"); // TODO: this should be a list of raw strings, not of CGUIStrings
 
 	GUI<bool>::SetSetting(this, "scrollbar", false);
-
-	// Nothing is selected as default.
 	GUI<int>::SetSetting(this, "selected", -1);
+	GUI<int>::SetSetting(this, "hovered", -1);
 
 	// Add scroll-bar
 	CGUIScrollBarVertical* bar = new CGUIScrollBarVertical();
@@ -194,45 +195,46 @@ void CList::HandleMessage(SGUIMessage& Message)
 			break;
 		}
 
-		bool scrollbar;
-		CGUIList* pList;
-		GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
-		GUI<CGUIList>::GetSettingPointer(this, "list", pList);
-		float scroll = 0.f;
-		if (scrollbar)
-			scroll = GetScrollBar(0).GetPos();
+		int hovered = GetHoveredItem();
+		if (hovered == -1)
+			break;
+		GUI<int>::SetSetting(this, "selected", hovered);
+		UpdateAutoScroll();
 
-		CRect rect = GetListRect();
-		CPos mouse = GetMousePos();
-		mouse.y += scroll;
-		int set = -1;
-		for (int i = 0; i < (int)pList->m_Items.size(); ++i)
-		{
-			if (mouse.y >= rect.top + m_ItemsYPositions[i] &&
-				mouse.y < rect.top + m_ItemsYPositions[i+1] &&
-				// mouse is not over scroll-bar
-				(!scrollbar || !GetScrollBar(0).IsVisible() ||
-					mouse.x < GetScrollBar(0).GetOuterRect().left ||
-					mouse.x > GetScrollBar(0).GetOuterRect().right))
-			{
-				set = i;
-			}
-		}
+		CStrW soundPath;
+		if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_selected", soundPath) == PSRETURN_OK && !soundPath.empty())
+			g_SoundManager->PlayAsUI(soundPath.c_str(), false);
 
-		if (set != -1)
-		{
-			GUI<int>::SetSetting(this, "selected", set);
-			UpdateAutoScroll();
+		if (timer_Time() - m_LastItemClickTime < SELECT_DBLCLICK_RATE && hovered == m_PrevSelectedItem)
+			this->SendEvent(GUIM_MOUSE_DBLCLICK_LEFT_ITEM, "mouseleftdoubleclickitem");
+		m_LastItemClickTime = timer_Time();
+		m_PrevSelectedItem = hovered;
+		break;
+	}
 
-			CStrW soundPath;
-			if (g_SoundManager && GUI<CStrW>::GetSetting(this, "sound_selected", soundPath) == PSRETURN_OK && !soundPath.empty())
-				g_SoundManager->PlayAsUI(soundPath.c_str(), false);
+	case GUIM_MOUSE_LEAVE:
+	{
+		int hoveredSetting = -1;
+		GUI<int>::GetSetting(this, "hovered", hoveredSetting);
+		if (hoveredSetting == -1)
+			break;
 
-			if (timer_Time() - m_LastItemClickTime < SELECT_DBLCLICK_RATE && set == m_PrevSelectedItem)
-				this->SendEvent(GUIM_MOUSE_DBLCLICK_LEFT_ITEM, "mouseleftdoubleclickitem");
-			m_LastItemClickTime = timer_Time();
-			m_PrevSelectedItem = set;
-		}
+		GUI<int>::SetSetting(this, "hovered", -1);
+		ScriptEvent("hoverchange");
+		break;
+	}
+
+	case GUIM_MOUSE_OVER:
+	{
+		int hoveredSetting = -1;
+		GUI<int>::GetSetting(this, "hovered", hoveredSetting);
+
+		int hovered = GetHoveredItem();
+		if (hovered == hoveredSetting)
+			break;
+
+		GUI<int>::SetSetting(this, "hovered", hovered);
+		ScriptEvent("hoverchange");
 		break;
 	}
 
@@ -514,4 +516,32 @@ void CList::UpdateAutoScroll()
 	CRect rect = GetListRect();
 	if (m_ItemsYPositions[selected+1]-rect.GetHeight() > scroll)
 		GetScrollBar(0).SetPos(m_ItemsYPositions[selected+1]-rect.GetHeight());
+}
+
+int CList::GetHoveredItem()
+{
+	bool scrollbar;
+	CGUIList* pList;
+	GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
+	GUI<CGUIList>::GetSettingPointer(this, "list", pList);
+	float scroll = 0.f;
+	if (scrollbar)
+		scroll = GetScrollBar(0).GetPos();
+
+	CRect rect = GetListRect();
+	CPos mouse = GetMousePos();
+	mouse.y += scroll;
+
+	// Mouse is over scrollbar
+	if (scrollbar && GetScrollBar(0).IsVisible() &&
+	    mouse.x >= GetScrollBar(0).GetOuterRect().left &&
+	    mouse.x <= GetScrollBar(0).GetOuterRect().right)
+		return -1;
+
+	for (size_t i = 0; i < pList->m_Items.size(); ++i)
+		if (mouse.y >= rect.top + m_ItemsYPositions[i] &&
+		    mouse.y < rect.top + m_ItemsYPositions[i + 1])
+			return i;
+
+	return -1;
 }

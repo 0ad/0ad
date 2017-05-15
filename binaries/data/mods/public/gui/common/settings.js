@@ -186,15 +186,18 @@ function loadMapTypes()
 		{
 			"Name": "skirmish",
 			"Title": translateWithContext("map", "Skirmish"),
+			"Description": translate("A map with a predefined landscape and number of players. Freely select the other gamesettings."),
 			"Default": true
 		},
 		{
 			"Name": "random",
-			"Title": translateWithContext("map", "Random")
+			"Title": translateWithContext("map", "Random"),
+			"Description": translate("Create a unique map with a different resource distribution each time. Freely chose the number of players and teams.")
 		},
 		{
 			"Name": "scenario",
-			"Title": translateWithContext("map", "Scenario")
+			"Title": translateWithContext("map", "Scenario"),
+			"Description": translate("A map with a predefined landscape and matchsettings.")
 		}
 	];
 }
