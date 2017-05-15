@@ -1213,9 +1213,9 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			if (!this.unitCollection.hasEntId(evt.target))
 				continue;
 			let attacker = gameState.getEntityById(evt.attacker);
-			if (!attacker || !attacker.position() || !attacker.hasClass("Unit"))
-				continue;
 			let ourUnit = gameState.getEntityById(evt.target);
+			if (!ourUnit || !attacker || !attacker.position() || !attacker.hasClass("Unit"))
+				continue;
 			if (m.isSiegeUnit(ourUnit))
 			{	// if our siege units are attacked, we'll send some units to deal with enemies.
 				let collec = this.unitCollection.filter(API3.Filters.not(API3.Filters.byClass("Siege"))).filterNearest(ourUnit.position(), 5);

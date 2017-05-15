@@ -1074,7 +1074,7 @@ std::string XmppClient::RegistrationResultToString(gloox::RegistrationResult res
 	CASE(RegistrationConflict, g_L10n.Translate("Username already exists"));
 	DEBUG_CASE(RegistrationNotAuthorized, "Account removal timeout or insufficiently secure channel for password change");
 	DEBUG_CASE(RegistrationBadRequest, "Server recieved incomplete request");
-	DEBUG_CASE(RegistrationForbidden, "This client has insufficient permissions to remove an account");
+	DEBUG_CASE(RegistrationForbidden, "Registration forbidden");
 	DEBUG_CASE(RegistrationRequired, "Account cannot be removed as it does not exist");
 	DEBUG_CASE(RegistrationUnexpectedRequest, "This client is unregistered with the server");
 	DEBUG_CASE(RegistrationNotAllowed, "Server does not permit password changes");
