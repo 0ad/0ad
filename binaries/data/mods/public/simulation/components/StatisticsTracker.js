@@ -30,6 +30,7 @@ StatisticsTracker.prototype.Init = function()
 		"Trader": 0,
 		"total": 0
 	};
+	this.domesticUnitsTrainedValue = 0;
 	this.unitsLost = {
 		"Infantry": 0,
 		"Worker": 0,
@@ -170,6 +171,7 @@ StatisticsTracker.prototype.GetStatistics = function()
 {
 	return {
 		"unitsTrained": this.unitsTrained,
+		"domesticUnitsTrainedValue": this.domesticUnitsTrainedValue,
 		"unitsLost": this.unitsLost,
 		"unitsLostValue": this.unitsLostValue,
 		"enemyUnitsKilled": this.enemyUnitsKilled,
@@ -236,15 +238,23 @@ StatisticsTracker.prototype.CounterIncrement = function(cmpIdentity, counter, ty
  */
 StatisticsTracker.prototype.IncreaseTrainedUnitsCounter = function(trainedUnit)
 {
-	var cmpUnitEntityIdentity = Engine.QueryInterface(trainedUnit, IID_Identity);
+	let cmpUnitEntityIdentity = Engine.QueryInterface(trainedUnit, IID_Identity);
 
 	if (!cmpUnitEntityIdentity)
 		return;
+
+	let cmpCost = Engine.QueryInterface(trainedUnit, IID_Cost);
+	let costs = cmpCost && cmpCost.GetResourceCosts();
 
 	for (let type of this.unitsClasses)
 		this.CounterIncrement(cmpUnitEntityIdentity, "unitsTrained", type);
 
 	++this.unitsTrained.total;
+
+	if (cmpUnitEntityIdentity.HasClass("Domestic") && costs)
+			for (let type in costs)
+				this.domesticUnitsTrainedValue += costs[type];
+
 };
 
 /**
