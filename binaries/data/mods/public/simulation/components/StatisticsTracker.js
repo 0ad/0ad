@@ -252,8 +252,8 @@ StatisticsTracker.prototype.IncreaseTrainedUnitsCounter = function(trainedUnit)
 	++this.unitsTrained.total;
 
 	if (cmpUnitEntityIdentity.HasClass("Domestic") && costs)
-			for (let type in costs)
-				this.domesticUnitsTrainedValue += costs[type];
+		for (let type in costs)
+			this.domesticUnitsTrainedValue += costs[type];
 
 };
 
