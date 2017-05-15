@@ -1164,6 +1164,8 @@ function handleGamesetupMessage(message)
 
 	Engine.SetRankedGame(!!g_GameAttributes.settings.RatingEnabled);
 
+	resetReadyData();
+
 	updateGUIObjects();
 }
 
