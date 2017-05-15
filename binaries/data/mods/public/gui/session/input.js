@@ -968,8 +968,10 @@ function handleInputAfterGui(ev)
 			{
 				if (clickedEntity == INVALID_ENTITY)
 					clickedEntity = Engine.PickEntityAtPoint(ev.x, ev.y);
-				if (clickedEntity == INVALID_ENTITY)
+				// Abort if we didn't click on an entity or if the entity was removed before the mousebuttonup event.
+				if (clickedEntity == INVALID_ENTITY || !GetEntityState(clickedEntity))
 				{
+					clickedEntity = INVALID_ENTITY;
 					if (!Engine.HotkeyIsPressed("selection.add") && !Engine.HotkeyIsPressed("selection.remove"))
 					{
 						g_Selection.reset();
