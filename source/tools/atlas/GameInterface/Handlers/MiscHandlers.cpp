@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -170,6 +170,7 @@ MESSAGEHANDLER(GuiMouseButtonEvent)
 	ev.ev.type = msg->pressed ? SDL_MOUSEBUTTONDOWN : SDL_MOUSEBUTTONUP;
 	ev.ev.button.button = msg->button;
 	ev.ev.button.state = msg->pressed ? SDL_PRESSED : SDL_RELEASED;
+	ev.ev.button.clicks = msg->clicks;
 	float x, y;
 	msg->pos->GetScreenSpace(x, y);
 	ev.ev.button.x = (u16)clamp((int)x, 0, g_xres);

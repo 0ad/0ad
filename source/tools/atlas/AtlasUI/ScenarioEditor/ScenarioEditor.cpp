@@ -51,6 +51,11 @@
 
 static HighResTimer g_Timer;
 
+/**
+ * wxWidgets only registers the double click on mousedown.
+ */
+static int g_Clicks = 1;
+
 using namespace AtlasMessage;
 
 //////////////////////////////////////////////////////////////////////////
@@ -272,9 +277,12 @@ private:
 		// Button down and double click appear to be mutually exclusive events,
 		//   meaning a second button down event is not sent before a double click
 		if (evt.ButtonDown() || evt.ButtonDClick())
-			POST_MESSAGE(GuiMouseButtonEvent, (evt.GetButton(), true, evt.GetPosition()));
+		{
+			g_Clicks = evt.ButtonDClick() ? 2 : 1;
+			POST_MESSAGE(GuiMouseButtonEvent, (evt.GetButton(), true, evt.GetPosition(), g_Clicks));
+		}
 		else if (evt.ButtonUp())
-			POST_MESSAGE(GuiMouseButtonEvent, (evt.GetButton(), false, evt.GetPosition()));
+			POST_MESSAGE(GuiMouseButtonEvent, (evt.GetButton(), false, evt.GetPosition(), g_Clicks));
 		else if (evt.GetEventType() == wxEVT_MOTION)
 			POST_MESSAGE(GuiMouseMotionEvent, (evt.GetPosition()));
 	}
