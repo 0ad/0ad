@@ -13,6 +13,8 @@ m.GameTypeManager = function(Config)
 	// Holds ids of all ents who are (or can be) guarding and if the ent is currently guarding
 	this.guardEnts = new Map();
 	this.healersPerCriticalEnt = 2 + Math.round(this.Config.personality.defensive * 2);
+	this.tryCaptureGaiaRelic = false;
+	this.tryCaptureGaiaRelicLapseTime = -1;
 };
 
 /**
@@ -244,7 +246,11 @@ m.GameTypeManager.prototype.checkEvents = function(gameState, events)
 			this.criticalEnts.set(ent.id(), { "guardsAssigned": 0, "guards": new Map() });
 			// Move captured relics to the closest base
 			if (ent.hasClass("Unit"))
+			{
 				this.pickCriticalEntRetreatLocation(gameState, ent, false);
+				if (evt.from === 0)
+					gameState.ai.HQ.attackManager.cancelAttacksAgainstPlayer(gameState, evt.from);
+			}
 		}
 	}
 };
@@ -399,7 +405,8 @@ m.GameTypeManager.prototype.pickCriticalEntRetreatLocation = function(gameState,
 		return;
 
 	// Couldn't find a place to garrison, so the ent will flee from attacks
-	criticalEnt.setStance("passive");
+	if (!criticalEnt.hasClass("Relic"))
+		criticalEnt.setStance("passive");
 	let accessIndex = gameState.ai.accessibility.getAccessValue(criticalEnt.position());
 	let basePos = m.getBestBase(gameState, criticalEnt, true);
 	if (basePos && basePos.accessIndex == accessIndex)
@@ -516,7 +523,15 @@ m.GameTypeManager.prototype.update = function(gameState, events, queues)
 	}
 
 	if (gameState.getGameType() === "capture_the_relic" && gameState.ai.playedTurn % 10 === 0)
+	{
 		this.manageCriticalEntGuards(gameState);
+		// Do not capture gaia relics frequently, as the ai has access to the entire map
+		if (gameState.ai.elapsedTime > this.tryCaptureGaiaRelicLapseTime && !this.tryCaptureGaiaRelic)
+		{
+			this.tryCaptureGaiaRelic = true;
+			this.tryCaptureGaiaRelicLapseTime = gameState.ai.elapsedTime + (5 - 0.5 * (this.Config.difficulty - 3) * 60);
+		}
+	}
 };
 
 m.GameTypeManager.prototype.Serialize = function()
@@ -524,7 +539,9 @@ m.GameTypeManager.prototype.Serialize = function()
 	return {
 		"criticalEnts": this.criticalEnts,
 		"guardEnts": this.guardEnts,
-		"healersPerCriticalEnt": this.healersPerCriticalEnt
+		"healersPerCriticalEnt": this.healersPerCriticalEnt,
+		"tryCaptureGaiaRelic": this.tryCaptureGaiaRelic,
+		"tryCaptureGaiaRelicLapseTime": this.tryCaptureGaiaRelicLapseTime
 	};
 };
 

@@ -362,24 +362,27 @@ m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 	}
 	else if (gameState.getGameType() === "capture_the_relic")
 	{
-		// Target the player with the most relics
+		// Target the player with the most relics (including gaia)
+		let allRelics = gameState.updatingGlobalCollection("allRelics", API3.Filters.byClass("Relic"));
 		let maxRelicsOwned = 0;
-		// TODO: target gaia relics
-		for (let i = 1; i < gameState.sharedScript.playersData.length; ++i)
+		for (let i = 0; i < gameState.sharedScript.playersData.length; ++i)
 		{
-			if (!gameState.isPlayerEnemy(i) || this.defeated[i])
+			if (!gameState.isPlayerEnemy(i) || this.defeated[i] || i === 0 &&
+			    !gameState.ai.HQ.gameTypeManager.tryCaptureGaiaRelic)
 				continue;
 
-			let relicsCount = gameState.getEnemyUnits(i).filter(API3.Filters.byClass("Relic")).length;
+			let relicsCount = allRelics.filter(relic => relic.owner() === i).length;
 			if (relicsCount <= maxRelicsOwned)
 				continue;
 			maxRelicsOwned = relicsCount;
 			enemyPlayer = i;
 		}
-		if (enemyPlayer)
+		if (enemyPlayer !== undefined)
 		{
 			if (attack.targetPlayer === undefined)
 				this.currentEnemyPlayer = enemyPlayer;
+			if (enemyPlayer === 0)
+				gameState.ai.HQ.gameTypeManager.tryCaptureGaiaRelic = false;
 			return enemyPlayer;
 		}
 	}
@@ -479,7 +482,7 @@ m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 };
 
 /** f.e. if we have changed diplomacy with another player. */
-m.AttackManager.prototype.cancelAttacksAgainstPlayer = function(player)
+m.AttackManager.prototype.cancelAttacksAgainstPlayer = function(gameState, player)
 {
 	for (let attackType in this.upcomingAttacks)
 		for (let attack of this.upcomingAttacks[attackType])

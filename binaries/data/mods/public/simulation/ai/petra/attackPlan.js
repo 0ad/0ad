@@ -798,6 +798,8 @@ m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand
 	let minDist = Math.min();
 	for (let ent of targets.values())
 	{
+		if (this.targetPlayer === 0 && gameState.getGameType() === "capture_the_relic" && !ent.hasClass("Relic"))
+			continue;
 		if (!ent.position())
 			continue;
 		if (sameLand && gameState.ai.accessibility.getAccessValue(ent.position()) !== land)
@@ -835,7 +837,7 @@ m.AttackPlan.prototype.defaultTargetFinder = function(gameState, playerEnemy)
 	else if (gameState.getGameType() === "regicide")
 		targets = gameState.getEnemyUnits(playerEnemy).filter(API3.Filters.byClass("Hero"));
 	else if (gameState.getGameType() === "capture_the_relic")
-		targets = gameState.getEnemyUnits(playerEnemy).filter(API3.Filters.byClass("Relic"));
+		targets = gameState.updatingGlobalCollection("allRelics", API3.Filters.byClass("Relic")).filter(relic => relic.owner() === playerEnemy);
 	if (targets && targets.hasEntities())
 		return targets;
 
