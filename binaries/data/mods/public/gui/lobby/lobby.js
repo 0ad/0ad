@@ -800,8 +800,8 @@ function updateLeaderboard()
 function updateGameList()
 {
 	let gamesBox = Engine.GetGUIObjectByName("gamesBox");
-	let sortBy = gamesBox.selected_column || "status";
-	let sortOrder = gamesBox.selected_column_order || 1;
+	let sortBy = gamesBox.selected_column;
+	let sortOrder = gamesBox.selected_column_order;
 
 	if (gamesBox.selected > -1)
 	{
@@ -825,6 +825,9 @@ function updateGameList()
 		switch (sortBy)
 		{
 		case 'name':
+			sortA = g_GameStatusOrder.indexOf(a.state) + a.name.toLowerCase();
+			sortB = g_GameStatusOrder.indexOf(b.state) + b.name.toLowerCase();
+			break;
 		case 'mapSize':
 		case 'mapType':
 			sortA = a[sortBy];
@@ -841,11 +844,6 @@ function updateGameList()
 		case 'nPlayers':
 			sortA = a.maxnbp;
 			sortB = b.maxnbp;
-			break;
-		case 'status':
-		default:
-			sortA = g_GameStatusOrder.indexOf(a.state);
-			sortB = g_GameStatusOrder.indexOf(b.state);
 			break;
 		}
 		if (sortA < sortB) return -sortOrder;
