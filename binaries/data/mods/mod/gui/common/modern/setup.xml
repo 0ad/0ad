@@ -15,6 +15,7 @@
 			sprite_back_vertical = "ModernScrollBack"
 			sprite_bar_vertical = "ModernScrollBar"
 	/>
+
 	<!--
 	==========================================
 	- TOOLTIPS -
@@ -30,6 +31,18 @@
 			sprite="BlackBorderOnGray"
 			textcolor="255 255 255"
 	/>
+
+	<tooltip name="sliderTooltip"
+		anchor="top"
+		buffer_zone="4"
+		delay="0"
+		font="sans-14"
+		maxwidth="300"
+		offset="16 32"
+		sprite="BlackBorderOnGray"
+		textcolor="255 255 255"
+	/>
+
 	<!--
 	==========================================
 	- COLORS -

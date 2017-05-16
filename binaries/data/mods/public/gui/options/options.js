@@ -164,14 +164,21 @@ function setupControl(option, i, category)
 		{
 			return function()
 			{
-				if (Engine.ConfigDB_GetValue("user", key) === this.value)
+				this.tooltip =
+					(option.tooltip ? translate(option.tooltip) + "\n" : "") +
+					sprintf(translateWithContext("slider number", "Value: %(val)s (min: %(min)s, max: %(max)s)"), {
+						"val": +this.value.toFixed(2),
+						"min": +minvalue.toFixed(2),
+						"max": +maxvalue.toFixed(2)
+					});
+
+				if (+Engine.ConfigDB_GetValue("user", key) === this.value)
 					return;
 				Engine.ConfigDB_CreateValue("user", key, this.value);
 				Engine.ConfigDB_SetChanges("user", true);
 				if (callbackFunction)
 					Engine[callbackFunction](+this.value);
 				updateOptionPanel();
-				control.tooltip = this.value;
 			};
 		}(key, callbackFunction, minvalue, maxvalue);
 
@@ -277,7 +284,12 @@ function setupControl(option, i, category)
 		break;
 	}
 	control.hidden = false;
-	control.tooltip = option.tooltip ? translate(option.tooltip) : "";
+
+	if (option.type == "slider")
+		control.onValueChange();
+	else
+		control.tooltip = option.tooltip ? translate(option.tooltip) : "";
+
 	return control;
 }
 
