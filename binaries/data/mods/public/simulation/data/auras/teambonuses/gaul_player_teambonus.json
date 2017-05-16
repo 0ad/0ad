@@ -1,0 +1,10 @@
+{
+	"type": "global",
+	"affects": ["Structure"],
+	"affectedPlayers": ["ExclusiveMutualAlly"],
+	"modifications": [
+		{ "value": "ProductionQueue/TechCostMultiplier/time", "multiply": 0.8 }
+	],
+	"auraName": "Druidic Wisdom",
+	"auraDescription": "-10% research time for technologies of allies."
+}
