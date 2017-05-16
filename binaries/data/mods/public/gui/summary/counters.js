@@ -100,15 +100,20 @@ function calculateTeamCounters(playerState)
 function calculateEconomyScore(playerState, index)
 {
 	let total = 0;
-	for (let type in playerState.sequences.resourcesGathered)
+	for (let type of g_ResourceData.GetCodes())
 		total += playerState.sequences.resourcesGathered[type][index];
 
+	// Subtract costs for sheep/goats/pigs to get the net food gain for corralling
+	total -= playerState.sequences.domesticUnitsTrainedValue[index];
+
+	total += playerState.sequences.tradeIncome[index];
 	return Math.round(total / 10);
 }
 
 function calculateMilitaryScore(playerState, index)
 {
 	return Math.round((playerState.sequences.enemyUnitsKilledValue[index] +
+		playerState.sequences.unitsCapturedValue[index] +
 		playerState.sequences.enemyBuildingsDestroyedValue[index] +
 		playerState.sequences.buildingsCapturedValue[index]) / 10);
 }

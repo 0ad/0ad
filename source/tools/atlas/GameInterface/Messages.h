@@ -90,6 +90,7 @@ MESSAGE(GuiMouseButtonEvent,
 		((int, button))
 		((bool, pressed))
 		((Position, pos))
+		((int, clicks))
 		);
 
 MESSAGE(GuiMouseMotionEvent,

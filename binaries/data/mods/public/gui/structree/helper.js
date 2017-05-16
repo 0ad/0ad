@@ -104,6 +104,9 @@ function GetPhaseOfTechnology(techName)
 
 	if (basename(techName).startsWith("phase"))
 	{
+		if (!g_ParsedData.phases[techName].reqs)
+			return false;
+
 		phaseIdx = g_ParsedData.phaseList.indexOf(GetActualPhase(techName));
 		if (phaseIdx > 0)
 			return g_ParsedData.phaseList[phaseIdx - 1];

@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -104,6 +104,8 @@ protected:
 	 * be zero, but still stored for easy handling.
 	 */
 	std::vector<float> m_ItemsYPositions;
+
+	virtual int GetHoveredItem();
 
 private:
 	// Whether the list's items have been modified since last handling a message.
