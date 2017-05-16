@@ -1018,11 +1018,11 @@ function formatAttackMessage(msg)
 function formatPhaseMessage(msg)
 {
 	let notifyPhase = Engine.ConfigDB_GetValue("user", "gui.session.notifications.phase");
-	if (notifyPhase == 0 || msg.player != g_ViewedPlayer && !g_IsObserver && !g_Players[msg.player].isMutualAlly[g_ViewedPlayer])
+	if (notifyPhase == "none" || msg.player != g_ViewedPlayer && !g_IsObserver && !g_Players[msg.player].isMutualAlly[g_ViewedPlayer])
 		return "";
 
 	let message = "";
-	if (notifyPhase == 2)
+	if (notifyPhase == "all")
 	{
 		if (msg.phaseState == "started")
 			message = translate("%(player)s is advancing to the %(phaseName)s.");

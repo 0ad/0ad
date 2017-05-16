@@ -239,19 +239,20 @@ function setupControl(option, i, category)
 	case "dropdown":
 		control = Engine.GetGUIObjectByName(category + "Dropdown[" + i + "]");
 		control.onSelectionChange = function(){};  // just the time to setup the value
+		let config;
 
 		for (let param in option.parameters)
 		{
 			switch (param)
 			{
 			case "config":
-				control.selected = +Engine.ConfigDB_GetValue("user", key);
+				config = Engine.ConfigDB_GetValue("user", key);
 				break;
 			case "list":
-				control.list = option.parameters.list.map(e => translate(e));
-				break;
-			case "list_data":
-				control.list_data = option.parameters.list_data;
+				control.list = option.parameters.list.map(e => translate(e.label));
+				let values = option.parameters.list.map(e => e.value);
+				control.list_data = values;
+				control.selected = values.indexOf(config);
 				break;
 			default:
 				warn("Unknown option source type '" + param + "'");
@@ -262,7 +263,7 @@ function setupControl(option, i, category)
 		{
 			return function()
 			{
-				Engine.ConfigDB_CreateValue("user", key, this.selected);
+				Engine.ConfigDB_CreateValue("user", key, this.list_data[this.selected]);
 				Engine.ConfigDB_SetChanges("user", true);
 				updateOptionPanel();
 			};

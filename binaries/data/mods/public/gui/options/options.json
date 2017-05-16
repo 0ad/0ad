@@ -295,7 +295,14 @@
 			"type": "dropdown",
 			"label": "Phase",
 			"tooltip": "Show a chat notification if you or an ally have started, aborted or completed a new phase, and phases of all players in observer mode",
-			"parameters": { "config": "gui.session.notifications.phase",  "list": [ "Disable", "Completed", "All displayed" ] }
+			"parameters": {
+				"config": "gui.session.notifications.phase",
+				"list": [
+					{ "value": "none", "label": "Disable" },
+					{ "value": "completed", "label": "Completed" },
+					{ "value": "all", "label": "All displayed" }
+				]
+			}
 		}
 	]
 }
