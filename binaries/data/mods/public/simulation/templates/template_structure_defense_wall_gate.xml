@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_wall_long">
   <Auras disable=""/>
+  <!-- We don't disable the Cost component, although gates cannot be built directly, as Cost/BuildTime is required to prevent instantaneous repair -->
   <GarrisonHolder disable=""/>
   <Gate>
     <PassRange>20</PassRange>

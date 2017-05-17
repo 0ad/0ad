@@ -174,7 +174,7 @@ function selectCiv(civCode)
 		}
 	}
 
-	// Group production lists of structures by phase
+	// Group production and upgrade lists of structures by phase
 	for (let structCode of g_Lists.structures)
 	{
 		let structInfo = g_ParsedData.structures[structCode];
@@ -235,6 +235,22 @@ function selectCiv(civCode)
 			"technology": newProdTech,
 			"units": newProdUnits
 		};
+
+		// Sort upgrades by phase
+		let newUpgrades = {};
+		if (structInfo.upgrades)
+			for (let upgrade of structInfo.upgrades)
+			{
+				let phase = GetPhaseOfTemplate(upgrade);
+
+				if (g_ParsedData.phaseList.indexOf(phase) < structPhaseIdx)
+					phase = structInfo.phase;
+
+				if (!newUpgrades[phase])
+					newUpgrades[phase] = [];
+				newUpgrades[phase].push(upgrade);
+			}
+		g_ParsedData.structures[structCode].upgrades = newUpgrades;
 	}
 
 	// Determine the buildList for the civ (grouped by phase)
@@ -247,8 +263,11 @@ function selectCiv(civCode)
 		let phase = g_ParsedData.structures[structCode].phase;
 		buildList[phase].push(structCode);
 	}
+
 	for (let unitCode of g_Lists.units)
-		if (g_ParsedData.units[unitCode] && g_ParsedData.units[unitCode].production && Object.keys(g_ParsedData.units[unitCode].production).length)
+		if (g_ParsedData.units[unitCode] && (
+			g_ParsedData.units[unitCode].production && Object.keys(g_ParsedData.units[unitCode].production).length
+			|| g_ParsedData.units[unitCode].upgrades))
 		{
 			// Replace any pair techs with the actual techs of that pair
 			if (g_ParsedData.units[unitCode].production.techs)

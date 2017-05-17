@@ -360,6 +360,29 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources, modif
 			ret.speed.run = getEntityValue("UnitMotion/Run/Speed");
 	}
 
+	if (template.Upgrade)
+	{
+		ret.upgrades = [];
+		for (let upgradeName in template.Upgrade)
+		{
+			let upgrade = template.Upgrade[upgradeName];
+
+			let cost = {};
+			for (let res in upgrade.Cost)
+				cost[res] = getEntityValue("Upgrade/" + upgradeName + "/Cost/" + res, "Upgrade/Cost/" + res);
+			if (upgrade.Time)
+				cost.time = getEntityValue("Upgrade/" + upgradeName + "/Time", "Upgrade/Time");
+
+			ret.upgrades.push({
+				"entity": upgrade.Entity,
+				"tooltip": upgrade.Tooltip,
+				"cost": cost,
+				"icon": upgrade.Icon || undefined,
+				"requiredTechnology": upgrade.RequiredTechnology || undefined
+			});
+		}
+	}
+
 	if (template.ProductionQueue)
 	{
 		ret.techCostMultiplier = {};

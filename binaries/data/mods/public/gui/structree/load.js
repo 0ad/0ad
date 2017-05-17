@@ -40,6 +40,9 @@ function loadUnit(templateName)
 				g_Lists.structures.push(build);
 		}
 
+	if (unit.upgrades)
+		unit.upgrades = getActualUpgradeData(unit.upgrades);
+
 	return unit;
 }
 
@@ -73,9 +76,15 @@ function loadStructure(templateName)
 			}
 	}
 
+	if (structure.upgrades)
+		structure.upgrades = getActualUpgradeData(structure.upgrades);
+
 	if (structure.wallSet)
 	{
 		structure.wallset = {};
+
+		if (!structure.upgrades)
+			structure.upgrades = [];
 
 		// Note: Assume wall segments of all lengths have the same armor and auras
 		let struct = loadStructure(structure.wallSet.templates.long);
@@ -95,6 +104,9 @@ function loadStructure(templateName)
 
 			for (let research of wPart.production.technology)
 				structure.production.technology.push(research);
+
+			if (wPart.upgrades)
+				structure.upgrades = structure.upgrades.concat(wPart.upgrades);
 
 			if (["gate", "tower"].indexOf(wSegm) != -1)
 				continue;

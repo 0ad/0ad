@@ -84,16 +84,23 @@ function draw()
 						prod = g_ParsedData.units[prod];
 						if (!drawProdIcon(i, s, r, p, prod))
 							break;
-						p++;
+						++p;
+					}
+
+				if (stru.upgrades[prod_pha])
+					for (let upgrade of stru.upgrades[prod_pha])
+					{
+						if (!drawProdIcon(i, s, r, p, upgrade))
+							break;
+						++p;
 					}
 
 				if (stru.wallset && prod_pha == pha)
-					for (let prod of [stru.wallset.gate, stru.wallset.tower])
-					{
-						if (!drawProdIcon(i, s, r, p, prod))
-							break;
-						p++;
-					}
+				{
+					if (!drawProdIcon(i, s, r, p, stru.wallset.tower))
+						break;
+					++p;
+				}
 
 				if (stru.production.technology[prod_pha])
 					for (let prod of stru.production.technology[prod_pha])
@@ -174,29 +181,37 @@ function draw()
 		thisEle.hidden = false;
 
 		let p = 0;
-		for (let prodType in trainer.production)
-		{
-			for (let prod of trainer.production[prodType])
-			{
-				switch (prodType)
+		if (trainer.production)
+			for (let prodType in trainer.production)
+				for (let prod of trainer.production[prodType])
 				{
-				case "units":
-					prod = g_ParsedData.units[prod];
-					break;
-				case "techs":
-					prod = clone(g_ParsedData.techs[g_SelectedCiv][prod]);
-					for (let res in trainer.techCostMultiplier)
-						if (prod.cost[res])
-							prod.cost[res] *= trainer.techCostMultiplier[res];
-					break;
-				default:
-					continue;
+					switch (prodType)
+					{
+					case "units":
+						prod = g_ParsedData.units[prod];
+						break;
+					case "techs":
+						prod = clone(g_ParsedData.techs[g_SelectedCiv][prod]);
+						for (let res in trainer.techCostMultiplier)
+							if (prod.cost[res])
+								prod.cost[res] *= trainer.techCostMultiplier[res];
+						break;
+					default:
+						continue;
+					}
+					if (!drawProdIcon(null, t, null, p, prod))
+						break;
+					++p;
 				}
-				if (!drawProdIcon(null, t, null, p, prod))
+
+		if (trainer.upgrades)
+			for (let upgrade of trainer.upgrades)
+			{
+				if (!drawProdIcon(null, t, null, p, upgrade.data))
 					break;
 				++p;
 			}
-		}
+
 		hideRemaining("trainer["+t+"]_row", p);
 
 		let size = thisEle.size;
