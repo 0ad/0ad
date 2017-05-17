@@ -1207,6 +1207,7 @@ function handlePlayerAssignmentMessage(message)
 
 	g_PlayerAssignments = message.newAssignments;
 
+	sanitizePlayerData(g_GameAttributes.settings.PlayerData);
 	updateGUIObjects();
 	sendRegisterGameStanza();
 }
@@ -1230,9 +1231,6 @@ function onClientJoin(newGUID, newAssignments)
 	// Assign the joining client to the free slot
 	if (g_IsController && newAssignments[newGUID].player == -1)
 		Engine.AssignNetworkPlayer(freeSlot + 1, newGUID);
-
-	g_GameAttributes.settings.PlayerData[freeSlot].AI = "";
-	g_GameAttributes.settings.PlayerData[freeSlot].AIDiff = g_DefaultPlayerData[freeSlot].AIDiff;
 
 	resetReadyData();
 }
@@ -1424,6 +1422,10 @@ function sanitizePlayerData(playerData)
 			let smallestDistance = colorDistances.find(distance => colorDistances.every(distance2 => (distance2 >= distance)));
 			pData.Color = g_PlayerColorPickerList.find(color => colorDistance(color, pData.Color) == smallestDistance);
 		}
+
+		// If there is a player in that slot, then there can't be an AI
+		if (Object.keys(g_PlayerAssignments).some(guid => g_PlayerAssignments[guid].player == index + 1))
+			pData.AI = "";
 	});
 
 	ensureUniquePlayerColors(playerData);
