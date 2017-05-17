@@ -525,12 +525,8 @@ m.GameTypeManager.prototype.update = function(gameState, events, queues)
 	if (gameState.getGameType() === "capture_the_relic" && gameState.ai.playedTurn % 10 === 0)
 	{
 		this.manageCriticalEntGuards(gameState);
-		// Do not capture gaia relics frequently, as the ai has access to the entire map
-		if (gameState.ai.elapsedTime > this.tryCaptureGaiaRelicLapseTime && !this.tryCaptureGaiaRelic)
-		{
+		if (!this.tryCaptureGaiaRelic && gameState.ai.elapsedTime > this.tryCaptureGaiaRelicLapseTime)
 			this.tryCaptureGaiaRelic = true;
-			this.tryCaptureGaiaRelicLapseTime = gameState.ai.elapsedTime + (5 - 0.5 * (this.Config.difficulty - 3) * 60);
-		}
 	}
 };
 
