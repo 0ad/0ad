@@ -12,6 +12,7 @@ Trigger.prototype.eventNames =
 	"CinemaQueueEnded",
 	"ConstructionStarted",
 	"DiplomacyChanged",
+	"Deserialized",
 	"InitGame",
 	"Interval",
 	"OwnershipChanged",
@@ -254,6 +255,11 @@ Trigger.prototype.OnGlobalCinemaPathEnded = function(msg)
 Trigger.prototype.OnGlobalCinemaQueueEnded = function(msg)
 {
 	this.CallEvent("CinemaQueueEnded", msg);
+};
+
+Trigger.prototype.OnGlobalDeserialized = function(msg)
+{
+	this.CallEvent("Deserialized", msg);
 };
 
 Trigger.prototype.OnGlobalOwnershipChanged = function(msg)

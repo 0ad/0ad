@@ -200,6 +200,11 @@ var g_IsNetworked;
 var g_IsController;
 
 /**
+ * Whether this is a tutorial.
+ */
+var g_IsTutorial;
+
+/**
  * To report the game to the lobby bot.
  */
 var g_ServerName;
@@ -871,6 +876,7 @@ function init(attribs)
 
 	g_IsNetworked = attribs.type != "offline";
 	g_IsController = attribs.type != "client";
+	g_IsTutorial = attribs.tutorial &&  attribs.tutorial == true;
 	g_ServerName = attribs.serverName;
 	g_ServerPort = attribs.serverPort;
 
@@ -957,6 +963,12 @@ function initGUIObjects()
 	loadPersistMatchSettings();
 	updateGameAttributes();
 
+	if (g_IsTutorial)
+	{
+		launchTutorial();
+		return;
+	}
+
 	Engine.GetGUIObjectByName("loadingWindow").hidden = true;
 	Engine.GetGUIObjectByName("setupWindow").hidden = false;
 
@@ -975,7 +987,7 @@ function getGUIObjectNameFromSetting(name)
 		{
 			let idx = g_OptionOrderGUI[panel][type].indexOf(name);
 			if (idx != -1)
-				return [panel + "Option" + type, "[" + idx + "]"]
+				return [panel + "Option" + type, "[" + idx + "]"];
 		}
 
 	// Assume there is a GUI object with exactly that setting name
@@ -1297,7 +1309,7 @@ function reloadMapList()
 		});
 	}
 
-	mapList = mapList.sort(sortNameIgnoreCase)
+	mapList = mapList.sort(sortNameIgnoreCase);
 
 	if (g_GameAttributes.mapType == "random")
 		mapList.unshift({
@@ -1331,7 +1343,7 @@ function loadMapData(name)
  */
 function loadPersistMatchSettings()
 {
-	if (!g_IsController || Engine.ConfigDB_GetValue("user", "persistmatchsettings") != "true")
+	if (!g_IsController || Engine.ConfigDB_GetValue("user", "persistmatchsettings") != "true" || g_IsTutorial)
 		return;
 
 	let settingsFile = g_IsNetworked ? g_MatchSettings_MP : g_MatchSettings_SP;
@@ -1386,6 +1398,8 @@ function loadPersistMatchSettings()
 
 function savePersistMatchSettings()
 {
+	if (g_IsTutorial)
+		return;
 	let attributes = Engine.ConfigDB_GetValue("user", "persistmatchsettings") == "true" ? g_GameAttributes : {};
 	Engine.WriteJSONFile(g_IsNetworked ? g_MatchSettings_MP : g_MatchSettings_SP, attributes);
 }
@@ -1727,10 +1741,16 @@ function launchGame()
 		Engine.StartGame(g_GameAttributes, playerID);
 		Engine.SwitchGuiPage("page_loading.xml", {
 			"attribs": g_GameAttributes,
-			"isNetworked" : g_IsNetworked,
+			"isNetworked": g_IsNetworked,
 			"playerAssignments": g_PlayerAssignments
 		});
 	}
+}
+
+function launchTutorial()
+{
+	selectMap("maps/tutorials/starting_economy_walkthrough");
+	launchGame();
 }
 
 /**

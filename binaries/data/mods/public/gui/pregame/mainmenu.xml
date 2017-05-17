@@ -147,11 +147,25 @@
 					</action>
 				</object>
 
+				<!-- START TUTORIAL BUTTON -->
+				<object name="startTutorialButton"
+					type="button"
+					style="StoneButtonFancy"
+					size="0 32 100% 60"
+					tooltip_style="pgToolTip"
+				>
+					<translatableAttribute id="caption">Tutorial</translatableAttribute>
+					<translatableAttribute id="tooltip">Start the economic tutorial.</translatableAttribute>
+					<action on="Press">
+						Engine.SwitchGuiPage("page_gamesetup.xml", { type: "offline", "tutorial": true });
+					</action>
+				</object>
+
 				<!-- STRUCTREE BUTTON -->
 				<object name="menuStrucTreeButton"
 					style="StoneButtonFancy"
 					type="button"
-					size="0 32 100% 60"
+					size="0 64 100% 92"
 					tooltip_style="pgToolTip"
 				>
 					<translatableAttribute id="caption">Structure Tree</translatableAttribute>
@@ -168,7 +182,7 @@
 				<object name="menuHistoryButton"
 					style="StoneButtonFancy"
 					type="button"
-					size="0 64 100% 92"
+					size="0 96 100% 124"
 					tooltip_style="pgToolTip"
 				>
 					<translatableAttribute id="caption">History</translatableAttribute>
@@ -441,10 +455,10 @@
 					tooltip_style="pgToolTip"
 				>
 					<translatableAttribute id="caption">Learn To Play</translatableAttribute>
-					<translatableAttribute id="tooltip">Learn how to play, discover the technology trees, and the history behind the civilizations</translatableAttribute>
+					<translatableAttribute id="tooltip">Learn how to play, start the tutorial, discover the technology trees, and the history behind the civilizations</translatableAttribute>
 					<action on="Press">
 						closeMenu();
-						openMenu("submenuLearn", (this.parent.size.top+this.size.top), (this.size.bottom-this.size.top), 3);
+						openMenu("submenuLearn", (this.parent.size.top+this.size.top), (this.size.bottom-this.size.top), 4);
 					</action>
 				</object>
 
