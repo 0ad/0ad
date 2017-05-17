@@ -1,0 +1,13 @@
+{
+	"type": "global",
+	"affects": ["Healer"],
+	"affectedPlayers": ["ExclusiveMutualAlly"],
+	"modifications": [
+		{ "value": "Cost/Resources/food", "multiply": 0.8 },
+		{ "value": "Cost/Resources/wood", "multiply": 0.8 },
+		{ "value": "Cost/Resources/metal", "multiply": 0.8 },
+		{ "value": "Cost/Resources/stone", "multiply": 0.8 }
+	],
+	"auraName": "Druids",
+	"auraDescription": "-20% resources cost for allies healers."
+}

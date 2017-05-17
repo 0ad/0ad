@@ -138,6 +138,12 @@
 		square_side="22"
 		sound_pressed="audio/interface/ui/ui_button_click.ogg"
 	/>
+	<style name="ModernSlider"
+		sprite="ModernSliderButton"
+		sprite_bar="ModernSliderLine"
+		button_width="20"
+		tooltip_style="sliderTooltip"
+	/>
 	<style name="ModernButtonRed"
 		sprite="ModernButtonRed"
 		sprite_disabled="ModernButtonRedDisabled"

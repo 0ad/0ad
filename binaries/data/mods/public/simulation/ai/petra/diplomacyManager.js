@@ -322,7 +322,7 @@ m.DiplomacyManager.prototype.handleDiplomacyRequest = function(gameState, player
 m.DiplomacyManager.prototype.changePlayerDiplomacy = function(gameState, player, newDiplomaticStance)
 {
 	if (gameState.isPlayerEnemy(player) && (newDiplomaticStance === "ally" || newDiplomaticStance === "neutral"))
-		gameState.ai.HQ.attackManager.cancelAttacksAgainstPlayer(player);
+		gameState.ai.HQ.attackManager.cancelAttacksAgainstPlayer(gameState, player);
 	Engine.PostCommand(PlayerID, { "type": "diplomacy", "player": player, "to": newDiplomaticStance });
 	if (this.Config.debug > 1)
 		API3.warn("diplomacy stance with player " + player + " is now " + newDiplomaticStance);

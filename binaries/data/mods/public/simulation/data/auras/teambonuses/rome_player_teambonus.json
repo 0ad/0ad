@@ -1,0 +1,10 @@
+{
+	"type": "global",
+	"affects": ["Infantry"],
+	"affectedPlayers": ["ExclusiveMutualAlly"],
+	"modifications": [
+		{ "value": "Cost/BuildTime", "multiply": 0.8 }
+	],
+	"auraName": "Conscription",
+	"auraDescription": "-20% training time for allied infantry."
+}

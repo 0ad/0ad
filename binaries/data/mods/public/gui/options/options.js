@@ -164,14 +164,21 @@ function setupControl(option, i, category)
 		{
 			return function()
 			{
-				if (Engine.ConfigDB_GetValue("user", key) === this.value)
+				this.tooltip =
+					(option.tooltip ? translate(option.tooltip) + "\n" : "") +
+					sprintf(translateWithContext("slider number", "Value: %(val)s (min: %(min)s, max: %(max)s)"), {
+						"val": +this.value.toFixed(2),
+						"min": +minvalue.toFixed(2),
+						"max": +maxvalue.toFixed(2)
+					});
+
+				if (+Engine.ConfigDB_GetValue("user", key) === this.value)
 					return;
 				Engine.ConfigDB_CreateValue("user", key, this.value);
 				Engine.ConfigDB_SetChanges("user", true);
 				if (callbackFunction)
 					Engine[callbackFunction](+this.value);
 				updateOptionPanel();
-				control.tooltip = this.value;
 			};
 		}(key, callbackFunction, minvalue, maxvalue);
 
@@ -239,19 +246,20 @@ function setupControl(option, i, category)
 	case "dropdown":
 		control = Engine.GetGUIObjectByName(category + "Dropdown[" + i + "]");
 		control.onSelectionChange = function(){};  // just the time to setup the value
+		let config;
 
 		for (let param in option.parameters)
 		{
 			switch (param)
 			{
 			case "config":
-				control.selected = +Engine.ConfigDB_GetValue("user", key);
+				config = Engine.ConfigDB_GetValue("user", key);
 				break;
 			case "list":
-				control.list = option.parameters.list.map(e => translate(e));
-				break;
-			case "list_data":
-				control.list_data = option.parameters.list_data;
+				control.list = option.parameters.list.map(e => translate(e.label));
+				let values = option.parameters.list.map(e => e.value);
+				control.list_data = values;
+				control.selected = values.indexOf(config);
 				break;
 			default:
 				warn("Unknown option source type '" + param + "'");
@@ -262,7 +270,7 @@ function setupControl(option, i, category)
 		{
 			return function()
 			{
-				Engine.ConfigDB_CreateValue("user", key, this.selected);
+				Engine.ConfigDB_CreateValue("user", key, this.list_data[this.selected]);
 				Engine.ConfigDB_SetChanges("user", true);
 				updateOptionPanel();
 			};
@@ -276,7 +284,12 @@ function setupControl(option, i, category)
 		break;
 	}
 	control.hidden = false;
-	control.tooltip = option.tooltip ? translate(option.tooltip) : "";
+
+	if (option.type == "slider")
+		control.onValueChange();
+	else
+		control.tooltip = option.tooltip ? translate(option.tooltip) : "";
+
 	return control;
 }
 
