@@ -733,7 +733,6 @@ CStrW GetSystemUsername(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 	return sys_get_user_name();
 }
 
-
 // Cause the game to exit gracefully.
 // params:
 // returns:
@@ -976,9 +975,16 @@ void StopJsTimer(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), unsigned int sl
 	BillingPolicy_Default()(&js_timer_clients[slot], js_start_times[slot], now);
 	js_start_times[slot].SetToZero();
 }
+
+/**
+ * Microseconds since the epoch.
+ */
+double GetMicroseconds(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+{
+	return JS_Now();
+}
+
 } // namespace
-
-
 
 void GuiScriptingInit(ScriptInterface& scriptInterface)
 {
@@ -1094,6 +1100,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	// Development/debugging functions
 	scriptInterface.RegisterFunction<void, unsigned int, &StartJsTimer>("StartXTimer");
 	scriptInterface.RegisterFunction<void, unsigned int, &StopJsTimer>("StopXTimer");
+	scriptInterface.RegisterFunction<double, &GetMicroseconds>("GetMicroseconds");
 	scriptInterface.RegisterFunction<void, float, &SetSimRate>("SetSimRate");
 	scriptInterface.RegisterFunction<float, &GetSimRate>("GetSimRate");
 	scriptInterface.RegisterFunction<void, int, &SetTurnLength>("SetTurnLength");
