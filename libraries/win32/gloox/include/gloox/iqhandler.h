@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2004-2015 by Jakob Schröter <js@camaya.net>
+  Copyright (c) 2004-2017 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -40,7 +40,7 @@ namespace gloox
        * Reimplement this function if you want to be notified about incoming IQs.
        * @param iq The complete IQ stanza.
        * @return Indicates whether a request of type 'get' or 'set' has been handled. This includes
-       * the obligatory 'result' answer. If you return @b false, an 'error' will be sent.
+       * the obligatory 'result' answer. If you return @b false, an 'error' will be sent back.
        * @since 1.0
        */
       virtual bool handleIq( const IQ& iq ) = 0;
@@ -49,7 +49,7 @@ namespace gloox
        * Reimplement this function if you want to be notified about
        * incoming IQs with a specific value of the @c id attribute. You
        * have to enable tracking of those IDs using Client::trackID().
-       * This is usually useful for IDs that generate a positive reply, i.e.
+       * This is usually useful for IDs that generate a empty positive reply, i.e.
        * &lt;iq type='result' id='reg'/&gt; where a namespace filter wouldn't
        * work.
        * @param iq The complete IQ stanza.

@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2005-2015 by Jakob Schröter <js@camaya.net>
+  Copyright (c) 2005-2017 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -61,6 +61,9 @@ namespace gloox
                                         * the server. */
     RegistrationNotAllowed,            /**< Password change: The server or service does not allow
                                         * password changes. */
+    RegistrationConstraint,            /**< Resource constraint: The server or recipient lacks the
+                                        * system resources necessary to service the request,for
+                                        * example if users are not allowed to register accounts so quickly. */
     RegistrationUnknownError           /**< An unknown error condition occured. */
   };
 

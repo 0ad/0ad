@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2004-2015 by Jakob Schröter <js@camaya.net>
+  Copyright (c) 2004-2017 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -18,6 +18,10 @@
 #include "connectionbase.h"
 #include "logsink.h"
 #include "mutex.h"
+
+#ifdef __MINGW32__
+#include <ws2tcpip.h>
+#endif
 
 #include <string>
 

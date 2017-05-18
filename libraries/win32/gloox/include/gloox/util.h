@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2007-2015 by Jakob Schröter <js@camaya.net>
+  Copyright (c) 2007-2017 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -263,7 +263,7 @@ namespace gloox
 
       while( output.empty() || value > 0 )
       {
-        output.insert( 0, 1, static_cast<char>( value % base + '0' ) );
+        output.insert( static_cast<size_t>( 0 ), static_cast<size_t>( 1 ), static_cast<char>( value % base + '0' ) );
         value /= base;
       }
 

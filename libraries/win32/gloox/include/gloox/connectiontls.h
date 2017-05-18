@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007-2015 by Jakob Schröter <js@camaya.net>
+ * Copyright (c) 2007-2017 by Jakob Schröter <js@camaya.net>
  * This file is part of the gloox library. http://camaya.net/gloox
  *
  * This software is distributed under a license. The full license
@@ -113,7 +113,8 @@ namespace gloox
 
       /**
        * Sets the transport connection.
-       * @param connection The transport connection to use.
+       * @param connection The transport connection to use. A potentially previously set connection
+       * will be deleted.
        */
       void setConnectionImpl( ConnectionBase* connection );
 

@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2005-2015 by Jakob Schröter <js@camaya.net>
+  Copyright (c) 2005-2017 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -44,7 +44,7 @@ namespace gloox
   {
     public:
       /**
-       * Contstructs a new Chat State filter for a MessageSession.
+       * Constructs a new Chat State filter for a MessageSession.
        * @param parent The MessageSession to decorate.
        */
       ChatStateFilter( MessageSession* parent );

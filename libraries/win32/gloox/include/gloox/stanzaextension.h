@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2006-2015 by Jakob Schröter <js@camaya.net>
+  Copyright (c) 2006-2017 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -98,7 +98,7 @@ namespace gloox
 
   /**
    * @brief This class abstracts a stanza extension, which is usually
-   * an element in a specific namespace.
+   * an XML child element in a specific namespace inside an XMPP stanza.
    *
    * This class is the base class for almost all protocol extensions in gloox.
    * As such, it should be used whenever an add-on to the core XMPP spec
@@ -117,10 +117,19 @@ namespace gloox
    * of the pure virtuals filterString() and newInstance(). To be able to properly use
    * the encapsulation, some getters may be necessary. Note that the object you will be
    * dealing with usually is @em const.
+   *
    * For sending StanzaExtensions, a custom constructor (as well as some setters,
    * possibly) is needed. Additionally, an implementation of tag() is required.
    *
-   * @li Sub-class StanzaExtension and re-implement filterString(). filterString()
+   * @li Sub-class StanzaExtension and add at least a constructor that accepots a Tag*
+   * (so it can parse an incoming extension in XML format), as well as one accepting
+   * whatever data you need to construct outgoing extension XML. Alternatively to the latter
+   * (or in addition) you can also add setters, of course. One of the constructors should
+   * be able to create an empty instance so it can be passed to ClientBase when registering
+   * your extension type. This empty instance will only be used to create another new instance
+   * using the Tag* constructor when matching extension XML comes in.
+   *
+   * @li Re-implement filterString(). filterString()
    * is supposed to return an XPath expression that matches the child element
    * of a stanza that the protocol-to-implement uses. For example, consider this
    * hypothetical XML format: The protocol is encapsulated inside a &lt;stats&gt;
@@ -145,7 +154,7 @@ namespace gloox
    * @li When subclassing StanzaExtension, you have to initialize it with an int, the extension's
    * type. You should choose a value that is not yet used in gloox, and unique to
    * the given extension you implement. In general, you are free to use values
-   * above @link gloox::ExtUser ExtUser @endlink. See
+   * above @link gloox::ExtUser ExtUser @endlink, e.g ExtUser+1, etc. See
    * @link gloox::StanzaExtensionType StanzaExtensionType @endlink for existing values.
    *
    * @li The next step is to implement newInstance(). Whenever filterString()'s
@@ -175,6 +184,18 @@ namespace gloox
    * into string'ified XML. This is done by means of the tag() function which
    * must be reimplemented. The output Tag should -- like the input Tag -- be embeddable
    * into the respective stanza.
+   *
+   * @li To actually use this you have to register your new extension with
+   * ClientBase::registerStanzaExtension(). Here, an empty instance of your class should be
+   * passed, which will act as a template later (by means of StanzaExtension::clone(), which
+   * you should reimplement).
+   *
+   * @li You can now also register your handlers with ClientBase,
+   * by using the exttype you used in your subclasses with @link ClientBase::registerIqHandler() registerIqHandler() @endlink,
+   * @link ClientBase::registerMessageHandler() registerMessageHandler() @endlink,
+   * @link ClientBase::registerPresenceHandler() registerPresenceHandler() @endlink, or
+   * @link ClientBase::registerSubscriptionHandler() registerSubscriptionHandler() @endlink.
+   * ClientBase will then check incoming stanzas against your filter string(s) and call the respective handlers.
    *
    * @author Jakob Schröter <js@camaya.net>
    * @since 0.9
