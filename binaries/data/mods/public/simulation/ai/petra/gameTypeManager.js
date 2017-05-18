@@ -492,6 +492,13 @@ m.GameTypeManager.prototype.assignGuardToCriticalEnt = function(gameState, guard
 	return true;
 };
 
+m.GameTypeManager.prototype.resetCaptureGaiaRelic = function(gameState)
+{
+	// Do not capture gaia relics too frequently as the ai has access to the entire map
+	this.tryCaptureGaiaRelicLapseTime = gameState.ai.elapsedTime + 300 - 30 * (this.Config.difficulty - 3);
+	this.tryCaptureGaiaRelic = false;
+};
+
 m.GameTypeManager.prototype.update = function(gameState, events, queues)
 {
 	// Wait a turn for trigger scripts to spawn any critical ents (i.e. in regicide)

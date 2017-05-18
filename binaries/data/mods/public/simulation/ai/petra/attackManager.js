@@ -382,13 +382,7 @@ m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 			if (attack.targetPlayer === undefined)
 				this.currentEnemyPlayer = enemyPlayer;
 			if (enemyPlayer === 0)
-			{
-				// Do not capture gaia relics too frequently as the ai has access to the entire map
-				// (tryCaptureGaiaRelic is necessarily true here)
-				gameState.ai.HQ.gameTypeManager.tryCaptureGaiaRelicLapseTime =
-					gameState.ai.elapsedTime + 300 - 30 * (this.Config.difficulty - 3);
-				gameState.ai.HQ.gameTypeManager.tryCaptureGaiaRelic = false;
-			}
+				gameState.ai.HQ.gameTypeManager.resetCaptureGaiaRelic(gameState);
 			return enemyPlayer;
 		}
 	}
