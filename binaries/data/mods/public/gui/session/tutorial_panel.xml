@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object name="tutorialPanel" type="image" sprite="ModernFade" size="50%-300 38 50%+300 350" hidden="true">
+
+	<object size="10 10 100%-20 100%-48">
+		<object name="tutorialText" type="text" style="TutorialPanel"/>
+	</object>
+
+	<object name="tutorialWarning" type="text" style="ModernLeftLabelText" size="10 100%-40 100%-180 100%-12"/>
+
+	<object name="tutorialReady" type="button" style="ModernButtonRed" size="100%-160 100%-40 100%-20 100%-12">
+		<translatableAttribute id="caption">Ready</translatableAttribute>
+		<action on="Press">Engine.PostNetworkCommand({"type": "dialog-answer", "tutorial": "ready"});</action>
+	</object>
+</object>

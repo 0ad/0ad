@@ -48,10 +48,8 @@
   ],
   "CircularMap": true,
   "Description": "This map will give a rough guide for starting the game effectively.  Early in the game the most important thing is to gather resources as fast as possible so you are able to build enough troops later.\u000a\u000aWarning: This is very fast at the start, be prepared to run through the initial bit several times.",
-  "GameType": "conquest",
-  "Keywords": [
-    "demo"
-  ],
+  "GameType": "endless",
+  "Keywords": ["trigger"],
   "LockTeams": false,
   "Name": "Starting Economy Walkthrough",
   "PlayerData": [
@@ -65,86 +63,18 @@
       },
       "Name": "Player 1",
       "Team": -1
-    },
-    {
-      "AI": "tutorial-ai",
-      "Civ": "cart",
-      "Color": {
-        "b": 20,
-        "g": 20,
-        "r": 150
-      },
-      "Name": "Player 2",
-      "Team": -1
     }
   ],
-  "Preview": "persian_highlands.png",
   "RevealMap": false,
-  "Script": "persian_highlands.js",
+  "TriggerScripts": [
+    "scripts/TriggerHelper.js",
+    "scripts/Tutorial.js",
+    "tutorials/starting_economy_walkthrough.js"
+  ],
   "Size": 256
 }
 ]]></ScriptSettings>
 	<Entities>
-		<Entity uid="150">
-			<Template>structures/cart_civil_centre</Template>
-			<Player>2</Player>
-			<Position x="393.95597" z="173.59763"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="151">
-			<Template>units/cart_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="368.50011" z="165.11236"/>
-			<Orientation y="3.927"/>
-		</Entity>
-		<Entity uid="152">
-			<Template>units/cart_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="374.15697" z="159.4555"/>
-			<Orientation y="3.927"/>
-		</Entity>
-		<Entity uid="153">
-			<Template>units/cart_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="379.81383" z="153.79865"/>
-			<Orientation y="3.927"/>
-		</Entity>
-		<Entity uid="154">
-			<Template>units/cart_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="385.47068" z="148.14179"/>
-			<Orientation y="3.927"/>
-		</Entity>
-		<Entity uid="155">
-			<Template>units/cart_infantry_spearman_b</Template>
-			<Player>2</Player>
-			<Position x="402.44124" z="148.14179"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="156">
-			<Template>units/cart_infantry_spearman_b</Template>
-			<Player>2</Player>
-			<Position x="408.0981" z="153.79865"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="157">
-			<Template>units/cart_infantry_spearman_b</Template>
-			<Player>2</Player>
-			<Position x="413.75495" z="159.4555"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="158">
-			<Template>units/cart_infantry_spearman_b</Template>
-			<Player>2</Player>
-			<Position x="419.41181" z="165.11236"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="159">
-			<Template>units/cart_cavalry_javelinist_b</Template>
-			<Player>2</Player>
-			<Position x="410.92652" z="190.5682"/>
-			<Orientation y="0.78541"/>
-		</Entity>
 		<Entity uid="160">
 			<Template>gaia/fauna_chicken</Template>
 			<Player>0</Player>
@@ -553,12 +483,6 @@
 			<Player>0</Player>
 			<Position x="625.0747" z="826.88733"/>
 			<Orientation y="-0.62328"/>
-		</Entity>
-		<Entity uid="266">
-			<Template>gaia/fauna_chicken</Template>
-			<Player>0</Player>
-			<Position x="628.75426" z="833.4887"/>
-			<Orientation y="-3.87443"/>
 		</Entity>
 		<Entity uid="267">
 			<Template>gaia/flora_bush_grapes</Template>

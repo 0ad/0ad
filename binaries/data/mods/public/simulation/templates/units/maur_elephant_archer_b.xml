@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_cavalry_ranged_archer">
+  <Armour>
+    <Hack op="add">1.0</Hack>
+    <Pierce op="add">2.0</Pierce>
+  </Armour>
   <Attack>
     <Capture disable=""/>
+    <Ranged>
+      <Hack op="mul">1.5</Hack>
+      <Pierce op="mul">1.5</Pierce>
+      <Crush op="mul">1.5</Crush>
+      <RepeatTime op="mul">0.75</RepeatTime>
+    </Ranged>
   </Attack>
+  <Cost>
+    <Resources>
+      <food>200</food>
+      <wood>80</wood>
+      <metal>20</metal>
+    </Resources>
+  </Cost>
   <Footprint replace="">
     <Circle radius="3.5"/>
     <Height>8.0</Height>
   </Footprint>
+  <Health>
+    <Max op="mul">2.0</Max>
+  </Health>
   <Identity>
     <Civ>maur</Civ>
     <VisibleClasses datatype="tokens">Elephant -Cavalry</VisibleClasses>
@@ -14,8 +34,14 @@
     <GenericName>Elephant Archer</GenericName>
     <SpecificName>Vachii Gaja</SpecificName>
     <Icon>units/maur_cavalry_archer.png</Icon>
-    <Tooltip>Can run amok.</Tooltip>
   </Identity>
+  <Loot>
+    <xp>260</xp>
+    <food>25</food>
+    <wood>10</wood>
+    <stone>0</stone>
+    <metal>5</metal>
+  </Loot>
   <Promotion>
     <Entity>units/maur_elephant_archer_a</Entity>
   </Promotion>

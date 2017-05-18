@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 #include "precompiled.h"
 
 #include "ps/CLogger.h"
@@ -145,16 +144,16 @@ CMessage* CMessageProgressiveLoad::FromJSVal(ScriptInterface& UNUSED(scriptInter
 
 ////////////////////////////////
 
-JS::Value CMessageDeserialized::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
+JS::Value CMessageDeserialized::ToJSVal(ScriptInterface& scriptInterface) const
 {
-	LOGWARNING("CMessageDeserialized::ToJSVal not implemented");
-	return JS::UndefinedValue();
+	TOJSVAL_SETUP();
+	return JS::ObjectValue(*obj);
 }
 
-CMessage* CMessageDeserialized::FromJSVal(ScriptInterface& UNUSED(scriptInterface), JS::HandleValue UNUSED(val))
+CMessage* CMessageDeserialized::FromJSVal(ScriptInterface& scriptInterface, JS::HandleValue val)
 {
-	LOGWARNING("CMessageDeserialized::FromJSVal not implemented");
-	return NULL;
+	FROMJSVAL_SETUP();
+	return new CMessageDeserialized();
 }
 
 ////////////////////////////////

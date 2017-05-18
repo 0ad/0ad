@@ -661,5 +661,24 @@
                 }
             }
         ]
+    },
+    {
+        "output": "public-tutorials.pot",
+        "inputRoot": "..",
+        "project": "0 A.D. — Empires Ascendant",
+        "copyrightHolder": "Wildfire Games",
+        "rules": [
+            {
+                "extractor": "javascript",
+                "filemasks": [
+                    "maps/tutorials/**.js"
+                ],
+                "options": {
+                    "keywords": [
+                        "instructions"
+                    ]
+                }
+            }
+        ]
     }
 ]

@@ -23,7 +23,7 @@ Cost.prototype.Schema =
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
 	"<element name='Resources' a:help='Resource costs to construct/train this entity'>" +
-		Resources.BuildSchema("nonNegativeDecimal") +
+		Resources.BuildSchema("nonNegativeInteger") +
 	"</element>";
 
 Cost.prototype.Init = function()

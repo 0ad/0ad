@@ -367,8 +367,8 @@ m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 		let maxRelicsOwned = 0;
 		for (let i = 0; i < gameState.sharedScript.playersData.length; ++i)
 		{
-			if (!gameState.isPlayerEnemy(i) || this.defeated[i] || i === 0 &&
-			    !gameState.ai.HQ.gameTypeManager.tryCaptureGaiaRelic)
+			if (!gameState.isPlayerEnemy(i) || this.defeated[i] ||
+			    i === 0 && !gameState.ai.HQ.gameTypeManager.tryCaptureGaiaRelic)
 				continue;
 
 			let relicsCount = allRelics.filter(relic => relic.owner() === i).length;
@@ -382,7 +382,13 @@ m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 			if (attack.targetPlayer === undefined)
 				this.currentEnemyPlayer = enemyPlayer;
 			if (enemyPlayer === 0)
+			{
+				// Do not capture gaia relics too frequently as the ai has access to the entire map
+				// (tryCaptureGaiaRelic is necessarily true here)
+				gameState.ai.HQ.gameTypeManager.tryCaptureGaiaRelicLapseTime =
+					gameState.ai.elapsedTime + 300 - 30 * (this.Config.difficulty - 3);
 				gameState.ai.HQ.gameTypeManager.tryCaptureGaiaRelic = false;
+			}
 			return enemyPlayer;
 		}
 	}
