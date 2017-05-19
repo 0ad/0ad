@@ -69,6 +69,7 @@ var g_RelicCountList = Object.keys(g_CivData).map((civ, i) => i + 1);
 
 var g_PlayerCivList = g_CivData && prepareForDropdown([{
 		"name": translateWithContext("civilization", "Random"),
+		"tooltip": translate("Picks one civilization at random when the game starts."),
 		"color": g_ColorRandom,
 		"code": "random"
 	}].concat(
@@ -76,6 +77,7 @@ var g_PlayerCivList = g_CivData && prepareForDropdown([{
 			civ => g_CivData[civ].SelectableInGameSetup
 		).map(civ => ({
 			"name": g_CivData[civ].Name,
+			"tooltip": g_CivData[civ].History,
 			"color": g_ColorRegular,
 			"code": civ
 		})).sort(sortNameIgnoreCase)
@@ -159,32 +161,38 @@ var g_MapFilterList = prepareForDropdown([
 	{
 		"id": "default",
 		"name": translateWithContext("map filter", "Default"),
+		"tooltip": translateWithContext("map filter", "All maps except naval and demo maps."),
 		"filter": mapKeywords => mapKeywords.every(keyword => ["naval", "demo", "hidden"].indexOf(keyword) == -1),
 		"Default": true
 	},
 	{
 		"id": "naval",
 		"name": translate("Naval Maps"),
+		"tooltip": translateWithContext("map filter", "Maps where ships are needed to reach the enemy."),
 		"filter": mapKeywords => mapKeywords.indexOf("naval") != -1
 	},
 	{
 		"id": "demo",
 		"name": translate("Demo Maps"),
+		"tooltip": translateWithContext("map filter", "These maps are not playable but for demonstration purposes only."),
 		"filter": mapKeywords => mapKeywords.indexOf("demo") != -1
 	},
 	{
 		"id": "new",
 		"name": translate("New Maps"),
+		"tooltip": translateWithContext("map filter", "Maps that are brand new in this release of the game."),
 		"filter": mapKeywords => mapKeywords.indexOf("new") != -1
 	},
 	{
 		"id": "trigger",
 		"name": translate("Trigger Maps"),
+		"tooltip": translateWithContext("map filter", "Maps that come with scripted events and potentially spawn enemy units."),
 		"filter": mapKeywords => mapKeywords.indexOf("trigger") != -1
 	},
 	{
 		"id": "all",
 		"name": translate("All Maps"),
+		"tooltip": translateWithContext("map filter", "Every map of the chosen maptype."),
 		"filter": mapKeywords => true
 	},
 ]);
@@ -298,6 +306,12 @@ var g_LastGameStanza;
 var g_LastViewedAIPlayer = -1;
 
 /**
+ * Total number of units that the engine can run with smoothly.
+ * It means a 4v4 with 150 population can still run nicely, but more than that might "lag".
+ */
+var g_PopulationCapacityRecommendation = 1200;
+
+/**
  * Order in which the GUI elements will be shown.
  * All valid options are required to appear here.
  * The ones under "map" are shown in the map selection panel,
@@ -397,7 +411,7 @@ var g_Dropdowns = {
 	},
 	"mapFilter": {
 		"title": () => translate("Map Filter"),
-		"tooltip": (hoverIdx) => translate("Select a map filter."),
+		"tooltip": (hoverIdx) => g_MapFilterList.tooltip[hoverIdx] || translate("Select a map filter."),
 		"labels": () => g_MapFilterList.name,
 		"ids": () => g_MapFilterList.id,
 		"default": () => g_MapFilterList.Default,
@@ -412,7 +426,7 @@ var g_Dropdowns = {
 	},
 	"mapSelection": {
 		"title": () => translate("Select Map"),
-		"tooltip": (hoverIdx) => translate("Select a map to play on."),
+		"tooltip": (hoverIdx) => g_MapSelectionList.description[hoverIdx] || translate("Select a map to play on."),
 		"labels": () => g_MapSelectionList.name,
 		"colors": () => g_MapSelectionList.color,
 		"ids": () => g_MapSelectionList.file,
@@ -426,7 +440,7 @@ var g_Dropdowns = {
 	},
 	"mapSize": {
 		"title": () => translate("Map Size"),
-		"tooltip": (hoverIdx) => translate("Select map size. (Larger sizes may reduce performance.)"),
+		"tooltip": (hoverIdx) => g_MapSizes.Tooltip[hoverIdx] || translate("Select map size. (Larger sizes may reduce performance.)"),
 		"labels": () => g_MapSizes.Name,
 		"ids": () => g_MapSizes.Tiles,
 		"default": () => g_MapSizes.Default,
@@ -460,7 +474,20 @@ var g_Dropdowns = {
 	},
 	"populationCap": {
 		"title": () => translate("Population Cap"),
-		"tooltip": (hoverIdx) => translate("Select population cap."),
+		"tooltip": (hoverIdx) => {
+
+			let popCap = g_PopulationCapacities.Population[hoverIdx];
+			let players = g_GameAttributes.settings.PlayerData.length;
+
+			if (hoverIdx == -1 || popCap * players <= g_PopulationCapacityRecommendation)
+				return translate("Select population limit.");
+
+			return '[color="orange"]' +
+				sprintf(translate("Warning: There might be performance issues if all %(players)s players reach %(popCap)s population."), {
+					"players": players,
+					"popCap": popCap
+				}) + '[/color]';
+		},
 		"labels": () => g_PopulationCapacities.Title,
 		"ids": () => g_PopulationCapacities.Population,
 		"default": () => g_PopulationCapacities.Default,
@@ -614,6 +641,7 @@ var g_PlayerDropdowns = {
 		"enabled": () => g_GameAttributes.mapType != "scenario",
 	},
 	"playerCiv": {
+		"tooltip": (hoverIdx, idx) => g_PlayerCivList.tooltip[hoverIdx] || translate("Chose the civilization for this player"),
 		"labels": (idx) => g_PlayerCivList.name,
 		"colors": (idx) => g_PlayerCivList.color,
 		"ids": (idx) => g_PlayerCivList.code,
@@ -1026,7 +1054,7 @@ function initDropdown(name, idx)
 
 	if (data.tooltip)
 		dropdown.onHoverChange = function() {
-			this.tooltip = data.tooltip(this.hovered);
+			this.tooltip = data.tooltip(this.hovered, idx);
 		};
 }
 
@@ -1302,8 +1330,9 @@ function reloadMapList()
 
 		mapList.push({
 			"file": file,
+			"name": translate(getMapDisplayName(file)),
 			"color": g_ColorRegular,
-			"name": translate(getMapDisplayName(file))
+			"description": translate(mapData.settings.Description)
 		});
 	}
 
@@ -1313,7 +1342,8 @@ function reloadMapList()
 		mapList.unshift({
 			"file": "random",
 			"name": translateWithContext("map selection", "Random"),
-			"color": g_ColorRandom
+			"color": g_ColorRandom,
+			"description": "Picks one of the maps of the given maptype and filter at random."
 		});
 
 	g_MapSelectionList = prepareForDropdown(mapList);
@@ -1581,7 +1611,7 @@ function updateGUIDropdown(name, idx = undefined)
 
 	dropdown.hidden = !g_IsController || !enabled || hidden;
 	dropdown.selected = indexHidden ? -1 : selected;
-	dropdown.tooltip = !indexHidden && obj.tooltip ? obj.tooltip(idx) : "";
+	dropdown.tooltip = !indexHidden && obj.tooltip ? obj.tooltip(-1, idx) : "";
 
 	if (frame)
 		frame.hidden = hidden;

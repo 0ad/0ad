@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2004-2015 by Jakob Schröter <js@camaya.net>
+  Copyright (c) 2004-2017 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -45,6 +45,7 @@ namespace gloox
        * This function is called when an Ad-hoc Command needs to be handled.
        * The callee is responsible for the whole command execution, i.e. session
        * handling etc.
+       * To reply, use Adhoc::respond().
        * @param from The sender of the command request.
        * @param command The name of the command to be executed.
        * @param sessionID The session ID. Either newly generated or taken from the command.
@@ -61,8 +62,7 @@ namespace gloox
        * @return @b True if the remote entity is allowed to see the command, @b false if not.
        * @note The return value of this function does not influence
        * the execution of a command. That is, you have to
-       * implement additional access control at the execution
-       * stage.
+       * implement additional access control at execution stage.
        * @note This function should not block.
        */
       virtual bool handleAdhocAccessRequest( const JID& from, const std::string& command )

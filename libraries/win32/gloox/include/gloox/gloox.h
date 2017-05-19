@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2005-2015 by Jakob Schröter <js@camaya.net>
+  Copyright (c) 2005-2017 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -284,7 +284,7 @@
  * and @link gloox::GPGEncrypted GPGEncrypted @endlink)
  * @li @xep{0030} @link gloox::Disco Service Discovery @endlink
  * @li @xep{0045} @link gloox::MUCRoom Multi-User Chat @endlink
- * @li @xep{0047} Used with @ref filetransfer_sec
+ * @li @xep{0047} In-Band Bytestreams, used with @ref filetransfer_sec
  * @li @xep{0048} @link gloox::BookmarkStorage Bookmark Storage @endlink
  * @li @xep{0049} @link gloox::PrivateXML Private XML Storage @endlink
  * @li @xep{0050} @link gloox::Adhoc Ad-hoc Commands @endlink
@@ -296,7 +296,7 @@
  * @li @xep{0077} @link gloox::Registration In-Band Registration @endlink
  * @li @xep{0078} Non-SASL Authentication (automatically used if the server does not support SASL)
  * @li @xep{0079} @link gloox::AMP Advanced Message Processing @endlink
- * @li @xep{0083} Nested Roster Groups (automatically used if supported by the server. see
+ * @li @xep{0083} Nested Roster Groups (automatically used if supported by the server, see
  * @link gloox::RosterManager::delimiter() RosterManager @endlink)
  * @li @xep{0085} Chat State Notifications (see @link gloox::MessageSession MessageSession @endlink for
  * examples)
@@ -321,12 +321,13 @@
  * @li @xep{0198} Stream Management (integrated into @link gloox::Client @endlink)
  * @li @xep{0199} @link gloox::ClientBase::xmppPing() XMPP Ping @endlink
  * @li @xep{0203} @link gloox::DelayedDelivery Delayed Delivery @endlink (new spec)
- * @li @xep{0206} @link gloox::ConnectionBOSH see BOSH @endlink
+ * @li @xep{0206} XMPP Over BOSH, see @link gloox::ConnectionBOSH BOSH @endlink
  * @li @xep{0224} @link gloox::Attention Attention @endlink
  * @li @xep{0234} @link gloox::Jingle::FileTransfer Jingle File Transfer @endlink
  * @li @xep{0256} @link gloox::LastActivity::Query Last Activity in Presence @endlink
  * @li @xep{0280} @link gloox::Carbons Message Carbons @endlink
  * @li @xep{0297} @link gloox::Forward Stanza Forwarding @endlink
+ * @li @xep{0352} @link gloox::Client::hasClientStateIndication() Client State Indication @endlink
  *
  * Further extensions can easily be implemented using
  * @link gloox::StanzaExtension StanzaExtensions @endlink.
@@ -603,10 +604,13 @@ namespace gloox
   /** Message Carbons namespace (@xep{0280}) */
   GLOOX_API extern const std::string XMLNS_MESSAGE_CARBONS;
 
+  /** Client State Indication namespace (@xep{0352}) */
+  GLOOX_API extern const std::string XMLNS_CLIENT_STATE_INDICATION;
+
   /** Use of Cryptographic Hash Functions in XMPP namespace (@xep{0300}) */
   GLOOX_API extern const std::string XMLNS_HASHES;
 
-  /** IO Data (@xep 0244) */
+  /** IO Data (@xep{0244}) */
   GLOOX_API extern const std::string XMLNS_IODATA;
 
   /** Supported stream version (major). */
@@ -728,19 +732,20 @@ namespace gloox
    */
   enum StreamFeature
   {
-    StreamFeatureBind             =    1, /**< The server supports resource binding. */
-    StreamFeatureUnbind           =    2, /**< The server supports binding multiple resources. */
-    StreamFeatureSession          =    4, /**< The server supports sessions. */
-    StreamFeatureStartTls         =    8, /**< The server supports &lt;starttls&gt;. */
-    StreamFeatureIqRegister       =   16, /**< The server supports @xep{0077} (In-Band
-                                           * Registration). */
-    StreamFeatureIqAuth           =   32, /**< The server supports @xep{0078} (Non-SASL
-                                           * Authentication). */
-    StreamFeatureCompressZlib     =   64, /**< The server supports @xep{0138} (Stream
-                                           * Compression) (Zlib). */
-    StreamFeatureCompressDclz     =  128, /**< The server supports @xep{0138} (Stream
-                                           * Compression) (LZW/DCLZ). */
-    StreamFeatureStreamManagement =  256  /**< The server supports @xep{0198} (Stream Management). */
+    StreamFeatureBind                  =    1, /**< The server supports resource binding. */
+    StreamFeatureUnbind                =    2, /**< The server supports binding multiple resources. */
+    StreamFeatureSession               =    4, /**< The server supports sessions. */
+    StreamFeatureStartTls              =    8, /**< The server supports &lt;starttls&gt;. */
+    StreamFeatureIqRegister            =   16, /**< The server supports @xep{0077} (In-Band
+                                                * Registration). */
+    StreamFeatureIqAuth                =   32, /**< The server supports @xep{0078} (Non-SASL
+                                                * Authentication). */
+    StreamFeatureCompressZlib          =   64, /**< The server supports @xep{0138} (Stream
+                                                * Compression) (Zlib). */
+    StreamFeatureCompressDclz          =  128, /**< The server supports @xep{0138} (Stream
+                                                * Compression) (LZW/DCLZ). */
+    StreamFeatureStreamManagement      =  256, /**< The server supports @xep{0198} (Stream Management). */
+    StreamFeatureClientStateIndication =  512  /**< The server supports @xep{0352} (Client State Indication). */
     // SaslMechanism below must be adjusted accordingly.
   };
 
@@ -751,8 +756,8 @@ namespace gloox
   enum SaslMechanism
   {
     SaslMechNone          =      0, /**< Invalid SASL Mechanism. */
-    SaslMechScramSha1     =   2048, /**< SASL SCRAM-SHA-1-PLUS accroding to RFC 5801 */
-    SaslMechScramSha1Plus =   1024, /**< SASL SCRAM-SHA-1 accroding to RFC 5801 */
+    SaslMechScramSha1     =   1024, /**< SASL SCRAM-SHA-1 accroding to RFC 5801 */
+    SaslMechScramSha1Plus =   2048, /**< SASL SCRAM-SHA-1-PLUS accroding to RFC 5801 */
     SaslMechDigestMd5     =   4096, /**< SASL Digest-MD5 according to RFC 2831. */
     SaslMechPlain         =   8192, /**< SASL PLAIN according to RFC 2595 Section 6. */
     SaslMechAnonymous     =  16384, /**< SASL ANONYMOUS according to draft-ietf-sasl-anon-05.txt/
@@ -764,7 +769,7 @@ namespace gloox
   };
 
   /**
-   * This decribes stream error conditions as defined in RFC 3920 Sec. 4.7.3.
+   * This describes stream error conditions as defined in RFC 3920 Sec. 4.7.3.
    */
   enum StreamError
   {
@@ -988,9 +993,11 @@ namespace gloox
     std::string issuer;             /**< The name of the issuing entity.*/
     std::string server;             /**< The server the certificate has been issued for. */
     int date_from;                  /**< The date from which onwards the certificate is valid
-                                     * (UNIX timestamp; UTC; not set when using OpenSSL). */
+                                     * (UNIX timestamp; UTC; not set when using OpenSSL).
+                                     * @todo Change type to time_t or long? */
     int date_to;                    /**< The date up to which the certificate is valid
-                                     * (UNIX timestamp; UTC; not set when using OpenSSL). */
+                                     * (UNIX timestamp; UTC; not set when using OpenSSL).
+                                     * @todo Change type to time_t or long? */
     std::string protocol;           /**< The encryption protocol used for the connection. */
     std::string cipher;             /**< The cipher used for the connection. */
     std::string mac;                /**< The MAC used for the connection. */

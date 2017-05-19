@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2006-2015 by Jakob Schröter <js@camaya.net>
+  Copyright (c) 2006-2017 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -52,15 +52,16 @@ namespace gloox
       virtual ~InBandBytestream();
 
       /**
-       * Lets you retrieve this bytestream's block-size.
+       * Lets you retrieve this bytestream's block-size. The default is 4096 bytes.
        * @return The bytestream's block-size.
        */
       int blockSize() const { return m_blockSize; }
 
       /**
-       * Sets the stream's block-size. Default: 4096
+       * Sets the stream's block-size. Default: 4096 bytes. Maximum allowed block-size: 65535 bytes
        * @param blockSize The new block size.
-       * @note You should not change the block size once connect() has been called.
+       * @note You should not change the block size once connect() has been called. Though neither
+       * the block-size limit nor changing it mid-stream are enforced by this function.
        */
       void setBlockSize( int blockSize ) { m_blockSize = blockSize; }
 

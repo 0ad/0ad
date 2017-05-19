@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2007-2015 by Jakob Schröter <js@camaya.net>
+  Copyright (c) 2007-2017 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -432,7 +432,7 @@ namespace gloox
 
         /**
          * Accepts an incoming session with the given list of contents.
-         * @param content A list of Content objects that describe the accepted session parameters.
+         * @param plugins A list of Content objects that describe the accepted session parameters.
          * These objects will be owned and deleted by this Session instance.
          * @return @b False if a prerequisite is not met, @b true otherwise.
          */

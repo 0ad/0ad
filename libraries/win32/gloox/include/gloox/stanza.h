@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2005-2015 by Jakob Schröter <js@camaya.net>
+  Copyright (c) 2005-2017 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -159,9 +159,7 @@ namespace gloox
        * Creates a Tag representation of the Stanza. The Tag is completely
        * independent of the Stanza and will not be updated when the Stanza
        * is modified.
-       * @return A pointer to a Tag representation. It is the job of the
-       *
-       * caller to delete the Tag.
+       * @return A pointer to a Tag representation. It is the job of the caller to delete the Tag.
        */
       virtual Tag* tag() const = 0;
 

@@ -360,8 +360,32 @@ function init(attribs)
 	Engine.LobbyClearPresenceUpdates();
 	updatePlayerList();
 	updateSubject(Engine.LobbyGetRoomSubject());
+	updateLobbyColumns();
 
 	Engine.GetGUIObjectByName("chatInput").tooltip = colorizeAutocompleteHotkey();
+}
+
+function updateLobbyColumns()
+{
+	let gameRating = Engine.ConfigDB_GetValue("user", "lobby.columns.gamerating") == "true";
+
+	// Only show the selected columns
+	let gamesBox = Engine.GetGUIObjectByName("gamesBox");
+	gamesBox.hidden_mapType = gameRating;
+	gamesBox.hidden_gameRating = !gameRating;
+
+	// Only show the filters of selected columns
+	let mapTypeFilter = Engine.GetGUIObjectByName("mapTypeFilter");
+	mapTypeFilter.hidden = gameRating;
+	let gameRatingFilter = Engine.GetGUIObjectByName("gameRatingFilter");
+	gameRatingFilter.hidden = !gameRating;
+
+	// Keep filters right above the according column
+	let playersNumberFilter = Engine.GetGUIObjectByName("playersNumberFilter");
+	let size = playersNumberFilter.size;
+	size.rleft = gameRating ? 74: 90;
+	size.rright = gameRating ? 84: 100;
+	playersNumberFilter.size = size;
 }
 
 function returnToMainMenu()
@@ -385,6 +409,20 @@ function initGameFilters()
 	mapTypeFilter.list = [translateWithContext("map", "Any")].concat(g_MapTypes.Title);
 	mapTypeFilter.list_data = [""].concat(g_MapTypes.Name);
 
+	let gameRatingOptions = ["<1000", "<1100","<1200",">1200",">1300",">1400",">1500"].reverse();
+	gameRatingOptions = prepareForDropdown(gameRatingOptions.map(r => ({
+		"value": r,
+		"label": sprintf(
+			r[0] == ">" ?
+				translateWithContext("gamelist filter", "> %(rating)s") :
+				translateWithContext("gamelist filter", "< %(rating)s"),
+			{ "rating": r.substr(1) })
+	})))
+
+	let gameRatingFilter = Engine.GetGUIObjectByName("gameRatingFilter");
+	gameRatingFilter.list = [translateWithContext("map", "Any")].concat(gameRatingOptions.label);
+	gameRatingFilter.list_data = [""].concat(gameRatingOptions.value);
+
 	resetFilters();
 }
 
@@ -393,6 +431,7 @@ function resetFilters()
 	Engine.GetGUIObjectByName("mapSizeFilter").selected = 0;
 	Engine.GetGUIObjectByName("playersNumberFilter").selected = 0;
 	Engine.GetGUIObjectByName("mapTypeFilter").selected = g_MapTypes.Default;
+	Engine.GetGUIObjectByName("gameRatingFilter").selected = 0;
 	Engine.GetGUIObjectByName("showFullFilter").checked = false;
 
 	applyFilters();
@@ -415,6 +454,7 @@ function filterGame(game)
 	let mapSizeFilter = Engine.GetGUIObjectByName("mapSizeFilter");
 	let playersNumberFilter = Engine.GetGUIObjectByName("playersNumberFilter");
 	let mapTypeFilter = Engine.GetGUIObjectByName("mapTypeFilter");
+	let gameRatingFilter = Engine.GetGUIObjectByName("gameRatingFilter");
 	let showFullFilter = Engine.GetGUIObjectByName("showFullFilter");
 
 	// We assume index 0 means display all for any given filter.
@@ -432,6 +472,14 @@ function filterGame(game)
 
 	if (!showFullFilter.checked && game.maxnbp <= game.nbp)
 		return true;
+
+	if (gameRatingFilter.selected > 0)
+	{
+		let selected = gameRatingFilter.list_data[gameRatingFilter.selected];
+		if (selected.startsWith(">") && +selected.substr(1) >= game.gameRating ||
+		    selected.startsWith("<") && +selected.substr(1) <= game.gameRating)
+			return true;
+	}
 
 	return false;
 }
@@ -630,7 +678,7 @@ function selectGameFromPlayername(playerName)
 	for (let i = 0; i < g_GameList.length; ++i)
 		for (let player of stringifiedTeamListToPlayerData(g_GameList[i].players))
 		{
-			let nick = removeRatingFromNick(player.Name);
+			let [nick, rating] = splitRatingFromNick(player.Name);
 			if (playerName != nick)
 				continue;
 
@@ -810,15 +858,28 @@ function updateGameList()
 	}
 
 	g_GameList = Engine.GetGameList().map(game => {
+
 		game.hasBuddies = 0;
+
+		// Compute average rating of participating players
+		let playerRatings = [];
+
 		for (let player of stringifiedTeamListToPlayerData(game.players))
 		{
-			let nick = removeRatingFromNick(player.Name);
+			let [nick, rating] = splitRatingFromNick(player.Name);
+
+			if (player.Team != "observer")
+				playerRatings.push(rating);
 
 			// Sort games with playing buddies above games with spectating buddies
 			if (game.hasBuddies < 2 && g_Buddies.indexOf(nick) != -1)
 				game.hasBuddies = player.Team == "observer" ? 1 : 2;
 		}
+			game.gameRating =
+				playerRatings.length ?
+					Math.round(playerRatings.reduce((sum, current) => sum + current) / playerRatings.length) :
+					g_DefaultLobbyRating;
+
 		return game;
 	}).filter(game => !filterGame(game)).sort((a, b) => {
 		let sortA, sortB;
@@ -828,6 +889,7 @@ function updateGameList()
 			sortA = g_GameStatusOrder.indexOf(a.state) + a.name.toLowerCase();
 			sortB = g_GameStatusOrder.indexOf(b.state) + b.name.toLowerCase();
 			break;
+		case 'gameRating':
 		case 'mapSize':
 		case 'mapType':
 			sortA = a[sortBy];
@@ -857,6 +919,7 @@ function updateGameList()
 	let list_mapSize = [];
 	let list_mapType = [];
 	let list_nPlayers = [];
+	let list_gameRating = [];
 	let list = [];
 	let list_data = [];
 	let selectedGameIndex = -1;
@@ -876,6 +939,7 @@ function updateGameList()
 		list_mapSize.push(translateMapSize(game.mapSize));
 		list_mapType.push(g_MapTypes.Title[mapTypeIdx] || "");
 		list_nPlayers.push(game.nbp + "/" + game.maxnbp);
+		list_gameRating.push(game.gameRating);
 		list.push(gameName);
 		list_data.push(i);
 	}
@@ -886,6 +950,8 @@ function updateGameList()
 	gamesBox.list_mapSize = list_mapSize;
 	gamesBox.list_mapType = list_mapType;
 	gamesBox.list_nPlayers = list_nPlayers;
+	gamesBox.list_gameRating = list_gameRating;
+
 	// Change these last, otherwise crash
 	gamesBox.list = list;
 	gamesBox.list_data = list_data;

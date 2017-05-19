@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2015 by Jakob Schröter <js@camaya.net>
+ * Copyright (c) 2009-2017 by Jakob Schröter <js@camaya.net>
  * This file is part of the gloox library. http://camaya.net/gloox
  *
  * This software is distributed under a license. The full license

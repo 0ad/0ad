@@ -204,7 +204,7 @@
 				<action on="SelectionColumnChange">applyFilters();</action>
 				<action on="mouseleftdoubleclickitem">joinButton();</action>
 				<column id="buddy" width="12"/>
-				<column id="name" color="0 60 0" width="27%-12">
+				<column id="name" color="0 60 0" width="33%-12">
 					<translatableAttribute id="heading">Name</translatableAttribute>
 				</column>
 				<column id="mapName" color="128 128 128" width="25%">
@@ -216,16 +216,20 @@
 				<column id="mapType" color="0 128 128" width="16%">
 					<translatableAttribute id="heading" context="map">Type</translatableAttribute>
 				</column>
-				<column id="nPlayers" color="0 128 128" width="16%">
+				<column id="nPlayers" color="0 128 128" width="10%">
 					<translatableAttribute id="heading">Players</translatableAttribute>
+				</column>
+				<column id="gameRating" color="0 128 128" width="16%">
+					<translatableAttribute id="heading">Rating</translatableAttribute>
 				</column>
 			</object>
 
 			<object name="filterPanel" size="0 0 100% 24">
+
 				<object name="mapSizeFilter"
 					type="dropdown"
 					style="ModernDropDown"
-					size="52%-5 0 68%-10 100%"
+					size="58%-5 0 74%-10 100%"
 					font="sans-bold-13">
 					<action on="SelectionChange">applyFilters();</action>
 				</object>
@@ -233,7 +237,7 @@
 				<object name="mapTypeFilter"
 					type="dropdown"
 					style="ModernDropDown"
-					size="68%-5 0 84%-10 100%"
+					size="74%-5 0 90%-10 100%"
 					font="sans-bold-13">
 					<action on="SelectionChange">applyFilters();</action>
 				</object>
@@ -241,7 +245,15 @@
 				<object name="playersNumberFilter"
 					type="dropdown"
 					style="ModernDropDown"
-					size="84%-5 0 100% 100%"
+					size="90%-5 0 100%-10 100%"
+					font="sans-bold-13">
+					<action on="SelectionChange">applyFilters();</action>
+				</object>
+
+				<object name="gameRatingFilter"
+					type="dropdown"
+					style="ModernDropDown"
+					size="84%-5 0 100%-10 100%"
 					font="sans-bold-13">
 					<action on="SelectionChange">applyFilters();</action>
 				</object>

@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2007-2015 by Jakob Schröter <js@camaya.net>
+  Copyright (c) 2007-2017 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -58,6 +58,12 @@ namespace gloox
        * @return The object's event or events.
        */
       int event() const { return m_event; }
+
+      /**
+       * Returns the event's ID.
+       * @return The event's ID.
+       */
+      std::string id() const { return m_id; }
 
       // reimplemented from StanzaExtension
       virtual const std::string& filterString() const;

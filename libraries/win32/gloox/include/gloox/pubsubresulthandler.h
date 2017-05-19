@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2007-2015 by Jakob Schröter <js@camaya.net>
+  Copyright (c) 2007-2017 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -207,7 +207,7 @@ namespace gloox
         virtual void handleSubscribers( const std::string& id,
                                         const JID& service,
                                         const std::string& node,
-                                        const SubscriberList* list,
+                                        const SubscriptionList& list,
                                         const Error* error = 0 ) = 0;
 
         /**
@@ -236,7 +236,7 @@ namespace gloox
          * @param list Affiliation list.
          * @param error Affiliation list retrieval Error.
          *
-         * @see Manager::getAffiliations
+         * @see Manager::getAffiliates
          */
         virtual void handleAffiliates( const std::string& id,
                                        const JID& service,

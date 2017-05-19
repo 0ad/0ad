@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2015 by Jakob Schröter <js@camaya.net>
+  Copyright (c) 2015-2017 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -25,7 +25,7 @@ namespace gloox
 {
 
   /**
-   * @brief This is an abstraction of the IO Data specification @xep{0153}.
+   * @brief This is an abstraction of the IO Data specification @xep{0244}.
    *
    * This abstraction can be used to implement IO Data on top of Data Forms.
    *
@@ -94,6 +94,8 @@ namespace gloox
 
       /**
        * Sets the 'input' tag. If an 'input' tag was previosuly set, it is deleted before the new one is set.
+       * Alternatively, if your input consists of more than one element, you can embed these into an
+       * &lt;in&gt; tag with no namespace.
        * @param in The new 'input' tag.
        * @note The @c in tag will be owned by this IOData instance. Clone it if you need it somewhere else.
        */
@@ -108,6 +110,8 @@ namespace gloox
 
       /**
        * Sets the 'output' tag. If an 'output' tag was previosuly set, it is deleted before the new one is set.
+       * Alternatively, if your output consists of more than one element, you can embed these into an
+       * &lt;out&gt; tag with no namespace.
        * @param out The new 'output' tag.
        * @note The @c out tag will be owned by this IOData instance. Clone it if you need it somewhere else.
        */
@@ -122,7 +126,9 @@ namespace gloox
 
       /**
        * Sets the 'error' tag. If an 'error' tag was previosuly set, it is deleted before the new one is set.
-       * @param out The new 'error' tag.
+       * Alternatively, if your error consists of more than one element, you can embed these into an
+       * &lt;error&gt; tag with no namespace.
+       * @param error The new 'error' tag.
        * @note The @c error tag will be owned by this IOData instance. Clone it if you need it somewhere else.
        */
       void setError( Tag* error );

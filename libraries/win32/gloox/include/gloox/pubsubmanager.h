@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2007-2015 by Jakob Schröter <js@camaya.net>
+  Copyright (c) 2007-2017 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -506,9 +506,9 @@ namespace gloox
           GetSubscriptionList,
           GetSubscriberList,
           SetSubscriberList,
-          GetAffiliationList,
-          GetAffiliateList,
-          SetAffiliateList,
+          GetAffiliationList,       /**< Requests the list of one's own affiliations from a service (XEP-0060 section 5.7) */
+          GetAffiliateList,         /**< Requests the list of affiliates for a node (XEP-0060 section 8.9.1) */
+          SetAffiliateList,         /**< Sets/modifies/deletes the list of affiliates for a node (XEP-0060 section 8.9.2 */
           GetNodeConfig,
           SetNodeConfig,
           DefaultNodeConfig,
@@ -586,6 +586,12 @@ namespace gloox
              */
             void setAffiliateList( const AffiliateList& affList )
               { m_affList = affList; }
+            
+            /**
+             * Returns the list of affiliates. Don't delete the pointer, it is still owned by PubSubOwner.
+             * @return The list of affiliates.
+             */
+            const AffiliateList* affiliateList() const { return &m_affList; }
 
             // reimplemented from StanzaExtension
             virtual const std::string& filterString() const;

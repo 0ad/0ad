@@ -269,6 +269,12 @@
 			"label": "Chat Backlog",
 			"tooltip": "Number of backlogged messages to load when joining the lobby",
 			"parameters": { "config": "lobby.history", "min": "0" }
+		},
+		{
+			"type": "boolean",
+			"label": "Game Rating Column",
+			"tooltip": "Show the average rating of the participating players in a column of the gamelist.",
+			"parameters": { "config": "lobby.columns.gamerating" }
 		}
 	],
 	"notificationSetting":

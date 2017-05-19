@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2007-2015 by Jakob Schröter <js@camaya.net>
+  Copyright (c) 2007-2017 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -83,6 +83,12 @@ namespace gloox
       const Tag* appError() const { return m_appError; }
 
       /**
+       * Sets the application-specific error condition of a stanza error.
+       * @param appError The application-specific error element of a stanza error. The Error object will own and delete the Tag.
+       */
+      void setAppError( Tag* appError );
+
+      /**
        * Returns the text of a error stanza for the given language if available.
        * If the requested language is not available, the default text (without
        * a xml:lang attribute) will be returned.
@@ -136,4 +142,4 @@ namespace gloox
 
 }
 
-#endif /* ERROR_H__ */
+#endif // ERROR_H__

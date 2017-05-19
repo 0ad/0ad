@@ -4,31 +4,38 @@
 	[
 		{
 			"Name": "Tiny",
+			"Tooltip": "This map size has barely any room for even the most basic resources.",
 			"Tiles": 128
 		},
 		{
 			"Name": "Small",
+			"Tooltip": "Small maps are suitable for 1v1 matches, as players can reach the enemy quickly while still having few room to expand.",
 			"Tiles": 192
 		},
 		{
 			"Name": "Medium",
+			"Tooltip": "Medium-sized maps provide plenty of space for two players, but even eight players fit.",
 			"Tiles": 256,
 			"Default": true
 		},
 		{
 			"Name": "Normal",
+			"Tooltip": "This is the ideal mapsize for 4 to 8 players, because there is plenty of space to expand while the neighbors are quickly reachable.",
 			"Tiles": 320
 		},
 		{
 			"Name": "Large",
+			"Tooltip": "The large mapsize is recommended when great portions of the map are covered with water or inaccessible mountains.",
 			"Tiles": 384
 		},
 		{
 			"Name": "Very Large",
+			"Tooltip": "Very large maps are not recommended as it takes very long to reach the enemy and the game performance can be reduced.",
 			"Tiles": 448
 		},
 		{
 			"Name": "Giant",
+			"Tooltip": "Very large maps are not recommended as it takes very long to reach the enemy and the game performance can be reduced.",
 			"Tiles": 512
 		}
 	]

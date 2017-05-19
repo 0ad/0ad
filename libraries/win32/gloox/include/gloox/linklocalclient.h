@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2012-2015 by Jakob Schröter <js@camaya.net>
+  Copyright (c) 2012-2017 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -67,7 +67,7 @@ namespace gloox
          * @param service The service to connect to.
          * @param type The service type.
          * @param domain The service's domain.
-         * @param interface The network interface the service was found on. May be 0 to try
+         * @param iface The network interface the service was found on. May be 0 to try
          * to resolve the service on all available interfaces.
          * @return @b True if resolving the service could be started successfully, @b false otherwise.
          * @note Use this function only for @b outgoing connections.

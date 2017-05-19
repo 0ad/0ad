@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2005-2015 by Jakob Schröter <js@camaya.net>
+  Copyright (c) 2005-2017 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -895,6 +895,7 @@ namespace gloox
       bool m_compress;                   /**< Whether stream compression
                                           * is desired at all. */
       bool m_authed;                     /**< Whether authentication has been completed successfully. */
+      bool m_resourceBound;              /**< Whether resource binding has been completed successfully. */
       bool m_block;                      /**< Whether blocking connection is wanted. */
       bool m_sasl;                       /**< Whether SASL authentication is wanted. */
       TLSPolicy m_tls;                   /**< The current TLS policy. */
@@ -1095,7 +1096,7 @@ namespace gloox
       std::string m_ntlmDomain;
       bool m_customConnection;
 
-      int m_uniqueBaseId;
+      std::string m_uniqueBaseId;
       util::AtomicRefCount m_nextId;
 
       int m_smSent;

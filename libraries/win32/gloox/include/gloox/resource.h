@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2004-2015 by Jakob Schröter <js@camaya.net>
+  Copyright (c) 2004-2017 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -86,6 +86,7 @@ namespace gloox
       void setStatus( Presence::PresenceType presence ) { m_presence = presence; }
       void setExtensions( const StanzaExtensionList& exts )
       {
+        util::clearList( m_extensions );
         StanzaExtensionList::const_iterator it = exts.begin();
         for( ; it != exts.end(); ++it )
         {

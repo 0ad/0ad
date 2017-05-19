@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2005-2015 by Jakob Schröter <js@camaya.net>
+  Copyright (c) 2005-2017 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -121,7 +121,7 @@ namespace gloox
            * Returns the attribute's namespace.
            * @return The attribute's namespace.
            */
-          const std::string& xmlns() const;
+          const std::string xmlns() const;
 
           /**
            * Sets the attribute's namespace.
@@ -283,7 +283,7 @@ namespace gloox
        * @return The namespace for this element.
        * @since 1.0
        */
-      const std::string& xmlns() const;
+      const std::string xmlns() const;
 
       /**
        * Returns the namespace for the given prefix, or the default namespace if
@@ -302,7 +302,7 @@ namespace gloox
        * The default namespace if an empty prefix is given.
        * @since 1.0
        */
-      const std::string& xmlns( const std::string& prefix ) const;
+      const std::string xmlns( const std::string& prefix ) const;
 
       /**
        * Use this function to add a new attribute to the tag. The Tag will become the owner of the
