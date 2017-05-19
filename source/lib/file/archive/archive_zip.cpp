@@ -600,7 +600,7 @@ public:
 		const size_t cd_size = m_cdfhPool.da.pos;
 		ECDR* ecdr = (ECDR*)pool_alloc(&m_cdfhPool, sizeof(ECDR));
 		if(!ecdr)
-			throw std::bad_alloc();
+			std::terminate();
 		const off_t cd_ofs = m_fileSize;
 		ecdr->Init(m_numEntries, cd_ofs, cd_size);
 
