@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,6 +20,7 @@
 
 #include "lib/input.h"
 #include "lib/frequency_filter.h"
+#include "ps/KeyName.h"
 
 #include <map>
 
@@ -51,10 +52,9 @@ extern std::map<int32_t, bool> g_keys;
  * Updated by GlobalsInputHandler in response to mouse button up/down events.
  *
  * Be aware that SDL_BUTTON_* constants start at 1. Therefore,
- * g_mouse_buttons[0] is unused. The order of entries is:
- * { unused, left, right, middle, wheel up, wheel down }
+ * g_mouse_buttons[0] is unused. The order of entries is as in KeyName.h for MOUSE_*
  */
-extern bool g_mouse_buttons[6];
+extern bool g_mouse_buttons[MOUSE_LAST - MOUSE_BASE];
 
 extern InReaction GlobalsInputHandler(const SDL_Event_* ev);
 

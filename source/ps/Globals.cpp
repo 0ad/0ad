@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,7 +18,6 @@
 #include "precompiled.h"
 #include "Globals.h"
 
-#include "lib/external_libraries/libsdl.h"
 #include "network/NetClient.h"
 #include "ps/GameSetup/Config.h"
 #include "soundmanager/ISoundManager.h"
@@ -30,9 +29,8 @@ std::map<int32_t, bool> g_keys;
 int g_mouse_x = 50, g_mouse_y = 50;
 bool g_mouse_active = true;
 
-// unused, left, right, middle, wheel up, wheel down
-// (order is given by SDL_BUTTON_* constants).
-bool g_mouse_buttons[6] = {0};
+// g_mouse_buttons[0] is unused. The order of entries is as in KeyName.h for MOUSE_*
+bool g_mouse_buttons[MOUSE_LAST - MOUSE_BASE] = {0};
 
 PIFrequencyFilter g_frequencyFilter;
 
