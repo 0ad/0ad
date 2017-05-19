@@ -33,11 +33,11 @@ m.GameTypeManager.prototype.init = function(gameState)
 	{
 		for (let hero of gameState.getOwnEntitiesByClass("Hero", true).values())
 		{
-			let heroStance = hero.hasClass("Soldier") ? "aggressive" : "passive";
-			hero.setStance(heroStance);
+			let defaultStance = hero.hasClass("Soldier") ? "aggressive" : "passive";
+			if (hero.getStance() !== defaultStance)
+				hero.setStance(defaultStance);
 			this.criticalEnts.set(hero.id(), {
 				"garrisonEmergency": false,
-				"stance": heroStance,
 				"healersAssigned": 0,
 				"guardsAssigned": 0, // for non-healer guards
 				"guards": new Map() // ids of ents who are currently guarding this hero
@@ -404,13 +404,19 @@ m.GameTypeManager.prototype.pickCriticalEntRetreatLocation = function(gameState,
 	if (plan === -2 || plan === -3)
 		return;
 
+	if (this.criticalEnts.get(criticalEnt.id()).garrisonEmergency)
+		this.criticalEnts.get(criticalEnt.id()).garrisonEmergency = false;
+
 	// Couldn't find a place to garrison, so the ent will flee from attacks
-	if (!criticalEnt.hasClass("Relic"))
+	if (!criticalEnt.hasClass("Relic") && criticalEnt.getStance() !== "passive")
 		criticalEnt.setStance("passive");
 	let accessIndex = gameState.ai.accessibility.getAccessValue(criticalEnt.position());
-	let basePos = m.getBestBase(gameState, criticalEnt, true);
-	if (basePos && basePos.accessIndex == accessIndex)
-		criticalEnt.move(basePos.anchor.position()[0], basePos.anchor.position()[1]);
+	let bestBase = m.getBestBase(gameState, criticalEnt, true);
+	if (bestBase.accessIndex == accessIndex)
+	{
+		let bestBasePos = bestBase.anchor.position();
+		criticalEnt.move(bestBasePos[0], bestBasePos[1]);
+	}
 };
 
 /**
@@ -519,7 +525,7 @@ m.GameTypeManager.prototype.update = function(gameState, events, queues)
 		{
 			let ent = gameState.getEntityById(id);
 			if (ent && ent.healthLevel() > this.Config.garrisonHealthLevel.high && ent.hasClass("Soldier") &&
-			    data.stance !== "aggressive")
+			    ent.getStance() !== "aggressive")
 				ent.setStance("aggressive");
 
 			if (data.healersAssigned < this.healersPerCriticalEnt &&

@@ -590,6 +590,7 @@ m.Entity = m.Class({
 		return this._entity.idle;
 	},
 
+	"getStance": function() { return this._entity.stance !== undefined ? this._entity.stance : undefined; },
 	unitAIState: function() { return this._entity.unitAIState !== undefined ? this._entity.unitAIState : undefined; },
 	unitAIOrderData: function() { return this._entity.unitAIOrderData !== undefined ? this._entity.unitAIOrderData : undefined; },
 
@@ -785,6 +786,8 @@ m.Entity = m.Class({
 
 	// violent, aggressive, defensive, passive, standground
 	setStance: function(stance, queued = false) {
+		if (this.getStance() === undefined)
+			return undefined;
 		Engine.PostCommand(PlayerID,{"type": "stance", "entities": [this.id()], "name" : stance, "queued": queued });
 		return this;
 	},
