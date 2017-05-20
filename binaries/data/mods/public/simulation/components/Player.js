@@ -1,6 +1,16 @@
 function Player() {}
 
 Player.prototype.Schema =
+	"<element name='BarterMultiplier' a:help='Multipliers for barter prices.'>" +
+		"<interleave>" +
+			"<element name='Buy' a:help='Multipliers for the buy prices.'>" +
+				Resources.BuildSchema("positiveDecimal") +
+			"</element>" +
+			"<element name='Sell' a:help='Multipliers for the sell prices.'>" +
+				Resources.BuildSchema("positiveDecimal") +
+			"</element>" +
+		"</interleave>" +
+	"</element>" +
 	"<element name='SharedLosTech' a:help='Allies will share los when this technology is researched. Leave empty to never share LOS.'>" +
 		"<text/>" +
 	"</element>" +
@@ -47,6 +57,7 @@ Player.prototype.Init = function()
 	this.disabledTechnologies = {};
 	this.startingTechnologies = [];
 	this.spyCostMultiplier = +this.template.SpyCostMultiplier;
+	this.barterMultiplier = {"buy": this.template.BarterMultiplier.Buy, "sell": this.template.BarterMultiplier.Sell };
 
 	// Initial resources and trading goods probability in steps of 5
 	let resCodes = Resources.GetCodes();
@@ -162,6 +173,11 @@ Player.prototype.SetMaxPopulation = function(max)
 Player.prototype.GetMaxPopulation = function()
 {
 	return Math.round(ApplyValueModificationsToPlayer("Player/MaxPopulation", this.maxPop, this.entity, this.playerID));
+};
+
+Player.prototype.GetBarterMultiplier = function()
+{
+	return this.barterMultiplier;
 };
 
 Player.prototype.SetGatherRateMultiplier = function(value)
@@ -740,9 +756,18 @@ Player.prototype.OnDiplomacyChanged = function()
 
 Player.prototype.OnValueModification = function(msg)
 {
-	if (msg.component != "Player" || msg.valueNames.indexOf("Player/SpyCostMultiplier") === -1)
+	if (msg.component != "Player")
 		return;
-	this.spyCostMultiplier = ApplyValueModificationsToPlayer("Player/SpyCostMultiplier", +this.template.SpyCostMultiplier, this.entity, this.playerID);
+
+	if (msg.valueNames.indexOf("Player/SpyCostMultiplier") != -1)
+		this.spyCostMultiplier = ApplyValueModificationsToPlayer("Player/SpyCostMultiplier", +this.template.SpyCostMultiplier, this.entity, this.playerID);
+
+	if (msg.valueNames.toString().search("Player/BarterMultiplier") != -1)
+		for (let res in this.template.BarterMultiplier.Buy)
+		{
+			this.barterMultiplier.buy[res] = ApplyValueModificationsToEntity("Player/BarterMultiplier/Buy/"+res, +this.template.BarterMultiplier.Buy[res], this.entity);
+			this.barterMultiplier.sell[res] = ApplyValueModificationsToEntity("Player/BarterMultiplier/Sell/"+res, +this.template.BarterMultiplier.Sell[res], this.entity);
+		}
 };
 
 Player.prototype.SetCheatsEnabled = function(flag)

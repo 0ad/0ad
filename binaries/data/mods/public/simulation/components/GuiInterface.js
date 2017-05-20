@@ -124,9 +124,12 @@ GuiInterface.prototype.GetSimulationState = function()
 			"researchedTechs": cmpTechnologyManager ? cmpTechnologyManager.GetResearchedTechs() : null,
 			"classCounts": cmpTechnologyManager ? cmpTechnologyManager.GetClassCounts() : null,
 			"typeCountsByClass": cmpTechnologyManager ? cmpTechnologyManager.GetTypeCountsByClass() : null,
-			"canBarter": Engine.QueryInterface(SYSTEM_ENTITY, IID_Barter).PlayerHasMarket(playerEnt)
+			"canBarter": Engine.QueryInterface(SYSTEM_ENTITY, IID_Barter).PlayerHasMarket(playerEnt),
+			"barterPrices": Engine.QueryInterface(SYSTEM_ENTITY, IID_Barter).GetPrices(playerEnt)
 		});
 	}
+
+
 
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	if (cmpRangeManager)
@@ -152,8 +155,6 @@ GuiInterface.prototype.GetSimulationState = function()
 	let cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
 	ret.gameType = cmpEndGameManager.GetGameType();
 	ret.alliedVictory = cmpEndGameManager.GetAlliedVictory();
-
-	ret.barterPrices = Engine.QueryInterface(SYSTEM_ENTITY, IID_Barter).GetPrices();
 
 	// Add Resource Codes, untranslated names and AI Analysis
 	ret.resources = {

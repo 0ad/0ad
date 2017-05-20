@@ -19,7 +19,6 @@ m.GameState.prototype.init = function(SharedScript, state, player) {
 	this.entities = SharedScript.entities;
 	this.player = player;
 	this.playerData = SharedScript.playersData[this.player];
-	this.barterPrices = SharedScript.barterPrices;
 	this.gameType = SharedScript.gameType;
 	this.alliedVictory = SharedScript.alliedVictory;
 	this.ceasefireActive = SharedScript.ceasefireActive;
@@ -66,7 +65,6 @@ m.GameState.prototype.update = function(SharedScript)
 {
 	this.timeElapsed = SharedScript.timeElapsed;
 	this.playerData = SharedScript.playersData[this.player];
-	this.barterPrices = SharedScript.barterPrices;
 	this.ceasefireActive = SharedScript.ceasefireActive;
 };
 
@@ -122,7 +120,7 @@ m.GameState.prototype.getTimeElapsed = function()
 
 m.GameState.prototype.getBarterPrices = function()
 {
-	return this.barterPrices;
+	return this.playerData.barterPrices;
 };
 
 m.GameState.prototype.getGameType = function()
