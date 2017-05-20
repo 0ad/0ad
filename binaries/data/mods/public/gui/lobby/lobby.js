@@ -432,7 +432,7 @@ function resetFilters()
 	Engine.GetGUIObjectByName("playersNumberFilter").selected = 0;
 	Engine.GetGUIObjectByName("mapTypeFilter").selected = g_MapTypes.Default;
 	Engine.GetGUIObjectByName("gameRatingFilter").selected = 0;
-	Engine.GetGUIObjectByName("showFullFilter").checked = false;
+	Engine.GetGUIObjectByName("filterOpenGames").checked = false;
 
 	applyFilters();
 }
@@ -455,7 +455,7 @@ function filterGame(game)
 	let playersNumberFilter = Engine.GetGUIObjectByName("playersNumberFilter");
 	let mapTypeFilter = Engine.GetGUIObjectByName("mapTypeFilter");
 	let gameRatingFilter = Engine.GetGUIObjectByName("gameRatingFilter");
-	let showFullFilter = Engine.GetGUIObjectByName("showFullFilter");
+	let filterOpenGames = Engine.GetGUIObjectByName("filterOpenGames");
 
 	// We assume index 0 means display all for any given filter.
 	if (mapSizeFilter.selected != 0 &&
@@ -470,7 +470,7 @@ function filterGame(game)
 	    game.mapType != mapTypeFilter.list_data[mapTypeFilter.selected])
 		return true;
 
-	if (!showFullFilter.checked && game.maxnbp <= game.nbp)
+	if (filterOpenGames.checked && (game.nbp >= game.maxnbp || game.state != "init"))
 		return true;
 
 	if (gameRatingFilter.selected > 0)
@@ -657,7 +657,7 @@ function toggleBuddy()
 }
 
 /**
- * Select the game listing the selected player when toggling the full games filter.
+ * Select the game listing the selected player when toggling the open games filter.
  */
 function selectGameFromSelectedPlayername()
 {
