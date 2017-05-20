@@ -8,6 +8,13 @@ Engine.RegisterMessageType("UnitIdleChanged");
 
 /**
  * Message of the form { "to": string }
+ * where "to" value is a UnitAI stance,
+ * sent from UnitAI whenever the unit's stance changes.
+ */
+Engine.RegisterMessageType("UnitStanceChanged");
+
+/**
+ * Message of the form { "to": string }
  * where "to" value is a UnitAI state,
  * sent from UnitAI whenever the unit changes state.
  */

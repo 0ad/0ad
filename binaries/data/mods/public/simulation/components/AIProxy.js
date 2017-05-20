@@ -120,6 +120,13 @@ AIProxy.prototype.OnUnitIdleChanged = function(msg)
 	this.changes.idle = msg.idle;
 };
 
+AIProxy.prototype.OnUnitStanceChanged = function(msg)
+{
+	if (!this.NotifyChange())
+		return;
+	this.changes.stance = msg.to;
+};
+
 AIProxy.prototype.OnUnitAIStateChanged = function(msg)
 {
 	if (!this.NotifyChange())
@@ -258,6 +265,8 @@ AIProxy.prototype.GetFullRepresentation = function()
 	{
 		// Updated by OnUnitIdleChanged
 		ret.idle = cmpUnitAI.IsIdle();
+		// Updated by OnUnitStanceChanged
+		ret.stance = cmpUnitAI.GetStanceName();
 		// Updated by OnUnitAIStateChanged
 		ret.unitAIState = cmpUnitAI.GetCurrentState();
 		// Updated by OnUnitAIOrderDataChanged

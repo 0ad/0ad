@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -50,6 +50,7 @@ enum {
 	MOUSE_WHEELDOWN = MOUSE_BASE + 5,
 	MOUSE_X1 = MOUSE_BASE + SDL_BUTTON_X1 + 2,
 	MOUSE_X2 = MOUSE_BASE + SDL_BUTTON_X2 + 2,
+	MOUSE_LAST,
 };
 
 #endif	// #ifndef INCLUDED_KEYNAME
