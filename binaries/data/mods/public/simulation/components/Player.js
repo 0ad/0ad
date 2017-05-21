@@ -58,8 +58,8 @@ Player.prototype.Init = function()
 	this.startingTechnologies = [];
 	this.spyCostMultiplier = +this.template.SpyCostMultiplier;
 	this.barterMultiplier = {
-		"buy": this.template.BarterMultiplier.Buy,
-		"sell": this.template.BarterMultiplier.Sell
+		"buy": clone(this.template.BarterMultiplier.Buy),
+		"sell": clone(this.template.BarterMultiplier.Sell)
 	};
 
 	// Initial resources and trading goods probability in steps of 5
