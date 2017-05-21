@@ -76,6 +76,8 @@ static void LoadConfigBindings()
 				// Attempt decode as key name
 				int mapping = FindKeyCode(*it);
 				if (!mapping)
+					mapping = SDL_GetKeyFromName(it->c_str());
+				if (!mapping)
 				{
 					LOGWARNING("Hotkey mapping used invalid key '%s'", hotkey.c_str());
 					continue;
