@@ -773,7 +773,7 @@ function barterUpdateCommon(resourceCode, idx, prefix, player)
 	barterIcon.Buy.sprite = canBuyAny + "stretched:" + grayscale + "session/icons/resources/" + resourceCode + ".png";
 
 	barterAmount.Sell.caption = "-" + amountToSell;
-	let prices = GetSimState().barterPrices;
+	let prices = GetSimState().players[player].barterPrices;
 	barterAmount.Buy.caption = "+" + Math.round(prices.sell[g_BarterSell] / prices.buy[resourceCode] * amountToSell);
 
 	barterButton.Buy.onPress = function() {

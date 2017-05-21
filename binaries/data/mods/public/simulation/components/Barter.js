@@ -34,14 +34,16 @@ Barter.prototype.Init = function()
 	this.restoreTimer = undefined;
 };
 
-Barter.prototype.GetPrices = function()
+Barter.prototype.GetPrices = function(playerEntity)
 {
 	var prices = { "buy": {}, "sell": {} };
+	let cmpPlayer = Engine.QueryInterface(playerEntity, IID_Player);
+	let multiplier = cmpPlayer.GetBarterMultiplier();
 	for (let resource of Resources.GetCodes())
 	{
 		let truePrice = Resources.GetResource(resource).truePrice;
-		prices.buy[resource] = truePrice * (100 + this.CONSTANT_DIFFERENCE + this.priceDifferences[resource]) / 100;
-		prices.sell[resource] = truePrice * (100 - this.CONSTANT_DIFFERENCE + this.priceDifferences[resource]) / 100;
+		prices.buy[resource] = truePrice * (100 + this.CONSTANT_DIFFERENCE + this.priceDifferences[resource]) * multiplier.buy[resource] / 100;
+		prices.sell[resource] = truePrice * (100 - this.CONSTANT_DIFFERENCE + this.priceDifferences[resource]) * multiplier.sell[resource] / 100;
 	}
 	return prices;
 };
@@ -87,7 +89,7 @@ Barter.prototype.ExchangeResources = function(playerEntity, resourceToSell, reso
 	}
 
 	var cmpPlayer = Engine.QueryInterface(playerEntity, IID_Player);
-	var prices = this.GetPrices();
+	var prices = this.GetPrices(playerEntity);
 	var amountsToSubtract = {};
 	amountsToSubtract[resourceToSell] = amount;
 	if (cmpPlayer.TrySubtractResources(amountsToSubtract))
@@ -116,8 +118,7 @@ Barter.prototype.ExchangeResources = function(playerEntity, resourceToSell, reso
 		}
 
 		// Increase price difference for both exchange resources.
-		// Overal price difference (constant + dynamic) can't exceed +-99%
-		// so both buy/sell prices limited to [1%; 199%] interval.
+		// Overal price difference (dynamic +- constant) can't exceed +-99%.
 		this.priceDifferences[resourceToSell] -= this.DIFFERENCE_PER_DEAL * numberOfDeals;
 		this.priceDifferences[resourceToSell] = Math.min(99 - this.CONSTANT_DIFFERENCE, Math.max(this.CONSTANT_DIFFERENCE - 99, this.priceDifferences[resourceToSell]));
 		this.priceDifferences[resourceToBuy] += this.DIFFERENCE_PER_DEAL * numberOfDeals;

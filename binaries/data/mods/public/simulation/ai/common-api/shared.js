@@ -142,7 +142,6 @@ m.SharedScript.prototype.init = function(state, deserialization)
 	this.circularMap = state.circularMap;
 	this.mapSize = state.mapSize;
 	this.gameType = state.gameType;
-	this.barterPrices = state.barterPrices;
 	this.alliedVictory = state.alliedVictory;
 	this.ceasefireActive = state.ceasefireActive;
 

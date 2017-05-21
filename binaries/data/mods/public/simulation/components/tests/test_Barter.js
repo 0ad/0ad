@@ -20,6 +20,18 @@ const playerEnt = 11;
 let timerActivated = false;
 let bought = 0;
 let sold = 0;
+let multiplier = {
+	"buy": {
+		"wood": 1.0,
+		"stone": 1.0,
+		"metal": 1.0
+	},
+	"sell": {
+		"wood": 1.0,
+		"stone": 1.0,
+		"metal": 1.0
+	}
+};
 
 AddMock(SYSTEM_ENTITY, IID_Timer, {
 	"CancelTimer": id => { timerActivated = false; },
@@ -46,7 +58,8 @@ AddMock(playerEnt, IID_Player, {
 	"AddResource": (type, amount) => {
 		bought = amount;
 		return true;
-	}
+	},
+	"GetBarterMultiplier": () => (multiplier)
 });
 
 AddMock(SYSTEM_ENTITY, IID_RangeManager, {
@@ -61,16 +74,29 @@ AddMock(60, IID_Foundation, {});
 
 // GetPrices
 cmpBarter.priceDifferences = { "wood": 8, "stone": 0, "metal": 0 };
-TS_ASSERT_UNEVAL_EQUALS(cmpBarter.GetPrices().buy, {
+TS_ASSERT_UNEVAL_EQUALS(cmpBarter.GetPrices(playerEnt).buy, {
 	"wood": truePrice * (100 + 8 + cmpBarter.CONSTANT_DIFFERENCE) / 100,
 	"stone": truePrice * (100 + cmpBarter.CONSTANT_DIFFERENCE) / 100,
 	"metal": truePrice * (100 + cmpBarter.CONSTANT_DIFFERENCE) / 100
 });
-TS_ASSERT_UNEVAL_EQUALS(cmpBarter.GetPrices().sell, {
+TS_ASSERT_UNEVAL_EQUALS(cmpBarter.GetPrices(playerEnt).sell, {
 	"wood": truePrice * (100 + 8 - cmpBarter.CONSTANT_DIFFERENCE) / 100,
 	"stone": truePrice * (100 - cmpBarter.CONSTANT_DIFFERENCE) / 100,
 	"metal": truePrice * (100 - cmpBarter.CONSTANT_DIFFERENCE) / 100
 });
+
+multiplier.buy.stone = 2.0;
+TS_ASSERT_UNEVAL_EQUALS(cmpBarter.GetPrices(playerEnt).buy, {
+	"wood": truePrice * (100 + 8 + cmpBarter.CONSTANT_DIFFERENCE) / 100,
+	"stone": truePrice * (100 + cmpBarter.CONSTANT_DIFFERENCE) * 2.0 / 100,
+	"metal": truePrice * (100 + cmpBarter.CONSTANT_DIFFERENCE) / 100
+});
+TS_ASSERT_UNEVAL_EQUALS(cmpBarter.GetPrices(playerEnt).sell, {
+	"wood": truePrice * (100 + 8 - cmpBarter.CONSTANT_DIFFERENCE) / 100,
+	"stone": truePrice * (100 - cmpBarter.CONSTANT_DIFFERENCE) / 100,
+	"metal": truePrice * (100 - cmpBarter.CONSTANT_DIFFERENCE) / 100
+});
+multiplier.buy.stone = 1.0;
 
 // PlayerHasMarket
 TS_ASSERT(!cmpBarter.PlayerHasMarket(11));
@@ -119,7 +145,8 @@ timerActivated = false;
 AddMock(playerEnt, IID_Player, {
 	"GetPlayerID": () => 1,
 	"TrySubtractResources": () => false,
-	"AddResource": () => {}
+	"AddResource": () => {},
+	"GetBarterMultiplier": () => (multiplier)
 });
 cmpBarter.ExchangeResources(11, "wood", "stone", 100);
 

@@ -34,6 +34,7 @@
 		z="50"
 		style="ModernDropDown"
 		tooltip_style="sessionToolTipBold"
+		dropdown_size="500"
 	>
 		<translatableAttribute id="tooltip">Choose player to view</translatableAttribute>
 		<action on="SelectionChange">selectViewPlayer(this.selected - 1);</action>

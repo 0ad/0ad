@@ -299,6 +299,10 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			classCounts: {},
 			typeCountsByClass: {},
 			canBarter: false,
+			barterPrices: {
+				"buy": { "food": 150 },
+				"sell": { "food": 25 }
+			},
 			statistics: {
 				resourcesGathered: {
 					food: 100,
@@ -344,6 +348,10 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			classCounts: {},
 			typeCountsByClass: {},
 			canBarter: false,
+			barterPrices: {
+				"buy": { "food": 150 },
+				"sell": { "food": 25 }
+			},
 			statistics: {
 				resourcesGathered: {
 					food: 100,
@@ -360,10 +368,6 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 	timeElapsed: 0,
 	gameType: "conquest",
 	alliedVictory: false,
-	"barterPrices": {
-		"buy": { "food": 150 },
-		"sell": { "food": 25 }
-	},
 	"resources": {
 		"codes": ["food", "metal", "stone", "wood"],
 		"names": {
@@ -417,6 +421,10 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 			"classCounts": {},
 			"typeCountsByClass": {},
 			"canBarter": false,
+			"barterPrices": {
+				"buy": { "food": 150 },
+				"sell": { "food": 25 }
+			},
 			"statistics": {
 				"resourcesGathered": {
 					"food": 100,
@@ -485,6 +493,10 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 			"classCounts": {},
 			"typeCountsByClass": {},
 			"canBarter": false,
+			"barterPrices": {
+				"buy": { "food": 150 },
+				"sell": { "food": 25 }
+			},
 			"statistics": {
 				"resourcesGathered": {
 					"food": 100,
@@ -524,10 +536,6 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 	"timeElapsed": 0,
 	"gameType": "conquest",
 	"alliedVictory": false,
-	"barterPrices": {
-		"buy": { "food": 150 },
-		"sell": { "food": 25 }
-	},
 	"resources": {
 		"codes": ["food", "metal", "stone", "wood"],
 		"names": {

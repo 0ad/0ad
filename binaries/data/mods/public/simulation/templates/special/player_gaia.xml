@@ -4,5 +4,19 @@
     <SharedLosTech/>
     <SharedDropsitesTech/>
     <SpyCostMultiplier>1.0</SpyCostMultiplier>
+    <BarterMultiplier>
+      <Buy>
+        <food>1.0</food>
+        <wood>1.0</wood>
+        <stone>1.0</stone>
+        <metal>1.0</metal>
+      </Buy>
+      <Sell>
+        <food>1.0</food>
+        <wood>1.0</wood>
+        <stone>1.0</stone>
+        <metal>1.0</metal>
+      </Sell>
+    </BarterMultiplier>
   </Player>
 </Entity>
