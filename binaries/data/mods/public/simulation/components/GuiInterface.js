@@ -129,8 +129,6 @@ GuiInterface.prototype.GetSimulationState = function()
 		});
 	}
 
-
-
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	if (cmpRangeManager)
 		ret.circularMap = cmpRangeManager.GetLosCircular();

@@ -765,7 +765,7 @@ Player.prototype.OnValueModification = function(msg)
 	if (msg.valueNames.indexOf("Player/SpyCostMultiplier") != -1)
 		this.spyCostMultiplier = ApplyValueModificationsToPlayer("Player/SpyCostMultiplier", +this.template.SpyCostMultiplier, this.entity, this.playerID);
 
-	if (msg.valueNames.some(mod => mod.startsWith("Player/BarterMultiplier/")) != -1)
+	if (msg.valueNames.some(mod => mod.startsWith("Player/BarterMultiplier/")))
 		for (let res in this.template.BarterMultiplier.Buy)
 		{
 			this.barterMultiplier.buy[res] = ApplyValueModificationsToEntity("Player/BarterMultiplier/Buy/"+res, +this.template.BarterMultiplier.Buy[res], this.entity);
