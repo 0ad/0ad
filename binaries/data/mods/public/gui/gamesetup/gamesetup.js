@@ -1781,6 +1781,7 @@ function launchGame()
 
 function launchTutorial()
 {
+	g_GameAttributes.mapType = "scenario";
 	selectMap("maps/tutorials/starting_economy_walkthrough");
 	launchGame();
 }

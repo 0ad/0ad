@@ -90,18 +90,6 @@ Trigger.prototype.WarningMessage = function(txt)
 	});
 };
 
-Trigger.prototype.OnPlayerCommandTrigger = function() {};
-
-Trigger.prototype.OnResearchQueuedTrigger = function() {};
-
-Trigger.prototype.OnResearchFinishedTrigger = function() {};
-
-Trigger.prototype.OnStructureBuiltTrigger = function() {};
-
-Trigger.prototype.OnTrainingQueuedTrigger = function() {};
-
-Trigger.prototype.OnTrainingFinishedTrigger = function() {};
-
 Trigger.prototype.OnDeserializedTrigger = function()
 {
 	this.index = Math.max(0, this.index - 1);
