@@ -260,6 +260,18 @@ function getGameDescription(extended = false)
 				"label": translate("Relic Count"),
 				"value": g_GameAttributes.settings.RelicCount
 			});
+
+		if (g_VictoryConditions.Name[victoryIdx] == "regicide")
+			if (g_GameAttributes.settings.RegicideGarrison)
+				titles.push({
+					"label": translate("Hero Garrison"),
+					"value": translate("Heroes can be garrisoned.")
+				});
+			else
+				titles.push({
+					"label": translate("Exposed Heroes"),
+					"value": translate("Heroes cannot be garrisoned, and they are vulnerable to raids.")
+				});
 	}
 
 	if (g_GameAttributes.settings.RatingEnabled &&

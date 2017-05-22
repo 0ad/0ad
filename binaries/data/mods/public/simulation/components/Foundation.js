@@ -269,7 +269,7 @@ Foundation.prototype.Build = function(builderEnt, work)
 		return;
 	}
 	var maxHealth = cmpHealth.GetMaxHitpoints();
-	var deltaHP = Math.max(work, Math.min(maxHealth, Math.floor(work * this.GetBuildRate() * this.buildMultiplier)));
+	var deltaHP = Math.max(work, Math.min(maxHealth, work * this.GetBuildRate() * this.buildMultiplier));
 	if (deltaHP > 0)
 		cmpHealth.Increase(deltaHP);
 

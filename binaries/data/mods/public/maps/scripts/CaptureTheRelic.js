@@ -4,44 +4,7 @@ Trigger.prototype.InitCaptureTheRelic = function()
 	let catafalqueTemplates = shuffleArray(cmpTemplateManager.FindAllTemplates(false).filter(
 			name => name.startsWith("other/catafalque/")));
 
-	// Attempt to spawn relics using gaia entities in neutral territory
-	// If there are none, try to spawn using gaia entities in non-neutral territory
-	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	let cmpWaterManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_WaterManager);
-	let cmpTerritoryManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TerritoryManager);
-
-	let potentialGaiaSpawnPoints = [];
-
-	let potentialSpawnPoints = cmpRangeManager.GetEntitiesByPlayer(0).filter(entity => {
-		let cmpPosition = Engine.QueryInterface(entity, IID_Position);
-		if (!cmpPosition || !cmpPosition.IsInWorld())
-			return false;
-
-		let cmpIdentity = Engine.QueryInterface(entity, IID_Identity);
-		if (!cmpIdentity)
-			return false;
-
-		let templateName = cmpTemplateManager.GetCurrentTemplateName(entity);
-		if (!templateName)
-			return false;
-
-		let template = cmpTemplateManager.GetTemplate(templateName);
-		if (!template || template.UnitMotionFlying)
-			return false;
-
-		let pos = cmpPosition.GetPosition();
-		if (pos.y <= cmpWaterManager.GetWaterLevel(pos.x, pos.z))
-			return false;
-
-		if (cmpTerritoryManager.GetOwner(pos.x, pos.z) == 0)
-			potentialGaiaSpawnPoints.push(entity);
-
-		return true;
-	});
-
-	if (potentialGaiaSpawnPoints.length)
-		potentialSpawnPoints = potentialGaiaSpawnPoints;
-
+	let potentialSpawnPoints = TriggerHelper.GetLandSpawnPoints();
 	if (!potentialSpawnPoints.length)
 	{
 		error("No gaia entities found on this map that could be used as spawn points!");

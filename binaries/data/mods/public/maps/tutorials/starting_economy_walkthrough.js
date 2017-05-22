@@ -6,7 +6,7 @@ let tutorialGoals = [
 		"instructions": markForTranslation("To start off, select your building, the Civic Center, by clicking on it. A selection ring in the color of your civilization will be displayed after clicking."),
 	},
 	{
-		"instructions": markForTranslation("Now that the Civic Center is selected, you will notice that a production panel will appear on the lower right of your screen detailing the actions that the buildings support. For the production panel, available actions are not masked in any color, while an icon masked in either grey or red indicates that the action has not been unlocked or you do not have sufficient resources to perform that action, respectively. Additionally, you can hover your mouse over icon to show a tooltip with more details.\nThe top row of buttons contains portraits of units that may be trained at the building while the bottom one or two rows will have researchable technologies. Hover your mouse over the 'II' icon. The tooltip will tell us that advancing to 'Town Phase' requires both more constructed structures as well as more Food and Wood resources."),
+		"instructions": markForTranslation("Now that the Civic Center is selected, you will notice that a production panel will appear on the lower right of your screen detailing the actions that the buildings support. For the production panel, available actions are not masked in any color, while an icon masked in either grey or red indicates that the action has not been unlocked or you do not have sufficient resources to perform that action, respectively. Additionally, you can hover your mouse over any icon to show a tooltip with more details.\nThe top row of buttons contains portraits of units that may be trained at the building while the bottom one or two rows will have researchable technologies. Hover your mouse over the 'II' icon. The tooltip will tell us that advancing to 'Town Phase' requires both more constructed structures as well as more Food and Wood resources."),
 	},
 	{
 		"instructions": markForTranslation("You have two main types of starting units: Female Citizens and Citizen Soldiers. Female Citizens are purely economic units; they have low HP, no armour, and little to no attack. Citizen Soldiers are workers by default, but in times of need, can utilizing a weapon to fight. You have two categories of Citizen Soldiers: Infantry and Cavalry. Female Citizens and Infantry Citizen Soldiers can gather any land resources while Cavalry Citizen Soldiers can only gather meat from hunted animals.\n"),
@@ -49,7 +49,7 @@ let tutorialGoals = [
 			   !msg.cmd.data.command || msg.cmd.data.command != "gather" ||
 			   !msg.cmd.data.resourceType || msg.cmd.data.resourceType.specific != "tree")
 			{
-				this.WarningMessage(markForTranslation("Select the Civic Center, then hover your mouse over the tree and right-click when you see your cursor change into a Wood icon."));
+				this.WarningMessage(markForTranslation("Select the Civic Center, then hover your mouse over a tree and right-click when you see the cursor change into a Wood icon."));
 				return;
 			}
 			this.NextGoal();

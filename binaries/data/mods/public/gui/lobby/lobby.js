@@ -9,16 +9,6 @@ const g_MapSizes = prepareForDropdown(g_Settings && g_Settings.MapSizes);
 const g_MapTypes = prepareForDropdown(g_Settings && g_Settings.MapTypes);
 
 /**
- * Mute clients who exceed the rate of 1 message per second for this time
- */
-const g_SpamBlockTimeframe = 5;
-
-/**
- * Mute spammers for this time.
- */
-const g_SpamBlockDuration = 30;
-
-/**
  * A symbol which is prepended to the username of moderators.
  */
 const g_ModeratorPrefix = "@";
@@ -94,13 +84,6 @@ var g_UserRating = "";
  * All games currently running.
  */
 var g_GameList = {};
-
-/**
- * Remembers how many messages were sent by each user since the last reset.
- *
- * For example { "username": [numMessagesSinceReset, lastReset, timeBlocked] }
- */
-var g_SpamMonitor = {};
 
 /**
  * Used to restore the selection after updating the playerlist.
@@ -417,7 +400,7 @@ function initGameFilters()
 				translateWithContext("gamelist filter", "> %(rating)s") :
 				translateWithContext("gamelist filter", "< %(rating)s"),
 			{ "rating": r.substr(1) })
-	})))
+	})));
 
 	let gameRatingFilter = Engine.GetGUIObjectByName("gameRatingFilter");
 	gameRatingFilter.list = [translateWithContext("map", "Any")].concat(gameRatingOptions.label);
@@ -701,7 +684,7 @@ function onPlayerListSelection()
 {
 	lookupSelectedUserProfile("playersBox");
 
-	let playerList = Engine.GetGUIObjectByName("playersBox")
+	let playerList = Engine.GetGUIObjectByName("playersBox");
 	if (playerList.selected != -1)
 		selectGameFromPlayername(playerList.list[playerList.selected]);
 }
@@ -718,8 +701,8 @@ function setLeaderboardVisibility(visible)
 
 function setUserProfileVisibility(visible)
 {
-    Engine.GetGUIObjectByName("profileFetch").hidden = !visible;
-    Engine.GetGUIObjectByName("fade").hidden = !visible;
+	Engine.GetGUIObjectByName("profileFetch").hidden = !visible;
+	Engine.GetGUIObjectByName("fade").hidden = !visible;
 }
 
 /**
@@ -747,7 +730,7 @@ function lookupSelectedUserProfile(guiObjectName)
 	Engine.SendGetProfile(playerName);
 
 	Engine.GetGUIObjectByName("usernameText").caption = playerName;
-	Engine.GetGUIObjectByName("roleText").caption = g_RoleNames[Engine.LobbyGetPlayerRole(playerName)]
+	Engine.GetGUIObjectByName("roleText").caption = g_RoleNames[Engine.LobbyGetPlayerRole(playerName) || "participant"];
 	Engine.GetGUIObjectByName("rankText").caption = translate("N/A");
 	Engine.GetGUIObjectByName("highestRatingText").caption = translate("N/A");
 	Engine.GetGUIObjectByName("totalGamesText").caption = translate("N/A");
@@ -1091,7 +1074,6 @@ function hostGame()
 function onTick()
 {
 	updateTimers();
-	checkSpamMonitor();
 
 	while (true)
 	{
@@ -1129,7 +1111,7 @@ function submitChatInput()
 	if (!text.length)
 		return;
 
-	if (handleChatCommand(text) && !isSpam(text, g_Username))
+	if (handleChatCommand(text))
 		Engine.LobbySendMessage(text);
 
 	input.caption = "";
@@ -1193,14 +1175,6 @@ function addChatMessage(msg)
 		{
 			msg.text = msg.text.replace(g_Username, colorPlayerName(g_Username));
 			notifyUser(g_Username, msg.text);
-		}
-
-		// Run spam test if it's not a historical message
-		if (!msg.datetime)
-		{
-			updateSpamMonitor(msg.from);
-			if (isSpam(msg.text, msg.from))
-				return;
 		}
 	}
 
@@ -1302,7 +1276,7 @@ function ircFormat(msg)
 		if (msg.private)
 			senderString = sprintf(translateWithContext("lobby private message", "(%(private)s) <%(sender)s>"), {
 				"private": '[color="' + g_PrivateMessageColor + '"]' +
-							translate("Private")  + '[/color]',
+							translate("Private") + '[/color]',
 				"sender": coloredFrom
 			});
 		else
@@ -1353,92 +1327,9 @@ function ircFormat(msg)
  }
 
 /**
- * Update the spam monitor.
- *
- * @param {string} from - User to update.
- */
-function updateSpamMonitor(from)
-{
-	if (g_SpamMonitor[from])
-		++g_SpamMonitor[from].count;
-	else
-		g_SpamMonitor[from] = {
-			"count": 1,
-			"lastSend": Math.floor(Date.now() / 1000),
-			"lastBlock": 0
-		};
-}
-
-/**
- * Check if a message is spam.
- *
- * @param {string} text - Body of message.
- * @param {string} from - Sender of message.
- *
- * @returns {boolean} - True if message should be blocked.
- */
-function isSpam(text, from)
-{
-	// Integer time in seconds.
-	let time = Math.floor(Date.now() / 1000);
-
-	// Initialize if not already in the database.
-	if (!g_SpamMonitor[from])
-		g_SpamMonitor[from] = {
-			"count": 1,
-			"lastSend": time,
-			"lastBlock": 0
-		};
-
-	// Block blank lines.
-	if (!text.trim())
-		return true;
-
-	// Block users who are still within their spam block period.
-	if (g_SpamMonitor[from].lastBlock + g_SpamBlockDuration >= time)
-		return true;
-
-	// Block users who exceed the rate of 1 message per second for
-	// five seconds and are not already blocked.
-	if (g_SpamMonitor[from].count == g_SpamBlockTimeframe + 1)
-	{
-		g_SpamMonitor[from].lastBlock = time;
-
-		if (from == g_Username)
-			addChatMessage({
-				"from": "system",
-				"text": translate("Please do not spam. You have been blocked for thirty seconds.")
-			});
-
-		return true;
-	}
-
-	return false;
-}
-
-/**
- * Reset timer used to measure message send speed.
- * Clear message count every 5 seconds.
- */
-function checkSpamMonitor()
-{
-	let time = Math.floor(Date.now() / 1000);
-
-	for (let i in g_SpamMonitor)
-	{
-		// Reset the spam-status after being silent long enough
-		if (g_SpamMonitor[i].lastSend + g_SpamBlockTimeframe <= time)
-		{
-			g_SpamMonitor[i].count = 0;
-			g_SpamMonitor[i].lastSend = time;
-		}
-	}
-}
-
-/**
- *  Generate a (mostly) unique color for this player based on their name.
- *  @see http://stackoverflow.com/questions/3426404/create-a-hexadecimal-colour-based-on-a-string-with-jquery-javascript
- *  @param {string} playername
+ * Generate a (mostly) unique color for this player based on their name.
+ * @see http://stackoverflow.com/questions/3426404/create-a-hexadecimal-colour-based-on-a-string-with-jquery-javascript
+ * @param {string} playername
  */
 function getPlayerColor(playername)
 {
@@ -1461,8 +1352,8 @@ function getPlayerColor(playername)
 /**
  * Returns the given playername wrapped in an appropriate color-tag.
  *
- *  @param {string} playername
- *  @param {string} rating
+ * @param {string} playername
+ * @param {string} rating
  */
 function colorPlayerName(playername, rating)
 {

@@ -198,7 +198,7 @@ m.GarrisonManager.prototype.allowMelee = function(holder)
 /** This is just a pre-garrison state, while the entity walk to the garrison holder */
 m.GarrisonManager.prototype.garrison = function(gameState, ent, holder, type)
 {
-	if (this.numberOfGarrisonedUnits(holder) >= holder.garrisonMax())
+	if (this.numberOfGarrisonedUnits(holder) >= holder.garrisonMax() || !ent.canGarrison())
 		return;
 
 	this.registerHolder(gameState, holder);

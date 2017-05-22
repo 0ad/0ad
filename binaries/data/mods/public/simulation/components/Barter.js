@@ -118,7 +118,7 @@ Barter.prototype.ExchangeResources = function(playerEntity, resourceToSell, reso
 		}
 
 		// Increase price difference for both exchange resources.
-		// Overal price difference (dynamic +- constant) can't exceed +-99%.
+		// Overall price difference (dynamic +/- constant) can't exceed +-99%.
 		this.priceDifferences[resourceToSell] -= this.DIFFERENCE_PER_DEAL * numberOfDeals;
 		this.priceDifferences[resourceToSell] = Math.min(99 - this.CONSTANT_DIFFERENCE, Math.max(this.CONSTANT_DIFFERENCE - 99, this.priceDifferences[resourceToSell]));
 		this.priceDifferences[resourceToBuy] += this.DIFFERENCE_PER_DEAL * numberOfDeals;

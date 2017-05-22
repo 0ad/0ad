@@ -59,7 +59,7 @@ AddMock(playerEnt, IID_Player, {
 		bought = amount;
 		return true;
 	},
-	"GetBarterMultiplier": () => (multiplier)
+	"GetBarterMultiplier": () => multiplier
 });
 
 AddMock(SYSTEM_ENTITY, IID_RangeManager, {

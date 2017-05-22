@@ -10,6 +10,7 @@ Engine.LoadComponentScript("interfaces/DamageReceiver.js");
 Engine.LoadComponentScript("interfaces/EndGameManager.js");
 Engine.LoadComponentScript("interfaces/EntityLimits.js");
 Engine.LoadComponentScript("interfaces/Foundation.js");
+Engine.LoadComponentScript("interfaces/Garrisonable.js");
 Engine.LoadComponentScript("interfaces/GarrisonHolder.js");
 Engine.LoadComponentScript("interfaces/Gate.js");
 Engine.LoadComponentScript("interfaces/Guard.js");
@@ -607,6 +608,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetEntityState(-1, 10), {
 	template: "example",
 	alertRaiser: null,
 	builder: true,
+	canGarrison: false,
 	identity: {
 		rank: "foo",
 		classes: ["class1", "class2"],

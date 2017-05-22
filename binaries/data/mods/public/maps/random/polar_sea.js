@@ -12,6 +12,7 @@ var tShore = "polar_ice_snow";
 var tWater = "polar_ice_c";
 
 // gaia entities
+var oArcticFox = "gaia/fauna_fox_arctic";
 var oWolf = "trigger/fauna_wolf_snow_attack";
 var oMuskox = "gaia/fauna_muskox";
 var oWalrus = "gaia/fauna_walrus";
@@ -276,11 +277,13 @@ RMS.SetProgress(80);
 
 createFood(
 	[
+		[new SimpleObject(oArcticFox, 1,2, 0,3)],
 		[new SimpleObject(oWolf, 4,6, 0,4)],
 		[new SimpleObject(oWalrus, 2,3, 0,2)],
 		[new SimpleObject(oMuskox, 2,3, 0,2)]
 	],
 	[
+		3 * numPlayers,
 		5 * numPlayers,
 		5 * numPlayers,
 		12 * numPlayers

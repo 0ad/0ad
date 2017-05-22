@@ -214,11 +214,9 @@ switch(x % 2)
  * ICC 11 W4 warnings about non-virtual dtors and suppression of the copy
  * assignment operator.
  */
-#define NONCOPYABLE(className)\
-	public:\
-		className(const className&) = delete;\
-		const className& operator=(const className&) = delete;\
-	private:
+#define NONCOPYABLE(className) \
+	className(const className&) = delete; \
+	const className& operator=(const className&) = delete
 
 #if ICC_VERSION
 # define ASSUME_ALIGNED(ptr, multiple) __assume_aligned(ptr, multiple)

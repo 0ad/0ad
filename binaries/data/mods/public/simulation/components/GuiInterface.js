@@ -129,8 +129,6 @@ GuiInterface.prototype.GetSimulationState = function()
 		});
 	}
 
-
-
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	if (cmpRangeManager)
 		ret.circularMap = cmpRangeManager.GetLosCircular();
@@ -242,6 +240,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 
 		"alertRaiser": null,
 		"builder": null,
+		"canGarrison": null,
 		"identity": null,
 		"fogging": null,
 		"foundation": null,
@@ -375,6 +374,8 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"capacity": cmpGarrisonHolder.GetCapacity(),
 			"garrisonedEntitiesCount": cmpGarrisonHolder.GetGarrisonedEntitiesCount()
 		};
+
+	ret.canGarrison = !!Engine.QueryInterface(ent, IID_Garrisonable);
 
 	let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 	if (cmpUnitAI)
