@@ -400,7 +400,7 @@ function initGameFilters()
 				translateWithContext("gamelist filter", "> %(rating)s") :
 				translateWithContext("gamelist filter", "< %(rating)s"),
 			{ "rating": r.substr(1) })
-	})))
+	})));
 
 	let gameRatingFilter = Engine.GetGUIObjectByName("gameRatingFilter");
 	gameRatingFilter.list = [translateWithContext("map", "Any")].concat(gameRatingOptions.label);
@@ -684,7 +684,7 @@ function onPlayerListSelection()
 {
 	lookupSelectedUserProfile("playersBox");
 
-	let playerList = Engine.GetGUIObjectByName("playersBox")
+	let playerList = Engine.GetGUIObjectByName("playersBox");
 	if (playerList.selected != -1)
 		selectGameFromPlayername(playerList.list[playerList.selected]);
 }
@@ -701,8 +701,8 @@ function setLeaderboardVisibility(visible)
 
 function setUserProfileVisibility(visible)
 {
-    Engine.GetGUIObjectByName("profileFetch").hidden = !visible;
-    Engine.GetGUIObjectByName("fade").hidden = !visible;
+	Engine.GetGUIObjectByName("profileFetch").hidden = !visible;
+	Engine.GetGUIObjectByName("fade").hidden = !visible;
 }
 
 /**
@@ -730,7 +730,7 @@ function lookupSelectedUserProfile(guiObjectName)
 	Engine.SendGetProfile(playerName);
 
 	Engine.GetGUIObjectByName("usernameText").caption = playerName;
-	Engine.GetGUIObjectByName("roleText").caption = g_RoleNames[Engine.LobbyGetPlayerRole(playerName)]
+	Engine.GetGUIObjectByName("roleText").caption = g_RoleNames[Engine.LobbyGetPlayerRole(playerName) || "participant"];
 	Engine.GetGUIObjectByName("rankText").caption = translate("N/A");
 	Engine.GetGUIObjectByName("highestRatingText").caption = translate("N/A");
 	Engine.GetGUIObjectByName("totalGamesText").caption = translate("N/A");
@@ -1276,7 +1276,7 @@ function ircFormat(msg)
 		if (msg.private)
 			senderString = sprintf(translateWithContext("lobby private message", "(%(private)s) <%(sender)s>"), {
 				"private": '[color="' + g_PrivateMessageColor + '"]' +
-							translate("Private")  + '[/color]',
+							translate("Private") + '[/color]',
 				"sender": coloredFrom
 			});
 		else
@@ -1327,9 +1327,9 @@ function ircFormat(msg)
  }
 
 /**
- *  Generate a (mostly) unique color for this player based on their name.
- *  @see http://stackoverflow.com/questions/3426404/create-a-hexadecimal-colour-based-on-a-string-with-jquery-javascript
- *  @param {string} playername
+ * Generate a (mostly) unique color for this player based on their name.
+ * @see http://stackoverflow.com/questions/3426404/create-a-hexadecimal-colour-based-on-a-string-with-jquery-javascript
+ * @param {string} playername
  */
 function getPlayerColor(playername)
 {
@@ -1352,8 +1352,8 @@ function getPlayerColor(playername)
 /**
  * Returns the given playername wrapped in an appropriate color-tag.
  *
- *  @param {string} playername
- *  @param {string} rating
+ * @param {string} playername
+ * @param {string} rating
  */
 function colorPlayerName(playername, rating)
 {
