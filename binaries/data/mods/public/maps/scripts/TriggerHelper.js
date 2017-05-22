@@ -158,4 +158,46 @@ TriggerHelper.EntityHasClass = function(entity, classname)
 	return classes && classes.indexOf(classname) != -1;
 };
 
+/**
+ * Return valid gaia-owned spawn points on land in neutral territory.
+ * If there are none, use those available in player-owned territory.
+ */
+TriggerHelper.GetLandSpawnPoints = function()
+{
+	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+	let cmpWaterManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_WaterManager);
+	let cmpTerritoryManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TerritoryManager);
+	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+
+	let neutralSpawnPoints = [];
+	let nonNeutralSpawnPoints = [];
+
+	for (let ent of cmpRangeManager.GetEntitiesByPlayer(0))
+	{
+		let cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
+		let cmpPosition = Engine.QueryInterface(ent, IID_Position);
+		if (!cmpIdentity || !cmpPosition || !cmpPosition.IsInWorld())
+			continue;
+
+		let templateName = cmpTemplateManager.GetCurrentTemplateName(ent);
+		if (!templateName)
+			continue;
+
+		let template = cmpTemplateManager.GetTemplate(templateName);
+		if (!template || template.UnitMotionFlying)
+			continue;
+
+		let pos = cmpPosition.GetPosition();
+		if (pos.y <= cmpWaterManager.GetWaterLevel(pos.x, pos.z))
+			continue;
+
+		if (cmpTerritoryManager.GetOwner(pos.x, pos.z) == 0)
+			neutralSpawnPoints.push(ent);
+		else
+			nonNeutralSpawnPoints.push(ent);
+	}
+
+	return neutralSpawnPoints.length ? neutralSpawnPoints : nonNeutralSpawnPoints;
+};
+
 Engine.RegisterGlobal("TriggerHelper", TriggerHelper);

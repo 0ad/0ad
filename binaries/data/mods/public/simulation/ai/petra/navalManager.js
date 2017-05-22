@@ -379,6 +379,9 @@ m.NavalManager.prototype.addPlan = function(plan)
  */
 m.NavalManager.prototype.requireTransport = function(gameState, entity, startIndex, endIndex, endPos)
 {
+	if (!entity.canGarrison())
+		return false;
+
 	if (entity.getMetadata(PlayerID, "transport") !== undefined)
 	{
 		if (this.Config.debug > 0)

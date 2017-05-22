@@ -340,6 +340,7 @@ var g_OptionOrderGUI = {
 			"ceasefire",
 		],
 		"Checkbox": [
+			"regicideGarrison",
 			"exploreMap",
 			"revealMap",
 			"disableTreasures",
@@ -680,6 +681,18 @@ var g_PlayerDropdowns = {
  * Contains the logic of all boolean gamesettings.
  */
 var g_Checkboxes = {
+	"regicideGarrison": {
+		"title": () => translate("Hero Garrison"),
+		"tooltip": () => translate("Toggle whether heroes can be garrisoned."),
+		"default": () => false,
+		"defined": () => g_GameAttributes.settings.RegicideGarrison !== undefined,
+		"get": () => g_GameAttributes.settings.RegicideGarrison,
+		"set": checked => {
+			g_GameAttributes.settings.RegicideGarrison = checked;
+		},
+		"hidden": () => g_GameAttributes.settings.GameType != "regicide",
+		"enabled": () => g_GameAttributes.mapType != "scenario",
+	},
 	"revealMap": {
 		"title": () =>
 			// Translation: Make sure to differentiate between the revealed map and explored map options!
@@ -1568,6 +1581,7 @@ function selectMap(name)
 	{
 		delete g_GameAttributes.settings.VictoryDuration;
 		delete g_GameAttributes.settings.LastManStanding;
+		delete g_GameAttributes.settings.RegicideGarrison;
 	}
 
 	if (mapSettings.PlayerData)

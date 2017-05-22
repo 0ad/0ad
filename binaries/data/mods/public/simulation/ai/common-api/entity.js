@@ -769,6 +769,8 @@ m.Entity = m.Class({
 
 	"canGuard": function() { return this.get("UnitAI/CanGuard") === "true"; },
 
+	"canGarrison": function() { return this.get("Garrisonable") !== "false"; },
+
 	move: function(x, z, queued = false) {
 		Engine.PostCommand(PlayerID,{"type": "walk", "entities": [this.id()], "x": x, "z": z, "queued": queued });
 		return this;

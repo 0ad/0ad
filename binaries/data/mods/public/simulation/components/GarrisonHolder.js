@@ -200,7 +200,7 @@ GarrisonHolder.prototype.AllowedToGarrison = function(entity)
 	if (!cmpIdentity)
 		return false;
 	var entityClasses = cmpIdentity.GetClassesList();
-	return MatchesClassList(entityClasses, this.template.List._string);
+	return MatchesClassList(entityClasses, this.template.List._string) && !!Engine.QueryInterface(entity, IID_Garrisonable);
 };
 
 /**
