@@ -802,3 +802,85 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraint,
 		}
 	}
 }
+
+/**
+ * Generates a volcano mountain. Smoke and lava are optional.
+ *
+ * @param {number} fx - Horizontal coordinate of the center.
+ * @param {number} fz - Horizontal coordinate of the center.
+ * @param {number} tileClass - Painted onto every tile that is occupied by the volcano.
+ * @param {string} terrainTexture - The texture painted onto the volcano hill.
+ * @param {array} lavaTextures - Three different textures for the interior, from the outside to the inside.
+ * @param {boolean} smoke - Whether to place smoke particles.
+ * @param {number} elevationType - Elevation painter type, ELEVATION_SET = absolute or ELEVATION_MODIFY = relative.
+ */
+function createVolcano(fx, fz, tileClass, terrainTexture, lavaTextures, smoke, elevationType)
+{
+	log("Creating volcano");
+
+	let ix = Math.round(fractionToTiles(fx));
+	let iz = Math.round(fractionToTiles(fz));
+
+	let baseSize = mapArea / scaleByMapSize(1, 8);
+
+	let coherence = 0.7;
+	let smoothness = 0.05;
+	let failFraction = 100;
+	let steepness = 3;
+
+	let clLava = createTileClass();
+
+	let layers = [
+		{
+			"clumps": 0.067,
+			"elevation": 15,
+			"tileClass": tileClass
+		},
+		{
+			"clumps": 0.05,
+			"elevation": 25,
+			"tileClass": createTileClass()
+		},
+		{
+			"clumps": 0.02,
+			"elevation": 45,
+			"tileClass": createTileClass()
+		},
+		{
+			"clumps": 0.011,
+			"elevation": 62,
+			"tileClass": createTileClass()
+		},
+		{
+			"clumps": 0.003,
+			"elevation": 42,
+			"tileClass": clLava,
+			"painter": lavaTextures && new LayeredPainter([terrainTexture, ...lavaTextures], [1, 1, 1]),
+			"steepness": 1
+		}
+	];
+
+	for (let i = 0; i < layers.length; ++i)
+		createArea(
+			new ClumpPlacer(baseSize * layers[i].clumps, coherence, smoothness, failFraction, ix, iz),
+			[
+				layers[i].painter || new LayeredPainter([terrainTexture, terrainTexture], [3]),
+				new SmoothElevationPainter(elevationType, layers[i].elevation, layers[i].steepness || steepness),
+				paintClass(layers[i].tileClass)
+			],
+			i == 0 ? null : stayClasses(layers[i - 1].tileClass, 1));
+
+	if (smoke)
+	{
+		let num = Math.floor(baseSize * 0.002);
+		createObjectGroup(
+			new SimpleGroup(
+				[new SimpleObject("actor|particle/smoke.xml", num, num, 0, 7)],
+				false,
+				clLava,
+				ix,
+				iz),
+			0,
+		stayClasses(tileClass, 1));
+	}
+}

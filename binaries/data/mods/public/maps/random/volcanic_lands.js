@@ -20,7 +20,6 @@ var oMetalLarge = "gaia/geology_metal_alpine_slabs";
 // decorative props
 var aRockLarge = "actor|geology/stone_granite_med.xml";
 var aRockMedium = "actor|geology/stone_granite_med.xml";
-var aSmoke = "actor|particle/smoke.xml";
 
 var pForestD = [tGrassC + TERRAIN_SEPARATOR + oTree, tGrassC];
 var pForestP = [tGrassB + TERRAIN_SEPARATOR + oTree, tGrassB];
@@ -35,9 +34,6 @@ var mapArea = mapSize*mapSize;
 // create tile classes
 var clPlayer = createTileClass();
 var clHill = createTileClass();
-var clHill2 = createTileClass();
-var clHill3 = createTileClass();
-var clHill4 = createTileClass();
 var clForest = createTileClass();
 var clDirt = createTileClass();
 var clRock = createTileClass();
@@ -134,96 +130,19 @@ for (var i = 0; i < numPlayers; i++)
 			break;
 	}
 }
-
 RMS.SetProgress(15);
 
-log("Creating volcano");
-var fx = fractionToTiles(0.5);
-var fz = fractionToTiles(0.5);
-var ix = round(fx);
-var iz = round(fz);
-var div = scaleByMapSize(1,8);
-var placer = new ClumpPlacer(mapArea * 0.067 / div, 0.7, 0.05, 100, ix, iz);
-var terrainPainter = new LayeredPainter(
-	[tCliff, tCliff],		// terrains
-	[3]								// widths
-);
-var elevationPainter = new SmoothElevationPainter(
-	ELEVATION_SET,			// type
-	15,				// elevation
-	3				// blend radius
-);
-createArea(placer, [terrainPainter, elevationPainter, paintClass(clHill)], null);
-
-var placer = new ClumpPlacer(mapArea * 0.05 / div, 0.7, 0.05, 100, ix, iz);
-var terrainPainter = new LayeredPainter(
-	[tCliff, tCliff],		// terrains
-	[3]								// widths
-);
-var elevationPainter = new SmoothElevationPainter(
-	ELEVATION_SET,			// type
-	25,				// elevation
-	3				// blend radius
-);
-createArea(placer, [terrainPainter, elevationPainter, paintClass(clHill2)], stayClasses(clHill, 1));
-
-var placer = new ClumpPlacer(mapArea * 0.02 / div, 0.7, 0.05, 100, ix, iz);
-var terrainPainter = new LayeredPainter(
-	[tCliff, tCliff],		// terrains
-	[3]								// widths
-);
-var elevationPainter = new SmoothElevationPainter(
-	ELEVATION_SET,			// type
-	45,				// elevation
-	3				// blend radius
-);
-createArea(placer, [terrainPainter, elevationPainter, paintClass(clHill3)], stayClasses(clHill2, 1));
-
-var placer = new ClumpPlacer(mapArea * 0.011 / div, 0.7, 0.05, 100, ix, iz);
-var terrainPainter = new LayeredPainter(
-	[tCliff, tCliff],		// terrains
-	[3]								// widths
-);
-var elevationPainter = new SmoothElevationPainter(
-	ELEVATION_SET,			// type
-	62,				// elevation
-	3				// blend radius
-);
-createArea(placer, [terrainPainter, elevationPainter, paintClass(clHill4)], stayClasses(clHill3, 1));
-
-var placer = new ClumpPlacer(mapArea * 0.003 / div, 0.7, 0.05, 100, ix, iz);
-var terrainPainter = new LayeredPainter(
-	[tCliff, tLava1, tLava2, tLava3],		// terrains
-	[1, 1, 1]								// widths
-);
-var elevationPainter = new SmoothElevationPainter(
-	ELEVATION_SET,			// type
-	42,				// elevation
-	1				// blend radius
-);
-createArea(placer, [terrainPainter, elevationPainter, paintClass(clHill4)], stayClasses(clHill4, 1));
-
-var num = floor(mapArea * 0.03 / 15 / div);
-var tX = round(fx);
-var tZ = round(fz);
-var group = new SimpleGroup(
-	[new SimpleObject(aSmoke, num, num, 0,7)],
-	false, clBaseResource, tX, tZ
-);
-createObjectGroup(group, 0, stayClasses(clHill4,1));
-
+createVolcano(0.5, 0.5, clHill, tCliff, [tLava1, tLava2, tLava3], true, ELEVATION_SET);
 RMS.SetProgress(45);
 
 log("Creating hills...");
-placer = new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1);
-terrainPainter = new LayeredPainter(
-	[tCliff, tGrass],		// terrains
-	[2]								// widths
-);
-elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 18, 2);
 createAreas(
-	placer,
-	[terrainPainter, elevationPainter, paintClass(clHill)],
+	new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1),
+	[
+		new LayeredPainter([tCliff, tGrass], [2]),
+		new SmoothElevationPainter(ELEVATION_SET, 18, 2),
+		paintClass(clHill)
+	],
 	avoidClasses(clPlayer, 12, clHill, 15, clBaseResource, 2),
 	scaleByMapSize(2, 8) * numPlayers
 );
