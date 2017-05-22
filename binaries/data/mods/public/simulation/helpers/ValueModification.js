@@ -3,7 +3,9 @@
 function ApplyValueModificationsToEntity(tech_type, current_value, entity)
 {
 	let value = current_value;
-	let cmpTechnologyManager = QueryOwnerInterface(entity, IID_TechnologyManager);
+	// entity can be an owned entity or a player entity.
+	let cmpTechnologyManager = Engine.QueryInterface(entity, IID_Player) ?
+		Engine.QueryInterface(entity, IID_TechnologyManager) : QueryOwnerInterface(entity, IID_TechnologyManager);
 	if (cmpTechnologyManager)
 		value = cmpTechnologyManager.ApplyModifications(tech_type, current_value, entity);
 
