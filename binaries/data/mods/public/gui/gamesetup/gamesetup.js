@@ -296,6 +296,16 @@ var g_MapData = {};
 var g_LoadingState = 0;
 
 /**
+ * Send the current gamesettings to the lobby bot if the settings didn't change for this number of seconds.
+ */
+var g_GameStanzaTimeout = 2;
+
+/**
+ * Index of the GUI timer.
+ */
+var g_GameStanzaTimer = undefined;
+
+/**
  * Only send a lobby update if something actually changed.
  */
 var g_LastGameStanza;
@@ -1003,6 +1013,7 @@ function initGUIObjects()
 
 	loadPersistMatchSettings();
 	updateGameAttributes();
+	sendRegisterGameStanzaImmediate();
 
 	if (g_IsTutorial)
 	{
@@ -1197,6 +1208,7 @@ function handleGamestartMessage(message)
 	// Immediately inform the lobby server instead of waiting for the load to finish
 	if (g_IsController && Engine.HasXmppClient())
 	{
+		sendRegisterGameStanzaImmediate();
 		let clients = formatClientsForStanza();
 		Engine.SendChangeStateGame(clients.connectedPlayers, clients.list);
 	}
@@ -1238,19 +1250,31 @@ function handleGamesetupMessage(message)
  */
 function handlePlayerAssignmentMessage(message)
 {
+	let playerChange = false;
+
 	for (let guid in message.newAssignments)
 		if (!g_PlayerAssignments[guid])
+		{
 			onClientJoin(guid, message.newAssignments);
+			playerChange = true;
+		}
 
 	for (let guid in g_PlayerAssignments)
 		if (!message.newAssignments[guid])
+		{
 			onClientLeave(guid);
+			playerChange = true;
+		}
 
 	g_PlayerAssignments = message.newAssignments;
 
 	sanitizePlayerData(g_GameAttributes.settings.PlayerData);
 	updateGUIObjects();
-	sendRegisterGameStanza();
+
+	if (playerChange)
+		sendRegisterGameStanzaImmediate();
+	else
+		sendRegisterGameStanza();
 }
 
 function onClientJoin(newGUID, newAssignments)
@@ -2174,12 +2198,18 @@ function formatClientsForStanza()
 }
 
 /**
- * Send the relevant gamesettings to the lobbybot.
+ * Send the relevant gamesettings to the lobbybot immediately.
  */
-function sendRegisterGameStanza()
+function sendRegisterGameStanzaImmediate()
 {
 	if (!g_IsController || !Engine.HasXmppClient())
 		return;
+
+	if (g_GameStanzaTimer != undefined)
+	{
+		clearTimeout(g_GameStanzaTimer);
+		g_GameStanzaTimer = undefined;
+	}
 
 	let clients = formatClientsForStanza();
 
@@ -2202,6 +2232,20 @@ function sendRegisterGameStanza()
 
 	g_LastGameStanza = stanza;
 	Engine.SendRegisterGame(stanza);
+}
+
+/**
+ * Send the relevant gamesettings to the lobbybot in a deferred manner.
+ */
+function sendRegisterGameStanza()
+{
+	if (!g_IsController || !Engine.HasXmppClient())
+		return;
+
+	if (g_GameStanzaTimer != undefined)
+		clearTimeout(g_GameStanzaTimer);
+
+	g_GameStanzaTimer = setTimeout(sendRegisterGameStanzaImmediate, g_GameStanzaTimeout * 1000);
 }
 
 function updateAutocompleteEntries()
