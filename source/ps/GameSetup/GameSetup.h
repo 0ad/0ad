@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -86,6 +86,7 @@ extern void MountMods(const Paths& paths, const std::vector<CStr>& mods);
  */
 extern bool Init(const CmdLineArgs& args, int flags);
 extern void InitGraphics(const CmdLineArgs& args, int flags);
+extern void InitNonVisual(const CmdLineArgs& args);
 extern void Shutdown(int flags);
 extern void CancelLoad(const CStrW& message);
 

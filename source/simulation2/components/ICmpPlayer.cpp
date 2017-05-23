@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -56,6 +56,11 @@ public:
 	virtual bool HasStartingCamera()
 	{
 		return m_Script.Call<bool>("HasStartingCamera");
+	}
+
+	virtual std::string GetState()
+	{
+		return m_Script.Call<std::string>("GetState");
 	}
 };
 

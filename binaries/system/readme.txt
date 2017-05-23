@@ -13,6 +13,9 @@ Autostart:
 -autostart-aiseed=AISEED        sets the seed used for the AI random generator (default 0, use -1 for random)
 -autostart-civ=PLAYER:CIV       sets PLAYER's civilisation to CIV (skirmish and random maps only)
 -autostart-team=PLAYER:TEAM     sets the team for PLAYER (e.g. 2:2).
+-autostart-nonvisual            disable any graphics and sounds
+-autostart-victory=SCRIPTNAME   sets the victory conditions with SCRIPTNAME located in simulation/data/settings/victory_conditions/
+-autostart-victoryduration=NUM  sets the victory duration NUM for specific victory conditions
 Multiplayer:
 -autostart-playername=NAME      sets local player NAME (default 'anonymous')
 -autostart-host                 sets multiplayer host mode

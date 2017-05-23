@@ -113,6 +113,14 @@ public:
 	void SetViewedPlayerID(player_id_t playerID);
 
 	/**
+	 * Check if the game is finished by testing if there's a winner.
+	 * It is used to end a non visual autostarted game.
+	 *
+	 * @return true if there's a winner, false otherwise.
+	 */
+	bool IsGameFinished() const;
+
+	/**
 	 * Retrieving player colors from scripts is slow, so this updates an
 	 * internal cache of all players' colors.
 	 * Call this just before rendering, so it will always have the latest
@@ -130,6 +138,16 @@ public:
 	inline bool IsGameStarted() const
 	{
 		return m_GameStarted;
+	}
+
+	/**
+	 * Get if the graphics is disabled.
+	 *
+	 * @return bool true if the m_GameView is NULL, false otherwise.
+	 */
+	inline bool IsGraphicsDisabled() const
+	{
+		return !m_GameView;
 	}
 
 	/**

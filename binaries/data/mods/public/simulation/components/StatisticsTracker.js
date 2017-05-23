@@ -217,6 +217,23 @@ StatisticsTracker.prototype.GetSequences = function()
 };
 
 /**
+ * Used to print statistics for non-visual autostart games.
+ * @return The player's statistics as a JSON string beautified with some indentations.
+ */
+StatisticsTracker.prototype.GetStatisticsJSON = function()
+{
+	let cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+
+	let playerStatistics = {
+		"playerID": cmpPlayer.GetPlayerID(),
+		"playerState": cmpPlayer.GetState(),
+		"statistics": this.GetStatistics()
+	};
+
+	return JSON.stringify(playerStatistics, null, "\t");
+};
+
+/**
  * Increments counter associated with certain entity/counter and type of given entity.
  * @param cmpIdentity - the entity identity component.
  * @param counter - the name of the counter to increment (e.g. "unitsTrained").
