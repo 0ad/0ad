@@ -15,6 +15,10 @@ m.GameTypeManager = function(Config)
 	this.healersPerCriticalEnt = 2 + Math.round(this.Config.personality.defensive * 2);
 	this.tryCaptureGaiaRelic = false;
 	this.tryCaptureGaiaRelicLapseTime = -1;
+	this.tryCaptureGaiaRelicLocal = false;
+	this.tryCaptureGaiaRelicLocalLapseTime = -1;
+	// Gaia relics which we are targeting currently and have not captured yet
+	this.targetedGaiaRelics = new Set(); 
 };
 
 /**
@@ -236,6 +240,9 @@ m.GameTypeManager.prototype.checkEvents = function(gameState, events)
 			this.removeGuardsFromCriticalEnt(gameState, evt.entity);
 			continue;
 		}
+		if (evt.from === 0 && this.targetedGaiaRelics.has(evt.entity))
+			this.targetedGaiaRelics.delete(evt.entity);
+
 		if (evt.to !== PlayerID)
 			continue;
 
@@ -251,6 +258,8 @@ m.GameTypeManager.prototype.checkEvents = function(gameState, events)
 				if (evt.from === 0)
 					gameState.ai.HQ.attackManager.cancelAttacksAgainstPlayer(gameState, evt.from);
 			}
+			if (ent.hasClass("Relic"))
+				this.targetedGaiaRelics.delete(ent.id());
 		}
 	}
 };
@@ -540,6 +549,25 @@ m.GameTypeManager.prototype.update = function(gameState, events, queues)
 		this.manageCriticalEntGuards(gameState);
 		if (!this.tryCaptureGaiaRelic && gameState.ai.elapsedTime > this.tryCaptureGaiaRelicLapseTime)
 			this.tryCaptureGaiaRelic = true;
+
+		// Look for some relic that may be on our territory at game-start or if our territory boundaries change
+		if (!this.tryCaptureGaiaRelicLocal && gameState.ai.elapsedTime > this.tryCaptureGaiaRelicLocalLapseTime)
+		{
+			let allRelics = gameState.updatingGlobalCollection("allRelics", API3.Filters.byClass("Relic"));
+			for (let relic of allRelics.values())
+			{
+				let relicPosition = relic.position();
+				if (this.targetedGaiaRelics.has(relic.id()) || relic.owner() !== 0 ||
+				    !relicPosition || gameState.ai.HQ.territoryMap.getOwner(relicPosition) !== PlayerID)
+					continue;
+
+				gameState.ai.HQ.attackManager.raidTargetEntity(gameState, relic);
+				this.targetedGaiaRelics.add(relic.id());
+				this.tryCaptureGaiaRelicLocal = false;
+				this.tryCaptureGaiaRelicLocalLapseTime = gameState.ai.elapsedTime + 60 - 30 * (this.Config.difficulty - 3);
+				break;
+			}
+		}
 	}
 };
 
@@ -550,7 +578,10 @@ m.GameTypeManager.prototype.Serialize = function()
 		"guardEnts": this.guardEnts,
 		"healersPerCriticalEnt": this.healersPerCriticalEnt,
 		"tryCaptureGaiaRelic": this.tryCaptureGaiaRelic,
-		"tryCaptureGaiaRelicLapseTime": this.tryCaptureGaiaRelicLapseTime
+		"tryCaptureGaiaRelicLapseTime": this.tryCaptureGaiaRelicLapseTime,
+		"tryCaptureGaiaRelicLocal": this.tryCaptureGaiaRelicLocal,
+		"tryCaptureGaiaRelicLocalLapseTime": this.tryCaptureGaiaRelicLocalLapseTime,
+		"targetedGaiaRelics": this.targetedGaiaRelics
 	};
 };
 
