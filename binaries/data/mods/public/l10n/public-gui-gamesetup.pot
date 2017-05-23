@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2017-05-19 09:03+0200\n"
-"PO-Revision-Date: 2017-05-19 09:03+0200\n"
+"POT-Creation-Date: 2017-05-22 09:02+0200\n"
+"PO-Revision-Date: 2017-05-22 09:02+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -158,272 +158,280 @@ msgctxt "map filter"
 msgid "Every map of the chosen maptype."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:390
+#: gui/gamesetup/gamesetup.js:391
 msgid "Map Type"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:391
+#: gui/gamesetup/gamesetup.js:392
 msgid "Select a map type."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:413
+#: gui/gamesetup/gamesetup.js:414
 msgid "Map Filter"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:414
+#: gui/gamesetup/gamesetup.js:415
 msgid "Select a map filter."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:428
+#: gui/gamesetup/gamesetup.js:429
 msgid "Select Map"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:429
+#: gui/gamesetup/gamesetup.js:430
 msgid "Select a map to play on."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:442
+#: gui/gamesetup/gamesetup.js:443
 msgid "Map Size"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:443
+#: gui/gamesetup/gamesetup.js:444
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:456
+#: gui/gamesetup/gamesetup.js:457
 msgid "Number of Players"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:457
+#: gui/gamesetup/gamesetup.js:458
 msgid "Select number of players."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:476
+#: gui/gamesetup/gamesetup.js:477
 msgid "Population Cap"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:483
+#: gui/gamesetup/gamesetup.js:484
 msgid "Select population limit."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:486
+#: gui/gamesetup/gamesetup.js:487
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach %"
 "(popCap)s population."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:502
+#: gui/gamesetup/gamesetup.js:503
 msgid "Starting Resources"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:505
+#: gui/gamesetup/gamesetup.js:506
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:508
+#: gui/gamesetup/gamesetup.js:509
 msgid "Select the game's starting resources."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:522
+#: gui/gamesetup/gamesetup.js:523
 msgid "Ceasefire"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:523
+#: gui/gamesetup/gamesetup.js:524
 msgid "Set time where no attacks are possible."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:535
+#: gui/gamesetup/gamesetup.js:536
 msgid "Victory Condition"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:536
+#: gui/gamesetup/gamesetup.js:537
 msgid "Select victory condition."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:550
+#: gui/gamesetup/gamesetup.js:551
 msgid "Relic Count"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:551
+#: gui/gamesetup/gamesetup.js:552
 msgid "Total number of relics spawned on the map."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:564
+#: gui/gamesetup/gamesetup.js:565
 msgid "Victory Duration"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:565
+#: gui/gamesetup/gamesetup.js:566
 msgid "Number of minutes until the player has won."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:580
+#: gui/gamesetup/gamesetup.js:581
 msgid "Game Speed"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:581
+#: gui/gamesetup/gamesetup.js:582
 msgid "Select game speed."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:644
+#: gui/gamesetup/gamesetup.js:645
 msgid "Chose the civilization for this player"
 msgstr ""
 
-#. Translation: Make sure to differentiate between the revealed map and explored map options!
+#: gui/gamesetup/gamesetup.js:685
+msgid "Hero Garrison"
+msgstr ""
+
 #: gui/gamesetup/gamesetup.js:686
+msgid "Toggle whether heroes can be garrisoned."
+msgstr ""
+
+#. Translation: Make sure to differentiate between the revealed map and explored map options!
+#: gui/gamesetup/gamesetup.js:699
 msgid "Revealed Map"
 msgstr ""
 
 #. Translation: Make sure to differentiate between the revealed map and explored map options!
-#: gui/gamesetup/gamesetup.js:689
+#: gui/gamesetup/gamesetup.js:702
 msgid "Toggle revealed map (see everything)."
 msgstr ""
 
 #. Translation: Make sure to differentiate between the revealed map and explored map options!
-#: gui/gamesetup/gamesetup.js:704
+#: gui/gamesetup/gamesetup.js:717
 msgid "Explored Map"
 msgstr ""
 
 #. Translation: Make sure to differentiate between the revealed map and explored map options!
-#: gui/gamesetup/gamesetup.js:707
+#: gui/gamesetup/gamesetup.js:720
 msgid "Toggle explored map (see initial map)."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:717
+#: gui/gamesetup/gamesetup.js:730
 msgid "Disable Treasures"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:718
+#: gui/gamesetup/gamesetup.js:731
 msgid "Disable all treasures on the map."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:728
+#: gui/gamesetup/gamesetup.js:741
 msgid "Disable Spies"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:729
+#: gui/gamesetup/gamesetup.js:742
 msgid "Disable spies during the game."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:739
+#: gui/gamesetup/gamesetup.js:752
 msgid "Teams Locked"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:740
+#: gui/gamesetup/gamesetup.js:753
 msgid "Toggle locked teams."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:753
+#: gui/gamesetup/gamesetup.js:766
 msgid "Last Man Standing"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:754
+#: gui/gamesetup/gamesetup.js:767
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies "
 "wins."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:766
+#: gui/gamesetup/gamesetup.js:779
 msgid "Cheats"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:767
+#: gui/gamesetup/gamesetup.js:780
 msgid "Toggle the usability of cheats."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:779
+#: gui/gamesetup/gamesetup.js:792
 msgid "Rated Game"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:780
+#: gui/gamesetup/gamesetup.js:793
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:805
+#: gui/gamesetup/gamesetup.js:818
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames or settings."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:813
+#: gui/gamesetup/gamesetup.js:826
 msgid "Return to the lobby."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:814
+#: gui/gamesetup/gamesetup.js:827
 msgid "Return to the main menu."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:818
+#: gui/gamesetup/gamesetup.js:831
 msgid "Start game!"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:824
+#: gui/gamesetup/gamesetup.js:837
 msgid "Start a new game with the current settings."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:825
+#: gui/gamesetup/gamesetup.js:838
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1344
+#: gui/gamesetup/gamesetup.js:1357
 msgctxt "map selection"
 msgid "Random"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1620 gui/gamesetup/gamesetup.js:1659
+#: gui/gamesetup/gamesetup.js:1634 gui/gamesetup/gamesetup.js:1673
 #, javascript-format
 msgid "%(option)s:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1625
+#: gui/gamesetup/gamesetup.js:1639
 msgctxt "option value"
 msgid "Unknown"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1652
+#: gui/gamesetup/gamesetup.js:1666
 msgid "Yes"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1652
+#: gui/gamesetup/gamesetup.js:1666
 msgid "No"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1739
+#: gui/gamesetup/gamesetup.js:1753
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1933
+#: gui/gamesetup/gamesetup.js:1948
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1941
+#: gui/gamesetup/gamesetup.js:1956
 msgid "Unassigned"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:2014
+#: gui/gamesetup/gamesetup.js:2029
 #, javascript-format
 msgid "== %(message)s"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:2021
+#: gui/gamesetup/gamesetup.js:2036
 msgid "Unknown Player"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:2060
+#: gui/gamesetup/gamesetup.js:2075
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:2061
+#: gui/gamesetup/gamesetup.js:2076
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:2062
+#: gui/gamesetup/gamesetup.js:2077
 msgid "HH:mm"
 msgstr ""
 

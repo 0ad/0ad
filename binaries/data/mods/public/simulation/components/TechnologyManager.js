@@ -315,6 +315,7 @@ TechnologyManager.prototype.ResearchTechnology = function(tech)
 	var playerID = cmpPlayer.GetPlayerID();
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var ents = cmpRangeManager.GetEntitiesByPlayer(playerID);
+	ents.push(this.entity);
 
 	// Change the EntityLimit if any
 	var cmpPlayerEntityLimits = QueryPlayerIDInterface(playerID, IID_EntityLimits);

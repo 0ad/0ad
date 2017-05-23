@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2017-05-19 09:04+0200\n"
-"PO-Revision-Date: 2017-05-19 09:04+0200\n"
+"POT-Creation-Date: 2017-05-22 09:02+0200\n"
+"PO-Revision-Date: 2017-05-22 09:02+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -148,7 +148,7 @@ msgstr ""
 msgid "A randomly selected map."
 msgstr ""
 
-#: gui/common/gamedescription.js:55 gui/common/gamedescription.js:336
+#: gui/common/gamedescription.js:55 gui/common/gamedescription.js:348
 msgid "Sorry, no description available."
 msgstr ""
 
@@ -269,115 +269,131 @@ msgstr[1] ""
 msgid "Relic Count"
 msgstr ""
 
+#: gui/common/gamedescription.js:267
+msgid "Hero Garrison"
+msgstr ""
+
 #: gui/common/gamedescription.js:268
+msgid "Heroes can be garrisoned."
+msgstr ""
+
+#: gui/common/gamedescription.js:272
+msgid "Exposed Heroes"
+msgstr ""
+
+#: gui/common/gamedescription.js:273
+msgid "Heroes cannot be garrisoned, and they are vulnerable to raids."
+msgstr ""
+
+#: gui/common/gamedescription.js:280
 msgid "Rated game"
 msgstr ""
 
-#: gui/common/gamedescription.js:269
+#: gui/common/gamedescription.js:281
 msgid ""
 "When the winner of this match is determined, the lobby score will be adapted."
 msgstr ""
 
-#: gui/common/gamedescription.js:274
+#: gui/common/gamedescription.js:286
 msgid "Locked Teams"
 msgstr ""
 
-#: gui/common/gamedescription.js:275
+#: gui/common/gamedescription.js:287
 msgid "Players can't change the initial teams."
 msgstr ""
 
-#: gui/common/gamedescription.js:279
+#: gui/common/gamedescription.js:291
 msgid "Diplomacy"
 msgstr ""
 
-#: gui/common/gamedescription.js:280
+#: gui/common/gamedescription.js:292
 msgid "Players can make alliances and declare war on allies."
 msgstr ""
 
-#: gui/common/gamedescription.js:285
+#: gui/common/gamedescription.js:297
 msgid "Last Man Standing"
 msgstr ""
 
-#: gui/common/gamedescription.js:286
+#: gui/common/gamedescription.js:298
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
 msgstr ""
 
-#: gui/common/gamedescription.js:290
+#: gui/common/gamedescription.js:302
 msgid "Allied Victory"
 msgstr ""
 
-#: gui/common/gamedescription.js:291
+#: gui/common/gamedescription.js:303
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
 msgstr ""
 
-#: gui/common/gamedescription.js:297
+#: gui/common/gamedescription.js:309
 msgid "Ceasefire"
 msgstr ""
 
-#: gui/common/gamedescription.js:300 gui/pregame/mainmenu.js:91
+#: gui/common/gamedescription.js:312 gui/pregame/mainmenu.js:91
 msgid "disabled"
 msgstr ""
 
-#: gui/common/gamedescription.js:301
+#: gui/common/gamedescription.js:313
 msgid "For the first minute, enemies will stay neutral."
 msgid_plural "For the first %(min)s minutes, enemies will stay neutral."
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/common/gamedescription.js:309
+#: gui/common/gamedescription.js:321
 msgid "Map Name"
 msgstr ""
 
-#: gui/common/gamedescription.js:314
+#: gui/common/gamedescription.js:326
 msgid "Map Type"
 msgstr ""
 
-#: gui/common/gamedescription.js:323
+#: gui/common/gamedescription.js:335
 msgid "Map Size"
 msgstr ""
 
-#: gui/common/gamedescription.js:330
+#: gui/common/gamedescription.js:342
 msgid "Map Description"
 msgstr ""
 
-#: gui/common/gamedescription.js:333
+#: gui/common/gamedescription.js:345
 msgid "Randomly selects a map from the list"
 msgstr ""
 
-#: gui/common/gamedescription.js:342
+#: gui/common/gamedescription.js:354
 msgid "Starting Resources"
 msgstr ""
 
-#: gui/common/gamedescription.js:343
+#: gui/common/gamedescription.js:355
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr ""
 
-#: gui/common/gamedescription.js:353
+#: gui/common/gamedescription.js:365
 msgid "Population Limit"
 msgstr ""
 
-#: gui/common/gamedescription.js:361
+#: gui/common/gamedescription.js:373
 msgid "Disable Treasure"
 msgstr ""
 
-#: gui/common/gamedescription.js:366
+#: gui/common/gamedescription.js:378
 msgid "Revealed Map"
 msgstr ""
 
-#: gui/common/gamedescription.js:371
+#: gui/common/gamedescription.js:383
 msgid "Explored Map"
 msgstr ""
 
-#: gui/common/gamedescription.js:376
+#: gui/common/gamedescription.js:388
 msgid "Cheats"
 msgstr ""
 
-#: gui/common/gamedescription.js:381 gui/common/tooltips.js:86
+#: gui/common/gamedescription.js:393 gui/common/tooltips.js:86
 #: gui/common/tooltips.js:141 gui/common/tooltips.js:182
 #: gui/common/tooltips.js:404 gui/common/tooltips.js:425
 #: gui/common/tooltips.js:718
@@ -385,21 +401,21 @@ msgstr ""
 msgid "%(label)s %(details)s"
 msgstr ""
 
-#: gui/common/gamedescription.js:384
+#: gui/common/gamedescription.js:396
 msgctxt "gamesetup option"
 msgid "enabled"
 msgstr ""
 
-#: gui/common/gamedescription.js:385
+#: gui/common/gamedescription.js:397
 msgctxt "gamesetup option"
 msgid "disabled"
 msgstr ""
 
-#: gui/common/gamedescription.js:402
+#: gui/common/gamedescription.js:414
 msgid "Victorious"
 msgstr ""
 
-#: gui/common/gamedescription.js:407
+#: gui/common/gamedescription.js:419
 msgid "Defeated"
 msgstr ""
 
