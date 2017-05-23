@@ -2220,7 +2220,7 @@ function sendRegisterGameStanzaImmediate()
 		"niceMapName": getMapDisplayName(g_GameAttributes.map),
 		"mapSize": g_GameAttributes.mapType == "random" ? g_GameAttributes.settings.Size : "Default",
 		"mapType": g_GameAttributes.mapType,
-		"victoryCondition": g_VictoryConditions.Title[g_VictoryConditions.Name.indexOf(g_GameAttributes.settings.GameType)],
+		"victoryCondition": g_GameAttributes.settings.GameType,
 		"nbp": clients.connectedPlayers,
 		"maxnbp": g_GameAttributes.settings.PlayerData.length,
 		"players": clients.list,
