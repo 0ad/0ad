@@ -254,6 +254,7 @@ function displayReplayDetails()
 	Engine.GetGUIObjectByName("replayInfoEmpty").hidden = replaySelected;
 	Engine.GetGUIObjectByName("startReplayButton").enabled = replaySelected;
 	Engine.GetGUIObjectByName("deleteReplayButton").enabled = replaySelected;
+	Engine.GetGUIObjectByName("replayFilename").hidden = !replaySelected;
 	Engine.GetGUIObjectByName("summaryButton").hidden = true;
 
 	if (!replaySelected)
@@ -267,6 +268,7 @@ function displayReplayDetails()
 	Engine.GetGUIObjectByName("sgVictory").caption = translateVictoryCondition(replay.attribs.settings.GameType);
 	Engine.GetGUIObjectByName("sgNbPlayers").caption = sprintf(translate("Players: %(numberOfPlayers)s"),
 		{ "numberOfPlayers": replay.attribs.settings.PlayerData.length });
+	Engine.GetGUIObjectByName("replayFilename").caption = escapeText(Engine.GetReplayDirectoryName(replay.directory));
 
 	let metadata = Engine.GetReplayMetadata(replay.directory);
 	Engine.GetGUIObjectByName("sgPlayersNames").caption =
