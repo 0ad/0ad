@@ -1122,7 +1122,7 @@ function openManual()
 
 function toggleDeveloperOverlay()
 {
-	if (!g_GameAttributes.settings.CheatsEnabled)
+	if (!g_GameAttributes.settings.CheatsEnabled && !g_IsReplay)
 		return;
 
 	let devCommands = Engine.GetGUIObjectByName("devCommands");
