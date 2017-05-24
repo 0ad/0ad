@@ -77,6 +77,7 @@ that of Atlas depending on commandline parameters.
 #include "renderer/Renderer.h"
 #include "scriptinterface/ScriptEngine.h"
 #include "simulation2/Simulation2.h"
+#include "simulation2/system/TurnManager.h"
 
 #if OS_UNIX
 #include <unistd.h> // geteuid
@@ -380,6 +381,24 @@ static void Frame()
 	LimitFPS();
 }
 
+static void NonVisualFrame()
+{
+	g_Profiler2.RecordFrameStart();
+	PROFILE2("frame");
+	g_Profiler2.IncrementFrameNumber();
+	PROFILE2_ATTR("%d", g_Profiler2.GetFrameNumber());
+
+	static u32 turn = 0;
+	debug_printf("Turn %u (%u)...\n", turn++, DEFAULT_TURN_LENGTH_SP);
+
+	g_Game->GetSimulation2()->Update(DEFAULT_TURN_LENGTH_SP);
+
+	g_Profiler.Frame();
+
+	if (g_Game->IsGameFinished())
+		kill_mainloop();
+}
+
 
 static void MainControllerInit()
 {
@@ -438,8 +457,15 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 		return;
 	}
 
+	if (args.Has("autostart-nonvisual") && args.Get("autostart").empty())
+	{
+		LOGERROR("-autostart-nonvisual cant be used alone. A map with -autostart=\"TYPEDIR/MAPNAME\" is needed.");
+		return;
+	}
+
 	const bool isVisualReplay = args.Has("replay-visual");
 	const bool isNonVisualReplay = args.Has("replay");
+	const bool isNonVisual = args.Has("autostart-nonvisual");
 
 	const CStr replayFile =
 		isVisualReplay ? args.Get("replay-visual") :
@@ -540,10 +566,21 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 			Shutdown(SHUTDOWN_FROM_CONFIG);
 			continue;
 		}
-		InitGraphics(args, 0);
-		MainControllerInit();
-		while (!quit)
-			Frame();
+
+		if (isNonVisual)
+		{
+			InitNonVisual(args);
+			while (!quit)
+				NonVisualFrame();
+		}
+		else
+		{
+			InitGraphics(args, 0);
+			MainControllerInit();
+			while (!quit)
+				Frame();
+		}
+
 		Shutdown(0);
 		MainControllerShutdown();
 		flags &= ~INIT_MODS;

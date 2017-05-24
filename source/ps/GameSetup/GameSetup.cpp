@@ -85,6 +85,7 @@
 #include "renderer/ModelRenderer.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptStats.h"
+#include "scriptinterface/ScriptConversions.h"
 #include "simulation2/Simulation2.h"
 #include "lobby/IXmppClient.h"
 #include "soundmanager/scripting/JSInterface_Sound.h"
@@ -711,22 +712,27 @@ static void ShutdownSDL()
 
 void EndGame()
 {
+	const bool nonVisual = g_Game && g_Game->IsGraphicsDisabled();
+
 	if (g_Game && g_Game->IsGameStarted() && !g_Game->IsVisualReplay() &&
-	    g_AtlasGameLoop && !g_AtlasGameLoop->running)
+	    g_AtlasGameLoop && !g_AtlasGameLoop->running && !nonVisual)
 		VisualReplay::SaveReplayMetadata(g_GUI->GetActiveGUI()->GetScriptInterface().get());
 
 	SAFE_DELETE(g_NetClient);
 	SAFE_DELETE(g_NetServer);
 	SAFE_DELETE(g_Game);
 
-	ISoundManager::CloseGame();
-
-	g_Renderer.ResetState();
+	if (!nonVisual)
+	{
+		ISoundManager::CloseGame();
+		g_Renderer.ResetState();
+	}
 }
-
 
 void Shutdown(int flags)
 {
+	const bool nonVisual = g_Game && g_Game->IsGraphicsDisabled();
+
 	if ((flags & SHUTDOWN_FROM_CONFIG))
 		goto from_config;
 
@@ -740,11 +746,14 @@ void Shutdown(int flags)
 	delete &g_TexMan;
 	TIMER_END(L"shutdown TexMan");
 
-	// destroy renderer
-	TIMER_BEGIN(L"shutdown Renderer");
-	delete &g_Renderer;
-	g_VBMan.Shutdown();
-	TIMER_END(L"shutdown Renderer");
+	// destroy renderer if it was initialised
+	if (!nonVisual)
+	{
+		TIMER_BEGIN(L"shutdown Renderer");
+		delete &g_Renderer;
+		g_VBMan.Shutdown();
+		TIMER_END(L"shutdown Renderer");
+	}
 
 	g_Profiler2.ShutdownGPU();
 
@@ -761,7 +770,8 @@ void Shutdown(int flags)
 	ShutdownSDL();
 	TIMER_END(L"shutdown SDL");
 
-	g_VideoMode.Shutdown();
+	if (!nonVisual)
+		g_VideoMode.Shutdown();
 
 	TIMER_BEGIN(L"shutdown UserReporter");
 	g_UserReporter.Deinitialize();
@@ -964,7 +974,8 @@ bool Init(const CmdLineArgs& args, int flags)
 	CNetHost::Initialize();
 
 #if CONFIG2_AUDIO
-	ISoundManager::CreateSoundManager();
+	if (!args.Has("autostart-nonvisual"))
+		ISoundManager::CreateSoundManager();
 #endif
 
 	// Check if there are mods specified on the command line,
@@ -1125,6 +1136,15 @@ void InitGraphics(const CmdLineArgs& args, int flags)
 	}
 }
 
+void InitNonVisual(const CmdLineArgs& args)
+{
+	// Need some stuff for terrain movement costs:
+	// (TODO: this ought to be independent of any graphics code)
+	new CTerrainTextureManager;
+	g_TexMan.LoadTerrainTextures();
+	Autostart(args);
+}
+
 void RenderGui(bool RenderingState)
 {
 	g_DoRenderGui = RenderingState;
@@ -1199,6 +1219,10 @@ CStr8 LoadSettingsOfScenarioMap(const VfsPath &mapPath)
  * -autostart-civ=PLAYER:CIV       sets PLAYER's civilisation to CIV
  *                                 (skirmish and random maps only)
  * -autostart-team=PLAYER:TEAM     sets the team for PLAYER (e.g. 2:2).
+ * -autostart-nonvisual            disable any graphics and sounds
+ * -autostart-victory=SCRIPTNAME   sets the victory conditions with SCRIPTNAME
+ *                                 located in simulation/data/settings/victory_conditions/
+ * -autostart-victoryduration=NUM  sets the victory duration NUM for specific victory conditions
  *
  * Multiplayer:
  * -autostart-playername=NAME      sets local player NAME (default 'anonymous')
@@ -1228,7 +1252,8 @@ bool Autostart(const CmdLineArgs& args)
 	if (autoStartName.empty())
 		return false;
 
-	g_Game = new CGame();
+	const bool nonVisual = args.Has("autostart-nonvisual");
+	g_Game = new CGame(nonVisual, !nonVisual);
 
 	ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
 	JSContext* cx = scriptInterface.GetContext();
@@ -1488,6 +1513,47 @@ bool Autostart(const CmdLineArgs& args)
 	if (args.Has("autostart-playername"))
 		userName = args.Get("autostart-playername").FromUTF8();
 
+	// Add additional scripts to the TriggerScripts property
+	std::vector<CStrW> triggerScriptsVector;
+	JS::RootedValue triggerScripts(cx);
+
+	if (scriptInterface.HasProperty(settings, "TriggerScripts"))
+	{
+		scriptInterface.GetProperty(settings, "TriggerScripts", &triggerScripts);
+		FromJSVal_vector(cx, triggerScripts, triggerScriptsVector);
+	}
+
+	if (nonVisual)
+	{
+		CStr nonVisualScript = "scripts/NonVisualTrigger.js";
+		triggerScriptsVector.push_back(nonVisualScript.FromUTF8());
+	}
+
+	if (args.Has("autostart-victory"))
+	{
+		CStrW scriptName = args.Get("autostart-victory").FromUTF8();
+		CStrW scriptPath = L"simulation/data/settings/victory_conditions/" + scriptName + L".json";
+		JS::RootedValue scriptData(cx);
+		JS::RootedValue data(cx);
+		JS::RootedValue victoryScripts(cx);
+
+		scriptInterface.ReadJSONFile(scriptPath, &scriptData);
+
+		if (!scriptData.isUndefined() && scriptInterface.GetProperty(scriptData, "Data", &data) && !data.isUndefined()
+				&& scriptInterface.GetProperty(data, "Scripts", &victoryScripts) && !victoryScripts.isUndefined())
+		{
+			std::vector<CStrW> victoryScriptsVector;
+			FromJSVal_vector(cx, victoryScripts, victoryScriptsVector);
+			triggerScriptsVector.insert(triggerScriptsVector.end(), victoryScriptsVector.begin(), victoryScriptsVector.end());
+		}
+	}
+
+	ToJSVal_vector(cx, &triggerScripts, triggerScriptsVector);
+	scriptInterface.SetProperty(settings, "TriggerScripts", triggerScripts);
+
+	if (args.Has("autostart-victoryduration"))
+		scriptInterface.SetProperty(settings, "VictoryDuration", args.Get("autostart-victoryduration").ToInt());
+
 	if (args.Has("autostart-host"))
 	{
 		InitPs(true, L"page_loading.xml", &scriptInterface, mpInitData);
@@ -1530,6 +1596,9 @@ bool Autostart(const CmdLineArgs& args)
 
 		PSRETURN ret = g_Game->ReallyStartGame();
 		ENSURE(ret == PSRETURN_OK);
+
+		if (nonVisual)
+			return true;
 
 		InitPs(true, L"page_session.xml", NULL, JS::UndefinedHandleValue);
 	}

@@ -244,21 +244,8 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 				break;
 			target = undefined;
 		}
-		if (target)
-		{
-			// prepare a raid against this target
-			let data = { "target": target };
-			let attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber, "Raid", data);
-			if (!attackPlan.failed)
-			{
-				if (this.Config.debug > 1)
-					API3.warn("Headquarters: Raiding plan " + this.totalNumber);
-				this.totalNumber++;
-				attackPlan.init(gameState);
-				this.upcomingAttacks.Raid.push(attackPlan);
-			}
-			this.raidNumber++;
-		}
+		if (target) // prepare a raid against this target
+			this.raidTargetEntity(gameState, target);
 	}
 };
 
@@ -499,6 +486,21 @@ m.AttackManager.prototype.cancelAttacksAgainstPlayer = function(gameState, playe
 				this.startedAttacks[attackType].splice(i--, 1);
 			}
 		}
+};
+
+m.AttackManager.prototype.raidTargetEntity = function(gameState, ent)
+{
+	let data = { "target": ent };
+	let attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber, "Raid", data);
+	if (!attackPlan.failed)
+	{
+		if (this.Config.debug > 1)
+			API3.warn("Headquarters: Raiding plan " + this.totalNumber);
+		this.totalNumber++;
+		attackPlan.init(gameState);
+		this.upcomingAttacks.Raid.push(attackPlan);
+	}
+	this.raidNumber++;
 };
 
 m.AttackManager.prototype.Serialize = function()
