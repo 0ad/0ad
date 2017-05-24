@@ -50,7 +50,7 @@
 
 	<object size="0 60 100% 96" type="image" sprite="edgedPanelShader">
 		<!-- Attack and Armor -->
-		<object size="90 -2 126 34" name="attackAndArmorStats" type="image" sprite="stretched:session/icons/stances/defensive.png" tooltip_style="sessionToolTip">
+		<object size="90 -2 126 34" name="attackAndArmorStats" type="image" sprite="stretched:session/icons/stances/defensive.png" tooltip_style="sessionToolTipInstantly">
 			<translatableAttribute id="tooltip">Attack and Armor</translatableAttribute>
 		</object>
 
