@@ -21,7 +21,9 @@ AIInterface.prototype.EventNames = [
 	"TerritoryDecayChanged",
 	"TributeExchanged",
 	"AttackRequest",
-	"CeasefireEnded"
+	"CeasefireEnded",
+	"DiplomacyRequest",
+	"TributeRequest"
 ];
 
 AIInterface.prototype.Init = function()

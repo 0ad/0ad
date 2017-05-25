@@ -784,6 +784,20 @@ var g_Commands = {
 			});
 	},
 
+	"diplomacy-request": function(player, cmd, data)
+	{
+		let cmpAIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface);
+		if (cmpAIInterface)
+			cmpAIInterface.PushEvent("DiplomacyRequest", cmd);
+	},
+
+	"tribute-request": function(player, cmd, data)
+	{
+		let cmpAIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface);
+		if (cmpAIInterface)
+			cmpAIInterface.PushEvent("TributeRequest", cmd);
+	},
+
 	"dialog-answer": function(player, cmd, data)
 	{
 		// Currently nothing. Triggers can read it anyway, and send this
