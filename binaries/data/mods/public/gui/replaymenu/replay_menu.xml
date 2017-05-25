@@ -65,7 +65,7 @@
 
 			<!-- Replay List in that left panel -->
 			<object name="replaySelection"
-				size="0 35 100% 100%"
+				size="0 35 100% 100%-24"
 				style="ModernList"
 				type="olist"
 				sortable="true"
@@ -107,6 +107,9 @@
 				</column>
 
 			</object>
+
+			<!-- Filename -->
+			<object name="replayFilename" type="text" size="0 100%-24 100% 100%" font="sans-14" textcolor="white" sprite="ReplayMenuFilenameBackground"/>
 
 		</object>
 

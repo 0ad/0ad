@@ -60,6 +60,17 @@
 			textcolor="255 255 255"
 		/>
 
+		<tooltip name="sessionToolTipInstantly"
+			anchor="top"
+			buffer_zone="4"
+			delay="0"
+			font="sans-14"
+			maxwidth="300"
+			offset="16 32"
+			sprite="BackgroundSessionTooltip"
+			textcolor="255 255 255"
+		/>
+
 		<tooltip name="sessionToolTipBottom"
 			anchor="bottom"
 			buffer_zone="4"

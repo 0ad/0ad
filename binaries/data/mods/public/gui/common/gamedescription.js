@@ -370,8 +370,10 @@ function getGameDescription(extended = false)
 		});
 
 		titles.push({
-			"label": translate("Disable Treasure"),
-			"value": g_GameAttributes.settings.DisableTreasure
+			"label": translate("Treasure"),
+			"value": g_GameAttributes.settings.DisableTreasures ?
+				translateWithContext("treasure", "Disabled") :
+				translateWithContext("treasure", "If the map places it.")
 		});
 
 		titles.push({
