@@ -637,9 +637,9 @@ g_SelectionPanels.Queue = {
 
 		data.countDisplay.caption = data.item.count > 1 ? data.item.count : "";
 
-		// Show the progress number for the first item
+		// Show the time remaining to finish the first item
 		if (data.i == 0)
-			Engine.GetGUIObjectByName("queueProgress").caption = Math.round(data.item.progress*100) + "%";
+			Engine.GetGUIObjectByName("queueTimeRemaining").caption = Engine.FormatMillisecondsIntoDateStringGMT(data.item.timeRemaining, translateWithContext("countdown format", "m:ss"));
 
 		let guiObject = Engine.GetGUIObjectByName("unitQueueProgressSlider["+data.i+"]");
 		let size = guiObject.size;
