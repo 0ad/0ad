@@ -8,34 +8,39 @@ use constant VERBOSE_OUTPUT => 1;
 
 my $vfsroot = '../../../binaries/data/mods';
 
+my @mods = ("mod", "public");
+my @modsreverse = reverse @mods;
+
+# Walk the mod list by decreasing priority and pick the first encountered file.
+# .DELETED files are not handled. This should still be good enough for most practical cases.
 sub vfs_to_physical
 {
     my ($vfspath) = @_;
-    my $fn = "$vfsroot/public/$vfspath";
-    return $fn;
-}
-
-sub vfs_to_relative_to_mods
-{
-    my ($vfspath) = @_;
-    my $fn = "public/$vfspath";
-    return $fn;
+    foreach my $mod (@modsreverse)
+    {
+        my $fn = "$vfsroot/$mod/$vfspath";
+        return $fn if (-e $fn);
+    }
 }
 
 sub find_files
 {
     my ($vfspath, $extn) = @_;
     my @files;
-    my $find_process = sub {
-        return $File::Find::prune = 1 if $_ eq '.svn';
-        my $n = $File::Find::name;
-        return if /~$/;
-        return unless -f $_;
-        return unless /\.($extn)$/;
-        $n =~ s~\Q$vfsroot\E/public/~~;
-        push @files, $n;
-    };
-    find({ wanted => $find_process }, "$vfsroot/public/$vfspath");
+
+    foreach my $mod (@modsreverse)
+    {
+        my $find_process = sub {
+            return $File::Find::prune = 1 if $_ eq '.svn';
+            my $n = $File::Find::name;
+            return if /~$/;
+            return unless -f $_;
+            return unless /\.($extn)$/;
+            $n =~ s~\Q$vfsroot/$mod\E/~~;
+            push @files, $n if !grep {$_ eq $n} @files;
+        };
+        find({ wanted => $find_process }, "$vfsroot/$mod/$vfspath") if (-e "$vfsroot/$mod/$vfspath");
+    }
 
     return @files;
 }
