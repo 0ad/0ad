@@ -820,12 +820,7 @@ function handleInputAfterGui(ev)
 			Engine.RewindTimeWarp();
 	}
 
-	if (ev.hotkey == "session.showstatusbars")
-	{
-		g_ShowAllStatusBars = (ev.type == "hotkeydown");
-		recalculateStatusBarDisplay();
-	}
-	else if (ev.hotkey == "session.highlightguarding")
+	if (ev.hotkey == "session.highlightguarding")
 	{
 		g_ShowGuarding = (ev.type == "hotkeydown");
 		updateAdditionalHighlight();

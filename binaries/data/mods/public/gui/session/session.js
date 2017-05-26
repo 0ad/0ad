@@ -99,6 +99,11 @@ var g_Players = [];
 var lastTickTime = new Date();
 
 /**
+ * Recalculate which units have their status bars shown with this frequency in milliseconds.
+ */
+const g_StatusBarUpdate = 200;
+
+/**
  * Not constant as we add "gaia".
  */
 var g_CivData = {};
@@ -722,7 +727,7 @@ function onTick()
 		return;
 
 	let now = new Date();
-	let tickLength = new Date() - lastTickTime;
+	let tickLength = now - lastTickTime;
 	lastTickTime = now;
 
 	handleNetMessages();
@@ -739,13 +744,15 @@ function onTick()
 		if (Engine.GetPlayerID() != -1)
 			Engine.GuiInterfaceCall("DisplayRallyPoint", { "entities": g_Selection.toList() });
 	}
+	else if (g_ShowAllStatusBars && now % g_StatusBarUpdate <= tickLength)
+		recalculateStatusBarDisplay();
 
 	updateTimers();
 
 	updateMenuPosition(tickLength);
 
 	// When training is blocked, flash population (alternates color every 500msec)
-	Engine.GetGUIObjectByName("resourcePop").textcolor = g_IsTrainingBlocked && Date.now() % 1000 < 500 ? g_PopulationAlertColor : g_DefaultPopulationColor;
+	Engine.GetGUIObjectByName("resourcePop").textcolor = g_IsTrainingBlocked && now % 1000 < 500 ? g_PopulationAlertColor : g_DefaultPopulationColor;
 
 	Engine.GuiInterfaceCall("ClearRenamedEntities");
 }
