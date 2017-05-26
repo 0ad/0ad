@@ -96,4 +96,11 @@
 		<action on="Press">toggleRangeOverlay("Aura");</action>
 	</object>
 
+	<object hotkey="session.showstatusbars">
+		<action on="Press">
+			g_ShowAllStatusBars = !g_ShowAllStatusBars;
+			recalculateStatusBarDisplay();
+		</action>
+	</object>
+
 </object>

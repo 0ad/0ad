@@ -566,18 +566,18 @@ m.DefenseManager.prototype.garrisonUnitsInside = function(gameState, target, dat
 	let minGarrison = data.min ? data.min : target.garrisonMax();
 	let typeGarrison = data.type ? data.type : "protection";
 	if (gameState.ai.HQ.garrisonManager.numberOfGarrisonedUnits(target) >= minGarrison)
-		return;
+		return false;
 	if (target.hitpoints() < target.garrisonEjectHealth() * target.maxHitpoints())
-		return;
+		return false;
 	if (data.attacker)
 	{
 		let attackTypes = target.attackTypes();
 		if (!attackTypes || attackTypes.indexOf("Ranged") === -1)
-			return;
+			return false;
 		let dist = API3.SquareVectorDistance(data.attacker.position(), target.position());
 		let range = target.attackRange("Ranged").max;
 		if (dist >= range*range)
-			return;
+			return false;
 	}
 	let index = gameState.ai.accessibility.getAccessValue(target.position());
 	let garrisonManager = gameState.ai.HQ.garrisonManager;
@@ -592,6 +592,7 @@ m.DefenseManager.prototype.garrisonUnitsInside = function(gameState, target, dat
 		else
 			allowMelee = true;
 	}
+	let ret = false;
 	for (let ent of units.values())
 	{
 		if (garrisonManager.numberOfGarrisonedUnits(target) >= minGarrison)
@@ -623,7 +624,9 @@ m.DefenseManager.prototype.garrisonUnitsInside = function(gameState, target, dat
 		if (army)
 			army.removeOwn(gameState, ent.id());
 		garrisonManager.garrison(gameState, ent, target, typeGarrison);
+		ret = true;
 	}
+	return ret;
 };
 
 /** garrison a attacked siege ranged unit inside the nearest fortress */
@@ -650,6 +653,7 @@ m.DefenseManager.prototype.garrisonSiegeUnit = function(gameState, unit)
 	});
 	if (nearest)
 		garrisonManager.garrison(gameState, unit, nearest, "protection");
+	return nearest !== undefined;
 };
 
 /**
@@ -683,17 +687,18 @@ m.DefenseManager.prototype.garrisonAttackedUnit = function(gameState, unit, emer
 		nearest = ent;
 	}
 	if (!nearest)
-		return;
+		return false;
 
 	if (!emergency)
 	{
 		garrisonManager.garrison(gameState, unit, nearest, "protection");
-		return;
+		return true;
 	}
 	if (garrisonManager.numberOfGarrisonedUnits(nearest) >= nearest.garrisonMax()) // make room for this ent
 		nearest.unload(nearest.garrisoned()[0]);
 
 	garrisonManager.garrison(gameState, unit, nearest, nearest.buffHeal() ? "protection" : "emergency");
+	return true;
 };
 
 /**

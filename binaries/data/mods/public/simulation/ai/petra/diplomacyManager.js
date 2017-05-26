@@ -7,6 +7,7 @@ var PETRA = function(m)
  *     sent tribute to allies
  *     decide which player to turn against in "Last Man Standing" mode
  *     respond to diplomacy requests
+ *     send diplomacy requests to other players (rarely)
  */
 
 /**
@@ -15,6 +16,12 @@ var PETRA = function(m)
  * that they must send in order for us to accept their request.
  * In addition, a message will be sent if the player has not sent us a tribute within a minute.
  * If two minutes pass without a tribute, we will decline their request.
+ *
+ * If we send a diplomacy request to another player, an Object in this.sentDiplomacyRequests will be created,
+ * which consists of the requestType (i.e. "ally" or "neutral") and the timeSent. A chat message will be sent
+ * to the other player, and AI players will actually be informed of the request by a DiplomacyRequest event
+ * sent through AIInterface. It is expected that the other player will change their diplomacy stance to the stance
+ * that we suggested within a period of time, or else the request will be deleted from this.sentDiplomacyRequests.
  */
 m.DiplomacyManager = function(Config)
 {
@@ -26,6 +33,8 @@ m.DiplomacyManager = function(Config)
 	this.waitingToBetray = false;
 	this.betrayWeighting = 150;
 	this.diplomacyRequests = new Map();
+	this.sentDiplomacyRequests = new Map();
+	this.sentDiplomacyRequestLapseTime = 120 + randFloat(10, 100);
 };
 
 /**
@@ -178,6 +187,20 @@ m.DiplomacyManager.prototype.checkEvents = function (gameState, events)
 		if (evt.otherPlayer !== PlayerID)
 			continue;
 
+		if (this.sentDiplomacyRequests.has(evt.player)) // If another player has accepted a diplomacy request we sent
+		{
+
+			let sentRequest = this.sentDiplomacyRequests.get(evt.player);
+			if (gameState.sharedScript.playersData[evt.player].isAlly[PlayerID] && sentRequest.requestType === "ally" ||
+			    gameState.sharedScript.playersData[evt.player].isNeutral[PlayerID] && sentRequest.requestType === "neutral")
+				this.changePlayerDiplomacy(gameState, evt.player, sentRequest.requestType);
+
+			// Just remove the request if the other player switched their stance to a different and/or more negative state 
+			// TODO: Keep this send request and take it into account for later diplomacy changes (maybe be less inclined to offer to this player)
+			this.sentDiplomacyRequests.delete(evt.player);
+			continue;
+		}
+
 		if (this.diplomacyRequests.has(evt.player) && !gameState.sharedScript.playersData[evt.player].isAlly[PlayerID])
 		{
 			// a player that had requested to be allies changed their stance with us
@@ -193,6 +216,49 @@ m.DiplomacyManager.prototype.checkEvents = function (gameState, events)
 			this.handleDiplomacyRequest(gameState, evt.player, "ally");
 		else if (gameState.sharedScript.playersData[evt.player].isNeutral[PlayerID] && gameState.isPlayerEnemy(evt.player))
 			this.handleDiplomacyRequest(gameState, evt.player, "neutral");
+	}
+
+	// These events will only be sent by other AI players
+	for (let evt of events.DiplomacyRequest)
+	{
+		if (evt.player !== PlayerID)
+			continue;
+
+		this.handleDiplomacyRequest(gameState, evt.source, evt.to);
+		let request = this.diplomacyRequests.get(evt.source);
+		if (this.Config.debug > 0)
+			API3.warn("Responding to diplomacy request from AI player " + evt.source + " with " + uneval(request));
+
+		// Our diplomacy will have changed already if the response was "accept"
+		if (request.status === "waitingForTribute")
+		{
+			Engine.PostCommand(PlayerID, {
+				"type": "tribute-request",
+				"source": PlayerID,
+				"player": evt.source,
+				"resourceWanted": request.wanted,
+				"resourceType": request.type
+			});
+		}
+	}
+
+	// An AI player we sent a diplomacy request to demanded we send them a tribute
+	for (let evt of events.TributeRequest)
+	{
+		if (evt.player !== PlayerID)
+			continue;
+
+		let availableResources = gameState.ai.queueManager.getAvailableResources(gameState);
+		// TODO: Save this event and wait until we get more resources if we don't have enough
+		if (evt.resourceWanted < availableResources[evt.resourceType])
+		{
+			let responseTribute = {};
+			responseTribute[evt.resourceType] = evt.resourceWanted;
+			if (this.Config.debug > 0)
+				API3.warn("Responding to tribute request from AI player " + evt.source + " with " + uneval(responseTribute));
+			Engine.PostCommand(PlayerID, { "type": "tribute", "player": evt.source, "amounts": responseTribute });
+			this.nextTributeUpdate = gameState.ai.elapsedTime + 15;
+		}
 	}
 };
 
@@ -283,6 +349,8 @@ m.DiplomacyManager.prototype.lastManStandingCheck = function(gameState)
 				m.chatAnswerRequestDiplomacy(gameState, player, request.requestType, "decline");
 			request.status = request.status === "accepted" ? "allianceBroken" : "declinedRequest";
 		}
+		// If we had sent this player a diplomacy request, just rescind it
+		this.sentDiplomacyRequests.delete(playerToTurnAgainst);
 	}
 	this.betrayLapseTime = -1;
 	this.waitingToBetray = false;
@@ -375,6 +443,63 @@ m.DiplomacyManager.prototype.checkRequestedTributes = function(gameState)
 		}
 };
 
+/**
+ * Try to become allies with a player who has a lot of mutual enemies in common with us.
+ * TODO: Possibly let human players demand tributes from AIs who send diplomacy requests.
+ */
+m.DiplomacyManager.prototype.sendDiplomacyRequest = function(gameState)
+{
+	let player;
+	let max = 0;
+	for (let i = 1; i < gameState.sharedScript.playersData.length; ++i)
+	{
+		let mutualEnemies = 0;
+		let request = this.diplomacyRequests.get(i); // Do not send to players we have already rejected before
+		if (i === PlayerID || gameState.isPlayerMutualAlly(i) || gameState.ai.HQ.attackManager.defeated[i] ||
+		    gameState.ai.HQ.attackManager.currentEnemyPlayer === i ||
+		    this.sentDiplomacyRequests.get(i) !== undefined || request && request.status === "declinedRequest")
+			continue;
+
+		for (let j = 1; j < gameState.sharedScript.playersData.length; ++j)
+		{
+			if (gameState.sharedScript.playersData[i].isEnemy[j] && gameState.isPlayerEnemy(j) &&
+			    !gameState.ai.HQ.attackManager.defeated[j])
+				++mutualEnemies;
+
+			if (mutualEnemies < max)
+				continue;
+
+			max = mutualEnemies;
+			player = i;
+		}
+	}
+	if (!player)
+		return;
+
+	let requestType = gameState.isPlayerNeutral(player) ? "ally" : "neutral";
+
+	this.sentDiplomacyRequests.set(player, {
+		"requestType": requestType,
+		"timeSent": gameState.ai.elapsedTime
+	});
+
+	if (this.Config.debug > 0)
+		API3.warn("Sending diplomacy request to player " + player + " with " + requestType);
+	Engine.PostCommand(PlayerID, { "type": "diplomacy-request", "source": PlayerID, "player": player, "to": requestType });
+	m.chatNewRequestDiplomacy(gameState, player, requestType, "sendRequest");
+};
+
+m.DiplomacyManager.prototype.checkSentDiplomacyRequests = function(gameState)
+{
+	for (let [player, data] of this.sentDiplomacyRequests)
+		if (gameState.ai.elapsedTime > data.timeSent + 60 && !gameState.ai.HQ.saveResources &&
+		    gameState.getPopulation() > 70)
+		{
+			m.chatNewRequestDiplomacy(gameState, player, data.requestType, "requestExpired");
+			this.sentDiplomacyRequests.delete(player);
+		}
+};
+
 m.DiplomacyManager.prototype.update = function(gameState, events)
 {
 	this.checkEvents(gameState, events);
@@ -386,6 +511,21 @@ m.DiplomacyManager.prototype.update = function(gameState, events)
 		this.lastManStandingCheck(gameState);
 
 	this.checkRequestedTributes(gameState);
+
+	if (gameState.sharedScript.playersData[PlayerID].teamsLocked || gameState.isCeasefireActive())
+		return;
+
+	// Be unlikely to send diplomacy requests to other players
+	if (gameState.ai.elapsedTime > this.sentDiplomacyRequestLapseTime)
+	{
+		this.sentDiplomacyRequestLapseTime = gameState.ai.elapsedTime + 300 + randFloat(10, 100);
+		let numEnemies = gameState.getEnemies().length;
+		// Don't consider gaia
+		if (numEnemies > 2 && gameState.getMutualAllies().length < numEnemies - 1 && randBool(0.1))
+			this.sendDiplomacyRequest(gameState);
+	}
+
+	this.checkSentDiplomacyRequests(gameState);
 };
 
 m.DiplomacyManager.prototype.Serialize = function()
@@ -396,7 +536,9 @@ m.DiplomacyManager.prototype.Serialize = function()
 		"betrayLapseTime": this.betrayLapseTime,
 		"waitingToBetray": this.waitingToBetray,
 		"betrayWeighting": this.betrayWeighting,
-		"diplomacyRequests": this.diplomacyRequests
+		"diplomacyRequests": this.diplomacyRequests,
+		"sentDiplomacyRequests": this.sentDiplomacyRequests,
+		"sentDiplomacyRequestLapseTime": this.sentDiplomacyRequestLapseTime
 	};
 };
 

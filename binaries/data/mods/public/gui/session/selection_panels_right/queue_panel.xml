@@ -6,7 +6,7 @@
 >
 	<object size="-4 -2 52 54" type="image" sprite="stretched:session/icons/production.png" tooltip_style="sessionToolTipBottom">
 		<translatableAttribute id="tooltip">Production queue</translatableAttribute>
-		<object name="queueProgress" ghost="true" style="iconButtonProgress" type="text"/>
+		<object name="queueTimeRemaining" ghost="true" style="iconButtonProgress" type="text"/>
 	</object>
 
 	<object size="48 6 100% 100%">

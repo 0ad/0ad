@@ -280,8 +280,69 @@ m.Army.prototype.clear = function (gameState)
 {
 	while (this.foeEntities.length > 0)
 		this.removeFoe(gameState,this.foeEntities[0]);
+
+	// Go back to our territory, using the nearest (defensive if any) structure.
+	let armyPos = [0, 0];
+	let npos = 0;
+	for (let entId of this.ownEntities)
+	{
+		let ent = gameState.getEntityById(entId);
+		if (!ent)
+			continue;
+		let pos = ent.position();
+		if (!pos || gameState.ai.HQ.territoryMap.getOwner(pos) === PlayerID)
+			continue;
+		armyPos[0] += pos[0];
+		armyPos[1] += pos[1];
+		++npos;
+	}
+	let nearestStructurePos;
+	let defensiveFound;
+	let distmin;
+	let radius;
+	if (npos > 0)
+	{
+		armyPos[0] /= npos;
+		armyPos[1] /= npos;
+		let armyAccess = gameState.ai.accessibility.getAccessValue(armyPos);
+		for (let struct of gameState.getOwnStructures().values())
+		{
+			let pos = struct.position();
+			if (!pos || gameState.ai.HQ.territoryMap.getOwner(pos) !== PlayerID)
+				continue;
+			if (m.getLandAccess(gameState, struct) !== armyAccess)
+				continue;
+			let defensiveStruct = struct.hasDefensiveFire();
+			if (defensiveFound && !defensiveStruct)
+				continue;
+			let dist = API3.SquareVectorDistance(armyPos, pos);
+			if (distmin && dist > distmin && (defensiveFound || !defensiveStruct))
+				continue;
+			if (defensiveStruct)
+				defensiveFound = true;
+			distmin = dist;
+			nearestStructurePos = pos;
+			radius = struct.obstructionRadius();
+		}
+	}
 	while (this.ownEntities.length > 0)
-		this.removeOwn(gameState,this.ownEntities[0]);
+	{
+		let entId = this.ownEntities[0];
+		this.removeOwn(gameState, entId);
+		let ent = gameState.getEntityById(entId);
+		if (ent)
+		{
+			if (!ent.position() ||
+			    ent.healthLevel() < this.Config.garrisonHealthLevel.low &&
+			    gameState.ai.HQ.defenseManager.garrisonAttackedUnit(gameState, ent))
+				continue;
+
+			if (nearestStructurePos && gameState.ai.HQ.territoryMap.getOwner(ent.position()) !== PlayerID)
+				ent.moveToRange(nearestStructurePos[0], nearestStructurePos[1], radius, radius+5);
+			else
+				ent.stopMoving();
+		}
+	}
 
 	this.assignedAgainst = {};
 	this.assignedTo = {};
