@@ -2012,11 +2012,13 @@ function swapPlayers(guid, newSlot)
 		g_GameAttributes.settings.PlayerData[playerID - 1].AI = g_GameAttributes.settings.PlayerData[newSlot].AI;
 		g_GameAttributes.settings.PlayerData[playerID - 1].AIDiff = g_GameAttributes.settings.PlayerData[newSlot].AIDiff;
 
-		// Swap civilizations if they aren't fixed
+		// Swap civilizations and colors if they aren't fixed
 		if (g_GameAttributes.mapType != "scenario")
 		{
 			[g_GameAttributes.settings.PlayerData[playerID - 1].Civ, g_GameAttributes.settings.PlayerData[newSlot].Civ] =
 				[g_GameAttributes.settings.PlayerData[newSlot].Civ, g_GameAttributes.settings.PlayerData[playerID - 1].Civ];
+			[g_GameAttributes.settings.PlayerData[playerID - 1].Color, g_GameAttributes.settings.PlayerData[newSlot].Color] =
+				[g_GameAttributes.settings.PlayerData[newSlot].Color, g_GameAttributes.settings.PlayerData[playerID - 1].Color];
 		}
 	}
 
