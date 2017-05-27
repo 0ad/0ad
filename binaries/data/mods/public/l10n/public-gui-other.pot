@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2017-05-22 09:02+0200\n"
-"PO-Revision-Date: 2017-05-22 09:02+0200\n"
+"POT-Creation-Date: 2017-05-26 09:03+0200\n"
+"PO-Revision-Date: 2017-05-26 09:03+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -378,22 +378,32 @@ msgid "Population Limit"
 msgstr ""
 
 #: gui/common/gamedescription.js:373
-msgid "Disable Treasure"
+msgid "Treasure"
 msgstr ""
 
-#: gui/common/gamedescription.js:378
+#: gui/common/gamedescription.js:375
+msgctxt "treasure"
+msgid "Disabled"
+msgstr ""
+
+#: gui/common/gamedescription.js:376
+msgctxt "treasure"
+msgid "If the map places it."
+msgstr ""
+
+#: gui/common/gamedescription.js:380
 msgid "Revealed Map"
 msgstr ""
 
-#: gui/common/gamedescription.js:383
+#: gui/common/gamedescription.js:385
 msgid "Explored Map"
 msgstr ""
 
-#: gui/common/gamedescription.js:388
+#: gui/common/gamedescription.js:390
 msgid "Cheats"
 msgstr ""
 
-#: gui/common/gamedescription.js:393 gui/common/tooltips.js:86
+#: gui/common/gamedescription.js:395 gui/common/tooltips.js:86
 #: gui/common/tooltips.js:141 gui/common/tooltips.js:182
 #: gui/common/tooltips.js:404 gui/common/tooltips.js:425
 #: gui/common/tooltips.js:718
@@ -401,21 +411,21 @@ msgstr ""
 msgid "%(label)s %(details)s"
 msgstr ""
 
-#: gui/common/gamedescription.js:396
+#: gui/common/gamedescription.js:398
 msgctxt "gamesetup option"
 msgid "enabled"
 msgstr ""
 
-#: gui/common/gamedescription.js:397
+#: gui/common/gamedescription.js:399
 msgctxt "gamesetup option"
 msgid "disabled"
 msgstr ""
 
-#: gui/common/gamedescription.js:414
+#: gui/common/gamedescription.js:416
 msgid "Victorious"
 msgstr ""
 
-#: gui/common/gamedescription.js:419
+#: gui/common/gamedescription.js:421
 msgid "Defeated"
 msgstr ""
 
@@ -1307,16 +1317,16 @@ msgstr ""
 msgid "Filter replays by typing one or more, partial or complete playernames."
 msgstr ""
 
-#: gui/replaymenu/replay_menu.js:268
+#: gui/replaymenu/replay_menu.js:269
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.js:294
+#: gui/replaymenu/replay_menu.js:296
 msgid "yyyy-MM-dd HH:mm"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.js:324
+#: gui/replaymenu/replay_menu.js:326
 msgid "yyyy-MM"
 msgstr ""
 
@@ -2024,44 +2034,44 @@ msgstr ""
 msgid "Replay Games"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):123
+#: gui/replaymenu/replay_menu.xml:(caption):126
 msgid "Filter compatible replays"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):164
+#: gui/replaymenu/replay_menu.xml:(caption):167
 #: gui/savedgames/load.xml:(caption):101
 msgid "Map Type:"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):179
+#: gui/replaymenu/replay_menu.xml:(caption):182
 #: gui/savedgames/load.xml:(caption):105
 msgid "Map Size:"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):194
+#: gui/replaymenu/replay_menu.xml:(caption):197
 #: gui/savedgames/load.xml:(caption):109
 msgid "Victory:"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):227
+#: gui/replaymenu/replay_menu.xml:(caption):230
 msgid "Spoiler"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):239
+#: gui/replaymenu/replay_menu.xml:(caption):242
 msgid "Main Menu"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):245
+#: gui/replaymenu/replay_menu.xml:(caption):248
 #: gui/savedgames/load.xml:(caption):66 gui/savedgames/save.xml:(caption):43
 msgid "Delete"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):251
+#: gui/replaymenu/replay_menu.xml:(caption):254
 #: gui/summary/summary.xml:(caption):23
 msgid "Summary"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):257
+#: gui/replaymenu/replay_menu.xml:(caption):260
 msgid "Start Replay"
 msgstr ""
 

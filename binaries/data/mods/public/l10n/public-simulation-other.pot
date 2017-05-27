@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2017-05-19 09:05+0200\n"
-"PO-Revision-Date: 2017-05-19 09:05+0200\n"
+"POT-Creation-Date: 2017-05-26 09:04+0200\n"
+"PO-Revision-Date: 2017-05-26 09:04+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -303,6 +303,50 @@ msgstr ""
 msgid ""
 "%(_player_)s, I will not accept your neutrality request unless you tribute "
 "me %(_amount_)s %(_resource_)s soon."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:119
+#, javascript-format
+msgid ""
+"%(_player_)s, it would help both of our civilizations if we formed an "
+"alliance. If you become allies with me, I will respond in kind."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:122
+#, javascript-format
+msgid "%(_player_)s, my offer for an alliance has expired."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:123
+#, javascript-format
+msgid ""
+"%(_player_)s, I have rescinded my previous offer for an alliance between us."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:128
+#, javascript-format
+msgid ""
+"%(_player_)s, I would like to request a neutrality pact between our "
+"civilizations. If you become neutral with me, I will respond in kind."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:129
+#, javascript-format
+msgid ""
+"%(_player_)s, it would be both to our benefit if we negotiated a neutrality "
+"pact. I will become neutral with you if you do the same."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:132
+#, javascript-format
+msgid "%(_player_)s, I have decided to revoke my offer for a neutrality pact."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:133
+#, javascript-format
+msgid ""
+"%(_player_)s, as you have failed to respond to my request for peace between "
+"us, I have abrogated my offer."
 msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
@@ -850,26 +894,26 @@ msgstr ""
 msgid "%(category)s limit of %(limit)s reached"
 msgstr ""
 
-#: simulation/components/Player.js:277
+#: simulation/components/Player.js:296
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr ""
 
-#: simulation/components/Player.js:279
+#: simulation/components/Player.js:298
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, %"
 "(resourceAmount2)s %(resourceType2)s"
 msgstr ""
 
-#: simulation/components/Player.js:281
+#: simulation/components/Player.js:300
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, %"
 "(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr ""
 
-#: simulation/components/Player.js:283
+#: simulation/components/Player.js:302
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, %"
@@ -920,15 +964,15 @@ msgstr ""
 msgid "There are no bribable units"
 msgstr ""
 
-#: simulation/helpers/Commands.js:813
+#: simulation/helpers/Commands.js:827
 msgid "Unable to ungarrison unit(s)"
 msgstr ""
 
-#: simulation/helpers/Commands.js:827
+#: simulation/helpers/Commands.js:841
 msgid "Some unit(s) can't go back to work"
 msgstr ""
 
-#: simulation/helpers/Commands.js:1081
+#: simulation/helpers/Commands.js:1095
 msgid "The building's technology requirements are not met."
 msgstr ""
 
