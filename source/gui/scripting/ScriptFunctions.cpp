@@ -828,6 +828,7 @@ std::wstring GetBuildTimestamp(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), i
 		else
 		{
 			// Translation: First item is a date and time, item between parenthesis is the Subversion revision number of the current build.
+			// dennis-ignore: *
 			sprintf_s(buf, ARRAY_SIZE(buf), g_L10n.Translate("%s (%ls)").c_str(), dateTimeString.c_str(), svn_revision);
 		}
 	}

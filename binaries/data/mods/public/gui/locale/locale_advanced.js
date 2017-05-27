@@ -89,7 +89,7 @@ function updateResultingLocale()
 	}
 	else
 	{
-		resultingLocaleText.caption = translate("<invalid>");
+		resultingLocaleText.caption = translate("invalid locale");
 		dictionaryFile.caption = "";
 		var acceptButton = Engine.GetGUIObjectByName("acceptButton");
 		acceptButton.enabled = false;
