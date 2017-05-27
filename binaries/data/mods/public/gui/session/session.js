@@ -671,6 +671,11 @@ function leaveGame(willRejoin)
 
 	Engine.EndGame();
 
+	// After the replay file was closed in EndGame
+	// Done here to keep EndGame small
+	if (!g_IsReplay)
+		Engine.AddReplayToCache(replayDirectory);
+
 	if (g_IsController && Engine.HasXmppClient())
 		Engine.SendUnregisterGame();
 

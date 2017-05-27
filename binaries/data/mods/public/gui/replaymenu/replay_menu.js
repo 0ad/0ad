@@ -59,7 +59,7 @@ function init(data)
 		return;
 	}
 
-	loadReplays(data && data.replaySelectionData);
+	loadReplays(data && data.replaySelectionData, false);
 
 	if (!g_Replays)
 	{
@@ -75,10 +75,13 @@ function init(data)
  * Store the list of replays loaded in C++ in g_Replays.
  * Check timestamp and compatibility and extract g_Playernames, g_MapNames, g_VictoryConditions.
  * Restore selected filters and item.
+ * @param replaySelectionData - Currently selected filters and item to be restored after the loading.
+ * @param compareFiles - If true, compares files briefly (which might be slow with optical harddrives),
+ *                       otherwise blindly trusts the replay cache.
  */
-function loadReplays(replaySelectionData)
+function loadReplays(replaySelectionData, compareFiles)
 {
-	g_Replays = Engine.GetReplays();
+	g_Replays = Engine.GetReplays(compareFiles);
 
 	if (!g_Replays)
 		return;

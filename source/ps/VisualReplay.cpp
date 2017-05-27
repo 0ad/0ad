@@ -40,6 +40,9 @@
  */
 const u8 minimumReplayDuration = 3;
 
+static const OsPath tempCacheFileName = VisualReplay::GetDirectoryName() / L"replayCache_temp.json";
+static const OsPath cacheFileName = VisualReplay::GetDirectoryName() / L"replayCache.json";
+
 OsPath VisualReplay::GetDirectoryName()
 {
 	const Paths paths(g_args);
@@ -61,33 +64,171 @@ void VisualReplay::StartVisualReplay(const CStrW& directory)
 	g_Game->StartVisualReplay(replayFile.string8());
 }
 
-/**
- * Load all replays found in the directory.
- *
- * Since files are spread across the harddisk,
- * loading hundreds of them can consume a lot of time.
- */
-JS::Value VisualReplay::GetReplays(ScriptInterface& scriptInterface)
+bool VisualReplay::ReadCacheFile(ScriptInterface& scriptInterface, JS::MutableHandleObject cachedReplaysObject)
+{
+	JSContext* cx = scriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+
+	if (!FileExists(cacheFileName))
+		return false;
+
+	std::ifstream cacheStream(cacheFileName.string8().c_str());
+	CStr cacheStr((std::istreambuf_iterator<char>(cacheStream)), std::istreambuf_iterator<char>());
+	cacheStream.close();
+
+	JS::RootedValue cachedReplays(cx);
+	if (scriptInterface.ParseJSON(cacheStr, &cachedReplays))
+	{
+		cachedReplaysObject.set(&cachedReplays.toObject());
+		if (JS_IsArrayObject(cx, cachedReplaysObject))
+			return true;
+	}
+
+	LOGWARNING("The replay cache file is corrupted, it will be deleted");
+	wunlink(cacheFileName);
+	return false;
+}
+
+void VisualReplay::StoreCacheFile(ScriptInterface& scriptInterface, JS::HandleObject replays)
+{
+	JSContext* cx = scriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+
+	JS::RootedValue replaysRooted(cx, JS::ObjectValue(*replays));
+	std::ofstream cacheStream(tempCacheFileName.string8().c_str(), std::ofstream::out | std::ofstream::trunc);
+	cacheStream << scriptInterface.StringifyJSON(&replaysRooted);
+	cacheStream.close();
+
+	wunlink(cacheFileName);
+	if (wrename(tempCacheFileName, cacheFileName))
+		LOGERROR("Could not store the replay cache");
+}
+
+JS::HandleObject VisualReplay::ReloadReplayCache(ScriptInterface& scriptInterface, bool compareFiles)
+{
+	TIMER(L"ReloadReplayCache");
+	JSContext* cx = scriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+
+	// Maps the filename onto the index and size
+	typedef std::map<CStr, std::pair<u32, off_t>> replayCacheMap;
+
+	replayCacheMap fileList;
+
+	JS::RootedObject cachedReplaysObject(cx);
+	if (ReadCacheFile(scriptInterface, &cachedReplaysObject))
+	{
+		// Create list of files included in the cache
+		u32 cacheLength = 0;
+		JS_GetArrayLength(cx, cachedReplaysObject, &cacheLength);
+		for (u32 j = 0; j < cacheLength; ++j)
+		{
+			JS::RootedValue replay(cx);
+			JS_GetElement(cx, cachedReplaysObject, j, &replay);
+
+			JS::RootedValue file(cx);
+			CStr fileName;
+			double fileSize;
+			scriptInterface.GetProperty(replay, "directory", fileName);
+			scriptInterface.GetProperty(replay, "fileSize", fileSize);
+
+			fileList[fileName] = std::make_pair(j, fileSize);
+		}
+	}
+
+	JS::RootedObject replays(cx, JS_NewArrayObject(cx, 0));
+	DirectoryNames directories;
+
+	if (GetDirectoryEntries(GetDirectoryName(), nullptr, &directories) != INFO::OK)
+		return replays;
+
+	bool newReplays = false;
+	std::vector<u32> copyFromOldCache;
+	// Specifies where the next replay should be kept
+	u32 i = 0;
+
+	for (const OsPath& directory : directories)
+	{
+		if (SDL_QuitRequested())
+			// We want to save our progress in searching through the replays
+			break;
+
+		bool isNew = true;
+		replayCacheMap::iterator it = fileList.find(directory.string8());
+		if (it != fileList.end())
+		{
+			if (compareFiles)
+			{
+				CFileInfo fileInfo;
+				GetFileInfo(GetDirectoryName() / directory / L"commands.txt", &fileInfo);
+				if (fileInfo.Size() == it->second.second)
+					isNew = false;
+			}
+			else
+				isNew = false;
+		}
+
+		if (isNew)
+		{
+			JS::RootedValue replayData(cx, LoadReplayData(scriptInterface, directory));
+			if (replayData.isNull())
+			{
+				CFileInfo fileInfo;
+				GetFileInfo(GetDirectoryName() / directory / L"commands.txt", &fileInfo);
+				scriptInterface.Eval("({})", &replayData);
+				scriptInterface.SetProperty(replayData, "directory", directory);
+				scriptInterface.SetProperty(replayData, "fileSize", (double)fileInfo.Size());
+			}
+			JS_SetElement(cx, replays, i++, replayData);
+			newReplays = true;
+		}
+		else
+			copyFromOldCache.push_back(it->second.first);
+	}
+
+	debug_printf(
+		"Loading %lu cached replays, removed %lu outdated entries, loaded %i new entries\n",
+		(unsigned long)fileList.size(), (unsigned long)(fileList.size() - copyFromOldCache.size()), i);
+
+	if (!newReplays && fileList.empty())
+		return replays;
+
+	// No replay was changed, so just return the cache
+	if (!newReplays && fileList.size() == copyFromOldCache.size())
+		return cachedReplaysObject;
+
+	{
+		// Copy the replays from the old cache that are not deleted
+		if (!copyFromOldCache.empty())
+			for (u32 j : copyFromOldCache)
+			{
+				JS::RootedValue replay(cx);
+				JS_GetElement(cx, cachedReplaysObject, j, &replay);
+				JS_SetElement(cx, replays, i++, replay);
+			}
+	}
+	StoreCacheFile(scriptInterface, replays);
+	return replays;
+}
+
+JS::Value VisualReplay::GetReplays(ScriptInterface& scriptInterface, bool compareFiles)
 {
 	TIMER(L"GetReplays");
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
-
-	u32 i = 0;
-	DirectoryNames directories;
-	JS::RootedObject replays(cx, JS_NewArrayObject(cx, 0));
-
-	if (GetDirectoryEntries(GetDirectoryName(), NULL, &directories) == INFO::OK)
-		for (OsPath& directory : directories)
-		{
-			if (SDL_QuitRequested())
-				return JSVAL_NULL;
-
-			JS::RootedValue replayData(cx, LoadReplayData(scriptInterface, directory));
-			if (!replayData.isNull())
-				JS_SetElement(cx, replays, i++, replayData);
-		}
-	return JS::ObjectValue(*replays);
+	JS::RootedObject replays(cx, ReloadReplayCache(scriptInterface, compareFiles));
+	// Only take entries with data
+	JS::RootedObject replaysWithoutNullEntries(cx, JS_NewArrayObject(cx, 0));
+	u32 replaysLength = 0;
+	JS_GetArrayLength(cx, replays, &replaysLength);
+	for (u32 j = 0, i = 0; j < replaysLength; ++j)
+	{
+		JS::RootedValue replay(cx);
+		JS_GetElement(cx, replays, j, &replay);
+		if (scriptInterface.HasProperty(replay, "attribs"))
+			JS_SetElement(cx, replaysWithoutNullEntries, i++, replay);
+	}
+	return JS::ObjectValue(*replaysWithoutNullEntries);
 }
 
 /**
@@ -173,7 +314,7 @@ inline int getReplayDuration(std::istream* replayStream, const CStr& fileName, c
 	return -1;
 }
 
-JS::Value VisualReplay::LoadReplayData(ScriptInterface& scriptInterface, OsPath& directory)
+JS::Value VisualReplay::LoadReplayData(ScriptInterface& scriptInterface, const OsPath& directory)
 {
 	// The directory argument must not be constant, otherwise concatenating will fail
 	const OsPath replayFile = GetDirectoryName() / directory / L"commands.txt";
@@ -250,6 +391,7 @@ JS::Value VisualReplay::LoadReplayData(ScriptInterface& scriptInterface, OsPath&
 	scriptInterface.Eval("({})", &replayData);
 	scriptInterface.SetProperty(replayData, "file", replayFile);
 	scriptInterface.SetProperty(replayData, "directory", directory);
+	scriptInterface.SetProperty(replayData, "fileSize", (double)fileSize);
 	scriptInterface.SetProperty(replayData, "attribs", attribs);
 	scriptInterface.SetProperty(replayData, "duration", duration);
 	return replayData;
@@ -263,7 +405,6 @@ bool VisualReplay::DeleteReplay(const CStrW& replayDirectory)
 	const OsPath directory = GetDirectoryName() / replayDirectory;
 	return DirectoryExists(directory) && DeleteDirectory(directory) == INFO::OK;
 }
-
 
 JS::Value VisualReplay::GetReplayAttributes(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& directoryName)
 {
@@ -288,6 +429,27 @@ JS::Value VisualReplay::GetReplayAttributes(ScriptInterface::CxPrivate* pCxPriva
 	pCxPrivate->pScriptInterface->ParseJSON(line, &attribs);
 	SAFE_DELETE(replayStream);;
 	return attribs;
+}
+
+void VisualReplay::AddReplayToCache(ScriptInterface& scriptInterface, const CStrW& directoryName)
+{
+	TIMER(L"AddReplayToCache");
+	JSContext* cx = scriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+
+	JS::RootedValue replayData(cx, LoadReplayData(scriptInterface, OsPath(directoryName)));
+	if (replayData.isNull())
+		return;
+
+	JS::RootedObject cachedReplaysObject(cx);
+	if (!ReadCacheFile(scriptInterface, &cachedReplaysObject))
+		cachedReplaysObject = JS_NewArrayObject(cx, 0);
+
+	u32 cacheLength = 0;
+	JS_GetArrayLength(cx, cachedReplaysObject, &cacheLength);
+	JS_SetElement(cx, cachedReplaysObject, cacheLength, replayData);
+
+	StoreCacheFile(scriptInterface, cachedReplaysObject);
 }
 
 void VisualReplay::SaveReplayMetadata(ScriptInterface* scriptInterface)

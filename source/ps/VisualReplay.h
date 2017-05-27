@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,7 +31,7 @@ namespace VisualReplay
 /**
  * Returns the path to the sim-log directory (that contains the directories with the replay files.
  *
- * @param scriptInterface the ScriptInterface in which to create the return data.
+ * @param scriptInterface - the ScriptInterface in which to create the return data.
  * @return OsPath the absolute file path
  */
 OsPath GetDirectoryName();
@@ -42,23 +42,51 @@ OsPath GetDirectoryName();
 void StartVisualReplay(const CStrW& directory);
 
 /**
+ * Reads the replay Cache file and parses it into a jsObject
+ *
+ * @param scriptInterface - the ScriptInterface in which to create the return data.
+ * @param cachedReplaysObject - the cached replays.
+ * @return true on succes
+ */
+bool ReadCacheFile(ScriptInterface& scriptInterface, JS::MutableHandleObject cachedReplaysObject);
+
+/**
+ * Stores the replay list in the replay cache file
+ *
+ * @param scriptInterface - the ScriptInterface in which to create the return data.
+ * @param replays - the replay list to store.
+ */
+void StoreCacheFile(ScriptInterface& scriptInterface, JS::HandleObject replays);
+
+/**
+ * Load the replay cache and check if there are new/deleted replays. If so, update the cache.
+ *
+ * @param scriptInterface - the ScriptInterface in which to create the return data.
+ * @param compareFiles - compare the directory name and the FileSize of the replays and the cache.
+ * @return cache entries
+ */
+JS::HandleObject ReloadReplayCache(ScriptInterface& scriptInterface, bool compareFiles);
+
+/**
  * Get a list of replays to display in the GUI.
  *
- * @param scriptInterface the ScriptInterface in which to create the return data.
+ * @param scriptInterface - the ScriptInterface in which to create the return data.
+ * @param compareFiles - reload the cache, which takes more time,
+ *                       but nearly ensures, that no changed replay is missed.
  * @return array of objects containing replay data
  */
-JS::Value GetReplays(ScriptInterface& scriptInterface);
+JS::Value GetReplays(ScriptInterface& scriptInterface, bool compareFiles);
 
 /**
  * Parses a commands.txt file and extracts metadata.
  * Works similarly to CGame::LoadReplayData().
  */
-JS::Value LoadReplayData(ScriptInterface& scriptInterface, OsPath& directory);
+JS::Value LoadReplayData(ScriptInterface& scriptInterface, const OsPath& directory);
 
 /**
  * Permanently deletes the visual replay (including the parent directory)
  *
- * @param replayFile path to commands.txt, whose parent directory will be deleted
+ * @param replayFile - path to commands.txt, whose parent directory will be deleted.
  * @return true if deletion was successful, false on error
  */
 bool DeleteReplay(const CStrW& replayFile);
@@ -79,10 +107,14 @@ bool HasReplayMetadata(const CStrW& directoryName);
 JS::Value GetReplayMetadata(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& directoryName);
 
 /**
- * Saves the metadata from the session to metadata.json
+ * Saves the metadata from the session to metadata.json.
  */
 void SaveReplayMetadata(ScriptInterface* scriptInterface);
 
+/**
+* Adds a replay to the replayCache.
+*/
+void AddReplayToCache(ScriptInterface& scriptInterface, const CStrW& directoryName);
 }
 
 #endif

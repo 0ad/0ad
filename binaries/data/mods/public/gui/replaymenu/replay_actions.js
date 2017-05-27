@@ -127,6 +127,12 @@ function showReplaySummary()
 	});
 }
 
+function reloadCache()
+{
+	let selected = Engine.GetGUIObjectByName("replaySelection").selected;
+	loadReplays(selected > -1 ? createReplaySelectionData(g_ReplaysFiltered[selected].directory) : "", true);
+}
+
 /**
  * Callback.
  */
