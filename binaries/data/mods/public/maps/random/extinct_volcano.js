@@ -39,6 +39,7 @@ const aBushMedium = "actor|props/flora/bush_tempe_me.xml";
 const aBushSmall = "actor|props/flora/bush_tempe_sm.xml";
 const aGrass = "actor|props/flora/grass_soft_large_tall.xml";
 const aGrassShort = "actor|props/flora/grass_soft_large.xml";
+const aRain = "actor|particle/rain_shower.xml";
 
 const pForestD = [
 	tForestFloor1 + TERRAIN_SEPARATOR + oTree,
@@ -77,6 +78,7 @@ var clMetal = createTileClass();
 var clBaseResource = createTileClass();
 var clBumps = createTileClass();
 var clTower = createTileClass();
+var clRain = createTileClass();
 
 var ccMountainHeight = 25;
 
@@ -479,7 +481,6 @@ for (let type of types)
 				clRock, 1)
 		],
 		num);
-
 RMS.SetProgress(90);
 
 log("Creating straggler bushes...");
@@ -502,6 +503,18 @@ createObjectGroups(
 	numStragglers);
 RMS.SetProgress(95);
 
+log("Creating rain drops...");
+createObjectGroups(
+	new SimpleGroup(
+		[new SimpleObject(aRain, 2, 2, 1, 4)],
+		true,
+		clRain),
+	0,
+	avoidClasses(clRain, 5),
+	scaleByMapSize(80, 250));
+RMS.SetProgress(95);
+
+setSkySet("rain");
 setWaterType("lake");
 setWaterWaviness(2);
 setWaterColor(0.1, 0.13, 0.15);
