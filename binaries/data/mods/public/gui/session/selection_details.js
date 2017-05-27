@@ -96,9 +96,19 @@ function displaySingle(entState)
 		Engine.GetGUIObjectByName("rankIcon").tooltip = "";
 	}
 
+	let showHealth = entState.hitpoints;
+	let showResource = entState.resourceSupply;
+
+	let healthSection = Engine.GetGUIObjectByName("healthSection");
+	let captureSection = Engine.GetGUIObjectByName("captureSection");
+	let resourceSection = Engine.GetGUIObjectByName("resourceSection");
+	let sectionPosTop = Engine.GetGUIObjectByName("sectionPosTop");
+	let sectionPosMiddle = Engine.GetGUIObjectByName("sectionPosMiddle");
+	let sectionPosBottom = Engine.GetGUIObjectByName("sectionPosBottom");
+
 	// Hitpoints
-	Engine.GetGUIObjectByName("healthSection").hidden = !entState.hitpoints;
-	if (entState.hitpoints)
+	healthSection.hidden = !showHealth;
+	if (showHealth)
 	{
 		let unitHealthBar = Engine.GetGUIObjectByName("healthBar");
 		let healthSize = unitHealthBar.size;
@@ -120,10 +130,19 @@ function displaySingle(entState)
 			"hitpoints": Math.ceil(entState.hitpoints),
 			"maxHitpoints": Math.ceil(entState.maxHitpoints)
 		});
+
+		healthSection.size = sectionPosTop.size;
+		captureSection.size = showResource ? sectionPosMiddle.size : sectionPosBottom.size;
+		resourceSection.size = showResource ? sectionPosBottom.size : sectionPosMiddle.size;
+	}
+	else
+	{
+		captureSection.size = sectionPosBottom.size;
+		resourceSection.size = sectionPosTop.size;
 	}
 
 	// CapturePoints
-	Engine.GetGUIObjectByName("captureSection").hidden = !entState.capturePoints;
+	captureSection.hidden = !entState.capturePoints;
 	if (entState.capturePoints)
 	{
 		let setCaptureBarPart = function(playerID, startSize) {
@@ -146,10 +165,14 @@ function displaySingle(entState)
 			if (i != entState.player)
 				size = setCaptureBarPart(i, size);
 
-		Engine.GetGUIObjectByName("captureStats").caption = sprintf(translate("%(capturePoints)s / %(maxCapturePoints)s"), {
+		let captureText = sprintf(translate("%(capturePoints)s / %(maxCapturePoints)s"), {
 			"capturePoints": Math.ceil(entState.capturePoints[entState.player]),
 			"maxCapturePoints": Math.ceil(entState.maxCapturePoints)
 		});
+
+		let showSmallCapture = showResource && showHealth;
+		Engine.GetGUIObjectByName("captureStats").caption = showSmallCapture ? "": captureText;
+		Engine.GetGUIObjectByName("capture").tooltip = showSmallCapture ? captureText : "";
 	}
 
 	// Experience
@@ -175,7 +198,7 @@ function displaySingle(entState)
 	}
 
 	// Resource stats
-	Engine.GetGUIObjectByName("resourceSection").hidden = !entState.resourceSupply;
+	resourceSection.hidden = !showResource;
 	if (entState.resourceSupply)
 	{
 		let resources = entState.resourceSupply.isInfinite ? translate("∞") :  // Infinity symbol
@@ -196,10 +219,6 @@ function displaySingle(entState)
 		});
 		Engine.GetGUIObjectByName("resourceStats").caption = resources;
 
-		if (entState.hitpoints)
-			Engine.GetGUIObjectByName("resourceSection").size = Engine.GetGUIObjectByName("captureSection").size;
-		else
-			Engine.GetGUIObjectByName("resourceSection").size = Engine.GetGUIObjectByName("healthSection").size;
 	}
 
 	// Resource carrying
