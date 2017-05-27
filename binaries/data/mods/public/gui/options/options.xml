@@ -13,11 +13,11 @@
 	<object type="image" sprite="ModernFade"/>
 
 	<!-- Settings Window -->
-	<object name="options" type="image" style="ModernDialog" size="50%-466 50%-316 50%+466 50%+316">
+	<object name="options" type="image" style="ModernDialog" size="50%-476 50%-316 50%+476 50%+316">
 		<object style="ModernLabelText" type="text" size="50%-128 -16 50%+128 16">
 			<translatableAttribute id="caption">Game Options</translatableAttribute>
 		</object>
-		<object name="GeneralSettings" type="image" sprite="ModernDarkBoxGold" size="16 16 312 100%-52">
+		<object name="GeneralSettings" type="image" sprite="ModernDarkBoxGold" size="16 16 332 100%-52">
 			<object style="ModernLabelText" type="text" size="0 5 100% 25">
 				<translatableAttribute id="caption">General</translatableAttribute>
 			</object>
@@ -30,7 +30,7 @@
 				</object>
 			</repeat>
 		</object>
-		<object name="GraphicsSettings" type="image" sprite="ModernDarkBoxGold" size="320 16 612 100%-52">
+		<object name="GraphicsSettings" type="image" sprite="ModernDarkBoxGold" size="340 16 632 100%-52">
 			<object style="ModernLabelText" type="text" size="0 5 100% 25">
 				<translatableAttribute id="caption">Graphics Settings</translatableAttribute>
 			</object>
@@ -44,7 +44,7 @@
 				</object>
 			</repeat>
 		</object>
-		<object name="SoundSettings" type="image" sprite="ModernDarkBoxGold" size="620 16 916 40%">
+		<object name="SoundSettings" type="image" sprite="ModernDarkBoxGold" size="640 16 936 40%">
 			<object style="ModernLabelText" type="text" size="0 5 100% 25">
 				<translatableAttribute id="caption">Sound Settings</translatableAttribute>
 			</object>
@@ -57,7 +57,7 @@
 				</object>
 			</repeat>
 		</object>
-		<object name="LobbySettings" type="image" sprite="ModernDarkBoxGold" size="620 40%+8 916 65%">
+		<object name="LobbySettings" type="image" sprite="ModernDarkBoxGold" size="640 40%+8 936 65%">
 			<object style="ModernLabelText" type="text" size="0 5 100% 25">
 				<translatableAttribute id="caption">Lobby Settings</translatableAttribute>
 			</object>
@@ -70,7 +70,7 @@
 				</object>
 			</repeat>
 		</object>
-		<object name="NotificationsSettings" type="image" sprite="ModernDarkBoxGold" size="620 65%+8 916 100%-52">
+		<object name="NotificationsSettings" type="image" sprite="ModernDarkBoxGold" size="640 65%+8 936 100%-52">
 			<object style="ModernLabelText" type="text" size="0 5 100% 25">
 				<translatableAttribute id="caption">Chat Notification Settings</translatableAttribute>
 			</object>

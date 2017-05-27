@@ -1279,22 +1279,35 @@ function handlePlayerAssignmentMessage(message)
 
 function onClientJoin(newGUID, newAssignments)
 {
+	let playername = newAssignments[newGUID].name;
+
 	addChatMessage({
 		"type": "connect",
 		"guid": newGUID,
-		"username": newAssignments[newGUID].name
+		"username": playername
 	});
+
+	let isRejoiningPlayer = newAssignments[newGUID].player != -1;
+
+	// Assign the client (or only buddies if prefered) to an unused playerslot and rejoining players to their old slot
+	if (!isRejoiningPlayer && playername != newAssignments[Engine.GetPlayerGUID()].name)
+	{
+		let assignOption = Engine.ConfigDB_GetValue("user", "gui.gamesetup.assignplayers");
+		if (assignOption == "noone" ||
+		    assignOption == "buddies" && g_Buddies.indexOf(splitRatingFromNick(playername)[0]) == -1)
+			return;
+	}
 
 	let freeSlot = g_GameAttributes.settings.PlayerData.findIndex((v,i) =>
 		Object.keys(g_PlayerAssignments).every(guid => g_PlayerAssignments[guid].player != i+1)
 	);
 
 	// Client is not and cannot become assigned as player
-	if (newAssignments[newGUID].player == -1 && freeSlot == -1)
+	if (!isRejoiningPlayer && freeSlot == -1)
 		return;
 
 	// Assign the joining client to the free slot
-	if (g_IsController && newAssignments[newGUID].player == -1)
+	if (g_IsController && !isRejoiningPlayer)
 		Engine.AssignNetworkPlayer(freeSlot + 1, newGUID);
 
 	resetReadyData();
