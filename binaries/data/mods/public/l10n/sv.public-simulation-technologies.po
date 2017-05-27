@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-04-28 09:02+0200\n"
-"PO-Revision-Date: 2017-04-28 15:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-05-23 12:53+0000\n"
+"Last-Translator: pilino1234 <mhilgendrf@aol.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,7 +34,7 @@ msgid ""
 "health, 1 extra armor level of every type, 20% extra attack for melee units,"
 " 4m extra range and 5% better precision for ranged units, faster movement "
 "speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "Enheter som befordrats till den avancerade klassen får en ökad kvalitet: 20% extra hälsa, 1 extra pansarnivå av varje typ, 20% extra attack för närstridsenheter, 4m extra räckvidd och 5% bättre precision för distansattackenheter, snabbare rörelsehastighet och extra helningshastighet och räckvidd för helare."
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -825,7 +825,7 @@ msgid ""
 "extra armor level of every type, 20% extra attack for melee units, extra "
 "range and better precision for ranged units, faster movement speeds and "
 "extra heal speed and range for healers."
-msgstr ""
+msgstr "Enheter som befordrats till elitklass får en ökad kvalitet: 20% extra hälsa, 1 extra pansarnivå av varje typ, 20% extra attack för närstridsenheter, extra räckvidd och bättre precision för distansattackenheter, snabbare rörelsehastighet och extra helningshastighet och räckvidd för helare."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
@@ -1063,11 +1063,11 @@ msgstr "Flätade korgar"
 
 #: simulation/data/technologies/heal_barracks.jsondescription
 msgid "Units garrisoned in barracks heal over time."
-msgstr "Enheter garnisonerade i baracker blir helade över tiden."
+msgstr "Enheter garnisonerade i baracker läks med tiden."
 
 #: simulation/data/technologies/heal_barracks.jsontooltip
 msgid "Units gain health over time while garrisoned in barracks."
-msgstr "Enheter helas medans de är garnisonerade i baracker."
+msgstr "Enheter läks medans de är garnisonerade i baracker."
 
 #: simulation/data/technologies/heal_barracks.jsongenericName
 msgid "Living Conditions"
@@ -1076,16 +1076,16 @@ msgstr "Levnadsförhållanden"
 #: simulation/data/technologies/heal_range.jsondescription
 #: simulation/data/technologies/heal_range_2.jsondescription
 msgid "Increases the healing and vision range of all healers."
-msgstr "Ökar helningsräckvidd och synhåll för alla helare."
+msgstr "Ökar läkningsräckvidd och synhåll för alla läkare."
 
 #: simulation/data/technologies/heal_range.jsontooltip
 #: simulation/data/technologies/heal_range_2.jsontooltip
 msgid "Healers +5 Healing and Vision Range."
-msgstr "Helare +5 helningsräckvidd och synhåll."
+msgstr "Läkare +5 läkningsräckvidd och synhåll."
 
 #: simulation/data/technologies/heal_range.jsongenericName
 msgid "Healing Range"
-msgstr "Helningsräckvidd"
+msgstr "Läkningsräckvidd"
 
 #: simulation/data/technologies/heal_range.jsonspecificName.mace
 #: simulation/data/technologies/heal_range.jsonspecificName.spart
@@ -1095,7 +1095,7 @@ msgstr "Olympiskt Panteon"
 
 #: simulation/data/technologies/heal_range_2.jsongenericName
 msgid "Healing Range 2"
-msgstr "Helningsräckvidd 2"
+msgstr "Läkningsräckvidd 2"
 
 #: simulation/data/technologies/heal_range_2.jsonspecificName.mace
 #: simulation/data/technologies/heal_range_2.jsonspecificName.spart
@@ -1106,16 +1106,16 @@ msgstr "Akadḗmeia"
 #: simulation/data/technologies/heal_rate.jsondescription
 #: simulation/data/technologies/heal_rate_2.jsondescription
 msgid "Increases the Healing Rate of all healers."
-msgstr "Öka helningstakten av alla helare."
+msgstr "Öka läkningstakten för alla läkare."
 
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
 msgid "Healers +25% healing rate."
-msgstr "Helare +25% helningtakt."
+msgstr "Läkare +25% läkningstakt."
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
-msgstr "Helningstakt"
+msgstr "Läkningstakt"
 
 #: simulation/data/technologies/heal_rate.jsonspecificName.mace
 #: simulation/data/technologies/heal_rate.jsonspecificName.spart
@@ -1125,7 +1125,7 @@ msgstr "Sphágia"
 
 #: simulation/data/technologies/heal_rate_2.jsongenericName
 msgid "Healing Rate 2"
-msgstr "Helningstakt 2"
+msgstr "Läkningstakt 2"
 
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.mace
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.spart
@@ -1135,11 +1135,11 @@ msgstr "Hippokratiska eden."
 
 #: simulation/data/technologies/heal_temple.jsondescription
 msgid "Units garrisoned in a temple are healed faster."
-msgstr "Enheter garnisonerade i tempel helas snabbare."
+msgstr "Enheter garnisonerade i tempel läks snabbare."
 
 #: simulation/data/technologies/heal_temple.jsontooltip
 msgid "Temples +50% garrisoned healing rate."
-msgstr "Tempel +50% garnisonerad helningstakt."
+msgstr "Tempel +50% garnisonerad läkningstakt."
 
 #: simulation/data/technologies/heal_temple.jsongenericName
 msgid "Divine Offerings"
@@ -1160,7 +1160,7 @@ msgid ""
 "settlement. Women of the household were taught from a young age how to weave"
 " on the loom, and subsequently spent a large  share of their lives working "
 "with it."
-msgstr "Vävstolen tillät skapandet av finare kläder att klä medborgare i bosättningen. Kvinnor i hushållet lärdes från en ung ålder hur man väver på vävstolen, och tillbringade därefter en stor del av sitt liv med vävning."
+msgstr "Vävstolen tillät skapandet av finare kläder att klä medborgare i bosättningen med. Kvinnor i hushållet lärdes från en ung ålder hur man väver på vävstolen, och tillbringade därefter en stor del av sitt liv med vävning."
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "Female Citizens +50% Health."
@@ -1244,15 +1244,15 @@ msgstr "Järnyxor vs. Skottkärror"
 
 #: simulation/data/technologies/pair_heal_01.jsongenericName
 msgid "Heal Range and Rate"
-msgstr "Helningsräckvidd och Takt"
+msgstr "Läkningsräckvidd och Takt"
 
 #: simulation/data/technologies/pair_heal_02.jsongenericName
 msgid "Heal Range and Rate #2"
-msgstr "Helningsräckvidd och Takt #2"
+msgstr "Läkningsräckvidd och Takt #2"
 
 #: simulation/data/technologies/pair_heal_03.jsongenericName
 msgid "Garrison Healing vs. Self-Healing"
-msgstr "Garnisonerad helning vs. Självhelning"
+msgstr "Garnisonerad läkning vs. Självläkning"
 
 #: simulation/data/technologies/pair_house_01.jsongenericName
 #: simulation/data/technologies/pair_house_02.jsongenericName
@@ -1487,7 +1487,7 @@ msgstr "Undret lockar många fler människor till din civilisation."
 msgid ""
 "Enable Glorious Expansion. Further increase the population limit by 40 per "
 "Wonder owned."
-msgstr "Aktivera Strålande Expansion. Öka befolkningen gränsen med ytterligare 40 per Under som ägs."
+msgstr "Aktivera Strålande Expansion. Öka befolkningsgränsen med ytterligare 40 per under som ägs."
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
@@ -1701,7 +1701,7 @@ msgstr "Värnplikt"
 msgid ""
 "Calling up cavalry levies in time of war helps bolster the ranks of a king's"
 " army."
-msgstr "Att ropa upp kavalleriuppbådelser i krigstid hjälper stärka leden av en kungs armé."
+msgstr "Att uppbåda kavalleri i krigstid hjälper stärka leden av en kungs armé."
 
 #: simulation/data/technologies/training_levy_cavalry.jsontooltip
 msgid ""
@@ -1718,7 +1718,7 @@ msgstr "Uppbåda Kavalleri"
 msgid ""
 "Calling up infantry levies in time of war helps bolster the ranks of a "
 "king's army."
-msgstr "Att ropa upp infanteriuppbådelser i krigstid hjälper stärka leden av en kungs armé."
+msgstr "Att uppbåda infanter i krigstid hjälper stärka leden av en kungs armé."
 
 #: simulation/data/technologies/training_levy_infantry.jsontooltip
 msgid ""
@@ -1955,7 +1955,7 @@ msgstr "Keltisk Legosoldat Befälhavare"
 msgid ""
 "Hire a Gallic mercenary general to reduce cost -20 metal for Celtic "
 "mercenaries."
-msgstr "Lej en Gallisk legosoldat general för att minska kostnaden för Keltiska legosoldater med -20 metall."
+msgstr "Lej en Gallisk legosoldatgeneral för att minska kostnaden för Keltiska legosoldater med -20 metall."
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsongenericName
 msgid "Gallic Mercenary General"
@@ -1970,7 +1970,7 @@ msgstr "Iberiska legosoldater har en reducerad metallkostnad."
 msgid ""
 "Hire a Lusitanian mercenary captain to reduce cost -20 metal for Iberian "
 "mercenaries."
-msgstr "Lej en Lusitanisk legosoldat kapten för att minska kostnaderna för iberiska legosoldater med -20 metall."
+msgstr "Lej en Lusitanisk legosoldatkapten för att minska kostnaderna för iberiska legosoldater med -20 metall."
 
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs.jsongenericName
 msgid "Lusitanian Mercenary Captain"
@@ -1980,7 +1980,7 @@ msgstr "Lusitanisk Legosoldat Kapten"
 msgid ""
 "Hire a Celtiberian mercenary general to reduce cost -20 metal for Iberian "
 "mercenaries."
-msgstr "Lej en Keltiberisk legosoldat general för att minska kostnaden för iberiska legosoldater med -20 metall."
+msgstr "Lej en Keltiberisk legosoldatgeneral för att minska kostnaden för iberiska legosoldater med -20 metall."
 
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs_2.jsongenericName
 msgid "Celtiberian Mercenary General"
@@ -1995,7 +1995,7 @@ msgstr "Italienska legosoldater kostar mindre metall."
 msgid ""
 "Hire an Italiote mercenary captain to reduce cost -20 metal for Italian "
 "mercenaries."
-msgstr "Lej en Italisk legosoldat kapten för att minska kostnaden för italienska legosoldater med -20 metall."
+msgstr "Lej en Italisk legosoldatkapten för att minska kostnaden för italienska legosoldater med -20 metall."
 
 #: simulation/data/technologies/carthaginians/cost_italian_mercs.jsongenericName
 msgid "Italiote Mercenary Captain"
@@ -2005,7 +2005,7 @@ msgstr "Italisk Legosoldat Kapten"
 msgid ""
 "Hire an Italiote mercenary general to reduce cost -20 metal for Italian "
 "mercenaries."
-msgstr "Lej en Italisk legosoldat general för att minska kostnaden för Italienska legosoldater med -20 metall."
+msgstr "Lej en Italisk legosoldatgeneral för att minska kostnaden för Italienska legosoldater med -20 metall."
 
 #: simulation/data/technologies/carthaginians/cost_italian_mercs_2.jsongenericName
 msgid "Italiote Mercenary General"
@@ -2013,27 +2013,27 @@ msgstr "Italisk Legosoldat General"
 
 #: simulation/data/technologies/carthaginians/pair_celt_mercs_1.jsongenericName
 msgid "Celtic merc cost vs. recruit time #1"
-msgstr "Keltisk legosoldat kostnad vs. rekyteringstid #1"
+msgstr "Keltisk legosoldat kostnad vs. rekryteringstid #1"
 
 #: simulation/data/technologies/carthaginians/pair_celt_mercs_2.jsongenericName
 msgid "Celtic merc cost vs. recruit time #2"
-msgstr "Keltisk legosoldat kostnad vs. rekyteringstid #2"
+msgstr "Keltisk legosoldat kostnad vs. rekryteringstid #2"
 
 #: simulation/data/technologies/carthaginians/pair_iberian_mercs_1.jsongenericName
 msgid "Iberian merc cost vs. recruit time #1"
-msgstr "Iberisk legosoldat kostnad vs. rekyteringstid #1"
+msgstr "Iberisk legosoldat kostnad vs. rekryteringstid #1"
 
 #: simulation/data/technologies/carthaginians/pair_iberian_mercs_2.jsongenericName
 msgid "Iberian merc cost vs. recruit time #2"
-msgstr "Iberisk legosoldat kostnad vs. rekyteringstid #2"
+msgstr "Iberisk legosoldat kostnad vs. rekryteringstid #2"
 
 #: simulation/data/technologies/carthaginians/pair_italian_mercs_1.jsongenericName
 msgid "Italian merc cost vs. recruit time #1"
-msgstr "Italiensk legosoldat kostnad vs. rekyteringstid #1"
+msgstr "Italiensk legosoldat kostnad vs. rekryteringstid #1"
 
 #: simulation/data/technologies/carthaginians/pair_italian_mercs_2.jsongenericName
 msgid "Italian merc cost vs. recruit time #2"
-msgstr "Italiensk legosoldat kostnad vs. rekyteringstid #2"
+msgstr "Italiensk legosoldat kostnad vs. rekryteringstid #2"
 
 #: simulation/data/technologies/carthaginians/special_colonisation.jsondescription
 msgid ""
@@ -2159,7 +2159,7 @@ msgid ""
 "Upgrade all of your Celtic mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Celtic Mercenaries technology."
-msgstr "Befordra alla dina Keltiska legosoldater till rangen Avancerad. Detta ökar deras militära förmåga men minskar deras resurs insamlingstakt med -25%. Låser upp Elit Keltisk legosoldat teknologin."
+msgstr "Befordra alla dina Keltiska legosoldater till rangen Avancerad. Detta ökar deras militära förmåga men minskar deras resursinsamlingstakt med -25%. Låser upp Elit Keltisk legosoldat teknologin."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsongenericName
 msgid "Advanced Celtic Mercenaries"
@@ -2203,7 +2203,7 @@ msgstr "Befordra alla dina Keltiska legosoldater till rangen Elit."
 msgid ""
 "Upgrade all of your Celtic mercenaries to Elite rank. This increases their "
 "military prowess, but decreases their resource gathering rates another -25%."
-msgstr "Befordra alla dina Keltiska legosoldater till rangen Elit. Detta ökar deras militära förmåga men minskar deras resurs insamlingstakt med -25%."
+msgstr "Befordra alla dina Keltiska legosoldater till rangen Elit. Detta ökar deras militära förmåga men minskar deras resursinsamlingstakt med -25%."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsongenericName
 msgid "Elite Celtic Mercenaries"
@@ -2217,7 +2217,7 @@ msgstr "Befordra alla dina Iberiska legosoldater till rangen Elit."
 msgid ""
 "Upgrade all of your Iberian mercenaries to Elite rank. This increases their "
 "military prowess, but decreases their resource gathering rates another -25%."
-msgstr "Befordra alla dina Iberiska legosoldater till rangen Elit. Detta ökar deras militära förmåga men minskar deras resurs insamlingstakt med -25%."
+msgstr "Befordra alla dina Iberiska legosoldater till rangen Elit. Detta ökar deras militära förmåga men minskar deras resursinsamlingstakt med -25%."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsongenericName
 msgid "Elite Iberian Mercenaries"
@@ -2232,7 +2232,7 @@ msgid ""
 "Upgrade all of your Italiote mercenaries to Elite rank. This increases their"
 " military prowess, but decreases their resource gathering rates another "
 "-25%."
-msgstr "Befordra alla dina Italiska legosoldater till rangen Elit. Detta ökar deras militära förmåga men minskar deras resurs insamlingstakt med -25%."
+msgstr "Befordra alla dina Italiska legosoldater till rangen Elit. Detta ökar deras militära förmåga men minskar deras resursinsamlingstakt med -25%."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsongenericName
 msgid "Elite Italiote Mercenaries"
@@ -2254,7 +2254,7 @@ msgstr "Träkonstruktion"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
 msgid "Spear fighting training increases damage of infantry spear units."
-msgstr "Spjutstrids träning ökar skada av spjut intanerienheter."
+msgstr "Spjutstridsträning ökar skada av spjut infanterienheter."
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsontooltip
 msgid "Spearmen +2 hack attack."
@@ -2318,11 +2318,11 @@ msgstr "Agogen"
 msgid ""
 "Athenian triremes can train Marines (Epibates Athenaikos) and Cretan "
 "Mercenary Archers (Toxotes Kretikos)."
-msgstr "Atenska triremer kan träna Mariner (Epibates Athenaikos) Kretensiska Legosoldatbågskyttar (Toxotes Kretikos)."
+msgstr "Atenska triremer kan träna mariner (Epibates Athenaikos) och kretensiska legosoldatbågskyttar (Toxotes Kretikos)."
 
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsontooltip
 msgid "Athenian triremes can train Marines and Cretan Mercenary Archers."
-msgstr "Atenska triremer kan träna Mariner och Kretensiska Legosoldatbågskyttar."
+msgstr "Atenska triremer kan träna mariner och kretensiska legosoldatbågskyttar."
 
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsongenericName
 msgid "Iphicratean Reforms"
@@ -2334,7 +2334,7 @@ msgid ""
 "Themistocles and extended 6 km from the city to the port of Piraeus. This "
 "secured the city's sea supply routes and prevented an enemy from starving "
 "out the city during a siege."
-msgstr "De Långa Murarna i Aten konstruerades i regi av den lömska Themistokles och förlängdes 6 km från staden till hamnen i Pireus. Detta säkrade stadens havsförsörjningsvägar och förhindrade en fiende från att svälta ut staden under en belägring."
+msgstr "De Långa Murarna i Aten konstruerades i regi av den lömska Themistokles och räckte 6 km från staden till hamnen i Pireus. Detta säkrade stadens havsförsörjningsvägar och förhindrade en fiende från att svälta ut staden under en belägring."
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
 msgid "Build stone walls in neutral territory."
@@ -2436,7 +2436,7 @@ msgid ""
 " Susa; Darius the Great and Xerxes also built the magnificent Persepolis; "
 "Cyrus the Great greatly improved Ecbatana and virtually 'rebuilt' the old "
 "Elamite capital of Susa."
-msgstr "Perserna byggde den fantastiska 1677 mil långa Persiska Kungsvägen från Sardis till Susa; Dareios den Store och Xerxes byggde den magnifika Persepolis; Kyros den Store förbättrade Ekbatana avsevärt och praktiskt \"byggde om\" den gamla Elamska huvudstaden Susa."
+msgstr "Perserna byggde den fantastiska 1677 mil långa Persiska Kungsvägen från Sardis till Susa; Dareios den Store och Xerxes byggde den magnifika Persepolis; Kyros den Store förbättrade Ekbatana avsevärt och praktiskt 'byggde om' den gamla Elamska huvudstaden Susa."
 
 #: simulation/data/technologies/persians/persian_architecture.jsontooltip
 msgid ""
@@ -2481,7 +2481,7 @@ msgstr "Öka träningshastigheten av soldater vid barackerna genom att utbilda d
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsontooltip
 msgid "Faster batch training speed for the Stables."
-msgstr "Snabbare träningshastighet för grupper i Fästningar."
+msgstr "Snabbare träningshastighet för grupper i fästningar."
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsongenericName
 msgid "Cavalry Conscription"
@@ -2544,7 +2544,7 @@ msgid ""
 "Beginning with Alexander, the Hellenistic monarchs founded many cities "
 "throughout their empires, where Greek culture and art blended with local "
 "customs to create the motley Hellenistic civilization."
-msgstr "Från och med Alexander, grundade Hellenistiska monarkerna många städer i hela sina riken, där den grekiska kulturen och konsten blandas med lokala seder för att skapa den brokiga hellenistiska civilisationen."
+msgstr "Från och med Alexander grundade Hellenistiska monarkerna många städer i hela sina riken, där den grekiska kulturen och konsten blandas med lokala seder för att skapa den brokiga hellenistiska civilisationen."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
 msgid "Civic centers +100% health and capture points, double default arrows."
@@ -2621,7 +2621,7 @@ msgstr "Silversköldarna, eller Argyraspidai var den tunga elitinfanterin armen 
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with greater "
 "health and armor."
-msgstr "Uppgradera Sköldbärar Mästarinfanteri till Silversköldar, med mer hälsa och rustning."
+msgstr "Uppgradera Sköldbärar-mästarinfanteri till Silversköldar, med mer hälsa och rustning."
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"

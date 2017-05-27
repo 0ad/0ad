@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-27 09:02+0200\n"
-"PO-Revision-Date: 2017-03-28 12:17+0000\n"
+"POT-Creation-Date: 2017-05-05 09:15+0200\n"
+"PO-Revision-Date: 2017-05-06 08:17+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -68,14 +68,14 @@ msgid "Recruit special units."
 msgstr "招募特殊單位。"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:39
-#: simulation/templates/template_structure_civic_temple.xml:33
+#: simulation/templates/template_structure_civic_temple.xml:35
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_economic_market.xml:24
 #: simulation/templates/template_structure_military_blacksmith.xml:32
 #: simulation/templates/template_structure_military_embassy.xml:26
 #: simulation/templates/structures/brit_blacksmith.xml:11
 #: simulation/templates/structures/brit_kennel.xml:39
-#: simulation/templates/structures/cart_super_dock.xml:37
+#: simulation/templates/structures/cart_super_dock.xml:39
 #: simulation/templates/structures/gaul_blacksmith.xml:11
 #: simulation/templates/structures/gaul_tavern.xml:29
 #: simulation/templates/structures/maur_elephant_stables.xml:29
@@ -103,14 +103,14 @@ msgstr "村莊"
 msgid "House"
 msgstr "房舍"
 
-#: simulation/templates/template_structure_civic_temple.xml:32
+#: simulation/templates/template_structure_civic_temple.xml:34
 msgid ""
 "Train healers. Garrison units to heal them at a quick rate (3 HP per "
 "second). Research healing and religious improvements."
 msgstr "訓練醫療者。可駐守單位以更快的速率治療他們（每秒3點生命值）。研究醫療及宗教狂熱改進科技。"
 
+#: simulation/templates/template_structure_civic_temple.xml:35
 #: simulation/templates/template_structure_civic_temple.xml:33
-#: simulation/templates/template_structure_civic_temple.xml:31
 msgid "Temple"
 msgstr "神廟"
 
@@ -180,11 +180,11 @@ msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
 msgstr "允許單位通過城市的牆。可以鎖住以避免通過。"
 
-#: simulation/templates/template_structure_defense_wall_long.xml:40
+#: simulation/templates/template_structure_defense_wall_long.xml:42
 msgid "Long wall segments can be converted to gates."
 msgstr "常城牆可以被轉換為城門。"
 
-#: simulation/templates/template_structure_defense_wall_long.xml:45
+#: simulation/templates/template_structure_defense_wall_long.xml:47
 msgid ""
 "This will allow you to let units circulate through your fortifications."
 msgstr "這將會讓您的單位在防禦工事旁繞圈。"
@@ -308,7 +308,7 @@ msgstr "訓練英雄、精英、以及攻城武器。研究攻城武器改進。
 
 #: simulation/templates/template_structure_military_fortress.xml:65
 #: simulation/templates/template_structure_special.xml:45
-#: simulation/templates/template_structure_wonder.xml:49
+#: simulation/templates/template_structure_wonder.xml:52
 msgid "City"
 msgstr "城市"
 
@@ -349,38 +349,38 @@ msgstr "特殊的建築物"
 msgid "This is a special building unique to a particular civilization."
 msgstr "只有特定的文明才有此特殊的建築物。"
 
-#: simulation/templates/template_structure_special_library.xml:15
+#: simulation/templates/template_structure_special_library.xml:17
 msgid "Library"
 msgstr "圖書館"
 
-#: simulation/templates/template_structure_special_library.xml:17
+#: simulation/templates/template_structure_special_library.xml:19
 msgid "Research special technologies."
 msgstr "研究特殊科技。"
 
-#: simulation/templates/template_structure_special_rotarymill.xml:20
+#: simulation/templates/template_structure_special_rotarymill.xml:22
 msgid "Rotary Mill"
 msgstr "旋轉研磨機"
 
-#: simulation/templates/template_structure_special_rotarymill.xml:21
+#: simulation/templates/template_structure_special_rotarymill.xml:23
 msgid "Melonas"
 msgstr "Melonas"
 
-#: simulation/templates/template_structure_special_theatron.xml:23
+#: simulation/templates/template_structure_special_theatron.xml:25
 msgid "Greek Theater"
 msgstr "希臘劇院"
 
-#: simulation/templates/template_structure_special_theatron.xml:24
+#: simulation/templates/template_structure_special_theatron.xml:26
 msgid "Théātron"
 msgstr "希臘劇院"
 
-#: simulation/templates/template_structure_wonder.xml:48
+#: simulation/templates/template_structure_wonder.xml:51
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
 msgstr "將榮耀歸於您的文明，並在您的帝國裡加入大片的土地。"
 
-#: simulation/templates/template_structure_wonder.xml:49
-#: simulation/templates/template_structure_wonder.xml:47
+#: simulation/templates/template_structure_wonder.xml:52
+#: simulation/templates/template_structure_wonder.xml:50
 msgid "Wonder"
 msgstr "奇觀"
 
@@ -545,7 +545,7 @@ msgstr "Naós Parthenṓn"
 #: simulation/templates/structures/cart_wonder.xml:17
 #: simulation/templates/structures/mace_wonder.xml:17
 #: simulation/templates/structures/ptol_wonder.xml:17
-#: simulation/templates/structures/rome_wonder.xml:14
+#: simulation/templates/structures/rome_wonder.xml:16
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at an extremely quick rate."
@@ -776,19 +776,19 @@ msgstr "矮牆"
 msgid "Maḥṣabah"
 msgstr "Maḥṣabah"
 
-#: simulation/templates/structures/cart_super_dock.xml:35
+#: simulation/templates/structures/cart_super_dock.xml:37
 msgid "Naval Shipyard"
 msgstr "海軍造船廠"
 
-#: simulation/templates/structures/cart_super_dock.xml:36
+#: simulation/templates/structures/cart_super_dock.xml:38
 msgid "Cothon"
 msgstr "Cothon"
 
-#: simulation/templates/structures/cart_super_dock.xml:37
+#: simulation/templates/structures/cart_super_dock.xml:39
 msgid "Shipyard"
 msgstr "造船廠"
 
-#: simulation/templates/structures/cart_super_dock.xml:39
+#: simulation/templates/structures/cart_super_dock.xml:41
 msgid "Construct and repair mighty warships."
 msgstr "建造及修復強力戰艦。"
 
@@ -802,11 +802,6 @@ msgid ""
 "units to heal them at a quick rate."
 msgstr "訓練女祭司以治療您的軍隊。訓練聖隊矛兵。可駐守單位以較快速的治療他們。"
 
-#: simulation/templates/structures/cart_wall.xml:9
-#: simulation/templates/structures/cart_wallset_stone.xml:5
-msgid "Jdar"
-msgstr "Jdar"
-
 #: simulation/templates/structures/cart_wall_gate.xml:9
 msgid "Mijdil-šaʿar"
 msgstr "Mijdil-šaʿar"
@@ -816,6 +811,10 @@ msgstr "Mijdil-šaʿar"
 #: simulation/templates/structures/cart_wall_short.xml:10
 msgid "Homah"
 msgstr "Homah"
+
+#: simulation/templates/structures/cart_wallset_stone.xml:5
+msgid "Jdar"
+msgstr "Jdar"
 
 #: simulation/templates/structures/cart_wonder.xml:15
 msgid "Temple of Ba'al Hammon"
@@ -894,19 +893,19 @@ msgstr "Etxe"
 msgid "Arruga"
 msgstr "Arruga"
 
-#: simulation/templates/structures/iber_monument.xml:7
+#: simulation/templates/structures/iber_monument.xml:9
 msgid "Monument"
 msgstr "紀念碑"
 
-#: simulation/templates/structures/iber_monument.xml:32
+#: simulation/templates/structures/iber_monument.xml:34
 msgid "Revered Monument"
 msgstr "崇敬紀念碑"
 
-#: simulation/templates/structures/iber_monument.xml:33
+#: simulation/templates/structures/iber_monument.xml:35
 msgid "Gur Oroigarri"
 msgstr "Gur Oroigarri"
 
-#: simulation/templates/structures/iber_monument.xml:36
+#: simulation/templates/structures/iber_monument.xml:38
 msgid ""
 "All units within vision of this monument will fight harder. Buildings in the"
 " territory of the monument do not decay."
@@ -924,17 +923,16 @@ msgstr "Ola"
 msgid "Loki"
 msgstr "Loki"
 
-#: simulation/templates/structures/iber_wall.xml:9
+#: simulation/templates/structures/iber_wall_gate.xml:9
+msgid "Biko Sarbide"
+msgstr "Biko Sarbide"
+
 #: simulation/templates/structures/iber_wall_long.xml:29
 #: simulation/templates/structures/iber_wall_medium.xml:23
 #: simulation/templates/structures/iber_wall_short.xml:10
 #: simulation/templates/structures/iber_wallset_stone.xml:5
 msgid "Zabal Horma"
 msgstr "Zabal Horma"
-
-#: simulation/templates/structures/iber_wall_gate.xml:9
-msgid "Biko Sarbide"
-msgstr "Biko Sarbide"
 
 #: simulation/templates/structures/iber_wonder.xml:9
 msgid "Cancho Roano"
@@ -1039,19 +1037,19 @@ msgstr "Vipana"
 msgid "Uparaksana"
 msgstr "Uparaksana"
 
-#: simulation/templates/structures/maur_pillar_ashoka.xml:7
+#: simulation/templates/structures/maur_pillar_ashoka.xml:9
 msgid "Pillar"
 msgstr "柱子"
 
-#: simulation/templates/structures/maur_pillar_ashoka.xml:32
+#: simulation/templates/structures/maur_pillar_ashoka.xml:34
 msgid "Edict Pillar of Ashoka"
 msgstr "阿育王法敕"
 
-#: simulation/templates/structures/maur_pillar_ashoka.xml:33
+#: simulation/templates/structures/maur_pillar_ashoka.xml:35
 msgid "Śāsana Stambha Aśokā"
 msgstr "Śāsana Stambha Aśokā"
 
-#: simulation/templates/structures/maur_pillar_ashoka.xml:36
+#: simulation/templates/structures/maur_pillar_ashoka.xml:38
 msgid ""
 "The famous pillar of Ashoka. Increases the walk speed of traders. Buildings "
 "in the territory of the monument do not decay."
@@ -1065,17 +1063,16 @@ msgstr "Khalla"
 msgid "Devalaya"
 msgstr "Devalaya"
 
-#: simulation/templates/structures/maur_wall.xml:9
+#: simulation/templates/structures/maur_wall_gate.xml:9
+msgid "Dwara"
+msgstr "Dwara"
+
 #: simulation/templates/structures/maur_wall_long.xml:35
 #: simulation/templates/structures/maur_wall_medium.xml:29
 #: simulation/templates/structures/maur_wall_short.xml:16
 #: simulation/templates/structures/maur_wallset_stone.xml:5
 msgid "Shilabanda"
 msgstr "Shilabanda"
-
-#: simulation/templates/structures/maur_wall_gate.xml:9
-msgid "Dwara"
-msgstr "Dwara"
 
 #: simulation/templates/structures/maur_wall_tower.xml:18
 msgid "Puratta"
@@ -1182,15 +1179,15 @@ msgstr "訓練戰象或 Kardakes 傭兵。"
 msgid "Huvādā"
 msgstr "Huvādā"
 
-#: simulation/templates/structures/pers_ishtar_gate.xml:28
+#: simulation/templates/structures/pers_ishtar_gate.xml:30
 msgid "Persian Special Building"
 msgstr "波斯特殊建築物"
 
-#: simulation/templates/structures/pers_ishtar_gate.xml:29
+#: simulation/templates/structures/pers_ishtar_gate.xml:31
 msgid "Ishtar Gate of Babylon"
 msgstr "巴比倫的伊什塔爾城門"
 
-#: simulation/templates/structures/pers_ishtar_gate.xml:30
+#: simulation/templates/structures/pers_ishtar_gate.xml:32
 msgid ""
 "Increases the loyalty regeneration of nearby structures, making them harder "
 "to capture."
@@ -1232,17 +1229,16 @@ msgstr "Taçara"
 msgid "Ayadana"
 msgstr "Ayadana"
 
-#: simulation/templates/structures/pers_wall.xml:9
+#: simulation/templates/structures/pers_wall_gate.xml:9
+msgid "Duvitaparnam"
+msgstr "Duvitaparnam"
+
 #: simulation/templates/structures/pers_wall_long.xml:29
 #: simulation/templates/structures/pers_wall_medium.xml:23
 #: simulation/templates/structures/pers_wall_short.xml:10
 #: simulation/templates/structures/pers_wallset_stone.xml:5
 msgid "Para"
 msgstr "Para"
-
-#: simulation/templates/structures/pers_wall_gate.xml:9
-msgid "Duvitaparnam"
-msgstr "Duvitaparnam"
 
 #: simulation/templates/structures/pers_wonder.xml:12
 msgid "Hanging Gardens of Babylon"
@@ -1370,15 +1366,19 @@ msgstr "凱旋門"
 msgid "Special Imperial Roman building."
 msgstr "特殊的羅馬帝國建築物。"
 
-#: simulation/templates/structures/rome_army_camp.xml:59
+#: simulation/templates/structures/rome_army_camp.xml:35
+msgid "ArmyCamp"
+msgstr "軍營"
+
+#: simulation/templates/structures/rome_army_camp.xml:68
 msgid "Entrenched Army Camp"
 msgstr "加固型軍營"
 
-#: simulation/templates/structures/rome_army_camp.xml:60
+#: simulation/templates/structures/rome_army_camp.xml:69
 msgid "Castrum Vallum"
 msgstr "軍營壁壘"
 
-#: simulation/templates/structures/rome_army_camp.xml:63
+#: simulation/templates/structures/rome_army_camp.xml:72
 msgid ""
 "Build anywhere on the map, even in enemy territory. Construct siege weapons "
 "and train citizen-soldiers. Heal garrisoned units slowly."
@@ -1488,11 +1488,11 @@ msgstr "Aedes Martis"
 msgid "Train healers. Garrison units to heal them at a quick rate."
 msgstr "訓練醫療者。駐守單位以較快的速度治療他們。"
 
-#: simulation/templates/structures/rome_temple_vesta.xml:15
+#: simulation/templates/structures/rome_temple_vesta.xml:17
 msgid "Temple of Vesta"
 msgstr "灶神維斯塔神廟"
 
-#: simulation/templates/structures/rome_temple_vesta.xml:17
+#: simulation/templates/structures/rome_temple_vesta.xml:19
 msgid "Aedes Vestae"
 msgstr "Aedes Vestae"
 
@@ -1508,17 +1508,16 @@ msgstr "Tabernāculum"
 msgid "A temporary shelter for soldiers."
 msgstr "士兵的臨時避難所。"
 
-#: simulation/templates/structures/rome_wall.xml:9
+#: simulation/templates/structures/rome_wall_gate.xml:9
+msgid "Porta"
+msgstr "Porta"
+
 #: simulation/templates/structures/rome_wall_long.xml:29
 #: simulation/templates/structures/rome_wall_medium.xml:23
 #: simulation/templates/structures/rome_wall_short.xml:10
 #: simulation/templates/structures/rome_wallset_stone.xml:5
 msgid "Moenia"
 msgstr "Moenia"
-
-#: simulation/templates/structures/rome_wall_gate.xml:9
-msgid "Porta"
-msgstr "Porta"
 
 #: simulation/templates/structures/rome_wall_tower.xml:9
 msgid "Turris Lapidea"
@@ -1528,7 +1527,7 @@ msgstr "Turris Lapidea"
 msgid "Murus Latericius"
 msgstr "磚牆"
 
-#: simulation/templates/structures/rome_wonder.xml:13
+#: simulation/templates/structures/rome_wonder.xml:15
 msgid "Aedes Iovis Optimi Maximi"
 msgstr "Aedes Iovis Optimi Maximi"
 

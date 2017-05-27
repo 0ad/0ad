@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-04-28 09:02+0200\n"
-"PO-Revision-Date: 2017-04-29 13:49+0000\n"
-"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
+"POT-Creation-Date: 2017-05-26 09:04+0200\n"
+"PO-Revision-Date: 2017-05-26 14:27+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -145,6 +145,18 @@ msgstr "以侵蝕方式產生的，看起來更接近自然高度的實驗性地
 msgid "Belgian Uplands"
 msgstr "比利時高原"
 
+#: maps/random/botswanan_haven.jsonsettings.Description
+msgid ""
+"Botswanan Africa during the wet season, a land which was arid and "
+"inhospitable just weeks before has come to life totally transformed. Herds "
+"of zebras graze amid the tall, lush grasses in which lions lie waiting, "
+"while in the shallow pools lurk fearsome crocodiles."
+msgstr "非洲的波札那正處於溼季，幾星期前乾旱且讓人不舒服的土地已經徹底改變了。斑馬群中混雜著一隻正在高大草原中蓄勢待發的獅子，而在淺水池中也隱藏著可怕的鱷魚。"
+
+#: maps/random/botswanan_haven.jsonsettings.Name
+msgid "Botswanan Haven"
+msgstr "波札那避風港"
+
 #: maps/random/caledonian_meadows.jsonsettings.Description
 msgid ""
 "Fertile lands surrounded by harsh terrain.\n"
@@ -257,6 +269,17 @@ msgstr "玩家會在法國北部或是英國南部開始遊戲，中間被英吉
 #: maps/random/english_channel.jsonsettings.Name
 msgid "English Channel"
 msgstr "英吉利海峽"
+
+#: maps/random/extinct_volcano.jsonsettings.Description
+msgid ""
+"[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP[/color]\n"
+"\n"
+"A once fertile valley... desolated by the eruption of the long-dormant volcano in the heart of the region. Following years of empty, scorched deadness, signs of life started reappearing and spreading. Now the land is half-way to the full lushness of its former era. Alas, it is not to be: following a long stretch of drought, interminable rains have set in in the higher regions to the north. Water levels are rising at drastic levels, slowly forcing players to seek the high ground of the lesser, extinct volcanoes or the now again dormant great cone."
+msgstr "[color=\"red\"]重要提醒：AI 玩家無法於本地圖中運作[/color]\n\n一個曾經肥沃的山谷，被位於該地區中心的長期休眠火山的一次性噴發所覆蓋。經過多年的空曠、了無生機，生命終於又在此處重新生長。現在，這片土地似乎已經恢復到曾經的輝煌時期的一半了。不過，唉，看來事情沒這麼簡單，北部的高原開始出現無止盡的降雨。水位上升的速度迫使玩家必須尋找休眠火山甚或是死火山，又或是大型的錐狀高地。"
+
+#: maps/random/extinct_volcano.jsonsettings.Name
+msgid "Extinct Volcano"
+msgstr "休眠火山"
 
 #: maps/random/flood.jsonsettings.Description
 msgid ""
@@ -606,6 +629,19 @@ msgstr "高聳的山脈將敵人分隔兩地。\n\n庇里牛斯山脈是位於�
 msgid "Pyrenean Sierra"
 msgstr "庇里牛斯山脈"
 
+#: maps/random/ratumacos.jsonsettings.Description
+msgid ""
+"Players start on the banks of the River Sequana (Seine) in Northern Gaul "
+"near the settlement of Ratumacos. Destined to become one of the largest and "
+"most prosperous cities of Medieval Europe and one of the Anglo-Norman "
+"dynasty capitals under the new name of Rouen, Ratumacos is still a peaceful "
+"land - but not for long."
+msgstr "玩家起始於北高廬的塞納河河岸，現今的魯昂一帶。其為中世紀歐洲最大且最繁榮的城市之一，也曾為盎格魯－諾曼王朝的首都，魯昂仍是一片祥和的土地－但不久了。"
+
+#: maps/random/ratumacos.jsonsettings.Name
+msgid "Ratumacos"
+msgstr "Ratumacos"
+
 #: maps/random/red_sea.jsonsettings.Description
 msgid ""
 "Historically, the Red Sea was a sea of many nations. Ideally situated for "
@@ -627,6 +663,17 @@ msgstr "水淺，可通過的的濕地，但沒有太多的空間可以容納建
 msgid "Rhine Marshlands"
 msgstr "萊茵沼澤地"
 
+#: maps/random/river_archipelago.jsonsettings.Description
+msgid ""
+"Narrow strips of lands are separated by waterways, leaving few and shallow "
+"landbridges between them. Tropical wetlands provide plenty of game, but "
+"beware of Mauryan tribesmen when exploring the outermost islands."
+msgstr ""
+
+#: maps/random/river_archipelago.jsonsettings.Name
+msgid "River Archipelago"
+msgstr ""
+
 #: maps/random/rivers.jsonsettings.Description
 msgid ""
 "Rivers flow between players and join each other in the center of the map."
@@ -635,18 +682,6 @@ msgstr "流過每個玩家附近的河流，最後在地圖中央匯流。"
 #: maps/random/rivers.jsonsettings.Name
 msgid "Rivers"
 msgstr "河流"
-
-#: maps/random/rouen.jsonsettings.Description
-msgid ""
-"Players start on the banks of the River Sequana (Seine) in the north of Gaul"
-" in the place of the modern-day city of Rouen. Destined to become one of the"
-" largest and most prosperous cities of medieval Europe and one of the Anglo-"
-"Norman dynasty capitals, Rouen is still a peaceful land - but not for long."
-msgstr "玩家起始於塞納河的北岸，現今的魯昂一帶。其為中世紀歐洲最大且最繁榮的城市之一，也曾為盎格魯－諾曼王朝的首都，魯昂仍是一片祥和的土地－但不久了。"
-
-#: maps/random/rouen.jsonsettings.Name
-msgid "Rouen"
-msgstr "盧昂"
 
 #: maps/random/saharan_oases.jsonsettings.Description
 msgid "Each players starts near a lush oasis in a large, desolate desert."
@@ -779,6 +814,22 @@ msgstr "一個在隨機地圖中放置城牆的方法/代碼實際示範。建�
 msgid "Wall Demo"
 msgstr "城牆展示"
 
+#: maps/random/extinct_volcano_triggers.js:65
+msgid "It keeps on raining, we will have to evacuate soon!"
+msgstr "因為不間斷的下雨，我們必須撤離！"
+
+#: maps/random/extinct_volcano_triggers.js:66
+msgid "The rivers are standing high, we need to find a save place!"
+msgstr "河流水位不斷高漲，我們必須尋找一個還能存活的地方！"
+
+#: maps/random/extinct_volcano_triggers.js:67
+msgid "We have to find dry ground, our lands will drawn soon!"
+msgstr "我們必須找到乾的土地，這片土地很快就會淹水了！"
+
+#: maps/random/extinct_volcano_triggers.js:68
+msgid "The lakes start swallowing the land, we have to find shelter!"
+msgstr "湖泊開始吞沒土地，我們必須找到避難所！"
+
 #: maps/random/survivalofthefittest_triggers.js:193
 #, javascript-format
 msgid "The first wave will start in %(time)s!"
@@ -860,7 +911,7 @@ msgstr "在希臘阿卡迪亞的春日時分。若春雨下的不夠，一年之
 #: Oasis.xml:PlayerData[0].Name:27
 #: maps/scenarios/Flight_demo_2.xml:PlayerData[0].Name:27
 #: maps/scenarios/Gold_Rush.xml:PlayerData[0].Name:27
-#: maps/scenarios/Introductory Tutorial.xml:PlayerData[0].Name:39
+#: maps/scenarios/Introductory_Tutorial.xml:PlayerData[0].Name:39
 #: maps/scenarios/Laconia 01.xml:PlayerData[0].Name:27
 #: maps/scenarios/Migration.xml:PlayerData[0].Name:27
 #: maps/scenarios/Necropolis.xml:PlayerData[0].Name:39 maps/scenarios/Saharan
@@ -904,7 +955,7 @@ msgstr "在希臘阿卡迪亞的春日時分。若春雨下的不夠，一年之
 #: maps/skirmishes/Neareastern Badlands (4).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Nile River (4).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Persian Highlands (4).xml:PlayerData[0].Name:39
-#: maps/skirmishes/Punbjab (2).xml:PlayerData[0].Name:40
+#: maps/skirmishes/Punjab (2).xml:PlayerData[0].Name:40
 #: maps/skirmishes/Saharan Oases (4).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Sahel (4).xml:PlayerData[0].Name:39 maps/skirmishes/Savanna
 #: River.xml:PlayerData[0].Name:39 maps/skirmishes/Sicilia
@@ -928,7 +979,7 @@ msgstr "玩家 1"
 #: Oasis.xml:PlayerData[1].Name:27
 #: maps/scenarios/Flight_demo_2.xml:PlayerData[1].Name:27
 #: maps/scenarios/Gold_Rush.xml:PlayerData[1].Name:27
-#: maps/scenarios/Introductory Tutorial.xml:PlayerData[1].Name:39
+#: maps/scenarios/Introductory_Tutorial.xml:PlayerData[1].Name:39
 #: maps/scenarios/Laconia 01.xml:PlayerData[1].Name:27
 #: maps/scenarios/Migration.xml:PlayerData[1].Name:27
 #: maps/scenarios/Necropolis.xml:PlayerData[1].Name:39 maps/scenarios/Saharan
@@ -971,7 +1022,7 @@ msgstr "玩家 1"
 #: maps/skirmishes/Neareastern Badlands (4).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Nile River (4).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Persian Highlands (4).xml:PlayerData[1].Name:39
-#: maps/skirmishes/Punbjab (2).xml:PlayerData[1].Name:40
+#: maps/skirmishes/Punjab (2).xml:PlayerData[1].Name:40
 #: maps/skirmishes/Saharan Oases (4).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Sahel (4).xml:PlayerData[1].Name:39 maps/skirmishes/Savanna
 #: River.xml:PlayerData[1].Name:39 maps/skirmishes/Sicilia
@@ -1363,11 +1414,11 @@ msgstr "等高線圖匯入的一個例子。圖片為512x512的灰階 PNG 檔。
 msgid "Height Map Import Demo - Greece (small)"
 msgstr "等高線圖匯入展示 - 希臘（小型）"
 
-#: maps/scenarios/Introductory Tutorial.xml:Description:39
+#: maps/scenarios/Introductory_Tutorial.xml:Description:39
 msgid "This is a basic tutorial to get you started playing 0 A.D."
 msgstr "這是一個基礎教學課程，可以幫助您開始玩0 A.D."
 
-#: maps/scenarios/Introductory Tutorial.xml:Name:39
+#: maps/scenarios/Introductory_Tutorial.xml:Name:39
 msgid "Introductory Tutorial"
 msgstr "入門教學課程"
 
@@ -2280,14 +2331,14 @@ msgstr "由岩石山丘及高地所環繞的中央盆地礦藏相當豐富。"
 msgid "Persian Highlands (4)"
 msgstr "波斯高原 (4)"
 
-#: maps/skirmishes/Punbjab (2).xml:Description:40
+#: maps/skirmishes/Punjab (2).xml:Description:40
 msgid ""
 "Northwest India. Nearby rivers swell with monsoon rains, allowing for only a few treacherous crossings.\n"
 "\n"
 "The rivers are heavily forested, while grasslands carpet the surrounding countryside. Watch out for Tigers in the tall grass! Asian elephants are also a common sight."
 msgstr "地處印度西北部。在因季風降雨而水漲船高的眾多河流旁，只有少數險惡的通道可供穿越。\n\n河流旁有著茂密的叢林，而一些小農村散佈在草原上。小心長草叢裡的老虎！這裡也經常可以看到亞洲象。"
 
-#: maps/skirmishes/Punbjab (2).xml:Name:40
+#: maps/skirmishes/Punjab (2).xml:Name:40
 msgid "Punjab (2)"
 msgstr "旁遮普 (2)"
 

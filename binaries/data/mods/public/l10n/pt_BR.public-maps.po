@@ -18,13 +18,14 @@
 # Raphael Mendonça, 2014
 # Ricardo Siqueira Oliveira Leite <ricardooliveira88@gmail.com>, 2016
 # Thiago Perrotta <inactive+thiagowfx@transifex.com>, 2015
+# Victor Gregório <vt_marv@hotmail.com>, 2017
 # Washington Ramon Santos nascimento <washington_ramon123@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-04-28 09:02+0200\n"
-"PO-Revision-Date: 2017-04-28 15:43+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-05-26 09:04+0200\n"
+"PO-Revision-Date: 2017-05-26 21:30+0000\n"
+"Last-Translator: borg 2k <estevanborg@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -157,6 +158,18 @@ msgstr "Um mapa experimental com seu topológico gerado por erosão para parecer
 msgid "Belgian Uplands"
 msgstr "Montanhas Belgas"
 
+#: maps/random/botswanan_haven.jsonsettings.Description
+msgid ""
+"Botswanan Africa during the wet season, a land which was arid and "
+"inhospitable just weeks before has come to life totally transformed. Herds "
+"of zebras graze amid the tall, lush grasses in which lions lie waiting, "
+"while in the shallow pools lurk fearsome crocodiles."
+msgstr "Em Botswanan na Africa, durante a estação chuvosa, uma terra que era árida e inóspita poucas semanas antes agora está transformada. Os rebanhos de zebras pastam entre as gramas altas, nas quais os leões estão a espera, enquanto nas águas rasas crocodilos temíveis espreitam."
+
+#: maps/random/botswanan_haven.jsonsettings.Name
+msgid "Botswanan Haven"
+msgstr "Refúgio Botswanan"
+
 #: maps/random/caledonian_meadows.jsonsettings.Description
 msgid ""
 "Fertile lands surrounded by harsh terrain.\n"
@@ -236,11 +249,11 @@ msgid ""
 "amongst themselves, but also beat back these ruthless invaders. Ultimately, "
 "the Boii were defeated by the rising power of the Dacians, hence leading to "
 "the reemergence of the Geto-Dacian Confederation under King Burebista."
-msgstr ""
+msgstr "Os jogadores começam ao longo das margens do rio Danúbio no período após a expansão para Pannonia pela tribo Céltica Boii. Buscando consolidar seu domínio sobre esta terra, reforços celtas foram enviados para erradicar as restantes culturas estrangeiras. Os jogadores não só têm que disputar o poder entre si, mas também derrotar esses invasores implacáveis. Em última instância, os Boii foram derrotados pelo poder crescente dos dacianos, conduzindo assim ao ressurgimento da Confederação Geto-Daciana sob o Rei Burebista."
 
 #: maps/random/danubius.jsonsettings.Name
 msgid "Danubius"
-msgstr ""
+msgstr "Danúbio"
 
 #: maps/random/deep_forest.jsonsettings.Description
 msgid "A deep dark forest in Germania."
@@ -269,6 +282,17 @@ msgstr "Os jogadores começam no norte de França ou no sul da Grã-Bretanha, se
 #: maps/random/english_channel.jsonsettings.Name
 msgid "English Channel"
 msgstr "Canal da Mancha"
+
+#: maps/random/extinct_volcano.jsonsettings.Description
+msgid ""
+"[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP[/color]\n"
+"\n"
+"A once fertile valley... desolated by the eruption of the long-dormant volcano in the heart of the region. Following years of empty, scorched deadness, signs of life started reappearing and spreading. Now the land is half-way to the full lushness of its former era. Alas, it is not to be: following a long stretch of drought, interminable rains have set in in the higher regions to the north. Water levels are rising at drastic levels, slowly forcing players to seek the high ground of the lesser, extinct volcanoes or the now again dormant great cone."
+msgstr "[cor=\"vermelho\"] NOTA IMPORTANTE: INTELIGÊNCIA ARTIFICIAL NÃO FUNCIONA COM ESTE MAPA [/cor] \n\nUm vale uma vez fértil ... desolado pela erupção do vulcão há muito tempo adormecido no coração da região. Depois de anos de vazio, e terra morta, sinais de vida começaram a reaparecer e se espalhar. Agora, a terra está a meio caminho da exuberância total da sua era anterior. Infelizmente, não é para ser: depois de um longo período de seca, intermináveis chuvas se estabeleceram nas regiões mais altas do norte. Os níveis de água estão subindo a níveis drásticos, forçando lentamente os jogadores a buscar o terreno alto dos vulcões menores, extintos ou novamente o gigante adormecido."
+
+#: maps/random/extinct_volcano.jsonsettings.Name
+msgid "Extinct Volcano"
+msgstr "Vulcão Extinto"
 
 #: maps/random/flood.jsonsettings.Description
 msgid ""
@@ -380,11 +404,11 @@ msgid ""
 "life-bringing rain which is already two months late. Due to the extended "
 "dryness and scorching heat, only the largest lake remains. The hardy trees "
 "which have survived the climate are spread out, yet not too scarce."
-msgstr ""
+msgstr "A Índia Central, pouco antes da estação das monções - uma terra seca aguarda a chuva que traz a vida, que já está atrasada dois meses. Devido à seca prolongada e ao calor escaldante, apenas o maior lago permanece. As árvores resistentes que sobreviveram ao clima estão espalhadas, mas não muito escassas."
 
 #: maps/random/india.jsonsettings.Name
 msgid "India"
-msgstr ""
+msgstr "Índia"
 
 #: maps/random/island_stronghold.jsonsettings.Description
 msgid ""
@@ -618,6 +642,19 @@ msgstr "Altas montanhas que separam os inimigos.\n\nPirinéus é uma grande cade
 msgid "Pyrenean Sierra"
 msgstr "Os Pirineus"
 
+#: maps/random/ratumacos.jsonsettings.Description
+msgid ""
+"Players start on the banks of the River Sequana (Seine) in Northern Gaul "
+"near the settlement of Ratumacos. Destined to become one of the largest and "
+"most prosperous cities of Medieval Europe and one of the Anglo-Norman "
+"dynasty capitals under the new name of Rouen, Ratumacos is still a peaceful "
+"land - but not for long."
+msgstr "Os jogadores começam nas margens do rio Sequana (Seine) no norte da Gália perto do assentamento de Ratumacos. Destinado a se tornar uma das maiores e mais prósperas cidades da Europa medieval e uma das capitais da dinastia anglo-normandos sob o novo nome de Rouen, Ratumacos ainda é uma terra pacífica - mas não por muito tempo."
+
+#: maps/random/ratumacos.jsonsettings.Name
+msgid "Ratumacos"
+msgstr "Ratumacos"
+
 #: maps/random/red_sea.jsonsettings.Description
 msgid ""
 "Historically, the Red Sea was a sea of many nations. Ideally situated for "
@@ -639,6 +676,17 @@ msgstr "Pântanos rasos, passáveis com pouco espaço para novas construções. 
 msgid "Rhine Marshlands"
 msgstr "Pântanos do Reno"
 
+#: maps/random/river_archipelago.jsonsettings.Description
+msgid ""
+"Narrow strips of lands are separated by waterways, leaving few and shallow "
+"landbridges between them. Tropical wetlands provide plenty of game, but "
+"beware of Mauryan tribesmen when exploring the outermost islands."
+msgstr "Faixas estreitas de terras são separadas por vias navegáveis, deixando pontes de terras rasas entre elas. As zonas úmidas tropicais fornecem a abundância do jogo, mas tenha cuidado com os membros das tribos Máurias ao explorar as ilhas mais externamente."
+
+#: maps/random/river_archipelago.jsonsettings.Name
+msgid "River Archipelago"
+msgstr "Arquipélago do Rio"
+
 #: maps/random/rivers.jsonsettings.Description
 msgid ""
 "Rivers flow between players and join each other in the center of the map."
@@ -647,18 +695,6 @@ msgstr "Fluxo de rios entre os jogadores e juntar-se uns aos outros no centro do
 #: maps/random/rivers.jsonsettings.Name
 msgid "Rivers"
 msgstr "Rios"
-
-#: maps/random/rouen.jsonsettings.Description
-msgid ""
-"Players start on the banks of the River Sequana (Seine) in the north of Gaul"
-" in the place of the modern-day city of Rouen. Destined to become one of the"
-" largest and most prosperous cities of medieval Europe and one of the Anglo-"
-"Norman dynasty capitals, Rouen is still a peaceful land - but not for long."
-msgstr "Os jogadores começam às margens do Rio Sequana (Sena) no norte da Gália, onde hoje existe a cidade de Rouen. Destinada a se tornar uma das maiores e mais prósperas cidades da Europa medieval e uma das capitais da dinastia Anglo-normanda, Rouen ainda é uma terra pacífica - mas não por muito tempo."
-
-#: maps/random/rouen.jsonsettings.Name
-msgid "Rouen"
-msgstr "Rouen"
 
 #: maps/random/saharan_oases.jsonsettings.Description
 msgid "Each players starts near a lush oasis in a large, desolate desert."
@@ -791,6 +827,22 @@ msgstr "Uma demonstração de inserção de códigos em mapas aleatórios.  É r
 msgid "Wall Demo"
 msgstr "Demonstração de Muralhas"
 
+#: maps/random/extinct_volcano_triggers.js:65
+msgid "It keeps on raining, we will have to evacuate soon!"
+msgstr "Continua chovendo, teremos de evacuar em breve!"
+
+#: maps/random/extinct_volcano_triggers.js:66
+msgid "The rivers are standing high, we need to find a save place!"
+msgstr "Os rios estão alto, precisamos encontrar um lugar seguro!"
+
+#: maps/random/extinct_volcano_triggers.js:67
+msgid "We have to find dry ground, our lands will drawn soon!"
+msgstr "Nós temos que encontrar solo seco, nossas terras serão tragadas logo!"
+
+#: maps/random/extinct_volcano_triggers.js:68
+msgid "The lakes start swallowing the land, we have to find shelter!"
+msgstr "Os lagos começam a engolir a terra, temos de encontrar abrigo!"
+
 #: maps/random/survivalofthefittest_triggers.js:193
 #, javascript-format
 msgid "The first wave will start in %(time)s!"
@@ -872,7 +924,7 @@ msgstr "Primavera na Arcádia, Grécia. Chuvas de primavera tem empanturrado o q
 #: Oasis.xml:PlayerData[0].Name:27
 #: maps/scenarios/Flight_demo_2.xml:PlayerData[0].Name:27
 #: maps/scenarios/Gold_Rush.xml:PlayerData[0].Name:27
-#: maps/scenarios/Introductory Tutorial.xml:PlayerData[0].Name:39
+#: maps/scenarios/Introductory_Tutorial.xml:PlayerData[0].Name:39
 #: maps/scenarios/Laconia 01.xml:PlayerData[0].Name:27
 #: maps/scenarios/Migration.xml:PlayerData[0].Name:27
 #: maps/scenarios/Necropolis.xml:PlayerData[0].Name:39 maps/scenarios/Saharan
@@ -916,7 +968,7 @@ msgstr "Primavera na Arcádia, Grécia. Chuvas de primavera tem empanturrado o q
 #: maps/skirmishes/Neareastern Badlands (4).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Nile River (4).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Persian Highlands (4).xml:PlayerData[0].Name:39
-#: maps/skirmishes/Punbjab (2).xml:PlayerData[0].Name:40
+#: maps/skirmishes/Punjab (2).xml:PlayerData[0].Name:40
 #: maps/skirmishes/Saharan Oases (4).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Sahel (4).xml:PlayerData[0].Name:39 maps/skirmishes/Savanna
 #: River.xml:PlayerData[0].Name:39 maps/skirmishes/Sicilia
@@ -940,7 +992,7 @@ msgstr "Jogador 1"
 #: Oasis.xml:PlayerData[1].Name:27
 #: maps/scenarios/Flight_demo_2.xml:PlayerData[1].Name:27
 #: maps/scenarios/Gold_Rush.xml:PlayerData[1].Name:27
-#: maps/scenarios/Introductory Tutorial.xml:PlayerData[1].Name:39
+#: maps/scenarios/Introductory_Tutorial.xml:PlayerData[1].Name:39
 #: maps/scenarios/Laconia 01.xml:PlayerData[1].Name:27
 #: maps/scenarios/Migration.xml:PlayerData[1].Name:27
 #: maps/scenarios/Necropolis.xml:PlayerData[1].Name:39 maps/scenarios/Saharan
@@ -983,7 +1035,7 @@ msgstr "Jogador 1"
 #: maps/skirmishes/Neareastern Badlands (4).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Nile River (4).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Persian Highlands (4).xml:PlayerData[1].Name:39
-#: maps/skirmishes/Punbjab (2).xml:PlayerData[1].Name:40
+#: maps/skirmishes/Punjab (2).xml:PlayerData[1].Name:40
 #: maps/skirmishes/Saharan Oases (4).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Sahel (4).xml:PlayerData[1].Name:39 maps/skirmishes/Savanna
 #: River.xml:PlayerData[1].Name:39 maps/skirmishes/Sicilia
@@ -1375,11 +1427,11 @@ msgstr "Exemplo de importação de mapa topográfico. Imagem 512x512 PNG em tons
 msgid "Height Map Import Demo - Greece (small)"
 msgstr "Demonstração de importação de mapa topográfico - Grécia (pequeno)"
 
-#: maps/scenarios/Introductory Tutorial.xml:Description:39
+#: maps/scenarios/Introductory_Tutorial.xml:Description:39
 msgid "This is a basic tutorial to get you started playing 0 A.D."
 msgstr "Este é um tutorial básico para você começar a jogar 0 A.D."
 
-#: maps/scenarios/Introductory Tutorial.xml:Name:39
+#: maps/scenarios/Introductory_Tutorial.xml:Name:39
 msgid "Introductory Tutorial"
 msgstr "Tutorial de Introdução"
 
@@ -2292,14 +2344,14 @@ msgstr "Uma bacia central, seca e rica em minerais, cercada por colinas e planal
 msgid "Persian Highlands (4)"
 msgstr "Montes Persas (4)"
 
-#: maps/skirmishes/Punbjab (2).xml:Description:40
+#: maps/skirmishes/Punjab (2).xml:Description:40
 msgid ""
 "Northwest India. Nearby rivers swell with monsoon rains, allowing for only a few treacherous crossings.\n"
 "\n"
 "The rivers are heavily forested, while grasslands carpet the surrounding countryside. Watch out for Tigers in the tall grass! Asian elephants are also a common sight."
 msgstr "Noroeste da Índia. Rios próximos incham com chuvas de monção, permitindo apenas alguns cruzamentos traiçoeiros.\n\nOs rios são pesadamente arborizados, enquanto pradarias do tapete a zona rural circundante. Cuidado com os tigres nas ervas altas! Elefantes asiáticos também são uma vista comum."
 
-#: maps/skirmishes/Punbjab (2).xml:Name:40
+#: maps/skirmishes/Punjab (2).xml:Name:40
 msgid "Punjab (2)"
 msgstr "Punjab (2)"
 

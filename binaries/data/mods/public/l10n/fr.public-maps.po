@@ -8,12 +8,13 @@
 # Cajetan Bouchard <cajetan.bouchard@gmail.com>, 2015
 # Danilo Guttadauria <danilo.guttadauria@gmail.com>, 2016
 # François Poirotte <clicky@erebot.net>, 2016
+# jy jrts <lucashavard35@hotmail.fr>, 2017
 # Louis Parramon <taonasb@live.fr>, 2016
 # Moul <ma.azimi@laposte.net>, 2015
 # Marwan <Skyplay33@gmail.com>, 2015
 # Mortimer <doug.mortimer@netcourrier.com>, 2016
 # Nexus nexus <neocrysis@gmail.com>, 2016
-# Nicolas Auvray <na.itms76@gmail.com>, 2014-2016
+# Nicolas Auvray <na.itms76@gmail.com>, 2014-2017
 # nicolas t <phidias2052@yahoo.fr>, 2016
 # polien delamarque <m.oleil@laposte.net>, 2017
 # silure <silure@openmailbox.org>, 2014
@@ -25,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-04-28 09:02+0200\n"
-"PO-Revision-Date: 2017-04-29 16:59+0000\n"
+"POT-Creation-Date: 2017-05-26 09:04+0200\n"
+"PO-Revision-Date: 2017-05-26 14:27+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -143,7 +144,7 @@ msgid ""
 "Bahrain is never left unoccupied for long. But now, with the previous "
 "occupants gone, the land prepares for war. Will you be the next Ruler of "
 "Bahrain?"
-msgstr "Bahrain, centre de la civilisation Dilmun qui tomba en 800 avant JC, fût tour à tour controlé par les Sumériens, les Assyriens, Les Babyloniens, les Perses et d'autres peuplades ensuite. Ile stratégiquement placée dans le Sinus Persicus (golfe Persique) mais aussi centre du commerce des perles grâce à ses florissantes pêcherie de perles, Bahrain n'a jamais été inoccupée très longtemps. Mais maintenant que les précédents occupants ont fui, le pays se prépare pour la guerre. Serez-vous le prochain maître de Bahrain ?"
+msgstr "Bahrain, centre de la civilisation Dilmun qui tomba en 800 avant JC, fût tour à tour controlé par les Sumériens, les Assyriens, Les Babyloniens, les Perses et d'autres peuplades ensuite. Ile stratégiquement placée dans le Sinus Persicus (golfe Persique) mais aussi centre du commerce des perles grâce à ses florissantes pêcherie de perles, Bahrain n'a jamais été inoccupée très longtemps. Mais maintenant que les précédents occupants ont fui, le pays se prépare pour la guerre. Serez-vous le prochain dirigeant de Bahrain ?"
 
 #: maps/random/bahrain.jsonsettings.Name
 msgid "Bahrain"
@@ -159,6 +160,18 @@ msgstr "Une carte expérimentale, à élévation générée par érosion, pour p
 #: maps/random/belgian_uplands.jsonsettings.Name
 msgid "Belgian Uplands"
 msgstr "Plateaux belges"
+
+#: maps/random/botswanan_haven.jsonsettings.Description
+msgid ""
+"Botswanan Africa during the wet season, a land which was arid and "
+"inhospitable just weeks before has come to life totally transformed. Herds "
+"of zebras graze amid the tall, lush grasses in which lions lie waiting, "
+"while in the shallow pools lurk fearsome crocodiles."
+msgstr "L'Afrique botswanaise durant la saison des pluies, une terre qui était aride et inhospitalière il y a quelques semaines encore, est revenue à la vie transformée. Des troupeaux de zèbres broutent parmi les herbes hautes et luxuriantes dans lesquelles les lions se postent, tandis que de terrifiants crocodiles rôdent dans les étangs peu profonds."
+
+#: maps/random/botswanan_haven.jsonsettings.Name
+msgid "Botswanan Haven"
+msgstr "Havre botswanais"
 
 #: maps/random/caledonian_meadows.jsonsettings.Description
 msgid ""
@@ -239,11 +252,11 @@ msgid ""
 "amongst themselves, but also beat back these ruthless invaders. Ultimately, "
 "the Boii were defeated by the rising power of the Dacians, hence leading to "
 "the reemergence of the Geto-Dacian Confederation under King Burebista."
-msgstr ""
+msgstr "Le joueur démarre le long des bancs du fleuve Danube "
 
 #: maps/random/danubius.jsonsettings.Name
 msgid "Danubius"
-msgstr ""
+msgstr "Danubius"
 
 #: maps/random/deep_forest.jsonsettings.Description
 msgid "A deep dark forest in Germania."
@@ -272,6 +285,17 @@ msgstr "Les joueurs commencent soit dans le nord de la France soit dans le sud d
 #: maps/random/english_channel.jsonsettings.Name
 msgid "English Channel"
 msgstr "Manche"
+
+#: maps/random/extinct_volcano.jsonsettings.Description
+msgid ""
+"[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP[/color]\n"
+"\n"
+"A once fertile valley... desolated by the eruption of the long-dormant volcano in the heart of the region. Following years of empty, scorched deadness, signs of life started reappearing and spreading. Now the land is half-way to the full lushness of its former era. Alas, it is not to be: following a long stretch of drought, interminable rains have set in in the higher regions to the north. Water levels are rising at drastic levels, slowly forcing players to seek the high ground of the lesser, extinct volcanoes or the now again dormant great cone."
+msgstr "[color=\"red\"]IMPORTANT : LES IAs NE FONCTIONNENT PAS SUR CETTE CARTE[/color]\n\nUne vallée autrefois fertile... désolée après l'éruption d'un volcan qui sommeillait depuis longtemps au cœur de la région. Après des années de vide, de brûlure et de mort, des signes de vie ont commencé à réapparaître et à se répandre. La terre est à moitié aussi luxuriante qu'autrefois maintenant. Hélas, elle ne retrouvera pas son état d'origine : après une longue période de sécheresse, des pluies interminables se sont installées dans les régions surélevées du nord. Le niveau des eaux monte de manière drastique, forçant petit à petit les joueurs à grimper les pentes des plus petits volcans éteints ou du grand cône à nouveau endormi."
+
+#: maps/random/extinct_volcano.jsonsettings.Name
+msgid "Extinct Volcano"
+msgstr "Volcan éteint"
 
 #: maps/random/flood.jsonsettings.Description
 msgid ""
@@ -383,11 +407,11 @@ msgid ""
 "life-bringing rain which is already two months late. Due to the extended "
 "dryness and scorching heat, only the largest lake remains. The hardy trees "
 "which have survived the climate are spread out, yet not too scarce."
-msgstr ""
+msgstr "L'Inde centrale juste avant la Mousson - une terre asséchée attend la pluie, mère de toute vie, en retard de 2 mois déjà. Seuls les plus grands lacs ont résisté à la sécheresse interminable et à la chaleur insoutenable. Les arbres vaillants ayant survécu au climat sont dispersées mais pas si rares."
 
 #: maps/random/india.jsonsettings.Name
 msgid "India"
-msgstr ""
+msgstr "Inde"
 
 #: maps/random/island_stronghold.jsonsettings.Description
 msgid ""
@@ -621,6 +645,19 @@ msgstr "De hautes montagnes séparent les ennemis.\n\nLes Pyrénées sont une gr
 msgid "Pyrenean Sierra"
 msgstr "Sierra pyrénéenne"
 
+#: maps/random/ratumacos.jsonsettings.Description
+msgid ""
+"Players start on the banks of the River Sequana (Seine) in Northern Gaul "
+"near the settlement of Ratumacos. Destined to become one of the largest and "
+"most prosperous cities of Medieval Europe and one of the Anglo-Norman "
+"dynasty capitals under the new name of Rouen, Ratumacos is still a peaceful "
+"land - but not for long."
+msgstr "Les joueurs débutent sur les bords de la rivière Sequana (la Seine) en Gaule du Nord, près de la colonie de Ratumacos. Destinée à devenir l'une des villes les plus importantes et prospères de l'Europe médiévale ainsi que l'une des capitales de la dynastie Anglo-Normande sous le nom moderne de Rouen, Ratumacos est une terre paisible... pour l'instant."
+
+#: maps/random/ratumacos.jsonsettings.Name
+msgid "Ratumacos"
+msgstr "Ratumacos"
+
 #: maps/random/red_sea.jsonsettings.Description
 msgid ""
 "Historically, the Red Sea was a sea of many nations. Ideally situated for "
@@ -642,6 +679,17 @@ msgstr "Peu profondes, les zones humides praticables avec de petits espaces pour
 msgid "Rhine Marshlands"
 msgstr "Marais du Rhin"
 
+#: maps/random/river_archipelago.jsonsettings.Description
+msgid ""
+"Narrow strips of lands are separated by waterways, leaving few and shallow "
+"landbridges between them. Tropical wetlands provide plenty of game, but "
+"beware of Mauryan tribesmen when exploring the outermost islands."
+msgstr ""
+
+#: maps/random/river_archipelago.jsonsettings.Name
+msgid "River Archipelago"
+msgstr ""
+
 #: maps/random/rivers.jsonsettings.Description
 msgid ""
 "Rivers flow between players and join each other in the center of the map."
@@ -650,18 +698,6 @@ msgstr "Des rivières s'écoulent entre les joueurs et se rejoignent au centre d
 #: maps/random/rivers.jsonsettings.Name
 msgid "Rivers"
 msgstr "Rivières"
-
-#: maps/random/rouen.jsonsettings.Description
-msgid ""
-"Players start on the banks of the River Sequana (Seine) in the north of Gaul"
-" in the place of the modern-day city of Rouen. Destined to become one of the"
-" largest and most prosperous cities of medieval Europe and one of the Anglo-"
-"Norman dynasty capitals, Rouen is still a peaceful land - but not for long."
-msgstr "Les joueurs débutent sur les bords de la rivière Sequana (la Seine) au nord de la Gaule, à l'emplacement de la ville actuelle de Rouen. Destinée à devenir l'une des villes les plus importantes et prospères de l'Europe médiévale ainsi que l'une des capitales de la dynastie Anglo-Normande, Rouen est une terre paisible... pour l'instant."
-
-#: maps/random/rouen.jsonsettings.Name
-msgid "Rouen"
-msgstr "Rouen"
 
 #: maps/random/saharan_oases.jsonsettings.Description
 msgid "Each players starts near a lush oasis in a large, desolate desert."
@@ -794,6 +830,22 @@ msgstr "Une démonstration de méthodes/code de placement de mur dans des cartes
 msgid "Wall Demo"
 msgstr "Démo - Mur"
 
+#: maps/random/extinct_volcano_triggers.js:65
+msgid "It keeps on raining, we will have to evacuate soon!"
+msgstr "Il continue de pleuvoir, nous allons devoir évacuer vite !"
+
+#: maps/random/extinct_volcano_triggers.js:66
+msgid "The rivers are standing high, we need to find a save place!"
+msgstr "Les rivières sont en crue, nous devons trouver un endroit sûr !"
+
+#: maps/random/extinct_volcano_triggers.js:67
+msgid "We have to find dry ground, our lands will drawn soon!"
+msgstr "Nous devons trouver un emplacement sec, nos terres vont bientôt couler !"
+
+#: maps/random/extinct_volcano_triggers.js:68
+msgid "The lakes start swallowing the land, we have to find shelter!"
+msgstr "Le lac commence à avaler la terre, nous devons trouver un abri !"
+
 #: maps/random/survivalofthefittest_triggers.js:193
 #, javascript-format
 msgid "The first wave will start in %(time)s!"
@@ -875,7 +927,7 @@ msgstr "Printemps dans Arcadie, en Grèce. Les pluies de printemps ont gorgé ce
 #: Oasis.xml:PlayerData[0].Name:27
 #: maps/scenarios/Flight_demo_2.xml:PlayerData[0].Name:27
 #: maps/scenarios/Gold_Rush.xml:PlayerData[0].Name:27
-#: maps/scenarios/Introductory Tutorial.xml:PlayerData[0].Name:39
+#: maps/scenarios/Introductory_Tutorial.xml:PlayerData[0].Name:39
 #: maps/scenarios/Laconia 01.xml:PlayerData[0].Name:27
 #: maps/scenarios/Migration.xml:PlayerData[0].Name:27
 #: maps/scenarios/Necropolis.xml:PlayerData[0].Name:39 maps/scenarios/Saharan
@@ -919,7 +971,7 @@ msgstr "Printemps dans Arcadie, en Grèce. Les pluies de printemps ont gorgé ce
 #: maps/skirmishes/Neareastern Badlands (4).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Nile River (4).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Persian Highlands (4).xml:PlayerData[0].Name:39
-#: maps/skirmishes/Punbjab (2).xml:PlayerData[0].Name:40
+#: maps/skirmishes/Punjab (2).xml:PlayerData[0].Name:40
 #: maps/skirmishes/Saharan Oases (4).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Sahel (4).xml:PlayerData[0].Name:39 maps/skirmishes/Savanna
 #: River.xml:PlayerData[0].Name:39 maps/skirmishes/Sicilia
@@ -943,7 +995,7 @@ msgstr "Joueur 1"
 #: Oasis.xml:PlayerData[1].Name:27
 #: maps/scenarios/Flight_demo_2.xml:PlayerData[1].Name:27
 #: maps/scenarios/Gold_Rush.xml:PlayerData[1].Name:27
-#: maps/scenarios/Introductory Tutorial.xml:PlayerData[1].Name:39
+#: maps/scenarios/Introductory_Tutorial.xml:PlayerData[1].Name:39
 #: maps/scenarios/Laconia 01.xml:PlayerData[1].Name:27
 #: maps/scenarios/Migration.xml:PlayerData[1].Name:27
 #: maps/scenarios/Necropolis.xml:PlayerData[1].Name:39 maps/scenarios/Saharan
@@ -986,7 +1038,7 @@ msgstr "Joueur 1"
 #: maps/skirmishes/Neareastern Badlands (4).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Nile River (4).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Persian Highlands (4).xml:PlayerData[1].Name:39
-#: maps/skirmishes/Punbjab (2).xml:PlayerData[1].Name:40
+#: maps/skirmishes/Punjab (2).xml:PlayerData[1].Name:40
 #: maps/skirmishes/Saharan Oases (4).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Sahel (4).xml:PlayerData[1].Name:39 maps/skirmishes/Savanna
 #: River.xml:PlayerData[1].Name:39 maps/skirmishes/Sicilia
@@ -1378,11 +1430,11 @@ msgstr "Un exemple d'importation de carte d'élévation. L'image était en nivea
 msgid "Height Map Import Demo - Greece (small)"
 msgstr "Démo - Height Map Import - Greece (small)"
 
-#: maps/scenarios/Introductory Tutorial.xml:Description:39
+#: maps/scenarios/Introductory_Tutorial.xml:Description:39
 msgid "This is a basic tutorial to get you started playing 0 A.D."
 msgstr "Ceci est un tutoriel de base pour commencer à jouer à 0 A.D."
 
-#: maps/scenarios/Introductory Tutorial.xml:Name:39
+#: maps/scenarios/Introductory_Tutorial.xml:Name:39
 msgid "Introductory Tutorial"
 msgstr "Didacticiel d'introduction"
 
@@ -2295,14 +2347,14 @@ msgstr "Un bassin central sec riche en minerai entouré de collines et de montag
 msgid "Persian Highlands (4)"
 msgstr "Montagnes perses (4)"
 
-#: maps/skirmishes/Punbjab (2).xml:Description:40
+#: maps/skirmishes/Punjab (2).xml:Description:40
 msgid ""
 "Northwest India. Nearby rivers swell with monsoon rains, allowing for only a few treacherous crossings.\n"
 "\n"
 "The rivers are heavily forested, while grasslands carpet the surrounding countryside. Watch out for Tigers in the tall grass! Asian elephants are also a common sight."
 msgstr "Nord-Ouest de l'Inde. Les rivières à proximité sont gonflées des pluies de mousson, ne permettant seulement que quelques passages traîtres. \n\nLes rivières sont densément boisées, tandis que les prairies tapissent la campagne environnante. Méfiez-vous des Tigres dans les hautes herbes ! Les éléphants d'Asie sont également monnaie courante."
 
-#: maps/skirmishes/Punbjab (2).xml:Name:40
+#: maps/skirmishes/Punjab (2).xml:Name:40
 msgid "Punjab (2)"
 msgstr "Pendjab (2)"
 

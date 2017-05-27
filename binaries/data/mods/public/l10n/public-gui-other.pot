@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2017-05-26 09:03+0200\n"
-"PO-Revision-Date: 2017-05-26 09:03+0200\n"
+"POT-Creation-Date: 2017-05-27 14:49+0200\n"
+"PO-Revision-Date: 2017-05-27 14:49+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -69,7 +69,8 @@ msgstr ""
 msgid "Opening page"
 msgstr ""
 
-#: gui/common/functions_global_object.js:69
+#. dennis-ignore: *
+#: gui/common/functions_global_object.js:70
 #, javascript-format
 msgid "FPS: %(fps)4s"
 msgstr ""
@@ -1060,7 +1061,7 @@ msgid "None"
 msgstr ""
 
 #: gui/locale/locale_advanced.js:92
-msgid "<invalid>"
+msgid "invalid locale"
 msgstr ""
 
 #: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:163
@@ -2506,36 +2507,56 @@ msgstr ""
 msgid "Persist Match Settings"
 msgstr ""
 
+#: gui/options/options.json:generalSetting[13].parameters.list[0].label
+msgid "Everyone"
+msgstr ""
+
+#: gui/options/options.json:generalSetting[13].parameters.list[1].label
+msgid "Buddies"
+msgstr ""
+
+#: gui/options/options.json:generalSetting[13].parameters.list[2].label
+msgid "No one"
+msgstr ""
+
 #: gui/options/options.json:generalSetting[13].tooltip
-msgid "Allow observers to join the game after it started"
+msgid "Whether to assign joining clients to free playerslots in the gamesetup."
 msgstr ""
 
 #: gui/options/options.json:generalSetting[13].label
-msgid "Late Observer Joins"
+msgid "Assign Players"
 msgstr ""
 
 #: gui/options/options.json:generalSetting[14].tooltip
-msgid "Prevent further observers from joining if the limit is reached"
+msgid "Allow observers to join the game after it started"
 msgstr ""
 
 #: gui/options/options.json:generalSetting[14].label
-msgid "Observer Limit"
+msgid "Late Observer Joins"
 msgstr ""
 
 #: gui/options/options.json:generalSetting[15].tooltip
-msgid "Number of units trained per batch"
+msgid "Prevent further observers from joining if the limit is reached"
 msgstr ""
 
 #: gui/options/options.json:generalSetting[15].label
-msgid "Batch Training Size"
+msgid "Observer Limit"
 msgstr ""
 
 #: gui/options/options.json:generalSetting[16].tooltip
+msgid "Number of units trained per batch"
+msgstr ""
+
+#: gui/options/options.json:generalSetting[16].label
+msgid "Batch Training Size"
+msgstr ""
+
+#: gui/options/options.json:generalSetting[17].tooltip
 msgid ""
 "Show time that messages are posted in the lobby, gamesetup and ingame chat."
 msgstr ""
 
-#: gui/options/options.json:generalSetting[16].label
+#: gui/options/options.json:generalSetting[17].label
 msgid "Chat Timestamp"
 msgstr ""
 

@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-04-28 09:02+0200\n"
-"PO-Revision-Date: 2017-04-28 15:43+0000\n"
+"POT-Creation-Date: 2017-05-26 09:04+0200\n"
+"PO-Revision-Date: 2017-05-26 14:27+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Malayalam (http://www.transifex.com/wildfire-games/0ad/language/ml/)\n"
 "MIME-Version: 1.0\n"
@@ -142,6 +142,18 @@ msgstr ""
 msgid "Belgian Uplands"
 msgstr ""
 
+#: maps/random/botswanan_haven.jsonsettings.Description
+msgid ""
+"Botswanan Africa during the wet season, a land which was arid and "
+"inhospitable just weeks before has come to life totally transformed. Herds "
+"of zebras graze amid the tall, lush grasses in which lions lie waiting, "
+"while in the shallow pools lurk fearsome crocodiles."
+msgstr ""
+
+#: maps/random/botswanan_haven.jsonsettings.Name
+msgid "Botswanan Haven"
+msgstr ""
+
 #: maps/random/caledonian_meadows.jsonsettings.Description
 msgid ""
 "Fertile lands surrounded by harsh terrain.\n"
@@ -254,6 +266,17 @@ msgstr ""
 #: maps/random/english_channel.jsonsettings.Name
 msgid "English Channel"
 msgstr "ഇംഗ്ലിഷ് ചാനല്‍"
+
+#: maps/random/extinct_volcano.jsonsettings.Description
+msgid ""
+"[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP[/color]\n"
+"\n"
+"A once fertile valley... desolated by the eruption of the long-dormant volcano in the heart of the region. Following years of empty, scorched deadness, signs of life started reappearing and spreading. Now the land is half-way to the full lushness of its former era. Alas, it is not to be: following a long stretch of drought, interminable rains have set in in the higher regions to the north. Water levels are rising at drastic levels, slowly forcing players to seek the high ground of the lesser, extinct volcanoes or the now again dormant great cone."
+msgstr ""
+
+#: maps/random/extinct_volcano.jsonsettings.Name
+msgid "Extinct Volcano"
+msgstr ""
 
 #: maps/random/flood.jsonsettings.Description
 msgid ""
@@ -603,6 +626,19 @@ msgstr ""
 msgid "Pyrenean Sierra"
 msgstr ""
 
+#: maps/random/ratumacos.jsonsettings.Description
+msgid ""
+"Players start on the banks of the River Sequana (Seine) in Northern Gaul "
+"near the settlement of Ratumacos. Destined to become one of the largest and "
+"most prosperous cities of Medieval Europe and one of the Anglo-Norman "
+"dynasty capitals under the new name of Rouen, Ratumacos is still a peaceful "
+"land - but not for long."
+msgstr ""
+
+#: maps/random/ratumacos.jsonsettings.Name
+msgid "Ratumacos"
+msgstr ""
+
 #: maps/random/red_sea.jsonsettings.Description
 msgid ""
 "Historically, the Red Sea was a sea of many nations. Ideally situated for "
@@ -624,6 +660,17 @@ msgstr ""
 msgid "Rhine Marshlands"
 msgstr "റൈന്‍ ചതുപ്പുനിലങ്ങള്‍"
 
+#: maps/random/river_archipelago.jsonsettings.Description
+msgid ""
+"Narrow strips of lands are separated by waterways, leaving few and shallow "
+"landbridges between them. Tropical wetlands provide plenty of game, but "
+"beware of Mauryan tribesmen when exploring the outermost islands."
+msgstr ""
+
+#: maps/random/river_archipelago.jsonsettings.Name
+msgid "River Archipelago"
+msgstr ""
+
 #: maps/random/rivers.jsonsettings.Description
 msgid ""
 "Rivers flow between players and join each other in the center of the map."
@@ -632,18 +679,6 @@ msgstr ""
 #: maps/random/rivers.jsonsettings.Name
 msgid "Rivers"
 msgstr "നദികള്‍"
-
-#: maps/random/rouen.jsonsettings.Description
-msgid ""
-"Players start on the banks of the River Sequana (Seine) in the north of Gaul"
-" in the place of the modern-day city of Rouen. Destined to become one of the"
-" largest and most prosperous cities of medieval Europe and one of the Anglo-"
-"Norman dynasty capitals, Rouen is still a peaceful land - but not for long."
-msgstr ""
-
-#: maps/random/rouen.jsonsettings.Name
-msgid "Rouen"
-msgstr ""
 
 #: maps/random/saharan_oases.jsonsettings.Description
 msgid "Each players starts near a lush oasis in a large, desolate desert."
@@ -776,6 +811,22 @@ msgstr ""
 msgid "Wall Demo"
 msgstr ""
 
+#: maps/random/extinct_volcano_triggers.js:65
+msgid "It keeps on raining, we will have to evacuate soon!"
+msgstr ""
+
+#: maps/random/extinct_volcano_triggers.js:66
+msgid "The rivers are standing high, we need to find a save place!"
+msgstr ""
+
+#: maps/random/extinct_volcano_triggers.js:67
+msgid "We have to find dry ground, our lands will drawn soon!"
+msgstr ""
+
+#: maps/random/extinct_volcano_triggers.js:68
+msgid "The lakes start swallowing the land, we have to find shelter!"
+msgstr ""
+
 #: maps/random/survivalofthefittest_triggers.js:193
 #, javascript-format
 msgid "The first wave will start in %(time)s!"
@@ -857,7 +908,7 @@ msgstr ""
 #: Oasis.xml:PlayerData[0].Name:27
 #: maps/scenarios/Flight_demo_2.xml:PlayerData[0].Name:27
 #: maps/scenarios/Gold_Rush.xml:PlayerData[0].Name:27
-#: maps/scenarios/Introductory Tutorial.xml:PlayerData[0].Name:39
+#: maps/scenarios/Introductory_Tutorial.xml:PlayerData[0].Name:39
 #: maps/scenarios/Laconia 01.xml:PlayerData[0].Name:27
 #: maps/scenarios/Migration.xml:PlayerData[0].Name:27
 #: maps/scenarios/Necropolis.xml:PlayerData[0].Name:39 maps/scenarios/Saharan
@@ -901,7 +952,7 @@ msgstr ""
 #: maps/skirmishes/Neareastern Badlands (4).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Nile River (4).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Persian Highlands (4).xml:PlayerData[0].Name:39
-#: maps/skirmishes/Punbjab (2).xml:PlayerData[0].Name:40
+#: maps/skirmishes/Punjab (2).xml:PlayerData[0].Name:40
 #: maps/skirmishes/Saharan Oases (4).xml:PlayerData[0].Name:39
 #: maps/skirmishes/Sahel (4).xml:PlayerData[0].Name:39 maps/skirmishes/Savanna
 #: River.xml:PlayerData[0].Name:39 maps/skirmishes/Sicilia
@@ -925,7 +976,7 @@ msgstr "കളിക്കാരന്‍ 1"
 #: Oasis.xml:PlayerData[1].Name:27
 #: maps/scenarios/Flight_demo_2.xml:PlayerData[1].Name:27
 #: maps/scenarios/Gold_Rush.xml:PlayerData[1].Name:27
-#: maps/scenarios/Introductory Tutorial.xml:PlayerData[1].Name:39
+#: maps/scenarios/Introductory_Tutorial.xml:PlayerData[1].Name:39
 #: maps/scenarios/Laconia 01.xml:PlayerData[1].Name:27
 #: maps/scenarios/Migration.xml:PlayerData[1].Name:27
 #: maps/scenarios/Necropolis.xml:PlayerData[1].Name:39 maps/scenarios/Saharan
@@ -968,7 +1019,7 @@ msgstr "കളിക്കാരന്‍ 1"
 #: maps/skirmishes/Neareastern Badlands (4).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Nile River (4).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Persian Highlands (4).xml:PlayerData[1].Name:39
-#: maps/skirmishes/Punbjab (2).xml:PlayerData[1].Name:40
+#: maps/skirmishes/Punjab (2).xml:PlayerData[1].Name:40
 #: maps/skirmishes/Saharan Oases (4).xml:PlayerData[1].Name:39
 #: maps/skirmishes/Sahel (4).xml:PlayerData[1].Name:39 maps/skirmishes/Savanna
 #: River.xml:PlayerData[1].Name:39 maps/skirmishes/Sicilia
@@ -1360,11 +1411,11 @@ msgstr ""
 msgid "Height Map Import Demo - Greece (small)"
 msgstr ""
 
-#: maps/scenarios/Introductory Tutorial.xml:Description:39
+#: maps/scenarios/Introductory_Tutorial.xml:Description:39
 msgid "This is a basic tutorial to get you started playing 0 A.D."
 msgstr ""
 
-#: maps/scenarios/Introductory Tutorial.xml:Name:39
+#: maps/scenarios/Introductory_Tutorial.xml:Name:39
 msgid "Introductory Tutorial"
 msgstr ""
 
@@ -2277,14 +2328,14 @@ msgstr ""
 msgid "Persian Highlands (4)"
 msgstr ""
 
-#: maps/skirmishes/Punbjab (2).xml:Description:40
+#: maps/skirmishes/Punjab (2).xml:Description:40
 msgid ""
 "Northwest India. Nearby rivers swell with monsoon rains, allowing for only a few treacherous crossings.\n"
 "\n"
 "The rivers are heavily forested, while grasslands carpet the surrounding countryside. Watch out for Tigers in the tall grass! Asian elephants are also a common sight."
 msgstr ""
 
-#: maps/skirmishes/Punbjab (2).xml:Name:40
+#: maps/skirmishes/Punjab (2).xml:Name:40
 msgid "Punjab (2)"
 msgstr ""
 

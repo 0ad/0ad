@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-04-28 09:02+0200\n"
-"PO-Revision-Date: 2017-04-29 08:58+0000\n"
+"POT-Creation-Date: 2017-05-22 09:04+0200\n"
+"PO-Revision-Date: 2017-05-22 11:15+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -18,35 +18,32 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : (n > 2 && n < 20) ? 2 : 3;\n"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
-msgid "Repairing Ship aura"
-msgstr "Aura càradh luinge"
+msgid "Dockyard Repairs"
+msgstr "Càradh sa chala"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Heals garrisoned ship at 10 HP per second."
 msgstr "Slànaichidh e long le gearastan oirre le 10 PB gach diog."
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
-#: simulation/data/auras/structures/temple_heal.jsonauraName
-msgid "Healing Aura"
-msgstr "Aura slànachaidh"
+msgid "Blessing of the Gods"
+msgstr "Beannachd nan diathan"
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraDescription
-msgid "Heals nearby units at 3 HP per second."
-msgstr "Slànaichidh e aonadan am fagas le 3 PB gach diog."
+msgid "Heals units at 3 HP per second."
+msgstr "Slànaichidh e aonadan le 3 PB gach diog."
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
-msgid "Defensive Aura"
-msgstr "Aura dìonadach"
+msgid "Religious Fervor"
+msgstr "Dèine chràbhach"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
-msgid ""
-"Gives all iberian soldiers in aura +20% attack boost. Effect Range: 50 "
-"meters"
-msgstr "Cuiridh e e +20% ri ionnsaigh nan saighdearan Ibèireach fo aura. Astar buaidhe: 50 meatair"
+msgid "+20% attack damage for soldiers."
+msgstr "+20% de dhochann ionnsaighe airson saighdearan."
 
 #: simulation/data/auras/structures/library.jsonauraName
-msgid "Library Aura"
-msgstr "Aura Leabharlainn"
+msgid "Power of Knowledge"
+msgstr "Cumhachd an eòlais"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
 msgid ""
@@ -54,36 +51,40 @@ msgid ""
 msgstr "Ìslichidh gach leabharlann a th’ agad a’ chosgais ’s an ùine a bheir rannsachadh teicneolais le 10%."
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraName
-msgid "Loyalty Aura"
-msgstr "Aura dìlseachd"
+msgid "Loyalty"
+msgstr "Dìlseachd"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
-msgid "All structures in range +50% garrisoned loyalty regeneration rate."
-msgstr "Bheir gach togalach am fagas +50% air luaths aiseag na dìlseachd airson aonadan a tha ’nan gearastan ann."
+msgid "+50% garrisoned loyalty regeneration rate for structures."
+msgstr "Bheir gach togalach +50% air luaths aiseag na dìlseachd airson aonadan a tha ’nan gearastan ann."
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraName
 msgid "Edict of Ashoka"
 msgstr "Fuagradh Aśoka"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraDescription
-msgid "All traders in range +20% speed."
-msgstr "Bidh gach neach-malairt am fagas nas luaithe le +20%."
+msgid "+20% movement speed for traders."
+msgstr "Gluaisidh an luchd-malairt +20% nas luaithe."
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraName
 msgid "Farming bonus"
 msgstr "Buannachd àitich"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraDescription
-msgid "Boosts nearby farming with +25% gathering rate."
-msgstr "Meudaichidh seo an cruinneachadh aig tuathanasan am fagas dhut le +25%."
+msgid "+25% gather rate for workers in the grainfields."
+msgstr "Buainidh an luchd-obrach na h-achaidhean nas luaithe le +25%."
+
+#: simulation/data/auras/structures/temple_heal.jsonauraName
+msgid "Medical Treatment"
+msgstr "Leigheas"
 
 #: simulation/data/auras/structures/temple_heal.jsonauraDescription
 msgid "Heals nearby units at 1 HP per second."
 msgstr "Slànaichidh e aonadan am fagas le 1 PB gach diog."
 
 #: simulation/data/auras/structures/theatron.jsonauraName
-msgid "Hellenization."
-msgstr "Greugachadh."
+msgid "Hellenization"
+msgstr "Greugachadh"
 
 #: simulation/data/auras/structures/theatron.jsonauraDescription
 msgid "Increase territory influence by 20% per theatron owned."
@@ -98,16 +99,16 @@ msgid "Soldiers on walls have +3 armor and higher vision."
 msgstr "Bidh +3 a bharrachd de dh’armachd agus astar lèirsinne aig gach saighdear a tha air balla."
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraName
-msgid "Wonder Aura"
-msgstr "Aura mìorbhail"
+msgid "Symbol of Greatness"
+msgstr "Samhla mòrachd"
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraDescription
 msgid "Increase the population limit by 10 per wonder owned."
 msgstr "Meudaichidh gach mìorbhail a th’ agad an tomhas-sluaigh le 10."
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraName
-msgid "Glorious Expansion Aura"
-msgstr "Aura a’ mheudachaidh ghlòrmhoir"
+msgid "Glorious Expansion"
+msgstr "Meudachadh glòrmhor"
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraDescription
 msgid ""
@@ -127,6 +128,14 @@ msgid ""
 "contributed ships and money, while the Athenians offered their entire navy."
 msgstr "Stèidhich na stàit-bhailtean Greugach an Lìg Dhealos 478 BC beagan às dèidh mòr-bhuannachdan a’ chabhlaich aig Salamis agus Mycale. Bha fainear dhaibh cuidhteas fhaighinn dhe na Pearsaich san sgìre Àigeanach. Chuir na bailtean caidreabhach airgead ’s longan fad ’s a chuir Muinntir na h-Àithne an cabhlach gu lèir a bh’ aca dhan ghnothach."
 
+#: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
+msgid "Druids"
+msgstr "Draoidhean"
+
+#: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
+msgid "-20% resources cost for allies healers."
+msgstr "-20% a chosgaisean stòrais air lighichean caidreabhach."
+
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
 msgstr "Maighstirean malairt"
@@ -134,6 +143,14 @@ msgstr "Maighstirean malairt"
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "10% bonus of trade profit for ally's international routes."
 msgstr "Buannachd de 10% air prothaid o mhalairt air slighean eadar-nàiseanta nan caidreabhach."
+
+#: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
+msgid "Druidic Wisdom"
+msgstr "Gliocas nan draoidh"
+
+#: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
+msgid "-20% research time for technologies of allies."
+msgstr "-20% air an ùine a bheir rannsachadh teicneolais nan caidreabhach."
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
@@ -144,6 +161,14 @@ msgid ""
 "Reduces the cost for citizen-soldier skirmishers with 20% for allies of "
 "Iberian players"
 msgstr "Lùghdaichidh seo cosgais nan streupairean-dùthcha le 20% airson caidreabhaich nan cluicheadairean Ibèireach"
+
+#: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
+msgid "Standardized Currency"
+msgstr "Airgeadra stannardaichte"
+
+#: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraDescription
+msgid "+20% sell prices at market."
+msgstr "+20% air prìsean reic sa margaid."
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
@@ -170,6 +195,14 @@ msgstr "Basgaid-arain na Mara Meadhanaich"
 msgid "All allies automatically gain a slow trickle of food income."
 msgstr "Gheibh gach caidreabhach beagan bìdh gu cunbhalach."
 
+#: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraName
+msgid "Conscription"
+msgstr "Dleastanas-airm"
+
+#: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
+msgid "-20% training time for allied infantry."
+msgstr "-20% air an ùine a bheir trèanadh coisridh caidreabhaich."
+
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
 msgstr "Ceithir-bhaile Siridheach"
@@ -190,12 +223,12 @@ msgid ""
 msgstr "Meudaichidh seo slàinte nan sleaghairean coisridh-dùthcha le 10% airson caidreabhaich nan cluicheadairean Spartach."
 
 #: simulation/data/auras/units/female_inspiration.jsonauraName
-msgid "Inspiration Aura"
-msgstr "Aura brosnachail"
+msgid "Inspiration"
+msgstr "Brosnachadh"
 
 #: simulation/data/auras/units/female_inspiration.jsonauraDescription
-msgid "Nearby citizen soldiers work 10% faster."
-msgstr "Obraichidh na saighdearan-dùthcha am fagas nas luaithe le 10%."
+msgid "+10% build rate and gather rate for citizen soldiers."
+msgstr "Togaidh is cruinnichidh saighdearan-dùthcha nas luaithe le +10%."
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraName
 msgid "Economic Reforms"
@@ -204,8 +237,8 @@ msgstr "Ath-leasachadh an eaconamaidh"
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraDescription
 msgid ""
 "Solon instituted several economic reforms encouraging commerce and agriculture.\n"
-"+10% gather rate of workers within an 80 meter range."
-msgstr "Chuir Solon corra ath-leasachadh an eaconamaidh an gnìomh a bhrosnaich am malart ’s an àiteachas.\nBuainidh an luchd-obrach +10% nas luaithe am broinn 80 meatair."
+"+15% gather rate for workers."
+msgstr "Chuir Solon corra ath-leasachadh an eaconamaidh an gnìomh a bhrosnaich am malart ’s an àiteachas.\nCruinnichidh an luchd-obrach +15% nas luaithe."
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_2.jsonauraName
 msgid "Economic Fortune"
@@ -218,14 +251,15 @@ msgid ""
 msgstr "Stèidhich Solon siostam meidhe ùr ’s chaidh athraichean a bhrosnachadh gun lorgadh iad ceàird dha ’m mic.\n-10% a chosgais air teicneolasan eaconamach."
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_1.jsonauraName
-msgid "Guerilla Tactics"
+#: simulation/data/auras/units/heroes/iber_hero_viriato_1.jsonauraName
+msgid "Guerrilla Tactics"
 msgstr "Innleachdan guerrilla"
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_1.jsonauraDescription
 msgid ""
-"Seeing entrenched defense to be useless against the Roman army, Cassivellanus resorted to gurerilla tactics. This was later employed by other cheiftains too.\n"
-"+15% speed and vision range for soldiers."
-msgstr "On a mhothaich e nach robh daingnean gu feum an aghaidh arm na Ròimhe, b’ e innleachdan guerilla am fuasgladh dha Chassivellanus. Chleachd ceannardan eile e cuideachd an uairsin.\n+15% air luaths is astar lèirsinne nan saighdearan."
+"Seeing entrenched defense to be useless against the Roman army, Cassivellaunus resorted to guerrilla tactics. This was later employed by other chieftains too.\n"
+"+15% movement speed and vision range for all soldiers."
+msgstr "On a mhothaich e nach robh daingnean gu feum an aghaidh arm na Ròimhe, b’ e innleachdan guerilla am fuasgladh dha Chassivellaunus. Chleachd ceannardan eile e cuideachd an uairsin.\n+15% air luaths gluasaid is astar lèirsinne nan saighdearan."
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_2.jsonauraName
 msgid "Skirmisher Harassment"
@@ -233,9 +267,9 @@ msgstr "Sàrachadh streupa"
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_2.jsonauraDescription
 msgid ""
-"Cassivellanus deployed fast-moving skirmishers to harass Roman troops and foragers.\n"
+"Cassivellaunus deployed fast-moving skirmishers to harass Roman troops and foragers.\n"
 "+20% attack range for skirmisher javelins."
-msgstr "Cleachd Cassivellanus streupairean a ghluais gu luath gus feachd is solaraichean na Ròimhe a shàrachadh.\n+20% air astar ionnsaighe airson gathan nan streupairean."
+msgstr "Cleachd Cassivellaunus streupairean a ghluais gu luath gus feachd is solaraichean na Ròimhe a shàrachadh.\n+20% air astar ionnsaighe airson gathan nan streupairean."
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
 msgid "Commander of Heavy Cavalry"
@@ -254,8 +288,8 @@ msgstr "Àr fath-feitheimh"
 #: simulation/data/auras/units/catafalques/gaul_catafalque_1.jsonauraDescription
 msgid ""
 "Warring with the Romans, Ambiorix realized the futility of open warfare and instead resorted to ambush tactics. The Gauls quickly learned where and when to execute surprise attacks.\n"
-"Units promote 25% faster and gain a 5% attack bonus."
-msgstr "On a chogadh an aghaidh nan Ròmanach, mhothaich Amiorix nach robh blàr fosgailte gu feum sam bith dha agus ghabh e ri innleachd fàth-feitheimh an uairsin. Dh’ionnsaigh muinntir na Gaille gu luath cuin ’s càit an toireadh iad ionnsaigh obann.\nThèid aonadan àrdachadh 25% nas luaidhe is buannaichidh iad 5% a dh’ionnsaigh."
+"Soldiers require 25% less XP to promote and gain a 5% attack bonus."
+msgstr "On a chogadh an aghaidh nan Ròmanach, mhothaich Amiorix nach robh blàr fosgailte gu feum sam bith dha agus ghabh e ri innleachd fàth-feitheimh an uairsin. Dh’ionnsaigh muinntir na Gaille gu luath cuin ’s càit an toireadh iad ionnsaigh obann.\nFeumaidh na h-aonadan 25% nas lugha a phuingean-eòlais airson àrdachadh is buannaichidh iad 5% a dh’ionnsaigh."
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_2.jsonauraName
 msgid "Tribute to Rome"
@@ -263,7 +297,7 @@ msgstr "Fo chìs na Ròimhe"
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_2.jsonauraDescription
 msgid ""
-"When the Roman Army fell short of food supplies, the Gallic tribes were ordered to give up a part of their already meagre harvest. The Eburones under Ambiorix were reluctant to do so, therefore Caesar sent troops to take them by foce.\n"
+"When the Roman army fell short of food supplies, the Gallic tribes were ordered to give up a part of their already meagre harvest. The Eburones under Ambiorix were reluctant to do so, therefore Caesar sent troops to take them by force.\n"
 "-10% farming rate."
 msgstr "Nuair a dh’fhàs am biadh gann air feachd nan Ròmanach, fhuair treubhan na Gaille òrdan gus cuid dhen bhuain ghann aca a ghèilleadh dha. Cha robh na h-Eburones fo Ambiorix dèidheil air sin agus chuir Ceusar saighdearan an toir orra gus am biadh a thoirt uapa.\nMaille de 10% air an àrachas."
 
@@ -284,8 +318,8 @@ msgstr "Sàbhalaiche bheathannan"
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraDescription
 msgid ""
 "Following the fall of Indibil in battle, Mandonius led the survivors to safety.\n"
-"+15% movement speed and +10% health for all soldiers."
-msgstr "Às dèidh Indibil tuiteam air a’ bhlàr, stiùirich Mandonius an fheadhainn a mhair beò gu àite shàbhailte.\n+15% air luathas gluasaid ’s +10% a shlàinte air gach saighdear."
+"+10% health for all soldiers."
+msgstr "Às dèidh Indibil tuiteam air a’ bhlàr, stiùirich Mandonius an fheadhainn a mhair beò gu àite shàbhailte.\n+10% a shlàinte air gach saighdear."
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
 msgid "Sacker of Cities"
@@ -323,9 +357,9 @@ msgstr "Sàr-thogalaiche"
 
 #: simulation/data/auras/units/catafalques/pers_catafalque.jsonauraDescription
 msgid ""
-"Throughout his reign, much of Artaxerxes' wealth was spent on building projects. He restored the Palace of Darius I at Susa, and restored the ancient city of Ecbatana.\n"
-"+5% health and -5% resource cost for all buildings."
-msgstr "Choisg Artaxerxes cuid mhòr dhen bheartas aige rè a rìoghachd air pròiseactan togail. Dh’aisig e lùchairt Darius I aig Susa agus seann-bhaile Ecbatana.\n+5% air slàinte ’s -5% air cosgaisean stòrais dhan a h-uile togalach."
+"Throughout his reign, much of Artaxerxes' wealth was spent on building projects. He restored the Palace of Darius I at Susa and restored the ancient city of Ecbatana.\n"
+"+5% health and -10% resource cost for all buildings."
+msgstr "Choisg Artaxerxes cuid mhòr dhen bheartas aige rè a rìoghachd air pròiseactan togail. Dh’aisig e lùchairt Darius I aig Susa agus seann-bhaile Ecbatana.\n+5% air slàinte ’s -10% air cosgaisean stòrais dhan a h-uile togalach."
 
 #: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraName
 msgid "Great Librarian"
@@ -333,9 +367,9 @@ msgstr "Mòr-leabharlannaiche"
 
 #: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraDescription
 msgid ""
-"Continuing his predecessors' work on the Great Library at Alexandria, he seized every book brought to Alexandria, thus leaving to his people a vast amount of hoarded wisdom.\n"
+"Continuing his predecessors' work on the Great Library at Alexandria, he seized every book brought to the city, thus leaving to his people a vast amount of hoarded wisdom.\n"
 "-10% resource cost for all technologies."
-msgstr "Lean e air adhart leis an obair air leabharlann mhòr Alexandria, a’ togail gach leabhair a chaidh a thoirt dha dh’Alexandria, a’ fàgail grunn mhòr gliocais dha muinntir.\n-10% air cosgais stòrais dha gach teicneolas."
+msgstr "Lean e air adhart le obair a shinnsearan air leabharlann mhòr Alexandria, a’ togail gach leabhair a chaidh a thoirt dhan bhaile, a’ fàgail grunn mhòr gliocais dha muinntir.\n-10% air cosgais stòrais dha gach teicneolas."
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_1.jsonauraName
 msgid "Avenger of Lucretia"
@@ -348,8 +382,8 @@ msgid ""
 msgstr "Às dèid mac Rìgh Tarquinius Superbus Lucretia èigneachadh ’s a fèin-mhurt air thoradh, mhionnaich Brutus gun gabhadh e dìoghaltas is gun tilgeadh e sìos am monarcachd.\nCosgais nas lugha dhe 20% air saoranaich bhoireann agus obraichidh iad 10% nas luaithe."
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraName
-msgid "Founder and Defender of the Republic Aura"
-msgstr "Aura stèidheadair is dìonadair na poblachd"
+msgid "Founder and Defender of the Republic"
+msgstr "Stèidheadair is dìonadair na poblachd"
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraDescription
 msgid ""
@@ -378,8 +412,8 @@ msgid ""
 msgstr "Bhrosnaich Antiochus in-imrich nan Greugach dhan rìoghachd aige ’s stèidhich e iomadh baile ùr ann an Àisia Bheag ’nan cuideam an aghaidh muinntir na Gaille.\n+5% air an tomhas-shluaigh."
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_3.jsonauraName
-msgid "Basileus Megas (Great King)"
-msgstr "Basileus Megas (Rìgh Mòr)"
+msgid "Basileus Megas"
+msgstr "Basileus Megas"
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_3.jsonauraDescription
 msgid ""
@@ -395,8 +429,8 @@ msgstr "Ath-leasachaidhean arm Lycurgus"
 #: simulation/data/auras/units/catafalques/spart_catafalque_1.jsonauraDescription
 msgid ""
 "Lycurgus instituted several military reforms, thus the complete and undivided allegiance to Sparta from its citizens was implemented under his form of government.\n"
-"-10% resource cost for spear citizen units."
-msgstr "Chuir Lycurgus iomadh ath-leasachadh an airm an cèill, mar sin chaidh dìlseachd shlàn dha Sparta leis a shaoranaich a stèidheachadh fon rìoghachd aige.\n-10% air cosgaisean stòrais dha shaighdearan-dùthcha sleagha."
+"-10% resource cost for citizen spear infantry."
+msgstr "Chuir Lycurgus iomadh ath-leasachadh an airm an cèill, mar sin chaidh dìlseachd shlàn dha Sparta leis a shaoranaich a stèidheachadh fon rìoghachd aige.\n-10% air cosgaisean stòrais dha choisridh-dùthcha sleagha."
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraDescription
 msgid "-5% resource cost for spear infantry champions."
@@ -408,9 +442,9 @@ msgstr "Peileanoraichean iarainn"
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_3.jsonauraDescription
 msgid ""
-"To further support equality, Lycurgus forbade the use of gold and silver, instead introducing new iron money called pellanors.\n"
-"+15% metal mining rate for workers within an 80 meter range."
-msgstr "Gus barrachd co-ionnannachd a bhrosnachadh, thoirmisg Lycurgus cleachdadh òir no airgid is stèidhich e airgead iarainn ùr ’na àite air an do chuirte peileanoraichean.\n+15% air luaths mèinnearachd meatailt dha dh’obraichean am broinn 80 meatair."
+"To further support equality, Lycurgus forbade the use of gold and silver, introducing a new iron currency called pelanors.\n"
+"+15% metal gather rate for workers."
+msgstr "Gus barrachd co-ionnannachd a bhrosnachadh, thoirmisg Lycurgus cleachdadh òir no airgid is stèidhich e airgeadra iarainn ùr ’na àite air an do chuirte peileanoraichean.\nCruinnichidh an luchd-obrach meataiit nas luaithe le +15%."
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraName
 msgid "Formation Reforms"
@@ -429,32 +463,32 @@ msgid "All javelin infantry +15% speed."
 msgstr "Gheibh gach aonad coisridh gatha +15% de luaths."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
-msgid "Builder Aura"
-msgstr "Aura togail"
+msgid "Periclean Building Program"
+msgstr "Prògram togail Phericles"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraDescription
-msgid "Buildings construct 15% faster within his aura."
-msgstr "Thèid gach togalach fo aura a thogail 15% nas luaithe."
+msgid "+15% build and repair rate for workers."
+msgstr "Togaidh is càirichidh an luchd-obrach nas luaithe le +15%."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
-msgid "Acropolis Aura"
-msgstr "Aura acra-bhailteach"
+msgid "Temple to Athena"
+msgstr "Teampall Athena"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "Temples are 50 stone cheaper during his lifetime."
 msgstr "Bidh teampaill 50 clach nas saoire fhad ’s a bhios e beò"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
-msgid "Naval Commander Aura"
-msgstr "Aura ceannaird-mhara"
+msgid "Naval Commander"
+msgstr "Ceannard cabhlaich"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraDescription
 msgid "When garrisoned in a ship, his ship is +50% faster."
 msgstr "Nuair a bhios e ’na ghearastan air long, bidh an long +50% nas luaithe."
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraName
-msgid "Naval Architect Aura"
-msgstr "Aura ailtire-mhara"
+msgid "Naval Architect"
+msgstr "Ailtire cabhlaich"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraDescription
 msgid "-20% build time for ships during his lifespan."
@@ -469,62 +503,69 @@ msgid "+20% attack, +2 capture and +25% speed for champion units."
 msgstr "+20% de dh’ionnsaigh, +2 de ghlacadh is luaths leasaichte le +25% airson laoich."
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraName
-#: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraName
-#: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraName
-#: simulation/data/auras/units/heroes/gaul_hero_britomartus.jsonauraName
-#: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraName
-#: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraName
-msgid "Hero Aura"
-msgstr "Aura gaisgich"
+msgid "Guerrilla Chief"
+msgstr "Ceannard guerrilla"
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraDescription
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar.jsonauraDescription
 msgid "All soldiers and siege engines +15% speed."
 msgstr "Gheibh gach saighdear ’s inneal-sèiste +15% de luaths."
 
+#: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraName
+msgid "Britannorum Rex"
+msgstr "Britannorum Rex"
+
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraDescription
-msgid "+1 HP per second healing rate for all units."
-msgstr "+1 PB gach diog air luaths slànachaidh nan aonadan uile."
+msgid "+1 HP per second healing rate."
+msgstr "+1 PB gach diog air luaths an t-slànachaidh."
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar.jsonauraName
-msgid "Lightning Aura"
-msgstr "Aura dealanaich"
+msgid "Lightning General"
+msgstr "Ceann-armailt dealanaich"
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraName
-msgid "Tactician Aura"
-msgstr "Aura innleachd"
+msgid "Tactician"
+msgstr "Fear-innleachd"
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraDescription
-msgid ""
-"All allied soldiers and siege engines +20% attack and +1 capture within his "
-"vision range."
-msgstr "Gheibh gach saighdear ’s inneal-sèiste caidreabhach +20% de dh’ionnsaigh is +1 de ghlacadh am broinn astar lèirsinne."
+msgid "+20% attack and +1 capture for all allied soldiers and siege engines."
+msgstr "+20% de dh’ionnsaigh is +1 de ghlacadh aig a h-uile saighdear ’s inneal-sèiste caidreabhach."
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraName
-msgid "Commander Aura"
-msgstr "Aura ceannaird"
+msgid "Cavalry Commander"
+msgstr "Ceannard eachraidh"
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraDescription
-msgid "+20% cavalry melee attack within his aura."
-msgstr "Bheir gach aonad eachraidh ionnsaigh dhlùth le +20% fo aura."
+msgid "+20% attack for cavalry melee soldiers."
+msgstr "+20% de dh’ionnsaigh airson eachraidh dlùth."
+
+#: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraName
+msgid "Sacker of Rome"
+msgstr "Neach-creiche na Ròimhe"
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraDescription
 msgid "+10 Metal loot for every enemy unit killed."
 msgstr "+10 de spùinnean meatailt airson gach aonad an nàmhad air a mharbhadh."
 
+#: simulation/data/auras/units/heroes/gaul_hero_britomartus.jsonauraName
+msgid "Preparation for War"
+msgstr "Ullachadh cogaidh"
+
 #: simulation/data/auras/units/heroes/gaul_hero_britomartus.jsonauraDescription
 msgid "Gathering rates increased with +15% during his lifetime."
 msgstr "Cruinneachadh leasaichte le +15% fhad ’s a bhios e beò."
 
+#: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraName
+msgid "Celtic Warlord"
+msgstr "Tighearna-cogaidh Ceilteach"
+
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraDescription
-msgid ""
-"+20% attack and +1 capture for all soldiers and siege engines within his "
-"aura."
-msgstr "+20% de dh’ionnsaigh is +1 de ghlacadh aig a h-uile saighdear ’s inneal-sèiste fo aura."
+msgid "+20% attack and +1 capture for soldiers and siege engines."
+msgstr "+20% de dh’ionnsaigh is +1 de ghlacadh aig a h-uile saighdear ’s inneal-sèiste."
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraName
-msgid "Garrisoned Capture Aura"
-msgstr "Aura glacadh ghearastain"
+msgid "Inspired Defense"
+msgstr "Dìon brosnaichte"
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraDescription
 msgid ""
@@ -532,9 +573,49 @@ msgid ""
 "of +2 capture points recovery rate."
 msgstr "Nuair a bhios an curaidh ’na ghearastan ann an togalach no inneal-sèiste, bheir e +2 a bhuannachd air luaths aiseag nam puingean glacaidh."
 
+#: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraName
+msgid "Valiant Defender"
+msgstr "Dìonadair dàna"
+
+#: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraDescription
+msgid ""
+"75% more arrows fired per garrisoned soldier for the building while he is "
+"garrisoned in it."
+msgstr "Thèid 75% de shaighdean a bharrachd a tilgeadh airson gach saighdear a bhios ’na ghearastan san aon togalach."
+
+#: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraName
+msgid "Battle Fervor"
+msgstr "Dèine còmhraige"
+
+#: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraDescription
+msgid "+1 armor for soldiers."
+msgstr "+1 air armachd nan saighdearan."
+
+#: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraName
+msgid "Mobilization"
+msgstr "Togail feachd"
+
+#: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraDescription
+msgid "-20% training time and -15% resources cost for soldiers."
+msgstr "-20% air an ùine a bheir trèanadh agus -15% air cosgaisean stòrais nan saighdearan."
+
+#: simulation/data/auras/units/heroes/iber_hero_viriato_1.jsonauraDescription
+msgid "+20% movement speed for soldiers."
+msgstr "Gluaisidh na saighdearan +20% nas luaithe."
+
+#: simulation/data/auras/units/heroes/iber_hero_viriato_2.jsonauraName
+msgid "Swag"
+msgstr "Creach"
+
+#: simulation/data/auras/units/heroes/iber_hero_viriato_2.jsonauraDescription
+msgid ""
+"+100% resources loot increase for every enemy unit killed or structure "
+"destroyed."
+msgstr "Meudachadh le +100% air spùinnean stòrasan airson gach aonad nàimhdeil air a mharbhadh no togalach nàimhdeil air a mhilleadh."
+
 #: simulation/data/auras/units/heroes/mace_hero_alexander.jsonauraName
-msgid "Imperialism Aura"
-msgstr "Aura impireachd"
+msgid "Imperialism"
+msgstr "Impireachd"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander.jsonauraDescription
 msgid "+10% territory effect for all buildings while he lives."
@@ -545,16 +626,20 @@ msgid "Taxiarchès"
 msgstr "Taxiarchès"
 
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraDescription
-msgid "Pike Infantry +20% attack and +20% capture within range of him."
-msgstr "Gheibh na pìcearan a tha faisg air +20% air an ionnsaigh is +20% air an glacadh."
+msgid "+20% attack and +20% capture for pikemen soldiers."
+msgstr "+20% de dh’ionnsaigh is +20% de ghlacadh airson pìcearan."
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraName
-msgid "Besieger Aura"
-msgstr "Aura sèiste"
+msgid "Besieger"
+msgstr "Sèistear"
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraDescription
 msgid "+15% range and +10% crush attack for siege engines."
 msgstr "+15% de dh’astar ’s +10 air ionnsaigh brùillidh airson innealan-sèiste."
+
+#: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraName
+msgid "Rise of Macedon"
+msgstr "Èirigh na Masadoine"
 
 #: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraDescription
 msgid "+20% attack and +2 capture for champion units."
@@ -570,16 +655,16 @@ msgid ""
 msgstr "Gheibh gach saighdear +20% air an ionnsaigh fhad ’s a tha Pyrrhos beò ach -15% air an slàinte cuideachd."
 
 #: simulation/data/auras/units/heroes/maur_hero_ashoka.jsonauraName
-msgid "Buddhism Aura"
-msgstr "Aura Budastachd"
+msgid "Buddhism"
+msgstr "Budastachd"
 
 #: simulation/data/auras/units/heroes/maur_hero_ashoka.jsonauraDescription
 msgid "Temples and temple technologies -50% cost, in resources and time."
 msgstr "Bheir seo -50% air cosgais stòras is ùine nan teampall, a’ gabhail a-steach rannsachaidh teicneolais."
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya.jsonauraName
-msgid "Teacher Aura"
-msgstr "Aura oide"
+msgid "Teacher"
+msgstr "Oide"
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya.jsonauraDescription
 msgid ""
@@ -587,37 +672,36 @@ msgid ""
 msgstr "Cuir cumhachd dhe -50% air ùine rannsachaidh togalaich fhad ’s a bhios e ’na ghearastan ann."
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraName
-msgid "Lead from the Front Aura"
-msgstr "Aura stiùiridh on toiseach"
+msgid "Lead from the Front"
+msgstr "Stiùireadh on toiseach"
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraDescription
-msgid "+20% attack and +1 capture for nearby cavalry units."
-msgstr "Ionnsaigh le +20% is +1 de ghlacadh airson aonadan eachraidh am fagas."
+msgid "+20% attack and +1 capture for cavalry soldiers."
+msgstr "+20% de dh’ionnsaigh is +1 air a’ ghlacadh airson saighdearan eachraidh."
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraName
-msgid "Leadership Aura"
-msgstr "Aura ceannardais"
+msgid "Leadership"
+msgstr "Ceannardas"
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraDescription
 msgid "+15% movement speed for all soldiers and siege engines."
 msgstr "Gluaisidh gach saighdear is inneal-sèiste +15% nas luaithe."
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraName
-msgid "Administrator Aura"
-msgstr "Aura rianaire"
+msgid "Administrator"
+msgstr "Rianaire"
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraDescription
-msgid "+15% gather rate and build rate of nearby workers."
-msgstr "Cruinnichidh is togaidh obraichean am fagas +15% nas luaithe."
+msgid "+15% gather rate and build rate for workers."
+msgstr "Cruinnichidh is togaidh an luchd-obrach +15% nas luaithe."
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraName
-msgid "Patriot Aura"
-msgstr "Aura tìr-ghràdhaiche"
+msgid "Patriot"
+msgstr "Tìr-ghràdhaiche"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraDescription
-msgid ""
-"-20% attack repeat time for Egyptian soldiers and siege engines in her aura."
-msgstr "-20% air an ùine a bhèir e mus doir saighdearan is innealan-sèiste nan Èipheiteach a tha fo a h-aura ionnsaigh a-rithist."
+msgid "-20% attack repeat time for soldiers and siege engines."
+msgstr "-20% air an ùine a bhèir e mus doir na saighdearan is innealan-sèiste ionnsaigh a-rithist."
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.jsonauraName
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.jsonauraName
@@ -625,93 +709,89 @@ msgid "Consort"
 msgstr "Càraid rìoghail"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.jsonauraDescription
-msgid "Allied heroes +10% health when near her."
-msgstr "Gheibh curaidhean caidreabhach +10% a shlàinte nuair a bhios iad faisg oirre."
+msgid "+10% health for allied heroes."
+msgstr "+10% de shlàinte airson curaidhean caidreabhach."
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.jsonauraDescription
-msgid "Enemy heroes -10% health when near her."
-msgstr "Gheibh curaidhean nàimhdeil -10% a shlàinte nuair a bhios iad faisg oirre."
+msgid "-10% health for enemy heroes."
+msgstr "-10% de shlàinte airson curaidhean nàimhdeil."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraName
-msgid "Raphia Aura"
-msgstr "Aura Rafa"
+msgid "Raphia"
+msgstr "Raphia"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraDescription
 msgid "Egyptian pikemen have 40% greater health during his lifetime."
 msgstr "Bidh 40% de shlàinte a bharrachd air pìcearan Èipheiteach fhad ’s a bhios e beò."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraName
-msgid "Construction Aura"
-msgstr "Aura togail"
+msgid "Patron of Construction"
+msgstr "Cùl-taic togalach"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraDescription
-msgid "Buildings construct 10% faster within his aura."
-msgstr "Thèid gach togalach fo aura a thogail 10% nas luaithe."
+msgid "+10% build and repair rate for workers."
+msgstr "Togaidh is càirichidh an luchd-obrach nas luaithe le +10%."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraName
-msgid "Mercenary Patron Aura"
-msgstr "Aura taic do shaighdearan-duaise"
+msgid "Mercenary Patron"
+msgstr "Cùl-taic do shaighdearan-duaise"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraDescription
 msgid "Mercenaries cost -50% resources during his lifetime."
 msgstr "Bidh saighdearan-duaise nas saoire le -50% fhad ’s a bhios e beò."
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus.jsonauraName
-msgid "Sword of Rome Aura"
-msgstr "Aura claidheamh na Ròimhe"
+msgid "Sword of Rome"
+msgstr "Claidheamh na Ròimhe"
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus.jsonauraDescription
-msgid ""
-"+20% attack and +2 capture for Roman soldiers and siege engines within his "
-"range."
-msgstr "Gheibh saighdearan ’s innealan-sèiste Ròmanach a tha fo aura +20% de dh’ionnsaigh is +2 de ghlacadh."
+msgid "+20% attack and +2 capture for soldiers and siege engines."
+msgstr "+20% de dh’ionnsaigh is +2 air a’ ghlacadh airson a h-uile saighdear ’s inneal-sèiste."
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraName
-msgid "Shield of Rome Aura"
-msgstr "Aura sgiath na Ròimhe"
+msgid "Shield of Rome"
+msgstr "Sgiath na Ròimhe"
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraDescription
 msgid "+1 armor for all units and structures."
 msgstr "+1 de dh’armachd airson gach aonad ’s togalach."
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraName
-msgid "Ilarchès Aura"
-msgstr "Aura Ilarchès"
+msgid "Ilarchès"
+msgstr "Ilarchès"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraDescription
 msgid "All cavalry gains +2 levels of all armor types."
 msgstr "Gheibh a h-uile aonad eachraidh +2 air gach seòrsa de dh’armachd."
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.jsonauraName
-msgid "Conquest Aura"
-msgstr "Aura ceannsachaidh"
+msgid "Renowned Conqueror"
+msgstr "Ceannsaiche cliùiteach"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.jsonauraDescription
-msgid ""
-"All nearby enemy buildings, siege engines, and ships have their health "
-"reduced by 20%."
-msgstr "Thèid an t-slàinte aig a h-uile togalach, inneal-sèiste ’s long an nàmhad a lùghdachadh le 20%."
+msgid "-20% health for enemy buildings, siege engines and ships."
+msgstr "-20% de shlàinte air togalaichean, innealan-sèiste is longan nàimhdeil."
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.jsonauraName
-msgid "Zooiarchos Aura"
-msgstr "Aura ceannard ailbhein"
+msgid "Zooiarchos"
+msgstr "Ceannard ailbhein"
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.jsonauraDescription
-msgid "Boosts war elephant attack and speed +20% within his aura."
-msgstr "Gheibh ailbheanan-cogaidh fo aura buannachd air an ionnsaigh ’s an gluasad le +20%."
+msgid "+20% attack and movement speed for war elephants."
+msgstr "+20% de dh’ionnsaigh is luaths gluasaid nan ailbheanan-cogaidh."
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraName
 msgid "Helot Reforms"
 msgstr "Aura ath-leasachadh Heileotais"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
-msgid "Javelin infantry in his aura gains +20% attack and +1 all armor types."
-msgstr "Gheibh gach aonad coisridh gatha fo aura +20% air an ionnsaigh ’s +1 air gach seòrsa de dh’armachd."
+msgid "+20% attack and +1 armor for javelin infantry soldiers."
+msgstr "+20% de dh’ionnsaigh is +1 air an armachd airson saighdearan coisridh gatha."
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
-msgid "Last Stand Aura"
-msgstr "Aura seasamh deireannach"
+msgid "Last Stand"
+msgstr "Seasamh deireannach"
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraDescription
-msgid "+20% attack and +1 capture for nearby Spearmen."
-msgstr "Ionnsaigh le +20% is +1 de ghlacadh airson sleaghairean am fagas."
+msgid "+20% attack and +1 capture for spear soldiers."
+msgstr "+20% de dh’ionnsaigh is +1 air a’ ghlacadh airson saighdearan sleagha."

@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-04-28 09:02+0200\n"
-"PO-Revision-Date: 2017-04-28 15:27+0000\n"
+"POT-Creation-Date: 2017-05-22 09:03+0200\n"
+"PO-Revision-Date: 2017-05-22 14:23+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -118,7 +118,7 @@ msgstr ""
 msgid "Structure"
 msgstr ""
 
-#: simulation/templates/template_unit.xml:40
+#: simulation/templates/template_unit.xml:41
 msgid "Unit"
 msgstr ""
 
@@ -155,12 +155,12 @@ msgstr ""
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:25
 #: simulation/templates/campaigns/campaign_city_test.xml:25
 msgid "Market"
-msgstr ""
+msgstr "Mercáu"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:26
 #: simulation/templates/campaigns/campaign_city_test.xml:26
 msgid "Settlement"
-msgstr ""
+msgstr "Asentamientu"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:27
 msgid "Minor Greek Polis"
@@ -338,6 +338,14 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:6
 msgid "Collect food from this bountiful riparian resource."
+msgstr ""
+
+#: simulation/templates/gaia/fauna_fox_arctic.xml:4
+msgid "Arctic Fox"
+msgstr ""
+
+#: simulation/templates/gaia/fauna_fox_red.xml:4
+msgid "Red Fox"
 msgstr ""
 
 #: simulation/templates/gaia/fauna_gazelle.xml:9
@@ -745,7 +753,7 @@ msgstr ""
 
 #: simulation/templates/other/hellenic_stoa.xml:25
 msgid "Stoa"
-msgstr ""
+msgstr "Estoá"
 
 #: simulation/templates/other/hellenic_stoa.xml:26
 msgid "Hellenic Stoa"
@@ -823,7 +831,7 @@ msgstr ""
 
 #: simulation/templates/other/palisades_rocks_outpost.xml:15
 msgid "Outpost"
-msgstr ""
+msgstr "Puestu"
 
 #: simulation/templates/other/palisades_rocks_outpost.xml:16
 #: simulation/templates/other/palisades_rocks_watchtower.xml:16
@@ -856,7 +864,7 @@ msgstr ""
 
 #: simulation/templates/other/pers_house_a.xml:12
 msgid "House"
-msgstr ""
+msgstr "Casa"
 
 #: simulation/templates/other/pers_house_b.xml:15
 #: simulation/templates/other/pers_inn.xml:15
@@ -1036,11 +1044,6 @@ msgstr ""
 msgid ""
 "Changes in a 5-pop house for civilisations with those houses, is deleted for"
 " other civs"
-msgstr ""
-
-#: simulation/templates/special/marker_object_sound.xml:15
-#: simulation/templates/special/marker_object_sound.xml:16
-msgid "Marker"
 msgstr ""
 
 #: simulation/templates/special/player.xml:57

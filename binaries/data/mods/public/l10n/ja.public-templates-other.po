@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-04-28 09:02+0200\n"
-"PO-Revision-Date: 2017-04-28 15:27+0000\n"
+"POT-Creation-Date: 2017-05-22 09:03+0200\n"
+"PO-Revision-Date: 2017-05-22 14:23+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -120,7 +120,7 @@ msgstr "手早く採集可能な財宝です。"
 msgid "Structure"
 msgstr "建物"
 
-#: simulation/templates/template_unit.xml:40
+#: simulation/templates/template_unit.xml:41
 msgid "Unit"
 msgstr "ユニット"
 
@@ -341,6 +341,14 @@ msgstr "イズミダイ"
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:6
 msgid "Collect food from this bountiful riparian resource."
 msgstr "この豊かな川の幸から食料を採集します。"
+
+#: simulation/templates/gaia/fauna_fox_arctic.xml:4
+msgid "Arctic Fox"
+msgstr ""
+
+#: simulation/templates/gaia/fauna_fox_red.xml:4
+msgid "Red Fox"
+msgstr ""
 
 #: simulation/templates/gaia/fauna_gazelle.xml:9
 msgid "Gazelle"
@@ -1039,11 +1047,6 @@ msgid ""
 "Changes in a 5-pop house for civilisations with those houses, is deleted for"
 " other civs"
 msgstr "一部の文明用でその他の文明にはない、人口上限5の家に関する変更です。"
-
-#: simulation/templates/special/marker_object_sound.xml:15
-#: simulation/templates/special/marker_object_sound.xml:16
-msgid "Marker"
-msgstr "マーカー"
 
 #: simulation/templates/special/player.xml:57
 msgid "Player"

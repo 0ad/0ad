@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-04-28 09:01+0200\n"
-"PO-Revision-Date: 2017-04-29 13:21+0000\n"
-"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
+"POT-Creation-Date: 2017-05-26 09:03+0200\n"
+"PO-Revision-Date: 2017-05-26 14:49+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -44,7 +44,7 @@ msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] "特殊建築"
 
-#: gui/civinfo/civinfo.js:124 gui/summary/layout.js:64
+#: gui/civinfo/civinfo.js:124 gui/summary/layout.js:67
 msgid "Heroes"
 msgstr "英雄"
 
@@ -124,18 +124,18 @@ msgid "DELETE"
 msgstr "刪除"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:246
-#: gui/options/options.js:279 gui/options/options.js:346
+#: gui/options/options.js:334 gui/options/options.js:401
 #: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:159
-#: gui/savedgames/load.js:187 gui/savedgames/save.js:66
-#: gui/summary/summary.js:146
+#: gui/savedgames/load.js:188 gui/savedgames/save.js:66
+#: gui/summary/summary.js:346
 msgid "No"
 msgstr "否"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:246
-#: gui/options/options.js:279 gui/options/options.js:346
+#: gui/options/options.js:334 gui/options/options.js:401
 #: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:159
-#: gui/savedgames/load.js:187 gui/savedgames/save.js:66
-#: gui/summary/summary.js:146
+#: gui/savedgames/load.js:188 gui/savedgames/save.js:66
+#: gui/summary/summary.js:346
 msgid "Yes"
 msgstr "是"
 
@@ -149,266 +149,296 @@ msgstr "使用 %(hotkey)s 刪除選定的項目。"
 msgid "Hold %(hotkey)s to delete without confirmation."
 msgstr "按住 %(hotkey)s 以不經確認就刪除。"
 
-#: gui/common/gamedescription.js:29
+#: gui/common/gamedescription.js:48
 msgid "A randomly selected map."
 msgstr "隨機選取地圖。"
 
-#: gui/common/gamedescription.js:36 gui/common/gamedescription.js:310
+#: gui/common/gamedescription.js:55 gui/common/gamedescription.js:348
 msgid "Sorry, no description available."
 msgstr "抱歉，沒有可用的描述。"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:86
+#: gui/common/gamedescription.js:105
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
 msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:89
+#: gui/common/gamedescription.js:108
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
 msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:95
+#: gui/common/gamedescription.js:114
 #, javascript-format
 msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
 msgstr "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:98
+#: gui/common/gamedescription.js:117
 #, javascript-format
 msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
 msgstr "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:108
+#: gui/common/gamedescription.js:127
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
 msgstr "%(playerName)s（離線）"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:111
+#: gui/common/gamedescription.js:130
 #, javascript-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
 msgstr "%(playerName)s（離線，%(state)s）"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:118
+#: gui/common/gamedescription.js:137
 #, javascript-format
 msgid "%(playerName)s (%(civ)s)"
 msgstr "%(playerName)s (%(civ)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:121
+#: gui/common/gamedescription.js:140
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(state)s)"
 msgstr "%(playerName)s (%(civ)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:125
+#: gui/common/gamedescription.js:144
 #, javascript-format
 msgid "%(playerName)s"
 msgstr "%(playerName)s"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:128
+#: gui/common/gamedescription.js:147
 #, javascript-format
 msgid "%(playerName)s (%(state)s)"
 msgstr "%(playerName)s (%(state)s)"
 
-#: gui/common/gamedescription.js:149
+#: gui/common/gamedescription.js:168
 msgid "Unknown Civilization"
 msgstr "未知的文明"
 
-#: gui/common/gamedescription.js:156
+#: gui/common/gamedescription.js:175
 msgctxt "playerstate"
 msgid "defeated"
 msgstr "被擊敗"
 
-#: gui/common/gamedescription.js:157
+#: gui/common/gamedescription.js:176
 msgctxt "playerstate"
 msgid "won"
 msgstr "獲勝"
 
-#: gui/common/gamedescription.js:179
+#: gui/common/gamedescription.js:198
 msgid "No Team"
 msgstr "無隊伍"
 
-#: gui/common/gamedescription.js:180
+#: gui/common/gamedescription.js:199
 #, javascript-format
 msgid "Team %(team)s"
 msgstr "隊伍 %(team)s"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or savegame menu or lobby
-#: gui/common/gamedescription.js:183 gui/common/gamedescription.js:190
+#: gui/common/gamedescription.js:202 gui/common/gamedescription.js:209
 #, javascript-format
 msgid ""
 "%(team)s:\n"
 "%(playerDescriptions)s"
 msgstr "%(team)s：\n%(playerDescriptions)s"
 
-#: gui/common/gamedescription.js:191
+#: gui/common/gamedescription.js:210
 msgid "Observer"
 msgid_plural "Observers"
 msgstr[0] "觀察者"
 
-#: gui/common/gamedescription.js:213
+#: gui/common/gamedescription.js:232
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
 msgid_plural "Wonder (%(min)s minutes)"
 msgstr[0] "奇觀（%(min)s 分鐘）"
 
-#: gui/common/gamedescription.js:224
+#: gui/common/gamedescription.js:244
 #, javascript-format
 msgctxt "victory condition"
 msgid "Capture The Relic (%(min)s minute)"
 msgid_plural "Capture The Relic (%(min)s minutes)"
 msgstr[0] "取得遺蹟（%(min)s 分鐘）"
 
-#: gui/common/gamedescription.js:242
+#: gui/common/gamedescription.js:260
+msgid "Relic Count"
+msgstr "遺蹟數"
+
+#: gui/common/gamedescription.js:267
+msgid "Hero Garrison"
+msgstr "英雄駐守"
+
+#: gui/common/gamedescription.js:268
+msgid "Heroes can be garrisoned."
+msgstr "英雄可以駐守。"
+
+#: gui/common/gamedescription.js:272
+msgid "Exposed Heroes"
+msgstr "易受攻擊的英雄"
+
+#: gui/common/gamedescription.js:273
+msgid "Heroes cannot be garrisoned, and they are vulnerable to raids."
+msgstr "英雄無法駐守，他們容易被突襲。"
+
+#: gui/common/gamedescription.js:280
 msgid "Rated game"
 msgstr "排名的遊戲"
 
-#: gui/common/gamedescription.js:243
+#: gui/common/gamedescription.js:281
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr "當這場比賽的贏家確定後，大廳的分數將會進行調整。"
 
-#: gui/common/gamedescription.js:248
+#: gui/common/gamedescription.js:286
 msgid "Locked Teams"
 msgstr "鎖定隊伍"
 
-#: gui/common/gamedescription.js:249
+#: gui/common/gamedescription.js:287
 msgid "Players can't change the initial teams."
 msgstr "玩家無法變更初始隊伍。"
 
-#: gui/common/gamedescription.js:253
+#: gui/common/gamedescription.js:291
 msgid "Diplomacy"
 msgstr "外交"
 
-#: gui/common/gamedescription.js:254
+#: gui/common/gamedescription.js:292
 msgid "Players can make alliances and declare war on allies."
 msgstr "玩家可以讓盟友與盟友宣戰。"
 
-#: gui/common/gamedescription.js:259
+#: gui/common/gamedescription.js:297
 msgid "Last Man Standing"
 msgstr "最後生還者"
 
-#: gui/common/gamedescription.js:260
+#: gui/common/gamedescription.js:298
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
 msgstr "只有一個玩家能在這場遊戲中獲勝。若剩下的玩家都是盟友，遊戲仍然只會進行至只剩一個玩家為止。"
 
-#: gui/common/gamedescription.js:264
+#: gui/common/gamedescription.js:302
 msgid "Allied Victory"
 msgstr "聯盟勝利"
 
-#: gui/common/gamedescription.js:265
+#: gui/common/gamedescription.js:303
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
 msgstr "若一個玩家獲勝，他／她的盟友也會獲勝。若僅存一個聯盟的隊伍，他們獲勝。"
 
-#: gui/common/gamedescription.js:271
+#: gui/common/gamedescription.js:309
 msgid "Ceasefire"
 msgstr "停火"
 
-#: gui/common/gamedescription.js:274 gui/pregame/mainmenu.js:91
+#: gui/common/gamedescription.js:312 gui/pregame/mainmenu.js:91
 msgid "disabled"
 msgstr "已停用"
 
-#: gui/common/gamedescription.js:275
+#: gui/common/gamedescription.js:313
 msgid "For the first minute, enemies will stay neutral."
 msgid_plural "For the first %(min)s minutes, enemies will stay neutral."
 msgstr[0] "開始的 %(min)s 分鐘內，敵人將會保持中立。"
 
-#: gui/common/gamedescription.js:283
+#: gui/common/gamedescription.js:321
 msgid "Map Name"
 msgstr "地圖名稱"
 
-#: gui/common/gamedescription.js:288
+#: gui/common/gamedescription.js:326
 msgid "Map Type"
 msgstr "地圖類型"
 
-#: gui/common/gamedescription.js:297
+#: gui/common/gamedescription.js:335
 msgid "Map Size"
 msgstr "地圖大小"
 
-#: gui/common/gamedescription.js:304
+#: gui/common/gamedescription.js:342
 msgid "Map Description"
 msgstr "地圖描述"
 
-#: gui/common/gamedescription.js:307
+#: gui/common/gamedescription.js:345
 msgid "Randomly selects a map from the list"
 msgstr "隨機從列表中選取地圖"
 
-#: gui/common/gamedescription.js:316
+#: gui/common/gamedescription.js:354
 msgid "Starting Resources"
 msgstr "初始資源"
 
-#: gui/common/gamedescription.js:317
+#: gui/common/gamedescription.js:355
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
-#: gui/common/gamedescription.js:327
+#: gui/common/gamedescription.js:365
 msgid "Population Limit"
 msgstr "人口限制"
 
-#: gui/common/gamedescription.js:335
-msgid "Disable Treasure"
-msgstr "停用寶藏"
+#: gui/common/gamedescription.js:373
+msgid "Treasure"
+msgstr ""
 
-#: gui/common/gamedescription.js:340
+#: gui/common/gamedescription.js:375
+msgctxt "treasure"
+msgid "Disabled"
+msgstr ""
+
+#: gui/common/gamedescription.js:376
+msgctxt "treasure"
+msgid "If the map places it."
+msgstr ""
+
+#: gui/common/gamedescription.js:380
 msgid "Revealed Map"
 msgstr "全地圖視野"
 
-#: gui/common/gamedescription.js:345
+#: gui/common/gamedescription.js:385
 msgid "Explored Map"
 msgstr "已探索的地圖"
 
-#: gui/common/gamedescription.js:350
+#: gui/common/gamedescription.js:390
 msgid "Cheats"
 msgstr "作弊秘技"
 
-#: gui/common/gamedescription.js:355 gui/common/tooltips.js:86
+#: gui/common/gamedescription.js:395 gui/common/tooltips.js:86
 #: gui/common/tooltips.js:141 gui/common/tooltips.js:182
 #: gui/common/tooltips.js:404 gui/common/tooltips.js:425
-#: gui/common/tooltips.js:707
+#: gui/common/tooltips.js:718
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:358
+#: gui/common/gamedescription.js:398
 msgctxt "gamesetup option"
 msgid "enabled"
 msgstr "已啟用"
 
-#: gui/common/gamedescription.js:359
+#: gui/common/gamedescription.js:399
 msgctxt "gamesetup option"
 msgid "disabled"
 msgstr "已停用"
 
-#: gui/common/gamedescription.js:376
+#: gui/common/gamedescription.js:416
 msgid "Victorious"
 msgstr "勝利"
 
-#: gui/common/gamedescription.js:381
+#: gui/common/gamedescription.js:421
 msgid "Defeated"
 msgstr "被擊敗"
 
@@ -428,9 +458,9 @@ msgstr "%(previousAmounts)s 和 %(lastAmount)s"
 #: gui/common/tooltips.js:168 gui/common/tooltips.js:248
 #: gui/common/tooltips.js:277 gui/common/tooltips.js:310
 #: gui/common/tooltips.js:583 gui/common/tooltips.js:617
-#: gui/common/tooltips.js:671 gui/replaymenu/replay_actions.js:89
-#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:118
-#: gui/savedgames/load.js:174 gui/savedgames/load.js:177
+#: gui/common/tooltips.js:682 gui/replaymenu/replay_actions.js:89
+#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:119
+#: gui/savedgames/load.js:175 gui/savedgames/load.js:178
 msgid ", "
 msgstr "，"
 
@@ -589,55 +619,71 @@ msgctxt "map"
 msgid "Skirmish"
 msgstr "小規模戰鬥"
 
-#: gui/common/settings.js:193
+#: gui/common/settings.js:189
+msgid ""
+"A map with a predefined landscape and number of players. Freely select the "
+"other gamesettings."
+msgstr "具有預先定義好的景觀與玩家人數的地圖。可自由選取其他遊戲設定。"
+
+#: gui/common/settings.js:194
 msgctxt "map"
 msgid "Random"
 msgstr "隨機"
 
-#: gui/common/settings.js:197
+#: gui/common/settings.js:195
+msgid ""
+"Create a unique map with a different resource distribution each time. Freely"
+" chose the number of players and teams."
+msgstr "每次都以不同的資源分佈建立一張獨特的地圖。可自由選擇玩家數與隊伍。"
+
+#: gui/common/settings.js:199
 msgctxt "map"
 msgid "Scenario"
 msgstr "劇情"
 
-#: gui/common/settings.js:228
+#: gui/common/settings.js:200
+msgid "A map with a predefined landscape and matchsettings."
+msgstr "具有預先定義好的景觀與比賽設定的地圖。"
+
+#: gui/common/settings.js:231
 msgctxt "victory condition"
 msgid "None"
 msgstr "無"
 
-#: gui/common/settings.js:229
+#: gui/common/settings.js:232
 msgid "Endless game."
 msgstr "無盡的遊戲。"
 
-#: gui/common/settings.js:270
+#: gui/common/settings.js:273
 msgid "Unlimited"
 msgstr "無限制"
 
-#: gui/common/settings.js:318
+#: gui/common/settings.js:321
 msgctxt "AI name"
 msgid "Unknown"
 msgstr "未知"
 
-#: gui/common/settings.js:329
+#: gui/common/settings.js:332
 msgctxt "AI difficulty"
 msgid "Unknown"
 msgstr "未知"
 
-#: gui/common/settings.js:341
+#: gui/common/settings.js:344
 msgctxt "map type"
 msgid "Unknown"
 msgstr "未知"
 
-#: gui/common/settings.js:353
+#: gui/common/settings.js:356
 msgctxt "map size"
 msgid "Default"
 msgstr "預設"
 
-#: gui/common/settings.js:365
+#: gui/common/settings.js:368
 msgctxt "population capacity"
 msgid "Unknown"
 msgstr "未知"
 
-#: gui/common/settings.js:377
+#: gui/common/settings.js:380
 msgctxt "victory condition"
 msgid "Unknown"
 msgstr "未知"
@@ -805,6 +851,7 @@ msgid "meters"
 msgstr "公尺"
 
 #: gui/common/tooltips.js:221 gui/common/tooltips.js:610
+#: gui/common/tooltips.js:639
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] "公尺"
@@ -867,7 +914,7 @@ msgid "Repair Rate:"
 msgstr "修復速率："
 
 #: gui/common/tooltips.js:323 gui/common/tooltips.js:337
-#: gui/summary/layout.js:61
+#: gui/summary/layout.js:64
 msgid "Worker"
 msgstr "工人"
 
@@ -961,7 +1008,7 @@ msgid "Run"
 msgstr "奔走"
 
 #: gui/common/tooltips.js:601 gui/common/tooltips.js:607
-#: gui/common/tooltips.js:612
+#: gui/common/tooltips.js:612 gui/common/tooltips.js:636
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
@@ -974,40 +1021,45 @@ msgid "HP"
 msgid_plural "HP"
 msgstr[0] "HP"
 
-#: gui/common/tooltips.js:626
+#: gui/common/tooltips.js:628
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:627
+#: gui/common/tooltips.js:629
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s："
 
-#: gui/common/tooltips.js:643
+#: gui/common/tooltips.js:637
+msgctxt "aura"
+msgid "Range:"
+msgstr "範圍："
+
+#: gui/common/tooltips.js:654
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
 #. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian
 #. Marine)[/font]"
-#: gui/common/tooltips.js:655
+#: gui/common/tooltips.js:666
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
-#: gui/common/tooltips.js:670
+#: gui/common/tooltips.js:681
 msgid "Classes:"
 msgstr "類型："
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the value.
-#: gui/common/tooltips.js:698
+#: gui/common/tooltips.js:709
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr "%(component)s %(loot)s"
 
-#: gui/common/tooltips.js:708
+#: gui/common/tooltips.js:719
 msgid "Loot:"
 msgstr "寶藏："
 
@@ -1030,18 +1082,24 @@ msgstr "<無效>"
 msgid "OK"
 msgstr "確定"
 
-#: gui/options/options.js:277
+#: gui/options/options.js:169
+#, javascript-format
+msgctxt "slider number"
+msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
+msgstr "值：%(val)s（最小：%(min)s，最大：%(max)s）"
+
+#: gui/options/options.js:332
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "重置選項將會抹除您儲存的設定。您想要繼續嗎？"
 
-#: gui/options/options.js:278 gui/options/options.js:345
-#: gui/savedgames/load.js:186
+#: gui/options/options.js:333 gui/options/options.js:400
+#: gui/savedgames/load.js:187
 msgid "Warning"
 msgstr "警告"
 
-#: gui/options/options.js:344
+#: gui/options/options.js:399
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "您有未儲存的變更，您想要關閉這個視窗嗎？"
 
@@ -1119,7 +1177,7 @@ msgstr "組建： %(buildDate)s (%(revision)s)"
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "您確定要退出 0 A.D.嗎？"
 
-#: gui/pregame/mainmenu.js:261 gui/summary/summary.js:145
+#: gui/pregame/mainmenu.js:261 gui/summary/summary.js:345
 msgid "Confirmation"
 msgstr "確認"
 
@@ -1150,12 +1208,12 @@ msgstr "手冊"
 msgid "You don't have the same mods active as the replay does."
 msgstr "您沒有與重播相同的 mod。"
 
-#: gui/replaymenu/replay_actions.js:89 gui/savedgames/load.js:173
+#: gui/replaymenu/replay_actions.js:89 gui/savedgames/load.js:174
 #, javascript-format
 msgid "Required: %(mods)s"
 msgstr "需要：%(mods)s"
 
-#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:176
+#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:177
 #, javascript-format
 msgid "Active: %(mods)s"
 msgstr "啟用：%(mods)s"
@@ -1242,11 +1300,11 @@ msgstr "%(min)s - %(max)s 分鐘"
 msgid "Single- and multiplayer"
 msgstr "單人與多人"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):458
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):472
 msgid "Single Player"
 msgstr "單人遊戲"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):473
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):487
 msgid "Multiplayer"
 msgstr "多人遊戲"
 
@@ -1271,51 +1329,51 @@ msgstr "無排名的遊戲"
 msgid "Filter replays by typing one or more, partial or complete playernames."
 msgstr "輸入一個或多個，部份或完整的玩家名稱來過濾重播。"
 
-#: gui/replaymenu/replay_menu.js:268
+#: gui/replaymenu/replay_menu.js:269
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
 msgstr "玩家：%(numberOfPlayers)s"
 
-#: gui/replaymenu/replay_menu.js:294
+#: gui/replaymenu/replay_menu.js:296
 msgid "yyyy-MM-dd HH:mm"
 msgstr "yyyy-MM-dd HH:mm"
 
-#: gui/replaymenu/replay_menu.js:324
+#: gui/replaymenu/replay_menu.js:326
 msgid "yyyy-MM"
 msgstr "yyyy-MM"
 
-#: gui/savedgames/load.js:118
+#: gui/savedgames/load.js:119
 #, javascript-format
 msgid "Mods: %(mods)s"
 msgstr "Mods：%(mods)s"
 
-#: gui/savedgames/load.js:148
+#: gui/savedgames/load.js:149
 msgid "This saved game may not be compatible:"
 msgstr "此遊戲存檔可能不相容於："
 
-#: gui/savedgames/load.js:153
+#: gui/savedgames/load.js:154
 #, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
 msgstr "它需要0 A.D. 版本 %(requiredVersion)s ，然而您執行的是 %(currentVersion)s 。"
 
-#: gui/savedgames/load.js:158
+#: gui/savedgames/load.js:159
 msgid "It needs an older version of 0 A.D."
 msgstr "它需要較舊版本的 0 A.D."
 
-#: gui/savedgames/load.js:162
+#: gui/savedgames/load.js:163
 #, javascript-format
 msgid ""
 "It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
 "savegame version %(currentVersion)s."
 msgstr "它需要0 A.D. 儲存遊戲版本 %(requiredVersion)s ，然而您的儲存遊戲版本為 %(currentVersion)s 。"
 
-#: gui/savedgames/load.js:172
+#: gui/savedgames/load.js:173
 msgid "The savegame needs a different set of mods:"
 msgstr "儲存的遊戲需要一套不同的 mod："
 
-#: gui/savedgames/load.js:181
+#: gui/savedgames/load.js:182
 msgid "Do you still want to proceed?"
 msgstr "您仍要繼續嗎？"
 
@@ -1331,251 +1389,282 @@ msgstr "儲存的遊戲將被永遠覆蓋，您是否確定？"
 msgid "OVERWRITE SAVE"
 msgstr "覆蓋儲存"
 
-#: gui/structree/load.js:114
+#: gui/structree/load.js:126
 #, javascript-format
 msgid "%(val1)s to %(val2)s"
 msgstr "%(val1)s 至 %(val2)s"
 
-#: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:58
-#: gui/summary/layout.js:97 gui/summary/layout.js:142
-#: gui/summary/layout.js:172 gui/summary/summary.xml:(caption):105
+#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):63
+msgid "Score"
+msgstr "分數"
+
+#: gui/summary/layout.js:5 gui/summary/layout.js:23 gui/summary/layout.js:61
+#: gui/summary/layout.js:101 gui/summary/layout.js:149
+#: gui/summary/layout.js:181 gui/summary/summary.xml:(caption):112
 msgid "Player name"
 msgstr "玩家名稱"
 
-#: gui/summary/layout.js:5
+#: gui/summary/layout.js:6
 msgid "Economy score"
 msgstr "經濟分數"
 
-#: gui/summary/layout.js:6
+#: gui/summary/layout.js:7
 msgid "Military score"
 msgstr "軍事分數"
 
-#: gui/summary/layout.js:7
+#: gui/summary/layout.js:8
 msgid "Exploration score"
 msgstr "探索分數"
 
-#: gui/summary/layout.js:8
+#: gui/summary/layout.js:9
 msgid "Total score"
 msgstr "總分"
 
-#: gui/summary/layout.js:22 gui/summary/layout.js:59 gui/summary/layout.js:103
+#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):70
+msgid "Buildings"
+msgstr "建築物數"
+
+#: gui/summary/layout.js:24 gui/summary/layout.js:62 gui/summary/layout.js:108
 msgid "Total"
 msgstr "總計"
 
-#: gui/summary/layout.js:23
+#: gui/summary/layout.js:25
 msgid "Houses"
 msgstr "房舍"
 
-#: gui/summary/layout.js:24
+#: gui/summary/layout.js:26
 msgid "Economic"
 msgstr "經濟"
 
-#: gui/summary/layout.js:25
+#: gui/summary/layout.js:27
 msgid "Outposts"
 msgstr "前哨"
 
-#: gui/summary/layout.js:26
+#: gui/summary/layout.js:28
 msgid "Military"
 msgstr "軍隊"
 
-#: gui/summary/layout.js:27
+#: gui/summary/layout.js:29
 msgid "Fortresses"
 msgstr "堡壘"
 
-#: gui/summary/layout.js:28
+#: gui/summary/layout.js:30
 msgid "Civ centers"
 msgstr "城鎮中心"
 
-#: gui/summary/layout.js:29
+#: gui/summary/layout.js:31
 msgid "Wonders"
 msgstr "奇觀"
 
-#: gui/summary/layout.js:33
+#: gui/summary/layout.js:35
 #, javascript-format
 msgid ""
 "Buildings Statistics (%(constructed)s / %(destroyed)s / %(captured)s / "
 "%(lost)s)"
 msgstr "建築物統計 (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:35
-msgid "Constructed"
-msgstr "建造數"
+#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):77
+msgid "Units"
+msgstr "單位數"
 
-#: gui/summary/layout.js:36
-msgid "Destroyed"
-msgstr "摧毀數"
-
-#: gui/summary/layout.js:37 gui/summary/layout.js:75
-msgid "Captured"
-msgstr "捕捉數"
-
-#: gui/summary/layout.js:38 gui/summary/layout.js:76
-msgid "Lost"
-msgstr "遺失數"
-
-#: gui/summary/layout.js:60
+#: gui/summary/layout.js:63
 msgid "Infantry"
 msgstr "步兵"
 
-#: gui/summary/layout.js:62
+#: gui/summary/layout.js:65
 msgid "Cavalry"
 msgstr "騎兵"
 
-#: gui/summary/layout.js:63
+#: gui/summary/layout.js:66
 msgid "Champion"
 msgstr "冠軍"
 
-#: gui/summary/layout.js:65
+#: gui/summary/layout.js:68
 msgid "Siege"
 msgstr "攻城武器"
 
-#: gui/summary/layout.js:66
+#: gui/summary/layout.js:69
 msgid "Navy"
 msgstr "海軍"
 
-#: gui/summary/layout.js:67
+#: gui/summary/layout.js:70
 msgid "Traders"
 msgstr "貿易商人"
 
-#: gui/summary/layout.js:71
+#: gui/summary/layout.js:74
 #, javascript-format
 msgid "Units Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 msgstr "單位統計 (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:73
-msgid "Trained"
-msgstr "訓練數"
+#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):84
+msgid "Resources"
+msgstr "資源"
 
-#: gui/summary/layout.js:74
-msgid "Killed"
-msgstr "殺敵數"
-
-#: gui/summary/layout.js:105
+#: gui/summary/layout.js:111
 #, javascript-format
 msgid ""
 "Tributes \n"
 "(%(sent)s / %(received)s)"
 msgstr "進貢 \n(%(sent)s / %(received)s)"
 
-#: gui/summary/layout.js:107
-msgid "Sent"
-msgstr "送出"
-
-#: gui/summary/layout.js:108
-msgid "Received"
-msgstr "收到"
-
-#: gui/summary/layout.js:113
+#: gui/summary/layout.js:119
 msgid "Treasures collected"
 msgstr "收集的寶藏"
 
-#: gui/summary/layout.js:114
+#: gui/summary/layout.js:120
 msgid "Loot"
 msgstr "戰利品"
 
-#: gui/summary/layout.js:118
+#: gui/summary/layout.js:124
 #, javascript-format
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
 msgstr "資源統計 (%(gathered)s / %(used)s)"
 
-#: gui/summary/layout.js:120
-msgid "Gathered"
-msgstr "採集數"
-
-#: gui/summary/layout.js:121
-msgid "Used"
-msgstr "使用數"
+#: gui/summary/layout.js:147 gui/summary/summary.xml:(caption):91
+msgid "Market"
+msgstr "市集"
 
 #. Translation: use %(resourceWithinSentence)s if needed
-#: gui/summary/layout.js:147
+#: gui/summary/layout.js:155
 #, javascript-format
 msgid "%(resourceFirstWord)s exchanged"
 msgstr "%(resourceFirstWord)s 已交換"
 
-#: gui/summary/layout.js:155
+#: gui/summary/layout.js:163
 msgid "Barter efficiency"
 msgstr "貿易效率"
 
-#: gui/summary/layout.js:156
+#: gui/summary/layout.js:164
 msgid "Trade income"
 msgstr "貿易收入"
 
-#: gui/summary/layout.js:173
-msgid ""
-"Vegetarian\n"
-"ratio"
-msgstr "素食\n比率"
+#: gui/summary/layout.js:179 gui/summary/summary.xml:(caption):98
+#: gui/credits/texts/misc.jsonTitle
+msgid "Miscellaneous"
+msgstr "雜項"
 
-#: gui/summary/layout.js:174
+#: gui/summary/layout.js:182
+msgid "Vegetarian ratio"
+msgstr "精英比例"
+
+#: gui/summary/layout.js:183
 msgid "Feminization"
 msgstr "女性化"
 
-#: gui/summary/layout.js:175
-msgid ""
-"Kill / Death\n"
-"ratio"
-msgstr "擊殺 / 被殺\n比例"
+#: gui/summary/layout.js:184
+msgid "Kill / Death ratio"
+msgstr "擊殺 / 被殺比例"
 
-#: gui/summary/layout.js:176
-msgid ""
-"Map\n"
-"exploration"
-msgstr "地圖\n探索"
+#: gui/summary/layout.js:185
+msgid "Map exploration"
+msgstr "地圖探索"
 
-#: gui/summary/layout.js:177
-msgid "At peak"
-msgstr "在巔峰"
+#: gui/summary/layout.js:186
+msgid "Map control (peak)"
+msgstr "地圖控制（揭露）"
 
-#: gui/summary/layout.js:178
-msgid "At finish"
-msgstr "在結束時"
+#: gui/summary/layout.js:187
+msgid "Map control (finish)"
+msgstr "地圖控制（完成）"
 
-#: gui/summary/layout.js:181
-msgid "Map control"
-msgstr "地圖控制"
-
-#: gui/summary/layout.js:326
+#: gui/summary/layout.js:338
 msgid "Team total"
 msgstr "隊伍總計"
 
-#: gui/summary/summary.js:144
+#: gui/summary/summary.js:30
+msgid "Trained"
+msgstr "訓練數"
+
+#: gui/summary/summary.js:35
+msgid "Constructed"
+msgstr "建造數"
+
+#: gui/summary/summary.js:40
+msgid "Gathered"
+msgstr "採集數"
+
+#: gui/summary/summary.js:45
+msgid "Sent"
+msgstr "送出"
+
+#: gui/summary/summary.js:50
+msgid "Bought"
+msgstr "購買"
+
+#: gui/summary/summary.js:55
+msgid "Income"
+msgstr "收入"
+
+#: gui/summary/summary.js:60
+msgid "Captured"
+msgstr "捕捉數"
+
+#: gui/summary/summary.js:65
+msgid "Destroyed"
+msgstr "摧毀數"
+
+#: gui/summary/summary.js:70
+msgid "Killed"
+msgstr "殺敵數"
+
+#: gui/summary/summary.js:75
+msgid "Lost"
+msgstr "遺失數"
+
+#: gui/summary/summary.js:80
+msgid "Used"
+msgstr "使用數"
+
+#: gui/summary/summary.js:85
+msgid "Recieved"
+msgstr "收到"
+
+#: gui/summary/summary.js:90
+msgid "Sold"
+msgstr "賣出"
+
+#: gui/summary/summary.js:95
+msgid "Outcome"
+msgstr "支出"
+
+#: gui/summary/summary.js:344
 msgid "Are you sure you want to quit the lobby?"
 msgstr "您確定您想要退出大廳？"
 
-#: gui/summary/summary.js:195
+#: gui/summary/summary.js:395
 msgid "Current Scores"
 msgstr "目前分數"
 
-#: gui/summary/summary.js:197
+#: gui/summary/summary.js:397
 msgid "Scores at the end of the game."
 msgstr "遊戲結束時的分數。"
 
-#: gui/summary/summary.js:199
+#: gui/summary/summary.js:399
 msgid "You have been disconnected."
 msgstr "您已中斷連線。"
 
-#: gui/summary/summary.js:201
+#: gui/summary/summary.js:401
 msgid "You have left the game."
 msgstr "您已經離開遊戲。"
 
-#: gui/summary/summary.js:203
+#: gui/summary/summary.js:403
 msgid "You have won the battle!"
 msgstr "您已獲勝！"
 
-#: gui/summary/summary.js:205
+#: gui/summary/summary.js:405
 msgid "You have been defeated..."
 msgstr "您被擊敗..."
 
-#: gui/summary/summary.js:206
+#: gui/summary/summary.js:406
 msgid "You have abandoned the game."
 msgstr "您已放棄遊戲。"
 
-#: gui/summary/summary.js:211
+#: gui/summary/summary.js:411
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "遊戲時間已過：%(time)s"
 
-#: gui/summary/summary.js:219
+#: gui/summary/summary.js:419
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
@@ -1589,7 +1678,7 @@ msgid "Civilization Selection"
 msgstr "文明選擇"
 
 #: gui/civinfo/civinfo.xml:(caption):119 gui/credits/credits.xml:(caption):36
-#: gui/options/options.xml:(caption):101
+#: gui/options/options.xml:(caption):102
 #: gui/structree/structree.xml:(caption):124
 msgid "Close"
 msgstr "關閉"
@@ -1600,7 +1689,7 @@ msgstr "0 A.D. 感謝名單"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
-#: gui/pregame/mainmenu.xml:(caption):330
+#: gui/pregame/mainmenu.xml:(caption):344
 msgid "Language"
 msgstr "語言"
 
@@ -1683,43 +1772,43 @@ msgstr "一般"
 msgid "Graphics Settings"
 msgstr "圖形設定"
 
-#: gui/options/options.xml:(caption):48
+#: gui/options/options.xml:(caption):49
 msgid "Sound Settings"
 msgstr "音效設定"
 
-#: gui/options/options.xml:(caption):61
+#: gui/options/options.xml:(caption):62
 msgid "Lobby Settings"
 msgstr "大廳設定"
 
-#: gui/options/options.xml:(caption):74
+#: gui/options/options.xml:(caption):75
 msgid "Chat Notification Settings"
 msgstr "聊天通知設定"
 
-#: gui/options/options.xml:(caption):86
+#: gui/options/options.xml:(caption):87
 msgid "Reset"
 msgstr "重置"
 
-#: gui/options/options.xml:(caption):91
+#: gui/options/options.xml:(caption):92
 msgid "Revert"
 msgstr "還原"
 
-#: gui/options/options.xml:(caption):96 gui/savedgames/save.xml:(caption):48
+#: gui/options/options.xml:(caption):97 gui/savedgames/save.xml:(caption):48
 msgid "Save"
 msgstr "儲存"
 
-#: gui/options/options.xml:(tooltip):87
+#: gui/options/options.xml:(tooltip):88
 msgid "Resets user settings to their game default"
 msgstr "重置使用者設定為他們的遊戲預設值"
 
-#: gui/options/options.xml:(tooltip):92
+#: gui/options/options.xml:(tooltip):93
 msgid "Reverts to previous saved settings"
 msgstr "復原至先前儲存的設定"
 
-#: gui/options/options.xml:(tooltip):97
+#: gui/options/options.xml:(tooltip):98
 msgid "Saves changes"
 msgstr "儲存變更"
 
-#: gui/options/options.xml:(tooltip):102
+#: gui/options/options.xml:(tooltip):103
 msgid "Unsaved changes affect this session only"
 msgstr "未儲存的變更只影響本工作階段"
 
@@ -1733,11 +1822,11 @@ msgid ""
 " and improve performance and compatibility."
 msgstr "您可以自動向我們發送能幫我們修復臭蟲並改善效能和相容性的匿名回饋。"
 
-#: gui/pregame/mainmenu.xml:526
+#: gui/pregame/mainmenu.xml:540
 msgid "Alpha XXI: Ulysses"
 msgstr "Alpha XXI：Ulysses"
 
-#: gui/pregame/mainmenu.xml:528
+#: gui/pregame/mainmenu.xml:542
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
@@ -1752,92 +1841,96 @@ msgid "Disable Feedback"
 msgstr "停用回饋"
 
 #: gui/pregame/mainmenu.xml:(caption):157
+msgid "Tutorial"
+msgstr "教學課程"
+
+#: gui/pregame/mainmenu.xml:(caption):171
 #: gui/structree/structree.xml:(caption):18
 msgid "Structure Tree"
 msgstr "結構樹"
 
-#: gui/pregame/mainmenu.xml:(caption):174
+#: gui/pregame/mainmenu.xml:(caption):188
 msgid "History"
 msgstr "歷史"
 
-#: gui/pregame/mainmenu.xml:(caption):199
+#: gui/pregame/mainmenu.xml:(caption):213
 msgid "Matches"
 msgstr "配對競賽"
 
-#: gui/pregame/mainmenu.xml:(caption):213
+#: gui/pregame/mainmenu.xml:(caption):227
 msgid "Campaigns"
 msgstr "戰役"
 
-#: gui/pregame/mainmenu.xml:(caption):230 gui/savedgames/load.xml:(caption):20
+#: gui/pregame/mainmenu.xml:(caption):244 gui/savedgames/load.xml:(caption):20
 msgid "Load Game"
 msgstr "載入遊戲"
 
 #. Join a game by specifying the host's IP address.
-#: gui/pregame/mainmenu.xml:(caption):253
+#: gui/pregame/mainmenu.xml:(caption):267
 msgid "Join Game"
 msgstr "加入遊戲"
 
-#: gui/pregame/mainmenu.xml:(caption):268
+#: gui/pregame/mainmenu.xml:(caption):282
 msgid "Host Game"
 msgstr "主創遊戲"
 
-#: gui/pregame/mainmenu.xml:(caption):283
+#: gui/pregame/mainmenu.xml:(caption):297
 msgid "Game Lobby"
 msgstr "遊戲大廳"
 
-#: gui/pregame/mainmenu.xml:(caption):313
+#: gui/pregame/mainmenu.xml:(caption):327
 msgid "Options"
 msgstr "選項"
 
-#: gui/pregame/mainmenu.xml:(caption):346
+#: gui/pregame/mainmenu.xml:(caption):360
 msgid "Replays"
 msgstr "重玩"
 
-#: gui/pregame/mainmenu.xml:(caption):360
+#: gui/pregame/mainmenu.xml:(caption):374
 msgid "Scenario Editor"
 msgstr "劇情編輯器"
 
-#: gui/pregame/mainmenu.xml:(caption):373
+#: gui/pregame/mainmenu.xml:(caption):387
 msgid "Welcome Screen"
 msgstr "歡迎畫面"
 
-#: gui/pregame/mainmenu.xml:(caption):388
+#: gui/pregame/mainmenu.xml:(caption):402
 msgid "Mod Selection"
 msgstr "Mod 選擇"
 
-#: gui/pregame/mainmenu.xml:(caption):443
+#: gui/pregame/mainmenu.xml:(caption):457
 msgid "Learn To Play"
 msgstr "遊戲指南"
 
-#: gui/pregame/mainmenu.xml:(caption):488
+#: gui/pregame/mainmenu.xml:(caption):502
 msgid "Tools & Options"
 msgstr "工具與選項"
 
-#: gui/pregame/mainmenu.xml:(caption):503
+#: gui/pregame/mainmenu.xml:(caption):517
 msgid "Exit"
 msgstr "結束"
 
-#: gui/pregame/mainmenu.xml:(caption):538
+#: gui/pregame/mainmenu.xml:(caption):552
 msgid "Website"
 msgstr "網站"
 
-#: gui/pregame/mainmenu.xml:(caption):550
+#: gui/pregame/mainmenu.xml:(caption):564
 msgid "Chat"
 msgstr "聊天"
 
-#: gui/pregame/mainmenu.xml:(caption):562
+#: gui/pregame/mainmenu.xml:(caption):576
 msgid "Report a Bug"
 msgstr "回報臭蟲"
 
-#: gui/pregame/mainmenu.xml:(caption):574
+#: gui/pregame/mainmenu.xml:(caption):588
 msgid "Translate the game"
 msgstr "翻譯本遊戲"
 
-#: gui/pregame/mainmenu.xml:(caption):586
+#: gui/pregame/mainmenu.xml:(caption):600
 msgid "Credits"
 msgstr "感謝"
 
-#: gui/pregame/mainmenu.xml:(caption):615
+#: gui/pregame/mainmenu.xml:(caption):629
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
@@ -1846,106 +1939,110 @@ msgid "Open the 0 A.D. Game Manual."
 msgstr "開啟0 A.D. 遊戲手冊。"
 
 #: gui/pregame/mainmenu.xml:(tooltip):158
+msgid "Start the economic tutorial."
+msgstr "開始經濟教學課程。"
+
+#: gui/pregame/mainmenu.xml:(tooltip):172
 msgid "View the structure tree of civilizations featured in 0 A.D."
 msgstr "觀看 0 A.D. 中文明的結構樹。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):175
+#: gui/pregame/mainmenu.xml:(tooltip):189
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "瞭解 0 A.D. 中文明的特色。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):200
+#: gui/pregame/mainmenu.xml:(tooltip):214
 msgid "Click here to start a new single player game."
 msgstr "點擊這裏開始新的單人遊戲。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):214
+#: gui/pregame/mainmenu.xml:(tooltip):228
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
 msgstr "透過歷史戰役重溫歷史事件。\\[尚未提供]"
 
-#: gui/pregame/mainmenu.xml:(tooltip):231
+#: gui/pregame/mainmenu.xml:(tooltip):245
 msgid "Click here to load a saved game."
 msgstr "點擊這裏來載入保存的遊戲。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):254
+#: gui/pregame/mainmenu.xml:(tooltip):268
 msgid "Joining an existing multiplayer game."
 msgstr "加入已存在的多人遊戲。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):269
+#: gui/pregame/mainmenu.xml:(tooltip):283
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr "創建多人遊戲。\\n\\n需要 UDP 埠 20595 開啓。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):284
+#: gui/pregame/mainmenu.xml:(tooltip):298
 msgid "Launch the multiplayer lobby."
 msgstr "啟動多人遊戲大廳。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):314
+#: gui/pregame/mainmenu.xml:(tooltip):328
 msgid "Adjust game settings."
 msgstr "調整遊戲設定。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):331
+#: gui/pregame/mainmenu.xml:(tooltip):345
 msgid "Choose the language of the game."
 msgstr "選擇遊戲語言。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):347
+#: gui/pregame/mainmenu.xml:(tooltip):361
 msgid "Playback previous games."
 msgstr "播放先前的遊戲。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):361
+#: gui/pregame/mainmenu.xml:(tooltip):375
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "在新視窗中開啟地圖編輯器。您可以利用命令列執行遊戲並在其後加上 \"-editor\" 的參數以較可靠的執行編輯器。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):374
+#: gui/pregame/mainmenu.xml:(tooltip):388
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "顯示歡迎畫面。如果您不小心隱藏它的時候很有用。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):389
+#: gui/pregame/mainmenu.xml:(tooltip):403
 msgid "Select mods to use."
 msgstr "選取要使用的 mods。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):444
+#: gui/pregame/mainmenu.xml:(tooltip):458
 msgid ""
-"Learn how to play, discover the technology trees, and the history behind the"
-" civilizations"
-msgstr "了解如何遊玩，探索科技樹，以及文明背後的歷史"
+"Learn how to play, start the tutorial, discover the technology trees, and "
+"the history behind the civilizations"
+msgstr "了解如何遊玩，開始教學課程，探索科技樹，以及文明背後的歷史"
 
-#: gui/pregame/mainmenu.xml:(tooltip):459
+#: gui/pregame/mainmenu.xml:(tooltip):473
 msgid "Challenge the computer player to a single player match."
 msgstr "挑戰電腦玩家進行單人遊戲。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):474
+#: gui/pregame/mainmenu.xml:(tooltip):488
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "與一個或多個人類玩家進行多人遊戲。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):489
+#: gui/pregame/mainmenu.xml:(tooltip):503
 msgid "Game options and scenario design tools."
 msgstr "遊戲選項和劇情設計工具。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):504
+#: gui/pregame/mainmenu.xml:(tooltip):518
 msgid "Exits the game."
 msgstr "結束遊戲。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):539
+#: gui/pregame/mainmenu.xml:(tooltip):553
 msgid "Click to open play0ad.com in your web browser."
 msgstr "點擊以在瀏覽器中打開 play0ad.com。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):551
+#: gui/pregame/mainmenu.xml:(tooltip):565
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "點擊以在瀏覽器中打開 0 A.D. IRC 聊天。（#0ad on webchat.quakenet.org）"
 
-#: gui/pregame/mainmenu.xml:(tooltip):563
+#: gui/pregame/mainmenu.xml:(tooltip):577
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "點擊以連結至0 A.D. Trac 回報臭蟲、當機、或是錯誤。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):575
+#: gui/pregame/mainmenu.xml:(tooltip):589
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "點擊以在您的瀏覽器中開啟0 A.D. 的翻譯頁面。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):587
+#: gui/pregame/mainmenu.xml:(tooltip):601
 msgid "Click to see the 0 A.D. credits."
 msgstr "點選以觀看 0 A.D. 感謝名單。"
 
@@ -1953,44 +2050,44 @@ msgstr "點選以觀看 0 A.D. 感謝名單。"
 msgid "Replay Games"
 msgstr "遊戲重播"
 
-#: gui/replaymenu/replay_menu.xml:(caption):123
+#: gui/replaymenu/replay_menu.xml:(caption):126
 msgid "Filter compatible replays"
 msgstr "過濾相容的重播"
 
-#: gui/replaymenu/replay_menu.xml:(caption):164
+#: gui/replaymenu/replay_menu.xml:(caption):167
 #: gui/savedgames/load.xml:(caption):101
 msgid "Map Type:"
 msgstr "地圖類型："
 
-#: gui/replaymenu/replay_menu.xml:(caption):179
+#: gui/replaymenu/replay_menu.xml:(caption):182
 #: gui/savedgames/load.xml:(caption):105
 msgid "Map Size:"
 msgstr "地圖大小："
 
-#: gui/replaymenu/replay_menu.xml:(caption):194
+#: gui/replaymenu/replay_menu.xml:(caption):197
 #: gui/savedgames/load.xml:(caption):109
 msgid "Victory:"
 msgstr "勝利："
 
-#: gui/replaymenu/replay_menu.xml:(caption):227
+#: gui/replaymenu/replay_menu.xml:(caption):230
 msgid "Spoiler"
 msgstr "掠奪者"
 
-#: gui/replaymenu/replay_menu.xml:(caption):239
+#: gui/replaymenu/replay_menu.xml:(caption):242
 msgid "Main Menu"
 msgstr "主選單"
 
-#: gui/replaymenu/replay_menu.xml:(caption):245
+#: gui/replaymenu/replay_menu.xml:(caption):248
 #: gui/savedgames/load.xml:(caption):66 gui/savedgames/save.xml:(caption):43
 msgid "Delete"
 msgstr "刪除"
 
-#: gui/replaymenu/replay_menu.xml:(caption):251
+#: gui/replaymenu/replay_menu.xml:(caption):254
 #: gui/summary/summary.xml:(caption):23
 msgid "Summary"
 msgstr "摘要"
 
-#: gui/replaymenu/replay_menu.xml:(caption):257
+#: gui/replaymenu/replay_menu.xml:(caption):260
 msgid "Start Replay"
 msgstr "開始重播"
 
@@ -2084,37 +2181,47 @@ msgstr "文明："
 msgid "Trainer Units"
 msgstr "訓練者單位"
 
-#: gui/summary/summary.xml:(caption):63
-msgid "Score"
-msgstr "分數"
+#: gui/summary/summary.xml:(caption):105
+msgid "Charts"
+msgstr "圖表"
 
-#: gui/summary/summary.xml:(caption):70
-msgid "Buildings"
-msgstr "建築物數"
+#: gui/summary/summary.xml:(caption):167
+msgctxt "summary chart"
+msgid "Category:"
+msgstr "分類："
 
-#: gui/summary/summary.xml:(caption):77
-msgid "Units"
-msgstr "單位數"
+#: gui/summary/summary.xml:(caption):177
+msgctxt "summary chart"
+msgid "Value:"
+msgstr "值："
 
-#: gui/summary/summary.xml:(caption):84
-msgid "Resources"
-msgstr "資源"
+#: gui/summary/summary.xml:(caption):187
+msgctxt "summary chart"
+msgid "Type:"
+msgstr "類型："
 
-#: gui/summary/summary.xml:(caption):91
-msgid "Market"
-msgstr "市集"
-
-#: gui/summary/summary.xml:(caption):98 gui/credits/texts/misc.jsonTitle
-msgid "Miscellaneous"
-msgstr "雜項"
-
-#: gui/summary/summary.xml:(caption):157
+#: gui/summary/summary.xml:(caption):206
 msgid "Replay"
 msgstr "重玩"
 
-#: gui/summary/summary.xml:(caption):162
+#: gui/summary/summary.xml:(caption):211
 msgid "Continue"
 msgstr "繼續"
+
+#: gui/summary/summary.xml:(tooltip):173
+msgctxt "summary chart"
+msgid "Category"
+msgstr "分類"
+
+#: gui/summary/summary.xml:(tooltip):183
+msgctxt "summary chart"
+msgid "Value"
+msgstr "值"
+
+#: gui/summary/summary.xml:(tooltip):194
+msgctxt "summary chart"
+msgid "Type"
+msgstr "類型"
 
 #: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
 msgid "Art lead"
@@ -2298,6 +2405,16 @@ msgstr "加入大廳時，要載入的聊天記錄數"
 msgid "Chat Backlog"
 msgstr "聊天記錄"
 
+#: gui/options/options.jsonlobbySetting[1].tooltip
+msgid ""
+"Show the average rating of the participating players in a column of the "
+"gamelist."
+msgstr "在遊戲清單中的一欄顯示參與玩家的平均評價。"
+
+#: gui/options/options.jsonlobbySetting[1].label
+msgid "Game Rating Column"
+msgstr "遊戲評價欄"
+
 #: gui/options/options.jsongeneralSetting[0].tooltip
 msgid "How you want to be addressed in Single Player matches."
 msgstr "您在單人遊戲中要如被稱呼。"
@@ -2444,7 +2561,7 @@ msgid "Master audio gain"
 msgstr "主音訊控制"
 
 #: gui/options/options.jsonsoundSetting[0].label
-msgid "Master Gain"
+msgid "Master Volume"
 msgstr "主音量"
 
 #: gui/options/options.jsonsoundSetting[1].tooltip
@@ -2452,32 +2569,32 @@ msgid "In game music gain"
 msgstr "遊戲內音樂控制"
 
 #: gui/options/options.jsonsoundSetting[1].label
-msgid "Music Gain"
-msgstr "音樂控制"
+msgid "Music Volume"
+msgstr "音樂音量"
 
 #: gui/options/options.jsonsoundSetting[2].tooltip
 msgid "In game ambient sound gain"
 msgstr "遊戲內環境音效控制"
 
 #: gui/options/options.jsonsoundSetting[2].label
-msgid "Ambient Gain"
-msgstr "環境音效控制"
+msgid "Ambient Volume"
+msgstr "環境音量"
 
 #: gui/options/options.jsonsoundSetting[3].tooltip
 msgid "In game unit action sound gain"
 msgstr "遊戲內單位動作音效控制"
 
 #: gui/options/options.jsonsoundSetting[3].label
-msgid "Action Gain"
-msgstr "動作控制"
+msgid "Action Volume"
+msgstr "動作音量"
 
 #: gui/options/options.jsonsoundSetting[4].tooltip
 msgid "UI sound gain"
 msgstr "使用者介面音效控制"
 
 #: gui/options/options.jsonsoundSetting[4].label
-msgid "UI Gain"
-msgstr "使用者介面控制"
+msgid "UI Volume"
+msgstr "介面音量"
 
 #: gui/options/options.jsonsoundSetting[5].tooltip
 msgid "Receive audio notification when someone types your nick"
@@ -2513,15 +2630,15 @@ msgstr "當玩家交換資源時顯示聊天通知給觀察者"
 msgid "Barter"
 msgstr "交換資源"
 
-#: gui/options/options.jsonnotificationSetting[3].parameters.list[0]
+#: gui/options/options.jsonnotificationSetting[3].parameters.list[0].label
 msgid "Disable"
 msgstr "停用"
 
-#: gui/options/options.jsonnotificationSetting[3].parameters.list[1]
+#: gui/options/options.jsonnotificationSetting[3].parameters.list[1].label
 msgid "Completed"
 msgstr "已完成"
 
-#: gui/options/options.jsonnotificationSetting[3].parameters.list[2]
+#: gui/options/options.jsonnotificationSetting[3].parameters.list[2].label
 msgid "All displayed"
 msgstr "所有已顯示"
 
@@ -2551,21 +2668,9 @@ msgstr "使用螢幕空間後處理過濾器 (HDR、Bloom、DOF 等)"
 msgid "Post Processing"
 msgstr "後處理"
 
-#: gui/options/options.jsongraphicsSetting[2].parameters.list[0]
-msgid "Low"
-msgstr "低"
-
-#: gui/options/options.jsongraphicsSetting[2].parameters.list[1]
-msgid "Medium"
-msgstr "中"
-
-#: gui/options/options.jsongraphicsSetting[2].parameters.list[2]
-msgid "High"
-msgstr "高"
-
 #: gui/options/options.jsongraphicsSetting[2].tooltip
-msgid "Graphics quality. REQUIRES GAME RESTART"
-msgstr "畫質，需要重新啟動遊戲"
+msgid "Number of shader effects. REQUIRES GAME RESTART"
+msgstr "陰影效果的數量。需要重新啟動遊戲"
 
 #: gui/options/options.jsongraphicsSetting[2].label
 msgid "Graphics quality"
@@ -2680,12 +2785,50 @@ msgid "VSync"
 msgstr "垂直同步"
 
 #: gui/options/options.jsongraphicsSetting[16].tooltip
-msgid "Limit FPS to 50 in all menus, to save power."
-msgstr "在所有選單中限制 FPS 為 50，以節約電力。"
+msgid ""
+"To save CPU workload, throttle render frequency in all menus. Set to maximum"
+" to disable throttling."
+msgstr "為了降低 CPU 負載，在所有選單中限制算繪頻率。設定為最大值以停用限制。"
 
 #: gui/options/options.jsongraphicsSetting[16].label
-msgid "Limit FPS in Menus"
+msgid "FPS throttling in menus"
 msgstr "在選單中限制 FPS"
+
+#: gui/options/options.jsongraphicsSetting[17].tooltip
+msgid ""
+"To save CPU workload, throttle render frequency in running games. Set to "
+"maximum to disable throttling."
+msgstr "為了降低 CPU 負載，在遊戲中限制算繪頻率。設定為最大值以停用限制。"
+
+#: gui/options/options.jsongraphicsSetting[17].label
+msgid "FPS throttling in games"
+msgstr "在遊戲中限制 FPS"
+
+#: gui/options/options.jsongraphicsSetting[18].tooltip
+msgid ""
+"Display the range of auras of selected units and structures (can also be "
+"toggled in-game with the hotkey)."
+msgstr "顯示選定單位與建築物的靈氣範圍（遊戲中也可以使用快捷鍵切換）"
+
+#: gui/options/options.jsongraphicsSetting[18].label
+msgid "Aura Range Visualization"
+msgstr "靈氣範圍可見度"
+
+#: simulation/data/resources/food.jsondescription
+msgid "Harvest from animals, berry bushes, fish, or fields."
+msgstr "從動物、漿果叢、魚或是田地中採收。"
+
+#: simulation/data/resources/metal.jsondescription
+msgid "Mine from metal mines and quarries."
+msgstr "從礦山與採石場採礦。"
+
+#: simulation/data/resources/stone.jsondescription
+msgid "Mine from rocks, stone quarries or ruins."
+msgstr "從岩石、採石場或廢墟中採礦。"
+
+#: simulation/data/resources/wood.jsondescription
+msgid "Lumber from trees or groves."
+msgstr "從樹木或樹林伐木。"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.

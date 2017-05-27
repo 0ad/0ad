@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-04-28 09:01+0200\n"
-"PO-Revision-Date: 2017-04-28 17:09+0000\n"
+"POT-Creation-Date: 2017-05-26 09:03+0200\n"
+"PO-Revision-Date: 2017-05-26 14:49+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/wildfire-games/0ad/language/vi/)\n"
 "MIME-Version: 1.0\n"
@@ -41,7 +41,7 @@ msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] "Công trình đặc biệt"
 
-#: gui/civinfo/civinfo.js:124 gui/summary/layout.js:64
+#: gui/civinfo/civinfo.js:124 gui/summary/layout.js:67
 msgid "Heroes"
 msgstr "Anh hùng"
 
@@ -121,18 +121,18 @@ msgid "DELETE"
 msgstr "XÓA"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:246
-#: gui/options/options.js:279 gui/options/options.js:346
+#: gui/options/options.js:334 gui/options/options.js:401
 #: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:159
-#: gui/savedgames/load.js:187 gui/savedgames/save.js:66
-#: gui/summary/summary.js:146
+#: gui/savedgames/load.js:188 gui/savedgames/save.js:66
+#: gui/summary/summary.js:346
 msgid "No"
 msgstr "Không"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:246
-#: gui/options/options.js:279 gui/options/options.js:346
+#: gui/options/options.js:334 gui/options/options.js:401
 #: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:159
-#: gui/savedgames/load.js:187 gui/savedgames/save.js:66
-#: gui/summary/summary.js:146
+#: gui/savedgames/load.js:188 gui/savedgames/save.js:66
+#: gui/summary/summary.js:346
 msgid "Yes"
 msgstr "Có"
 
@@ -146,266 +146,296 @@ msgstr ""
 msgid "Hold %(hotkey)s to delete without confirmation."
 msgstr ""
 
-#: gui/common/gamedescription.js:29
+#: gui/common/gamedescription.js:48
 msgid "A randomly selected map."
 msgstr ""
 
-#: gui/common/gamedescription.js:36 gui/common/gamedescription.js:310
+#: gui/common/gamedescription.js:55 gui/common/gamedescription.js:348
 msgid "Sorry, no description available."
 msgstr ""
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:86
+#: gui/common/gamedescription.js:105
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
 msgstr ""
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:89
+#: gui/common/gamedescription.js:108
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
 msgstr ""
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:95
+#: gui/common/gamedescription.js:114
 #, javascript-format
 msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
 msgstr ""
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:98
+#: gui/common/gamedescription.js:117
 #, javascript-format
 msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
 msgstr ""
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:108
+#: gui/common/gamedescription.js:127
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
 msgstr ""
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:111
+#: gui/common/gamedescription.js:130
 #, javascript-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
 msgstr ""
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:118
+#: gui/common/gamedescription.js:137
 #, javascript-format
 msgid "%(playerName)s (%(civ)s)"
 msgstr ""
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:121
+#: gui/common/gamedescription.js:140
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(state)s)"
 msgstr ""
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:125
+#: gui/common/gamedescription.js:144
 #, javascript-format
 msgid "%(playerName)s"
 msgstr ""
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
-#: gui/common/gamedescription.js:128
+#: gui/common/gamedescription.js:147
 #, javascript-format
 msgid "%(playerName)s (%(state)s)"
 msgstr ""
 
-#: gui/common/gamedescription.js:149
+#: gui/common/gamedescription.js:168
 msgid "Unknown Civilization"
 msgstr ""
 
-#: gui/common/gamedescription.js:156
+#: gui/common/gamedescription.js:175
 msgctxt "playerstate"
 msgid "defeated"
 msgstr ""
 
-#: gui/common/gamedescription.js:157
+#: gui/common/gamedescription.js:176
 msgctxt "playerstate"
 msgid "won"
 msgstr ""
 
-#: gui/common/gamedescription.js:179
+#: gui/common/gamedescription.js:198
 msgid "No Team"
 msgstr ""
 
-#: gui/common/gamedescription.js:180
+#: gui/common/gamedescription.js:199
 #, javascript-format
 msgid "Team %(team)s"
 msgstr ""
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or savegame menu or lobby
-#: gui/common/gamedescription.js:183 gui/common/gamedescription.js:190
+#: gui/common/gamedescription.js:202 gui/common/gamedescription.js:209
 #, javascript-format
 msgid ""
 "%(team)s:\n"
 "%(playerDescriptions)s"
 msgstr ""
 
-#: gui/common/gamedescription.js:191
+#: gui/common/gamedescription.js:210
 msgid "Observer"
 msgid_plural "Observers"
 msgstr[0] ""
 
-#: gui/common/gamedescription.js:213
+#: gui/common/gamedescription.js:232
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
 msgid_plural "Wonder (%(min)s minutes)"
 msgstr[0] ""
 
-#: gui/common/gamedescription.js:224
+#: gui/common/gamedescription.js:244
 #, javascript-format
 msgctxt "victory condition"
 msgid "Capture The Relic (%(min)s minute)"
 msgid_plural "Capture The Relic (%(min)s minutes)"
 msgstr[0] ""
 
-#: gui/common/gamedescription.js:242
+#: gui/common/gamedescription.js:260
+msgid "Relic Count"
+msgstr ""
+
+#: gui/common/gamedescription.js:267
+msgid "Hero Garrison"
+msgstr ""
+
+#: gui/common/gamedescription.js:268
+msgid "Heroes can be garrisoned."
+msgstr ""
+
+#: gui/common/gamedescription.js:272
+msgid "Exposed Heroes"
+msgstr ""
+
+#: gui/common/gamedescription.js:273
+msgid "Heroes cannot be garrisoned, and they are vulnerable to raids."
+msgstr ""
+
+#: gui/common/gamedescription.js:280
 msgid "Rated game"
 msgstr ""
 
-#: gui/common/gamedescription.js:243
+#: gui/common/gamedescription.js:281
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr ""
 
-#: gui/common/gamedescription.js:248
+#: gui/common/gamedescription.js:286
 msgid "Locked Teams"
 msgstr ""
 
-#: gui/common/gamedescription.js:249
+#: gui/common/gamedescription.js:287
 msgid "Players can't change the initial teams."
 msgstr ""
 
-#: gui/common/gamedescription.js:253
+#: gui/common/gamedescription.js:291
 msgid "Diplomacy"
 msgstr ""
 
-#: gui/common/gamedescription.js:254
+#: gui/common/gamedescription.js:292
 msgid "Players can make alliances and declare war on allies."
 msgstr ""
 
-#: gui/common/gamedescription.js:259
+#: gui/common/gamedescription.js:297
 msgid "Last Man Standing"
 msgstr ""
 
-#: gui/common/gamedescription.js:260
+#: gui/common/gamedescription.js:298
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
 msgstr ""
 
-#: gui/common/gamedescription.js:264
+#: gui/common/gamedescription.js:302
 msgid "Allied Victory"
 msgstr ""
 
-#: gui/common/gamedescription.js:265
+#: gui/common/gamedescription.js:303
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
 msgstr ""
 
-#: gui/common/gamedescription.js:271
+#: gui/common/gamedescription.js:309
 msgid "Ceasefire"
 msgstr ""
 
-#: gui/common/gamedescription.js:274 gui/pregame/mainmenu.js:91
+#: gui/common/gamedescription.js:312 gui/pregame/mainmenu.js:91
 msgid "disabled"
 msgstr "đã tắt"
 
-#: gui/common/gamedescription.js:275
+#: gui/common/gamedescription.js:313
 msgid "For the first minute, enemies will stay neutral."
 msgid_plural "For the first %(min)s minutes, enemies will stay neutral."
 msgstr[0] ""
 
-#: gui/common/gamedescription.js:283
+#: gui/common/gamedescription.js:321
 msgid "Map Name"
 msgstr ""
 
-#: gui/common/gamedescription.js:288
+#: gui/common/gamedescription.js:326
 msgid "Map Type"
 msgstr ""
 
-#: gui/common/gamedescription.js:297
+#: gui/common/gamedescription.js:335
 msgid "Map Size"
 msgstr ""
 
-#: gui/common/gamedescription.js:304
+#: gui/common/gamedescription.js:342
 msgid "Map Description"
 msgstr ""
 
-#: gui/common/gamedescription.js:307
+#: gui/common/gamedescription.js:345
 msgid "Randomly selects a map from the list"
 msgstr ""
 
-#: gui/common/gamedescription.js:316
+#: gui/common/gamedescription.js:354
 msgid "Starting Resources"
 msgstr ""
 
-#: gui/common/gamedescription.js:317
+#: gui/common/gamedescription.js:355
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr ""
 
-#: gui/common/gamedescription.js:327
+#: gui/common/gamedescription.js:365
 msgid "Population Limit"
 msgstr ""
 
-#: gui/common/gamedescription.js:335
-msgid "Disable Treasure"
+#: gui/common/gamedescription.js:373
+msgid "Treasure"
 msgstr ""
 
-#: gui/common/gamedescription.js:340
+#: gui/common/gamedescription.js:375
+msgctxt "treasure"
+msgid "Disabled"
+msgstr ""
+
+#: gui/common/gamedescription.js:376
+msgctxt "treasure"
+msgid "If the map places it."
+msgstr ""
+
+#: gui/common/gamedescription.js:380
 msgid "Revealed Map"
 msgstr ""
 
-#: gui/common/gamedescription.js:345
+#: gui/common/gamedescription.js:385
 msgid "Explored Map"
 msgstr ""
 
-#: gui/common/gamedescription.js:350
+#: gui/common/gamedescription.js:390
 msgid "Cheats"
 msgstr ""
 
-#: gui/common/gamedescription.js:355 gui/common/tooltips.js:86
+#: gui/common/gamedescription.js:395 gui/common/tooltips.js:86
 #: gui/common/tooltips.js:141 gui/common/tooltips.js:182
 #: gui/common/tooltips.js:404 gui/common/tooltips.js:425
-#: gui/common/tooltips.js:707
+#: gui/common/tooltips.js:718
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr ""
 
-#: gui/common/gamedescription.js:358
+#: gui/common/gamedescription.js:398
 msgctxt "gamesetup option"
 msgid "enabled"
 msgstr ""
 
-#: gui/common/gamedescription.js:359
+#: gui/common/gamedescription.js:399
 msgctxt "gamesetup option"
 msgid "disabled"
 msgstr ""
 
-#: gui/common/gamedescription.js:376
+#: gui/common/gamedescription.js:416
 msgid "Victorious"
 msgstr ""
 
-#: gui/common/gamedescription.js:381
+#: gui/common/gamedescription.js:421
 msgid "Defeated"
 msgstr ""
 
@@ -425,9 +455,9 @@ msgstr ""
 #: gui/common/tooltips.js:168 gui/common/tooltips.js:248
 #: gui/common/tooltips.js:277 gui/common/tooltips.js:310
 #: gui/common/tooltips.js:583 gui/common/tooltips.js:617
-#: gui/common/tooltips.js:671 gui/replaymenu/replay_actions.js:89
-#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:118
-#: gui/savedgames/load.js:174 gui/savedgames/load.js:177
+#: gui/common/tooltips.js:682 gui/replaymenu/replay_actions.js:89
+#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:119
+#: gui/savedgames/load.js:175 gui/savedgames/load.js:178
 msgid ", "
 msgstr ", "
 
@@ -586,55 +616,71 @@ msgctxt "map"
 msgid "Skirmish"
 msgstr ""
 
-#: gui/common/settings.js:193
+#: gui/common/settings.js:189
+msgid ""
+"A map with a predefined landscape and number of players. Freely select the "
+"other gamesettings."
+msgstr ""
+
+#: gui/common/settings.js:194
 msgctxt "map"
 msgid "Random"
 msgstr ""
 
-#: gui/common/settings.js:197
+#: gui/common/settings.js:195
+msgid ""
+"Create a unique map with a different resource distribution each time. Freely"
+" chose the number of players and teams."
+msgstr ""
+
+#: gui/common/settings.js:199
 msgctxt "map"
 msgid "Scenario"
 msgstr ""
 
-#: gui/common/settings.js:228
+#: gui/common/settings.js:200
+msgid "A map with a predefined landscape and matchsettings."
+msgstr ""
+
+#: gui/common/settings.js:231
 msgctxt "victory condition"
 msgid "None"
 msgstr ""
 
-#: gui/common/settings.js:229
+#: gui/common/settings.js:232
 msgid "Endless game."
 msgstr ""
 
-#: gui/common/settings.js:270
+#: gui/common/settings.js:273
 msgid "Unlimited"
 msgstr ""
 
-#: gui/common/settings.js:318
+#: gui/common/settings.js:321
 msgctxt "AI name"
 msgid "Unknown"
 msgstr ""
 
-#: gui/common/settings.js:329
+#: gui/common/settings.js:332
 msgctxt "AI difficulty"
 msgid "Unknown"
 msgstr ""
 
-#: gui/common/settings.js:341
+#: gui/common/settings.js:344
 msgctxt "map type"
 msgid "Unknown"
 msgstr ""
 
-#: gui/common/settings.js:353
+#: gui/common/settings.js:356
 msgctxt "map size"
 msgid "Default"
 msgstr ""
 
-#: gui/common/settings.js:365
+#: gui/common/settings.js:368
 msgctxt "population capacity"
 msgid "Unknown"
 msgstr ""
 
-#: gui/common/settings.js:377
+#: gui/common/settings.js:380
 msgctxt "victory condition"
 msgid "Unknown"
 msgstr ""
@@ -802,6 +848,7 @@ msgid "meters"
 msgstr ""
 
 #: gui/common/tooltips.js:221 gui/common/tooltips.js:610
+#: gui/common/tooltips.js:639
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] ""
@@ -864,7 +911,7 @@ msgid "Repair Rate:"
 msgstr ""
 
 #: gui/common/tooltips.js:323 gui/common/tooltips.js:337
-#: gui/summary/layout.js:61
+#: gui/summary/layout.js:64
 msgid "Worker"
 msgstr ""
 
@@ -958,7 +1005,7 @@ msgid "Run"
 msgstr ""
 
 #: gui/common/tooltips.js:601 gui/common/tooltips.js:607
-#: gui/common/tooltips.js:612
+#: gui/common/tooltips.js:612 gui/common/tooltips.js:636
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
@@ -971,40 +1018,45 @@ msgid "HP"
 msgid_plural "HP"
 msgstr[0] ""
 
-#: gui/common/tooltips.js:626
+#: gui/common/tooltips.js:628
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr ""
 
-#: gui/common/tooltips.js:627
+#: gui/common/tooltips.js:629
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr ""
 
-#: gui/common/tooltips.js:643
+#: gui/common/tooltips.js:637
+msgctxt "aura"
+msgid "Range:"
+msgstr ""
+
+#: gui/common/tooltips.js:654
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr ""
 
 #. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian
 #. Marine)[/font]"
-#: gui/common/tooltips.js:655
+#: gui/common/tooltips.js:666
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 msgstr ""
 
-#: gui/common/tooltips.js:670
+#: gui/common/tooltips.js:681
 msgid "Classes:"
 msgstr ""
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the value.
-#: gui/common/tooltips.js:698
+#: gui/common/tooltips.js:709
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr ""
 
-#: gui/common/tooltips.js:708
+#: gui/common/tooltips.js:719
 msgid "Loot:"
 msgstr ""
 
@@ -1027,18 +1079,24 @@ msgstr "<không hợp lệ>"
 msgid "OK"
 msgstr "OK"
 
-#: gui/options/options.js:277
+#: gui/options/options.js:169
+#, javascript-format
+msgctxt "slider number"
+msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
+msgstr ""
+
+#: gui/options/options.js:332
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr ""
 
-#: gui/options/options.js:278 gui/options/options.js:345
-#: gui/savedgames/load.js:186
+#: gui/options/options.js:333 gui/options/options.js:400
+#: gui/savedgames/load.js:187
 msgid "Warning"
 msgstr "Cảnh báo"
 
-#: gui/options/options.js:344
+#: gui/options/options.js:399
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr ""
 
@@ -1116,7 +1174,7 @@ msgstr "Bản: %(buildDate)s (%(revision)s)"
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Bạn có chắc bạn muốn thoát khỏi 0 A.D.?"
 
-#: gui/pregame/mainmenu.js:261 gui/summary/summary.js:145
+#: gui/pregame/mainmenu.js:261 gui/summary/summary.js:345
 msgid "Confirmation"
 msgstr "Xác nhận"
 
@@ -1147,12 +1205,12 @@ msgstr "Hướng dẫn"
 msgid "You don't have the same mods active as the replay does."
 msgstr ""
 
-#: gui/replaymenu/replay_actions.js:89 gui/savedgames/load.js:173
+#: gui/replaymenu/replay_actions.js:89 gui/savedgames/load.js:174
 #, javascript-format
 msgid "Required: %(mods)s"
 msgstr ""
 
-#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:176
+#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:177
 #, javascript-format
 msgid "Active: %(mods)s"
 msgstr ""
@@ -1239,11 +1297,11 @@ msgstr ""
 msgid "Single- and multiplayer"
 msgstr ""
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):458
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):472
 msgid "Single Player"
 msgstr "Chơi Đơn"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):473
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):487
 msgid "Multiplayer"
 msgstr "Nhiều Người Chơi"
 
@@ -1268,51 +1326,51 @@ msgstr ""
 msgid "Filter replays by typing one or more, partial or complete playernames."
 msgstr ""
 
-#: gui/replaymenu/replay_menu.js:268
+#: gui/replaymenu/replay_menu.js:269
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.js:294
+#: gui/replaymenu/replay_menu.js:296
 msgid "yyyy-MM-dd HH:mm"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.js:324
+#: gui/replaymenu/replay_menu.js:326
 msgid "yyyy-MM"
 msgstr ""
 
-#: gui/savedgames/load.js:118
+#: gui/savedgames/load.js:119
 #, javascript-format
 msgid "Mods: %(mods)s"
 msgstr ""
 
-#: gui/savedgames/load.js:148
+#: gui/savedgames/load.js:149
 msgid "This saved game may not be compatible:"
 msgstr "Trò chơi được lưu này có thể không tương thích:"
 
-#: gui/savedgames/load.js:153
+#: gui/savedgames/load.js:154
 #, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
 msgstr "Nó cần phiến bản 0 A.D. %(requiredVersion)s, và bạn đang dùng phiên bản %(currentVersion)s."
 
-#: gui/savedgames/load.js:158
+#: gui/savedgames/load.js:159
 msgid "It needs an older version of 0 A.D."
 msgstr ""
 
-#: gui/savedgames/load.js:162
+#: gui/savedgames/load.js:163
 #, javascript-format
 msgid ""
 "It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
 "savegame version %(currentVersion)s."
 msgstr ""
 
-#: gui/savedgames/load.js:172
+#: gui/savedgames/load.js:173
 msgid "The savegame needs a different set of mods:"
 msgstr ""
 
-#: gui/savedgames/load.js:181
+#: gui/savedgames/load.js:182
 msgid "Do you still want to proceed?"
 msgstr "Bạn vẫn muốn tiếp tục?"
 
@@ -1328,251 +1386,282 @@ msgstr "Save game đã lưu sẽ bị ghi đè, bạn chắc chứ?"
 msgid "OVERWRITE SAVE"
 msgstr "GHI ĐÈ"
 
-#: gui/structree/load.js:114
+#: gui/structree/load.js:126
 #, javascript-format
 msgid "%(val1)s to %(val2)s"
 msgstr ""
 
-#: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:58
-#: gui/summary/layout.js:97 gui/summary/layout.js:142
-#: gui/summary/layout.js:172 gui/summary/summary.xml:(caption):105
+#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):63
+msgid "Score"
+msgstr "Điểm số"
+
+#: gui/summary/layout.js:5 gui/summary/layout.js:23 gui/summary/layout.js:61
+#: gui/summary/layout.js:101 gui/summary/layout.js:149
+#: gui/summary/layout.js:181 gui/summary/summary.xml:(caption):112
 msgid "Player name"
 msgstr "Tên người chơi"
 
-#: gui/summary/layout.js:5
+#: gui/summary/layout.js:6
 msgid "Economy score"
 msgstr "Điểm số Kinh tế"
 
-#: gui/summary/layout.js:6
+#: gui/summary/layout.js:7
 msgid "Military score"
 msgstr "Điểm số Quân sự"
 
-#: gui/summary/layout.js:7
+#: gui/summary/layout.js:8
 msgid "Exploration score"
 msgstr "Điểm số Khám phá"
 
-#: gui/summary/layout.js:8
+#: gui/summary/layout.js:9
 msgid "Total score"
 msgstr "Điểm số Tổng hợp"
 
-#: gui/summary/layout.js:22 gui/summary/layout.js:59 gui/summary/layout.js:103
+#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):70
+msgid "Buildings"
+msgstr "Công trình"
+
+#: gui/summary/layout.js:24 gui/summary/layout.js:62 gui/summary/layout.js:108
 msgid "Total"
 msgstr "Tổng số"
 
-#: gui/summary/layout.js:23
+#: gui/summary/layout.js:25
 msgid "Houses"
 msgstr "Nhà"
 
-#: gui/summary/layout.js:24
+#: gui/summary/layout.js:26
 msgid "Economic"
 msgstr "Nền kinh tế"
 
-#: gui/summary/layout.js:25
+#: gui/summary/layout.js:27
 msgid "Outposts"
 msgstr "Tiền trạm"
 
-#: gui/summary/layout.js:26
+#: gui/summary/layout.js:28
 msgid "Military"
 msgstr "Quân đội"
 
-#: gui/summary/layout.js:27
+#: gui/summary/layout.js:29
 msgid "Fortresses"
 msgstr "Thành trì"
 
-#: gui/summary/layout.js:28
+#: gui/summary/layout.js:30
 msgid "Civ centers"
 msgstr ""
 
-#: gui/summary/layout.js:29
+#: gui/summary/layout.js:31
 msgid "Wonders"
 msgstr "Kỳ quan"
 
-#: gui/summary/layout.js:33
+#: gui/summary/layout.js:35
 #, javascript-format
 msgid ""
 "Buildings Statistics (%(constructed)s / %(destroyed)s / %(captured)s / "
 "%(lost)s)"
 msgstr ""
 
-#: gui/summary/layout.js:35
-msgid "Constructed"
-msgstr ""
+#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):77
+msgid "Units"
+msgstr "Đơn vị quân"
 
-#: gui/summary/layout.js:36
-msgid "Destroyed"
-msgstr ""
-
-#: gui/summary/layout.js:37 gui/summary/layout.js:75
-msgid "Captured"
-msgstr ""
-
-#: gui/summary/layout.js:38 gui/summary/layout.js:76
-msgid "Lost"
-msgstr ""
-
-#: gui/summary/layout.js:60
+#: gui/summary/layout.js:63
 msgid "Infantry"
 msgstr "Bộ binh"
 
-#: gui/summary/layout.js:62
+#: gui/summary/layout.js:65
 msgid "Cavalry"
 msgstr "Kỵ binh"
 
-#: gui/summary/layout.js:63
+#: gui/summary/layout.js:66
 msgid "Champion"
 msgstr ""
 
-#: gui/summary/layout.js:65
+#: gui/summary/layout.js:68
 msgid "Siege"
 msgstr ""
 
-#: gui/summary/layout.js:66
+#: gui/summary/layout.js:69
 msgid "Navy"
 msgstr "Hải quân"
 
-#: gui/summary/layout.js:67
+#: gui/summary/layout.js:70
 msgid "Traders"
 msgstr ""
 
-#: gui/summary/layout.js:71
+#: gui/summary/layout.js:74
 #, javascript-format
 msgid "Units Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 msgstr ""
 
-#: gui/summary/layout.js:73
-msgid "Trained"
-msgstr ""
+#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):84
+msgid "Resources"
+msgstr "Tài nguyên"
 
-#: gui/summary/layout.js:74
-msgid "Killed"
-msgstr ""
-
-#: gui/summary/layout.js:105
+#: gui/summary/layout.js:111
 #, javascript-format
 msgid ""
 "Tributes \n"
 "(%(sent)s / %(received)s)"
 msgstr ""
 
-#: gui/summary/layout.js:107
-msgid "Sent"
-msgstr ""
-
-#: gui/summary/layout.js:108
-msgid "Received"
-msgstr ""
-
-#: gui/summary/layout.js:113
+#: gui/summary/layout.js:119
 msgid "Treasures collected"
 msgstr "Kho báu tìm được"
 
-#: gui/summary/layout.js:114
+#: gui/summary/layout.js:120
 msgid "Loot"
 msgstr ""
 
-#: gui/summary/layout.js:118
+#: gui/summary/layout.js:124
 #, javascript-format
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
 msgstr ""
 
-#: gui/summary/layout.js:120
-msgid "Gathered"
-msgstr ""
-
-#: gui/summary/layout.js:121
-msgid "Used"
-msgstr ""
+#: gui/summary/layout.js:147 gui/summary/summary.xml:(caption):91
+msgid "Market"
+msgstr "Chợ"
 
 #. Translation: use %(resourceWithinSentence)s if needed
-#: gui/summary/layout.js:147
+#: gui/summary/layout.js:155
 #, javascript-format
 msgid "%(resourceFirstWord)s exchanged"
 msgstr ""
 
-#: gui/summary/layout.js:155
+#: gui/summary/layout.js:163
 msgid "Barter efficiency"
 msgstr "Hiệu suất trao đổi"
 
-#: gui/summary/layout.js:156
+#: gui/summary/layout.js:164
 msgid "Trade income"
 msgstr "Thu nhập qua trao đổi"
 
-#: gui/summary/layout.js:173
-msgid ""
-"Vegetarian\n"
-"ratio"
+#: gui/summary/layout.js:179 gui/summary/summary.xml:(caption):98
+#: gui/credits/texts/misc.jsonTitle
+msgid "Miscellaneous"
+msgstr "Linh tinh"
+
+#: gui/summary/layout.js:182
+msgid "Vegetarian ratio"
 msgstr ""
 
-#: gui/summary/layout.js:174
+#: gui/summary/layout.js:183
 msgid "Feminization"
 msgstr ""
 
-#: gui/summary/layout.js:175
-msgid ""
-"Kill / Death\n"
-"ratio"
+#: gui/summary/layout.js:184
+msgid "Kill / Death ratio"
 msgstr ""
 
-#: gui/summary/layout.js:176
-msgid ""
-"Map\n"
-"exploration"
+#: gui/summary/layout.js:185
+msgid "Map exploration"
 msgstr ""
 
-#: gui/summary/layout.js:177
-msgid "At peak"
+#: gui/summary/layout.js:186
+msgid "Map control (peak)"
 msgstr ""
 
-#: gui/summary/layout.js:178
-msgid "At finish"
+#: gui/summary/layout.js:187
+msgid "Map control (finish)"
 msgstr ""
 
-#: gui/summary/layout.js:181
-msgid "Map control"
-msgstr ""
-
-#: gui/summary/layout.js:326
+#: gui/summary/layout.js:338
 msgid "Team total"
 msgstr ""
 
-#: gui/summary/summary.js:144
+#: gui/summary/summary.js:30
+msgid "Trained"
+msgstr ""
+
+#: gui/summary/summary.js:35
+msgid "Constructed"
+msgstr ""
+
+#: gui/summary/summary.js:40
+msgid "Gathered"
+msgstr ""
+
+#: gui/summary/summary.js:45
+msgid "Sent"
+msgstr ""
+
+#: gui/summary/summary.js:50
+msgid "Bought"
+msgstr ""
+
+#: gui/summary/summary.js:55
+msgid "Income"
+msgstr ""
+
+#: gui/summary/summary.js:60
+msgid "Captured"
+msgstr ""
+
+#: gui/summary/summary.js:65
+msgid "Destroyed"
+msgstr ""
+
+#: gui/summary/summary.js:70
+msgid "Killed"
+msgstr ""
+
+#: gui/summary/summary.js:75
+msgid "Lost"
+msgstr ""
+
+#: gui/summary/summary.js:80
+msgid "Used"
+msgstr ""
+
+#: gui/summary/summary.js:85
+msgid "Recieved"
+msgstr ""
+
+#: gui/summary/summary.js:90
+msgid "Sold"
+msgstr ""
+
+#: gui/summary/summary.js:95
+msgid "Outcome"
+msgstr ""
+
+#: gui/summary/summary.js:344
 msgid "Are you sure you want to quit the lobby?"
 msgstr ""
 
-#: gui/summary/summary.js:195
+#: gui/summary/summary.js:395
 msgid "Current Scores"
 msgstr ""
 
-#: gui/summary/summary.js:197
+#: gui/summary/summary.js:397
 msgid "Scores at the end of the game."
 msgstr ""
 
-#: gui/summary/summary.js:199
+#: gui/summary/summary.js:399
 msgid "You have been disconnected."
 msgstr ""
 
-#: gui/summary/summary.js:201
+#: gui/summary/summary.js:401
 msgid "You have left the game."
 msgstr ""
 
-#: gui/summary/summary.js:203
+#: gui/summary/summary.js:403
 msgid "You have won the battle!"
 msgstr ""
 
-#: gui/summary/summary.js:205
+#: gui/summary/summary.js:405
 msgid "You have been defeated..."
 msgstr ""
 
-#: gui/summary/summary.js:206
+#: gui/summary/summary.js:406
 msgid "You have abandoned the game."
 msgstr ""
 
-#: gui/summary/summary.js:211
+#: gui/summary/summary.js:411
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr ""
 
-#: gui/summary/summary.js:219
+#: gui/summary/summary.js:419
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
@@ -1586,7 +1675,7 @@ msgid "Civilization Selection"
 msgstr "Chọn nền văn minh"
 
 #: gui/civinfo/civinfo.xml:(caption):119 gui/credits/credits.xml:(caption):36
-#: gui/options/options.xml:(caption):101
+#: gui/options/options.xml:(caption):102
 #: gui/structree/structree.xml:(caption):124
 msgid "Close"
 msgstr "Đóng"
@@ -1597,7 +1686,7 @@ msgstr ""
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
-#: gui/pregame/mainmenu.xml:(caption):330
+#: gui/pregame/mainmenu.xml:(caption):344
 msgid "Language"
 msgstr "Ngôn ngữ"
 
@@ -1680,43 +1769,43 @@ msgstr "Tổng quát"
 msgid "Graphics Settings"
 msgstr "Thiết lập đồ họa"
 
-#: gui/options/options.xml:(caption):48
+#: gui/options/options.xml:(caption):49
 msgid "Sound Settings"
 msgstr "Thiết lập âm thanh"
 
-#: gui/options/options.xml:(caption):61
+#: gui/options/options.xml:(caption):62
 msgid "Lobby Settings"
 msgstr "Thiết lập phòng đợi"
 
-#: gui/options/options.xml:(caption):74
+#: gui/options/options.xml:(caption):75
 msgid "Chat Notification Settings"
 msgstr ""
 
-#: gui/options/options.xml:(caption):86
+#: gui/options/options.xml:(caption):87
 msgid "Reset"
 msgstr ""
 
-#: gui/options/options.xml:(caption):91
+#: gui/options/options.xml:(caption):92
 msgid "Revert"
 msgstr ""
 
-#: gui/options/options.xml:(caption):96 gui/savedgames/save.xml:(caption):48
+#: gui/options/options.xml:(caption):97 gui/savedgames/save.xml:(caption):48
 msgid "Save"
 msgstr "Lưu"
 
-#: gui/options/options.xml:(tooltip):87
+#: gui/options/options.xml:(tooltip):88
 msgid "Resets user settings to their game default"
 msgstr ""
 
-#: gui/options/options.xml:(tooltip):92
+#: gui/options/options.xml:(tooltip):93
 msgid "Reverts to previous saved settings"
 msgstr ""
 
-#: gui/options/options.xml:(tooltip):97
+#: gui/options/options.xml:(tooltip):98
 msgid "Saves changes"
 msgstr ""
 
-#: gui/options/options.xml:(tooltip):102
+#: gui/options/options.xml:(tooltip):103
 msgid "Unsaved changes affect this session only"
 msgstr ""
 
@@ -1730,11 +1819,11 @@ msgid ""
 " and improve performance and compatibility."
 msgstr "Tự động gửi thông tin phản hồi ẩn danh để giúp chúng tôi sửa lỗi, và nâng cao hiệu suất và tính tương thích."
 
-#: gui/pregame/mainmenu.xml:526
+#: gui/pregame/mainmenu.xml:540
 msgid "Alpha XXI: Ulysses"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:528
+#: gui/pregame/mainmenu.xml:542
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
@@ -1749,92 +1838,96 @@ msgid "Disable Feedback"
 msgstr "Tắt phản hồi"
 
 #: gui/pregame/mainmenu.xml:(caption):157
+msgid "Tutorial"
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:(caption):171
 #: gui/structree/structree.xml:(caption):18
 msgid "Structure Tree"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):174
+#: gui/pregame/mainmenu.xml:(caption):188
 msgid "History"
 msgstr "Lịch sử"
 
-#: gui/pregame/mainmenu.xml:(caption):199
+#: gui/pregame/mainmenu.xml:(caption):213
 msgid "Matches"
 msgstr "Trận đấu"
 
-#: gui/pregame/mainmenu.xml:(caption):213
+#: gui/pregame/mainmenu.xml:(caption):227
 msgid "Campaigns"
 msgstr "Nhiệm vụ"
 
-#: gui/pregame/mainmenu.xml:(caption):230 gui/savedgames/load.xml:(caption):20
+#: gui/pregame/mainmenu.xml:(caption):244 gui/savedgames/load.xml:(caption):20
 msgid "Load Game"
 msgstr "Load Game"
 
 #. Join a game by specifying the host's IP address.
-#: gui/pregame/mainmenu.xml:(caption):253
+#: gui/pregame/mainmenu.xml:(caption):267
 msgid "Join Game"
 msgstr "Tham Gia Màn Chơi"
 
-#: gui/pregame/mainmenu.xml:(caption):268
+#: gui/pregame/mainmenu.xml:(caption):282
 msgid "Host Game"
 msgstr "Chủ Trận Đấu"
 
-#: gui/pregame/mainmenu.xml:(caption):283
+#: gui/pregame/mainmenu.xml:(caption):297
 msgid "Game Lobby"
 msgstr "Phòng đợi"
 
-#: gui/pregame/mainmenu.xml:(caption):313
+#: gui/pregame/mainmenu.xml:(caption):327
 msgid "Options"
 msgstr "Thiết lập"
 
-#: gui/pregame/mainmenu.xml:(caption):346
+#: gui/pregame/mainmenu.xml:(caption):360
 msgid "Replays"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):360
+#: gui/pregame/mainmenu.xml:(caption):374
 msgid "Scenario Editor"
 msgstr "Chỉnh Sửa Màn Chơi"
 
-#: gui/pregame/mainmenu.xml:(caption):373
+#: gui/pregame/mainmenu.xml:(caption):387
 msgid "Welcome Screen"
 msgstr "Màn hình chào"
 
-#: gui/pregame/mainmenu.xml:(caption):388
+#: gui/pregame/mainmenu.xml:(caption):402
 msgid "Mod Selection"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):443
+#: gui/pregame/mainmenu.xml:(caption):457
 msgid "Learn To Play"
 msgstr "Học Cách Chơi"
 
-#: gui/pregame/mainmenu.xml:(caption):488
+#: gui/pregame/mainmenu.xml:(caption):502
 msgid "Tools & Options"
 msgstr "Công cụ & Thiết lập"
 
-#: gui/pregame/mainmenu.xml:(caption):503
+#: gui/pregame/mainmenu.xml:(caption):517
 msgid "Exit"
 msgstr "Thoát"
 
-#: gui/pregame/mainmenu.xml:(caption):538
+#: gui/pregame/mainmenu.xml:(caption):552
 msgid "Website"
 msgstr "Trang web"
 
-#: gui/pregame/mainmenu.xml:(caption):550
+#: gui/pregame/mainmenu.xml:(caption):564
 msgid "Chat"
 msgstr "Chat"
 
-#: gui/pregame/mainmenu.xml:(caption):562
+#: gui/pregame/mainmenu.xml:(caption):576
 msgid "Report a Bug"
 msgstr "Báo lỗi"
 
-#: gui/pregame/mainmenu.xml:(caption):574
+#: gui/pregame/mainmenu.xml:(caption):588
 msgid "Translate the game"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):586
+#: gui/pregame/mainmenu.xml:(caption):600
 msgid "Credits"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):615
+#: gui/pregame/mainmenu.xml:(caption):629
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
@@ -1843,106 +1936,110 @@ msgid "Open the 0 A.D. Game Manual."
 msgstr "Mở Hướng dẫn cho 0 A.D."
 
 #: gui/pregame/mainmenu.xml:(tooltip):158
+msgid "Start the economic tutorial."
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:(tooltip):172
 msgid "View the structure tree of civilizations featured in 0 A.D."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):175
+#: gui/pregame/mainmenu.xml:(tooltip):189
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "Tìm hiểu về các nền văn minh có trong 0 A.D."
 
-#: gui/pregame/mainmenu.xml:(tooltip):200
+#: gui/pregame/mainmenu.xml:(tooltip):214
 msgid "Click here to start a new single player game."
 msgstr "Click vào đây để bắt đầu màn chơi đơn mới."
 
-#: gui/pregame/mainmenu.xml:(tooltip):214
+#: gui/pregame/mainmenu.xml:(tooltip):228
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):231
+#: gui/pregame/mainmenu.xml:(tooltip):245
 msgid "Click here to load a saved game."
 msgstr "Click vào đây để load game đã save."
 
-#: gui/pregame/mainmenu.xml:(tooltip):254
+#: gui/pregame/mainmenu.xml:(tooltip):268
 msgid "Joining an existing multiplayer game."
 msgstr "Tham gia màn chơi nhiều người hiện có."
 
-#: gui/pregame/mainmenu.xml:(tooltip):269
+#: gui/pregame/mainmenu.xml:(tooltip):283
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr "Tạo một trò chơi qua mạng.\\n\\nYêu cầu cổng UDP 20595 phải đang mở."
 
-#: gui/pregame/mainmenu.xml:(tooltip):284
+#: gui/pregame/mainmenu.xml:(tooltip):298
 msgid "Launch the multiplayer lobby."
 msgstr "Vào phòng đợi nhiều người chơi."
 
-#: gui/pregame/mainmenu.xml:(tooltip):314
+#: gui/pregame/mainmenu.xml:(tooltip):328
 msgid "Adjust game settings."
 msgstr "Tùy chỉnh thiết lập của game."
 
-#: gui/pregame/mainmenu.xml:(tooltip):331
+#: gui/pregame/mainmenu.xml:(tooltip):345
 msgid "Choose the language of the game."
 msgstr "Chọn ngôn ngữ cho game."
 
-#: gui/pregame/mainmenu.xml:(tooltip):347
+#: gui/pregame/mainmenu.xml:(tooltip):361
 msgid "Playback previous games."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):361
+#: gui/pregame/mainmenu.xml:(tooltip):375
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Mở chương trình Atlas trong cửa sổ mới. Bạn có thể chạy chương trình bằng cách chạy trò chơi với phần dòng lệnh \"-editor\" ở cuối. "
 
-#: gui/pregame/mainmenu.xml:(tooltip):374
+#: gui/pregame/mainmenu.xml:(tooltip):388
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "Hiện Màn hình chào. Có ích khi bạn lỡ tắt đi."
 
-#: gui/pregame/mainmenu.xml:(tooltip):389
+#: gui/pregame/mainmenu.xml:(tooltip):403
 msgid "Select mods to use."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):444
+#: gui/pregame/mainmenu.xml:(tooltip):458
 msgid ""
-"Learn how to play, discover the technology trees, and the history behind the"
-" civilizations"
+"Learn how to play, start the tutorial, discover the technology trees, and "
+"the history behind the civilizations"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):459
+#: gui/pregame/mainmenu.xml:(tooltip):473
 msgid "Challenge the computer player to a single player match."
 msgstr "Đấu với máy tính trong một màn chơi đơn."
 
-#: gui/pregame/mainmenu.xml:(tooltip):474
+#: gui/pregame/mainmenu.xml:(tooltip):488
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Đấu với một hoặc nhiều người khác qua mạng."
 
-#: gui/pregame/mainmenu.xml:(tooltip):489
+#: gui/pregame/mainmenu.xml:(tooltip):503
 msgid "Game options and scenario design tools."
 msgstr "Thiết lập trò chơi và công cụ thiết kế màn chơi."
 
-#: gui/pregame/mainmenu.xml:(tooltip):504
+#: gui/pregame/mainmenu.xml:(tooltip):518
 msgid "Exits the game."
 msgstr "Thoát khỏi game."
 
-#: gui/pregame/mainmenu.xml:(tooltip):539
+#: gui/pregame/mainmenu.xml:(tooltip):553
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Click vào để mở play0ad.com trong trình duyệt."
 
-#: gui/pregame/mainmenu.xml:(tooltip):551
+#: gui/pregame/mainmenu.xml:(tooltip):565
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "Click vào để mở phòng chat IRC cho 0 A.D. trong trình duyệt. (0ad trên webchat.quakenet.org)"
 
-#: gui/pregame/mainmenu.xml:(tooltip):563
+#: gui/pregame/mainmenu.xml:(tooltip):577
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "Nhấp vào để vào trang 0 A.D. Trac để báo lỗi và sai sót trong game."
 
-#: gui/pregame/mainmenu.xml:(tooltip):575
+#: gui/pregame/mainmenu.xml:(tooltip):589
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "Nhấp vào để mở trang dự án dịch 0 A.D. trong trình duyệt."
 
-#: gui/pregame/mainmenu.xml:(tooltip):587
+#: gui/pregame/mainmenu.xml:(tooltip):601
 msgid "Click to see the 0 A.D. credits."
 msgstr ""
 
@@ -1950,44 +2047,44 @@ msgstr ""
 msgid "Replay Games"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):123
+#: gui/replaymenu/replay_menu.xml:(caption):126
 msgid "Filter compatible replays"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):164
+#: gui/replaymenu/replay_menu.xml:(caption):167
 #: gui/savedgames/load.xml:(caption):101
 msgid "Map Type:"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):179
+#: gui/replaymenu/replay_menu.xml:(caption):182
 #: gui/savedgames/load.xml:(caption):105
 msgid "Map Size:"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):194
+#: gui/replaymenu/replay_menu.xml:(caption):197
 #: gui/savedgames/load.xml:(caption):109
 msgid "Victory:"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):227
+#: gui/replaymenu/replay_menu.xml:(caption):230
 msgid "Spoiler"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):239
+#: gui/replaymenu/replay_menu.xml:(caption):242
 msgid "Main Menu"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):245
+#: gui/replaymenu/replay_menu.xml:(caption):248
 #: gui/savedgames/load.xml:(caption):66 gui/savedgames/save.xml:(caption):43
 msgid "Delete"
 msgstr "Xóa"
 
-#: gui/replaymenu/replay_menu.xml:(caption):251
+#: gui/replaymenu/replay_menu.xml:(caption):254
 #: gui/summary/summary.xml:(caption):23
 msgid "Summary"
 msgstr "Tóm tắt"
 
-#: gui/replaymenu/replay_menu.xml:(caption):257
+#: gui/replaymenu/replay_menu.xml:(caption):260
 msgid "Start Replay"
 msgstr ""
 
@@ -2081,37 +2178,47 @@ msgstr ""
 msgid "Trainer Units"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):63
-msgid "Score"
-msgstr "Điểm số"
+#: gui/summary/summary.xml:(caption):105
+msgid "Charts"
+msgstr ""
 
-#: gui/summary/summary.xml:(caption):70
-msgid "Buildings"
-msgstr "Công trình"
+#: gui/summary/summary.xml:(caption):167
+msgctxt "summary chart"
+msgid "Category:"
+msgstr ""
 
-#: gui/summary/summary.xml:(caption):77
-msgid "Units"
-msgstr "Đơn vị quân"
+#: gui/summary/summary.xml:(caption):177
+msgctxt "summary chart"
+msgid "Value:"
+msgstr ""
 
-#: gui/summary/summary.xml:(caption):84
-msgid "Resources"
-msgstr "Tài nguyên"
+#: gui/summary/summary.xml:(caption):187
+msgctxt "summary chart"
+msgid "Type:"
+msgstr ""
 
-#: gui/summary/summary.xml:(caption):91
-msgid "Market"
-msgstr "Chợ"
-
-#: gui/summary/summary.xml:(caption):98 gui/credits/texts/misc.jsonTitle
-msgid "Miscellaneous"
-msgstr "Linh tinh"
-
-#: gui/summary/summary.xml:(caption):157
+#: gui/summary/summary.xml:(caption):206
 msgid "Replay"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):162
+#: gui/summary/summary.xml:(caption):211
 msgid "Continue"
 msgstr "Tiếp tục"
+
+#: gui/summary/summary.xml:(tooltip):173
+msgctxt "summary chart"
+msgid "Category"
+msgstr ""
+
+#: gui/summary/summary.xml:(tooltip):183
+msgctxt "summary chart"
+msgid "Value"
+msgstr ""
+
+#: gui/summary/summary.xml:(tooltip):194
+msgctxt "summary chart"
+msgid "Type"
+msgstr ""
 
 #: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
 msgid "Art lead"
@@ -2295,6 +2402,16 @@ msgstr "Số tin nhắn đã qua được hiện lại khi vào phòng chờ"
 msgid "Chat Backlog"
 msgstr "Lịch sử chat"
 
+#: gui/options/options.jsonlobbySetting[1].tooltip
+msgid ""
+"Show the average rating of the participating players in a column of the "
+"gamelist."
+msgstr ""
+
+#: gui/options/options.jsonlobbySetting[1].label
+msgid "Game Rating Column"
+msgstr ""
+
 #: gui/options/options.jsongeneralSetting[0].tooltip
 msgid "How you want to be addressed in Single Player matches."
 msgstr ""
@@ -2441,40 +2558,40 @@ msgid "Master audio gain"
 msgstr "Tăng âm thanh chính"
 
 #: gui/options/options.jsonsoundSetting[0].label
-msgid "Master Gain"
-msgstr "Tăng âm thanh"
+msgid "Master Volume"
+msgstr ""
 
 #: gui/options/options.jsonsoundSetting[1].tooltip
 msgid "In game music gain"
 msgstr "Tăng nhạc trong trò chơi"
 
 #: gui/options/options.jsonsoundSetting[1].label
-msgid "Music Gain"
-msgstr "Tăng nhạc"
+msgid "Music Volume"
+msgstr ""
 
 #: gui/options/options.jsonsoundSetting[2].tooltip
 msgid "In game ambient sound gain"
 msgstr "Tăng nhạc nền trong trò chơi"
 
 #: gui/options/options.jsonsoundSetting[2].label
-msgid "Ambient Gain"
-msgstr "Tăng nhạc nền"
+msgid "Ambient Volume"
+msgstr ""
 
 #: gui/options/options.jsonsoundSetting[3].tooltip
 msgid "In game unit action sound gain"
 msgstr "Tăng tiếng động của đơn vị"
 
 #: gui/options/options.jsonsoundSetting[3].label
-msgid "Action Gain"
-msgstr "Tăng tiếng động"
+msgid "Action Volume"
+msgstr ""
 
 #: gui/options/options.jsonsoundSetting[4].tooltip
 msgid "UI sound gain"
 msgstr "Tăng tiến trong giao diện trò chơi"
 
 #: gui/options/options.jsonsoundSetting[4].label
-msgid "UI Gain"
-msgstr "Tăng tiếng giao diện"
+msgid "UI Volume"
+msgstr ""
 
 #: gui/options/options.jsonsoundSetting[5].tooltip
 msgid "Receive audio notification when someone types your nick"
@@ -2510,15 +2627,15 @@ msgstr ""
 msgid "Barter"
 msgstr ""
 
-#: gui/options/options.jsonnotificationSetting[3].parameters.list[0]
+#: gui/options/options.jsonnotificationSetting[3].parameters.list[0].label
 msgid "Disable"
 msgstr ""
 
-#: gui/options/options.jsonnotificationSetting[3].parameters.list[1]
+#: gui/options/options.jsonnotificationSetting[3].parameters.list[1].label
 msgid "Completed"
 msgstr ""
 
-#: gui/options/options.jsonnotificationSetting[3].parameters.list[2]
+#: gui/options/options.jsonnotificationSetting[3].parameters.list[2].label
 msgid "All displayed"
 msgstr ""
 
@@ -2548,20 +2665,8 @@ msgstr ""
 msgid "Post Processing"
 msgstr "Hậu xử lý"
 
-#: gui/options/options.jsongraphicsSetting[2].parameters.list[0]
-msgid "Low"
-msgstr ""
-
-#: gui/options/options.jsongraphicsSetting[2].parameters.list[1]
-msgid "Medium"
-msgstr ""
-
-#: gui/options/options.jsongraphicsSetting[2].parameters.list[2]
-msgid "High"
-msgstr ""
-
 #: gui/options/options.jsongraphicsSetting[2].tooltip
-msgid "Graphics quality. REQUIRES GAME RESTART"
+msgid "Number of shader effects. REQUIRES GAME RESTART"
 msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[2].label
@@ -2677,11 +2782,49 @@ msgid "VSync"
 msgstr "VSync"
 
 #: gui/options/options.jsongraphicsSetting[16].tooltip
-msgid "Limit FPS to 50 in all menus, to save power."
+msgid ""
+"To save CPU workload, throttle render frequency in all menus. Set to maximum"
+" to disable throttling."
 msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[16].label
-msgid "Limit FPS in Menus"
+msgid "FPS throttling in menus"
+msgstr ""
+
+#: gui/options/options.jsongraphicsSetting[17].tooltip
+msgid ""
+"To save CPU workload, throttle render frequency in running games. Set to "
+"maximum to disable throttling."
+msgstr ""
+
+#: gui/options/options.jsongraphicsSetting[17].label
+msgid "FPS throttling in games"
+msgstr ""
+
+#: gui/options/options.jsongraphicsSetting[18].tooltip
+msgid ""
+"Display the range of auras of selected units and structures (can also be "
+"toggled in-game with the hotkey)."
+msgstr ""
+
+#: gui/options/options.jsongraphicsSetting[18].label
+msgid "Aura Range Visualization"
+msgstr ""
+
+#: simulation/data/resources/food.jsondescription
+msgid "Harvest from animals, berry bushes, fish, or fields."
+msgstr ""
+
+#: simulation/data/resources/metal.jsondescription
+msgid "Mine from metal mines and quarries."
+msgstr ""
+
+#: simulation/data/resources/stone.jsondescription
+msgid "Mine from rocks, stone quarries or ruins."
+msgstr ""
+
+#: simulation/data/resources/wood.jsondescription
+msgid "Lumber from trees or groves."
 msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
