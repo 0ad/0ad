@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2017 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -39,12 +39,13 @@
  *		  mouse Y coordinate to be subtracted from the client area height.
  *		  Making the caller responsible for this avoids a dependency on
  *		  the g_yres global variable.)
+ * @param scale Scale factor for drawing size the cursor.
  * @param forceGL Require the OpenGL cursor implementation, not hardware cursor
  *
  * Uses a hardware mouse cursor where available, otherwise a
  * portable OpenGL implementation.
  **/
-extern Status cursor_draw(const PIVFS& vfs, const wchar_t* name, int x, int y, bool forceGL);
+extern Status cursor_draw(const PIVFS& vfs, const wchar_t* name, int x, int y, double scale, bool forceGL);
 
 /**
  * Forcibly frees all cursor handles.
