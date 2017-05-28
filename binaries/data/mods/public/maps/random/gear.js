@@ -288,7 +288,7 @@ var elevationPainter = new SmoothElevationPainter(
 	4,				// elevation
 	4				// blend radius
 );
-createArea(placer, [terrainPainter, elevationPainter], null);
+createArea(placer, [terrainPainter, elevationPainter, unPaintClass(clWater)], null);
 
 var fx = fractionToTiles(0.5);
 var fz = fractionToTiles(0.5);
@@ -307,7 +307,7 @@ var elevationPainter = new SmoothElevationPainter(
 	-2,				// elevation
 	3				// blend radius
 );
-createArea(placer, [terrainPainter, elevationPainter], null);
+createArea(placer, [terrainPainter, elevationPainter, paintClass(clWater)], null);
 
 var placer = new ClumpPlacer((mapSize - 50) * (mapSize - 50) * 0.09, 1, 1, 10, ix, iz);
 var terrainPainter = new LayeredPainter(
@@ -403,6 +403,14 @@ createMines(
  avoidClasses(clWater, 3, clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clHill, 1),
  clMetal
 );
+
+log("Creating fish...");
+createObjectGroups(
+	new SimpleGroup([new SimpleObject(oFish, 1,1, 0,3)], true, clFood),
+	0,
+	[stayClasses(clWater, 8), avoidClasses(clFood, 14)],
+	scaleByMapSize(400, 2000),
+	100);
 
 RMS.SetProgress(65);
 

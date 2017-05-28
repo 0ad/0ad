@@ -66,6 +66,7 @@ function updateCounters()
 	let counters = [];
 
 	if (Engine.ConfigDB_GetValue("user", "overlay.fps") === "true")
+		// dennis-ignore: *
 		counters.push(sprintf(translate("FPS: %(fps)4s"), { "fps": Engine.GetFPS() }));
 
 	if (Engine.ConfigDB_GetValue("user", "overlay.realtime") === "true")

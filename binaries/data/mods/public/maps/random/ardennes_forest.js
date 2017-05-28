@@ -531,7 +531,7 @@ group = new SimpleGroup(
 	true, clFood
 );
 createObjectGroupsByAreas(group, 0,
-	avoidClasses(clHill, 2, clForest, 0, clPlayer, 0, clBaseResource, 20),
+	avoidClasses(clHill, 4, clForest, 0, clPlayer, 0, clBaseResource, 20),
 	3 * numPlayers, 100,
 	[explorableArea]
 );
@@ -541,7 +541,7 @@ group = new SimpleGroup(
 	true, clFood
 );
 createObjectGroupsByAreas(group, 0,
-	avoidClasses(clHill, 2, clForest, 0, clPlayer, 0, clBaseResource, 15),
+	avoidClasses(clHill, 4, clForest, 0, clPlayer, 0, clBaseResource, 15),
 	numPlayers, 50,
 	[explorableArea]
 );
@@ -551,7 +551,7 @@ group = new SimpleGroup(
 	false, clFood
 );
 createObjectGroupsByAreas(group, 0,
-	avoidClasses(clHill, 2, clForest, 0, clPlayer, 20),
+	avoidClasses(clHill, 4, clForest, 0, clPlayer, 20),
 	scaleByMapSize(3, 12), 200,
 	[explorableArea]
 );
@@ -565,7 +565,7 @@ group = new SimpleGroup(
 	true, clFood
 );
 createObjectGroups(group, 0,
-	avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 20),
+	avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 4, clFood, 20),
 	randIntInclusive(3, 12) * numPlayers + 2, 50
 );
 

@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Hammer Andrew <andrewhammer87@gmail.com>, 2017
 # Balázs Meskó <meskobalazs@gmail.com>, 2016-2017
 # Balázs Úr <urbalazs@gmail.com>, 2015-2016
 # Gyuris Gellért <gellert.gyuris@gmail.com>, 2015
@@ -11,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-06 09:29+0100\n"
-"PO-Revision-Date: 2017-03-06 13:04+0000\n"
+"POT-Creation-Date: 2017-05-15 09:04+0200\n"
+"PO-Revision-Date: 2017-05-19 19:12+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -318,284 +319,299 @@ msgid "Shift + /: add idle fighter to selection"
 msgstr "Shift + /: Tétlen harcos hozzáadása a kijelöléshez"
 
 #: gui/manual/intro.txt:71
+msgid "Alt + /: Select all idle fighters"
+msgstr "Alt + /: Minden tétlen harcos kijelölése"
+
+#: gui/manual/intro.txt:72
 msgid ". (Period): Select idle worker (including citizen soldiers)"
 msgstr ". (pont): Tétlen munkás kijelölése (polgári katonákat is beleértve)"
 
-#: gui/manual/intro.txt:72
+#: gui/manual/intro.txt:73
 msgid "Shift + .: add idle worker to selection (including citizen soldiers)"
 msgstr "Shift + .: Tétlen munkások hozzáadása a kijelöléshez (polgári katonákat is beleértve)"
 
-#: gui/manual/intro.txt:73
+#: gui/manual/intro.txt:74
+msgid "Alt + .: Select all idle workers (including citizen soldiers)"
+msgstr "Alt + .: Minden tétlen munkás kijelölése (polgári katonákat is beleértve)"
+
+#: gui/manual/intro.txt:75
 msgid "H: Stop (halt) the currently selected units."
 msgstr "H: Jelenleg kijelölt egységek megállítása (pihenés)"
 
-#: gui/manual/intro.txt:74
+#: gui/manual/intro.txt:76
 msgid "Y: The unit will go back to work"
 msgstr "Y: Az egység visszamegy dolgozni"
 
-#: gui/manual/intro.txt:75
+#: gui/manual/intro.txt:77
 msgid "U: Unload the garrisoned units of the selected buildings"
 msgstr "U: A kiválasztott épületekbe beszállásolt egységek kirakása"
 
-#: gui/manual/intro.txt:76
+#: gui/manual/intro.txt:78
 msgid ""
 "Ctrl + 1 (and so on up to Ctrl + 0): Create control group 1 (to 0) from the "
 "selected units/buildings"
 msgstr "Ctrl + 1 (egészen Ctrl + 0-ig): Ellenőrző csoport 1 (0-ig) készítése a kijelölt egységekből/épületekből"
 
-#: gui/manual/intro.txt:77
+#: gui/manual/intro.txt:79
 msgid ""
 "1 (and so on up to 0): Select the units/buildings in control group 1 (to 0)"
 msgstr "1 (egészen 0-ig): Egységek/épületek kijelölése az 1-es (0-ig) ellenőrző csoportban"
 
-#: gui/manual/intro.txt:78
+#: gui/manual/intro.txt:80
 msgid ""
 "Shift + 1 (to 0): Add control group 1 (to 0) to the selected units/buildings"
 msgstr "Shift + 1 (egészen 0-ig): 1-es (egészen 0-ig) ellenőrzési csoport hozzárendelése a kiválasztott egységekhez/épületekhez"
 
-#: gui/manual/intro.txt:79
+#: gui/manual/intro.txt:81
 msgid ""
 "Ctrl + F5 (and so on up to F8): Mark the current camera position, for "
 "jumping back to later."
 msgstr "Ctrl + F5 (egészen F8-ig): Kamera helyzetének megjelölése a későbbi visszatéréshez"
 
-#: gui/manual/intro.txt:80
+#: gui/manual/intro.txt:82
 msgid ""
 "F5, F6, F7, and F8: Move the camera to a marked position. Jump back to the "
 "last location if the camera is already over the marked position."
 msgstr "F5, F6, F7 és F8: Kamera mozgatása a megjelölt nézetre. Visszaugrás az előző helyzetre, ha a kamera megjelölt pozícióban van."
 
-#: gui/manual/intro.txt:81
+#: gui/manual/intro.txt:83
 msgid ""
 "Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, ..."
 " unit shown to the training queue for all the selected buildings."
 msgstr "Z, X, C, V, B, N, M:  Kiképző épületeket kiválasztva hozzáadja rendre az első , második , ... egységet a kiképzési listához minden kiválasztott épületben."
 
-#: gui/manual/intro.txt:82
+#: gui/manual/intro.txt:84
 msgid ""
 "PageUp with units selected: Highlights the units/buildings guarded by the "
 "selection."
 msgstr "PageUp kijelölt egységekkel: Kiemeli a kijelölés által védelmezett egységeket/épületeket."
 
-#: gui/manual/intro.txt:83
+#: gui/manual/intro.txt:85
 msgid ""
 "PageDown with units/buildings selected: Highlights the units guarding the "
 "selection."
 msgstr "PageDown kijelölt egységekkel/épületekkel: Kiemeli a kijelölést védelmező egységeket."
 
-#: gui/manual/intro.txt:84
+#: gui/manual/intro.txt:86
 msgid "Tab: See all status bars (which would also show the building progress)"
 msgstr "Tab: Minden állapotsor mutatása (ami az építési folyamatot is megmutatja)"
 
-#: gui/manual/intro.txt:86
+#: gui/manual/intro.txt:88
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
 msgstr "[font=\"sans-bold-14\"]Egérművelet módosítása"
 
-#: gui/manual/intro.txt:87
+#: gui/manual/intro.txt:89
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
 msgstr "[font=\"sans-14\"]Ctrl + jobb kattintás egy épületen: Beszállásolás"
 
-#: gui/manual/intro.txt:88
+#: gui/manual/intro.txt:90
 msgid "J + Right Click on building: Repair"
 msgstr "J + jobb kattintás az épületre: Javítás"
 
-#: gui/manual/intro.txt:89
+#: gui/manual/intro.txt:91
 msgid "P + Right Click: Patrol"
 msgstr "P + jobb kattintás: Őrjárat"
 
-#: gui/manual/intro.txt:90
+#: gui/manual/intro.txt:92
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
 msgstr "Shift + jobb kattintás: Mozgás/építés/gyűjtögetés/stb. feladatok sorba állítása"
 
-#: gui/manual/intro.txt:91
-msgid "Shift + Left click when training unit/s: Add units in batches of five"
-msgstr "Shift + bal kattintás egységek kiképzésekor: Ötösével ad hozzá az egységeket"
+#: gui/manual/intro.txt:93
+msgid ""
+"Shift + Left Click when training units: Add units in batches (the batch size"
+" is 5 by default and can be changed in the options)"
+msgstr "Shift + bal kattintás egységek kiképzésekor: Csoportosan ad hozzá egységeket (a csoport mérete alapesetben 5, de megváltoztatható a beállítások között)"
 
-#: gui/manual/intro.txt:92
+#: gui/manual/intro.txt:94
 msgid ""
 "Shift + Left Click or Left Drag over unit on map: Add unit to selection"
 msgstr "Shift + bal kattintás vagy az egység Bal gombbal való bekerítése a térképen: Egység hozzáadása a kiválasztottak csoportjához"
 
-#: gui/manual/intro.txt:93
+#: gui/manual/intro.txt:95
 msgid ""
 "Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
 msgstr "Ctrl + bal kattintás vagy az egység Bal gombbal való bekerítése a térképen: Egység eltávolítása a kiválasztottak csoportjából"
 
-#: gui/manual/intro.txt:94
+#: gui/manual/intro.txt:96
 msgid "Alt + Left Drag over units on map: Only select military units"
 msgstr "Alt + az egységek bal gombbal való bekerítése a térképen: Csak a katonai egységek kiválasztása"
 
-#: gui/manual/intro.txt:95
+#: gui/manual/intro.txt:97
 msgid "I + Left Drag over units on map: Only select idle units"
 msgstr "I + az egységek bal gombbal való bekerítése a térképen: Csak a tétlen egységek kijelölése"
 
-#: gui/manual/intro.txt:96
+#: gui/manual/intro.txt:98
 msgid ""
 "Ctrl + Left Click on unit/group icon with multiple units selected: Deselect"
 msgstr "Ctrl + bal kattintás egy egység vagy csoport ikonján úgy, hogy több egység ki van jelölve: Kijelölés megszüntetése"
 
-#: gui/manual/intro.txt:97
+#: gui/manual/intro.txt:99
 msgid ""
 "Right Click with a building/buildings selected: sets a rally point for units"
 " created/ungarrisoned from that building."
 msgstr "Jobb kattintás amikor ki van jelölve egy vagy több épület: gyülekezőhely kijelölése a helyőrséget elhagyó és az elkészült egységeknek."
 
-#: gui/manual/intro.txt:98
+#: gui/manual/intro.txt:100
 msgid "Ctrl + Right Click with units selected:"
 msgstr "Ctrl + jobb kattintás amikor ki vannak jelölve egységek"
 
-#: gui/manual/intro.txt:99
+#: gui/manual/intro.txt:101
 msgid "    - If the cursor is over an allied structure: Garrison"
 msgstr "- Ha a kurzor egy szövetséges épület fölött áll: Beszállásolás"
 
-#: gui/manual/intro.txt:100
+#: gui/manual/intro.txt:102
 msgid ""
 "    - If the cursor is over a non-allied unit or building: Attack (instead "
 "of capture or gather)"
 msgstr "- Ha a kurzor egy nem szövetséges egység vagy épület fölött áll: Támadás (elfoglalás vagy begyűjtés helyett)"
 
-#: gui/manual/intro.txt:101
+#: gui/manual/intro.txt:103
 msgid ""
 "    - Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
 "units). "
 msgstr "- Egyébként: Támadó mozgás (alapértelmezetten az út mentén lévő összes ellenséges egység és épület meg van célozva, használd a Ctrl + Q + jobb kattintást csak az egységek megcélzásához)."
 
-#: gui/manual/intro.txt:103
+#: gui/manual/intro.txt:105
 msgid "[font=\"sans-bold-14\"]Overlays"
 msgstr "[font=\"sans-bold-14\"]Rátétek"
 
-#: gui/manual/intro.txt:104
+#: gui/manual/intro.txt:106
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
 msgstr "[font=\"sans-14\"]Alt + G: A felhasználói felület elrejtése/megjelenítése"
 
-#: gui/manual/intro.txt:105
+#: gui/manual/intro.txt:107
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
 msgstr "Alt + D: Fejlesztői nézetek (fejlesztői beállításokkal) megjelenítése/elrejtése"
 
-#: gui/manual/intro.txt:106
+#: gui/manual/intro.txt:108
 msgid ""
 "Alt + W: Toggle wireframe mode (press once to get wireframes overlaid over "
 "the textured models, twice to get just the wireframes colored by the "
 "textures, thrice to get back to normal textured mode)"
 msgstr "Alt + W: Rácshálós üzemmódok közötti váltás (első megnyomásra a textúrával rendelkező modelekre rákerül a rácsháló, másodszorra csak a rácshálók kapják meg a textúrák színét, harmadszori megnyomásra visszatér a normál textúrás mód)"
 
-#: gui/manual/intro.txt:107
+#: gui/manual/intro.txt:109
 msgid ""
 "Alt + S: Toggle unit silhouettes (might give a small performance boost)"
 msgstr "Alt + S: Egységek sziluettjei közötti váltás (kis teljesítménynövekedéssel járhat)"
 
-#: gui/manual/intro.txt:108
+#: gui/manual/intro.txt:110
 msgid "Alt + Z: Toggle sky"
 msgstr "Alt + Z: Égbolt be- vagy kikapcsolása"
 
-#: gui/manual/intro.txt:110
+#: gui/manual/intro.txt:111
+msgid ""
+"Alt + V: Toggle aura range visualizations of selected units and structures"
+msgstr "Alt + V : Egységek és épületek aurájának láthatóságának átváltása"
+
+#: gui/manual/intro.txt:113
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
 msgstr "[font=\"sans-bold-14\"]Kamera manipuláció"
 
-#: gui/manual/intro.txt:111
+#: gui/manual/intro.txt:114
 msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
 msgstr "[font=\"sans-14\"]W vagy \\[fel]: Képernyő görgetése fel"
 
-#: gui/manual/intro.txt:112
+#: gui/manual/intro.txt:115
 msgid "S or \\[down]: Pan screen down"
 msgstr "S vagy \\[le]: Képernyő görgetése le"
 
-#: gui/manual/intro.txt:113
+#: gui/manual/intro.txt:116
 msgid "A or \\[left]: Pan screen left"
 msgstr "A vagy \\[balra]: Képernyő görgetése balra"
 
-#: gui/manual/intro.txt:114
+#: gui/manual/intro.txt:117
 msgid "D or \\[right]: Pan screen right"
 msgstr "D vagy \\[jobbra]: Képernyő görgetése jobbra"
 
-#: gui/manual/intro.txt:115
+#: gui/manual/intro.txt:118
 msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
 msgstr "Ctrl + W vagy \\[fel]: Kamera forgatása felfelé irányuló nézethez"
 
-#: gui/manual/intro.txt:116
+#: gui/manual/intro.txt:119
 msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
 msgstr "Ctrl + S vagy \\[le]: Kamera forgatása lefelé irányuló nézethez"
 
-#: gui/manual/intro.txt:117
+#: gui/manual/intro.txt:120
 msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
 msgstr "Ctrl + A vagy \\[balra]: Kamera forgatása az óramutató járása szerint a felszín mentén"
 
-#: gui/manual/intro.txt:118
+#: gui/manual/intro.txt:121
 msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
 msgstr "Ctrl + D vagy \\[jobbra]: Kamera forgatása az óramutató járásával ellentétesen a felszín mentén"
 
-#: gui/manual/intro.txt:119
+#: gui/manual/intro.txt:122
 msgid "Q: Rotate camera clockwise around terrain"
 msgstr "Q: Kamera nézetének az óramutató járásának megfeleő irányba való forgatása a felszín mentén"
 
-#: gui/manual/intro.txt:120
+#: gui/manual/intro.txt:123
 msgid "E: Rotate camera anticlockwise around terrain"
 msgstr "E: Kamera nézetének az óramutató járásával ellentétes irányba való forgatása a felszín mentén"
 
-#: gui/manual/intro.txt:121
+#: gui/manual/intro.txt:124
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
 msgstr "Shift + Felfelé görgetés az egérrel: Kamera nézetének az óramutató járásának megfeleő irányba való forgatása a felszín mentén"
 
-#: gui/manual/intro.txt:122
+#: gui/manual/intro.txt:125
 msgid ""
 "Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
 msgstr "Shift + Lefelé görgetés az egérrel: Kamera nézetének az óramutató járásával ellentétes irányba való forgatása a felszín mentén"
 
-#: gui/manual/intro.txt:123
+#: gui/manual/intro.txt:126
 msgid ""
-"F: Follow the selected unit (move the camera to stop the camera from "
-"following the unit/s)"
+"F: Follow the selected unit (move the camera to stop it from following the "
+"unit)"
 msgstr "F: Kiválasztott egység követése (mozdítsd el a kamerát, hogy kilépj a követés módból)"
 
-#: gui/manual/intro.txt:124
+#: gui/manual/intro.txt:127
 msgid "R: Reset camera zoom/orientation"
 msgstr "R: Kamera nézet alaphelyzetbe állítása"
 
-#: gui/manual/intro.txt:125
+#: gui/manual/intro.txt:128
 msgid "+: Zoom in (keep pressed for continuous zoom)"
 msgstr "+: Nagyítás (nyomva tartva folyamatos közelítés)"
 
-#: gui/manual/intro.txt:126
+#: gui/manual/intro.txt:129
 msgid "-: Zoom out (keep pressed for continuous zoom)"
 msgstr "-: Kicsinyítés (nyomva tartva folyamatos távolodás)"
 
-#: gui/manual/intro.txt:127
+#: gui/manual/intro.txt:130
 msgid "Alt + W: Toggle through wireframe modes"
 msgstr "Alt + W: Váltás a textúrarácsos módok között"
 
-#: gui/manual/intro.txt:128
+#: gui/manual/intro.txt:131
 msgid "Middle Mouse Button: Keep pressed and move the mouse to pan"
 msgstr "Középső egérgomb: Tartsd lenyomva és mozgasd az egeret a nagyításhoz"
 
-#: gui/manual/intro.txt:130
+#: gui/manual/intro.txt:133
 msgid "[font=\"sans-bold-14\"]During Building Placement"
 msgstr "[font=\"sans-bold-14\"]Épületlerakás alatt"
 
-#: gui/manual/intro.txt:131
+#: gui/manual/intro.txt:134
 msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
 msgstr "[font=\"sans-14\"]\\[: Építmény elforgatása 15 fokkal az óramutató járásával ellentétes irányba"
 
-#: gui/manual/intro.txt:132
+#: gui/manual/intro.txt:135
 msgid "]: Rotate building 15 degrees clockwise"
 msgstr "]: Épület elforgatása 15 fokkal óramutató járásával megegyező irányba"
 
-#: gui/manual/intro.txt:133
+#: gui/manual/intro.txt:136
 msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
 msgstr "Bal gombos húzás: Épület forgatása az egér használatával (az egérgomb felengedésekor kerül lerakásra az épület)"
 
-#: gui/manual/intro.txt:135
+#: gui/manual/intro.txt:138
 msgid "[font=\"sans-bold-14\"]When loading a saved game"
 msgstr "[font=\"sans-bold-14\"]Elmentett játék betöltésekor"
 
-#: gui/manual/intro.txt:136
+#: gui/manual/intro.txt:139
 msgid ""
 "[font=\"sans-14\"]Delete: delete the selected saved game asking confirmation"
 msgstr "[font=\"sans-14\"]Delete: a kijelölt elmentett játék törlése megerősítést kérve"
 
-#: gui/manual/intro.txt:137
+#: gui/manual/intro.txt:140
 msgid "Shift: do not ask confirmation when deleting a saved game"
 msgstr "Shift: nem kér megerősítést egy elmentett játék törlésekor"
 

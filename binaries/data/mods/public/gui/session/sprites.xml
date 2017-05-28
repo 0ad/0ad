@@ -335,6 +335,17 @@
 		/>
 	</sprite>
 
+	<sprite name="topEdgedPanelShader">
+		<image texture="session/panel_shader.png"
+			size="0 0 100% 100%-5"
+		/>
+
+		<image texture="session/panel_shader_bottom_edge.png"
+			real_texture_placement="0 0 256 5"
+			size="0 100%-5 100% 100%"
+		/>
+	</sprite>
+
 	<sprite name="queuePanelShader">
 		<image texture="session/panel_shader.png"
 			size="4 4 100%-4 100%-4"

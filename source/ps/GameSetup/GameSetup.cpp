@@ -281,7 +281,7 @@ void Render()
 		CStrW cursorName = g_CursorName;
 		if (cursorName.empty())
 		{
-			cursor_draw(g_VFS, NULL, g_mouse_x, g_yres-g_mouse_y, false);
+			cursor_draw(g_VFS, NULL, g_mouse_x, g_yres-g_mouse_y, 1.0 / g_GuiScale, false);
 		}
 		else
 		{
@@ -306,7 +306,7 @@ void Render()
 #if OS_ANDROID
 #warning TODO: cursors for Android
 #else
-			if (cursor_draw(g_VFS, cursorName.c_str(), g_mouse_x, g_yres-g_mouse_y, forceGL) < 0)
+			if (cursor_draw(g_VFS, cursorName.c_str(), g_mouse_x, g_yres-g_mouse_y, 1.0 / g_GuiScale, forceGL) < 0)
 				LOGWARNING("Failed to draw cursor '%s'", utf8_from_wstring(cursorName));
 #endif
 
@@ -598,7 +598,7 @@ static void ShutdownPs()
 	UnloadHotkeys();
 
 	// disable the special Windows cursor, or free textures for OGL cursors
-	cursor_draw(g_VFS, 0, g_mouse_x, g_yres-g_mouse_y, false);
+	cursor_draw(g_VFS, 0, g_mouse_x, g_yres-g_mouse_y, 1.0, false);
 }
 
 

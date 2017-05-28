@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-24 09:07+0100\n"
-"PO-Revision-Date: 2017-03-24 10:12+0000\n"
+"POT-Creation-Date: 2017-05-19 09:04+0200\n"
+"PO-Revision-Date: 2017-05-19 14:51+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -33,19 +33,19 @@ msgstr "骑兵"
 
 #: simulation/templates/template_unit_cavalry.xml:37
 #: simulation/templates/template_unit_infantry.xml:63
-#: simulation/templates/template_unit_support_female_citizen.xml:47
+#: simulation/templates/template_unit_support_female_citizen.xml:51
 msgid "Citizen"
 msgstr "市民"
 
 #: simulation/templates/template_unit_cavalry.xml:37
 #: simulation/templates/template_unit_champion.xml:13
-#: simulation/templates/template_unit_hero.xml:30
+#: simulation/templates/template_unit_hero.xml:32
 #: simulation/templates/template_unit_infantry.xml:63
 msgid "Soldier"
 msgstr "士兵"
 
 #: simulation/templates/template_unit_cavalry.xml:39
-#: simulation/templates/template_unit_dog.xml:45
+#: simulation/templates/template_unit_dog.xml:46
 #: simulation/templates/template_unit_infantry.xml:64
 #: simulation/templates/template_unit_support_healer.xml:22
 #: simulation/templates/units/brit_support_healer_b.xml:9
@@ -59,38 +59,38 @@ msgctxt "Rank"
 msgid "Basic"
 msgstr "基本"
 
-#: simulation/templates/template_unit_cavalry_melee.xml:18
-#: simulation/templates/template_unit_champion_cavalry_spearman.xml:26
-#: simulation/templates/template_unit_champion_cavalry_swordsman.xml:27
-#: simulation/templates/template_unit_champion_elephant_melee.xml:14
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:33
-#: simulation/templates/template_unit_champion_infantry_spearman.xml:33
-#: simulation/templates/template_unit_champion_infantry_swordsman.xml:27
-#: simulation/templates/template_unit_dog.xml:43
-#: simulation/templates/template_unit_hero_cavalry_spearman.xml:18
-#: simulation/templates/template_unit_hero_cavalry_swordsman.xml:18
-#: simulation/templates/template_unit_hero_elephant_melee.xml:34
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
-#: simulation/templates/template_unit_hero_infantry_spearman.xml:24
-#: simulation/templates/template_unit_hero_infantry_swordsman.xml:18
-#: simulation/templates/template_unit_infantry_melee.xml:18
-#: simulation/templates/template_unit_mechanical_ship_fire.xml:33
-#: simulation/templates/template_unit_mechanical_siege_ram.xml:34
+#: simulation/templates/template_unit_cavalry_melee.xml:19
+#: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
+#: simulation/templates/template_unit_champion_cavalry_swordsman.xml:28
+#: simulation/templates/template_unit_champion_elephant_melee.xml:15
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:34
+#: simulation/templates/template_unit_champion_infantry_spearman.xml:34
+#: simulation/templates/template_unit_champion_infantry_swordsman.xml:28
+#: simulation/templates/template_unit_dog.xml:44
+#: simulation/templates/template_unit_hero_cavalry_spearman.xml:19
+#: simulation/templates/template_unit_hero_cavalry_swordsman.xml:19
+#: simulation/templates/template_unit_hero_elephant_melee.xml:35
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:26
+#: simulation/templates/template_unit_hero_infantry_spearman.xml:25
+#: simulation/templates/template_unit_hero_infantry_swordsman.xml:19
+#: simulation/templates/template_unit_infantry_melee.xml:19
+#: simulation/templates/template_unit_mechanical_ship_fire.xml:34
+#: simulation/templates/template_unit_mechanical_siege_ram.xml:35
 #: simulation/templates/units/maur_ship_trireme.xml:19
 msgid "Melee"
 msgstr "近战"
 
-#: simulation/templates/template_unit_cavalry_melee.xml:19
+#: simulation/templates/template_unit_cavalry_melee.xml:20
 msgid "Melee Cavalry"
 msgstr "近战骑兵"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:16
-#: simulation/templates/template_unit_champion_cavalry_spearman.xml:26
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:33
-#: simulation/templates/template_unit_champion_infantry_spearman.xml:33
-#: simulation/templates/template_unit_hero_cavalry_spearman.xml:18
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
-#: simulation/templates/template_unit_hero_infantry_spearman.xml:24
+#: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:34
+#: simulation/templates/template_unit_champion_infantry_spearman.xml:34
+#: simulation/templates/template_unit_hero_cavalry_spearman.xml:19
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:26
+#: simulation/templates/template_unit_hero_infantry_spearman.xml:25
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:27
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:25
 msgid "Spear"
@@ -100,16 +100,16 @@ msgstr "矛"
 msgid "Cavalry Spearman"
 msgstr "长矛骑兵"
 
-#: simulation/templates/template_unit_cavalry_melee_swordsman.xml:22
-#: simulation/templates/template_unit_champion_cavalry_swordsman.xml:27
-#: simulation/templates/template_unit_champion_infantry_swordsman.xml:27
-#: simulation/templates/template_unit_hero_cavalry_swordsman.xml:18
-#: simulation/templates/template_unit_hero_infantry_swordsman.xml:18
+#: simulation/templates/template_unit_cavalry_melee_swordsman.xml:23
+#: simulation/templates/template_unit_champion_cavalry_swordsman.xml:28
+#: simulation/templates/template_unit_champion_infantry_swordsman.xml:28
+#: simulation/templates/template_unit_hero_cavalry_swordsman.xml:19
+#: simulation/templates/template_unit_hero_infantry_swordsman.xml:19
 #: simulation/templates/template_unit_infantry_melee_swordsman.xml:23
 msgid "Sword"
 msgstr "剑"
 
-#: simulation/templates/template_unit_cavalry_melee_swordsman.xml:23
+#: simulation/templates/template_unit_cavalry_melee_swordsman.xml:24
 msgid "Cavalry Swordsman"
 msgstr "骑兵剑士"
 
@@ -137,7 +137,7 @@ msgstr "远程骑兵"
 msgid "Ranged"
 msgstr "远程的"
 
-#: simulation/templates/template_unit_cavalry_ranged_archer.xml:22
+#: simulation/templates/template_unit_cavalry_ranged_archer.xml:23
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:23
 #: simulation/templates/template_unit_champion_infantry_archer.xml:26
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:26
@@ -147,11 +147,11 @@ msgstr "远程的"
 msgid "Archer"
 msgstr "弓箭手"
 
-#: simulation/templates/template_unit_cavalry_ranged_archer.xml:23
+#: simulation/templates/template_unit_cavalry_ranged_archer.xml:24
 msgid "Cavalry Archer"
 msgstr "弓骑兵"
 
-#: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:22
+#: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:23
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:23
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:26
 #: simulation/templates/template_unit_hero_cavalry_javelinist.xml:33
@@ -160,7 +160,7 @@ msgstr "弓骑兵"
 msgid "Javelin"
 msgstr "标枪"
 
-#: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:23
+#: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:24
 msgid "Cavalry Skirmisher"
 msgstr "斥候骑兵"
 
@@ -184,11 +184,11 @@ msgstr "精英弓箭手"
 msgid "Champion Cavalry Skirmisher"
 msgstr "精英斥候骑兵"
 
-#: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
+#: simulation/templates/template_unit_champion_cavalry_spearman.xml:28
 msgid "Champion Cavalry Spearman"
 msgstr "精英长矛骑兵"
 
-#: simulation/templates/template_unit_champion_cavalry_swordsman.xml:28
+#: simulation/templates/template_unit_champion_cavalry_swordsman.xml:29
 msgid "Champion Cavalry Swordsman"
 msgstr "精英骑兵剑士"
 
@@ -197,9 +197,10 @@ msgid "War Elephant"
 msgstr "战象"
 
 #: simulation/templates/template_unit_champion_elephant.xml:27
-#: simulation/templates/template_unit_fauna_hunt_defensive_elephant.xml:26
-#: simulation/templates/template_unit_hero_elephant_melee.xml:34
-#: simulation/templates/units/maur_elephant_archer_b.xml:12
+#: simulation/templates/template_unit_fauna_hunt_defensive_elephant.xml:27
+#: simulation/templates/template_unit_fauna_hunt_skittish_elephant_infant.xml:14
+#: simulation/templates/template_unit_hero_elephant_melee.xml:35
+#: simulation/templates/units/maur_elephant_archer_b.xml:32
 #: simulation/templates/units/maur_support_elephant.xml:27
 msgid "Elephant"
 msgstr ""
@@ -223,42 +224,42 @@ msgstr "精英射手"
 msgid "Champion Skirmisher"
 msgstr "精英散兵"
 
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:33
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:34
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:26
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:27
 msgid "Pike"
 msgstr "长矛"
 
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:34
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:35
 msgid "Champion Pikeman"
 msgstr "精英矛手"
 
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:36
-#: simulation/templates/template_unit_champion_infantry_spearman.xml:34
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:27
-#: simulation/templates/template_unit_hero_infantry_spearman.xml:26
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:37
+#: simulation/templates/template_unit_champion_infantry_spearman.xml:35
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:28
+#: simulation/templates/template_unit_hero_infantry_spearman.xml:27
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:30
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:28
 msgid "Counters: 3x vs. Cavalry."
 msgstr "克制：3倍于骑兵"
 
-#: simulation/templates/template_unit_champion_infantry_spearman.xml:32
+#: simulation/templates/template_unit_champion_infantry_spearman.xml:33
 msgid "Champion Spearman"
 msgstr "精英长枪兵"
 
-#: simulation/templates/template_unit_champion_infantry_swordsman.xml:28
+#: simulation/templates/template_unit_champion_infantry_swordsman.xml:29
 msgid "Champion Swordsman"
 msgstr "精英剑士"
 
-#: simulation/templates/template_unit_dog.xml:43
+#: simulation/templates/template_unit_dog.xml:44
 msgid "Dog"
 msgstr "狗"
 
-#: simulation/templates/template_unit_dog.xml:44
+#: simulation/templates/template_unit_dog.xml:45
 msgid "War Dog"
 msgstr "军犬"
 
-#: simulation/templates/template_unit_dog.xml:46
+#: simulation/templates/template_unit_dog.xml:47
 msgid "Cannot attack structures."
 msgstr "无法攻击建筑物。"
 
@@ -278,10 +279,10 @@ msgstr "鲸鱼"
 msgid "Kill, then collect food from this bountiful oceanic resource."
 msgstr "杀死，然后从丰富的海洋资源中收集食物。"
 
+#: simulation/templates/template_unit_hero.xml:32
 #: simulation/templates/template_unit_hero.xml:30
-#: simulation/templates/template_unit_hero.xml:28
 #: simulation/templates/template_unit_hero_infantry.xml:24
-#: simulation/templates/units/maur_hero_chanakya.xml:30
+#: simulation/templates/units/maur_hero_chanakya.xml:33
 msgid "Hero"
 msgstr "英雄"
 
@@ -297,11 +298,11 @@ msgstr "英雄骑射手"
 msgid "Hero Cavalry Skirmisher"
 msgstr "英雄骑兵散兵"
 
-#: simulation/templates/template_unit_hero_cavalry_spearman.xml:19
+#: simulation/templates/template_unit_hero_cavalry_spearman.xml:20
 msgid "Hero Cavalry Spearman"
 msgstr "英雄长矛骑兵"
 
-#: simulation/templates/template_unit_hero_cavalry_swordsman.xml:19
+#: simulation/templates/template_unit_hero_cavalry_swordsman.xml:20
 msgid "Hero Cavalry Swordsman"
 msgstr "英雄骑兵剑士"
 
@@ -313,25 +314,25 @@ msgstr "英雄弓箭手"
 msgid "Hero Skirmisher"
 msgstr "英雄散兵"
 
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:26
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:27
 msgid "Hero Pikeman"
 msgstr "英雄长矛兵"
 
-#: simulation/templates/template_unit_hero_infantry_spearman.xml:25
+#: simulation/templates/template_unit_hero_infantry_spearman.xml:26
 msgid "Hero Spearman"
 msgstr "英雄长矛兵"
 
-#: simulation/templates/template_unit_hero_infantry_swordsman.xml:19
+#: simulation/templates/template_unit_hero_infantry_swordsman.xml:20
 msgid "Hero Swordsman"
 msgstr "英雄剑士"
 
 #: simulation/templates/template_unit_infantry.xml:63
-#: simulation/templates/template_unit_support_female_citizen.xml:47
+#: simulation/templates/template_unit_support_female_citizen.xml:51
 #: simulation/templates/template_unit_support_slave.xml:39
 msgid "Worker"
 msgstr "工人"
 
-#: simulation/templates/template_unit_infantry_melee.xml:17
+#: simulation/templates/template_unit_infantry_melee.xml:18
 msgid "Melee Infantry"
 msgstr "近战步兵"
 
@@ -374,7 +375,7 @@ msgid "Light Warship"
 msgstr "轻型战船"
 
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:49
-#: simulation/templates/template_unit_mechanical_ship_fire.xml:33
+#: simulation/templates/template_unit_mechanical_ship_fire.xml:34
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:59
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:49
 msgid "Warship"
@@ -387,25 +388,25 @@ msgstr "战舰"
 msgid "Garrison units for transport and to increase firepower."
 msgstr "用于运输和增加火力的驻军单位。"
 
-#: simulation/templates/template_unit_mechanical_ship_fire.xml:32
+#: simulation/templates/template_unit_mechanical_ship_fire.xml:33
 msgid "Fire Ship"
 msgstr "火攻船"
 
-#: simulation/templates/template_unit_mechanical_ship_fire.xml:33
+#: simulation/templates/template_unit_mechanical_ship_fire.xml:34
 msgid "Fireship"
 msgstr "喷火船"
 
-#: simulation/templates/template_unit_mechanical_ship_fire.xml:34
+#: simulation/templates/template_unit_mechanical_ship_fire.xml:35
 msgid ""
 "Rapidly drain the health of enemy ships. Slowly loses health due to being on"
 " fire, so use the Fire Ship quickly."
 msgstr "快速减少敌方船只的生命值。因为着火了，所以会缓慢损失生命值，所以火攻船要尽快使用。"
 
-#: simulation/templates/template_unit_mechanical_ship_fishing.xml:32
+#: simulation/templates/template_unit_mechanical_ship_fishing.xml:33
 msgid "Fishing Boat"
 msgstr "渔船"
 
-#: simulation/templates/template_unit_mechanical_ship_fishing.xml:33
+#: simulation/templates/template_unit_mechanical_ship_fishing.xml:34
 msgid ""
 "Fish the waters for Food. Garrison a support or infantry unit inside to "
 "boost fishing rate."
@@ -461,11 +462,11 @@ msgstr "攻城投石車"
 msgid "Catapult"
 msgstr "石弩"
 
-#: simulation/templates/template_unit_mechanical_siege_ram.xml:33
+#: simulation/templates/template_unit_mechanical_siege_ram.xml:34
 msgid "Battering Ram"
 msgstr "攻城槌"
 
-#: simulation/templates/template_unit_mechanical_siege_ram.xml:34
+#: simulation/templates/template_unit_mechanical_siege_ram.xml:35
 msgid "Ram"
 msgstr "攻城槌"
 
@@ -479,17 +480,17 @@ msgstr "攻城塔"
 
 #: simulation/templates/template_unit_support.xml:14
 #: simulation/templates/template_unit_support.xml:12
-#: simulation/templates/units/maur_hero_chanakya.xml:30
+#: simulation/templates/units/maur_hero_chanakya.xml:33
 msgid "Support"
 msgstr "支援"
 
-#: simulation/templates/template_unit_support_female_citizen.xml:43
+#: simulation/templates/template_unit_support_female_citizen.xml:47
 msgid "Female Citizen"
 msgstr "女市民"
 
 #: simulation/templates/template_unit_support_healer.xml:19
 #: simulation/templates/template_unit_support_healer.xml:20
-#: simulation/templates/units/maur_hero_chanakya.xml:30
+#: simulation/templates/units/maur_hero_chanakya.xml:33
 msgid "Healer"
 msgstr "治疗师"
 
@@ -699,7 +700,7 @@ msgstr "Pródromos"
 #: simulation/templates/units/sele_support_healer_e.xml:4
 #: simulation/templates/units/spart_cavalry_javelinist_e.xml:4
 #: simulation/templates/units/spart_cavalry_spearman_e.xml:4
-#: simulation/templates/units/spart_champion_infantry_sword.xml:22
+#: simulation/templates/units/spart_champion_infantry_sword.xml:23
 #: simulation/templates/units/spart_infantry_javelinist_e.xml:4
 #: simulation/templates/units/spart_infantry_spearman_e.xml:4
 #: simulation/templates/units/spart_support_healer_e.xml:4
@@ -739,27 +740,27 @@ msgstr "塞西亚弓箭手"
 msgid "Toxótēs Skythikós"
 msgstr "Toxótēs Skythikós"
 
-#: simulation/templates/units/athen_hero_iphicrates.xml:7
+#: simulation/templates/units/athen_hero_iphicrates.xml:10
 msgid "Iphicrates"
 msgstr "伊菲克拉特斯"
 
-#: simulation/templates/units/athen_hero_iphicrates.xml:8
+#: simulation/templates/units/athen_hero_iphicrates.xml:11
 msgid "Iphikratēs"
 msgstr "Iphikratēs"
 
-#: simulation/templates/units/athen_hero_pericles.xml:7
+#: simulation/templates/units/athen_hero_pericles.xml:10
 msgid "Pericles"
 msgstr "伯里克利"
 
-#: simulation/templates/units/athen_hero_pericles.xml:8
+#: simulation/templates/units/athen_hero_pericles.xml:11
 msgid "Periklēs"
 msgstr "Periklēs"
 
-#: simulation/templates/units/athen_hero_themistocles.xml:7
+#: simulation/templates/units/athen_hero_themistocles.xml:10
 msgid "Themistocles"
 msgstr "地米斯托克利"
 
-#: simulation/templates/units/athen_hero_themistocles.xml:8
+#: simulation/templates/units/athen_hero_themistocles.xml:11
 msgid "Themistoklês"
 msgstr "地米斯托克利"
 
@@ -840,7 +841,7 @@ msgstr "桨帆战船"
 msgid "Pentēkóntoros"
 msgstr "Pentēkóntoros"
 
-#: simulation/templates/units/athen_ship_fishing.xml:8
+#: simulation/templates/units/athen_ship_fishing.xml:5
 #: simulation/templates/units/mace_ship_fishing.xml:5
 #: simulation/templates/units/ptol_ship_fishing.xml:5
 #: simulation/templates/units/sele_ship_fishing.xml:5
@@ -907,12 +908,12 @@ msgid "Celtic Cavalry"
 msgstr "凯尔特骑兵"
 
 #: simulation/templates/units/brit_champion_cavalry.xml:9
-#: simulation/templates/units/brit_hero_boudicca.xml:10
+#: simulation/templates/units/brit_hero_boudicca.xml:12
 #: simulation/templates/units/maur_champion_chariot.xml:9
-#: simulation/templates/units/maur_hero_ashoka.xml:13
+#: simulation/templates/units/maur_hero_ashoka.xml:15
 #: simulation/templates/units/pers_cavalry_archer_b.xml:9
-#: simulation/templates/units/pers_hero_darius.xml:10
-#: simulation/templates/units/pers_hero_xerxes_chariot.xml:10
+#: simulation/templates/units/pers_hero_darius.xml:12
+#: simulation/templates/units/pers_hero_xerxes_chariot.xml:12
 #: simulation/templates/units/sele_champion_chariot.xml:10
 msgid "Chariot"
 msgstr "战车"
@@ -933,25 +934,25 @@ msgstr "布立吞长剑士"
 msgid "Delamokludda"
 msgstr "Delamokludda"
 
-#: simulation/templates/units/brit_hero_boudicca.xml:11
+#: simulation/templates/units/brit_hero_boudicca.xml:13
 msgid "Boudicca (Chariot)"
 msgstr "波帝卡（马车）"
 
-#: simulation/templates/units/brit_hero_boudicca.xml:12
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:7
+#: simulation/templates/units/brit_hero_boudicca.xml:14
+#: simulation/templates/units/brit_hero_boudicca_sword.xml:9
 msgid "Boadicea"
 msgstr "布狄卡"
 
-#: simulation/templates/units/brit_hero_boudicca_sword.xml:6
+#: simulation/templates/units/brit_hero_boudicca_sword.xml:8
 msgid "Boudicca (Sword)"
 msgstr "布狄卡）(剑)"
 
-#: simulation/templates/units/brit_hero_caratacos.xml:6
+#: simulation/templates/units/brit_hero_caratacos.xml:8
 msgid "Caratacos"
 msgstr "Caratacos"
 
-#: simulation/templates/units/brit_hero_cunobelin.xml:6
-#: simulation/templates/units/brit_hero_cunobelin_infantry.xml:6
+#: simulation/templates/units/brit_hero_cunobelin.xml:8
+#: simulation/templates/units/brit_hero_cunobelin_infantry.xml:8
 msgid "Cunobelin"
 msgstr "库诺贝林"
 
@@ -1089,27 +1090,27 @@ msgstr "神圣军团长枪兵"
 msgid "Mašal"
 msgstr "Mašal"
 
-#: simulation/templates/units/cart_hero_hamilcar.xml:6
+#: simulation/templates/units/cart_hero_hamilcar.xml:8
 msgid "Ḥimelqart Baraq"
 msgstr "Ḥimelqart Baraq"
 
-#: simulation/templates/units/cart_hero_hamilcar.xml:7
+#: simulation/templates/units/cart_hero_hamilcar.xml:9
 msgid "Hamilcar Barca"
 msgstr "哈米尔卡·巴卡"
 
-#: simulation/templates/units/cart_hero_hannibal.xml:6
+#: simulation/templates/units/cart_hero_hannibal.xml:8
 msgid "Hannibal Barca"
 msgstr "汉尼拔·巴卡"
 
-#: simulation/templates/units/cart_hero_hannibal.xml:7
+#: simulation/templates/units/cart_hero_hannibal.xml:9
 msgid "Ḥannibaʿal Baraq"
 msgstr "Ḥannibaʿal Baraq"
 
-#: simulation/templates/units/cart_hero_maharbal.xml:6
+#: simulation/templates/units/cart_hero_maharbal.xml:8
 msgid "Maharbal"
 msgstr "马哈巴尔"
 
-#: simulation/templates/units/cart_hero_maharbal.xml:7
+#: simulation/templates/units/cart_hero_maharbal.xml:9
 msgid "Maharbaʿal"
 msgstr "Maharbaʿal"
 
@@ -1247,15 +1248,15 @@ msgstr "重装剑士"
 msgid "Solduros"
 msgstr "Solduros"
 
-#: simulation/templates/units/gaul_hero_brennus.xml:6
+#: simulation/templates/units/gaul_hero_brennus.xml:8
 msgid "Brennus"
 msgstr "布伦努斯"
 
-#: simulation/templates/units/gaul_hero_britomartus.xml:6
+#: simulation/templates/units/gaul_hero_britomartus.xml:8
 msgid "Britomartus"
 msgstr "Britomartus"
 
-#: simulation/templates/units/gaul_hero_vercingetorix.xml:6
+#: simulation/templates/units/gaul_hero_vercingetorix.xml:8
 msgid "Vercingetorix"
 msgstr "维钦托利"
 
@@ -1283,15 +1284,15 @@ msgstr "特殊攻击：火焰标枪。擅长攻击建筑物。"
 msgid "Leial Ezpatari"
 msgstr "Leial Ezpatari"
 
-#: simulation/templates/units/iber_hero_caros.xml:5
+#: simulation/templates/units/iber_hero_caros.xml:9
 msgid "Caros"
 msgstr "卡罗斯"
 
-#: simulation/templates/units/iber_hero_indibil.xml:5
+#: simulation/templates/units/iber_hero_indibil.xml:8
 msgid "Indibil"
 msgstr "Indibil"
 
-#: simulation/templates/units/iber_hero_viriato.xml:5
+#: simulation/templates/units/iber_hero_viriato.xml:9
 msgid "Viriato"
 msgstr "维里亚托 "
 
@@ -1388,49 +1389,49 @@ msgstr "Hypaspistḗs"
 msgid "Hypaspistḗs Argyraspídi"
 msgstr "Hypaspistḗs Argyraspídi"
 
-#: simulation/templates/units/mace_hero_alexander.xml:22
+#: simulation/templates/units/mace_hero_alexander.xml:19
 msgid "Alexander The Great"
 msgstr "亚历山大大帝"
 
-#: simulation/templates/units/mace_hero_alexander.xml:23
+#: simulation/templates/units/mace_hero_alexander.xml:20
 msgid "Mégās Aléxandros"
 msgstr "Mégās Aléxandros"
 
-#: simulation/templates/units/mace_hero_alexander.xml:24
+#: simulation/templates/units/mace_hero_alexander.xml:21
 msgid "\"Herocide\" Bonus: +20% attack bonus vs. enemy Heroes."
 msgstr "「英雄杀手」加值：对敌方英雄 +20% 攻击力加值。"
 
-#: simulation/templates/units/mace_hero_craterus.xml:7
+#: simulation/templates/units/mace_hero_craterus.xml:9
 msgid "Crateros"
 msgstr "克拉特鲁斯"
 
-#: simulation/templates/units/mace_hero_craterus.xml:8
+#: simulation/templates/units/mace_hero_craterus.xml:10
 msgid "Kraterós"
 msgstr "克拉特鲁斯"
 
-#: simulation/templates/units/mace_hero_demetrius.xml:7
+#: simulation/templates/units/mace_hero_demetrius.xml:9
 msgid "Demetrius The Besieger"
 msgstr "德米特里一世"
 
-#: simulation/templates/units/mace_hero_demetrius.xml:8
+#: simulation/templates/units/mace_hero_demetrius.xml:10
 msgid "Dēmḗtrios Poliorkḗtēs"
 msgstr "Dēmḗtrios Poliorkḗtēs"
 
-#: simulation/templates/units/mace_hero_philip.xml:7
-#: simulation/templates/units/mace_hero_philip_pike.xml:7
+#: simulation/templates/units/mace_hero_philip.xml:9
+#: simulation/templates/units/mace_hero_philip_pike.xml:9
 msgid "Philip II of Macedon"
 msgstr "马其顿王国腓力二世"
 
-#: simulation/templates/units/mace_hero_philip.xml:8
-#: simulation/templates/units/mace_hero_philip_pike.xml:8
+#: simulation/templates/units/mace_hero_philip.xml:10
+#: simulation/templates/units/mace_hero_philip_pike.xml:10
 msgid "Phílippos B' ho Makedṓn"
 msgstr "Phílippos B' ho Makedṓn"
 
-#: simulation/templates/units/mace_hero_pyrrhus.xml:7
+#: simulation/templates/units/mace_hero_pyrrhus.xml:9
 msgid "Pyrrhus of Epirus"
 msgstr "伊庇鲁斯的皮洛士"
 
-#: simulation/templates/units/mace_hero_pyrrhus.xml:8
+#: simulation/templates/units/mace_hero_pyrrhus.xml:10
 msgid "Pyrrhos ton Epeiros"
 msgstr "伊庇鲁斯的皮洛士"
 
@@ -1549,37 +1550,33 @@ msgstr "Visha Kanya"
 msgid "Maiden Guard Archer"
 msgstr "少女卫队弓箭手"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:14
+#: simulation/templates/units/maur_elephant_archer_b.xml:34
 msgid "Elephant Archer"
 msgstr "骑象弓兵"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:15
+#: simulation/templates/units/maur_elephant_archer_b.xml:35
 msgid "Vachii Gaja"
 msgstr "Vachii Gaja"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:17
-msgid "Can run amok."
-msgstr "可以冲撞"
-
-#: simulation/templates/units/maur_hero_ashoka.xml:10
+#: simulation/templates/units/maur_hero_ashoka.xml:12
 msgid "Ashoka the Great"
 msgstr "阿育王"
 
-#: simulation/templates/units/maur_hero_ashoka.xml:11
+#: simulation/templates/units/maur_hero_ashoka.xml:13
 msgid "Aśoka Devānāmpriya"
 msgstr "Aśoka Devānāmpriya"
 
-#: simulation/templates/units/maur_hero_ashoka.xml:15
+#: simulation/templates/units/maur_hero_ashoka.xml:17
 msgid ""
 "Hero Special: \"Edicts of Ashoka\" - Edict Pillars of Ashoka can be built "
 "during Ashoka's lifetime."
 msgstr "英雄特殊能力：“阿育王诏书敕令” - 阿育王柱可以在阿育王的一生中被建造。"
 
-#: simulation/templates/units/maur_hero_chanakya.xml:31
+#: simulation/templates/units/maur_hero_chanakya.xml:34
 msgid "Acharya Chanakya"
 msgstr "考底利耶"
 
-#: simulation/templates/units/maur_hero_chanakya.xml:32
+#: simulation/templates/units/maur_hero_chanakya.xml:35
 msgid "Acharya Chāṇakya"
 msgstr "考底利耶"
 
@@ -1596,11 +1593,11 @@ msgstr "长弓手"
 msgid "Dhanurdhar"
 msgstr "Dhanurdhar"
 
-#: simulation/templates/units/maur_infantry_spearman_b.xml:17
+#: simulation/templates/units/maur_infantry_spearman_b.xml:13
 msgid "Bamboo Spearman"
 msgstr "竹矛兵"
 
-#: simulation/templates/units/maur_infantry_spearman_b.xml:18
+#: simulation/templates/units/maur_infantry_spearman_b.xml:14
 msgid "Kauntika"
 msgstr "Kauntika"
 
@@ -1766,35 +1763,35 @@ msgstr "波斯长生军"
 msgid "Anusiya"
 msgstr "Anusiya"
 
-#: simulation/templates/units/pers_hero_cyrus.xml:6
+#: simulation/templates/units/pers_hero_cyrus.xml:8
 msgid "Cyrus II The Great"
 msgstr "居鲁士二世"
 
-#: simulation/templates/units/pers_hero_cyrus.xml:7
+#: simulation/templates/units/pers_hero_cyrus.xml:9
 msgid "Kurush II"
 msgstr "居鲁士二世"
 
-#: simulation/templates/units/pers_hero_darius.xml:11
+#: simulation/templates/units/pers_hero_darius.xml:13
 msgid "Darius The Great"
 msgstr "大流士大帝"
 
-#: simulation/templates/units/pers_hero_darius.xml:12
+#: simulation/templates/units/pers_hero_darius.xml:14
 msgid "Darayavahush I"
 msgstr "Darayavahush一世"
 
-#: simulation/templates/units/pers_hero_darius.xml:14
+#: simulation/templates/units/pers_hero_darius.xml:16
 msgid ""
 "Hero Aura: \"Merchant of the Empire.\" Boosts profitablity of trade during "
 "his lifetime (TBD)."
 msgstr "英雄光环：”帝国商人“ 提高他一生中贸易的利润 ( 待定 ) 。"
 
-#: simulation/templates/units/pers_hero_xerxes.xml:6
-#: simulation/templates/units/pers_hero_xerxes_chariot.xml:11
+#: simulation/templates/units/pers_hero_xerxes.xml:8
+#: simulation/templates/units/pers_hero_xerxes_chariot.xml:13
 msgid "Xerxes I"
 msgstr "薛西斯一世"
 
-#: simulation/templates/units/pers_hero_xerxes.xml:7
-#: simulation/templates/units/pers_hero_xerxes_chariot.xml:12
+#: simulation/templates/units/pers_hero_xerxes.xml:9
+#: simulation/templates/units/pers_hero_xerxes_chariot.xml:14
 msgid "Xsayarsa I"
 msgstr "Xsayarsa一世"
 
@@ -1964,27 +1961,27 @@ msgstr "剑圣"
 msgid "Tessarakonterēs"
 msgstr "Tessarakonterēs"
 
-#: simulation/templates/units/ptol_hero_cleopatra.xml:7
+#: simulation/templates/units/ptol_hero_cleopatra.xml:11
 msgid "Cleopatra VII"
 msgstr "克娄巴特拉七世(埃及艳后)"
 
-#: simulation/templates/units/ptol_hero_cleopatra.xml:8
+#: simulation/templates/units/ptol_hero_cleopatra.xml:12
 msgid "Kleopatra H' Philopator"
 msgstr "托勒密七世·奈俄斯·菲洛帕托尔"
 
-#: simulation/templates/units/ptol_hero_ptolemy_I.xml:6
+#: simulation/templates/units/ptol_hero_ptolemy_I.xml:9
 msgid "Ptolemy I \"Savior\""
 msgstr "托勒密一世"
 
-#: simulation/templates/units/ptol_hero_ptolemy_I.xml:7
+#: simulation/templates/units/ptol_hero_ptolemy_I.xml:10
 msgid "Ptolemaios A' Soter"
 msgstr "托勒密一世·索塔尔一世"
 
-#: simulation/templates/units/ptol_hero_ptolemy_IV.xml:6
+#: simulation/templates/units/ptol_hero_ptolemy_IV.xml:8
 msgid "Ptolemy IV \"Father Loving\""
 msgstr "托勒密四世 \"笃爱之父\""
 
-#: simulation/templates/units/ptol_hero_ptolemy_IV.xml:7
+#: simulation/templates/units/ptol_hero_ptolemy_IV.xml:9
 msgid "Ptolemaios D' Philopator"
 msgstr "托勒密四世·菲洛帕托尔"
 
@@ -2101,11 +2098,11 @@ msgstr "意大利重装骑兵"
 msgid "Extraordinarius"
 msgstr "Extraordinarius"
 
-#: simulation/templates/units/rome_hero_marcellus.xml:7
+#: simulation/templates/units/rome_hero_marcellus.xml:9
 msgid "Marcus Claudius Marcellus"
 msgstr "马库斯·克劳迪乌斯·马塞拉斯"
 
-#: simulation/templates/units/rome_hero_maximus.xml:7
+#: simulation/templates/units/rome_hero_maximus.xml:9
 msgid "Quintus Fabius Maximus"
 msgstr "昆图斯·费边·马克西穆斯"
 
@@ -2279,27 +2276,27 @@ msgstr "罗马重剑兵"
 msgid "Thorakitès Rhomaïkós"
 msgstr "Thorakitès Rhomaïkós"
 
-#: simulation/templates/units/sele_hero_antiochus_great.xml:7
+#: simulation/templates/units/sele_hero_antiochus_great.xml:9
 msgid "Antiochus III \"The Great\""
 msgstr "安条克三世"
 
-#: simulation/templates/units/sele_hero_antiochus_great.xml:8
+#: simulation/templates/units/sele_hero_antiochus_great.xml:10
 msgid "Antiokhos G' Mégās"
 msgstr "Antiokhos G' Mégās"
 
-#: simulation/templates/units/sele_hero_antiochus_righteous.xml:7
+#: simulation/templates/units/sele_hero_antiochus_righteous.xml:9
 msgid "Antiochus IV \"The Righteous\""
 msgstr "安条克四世”神显者“"
 
-#: simulation/templates/units/sele_hero_antiochus_righteous.xml:8
+#: simulation/templates/units/sele_hero_antiochus_righteous.xml:10
 msgid "Antiokhos D' Epiphanes"
 msgstr "神显者 安条克四世"
 
-#: simulation/templates/units/sele_hero_seleucus_victor.xml:7
+#: simulation/templates/units/sele_hero_seleucus_victor.xml:9
 msgid "Seleucus I \"The Victor\""
 msgstr "塞琉古一世”胜利者“"
 
-#: simulation/templates/units/sele_hero_seleucus_victor.xml:8
+#: simulation/templates/units/sele_hero_seleucus_victor.xml:10
 msgid "Seleukos A' Nikator"
 msgstr "胜利者 塞琉古一世"
 
@@ -2395,11 +2392,11 @@ msgstr "希腊重装步兵 "
 msgid "Spartiátēs"
 msgstr "Spartiátēs"
 
-#: simulation/templates/units/spart_champion_infantry_sword.xml:20
+#: simulation/templates/units/spart_champion_infantry_sword.xml:21
 msgid "Skiritai Commando"
 msgstr "Skiritai突击队"
 
-#: simulation/templates/units/spart_champion_infantry_sword.xml:21
+#: simulation/templates/units/spart_champion_infantry_sword.xml:22
 msgid "Ékdromos Skirítēs"
 msgstr "Ékdromos Skirítēs"
 
@@ -2411,16 +2408,16 @@ msgstr "阿吉斯三世"
 msgid "Agis"
 msgstr "阿吉斯"
 
-#: simulation/templates/units/spart_hero_brasidas.xml:7
-#: simulation/templates/units/spart_hero_brasidas.xml:8
+#: simulation/templates/units/spart_hero_brasidas.xml:9
+#: simulation/templates/units/spart_hero_brasidas.xml:10
 msgid "Brasidas"
 msgstr "伯拉西达"
 
-#: simulation/templates/units/spart_hero_leonidas.xml:7
+#: simulation/templates/units/spart_hero_leonidas.xml:9
 msgid "Leonidas I"
 msgstr "列奥尼达斯"
 
-#: simulation/templates/units/spart_hero_leonidas.xml:8
+#: simulation/templates/units/spart_hero_leonidas.xml:10
 msgid "Leōnídēs"
 msgstr "Leōnídēs"
 
@@ -2440,11 +2437,11 @@ msgstr "庇里阿西重装步兵"
 msgid "Hoplítēs Períoikos"
 msgstr "Hoplítēs Períoikos"
 
-#: simulation/templates/units/spart_support_female_citizen.xml:26
+#: simulation/templates/units/spart_support_female_citizen.xml:27
 msgid "Spartan Woman"
 msgstr "斯巴达女人"
 
-#: simulation/templates/units/spart_support_female_citizen.xml:27
+#: simulation/templates/units/spart_support_female_citizen.xml:28
 msgid "Spartiâtis"
 msgstr "Spartiâtis"
 

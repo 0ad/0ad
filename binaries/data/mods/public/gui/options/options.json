@@ -80,6 +80,19 @@
 			"parameters": { "config": "persistmatchsettings" }
 		},
 		{
+			"type": "dropdown",
+			"label": "Assign Players",
+			"tooltip": "Whether to assign joining clients to free playerslots in the gamesetup.",
+			"parameters": {
+				"config": "gui.gamesetup.assignplayers",
+				"list": [
+					{ "value": "everyone", "label": "Everyone" },
+					{ "value": "buddies", "label": "Buddies" },
+					{ "value": "noone", "label": "No one" }
+				]
+			}
+		},
+		{
 			"type": "boolean",
 			"label": "Late Observer Joins",
 			"tooltip": "Allow observers to join the game after it started",

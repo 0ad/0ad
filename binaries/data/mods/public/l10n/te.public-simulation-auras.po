@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-04-28 09:02+0200\n"
-"PO-Revision-Date: 2017-04-28 08:31+0000\n"
+"POT-Creation-Date: 2017-05-22 09:04+0200\n"
+"PO-Revision-Date: 2017-05-22 09:02+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Telugu (http://www.transifex.com/wildfire-games/0ad/language/te/)\n"
 "MIME-Version: 1.0\n"
@@ -18,35 +18,32 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
-msgid "Repairing Ship aura"
-msgstr "నౌకా మరమ్మత్తు కాంతి ప్రకాశం"
+msgid "Dockyard Repairs"
+msgstr ""
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Heals garrisoned ship at 10 HP per second."
 msgstr "సెకనుకు 10 హెచ్.పి చప్పున ఎక్కినవారికి నయం అవుతుంది."
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
-#: simulation/data/auras/structures/temple_heal.jsonauraName
-msgid "Healing Aura"
-msgstr "నయం చేసే కాంతి ప్రకాశం"
+msgid "Blessing of the Gods"
+msgstr ""
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraDescription
-msgid "Heals nearby units at 3 HP per second."
-msgstr "దగ్గరలో ఉన్నవారికి సెకనుకి 3 హెచ్.పి చప్పున నయమైతుంది."
+msgid "Heals units at 3 HP per second."
+msgstr ""
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
-msgid "Defensive Aura"
-msgstr "రక్షణ కాంతి ప్రకాశము"
+msgid "Religious Fervor"
+msgstr ""
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
-msgid ""
-"Gives all iberian soldiers in aura +20% attack boost. Effect Range: 50 "
-"meters"
-msgstr "కాంతి ప్రకాశంలో ఉన్న ఐబీరియన్ సైనికులందరికి +20 శాతం దాడి శక్తి ఇస్తుంది. ప్రభావ పరిధి: 50 మీటర్లు"
+msgid "+20% attack damage for soldiers."
+msgstr ""
 
 #: simulation/data/auras/structures/library.jsonauraName
-msgid "Library Aura"
-msgstr "గ్రంధాలయం కాంతి ప్రకాశము"
+msgid "Power of Knowledge"
+msgstr ""
 
 #: simulation/data/auras/structures/library.jsonauraDescription
 msgid ""
@@ -54,36 +51,40 @@ msgid ""
 msgstr "సొంతమైన ప్రతి గ్రంధాలయం వలన సాంకేతిక విజ్ఞానశాస్త్రాల యొక్క కర్చు మరియు పరిశోధనా వ్యవధి 10 శాతం తగ్గించు."
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraName
-msgid "Loyalty Aura"
-msgstr "రాజభక్తి కాంతి ప్రకాశము"
+msgid "Loyalty"
+msgstr ""
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
-msgid "All structures in range +50% garrisoned loyalty regeneration rate."
-msgstr "పరిధిలో ఉన్న భవంతులన్నీ +50 శాతం రక్షక భటుల విశ్వాసం పునరుత్పత్తి జరుగును"
+msgid "+50% garrisoned loyalty regeneration rate for structures."
+msgstr ""
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraName
 msgid "Edict of Ashoka"
 msgstr "అశోకుని శాసనం"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraDescription
-msgid "All traders in range +20% speed."
-msgstr "పరిధిలో ఉన్న వ్యాపారులందరికి +20 శాతం వేగం."
+msgid "+20% movement speed for traders."
+msgstr ""
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraName
 msgid "Farming bonus"
 msgstr "వ్యవసాయ ఉపరి లాభ బహుమానము"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraDescription
-msgid "Boosts nearby farming with +25% gathering rate."
-msgstr "దగ్గరలో ఉన్న వ్యవసాయాలకు +25 శాతం సేకరించు శక్తి."
+msgid "+25% gather rate for workers in the grainfields."
+msgstr ""
+
+#: simulation/data/auras/structures/temple_heal.jsonauraName
+msgid "Medical Treatment"
+msgstr ""
 
 #: simulation/data/auras/structures/temple_heal.jsonauraDescription
 msgid "Heals nearby units at 1 HP per second."
 msgstr "దగ్గరలో ఉన్న బలగాలకు సెకనుకు 1 హచ్.పి చప్పున నయం చేస్తుంది."
 
 #: simulation/data/auras/structures/theatron.jsonauraName
-msgid "Hellenization."
-msgstr "గ్రీక్ పద్ధతులచే స్ఫూర్తి పొందుట."
+msgid "Hellenization"
+msgstr ""
 
 #: simulation/data/auras/structures/theatron.jsonauraDescription
 msgid "Increase territory influence by 20% per theatron owned."
@@ -98,16 +99,16 @@ msgid "Soldiers on walls have +3 armor and higher vision."
 msgstr "గోడల మీద ఉన్న సైనికులకు +3 కవచం మరియు ఎక్కువ దృష్టి."
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraName
-msgid "Wonder Aura"
-msgstr "వింత యొక్క కాంతి ప్రకాశము"
+msgid "Symbol of Greatness"
+msgstr ""
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraDescription
 msgid "Increase the population limit by 10 per wonder owned."
 msgstr "స్వంతమైన ప్రతి 'వింత'కు జనాభా పరిమితి 10 పెంచు."
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraName
-msgid "Glorious Expansion Aura"
-msgstr "దివ్యమైన విస్తరణ కాంతి ప్రకాశము"
+msgid "Glorious Expansion"
+msgstr ""
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraDescription
 msgid ""
@@ -127,12 +128,28 @@ msgid ""
 "contributed ships and money, while the Athenians offered their entire navy."
 msgstr ""
 
+#: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
+msgid "Druids"
+msgstr ""
+
+#: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
+msgid "-20% resources cost for allies healers."
+msgstr ""
+
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
 msgstr ""
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "10% bonus of trade profit for ally's international routes."
+msgstr ""
+
+#: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
+msgid "Druidic Wisdom"
+msgstr ""
+
+#: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
+msgid "-20% research time for technologies of allies."
 msgstr ""
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
@@ -143,6 +160,14 @@ msgstr ""
 msgid ""
 "Reduces the cost for citizen-soldier skirmishers with 20% for allies of "
 "Iberian players"
+msgstr ""
+
+#: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
+msgid "Standardized Currency"
+msgstr ""
+
+#: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraDescription
+msgid "+20% sell prices at market."
 msgstr ""
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
@@ -170,6 +195,14 @@ msgstr ""
 msgid "All allies automatically gain a slow trickle of food income."
 msgstr ""
 
+#: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraName
+msgid "Conscription"
+msgstr ""
+
+#: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
+msgid "-20% training time for allied infantry."
+msgstr ""
+
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
 msgstr ""
@@ -190,12 +223,12 @@ msgid ""
 msgstr ""
 
 #: simulation/data/auras/units/female_inspiration.jsonauraName
-msgid "Inspiration Aura"
-msgstr "స్పూర్తిదాయక కాంతి ప్రకాశము"
+msgid "Inspiration"
+msgstr ""
 
 #: simulation/data/auras/units/female_inspiration.jsonauraDescription
-msgid "Nearby citizen soldiers work 10% faster."
-msgstr "దగ్గరలో ఉన్న పౌర సైనికులు 10 శాతం వేగంగా పనిచేస్తారు."
+msgid "+10% build rate and gather rate for citizen soldiers."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraName
 msgid "Economic Reforms"
@@ -204,8 +237,8 @@ msgstr "ఆర్ధిక సంస్కరణలు"
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraDescription
 msgid ""
 "Solon instituted several economic reforms encouraging commerce and agriculture.\n"
-"+10% gather rate of workers within an 80 meter range."
-msgstr "సొలాన్ చాలా ఆర్ధిక సంస్కరణలు చేపట్టి ఆర్థిక కార్యకలాపాలను మరియు వ్యవసాయాన్ని ప్రోత్సహించాడు.\n80 మీటర్ల పరిధిలో ఉన్న పనివాల్లందరకి +10 శాతం సేకరించు సామర్ధ్యం."
+"+15% gather rate for workers."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_2.jsonauraName
 msgid "Economic Fortune"
@@ -218,14 +251,15 @@ msgid ""
 msgstr "సొలాన్ కొత్త బరువులు మరియు కొలమానాల పద్ధతిని తెచ్చాడు, తండ్రులను తమ కుమారులకు వర్తకాలు ఎతకమని ప్రోత్సాహించాడు. ఆర్ధిక సాంకేతిక విజ్ఞానశాస్త్రాలకు -10 శాతం కర్చు."
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_1.jsonauraName
-msgid "Guerilla Tactics"
-msgstr "ఆటవిక ఎత్తుగడలు"
+#: simulation/data/auras/units/heroes/iber_hero_viriato_1.jsonauraName
+msgid "Guerrilla Tactics"
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_1.jsonauraDescription
 msgid ""
-"Seeing entrenched defense to be useless against the Roman army, Cassivellanus resorted to gurerilla tactics. This was later employed by other cheiftains too.\n"
-"+15% speed and vision range for soldiers."
-msgstr "రోమన్ సైన్యంపై పాకుకొని పోయే రక్షణ పని చేయకపోవడం వలన కాస్సివేల్లనుస్ ఆటవిక ఎత్తుగడలవైపు మొగ్గు చూపాడు. దీన్ని తరవాత ఇతర సామంతులు కూడా అమలులోకి తెచ్చారు.\nసైనికులకు +15 శాతం వేగం మరియు దృష్టి పరిధి అవును."
+"Seeing entrenched defense to be useless against the Roman army, Cassivellaunus resorted to guerrilla tactics. This was later employed by other chieftains too.\n"
+"+15% movement speed and vision range for all soldiers."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_2.jsonauraName
 msgid "Skirmisher Harassment"
@@ -233,9 +267,9 @@ msgstr "చిన్న సైన్యం యొక్క వేధింపు
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_2.jsonauraDescription
 msgid ""
-"Cassivellanus deployed fast-moving skirmishers to harass Roman troops and foragers.\n"
+"Cassivellaunus deployed fast-moving skirmishers to harass Roman troops and foragers.\n"
 "+20% attack range for skirmisher javelins."
-msgstr "రోమన్లను మరియు దోపిడిదారులను వేధించేందుకు కాస్సివేల్లనుస్ వేగంగా కదిలే చిన్న సైన్యాల్ని పంపించాడు.\nఈటె విసిరే చిన్ని సైన్యాలకు +20 శాతం దాడి చేసే పరిధి పెంపు."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
 msgid "Commander of Heavy Cavalry"
@@ -254,8 +288,8 @@ msgstr "ఆకస్మికంగా దాడిచేసి భారీ ఎ
 #: simulation/data/auras/units/catafalques/gaul_catafalque_1.jsonauraDescription
 msgid ""
 "Warring with the Romans, Ambiorix realized the futility of open warfare and instead resorted to ambush tactics. The Gauls quickly learned where and when to execute surprise attacks.\n"
-"Units promote 25% faster and gain a 5% attack bonus."
-msgstr "రోమంస్తో యుద్ధం చేసి చేసి అమ్బిఒరిక్ సూటి యుద్ధం యొక్క నష్టం కనుగున్నాడు మరియు ఆకస్మికంగా దాడి వ్యూహాల వైపు మొగ్గు చూపాడు. గాల్స్ ఎప్పుడు ఎక్కడ మెరుపు దాడులు చెయ్యాలో చాలా తొరగా నేర్చుకున్నారు.\nబలగాలు 25 శాతం వేగంగా వెళ్లును మరియు 5 శాతం దాడి లాభము పొందును."
+"Soldiers require 25% less XP to promote and gain a 5% attack bonus."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_2.jsonauraName
 msgid "Tribute to Rome"
@@ -263,9 +297,9 @@ msgstr "రోమ్కు చెల్లించు కప్పము"
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_2.jsonauraDescription
 msgid ""
-"When the Roman Army fell short of food supplies, the Gallic tribes were ordered to give up a part of their already meagre harvest. The Eburones under Ambiorix were reluctant to do so, therefore Caesar sent troops to take them by foce.\n"
+"When the Roman army fell short of food supplies, the Gallic tribes were ordered to give up a part of their already meagre harvest. The Eburones under Ambiorix were reluctant to do so, therefore Caesar sent troops to take them by force.\n"
 "-10% farming rate."
-msgstr "రోమన్ సైన్యానికి ఆహార కొరత వచ్చినప్పుడు గల్లిక్ తెగలను తమదగ్గర ఉన్న కొద్దిపాటి పంటకోతలోనుంచి బాగాన్ని ఇవ్వమని ఆదేశించారు. అమ్బిఒరిక్ష్ కింద ఉన్న ఎబురోన్స్ కి ఇది ఎంత మాత్రం ఇష్టం లేదు, అందువల్ల బలవంతంగా తీసుకురమ్మని \"సీసర్\" సేనలను పంపాడు.\n-10 శాతం వ్యవసాయ బలం."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_1.jsonauraName
 msgid "Mercenary Commander"
@@ -284,8 +318,8 @@ msgstr "ప్రాణాల సంరక్షకుడు"
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraDescription
 msgid ""
 "Following the fall of Indibil in battle, Mandonius led the survivors to safety.\n"
-"+15% movement speed and +10% health for all soldiers."
-msgstr "ఇండిబిల్ యుద్ధంలో ఓటమి చవి చూసినప్పుడు, మాన్డోనిఅస్ మిగిలిన వాళ్ళని భద్రమైన చోటుకు తరలించాడు.\nసైనికులందరికి +15 శాతం కదిలే వేగము మరియు +10 శాతం ఆరోగ్యము."
+"+10% health for all soldiers."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
 msgid "Sacker of Cities"
@@ -323,9 +357,9 @@ msgstr "గొప్ప నిర్మించువాడు"
 
 #: simulation/data/auras/units/catafalques/pers_catafalque.jsonauraDescription
 msgid ""
-"Throughout his reign, much of Artaxerxes' wealth was spent on building projects. He restored the Palace of Darius I at Susa, and restored the ancient city of Ecbatana.\n"
-"+5% health and -5% resource cost for all buildings."
-msgstr "అతని పరిపాలన మొత్తంలొ చాలా వరుకు అర్తక్షేర్క్షస్ ధనమంతా భవంతుల నిర్మాణంలోనే కర్చైయింది. అతను సుసలోని దరైఉస్ 1 యొక్క రాజభవనాన్ని పునరుద్ధరించాడు, మరియు ప్రాచీన నగరమైన 'ఎక్బతన'ను పునరుద్ధరించాడు.\nఅన్ని భవంతులకి +5 శాతం ఆరోగ్యం మరియు -5 శాతం వనరుల కర్చు."
+"Throughout his reign, much of Artaxerxes' wealth was spent on building projects. He restored the Palace of Darius I at Susa and restored the ancient city of Ecbatana.\n"
+"+5% health and -10% resource cost for all buildings."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraName
 msgid "Great Librarian"
@@ -333,9 +367,9 @@ msgstr "గొప్ప గ్రంధాలయ అధికారి"
 
 #: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraDescription
 msgid ""
-"Continuing his predecessors' work on the Great Library at Alexandria, he seized every book brought to Alexandria, thus leaving to his people a vast amount of hoarded wisdom.\n"
+"Continuing his predecessors' work on the Great Library at Alexandria, he seized every book brought to the city, thus leaving to his people a vast amount of hoarded wisdom.\n"
 "-10% resource cost for all technologies."
-msgstr "అలెక్షాండ్రియ గొప్ప గ్రంధాలయంలో అతని పూర్వీకుల పనిని కొనసాగిస్తూ అతను అలెక్షాండ్రియ వచ్చిన ప్రతి పుస్తకాన్ని భద్రపరిచాడు, ఈ విధంగా అతని ప్రజలకు అపారమైన జ్ఞానసంపదను వదిలాడు.\nఅన్ని సాంకేతిక విజ్ఞానశాస్త్రాలకు -10 శాతం వనరుల కర్చు."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_1.jsonauraName
 msgid "Avenger of Lucretia"
@@ -348,8 +382,8 @@ msgid ""
 msgstr "రాజు తార్కునిఉస్ సూపర్బస్ కొడుకు 'లుక్రెతియా'పై అత్యాచారం చేశాక ఆమె ఆత్మహత్య చేసుకుంది, దాని తరవాత బ్రూతుస్ ఆమె తరుపున ప్రతీకారం తీసుకుంటానని మరియు ఆ రాచరికాన్ని పడగొడతానని ప్రతిగ్న చేశాడు.\nఆడ పౌరులకు 20 శాతం కర్చు తగ్గుతుంది మరియు 10 శాతం వేగంగా పని చేస్తారు."
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraName
-msgid "Founder and Defender of the Republic Aura"
-msgstr "గణతంత్రరాజ్యము ప్రకాశము యొక్క స్థాపికుడు మరియు సంరక్షకుడు"
+msgid "Founder and Defender of the Republic"
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraDescription
 msgid ""
@@ -378,7 +412,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_3.jsonauraName
-msgid "Basileus Megas (Great King)"
+msgid "Basileus Megas"
 msgstr ""
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_3.jsonauraDescription
@@ -395,7 +429,7 @@ msgstr ""
 #: simulation/data/auras/units/catafalques/spart_catafalque_1.jsonauraDescription
 msgid ""
 "Lycurgus instituted several military reforms, thus the complete and undivided allegiance to Sparta from its citizens was implemented under his form of government.\n"
-"-10% resource cost for spear citizen units."
+"-10% resource cost for citizen spear infantry."
 msgstr ""
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraDescription
@@ -408,8 +442,8 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_3.jsonauraDescription
 msgid ""
-"To further support equality, Lycurgus forbade the use of gold and silver, instead introducing new iron money called pellanors.\n"
-"+15% metal mining rate for workers within an 80 meter range."
+"To further support equality, Lycurgus forbade the use of gold and silver, introducing a new iron currency called pelanors.\n"
+"+15% metal gather rate for workers."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraName
@@ -429,32 +463,32 @@ msgid "All javelin infantry +15% speed."
 msgstr "ఈటెలు విసిరే సైనికులకు +15 శాతం వేగం."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
-msgid "Builder Aura"
-msgstr "నిర్మించువాడి కాంతి ప్రకాశం"
+msgid "Periclean Building Program"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraDescription
-msgid "Buildings construct 15% faster within his aura."
-msgstr "అతని ప్రకాశంలో భవంతులు 15 శాతం వేగంగా కట్ట బడతాయి."
+msgid "+15% build and repair rate for workers."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
-msgid "Acropolis Aura"
-msgstr "అక్రోపోలిస్ కాంతి ప్రకాశం"
+msgid "Temple to Athena"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "Temples are 50 stone cheaper during his lifetime."
 msgstr "అతని జీవిత కాలంలో గుడుల నిర్మాణంలో 50 రాయి తగ్గుతుంది."
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
-msgid "Naval Commander Aura"
-msgstr "నావిక ఆజ్ఞాకారి కాంతి ప్రకాశం"
+msgid "Naval Commander"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraDescription
 msgid "When garrisoned in a ship, his ship is +50% faster."
 msgstr "అతను ఎక్కిన పడవ +50 శాతం వేగంగా వెళ్తుంది."
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraName
-msgid "Naval Architect Aura"
-msgstr "నావిక నిర్మాణవేత్త కాంతి ప్రకాశం"
+msgid "Naval Architect"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraDescription
 msgid "-20% build time for ships during his lifespan."
@@ -469,62 +503,69 @@ msgid "+20% attack, +2 capture and +25% speed for champion units."
 msgstr "విజేతలకు +20 శాతం దాడి, +2 ఆక్రమించుట మరియు +25 శాతం వేగం అవును."
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraName
-#: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraName
-#: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraName
-#: simulation/data/auras/units/heroes/gaul_hero_britomartus.jsonauraName
-#: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraName
-#: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraName
-msgid "Hero Aura"
-msgstr "వీరుని కాంతి ప్రకాశం"
+msgid "Guerrilla Chief"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraDescription
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar.jsonauraDescription
 msgid "All soldiers and siege engines +15% speed."
 msgstr "అందరు సైనికులకు మరియు దాడి ఎంత్రాలకు +15 వేగం."
 
+#: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraName
+msgid "Britannorum Rex"
+msgstr ""
+
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraDescription
-msgid "+1 HP per second healing rate for all units."
-msgstr "+1 నయమైయ్యే శక్తి పెంపుదల ప్రతి సెకనుకు ప్రతి దళానికి."
+msgid "+1 HP per second healing rate."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar.jsonauraName
-msgid "Lightning Aura"
-msgstr "మెరుపు కాంతి ప్రకాశం"
+msgid "Lightning General"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraName
-msgid "Tactician Aura"
-msgstr "చాకచక్యముతో వ్యవహరించే వాని కాంతి ప్రకాశము"
+msgid "Tactician"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraDescription
-msgid ""
-"All allied soldiers and siege engines +20% attack and +1 capture within his "
-"vision range."
-msgstr "అతని కను చూపు మేరలో ఉన్న మిత్రరాజ్యాల సైనికులకు మరియు దాడి ఎంత్రాలకు +20 శాతం దాడి మరియు +1 ఆక్రమించు శక్తి పెరుగుతుంది."
+msgid "+20% attack and +1 capture for all allied soldiers and siege engines."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraName
-msgid "Commander Aura"
-msgstr "ఆజ్ఞాకారి కాంతి ప్రకాశం"
+msgid "Cavalry Commander"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraDescription
-msgid "+20% cavalry melee attack within his aura."
-msgstr "అతని కాంతి ప్రకాశంలో ఉంటే +20 శాతం గుర్రపు సేన దాడిచేసే శక్తి."
+msgid "+20% attack for cavalry melee soldiers."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraName
+msgid "Sacker of Rome"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraDescription
 msgid "+10 Metal loot for every enemy unit killed."
 msgstr "చంపిన ప్రతి శత్రువుకు +10 లోహము సంపాదించు."
 
+#: simulation/data/auras/units/heroes/gaul_hero_britomartus.jsonauraName
+msgid "Preparation for War"
+msgstr ""
+
 #: simulation/data/auras/units/heroes/gaul_hero_britomartus.jsonauraDescription
 msgid "Gathering rates increased with +15% during his lifetime."
 msgstr "అతని జీవితకాలంలో సేకరించే శక్తి +15 శాతం పెంపు."
 
+#: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraName
+msgid "Celtic Warlord"
+msgstr ""
+
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraDescription
-msgid ""
-"+20% attack and +1 capture for all soldiers and siege engines within his "
-"aura."
-msgstr "అతని కాంతి ప్రకాశంలో ఉన్న సైనికులకు మరియు దాడి ఎంత్రాలకు +20 దాడి శక్తి మరియు +1 ఆక్రమించు శక్తి లభ్యం."
+msgid "+20% attack and +1 capture for soldiers and siege engines."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraName
-msgid "Garrisoned Capture Aura"
-msgstr "ఎక్కించిన వారి ఆక్రమించు కాంతి ప్రకాశము"
+msgid "Inspired Defense"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraDescription
 msgid ""
@@ -532,9 +573,49 @@ msgid ""
 "of +2 capture points recovery rate."
 msgstr "ఒక భవంతిలోకి గాని లేదా ఒక దాడి ఎంత్రంలోకి గాని ఎక్కుతే ఆ వీరుడు దానికి +2 ఆక్రమించు పాయింట్లు మరల పొందుట సాధ్యం చేస్తాడు."
 
+#: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraName
+msgid "Valiant Defender"
+msgstr ""
+
+#: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraDescription
+msgid ""
+"75% more arrows fired per garrisoned soldier for the building while he is "
+"garrisoned in it."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraName
+msgid "Battle Fervor"
+msgstr ""
+
+#: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraDescription
+msgid "+1 armor for soldiers."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraName
+msgid "Mobilization"
+msgstr ""
+
+#: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraDescription
+msgid "-20% training time and -15% resources cost for soldiers."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/iber_hero_viriato_1.jsonauraDescription
+msgid "+20% movement speed for soldiers."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/iber_hero_viriato_2.jsonauraName
+msgid "Swag"
+msgstr ""
+
+#: simulation/data/auras/units/heroes/iber_hero_viriato_2.jsonauraDescription
+msgid ""
+"+100% resources loot increase for every enemy unit killed or structure "
+"destroyed."
+msgstr ""
+
 #: simulation/data/auras/units/heroes/mace_hero_alexander.jsonauraName
-msgid "Imperialism Aura"
-msgstr "సామ్రాజ్యవాదం కాంతి ప్రకాశము"
+msgid "Imperialism"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander.jsonauraDescription
 msgid "+10% territory effect for all buildings while he lives."
@@ -545,16 +626,20 @@ msgid "Taxiarchès"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraDescription
-msgid "Pike Infantry +20% attack and +20% capture within range of him."
-msgstr "అతని పరిధిలో ఉన్న బల్లెం సైనికులకు +20 దాడి చేసే శక్తి మరియు +20 ఆక్రమించే శక్తి."
+msgid "+20% attack and +20% capture for pikemen soldiers."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraName
-msgid "Besieger Aura"
+msgid "Besieger"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraDescription
 msgid "+15% range and +10% crush attack for siege engines."
 msgstr "దాడి యంత్రాలకు +15 శాతం పరిధి మరియు +10 శాతం అనిచె శక్తి."
+
+#: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraName
+msgid "Rise of Macedon"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraDescription
 msgid "+20% attack and +2 capture for champion units."
@@ -570,16 +655,16 @@ msgid ""
 msgstr "ప్యర్ర్హోస్ బ్రతుకున్నత కాలం సైనికులందరికి +20 శాతం దాడి బలం, కాని -15 శాతం ఆరోగ్యం."
 
 #: simulation/data/auras/units/heroes/maur_hero_ashoka.jsonauraName
-msgid "Buddhism Aura"
-msgstr "బౌద్ధుని కాంతి ప్రకాశము"
+msgid "Buddhism"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/maur_hero_ashoka.jsonauraDescription
 msgid "Temples and temple technologies -50% cost, in resources and time."
 msgstr "వనరులు మరియు సమయం పరముగా ఆలయాలకి వాటి సాంకేతిక విజ్ఞానశాస్త్రాలికి -50 శాతం కర్చు."
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya.jsonauraName
-msgid "Teacher Aura"
-msgstr "గురువు కాంతి ప్రకాశము"
+msgid "Teacher"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya.jsonauraDescription
 msgid ""
@@ -587,37 +672,36 @@ msgid ""
 msgstr "అతను రక్షక భటుడిగా ఉన్నంత కాలం ఆ భవంతికి -50 శాతం పరిశోధనా సమయం."
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraName
-msgid "Lead from the Front Aura"
-msgstr "ముందున్న కాంతి ప్రకాశం నుండి దారి చూపు"
+msgid "Lead from the Front"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraDescription
-msgid "+20% attack and +1 capture for nearby cavalry units."
-msgstr "దగ్గరలో ఉన్న గుర్రం సేనలకు +20 శాతం దాడి శక్తి మరియు +1 ఆక్రమించు శక్తి."
+msgid "+20% attack and +1 capture for cavalry soldiers."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraName
-msgid "Leadership Aura"
-msgstr "నాయకత్వం కాంతి ప్రకాశము"
+msgid "Leadership"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraDescription
 msgid "+15% movement speed for all soldiers and siege engines."
 msgstr "సైనికులందరికి మరియు అన్ని దాడి ఎంత్రాలకి +15 వేగం."
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraName
-msgid "Administrator Aura"
-msgstr "నిర్వాహకుని కాంతి ప్రకాశము"
+msgid "Administrator"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraDescription
-msgid "+15% gather rate and build rate of nearby workers."
-msgstr "దగ్గరలో ఉన్న కార్మికులకు +15 శాతం సేకరించు శక్తి మరియు నిర్మించు శక్తి."
+msgid "+15% gather rate and build rate for workers."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraName
-msgid "Patriot Aura"
-msgstr "దేశభక్తుని కాంతి ప్రకాశము"
+msgid "Patriot"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraDescription
-msgid ""
-"-20% attack repeat time for Egyptian soldiers and siege engines in her aura."
-msgstr "ఆమె కాంతి ప్రకాశంలో ఉన్న ఈజిప్ట్ సైనికులకు మరియు దాడి ఎంత్రాలకు -20 శాతం మరల దాడి చేసే సమయం."
+msgid "-20% attack repeat time for soldiers and siege engines."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.jsonauraName
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.jsonauraName
@@ -625,93 +709,89 @@ msgid "Consort"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.jsonauraDescription
-msgid "Allied heroes +10% health when near her."
-msgstr "ఆమె దగ్గరలో ఉన్న మిత్రరాజ్యాల వీరులకు +10 శాతం ఆరోగ్యం."
+msgid "+10% health for allied heroes."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.jsonauraDescription
-msgid "Enemy heroes -10% health when near her."
-msgstr "ఆమె దగ్గరలో ఉన్న శత్రురాజ్యాల వీరులకు -10 శాతం ఆరోగ్యం."
+msgid "-10% health for enemy heroes."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraName
-msgid "Raphia Aura"
-msgstr "రఫియా కాంతి ప్రకాశము"
+msgid "Raphia"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraDescription
 msgid "Egyptian pikemen have 40% greater health during his lifetime."
 msgstr "అతని జీవిత కాలంలో ఈజిప్షియన్ బల్లెం యోదులకు 40 శాతం ఎక్కువ ఆరోగ్యం ఉంటుంది."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraName
-msgid "Construction Aura"
-msgstr "నిర్మాణం కాంతి ప్రకాశం"
+msgid "Patron of Construction"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraDescription
-msgid "Buildings construct 10% faster within his aura."
-msgstr "అతని కాంతి ప్రకాశంలో ఉన్న భవంతులకి నిర్మాణ వ్యవధి 10 శాతం వేగవంతం."
+msgid "+10% build and repair rate for workers."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraName
-msgid "Mercenary Patron Aura"
-msgstr "కిరాయి సైనికుల రక్షకుని కాంతి ప్రకాశము"
+msgid "Mercenary Patron"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraDescription
 msgid "Mercenaries cost -50% resources during his lifetime."
 msgstr "అతని జీవిత కాలంలో కిరాయి సైనికుల వనరుల కర్చు -50 శాతం."
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus.jsonauraName
-msgid "Sword of Rome Aura"
-msgstr "రోమ్ కత్తి కాంతి ప్రకాశము"
+msgid "Sword of Rome"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus.jsonauraDescription
-msgid ""
-"+20% attack and +2 capture for Roman soldiers and siege engines within his "
-"range."
-msgstr "అతని పరిధిలో ఉన్న రోమ్ సైనికులకు మరియు దాడి ఎంత్రాలకు +20 శాతం దాడి శక్తి మరియు +2 ఆక్రమించు బలం."
+msgid "+20% attack and +2 capture for soldiers and siege engines."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraName
-msgid "Shield of Rome Aura"
-msgstr "రోమ్ కవచం కాంతి ప్రకాశము"
+msgid "Shield of Rome"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraDescription
 msgid "+1 armor for all units and structures."
 msgstr "అన్ని బలగాలకి మరియు నిర్మాణాలకు +1 కవచం."
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraName
-msgid "Ilarchès Aura"
-msgstr "ఇలార్చేస్ కాంతి ప్రకాశము"
+msgid "Ilarchès"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraDescription
 msgid "All cavalry gains +2 levels of all armor types."
 msgstr "అన్ని గుర్రం సేనలకు అన్ని రకముల కవచాలు +2 అభివృద్ధి అవును."
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.jsonauraName
-msgid "Conquest Aura"
-msgstr "ఆక్రమణ కాంతి ప్రకాశము"
+msgid "Renowned Conqueror"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.jsonauraDescription
-msgid ""
-"All nearby enemy buildings, siege engines, and ships have their health "
-"reduced by 20%."
-msgstr "దగ్గరలో ఉన్న అన్ని శత్రువు భవంతులు, దాడి ఎంత్రాలు మరియు నౌకలకు 20 శాతం శక్తి తగ్గుతుంది."
+msgid "-20% health for enemy buildings, siege engines and ships."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.jsonauraName
-msgid "Zooiarchos Aura"
-msgstr "జూయార్చోస్ కాంతి ప్రకాశము"
+msgid "Zooiarchos"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.jsonauraDescription
-msgid "Boosts war elephant attack and speed +20% within his aura."
-msgstr "అతని కాంతి ప్రకాశంలో ఉన్న యుద్ధ ఏనుగుకు +20 శాతం దాడి శక్తి మరియు వేగము అవును."
+msgid "+20% attack and movement speed for war elephants."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraName
 msgid "Helot Reforms"
 msgstr "హెలోట్ సంస్కరణలు"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
-msgid "Javelin infantry in his aura gains +20% attack and +1 all armor types."
-msgstr "అతని కాంతి ప్రకాశంలో ఉన్న కర్ర విసిరే సైనికులకు +20 శాతం దాడి శక్తి మరియు +1 అన్ని కవచాలకు అవును."
+msgid "+20% attack and +1 armor for javelin infantry soldiers."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
-msgid "Last Stand Aura"
-msgstr "ఆకరి పోరాటం కాంతి ప్రకాశం"
+msgid "Last Stand"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraDescription
-msgid "+20% attack and +1 capture for nearby Spearmen."
-msgstr "దగ్గరలో ఉన్న బల్లెంతో పొడిచేవారికి +20 శాతం దాడి శక్తి మరియు +1 బంధించు శక్తి."
+msgid "+20% attack and +1 capture for spear soldiers."
+msgstr ""

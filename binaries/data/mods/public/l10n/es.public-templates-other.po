@@ -4,15 +4,16 @@
 # 
 # Translators:
 # David Fernandez Carhuas <deivyelintelecto23@gmail.com>, 2015
+# juanda097 <juanda097@openmailbox.org>, 2017
 # Luis Torrecilla <l_torrecilla@yahoo.es>, 2016
 # Mihai Pantazi <malexandru_70@hotmail.com>, 2017
 # Swyter <Swyterzone@gmail.com>, 2014-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-04-28 09:02+0200\n"
-"PO-Revision-Date: 2017-04-29 14:26+0000\n"
-"Last-Translator: Mihai Pantazi <malexandru_70@hotmail.com>\n"
+"POT-Creation-Date: 2017-05-22 09:03+0200\n"
+"PO-Revision-Date: 2017-05-23 02:00+0000\n"
+"Last-Translator: juanda097 <juanda097@openmailbox.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,7 +123,7 @@ msgstr "Un tesoro que se puede recoger con celeridad."
 msgid "Structure"
 msgstr "Estructura"
 
-#: simulation/templates/template_unit.xml:40
+#: simulation/templates/template_unit.xml:41
 msgid "Unit"
 msgstr "Unidad"
 
@@ -343,6 +344,14 @@ msgstr "Tilapia"
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:6
 msgid "Collect food from this bountiful riparian resource."
 msgstr "Consigue comida de este abundante recurso de la ribera"
+
+#: simulation/templates/gaia/fauna_fox_arctic.xml:4
+msgid "Arctic Fox"
+msgstr "Zorro ártico"
+
+#: simulation/templates/gaia/fauna_fox_red.xml:4
+msgid "Red Fox"
+msgstr "Zorro rojo"
 
 #: simulation/templates/gaia/fauna_gazelle.xml:9
 msgid "Gazelle"
@@ -1041,11 +1050,6 @@ msgid ""
 "Changes in a 5-pop house for civilisations with those houses, is deleted for"
 " other civs"
 msgstr "Se convierte en una casa de 5 de población para las civilizaciones que las tengan, desaparece para el resto de civilizaciones"
-
-#: simulation/templates/special/marker_object_sound.xml:15
-#: simulation/templates/special/marker_object_sound.xml:16
-msgid "Marker"
-msgstr "Marcador"
 
 #: simulation/templates/special/player.xml:57
 msgid "Player"

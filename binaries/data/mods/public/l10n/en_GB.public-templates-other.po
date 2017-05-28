@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-04-28 09:02+0200\n"
-"PO-Revision-Date: 2017-04-28 15:27+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-05-22 09:03+0200\n"
+"PO-Revision-Date: 2017-05-23 13:20+0000\n"
+"Last-Translator: pilino1234 <mhilgendrf@aol.com>\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -124,7 +124,7 @@ msgstr "A treasure that can be quickly gathered."
 msgid "Structure"
 msgstr "Structure"
 
-#: simulation/templates/template_unit.xml:40
+#: simulation/templates/template_unit.xml:41
 msgid "Unit"
 msgstr "Unit"
 
@@ -322,7 +322,7 @@ msgstr "Asian Elephant"
 
 #: simulation/templates/gaia/fauna_elephant_asian_infant.xml:4
 msgid "Asian Elephant (Infant)"
-msgstr ""
+msgstr "Asian Elephant (Infant)"
 
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:11
 msgid "North African Elephant"
@@ -345,6 +345,14 @@ msgstr "Tilapia Fish"
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:6
 msgid "Collect food from this bountiful riparian resource."
 msgstr "Collect food from this bountiful riparian resource."
+
+#: simulation/templates/gaia/fauna_fox_arctic.xml:4
+msgid "Arctic Fox"
+msgstr "Arctic Fox"
+
+#: simulation/templates/gaia/fauna_fox_red.xml:4
+msgid "Red Fox"
+msgstr "Red Fox"
 
 #: simulation/templates/gaia/fauna_gazelle.xml:9
 msgid "Gazelle"
@@ -904,15 +912,15 @@ msgstr "Corinthian Colonnade"
 
 #: simulation/templates/other/special_catafalque.xml:20
 msgid "Catafalque"
-msgstr ""
+msgstr "Catafalque"
 
 #: simulation/templates/other/special_catafalque.xml:23
 msgid "A catafalque that holds the remains of a great leader."
-msgstr ""
+msgstr "A catafalque that holds the remains of a great leader."
 
 #: simulation/templates/other/special_catafalque.xml:24
 msgid "Relic"
-msgstr ""
+msgstr "Relic"
 
 #: simulation/templates/other/special_treasure_shipwreck.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:10
@@ -979,58 +987,58 @@ msgstr "This temple is unfinished and has fallen to ruin."
 
 #: simulation/templates/other/catafalque/athen_catafalque.xml:9
 msgid "Solon"
-msgstr ""
+msgstr "Solon"
 
 #: simulation/templates/other/catafalque/brit_catafalque.xml:9
 msgid "Cassivellaunus"
-msgstr ""
+msgstr "Cassivellaunus"
 
 #: simulation/templates/other/catafalque/cart_catafalque.xml:8
 msgid "Hasdrubal (Quartermaster)"
-msgstr ""
+msgstr "Hasdrubal (Quartermaster)"
 
 #: simulation/templates/other/catafalque/gaul_catafalque.xml:9
 msgid "Ambiorix"
-msgstr ""
+msgstr "Ambiorix"
 
 #: simulation/templates/other/catafalque/iber_catafalque.xml:9
 msgid "Mandonius"
-msgstr ""
+msgstr "Mandonius"
 
 #: simulation/templates/other/catafalque/mace_catafalque.xml:8
 msgid "Philip V"
-msgstr ""
+msgstr "Philip V"
 
 #: simulation/templates/other/catafalque/mace_catafalque.xml:9
 msgid ""
 "Financial Reorganization: Allied with Rome, Philip reorganized the country's"
 " internal affairs and finances, leaving as a legacy reopened mines and a new"
 " currency. Gain a slow trickle of metal."
-msgstr ""
+msgstr "Financial Reorganization: Allied with Rome, Philip reorganized the country's internal affairs and finances, leaving as a legacy reopened mines and a new currency. Gain a slow trickle of metal."
 
 #: simulation/templates/other/catafalque/maur_catafalque.xml:9
 msgid "Bindusara"
-msgstr ""
+msgstr "Bindusara"
 
 #: simulation/templates/other/catafalque/pers_catafalque.xml:8
 msgid "Artaxerxes II"
-msgstr ""
+msgstr "Artaxerxes II"
 
 #: simulation/templates/other/catafalque/ptol_catafalque.xml:8
 msgid "Ptolemy III Euergetes (Benefactor)"
-msgstr ""
+msgstr "Ptolemy III Euergetes (Benefactor)"
 
 #: simulation/templates/other/catafalque/rome_catafalque.xml:9
 msgid "Lucius Junius Brutus"
-msgstr ""
+msgstr "Lucius Junius Brutus"
 
 #: simulation/templates/other/catafalque/sele_catafalque.xml:10
 msgid "Antiochus I Soter (Savior)"
-msgstr ""
+msgstr "Antiochus I Soter (Saviour)"
 
 #: simulation/templates/other/catafalque/spart_catafalque.xml:10
 msgid "Lycurgus"
-msgstr ""
+msgstr "Lycurgus"
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""
@@ -1043,11 +1051,6 @@ msgid ""
 "Changes in a 5-pop house for civilisations with those houses, is deleted for"
 " other civs"
 msgstr "Changes in a 5-pop house for civilisations with those houses, is deleted for other civs"
-
-#: simulation/templates/special/marker_object_sound.xml:15
-#: simulation/templates/special/marker_object_sound.xml:16
-msgid "Marker"
-msgstr "Marker"
 
 #: simulation/templates/special/player.xml:57
 msgid "Player"

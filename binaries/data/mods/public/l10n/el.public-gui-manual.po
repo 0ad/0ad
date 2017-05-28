@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-03-06 09:29+0100\n"
-"PO-Revision-Date: 2017-03-15 22:50+0000\n"
+"POT-Creation-Date: 2017-05-15 09:04+0200\n"
+"PO-Revision-Date: 2017-05-19 21:03+0000\n"
 "Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -327,284 +327,299 @@ msgid "Shift + /: add idle fighter to selection"
 msgstr "Shift + /: Προσθήκη ακίνητου πολεμιστή στην επιλογή"
 
 #: gui/manual/intro.txt:71
+msgid "Alt + /: Select all idle fighters"
+msgstr "Alt + /: Επιλογή όλων των ανενεργών πολεμιστών"
+
+#: gui/manual/intro.txt:72
 msgid ". (Period): Select idle worker (including citizen soldiers)"
 msgstr ". (Τελεία): Επιλογή ακίνητου εργάτη (συμπεριλαμβάνονται μαχόμενοι πολίτες)"
 
-#: gui/manual/intro.txt:72
+#: gui/manual/intro.txt:73
 msgid "Shift + .: add idle worker to selection (including citizen soldiers)"
 msgstr "Shift + .: Προσθήκη ακίνητου εργάτη στην επιλογή (συμπεριλαμβάνονται μαχόμενοι πολίτες)"
 
-#: gui/manual/intro.txt:73
+#: gui/manual/intro.txt:74
+msgid "Alt + .: Select all idle workers (including citizen soldiers)"
+msgstr "Alt + .: Επιλογή αδρανών εργατών (συμπεριλαμβάνονται οι πολίτες οπλίτες)"
+
+#: gui/manual/intro.txt:75
 msgid "H: Stop (halt) the currently selected units."
 msgstr "H: Σταμάτημα (Αλτ!) των επιλεγμένων μονάδων."
 
-#: gui/manual/intro.txt:74
+#: gui/manual/intro.txt:76
 msgid "Y: The unit will go back to work"
 msgstr "Υ: Η μονάδα θα γυρίσει στη δουλειά"
 
-#: gui/manual/intro.txt:75
+#: gui/manual/intro.txt:77
 msgid "U: Unload the garrisoned units of the selected buildings"
 msgstr "U: Ξεφόρτωσε τις φρουρόμενες μονάδες από τα επιλεγμένα κτήρια"
 
-#: gui/manual/intro.txt:76
+#: gui/manual/intro.txt:78
 msgid ""
 "Ctrl + 1 (and so on up to Ctrl + 0): Create control group 1 (to 0) from the "
 "selected units/buildings"
 msgstr "Ctrl + 1 (μέχρι Ctrl + 0): Δημιουργίας ομάδας 1 (μέχρι 0) από τις επιλεγμένες μονάδες και κτήρια."
 
-#: gui/manual/intro.txt:77
+#: gui/manual/intro.txt:79
 msgid ""
 "1 (and so on up to 0): Select the units/buildings in control group 1 (to 0)"
 msgstr "1 (μέχρι 0): Επιλογή ομάδας 1 (μέχρι 0) "
 
-#: gui/manual/intro.txt:78
+#: gui/manual/intro.txt:80
 msgid ""
 "Shift + 1 (to 0): Add control group 1 (to 0) to the selected units/buildings"
 msgstr "Shift + 1 (έως 0):Προσθέστε στο group 1 (έως 0) τα επιλεγμένα κτήρια/μονάδες"
 
-#: gui/manual/intro.txt:79
+#: gui/manual/intro.txt:81
 msgid ""
 "Ctrl + F5 (and so on up to F8): Mark the current camera position, for "
 "jumping back to later."
 msgstr "Ctrl + F5 (και ουτο κάθε εξης μέχρι F8): Σημείωσε την τρέχον θέση της κάμερας, έτσι ώστε να ξαναγυρήσεις σε αυτήν αργότερα."
 
-#: gui/manual/intro.txt:80
+#: gui/manual/intro.txt:82
 msgid ""
 "F5, F6, F7, and F8: Move the camera to a marked position. Jump back to the "
 "last location if the camera is already over the marked position."
 msgstr "F5, F6, F7, και F8: Μετακίνησε την κάμερα σε μία σημαδεμένη θέση. Πήγαινε στην τελευταία θέση άμα η κάμερα είναι ήδη δε μία σημαδεμένη θέση."
 
-#: gui/manual/intro.txt:81
+#: gui/manual/intro.txt:83
 msgid ""
 "Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, ..."
 " unit shown to the training queue for all the selected buildings."
 msgstr "Z, X, C, V, B, N, M: Ελέγχοντας τα κτήρια εκπαίδευσης πρόσθεσε την 1η, 2η, .....μονάδα να φαίνεται στην σειρά εκπαίδευσης για όλα τα επιλεγμένα κτήρια."
 
-#: gui/manual/intro.txt:82
+#: gui/manual/intro.txt:84
 msgid ""
 "PageUp with units selected: Highlights the units/buildings guarded by the "
 "selection."
 msgstr "PageUp μαζί με μονάδες επιλεγμένες: Επισημαίνει μονάδες/κτήρια που φρουρούνται από την επιλογή."
 
-#: gui/manual/intro.txt:83
+#: gui/manual/intro.txt:85
 msgid ""
 "PageDown with units/buildings selected: Highlights the units guarding the "
 "selection."
 msgstr "PageDown μαζί με μονάδες/κτήρια επιλεγμένα: Επισημαίνει τις μονάδες που φρουρούν την επιλογή."
 
-#: gui/manual/intro.txt:84
+#: gui/manual/intro.txt:86
 msgid "Tab: See all status bars (which would also show the building progress)"
 msgstr "Tab: Δες όλες τις μπάρες κατάστασης (που επίσης δείχνει την πρόοδο κατασκευής)"
 
-#: gui/manual/intro.txt:86
+#: gui/manual/intro.txt:88
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
 msgstr "[font=\"sans-bold-14\"]Τροποποίηση ενέργεια ποντικιού"
 
-#: gui/manual/intro.txt:87
+#: gui/manual/intro.txt:89
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
 msgstr "[font=\"sans-14\"]Ctrl + Δεξί Κλικ σε κτήριο: Ταμπούρωμα"
 
-#: gui/manual/intro.txt:88
+#: gui/manual/intro.txt:90
 msgid "J + Right Click on building: Repair"
 msgstr "J + Δεξί κλικ σε κτήριο: Επισκευή"
 
-#: gui/manual/intro.txt:89
+#: gui/manual/intro.txt:91
 msgid "P + Right Click: Patrol"
 msgstr "P + Δεξί κλικ: Περιπολία"
 
-#: gui/manual/intro.txt:90
+#: gui/manual/intro.txt:92
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
 msgstr "Shift + Right Click: Βαλε σε αναμονή την εντολή μετακίνηση/χτίσε/σύλλεξε/κτλ "
 
-#: gui/manual/intro.txt:91
-msgid "Shift + Left click when training unit/s: Add units in batches of five"
-msgstr "Shift + Αριστερό κλικ κατά την εκπαίδευση μονάδων: Εκπαίδευση κατά πεντάδες."
+#: gui/manual/intro.txt:93
+msgid ""
+"Shift + Left Click when training units: Add units in batches (the batch size"
+" is 5 by default and can be changed in the options)"
+msgstr "Shift + Αριστερό κλικ κατά την εκπαίδευση μονάδων: Προσθέτει μονάδες στις δέσμες (το μέγεθος της δέσμης είναι 5 εξ ορισμού και μπορεί να αλλάξει από τις επιλογές)"
 
-#: gui/manual/intro.txt:92
+#: gui/manual/intro.txt:94
 msgid ""
 "Shift + Left Click or Left Drag over unit on map: Add unit to selection"
 msgstr "Shift + Αριστερό Click  ή Αριστερό κλικ και σέρνεις πάνω από μία μονάδα: Πρόσθεσε την μονάδα στην ήδη επιλεγμένη όμαδα στρατιωτών"
 
-#: gui/manual/intro.txt:93
+#: gui/manual/intro.txt:95
 msgid ""
 "Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
 msgstr "Shift + Αριστερό Click ή Αριστερό κλικ και σέρνεις πάνω από μία μονάδα: Αφαιρείς μία μοναδα από την επιλεγμένη ομάδα στρατιωτών"
 
-#: gui/manual/intro.txt:94
+#: gui/manual/intro.txt:96
 msgid "Alt + Left Drag over units on map: Only select military units"
 msgstr "Alt + Αριστερό κλικ και σέρνεις πάνω από μονάδες στον χάρτη: Επιλέγεις μόνο στρατιωτικές μονάδες"
 
-#: gui/manual/intro.txt:95
+#: gui/manual/intro.txt:97
 msgid "I + Left Drag over units on map: Only select idle units"
 msgstr "I + Σύρσιμο με αριστερό κλικ πάνω από μονάδες στον χάρτη: Επιλογή μονάδων που είναι σε αναμονή."
 
-#: gui/manual/intro.txt:96
+#: gui/manual/intro.txt:98
 msgid ""
 "Ctrl + Left Click on unit/group icon with multiple units selected: Deselect"
 msgstr "Ctrl + Αριστερό κλικ σε ένα εικονίδιο μιάς μονάδας ή ομάδας με πολλαπλές μονάδες: Αφαιρείς την επιλογη "
 
-#: gui/manual/intro.txt:97
+#: gui/manual/intro.txt:99
 msgid ""
 "Right Click with a building/buildings selected: sets a rally point for units"
 " created/ungarrisoned from that building."
 msgstr "Δεξί κλίκ με ένα προεπιλεγμένο κτίριο/κτίρια: ορίζει ένα σημείο συγκέντρωσης για μονάδες που δημιουργήθηκαν/απ' οχυρώθηκαν από αυτό το κτίριο."
 
-#: gui/manual/intro.txt:98
+#: gui/manual/intro.txt:100
 msgid "Ctrl + Right Click with units selected:"
 msgstr "Ctrl + Δεξί κλικ με μονάδες επιλεγμένες:"
 
-#: gui/manual/intro.txt:99
+#: gui/manual/intro.txt:101
 msgid "    - If the cursor is over an allied structure: Garrison"
 msgstr "Αν ο κέρσορας είναι πάνω από ένα φιλικό κτήριο: Ταμπούρωμα"
 
-#: gui/manual/intro.txt:100
+#: gui/manual/intro.txt:102
 msgid ""
 "    - If the cursor is over a non-allied unit or building: Attack (instead "
 "of capture or gather)"
 msgstr "Αν ο κέρσορας είναι πάνω από μία μη συμμαχική μονάδα ή κτίριο: Επίθεση (αντί για σύλληψη ή συλλογή)"
 
-#: gui/manual/intro.txt:101
+#: gui/manual/intro.txt:103
 msgid ""
 "    - Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
 "units). "
 msgstr "Διαφορετικά: Επίθεση κίνηση (από προεπιλογή όλες οι μονάδες του εχθρού και των δομών κατά μήκος του τρόπου στοχευμένες, χρησιμοποιήστε τα πλήκτρα Ctrl + Q + δεξί κλικ για να στοχεύσετε μόνο μονάδες)."
 
-#: gui/manual/intro.txt:103
+#: gui/manual/intro.txt:105
 msgid "[font=\"sans-bold-14\"]Overlays"
 msgstr "[font=\"sans-bold-14\"]Επικαλύψεις"
 
-#: gui/manual/intro.txt:104
+#: gui/manual/intro.txt:106
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
 msgstr "[font=\"sans-14\"]Alt + G: Απόκρυψη εμφάνιση του GUI"
 
-#: gui/manual/intro.txt:105
+#: gui/manual/intro.txt:107
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
 msgstr "Alt + D: Εμφάνιση/απόκρυψη επικάλυψης προγραμματιστή (με τις επιλογές του προγραμματιστή)"
 
-#: gui/manual/intro.txt:106
+#: gui/manual/intro.txt:108
 msgid ""
 "Alt + W: Toggle wireframe mode (press once to get wireframes overlaid over "
 "the textured models, twice to get just the wireframes colored by the "
 "textures, thrice to get back to normal textured mode)"
 msgstr "Alt + W: Λειτουργία Εναλλαγής wireframe (πατήστε μία φορά για να πάρετε τα wireframes που επικαλύπτονται πάνω από τα μοντέλα υφής, δύο φορές για να πάρει ακριβώς τα wireframes που είναι χρωματισμένα από τις υφές, τρεις φορές για να επιστρέψετε στην κανονική λειτουργία υφής)"
 
-#: gui/manual/intro.txt:107
+#: gui/manual/intro.txt:109
 msgid ""
 "Alt + S: Toggle unit silhouettes (might give a small performance boost)"
 msgstr "Alt + S: Ενεργοποίηση περιγράμματος μονάδας (μπορεί να βελτιώσει τις επιδόσεις κατα μικρή αναλογία)"
 
-#: gui/manual/intro.txt:108
+#: gui/manual/intro.txt:110
 msgid "Alt + Z: Toggle sky"
 msgstr "Alt + Z: Ενεργοποίηση/Απενεργοποίηση του ουρανού"
 
-#: gui/manual/intro.txt:110
+#: gui/manual/intro.txt:111
+msgid ""
+"Alt + V: Toggle aura range visualizations of selected units and structures"
+msgstr "Alt + V: Εναλλάσσει την εμφάνιση του εύρους της αύρας για τις επιλεγμένες μονάδες και κατασκευές"
+
+#: gui/manual/intro.txt:113
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
 msgstr "[font=\"sans-bold-14\"]Χειρισμός κάμερας"
 
-#: gui/manual/intro.txt:111
+#: gui/manual/intro.txt:114
 msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
 msgstr "[font=\"sans-14\"]W or \\[up]:Μετακίνηση οθόνης προς τα πάνω"
 
-#: gui/manual/intro.txt:112
+#: gui/manual/intro.txt:115
 msgid "S or \\[down]: Pan screen down"
 msgstr "S ή \\[κάτω]: Μετακίνηση οθόνης προς τα κάτω"
 
-#: gui/manual/intro.txt:113
+#: gui/manual/intro.txt:116
 msgid "A or \\[left]: Pan screen left"
 msgstr "Α ή \\[αριστερά]: Μετακίνηση οθόνης προς τα αριστερά"
 
-#: gui/manual/intro.txt:114
+#: gui/manual/intro.txt:117
 msgid "D or \\[right]: Pan screen right"
 msgstr "D ή \\[δεξιά]: Μετακίνηση οθόνης προς τα δεξιά"
 
-#: gui/manual/intro.txt:115
+#: gui/manual/intro.txt:118
 msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
 msgstr "Ctrl + W ή \\[πάνω]: Περιστροφή κάμερα προς τα πάνω"
 
-#: gui/manual/intro.txt:116
+#: gui/manual/intro.txt:119
 msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
 msgstr "Ctrl + S ή \\[κάτω]: Περιστροφή κάμερα προς τα κάτω"
 
-#: gui/manual/intro.txt:117
+#: gui/manual/intro.txt:120
 msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
 msgstr "Ctrl + Α ή \\[πλήκτρο αριστερά]: Περιστροφή κάμερας δεξιόστροφα"
 
-#: gui/manual/intro.txt:118
+#: gui/manual/intro.txt:121
 msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
 msgstr "Ctrl + D ή \\[πλήκτρο δεξιά]: Περιστροφή κάμερας δεξιόστροφα"
 
-#: gui/manual/intro.txt:119
+#: gui/manual/intro.txt:122
 msgid "Q: Rotate camera clockwise around terrain"
 msgstr "Q: Περιστροφή κάμερας δεξιόστροφα"
 
-#: gui/manual/intro.txt:120
+#: gui/manual/intro.txt:123
 msgid "E: Rotate camera anticlockwise around terrain"
 msgstr "Ε: Περιστροφή κάμερας αριστερόστροφα"
 
-#: gui/manual/intro.txt:121
+#: gui/manual/intro.txt:124
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
 msgstr "Shift + περιστροφή ροδέλας ποντικιού προς τα πάνω: Περιστροφή κάμερας δεξιόστροφα"
 
-#: gui/manual/intro.txt:122
+#: gui/manual/intro.txt:125
 msgid ""
 "Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
 msgstr "Shift + περιστροφή ροδέλας ποντικιού προς τα κάτω: Περιστροφή κάμερας αριστερόστροφα"
 
-#: gui/manual/intro.txt:123
+#: gui/manual/intro.txt:126
 msgid ""
-"F: Follow the selected unit (move the camera to stop the camera from "
-"following the unit/s)"
+"F: Follow the selected unit (move the camera to stop it from following the "
+"unit)"
 msgstr "F: Παρακολούθηση επιλεγμένης μονάδας (μετακινήστε την κάμερα για να σταματήσει να ακολουθεί τη μονάδα)"
 
-#: gui/manual/intro.txt:124
+#: gui/manual/intro.txt:127
 msgid "R: Reset camera zoom/orientation"
 msgstr "R: Επανακίνηση της κάμερας στην αρχική της θέση"
 
-#: gui/manual/intro.txt:125
+#: gui/manual/intro.txt:128
 msgid "+: Zoom in (keep pressed for continuous zoom)"
 msgstr "+: Zoom in (Κρατήστε πιεσμένο για συνεχόμενο zoom)"
 
-#: gui/manual/intro.txt:126
+#: gui/manual/intro.txt:129
 msgid "-: Zoom out (keep pressed for continuous zoom)"
 msgstr "-: Zoom out (Κρατήστε πιεσμένο για συνεχόμενο zoom)"
 
-#: gui/manual/intro.txt:127
+#: gui/manual/intro.txt:130
 msgid "Alt + W: Toggle through wireframe modes"
 msgstr "Alt + W: Ενναλαγή ανάμεστα στα wireframe modes"
 
-#: gui/manual/intro.txt:128
+#: gui/manual/intro.txt:131
 msgid "Middle Mouse Button: Keep pressed and move the mouse to pan"
 msgstr "Μεσαίο κουμπί ποντικιού: Κρατήστε πατημένο και μετακινήστε το ποντίκι για να περιηγηθείτε"
 
-#: gui/manual/intro.txt:130
+#: gui/manual/intro.txt:133
 msgid "[font=\"sans-bold-14\"]During Building Placement"
 msgstr "[font=\"sans-bold-14\"]Κατα τη διάρκεια τοποθέτησης κτηρίου"
 
-#: gui/manual/intro.txt:131
+#: gui/manual/intro.txt:134
 msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
 msgstr "[font=\"sans-14\"]\\[:Περιστροφή κτιρίου κατά 15 μοίρες δεξιόστροφα"
 
-#: gui/manual/intro.txt:132
+#: gui/manual/intro.txt:135
 msgid "]: Rotate building 15 degrees clockwise"
 msgstr "]: Περιστροφή κτιρίου κατά 15 μοίρες δεξιόστροφα"
 
-#: gui/manual/intro.txt:133
+#: gui/manual/intro.txt:136
 msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
 msgstr "Αριστερό κλικ και σέρνεις: Περστροφή κτηρίου χρησιμοποιώντας το ποντίκι (θα τοποθετηθεί με απελευθέρωση του αριστερού κιλκ)"
 
-#: gui/manual/intro.txt:135
+#: gui/manual/intro.txt:138
 msgid "[font=\"sans-bold-14\"]When loading a saved game"
 msgstr "[font=\"sans-bold-14\"]Οταν φορτώνει ένα αποθηκευμένο παιχνίδι."
 
-#: gui/manual/intro.txt:136
+#: gui/manual/intro.txt:139
 msgid ""
 "[font=\"sans-14\"]Delete: delete the selected saved game asking confirmation"
 msgstr "[font=\"sans-14\"]Διαγραφή: διαγραφή των επιλεγμένων παιχνιδιών που ζητάνε επιβεβαίωση"
 
-#: gui/manual/intro.txt:137
+#: gui/manual/intro.txt:140
 msgid "Shift: do not ask confirmation when deleting a saved game"
 msgstr "Shift: Mήν ρωτάτε επιβεβαίωση όταν διαγράφεται ένα αποθηκευμένο παιχνίδι"
 

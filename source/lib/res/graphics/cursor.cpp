@@ -1,4 +1,4 @@
-/* Copyright (c) 2014 Wildfire Games
+/* Copyright (c) 2017 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -52,7 +52,7 @@ class SDLCursor
 	SDL_Cursor* cursor;
 
 public:
-	Status create(const PIVFS& vfs, const VfsPath& pathname, int hotspotx_, int hotspoty_)
+	Status create(const PIVFS& vfs, const VfsPath& pathname, int hotspotx_, int hotspoty_, double scale)
 	{
 		shared_ptr<u8> file; size_t fileSize;
 		RETURN_STATUS_IF_ERR(vfs->LoadFile(pathname, file, fileSize));
@@ -70,6 +70,16 @@ public:
 		surface = SDL_CreateRGBSurfaceFrom(bgra_img, (int)t.m_Width, (int)t.m_Height, 32, (int)t.m_Width*4, 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000);
 		if (!surface)
 			return ERR::FAIL;
+		if (scale != 1.0)
+		{
+			SDL_Surface* scaled_surface = SDL_CreateRGBSurface(0, surface->w * scale, surface->h * scale, 32, 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000);
+			if (!scaled_surface)
+				return ERR::FAIL;
+			if (SDL_BlitScaled(surface, NULL, scaled_surface, NULL))
+				return ERR::FAIL;
+			SDL_FreeSurface(surface);
+			surface = scaled_surface;
+		}
 		cursor = SDL_CreateColorCursor(surface, hotspotx_, hotspoty_);
 		if (!cursor)
 			return ERR::FAIL;
@@ -99,15 +109,15 @@ class GLCursor
 	int hotspotx, hotspoty;
 
 public:
-	Status create(const PIVFS& vfs, const VfsPath& pathname, int hotspotx_, int hotspoty_)
+	Status create(const PIVFS& vfs, const VfsPath& pathname, int hotspotx_, int hotspoty_, double scale)
 	{
 		ht = ogl_tex_load(vfs, pathname);
 		RETURN_STATUS_IF_ERR(ht);
 
 		size_t width, height;
 		(void)ogl_tex_get_size(ht, &width, &height, 0);
-		w = (GLint)width;
-		h = (GLint)height;
+		w = (GLint)(width * scale);
+		h = (GLint)(height * scale);
 
 		hotspotx = hotspotx_; hotspoty = hotspoty_;
 
@@ -169,6 +179,8 @@ enum CursorKind
 
 struct Cursor
 {
+	double scale;
+
 	// require kind == CK_OpenGL after reload
 	bool forceGL;
 
@@ -185,6 +197,7 @@ H_TYPE_DEFINE(Cursor);
 
 static void Cursor_init(Cursor* c, va_list args)
 {
+	c->scale = va_arg(args, double);
 	c->forceGL = (va_arg(args, int) != 0);
 }
 
@@ -227,13 +240,11 @@ static Status Cursor_reload(Cursor* c, const PIVFS& vfs, const VfsPath& name, Ha
 	const VfsPath pathnameImage = pathname.ChangeExtension(L".png");
 
 	// try loading as SDL2 cursor
-	if (!c->forceGL && c->sdl_cursor.create(vfs, pathnameImage, hotspotx, hotspoty) == INFO::OK)
+	if (!c->forceGL && c->sdl_cursor.create(vfs, pathnameImage, hotspotx, hotspoty, c->scale) == INFO::OK)
 		c->kind = CK_SDL;
 	// fall back to GLCursor (system cursor code is disabled or failed)
-	else if(c->gl_cursor.create(vfs, pathnameImage, hotspotx, hotspoty) == INFO::OK)
-	{
+	else if (c->gl_cursor.create(vfs, pathnameImage, hotspotx, hotspoty, c->scale) == INFO::OK)
 		c->kind = CK_OpenGL;
-	}
 	// everything failed, leave cursor unchanged
 	else
 		c->kind = CK_Default;
@@ -297,9 +308,9 @@ static Status Cursor_to_string(const Cursor* c, wchar_t* buf)
 // in other words, we continually create/free the cursor resource in
 // cursor_draw and trust h_mgr's caching to absorb it.
 
-static Handle cursor_load(const PIVFS& vfs, const VfsPath& name, bool forceGL)
+static Handle cursor_load(const PIVFS& vfs, const VfsPath& name, double scale, bool forceGL)
 {
-	return h_alloc(H_Cursor, vfs, name, 0, (int)forceGL);
+	return h_alloc(H_Cursor, vfs, name, 0, scale, (int)forceGL);
 }
 
 void cursor_shutdown()
@@ -313,7 +324,7 @@ static Status cursor_free(Handle& h)
 }
 
 
-Status cursor_draw(const PIVFS& vfs, const wchar_t* name, int x, int y, bool forceGL)
+Status cursor_draw(const PIVFS& vfs, const wchar_t* name, int x, int y, double scale, bool forceGL)
 {
 	// hide the cursor
 	if(!name)
@@ -322,7 +333,7 @@ Status cursor_draw(const PIVFS& vfs, const wchar_t* name, int x, int y, bool for
 		return INFO::OK;
 	}
 
-	Handle hc = cursor_load(vfs, name, forceGL);
+	Handle hc = cursor_load(vfs, name, scale, forceGL);
 	// TODO: if forceGL changes at runtime after a cursor is first created,
 	// we might reuse a cached version of the cursor with the old forceGL flag
 

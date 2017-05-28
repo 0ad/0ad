@@ -5,14 +5,17 @@
 # Translators:
 # Albert, 2017
 # Albert, 2016
+# Javier Rojas <hekeine@gmail.com>, 2017
 # Mihai Pantazi <malexandru_70@hotmail.com>, 2017
+# Raúl Fdez. <raulferval@hotmail.com>, 2017
+# soloooy0 fg <juanjo.fg@hotmail.com>, 2017
 # Swyter <Swyterzone@gmail.com>, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-04-28 09:02+0200\n"
-"PO-Revision-Date: 2017-04-29 14:41+0000\n"
-"Last-Translator: Mihai Pantazi <malexandru_70@hotmail.com>\n"
+"POT-Creation-Date: 2017-05-22 09:04+0200\n"
+"PO-Revision-Date: 2017-05-22 09:02+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,35 +24,32 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
-msgid "Repairing Ship aura"
-msgstr "Aura de reparación naval"
+msgid "Dockyard Repairs"
+msgstr "Reparaciones en astilleros"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Heals garrisoned ship at 10 HP per second."
 msgstr "Sana a los navíos guarnecidos con 10 PV por segundo."
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
-#: simulation/data/auras/structures/temple_heal.jsonauraName
-msgid "Healing Aura"
-msgstr "Aura de sanación"
+msgid "Blessing of the Gods"
+msgstr "Protección divina"
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraDescription
-msgid "Heals nearby units at 3 HP per second."
-msgstr "Sana a las unidades cercanas con 3 PV por segundo."
+msgid "Heals units at 3 HP per second."
+msgstr "Sana unidades a un ritmo de 3 PV por segundo."
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
-msgid "Defensive Aura"
-msgstr "Aura defensiva"
+msgid "Religious Fervor"
+msgstr "Fervor religioso"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
-msgid ""
-"Gives all iberian soldiers in aura +20% attack boost. Effect Range: 50 "
-"meters"
-msgstr "Proporciona a los combatientes íberos un aura de +20% de daño. Alcance de efecto: 50 metros."
+msgid "+20% attack damage for soldiers."
+msgstr "+20% daño de ataque para soldados."
 
 #: simulation/data/auras/structures/library.jsonauraName
-msgid "Library Aura"
-msgstr "Aura de biblioteca"
+msgid "Power of Knowledge"
+msgstr "Saber es poder"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
 msgid ""
@@ -57,36 +57,40 @@ msgid ""
 msgstr "Cada biblioteca reduce un 10% el coste y tiempo de investigación de todas las tecnologías restantes."
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraName
-msgid "Loyalty Aura"
-msgstr "Aura de lealtad"
+msgid "Loyalty"
+msgstr "Lealtad"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
-msgid "All structures in range +50% garrisoned loyalty regeneration rate."
-msgstr "Las estructuras cercanas aumentan la generación de lealtad un +50% al guarnecer."
+msgid "+50% garrisoned loyalty regeneration rate for structures."
+msgstr ""
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraName
 msgid "Edict of Ashoka"
 msgstr "Edicto de Asóka"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraDescription
-msgid "All traders in range +20% speed."
-msgstr "Todos los comerciantes en el área caminan un +20% más rápido."
+msgid "+20% movement speed for traders."
+msgstr "+20% velocidad de movimiento para comerciantes."
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraName
 msgid "Farming bonus"
 msgstr "Bonificación de cultivo"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraDescription
-msgid "Boosts nearby farming with +25% gathering rate."
-msgstr "Potencia los cultivos cercanos con +25% de velocidad de recolección."
+msgid "+25% gather rate for workers in the grainfields."
+msgstr ""
+
+#: simulation/data/auras/structures/temple_heal.jsonauraName
+msgid "Medical Treatment"
+msgstr "Tratamiento médico"
 
 #: simulation/data/auras/structures/temple_heal.jsonauraDescription
 msgid "Heals nearby units at 1 HP per second."
 msgstr "Sana las unidades cercanas con 1 PV por segundo."
 
 #: simulation/data/auras/structures/theatron.jsonauraName
-msgid "Hellenization."
-msgstr "Helenización."
+msgid "Hellenization"
+msgstr "Helenización"
 
 #: simulation/data/auras/structures/theatron.jsonauraDescription
 msgid "Increase territory influence by 20% per theatron owned."
@@ -101,16 +105,16 @@ msgid "Soldiers on walls have +3 armor and higher vision."
 msgstr "Los soldados que se encuentren sobre las murallas tendrán +3 niveles de protección adicional y un mejor campo de visión."
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraName
-msgid "Wonder Aura"
-msgstr "Aura de la maravilla"
+msgid "Symbol of Greatness"
+msgstr "Símbolo de grandeza"
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraDescription
 msgid "Increase the population limit by 10 per wonder owned."
 msgstr "Amplia a +10 el límite de población con cada maravilla construida."
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraName
-msgid "Glorious Expansion Aura"
-msgstr "Aura de Gloriosa expansión"
+msgid "Glorious Expansion"
+msgstr "Gloriosa expansión"
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraDescription
 msgid ""
@@ -130,6 +134,14 @@ msgid ""
 "contributed ships and money, while the Athenians offered their entire navy."
 msgstr "Poco después de las grandes victorias navales de Salamina y Mykale, las ciudades-estado griegas conformaron la llamada Liga de Delos en el 478 a.C., cuyo propósito era expulsar a los Persas fuera de la región del Egeo. Las ciudades aliadas contribuyeron con barcos y dinero, mientras que los Atenienses ofrecieron su flota entera. "
 
+#: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
+msgid "Druids"
+msgstr "Druidas"
+
+#: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
+msgid "-20% resources cost for allies healers."
+msgstr "-20% coste de recursos para todos los sanadores aliados"
+
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
 msgstr "Maestros del comercio"
@@ -137,6 +149,14 @@ msgstr "Maestros del comercio"
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "10% bonus of trade profit for ally's international routes."
 msgstr "+10% de ganancia comercial por las rutas internacionales de aliados."
+
+#: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
+msgid "Druidic Wisdom"
+msgstr ""
+
+#: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
+msgid "-20% research time for technologies of allies."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
@@ -147,6 +167,14 @@ msgid ""
 "Reduces the cost for citizen-soldier skirmishers with 20% for allies of "
 "Iberian players"
 msgstr "Reduce el coste de los ciudadanos soldado un 20% para los aliados de los íberos."
+
+#: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
+msgid "Standardized Currency"
+msgstr ""
+
+#: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraDescription
+msgid "+20% sell prices at market."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
@@ -173,6 +201,14 @@ msgstr "Despensa del Mediterráneo"
 msgid "All allies automatically gain a slow trickle of food income."
 msgstr "Todos los aliados ganan automáticamente un lento goteo de comida adicional."
 
+#: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraName
+msgid "Conscription"
+msgstr ""
+
+#: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
+msgid "-20% training time for allied infantry."
+msgstr ""
+
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
 msgstr "Tetrápolis siria"
@@ -193,12 +229,12 @@ msgid ""
 msgstr "Incrementa la salud de la infantería lancera de soldados-ciudadano en un 10% para los aliados de los jugadores Espartanos."
 
 #: simulation/data/auras/units/female_inspiration.jsonauraName
-msgid "Inspiration Aura"
-msgstr "Aura de inspiración"
+msgid "Inspiration"
+msgstr "Inspiración"
 
 #: simulation/data/auras/units/female_inspiration.jsonauraDescription
-msgid "Nearby citizen soldiers work 10% faster."
-msgstr "Los ciudadanos-soldado cercanos trabajan un 10% más rápido."
+msgid "+10% build rate and gather rate for citizen soldiers."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraName
 msgid "Economic Reforms"
@@ -207,8 +243,8 @@ msgstr "Reformas económicas"
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraDescription
 msgid ""
 "Solon instituted several economic reforms encouraging commerce and agriculture.\n"
-"+10% gather rate of workers within an 80 meter range."
-msgstr "Solón instituyó varias reformas económicas para fomentar el comercio y la agricultura.\n+10% de velocidad de recolección para los trabajadores en un área de 80 metros."
+"+15% gather rate for workers."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_2.jsonauraName
 msgid "Economic Fortune"
@@ -221,13 +257,14 @@ msgid ""
 msgstr "Solón introdujo un nuevo sistema de pesos y medidas, se alentó a los padres a encontrar oficios para sus hijos.\n-10% de coste para las tecnologías económicas."
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_1.jsonauraName
-msgid "Guerilla Tactics"
-msgstr "Tácticas guerrilleras"
+#: simulation/data/auras/units/heroes/iber_hero_viriato_1.jsonauraName
+msgid "Guerrilla Tactics"
+msgstr "Tácticas de Guerrilla"
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_1.jsonauraDescription
 msgid ""
-"Seeing entrenched defense to be useless against the Roman army, Cassivellanus resorted to gurerilla tactics. This was later employed by other cheiftains too.\n"
-"+15% speed and vision range for soldiers."
+"Seeing entrenched defense to be useless against the Roman army, Cassivellaunus resorted to guerrilla tactics. This was later employed by other chieftains too.\n"
+"+15% movement speed and vision range for all soldiers."
 msgstr "Viendo que la defensa atrincherada era inútil contra el ejército romano, Casivelono recurrió a las tácticas de guerrilla. Esto también fue empleado más tarde por otros líderes.\n+15% de velocidad y rango de visión para los soldados."
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_2.jsonauraName
@@ -236,7 +273,7 @@ msgstr "Terror del escaramucero"
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_2.jsonauraDescription
 msgid ""
-"Cassivellanus deployed fast-moving skirmishers to harass Roman troops and foragers.\n"
+"Cassivellaunus deployed fast-moving skirmishers to harass Roman troops and foragers.\n"
 "+20% attack range for skirmisher javelins."
 msgstr "Casivelono desplegó ágiles escaramuceros para hostigar a las tropas Romanas y los forrajeros.\n+20% de rango de ataque para las jabalinas de los escaramuceros."
 
@@ -257,8 +294,8 @@ msgstr "Matanza subrepticia"
 #: simulation/data/auras/units/catafalques/gaul_catafalque_1.jsonauraDescription
 msgid ""
 "Warring with the Romans, Ambiorix realized the futility of open warfare and instead resorted to ambush tactics. The Gauls quickly learned where and when to execute surprise attacks.\n"
-"Units promote 25% faster and gain a 5% attack bonus."
-msgstr "Combatiendo con los romanos, Ambiórix se dio cuenta de la futilidad de la guerra abierta y en su lugar recurrió a las tácticas de emboscada. Los galos aprendieron rápidamente dónde y cuándo ejecutar ataques sorpresa.\nLas unidades se promocionan un 25% más rápido y obtienen una bonificación de ataque del 5%."
+"Soldiers require 25% less XP to promote and gain a 5% attack bonus."
+msgstr "Al combatir con los romanos Ambiórix se dio cuenta de la futilidad de la guerra directa y se pasó a las tácticas guerrilleras. Los galos aprendieron rápidamente dónde y cuándo emboscar, con terribles consecuencias.\nLas unidades se mejoran un 25% más rápido y obtienen una bonificación de ataque del 5%."
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_2.jsonauraName
 msgid "Tribute to Rome"
@@ -266,9 +303,9 @@ msgstr "Tributo romano"
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_2.jsonauraDescription
 msgid ""
-"When the Roman Army fell short of food supplies, the Gallic tribes were ordered to give up a part of their already meagre harvest. The Eburones under Ambiorix were reluctant to do so, therefore Caesar sent troops to take them by foce.\n"
+"When the Roman army fell short of food supplies, the Gallic tribes were ordered to give up a part of their already meagre harvest. The Eburones under Ambiorix were reluctant to do so, therefore Caesar sent troops to take them by force.\n"
 "-10% farming rate."
-msgstr "Cuando el Ejército Romano se quedaron cortos de suministros, se ordenó a las tribus Galas que renunciaran a una parte de su ya escasa cosecha. Los Eburones bajo las órdenes de Ambiórix eran reacios a hacerlo, por lo tanto César envió tropas para tomarlos por la fuerza.\n-10% de tasa de cultivo."
+msgstr "Cuando el ejército romano se quedó corto de suministros se ordenó a las tribus Galas que renunciaran a una parte de su mermada cosecha. Los Eburones de Ambiórix se no estaban por la labor, por lo que César envió tropas para convencerles por las malas.\n-10% de tasa de cultivo."
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_1.jsonauraName
 msgid "Mercenary Commander"
@@ -287,8 +324,8 @@ msgstr "Clemente"
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraDescription
 msgid ""
 "Following the fall of Indibil in battle, Mandonius led the survivors to safety.\n"
-"+15% movement speed and +10% health for all soldiers."
-msgstr "Tras la caída de Indíbil en batalla, Mandonio llevó a los supervivientes a un lugar seguro.\n+15% de velocidad de movimiento y +10% de salud para todos los soldados."
+"+10% health for all soldiers."
+msgstr "Tras la caída de Indíbil en batalla, Mandonio llevó a los supervivientes a un lugar seguro.\n+10% de salud para todos los soldados."
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
 msgid "Sacker of Cities"
@@ -326,9 +363,9 @@ msgstr "Gran constructor"
 
 #: simulation/data/auras/units/catafalques/pers_catafalque.jsonauraDescription
 msgid ""
-"Throughout his reign, much of Artaxerxes' wealth was spent on building projects. He restored the Palace of Darius I at Susa, and restored the ancient city of Ecbatana.\n"
-"+5% health and -5% resource cost for all buildings."
-msgstr "A lo largo de su reinado, gran parte de la riqueza de Artajerjes se gastó en proyectos de construcción. Restauró el palacio de Darío I en Susa y restauró la antigua ciudad de Ecbatana.\n+5% de resistencia y -5% de coste de recursos para todos los edificios."
+"Throughout his reign, much of Artaxerxes' wealth was spent on building projects. He restored the Palace of Darius I at Susa and restored the ancient city of Ecbatana.\n"
+"+5% health and -10% resource cost for all buildings."
+msgstr "A lo largo de su reinado, gran parte de la riqueza de Artajerjes se gastó en proyectos de construcción. Restauró el palacio de Darío I en Susa y restauró la antigua ciudad de Ecbatana.\n+5% de resistencia y -10% de coste de recursos para todos los edificios."
 
 #: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraName
 msgid "Great Librarian"
@@ -336,9 +373,9 @@ msgstr "Gran bibliotecario"
 
 #: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraDescription
 msgid ""
-"Continuing his predecessors' work on the Great Library at Alexandria, he seized every book brought to Alexandria, thus leaving to his people a vast amount of hoarded wisdom.\n"
+"Continuing his predecessors' work on the Great Library at Alexandria, he seized every book brought to the city, thus leaving to his people a vast amount of hoarded wisdom.\n"
 "-10% resource cost for all technologies."
-msgstr "Continuando el trabajo de sus predecesores en la Gran Biblioteca de Alejandría, se apoderó de cada libro traído a Alejandría, dejando así a su pueblo una gran cantidad de sabiduría acumulada.\n-10% de coste de recursos para todas las tecnologías."
+msgstr "Continuando el trabajo de sus predecesores en la Gran Biblioteca de Alejandría, se apoderó de todos los libros de la ciudad, dejando así a su pueblo una gran cantidad de sabiduría acumulada.\nReducción de un -10% en el coste de recursos para todas las tecnologías."
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_1.jsonauraName
 msgid "Avenger of Lucretia"
@@ -351,8 +388,8 @@ msgid ""
 msgstr "Tras la violación de Lucrecia por el hijo del Rey Tarquinio el Soberbio y su posterior suicidio, Bruto juró vengarla y derrocar la monarquía.\nLas ciudadanas cuestan un 20% menos y trabajan un 10% más rápido."
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraName
-msgid "Founder and Defender of the Republic Aura"
-msgstr "Aura de fundador y protector de la república"
+msgid "Founder and Defender of the Republic"
+msgstr "Fundador y protector de la república"
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraDescription
 msgid ""
@@ -381,8 +418,8 @@ msgid ""
 msgstr "Antíoco alentó la Inmigración Griega a su reino y estableció nuevas ciudades en Asia Menor para servir de contrapeso a los galos.\n+5% de población máxima."
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_3.jsonauraName
-msgid "Basileus Megas (Great King)"
-msgstr "Basileus Megas (Gran rey)"
+msgid "Basileus Megas"
+msgstr "Basileus Megas"
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_3.jsonauraDescription
 msgid ""
@@ -398,7 +435,7 @@ msgstr "Reformas militares de Licurgo"
 #: simulation/data/auras/units/catafalques/spart_catafalque_1.jsonauraDescription
 msgid ""
 "Lycurgus instituted several military reforms, thus the complete and undivided allegiance to Sparta from its citizens was implemented under his form of government.\n"
-"-10% resource cost for spear citizen units."
+"-10% resource cost for citizen spear infantry."
 msgstr "Licurgo instituyó varias reformas militares, así pues la lealtad completa e indivisa de sus ciudadanos a Esparta fue implementada en su forma de gobierno.\n-10% de coste de recursos para las unidades ciudadanas con lanza."
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraDescription
@@ -411,9 +448,9 @@ msgstr "Pelanores de hierro"
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_3.jsonauraDescription
 msgid ""
-"To further support equality, Lycurgus forbade the use of gold and silver, instead introducing new iron money called pellanors.\n"
-"+15% metal mining rate for workers within an 80 meter range."
-msgstr "Para apoyar aún más la igualdad, Licurgo prohibió el uso de oro y plata, y en su lugar introdujo una nueva moneda de hierro.\n+15% de velocidad de extracción de metales para los trabajadores en un área de 80 metros."
+"To further support equality, Lycurgus forbade the use of gold and silver, introducing a new iron currency called pelanors.\n"
+"+15% metal gather rate for workers."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraName
 msgid "Formation Reforms"
@@ -432,32 +469,32 @@ msgid "All javelin infantry +15% speed."
 msgstr "Todos la infantería jabalinera gana un +15% de velocidad."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
-msgid "Builder Aura"
-msgstr "Aura de constructor"
+msgid "Periclean Building Program"
+msgstr "Programa de Construcción de Pericles"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraDescription
-msgid "Buildings construct 15% faster within his aura."
-msgstr "Los edificios dentro de su aura se construyen un 15% más rápido."
+msgid "+15% build and repair rate for workers."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
-msgid "Acropolis Aura"
-msgstr "Aura de acrópolis"
+msgid "Temple to Athena"
+msgstr "Templo de Atenea"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "Temples are 50 stone cheaper during his lifetime."
 msgstr "Los templos cuestan 50 de piedra menos durante su vida."
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
-msgid "Naval Commander Aura"
-msgstr "Aura de comandante naval"
+msgid "Naval Commander"
+msgstr "Comandante naval"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraDescription
 msgid "When garrisoned in a ship, his ship is +50% faster."
 msgstr "Cuando se guarnece en un navío su nave es un +50% más rápida."
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraName
-msgid "Naval Architect Aura"
-msgstr "Aura de arquitecto naval"
+msgid "Naval Architect"
+msgstr "Arquitecto naval"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraDescription
 msgid "-20% build time for ships during his lifespan."
@@ -472,62 +509,69 @@ msgid "+20% attack, +2 capture and +25% speed for champion units."
 msgstr "+20% de ataque, +2 de captura y +25% de velocidad para las unidades campeonas."
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraName
-#: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraName
-#: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraName
-#: simulation/data/auras/units/heroes/gaul_hero_britomartus.jsonauraName
-#: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraName
-#: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraName
-msgid "Hero Aura"
-msgstr "Aura de héroe"
+msgid "Guerrilla Chief"
+msgstr "Jefe de guerrilla"
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraDescription
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar.jsonauraDescription
 msgid "All soldiers and siege engines +15% speed."
 msgstr "Todos los soldados y máquinas de asedio ganan un +15% de velocidad."
 
+#: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraName
+msgid "Britannorum Rex"
+msgstr "Britannorum Rex"
+
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraDescription
-msgid "+1 HP per second healing rate for all units."
-msgstr "+1 PV por segundo en la tasa de curación para todas las unidades."
+msgid "+1 HP per second healing rate."
+msgstr "Tasa de curación de +1 PV por segundo."
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar.jsonauraName
-msgid "Lightning Aura"
-msgstr "Aura del relámpago"
+msgid "Lightning General"
+msgstr "General Relámpago"
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraName
-msgid "Tactician Aura"
-msgstr "Aura táctica"
+msgid "Tactician"
+msgstr "Estratega"
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraDescription
-msgid ""
-"All allied soldiers and siege engines +20% attack and +1 capture within his "
-"vision range."
-msgstr "Todos los soldados y máquinas de asedio aliadas dentro de su campo de visión reciben +20% de ataque y +1 de captura ."
+msgid "+20% attack and +1 capture for all allied soldiers and siege engines."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraName
-msgid "Commander Aura"
-msgstr "Aura de comandante"
+msgid "Cavalry Commander"
+msgstr "Comandante de caballería"
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraDescription
-msgid "+20% cavalry melee attack within his aura."
-msgstr "+20% de daño cuerpo a cuerpo de caballería dentro de su campo de visión."
+msgid "+20% attack for cavalry melee soldiers."
+msgstr "+20% de ataque para soldados de caballería cuerpo a cuerpo."
+
+#: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraName
+msgid "Sacker of Rome"
+msgstr "Saqueador de Roma"
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraDescription
 msgid "+10 Metal loot for every enemy unit killed."
 msgstr "+10 de saqueo de metal por cada baja enemiga."
 
+#: simulation/data/auras/units/heroes/gaul_hero_britomartus.jsonauraName
+msgid "Preparation for War"
+msgstr "Preparaciones de guerra"
+
 #: simulation/data/auras/units/heroes/gaul_hero_britomartus.jsonauraDescription
 msgid "Gathering rates increased with +15% during his lifetime."
 msgstr "La velocidad de recolección de recursos aumenta un +15% durante su vida."
 
+#: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraName
+msgid "Celtic Warlord"
+msgstr "Señor de la guerra celta"
+
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraDescription
-msgid ""
-"+20% attack and +1 capture for all soldiers and siege engines within his "
-"aura."
-msgstr "+20% de ataque y +1 de captura para todos los soldados y máquinas de asedio dentro de su aura."
+msgid "+20% attack and +1 capture for soldiers and siege engines."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraName
-msgid "Garrisoned Capture Aura"
-msgstr "Aura de captura guarnecida"
+msgid "Inspired Defense"
+msgstr "Acicate defensivo"
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraDescription
 msgid ""
@@ -535,9 +579,49 @@ msgid ""
 "of +2 capture points recovery rate."
 msgstr "Al guarnecerse en una estructura o máquina de asedio el héroe inspira a sus defensores con +2 de velocidad de recuperación de captura de edificios."
 
+#: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraName
+msgid "Valiant Defender"
+msgstr "Defensor Valiente"
+
+#: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraDescription
+msgid ""
+"75% more arrows fired per garrisoned soldier for the building while he is "
+"garrisoned in it."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraName
+msgid "Battle Fervor"
+msgstr "Fervor de la Batalla"
+
+#: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraDescription
+msgid "+1 armor for soldiers."
+msgstr "+1 de armadura para soldados."
+
+#: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraName
+msgid "Mobilization"
+msgstr "Movilización"
+
+#: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraDescription
+msgid "-20% training time and -15% resources cost for soldiers."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/iber_hero_viriato_1.jsonauraDescription
+msgid "+20% movement speed for soldiers."
+msgstr "+20% de velocidad de movimiento para los soldados."
+
+#: simulation/data/auras/units/heroes/iber_hero_viriato_2.jsonauraName
+msgid "Swag"
+msgstr "Hurto"
+
+#: simulation/data/auras/units/heroes/iber_hero_viriato_2.jsonauraDescription
+msgid ""
+"+100% resources loot increase for every enemy unit killed or structure "
+"destroyed."
+msgstr ""
+
 #: simulation/data/auras/units/heroes/mace_hero_alexander.jsonauraName
-msgid "Imperialism Aura"
-msgstr "Aura de imperialismo"
+msgid "Imperialism"
+msgstr "Imperialismo"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander.jsonauraDescription
 msgid "+10% territory effect for all buildings while he lives."
@@ -548,16 +632,20 @@ msgid "Taxiarchès"
 msgstr "Taxiarchès"
 
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraDescription
-msgid "Pike Infantry +20% attack and +20% capture within range of him."
-msgstr "Las unidades de piqueros ganan +20% de ataque y +20% de captura dentro de su campo de visión."
+msgid "+20% attack and +20% capture for pikemen soldiers."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraName
-msgid "Besieger Aura"
-msgstr "Aura de asedio"
+msgid "Besieger"
+msgstr "Maestro de asedios"
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraDescription
 msgid "+15% range and +10% crush attack for siege engines."
 msgstr "+15% de distancia y +10 de daño destructor para todas las armas de asedio."
+
+#: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraName
+msgid "Rise of Macedon"
+msgstr "Auge de Macedonia"
 
 #: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraDescription
 msgid "+20% attack and +2 capture for champion units."
@@ -573,16 +661,16 @@ msgid ""
 msgstr "Todos los soldados ganan +20% de ataque mientras Pirro viva, pero también pierden un -15% de salud."
 
 #: simulation/data/auras/units/heroes/maur_hero_ashoka.jsonauraName
-msgid "Buddhism Aura"
-msgstr "Aura budista"
+msgid "Buddhism"
+msgstr "Budismo"
 
 #: simulation/data/auras/units/heroes/maur_hero_ashoka.jsonauraDescription
 msgid "Temples and temple technologies -50% cost, in resources and time."
 msgstr "Los templos propios y sus tecnologías reducen en un -50% su coste y tiempo de investigación. "
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya.jsonauraName
-msgid "Teacher Aura"
-msgstr "Aura de instructor"
+msgid "Teacher"
+msgstr "Instructor"
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya.jsonauraDescription
 msgid ""
@@ -590,37 +678,36 @@ msgid ""
 msgstr "Bonifica edificios con una investigación un 50% más rápida al guarnecerse en su interior."
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraName
-msgid "Lead from the Front Aura"
-msgstr "Aura de líder desde el frente"
+msgid "Lead from the Front"
+msgstr "Ejercer el liderazgo "
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraDescription
-msgid "+20% attack and +1 capture for nearby cavalry units."
-msgstr "+20% de ataque y +1 de captura para todas las unidades a caballo cercanas."
+msgid "+20% attack and +1 capture for cavalry soldiers."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraName
-msgid "Leadership Aura"
-msgstr "Aura de liderazgo"
+msgid "Leadership"
+msgstr "Liderazgo"
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraDescription
 msgid "+15% movement speed for all soldiers and siege engines."
 msgstr "+15% de velocidad de movimiento para todos los soldados y máquinas de asedio."
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraName
-msgid "Administrator Aura"
-msgstr "Aura de administrador"
+msgid "Administrator"
+msgstr "Administrador"
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraDescription
-msgid "+15% gather rate and build rate of nearby workers."
-msgstr "+15% de ritmo de recolección y construcción a los trabajadores cercanos."
+msgid "+15% gather rate and build rate for workers."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraName
-msgid "Patriot Aura"
-msgstr "Aura patriótica"
+msgid "Patriot"
+msgstr "Patriota"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraDescription
-msgid ""
-"-20% attack repeat time for Egyptian soldiers and siege engines in her aura."
-msgstr "-20% de tiempo de repetición de ataque para todos los soldados y máquinas de asedio egipcias dentro de su aura."
+msgid "-20% attack repeat time for soldiers and siege engines."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.jsonauraName
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.jsonauraName
@@ -628,93 +715,89 @@ msgid "Consort"
 msgstr "Consorte"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.jsonauraDescription
-msgid "Allied heroes +10% health when near her."
-msgstr "Los héroes aliados ganan un +10% de salud cuando estén cerca de ella."
+msgid "+10% health for allied heroes."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.jsonauraDescription
-msgid "Enemy heroes -10% health when near her."
-msgstr "Los héroes enemigos pierden un -10% de salud cuando estén cerca de ella."
+msgid "-10% health for enemy heroes."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraName
-msgid "Raphia Aura"
-msgstr "Aura de Rafia"
+msgid "Raphia"
+msgstr "Rafia"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraDescription
 msgid "Egyptian pikemen have 40% greater health during his lifetime."
 msgstr "Los piqueros egipcios consiguen un 40% de salud adicional durante toda su vida."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraName
-msgid "Construction Aura"
-msgstr "Aura de construcción"
+msgid "Patron of Construction"
+msgstr "Patrono constructor"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraDescription
-msgid "Buildings construct 10% faster within his aura."
-msgstr "Los edificios dentro de su aura se construyen un 10% más rápido."
+msgid "+10% build and repair rate for workers."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraName
-msgid "Mercenary Patron Aura"
-msgstr "Aura de patrono mercenario"
+msgid "Mercenary Patron"
+msgstr "Patrono mercenario"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraDescription
 msgid "Mercenaries cost -50% resources during his lifetime."
 msgstr "Los mercenarios cuestan un -50% menos de recursos durante su vida."
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus.jsonauraName
-msgid "Sword of Rome Aura"
-msgstr "Aura de espada de Roma"
+msgid "Sword of Rome"
+msgstr "Espada de Roma"
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus.jsonauraDescription
-msgid ""
-"+20% attack and +2 capture for Roman soldiers and siege engines within his "
-"range."
-msgstr "+20% de ataque y +2 de captura para todos los soldados y máquinas de asedio romanas dentro de su aura."
+msgid "+20% attack and +2 capture for soldiers and siege engines."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraName
-msgid "Shield of Rome Aura"
-msgstr "Aura de escudo de Roma"
+msgid "Shield of Rome"
+msgstr "Escudo de Roma"
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraDescription
 msgid "+1 armor for all units and structures."
 msgstr "+1 de protección para todas las unidades y estructuras."
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraName
-msgid "Ilarchès Aura"
-msgstr "Aura de Ilarchès"
+msgid "Ilarchès"
+msgstr "Ilarchès"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraDescription
 msgid "All cavalry gains +2 levels of all armor types."
 msgstr "Toda la caballería consigue +2 niveles adicionales de protección general."
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.jsonauraName
-msgid "Conquest Aura"
-msgstr "Aura de conquista"
+msgid "Renowned Conqueror"
+msgstr "Gran conquistador"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.jsonauraDescription
-msgid ""
-"All nearby enemy buildings, siege engines, and ships have their health "
-"reduced by 20%."
-msgstr "Todos los edificios, máquinas de asedio y navíos enemigos reducen su salud un 20%."
+msgid "-20% health for enemy buildings, siege engines and ships."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.jsonauraName
-msgid "Zooiarchos Aura"
-msgstr "Aura de comandante de elefantes"
+msgid "Zooiarchos"
+msgstr "Comandante de elefantes"
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.jsonauraDescription
-msgid "Boosts war elephant attack and speed +20% within his aura."
-msgstr "Mejora el ataque y la velocidad de los elefantes de guerra dentro de su aura un +20%."
+msgid "+20% attack and movement speed for war elephants."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraName
 msgid "Helot Reforms"
 msgstr "Reformas ilotas"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
-msgid "Javelin infantry in his aura gains +20% attack and +1 all armor types."
-msgstr "La infantería jabalinera dentro de su aura gana +20% de ataque y +1 de protección general."
+msgid "+20% attack and +1 armor for javelin infantry soldiers."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
-msgid "Last Stand Aura"
-msgstr "Aura de lucha final"
+msgid "Last Stand"
+msgstr "Último superviviente"
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraDescription
-msgid "+20% attack and +1 capture for nearby Spearmen."
-msgstr "+20% de ataque y +1 de captura para todos los lanceros cercanos."
+msgid "+20% attack and +1 capture for spear soldiers."
+msgstr ""

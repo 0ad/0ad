@@ -5,14 +5,20 @@
 	<!-- Stats Bars -->
 	<object size= "2 0 100%-2 98" type="image" tooltip_style="sessionToolTip">
 
-		<object size="0 8 100% 60" type="image" sprite="edgedPanelShader">
+		<object size="0 4 100% 64" type="image" sprite="topEdgedPanelShader">
+
+			<!-- Placeholders storing the position for the bars -->
+			<object size="88 1 100% 24" name="sectionPosTop" hidden="true"/>
+			<object size="88 11 100% 34" name="sectionPosMiddle" hidden="true"/>
+			<object size="88 32 100% 55" name="sectionPosBottom" hidden="true"/>
+
 			<!-- Health bar -->
-			<object size="88 0 100% 24" name="healthSection">
-				<object size="0 0 100% 16" name="healthLabel" type="text" style="StatsTextLeft" ghost="true">
+			<object name="healthSection">
+				<object size="0 0 100% 12" name="healthLabel" type="text" style="StatsTextLeft" ghost="true">
 					<translatableAttribute id="tooltip">Health:</translatableAttribute>
 				</object>
-				<object size="0 0 100% 16" name="healthStats" type="text" style="StatsTextRight" ghost="true"/>
-				<object size="1 16 100% 23" name="health" type="image" tooltip_style="sessionToolTip">
+				<object size="0 0 100% 12" name="healthStats" type="text" style="StatsTextRight" ghost="true"/>
+				<object size="1 14 100% 21" name="health" type="image" tooltip_style="sessionToolTip">
 					<object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
 					<object type="image" sprite="healthBackground" ghost="true"/>
 					<object type="image" sprite="healthForeground" ghost="true" name="healthBar"/>
@@ -21,12 +27,12 @@
 			</object>
 
 			<!-- Capture bar -->
-			<object size="88 28 100% 52" name="captureSection">
-				<object size="0 0 100% 16" name="captureLabel" type="text" style="StatsTextLeft" ghost="true">
+			<object name="captureSection">
+				<object size="0 0 100% 12" name="captureLabel" type="text" style="StatsTextLeft" ghost="true">
 					<translatableAttribute id="tooltip">Capture points:</translatableAttribute>
 				</object>
-				<object size="0 0 100% 16" name="captureStats" type="text" style="StatsTextRight" ghost="true"/>
-				<object size="1 16 100% 23" name="capture" type="image">
+				<object size="0 0 100% 12" name="captureStats" type="text" style="StatsTextRight" ghost="true"/>
+				<object size="1 14 100% 21" name="capture" type="image" tooltip_style="sessionToolTip">
 					<object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
 					<repeat count="9">
 						<object type="image" sprite="playerColorBackground" ghost="true" name="captureBar[n]" hidden="true"/>
@@ -36,10 +42,10 @@
 			</object>
 
 			<!-- Resource bar -->
-			<object size="88 28 100% 52" name="resourceSection">
-				<object size="0 0 100% 16" name="resourceLabel" type="text" style="StatsTextLeft" ghost="true"/>
-				<object size="0 0 100% 16" name="resourceStats" type="text" style="StatsTextRight" ghost="true"/>
-				<object size="1 16 100% 23" name="resources" type="image">
+			<object name="resourceSection">
+				<object size="0 0 100% 12" name="resourceLabel" type="text" style="StatsTextLeft" ghost="true"/>
+				<object size="0 0 100% 12" name="resourceStats" type="text" style="StatsTextRight" ghost="true"/>
+				<object size="1 14 100% 21" name="resources" type="image">
 					<object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
 					<object type="image" sprite="resourceBackground" ghost="true"/>
 					<object type="image" sprite="resourceForeground" ghost="true" name="resourceBar"/>
@@ -48,7 +54,7 @@
 			</object>
 		</object>
 
-		<object size="0 60 100% 96" type="image" sprite="edgedPanelShader">
+		<object size="0 63 100% 99" type="image" sprite="edgedPanelShader">
 			<!-- Attack and Armor -->
 			<object size="90 -2 126 34" name="attackAndArmorStats" type="image" sprite="stretched:session/icons/stances/defensive.png" tooltip_style="sessionToolTipInstantly">
 				<translatableAttribute id="tooltip">Attack and Armor</translatableAttribute>

@@ -15,7 +15,7 @@
 # Micky Jault <micky037@hotmail.fr>, 2016
 # Mortimer <doug.mortimer@netcourrier.com>, 2016
 # Nexus nexus <neocrysis@gmail.com>, 2016
-# Nicolas Auvray <na.itms76@gmail.com>, 2014-2016
+# Nicolas Auvray <na.itms76@gmail.com>, 2014-2017
 # nicolas t <phidias2052@yahoo.fr>, 2016
 # Romain Mesnil <bnb6avekk6@protonmail.com>, 2016
 # silure <silure@openmailbox.org>, 2014
@@ -24,8 +24,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-04-28 09:02+0200\n"
-"PO-Revision-Date: 2017-04-28 16:18+0000\n"
+"POT-Creation-Date: 2017-05-26 09:04+0200\n"
+"PO-Revision-Date: 2017-05-26 14:20+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -46,7 +46,7 @@ msgstr "Je lance une campagne militaire d'envergure contre %(_player_)s, venez m
 msgid ""
 "I have set up a huge army to crush %(_player_)s. Join me and you will have "
 "your share of the loot."
-msgstr "J'ai préparé une immense armée afin d'écraser %(_player_)s. Rejoignez moi et vous aurez votre part du butin."
+msgstr "J'ai préparé une immense armée afin d'écraser %(_player_)s. Rejoignez-moi et vous aurez votre part du butin."
 
 #: simulation/ai/petra/chatHelper.js:10
 #, javascript-format
@@ -61,7 +61,7 @@ msgstr "Je viens d'envoyer une armée combattre %(_player_)s."
 #: simulation/ai/petra/chatHelper.js:17
 #, javascript-format
 msgid "Let me regroup my army and I will then join you against %(_player_)s."
-msgstr "Laissez-moi préparé mon armée et je vous rejoins contre %(_player_)s."
+msgstr "Laissez-moi préparer mon armée et je vous rejoins contre %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:18
 #, javascript-format
@@ -122,7 +122,7 @@ msgstr "Je participerais plus efficacement à notre effort de guerre commun si v
 #, javascript-format
 msgid ""
 "If you can spare me some %(resource)s, I will be able to strengthen my army."
-msgstr "Si vous pouvez me partager quelques %(resource)s, je serai capable de renforcer mon armée."
+msgstr "Si vous pouvez partager un peu de %(resource)s avec moi, je serai capable de renforcer mon armée."
 
 #: simulation/ai/petra/chatHelper.js:42
 #, javascript-format
@@ -136,7 +136,7 @@ msgstr "J'ai mis en place une nouvelle route avec %(_player_)s. Le commerce nous
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits."
-msgstr "Une nouvelle route commerciale est mise en place avec %(_player_)s. Prenez votre part des profits."
+msgstr "Une nouvelle route commerciale a été mise en place avec %(_player_)s. Prenez votre part des profits."
 
 #: simulation/ai/petra/chatHelper.js:48
 #, javascript-format
@@ -326,6 +326,50 @@ msgid ""
 "%(_player_)s, I will not accept your neutrality request unless you tribute "
 "me %(_amount_)s %(_resource_)s soon."
 msgstr "%(_player_)s, je refuse votre demande de neutralité à moins que vous me versiez rapidement %(_amount_)s %(_resource_)s."
+
+#: simulation/ai/petra/chatHelper.js:119
+#, javascript-format
+msgid ""
+"%(_player_)s, it would help both of our civilizations if we formed an "
+"alliance. If you become allies with me, I will respond in kind."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:122
+#, javascript-format
+msgid "%(_player_)s, my offer for an alliance has expired."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:123
+#, javascript-format
+msgid ""
+"%(_player_)s, I have rescinded my previous offer for an alliance between us."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:128
+#, javascript-format
+msgid ""
+"%(_player_)s, I would like to request a neutrality pact between our "
+"civilizations. If you become neutral with me, I will respond in kind."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:129
+#, javascript-format
+msgid ""
+"%(_player_)s, it would be both to our benefit if we negotiated a neutrality "
+"pact. I will become neutral with you if you do the same."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:132
+#, javascript-format
+msgid "%(_player_)s, I have decided to revoke my offer for a neutrality pact."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:133
+#, javascript-format
+msgid ""
+"%(_player_)s, as you have failed to respond to my request for peace between "
+"us, I have abrogated my offer."
+msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -884,26 +928,26 @@ msgstr "%(category)s : capacité d'entraînement de %(limit)s atteinte"
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s : capacité de %(limit)s atteinte"
 
-#: simulation/components/Player.js:277
+#: simulation/components/Player.js:296
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "Ressources insuffisantes - %(resourceAmount1)s %(resourceType1)s"
 
-#: simulation/components/Player.js:279
+#: simulation/components/Player.js:298
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "Ressources insuffisantes - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:281
+#: simulation/components/Player.js:300
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "Ressources insuffisantes - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:283
+#: simulation/components/Player.js:302
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -915,7 +959,7 @@ msgstr "Ressources insuffisantes - %(resourceAmount1)s %(resourceType1)s, %(reso
 msgid "The production queue is full."
 msgstr "La file de production est pleine."
 
-#: simulation/components/ProductionQueue.js:772
+#: simulation/components/ProductionQueue.js:774
 msgid "Can't find free space to spawn trained units"
 msgstr "Pas assez de place pour produire les unités entrainées"
 
@@ -923,46 +967,46 @@ msgstr "Pas assez de place pour produire les unités entrainées"
 msgid "You need to select a building that trains units."
 msgstr "Vous devez sélectionner un bâtiment qui produit des unités."
 
-#: simulation/helpers/Commands.js:121
+#: simulation/helpers/Commands.js:124
 msgid "(Cheat - control all units)"
 msgstr "(Triche - contrôler toutes les unités)"
 
-#: simulation/helpers/Commands.js:133
+#: simulation/helpers/Commands.js:139
 msgid "(Cheat - reveal map)"
 msgstr "(Triche - révéler la carte)"
 
-#: simulation/helpers/Commands.js:570
+#: simulation/helpers/Commands.js:579
 msgid "(Cheat - promoted units)"
 msgstr "(Triche - promotion des unités)"
 
-#: simulation/helpers/Commands.js:684
+#: simulation/helpers/Commands.js:693
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Amélioration impossible en raison de contraintes de distance ou de terrain non respectées."
 
-#: simulation/helpers/Commands.js:694
+#: simulation/helpers/Commands.js:703
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "Impossible d'améliorer une entité en garnison."
 
-#: simulation/helpers/Commands.js:740
+#: simulation/helpers/Commands.js:749
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Une attaque contre %(_player_)s a été demandée."
 
-#: simulation/helpers/Commands.js:773
+#: simulation/helpers/Commands.js:782
 msgid "There are no bribable units"
 msgstr "Il n'y as pas d'unités à soudoyées"
 
-#: simulation/helpers/Commands.js:804
+#: simulation/helpers/Commands.js:827
 msgid "Unable to ungarrison unit(s)"
 msgstr "Impossible de décharger la ou les unité(s)"
 
-#: simulation/helpers/Commands.js:818
+#: simulation/helpers/Commands.js:841
 msgid "Some unit(s) can't go back to work"
 msgstr "Une ou plusieurs unité(s) ne peuvent pas retourner travailler"
 
-#: simulation/helpers/Commands.js:1072
+#: simulation/helpers/Commands.js:1095
 msgid "The building's technology requirements are not met."
 msgstr "Les technologies nécessaires à la construction n'ont pas été recherchées."
 
@@ -1132,25 +1176,60 @@ msgstr "Combat à mort"
 msgid "Tiny"
 msgstr "Minuscule"
 
+#: simulation/data/settings/map_sizes.jsonData[0].Tooltip
+msgid "This map size has barely any room for even the most basic resources."
+msgstr "Cette taille de carte laisse à peine la place aux ressources les plus basiques."
+
 #: simulation/data/settings/map_sizes.jsonData[1].Name
 msgid "Small"
 msgstr "Petite"
+
+#: simulation/data/settings/map_sizes.jsonData[1].Tooltip
+msgid ""
+"Small maps are suitable for 1v1 matches, as players can reach the enemy "
+"quickly while still having few room to expand."
+msgstr "Les petites cartes conviennent aux matchs 1c1, pour que les joueurs puissent atteindre l'ennemi rapidement tout en gardant de la place pour s'étendre."
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Medium"
 msgstr "Moyenne"
 
+#: simulation/data/settings/map_sizes.jsonData[2].Tooltip
+msgid ""
+"Medium-sized maps provide plenty of space for two players, but even eight "
+"players fit."
+msgstr "Les cartes de taille moyenne fournissent toute la place nécessaire à deux joueurs, mais même huit joueurs y rentrent."
+
 #: simulation/data/settings/map_sizes.jsonData[3].Name
 msgid "Normal"
 msgstr "Normale"
+
+#: simulation/data/settings/map_sizes.jsonData[3].Tooltip
+msgid ""
+"This is the ideal mapsize for 4 to 8 players, because there is plenty of "
+"space to expand while the neighbors are quickly reachable."
+msgstr "Ceci est la taille idéale pour 4 à 8 joueurs, car il y a beaucoup de place pour s'étendre tout en gardant ses voisins à portée."
 
 #: simulation/data/settings/map_sizes.jsonData[4].Name
 msgid "Large"
 msgstr "Grande"
 
+#: simulation/data/settings/map_sizes.jsonData[4].Tooltip
+msgid ""
+"The large mapsize is recommended when great portions of the map are covered "
+"with water or inaccessible mountains."
+msgstr "Les grandes cartes sont recommandées quand de larges portions de territoire sont recouvertes d'eau ou de montagnes inaccessibles."
+
 #: simulation/data/settings/map_sizes.jsonData[5].Name
 msgid "Very Large"
 msgstr "Très grande"
+
+#: simulation/data/settings/map_sizes.jsonData[5].Tooltip
+#: simulation/data/settings/map_sizes.jsonData[6].Tooltip
+msgid ""
+"Very large maps are not recommended as it takes very long to reach the enemy"
+" and the game performance can be reduced."
+msgstr "Les très grandes cartes ne sont pas recommandées : l'ennemi est très long à atteindre et les performances du jeu peuvent baisser."
 
 #: simulation/data/settings/map_sizes.jsonData[6].Name
 msgid "Giant"
