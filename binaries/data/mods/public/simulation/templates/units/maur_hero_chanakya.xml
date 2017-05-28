@@ -7,7 +7,8 @@
   </Armour>
   <Auras datatype="tokens">
     units/heroes/hero_garrison
-    units/heroes/maur_hero_chanakya
+    units/heroes/maur_hero_chanakya_1
+    units/heroes/maur_hero_chanakya_2
   </Auras>
   <Cost>
     <Population>2</Population>
@@ -19,13 +20,13 @@
   </Cost>
   <Heal>
     <Range>20</Range>
-    <HP>12</HP>
+    <HP>6</HP>
     <Rate>2000</Rate>
     <UnhealableClasses datatype="tokens"/>
     <HealableClasses datatype="tokens">Human</HealableClasses>
   </Heal>
   <Health>
-    <Max>600</Max>
+    <Max>1000</Max>
   </Health>
   <Identity>
     <Civ>maur</Civ>
