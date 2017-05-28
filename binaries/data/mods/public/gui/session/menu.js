@@ -425,8 +425,9 @@ function diplomacyFormatStanceButtons(i, hidden)
 		if (hidden)
 			continue;
 
-		button.caption = g_Players[g_ViewedPlayer]["is" + stance][i] ? translate("x") : "";
-		button.enabled = controlsPlayer(g_ViewedPlayer);
+		let isCurrentStance = g_Players[g_ViewedPlayer]["is" + stance][i];
+		button.caption = isCurrentStance ? translate("x") : "";
+		button.enabled = controlsPlayer(g_ViewedPlayer) && !isCurrentStance;
 
 		button.onPress = (function(player, stance) { return function() {
 			Engine.PostNetworkCommand({
