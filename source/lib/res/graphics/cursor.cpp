@@ -70,7 +70,7 @@ public:
 		surface = SDL_CreateRGBSurfaceFrom(bgra_img, (int)t.m_Width, (int)t.m_Height, 32, (int)t.m_Width*4, 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000);
 		if (!surface)
 			return ERR::FAIL;
-		if (scale != 1.0)
+		if(scale != 1.0)
 		{
 			SDL_Surface* scaled_surface = SDL_CreateRGBSurface(0, surface->w * scale, surface->h * scale, 32, 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000);
 			if (!scaled_surface)
