@@ -93,10 +93,17 @@
 			}
 		},
 		{
-			"type": "boolean",
+			"type": "dropdown",
 			"label": "Late Observer Joins",
-			"tooltip": "Allow observers to join the game after it started",
-			"parameters": { "config": "network.lateobserverjoins" }
+			"tooltip": "Allow everybody or buddies only to join the game as observer after it started",
+			"parameters": {
+				"config": "network.lateobservers",
+				"list": [
+					{ "value": "everyone", "label": "Everyone" },
+					{ "value": "buddies", "label": "Buddies" },
+					{ "value": "disabled", "label": "Disabled" }
+				]
+			}
 		},
 		{
 			"type": "number",

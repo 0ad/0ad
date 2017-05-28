@@ -930,10 +930,6 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 		return true;
 	}
 
-	// Optionally allow observers to join after the game has started
-	bool observerLateJoin = false;
-	CFG_GET_VAL("network.lateobserverjoins", observerLateJoin);
-
 	int maxObservers = 0;
 	CFG_GET_VAL("network.observerlimit", maxObservers);
 
@@ -946,7 +942,6 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 	}
 	else
 	{
-		isRejoining = observerLateJoin;
 		bool isObserver = true;
 		int disconnectedPlayers = 0;
 		int connectedPlayers = 0;
@@ -970,7 +965,36 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 				++disconnectedPlayers;
 		}
 
-		// Players who weren't already in the game are not allowed to join now that it's started
+		// Optionally allow everyone or only buddies to join after the game has started
+		if (!isRejoining)
+		{
+			CStr observerLateJoin;
+			CFG_GET_VAL("network.lateobservers", observerLateJoin);
+
+			if (observerLateJoin == "everyone")
+			{
+				isRejoining = true;
+			}
+			else if (observerLateJoin == "buddies")
+			{
+				std::size_t pos = username.find(L" (");
+				CStrW usernameWithoutRating(pos == CStrW::npos ? username : username.substr(0, pos));
+
+				CStr buddies;
+				CFG_GET_VAL("lobby.buddies", buddies);
+				std::wstringstream buddiesStream(wstring_from_utf8(buddies));
+				CStrW buddy;
+				while (std::getline(buddiesStream, buddy, L','))
+				{
+					if (buddy == usernameWithoutRating)
+					{
+						isRejoining = true;
+						break;
+					}
+				}
+			}
+		}
+
 		if (!isRejoining)
 		{
 			LOGMESSAGE("Refused connection after game start from not-previously-known user \"%s\"", utf8_from_wstring(username));
