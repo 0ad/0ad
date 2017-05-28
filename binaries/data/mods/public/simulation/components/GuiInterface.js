@@ -893,7 +893,7 @@ GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 		if (!cmpRangeVisualization || player != owner && player != -1)
 			continue;
 
-		cmpRangeVisualization.SetEnabled(cmd.selected, this.enabledVisualRangeOverlayTypes);
+		cmpRangeVisualization.SetEnabled(cmd.selected, this.enabledVisualRangeOverlayTypes, false);
 	}
 };
 
@@ -948,7 +948,7 @@ GuiInterface.prototype.SetRangeOverlays = function(player, cmd)
 	{
 		let cmpRangeVisualization = Engine.QueryInterface(ent, IID_RangeVisualization);
 		if (cmpRangeVisualization)
-			cmpRangeVisualization.SetEnabled(cmd.enabled, this.enabledVisualRangeOverlayTypes);
+			cmpRangeVisualization.SetEnabled(cmd.enabled, this.enabledVisualRangeOverlayTypes, true);
 	}
 };
 

@@ -96,6 +96,10 @@
 		<action on="Press">toggleRangeOverlay("Aura");</action>
 	</object>
 
+	<object hotkey="session.togglehealrange">
+		<action on="Press">toggleRangeOverlay("Heal");</action>
+	</object>
+
 	<object hotkey="session.showstatusbars">
 		<action on="Press">
 			g_ShowAllStatusBars = !g_ShowAllStatusBars;

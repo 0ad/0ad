@@ -115,6 +115,18 @@
 			"label": "Chat Timestamp",
 			"tooltip": "Show time that messages are posted in the lobby, gamesetup and ingame chat.",
 			"parameters": { "config": "chat.timestamp" }
+		},
+		{
+			"type": "boolean",
+			"label": "Aura Range Visualization",
+			"tooltip": "Display the range of auras of selected units and structures (can also be toggled in-game with the hotkey).",
+			"parameters": { "config": "gui.session.aurarange" }
+		},
+		{
+			"type": "boolean",
+			"label": "Heal Range Visualization",
+			"tooltip": "Display the healing range of selected units (can also be toggled in-game with the hotkey).",
+			"parameters": { "config": "gui.session.healrange" }
 		}
 	],
 	"graphicsSetting":
@@ -228,12 +240,6 @@
 			"label": "FPS throttling in games",
 			"tooltip": "To save CPU workload, throttle render frequency in running games. Set to maximum to disable throttling.",
 			"parameters": { "config": "adaptivefps.session", "min": 20, "max": 100 }
-		},
-		{
-			"type": "boolean",
-			"label": "Aura Range Visualization",
-			"tooltip": "Display the range of auras of selected units and structures (can also be toggled in-game with the hotkey).",
-			"parameters": { "config": "gui.session.aurarange" }
 		}
 	],
 	"soundSetting":
