@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_infantry">
   <Armour>
-    <Hack>12</Hack>
-    <Pierce>12</Pierce>
+    <Hack op="add">4</Hack>
+    <Pierce op="add">4</Pierce>
   </Armour>
   <Attack>
     <Melee>
@@ -10,8 +10,8 @@
       <Pierce>10.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>5.0</MaxRange>
-      <PrepareTime>500</PrepareTime>
-      <RepeatTime>1000</RepeatTime>
+      <PrepareTime>450</PrepareTime>
+      <RepeatTime>900</RepeatTime>
       <Bonuses>
         <BonusCavMelee>
           <Classes>Cavalry</Classes>
