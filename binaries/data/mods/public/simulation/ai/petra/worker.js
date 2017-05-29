@@ -545,38 +545,42 @@ m.Worker.prototype.startGathering = function(gameState)
 		return true;
 
 	// Still nothing, we look now for faraway resources, first in the accessible ones, then in the others
-	if (this.accessIndex === access)
+	// except for food which is not worth (farms or corrals should be used)
+	if (resource !== "food")
 	{
-		if ((supply = findSupply(this.ent, this.base.dropsiteSupplies[resource].faraway)))
+		if (this.accessIndex === access)
 		{
-			this.ent.gather(supply);
-			return true;
-		}
-	}
-	for (let base of gameState.ai.HQ.baseManagers)
-	{
-		if (base.ID === this.baseID)
-			continue;
-		if (base.accessIndex !== access)
-			continue;
-		if ((supply = findSupply(this.ent, base.dropsiteSupplies[resource].faraway)))
-		{
-			this.ent.setMetadata(PlayerID, "base", base.ID);
-			this.ent.gather(supply);
-			return true;
-		}
-	}
-	for (let base of gameState.ai.HQ.baseManagers)
-	{
-		if (base.accessIndex === access)
-			continue;
-		if ((supply = findSupply(this.ent, base.dropsiteSupplies[resource].faraway)))
-		{
-			if (navalManager.requireTransport(gameState, this.ent, access, base.accessIndex, supply.position()))
+			if ((supply = findSupply(this.ent, this.base.dropsiteSupplies[resource].faraway)))
 			{
-				if (base.ID !== this.baseID)
-					this.ent.setMetadata(PlayerID, "base", base.ID);
+				this.ent.gather(supply);
 				return true;
+			}
+		}
+		for (let base of gameState.ai.HQ.baseManagers)
+		{
+			if (base.ID === this.baseID)
+				continue;
+			if (base.accessIndex !== access)
+				continue;
+			if ((supply = findSupply(this.ent, base.dropsiteSupplies[resource].faraway)))
+			{
+				this.ent.setMetadata(PlayerID, "base", base.ID);
+				this.ent.gather(supply);
+				return true;
+			}
+		}
+		for (let base of gameState.ai.HQ.baseManagers)
+		{
+			if (base.accessIndex === access)
+				continue;
+			if ((supply = findSupply(this.ent, base.dropsiteSupplies[resource].faraway)))
+			{
+				if (navalManager.requireTransport(gameState, this.ent, access, base.accessIndex, supply.position()))
+				{
+					if (base.ID !== this.baseID)
+						this.ent.setMetadata(PlayerID, "base", base.ID);
+					return true;
+				}
 			}
 		}
 	}

@@ -6,12 +6,13 @@ RangeVisualization.prototype.Init = function()
 {
 	this.enabled = false;
 	this.enabledRangeTypes = {
-		"Aura": false
+		"Aura": false,
+		"Heal": false
 	};
 
 	this.rangeVisualizations = new Map();
 	for (let type in this.enabledRangeTypes)
-		this["GetVisual" + type + "Ranges"](type);
+		this["UpdateVisual" + type + "Ranges"]();
 };
 
 // The GUI enables visualizations
@@ -22,16 +23,16 @@ RangeVisualization.prototype.Deserialize = function(data)
 	this.Init();
 };
 
-RangeVisualization.prototype.GetVisualAuraRanges = function(type)
+RangeVisualization.prototype.UpdateVisualAuraRanges = function()
 {
 	let cmpAuras = Engine.QueryInterface(this.entity, IID_Auras);
 	if (!cmpAuras)
 		return;
 
-	this.rangeVisualizations.set(type, []);
+	this.rangeVisualizations.set("Aura", []);
 
 	for (let auraName of cmpAuras.GetVisualAuraRangeNames())
-		this.rangeVisualizations.get(type).push({
+		this.rangeVisualizations.get("Aura").push({
 			"radius": cmpAuras.GetRange(auraName),
 			"texture": cmpAuras.GetLineTexture(auraName),
 			"textureMask": cmpAuras.GetLineTextureMask(auraName),
@@ -39,15 +40,29 @@ RangeVisualization.prototype.GetVisualAuraRanges = function(type)
 		});
 };
 
-RangeVisualization.prototype.SetEnabled = function(enabled, enabledRangeTypes)
+RangeVisualization.prototype.UpdateVisualHealRanges = function()
+{
+	let cmpHeal = Engine.QueryInterface(this.entity, IID_Heal);
+	if (!cmpHeal)
+		return;
+
+	this.rangeVisualizations.set("Heal", [{
+		"radius": cmpHeal.GetRange().max,
+		"texture": cmpHeal.GetLineTexture(),
+		"textureMask": cmpHeal.GetLineTextureMask(),
+		"thickness": cmpHeal.GetLineThickness(),
+	}]);
+};
+
+RangeVisualization.prototype.SetEnabled = function(enabled, enabledRangeTypes, forceUpdate)
 {
 	this.enabled = enabled;
 	this.enabledRangeTypes = enabledRangeTypes;
 
-	this.RegenerateRangeVisualizations();
+	this.RegenerateRangeVisualizations(forceUpdate);
 };
 
-RangeVisualization.prototype.RegenerateRangeVisualizations = function()
+RangeVisualization.prototype.RegenerateRangeVisualizations = function(forceUpdate)
 {
 	let cmpSelectable = Engine.QueryInterface(this.entity, IID_Selectable);
 	if (!cmpSelectable)
@@ -55,7 +70,7 @@ RangeVisualization.prototype.RegenerateRangeVisualizations = function()
 
 	cmpSelectable.ResetRangeOverlays();
 
-	if (!this.enabled)
+	if (!this.enabled && !forceUpdate)
 		return;
 
 	// Only render individual range types that have been enabled
@@ -72,7 +87,16 @@ RangeVisualization.prototype.RegenerateRangeVisualizations = function()
 RangeVisualization.prototype.OnOwnershipChanged = function(msg)
 {
 	if (this.enabled && msg.to != -1)
-		this.RegenerateRangeVisualizations();
+		this.RegenerateRangeVisualizations(false);
+};
+
+RangeVisualization.prototype.OnValueModification = function(msg)
+{
+	if (msg.valueNames.indexOf("Heal/Range") == -1)
+		return;
+
+	this["UpdateVisual" + msg.component + "Ranges"]();
+	this.RegenerateRangeVisualizations(false);
 };
 
 Engine.RegisterComponentType(IID_RangeVisualization, "RangeVisualization", RangeVisualization);

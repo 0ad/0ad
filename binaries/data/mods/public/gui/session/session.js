@@ -804,10 +804,11 @@ function onSimulationUpdate()
 	handleNotifications();
 	updateGUIObjects();
 
-	Engine.GuiInterfaceCall("EnableVisualRangeOverlayType", {
-		"type": "Aura",
-		"enabled": Engine.ConfigDB_GetValue("user", "gui.session.aurarange") == "true"
-	});
+	for (let type of ["Aura", "Heal"])
+		Engine.GuiInterfaceCall("EnableVisualRangeOverlayType", {
+			"type": type,
+			"enabled": Engine.ConfigDB_GetValue("user", "gui.session." + type.toLowerCase() + "range") == "true"
+		});
 
 	if (g_ConfirmExit)
 		confirmExit();
@@ -1272,7 +1273,7 @@ function recalculateStatusBarDisplay(remove = false)
  * Toggles the display of range overlays of selected entities for the given range type.
  * @param {string} type - for example "Aura"
  */
-function toggleRangeOverlay(type, currentValue)
+function toggleRangeOverlay(type)
 {
 	let configString = "gui.session." + type.toLowerCase() + "range";
 	let enabled = Engine.ConfigDB_GetValue("user", configString) != "true";
