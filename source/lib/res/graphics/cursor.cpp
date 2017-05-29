@@ -68,20 +68,20 @@ public:
 			WARN_RETURN(ERR::FAIL);
 
 		surface = SDL_CreateRGBSurfaceFrom(bgra_img, (int)t.m_Width, (int)t.m_Height, 32, (int)t.m_Width*4, 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000);
-		if (!surface)
+		if(!surface)
 			return ERR::FAIL;
 		if(scale != 1.0)
 		{
 			SDL_Surface* scaled_surface = SDL_CreateRGBSurface(0, surface->w * scale, surface->h * scale, 32, 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000);
-			if (!scaled_surface)
+			if(!scaled_surface)
 				return ERR::FAIL;
-			if (SDL_BlitScaled(surface, NULL, scaled_surface, NULL))
+			if(SDL_BlitScaled(surface, NULL, scaled_surface, NULL))
 				return ERR::FAIL;
 			SDL_FreeSurface(surface);
 			surface = scaled_surface;
 		}
 		cursor = SDL_CreateColorCursor(surface, hotspotx_, hotspoty_);
-		if (!cursor)
+		if(!cursor)
 			return ERR::FAIL;
 
 		return INFO::OK;
@@ -240,10 +240,10 @@ static Status Cursor_reload(Cursor* c, const PIVFS& vfs, const VfsPath& name, Ha
 	const VfsPath pathnameImage = pathname.ChangeExtension(L".png");
 
 	// try loading as SDL2 cursor
-	if (!c->forceGL && c->sdl_cursor.create(vfs, pathnameImage, hotspotx, hotspoty, c->scale) == INFO::OK)
+	if(!c->forceGL && c->sdl_cursor.create(vfs, pathnameImage, hotspotx, hotspoty, c->scale) == INFO::OK)
 		c->kind = CK_SDL;
 	// fall back to GLCursor (system cursor code is disabled or failed)
-	else if (c->gl_cursor.create(vfs, pathnameImage, hotspotx, hotspoty, c->scale) == INFO::OK)
+	else if(c->gl_cursor.create(vfs, pathnameImage, hotspotx, hotspoty, c->scale) == INFO::OK)
 		c->kind = CK_OpenGL;
 	// everything failed, leave cursor unchanged
 	else

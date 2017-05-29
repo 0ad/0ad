@@ -977,9 +977,7 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 			}
 			else if (observerLateJoin == "buddies")
 			{
-				std::size_t pos = username.find(L" (");
-				CStrW usernameWithoutRating(pos == CStrW::npos ? username : username.substr(0, pos));
-
+				CStrW usernameWithoutRating(username.substr(0, username.find(L" (")));
 				CStr buddies;
 				CFG_GET_VAL("lobby.buddies", buddies);
 				std::wstringstream buddiesStream(wstring_from_utf8(buddies));
