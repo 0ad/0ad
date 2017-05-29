@@ -1,0 +1,11 @@
+{
+	"type": "range",
+	"radius": 60,
+	"affects": ["CivilCentre"],
+	"affectedPlayers": ["Enemy"],
+	"modifications": [
+		{ "value": "Capturable/GarrisonRegenRate", "multiply": 0.5 }
+	],
+	"auraName": "Conqueror",
+	"auraDescription": "-50% garrisoned regeneration rate for enemy civic centers."
+}

@@ -1,9 +1,10 @@
 {
-	"type": "global",
+	"type": "range",
+	"radius": 60,
 	"affects": ["Pike"],
 	"modifications": [
 		{ "value": "Health/Max", "multiply": 1.40 }
 	],
 	"auraName": "Raphia",
-	"auraDescription": "Egyptian pikemen have 40% greater health during his lifetime."
+	"auraDescription": "Pikemen have 40% greater health during his lifetime."
 }

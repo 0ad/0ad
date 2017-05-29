@@ -3,7 +3,8 @@
 	"affects": ["Structure", "SiegeTower"],
 	"modifications": [
 		{ "value": "BuildingAI/GarrisonArrowMultiplier", "multiply": 1.75 },
-		{ "value": "BuildingAI/MaxArrowCount", "multiply": 1.75 }],
+		{ "value": "BuildingAI/MaxArrowCount", "multiply": 1.75 }
+	],
 	"auraDescription": "75% more arrows per soldier for the building or siege tower he is garrisoned in.",
 	"auraName": "Valiant Defender"
 }

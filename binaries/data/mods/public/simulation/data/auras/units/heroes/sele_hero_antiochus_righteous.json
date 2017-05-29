@@ -1,12 +1,11 @@
 {
 	"type": "range",
-	"radius": 70,
+	"radius": 80,
 	"affects": ["Structure", "Mechanical"],
 	"affectedPlayers": ["Enemy"],
 	"modifications": [
 		{ "value": "Health/Max", "multiply": 0.8 }
 	],
 	"auraName": "Renowned Conqueror",
-	"auraDescription": "-20% health for enemy buildings, siege engines and ships.",
-	"overlayIcon": "art/textures/ui/session/auras/health_bonus.png"
+	"auraDescription": "-20% health for enemy buildings, siege engines and ships."
 }

@@ -1,9 +1,10 @@
 {
-	"type": "global",
+	"type": "range",
+	"radius": 60,
 	"affects": ["Human", "Mechanical"],
 	"modifications": [
-		{ "value": "Looter/Resource/metal", "add": 10 }
+		{ "value": "Looter/Resource/metal", "add": 15 }
 	],
 	"auraName": "Sacker of Rome",
-	"auraDescription": "+10 Metal loot for every enemy unit killed."
+	"auraDescription": "+15 Metal loot for every enemy unit killed."
 }

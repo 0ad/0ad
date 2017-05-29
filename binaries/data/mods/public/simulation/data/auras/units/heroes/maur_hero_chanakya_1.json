@@ -2,9 +2,13 @@
 	"type": "garrison",
 	"affects": ["Structure"],
 	"modifications": [
+		{ "value": "ProductionQueue/TechCostMultiplier/wood", "multiply": 0.8 },
+		{ "value": "ProductionQueue/TechCostMultiplier/food", "multiply": 0.8 },
+		{ "value": "ProductionQueue/TechCostMultiplier/metal", "multiply": 0.8 },
+		{ "value": "ProductionQueue/TechCostMultiplier/stone", "multiply": 0.8 },
 		{ "value": "ProductionQueue/TechCostMultiplier/time", "multiply": 0.5 }
 	],
-	"auraDescription": "Empower a building with -50% research time while he is garrisoned in it.",
+	"auraDescription": "Empower a building with -20% cost and -50% research time while he is garrisoned in it.",
 	"auraName": "Teacher",
 	"overlayIcon": "art/textures/ui/session/auras/build_bonus.png"
 }

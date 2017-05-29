@@ -1,10 +1,10 @@
 {
 	"type": "range",
-	"radius": 60,
+	"radius": 40,
 	"affects": ["Champion"],
 	"modifications": [
-		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.25 },
-		{ "value": "UnitMotion/Run/Speed", "multiply": 1.25 },
+		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.1 },
+		{ "value": "UnitMotion/Run/Speed", "multiply": 1.1 },
 		{ "value": "Attack/Melee/Hack", "multiply": 1.2 },
 		{ "value": "Attack/Melee/Pierce", "multiply": 1.2 },
 		{ "value": "Attack/Melee/Crush", "multiply": 1.2 },
@@ -14,6 +14,6 @@
 		{ "value": "Attack/Capture/Value", "add": 2 }
 	],
 	"auraName": "Champion Army",
-	"auraDescription": "+20% attack, +2 capture and +25% speed for champion units.",
+	"auraDescription": "+20% attack, +2 capture and +10% speed for champion units.",
 	"overlayIcon": "art/textures/ui/session/auras/attack_bonus.png"
 }
