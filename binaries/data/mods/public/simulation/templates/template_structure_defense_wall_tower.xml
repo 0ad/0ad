@@ -23,7 +23,9 @@
     <PlacementType>land-shore</PlacementType>
     <Category>Wall</Category>
   </BuildRestrictions>
-  <Capturable disable=""/>
+  <Capturable>
+    <CapturePoints>1200</CapturePoints>
+  </Capturable>
   <Cost>
     <BuildTime>80</BuildTime>
     <Resources>
@@ -81,6 +83,9 @@
   <StatusBars>
     <HeightOffset>20.0</HeightOffset>
   </StatusBars>
+  <TerritoryDecay>
+    <DecayRate>5.0</DecayRate>
+  </TerritoryDecay>
   <TerritoryInfluence>
     <Root>false</Root>
     <Radius>20</Radius>
