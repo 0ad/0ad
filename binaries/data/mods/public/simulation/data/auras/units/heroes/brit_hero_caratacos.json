@@ -3,8 +3,11 @@
 	"affects": ["Soldier", "Siege"],
 	"modifications": [
 		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.15 },
-		{ "value": "UnitMotion/Run/Speed", "multiply": 1.15 }
+		{ "value": "UnitMotion/Run/Speed", "multiply": 1.15 },
+		{ "value": "Armour/Pierce", "add": 1 },
+		{ "value": "Armour/Hack", "add": 1 },
+		{ "value": "Armour/Crush", "add": 1 }
 	],
 	"auraName": "Guerrilla Chief",
-	"auraDescription": "All soldiers and siege engines +15% speed."
+	"auraDescription": "All soldiers and siege engines +15% speed and +1 armor."
 }

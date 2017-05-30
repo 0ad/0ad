@@ -1,0 +1,16 @@
+{
+	"type": "range",
+	"radius": 60,
+	"affects": ["Cavalry"],
+	"modifications": [
+		{ "value": "Attack/Melee/Hack", "multiply": 1.15 },
+		{ "value": "Attack/Melee/Pierce", "multiply": 1.15 },
+		{ "value": "Attack/Melee/Crush", "multiply": 1.15 },
+		{ "value": "Attack/Ranged/Hack", "multiply": 1.15 },
+		{ "value": "Attack/Ranged/Pierce", "multiply": 1.15 },
+		{ "value": "Attack/Ranged/Crush", "multiply": 1.15 }
+	],
+	"auraName": "Sword of Rome",
+	"auraDescription": "+15% attack for cavalry.",
+	"overlayIcon": "art/textures/ui/session/auras/attack_bonus.png"
+}

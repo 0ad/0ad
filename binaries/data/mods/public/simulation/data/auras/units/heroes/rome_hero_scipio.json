@@ -1,6 +1,6 @@
 {
 	"type": "range",
-	"radius": 60,
+	"radius": 10,
 	"affects": ["Soldier", "Siege"],
 	"modifications": [
 		{ "value": "Attack/Melee/Hack", "multiply": 1.2 },
@@ -11,7 +11,7 @@
 		{ "value": "Attack/Ranged/Crush", "multiply": 1.2 },
 		{ "value": "Attack/Capture/Value", "add": 2 }
 	],
-	"auraName": "Sword of Rome",
+	"auraName": "Triumph",
 	"auraDescription": "+20% attack and +2 capture for soldiers and siege engines.",
 	"overlayIcon": "art/textures/ui/session/auras/attack_bonus.png"
 }

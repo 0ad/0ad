@@ -2,8 +2,9 @@
 	"type": "global",
 	"affects": ["Temple"],
 	"modifications": [
-		{ "value": "Cost/Resources/stone", "add": -50 }
+		{ "value": "Cost/Resources/stone", "multiply": 0.75 },
+		{ "value": "GarrisonHolder/BuffHeal", "add": 2 }
 	],
 	"auraName": "Temple to Athena",
-	"auraDescription": "Temples are 50 stone cheaper during his lifetime."
+	"auraDescription": "-25% stone cost and +2 garrisoned heal rate for temples."
 }

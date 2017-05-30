@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2017-05-27 14:49+0200\n"
-"PO-Revision-Date: 2017-05-27 14:49+0200\n"
+"POT-Creation-Date: 2017-05-29 09:08+0200\n"
+"PO-Revision-Date: 2017-05-29 09:08+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -116,11 +116,7 @@ msgid "Delian League"
 msgstr ""
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.json:auraDescription
-msgid ""
-"Shortly after the great naval victories at Salamis and Mycale, the Greek "
-"city-states instituted the so-called Delian League in 478 BC, whose purpose "
-"was to push the Persians out of the Aegean region. The allied states "
-"contributed ships and money, while the Athenians offered their entire navy."
+msgid "Ships construct 25% faster."
 msgstr ""
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.json:auraName
@@ -540,7 +536,8 @@ msgid "Britannorum Rex"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.json:auraDescription
-msgid "+1 HP per second healing rate."
+#: simulation/data/auras/units/heroes/maur_hero_chanakya_2.json:auraDescription
+msgid "+0.8 HP per second healing rate."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar.json:auraName
@@ -603,8 +600,8 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_1.json:auraDescription
 msgid ""
-"75% more arrows fired per garrisoned soldier for the building while he is "
-"garrisoned in it."
+"75% more arrows per soldier for the building or siege tower he is garrisoned "
+"in."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.json:auraName
@@ -686,13 +683,17 @@ msgstr ""
 msgid "Temples and temple technologies -50% cost, in resources and time."
 msgstr ""
 
-#: simulation/data/auras/units/heroes/maur_hero_chanakya.json:auraName
+#: simulation/data/auras/units/heroes/maur_hero_chanakya_1.json:auraName
 msgid "Teacher"
 msgstr ""
 
-#: simulation/data/auras/units/heroes/maur_hero_chanakya.json:auraDescription
+#: simulation/data/auras/units/heroes/maur_hero_chanakya_1.json:auraDescription
 msgid ""
 "Empower a building with -50% research time while he is garrisoned in it."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/maur_hero_chanakya_2.json:auraName
+msgid "Regeneration"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.json:auraName

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_infantry">
   <Armour>
-    <Hack>17</Hack>
-    <Pierce>17</Pierce>
-    <Crush>25</Crush>
+    <Hack op="add">9</Hack>
+    <Pierce op="add">9</Pierce>
   </Armour>
   <Attack>
     <Melee>

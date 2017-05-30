@@ -373,7 +373,8 @@ m.Worker.prototype.startGathering = function(gameState)
 	// first look in our own base if accessible from our present position
 	if (this.accessIndex === access)
 	{
-		if ((supply = findSupply(this.ent, this.base.dropsiteSupplies[resource].nearby)))
+		supply = findSupply(this.ent, this.base.dropsiteSupplies[resource].nearby);
+		if (supply)
 		{
 			this.ent.gather(supply);
 			return true;
@@ -381,18 +382,21 @@ m.Worker.prototype.startGathering = function(gameState)
 		// --> for food, try to gather from fields if any, otherwise build one if any
 		if (resource === "food")
 		{
-			if ((supply = this.gatherNearestField(gameState, this.baseID)))
+			supply = this.gatherNearestField(gameState, this.baseID);
+			if (supply)
 			{
 				this.ent.gather(supply);
 				return true;
 			}
-			else if (this.ent.isBuilder() && (supply = this.buildAnyField(gameState, this.baseID)))
+			supply = this.buildAnyField(gameState, this.baseID);
+			if (supply)
 			{
 				this.ent.repair(supply);
 				return true;
 			}
 		}
-		if ((supply = findSupply(this.ent, this.base.dropsiteSupplies[resource].medium)))
+		supply = findSupply(this.ent, this.base.dropsiteSupplies[resource].medium);
+		if (supply)
 		{
 			this.ent.gather(supply);
 			return true;
@@ -406,7 +410,8 @@ m.Worker.prototype.startGathering = function(gameState)
 			continue;
 		if (base.accessIndex !== access)
 			continue;
-		if ((supply = findSupply(this.ent, base.dropsiteSupplies[resource].nearby)))
+		supply = findSupply(this.ent, base.dropsiteSupplies[resource].nearby);
+		if (supply)
 		{
 			this.ent.setMetadata(PlayerID, "base", base.ID);
 			this.ent.gather(supply);
@@ -421,13 +426,15 @@ m.Worker.prototype.startGathering = function(gameState)
 				continue;
 			if (base.accessIndex !== access)
 				continue;
-			if ((supply = this.gatherNearestField(gameState, base.ID)))
+			supply = this.gatherNearestField(gameState, base.ID);
+			if (supply)
 			{
 				this.ent.setMetadata(PlayerID, "base", base.ID);
 				this.ent.gather(supply);
 				return true;
 			}
-			if (this.ent.isBuilder() && (supply = this.buildAnyField(gameState, base.ID)))
+			supply = this.buildAnyField(gameState, base.ID);
+			if (supply)
 			{
 				this.ent.setMetadata(PlayerID, "base", base.ID);
 				this.ent.repair(supply);
@@ -441,7 +448,8 @@ m.Worker.prototype.startGathering = function(gameState)
 			continue;
 		if (base.accessIndex !== access)
 			continue;
-		if ((supply = findSupply(this.ent, base.dropsiteSupplies[resource].medium)))
+		supply = findSupply(this.ent, base.dropsiteSupplies[resource].medium);
+		if (supply)
 		{
 			this.ent.setMetadata(PlayerID, "base", base.ID);
 			this.ent.gather(supply);
@@ -473,14 +481,12 @@ m.Worker.prototype.startGathering = function(gameState)
 	{
 		if (base.accessIndex === access)
 			continue;
-		if ((supply = findSupply(this.ent, base.dropsiteSupplies[resource].nearby)))
+		supply = findSupply(this.ent, base.dropsiteSupplies[resource].nearby);
+		if (supply && navalManager.requireTransport(gameState, this.ent, access, base.accessIndex, supply.position()))
 		{
-			if (navalManager.requireTransport(gameState, this.ent, access, base.accessIndex, supply.position()))
-			{
-				if (base.ID !== this.baseID)
-					this.ent.setMetadata(PlayerID, "base", base.ID);
-				return true;
-			}
+			if (base.ID !== this.baseID)
+				this.ent.setMetadata(PlayerID, "base", base.ID);
+			return true;
 		}
 	}
 	if (resource === "food")	// --> for food, try to gather from fields if any, otherwise build one if any
@@ -489,23 +495,19 @@ m.Worker.prototype.startGathering = function(gameState)
 		{
 			if (base.accessIndex === access)
 				continue;
-			if ((supply = this.gatherNearestField(gameState, base.ID)))
+			supply = this.gatherNearestField(gameState, base.ID);
+			if (supply && navalManager.requireTransport(gameState, this.ent, access, base.accessIndex, supply.position()))
 			{
-				if (navalManager.requireTransport(gameState, this.ent, access, base.accessIndex, supply.position()))
-				{
-					if (base.ID !== this.baseID)
-						this.ent.setMetadata(PlayerID, "base", base.ID);
-					return true;
-				}
+				if (base.ID !== this.baseID)
+					this.ent.setMetadata(PlayerID, "base", base.ID);
+				return true;
 			}
-			if ((supply = this.buildAnyField(gameState, base.ID)))
+			supply = this.buildAnyField(gameState, base.ID);
+			if (supply && navalManager.requireTransport(gameState, this.ent, access, base.accessIndex, supply.position()))
 			{
-				if (navalManager.requireTransport(gameState, this.ent, access, base.accessIndex, supply.position()))
-				{
-					if (base.ID !== this.baseID)
-						this.ent.setMetadata(PlayerID, "base", base.ID);
-					return true;
-				}
+				if (base.ID !== this.baseID)
+					this.ent.setMetadata(PlayerID, "base", base.ID);
+				return true;
 			}
 		}
 	}
@@ -513,14 +515,12 @@ m.Worker.prototype.startGathering = function(gameState)
 	{
 		if (base.accessIndex === access)
 			continue;
-		if ((supply = findSupply(this.ent, base.dropsiteSupplies[resource].medium)))
+		supply = findSupply(this.ent, base.dropsiteSupplies[resource].medium);
+		if (supply && navalManager.requireTransport(gameState, this.ent, access, base.accessIndex, supply.position()))
 		{
-			if (navalManager.requireTransport(gameState, this.ent, access, base.accessIndex, supply.position()))
-			{
-				if (base.ID !== this.baseID)
-					this.ent.setMetadata(PlayerID, "base", base.ID);
-				return true;
-			}
+			if (base.ID !== this.baseID)
+				this.ent.setMetadata(PlayerID, "base", base.ID);
+			return true;
 		}
 	}
 	// Okay so we haven't found any appropriate dropsite anywhere.
@@ -545,12 +545,22 @@ m.Worker.prototype.startGathering = function(gameState)
 		return true;
 
 	// Still nothing, we look now for faraway resources, first in the accessible ones, then in the others
-	// except for food which is not worth (farms or corrals should be used)
-	if (resource !== "food")
+	// except for food when farms or corrals can be used
+	let allowDistant = true;
+	if (resource === "food")
+	{
+		if (gameState.ai.HQ.turnCache.allowDistantFood === undefined)
+			gameState.ai.HQ.turnCache.allowDistantFood =
+				!gameState.ai.HQ.canBuild(gameState, "structures/{civ}_field") &&
+				!gameState.ai.HQ.canBuild(gameState, "structures/{civ}_corral");
+		allowDistant = gameState.ai.HQ.turnCache.allowDistantFood;
+	}
+	if (allowDistant)
 	{
 		if (this.accessIndex === access)
 		{
-			if ((supply = findSupply(this.ent, this.base.dropsiteSupplies[resource].faraway)))
+			supply = findSupply(this.ent, this.base.dropsiteSupplies[resource].faraway);
+			if (supply)
 			{
 				this.ent.gather(supply);
 				return true;
@@ -562,7 +572,8 @@ m.Worker.prototype.startGathering = function(gameState)
 				continue;
 			if (base.accessIndex !== access)
 				continue;
-			if ((supply = findSupply(this.ent, base.dropsiteSupplies[resource].faraway)))
+			supply = findSupply(this.ent, base.dropsiteSupplies[resource].faraway);
+			if (supply)
 			{
 				this.ent.setMetadata(PlayerID, "base", base.ID);
 				this.ent.gather(supply);
@@ -573,14 +584,12 @@ m.Worker.prototype.startGathering = function(gameState)
 		{
 			if (base.accessIndex === access)
 				continue;
-			if ((supply = findSupply(this.ent, base.dropsiteSupplies[resource].faraway)))
+			supply = findSupply(this.ent, base.dropsiteSupplies[resource].faraway);
+			if (supply && navalManager.requireTransport(gameState, this.ent, access, base.accessIndex, supply.position()))
 			{
-				if (navalManager.requireTransport(gameState, this.ent, access, base.accessIndex, supply.position()))
-				{
-					if (base.ID !== this.baseID)
-						this.ent.setMetadata(PlayerID, "base", base.ID);
-					return true;
-				}
+				if (base.ID !== this.baseID)
+					this.ent.setMetadata(PlayerID, "base", base.ID);
+				return true;
 			}
 		}
 	}
@@ -821,6 +830,8 @@ m.Worker.prototype.gatherNearestField = function(gameState, baseID)
  */
 m.Worker.prototype.buildAnyField = function(gameState, baseID)
 {
+	if (!this.ent.isBuilder())
+		return false;
 	let baseFoundations = gameState.getOwnFoundations().filter(API3.Filters.byMetadata(PlayerID, "base", baseID));
 	let maxGatherers = gameState.getTemplate(gameState.applyCiv("structures/{civ}_field")).maxGatherers();
 	let bestFarmEnt = false;
