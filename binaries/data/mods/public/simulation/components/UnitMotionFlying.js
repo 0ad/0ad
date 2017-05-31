@@ -106,7 +106,7 @@ UnitMotionFlying.prototype.OnUpdate = function(msg)
 				this.hasTarget = false;
 				this.landing = false;
 				// summon planes back from the edge of the map
-				var terrainSize = cmpTerrain.GetTilesPerSide() * 4;
+				var terrainSize = cmpTerrain.GetMapSize();
 				var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 				if (cmpRangeManager.GetLosCircular())
 				{

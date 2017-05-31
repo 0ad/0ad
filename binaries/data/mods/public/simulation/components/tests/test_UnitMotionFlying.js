@@ -71,7 +71,7 @@ AddMock(entity, IID_RangeManager, {
 
 AddMock(entity, IID_Terrain, {
 	"GetGroundLevel": () => 4,
-	"GetTilesPerSide": () => 5
+	"GetMapSize": () => 20
 });
 
 AddMock(entity, IID_WaterManager, {

@@ -52,6 +52,11 @@ public:
 	 */
 	virtual u16 GetVerticesPerSide() const = 0;
 
+	/**
+	 * Returns the map size in metres (world space units).
+	 */
+	virtual u32 GetMapSize() const = 0;
+
 	virtual CTerrain* GetCTerrain() = 0;
 
 	/**

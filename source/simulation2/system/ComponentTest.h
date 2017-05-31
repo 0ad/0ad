@@ -212,6 +212,11 @@ public:
 		return 16;
 	}
 
+	virtual u32 GetMapSize() const
+	{
+		return GetTilesPerSide() * TERRAIN_TILE_SIZE;
+	}
+
 	virtual u16 GetVerticesPerSide() const
 	{
 		return 17;

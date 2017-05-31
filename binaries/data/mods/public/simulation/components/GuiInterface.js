@@ -135,7 +135,7 @@ GuiInterface.prototype.GetSimulationState = function()
 
 	let cmpTerrain = Engine.QueryInterface(SYSTEM_ENTITY, IID_Terrain);
 	if (cmpTerrain)
-		ret.mapSize = 4 * cmpTerrain.GetTilesPerSide();
+		ret.mapSize = cmpTerrain.GetMapSize();
 
 	// Add timeElapsed
 	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
