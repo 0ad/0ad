@@ -503,6 +503,54 @@ m.AttackManager.prototype.raidTargetEntity = function(gameState, ent)
 	this.raidNumber++;
 };
 
+/**
+ * Response to the capture of one of our structure:
+ * transform all defense armies around into a new attack army and target this structure
+ */
+m.AttackManager.prototype.counterAttack = function(gameState, ent, range=150)
+{
+	if (!ent || !ent.position())
+		return false;
+	let pos = ent.position();
+	let attackType = "Attack";
+	let attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber, attackType);
+	if (attackPlan.failed)
+		return false;
+	this.totalNumber++;
+	attackPlan.init(gameState);
+	this.startedAttacks[attackType].push(attackPlan);
+
+	for (let i = 0; i < gameState.ai.HQ.defenseManager.armies.length; ++i)
+	{
+		let army = gameState.ai.HQ.defenseManager.armies[i];
+		army.recalculatePosition(gameState);
+		if (API3.SquareVectorDistance(pos, army.foePosition) > range*range)
+			continue;
+		while (army.ownEntities.length > 0)
+		{
+			let unitId = army.ownEntities[0];
+			army.removeOwn(gameState, unitId);
+			let unit = gameState.getEntityById(unitId);
+			if (unit && attackPlan.isAvailableUnit(gameState, unit))
+			{
+				unit.setMetadata(PlayerID, "plan", attackPlan.name);
+				attackPlan.unitCollection.updateEnt(unit);
+			}
+		}
+		gameState.ai.HQ.defenseManager.armies.splice(i--, 1);
+	}
+	if (!attackPlan.unitCollection.hasEntities())
+	{
+		attackPlan.Abort(gameState);
+		return false;
+	}
+	attackPlan.targetPlayer = ent.owner();
+	attackPlan.targetPos = pos;
+	attackPlan.target = ent;
+	attackPlan.state = "arrived";
+	return true;
+};
+
 m.AttackManager.prototype.Serialize = function()
 {
 	let properties = {

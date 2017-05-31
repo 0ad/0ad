@@ -213,6 +213,14 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 
 	for (let evt of events.OwnershipChanged)   // capture events
 	{
+		if (gameState.isPlayerMutualAlly(evt.from) && evt.to > 0)
+		{
+			let ent = gameState.getEntityById(evt.entity);
+			if (ent && ent.hasClass("CivCentre")) // one of our cc has been captured
+				this.attackManager.counterAttack(gameState, ent);
+			continue;
+		}
+
 		if (evt.to !== PlayerID)
 			continue;
 		let ent = gameState.getEntityById(evt.entity);
