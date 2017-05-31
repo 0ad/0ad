@@ -332,8 +332,10 @@ m.Army.prototype.clear = function (gameState)
 		let ent = gameState.getEntityById(entId);
 		if (ent)
 		{
-			if (!ent.position() ||
-			    ent.healthLevel() < this.Config.garrisonHealthLevel.low &&
+			if (!ent.position() || ent.getMetadata(PlayerID, "transport") !== undefined ||
+			                       ent.getMetadata(PlayerID, "transporter") !== undefined)
+				continue;
+			if (ent.healthLevel() < this.Config.garrisonHealthLevel.low &&
 			    gameState.ai.HQ.defenseManager.garrisonAttackedUnit(gameState, ent))
 				continue;
 
