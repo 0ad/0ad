@@ -207,7 +207,7 @@ function draw()
 		if (trainer.upgrades)
 			for (let upgrade of trainer.upgrades)
 			{
-				if (!drawProdIcon(null, t, null, p, upgrade.data))
+				if (!drawProdIcon(null, t, null, p, upgrade))
 					break;
 				++p;
 			}

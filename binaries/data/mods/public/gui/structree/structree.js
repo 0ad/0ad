@@ -265,16 +265,19 @@ function selectCiv(civCode)
 	}
 
 	for (let unitCode of g_Lists.units)
-		if (g_ParsedData.units[unitCode] && (
-			g_ParsedData.units[unitCode].production && Object.keys(g_ParsedData.units[unitCode].production).length
-			|| g_ParsedData.units[unitCode].upgrades))
+		if (g_ParsedData.units[unitCode])
 		{
+			let unitTemplate = g_ParsedData.units[unitCode];
+
+			if ((!unitTemplate.production || !Object.keys(unitTemplate.production).length) && !unitTemplate.upgrades)
+				continue;
+
 			// Replace any pair techs with the actual techs of that pair
-			if (g_ParsedData.units[unitCode].production.techs)
-				for (let prod of g_ParsedData.units[unitCode].production.techs)
+			if (unitTemplate.production && unitTemplate.production.techs)
+				for (let prod of unitTemplate.production.techs)
 					if (prod in techPairs)
-						g_ParsedData.units[unitCode].production.techs.splice(
-							g_ParsedData.units[unitCode].production.techs.indexOf(prod),
+						unitTemplate.production.techs.splice(
+							unitTemplate.production.techs.indexOf(prod),
 							1, ...techPairs[prod].techs
 						);
 
