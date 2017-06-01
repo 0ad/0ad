@@ -7,6 +7,8 @@ const triggerPointShipUnloadLeft = "special/trigger_point_C";
 const triggerPointShipUnloadRight = "special/trigger_point_D";
 const triggerPointLandPatrolLeft = "special/trigger_point_E";
 const triggerPointLandPatrolRight = "special/trigger_point_F";
+const triggerPointCCAttackerPatrolLeft = "special/trigger_point_G";
+const triggerPointCCAttackerPatrolRight = "special/trigger_point_H";
 
 // Terrain textures
 const tRoad = "steppe_river_rocks";
@@ -123,11 +125,13 @@ InitMap();
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
 
+var clMiddle = createTileClass();
 var clPlayer = createTileClass();
 var clForest = createTileClass();
 var clWater = createTileClass();
 var clLand = [createTileClass(), createTileClass()];
 var clLandPatrolPoint = [createTileClass(), createTileClass()];
+var clCCAttackerPatrolPoint = [createTileClass(), createTileClass()];
 var clShore = [createTileClass(), createTileClass()];
 var clShoreUngarrisonPoint = [createTileClass(), createTileClass()];
 var clShip = createTileClass();
@@ -156,8 +160,9 @@ var gallicCCTreasureCount = randIntInclusive(8, 12);
 // How many treasures will be placed randomly on the map at most
 var randomTreasureCount = randIntInclusive(0, 3 * numPlayers);
 
-// Place a gaia village on small maps and larger
-if (mapSize >= smallMapSize)
+// Place a gallic village on small maps and larger
+var gallicCC = mapSize >= smallMapSize;
+if (gallicCC)
 {
 	log("Creating gallic villages...");
 	let gaulCityRadius = 12;
@@ -186,7 +191,7 @@ if (mapSize >= smallMapSize)
 			// Radius of the meeting place
 			let mRadius = scaleByMapSize(4, 6);
 
-			// Create a path connecting the gaia city with a meeting place at the shoreline.
+			// Create a path connecting the gallic city with a meeting place at the shoreline.
 			// To avoid the path going through the palisade wall, start it at the gate, not at the city center.
 			let placer = new PathPlacer(
 				gX + gaulCityRadius * (i == 0 ? 1 : -1),
@@ -273,7 +278,7 @@ if (mapSize >= smallMapSize)
 		let wall = [
 			"gate", "hut", "palisade_tower", "wallLong", "wallLong",
 			"cornerIn", "defense_tower", "wallLong", "wallLong", "temple",
-			"palisade_tower", "wallLong", "house", "wallLong", "palisade_tower", "longhouse", "wallLong", "wallLong",
+			"palisade_tower", "wallLong", "house", "gate", "palisade_tower", "longhouse", "wallLong", "wallLong",
 			"cornerIn", "defense_tower", "wallLong", "tavern", "wallLong", "palisade_tower"];
 		wall = wall.concat(wall);
 		placeCustomFortress(gX, gZ, new Fortress("Geto-Dacian Tribal Confederation", wall), "gaul", 0, PI);
@@ -776,7 +781,9 @@ for (let i = 0; i < 2; ++i)
 	);
 
 log("Creating patrol points for land attackers...");
+addToClass(mapSize/2, mapSize/2, clMiddle);
 for (let i = 0; i < 2; ++i)
+{
 	createObjectGroups(
 		new SimpleGroup(
 			[new SimpleObject(
@@ -793,6 +800,35 @@ for (let i = 0; i < 2; ++i)
 		10000,
 		100
 	);
+
+	if (gallicCC)
+		createObjectGroups(
+			new SimpleGroup(
+				[new SimpleObject(
+					i == 0 ? triggerPointCCAttackerPatrolLeft : triggerPointCCAttackerPatrolRight,
+					1, 1,
+					0, 0)],
+				true,
+				clCCAttackerPatrolPoint[i]),
+			0,
+			[
+				// Don't avoid the forest, so that as many places as possible on the border are visited
+				avoidClasses(
+					clWater, 5,
+					clHill, 3,
+					clFood, 1,
+					clRock, 4,
+					clMetal, 4,
+					clPlayer, 15,
+					clGauls, 0,
+					clCCAttackerPatrolPoint[i], 5,
+					clMiddle, mapSize * 0.5 - 15),
+				stayClasses(clLand[i], 0)
+			],
+			10000,
+			100
+		);
+}
 
 log("Creating water logs...");
 createObjectGroups(
