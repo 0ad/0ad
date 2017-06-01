@@ -5,9 +5,9 @@ Heal.prototype.Schema =
 	"<a:example>" +
 		"<Range>20</Range>" +
 		"<RangeOverlay>" +
-			"<LineTexture>outline_border.png</LineTexture>" +
-			"<LineTextureMask>outline_border_mask.png</LineTextureMask>" +
-			"<LineThickness>0.2</LineThickness>" +
+			"<LineTexture>heal_overlay_range.png</LineTexture>" +
+			"<LineTextureMask>heal_overlay_range_mask.png</LineTextureMask>" +
+			"<LineThickness>0.35</LineThickness>" +
 		"</RangeOverlay>" +
 		"<HP>5</HP>" +
 		"<Rate>2000</Rate>" +
@@ -89,17 +89,17 @@ Heal.prototype.GetHealableClasses = function()
 
 Heal.prototype.GetLineTexture = function()
 {
-	return this.template.RangeOverlay ? this.template.RangeOverlay.LineTexture : "outline_border.png";
+	return this.template.RangeOverlay ? this.template.RangeOverlay.LineTexture : "heal_overlay_range.png";
 };
 
 Heal.prototype.GetLineTextureMask = function()
 {
-	return this.template.RangeOverlay ? this.template.RangeOverlay.LineTextureMask : "outline_border_mask.png";
+	return this.template.RangeOverlay ? this.template.RangeOverlay.LineTextureMask : "heal_overlay_range_mask.png";
 };
 
 Heal.prototype.GetLineThickness = function()
 {
-	return this.template.RangeOverlay ? +this.template.RangeOverlay.LineThickness : 0.15;
+	return this.template.RangeOverlay ? +this.template.RangeOverlay.LineThickness : 0.35;
 };
 
 /**
