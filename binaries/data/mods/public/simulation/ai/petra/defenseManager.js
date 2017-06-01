@@ -472,9 +472,11 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 			continue;
 
 		let attacker = gameState.getEntityById(evt.attacker);
-		if (attacker && gameState.isEntityOwn(attacker) && gameState.isEntityEnemy(target) && !attacker.hasClass("Ship"))
+		if (attacker && gameState.isEntityOwn(attacker) && gameState.isEntityEnemy(target) && !attacker.hasClass("Ship") &&
+		   (!target.hasClass("Structure") || target.attackRange("Ranged")))
 		{
 			// If enemies are in range of one of our defensive structures, garrison it for arrow multiplier
+			// (enemy non-defensive structure are not considered to stay in sync with garrisonManager)
 			if (attacker.position() && attacker.isGarrisonHolder() && attacker.getArrowMultiplier())
 				this.garrisonUnitsInside(gameState, attacker, {"attacker": target});
 		}
