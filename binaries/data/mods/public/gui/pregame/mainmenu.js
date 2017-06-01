@@ -42,6 +42,17 @@ function init(initData, hotloadData)
 		guiObj.sprite = g_BackgroundLayerset[i].sprite;
 		guiObj.z = i;
 	}
+
+	// Enable campaign button if we have campaigns available
+	if (Object.keys(LoadAvailableCampaigns()).length !== 0)
+	{
+		Engine.GetGUIObjectByName("subMenuNewCampaignButton").enabled = true;
+		// TODO
+		// Engine.GetGUIObjectByName("subMenuLoadCampaignButton").enabled = true;
+		// Continue if it seems we would be able to.
+		if (canLoadCurrentCampaign())
+			Engine.GetGUIObjectByName("subMenuContinueCampaignButton").enabled = true;
+	}
 }
 
 function getHotloadData()

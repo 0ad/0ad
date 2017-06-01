@@ -5,6 +5,8 @@
 	<script file="gui/common/functions_global_object.js"/>
 	<script file="gui/common/functions_utility_error.js"/>
 	<script file="gui/pregame/mainmenu.js"/>
+	<script file="gui/campaign/campaign.js"/>
+	<script file="gui/campaign/campaign_io.js"/>
 	<script directory="gui/pregame/backgrounds/"/>
 
 
@@ -217,28 +219,10 @@
 					</action>
 				</object>
 
-				<object name="subMenuCampaignButton"
-					type="button"
-					style="StoneButtonFancy"
-					size="0 32 100% 60"
-					tooltip_style="pgToolTip"
-					enabled="false"
-				>
-					<translatableAttribute id="caption">Campaigns</translatableAttribute>
-					<translatableAttribute id="tooltip">Relive history through historical military campaigns. \[NOT YET IMPLEMENTED]</translatableAttribute>
-					<action on="Press">
-					closeMenu();
-						<![CDATA[
-							// Open Campaigns window.
-							// NOT IMPLEMENTED YET
-						]]>
-					</action>
-				</object>
-
 				<object name="subMenuLoadButton"
 					type="button"
 					style="StoneButtonFancy"
-					size="0 64 100% 92"
+					size="0 32 100% 60"
 					tooltip_style="pgToolTip"
 				>
 					<translatableAttribute id="caption">Load Game</translatableAttribute>
@@ -249,6 +233,48 @@
 					</action>
 				</object>
 
+				<object name="subMenuContinueCampaignButton"
+					type="button"
+					style="StoneButtonFancy"
+					size="0 64 100% 92"
+					tooltip_style="pgToolTip"
+					enabled="false"
+				>
+					<translatableAttribute id="caption">Continue Campaign</translatableAttribute>
+					<translatableAttribute id="tooltip">Click here to load your latest campaign.</translatableAttribute>
+					<action on="Press">
+						loadCurrentCampaignSave();
+					</action>
+				</object>
+
+				<object name="subMenuNewCampaignButton"
+					type="button"
+					style="StoneButtonFancy"
+					size="0 96 100% 124"
+					tooltip_style="pgToolTip"
+					enabled="false"
+				>
+					<translatableAttribute id="caption">New Campaign</translatableAttribute>
+					<translatableAttribute id="tooltip">Relive history through historical military campaigns. \[WIP]</translatableAttribute>
+					<action on="Press">
+						closeMenu();
+						Engine.PushGuiPage("page_campaignsetup_simple.xml", { type: "offline" });
+					</action>
+				</object>
+
+				<object name="subMenuLoadCampaignButton"
+					type="button"
+					style="StoneButtonFancy"
+					size="0 128 100% 156"
+					tooltip_style="pgToolTip"
+				>
+					<translatableAttribute id="caption">Load Campaign</translatableAttribute>
+					<translatableAttribute id="tooltip">Click here to resume an existing campaign.</translatableAttribute>
+					<action on="Press">
+						closeMenu();
+						Engine.PushGuiPage("page_loadcampaign.xml", { type: "offline" });
+					</action>
+				</object>
 			</object>
 
 			<!-- submenuMultiplayer -->
@@ -473,7 +499,7 @@
 					<translatableAttribute id="tooltip">Challenge the computer player to a single player match.</translatableAttribute>
 					<action on="Press">
 						closeMenu();
-						openMenu("submenuSinglePlayer", (this.parent.size.top+this.size.top), (this.size.bottom-this.size.top), 3);
+						openMenu("submenuSinglePlayer", (this.parent.size.top+this.size.top), (this.size.bottom-this.size.top), 5);
 					</action>
 				</object>
 

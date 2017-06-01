@@ -15,6 +15,10 @@
 <script file="gui/common/timer.js"/>
 <script file="gui/common/tooltips.js"/>
 
+<!-- If this was a campaign game, we need to tell the campaign -->
+<script file="gui/campaign/campaign.js"/>
+<script file="gui/campaign/campaign_io.js"/>
+
 <script directory="gui/session/"/>
 
 <object name="sn" hotkey="session.gui.toggle">

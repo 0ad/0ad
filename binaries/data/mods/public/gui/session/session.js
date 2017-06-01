@@ -669,6 +669,14 @@ function leaveGame(willRejoin)
 	let replayDirectory = Engine.GetCurrentReplayDirectory();
 	let simData = getReplayMetadata();
 
+	let campaignData = null;
+	if (Engine.GetInitAttributes().campaignData)
+	{
+		campaignData = Engine.GetInitAttributes().campaignData;
+		campaignData.endGameData = Engine.GuiInterfaceCall("GetEndGameCampaignData");
+		campaignGameEnded(campaignData);
+	}
+
 	Engine.EndGame();
 
 	// After the replay file was closed in EndGame
@@ -687,7 +695,8 @@ function leaveGame(willRejoin)
 			"isReplay": g_IsReplay,
 			"replayDirectory": !g_HasRejoined && replayDirectory,
 			"replaySelectionData": g_ReplaySelectionData
-		}
+		},
+		"campaignData" : campaignData
 	});
 }
 

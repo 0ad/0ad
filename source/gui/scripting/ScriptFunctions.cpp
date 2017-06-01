@@ -39,6 +39,7 @@
 #include "network/NetClient.h"
 #include "network/NetMessage.h"
 #include "network/NetServer.h"
+#include "ps/Campaigns.h"
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
 #include "ps/Errors.h"
@@ -235,6 +236,11 @@ void SetViewedPlayer(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int id)
 JS::Value GetEngineInfo(ScriptInterface::CxPrivate* pCxPrivate)
 {
 	return SavedGames::GetEngineInfo(*(pCxPrivate->pScriptInterface));
+}
+
+bool DeleteCampaignGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& name)
+{
+	return Campaigns::DeleteGame(name);
 }
 
 void StartNetworkGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
@@ -1047,6 +1053,9 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, int, &SendNetworkReady>("SendNetworkReady");
 	scriptInterface.RegisterFunction<JS::Value, &GetAIs>("GetAIs");
 	scriptInterface.RegisterFunction<JS::Value, &GetEngineInfo>("GetEngineInfo");
+
+	// Campaigns
+	scriptInterface.RegisterFunction<bool, std::wstring, &DeleteCampaignGame>("DeleteCampaignGame");
 
 	// Saved games
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, &StartSavedGame>("StartSavedGame");

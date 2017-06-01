@@ -1,0 +1,22 @@
+{
+	"Name" : "Tutorial",
+	"Description" : "Learn how to play 0 A.D.",
+	"Interface" : "campaign/simple_campaign/page_menu.xml",
+	"Image" : "session/icons/mappreview/Introductory Tutorial.png",
+	"Levels" : {
+		"introduction" : {
+			"Name" : "Introductory Tutorial",
+			"Map" : "scenarios/Introductory Tutorial.xml",
+			"Description" : "This is a basic tutorial to get you started playing 0 A.D.",
+			"Preview" : "session/icons/mappreview/Introductory Tutorial.png"
+		},
+		"eco_walkthrough" : {
+			"Name" : "Economy Walkthrough",
+			"Map" : "scenarios/starting_economy_walkthrough.xml",
+			"Description" : "This map will give a rough guide for starting the game effectively.  Early in the game the most important thing is to gather resources as fast as possible so you are able to build enough troops later.\u000a\u000aWarning: This is very fast at the start, be prepared to run through the initial bit several times.",
+			"Requires" : "introduction"
+		}
+	},
+	"Order" : ["introduction", "eco_walkthrough"],
+	"ShowUnavailable" : true
+}

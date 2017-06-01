@@ -14,6 +14,10 @@
 	<!-- Needs the colors from summary.js -->
 	<script file="gui/summary/layout.js"/>
 
+	<!-- Load the campaign screen if this was a campaign -->
+	<script file="gui/campaign/campaign.js"/>
+	<script file="gui/campaign/campaign_io.js"/>
+
 	<object name="summaryWindow"
 		type="image"
 		style="ModernWindow"
