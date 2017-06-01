@@ -2,7 +2,7 @@
 // To prevent unlimited spawning of ships, no more than the amount of ships intended at a given time are spawned.
 
 // Ships are filled or refilled with new units.
-// The number ships, number of units per ship, as well as ratio of siege engines, champion and heroes
+// The number of ships, number of units per ship, as well as ratio of siege engines, champion and heroes
 // increases with time, while keeping an individual and randomized composition for each ship.
 // Each hero exists at most once per map.
 
@@ -148,7 +148,7 @@ var siegeTargetClass = "Defensive";
 /**
  * Which entities units should focus when attacking and patroling.
  */
-var unitTargetClass = "Unit -Ship";
+var unitTargetClass = "Unit+!Ship";
 
 /**
  * Ungarrison ships when being in this range of the target.
@@ -452,13 +452,6 @@ Trigger.prototype.AttackAndPatrol = function(attackers, targetClass, triggerPoin
 		DistanceBetweenEntities(attackers[0], ent1) - DistanceBetweenEntities(attackers[0], ent2)).slice(0, targetCount);
 
 	this.debugLog(debugName + " " + uneval(attackers) + " attack " + uneval(targets));
-
-	ProcessCommand(gaulPlayer, {
-		"type": "stance",
-		"entities": attackers,
-		"name": "violent",
-		"queued": true
-	});
 
 	for (let target of targets)
 		ProcessCommand(gaulPlayer, {

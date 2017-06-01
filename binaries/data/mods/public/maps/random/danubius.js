@@ -511,7 +511,7 @@ createAreas(
 		new SmoothElevationPainter(ELEVATION_SET, 6, 4),
 		paintClass(clIsland)
 	],
-	[avoidClasses(clIsland, 30), stayClasses (clWater, 8)],
+	[avoidClasses(clIsland, 30), stayClasses (clWater, 10)],
 	scaleByMapSize(1, 4) * numPlayers
 );
 RMS.SetProgress(60);
