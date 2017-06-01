@@ -500,7 +500,7 @@ Trigger.prototype.UngarrisonShipsOrder = function()
 	let ungarrisonLeft = false;
 	let ungarrisonRight = false;
 
-	let mapSize = Engine.QueryInterface(SYSTEM_ENTITY, IID_Terrain).GetTilesPerSide() * 4;
+	let mapSize = Engine.QueryInterface(SYSTEM_ENTITY, IID_Terrain).GetMapSize();
 
 	for (let ent of Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).GetNonGaiaEntities())
 	{

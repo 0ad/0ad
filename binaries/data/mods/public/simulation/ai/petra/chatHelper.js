@@ -76,7 +76,7 @@ m.answerDiplomacyRequestMessages = {
 			markForTranslation("I will accept your offer to become allies, %(_player_)s. We will both benefit from this partnership."),
 			markForTranslation("An alliance between us is a good idea, %(_player_)s."),
 			markForTranslation("Let both of our people prosper from a peaceful association, %(_player_)s."),
-			markForTranslation("We have found common ground, %(_player)s. I accept the alliance."),
+			markForTranslation("We have found common ground, %(_player_)s. I accept the alliance."),
 			markForTranslation("%(_player_)s, consider us allies from now on.")
 		],
 		"acceptWithTribute": [

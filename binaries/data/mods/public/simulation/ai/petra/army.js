@@ -89,6 +89,9 @@ m.Army.prototype.recalculateStrengths = function (gameState)
 /** adds or remove the strength of the entity either to the enemy or to our units. */
 m.Army.prototype.evaluateStrength = function (ent, isOwn, remove)
 {
+	if (!ent)
+		return;
+
 	let entStrength;
 	if (ent.hasClass("Structure"))
 	{
@@ -279,7 +282,7 @@ m.Army.prototype.assignUnit = function (gameState, entID)
 m.Army.prototype.clear = function (gameState)
 {
 	while (this.foeEntities.length > 0)
-		this.removeFoe(gameState,this.foeEntities[0]);
+		this.removeFoe(gameState, this.foeEntities[0]);
 
 	// Go back to our territory, using the nearest (defensive if any) structure.
 	let armyPos = [0, 0];
