@@ -526,6 +526,8 @@ m.AttackManager.prototype.counterAttack = function(gameState, ent, range=150)
 		army.recalculatePosition(gameState);
 		if (API3.SquareVectorDistance(pos, army.foePosition) > range*range)
 			continue;
+		while (army.foeEntities.length > 0)
+			army.removeFoe(gameState, army.foeEntities[0]);
 		while (army.ownEntities.length > 0)
 		{
 			let unitId = army.ownEntities[0];
