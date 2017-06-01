@@ -52,13 +52,18 @@ CNetClientSession::~CNetClientSession()
 	}
 }
 
-bool CNetClientSession::Connect(const CStr& server, const u16 port, const bool isLocalClient)
+bool CNetClientSession::Connect(const CStr& server, const u16 port, const bool isLocalClient, ENetHost* enetClient)
 {
 	ENSURE(!m_Host);
 	ENSURE(!m_Server);
 
 	// Create ENet host
-	ENetHost* host = enet_host_create(NULL, 1, CHANNEL_COUNT, 0, 0);
+	ENetHost* host;
+	if (enetClient != nullptr)
+		host = enetClient;
+	else
+		host = enet_host_create(NULL, 1, CHANNEL_COUNT, 0, 0);
+
 	if (!host)
 		return false;
 

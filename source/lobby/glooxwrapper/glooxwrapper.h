@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -72,6 +72,10 @@ General design and rules:
 #include <gloox/mucroom.h>
 #include <gloox/registration.h>
 #include <gloox/message.h>
+#include <gloox/jinglecontent.h>
+#include <gloox/jingleiceudp.h>
+#include <gloox/jinglesessionhandler.h>
+#include <gloox/jinglesessionmanager.h>
 
 #include <cstring>
 
@@ -101,6 +105,7 @@ namespace glooxwrapper
 
 	class ClientImpl;
 	class MUCRoomHandlerWrapper;
+	class SessionHandlerWrapper;
 
 	GLOOXWRAPPER_API void* glooxwrapper_alloc(size_t size);
 	GLOOXWRAPPER_API void glooxwrapper_free(void* p);
@@ -255,6 +260,11 @@ namespace glooxwrapper
 				n = next;
 			}
 			m_Head = m_Tail = NULL;
+		}
+
+		const T& front() const
+		{
+			return *begin();
 		}
 	};
 
@@ -571,6 +581,98 @@ namespace glooxwrapper
 		const Tag* findTag_clone(const string& expression) const; // like findTag but must be Tag::free()d
 		ConstTagList findTagList_clone(const string& expression) const; // like findTagList but each tag must be Tag::free()d
 	};
+
+	namespace Jingle
+	{
+
+		class GLOOXWRAPPER_API Plugin
+		{
+		protected:
+			const gloox::Jingle::Plugin* m_Wrapped;
+			bool m_Owned;
+
+		public:
+			Plugin(const gloox::Jingle::Plugin* wrapped, bool owned) : m_Wrapped(wrapped), m_Owned(owned) {}
+
+			virtual ~Plugin();
+
+			const Plugin findPlugin(int type) const;
+			const gloox::Jingle::Plugin* getWrapped() const { return m_Wrapped; }
+		};
+
+		typedef list<const Plugin*> PluginList;
+
+		class GLOOXWRAPPER_API Content : public Plugin
+		{
+		public:
+			Content(const string& name, const PluginList& plugins);
+			Content();
+		};
+
+		class GLOOXWRAPPER_API ICEUDP : public Plugin
+		{
+		public:
+			struct Candidate {
+				string ip;
+				int port;
+			};
+
+			typedef std::list<Candidate> CandidateList;
+
+			ICEUDP(CandidateList& candidates);
+			ICEUDP();
+
+			const CandidateList candidates() const;
+		};
+
+		class GLOOXWRAPPER_API Session
+		{
+		protected:
+			gloox::Jingle::Session* m_Wrapped;
+			bool m_Owned;
+
+		public:
+			class GLOOXWRAPPER_API Jingle
+			{
+			private:
+				const gloox::Jingle::Session::Jingle* m_Wrapped;
+				bool m_Owned;
+			public:
+				Jingle(const gloox::Jingle::Session::Jingle* wrapped, bool owned) : m_Wrapped(wrapped), m_Owned(owned) {}
+
+				const PluginList plugins() const;
+
+				ICEUDP::Candidate getCandidate() const;
+			};
+
+			Session(gloox::Jingle::Session* wrapped, bool owned) : m_Wrapped(wrapped), m_Owned(owned) {}
+
+			bool sessionInitiate(char* ipStr, uint16_t port);
+		};
+
+		class GLOOXWRAPPER_API SessionHandler
+		{
+		public:
+			virtual ~SessionHandler() {}
+			virtual void handleSessionAction(gloox::Jingle::Action action, Session *session, const Session::Jingle *jingle) = 0;
+		};
+
+	}
+
+	class GLOOXWRAPPER_API SessionManager
+	{
+	private:
+		gloox::Jingle::SessionManager* m_Wrapped;
+		SessionHandlerWrapper* m_HandlerWrapper;
+
+	public:
+		SessionManager(Client* parent, Jingle::SessionHandler* sh);
+		~SessionManager();
+		void registerPlugins();
+		Jingle::Session createSession(const JID& callee);
+	};
+
+
 }
 
 #endif // INCLUDED_GLOOXWRAPPER_H

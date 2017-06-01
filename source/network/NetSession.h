@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -39,6 +39,8 @@ class CNetServerWorker;
 
 class CNetStatsTable;
 
+typedef struct _ENetHost ENetHost;
+
 /**
  * @file
  * Network client/server sessions.
@@ -70,7 +72,7 @@ public:
 	CNetClientSession(CNetClient& client);
 	~CNetClientSession();
 
-	bool Connect(const CStr& server, const u16 port, const bool isLocalClient);
+	bool Connect(const CStr& server, const u16 port, const bool isLocalClient, ENetHost* enetClient);
 
 	/**
 	 * Process queued incoming messages.

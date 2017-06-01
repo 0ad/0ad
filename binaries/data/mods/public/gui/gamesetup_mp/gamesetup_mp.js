@@ -23,6 +23,11 @@ var g_GameAttributes; // used when rejoining
 var g_PlayerAssignments; // used when rejoining
 var g_UserRating;
 
+/**
+ * Object containing the IP address and port of the STUN server.
+ */
+var g_StunEndpoint;
+
 function init(attribs)
 {
 	g_UserRating = attribs.rating;
@@ -33,7 +38,7 @@ function init(attribs)
 	{
 		if (Engine.HasXmppClient())
 		{
-			if (startJoin(attribs.name, attribs.ip, getValidPort(attribs.port)))
+			if (startJoin(attribs.name, attribs.ip, getValidPort(attribs.port), attribs.useSTUN, attribs.hostJID))
 				switchSetupPage("pageConnecting");
 		}
 		else
@@ -42,11 +47,14 @@ function init(attribs)
 	}
 	case "host":
 	{
+		Engine.GetGUIObjectByName("hostSTUNWrapper").hidden = !Engine.HasXmppClient();
 		if (Engine.HasXmppClient())
 		{
 			Engine.GetGUIObjectByName("hostPlayerName").caption = attribs.name;
 			Engine.GetGUIObjectByName("hostServerName").caption =
 				sprintf(translate("%(name)s's game"), { "name": attribs.name });
+
+			Engine.GetGUIObjectByName("useSTUN").checked = Engine.ConfigDB_GetValue("user", "lobby.stun.enabled") == "true";
 		}
 
 		switchSetupPage("pageHost");
@@ -92,7 +100,7 @@ function confirmSetup()
 		let joinServer = Engine.GetGUIObjectByName("joinServer").caption;
 		let joinPort = Engine.GetGUIObjectByName("joinPort").caption;
 
-		if (startJoin(joinPlayerName, joinServer, getValidPort(joinPort)))
+		if (startJoin(joinPlayerName, joinServer, getValidPort(joinPort), false))
 			switchSetupPage("pageConnecting");
 	}
 	else if (!Engine.GetGUIObjectByName("pageHost").hidden)
@@ -230,7 +238,8 @@ function pollAndHandleNetworkClient()
 						Engine.SwitchGuiPage("page_gamesetup.xml", {
 							"type": g_GameType,
 							"serverName": g_ServerName,
-							"serverPort": g_ServerPort
+							"serverPort": g_ServerPort,
+							"stunEndpoint": g_StunEndpoint
 						});
 						return; // don't process any more messages - leave them for the game GUI loop
 					}
@@ -271,6 +280,12 @@ function switchSetupPage(newPage)
 	Engine.GetGUIObjectByName("continueButton").hidden = newPage == "pageConnecting";
 }
 
+function saveSTUNSetting(enabled)
+{
+	Engine.ConfigDB_CreateValue("user", "lobby.stun.enabled", enabled);
+	Engine.ConfigDB_WriteValueToFile("user", "lobby.stun.enabled", enabled, "config/user.cfg");
+}
+
 function startHost(playername, servername, port)
 {
 	startConnectionStatus("server");
@@ -283,14 +298,26 @@ function startHost(playername, servername, port)
 	Engine.ConfigDB_CreateValue("user", "multiplayerhosting.port", port);
 	Engine.ConfigDB_WriteValueToFile("user", "multiplayerhosting.port", port, "config/user.cfg");
 
+	let hostFeedback = Engine.GetGUIObjectByName("hostFeedback");
+
 	// Disallow identically named games in the multiplayer lobby
 	if (Engine.HasXmppClient() &&
 	    Engine.GetGameList().some(game => game.name == servername))
 	{
 		cancelSetup();
-		Engine.GetGUIObjectByName("hostFeedback").caption =
-			translate("Game name already in use.");
+		hostFeedback.caption = translate("Game name already in use.");
 		return false;
+	}
+
+	if (Engine.HasXmppClient() && Engine.GetGUIObjectByName("useSTUN").checked)
+	{
+		g_StunEndpoint = Engine.FindStunEndpoint(port);
+		if (!g_StunEndpoint)
+		{
+			cancelSetup();
+			hostFeedback.caption = translate("Failed to host via STUN.");
+			return false;
+		}
 	}
 
 	try
@@ -320,14 +347,14 @@ function startHost(playername, servername, port)
 	return true;
 }
 
-function startJoin(playername, ip, port)
+/**
+ * Connects via STUN if the hostJID is given.
+ */
+function startJoin(playername, ip, port, useSTUN, hostJID = "")
 {
 	try
 	{
-		if (g_UserRating)
-			Engine.StartNetworkJoin(playername + " (" + g_UserRating + ")", ip, port);
-		else
-			Engine.StartNetworkJoin(playername, ip, port);
+		Engine.StartNetworkJoin(playername + (g_UserRating ? " (" + g_UserRating + ")" : ""), ip, port, useSTUN, hostJID);
 	}
 	catch (e)
 	{
