@@ -21,6 +21,11 @@
   <Obstruction>
     <Static width="20.0" depth="20.0"/>
   </Obstruction>
+  <ProductionQueue>
+    <Technologies datatype="tokens">
+      upgrade_rank_advanced_mercenary
+    </Technologies>
+  </ProductionQueue>
   <VisualActor>
     <Actor>structures/athenians/barracks.xml</Actor>
     <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
