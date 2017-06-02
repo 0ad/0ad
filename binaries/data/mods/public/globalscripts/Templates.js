@@ -368,8 +368,9 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources, modif
 			let upgrade = template.Upgrade[upgradeName];
 
 			let cost = {};
-			for (let res in upgrade.Cost)
-				cost[res] = getEntityValue("Upgrade/" + upgradeName + "/Cost/" + res, "Upgrade/Cost/" + res);
+			if (upgrade.Cost)
+				for (let res in upgrade.Cost)
+					cost[res] = getEntityValue("Upgrade/" + upgradeName + "/Cost/" + res, "Upgrade/Cost/" + res);
 			if (upgrade.Time)
 				cost.time = getEntityValue("Upgrade/" + upgradeName + "/Time", "Upgrade/Time");
 

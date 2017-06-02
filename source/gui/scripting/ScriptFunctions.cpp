@@ -30,15 +30,18 @@
 #include "gui/scripting/JSInterface_GUITypes.h"
 #include "i18n/L10n.h"
 #include "i18n/scripting/JSInterface_L10n.h"
+#include "lib/external_libraries/enet.h"
 #include "lib/svn_revision.h"
 #include "lib/sysdep/sysdep.h"
 #include "lib/timer.h"
 #include "lib/utf8.h"
 #include "lobby/scripting/JSInterface_Lobby.h"
+#include "lobby/IXmppClient.h"
 #include "maths/FixedVector3D.h"
 #include "network/NetClient.h"
 #include "network/NetMessage.h"
 #include "network/NetServer.h"
+#include "network/StunClient.h"
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
 #include "ps/Errors.h"
@@ -237,6 +240,11 @@ JS::Value GetEngineInfo(ScriptInterface::CxPrivate* pCxPrivate)
 	return SavedGames::GetEngineInfo(*(pCxPrivate->pScriptInterface));
 }
 
+JS::Value FindStunEndpoint(ScriptInterface::CxPrivate* pCxPrivate, int port)
+{
+	return StunClient::FindStunEndpointHost(*(pCxPrivate->pScriptInterface), port);
+}
+
 void StartNetworkGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	ENSURE(g_NetClient);
@@ -360,16 +368,52 @@ void StartNetworkHost(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& playe
 	}
 }
 
-void StartNetworkJoin(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& playerName, const CStr& serverAddress, u16 serverPort)
+void StartNetworkJoin(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& playerName, const CStr& serverAddress, u16 serverPort, bool useSTUN, const std::string& hostJID)
 {
 	ENSURE(!g_NetClient);
 	ENSURE(!g_NetServer);
 	ENSURE(!g_Game);
 
+	ENetHost* enetClient = nullptr;
+	if (g_XmppClient && useSTUN)
+	{
+		// Find an unused port
+		for (int i = 0; i < 5 && !enetClient; ++i)
+		{
+			// Ports below 1024 are privileged on unix
+			u16 port = 1024 + rand() % (UINT16_MAX - 1024);
+			ENetAddress hostAddr{ENET_HOST_ANY, port};
+			enetClient = enet_host_create(&hostAddr, 1, 1, 0, 0);
+			++hostAddr.port;
+		}
+
+		if (!enetClient)
+		{
+			pCxPrivate->pScriptInterface->ReportError("Could not find an unused port for the enet STUN client");
+			return;
+		}
+
+		StunClient::StunEndpoint* stunEndpoint = StunClient::FindStunEndpointJoin(enetClient);
+		if (!stunEndpoint)
+		{
+			pCxPrivate->pScriptInterface->ReportError("Could not find the STUN endpoint");
+			return;
+		}
+
+		g_XmppClient->SendStunEndpointToHost(stunEndpoint, hostJID);
+		delete stunEndpoint;
+
+		SDL_Delay(1000);
+	}
+
 	g_Game = new CGame();
 	g_NetClient = new CNetClient(g_Game, false);
 	g_NetClient->SetUserName(playerName);
-	if (!g_NetClient->SetupConnection(serverAddress, serverPort))
+
+	if (g_XmppClient && useSTUN)
+		StunClient::SendHolePunchingMessages(enetClient, serverAddress.c_str(), serverPort);
+
+	if (!g_NetClient->SetupConnection(serverAddress, serverPort, enetClient))
 	{
 		pCxPrivate->pScriptInterface->ReportError("Failed to connect to server");
 		SAFE_DELETE(g_NetClient);
@@ -1034,7 +1078,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, JS::HandleValue, int, &StartGame>("StartGame");
 	scriptInterface.RegisterFunction<void, &Script_EndGame>("EndGame");
 	scriptInterface.RegisterFunction<void, CStrW, u16, &StartNetworkHost>("StartNetworkHost");
-	scriptInterface.RegisterFunction<void, CStrW, CStr, u16, &StartNetworkJoin>("StartNetworkJoin");
+	scriptInterface.RegisterFunction<void, CStrW, CStr, u16, bool, std::string, &StartNetworkJoin>("StartNetworkJoin");
 	scriptInterface.RegisterFunction<u16, &GetDefaultPort>("GetDefaultPort");
 	scriptInterface.RegisterFunction<void, &DisconnectNetworkGame>("DisconnectNetworkGame");
 	scriptInterface.RegisterFunction<std::string, &GetPlayerGUID>("GetPlayerGUID");
@@ -1047,6 +1091,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, int, &SendNetworkReady>("SendNetworkReady");
 	scriptInterface.RegisterFunction<JS::Value, &GetAIs>("GetAIs");
 	scriptInterface.RegisterFunction<JS::Value, &GetEngineInfo>("GetEngineInfo");
+	scriptInterface.RegisterFunction<JS::Value, int, &FindStunEndpoint>("FindStunEndpoint");
 
 	// Saved games
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, &StartSavedGame>("StartSavedGame");

@@ -1413,6 +1413,7 @@ function GetFormationUnitAIs(ents, player, formationTemplate)
 			return [];
 
 		RemoveFromFormation(ents);
+		cmpUnitAI.SetLastFormationTemplate("formations/null");
 
 		return [ cmpUnitAI ];
 	}
@@ -1438,7 +1439,10 @@ function GetFormationUnitAIs(ents, player, formationTemplate)
 		else
 		{
 			if (nullFormation)
+			{
+				RemoveFromFormation([ent]);
 				cmpUnitAI.SetLastFormationTemplate("formations/null");
+			}
 			nonformedUnitAIs.push(cmpUnitAI);
 		}
 	}

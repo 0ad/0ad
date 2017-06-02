@@ -19,9 +19,16 @@
 #include "XmppClient.h"
 #include "StanzaExtensions.h"
 
+#ifdef WIN32
+#  include <winsock2.h>
+#endif
+
 #include "glooxwrapper/glooxwrapper.h"
 #include "i18n/L10n.h"
+#include "lib/external_libraries/enet.h"
 #include "lib/utf8.h"
+#include "network/NetServer.h"
+#include "network/StunClient.h"
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
 #include "ps/Pyrogenesis.h"
@@ -68,7 +75,7 @@ IXmppClient* IXmppClient::create(const std::string& sUsername, const std::string
  * @param regOpt If we are just registering or not.
  */
 XmppClient::XmppClient(const std::string& sUsername, const std::string& sPassword, const std::string& sRoom, const std::string& sNick, const int historyRequestSize, bool regOpt)
-	: m_client(NULL), m_mucRoom(NULL), m_registration(NULL), m_username(sUsername), m_password(sPassword), m_nick(sNick), m_initialLoadComplete(false)
+	: m_client(NULL), m_mucRoom(NULL), m_registration(NULL), m_username(sUsername), m_password(sPassword), m_nick(sNick), m_initialLoadComplete(false), m_sessionManager()
 {
 	// Read lobby configuration from default.cfg
 	std::string sServer;
@@ -129,6 +136,11 @@ XmppClient::XmppClient(const std::string& sUsername, const std::string& sPasswor
 		m_registration = new glooxwrapper::Registration(m_client);
 		m_registration->registerRegistrationHandler(this);
 	}
+
+	m_sessionManager = new glooxwrapper::SessionManager(m_client, this);
+	// Register plugins to allow gloox parse them in incoming sessions
+	m_sessionManager->registerPlugins();
+
 }
 
 /**
@@ -472,7 +484,7 @@ void XmppClient::GUIGetGameList(ScriptInterface& scriptInterface, JS::MutableHan
 	JSAutoRequest rq(cx);
 
 	scriptInterface.Eval("([])", ret);
-	const char* stats[] = { "name", "ip", "port", "state", "nbp", "maxnbp", "players", "mapName", "niceMapName", "mapSize", "mapType", "victoryCondition", "startTime" };
+	const char* stats[] = { "name", "ip", "port", "stunIP", "stunPort", "hostUsername", "state", "nbp", "maxnbp", "players", "mapName", "niceMapName", "mapSize", "mapType", "victoryCondition", "startTime" };
 	for(const glooxwrapper::Tag* const& t : m_GameList)
 	{
 		JS::RootedValue game(cx);
@@ -1083,4 +1095,37 @@ std::string XmppClient::RegistrationResultToString(gloox::RegistrationResult res
 	}
 #undef DEBUG_CASE
 #undef CASE
+}
+
+void XmppClient::SendStunEndpointToHost(StunClient::StunEndpoint* stunEndpoint, const std::string& hostJIDStr)
+{
+	ENSURE(stunEndpoint);
+
+	char ipStr[256] = "(error)";
+	ENetAddress addr;
+	addr.host = ntohl(stunEndpoint->ip);
+	enet_address_get_host_ip(&addr, ipStr, ARRAY_SIZE(ipStr));
+
+	glooxwrapper::JID hostJID(hostJIDStr);
+	glooxwrapper::Jingle::Session session = m_sessionManager->createSession(hostJID);
+	session.sessionInitiate(ipStr, stunEndpoint->port);
+}
+
+void XmppClient::handleSessionAction(gloox::Jingle::Action action, glooxwrapper::Jingle::Session *UNUSED(session), const glooxwrapper::Jingle::Session::Jingle *jingle)
+{
+	if (action == gloox::Jingle::SessionInitiate)
+		handleSessionInitiation(jingle);
+}
+
+void XmppClient::handleSessionInitiation(const glooxwrapper::Jingle::Session::Jingle *jingle)
+{
+	glooxwrapper::Jingle::ICEUDP::Candidate candidate = jingle->getCandidate();
+
+	if (candidate.ip.empty())
+	{
+		LOGERROR("Failed to retrieve Jingle candidate");
+		return;
+	}
+
+	g_NetServer->SendHolePunchingMessage(candidate.ip.to_string(), candidate.port);
 }

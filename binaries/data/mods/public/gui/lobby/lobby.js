@@ -19,6 +19,11 @@ const g_ModeratorPrefix = "@";
 const g_Username = Engine.LobbyGetNick();
 
 /**
+ * Lobby server address to construct host JID.
+ */
+const g_LobbyServer = Engine.ConfigDB_GetValue("user", "lobby.server");
+
+/**
  * Current games will be listed in these colors.
  */
 const g_GameColors = {
@@ -1035,7 +1040,20 @@ function joinSelectedGame()
 	if (!game)
 		return;
 
-	if (game.ip.split('.').length != 4)
+	let ip;
+	let port;
+	if (game.stunIP)
+	{
+		ip = game.stunIP;
+		port = game.stunPort;
+	}
+	else
+	{
+		ip = game.ip;
+		port = game.port;
+	}
+
+	if (ip.split('.').length != 4)
 	{
 		addChatMessage({
 			"from": "system",
@@ -1049,10 +1067,12 @@ function joinSelectedGame()
 
 	Engine.PushGuiPage("page_gamesetup_mp.xml", {
 		"multiplayerGameType": "join",
-		"ip": game.ip,
-		"port": game.port,
+		"ip": ip,
+		"port": port,
 		"name": g_Username,
-		"rating": g_UserRating
+		"rating": g_UserRating,
+		"useSTUN": !!game.stunIP,
+		"hostJID": game.hostUsername + "@" + g_LobbyServer + "/0ad"
 	});
 }
 

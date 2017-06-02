@@ -219,6 +219,16 @@ var g_ServerName;
 var g_ServerPort;
 
 /**
+ * IP address and port of the STUN endpoint.
+ */
+var g_StunEndpoint;
+
+/**
+ * Current username. Cannot contain whitespace.
+ */
+var g_Username = Engine.LobbyGetNick();
+
+/**
  * States whether the GUI is currently updated in response to network messages instead of user input
  * and therefore shouldn't send further messages to the network.
  */
@@ -930,6 +940,7 @@ function init(attribs)
 	g_IsTutorial = attribs.tutorial &&  attribs.tutorial == true;
 	g_ServerName = attribs.serverName;
 	g_ServerPort = attribs.serverPort;
+	g_StunEndpoint = attribs.stunEndpoint;
 
 	if (!g_IsNetworked)
 		g_PlayerAssignments = {
@@ -2231,6 +2242,7 @@ function sendRegisterGameStanzaImmediate()
 	let stanza = {
 		"name": g_ServerName,
 		"port": g_ServerPort,
+		"hostUsername": g_Username,
 		"mapName": g_GameAttributes.map,
 		"niceMapName": getMapDisplayName(g_GameAttributes.map),
 		"mapSize": g_GameAttributes.mapType == "random" ? g_GameAttributes.settings.Size : "Default",
@@ -2239,6 +2251,8 @@ function sendRegisterGameStanzaImmediate()
 		"nbp": clients.connectedPlayers,
 		"maxnbp": g_GameAttributes.settings.PlayerData.length,
 		"players": clients.list,
+		"stunIP": g_StunEndpoint ? g_StunEndpoint.ip : "",
+		"stunPort": g_StunEndpoint ? g_StunEndpoint.port : "",
 	};
 
 	// Only send the stanza if the relevant settings actually changed

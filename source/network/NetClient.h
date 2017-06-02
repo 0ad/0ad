@@ -33,6 +33,8 @@ class CNetClientTurnManager;
 class CNetServer;
 class ScriptInterface;
 
+typedef struct _ENetHost ENetHost;
+
 // NetClient session FSM states
 enum
 {
@@ -99,7 +101,7 @@ public:
 	 * @param server IP address or host name to connect to
 	 * @return true on success, false on connection failure
 	 */
-	bool SetupConnection(const CStr& server, const u16 port);
+	bool SetupConnection(const CStr& server, const u16 port, ENetHost* enetClient = NULL);
 
 	/**
 	 * Destroy the connection to the server.

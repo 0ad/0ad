@@ -24,6 +24,7 @@
 #include "NetSession.h"
 
 #include "lib/byte_order.h"
+#include "lib/external_libraries/enet.h"
 #include "lib/sysdep/sysdep.h"
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
@@ -158,10 +159,10 @@ void CNetClient::SetUserName(const CStrW& username)
 	m_UserName = username;
 }
 
-bool CNetClient::SetupConnection(const CStr& server, const u16 port)
+bool CNetClient::SetupConnection(const CStr& server, const u16 port, ENetHost* enetClient)
 {
 	CNetClientSession* session = new CNetClientSession(*this);
-	bool ok = session->Connect(server, port, m_IsLocalClient);
+	bool ok = session->Connect(server, port, m_IsLocalClient, enetClient);
 	SetAndOwnSession(session);
 	return ok;
 }

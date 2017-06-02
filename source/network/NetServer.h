@@ -134,6 +134,8 @@ public:
 	 */
 	void SetTurnLength(u32 msecs);
 
+	void SendHolePunchingMessage(const CStr& ip, u16 port);
+
 private:
 	CNetServerWorker* m_Worker;
 };
@@ -270,6 +272,8 @@ private:
 	 * Send a network warning if the connection to a client is being lost or has bad latency.
 	 */
 	void CheckClientConnections();
+
+	void SendHolePunchingMessage(const CStr& ip, u16 port);
 
 	/**
 	 * Internal script context for (de)serializing script messages,

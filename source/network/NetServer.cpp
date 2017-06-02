@@ -26,6 +26,7 @@
 #include "NetStats.h"
 
 #include "lib/external_libraries/enet.h"
+#include "network/StunClient.h"
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
 #include "ps/Profile.h"
@@ -1467,6 +1468,11 @@ CStrW CNetServerWorker::DeduplicatePlayerName(const CStrW& original)
 	}
 }
 
+void CNetServerWorker::SendHolePunchingMessage(const CStr& ipStr, u16 port)
+{
+	StunClient::SendHolePunchingMessages(m_Host, ipStr.c_str(), port);
+}
+
 
 
 
@@ -1505,4 +1511,9 @@ void CNetServer::SetTurnLength(u32 msecs)
 {
 	CScopeLock lock(m_Worker->m_WorkerMutex);
 	m_Worker->m_TurnLengthQueue.push_back(msecs);
+}
+
+void CNetServer::SendHolePunchingMessage(const CStr& ip, u16 port)
+{
+	m_Worker->SendHolePunchingMessage(ip, port);
 }

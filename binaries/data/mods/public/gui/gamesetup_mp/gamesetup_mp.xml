@@ -94,7 +94,7 @@
 			</object>
 
 			<object>
-				<object type="text" size="20 66 50% 116" style="ModernLabelText" text_align="right">
+				<object type="text" size="20 66 50% 104" style="ModernLabelText" text_align="right">
 					<translatableAttribute id="caption">Server Port:</translatableAttribute>
 				</object>
 
@@ -108,9 +108,18 @@
 					</action>
 				</object>
 			</object>
+
+			<object name="hostSTUNWrapper">
+				<object name="useSTUN" size="120 116 152 146" type="checkbox" style="ModernTickBox">
+					<action on="Press">saveSTUNSetting(String(this.checked));</action>
+				</object>
+				<object type="text" size="146 106 100% 146" style="ModernLabelText" text_align="left">
+					<translatableAttribute id="caption">Use STUN to work around firewalls</translatableAttribute>
+				</object>
+			</object>
 		</object>
 
-		<object name="hostFeedback" type="text" style="ModernLabelText" size="50 100%-90 100%-50 100%-50" textcolor="red" />
+		<object name="hostFeedback" type="text" style="ModernLabelText" size="50 100%-80 100%-50 100%-50" textcolor="red"/>
 
 		<object name="continueButton" hotkey="confirm" type="button" size="50%+5 100%-45 100%-18 100%-17" style="ModernButtonRed">
 			<translatableAttribute id="caption">Continue</translatableAttribute>
