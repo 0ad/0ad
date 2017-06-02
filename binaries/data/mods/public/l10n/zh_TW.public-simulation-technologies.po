@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-04-28 09:02+0200\n"
-"PO-Revision-Date: 2017-04-29 13:21+0000\n"
+"POT-Creation-Date: 2017-05-27 14:49+0200\n"
+"PO-Revision-Date: 2017-05-30 13:49+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -2415,8 +2415,8 @@ msgid ""
 msgstr "精英盾步兵的訓練速度是正常的兩倍快，但會減少些許的最大生命值。"
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
-msgid "Anusiya Champion Infantry -50% train time, but also -20 health."
-msgstr "精英盾步兵訓練時間 -50%，但也 -20 生命值。"
+msgid "Anusiya Champion Infantry -50% train time, but also -10% health."
+msgstr "精英盾步兵訓練時間 -50%，但也 -10% 生命值。"
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -2485,15 +2485,15 @@ msgstr "步兵徵兵制"
 
 #: simulation/data/technologies/persians/training_levy_cavalry.jsontooltip
 msgid ""
-"All cavalry -20% train time, but also -10 health. Unlocks Cavalry "
+"All cavalry -20% train time, but also -5% health. Unlocks Cavalry "
 "Conscription."
-msgstr "所有騎兵 -20% 訓練時間，但是 -10 生命值。解鎖騎兵徵兵制。"
+msgstr "所有騎兵 -20% 訓練時間，但是 -5% 生命值。解鎖騎兵徵兵制。"
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
 msgid ""
-"All infantry -10% train time, but also -5 health. Unlocks Infantry "
+"All infantry -20% train time, but also -5% health. Unlocks Infantry "
 "Conscription."
-msgstr "所有步兵 -10% 訓練時間，但是 -5 生命值。解鎖步兵徵兵制。"
+msgstr "所有步兵 -20% 訓練時間，但是 -5% 生命值。解鎖步兵徵兵制。"
 
 #: simulation/data/technologies/romans/decay_logistics.jsondescription
 msgid "The Romans were masters of the logistics of warfare."

@@ -18,16 +18,17 @@
 # krzychu188 <krzychu188@gmail.com>, 2014
 # Krzysztof5 <krzysztoftaperek@gmail.com>, 2014
 # Krzysztof Grabania, 2015
+# Krzysztof Ogonowski <kogonowski@icloud.com>, 2017
 # lacek, 2014
 # LenaPL <polandlena@gmail.com>, 2014
 # Leszek S, 2014
-# Leszek S, 2014-2015
+# Leszek Szary, 2014-2015
 # Lukasz B <boberstarosta@gmail.com>, 2015-2016
 # Mar321 <grobelskimarcin@gmail.com>, 2013
 # Marcin S <dzidek1003@o2.pl>, 2016-2017
 # Michał Garapich <michal@garapich.pl>, 2013
 # Michał Karol, 2015
-# Michał Olber <michal.olber@osworld.pl>, 2013
+# Michał Olber <michal@olber.pl>, 2013
 # miragae <miragae@gmail.com>, 2014
 # miragae <miragae@gmail.com>, 2014
 # zyxist <nightstorm@tlen.pl>, 2014-2015
@@ -48,15 +49,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-28 09:00+0100\n"
-"PO-Revision-Date: 2017-01-04 16:18+0000\n"
-"Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
+"POT-Creation-Date: 2017-05-29 09:06+0200\n"
+"PO-Revision-Date: 2017-05-29 19:44+0000\n"
+"Last-Translator: Krzysztof Ogonowski <kogonowski@icloud.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pl\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #: simulation/data/civs/athen.jsonName
 #: simulation/data/civs/athen.jsonFactions[0].Name
@@ -349,17 +350,14 @@ msgid "Celtic religion and druidry inspired their warlike mindset. "
 msgstr "Celtycka religia i druidyzm były inspiracją dla ich wojowniczości."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
-msgid "Bonus to tech speed."
-msgstr "Bonus do szybkości badań."
+msgid "-20% resources cost for allies healers."
+msgstr "Uzdrowiciele kosztują sojuszników -20% zasobów."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
-msgid "Druides"
+msgid "Druids"
 msgstr "Druidzi"
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].History
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].History
 msgid ""
 "The Druids of the Celts maintained an organized religion that advanced the "
 "technology of their people even during wartime."
@@ -597,8 +595,8 @@ msgid ""
 msgstr "Podobnie do Półwyspu Iberyjskiego, Północna Afryka była znana jako kraj koni, mogący wyprodukować do 100 000 wierzchowców rocznie. Północna Afryka była także miejscem występowania słoni afrykańskich."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "+33% trade profit international routes."
-msgstr "+33% zysku z handlu międzynarodowymi szlakami."
+msgid "10% bonus of trade profit for ally's international routes."
+msgstr "10% większy zysk dla sojuszniczych międzynarodowych szlaków handlowych."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -802,6 +800,20 @@ msgstr "Kartagina, miasto-państwo w obecnej Tunezji, była znaczącą potęgą 
 #: simulation/data/civs/gaul.jsonFactions[0].Name
 msgid "Gauls"
 msgstr "Galowie"
+
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
+msgid "-10% research time for technologies of allies."
+msgstr ""
+
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
+msgid "Druidic Wisdom"
+msgstr "Mądrość Druidzka"
+
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].History
+msgid ""
+"The Druids of the Gauls maintained an organized religion that advanced the "
+"technology of their people even during wartime."
+msgstr ""
 
 #: simulation/data/civs/gaul.jsonAINames[0]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
@@ -1195,8 +1207,8 @@ msgid ""
 msgstr "Grecy byli bardzo skuteczni w Hellenizacji obcokrajowców. Podczas epoki hellenistycznej język grecki był \"lingua franca\" starożytnego świata. Używano go powszechnie od Hiszpanii po Indie."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
-msgid "+15% tribute and trade bonus on metal."
-msgstr "+15% bonusu do podarunków i handlu metalem."
+msgid "+20% sell prices at market."
+msgstr "+20% większe ceny sprzedaży na targu."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -1456,12 +1468,12 @@ msgid ""
 msgstr "Kshatriya lub Kshatriya, czyli wojownik, jest jednym z czterech varnów (porządków społecznych) w hinduizmie. Tradycyjnie Kshatriya stanowią wojskową i rządzącą elitę wedyjsko-hinduskiego systemu społecznego przedstawionym przez Wedy oraz U. z Manu."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
-msgid "Allied Temple techs -50% cost and research time."
-msgstr "Technologie w sojuszniczych świątyniach mają -50% kosztu i czasu badania."
+msgid "Allied temples and temple technologies -50% cost and research time."
+msgstr "Świątynie i technologie świątynne sojuszników kosztują o 50% mniej zasobów i czasu "
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
-msgid "Evangelism."
-msgstr "Ewangelizm."
+msgid "Ashoka's Religious Support"
+msgstr "Wsparcie religijne Aśoki"
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].History
 msgid ""
@@ -1634,8 +1646,8 @@ msgid ""
 msgstr "Persjanie mogli i powołali w czasie wojny ogromną liczbę piechoty z powodu samej tylko wielkości i rozlokowania Achemenidzkiego Imperium. Zasadniczo, Perska piechota była dobrze wyszkolona i walczyła z wielką wytrwałością. Jednakże, choć było to prawdą, składała się ona z biednych, walczących wręcz wojowników. Piechota Perska, wyłączając elitarne pułki, nie składała się z profesjonalnych sił zbrojnych."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
-msgid "+25% trade profit land routes."
-msgstr "+25% zysku z handlu szlakami lądowymi."
+msgid "Higher income (+15%) from land trade routes for ally's traders."
+msgstr "Wyższy dochód (+15%) z lądowych szlaków handlowych dla sprzymierzonych kupców."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -2101,17 +2113,23 @@ msgid ""
 msgstr "Rzymskie obywatelstwo było wysoko cenione w świecie starożytnym. Podstawowe prawa i przywileje stały się dla obywateli rzymskich, którzy zostali odrzuceni przez inne podbite narody. Mówi się, że szkody Rzymian były podobne do szkodzenia Rzym sam spowoduje, że cała potęga Rzymu spadnie na sprawców."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
-msgid "Allied citizen-soldiers gain a +15% attack when in Roman territory."
-msgstr "Sprzymierzone jednostki żołnierzy miejskich zyskują +15% ataku, gdy znajdują się na terytorium rzymskim."
+msgid "-20% training time for allied infantry."
+msgstr "-20% mniej czasu potrzebnego na szkolenie sojuszniczej piechoty."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
-msgid "Socii"
-msgstr "Socii"
+msgid "Conscription"
+msgstr "Pobór"
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].History
 msgid ""
-"Being allied with Rome came with great benefits (as well as great peril)."
-msgstr "Bycie sprzymierzonym z Rzymem przyniosło wielkie korzyści (a także wielkie zagrożenie)."
+"Many Roman soldiers were conscripted into service. While volunteers were "
+"preferred, the Roman state did maintain an annual military draft. During an "
+"emergency the draft and the terms of service were enlarged. The importance "
+"of military service in Republican Rome was so great it was a prerequisite "
+"for a political career. Members of the Senate were called Conscript Fathers "
+"because of this, reflected in how the ordo equester was said to have been "
+"\"conscripted\" into the Senate."
+msgstr ""
 
 #: simulation/data/civs/rome.jsonAINames[0]
 msgid "Lucius Junius Brutus"
@@ -2595,8 +2613,10 @@ msgid ""
 msgstr "Wraz z konstytucją napisaną przez mitycznego prawodawcę Likurga, powstała instytucja spartańskiego wychowania, zgodnie z którą Spartanie w wieku 6 lat zaczynali szkolenie, czyniące z nich znakomitych wojowników w obronie spartańskiego państwa."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
-msgid "Allies can train Spartiates."
-msgstr "Sojusznicy mogą trenować Spartiatów."
+msgid ""
+"Increases the health for citizen-soldier infantry spearmen by 10% for allies"
+" of Spartan players."
+msgstr "Zwiększa o 10% żywotność pieszych włóczników należących do sojuszników Sparty."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"

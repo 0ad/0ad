@@ -21,7 +21,7 @@
 # ridergr <ridergr@gmail.com>, 2014
 # Savoritias <inactive+Savoritias@transifex.com>, 2014
 # Sotiris K <sotok42@gmail.com>, 2015
-# Vasilis Drosos <basilisd@gmail.com>, 2016
+# Vasilis Drosos <basilisd@gmail.com>, 2016-2017
 # XTos <christos.kyratzis@gmail.com>, 2014
 # Yiannis Fistikis <jfistikis@mailinator.com>, 2013
 # ZedRyder <zedryder@gmail.com>, 2014
@@ -30,8 +30,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-28 09:00+0100\n"
-"PO-Revision-Date: 2016-12-26 18:47+0000\n"
+"POT-Creation-Date: 2017-05-29 09:06+0200\n"
+"PO-Revision-Date: 2017-05-31 14:07+0000\n"
 "Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -331,17 +331,14 @@ msgid "Celtic religion and druidry inspired their warlike mindset. "
 msgstr "Η Κέλτικη θρησκεία και Δρυιδισμός ενέπνευσε την πολεμοχαρή νοοτροπία τους."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
-msgid "Bonus to tech speed."
-msgstr "Bonus στην ταχύτητα ανακάλυψης τεχνολογιών."
+msgid "-20% resources cost for allies healers."
+msgstr "-20% στο κόστος των πόρων για τους θεραπευτές των συμμάχων."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
-msgid "Druides"
+msgid "Druids"
 msgstr "Δρυίδες"
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].History
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].History
 msgid ""
 "The Druids of the Celts maintained an organized religion that advanced the "
 "technology of their people even during wartime."
@@ -579,8 +576,8 @@ msgid ""
 msgstr "Σε αντίθεση με την Ιβηρική Χερσόνησο, η Βόρεια Αφρική ήταν γνωστή ως η χώρα των αλόγων, ικανή να παράγει μέχρι και 100.000 νέους ιππείς κάθε χρόνο. Ήταν επίσης το σπίτι των των Βόρειο-Αφρικανικών ελεφάντων του δάσους."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "+33% trade profit international routes."
-msgstr "+33% εμπορικό κέρδος στις διεθνείς διαδρομές."
+msgid "10% bonus of trade profit for ally's international routes."
+msgstr "10% επιπλέον εμπορικό κέρδος στις συμμαχικές διεθνείς διαδρομές."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -784,6 +781,20 @@ msgstr "Η Καρχηδόνα, ήταν μια πόλη-κράτος στη σύ
 #: simulation/data/civs/gaul.jsonFactions[0].Name
 msgid "Gauls"
 msgstr "Γαλάτες"
+
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
+msgid "-10% research time for technologies of allies."
+msgstr "-10% στο χρόνο έρευνας στις τεχνολογίες των συμμάχων."
+
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
+msgid "Druidic Wisdom"
+msgstr "Σοφία του Δρυίδη"
+
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].History
+msgid ""
+"The Druids of the Gauls maintained an organized religion that advanced the "
+"technology of their people even during wartime."
+msgstr "Οι Γαλάτες Δρυίδες διατηρούσαν μια οργανωμένη θρησκεία η οποία επέτρεπε την ανάπτυξη της τεχνολογίας ακόμα και κατά τη περίοδο πολέμου."
 
 #: simulation/data/civs/gaul.jsonAINames[0]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
@@ -1177,8 +1188,8 @@ msgid ""
 msgstr "Οι Έλληνες ήταν επιτυχείς στον Εξελληνισμό διαφόρων ξένων. Κατά τη διάρκεια της Ελληνιστικής περιόδου, τα Ελληνικά ήταν η Κοινή Γλώσσα -\"lingua franca\"- του Αρχαίου Κόσμου, ευρέως ομιλούμενη από την Ισπανία ως την Ινδία."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
-msgid "+15% tribute and trade bonus on metal."
-msgstr "+15% φόρο και πλεονέκτημα εμπορίου στο μέταλλο."
+msgid "+20% sell prices at market."
+msgstr "+20% στις τιμές πώλησης στην αγορά."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -1438,12 +1449,12 @@ msgid ""
 msgstr "Η Κασατρίγα ή Καστριγα, που σημαίνει πολεμιστής, είναι μία από τις τέσσερις Βάρνας (κοινωνικές τάξεις) στον Ινδουισμό. Παραδοσιακά οι Κασατρίγα απαρτούσαν το στρατό και την άρχουσα ελίτ του Βεδικού-Ινδουιστικού κοινωνικού συστήματος που περιγράφεται από τις Βέδες και τους Νόμους του Μανού."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
-msgid "Allied Temple techs -50% cost and research time."
-msgstr "Οι τεχνολογίες στους συμμαχικούς Ναούς  έχουν -50% κόστος και -50% χρόνο έρευνας."
+msgid "Allied temples and temple technologies -50% cost and research time."
+msgstr ""
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
-msgid "Evangelism."
-msgstr "Ευαγγελισμός."
+msgid "Ashoka's Religious Support"
+msgstr ""
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].History
 msgid ""
@@ -1616,8 +1627,8 @@ msgid ""
 msgstr "Οι Πέρσες μπορούσαν και είχαν συγκεντρώσει έναν μεγάλο αριθμό πεζικού κατά τη διάρκεια του πολέμου, λόγω του μεγάλου μεγέθους της αυτοκρατορία των Αχαιμενιδών και τον τρόπο με τον οποίο ήταν οργανωμένη. Σε γενικές γραμμές το περσικό πεζικό ήταν καλά εκπαιδευμένο και πολεμούσαν με μεγάλη επιμονή. Ωστόσο, η αλήθεια ήταν ότι το πεζικό ήταν φτωχοί πολεμιστές για μάχες σώμα με σώμα. Επίσης, με εξαίρεση τα επίλεκτα συντάγματα, το περσικό πεζικό δεν ήταν μια μόνιμη επαγγελματική δύναμη."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
-msgid "+25% trade profit land routes."
-msgstr "+25% στα κέρδη του εμπορίου από χερσαίους δρόμους."
+msgid "Higher income (+15%) from land trade routes for ally's traders."
+msgstr ""
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -2083,17 +2094,23 @@ msgid ""
 msgstr "Η Ιδιότητα του Ρωμαίου πολίτη είχε ιδιαίτερη αξία στον αρχαίο κόσμο. Βασικά δικαιώματα και προνόμια που κατείχαν οι Ρωμαίοι πολίτες στερήθηκαν στους άλλους κατακτημένους λαούς. Λέγεται ότι βλάπτοντας ένα Ρωμαίο πολίτη ήταν σαν να βλάπτετε η ίδια η Ρώμη, και μπορούσε να προκαλέσει το σύνολο της δύναμη της Ρώμης να πέσει πάνω στον δράστη."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
-msgid "Allied citizen-soldiers gain a +15% attack when in Roman territory."
-msgstr "Οι σύμμαχοι πολίτες-στρατιώτες κερδίζουν +15% στην επίθεση όταν είναι σε Ρωμαϊκή περιοχή."
+msgid "-20% training time for allied infantry."
+msgstr ""
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
-msgid "Socii"
-msgstr "Έταιροι"
+msgid "Conscription"
+msgstr ""
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].History
 msgid ""
-"Being allied with Rome came with great benefits (as well as great peril)."
-msgstr "Η συμμαχία με τη Ρώμη συνοδευόταν από μεγάλα οφέλη (καθώς και μεγάλους κινδύνους)."
+"Many Roman soldiers were conscripted into service. While volunteers were "
+"preferred, the Roman state did maintain an annual military draft. During an "
+"emergency the draft and the terms of service were enlarged. The importance "
+"of military service in Republican Rome was so great it was a prerequisite "
+"for a political career. Members of the Senate were called Conscript Fathers "
+"because of this, reflected in how the ordo equester was said to have been "
+"\"conscripted\" into the Senate."
+msgstr "Πολλοί Ρωμαίοι στρατιώτες επιστρατεύτηκαν σε υπηρεσία. Ενώ οι εθελοντές προτιμούνταν, το Ρωμαϊκό κράτος διατηρούσε ένα ετήσιο σχέδιο στρατολογίας. Κατά τη διάρκεια έκτακτης ανάγκης το σχέδιο και οι όροι υπηρεσίας διευρύνονταν. Η σημασία της στρατιωτικής θητείας στη Ρεπουμπλικανική Ρώμη ήταν τόσο μεγάλη που αποτελούσε προϋπόθεση για μια πολιτική καριέρα. Μέλη της Γερουσίας ονομάζονταν Στρατολογημένοι Πατέρες εξαιτίας αυτού, που αντανακλά στο πώς η Ιππάς έλεγαν ότι ήταν «καταταγμένοι» στη Γερουσία."
 
 #: simulation/data/civs/rome.jsonAINames[0]
 msgid "Lucius Junius Brutus"
@@ -2577,8 +2594,10 @@ msgid ""
 msgstr "Υπό το Σύνταγμα που γράφτηκε από τον μυθικό νομοθέτη Λυκούργο, εγκαθιδρύθηκε το καθεστώς της Αγωγής, όπου οι Σπαρτιάτες εκπαιδεύονταν από 6 χρονών για να γίνουν ανώτεροι πολεμιστές για την άμυνα της Σπάρτης. "
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
-msgid "Allies can train Spartiates."
-msgstr "Οι σύμμαχοι μπορούν να εκπαιδεύσουν Σπαρτιάτες."
+msgid ""
+"Increases the health for citizen-soldier infantry spearmen by 10% for allies"
+" of Spartan players."
+msgstr ""
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"

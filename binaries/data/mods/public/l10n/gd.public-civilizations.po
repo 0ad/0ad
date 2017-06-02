@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-28 09:00+0100\n"
-"PO-Revision-Date: 2017-05-22 11:15+0000\n"
+"POT-Creation-Date: 2017-05-29 09:06+0200\n"
+"PO-Revision-Date: 2017-05-30 16:03+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -311,17 +311,14 @@ msgid "Celtic religion and druidry inspired their warlike mindset. "
 msgstr "Bhrosnaich creideamh ’s draoidhean nan Ceilteach an cumadh-inntinn cogail."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
-msgid "Bonus to tech speed."
-msgstr "Rannsachadh nas luaithe."
+msgid "-20% resources cost for allies healers."
+msgstr "-20% a chosgaisean stòrais air lighichean caidreabhach."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
-msgid "Druides"
+msgid "Druids"
 msgstr "Draoidhean"
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].History
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].History
 msgid ""
 "The Druids of the Celts maintained an organized religion that advanced the "
 "technology of their people even during wartime."
@@ -559,8 +556,8 @@ msgid ""
 msgstr "Coltach ris an rubha Ibèireach, bhiodh taobh a tuath Afraga cliùiteach mar thìr nan each agus comasach air 100,000 each ùra a sholar gach bliadhna. ’S e an dachaigh aig an ailbhean coille Afraga tuathach a bh’ ann cuideachd."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "+33% trade profit international routes."
-msgstr "+33% de phrothaid o mhalairt air slighean eadar-nàiseanta."
+msgid "10% bonus of trade profit for ally's international routes."
+msgstr "Buannachd de 10% air prothaid o mhalairt air slighean eadar-nàiseanta nan caidreabhach."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -764,6 +761,20 @@ msgstr "’S e stàit-bhaile a bh’ ann an Cartago far a bheil Tuinisea san lat
 #: simulation/data/civs/gaul.jsonFactions[0].Name
 msgid "Gauls"
 msgstr "Muinntir na Gaille"
+
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
+msgid "-10% research time for technologies of allies."
+msgstr "-10% air an ùine a bheir rannsachadh teicneolais nan caidreabhach."
+
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
+msgid "Druidic Wisdom"
+msgstr "Gliocas nan draoidh"
+
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].History
+msgid ""
+"The Druids of the Gauls maintained an organized religion that advanced the "
+"technology of their people even during wartime."
+msgstr "Ghlèidh draoidhean na Gaille creideamh eagraichte a dh'adhartaich teicneolas an sluaigh fiù 's rè amannan cogaidh."
 
 #: simulation/data/civs/gaul.jsonAINames[0]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
@@ -1157,8 +1168,8 @@ msgid ""
 msgstr "Bhiodh na Greugaich uabhasach soirbheachail le Greugachadh iomadh choigreach. Ri linn a’ Ghreugachais, bhiodh a’ Ghreugais na lingua franca aig an t‑saoghail àrsaidh is bhathar ’ga bruidhinn gu farsaing on Spàinn gus na h‑Innseachan."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
-msgid "+15% tribute and trade bonus on metal."
-msgstr "Buannachd de +15% air cìsean is malairt air meatailt."
+msgid "+20% sell prices at market."
+msgstr "+20% air prìsean reic sa margaid."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -1418,12 +1429,12 @@ msgid ""
 msgstr "Is “gaisgeach” as ciall dha Kshatriya no Kashtriya agus ’s e fear dhe varnathan (òrd sòisealta) na Hionduthachd a th’ ann. Gu dualchasach, bhiodh ceannardan an airm is an riaghaltais ’nan Kshatriya ann an siostam sòisealta Vedach-Hionduthach mar a mhìnicheas na Vedathan agus laghan Manu."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
-msgid "Allied Temple techs -50% cost and research time."
-msgstr "Bidh feum air nas lugha de chosgaisean ’s ùine rannsachaidh air gach teicneolas an teampaill dha na caidreabhaich le -50%."
+msgid "Allied temples and temple technologies -50% cost and research time."
+msgstr "-50% air cosgais ’s ùine rannsachaidh airson teampaill is teicneolasan teampaill."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
-msgid "Evangelism."
-msgstr "Soisgeulachd."
+msgid "Ashoka's Religious Support"
+msgstr "Taic cràbhach Aśoka"
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].History
 msgid ""
@@ -1596,8 +1607,8 @@ msgid ""
 msgstr "Thogadh na Pearsaich mòran choisridh rè àm a’ chogaidh ’s b’ urrainn dhaibh seo a dhèanamh air sàilleibh meud is rian na h-impireachd Achaemeanach. Fhuaireadh coisridh nam Pearsach deagh thrèanadh san fharsaingeachd ’s rinneadh iad sabaid le righneas mòr. Ged a bha seo fìor, cha robh iad math air sabaid glè dhlùth. Cuideachd, cha bhiodh coisridh nam Pearsach ’nam feachd seasmhachd ’s proifeiseanta ach rèisimeidean nan seann-ghaisgeach."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
-msgid "+25% trade profit land routes."
-msgstr "+25% de phrothaid malairt airson shlighean air tìr."
+msgid "Higher income (+15%) from land trade routes for ally's traders."
+msgstr "Teachd a-steach nas àirde (+15%) o shlighean-malairt air an tìr airson luchd-malairt caidreabhaich."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -2063,17 +2074,23 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
-msgid "Allied citizen-soldiers gain a +15% attack when in Roman territory."
-msgstr "Buannaichidh saighdearan-dùthcha caidreabhach +15% air na h‑ionnsaighean aca nuair a bhios iar air ranntair Ròmanach."
+msgid "-20% training time for allied infantry."
+msgstr "-20% air an ùine a bheir trèanadh coisridh caidreabhaich."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
-msgid "Socii"
-msgstr "Socii"
+msgid "Conscription"
+msgstr "Dleastanas-airm"
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].History
 msgid ""
-"Being allied with Rome came with great benefits (as well as great peril)."
-msgstr "Gheibhte buannachd mhòr (cho math ri cunnart mòr) à caidreachas leis an Ròimh."
+"Many Roman soldiers were conscripted into service. While volunteers were "
+"preferred, the Roman state did maintain an annual military draft. During an "
+"emergency the draft and the terms of service were enlarged. The importance "
+"of military service in Republican Rome was so great it was a prerequisite "
+"for a political career. Members of the Senate were called Conscript Fathers "
+"because of this, reflected in how the ordo equester was said to have been "
+"\"conscripted\" into the Senate."
+msgstr ""
 
 #: simulation/data/civs/rome.jsonAINames[0]
 msgid "Lucius Junius Brutus"
@@ -2557,8 +2574,10 @@ msgid ""
 msgstr ""
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
-msgid "Allies can train Spartiates."
-msgstr "’S urrainn do chaidreabhaich Homoioi a thrèanadh."
+msgid ""
+"Increases the health for citizen-soldier infantry spearmen by 10% for allies"
+" of Spartan players."
+msgstr "Meudaichidh seo slàinte nan sleaghairean coisridh-dùthcha le 10% airson caidreabhaich nan cluicheadairean Spartach."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"

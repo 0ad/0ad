@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-26 09:03+0200\n"
-"PO-Revision-Date: 2017-05-26 14:49+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-05-29 09:07+0200\n"
+"PO-Revision-Date: 2017-06-02 11:32+0000\n"
+"Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -81,7 +81,8 @@ msgstr "Отваряне на %(url)s\nвъв Вашия браузър по п�
 msgid "Opening page"
 msgstr "Отваряне на страницата"
 
-#: gui/common/functions_global_object.js:69
+#. dennis-ignore: *
+#: gui/common/functions_global_object.js:70
 #, javascript-format
 msgid "FPS: %(fps)4s"
 msgstr "Кадри/сек: %(fps)4s"
@@ -132,7 +133,7 @@ msgstr "ИЗТРИВАНЕ"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:246
 #: gui/options/options.js:334 gui/options/options.js:401
-#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:159
+#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:165
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
 #: gui/summary/summary.js:346
 msgid "No"
@@ -140,7 +141,7 @@ msgstr "Не"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:246
 #: gui/options/options.js:334 gui/options/options.js:401
-#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:159
+#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:165
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
 #: gui/summary/summary.js:346
 msgid "Yes"
@@ -403,17 +404,17 @@ msgstr "Максимално население"
 
 #: gui/common/gamedescription.js:373
 msgid "Treasure"
-msgstr ""
+msgstr "Съкровище"
 
 #: gui/common/gamedescription.js:375
 msgctxt "treasure"
 msgid "Disabled"
-msgstr ""
+msgstr "Изключено"
 
 #: gui/common/gamedescription.js:376
 msgctxt "treasure"
 msgid "If the map places it."
-msgstr ""
+msgstr "Зависи от картата."
 
 #: gui/common/gamedescription.js:380
 msgid "Revealed Map"
@@ -1094,8 +1095,8 @@ msgid "None"
 msgstr "Без"
 
 #: gui/locale/locale_advanced.js:92
-msgid "<invalid>"
-msgstr "<неправилен>"
+msgid "invalid locale"
+msgstr "неправилна стойност"
 
 #: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:163
 #: gui/splashscreen/splashscreen.xml:(caption):28
@@ -1260,11 +1261,11 @@ msgstr "Несъвместимо повторение"
 msgid "No summary data available."
 msgstr "Няма налично обобщение."
 
-#: gui/replaymenu/replay_actions.js:157
+#: gui/replaymenu/replay_actions.js:163
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr "Наистина ли искате да изтриете това повторение завинаги?"
 
-#: gui/replaymenu/replay_actions.js:158
+#: gui/replaymenu/replay_actions.js:164
 msgid "Delete replay"
 msgstr "Изтриване на повторението"
 
@@ -1347,20 +1348,20 @@ msgstr "Игри за класация"
 msgid "Unrated games"
 msgstr "Игри без класация"
 
-#: gui/replaymenu/replay_menu.js:190
+#: gui/replaymenu/replay_menu.js:193
 msgid "Filter replays by typing one or more, partial or complete playernames."
 msgstr "Филтрирайте повторенията като напишете едно или повече, частични или пълни имена на играчи."
 
-#: gui/replaymenu/replay_menu.js:269
+#: gui/replaymenu/replay_menu.js:272
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
 msgstr "Играчи: %(numberOfPlayers)s"
 
-#: gui/replaymenu/replay_menu.js:296
+#: gui/replaymenu/replay_menu.js:299
 msgid "yyyy-MM-dd HH:mm"
 msgstr "yyyy-MM-dd HH:mm"
 
-#: gui/replaymenu/replay_menu.js:326
+#: gui/replaymenu/replay_menu.js:329
 msgid "yyyy-MM"
 msgstr "yyyy-MM"
 
@@ -2105,11 +2106,15 @@ msgid "Delete"
 msgstr "Изтриване"
 
 #: gui/replaymenu/replay_menu.xml:(caption):254
+msgid "Reload Cache"
+msgstr "Презареждане на кеша"
+
+#: gui/replaymenu/replay_menu.xml:(caption):261
 #: gui/summary/summary.xml:(caption):23
 msgid "Summary"
 msgstr "Обобщение"
 
-#: gui/replaymenu/replay_menu.xml:(caption):260
+#: gui/replaymenu/replay_menu.xml:(caption):267
 msgid "Start Replay"
 msgstr "Пускане"
 
@@ -2144,6 +2149,10 @@ msgstr "Население"
 msgctxt "replay"
 msgid "Duration"
 msgstr "Времетраене"
+
+#: gui/replaymenu/replay_menu.xml:(tooltip):255
+msgid "Rebuild the replay cache from scratch. Potentially slow!"
+msgstr "Повторно изграждане на кеша на повторенията от нулата. Може да отнеме много време!"
 
 #: gui/savedgames/load.xml:(heading):44
 msgctxt "replay"
@@ -2545,38 +2554,87 @@ msgstr "Запазване и възстановяване на настройк
 msgid "Persist Match Settings"
 msgstr "Помнене на настройките на срещата"
 
+#: gui/options/options.jsongeneralSetting[13].parameters.list[0].label
+#: gui/options/options.jsongeneralSetting[14].parameters.list[0].label
+msgid "Everyone"
+msgstr "Всички"
+
+#: gui/options/options.jsongeneralSetting[13].parameters.list[1].label
+#: gui/options/options.jsongeneralSetting[14].parameters.list[1].label
+msgid "Buddies"
+msgstr "Приятелите"
+
+#: gui/options/options.jsongeneralSetting[13].parameters.list[2].label
+msgid "No one"
+msgstr "Никой"
+
 #: gui/options/options.jsongeneralSetting[13].tooltip
-msgid "Allow observers to join the game after it started"
-msgstr "Позволява на наблюдателите да се присъединяват след като играта вече е започнала"
+msgid ""
+"Whether to assign joining clients to free playerslots in the gamesetup."
+msgstr "Дали присъединяващите се клиенти да бъдат поставяни в непопълнените места за играчи."
 
 #: gui/options/options.jsongeneralSetting[13].label
+msgid "Assign Players"
+msgstr "Определяне на играчите"
+
+#: gui/options/options.jsongeneralSetting[14].parameters.list[2].label
+msgid "Disabled"
+msgstr "Изключено"
+
+#: gui/options/options.jsongeneralSetting[14].tooltip
+msgid ""
+"Allow everybody or buddies only to join the game as observer after it "
+"started"
+msgstr "Позволяване на всички или само на приятелите да се присъединяват към играта като наблюдатели след като тя е започнала"
+
+#: gui/options/options.jsongeneralSetting[14].label
 msgid "Late Observer Joins"
 msgstr "Закъснели наблюдатели"
 
-#: gui/options/options.jsongeneralSetting[14].tooltip
+#: gui/options/options.jsongeneralSetting[15].tooltip
 msgid "Prevent further observers from joining if the limit is reached"
 msgstr "Забранява присъединяването на още наблюдатели след достигане на ограничението"
 
-#: gui/options/options.jsongeneralSetting[14].label
+#: gui/options/options.jsongeneralSetting[15].label
 msgid "Observer Limit"
 msgstr "Ограничение на наблюдателите"
 
-#: gui/options/options.jsongeneralSetting[15].tooltip
+#: gui/options/options.jsongeneralSetting[16].tooltip
 msgid "Number of units trained per batch"
 msgstr "Брой единици, обучавани в партида"
 
-#: gui/options/options.jsongeneralSetting[15].label
+#: gui/options/options.jsongeneralSetting[16].label
 msgid "Batch Training Size"
 msgstr "Размер на партидата"
 
-#: gui/options/options.jsongeneralSetting[16].tooltip
+#: gui/options/options.jsongeneralSetting[17].tooltip
 msgid ""
 "Show time that messages are posted in the lobby, gamesetup and ingame chat."
 msgstr "Показване на времето на публикуване на съобщенията в чакалнята, настройката на играта и чата в игра."
 
-#: gui/options/options.jsongeneralSetting[16].label
+#: gui/options/options.jsongeneralSetting[17].label
 msgid "Chat Timestamp"
 msgstr "Време на съобщенията в чата"
+
+#: gui/options/options.jsongeneralSetting[18].tooltip
+msgid ""
+"Display the range of auras of selected units and structures (can also be "
+"toggled in-game with the hotkey)."
+msgstr "Показване на обхвата на аурите на избраните единици и сгради (това може да бъде превключено с клавишна комбинация и по време на игра)."
+
+#: gui/options/options.jsongeneralSetting[18].label
+msgid "Aura Range Visualization"
+msgstr "Показване на обхвата на аурите"
+
+#: gui/options/options.jsongeneralSetting[19].tooltip
+msgid ""
+"Display the healing range of selected units (can also be toggled in-game "
+"with the hotkey)."
+msgstr "Показване на обхвата на лечение на избраните единици (това може да бъде превключено с клавишна комбинация и по време на игра)."
+
+#: gui/options/options.jsongeneralSetting[19].label
+msgid "Heal Range Visualization"
+msgstr "Показване на обхвата на лечение"
 
 #: gui/options/options.jsonsoundSetting[0].tooltip
 msgid "Master audio gain"
@@ -2825,16 +2883,6 @@ msgstr "Намаляване на натоварването на процесо
 #: gui/options/options.jsongraphicsSetting[17].label
 msgid "FPS throttling in games"
 msgstr "Ограничаване на кадрите/сек в игра"
-
-#: gui/options/options.jsongraphicsSetting[18].tooltip
-msgid ""
-"Display the range of auras of selected units and structures (can also be "
-"toggled in-game with the hotkey)."
-msgstr "Показване на обхвата на аурите на избраните единици и сгради (това може да бъде превключено с клавишна комбинация и по време на игра)."
-
-#: gui/options/options.jsongraphicsSetting[18].label
-msgid "Aura Range Visualization"
-msgstr "Показване на обхвата на аурите"
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."

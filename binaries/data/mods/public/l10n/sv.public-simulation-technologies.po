@@ -6,7 +6,7 @@
 # Allan Nordhøy <epost@anotheragency.no>, 2016
 # Henrik Mattsson-Mårn <h@reglage.net>, 2016
 # Jacob Carlsson <yejcob@gmail.com>, 2015-2016
-# Jonatan Nyberg <jonatan@autistici.org>, 2016
+# Jonatan Nyberg, 2016
 # Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2015-2016
 # Marco tom Suden, 2014
 # Marco tom Suden, 2014
@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-04-28 09:02+0200\n"
-"PO-Revision-Date: 2017-05-23 12:53+0000\n"
+"POT-Creation-Date: 2017-05-27 14:49+0200\n"
+"PO-Revision-Date: 2017-05-29 08:47+0000\n"
 "Last-Translator: pilino1234 <mhilgendrf@aol.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -2423,8 +2423,8 @@ msgid ""
 msgstr "Anusiya mästare infanteri tränas dubbelt så snabbt, men förlorar lite max hälsa."
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
-msgid "Anusiya Champion Infantry -50% train time, but also -20 health."
-msgstr "Anusiya mästare infanteri -50% träningstid, men också -20 hälsa."
+msgid "Anusiya Champion Infantry -50% train time, but also -10% health."
+msgstr "Anusiya mästare infanteri -50% träningstid, men också -10% hälsa."
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -2493,15 +2493,15 @@ msgstr "Infanterivärnplikt"
 
 #: simulation/data/technologies/persians/training_levy_cavalry.jsontooltip
 msgid ""
-"All cavalry -20% train time, but also -10 health. Unlocks Cavalry "
+"All cavalry -20% train time, but also -5% health. Unlocks Cavalry "
 "Conscription."
-msgstr "All kavalleri -20% träningstid, men även -10 hälsa. Låser upp Kavallerivärnplikt."
+msgstr "All kavalleri -20% träningstid, men även -5% hälsa. Låser upp Kavallerivärnplikt."
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
 msgid ""
-"All infantry -10% train time, but also -5 health. Unlocks Infantry "
+"All infantry -20% train time, but also -5% health. Unlocks Infantry "
 "Conscription."
-msgstr "All infanteri -10% träningstid, men även -5 hälsa. Låser upp Infanterivärnplikt."
+msgstr "All infanteri -20% träningstid, men även -5% hälsa. Låser upp Infanterivärnplikt."
 
 #: simulation/data/technologies/romans/decay_logistics.jsondescription
 msgid "The Romans were masters of the logistics of warfare."

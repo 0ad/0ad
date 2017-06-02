@@ -34,9 +34,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-26 09:03+0200\n"
-"PO-Revision-Date: 2017-05-26 14:49+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-05-29 09:07+0200\n"
+"PO-Revision-Date: 2017-06-01 00:25+0000\n"
+"Last-Translator: Wuzzy <almikes@aol.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -101,7 +101,8 @@ msgstr "Öffne %(url)s\nim Standardwebbrowser. Bitte warten..."
 msgid "Opening page"
 msgstr "Öffne Seite"
 
-#: gui/common/functions_global_object.js:69
+#. dennis-ignore: *
+#: gui/common/functions_global_object.js:70
 #, javascript-format
 msgid "FPS: %(fps)4s"
 msgstr "FPS: %(fps)4s"
@@ -152,7 +153,7 @@ msgstr "LÖSCHEN"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:246
 #: gui/options/options.js:334 gui/options/options.js:401
-#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:159
+#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:165
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
 #: gui/summary/summary.js:346
 msgid "No"
@@ -160,7 +161,7 @@ msgstr "Nein"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:246
 #: gui/options/options.js:334 gui/options/options.js:401
-#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:159
+#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:165
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
 #: gui/summary/summary.js:346
 msgid "Yes"
@@ -217,14 +218,14 @@ msgstr "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
 #: gui/common/gamedescription.js:127
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
-msgstr "%(playerName)s (Offline)"
+msgstr "%(playerName)s (OFFLINE)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:130
 #, javascript-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
-msgstr "%(playerName)s (Offline, %(state)s)"
+msgstr "%(playerName)s (OFFLINE, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
@@ -423,17 +424,17 @@ msgstr "Bevölkerungslimit"
 
 #: gui/common/gamedescription.js:373
 msgid "Treasure"
-msgstr ""
+msgstr "Schatz"
 
 #: gui/common/gamedescription.js:375
 msgctxt "treasure"
 msgid "Disabled"
-msgstr ""
+msgstr "Deaktiviert"
 
 #: gui/common/gamedescription.js:376
 msgctxt "treasure"
 msgid "If the map places it."
-msgstr ""
+msgstr "Wenn die Karte welche plaziert."
 
 #: gui/common/gamedescription.js:380
 msgid "Revealed Map"
@@ -1114,8 +1115,8 @@ msgid "None"
 msgstr "Keine"
 
 #: gui/locale/locale_advanced.js:92
-msgid "<invalid>"
-msgstr "<ungültig>"
+msgid "invalid locale"
+msgstr "ungültige Sprachauswahl"
 
 #: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:163
 #: gui/splashscreen/splashscreen.xml:(caption):28
@@ -1280,11 +1281,11 @@ msgstr "Inkompatible Wiederholung"
 msgid "No summary data available."
 msgstr "Keine Zusammenfassung verfügbar."
 
-#: gui/replaymenu/replay_actions.js:157
+#: gui/replaymenu/replay_actions.js:163
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr "Bist du sicher, dass du diese Wiederholung dauerhaft löschen willst?"
 
-#: gui/replaymenu/replay_actions.js:158
+#: gui/replaymenu/replay_actions.js:164
 msgid "Delete replay"
 msgstr "Wiederholung löschen"
 
@@ -1367,20 +1368,20 @@ msgstr "Bewertete Spiele"
 msgid "Unrated games"
 msgstr "Nicht bewertete Spiele"
 
-#: gui/replaymenu/replay_menu.js:190
+#: gui/replaymenu/replay_menu.js:193
 msgid "Filter replays by typing one or more, partial or complete playernames."
 msgstr "Filter Wiederholung durch Tippen von einem oder mehrerer, teilweiser oder kompletter Spielernamen."
 
-#: gui/replaymenu/replay_menu.js:269
+#: gui/replaymenu/replay_menu.js:272
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
 msgstr "Spieler: %(numberOfPlayers)s"
 
-#: gui/replaymenu/replay_menu.js:296
+#: gui/replaymenu/replay_menu.js:299
 msgid "yyyy-MM-dd HH:mm"
 msgstr "dd.MM.yyyy HH:mm"
 
-#: gui/replaymenu/replay_menu.js:326
+#: gui/replaymenu/replay_menu.js:329
 msgid "yyyy-MM"
 msgstr "MM yyyy"
 
@@ -1551,7 +1552,7 @@ msgstr "Tribut \n(%(sent)s / %(received)s)"
 
 #: gui/summary/layout.js:119
 msgid "Treasures collected"
-msgstr "Schatztruhen gesammelt"
+msgstr "Schätze gesammelt"
 
 #: gui/summary/layout.js:120
 msgid "Loot"
@@ -1832,7 +1833,7 @@ msgstr "Zurücksetzen"
 
 #: gui/options/options.xml:(caption):92
 msgid "Revert"
-msgstr "Zurücksetzen"
+msgstr "Rückgängig"
 
 #: gui/options/options.xml:(caption):97 gui/savedgames/save.xml:(caption):48
 msgid "Save"
@@ -2125,11 +2126,15 @@ msgid "Delete"
 msgstr "Löschen"
 
 #: gui/replaymenu/replay_menu.xml:(caption):254
+msgid "Reload Cache"
+msgstr "Cache neu laden"
+
+#: gui/replaymenu/replay_menu.xml:(caption):261
 #: gui/summary/summary.xml:(caption):23
 msgid "Summary"
 msgstr "Zusammenfassung"
 
-#: gui/replaymenu/replay_menu.xml:(caption):260
+#: gui/replaymenu/replay_menu.xml:(caption):267
 msgid "Start Replay"
 msgstr "Wiederholung starten"
 
@@ -2164,6 +2169,10 @@ msgstr "Einwohnerzahl"
 msgctxt "replay"
 msgid "Duration"
 msgstr "Dauer"
+
+#: gui/replaymenu/replay_menu.xml:(tooltip):255
+msgid "Rebuild the replay cache from scratch. Potentially slow!"
+msgstr "Erstellt den Cache vollständig neu. Möglicherweise recht langsam!"
 
 #: gui/savedgames/load.xml:(heading):44
 msgctxt "replay"
@@ -2565,38 +2574,87 @@ msgstr "Speichere und stelle Spieleinstellungen wieder her"
 msgid "Persist Match Settings"
 msgstr "Spieleinstellungen behalten"
 
+#: gui/options/options.jsongeneralSetting[13].parameters.list[0].label
+#: gui/options/options.jsongeneralSetting[14].parameters.list[0].label
+msgid "Everyone"
+msgstr "Jeder"
+
+#: gui/options/options.jsongeneralSetting[13].parameters.list[1].label
+#: gui/options/options.jsongeneralSetting[14].parameters.list[1].label
+msgid "Buddies"
+msgstr "Freunde"
+
+#: gui/options/options.jsongeneralSetting[13].parameters.list[2].label
+msgid "No one"
+msgstr "Niemand"
+
 #: gui/options/options.jsongeneralSetting[13].tooltip
-msgid "Allow observers to join the game after it started"
-msgstr "Zuschauern erlauben, dem Spiel nach dem Start beizutreten"
+msgid ""
+"Whether to assign joining clients to free playerslots in the gamesetup."
+msgstr "Ob neu hinzugekommenen Clients freie Spielerplätze bei der Spielvorbereitung zugewiesen werden sollen."
 
 #: gui/options/options.jsongeneralSetting[13].label
-msgid "Late Observer Joins"
-msgstr "Späte Zuschauerbeitritte:"
+msgid "Assign Players"
+msgstr "Spieler zuweisen"
+
+#: gui/options/options.jsongeneralSetting[14].parameters.list[2].label
+msgid "Disabled"
+msgstr "Deaktiviert"
 
 #: gui/options/options.jsongeneralSetting[14].tooltip
+msgid ""
+"Allow everybody or buddies only to join the game as observer after it "
+"started"
+msgstr "Erlaube jedem oder nur Freunden, dem Spiel als Zuschauer beizutreten."
+
+#: gui/options/options.jsongeneralSetting[14].label
+msgid "Late Observer Joins"
+msgstr "Späte Zuschauerbeitritte"
+
+#: gui/options/options.jsongeneralSetting[15].tooltip
 msgid "Prevent further observers from joining if the limit is reached"
 msgstr "hinderte weitere Zuschauer daran beizutreten, wenn die maximale Anzahl an Zuschauern erreicht ist"
 
-#: gui/options/options.jsongeneralSetting[14].label
+#: gui/options/options.jsongeneralSetting[15].label
 msgid "Observer Limit"
 msgstr "Zuschauerlimit"
 
-#: gui/options/options.jsongeneralSetting[15].tooltip
+#: gui/options/options.jsongeneralSetting[16].tooltip
 msgid "Number of units trained per batch"
 msgstr "Anzahl der Einheiten pro Gruppe"
 
-#: gui/options/options.jsongeneralSetting[15].label
+#: gui/options/options.jsongeneralSetting[16].label
 msgid "Batch Training Size"
 msgstr "Gruppen-Trainingsgröße"
 
-#: gui/options/options.jsongeneralSetting[16].tooltip
+#: gui/options/options.jsongeneralSetting[17].tooltip
 msgid ""
 "Show time that messages are posted in the lobby, gamesetup and ingame chat."
 msgstr "Zeige Zeitpunkt zu dem Nachrichten in der Lobby, in den Spieleeinstellungen und dem Ingame Chat gepostet werden."
 
-#: gui/options/options.jsongeneralSetting[16].label
+#: gui/options/options.jsongeneralSetting[17].label
 msgid "Chat Timestamp"
 msgstr "Zeitstempel im Chat"
+
+#: gui/options/options.jsongeneralSetting[18].tooltip
+msgid ""
+"Display the range of auras of selected units and structures (can also be "
+"toggled in-game with the hotkey)."
+msgstr "Zeigt die Reichweite von Auras für ausgewählte Einheiten und Gebäude an (kann auch während des Spiels mit der Schnellzugriffstaste umgeschaltet werden)."
+
+#: gui/options/options.jsongeneralSetting[18].label
+msgid "Aura Range Visualization"
+msgstr "Visualisierung der Aurareichweite"
+
+#: gui/options/options.jsongeneralSetting[19].tooltip
+msgid ""
+"Display the healing range of selected units (can also be toggled in-game "
+"with the hotkey)."
+msgstr "Zeige die Reichweite der ausgewählten Einheiten (kann auch während des Spiels mit einem Hotkey umgeschaltet werden)"
+
+#: gui/options/options.jsongeneralSetting[19].label
+msgid "Heal Range Visualization"
+msgstr "Visualisierung der Heilreichweite"
 
 #: gui/options/options.jsonsoundSetting[0].tooltip
 msgid "Master audio gain"
@@ -2845,16 +2903,6 @@ msgstr "Um die CPU-Auslastung zu reduzieren, wird dies die Renderhäufigzeit in 
 #: gui/options/options.jsongraphicsSetting[17].label
 msgid "FPS throttling in games"
 msgstr "FPS-Begrenzung in Spielen"
-
-#: gui/options/options.jsongraphicsSetting[18].tooltip
-msgid ""
-"Display the range of auras of selected units and structures (can also be "
-"toggled in-game with the hotkey)."
-msgstr "Zeigt die Reichweite von Auras für ausgewählte Einheiten und Gebäude an (kann auch während des Spiels mit der Schnellzugriffstaste umgeschaltet werden)."
-
-#: gui/options/options.jsongraphicsSetting[18].label
-msgid "Aura Range Visualization"
-msgstr "Aurareichweitenvisualisierung"
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."

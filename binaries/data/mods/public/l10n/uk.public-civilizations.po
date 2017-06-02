@@ -7,7 +7,7 @@
 # Andriy Nahirnjak <andriy.nagirnjak@gmail.com>, 2014
 # Bohdan Lepky <ntrxhm@gmail.com>, 2013
 # Dimaver <dimaver@ukr.net>, 2014
-# Dmytro Ryl'kov <tverdislav@ukr.net>, 2016
+# Dmytro Ryl'kov <tverdislav@ukr.net>, 2016-2017
 # Victor Butko <victor.butko@gmail.com>, 2014
 # Vladislav Trotsky <flyboooy17@gmail.com>, 2014-2015
 # Андрій Бандура <andriykopanytsia@gmail.com>, 2015-2016
@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-28 09:00+0100\n"
-"PO-Revision-Date: 2016-12-31 16:39+0000\n"
+"POT-Creation-Date: 2017-05-29 09:06+0200\n"
+"PO-Revision-Date: 2017-06-02 07:44+0000\n"
 "Last-Translator: Dmytro Ryl'kov <tverdislav@ukr.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -316,17 +316,14 @@ msgid "Celtic religion and druidry inspired their warlike mindset. "
 msgstr "Кельтська релігія і друїдистичні вірування сприяли їхньому войовничому світогляду."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
-msgid "Bonus to tech speed."
-msgstr "Бонус до швидкості розвитку технологій."
+msgid "-20% resources cost for allies healers."
+msgstr "-20% від вартості для союзних цілителів."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
-msgid "Druides"
+msgid "Druids"
 msgstr "Друїди"
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].History
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].History
 msgid ""
 "The Druids of the Celts maintained an organized religion that advanced the "
 "technology of their people even during wartime."
@@ -564,8 +561,8 @@ msgid ""
 msgstr "Північна Африка замало відрізнялася від Піренейського півострова і була відома як земля коней, здатна виробляти до 100 000 голів щорічно. Також відома як батьківщина північноафриканських лісових слонів."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "+33% trade profit international routes."
-msgstr "+33% прибутку від торгівлі на міжнародних маршрутах."
+msgid "10% bonus of trade profit for ally's international routes."
+msgstr "Бонусні 10% до прибутку від торгівлі для союзника на міжнародних маршрутах."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -769,6 +766,20 @@ msgstr "Карфаген, місто-держава на території су
 #: simulation/data/civs/gaul.jsonFactions[0].Name
 msgid "Gauls"
 msgstr "Гали"
+
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
+msgid "-10% research time for technologies of allies."
+msgstr "-10% від часу досліджень у союзників."
+
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
+msgid "Druidic Wisdom"
+msgstr "Мудрість друїдів"
+
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].History
+msgid ""
+"The Druids of the Gauls maintained an organized religion that advanced the "
+"technology of their people even during wartime."
+msgstr "Друїди кельтів підтримували організовану релігію, яка дозволяла технології їхнього народу розвиватися навіть під час війни."
 
 #: simulation/data/civs/gaul.jsonAINames[0]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
@@ -1162,8 +1173,8 @@ msgid ""
 msgstr "Греки були дуже успішними в еллінізації численних іноземних націй. Впродовж Еллінської ери грецька було вільною мовою Античного Світу, широко використовуваною від Іспанії до Індії."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
-msgid "+15% tribute and trade bonus on metal."
-msgstr "+15% данини і торгового бонусу на метал."
+msgid "+20% sell prices at market."
+msgstr "+20% до продажних цін на ринку."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -1423,12 +1434,12 @@ msgid ""
 msgstr "Кшатрія або каштрія - воїн, що належить до одної з чотирьох варн (станів) в індуїзмі. Традиційно кшатрії складаються з військової та правлячої еліти індійської ведичної соціальної системи, описаної у Ведах і Законах Ману."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
-msgid "Allied Temple techs -50% cost and research time."
-msgstr "Союзний храм -50% від вартості і часу досліджень технологій."
+msgid "Allied temples and temple technologies -50% cost and research time."
+msgstr "-50% від часу дослідження для храмів та храмових технологій союзників"
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
-msgid "Evangelism."
-msgstr "Благовістя."
+msgid "Ashoka's Religious Support"
+msgstr "Релігійна підтримка Ашоки"
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].History
 msgid ""
@@ -1601,8 +1612,8 @@ msgid ""
 msgstr "Перси могли і користувалися можливістю набирати велику кількість піхоти під час військових дій через величезні розміри Ахеменідської імперії та її організації. В цілому перська піхота була добре натренована і билася з великим завзяттям. Незважаючи на це, піхота була погано підготовлена для близького бою. Також за винятком елітних полків перська піхота не відносилася до професійних військ."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
-msgid "+25% trade profit land routes."
-msgstr "+25% прибутку від торговельних маршрутів."
+msgid "Higher income (+15%) from land trade routes for ally's traders."
+msgstr "Більш високий дохід (+15%) від землі на торговому шляху для союзних купців."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -2068,17 +2079,23 @@ msgid ""
 msgstr "Римське громадянство дуже високо цінувалося в стародавні часи. Римлянам надавалися базові права і привілеї, яких не було у мешканців захоплених територій. Заподіяння шкоди римлянину прирівнювалося до заподіяння шкоди Риму і вся сила Риму могла обрушитися на зловмисника."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
-msgid "Allied citizen-soldiers gain a +15% attack when in Roman territory."
-msgstr "Дружні громадяни-солдати, які перебувають на римській території, отримують +15% до атаки."
+msgid "-20% training time for allied infantry."
+msgstr "-20% від часу тренування для союзної піхоти."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
-msgid "Socii"
-msgstr "Союзники"
+msgid "Conscription"
+msgstr "Військова повинність"
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].History
 msgid ""
-"Being allied with Rome came with great benefits (as well as great peril)."
-msgstr "Союз з римлянами приносив велику вигоду (як і велику небезпеку)."
+"Many Roman soldiers were conscripted into service. While volunteers were "
+"preferred, the Roman state did maintain an annual military draft. During an "
+"emergency the draft and the terms of service were enlarged. The importance "
+"of military service in Republican Rome was so great it was a prerequisite "
+"for a political career. Members of the Senate were called Conscript Fathers "
+"because of this, reflected in how the ordo equester was said to have been "
+"\"conscripted\" into the Senate."
+msgstr ""
 
 #: simulation/data/civs/rome.jsonAINames[0]
 msgid "Lucius Junius Brutus"
@@ -2562,8 +2579,10 @@ msgid ""
 msgstr "Відповідно до Конституції, розробленої законотворцем Лікургом, був заснований інститут Агоге, в якому Спартанці тренувалися з 6 років, щоб стати чудовими воїнами для захисту держави Спарти."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
-msgid "Allies can train Spartiates."
-msgstr "Спільники можуть навчати спартанців"
+msgid ""
+"Increases the health for citizen-soldier infantry spearmen by 10% for allies"
+" of Spartan players."
+msgstr "Збільшує здоров'я піхоти зі списами з городян-солдат на 10% для союзників спартанців."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"

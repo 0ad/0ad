@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-26 09:03+0200\n"
-"PO-Revision-Date: 2017-05-26 14:49+0000\n"
+"POT-Creation-Date: 2017-05-29 09:07+0200\n"
+"PO-Revision-Date: 2017-05-29 15:24+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -83,7 +83,8 @@ msgstr "%(url)s відкривається\nв браузері за умовч�
 msgid "Opening page"
 msgstr "Початкова сторінка"
 
-#: gui/common/functions_global_object.js:69
+#. dennis-ignore: *
+#: gui/common/functions_global_object.js:70
 #, javascript-format
 msgid "FPS: %(fps)4s"
 msgstr "FPS: %(fps)4s"
@@ -134,7 +135,7 @@ msgstr "Видалити"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:246
 #: gui/options/options.js:334 gui/options/options.js:401
-#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:159
+#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:165
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
 #: gui/summary/summary.js:346
 msgid "No"
@@ -142,7 +143,7 @@ msgstr "Ні"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:246
 #: gui/options/options.js:334 gui/options/options.js:401
-#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:159
+#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:165
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
 #: gui/summary/summary.js:346
 msgid "Yes"
@@ -1109,8 +1110,8 @@ msgid "None"
 msgstr "Пусто"
 
 #: gui/locale/locale_advanced.js:92
-msgid "<invalid>"
-msgstr "<invalid>"
+msgid "invalid locale"
+msgstr ""
 
 #: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:163
 #: gui/splashscreen/splashscreen.xml:(caption):28
@@ -1275,11 +1276,11 @@ msgstr "Несумісний повтор"
 msgid "No summary data available."
 msgstr "Недоступні зведені дані."
 
-#: gui/replaymenu/replay_actions.js:157
+#: gui/replaymenu/replay_actions.js:163
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr "Ви впевнені, що хочете видалити цей повтор назавжди?"
 
-#: gui/replaymenu/replay_actions.js:158
+#: gui/replaymenu/replay_actions.js:164
 msgid "Delete replay"
 msgstr "Видалити повтор"
 
@@ -1364,20 +1365,20 @@ msgstr "Оцінені ігри"
 msgid "Unrated games"
 msgstr "Ігри без оцінки"
 
-#: gui/replaymenu/replay_menu.js:190
+#: gui/replaymenu/replay_menu.js:193
 msgid "Filter replays by typing one or more, partial or complete playernames."
 msgstr "Фільтрувати повтори за набором одного чи декількох, повних чи часткових імен гравців."
 
-#: gui/replaymenu/replay_menu.js:269
+#: gui/replaymenu/replay_menu.js:272
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
 msgstr "Гравці: %(numberOfPlayers)s"
 
-#: gui/replaymenu/replay_menu.js:296
+#: gui/replaymenu/replay_menu.js:299
 msgid "yyyy-MM-dd HH:mm"
 msgstr "рррр-ММ-дд ГГ:хх"
 
-#: gui/replaymenu/replay_menu.js:326
+#: gui/replaymenu/replay_menu.js:329
 msgid "yyyy-MM"
 msgstr "рррр-ММ"
 
@@ -2122,11 +2123,15 @@ msgid "Delete"
 msgstr "Видалити"
 
 #: gui/replaymenu/replay_menu.xml:(caption):254
+msgid "Reload Cache"
+msgstr ""
+
+#: gui/replaymenu/replay_menu.xml:(caption):261
 #: gui/summary/summary.xml:(caption):23
 msgid "Summary"
 msgstr "Підсумок"
 
-#: gui/replaymenu/replay_menu.xml:(caption):260
+#: gui/replaymenu/replay_menu.xml:(caption):267
 msgid "Start Replay"
 msgstr "Запустити повтор"
 
@@ -2161,6 +2166,10 @@ msgstr "Населення"
 msgctxt "replay"
 msgid "Duration"
 msgstr "Тривалість"
+
+#: gui/replaymenu/replay_menu.xml:(tooltip):255
+msgid "Rebuild the replay cache from scratch. Potentially slow!"
+msgstr ""
 
 #: gui/savedgames/load.xml:(heading):44
 msgctxt "replay"
@@ -2562,38 +2571,87 @@ msgstr "Зберігати та відновлювати налаштуванн�
 msgid "Persist Match Settings"
 msgstr "Зберігати налаштування битви"
 
+#: gui/options/options.jsongeneralSetting[13].parameters.list[0].label
+#: gui/options/options.jsongeneralSetting[14].parameters.list[0].label
+msgid "Everyone"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[13].parameters.list[1].label
+#: gui/options/options.jsongeneralSetting[14].parameters.list[1].label
+msgid "Buddies"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[13].parameters.list[2].label
+msgid "No one"
+msgstr ""
+
 #: gui/options/options.jsongeneralSetting[13].tooltip
-msgid "Allow observers to join the game after it started"
-msgstr "Дозволити спостерігачам приєднатися до гри після її початку."
+msgid ""
+"Whether to assign joining clients to free playerslots in the gamesetup."
+msgstr ""
 
 #: gui/options/options.jsongeneralSetting[13].label
+msgid "Assign Players"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[14].parameters.list[2].label
+msgid "Disabled"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[14].tooltip
+msgid ""
+"Allow everybody or buddies only to join the game as observer after it "
+"started"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[14].label
 msgid "Late Observer Joins"
 msgstr "Спостерігач приєднується"
 
-#: gui/options/options.jsongeneralSetting[14].tooltip
+#: gui/options/options.jsongeneralSetting[15].tooltip
 msgid "Prevent further observers from joining if the limit is reached"
 msgstr "Запобігти приєднанню додаткових спостерігачів після досягнення допустимої кількості."
 
-#: gui/options/options.jsongeneralSetting[14].label
+#: gui/options/options.jsongeneralSetting[15].label
 msgid "Observer Limit"
 msgstr "Допустима кількість спостерігачів"
 
-#: gui/options/options.jsongeneralSetting[15].tooltip
+#: gui/options/options.jsongeneralSetting[16].tooltip
 msgid "Number of units trained per batch"
 msgstr "Кількість юнітів, які тренуються, при додаванні групи в чергу"
 
-#: gui/options/options.jsongeneralSetting[15].label
+#: gui/options/options.jsongeneralSetting[16].label
 msgid "Batch Training Size"
 msgstr "Розмір групи для тренування"
 
-#: gui/options/options.jsongeneralSetting[16].tooltip
+#: gui/options/options.jsongeneralSetting[17].tooltip
 msgid ""
 "Show time that messages are posted in the lobby, gamesetup and ingame chat."
 msgstr "Показувати час повідомлень в чатах"
 
-#: gui/options/options.jsongeneralSetting[16].label
+#: gui/options/options.jsongeneralSetting[17].label
 msgid "Chat Timestamp"
 msgstr "Час повідомлення у чаті"
+
+#: gui/options/options.jsongeneralSetting[18].tooltip
+msgid ""
+"Display the range of auras of selected units and structures (can also be "
+"toggled in-game with the hotkey)."
+msgstr "Відобразити радіус аури вибраних юнітів та структур (також може бути переключено в грі гарячою клавішею)."
+
+#: gui/options/options.jsongeneralSetting[18].label
+msgid "Aura Range Visualization"
+msgstr "Візуалізація радіусу аури"
+
+#: gui/options/options.jsongeneralSetting[19].tooltip
+msgid ""
+"Display the healing range of selected units (can also be toggled in-game "
+"with the hotkey)."
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[19].label
+msgid "Heal Range Visualization"
+msgstr ""
 
 #: gui/options/options.jsonsoundSetting[0].tooltip
 msgid "Master audio gain"
@@ -2842,16 +2900,6 @@ msgstr "Щоб зберегти навантаження на процесор, 
 #: gui/options/options.jsongraphicsSetting[17].label
 msgid "FPS throttling in games"
 msgstr "Приглушування FPS в іграх"
-
-#: gui/options/options.jsongraphicsSetting[18].tooltip
-msgid ""
-"Display the range of auras of selected units and structures (can also be "
-"toggled in-game with the hotkey)."
-msgstr "Відобразити радіус аури вибраних юнітів та структур (також може бути переключено в грі гарячою клавішею)."
-
-#: gui/options/options.jsongraphicsSetting[18].label
-msgid "Aura Range Visualization"
-msgstr "Візуалізація радіусу аури"
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."

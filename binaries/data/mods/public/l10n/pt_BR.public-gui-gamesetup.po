@@ -49,8 +49,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-26 09:02+0200\n"
-"PO-Revision-Date: 2017-05-27 05:19+0000\n"
+"POT-Creation-Date: 2017-05-27 14:48+0200\n"
+"PO-Revision-Date: 2017-06-01 21:39+0000\n"
 "Last-Translator: borg 2k <estevanborg@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -176,7 +176,7 @@ msgstr "Mapas de Demonstração"
 #: gui/gamesetup/gamesetup.js:177
 msgctxt "map filter"
 msgid "These maps are not playable but for demonstration purposes only."
-msgstr ""
+msgstr "Estes mapas não são reproduzíveis, mas apenas para fins de demonstração."
 
 #: gui/gamesetup/gamesetup.js:182
 msgid "New Maps"
@@ -185,7 +185,7 @@ msgstr "Novos mapas"
 #: gui/gamesetup/gamesetup.js:183
 msgctxt "map filter"
 msgid "Maps that are brand new in this release of the game."
-msgstr ""
+msgstr "Mapas que são novos nesta versão do jogo."
 
 #: gui/gamesetup/gamesetup.js:188
 msgid "Trigger Maps"
@@ -194,7 +194,7 @@ msgstr "Exibir mapas"
 #: gui/gamesetup/gamesetup.js:189
 msgctxt "map filter"
 msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr ""
+msgstr "Mapas que acompanham eventos com scripts e potencialmente geram unidades inimigas."
 
 #: gui/gamesetup/gamesetup.js:194
 msgid "All Maps"
@@ -203,7 +203,7 @@ msgstr "Todos os Mapas"
 #: gui/gamesetup/gamesetup.js:195
 msgctxt "map filter"
 msgid "Every map of the chosen maptype."
-msgstr ""
+msgstr "Cada mapa do tipo de mapa escolhido"
 
 #: gui/gamesetup/gamesetup.js:401
 msgid "Map Type"
@@ -251,14 +251,14 @@ msgstr "Limite Populacional"
 
 #: gui/gamesetup/gamesetup.js:494
 msgid "Select population limit."
-msgstr ""
+msgstr "Selecione a população limite."
 
 #: gui/gamesetup/gamesetup.js:497
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr ""
+msgstr "Aviso: pode haver problemas de desempenho se todos os %(players)s atingirem a população %(popCap)s limite. "
 
 #: gui/gamesetup/gamesetup.js:513
 msgid "Starting Resources"
@@ -267,7 +267,7 @@ msgstr "Recursos Iniciais"
 #: gui/gamesetup/gamesetup.js:516
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
-msgstr ""
+msgstr "Quantidade inicial de cada recurso: %(resources)s."
 
 #: gui/gamesetup/gamesetup.js:519
 msgid "Select the game's starting resources."
@@ -315,7 +315,7 @@ msgstr "Selecionar velocidade de jogo."
 
 #: gui/gamesetup/gamesetup.js:655
 msgid "Chose the civilization for this player"
-msgstr ""
+msgstr "Escolha a civilização para este jogador"
 
 #: gui/gamesetup/gamesetup.js:695
 msgid "Hero Garrison"
@@ -323,7 +323,7 @@ msgstr "Guarnição do Heroi"
 
 #: gui/gamesetup/gamesetup.js:696
 msgid "Toggle whether heroes can be garrisoned."
-msgstr ""
+msgstr "Alternar se os heróis podem ser guarnecidos."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
@@ -426,63 +426,63 @@ msgid ""
 "ready)"
 msgstr "Iniciar um novo jogo com as configurações atuais (desativado até que todos jogadores estejam prontos)"
 
-#: gui/gamesetup/gamesetup.js:1381
+#: gui/gamesetup/gamesetup.js:1394
 msgctxt "map selection"
 msgid "Random"
 msgstr "Aleatório"
 
-#: gui/gamesetup/gamesetup.js:1658 gui/gamesetup/gamesetup.js:1697
+#: gui/gamesetup/gamesetup.js:1671 gui/gamesetup/gamesetup.js:1710
 #, javascript-format
 msgid "%(option)s:"
 msgstr "%(option)s:"
 
-#: gui/gamesetup/gamesetup.js:1663
+#: gui/gamesetup/gamesetup.js:1676
 msgctxt "option value"
 msgid "Unknown"
 msgstr "Desconhecido"
 
-#: gui/gamesetup/gamesetup.js:1690
+#: gui/gamesetup/gamesetup.js:1703
 msgid "Yes"
 msgstr "Sim"
 
-#: gui/gamesetup/gamesetup.js:1690
+#: gui/gamesetup/gamesetup.js:1703
 msgid "No"
 msgstr "Não"
 
-#: gui/gamesetup/gamesetup.js:1777
+#: gui/gamesetup/gamesetup.js:1790
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1972
+#: gui/gamesetup/gamesetup.js:1985
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "Inteligência Artificial: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1980
+#: gui/gamesetup/gamesetup.js:1993
 msgid "Unassigned"
 msgstr "Não atribuído(s)"
 
-#: gui/gamesetup/gamesetup.js:2053
+#: gui/gamesetup/gamesetup.js:2068
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2060
+#: gui/gamesetup/gamesetup.js:2075
 msgid "Unknown Player"
 msgstr "Jogador desconhecido"
 
-#: gui/gamesetup/gamesetup.js:2099
+#: gui/gamesetup/gamesetup.js:2114
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2100
+#: gui/gamesetup/gamesetup.js:2115
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2101
+#: gui/gamesetup/gamesetup.js:2116
 msgid "HH:mm"
 msgstr "HH:mm"
 
@@ -1395,7 +1395,7 @@ msgid ""
 "Livius, describing the aftermath of the Battle of Cannae, where Hannibal "
 "inflicted the greatest defeat on the Romans in all their history (\"Ab Urbe "
 "Condita\", XXII. 51)"
-msgstr ""
+msgstr "\"Alguns foram descobertos ali vivos, com coxas e tendões cortados, descobrindo seus pescoços e gargantas, e pedindo que seus conquistadores drenassem o resto do sangue. Outros foram encontrados com as cabeças enterradas em furos escavados no chão. Eles aparentemente fizeram esses poços para eles mesmos.\" - Livius, descrevendo as conseqüências da Batalha de Cannae, onde Hannibal infligiu a maior derrota aos romanos em toda sua história (\"Ab Urbe Condita\", XXII, 51)"
 
 #: gui/text/quotes.txt:115
 msgid ""
@@ -1404,7 +1404,7 @@ msgid ""
 " chill of dawn, and was cut down by his enemies.\" - Livius, describing the "
 "aftermath of the Battle of Cannae, where Hannibal inflicted the greatest "
 "defeat on the Romans in all their history (\"Ab Urbe Condita\", XXII. 51)"
-msgstr ""
+msgstr "\"Havia milhares e milhares de romanos [...]. Aqui e ali, em meio aos mortos, havia uma figura sangrenta, cujas feridas começaram a latejar com o arrepio do amanhecer e foram cortadas por seus inimigos\". - Livius, descrevendo as conseqüências da Batalha de Cannae, onde Hannibal infligiu a maior derrota aos romanos em toda sua história (\"Ab Urbe Condita\", XXII, 51)"
 
 #: gui/text/quotes.txt:116
 msgid ""
@@ -1467,7 +1467,7 @@ msgid ""
 "murdering someone; then they boast that they have spared him!\" - Marcus "
 "Tullius Cicero, condemning Mark Anthony who had not killed him (yet) "
 "(\"Philippics\", Philippica II, sec. 5)"
-msgstr ""
+msgstr "\"Aquele, senadores, é o que é a favor das conspirações. Eles se abstenham de assassinar alguém; então eles apresentam quem têm os poupado!\" - Marco Túlio Cícero, condenando Marco António que não matou (ainda) (\"Philippics\", Philippica II, seg. 5)"
 
 #: gui/text/quotes.txt:126
 msgid ""

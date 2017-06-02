@@ -14,15 +14,15 @@
 # Paul Friedrig <george.2juggernaut@gmail.com>, 2016
 # Paul Müller <paulbochynek@web.de>, 2015
 # qwertz, 2015
-# Raymond Vetter, 2014-2016
+# Raymond Vetter, 2014-2017
 # Tilo S, 2016-2017
 # Xaver, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-04-28 09:02+0200\n"
-"PO-Revision-Date: 2017-05-19 16:31+0000\n"
-"Last-Translator: Wuzzy <almikes@aol.com>\n"
+"POT-Creation-Date: 2017-05-27 14:49+0200\n"
+"PO-Revision-Date: 2017-05-30 11:17+0000\n"
+"Last-Translator: Raymond Vetter\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2425,8 +2425,8 @@ msgid ""
 msgstr "Die Anusiyagardeinfanterie wird doppelt so schnell ausgebildet, verliert aber ein bisschen Leben."
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
-msgid "Anusiya Champion Infantry -50% train time, but also -20 health."
-msgstr "Anusiyagardeinfanterie -50% Ausbildungszeit, aber auch -20 Trefferpunkte."
+msgid "Anusiya Champion Infantry -50% train time, but also -10% health."
+msgstr "Anusiyagardeinfanterie -50% Ausbildungszeit, aber auch -10% Trefferpunkte."
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -2495,15 +2495,15 @@ msgstr "Infanteriewehrpflicht"
 
 #: simulation/data/technologies/persians/training_levy_cavalry.jsontooltip
 msgid ""
-"All cavalry -20% train time, but also -10 health. Unlocks Cavalry "
+"All cavalry -20% train time, but also -5% health. Unlocks Cavalry "
 "Conscription."
-msgstr "Alle Kavallerie braucht -20% Rekrutierungszeit, hat aber -10 Leben. Ermöglicht Kavalleriewehrpflicht."
+msgstr "Alle Kavallerie braucht -20% Rekrutierungszeit, hat aber -5% Leben. Ermöglicht Kavalleriewehrpflicht."
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
 msgid ""
-"All infantry -10% train time, but also -5 health. Unlocks Infantry "
+"All infantry -20% train time, but also -5% health. Unlocks Infantry "
 "Conscription."
-msgstr "Infanterie -10% Ausbildungszeit, aber auch -5 Trefferpunkte. Ermöglicht Infanteriewehrpflicht."
+msgstr "Infanterie -20% Ausbildungszeit, aber auch -5% Trefferpunkte. Ermöglicht Infanteriewehrpflicht."
 
 #: simulation/data/technologies/romans/decay_logistics.jsondescription
 msgid "The Romans were masters of the logistics of warfare."

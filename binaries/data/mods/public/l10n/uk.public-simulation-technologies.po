@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-04-28 09:02+0200\n"
-"PO-Revision-Date: 2017-05-23 05:23+0000\n"
+"POT-Creation-Date: 2017-05-27 14:49+0200\n"
+"PO-Revision-Date: 2017-05-30 07:30+0000\n"
 "Last-Translator: Dmytro Ryl'kov <tverdislav@ukr.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -2417,8 +2417,8 @@ msgid ""
 msgstr "Анузійська елітна піхота тренується вдвічі швидше, але втрачає при цьому частинку максимального здоров'я."
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
-msgid "Anusiya Champion Infantry -50% train time, but also -20 health."
-msgstr "Анузійська елітна піхота, -50% від часу тренування, але також -20 здоров'я."
+msgid "Anusiya Champion Infantry -50% train time, but also -10% health."
+msgstr "Анузійська елітна піхота, -50% від часу тренування, але також -10% здоров'я."
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -2487,15 +2487,15 @@ msgstr "Призов піхоти"
 
 #: simulation/data/technologies/persians/training_levy_cavalry.jsontooltip
 msgid ""
-"All cavalry -20% train time, but also -10 health. Unlocks Cavalry "
+"All cavalry -20% train time, but also -5% health. Unlocks Cavalry "
 "Conscription."
-msgstr "Час підготовки всієї кінноти знижується на -20%, однак також на -10 зменшується здоров'я. Доступно при відкритті \"Призов кінноти\"."
+msgstr "Час підготовки всієї кінноти знижується на -20%, однак також на -5% зменшується здоров'я. Доступно при відкритті \"Призов кінноти\"."
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
 msgid ""
-"All infantry -10% train time, but also -5 health. Unlocks Infantry "
+"All infantry -20% train time, but also -5% health. Unlocks Infantry "
 "Conscription."
-msgstr "Час підготовки всієї піхоти знижується на -10%, однак також на -5 зменшується здоров'я. Доступно при відкритті \"Призов піхоти\"."
+msgstr "Час підготовки всієї піхоти знижується на -10%, однак також на -5% зменшується здоров'я. Доступно при відкритті \"Призов піхоти\"."
 
 #: simulation/data/technologies/romans/decay_logistics.jsondescription
 msgid "The Romans were masters of the logistics of warfare."

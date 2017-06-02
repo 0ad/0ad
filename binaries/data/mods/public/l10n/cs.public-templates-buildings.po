@@ -5,7 +5,7 @@
 # Translators:
 # lynx121 <adam.ostruszka@seznam.cz>, 2016
 # Jaroslav Lichtblau <dragonlord@seznam.cz>, 2016
-# fri, 2014-2016
+# fri, 2014-2017
 # Petr Hála <halapetr@selfnet.cz>, 2016-2017
 # Robin Kriebel <kriebel.robin@gmail.com>, 2016
 # Tomáš Machala <haman3k@gmail.com>, 2017
@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-05 09:15+0200\n"
-"PO-Revision-Date: 2017-05-05 15:22+0000\n"
+"POT-Creation-Date: 2017-05-29 09:07+0200\n"
+"PO-Revision-Date: 2017-05-29 16:12+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -173,11 +173,11 @@ msgstr "Kamenná hradba"
 msgid "Wall off your town for a stout defense."
 msgstr "Obežeňte město zdí kvůli lepší obraně."
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:9
+#: simulation/templates/template_structure_defense_wall_gate.xml:10
 msgid "City Gate"
 msgstr "Městská brána"
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:10
+#: simulation/templates/template_structure_defense_wall_gate.xml:11
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
 msgstr "Umožňuje jednotkám průchod městskou hradbou. Může být zamknuta pro zabránění přístupu."
@@ -1370,7 +1370,7 @@ msgstr "Zvláštní římská císařská budova."
 
 #: simulation/templates/structures/rome_army_camp.xml:35
 msgid "ArmyCamp"
-msgstr ""
+msgstr "Vojenský tábor"
 
 #: simulation/templates/structures/rome_army_camp.xml:68
 msgid "Entrenched Army Camp"
@@ -1382,9 +1382,9 @@ msgstr "Castrum Vallum"
 
 #: simulation/templates/structures/rome_army_camp.xml:72
 msgid ""
-"Build anywhere on the map, even in enemy territory. Construct siege weapons "
-"and train citizen-soldiers. Heal garrisoned units slowly."
-msgstr "Stavte kdekoli na mapě, dokonce na nepřátelském území. Sestrojte obléhací zbraně a cvičte občanské vojáky. Pomalu hojí posádkové jednotky."
+"Build in neutral or enemy territory. Construct siege weapons and train "
+"citizen-soldiers. Heal garrisoned units slowly."
+msgstr ""
 
 #: simulation/templates/structures/rome_barracks.xml:18
 msgid "Castrum"

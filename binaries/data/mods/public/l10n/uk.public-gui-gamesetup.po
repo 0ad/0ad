@@ -19,9 +19,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-26 09:02+0200\n"
-"PO-Revision-Date: 2017-05-26 16:10+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-05-27 14:48+0200\n"
+"PO-Revision-Date: 2017-06-02 07:45+0000\n"
+"Last-Translator: Dmytro Ryl'kov <tverdislav@ukr.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -50,7 +50,7 @@ msgstr "Випадково"
 
 #: gui/gamesetup/gamesetup.js:72
 msgid "Picks one civilization at random when the game starts."
-msgstr ""
+msgstr "Вибір однієї цивілізації випадковим чином, коли починається гра."
 
 #: gui/gamesetup/gamesetup.js:110
 #, javascript-format
@@ -396,63 +396,63 @@ msgid ""
 "ready)"
 msgstr "Старт нової гри з поточними налаштуваннями (вимкнено доки усі гравці не будуть готові)"
 
-#: gui/gamesetup/gamesetup.js:1381
+#: gui/gamesetup/gamesetup.js:1394
 msgctxt "map selection"
 msgid "Random"
 msgstr "Випадково"
 
-#: gui/gamesetup/gamesetup.js:1658 gui/gamesetup/gamesetup.js:1697
+#: gui/gamesetup/gamesetup.js:1671 gui/gamesetup/gamesetup.js:1710
 #, javascript-format
 msgid "%(option)s:"
 msgstr "%(option)s:"
 
-#: gui/gamesetup/gamesetup.js:1663
+#: gui/gamesetup/gamesetup.js:1676
 msgctxt "option value"
 msgid "Unknown"
 msgstr "Невідомо"
 
-#: gui/gamesetup/gamesetup.js:1690
+#: gui/gamesetup/gamesetup.js:1703
 msgid "Yes"
 msgstr "Так"
 
-#: gui/gamesetup/gamesetup.js:1690
+#: gui/gamesetup/gamesetup.js:1703
 msgid "No"
 msgstr "Ні"
 
-#: gui/gamesetup/gamesetup.js:1777
+#: gui/gamesetup/gamesetup.js:1790
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1972
+#: gui/gamesetup/gamesetup.js:1985
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "Штучний Інтелект: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1980
+#: gui/gamesetup/gamesetup.js:1993
 msgid "Unassigned"
 msgstr "Непризначено"
 
-#: gui/gamesetup/gamesetup.js:2053
+#: gui/gamesetup/gamesetup.js:2068
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2060
+#: gui/gamesetup/gamesetup.js:2075
 msgid "Unknown Player"
 msgstr "Невідомий гравець"
 
-#: gui/gamesetup/gamesetup.js:2099
+#: gui/gamesetup/gamesetup.js:2114
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2100
+#: gui/gamesetup/gamesetup.js:2115
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2101
+#: gui/gamesetup/gamesetup.js:2116
 msgid "HH:mm"
 msgstr "HH:mm"
 
@@ -604,7 +604,7 @@ msgstr "\"Хвороба така, очевидно, всім правителя
 msgid ""
 "\"Time in the long run teaches all things.\" - Aeschylus (\"Prometheus "
 "Bound\", 981)"
-msgstr "\"Час, старіючи, може навчити всього.\" - Есхіл (\"Прометей прикутий\", 981)"
+msgstr "\"Плин часу вчить всьому.\" - Есхіл (\"Прометей прикутий\", 981)"
 
 #: gui/text/quotes.txt:5
 msgid ""
@@ -636,13 +636,13 @@ msgstr "\"Єднання дає силу\". - Езоп (\"Пучок палич�
 msgid ""
 "\"Never trust advice from a man in the throes of his own difficulty.\" - "
 "Aesop (\"The Fox and the Goat\")"
-msgstr "\"Ніколи не довіряй пораді людини яка знаходиться в своїх глибоких проблемах.\" - Езоп (\"Лисиця та Цап\")"
+msgstr "\"Ніколи не довіряй пораді людини яка знаходиться в прірві своїх проблем.\" - Езоп (\"Лисиця та Цап\")"
 
 #: gui/text/quotes.txt:11
 msgid ""
 "\"Familiarity breeds contempt; acquaintance softens prejudices.\" - Aesop "
 "(\"The Fox and the Lion\")"
-msgstr "\"Знайомство породжує неповагу; І до страшного можна звикнути.\" — Езоп (\"Лисиця та Лев\")"
+msgstr "\"Панібратство породжує неповагу; Знайомство пом'якшує упередження.\" — Езоп (\"Лисиця та Лев\")"
 
 #: gui/text/quotes.txt:12
 msgid ""
@@ -658,7 +658,7 @@ msgstr "\"Повільний і наполегливий виграє перег
 msgid ""
 "\"Better be wise by the misfortunes of others than by your own.\" - Aesop "
 "(\"The Lion, the Ass, and the Fox Hunting\")"
-msgstr "«Краще бути мудрим на нещастях інших, ніж на своїх.» — Езоп (\"Лев, Віслюк та Лис\")"
+msgstr "«Краще вчитись на невдачах інших, ніж на своїх.» — Езоп (\"Лев, Віслюк та Лис\")"
 
 #: gui/text/quotes.txt:15
 msgid ""
@@ -668,14 +668,14 @@ msgstr "\"Обіцянки ворогів були зроблені, щоб пі
 
 #: gui/text/quotes.txt:16
 msgid "\"Any excuse will serve a tyrant.\" - Aesop (\"The Wolf and the Lamb\")"
-msgstr "\"Будь-яке прощення послужить тирану.\" — Езоп (\"Вовк і ягня\")"
+msgstr "\"Будь-яке виправдання послужить тирану.\" — Езоп (\"Вовк і ягня\")"
 
 #: gui/text/quotes.txt:17
 msgid ""
 "\"If I have done anything noble, that is a sufficient memorial; if I have "
 "not, all the statues in the world will not preserve my memory.\" - Agesilaos"
 " II of Sparta (Plutarch, \"Moralia\", XVI. \"Sayings of Spartans\", 215a)"
-msgstr "\"Якщо я зробив щось благородне, цього достатньо щоб бути пам'ятником; якщо у мене немає нічого вартісного, навіть усі статуї в світі не збережуть пам'ять про мене.\" - Агесилай ІІ зі Спарти (Плутарх, \"Моралія\", XVI. \"Вислови спартанців\", 215а)"
+msgstr "\"Якщо я зробив щось благородне, цього достатньо щоб залишитись у пам'яті; якщо ж ні, навіть усі статуї в світі не збережуть пам'ять про мене.\" - Агесилай ІІ зі Спарти (Плутарх, \"Моралія\", XVI. \"Вислови спартанців\", 215а)"
 
 #: gui/text/quotes.txt:18
 msgid ""
@@ -688,7 +688,7 @@ msgid ""
 "\"Weep not for me, as I suffer unjustly, I am in a happier situation than my"
 " murderers.\" - Agis IV of Sparta upon seeing one of his executioners cry "
 "(Plutarch, \"Parallel Lives\", \"Agis\", sec. 20)"
-msgstr "\"Не плач по мені, хоч і страждаю я несправедливо, бо ж я є в кращому стані аніж мої убивці.\" - Арік IV зі Спарти побачивши як один з його катів заплакав (Плутарх, \"Порівняльні життєписи\", \"Агіс\", ІІ.20)"
+msgstr "\"Не плач по мені, хоч і страждаю я несправедливо, бо ж я є в кращому стані аніж мої убивці.\" - Агіс IV зі Спарти побачивши як один з його катів закричав (Плутарх, \"Порівняльні життєписи\", \"Агіс\", ІІ.20)"
 
 #: gui/text/quotes.txt:20
 msgid ""
@@ -920,39 +920,39 @@ msgstr ""
 
 #: gui/text/quotes.txt:51
 msgid "\"Set a thief to catch a thief.\" - Callimachus (\"Epigrams\", 44)"
-msgstr ""
+msgstr "\"Пішліть злодія спіймати злодія.\" - Каллімах (\"Епіграми\", 44)"
 
 #: gui/text/quotes.txt:52
 msgid ""
 "\"All mankind rules its women, and we rule all mankind, but our women rule "
 "us.\" - Cato the Elder (Plutarch, \"Moralia\", III. \"Sayings of Romans\", "
 "198e)"
-msgstr ""
+msgstr "\"Всі чоловіки керують жінками, ми керуємо чоловіками, але наші жінки керують нами.\" - Катон Старший (Плутарх, \"Моралія\", \"Римьскі афоризми\", 198е)"
 
 #: gui/text/quotes.txt:53
 msgid ""
 "\"The worst ruler is one who cannot rule himself.\" - Cato the Elder "
 "(Plutarch, \"Moralia\", III. \"Sayings of Romans\", 198f)"
-msgstr ""
+msgstr "\"Найгірший правитель це той, хто не може управляти собою.\" - Катон Старший (Плутарх, \"Моралія\", \"Римьскі афоризми\", 198f)"
 
 #: gui/text/quotes.txt:54
 msgid ""
 "\"Wise men learn more from fools than fools from the wise.\" - Cato the "
 "Elder (Plutarch, \"Parallel Lives\", \"Cato the Elder\", sec. 9)"
-msgstr ""
+msgstr "\"Розумний вчиться у дурного більше, аніж дурень у розумного\" Катон Старший (Плутарх, \"Паралельні життєписи\", \"Катон Старший\", ІІ. 9)"
 
 #: gui/text/quotes.txt:55
 msgid ""
 "\"Moreover, I consider that Carthage should be destroyed.\" - Cato the "
 "Elder, who ended all speeches in his later life with this statement "
 "(Plutarch, \"Parallel Lives\", \"Cato the Elder\", sec. 27)"
-msgstr ""
+msgstr "\"Окрім того я вважаю, що Карфаген мусить бути знищений\" - Катон Старший, який закінчував усі промови цією фразою (Плутарх, \"Паралельні життєписи\", \"Катон Старший\", ІІ. 27)"
 
 #: gui/text/quotes.txt:56
 msgid ""
 "\"If a king is energetic, his subjects will be equally energetic.\" - "
 "Chanakya (\"Arthashastra\", I. \"Concerning Discipline\", chapter 19)"
-msgstr ""
+msgstr "\"Якщо цар енергійний, всі його піддані будуть відповідно енергійними\" - Чанак'я (\"Артаксеркс \", І. \"Стосовно дисципліни\", розділ 19)"
 
 #: gui/text/quotes.txt:57
 msgid ""
@@ -1006,17 +1006,17 @@ msgstr ""
 msgid ""
 "\"By desiring little, a poor man makes himself rich.\" - Democritus "
 "(fragment)"
-msgstr ""
+msgstr "\"Прагнучи меншого, бідняк робить себе багатим\" - Демокріт (фрагмент)"
 
 #: gui/text/quotes.txt:64
 msgid "\"It is hard to be governed by one's inferior.\" - Democritus (fragment)"
-msgstr ""
+msgstr "\"Важко підкорюватись нижчому.\" - Демокріт (фрагмент)"
 
 #: gui/text/quotes.txt:65
 msgid ""
 "\"Physical strength is only noble in cattle, it is strength of character "
 "that is noble in men.\" - Democritus (fragment)"
-msgstr ""
+msgstr "\"Фізична сила додає благородства худобі, людині ж додає благородства сила характеру.\" - Демокріт (фрагмент)"
 
 #: gui/text/quotes.txt:66
 msgid ""
@@ -1029,7 +1029,7 @@ msgstr ""
 msgid ""
 "\"Delivery, delivery, delivery.\" - Demosthenes, when asked what were the "
 "three most important elements of rhetoric (Cicero, \"De Oratore\", 3.213)"
-msgstr ""
+msgstr "\"Викладка, викладка, виклдка.\" - Демосфен, коли у нього запитали про три найважливіші елементи риторики (Цицерон, \"Оратор\", 3.213)"
 
 #: gui/text/quotes.txt:68
 msgid ""
@@ -1063,13 +1063,13 @@ msgstr ""
 msgid ""
 "\"I am a citizen of the world.\" - Diogenes of Sinope (Diogenes Laertius, "
 "\"The Lives and Opinions of Eminent Philosophers\", \"Diogenes\", sec. 63)"
-msgstr ""
+msgstr "\"Я є громадянином світу.\" - Діоген із Синопу (Діоген Лаертський, \"Життя та думки відомих філософів\", \"Діоген\", ІІ. 63)"
 
 #: gui/text/quotes.txt:72
 msgid ""
 "\"It is not that I am mad, it is only that my head is different from "
 "yours.\" - Diogenes of Sinope (Stobaeus, \"Florilegium\", 51)"
-msgstr ""
+msgstr "\"Я не божевільний, просто мої думки відрізняються від ваших\" - Діоген із Синопу (Стобос, \"Антологія\", 51)"
 
 #: gui/text/quotes.txt:73
 msgid ""
@@ -1111,34 +1111,34 @@ msgstr ""
 
 #: gui/text/quotes.txt:79
 msgid "\"Chance fights ever on the side of the prudent.\" - Euripides (\"Pirithous\")"
-msgstr ""
+msgstr "\"Випадкові сутички рідко на стороні обачного.\" - Евріпід (\"Пирифой\")"
 
 #: gui/text/quotes.txt:80
 msgid ""
 "\"Return with your shield, or on it.\" - Farewell of Spartan women to their "
 "warriors, implying that cowards would throw away their shield in battle to "
 "flee (Plutarch, \"Moralia\", XVIII. \"Sayings of Spartan Women\", 241f)"
-msgstr ""
+msgstr "\"Зі щитом або на щиті\" - Спартанські жінки до воїнів, маючи на увазі, що боягуз викинув би щит в битві, щоб утекти (Плутарх, \"Моралія\", XVIII. \"Вислови спартанських жінок\", 241f)"
 
 #: gui/text/quotes.txt:81
 msgid ""
 "\"I came, I saw, I conquered.\" - Gaius Julius Caesar, after routing "
 "Pharnaces II of Pontus in the first assault (Plutarch, \"Parallel Lives\", "
 "\"Caesar\", sec. 50)"
-msgstr ""
+msgstr "\"Прийшов, побачив, переміг\" - Гай Юлій Цезар, після перемоги над Фарнаком ІІ Понтійським у першій битві (Плутарх, \"Порівняльні життєписи\", \"Цезар\", ІІ. 50)"
 
 #: gui/text/quotes.txt:82
 msgid ""
 "\"Men willingly believe what they wish.\" - Gaius Julius Caesar (\"De Bello "
 "Gallico\", III. 18)"
-msgstr ""
+msgstr "\"Чоловіки охоче вірять тому, чого прагнуть\" - Гай Юлій Цезар (\"Галльська війна\", ІІІ. 18)"
 
 #: gui/text/quotes.txt:83
 msgid ""
 "\"It is not the well-fed long-haired man I fear, but the pale and the hungry"
 " looking.\" - Gaius Julius Caesar (Plutarch, \"Parallel Lives\", \"Antony\","
 " sec. 11)"
-msgstr ""
+msgstr "\"Я не боюсь довговолосих ситих чоловіків, а блідих і голодних\" - Гай Юлій Цезар (Плутарх, \"Порівняльні життєписи\", \"Антоній\", ІІ. 11)"
 
 #: gui/text/quotes.txt:84
 msgid ""
@@ -1201,7 +1201,7 @@ msgstr ""
 msgid ""
 "\"I have come not to make war on the Italians, but to aid the Italians "
 "against Rome.\" - Hannibal Barca (Polybius, \"Histories\", III. 85)"
-msgstr ""
+msgstr "\"Я прийшов не воювати з італійцями, а допомогти їм проти Риму\" - Ганнібал Барка (Полібій, \"Історія\", ІІІ. 85)"
 
 #: gui/text/quotes.txt:92
 msgid ""
@@ -1209,7 +1209,7 @@ msgid ""
 "an old man.\" - Hannibal Barca's last words before his suicide, in exile "
 "with Flaminius pressuring the local ruler to hand him over (Livius, \"Ab "
 "Urbe Condita\", XXXIX. 51)"
-msgstr ""
+msgstr "\"Давайте ж покінчимо з тривогою римлян, які чекають не дочекаються смерти старця - останні слова Ганнібала Барки перед самогубством у засланні, Фламіній тиснув на місцевого правителя видати їм Ганнібала (Лівій, \"З міста\", XXXIX. 51)\""
 
 #: gui/text/quotes.txt:93
 msgid ""
@@ -1393,7 +1393,7 @@ msgstr ""
 msgid ""
 "\"O, the times, O, the customs!\" - Marcus Tullius Cicero (\"Against "
 "Catiline\", speech I)"
-msgstr ""
+msgstr "\"О часи, о мораль!\" - Марк Туллій Цицерон (\"Проти Катіліни\", промова І)"
 
 #: gui/text/quotes.txt:119
 msgid ""
@@ -1429,7 +1429,7 @@ msgstr ""
 msgid ""
 "\"Laws are silent in time of war.\" - Marcus Tullius Cicero (\"Pro Milone\","
 " IV., sec. 11)"
-msgstr ""
+msgstr "\"Закони мовчать під час війни\" - Марк Туллій Цицерон (\"На захист Мілона\", IV., II. 11)"
 
 #: gui/text/quotes.txt:125
 msgid ""

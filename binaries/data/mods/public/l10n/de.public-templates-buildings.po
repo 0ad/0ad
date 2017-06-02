@@ -6,6 +6,7 @@
 # Wuzzy <almikes@aol.com>, 2015-2017
 # David Mannes <mannesdavid@web.de>, 2015
 # James Jakubczyk <beshir75@gmail.com>, 2016
+# ... ... <jon12@gmx.de>, 2017
 # Larson März <larson@protonmail.ch>, 2014
 # Leonard König <leonard.r.koenig@gmail.com>, 2014-2015
 # leper <leper@wildfiregames.com>, 2014-2015
@@ -33,9 +34,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-05 09:15+0200\n"
-"PO-Revision-Date: 2017-05-12 21:03+0000\n"
-"Last-Translator: Raymond Vetter\n"
+"POT-Creation-Date: 2017-05-29 09:07+0200\n"
+"PO-Revision-Date: 2017-05-30 13:11+0000\n"
+"Last-Translator: ... ... <jon12@gmx.de>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -193,11 +194,11 @@ msgstr "Steinwall"
 msgid "Wall off your town for a stout defense."
 msgstr "Ummauere deine Stadt um die Verteidigung zu verbessern."
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:9
+#: simulation/templates/template_structure_defense_wall_gate.xml:10
 msgid "City Gate"
 msgstr "Stadttor"
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:10
+#: simulation/templates/template_structure_defense_wall_gate.xml:11
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
 msgstr "Ermöglicht Einheiten den Zugang durch eine Stadtmauer. Kann verriegelt werden, um den Zugang zu verhindern."
@@ -1402,9 +1403,9 @@ msgstr "Castrum Vallum"
 
 #: simulation/templates/structures/rome_army_camp.xml:72
 msgid ""
-"Build anywhere on the map, even in enemy territory. Construct siege weapons "
-"and train citizen-soldiers. Heal garrisoned units slowly."
-msgstr "Kann überall auf der Karte, auch in gegnerischem Territorium, gebaut werden. Bilde Bürgersoldaten aus und baue Belagerungswaffen. Heile einquartierte Einheiten langsam."
+"Build in neutral or enemy territory. Construct siege weapons and train "
+"citizen-soldiers. Heal garrisoned units slowly."
+msgstr "Kann in gegnerischem und neutralem Gebiet gebaut werden. Bilde Bürgersoldaten aus und baue Belagerungswaffen. Heile einquartierte Einheiten langsam."
 
 #: simulation/templates/structures/rome_barracks.xml:18
 msgid "Castrum"

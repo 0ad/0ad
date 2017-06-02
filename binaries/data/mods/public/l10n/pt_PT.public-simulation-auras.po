@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-22 09:04+0200\n"
-"PO-Revision-Date: 2017-05-22 09:02+0000\n"
+"POT-Creation-Date: 2017-06-02 09:04+0200\n"
+"PO-Revision-Date: 2017-06-02 08:58+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -125,12 +125,8 @@ msgid "Delian League"
 msgstr "Liga de Delos"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
-msgid ""
-"Shortly after the great naval victories at Salamis and Mycale, the Greek "
-"city-states instituted the so-called Delian League in 478 BC, whose purpose "
-"was to push the Persians out of the Aegean region. The allied states "
-"contributed ships and money, while the Athenians offered their entire navy."
-msgstr "Pouco depois das grandes batalhas navais em Salamina e Mícale, as cidades-estado dos Gregos constituíram no ano 478 a.C. a Liga de Delos com o objectivo de expulsarem os Persas da região do mar Egeu. Os atenienses contribuíram com a totalidade da sua frota naval e as cidades-estado aliadas contribuíram com embarcações e dinheiro. "
+msgid "Ships construct 25% faster."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
@@ -455,8 +451,8 @@ msgid "Formation Reforms"
 msgstr "Reformas de formação"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraDescription
-msgid "All soldiers in his formation +15% speed and +1 armor."
-msgstr "Todas as unidades na sua formação têm +15% de velocidade e +1 de armadura."
+msgid "All soldiers in his formation +15% speed and +3 armor."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraName
 msgid "Peltast Reforms"
@@ -479,53 +475,59 @@ msgid "Temple to Athena"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
-msgid "Temples are 50 stone cheaper during his lifetime."
-msgstr "Templos são mais baratos em 50 de pedra durante a sua vida."
+msgid "-25% stone cost and +2 garrisoned heal rate for temples."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
 msgid "Naval Commander"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraDescription
-msgid "When garrisoned in a ship, his ship is +50% faster."
-msgstr "Quando guarnecido num navio, o navio é +50% mais rápido."
+msgid ""
+"When garrisoned in a ship, the ship is +50% faster and trains batches of "
+"units faster."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraName
 msgid "Naval Architect"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraDescription
-msgid "-20% build time for ships during his lifespan."
-msgstr "Navios são construidos em -20% de tempo durante a sua vida."
+msgid "-20% build time and -50% metal cost for ships during his lifespan."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraName
 msgid "Champion Army"
 msgstr "Exército Campeão"
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraDescription
-msgid "+20% attack, +2 capture and +25% speed for champion units."
-msgstr "+20% ataque, +2 pontos de captura e +25% velocidade para as unidades campeãs."
+msgid "+20% attack, +2 capture and +10% speed for champion units."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraName
 msgid "Guerrilla Chief"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraDescription
-#: simulation/data/auras/units/heroes/cart_hero_hamilcar.jsonauraDescription
-msgid "All soldiers and siege engines +15% speed."
-msgstr "Todos os soldados e armas de cerco +15% de velocidade."
+msgid "All soldiers and siege engines +15% speed and +1 armor."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraName
 msgid "Britannorum Rex"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraDescription
-msgid "+1 HP per second healing rate."
+#: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraDescription
+msgid "+0.8 HP per second healing rate."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar.jsonauraName
 msgid "Lightning General"
 msgstr ""
+
+#: simulation/data/auras/units/heroes/cart_hero_hamilcar.jsonauraDescription
+msgid "All soldiers and siege engines +15% speed."
+msgstr "Todos os soldados e armas de cerco +15% de velocidade."
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraName
 msgid "Tactician"
@@ -540,7 +542,7 @@ msgid "Cavalry Commander"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraDescription
-msgid "+20% attack for cavalry melee soldiers."
+msgid "+30% attack for cavalry melee soldiers."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraName
@@ -548,8 +550,8 @@ msgid "Sacker of Rome"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraDescription
-msgid "+10 Metal loot for every enemy unit killed."
-msgstr "+10 Metal pilhado por cada unidade inimiga morta."
+msgid "+15 Metal loot for every enemy unit killed."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/gaul_hero_britomartus.jsonauraName
 msgid "Preparation for War"
@@ -583,8 +585,8 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraDescription
 msgid ""
-"75% more arrows fired per garrisoned soldier for the building while he is "
-"garrisoned in it."
+"75% more arrows per soldier for the building or siege tower he is garrisoned"
+" in."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraName
@@ -617,13 +619,21 @@ msgid ""
 "destroyed."
 msgstr ""
 
-#: simulation/data/auras/units/heroes/mace_hero_alexander.jsonauraName
+#: simulation/data/auras/units/heroes/mace_hero_alexander_1.jsonauraName
 msgid "Imperialism"
 msgstr ""
 
-#: simulation/data/auras/units/heroes/mace_hero_alexander.jsonauraDescription
+#: simulation/data/auras/units/heroes/mace_hero_alexander_1.jsonauraDescription
 msgid "+10% territory effect for all buildings while he lives."
 msgstr "+10% de efeito territorial para todos os edifícios enquanto ele viver."
+
+#: simulation/data/auras/units/heroes/mace_hero_alexander_2.jsonauraName
+msgid "Conqueror"
+msgstr ""
+
+#: simulation/data/auras/units/heroes/mace_hero_alexander_2.jsonauraDescription
+msgid "-50% garrisoned regeneration rate for enemy civic centers."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraName
 msgid "Taxiarchès"
@@ -638,8 +648,8 @@ msgid "Besieger"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraDescription
-msgid "+15% range and +10% crush attack for siege engines."
-msgstr "+15% de alcance e +10% de ataque de impacto para armas de cerco."
+msgid "+10% attack, +10% range and +1 armor for siege engines."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraName
 msgid "Rise of Macedon"
@@ -666,14 +676,19 @@ msgstr ""
 msgid "Temples and temple technologies -50% cost, in resources and time."
 msgstr "Templos e tecnologias de templo -50% custo, em recursos e tempo."
 
-#: simulation/data/auras/units/heroes/maur_hero_chanakya.jsonauraName
+#: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraName
 msgid "Teacher"
 msgstr ""
 
-#: simulation/data/auras/units/heroes/maur_hero_chanakya.jsonauraDescription
+#: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraDescription
 msgid ""
-"Empower a building with -50% research time while he is garrisoned in it."
-msgstr "Delega um edifício com tempo de pesquisa -50% enquanto ele está guarnecido nele."
+"Empower a building with -20% cost and -50% research time while he is "
+"garrisoned in it."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
+msgid "Regeneration"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraName
 msgid "Lead from the Front"
@@ -688,8 +703,8 @@ msgid "Leadership"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraDescription
-msgid "+15% movement speed for all soldiers and siege engines."
-msgstr "+15% de velocidade de movimento para todos os soldados e motores de cerco."
+msgid "+10% movement speed for all soldiers, siege engines and traders."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraName
 msgid "Administrator"
@@ -725,8 +740,8 @@ msgid "Raphia"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraDescription
-msgid "Egyptian pikemen have 40% greater health during his lifetime."
-msgstr "Os piqueiros egípcios têm mais 40% de saúde durante sua vida."
+msgid "Pikemen have 40% greater health during his lifetime."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraName
 msgid "Patron of Construction"
@@ -744,12 +759,17 @@ msgstr ""
 msgid "Mercenaries cost -50% resources during his lifetime."
 msgstr "Mercenários custam -50% recursos durante a sua vida."
 
-#: simulation/data/auras/units/heroes/rome_hero_marcellus.jsonauraName
+#: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraName
+#: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraName
 msgid "Sword of Rome"
 msgstr ""
 
-#: simulation/data/auras/units/heroes/rome_hero_marcellus.jsonauraDescription
-msgid "+20% attack and +2 capture for soldiers and siege engines."
+#: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraDescription
+msgid "+15% attack for cavalry."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraDescription
+msgid "-10% attack for enemy infantry."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraName
@@ -757,8 +777,16 @@ msgid "Shield of Rome"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraDescription
-msgid "+1 armor for all units and structures."
-msgstr "+1 de armadura para todas as unidades e estruturas"
+msgid "+2 armor for all units and structures."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/rome_hero_scipio.jsonauraName
+msgid "Triumph"
+msgstr ""
+
+#: simulation/data/auras/units/heroes/rome_hero_scipio.jsonauraDescription
+msgid "+20% attack and +2 capture for soldiers and siege engines."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraName
 msgid "Ilarchès"
@@ -789,7 +817,7 @@ msgid "Helot Reforms"
 msgstr "Reformas de Hilota"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
-msgid "+20% attack and +1 armor for javelin infantry soldiers."
+msgid "+25% attack and +1 armor for javelin infantry soldiers."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
@@ -797,5 +825,5 @@ msgid "Last Stand"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraDescription
-msgid "+20% attack and +1 capture for spear soldiers."
+msgid "+25% attack and +1 capture for spear soldiers."
 msgstr ""

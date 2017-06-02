@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Jacob Carlsson <yejcob@gmail.com>, 2015
-# Jonatan Nyberg <jonatan@autistici.org>, 2016
+# Jonatan Nyberg, 2016
 # Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2015-2016
 # pilino1234 <mhilgendrf@aol.com>, 2016
 # pilino1234 <mhilgendrf@aol.com>, 2015-2016
@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-26 09:03+0200\n"
-"PO-Revision-Date: 2017-05-26 14:49+0000\n"
+"POT-Creation-Date: 2017-05-29 09:07+0200\n"
+"PO-Revision-Date: 2017-05-29 15:24+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -81,7 +81,8 @@ msgstr "Öppnar  %(url)s\ni standardwebbläsaren. Var god vänta..."
 msgid "Opening page"
 msgstr "Öppnar sidan"
 
-#: gui/common/functions_global_object.js:69
+#. dennis-ignore: *
+#: gui/common/functions_global_object.js:70
 #, javascript-format
 msgid "FPS: %(fps)4s"
 msgstr "FPS: %(fps)4s"
@@ -132,7 +133,7 @@ msgstr "DELETE (Ta bort)"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:246
 #: gui/options/options.js:334 gui/options/options.js:401
-#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:159
+#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:165
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
 #: gui/summary/summary.js:346
 msgid "No"
@@ -140,7 +141,7 @@ msgstr "Nej"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:246
 #: gui/options/options.js:334 gui/options/options.js:401
-#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:159
+#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:165
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
 #: gui/summary/summary.js:346
 msgid "Yes"
@@ -360,7 +361,7 @@ msgstr "Vapenvila"
 
 #: gui/common/gamedescription.js:312 gui/pregame/mainmenu.js:91
 msgid "disabled"
-msgstr "avaktiverad"
+msgstr "inaktiverad"
 
 #: gui/common/gamedescription.js:313
 msgid "For the first minute, enemies will stay neutral."
@@ -403,17 +404,17 @@ msgstr "Befolkningsgräns"
 
 #: gui/common/gamedescription.js:373
 msgid "Treasure"
-msgstr ""
+msgstr "Skatt"
 
 #: gui/common/gamedescription.js:375
 msgctxt "treasure"
 msgid "Disabled"
-msgstr ""
+msgstr "Inaktiverad"
 
 #: gui/common/gamedescription.js:376
 msgctxt "treasure"
 msgid "If the map places it."
-msgstr ""
+msgstr "Om kartan placerar dessa."
 
 #: gui/common/gamedescription.js:380
 msgid "Revealed Map"
@@ -1094,8 +1095,8 @@ msgid "None"
 msgstr "Inga"
 
 #: gui/locale/locale_advanced.js:92
-msgid "<invalid>"
-msgstr "<invalid>"
+msgid "invalid locale"
+msgstr "ogiltigt locale"
 
 #: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:163
 #: gui/splashscreen/splashscreen.xml:(caption):28
@@ -1260,11 +1261,11 @@ msgstr "Inkompatibel replay"
 msgid "No summary data available."
 msgstr "Ingen sammanfattningsinformation tillgänglig."
 
-#: gui/replaymenu/replay_actions.js:157
+#: gui/replaymenu/replay_actions.js:163
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr "Är du säker att du vill ta bort denna replay permanent?"
 
-#: gui/replaymenu/replay_actions.js:158
+#: gui/replaymenu/replay_actions.js:164
 msgid "Delete replay"
 msgstr "Ta bort replay"
 
@@ -1347,20 +1348,20 @@ msgstr "Värderade spel"
 msgid "Unrated games"
 msgstr "Icke-värderade spel"
 
-#: gui/replaymenu/replay_menu.js:190
+#: gui/replaymenu/replay_menu.js:193
 msgid "Filter replays by typing one or more, partial or complete playernames."
 msgstr "Filtrera replays genom att skriva en eller flera, hela eller delvis spelarnamn."
 
-#: gui/replaymenu/replay_menu.js:269
+#: gui/replaymenu/replay_menu.js:272
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
 msgstr "Spelare: %(numberOfPlayers)s"
 
-#: gui/replaymenu/replay_menu.js:296
+#: gui/replaymenu/replay_menu.js:299
 msgid "yyyy-MM-dd HH:mm"
 msgstr "yyyy-MM-dd HH:mm"
 
-#: gui/replaymenu/replay_menu.js:326
+#: gui/replaymenu/replay_menu.js:329
 msgid "yyyy-MM"
 msgstr "yyyy-MM"
 
@@ -2105,11 +2106,15 @@ msgid "Delete"
 msgstr "Ta bort"
 
 #: gui/replaymenu/replay_menu.xml:(caption):254
+msgid "Reload Cache"
+msgstr ""
+
+#: gui/replaymenu/replay_menu.xml:(caption):261
 #: gui/summary/summary.xml:(caption):23
 msgid "Summary"
 msgstr "Sammanfattning"
 
-#: gui/replaymenu/replay_menu.xml:(caption):260
+#: gui/replaymenu/replay_menu.xml:(caption):267
 msgid "Start Replay"
 msgstr "Starta replayen"
 
@@ -2144,6 +2149,10 @@ msgstr "Befolkningsgräns:"
 msgctxt "replay"
 msgid "Duration"
 msgstr "Längd"
+
+#: gui/replaymenu/replay_menu.xml:(tooltip):255
+msgid "Rebuild the replay cache from scratch. Potentially slow!"
+msgstr ""
 
 #: gui/savedgames/load.xml:(heading):44
 msgctxt "replay"
@@ -2205,7 +2214,7 @@ msgstr "Tränareneheter"
 
 #: gui/summary/summary.xml:(caption):105
 msgid "Charts"
-msgstr ""
+msgstr "Diagram"
 
 #: gui/summary/summary.xml:(caption):167
 msgctxt "summary chart"
@@ -2545,38 +2554,87 @@ msgstr "Spara och ladda matchinställningar för snabb återanvändning vid näs
 msgid "Persist Match Settings"
 msgstr "Spara matchinställningar"
 
+#: gui/options/options.jsongeneralSetting[13].parameters.list[0].label
+#: gui/options/options.jsongeneralSetting[14].parameters.list[0].label
+msgid "Everyone"
+msgstr "Alla"
+
+#: gui/options/options.jsongeneralSetting[13].parameters.list[1].label
+#: gui/options/options.jsongeneralSetting[14].parameters.list[1].label
+msgid "Buddies"
+msgstr "Kompisar"
+
+#: gui/options/options.jsongeneralSetting[13].parameters.list[2].label
+msgid "No one"
+msgstr "Ingen"
+
 #: gui/options/options.jsongeneralSetting[13].tooltip
-msgid "Allow observers to join the game after it started"
-msgstr "Tillåt observatörer att ansluta sig till spelet efter det har börjat"
+msgid ""
+"Whether to assign joining clients to free playerslots in the gamesetup."
+msgstr "Om anslutande spelare ska tilldelas lediga spelarplatser i spelinställningarna automatiskt."
 
 #: gui/options/options.jsongeneralSetting[13].label
+msgid "Assign Players"
+msgstr "Tilldela Spelare"
+
+#: gui/options/options.jsongeneralSetting[14].parameters.list[2].label
+msgid "Disabled"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[14].tooltip
+msgid ""
+"Allow everybody or buddies only to join the game as observer after it "
+"started"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[14].label
 msgid "Late Observer Joins"
 msgstr "Sen Observatöranslutning"
 
-#: gui/options/options.jsongeneralSetting[14].tooltip
+#: gui/options/options.jsongeneralSetting[15].tooltip
 msgid "Prevent further observers from joining if the limit is reached"
 msgstr "Förhindra ytterligare observatörer från att ansluta sig om gränsen är nådd"
 
-#: gui/options/options.jsongeneralSetting[14].label
+#: gui/options/options.jsongeneralSetting[15].label
 msgid "Observer Limit"
 msgstr "Observatörgräns"
 
-#: gui/options/options.jsongeneralSetting[15].tooltip
+#: gui/options/options.jsongeneralSetting[16].tooltip
 msgid "Number of units trained per batch"
 msgstr "Antal enheter i en träningsgrupp"
 
-#: gui/options/options.jsongeneralSetting[15].label
+#: gui/options/options.jsongeneralSetting[16].label
 msgid "Batch Training Size"
 msgstr "Träningsgrupp Storlek"
 
-#: gui/options/options.jsongeneralSetting[16].tooltip
+#: gui/options/options.jsongeneralSetting[17].tooltip
 msgid ""
 "Show time that messages are posted in the lobby, gamesetup and ingame chat."
 msgstr "Visa tiden som meddelanden skickades i lobby, spelinställningar, eller spelchatten."
 
-#: gui/options/options.jsongeneralSetting[16].label
+#: gui/options/options.jsongeneralSetting[17].label
 msgid "Chat Timestamp"
 msgstr "Tidsstämpel i chatt"
+
+#: gui/options/options.jsongeneralSetting[18].tooltip
+msgid ""
+"Display the range of auras of selected units and structures (can also be "
+"toggled in-game with the hotkey)."
+msgstr "Visa räckhållet av valda enheters och strukturers auror (kan även ändras i spelet med snabbvalstangenten)."
+
+#: gui/options/options.jsongeneralSetting[18].label
+msgid "Aura Range Visualization"
+msgstr "Visa Auraräckhåll"
+
+#: gui/options/options.jsongeneralSetting[19].tooltip
+msgid ""
+"Display the healing range of selected units (can also be toggled in-game "
+"with the hotkey)."
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[19].label
+msgid "Heal Range Visualization"
+msgstr ""
 
 #: gui/options/options.jsonsoundSetting[0].tooltip
 msgid "Master audio gain"
@@ -2825,16 +2883,6 @@ msgstr "För att minska CPU-arbetsbelastningen, begräns renderfrekvensen i påg
 #: gui/options/options.jsongraphicsSetting[17].label
 msgid "FPS throttling in games"
 msgstr "FPS begränsning i spel"
-
-#: gui/options/options.jsongraphicsSetting[18].tooltip
-msgid ""
-"Display the range of auras of selected units and structures (can also be "
-"toggled in-game with the hotkey)."
-msgstr "Visa räckhållet av valda enheters och strukturers auror (kan även ändras i spelet med snabbvalstangenten)."
-
-#: gui/options/options.jsongraphicsSetting[18].label
-msgid "Aura Range Visualization"
-msgstr "Visa Auraräckhåll"
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."

@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-26 09:02+0200\n"
-"PO-Revision-Date: 2017-05-26 16:10+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-05-27 14:48+0200\n"
+"PO-Revision-Date: 2017-06-02 11:35+0000\n"
+"Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -391,63 +391,63 @@ msgid ""
 "ready)"
 msgstr "Започване на нова игра с текущите настройки (забранено, докато не станат готови всички играчи)"
 
-#: gui/gamesetup/gamesetup.js:1381
+#: gui/gamesetup/gamesetup.js:1394
 msgctxt "map selection"
 msgid "Random"
 msgstr "Случайна"
 
-#: gui/gamesetup/gamesetup.js:1658 gui/gamesetup/gamesetup.js:1697
+#: gui/gamesetup/gamesetup.js:1671 gui/gamesetup/gamesetup.js:1710
 #, javascript-format
 msgid "%(option)s:"
 msgstr "%(option)s:"
 
-#: gui/gamesetup/gamesetup.js:1663
+#: gui/gamesetup/gamesetup.js:1676
 msgctxt "option value"
 msgid "Unknown"
 msgstr "Неизвестно"
 
-#: gui/gamesetup/gamesetup.js:1690
+#: gui/gamesetup/gamesetup.js:1703
 msgid "Yes"
 msgstr "Да"
 
-#: gui/gamesetup/gamesetup.js:1690
+#: gui/gamesetup/gamesetup.js:1703
 msgid "No"
 msgstr "Не"
 
-#: gui/gamesetup/gamesetup.js:1777
+#: gui/gamesetup/gamesetup.js:1790
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1972
+#: gui/gamesetup/gamesetup.js:1985
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "ИИ: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1980
+#: gui/gamesetup/gamesetup.js:1993
 msgid "Unassigned"
 msgstr "Неопределен"
 
-#: gui/gamesetup/gamesetup.js:2053
+#: gui/gamesetup/gamesetup.js:2068
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2060
+#: gui/gamesetup/gamesetup.js:2075
 msgid "Unknown Player"
 msgstr "Неизвестен играч"
 
-#: gui/gamesetup/gamesetup.js:2099
+#: gui/gamesetup/gamesetup.js:2114
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2100
+#: gui/gamesetup/gamesetup.js:2115
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2101
+#: gui/gamesetup/gamesetup.js:2116
 msgid "HH:mm"
 msgstr "HH:mm"
 
@@ -733,14 +733,14 @@ msgstr ""
 msgid ""
 "\"I do not steal victory.\" - Alexander the Great, when suggested to raid "
 "the Persians at night (Plutarch, \"Parallel Lives\", \"Alexander\", sec. 31)"
-msgstr ""
+msgstr "„Аз не крада победата.“ — Александър Велики, когато му било предложено да нападне персийците през нощта (Плутарх, „Успоредни животописи“, „Александър“, раздел 31)"
 
 #: gui/text/quotes.txt:27
 msgid ""
 "\"Written laws are like spiders' webs; they will catch, it is true, the weak"
 " and poor, but will be torn in pieces by the rich and powerful.\" - "
 "Anacharsis (Plutarch, \"Parallel Lives\", \"Solon\", sec. 5)"
-msgstr ""
+msgstr "„Писаните закони са като паяжина — хващат слабите и бедните, но биват разкъсани от богатите и властните.“ — Анахарс (Плутарх, „Успоредни животописи“, „Солон“, раздел 5)"
 
 #: gui/text/quotes.txt:28
 msgid ""
@@ -934,20 +934,20 @@ msgstr ""
 msgid ""
 "\"Wise men learn more from fools than fools from the wise.\" - Cato the "
 "Elder (Plutarch, \"Parallel Lives\", \"Cato the Elder\", sec. 9)"
-msgstr ""
+msgstr "„Мъдрите научават повече от глупците, отколкото глупците от мъдрите.“ — Катон Старши (Плутарх, „Успоредни животописи“, „Катон Старши“, раздел 9)"
 
 #: gui/text/quotes.txt:55
 msgid ""
 "\"Moreover, I consider that Carthage should be destroyed.\" - Cato the "
 "Elder, who ended all speeches in his later life with this statement "
 "(Plutarch, \"Parallel Lives\", \"Cato the Elder\", sec. 27)"
-msgstr ""
+msgstr "„Освен това, смятам че Картаген трябва да бъде унижощен.“ — Катон Старши (Плутарх, „Успоредни животописи“, „Катон Старши“, раздел 27)"
 
 #: gui/text/quotes.txt:56
 msgid ""
 "\"If a king is energetic, his subjects will be equally energetic.\" - "
 "Chanakya (\"Arthashastra\", I. \"Concerning Discipline\", chapter 19)"
-msgstr ""
+msgstr "„Ако царят е енергичен, и подчинените му ще са енергични.“ — Чанакя („Артхашастра“, I. „Относно дисциплината“, глава 19)"
 
 #: gui/text/quotes.txt:57
 msgid ""
@@ -955,7 +955,7 @@ msgid ""
 "he who awards mild punishment becomes contemptible. But whoever imposes "
 "punishment as deserved becomes respectable.\" - Chanakya (\"Arthashastra\", "
 "I. \"Concerning Discipline\", chapter 4)"
-msgstr ""
+msgstr "„Онзи, който налага тежки наказания става противен на хората; онзи който подкрепя леките наказания бива презиран. Но онзи, който раздава справедливи наказания, бива уважаван.“ — Чанакя („Артхашастра“, I. „Относно дисциплината“, глава 4)"
 
 #: gui/text/quotes.txt:58
 msgid ""
@@ -978,7 +978,7 @@ msgid ""
 "\"I am Cyrus, who won for the Persians their empire. Therefore do not "
 "begrudge me this bit of earth that covers my bones.\" - Cyrus the Great's "
 "epitaph (Plutarch, \"Parallel Lives\", \"Alexander\", sec. 69)"
-msgstr ""
+msgstr "„Аз съм Кир, който спечели на персийците империята им. Затова нека не ви се свиди земята, която покрива костите ми.“ — Епитафия на Кир Велики (Плутарх, „Успоредни животописи“, „Александър“, раздел 69)"
 
 #: gui/text/quotes.txt:61
 msgid ""
@@ -1064,14 +1064,14 @@ msgstr ""
 msgid ""
 "\"It is not that I am mad, it is only that my head is different from "
 "yours.\" - Diogenes of Sinope (Stobaeus, \"Florilegium\", 51)"
-msgstr ""
+msgstr "„Не съм луд, просто главата ми е по-различна от твоята.“ — Диоген Синопски (Стобей, „Флорилегий“, 51)"
 
 #: gui/text/quotes.txt:73
 msgid ""
 "\"Yes, stand a little out of my sunshine.\" - Diogenes of Sinope to "
 "Alexander the Great, who asked if he could help in in any way (Plutarch, "
 "\"Parallel Lives\", \"Alexander\", sec. 14)"
-msgstr ""
+msgstr "„Да, мръдни малко, че ми закриваш слънцето.“ — Диоген Синопски, когато Александър Велики го попитал дали може да му помогне по някакъв начин (Плутарх, „Успоредни животописи“, „Александър“, раздел 14)"
 
 #: gui/text/quotes.txt:74
 msgid ""
@@ -1120,7 +1120,7 @@ msgid ""
 "\"I came, I saw, I conquered.\" - Gaius Julius Caesar, after routing "
 "Pharnaces II of Pontus in the first assault (Plutarch, \"Parallel Lives\", "
 "\"Caesar\", sec. 50)"
-msgstr ""
+msgstr "„Дойдох, видях, победих.“ — Гай Юлий Цезар, след разгрома над Фарнак II от Понт при първото нападение (Плутарх, „Успоредни животописи“, „Цезар“, раздел 50)"
 
 #: gui/text/quotes.txt:82
 msgid ""
@@ -1133,7 +1133,7 @@ msgid ""
 "\"It is not the well-fed long-haired man I fear, but the pale and the hungry"
 " looking.\" - Gaius Julius Caesar (Plutarch, \"Parallel Lives\", \"Antony\","
 " sec. 11)"
-msgstr ""
+msgstr "„Не се страхувам от охранените дългокоси мъже, а от бледите и недохранените.“ — Гай Юлий Цезар (Плутарх, „Успоредни животописи“, „Антоний“, раздел 11)"
 
 #: gui/text/quotes.txt:84
 msgid ""
@@ -1178,13 +1178,13 @@ msgid ""
 "\"I'd rather be the first man here than the second man in Rome.\" - Gaius "
 "Julius Caesar, when passing through a barbarian village in the Alps "
 "(Plutarch, \"Parallel Lives\", \"Caesar\", sec. 11)"
-msgstr ""
+msgstr "„По-добре да бъда първият човек тук, отколкото вторият в Рим.“ — Гай Юлий Цезар, при преминаването през варварски селище в Алпите (Плутарх, „Успоредни животописи“, „Цезар“, раздел 11)"
 
 #: gui/text/quotes.txt:89
 msgid ""
 "\"Stop quoting laws, we carry weapons!\" - Gnaeus Pompeius Magnus (Plutarch,"
 " \"Parallel Lives\", \"Pompey\", sec. 10)"
-msgstr ""
+msgstr "„Спри да цитираш закони, носим оръжие!“ — Гней Помпей (Плутарх, „Успоредни животописи“, „Помпей“, раздел 10)"
 
 #: gui/text/quotes.txt:90
 msgid ""
@@ -1375,14 +1375,14 @@ msgstr ""
 msgid ""
 "\"A city is well-fortified which has a wall of men instead of brick.\" - "
 "Lycurgus of Sparta (Plutarch, \"Parallel Lives\", \"Lycurgus\", sec. 19)"
-msgstr ""
+msgstr "„Един град е добре укрепен, когато има стена от мъже, а не от тухли.“ — Ликург от Спарта (Плутарх, „Успоредни животописи“, „Ликург“, раздел 19)"
 
 #: gui/text/quotes.txt:117
 msgid ""
 "\"Escape, yes, but this time with my hands, not my feet.\" - Marcus Junius "
 "Brutus, before committing suicide after losing a battle against Caesar's "
 "avengers (Plutarch, \"Parallel Lives\", \"Brutus\", sec. 52)"
-msgstr ""
+msgstr "„Бягство — да, но този път с ръце, а не с крака.“ — Марк Юний Брут, преди да се самоубие след загубата на битката срещу отмъстителите на Цезар (Плутарх, „Успоредни животописи“, „Брут“, раздел 52)"
 
 #: gui/text/quotes.txt:118
 msgid ""
@@ -1537,7 +1537,7 @@ msgid ""
 "\"Wait for the wisest of all counsellors, time.\" - Pericles, a cautious "
 "politician who avoided war (Plutarch, \"Parallel Lives\", \"Pericles\", sec."
 " 18)"
-msgstr ""
+msgstr "„Изчакайте най-мъдрия съветник, времето.“ — Перикъл, разсъдлив политик, който избягвал войната (Плутарх, „Успоредни животописи“, „Перикъл“, раздел 18)"
 
 #: gui/text/quotes.txt:140
 msgid ""
@@ -1558,7 +1558,7 @@ msgid ""
 "\"Themistocles robbed his fellow citizens of spear and shield, and degraded "
 "the people of Athens to the rowing-pad and the oar.\" - Plato, no friend of "
 "the Athenian navy (Plutarch, \"Parallel Lives\", \"Themistocles\", sec. 3)"
-msgstr ""
+msgstr "„Темистокъл ограби копията и щитовете на съгражданите си и принизи хората на Атина до гребци.“ — Платон, който не харесвал атинската флота (Плутарх, „Успоредни животописи“, „Темистокъл“, раздел 3)"
 
 #: gui/text/quotes.txt:143
 msgid ""
@@ -1578,7 +1578,7 @@ msgid ""
 "\"He \\[Alexander] thought nothing invincible for the courageous, and "
 "nothing secure for the cowardly.\" - Plutarch (\"Parallel Lives\", "
 "\"Alexander\", sec. 58)"
-msgstr ""
+msgstr "„Той (Александър) смятал, че нищо не е непреодолимо за куражливия, и че нищо не е безопасно за страхливия.“ — Плутарх („Успоредни животописи“, „Александър“, раздел 58)"
 
 #: gui/text/quotes.txt:146
 msgid ""
@@ -1589,7 +1589,7 @@ msgid ""
 "a mace, and leaned against the city wall, his eyes still fixed upon his "
 "foes.\" - Plutarch about the Mallian Campaign (\"Parallel Lives\", "
 "\"Alexander\", sec. 63)"
-msgstr ""
+msgstr "„Някой (…) изстреля стрела срещу него с такава точност и сила, че тя проби бронята и заседна между ребрата му. (…) Александър падна на колене. (…) Най-накрая Александър уби варварина. Но получи много рани, накрая той бе ударен във врата от боздуган и се облегна на градската стена, а очите му още гледаха към врага.“ — Плутарх, относно Малийската кампания („Успоредни животописи“, „Александър“, раздел 3)"
 
 #: gui/text/quotes.txt:147
 msgid ""

@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-22 09:04+0200\n"
-"PO-Revision-Date: 2017-05-26 07:52+0000\n"
-"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
+"POT-Creation-Date: 2017-06-02 09:04+0200\n"
+"PO-Revision-Date: 2017-06-02 08:58+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -124,12 +124,8 @@ msgid "Delian League"
 msgstr "Déloszi szövetség"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
-msgid ""
-"Shortly after the great naval victories at Salamis and Mycale, the Greek "
-"city-states instituted the so-called Delian League in 478 BC, whose purpose "
-"was to push the Persians out of the Aegean region. The allied states "
-"contributed ships and money, while the Athenians offered their entire navy."
-msgstr "Nem sokkal a szalamiszi és mükaléi nagy tengeri győzelmek után, a görög városállamok létrehozták az úgynevezett Déloszi szövetséget i. e. 478-ban, amely célja a perzsák kiűzése volt az Égei-tenger vidékéről. A szövetséges államok hajókkal és pénzzel járultak hozzá, az athéniak pedig a teljes flottájukkal."
+msgid "Ships construct 25% faster."
+msgstr "A hajók 25%-kal gyorsabban elkészülnek."
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
@@ -454,8 +450,8 @@ msgid "Formation Reforms"
 msgstr "Alakzat reformok"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraDescription
-msgid "All soldiers in his formation +15% speed and +1 armor."
-msgstr "Az alakzatában lévő összes katonának +15% sebesség és +1 páncél."
+msgid "All soldiers in his formation +15% speed and +3 armor."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraName
 msgid "Peltast Reforms"
@@ -478,53 +474,59 @@ msgid "Temple to Athena"
 msgstr "Athéné temploma"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
-msgid "Temples are 50 stone cheaper during his lifetime."
-msgstr "A templomok 50 kővel olcsóbbak az élettartama alatt."
+msgid "-25% stone cost and +2 garrisoned heal rate for temples."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
 msgid "Naval Commander"
 msgstr "Tengerészparancsnok"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraDescription
-msgid "When garrisoned in a ship, his ship is +50% faster."
-msgstr "Egy hajóba beszállásolva a hajója +50%-kal gyorsabb."
+msgid ""
+"When garrisoned in a ship, the ship is +50% faster and trains batches of "
+"units faster."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraName
 msgid "Naval Architect"
 msgstr "Hajómérnök"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraDescription
-msgid "-20% build time for ships during his lifespan."
-msgstr "-20% hajóépítési idő az élettartama alatt."
+msgid "-20% build time and -50% metal cost for ships during his lifespan."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraName
 msgid "Champion Army"
 msgstr "Bajnok sereg"
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraDescription
-msgid "+20% attack, +2 capture and +25% speed for champion units."
-msgstr "+20% támadás, +2 elfoglalás és +25% sebesség a bajnok egységeknek."
+msgid "+20% attack, +2 capture and +10% speed for champion units."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraName
 msgid "Guerrilla Chief"
 msgstr "Gerillafőnök"
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraDescription
-#: simulation/data/auras/units/heroes/cart_hero_hamilcar.jsonauraDescription
-msgid "All soldiers and siege engines +15% speed."
-msgstr "Az alakzatában lévő összes katonának és ostromgépnek +15% sebesség."
+msgid "All soldiers and siege engines +15% speed and +1 armor."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraName
 msgid "Britannorum Rex"
 msgstr "Britanniarum Rex (A britonok királya)"
 
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraDescription
-msgid "+1 HP per second healing rate."
-msgstr "Másodpercenként +1 ÉP gyógyulási sebesség."
+#: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraDescription
+msgid "+0.8 HP per second healing rate."
+msgstr "Másodpercenként +0,8 ÉP gyógyulási sebesség."
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar.jsonauraName
 msgid "Lightning General"
 msgstr "Villámgyors tábornok"
+
+#: simulation/data/auras/units/heroes/cart_hero_hamilcar.jsonauraDescription
+msgid "All soldiers and siege engines +15% speed."
+msgstr "Az alakzatában lévő összes katonának és ostromgépnek +15% sebesség."
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraName
 msgid "Tactician"
@@ -539,16 +541,16 @@ msgid "Cavalry Commander"
 msgstr "Lovassági parancsnok"
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraDescription
-msgid "+20% attack for cavalry melee soldiers."
-msgstr "+20% támadás a közelharci lovas katonáknak."
+msgid "+30% attack for cavalry melee soldiers."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraName
 msgid "Sacker of Rome"
 msgstr "Róma kifosztója"
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraDescription
-msgid "+10 Metal loot for every enemy unit killed."
-msgstr "+10 fém zsákmány minden megölt ellenséges egység után."
+msgid "+15 Metal loot for every enemy unit killed."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/gaul_hero_britomartus.jsonauraName
 msgid "Preparation for War"
@@ -582,9 +584,9 @@ msgstr "Bátor védelmező"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraDescription
 msgid ""
-"75% more arrows fired per garrisoned soldier for the building while he is "
-"garrisoned in it."
-msgstr "75%-kal több nyílvessző kerül kilövősre beszállásolt katonánként az épületből, ha oda van beszállásolva."
+"75% more arrows per soldier for the building or siege tower he is garrisoned"
+" in."
+msgstr "75%-kal több nyílvessző beszállásolt katonánként az épületből vagy ostromtoronyból, ha oda van beszállásolva."
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraName
 msgid "Battle Fervor"
@@ -616,13 +618,21 @@ msgid ""
 "destroyed."
 msgstr "+100% nyersanyagzsákmány növekedés minden egyes megölt ellenséges egység vagy elpusztított épület után."
 
-#: simulation/data/auras/units/heroes/mace_hero_alexander.jsonauraName
+#: simulation/data/auras/units/heroes/mace_hero_alexander_1.jsonauraName
 msgid "Imperialism"
 msgstr "Imperializmus"
 
-#: simulation/data/auras/units/heroes/mace_hero_alexander.jsonauraDescription
+#: simulation/data/auras/units/heroes/mace_hero_alexander_1.jsonauraDescription
 msgid "+10% territory effect for all buildings while he lives."
 msgstr "+10% területhatás az összes épülethez, amíg él."
+
+#: simulation/data/auras/units/heroes/mace_hero_alexander_2.jsonauraName
+msgid "Conqueror"
+msgstr ""
+
+#: simulation/data/auras/units/heroes/mace_hero_alexander_2.jsonauraDescription
+msgid "-50% garrisoned regeneration rate for enemy civic centers."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraName
 msgid "Taxiarchès"
@@ -637,8 +647,8 @@ msgid "Besieger"
 msgstr "Ostromló"
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraDescription
-msgid "+15% range and +10% crush attack for siege engines."
-msgstr "+15% hatótávolság és +10% zúzás támadás az ostromgépeknek."
+msgid "+10% attack, +10% range and +1 armor for siege engines."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraName
 msgid "Rise of Macedon"
@@ -665,14 +675,19 @@ msgstr "Buddhizmus"
 msgid "Temples and temple technologies -50% cost, in resources and time."
 msgstr "A templomoknál és templomi technológiáknál -50% költség, erőforrásból és időből is."
 
-#: simulation/data/auras/units/heroes/maur_hero_chanakya.jsonauraName
+#: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraName
 msgid "Teacher"
 msgstr "Tanár"
 
-#: simulation/data/auras/units/heroes/maur_hero_chanakya.jsonauraDescription
+#: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraDescription
 msgid ""
-"Empower a building with -50% research time while he is garrisoned in it."
-msgstr "Egy épület felruházása -50% kutatási idővel, amíg beszállásolt."
+"Empower a building with -20% cost and -50% research time while he is "
+"garrisoned in it."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
+msgid "Regeneration"
+msgstr "Regeneráció"
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraName
 msgid "Lead from the Front"
@@ -687,8 +702,8 @@ msgid "Leadership"
 msgstr "Vezetés"
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraDescription
-msgid "+15% movement speed for all soldiers and siege engines."
-msgstr "+15% mozgási sebesség minden katonának és ostromgépnek."
+msgid "+10% movement speed for all soldiers, siege engines and traders."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraName
 msgid "Administrator"
@@ -724,8 +739,8 @@ msgid "Raphia"
 msgstr "Rafia"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraDescription
-msgid "Egyptian pikemen have 40% greater health during his lifetime."
-msgstr "Az egyiptomi pikások életereje 40%-kal nagyobb az élettartama alatt."
+msgid "Pikemen have 40% greater health during his lifetime."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraName
 msgid "Patron of Construction"
@@ -743,21 +758,34 @@ msgstr "Zsoldosok pártfogója"
 msgid "Mercenaries cost -50% resources during his lifetime."
 msgstr "A zsoldosok 50%-kal olcsóbbak az élettartama alatt."
 
-#: simulation/data/auras/units/heroes/rome_hero_marcellus.jsonauraName
+#: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraName
+#: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraName
 msgid "Sword of Rome"
 msgstr "Róma kardja"
 
-#: simulation/data/auras/units/heroes/rome_hero_marcellus.jsonauraDescription
-msgid "+20% attack and +2 capture for soldiers and siege engines."
-msgstr "+20% támadás és +2 elfoglalás a katonáknak és az ostromgépeknek."
+#: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraDescription
+msgid "+15% attack for cavalry."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraDescription
+msgid "-10% attack for enemy infantry."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraName
 msgid "Shield of Rome"
 msgstr "Róma pajzsa"
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraDescription
-msgid "+1 armor for all units and structures."
-msgstr "+1 páncél minden egységnek és épületnek."
+msgid "+2 armor for all units and structures."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/rome_hero_scipio.jsonauraName
+msgid "Triumph"
+msgstr ""
+
+#: simulation/data/auras/units/heroes/rome_hero_scipio.jsonauraDescription
+msgid "+20% attack and +2 capture for soldiers and siege engines."
+msgstr "+20% támadás és +2 elfoglalás a katonáknak és az ostromgépeknek."
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraName
 msgid "Ilarchès"
@@ -788,13 +816,13 @@ msgid "Helot Reforms"
 msgstr "Helóta reformok"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
-msgid "+20% attack and +1 armor for javelin infantry soldiers."
-msgstr "+20% támadás és +1 páncél a gerelyhajító gyalogos katonáknak."
+msgid "+25% attack and +1 armor for javelin infantry soldiers."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
 msgid "Last Stand"
 msgstr "Utolsó vérig"
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraDescription
-msgid "+20% attack and +1 capture for spear soldiers."
-msgstr "+20% támadás és +1 elfoglalás a lándzsás katonáknak."
+msgid "+25% attack and +1 capture for spear soldiers."
+msgstr ""
