@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -794,7 +794,8 @@ void CSimulation2::SetMapSettings(JS::HandleValue settings)
 	m->m_MapSettings = settings;
 
 	u32 seed = 0;
-	if (!m->m_ComponentManager.GetScriptInterface().GetProperty(m->m_MapSettings, "Seed", seed))
+	if (!m->m_ComponentManager.GetScriptInterface().HasProperty(m->m_MapSettings, "Seed") ||
+	    !m->m_ComponentManager.GetScriptInterface().GetProperty(m->m_MapSettings, "Seed", seed))
 		LOGWARNING("CSimulation2::SetInitAttributes: No seed value specified - using %d", seed);
 
 	m->m_ComponentManager.SetRNGSeed(seed);

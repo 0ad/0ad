@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -118,12 +118,10 @@ bool CMapGeneratorWorker::Run()
 	}
 
 	// Init RNG seed
-	u32 seed;
-	if (!m_ScriptInterface->GetProperty(settingsVal, "Seed", seed))
-	{	// No seed specified
+	u32 seed = 0;
+	if (!m_ScriptInterface->HasProperty(settingsVal, "Seed") ||
+	    !m_ScriptInterface->GetProperty(settingsVal, "Seed", seed))
 		LOGWARNING("CMapGeneratorWorker::Run: No seed value specified - using 0");
-		seed = 0;
-	}
 
 	m_MapGenRNG.seed(seed);
 
