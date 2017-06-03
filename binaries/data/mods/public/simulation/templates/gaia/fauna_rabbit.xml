@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna_hunt_skittish">
   <Footprint>
-    <Square width="0.8" depth="1.6"/>
+    <Square width="1.2" depth="2.0"/>
     <Height>1.0</Height>
   </Footprint>
   <Identity>
@@ -9,6 +9,9 @@
     <SpecificName>Rabbit</SpecificName>
     <Icon>gaia/fauna_rabbit.png</Icon>
   </Identity>
+  <Health>
+    <Max>10</Max>
+  </Health>
   <Obstruction>
     <BlockMovement>false</BlockMovement>
   </Obstruction>
