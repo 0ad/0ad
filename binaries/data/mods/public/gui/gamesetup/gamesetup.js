@@ -1304,7 +1304,7 @@ function onClientJoin(newGUID, newAssignments)
 	if (!isRejoiningPlayer && playername != newAssignments[Engine.GetPlayerGUID()].name)
 	{
 		let assignOption = Engine.ConfigDB_GetValue("user", "gui.gamesetup.assignplayers");
-		if (assignOption == "noone" ||
+		if (assignOption == "disabled" ||
 		    assignOption == "buddies" && g_Buddies.indexOf(splitRatingFromNick(playername)[0]) == -1)
 			return;
 	}

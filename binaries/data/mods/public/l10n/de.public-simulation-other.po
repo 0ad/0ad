@@ -7,6 +7,7 @@
 # Fabian Gref <fabian.gref@gmail.com>, 2017
 # Florian Graefe <fgraefe@colegioaleman.net>, 2017
 # James Jakubczyk <beshir75@gmail.com>, 2016
+# ... ... <jon12@gmx.de>, 2017
 # Jonas <jesus_007@posteo.de>, 2015
 # leper <leper@wildfiregames.com>, 2014-2016
 # nautilusx, 2016
@@ -16,14 +17,14 @@
 # Thelxinoe, 2015
 # Philipp Mysz <philmy@web.de>, 2017
 # qwertz, 2015
-# Raymond Vetter, 2014-2016
+# Raymond Vetter, 2014-2017
 # Xaver, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-26 09:04+0200\n"
-"PO-Revision-Date: 2017-05-26 14:20+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-05-27 14:49+0200\n"
+"PO-Revision-Date: 2017-06-02 11:06+0000\n"
+"Last-Translator: Wuzzy <almikes@aol.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -329,44 +330,44 @@ msgstr "%(_player_)s, ich werde dein Neutralitätsangebot nicht akzeptieren, au�
 msgid ""
 "%(_player_)s, it would help both of our civilizations if we formed an "
 "alliance. If you become allies with me, I will respond in kind."
-msgstr ""
+msgstr "%(_player_)s, es würde unseren beiden Zivilisationen helfen, wenn wir eine Allianz formen. Wenn du dich mit mir verbündest, werde ich das gleiche tun."
 
 #: simulation/ai/petra/chatHelper.js:122
 #, javascript-format
 msgid "%(_player_)s, my offer for an alliance has expired."
-msgstr ""
+msgstr "%(_player_)s, mein Angebot für eine Allianz ist abgelaufen."
 
 #: simulation/ai/petra/chatHelper.js:123
 #, javascript-format
 msgid ""
 "%(_player_)s, I have rescinded my previous offer for an alliance between us."
-msgstr ""
+msgstr "%(_player_)s, ich habe mein vorheriges Angebot für eine Allianz aufgehoben."
 
 #: simulation/ai/petra/chatHelper.js:128
 #, javascript-format
 msgid ""
 "%(_player_)s, I would like to request a neutrality pact between our "
 "civilizations. If you become neutral with me, I will respond in kind."
-msgstr ""
+msgstr "%(_player_)s, ich würde gerne einen Neutralitätspakt zwischen unseren Zivilisationen schließen. Wenn du dich mir gegenüber neutral verhälst, werde ich das gleiche tun."
 
 #: simulation/ai/petra/chatHelper.js:129
 #, javascript-format
 msgid ""
 "%(_player_)s, it would be both to our benefit if we negotiated a neutrality "
 "pact. I will become neutral with you if you do the same."
-msgstr ""
+msgstr "%(_player_)s, es würde uns beiden nützen, wenn wir uns auf einen Neutralitätspakt einigen könnten. Ich werde mich dir gegenüber neutral verhalten, wenn du das gleiche tust."
 
 #: simulation/ai/petra/chatHelper.js:132
 #, javascript-format
 msgid "%(_player_)s, I have decided to revoke my offer for a neutrality pact."
-msgstr ""
+msgstr "%(_player_)s, ich habe mich entschlossen, mein Angebot für einen Neutralitätspakt zurückzuziehen."
 
 #: simulation/ai/petra/chatHelper.js:133
 #, javascript-format
 msgid ""
 "%(_player_)s, as you have failed to respond to my request for peace between "
 "us, I have abrogated my offer."
-msgstr ""
+msgstr "%(_player_)s, da du auf mein Friedensangebot nicht reagiert hast, habe ich mein Angebot aufgehoben."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -1185,7 +1186,7 @@ msgstr "Klein"
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
 "quickly while still having few room to expand."
-msgstr ""
+msgstr "Kleine Karten eignen sich für 1v1 Spiele, da Spieler den Gegner schnell erreichen können und trotzdem etwas Platz zum expandieren haben."
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Medium"
@@ -1195,7 +1196,7 @@ msgstr "Mittel"
 msgid ""
 "Medium-sized maps provide plenty of space for two players, but even eight "
 "players fit."
-msgstr ""
+msgstr "Mittelgroße Karten bieten viel Platz für zwei Spieler, aber es passen sogar acht Spieler."
 
 #: simulation/data/settings/map_sizes.jsonData[3].Name
 msgid "Normal"
@@ -1205,7 +1206,7 @@ msgstr "Normal"
 msgid ""
 "This is the ideal mapsize for 4 to 8 players, because there is plenty of "
 "space to expand while the neighbors are quickly reachable."
-msgstr ""
+msgstr "Dies ist die ideale Karte für 4 bis 8 Spieler, denn es gibt viel Platz zum expandieren, während die Nachbarn schnell erreichbar sind."
 
 #: simulation/data/settings/map_sizes.jsonData[4].Name
 msgid "Large"
@@ -1215,7 +1216,7 @@ msgstr "Groß"
 msgid ""
 "The large mapsize is recommended when great portions of the map are covered "
 "with water or inaccessible mountains."
-msgstr ""
+msgstr "Die große Karte wird empfohlen, wenn der Großteil der Karte mit Wasser oder unzugänglichen Bergen überzogen ist."
 
 #: simulation/data/settings/map_sizes.jsonData[5].Name
 msgid "Very Large"
@@ -1226,7 +1227,7 @@ msgstr "Sehr Groß"
 msgid ""
 "Very large maps are not recommended as it takes very long to reach the enemy"
 " and the game performance can be reduced."
-msgstr ""
+msgstr "Sehr große Karten werden nicht empfohlen, da es sehr lange braucht, um den Feind zu erreichen und die Spielperformanz reduziert werden kann."
 
 #: simulation/data/settings/map_sizes.jsonData[6].Name
 msgid "Giant"

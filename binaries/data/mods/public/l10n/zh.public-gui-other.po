@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-26 09:03+0200\n"
-"PO-Revision-Date: 2017-05-26 14:49+0000\n"
+"POT-Creation-Date: 2017-05-29 09:07+0200\n"
+"PO-Revision-Date: 2017-05-29 15:24+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -81,7 +81,8 @@ msgstr "正在打开%(url)s\n在默认浏览器中。请稍后..."
 msgid "Opening page"
 msgstr "-- 正在打开"
 
-#: gui/common/functions_global_object.js:69
+#. dennis-ignore: *
+#: gui/common/functions_global_object.js:70
 #, javascript-format
 msgid "FPS: %(fps)4s"
 msgstr "帧率：%(fps)4s"
@@ -132,7 +133,7 @@ msgstr "删除"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:246
 #: gui/options/options.js:334 gui/options/options.js:401
-#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:159
+#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:165
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
 #: gui/summary/summary.js:346
 msgid "No"
@@ -140,7 +141,7 @@ msgstr "否"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:246
 #: gui/options/options.js:334 gui/options/options.js:401
-#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:159
+#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:165
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
 #: gui/summary/summary.js:346
 msgid "Yes"
@@ -1081,8 +1082,8 @@ msgid "None"
 msgstr "无"
 
 #: gui/locale/locale_advanced.js:92
-msgid "<invalid>"
-msgstr "<无效>"
+msgid "invalid locale"
+msgstr ""
 
 #: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:163
 #: gui/splashscreen/splashscreen.xml:(caption):28
@@ -1247,11 +1248,11 @@ msgstr "重播不兼容"
 msgid "No summary data available."
 msgstr "无可用摘要数据。"
 
-#: gui/replaymenu/replay_actions.js:157
+#: gui/replaymenu/replay_actions.js:163
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr "确定要永久删除此重播?"
 
-#: gui/replaymenu/replay_actions.js:158
+#: gui/replaymenu/replay_actions.js:164
 msgid "Delete replay"
 msgstr "删除重播。"
 
@@ -1332,20 +1333,20 @@ msgstr "排位赛"
 msgid "Unrated games"
 msgstr "非排位赛"
 
-#: gui/replaymenu/replay_menu.js:190
+#: gui/replaymenu/replay_menu.js:193
 msgid "Filter replays by typing one or more, partial or complete playernames."
 msgstr ""
 
-#: gui/replaymenu/replay_menu.js:269
+#: gui/replaymenu/replay_menu.js:272
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.js:296
+#: gui/replaymenu/replay_menu.js:299
 msgid "yyyy-MM-dd HH:mm"
 msgstr "yyyy-MM-dd HH:mm"
 
-#: gui/replaymenu/replay_menu.js:326
+#: gui/replaymenu/replay_menu.js:329
 msgid "yyyy-MM"
 msgstr "yyyy-MM"
 
@@ -2090,11 +2091,15 @@ msgid "Delete"
 msgstr "删除"
 
 #: gui/replaymenu/replay_menu.xml:(caption):254
+msgid "Reload Cache"
+msgstr ""
+
+#: gui/replaymenu/replay_menu.xml:(caption):261
 #: gui/summary/summary.xml:(caption):23
 msgid "Summary"
 msgstr "摘要"
 
-#: gui/replaymenu/replay_menu.xml:(caption):260
+#: gui/replaymenu/replay_menu.xml:(caption):267
 msgid "Start Replay"
 msgstr "开始重播"
 
@@ -2129,6 +2134,10 @@ msgstr "人口"
 msgctxt "replay"
 msgid "Duration"
 msgstr "时长"
+
+#: gui/replaymenu/replay_menu.xml:(tooltip):255
+msgid "Rebuild the replay cache from scratch. Potentially slow!"
+msgstr ""
 
 #: gui/savedgames/load.xml:(heading):44
 msgctxt "replay"
@@ -2530,38 +2539,87 @@ msgstr "储存及复原遭遇战设定以供另一场游戏快速利用"
 msgid "Persist Match Settings"
 msgstr "保持遭遇战设定"
 
+#: gui/options/options.jsongeneralSetting[13].parameters.list[0].label
+#: gui/options/options.jsongeneralSetting[14].parameters.list[0].label
+msgid "Everyone"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[13].parameters.list[1].label
+#: gui/options/options.jsongeneralSetting[14].parameters.list[1].label
+msgid "Buddies"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[13].parameters.list[2].label
+msgid "No one"
+msgstr ""
+
 #: gui/options/options.jsongeneralSetting[13].tooltip
-msgid "Allow observers to join the game after it started"
-msgstr "允许观察者在游戏开始后加入"
+msgid ""
+"Whether to assign joining clients to free playerslots in the gamesetup."
+msgstr ""
 
 #: gui/options/options.jsongeneralSetting[13].label
-msgid "Late Observer Joins"
-msgstr "最近加入的观察者"
+msgid "Assign Players"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[14].parameters.list[2].label
+msgid "Disabled"
+msgstr ""
 
 #: gui/options/options.jsongeneralSetting[14].tooltip
-msgid "Prevent further observers from joining if the limit is reached"
+msgid ""
+"Allow everybody or buddies only to join the game as observer after it "
+"started"
 msgstr ""
 
 #: gui/options/options.jsongeneralSetting[14].label
+msgid "Late Observer Joins"
+msgstr "最近加入的观察者"
+
+#: gui/options/options.jsongeneralSetting[15].tooltip
+msgid "Prevent further observers from joining if the limit is reached"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[15].label
 msgid "Observer Limit"
 msgstr "观察者上限"
 
-#: gui/options/options.jsongeneralSetting[15].tooltip
+#: gui/options/options.jsongeneralSetting[16].tooltip
 msgid "Number of units trained per batch"
 msgstr "每批的单位训练数"
 
-#: gui/options/options.jsongeneralSetting[15].label
+#: gui/options/options.jsongeneralSetting[16].label
 msgid "Batch Training Size"
 msgstr "每批训练规模"
 
-#: gui/options/options.jsongeneralSetting[16].tooltip
+#: gui/options/options.jsongeneralSetting[17].tooltip
 msgid ""
 "Show time that messages are posted in the lobby, gamesetup and ingame chat."
 msgstr "在游戏大厅显示设置及聊天的时间信息。"
 
-#: gui/options/options.jsongeneralSetting[16].label
+#: gui/options/options.jsongeneralSetting[17].label
 msgid "Chat Timestamp"
 msgstr "聊天时间戳"
+
+#: gui/options/options.jsongeneralSetting[18].tooltip
+msgid ""
+"Display the range of auras of selected units and structures (can also be "
+"toggled in-game with the hotkey)."
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[18].label
+msgid "Aura Range Visualization"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[19].tooltip
+msgid ""
+"Display the healing range of selected units (can also be toggled in-game "
+"with the hotkey)."
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[19].label
+msgid "Heal Range Visualization"
+msgstr ""
 
 #: gui/options/options.jsonsoundSetting[0].tooltip
 msgid "Master audio gain"
@@ -2809,16 +2867,6 @@ msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[17].label
 msgid "FPS throttling in games"
-msgstr ""
-
-#: gui/options/options.jsongraphicsSetting[18].tooltip
-msgid ""
-"Display the range of auras of selected units and structures (can also be "
-"toggled in-game with the hotkey)."
-msgstr ""
-
-#: gui/options/options.jsongraphicsSetting[18].label
-msgid "Aura Range Visualization"
 msgstr ""
 
 #: simulation/data/resources/food.jsondescription

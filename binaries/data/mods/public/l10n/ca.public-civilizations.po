@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-28 09:00+0100\n"
-"PO-Revision-Date: 2016-11-28 08:46+0000\n"
+"POT-Creation-Date: 2017-05-29 09:06+0200\n"
+"PO-Revision-Date: 2017-05-29 14:56+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -313,17 +313,14 @@ msgid "Celtic religion and druidry inspired their warlike mindset. "
 msgstr "La religió celta i el druïdisme inspiraven la seva mentalitat bel·licosa."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
-msgid "Bonus to tech speed."
-msgstr "Bonificació a la velocitat de les tecnologies."
+msgid "-20% resources cost for allies healers."
+msgstr ""
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
-msgid "Druides"
-msgstr "Druides"
+msgid "Druids"
+msgstr ""
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].History
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].History
 msgid ""
 "The Druids of the Celts maintained an organized religion that advanced the "
 "technology of their people even during wartime."
@@ -561,8 +558,8 @@ msgid ""
 msgstr "Com la península Ibèrica, el nord d'Àfrica era conegut com la terra dels cavalls, i produïa fins a 100.000 noves muntures cada any. També era l'hàbitat de l'elefant del bosc nord-africà."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "+33% trade profit international routes."
-msgstr "+33% de beneficis en el comerç en rutes internacionals."
+msgid "10% bonus of trade profit for ally's international routes."
+msgstr ""
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -766,6 +763,20 @@ msgstr "Cartago, una ciutat estat a la zona que actualment és Tunísia, va ser 
 #: simulation/data/civs/gaul.jsonFactions[0].Name
 msgid "Gauls"
 msgstr "Gals"
+
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
+msgid "-10% research time for technologies of allies."
+msgstr ""
+
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
+msgid "Druidic Wisdom"
+msgstr ""
+
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].History
+msgid ""
+"The Druids of the Gauls maintained an organized religion that advanced the "
+"technology of their people even during wartime."
+msgstr ""
 
 #: simulation/data/civs/gaul.jsonAINames[0]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
@@ -1159,8 +1170,8 @@ msgid ""
 msgstr "Els grecs van hel·lenitzar amb èxit diversos pobles estrangers. Durant l'època hel·lenística, el grec va ser la llengua franca del món antic, parlat des de la península Ibèrica fins a l'Índia."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
-msgid "+15% tribute and trade bonus on metal."
-msgstr "Bonificació del 15% sobre el tribut i el comerç amb metall."
+msgid "+20% sell prices at market."
+msgstr ""
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -1420,12 +1431,12 @@ msgid ""
 msgstr "Kshatriya or Kashtriya, que vol dir guerrer, és un dels quatre varnas (ordres socials) de l'hinduisme. Tradicionalment, els Kshatriya constitueixen l'elit governant i militar del sistema social hindú vèdic delimitat pels Vedes i les Lleis de Manu."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
-msgid "Allied Temple techs -50% cost and research time."
-msgstr "-50% al cost i el temps d'investigació de les tecnologies dels temples aliats."
+msgid "Allied temples and temple technologies -50% cost and research time."
+msgstr ""
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
-msgid "Evangelism."
-msgstr "Evangelisme."
+msgid "Ashoka's Religious Support"
+msgstr ""
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].History
 msgid ""
@@ -1598,8 +1609,8 @@ msgid ""
 msgstr "Els perses podien reclutar un gran nombre de lleves d'infanteria en temps de guerra, a causa de la mida de l'Imperi Aquemènida i la manera com estava organitzat. En general, la infanteria persa estava ben entrenada i lluitava amb una gran tenacitat. Tot i així, també és cert que la infanteria no lluitava bé cos a cos en combat tancat. A més, amb l'excepció dels regiments d'elit, la infanteria persa no era una força professional."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
-msgid "+25% trade profit land routes."
-msgstr "+25% de benefici en el comerç en rutes per terra."
+msgid "Higher income (+15%) from land trade routes for ally's traders."
+msgstr ""
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -2065,17 +2076,23 @@ msgid ""
 msgstr "La ciutadania romana era molt apreciada en el món antic. Als ciutadans romans se'ls atorgaven drets bàsics i privilegis que es negaven a altres pobles conquerits. Es diu que fer mal a un ciutadà romà era com fer mal a la mateixa Roma, i que faria caure tot el poder de Roma sobre el causant."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
-msgid "Allied citizen-soldiers gain a +15% attack when in Roman territory."
-msgstr "Els soldats ciutadans aliats guanyen un 15% d'atac quan lluitin en territori romà."
+msgid "-20% training time for allied infantry."
+msgstr ""
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
-msgid "Socii"
-msgstr "Socii"
+msgid "Conscription"
+msgstr ""
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].History
 msgid ""
-"Being allied with Rome came with great benefits (as well as great peril)."
-msgstr "Estar aliat amb Roma comportava grans beneficis (i també un gran perill)."
+"Many Roman soldiers were conscripted into service. While volunteers were "
+"preferred, the Roman state did maintain an annual military draft. During an "
+"emergency the draft and the terms of service were enlarged. The importance "
+"of military service in Republican Rome was so great it was a prerequisite "
+"for a political career. Members of the Senate were called Conscript Fathers "
+"because of this, reflected in how the ordo equester was said to have been "
+"\"conscripted\" into the Senate."
+msgstr ""
 
 #: simulation/data/civs/rome.jsonAINames[0]
 msgid "Lucius Junius Brutus"
@@ -2559,8 +2576,10 @@ msgid ""
 msgstr "Sota la Constitució escrita pel mític legislador Licurg, es va establir la institució de l'Agogé, on s'entrenaven els espartans a partir de 6 anys d'edat per ser guerrers superiors en defensa de l'estat espartà."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
-msgid "Allies can train Spartiates."
-msgstr "Els aliats poden reclutar espartiates."
+msgid ""
+"Increases the health for citizen-soldier infantry spearmen by 10% for allies"
+" of Spartan players."
+msgstr ""
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"

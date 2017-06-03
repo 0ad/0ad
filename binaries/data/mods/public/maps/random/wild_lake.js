@@ -483,7 +483,7 @@ function placeMine(point, centerEntity,
 )
 {
 	placeObject(point.x, point.y, centerEntity, 0, randFloat(0, TWO_PI));
-	let quantity = randInt(11, 23);
+	let quantity = randIntInclusive(11, 23);
 	let dAngle = TWO_PI / quantity;
 	for (let i = 0; i < quantity; ++i)
 	{
@@ -509,7 +509,7 @@ function placeGrove(point,
 )
 {
 	placeObject(point.x, point.y, pickRandom(["structures/gaul_outpost", "gaia/flora_tree_oak_new"]), 0, randFloat(0, 2 * PI));
-	let quantity = randInt(20, 30);
+	let quantity = randIntInclusive(20, 30);
 	let dAngle = TWO_PI / quantity;
 	for (let i = 0; i < quantity; ++i)
 	{
@@ -581,7 +581,7 @@ function placeCamp(point,
 )
 {
 	placeObject(point.x, point.y, centerEntity, 0, randFloat(0, TWO_PI));
-	let quantity = randInt(5, 11);
+	let quantity = randIntInclusive(5, 11);
 	let dAngle = TWO_PI / quantity;
 	for (let i = 0; i < quantity; ++i)
 	{

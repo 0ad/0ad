@@ -9,7 +9,7 @@ InitMap();
 log("Initializing tile classes...");
 setBiome(5);
 initMapSettings();
-initTileClasses(["decorative"]);
+initTileClasses(["decorative", "lava"]);
 
 log("Initializing environment...");
 setSunColor(0.8, 0.8, 0.8);
@@ -70,8 +70,10 @@ RMS.SetProgress(10);
 
 log("Copying heightmap...");
 var scale = paintHeightmap(getHeightMap(), getTileMap(), getTilePallet(), (tile, x, y) => {
-	if (tile.indexOf("mud_slide") >= 0 || tile.indexOf("Lava") >= 0)
+	if (tile.indexOf("mud_slide") >= 0)
 		addToClass(x, y, g_TileClasses.mountain);
+	else if (tile.indexOf("Lava") >= 0)
+		addToClass(x, y, g_TileClasses.lava);
 });
 
 log("Paint tile classes...");
@@ -106,6 +108,7 @@ addElements([
 			g_TileClasses.forest, 2,
 			g_TileClasses.mountain, 2,
 			g_TileClasses.player, 12,
+			g_TileClasses.lava, 2,
 			g_TileClasses.water, 3
 		],
 		"sizes": ["normal"],
@@ -118,6 +121,7 @@ addElements([
 			g_TileClasses.forest, 2,
 			g_TileClasses.mountain, 2,
 			g_TileClasses.player, 12,
+			g_TileClasses.lava, 2,
 			g_TileClasses.water, 3
 		],
 		"sizes": ["normal"],
@@ -137,6 +141,7 @@ addElements(shuffleArray([
 			g_TileClasses.player, 30,
 			g_TileClasses.rock, 10,
 			g_TileClasses.metal, 20,
+			g_TileClasses.lava, 5,
 			g_TileClasses.water, 3
 		],
 		"sizes": ["normal"],
@@ -152,6 +157,7 @@ addElements(shuffleArray([
 			g_TileClasses.player, 30,
 			g_TileClasses.rock, 20,
 			g_TileClasses.metal, 10,
+			g_TileClasses.lava, 5,
 			g_TileClasses.water, 5
 		],
 		"sizes": ["normal"],
@@ -167,6 +173,7 @@ addElements(shuffleArray([
 			g_TileClasses.mountain, 5,
 			g_TileClasses.player, 20,
 			g_TileClasses.rock, 3,
+			//g_TileClasses.lava, 10,
 			g_TileClasses.water, 2
 		],
 		"sizes": ["normal"],
@@ -186,6 +193,7 @@ addElements(shuffleArray([
 			g_TileClasses.mountain, 1,
 			g_TileClasses.player, 20,
 			g_TileClasses.rock, 2,
+			g_TileClasses.lava, 10,
 			g_TileClasses.water, 3
 		],
 		"sizes": ["normal"],
@@ -212,6 +220,7 @@ addElements(shuffleArray([
 			g_TileClasses.mountain, 1,
 			g_TileClasses.player, 12,
 			g_TileClasses.rock, 2,
+			g_TileClasses.lava, 5,
 			g_TileClasses.water, 5
 		],
 		"sizes": ["normal"],
@@ -254,6 +263,7 @@ createObjectGroups(
 		g_TileClasses.player, 20,
 		g_TileClasses.mountain, 3,
 		g_TileClasses.forest, 2,
+		g_TileClasses.lava, 5,
 		g_TileClasses.metal, 20
 	),
 	5 * scaleByMapSize(1, 4),
@@ -277,6 +287,7 @@ createObjectGroups(
 		g_TileClasses.player, 20,
 		g_TileClasses.mountain, 5,
 		g_TileClasses.forest, 2,
+		g_TileClasses.lava, 5,
 		g_TileClasses.decorative, 20
 	),
 	10 * scaleByMapSize(1, 4),
@@ -323,6 +334,7 @@ createObjectGroups(
 		g_TileClasses.player, 20,
 		g_TileClasses.mountain, 2,
 		g_TileClasses.forest, 2,
+		g_TileClasses.lava, 5,
 		g_TileClasses.decorative, 20
 	),
 	10 * scaleByMapSize(1, 4),

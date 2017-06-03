@@ -20,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-26 09:02+0200\n"
-"PO-Revision-Date: 2017-05-26 16:10+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-05-27 14:48+0200\n"
+"PO-Revision-Date: 2017-05-31 21:00+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,7 +51,7 @@ msgstr "Náhodná"
 
 #: gui/gamesetup/gamesetup.js:72
 msgid "Picks one civilization at random when the game starts."
-msgstr ""
+msgstr "Zvolí na začátku hry náhodně jednu civilizaci."
 
 #: gui/gamesetup/gamesetup.js:110
 #, javascript-format
@@ -129,7 +129,7 @@ msgstr "Výchozí"
 #: gui/gamesetup/gamesetup.js:164
 msgctxt "map filter"
 msgid "All maps except naval and demo maps."
-msgstr ""
+msgstr "Všechny mapy vyjma námořních a ukázkových."
 
 #: gui/gamesetup/gamesetup.js:170
 msgid "Naval Maps"
@@ -138,7 +138,7 @@ msgstr "Námořní mapy"
 #: gui/gamesetup/gamesetup.js:171
 msgctxt "map filter"
 msgid "Maps where ships are needed to reach the enemy."
-msgstr ""
+msgstr "Mapy, kde je k dosažení nepřítele potřeba lodí."
 
 #: gui/gamesetup/gamesetup.js:176
 msgid "Demo Maps"
@@ -147,7 +147,7 @@ msgstr "Ukázkové mapy"
 #: gui/gamesetup/gamesetup.js:177
 msgctxt "map filter"
 msgid "These maps are not playable but for demonstration purposes only."
-msgstr ""
+msgstr "Tyto mapy nejsou hratelné, ale slouží jen k předváděcím účelům."
 
 #: gui/gamesetup/gamesetup.js:182
 msgid "New Maps"
@@ -156,7 +156,7 @@ msgstr "Nové mapy"
 #: gui/gamesetup/gamesetup.js:183
 msgctxt "map filter"
 msgid "Maps that are brand new in this release of the game."
-msgstr ""
+msgstr "Mapy, jež jsou v tomto vydání hry úplně nové."
 
 #: gui/gamesetup/gamesetup.js:188
 msgid "Trigger Maps"
@@ -174,7 +174,7 @@ msgstr "Všechny mapy"
 #: gui/gamesetup/gamesetup.js:195
 msgctxt "map filter"
 msgid "Every map of the chosen maptype."
-msgstr ""
+msgstr "Všechny mapy zvoleného typu mapy."
 
 #: gui/gamesetup/gamesetup.js:401
 msgid "Map Type"
@@ -222,14 +222,14 @@ msgstr "Omezení na počet obyvatel"
 
 #: gui/gamesetup/gamesetup.js:494
 msgid "Select population limit."
-msgstr ""
+msgstr "Vyberte populační limit."
 
 #: gui/gamesetup/gamesetup.js:497
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr ""
+msgstr "Varování: Pokud všichni %(players)s hráči dosáhnou na %(popCap)s obyvatelstva, mohou nastat potíže s výkonem."
 
 #: gui/gamesetup/gamesetup.js:513
 msgid "Starting Resources"
@@ -238,7 +238,7 @@ msgstr "Počáteční zdroje"
 #: gui/gamesetup/gamesetup.js:516
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
-msgstr ""
+msgstr "Počáteční množství každého zdroje: %(resources)s."
 
 #: gui/gamesetup/gamesetup.js:519
 msgid "Select the game's starting resources."
@@ -286,15 +286,15 @@ msgstr "Vyberte rychlost hry."
 
 #: gui/gamesetup/gamesetup.js:655
 msgid "Chose the civilization for this player"
-msgstr ""
+msgstr "Vybrat civilizaci pro tohoto hráče"
 
 #: gui/gamesetup/gamesetup.js:695
 msgid "Hero Garrison"
-msgstr ""
+msgstr "Ubytování hrdiny"
 
 #: gui/gamesetup/gamesetup.js:696
 msgid "Toggle whether heroes can be garrisoned."
-msgstr ""
+msgstr "Přepnout, zda mohou být hrdinové ubytováni."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
@@ -397,63 +397,63 @@ msgid ""
 "ready)"
 msgstr "Začít novou hru s nynějším nastavením (zakázáno, až dokud nejsou připraveni všichni hráči)"
 
-#: gui/gamesetup/gamesetup.js:1381
+#: gui/gamesetup/gamesetup.js:1394
 msgctxt "map selection"
 msgid "Random"
 msgstr "Náhodná"
 
-#: gui/gamesetup/gamesetup.js:1658 gui/gamesetup/gamesetup.js:1697
+#: gui/gamesetup/gamesetup.js:1671 gui/gamesetup/gamesetup.js:1710
 #, javascript-format
 msgid "%(option)s:"
 msgstr "%(option)s:"
 
-#: gui/gamesetup/gamesetup.js:1663
+#: gui/gamesetup/gamesetup.js:1676
 msgctxt "option value"
 msgid "Unknown"
 msgstr "Neznámý"
 
-#: gui/gamesetup/gamesetup.js:1690
+#: gui/gamesetup/gamesetup.js:1703
 msgid "Yes"
 msgstr "Ano"
 
-#: gui/gamesetup/gamesetup.js:1690
+#: gui/gamesetup/gamesetup.js:1703
 msgid "No"
 msgstr "Ne"
 
-#: gui/gamesetup/gamesetup.js:1777
+#: gui/gamesetup/gamesetup.js:1790
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1972
+#: gui/gamesetup/gamesetup.js:1985
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "UI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1980
+#: gui/gamesetup/gamesetup.js:1993
 msgid "Unassigned"
 msgstr "Nepřiřazeno"
 
-#: gui/gamesetup/gamesetup.js:2053
+#: gui/gamesetup/gamesetup.js:2068
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2060
+#: gui/gamesetup/gamesetup.js:2075
 msgid "Unknown Player"
 msgstr "Neznámý hráč"
 
-#: gui/gamesetup/gamesetup.js:2099
+#: gui/gamesetup/gamesetup.js:2114
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2100
+#: gui/gamesetup/gamesetup.js:2115
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2101
+#: gui/gamesetup/gamesetup.js:2116
 msgid "HH:mm"
 msgstr "HH:mm"
 
@@ -695,7 +695,7 @@ msgstr ""
 msgid ""
 "\"Sex and sleep alone make me conscious that I am mortal.\" - Alexander the "
 "Great (Plutarch, \"Parallel Lives\", \"Alexander\", sec. 22)"
-msgstr ""
+msgstr "\"Sex a spánek mi připomínají, že jsem smrtelný.\" - Alexandr Veliký (Plútarchos, \"Paralelní životopisy\", \"Alexandr Veliký – Gaius Iulius Caesar\", sek. 22)"
 
 #: gui/text/quotes.txt:21
 msgid ""

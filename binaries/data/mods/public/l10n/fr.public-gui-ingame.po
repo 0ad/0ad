@@ -62,9 +62,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-26 09:02+0200\n"
-"PO-Revision-Date: 2017-05-26 15:14+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-05-27 14:48+0200\n"
+"PO-Revision-Date: 2017-06-02 00:49+0000\n"
+"Last-Translator: Polakrity <sxk-fr@live.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -393,7 +393,7 @@ msgstr "Raison : %(reason)s."
 
 #: gui/session/messages.js:149
 msgid "Waiting for players to connect:"
-msgstr "En attente de joueurs connectés"
+msgstr "En attente de la connexion de joueurs :"
 
 #: gui/session/messages.js:150
 msgid "Synchronising gameplay with other players..."
@@ -533,7 +533,7 @@ msgstr "Cliquer quand prêt."
 
 #: gui/session/messages.js:578
 msgid "Follow the instructions."
-msgstr "Suivre les instructions"
+msgstr "Suivre les instructions."
 
 #: gui/session/messages.js:674
 #, javascript-format
@@ -589,7 +589,7 @@ msgstr "Échec de la synchronisation"
 
 #: gui/session/messages.js:716
 msgid "Out-Of-Sync error!"
-msgstr "Erreur de synchronisation!"
+msgstr "Erreur de synchronisation !"
 
 #. Translation: This is shown if replay is out of sync
 #: gui/session/messages.js:718
@@ -683,12 +683,12 @@ msgstr "Vous avez été attaqué(e) par %(attacker)s !"
 #: gui/session/messages.js:1070
 #, javascript-format
 msgid "%(player)s is advancing to the %(phaseName)s."
-msgstr "%(player)s avance à la %(phaseName)s."
+msgstr "%(player)s avance vers la %(phaseName)s."
 
 #: gui/session/messages.js:1072
 #, javascript-format
 msgid "The %(phaseName)s of %(player)s has been aborted."
-msgstr "Le %(phaseName)s de %(player)s a été avorté."
+msgstr "La %(phaseName)s de %(player)s a été avorté."
 
 #: gui/session/messages.js:1075
 #, javascript-format
@@ -894,7 +894,7 @@ msgstr "%(population)s %(neededSlots)s"
 #: gui/session/selection_panels.js:642
 msgctxt "countdown format"
 msgid "m:ss"
-msgstr ""
+msgstr "m:ss"
 
 #: gui/session/selection_panels.js:795
 #, javascript-format
@@ -1044,7 +1044,7 @@ msgstr "Appuyez sur %(hotkey)s pour ouvrir le salon de discussion des alliés."
 #: gui/session/session.js:409
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
-msgstr "Appuyez sur %(hotkey)s pour ouvrir la dernière discutions privée."
+msgstr "Appuyez sur %(hotkey)s pour ouvrir la dernière discussion privée."
 
 #: gui/session/session.js:413
 msgid "Find idle worker"
@@ -1279,7 +1279,7 @@ msgstr "Cette entité ne peut pas être détruite"
 #: gui/session/chat_window.xml:(caption):16
 msgctxt "chat input"
 msgid "Filter:"
-msgstr "Filtre:"
+msgstr "Filtre :"
 
 #: gui/session/chat_window.xml:(caption):44
 msgctxt "chat input"
@@ -1425,7 +1425,7 @@ msgstr "Options"
 msgid "Resign"
 msgstr "Abandonner"
 
-#: gui/session/menu.xml:(caption):96 gui/session/session.xml:(caption):163
+#: gui/session/menu.xml:(caption):96 gui/session/session.xml:(caption):67
 msgid "Exit"
 msgstr "Quitter"
 
@@ -1434,11 +1434,11 @@ msgstr "Quitter"
 msgid "Objectives"
 msgstr "Objectifs"
 
-#: gui/session/session.xml:(caption):62
+#: gui/session/session.xml:(caption):77
 msgid "Game Paused"
 msgstr "Jeu en pause"
 
-#: gui/session/session.xml:(caption):65
+#: gui/session/session.xml:(caption):80
 msgid "Click to Resume Game"
 msgstr "Cliquer pour reprendre la partie"
 
@@ -1465,15 +1465,15 @@ msgstr "Troc"
 
 #: gui/session/trade_window.xml:(caption):24
 msgid "Sell:"
-msgstr "Vendre:"
+msgstr "Vendre :"
 
 #: gui/session/trade_window.xml:(caption):28
 msgid "Buy:"
-msgstr "Acheter:"
+msgstr "Acheter :"
 
 #: gui/session/trade_window.xml:(caption):32
 msgid "No Markets Available"
-msgstr "Aucun Marchés Disponible"
+msgstr "Aucun marché disponible"
 
 #: gui/session/trade_window.xml:(caption):67
 msgid "Trade"
@@ -1481,7 +1481,7 @@ msgstr "Commerce"
 
 #: gui/session/trade_window.xml:(caption):75
 msgid "Goods:"
-msgstr "Marchandises:"
+msgstr "Marchandises :"
 
 #: gui/session/tutorial_panel.xml:(caption):11
 msgid "Ready"

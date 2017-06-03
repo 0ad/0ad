@@ -25,9 +25,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-28 09:00+0100\n"
-"PO-Revision-Date: 2016-11-28 12:04+0000\n"
-"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
+"POT-Creation-Date: 2017-05-29 09:06+0200\n"
+"PO-Revision-Date: 2017-05-29 14:56+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -326,17 +326,14 @@ msgid "Celtic religion and druidry inspired their warlike mindset. "
 msgstr "A kelta vallás és a druidák inspirálták harcias természetüket."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
-msgid "Bonus to tech speed."
-msgstr "Bónusz a technológiai fejlődéshez."
+msgid "-20% resources cost for allies healers."
+msgstr ""
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
-msgid "Druides"
-msgstr "Druidák"
+msgid "Druids"
+msgstr ""
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].History
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].History
 msgid ""
 "The Druids of the Celts maintained an organized religion that advanced the "
 "technology of their people even during wartime."
@@ -574,8 +571,8 @@ msgid ""
 msgstr "Mint az Ibériai-félsziget, Észak-Afrika is a lovasságáról volt ismert, a maga évi 100.000 új lovával.  Ezenkívül itt volt őshonos az észak-afrikai erdei elefánt is."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "+33% trade profit international routes."
-msgstr "+33% profit a nemzetközi kereskedelmi utakhoz."
+msgid "10% bonus of trade profit for ally's international routes."
+msgstr ""
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -779,6 +776,20 @@ msgstr "Karthágó városállam egy félelmetes erő volt a nyugati mediterráne
 #: simulation/data/civs/gaul.jsonFactions[0].Name
 msgid "Gauls"
 msgstr "Gallok"
+
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
+msgid "-10% research time for technologies of allies."
+msgstr ""
+
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
+msgid "Druidic Wisdom"
+msgstr ""
+
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].History
+msgid ""
+"The Druids of the Gauls maintained an organized religion that advanced the "
+"technology of their people even during wartime."
+msgstr ""
 
 #: simulation/data/civs/gaul.jsonAINames[0]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
@@ -1172,8 +1183,8 @@ msgid ""
 msgstr "A görögök nagyon sikeresen hellenizálták a különböző idegeneket. A hellenisztikus korszak alatt a görög volt az antik világ közös nyelve, amit az Ibériai-félszigettől Indiáig beszéltek."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
-msgid "+15% tribute and trade bonus on metal."
-msgstr "+15% adó és bónusz a vaskereskedelemhez."
+msgid "+20% sell prices at market."
+msgstr ""
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -1433,12 +1444,12 @@ msgid ""
 msgstr "A ksatriják, jelentése harcos, a négy nagy varna (társadalmi osztály) egyike a hinduizmusban. Hagyományosan a ksatriják alkották a katonai és uralkodói elitet a védikus hindu társadalmi rendben, amit a védák és Manu törvényei alapoztak meg."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
-msgid "Allied Temple techs -50% cost and research time."
-msgstr "A szövetséges templomi technológiáknál -50% költség és kutatási idő."
+msgid "Allied temples and temple technologies -50% cost and research time."
+msgstr ""
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
-msgid "Evangelism."
-msgstr "Evangelizáció."
+msgid "Ashoka's Religious Support"
+msgstr ""
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].History
 msgid ""
@@ -1611,8 +1622,8 @@ msgid ""
 msgstr "A perzsák nagy számú gyalogságot tudtak besorozni háború idején, az Óperzsa birodalom puszta méretéből és a felépítéséből adódóan. Általánosságban a perzsa gyalogság jól képzett volt és nagy kitartással harcolt. Viszont a gyalogság gyenge volt a kézitusában és a közelharcban. Emellett az elit csapatokat leszámítva, a perzsa gyalogság nem egy állandó, hivatásos haderő volt."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
-msgid "+25% trade profit land routes."
-msgstr "+25% kereskedelmi profit az országos utakon."
+msgid "Higher income (+15%) from land trade routes for ally's traders."
+msgstr ""
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -2078,17 +2089,23 @@ msgid ""
 msgstr "A római polgárjog nagyra értékelt volt az ókori világban. Olyan alapvető jogok és előjogok jártak a római polgároknak, amelyek hiányoztak a legyőzött népeknél. Az a mondás járta, hogy egy római polgárnak kárt okozni olyan, mint magának Rómának ártani, és Róma teljes hatalmával sújtana az elkövetőre."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
-msgid "Allied citizen-soldiers gain a +15% attack when in Roman territory."
-msgstr "Szövetséges polgári katonák +15% támadás bónuszt kapnak római területen belül."
+msgid "-20% training time for allied infantry."
+msgstr ""
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
-msgid "Socii"
-msgstr "Szövetségesek"
+msgid "Conscription"
+msgstr ""
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].History
 msgid ""
-"Being allied with Rome came with great benefits (as well as great peril)."
-msgstr "Egy szövetség Rómával nagy előnyökkel jár, de ugyanakkora veszélyeket is tartogat."
+"Many Roman soldiers were conscripted into service. While volunteers were "
+"preferred, the Roman state did maintain an annual military draft. During an "
+"emergency the draft and the terms of service were enlarged. The importance "
+"of military service in Republican Rome was so great it was a prerequisite "
+"for a political career. Members of the Senate were called Conscript Fathers "
+"because of this, reflected in how the ordo equester was said to have been "
+"\"conscripted\" into the Senate."
+msgstr ""
 
 #: simulation/data/civs/rome.jsonAINames[0]
 msgid "Lucius Junius Brutus"
@@ -2572,8 +2589,10 @@ msgid ""
 msgstr "A mitikus törvényhozó, Lükurgosz alkotmánya alapította meg az agógé rendszerét, amelyben a spártaiakat 6 éves koruktól kezdve kiváló harcosoknak nevelték a spártai állam védelmében."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
-msgid "Allies can train Spartiates."
-msgstr "A szövetségesek kiképezhetnek homoioszokat."
+msgid ""
+"Increases the health for citizen-soldier infantry spearmen by 10% for allies"
+" of Spartan players."
+msgstr ""
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"

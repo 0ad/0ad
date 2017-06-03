@@ -18,14 +18,14 @@
 # Nicolas Auvray <na.itms76@gmail.com>, 2014-2017
 # nicolas t <phidias2052@yahoo.fr>, 2016
 # Romain Mesnil <bnb6avekk6@protonmail.com>, 2016
-# Polakrity <sxk-fr@live.fr>, 2014
+# Polakrity <sxk-fr@live.fr>, 2014,2017
 # Yannick Heintz, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-04-28 09:02+0200\n"
-"PO-Revision-Date: 2017-05-25 14:33+0000\n"
-"Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
+"POT-Creation-Date: 2017-05-27 14:49+0200\n"
+"PO-Revision-Date: 2017-06-02 00:14+0000\n"
+"Last-Translator: Polakrity <sxk-fr@live.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,7 +39,7 @@ msgid ""
 "health, 1 extra armor level of every type, 20% extra attack for melee units,"
 " 4m extra range and 5% better precision for ranged units, faster movement "
 "speeds and extra heal speed and range for healers."
-msgstr "Les unités promues en classe avancées s'améliorent significativement: 20% de santé supplémentaire, 1 type d'armure de chaque type supplémentaire, 20% de dégâts supplémentaires pour les unités de mêlée, 4m de portée et 5% de précision supplémentaire pour les unités à distance, une vitesse de déplacement, une vitesse de soin et une portée accrues pour les guérisseurs."
+msgstr "Les unités promues en classe avancées s'améliorent significativement : 20% de santé supplémentaire, 1 type d'armure de chaque type supplémentaire, 20% de dégâts supplémentaires pour les unités de mêlée, 4m de portée et 5% de précision supplémentaire pour les unités à distance, une vitesse de déplacement, une vitesse de soin et une portée accrues pour les guérisseurs."
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -928,7 +928,7 @@ msgstr "Entrainement de récolte"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
 msgid "Using net improves the fishing productivity."
-msgstr "Utiliser des filets accroît la productivité de la pêche"
+msgstr "Utiliser des filets accroît la productivité de la pêche."
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid ""
@@ -1404,7 +1404,7 @@ msgstr "L’État ou la tribu construisait souvent une salle de banquet pour des
 #: simulation/data/technologies/pop_civic_01.jsontooltip
 #: simulation/data/technologies/pop_civic_02.jsontooltip
 msgid "Civic Centers +5 population cap bonus."
-msgstr "Bonus de +5 de population pour les centres-villes."
+msgstr "Bonus de +5 de limite de population pour les centres-villes."
 
 #: simulation/data/technologies/pop_civic_01.jsongenericName
 msgid "Dining Hall"
@@ -1885,7 +1885,7 @@ msgid ""
 "Promote all of your citizen-soldier cavalrymen to Elite rank. This increases"
 " their military prowess, but decreases their meat gathering rates another "
 "-25%."
-msgstr "Promeus tous vos cavaliers citoyens-soldats au grade d'Élite. Cela augmente leurs prouesses militaires, mais diminue leur taux de collecte de viande de -25%."
+msgstr "Promeut tous vos cavaliers citoyens-soldats au grade d'Élite. Cela augmente leurs prouesses militaires, mais diminue leur taux de collecte de viande de -25%."
 
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsongenericName
 msgid "Elite Citizen-Cavalry"
@@ -1994,7 +1994,7 @@ msgstr "Général mercenaire celtibère"
 #: simulation/data/technologies/carthaginians/cost_italian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/cost_italian_mercs_2.jsondescription
 msgid "Italian mercenaries have their metal cost decreased."
-msgstr "Les mercenaires Italiens ont un coût en métal diminué."
+msgstr "Les mercenaires italiens ont un coût en métal diminué."
 
 #: simulation/data/technologies/carthaginians/cost_italian_mercs.jsontooltip
 msgid ""
@@ -2277,7 +2277,7 @@ msgstr "Doratismós"
 
 #: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsondescription
 msgid "The Greeks used stone construction from early Mycenaean times."
-msgstr "Les grecs utilisent les constructions en pierre depuis le début du Mycénien."
+msgstr "Les Grecs utilisent les constructions en pierre depuis le début du Mycénien."
 
 #: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsontooltip
 msgid ""
@@ -2361,7 +2361,7 @@ msgstr "L'empire Maurya englobait des douzaines d'anciens royaumes indépendants
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsontooltip
 msgid "Mauryans have a 10% higher maximum population limit."
-msgstr "Mauryas ont 10% de plus à la limite maximum de population."
+msgstr "Les Mauryas ont 10% de plus à la limite maximum de population."
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
 msgid "Emperor of Emperors"
@@ -2428,8 +2428,8 @@ msgid ""
 msgstr "Le champion d'infanterie Anusiya se forme deux fois plus vite, mais perd un peu de santé maximum."
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
-msgid "Anusiya Champion Infantry -50% train time, but also -20 health."
-msgstr "Le temps de formation de l'infanterie Champion d'Anusiya diminue de -50%, mais subit un malus de -20 points de vie."
+msgid "Anusiya Champion Infantry -50% train time, but also -10% health."
+msgstr ""
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -2498,15 +2498,15 @@ msgstr "Conscription d'infanterie"
 
 #: simulation/data/technologies/persians/training_levy_cavalry.jsontooltip
 msgid ""
-"All cavalry -20% train time, but also -10 health. Unlocks Cavalry "
+"All cavalry -20% train time, but also -5% health. Unlocks Cavalry "
 "Conscription."
-msgstr "La cavalerie s’entraîne 20% plus vite, mais perd 10 points de santé. Débloque Cavalerie Conscrite."
+msgstr ""
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
 msgid ""
-"All infantry -10% train time, but also -5 health. Unlocks Infantry "
+"All infantry -20% train time, but also -5% health. Unlocks Infantry "
 "Conscription."
-msgstr "Toute l'infanterie s'entraine 10% plus vite, mais perd 5 points de santé. Débloque Conscription d'infanterie."
+msgstr ""
 
 #: simulation/data/technologies/romans/decay_logistics.jsondescription
 msgid "The Romans were masters of the logistics of warfare."
@@ -2553,7 +2553,7 @@ msgstr "Commençant avec Alexandre, les monarques hellénistiques fondèrent de 
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
 msgid "Civic centers +100% health and capture points, double default arrows."
-msgstr "Centres civiques : +100% de points de vie et de capture, flèches par défaut doublées"
+msgstr "Centres civiques : +100% de points de vie et de capture, flèches par défaut doublées."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"
@@ -2626,7 +2626,7 @@ msgstr "Les Boucliers d'argent ou Argyraspides étaient l'infanterie lourde d'é
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with greater "
 "health and armor."
-msgstr "Améliore l'infanterie à bouclier championne en Boucliers d'argent avec une meilleure santé et armure."
+msgstr "Améliore l'infanterie à bouclier championne en Boucliers d'argent, possédant une meilleure santé et armure."
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"

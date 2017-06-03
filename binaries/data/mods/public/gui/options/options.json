@@ -82,13 +82,13 @@
 		{
 			"type": "dropdown",
 			"label": "Assign Players",
-			"tooltip": "Whether to assign joining clients to free playerslots in the gamesetup.",
+			"tooltip": "Automatically assign joining clients to free player slots during the match setup.",
 			"parameters": {
 				"config": "gui.gamesetup.assignplayers",
 				"list": [
 					{ "value": "everyone", "label": "Everyone" },
 					{ "value": "buddies", "label": "Buddies" },
-					{ "value": "noone", "label": "No one" }
+					{ "value": "disabled", "label": "Disabled" }
 				]
 			}
 		},

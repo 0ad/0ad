@@ -5,7 +5,7 @@
 # Translators:
 # Cheng-Chia Tseng <pswo10680@gmail.com>, 2014-2015
 # Cirro Yuan, 2013
-# Jeff Huang <s8321414@gmail.com>, 2013-2014,2016
+# Jeff Huang <s8321414@gmail.com>, 2013-2014,2016-2017
 # kevinhykuo <kevinhykuo1994@gmail.com>, 2014
 # Mysterelee <8161525@qq.com>, 2014
 # ryat <mj0011@yopmail.com>, 2015
@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-28 09:00+0100\n"
-"PO-Revision-Date: 2017-02-24 04:32+0000\n"
-"Last-Translator: shiung hanching <shiunghanching@gmail.com>\n"
+"POT-Creation-Date: 2017-05-29 09:06+0200\n"
+"PO-Revision-Date: 2017-05-30 13:58+0000\n"
+"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -315,17 +315,14 @@ msgid "Celtic religion and druidry inspired their warlike mindset. "
 msgstr "塞爾特人的宗教信仰及德魯伊激發了他們的好戰心態。"
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
-msgid "Bonus to tech speed."
-msgstr "科技研發速度獎勵。"
+msgid "-20% resources cost for allies healers."
+msgstr "盟友醫療者 -20% 資源消耗。"
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
-msgid "Druides"
+msgid "Druids"
 msgstr "德魯伊"
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].History
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].History
 msgid ""
 "The Druids of the Celts maintained an organized religion that advanced the "
 "technology of their people even during wartime."
@@ -563,8 +560,8 @@ msgid ""
 msgstr "與伊比利半島不同，北非被稱為馬國，每年能生產多達 100,000 頭座騎。這裡也是北非森林象的家。"
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "+33% trade profit international routes."
-msgstr "國際路線 +33% 貿易利潤。"
+msgid "10% bonus of trade profit for ally's international routes."
+msgstr "盟友的國際貿易路線多 10% 貿易利潤。"
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -768,6 +765,20 @@ msgstr "迦太基是個城邦，約位在今日的突尼西亞，曾是地中海
 #: simulation/data/civs/gaul.jsonFactions[0].Name
 msgid "Gauls"
 msgstr "高盧人"
+
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
+msgid "-10% research time for technologies of allies."
+msgstr "盟友的科技 -10% 研發時間。"
+
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
+msgid "Druidic Wisdom"
+msgstr "德魯伊的睿智"
+
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].History
+msgid ""
+"The Druids of the Gauls maintained an organized religion that advanced the "
+"technology of their people even during wartime."
+msgstr "高廬人的德魯伊保持著有組織的宗教，以便即使是在戰時也能推動科技進步。"
 
 #: simulation/data/civs/gaul.jsonAINames[0]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
@@ -1161,8 +1172,8 @@ msgid ""
 msgstr "希臘人同化各種異族人相當成功。在希臘化時代時，希臘語是古代世界的通用語言，從西班牙到印度都被廣泛的使用。"
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
-msgid "+15% tribute and trade bonus on metal."
-msgstr "+15% 貢品，並有額外的金屬貿易獎勵。"
+msgid "+20% sell prices at market."
+msgstr "市集賣價 +20%。"
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -1422,12 +1433,12 @@ msgid ""
 msgstr "剎帝利或 Kashtriya，意思是戰士，是四個印度教種姓（社會階級）其中之一。傳統上來說，剎帝利在印度教社會系統中構成了軍隊及統治階級的精英，在吠陀經及摩奴法典中所描述。"
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
-msgid "Allied Temple techs -50% cost and research time."
-msgstr "盟友的神廟科技 -50% 花費及研究時間。"
+msgid "Allied temples and temple technologies -50% cost and research time."
+msgstr "盟友的神廟與神廟科技 -50% 資源花費與研究時間。"
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
-msgid "Evangelism."
-msgstr "福音主義。"
+msgid "Ashoka's Religious Support"
+msgstr "Ashoka 的宗教支援"
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].History
 msgid ""
@@ -1600,8 +1611,8 @@ msgid ""
 msgstr "由於阿契美尼德王朝的龐大規模及其組織結構，波斯人可以在戰時大量徵召步兵。儘管波斯步兵整體來說訓練有素且意志堅定。但是他們缺乏肉搏戰的經驗。而且，除了少數的精英部隊以外，波斯的步兵並非職業的常備軍。"
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
-msgid "+25% trade profit land routes."
-msgstr "陸地路線 +25%貿易利潤。"
+msgid "Higher income (+15%) from land trade routes for ally's traders."
+msgstr "盟友的商人可從陸地貿易取得較高的利潤 (+15%)。"
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -2067,17 +2078,23 @@ msgid ""
 msgstr "古時候的世界，羅馬國籍相當受敬重。羅馬公民被賦與了其他被征服的民族所沒有的權利與特權。據說，傷害一個羅馬公民就是與整個羅馬為敵，整個羅馬都會團結起來制服施暴者。"
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
-msgid "Allied citizen-soldiers gain a +15% attack when in Roman territory."
-msgstr "盟國的民兵在羅馬領土上攻擊 +15%"
+msgid "-20% training time for allied infantry."
+msgstr "盟友步兵 -20% 訓練時間。"
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
-msgid "Socii"
-msgstr "羅馬盟邦"
+msgid "Conscription"
+msgstr "募兵"
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].History
 msgid ""
-"Being allied with Rome came with great benefits (as well as great peril)."
-msgstr "與羅馬結盟會帶來極大的好處(同時也伴隨極大的危險)。"
+"Many Roman soldiers were conscripted into service. While volunteers were "
+"preferred, the Roman state did maintain an annual military draft. During an "
+"emergency the draft and the terms of service were enlarged. The importance "
+"of military service in Republican Rome was so great it was a prerequisite "
+"for a political career. Members of the Senate were called Conscript Fathers "
+"because of this, reflected in how the ordo equester was said to have been "
+"\"conscripted\" into the Senate."
+msgstr "許多羅馬士兵都是被徵兵進到軍隊中的。雖然志願者還是首選，但羅馬帝國還是保留了年度軍事草案。在緊急情況下，草案與服務規約會擴大適用範圍。在羅馬共和時期，服兵役仍然相當重要，這是參政的先決條件。參議院的議員被稱為徵兵之父，所以參議院議員通常會被說是「被徵召」的。"
 
 #: simulation/data/civs/rome.jsonAINames[0]
 msgid "Lucius Junius Brutus"
@@ -2561,8 +2578,10 @@ msgid ""
 msgstr "根據被賦予神權的來古格士所制定的法律，因而確立了斯巴達的教育制度，斯巴達人從6歲開始就會被訓練為勇猛的戰士以防衛斯巴達人的領土。"
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
-msgid "Allies can train Spartiates."
-msgstr "盟友可以訓練斯巴達戰士。"
+msgid ""
+"Increases the health for citizen-soldier infantry spearmen by 10% for allies"
+" of Spartan players."
+msgstr "斯巴達玩家的盟友長矛民兵的生命值多 10%。"
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"

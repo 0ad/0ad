@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-26 09:03+0200\n"
-"PO-Revision-Date: 2017-05-26 14:49+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-05-29 09:07+0200\n"
+"PO-Revision-Date: 2017-05-31 13:34+0000\n"
+"Last-Translator: Thierry Vignaud <thierry.vignaud@gmail.com>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -78,7 +78,8 @@ msgstr "O tigoriñ %(url)s\n gant ar merdeer dre ziouer. Gortozit mar plij...."
 msgid "Opening page"
 msgstr "O tigeriñ ur bajenn"
 
-#: gui/common/functions_global_object.js:69
+#. dennis-ignore: *
+#: gui/common/functions_global_object.js:70
 #, javascript-format
 msgid "FPS: %(fps)4s"
 msgstr "FPS: %(fps)4s"
@@ -129,7 +130,7 @@ msgstr "DILEMEL"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:246
 #: gui/options/options.js:334 gui/options/options.js:401
-#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:159
+#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:165
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
 #: gui/summary/summary.js:346
 msgid "No"
@@ -137,7 +138,7 @@ msgstr "Ket"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:246
 #: gui/options/options.js:334 gui/options/options.js:401
-#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:159
+#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:165
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
 #: gui/summary/summary.js:346
 msgid "Yes"
@@ -295,7 +296,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:268
 msgid "Heroes can be garrisoned."
-msgstr ""
+msgstr "Harozed a c'hell bet lakaet e-barzh."
 
 #: gui/common/gamedescription.js:272
 msgid "Exposed Heroes"
@@ -400,12 +401,12 @@ msgstr "Bevenn ar Boblañs"
 
 #: gui/common/gamedescription.js:373
 msgid "Treasure"
-msgstr ""
+msgstr "Teñzor"
 
 #: gui/common/gamedescription.js:375
 msgctxt "treasure"
 msgid "Disabled"
-msgstr ""
+msgstr "Diweredekaet"
 
 #: gui/common/gamedescription.js:376
 msgctxt "treasure"
@@ -608,8 +609,8 @@ msgstr "Diaes-tre"
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(min)s munut"
+msgstr[1] "%(min)s munut"
 
 #: gui/common/settings.js:173
 msgctxt "ceasefire"
@@ -788,7 +789,7 @@ msgstr "Yec'hed:"
 #: gui/common/tooltips.js:97
 #, javascript-format
 msgid "%(healthLabel)s %(current)s / %(max)s"
-msgstr ""
+msgstr "%(healthLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:115
 #, javascript-format
@@ -862,7 +863,7 @@ msgstr "+%(number)s"
 #. meters"
 #: gui/common/tooltips.js:220
 msgid "meters"
-msgstr ""
+msgstr "metr"
 
 #: gui/common/tooltips.js:221 gui/common/tooltips.js:610
 #: gui/common/tooltips.js:639
@@ -963,7 +964,7 @@ msgstr ""
 #: gui/common/tooltips.js:427
 #, javascript-format
 msgid "%(resources)s / %(time)s"
-msgstr ""
+msgstr "%(resources)s / %(time)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
@@ -1091,8 +1092,8 @@ msgid "None"
 msgstr "Hini ebet"
 
 #: gui/locale/locale_advanced.js:92
-msgid "<invalid>"
-msgstr "<invalid>"
+msgid "invalid locale"
+msgstr ""
 
 #: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:163
 #: gui/splashscreen/splashscreen.xml:(caption):28
@@ -1158,7 +1159,7 @@ msgstr ""
 #: gui/pregame/mainmenu.js:128
 #, javascript-format
 msgid "Status: %(status)s."
-msgstr ""
+msgstr "Stad: %(status)s."
 
 #: gui/pregame/mainmenu.js:152
 #, javascript-format
@@ -1233,7 +1234,7 @@ msgstr ""
 #: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:177
 #, javascript-format
 msgid "Active: %(mods)s"
-msgstr ""
+msgstr "Bev : %(mods)s"
 
 #: gui/replaymenu/replay_actions.js:94
 msgid "This replay is not compatible with your version of the game!"
@@ -1257,11 +1258,11 @@ msgstr ""
 msgid "No summary data available."
 msgstr ""
 
-#: gui/replaymenu/replay_actions.js:157
+#: gui/replaymenu/replay_actions.js:163
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr ""
 
-#: gui/replaymenu/replay_actions.js:158
+#: gui/replaymenu/replay_actions.js:164
 msgid "Delete replay"
 msgstr ""
 
@@ -1344,20 +1345,20 @@ msgstr "C'hoariadennoù renket"
 msgid "Unrated games"
 msgstr "C'hoariadennoù Nann-renket"
 
-#: gui/replaymenu/replay_menu.js:190
+#: gui/replaymenu/replay_menu.js:193
 msgid "Filter replays by typing one or more, partial or complete playernames."
 msgstr ""
 
-#: gui/replaymenu/replay_menu.js:269
+#: gui/replaymenu/replay_menu.js:272
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
-msgstr ""
+msgstr "C'hoarierien : %(numberOfPlayers)s"
 
-#: gui/replaymenu/replay_menu.js:296
+#: gui/replaymenu/replay_menu.js:299
 msgid "yyyy-MM-dd HH:mm"
 msgstr "dd-MM-yyyy HH:mm"
 
-#: gui/replaymenu/replay_menu.js:326
+#: gui/replaymenu/replay_menu.js:329
 msgid "yyyy-MM"
 msgstr "MM-yyyy"
 
@@ -1560,15 +1561,15 @@ msgstr ""
 #: gui/summary/layout.js:179 gui/summary/summary.xml:(caption):98
 #: gui/credits/texts/misc.jsonTitle
 msgid "Miscellaneous"
-msgstr ""
+msgstr "A bep seurt"
 
 #: gui/summary/layout.js:182
 msgid "Vegetarian ratio"
-msgstr ""
+msgstr "Feur vejetarianed "
 
 #: gui/summary/layout.js:183
 msgid "Feminization"
-msgstr ""
+msgstr "Feur merc'hed"
 
 #: gui/summary/layout.js:184
 msgid "Kill / Death ratio"
@@ -1576,7 +1577,7 @@ msgstr ""
 
 #: gui/summary/layout.js:185
 msgid "Map exploration"
-msgstr ""
+msgstr "Dizoleiñ ar gartenn"
 
 #: gui/summary/layout.js:186
 msgid "Map control (peak)"
@@ -1608,11 +1609,11 @@ msgstr "Kaset"
 
 #: gui/summary/summary.js:50
 msgid "Bought"
-msgstr ""
+msgstr "Prenet"
 
 #: gui/summary/summary.js:55
 msgid "Income"
-msgstr ""
+msgstr "Korvoder"
 
 #: gui/summary/summary.js:60
 msgid "Captured"
@@ -1636,15 +1637,15 @@ msgstr "Implijet"
 
 #: gui/summary/summary.js:85
 msgid "Recieved"
-msgstr ""
+msgstr "Resevet"
 
 #: gui/summary/summary.js:90
 msgid "Sold"
-msgstr ""
+msgstr "Gwerzhet"
 
 #: gui/summary/summary.js:95
 msgid "Outcome"
-msgstr ""
+msgstr "Disoc'h"
 
 #: gui/summary/summary.js:344
 msgid "Are you sure you want to quit the lobby?"
@@ -1664,11 +1665,11 @@ msgstr ""
 
 #: gui/summary/summary.js:401
 msgid "You have left the game."
-msgstr ""
+msgstr "Kuitaet ho peus ar c'hoari."
 
 #: gui/summary/summary.js:403
 msgid "You have won the battle!"
-msgstr ""
+msgstr "Aet eo ar maout ganeoc'h !"
 
 #: gui/summary/summary.js:405
 msgid "You have been defeated..."
@@ -1738,7 +1739,7 @@ msgstr "Araokaet"
 #: gui/locale/locale.xml:(caption):46
 #: gui/locale/locale_advanced.xml:(caption):75
 msgid "Accept"
-msgstr ""
+msgstr "Degemer"
 
 #: gui/locale/locale_advanced.xml:(caption):25
 msgid "Country:"
@@ -1825,7 +1826,7 @@ msgstr ""
 
 #: gui/options/options.xml:(tooltip):98
 msgid "Saves changes"
-msgstr ""
+msgstr "Enrollañ ar cheñchamantoù"
 
 #: gui/options/options.xml:(tooltip):103
 msgid "Unsaved changes affect this session only"
@@ -1861,7 +1862,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):157
 msgid "Tutorial"
-msgstr ""
+msgstr "Tutorek"
 
 #: gui/pregame/mainmenu.xml:(caption):171
 #: gui/structree/structree.xml:(caption):18
@@ -1903,7 +1904,7 @@ msgstr "Dibarzhioù"
 
 #: gui/pregame/mainmenu.xml:(caption):360
 msgid "Replays"
-msgstr ""
+msgstr "Videdoù "
 
 #: gui/pregame/mainmenu.xml:(caption):374
 msgid "Scenario Editor"
@@ -2067,7 +2068,7 @@ msgstr "Klikit evit diskouez kreditoù 0 A.D."
 
 #: gui/replaymenu/replay_menu.xml:(caption):28
 msgid "Replay Games"
-msgstr ""
+msgstr "Adsell ouzh ar c'hoariadennoù "
 
 #: gui/replaymenu/replay_menu.xml:(caption):126
 msgid "Filter compatible replays"
@@ -2102,11 +2103,15 @@ msgid "Delete"
 msgstr "Dilemel"
 
 #: gui/replaymenu/replay_menu.xml:(caption):254
+msgid "Reload Cache"
+msgstr ""
+
+#: gui/replaymenu/replay_menu.xml:(caption):261
 #: gui/summary/summary.xml:(caption):23
 msgid "Summary"
 msgstr "E berr-ha-berr"
 
-#: gui/replaymenu/replay_menu.xml:(caption):260
+#: gui/replaymenu/replay_menu.xml:(caption):267
 msgid "Start Replay"
 msgstr ""
 
@@ -2114,7 +2119,7 @@ msgstr ""
 #: gui/savedgames/load.xml:(heading):40
 msgctxt "replay"
 msgid "Date / Time"
-msgstr ""
+msgstr "Deiziad / Eur"
 
 #: gui/replaymenu/replay_menu.xml:(heading):90
 msgctxt "replay"
@@ -2140,21 +2145,25 @@ msgstr "Poblañs"
 #: gui/replaymenu/replay_menu.xml:(heading):106
 msgctxt "replay"
 msgid "Duration"
+msgstr "Pad"
+
+#: gui/replaymenu/replay_menu.xml:(tooltip):255
+msgid "Rebuild the replay cache from scratch. Potentially slow!"
 msgstr ""
 
 #: gui/savedgames/load.xml:(heading):44
 msgctxt "replay"
 msgid "Map Type"
-msgstr ""
+msgstr "Doare ar gartenn"
 
 #: gui/savedgames/load.xml:(heading):52
 msgctxt "replay"
 msgid "Description"
-msgstr ""
+msgstr "Diskrivadur"
 
 #: gui/savedgames/load.xml:(caption):57
 msgid "No saved games found."
-msgstr ""
+msgstr "N'eo ket bet kavet c'hoari enrollet ebet."
 
 #: gui/savedgames/load.xml:(caption):71
 msgid "Load"
@@ -2174,7 +2183,7 @@ msgstr ""
 
 #: gui/savedgames/save.xml:(caption):16
 msgid "Save Game"
-msgstr ""
+msgstr "C'hoari enrollet"
 
 #: gui/savedgames/save.xml:(caption):30
 msgid "Description:"
@@ -2207,21 +2216,21 @@ msgstr ""
 #: gui/summary/summary.xml:(caption):167
 msgctxt "summary chart"
 msgid "Category:"
-msgstr ""
+msgstr "Rumm :"
 
 #: gui/summary/summary.xml:(caption):177
 msgctxt "summary chart"
 msgid "Value:"
-msgstr ""
+msgstr "Gwerzh"
 
 #: gui/summary/summary.xml:(caption):187
 msgctxt "summary chart"
 msgid "Type:"
-msgstr ""
+msgstr "Doare :"
 
 #: gui/summary/summary.xml:(caption):206
 msgid "Replay"
-msgstr ""
+msgstr "Video"
 
 #: gui/summary/summary.xml:(caption):211
 msgid "Continue"
@@ -2230,17 +2239,17 @@ msgstr "Kenderc'hel"
 #: gui/summary/summary.xml:(tooltip):173
 msgctxt "summary chart"
 msgid "Category"
-msgstr ""
+msgstr "Rumm"
 
 #: gui/summary/summary.xml:(tooltip):183
 msgctxt "summary chart"
 msgid "Value"
-msgstr ""
+msgstr "Gwerzh"
 
 #: gui/summary/summary.xml:(tooltip):194
 msgctxt "summary chart"
 msgid "Type"
-msgstr ""
+msgstr "Doare"
 
 #: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
 msgid "Art lead"
@@ -2252,7 +2261,7 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[0].Content[2].Subtitle
 msgid "Composer"
-msgstr ""
+msgstr "Sonaozour"
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Artistic managers"
@@ -2260,7 +2269,7 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[1].Title
 msgid "Map Making"
-msgstr ""
+msgstr "Kartennourien"
 
 #: gui/credits/texts/art.jsonContent[2].Title
 msgid "Random Map Scripts"
@@ -2268,11 +2277,11 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[3].Title
 msgid "2D Art"
-msgstr ""
+msgstr "Arz 2D"
 
 #: gui/credits/texts/art.jsonContent[4].Title
 msgid "3D Art"
-msgstr ""
+msgstr "Arz 3D"
 
 #: gui/credits/texts/art.jsonContent[5].Content[1].Subtitle
 msgid "Additional music, percussion, djembe, sampling"
@@ -2296,11 +2305,11 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[5].Content[6].Subtitle
 msgid "Didgeridoo"
-msgstr ""
+msgstr "Didgeridoo"
 
 #: gui/credits/texts/art.jsonContent[5].Content[7].Subtitle
 msgid "Trumpet"
-msgstr ""
+msgstr "Trompilh"
 
 #: gui/credits/texts/art.jsonContent[5].Content[8].Subtitle
 msgid "Celtic harp"
@@ -2308,11 +2317,11 @@ msgstr "Telenn Geltiek"
 
 #: gui/credits/texts/art.jsonContent[5].Content[9].Subtitle
 msgid "Tin whistles"
-msgstr ""
+msgstr "Fleütoù iwerzhonat"
 
 #: gui/credits/texts/art.jsonContent[5].Content[10].Subtitle
 msgid "Viola, violin"
-msgstr ""
+msgstr "Alto, violoñs"
 
 #: gui/credits/texts/art.jsonContent[5].Title
 msgid "Music"
@@ -2340,11 +2349,11 @@ msgstr "Arz"
 
 #: gui/credits/texts/donators.jsonContent[0].Title
 msgid "Pledgie Drive 1"
-msgstr ""
+msgstr "Pledgie #1"
 
 #: gui/credits/texts/donators.jsonContent[1].Title
 msgid "Pledgie Drive 2"
-msgstr ""
+msgstr "Pledgie #2"
 
 #: gui/credits/texts/donators.jsonContent[2].Title
 msgid ""
@@ -2354,11 +2363,11 @@ msgstr ""
 
 #: gui/credits/texts/donators.jsonTitle
 msgid "Donors"
-msgstr ""
+msgstr "Roerien"
 
 #: gui/credits/texts/misc.jsonContent[0].Content[0].Subtitle
 msgid "Head"
-msgstr ""
+msgstr "Penn"
 
 #: gui/credits/texts/misc.jsonContent[0].Title
 msgid "History References"
@@ -2374,11 +2383,11 @@ msgstr ""
 
 #: gui/credits/texts/programming.jsonContent[1].Subtitle
 msgid "Special thanks to"
-msgstr ""
+msgstr "Trugarez vras da"
 
 #: gui/credits/texts/programming.jsonTitle
 msgid "Programming"
-msgstr ""
+msgstr "Programmiñ"
 
 #: gui/credits/texts/special.jsonContent[0].Title
 msgid "In Memoriam"
@@ -2398,7 +2407,7 @@ msgstr ""
 
 #: gui/credits/texts/special.jsonContent[1].Title
 msgid "Special thanks to:"
-msgstr ""
+msgstr "Trugarez bras da :"
 
 #: gui/credits/texts/special.jsonContent[2].Title
 msgid "And thanks to the entire community for making 0 A.D. possible."
@@ -2452,7 +2461,7 @@ msgstr ""
 
 #: gui/options/options.jsongeneralSetting[2].tooltip
 msgid "Start 0 A.D. in a window"
-msgstr ""
+msgstr "Loc'hañ 0 A.D. en ur prenestr"
 
 #: gui/options/options.jsongeneralSetting[2].label
 msgid "Windowed Mode"
@@ -2542,37 +2551,86 @@ msgstr ""
 msgid "Persist Match Settings"
 msgstr ""
 
+#: gui/options/options.jsongeneralSetting[13].parameters.list[0].label
+#: gui/options/options.jsongeneralSetting[14].parameters.list[0].label
+msgid "Everyone"
+msgstr "An Holl"
+
+#: gui/options/options.jsongeneralSetting[13].parameters.list[1].label
+#: gui/options/options.jsongeneralSetting[14].parameters.list[1].label
+msgid "Buddies"
+msgstr "Mignoned"
+
+#: gui/options/options.jsongeneralSetting[13].parameters.list[2].label
+msgid "No one"
+msgstr "Hini ebet"
+
 #: gui/options/options.jsongeneralSetting[13].tooltip
-msgid "Allow observers to join the game after it started"
+msgid ""
+"Whether to assign joining clients to free playerslots in the gamesetup."
 msgstr ""
 
 #: gui/options/options.jsongeneralSetting[13].label
-msgid "Late Observer Joins"
+msgid "Assign Players"
 msgstr ""
 
+#: gui/options/options.jsongeneralSetting[14].parameters.list[2].label
+msgid "Disabled"
+msgstr "Diweredekaet"
+
 #: gui/options/options.jsongeneralSetting[14].tooltip
-msgid "Prevent further observers from joining if the limit is reached"
+msgid ""
+"Allow everybody or buddies only to join the game as observer after it "
+"started"
 msgstr ""
 
 #: gui/options/options.jsongeneralSetting[14].label
-msgid "Observer Limit"
+msgid "Late Observer Joins"
 msgstr ""
 
 #: gui/options/options.jsongeneralSetting[15].tooltip
-msgid "Number of units trained per batch"
+msgid "Prevent further observers from joining if the limit is reached"
 msgstr ""
 
 #: gui/options/options.jsongeneralSetting[15].label
-msgid "Batch Training Size"
+msgid "Observer Limit"
 msgstr ""
 
 #: gui/options/options.jsongeneralSetting[16].tooltip
+msgid "Number of units trained per batch"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[16].label
+msgid "Batch Training Size"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[17].tooltip
 msgid ""
 "Show time that messages are posted in the lobby, gamesetup and ingame chat."
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[16].label
+#: gui/options/options.jsongeneralSetting[17].label
 msgid "Chat Timestamp"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[18].tooltip
+msgid ""
+"Display the range of auras of selected units and structures (can also be "
+"toggled in-game with the hotkey)."
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[18].label
+msgid "Aura Range Visualization"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[19].tooltip
+msgid ""
+"Display the healing range of selected units (can also be toggled in-game "
+"with the hotkey)."
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[19].label
+msgid "Heal Range Visualization"
 msgstr ""
 
 #: gui/options/options.jsonsoundSetting[0].tooltip
@@ -2581,7 +2639,7 @@ msgstr ""
 
 #: gui/options/options.jsonsoundSetting[0].label
 msgid "Master Volume"
-msgstr ""
+msgstr "Ampled son hollek"
 
 #: gui/options/options.jsonsoundSetting[1].tooltip
 msgid "In game music gain"
@@ -2589,7 +2647,7 @@ msgstr ""
 
 #: gui/options/options.jsonsoundSetting[1].label
 msgid "Music Volume"
-msgstr ""
+msgstr "Ampled son ar sonerezh"
 
 #: gui/options/options.jsonsoundSetting[2].tooltip
 msgid "In game ambient sound gain"
@@ -2597,7 +2655,7 @@ msgstr ""
 
 #: gui/options/options.jsonsoundSetting[2].label
 msgid "Ambient Volume"
-msgstr ""
+msgstr "Ampled son an aergelc'h"
 
 #: gui/options/options.jsonsoundSetting[3].tooltip
 msgid "In game unit action sound gain"
@@ -2605,7 +2663,7 @@ msgstr ""
 
 #: gui/options/options.jsonsoundSetting[3].label
 msgid "Action Volume"
-msgstr ""
+msgstr "Ampled son an obererezh"
 
 #: gui/options/options.jsonsoundSetting[4].tooltip
 msgid "UI sound gain"
@@ -2613,7 +2671,7 @@ msgstr ""
 
 #: gui/options/options.jsonsoundSetting[4].label
 msgid "UI Volume"
-msgstr ""
+msgstr "Ampled son an UI"
 
 #: gui/options/options.jsonsoundSetting[5].tooltip
 msgid "Receive audio notification when someone types your nick"
@@ -2629,7 +2687,7 @@ msgstr ""
 
 #: gui/options/options.jsonnotificationSetting[0].label
 msgid "Attack"
-msgstr ""
+msgstr "Argad"
 
 #: gui/options/options.jsonnotificationSetting[1].tooltip
 msgid ""
@@ -2651,11 +2709,11 @@ msgstr "Trok"
 
 #: gui/options/options.jsonnotificationSetting[3].parameters.list[0].label
 msgid "Disable"
-msgstr ""
+msgstr "Diweredekaat"
 
 #: gui/options/options.jsonnotificationSetting[3].parameters.list[1].label
 msgid "Completed"
-msgstr ""
+msgstr "Echuet"
 
 #: gui/options/options.jsonnotificationSetting[3].parameters.list[2].label
 msgid "All displayed"
@@ -2793,7 +2851,7 @@ msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[14].label
 msgid "Show Sky"
-msgstr ""
+msgstr "Diskouez an oabl"
 
 #: gui/options/options.jsongraphicsSetting[15].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
@@ -2801,7 +2859,7 @@ msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[15].label
 msgid "VSync"
-msgstr ""
+msgstr "VSync"
 
 #: gui/options/options.jsongraphicsSetting[16].tooltip
 msgid ""
@@ -2821,16 +2879,6 @@ msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[17].label
 msgid "FPS throttling in games"
-msgstr ""
-
-#: gui/options/options.jsongraphicsSetting[18].tooltip
-msgid ""
-"Display the range of auras of selected units and structures (can also be "
-"toggled in-game with the hotkey)."
-msgstr ""
-
-#: gui/options/options.jsongraphicsSetting[18].label
-msgid "Aura Range Visualization"
 msgstr ""
 
 #: simulation/data/resources/food.jsondescription
@@ -2924,42 +2972,42 @@ msgstr "Kig"
 #: simulation/data/resources/metal.jsonname
 msgctxt "firstWord"
 msgid "Metal"
-msgstr ""
+msgstr "Metal"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: simulation/data/resources/metal.jsonname
 msgctxt "withinSentence"
 msgid "Metal"
-msgstr ""
+msgstr "Metal"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: simulation/data/resources/metal.jsonsubtypes.ore
 msgctxt "firstWord"
 msgid "Ore"
-msgstr ""
+msgstr "Kailheg"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: simulation/data/resources/metal.jsonsubtypes.ore
 msgctxt "withinSentence"
 msgid "Ore"
-msgstr ""
+msgstr "Kailheg"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: simulation/data/resources/stone.jsonname
 msgctxt "firstWord"
 msgid "Stone"
-msgstr ""
+msgstr "Mein"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: simulation/data/resources/stone.jsonname
 msgctxt "withinSentence"
 msgid "Stone"
-msgstr ""
+msgstr "Mein"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -2996,14 +3044,14 @@ msgstr "Roc'h"
 #: simulation/data/resources/wood.jsonname
 msgctxt "firstWord"
 msgid "Wood"
-msgstr ""
+msgstr "Koad"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: simulation/data/resources/wood.jsonname
 msgctxt "withinSentence"
 msgid "Wood"
-msgstr ""
+msgstr "Koad"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -3032,11 +3080,11 @@ msgstr ""
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
 "[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
-msgstr ""
+msgstr "[font=\"sans-bold-20\"]  Mersi deoc'h evit staliañ 0 A.D. Empires Ascendant!"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"
-msgstr ""
+msgstr "[font=\"sans-16\"]"
 
 #: gui/splashscreen/splashscreen.txt:4
 msgid ""
@@ -3107,7 +3155,7 @@ msgstr ""
 
 #: gui/text/tips/blacksmith.txt:1
 msgid "BLACKSMITH"
-msgstr ""
+msgstr "GOVEL"
 
 #: gui/text/tips/blacksmith.txt:2
 msgid "- Research structure for all factions."
@@ -3213,7 +3261,7 @@ msgstr ""
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
-msgstr ""
+msgstr "KANNADOURIEZHOÙ"
 
 #: gui/text/tips/embassies.txt:2
 msgid "- Special \"Barracks\" available to the Carthage faction."
@@ -3231,7 +3279,7 @@ msgstr ""
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
-msgstr ""
+msgstr "PESKETA"
 
 #: gui/text/tips/fishing.txt:2
 msgid "- Fish the seas for a bountiful harvest."
@@ -3257,7 +3305,7 @@ msgstr ""
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
-msgstr ""
+msgstr "KREÑVLEC'H"
 
 #: gui/text/tips/fortress.txt:2
 msgid "- The Fortress is usually each faction's strongest building."
@@ -3360,7 +3408,7 @@ msgstr ""
 
 #: gui/text/tips/pericles.txt:1
 msgid "PERICLES"
-msgstr ""
+msgstr "PERICLES"
 
 #: gui/text/tips/pericles.txt:2
 msgid "- The foremost Athenian politician of the 5th century BCE."
@@ -3437,7 +3485,7 @@ msgstr ""
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
-msgstr ""
+msgstr "BIOME AR  SAVANENN"
 
 #: gui/text/tips/savanna_biome.txt:2
 msgid "- Generally flat, with a few watering holes and rocky outcrops."

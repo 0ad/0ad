@@ -22,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-28 09:00+0100\n"
-"PO-Revision-Date: 2017-03-09 11:54+0000\n"
-"Last-Translator: Mário Branco <branco.ana8@gmail.com>\n"
+"POT-Creation-Date: 2017-05-29 09:06+0200\n"
+"PO-Revision-Date: 2017-05-29 14:56+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -323,17 +323,14 @@ msgid "Celtic religion and druidry inspired their warlike mindset. "
 msgstr "A religião e o druidismo celtas inspiraram a mentalidade guerreira deste povo."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
-msgid "Bonus to tech speed."
-msgstr "Bónus na velocidade de desenvolvimento de nova tecnologia."
+msgid "-20% resources cost for allies healers."
+msgstr ""
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
-msgid "Druides"
-msgstr "Druidas"
+msgid "Druids"
+msgstr ""
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].History
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].History
 msgid ""
 "The Druids of the Celts maintained an organized religion that advanced the "
 "technology of their people even during wartime."
@@ -571,8 +568,8 @@ msgid ""
 msgstr "Tal como a Península Ibérica, a região do Norte de África era conhecida pelos seus cavalos, sendo criados 100.000 novos animais por ano. É também o local de origem do Elefante da Floresta Africano."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "+33% trade profit international routes."
-msgstr "+33% lucro em rotas comerciais internacionais."
+msgid "10% bonus of trade profit for ally's international routes."
+msgstr ""
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -776,6 +773,20 @@ msgstr "Cartago, uma cidade-estado localizada no que hoje corresponde à Tunísi
 #: simulation/data/civs/gaul.jsonFactions[0].Name
 msgid "Gauls"
 msgstr "Gauleses"
+
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
+msgid "-10% research time for technologies of allies."
+msgstr ""
+
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
+msgid "Druidic Wisdom"
+msgstr ""
+
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].History
+msgid ""
+"The Druids of the Gauls maintained an organized religion that advanced the "
+"technology of their people even during wartime."
+msgstr ""
 
 #: simulation/data/civs/gaul.jsonAINames[0]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
@@ -1169,8 +1180,8 @@ msgid ""
 msgstr "Os gregos conseguiram helenizar com sucesso vários povos. Durante o período helenístico, o grego era a língua franca do mundo antigo e falado desde a Península Ibérica até a Índia."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
-msgid "+15% tribute and trade bonus on metal."
-msgstr "Bónus de +15% em tributo e comércio de metal."
+msgid "+20% sell prices at market."
+msgstr ""
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -1430,12 +1441,12 @@ msgid ""
 msgstr "A Xátria (Kshatriya em sânscrito), palavra que significa 'guerreiro', é uma das quatro varnas (castas sociais) no Hinduísmo. Tradicionalmente, os xátrias constituem a elite militar e governante do sistema social védico-hindu delineado pelas Vedas e pelas Leis de Manu."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
-msgid "Allied Temple techs -50% cost and research time."
-msgstr "Tecnologia aliada custa -50% e é desenvolvida 50% mais rápida."
+msgid "Allied temples and temple technologies -50% cost and research time."
+msgstr ""
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
-msgid "Evangelism."
-msgstr "Evangelismo"
+msgid "Ashoka's Religious Support"
+msgstr ""
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].History
 msgid ""
@@ -1608,8 +1619,8 @@ msgid ""
 msgstr "Os Persas mobilizavam um grande número de pessoas para integrarem os regimentos de infantaria em períodos de guerra, devido à enorme dimensão do império aqueménida e da maneira como estava organizado. Em geral, a infantaria persa era bem treinada e combatia com grande tenacidade; porém, era fraca no combate corpo a corpo. Com excepção dos regimentos de elite, a infantaria persa não era um exército profissional permanente."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
-msgid "+25% trade profit land routes."
-msgstr "+25% de lucro nas rotas comerciais terrestres."
+msgid "Higher income (+15%) from land trade routes for ally's traders."
+msgstr ""
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -2075,17 +2086,23 @@ msgid ""
 msgstr "A Cidadania Romana era altamente valorizada no mundo antigo. Aos cidadãos romanos eram concedidos direitos e privilégios básicos que eram recusados aos outros povos conquistados. Dizia-se que prejudicar um cidadão romano era como prejudicar a própria Roma - e o responsável ver-se-ia a braços com todo o poderio do império."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
-msgid "Allied citizen-soldiers gain a +15% attack when in Roman territory."
-msgstr "Cidadãos-soldados aliados ganham uma bonificação de +15% de ataque sempre que estiverem em território romano."
+msgid "-20% training time for allied infantry."
+msgstr ""
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
-msgid "Socii"
-msgstr "Socii"
+msgid "Conscription"
+msgstr ""
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].History
 msgid ""
-"Being allied with Rome came with great benefits (as well as great peril)."
-msgstr "Formar uma aliança com Roma trazia grandes benefícios (mas também grandes perigos)."
+"Many Roman soldiers were conscripted into service. While volunteers were "
+"preferred, the Roman state did maintain an annual military draft. During an "
+"emergency the draft and the terms of service were enlarged. The importance "
+"of military service in Republican Rome was so great it was a prerequisite "
+"for a political career. Members of the Senate were called Conscript Fathers "
+"because of this, reflected in how the ordo equester was said to have been "
+"\"conscripted\" into the Senate."
+msgstr ""
 
 #: simulation/data/civs/rome.jsonAINames[0]
 msgid "Lucius Junius Brutus"
@@ -2569,8 +2586,10 @@ msgid ""
 msgstr "No âmbito da Constituição redigida pelo mítico legislador Licurgo, foi fundada a instituição da Agoge, segundo a qual os Espartanos eram treinados militarmente desde os 6 anos para serem guerreiros excepcionais em defesa da nação espartana."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
-msgid "Allies can train Spartiates."
-msgstr "Os aliados podem recrutar Homoioi."
+msgid ""
+"Increases the health for citizen-soldier infantry spearmen by 10% for allies"
+" of Spartan players."
+msgstr ""
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"

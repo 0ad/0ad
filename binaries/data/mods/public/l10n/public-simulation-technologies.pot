@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2017-05-27 14:49+0200\n"
-"PO-Revision-Date: 2017-05-27 14:49+0200\n"
+"POT-Creation-Date: 2017-06-02 09:04+0200\n"
+"PO-Revision-Date: 2017-06-02 09:04+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -76,6 +76,7 @@ msgstr ""
 #: simulation/data/technologies/training_levy_infantry.json:requirementsTooltip
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.json:requirementsTooltip
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.json:requirementsTooltip
+#: simulation/data/technologies/upgrade_rank_advanced_mercenary.json:requirementsTooltip
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.json:requirementsTooltip
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs.json:requirementsTooltip
 #: simulation/data/technologies/carthaginians/cost_italian_mercs.json:requirementsTooltip
@@ -688,7 +689,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/technologies/attack_steel_working.json:tooltip
-msgid "+2 attack for all sword units."
+msgid "+20% Hack attack for all sword units."
 msgstr ""
 
 #: simulation/data/technologies/attack_steel_working.json:genericName
@@ -1854,6 +1855,19 @@ msgstr ""
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.json:specificName.spart
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.json:specificName.athen
 msgid "Zeugítai"
+msgstr ""
+
+#: simulation/data/technologies/upgrade_rank_advanced_mercenary.json:description
+msgid "Hire professional mercenaries to fight in your army."
+msgstr ""
+
+#: simulation/data/technologies/upgrade_rank_advanced_mercenary.json:tooltip
+msgid ""
+"Mercenaries are promoted to advanced rank but require +20% training time."
+msgstr ""
+
+#: simulation/data/technologies/upgrade_rank_advanced_mercenary.json:genericName
+msgid "Expertise In War"
 msgstr ""
 
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.json:tooltip

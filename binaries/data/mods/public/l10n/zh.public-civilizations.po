@@ -24,9 +24,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-28 09:00+0100\n"
-"PO-Revision-Date: 2017-04-21 07:55+0000\n"
-"Last-Translator: 李武军 <lwj7863439@gmail.com>\n"
+"POT-Creation-Date: 2017-05-29 09:06+0200\n"
+"PO-Revision-Date: 2017-05-29 14:56+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -325,17 +325,14 @@ msgid "Celtic religion and druidry inspired their warlike mindset. "
 msgstr "凯尔特人的宗教信仰和德鲁伊人激发了他们好战心态。"
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
-msgid "Bonus to tech speed."
-msgstr "奖励高科技发展速度。"
+msgid "-20% resources cost for allies healers."
+msgstr ""
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
-msgid "Druides"
-msgstr "德鲁伊人"
+msgid "Druids"
+msgstr ""
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].History
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].History
 msgid ""
 "The Druids of the Celts maintained an organized religion that advanced the "
 "technology of their people even during wartime."
@@ -573,8 +570,8 @@ msgid ""
 msgstr "与伊比利亚半岛不同，北非被称为马国，能够每年生产多达100,000个新坐骑。这里也是北非森林大象的家。"
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "+33% trade profit international routes."
-msgstr "增加+33% 的国际贸易利润."
+msgid "10% bonus of trade profit for ally's international routes."
+msgstr ""
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -778,6 +775,20 @@ msgstr "迦太基是现代突尼斯的一个城邦，在过去它是在地中海
 #: simulation/data/civs/gaul.jsonFactions[0].Name
 msgid "Gauls"
 msgstr "高卢人"
+
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
+msgid "-10% research time for technologies of allies."
+msgstr ""
+
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
+msgid "Druidic Wisdom"
+msgstr ""
+
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].History
+msgid ""
+"The Druids of the Gauls maintained an organized religion that advanced the "
+"technology of their people even during wartime."
+msgstr ""
 
 #: simulation/data/civs/gaul.jsonAINames[0]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
@@ -1171,8 +1182,8 @@ msgid ""
 msgstr "希腊人非常成功地希腊化了许多外国人。在那一段古希腊文明，希腊语从西班牙传布至印度。"
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
-msgid "+15% tribute and trade bonus on metal."
-msgstr "+15%的贡品，并且有额外的金属贸易奖励"
+msgid "+20% sell prices at market."
+msgstr ""
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -1432,12 +1443,12 @@ msgid ""
 msgstr "刹帝利或 Kashtriya,意思是战士,是四个印度教种姓(社会阶级)其中之一。传统上来说,刹帝利在印度教社会系统中构成了军队及统治阶级的精英,在吠陀经及摩奴法典中所描述。"
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
-msgid "Allied Temple techs -50% cost and research time."
-msgstr "联盟寺庙的科技，-50%的成本与搜索时间"
+msgid "Allied temples and temple technologies -50% cost and research time."
+msgstr ""
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
-msgid "Evangelism."
-msgstr "福音主义。"
+msgid "Ashoka's Religious Support"
+msgstr ""
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].History
 msgid ""
@@ -1610,8 +1621,8 @@ msgid ""
 msgstr "由于阿契美尼德帝国的庞大规模及其组织结构，波斯人在战争期间内能在短时间里征召大量的步兵，而他们的确也这么做了。尽管波斯步兵总体来讲训练有素而且意志坚定，但是他们缺乏肉搏战的经验。而且，除少数精英部队以外，波斯步兵不是职业的常备军。"
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
-msgid "+25% trade profit land routes."
-msgstr "+25%陆上贸易利润。"
+msgid "Higher income (+15%) from land trade routes for ally's traders."
+msgstr ""
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -2077,17 +2088,23 @@ msgid ""
 msgstr "在古时的世界罗马国籍很受尊重。罗马公民被赋予了其他被征服的民族没有的基本权利和特权。据说，伤害一个罗马公民就是以罗马为敌，整个罗马都会团结在一起来制住施暴者。"
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
-msgid "Allied citizen-soldiers gain a +15% attack when in Roman territory."
-msgstr "盟国的公民士兵在罗马领土可获得了额外+15%的攻击力。"
+msgid "-20% training time for allied infantry."
+msgstr ""
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
-msgid "Socii"
-msgstr "罗马盟邦"
+msgid "Conscription"
+msgstr ""
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].History
 msgid ""
-"Being allied with Rome came with great benefits (as well as great peril)."
-msgstr "与罗马结盟会带着极大的好处(同时也伴随着很大的危险)。"
+"Many Roman soldiers were conscripted into service. While volunteers were "
+"preferred, the Roman state did maintain an annual military draft. During an "
+"emergency the draft and the terms of service were enlarged. The importance "
+"of military service in Republican Rome was so great it was a prerequisite "
+"for a political career. Members of the Senate were called Conscript Fathers "
+"because of this, reflected in how the ordo equester was said to have been "
+"\"conscripted\" into the Senate."
+msgstr ""
 
 #: simulation/data/civs/rome.jsonAINames[0]
 msgid "Lucius Junius Brutus"
@@ -2571,8 +2588,10 @@ msgid ""
 msgstr "根据被赋予神权的莱克格斯制定的宪法，确立了斯巴达教育制度。男孩在6岁前是由双亲抚养的，但其父母从小则会训练他们成为独立坚强的战士，甚至有点冷酷无情。7岁后便会编入团队进行军事训练。"
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
-msgid "Allies can train Spartiates."
-msgstr "盟友可以训练斯巴达战士。"
+msgid ""
+"Increases the health for citizen-soldier infantry spearmen by 10% for allies"
+" of Spartan players."
+msgstr ""
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"

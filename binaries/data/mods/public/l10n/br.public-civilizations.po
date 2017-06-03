@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-28 09:00+0100\n"
-"PO-Revision-Date: 2017-05-10 14:07+0000\n"
-"Last-Translator: ernest olory <ernestolory@hotmail.fr>\n"
+"POT-Creation-Date: 2017-05-29 09:06+0200\n"
+"PO-Revision-Date: 2017-05-31 11:49+0000\n"
+"Last-Translator: Thierry Vignaud <thierry.vignaud@gmail.com>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -315,17 +315,14 @@ msgid "Celtic religion and druidry inspired their warlike mindset. "
 msgstr "Ar relijion hag an drouizelezh o deus awenet o foellouriezh brezel."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
-msgid "Bonus to tech speed."
-msgstr "Bonuz d'an tek tizh."
+msgid "-20% resources cost for allies healers."
+msgstr ""
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
-msgid "Druides"
+msgid "Druids"
 msgstr "Drouized"
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].History
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].History
 msgid ""
 "The Druids of the Celts maintained an organized religion that advanced the "
 "technology of their people even during wartime."
@@ -563,8 +560,8 @@ msgid ""
 msgstr "Ne oa ket heñvel al Ledenez Iberian ouzh Afrika an Hanternoz hag a oa anavezet evel bezañ bro ar c'hezeg ha gouest da broduiñ betek 100,000 jav nevez bep bloaz. Bez e oa ivez 'ti' olifanted ar c'hoadeier eus Afrika an Hanternoz."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "+33% trade profit international routes."
-msgstr "+33% a c'hounid-kenwerzh evit an hentoù etrebroadel."
+msgid "10% bonus of trade profit for ally's international routes."
+msgstr ""
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -768,6 +765,20 @@ msgstr "Kartago, ur gêr-stad e Tunizia a-vremañ, a oa bet un nerzh dibar e Kor
 #: simulation/data/civs/gaul.jsonFactions[0].Name
 msgid "Gauls"
 msgstr "Galianed"
+
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
+msgid "-10% research time for technologies of allies."
+msgstr ""
+
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
+msgid "Druidic Wisdom"
+msgstr "Furnez an drouized"
+
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].History
+msgid ""
+"The Druids of the Gauls maintained an organized religion that advanced the "
+"technology of their people even during wartime."
+msgstr ""
 
 #: simulation/data/civs/gaul.jsonAINames[0]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
@@ -1161,8 +1172,8 @@ msgid ""
 msgstr "Ar Greked o deus graet kalz a berzh en ur Hellenaat meur a estren. E-pad an Oadvezh Hellenistek, ar grekeg a oa \"lingua franca\" an hen-bed, komzet e oa kalz etre Bro-Spagn ha Bro-India."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
-msgid "+15% tribute and trade bonus on metal."
-msgstr "+15% a druaj hag a vonuz kenwerzhel war ar metal."
+msgid "+20% sell prices at market."
+msgstr "+20% a brizioù gwerzh er marc'had."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -1422,12 +1433,12 @@ msgid ""
 msgstr "Unan eus pevar varna (renkadoù sokial) an Hindouegezh eo ar Kshatriya, pe Kashtriya, a dalvez kement ha \"brezelour\". En hengoun eo ar Kshatriya ar renkad brezelourien a ren war ar sistem sokial vedik-hindou, evel m'eo diskouezet er Vedaioù hag e Lezennoù Manu."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
-msgid "Allied Temple techs -50% cost and research time."
-msgstr "-50% a goust hag a amzer enklask evit teknologiezhioù an Templ Kevredet."
+msgid "Allied temples and temple technologies -50% cost and research time."
+msgstr ""
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
-msgid "Evangelism."
-msgstr "Avielouriezh."
+msgid "Ashoka's Religious Support"
+msgstr ""
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].History
 msgid ""
@@ -1600,8 +1611,8 @@ msgid ""
 msgstr "Ar Bersianed a c'halle sevel un niver bras a droadeien e-pad un amzer-vrezel abalamour d'ar ment bras a oa gant an Impalaeriezh Akaemeninat ha dre an doare e oa bet rannet. Dre vras e oa gourdonet mat an droadegiezh Bers ha stourm a rae gant birvidigezh-vras. Koulskoude daoust ma oa gwir, gwan e oa an droadegiezh en emgannoù a-dost. Ma, nemet rejimantoù ar rejimantoù gwellañ, ne oa ket an droadegiezh Pers un nerzh micherel brudet."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
-msgid "+25% trade profit land routes."
-msgstr "+25% a c'hounid-kenwerzh evit an hentoù-douar."
+msgid "Higher income (+15%) from land trade routes for ally's traders."
+msgstr "Korvoder uheloc'h (+15%) eus hentoù kenwerzh an douar evit ar varc'hadourien gevredet."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -2067,17 +2078,23 @@ msgid ""
 msgstr "Ar geodedelezh Roman a oa priziet kenañ en Henamzer. Ar gwirioù diazez hag ar brientoù a veze profet d'ar geodedourien Roman a veze nac'het d'ar pobloù aloubet. Lavaret e oa neuze ober droug d'ur c'heodedour Roman a oa ober droug da Roma hec'h-unan, hag-holl galloud Roma da gouezhañ war an hini kablus."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
-msgid "Allied citizen-soldiers gain a +15% attack when in Roman territory."
-msgstr "Ar soudarded-keodedel kevredet ganeoc'h a c'hounez +15% a dagusted pa vezont en un tiriad Roman."
+msgid "-20% training time for allied infantry."
+msgstr "-20% eus amzer ar stummañ evit an droadegiezh gevredet."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
-msgid "Socii"
-msgstr "Socii"
+msgid "Conscription"
+msgstr "Enrolladur"
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].History
 msgid ""
-"Being allied with Rome came with great benefits (as well as great peril)."
-msgstr "Bezañ kevredet gant Roma a ro ur bern gounidoù (met ivez ur bern pirilhoù)."
+"Many Roman soldiers were conscripted into service. While volunteers were "
+"preferred, the Roman state did maintain an annual military draft. During an "
+"emergency the draft and the terms of service were enlarged. The importance "
+"of military service in Republican Rome was so great it was a prerequisite "
+"for a political career. Members of the Senate were called Conscript Fathers "
+"because of this, reflected in how the ordo equester was said to have been "
+"\"conscripted\" into the Senate."
+msgstr "Kalz a soudarded Roman a oa bet enrollet er servij. Tra ma veze gwelloc'h ar re youlek e veze miret evit gwir an enrolladur milourel dre vloaz gant ar stad Roman. Pa veze difrae e veze ledanet termenoù ar servij hag an enrolladur. Pouez ar servij milourel er Republik Roman a oa kement bras hag e oa ur rakrekis evit ober e dreuz er politikerezh. Graet e voe izili ar Sened anezho Tadoù an Enrolladur abalamour d'an dra-mañ, diskouezet e penaos e oa bet lavaret e oa bet an urzh marc'heger \"enrollet\" er Sened.   "
 
 #: simulation/data/civs/rome.jsonAINames[0]
 msgid "Lucius Junius Brutus"
@@ -2561,8 +2578,10 @@ msgid ""
 msgstr "Dindan ar Vonreizh a skrivas al lezennour mojennel Lycurgus, diazezet e oa saverezh an Agoge, a lakae ar Spartaned da vezañ stummet adalek o 6vet bloavezh da vezañ brezelourien hep o far da zifenn ar Stad Spartanel."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
-msgid "Allies can train Spartiates."
-msgstr "Ar re gevredet ganeoc'h a c'hall stummañ Spartaned."
+msgid ""
+"Increases the health for citizen-soldier infantry spearmen by 10% for allies"
+" of Spartan players."
+msgstr ""
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"

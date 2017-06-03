@@ -131,17 +131,15 @@ function resetTerrain(terrain, tc, elevation)
 }
 
 /**
- * Chose starting locations for the given players.
+ * Choose starting locations for the given players.
  *
- * @param {string} type - "radial", "stacked", "stronghold", "random"
+ * @param {string} type - "radial", "line", "stronghold", "random"
  * @param {number} distance - radial distance from the center of the map
+ *
+ * @returns {Array|undefined} - If successful, each element is an object that contains id, angle, x, z for each player
  */
-function addBases(type, distance, groupedDistance)
+function addBases(type = "radial", distance = 0.3, groupedDistance = 0.05)
 {
-	type = type || "radial";
-	distance = distance || 0.3;
-	groupedDistance = groupedDistance || 0.05;
-
 	var playerIDs = randomizePlayers();
 
 	switch(type)
@@ -154,6 +152,9 @@ function addBases(type, distance, groupedDistance)
 			return placeRandom(playerIDs) || placeRadial(playerIDs, distance);
 		case "stronghold":
 			return placeStronghold(playerIDs, distance, groupedDistance);
+		default:
+			warn("Unknown base placement type:" + type);
+			return undefined;
 	}
 }
 
@@ -269,7 +270,7 @@ function getTeams(numPlayers)
 {
 	// Group players by team
 	var teams = [];
-	for (var i = 0; i < numPlayers; ++i)
+	for (let i = 0; i < numPlayers; ++i)
 	{
 		let team = getPlayerTeam(i);
 		if (team == -1)
@@ -282,7 +283,7 @@ function getTeams(numPlayers)
 	}
 
 	// Players without a team get a custom index
-	for (var i = 0; i < numPlayers; ++i)
+	for (let i = 0; i < numPlayers; ++i)
 		if (getPlayerTeam(i) == -1)
 			teams.push([i+1]);
 
@@ -291,7 +292,7 @@ function getTeams(numPlayers)
 }
 
 /**
- * Chose a random pattern for placing the bases of the players.
+ * Choose a random pattern for placing the bases of the players.
  */
 function randomStartingPositionPattern()
 {
@@ -392,7 +393,7 @@ function placeRadial(playerIDs, distance)
 }
 
 /**
- * Chose arbitrary starting locations.
+ * Choose arbitrary starting locations.
  */
 function placeRandom(playerIDs)
 {
@@ -402,7 +403,7 @@ function placeRandom(playerIDs)
 	var attempts = 0;
 	var resets = 0;
 
-	for (var i = 0; i < g_MapInfo.numPlayers; ++i)
+	for (let i = 0; i < g_MapInfo.numPlayers; ++i)
 	{
 		var playerAngle = randFloat(0, TWO_PI);
 
@@ -455,7 +456,7 @@ function placeRandom(playerIDs)
 		placed.push(players[i]);
 	}
 
-	for (var i = 0; i < g_MapInfo.numPlayers; ++i)
+	for (let i = 0; i < g_MapInfo.numPlayers; ++i)
 		createBase(players[i]);
 
 	return players;

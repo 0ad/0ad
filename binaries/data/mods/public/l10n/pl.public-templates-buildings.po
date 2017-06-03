@@ -11,6 +11,7 @@
 # Filip Lechowicz <f.lechowicz@gmail.com>, 2015
 # Jacek <jacek15klb@gmail.com>, 2015
 # Krzysztof Grabania, 2015
+# Krzysztof Ogonowski <kogonowski@icloud.com>, 2017
 # Bartłomiej Prokop <kuad@o2.pl>, 2016
 # Leszek Szary, 2014
 # Lukasz B <boberstarosta@gmail.com>, 2015-2016
@@ -26,9 +27,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-05 09:15+0200\n"
-"PO-Revision-Date: 2017-05-26 19:17+0000\n"
-"Last-Translator: Bartłomiej Prokop <kuad@o2.pl>\n"
+"POT-Creation-Date: 2017-05-29 09:07+0200\n"
+"PO-Revision-Date: 2017-05-29 19:35+0000\n"
+"Last-Translator: Krzysztof Ogonowski <kogonowski@icloud.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -186,11 +187,11 @@ msgstr "Kamienny mur"
 msgid "Wall off your town for a stout defense."
 msgstr "Wybuduj mur aby zwiększyć możliwości obronne miasta."
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:9
+#: simulation/templates/template_structure_defense_wall_gate.xml:10
 msgid "City Gate"
 msgstr "Brama miasta"
 
-#: simulation/templates/template_structure_defense_wall_gate.xml:10
+#: simulation/templates/template_structure_defense_wall_gate.xml:11
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
 msgstr "Pozwala jednostkom przedostać się przez mury miasta. Może zostać zamknięta, aby uniemożliwić dostęp."
@@ -1383,7 +1384,7 @@ msgstr "Specjalny budynek Imperium Rzymskiego"
 
 #: simulation/templates/structures/rome_army_camp.xml:35
 msgid "ArmyCamp"
-msgstr ""
+msgstr "Obóz Armii"
 
 #: simulation/templates/structures/rome_army_camp.xml:68
 msgid "Entrenched Army Camp"
@@ -1395,9 +1396,9 @@ msgstr "Castrum Vallum"
 
 #: simulation/templates/structures/rome_army_camp.xml:72
 msgid ""
-"Build anywhere on the map, even in enemy territory. Construct siege weapons "
-"and train citizen-soldiers. Heal garrisoned units slowly."
-msgstr "Można wybudować w dowolnym miejscu na mapie, nawet na terytorium wroga. Konstruuj machiny oblężnicze i szkol żołnierzy miejskich. Powoli uzdrawiaj jednostki stacjonujące."
+"Build in neutral or enemy territory. Construct siege weapons and train "
+"citizen-soldiers. Heal garrisoned units slowly."
+msgstr "Można wybudować również na neutralnym lub wrogim terytorium. Konstruuje machiny oblężnicze i szkoli żołnierzy miejskich. Powoli uzdrawia stacjonujące jednostki."
 
 #: simulation/templates/structures/rome_barracks.xml:18
 msgid "Castrum"

@@ -20,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-26 09:02+0200\n"
-"PO-Revision-Date: 2017-05-26 16:10+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-05-27 14:48+0200\n"
+"PO-Revision-Date: 2017-05-30 16:14+0000\n"
+"Last-Translator: Omar Anwar <omaraglan91@yahoo.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,7 +51,7 @@ msgstr "عشوائيّة"
 
 #: gui/gamesetup/gamesetup.js:72
 msgid "Picks one civilization at random when the game starts."
-msgstr ""
+msgstr "إختر حضارة عشوائياً حين بدء اللعبة"
 
 #: gui/gamesetup/gamesetup.js:110
 #, javascript-format
@@ -129,7 +129,7 @@ msgstr "الافتراضيّ"
 #: gui/gamesetup/gamesetup.js:164
 msgctxt "map filter"
 msgid "All maps except naval and demo maps."
-msgstr ""
+msgstr "كل الخرائط باستثناء الخرائط البحرية والتجربية."
 
 #: gui/gamesetup/gamesetup.js:170
 msgid "Naval Maps"
@@ -138,7 +138,7 @@ msgstr "الخرائط البحريّة"
 #: gui/gamesetup/gamesetup.js:171
 msgctxt "map filter"
 msgid "Maps where ships are needed to reach the enemy."
-msgstr ""
+msgstr "خرائط حيث تحتاج السفن للوصول للعدو."
 
 #: gui/gamesetup/gamesetup.js:176
 msgid "Demo Maps"
@@ -147,7 +147,7 @@ msgstr "الخرائط التّجريبيّة"
 #: gui/gamesetup/gamesetup.js:177
 msgctxt "map filter"
 msgid "These maps are not playable but for demonstration purposes only."
-msgstr ""
+msgstr "هذه الخرائط ليس قابلة للعب لكن من أجل غرض الإثبات فقط."
 
 #: gui/gamesetup/gamesetup.js:182
 msgid "New Maps"
@@ -156,7 +156,7 @@ msgstr "خرائط جديدة "
 #: gui/gamesetup/gamesetup.js:183
 msgctxt "map filter"
 msgid "Maps that are brand new in this release of the game."
-msgstr ""
+msgstr "خرائط جديدة في هذا الأصدار من اللعبة. "
 
 #: gui/gamesetup/gamesetup.js:188
 msgid "Trigger Maps"
@@ -397,63 +397,63 @@ msgid ""
 "ready)"
 msgstr "ابدأ لعبة جديدة بالإعدادات الحالية (معطلة حتي يصبح كل اللاعبيين جاهزيين)"
 
-#: gui/gamesetup/gamesetup.js:1381
+#: gui/gamesetup/gamesetup.js:1394
 msgctxt "map selection"
 msgid "Random"
 msgstr "عشوائيّة"
 
-#: gui/gamesetup/gamesetup.js:1658 gui/gamesetup/gamesetup.js:1697
+#: gui/gamesetup/gamesetup.js:1671 gui/gamesetup/gamesetup.js:1710
 #, javascript-format
 msgid "%(option)s:"
 msgstr "%(option)s:"
 
-#: gui/gamesetup/gamesetup.js:1663
+#: gui/gamesetup/gamesetup.js:1676
 msgctxt "option value"
 msgid "Unknown"
 msgstr "مجهول"
 
-#: gui/gamesetup/gamesetup.js:1690
+#: gui/gamesetup/gamesetup.js:1703
 msgid "Yes"
 msgstr "نعم"
 
-#: gui/gamesetup/gamesetup.js:1690
+#: gui/gamesetup/gamesetup.js:1703
 msgid "No"
 msgstr "لا"
 
-#: gui/gamesetup/gamesetup.js:1777
+#: gui/gamesetup/gamesetup.js:1790
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1972
+#: gui/gamesetup/gamesetup.js:1985
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "الذّكاء الاصطناعيّ: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1980
+#: gui/gamesetup/gamesetup.js:1993
 msgid "Unassigned"
 msgstr "غير معيّن"
 
-#: gui/gamesetup/gamesetup.js:2053
+#: gui/gamesetup/gamesetup.js:2068
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2060
+#: gui/gamesetup/gamesetup.js:2075
 msgid "Unknown Player"
 msgstr "لاعب مجهول"
 
-#: gui/gamesetup/gamesetup.js:2099
+#: gui/gamesetup/gamesetup.js:2114
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2100
+#: gui/gamesetup/gamesetup.js:2115
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2101
+#: gui/gamesetup/gamesetup.js:2116
 msgid "HH:mm"
 msgstr "HH:mm"
 

@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-26 09:03+0200\n"
-"PO-Revision-Date: 2017-05-26 14:49+0000\n"
+"POT-Creation-Date: 2017-05-29 09:07+0200\n"
+"PO-Revision-Date: 2017-05-29 15:24+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
@@ -81,7 +81,8 @@ msgstr "Opening %(url)s\n in default web browser. Please wait...."
 msgid "Opening page"
 msgstr "Opening page"
 
-#: gui/common/functions_global_object.js:69
+#. dennis-ignore: *
+#: gui/common/functions_global_object.js:70
 #, javascript-format
 msgid "FPS: %(fps)4s"
 msgstr "FPS: %(fps)4s"
@@ -132,7 +133,7 @@ msgstr "DELETE"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:246
 #: gui/options/options.js:334 gui/options/options.js:401
-#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:159
+#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:165
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
 #: gui/summary/summary.js:346
 msgid "No"
@@ -140,7 +141,7 @@ msgstr "No"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:246
 #: gui/options/options.js:334 gui/options/options.js:401
-#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:159
+#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:165
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
 #: gui/summary/summary.js:346
 msgid "Yes"
@@ -1094,8 +1095,8 @@ msgid "None"
 msgstr "None"
 
 #: gui/locale/locale_advanced.js:92
-msgid "<invalid>"
-msgstr "<invalid>"
+msgid "invalid locale"
+msgstr ""
 
 #: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:163
 #: gui/splashscreen/splashscreen.xml:(caption):28
@@ -1260,11 +1261,11 @@ msgstr "Incompatible replay"
 msgid "No summary data available."
 msgstr "No summary data available."
 
-#: gui/replaymenu/replay_actions.js:157
+#: gui/replaymenu/replay_actions.js:163
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr "Are you sure you want to delete this replay permanently?"
 
-#: gui/replaymenu/replay_actions.js:158
+#: gui/replaymenu/replay_actions.js:164
 msgid "Delete replay"
 msgstr "Delete replay"
 
@@ -1347,20 +1348,20 @@ msgstr "Rated games"
 msgid "Unrated games"
 msgstr "Unrated games"
 
-#: gui/replaymenu/replay_menu.js:190
+#: gui/replaymenu/replay_menu.js:193
 msgid "Filter replays by typing one or more, partial or complete playernames."
 msgstr "Filter replays by typing one or more, partial or complete playernames."
 
-#: gui/replaymenu/replay_menu.js:269
+#: gui/replaymenu/replay_menu.js:272
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
 msgstr "Players: %(numberOfPlayers)s"
 
-#: gui/replaymenu/replay_menu.js:296
+#: gui/replaymenu/replay_menu.js:299
 msgid "yyyy-MM-dd HH:mm"
 msgstr "yyyy-MM-dd HH:mm"
 
-#: gui/replaymenu/replay_menu.js:326
+#: gui/replaymenu/replay_menu.js:329
 msgid "yyyy-MM"
 msgstr "yyyy-MM"
 
@@ -2105,11 +2106,15 @@ msgid "Delete"
 msgstr "Delete"
 
 #: gui/replaymenu/replay_menu.xml:(caption):254
+msgid "Reload Cache"
+msgstr ""
+
+#: gui/replaymenu/replay_menu.xml:(caption):261
 #: gui/summary/summary.xml:(caption):23
 msgid "Summary"
 msgstr "Summary"
 
-#: gui/replaymenu/replay_menu.xml:(caption):260
+#: gui/replaymenu/replay_menu.xml:(caption):267
 msgid "Start Replay"
 msgstr "Start Replay"
 
@@ -2144,6 +2149,10 @@ msgstr "Population"
 msgctxt "replay"
 msgid "Duration"
 msgstr "Duration"
+
+#: gui/replaymenu/replay_menu.xml:(tooltip):255
+msgid "Rebuild the replay cache from scratch. Potentially slow!"
+msgstr ""
 
 #: gui/savedgames/load.xml:(heading):44
 msgctxt "replay"
@@ -2545,38 +2554,87 @@ msgstr "Save and restore match settings for quick reuse when hosting another gam
 msgid "Persist Match Settings"
 msgstr "Persist Match Settings"
 
+#: gui/options/options.jsongeneralSetting[13].parameters.list[0].label
+#: gui/options/options.jsongeneralSetting[14].parameters.list[0].label
+msgid "Everyone"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[13].parameters.list[1].label
+#: gui/options/options.jsongeneralSetting[14].parameters.list[1].label
+msgid "Buddies"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[13].parameters.list[2].label
+msgid "No one"
+msgstr ""
+
 #: gui/options/options.jsongeneralSetting[13].tooltip
-msgid "Allow observers to join the game after it started"
-msgstr "Allow observers to join the game after it started"
+msgid ""
+"Whether to assign joining clients to free playerslots in the gamesetup."
+msgstr ""
 
 #: gui/options/options.jsongeneralSetting[13].label
+msgid "Assign Players"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[14].parameters.list[2].label
+msgid "Disabled"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[14].tooltip
+msgid ""
+"Allow everybody or buddies only to join the game as observer after it "
+"started"
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[14].label
 msgid "Late Observer Joins"
 msgstr "Late Observer Joins"
 
-#: gui/options/options.jsongeneralSetting[14].tooltip
+#: gui/options/options.jsongeneralSetting[15].tooltip
 msgid "Prevent further observers from joining if the limit is reached"
 msgstr "Prevent further observers from joining if the limit is reached"
 
-#: gui/options/options.jsongeneralSetting[14].label
+#: gui/options/options.jsongeneralSetting[15].label
 msgid "Observer Limit"
 msgstr "Observer Limit"
 
-#: gui/options/options.jsongeneralSetting[15].tooltip
+#: gui/options/options.jsongeneralSetting[16].tooltip
 msgid "Number of units trained per batch"
 msgstr "Number of units trained per batch"
 
-#: gui/options/options.jsongeneralSetting[15].label
+#: gui/options/options.jsongeneralSetting[16].label
 msgid "Batch Training Size"
 msgstr "Batch Training Size"
 
-#: gui/options/options.jsongeneralSetting[16].tooltip
+#: gui/options/options.jsongeneralSetting[17].tooltip
 msgid ""
 "Show time that messages are posted in the lobby, gamesetup and ingame chat."
 msgstr "Show time that messages are posted in the lobby, gamesetup and ingame chat."
 
-#: gui/options/options.jsongeneralSetting[16].label
+#: gui/options/options.jsongeneralSetting[17].label
 msgid "Chat Timestamp"
 msgstr "Chat Timestamp"
+
+#: gui/options/options.jsongeneralSetting[18].tooltip
+msgid ""
+"Display the range of auras of selected units and structures (can also be "
+"toggled in-game with the hotkey)."
+msgstr "Display the range of auras of selected units and structures (can also be toggled in-game with the hotkey)."
+
+#: gui/options/options.jsongeneralSetting[18].label
+msgid "Aura Range Visualization"
+msgstr "Aura Range Visualization"
+
+#: gui/options/options.jsongeneralSetting[19].tooltip
+msgid ""
+"Display the healing range of selected units (can also be toggled in-game "
+"with the hotkey)."
+msgstr ""
+
+#: gui/options/options.jsongeneralSetting[19].label
+msgid "Heal Range Visualization"
+msgstr ""
 
 #: gui/options/options.jsonsoundSetting[0].tooltip
 msgid "Master audio gain"
@@ -2825,16 +2883,6 @@ msgstr "To save CPU workload, throttle render frequency in running games. Set to
 #: gui/options/options.jsongraphicsSetting[17].label
 msgid "FPS throttling in games"
 msgstr "FPS throttling in games"
-
-#: gui/options/options.jsongraphicsSetting[18].tooltip
-msgid ""
-"Display the range of auras of selected units and structures (can also be "
-"toggled in-game with the hotkey)."
-msgstr "Display the range of auras of selected units and structures (can also be toggled in-game with the hotkey)."
-
-#: gui/options/options.jsongraphicsSetting[18].label
-msgid "Aura Range Visualization"
-msgstr "Aura Range Visualization"
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."

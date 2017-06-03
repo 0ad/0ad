@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-11-28 09:00+0100\n"
-"PO-Revision-Date: 2017-03-31 15:53+0000\n"
+"POT-Creation-Date: 2017-05-29 09:06+0200\n"
+"PO-Revision-Date: 2017-05-29 16:36+0000\n"
 "Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -312,17 +312,14 @@ msgid "Celtic religion and druidry inspired their warlike mindset. "
 msgstr "Zelta erlijioak eta druiden egiteak bere borroka izpiritua pizten zuten"
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
-msgid "Bonus to tech speed."
-msgstr "Ikerketa abiadura apur bat hobetzen du."
+msgid "-20% resources cost for allies healers."
+msgstr "Sendagile aliatuentzat baliabideen kostua %20- gutxitzen da."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
-msgid "Druides"
+msgid "Druids"
 msgstr "Aztiak"
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].History
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].History
 msgid ""
 "The Druids of the Celts maintained an organized religion that advanced the "
 "technology of their people even during wartime."
@@ -560,8 +557,8 @@ msgid ""
 msgstr "Iberiar Penintsulan nola, Afrika Iparraldea zaldi aberria bezala ezaguna zen, urtero 100.000 zela sortzeko gai zelarik. Basoko iparafrikar elefantearen bizilekua ere izan zen."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "+33% trade profit international routes."
-msgstr "%33+ irabazia nazioarteko bide trukeengatik."
+msgid "10% bonus of trade profit for ally's international routes."
+msgstr "%10+ irabazia merkataritzan aliatuen bide internazionaletatik."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -765,6 +762,20 @@ msgstr "Kartago, gaur egungo Tunezen kokaturiko estatu-hiria, mendebaldeko Medit
 #: simulation/data/civs/gaul.jsonFactions[0].Name
 msgid "Gauls"
 msgstr "Galiarrak"
+
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
+msgid "-10% research time for technologies of allies."
+msgstr "%10- ikertze denboran aliatuen teknologientzako."
+
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
+msgid "Druidic Wisdom"
+msgstr "Druidic Wisdom"
+
+#: simulation/data/civs/gaul.jsonTeamBonuses[0].History
+msgid ""
+"The Druids of the Gauls maintained an organized religion that advanced the "
+"technology of their people even during wartime."
+msgstr "Druida Galiarrek erlijioa antolaturik mantentzen zuten bere jendearen teknologia hobetuz baita guda garaietan ere."
 
 #: simulation/data/civs/gaul.jsonAINames[0]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
@@ -1158,8 +1169,8 @@ msgid ""
 msgstr "Greziarrak onak ziren atzerritarrak Helenizatzen. Garai Helenistikoan zehar, greziera zen mundu zaharreko 'lingua franca', Espainiatik Indiaraino mintzatua."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
-msgid "+15% tribute and trade bonus on metal."
-msgstr "%15 gehiagoko bonusa metalaren zerga eta salerosketan."
+msgid "+20% sell prices at market."
+msgstr "%20+ prezioak saldu merkatuan."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -1419,12 +1430,12 @@ msgid ""
 msgstr "Kshatriya edo Kashtriya, hau da borrokalaria, Hinduismoaren lau varnetako (gizarte kasta nagusiak) bat da. Ohituraren aginduz Kshatriya herrialdea zuzentzen zuen elite militarra zen, eta horrela azaltzen zen Vedic-Hindu Vedak eutsitako giza erakundean, Manuren legeetan azalduak."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
-msgid "Allied Temple techs -50% cost and research time."
-msgstr "Aliatuen tenpluen teknologiak %50- gutxitzen dute bere kostua eta ikerketa denbora."
+msgid "Allied temples and temple technologies -50% cost and research time."
+msgstr "Bakoitzaren eta aliatuen tenpluen teknologiak %50-  kostua eta ikerketa denbora."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
-msgid "Evangelism."
-msgstr "Ebanjelismoa."
+msgid "Ashoka's Religious Support"
+msgstr "Ashokaren Laguntza Erlijiosoa "
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].History
 msgid ""
@@ -1597,8 +1608,8 @@ msgid ""
 msgstr "Persiarrek infanteriako derrigorrezko erreklutatzeak egin ahal izan zituzten eta egin zituzten gerra garaian Arkemenida inperioaren tamaina handia eta berau osatzeko era zela eta. Orokorrean, infanteria ondo erakutsita zegoen eta indartsu oldartzen zen, nahiz aurrez-aurreko borroketan ahul ibili. Aipatzekoa da eliteko erregimentuez aparte, persiar infanteria ez zegoela profesional gisa edo egonkor bezala ikusia."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
-msgid "+25% trade profit land routes."
-msgstr "%33+ irabazia lurreko ibilbideengatik."
+msgid "Higher income (+15%) from land trade routes for ally's traders."
+msgstr "Irabazi handiagoak (%15+) lurretik egiten duten ibilbideentzat aliatutako merkatarientzako."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -2064,17 +2075,23 @@ msgid ""
 msgstr "Antzinen Erromatar hiritarrak oso estimatuak ziren. Erromatarrek zituzten oinarrizko eskubide eta abantailak konkistatutako beste herriei ukatzen zitzaizkien. Erromako hiritar bat zauritzea Erroma bera zauritzea zela esaten zen, eta Erromako botere dena jaso zezakeen arau hausleak. "
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
-msgid "Allied citizen-soldiers gain a +15% attack when in Roman territory."
-msgstr "Hiritar-soldadu aliatuek %15+ irabazten dute erasoan Erromatarren lurretan."
+msgid "-20% training time for allied infantry."
+msgstr "%20- entrenatzen aliatuen infanterirako."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
-msgid "Socii"
-msgstr "Socii"
+msgid "Conscription"
+msgstr "Derrigorrezko erreklutatzea"
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].History
 msgid ""
-"Being allied with Rome came with great benefits (as well as great peril)."
-msgstr "Erromarekin bat egiteak onura asko ekarri zituen (baita arrisku handia ere)."
+"Many Roman soldiers were conscripted into service. While volunteers were "
+"preferred, the Roman state did maintain an annual military draft. During an "
+"emergency the draft and the terms of service were enlarged. The importance "
+"of military service in Republican Rome was so great it was a prerequisite "
+"for a political career. Members of the Senate were called Conscript Fathers "
+"because of this, reflected in how the ordo equester was said to have been "
+"\"conscripted\" into the Senate."
+msgstr "Erromatar soldadu asko zerbitzuan erreklutatuak izan ziren. Boluntarioak nahiago zituenean, Erromatar estatuak urteroko proiektuarekin jarraitu zuen. Larrialdi baten bitartean proiektua eta zerbitzuaren baldintzak luzatu ziren. Zerbitzu militarraren garrantzia Erromako errepublikan, ezinbesteko bete beharra zela politikan aritzeko. Hau dela eta, senatuko partaideak Soldadu Gurasoak izan ziren deituak, eta hau ikusten da ordo equester Senatuan \"erreklutatua\" izan zela esatean."
 
 #: simulation/data/civs/rome.jsonAINames[0]
 msgid "Lucius Junius Brutus"
@@ -2558,8 +2575,10 @@ msgid ""
 msgstr "Lycurgus legegile ospetsuak idatzitako konstituzioaren pean, Agoge instituzioa sortu zen, non Espartarrak Espartar estatua defendatzeko goi mailako gudariak izateko ikasten zuten 6 urte betetzen zituztenetik aurrera."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
-msgid "Allies can train Spartiates."
-msgstr "Aliatuek Espartiatak entrenatu ditzakete."
+msgid ""
+"Increases the health for citizen-soldier infantry spearmen by 10% for allies"
+" of Spartan players."
+msgstr "Espartar jokalarien aliatuei infanteriako lantzari hiritar gudarien kostua %10 igotzen die."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"

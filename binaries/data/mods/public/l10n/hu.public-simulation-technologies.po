@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-04-28 09:02+0200\n"
-"PO-Revision-Date: 2017-04-28 18:36+0000\n"
+"POT-Creation-Date: 2017-05-27 14:49+0200\n"
+"PO-Revision-Date: 2017-05-28 16:12+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -2423,8 +2423,8 @@ msgid ""
 msgstr "Az Anusiya Bajnok gyalogos kétszer gyorsabban kiképződik, de veszít egy keveset a max életerőből."
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
-msgid "Anusiya Champion Infantry -50% train time, but also -20 health."
-msgstr "Az Anusiya Bajnok gyalogosnak -50% kiképzési idő, de -20 életerő."
+msgid "Anusiya Champion Infantry -50% train time, but also -10% health."
+msgstr "Az Anusiya bajnok gyalogságnak -50% kiképzési idő, de -10% életerő."
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -2493,15 +2493,15 @@ msgstr "Gyalogság sorozása"
 
 #: simulation/data/technologies/persians/training_levy_cavalry.jsontooltip
 msgid ""
-"All cavalry -20% train time, but also -10 health. Unlocks Cavalry "
+"All cavalry -20% train time, but also -5% health. Unlocks Cavalry "
 "Conscription."
-msgstr "Minden lovassági egységnek -20% kiképzési idő, de -10 életerő. Elérhetővé teszi a lovasság sorozását."
+msgstr "Minden lovassági egységnek -20% kiképzési idő, de -5% életerő. Elérhetővé teszi a lovasság sorozását."
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
 msgid ""
-"All infantry -10% train time, but also -5 health. Unlocks Infantry "
+"All infantry -20% train time, but also -5% health. Unlocks Infantry "
 "Conscription."
-msgstr "Minden gyalogsági egységnek -10% kiképzési idő, de -5 életerő. Elérhetővé teszi a gyalogság sorozását."
+msgstr "Minden gyalogsági egységnek -20% kiképzési idő, de -5% életerő. Elérhetővé teszi a gyalogság sorozását."
 
 #: simulation/data/technologies/romans/decay_logistics.jsondescription
 msgid "The Romans were masters of the logistics of warfare."
