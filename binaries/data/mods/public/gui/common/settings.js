@@ -192,7 +192,7 @@ function loadMapTypes()
 		{
 			"Name": "random",
 			"Title": translateWithContext("map", "Random"),
-			"Description": translate("Create a unique map with a different resource distribution each time. Freely chose the number of players and teams.")
+			"Description": translate("Create a unique map with a different resource distribution each time. Freely select the number of players and teams.")
 		},
 		{
 			"Name": "scenario",

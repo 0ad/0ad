@@ -311,8 +311,8 @@ function getGameDescription(extended = false)
 				g_GameAttributes.settings.Ceasefire == 0 ?
 					translate("disabled") :
 					sprintf(translatePlural(
-						"For the first minute, enemies will stay neutral.",
-						"For the first %(min)s minutes, enemies will stay neutral.",
+						"For the first minute, other players will stay neutral.",
+						"For the first %(min)s minutes, other players will stay neutral.",
 						g_GameAttributes.settings.Ceasefire),
 					{ "min": g_GameAttributes.settings.Ceasefire })
 		});

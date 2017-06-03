@@ -63,8 +63,8 @@ var drownHeight = 1;
  */
 var waterWarningTexts = [
 	markForTranslation("It keeps on raining, we will have to evacuate soon!"),
-	markForTranslation("The rivers are standing high, we need to find a save place!"),
-	markForTranslation("We have to find dry ground, our lands will drawn soon!"),
+	markForTranslation("The rivers are standing high, we need to find a safe place!"),
+	markForTranslation("We have to find dry ground, our lands will drown soon!"),
 	markForTranslation("The lakes start swallowing the land, we have to find shelter!")
 ];
 
