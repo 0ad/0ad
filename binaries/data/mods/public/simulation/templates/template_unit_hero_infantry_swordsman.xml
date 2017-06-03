@@ -10,14 +10,14 @@
       <Pierce>0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>5.0</MaxRange>
-      <PrepareTime>500</PrepareTime>
+      <PrepareTime>375</PrepareTime>
       <RepeatTime>750</RepeatTime>
       <PreferredClasses datatype="tokens">Human Siege</PreferredClasses>
     </Melee>
   </Attack>
   <Cost>
     <Resources>
-      <wood>150</wood>
+      <wood op="add">-50</wood>
       <metal op="add">50</metal>
     </Resources>
   </Cost>
