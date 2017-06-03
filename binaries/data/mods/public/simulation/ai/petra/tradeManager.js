@@ -391,8 +391,8 @@ m.TradeManager.prototype.checkEvents = function(gameState, events)
  */
 m.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 {
-	let market1 = gameState.updatingCollection("OwnMarkets", API3.Filters.byClass("Market"), gameState.getOwnStructures());
-	let market2 = gameState.updatingCollection("ExclusiveAllyMarkets", API3.Filters.byClass("Market"), gameState.getExclusiveAllyEntities());
+	let market1 = gameState.updatingCollection("OwnMarkets", API3.Filters.byClass("Market"), gameState.getOwnStructures()).toEntityArray();
+	let market2 = gameState.updatingCollection("ExclusiveAllyMarkets", API3.Filters.byClass("Market"), gameState.getExclusiveAllyEntities()).toEntityArray();
 	if (market1.length + market2.length < 2)  // We have to wait  ... markets will be built soon
 	{
 		this.tradeRoute = undefined;
@@ -400,8 +400,7 @@ m.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 		return false;
 	}
 
-	let onlyOurs = !market2.hasEntities();
-	if (onlyOurs)
+	if (!market2.length)
 		market2 = market1;
 	let candidate = { "gain": 0 };
 	let potential = { "gain": 0 };
@@ -410,15 +409,15 @@ m.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 
 	let traderTemplatesGains = gameState.getTraderTemplatesGains();
 
-	for (let m1 of market1.values())
+	for (let m1 of market1)
 	{
 		if (!m1.position())
 			continue;
 		let access1 = m.getLandAccess(gameState, m1);
 		let sea1 = m1.hasClass("NavalMarket") ? m.getSeaAccess(gameState, m1) : undefined;
-		for (let m2 of market2.values())
+		for (let m2 of market2)
 		{
-			if (onlyOurs && m1.id() >= m2.id())
+			if (m1.id() === m2.id())
 				continue;
 			if (!m2.position())
 				continue;
@@ -427,8 +426,6 @@ m.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 			let land = access1 == access2 ? access1 : undefined;
 			let sea = sea1 && sea1 == sea2 ? sea1 : undefined;
 			if (!land && !sea)
-				continue;
-			if (land && m.isLineInsideEnemyTerritory(gameState, m1.position(), m2.position()))
 				continue;
 			let gainMultiplier;
 			if (land && traderTemplatesGains.landGainMultiplier)

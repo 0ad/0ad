@@ -300,24 +300,6 @@ m.isNotWorthBuilding = function(gameState, ent)
 	return false;
 };
 
-/**
- * Check if the straight line between the two positions crosses an enemy territory
- */
-m.isLineInsideEnemyTerritory = function(gameState, pos1, pos2, step=70)
-{
-	let dist = Math.sqrt(API3.SquareVectorDistance(pos1, pos2));
-	let n = Math.floor(Math.sqrt(API3.SquareVectorDistance(pos1, pos2))/step) + 1;
-	let stepx = (pos2[0] - pos1[0]) / n;
-	let stepy = (pos2[1] - pos1[1]) / n;
-	for (let i = 1; i < n; ++i)
-	{
-		let owner = gameState.ai.HQ.territoryMap.getOwner([pos1[0]+i*stepx, pos1[1]+i*stepy]);
-		if (owner && gameState.isPlayerEnemy(owner))
-			return true;
-	}
-	return false;
-};
-
 m.dumpEntity = function(ent)
 {
 	if (!ent)
