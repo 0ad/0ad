@@ -82,7 +82,7 @@ var g_SummaryTypes = {
 	},
 	"received": {
 		"color": g_TypeColors.red,
-		"caption": translate("Recieved"),
+		"caption": translate("Received"),
 		"postfix": "\n"
 	},
 	"sold": {

@@ -413,11 +413,11 @@ function updateHotkeyTooltips()
 		translate("Find idle worker");
 
 	Engine.GetGUIObjectByName("tradeHelp").tooltip = colorizeHotkey(
-		translate("Select one type of goods you want to modify by clicking on it (Pressing %(hotkey)s while selecting will also bring its share to 100%%) and then use the arrows of the other types to modify their shares."),
+		translate("Select one type of goods you want to modify by clicking on it, and then use the arrows of the other types to modify their shares. You can also press %(hotkey)s while selecting one type of goods to bring its share to 100%%."),
 		"session.fulltradeswap");
 
 	Engine.GetGUIObjectByName("barterHelp").tooltip = sprintf(
-		translate("Start by selecting the resource from the upper row that you wish to sell. Upon each press on one of the lower buttons, %(quantity)s of the upper resource will be sold for the displayed quantity of the lower. Press and hold %(hotkey)s to temporarily multiply all quantities by %(multiplier)s."), {
+		translate("Start by selecting the resource you wish to sell from the upper row. For each time the lower buttons are pressed, %(quantity)s of the upper resource will be sold for the displayed quantity of the lower. Press and hold %(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."), {
 			"quantity": g_BarterResourceSellQuantity,
 			"hotkey": colorizeHotkey("%(hotkey)s", "session.massbarter"),
 			"multiplier": g_BarterMultiplier
@@ -841,7 +841,7 @@ function confirmExit()
 		g_ConfirmExit == "won" ?
 			translate("VICTORIOUS!") :
 			translate("DEFEATED!"),
-		askExit ? [translate("No"), translate("Yes")] : [translate("Ok")],
+		askExit ? [translate("No"), translate("Yes")] : [translate("OK")],
 		askExit ? [resumeGame, leaveGame] : [resumeGame]
 	);
 

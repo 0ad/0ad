@@ -665,7 +665,7 @@ function handleNetStatusMessage(message)
 function handleClientsLoadingMessage(guids)
 {
 	let loadingClientsText = Engine.GetGUIObjectByName("loadingClientsText");
-	loadingClientsText.caption = guids.map(guid => colorizePlayernameByGUID(guid)).join(translate(", "));
+	loadingClientsText.caption = guids.map(guid => colorizePlayernameByGUID(guid)).join(translateWithContext("Separator for a list of client loading messages", ", "));
 }
 
 function onNetworkOutOfSync(msg)
@@ -676,7 +676,7 @@ function onNetworkOutOfSync(msg)
 		}),
 
 		sprintf(translateWithContext("Out-Of-Sync", "Players: %(players)s"), {
-			"players": msg.players.join(translate(", "))
+			"players": msg.players.join(translateWithContext("Separator for a list of players", ", "))
 		}),
 
 		msg.hash == msg.expectedHash ?
@@ -692,7 +692,7 @@ function onNetworkOutOfSync(msg)
 	{
 		txt.push(
 			translateWithContext("Out-Of-Sync", "Ensure all players use the same mods."),
-			translateWithContext("Out-Of-Sync", 'Click on "Report Bugs" in the main menu to help fix this.'),
+			translateWithContext("Out-Of-Sync", 'Click on "Report a Bug" in the main menu to help fix this.'),
 			sprintf(translateWithContext("Out-Of-Sync", "Replay saved to %(filepath)s"), {
 				"filepath": escapeText(msg.path_replay)
 			}),

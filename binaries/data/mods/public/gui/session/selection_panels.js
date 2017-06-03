@@ -799,7 +799,7 @@ g_SelectionPanels.Research = {
 					}
 
 					tip += " " + sprintf(translate("Remaining: %(entityCounts)s"), {
-						"entityCounts": entityCounts.join(translate(", "))
+						"entityCounts": entityCounts.join(translateWithContext("Separator for a list of entity counts", ", "))
 					});
 				}
 				tooltips.push(tip);

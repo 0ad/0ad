@@ -1102,7 +1102,7 @@ function updatePauseOverlay()
 
 	Engine.GetGUIObjectByName("pausedByText").hidden = !g_IsNetworked;
 	Engine.GetGUIObjectByName("pausedByText").caption = sprintf(translate("Paused by %(players)s"),
-		{ "players": g_PausingClients.map(guid => colorizePlayernameByGUID(guid)).join(translate(", ")) });
+		{ "players": g_PausingClients.map(guid => colorizePlayernameByGUID(guid)).join(translateWithContext("Separator for a list of players", ", ")) });
 
 	Engine.GetGUIObjectByName("pauseOverlay").hidden = !(g_Paused || g_PausingClients.length);
 	Engine.GetGUIObjectByName("pauseOverlay").onPress = g_Paused ? togglePause : function() {};
