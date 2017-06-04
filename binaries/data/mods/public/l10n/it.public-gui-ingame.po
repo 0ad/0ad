@@ -24,6 +24,7 @@
 # Me Lazzi, 2014-2017
 # Michele Marongiu <michelemarongiu@gmail.com>, 2016
 # Nicola Jelmorini, 2014
+# Paolo Gianpaolo <gpuse91@gmail.com>, 2017
 # Raptor86 <raptor86@inwind.it>, 2014
 # Riccardo Di Maio <riccardodimaio11@gmail.com>, 2015
 # Rivoltano, 2013
@@ -36,9 +37,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-26 09:02+0200\n"
-"PO-Revision-Date: 2017-05-26 17:01+0000\n"
-"Last-Translator: Me Lazzi\n"
+"POT-Creation-Date: 2017-05-27 14:48+0200\n"
+"PO-Revision-Date: 2017-06-02 13:57+0000\n"
+"Last-Translator: Paolo Gianpaolo <gpuse91@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -894,7 +895,7 @@ msgstr "Incrementa ad %(name)s."
 
 #: gui/session/selection_panels.js:1132
 msgid "Cancel Upgrading"
-msgstr "Cancella l'incremento"
+msgstr "Annulla Miglioramento"
 
 #: gui/session/selection_panels.js:1137
 msgid "Cannot upgrade when the entity is already upgrading."
@@ -1399,7 +1400,7 @@ msgstr "Opzioni"
 msgid "Resign"
 msgstr "Abbandona"
 
-#: gui/session/menu.xml:(caption):96 gui/session/session.xml:(caption):163
+#: gui/session/menu.xml:(caption):96 gui/session/session.xml:(caption):67
 msgid "Exit"
 msgstr "Esci"
 
@@ -1408,11 +1409,11 @@ msgstr "Esci"
 msgid "Objectives"
 msgstr "Obiettivi"
 
-#: gui/session/session.xml:(caption):62
+#: gui/session/session.xml:(caption):77
 msgid "Game Paused"
 msgstr "Partita in Pausa"
 
-#: gui/session/session.xml:(caption):65
+#: gui/session/session.xml:(caption):80
 msgid "Click to Resume Game"
 msgstr "Clic per Continuare la Partita"
 

@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Nicolas Auvray <na.itms76@gmail.com>, 2017
 # Omar Anwar <omaraglan91@yahoo.com>, 2017
 # Rayan <nitro361@gmail.com>, 2015
 # صفا الفليج <safaalfulaij@hotmail.com>, 2015-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-26 09:04+0200\n"
-"PO-Revision-Date: 2017-05-26 14:20+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-06-02 09:04+0200\n"
+"PO-Revision-Date: 2017-06-03 10:26+0000\n"
+"Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -210,8 +211,8 @@ msgstr "دع كلاً من شعبنا يزدهر من هذا السلام،  %(_
 
 #: simulation/ai/petra/chatHelper.js:79
 #, javascript-format
-msgid "We have found common ground, %(_player)s. I accept the alliance."
-msgstr "لقد وجدنا ارضية مشتركة،  %(_player)s. انا اقبل التحالف."
+msgid "We have found common ground, %(_player_)s. I accept the alliance."
+msgstr ""
 
 #: simulation/ai/petra/chatHelper.js:80
 #, javascript-format
@@ -938,7 +939,7 @@ msgstr "الموارد غير كافية - %(resourceAmount1)s من %(resourceTy
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
-msgstr "الموارد غير كافية - %(resourceAmount1)s من %(resourceType1)s، و%(resourceAmount2)s من %(resourceType2)s، و%(resourceAmount3)s من %(resourceType3)s، و%(resourceAmount4)s من %(resourceType4)s"
+msgstr "الموارد غير كافية - %(resourceAmount1)s من %(resourceType1)s، و%(resourceAmount2)s من %(resourceType2)s، و%(resourceAmount3)s من %(resourceType3)s"
 
 #: simulation/components/Player.js:302
 #, javascript-format

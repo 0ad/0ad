@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Dmytro Ryl'kov <tverdislav@ukr.net>, 2016-2017
+# Nicolas Auvray <na.itms76@gmail.com>, 2017
 # Oleg Adept <adeptoleg@gmail.com>, 2016
 # Антон Курило, 2017
 # Victor Butko <victor.butko@gmail.com>, 2014
@@ -14,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-05-29 09:07+0200\n"
-"PO-Revision-Date: 2017-05-29 15:24+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-06-03 10:52+0000\n"
+"Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -65,7 +66,7 @@ msgstr "Історія %(civilization)s"
 #: gui/common/color.js:154
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames."
-msgstr "Натисніть %(hotkey) для автоматичного доповнення імені користувача."
+msgstr "Натисніть %(hotkey)s для автоматичного доповнення імені користувача."
 
 #: gui/common/color.js:157
 msgctxt "hotkey"
@@ -1186,7 +1187,7 @@ msgid ""
 "(fixed function) graphics. This option will be removed in a future 0 A.D. "
 "release, to allow for more advanced graphics features. We advise upgrading "
 "your graphics card to a more recent, shader-compatible model."
-msgstr "%(startWarning)Увага:%(endWarning)s Ви судячи з усього використовуєте НЕ-шейдерну (вбудовану) графіку. Ця опція буде видалена в майбутньому випуску 0 A.D., щоб забезпечити більш досконалі графічні рішення. Ми рекомендуємо замінити вашу графічну карту на більш нову, шейдерно-сумісну модель."
+msgstr "%(startWarning)sУвага:%(endWarning)s Ви судячи з усього використовуєте НЕ-шейдерну (вбудовану) графіку. Ця опція буде видалена в майбутньому випуску 0 A.D., щоб забезпечити більш досконалі графічні рішення. Ми рекомендуємо замінити вашу графічну карту на більш нову, шейдерно-сумісну модель."
 
 #. Translation: This is the second paragraph of a warning. The
 #. warning explains that the user is using “non-shader“ graphics,

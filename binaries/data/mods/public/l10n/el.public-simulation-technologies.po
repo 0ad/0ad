@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-27 14:49+0200\n"
-"PO-Revision-Date: 2017-05-27 16:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-06-02 09:04+0200\n"
+"PO-Revision-Date: 2017-06-03 18:50+0000\n"
+"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -91,6 +91,7 @@ msgstr "Περικεφαλαία αλόγου"
 #: simulation/data/technologies/training_levy_infantry.jsonrequirementsTooltip
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonrequirementsTooltip
+#: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/cost_italian_mercs.jsonrequirementsTooltip
@@ -703,8 +704,8 @@ msgid ""
 msgstr "Μυστικές τεχνικές στη χαλυβουργία δίνουν στις λεπίδες των σπαθιών διακριτικά και όμορφες επιγραφές. Και όχι μόνο αυτό, αλλά η σκληρότητα του χάλυβα είναι απαράμιλλη."
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
-msgid "+2 attack for all sword units."
-msgstr "+2 επίθεση για όλους τους ξιφομάχους."
+msgid "+20% Hack attack for all sword units."
+msgstr "+20% επίθεση κοψίματος για όλους τους ξιφομάχους."
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
@@ -1873,6 +1874,19 @@ msgstr "Προαγωγή Πολίτη-Πεζικάριου"
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.athen
 msgid "Zeugítai"
 msgstr "Ζευγίται"
+
+#: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsondescription
+msgid "Hire professional mercenaries to fight in your army."
+msgstr ""
+
+#: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
+msgid ""
+"Mercenaries are promoted to advanced rank but require +20% training time."
+msgstr ""
+
+#: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsongenericName
+msgid "Expertise In War"
+msgstr ""
 
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsontooltip
 msgid ""

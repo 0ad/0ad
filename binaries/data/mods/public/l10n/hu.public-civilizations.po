@@ -5,7 +5,7 @@
 # Translators:
 # Aqualung <molnar.boldizsar@gmail.com>, 2014
 # Attila Kocsner, 2014
-# Balázs Meskó <meskobalazs@gmail.com>, 2015-2016
+# Balázs Meskó <meskobalazs@gmail.com>, 2015-2017
 # Balázs Úr <urbalazs@gmail.com>, 2015-2016
 # Benedict Drummer <inactive+beni1999@transifex.com>, 2015
 # Benedict Drummer <inactive+beni1999@transifex.com>, 2015
@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-05-29 09:06+0200\n"
-"PO-Revision-Date: 2017-05-29 14:56+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-06-03 15:29+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -327,11 +327,11 @@ msgstr "A kelta vallás és a druidák inspirálták harcias természetüket."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
 msgid "-20% resources cost for allies healers."
-msgstr ""
+msgstr "-20% nyersanyagköltség a szövetséges gyógyítóknál."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 msgid "Druids"
-msgstr ""
+msgstr "Druidák"
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].History
 msgid ""
@@ -572,7 +572,7 @@ msgstr "Mint az Ibériai-félsziget, Észak-Afrika is a lovasságáról volt ism
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
 msgid "10% bonus of trade profit for ally's international routes."
-msgstr ""
+msgstr "10% bónusz profit a szövetségesek nemzetközi kereskedelmi utaihoz."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -779,17 +779,17 @@ msgstr "Gallok"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
 msgid "-10% research time for technologies of allies."
-msgstr ""
+msgstr "-10% kutatási idő a szövetségesek technológiáinál."
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druidic Wisdom"
-msgstr ""
+msgstr "Druida bölcsesség"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].History
 msgid ""
 "The Druids of the Gauls maintained an organized religion that advanced the "
 "technology of their people even during wartime."
-msgstr ""
+msgstr "A gall druidák szervezett vallást tartottak fent, ami még háborús időkben is segítette technikai fejlődésüket."
 
 #: simulation/data/civs/gaul.jsonAINames[0]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
@@ -1184,7 +1184,7 @@ msgstr "A görögök nagyon sikeresen hellenizálták a különböző idegeneket
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
 msgid "+20% sell prices at market."
-msgstr ""
+msgstr "+20% eladási ár a piacon."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -2090,11 +2090,11 @@ msgstr "A római polgárjog nagyra értékelt volt az ókori világban. Olyan al
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
 msgid "-20% training time for allied infantry."
-msgstr ""
+msgstr "-20% kiképzési idő a szövetséges gyalogságnak."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
 msgid "Conscription"
-msgstr ""
+msgstr "Sorozás"
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].History
 msgid ""
@@ -2592,7 +2592,7 @@ msgstr "A mitikus törvényhozó, Lükurgosz alkotmánya alapította meg az agó
 msgid ""
 "Increases the health for citizen-soldier infantry spearmen by 10% for allies"
 " of Spartan players."
-msgstr ""
+msgstr "10%-kal növeli a polgári lándzsás gyalogosok életerejét a spártai játékosok a spártai játékosok szövetségeseinek."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"

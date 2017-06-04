@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-27 14:49+0200\n"
-"PO-Revision-Date: 2017-05-28 16:12+0000\n"
+"POT-Creation-Date: 2017-06-02 09:04+0200\n"
+"PO-Revision-Date: 2017-06-02 21:45+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -92,6 +92,7 @@ msgstr "Chamfron"
 #: simulation/data/technologies/training_levy_infantry.jsonrequirementsTooltip
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonrequirementsTooltip
+#: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/cost_italian_mercs.jsonrequirementsTooltip
@@ -704,8 +705,8 @@ msgid ""
 msgstr "A titkos acélmegmunkálási technikák egyedivé teszik a kardpengét és gyönyörű mintázatot adnak. Ezeken kívül az acél keménysége is összehasonlíthatatlan."
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
-msgid "+2 attack for all sword units."
-msgstr "+2 támadás minden kardos egységnek."
+msgid "+20% Hack attack for all sword units."
+msgstr "+20% vágási támadás minden kardos egységnek."
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
@@ -1874,6 +1875,19 @@ msgstr "Fejlett gyalogos polgár"
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.athen
 msgid "Zeugítai"
 msgstr "Zeugítai"
+
+#: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsondescription
+msgid "Hire professional mercenaries to fight in your army."
+msgstr "Hivatásos zsoldosok felbérlése, hogy a seregedben harcoljanak."
+
+#: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
+msgid ""
+"Mercenaries are promoted to advanced rank but require +20% training time."
+msgstr "A zsoldosok fejlett ranggal érkeznek, de +20%-kal hosszabb a kiképzési idejük."
+
+#: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsongenericName
+msgid "Expertise In War"
+msgstr "Hadi tapasztalat"
 
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsontooltip
 msgid ""

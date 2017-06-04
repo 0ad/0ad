@@ -39,7 +39,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-05-29 09:07+0200\n"
-"PO-Revision-Date: 2017-06-02 00:49+0000\n"
+"PO-Revision-Date: 2017-06-03 17:41+0000\n"
 "Last-Translator: Polakrity <sxk-fr@live.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -1120,7 +1120,7 @@ msgstr "Aucun"
 
 #: gui/locale/locale_advanced.js:92
 msgid "invalid locale"
-msgstr ""
+msgstr "locale invalide"
 
 #: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:163
 #: gui/splashscreen/splashscreen.xml:(caption):28
@@ -2634,7 +2634,7 @@ msgstr "Taille des groupes d'unités entraînées."
 #: gui/options/options.jsongeneralSetting[17].tooltip
 msgid ""
 "Show time that messages are posted in the lobby, gamesetup and ingame chat."
-msgstr "Montrer l'heure à laquelle sont postés les messages dans le chat du hall, lors de la préparation du jeu et en cours de partie."
+msgstr "Afficher l'heure à laquelle sont postés les messages dans le chat du hall, lors de la préparation du jeu et en cours de partie."
 
 #: gui/options/options.jsongeneralSetting[17].label
 msgid "Chat Timestamp"
@@ -2702,7 +2702,7 @@ msgstr "Volume de l'interface"
 
 #: gui/options/options.jsonsoundSetting[5].tooltip
 msgid "Receive audio notification when someone types your nick"
-msgstr "Recevoir une notification audio lorsqu'une personne écrit votre nom d'utilisateur dans le tchat."
+msgstr "Recevoir une notification audio lorsqu'une personne écrit votre nom d'utilisateur dans le chat."
 
 #: gui/options/options.jsonsoundSetting[5].label
 msgid "Nick Notification"
@@ -2710,7 +2710,7 @@ msgstr "Notification de nom d'utilisateur"
 
 #: gui/options/options.jsonnotificationSetting[0].tooltip
 msgid "Show a chat notification if you are attacked by another player"
-msgstr "Affiche une notification dans la discussion lorsque vous êtes attaqué par un autre joueur"
+msgstr "Affiche une notification dans la discussion lorsque vous êtes attaqué par un autre joueur."
 
 #: gui/options/options.jsonnotificationSetting[0].label
 msgid "Attack"
@@ -2728,7 +2728,7 @@ msgstr "Tribut"
 
 #: gui/options/options.jsonnotificationSetting[2].tooltip
 msgid "Show a chat notification to observers when a player bartered resources"
-msgstr "Affiche une notification dans la discussion aux spectateurs lorsqu'un joueur troc des ressources"
+msgstr "Affiche une notification dans la discussion aux spectateurs lorsqu'un joueur troc des ressources."
 
 #: gui/options/options.jsonnotificationSetting[2].label
 msgid "Barter"
@@ -2740,7 +2740,7 @@ msgstr "Désactiver"
 
 #: gui/options/options.jsonnotificationSetting[3].parameters.list[1].label
 msgid "Completed"
-msgstr "Terminé"
+msgstr "Terminée"
 
 #: gui/options/options.jsonnotificationSetting[3].parameters.list[2].label
 msgid "All displayed"
@@ -3408,7 +3408,7 @@ msgstr "- Bon marché, coûte 80 de bois."
 
 #: gui/text/tips/outposts.txt:6
 msgid "- They construct quickly, but are weak."
-msgstr "- Ils sont construits rapidement, mais sont faibles."
+msgstr "- Ils se construisent rapidement, mais sont faibles."
 
 #: gui/text/tips/outposts.txt:8
 msgid ""
@@ -3620,7 +3620,7 @@ msgstr "- Un site de stockage bon marché pour les ressources non alimentaires (
 msgid ""
 "- Research technologies to improve the gathering capabilities of your "
 "citizens."
-msgstr "- Recherchez-y les technologies d'amélioration des capacités de collecte de vos citoyens."
+msgstr "- Rechercher les technologies d'amélioration des capacités de collecte de vos citoyens."
 
 #: gui/text/tips/syntagma.txt:1
 msgid "SYNTAGMA FORMATION"
@@ -3640,7 +3640,7 @@ msgstr "- Quasi invulnérable de front."
 
 #: gui/text/tips/syntagma.txt:8
 msgid "- Vulnerable to attacks from the rear."
-msgstr "- Vulnérable aux attaques arrières."
+msgstr "- Vulnérable aux attaques de derrière."
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
@@ -3768,7 +3768,7 @@ msgstr "ÉLÉPHANTS DE GUERRE"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "- Huge beasts from Africa and India, trained for war."
-msgstr "- Bêtes énormes de l'Afrique et de l'Inde, dressées pour la guerre."
+msgstr "- Bêtes énormes d'Afrique et d'Inde, dressées pour la guerre."
 
 #: gui/text/tips/war_elephants.txt:4
 msgid ""

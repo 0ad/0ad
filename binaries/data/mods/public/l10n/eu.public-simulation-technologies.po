@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-27 14:49+0200\n"
-"PO-Revision-Date: 2017-05-29 16:27+0000\n"
+"POT-Creation-Date: 2017-06-02 09:04+0200\n"
+"PO-Revision-Date: 2017-06-03 08:42+0000\n"
 "Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -84,6 +84,7 @@ msgstr "Zaldi armadura"
 #: simulation/data/technologies/training_levy_infantry.jsonrequirementsTooltip
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonrequirementsTooltip
+#: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/cost_italian_mercs.jsonrequirementsTooltip
@@ -696,8 +697,8 @@ msgid ""
 msgstr "Artisautzako ezkutuko lanek ezpatei marka polit eta bitxiak ematen dizkie. Eta hori baino hobea, altzairuaren gogortasunak ez du parekorik."
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
-msgid "+2 attack for all sword units."
-msgstr "+2 erasoan ezpatari unitate guztientzat."
+msgid "+20% Hack attack for all sword units."
+msgstr "%20+ Hack erasoan ezpatari unitate guztientzat."
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
@@ -1866,6 +1867,19 @@ msgstr "Infanteria Zibil Aurreratua"
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.athen
 msgid "Zeugítai"
 msgstr "Zeugítai"
+
+#: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsondescription
+msgid "Hire professional mercenaries to fight in your army."
+msgstr "Mertzenarioak kontratatu zure armadan aritzeko."
+
+#: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
+msgid ""
+"Mercenaries are promoted to advanced rank but require +20% training time."
+msgstr "Mertzenarioak maila aurreratura igoak dira baino %20+  behar dute entrenatzean."
+
+#: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsongenericName
+msgid "Expertise In War"
+msgstr "Gudan eskarmentua"
 
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsontooltip
 msgid ""

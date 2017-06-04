@@ -59,8 +59,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-05-27 14:48+0200\n"
-"PO-Revision-Date: 2017-06-01 12:55+0000\n"
-"Last-Translator: Polakrity <sxk-fr@live.fr>\n"
+"PO-Revision-Date: 2017-06-03 14:15+0000\n"
+"Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -89,7 +89,7 @@ msgstr "Aléatoire"
 
 #: gui/gamesetup/gamesetup.js:72
 msgid "Picks one civilization at random when the game starts."
-msgstr "Choisis une civilisation au hasard lorsque le jeu débute."
+msgstr "Choisis une civilisation aléatoire lorsque la partie débute."
 
 #: gui/gamesetup/gamesetup.js:110
 #, javascript-format
@@ -267,7 +267,7 @@ msgstr "Choisissez la limite de population."
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr "Attention : Il peut y avoir des problèmes de performances si touts les %(players)s joueurs atteignent %(popCap)s de population."
+msgstr "Attention : Il peut y avoir des problèmes de performance si tous les %(players)s joueurs atteignent %(popCap)s de population."
 
 #: gui/gamesetup/gamesetup.js:513
 msgid "Starting Resources"
@@ -324,7 +324,7 @@ msgstr "Sélectionner la vitesse de jeu."
 
 #: gui/gamesetup/gamesetup.js:655
 msgid "Chose the civilization for this player"
-msgstr "Choisissez la civilisation pour ce joueur"
+msgstr "Choisir la civilisation de ce joueur"
 
 #: gui/gamesetup/gamesetup.js:695
 msgid "Hero Garrison"
@@ -332,7 +332,7 @@ msgstr "Garnison des héros"
 
 #: gui/gamesetup/gamesetup.js:696
 msgid "Toggle whether heroes can be garrisoned."
-msgstr "Change si des héros sont mis en garnison."
+msgstr "Définir si les héros peuvent être mis en garnison."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
@@ -433,7 +433,7 @@ msgstr "Démarrer une partie avec les paramètres actuels."
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)"
-msgstr "Commencer une nouvelle partie avec les paramètres actuels (désactivé jusqu'à ce que touts les joueurs soient prêts)"
+msgstr "Commencer une nouvelle partie avec les paramètres actuels (désactivé jusqu'à ce que tous les joueurs soient prêts)"
 
 #: gui/gamesetup/gamesetup.js:1394
 msgctxt "map selection"
@@ -443,7 +443,7 @@ msgstr "Aléatoire"
 #: gui/gamesetup/gamesetup.js:1671 gui/gamesetup/gamesetup.js:1710
 #, javascript-format
 msgid "%(option)s:"
-msgstr "%(option)s:"
+msgstr "%(option)s :"
 
 #: gui/gamesetup/gamesetup.js:1676
 msgctxt "option value"
@@ -560,7 +560,7 @@ msgstr "Équipe"
 
 #: gui/gamesetup/gamesetup.xml:(caption):141
 msgid "Show this message in the future"
-msgstr "Afficher ce message dans le futur"
+msgstr "Afficher ce message ultérieurement"
 
 #: gui/gamesetup/gamesetup.xml:(caption):225
 msgid "Send"
@@ -1456,19 +1456,19 @@ msgstr "\"Nul n'est si vieux qu'il ne croie vivre un an de plus.\" - Marcus Tull
 msgid ""
 "\"Let the welfare of the people be the ultimate law.\" - Marcus Tullius "
 "Cicero (\"On the Laws\", III., sec. 3)"
-msgstr ""
+msgstr "\"Que le salut du peuple soit la loi suprême.\" - Marcus Tullius Cicéron (\"Des lois\", III. sec. 3)"
 
 #: gui/text/quotes.txt:123
 msgid ""
 "\"Endless money forms the sinews of war.\" - Marcus Tullius Cicero "
 "(\"Philippics\", Philippica V., sec. 5)"
-msgstr ""
+msgstr "\"L'argent sans fin est le nerf de la guerre\" - Marcus Tullius Cicéron (\"Philippiques\", Philippique V., sec. 5)"
 
 #: gui/text/quotes.txt:124
 msgid ""
 "\"Laws are silent in time of war.\" - Marcus Tullius Cicero (\"Pro Milone\","
 " IV., sec. 11)"
-msgstr ""
+msgstr "\"Les lois se taisent parmi les armes.\" - Marcus Tullius Cicéron (\"Plaidoyer pour Milon\", IV., sec. 11)"
 
 #: gui/text/quotes.txt:125
 msgid ""
@@ -1476,7 +1476,7 @@ msgid ""
 "murdering someone; then they boast that they have spared him!\" - Marcus "
 "Tullius Cicero, condemning Mark Anthony who had not killed him (yet) "
 "(\"Philippics\", Philippica II, sec. 5)"
-msgstr ""
+msgstr "\"Ceci, Sénateurs, est ce à quoi revient une faveur de ces groupes. Ils se retiennent d'assassiner quelqu'un ; puis ils se vantent de l'avoir épargné !\" - Marcus Tullius Cicéron, condamnant Marc Antoine qui ne l'avait pas (encore) tué (\"Philippiques\", Philippique II, sec. 5)"
 
 #: gui/text/quotes.txt:126
 msgid ""
@@ -1495,7 +1495,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:128
 msgid "\"The man who runs may fight again.\" - Menander (\"Monosticha\")"
-msgstr ""
+msgstr "\"L'homme qui court peut encore se battre.\" - Ménandre (\"Monostiques\")"
 
 #: gui/text/quotes.txt:129
 msgid ""
@@ -1505,7 +1505,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:130
 msgid "\"I call a fig a fig, a spade a spade.\" - Menander (fragment 545 K)"
-msgstr ""
+msgstr "\"J'appelle une figue une figue, une pique une pique.\" - Ménandre (fragment 545 K)"
 
 #: gui/text/quotes.txt:131
 msgid ""
@@ -1589,7 +1589,7 @@ msgid ""
 "is certainly dangerous to let it go.\" - Pericles, addressing the Athenian "
 "assembly after a plague had weakened the city (Thucydides, \"History of the "
 "Peloponnesian War\", II. 63.3)"
-msgstr ""
+msgstr "\"Votre empire est à présent comme une tyrannie : peut-être était-ce une erreur de le conquérir ; il est certainement dangereux de l'abandonner.\" - Périclès, s'addressant à l'assemblée athénienne après que la peste eût affaibli la cité (Thucydide, \"Histoire de la Guerre du Péloponnèse\", II. 63.3)"
 
 #: gui/text/quotes.txt:141
 msgid ""
@@ -1609,7 +1609,7 @@ msgid ""
 "\"No guest is so welcome in a friend's house that he will not become a "
 "nuisance after three days.\" - Plautus (\"The Swaggering Soldier\", Act III,"
 " scene 1, 146)"
-msgstr ""
+msgstr "\"Nul invité n'est assez bienvenu dans la maison d'un ami pour ne pas devenir une nuisance après trois jours.\" - Plaute (\"Le Soldat fanfaron\", Acte III, scène 1, 146)"
 
 #: gui/text/quotes.txt:144
 msgid ""
@@ -1744,13 +1744,13 @@ msgstr ""
 msgid ""
 "\"Let your speech be better than silence, or be silent.\" - Pythagoras "
 "(Stobaeus, \"Florilegium\", 24)"
-msgstr ""
+msgstr "\"Que ta parole soit meilleure que le silence, sinon tais-toi.\" - Pythagore (Jean Stobée, \"Florilegium\", 24)"
 
 #: gui/text/quotes.txt:160
 msgid ""
 "\"Unity strengthens even small states, while discord undermines the "
 "mightiest empires.\" - Sallust (\"The Jugurthine War\", 10.6)"
-msgstr ""
+msgstr "\"Car l'harmonie confère aux petits États la grandeur, tandis que la discorde sape les empires les plus puissants.\" - Salluste (\"La Guerre de Jugurtha\", 10.6)"
 
 #: gui/text/quotes.txt:161
 msgid ""
@@ -1765,7 +1765,7 @@ msgid ""
 "\"Prepare for war, since you have been unable to endure a peace.\" - Scipio "
 "Africanus, replying to Hannibal's offer of peace terms before the Battle of "
 "Zama (\"Ab Urbe Condita\", XXX. 31)"
-msgstr ""
+msgstr "\"Préparez-vous à la guerre, puisque vous avez été incapables de supporter une paix.\" - Scipion l'Africain, répondant à l'offre de paix d'Hannibal avant la bataille de Zama (\"Ab Urbe Condita\", XXX. 31)"
 
 #: gui/text/quotes.txt:163
 msgid ""
@@ -1853,7 +1853,7 @@ msgid ""
 "\"The Athenians command the rest of Greece, I command the Athenians; your "
 "mother commands me, and you command your mother.\" - Themistocles, jokingly "
 "to his infant son (Plutarch, \"Parallel Lives\", \"Themistocles\", sec. 18)"
-msgstr ""
+msgstr "\"Comme les Athéniens commandent le reste de la Grèce, je commande les Athéniens ; ta mère me commande et tu commandes ta mère.\" - Thémistocle, blaguant, à son fils (Plutarque, \"Vies parallèles\", \"Thémistocle\", sec. 18)"
 
 #: gui/text/quotes.txt:175
 msgid ""
@@ -2049,4 +2049,4 @@ msgstr ""
 msgid ""
 "\"For a thinking man is where Wisdom is at home.\" - Zoroaster, founder of "
 "the Zoroastrian religion (\"Ahunuvaiti Gatha\", yasna 30.9)"
-msgstr ""
+msgstr "\"Car c'est chez un penseur que la Sagesse se sent chez elle.\" - Zorastre, fondateur du zoroastrisme (\"Ahunuvaiti Gatha\", yasna 30.9)"

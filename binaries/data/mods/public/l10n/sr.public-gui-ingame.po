@@ -8,13 +8,14 @@
 # Damjan Obradović <damjanobradovic@hotmail.com>, 2016
 # Lazar Milovanovic <lazar.milovanovic@outlook.com>, 2016
 # MIlosSD <pirisd@gmail.com>, 2014
+# Nicolas Auvray <na.itms76@gmail.com>, 2017
 # Tpe3op <tre-zor@live.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-26 09:02+0200\n"
-"PO-Revision-Date: 2017-05-26 15:14+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-05-27 14:48+0200\n"
+"PO-Revision-Date: 2017-06-03 10:50+0000\n"
+"Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/wildfire-games/0ad/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -586,7 +587,7 @@ msgstr "\\[OFFLINE] %(player)s"
 #: gui/session/messages.js:910
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr "Време"
+msgstr "\\[%(time)s]"
 
 #: gui/session/messages.js:911
 msgid "HH:mm"
@@ -1389,7 +1390,7 @@ msgstr "Опције"
 msgid "Resign"
 msgstr "Предај се"
 
-#: gui/session/menu.xml:(caption):96 gui/session/session.xml:(caption):163
+#: gui/session/menu.xml:(caption):96 gui/session/session.xml:(caption):67
 msgid "Exit"
 msgstr "Излаз"
 
@@ -1398,11 +1399,11 @@ msgstr "Излаз"
 msgid "Objectives"
 msgstr ""
 
-#: gui/session/session.xml:(caption):62
+#: gui/session/session.xml:(caption):77
 msgid "Game Paused"
 msgstr "Игра је паузирана"
 
-#: gui/session/session.xml:(caption):65
+#: gui/session/session.xml:(caption):80
 msgid "Click to Resume Game"
 msgstr "Кликни да наставиш Игру"
 

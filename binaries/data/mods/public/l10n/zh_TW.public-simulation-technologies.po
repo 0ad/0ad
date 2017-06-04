@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-27 14:49+0200\n"
-"PO-Revision-Date: 2017-05-30 13:49+0000\n"
+"POT-Creation-Date: 2017-06-02 09:04+0200\n"
+"PO-Revision-Date: 2017-06-03 12:37+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -84,6 +84,7 @@ msgstr "馬頭盔甲"
 #: simulation/data/technologies/training_levy_infantry.jsonrequirementsTooltip
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonrequirementsTooltip
+#: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/cost_italian_mercs.jsonrequirementsTooltip
@@ -696,8 +697,8 @@ msgid ""
 msgstr "秘密的鋼鐵加工技術讓劍鋒有著獨特而美麗的紋路。不僅如此，這種鋼鐵的硬度是無可比擬的。"
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
-msgid "+2 attack for all sword units."
-msgstr "所有持劍單位 +2 攻擊力。"
+msgid "+20% Hack attack for all sword units."
+msgstr "所有持劍單位 +20% 劈砍攻擊力。"
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
@@ -1866,6 +1867,19 @@ msgstr "進階步兵民兵"
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.athen
 msgid "Zeugítai"
 msgstr "Zeugítai"
+
+#: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsondescription
+msgid "Hire professional mercenaries to fight in your army."
+msgstr "聘請專業的傭兵在您的軍隊中為您戰鬥。"
+
+#: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
+msgid ""
+"Mercenaries are promoted to advanced rank but require +20% training time."
+msgstr "傭兵被提升至進階等級，但訓練時間 +20%。"
+
+#: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsongenericName
+msgid "Expertise In War"
+msgstr "戰爭專家"
 
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsontooltip
 msgid ""
