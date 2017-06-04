@@ -172,10 +172,11 @@ var g_Commands = {
 
 	"attack": function(player, cmd, data)
 	{
-		if (g_DebugCommands && !(IsOwnedByEnemyOfPlayer(player, cmd.target) || IsOwnedByNeutralOfPlayer(player, cmd.target)))
-			warn("Invalid command: attack target is not owned by enemy of player "+player+": "+uneval(cmd));
-
 		let allowCapture = cmd.allowCapture || cmd.allowCapture == null;
+
+		if (g_DebugCommands && !allowCapture &&
+		   !(IsOwnedByEnemyOfPlayer(player, cmd.target) || IsOwnedByNeutralOfPlayer(player, cmd.target)))
+			warn("Invalid command: attack target is not owned by enemy of player "+player+": "+uneval(cmd));
 
 		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
 			cmpUnitAI.Attack(cmd.target, cmd.queued, allowCapture);
