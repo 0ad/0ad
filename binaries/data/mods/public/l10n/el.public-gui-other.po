@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-29 09:07+0200\n"
-"PO-Revision-Date: 2017-06-03 18:33+0000\n"
-"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
+"POT-Creation-Date: 2017-06-04 09:05+0200\n"
+"PO-Revision-Date: 2017-06-04 15:56+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -77,8 +77,8 @@ msgstr "Tab"
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
-" in default web browser. Please wait...."
-msgstr "Ανοιγμα  %(url)s\nστον προκαθορισμένο εξυπηρετητή.Παρακαλώ περιμένετε..."
+" in default web browser. Please wait..."
+msgstr ""
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
@@ -367,10 +367,10 @@ msgid "disabled"
 msgstr "απενεργοπ."
 
 #: gui/common/gamedescription.js:313
-msgid "For the first minute, enemies will stay neutral."
-msgid_plural "For the first %(min)s minutes, enemies will stay neutral."
-msgstr[0] "Για το πρώτο λεπτό, οι εχθροί παραμένουν ουδέτεροι."
-msgstr[1] "Για τα πρώτα %(min)s λεπτά, οι εχθροί παραμένουν ουδέτεροι."
+msgid "For the first minute, other players will stay neutral."
+msgid_plural "For the first %(min)s minutes, other players will stay neutral."
+msgstr[0] ""
+msgstr[1] ""
 
 #: gui/common/gamedescription.js:321
 msgid "Map Name"
@@ -543,8 +543,9 @@ msgid "Server full"
 msgstr "Ο διακομιστής είναι γεμάτος"
 
 #: gui/common/network.js:76
-msgid "Player identifier in use, retry connecting"
-msgstr "Το αναγνωριστικό του παίχτη χρησιμοποιείτε, δοκίμασε πάλι να συνδεθείς."
+msgid ""
+"Player identifier in use. If you were disconnected, retry in few seconds"
+msgstr ""
 
 #: gui/common/network.js:79
 #, javascript-format
@@ -650,8 +651,8 @@ msgstr "Τυχαίο"
 #: gui/common/settings.js:195
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
-" chose the number of players and teams."
-msgstr "Δημιουργήστε ένα μοναδικό χάρτη με διαφορετική κατανομή πόρων κάθε φορά. Επιλέξτε ελεύθερα τον αριθμό των παικτών και των ομάδων."
+" select the number of players and teams."
+msgstr ""
 
 #: gui/common/settings.js:199
 msgctxt "map"
@@ -1642,7 +1643,7 @@ msgid "Used"
 msgstr "Χρησιμοποιήθηκαν"
 
 #: gui/summary/summary.js:85
-msgid "Recieved"
+msgid "Received"
 msgstr ""
 
 #: gui/summary/summary.js:90
@@ -2483,9 +2484,9 @@ msgstr "Παύση στο παρασκήνιο"
 
 #: gui/options/options.jsongeneralSetting[4].tooltip
 msgid ""
-"When disabled, the welcome screen will nevertheless be shown once when a new"
-" version is available and you can always launch it from the main menu."
-msgstr "Όταν απενεργοποιηθεί, η οθόνη καλωσορίσματος ωστόσο θα εμφανίζεται κάθε φορά που μια νέα έκδοση είναι διαθέσιμη επίσης μπορείτε να την ξεκινήσει από το κύριο μενού."
+"If you disable it, the welcome screen will still appear once, each time a "
+"new version is available. You can always launch it from the main menu."
+msgstr ""
 
 #: gui/options/options.jsongeneralSetting[4].label
 msgid "Enable Welcome Screen"
@@ -2568,20 +2569,18 @@ msgid "Buddies"
 msgstr ""
 
 #: gui/options/options.jsongeneralSetting[13].parameters.list[2].label
-msgid "No one"
+#: gui/options/options.jsongeneralSetting[14].parameters.list[2].label
+msgid "Disabled"
 msgstr ""
 
 #: gui/options/options.jsongeneralSetting[13].tooltip
 msgid ""
-"Whether to assign joining clients to free playerslots in the gamesetup."
+"Automatically assign joining clients to free player slots during the match "
+"setup."
 msgstr ""
 
 #: gui/options/options.jsongeneralSetting[13].label
 msgid "Assign Players"
-msgstr ""
-
-#: gui/options/options.jsongeneralSetting[14].parameters.list[2].label
-msgid "Disabled"
 msgstr ""
 
 #: gui/options/options.jsongeneralSetting[14].tooltip
@@ -2892,16 +2891,16 @@ msgid "Harvest from animals, berry bushes, fish, or fields."
 msgstr "Συγκομιδή από ζώα, θάμνους μούρων, ψάρια ή χωράφια."
 
 #: simulation/data/resources/metal.jsondescription
-msgid "Mine from metal mines and quarries."
-msgstr "Εξόρυξη από ορυχεία μετάλλου και λατομία."
+msgid "Mine from metal mines or quarries."
+msgstr ""
 
 #: simulation/data/resources/stone.jsondescription
 msgid "Mine from rocks, stone quarries or ruins."
 msgstr "Εξόρυξη από βράχους, λατομία ή ερείπια."
 
 #: simulation/data/resources/wood.jsondescription
-msgid "Lumber from trees or groves."
-msgstr "Ξυλεία από δέντρα ή δάση."
+msgid "Cut down from trees or groves."
+msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -3076,12 +3075,11 @@ msgstr "Δέντρο"
 #: gui/gamesetup/ai.txt:1
 msgid ""
 "Although reasonably easy for an experienced player, the default AI level is "
-"quite challenging for new players before they master the basic mechanisms of"
-" the game. It is advised to start by playing against a lower level (sandbox "
-"or very easy) when beginning with the game. Changing the AI level is done by"
-" clicking on the gear icon next to each AI player in the player selection "
-"panel above."
-msgstr "Αν και λογικά είναι εύκολο για έναν έμπειρο παίκτη, το προεπιλεγμένο επίπεδο Τεχνικής Νοημοσύνης είναι αρκετά δύσκολο για τους νέους παίκτες πριν εξασκηθούν στους βασικούς μηχανισμούς του παιχνιδιού. Καλό είναι να ξεκινήσετε το παιχνίδι ενάντια στο χαμηλότερο επίπεδο (περιβάλλων δοκιμών ή πολύ εύκολο) στα πρώτα σας βήματα στο παιχνίδι. Η Αλλαγή του επιπέδου ΤΝ γίνεται κάνοντας κλικ στο εικονίδιο με το γρανάζι δίπλα σε κάθε παίκτη ΤΝ στον παραπάνω πίνακα επιλογής παίκτη."
+"quite challenging for new players yet to master the basic mechanisms of the "
+"game. Beginners are advised to start by playing against a lower level AI "
+"(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
+"to the player you want to modify in the selection panel above."
+msgstr ""
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""

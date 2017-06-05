@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-29 09:07+0200\n"
-"PO-Revision-Date: 2017-06-03 10:52+0000\n"
-"Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
+"POT-Creation-Date: 2017-06-04 09:05+0200\n"
+"PO-Revision-Date: 2017-06-04 15:56+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -77,8 +77,8 @@ msgstr "Таб"
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
-" in default web browser. Please wait...."
-msgstr "%(url)s відкривається\nв браузері за умовчуванням. Будь ласка зачекайте...."
+" in default web browser. Please wait..."
+msgstr ""
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
@@ -370,11 +370,11 @@ msgid "disabled"
 msgstr "відключено"
 
 #: gui/common/gamedescription.js:313
-msgid "For the first minute, enemies will stay neutral."
-msgid_plural "For the first %(min)s minutes, enemies will stay neutral."
-msgstr[0] "У першу хвилину вороги залишаються нейтральними."
-msgstr[1] "Перших %(min)s хвилини, вороги залишаються нейтральними."
-msgstr[2] "Перших %(min)s хвилин, вороги залишаються нейтральними."
+msgid "For the first minute, other players will stay neutral."
+msgid_plural "For the first %(min)s minutes, other players will stay neutral."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #: gui/common/gamedescription.js:321
 msgid "Map Name"
@@ -547,8 +547,9 @@ msgid "Server full"
 msgstr "Сервер переповнений"
 
 #: gui/common/network.js:76
-msgid "Player identifier in use, retry connecting"
-msgstr "Ідентифікатор гравця уже використовується, повтор з'єднання"
+msgid ""
+"Player identifier in use. If you were disconnected, retry in few seconds"
+msgstr ""
 
 #: gui/common/network.js:79
 #, javascript-format
@@ -656,7 +657,7 @@ msgstr "Випадково"
 #: gui/common/settings.js:195
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
-" chose the number of players and teams."
+" select the number of players and teams."
 msgstr ""
 
 #: gui/common/settings.js:199
@@ -1657,8 +1658,8 @@ msgid "Used"
 msgstr "Використано"
 
 #: gui/summary/summary.js:85
-msgid "Recieved"
-msgstr "Отримано"
+msgid "Received"
+msgstr ""
 
 #: gui/summary/summary.js:90
 msgid "Sold"
@@ -2498,9 +2499,9 @@ msgstr "Пауза в фоновому режимі"
 
 #: gui/options/options.jsongeneralSetting[4].tooltip
 msgid ""
-"When disabled, the welcome screen will nevertheless be shown once when a new"
-" version is available and you can always launch it from the main menu."
-msgstr "При відключенні екрану привітання, він все одно буде показаний один раз, коли буде доступна нова версія, і Ви завжди можете запустити його з головного меню."
+"If you disable it, the welcome screen will still appear once, each time a "
+"new version is available. You can always launch it from the main menu."
+msgstr ""
 
 #: gui/options/options.jsongeneralSetting[4].label
 msgid "Enable Welcome Screen"
@@ -2583,20 +2584,18 @@ msgid "Buddies"
 msgstr ""
 
 #: gui/options/options.jsongeneralSetting[13].parameters.list[2].label
-msgid "No one"
+#: gui/options/options.jsongeneralSetting[14].parameters.list[2].label
+msgid "Disabled"
 msgstr ""
 
 #: gui/options/options.jsongeneralSetting[13].tooltip
 msgid ""
-"Whether to assign joining clients to free playerslots in the gamesetup."
+"Automatically assign joining clients to free player slots during the match "
+"setup."
 msgstr ""
 
 #: gui/options/options.jsongeneralSetting[13].label
 msgid "Assign Players"
-msgstr ""
-
-#: gui/options/options.jsongeneralSetting[14].parameters.list[2].label
-msgid "Disabled"
 msgstr ""
 
 #: gui/options/options.jsongeneralSetting[14].tooltip
@@ -2907,16 +2906,16 @@ msgid "Harvest from animals, berry bushes, fish, or fields."
 msgstr "Збір з тварин, ягідних кущів, риби чи полів."
 
 #: simulation/data/resources/metal.jsondescription
-msgid "Mine from metal mines and quarries."
-msgstr "Шахти металу та кар'єри."
+msgid "Mine from metal mines or quarries."
+msgstr ""
 
 #: simulation/data/resources/stone.jsondescription
 msgid "Mine from rocks, stone quarries or ruins."
 msgstr "Кам'яні шахти, кам'яні кар'єри чи руїни."
 
 #: simulation/data/resources/wood.jsondescription
-msgid "Lumber from trees or groves."
-msgstr "Пиломатеріали від дерев або гаїв."
+msgid "Cut down from trees or groves."
+msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -3091,12 +3090,11 @@ msgstr "Дерево"
 #: gui/gamesetup/ai.txt:1
 msgid ""
 "Although reasonably easy for an experienced player, the default AI level is "
-"quite challenging for new players before they master the basic mechanisms of"
-" the game. It is advised to start by playing against a lower level (sandbox "
-"or very easy) when beginning with the game. Changing the AI level is done by"
-" clicking on the gear icon next to each AI player in the player selection "
-"panel above."
-msgstr "Хоча доволі легкий для досвідченого гравця, рівень ШІ за замовчуванням є доволі складним для новачків, перш ніж вони освоять основні механізми гри. Рекомендується грати проти більш низького рівня (пісочниця чи дуже легкий), коли починаєте. Зміна рівня ШІ здійснюється натисканням на зображення шестерні біля кожного гравця зі ШІ в панелі вибору гравця згори."
+"quite challenging for new players yet to master the basic mechanisms of the "
+"game. Beginners are advised to start by playing against a lower level AI "
+"(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
+"to the player you want to modify in the selection panel above."
+msgstr ""
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""

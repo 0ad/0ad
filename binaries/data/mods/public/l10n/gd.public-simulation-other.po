@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-02 09:04+0200\n"
-"PO-Revision-Date: 2017-06-02 16:12+0000\n"
+"POT-Creation-Date: 2017-06-04 09:07+0200\n"
+"PO-Revision-Date: 2017-06-04 15:55+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -964,38 +964,38 @@ msgstr "(Cealgaireachd – stiùirich a h‑uile aonad)"
 msgid "(Cheat - reveal map)"
 msgstr "(Gealgaireachd – nochd am mapa)"
 
-#: simulation/helpers/Commands.js:579
+#: simulation/helpers/Commands.js:580
 msgid "(Cheat - promoted units)"
 msgstr "(Cealgaireachd – aonad air an àrdachadh)"
 
-#: simulation/helpers/Commands.js:693
+#: simulation/helpers/Commands.js:694
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Cha ghabh àrdachadh o nach deach riatanasan an astair a dhearbadh no air sgàth ’s gu bheil bacadh air an tìr."
 
-#: simulation/helpers/Commands.js:703
+#: simulation/helpers/Commands.js:704
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "Tha aonad ’na ghearastan ann nach gabh àrdachadh."
 
-#: simulation/helpers/Commands.js:749
+#: simulation/helpers/Commands.js:750
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Chaidh ionnsaigh an aghaidh %(_player_)s iarraidh."
 
-#: simulation/helpers/Commands.js:782
+#: simulation/helpers/Commands.js:783
 msgid "There are no bribable units"
 msgstr "Chan eil aonad a ghabhas ceannach ann"
 
-#: simulation/helpers/Commands.js:827
+#: simulation/helpers/Commands.js:828
 msgid "Unable to ungarrison unit(s)"
 msgstr "Chan urrainn dhan aonad/dha na h-aonadan an gearastan falbh"
 
-#: simulation/helpers/Commands.js:841
+#: simulation/helpers/Commands.js:842
 msgid "Some unit(s) can't go back to work"
 msgstr "Chan urrainn dhan a h-uile aonad tilleadh dhan obair"
 
-#: simulation/helpers/Commands.js:1095
+#: simulation/helpers/Commands.js:1096
 msgid "The building's technology requirements are not met."
 msgstr "Cha deach na riatanasan teicneòlais airson an togalaich a choileanadh."
 
@@ -1176,8 +1176,8 @@ msgstr "Beag"
 #: simulation/data/settings/map_sizes.jsonData[1].Tooltip
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
-"quickly while still having few room to expand."
-msgstr "Tha mapaichean beaga iomchaidh dha dhithis on a ruigeas na cluicheadairean an nàmhaid gu luath fhad ’s a bhios rum aca fhathast airson leudachadh an ranntair."
+"quickly while still having some room to expand."
+msgstr ""
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Medium"

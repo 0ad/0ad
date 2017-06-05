@@ -30,9 +30,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-29 09:06+0200\n"
-"PO-Revision-Date: 2017-05-31 14:07+0000\n"
-"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
+"POT-Creation-Date: 2017-06-04 09:04+0200\n"
+"PO-Revision-Date: 2017-06-04 15:39+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -207,13 +207,14 @@ msgstr "Ο κλασσικός σχηματισμός φάλαγγας αναπτ
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[0].History
 msgid ""
-"The general whom persuaded the Athenians to invest their income from silver "
+"The general who persuaded the Athenians to invest their income from silver "
 "mines in a war navy of 200 Triremes. A key figure during the Persian Wars, "
 "he commanded the victorious Athenian navy at the decisive battle of Salamis "
 "in 479 B.C. Later, he pursued an active policy against the Persians in the "
-"Aegean, thereby laying the foundations of future Athenian power. Ostracised "
-"by the Athenians, he was forced to flee to the protection of the Persians."
-msgstr "Ο στρατηγός που έπεισε τους Αθηναίους να επενδύσουν τα εισοδήματα τους από τα ορυχεία ασημιού σε 200 τριήρεις του πολεμικού ναυτικού. Μια σημαντική φιγούρα κατά τη διάρκεια των Περισκών Πολέμων, οδήγησε στη νίκη το Αθηναϊκό ναυτικό κατά τη ναυμαχία της Σαλαμίνας το 479 Π.Χ. Αργότερα, επιδίωξε μια πιο επιθετική τακτική στο Αιγαίο απέναντι στους Πέρσες, βάζοντας τα θεμέλια της μετέπειτα Αθηναϊκής ηγεμονίας. Στο τέλος, Εξωστακισμένος από τους Αθηναίους, αναγκάστηκε να ζητήσει βοήθεια από τους Πέρσες. "
+"Aegean, thereby laying the foundations of future Athenian power. However, he"
+" was eventually ostracised by the Athenians and forced to flee to the "
+"protection of the Persians."
+msgstr ""
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[1].History
 msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
@@ -576,8 +577,8 @@ msgid ""
 msgstr "Σε αντίθεση με την Ιβηρική Χερσόνησο, η Βόρεια Αφρική ήταν γνωστή ως η χώρα των αλόγων, ικανή να παράγει μέχρι και 100.000 νέους ιππείς κάθε χρόνο. Ήταν επίσης το σπίτι των των Βόρειο-Αφρικανικών ελεφάντων του δάσους."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "10% bonus of trade profit for ally's international routes."
-msgstr "10% επιπλέον εμπορικό κέρδος στις συμμαχικές διεθνείς διαδρομές."
+msgid "10% bonus of trade profit for allies' international routes."
+msgstr ""
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -1723,11 +1724,11 @@ msgstr "Περσική Αρχιτεκτονική"
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[1].History
 msgid ""
-"The Persians built the wonderful 1677 mile-long Royal Highway from Sardis to"
-" Susa; Darius the Great and Xerxes also built the magnificent Persepolis; "
-"Cyrus the Great greatly improved Ecbatana and virtually 'rebuilt' the old "
-"Elamite capital of Susa."
-msgstr "Οι Πέρσες έχτισαν την υπέροχη Βασιλική Εθνική Οδό μήκους  2.698 χιλιόμετρα από τις Σάρδεις στα Σούσα, Ο Δαρείος ο Μέγας και ο Ξέρξης έκτισαν την υπέροχη Περσέπολη, Ο Κύρος ο Μέγας βελτίωσε σημαντικά την Εκβάτανα και ουσιαστικά \"ξαναχτίστηκε\" η παλιά Ελαμιτική πρωτεύουσα της Σούσας."
+"The Persians built the wonderful 2700 kilometer-long Royal Highway from "
+"Sardis to Susa; Darius the Great and Xerxes also built the magnificent "
+"Persepolis; Cyrus the Great greatly improved Ecbatana and virtually "
+"'rebuilt' the old Elamite capital of Susa."
+msgstr ""
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[2].Description
 msgid "Reduces train time for Anusiya champion infantry by half."
@@ -1842,17 +1843,16 @@ msgid "Mercenary Army"
 msgstr "Μισθοφορικό Στρατό"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].History
-#: simulation/data/civs/ptol.jsonStructures[1].History
 msgid ""
 "The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
 "foreign mercenaries for the bulk of its military force, mainly because the "
 "loyalty of native Egyptian units was often suspect. Indeed, during one "
 "native uprising, Upper Egypt was lost to the Ptolemies for decades. "
-"Mercenaries were often battle-hardened and their loyalty can be bought, "
+"Mercenaries were often battle-hardened and their loyalty could be bought, "
 "sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
 " under the Ptolemies was so prosperous as to be the richest of Alexander's "
 "successor states."
-msgstr "Η Ελληνο-Μακεδονική δυναστεία των Πτολεμαίων στηρίχθηκε σε μεγάλο αριθμό Ελλήνων και ξένων μισθοφόρων για το μεγαλύτερο μέρος της στρατιωτικής της δύναμης, κυρίως επειδή η πίστη των ντόπιων αιγυπτιακών μονάδων ήταν συχνά ύποπτη. Πράγματι, κατά τη διάρκεια μιας γηγενείς εξέγερσης, η Άνω Αίγυπτος χάθηκε από τους Πτολεμαίους για δεκαετίες. Των μισθοφόρων συχνά η μαχητικότητα και η πίστη τους, μπορούσαν να αγοραστούν, μερικές φορές φθηνά, μερικές φορές καθόλου φτηνά. Αυτό δεν είχε καμία σημασία, δεδομένου ότι η Αίγυπτος υπό τους Πτολεμαίους ήταν τόσο ευημερούσα ώστε να είναι η πλουσιότερη περιοχή των διαδόχων του Αλεξάνδρου."
+msgstr ""
 
 #: simulation/data/civs/ptol.jsonCivBonuses[1].Description
 msgid "The Ptolemaic Egyptians receive 3 additional farming technologies."
@@ -2028,6 +2028,18 @@ msgid ""
 "Must be constructed in neutral territory. Has no territory radius effect. "
 "Trains all 'mercenary' units."
 msgstr "Πρέπει να κατασκευαστεί σε ουδέτερο έδαφος. Δεν επιδρά στην επέκταση του εδάφους. Εκπαιδεύει όλες της 'μισθοφορικές' μονάδες."
+
+#: simulation/data/civs/ptol.jsonStructures[1].History
+msgid ""
+"The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
+"foreign mercenaries for the bulk of its military force, mainly because the "
+"loyalty of native Egyptian units was often suspect. Indeed, during one "
+"native uprising, Upper Egypt was lost to the Ptolemies for decades. "
+"Mercenaries were often battle-hardened and their loyalty can be bought, "
+"sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
+" under the Ptolemies was so prosperous as to be the richest of Alexander's "
+"successor states."
+msgstr "Η Ελληνο-Μακεδονική δυναστεία των Πτολεμαίων στηρίχθηκε σε μεγάλο αριθμό Ελλήνων και ξένων μισθοφόρων για το μεγαλύτερο μέρος της στρατιωτικής της δύναμης, κυρίως επειδή η πίστη των ντόπιων αιγυπτιακών μονάδων ήταν συχνά ύποπτη. Πράγματι, κατά τη διάρκεια μιας γηγενείς εξέγερσης, η Άνω Αίγυπτος χάθηκε από τους Πτολεμαίους για δεκαετίες. Των μισθοφόρων συχνά η μαχητικότητα και η πίστη τους, μπορούσαν να αγοραστούν, μερικές φορές φθηνά, μερικές φορές καθόλου φτηνά. Αυτό δεν είχε καμία σημασία, δεδομένου ότι η Αίγυπτος υπό τους Πτολεμαίους ήταν τόσο ευημερούσα ώστε να είναι η πλουσιότερη περιοχή των διαδόχων του Αλεξάνδρου."
 
 #: simulation/data/civs/ptol.jsonStructures[2].Name
 msgid "Lighthouse"
@@ -2491,14 +2503,14 @@ msgstr "Σέλευκος Α' Νικάτωρ"
 msgid ""
 "Antiochus inherited a troubled kingdom upon the beginning of his reign. From"
 " the verge of collapse he managed to weld back together the empire Seleukus "
-"I so hard to found. The rebellious eastern satraps of Bactria and Parthia "
-"were brought to heel , temporarily securing his eastern borders. He then "
-"turned his attention to mother Greece, attempting to fulfill the dreams of "
-"his fathers by invading Greece under the pretext of liberation. The Achaean "
-"League and the Kingdom of Pergamon banded together with the Romans to defeat"
-" him at the Battle of Magnesia, forever burying the dream of reuniting "
-"Alexander's empire."
-msgstr "Ο Αντίοχος κληρονόμησε ένα ταραγμένο βασίλειο από την αρχή της βασιλείας του. Από τα πρόθυρα της κατάρρευσης κατάφερε να αναστηλώσει την αυτοκρατορία του Σέλευκου κάτι που ήταν δύσκολο να γίνει. Τις επαναστατημένες ανατολικές σατραπείες της Βακτριανής και της Παρθία κατάφερε να τις υποτάξει, εξασφαλίζοντας προσωρινά τα ανατολικά του σύνορα. Στη συνέχεια έστρεψε την προσοχή του στη μητέρα Ελλάδα, προσπαθώντας να εκπληρώσει τα όνειρα των πατέρων του με την εισβολή στην Ελλάδα υπό το πρόσχημα της απελευθέρωσης. Η Αχαϊκή Συμμαχία και το Βασίλειο της Περγάμου ενώθηκαν με τους Ρωμαίους για να τον νικήσουν στη μάχη της Μαγνησίας, θάβοντας για πάντα το όνειρο της επανένωσης της αυτοκρατορίας του Αλεξάνδρου."
+"I fought so hard to found. The rebellious eastern satraps of Bactria and "
+"Parthia were brought to heel , temporarily securing his eastern borders. He "
+"then turned his attention to mother Greece, attempting to fulfill the dreams"
+" of his fathers by invading Greece under the pretext of liberation. The "
+"Achaean League and the Kingdom of Pergamon banded together with the Romans "
+"to defeat him at the Battle of Magnesia, forever burying the dream of "
+"reuniting Alexander's empire."
+msgstr ""
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[1].Name
 msgid "Antiokhos G' Megas"

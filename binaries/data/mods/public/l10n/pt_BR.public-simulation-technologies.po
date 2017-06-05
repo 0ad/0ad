@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-02 09:04+0200\n"
-"PO-Revision-Date: 2017-06-02 20:14+0000\n"
+"POT-Creation-Date: 2017-06-04 09:07+0200\n"
+"PO-Revision-Date: 2017-06-04 19:01+0000\n"
 "Last-Translator: borg 2k <estevanborg@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -931,8 +931,8 @@ msgid "Gather Training"
 msgstr "Treinamento de coletas"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
-msgid "Using net improves the fishing productivity."
-msgstr "Usar rede aumenta a produção de peixes."
+msgid "Nets improve the fishing productivity."
+msgstr "As redes melhoram a produtividade da pesca."
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid ""
@@ -1059,8 +1059,8 @@ msgid "Wedge and Mallet"
 msgstr "Cunha e Malho"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
-msgid "Baskets to carry foraged food stuffs."
-msgstr "Cestos para carregar alimentos coletados"
+msgid "Baskets for foraging."
+msgstr "Cestas para forragear."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 msgid "Equip your foragers with wicker baskets. +50% fruit foraging rate."
@@ -1165,11 +1165,10 @@ msgstr "Mistérios de Elêusis"
 
 #: simulation/data/technologies/health_females_01.jsondescription
 msgid ""
-"The Loom allowed the creation of finer clothing to clothe citizens in the "
-"settlement. Women of the household were taught from a young age how to weave"
-" on the loom, and subsequently spent a large  share of their lives working "
-"with it."
-msgstr "O tear permitiu a criação de melhores roupas para vestir os cidadãos no assentamento. As mulheres da casa foram ensinadas desde novas a como tecer no tear e posteriormente passaram uma grande parte de suas vidas trabalhando com ele."
+"The loom allowed the creation of finer clothing for settlers. Women of the "
+"household were taught from a young age how to weave on the loom, and "
+"subsequently spent a large share of their lives working with it."
+msgstr "O tear permitiu a criação de roupas mais finas para colonos. As mulheres da família foram ensinadas desde uma idade jovem a tecer no tear e, posteriormente, gastaram uma grande parte de suas vidas trabalhando com ele."
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "Female Citizens +50% Health."
@@ -1631,8 +1630,8 @@ msgid "Make your units 50% more expensive to bribe."
 msgstr "Torne suas unidades 50% mais caras para subornar."
 
 #: simulation/data/technologies/spy_counter.jsongenericName
-msgid "Counter Espionage"
-msgstr "Contra Espionagem"
+msgid "Counterintelligence"
+msgstr "Contra-inteligência\n"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsondescription
 msgid "Improve the international trading profit."
@@ -1840,8 +1839,9 @@ msgid ""
 msgstr "Primeiro objetivo dos comerciantes era de negociação, mas eles também recolhiam informações sobre os países que eles cruzavam."
 
 #: simulation/data/technologies/unlock_spies.jsontooltip
-msgid "Allows to bribe other players' units to share their vision."
-msgstr "Permite subornar unidades de outros jogadores para compartilhar sua visão."
+msgid ""
+"Allows bribing the units of other players in order to share their vision."
+msgstr "Permite subornar as unidades de outros jogadores para compartilhar sua visão."
 
 #: simulation/data/technologies/unlock_spies.jsongenericName
 msgid "Espionage"
@@ -2315,8 +2315,8 @@ msgid ""
 msgstr "Os Espartanos não tinham o maior exército do mundo, mas tinham o melhor exército de seu tempo. O que não tinham em quantidade, tinham em qualidade. É dito que Esparta não precisava de fortes muralhas, pois seus homens eram sua muralha."
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
-msgid "Spartans have 10% less maximum population"
-msgstr "Espartanos têm um limite de população máxima 10% menor."
+msgid "Spartans have 10% less maximum population."
+msgstr "Os espartanos têm -10% de população máxima."
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
 msgid "Underdogs"
@@ -2413,8 +2413,8 @@ msgid ""
 msgstr "Os Maurianos construíram os muros das suas cidades com madeira, um recurso natural abundante na Índia."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
-msgid "Mauryan city walls have 20% less health and 20% less build time."
-msgstr "Muralhas Maurianas têm 20% menos vida e levam 20% menos tempo para serem construídas."
+msgid "Mauryan city walls have -20% less health and -20% less build time."
+msgstr "Os muros da cidade de Mauryan têm -20% menos saúde mas também -20% menos tempo de construção."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"

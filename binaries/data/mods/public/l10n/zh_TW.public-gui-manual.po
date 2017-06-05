@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# jaco boolean <daan0014119@gmail.com>, 2017
 # Jeff Huang <s8321414@gmail.com>, 2014-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-29 09:06+0200\n"
-"PO-Revision-Date: 2017-05-30 14:06+0000\n"
-"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
+"POT-Creation-Date: 2017-06-04 09:05+0200\n"
+"PO-Revision-Date: 2017-06-04 16:33+0000\n"
+"Last-Translator: jaco boolean <daan0014119@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -52,11 +53,9 @@ msgstr "[font=\"sans-bold-16\"]顯示設定"
 msgid ""
 "[font=\"sans-14\"]You can switch between fullscreen and windowed mode by "
 "pressing Alt + Enter. In windowed mode, you can resize the window. If the "
-"game runs too slowly, you can change some settings in the configuration "
-"file: look for binaries/data/config/default.cfg in the location where the "
-"game is installed, which gives instructions for editing, and try disabling "
-"the \"fancywater\" and \"shadows\" options."
-msgstr "[font=\"sans-14\"]您可以使用 Alt + Enter 來切換全螢幕及視窗模式。在視窗模式時，您可以調整視窗大小。如果遊戲執行的太慢，您可以更改在設定檔中的一些設定：在安裝遊戲的地方尋找 /data/config/default.cfg 這個檔案，按照其中的介紹編輯，並嘗試停用「fancywater」及「陰影」選項。"
+"game runs too slowly, you can change some settings in the options window: "
+"try disabling the \"HQ Water Effects\" and \"Shadows\" options."
+msgstr "[font=\"sans-14\"]您可以使用 Alt + Enter 來切換全螢幕及視窗模式。在視窗模式時，您可以調整視窗大小。如果遊戲執行的太慢，您可以更改選項視窗中的一些設定：嘗試將「高品質水面特效」和「陰影」選項取消啟用。"
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
@@ -188,8 +187,8 @@ msgid "[font=\"sans-bold-16\"]Hotkeys:"
 msgstr "[font=\"sans-bold-16\"]快捷鍵："
 
 #: gui/manual/intro.txt:43
-msgid "[font=\"sans-bold-14\"]Global"
-msgstr "[font=\"sans-bold-14\"]一般"
+msgid "[font=\"sans-bold-14\"]Program-wide"
+msgstr "[font=\"sans-bold-14\"]程式範圍內"
 
 #: gui/manual/intro.txt:44
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"

@@ -41,8 +41,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-02 09:04+0200\n"
-"PO-Revision-Date: 2017-06-02 15:02+0000\n"
+"POT-Creation-Date: 2017-06-04 09:07+0200\n"
+"PO-Revision-Date: 2017-06-04 15:57+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -946,8 +946,8 @@ msgid "Gather Training"
 msgstr "Обучение сбору урожая"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
-msgid "Using net improves the fishing productivity."
-msgstr "Использование сети увеличит эффективность рыболовли."
+msgid "Nets improve the fishing productivity."
+msgstr ""
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid ""
@@ -1074,8 +1074,8 @@ msgid "Wedge and Mallet"
 msgstr "Молоток и зубило"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
-msgid "Baskets to carry foraged food stuffs."
-msgstr "Корзины для сбора пищи."
+msgid "Baskets for foraging."
+msgstr ""
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 msgid "Equip your foragers with wicker baskets. +50% fruit foraging rate."
@@ -1180,11 +1180,10 @@ msgstr "Элевсинские мистерии"
 
 #: simulation/data/technologies/health_females_01.jsondescription
 msgid ""
-"The Loom allowed the creation of finer clothing to clothe citizens in the "
-"settlement. Women of the household were taught from a young age how to weave"
-" on the loom, and subsequently spent a large  share of their lives working "
-"with it."
-msgstr "Ткацкий станок позволил создавать более качественные одежды для поселенцев. Женщины с малых лет обучались обращению с ткацким станком, чтобы затем провести большую часть своей жизни за работой с ним."
+"The loom allowed the creation of finer clothing for settlers. Women of the "
+"household were taught from a young age how to weave on the loom, and "
+"subsequently spent a large share of their lives working with it."
+msgstr ""
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "Female Citizens +50% Health."
@@ -1646,8 +1645,8 @@ msgid "Make your units 50% more expensive to bribe."
 msgstr "Стоимость подкупа Ваших юнитов возрастет на 50%."
 
 #: simulation/data/technologies/spy_counter.jsongenericName
-msgid "Counter Espionage"
-msgstr "Контрразведка"
+msgid "Counterintelligence"
+msgstr ""
 
 #: simulation/data/technologies/trade_commercial_treaty.jsondescription
 msgid "Improve the international trading profit."
@@ -1855,8 +1854,9 @@ msgid ""
 msgstr "Первостепенной задачей купцов была торговля, но они также собирали информацию о тех странах, которые пересекали."
 
 #: simulation/data/technologies/unlock_spies.jsontooltip
-msgid "Allows to bribe other players' units to share their vision."
-msgstr "Позволяет подкупать юнитов других игроков, чтобы видеть то, что видят они."
+msgid ""
+"Allows bribing the units of other players in order to share their vision."
+msgstr ""
 
 #: simulation/data/technologies/unlock_spies.jsongenericName
 msgid "Espionage"
@@ -2330,8 +2330,8 @@ msgid ""
 msgstr "У спартанцев была не самая большая армия в мире, но она была самой лучшей в те времена. Недостаток количества они восполняли качеством. Говорили, что Спарте не нужны крепкие городские стены, поскольку стенами ей служили её мужчины. "
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
-msgid "Spartans have 10% less maximum population"
-msgstr "У спартанцев на 10% снижен лимит населения"
+msgid "Spartans have 10% less maximum population."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
 msgid "Underdogs"
@@ -2428,8 +2428,8 @@ msgid ""
 msgstr "Маурьи строили городские стены из дерева, самого распространённого ресурса."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
-msgid "Mauryan city walls have 20% less health and 20% less build time."
-msgstr "Городские стены маурьев имеют на 20% меньшую прочность, но возводятся на 20% быстрее."
+msgid "Mauryan city walls have -20% less health and -20% less build time."
+msgstr ""
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"

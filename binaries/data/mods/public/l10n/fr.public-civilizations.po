@@ -38,7 +38,7 @@
 # Polakrity <sxk-fr@live.fr>, 2014,2017
 # tavariz <guipoi@yahoo.fr>, 2014
 # Thedemos <thekingadn@gmail.com>, 2014
-# Timothee KNOBLOCH <timothee.knobloch@gmail.com>, 2014
+# Timothee KNOBLOCH <inactive+nouillorque@transifex.com>, 2014
 # Tito221 <Titanomachy221@hotmail.fr>, 2013
 # Loki <tontonloul@hotmail.fr>, 2013
 # Valentin Ambroise <valentin.amb@hotmail.com>, 2015
@@ -48,9 +48,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-29 09:06+0200\n"
-"PO-Revision-Date: 2017-06-02 00:54+0000\n"
-"Last-Translator: Polakrity <sxk-fr@live.fr>\n"
+"POT-Creation-Date: 2017-06-04 09:04+0200\n"
+"PO-Revision-Date: 2017-06-04 15:39+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -225,13 +225,14 @@ msgstr "La formation en phalange classique fut développée au tournant du VIIIe
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[0].History
 msgid ""
-"The general whom persuaded the Athenians to invest their income from silver "
+"The general who persuaded the Athenians to invest their income from silver "
 "mines in a war navy of 200 Triremes. A key figure during the Persian Wars, "
 "he commanded the victorious Athenian navy at the decisive battle of Salamis "
 "in 479 B.C. Later, he pursued an active policy against the Persians in the "
-"Aegean, thereby laying the foundations of future Athenian power. Ostracised "
-"by the Athenians, he was forced to flee to the protection of the Persians."
-msgstr "Le général qui persuada les Athéniens d'investir leur revenu provenant des mines d'argent dans une flotte armée de 200 trières. Personnage clé durant les Guerres Médiques, il commanda la victorieuse marine athénienne lors de la décisive bataille de Salamine en 479 av. JC. Plus tard, il poursuivit activement les Perses en mer Egée, posant ainsi les bases de la future puissance athénienne. Ostracisé par les Athéniens, il fut contraint à l'exil et trouva refuge auprès du roi de Perse."
+"Aegean, thereby laying the foundations of future Athenian power. However, he"
+" was eventually ostracised by the Athenians and forced to flee to the "
+"protection of the Persians."
+msgstr ""
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[1].History
 msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
@@ -594,8 +595,8 @@ msgid ""
 msgstr "À l'instar de la péninsule ibérique, l'Afrique du Nord était connue comme le pays du cheval, capable de produire jusqu'à 100 000 nouvelles montures chaque année. Les Numides avaient la passion des chevaux et étaient réputés à être des cavaliers sans frein, servant notamment dans l'armée carthaginoise. C'était aussi l'habitat de l'éléphant des forêts d'Afrique du Nord."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "10% bonus of trade profit for ally's international routes."
-msgstr "10% de bonus de commerce pour les routes alliés internationales."
+msgid "10% bonus of trade profit for allies' international routes."
+msgstr ""
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -1741,11 +1742,11 @@ msgstr "Architecture persane"
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[1].History
 msgid ""
-"The Persians built the wonderful 1677 mile-long Royal Highway from Sardis to"
-" Susa; Darius the Great and Xerxes also built the magnificent Persepolis; "
-"Cyrus the Great greatly improved Ecbatana and virtually 'rebuilt' the old "
-"Elamite capital of Susa."
-msgstr "Les Perses ont construit la merveilleuse voie royale sur 2700 km de Sardes à Suse ; Darius le Grand et Xerxès ont aussi édifié la magnifique Persépolis; Cyrus le Grand a beaucoup amélioré Ecbatane et pratiquement \"reconstruit\" l'ancienne capitale élamite de Suse. "
+"The Persians built the wonderful 2700 kilometer-long Royal Highway from "
+"Sardis to Susa; Darius the Great and Xerxes also built the magnificent "
+"Persepolis; Cyrus the Great greatly improved Ecbatana and virtually "
+"'rebuilt' the old Elamite capital of Susa."
+msgstr ""
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[2].Description
 msgid "Reduces train time for Anusiya champion infantry by half."
@@ -1860,17 +1861,16 @@ msgid "Mercenary Army"
 msgstr "Armée de mercenaires"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].History
-#: simulation/data/civs/ptol.jsonStructures[1].History
 msgid ""
 "The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
 "foreign mercenaries for the bulk of its military force, mainly because the "
 "loyalty of native Egyptian units was often suspect. Indeed, during one "
 "native uprising, Upper Egypt was lost to the Ptolemies for decades. "
-"Mercenaries were often battle-hardened and their loyalty can be bought, "
+"Mercenaries were often battle-hardened and their loyalty could be bought, "
 "sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
 " under the Ptolemies was so prosperous as to be the richest of Alexander's "
 "successor states."
-msgstr "La dynastie gréco-macédonienne des Ptolémées s'est appuyé sur un grand nombre de mercenaires grecs et étrangers pour l'essentiel de sa force militaire, principalement parce que la loyauté des unités égyptiennes autochtones était souvent soupçonner. En effet, au cours d'un soulèvement indigène, les Ptolémées ont perdu la Haute-Égypte pendant des décennies. Les mercenaires étaient souvent aguerris et leur fidélité peut être acheté, parfois bon marché, parfois non. Cela n'avait aucune importance, puisque l’Égypte sous les Ptolémées était si prospère qu'elle était le plus riche des États successeurs d'Alexandre."
+msgstr ""
 
 #: simulation/data/civs/ptol.jsonCivBonuses[1].Description
 msgid "The Ptolemaic Egyptians receive 3 additional farming technologies."
@@ -2046,6 +2046,18 @@ msgid ""
 "Must be constructed in neutral territory. Has no territory radius effect. "
 "Trains all 'mercenary' units."
 msgstr "Doit être construit en territoire neutre. N'a pas d'effet d'augmentation de territoire. Entraîne toutes les unités \"mercenaires\"."
+
+#: simulation/data/civs/ptol.jsonStructures[1].History
+msgid ""
+"The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
+"foreign mercenaries for the bulk of its military force, mainly because the "
+"loyalty of native Egyptian units was often suspect. Indeed, during one "
+"native uprising, Upper Egypt was lost to the Ptolemies for decades. "
+"Mercenaries were often battle-hardened and their loyalty can be bought, "
+"sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
+" under the Ptolemies was so prosperous as to be the richest of Alexander's "
+"successor states."
+msgstr "La dynastie gréco-macédonienne des Ptolémées s'est appuyé sur un grand nombre de mercenaires grecs et étrangers pour l'essentiel de sa force militaire, principalement parce que la loyauté des unités égyptiennes autochtones était souvent soupçonner. En effet, au cours d'un soulèvement indigène, les Ptolémées ont perdu la Haute-Égypte pendant des décennies. Les mercenaires étaient souvent aguerris et leur fidélité peut être acheté, parfois bon marché, parfois non. Cela n'avait aucune importance, puisque l’Égypte sous les Ptolémées était si prospère qu'elle était le plus riche des États successeurs d'Alexandre."
 
 #: simulation/data/civs/ptol.jsonStructures[2].Name
 msgid "Lighthouse"
@@ -2509,14 +2521,14 @@ msgstr "Seleukos A' Nikator"
 msgid ""
 "Antiochus inherited a troubled kingdom upon the beginning of his reign. From"
 " the verge of collapse he managed to weld back together the empire Seleukus "
-"I so hard to found. The rebellious eastern satraps of Bactria and Parthia "
-"were brought to heel , temporarily securing his eastern borders. He then "
-"turned his attention to mother Greece, attempting to fulfill the dreams of "
-"his fathers by invading Greece under the pretext of liberation. The Achaean "
-"League and the Kingdom of Pergamon banded together with the Romans to defeat"
-" him at the Battle of Magnesia, forever burying the dream of reuniting "
-"Alexander's empire."
-msgstr "Antiochos a hérité d'un royaume tourmenté au début de son règne. Alors au bord de l'effondrement, il est parvenu à ressouder l'empire que Séleucos I a eu tant de mal à établir. Les rebelles satrapes venant de l'Est, de Bactrie et de Parthie, ont été mis à genoux, assurant un temps les frontières orientales. Il s'est alors tourné vers la Grèce, s'efforçant de réaliser les rêves de ses pères en l'envahissant sous prétexte de la libérer. La ligue achéenne et le royaume de Pergame se sont associés avec les Romains pour le vaincre à la Bataille de Magnésie, enterrant à tout jamais le rêve de réunifier l'empire d'Alexandre."
+"I fought so hard to found. The rebellious eastern satraps of Bactria and "
+"Parthia were brought to heel , temporarily securing his eastern borders. He "
+"then turned his attention to mother Greece, attempting to fulfill the dreams"
+" of his fathers by invading Greece under the pretext of liberation. The "
+"Achaean League and the Kingdom of Pergamon banded together with the Romans "
+"to defeat him at the Battle of Magnesia, forever burying the dream of "
+"reuniting Alexander's empire."
+msgstr ""
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[1].Name
 msgid "Antiokhos G' Megas"

@@ -4,15 +4,16 @@
 # 
 # Translators:
 # Cheng-Chia Tseng <pswo10680@gmail.com>, 2014
+# jaco boolean <daan0014119@gmail.com>, 2017
 # Jeff Huang <s8321414@gmail.com>, 2014-2017
 # Mysterelee <8161525@qq.com>, 2014
 # You-Ruei Tzeng <e222et@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-02 09:04+0200\n"
-"PO-Revision-Date: 2017-06-03 12:37+0000\n"
-"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
+"POT-Creation-Date: 2017-06-04 09:07+0200\n"
+"PO-Revision-Date: 2017-06-04 17:02+0000\n"
+"Last-Translator: jaco boolean <daan0014119@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -915,8 +916,8 @@ msgid "Gather Training"
 msgstr "採集訓練"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
-msgid "Using net improves the fishing productivity."
-msgstr "使用網子改善捕魚效率。"
+msgid "Nets improve the fishing productivity."
+msgstr "網子使捕魚效率提昇。"
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid ""
@@ -1043,8 +1044,8 @@ msgid "Wedge and Mallet"
 msgstr "楔槌"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
-msgid "Baskets to carry foraged food stuffs."
-msgstr "用來裝採集的食物的籃子。"
+msgid "Baskets for foraging."
+msgstr "籃子用以採集。"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 msgid "Equip your foragers with wicker baskets. +50% fruit foraging rate."
@@ -1149,11 +1150,10 @@ msgstr "厄琉息斯秘儀"
 
 #: simulation/data/technologies/health_females_01.jsondescription
 msgid ""
-"The Loom allowed the creation of finer clothing to clothe citizens in the "
-"settlement. Women of the household were taught from a young age how to weave"
-" on the loom, and subsequently spent a large  share of their lives working "
-"with it."
-msgstr "織布機讓在殖民地的公民有更好的衣服可以穿。婦女從小就被教導如何使用織布機編織，而她們之後就花費相當多的時間在編織的工作上。"
+"The loom allowed the creation of finer clothing for settlers. Women of the "
+"household were taught from a young age how to weave on the loom, and "
+"subsequently spent a large share of their lives working with it."
+msgstr "織布機讓在殖民地的村民有更好的衣服。婦女從小就被教導如何使用織布機編織，而她們之後就花費相當多的時間在編織的工作上。"
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "Female Citizens +50% Health."
@@ -1615,8 +1615,8 @@ msgid "Make your units 50% more expensive to bribe."
 msgstr "讓您的單位賄賂成本多 50%。"
 
 #: simulation/data/technologies/spy_counter.jsongenericName
-msgid "Counter Espionage"
-msgstr "反間計"
+msgid "Counterintelligence"
+msgstr "反間術"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsondescription
 msgid "Improve the international trading profit."
@@ -1824,7 +1824,8 @@ msgid ""
 msgstr "商人的首要目標是貿易，不過他們也蒐集了他們經過的國家的資訊。"
 
 #: simulation/data/technologies/unlock_spies.jsontooltip
-msgid "Allows to bribe other players' units to share their vision."
+msgid ""
+"Allows bribing the units of other players in order to share their vision."
 msgstr "可以賄賂其他玩家的單位以分享他們的視野。"
 
 #: simulation/data/technologies/unlock_spies.jsongenericName
@@ -2299,8 +2300,8 @@ msgid ""
 msgstr "斯巴達人並不具有世界上最大型的軍隊，但他們在當時卻有著世界上最好的軍隊。他們重質不重量。有人說，斯巴達並不需要堅固的城牆，它的軍隊就是銅牆鐵壁。"
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
-msgid "Spartans have 10% less maximum population"
-msgstr "斯巴達的人口上限 -10%"
+msgid "Spartans have 10% less maximum population."
+msgstr "斯巴達的人口上限 -10%。"
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
 msgid "Underdogs"
@@ -2397,7 +2398,7 @@ msgid ""
 msgstr "印度擁有豐富的天然資源，孔雀王朝以木頭建造他們的城牆。"
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
-msgid "Mauryan city walls have 20% less health and 20% less build time."
+msgid "Mauryan city walls have -20% less health and -20% less build time."
 msgstr "孔雀王朝的城牆 -20% 生命值且建造時間 -20%。"
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName

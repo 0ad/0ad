@@ -6,13 +6,13 @@
 # Thadah D. Denyse <juchuf@gmail.com>, 2015-2016
 # Mielanjel Iraeta <pospolos@gmail.com>, 2017
 # Osoitz <oelkoro@gmail.com>, 2015
-# Thadah D. Denyse <juchuf@gmail.com>, 2016
+# Thadah D. Denyse <juchuf@gmail.com>, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-02 09:04+0200\n"
-"PO-Revision-Date: 2017-06-03 08:42+0000\n"
-"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
+"POT-Creation-Date: 2017-06-04 09:07+0200\n"
+"PO-Revision-Date: 2017-06-04 17:30+0000\n"
+"Last-Translator: Thadah D. Denyse <juchuf@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -915,8 +915,8 @@ msgid "Gather Training"
 msgstr "Bilketarako entrenamentua."
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
-msgid "Using net improves the fishing productivity."
-msgstr "Sareko arrantzak produktibitatea areagotzen du."
+msgid "Nets improve the fishing productivity."
+msgstr "Sareek arrantzaren produktibitatea hobetzen dute."
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid ""
@@ -1043,8 +1043,8 @@ msgid "Wedge and Mallet"
 msgstr "Ziria eta Borra"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
-msgid "Baskets to carry foraged food stuffs."
-msgstr "Jangaiak eramateko saskia."
+msgid "Baskets for foraging."
+msgstr ""
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 msgid "Equip your foragers with wicker baskets. +50% fruit foraging rate."
@@ -1149,11 +1149,10 @@ msgstr "Eleusiar Mirariak"
 
 #: simulation/data/technologies/health_females_01.jsondescription
 msgid ""
-"The Loom allowed the creation of finer clothing to clothe citizens in the "
-"settlement. Women of the household were taught from a young age how to weave"
-" on the loom, and subsequently spent a large  share of their lives working "
-"with it."
-msgstr "Ehungailuek kokaguneetakoak arropa finagoaz janzteko aukera eman zuten. Etxeko andreak  ehuna ehungailutan lantzeko trebatzen ziren. eta horregatik beren bizitza gehiena bertan lanean igarotzen zuten."
+"The loom allowed the creation of finer clothing for settlers. Women of the "
+"household were taught from a young age how to weave on the loom, and "
+"subsequently spent a large share of their lives working with it."
+msgstr ""
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "Female Citizens +50% Health."
@@ -1615,8 +1614,8 @@ msgid "Make your units 50% more expensive to bribe."
 msgstr "Egin zure soldaduak %50 erosgaitzagoak."
 
 #: simulation/data/technologies/spy_counter.jsongenericName
-msgid "Counter Espionage"
-msgstr "Kontra Espioitza"
+msgid "Counterintelligence"
+msgstr ""
 
 #: simulation/data/technologies/trade_commercial_treaty.jsondescription
 msgid "Improve the international trading profit."
@@ -1824,8 +1823,9 @@ msgid ""
 msgstr "Merkatarien lehen helburua negozioa egitea zen, baino era berean igarotako herrien informazioa ere jaso zuten."
 
 #: simulation/data/technologies/unlock_spies.jsontooltip
-msgid "Allows to bribe other players' units to share their vision."
-msgstr "Beste jokalarien unitateak mendean hatzen ahalbidetzen du euren ikusmena eskuratzeko."
+msgid ""
+"Allows bribing the units of other players in order to share their vision."
+msgstr ""
 
 #: simulation/data/technologies/unlock_spies.jsongenericName
 msgid "Espionage"
@@ -2299,8 +2299,8 @@ msgid ""
 msgstr "Espartakok ez zuten munduko armadarik handiena, baina bere garaiko armadarik onena zuten. Kopuruan ez zutena kalitatearekin berdintzen zuten. Aitzinean esaten zen Espartak ez zituela harresi handirik behar, bere gizonak zirela bere harresiak. "
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
-msgid "Spartans have 10% less maximum population"
-msgstr "Espartarrak %10 gehienezko biztanle gutxiago dute."
+msgid "Spartans have 10% less maximum population."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
 msgid "Underdogs"
@@ -2397,8 +2397,8 @@ msgid ""
 msgstr "Mauryarrek harresiak egurrez egiten zituzten, berezko baliabide oparoa Indian."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
-msgid "Mauryan city walls have 20% less health and 20% less build time."
-msgstr "Mauryar hiri harresiak %20- galtzen dute gogortasunean baino eraikitzean %20- denbora gutxiago behar dute."
+msgid "Mauryan city walls have -20% less health and -20% less build time."
+msgstr ""
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"

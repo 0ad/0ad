@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-29 09:06+0200\n"
-"PO-Revision-Date: 2017-05-29 14:56+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-06-04 09:04+0200\n"
+"PO-Revision-Date: 2017-06-04 21:48+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -194,13 +194,14 @@ msgstr "Den klassiske falanks-formasjonen ble utviklet rundt det 8. århundre f.
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[0].History
 msgid ""
-"The general whom persuaded the Athenians to invest their income from silver "
+"The general who persuaded the Athenians to invest their income from silver "
 "mines in a war navy of 200 Triremes. A key figure during the Persian Wars, "
 "he commanded the victorious Athenian navy at the decisive battle of Salamis "
 "in 479 B.C. Later, he pursued an active policy against the Persians in the "
-"Aegean, thereby laying the foundations of future Athenian power. Ostracised "
-"by the Athenians, he was forced to flee to the protection of the Persians."
-msgstr "Generalen som overtalte Athenerne til å investere deres inntekter fra sølvgruvene i en marineflåte på 200 Trimerer. Han var en nøkkelfigur under perserkrigene, og kommanderte den seierrike, Athenske marinen i det avgjørende slaget ved Salamis i 479 f.Kr. Senere førte han aktiv politikk mot persere i Egerhavet, for dermed å legge grunnlaget for fremtidig athensk makt. Da han senere ble landsforvist av athenerne ble han tvunget til å rømme til beskyttelse hos perserne. "
+"Aegean, thereby laying the foundations of future Athenian power. However, he"
+" was eventually ostracised by the Athenians and forced to flee to the "
+"protection of the Persians."
+msgstr "Generalen som overtalte Athenerne til å investere deres inntekter fra sølvgruvene i en marineflåte på 200 Trimerer. Han var en nøkkelfigur under perserkrigene, og kommanderte den seierrike, Athenske marinen i det avgjørende slaget ved Salamis i 479 f.Kr. Senere førte han aktiv politikk mot persere i Egerhavet, for dermed å legge grunnlaget for fremtidig athensk makt. Dog ble han senere andsforvist av athenerne og tvunget til å rømme for beskyttelse av perserne. "
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[1].History
 msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
@@ -319,7 +320,7 @@ msgstr "Keltisk religion og druider inspirerte det krigeraktige tankesettet."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
 msgid "-20% resources cost for allies healers."
-msgstr ""
+msgstr "-20% ressurskost for allierte helbredere."
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 msgid "Druids"
@@ -563,8 +564,8 @@ msgid ""
 msgstr "Som også den iberiske halvøy var Nord-Afrika også kjent som hestens land, fullt i stand til å fremskaffe 100.000 nye ridedyr hvert år. Det var også hjemmet til den nord-afrikanske skog-elefanten."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "10% bonus of trade profit for ally's international routes."
-msgstr ""
+msgid "10% bonus of trade profit for allies' international routes."
+msgstr "10% handelsprofitt for alliertes internasjonale ruter."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -781,7 +782,7 @@ msgstr ""
 msgid ""
 "The Druids of the Gauls maintained an organized religion that advanced the "
 "technology of their people even during wartime."
-msgstr ""
+msgstr "De galliske druidene holdt i hevd en organisert religion som drev folkets teknologier fremover, til og med i krigstid."
 
 #: simulation/data/civs/gaul.jsonAINames[0]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
@@ -1176,7 +1177,7 @@ msgstr "Grekerne var svært fremgangsrike i å utbre hellenismen utlandet. Under
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
 msgid "+20% sell prices at market."
-msgstr ""
+msgstr "+20% salgspriser på markedet."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -1437,11 +1438,11 @@ msgstr "Kshatriya eller Kashtriya, som betyr kriger, er en av de fire varnas (so
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
 msgid "Allied temples and temple technologies -50% cost and research time."
-msgstr ""
+msgstr "Allierte tempel og tilhørende teknologier -50% kost og forskningstid."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
 msgid "Ashoka's Religious Support"
-msgstr ""
+msgstr "Ashokas religiøse støtte"
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].History
 msgid ""
@@ -1498,7 +1499,7 @@ msgstr "Brihadratha Maurya"
 msgid ""
 "Capture up to 5 Gaia elephants and garrison them in the Elephant Stables to "
 "gain up to a 25% bonus in cost and train time of elephant units."
-msgstr "Fang opptil 5 gaiaelefanter og stasjoner dem i elefantstallene for å få opptil 25% bonus i kostnads- og treningstid for elefantenheter. "
+msgstr "Fang opptil 5 gaiaelefanter og stasjoner dem i elefantstallene for å få opptil 25% bonus i kostnads- og opptreningstid for elefantenheter. "
 
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
 msgid "Elephant Roundup"
@@ -1615,7 +1616,7 @@ msgstr "Perserne kunne tvangsutskrive et stort antall infanterister under krigst
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
 msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr ""
+msgstr "Høyere inntekt (+15%) fra landhandelruter for allierte handelsmenn."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -1710,15 +1711,15 @@ msgstr "Persisk arkitektur"
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[1].History
 msgid ""
-"The Persians built the wonderful 1677 mile-long Royal Highway from Sardis to"
-" Susa; Darius the Great and Xerxes also built the magnificent Persepolis; "
-"Cyrus the Great greatly improved Ecbatana and virtually 'rebuilt' the old "
-"Elamite capital of Susa."
-msgstr "Perserne bygde den fantastiske 2699 kilometer lange kongelige hovedvei fra Sardis til Susa; Darius den store og Xerxes bygde også det storslåtte Persepolis; Cyrus den store forbedret Ecbatana og gjenoppbygde praktisk talt den gamle elamittiske hovedstaden Susa."
+"The Persians built the wonderful 2700 kilometer-long Royal Highway from "
+"Sardis to Susa; Darius the Great and Xerxes also built the magnificent "
+"Persepolis; Cyrus the Great greatly improved Ecbatana and virtually "
+"'rebuilt' the old Elamite capital of Susa."
+msgstr "Perserne bygde den fantastiske 2700 kilometer lange kongelige hovedvei fra Sardis til Susa; Darius den store og Xerxes bygde også det storslåtte Persepolis; Cyrus den store forbedret Ecbatana og \"gjenoppbygde\" praktisk talt den gamle elamittiske hovedstaden Susa."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[2].Description
 msgid "Reduces train time for Anusiya champion infantry by half."
-msgstr "Halverer tiden det tar å trene mesterinfanteri av typen Anusiya."
+msgstr "Halverer opptreningstiden for mesterinfanteri av typen Anusiya."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[2].Name
 msgid "Immortals"
@@ -1727,7 +1728,7 @@ msgstr "Udødelige"
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Description
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[3].Description
 msgid "+25% health for cavalry, but +10% train time."
-msgstr "+25 helse for kavaleri, men +10% treningstid."
+msgstr "+25 helse for kavaleri, men +10% opptreningstid."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Name
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[3].Name
@@ -1829,13 +1830,12 @@ msgid "Mercenary Army"
 msgstr "Leiesoldathær"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].History
-#: simulation/data/civs/ptol.jsonStructures[1].History
 msgid ""
 "The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
 "foreign mercenaries for the bulk of its military force, mainly because the "
 "loyalty of native Egyptian units was often suspect. Indeed, during one "
 "native uprising, Upper Egypt was lost to the Ptolemies for decades. "
-"Mercenaries were often battle-hardened and their loyalty can be bought, "
+"Mercenaries were often battle-hardened and their loyalty could be bought, "
 "sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
 " under the Ptolemies was so prosperous as to be the richest of Alexander's "
 "successor states."
@@ -2016,6 +2016,18 @@ msgid ""
 "Trains all 'mercenary' units."
 msgstr "Må bygges i nøytralt territorium. Har ikke en radiell territorieeffekt. Trener alle 'leiesoldat'-enheter."
 
+#: simulation/data/civs/ptol.jsonStructures[1].History
+msgid ""
+"The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
+"foreign mercenaries for the bulk of its military force, mainly because the "
+"loyalty of native Egyptian units was often suspect. Indeed, during one "
+"native uprising, Upper Egypt was lost to the Ptolemies for decades. "
+"Mercenaries were often battle-hardened and their loyalty can be bought, "
+"sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
+" under the Ptolemies was so prosperous as to be the richest of Alexander's "
+"successor states."
+msgstr "Det Gresk-Makedonske Ptolemeerdynastiet avhengte av et stort antall Greske og utenlandske leiesoldater for brorparten av sin militære makt, hovedsakelig fordi lojaliteten til innfødte Egyptiske enheter ofte var i mistanke . Faktisk gikk Øvre Egypt tapt for Ptolemeerne i flere tiår som følge av innfødt opprør. Leiesoldatene var ofte krigsherdet, og deres lojalitet kunne kjøpes, noen ganger billig, noen ganger ikke så billig. Dette var uansett ikke noe å bekymre seg over, siden Egypt under Ptolemaios var så velstående at det faktisk var den rikeste av Aleksanders etterfølgende stater."
+
 #: simulation/data/civs/ptol.jsonStructures[2].Name
 msgid "Lighthouse"
 msgstr "Fyrtårn"
@@ -2082,11 +2094,11 @@ msgstr "Romersk borgerskap var svært ettertraktet i den gamle verden. Grunnlegg
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
 msgid "-20% training time for allied infantry."
-msgstr ""
+msgstr "-20% opptreningstid for alliert infanteri."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
 msgid "Conscription"
-msgstr ""
+msgstr "Verneplikt"
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].History
 msgid ""
@@ -2239,7 +2251,7 @@ msgstr "Murus Latericius"
 
 #: simulation/data/civs/rome.jsonStructures[1].Special
 msgid "Can be built in neutral and enemy territory to strangle enemy towns."
-msgstr "- Kan bygges i nøytralt land eller i fiendens territorium for å kvele fientlige byer."
+msgstr "- Kan bygges i nøytralt land eller i fiendens territorium for å kvele fiendtlige byer."
 
 #: simulation/data/civs/rome.jsonStructures[1].History
 msgid "Turf walls built by legionaries during sieges."
@@ -2478,14 +2490,14 @@ msgstr "Seleukos A' Nikator"
 msgid ""
 "Antiochus inherited a troubled kingdom upon the beginning of his reign. From"
 " the verge of collapse he managed to weld back together the empire Seleukus "
-"I so hard to found. The rebellious eastern satraps of Bactria and Parthia "
-"were brought to heel , temporarily securing his eastern borders. He then "
-"turned his attention to mother Greece, attempting to fulfill the dreams of "
-"his fathers by invading Greece under the pretext of liberation. The Achaean "
-"League and the Kingdom of Pergamon banded together with the Romans to defeat"
-" him at the Battle of Magnesia, forever burying the dream of reuniting "
-"Alexander's empire."
-msgstr "Antiokos arvet et urolig rike i begynnelsen av sin regjeringstid. Fra randen av kollaps klarte han å sveise sammen igjen Seleukus-imperiet. De opprørske østlige satrapene av Baktria og Partia ble brakt til rette, noe som førte med seg midlertidig sikring av hans østlige grenser. Han vendte så sin oppmerksomhet til mor Hellas, i et forsøk på å oppfylle drømmene til sine fedre ved å invadere Hellas under påskudd om frigjøring. Det akhaiske forbund og Kongeriket Pergamon slo seg sammen med Romerne å beseire ham i slaget ved Magnesia, noe som for alltid begravet hans drøm om å gjenforene Aleksanders imperium."
+"I fought so hard to found. The rebellious eastern satraps of Bactria and "
+"Parthia were brought to heel , temporarily securing his eastern borders. He "
+"then turned his attention to mother Greece, attempting to fulfill the dreams"
+" of his fathers by invading Greece under the pretext of liberation. The "
+"Achaean League and the Kingdom of Pergamon banded together with the Romans "
+"to defeat him at the Battle of Magnesia, forever burying the dream of "
+"reuniting Alexander's empire."
+msgstr ""
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[1].Name
 msgid "Antiokhos G' Megas"
@@ -2584,7 +2596,7 @@ msgstr "Under grunnloven skrevet av den legendariske lovmakeren Lykurg, ble inst
 msgid ""
 "Increases the health for citizen-soldier infantry spearmen by 10% for allies"
 " of Spartan players."
-msgstr ""
+msgstr "Øker helsen for borgersoldatinfanteri-spydmenn med 10% for allierte av Spartaner-spillere."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"
@@ -2682,7 +2694,7 @@ msgstr "Paeaner var kamp-hymner som ble sunget av hoplittene når de jaget mot f
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Description
 msgid "+25% health for spear infantry, but also +10% train time."
-msgstr "+25% i helse for spyd-infanteri men også +10% treningstid."
+msgstr "+25% i helse for spyd-infanteri men også +10% opptreningstid."
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Name
 msgid "The Agoge"

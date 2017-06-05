@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-29 09:07+0200\n"
-"PO-Revision-Date: 2017-05-29 15:24+0000\n"
+"POT-Creation-Date: 2017-06-04 09:05+0200\n"
+"PO-Revision-Date: 2017-06-04 15:55+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -68,8 +68,8 @@ msgstr ""
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
-" in default web browser. Please wait...."
-msgstr "%(url)sを\n既定のウェブブラウザーで開いています。お待ちください...."
+" in default web browser. Please wait..."
+msgstr ""
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
@@ -355,8 +355,8 @@ msgid "disabled"
 msgstr "無効"
 
 #: gui/common/gamedescription.js:313
-msgid "For the first minute, enemies will stay neutral."
-msgid_plural "For the first %(min)s minutes, enemies will stay neutral."
+msgid "For the first minute, other players will stay neutral."
+msgid_plural "For the first %(min)s minutes, other players will stay neutral."
 msgstr[0] ""
 
 #: gui/common/gamedescription.js:321
@@ -530,7 +530,8 @@ msgid "Server full"
 msgstr ""
 
 #: gui/common/network.js:76
-msgid "Player identifier in use, retry connecting"
+msgid ""
+"Player identifier in use. If you were disconnected, retry in few seconds"
 msgstr ""
 
 #: gui/common/network.js:79
@@ -635,7 +636,7 @@ msgstr "ランダム"
 #: gui/common/settings.js:195
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
-" chose the number of players and teams."
+" select the number of players and teams."
 msgstr ""
 
 #: gui/common/settings.js:199
@@ -1618,7 +1619,7 @@ msgid "Used"
 msgstr ""
 
 #: gui/summary/summary.js:85
-msgid "Recieved"
+msgid "Received"
 msgstr ""
 
 #: gui/summary/summary.js:90
@@ -2459,8 +2460,8 @@ msgstr "フォーカス外で休止"
 
 #: gui/options/options.jsongeneralSetting[4].tooltip
 msgid ""
-"When disabled, the welcome screen will nevertheless be shown once when a new"
-" version is available and you can always launch it from the main menu."
+"If you disable it, the welcome screen will still appear once, each time a "
+"new version is available. You can always launch it from the main menu."
 msgstr ""
 
 #: gui/options/options.jsongeneralSetting[4].label
@@ -2544,20 +2545,18 @@ msgid "Buddies"
 msgstr ""
 
 #: gui/options/options.jsongeneralSetting[13].parameters.list[2].label
-msgid "No one"
+#: gui/options/options.jsongeneralSetting[14].parameters.list[2].label
+msgid "Disabled"
 msgstr ""
 
 #: gui/options/options.jsongeneralSetting[13].tooltip
 msgid ""
-"Whether to assign joining clients to free playerslots in the gamesetup."
+"Automatically assign joining clients to free player slots during the match "
+"setup."
 msgstr ""
 
 #: gui/options/options.jsongeneralSetting[13].label
 msgid "Assign Players"
-msgstr ""
-
-#: gui/options/options.jsongeneralSetting[14].parameters.list[2].label
-msgid "Disabled"
 msgstr ""
 
 #: gui/options/options.jsongeneralSetting[14].tooltip
@@ -2868,7 +2867,7 @@ msgid "Harvest from animals, berry bushes, fish, or fields."
 msgstr ""
 
 #: simulation/data/resources/metal.jsondescription
-msgid "Mine from metal mines and quarries."
+msgid "Mine from metal mines or quarries."
 msgstr ""
 
 #: simulation/data/resources/stone.jsondescription
@@ -2876,7 +2875,7 @@ msgid "Mine from rocks, stone quarries or ruins."
 msgstr ""
 
 #: simulation/data/resources/wood.jsondescription
-msgid "Lumber from trees or groves."
+msgid "Cut down from trees or groves."
 msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
@@ -3052,11 +3051,10 @@ msgstr "木"
 #: gui/gamesetup/ai.txt:1
 msgid ""
 "Although reasonably easy for an experienced player, the default AI level is "
-"quite challenging for new players before they master the basic mechanisms of"
-" the game. It is advised to start by playing against a lower level (sandbox "
-"or very easy) when beginning with the game. Changing the AI level is done by"
-" clicking on the gear icon next to each AI player in the player selection "
-"panel above."
+"quite challenging for new players yet to master the basic mechanisms of the "
+"game. Beginners are advised to start by playing against a lower level AI "
+"(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
+"to the player you want to modify in the selection panel above."
 msgstr ""
 
 #: gui/splashscreen/splashscreen.txt:2

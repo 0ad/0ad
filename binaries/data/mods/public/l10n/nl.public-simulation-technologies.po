@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-02 09:04+0200\n"
-"PO-Revision-Date: 2017-06-02 15:02+0000\n"
+"POT-Creation-Date: 2017-06-04 09:07+0200\n"
+"PO-Revision-Date: 2017-06-04 15:57+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -921,8 +921,8 @@ msgid "Gather Training"
 msgstr "Verzameloefeningen"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
-msgid "Using net improves the fishing productivity."
-msgstr "Gebruik van een visnet verhoogt de productiviteit van je vissers."
+msgid "Nets improve the fishing productivity."
+msgstr ""
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid ""
@@ -1049,8 +1049,8 @@ msgid "Wedge and Mallet"
 msgstr "Splijthamer"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
-msgid "Baskets to carry foraged food stuffs."
-msgstr "Mandjes om bessen te dragen."
+msgid "Baskets for foraging."
+msgstr ""
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 msgid "Equip your foragers with wicker baskets. +50% fruit foraging rate."
@@ -1155,11 +1155,10 @@ msgstr "Eleusische mysteries"
 
 #: simulation/data/technologies/health_females_01.jsondescription
 msgid ""
-"The Loom allowed the creation of finer clothing to clothe citizens in the "
-"settlement. Women of the household were taught from a young age how to weave"
-" on the loom, and subsequently spent a large  share of their lives working "
-"with it."
-msgstr "Het weefgetouw maakte het mogelijk om fijnere kleren voor de lokale burgers te maken. Vrouwen van het huishouden werden al van jonge leeftijd geleerd om met het weefgetouw te werken. Daarna spendeerden ze een groot deel van hun leven aan het weefgetouw."
+"The loom allowed the creation of finer clothing for settlers. Women of the "
+"household were taught from a young age how to weave on the loom, and "
+"subsequently spent a large share of their lives working with it."
+msgstr ""
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "Female Citizens +50% Health."
@@ -1621,7 +1620,7 @@ msgid "Make your units 50% more expensive to bribe."
 msgstr ""
 
 #: simulation/data/technologies/spy_counter.jsongenericName
-msgid "Counter Espionage"
+msgid "Counterintelligence"
 msgstr ""
 
 #: simulation/data/technologies/trade_commercial_treaty.jsondescription
@@ -1830,7 +1829,8 @@ msgid ""
 msgstr ""
 
 #: simulation/data/technologies/unlock_spies.jsontooltip
-msgid "Allows to bribe other players' units to share their vision."
+msgid ""
+"Allows bribing the units of other players in order to share their vision."
 msgstr ""
 
 #: simulation/data/technologies/unlock_spies.jsongenericName
@@ -2305,7 +2305,7 @@ msgid ""
 msgstr "De Spartanen hadden niet het grootste leger, maar wel het beste voor hun tijd. Wat ze misten in kwantiteit trokken ze weer recht in kwaliteit. Er werd gezegd dat Sparta geen stadsmuren nodig had, aangezien hun mannen zo sterk als muren waren."
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
-msgid "Spartans have 10% less maximum population"
+msgid "Spartans have 10% less maximum population."
 msgstr ""
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
@@ -2403,7 +2403,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
-msgid "Mauryan city walls have 20% less health and 20% less build time."
+msgid "Mauryan city walls have -20% less health and -20% less build time."
 msgstr ""
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName

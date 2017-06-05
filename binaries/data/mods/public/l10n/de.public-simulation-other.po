@@ -19,13 +19,13 @@
 # Philipp Mysz <philmy@web.de>, 2017
 # qwertz, 2015
 # Raymond Vetter, 2014-2017
-# Xaver, 2015-2016
+# Xaver, 2015-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-02 09:04+0200\n"
-"PO-Revision-Date: 2017-06-03 10:29+0000\n"
-"Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
+"POT-Creation-Date: 2017-06-04 09:07+0200\n"
+"PO-Revision-Date: 2017-06-04 18:33+0000\n"
+"Last-Translator: Xaver\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -974,38 +974,38 @@ msgstr "(Cheat – alle Einheiten steuern)"
 msgid "(Cheat - reveal map)"
 msgstr "(Cheat - Karte aufdecken)"
 
-#: simulation/helpers/Commands.js:579
+#: simulation/helpers/Commands.js:580
 msgid "(Cheat - promoted units)"
 msgstr "(Cheat – beförderte Einheiten)"
 
-#: simulation/helpers/Commands.js:693
+#: simulation/helpers/Commands.js:694
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Kann nicht aufgerüstet werden, weil Abstandsanforderungen nicht erfüllt sind oder das Gelände unpassierbar ist."
 
-#: simulation/helpers/Commands.js:703
+#: simulation/helpers/Commands.js:704
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "Eine besetzte Entität kann nicht aufgerüstet werden."
 
-#: simulation/helpers/Commands.js:749
+#: simulation/helpers/Commands.js:750
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Angriff gegen %(_player_)s erbeten."
 
-#: simulation/helpers/Commands.js:782
+#: simulation/helpers/Commands.js:783
 msgid "There are no bribable units"
 msgstr "Es gibt keine bestechlichen Einheiten."
 
-#: simulation/helpers/Commands.js:827
+#: simulation/helpers/Commands.js:828
 msgid "Unable to ungarrison unit(s)"
 msgstr "Einheit(en) können nicht ausquartiert werden"
 
-#: simulation/helpers/Commands.js:841
+#: simulation/helpers/Commands.js:842
 msgid "Some unit(s) can't go back to work"
 msgstr "Einige Einheit(en) können die Arbeit nicht wieder aufnehmen"
 
-#: simulation/helpers/Commands.js:1095
+#: simulation/helpers/Commands.js:1096
 msgid "The building's technology requirements are not met."
 msgstr "Erforderliche Technologien für das Gebäude fehlen."
 
@@ -1186,7 +1186,7 @@ msgstr "Klein"
 #: simulation/data/settings/map_sizes.jsonData[1].Tooltip
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
-"quickly while still having few room to expand."
+"quickly while still having some room to expand."
 msgstr "Kleine Karten eignen sich für 1v1 Spiele, da Spieler den Gegner schnell erreichen können und trotzdem etwas Platz zum expandieren haben."
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name

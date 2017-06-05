@@ -30,8 +30,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-29 09:07+0200\n"
-"PO-Revision-Date: 2017-06-02 20:27+0000\n"
+"POT-Creation-Date: 2017-06-04 09:05+0200\n"
+"PO-Revision-Date: 2017-06-05 00:21+0000\n"
 "Last-Translator: borg 2k <estevanborg@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -90,8 +90,8 @@ msgstr "Tab"
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
-" in default web browser. Please wait...."
-msgstr "Abrindo %(url)s\nno navegador padrão da web. Aguarde..."
+" in default web browser. Please wait..."
+msgstr ""
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
@@ -380,10 +380,10 @@ msgid "disabled"
 msgstr "desabilitado"
 
 #: gui/common/gamedescription.js:313
-msgid "For the first minute, enemies will stay neutral."
-msgid_plural "For the first %(min)s minutes, enemies will stay neutral."
-msgstr[0] "No primeiro minuto, os inimigos permanecem neutros"
-msgstr[1] "Pelos primeiros %(min)s minutos, os inimigos permanecerão neutros."
+msgid "For the first minute, other players will stay neutral."
+msgid_plural "For the first %(min)s minutes, other players will stay neutral."
+msgstr[0] ""
+msgstr[1] ""
 
 #: gui/common/gamedescription.js:321
 msgid "Map Name"
@@ -556,8 +556,9 @@ msgid "Server full"
 msgstr "Servidor cheio"
 
 #: gui/common/network.js:76
-msgid "Player identifier in use, retry connecting"
-msgstr "Identificado jogador em uso, nova tentativa de conexão"
+msgid ""
+"Player identifier in use. If you were disconnected, retry in few seconds"
+msgstr ""
 
 #: gui/common/network.js:79
 #, javascript-format
@@ -663,8 +664,8 @@ msgstr "Aleatório"
 #: gui/common/settings.js:195
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
-" chose the number of players and teams."
-msgstr "Crie um mapa exclusivo com uma distribuição de recursos diferente cada vez. Escolha livremente o número de jogadores e equipes."
+" select the number of players and teams."
+msgstr ""
 
 #: gui/common/settings.js:199
 msgctxt "map"
@@ -1655,8 +1656,8 @@ msgid "Used"
 msgstr "Utilizados"
 
 #: gui/summary/summary.js:85
-msgid "Recieved"
-msgstr "Recebido"
+msgid "Received"
+msgstr ""
 
 #: gui/summary/summary.js:90
 msgid "Sold"
@@ -2496,9 +2497,9 @@ msgstr "Pausar quando em plano de fundo"
 
 #: gui/options/options.jsongeneralSetting[4].tooltip
 msgid ""
-"When disabled, the welcome screen will nevertheless be shown once when a new"
-" version is available and you can always launch it from the main menu."
-msgstr "Quando desativada, a tela de recepção irá todavia ser mostrada uma vez quando uma nova versão estiver disponível e você pode sempre abri-la pelo menu principal."
+"If you disable it, the welcome screen will still appear once, each time a "
+"new version is available. You can always launch it from the main menu."
+msgstr ""
 
 #: gui/options/options.jsongeneralSetting[4].label
 msgid "Enable Welcome Screen"
@@ -2581,21 +2582,19 @@ msgid "Buddies"
 msgstr "Parceiros"
 
 #: gui/options/options.jsongeneralSetting[13].parameters.list[2].label
-msgid "No one"
-msgstr "Ninguém"
+#: gui/options/options.jsongeneralSetting[14].parameters.list[2].label
+msgid "Disabled"
+msgstr "Desativado"
 
 #: gui/options/options.jsongeneralSetting[13].tooltip
 msgid ""
-"Whether to assign joining clients to free playerslots in the gamesetup."
-msgstr "Atribuir clientes para vagas livres no setup do game."
+"Automatically assign joining clients to free player slots during the match "
+"setup."
+msgstr ""
 
 #: gui/options/options.jsongeneralSetting[13].label
 msgid "Assign Players"
 msgstr "Atribuir Jogadores"
-
-#: gui/options/options.jsongeneralSetting[14].parameters.list[2].label
-msgid "Disabled"
-msgstr "Desativado"
 
 #: gui/options/options.jsongeneralSetting[14].tooltip
 msgid ""
@@ -2905,16 +2904,16 @@ msgid "Harvest from animals, berry bushes, fish, or fields."
 msgstr "Colha de animais, frutas, peixes ou campos."
 
 #: simulation/data/resources/metal.jsondescription
-msgid "Mine from metal mines and quarries."
-msgstr "Minere de minas de metal e pedreiras."
+msgid "Mine from metal mines or quarries."
+msgstr "Minas de metal ou pedreiras."
 
 #: simulation/data/resources/stone.jsondescription
 msgid "Mine from rocks, stone quarries or ruins."
 msgstr "Minere de pedras, pedreiras ou ruínas."
 
 #: simulation/data/resources/wood.jsondescription
-msgid "Lumber from trees or groves."
-msgstr "Pegue madeira de florestas ou bosques."
+msgid "Cut down from trees or groves."
+msgstr "Corte de árvores ou bosques."
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -3089,12 +3088,11 @@ msgstr "Árvore"
 #: gui/gamesetup/ai.txt:1
 msgid ""
 "Although reasonably easy for an experienced player, the default AI level is "
-"quite challenging for new players before they master the basic mechanisms of"
-" the game. It is advised to start by playing against a lower level (sandbox "
-"or very easy) when beginning with the game. Changing the AI level is done by"
-" clicking on the gear icon next to each AI player in the player selection "
-"panel above."
-msgstr "Embora seja razoavelmente fácil para um jogador experiente, o nível da AI padrão é bastante desafiador para novos jogadores antes de dominarem os mecanismos básicos do jogo. É recomendado começar jogando contra um nível menor (caixa de areia ou muito fácil) ao começar com o jogo. Mudar o nível de AI é realizado clicando no ícone de roda dentada próximo a cada jogador AI no painel de seleção de jogadores acima."
+"quite challenging for new players yet to master the basic mechanisms of the "
+"game. Beginners are advised to start by playing against a lower level AI "
+"(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
+"to the player you want to modify in the selection panel above."
+msgstr ""
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""

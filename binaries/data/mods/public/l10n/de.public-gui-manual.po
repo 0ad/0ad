@@ -13,13 +13,13 @@
 # Maximilian Wagenbach <foaly.f@web.de>, 2016
 # pilino1234 <mhilgendrf@aol.com>, 2016
 # Raymond Vetter, 2014-2017
-# Xaver, 2015-2016
+# Xaver, 2015-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-29 09:06+0200\n"
-"PO-Revision-Date: 2017-05-30 11:22+0000\n"
-"Last-Translator: ... ... <jon12@gmx.de>\n"
+"POT-Creation-Date: 2017-06-04 09:05+0200\n"
+"PO-Revision-Date: 2017-06-04 18:37+0000\n"
+"Last-Translator: Xaver\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -62,11 +62,9 @@ msgstr "[font=\"sans-bold-16\"]Grafikeinstellungen"
 msgid ""
 "[font=\"sans-14\"]You can switch between fullscreen and windowed mode by "
 "pressing Alt + Enter. In windowed mode, you can resize the window. If the "
-"game runs too slowly, you can change some settings in the configuration "
-"file: look for binaries/data/config/default.cfg in the location where the "
-"game is installed, which gives instructions for editing, and try disabling "
-"the \"fancywater\" and \"shadows\" options."
-msgstr "[font=\"sans-14\"]Du kannst mit Alt + Eingabe zwischen Vollbild- und Fenstermodus wechseln. Im Fenstermodus kannst du die Größe des Fensters ändern. Wenn das Spiel zu langsam läuft, kannst du manche Einstellungen in der Konfigurationsdatei ändern: Such die Datei „binaries/data/config/default.cfg“ in dem Ordner, in dem das Spiel installiert ist. Sie gibt Anweisungen zum Ändern – Versuche zuerst, die Optionen „fancywater“ und „shadows“ zu deaktivieren."
+"game runs too slowly, you can change some settings in the options window: "
+"try disabling the \"HQ Water Effects\" and \"Shadows\" options."
+msgstr "[font=\"sans-14\"]Du kannst mit Alt + Eingabe zwischen Vollbild- und Fenstermodus wechseln. Im Fenstermodus kannst du die Größe des Fensters ändern. Wenn das Spiel zu langsam läuft, kannst du ein paar Einstellungen  ändern im Konfigurationsmenü: Versuch zuerst, die Optionen „HQ-Wasser-Effekte“ und „Schatten“ zu deaktivieren."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
@@ -198,8 +196,8 @@ msgid "[font=\"sans-bold-16\"]Hotkeys:"
 msgstr "[font=\"sans-bold-16\"]Hotkeys:"
 
 #: gui/manual/intro.txt:43
-msgid "[font=\"sans-bold-14\"]Global"
-msgstr "[font=\"sans-bold-14\"]Global"
+msgid "[font=\"sans-bold-14\"]Program-wide"
+msgstr "[font=\"sans-bold-14\"]Programmweit"
 
 #: gui/manual/intro.txt:44
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
