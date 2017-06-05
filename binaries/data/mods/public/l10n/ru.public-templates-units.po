@@ -38,8 +38,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-19 09:04+0200\n"
-"PO-Revision-Date: 2017-05-19 14:51+0000\n"
+"POT-Creation-Date: 2017-06-02 09:03+0200\n"
+"PO-Revision-Date: 2017-06-02 15:08+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -48,29 +48,29 @@ msgstr ""
 "Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: simulation/templates/template_unit_cavalry.xml:37
 #: simulation/templates/template_unit_cavalry.xml:38
+#: simulation/templates/template_unit_cavalry.xml:39
 #: simulation/templates/template_unit_champion_cavalry.xml:27
-#: simulation/templates/template_unit_hero_cavalry.xml:26
+#: simulation/templates/template_unit_hero_cavalry.xml:25
 msgid "Cavalry"
 msgstr "Конница"
 
-#: simulation/templates/template_unit_cavalry.xml:37
-#: simulation/templates/template_unit_infantry.xml:63
+#: simulation/templates/template_unit_cavalry.xml:38
+#: simulation/templates/template_unit_infantry.xml:64
 #: simulation/templates/template_unit_support_female_citizen.xml:51
 msgid "Citizen"
 msgstr "Горожанин"
 
-#: simulation/templates/template_unit_cavalry.xml:37
-#: simulation/templates/template_unit_champion.xml:13
-#: simulation/templates/template_unit_hero.xml:32
-#: simulation/templates/template_unit_infantry.xml:63
+#: simulation/templates/template_unit_cavalry.xml:38
+#: simulation/templates/template_unit_champion.xml:14
+#: simulation/templates/template_unit_hero.xml:33
+#: simulation/templates/template_unit_infantry.xml:64
 msgid "Soldier"
 msgstr "Солдат"
 
-#: simulation/templates/template_unit_cavalry.xml:39
+#: simulation/templates/template_unit_cavalry.xml:40
 #: simulation/templates/template_unit_dog.xml:46
-#: simulation/templates/template_unit_infantry.xml:64
+#: simulation/templates/template_unit_infantry.xml:65
 #: simulation/templates/template_unit_support_healer.xml:22
 #: simulation/templates/units/brit_support_healer_b.xml:9
 #: simulation/templates/units/cart_support_healer_b.xml:10
@@ -92,11 +92,11 @@ msgstr "Основной"
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:28
 #: simulation/templates/template_unit_dog.xml:44
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:19
-#: simulation/templates/template_unit_hero_cavalry_swordsman.xml:19
+#: simulation/templates/template_unit_hero_cavalry_swordsman.xml:25
 #: simulation/templates/template_unit_hero_elephant_melee.xml:35
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:26
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:25
-#: simulation/templates/template_unit_hero_infantry_swordsman.xml:19
+#: simulation/templates/template_unit_hero_infantry_swordsman.xml:25
 #: simulation/templates/template_unit_infantry_melee.xml:19
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:34
 #: simulation/templates/template_unit_mechanical_siege_ram.xml:35
@@ -113,7 +113,7 @@ msgstr "Конница ближнего боя"
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:34
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:34
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:19
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:26
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:25
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:27
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:25
@@ -127,8 +127,8 @@ msgstr "Конный копейщик"
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:23
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:28
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:28
-#: simulation/templates/template_unit_hero_cavalry_swordsman.xml:19
-#: simulation/templates/template_unit_hero_infantry_swordsman.xml:19
+#: simulation/templates/template_unit_hero_cavalry_swordsman.xml:25
+#: simulation/templates/template_unit_hero_infantry_swordsman.xml:25
 #: simulation/templates/template_unit_infantry_melee_swordsman.xml:23
 msgid "Sword"
 msgstr "Меч"
@@ -146,10 +146,10 @@ msgstr "Конница дальнего боя"
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:23
 #: simulation/templates/template_unit_champion_infantry_archer.xml:26
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:26
-#: simulation/templates/template_unit_hero_cavalry_archer.xml:26
-#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:33
-#: simulation/templates/template_unit_hero_infantry_archer.xml:25
-#: simulation/templates/template_unit_hero_infantry_javelinist.xml:24
+#: simulation/templates/template_unit_hero_cavalry_archer.xml:18
+#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:25
+#: simulation/templates/template_unit_hero_infantry_archer.xml:19
+#: simulation/templates/template_unit_hero_infantry_javelinist.xml:18
 #: simulation/templates/template_unit_infantry_ranged.xml:27
 #: simulation/templates/template_unit_infantry_ranged.xml:26
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:49
@@ -164,8 +164,8 @@ msgstr "Дальний бой"
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:23
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:23
 #: simulation/templates/template_unit_champion_infantry_archer.xml:26
-#: simulation/templates/template_unit_hero_cavalry_archer.xml:26
-#: simulation/templates/template_unit_hero_infantry_archer.xml:25
+#: simulation/templates/template_unit_hero_cavalry_archer.xml:18
+#: simulation/templates/template_unit_hero_infantry_archer.xml:19
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:27
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:28
 msgid "Archer"
@@ -178,8 +178,8 @@ msgstr "Конный лучник"
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:23
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:23
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:26
-#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:33
-#: simulation/templates/template_unit_hero_infantry_javelinist.xml:24
+#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:25
+#: simulation/templates/template_unit_hero_infantry_javelinist.xml:18
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:26
 msgid "Javelin"
 msgstr "Метательное копьё"
@@ -188,11 +188,11 @@ msgstr "Метательное копьё"
 msgid "Cavalry Skirmisher"
 msgstr "Конный застрельщик"
 
-#: simulation/templates/template_unit_champion.xml:11
+#: simulation/templates/template_unit_champion.xml:12
 msgid "Champion Unit"
 msgstr "Юнит чемпион"
 
-#: simulation/templates/template_unit_champion.xml:13
+#: simulation/templates/template_unit_champion.xml:14
 msgid "Champion"
 msgstr "Чемпион"
 
@@ -230,9 +230,9 @@ msgid "Elephant"
 msgstr "Слон"
 
 #: simulation/templates/template_unit_champion_infantry.xml:21
-#: simulation/templates/template_unit_hero_infantry.xml:23
-#: simulation/templates/template_unit_infantry.xml:63
-#: simulation/templates/template_unit_infantry.xml:61
+#: simulation/templates/template_unit_hero_infantry.xml:24
+#: simulation/templates/template_unit_infantry.xml:64
+#: simulation/templates/template_unit_infantry.xml:62
 msgid "Infantry"
 msgstr "Пехотинец"
 
@@ -249,7 +249,7 @@ msgid "Champion Skirmisher"
 msgstr "Застрельщик-чемпион"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:34
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:26
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:27
 msgid "Pike"
 msgstr "Пика"
@@ -260,7 +260,7 @@ msgstr "Пикинёр-чемпион"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:37
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:35
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:28
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:27
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:27
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:30
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:28
@@ -303,22 +303,22 @@ msgstr "Кит"
 msgid "Kill, then collect food from this bountiful oceanic resource."
 msgstr "Убейте, затем соберите пищу с этого обильного океанического ресурса."
 
-#: simulation/templates/template_unit_hero.xml:32
-#: simulation/templates/template_unit_hero.xml:30
-#: simulation/templates/template_unit_hero_infantry.xml:24
-#: simulation/templates/units/maur_hero_chanakya.xml:33
+#: simulation/templates/template_unit_hero.xml:33
+#: simulation/templates/template_unit_hero.xml:31
+#: simulation/templates/template_unit_hero_infantry.xml:25
+#: simulation/templates/units/maur_hero_chanakya.xml:35
 msgid "Hero"
 msgstr "Герой"
 
-#: simulation/templates/template_unit_hero_cavalry.xml:25
+#: simulation/templates/template_unit_hero_cavalry.xml:24
 msgid "Hero Cavalry"
 msgstr "Конный герой"
 
-#: simulation/templates/template_unit_hero_cavalry_archer.xml:27
+#: simulation/templates/template_unit_hero_cavalry_archer.xml:19
 msgid "Hero Cavalry Archer"
 msgstr "Конный герой лучник"
 
-#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:34
+#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:26
 msgid "Hero Cavalry Skirmisher"
 msgstr "Конный герой застрельщик"
 
@@ -326,19 +326,19 @@ msgstr "Конный герой застрельщик"
 msgid "Hero Cavalry Spearman"
 msgstr "Конный герой копейщик"
 
-#: simulation/templates/template_unit_hero_cavalry_swordsman.xml:20
+#: simulation/templates/template_unit_hero_cavalry_swordsman.xml:26
 msgid "Hero Cavalry Swordsman"
 msgstr "Конный герой мечник"
 
-#: simulation/templates/template_unit_hero_infantry_archer.xml:24
+#: simulation/templates/template_unit_hero_infantry_archer.xml:18
 msgid "Hero Archer"
 msgstr "Герой лучник"
 
-#: simulation/templates/template_unit_hero_infantry_javelinist.xml:25
+#: simulation/templates/template_unit_hero_infantry_javelinist.xml:19
 msgid "Hero Skirmisher"
 msgstr "Герой застрельщик"
 
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:27
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:26
 msgid "Hero Pikeman"
 msgstr "Герой пикинёр"
 
@@ -346,11 +346,11 @@ msgstr "Герой пикинёр"
 msgid "Hero Spearman"
 msgstr "Герой копейщик"
 
-#: simulation/templates/template_unit_hero_infantry_swordsman.xml:20
+#: simulation/templates/template_unit_hero_infantry_swordsman.xml:26
 msgid "Hero Swordsman"
 msgstr "Герой мечник"
 
-#: simulation/templates/template_unit_infantry.xml:63
+#: simulation/templates/template_unit_infantry.xml:64
 #: simulation/templates/template_unit_support_female_citizen.xml:51
 #: simulation/templates/template_unit_support_slave.xml:39
 msgid "Worker"
@@ -504,7 +504,7 @@ msgstr "Осадная башня"
 
 #: simulation/templates/template_unit_support.xml:14
 #: simulation/templates/template_unit_support.xml:12
-#: simulation/templates/units/maur_hero_chanakya.xml:33
+#: simulation/templates/units/maur_hero_chanakya.xml:35
 msgid "Support"
 msgstr "Помощник"
 
@@ -514,7 +514,7 @@ msgstr "Горожанка"
 
 #: simulation/templates/template_unit_support_healer.xml:19
 #: simulation/templates/template_unit_support_healer.xml:20
-#: simulation/templates/units/maur_hero_chanakya.xml:33
+#: simulation/templates/units/maur_hero_chanakya.xml:35
 msgid "Healer"
 msgstr "Целитель"
 
@@ -1413,15 +1413,15 @@ msgstr "Гипаспистес"
 msgid "Hypaspistḗs Argyraspídi"
 msgstr "Гипаспистес  Аргираспиди"
 
-#: simulation/templates/units/mace_hero_alexander.xml:19
+#: simulation/templates/units/mace_hero_alexander.xml:20
 msgid "Alexander The Great"
 msgstr "Александр Великий"
 
-#: simulation/templates/units/mace_hero_alexander.xml:20
+#: simulation/templates/units/mace_hero_alexander.xml:21
 msgid "Mégās Aléxandros"
 msgstr "Мегас Александрос"
 
-#: simulation/templates/units/mace_hero_alexander.xml:21
+#: simulation/templates/units/mace_hero_alexander.xml:22
 msgid "\"Herocide\" Bonus: +20% attack bonus vs. enemy Heroes."
 msgstr "Бонус \"Героебой\": +20% дополнительного урона против вражеских героев."
 
@@ -1596,11 +1596,11 @@ msgid ""
 "during Ashoka's lifetime."
 msgstr "Особенность героя: \"Надписи Ашоки\" - колонны с надписями можно строить во время жизни Ашоки."
 
-#: simulation/templates/units/maur_hero_chanakya.xml:34
+#: simulation/templates/units/maur_hero_chanakya.xml:36
 msgid "Acharya Chanakya"
 msgstr "Ачарья Чанакья"
 
-#: simulation/templates/units/maur_hero_chanakya.xml:35
+#: simulation/templates/units/maur_hero_chanakya.xml:37
 msgid "Acharya Chāṇakya"
 msgstr "Ачария Чанакия"
 
@@ -1802,12 +1802,6 @@ msgstr "Дарий Великий"
 #: simulation/templates/units/pers_hero_darius.xml:14
 msgid "Darayavahush I"
 msgstr "Дараявауш I"
-
-#: simulation/templates/units/pers_hero_darius.xml:16
-msgid ""
-"Hero Aura: \"Merchant of the Empire.\" Boosts profitablity of trade during "
-"his lifetime (TBD)."
-msgstr "Аура героя: \"Торговец империи\". Пока он жив повышается прибыль от торговли. (пока не определено)"
 
 #: simulation/templates/units/pers_hero_xerxes.xml:8
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:13
@@ -2122,7 +2116,7 @@ msgstr "Италийский тяжёлый пехотинец"
 msgid "Extraordinarius"
 msgstr "Экстраординариус"
 
-#: simulation/templates/units/rome_hero_marcellus.xml:9
+#: simulation/templates/units/rome_hero_marcellus.xml:10
 msgid "Marcus Claudius Marcellus"
 msgstr "Марк Клавдий Марцелл"
 
@@ -2130,7 +2124,7 @@ msgstr "Марк Клавдий Марцелл"
 msgid "Quintus Fabius Maximus"
 msgstr "Квинт Фабий Максим"
 
-#: simulation/templates/units/rome_hero_scipio.xml:6
+#: simulation/templates/units/rome_hero_scipio.xml:9
 msgid "Scipio Africanus"
 msgstr "Сципион Африканский"
 

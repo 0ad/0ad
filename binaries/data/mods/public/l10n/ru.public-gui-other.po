@@ -18,6 +18,7 @@
 # Maksim Oreshkov <oreshkovmv@mail.ru>, 2015
 # Malyanov Evgeniy <flange465@gmail.com>, 2015
 # Nick Zhivotenko <inactive+niko.zvt@transifex.com>, 2015
+# Nicolas Auvray <na.itms76@gmail.com>, 2017
 # Prince Moth <princemoth@rambler.ru>, 2016
 # sad2shade <sad.2.shade@gmail.com>, 2015
 # Simple88, 2016
@@ -37,8 +38,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-05-29 09:07+0200\n"
-"PO-Revision-Date: 2017-05-29 15:24+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-06-03 10:49+0000\n"
+"Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1575,7 +1576,7 @@ msgstr "Торговцы"
 #: gui/summary/layout.js:74
 #, javascript-format
 msgid "Units Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
-msgstr "Статистика по юнитам (%(trained)s / %(lost)s / %(killed)s)"
+msgstr "Статистика по юнитам (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):84
 msgid "Resources"
@@ -1609,7 +1610,7 @@ msgstr "Рынок"
 #: gui/summary/layout.js:155
 #, javascript-format
 msgid "%(resourceFirstWord)s exchanged"
-msgstr "%(resourceFirstWord)ы обменяны"
+msgstr "%(resourceFirstWord)s обменяны"
 
 #: gui/summary/layout.js:163
 msgid "Barter efficiency"

@@ -370,10 +370,10 @@ function getGameDescription(extended = false)
 		});
 
 		titles.push({
-			"label": translate("Treasure"),
+			"label": translate("Treasures"),
 			"value": g_GameAttributes.settings.DisableTreasures ?
-				translateWithContext("treasure", "Disabled") :
-				translateWithContext("treasure", "If the map places it.")
+				translateWithContext("treasures", "Disabled") :
+				translateWithContext("treasures", "As defined by the map.")
 		});
 
 		titles.push({

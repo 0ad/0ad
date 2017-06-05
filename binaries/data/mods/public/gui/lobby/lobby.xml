@@ -91,7 +91,6 @@
 
 		<object name="leftButtonPanel" size="20 100%-105 20% 100%-20">
 			<object name="toggleBuddyButton" type="button" style="ModernButtonRed" size="0 100%-85 100% 100%-60">
-				<translatableAttribute id="caption" comment="Toggle Buddy">Toggle Buddy</translatableAttribute>
 				<action on="Press">
 					toggleBuddy();
 				</action>

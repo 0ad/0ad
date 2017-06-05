@@ -2,10 +2,10 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="britomartus">
+    <variant name="viridomarus">
       <mesh>props/shield/cermy_a_f.dae</mesh>
       <props>
-        <prop actor="props/units/shields/celt_britomartus_back.xml" attachpoint="back"/>
+        <prop actor="props/units/shields/celt_viridomarus_back.xml" attachpoint="back"/>
       </props>
       <textures><texture file="props/shield/celt_misc_c.dds" name="baseTex"/></textures>
     </variant>

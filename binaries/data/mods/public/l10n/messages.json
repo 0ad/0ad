@@ -676,9 +676,33 @@
                     "maps/tutorials/**.js"
                 ],
                 "options": {
-                    "keywords": [
-                        "instructions"
+                    "format": "javascript-format",
+                    "keywords": {
+                        "markForTranslation": [1],
+                        "markForTranslationWithContext": [[1], 2],
+                        "markForPluralTranslation": [1, 2]
+                    },
+                    "commentTags": [
+                        "Translation:"
                     ]
+                }
+            },
+            {
+                "extractor": "xml",
+                "filemasks": [
+                    "maps/tutorials/**.xml"
+                ],
+                "options": {
+                    "keywords": {
+                        "ScriptSettings": {
+                            "extractJson": {
+                                "keywords": [
+                                    "Name",
+                                    "Description"
+                                ]
+                            }
+                        }
+                    }
                 }
             }
         ]

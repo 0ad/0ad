@@ -350,6 +350,7 @@ function init(attribs)
 	updateSubject(Engine.LobbyGetRoomSubject());
 	updateLobbyColumns();
 
+	updateToggleBuddy();
 	Engine.GetGUIObjectByName("chatInput").tooltip = colorizeAutocompleteHotkey();
 }
 
@@ -533,6 +534,19 @@ function updateSubject(newSubject)
 }
 
 /**
+ * Update the caption of the toggle buddy button.
+ */
+function updateToggleBuddy()
+{
+	let playerList = Engine.GetGUIObjectByName("playersBox");
+	let playerName = playerList.list[playerList.selected];
+
+	let toggleBuddyButton = Engine.GetGUIObjectByName("toggleBuddyButton");
+	toggleBuddyButton.caption = g_Buddies.indexOf(playerName) != -1 ? translate("Unmark as Buddy") : translate("Mark as Buddy");
+	toggleBuddyButton.enabled = playerName && playerName != g_Username;
+}
+
+/**
  * Do a full update of the player listing, including ratings from cached C++ information.
  */
 function updatePlayerList()
@@ -635,6 +649,8 @@ function toggleBuddy()
 	else
 		g_Buddies.push(name);
 
+	updateToggleBuddy();
+
 	// Don't save empty strings to the config file
 	let buddies = g_Buddies.filter(nick => nick).join(g_BuddyListDelimiter) || g_BuddyListDelimiter;
 	Engine.ConfigDB_CreateValue("user", "lobby.buddies", buddies);
@@ -688,6 +704,8 @@ function selectGameFromPlayername(playerName)
 function onPlayerListSelection()
 {
 	lookupSelectedUserProfile("playersBox");
+
+	updateToggleBuddy();
 
 	let playerList = Engine.GetGUIObjectByName("playersBox");
 	if (playerList.selected != -1)

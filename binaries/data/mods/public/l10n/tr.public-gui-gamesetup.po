@@ -21,6 +21,7 @@
 # Mete Han <scorpion000000@hotmail.com>, 2013
 # Muha Aliss <muhaaliss@gmail.com>, 2017
 # Muhammed Aydın <mma-95@hotmail.com>, 2013
+# Onur Kılıç <onur.ce.ytu@gmail.com>, 2017
 # reprezalio <yenilmezzserdar@gmail.com>, 2014
 # schaft <neooneone@gmail.com>, 2014
 # Serkan <fkserkank@gmail.com>, 2013
@@ -40,8 +41,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-05-27 14:48+0200\n"
-"PO-Revision-Date: 2017-06-01 20:56+0000\n"
-"Last-Translator: yakup <mutouk@yandex.ru>\n"
+"PO-Revision-Date: 2017-06-02 21:27+0000\n"
+"Last-Translator: Onur Kılıç <onur.ce.ytu@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -157,7 +158,7 @@ msgstr "Deniz Harp Haritaları"
 #: gui/gamesetup/gamesetup.js:171
 msgctxt "map filter"
 msgid "Maps where ships are needed to reach the enemy."
-msgstr ""
+msgstr "Gemilerle düşmana ulaşmanı gerektirecek haritalar"
 
 #: gui/gamesetup/gamesetup.js:176
 msgid "Demo Maps"
@@ -205,7 +206,7 @@ msgstr "Bir harita türü seçin."
 
 #: gui/gamesetup/gamesetup.js:424
 msgid "Map Filter"
-msgstr ""
+msgstr "Harita Filtresi"
 
 #: gui/gamesetup/gamesetup.js:425
 msgid "Select a map filter."
@@ -213,7 +214,7 @@ msgstr "Bir harita süzgeci seçin."
 
 #: gui/gamesetup/gamesetup.js:439
 msgid "Select Map"
-msgstr ""
+msgstr "Harita Seç"
 
 #: gui/gamesetup/gamesetup.js:440
 msgid "Select a map to play on."
@@ -241,7 +242,7 @@ msgstr "Nüfus Kapasitesi"
 
 #: gui/gamesetup/gamesetup.js:494
 msgid "Select population limit."
-msgstr ""
+msgstr "Nüfus Limitini Seç"
 
 #: gui/gamesetup/gamesetup.js:497
 #, javascript-format
@@ -252,7 +253,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:513
 msgid "Starting Resources"
-msgstr ""
+msgstr "Başlangıç Kaynakları"
 
 #: gui/gamesetup/gamesetup.js:516
 #, javascript-format
@@ -265,7 +266,7 @@ msgstr "Oyunun başlangıç kaynaklarını seç."
 
 #: gui/gamesetup/gamesetup.js:533
 msgid "Ceasefire"
-msgstr ""
+msgstr "Ateşkes"
 
 #: gui/gamesetup/gamesetup.js:534
 msgid "Set time where no attacks are possible."
@@ -289,7 +290,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:575
 msgid "Victory Duration"
-msgstr ""
+msgstr "Zafer Süresi"
 
 #: gui/gamesetup/gamesetup.js:576
 msgid "Number of minutes until the player has won."
@@ -309,7 +310,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:695
 msgid "Hero Garrison"
-msgstr ""
+msgstr "Kahraman Garnizonu"
 
 #: gui/gamesetup/gamesetup.js:696
 msgid "Toggle whether heroes can be garrisoned."
@@ -331,7 +332,7 @@ msgstr "Açığa çıkarılan haritası değiştir(her şeyi gör)."
 #. explored map options!
 #: gui/gamesetup/gamesetup.js:727
 msgid "Explored Map"
-msgstr ""
+msgstr "Keşfedilmiş Harita"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
@@ -341,7 +342,7 @@ msgstr "Keşfedilmiş haritayı kapat (başlangıç haritasına dön)."
 
 #: gui/gamesetup/gamesetup.js:740
 msgid "Disable Treasures"
-msgstr ""
+msgstr "Hazineleri Devre Dışı Bırak"
 
 #: gui/gamesetup/gamesetup.js:741
 msgid "Disable all treasures on the map."
@@ -365,7 +366,7 @@ msgstr "Takımları kilitle."
 
 #: gui/gamesetup/gamesetup.js:776
 msgid "Last Man Standing"
-msgstr ""
+msgstr "Son Kalan Kişi"
 
 #: gui/gamesetup/gamesetup.js:777
 msgid ""

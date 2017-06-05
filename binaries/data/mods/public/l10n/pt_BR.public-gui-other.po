@@ -31,7 +31,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-05-29 09:07+0200\n"
-"PO-Revision-Date: 2017-06-01 21:13+0000\n"
+"PO-Revision-Date: 2017-06-02 20:27+0000\n"
 "Last-Translator: borg 2k <estevanborg@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -43,7 +43,7 @@ msgstr ""
 #: gui/civinfo/civinfo.js:96
 #, javascript-format
 msgid "%(civilization)s Gameplay"
-msgstr "Jogo %(civilization)s"
+msgstr "%(civilization)s Jogo"
 
 #: gui/civinfo/civinfo.js:99
 msgid "Civilization Bonus"
@@ -281,7 +281,7 @@ msgstr "Time %(team)s"
 msgid ""
 "%(team)s:\n"
 "%(playerDescriptions)s"
-msgstr "%(team)s:⏎ %(playerDescriptions)s"
+msgstr "%(team)s:⏎\n%(playerDescriptions)s"
 
 #: gui/common/gamedescription.js:210
 msgid "Observer"
@@ -840,12 +840,12 @@ msgstr "Armadura:"
 #: gui/common/tooltips.js:145
 #, javascript-format
 msgid "%(damage)s %(damageType)s %(armorPercentage)s"
-msgstr "%(damage)s %(damageType)s %(armorPercentage)s"
+msgstr "%(dano)s %(danoTipo)s %(armaduraPorcentagem)s"
 
 #: gui/common/tooltips.js:150
 #, javascript-format
 msgid "(%(armorPercentage)s)"
-msgstr "(%(armorPercentage)s)"
+msgstr "(%(armaduraPorcentagem)s)"
 
 #: gui/common/tooltips.js:161
 msgid "(None)"
@@ -1706,7 +1706,7 @@ msgstr "Tempo de jogo decorrido: %(time)s"
 #: gui/summary/summary.js:419
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
-msgstr "%(mapName)s - %(mapType)s"
+msgstr "%(mapaNome)s - %(mapaTipo)s"
 
 #: gui/civinfo/civinfo.xml:(caption):16
 msgid "Civilizations"
@@ -3560,7 +3560,7 @@ msgstr "- Use para massacrar cavalaria inimiga ou como força de choque para apo
 
 #: gui/text/tips/spartan_hoplites.txt:8
 msgid "- Use the 'Phalanx' formation for extra armor bonuses."
-msgstr "- Use a formação em Falange para maiores bônus de armadura."
+msgstr "- Use a formação 'Falange' para maiores bônus de armadura."
 
 #: gui/text/tips/spearmen.txt:1
 msgid "SPEARMEN"

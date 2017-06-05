@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-19 09:04+0200\n"
-"PO-Revision-Date: 2017-05-19 14:51+0000\n"
+"POT-Creation-Date: 2017-06-02 09:03+0200\n"
+"PO-Revision-Date: 2017-06-02 15:08+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -21,29 +21,29 @@ msgstr ""
 "Language: eu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: simulation/templates/template_unit_cavalry.xml:37
 #: simulation/templates/template_unit_cavalry.xml:38
+#: simulation/templates/template_unit_cavalry.xml:39
 #: simulation/templates/template_unit_champion_cavalry.xml:27
-#: simulation/templates/template_unit_hero_cavalry.xml:26
+#: simulation/templates/template_unit_hero_cavalry.xml:25
 msgid "Cavalry"
 msgstr "Zalditeria"
 
-#: simulation/templates/template_unit_cavalry.xml:37
-#: simulation/templates/template_unit_infantry.xml:63
+#: simulation/templates/template_unit_cavalry.xml:38
+#: simulation/templates/template_unit_infantry.xml:64
 #: simulation/templates/template_unit_support_female_citizen.xml:51
 msgid "Citizen"
 msgstr "Hiritarra"
 
-#: simulation/templates/template_unit_cavalry.xml:37
-#: simulation/templates/template_unit_champion.xml:13
-#: simulation/templates/template_unit_hero.xml:32
-#: simulation/templates/template_unit_infantry.xml:63
+#: simulation/templates/template_unit_cavalry.xml:38
+#: simulation/templates/template_unit_champion.xml:14
+#: simulation/templates/template_unit_hero.xml:33
+#: simulation/templates/template_unit_infantry.xml:64
 msgid "Soldier"
 msgstr "Soldadua"
 
-#: simulation/templates/template_unit_cavalry.xml:39
+#: simulation/templates/template_unit_cavalry.xml:40
 #: simulation/templates/template_unit_dog.xml:46
-#: simulation/templates/template_unit_infantry.xml:64
+#: simulation/templates/template_unit_infantry.xml:65
 #: simulation/templates/template_unit_support_healer.xml:22
 #: simulation/templates/units/brit_support_healer_b.xml:9
 #: simulation/templates/units/cart_support_healer_b.xml:10
@@ -65,11 +65,11 @@ msgstr "Oinarrizkoa"
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:28
 #: simulation/templates/template_unit_dog.xml:44
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:19
-#: simulation/templates/template_unit_hero_cavalry_swordsman.xml:19
+#: simulation/templates/template_unit_hero_cavalry_swordsman.xml:25
 #: simulation/templates/template_unit_hero_elephant_melee.xml:35
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:26
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:25
-#: simulation/templates/template_unit_hero_infantry_swordsman.xml:19
+#: simulation/templates/template_unit_hero_infantry_swordsman.xml:25
 #: simulation/templates/template_unit_infantry_melee.xml:19
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:34
 #: simulation/templates/template_unit_mechanical_siege_ram.xml:35
@@ -86,7 +86,7 @@ msgstr "Buruz-buruko Zalditeria"
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:34
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:34
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:19
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:26
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:25
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:27
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:25
@@ -100,8 +100,8 @@ msgstr "Lantzadun Zalditeria"
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:23
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:28
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:28
-#: simulation/templates/template_unit_hero_cavalry_swordsman.xml:19
-#: simulation/templates/template_unit_hero_infantry_swordsman.xml:19
+#: simulation/templates/template_unit_hero_cavalry_swordsman.xml:25
+#: simulation/templates/template_unit_hero_infantry_swordsman.xml:25
 #: simulation/templates/template_unit_infantry_melee_swordsman.xml:23
 msgid "Sword"
 msgstr "Ezpata"
@@ -119,10 +119,10 @@ msgstr "Zalditeri Nagusia"
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:23
 #: simulation/templates/template_unit_champion_infantry_archer.xml:26
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:26
-#: simulation/templates/template_unit_hero_cavalry_archer.xml:26
-#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:33
-#: simulation/templates/template_unit_hero_infantry_archer.xml:25
-#: simulation/templates/template_unit_hero_infantry_javelinist.xml:24
+#: simulation/templates/template_unit_hero_cavalry_archer.xml:18
+#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:25
+#: simulation/templates/template_unit_hero_infantry_archer.xml:19
+#: simulation/templates/template_unit_hero_infantry_javelinist.xml:18
 #: simulation/templates/template_unit_infantry_ranged.xml:27
 #: simulation/templates/template_unit_infantry_ranged.xml:26
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:49
@@ -137,8 +137,8 @@ msgstr "Nagusia"
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:23
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:23
 #: simulation/templates/template_unit_champion_infantry_archer.xml:26
-#: simulation/templates/template_unit_hero_cavalry_archer.xml:26
-#: simulation/templates/template_unit_hero_infantry_archer.xml:25
+#: simulation/templates/template_unit_hero_cavalry_archer.xml:18
+#: simulation/templates/template_unit_hero_infantry_archer.xml:19
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:27
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:28
 msgid "Archer"
@@ -151,8 +151,8 @@ msgstr "Gezilari Zalditeria"
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:23
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:23
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:26
-#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:33
-#: simulation/templates/template_unit_hero_infantry_javelinist.xml:24
+#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:25
+#: simulation/templates/template_unit_hero_infantry_javelinist.xml:18
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:26
 msgid "Javelin"
 msgstr "Xabalin"
@@ -161,11 +161,11 @@ msgstr "Xabalin"
 msgid "Cavalry Skirmisher"
 msgstr "Jazarle Zalduna"
 
-#: simulation/templates/template_unit_champion.xml:11
+#: simulation/templates/template_unit_champion.xml:12
 msgid "Champion Unit"
 msgstr "Unitate Aldezkaria"
 
-#: simulation/templates/template_unit_champion.xml:13
+#: simulation/templates/template_unit_champion.xml:14
 msgid "Champion"
 msgstr "Aldezkaria"
 
@@ -203,9 +203,9 @@ msgid "Elephant"
 msgstr "Elefantea"
 
 #: simulation/templates/template_unit_champion_infantry.xml:21
-#: simulation/templates/template_unit_hero_infantry.xml:23
-#: simulation/templates/template_unit_infantry.xml:63
-#: simulation/templates/template_unit_infantry.xml:61
+#: simulation/templates/template_unit_hero_infantry.xml:24
+#: simulation/templates/template_unit_infantry.xml:64
+#: simulation/templates/template_unit_infantry.xml:62
 msgid "Infantry"
 msgstr "Infanteria"
 
@@ -222,7 +222,7 @@ msgid "Champion Skirmisher"
 msgstr "Jazarle Aldezkaria"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:34
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:26
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:27
 msgid "Pike"
 msgstr "Pika"
@@ -233,7 +233,7 @@ msgstr "Pikari Aldezkaria"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:37
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:35
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:28
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:27
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:27
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:30
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:28
@@ -276,22 +276,22 @@ msgstr "Zetazeoa"
 msgid "Kill, then collect food from this bountiful oceanic resource."
 msgstr "Itsas mastodonte hau akabatu eta bere haragiaz jabetu."
 
-#: simulation/templates/template_unit_hero.xml:32
-#: simulation/templates/template_unit_hero.xml:30
-#: simulation/templates/template_unit_hero_infantry.xml:24
-#: simulation/templates/units/maur_hero_chanakya.xml:33
+#: simulation/templates/template_unit_hero.xml:33
+#: simulation/templates/template_unit_hero.xml:31
+#: simulation/templates/template_unit_hero_infantry.xml:25
+#: simulation/templates/units/maur_hero_chanakya.xml:35
 msgid "Hero"
 msgstr "Heroia"
 
-#: simulation/templates/template_unit_hero_cavalry.xml:25
+#: simulation/templates/template_unit_hero_cavalry.xml:24
 msgid "Hero Cavalry"
 msgstr "Zalditeri Heroia"
 
-#: simulation/templates/template_unit_hero_cavalry_archer.xml:27
+#: simulation/templates/template_unit_hero_cavalry_archer.xml:19
 msgid "Hero Cavalry Archer"
 msgstr "Gezilari Zalditeri Heroia"
 
-#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:34
+#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:26
 msgid "Hero Cavalry Skirmisher"
 msgstr "Jazarle Zalditeria Heroia"
 
@@ -299,19 +299,19 @@ msgstr "Jazarle Zalditeria Heroia"
 msgid "Hero Cavalry Spearman"
 msgstr "Lantzari Zalditeria Heroia"
 
-#: simulation/templates/template_unit_hero_cavalry_swordsman.xml:20
+#: simulation/templates/template_unit_hero_cavalry_swordsman.xml:26
 msgid "Hero Cavalry Swordsman"
 msgstr "Ezpatadun Zalditeri Heroia"
 
-#: simulation/templates/template_unit_hero_infantry_archer.xml:24
+#: simulation/templates/template_unit_hero_infantry_archer.xml:18
 msgid "Hero Archer"
 msgstr "Gezilari Heroia"
 
-#: simulation/templates/template_unit_hero_infantry_javelinist.xml:25
+#: simulation/templates/template_unit_hero_infantry_javelinist.xml:19
 msgid "Hero Skirmisher"
 msgstr "Jazarle Heroia"
 
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:27
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:26
 msgid "Hero Pikeman"
 msgstr "Pikari Heroia"
 
@@ -319,11 +319,11 @@ msgstr "Pikari Heroia"
 msgid "Hero Spearman"
 msgstr "Lantzari Heroia"
 
-#: simulation/templates/template_unit_hero_infantry_swordsman.xml:20
+#: simulation/templates/template_unit_hero_infantry_swordsman.xml:26
 msgid "Hero Swordsman"
 msgstr "Ezpatari Heroia"
 
-#: simulation/templates/template_unit_infantry.xml:63
+#: simulation/templates/template_unit_infantry.xml:64
 #: simulation/templates/template_unit_support_female_citizen.xml:51
 #: simulation/templates/template_unit_support_slave.xml:39
 msgid "Worker"
@@ -477,7 +477,7 @@ msgstr "SetioDorrea"
 
 #: simulation/templates/template_unit_support.xml:14
 #: simulation/templates/template_unit_support.xml:12
-#: simulation/templates/units/maur_hero_chanakya.xml:33
+#: simulation/templates/units/maur_hero_chanakya.xml:35
 msgid "Support"
 msgstr "Laguntza"
 
@@ -487,7 +487,7 @@ msgstr "Hiritar Emakumea"
 
 #: simulation/templates/template_unit_support_healer.xml:19
 #: simulation/templates/template_unit_support_healer.xml:20
-#: simulation/templates/units/maur_hero_chanakya.xml:33
+#: simulation/templates/units/maur_hero_chanakya.xml:35
 msgid "Healer"
 msgstr "Sendalaria"
 
@@ -1386,15 +1386,15 @@ msgstr "Hypaspistḗs"
 msgid "Hypaspistḗs Argyraspídi"
 msgstr "Hypaspistḗs Argyraspídi"
 
-#: simulation/templates/units/mace_hero_alexander.xml:19
+#: simulation/templates/units/mace_hero_alexander.xml:20
 msgid "Alexander The Great"
 msgstr "Alexandro Handia"
 
-#: simulation/templates/units/mace_hero_alexander.xml:20
+#: simulation/templates/units/mace_hero_alexander.xml:21
 msgid "Mégās Aléxandros"
 msgstr "Mégās Aléxandros"
 
-#: simulation/templates/units/mace_hero_alexander.xml:21
+#: simulation/templates/units/mace_hero_alexander.xml:22
 msgid "\"Herocide\" Bonus: +20% attack bonus vs. enemy Heroes."
 msgstr "\"Herocide\" Hobaria: %20+ erasoan Heroi etsaien aurka."
 
@@ -1569,11 +1569,11 @@ msgid ""
 "during Ashoka's lifetime."
 msgstr "Heroiaren abilezia Berezia:  «Asokaren Ediktuak» - Asokaren zutabeak heroia bizirik dagoen bitartean  eraiki daitezke.          "
 
-#: simulation/templates/units/maur_hero_chanakya.xml:34
+#: simulation/templates/units/maur_hero_chanakya.xml:36
 msgid "Acharya Chanakya"
 msgstr "Acharya Chanakya"
 
-#: simulation/templates/units/maur_hero_chanakya.xml:35
+#: simulation/templates/units/maur_hero_chanakya.xml:37
 msgid "Acharya Chāṇakya"
 msgstr "Acharya Chāṇakya"
 
@@ -1775,12 +1775,6 @@ msgstr "Dario Handia"
 #: simulation/templates/units/pers_hero_darius.xml:14
 msgid "Darayavahush I"
 msgstr "Darayavahush I"
-
-#: simulation/templates/units/pers_hero_darius.xml:16
-msgid ""
-"Hero Aura: \"Merchant of the Empire.\" Boosts profitablity of trade during "
-"his lifetime (TBD)."
-msgstr "Heroiaren Aura: «Inperioko Merkataria». Bere bizitza bitarteko irabaziak hobesten ditu (egiteke)."
 
 #: simulation/templates/units/pers_hero_xerxes.xml:8
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:13
@@ -2095,7 +2089,7 @@ msgstr "Italiar Infanteria Astuna"
 msgid "Extraordinarius"
 msgstr "Erromatar Garailea"
 
-#: simulation/templates/units/rome_hero_marcellus.xml:9
+#: simulation/templates/units/rome_hero_marcellus.xml:10
 msgid "Marcus Claudius Marcellus"
 msgstr "Marcus Claudius Marcellus"
 
@@ -2103,7 +2097,7 @@ msgstr "Marcus Claudius Marcellus"
 msgid "Quintus Fabius Maximus"
 msgstr "Quintus Fabius Maximus"
 
-#: simulation/templates/units/rome_hero_scipio.xml:6
+#: simulation/templates/units/rome_hero_scipio.xml:9
 msgid "Scipio Africanus"
 msgstr "Eszipion Afrikarra "
 

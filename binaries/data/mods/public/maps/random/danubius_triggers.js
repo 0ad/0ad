@@ -16,7 +16,7 @@ var shipTemplate = "gaul_ship_trireme";
 var siegeTemplate = "gaul_mechanical_siege_ram";
 
 var heroTemplates = [
-	"gaul_hero_britomartus",
+	"gaul_hero_viridomarus",
 	"gaul_hero_vercingetorix",
 	"gaul_hero_brennus"
 ];
@@ -146,17 +146,17 @@ var targetCount = 3;
 var patrolCount = 5;
 
 /**
- * Which units ships should focus when attacking and patroling.
+ * Which units ships should focus when attacking and patrolling.
  */
 var shipTargetClass = "WarShip";
 
 /**
- * Which entities siege engines should focus when attacking and patroling.
+ * Which entities siege engines should focus when attacking and patrolling.
  */
 var siegeTargetClass = "Defensive";
 
 /**
- * Which entities units should focus when attacking and patroling.
+ * Which entities units should focus when attacking and patrolling.
  */
 var unitTargetClass = "Unit+!Ship";
 
