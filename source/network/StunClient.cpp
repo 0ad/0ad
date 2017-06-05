@@ -106,7 +106,7 @@ void AddUInt32(std::vector<u8>& buffer, const u32 value)
 }
 
 template<typename T, size_t n>
-bool GetFromBuffer(std::vector<u8> buffer, u32& offset, T& result)
+bool GetFromBuffer(const std::vector<u8>& buffer, u32& offset, T& result)
 {
 	if (offset + n > buffer.size())
 		return false;

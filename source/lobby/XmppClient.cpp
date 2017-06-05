@@ -1111,13 +1111,13 @@ void XmppClient::SendStunEndpointToHost(StunClient::StunEndpoint* stunEndpoint, 
 	session.sessionInitiate(ipStr, stunEndpoint->port);
 }
 
-void XmppClient::handleSessionAction(gloox::Jingle::Action action, glooxwrapper::Jingle::Session *UNUSED(session), const glooxwrapper::Jingle::Session::Jingle *jingle)
+void XmppClient::handleSessionAction(gloox::Jingle::Action action, glooxwrapper::Jingle::Session* UNUSED(session), const glooxwrapper::Jingle::Session::Jingle* jingle)
 {
 	if (action == gloox::Jingle::SessionInitiate)
 		handleSessionInitiation(jingle);
 }
 
-void XmppClient::handleSessionInitiation(const glooxwrapper::Jingle::Session::Jingle *jingle)
+void XmppClient::handleSessionInitiation(const glooxwrapper::Jingle::Session::Jingle* jingle)
 {
 	glooxwrapper::Jingle::ICEUDP::Candidate candidate = jingle->getCandidate();
 
