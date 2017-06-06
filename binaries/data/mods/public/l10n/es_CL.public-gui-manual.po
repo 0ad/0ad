@@ -8,9 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-29 09:06+0200\n"
-"PO-Revision-Date: 2017-06-03 10:31+0000\n"
-"Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
+"POT-Creation-Date: 2017-06-04 09:05+0200\n"
+"PO-Revision-Date: 2017-06-04 14:54+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Spanish (Chile) (http://www.transifex.com/wildfire-games/0ad/language/es_CL/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -53,11 +53,9 @@ msgstr "[font=\"sans-bold-16\"]Configuración de gráficos"
 msgid ""
 "[font=\"sans-14\"]You can switch between fullscreen and windowed mode by "
 "pressing Alt + Enter. In windowed mode, you can resize the window. If the "
-"game runs too slowly, you can change some settings in the configuration "
-"file: look for binaries/data/config/default.cfg in the location where the "
-"game is installed, which gives instructions for editing, and try disabling "
-"the \"fancywater\" and \"shadows\" options."
-msgstr "[font=\"sans-14\"] Puedes cambiar entre pantalla completa y modo ventana presionando Alt+Enter. En modo ventana, puedes ajustar el tamaño de la ventana. Si el juego va demasiado lento, puedes cambiar algunas opciones en el archivo de configuración: busca binaries/data/config/default.cfg en el lugar donde está instalado el juego, esto te dará instrucciones para editar, también prueba deshabilitar las opciones \"fancywater\" y \"shadows\"."
+"game runs too slowly, you can change some settings in the options window: "
+"try disabling the \"HQ Water Effects\" and \"Shadows\" options."
+msgstr ""
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
@@ -189,7 +187,7 @@ msgid "[font=\"sans-bold-16\"]Hotkeys:"
 msgstr "[font=\"sans-bold-16\"]Teclas de acceso directo:"
 
 #: gui/manual/intro.txt:43
-msgid "[font=\"sans-bold-14\"]Global"
+msgid "[font=\"sans-bold-14\"]Program-wide"
 msgstr ""
 
 #: gui/manual/intro.txt:44

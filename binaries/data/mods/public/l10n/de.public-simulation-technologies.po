@@ -16,13 +16,13 @@
 # qwertz, 2015
 # Raymond Vetter, 2014-2017
 # Tilo S, 2016-2017
-# Xaver, 2015-2016
+# Xaver, 2015-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-02 09:04+0200\n"
-"PO-Revision-Date: 2017-06-02 15:02+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-06-04 09:07+0200\n"
+"PO-Revision-Date: 2017-06-04 19:30+0000\n"
+"Last-Translator: Xaver\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -708,7 +708,7 @@ msgstr "Geheime Metallverarbeitungstechniken geben Schwertern eine charakteristi
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
 msgid "+20% Hack attack for all sword units."
-msgstr ""
+msgstr "+20% Hiebangriff für alle Schwertkämpfer."
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
@@ -925,7 +925,7 @@ msgid "Gather Training"
 msgstr "Sammlertraining"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
-msgid "Using net improves the fishing productivity."
+msgid "Nets improve the fishing productivity."
 msgstr "Netze erhöhen die Fischproduktion."
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
@@ -1053,8 +1053,8 @@ msgid "Wedge and Mallet"
 msgstr "Hammer und Meißel"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
-msgid "Baskets to carry foraged food stuffs."
-msgstr "Körbe, um gesammelte Nahrung zu tragen."
+msgid "Baskets for foraging."
+msgstr "Körbe zum Sammeln"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 msgid "Equip your foragers with wicker baskets. +50% fruit foraging rate."
@@ -1159,11 +1159,10 @@ msgstr "Mysterien von Eleusis"
 
 #: simulation/data/technologies/health_females_01.jsondescription
 msgid ""
-"The Loom allowed the creation of finer clothing to clothe citizens in the "
-"settlement. Women of the household were taught from a young age how to weave"
-" on the loom, and subsequently spent a large  share of their lives working "
-"with it."
-msgstr "Der Webstuhl erlaubte die Herstellung feinerer Stoffe, um die Bewohner der Siedlung einzukleiden. Frauen im Haushalt wurden von Kindesbeinen an in der Bedienung des Webstuhls unterrichtet und verbrachten einen großen Teil ihres Lebens bei der Arbeit damit."
+"The loom allowed the creation of finer clothing for settlers. Women of the "
+"household were taught from a young age how to weave on the loom, and "
+"subsequently spent a large share of their lives working with it."
+msgstr "Der Webstuhl erlaubte die Herstellung feinerer Stoffe, um die Siedler zu bekleiden. Frauen wurden im Haushalt von Kindesbeinen an in der Bedienung des Webstuhls unterrichtet und verbrachten einen großen Teil ihres Lebens bei der Arbeit damit."
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "Female Citizens +50% Health."
@@ -1625,7 +1624,7 @@ msgid "Make your units 50% more expensive to bribe."
 msgstr "Erhöht die Bestechungskosten deiner Einheiten um 50%"
 
 #: simulation/data/technologies/spy_counter.jsongenericName
-msgid "Counter Espionage"
+msgid "Counterintelligence"
 msgstr "Spionageabwehr"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsondescription
@@ -1834,8 +1833,9 @@ msgid ""
 msgstr "Das erste Ziel der Kaufleute war der Handel, allerdings sammelten sie auch Informationen über die Länder, die sie durchquerten."
 
 #: simulation/data/technologies/unlock_spies.jsontooltip
-msgid "Allows to bribe other players' units to share their vision."
-msgstr "Ermöglicht das Bestechen von Einheiten eines anderen Spielers um deren Sicht zu teilen."
+msgid ""
+"Allows bribing the units of other players in order to share their vision."
+msgstr "Ermöglicht das Bestechen von Einheiten eines anderen Spielers, um deren Sicht zu teilen."
 
 #: simulation/data/technologies/unlock_spies.jsongenericName
 msgid "Espionage"
@@ -1880,16 +1880,16 @@ msgstr "Zeugítai"
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsondescription
 msgid "Hire professional mercenaries to fight in your army."
-msgstr ""
+msgstr "Heuere professionelle Söldner an, in deiner Armee zu kämpfen."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid ""
 "Mercenaries are promoted to advanced rank but require +20% training time."
-msgstr ""
+msgstr "Söldner werden auf einen höhreren Rang befördert, brauchen aber +20 % Ausbildungszeit."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsongenericName
 msgid "Expertise In War"
-msgstr ""
+msgstr "Kriegskompetenz"
 
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsontooltip
 msgid ""
@@ -2309,8 +2309,8 @@ msgid ""
 msgstr "Die Spartaner hatten nicht die größte Armee der Welt, aber sie hatten die beste Armee ihrer Zeit. Was sie nicht an Quantität hatten, machten sie mit Qualität wett. Es heißt, das Sparta keine starken Stadtmauern brauche, da seine Männer die Mauern bilden."
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
-msgid "Spartans have 10% less maximum population"
-msgstr "Spartaner haben 10% der maximalen Bevölkerung"
+msgid "Spartans have 10% less maximum population."
+msgstr "Spartaner haben 10% weniger Bevölkerungsmaximum."
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
 msgid "Underdogs"
@@ -2407,8 +2407,8 @@ msgid ""
 msgstr "Die Maurya-Inder bauten hölzerne Stadtmauern, da Holz eine reichlich vorkommende natürliche Ressource in Indien ist."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
-msgid "Mauryan city walls have 20% less health and 20% less build time."
-msgstr "Mauryanische Stadtmauern haben 20% weniger Gesundheit und 20% weniger Bauzeit."
+msgid "Mauryan city walls have -20% less health and -20% less build time."
+msgstr "Maurya-Stadtmauern haben -20% Gesundheit und -20% Bauzeit."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"

@@ -25,9 +25,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-29 09:06+0200\n"
-"PO-Revision-Date: 2017-06-03 15:29+0000\n"
-"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
+"POT-Creation-Date: 2017-06-04 09:04+0200\n"
+"PO-Revision-Date: 2017-06-04 15:39+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -202,13 +202,14 @@ msgstr "Az ókori falanx formáció az i.e. 8. században alakult ki. Nyolc sorb
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[0].History
 msgid ""
-"The general whom persuaded the Athenians to invest their income from silver "
+"The general who persuaded the Athenians to invest their income from silver "
 "mines in a war navy of 200 Triremes. A key figure during the Persian Wars, "
 "he commanded the victorious Athenian navy at the decisive battle of Salamis "
 "in 479 B.C. Later, he pursued an active policy against the Persians in the "
-"Aegean, thereby laying the foundations of future Athenian power. Ostracised "
-"by the Athenians, he was forced to flee to the protection of the Persians."
-msgstr "A tábornok, aki meggyőzte az athéniakat, hogy az ezüstbányáikból befolyó összeget 200 hadigálya építésére fordítsák. A perzsa háborúk idején az athéni flottát vezette győzelemre a döntő salamisi csatában, i. e. 479-ben. Később aktív perzsaellenes politikát folytatott az Égei-tengeren, megalapozva Athén tengeri hatalmát. Ironikus módon pont az athéniak közösítették ki, akik elől a Perzsa birodalomba menekült."
+"Aegean, thereby laying the foundations of future Athenian power. However, he"
+" was eventually ostracised by the Athenians and forced to flee to the "
+"protection of the Persians."
+msgstr ""
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[1].History
 msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
@@ -571,8 +572,8 @@ msgid ""
 msgstr "Mint az Ibériai-félsziget, Észak-Afrika is a lovasságáról volt ismert, a maga évi 100.000 új lovával.  Ezenkívül itt volt őshonos az észak-afrikai erdei elefánt is."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "10% bonus of trade profit for ally's international routes."
-msgstr "10% bónusz profit a szövetségesek nemzetközi kereskedelmi utaihoz."
+msgid "10% bonus of trade profit for allies' international routes."
+msgstr ""
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -1718,11 +1719,11 @@ msgstr "Perzsa építészet"
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[1].History
 msgid ""
-"The Persians built the wonderful 1677 mile-long Royal Highway from Sardis to"
-" Susa; Darius the Great and Xerxes also built the magnificent Persepolis; "
-"Cyrus the Great greatly improved Ecbatana and virtually 'rebuilt' the old "
-"Elamite capital of Susa."
-msgstr "A perzsák építették a csodálatos, 1677 mérföld hosszú Királyi utat Szardeisztől Szúzáig; Nagy Dárajavaus és Khsajársá emellett megépíttette a káprázatos Perszepoliszt; Nagy Kurus nagymértékben fejlesztette Ekbatana városát és lényegében „újjáépítette” a régi elámi fővárost, Szúzát."
+"The Persians built the wonderful 2700 kilometer-long Royal Highway from "
+"Sardis to Susa; Darius the Great and Xerxes also built the magnificent "
+"Persepolis; Cyrus the Great greatly improved Ecbatana and virtually "
+"'rebuilt' the old Elamite capital of Susa."
+msgstr ""
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[2].Description
 msgid "Reduces train time for Anusiya champion infantry by half."
@@ -1837,17 +1838,16 @@ msgid "Mercenary Army"
 msgstr "Zsoldos hadsereg"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].History
-#: simulation/data/civs/ptol.jsonStructures[1].History
 msgid ""
 "The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
 "foreign mercenaries for the bulk of its military force, mainly because the "
 "loyalty of native Egyptian units was often suspect. Indeed, during one "
 "native uprising, Upper Egypt was lost to the Ptolemies for decades. "
-"Mercenaries were often battle-hardened and their loyalty can be bought, "
+"Mercenaries were often battle-hardened and their loyalty could be bought, "
 "sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
 " under the Ptolemies was so prosperous as to be the richest of Alexander's "
 "successor states."
-msgstr "A görög-makedón Ptolemaiosz-dinasztia a nagyszámú görög és idegen zsoldosra támaszkodott a haderő nagyjaként, főleg azért mert az őslakos egyiptomi egységek hűséget gyakran megkérdőjelezték. És valóban, egy felkelés során, Felső-Egyiptom évtizedekre elveszett a Ptolemaioszoktól. A zsoldosak gyakran harcedzettek voltak és a hűségük megvehető volt, néha olcsón, néha drágán. Ez nem nagyon számított, mivel Egyiptom a Ptolemaioszok alatt olyan virágzó volt, hogy Alexandrosz utódállamai közül a leggazdagabb volt."
+msgstr ""
 
 #: simulation/data/civs/ptol.jsonCivBonuses[1].Description
 msgid "The Ptolemaic Egyptians receive 3 additional farming technologies."
@@ -2023,6 +2023,18 @@ msgid ""
 "Must be constructed in neutral territory. Has no territory radius effect. "
 "Trains all 'mercenary' units."
 msgstr "Semleges területre kell építeni. Nincs területi hatása. Minden „zsoldos” egység itt képezhető ki."
+
+#: simulation/data/civs/ptol.jsonStructures[1].History
+msgid ""
+"The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
+"foreign mercenaries for the bulk of its military force, mainly because the "
+"loyalty of native Egyptian units was often suspect. Indeed, during one "
+"native uprising, Upper Egypt was lost to the Ptolemies for decades. "
+"Mercenaries were often battle-hardened and their loyalty can be bought, "
+"sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
+" under the Ptolemies was so prosperous as to be the richest of Alexander's "
+"successor states."
+msgstr "A görög-makedón Ptolemaiosz-dinasztia a nagyszámú görög és idegen zsoldosra támaszkodott a haderő nagyjaként, főleg azért mert az őslakos egyiptomi egységek hűséget gyakran megkérdőjelezték. És valóban, egy felkelés során, Felső-Egyiptom évtizedekre elveszett a Ptolemaioszoktól. A zsoldosak gyakran harcedzettek voltak és a hűségük megvehető volt, néha olcsón, néha drágán. Ez nem nagyon számított, mivel Egyiptom a Ptolemaioszok alatt olyan virágzó volt, hogy Alexandrosz utódállamai közül a leggazdagabb volt."
 
 #: simulation/data/civs/ptol.jsonStructures[2].Name
 msgid "Lighthouse"
@@ -2486,14 +2498,14 @@ msgstr "Szeleukosz Nikatór"
 msgid ""
 "Antiochus inherited a troubled kingdom upon the beginning of his reign. From"
 " the verge of collapse he managed to weld back together the empire Seleukus "
-"I so hard to found. The rebellious eastern satraps of Bactria and Parthia "
-"were brought to heel , temporarily securing his eastern borders. He then "
-"turned his attention to mother Greece, attempting to fulfill the dreams of "
-"his fathers by invading Greece under the pretext of liberation. The Achaean "
-"League and the Kingdom of Pergamon banded together with the Romans to defeat"
-" him at the Battle of Magnesia, forever burying the dream of reuniting "
-"Alexander's empire."
-msgstr "Antiokhosz egy bajban lévő királyságot örökölt meg az uralma elején. Az összeomlás széléről sikerült összeforrasztani I. Szeleukosz nehezen megalapított birodalmát. A lázadó keleti szatrapiákat, Baktriát és Párthiát térdre kényszerítette, ideiglenesen biztosítva a keleti határokat. Ezután a görög anyaföld felé fordította figyelmét, megpróbálta beteljesíteni atyjai álmait Görögország meghódításával, a felszabadítás jegyében. Az acheai liga és Pergamon királysága a rómaiakkal összeverődve legyőzte őt a magnesiai csatában, örökre eltemetve Alexandrosz birodalmának újraegyesítésének álmát."
+"I fought so hard to found. The rebellious eastern satraps of Bactria and "
+"Parthia were brought to heel , temporarily securing his eastern borders. He "
+"then turned his attention to mother Greece, attempting to fulfill the dreams"
+" of his fathers by invading Greece under the pretext of liberation. The "
+"Achaean League and the Kingdom of Pergamon banded together with the Romans "
+"to defeat him at the Battle of Magnesia, forever burying the dream of "
+"reuniting Alexander's empire."
+msgstr ""
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[1].Name
 msgid "Antiokhos G' Megas"

@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-02 09:04+0200\n"
-"PO-Revision-Date: 2017-06-02 16:12+0000\n"
+"POT-Creation-Date: 2017-06-04 09:07+0200\n"
+"PO-Revision-Date: 2017-06-04 15:55+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -965,38 +965,38 @@ msgstr "(Truco: Controlar todas las unidades)"
 msgid "(Cheat - reveal map)"
 msgstr "(Truco - revelar mapa)"
 
-#: simulation/helpers/Commands.js:579
+#: simulation/helpers/Commands.js:580
 msgid "(Cheat - promoted units)"
 msgstr "(Truco: Ascender unidades)"
 
-#: simulation/helpers/Commands.js:693
+#: simulation/helpers/Commands.js:694
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "No puedes mejorar al no cumplir los requisitos de distancia u obstrucción del terreno."
 
-#: simulation/helpers/Commands.js:703
+#: simulation/helpers/Commands.js:704
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "No puedes mejorar una entidad guarnecida."
 
-#: simulation/helpers/Commands.js:749
+#: simulation/helpers/Commands.js:750
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Se ha solicitado un ataque contra %(_player_)s."
 
-#: simulation/helpers/Commands.js:782
+#: simulation/helpers/Commands.js:783
 msgid "There are no bribable units"
 msgstr "No hay unidades sobornables"
 
-#: simulation/helpers/Commands.js:827
+#: simulation/helpers/Commands.js:828
 msgid "Unable to ungarrison unit(s)"
 msgstr "No se han podido desguarnecer las unidades"
 
-#: simulation/helpers/Commands.js:841
+#: simulation/helpers/Commands.js:842
 msgid "Some unit(s) can't go back to work"
 msgstr "Alguna unidad (unidades) no pueden volver al trabajo"
 
-#: simulation/helpers/Commands.js:1095
+#: simulation/helpers/Commands.js:1096
 msgid "The building's technology requirements are not met."
 msgstr "Todavía no se han cumplido los requisitos tecnológicos del edificio."
 
@@ -1177,7 +1177,7 @@ msgstr "Pequeño"
 #: simulation/data/settings/map_sizes.jsonData[1].Tooltip
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
-"quickly while still having few room to expand."
+"quickly while still having some room to expand."
 msgstr ""
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name

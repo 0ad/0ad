@@ -654,7 +654,7 @@ namespace glooxwrapper
 		{
 		public:
 			virtual ~SessionHandler() {}
-			virtual void handleSessionAction(gloox::Jingle::Action action, Session *session, const Session::Jingle *jingle) = 0;
+			virtual void handleSessionAction(gloox::Jingle::Action action, Session* session, const Session::Jingle* jingle) = 0;
 		};
 
 	}
@@ -671,7 +671,6 @@ namespace glooxwrapper
 		void registerPlugins();
 		Jingle::Session createSession(const JID& callee);
 	};
-
 
 }
 

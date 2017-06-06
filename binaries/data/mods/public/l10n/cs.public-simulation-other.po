@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-02 09:04+0200\n"
-"PO-Revision-Date: 2017-06-02 16:12+0000\n"
+"POT-Creation-Date: 2017-06-04 09:07+0200\n"
+"PO-Revision-Date: 2017-06-04 15:55+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -967,38 +967,38 @@ msgstr "(Podfuk - Ovládat všechny jednotky)"
 msgid "(Cheat - reveal map)"
 msgstr "(Podvod - odhalit mapu)"
 
-#: simulation/helpers/Commands.js:579
+#: simulation/helpers/Commands.js:580
 msgid "(Cheat - promoted units)"
 msgstr "(Podfuk - povýšení jednotek)"
 
-#: simulation/helpers/Commands.js:693
+#: simulation/helpers/Commands.js:694
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Vylepšení nelze uvnitř tohoto odstupu provést, aniž by byla přezkoušena vzdálenost, nebo jsou v území položeny překážky."
 
-#: simulation/helpers/Commands.js:703
+#: simulation/helpers/Commands.js:704
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "Nelze provést vylepšení jednotky obsazené posádkou."
 
-#: simulation/helpers/Commands.js:749
+#: simulation/helpers/Commands.js:750
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Požadován útok proti %(_player_)s."
 
-#: simulation/helpers/Commands.js:782
+#: simulation/helpers/Commands.js:783
 msgid "There are no bribable units"
 msgstr "Nejsou tu žádné podplatitelné jednotky"
 
-#: simulation/helpers/Commands.js:827
+#: simulation/helpers/Commands.js:828
 msgid "Unable to ungarrison unit(s)"
 msgstr "Nelze vyložit jednotky"
 
-#: simulation/helpers/Commands.js:841
+#: simulation/helpers/Commands.js:842
 msgid "Some unit(s) can't go back to work"
 msgstr "Některé jednotky nemohou jít zpět do práce"
 
-#: simulation/helpers/Commands.js:1095
+#: simulation/helpers/Commands.js:1096
 msgid "The building's technology requirements are not met."
 msgstr "Technologické požadavky na postavení budovy nejsou splněny."
 
@@ -1179,7 +1179,7 @@ msgstr "Malá"
 #: simulation/data/settings/map_sizes.jsonData[1].Tooltip
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
-"quickly while still having few room to expand."
+"quickly while still having some room to expand."
 msgstr ""
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name

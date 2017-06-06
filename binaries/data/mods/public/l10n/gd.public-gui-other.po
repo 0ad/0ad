@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-29 09:07+0200\n"
-"PO-Revision-Date: 2017-05-30 10:23+0000\n"
-"Last-Translator: GunChleoc\n"
+"POT-Creation-Date: 2017-06-04 09:05+0200\n"
+"PO-Revision-Date: 2017-06-04 15:56+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -75,8 +75,8 @@ msgstr "Taba"
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
-" in default web browser. Please wait...."
-msgstr "A’ fosgladh %(url)s\n sa bhrabhsair-lìn bhunaiteach. Fuirich ort…"
+" in default web browser. Please wait..."
+msgstr ""
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
@@ -371,12 +371,12 @@ msgid "disabled"
 msgstr "à comas"
 
 #: gui/common/gamedescription.js:313
-msgid "For the first minute, enemies will stay neutral."
-msgid_plural "For the first %(min)s minutes, enemies will stay neutral."
-msgstr[0] "Bidh gach nàmhaid neo-phàirteach rè a’ chiad %(min)s mhionaid."
-msgstr[1] "Bidh gach nàmhaid neo-phàirteach rè a’ chiad %(min)s mhionaid."
-msgstr[2] "Bidh gach nàmhaid neo-phàirteach rè na ciad %(min)s mionaidean."
-msgstr[3] "Bidh gach nàmhaid neo-phàirteach rè a’ chiad %(min)s mionaid."
+msgid "For the first minute, other players will stay neutral."
+msgid_plural "For the first %(min)s minutes, other players will stay neutral."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: gui/common/gamedescription.js:321
 msgid "Map Name"
@@ -549,8 +549,9 @@ msgid "Server full"
 msgstr "Tha am frithealaiche làn"
 
 #: gui/common/network.js:76
-msgid "Player identifier in use, retry connecting"
-msgstr "Tha aithnichear a’ chluicheadair ’ga chleachdadh, feuch gun ceangal thu ris a-rithist"
+msgid ""
+"Player identifier in use. If you were disconnected, retry in few seconds"
+msgstr ""
 
 #: gui/common/network.js:79
 #, javascript-format
@@ -660,8 +661,8 @@ msgstr "Air thuaiream"
 #: gui/common/settings.js:195
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
-" chose the number of players and teams."
-msgstr "Cruthaich mapa àraidh le sgaoileadh stòrasan a bhios eadar-dhealaichte gach turas. Tagh àireamhan nan cluicheadairean agus na sgiobaidhean mar a thogras tu."
+" select the number of players and teams."
+msgstr ""
 
 #: gui/common/settings.js:199
 msgctxt "map"
@@ -1670,8 +1671,8 @@ msgid "Used"
 msgstr "Cleachdadh"
 
 #: gui/summary/summary.js:85
-msgid "Recieved"
-msgstr "Fhuaras"
+msgid "Received"
+msgstr ""
 
 #: gui/summary/summary.js:90
 msgid "Sold"
@@ -2511,9 +2512,9 @@ msgstr "’Na stad sa chùlaibh"
 
 #: gui/options/options.jsongeneralSetting[4].tooltip
 msgid ""
-"When disabled, the welcome screen will nevertheless be shown once when a new"
-" version is available and you can always launch it from the main menu."
-msgstr "Mur eil e an comas, thèid an sgrìn fàilteachaidh a shealltainn turas eile fhathast nuair a bhios tionndadh ùr ri fhaighinn.  ’S urrainn dhut a sealltainn on phrìomh chlàr-taice cuideachd uair sam bith."
+"If you disable it, the welcome screen will still appear once, each time a "
+"new version is available. You can always launch it from the main menu."
+msgstr ""
 
 #: gui/options/options.jsongeneralSetting[4].label
 msgid "Enable Welcome Screen"
@@ -2596,21 +2597,19 @@ msgid "Buddies"
 msgstr "Caraidean"
 
 #: gui/options/options.jsongeneralSetting[13].parameters.list[2].label
-msgid "No one"
-msgstr "Gun ghin"
+#: gui/options/options.jsongeneralSetting[14].parameters.list[2].label
+msgid "Disabled"
+msgstr "À comas"
 
 #: gui/options/options.jsongeneralSetting[13].tooltip
 msgid ""
-"Whether to assign joining clients to free playerslots in the gamesetup."
-msgstr "Co-dhiù an dèid ionadan saora iomruineadh dha chluicheadairean a thig a-steach air sgrìn suidheachadh a’ gheama."
+"Automatically assign joining clients to free player slots during the match "
+"setup."
+msgstr ""
 
 #: gui/options/options.jsongeneralSetting[13].label
 msgid "Assign Players"
 msgstr "Iomruin cluicheadairean"
-
-#: gui/options/options.jsongeneralSetting[14].parameters.list[2].label
-msgid "Disabled"
-msgstr "À comas"
 
 #: gui/options/options.jsongeneralSetting[14].tooltip
 msgid ""
@@ -2920,16 +2919,16 @@ msgid "Harvest from animals, berry bushes, fish, or fields."
 msgstr "Buain o bheathaichean, preasan dearc, èisg no achaidhean."
 
 #: simulation/data/resources/metal.jsondescription
-msgid "Mine from metal mines and quarries."
-msgstr "Tochail mèinnean meatailt is cuaraidhean."
+msgid "Mine from metal mines or quarries."
+msgstr ""
 
 #: simulation/data/resources/stone.jsondescription
 msgid "Mine from rocks, stone quarries or ruins."
 msgstr "Tochail carraigean, mèinnean cloiche no làraichean."
 
 #: simulation/data/resources/wood.jsondescription
-msgid "Lumber from trees or groves."
-msgstr "Buain fiodh o chraobhan no doireachan."
+msgid "Cut down from trees or groves."
+msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -3104,12 +3103,11 @@ msgstr "Craobh"
 #: gui/gamesetup/ai.txt:1
 msgid ""
 "Although reasonably easy for an experienced player, the default AI level is "
-"quite challenging for new players before they master the basic mechanisms of"
-" the game. It is advised to start by playing against a lower level (sandbox "
-"or very easy) when beginning with the game. Changing the AI level is done by"
-" clicking on the gear icon next to each AI player in the player selection "
-"panel above."
-msgstr "Ged a tha e furasta gu leòr dhan chluicheadair eòlach, tha leibheil tùsail an IF caran dùbhlanach dha na cluicheadairean ùra gus an ionnsaich iad mar a dh’obraicheas an geama. Mholamaid gun cluich thu an aghaidh leibheil ìosail an toiseach (can bogsa-gainmhich no glè fhurasta). Gus leibheil an IF atharrachadh, briog air ìomhaigheag a’ ghèar ri taobh gach cluicheadair IF ann am panail taghadh nan cluicheadair gu h-àrd."
+"quite challenging for new players yet to master the basic mechanisms of the "
+"game. Beginners are advised to start by playing against a lower level AI "
+"(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
+"to the player you want to modify in the selection panel above."
+msgstr ""
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""

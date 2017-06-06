@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-27 14:48+0200\n"
-"PO-Revision-Date: 2017-06-03 10:27+0000\n"
-"Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
+"POT-Creation-Date: 2017-06-04 09:05+0200\n"
+"PO-Revision-Date: 2017-06-04 15:33+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,12 +51,12 @@ msgid "Confirmation"
 msgstr "Kadarnadenn"
 
 #: gui/session/menu.js:134 gui/session/menu.js:166 gui/session/menu.js:199
-#: gui/session/session.js:838 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:844 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Ket"
 
 #: gui/session/menu.js:134 gui/session/menu.js:166 gui/session/menu.js:199
-#: gui/session/session.js:838 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:844 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Ya"
 
@@ -119,101 +119,101 @@ msgstr "Neptuek"
 msgid "Enemy"
 msgstr "Enebour"
 
-#: gui/session/menu.js:428
+#: gui/session/menu.js:429
 msgid "x"
 msgstr "x"
 
-#: gui/session/menu.js:506
+#: gui/session/menu.js:507
 msgid "Request your allies to attack this enemy"
 msgstr "Goulenn gant ar re gevredet ganeoc'h tagañ an enebour-mañ"
 
-#: gui/session/menu.js:522
+#: gui/session/menu.js:523
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
 msgstr "Gouestlaouit un unanenn dre-zegouezh eus ar c'hoarier-mañ ha rannit ganti e hed-sell e-pad ur frapadig amzer dermenet."
 
-#: gui/session/menu.js:716
+#: gui/session/menu.js:717
 #, javascript-format
 msgid "Buy %(resource)s"
 msgstr "Prenañ %(resource)s"
 
-#: gui/session/menu.js:717
+#: gui/session/menu.js:718
 #, javascript-format
 msgid "Sell %(resource)s"
 msgstr "Gwerzhañ %(resource)s"
 
-#: gui/session/menu.js:822
+#: gui/session/menu.js:823
 #, javascript-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
 msgstr "%(openingTradingString)s, ha %(garrisonedString)s."
 
-#: gui/session/menu.js:823
+#: gui/session/menu.js:824
 #, javascript-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s, %(garrisonedString)s, ha %(inactiveString)s."
 
-#: gui/session/menu.js:826 gui/session/menu.js:897
+#: gui/session/menu.js:827 gui/session/menu.js:898
 #, javascript-format
 msgid "%(openingTradingString)s."
 msgstr "%(openingTradingString)s."
 
-#: gui/session/menu.js:827 gui/session/menu.js:896
+#: gui/session/menu.js:828 gui/session/menu.js:897
 #, javascript-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s, ha %(inactiveString)s."
 
-#: gui/session/menu.js:832
+#: gui/session/menu.js:833
 #, javascript-format
 msgid "%(openingGarrisonedString)s."
 msgstr "%(openingGarrisonedString)s."
 
-#: gui/session/menu.js:833
+#: gui/session/menu.js:834
 #, javascript-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingGarrisonedString)s, ha %(inactiveString)s."
 
-#: gui/session/menu.js:836 gui/session/menu.js:900
+#: gui/session/menu.js:837 gui/session/menu.js:901
 #, javascript-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
 msgstr[0] "Bez ez eus un %(inactiveString)s."
 msgstr[1] "Bez ez eus %(inactiveString)s."
 
-#: gui/session/menu.js:837
+#: gui/session/menu.js:838
 msgid "There are no land traders."
 msgstr "N'eus kenwerzher douarel ebet."
 
-#: gui/session/menu.js:845
+#: gui/session/menu.js:846
 #, javascript-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
 msgstr[0] "Bez 'zo %(numberTrading)s kenwerzher douarel oc'h ober kenwerzh"
 msgstr[1] "Bez 'zo %(numberTrading)s kenwerzher douarel oc'h ober kenwerzh"
 
-#: gui/session/menu.js:854
+#: gui/session/menu.js:855
 #, javascript-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
 msgstr[0] "%(numberOfLandTraders)s dioberiant"
 msgstr[1] "%(numberOfLandTraders)s dioberiant"
 
-#: gui/session/menu.js:859
+#: gui/session/menu.js:860
 #, javascript-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
 msgstr[0] "%(numberOfLandTraders)s kenwerzher douarel dioberiant"
 msgstr[1] "%(numberOfLandTraders)s kenwerzher douarel dioberiant"
 
-#: gui/session/menu.js:868
+#: gui/session/menu.js:869
 #, javascript-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgstr[0] "%(numberGarrisoned)s a zo e gwarnizon e-bourzh ur vag genwerzh"
 msgstr[1] "%(numberGarrisoned)s a zo e gwarnizon e-bourzh ur vag genwerzh"
 
-#: gui/session/menu.js:873
+#: gui/session/menu.js:874
 #, javascript-format
 msgid ""
 "There is %(numberGarrisoned)s land trader garrisoned on a trading merchant "
@@ -224,62 +224,62 @@ msgid_plural ""
 msgstr[0] "Bez 'zo %(numberGarrisoned)s kenwerzher douarel e gwarnizon e-bourzh ur vag genwerzh"
 msgstr[1] "Bez 'zo %(numberGarrisoned)s kenwerzher douarel e gwarnizon e-bourzh ur vag genwerzh"
 
-#: gui/session/menu.js:901
+#: gui/session/menu.js:902
 msgid "There are no merchant ships."
 msgstr "N'eus bag kenwerzh ebet."
 
-#: gui/session/menu.js:908
+#: gui/session/menu.js:909
 #, javascript-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
 msgstr[0] "Bez 'zo %(numberTrading)s vag genwerzh oc'h ober kenwerzh"
 msgstr[1] "Bez 'zo %(numberTrading)s a vig kenwerzh oc'h ober kenwerzh"
 
-#: gui/session/menu.js:917
+#: gui/session/menu.js:918
 #, javascript-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
 msgstr[0] "%(numberOfShipTraders)s dioberiant"
 msgstr[1] "%(numberOfShipTraders)s dioberiant"
 
-#: gui/session/menu.js:922
+#: gui/session/menu.js:923
 #, javascript-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] "%(numberOfShipTraders)s vag kenwerzh dioberiant"
 msgstr[1] "%(numberOfShipTraders)s a vigi kenwerzh dioberiant"
 
-#: gui/session/menu.js:1099
+#: gui/session/menu.js:1100
 msgid "Resume"
 msgstr "Adkregiñ"
 
-#: gui/session/menu.js:1099 gui/session/menu.xml:(caption):74
+#: gui/session/menu.js:1100 gui/session/menu.xml:(caption):74
 msgid "Pause"
 msgstr "Ehan"
 
-#: gui/session/menu.js:1103
+#: gui/session/menu.js:1104
 #, javascript-format
 msgid "Paused by %(players)s"
 msgstr "Ehanet gant %(players)s"
 
-#: gui/session/menu.js:1104 gui/session/messages.js:668
-#: gui/session/messages.js:679 gui/session/selection_panels.js:802
+#: gui/session/menu.js:1105 gui/session/messages.js:679
+msgctxt "Separator for a list of players"
 msgid ", "
-msgstr ","
+msgstr ""
 
-#: gui/session/menu.js:1117 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:1118 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr "Dornlevr"
 
-#: gui/session/menu.js:1132
+#: gui/session/menu.js:1133
 msgid "The Developer Overlay was closed."
 msgstr "Dreistgwiskad an diorroerien a zo bet serret warni."
 
-#: gui/session/menu.js:1133
+#: gui/session/menu.js:1134
 msgid "The Developer Overlay was opened."
 msgstr "Dreistgwiskad an diorroerien a zo bet digoret warni."
 
-#: gui/session/menu.js:1156
+#: gui/session/menu.js:1157
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -487,6 +487,11 @@ msgstr "Klikit ur wech ma 'z oc'h prest."
 msgid "Follow the instructions."
 msgstr "Heuilhit ar c'hemennadurioù."
 
+#: gui/session/messages.js:668
+msgctxt "Separator for a list of client loading messages"
+msgid ", "
+msgstr ""
+
 #: gui/session/messages.js:674
 #, javascript-format
 msgid "Out-Of-Sync error on turn %(turn)s."
@@ -520,8 +525,8 @@ msgstr "Bezit sur e ra an holl c'hoarierien gant ar memes 'mods'."
 
 #: gui/session/messages.js:695
 msgctxt "Out-Of-Sync"
-msgid "Click on \"Report Bugs\" in the main menu to help fix this."
-msgstr "Klikit war \"Danevelliñ Beugoù\" el lañser pennañ evit skoazellañ da zistripañ ar gudenn."
+msgid "Click on \"Report a Bug\" in the main menu to help fix this."
+msgstr ""
 
 #: gui/session/messages.js:696
 #, javascript-format
@@ -662,60 +667,60 @@ msgstr "%(genericName)s  — Paket"
 msgid "%(rank)s Rank"
 msgstr "%(rank)s Renk"
 
-#: gui/session/selection_details.js:114
+#: gui/session/selection_details.js:124
 #, javascript-format
 msgid "This foundation will be completed in %(seconds)s second."
 msgid_plural "This foundation will be completed in %(seconds)s seconds."
 msgstr[0] "Ar savadur-mañ a vo echuet a-benn %(seconds)s eilenn."
 msgstr[1] "Ar savadur-mañ a vo echuet a-benn %(seconds)s eilenn."
 
-#: gui/session/selection_details.js:119
+#: gui/session/selection_details.js:129
 #, javascript-format
 msgid "%(hitpoints)s / %(maxHitpoints)s"
 msgstr "%(hitpoints)s / %(maxHitpoints)s"
 
-#: gui/session/selection_details.js:149
+#: gui/session/selection_details.js:168
 #, javascript-format
 msgid "%(capturePoints)s / %(maxCapturePoints)s"
 msgstr "%(capturePoints)s / %(maxCapturePoints)s"
 
-#: gui/session/selection_details.js:165
+#: gui/session/selection_details.js:188
 #, javascript-format
 msgid "%(experience)s %(current)s / %(required)s"
 msgstr "%(experience)s %(current)s / %(required)s"
 
-#: gui/session/selection_details.js:166 gui/session/selection_details.js:172
+#: gui/session/selection_details.js:189 gui/session/selection_details.js:195
 msgid "Experience:"
 msgstr "Skiant-prenet:"
 
-#: gui/session/selection_details.js:171
+#: gui/session/selection_details.js:194
 #, javascript-format
 msgid "%(experience)s %(current)s"
 msgstr "%(experience)s %(current)s"
 
-#: gui/session/selection_details.js:181
+#: gui/session/selection_details.js:204
 msgid "∞"
 msgstr "∞"
 
-#: gui/session/selection_details.js:182 gui/session/selection_details.js:214
-#: gui/session/selection_details.js:263
+#: gui/session/selection_details.js:205 gui/session/selection_details.js:233
+#: gui/session/selection_details.js:282
 #, javascript-format
 msgid "%(amount)s / %(max)s"
 msgstr "%(amount)s / %(max)s"
 
-#: gui/session/selection_details.js:194
+#: gui/session/selection_details.js:217
 #, javascript-format
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:229 gui/session/unit_actions.js:579
+#: gui/session/selection_details.js:248 gui/session/unit_actions.js:579
 #: gui/session/unit_actions.js:588 gui/session/unit_actions.js:602
 #: gui/session/unit_actions.js:919
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Gounid: %(gain)s"
 
-#: gui/session/selection_details.js:245
+#: gui/session/selection_details.js:264
 #, javascript-format
 msgid ""
 "Number of builders.\n"
@@ -726,60 +731,60 @@ msgid_plural ""
 msgstr[0] "Niver a saverien.\nLakaat ur saver ouzhpenn a vuano savidigezh ar savadur-mañ eus %(speedup)s eilenn."
 msgstr[1] "Niver a saverien.\nLakaat ur saver ouzhpenn a vuano savidigezh ar savadur-mañ eus %(speedup)s eilenn."
 
-#: gui/session/selection_details.js:248 gui/session/selection_details.js:256
+#: gui/session/selection_details.js:267 gui/session/selection_details.js:275
 msgid "Number of builders."
 msgstr "Niver a saverien."
 
-#: gui/session/selection_details.js:267
+#: gui/session/selection_details.js:286
 msgid "Current/max gatherers"
 msgstr "Dastumerien red/maks"
 
-#: gui/session/selection_details.js:279
+#: gui/session/selection_details.js:298
 #, javascript-format
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:405
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):26
+#: gui/session/selection_details.js:424
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):32
 msgid "Capture points:"
 msgstr "Poentoù pakidigezh:"
 
-#: gui/session/selection_details.js:413
+#: gui/session/selection_details.js:432
 #, javascript-format
 msgid "%(label)s %(details)s\n"
 msgstr "%(label)s %(details)s\n"
 
-#: gui/session/selection_details.js:414
+#: gui/session/selection_details.js:433
 msgid "Carrying:"
 msgstr "O tougen:"
 
-#: gui/session/selection_details.js:417 gui/session/selection_details.js:426
+#: gui/session/selection_details.js:436 gui/session/selection_details.js:445
 #, javascript-format
 msgid "%(type)s %(amount)s"
 msgstr "%(type)s %(amount)s"
 
-#: gui/session/selection_details.js:422
+#: gui/session/selection_details.js:441
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/session/selection_details.js:423
+#: gui/session/selection_details.js:442
 msgid "Loot:"
 msgstr "Preizhadenn:"
 
 #. Translation: Used in the trading gain tooltip
-#: gui/session/selection_details.js:498
+#: gui/session/selection_details.js:517
 #, javascript-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
 #. Translation: Used in the trading gain tooltip to concatenate profits of
 #. different players
-#: gui/session/selection_details.js:522
+#: gui/session/selection_details.js:541
 msgid "+"
 msgstr "+"
 
-#: gui/session/selection_details.js:529
+#: gui/session/selection_details.js:548
 msgctxt "Separation mark in an enumeration"
 msgid ", "
 msgstr ","
@@ -859,6 +864,11 @@ msgstr[1] "%(number)s a dud er rummad %(class)s"
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "Chom a ra: %(entityCounts)s"
+
+#: gui/session/selection_panels.js:802
+msgctxt "Separator for a list of entity counts"
+msgid ", "
+msgstr ""
 
 #: gui/session/selection_panels.js:1111
 #, javascript-format
@@ -1005,104 +1015,104 @@ msgstr "Kavout ul labourer dioberiant"
 #: gui/session/session.js:416
 #, javascript-format
 msgid ""
-"Select one type of goods you want to modify by clicking on it (Pressing "
-"%(hotkey)s while selecting will also bring its share to 100%%) and then use "
-"the arrows of the other types to modify their shares."
-msgstr "Diuzit unan eus ar madoù a fell deoc'h kemm en ur glikañ warnañ (Pa bouezer war %(hotkey)s en ur ziuziñ anezhañ ivez e vo rannet anezhañ da 100%%) ha goude-se implijit biroù egile evit kemm o lodennoù."
+"Select one type of goods you want to modify by clicking on it, and then use "
+"the arrows of the other types to modify their shares. You can also press "
+"%(hotkey)s while selecting one type of goods to bring its share to 100%%."
+msgstr ""
 
 #: gui/session/session.js:420
 #, javascript-format
 msgid ""
-"Start by selecting the resource from the upper row that you wish to sell. "
-"Upon each press on one of the lower buttons, %(quantity)s of the upper "
-"resource will be sold for the displayed quantity of the lower. Press and "
-"hold %(hotkey)s to temporarily multiply all quantities by %(multiplier)s."
-msgstr "Krogit en ur ziuziñ an danvez ho peus c'hoant da lakaat e kwerzh diouzh ar renkad a-us. Bewech ma vez kliket war ar boutonoù dindan, %(quantity)s eus an danvez a-us a vo gwerzhet evit ar c'hementad diskouezet a zo evit an hini dindan. Pouezit ha dalc'hit %(hotkey)s evit kreskiñ an holl danvez dre %(multiplier)s e-pad ur prantad."
+"Start by selecting the resource you wish to sell from the upper row. For "
+"each time the lower buttons are pressed, %(quantity)s of the upper resource "
+"will be sold for the displayed quantity of the lower. Press and hold "
+"%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
+msgstr ""
 
 #: gui/session/session.js:584
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - Gwezenn an Teknologiezhioù"
 
-#: gui/session/session.js:830
+#: gui/session/session.js:836
 msgid "Do you want to quit?"
 msgstr "Ha c'hoant ho peus kuitaat?"
 
-#: gui/session/session.js:836
+#: gui/session/session.js:842
 msgid "VICTORIOUS!"
 msgstr "AR MAOUT A ZO AET GANEOC'H!"
 
-#: gui/session/session.js:837
+#: gui/session/session.js:843
 msgid "DEFEATED!"
 msgstr "FLASTRET OC'H BET!"
 
-#: gui/session/session.js:838
-msgid "Ok"
-msgstr "Mat eo"
+#: gui/session/session.js:844
+msgid "OK"
+msgstr ""
 
-#: gui/session/session.js:897
+#: gui/session/session.js:903
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "Echu emañ ar video ar c'hoariadenn. Ha c'hoant ho peus da guitaat?"
 
-#: gui/session/session.js:898
+#: gui/session/session.js:904
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Kadarnadenn"
 
-#: gui/session/session.js:899
+#: gui/session/session.js:905
 msgctxt "replayFinished"
 msgid "No"
 msgstr "Ket"
 
-#: gui/session/session.js:899
+#: gui/session/session.js:905
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Ya"
 
-#: gui/session/session.js:1125
+#: gui/session/session.js:1131
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
 msgstr "%(playername)s: %(statValue)s"
 
-#: gui/session/session.js:1128
+#: gui/session/session.js:1134
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
-#: gui/session/session.js:1167
+#: gui/session/session.js:1173
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
 msgstr "%(popCount)s/%(popLimit)s"
 
-#: gui/session/session.js:1168
+#: gui/session/session.js:1174
 msgid "Population (current / limit)"
 msgstr "Poblañs (red/bevenn)"
 
-#: gui/session/session.js:1169
+#: gui/session/session.js:1175
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Poblañs maksimom:  %(popCap)s"
 
-#: gui/session/session.js:1347
+#: gui/session/session.js:1353
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Stumm: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:1357
+#: gui/session/session.js:1363
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Evezhiadennig: Ar mod 'distummadur amzerel' a zo un dibarzh diorroer anezhañ, ha n'eo ket graet evit bezañ graet gantañ war padelezhioù hir. Gellout a ra un implij fall bezañ kaoz eus un diouer a vemor pe ur sac'hadenn zoken."
 
-#: gui/session/session.js:1358
+#: gui/session/session.js:1364
 msgid "Time warp mode"
 msgstr "Mod distummidiezh amzerel"
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
-#: gui/session/session.js:1375
+#: gui/session/session.js:1381
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)sx)"
@@ -1456,19 +1466,19 @@ msgstr "Poentoù-buhez"
 msgid "Capture points"
 msgstr "Poentoù pakadur"
 
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):18
 msgid "Health:"
 msgstr "Yec'hed:"
 
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):54
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):60
 msgid "Attack and Armor"
 msgstr "Tagusted hag Houarnwisk"
 
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):69
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):75
 msgid "Experience"
 msgstr "Skiant-prenet"
 
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):77
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):83
 msgid "Rank"
 msgstr "Renk"
 

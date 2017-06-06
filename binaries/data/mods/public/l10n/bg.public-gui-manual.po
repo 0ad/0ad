@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-29 09:06+0200\n"
-"PO-Revision-Date: 2017-05-30 07:06+0000\n"
-"Last-Translator: Любомир Василев\n"
+"POT-Creation-Date: 2017-06-04 09:05+0200\n"
+"PO-Revision-Date: 2017-06-04 14:54+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -55,11 +55,9 @@ msgstr "[font=\"sans-bold-16\"]Графични настройки"
 msgid ""
 "[font=\"sans-14\"]You can switch between fullscreen and windowed mode by "
 "pressing Alt + Enter. In windowed mode, you can resize the window. If the "
-"game runs too slowly, you can change some settings in the configuration "
-"file: look for binaries/data/config/default.cfg in the location where the "
-"game is installed, which gives instructions for editing, and try disabling "
-"the \"fancywater\" and \"shadows\" options."
-msgstr "[font=\"sans-14\"]Можете да превключвате между режимите на цял екран и в прозорец чрез Alt + Enter. Когато играта е в прозорец, можете да го преоразмерявате. Ако играта върви твърде бавно, можете да промените някои от настройките в конфигурационния файл: потърсете файла „binaries/data/config/default.cfg“ там, където е инсталирана играта. В него ще намерите инструкции за редактирането му. Опитайте да изключите настройките „fancywater“ и „shadows“."
+"game runs too slowly, you can change some settings in the options window: "
+"try disabling the \"HQ Water Effects\" and \"Shadows\" options."
+msgstr ""
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
@@ -191,8 +189,8 @@ msgid "[font=\"sans-bold-16\"]Hotkeys:"
 msgstr "[font=\"sans-bold-16\"]Полезни клавиши и клавишни комбинации:"
 
 #: gui/manual/intro.txt:43
-msgid "[font=\"sans-bold-14\"]Global"
-msgstr "[font=\"sans-bold-14\"]Общи"
+msgid "[font=\"sans-bold-14\"]Program-wide"
+msgstr ""
 
 #: gui/manual/intro.txt:44
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"

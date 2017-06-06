@@ -1857,6 +1857,7 @@ function updateGUIObjects()
 {
 	g_IsInGuiUpdate = true;
 
+	reloadMapList();
 	updatePlayerAssignmentChoices();
 
 	// Hide exceeding dropdowns and checkboxes

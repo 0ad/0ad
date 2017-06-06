@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-26 09:02+0200\n"
-"PO-Revision-Date: 2017-05-26 15:14+0000\n"
+"POT-Creation-Date: 2017-06-04 09:05+0200\n"
+"PO-Revision-Date: 2017-06-04 15:33+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -46,12 +46,12 @@ msgid "Confirmation"
 msgstr "Confirmación"
 
 #: gui/session/menu.js:134 gui/session/menu.js:166 gui/session/menu.js:199
-#: gui/session/session.js:838 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:844 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Non"
 
 #: gui/session/menu.js:134 gui/session/menu.js:166 gui/session/menu.js:199
-#: gui/session/session.js:838 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:844 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Si"
 
@@ -114,101 +114,101 @@ msgstr "Neutral"
 msgid "Enemy"
 msgstr "Inimigo"
 
-#: gui/session/menu.js:428
+#: gui/session/menu.js:429
 msgid "x"
 msgstr "×"
 
-#: gui/session/menu.js:506
+#: gui/session/menu.js:507
 msgid "Request your allies to attack this enemy"
 msgstr "Solicitar aos aliados que ataquen a este inimigo"
 
-#: gui/session/menu.js:522
+#: gui/session/menu.js:523
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
 msgstr ""
 
-#: gui/session/menu.js:716
+#: gui/session/menu.js:717
 #, javascript-format
 msgid "Buy %(resource)s"
 msgstr "Mercar %(resource)s"
 
-#: gui/session/menu.js:717
+#: gui/session/menu.js:718
 #, javascript-format
 msgid "Sell %(resource)s"
 msgstr "Vender %(resource)s"
 
-#: gui/session/menu.js:822
+#: gui/session/menu.js:823
 #, javascript-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
 msgstr "%(openingTradingString)s e %(garrisonedString)s."
 
-#: gui/session/menu.js:823
+#: gui/session/menu.js:824
 #, javascript-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s, %(garrisonedString)s e %(inactiveString)s."
 
-#: gui/session/menu.js:826 gui/session/menu.js:897
+#: gui/session/menu.js:827 gui/session/menu.js:898
 #, javascript-format
 msgid "%(openingTradingString)s."
 msgstr "%(openingTradingString)s."
 
-#: gui/session/menu.js:827 gui/session/menu.js:896
+#: gui/session/menu.js:828 gui/session/menu.js:897
 #, javascript-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s e %(inactiveString)s."
 
-#: gui/session/menu.js:832
+#: gui/session/menu.js:833
 #, javascript-format
 msgid "%(openingGarrisonedString)s."
 msgstr "%(openingGarrisonedString)s."
 
-#: gui/session/menu.js:833
+#: gui/session/menu.js:834
 #, javascript-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingGarrisonedString)s e %(inactiveString)s."
 
-#: gui/session/menu.js:836 gui/session/menu.js:900
+#: gui/session/menu.js:837 gui/session/menu.js:901
 #, javascript-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
 msgstr[0] "Hai %(inactiveString)s."
 msgstr[1] "Hai %(inactiveString)s."
 
-#: gui/session/menu.js:837
+#: gui/session/menu.js:838
 msgid "There are no land traders."
 msgstr "Non hai comerciantes por terra."
 
-#: gui/session/menu.js:845
+#: gui/session/menu.js:846
 #, javascript-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
 msgstr[0] "Hai %(numberTrading)s comerciante comerciando por terra"
 msgstr[1] "Hai %(numberTrading)s comerciantes comerciando por terra"
 
-#: gui/session/menu.js:854
+#: gui/session/menu.js:855
 #, javascript-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
 msgstr[0] "%(numberOfLandTraders)s inactivo"
 msgstr[1] "%(numberOfLandTraders)s inactivos"
 
-#: gui/session/menu.js:859
+#: gui/session/menu.js:860
 #, javascript-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
 msgstr[0] "%(numberOfLandTraders)s comerciante por terra inactivo"
 msgstr[1] "%(numberOfLandTraders)s comerciantes por terra inactivos"
 
-#: gui/session/menu.js:868
+#: gui/session/menu.js:869
 #, javascript-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgstr[0] "%(numberGarrisoned)s a bordo dun barco mercante que está comerciando"
 msgstr[1] "%(numberGarrisoned)s a bordo dun barco mercante que está comerciando"
 
-#: gui/session/menu.js:873
+#: gui/session/menu.js:874
 #, javascript-format
 msgid ""
 "There is %(numberGarrisoned)s land trader garrisoned on a trading merchant "
@@ -219,62 +219,62 @@ msgid_plural ""
 msgstr[0] "Hai %(numberGarrisoned)s comerciante a bordo dun barco mercante que está comerciando"
 msgstr[1] "Hai %(numberGarrisoned)s comerciantes a bordo dun barco mercante que está comerciando"
 
-#: gui/session/menu.js:901
+#: gui/session/menu.js:902
 msgid "There are no merchant ships."
 msgstr "Non hai barcos mercantes."
 
-#: gui/session/menu.js:908
+#: gui/session/menu.js:909
 #, javascript-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
 msgstr[0] "Hai %(numberTrading)s barco mercante comerciando"
 msgstr[1] "Hai %(numberTrading)s barcos mercantes comerciando"
 
-#: gui/session/menu.js:917
+#: gui/session/menu.js:918
 #, javascript-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
 msgstr[0] "%(numberOfShipTraders)s inactivo"
 msgstr[1] "%(numberOfShipTraders)s inactivos"
 
-#: gui/session/menu.js:922
+#: gui/session/menu.js:923
 #, javascript-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] "%(numberOfShipTraders)s barco mercante inactivo"
 msgstr[1] "%(numberOfShipTraders)s barcos mercantes inactivos"
 
-#: gui/session/menu.js:1099
+#: gui/session/menu.js:1100
 msgid "Resume"
 msgstr "Continuar"
 
-#: gui/session/menu.js:1099 gui/session/menu.xml:(caption):74
+#: gui/session/menu.js:1100 gui/session/menu.xml:(caption):74
 msgid "Pause"
 msgstr "Deter"
 
-#: gui/session/menu.js:1103
+#: gui/session/menu.js:1104
 #, javascript-format
 msgid "Paused by %(players)s"
 msgstr ""
 
-#: gui/session/menu.js:1104 gui/session/messages.js:668
-#: gui/session/messages.js:679 gui/session/selection_panels.js:802
+#: gui/session/menu.js:1105 gui/session/messages.js:679
+msgctxt "Separator for a list of players"
 msgid ", "
 msgstr ""
 
-#: gui/session/menu.js:1117 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:1118 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr "Manual"
 
-#: gui/session/menu.js:1132
+#: gui/session/menu.js:1133
 msgid "The Developer Overlay was closed."
 msgstr "Pechouse a capa de desenvolvedores."
 
-#: gui/session/menu.js:1133
+#: gui/session/menu.js:1134
 msgid "The Developer Overlay was opened."
 msgstr "Abriuse a capa de desenvolvedores."
 
-#: gui/session/menu.js:1156
+#: gui/session/menu.js:1157
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -482,6 +482,11 @@ msgstr ""
 msgid "Follow the instructions."
 msgstr ""
 
+#: gui/session/messages.js:668
+msgctxt "Separator for a list of client loading messages"
+msgid ", "
+msgstr ""
+
 #: gui/session/messages.js:674
 #, javascript-format
 msgid "Out-Of-Sync error on turn %(turn)s."
@@ -515,7 +520,7 @@ msgstr ""
 
 #: gui/session/messages.js:695
 msgctxt "Out-Of-Sync"
-msgid "Click on \"Report Bugs\" in the main menu to help fix this."
+msgid "Click on \"Report a Bug\" in the main menu to help fix this."
 msgstr ""
 
 #: gui/session/messages.js:696
@@ -657,60 +662,60 @@ msgstr "%(genericName)s — Desmontado"
 msgid "%(rank)s Rank"
 msgstr "Rango %(rank)s"
 
-#: gui/session/selection_details.js:114
+#: gui/session/selection_details.js:124
 #, javascript-format
 msgid "This foundation will be completed in %(seconds)s second."
 msgid_plural "This foundation will be completed in %(seconds)s seconds."
 msgstr[0] "Estes cimentos completaranse en %(seconds)s segundo."
 msgstr[1] "Estes cimentos completaranse en %(seconds)s segundos."
 
-#: gui/session/selection_details.js:119
+#: gui/session/selection_details.js:129
 #, javascript-format
 msgid "%(hitpoints)s / %(maxHitpoints)s"
 msgstr "%(hitpoints)s/%(maxHitpoints)s"
 
-#: gui/session/selection_details.js:149
+#: gui/session/selection_details.js:168
 #, javascript-format
 msgid "%(capturePoints)s / %(maxCapturePoints)s"
 msgstr "%(capturePoints)s / %(maxCapturePoints)s"
 
-#: gui/session/selection_details.js:165
+#: gui/session/selection_details.js:188
 #, javascript-format
 msgid "%(experience)s %(current)s / %(required)s"
 msgstr "%(experience)s %(current)s/%(required)s"
 
-#: gui/session/selection_details.js:166 gui/session/selection_details.js:172
+#: gui/session/selection_details.js:189 gui/session/selection_details.js:195
 msgid "Experience:"
 msgstr "Experiencia:"
 
-#: gui/session/selection_details.js:171
+#: gui/session/selection_details.js:194
 #, javascript-format
 msgid "%(experience)s %(current)s"
 msgstr "%(experience)s %(current)s"
 
-#: gui/session/selection_details.js:181
+#: gui/session/selection_details.js:204
 msgid "∞"
 msgstr "∞"
 
-#: gui/session/selection_details.js:182 gui/session/selection_details.js:214
-#: gui/session/selection_details.js:263
+#: gui/session/selection_details.js:205 gui/session/selection_details.js:233
+#: gui/session/selection_details.js:282
 #, javascript-format
 msgid "%(amount)s / %(max)s"
 msgstr "%(amount)s/%(max)s"
 
-#: gui/session/selection_details.js:194
+#: gui/session/selection_details.js:217
 #, javascript-format
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:229 gui/session/unit_actions.js:579
+#: gui/session/selection_details.js:248 gui/session/unit_actions.js:579
 #: gui/session/unit_actions.js:588 gui/session/unit_actions.js:602
 #: gui/session/unit_actions.js:919
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Ganancia: %(gain)s"
 
-#: gui/session/selection_details.js:245
+#: gui/session/selection_details.js:264
 #, javascript-format
 msgid ""
 "Number of builders.\n"
@@ -721,60 +726,60 @@ msgid_plural ""
 msgstr[0] "Número de construtores.\nEncargar a outro construtor traballar nesta estrutura aceleraría a súa construción en %(speedup)s segundo."
 msgstr[1] "Número de construtores.\nEncargar a outro construtor traballar nesta estrutura aceleraría a súa construción en %(speedup)s segundos."
 
-#: gui/session/selection_details.js:248 gui/session/selection_details.js:256
+#: gui/session/selection_details.js:267 gui/session/selection_details.js:275
 msgid "Number of builders."
 msgstr "Número de construtores."
 
-#: gui/session/selection_details.js:267
+#: gui/session/selection_details.js:286
 msgid "Current/max gatherers"
 msgstr "Colectores actuais/máximos."
 
-#: gui/session/selection_details.js:279
+#: gui/session/selection_details.js:298
 #, javascript-format
 msgid "(%(genericName)s)"
 msgstr "%(genericName)s"
 
-#: gui/session/selection_details.js:405
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):26
+#: gui/session/selection_details.js:424
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):32
 msgid "Capture points:"
 msgstr "Puntos de captura:"
 
-#: gui/session/selection_details.js:413
+#: gui/session/selection_details.js:432
 #, javascript-format
 msgid "%(label)s %(details)s\n"
 msgstr ""
 
-#: gui/session/selection_details.js:414
+#: gui/session/selection_details.js:433
 msgid "Carrying:"
 msgstr ""
 
-#: gui/session/selection_details.js:417 gui/session/selection_details.js:426
+#: gui/session/selection_details.js:436 gui/session/selection_details.js:445
 #, javascript-format
 msgid "%(type)s %(amount)s"
 msgstr ""
 
-#: gui/session/selection_details.js:422
+#: gui/session/selection_details.js:441
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr ""
 
-#: gui/session/selection_details.js:423
+#: gui/session/selection_details.js:442
 msgid "Loot:"
 msgstr ""
 
 #. Translation: Used in the trading gain tooltip
-#: gui/session/selection_details.js:498
+#: gui/session/selection_details.js:517
 #, javascript-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
 #. Translation: Used in the trading gain tooltip to concatenate profits of
 #. different players
-#: gui/session/selection_details.js:522
+#: gui/session/selection_details.js:541
 msgid "+"
 msgstr "+"
 
-#: gui/session/selection_details.js:529
+#: gui/session/selection_details.js:548
 msgctxt "Separation mark in an enumeration"
 msgid ", "
 msgstr ", "
@@ -853,6 +858,11 @@ msgstr[1] ""
 #: gui/session/selection_panels.js:801
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
+msgstr ""
+
+#: gui/session/selection_panels.js:802
+msgctxt "Separator for a list of entity counts"
+msgid ", "
 msgstr ""
 
 #: gui/session/selection_panels.js:1111
@@ -1000,18 +1010,18 @@ msgstr "Atopar un traballador inactivo."
 #: gui/session/session.js:416
 #, javascript-format
 msgid ""
-"Select one type of goods you want to modify by clicking on it (Pressing "
-"%(hotkey)s while selecting will also bring its share to 100%%) and then use "
-"the arrows of the other types to modify their shares."
+"Select one type of goods you want to modify by clicking on it, and then use "
+"the arrows of the other types to modify their shares. You can also press "
+"%(hotkey)s while selecting one type of goods to bring its share to 100%%."
 msgstr ""
 
 #: gui/session/session.js:420
 #, javascript-format
 msgid ""
-"Start by selecting the resource from the upper row that you wish to sell. "
-"Upon each press on one of the lower buttons, %(quantity)s of the upper "
-"resource will be sold for the displayed quantity of the lower. Press and "
-"hold %(hotkey)s to temporarily multiply all quantities by %(multiplier)s."
+"Start by selecting the resource you wish to sell from the upper row. For "
+"each time the lower buttons are pressed, %(quantity)s of the upper resource "
+"will be sold for the displayed quantity of the lower. Press and hold "
+"%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
 msgstr ""
 
 #: gui/session/session.js:584
@@ -1019,85 +1029,85 @@ msgstr ""
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - Árbore de estruturas"
 
-#: gui/session/session.js:830
+#: gui/session/session.js:836
 msgid "Do you want to quit?"
 msgstr "Estás seguro de que queres saír?"
 
-#: gui/session/session.js:836
+#: gui/session/session.js:842
 msgid "VICTORIOUS!"
 msgstr "Vitoria!"
 
-#: gui/session/session.js:837
+#: gui/session/session.js:843
 msgid "DEFEATED!"
 msgstr "Derrotado!"
 
-#: gui/session/session.js:838
-msgid "Ok"
+#: gui/session/session.js:844
+msgid "OK"
 msgstr ""
 
-#: gui/session/session.js:897
+#: gui/session/session.js:903
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "Rematou a repetición. Quere saír?"
 
-#: gui/session/session.js:898
+#: gui/session/session.js:904
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Confirmación"
 
-#: gui/session/session.js:899
+#: gui/session/session.js:905
 msgctxt "replayFinished"
 msgid "No"
 msgstr "Non"
 
-#: gui/session/session.js:899
+#: gui/session/session.js:905
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Si"
 
-#: gui/session/session.js:1125
+#: gui/session/session.js:1131
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
 msgstr ""
 
-#: gui/session/session.js:1128
+#: gui/session/session.js:1134
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr ""
 
-#: gui/session/session.js:1167
+#: gui/session/session.js:1173
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
 msgstr ""
 
-#: gui/session/session.js:1168
+#: gui/session/session.js:1174
 msgid "Population (current / limit)"
 msgstr "Poboación (actual/límite)"
 
-#: gui/session/session.js:1169
+#: gui/session/session.js:1175
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Poboación máxima: %(popCap)s"
 
-#: gui/session/session.js:1347
+#: gui/session/session.js:1353
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Versión: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:1357
+#: gui/session/session.js:1363
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Nota: o modo de velocidade endiañada é unha opción de desenvolvedor, e non está pensada para ser usada durante longos períodos de tempo. Usala de xeito incorrecto pode facer que o xogo quede sen memoria ou quebre."
 
-#: gui/session/session.js:1358
+#: gui/session/session.js:1364
 msgid "Time warp mode"
 msgstr "Modo de velocidade endiañada."
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
-#: gui/session/session.js:1375
+#: gui/session/session.js:1381
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr ""
@@ -1372,7 +1382,7 @@ msgstr "Opcións"
 msgid "Resign"
 msgstr "Abandonar"
 
-#: gui/session/menu.xml:(caption):96 gui/session/session.xml:(caption):163
+#: gui/session/menu.xml:(caption):96 gui/session/session.xml:(caption):67
 msgid "Exit"
 msgstr "Saír"
 
@@ -1381,11 +1391,11 @@ msgstr "Saír"
 msgid "Objectives"
 msgstr ""
 
-#: gui/session/session.xml:(caption):62
+#: gui/session/session.xml:(caption):77
 msgid "Game Paused"
 msgstr "Partida en pausa"
 
-#: gui/session/session.xml:(caption):65
+#: gui/session/session.xml:(caption):80
 msgid "Click to Resume Game"
 msgstr "Preme co botón principal en algures para retomar a partida."
 
@@ -1451,19 +1461,19 @@ msgstr "Vida"
 msgid "Capture points"
 msgstr "Puntos de captura"
 
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):18
 msgid "Health:"
 msgstr "Vida:"
 
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):54
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):60
 msgid "Attack and Armor"
 msgstr "Ataque e armadura"
 
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):69
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):75
 msgid "Experience"
 msgstr "Experiencia"
 
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):77
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):83
 msgid "Rank"
 msgstr "Rango"
 

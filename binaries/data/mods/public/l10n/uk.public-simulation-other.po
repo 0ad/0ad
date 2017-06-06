@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-02 09:04+0200\n"
-"PO-Revision-Date: 2017-06-02 16:12+0000\n"
+"POT-Creation-Date: 2017-06-04 09:07+0200\n"
+"PO-Revision-Date: 2017-06-04 15:55+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -964,38 +964,38 @@ msgstr "(Шахрайство - контролювати всі юніти)"
 msgid "(Cheat - reveal map)"
 msgstr "(Шахрайство - розкрити карту)"
 
-#: simulation/helpers/Commands.js:579
+#: simulation/helpers/Commands.js:580
 msgid "(Cheat - promoted units)"
 msgstr "(Шахрайство - вдосконалити юніти)"
 
-#: simulation/helpers/Commands.js:693
+#: simulation/helpers/Commands.js:694
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Неможливо вдосконалити, так як вимоги по відстані не виконані або місцевість важкодоступна."
 
-#: simulation/helpers/Commands.js:703
+#: simulation/helpers/Commands.js:704
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "Неможливо вдосконалити об'єкт гарнізону."
 
-#: simulation/helpers/Commands.js:749
+#: simulation/helpers/Commands.js:750
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Запропонували атаку проти %(_player_)s."
 
-#: simulation/helpers/Commands.js:782
+#: simulation/helpers/Commands.js:783
 msgid "There are no bribable units"
 msgstr "Відсутні юніти, яких можна підкупити."
 
-#: simulation/helpers/Commands.js:827
+#: simulation/helpers/Commands.js:828
 msgid "Unable to ungarrison unit(s)"
 msgstr "Неможливо вивести юніт(и) з гарнізону"
 
-#: simulation/helpers/Commands.js:841
+#: simulation/helpers/Commands.js:842
 msgid "Some unit(s) can't go back to work"
 msgstr "Деякі юніт(и) не можуть повернутись до роботи"
 
-#: simulation/helpers/Commands.js:1095
+#: simulation/helpers/Commands.js:1096
 msgid "The building's technology requirements are not met."
 msgstr "Технологічні вимоги до будівлі не дотримані."
 
@@ -1176,7 +1176,7 @@ msgstr "Маленька"
 #: simulation/data/settings/map_sizes.jsonData[1].Tooltip
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
-"quickly while still having few room to expand."
+"quickly while still having some room to expand."
 msgstr ""
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name

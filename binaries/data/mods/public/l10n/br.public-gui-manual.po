@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-29 09:06+0200\n"
-"PO-Revision-Date: 2017-05-29 15:49+0000\n"
+"POT-Creation-Date: 2017-06-04 09:05+0200\n"
+"PO-Revision-Date: 2017-06-04 14:54+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -56,11 +56,9 @@ msgstr "[font=\"sans-bold-16\"]Arventennoù Grafek"
 msgid ""
 "[font=\"sans-14\"]You can switch between fullscreen and windowed mode by "
 "pressing Alt + Enter. In windowed mode, you can resize the window. If the "
-"game runs too slowly, you can change some settings in the configuration "
-"file: look for binaries/data/config/default.cfg in the location where the "
-"game is installed, which gives instructions for editing, and try disabling "
-"the \"fancywater\" and \"shadows\" options."
-msgstr "[font=\"sans-14\"]Gellout a rit gwintañ etre skramm-leun ha prenestret en ur bouezañ war Alt + Enter. Er mod prenestr, gallout a reer adventañ ar prenestr. Ma 'z a en-dro re c'horrek ar c'hoari,gellout a rit cheñch un nebeut arvetennoù er restr kefluniadur: klaskit war-lerc'h binaires / data / config / default.cfg el lec'h m'emañ staliet ar c'hoari, pezh a ro titouroù evit kemmañ, ha klaskit diweredekaat an dibarzhioù \"kalite uhel an dour\" hag ar \"skeudoù\"."
+"game runs too slowly, you can change some settings in the options window: "
+"try disabling the \"HQ Water Effects\" and \"Shadows\" options."
+msgstr ""
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
@@ -192,8 +190,8 @@ msgid "[font=\"sans-bold-16\"]Hotkeys:"
 msgstr "[font=\"sans-bold-16\"]Berradennoù:"
 
 #: gui/manual/intro.txt:43
-msgid "[font=\"sans-bold-14\"]Global"
-msgstr "[font=\"sans-bold-14\"]Hollek"
+msgid "[font=\"sans-bold-14\"]Program-wide"
+msgstr ""
 
 #: gui/manual/intro.txt:44
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"

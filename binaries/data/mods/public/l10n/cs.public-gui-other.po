@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-29 09:07+0200\n"
-"PO-Revision-Date: 2017-05-31 20:55+0000\n"
+"POT-Creation-Date: 2017-06-04 09:05+0200\n"
+"PO-Revision-Date: 2017-06-04 15:56+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -79,8 +79,8 @@ msgstr "Tab"
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
-" in default web browser. Please wait...."
-msgstr "Otevírá se %(url)s\nve výchozím prohlížeči internetu. Počkejte, prosím..."
+" in default web browser. Please wait..."
+msgstr ""
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
@@ -372,11 +372,11 @@ msgid "disabled"
 msgstr "vypnuto"
 
 #: gui/common/gamedescription.js:313
-msgid "For the first minute, enemies will stay neutral."
-msgid_plural "For the first %(min)s minutes, enemies will stay neutral."
-msgstr[0] "V první %(min)s minutě zůstanou nepřátelé neutrální."
-msgstr[1] "V prvních %(min)s minutách zůstanou nepřátelé neutrální."
-msgstr[2] "Po prvních %(min)s minut zůstanou nepřátelé neutrální."
+msgid "For the first minute, other players will stay neutral."
+msgid_plural "For the first %(min)s minutes, other players will stay neutral."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #: gui/common/gamedescription.js:321
 msgid "Map Name"
@@ -549,8 +549,9 @@ msgid "Server full"
 msgstr "Plný server"
 
 #: gui/common/network.js:76
-msgid "Player identifier in use, retry connecting"
-msgstr "Identifikátor hráče se používá. Zkuste se připojit ještě jednou"
+msgid ""
+"Player identifier in use. If you were disconnected, retry in few seconds"
+msgstr ""
 
 #: gui/common/network.js:79
 #, javascript-format
@@ -658,7 +659,7 @@ msgstr "Náhodná"
 #: gui/common/settings.js:195
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
-" chose the number of players and teams."
+" select the number of players and teams."
 msgstr ""
 
 #: gui/common/settings.js:199
@@ -1659,7 +1660,7 @@ msgid "Used"
 msgstr "Použito"
 
 #: gui/summary/summary.js:85
-msgid "Recieved"
+msgid "Received"
 msgstr ""
 
 #: gui/summary/summary.js:90
@@ -2500,9 +2501,9 @@ msgstr "Pozastavení pozadí"
 
 #: gui/options/options.jsongeneralSetting[4].tooltip
 msgid ""
-"When disabled, the welcome screen will nevertheless be shown once when a new"
-" version is available and you can always launch it from the main menu."
-msgstr "Když je vypnuta, uvítací obrazovka již nebude ukazována, pokud nebude dostupná nová verze hry. Můžete ji vždy spustit z hlavní nabídky."
+"If you disable it, the welcome screen will still appear once, each time a "
+"new version is available. You can always launch it from the main menu."
+msgstr ""
 
 #: gui/options/options.jsongeneralSetting[4].label
 msgid "Enable Welcome Screen"
@@ -2585,20 +2586,18 @@ msgid "Buddies"
 msgstr ""
 
 #: gui/options/options.jsongeneralSetting[13].parameters.list[2].label
-msgid "No one"
+#: gui/options/options.jsongeneralSetting[14].parameters.list[2].label
+msgid "Disabled"
 msgstr ""
 
 #: gui/options/options.jsongeneralSetting[13].tooltip
 msgid ""
-"Whether to assign joining clients to free playerslots in the gamesetup."
+"Automatically assign joining clients to free player slots during the match "
+"setup."
 msgstr ""
 
 #: gui/options/options.jsongeneralSetting[13].label
 msgid "Assign Players"
-msgstr ""
-
-#: gui/options/options.jsongeneralSetting[14].parameters.list[2].label
-msgid "Disabled"
 msgstr ""
 
 #: gui/options/options.jsongeneralSetting[14].tooltip
@@ -2909,7 +2908,7 @@ msgid "Harvest from animals, berry bushes, fish, or fields."
 msgstr ""
 
 #: simulation/data/resources/metal.jsondescription
-msgid "Mine from metal mines and quarries."
+msgid "Mine from metal mines or quarries."
 msgstr ""
 
 #: simulation/data/resources/stone.jsondescription
@@ -2917,7 +2916,7 @@ msgid "Mine from rocks, stone quarries or ruins."
 msgstr ""
 
 #: simulation/data/resources/wood.jsondescription
-msgid "Lumber from trees or groves."
+msgid "Cut down from trees or groves."
 msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
@@ -3093,12 +3092,11 @@ msgstr "Strom"
 #: gui/gamesetup/ai.txt:1
 msgid ""
 "Although reasonably easy for an experienced player, the default AI level is "
-"quite challenging for new players before they master the basic mechanisms of"
-" the game. It is advised to start by playing against a lower level (sandbox "
-"or very easy) when beginning with the game. Changing the AI level is done by"
-" clicking on the gear icon next to each AI player in the player selection "
-"panel above."
-msgstr "Ačkoli je pro zkušeného hráče nastavena přiměřeně snadná, klade výchozí úroveň umělé inteligence na nové hráče docela značné nároky, předtím než si osvojí základní ústrojí hry. Pro ty máme dobrou radu. Když s hraním teprve začínáte, začněte hrát proti nižším úrovním (pískoviště nebo velmi lehká hra). Úroveň umělé inteligence se mění klepnutím na obrázek ozubeného kola vedle každého hráče s umělým mozkem (a chápáním) v panelu pro výběr hráče nacházejícím se výše."
+"quite challenging for new players yet to master the basic mechanisms of the "
+"game. Beginners are advised to start by playing against a lower level AI "
+"(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
+"to the player you want to modify in the selection panel above."
+msgstr ""
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""

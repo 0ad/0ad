@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-29 09:06+0200\n"
-"PO-Revision-Date: 2017-05-29 15:49+0000\n"
+"POT-Creation-Date: 2017-06-04 09:05+0200\n"
+"PO-Revision-Date: 2017-06-04 14:54+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -58,11 +58,9 @@ msgstr "[font=\"sans-bold-16\"]图形设置"
 msgid ""
 "[font=\"sans-14\"]You can switch between fullscreen and windowed mode by "
 "pressing Alt + Enter. In windowed mode, you can resize the window. If the "
-"game runs too slowly, you can change some settings in the configuration "
-"file: look for binaries/data/config/default.cfg in the location where the "
-"game is installed, which gives instructions for editing, and try disabling "
-"the \"fancywater\" and \"shadows\" options."
-msgstr "[font=\"sans-14\"]您可以通过按 Alt + Enter 全屏模式和窗口模式之间切换。在窗口模式下，您可以调整窗口的大小。如果游戏运行速度太慢，则可以更改该配置文件中的某些设置： 在安装路径下查找 binaries/data/config/default.cfg 文件，按已给出的编辑说明，请尝试禁用的\"fancywater\"和\"阴影\"选项。"
+"game runs too slowly, you can change some settings in the options window: "
+"try disabling the \"HQ Water Effects\" and \"Shadows\" options."
+msgstr ""
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
@@ -194,8 +192,8 @@ msgid "[font=\"sans-bold-16\"]Hotkeys:"
 msgstr "[font=\"sans-bold-16\"]热键:"
 
 #: gui/manual/intro.txt:43
-msgid "[font=\"sans-bold-14\"]Global"
-msgstr "[font=\"sans-bold-14\"]全局"
+msgid "[font=\"sans-bold-14\"]Program-wide"
+msgstr ""
 
 #: gui/manual/intro.txt:44
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"

@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-29 09:06+0200\n"
-"PO-Revision-Date: 2017-06-01 20:57+0000\n"
-"Last-Translator: yakup <mutouk@yandex.ru>\n"
+"POT-Creation-Date: 2017-06-04 09:05+0200\n"
+"PO-Revision-Date: 2017-06-04 14:54+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -57,11 +57,9 @@ msgstr "[font=\"sans-bold-16\"]Grafik ayarları"
 msgid ""
 "[font=\"sans-14\"]You can switch between fullscreen and windowed mode by "
 "pressing Alt + Enter. In windowed mode, you can resize the window. If the "
-"game runs too slowly, you can change some settings in the configuration "
-"file: look for binaries/data/config/default.cfg in the location where the "
-"game is installed, which gives instructions for editing, and try disabling "
-"the \"fancywater\" and \"shadows\" options."
-msgstr "[font=\"sans-14\"]Alt + Enter'a basarak tam ekran ve pencere kipi arasında geçiş yapabilirsin. Pencere kipinde, pencere boyutunu değiştirebilirsin. Eğer oyun çok yavaş çalışıyorsa, yapılandırma dosyasından bazı ayarları değiştirebilirsin: oyunun kurulu olduğu yerde binaries/data/config/default.cfg dosyasına bakın. Bu dosya düzenleme talimatlarını verecek. Buradan \"süslü su\" ve \"gölgeler\" seçeneklerini devre dışı bırakmayı deneyebilirsin."
+"game runs too slowly, you can change some settings in the options window: "
+"try disabling the \"HQ Water Effects\" and \"Shadows\" options."
+msgstr ""
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
@@ -193,8 +191,8 @@ msgid "[font=\"sans-bold-16\"]Hotkeys:"
 msgstr "[font=\"sans-bold-16\"]Kısayol tuşları:"
 
 #: gui/manual/intro.txt:43
-msgid "[font=\"sans-bold-14\"]Global"
-msgstr "[font=\"sans-bold-14\"]Evrensel"
+msgid "[font=\"sans-bold-14\"]Program-wide"
+msgstr ""
 
 #: gui/manual/intro.txt:44
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"

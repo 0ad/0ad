@@ -20,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-29 09:06+0200\n"
-"PO-Revision-Date: 2017-05-31 13:57+0000\n"
-"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
+"POT-Creation-Date: 2017-06-04 09:05+0200\n"
+"PO-Revision-Date: 2017-06-04 14:54+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -65,11 +65,9 @@ msgstr "[font=\"sans-bold-16\"] Ρυθμίεις γραφικών"
 msgid ""
 "[font=\"sans-14\"]You can switch between fullscreen and windowed mode by "
 "pressing Alt + Enter. In windowed mode, you can resize the window. If the "
-"game runs too slowly, you can change some settings in the configuration "
-"file: look for binaries/data/config/default.cfg in the location where the "
-"game is installed, which gives instructions for editing, and try disabling "
-"the \"fancywater\" and \"shadows\" options."
-msgstr "[font=\"sans-14\"]Μπορείτε να εναλλάξετε την πλήρη οθόνη και τη μορφή παραθύρου πατώντας Alt + Enter. Στη μορφή παραθύρου,μπορείτε να αλλάξετε τον προσανατολισμό του παραθύρου στον φακελο ρύθμισης.ψάξτε για το binaries/data/config/default.cfg στο φακελο που έχετε εγκαταστήσει το παιχνίδι,εκεί που δίνονται οδηγίες για μορφοποίηση,και απενεργοποιήστε τις επιλογές \"fancywater\" και \"shadows\"."
+"game runs too slowly, you can change some settings in the options window: "
+"try disabling the \"HQ Water Effects\" and \"Shadows\" options."
+msgstr ""
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
@@ -201,8 +199,8 @@ msgid "[font=\"sans-bold-16\"]Hotkeys:"
 msgstr "[font=\"sans-bold-16\"]Συντομεύσεις πληκτολογίου"
 
 #: gui/manual/intro.txt:43
-msgid "[font=\"sans-bold-14\"]Global"
-msgstr "[font=\"sans-bold-14\"]Παγκόσμια"
+msgid "[font=\"sans-bold-14\"]Program-wide"
+msgstr ""
 
 #: gui/manual/intro.txt:44
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"

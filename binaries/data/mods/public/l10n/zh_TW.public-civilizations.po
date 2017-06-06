@@ -5,6 +5,7 @@
 # Translators:
 # Cheng-Chia Tseng <pswo10680@gmail.com>, 2014-2015
 # Cirro Yuan, 2013
+# jaco boolean <daan0014119@gmail.com>, 2017
 # Jeff Huang <s8321414@gmail.com>, 2013-2014,2016-2017
 # kevinhykuo <kevinhykuo1994@gmail.com>, 2014
 # Mysterelee <8161525@qq.com>, 2014
@@ -14,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-29 09:06+0200\n"
-"PO-Revision-Date: 2017-05-30 13:58+0000\n"
-"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
+"POT-Creation-Date: 2017-06-04 09:04+0200\n"
+"PO-Revision-Date: 2017-06-04 16:21+0000\n"
+"Last-Translator: jaco boolean <daan0014119@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -191,13 +192,14 @@ msgstr "經典的方陣陣型是大約在西元前八世紀被發展出來的。
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[0].History
 msgid ""
-"The general whom persuaded the Athenians to invest their income from silver "
+"The general who persuaded the Athenians to invest their income from silver "
 "mines in a war navy of 200 Triremes. A key figure during the Persian Wars, "
 "he commanded the victorious Athenian navy at the decisive battle of Salamis "
 "in 479 B.C. Later, he pursued an active policy against the Persians in the "
-"Aegean, thereby laying the foundations of future Athenian power. Ostracised "
-"by the Athenians, he was forced to flee to the protection of the Persians."
-msgstr "一位極力勸說雅典人把他們在銀礦上所獲得的財富投入建造 200 艘三列槳戰船的將軍。這一行為竟成了左右波斯戰爭的關鍵，他在西元前 479 年指揮雅典的海軍在薩拉米灣的戰役中獲得勝利。爾後，他奉行著在愛琴海積極對抗波斯人的政策，奠定了雅典爾後力量的基石。但他之後被雅典人以貝殼流放法流放，被迫到波斯尋求庇護。"
+"Aegean, thereby laying the foundations of future Athenian power. However, he"
+" was eventually ostracised by the Athenians and forced to flee to the "
+"protection of the Persians."
+msgstr "一個極力勸說雅典人把他們在銀礦上所獲得的財富投入建造 200 艘三列槳戰船的將軍。這一行為竟成了左右波斯戰爭的關鍵，他在西元前 479 年指揮雅典的海軍在薩拉米灣的戰役中獲得勝利。爾後，他奉行著在愛琴海積極對抗波斯人的政策，奠定了雅典爾後力量的基石。但他之後被雅典人以貝殼流放法流放，被迫到波斯尋求庇護。"
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[1].History
 msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
@@ -560,7 +562,7 @@ msgid ""
 msgstr "與伊比利半島不同，北非被稱為馬國，每年能生產多達 100,000 頭座騎。這裡也是北非森林象的家。"
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "10% bonus of trade profit for ally's international routes."
+msgid "10% bonus of trade profit for allies' international routes."
 msgstr "盟友的國際貿易路線多 10% 貿易利潤。"
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
@@ -1707,11 +1709,11 @@ msgstr "波斯建築"
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[1].History
 msgid ""
-"The Persians built the wonderful 1677 mile-long Royal Highway from Sardis to"
-" Susa; Darius the Great and Xerxes also built the magnificent Persepolis; "
-"Cyrus the Great greatly improved Ecbatana and virtually 'rebuilt' the old "
-"Elamite capital of Susa."
-msgstr "波斯人從薩第斯到蘇薩建造了驚人的 1677 英哩長的皇家道路；大流士大帝及薛西斯也建造了雄偉的波斯波利斯；居魯士大帝則是大大的改善了埃克巴坦那，並幾乎「重建」了古埃蘭首都蘇薩。"
+"The Persians built the wonderful 2700 kilometer-long Royal Highway from "
+"Sardis to Susa; Darius the Great and Xerxes also built the magnificent "
+"Persepolis; Cyrus the Great greatly improved Ecbatana and virtually "
+"'rebuilt' the old Elamite capital of Susa."
+msgstr "波斯人從薩第斯到蘇薩建造了驚人的 2700 公里長的皇家道路；大流士大帝及薛西斯也建造了雄偉的波斯波利斯；居魯士大帝則是大大的改善了埃克巴坦那，並幾乎「重建」了古埃蘭首都蘇薩。"
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[2].Description
 msgid "Reduces train time for Anusiya champion infantry by half."
@@ -1826,13 +1828,12 @@ msgid "Mercenary Army"
 msgstr "傭兵軍團"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].History
-#: simulation/data/civs/ptol.jsonStructures[1].History
 msgid ""
 "The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
 "foreign mercenaries for the bulk of its military force, mainly because the "
 "loyalty of native Egyptian units was often suspect. Indeed, during one "
 "native uprising, Upper Egypt was lost to the Ptolemies for decades. "
-"Mercenaries were often battle-hardened and their loyalty can be bought, "
+"Mercenaries were often battle-hardened and their loyalty could be bought, "
 "sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
 " under the Ptolemies was so prosperous as to be the richest of Alexander's "
 "successor states."
@@ -2012,6 +2013,18 @@ msgid ""
 "Must be constructed in neutral territory. Has no territory radius effect. "
 "Trains all 'mercenary' units."
 msgstr "必須建造在中立領土。沒有領土範圍效果。訓練所有「傭兵」單位。"
+
+#: simulation/data/civs/ptol.jsonStructures[1].History
+msgid ""
+"The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
+"foreign mercenaries for the bulk of its military force, mainly because the "
+"loyalty of native Egyptian units was often suspect. Indeed, during one "
+"native uprising, Upper Egypt was lost to the Ptolemies for decades. "
+"Mercenaries were often battle-hardened and their loyalty can be bought, "
+"sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
+" under the Ptolemies was so prosperous as to be the richest of Alexander's "
+"successor states."
+msgstr "希臘─馬其頓托勒密王朝依靠大量的希臘及外國雇傭兵作為大多數的軍事力量，主要是因為懷疑當地的埃及部隊的忠誠度。事實上，在一次當地的反抗以後，上埃及便脫離了托勒密的掌控幾十年。傭兵們往往久經沙場，而他們的忠誠可以用錢買到，有時便宜，有時昂貴。這並不重要，因為托勒密埃及是所有亞歷山大繼業者的國家裡最富有的。"
 
 #: simulation/data/civs/ptol.jsonStructures[2].Name
 msgid "Lighthouse"
@@ -2475,13 +2488,13 @@ msgstr "勝利者 塞琉古一世"
 msgid ""
 "Antiochus inherited a troubled kingdom upon the beginning of his reign. From"
 " the verge of collapse he managed to weld back together the empire Seleukus "
-"I so hard to found. The rebellious eastern satraps of Bactria and Parthia "
-"were brought to heel , temporarily securing his eastern borders. He then "
-"turned his attention to mother Greece, attempting to fulfill the dreams of "
-"his fathers by invading Greece under the pretext of liberation. The Achaean "
-"League and the Kingdom of Pergamon banded together with the Romans to defeat"
-" him at the Battle of Magnesia, forever burying the dream of reuniting "
-"Alexander's empire."
+"I fought so hard to found. The rebellious eastern satraps of Bactria and "
+"Parthia were brought to heel , temporarily securing his eastern borders. He "
+"then turned his attention to mother Greece, attempting to fulfill the dreams"
+" of his fathers by invading Greece under the pretext of liberation. The "
+"Achaean League and the Kingdom of Pergamon banded together with the Romans "
+"to defeat him at the Battle of Magnesia, forever burying the dream of "
+"reuniting Alexander's empire."
 msgstr "安條克在他統治的初期繼承了一個陷入困境的王國。但他成功的將瀕鄰崩潰的帝國重新融為一體，這連塞琉古一世本人都很難做到。巴克特里亞及帕提亞的反專制起義被帶到了更東邊的地方，使其可以暫時保護好自己的東部邊界。然後他把注意力轉向希臘，企圖以解放希臘為名入侵，以實現他父親的夢想。亞該亞同盟與阿塔羅斯王朝聯合羅馬在馬格尼西亞戰役中打敗他，永遠埋藏了重聚亞歷山大帝國的夢想。"
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[1].Name

@@ -8,9 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-02 09:04+0200\n"
-"PO-Revision-Date: 2017-06-02 08:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-06-04 09:07+0200\n"
+"PO-Revision-Date: 2017-06-04 21:48+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,7 +40,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "+20% attack damage for soldiers."
-msgstr ""
+msgstr "+20% angrepsskade for soldater."
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Power of Knowledge"
@@ -109,7 +109,7 @@ msgstr "Øk befolkningstaket med 10 per under i ditt eie."
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraName
 msgid "Glorious Expansion"
-msgstr ""
+msgstr "Storslått ekspansjon"
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraDescription
 msgid ""
@@ -123,7 +123,7 @@ msgstr "Det athenske sjøforbundet"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Ships construct 25% faster."
-msgstr ""
+msgstr "Skip bygges 25% raskere."
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
@@ -131,7 +131,7 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "-20% resources cost for allies healers."
-msgstr ""
+msgstr "-20% ressurskost for allierte helbredere."
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
@@ -198,7 +198,7 @@ msgstr "Verneplikt"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
 msgid "-20% training time for allied infantry."
-msgstr ""
+msgstr "-20% opptreningstid for alliert infanteri."
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
@@ -225,7 +225,7 @@ msgstr "Inspirasjon"
 
 #: simulation/data/auras/units/female_inspiration.jsonauraDescription
 msgid "+10% build rate and gather rate for citizen soldiers."
-msgstr ""
+msgstr "+10% bygnings- og innsamlings -takt for borger-soldater."
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraName
 msgid "Economic Reforms"
@@ -285,8 +285,8 @@ msgstr "Snikangrep-slakt"
 #: simulation/data/auras/units/catafalques/gaul_catafalque_1.jsonauraDescription
 msgid ""
 "Warring with the Romans, Ambiorix realized the futility of open warfare and instead resorted to ambush tactics. The Gauls quickly learned where and when to execute surprise attacks.\n"
-"Soldiers require 25% less XP to promote and gain a 5% attack bonus."
-msgstr "I krigingen mot romerne, innså Ambriorix snart hvor fåfengt åpen krigføring var, og tydde til snikangreptaktikk. Gallerne lærte raskt hvor og når de skulle utføre overaskelsesangrep.\nSoldater krever 25% mindre XP for å forfremmes og mottar 5% angrepsbonus."
+"Soldiers require 25% less experience to promote and gain a 5% attack bonus."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_2.jsonauraName
 msgid "Tribute to Rome"
@@ -364,9 +364,9 @@ msgstr "Stor bibliotekar"
 
 #: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraDescription
 msgid ""
-"Continuing his predecessors' work on the Great Library at Alexandria, he seized every book brought to the city, thus leaving to his people a vast amount of hoarded wisdom.\n"
+"Continuing his predecessors' work on the Great Library of Alexandria, he seized every book brought to the city, thus leaving to his people a vast amount of hoarded wisdom.\n"
 "-10% resource cost for all technologies."
-msgstr "I fortsettelsen på hans forgjengers arbeid på det kongelige biblioteket i Alexandria, tok han enhver bok bragt til byen, noe som levnet hans folk store mengder oppsamlet kunnskap.\n-10% ressurskost for alle teknologier."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_1.jsonauraName
 msgid "Avenger of Lucretia"
@@ -548,7 +548,7 @@ msgstr "Plyndrer av Rom"
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraDescription
 msgid "+15 Metal loot for every enemy unit killed."
-msgstr ""
+msgstr "+15 metalltyvgods for hver fiendtlig enhet drept."
 
 #: simulation/data/auras/units/heroes/gaul_hero_britomartus.jsonauraName
 msgid "Preparation for War"
@@ -592,7 +592,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraDescription
 msgid "+1 armor for soldiers."
-msgstr ""
+msgstr "+1 rustningsgrad for soldater."
 
 #: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraName
 msgid "Mobilization"
@@ -637,7 +637,7 @@ msgid "Taxiarchès"
 msgstr "Regimentssjef"
 
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraDescription
-msgid "+20% attack and +20% capture for pikemen soldiers."
+msgid "+20% attack and +20% capture for pikemen."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraName
@@ -688,8 +688,8 @@ msgid "Regeneration"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraName
-msgid "Lead from the Front"
-msgstr "Frontleder"
+msgid "Forefront Leader"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraDescription
 msgid "+20% attack and +1 capture for cavalry soldiers."
@@ -738,7 +738,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraDescription
 msgid "Pikemen have 40% greater health during his lifetime."
-msgstr ""
+msgstr "Pikenérer har 40% bedre helse i hans levetid."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraName
 msgid "Patron of Construction"
@@ -759,15 +759,15 @@ msgstr "Leiesoldater koster -50% ressurser i hans levetid."
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraName
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraName
 msgid "Sword of Rome"
-msgstr ""
+msgstr "Roms sverd"
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraDescription
 msgid "+15% attack for cavalry."
-msgstr ""
+msgstr "+15% angrep for kavaleri."
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraDescription
 msgid "-10% attack for enemy infantry."
-msgstr ""
+msgstr "-10% angrep for fiendtlig infanteri."
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraName
 msgid "Shield of Rome"
@@ -775,15 +775,15 @@ msgstr "Roms skjold"
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraDescription
 msgid "+2 armor for all units and structures."
-msgstr ""
+msgstr "+2 rustningsgrad for enheter og bygninger."
 
 #: simulation/data/auras/units/heroes/rome_hero_scipio.jsonauraName
 msgid "Triumph"
-msgstr ""
+msgstr "Triumf"
 
 #: simulation/data/auras/units/heroes/rome_hero_scipio.jsonauraDescription
 msgid "+20% attack and +2 capture for soldiers and siege engines."
-msgstr ""
+msgstr "+20% angrep og +2 erobring for alle soldater og beleiringsvåpen."
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraName
 msgid "Ilarchès"
@@ -799,7 +799,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.jsonauraDescription
 msgid "-20% health for enemy buildings, siege engines and ships."
-msgstr ""
+msgstr "-20% helse for fiendtlige bygninger, beleiringsvåpen og skip."
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.jsonauraName
 msgid "Zooiarchos"

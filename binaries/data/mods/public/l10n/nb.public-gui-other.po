@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-29 09:07+0200\n"
-"PO-Revision-Date: 2017-05-29 15:24+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-06-04 09:05+0200\n"
+"PO-Revision-Date: 2017-06-04 22:21+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -72,8 +72,8 @@ msgstr "Fane"
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
-" in default web browser. Please wait...."
-msgstr "Åpner %(url)s\n i forvalgt nettleser. Vent…"
+" in default web browser. Please wait..."
+msgstr "Åpner %(url)s\ni forvalgt nettleser. Vent…"
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
@@ -362,10 +362,10 @@ msgid "disabled"
 msgstr "avskrudd"
 
 #: gui/common/gamedescription.js:313
-msgid "For the first minute, enemies will stay neutral."
-msgid_plural "For the first %(min)s minutes, enemies will stay neutral."
-msgstr[0] "Det første %(min)s minuttet vil fiender forbli nøytrale."
-msgstr[1] "De første %(min)s minuttene vil fiender forbli nøytrale."
+msgid "For the first minute, other players will stay neutral."
+msgid_plural "For the first %(min)s minutes, other players will stay neutral."
+msgstr[0] ""
+msgstr[1] ""
 
 #: gui/common/gamedescription.js:321
 msgid "Map Name"
@@ -402,7 +402,7 @@ msgstr "Befolkningstak"
 
 #: gui/common/gamedescription.js:373
 msgid "Treasure"
-msgstr ""
+msgstr "Skatt"
 
 #: gui/common/gamedescription.js:375
 msgctxt "treasure"
@@ -412,7 +412,7 @@ msgstr "Avskrudd"
 #: gui/common/gamedescription.js:376
 msgctxt "treasure"
 msgid "If the map places it."
-msgstr ""
+msgstr "Hvis plassert av kartet."
 
 #: gui/common/gamedescription.js:380
 msgid "Revealed Map"
@@ -538,8 +538,9 @@ msgid "Server full"
 msgstr "Tjeneren er full"
 
 #: gui/common/network.js:76
-msgid "Player identifier in use, retry connecting"
-msgstr "Spilleridentifikator i bruk, prøver å koble til igjen"
+msgid ""
+"Player identifier in use. If you were disconnected, retry in few seconds"
+msgstr ""
 
 #: gui/common/network.js:79
 #, javascript-format
@@ -645,8 +646,8 @@ msgstr "Tilfeldig"
 #: gui/common/settings.js:195
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
-" chose the number of players and teams."
-msgstr "Opprett et unikt kart med forskjellig ressursfordeling hver gang. Velg andre spillinnstillinger fritt."
+" select the number of players and teams."
+msgstr ""
 
 #: gui/common/settings.js:199
 msgctxt "map"
@@ -1094,7 +1095,7 @@ msgstr "Ingen"
 
 #: gui/locale/locale_advanced.js:92
 msgid "invalid locale"
-msgstr ""
+msgstr "Ugyldig lokale"
 
 #: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:163
 #: gui/splashscreen/splashscreen.xml:(caption):28
@@ -1637,8 +1638,8 @@ msgid "Used"
 msgstr "Brukt"
 
 #: gui/summary/summary.js:85
-msgid "Recieved"
-msgstr "Mottatt"
+msgid "Received"
+msgstr ""
 
 #: gui/summary/summary.js:90
 msgid "Sold"
@@ -2105,7 +2106,7 @@ msgstr "Slett"
 
 #: gui/replaymenu/replay_menu.xml:(caption):254
 msgid "Reload Cache"
-msgstr ""
+msgstr "Last inn hurtiglager på nytt"
 
 #: gui/replaymenu/replay_menu.xml:(caption):261
 #: gui/summary/summary.xml:(caption):23
@@ -2478,9 +2479,9 @@ msgstr "Pause i bakgrunnen"
 
 #: gui/options/options.jsongeneralSetting[4].tooltip
 msgid ""
-"When disabled, the welcome screen will nevertheless be shown once when a new"
-" version is available and you can always launch it from the main menu."
-msgstr "Når avskrudd, vil velkomstskjermen uansett bli vist når en ny versjon er tilgjengelig og du kan alltid starte den fra hovedmenyen."
+"If you disable it, the welcome screen will still appear once, each time a "
+"new version is available. You can always launch it from the main menu."
+msgstr ""
 
 #: gui/options/options.jsongeneralSetting[4].label
 msgid "Enable Welcome Screen"
@@ -2563,21 +2564,19 @@ msgid "Buddies"
 msgstr "Venner"
 
 #: gui/options/options.jsongeneralSetting[13].parameters.list[2].label
-msgid "No one"
-msgstr "Ingen"
+#: gui/options/options.jsongeneralSetting[14].parameters.list[2].label
+msgid "Disabled"
+msgstr "Avskrudd"
 
 #: gui/options/options.jsongeneralSetting[13].tooltip
 msgid ""
-"Whether to assign joining clients to free playerslots in the gamesetup."
-msgstr "Hvorvidt tilkoblende klienter skal tildeles spillerposisjoner i spilloppsettet."
+"Automatically assign joining clients to free player slots during the match "
+"setup."
+msgstr ""
 
 #: gui/options/options.jsongeneralSetting[13].label
 msgid "Assign Players"
 msgstr "Tildel spillere"
-
-#: gui/options/options.jsongeneralSetting[14].parameters.list[2].label
-msgid "Disabled"
-msgstr ""
 
 #: gui/options/options.jsongeneralSetting[14].tooltip
 msgid ""
@@ -2887,16 +2886,16 @@ msgid "Harvest from animals, berry bushes, fish, or fields."
 msgstr "Sank fra dyr, bærbusker, fisk eller jorder."
 
 #: simulation/data/resources/metal.jsondescription
-msgid "Mine from metal mines and quarries."
-msgstr "Utvinn fra metallgruver og metallbrudd."
+msgid "Mine from metal mines or quarries."
+msgstr ""
 
 #: simulation/data/resources/stone.jsondescription
 msgid "Mine from rocks, stone quarries or ruins."
 msgstr "Utvinn fra steiner, steinbrudd eller ruiner."
 
 #: simulation/data/resources/wood.jsondescription
-msgid "Lumber from trees or groves."
-msgstr "Tømmer fra trær eller treklynger."
+msgid "Cut down from trees or groves."
+msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -3071,12 +3070,11 @@ msgstr "Tre"
 #: gui/gamesetup/ai.txt:1
 msgid ""
 "Although reasonably easy for an experienced player, the default AI level is "
-"quite challenging for new players before they master the basic mechanisms of"
-" the game. It is advised to start by playing against a lower level (sandbox "
-"or very easy) when beginning with the game. Changing the AI level is done by"
-" clicking on the gear icon next to each AI player in the player selection "
-"panel above."
-msgstr "Selv om det er tilnærmelsesvis enkelt for en erfaren spiler, er forvalgt AI-nivå ganske utfordrende for nye spillere som ikke har mestret grunnsteinene i spillets mekanikk enda. Det anbefales å starte mot en av lavere nivå (sandkasse eller veldig lett) når man begynner spillet. Å endre AI-nivå gjøres ved å klikke på gir-ikonet ved siden av hver AI-spiller i spillervalgspanelet ovenfor."
+"quite challenging for new players yet to master the basic mechanisms of the "
+"game. Beginners are advised to start by playing against a lower level AI "
+"(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
+"to the player you want to modify in the selection panel above."
+msgstr ""
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
@@ -3482,7 +3480,7 @@ msgstr "- Øker ildkraft med stasjonerte katapulter."
 
 #: gui/text/tips/quinquereme.txt:8
 msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."
-msgstr "- Har et ramangrep som senker fientlige skip (IKKE IMPLEMENTERT ENNÅ)."
+msgstr "- Har et ram-angrep som senker fiendtlige skip (IKKE IMPLEMENTERT ENNÅ)."
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"

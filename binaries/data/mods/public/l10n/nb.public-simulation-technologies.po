@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-02 09:04+0200\n"
-"PO-Revision-Date: 2017-06-02 15:02+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-06-04 09:07+0200\n"
+"PO-Revision-Date: 2017-06-04 22:34+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -700,7 +700,7 @@ msgstr "Hemmelige stålbearbeidingsteknikker gir sverdklinger karakteristiske og
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
 msgid "+20% Hack attack for all sword units."
-msgstr ""
+msgstr "+20% hakkeskade for alle sverdenheter."
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
@@ -917,8 +917,8 @@ msgid "Gather Training"
 msgstr "Innsamlingstrening"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
-msgid "Using net improves the fishing productivity."
-msgstr "Bruk garn for å øke fiskefangsten."
+msgid "Nets improve the fishing productivity."
+msgstr "Garn øker fiskefangsten."
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid ""
@@ -1045,8 +1045,8 @@ msgid "Wedge and Mallet"
 msgstr "Kile og hammer"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
-msgid "Baskets to carry foraged food stuffs."
-msgstr "Kurver til matauk."
+msgid "Baskets for foraging."
+msgstr "Kurver for matsanking."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 msgid "Equip your foragers with wicker baskets. +50% fruit foraging rate."
@@ -1151,10 +1151,9 @@ msgstr "De eleusinske mysterier"
 
 #: simulation/data/technologies/health_females_01.jsondescription
 msgid ""
-"The Loom allowed the creation of finer clothing to clothe citizens in the "
-"settlement. Women of the household were taught from a young age how to weave"
-" on the loom, and subsequently spent a large  share of their lives working "
-"with it."
+"The loom allowed the creation of finer clothing for settlers. Women of the "
+"household were taught from a young age how to weave on the loom, and "
+"subsequently spent a large share of their lives working with it."
 msgstr "Vevstolen tillot framstilling av finere bekledning til bosettingens borgere. Kvinner i husholdet ble opplært fra barnsben til veving på vevstolen, og tilbragte senere store deler av sine liv i dets virke."
 
 #: simulation/data/technologies/health_females_01.jsontooltip
@@ -1617,8 +1616,8 @@ msgid "Make your units 50% more expensive to bribe."
 msgstr "Gjør enhetene dine 50% dyrere å bestikke."
 
 #: simulation/data/technologies/spy_counter.jsongenericName
-msgid "Counter Espionage"
-msgstr "Kontraetterretning"
+msgid "Counterintelligence"
+msgstr "Kontraspionasje"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsondescription
 msgid "Improve the international trading profit."
@@ -1826,7 +1825,8 @@ msgid ""
 msgstr "Handelsmennenes første mål var handel, men de tilegnet seg også informasjon om landene de krysset."
 
 #: simulation/data/technologies/unlock_spies.jsontooltip
-msgid "Allows to bribe other players' units to share their vision."
+msgid ""
+"Allows bribing the units of other players in order to share their vision."
 msgstr "Tillater bestikking av andre spilleres enheter slik at du kan dele deres åsyn."
 
 #: simulation/data/technologies/unlock_spies.jsongenericName
@@ -1872,16 +1872,16 @@ msgstr "Zeugítai"
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsondescription
 msgid "Hire professional mercenaries to fight in your army."
-msgstr ""
+msgstr "Hyr profesjonelle leiesoldater til å sloss i din arme."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid ""
 "Mercenaries are promoted to advanced rank but require +20% training time."
-msgstr ""
+msgstr "Leiesoldater blir forfremmet til avansert grad, men krever +20% opptreningstid."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsongenericName
 msgid "Expertise In War"
-msgstr ""
+msgstr "Ekspertise i krig"
 
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsontooltip
 msgid ""
@@ -2301,8 +2301,8 @@ msgid ""
 msgstr "Spartanerne hadde ikke den største hæren i verden, men de hadde den beste hæren i verden i deres tid. Det de ikke hadde i antall gjorde de opp for i kvalitet. Det ble sagt at Sparta ikke trenge bymurer fordi deres menn var byens murer."
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
-msgid "Spartans have 10% less maximum population"
-msgstr "Spartanerne har 10% lavere befolkningstak."
+msgid "Spartans have 10% less maximum population."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
 msgid "Underdogs"
@@ -2385,7 +2385,7 @@ msgstr "Inderne hadde en lang tradisjon med fremragende bueskytterkunst og en fo
 msgid ""
 "Range +10 meters for bow-wielding units. Archer units train time -20%, but "
 "also -20% health."
-msgstr "Rekkevidde +10 meter for bueskyttere. Opptreningstid for bueskyttere -20%, men også -20% helsepoeng."
+msgstr "Rekkevidde +10 meter for bueskyttere. -20% opptreningstid for bueskyttere, men også -20% helsepoeng."
 
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsongenericName
 #: simulation/data/technologies/persians/special_archery_tradition.jsongenericName
@@ -2399,8 +2399,8 @@ msgid ""
 msgstr "Mauryanerne bygget sine bymurer av tre, en naturressurs det fantes rikelige mengder av i India."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
-msgid "Mauryan city walls have 20% less health and 20% less build time."
-msgstr "Mauryanske byvegger har 20% mindre helse og 20% mindre bygningstid."
+msgid "Mauryan city walls have -20% less health and -20% less build time."
+msgstr ""
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"
@@ -2432,7 +2432,7 @@ msgstr "Anusiyamesterinfanteriet trenes dobbelt så fort, men mister litt makshe
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
 msgid "Anusiya Champion Infantry -50% train time, but also -10% health."
-msgstr ""
+msgstr "Anusiyamesterinfantery -50% opptreningstid, men også -10% helse."
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -2503,7 +2503,7 @@ msgstr "Infanteri-verneplikt"
 msgid ""
 "All cavalry -20% train time, but also -5% health. Unlocks Cavalry "
 "Conscription."
-msgstr ""
+msgstr "Alt kavaleri -20% treningstid men også -5 helse. Låser opp verneplikt for kavaleri."
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
 msgid ""
