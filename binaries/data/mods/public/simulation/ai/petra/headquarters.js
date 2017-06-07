@@ -745,7 +745,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 		radius = Math.ceil((template.obstructionRadius() + 8) / obstructions.cellSize);
 		// scale is the typical scale at which we want to find a location for our first base
 		// look for bigger scale if we start from a ship (access < 2) or from a small island
-		let cellArea = gameState.getMap().cellSize * gameState.getMap().cellSize;
+		let cellArea = gameState.getPassabilityMap().cellSize * gameState.getPassabilityMap().cellSize;
 		proxyAccess = gameState.ai.accessibility.getAccessValue(proximity);
 		if (proxyAccess < 2 || cellArea*gameState.ai.accessibility.regionSize[proxyAccess] < 24000)
 			scale = 400 * 400;
@@ -1899,7 +1899,7 @@ m.HQ.prototype.updateTerritories = function(gameState)
 {
 	const around = [ [-0.7,0.7], [0,1], [0.7,0.7], [1,0], [0.7,-0.7], [0,-1], [-0.7,-0.7], [-1,0] ];
 	let alliedVictory = gameState.getAlliedVictory();
-	let passabilityMap = gameState.getMap();
+	let passabilityMap = gameState.getPassabilityMap();
 	let width = this.territoryMap.width;
 	let cellSize = this.territoryMap.cellSize;
 	let insideSmall = Math.round(45 / cellSize);

@@ -33,22 +33,16 @@ m.BaseAI.prototype.Deserialize = function(data, sharedScript)
 m.BaseAI.prototype.Init = function(state, playerID, sharedAI)
 {
 	PlayerID = playerID;
-	// define some references
-	this.entities = sharedAI.entities;
-	this.templates = sharedAI.templates;
-	this.passabilityClasses = sharedAI.passabilityClasses;
-	this.passabilityMap = sharedAI.passabilityMap;
+
 	this.territoryMap = sharedAI.territoryMap;
 	this.accessibility = sharedAI.accessibility;
-	this.terrainAnalyzer = sharedAI.terrainAnalyzer;
 
 	this.gameState = sharedAI.gameState[this.player];
 	this.gameState.ai = this;
-	this.sharedScript = sharedAI;
 
 	this.timeElapsed = sharedAI.timeElapsed;
 
-	this.CustomInit(this.gameState, this.sharedScript);
+	this.CustomInit(this.gameState);
 };
 
 /** AIs override this function */
@@ -60,7 +54,6 @@ m.BaseAI.prototype.HandleMessage = function(state, playerID, sharedAI)
 {
 	PlayerID = playerID;
 	this.events = sharedAI.events;
-	this.passabilityMap = sharedAI.passabilityMap;
 	this.territoryMap = sharedAI.territoryMap;
 
 	if (this.isDeserialized)

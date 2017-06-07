@@ -8,7 +8,7 @@ m.TERRITORY_BLINKING_MASK = 0x40;
 
 m.createObstructionMap = function(gameState, accessIndex, template)
 {
-	let passabilityMap = gameState.getMap();
+	let passabilityMap = gameState.getPassabilityMap();
 	let territoryMap = gameState.ai.territoryMap;
 	let ratio = territoryMap.cellSize / passabilityMap.cellSize;
 
@@ -142,7 +142,7 @@ m.createBorderMap = function(gameState)
 	let map = new API3.Map(gameState.sharedScript, "territory");
 	let width = map.width;
 	let border = Math.round(80 / map.cellSize);
-	let passabilityMap = gameState.sharedScript.passabilityMap;
+	let passabilityMap = gameState.getPassabilityMap();
 	let obstructionMask = gameState.getPassabilityClassMask("unrestricted");
 	if (gameState.circularMap)
 	{

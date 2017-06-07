@@ -24,7 +24,7 @@ m.PetraBot = function PetraBot(settings)
 
 m.PetraBot.prototype = new API3.BaseAI();
 
-m.PetraBot.prototype.CustomInit = function(gameState, sharedScript)
+m.PetraBot.prototype.CustomInit = function(gameState)
 {
 	if (this.isDeserialized)
 	{

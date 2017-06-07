@@ -118,8 +118,8 @@ m.NavalManager.prototype.init = function(gameState, deserializing)
 		return;
 
 	// determination of the possible landing zones
-	let width = gameState.getMap().width;
-	let length = width * gameState.getMap().height;
+	let width = gameState.getPassabilityMap().width;
+	let length = width * gameState.getPassabilityMap().height;
 	for (let i = 0; i < length; ++i)
 	{
 		let land = gameState.ai.accessibility.landPassMap[i];

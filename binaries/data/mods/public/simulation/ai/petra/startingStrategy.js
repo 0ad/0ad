@@ -171,7 +171,7 @@ m.HQ.prototype.regionAnalysis = function(gameState)
 		return false;
 	}
 
-	let passabilityMap = gameState.getMap();
+	let passabilityMap = gameState.getPassabilityMap();
 	let totalSize = passabilityMap.width * passabilityMap.width;
 	let minLandSize = Math.floor(0.1*totalSize);
 	let minWaterSize = Math.floor(0.2*totalSize);
@@ -424,7 +424,7 @@ m.HQ.prototype.configFirstBase = function(gameState)
 			break;
 		}
 	}
-	let cell = gameState.getMap().cellSize;
+	let cell = gameState.getPassabilityMap().cellSize;
 	startingSize = startingSize * cell * cell;
 	if (this.Config.debug > 1)
 		API3.warn("starting size " + startingSize + "(cut at 24000 for fish pushing)");

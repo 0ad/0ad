@@ -372,8 +372,8 @@ m.TransportPlan.prototype.getBoardingPos = function(gameState, ship, landIndex, 
 	let startPos = ship.position();
 	let distmin = Math.min();
 	let posmin = destination;
-	let width = gameState.getMap().width;
-	let cell = gameState.getMap().cellSize;
+	let width = gameState.getPassabilityMap().width;
+	let cell = gameState.getPassabilityMap().cellSize;
 	let alliedDocks = gameState.getAllyStructures().filter(API3.Filters.and(
 		API3.Filters.byClass("Dock"), API3.Filters.byMetadata(PlayerID, "sea", seaIndex))).toEntityArray();
 	for (let i of gameState.ai.HQ.navalManager.landingZones[landIndex][seaIndex])
