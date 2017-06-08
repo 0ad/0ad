@@ -285,7 +285,7 @@ m.GameState.prototype.checkTechRequirements = function(reqs)
 	});
 };
 
-m.GameState.prototype.getMap = function()
+m.GameState.prototype.getPassabilityMap = function()
 {
 	return this.sharedScript.passabilityMap;
 };
