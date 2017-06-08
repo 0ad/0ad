@@ -108,13 +108,27 @@ for (let i = 0; i < numPlayers; ++i)
 	playerIDs.push(i+1);
 playerIDs = sortPlayers(playerIDs);
 
+// Either left vs right or top vs bottom
+var leftVSRight = randBool();
+
 for (let i = 0; i < numPlayers; ++i)
 {
-	let playerX = playerPos[i % 2];
-	let playerZ = (i + 1) / (numPlayers + 1);
-	let id = playerIDs[i];
+	let playerX;
+	let playerZ;
 
-	log("Creating base for player " + id + "...");
+	if (leftVSRight)
+	{
+		let left = i < numPlayers / 2;
+		playerX = playerPos[left ? 0 : 1];
+		playerZ = 2 * (left ? i + 1 : numPlayers - i - 0.5) / (numPlayers + 1 + numPlayers % 2);
+	}
+	else
+	{
+		playerX = playerPos[i % 2];
+		playerZ = (i + 1) / (numPlayers + 1);
+	}
+
+	log("Creating base for player " + playerIDs[i] + "...");
 	let radius = scaleByMapSize(12, 20);
 
 	let fx = fractionToTiles(playerX);
@@ -130,7 +144,7 @@ for (let i = 0; i < numPlayers; ++i)
 
 	// Create the main island
 	createArea(
-		new ChainPlacer(1, 6, Math.floor(scaleByMapSize(25, 50)), 1, ix, iz, 0, [Math.floor(radius)]),
+		new ChainPlacer(1, 6, 40, 1, ix, iz, 0, [Math.floor(radius)]),
 		[
 			new LayeredPainter([tGrass, tGrass, tGrass], [1, 4]),
 			new SmoothElevationPainter(ELEVATION_SET, 3, 4),
@@ -144,7 +158,7 @@ for (let i = 0; i < numPlayers; ++i)
 		new LayeredPainter([tRoadWild, tRoad], [1]),
 		null);
 
-	placeCivDefaultEntities(fx, fz, id,  { 'iberWall': 'towers' });
+	placeCivDefaultEntities(fx, fz, playerIDs[i],  { 'iberWall': 'towers' });
 
 	placeDefaultChicken(fx, fz, clBaseResource, undefined, oPeacock);
 
