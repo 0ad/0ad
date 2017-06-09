@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:05+0200\n"
-"PO-Revision-Date: 2017-06-04 15:56+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-06-05 09:02+0200\n"
+"PO-Revision-Date: 2017-06-06 09:18+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -76,7 +76,7 @@ msgstr "Taba"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait..."
-msgstr ""
+msgstr "A' fosgladh %(url)s\nsa bhrabhsair-lìn bhunaiteach. Fuirich ort..."
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
@@ -373,10 +373,10 @@ msgstr "à comas"
 #: gui/common/gamedescription.js:313
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Bidh gach cluicheadair eile neo-phàirteach rè a’ chiad %(min)s mhionaid."
+msgstr[1] "Bidh gach cluicheadair eile neo-phàirteach rè a’ chiad %(min)s mhionaid."
+msgstr[2] "Bidh gach cluicheadair eile neo-phàirteach rè a’ chiad %(min)s mionaidean."
+msgstr[3] "Bidh gach cluicheadair eile neo-phàirteach rè a’ chiad %(min)s mionaid."
 
 #: gui/common/gamedescription.js:321
 msgid "Map Name"
@@ -412,18 +412,18 @@ msgid "Population Limit"
 msgstr "Tomhas-sluaigh"
 
 #: gui/common/gamedescription.js:373
-msgid "Treasure"
-msgstr "Ulaidh"
+msgid "Treasures"
+msgstr "Ulaidhean"
 
 #: gui/common/gamedescription.js:375
-msgctxt "treasure"
+msgctxt "treasures"
 msgid "Disabled"
 msgstr "À comas"
 
 #: gui/common/gamedescription.js:376
-msgctxt "treasure"
-msgid "If the map places it."
-msgstr ""
+msgctxt "treasures"
+msgid "As defined by the map."
+msgstr "Mar a mhìnicheas am mapa."
 
 #: gui/common/gamedescription.js:380
 msgid "Revealed Map"
@@ -551,7 +551,7 @@ msgstr "Tha am frithealaiche làn"
 #: gui/common/network.js:76
 msgid ""
 "Player identifier in use. If you were disconnected, retry in few seconds"
-msgstr ""
+msgstr "Tha aithnichear a’ chluicheadair ’ga chleachdadh mar-thà. Ma chaidh do cheangal a bhriseadh, feuch ris a-rithist an ceann diog no dhà"
 
 #: gui/common/network.js:79
 #, javascript-format
@@ -662,7 +662,7 @@ msgstr "Air thuaiream"
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
-msgstr ""
+msgstr "Cruthaich mapa àraidh le sgaoileadh stòrasan a bhios eadar-dhealaichte gach turas. Tagh àireamhan nan cluicheadairean agus na sgiobaidhean mar a thogras tu."
 
 #: gui/common/settings.js:199
 msgctxt "map"
@@ -1672,7 +1672,7 @@ msgstr "Cleachdadh"
 
 #: gui/summary/summary.js:85
 msgid "Received"
-msgstr ""
+msgstr "Faighinn"
 
 #: gui/summary/summary.js:90
 msgid "Sold"
@@ -1878,8 +1878,8 @@ msgid ""
 msgstr "’S urrainn dhut fiosrachadh gun ainm a chur thugainn gu fèin-obrachail a chuidicheas ach an càraich sinn bugaichean is an doir sinn piseach air an dèanadas is co-chòrdalachd."
 
 #: gui/pregame/mainmenu.xml:540
-msgid "Alpha XXI: Ulysses"
-msgstr "Alpha XXI: Ulysses"
+msgid "Alpha XXII: Venustas"
+msgstr "Alpha XXII: Venustas"
 
 #: gui/pregame/mainmenu.xml:542
 msgid ""
@@ -2514,7 +2514,7 @@ msgstr "’Na stad sa chùlaibh"
 msgid ""
 "If you disable it, the welcome screen will still appear once, each time a "
 "new version is available. You can always launch it from the main menu."
-msgstr ""
+msgstr "Ma chuireas tu seo à comas, thèid an sgrìn fàilteachaidh a shealltainn dhut aon turas nuair a bhios tionndadh ùr ri fhaighinn.  ’S urrainn dhut a sealltainn on phrìomh chlàr-taice cuideachd uair sam bith."
 
 #: gui/options/options.jsongeneralSetting[4].label
 msgid "Enable Welcome Screen"
@@ -2605,7 +2605,7 @@ msgstr "À comas"
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
-msgstr ""
+msgstr "Iomruin ionadan saora dha chluicheadairean a thig a-steach rè suidheachadh a’ gheama."
 
 #: gui/options/options.jsongeneralSetting[13].label
 msgid "Assign Players"
@@ -2920,7 +2920,7 @@ msgstr "Buain o bheathaichean, preasan dearc, èisg no achaidhean."
 
 #: simulation/data/resources/metal.jsondescription
 msgid "Mine from metal mines or quarries."
-msgstr ""
+msgstr "Tochail mèinnean meatailt no cuaraidhean gus fhaighinn."
 
 #: simulation/data/resources/stone.jsondescription
 msgid "Mine from rocks, stone quarries or ruins."
@@ -2928,7 +2928,7 @@ msgstr "Tochail carraigean, mèinnean cloiche no làraichean."
 
 #: simulation/data/resources/wood.jsondescription
 msgid "Cut down from trees or groves."
-msgstr ""
+msgstr "Leag craobhan no doireachan gus fhaighinn."
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -3107,7 +3107,7 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr ""
+msgstr "Ged a tha e furasta gu leòr dhan chluicheadair eòlach, tha leibheil tùsail an IF caran dùbhlanach dha na cluicheadairean ùra gus an ionnsaich iad mar a dh’obraicheas an geama. Mholamaid gun cluich thu an aghaidh IF le leibheil ìosail an toiseach (can bogsa-gainmhich no glè fhurasta). Gus leibheil an IF atharrachadh, briog air ìomhaigheag a’ ghèar ri taobh a’ chluicheadair a bu toigh leat atharrachadh sa phanail taghaidh gu h-àrd."
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""

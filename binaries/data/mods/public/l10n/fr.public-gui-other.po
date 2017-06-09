@@ -38,8 +38,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:05+0200\n"
-"PO-Revision-Date: 2017-06-04 16:53+0000\n"
+"POT-Creation-Date: 2017-06-05 09:02+0200\n"
+"PO-Revision-Date: 2017-06-06 18:48+0000\n"
 "Last-Translator: Polakrity <sxk-fr@live.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -390,8 +390,8 @@ msgstr "désactivé"
 #: gui/common/gamedescription.js:313
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Durant la première minute, les autres joueurs restent neutres."
+msgstr[1] "Durant les %(min)s premières minutes, les autres joueurs restent neutres."
 
 #: gui/common/gamedescription.js:321
 msgid "Map Name"
@@ -427,18 +427,18 @@ msgid "Population Limit"
 msgstr "Limite de population"
 
 #: gui/common/gamedescription.js:373
-msgid "Treasure"
-msgstr "Trésor"
+msgid "Treasures"
+msgstr "Trésors"
 
 #: gui/common/gamedescription.js:375
-msgctxt "treasure"
+msgctxt "treasures"
 msgid "Disabled"
-msgstr "Désactivé"
+msgstr "Désactivés"
 
 #: gui/common/gamedescription.js:376
-msgctxt "treasure"
-msgid "If the map places it."
-msgstr "Si la carte en a placé."
+msgctxt "treasures"
+msgid "As defined by the map."
+msgstr "Définis par la carte."
 
 #: gui/common/gamedescription.js:380
 msgid "Revealed Map"
@@ -566,7 +566,7 @@ msgstr "Serveur complet"
 #: gui/common/network.js:76
 msgid ""
 "Player identifier in use. If you were disconnected, retry in few seconds"
-msgstr ""
+msgstr "Identificateur de joueur déjà utilisé. Si vous avez été déconnecté(e), réessayez dans quelques secondes"
 
 #: gui/common/network.js:79
 #, javascript-format
@@ -673,7 +673,7 @@ msgstr "Aléatoire"
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
-msgstr ""
+msgstr "Créer une carte originale avec une répartition des ressources différemment à chaque fois. Choisissez librement le nombre de joueurs et d'équipes."
 
 #: gui/common/settings.js:199
 msgctxt "map"
@@ -1871,8 +1871,8 @@ msgid ""
 msgstr "Vous pouvez nous envoyer automatiquement des informations anonymes qui nous aideront à corriger les bugs, et à améliorer les performances et la compatibilité du jeu."
 
 #: gui/pregame/mainmenu.xml:540
-msgid "Alpha XXI: Ulysses"
-msgstr "Alpha XXI: Ulysses"
+msgid "Alpha XXII: Venustas"
+msgstr "Alpha XXII: Venustas"
 
 #: gui/pregame/mainmenu.xml:542
 msgid ""
@@ -2177,7 +2177,7 @@ msgstr "Durée"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):255
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
-msgstr "Régénérer le cache des parties sauvegardées à partir de rien. Potentiellement lent !"
+msgstr "Régénérer le cache des vidéos à partir de rien. Potentiellement lent !"
 
 #: gui/savedgames/load.xml:(heading):44
 msgctxt "replay"
@@ -2507,7 +2507,7 @@ msgstr "Tâche de fond en pause"
 msgid ""
 "If you disable it, the welcome screen will still appear once, each time a "
 "new version is available. You can always launch it from the main menu."
-msgstr ""
+msgstr "Si vous le désactivez, l'écran d'accueil apparait tout de même lorsqu'une nouvelle version est disponible et peut être affiché depuis le menu principale."
 
 #: gui/options/options.jsongeneralSetting[4].label
 msgid "Enable Welcome Screen"
@@ -2598,7 +2598,7 @@ msgstr "Désactivé"
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
-msgstr ""
+msgstr "Affecter automatiquement les clients à des emplacements de joueurs libres pendant la configuration du match."
 
 #: gui/options/options.jsongeneralSetting[13].label
 msgid "Assign Players"
@@ -2608,7 +2608,7 @@ msgstr "Assigner joueurs"
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started"
-msgstr "Autoriser tout le monde ou seulement les amis à rejoindre la partie en temps qu'observateur après son lancement"
+msgstr "Autoriser tout le monde ou seulement les amis à rejoindre la partie en temps qu'observateur après son lancement."
 
 #: gui/options/options.jsongeneralSetting[14].label
 msgid "Late Observer Joins"
@@ -3100,7 +3100,7 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr ""
+msgstr "Bien que relativement faible pour un joueur expérimenté, le niveau de difficulté par défaut de l'IA représente un bon challenge pour permettre aux nouveaux joueurs de maîtriser les mécanismes de base du jeu. Pour les débutants, il est recommandé de commencer à jouer contre un niveau de difficulté inférieur (Bac à sable ou Très facile). Pour changer le niveau de difficulté de l'IA, cliquez sur l'icône d'engrenage à côté de chaque joueur IA sur le panneau de sélection des joueurs."
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""

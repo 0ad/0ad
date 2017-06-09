@@ -18,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:05+0200\n"
-"PO-Revision-Date: 2017-06-04 15:56+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-06-05 09:02+0200\n"
+"PO-Revision-Date: 2017-06-06 14:33+0000\n"
+"Last-Translator: yakup <mutouk@yandex.ru>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -407,17 +407,17 @@ msgid "Population Limit"
 msgstr "Nüfus Limiti"
 
 #: gui/common/gamedescription.js:373
-msgid "Treasure"
-msgstr "Hazine"
+msgid "Treasures"
+msgstr ""
 
 #: gui/common/gamedescription.js:375
-msgctxt "treasure"
+msgctxt "treasures"
 msgid "Disabled"
-msgstr "Devre dışı"
+msgstr ""
 
 #: gui/common/gamedescription.js:376
-msgctxt "treasure"
-msgid "If the map places it."
+msgctxt "treasures"
+msgid "As defined by the map."
 msgstr ""
 
 #: gui/common/gamedescription.js:380
@@ -1101,7 +1101,7 @@ msgstr "Yok"
 
 #: gui/locale/locale_advanced.js:92
 msgid "invalid locale"
-msgstr ""
+msgstr "geçersiz konum"
 
 #: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:163
 #: gui/splashscreen/splashscreen.xml:(caption):28
@@ -1112,7 +1112,7 @@ msgstr "Tamam"
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
-msgstr ""
+msgstr "Değer: %(val)s (enaz: %(min)s, enfazla: %(max)s)"
 
 #: gui/options/options.js:332
 msgid ""
@@ -1851,8 +1851,8 @@ msgid ""
 msgstr "Hataları onarmakta bize yardımcı olmak için otomatik olarak anonim geribildirimler gönderebilir ve performans ile uyumluluk gelişimine yardım edebilirsiniz. "
 
 #: gui/pregame/mainmenu.xml:540
-msgid "Alpha XXI: Ulysses"
-msgstr "Alfa XXI: Ulysses"
+msgid "Alpha XXII: Venustas"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:542
 msgid ""
@@ -1870,7 +1870,7 @@ msgstr "Geribildirimi devredışı bırak"
 
 #: gui/pregame/mainmenu.xml:(caption):157
 msgid "Tutorial"
-msgstr ""
+msgstr "Öğretici"
 
 #: gui/pregame/mainmenu.xml:(caption):171
 #: gui/structree/structree.xml:(caption):18
@@ -1968,7 +1968,7 @@ msgstr "0 A.D. Oyun Rehberini aç."
 
 #: gui/pregame/mainmenu.xml:(tooltip):158
 msgid "Start the economic tutorial."
-msgstr ""
+msgstr "Ekonomi öğreticisini başlat."
 
 #: gui/pregame/mainmenu.xml:(tooltip):172
 msgid "View the structure tree of civilizations featured in 0 A.D."
@@ -2219,22 +2219,22 @@ msgstr "Eğitici Birimler"
 
 #: gui/summary/summary.xml:(caption):105
 msgid "Charts"
-msgstr ""
+msgstr "Grafikler"
 
 #: gui/summary/summary.xml:(caption):167
 msgctxt "summary chart"
 msgid "Category:"
-msgstr ""
+msgstr "Kategori:"
 
 #: gui/summary/summary.xml:(caption):177
 msgctxt "summary chart"
 msgid "Value:"
-msgstr ""
+msgstr "Değer:"
 
 #: gui/summary/summary.xml:(caption):187
 msgctxt "summary chart"
 msgid "Type:"
-msgstr ""
+msgstr "Tip:"
 
 #: gui/summary/summary.xml:(caption):206
 msgid "Replay"
@@ -2247,17 +2247,17 @@ msgstr "Devam et"
 #: gui/summary/summary.xml:(tooltip):173
 msgctxt "summary chart"
 msgid "Category"
-msgstr ""
+msgstr "Kategori"
 
 #: gui/summary/summary.xml:(tooltip):183
 msgctxt "summary chart"
 msgid "Value"
-msgstr ""
+msgstr "Değer"
 
 #: gui/summary/summary.xml:(tooltip):194
 msgctxt "summary chart"
 msgid "Type"
-msgstr ""
+msgstr "Tip"
 
 #: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
 msgid "Art lead"
@@ -2645,7 +2645,7 @@ msgstr "Ana ses kazancı"
 
 #: gui/options/options.jsonsoundSetting[0].label
 msgid "Master Volume"
-msgstr ""
+msgstr "Ana Ses"
 
 #: gui/options/options.jsonsoundSetting[1].tooltip
 msgid "In game music gain"
@@ -2653,7 +2653,7 @@ msgstr "Oyun içi müzik kazancı"
 
 #: gui/options/options.jsonsoundSetting[1].label
 msgid "Music Volume"
-msgstr ""
+msgstr "Müzik Sesi"
 
 #: gui/options/options.jsonsoundSetting[2].tooltip
 msgid "In game ambient sound gain"
@@ -2661,7 +2661,7 @@ msgstr "Oyundaki ortam ses kazancı"
 
 #: gui/options/options.jsonsoundSetting[2].label
 msgid "Ambient Volume"
-msgstr ""
+msgstr "Çevresel Ses"
 
 #: gui/options/options.jsonsoundSetting[3].tooltip
 msgid "In game unit action sound gain"
@@ -2669,7 +2669,7 @@ msgstr "Oyundaki birim aksiyon ses kazancı"
 
 #: gui/options/options.jsonsoundSetting[3].label
 msgid "Action Volume"
-msgstr ""
+msgstr "Eylem Sesi"
 
 #: gui/options/options.jsonsoundSetting[4].tooltip
 msgid "UI sound gain"
@@ -2677,7 +2677,7 @@ msgstr "Kullanıcı arabirimi  ses kazancı"
 
 #: gui/options/options.jsonsoundSetting[4].label
 msgid "UI Volume"
-msgstr ""
+msgstr "Arayüz Sesi"
 
 #: gui/options/options.jsonsoundSetting[5].tooltip
 msgid "Receive audio notification when someone types your nick"
@@ -2715,7 +2715,7 @@ msgstr "Takas"
 
 #: gui/options/options.jsonnotificationSetting[3].parameters.list[0].label
 msgid "Disable"
-msgstr ""
+msgstr "Devre dışı"
 
 #: gui/options/options.jsonnotificationSetting[3].parameters.list[1].label
 msgid "Completed"
@@ -2733,7 +2733,7 @@ msgstr ""
 
 #: gui/options/options.jsonnotificationSetting[3].label
 msgid "Phase"
-msgstr ""
+msgstr "Aşama"
 
 #: gui/options/options.jsongraphicsSetting[0].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)"

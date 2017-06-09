@@ -15,7 +15,7 @@
 # SecondCloud500 <eddieven2000@gmail.com>, 2014
 # Emanuele Ricci <stermi@gmail.com>, 2013
 # Fabio Pedretti <pedretti.fabio@gmail.com>, 2013
-# Fabrizio Morotti <famorot@tin.it>, 2016
+# Fabrizio Morotti <famorot@tin.it>, 2016-2017
 # giangy <giancarlo.moi@tiscali.it>, 2014
 # j4nsen <enrico.meneguzzi@gmail.com>, 2013
 # Marco <inactive+Vamos@transifex.com>, 2013
@@ -30,9 +30,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:04+0200\n"
-"PO-Revision-Date: 2017-06-04 15:39+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-06-05 09:01+0200\n"
+"PO-Revision-Date: 2017-06-05 21:01+0000\n"
+"Last-Translator: Fabrizio Morotti <famorot@tin.it>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -214,7 +214,7 @@ msgid ""
 "Aegean, thereby laying the foundations of future Athenian power. However, he"
 " was eventually ostracised by the Athenians and forced to flee to the "
 "protection of the Persians."
-msgstr ""
+msgstr "Il generale che persuase gli Ateniesi ad investire i loro introiti provenienti dalle miniere d'argento in una flotta di 200 Triremi. Figura chiave durante le Guerre Persiane, egli comandò la vittoriosa flotta ateniese nella decisiva battaglia di Salamina nel 479 a.C. In seguito, egli condusse una politica aggressiva contro i Persiani nell'Egeo, ponendo le basi della futura potenza ateniese. Ostracizzato dagli Ateniesi, fu costretto a fuggire ricercando protezione presso i Persiani."
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[1].History
 msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
@@ -578,7 +578,7 @@ msgstr "Non diversamente dalla penisola Iberica, l'Africa settentrionale era con
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
 msgid "10% bonus of trade profit for allies' international routes."
-msgstr ""
+msgstr "10% di bonus sul profitto commerciale per le rotte internazionali alleate."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -799,12 +799,12 @@ msgstr "I Druidi dei Galli mantennero l'organizzazione religiosa che consentì l
 
 #: simulation/data/civs/gaul.jsonAINames[0]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
-msgid "Britomartos"
-msgstr "Viridomaro dei Gesati"
+msgid "Viridomarus"
+msgstr "Viridomaro"
 
 #: simulation/data/civs/gaul.jsonAINames[1]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[1].Name
-msgid "Brennos"
+msgid "Brennus"
 msgstr "Brenno"
 
 #: simulation/data/civs/gaul.jsonAINames[2]
@@ -817,7 +817,7 @@ msgstr "Cingetorige"
 
 #: simulation/data/civs/gaul.jsonAINames[4]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[2].Name
-msgid "Uerkingetorix"
+msgid "Vercingetorix"
 msgstr "Vercingetorige"
 
 #: simulation/data/civs/gaul.jsonAINames[5]
@@ -833,8 +833,8 @@ msgid "Liscus"
 msgstr "Lisco"
 
 #: simulation/data/civs/gaul.jsonAINames[8]
-msgid "Valetiacos"
-msgstr "Valetiaco"
+msgid "Valetiacus"
+msgstr "Valentiaco"
 
 #: simulation/data/civs/gaul.jsonAINames[9]
 msgid "Viridovix"
@@ -846,14 +846,17 @@ msgid ""
 msgstr "Importa una quantità di metallo e cibo per ogni struttura distrutta o catturata"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
-msgid "Uae Uictos"
-msgstr "Vae Victis!"
+msgid "Vae Victis"
+msgstr "Vae Victis"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
 msgid ""
-"Means Woe to the Defeated. It was the words that the Gallic Leader, Brennos,"
-" spoke at the Capitol at Rome after they took their plunder."
-msgstr "Significa Guai ai Vinti. Erano le parole che il capo gallico, Brenno, pronunciò in Campidoglio a Roma quando gettò sul piatto della bilancia anche la sua spada in modo da aumentare il valore del bottino richiesto ai Romani."
+"Woe to the Defeated! The Gallic chieftain Brennus seized Rome (with the "
+"exception of a garrison on Capitoline Hill). When Camillus besieged him with"
+" a relief force from Veii, he negotiated his surrender for 1000 pounds of "
+"gold, and adding the weight of his sword on the scale when the Romans "
+"complained that he used false weights he uttered those famous words."
+msgstr "\"Guai ai vinti!\"  - Brenno, capo Gallico che conquistò Roma (ad eccezione della guarnigione del Campidoglio). Quando Camillo arrivò da Veio e lo assediò, egli negoziò il suo ritiro per 1000 libbre d'oro, ma utilizzò pesi falsi e aggiunse il peso della sua spada sul piatto della bilancia quando i Romani si lamentarono e pronunciò quelle famose parole. "
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid "Gallic druids gain a small melee attack."
@@ -872,21 +875,21 @@ msgstr "I Carnuti erano i druidi di Aulercia. Combattenti quando necessario, fur
 
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].History
 msgid ""
-"When celt armies met the enemy, before the battle would start, the celt "
+"When Celtic armies met the enemy, before the battle would start, the Celtic "
 "leader would go to the first line and challenge the bravest of the enemy "
 "warriors to a single combat. The story of how Marcus Claudius Marcellus "
 "killed a Gallic leader at Clastidium (222 B.C.) is typical of such "
-"encounters. Advancing with a smallish army, Marcellus met a combined force "
-"of Insubrian Gauls and Gaesatae at Clastidium. The Gallic army advanced with"
-" the usual rush and terrifying cries, and their king, Britomartos, picking "
+"encounters. Advancing with a small army, Marcellus met a combined force of "
+"Insubrian Gauls and Gaesatae at Clastidium. The Gallic army advanced with "
+"the usual rush and terrifying cries, and their king, Viridomarus, picking "
 "out Marcellus by means of his badges of rank, made for him, shouting a "
-"challenge and brandishing his spear. Britomartos was an outstanding figure "
+"challenge and brandishing his spear. Viridomarus was an outstanding figure "
 "not only for his size but also for his adornments; for he was resplendent in"
 " bright colors and his armor shone with gold and silver. This armor, thought"
 " Marcellus, would be a fitting offering to the gods. He charged the Gaul, "
 "pierced his bright breastplate and cast him to the ground. It was an easy "
-"task to kill Britomartos and strip him of his armor."
-msgstr "Quando gli eserciti Celti incontravano il nemico, prima della battaglia, il capo celto si portava tra le prime file per sfidare il più valoroso dei guerrieri nemici in un singolo combattimento. La storia di come Marco Claudio Marcello uccise un capo Gallico a Clastidium (222 a.C.) è tipica di tali avvenimenti. Avanzando con un esercito ridotto, Marcello incontrò un gruppo di Galli Insubri e Gesati a Clastidium. L'esercito Gallico avanzò con la solita foga e urla terrificanti, ed il loro re, Britomartos, individuò Marcello per mezzo dei suoi distintivi di grado e gli si gettò contro brandendo la sua lancia. Britomartos era una figura eccezionale, non solo per le sue dimensione, ma anche per i suoi ornamenti, era risplende di colori vivaci e la sua armatura brillava d'oro e d'argento. Questa armatura, pensò Marcello, sarebbe un'eccellente offerta agli dei. Caricò il capo Gallico, trafiggendo la sua brillante corazza e gettandolo a terra. Complice la foga di Britomartos il romano riuscì facilmente a ucciderlo e lo spogliarlo della sua armatura."
+"task to kill Viridomarus and strip him of his armor."
+msgstr "Quando gli eserciti Celti incontravano il nemico, prima della battaglia, il capo celto si portava tra le prime file per sfidare il più valoroso dei guerrieri nemici in un singolo combattimento. La storia di come Marco Claudio Marcello uccise un capo Gallico a Clastidium (222 a.C.) è tipica di tali avvenimenti. Avanzando con un esercito ridotto, Marcello incontrò un gruppo di Galli Insubri e Gesati a Clastidium. L'esercito Gallico avanzò con la solita foga e urla terrificanti, ed il loro re, Viridomaro, individuò Marcello per mezzo dei suoi distintivi di grado e gli si gettò contro brandendo la sua lancia. Viridomaro era una figura eccezionale, non solo per le sue dimensione, ma anche per i suoi ornamenti, era risplendente di colori vivaci e la sua armatura brillava d'oro e d'argento. Questa armatura, pensò Marcello, sarebbe un'eccellente offerta agli dei. Caricò il capo Gallico, trafiggendo la sua brillante corazza e gettandolo a terra. Il romano riuscì facilmente a ucciderlo ed a spogliarlo della sua armatura."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -897,19 +900,19 @@ msgid ""
 "that Britons had conquered Rome, the greatest civilization in the world, "
 "long before Rome conquered the Britons. We know from many ancient sources "
 "which predate Geoffrey that Rome was indeed sacked, but in 387 not 390, and "
-"that the raid was led by a man named Brennos (which was latinized to "
-"Brennus), but he and his invading horde were Gallic Senones, not British. In"
-" this episode several features of Geoffrey's editing method can be seen: he "
-"modified the historical Brennus/Brennos, created the brother Belinus, "
-"borrowed the Gallic invasion, but omitted the parts where the Celts seemed "
-"weak or foolish. His technique is both additive and subtractive. Like the "
-"tale of Trojan origin, the story of the sack of Rome is not pure "
-"fabrication; it is a creative rearrangement of the available facts, with "
-"details added as necessary. By virtue of their historical association, Beli "
-"and Bran are often muddled with the earlier brothers Belinus and Brennus "
-"(the sons of Dunvallo Molmutius) who contended for power in northern Britain"
-" in around 390 B.C., and were regarded as gods in old Celtic tradition."
-msgstr "Brenno è il nome che gli storici romani diedero al famoso condottiero dei Galli che prese Roma al tempo di Camillo. Secondo Geoffrey di Monmouth, il religioso che ha scritto \"Storia dei Re della Bretagna\", Brenno e suo fratello Belinus invasero la Gallia e saccheggiarono Roma nel 390 a.C., è la 'prova' che i Britanni conquistarono Roma, la più grande civiltà del mondo, prima che Roma conquistasse i Britanni. Sappiamo da molte fonti antiche, anteriori a Geoffrey che Roma fu effettivamente saccheggiata, ma nel 387 non nel 390, e che l'attacco venne condotto da un uomo di nome Brennos (latinizzato in Brenno), ma sia lui che la sua orda di invasori erano Galli Senoni, non Britanni. In questo episodio possono essere evidenziate diverse caratteristiche del metodo di revisione di Geoffrey: modificò il nome Brenno/Brennos, creò il fratello Belinus, prese in prestito l'invasione gallica, ma omise le parti in cui i celti apparivano deboli o ignoranti. La sua tecnica era sia additiva sia sottrattiva. Come il racconto dell'origine di Troia, la storia del sacco di Roma non fu pura invenzione; ma un riarrangiamento creativo dei dati disponibili, con particolari aggiunti, quando necessario. In virtù della loro associazione storica, Beli e Bran sono spesso confusi con i fratelli precedenti Belinus e Brenno (i figli di Dunvallo Molmutius), che governarono nel nord della Gran Bretagna intorno al 390 a.C., ed erano venerati come divinità nella vecchia tradizione Celtica."
+"that the raid was led by a man named Brennus, but he and his invading horde "
+"were Gallic Senones, not British. In this episode several features of "
+"Geoffrey's editing method can be seen: he modified the historical Brennus, "
+"created the brother Belinus, borrowed the Gallic invasion, but omitted the "
+"parts where the Celts seemed weak or foolish. His technique is both additive"
+" and subtractive. Like the tale of Trojan origin, the story of the sack of "
+"Rome is not pure fabrication; it is a creative rearrangement of the "
+"available facts, with details added as necessary. By virtue of their "
+"historical association, Beli and Bran are often muddled with the earlier "
+"brothers Belinus and Brennus (the sons of Dunvallo Molmutius) who contended "
+"for power in northern Britain in around 390 B.C., and were regarded as gods "
+"in old Celtic tradition."
+msgstr "Brenno è il nome che gli storici romani diedero al famoso condottiero dei Galli che prese Roma al tempo di Camillo. Secondo Geoffrey di Monmouth, il religioso che ha scritto \"Storia dei Re della Bretagna\", Brenno e suo fratello Belinus invasero la Gallia e saccheggiarono Roma nel 390 a.C., è la 'prova' che i Britanni conquistarono Roma, la più grande civiltà del mondo, prima che Roma conquistasse i Britanni. Sappiamo da molte fonti antiche, anteriori a Geoffrey che Roma fu effettivamente saccheggiata, ma nel 387 non nel 390, e che l'attacco venne condotto da un uomo di nome Brennos, latinizzato in Brenno, ma sia lui che la sua orda di invasori erano Galli Senoni, non Britanni. In questo episodio possono essere evidenziate diverse caratteristiche del metodo di revisione di Geoffrey: modificò il nome Brenno/Brennos, creò il fratello Belinus, prese in prestito l'invasione gallica, ma omise le parti in cui i celti apparivano deboli o ignoranti. La sua tecnica era sia additiva sia sottrattiva. Come il racconto dell'origine di Troia, la storia del sacco di Roma non fu pura invenzione; ma un riarrangiamento creativo dei dati disponibili, con particolari aggiunti, quando necessario. In virtù della loro associazione storica, Beli e Bran sono spesso confusi con i fratelli precedenti Belinus e Brenno (i figli di Dunvallo Molmutius) che governarono nel nord della Gran Bretagna intorno al 390 a.C., ed erano venerati come divinità nella vecchia tradizione Celtica."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -1728,7 +1731,7 @@ msgid ""
 "Sardis to Susa; Darius the Great and Xerxes also built the magnificent "
 "Persepolis; Cyrus the Great greatly improved Ecbatana and virtually "
 "'rebuilt' the old Elamite capital of Susa."
-msgstr ""
+msgstr "I Persiani costruirono la splendida Strada Reale di 2700 chilometri da Sardi a Susa; Dario il Grande e Serse costruirono la  magnifica Persepoli, Ciro il Grande migliorò notevolmente Ecbatana e praticamente 'ricostruì' la vecchia capitale Elamita di Susa."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[2].Description
 msgid "Reduces train time for Anusiya champion infantry by half."
@@ -1852,7 +1855,7 @@ msgid ""
 "sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
 " under the Ptolemies was so prosperous as to be the richest of Alexander's "
 "successor states."
-msgstr ""
+msgstr "La Dinastia Tolemaica Greco-Macedone assunse un gran numero di mercenari greci e stranieri per costituire la maggior parte della sua forza militare, soprattutto perché la lealtà delle unità egiziane native fu spesso in discussione. Infatti, durante una rivolta dei nativi, l'Alto Egitto venne perso dai Tolomei per decenni. I Mercenari erano spesso veterani agguerriti e la loro lealtà poteva essere comprata, a volte a buon mercato, a volte non così a buon mercato. Questo non aveva importanza, dal momento che l'Egitto sotto i Tolomei era così fiorente da essere il più ricco tra gli stati dei successori di Alessandro."
 
 #: simulation/data/civs/ptol.jsonCivBonuses[1].Description
 msgid "The Ptolemaic Egyptians receive 3 additional farming technologies."
@@ -2510,7 +2513,7 @@ msgid ""
 "Achaean League and the Kingdom of Pergamon banded together with the Romans "
 "to defeat him at the Battle of Magnesia, forever burying the dream of "
 "reuniting Alexander's empire."
-msgstr ""
+msgstr "Antioco ereditò un paese tormentato all'inizio del suo regno. Dall'essere vicino al crollo riuscì a rinsaldare e riportare l'impero ai fasti di Seleuco I combattendo tenacemente. I satrapi orientali ribelli di Battriana e Partia furono posti sotto il tallone, garantendo temporaneamente i suoi confini orientali. Rivolse poi la sua attenzione alla madre Grecia, nel tentativo di realizzare i sogni dei suoi padri, invase la Grecia con il pretesto della liberazione. La Lega Achea e il Regno di Pergamo si unirono con i Romani per sconfiggerlo nella battaglia di Magnesia, seppellendo per sempre il sogno di riunire l'impero di Alessandro."
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[1].Name
 msgid "Antiokhos G' Megas"

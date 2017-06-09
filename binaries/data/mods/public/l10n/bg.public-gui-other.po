@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:05+0200\n"
-"PO-Revision-Date: 2017-06-04 15:56+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-06-05 09:02+0200\n"
+"PO-Revision-Date: 2017-06-06 07:58+0000\n"
+"Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -75,7 +75,7 @@ msgstr "Tab"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait..."
-msgstr ""
+msgstr "Отваряне на %(url)s\nвъв Вашия браузър по подразбиране. Моля, изчакайте…"
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
@@ -366,8 +366,8 @@ msgstr "изключено"
 #: gui/common/gamedescription.js:313
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "През първата минута другите играчи ще бъдат неутрални."
+msgstr[1] "През първите %(min)s минути другите играчи ще бъдат неутрални."
 
 #: gui/common/gamedescription.js:321
 msgid "Map Name"
@@ -403,18 +403,18 @@ msgid "Population Limit"
 msgstr "Максимално население"
 
 #: gui/common/gamedescription.js:373
-msgid "Treasure"
-msgstr "Съкровище"
+msgid "Treasures"
+msgstr "Съкровища"
 
 #: gui/common/gamedescription.js:375
-msgctxt "treasure"
+msgctxt "treasures"
 msgid "Disabled"
-msgstr "Изключено"
+msgstr "Изключени"
 
 #: gui/common/gamedescription.js:376
-msgctxt "treasure"
-msgid "If the map places it."
-msgstr "Зависи от картата."
+msgctxt "treasures"
+msgid "As defined by the map."
+msgstr "Според картата."
 
 #: gui/common/gamedescription.js:380
 msgid "Revealed Map"
@@ -542,7 +542,7 @@ msgstr "Сървърът е пълен"
 #: gui/common/network.js:76
 msgid ""
 "Player identifier in use. If you were disconnected, retry in few seconds"
-msgstr ""
+msgstr "Потребителският идентификатор е зает. Ако сте били разкачен(а), опитайте отново след няколко секунди"
 
 #: gui/common/network.js:79
 #, javascript-format
@@ -649,7 +649,7 @@ msgstr "Случайна"
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
-msgstr ""
+msgstr "Всеки път картата ще бъде уникална и с различно разпределение на ресурсите. Можете свободно да изберете броя на играчите и отборите."
 
 #: gui/common/settings.js:199
 msgctxt "map"
@@ -1641,7 +1641,7 @@ msgstr "изразходени"
 
 #: gui/summary/summary.js:85
 msgid "Received"
-msgstr ""
+msgstr "получени"
 
 #: gui/summary/summary.js:90
 msgid "Sold"
@@ -1847,8 +1847,8 @@ msgid ""
 msgstr "Можете да ни изпращате автоматична анонимна информация, която ще ни помогне в поправянето на грешки и подобряването на производителността и съвместимостта."
 
 #: gui/pregame/mainmenu.xml:540
-msgid "Alpha XXI: Ulysses"
-msgstr "Алфа XXI: Одисей"
+msgid "Alpha XXII: Venustas"
+msgstr "Алфа XXII : Венустас"
 
 #: gui/pregame/mainmenu.xml:542
 msgid ""
@@ -2483,7 +2483,7 @@ msgstr "Пауза на заден план"
 msgid ""
 "If you disable it, the welcome screen will still appear once, each time a "
 "new version is available. You can always launch it from the main menu."
-msgstr ""
+msgstr "Ако го изключите, приветстващият екран все пак ще се показва еднократно при наличието на нова версия. Също така винаги можете да го отворите от главното меню."
 
 #: gui/options/options.jsongeneralSetting[4].label
 msgid "Enable Welcome Screen"
@@ -2574,7 +2574,7 @@ msgstr "Изключено"
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
-msgstr ""
+msgstr "Автоматично поставяне на присъединяващите се клиенти в непопълнените места за играчи по време на подготовката за игра."
 
 #: gui/options/options.jsongeneralSetting[13].label
 msgid "Assign Players"
@@ -2889,7 +2889,7 @@ msgstr "Събирайте храна от животни, храсти, риб�
 
 #: simulation/data/resources/metal.jsondescription
 msgid "Mine from metal mines or quarries."
-msgstr ""
+msgstr "Добивайте от мини за метал или кариери."
 
 #: simulation/data/resources/stone.jsondescription
 msgid "Mine from rocks, stone quarries or ruins."
@@ -2897,7 +2897,7 @@ msgstr "Добивайте от скали, каменни кариери и о�
 
 #: simulation/data/resources/wood.jsondescription
 msgid "Cut down from trees or groves."
-msgstr ""
+msgstr "Добивайте дърва от дървета или горички."
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -3076,7 +3076,7 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr ""
+msgstr "Въпреки че за опитните играчи стандартното ниво на трудност на изкуствения интелект е сравнително лесно, за новите играчи то може да бъде доста предизвикателно, докато не усвоят основните механики на играта. Начинаещите играчи е препоръчително да започнат с игра срещу по-ниско ниво ИИ („много лесно“ или дори „пясъчник“). Промяната на нивото на ИИ се прави като щракнете иконката с зъбно колело до всеки играч, управляван от ИИ, в областта за избор на играчите по-горе."
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""

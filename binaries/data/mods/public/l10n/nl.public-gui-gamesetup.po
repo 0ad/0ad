@@ -7,11 +7,12 @@
 # Bart Groeneveld, 2016
 # BladeFalconheart, 2014
 # BoucheDag <bouche4dag@gmail.com>, 2014
-# Christof Verhoeven <christof.verhoeven@gmail.com>, 2016
+# Christof Verhoeven <christof.verhoeven@gmail.com>, 2016-2017
 # ClementL <lewisclement@gmail.com>, 2014
 # Damion Wolters <firewallscape@gmail.com>, 2016
 # Ellen Roels, 2015
 # Ilya <ilya.crols@gmail.com>, 2014
+# Ismail Sahin <ismailsahin1994@hotmail.com>, 2017
 # Johannes Collosus <the_pc_pilot@live.nl>, 2015
 # Jos Arends <Tekno23@hotmail.nl>, 2014
 # LTom, 2014
@@ -35,8 +36,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:05+0200\n"
-"PO-Revision-Date: 2017-06-04 15:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-06-05 18:18+0000\n"
+"Last-Translator: Christof Verhoeven <christof.verhoeven@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -65,7 +66,7 @@ msgstr "Willekeurig"
 
 #: gui/gamesetup/gamesetup.js:72
 msgid "Picks one civilization at random when the game starts."
-msgstr ""
+msgstr "Kiest een willekeurige beschaving wanneer het spel begint."
 
 #: gui/gamesetup/gamesetup.js:110
 #, javascript-format
@@ -143,7 +144,7 @@ msgstr "Standaard"
 #: gui/gamesetup/gamesetup.js:164
 msgctxt "map filter"
 msgid "All maps except naval and demo maps."
-msgstr ""
+msgstr "Alle kaarten behalve zee -en demokaarten."
 
 #: gui/gamesetup/gamesetup.js:170
 msgid "Naval Maps"
@@ -152,7 +153,7 @@ msgstr "Zeekaarten"
 #: gui/gamesetup/gamesetup.js:171
 msgctxt "map filter"
 msgid "Maps where ships are needed to reach the enemy."
-msgstr ""
+msgstr "Kaarten waarbij schepen nodig zijn om de vijand te bereiken."
 
 #: gui/gamesetup/gamesetup.js:176
 msgid "Demo Maps"
@@ -161,7 +162,7 @@ msgstr "Demokaarten"
 #: gui/gamesetup/gamesetup.js:177
 msgctxt "map filter"
 msgid "These maps are not playable but for demonstration purposes only."
-msgstr ""
+msgstr "Deze kaarten zijn niet speelbaar; ze zijn en enkel bedoeld voor demonstraties."
 
 #: gui/gamesetup/gamesetup.js:182
 msgid "New Maps"
@@ -170,7 +171,7 @@ msgstr "Nieuwe kaarten"
 #: gui/gamesetup/gamesetup.js:183
 msgctxt "map filter"
 msgid "Maps that are brand new in this release of the game."
-msgstr ""
+msgstr "Nieuw toegevoegde kaarten in deze release van het spel."
 
 #: gui/gamesetup/gamesetup.js:188
 msgid "Trigger Maps"
@@ -179,7 +180,7 @@ msgstr "Trigger kaarten"
 #: gui/gamesetup/gamesetup.js:189
 msgctxt "map filter"
 msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr ""
+msgstr "Kaarten met voorgeprogrammeerde gebeurtenissen waarbij mogelijk nieuwe vijanden worden geïntroduceerd."
 
 #: gui/gamesetup/gamesetup.js:194
 msgid "All Maps"
@@ -188,11 +189,11 @@ msgstr "Alle kaarten"
 #: gui/gamesetup/gamesetup.js:195
 msgctxt "map filter"
 msgid "Every map of the chosen maptype."
-msgstr ""
+msgstr "Alle kaarten van het gekozen type."
 
 #: gui/gamesetup/gamesetup.js:411
 msgid "Map Type"
-msgstr ""
+msgstr "Kaarttype"
 
 #: gui/gamesetup/gamesetup.js:412
 msgid "Select a map type."
@@ -200,7 +201,7 @@ msgstr "Selecteer kaarttype."
 
 #: gui/gamesetup/gamesetup.js:434
 msgid "Map Filter"
-msgstr ""
+msgstr "Kaart Filter"
 
 #: gui/gamesetup/gamesetup.js:435
 msgid "Select a map filter."
@@ -208,7 +209,7 @@ msgstr "Selecteer een kaartfilter."
 
 #: gui/gamesetup/gamesetup.js:449
 msgid "Select Map"
-msgstr ""
+msgstr "Selecteer Kaart"
 
 #: gui/gamesetup/gamesetup.js:450
 msgid "Select a map to play on."
@@ -216,7 +217,7 @@ msgstr "Selecteer een kaart om op te spelen."
 
 #: gui/gamesetup/gamesetup.js:463
 msgid "Map Size"
-msgstr ""
+msgstr "Kaartgrootte"
 
 #: gui/gamesetup/gamesetup.js:464
 msgid "Select map size. (Larger sizes may reduce performance.)"
@@ -224,7 +225,7 @@ msgstr "Selecteer een kaartgrootte. (Grotere kaarten kunnen performance verminde
 
 #: gui/gamesetup/gamesetup.js:477
 msgid "Number of Players"
-msgstr ""
+msgstr "Aantal Spelers"
 
 #: gui/gamesetup/gamesetup.js:478
 msgid "Select number of players."
@@ -232,27 +233,27 @@ msgstr "Selecteer het aantal spelers"
 
 #: gui/gamesetup/gamesetup.js:497
 msgid "Population Cap"
-msgstr ""
+msgstr "Maximum aantal inwoners"
 
 #: gui/gamesetup/gamesetup.js:504
 msgid "Select population limit."
-msgstr ""
+msgstr "Selecteer een maximum aantal inwoners."
 
 #: gui/gamesetup/gamesetup.js:507
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr ""
+msgstr "Waarschuwing: er kunnen performantie problemen optreden als alle %(players)s spelers aan %(popCap)s inwoners geraken."
 
 #: gui/gamesetup/gamesetup.js:523
 msgid "Starting Resources"
-msgstr ""
+msgstr "Beginkapitaal"
 
 #: gui/gamesetup/gamesetup.js:526
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
-msgstr ""
+msgstr "Initiële hoeveelheid voor elke grondstof: %(resources)s."
 
 #: gui/gamesetup/gamesetup.js:529
 msgid "Select the game's starting resources."
@@ -260,7 +261,7 @@ msgstr "Selecteer de resources die je krijgt bij de start van het spel."
 
 #: gui/gamesetup/gamesetup.js:543
 msgid "Ceasefire"
-msgstr ""
+msgstr "Wapenstilstand"
 
 #: gui/gamesetup/gamesetup.js:544
 msgid "Set time where no attacks are possible."
@@ -268,7 +269,7 @@ msgstr "Maak aanvallen onmogelijk gedurende een bepaalde tijd."
 
 #: gui/gamesetup/gamesetup.js:556
 msgid "Victory Condition"
-msgstr ""
+msgstr "Overwinningsvoorwaarde"
 
 #: gui/gamesetup/gamesetup.js:557
 msgid "Select victory condition."
@@ -276,11 +277,11 @@ msgstr "Selecteer de overwinningsvoorwaarde."
 
 #: gui/gamesetup/gamesetup.js:571
 msgid "Relic Count"
-msgstr ""
+msgstr "Aantal Relikwieën"
 
 #: gui/gamesetup/gamesetup.js:572
 msgid "Total number of relics spawned on the map."
-msgstr ""
+msgstr "Totaal aantal relikwieën die op de kaart worden geplaatst."
 
 #: gui/gamesetup/gamesetup.js:585
 msgid "Victory Duration"
@@ -292,7 +293,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:601
 msgid "Game Speed"
-msgstr ""
+msgstr "Spel Snelheid"
 
 #: gui/gamesetup/gamesetup.js:602
 msgid "Select game speed."
@@ -344,7 +345,7 @@ msgstr "Schakel alle schatten op de kaart uit."
 
 #: gui/gamesetup/gamesetup.js:761
 msgid "Disable Spies"
-msgstr ""
+msgstr "Spionnen Uitschakelen"
 
 #: gui/gamesetup/gamesetup.js:762
 msgid "Disable spies during the game."
@@ -424,7 +425,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:1687
 msgctxt "option value"
 msgid "Unknown"
-msgstr ""
+msgstr "Onbekend"
 
 #: gui/gamesetup/gamesetup.js:1714
 msgid "Yes"

@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:05+0200\n"
-"PO-Revision-Date: 2017-06-04 15:56+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-06-05 09:02+0200\n"
+"PO-Revision-Date: 2017-06-08 20:39+0000\n"
+"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -70,7 +70,7 @@ msgstr "Erlaitza"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait..."
-msgstr ""
+msgstr "Opening %(url)s\n in default web browser. Please wait..."
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
@@ -361,8 +361,8 @@ msgstr "desgaituta"
 #: gui/common/gamedescription.js:313
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Beste jokalarien neutral agertuko dira lehen minutuan."
+msgstr[1] "Etsaien jarrera neutrala izango de lehenengo  %(min)s minutuetan."
 
 #: gui/common/gamedescription.js:321
 msgid "Map Name"
@@ -398,18 +398,18 @@ msgid "Population Limit"
 msgstr "Biztanleria-muga"
 
 #: gui/common/gamedescription.js:373
-msgid "Treasure"
-msgstr "Altxorra"
+msgid "Treasures"
+msgstr "Altxorrak"
 
 #: gui/common/gamedescription.js:375
-msgctxt "treasure"
+msgctxt "treasures"
 msgid "Disabled"
 msgstr "Desgaituta"
 
 #: gui/common/gamedescription.js:376
-msgctxt "treasure"
-msgid "If the map places it."
-msgstr "Mapan jartzen bada."
+msgctxt "treasures"
+msgid "As defined by the map."
+msgstr "Mapak zehaztutakoa bezalakoa."
 
 #: gui/common/gamedescription.js:380
 msgid "Revealed Map"
@@ -537,7 +537,7 @@ msgstr "Zerbitzaria beteta"
 #: gui/common/network.js:76
 msgid ""
 "Player identifier in use. If you were disconnected, retry in few seconds"
-msgstr ""
+msgstr "Jokalari identifikatzaile hau jada badago. Konexioa galdu baduzu saiatu berriro bost segundotan."
 
 #: gui/common/network.js:79
 #, javascript-format
@@ -644,7 +644,7 @@ msgstr "Ausazko"
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
-msgstr ""
+msgstr "Sortu mapa paregabea baliabide ezberdinak erabiliz aldi bakoitzean. Askatasunez aukeratu jokalari eta talde kopurua."
 
 #: gui/common/settings.js:199
 msgctxt "map"
@@ -1636,7 +1636,7 @@ msgstr "Erabiliak"
 
 #: gui/summary/summary.js:85
 msgid "Received"
-msgstr ""
+msgstr "Jasoak"
 
 #: gui/summary/summary.js:90
 msgid "Sold"
@@ -1842,8 +1842,8 @@ msgid ""
 msgstr "Automatikoki bidal diezagukezu informazioa anonimoa, honela erroreak konpontzen eta errendimendua eta bateragarritasuna hobetzen lagunduz."
 
 #: gui/pregame/mainmenu.xml:540
-msgid "Alpha XXI: Ulysses"
-msgstr "Alpha XXI: Ulysses"
+msgid "Alpha XXII: Venustas"
+msgstr "Alpha XXII: Venustas"
 
 #: gui/pregame/mainmenu.xml:542
 msgid ""
@@ -2478,7 +2478,7 @@ msgstr "Atzealdeko pausa"
 msgid ""
 "If you disable it, the welcome screen will still appear once, each time a "
 "new version is available. You can always launch it from the main menu."
-msgstr ""
+msgstr "Nahiz desgaitu, ongietorri pantaila bertsio berri bat dagoen bakoitzeko behin erakutsiko da. Nahi izan ezkero menu nagusitik sartu ahal izango duzu."
 
 #: gui/options/options.jsongeneralSetting[4].label
 msgid "Enable Welcome Screen"
@@ -2569,7 +2569,7 @@ msgstr "Desgaituta"
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
-msgstr ""
+msgstr "Partidaren ezarpenak zehazten diren bitartean jokalari librentzako zuloetara elkartzen diren bezeroei automatikoki eman."
 
 #: gui/options/options.jsongeneralSetting[13].label
 msgid "Assign Players"
@@ -2884,7 +2884,7 @@ msgstr "Animalia, baia zuhaixkak, arrainak edo zelaiak bildu."
 
 #: simulation/data/resources/metal.jsondescription
 msgid "Mine from metal mines or quarries."
-msgstr ""
+msgstr "Metal mehatzetatik edo harrobietatik atera."
 
 #: simulation/data/resources/stone.jsondescription
 msgid "Mine from rocks, stone quarries or ruins."
@@ -2892,7 +2892,7 @@ msgstr "Harkaitz, harrobi edo hondakinetatik atera."
 
 #: simulation/data/resources/wood.jsondescription
 msgid "Cut down from trees or groves."
-msgstr ""
+msgstr "Zuhaitz edo zuhaiztietatik gutxitu."
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -3071,7 +3071,7 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr ""
+msgstr "Naiz jokalari adituarentzat nahikoa erraza izan, jokoaren nondik norakoa ezagutzen ez duten jokalari berrientzat IA maila erronka da. Gomendagarria da maila jaistea («froga» edo «erraza») lehenengo partidetan. IA maila aldatzeko aurreko aukera paneleko aldatu nahi den erreproduzigailuaren ondoko gurpiltxoan sakatu."
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""

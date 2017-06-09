@@ -31,9 +31,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:05+0200\n"
-"PO-Revision-Date: 2017-06-04 15:33+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-06-05 09:01+0200\n"
+"PO-Revision-Date: 2017-06-07 20:03+0000\n"
+"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -282,7 +282,7 @@ msgstr "Σταμάτησε από τον παίκτη %(players)s"
 #: gui/session/menu.js:1105 gui/session/messages.js:679
 msgctxt "Separator for a list of players"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/menu.js:1118 gui/session/menu.xml:(caption):17
 msgid "Manual"
@@ -507,7 +507,7 @@ msgstr "Ακολούθησε της οδηγίες."
 #: gui/session/messages.js:668
 msgctxt "Separator for a list of client loading messages"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/messages.js:674
 #, javascript-format
@@ -543,7 +543,7 @@ msgstr "Βεβαιώσου ότι όλοι οι παίκτες χρησιμοπ�
 #: gui/session/messages.js:695
 msgctxt "Out-Of-Sync"
 msgid "Click on \"Report a Bug\" in the main menu to help fix this."
-msgstr ""
+msgstr "Κάνε κλικ στο \"Αναφορά ενός Σφάλματος\" στο κεντρικό μενού για να βοηθήσεις στην επιδιόρθωσή του."
 
 #: gui/session/messages.js:696
 #, javascript-format
@@ -885,7 +885,7 @@ msgstr "Εναπομένοντα:  %(entityCounts)s"
 #: gui/session/selection_panels.js:802
 msgctxt "Separator for a list of entity counts"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/selection_panels.js:1111
 #, javascript-format
@@ -1035,7 +1035,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
 "the arrows of the other types to modify their shares. You can also press "
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
-msgstr ""
+msgstr "Επιλέξτε ένα είδος των προϊόντων που θέλετε να τροποποιήσετε κάνοντας κλικ σε αυτό και στη συνέχεια χρησιμοποιήστε τα βέλη από τα άλλα είδη για την τροποποίηση των μεριδίων τους. Μπορείτε επίσης πατώντας %(hotkey)s ενώ είναι επιλεγμένο ένα είδος προϊόντος να ορίσετε το μερίδιο στο 100%%."
 
 #: gui/session/session.js:420
 #, javascript-format
@@ -1044,7 +1044,7 @@ msgid ""
 "each time the lower buttons are pressed, %(quantity)s of the upper resource "
 "will be sold for the displayed quantity of the lower. Press and hold "
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
-msgstr ""
+msgstr "Ξεκινήστε επιλέγοντας το αγαθό που θέλετε να πουλήσετε από την ανώτερη σειρά. Σε κάθε πάτημα του κουμπιού μείωσις, %(quantity)s του άνω πόρου θα πουλιέται στη προβαλλόμενη ποσότητα του κάτω πόρου. Κρατώντας πατημένο το πλήκτρο %(hotkey)s πολλαπλασιάζει προσωρινά την εμπορεύσιμη ποσότητα επί %(multiplier)s."
 
 #: gui/session/session.js:584
 #, javascript-format
@@ -1065,7 +1065,7 @@ msgstr "ΗΤΤΗΘΗΚΑΤΕ!"
 
 #: gui/session/session.js:844
 msgid "OK"
-msgstr ""
+msgstr "Εντάξει"
 
 #: gui/session/session.js:903
 msgctxt "replayFinished"
@@ -1522,5 +1522,5 @@ msgid "Menu"
 msgstr "Μενού"
 
 #: gui/session/top_panel/label.xml:(caption):4
-msgid "ALPHA XXI : Ulysses"
-msgstr "ΑΛΦΑ ΚΑ΄ : Οδυσσέας"
+msgid "ALPHA XXII : Venustas"
+msgstr "ΑΛΦΑ ΚΒ': Βενουστάς"

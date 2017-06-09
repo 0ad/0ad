@@ -7,12 +7,13 @@
 # Merbin J Anselm <merbinjanselm@gmail.com>, 2017
 # msidhard <msidhard@gmail.com>, 2015
 # Navaneethasankar K, 2014
+# Vinod Vetrivel <vinod.vv@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-19 09:25+0100\n"
-"PO-Revision-Date: 2017-02-01 17:16+0000\n"
-"Last-Translator: Merbin J Anselm <merbinjanselm@gmail.com>\n"
+"POT-Creation-Date: 2017-05-27 14:48+0200\n"
+"PO-Revision-Date: 2017-06-05 09:03+0000\n"
+"Last-Translator: Vinod Vetrivel <vinod.vv@gmail.com>\n"
 "Language-Team: Tamil (India) (http://www.transifex.com/wildfire-games/0ad/language/ta_IN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,144 +23,144 @@ msgstr ""
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:823
+#: gui/scripting/ScriptFunctions.cpp:826
 #, c-format
 msgid "%s (custom build)"
 msgstr "%s (தனிக்கட்டமைப்பு)"
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:828
+#. dennis-ignore: *
+#: gui/scripting/ScriptFunctions.cpp:832
 #, c-format
 msgid "%s (%ls)"
 msgstr "%s (%ls)"
 
-#: gui/scripting/ScriptFunctions.cpp:849
+#: gui/scripting/ScriptFunctions.cpp:853
 msgid "custom build"
 msgstr "தனிக்கட்டமைப்பு"
 
-#: i18n/L10n.cpp:252
+#: i18n/L10n.cpp:251
 msgid "Long strings"
 msgstr "நீண்ட சொற்றொடர்கள்"
 
-#: lobby/XmppClient.cpp:750
+#: lobby/XmppClient.cpp:720
 msgid "unknown subtype (see logs)"
 msgstr "அறியப்படாத உட்பிரிவு (பதிவுகள் பார்க்க)"
 
-#: lobby/XmppClient.cpp:1001 lobby/XmppClient.cpp:1045
-#: lobby/XmppClient.cpp:1084
+#: lobby/XmppClient.cpp:986 lobby/XmppClient.cpp:1030
+#: lobby/XmppClient.cpp:1069
 msgid "Error"
 msgstr "பிழை"
 
-#: lobby/XmppClient.cpp:1004 lobby/XmppClient.cpp:1048
+#: lobby/XmppClient.cpp:989 lobby/XmppClient.cpp:1033
 msgid "No error"
 msgstr "பிழையில்லை"
 
-#: lobby/XmppClient.cpp:1006
+#: lobby/XmppClient.cpp:991
 msgid "Player already logged in"
-msgstr ""
+msgstr "போட்டியாளர் ஏற்கனவே உள்நுழைந்துள்ளார்"
 
-#: lobby/XmppClient.cpp:1008
+#: lobby/XmppClient.cpp:993
 msgid "Forbidden"
 msgstr " தடைசெய்யபட்டுளது "
 
-#: lobby/XmppClient.cpp:1010
+#: lobby/XmppClient.cpp:995
 msgid "Internal server error"
 msgstr "உட்புற சர்வர் பிழை"
 
-#: lobby/XmppClient.cpp:1014
+#: lobby/XmppClient.cpp:999
 msgid "Not allowed"
 msgstr " அனுமதியில்லை "
 
-#: lobby/XmppClient.cpp:1015
+#: lobby/XmppClient.cpp:1000
 msgid "Not authorized"
 msgstr "அங்கீகரிக்கப்படவில்லை "
 
-#: lobby/XmppClient.cpp:1018
+#: lobby/XmppClient.cpp:1003
 msgid "Recipient temporarily unavailable"
-msgstr ""
+msgstr "பெறுநர் தற்காலிகமாக கிடைக்கவில்லை"
 
-#: lobby/XmppClient.cpp:1020
+#: lobby/XmppClient.cpp:1005
 msgid "Registration required"
 msgstr "பதிவு அவசியம்"
 
-#: lobby/XmppClient.cpp:1024
+#: lobby/XmppClient.cpp:1009
 msgid "Service unavailable"
 msgstr "சேவை இல்லை"
 
-#: lobby/XmppClient.cpp:1029 lobby/XmppClient.cpp:1068
-#: lobby/XmppClient.cpp:1097
+#: lobby/XmppClient.cpp:1014 lobby/XmppClient.cpp:1053
 msgid "Unknown error"
-msgstr ""
+msgstr "அறியப்படாத பிழை"
 
-#: lobby/XmppClient.cpp:1049
+#: lobby/XmppClient.cpp:1034
 msgid "Stream error"
-msgstr ""
+msgstr "ஸ்ட்ரீமில் பிழை"
 
-#: lobby/XmppClient.cpp:1050
+#: lobby/XmppClient.cpp:1035
 msgid "The incoming stream version is unsupported"
-msgstr ""
+msgstr "உள்வரும் ஸ்ட்ரீம் பதிப்பு ஆதரிக்கப்படவில்லை"
 
-#: lobby/XmppClient.cpp:1051
+#: lobby/XmppClient.cpp:1036
 msgid "The stream has been closed by the server"
-msgstr ""
+msgstr "சேவையகம் மூலம் ஸ்ட்ரீம் மூடப்பட்டுள்ளது"
 
-#: lobby/XmppClient.cpp:1055
+#: lobby/XmppClient.cpp:1040
 msgid "An I/O error occured"
-msgstr ""
+msgstr "ஒரு I/O பிழை ஏற்பட்டது"
 
-#: lobby/XmppClient.cpp:1057
+#: lobby/XmppClient.cpp:1042
 msgid "The connection was refused by the server"
-msgstr ""
+msgstr "இணைப்பு சேவையகத்தால் மறுக்கப்பட்டது"
 
-#: lobby/XmppClient.cpp:1058
+#: lobby/XmppClient.cpp:1043
 msgid "Resolving the server's hostname failed"
-msgstr ""
+msgstr "சேவையகத்தின் பெயர் காணப்படவில்லை"
 
-#: lobby/XmppClient.cpp:1059
+#: lobby/XmppClient.cpp:1044
 msgid "This system is out of memory"
-msgstr ""
+msgstr "இந்த கணினி நினைவகம் நிரம்பியுள்ளது"
 
-#: lobby/XmppClient.cpp:1061
+#: lobby/XmppClient.cpp:1046
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
-msgstr ""
+msgstr "சேவையகத்தின் சான்றிதழை சரிபார்க்க முடியவில்லை அல்லது TLS கைகுலுக்குதல் வெற்றிகரமாக முடிக்கப்படவில்லை"
 
-#: lobby/XmppClient.cpp:1062
+#: lobby/XmppClient.cpp:1047
 msgid "The server did not offer required TLS encryption"
-msgstr ""
+msgstr "சேவையகம் தேவையான TLS குறியாக்கத்தை வழங்கவில்லை"
 
-#: lobby/XmppClient.cpp:1064
+#: lobby/XmppClient.cpp:1049
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr ""
+msgstr "அங்கீகரிப்பு தோல்வியுற்றது. தவறான கடவுச்சொல் அல்லது கணக்கு இல்லை"
 
-#: lobby/XmppClient.cpp:1065
+#: lobby/XmppClient.cpp:1050
 msgid "The user or system requested a disconnect"
-msgstr ""
+msgstr "பயனர் அல்லது கணினி துண்டிக்கப்பட்டது"
 
-#: lobby/XmppClient.cpp:1066
+#: lobby/XmppClient.cpp:1051
 msgid "There is no active connection"
-msgstr ""
+msgstr "இணைப்பு இல்லை"
 
-#: lobby/XmppClient.cpp:1087
+#: lobby/XmppClient.cpp:1072
 msgid "Success"
 msgstr "வெற்றி"
 
-#: lobby/XmppClient.cpp:1088
+#: lobby/XmppClient.cpp:1073
 msgid "Not all necessary information provided"
-msgstr ""
+msgstr "தேவையான எல்லா தகவல்களும் வழங்கப்படவில்லை"
 
-#: lobby/XmppClient.cpp:1089
+#: lobby/XmppClient.cpp:1074
 msgid "Username already exists"
-msgstr ""
+msgstr "பயனர் பெயர் ஏற்கனவே உள்ளது"
 
 #: ps/SavedGame.cpp:133
 #, c-format
 msgid "Saved game to '%s'"
-msgstr ""
+msgstr "'%s' க்கு விளையாட்டு சேமிக்கப்பட்டது"
 
-#: ps/Util.cpp:275 ps/Util.cpp:408
+#: ps/Util.cpp:279 ps/Util.cpp:282 ps/Util.cpp:417 ps/Util.cpp:420
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr ""
+msgstr "திரைப்பிடிப்பு '%s' க்கு எழுதப்பட்டது"

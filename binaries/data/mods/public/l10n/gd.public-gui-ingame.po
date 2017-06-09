@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:05+0200\n"
-"PO-Revision-Date: 2017-06-04 15:33+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-06-05 09:01+0200\n"
+"PO-Revision-Date: 2017-06-06 09:19+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -283,7 +283,7 @@ msgstr "Air a chur ’na stad le %(players)s"
 #: gui/session/menu.js:1105 gui/session/messages.js:679
 msgctxt "Separator for a list of players"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/menu.js:1118 gui/session/menu.xml:(caption):17
 msgid "Manual"
@@ -508,7 +508,7 @@ msgstr "Lean ris an stiùireadh."
 #: gui/session/messages.js:668
 msgctxt "Separator for a list of client loading messages"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/messages.js:674
 #, javascript-format
@@ -544,7 +544,7 @@ msgstr "Dèan cinnteach gun chleachd gach cluicheadair na h-aon tuilleadain."
 #: gui/session/messages.js:695
 msgctxt "Out-Of-Sync"
 msgid "Click on \"Report a Bug\" in the main menu to help fix this."
-msgstr ""
+msgstr "Briog air “Dèan aithris air buga” sa phrìomh chlàr-taice gus ar cuideachadh leis a’ chàradh."
 
 #: gui/session/messages.js:696
 #, javascript-format
@@ -892,7 +892,7 @@ msgstr "Air fhàgail: %(entityCounts)s"
 #: gui/session/selection_panels.js:802
 msgctxt "Separator for a list of entity counts"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/selection_panels.js:1111
 #, javascript-format
@@ -1042,7 +1042,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
 "the arrows of the other types to modify their shares. You can also press "
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
-msgstr ""
+msgstr "Briog air an t-seòrsa bathair a tha thu airson atharrachadh ’s cleachd iuchraichean nan seòrsaichean eile an uairsin gus an cuid atharrachadh. Ma chumas tu %(hotkey)s sìos nuair a thaghas tu bathar, cuiridh e a chuid air 100%%."
 
 #: gui/session/session.js:420
 #, javascript-format
@@ -1051,7 +1051,7 @@ msgid ""
 "each time the lower buttons are pressed, %(quantity)s of the upper resource "
 "will be sold for the displayed quantity of the lower. Press and hold "
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
-msgstr ""
+msgstr "An toiseach, tagh an stòras a tha thu airson reic on ràgh air a’ bharr an toiseach. Gach turas a nì thu bruthadh air fear de na putanan gu h-ìosal, thèid %(quantity)s dhen stòras gu h-àrd a reic ’s gheibh thu uiread a stòrais mar tha ’ga shealltainn dhut gu h-ìosal. Cum %(hotkey)s sìos gus a h-uile uiread iomadachadh le %(multiplier)s rè seal."
 
 #: gui/session/session.js:584
 #, javascript-format
@@ -1072,7 +1072,7 @@ msgstr "RUAIG!"
 
 #: gui/session/session.js:844
 msgid "OK"
-msgstr ""
+msgstr "Ceart ma-thà"
 
 #: gui/session/session.js:903
 msgctxt "replayFinished"
@@ -1529,5 +1529,5 @@ msgid "Menu"
 msgstr "Clàr-taice"
 
 #: gui/session/top_panel/label.xml:(caption):4
-msgid "ALPHA XXI : Ulysses"
-msgstr "ALPHA XXI : Ulysses"
+msgid "ALPHA XXII : Venustas"
+msgstr "ALPHA XXII : Venustas"

@@ -5,7 +5,7 @@
 # Translators:
 # Cheng-Chia Tseng <pswo10680@gmail.com>, 2014-2015
 # Cirro Yuan, 2013
-# jaco boolean <daan0014119@gmail.com>, 2017
+# Yuan <daan0014119@gmail.com>, 2017
 # Jeff Huang <s8321414@gmail.com>, 2013-2014,2016-2017
 # kevinhykuo <kevinhykuo1994@gmail.com>, 2014
 # Mysterelee <8161525@qq.com>, 2014
@@ -15,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:04+0200\n"
-"PO-Revision-Date: 2017-06-04 16:21+0000\n"
-"Last-Translator: jaco boolean <daan0014119@gmail.com>\n"
+"POT-Creation-Date: 2017-06-05 09:01+0200\n"
+"PO-Revision-Date: 2017-06-08 15:04+0000\n"
+"Last-Translator: Yuan <daan0014119@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -784,12 +784,12 @@ msgstr "高廬人的德魯伊保持著有組織的宗教，以便即使是在戰
 
 #: simulation/data/civs/gaul.jsonAINames[0]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
-msgid "Britomartos"
-msgstr "Britomartos"
+msgid "Viridomarus"
+msgstr "Viridomarus"
 
 #: simulation/data/civs/gaul.jsonAINames[1]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[1].Name
-msgid "Brennos"
+msgid "Brennus"
 msgstr "布倫努斯"
 
 #: simulation/data/civs/gaul.jsonAINames[2]
@@ -802,8 +802,8 @@ msgstr "Cingetorix"
 
 #: simulation/data/civs/gaul.jsonAINames[4]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[2].Name
-msgid "Uerkingetorix"
-msgstr "Uerkingetorix"
+msgid "Vercingetorix"
+msgstr "維欽托利"
 
 #: simulation/data/civs/gaul.jsonAINames[5]
 msgid "Divico"
@@ -818,8 +818,8 @@ msgid "Liscus"
 msgstr "Liscus"
 
 #: simulation/data/civs/gaul.jsonAINames[8]
-msgid "Valetiacos"
-msgstr "Valetiacos"
+msgid "Valetiacus"
+msgstr "Valetiacus"
 
 #: simulation/data/civs/gaul.jsonAINames[9]
 msgid "Viridovix"
@@ -831,14 +831,17 @@ msgid ""
 msgstr "每個摧毀或佔領的建築物都會給予一定量的金屬及食物。"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
-msgid "Uae Uictos"
-msgstr "Uae Uictos"
+msgid "Vae Victis"
+msgstr "Vae Victis"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
 msgid ""
-"Means Woe to the Defeated. It was the words that the Gallic Leader, Brennos,"
-" spoke at the Capitol at Rome after they took their plunder."
-msgstr "被打敗就意味著災難，這是高盧領袖布倫努斯在攻佔並掠奪了羅馬後，在古羅馬的丘比特神殿說的。"
+"Woe to the Defeated! The Gallic chieftain Brennus seized Rome (with the "
+"exception of a garrison on Capitoline Hill). When Camillus besieged him with"
+" a relief force from Veii, he negotiated his surrender for 1000 pounds of "
+"gold, and adding the weight of his sword on the scale when the Romans "
+"complained that he used false weights he uttered those famous words."
+msgstr ""
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid "Gallic druids gain a small melee attack."
@@ -857,21 +860,21 @@ msgstr "卡努特斯是來自 Aulercia 的德魯伊。他們在需要時會義�
 
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].History
 msgid ""
-"When celt armies met the enemy, before the battle would start, the celt "
+"When Celtic armies met the enemy, before the battle would start, the Celtic "
 "leader would go to the first line and challenge the bravest of the enemy "
 "warriors to a single combat. The story of how Marcus Claudius Marcellus "
 "killed a Gallic leader at Clastidium (222 B.C.) is typical of such "
-"encounters. Advancing with a smallish army, Marcellus met a combined force "
-"of Insubrian Gauls and Gaesatae at Clastidium. The Gallic army advanced with"
-" the usual rush and terrifying cries, and their king, Britomartos, picking "
+"encounters. Advancing with a small army, Marcellus met a combined force of "
+"Insubrian Gauls and Gaesatae at Clastidium. The Gallic army advanced with "
+"the usual rush and terrifying cries, and their king, Viridomarus, picking "
 "out Marcellus by means of his badges of rank, made for him, shouting a "
-"challenge and brandishing his spear. Britomartos was an outstanding figure "
+"challenge and brandishing his spear. Viridomarus was an outstanding figure "
 "not only for his size but also for his adornments; for he was resplendent in"
 " bright colors and his armor shone with gold and silver. This armor, thought"
 " Marcellus, would be a fitting offering to the gods. He charged the Gaul, "
 "pierced his bright breastplate and cast him to the ground. It was an easy "
-"task to kill Britomartos and strip him of his armor."
-msgstr "當塞爾特軍隊遇到敵人，在戰鬥開始前，塞爾特這一邊的領導人會到最前線與敵方最勇敢的戰士進行一對一的戰鬥。一個關於馬克盧斯如何在 Clastidium 一戰（西元前222年）殺死高盧的一個酋長的故事，就是這種事情的典型。以一個相當小的軍隊前進，馬克盧斯在 Clastidium 遇到了高盧的 Insubrian 及 Gaesatae。高盧軍隊以相當稀鬆平常的方式衝鋒及發出駭人的戰嚎，而他們的國王，Britomarto，因他的階級徽章而挑選出了馬克盧斯，並以他自己的方式挑戰並揮舞著長矛。Britomarto 是一位傑出的人物，不只是他身上的裝飾品，更是因為他的名聲；因為他曾經輝煌，而且他的盔甲上閃耀著黃金以及白銀。馬克盧斯心想這件盔甲會是一個給神的適當祭品，他衝向 Britomarto，刺穿他亮晃晃的胸甲，然後把他丟在地上。對馬克盧斯來說，殺了 Britomarto 並奪取他的盔甲是一件相當容易的事情。"
+"task to kill Viridomarus and strip him of his armor."
+msgstr "當塞爾特人的軍隊遇到敵人時，在戰鬥開始之前，塞爾特人的領導人將走到第一線，挑戰最勇敢的敵方戰士進行單挑。馬庫斯．克勞迪斯．馬塞勒斯（Marcus Claudius Marcellus）在克拉斯科（Clastidium，現今義大利的 Casteggio 市）（西元前222年）殺死高盧領袖的故事即為這種典型的情況。帶著一小批軍隊前進，馬塞勒斯在克拉斯科遇上了因蘇布雷（Insubres）的高盧人與蓋薩塔依（Gaesatae）人的聯軍。高盧軍隊善於使用一般的衝鋒與可怕的戰吼，而他們的國王維迪馬斯洛斯（Viridomarus），根據他的徽章等級挑上了馬塞勒斯，針對著他大聲挑戰並揮舞他的矛。維迪馬斯洛斯是一個傑出的人物，不僅是他的體型與裝扮，還因為他身著亮色，盔甲間發耀著金色與銀色。這件鎧甲，表示著馬塞勒斯將會是眾神一個合適的祭品。後者挑戰了高盧王，穿透了他明亮的胸甲並把他扔在地上。殺死維迪馬斯洛斯並剝下他的盔甲是件容易的事情。"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -882,19 +885,19 @@ msgid ""
 "that Britons had conquered Rome, the greatest civilization in the world, "
 "long before Rome conquered the Britons. We know from many ancient sources "
 "which predate Geoffrey that Rome was indeed sacked, but in 387 not 390, and "
-"that the raid was led by a man named Brennos (which was latinized to "
-"Brennus), but he and his invading horde were Gallic Senones, not British. In"
-" this episode several features of Geoffrey's editing method can be seen: he "
-"modified the historical Brennus/Brennos, created the brother Belinus, "
-"borrowed the Gallic invasion, but omitted the parts where the Celts seemed "
-"weak or foolish. His technique is both additive and subtractive. Like the "
-"tale of Trojan origin, the story of the sack of Rome is not pure "
-"fabrication; it is a creative rearrangement of the available facts, with "
-"details added as necessary. By virtue of their historical association, Beli "
-"and Bran are often muddled with the earlier brothers Belinus and Brennus "
-"(the sons of Dunvallo Molmutius) who contended for power in northern Britain"
-" in around 390 B.C., and were regarded as gods in old Celtic tradition."
-msgstr "布倫努斯是一個在羅馬的歷史學家眼中，與羅馬的卡米盧斯齊名的高盧領袖。根據編寫「不列顛國王史」的蒙茅斯的杰弗里牧師，布倫努斯和他的兄弟 Belinus 於西元前390年入侵高盧並戰勝羅馬，「證明」了不列顛人在羅馬，這個世界上最偉大的文明，征服不列顛前就已經征服了他們。我們可以從許多比杰弗里更早的來源中知道，羅馬的確被戰勝了，但是在西元前387年而非390年，並且是由一個名為 Brennos（拉丁名為 Brennus，即布倫努斯）的人主導突襲，但他入侵的部落為高盧的 Senones，而非不列顛。在這裡我們可以看到杰弗里的幾個編輯特點，他修改了歷史上的倫努斯／Brenno，並創造了他的兄弟 Belinus，借用了高盧的入侵，但省略了其中塞爾特人看似較脆弱或愚蠢的部份。他的手法同時有加分及扣分的效果。像是木馬原始的故事，以及羅馬戰敗的故事並不是純屬捏造，它們是真實故事的創意重組，並添加了一些必要的細節。因為他們的歷史關聯，Beli 及 Bran 經常會與在西元前390年，在北不列顛爭權奪利的較早期的兄弟 Belinus 及布倫努斯（Dunvallo Molmutius 的兒子）混淆在一起，並被視為舊塞爾特傳統的神。"
+"that the raid was led by a man named Brennus, but he and his invading horde "
+"were Gallic Senones, not British. In this episode several features of "
+"Geoffrey's editing method can be seen: he modified the historical Brennus, "
+"created the brother Belinus, borrowed the Gallic invasion, but omitted the "
+"parts where the Celts seemed weak or foolish. His technique is both additive"
+" and subtractive. Like the tale of Trojan origin, the story of the sack of "
+"Rome is not pure fabrication; it is a creative rearrangement of the "
+"available facts, with details added as necessary. By virtue of their "
+"historical association, Beli and Bran are often muddled with the earlier "
+"brothers Belinus and Brennus (the sons of Dunvallo Molmutius) who contended "
+"for power in northern Britain in around 390 B.C., and were regarded as gods "
+"in old Celtic tradition."
+msgstr ""
 
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[2].History
 msgid ""

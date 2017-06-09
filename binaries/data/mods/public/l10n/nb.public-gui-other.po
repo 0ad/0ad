@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:05+0200\n"
-"PO-Revision-Date: 2017-06-04 22:21+0000\n"
+"POT-Creation-Date: 2017-06-05 09:02+0200\n"
+"PO-Revision-Date: 2017-06-06 13:26+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -364,8 +364,8 @@ msgstr "avskrudd"
 #: gui/common/gamedescription.js:313
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Det første minuttet vil andre spillere forholde seg nøytrale."
+msgstr[1] "De første %(min)s vil andre spillere forholde seg nøytrale."
 
 #: gui/common/gamedescription.js:321
 msgid "Map Name"
@@ -401,18 +401,18 @@ msgid "Population Limit"
 msgstr "Befolkningstak"
 
 #: gui/common/gamedescription.js:373
-msgid "Treasure"
-msgstr "Skatt"
+msgid "Treasures"
+msgstr "Skatter"
 
 #: gui/common/gamedescription.js:375
-msgctxt "treasure"
+msgctxt "treasures"
 msgid "Disabled"
 msgstr "Avskrudd"
 
 #: gui/common/gamedescription.js:376
-msgctxt "treasure"
-msgid "If the map places it."
-msgstr "Hvis plassert av kartet."
+msgctxt "treasures"
+msgid "As defined by the map."
+msgstr "Som definert av kartet."
 
 #: gui/common/gamedescription.js:380
 msgid "Revealed Map"
@@ -531,7 +531,7 @@ msgstr "Du har blitt utestengt"
 
 #: gui/common/network.js:74
 msgid "Playername in use. If you were disconnected, retry in few seconds"
-msgstr "Spillernavn allerede i bruk. Hvis du ble frakoblet, prøv igjen om noen sekund"
+msgstr "Spillernavn allerede i bruk. Hvis du ble frakoblet, prøv igjen om noen sekunder"
 
 #: gui/common/network.js:75
 msgid "Server full"
@@ -540,7 +540,7 @@ msgstr "Tjeneren er full"
 #: gui/common/network.js:76
 msgid ""
 "Player identifier in use. If you were disconnected, retry in few seconds"
-msgstr ""
+msgstr "Spilleridentifikator i bruk. Hvis du ble frakoblet, prøv igjen om noen sekunder."
 
 #: gui/common/network.js:79
 #, javascript-format
@@ -647,7 +647,7 @@ msgstr "Tilfeldig"
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
-msgstr ""
+msgstr "Opprett et unikt kart med forskjellig ressursfordeling hver gang. Velg antall spillere og lag fritt."
 
 #: gui/common/settings.js:199
 msgctxt "map"
@@ -1226,7 +1226,7 @@ msgstr "Manual"
 
 #: gui/replaymenu/replay_actions.js:88
 msgid "You don't have the same mods active as the replay does."
-msgstr "Du har ikke skrudd på de samme modifikasjonene som denne reprisen.. "
+msgstr "Du har ikke skrudd på de samme modifikasjonene som denne reprisen."
 
 #: gui/replaymenu/replay_actions.js:89 gui/savedgames/load.js:174
 #, javascript-format
@@ -1236,7 +1236,7 @@ msgstr "Krever: %(mods)s"
 #: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:177
 #, javascript-format
 msgid "Active: %(mods)s"
-msgstr "Aktive: %(mods)s"
+msgstr "I bruk: %(mods)s"
 
 #: gui/replaymenu/replay_actions.js:94
 msgid "This replay is not compatible with your version of the game!"
@@ -1349,7 +1349,7 @@ msgstr "Poengløse spill"
 
 #: gui/replaymenu/replay_menu.js:193
 msgid "Filter replays by typing one or more, partial or complete playernames."
-msgstr "Filtrer gjentakelsessekvenser ved å skrive ett eller flere, delvise eller hele spillernavn."
+msgstr "Filtrer repriser ved å skrive ett eller flere, delvise eller hele spillernavn."
 
 #: gui/replaymenu/replay_menu.js:272
 #, javascript-format
@@ -1639,7 +1639,7 @@ msgstr "Brukt"
 
 #: gui/summary/summary.js:85
 msgid "Received"
-msgstr ""
+msgstr "Mottatt"
 
 #: gui/summary/summary.js:90
 msgid "Sold"
@@ -1845,8 +1845,8 @@ msgid ""
 msgstr "Du kan automatisk sende oss anonyme tilbakemeldinger som vil hjelpe oss med å fikse feil og forbedre ytelse og kompatibilitet."
 
 #: gui/pregame/mainmenu.xml:540
-msgid "Alpha XXI: Ulysses"
-msgstr "Alpha XXI: Ulysses"
+msgid "Alpha XXII: Venustas"
+msgstr "Alpha XXII: Venustas"
 
 #: gui/pregame/mainmenu.xml:542
 msgid ""
@@ -2151,7 +2151,7 @@ msgstr "Varighet"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):255
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
-msgstr ""
+msgstr "Bygg opp igjen reprise-mellomlager helt på ny. Potensielt tregt!"
 
 #: gui/savedgames/load.xml:(heading):44
 msgctxt "replay"
@@ -2481,7 +2481,7 @@ msgstr "Pause i bakgrunnen"
 msgid ""
 "If you disable it, the welcome screen will still appear once, each time a "
 "new version is available. You can always launch it from the main menu."
-msgstr ""
+msgstr "Hvis du skrur det av, vil velkomstskjermen bare bli vist én gang, hver gang en ny versjon er tilgjengelig. Du kan alltid starte den fra hovedmenyen."
 
 #: gui/options/options.jsongeneralSetting[4].label
 msgid "Enable Welcome Screen"
@@ -2572,7 +2572,7 @@ msgstr "Avskrudd"
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
-msgstr ""
+msgstr "Tildel tilkoblende klienter spillerposisjoner automatisk i løpet av spilloppsettet."
 
 #: gui/options/options.jsongeneralSetting[13].label
 msgid "Assign Players"
@@ -2582,7 +2582,7 @@ msgstr "Tildel spillere"
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started"
-msgstr ""
+msgstr "Tillat enten alle eller venner å ta del i spillet som observatører etter at det er startet."
 
 #: gui/options/options.jsongeneralSetting[14].label
 msgid "Late Observer Joins"
@@ -2627,11 +2627,11 @@ msgstr "Aurarekkeviddevisning"
 msgid ""
 "Display the healing range of selected units (can also be toggled in-game "
 "with the hotkey)."
-msgstr ""
+msgstr "Vil helbredelsesrekkevidden til valgte enheter (kan også veksles inne i spillet med hurtigtasten)."
 
 #: gui/options/options.jsongeneralSetting[19].label
 msgid "Heal Range Visualization"
-msgstr ""
+msgstr "Helbredelsesrekkeviddevisning"
 
 #: gui/options/options.jsonsoundSetting[0].tooltip
 msgid "Master audio gain"
@@ -2887,7 +2887,7 @@ msgstr "Sank fra dyr, bærbusker, fisk eller jorder."
 
 #: simulation/data/resources/metal.jsondescription
 msgid "Mine from metal mines or quarries."
-msgstr ""
+msgstr "Utvinn fra metall-gruver eller -brudd."
 
 #: simulation/data/resources/stone.jsondescription
 msgid "Mine from rocks, stone quarries or ruins."
@@ -2895,7 +2895,7 @@ msgstr "Utvinn fra steiner, steinbrudd eller ruiner."
 
 #: simulation/data/resources/wood.jsondescription
 msgid "Cut down from trees or groves."
-msgstr ""
+msgstr "Kutt ned fra trær eller treklynger."
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -3074,7 +3074,7 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr ""
+msgstr "Selv om det er tilnærmelsesvis enkelt for en erfaren spiler, er forvalgt AI-nivå ganske utfordrende for nye spillere som ikke har mestret grunnsteinene i spillets mekanikk enda. Det anbefales å starte mot en av lavere nivå (\"Sandkasse\" eller \"Veldig lett\"). Endring av AI-nivå gjøres ved å klikke på gir-ikonet ved siden av hver spiller du ønsker å endre i valgpanelet ovenfor."
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
@@ -3101,7 +3101,7 @@ msgstr "[imgleft=\"iconLag\"]Spillet kan ha ytelsesproblemer, spesielt i tilfell
 msgid ""
 "[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
 "toggle forming and disbanding formations as desired."
-msgstr "[imgleft=\"iconFormation\"]Formasjoner er en funksjon som fortsatt er under utvikling, men du kan aktivere og skru av formasjon og oppløsning av formasjoner etter eget ønske. "
+msgstr "[imgleft=\"iconFormation\"]Formasjoner er en funksjon som fortsatt er under utvikling, men du kan skru på og av formasjon og oppløsning av formasjoner etter eget ønske. "
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"
@@ -3397,7 +3397,7 @@ msgstr "- En lettbygd, billig trevegg tilgjengelig for alle fraksjoner."
 
 #: gui/text/tips/palisades.txt:4
 msgid "- Most factions have access to them in Village Phase."
-msgstr "- De fleste fraksjoner har tilgang til dem i landsby-fasen."
+msgstr "- De fleste fraksjoner har tilgang til dem i landsbyfasen."
 
 #: gui/text/tips/palisades.txt:6
 msgid ""
@@ -3620,7 +3620,7 @@ msgstr "TEMPLER"
 
 #: gui/text/tips/temples.txt:2
 msgid "- Town Phase structure."
-msgstr "- Byfasestruktur."
+msgstr "- Tettstedstruktur."
 
 #: gui/text/tips/temples.txt:4
 msgid "- Recruit Healers to heal your troops on the battlefield."
