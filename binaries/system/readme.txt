@@ -8,6 +8,7 @@ Basic gameplay:
 
 Autostart:
 -autostart="TYPEDIR/MAPNAME"    enables autostart and sets MAPNAME; TYPEDIR is skirmishes, scenarios, or random
+-autostart-seed=SEED            sets randomization seed value (default 0, use -1 for random)
 -autostart-ai=PLAYER:AI         sets the AI for PLAYER (e.g. 2:petra)
 -autostart-aidiff=PLAYER:DIFF   sets the DIFFiculty of PLAYER's AI (0: sandbox, 5: very hard)
 -autostart-aiseed=AISEED        sets the seed used for the AI random generator (default 0, use -1 for random)
@@ -22,7 +23,6 @@ Multiplayer:
 -autostart-host-players=NUMBER  sets NUMBER of human players for multiplayer game (default 2)
 -autostart-client=IP            sets multiplayer client to join host at given IP address
  Random maps only:
--autostart-seed=SEED            sets random map SEED value (default 0, use -1 for random)
 -autostart-size=TILES           sets random map size in TILES (default 192)
 -autostart-players=NUMBER       sets NUMBER of players on random map (default 2)
 

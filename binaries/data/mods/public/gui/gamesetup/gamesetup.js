@@ -973,7 +973,7 @@ function initDefaults()
 	for (let i in g_DefaultPlayerData)
 	{
 		g_DefaultPlayerData[i].Civ = "random";
-		g_DefaultPlayerData[i].Teams = -1;
+		g_DefaultPlayerData[i].Team = -1;
 	}
 }
 

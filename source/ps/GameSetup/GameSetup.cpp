@@ -1211,6 +1211,7 @@ CStr8 LoadSettingsOfScenarioMap(const VfsPath &mapPath)
  *
  * -autostart="TYPEDIR/MAPNAME"    enables autostart and sets MAPNAME;
  *                                 TYPEDIR is skirmishes, scenarios, or random
+ * -autostart-seed=SEED            sets randomization seed value (default 0, use -1 for random)
  * -autostart-ai=PLAYER:AI         sets the AI for PLAYER (e.g. 2:petra)
  * -autostart-aidiff=PLAYER:DIFF   sets the DIFFiculty of PLAYER's AI
  *                                 (0: sandbox, 5: very hard)
@@ -1232,8 +1233,6 @@ CStr8 LoadSettingsOfScenarioMap(const VfsPath &mapPath)
  * -autostart-client=IP            sets multiplayer client to join host at
  *                                 given IP address
  * Random maps only:
- * -autostart-seed=SEED            sets random map SEED value
- *                                 (default 0, use -1 for random)
  * -autostart-size=TILES           sets random map size in TILES (default 192)
  * -autostart-players=NUMBER       sets NUMBER of players on random map
  *                                 (default 2)
@@ -1277,19 +1276,6 @@ bool Autostart(const CmdLineArgs& args)
 
 	if (mapDirectory == L"random")
 	{
-		// Default seed is 0
-		u32 seed = 0;
-		CStr seedArg = args.Get("autostart-seed");
-
-		if (!seedArg.empty())
-		{
-			// Random seed value
-			if (seedArg == "-1")
-				seed = rand();
-			else
-				seed = seedArg.ToULong();
-		}
-
 		// Random map definition will be loaded from JSON file, so we need to parse it
 		std::wstring scriptPath = L"maps/" + autoStartName.FromUTF8() + L".json";
 		JS::RootedValue scriptData(cx);
@@ -1316,7 +1302,6 @@ bool Autostart(const CmdLineArgs& args)
 			mapSize = size.ToUInt();
 		}
 
-		scriptInterface.SetProperty(settings, "Seed", seed);		// Random seed
 		scriptInterface.SetProperty(settings, "Size", mapSize);		// Random map size (in patches)
 
 		// Get optional number of players (default 2)
@@ -1362,10 +1347,23 @@ bool Autostart(const CmdLineArgs& args)
 		LOGERROR("Autostart: Unrecognized map type '%s'", utf8_from_wstring(mapDirectory));
 		throw PSERROR_Game_World_MapLoadFailed("Unrecognized map type.\nConsult readme.txt for the currently supported types.");
 	}
+
 	scriptInterface.SetProperty(attrs, "mapType", mapType);
 	scriptInterface.SetProperty(attrs, "map", std::string("maps/" + autoStartName));
 	scriptInterface.SetProperty(settings, "mapType", mapType);
 	scriptInterface.SetProperty(settings, "CheatsEnabled", true);
+
+	// The seed is used for both random map generation and simulation
+	u32 seed = 0;
+	if (args.Has("autostart-seed"))
+	{
+		CStr seedArg = args.Get("autostart-seed");
+		if (seedArg == "-1")
+			seed = rand();
+		else
+			seed = seedArg.ToULong();
+	}
+	scriptInterface.SetProperty(settings, "Seed", seed);
 
 	// Set seed for AIs
 	u32 aiseed = 0;

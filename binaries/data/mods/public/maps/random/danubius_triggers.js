@@ -148,7 +148,7 @@ var patrolCount = 5;
 /**
  * Which units ships should focus when attacking and patrolling.
  */
-var shipTargetClass = "WarShip";
+var shipTargetClass = "Warship";
 
 /**
  * Which entities siege engines should focus when attacking and patrolling.
@@ -652,7 +652,7 @@ Trigger.prototype.CheckShipRange = function()
 
 Trigger.prototype.DanubiusOwnershipChange = function(data)
 {
-	if (data.to != -1)
+	if (data.from != 0)
 		return;
 
 	let shipIdx = this.ships.indexOf(data.entity);
@@ -673,7 +673,7 @@ Trigger.prototype.DanubiusOwnershipChange = function(data)
 	let ccIdx = this.civicCenters.indexOf(data.entity);
 	if (ccIdx != -1)
 	{
-		this.debugLog("Gaia civic center " + data.entity + " destroyed");
+		this.debugLog("Gaia civic center " + data.entity + " destroyed or captured");
 		this.civicCenters.splice(ccIdx, 1);
 	}
 };
