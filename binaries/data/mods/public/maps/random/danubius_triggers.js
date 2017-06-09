@@ -148,7 +148,7 @@ var patrolCount = 5;
 /**
  * Which units ships should focus when attacking and patrolling.
  */
-var shipTargetClass = "WarShip";
+var shipTargetClass = "Warship";
 
 /**
  * Which entities siege engines should focus when attacking and patrolling.
