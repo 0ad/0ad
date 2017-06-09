@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:04+0200\n"
-"PO-Revision-Date: 2017-06-04 15:39+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-06-05 09:01+0200\n"
+"PO-Revision-Date: 2017-06-06 09:21+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -194,7 +194,7 @@ msgid ""
 "Aegean, thereby laying the foundations of future Athenian power. However, he"
 " was eventually ostracised by the Athenians and forced to flee to the "
 "protection of the Persians."
-msgstr ""
+msgstr "Seo an ceann-feachd a thug air muinntir na h-Àithne gun coiseadh iad an teachd a-steach aca o na mèinnean airgid air cabhlach dhe 200 thrì-ràmhaich. ’S e duine cudromach a bh’ ann rè nan cogaidhean Pearsaich agus stiùirich e cabhlach na h-Àithne sa bhlàr cudromach Shalamis ann an 479 R.C. ’s chaidh an latha leotha. Bha poileasaidh aige an uairsin an aghaidh nam Pearsach sa mhuir Àigeanach a stèidhich cumhachd na h-Àithne an uairsin. Air deireadh na sgeòil, chaidh fhògradh le muinntir na h-Àithne agus bha aige ri teicheadh ach an dìonadh na Pearsaich e."
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[1].History
 msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
@@ -558,7 +558,7 @@ msgstr "Coltach ris an rubha Ibèireach, bhiodh taobh a tuath Afraga cliùiteach
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
 msgid "10% bonus of trade profit for allies' international routes."
-msgstr ""
+msgstr "Buannachd de 10% air prothaid o mhalairt air slighean eadar-nàiseanta nan caidreabhach."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -779,13 +779,13 @@ msgstr "Ghlèidh draoidhean na Gaille creideamh eagraichte a dh'adhartaich teicn
 
 #: simulation/data/civs/gaul.jsonAINames[0]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
-msgid "Britomartos"
-msgstr "Britomartos"
+msgid "Viridomarus"
+msgstr "Viridomarus"
 
 #: simulation/data/civs/gaul.jsonAINames[1]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[1].Name
-msgid "Brennos"
-msgstr "Brennos"
+msgid "Brennus"
+msgstr "Brennus"
 
 #: simulation/data/civs/gaul.jsonAINames[2]
 msgid "Cativolcus"
@@ -797,8 +797,8 @@ msgstr "Cingetorix"
 
 #: simulation/data/civs/gaul.jsonAINames[4]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[2].Name
-msgid "Uerkingetorix"
-msgstr "Uerkingetorix"
+msgid "Vercingetorix"
+msgstr "Vercingetorix"
 
 #: simulation/data/civs/gaul.jsonAINames[5]
 msgid "Divico"
@@ -813,8 +813,8 @@ msgid "Liscus"
 msgstr "Liscus"
 
 #: simulation/data/civs/gaul.jsonAINames[8]
-msgid "Valetiacos"
-msgstr "Valetiacos"
+msgid "Valetiacus"
+msgstr "Valetiacus"
 
 #: simulation/data/civs/gaul.jsonAINames[9]
 msgid "Viridovix"
@@ -826,14 +826,17 @@ msgid ""
 msgstr "Uiread socraichte de mheatailt is biadh aig gach togalach air a sgrios no a ghlacadh."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
-msgid "Uae Uictos"
-msgstr "Uae Uictos"
+msgid "Vae Victis"
+msgstr "Vae Victis"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
 msgid ""
-"Means Woe to the Defeated. It was the words that the Gallic Leader, Brennos,"
-" spoke at the Capitol at Rome after they took their plunder."
-msgstr "O thruaighe an fheadhainn a chaill! Seo na briathran a thuirt Brennos, ceannard muinntir na Gaille aig capatal na Ròimhe nuair a bha iadsan air an creach a thogail."
+"Woe to the Defeated! The Gallic chieftain Brennus seized Rome (with the "
+"exception of a garrison on Capitoline Hill). When Camillus besieged him with"
+" a relief force from Veii, he negotiated his surrender for 1000 pounds of "
+"gold, and adding the weight of his sword on the scale when the Romans "
+"complained that he used false weights he uttered those famous words."
+msgstr ""
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid "Gallic druids gain a small melee attack."
@@ -852,21 +855,21 @@ msgstr "’S e draoidhean à Aulercia a bh’ anns na Carnutes. Bhiodh iad a’ 
 
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].History
 msgid ""
-"When celt armies met the enemy, before the battle would start, the celt "
+"When Celtic armies met the enemy, before the battle would start, the Celtic "
 "leader would go to the first line and challenge the bravest of the enemy "
 "warriors to a single combat. The story of how Marcus Claudius Marcellus "
 "killed a Gallic leader at Clastidium (222 B.C.) is typical of such "
-"encounters. Advancing with a smallish army, Marcellus met a combined force "
-"of Insubrian Gauls and Gaesatae at Clastidium. The Gallic army advanced with"
-" the usual rush and terrifying cries, and their king, Britomartos, picking "
+"encounters. Advancing with a small army, Marcellus met a combined force of "
+"Insubrian Gauls and Gaesatae at Clastidium. The Gallic army advanced with "
+"the usual rush and terrifying cries, and their king, Viridomarus, picking "
 "out Marcellus by means of his badges of rank, made for him, shouting a "
-"challenge and brandishing his spear. Britomartos was an outstanding figure "
+"challenge and brandishing his spear. Viridomarus was an outstanding figure "
 "not only for his size but also for his adornments; for he was resplendent in"
 " bright colors and his armor shone with gold and silver. This armor, thought"
 " Marcellus, would be a fitting offering to the gods. He charged the Gaul, "
 "pierced his bright breastplate and cast him to the ground. It was an easy "
-"task to kill Britomartos and strip him of his armor."
-msgstr "Nuair a thachradh feachdan nan Ceilteach ri nàmhaid is mus tòisicheadh am blàr, rachadh ceannard nan Ceilteach dhan t-sreath toisich gus dùbhlan a thoirt air gaisgeach as dàna an nàmhad ach an dèanadh iad còmhrag-dhithis. Tha an sgeul air mar a mharbh Marcus Claudius Marcellus ceannard cinnidh Ghallaich ann an Clastidium (222 RC) ’na shamhla air tachartas dhen leithid. Nuair a bha e a’ dol air aghaidh, thachair Marcellus ri feachd nan Gallach Insubrach agus nan Gaesatae ann an Clastidium. Chaidh feachd muinntir na Gaille air aghaidh le gairmean geilteachaidh mar a bu dual dhaibh agus dh’aithnich rìgh Britomartos Marcellus air suaicheantasan a rangachd ’s ghabh e air ag èigheachd dùbhlain ’s a’ crathadh na slèigh aige. ’S e sàr-ghaisgeach àrd le sgeadachadh dhathan loinnreach air a chuid aodaich agus armachd ghleansach òir ’s airgid a bh’ ann am Britomartos. Shaoil Marcellus gur e ìobairt iomchaidh dha na diathan a bhiodh san armachd sin. Rinn e cruinn-leum air a’ Ghallach, shàth e a lùireach loinnreach agus thilg e dhan làr e. ’S ann gun robh e furasta dha an uairsin Britomartos a mharbhadh agus an armachd aige a thoirt uaithe."
+"task to kill Viridomarus and strip him of his armor."
+msgstr ""
 
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -877,19 +880,19 @@ msgid ""
 "that Britons had conquered Rome, the greatest civilization in the world, "
 "long before Rome conquered the Britons. We know from many ancient sources "
 "which predate Geoffrey that Rome was indeed sacked, but in 387 not 390, and "
-"that the raid was led by a man named Brennos (which was latinized to "
-"Brennus), but he and his invading horde were Gallic Senones, not British. In"
-" this episode several features of Geoffrey's editing method can be seen: he "
-"modified the historical Brennus/Brennos, created the brother Belinus, "
-"borrowed the Gallic invasion, but omitted the parts where the Celts seemed "
-"weak or foolish. His technique is both additive and subtractive. Like the "
-"tale of Trojan origin, the story of the sack of Rome is not pure "
-"fabrication; it is a creative rearrangement of the available facts, with "
-"details added as necessary. By virtue of their historical association, Beli "
-"and Bran are often muddled with the earlier brothers Belinus and Brennus "
-"(the sons of Dunvallo Molmutius) who contended for power in northern Britain"
-" in around 390 B.C., and were regarded as gods in old Celtic tradition."
-msgstr "Is Brennus an t-ainm a chuir eachdraichean nan Ròmanach air ceannard cliùiteach na Gaille a ghabh an Ròimh ri linn Camillus. Tha Geoffrey of Monmouth, a chlèirich a sgrìobh “Historia Regum Britanniae” (Eachdraidh rìghrean na Breatainn), ag innse dhuinn gun do lunn Brennus ’s a bhràthair Belinus air a’ Ghall agus gun do chreach iad an Ròimh ann an 390 RC, feuch an dearbhadh e gun do cheannsaich na Breatannaich an Ròimh a bha ’na phrìomh-shìobhaltas an t-saoghail mus do cheannsaich an Ròimh fhèin na Breatannaich. Tha tùsan aosmhor a tha nas sine na leabhar Geoffrey ag innse dhuinn co-dhiù gun deach an Ròimh a chreachadh dha-rìribh ach ann an 387 seach 390 agus gun deach an creach a stiùireadh le duine air a bha Brennos (Brennus sa Laideann) ach ’s e Senones Gallach a bh’ ann e fhèin ’s a shluagh seach Breatannaich. Tha an sgeulachd seo a’ sealltainn nan dòighean deasachaidh aig Geoffrey dhuinn: rinn e atharrachadh air Brennus/Brennos fìrinneach, chruthaich e a bhràthair Belinus, rinn e iasad air briseadh a-steach nan Gallach ach dh’fhàg e na tachartasan a-mach a chuireadh coltas lag no gòrach air na Ceiltich. Mar sin, tha e an dà chuid a chur ris an fhìrinn agus a’ falach fiosrachadh. Mar a tha am faoinsgeul mun tùs Tròidheach, chan eil an sgeulachd mu chreach na Ròimhe gur tur mas fhìor ach ’s e atharrachadh cruthachail a th’ ann air an fhiosrachadh a bha ri làimh dha le rud no dhà air a chur ris mar a bha feum air. Ri linn an co-cheangal eachdraidheil aca, thèid Beli is Bran a chuir troimh-chèile leis na bràithrean Belinus is Brennus (mic Dunvallo Molmutius) nas aosmhoire a rinn strì airson na cumhachd taobh tuath Breatainn mu 390 RC agus bhiodhte a’ beachdachadh orrasan mar dhiathan ann an dualchas nan seann-Cheilteach."
+"that the raid was led by a man named Brennus, but he and his invading horde "
+"were Gallic Senones, not British. In this episode several features of "
+"Geoffrey's editing method can be seen: he modified the historical Brennus, "
+"created the brother Belinus, borrowed the Gallic invasion, but omitted the "
+"parts where the Celts seemed weak or foolish. His technique is both additive"
+" and subtractive. Like the tale of Trojan origin, the story of the sack of "
+"Rome is not pure fabrication; it is a creative rearrangement of the "
+"available facts, with details added as necessary. By virtue of their "
+"historical association, Beli and Bran are often muddled with the earlier "
+"brothers Belinus and Brennus (the sons of Dunvallo Molmutius) who contended "
+"for power in northern Britain in around 390 B.C., and were regarded as gods "
+"in old Celtic tradition."
+msgstr ""
 
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -1708,7 +1711,7 @@ msgid ""
 "Sardis to Susa; Darius the Great and Xerxes also built the magnificent "
 "Persepolis; Cyrus the Great greatly improved Ecbatana and virtually "
 "'rebuilt' the old Elamite capital of Susa."
-msgstr ""
+msgstr "Thog na Pearsaich an rathad mòr rìoghail mìorbhaileach o Shardis gu Susa a bha 1677 mìle a dh’fhaid; thog Darius Mòr ’s Xerxes Persepolis greadhnach cuideachd; rinn Kùrois Mòr leasachadh mòr air Ecbatana agus ath-thog e Susa, seann chathair-bhaile nan Ealamach."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[2].Description
 msgid "Reduces train time for Anusiya champion infantry by half."

@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Adrian Pappas <pappasadrian@gmail.com>, 2013
-# Aristomahos Nikiforakis <barbounism@gmail.com>, 2016
+# Aristomahos Nikiforakis <barbounism@gmail.com>, 2016-2017
 # Armando Stylianakis <armandos.styl@gmail.com>, 2016
 # LOUKAS SKOUROLIAKOS, 2015
 # Christo Keller <christoniancoder@gmail.com>, 2014
@@ -30,9 +30,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:04+0200\n"
-"PO-Revision-Date: 2017-06-04 15:39+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-06-05 09:01+0200\n"
+"PO-Revision-Date: 2017-06-06 11:45+0000\n"
+"Last-Translator: Aristomahos Nikiforakis <barbounism@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -214,7 +214,7 @@ msgid ""
 "Aegean, thereby laying the foundations of future Athenian power. However, he"
 " was eventually ostracised by the Athenians and forced to flee to the "
 "protection of the Persians."
-msgstr ""
+msgstr "Ο στρατηγός που έπεισε τους Αθηναίους να επενδύσουν τα εισοδήματα τους από τα ορυχεία ασημιού σε 200 τριήρεις του πολεμικού ναυτικού. Μια σημαντική φιγούρα κατά τη διάρκεια των Περσικών Πολέμων, οδήγησε στη νίκη το Αθηναϊκό ναυτικό κατά τη ναυμαχία της Σαλαμίνας το 479 Π.Χ. Αργότερα, επιδίωξε μια πιο επιθετική τακτική στο Αιγαίο απέναντι στους Πέρσες, βάζοντας τα θεμέλια της μετέπειτα Αθηναϊκής ηγεμονίας. Στο τέλος, Εξωστρακισμένος από τους Αθηναίους, αναγκάστηκε να ζητήσει βοήθεια από τους Πέρσες."
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[1].History
 msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
@@ -578,7 +578,7 @@ msgstr "Σε αντίθεση με την Ιβηρική Χερσόνησο, η 
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
 msgid "10% bonus of trade profit for allies' international routes."
-msgstr ""
+msgstr "10% επιπλέον εμπορικό κέρδος στις συμμαχικές διεθνείς διαδρομές."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -799,12 +799,12 @@ msgstr "Οι Γαλάτες Δρυίδες διατηρούσαν μια οργ�
 
 #: simulation/data/civs/gaul.jsonAINames[0]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
-msgid "Britomartos"
-msgstr "Βριτόμαρτις"
+msgid "Viridomarus"
+msgstr "Βιριδομάρος"
 
 #: simulation/data/civs/gaul.jsonAINames[1]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[1].Name
-msgid "Brennos"
+msgid "Brennus"
 msgstr "Βρέννος"
 
 #: simulation/data/civs/gaul.jsonAINames[2]
@@ -817,8 +817,8 @@ msgstr "Κινγκετόριγας"
 
 #: simulation/data/civs/gaul.jsonAINames[4]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[2].Name
-msgid "Uerkingetorix"
-msgstr "Βερκινγκετόριξ"
+msgid "Vercingetorix"
+msgstr "Βερκιγκετόριξ"
 
 #: simulation/data/civs/gaul.jsonAINames[5]
 msgid "Divico"
@@ -833,8 +833,8 @@ msgid "Liscus"
 msgstr "Λίσκος"
 
 #: simulation/data/civs/gaul.jsonAINames[8]
-msgid "Valetiacos"
-msgstr "Βαλετιάκος"
+msgid "Valetiacus"
+msgstr "Βαλετιακός"
 
 #: simulation/data/civs/gaul.jsonAINames[9]
 msgid "Viridovix"
@@ -846,14 +846,17 @@ msgid ""
 msgstr "Ένα συγκεκριμένο ποσό μετάλλου και φαγητού για κάθε κατασκευή που καταστρέφεις ή αιχμαλωτίζεις."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
-msgid "Uae Uictos"
-msgstr "Uae Uictos: Ουαί τοίς ηττημένοις!"
+msgid "Vae Victis"
+msgstr "Αλίμονο στους ηττημένους"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
 msgid ""
-"Means Woe to the Defeated. It was the words that the Gallic Leader, Brennos,"
-" spoke at the Capitol at Rome after they took their plunder."
-msgstr "Σημαίνει Αλίμονο στον Ηττημένο. Ήταν τα λόγια που είπε ο Γαλατης ηγέτης  Brennos, στο Καπιτώλιο της Ρώμης αφότου πήραν τα λάφυρα τους."
+"Woe to the Defeated! The Gallic chieftain Brennus seized Rome (with the "
+"exception of a garrison on Capitoline Hill). When Camillus besieged him with"
+" a relief force from Veii, he negotiated his surrender for 1000 pounds of "
+"gold, and adding the weight of his sword on the scale when the Romans "
+"complained that he used false weights he uttered those famous words."
+msgstr "\"Αλίμονο στους Ηττημένους!\" - Βρέννος, ο οπλαρχηγός του Γαλατών ο οποίος είχε καταλάβει τη Ρώμη (με εξαίρεση μια φρουρά στον λόφο Καπιτολίνα). Όταν ο Καμίλιος έφτασε από τους Βήιους και τον πολιόρκησε, διαπραγματεύτηκε την απόσυρσή του για 1000 λίβρες χρυσού, αλλά όχι χωρίς να χρησιμοποιήσει κάλπικα βάρη και προσθέτοντας το βάρος του σπαθιού του στην ζυγαριά όταν οι Ρωμαίοι τον κατήγγειλαν (Πολύβιος, \"Ιστορίαι\", ΙΙ. 18)"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid "Gallic druids gain a small melee attack."
@@ -872,20 +875,20 @@ msgstr "Οι Καρνούτες (Καρνούται ή Καρνουτῖνοι) 
 
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].History
 msgid ""
-"When celt armies met the enemy, before the battle would start, the celt "
+"When Celtic armies met the enemy, before the battle would start, the Celtic "
 "leader would go to the first line and challenge the bravest of the enemy "
 "warriors to a single combat. The story of how Marcus Claudius Marcellus "
 "killed a Gallic leader at Clastidium (222 B.C.) is typical of such "
-"encounters. Advancing with a smallish army, Marcellus met a combined force "
-"of Insubrian Gauls and Gaesatae at Clastidium. The Gallic army advanced with"
-" the usual rush and terrifying cries, and their king, Britomartos, picking "
+"encounters. Advancing with a small army, Marcellus met a combined force of "
+"Insubrian Gauls and Gaesatae at Clastidium. The Gallic army advanced with "
+"the usual rush and terrifying cries, and their king, Viridomarus, picking "
 "out Marcellus by means of his badges of rank, made for him, shouting a "
-"challenge and brandishing his spear. Britomartos was an outstanding figure "
+"challenge and brandishing his spear. Viridomarus was an outstanding figure "
 "not only for his size but also for his adornments; for he was resplendent in"
 " bright colors and his armor shone with gold and silver. This armor, thought"
 " Marcellus, would be a fitting offering to the gods. He charged the Gaul, "
 "pierced his bright breastplate and cast him to the ground. It was an easy "
-"task to kill Britomartos and strip him of his armor."
+"task to kill Viridomarus and strip him of his armor."
 msgstr "Όταν στρατοί των Κελτών συναντηθούν με τον εχθρό, πριν να αρχίσει η μάχη, ο ηγέτης των Κελτών θα πάει στην πρώτη γραμμή και θα προκαλέσει τον πιο γενναίο από τους πολεμιστές του εχθρού σε μια μόνο μονομαχία. Η ιστορία για το πώς ο Μάρκος Κλαύδιος Μάρκελλος σκότωσε έναν Γαλάτη ηγέτη στο Καστέτζιο (222 π.Χ.), είναι χαρακτηριστικό των εν λόγω αναμετρήσεων. Προχωρώντας με ένα μικρούλη στρατό, ο Μάρκελλος συνάντησε μια συνδυασμένη δύναμη των Ιβηριανών Γαλατών και Γαισαταίων στο Καστέτζιο. Ο γαλατικός στρατός προχωρούσε με τη συνήθη βιασύνη και αλαλάζοντας, ο βασιλιάς τους, ο Βριτόμαρτις, διάλεξε τον Μάρκελλο εξαιτίας των διακριτικών του βαθμού του, γι 'αυτόν, φωνάζοντας προκλητικά και κραδαίνοντας το δόρυ του. Ο Βριτόμαρτις είχε εξαιρετικό παρουσιαστικό, όχι μόνο για το μέγεθός του, αλλά και για τα στολίδια του, περιλουζόταν μέσα σε λαμπερά χρώματα και η πανοπλία του έλαμπε από χρυσό και ασήμι. Αυτή η πανοπλία, σκέφτηκε ο Μάρκελλος, θα ήταν μια αρμόζουσα προσφορά προς τους θεούς. Εφόρμησε στον Γαλάτη, διέτρισε το φωτεινό θώρακά του και τον πέταξε στο έδαφος. Ήταν εύκολο να σκοτώσει τον Βριτόμαρτι και να του αφαιρέσει την πανοπλία του."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[1].History
@@ -897,18 +900,18 @@ msgid ""
 "that Britons had conquered Rome, the greatest civilization in the world, "
 "long before Rome conquered the Britons. We know from many ancient sources "
 "which predate Geoffrey that Rome was indeed sacked, but in 387 not 390, and "
-"that the raid was led by a man named Brennos (which was latinized to "
-"Brennus), but he and his invading horde were Gallic Senones, not British. In"
-" this episode several features of Geoffrey's editing method can be seen: he "
-"modified the historical Brennus/Brennos, created the brother Belinus, "
-"borrowed the Gallic invasion, but omitted the parts where the Celts seemed "
-"weak or foolish. His technique is both additive and subtractive. Like the "
-"tale of Trojan origin, the story of the sack of Rome is not pure "
-"fabrication; it is a creative rearrangement of the available facts, with "
-"details added as necessary. By virtue of their historical association, Beli "
-"and Bran are often muddled with the earlier brothers Belinus and Brennus "
-"(the sons of Dunvallo Molmutius) who contended for power in northern Britain"
-" in around 390 B.C., and were regarded as gods in old Celtic tradition."
+"that the raid was led by a man named Brennus, but he and his invading horde "
+"were Gallic Senones, not British. In this episode several features of "
+"Geoffrey's editing method can be seen: he modified the historical Brennus, "
+"created the brother Belinus, borrowed the Gallic invasion, but omitted the "
+"parts where the Celts seemed weak or foolish. His technique is both additive"
+" and subtractive. Like the tale of Trojan origin, the story of the sack of "
+"Rome is not pure fabrication; it is a creative rearrangement of the "
+"available facts, with details added as necessary. By virtue of their "
+"historical association, Beli and Bran are often muddled with the earlier "
+"brothers Belinus and Brennus (the sons of Dunvallo Molmutius) who contended "
+"for power in northern Britain in around 390 B.C., and were regarded as gods "
+"in old Celtic tradition."
 msgstr "Βρέννος είναι το όνομα που οι Ρωμαίοι ιστορικοί δίνουν στο διάσημο ηγέτη των Γαλατών που κατέλαβε τη Ρώμη την εποχή του Κάμιλλου. Σύμφωνα με τον Τζέφρεϊ του Μονμάουθ, τον κληρικό ο οποίος έγραψε το \"Ιστορία των Βασιλέων της Βρετανίας\", ο Βρέννος και ο αδελφός του Βελίνος εισέβαλαν από τη Γαλατία και λεηλάτησαν τη Ρώμη το 390 π.Χ., «αποδεικνύοντας» ότι οι Βρετανοί είχαν κατακτήσει τη Ρώμη, το μεγαλύτερο πολιτισμού στον κόσμο, καιρό πριν από ότι η Ρώμη κατέκτησε τους Βρετανούς. Γνωρίζουμε από πολλές αρχαίες πηγές που χρονολογούνται πριν από τον Τζέφρεϋ ότι η Ρώμη πράγματι κατακτήθηκε, αλλά το 387 και όχι το 390, και ότι η επιδρομή οδηγήθηκε από ενός άνδρα που ονομαζόταν Βρέννος (στα Λατινικά Brennus), αλλά και εισβολείς ήταν Σίνονες Γαλάτες, όχι Βρετανοί. Σε αυτό το ιστορικό επεισόδιο αρκετά στοιχεία της μεθόδου επεξεργασίας του Τζέφρεϋ μπορεί να δει κανείς: αυτός τροποποίησε τον ιστορικό Βρέννο, δημιούργησε τον αδελφό του Βέλινο, δανείστηκε τη γαλατική εισβολή, αλλά παραλείπονται τα μέρη όπου οι Κέλτες φαινόταν αδύναμοι ή ανόητοι. Η τεχνική του ήταν να προσθαφαιρεί στοιχεία. Όπως και στην ιστορία του αυθεντικού Τρωικού πολέμου, η ιστορία της λεηλασία της Ρώμης δεν είναι καθαρά κατασκευασμένη, είναι μια δημιουργική αναδιάταξη των διαθέσιμων στοιχείων, με στοιχεία να προστίθενται όπου απαιτείται. Βάσει της ιστορικής σύνδεσής τους, ο Μπέλι και ο Μπραν συχνά συγχέονται με τους προηγούμενους αδελφούς Βέλινο και Βρέννο (οι γιοι του Ντάνβαλο Μολμίτιου), ο οποίος υποστηρίχθηκε για την εξουσία της βόρεια Βρετανία γύρω στο 390 π.Χ., και θεωρούνται ως θεοί στην παλιά Κέλτικη παράδοση."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[2].History
@@ -1451,11 +1454,11 @@ msgstr "Η Κασατρίγα ή Καστριγα, που σημαίνει πο�
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
 msgid "Allied temples and temple technologies -50% cost and research time."
-msgstr ""
+msgstr "Οι συμμαχικοί ναοί και οι τεχνολογίες ναών στοιχίζουν -50% σε κόστος και χρόνο έρευνας."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
 msgid "Ashoka's Religious Support"
-msgstr ""
+msgstr "Θρησκευτικές Υποστηρίξεις του Ασόκα"
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].History
 msgid ""
@@ -1629,7 +1632,7 @@ msgstr "Οι Πέρσες μπορούσαν και είχαν συγκεντρ�
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
 msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr ""
+msgstr "Υψηλότερες απολαβές (+15%) από τους χερσαίους εμπορικούς δρόμους για τους εμπόρους των συμμάχων."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -1728,7 +1731,7 @@ msgid ""
 "Sardis to Susa; Darius the Great and Xerxes also built the magnificent "
 "Persepolis; Cyrus the Great greatly improved Ecbatana and virtually "
 "'rebuilt' the old Elamite capital of Susa."
-msgstr ""
+msgstr "Οι Πέρσες έχτισαν την υπέροχη Βασιλική Εθνική Οδό μήκους  2.700 χιλιόμετρα από τις Σάρδεις στα Σούσα, Ο Δαρείος ο Μέγας και ο Ξέρξης έκτισαν την υπέροχη Περσέπολη, Ο Κύρος ο Μέγας βελτίωσε σημαντικά την Εκβάτανα και ουσιαστικά \"ξαναχτίστηκε\" η παλιά Ελαμιτική πρωτεύουσα της Σούσας."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[2].Description
 msgid "Reduces train time for Anusiya champion infantry by half."
@@ -1852,7 +1855,7 @@ msgid ""
 "sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
 " under the Ptolemies was so prosperous as to be the richest of Alexander's "
 "successor states."
-msgstr ""
+msgstr "Η Ελληνική δυναστεία των Πτολεμαίων στηρίχθηκε σε μεγάλο αριθμό Ελλήνων και ξένων μισθοφόρων για το μεγαλύτερο μέρος της στρατιωτικής της δύναμης, κυρίως επειδή η πίστη των ντόπιων αιγυπτιακών μονάδων ήταν συχνά ύποπτη. Πράγματι, κατά τη διάρκεια μιας γηγενείς εξέγερσης, η Άνω Αίγυπτος χάθηκε από τους Πτολεμαίους για δεκαετίες. Των μισθοφόρων συχνά η μαχητικότητα και η πίστη τους, μπορούσαν να αγοραστούν, μερικές φορές φθηνά, μερικές φορές καθόλου φτηνά. Αυτό δεν είχε καμία σημασία, δεδομένου ότι η Αίγυπτος υπό τους Πτολεμαίους ήταν τόσο ευημερούσα ώστε να είναι η πλουσιότερη περιοχή των διαδόχων του Αλεξάνδρου."
 
 #: simulation/data/civs/ptol.jsonCivBonuses[1].Description
 msgid "The Ptolemaic Egyptians receive 3 additional farming technologies."
@@ -2107,11 +2110,11 @@ msgstr "Η Ιδιότητα του Ρωμαίου πολίτη είχε ιδια
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
 msgid "-20% training time for allied infantry."
-msgstr ""
+msgstr "-20% στο χρόνο εκπαίδευσης για το πεζικό των συμμάχων."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
 msgid "Conscription"
-msgstr ""
+msgstr "Στρατολόγηση"
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].History
 msgid ""
@@ -2510,7 +2513,7 @@ msgid ""
 "Achaean League and the Kingdom of Pergamon banded together with the Romans "
 "to defeat him at the Battle of Magnesia, forever burying the dream of "
 "reuniting Alexander's empire."
-msgstr ""
+msgstr "Ο Αντίοχος κληρονόμησε ένα ταραγμένο βασίλειο από την αρχή της βασιλείας του. Από τα πρόθυρα της κατάρρευσης κατάφερε να αναστηλώσει την αυτοκρατορία του Σέλευκου κάτι που ήταν δύσκολο να γίνει. Τις επαναστατημένες ανατολικές σατραπείες της Βακτριανής και της Παρθία κατάφερε να τις υποτάξει, εξασφαλίζοντας προσωρινά τα ανατολικά του σύνορα. Στη συνέχεια έστρεψε την προσοχή του στη μητέρα Ελλάδα, προσπαθώντας να εκπληρώσει τα όνειρα των πατέρων του με την εισβολή στην Ελλάδα υπό το πρόσχημα της απελευθέρωσης. Η Αχαϊκή Συμμαχία και το Βασίλειο της Περγάμου ενώθηκαν με τους Ρωμαίους για να τον νικήσουν στη μάχη της Μαγνησίας, θάβοντας για πάντα το όνειρο της επανένωσης της αυτοκρατορίας του Αλεξάνδρου."
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[1].Name
 msgid "Antiokhos G' Megas"
@@ -2609,7 +2612,7 @@ msgstr "Υπό το Σύνταγμα που γράφτηκε από τον μυ�
 msgid ""
 "Increases the health for citizen-soldier infantry spearmen by 10% for allies"
 " of Spartan players."
-msgstr ""
+msgstr "Αυξάνει την υγεία τον πολιτών-στρατιωτών πεζικάριων λογχοφόρων κατά 10% για τους συμμάχους των Σπαρτιατών."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"

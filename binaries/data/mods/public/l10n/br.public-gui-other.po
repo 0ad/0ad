@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:05+0200\n"
-"PO-Revision-Date: 2017-06-04 15:55+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-06-05 09:02+0200\n"
+"PO-Revision-Date: 2017-06-07 13:09+0000\n"
+"Last-Translator: Thierry Vignaud <thierry.vignaud@gmail.com>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -147,7 +147,7 @@ msgstr "Ya"
 #: gui/common/functions_utility_loadsave.js:106
 #, javascript-format
 msgid "Delete the selected entry using %(hotkey)s."
-msgstr ""
+msgstr "Distruj an unanenn dibabet en ur implij 1%(hotkey)s."
 
 #: gui/common/functions_utility_loadsave.js:111
 #, javascript-format
@@ -288,7 +288,7 @@ msgstr[1] ""
 
 #: gui/common/gamedescription.js:260
 msgid "Relic Count"
-msgstr ""
+msgstr "Niver a relegoù"
 
 #: gui/common/gamedescription.js:267
 msgid "Hero Garrison"
@@ -300,7 +300,7 @@ msgstr "Harozed a c'hell bet lakaet e-barzh."
 
 #: gui/common/gamedescription.js:272
 msgid "Exposed Heroes"
-msgstr ""
+msgstr "Harozed diskouezet"
 
 #: gui/common/gamedescription.js:273
 msgid "Heroes cannot be garrisoned, and they are vulnerable to raids."
@@ -384,7 +384,7 @@ msgstr "Deskrivadur ar Gartenn"
 
 #: gui/common/gamedescription.js:345
 msgid "Randomly selects a map from the list"
-msgstr ""
+msgstr "Dibab ur gartenn dre zegouezh el listenn"
 
 #: gui/common/gamedescription.js:354
 msgid "Starting Resources"
@@ -400,17 +400,17 @@ msgid "Population Limit"
 msgstr "Bevenn ar Boblañs"
 
 #: gui/common/gamedescription.js:373
-msgid "Treasure"
-msgstr "Teñzor"
+msgid "Treasures"
+msgstr "Teñzoroù"
 
 #: gui/common/gamedescription.js:375
-msgctxt "treasure"
+msgctxt "treasures"
 msgid "Disabled"
 msgstr "Diweredekaet"
 
 #: gui/common/gamedescription.js:376
-msgctxt "treasure"
-msgid "If the map places it."
+msgctxt "treasures"
+msgid "As defined by the map."
 msgstr ""
 
 #: gui/common/gamedescription.js:380
@@ -1053,7 +1053,7 @@ msgstr "%(auraname)s:"
 #: gui/common/tooltips.js:637
 msgctxt "aura"
 msgid "Range:"
-msgstr ""
+msgstr "Hed-Tenn:"
 
 #: gui/common/tooltips.js:654
 #, javascript-format
@@ -1519,7 +1519,7 @@ msgstr "Statistikoù war an Unanennoù (%(trained)s / %(killed)s / %(captured)s 
 
 #: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):84
 msgid "Resources"
-msgstr ""
+msgstr "Mammennoù"
 
 #: gui/summary/layout.js:111
 #, javascript-format
@@ -1638,7 +1638,7 @@ msgstr "Implijet"
 
 #: gui/summary/summary.js:85
 msgid "Received"
-msgstr ""
+msgstr "Resevet"
 
 #: gui/summary/summary.js:90
 msgid "Sold"
@@ -1662,7 +1662,7 @@ msgstr ""
 
 #: gui/summary/summary.js:399
 msgid "You have been disconnected."
-msgstr ""
+msgstr "Diluget oc'h bet."
 
 #: gui/summary/summary.js:401
 msgid "You have left the game."
@@ -1795,7 +1795,7 @@ msgstr ""
 
 #: gui/options/options.xml:(caption):49
 msgid "Sound Settings"
-msgstr ""
+msgstr "Kefluniadur ar son"
 
 #: gui/options/options.xml:(caption):62
 msgid "Lobby Settings"
@@ -1811,7 +1811,7 @@ msgstr ""
 
 #: gui/options/options.xml:(caption):92
 msgid "Revert"
-msgstr ""
+msgstr "Nullañ"
 
 #: gui/options/options.xml:(caption):97 gui/savedgames/save.xml:(caption):48
 msgid "Save"
@@ -1844,8 +1844,8 @@ msgid ""
 msgstr ""
 
 #: gui/pregame/mainmenu.xml:540
-msgid "Alpha XXI: Ulysses"
-msgstr "Alpha XXI : Ulysses"
+msgid "Alpha XXII: Venustas"
+msgstr "ALPHA XXII : Venustas"
 
 #: gui/pregame/mainmenu.xml:542
 msgid ""
@@ -2396,7 +2396,7 @@ msgstr "In Memoriam"
 
 #: gui/credits/texts/special.jsonContent[1].Content[0].Subtitle
 msgid "0 A.D. Founder"
-msgstr ""
+msgstr "Saver 0 A.D."
 
 #: gui/credits/texts/special.jsonContent[1].Content[1].Subtitle
 msgid "Project Leaders"
@@ -2484,7 +2484,7 @@ msgstr ""
 
 #: gui/options/options.jsongeneralSetting[4].label
 msgid "Enable Welcome Screen"
-msgstr ""
+msgstr "Gweredekaat ar Skramm Degemer"
 
 #: gui/options/options.jsongeneralSetting[5].tooltip
 msgid "Show tips when setting up a game."

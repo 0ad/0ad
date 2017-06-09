@@ -15,7 +15,7 @@
 # fri, 2014-2016
 # Pavel Šindelář <pavelsin123@gmail.com>, 2015
 # Petr Hála <halapetr@selfnet.cz>, 2014
-# Robin Kriebel <kriebel.robin@gmail.com>, 2016
+# Robin Kriebel <kriebel.robin@gmail.com>, 2016-2017
 # Rodeo65 <Rodeo65@centrum.cz>, 2014
 # Nostur <tkroupa90@gmail.com>, 2014
 # Vit Pelcak, 2014
@@ -24,9 +24,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:04+0200\n"
-"PO-Revision-Date: 2017-06-04 15:39+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-06-05 09:01+0200\n"
+"PO-Revision-Date: 2017-06-06 11:56+0000\n"
+"Last-Translator: Robin Kriebel <kriebel.robin@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -327,11 +327,11 @@ msgstr "Keltské náboženství a druidství inspirovalo jejich bojovného ducha
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
 msgid "-20% resources cost for allies healers."
-msgstr ""
+msgstr "-20% cena pro spojenecké léčitele"
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 msgid "Druids"
-msgstr ""
+msgstr "Druidové"
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].History
 msgid ""
@@ -572,7 +572,7 @@ msgstr "Narozdíl od Pyrenejského poloostrova byla severní Afrika známa jako 
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
 msgid "10% bonus of trade profit for allies' international routes."
-msgstr ""
+msgstr "10% přídavek k obchodním výnosům na spojeneckých mezinárodních cestách"
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -779,11 +779,11 @@ msgstr "Galové"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
 msgid "-10% research time for technologies of allies."
-msgstr ""
+msgstr "-10% času z doby výzkumu technologií pro spojence"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druidic Wisdom"
-msgstr ""
+msgstr "Moudrost druidů"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].History
 msgid ""
@@ -793,13 +793,13 @@ msgstr ""
 
 #: simulation/data/civs/gaul.jsonAINames[0]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
-msgid "Britomartos"
-msgstr "Britomartos"
+msgid "Viridomarus"
+msgstr "Viridomarus"
 
 #: simulation/data/civs/gaul.jsonAINames[1]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[1].Name
-msgid "Brennos"
-msgstr "Brennos"
+msgid "Brennus"
+msgstr "Brennus"
 
 #: simulation/data/civs/gaul.jsonAINames[2]
 msgid "Cativolcus"
@@ -811,8 +811,8 @@ msgstr "Cingetorix"
 
 #: simulation/data/civs/gaul.jsonAINames[4]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[2].Name
-msgid "Uerkingetorix"
-msgstr "Uerkingetorix"
+msgid "Vercingetorix"
+msgstr "Vercingetorix"
 
 #: simulation/data/civs/gaul.jsonAINames[5]
 msgid "Divico"
@@ -827,8 +827,8 @@ msgid "Liscus"
 msgstr "Liscus"
 
 #: simulation/data/civs/gaul.jsonAINames[8]
-msgid "Valetiacos"
-msgstr "Valetiacos"
+msgid "Valetiacus"
+msgstr "Valetiacus"
 
 #: simulation/data/civs/gaul.jsonAINames[9]
 msgid "Viridovix"
@@ -840,14 +840,17 @@ msgid ""
 msgstr "Určité množství kovu a jídla, jež bylo převzato z každé zničené nebo obsazené stavby. "
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
-msgid "Uae Uictos"
-msgstr "Uae Uictos"
+msgid "Vae Victis"
+msgstr "Vae Victis"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
 msgid ""
-"Means Woe to the Defeated. It was the words that the Gallic Leader, Brennos,"
-" spoke at the Capitol at Rome after they took their plunder."
-msgstr "Znamená „Běda poraženým“. To jsou slova, která keltský kmenový vůdce Brennus zvolal na Kapitolu v Římě při vážení výkupného."
+"Woe to the Defeated! The Gallic chieftain Brennus seized Rome (with the "
+"exception of a garrison on Capitoline Hill). When Camillus besieged him with"
+" a relief force from Veii, he negotiated his surrender for 1000 pounds of "
+"gold, and adding the weight of his sword on the scale when the Romans "
+"complained that he used false weights he uttered those famous words."
+msgstr ""
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid "Gallic druids gain a small melee attack."
@@ -866,21 +869,21 @@ msgstr "Karnutové byli druidé z Aulercie. Když bylo třeba, bojovali, a z vel
 
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].History
 msgid ""
-"When celt armies met the enemy, before the battle would start, the celt "
+"When Celtic armies met the enemy, before the battle would start, the Celtic "
 "leader would go to the first line and challenge the bravest of the enemy "
 "warriors to a single combat. The story of how Marcus Claudius Marcellus "
 "killed a Gallic leader at Clastidium (222 B.C.) is typical of such "
-"encounters. Advancing with a smallish army, Marcellus met a combined force "
-"of Insubrian Gauls and Gaesatae at Clastidium. The Gallic army advanced with"
-" the usual rush and terrifying cries, and their king, Britomartos, picking "
+"encounters. Advancing with a small army, Marcellus met a combined force of "
+"Insubrian Gauls and Gaesatae at Clastidium. The Gallic army advanced with "
+"the usual rush and terrifying cries, and their king, Viridomarus, picking "
 "out Marcellus by means of his badges of rank, made for him, shouting a "
-"challenge and brandishing his spear. Britomartos was an outstanding figure "
+"challenge and brandishing his spear. Viridomarus was an outstanding figure "
 "not only for his size but also for his adornments; for he was resplendent in"
 " bright colors and his armor shone with gold and silver. This armor, thought"
 " Marcellus, would be a fitting offering to the gods. He charged the Gaul, "
 "pierced his bright breastplate and cast him to the ground. It was an easy "
-"task to kill Britomartos and strip him of his armor."
-msgstr "Když se keltské armády potkaly s nepřáteli, jejich vůdce si ješte před začátkem bitvy navykl jít do první linie a vyzvat nejstatečnější nepřátelské bojovníky na souboj. Typickým příkladem takového střetnutí byl příběh o tom, jak Marcus Claudius Marcellus zabil galského velitele u Clastidia (222 před Kristem). Jda s nevelkou armádou Marcellus nedaleko Clastidia narazil na spojené síly Insubrianů a Gaesatů. Galská armáda měla jako vždy velmi naspěch, její členové vydávali děsivé zvuky a jeich král, Britomartos si ze svých nepřátel vybral právě Marcella kvůli jeho odznakům hodností, křikem jej vyzývaje a mávaje kopím. Britomartos byl na bojišti výjimečnou osobností, nejen kvůli své velikosti ale též i kvůli vzhledu; oblečen ve světlých barvách působil velkolepě a jeho zbroj se leskla zlatem a stříbrem. Tato zbroj by byla dobrou obětí bohům, pomyslel si Marcellus. Vrhl se na Gala, probodl jeho lesklý pancíř a srazil ho k zemi. Bylo lehké Britomarta zabít a vysvléknout jej z brnění."
+"task to kill Viridomarus and strip him of his armor."
+msgstr ""
 
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -891,19 +894,19 @@ msgid ""
 "that Britons had conquered Rome, the greatest civilization in the world, "
 "long before Rome conquered the Britons. We know from many ancient sources "
 "which predate Geoffrey that Rome was indeed sacked, but in 387 not 390, and "
-"that the raid was led by a man named Brennos (which was latinized to "
-"Brennus), but he and his invading horde were Gallic Senones, not British. In"
-" this episode several features of Geoffrey's editing method can be seen: he "
-"modified the historical Brennus/Brennos, created the brother Belinus, "
-"borrowed the Gallic invasion, but omitted the parts where the Celts seemed "
-"weak or foolish. His technique is both additive and subtractive. Like the "
-"tale of Trojan origin, the story of the sack of Rome is not pure "
-"fabrication; it is a creative rearrangement of the available facts, with "
-"details added as necessary. By virtue of their historical association, Beli "
-"and Bran are often muddled with the earlier brothers Belinus and Brennus "
-"(the sons of Dunvallo Molmutius) who contended for power in northern Britain"
-" in around 390 B.C., and were regarded as gods in old Celtic tradition."
-msgstr "Brennus je jméno, které dali římští historikové slavnému galskému vůdci, kterému se v časech Camilla podařilo obsadit Řím. Podle Geoffreyho z Monmouthu, klerika, který napsal dílo \"Historie králů Británie\", Brennus a jeho bratr Belinus napadli Galy a v roce 390 před Kristem vyplenili Řím, dokazujíc tak, že Britové ovládli Řimany, největší  civilizaci na světě, mnohem dříve, než se Řimanům podařilo ovládnout Brity. Z mnoha starověkých pramenů starších než Geoffrey víme, že Řím sice byl vypleněn, ale v roce 387 a ne 390, a že onen nájezd byl veden mužem jménem Brennos (které bylo polatinštěno na Brennus), ale on a jeho muži byli galští Senoni, ne Britové. Na tomto je možno vidět několik prvků Geoffreyho odlišného výkladu: přizpůsobil si historického Brenna, vymyslel bratra Belina, vypůjčil galský vpád, ale zato vynechal části, kde Kelti působili slabě anebo hloupě. Takže něco přidal a něco odebral. Stejně tak příběh o Tróji, ani tento o vyplenění Říma není čistým výmyslem, ale pouze tvořivým přeuspořádáním dostupných údajů s přidáním určitých podrobností. Na základě jejich historické souvislosti jsou Beli a Bran často zaměňováni za jejich předchůdce, bratry Belina a Brenna (syny Dunvalla Molmutia), kteří okolo roku 390 před Kristem zápasili v severní Británii o moc a v staré keltské tradici byli považováni za bohy."
+"that the raid was led by a man named Brennus, but he and his invading horde "
+"were Gallic Senones, not British. In this episode several features of "
+"Geoffrey's editing method can be seen: he modified the historical Brennus, "
+"created the brother Belinus, borrowed the Gallic invasion, but omitted the "
+"parts where the Celts seemed weak or foolish. His technique is both additive"
+" and subtractive. Like the tale of Trojan origin, the story of the sack of "
+"Rome is not pure fabrication; it is a creative rearrangement of the "
+"available facts, with details added as necessary. By virtue of their "
+"historical association, Beli and Bran are often muddled with the earlier "
+"brothers Belinus and Brennus (the sons of Dunvallo Molmutius) who contended "
+"for power in northern Britain in around 390 B.C., and were regarded as gods "
+"in old Celtic tradition."
+msgstr ""
 
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -1184,7 +1187,7 @@ msgstr "Řekové byli velice úspěšní v helenizaci různých cizinců. Během
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
 msgid "+20% sell prices at market."
-msgstr ""
+msgstr "+20% prodejní ceny na trhu."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -1445,11 +1448,11 @@ msgstr "Kšátriové, neboli válečníci, jsou jednou ze čtyřech varen (spole
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
 msgid "Allied temples and temple technologies -50% cost and research time."
-msgstr ""
+msgstr "-50 % z ceny a výzkumného času pro spojenecké technologie chrámů."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
 msgid "Ashoka's Religious Support"
-msgstr ""
+msgstr "Ašokova náboženská podpora"
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].History
 msgid ""
@@ -1623,7 +1626,7 @@ msgstr "Peršané mohli na základě prosté velikosti Achjmenovské říše a z
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
 msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr ""
+msgstr "Vyšší příjem (+15%) z pozemních obchodních cest pro obchodníky spojeneců."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -2101,11 +2104,11 @@ msgstr "Římské občanství bylo ve starověkém světě vysoko ceněno. Zákl
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
 msgid "-20% training time for allied infantry."
-msgstr ""
+msgstr "-20% času trénování jednotek pro spojeneckou pěchotu."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
 msgid "Conscription"
-msgstr ""
+msgstr "Branná povinnost"
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].History
 msgid ""

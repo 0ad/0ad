@@ -6,14 +6,15 @@
 # Auka Raiken, 2017
 # Axel Chicahuala Fereyra <axchfe@gmail.com>, 2016
 # Franco Falleti <ezefran256@gmail.com>, 2016
+# Iván Pstyga <ivanpstyga@gmail.com>, 2017
 # Joaquin Marcher <joaquin.marcher@gmail.com>, 2017
 # Poino Comer <poino.comer@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-06-05 02:21+0000\n"
-"Last-Translator: Poino Comer <poino.comer@gmail.com>\n"
+"PO-Revision-Date: 2017-06-09 03:48+0000\n"
+"Last-Translator: Iván Pstyga <ivanpstyga@gmail.com>\n"
 "Language-Team: Spanish (Argentina) (http://www.transifex.com/wildfire-games/0ad/language/es_AR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -72,7 +73,7 @@ msgstr "+20% de velocidad de movimiento a los comerciantes."
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraName
 msgid "Farming bonus"
-msgstr ""
+msgstr "Bonus de agricultura"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraDescription
 msgid "+25% gather rate for workers in the grainfields."
@@ -273,7 +274,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
 msgid "Commander of Heavy Cavalry"
-msgstr ""
+msgstr "Comandante de Caballería Pesada"
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraDescription
 msgid ""
@@ -293,7 +294,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_2.jsonauraName
 msgid "Tribute to Rome"
-msgstr ""
+msgstr "Tributo para Roma"
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_2.jsonauraDescription
 msgid ""
@@ -303,7 +304,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_1.jsonauraName
 msgid "Mercenary Commander"
-msgstr ""
+msgstr "Comandante Mercenario"
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_1.jsonauraDescription
 msgid ""
@@ -313,7 +314,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraName
 msgid "Saver of Lives"
-msgstr ""
+msgstr "Salvador de Vidas"
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraDescription
 msgid ""
@@ -323,7 +324,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
 msgid "Sacker of Cities"
-msgstr ""
+msgstr "Saqueador de Ciudades"
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraDescription
 msgid ""
@@ -333,7 +334,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_1.jsonauraName
 msgid "Consolidator of the Empire"
-msgstr ""
+msgstr "Consolidador del Imperio"
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_1.jsonauraDescription
 msgid ""
@@ -353,7 +354,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/pers_catafalque.jsonauraName
 msgid "Great Builder"
-msgstr ""
+msgstr "Gran Constructor"
 
 #: simulation/data/auras/units/catafalques/pers_catafalque.jsonauraDescription
 msgid ""
@@ -363,7 +364,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraName
 msgid "Great Librarian"
-msgstr ""
+msgstr "Gran Bibliotecario"
 
 #: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraDescription
 msgid ""
@@ -383,7 +384,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraName
 msgid "Founder and Defender of the Republic"
-msgstr ""
+msgstr "Fundador y Defensor de la República"
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraDescription
 msgid ""
@@ -393,7 +394,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_1.jsonauraName
 msgid "Founder of the Ezida Temple"
-msgstr ""
+msgstr "Fundador del Templo de Ezida"
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_1.jsonauraDescription
 msgid ""
@@ -403,7 +404,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_2.jsonauraName
 msgid "Immigration"
-msgstr ""
+msgstr "Inmigración"
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_2.jsonauraDescription
 msgid ""
@@ -434,17 +435,17 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraDescription
 msgid "-5% resource cost for spear infantry champions."
-msgstr ""
+msgstr "-5% de costo de recursos de Lanceros Campeones."
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_3.jsonauraName
 msgid "Iron Pelanors"
-msgstr ""
+msgstr "Pelanor de hierro"
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_3.jsonauraDescription
 msgid ""
 "To further support equality, Lycurgus forbade the use of gold and silver, introducing a new iron currency called pelanors.\n"
 "+15% metal gather rate for workers."
-msgstr ""
+msgstr "Para Seguir manteniendo la equidad, Licurgo prohibió el uso de oro y plata, introduciendo una nueva moneda de hierro llamada Pelanor.\n+15% en obtención de metal por trabajadores"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraName
 msgid "Formation Reforms"
@@ -464,7 +465,7 @@ msgstr "Todas las unidades de jabalina obtienen +15% velocidad."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
 msgid "Periclean Building Program"
-msgstr ""
+msgstr "Programa de construcción de Pericles"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraDescription
 msgid "+15% build and repair rate for workers."
@@ -472,7 +473,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
 msgid "Temple to Athena"
-msgstr ""
+msgstr "Templo de Atenea Niké"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "-25% stone cost and +2 garrisoned heal rate for temples."
@@ -480,7 +481,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
 msgid "Naval Commander"
-msgstr ""
+msgstr "Comandante de Armada"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraDescription
 msgid ""
@@ -490,7 +491,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraName
 msgid "Naval Architect"
-msgstr ""
+msgstr "Arquitecto Naval"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraDescription
 msgid "-20% build time and -50% metal cost for ships during his lifespan."
@@ -502,11 +503,11 @@ msgstr "Ejército campeón"
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraDescription
 msgid "+20% attack, +2 capture and +10% speed for champion units."
-msgstr ""
+msgstr "+20% ataque, +2 captura y +10% de velocidad para unidades campeonas."
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraName
 msgid "Guerrilla Chief"
-msgstr ""
+msgstr "Jefe de Guerrilla"
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraDescription
 msgid "All soldiers and siege engines +15% speed and +1 armor."
@@ -547,15 +548,15 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraName
 msgid "Sacker of Rome"
-msgstr ""
+msgstr "Saqueador de Roma"
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraDescription
 msgid "+15 Metal loot for every enemy unit killed."
-msgstr ""
+msgstr "+15 botín en metal por cada unidad enemiga matada."
 
 #: simulation/data/auras/units/heroes/gaul_hero_britomartus.jsonauraName
 msgid "Preparation for War"
-msgstr ""
+msgstr "Preparación para la Guerra"
 
 #: simulation/data/auras/units/heroes/gaul_hero_britomartus.jsonauraDescription
 msgid "Gathering rates increased with +15% during his lifetime."

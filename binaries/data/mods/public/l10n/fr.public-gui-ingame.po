@@ -62,8 +62,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:05+0200\n"
-"PO-Revision-Date: 2017-06-04 16:13+0000\n"
+"POT-Creation-Date: 2017-06-05 09:01+0200\n"
+"PO-Revision-Date: 2017-06-05 15:15+0000\n"
 "Last-Translator: Polakrity <sxk-fr@live.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -179,7 +179,7 @@ msgstr "Demander à vos alliés d'attaquer cet ennemi"
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
-msgstr "Soudoyez une unité aléatoire de ce joueur et partagez son champ de vision pour une durée limitée."
+msgstr "Soudoyer une unité aléatoire de ce joueur et partager son champ de vision pour une durée limitée."
 
 #: gui/session/menu.js:717
 #, javascript-format
@@ -549,7 +549,7 @@ msgstr "Erreur de synchronisation au tour %(turn)s."
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Players: %(players)s"
-msgstr "Joueurs: %(players)s"
+msgstr "Joueurs : %(players)s"
 
 #: gui/session/messages.js:683
 msgctxt "Out-Of-Sync"
@@ -564,7 +564,7 @@ msgstr "L'état de votre partie est différent de celui de l'hôte."
 #: gui/session/messages.js:690
 msgctxt "Out-Of-Sync"
 msgid "Rejoining Multiplayer games with AIs is not supported yet!"
-msgstr "Il n'est pas encore possible de rejoindre une partie Multijoueurs avec Als!"
+msgstr "Rejoindre des parties multijoueurs avec des IAs n'est pas encore possible pour le moment !"
 
 #: gui/session/messages.js:694
 msgctxt "Out-Of-Sync"
@@ -698,7 +698,7 @@ msgstr "La %(phaseName)s de %(player)s a été avorté."
 #: gui/session/messages.js:1075
 #, javascript-format
 msgid "%(player)s has reached the %(phaseName)s."
-msgstr "%(player)s a atteint %(phaseName)s."
+msgstr "%(player)s a atteint la %(phaseName)s."
 
 #: gui/session/messages.js:1127
 #, javascript-format
@@ -1066,7 +1066,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
 "the arrows of the other types to modify their shares. You can also press "
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
-msgstr ""
+msgstr "Sélectionnez un type de bien que vous voulez modifier en cliquant dessus et utilisez les flèches pour modifier leur valeur. Vous pouvez aussi appuyez sur %(hotkey)s lorsque vous le sélectionnez pour le modifier à 100%%."
 
 #: gui/session/session.js:420
 #, javascript-format
@@ -1075,7 +1075,7 @@ msgid ""
 "each time the lower buttons are pressed, %(quantity)s of the upper resource "
 "will be sold for the displayed quantity of the lower. Press and hold "
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
-msgstr ""
+msgstr "Commencez par sélectionner la ressource que vous souhaitez vendre sur la ligne supérieur. Chaque fois que vous appuyez sur le bouton inférieur, %(quantity)s de la ressource supérieure sera vendue pour la quantité affichée de la partie inférieure. Appuyez et maintenez la touche %(hotkey)s pour multiplier toutes les quantités par %(multiplier)s."
 
 #: gui/session/session.js:584
 #, javascript-format
@@ -1553,5 +1553,5 @@ msgid "Menu"
 msgstr "Menu"
 
 #: gui/session/top_panel/label.xml:(caption):4
-msgid "ALPHA XXI : Ulysses"
-msgstr "ALPHA XXI : Ulysses"
+msgid "ALPHA XXII : Venustas"
+msgstr "ALPHA XXII : Venustas"

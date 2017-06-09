@@ -11,18 +11,18 @@
 # Jacob Carlsson <yejcob@gmail.com>, 2015
 # liothe <lucy@liothe.se>, 2013
 # magicae, 2014
-# pilino1234 <mhilgendrf@aol.com>, 2016
-# pilino1234 <mhilgendrf@aol.com>, 2015-2016
-# pilino1234 <mhilgendrf@aol.com>, 2016-2017
+# pilino1234 <pilino1234@zoho.eu>, 2016
+# pilino1234 <pilino1234@zoho.eu>, 2015-2016
+# pilino1234 <pilino1234@zoho.eu>, 2016-2017
 # Patrik Nilsson <asavartzeth@gmail.com>, 2014
 # theschitz <theodore@theschitz.se>, 2015
 # Ulrika <aurorauddeborg@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:05+0200\n"
-"PO-Revision-Date: 2017-06-04 15:33+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-06-05 09:01+0200\n"
+"PO-Revision-Date: 2017-06-05 16:58+0000\n"
+"Last-Translator: pilino1234 <pilino1234@zoho.eu>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -271,7 +271,7 @@ msgstr "Pausad av %(players)s"
 #: gui/session/menu.js:1105 gui/session/messages.js:679
 msgctxt "Separator for a list of players"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/menu.js:1118 gui/session/menu.xml:(caption):17
 msgid "Manual"
@@ -496,7 +496,7 @@ msgstr "Följ instruktionerna."
 #: gui/session/messages.js:668
 msgctxt "Separator for a list of client loading messages"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/messages.js:674
 #, javascript-format
@@ -532,7 +532,7 @@ msgstr "Säkerställ att all spelare använder samma mods."
 #: gui/session/messages.js:695
 msgctxt "Out-Of-Sync"
 msgid "Click on \"Report a Bug\" in the main menu to help fix this."
-msgstr ""
+msgstr "Klicka på \"Rapportera en Bugg\" i huvudmenyn för att hjälpa med att fixa detta."
 
 #: gui/session/messages.js:696
 #, javascript-format
@@ -874,7 +874,7 @@ msgstr "Återstående: %(entityCounts)s"
 #: gui/session/selection_panels.js:802
 msgctxt "Separator for a list of entity counts"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/selection_panels.js:1111
 #, javascript-format
@@ -1024,7 +1024,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
 "the arrows of the other types to modify their shares. You can also press "
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
-msgstr ""
+msgstr "Välj typen av varor du vill ändra genom att klicka på den  och använd sedan pilarna i de andra typerna att ändra deras andelar. Du kan även trycka  %(hotkey)s samtidigt som du väljer resurs för att sätta andelen till 100%%."
 
 #: gui/session/session.js:420
 #, javascript-format
@@ -1033,7 +1033,7 @@ msgid ""
 "each time the lower buttons are pressed, %(quantity)s of the upper resource "
 "will be sold for the displayed quantity of the lower. Press and hold "
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
-msgstr ""
+msgstr "Börja med att välja resursen som du vill sälja i den övre raden. Vid varje klick på en av knapparna i den nedre raden säljs %(quantity)s av den övre resursen för den visade mängden av den nedre. Tryck och håll %(hotkey)s för att tillfälligt multiplicera alla mängder med %(multiplier)s."
 
 #: gui/session/session.js:584
 #, javascript-format
@@ -1054,7 +1054,7 @@ msgstr "BESEGRAD!"
 
 #: gui/session/session.js:844
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: gui/session/session.js:903
 msgctxt "replayFinished"
@@ -1110,7 +1110,7 @@ msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
-msgstr "OBS: Time Warp Läge är ett utvecklaralternativ och är inte avsett att användas över längre perioder. Felaktig användning kan få spelet att kräva för mycket minne och crasha."
+msgstr "OBS: Time Warp Läge är en utvecklarinställning och är inte avsett att användas över längre perioder. Felaktig användning kan få spelet att kräva för mycket minne och crasha."
 
 #: gui/session/session.js:1364
 msgid "Time warp mode"
@@ -1387,7 +1387,7 @@ msgstr "Sammanfattning"
 
 #: gui/session/menu.xml:(caption):63
 msgid "Options"
-msgstr "Alternativ"
+msgstr "Inställningar"
 
 #: gui/session/menu.xml:(caption):85
 msgid "Resign"
@@ -1511,5 +1511,5 @@ msgid "Menu"
 msgstr "Meny"
 
 #: gui/session/top_panel/label.xml:(caption):4
-msgid "ALPHA XXI : Ulysses"
-msgstr "ALPHA XXI : Ulysses"
+msgid "ALPHA XXII : Venustas"
+msgstr "ALPHA XXII : Venustas"

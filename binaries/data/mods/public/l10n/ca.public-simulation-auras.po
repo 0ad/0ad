@@ -7,15 +7,17 @@
 # Catalanoic <catalanoic@gmail.com>, 2016
 # Cesc Miralles <xesc87@gmail.com>, 2017
 # Eduard Zorita <eduardvalera@gmail.com>, 2017
+# José Verdú Díaz <pepv@hotmail.es>, 2017
 # josu torres <josuetl@gmail.com>, 2016
+# Pau Soliva <psoliva@naralabs.com>, 2017
 # Peredelgrau, 2016
 # Haommin <tfs.msimangu@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-06-04 09:20+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-06-07 14:48+0000\n"
+"Last-Translator: Pau Soliva <psoliva@naralabs.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +27,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
 msgid "Dockyard Repairs"
-msgstr ""
+msgstr "Reparacions a la drassana"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Heals garrisoned ship at 10 HP per second."
@@ -37,19 +39,19 @@ msgstr "Benedicció dels déus"
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraDescription
 msgid "Heals units at 3 HP per second."
-msgstr ""
+msgstr "Cura les unitats a 3HP per segon."
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
-msgstr ""
+msgstr "Fervor Religiós"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "+20% attack damage for soldiers."
-msgstr ""
+msgstr "+20% de dany d'atac pels soldats."
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Power of Knowledge"
-msgstr ""
+msgstr "Poder del Coneixement"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
 msgid ""
@@ -62,15 +64,15 @@ msgstr "Lleialtat"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "+50% garrisoned loyalty regeneration rate for structures."
-msgstr ""
+msgstr "Les estructures augmenten un +50% la taxa de regeneració de lleialtat amb unitats refugiades. "
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraName
 msgid "Edict of Ashoka"
-msgstr ""
+msgstr "Proclama d'Ashoka"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraDescription
 msgid "+20% movement speed for traders."
-msgstr ""
+msgstr "+20% de velocitat de desplaçament pels comerciants."
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraName
 msgid "Farming bonus"
@@ -78,7 +80,7 @@ msgstr "Bonificació agrícola"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraDescription
 msgid "+25% gather rate for workers in the grainfields."
-msgstr ""
+msgstr "+25% de taxa de recol·lecte pels treballadors en els camps de gra."
 
 #: simulation/data/auras/structures/temple_heal.jsonauraName
 msgid "Medical Treatment"
@@ -90,7 +92,7 @@ msgstr "Cura les unitats properes a 1 PS per segon."
 
 #: simulation/data/auras/structures/theatron.jsonauraName
 msgid "Hellenization"
-msgstr ""
+msgstr "Hel·lenització"
 
 #: simulation/data/auras/structures/theatron.jsonauraDescription
 msgid "Increase territory influence by 20% per theatron owned."
@@ -106,7 +108,7 @@ msgstr "Les unitats a les muralles tenen més camp de visió i +3 d'armadura."
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraName
 msgid "Symbol of Greatness"
-msgstr ""
+msgstr "Símbol de Grandesa"
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraDescription
 msgid "Increase the population limit by 10 per wonder owned."
@@ -114,7 +116,7 @@ msgstr "Cada meravella augmenta el límit de població en 10."
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraName
 msgid "Glorious Expansion"
-msgstr ""
+msgstr "Expansió Gloriosa"
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraDescription
 msgid ""
@@ -128,15 +130,15 @@ msgstr "Lliga de Delos"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Ships construct 25% faster."
-msgstr ""
+msgstr "Els vaixells es construeixen un 25% més ràpid."
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
-msgstr ""
+msgstr "Druides"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "-20% resources cost for allies healers."
-msgstr ""
+msgstr "-20% de cost de recursos pels sanadors aliats."
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
@@ -148,11 +150,11 @@ msgstr "+10% de profit de comerç en rutes intenacionals aliades."
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Druidic Wisdom"
-msgstr ""
+msgstr "Saviesa de Druida"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "-20% research time for technologies of allies."
-msgstr ""
+msgstr "-20% al temps d'investigació de tecnologies per als aliats. "
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
@@ -166,11 +168,11 @@ msgstr "Redueix un 20% el cost dels soldats ciutadans d'infanteria lleugera per 
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Standardized Currency"
-msgstr ""
+msgstr "Moneda estandarditzada"
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraDescription
 msgid "+20% sell prices at market."
-msgstr ""
+msgstr "+20% dels preus de venta al mercat."
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
@@ -199,11 +201,11 @@ msgstr "Tots els aliats guanyen automàticament un ingrés lent i constant de me
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraName
 msgid "Conscription"
-msgstr ""
+msgstr "Servei militar"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
 msgid "-20% training time for allied infantry."
-msgstr ""
+msgstr "-20% al temps d'entrenament de infanteria per els aliats."
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
@@ -216,7 +218,7 @@ msgstr "Redueix un 20% el cost dels centres cívics per als aliats dels selèuci
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
 msgid "Peloponnesian League"
-msgstr ""
+msgstr "Lliga del Peloponès"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
 msgid ""
@@ -226,7 +228,7 @@ msgstr ""
 
 #: simulation/data/auras/units/female_inspiration.jsonauraName
 msgid "Inspiration"
-msgstr ""
+msgstr "Aura d'inspiració"
 
 #: simulation/data/auras/units/female_inspiration.jsonauraDescription
 msgid "+10% build rate and gather rate for citizen soldiers."
@@ -234,7 +236,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraName
 msgid "Economic Reforms"
-msgstr ""
+msgstr "Reformes Econòmiques"
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraDescription
 msgid ""
@@ -255,7 +257,7 @@ msgstr ""
 #: simulation/data/auras/units/catafalques/brit_catafalque_1.jsonauraName
 #: simulation/data/auras/units/heroes/iber_hero_viriato_1.jsonauraName
 msgid "Guerrilla Tactics"
-msgstr ""
+msgstr "Tàctiques de Guerrilla"
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_1.jsonauraDescription
 msgid ""
@@ -265,7 +267,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_2.jsonauraName
 msgid "Skirmisher Harassment"
-msgstr ""
+msgstr "Fustigació d'Escaramussa"
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_2.jsonauraDescription
 msgid ""
@@ -275,7 +277,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
 msgid "Commander of Heavy Cavalry"
-msgstr ""
+msgstr "Comandant de Cavalleria Pesada"
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraDescription
 msgid ""

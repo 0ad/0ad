@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:05+0200\n"
-"PO-Revision-Date: 2017-06-04 15:33+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-06-05 09:01+0200\n"
+"PO-Revision-Date: 2017-06-06 13:29+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -267,7 +267,7 @@ msgstr "Satt på pause av %(players)s"
 #: gui/session/menu.js:1105 gui/session/messages.js:679
 msgctxt "Separator for a list of players"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/menu.js:1118 gui/session/menu.xml:(caption):17
 msgid "Manual"
@@ -492,7 +492,7 @@ msgstr "Følg anvisningene."
 #: gui/session/messages.js:668
 msgctxt "Separator for a list of client loading messages"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/messages.js:674
 #, javascript-format
@@ -528,7 +528,7 @@ msgstr "Forsikre at alle spillere bruker samme modifikasjoner."
 #: gui/session/messages.js:695
 msgctxt "Out-Of-Sync"
 msgid "Click on \"Report a Bug\" in the main menu to help fix this."
-msgstr ""
+msgstr "Klikk på \"Rapporter feil\" i hovedmenyen for å hjelpe til med å fikse dette."
 
 #: gui/session/messages.js:696
 #, javascript-format
@@ -870,7 +870,7 @@ msgstr "Gjenstår: %(entityCounts)s"
 #: gui/session/selection_panels.js:802
 msgctxt "Separator for a list of entity counts"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/selection_panels.js:1111
 #, javascript-format
@@ -1020,7 +1020,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
 "the arrows of the other types to modify their shares. You can also press "
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
-msgstr ""
+msgstr "Velg én type vare du ønsker å modifisere ved å klikke på den (å trykke på %(hotkey)s mens du velger vil også ta andelen opp til 100%%), bruk så pilene for de andre typene for å endre deres andeler."
 
 #: gui/session/session.js:420
 #, javascript-format
@@ -1029,7 +1029,7 @@ msgid ""
 "each time the lower buttons are pressed, %(quantity)s of the upper resource "
 "will be sold for the displayed quantity of the lower. Press and hold "
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
-msgstr ""
+msgstr "Start ved å velge ressursen du ønsker å selge fra øvre rad. For hver gang du trykker en av de nedre knappene, vil %(quantity)s av den øvre ressursen bli solgt for viss mengde av den nedre. Trykk og hold  %(hotkey)s for å midlertidig gange alle byttede mengder med %(multiplier)s."
 
 #: gui/session/session.js:584
 #, javascript-format
@@ -1050,7 +1050,7 @@ msgstr "BESEIRET!"
 
 #: gui/session/session.js:844
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: gui/session/session.js:903
 msgctxt "replayFinished"
@@ -1507,5 +1507,5 @@ msgid "Menu"
 msgstr "Meny"
 
 #: gui/session/top_panel/label.xml:(caption):4
-msgid "ALPHA XXI : Ulysses"
-msgstr "ALPHA XXI: Ulysses"
+msgid "ALPHA XXII : Venustas"
+msgstr "ALPHA XXII : Venustas"

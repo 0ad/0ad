@@ -14,6 +14,7 @@
 # Sturm <gravador202@yahoo.com.br>, 2014
 # Gustavo Moitinho <gustavo.moitinho@outlook.com>, 2016
 # Igor Aleixo <igor.pavao@gmail.com>, 2016
+# Jose Bentivi <josebentivi@gmail.com>, 2017
 # J. P. Lacerda <jp-lacerda@msn.com>, 2016
 # Leonardo Augusto Suzin <leonardosuzin@gmail.com>, 2015
 # Lourenço Gaiteiro <loredal@gmail.com>, 2017
@@ -30,8 +31,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:05+0200\n"
-"PO-Revision-Date: 2017-06-05 00:21+0000\n"
+"POT-Creation-Date: 2017-06-05 09:02+0200\n"
+"PO-Revision-Date: 2017-06-06 18:09+0000\n"
 "Last-Translator: borg 2k <estevanborg@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -74,7 +75,7 @@ msgstr "Heróis"
 #: gui/civinfo/civinfo.js:134
 #, javascript-format
 msgid "History of the %(civilization)s"
-msgstr "História dos %(civilization)s"
+msgstr "História da %(civilization)s"
 
 #: gui/common/color.js:154
 #, javascript-format
@@ -91,7 +92,7 @@ msgstr "Tab"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait..."
-msgstr ""
+msgstr "Abrir %(url)s\nNo navegador web padrão. Por favor, espere..."
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
@@ -382,8 +383,8 @@ msgstr "desabilitado"
 #: gui/common/gamedescription.js:313
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Pelos primeiros minutos, outros jogadores estarão neutros."
+msgstr[1] "Pelos primeiros %(min)s minutos, outros jogadores estarão neutros."
 
 #: gui/common/gamedescription.js:321
 msgid "Map Name"
@@ -419,18 +420,18 @@ msgid "Population Limit"
 msgstr "Limite de população"
 
 #: gui/common/gamedescription.js:373
-msgid "Treasure"
-msgstr "Tesouro"
+msgid "Treasures"
+msgstr "Tesouros"
 
 #: gui/common/gamedescription.js:375
-msgctxt "treasure"
+msgctxt "treasures"
 msgid "Disabled"
 msgstr "Desativado"
 
 #: gui/common/gamedescription.js:376
-msgctxt "treasure"
-msgid "If the map places it."
-msgstr "Se o mapa colocá-lo."
+msgctxt "treasures"
+msgid "As defined by the map."
+msgstr "Como definido pelo mapa."
 
 #: gui/common/gamedescription.js:380
 msgid "Revealed Map"
@@ -558,7 +559,7 @@ msgstr "Servidor cheio"
 #: gui/common/network.js:76
 msgid ""
 "Player identifier in use. If you were disconnected, retry in few seconds"
-msgstr ""
+msgstr "Identificador do jogador em uso. Se você foi desconectado, tente novamente em alguns segundos."
 
 #: gui/common/network.js:79
 #, javascript-format
@@ -665,7 +666,7 @@ msgstr "Aleatório"
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
-msgstr ""
+msgstr "Crie um mapa exclusivo com uma distribuição de recursos diferente a cada vez. Selecione livremente o número de jogadores e equipes."
 
 #: gui/common/settings.js:199
 msgctxt "map"
@@ -841,12 +842,12 @@ msgstr "Armadura:"
 #: gui/common/tooltips.js:145
 #, javascript-format
 msgid "%(damage)s %(damageType)s %(armorPercentage)s"
-msgstr "%(dano)s %(danoTipo)s %(armaduraPorcentagem)s"
+msgstr "%(damage)s %(damageType)s %(armorPercentage)s"
 
 #: gui/common/tooltips.js:150
 #, javascript-format
 msgid "(%(armorPercentage)s)"
-msgstr "(%(armaduraPorcentagem)s)"
+msgstr "(%(armorPercentage)s)"
 
 #: gui/common/tooltips.js:161
 msgid "(None)"
@@ -1657,7 +1658,7 @@ msgstr "Utilizados"
 
 #: gui/summary/summary.js:85
 msgid "Received"
-msgstr ""
+msgstr "Recebido"
 
 #: gui/summary/summary.js:90
 msgid "Sold"
@@ -1863,8 +1864,8 @@ msgid ""
 msgstr "Você pode automaticamente nos enviar um feedback anônimo que nos permitirá fixar bugs e melhorar a performance e a compatibilidade."
 
 #: gui/pregame/mainmenu.xml:540
-msgid "Alpha XXI: Ulysses"
-msgstr "Alfa XXI: Ulysses"
+msgid "Alpha XXII: Venustas"
+msgstr "Alpha XXII: Venustas"
 
 #: gui/pregame/mainmenu.xml:542
 msgid ""
@@ -2499,7 +2500,7 @@ msgstr "Pausar quando em plano de fundo"
 msgid ""
 "If you disable it, the welcome screen will still appear once, each time a "
 "new version is available. You can always launch it from the main menu."
-msgstr ""
+msgstr "Se você desativá-lo, a tela de boas-vindas ainda aparecerá, cada vez que uma nova versão estiver disponível. Você sempre pode iniciá-lo no menu principal."
 
 #: gui/options/options.jsongeneralSetting[4].label
 msgid "Enable Welcome Screen"
@@ -2590,7 +2591,7 @@ msgstr "Desativado"
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
-msgstr ""
+msgstr "Atribua automaticamente a junção de clientes a slots de jogadores gratuitos durante a configuração da partida."
 
 #: gui/options/options.jsongeneralSetting[13].label
 msgid "Assign Players"
@@ -3092,7 +3093,7 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr ""
+msgstr "Embora razoavelmente fácil para um jogador experiente, o nível de AI padrão é bastante desafiador para novos jogadores ainda dominarem os mecanismos básicos do jogo. No início é recomendado começar a jogar contra um AI de nível inferior (Sandbox ou Very Easy). Altere o nível de AI clicando no ícone de engrenagem ao lado do jogador que deseja modificar no painel de seleção."
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""

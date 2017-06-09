@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Aristomahos Nikiforakis <barbounism@gmail.com>, 2016
+# Aristomahos Nikiforakis <barbounism@gmail.com>, 2016-2017
 # Costas Sachos <konssach7@gmail.com>, 2016
 # Lampros Lampreas <marbiourd@hotmail.com>, 2016
 # Natalia V <inactive+irida@transifex.com>, 2016
@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-06-04 09:20+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-06-06 11:45+0000\n"
+"Last-Translator: Aristomahos Nikiforakis <barbounism@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -291,7 +291,7 @@ msgstr "Ενέδρα Σφαγής"
 msgid ""
 "Warring with the Romans, Ambiorix realized the futility of open warfare and instead resorted to ambush tactics. The Gauls quickly learned where and when to execute surprise attacks.\n"
 "Soldiers require 25% less experience to promote and gain a 5% attack bonus."
-msgstr ""
+msgstr "Αντιμαχόμενος με τους Ρωμαίους, ο Αμπιορίξ συνειδητοποίησε τη ματαιότητα του να πολεμά ανοιχτά και έτσι κατέφυγε στη τακτική της ενέδρας. Οι Γαλάτες έμαθαν γρήγορα πού και πότε να εκτελέσουν αιφνίδιες επιθέσεις.\nΟι στρατιώτες χρειάζονται 25% λιγότερη εμπειρία για να εξελιχθούν και αποκτούν 5% μπόνους επίθεσης."
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_2.jsonauraName
 msgid "Tribute to Rome"
@@ -371,7 +371,7 @@ msgstr "Μέγας Βιβλιοθηκάριος"
 msgid ""
 "Continuing his predecessors' work on the Great Library of Alexandria, he seized every book brought to the city, thus leaving to his people a vast amount of hoarded wisdom.\n"
 "-10% resource cost for all technologies."
-msgstr ""
+msgstr "Συνεχίζοντας το έργο των προκατόχων του για τη Μεγάλη Βιβλιοθήκη της Αλεξάνδρειας, έφερε κάθε βιβλίο στην πόλη, αφήνοντας έτσι στο λαό του ένα τεράστιο ποσό συσσωρευμένης σοφίας.\n -10% στο κόστος των πόρων για όλες τις τεχνολογίες."
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_1.jsonauraName
 msgid "Avenger of Lucretia"
@@ -504,7 +504,7 @@ msgstr "Στρατός πρωταθλητών"
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraDescription
 msgid "+20% attack, +2 capture and +10% speed for champion units."
-msgstr ""
+msgstr "+20% επίθεση, +2 αιχμαλωσία και +10% ταχύτητα στις μονάδες-πρωταθλητές."
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraName
 msgid "Guerrilla Chief"
@@ -512,7 +512,7 @@ msgstr "Αρχηγός Ανταρτών"
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraDescription
 msgid "All soldiers and siege engines +15% speed and +1 armor."
-msgstr ""
+msgstr "Όλοι οι στρατιώτες και πολιορκητικές μηχανές έχουν +15% ταχύτητα και +1 θωράκιση."
 
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraName
 msgid "Britannorum Rex"
@@ -545,7 +545,7 @@ msgstr "Διοικητής Ιππικού"
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraDescription
 msgid "+30% attack for cavalry melee soldiers."
-msgstr ""
+msgstr "+30% επίθεση για τους στρατιώτες ιππικού εκ του συστάδην."
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraName
 msgid "Sacker of Rome"
@@ -553,7 +553,7 @@ msgstr "Συλητής της Ρώμης"
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraDescription
 msgid "+15 Metal loot for every enemy unit killed."
-msgstr ""
+msgstr "+15 Μέταλλο για κάθε εξόντωση μονάδας."
 
 #: simulation/data/auras/units/heroes/gaul_hero_britomartus.jsonauraName
 msgid "Preparation for War"
@@ -635,7 +635,7 @@ msgstr "Κατακτητής"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_2.jsonauraDescription
 msgid "-50% garrisoned regeneration rate for enemy civic centers."
-msgstr ""
+msgstr "-50% στο ρυθμό αναγέννησης για τα φρουρόμενα αντίπαλα κέντρα."
 
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraName
 msgid "Taxiarchès"
@@ -643,7 +643,7 @@ msgstr "Ταξιάρχης"
 
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraDescription
 msgid "+20% attack and +20% capture for pikemen."
-msgstr ""
+msgstr "+20% επίθεση και +20% αιχμαλωσία για τους δορατοφόρους στρατιώτες."
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraName
 msgid "Besieger"
@@ -651,7 +651,7 @@ msgstr "Πολιορκητής"
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraDescription
 msgid "+10% attack, +10% range and +1 armor for siege engines."
-msgstr ""
+msgstr "+10% επίθεση, +10% εμβέλεια και +1 θωράκιση για τις πολιορκητικές μηχανές."
 
 #: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraName
 msgid "Rise of Macedon"
@@ -686,7 +686,7 @@ msgstr "Διδάσκαλος"
 msgid ""
 "Empower a building with -20% cost and -50% research time while he is "
 "garrisoned in it."
-msgstr ""
+msgstr "Ενδυνάμωσε ένα κτίριο με μείωση -20% του κόστους και μείωση -50% του χρόνου έρευνας καθώς είναι τοποθετημένος μέσα."
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
 msgid "Regeneration"
@@ -694,7 +694,7 @@ msgstr "Αναγέννηση"
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraName
 msgid "Forefront Leader"
-msgstr ""
+msgstr "Αρχηγός πρώτης γραμμής."
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraDescription
 msgid "+20% attack and +1 capture for cavalry soldiers."
@@ -706,7 +706,7 @@ msgstr "Ηγεσία"
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraDescription
 msgid "+10% movement speed for all soldiers, siege engines and traders."
-msgstr ""
+msgstr "+10% ταχύτητα κίνησης σε όλους τους στρατιώτες, πολιορκητικές μηχανές και εμπόρους."
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraName
 msgid "Administrator"
@@ -743,7 +743,7 @@ msgstr "Ράφια"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraDescription
 msgid "Pikemen have 40% greater health during his lifetime."
-msgstr ""
+msgstr "Οι λογχοφόροι έχουν 40% περισσότερη υγεία κατά τη διάρκεια της ζωής τους."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraName
 msgid "Patron of Construction"
@@ -820,7 +820,7 @@ msgstr "Mεταρρυθμίσεις Ειλωτών"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
 msgid "+25% attack and +1 armor for javelin infantry soldiers."
-msgstr ""
+msgstr "+25% επίθεση και +1 θωράκιση για ακοντιστές πεζικάριους."
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
 msgid "Last Stand"

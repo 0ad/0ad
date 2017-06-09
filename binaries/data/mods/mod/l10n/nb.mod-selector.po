@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector project.
 # 
 # Translators:
-# Allan Nordhøy <epost@anotheragency.no>, 2016
+# Allan Nordhøy <epost@anotheragency.no>, 2016-2017
 # Kurt-Håkon Eilertsen <kurt@kheds.com>, 2014
 # Ole Sannes Riiser <OLE-SR@online.no>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-19 09:27+0100\n"
-"PO-Revision-Date: 2016-10-01 21:40+0000\n"
+"POT-Creation-Date: 2017-05-27 14:48+0200\n"
+"PO-Revision-Date: 2017-06-05 19:54+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -19,8 +19,8 @@ msgstr ""
 "Language: nb\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:(heading):93
-#: gui/modmod/modmod.xml:(heading):134
+#: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:(heading):98
+#: gui/modmod/modmod.xml:(heading):145
 msgid "Name"
 msgstr "Navn"
 
@@ -32,8 +32,8 @@ msgstr "Mappe"
 msgid "Label"
 msgstr "Etikett"
 
-#: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:(heading):96
-#: gui/modmod/modmod.xml:(heading):137
+#: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:(heading):101
+#: gui/modmod/modmod.xml:(heading):148
 msgid "Version"
 msgstr "Versjon"
 
@@ -41,7 +41,7 @@ msgstr "Versjon"
 msgid "Type: Any"
 msgstr "Type: Alle"
 
-#: gui/modmod/modmod.js:62 gui/modmod/modmod.js:308
+#: gui/modmod/modmod.js:62 gui/modmod/modmod.js:321
 msgid "Filter"
 msgstr "Filter"
 
@@ -49,15 +49,15 @@ msgstr "Filter"
 msgid "Message: Mods Loaded."
 msgstr "Melding: Justeringer lastet."
 
-#: gui/modmod/modmod.js:371
+#: gui/modmod/modmod.js:384
 msgid "All dependencies met"
 msgstr "Alle avhengigheter møtes"
 
-#: gui/modmod/modmod.js:497
+#: gui/modmod/modmod.js:510
 msgid "No mod has been selected."
 msgstr "Ingen justering er valgt."
 
-#: gui/modmod/modmod.xml:115
+#: gui/modmod/modmod.xml:120
 msgid "Description"
 msgstr "Beskrivelse"
 
@@ -85,58 +85,58 @@ msgstr "Minkende."
 msgid "Available Mods"
 msgstr "Tilgjengelige justeringer"
 
-#: gui/modmod/modmod.xml:(caption):118
+#: gui/modmod/modmod.xml:(caption):123
 msgid "Enable"
-msgstr "Aktiver"
+msgstr "Skru på"
 
-#: gui/modmod/modmod.xml:(caption):127
+#: gui/modmod/modmod.xml:(caption):132
 msgid "Enabled Mods"
-msgstr "Aktiverte justeringer"
+msgstr "Justeringer i bruk"
 
-#: gui/modmod/modmod.xml:(caption):157
+#: gui/modmod/modmod.xml:(caption):168
 msgid "Up"
 msgstr "Opp"
 
-#: gui/modmod/modmod.xml:(caption):161
+#: gui/modmod/modmod.xml:(caption):172
 msgid "X"
 msgstr "X"
 
-#: gui/modmod/modmod.xml:(caption):165
+#: gui/modmod/modmod.xml:(caption):176
 msgid "Down"
 msgstr "Ned"
 
-#: gui/modmod/modmod.xml:(caption):173
+#: gui/modmod/modmod.xml:(caption):184
 msgid "Quit"
 msgstr "Avslutt"
 
-#: gui/modmod/modmod.xml:(caption):178
+#: gui/modmod/modmod.xml:(caption):189
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: gui/modmod/modmod.xml:(caption):183
+#: gui/modmod/modmod.xml:(caption):194
 msgid "Save Configuration"
 msgstr "Lagre konfigurasjon"
 
-#: gui/modmod/modmod.xml:(caption):188
+#: gui/modmod/modmod.xml:(caption):199
 msgid "Start Mods"
 msgstr "Start justeringer"
 
-#: gui/modmod/modmod.xml:(heading):99 gui/modmod/modmod.xml:(heading):140
+#: gui/modmod/modmod.xml:(heading):104 gui/modmod/modmod.xml:(heading):151
 msgid "(Folder)"
 msgstr "(Mappe)"
 
-#: gui/modmod/modmod.xml:(heading):102 gui/modmod/modmod.xml:(heading):143
+#: gui/modmod/modmod.xml:(heading):107 gui/modmod/modmod.xml:(heading):154
 msgid "Mod Label"
 msgstr "Jussterings etikett"
 
-#: gui/modmod/modmod.xml:(heading):105 gui/modmod/modmod.xml:(heading):146
+#: gui/modmod/modmod.xml:(heading):110 gui/modmod/modmod.xml:(heading):157
 msgid "Mod Type"
 msgstr "Modifikasjonstype"
 
-#: gui/modmod/modmod.xml:(heading):108 gui/modmod/modmod.xml:(heading):149
+#: gui/modmod/modmod.xml:(heading):113 gui/modmod/modmod.xml:(heading):160
 msgid "Dependencies"
 msgstr "Avhengighet"
 
-#: gui/modmod/modmod.xml:(heading):111 gui/modmod/modmod.xml:(heading):152
+#: gui/modmod/modmod.xml:(heading):116 gui/modmod/modmod.xml:(heading):163
 msgid "Website"
 msgstr "Nettsted"

@@ -19,12 +19,13 @@
 # nicolas t <phidias2052@yahoo.fr>, 2016
 # Romain Mesnil <bnb6avekk6@protonmail.com>, 2016
 # Polakrity <sxk-fr@live.fr>, 2014,2017
+# Thierry Vignaud <thierry.vignaud@gmail.com>, 2017
 # Yannick Heintz, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-06-04 17:00+0000\n"
+"PO-Revision-Date: 2017-06-06 01:16+0000\n"
 "Last-Translator: Polakrity <sxk-fr@live.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +40,7 @@ msgid ""
 "health, 1 extra armor level of every type, 20% extra attack for melee units,"
 " 4m extra range and 5% better precision for ranged units, faster movement "
 "speeds and extra heal speed and range for healers."
-msgstr "Les unités promues en classe avancées s'améliorent significativement : 20% de santé supplémentaire, 1 type d'armure de chaque type supplémentaire, 20% de dégâts supplémentaires pour les unités de mêlée, 4m de portée et 5% de précision supplémentaire pour les unités à distance, une vitesse de déplacement, une vitesse de soin et une portée accrues pour les guérisseurs."
+msgstr "Les unités promues à la classe avancée s'améliorent significativement : 20% de santé supplémentaire, 1 point d'armure supplémentaire de chaque type, 20% de dégâts supplémentaires pour les unités de mêlée, 4m de portée et 5% de précision supplémentaire pour les unités à distance, une vitesse de déplacement, une vitesse de soin et une portée accrues pour les guérisseurs."
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -329,7 +330,7 @@ msgid ""
 "Body armor fashioned completely of bronze. Only the best soldiers were "
 "equipped with such body armor, as it was very expensive and time-consuming "
 "to fabricate."
-msgstr "Armure entièrement façonnée en bronze. Seuls les meilleurs soldats étaient équipés de telles armures corporelles, car elles étaient très cher et longues à fabriquer."
+msgstr "Armure entièrement façonnée en bronze. Seuls les meilleurs soldats étaient équipés de telles armures corporelles, car elles étaient très chères et longues à fabriquer."
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsontooltip
 msgid "Champions +2 Hack Armor Levels, but also +10 Metal Cost."
@@ -512,15 +513,15 @@ msgstr "Hasta"
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsondescription
 msgid "Training increases melee attack."
-msgstr "L'entrainement augmente les dégâts des attaques de mêlée."
+msgstr "L'entraînement augmente les attaques de mêlée."
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsontooltip
 msgid "+20% melee cavalry attack."
-msgstr "+20% de dégâts en plus pour la cavalerie de mêlée."
+msgstr "+20% de dégâts supplémentaires pour la cavalerie de mêlée."
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsongenericName
 msgid "Close Combat Cavalry Training"
-msgstr "Entrainement de la cavalerie au combat rapproché "
+msgstr "Entraînement de la cavalerie au combat rapproché "
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.ptol
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.spart
@@ -553,7 +554,7 @@ msgstr "Remplace les armes en bronze par du fer."
 #: simulation/data/technologies/attack_cavalry_melee_02.jsontooltip
 msgid ""
 "Equip your melee cavalry with better weapons. +20% melee cavalry attack."
-msgstr "Équiper votre cavalerie de mêlée avec de meilleures armes. La cavalerie de mêlée gagne +20% de dégâts en plus."
+msgstr "Équiper votre cavalerie de mêlée avec de meilleures armes. La cavalerie de mêlée gagne +20% de dégâts supplémentaires."
 
 #: simulation/data/technologies/attack_cavalry_melee_02.jsongenericName
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsongenericName
@@ -563,20 +564,20 @@ msgstr "Armes en fer"
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsondescription
 msgid "Training increases ranged attack."
-msgstr "L'entrainement augmente les dégâts des attaques à distance."
+msgstr "L'entraînement augmente les attaques à distance."
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsontooltip
 msgid "+20% ranged cavalry attack."
-msgstr "+20% de dégâts en plus pour la cavalerie à distance."
+msgstr "+20% de dégâts supplémentaires pour la cavalerie à distance."
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsongenericName
 msgid "Ranged Combat Cavalry Training"
-msgstr "Entrainement de la cavalerie au combat à distance"
+msgstr "Entraînement de la cavalerie au combat à distance"
 
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsontooltip
 msgid ""
 "Equip your ranged cavalry with better weapons. +20% ranged cavalry attack."
-msgstr "Équiper votre cavalerie à distance avec de meilleures armes. La cavalerie gagne +20% de dégâts en plus."
+msgstr "Équiper votre cavalerie à distance avec de meilleures armes. La cavalerie gagne +20% de dégâts supplémentaires."
 
 #: simulation/data/technologies/attack_champions_elite.jsondescription
 msgid "Guard units have uncommon bravery and valor in battle."
@@ -609,12 +610,12 @@ msgid ""
 "Often, an infantryman would carry a secondary weapon in addition to his "
 "primary weapon of choice, to be drawn when the primary weapon has failed or "
 "been broken."
-msgstr "Souvent, un soldat d'infanterie portait avec lui une arme secondaire en supplément de son arme principale, qu'il utilisait lorsque son arme principale défaillait ou se brisait."
+msgstr "La plupart, un soldat d'infanterie portait avec lui une arme secondaire en complément de son arme principale. Il l'utilisait lorsque son arme principale était défaillante ou était brisée."
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_melee_02.jsontooltip
 msgid "+20% melee infantry attack."
-msgstr "L'infanterie de mêlée gagne +20% de dégâts en plus."
+msgstr "L'infanterie de mêlée gagne +20% de dégâts supplémentaires."
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsongenericName
 #: simulation/data/technologies/melee_inf_sidearms.jsongenericName
@@ -641,19 +642,19 @@ msgstr "Pugio"
 
 #: simulation/data/technologies/attack_infantry_melee_02.jsondescription
 msgid "Using iron instead of bronze gave weapons additional power."
-msgstr "Utilisation du fer au lieu du bronze donnant une puissance supplémentaire aux armes."
+msgstr "Utilisation du fer au lieu du bronze procurant une puissance supplémentaire aux armes."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsondescription
 #: simulation/data/technologies/attack_infantry_ranged_02.jsondescription
 #: simulation/data/technologies/ranged_inf_irregulars.jsondescription
 msgid "Training increases damage of ranged infantry units."
-msgstr "L'entrainement améliore les dégâts des unités d'infanterie à distance."
+msgstr "L'entraînement améliore les dégâts des unités d'infanterie à distance."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_ranged_02.jsontooltip
 #: simulation/data/technologies/ranged_inf_irregulars.jsontooltip
 msgid "+20% ranged infantry attack."
-msgstr "+20% de dégâts en plus pour l'infanterie à distance."
+msgstr "+20% de dégâts supplémentaires pour l'infanterie à distance."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsongenericName
 #: simulation/data/technologies/ranged_inf_irregulars.jsongenericName
@@ -689,7 +690,7 @@ msgstr "La volonté de combattre est cruciale pour vaincre."
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
 msgid ""
 "Inspire your troops with higher pay. All land and naval army +25% attack."
-msgstr "Motiver vos troupes avec un salaire plus élevé. Toutes les armées terrestres et navales gagnent +25% de dégâts en plus."
+msgstr "Motiver vos troupes avec un salaire plus élevé. Toutes les armées terrestres et navales gagnent +25% de dégâts supplémentaires."
 
 #: simulation/data/technologies/attack_soldiers_will.jsongenericName
 msgid "Will to fight"
@@ -755,7 +756,7 @@ msgstr "Fondations solides"
 
 #: simulation/data/technologies/attack_tower_murderholes.jsondescription
 msgid "Murder holes allow hitting enemies at the foot of the tower."
-msgstr "Meurtrière permet d'atteindre les ennemis à la base de la tour"
+msgstr "Les meurtrières permettent d'atteindre les ennemis à la base de la tour."
 
 #: simulation/data/technologies/attack_tower_murderholes.jsontooltip
 msgid "Removes defense tower minimum range."
@@ -767,7 +768,7 @@ msgstr "Meurtrières"
 
 #: simulation/data/technologies/attack_tower_range.jsondescription
 msgid "Arrow shooters increase the maximum range of the fire arrows."
-msgstr "Tireurs de flèche augmente la portée maximale des flèches de feu."
+msgstr "Les tireurs de flèches augmente la portée maximale des flèches de feu."
 
 #: simulation/data/technologies/attack_tower_range.jsontooltip
 msgid "Increases defense tower maximum range by 8 meters."
@@ -849,11 +850,11 @@ msgstr "Élevage"
 #: simulation/data/technologies/gather_capacity_carts.jsondescription
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsondescription
 msgid "Increases shuttling capacity for all resources."
-msgstr "Augmente les capacités de transport pour toutes les ressources."
+msgstr "Augmente la capacité de transport pour toutes les ressources."
 
 #: simulation/data/technologies/gather_capacity_basket.jsontooltip
 msgid "Workers use baskets. +5 shuttle capacity for all resources."
-msgstr "Les travailleurs utilisent des paniers. +5 de capacité de transport pour toutes les ressources."
+msgstr "Les récolteurs utilisent des paniers. +5 de capacité de transport pour toutes les ressources."
 
 #: simulation/data/technologies/gather_capacity_basket.jsongenericName
 msgid "Baskets"
@@ -1057,7 +1058,7 @@ msgstr "Marteau et burin"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
 msgid "Baskets for foraging."
-msgstr ""
+msgstr "Paniers pour le fourrageage"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 msgid "Equip your foragers with wicker baskets. +50% fruit foraging rate."
@@ -1165,7 +1166,7 @@ msgid ""
 "The loom allowed the creation of finer clothing for settlers. Women of the "
 "household were taught from a young age how to weave on the loom, and "
 "subsequently spent a large share of their lives working with it."
-msgstr ""
+msgstr "Le métier à tisser a permis la création de vêtements plus fins pour les colons. Les femmes du foyer apprenaient dès le plus jeune âge à travailler avec le métier à tisser, et ainsi passaient une grande partie de leurs vies à travailler avec."
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "Female Citizens +50% Health."
@@ -1628,7 +1629,7 @@ msgstr "Faire en sorte que vos unités soient 50% plus chère à soudoyer."
 
 #: simulation/data/technologies/spy_counter.jsongenericName
 msgid "Counterintelligence"
-msgstr ""
+msgstr "Contre espionnage"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsondescription
 msgid "Improve the international trading profit."
@@ -1838,7 +1839,7 @@ msgstr "Le rôle premier des marchands est le commerce, mais ils récupèrent au
 #: simulation/data/technologies/unlock_spies.jsontooltip
 msgid ""
 "Allows bribing the units of other players in order to share their vision."
-msgstr ""
+msgstr "Permets de soudoyer les unités des autres joueurs afin de partager leur champ de vision."
 
 #: simulation/data/technologies/unlock_spies.jsongenericName
 msgid "Espionage"
@@ -2411,7 +2412,7 @@ msgstr "Les Mauryas construisent les murs de leurs villes en bois, une ressource
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
 msgid "Mauryan city walls have -20% less health and -20% less build time."
-msgstr ""
+msgstr "Les murs des Mauryas ont -20% de santé en moins et -20% de temps de construction en moins."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"
@@ -2429,7 +2430,7 @@ msgstr "Les Perses durent et ont prélevé un grand nombre d'infanterie pendant 
 
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsontooltip
 msgid "Persians have a 10% higher maximum population limit."
-msgstr "Perses ont 10% de plus à la limite maximum de population."
+msgstr "Les Perses ont 10% de plus à la limite maximum de population."
 
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
 msgid "Great King's Levy"
@@ -2520,7 +2521,7 @@ msgstr "La cavalerie s’entraîne -20% plus vite, mais perd -5% de santé. Déb
 msgid ""
 "All infantry -20% train time, but also -5% health. Unlocks Infantry "
 "Conscription."
-msgstr "Toute l'infanterie gagne -20% de temps de formation, mais perd -5% de santé. Débloque la Conscription d'infanterie."
+msgstr "Toute l'infanterie gagne -20% de temps de formation, mais perd -5% points de vie. Débloque la «Conscription d'infanterie»."
 
 #: simulation/data/technologies/romans/decay_logistics.jsondescription
 msgid "The Romans were masters of the logistics of warfare."
@@ -2640,7 +2641,7 @@ msgstr "Les Boucliers d'argent ou Argyraspides étaient l'infanterie lourde d'é
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with greater "
 "health and armor."
-msgstr "Améliore l'infanterie à bouclier championne en Boucliers d'argent, possédant une meilleure santé et armure."
+msgstr "Améliore l'infanterie à bouclier championne en «Boucliers d'argent», possédant une meilleure santé et armure."
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"

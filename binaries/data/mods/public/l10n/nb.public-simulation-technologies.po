@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-06-04 22:34+0000\n"
+"PO-Revision-Date: 2017-06-05 21:12+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -101,7 +101,7 @@ msgstr "Bard"
 #: simulation/data/technologies/persians/training_levy_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_levy_infantry.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
-msgstr "Låses opp i by-fasen."
+msgstr "Låses opp i tettstedfasen."
 
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.mace
@@ -870,7 +870,7 @@ msgstr "Salter fisk"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase. Requires Fishing Net."
-msgstr "Låses opp i byfasen. Krever fiskegarn."
+msgstr "Låses opp i tettstedfasen. Krever fiskegarn."
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers use wheelbarrows. +5 shuttle capacity for all resources."
@@ -1313,7 +1313,7 @@ msgstr "Storbyfasen"
 #: simulation/data/technologies/phase_city.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "Krever 4 nye byfase-bygninger (unntatt vegger og samfunnssentre)"
+msgstr "Krever 4 nye tettstedfasebygninger (unntatt vegger og samfunnssentre)"
 
 #: simulation/data/technologies/phase_city.jsonspecificName.mace
 #: simulation/data/technologies/phase_city.jsonspecificName.spart
@@ -1326,7 +1326,7 @@ msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology. This is the Athenian city phase, where metal "
 "gathering rates are boosted because of the 'Silver Owls' bonus."
-msgstr "Framskrider fra en myldrende by til et ekte metropol, full av den moderne teknologiens undere. Dette er den athenske storby-fasen, der hastigheten for metallutvinning økes på grunn av sølvugle-bonusen."
+msgstr "Framskrider fra et myldrende tettsted til et ekte metropol, full av den moderne teknologiens undere. Dette er den athenske storby-fasen, der hastigheten for metallutvinning økes på grunn av sølvugle-bonusen."
 
 #: simulation/data/technologies/phase_city_athen.jsontooltip
 msgid ""
@@ -1346,7 +1346,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. Citizen soldiers max health "
 "increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "Avanser til tettsted-fasen, som tilgjengeliggjør flere strukturer og enheter. Radiusen for territoriet rundt samfunnssenteret øker med +30%.\nBorgersoldaters høyeste helsenivå økes med +20%. Alle strukturer får +7 helbredingsrate med enheter forskanset i dem."
+msgstr "Avanser til tettstedfasen, som tilgjengeliggjør flere strukturer og enheter. Radiusen for territoriet rundt samfunnssenteret øker med +30%.\nBorgersoldaters høyeste helsenivå økes med +20%. Alle strukturer får +7 helbredingsrate med enheter forskanset i dem."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -1370,7 +1370,7 @@ msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly. "
 "This is the Athenian town phase, where metal gathering rates are boosted "
 "because of the 'Silver Owls' bonus."
-msgstr "Framskrider fra liten landsby til myldrende by til et ekte metropol, klar til rask ekspansjon. Dette er den athenske by-fasen, der hastigheten for metallutvinning økes på grunn av sølvugle-bonusen."
+msgstr "Framskrider fra liten landsby til myldrende by til et ekte metropol, klar til rask ekspansjon. Dette er den athenske tettstedfasen, der hastigheten for metallutvinning økes på grunn av sølvugle-bonusen."
 
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
@@ -1378,7 +1378,7 @@ msgid ""
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers. Citizen soldiers max health "
 "increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "Avanser til tettsted-fasen, som låser opp flere bygninger og enheter. Radiusen for territoriet rundt samfunnssenteret øker med +30%. 'Sølv-ugler' sivilisasjons-bonus skjenker ytterligere +10% metall-utvinningsbonus til alle arbeidere. Innbyggersoldaters høyeste helsenivå økes med +20%. Alle strukturer får +7 helbredingsrate med enheter forskanset i dem."
+msgstr "Avanser til tettstedfasen, som låser opp flere bygninger og enheter. Radiusen for territoriet rundt samfunnssenteret øker med +30%. 'Sølv-ugler' sivilisasjons-bonus skjenker ytterligere +10% metall-utvinningsbonus til alle arbeidere. Innbyggersoldaters høyeste helsenivå økes med +20%. Alle strukturer får +7 helbredingsrate med enheter forskanset i dem."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -2302,7 +2302,7 @@ msgstr "Spartanerne hadde ikke den største hæren i verden, men de hadde den be
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
 msgid "Spartans have 10% less maximum population."
-msgstr ""
+msgstr "Spartanerne har 10% lavere befolkningstak."
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
 msgid "Underdogs"
@@ -2400,7 +2400,7 @@ msgstr "Mauryanerne bygget sine bymurer av tre, en naturressurs det fantes rikel
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
 msgid "Mauryan city walls have -20% less health and -20% less build time."
-msgstr ""
+msgstr "Mauryanske byvegger har -20% mindre helse og -20% mindre bygningstid."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"
@@ -2509,7 +2509,7 @@ msgstr "Alt kavaleri -20% treningstid men også -5 helse. Låser opp verneplikt 
 msgid ""
 "All infantry -20% train time, but also -5% health. Unlocks Infantry "
 "Conscription."
-msgstr ""
+msgstr "Alt kavaleri -20% opptreningstid men også -5% helse. Låser opp kavaleri-verneplikt."
 
 #: simulation/data/technologies/romans/decay_logistics.jsondescription
 msgid "The Romans were masters of the logistics of warfare."

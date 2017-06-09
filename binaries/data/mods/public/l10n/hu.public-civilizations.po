@@ -25,9 +25,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:04+0200\n"
-"PO-Revision-Date: 2017-06-04 15:39+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-06-05 09:01+0200\n"
+"PO-Revision-Date: 2017-06-06 15:16+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -209,7 +209,7 @@ msgid ""
 "Aegean, thereby laying the foundations of future Athenian power. However, he"
 " was eventually ostracised by the Athenians and forced to flee to the "
 "protection of the Persians."
-msgstr ""
+msgstr "A tábornok, aki meggyőzte az athéniakat, hogy az ezüstbányáikból befolyó összeget 200 hadigálya építésére fordítsák. A perzsa háborúk idején az athéni flottát vezette győzelemre a döntő salamisi csatában, i. e. 479-ben. Később aktív perzsaellenes politikát folytatott az Égei-tengeren, megalapozva Athén tengeri hatalmát. Ironikus módon pont az athéniak közösítették ki, akik elől a Perzsa birodalomba menekült."
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[1].History
 msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
@@ -573,7 +573,7 @@ msgstr "Mint az Ibériai-félsziget, Észak-Afrika is a lovasságáról volt ism
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
 msgid "10% bonus of trade profit for allies' international routes."
-msgstr ""
+msgstr "10% bónusz profit a szövetségesek nemzetközi kereskedelmi utaihoz."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -794,12 +794,12 @@ msgstr "A gall druidák szervezett vallást tartottak fent, ami még háborús i
 
 #: simulation/data/civs/gaul.jsonAINames[0]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
-msgid "Britomartos"
-msgstr "Britomartos"
+msgid "Viridomarus"
+msgstr "Viridomarus"
 
 #: simulation/data/civs/gaul.jsonAINames[1]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[1].Name
-msgid "Brennos"
+msgid "Brennus"
 msgstr "Brennus"
 
 #: simulation/data/civs/gaul.jsonAINames[2]
@@ -812,7 +812,7 @@ msgstr "Cingetorix"
 
 #: simulation/data/civs/gaul.jsonAINames[4]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[2].Name
-msgid "Uerkingetorix"
+msgid "Vercingetorix"
 msgstr "Vercingetorix"
 
 #: simulation/data/civs/gaul.jsonAINames[5]
@@ -828,8 +828,8 @@ msgid "Liscus"
 msgstr "Liscus"
 
 #: simulation/data/civs/gaul.jsonAINames[8]
-msgid "Valetiacos"
-msgstr "Valetiacos"
+msgid "Valetiacus"
+msgstr "Valetiacus"
 
 #: simulation/data/civs/gaul.jsonAINames[9]
 msgid "Viridovix"
@@ -841,14 +841,17 @@ msgid ""
 msgstr "Meghatározott mennyiségű fém és élelem minden elpusztított vagy elfoglalt épület után."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
-msgid "Uae Uictos"
+msgid "Vae Victis"
 msgstr "Vae Victis"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
 msgid ""
-"Means Woe to the Defeated. It was the words that the Gallic Leader, Brennos,"
-" spoke at the Capitol at Rome after they took their plunder."
-msgstr "Jelentése jaj a legyőzötteknek. Ezek a gall vezető, Brennus szavai voltak a római Capitoliumon miután magához vette a zsákmányt."
+"Woe to the Defeated! The Gallic chieftain Brennus seized Rome (with the "
+"exception of a garrison on Capitoline Hill). When Camillus besieged him with"
+" a relief force from Veii, he negotiated his surrender for 1000 pounds of "
+"gold, and adding the weight of his sword on the scale when the Romans "
+"complained that he used false weights he uttered those famous words."
+msgstr ""
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid "Gallic druids gain a small melee attack."
@@ -867,21 +870,21 @@ msgstr "A carnutesek Aulercia (a mai Normandia része) druidái voltak. Harcolta
 
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].History
 msgid ""
-"When celt armies met the enemy, before the battle would start, the celt "
+"When Celtic armies met the enemy, before the battle would start, the Celtic "
 "leader would go to the first line and challenge the bravest of the enemy "
 "warriors to a single combat. The story of how Marcus Claudius Marcellus "
 "killed a Gallic leader at Clastidium (222 B.C.) is typical of such "
-"encounters. Advancing with a smallish army, Marcellus met a combined force "
-"of Insubrian Gauls and Gaesatae at Clastidium. The Gallic army advanced with"
-" the usual rush and terrifying cries, and their king, Britomartos, picking "
+"encounters. Advancing with a small army, Marcellus met a combined force of "
+"Insubrian Gauls and Gaesatae at Clastidium. The Gallic army advanced with "
+"the usual rush and terrifying cries, and their king, Viridomarus, picking "
 "out Marcellus by means of his badges of rank, made for him, shouting a "
-"challenge and brandishing his spear. Britomartos was an outstanding figure "
+"challenge and brandishing his spear. Viridomarus was an outstanding figure "
 "not only for his size but also for his adornments; for he was resplendent in"
 " bright colors and his armor shone with gold and silver. This armor, thought"
 " Marcellus, would be a fitting offering to the gods. He charged the Gaul, "
 "pierced his bright breastplate and cast him to the ground. It was an easy "
-"task to kill Britomartos and strip him of his armor."
-msgstr "Mikor a kelta seregek megütköztek az ellenséggel, a harc kezdete előtt a vezér mindig az első sorhoz ment, hogy küzdelemre hívja az ellenség legbátrabb harcosait. Annak története, ahogy Marcus Claudius Marcellus megölt Clastidiumnál egy gall parancsnokot (i. e. 222), tipikus példája az ilyen párbajoknak. Marcellus egy kisebb sereggel felvonulva fogadta az egyesült insubriai gallok és gaesatusok erőit. A gall sereg a szokásos rohammal és rémisztő üvöltésekkel nyomult előre, és a királyuk, Britomartos felismerve Marcellust a rangjelzései alapján nekiiramodott, megforgatta lándzsáját és párbajért kiáltott. Britomartosnak kiváló megjelenése volt nem csak a termete, hanem ékessége miatt is; élénk színekben ragyogott és a páncélja aranytól, ezüsttől fénylett. Ez a páncél, gondolta Marcellus megfelelő ajándék lehetne az isteneknek. Megrohanta hát a gallt, keresztüldöfte a mellvértjét, és a földre terítette. Könnyű dolog volt megölni Britomartost és megfosztani a páncéljától."
+"task to kill Viridomarus and strip him of his armor."
+msgstr "Mikor a kelta seregek megütköztek az ellenséggel, a harc kezdete előtt a vezér mindig az első sorhoz ment, hogy küzdelemre hívja az ellenség legbátrabb harcosait. Annak története, ahogy Marcus Claudius Marcellus megölt Clastidiumnál egy gall parancsnokot (i. e. 222), tipikus példája az ilyen párbajoknak. Marcellus egy kisebb sereggel felvonulva fogadta az egyesült insubriai gallok és gaesatusok erőit. A gall sereg a szokásos rohammal és rémisztő üvöltésekkel nyomult előre, és a királyuk, Viridomarus felismerve Marcellust a rangjelzései alapján nekiiramodott, megforgatta lándzsáját és párbajért kiáltott. Viridomarusnak kiváló megjelenése volt nem csak a termete, hanem ékessége miatt is; élénk színekben ragyogott és a páncélja aranytól, ezüsttől fénylett. Ez a páncél, gondolta Marcellus, megfelelő ajándék lehetne az isteneknek. Megrohanta hát a gallt, keresztüldöfte a mellvértjét, és a földre terítette. Könnyű dolog volt megölni Viridomarust és megfosztani a páncéljától."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -892,19 +895,19 @@ msgid ""
 "that Britons had conquered Rome, the greatest civilization in the world, "
 "long before Rome conquered the Britons. We know from many ancient sources "
 "which predate Geoffrey that Rome was indeed sacked, but in 387 not 390, and "
-"that the raid was led by a man named Brennos (which was latinized to "
-"Brennus), but he and his invading horde were Gallic Senones, not British. In"
-" this episode several features of Geoffrey's editing method can be seen: he "
-"modified the historical Brennus/Brennos, created the brother Belinus, "
-"borrowed the Gallic invasion, but omitted the parts where the Celts seemed "
-"weak or foolish. His technique is both additive and subtractive. Like the "
-"tale of Trojan origin, the story of the sack of Rome is not pure "
-"fabrication; it is a creative rearrangement of the available facts, with "
-"details added as necessary. By virtue of their historical association, Beli "
-"and Bran are often muddled with the earlier brothers Belinus and Brennus "
-"(the sons of Dunvallo Molmutius) who contended for power in northern Britain"
-" in around 390 B.C., and were regarded as gods in old Celtic tradition."
-msgstr "Brennus a római történészek által adott neve a gallok híres vezérének, aki elfoglalta Rómát Camillus idejében. Monmouth-i Gottfried (a krónikás, aki a „Historia Regum Britannia” szerzője) szerint Brennus és öccse Belinus elfoglalta Galliát és kifosztotta Rómát i. e. 390-ben, „bebizonyítva” hogy a britonok hamarabb leigázták Rómát, a világ legnagyobb civilizációját, minthogy Róma leigázta a britonokat. Sok ókori forrásból tudjuk (ami megelőzi Gottfriedet) hogy Rómát tényleg kifosztották, de 387-ben, nem 390-ben, és a rajtaütés vezetője egy Brennos nevű ember volt (latinosan Brennus), de ő és az inváziós serege gall szenonokból állt, nem britonokból. Ebből sok minden látható Gottfried szerkesztési módszeréből: módosította a történelmi Brennus/Brennost, létrehozta az öccs Belinust, kölcsönvette a gall inváziót, de kihagyta azokat a részeket, amelyek a keltákat gyengének vagy ostobának láttatták volna. A technikája egyszerre ad hozzá és vesz el. Mint a trójai eredetű történet, Róma kifosztásának története sem alaptalan; kreatív összerendezése az elérhető tényeknek, hozzáadott részekkel ahol szükséges. A történelmi kapcsolat miatt, Beli és Bran történetét gyakran összemossák a korábbi Belinussal és Brennussal (Dunvallo Molmutius fiaival), akik Észak-Britanniáért harcoltak i. e. 390 körül, és a régi kelta hagyományok istenként tisztelték őket."
+"that the raid was led by a man named Brennus, but he and his invading horde "
+"were Gallic Senones, not British. In this episode several features of "
+"Geoffrey's editing method can be seen: he modified the historical Brennus, "
+"created the brother Belinus, borrowed the Gallic invasion, but omitted the "
+"parts where the Celts seemed weak or foolish. His technique is both additive"
+" and subtractive. Like the tale of Trojan origin, the story of the sack of "
+"Rome is not pure fabrication; it is a creative rearrangement of the "
+"available facts, with details added as necessary. By virtue of their "
+"historical association, Beli and Bran are often muddled with the earlier "
+"brothers Belinus and Brennus (the sons of Dunvallo Molmutius) who contended "
+"for power in northern Britain in around 390 B.C., and were regarded as gods "
+"in old Celtic tradition."
+msgstr "Brennus a római történészek által adott neve a gallok híres vezérének, aki elfoglalta Rómát Camillus idejében. Monmouth-i Gottfried (a krónikás, aki a „Historia Regum Britannia” szerzője) szerint Brennus és öccse Belinus elfoglalta Galliát és kifosztotta Rómát i. e. 390-ben, „bebizonyítva” hogy a britonok hamarabb leigázták Rómát, a világ legnagyobb civilizációját, minthogy Róma leigázta a britonokat. Sok ókori forrásból tudjuk (ami megelőzi Gottfriedet) hogy Rómát tényleg kifosztották, de 387-ben, nem 390-ben, és a rajtaütés vezetője egy Brennus nevű ember volt, de ő és az inváziós serege gall szenonokból állt, nem britonokból. Ebből sok minden látható Gottfried szerkesztési módszeréből: módosította a történelmi Brennust, létrehozta az öcs Belinust, kölcsönvette a gall inváziót, de kihagyta azokat a részeket, amelyek a keltákat gyengének vagy ostobának láttatták volna. A technikája egyszerre ad hozzá és vesz el. Mint a trójai eredetű történet, Róma kifosztásának története sem alaptalan; kreatív összerendezése az elérhető tényeknek, hozzáadott részekkel ahol szükséges. A történelmi kapcsolat miatt, Beli és Bran történetét gyakran összemossák a korábbi Belinussal és Brennussal (Dunvallo Molmutius fiaival), akik Észak-Britanniáért harcoltak i. e. 390 körül, és a régi kelta hagyományok istenként tisztelték őket."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -1446,11 +1449,11 @@ msgstr "A ksatriják, jelentése harcos, a négy nagy varna (társadalmi osztál
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
 msgid "Allied temples and temple technologies -50% cost and research time."
-msgstr ""
+msgstr "Minden szövetséges templomnál és templomi technológiánál -50% költség, és kutatási idő."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
 msgid "Ashoka's Religious Support"
-msgstr ""
+msgstr "Asóka vallási támogatása"
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].History
 msgid ""
@@ -1624,7 +1627,7 @@ msgstr "A perzsák nagy számú gyalogságot tudtak besorozni háború idején, 
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
 msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr ""
+msgstr "Magasabb bevétel (+15%) a szövetséges kereskedők szárazföldi kereskeldelmi útvonalain."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -1723,7 +1726,7 @@ msgid ""
 "Sardis to Susa; Darius the Great and Xerxes also built the magnificent "
 "Persepolis; Cyrus the Great greatly improved Ecbatana and virtually "
 "'rebuilt' the old Elamite capital of Susa."
-msgstr ""
+msgstr "A perzsák építették a csodálatos, 2700 kilométer hosszú Királyi utat Szardeisztől Szúzáig; Nagy Dárajavaus és Khsajársá emellett megépíttette a káprázatos Perszepoliszt; Nagy Kurus nagymértékben fejlesztette Ekbatana városát és lényegében „újjáépítette” a régi elámi fővárost, Szúzát."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[2].Description
 msgid "Reduces train time for Anusiya champion infantry by half."
@@ -1847,7 +1850,7 @@ msgid ""
 "sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
 " under the Ptolemies was so prosperous as to be the richest of Alexander's "
 "successor states."
-msgstr ""
+msgstr "A görög-makedón Ptolemaiosz-dinasztia a nagyszámú görög és idegen zsoldosra támaszkodott a haderő nagyjaként, főleg azért mert az őslakos egyiptomi egységek hűséget gyakran megkérdőjelezték. És valóban, egy felkelés során, Felső-Egyiptom évtizedekre elveszett a Ptolemaioszoktól. A zsoldosak gyakran harcedzettek voltak és a hűségük megvehető volt, néha olcsón, néha drágán. Ez nem nagyon számított, mivel Egyiptom a Ptolemaioszok alatt olyan virágzó volt, hogy Alexandrosz utódállamai közül a leggazdagabb volt."
 
 #: simulation/data/civs/ptol.jsonCivBonuses[1].Description
 msgid "The Ptolemaic Egyptians receive 3 additional farming technologies."
@@ -2505,7 +2508,7 @@ msgid ""
 "Achaean League and the Kingdom of Pergamon banded together with the Romans "
 "to defeat him at the Battle of Magnesia, forever burying the dream of "
 "reuniting Alexander's empire."
-msgstr ""
+msgstr "Antiokhosz egy bajban lévő királyságot örökölt meg az uralma elején. Az összeomlás széléről sikerült összeforrasztani I. Szeleukosz nehezen megalapított birodalmát. A lázadó keleti szatrapiákat, Baktriát és Párthiát térdre kényszerítette, ideiglenesen biztosítva a keleti határokat. Ezután a görög anyaföld felé fordította figyelmét, megpróbálta beteljesíteni atyjai álmait Görögország meghódításával, a felszabadítás jegyében. Az acheai liga és Pergamon királysága a rómaiakkal összeverődve legyőzte őt a magnesiai csatában, örökre eltemetve Alexandrosz birodalmának újraegyesítésének álmát."
 
 #: simulation/data/civs/sele.jsonFactions[0].Heroes[1].Name
 msgid "Antiokhos G' Megas"
