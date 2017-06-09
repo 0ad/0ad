@@ -28,6 +28,8 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 		this.targetPlayer = undefined;
 	}
 
+	this.uniqueTargetId = data && data.uniqueTargetId || undefined;
+
 	// get a starting rallyPoint ... will be improved later
 	let rallyPoint;
 	let rallyAccess;
@@ -712,6 +714,9 @@ m.AttackPlan.prototype.chooseTarget = function(gameState)
 	this.target = this.getNearestTarget(gameState, this.rallyPoint);
 	if (!this.target)
 	{
+		if (this.uniqueTargetId)
+			return false;
+
 		// may-be all our previous enemey target (if not recomputed here) have been destroyed ?
 		this.targetPlayer = gameState.ai.HQ.attackManager.getEnemyPlayer(gameState, this);
 		if (this.targetPlayer !== undefined)
@@ -782,12 +787,22 @@ m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand
 	this.isBlocked = false;
 
 	let targets;
-	if (this.type === "Raid")
-		targets = this.raidTargetFinder(gameState);
-	else if (this.type === "Rush" || this.type === "Attack")
-		targets = this.rushTargetFinder(gameState, this.targetPlayer);
+	if (this.uniqueTargetId)
+	{
+		targets = new API3.EntityCollection(gameState.sharedScript);
+		let ent = gameState.getEntityById(this.uniqueTargetId);
+		if (ent)
+			targets.addEnt(ent);
+	}
 	else
-		targets = this.defaultTargetFinder(gameState, this.targetPlayer);
+	{
+		if (this.type === "Raid")
+			targets = this.raidTargetFinder(gameState);
+		else if (this.type === "Rush" || this.type === "Attack")
+			targets = this.rushTargetFinder(gameState, this.targetPlayer);
+		else
+			targets = this.defaultTargetFinder(gameState, this.targetPlayer);
+	}
 	if (!targets.hasEntities())
 		return undefined;
 
@@ -1788,6 +1803,9 @@ m.AttackPlan.prototype.UpdateTarget = function(gameState, events)
 		this.target = this.getNearestTarget(gameState, this.position, true);
 		if (!this.target)
 		{
+			if (this.uniqueTargetId)
+				return false;
+
 			// Check if we could help any current attack
 			let attackManager = gameState.ai.HQ.attackManager;
 			let accessIndex = gameState.ai.accessibility.getAccessValue(this.position);
@@ -1978,6 +1996,7 @@ m.AttackPlan.prototype.Serialize = function()
 		"targetPlayer": this.targetPlayer,
 		"target": this.target !== undefined ? this.target.id() : undefined,
 		"targetPos": this.targetPos,
+		"uniqueTargetId": this.uniqueTargetId,
 		"path": this.path
 	};
 

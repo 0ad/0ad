@@ -504,28 +504,41 @@ m.AttackManager.prototype.raidTargetEntity = function(gameState, ent)
 };
 
 /**
- * Response to the capture of one of our structure:
- * transform all defense armies around into a new attack army and target this structure
+ * Switch defense armies into an attack one against the given target
+ * data.range: transform all defense armies inside range of the target into a new attack
+ * data.armyID: transform only the defense army ID into a new attack
+ * data.uniqueTarget: the attack will stop when the target is destroyed or captured
  */
-m.AttackManager.prototype.counterAttack = function(gameState, ent, range=150)
+m.AttackManager.prototype.switchDefenseToAttack = function(gameState, target, data)
 {
-	if (!ent || !ent.position())
+	if (!target || !target.position())
 		return false;
-	let pos = ent.position();
+	if (!data.range && !data.armyID)
+	{
+		API3.warn(" attackManager.switchToAttack inconsistent data " + uneval(data));
+		return false;
+	}
+	attackData = data.uniqueTarget ? { "uniqueTargetId": target.id() } : undefined;
+	let pos = target.position();
 	let attackType = "Attack";
-	let attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber, attackType);
+	let attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber, attackType, attackData);
 	if (attackPlan.failed)
 		return false;
 	this.totalNumber++;
 	attackPlan.init(gameState);
 	this.startedAttacks[attackType].push(attackPlan);
 
-	for (let i = 0; i < gameState.ai.HQ.defenseManager.armies.length; ++i)
+	for (let army of gameState.ai.HQ.defenseManager.armies)
 	{
-		let army = gameState.ai.HQ.defenseManager.armies[i];
-		army.recalculatePosition(gameState);
-		if (API3.SquareVectorDistance(pos, army.foePosition) > range*range)
+		if (data.range)
+		{
+			army.recalculatePosition(gameState);
+			if (API3.SquareVectorDistance(pos, army.foePosition) > data.range * data.range)
+				continue;
+		}
+		else if (army.ID != +data.armyID)
 			continue;
+
 		while (army.foeEntities.length > 0)
 			army.removeFoe(gameState, army.foeEntities[0]);
 		while (army.ownEntities.length > 0)
@@ -539,16 +552,15 @@ m.AttackManager.prototype.counterAttack = function(gameState, ent, range=150)
 				attackPlan.unitCollection.updateEnt(unit);
 			}
 		}
-		gameState.ai.HQ.defenseManager.armies.splice(i--, 1);
 	}
 	if (!attackPlan.unitCollection.hasEntities())
 	{
 		attackPlan.Abort(gameState);
 		return false;
 	}
-	attackPlan.targetPlayer = ent.owner();
+	attackPlan.targetPlayer = target.owner();
 	attackPlan.targetPos = pos;
-	attackPlan.target = ent;
+	attackPlan.target = target;
 	attackPlan.state = "arrived";
 	return true;
 };
