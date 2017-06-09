@@ -217,9 +217,9 @@ m.TradeManager.prototype.performBarter = function(gameState)
 
 	let rates = gameState.ai.HQ.GetCurrentGatherRates(gameState);
 
-	let prices = gameState.getBarterPrices();
+	let barterPrices = gameState.getBarterPrices();
 	// calculates conversion rates
-	let getBarterRate = function (prices,buy,sell) { return Math.round(100 * prices.sell[sell] / prices.buy[buy]); };
+	let getBarterRate = (prices, buy, sell) => Math.round(100 * prices.sell[sell] / prices.buy[buy]);
 
 	// loop through each missing resource checking if we could barter and help finishing a queue quickly.
 	for (let buy of needs.types)
@@ -257,7 +257,7 @@ m.TradeManager.prototype.performBarter = function(gameState)
 					barterRateMin += 20;
 			}
 
-			let barterRate = getBarterRate(prices, buy, sell);
+			let barterRate = getBarterRate(barterPrices, buy, sell);
 			if (barterRate > bestRate && barterRate > barterRateMin)
 			{
 				bestRate = barterRate;
@@ -287,7 +287,7 @@ m.TradeManager.prototype.performBarter = function(gameState)
 		let barterRateMin = 80;
 		if (available[buy] < 5000 && available.food > 5000)
 			barterRateMin -= 20 - Math.floor(available[buy]/250);
-		let barterRate = getBarterRate(prices, buy, "food");
+		let barterRate = getBarterRate(barterPrices, buy, "food");
 		if (barterRate < barterRateMin)
 			continue;
 		let choice = barterRate / (100 + available[buy]);
@@ -302,7 +302,7 @@ m.TradeManager.prototype.performBarter = function(gameState)
 		barterers[0].barter(bestToBuy, "food", 100);
 		if (this.Config.debug > 2)
 			API3.warn("Contingency bartering: sold food for " + bestToBuy + " available sell " + available.food +
-				  " available buy " + available[bestToBuy] + " barterRate " + getBarterRate(prices, bestToBuy, "food"));
+				  " available buy " + available[bestToBuy] + " barterRate " + getBarterRate(barterPrices, bestToBuy, "food"));
 		return true;
 	}
 
@@ -391,8 +391,8 @@ m.TradeManager.prototype.checkEvents = function(gameState, events)
  */
 m.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 {
-	let market1 = gameState.updatingCollection("OwnMarkets", API3.Filters.byClass("Market"), gameState.getOwnStructures()).toEntityArray();
-	let market2 = gameState.updatingCollection("ExclusiveAllyMarkets", API3.Filters.byClass("Market"), gameState.getExclusiveAllyEntities()).toEntityArray();
+	let market1 = gameState.updatingCollection("OwnMarkets", API3.Filters.byClass("Market"), gameState.getOwnStructures());
+	let market2 = gameState.updatingCollection("ExclusiveAllyMarkets", API3.Filters.byClass("Market"), gameState.getExclusiveAllyEntities());
 	if (market1.length + market2.length < 2)  // We have to wait  ... markets will be built soon
 	{
 		this.tradeRoute = undefined;
@@ -400,7 +400,8 @@ m.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 		return false;
 	}
 
-	if (!market2.length)
+	let onlyOurs = !market2.hasEntities();
+	if (onlyOurs)
 		market2 = market1;
 	let candidate = { "gain": 0 };
 	let potential = { "gain": 0 };
@@ -409,15 +410,15 @@ m.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 
 	let traderTemplatesGains = gameState.getTraderTemplatesGains();
 
-	for (let m1 of market1)
+	for (let m1 of market1.values())
 	{
 		if (!m1.position())
 			continue;
 		let access1 = m.getLandAccess(gameState, m1);
 		let sea1 = m1.hasClass("NavalMarket") ? m.getSeaAccess(gameState, m1) : undefined;
-		for (let m2 of market2)
+		for (let m2 of market2.values())
 		{
-			if (m1.id() === m2.id())
+			if (onlyOurs && m1.id() >= m2.id())
 				continue;
 			if (!m2.position())
 				continue;
@@ -426,6 +427,8 @@ m.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 			let land = access1 == access2 ? access1 : undefined;
 			let sea = sea1 && sea1 == sea2 ? sea1 : undefined;
 			if (!land && !sea)
+				continue;
+			if (land && m.isLineInsideEnemyTerritory(gameState, m1.position(), m2.position()))
 				continue;
 			let gainMultiplier;
 			if (land && traderTemplatesGains.landGainMultiplier)
