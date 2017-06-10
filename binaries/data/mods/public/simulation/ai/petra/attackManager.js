@@ -515,10 +515,10 @@ m.AttackManager.prototype.switchDefenseToAttack = function(gameState, target, da
 		return false;
 	if (!data.range && !data.armyID)
 	{
-		API3.warn(" attackManager.switchToAttack inconsistent data " + uneval(data));
+		API3.warn(" attackManager.switchDefenseToAttack inconsistent data " + uneval(data));
 		return false;
 	}
-	attackData = data.uniqueTarget ? { "uniqueTargetId": target.id() } : undefined;
+	let attackData = data.uniqueTarget ? { "uniqueTargetId": target.id() } : undefined;
 	let pos = target.position();
 	let attackType = "Attack";
 	let attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber, attackType, attackData);
