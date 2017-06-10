@@ -149,9 +149,9 @@ function colorizeHotkey(text, hotkey)
  * The autocomplete hotkey is hardcoded in SDLK_TAB of CInput.cpp,
  * as we don't want hotkeys interfering with typing text.
  */
-function colorizeAutocompleteHotkey()
+function colorizeAutocompleteHotkey(string)
 {
-	return sprintf(translate("Press %(hotkey)s to autocomplete playernames."), {
+	return sprintf(string || translate("Press %(hotkey)s to autocomplete playernames."), {
 		"hotkey":
 			"[color=\"" + g_HotkeyColor + "\"]" +
 			"\\[" + translateWithContext("hotkey", "Tab") + "]" +

@@ -1083,7 +1083,8 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 					continue;
 				gainMultiplier = traderTemplatesGains.navalGainMultiplier;
 			}
-			else if (m.getLandAccess(gameState, market) === index)
+			else if (m.getLandAccess(gameState, market) === index &&
+				!m.isLineInsideEnemyTerritory(gameState, market.position(), pos))
 				gainMultiplier = traderTemplatesGains.landGainMultiplier;
 			else
 				continue;

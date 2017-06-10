@@ -110,6 +110,13 @@ var g_WithoutTeam = 0;
 var g_GameData;
 var g_ResourceData = new Resources();
 
+// Selected chart indexes
+var g_SelectedChart = {
+	"category": [0, 0],
+	"value": [0, 0],
+	"type": [0, 0]
+};
+
 function selectPanel(panel)
 {
 	// TODO: move panel buttons to a custom parent object
@@ -179,10 +186,17 @@ function updateCategoryDropdown(number)
 	chartCategory.onSelectionChange = function() {
 		if (!this.list_data[this.selected])
 			return;
+		if (g_SelectedChart.category[number] != this.selected)
+		{
+			g_SelectedChart.category[number] = this.selected;
+			g_SelectedChart.value[number] = 0;
+			g_SelectedChart.type[number] = 0;
+		}
+		
 		resizeDropdown(this);
 		updateValueDropdown(number, this.list_data[this.selected]);
 	};
-	chartCategory.selected = 0;
+	chartCategory.selected = g_SelectedChart.category[number];
 }
 
 function updateValueDropdown(number, category)
@@ -197,10 +211,16 @@ function updateValueDropdown(number, category)
 	chartValue.onSelectionChange = function() {
 		if (!this.list_data[this.selected])
 			return;
+		if (g_SelectedChart.value[number] != this.selected)
+		{
+			g_SelectedChart.value[number] = this.selected;
+			g_SelectedChart.type[number] = 0;
+		}
+
 		resizeDropdown(this);
 		updateTypeDropdown(number, category, this.list_data[this.selected], this.selected);
 	};
-	chartValue.selected = 0;
+	chartValue.selected = g_SelectedChart.value[number];
 }
 
 function updateTypeDropdown(number, category, item, itemNumber)
@@ -222,10 +242,11 @@ function updateTypeDropdown(number, category, item, itemNumber)
 	chartType.onSelectionChange = function() {
 		if (!this.list_data[this.selected])
 			return;
+		g_SelectedChart.type[number] = this.selected;
 		resizeDropdown(this);
 		updateChart(number, category, item, itemNumber, this.list_data[this.selected]);
 	};
-	chartType.selected = 0;
+	chartType.selected = g_SelectedChart.type[number];
 }
 
 function updateChart(number, category, item, itemNumber, type)

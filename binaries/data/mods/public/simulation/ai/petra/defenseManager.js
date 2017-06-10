@@ -266,6 +266,7 @@ m.DefenseManager.prototype.checkEnemyArmies = function(gameState)
 
 		if (army.getState() === 0)
 		{
+			this.switchToAttack(gameState, army);
 			army.clear(gameState);
 			this.armies.splice(i--,1);
 			continue;
@@ -347,6 +348,7 @@ m.DefenseManager.prototype.checkEnemyArmies = function(gameState)
 		if (stillDangerous)
 			continue;
 
+		this.switchToAttack(gameState, army);
 		army.clear(gameState);
 		this.armies.splice(i--,1);
 	}
@@ -471,7 +473,7 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 		{
 			let ent = gameState.getEntityById(evt.entity);
 			if (ent && ent.hasClass("CivCentre")) // one of our cc has been captured
-				gameState.ai.HQ.attackManager.counterAttack(gameState, ent);
+				gameState.ai.HQ.attackManager.switchDefenseToAttack(gameState, ent, { "range": 150 });
 		}
 	}
 
@@ -723,6 +725,36 @@ m.DefenseManager.prototype.GetCooperationLevel = function(ent)
 	if (this.attackedAllies[ally] && this.attackedAllies[ally] > 1)
 		cooperation += 0.2 * (this.attackedAllies[ally] - 1);
 	return cooperation;
+};
+
+/**
+ * Switch a defense army into an attack if needed
+ */
+m.DefenseManager.prototype.switchToAttack = function(gameState, army)
+{
+	if (!army)
+		return;
+	for (let targetId of this.targetList)
+	{
+		let target = gameState.getEntityById(targetId);
+		if (!target || !target.position() || !gameState.isPlayerEnemy(target.owner()))
+			continue;
+		let targetAccess = m.getLandAccess(gameState, target);
+		let targetPos = target.position();
+		for (let entId of army.ownEntities)
+		{
+			let ent = gameState.getEntityById(entId);
+			if (!ent)
+				continue;
+			let pos = ent.position();
+			if (!pos || gameState.ai.accessibility.getAccessValue(pos) !== targetAccess)
+				continue;
+			if (API3.SquareVectorDistance(targetPos, pos) > 14400)
+				continue;
+			gameState.ai.HQ.attackManager.switchDefenseToAttack(gameState, target, { "armyID": army.ID, "uniqueTarget": true });
+			return;
+		}
+	}
 };
 
 m.DefenseManager.prototype.Serialize = function()
