@@ -8,8 +8,8 @@ function getLocalizedResourceName(resourceName, context)
  */
 function getLocalizedResourceAmounts(resources)
 {
-	let amounts = Object.keys(resources)
-		.filter(type => resources[type] > 0)
+	let amounts = g_ResourceData.GetCodes()
+		.filter(type => resources[type])
 		.map(type => sprintf(translate("%(amount)s %(resourceType)s"), {
 			"amount": resources[type],
 			"resourceType": getLocalizedResourceName(g_ResourceData.GetResource(type).name, "withinSentence")

@@ -37,6 +37,11 @@ var g_RangeTooltipString = {
 	}
 };
 
+function getCostTypes()
+{
+	return g_ResourceData.GetCodes().concat(["population", "populationBonus", "time"]);
+}
+
 function resourceIcon(resource)
 {
 	return '[icon="icon_' + resource + '"]';
@@ -344,8 +349,9 @@ function getBuildRateTooltip(template)
 function multiplyEntityCosts(template, trainNum)
 {
 	let totalCosts = {};
-	for (let r in template.cost)
-		totalCosts[r] = Math.floor(template.cost[r] * trainNum);
+	for (let r of getCostTypes())
+		if (template.cost[r])
+			totalCosts[r] = Math.floor(template.cost[r] * trainNum);
 
 	return totalCosts;
 }
@@ -363,7 +369,7 @@ function getEntityCostComponentsTooltipString(template, entity, buildingsCountTo
 		}) : 1));
 
 	let costs = [];
-	for (let type in template.cost)
+	for (let type of getCostTypes())
 		// Population bonus is shown in the tooltip
 		if (type != "populationBonus" && totalCosts[type])
 			costs.push(sprintf(translate("%(component)s %(cost)s"), {
@@ -418,7 +424,7 @@ function getResourceTrickleTooltip(template)
 	if (!template.resourceTrickle)
 		return "";
 
-	let resCodes = Object.keys(template.resourceTrickle.rates).filter(res => template.resourceTrickle.rates[res]);
+	let resCodes = g_ResourceData.GetCodes().filter(res => template.resourceTrickle.rates[res]);
 	if (!resCodes.length)
 		return "";
 
@@ -446,9 +452,7 @@ function getWallPieceTooltip(wallTypes)
 {
 	let out = [];
 	let resourceCount = {};
-
-	// Initialize the acceptable types for '$x to $y $resource' mode.
-	for (let resource in wallTypes[0].cost)
+	for (let resource of getCostTypes())
 		if (wallTypes[0].cost[resource])
 			resourceCount[resource] = [wallTypes[0].cost[resource]];
 

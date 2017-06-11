@@ -2,7 +2,7 @@ RMS.LoadLibrary("rmgen");
 
 const tHillDark = "cliff volcanic light";
 const tHillMedium1 = "ocean_rock_a";
-const tHillMedium2  = "ocean_rock_b";
+const tHillMedium2 = "ocean_rock_b";
 const tHillVeryDark = ["cliff volcanic coarse", "cave_walls"];
 const tRoad = "road1";
 const tRoadWild = "road1";

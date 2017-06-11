@@ -192,7 +192,7 @@ function generateModsList(listObjectName, mods)
 	});
 
 	// Update the list
-	var obj  = Engine.GetGUIObjectByName(listObjectName);
+	var obj = Engine.GetGUIObjectByName(listObjectName);
 	obj.list_name = names;
 	obj.list_modFolderName = folders;
 	obj.list_modLabel = labels;
