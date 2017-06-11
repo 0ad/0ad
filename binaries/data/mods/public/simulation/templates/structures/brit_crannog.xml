@@ -32,11 +32,9 @@
       units/{civ}_cavalry_javelinist_b
       units/{civ}_ship_fishing
       units/{civ}_ship_merchant
+      units/{civ}_ship_bireme
       units/{civ}_ship_trireme
     </Entities>
-    <Technologies datatype="tokens">
-      -phase_town
-    </Technologies>
   </ProductionQueue>
   <RallyPointRenderer>
     <LinePassabilityClass>ship</LinePassabilityClass>
