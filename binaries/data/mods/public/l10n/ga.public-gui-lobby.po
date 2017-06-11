@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:02+0200\n"
-"PO-Revision-Date: 2017-06-05 15:23+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-06-10 13:59+0000\n"
+"Last-Translator: Kenny Oxley <coinneachoxley@gmail.com>\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -48,7 +48,7 @@ msgstr "Imreoir"
 
 #: gui/lobby/lobby.js:54
 msgid "Muted Player"
-msgstr ""
+msgstr "Imreoir Ciúnaithe"
 
 #: gui/lobby/lobby.js:138
 msgid "Disconnected."
@@ -66,16 +66,16 @@ msgstr " %(nick)s fhág"
 
 #: gui/lobby/lobby.js:181
 msgid "You have been muted."
-msgstr ""
+msgstr "Tá tú balbhaíodh"
 
 #: gui/lobby/lobby.js:182
 #, javascript-format
 msgid "%(nick)s has been muted."
-msgstr ""
+msgstr "Tá%(nick)sbalbhaíodh"
 
 #: gui/lobby/lobby.js:185
 msgid "You are now a moderator."
-msgstr ""
+msgstr "Tá tú módhnóir anois"
 
 #: gui/lobby/lobby.js:186
 #, javascript-format
@@ -84,7 +84,7 @@ msgstr ""
 
 #: gui/lobby/lobby.js:189
 msgid "You have been unmuted."
-msgstr ""
+msgstr "Bhfuil tú a thuilleadh fuaim"
 
 #: gui/lobby/lobby.js:190
 #, javascript-format
@@ -107,11 +107,11 @@ msgstr "%(oldnick)s atá aitheanta anois mar %(newnick)s."
 
 #: gui/lobby/lobby.js:254
 msgid "Set your state to 'Away'."
-msgstr ""
+msgstr "Socraigh do stádas a 'Amach'."
 
 #: gui/lobby/lobby.js:261
 msgid "Set your state to 'Online'."
-msgstr ""
+msgstr "Socraigh do stádas 'Ar Líne'."
 
 #: gui/lobby/lobby.js:268
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
@@ -123,11 +123,11 @@ msgstr ""
 
 #: gui/lobby/lobby.js:284
 msgid "Show this help."
-msgstr ""
+msgstr "Taispeáin an chabhair."
 
 #: gui/lobby/lobby.js:287
 msgid "Chat commands:"
-msgstr ""
+msgstr "Orduithe Comhrá:"
 
 #. Translation: Chat command help format
 #: gui/lobby/lobby.js:291
@@ -202,7 +202,7 @@ msgstr ""
 #, javascript-format
 msgctxt "lobby kick"
 msgid "Reason: %(reason)s"
-msgstr ""
+msgstr "Cúis:%(reason)s"
 
 #: gui/lobby/lobby.js:512
 msgid "BANNED"
@@ -362,15 +362,15 @@ msgstr ""
 
 #: gui/lobby/prelobby.js:104
 msgid "Please enter your password"
-msgstr ""
+msgstr "Cuir isteach d'fhocal faire"
 
 #: gui/lobby/prelobby.js:117
 msgid "Please enter your password again"
-msgstr ""
+msgstr "Cuir isteach d'fhocal faire arís"
 
 #: gui/lobby/prelobby.js:123
 msgid "Passwords do not match"
-msgstr ""
+msgstr "Ní gá pasfhocail mheaitseáil"
 
 #: gui/lobby/prelobby.js:129
 msgid "Please read the Terms of Service"
@@ -444,7 +444,7 @@ msgstr "Clár ceann riain"
 
 #: gui/lobby/lobby.xml:(caption):105 gui/lobby/lobby.xml:(caption):328
 msgid "User Profile Lookup"
-msgstr ""
+msgstr "Faoi Úsáideoir Cigire Próifíl"
 
 #: gui/lobby/lobby.xml:(caption):133
 msgid "Map Type:"
@@ -469,7 +469,7 @@ msgstr "Príomhroghchlár"
 
 #: gui/lobby/lobby.xml:(caption):261
 msgid "Show only open games"
-msgstr ""
+msgstr "Léiríonn cluichí ach ar oscailt"
 
 #: gui/lobby/lobby.xml:(caption):313 gui/lobby/lobby.xml:(caption):375
 msgid "Back"
@@ -489,7 +489,7 @@ msgstr "Grianghraf Próifíl"
 
 #: gui/lobby/lobby.xml:(caption):370
 msgid "Please enter a player name."
-msgstr ""
+msgstr "Iontráil ainm imreoir."
 
 #: gui/lobby/lobby.xml:(heading):41
 msgid "Status"
@@ -533,11 +533,11 @@ msgstr "Cuntas Nua a Chruthú"
 
 #: gui/lobby/prelobby.xml:(caption):27
 msgid "Login to an existing account"
-msgstr ""
+msgstr "Logáil isteach le cuntas atá ann cheana féin"
 
 #: gui/lobby/prelobby.xml:(caption):33
 msgid "Connect to the game lobby"
-msgstr ""
+msgstr "Ceangail leis an stocaireacht cluiche"
 
 #: gui/lobby/prelobby.xml:(caption):36 gui/lobby/prelobby.xml:(caption):63
 msgid "Login:"
@@ -732,7 +732,7 @@ msgstr ""
 msgid ""
 " 8. Allow yourself to be removed from the service if at any time a moderator"
 " determines your behavior is not consistent with these rules."
-msgstr ""
+msgstr "8. Ceadaigh tú féin a bhaint as an tseirbhís má chinneann aon tráth modhnóir nach bhfuil do iompar i gcomhréir leis na rialacha sin."
 
 #: gui/lobby/Terms_of_Use.txt:19
 msgid ""
@@ -740,4 +740,4 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "1.Cháipéis seo ar bhealach ar bith Athrú; tráth ar bith; ar an gcoinníoll go bhfuil an t-úsáideoir na seirbhíse a thugtar fógra leordhóthanach ar an t-athrú (beidh an sainmhíniú ar fógra imleor a chinneadh tráth ag painéal Cluichí Wildfire (WFG) baill foirne)."

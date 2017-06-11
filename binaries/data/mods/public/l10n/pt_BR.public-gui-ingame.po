@@ -57,7 +57,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:01+0200\n"
-"PO-Revision-Date: 2017-06-06 17:33+0000\n"
+"PO-Revision-Date: 2017-06-10 16:47+0000\n"
 "Last-Translator: borg 2k <estevanborg@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -1060,7 +1060,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
 "the arrows of the other types to modify their shares. You can also press "
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
-msgstr "Escolha um tipo de recurso que você gostaria de modificar, clicando nele, e então utilize as setas"
+msgstr "Selecione um tipo de mercadorias que deseja modificar, clicando nele e, em seguida, use as setas dos outros tipos para modificar seus compartilhamentos. Você também pode pressionar %(hotkey)s enquanto seleciona um tipo de mercadoria para trazer seu compartilhamento em 100 %%."
 
 #: gui/session/session.js:420
 #, javascript-format
@@ -1253,19 +1253,19 @@ msgstr "Ataca todas as unidades inimigas, evitando construções."
 
 #: gui/session/unit_actions.js:1320
 msgid "Press to allow allies to use this dropsite"
-msgstr "Pressione para permitir os aliados de usar este dropsite"
+msgstr "Pressione para permitir que os aliados usem este depósito"
 
 #: gui/session/unit_actions.js:1324
 msgid "Press to prevent allies from using this dropsite"
-msgstr "Pressione para impedir os aliados de usar este dropsite"
+msgstr "Pressione para impedir que os aliados usem este depósito"
 
 #: gui/session/unit_actions.js:1389
 msgid "You are allowed to use this dropsite"
-msgstr "Você é permitido a usar este dropsite"
+msgstr "Você está permitido a usar este depósito"
 
 #: gui/session/unit_actions.js:1394
 msgid "The use of this dropsite is prohibited"
-msgstr "O uso deste dropsite é proibido"
+msgstr "O uso deste depósito é proibido"
 
 #: gui/session/unit_actions.js:1468
 msgid "The entity has to be killed before it can be gathered from"
@@ -1522,7 +1522,7 @@ msgstr "Experiência"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):83
 msgid "Rank"
-msgstr "Ranque"
+msgstr "Classificação"
 
 #: gui/session/selection_panels_right/queue_panel.xml:(tooltip):8
 msgid "Production queue"

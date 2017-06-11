@@ -36,7 +36,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:05+0200\n"
-"PO-Revision-Date: 2017-06-05 18:18+0000\n"
+"PO-Revision-Date: 2017-06-09 16:54+0000\n"
 "Last-Translator: Christof Verhoeven <christof.verhoeven@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -285,11 +285,11 @@ msgstr "Totaal aantal relikwieën die op de kaart worden geplaatst."
 
 #: gui/gamesetup/gamesetup.js:585
 msgid "Victory Duration"
-msgstr ""
+msgstr "Overwinningsduur"
 
 #: gui/gamesetup/gamesetup.js:586
 msgid "Number of minutes until the player has won."
-msgstr ""
+msgstr "Aantal minuten tot de speler gewonnen heeft."
 
 #: gui/gamesetup/gamesetup.js:601
 msgid "Game Speed"
@@ -301,21 +301,21 @@ msgstr "Selecteer de snelheid van het spel."
 
 #: gui/gamesetup/gamesetup.js:665
 msgid "Chose the civilization for this player"
-msgstr ""
+msgstr "Koos de beschaving voor deze speler"
 
 #: gui/gamesetup/gamesetup.js:705
 msgid "Hero Garrison"
-msgstr ""
+msgstr "Held Bemanning"
 
 #: gui/gamesetup/gamesetup.js:706
 msgid "Toggle whether heroes can be garrisoned."
-msgstr ""
+msgstr "In/uitschakelen of helden structuren kunnen bemannen."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
 #: gui/gamesetup/gamesetup.js:719
 msgid "Revealed Map"
-msgstr ""
+msgstr "Zichtbare Kaart"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
@@ -327,7 +327,7 @@ msgstr "Toon de volledige kaart (bekijk alles)."
 #. explored map options!
 #: gui/gamesetup/gamesetup.js:737
 msgid "Explored Map"
-msgstr ""
+msgstr "Verkende Kaart"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
@@ -337,7 +337,7 @@ msgstr "Verken de kaart (bekijk initiële kaart)."
 
 #: gui/gamesetup/gamesetup.js:750
 msgid "Disable Treasures"
-msgstr ""
+msgstr "Schatten Uitschakelen"
 
 #: gui/gamesetup/gamesetup.js:751
 msgid "Disable all treasures on the map."
@@ -353,7 +353,7 @@ msgstr "Schakel spionnen uit tijdens het spel"
 
 #: gui/gamesetup/gamesetup.js:772
 msgid "Teams Locked"
-msgstr ""
+msgstr "Teams Vergrendeld"
 
 #: gui/gamesetup/gamesetup.js:773
 msgid "Toggle locked teams."
@@ -361,7 +361,7 @@ msgstr "Zet de teams vast of variabel."
 
 #: gui/gamesetup/gamesetup.js:786
 msgid "Last Man Standing"
-msgstr ""
+msgstr "Laatste Overlevende Wint"
 
 #: gui/gamesetup/gamesetup.js:787
 msgid ""
@@ -371,7 +371,7 @@ msgstr "Vecht tot de laatste speler, vink deze optie uit om het mogelijk te make
 
 #: gui/gamesetup/gamesetup.js:799
 msgid "Cheats"
-msgstr ""
+msgstr "Cheats"
 
 #: gui/gamesetup/gamesetup.js:800
 msgid "Toggle the usability of cheats."
@@ -379,7 +379,7 @@ msgstr "Zet de mogelijkheid om vals te spelen."
 
 #: gui/gamesetup/gamesetup.js:812
 msgid "Rated Game"
-msgstr ""
+msgstr "Competitiespel"
 
 #: gui/gamesetup/gamesetup.js:813
 msgid "Toggle if this game will be rated for the leaderboard."
@@ -388,7 +388,7 @@ msgstr "Activeer dit als je wil dat het spel je score kan wijzigen."
 #: gui/gamesetup/gamesetup.js:838
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames or settings."
-msgstr ""
+msgstr "Druk op %(hotkey)s om spelersnamen of instellingen automatisch aan te vullen."
 
 #: gui/gamesetup/gamesetup.js:846
 msgid "Return to the lobby."
@@ -410,7 +410,7 @@ msgstr "Start een nieuw spel met de huidige instellingen."
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)"
-msgstr ""
+msgstr "Start een nieuw spel met de huidige instellingen. (uitgeschakeld totdat alle spelers klaar zijn)"
 
 #: gui/gamesetup/gamesetup.js:1405
 msgctxt "map selection"
@@ -420,7 +420,7 @@ msgstr "Willekeurig"
 #: gui/gamesetup/gamesetup.js:1682 gui/gamesetup/gamesetup.js:1721
 #, javascript-format
 msgid "%(option)s:"
-msgstr ""
+msgstr "%(option)s:"
 
 #: gui/gamesetup/gamesetup.js:1687
 msgctxt "option value"

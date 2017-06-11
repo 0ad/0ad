@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:02+0200\n"
-"PO-Revision-Date: 2017-06-08 11:49+0000\n"
+"PO-Revision-Date: 2017-06-10 14:58+0000\n"
 "Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -1644,15 +1644,15 @@ msgstr "Χρησιμοποιήθηκαν"
 
 #: gui/summary/summary.js:85
 msgid "Received"
-msgstr ""
+msgstr "Ελήφθησαν"
 
 #: gui/summary/summary.js:90
 msgid "Sold"
-msgstr ""
+msgstr "Πωλήθηκαν"
 
 #: gui/summary/summary.js:95
 msgid "Outcome"
-msgstr ""
+msgstr "Εξαγωγές"
 
 #: gui/summary/summary.js:344
 msgid "Are you sure you want to quit the lobby?"
@@ -2033,7 +2033,7 @@ msgstr "Επιλογή mods προς χρήση."
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations"
-msgstr ""
+msgstr "Μάθετε πως να παίζεται, ξεκινήστε τον οδηγό εκπαίδευσης, ανακαλύψτε τις δομές της τεχνολογίας και την ιστορία πίσω από τους πολιτισμούς"
 
 #: gui/pregame/mainmenu.xml:(tooltip):473
 msgid "Challenge the computer player to a single player match."
@@ -2111,7 +2111,7 @@ msgstr "Διαγραφή"
 
 #: gui/replaymenu/replay_menu.xml:(caption):254
 msgid "Reload Cache"
-msgstr ""
+msgstr "Επαναφόρτωση Προσωρινής Μνήμης"
 
 #: gui/replaymenu/replay_menu.xml:(caption):261
 #: gui/summary/summary.xml:(caption):23
@@ -2156,7 +2156,7 @@ msgstr "Διάρκεια"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):255
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
-msgstr ""
+msgstr "Επαναδημιουργήστε ξανά την προσωρινή μνήμη επαναλήψεως. Δυνητικά αργό!"
 
 #: gui/savedgames/load.xml:(heading):44
 msgctxt "replay"
@@ -2218,17 +2218,17 @@ msgstr "Εκπαιδευτής Μονάδων"
 
 #: gui/summary/summary.xml:(caption):105
 msgid "Charts"
-msgstr ""
+msgstr "Διαγράμματα"
 
 #: gui/summary/summary.xml:(caption):167
 msgctxt "summary chart"
 msgid "Category:"
-msgstr ""
+msgstr "Κατηγορία:"
 
 #: gui/summary/summary.xml:(caption):177
 msgctxt "summary chart"
 msgid "Value:"
-msgstr ""
+msgstr "Τιμή:"
 
 #: gui/summary/summary.xml:(caption):187
 msgctxt "summary chart"
@@ -2246,12 +2246,12 @@ msgstr "Συνέχεια"
 #: gui/summary/summary.xml:(tooltip):173
 msgctxt "summary chart"
 msgid "Category"
-msgstr ""
+msgstr "Κατηγορία"
 
 #: gui/summary/summary.xml:(tooltip):183
 msgctxt "summary chart"
 msgid "Value"
-msgstr ""
+msgstr "Τιμή"
 
 #: gui/summary/summary.xml:(tooltip):194
 msgctxt "summary chart"
@@ -2444,11 +2444,11 @@ msgstr "Συνομιλία Ανεκτέλεστων"
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
-msgstr ""
+msgstr "Εμφάνιση τη μέση βαθμολογία των συμμετεχόντων παικτών σε μια στήλη στη λίστα των παιχνιδιών."
 
 #: gui/options/options.jsonlobbySetting[1].label
 msgid "Game Rating Column"
-msgstr ""
+msgstr "Στήλη Βαθμολογίας Παιχνιδιού"
 
 #: gui/options/options.jsongeneralSetting[0].tooltip
 msgid "How you want to be addressed in Single Player matches."
@@ -2566,7 +2566,7 @@ msgstr "Όλοι"
 #: gui/options/options.jsongeneralSetting[13].parameters.list[1].label
 #: gui/options/options.jsongeneralSetting[14].parameters.list[1].label
 msgid "Buddies"
-msgstr ""
+msgstr "Φίλοι"
 
 #: gui/options/options.jsongeneralSetting[13].parameters.list[2].label
 #: gui/options/options.jsongeneralSetting[14].parameters.list[2].label
@@ -2577,17 +2577,17 @@ msgstr "Απενεργοποιήθηκε"
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
-msgstr ""
+msgstr "Αυτόματη εκχώρηση συμμετεχόντων σε ελεύθερες θέσεις παικτών κατά τη διάρκεια της ρύθμισης του αγώνα."
 
 #: gui/options/options.jsongeneralSetting[13].label
 msgid "Assign Players"
-msgstr ""
+msgstr "Εκχώρηση Παιχτών"
 
 #: gui/options/options.jsongeneralSetting[14].tooltip
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started"
-msgstr ""
+msgstr "Επιτρέπει σε όλους ή μόνο στους φίλους να συνδεθούν στο παιχνίδι ως παρατηρητές μετά την έναρξη του παιχνιδιού."
 
 #: gui/options/options.jsongeneralSetting[14].label
 msgid "Late Observer Joins"
@@ -2622,17 +2622,17 @@ msgstr "Χρονοθέτηση Συνομιλίας"
 msgid ""
 "Display the range of auras of selected units and structures (can also be "
 "toggled in-game with the hotkey)."
-msgstr ""
+msgstr "Εμφάνιση του βεληνεκές της αύρας τον επιλεγμένων μονάδων και κτιρίων (μπορεί να αλλάξει και μέσα στο παιχνίδι με το πλήκτρο συντόμευσης)."
 
 #: gui/options/options.jsongeneralSetting[18].label
 msgid "Aura Range Visualization"
-msgstr ""
+msgstr "Οπτικοποίηση Βεληνεκές Αύρας"
 
 #: gui/options/options.jsongeneralSetting[19].tooltip
 msgid ""
 "Display the healing range of selected units (can also be toggled in-game "
 "with the hotkey)."
-msgstr ""
+msgstr "Εμφάνιση του βεληνεκές της θεραπείας τον επιλεγμένων μονάδων (μπορεί να αλλάξει και μέσα στο παιχνίδι με το πλήκτρο συντόμευσης)."
 
 #: gui/options/options.jsongeneralSetting[19].label
 msgid "Heal Range Visualization"
@@ -2892,7 +2892,7 @@ msgstr "Συγκομιδή από ζώα, θάμνους μούρων, ψάρι�
 
 #: simulation/data/resources/metal.jsondescription
 msgid "Mine from metal mines or quarries."
-msgstr ""
+msgstr "Εξόρυξη από ορυχεία μετάλλου ή λατομία."
 
 #: simulation/data/resources/stone.jsondescription
 msgid "Mine from rocks, stone quarries or ruins."
@@ -2900,7 +2900,7 @@ msgstr "Εξόρυξη από βράχους, λατομία ή ερείπια."
 
 #: simulation/data/resources/wood.jsondescription
 msgid "Cut down from trees or groves."
-msgstr ""
+msgstr "Κόψτε από δέντρα ή τα δάση."
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.

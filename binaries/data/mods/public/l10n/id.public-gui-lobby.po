@@ -6,13 +6,14 @@
 # azayrahmad <azayrahmad@gmail.com>, 2014-2015
 # Fqn Kdgzd <inactive+D1sgaea@transifex.com>, 2014
 # Joshua Randiny <jrandiny2@gmail.com>, 2014-2015
+# Joshua Randiny <jrandiny2@gmail.com>, 2017
 # Samuel <srandiny@gmail.com>, 2014-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:02+0200\n"
-"PO-Revision-Date: 2017-06-05 15:23+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-06-10 17:43+0000\n"
+"Last-Translator: Joshua Randiny <jrandiny2@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,7 +52,7 @@ msgstr "Pemain"
 
 #: gui/lobby/lobby.js:54
 msgid "Muted Player"
-msgstr ""
+msgstr "Pemain dibisukan"
 
 #: gui/lobby/lobby.js:138
 msgid "Disconnected."
@@ -69,21 +70,21 @@ msgstr "%(nick)s telah pergi."
 
 #: gui/lobby/lobby.js:181
 msgid "You have been muted."
-msgstr ""
+msgstr "Anda telah dibisukan."
 
 #: gui/lobby/lobby.js:182
 #, javascript-format
 msgid "%(nick)s has been muted."
-msgstr ""
+msgstr "%(nick)s telah dibisukan."
 
 #: gui/lobby/lobby.js:185
 msgid "You are now a moderator."
-msgstr ""
+msgstr "Anda sekarang seorang moderator."
 
 #: gui/lobby/lobby.js:186
 #, javascript-format
 msgid "%(nick)s is now a moderator."
-msgstr ""
+msgstr "%(nick)s sekarang menjadi moderator."
 
 #: gui/lobby/lobby.js:189
 msgid "You have been unmuted."
@@ -96,12 +97,12 @@ msgstr ""
 
 #: gui/lobby/lobby.js:192
 msgid "You are not a moderator anymore."
-msgstr ""
+msgstr "Anda sudah bukan moderator lagi."
 
 #: gui/lobby/lobby.js:193
 #, javascript-format
 msgid "%(nick)s is not a moderator anymore."
-msgstr ""
+msgstr "%(nick)s sudah bukan moderator lagi"
 
 #: gui/lobby/lobby.js:209
 #, javascript-format
@@ -110,15 +111,15 @@ msgstr "%(oldnick)s sekarang dikenal sebagai %(newnick)s."
 
 #: gui/lobby/lobby.js:254
 msgid "Set your state to 'Away'."
-msgstr ""
+msgstr "Setel status jadi 'Pergi'."
 
 #: gui/lobby/lobby.js:261
 msgid "Set your state to 'Online'."
-msgstr ""
+msgstr "Setel status jadi 'Online'."
 
 #: gui/lobby/lobby.js:268
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
-msgstr ""
+msgstr "Tendang pemain spesifik dari lobi. Penggunaan: /kick nama alasan"
 
 #: gui/lobby/lobby.js:276
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
