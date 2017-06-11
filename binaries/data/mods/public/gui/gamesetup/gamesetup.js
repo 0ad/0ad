@@ -768,7 +768,7 @@ var g_Checkboxes = {
 		},
 		"enabled": () => g_GameAttributes.mapType != "scenario",
 	},
-	"lockTeams":  {
+	"lockTeams": {
 		"title": () => translate("Teams Locked"),
 		"tooltip": () => translate("Toggle locked teams."),
 		"default": () => Engine.HasXmppClient(),
@@ -782,7 +782,7 @@ var g_Checkboxes = {
 			g_GameAttributes.mapType != "scenario" &&
 			!g_GameAttributes.settings.RatingEnabled,
 	},
-	"lastManStanding":  {
+	"lastManStanding": {
 		"title": () => translate("Last Man Standing"),
 		"tooltip": () => translate("Toggle whether the last remaining player or the last remaining set of allies wins."),
 		"default": () => false,
@@ -795,7 +795,7 @@ var g_Checkboxes = {
 			g_GameAttributes.mapType != "scenario" &&
 			!g_GameAttributes.settings.LockTeams,
 	},
-	"enableCheats":  {
+	"enableCheats": {
 		"title": () => translate("Cheats"),
 		"tooltip": () => translate("Toggle the usability of cheats."),
 		"default": () => !g_IsNetworked,
@@ -899,7 +899,7 @@ var g_PlayerMiscControls = {
 				name =
 					'[color="' +
 					g_ReadyData[assignedGUID ? g_PlayerAssignments[assignedGUID].status : 2].color +
-					'"]' +  name + '[/color]';
+					'"]' + name + '[/color]';
 
 			return name;
 		},
@@ -937,7 +937,7 @@ function init(attribs)
 
 	g_IsNetworked = attribs.type != "offline";
 	g_IsController = attribs.type != "client";
-	g_IsTutorial = attribs.tutorial &&  attribs.tutorial == true;
+	g_IsTutorial = attribs.tutorial && attribs.tutorial == true;
 	g_ServerName = attribs.serverName;
 	g_ServerPort = attribs.serverPort;
 	g_StunEndpoint = attribs.stunEndpoint;
