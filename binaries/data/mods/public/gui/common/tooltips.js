@@ -424,7 +424,7 @@ function getResourceTrickleTooltip(template)
 	if (!template.resourceTrickle)
 		return "";
 
-	let resCodes = g_ResourceData.GetCodes().filter(res => template.resourceTrickle.rates[res]);
+	let resCodes = g_ResourceData.GetCodes().filter(res => !!template.resourceTrickle.rates[res]);
 	if (!resCodes.length)
 		return "";
 
