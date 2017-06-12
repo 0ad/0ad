@@ -35,7 +35,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:02+0200\n"
-"PO-Revision-Date: 2017-06-06 20:56+0000\n"
+"PO-Revision-Date: 2017-06-09 21:48+0000\n"
 "Last-Translator: Xaver\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -319,7 +319,7 @@ msgstr "Heldengarnison"
 
 #: gui/common/gamedescription.js:268
 msgid "Heroes can be garrisoned."
-msgstr "Helden könen einquartiert werden."
+msgstr "Helden können einquartiert werden."
 
 #: gui/common/gamedescription.js:272
 msgid "Exposed Heroes"
@@ -1886,7 +1886,7 @@ msgstr "Feedback aus"
 
 #: gui/pregame/mainmenu.xml:(caption):157
 msgid "Tutorial"
-msgstr "Tutorial"
+msgstr "Einführung"
 
 #: gui/pregame/mainmenu.xml:(caption):171
 #: gui/structree/structree.xml:(caption):18
@@ -2594,7 +2594,7 @@ msgstr "Deaktiviert"
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
-msgstr "Beitretenden Clients während der Spielvorbereitung automatisch einen freien Slot zuweisen"
+msgstr "Beitretenden Clients während der Spielvorbereitung automatisch einen freien Slot zuweisen."
 
 #: gui/options/options.jsongeneralSetting[13].label
 msgid "Assign Players"
@@ -2612,7 +2612,7 @@ msgstr "Späte Zuschauerbeitritte"
 
 #: gui/options/options.jsongeneralSetting[15].tooltip
 msgid "Prevent further observers from joining if the limit is reached"
-msgstr "hinderte weitere Zuschauer daran beizutreten, wenn die maximale Anzahl an Zuschauern erreicht ist"
+msgstr "Weitere Zuschauer daran hindern, beizutreten, wenn das Limit erreicht ist"
 
 #: gui/options/options.jsongeneralSetting[15].label
 msgid "Observer Limit"
@@ -2661,7 +2661,7 @@ msgstr "Allgemeine Lautstärke"
 
 #: gui/options/options.jsonsoundSetting[0].label
 msgid "Master Volume"
-msgstr "Hauptlautstärke"
+msgstr "Gesamtlautstärke"
 
 #: gui/options/options.jsonsoundSetting[1].tooltip
 msgid "In game music gain"
@@ -2887,7 +2887,7 @@ msgstr "Vertikale Synchronisation"
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
-msgstr "Um die CPU-Auslastung zu reduzieren, wird dies die Renderhäufigzeit in allen Menüs reduzieren. Auf das Maximum setzen, um die Begrenzung zu deaktivieren."
+msgstr "Renderfrequenz in allen Menüs drosseln, um die CPU-Auslastung zu reduzieren, Auf Maximum setzen, um die Drosselung zu deaktivieren."
 
 #: gui/options/options.jsongraphicsSetting[16].label
 msgid "FPS throttling in menus"

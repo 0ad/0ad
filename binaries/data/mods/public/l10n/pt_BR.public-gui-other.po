@@ -32,7 +32,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:02+0200\n"
-"PO-Revision-Date: 2017-06-06 18:09+0000\n"
+"PO-Revision-Date: 2017-06-10 02:29+0000\n"
 "Last-Translator: borg 2k <estevanborg@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -1708,7 +1708,7 @@ msgstr "Tempo de jogo decorrido: %(time)s"
 #: gui/summary/summary.js:419
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
-msgstr "%(mapaNome)s - %(mapaTipo)s"
+msgstr "%(mapName)s%(mapType)s"
 
 #: gui/civinfo/civinfo.xml:(caption):16
 msgid "Civilizations"

@@ -13,14 +13,14 @@
 # Maximilian Wagenbach <foaly.f@web.de>, 2016-2017
 # pilino1234 <pilino1234@zoho.eu>, 2016
 # Raymond Vetter, 2014-2017
-# Xaver, 2015-2016
+# Xaver, 2015-2017
 # YSelfTool <yselftool@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:02+0200\n"
-"PO-Revision-Date: 2017-06-05 15:26+0000\n"
-"Last-Translator: YSelfTool <yselftool@gmail.com>\n"
+"PO-Revision-Date: 2017-06-09 21:56+0000\n"
+"Last-Translator: Xaver\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -82,7 +82,7 @@ msgstr "Du wurdest stumm geschaltet."
 #: gui/lobby/lobby.js:182
 #, javascript-format
 msgid "%(nick)s has been muted."
-msgstr "%(nick)s wurde verstummt."
+msgstr "%(nick)s wurde stumm geschaltet."
 
 #: gui/lobby/lobby.js:185
 msgid "You are now a moderator."
@@ -100,7 +100,7 @@ msgstr "Du wurdest stumm geschaltet."
 #: gui/lobby/lobby.js:190
 #, javascript-format
 msgid "%(nick)s has been unmuted."
-msgstr "%(nick)s ist nicht mehr verstummt."
+msgstr "%(nick)s ist nicht mehr stumm geschaltet."
 
 #: gui/lobby/lobby.js:192
 msgid "You are not a moderator anymore."
@@ -197,7 +197,7 @@ msgstr "Du wurdest von der Lobby gebannt!"
 
 #: gui/lobby/lobby.js:481
 msgid "You have been kicked from the lobby!"
-msgstr "Du wurdest von der Lobby gekickt!"
+msgstr "Du wurdest aus der Lobby gekickt!"
 
 #: gui/lobby/lobby.js:483
 #, javascript-format

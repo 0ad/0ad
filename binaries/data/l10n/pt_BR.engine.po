@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-19 09:25+0100\n"
-"PO-Revision-Date: 2017-04-09 16:11+0000\n"
+"POT-Creation-Date: 2017-05-27 14:48+0200\n"
+"PO-Revision-Date: 2017-06-10 16:34+0000\n"
 "Last-Translator: borg 2k <estevanborg@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -29,135 +29,135 @@ msgstr ""
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:823
+#: gui/scripting/ScriptFunctions.cpp:826
 #, c-format
 msgid "%s (custom build)"
 msgstr "%s (custom build)"
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:828
+#. dennis-ignore: *
+#: gui/scripting/ScriptFunctions.cpp:832
 #, c-format
 msgid "%s (%ls)"
 msgstr "%s (%ls)"
 
-#: gui/scripting/ScriptFunctions.cpp:849
+#: gui/scripting/ScriptFunctions.cpp:853
 msgid "custom build"
 msgstr "custom build"
 
-#: i18n/L10n.cpp:252
+#: i18n/L10n.cpp:251
 msgid "Long strings"
 msgstr "Textos longos"
 
-#: lobby/XmppClient.cpp:750
+#: lobby/XmppClient.cpp:720
 msgid "unknown subtype (see logs)"
 msgstr "Subtipo desconhecido (ver registros)"
 
-#: lobby/XmppClient.cpp:1001 lobby/XmppClient.cpp:1045
-#: lobby/XmppClient.cpp:1084
+#: lobby/XmppClient.cpp:986 lobby/XmppClient.cpp:1030
+#: lobby/XmppClient.cpp:1069
 msgid "Error"
 msgstr "Erro"
 
-#: lobby/XmppClient.cpp:1004 lobby/XmppClient.cpp:1048
+#: lobby/XmppClient.cpp:989 lobby/XmppClient.cpp:1033
 msgid "No error"
 msgstr "Sem erros"
 
-#: lobby/XmppClient.cpp:1006
+#: lobby/XmppClient.cpp:991
 msgid "Player already logged in"
-msgstr "Jogador já Logado"
+msgstr "Jogador já logado"
 
-#: lobby/XmppClient.cpp:1008
+#: lobby/XmppClient.cpp:993
 msgid "Forbidden"
 msgstr "Proibido"
 
-#: lobby/XmppClient.cpp:1010
+#: lobby/XmppClient.cpp:995
 msgid "Internal server error"
 msgstr "Erro interno de servidor"
 
-#: lobby/XmppClient.cpp:1014
+#: lobby/XmppClient.cpp:999
 msgid "Not allowed"
 msgstr "Não permitido"
 
-#: lobby/XmppClient.cpp:1015
+#: lobby/XmppClient.cpp:1000
 msgid "Not authorized"
 msgstr "Não autorizado"
 
-#: lobby/XmppClient.cpp:1018
+#: lobby/XmppClient.cpp:1003
 msgid "Recipient temporarily unavailable"
 msgstr "Destinatário temporariamente indisponível"
 
-#: lobby/XmppClient.cpp:1020
+#: lobby/XmppClient.cpp:1005
 msgid "Registration required"
 msgstr "Registro obrigatório"
 
-#: lobby/XmppClient.cpp:1024
+#: lobby/XmppClient.cpp:1009
 msgid "Service unavailable"
 msgstr "Serviço indisponível"
 
-#: lobby/XmppClient.cpp:1029 lobby/XmppClient.cpp:1068
-#: lobby/XmppClient.cpp:1097
+#: lobby/XmppClient.cpp:1014 lobby/XmppClient.cpp:1053
 msgid "Unknown error"
 msgstr "Erro desconhecido"
 
-#: lobby/XmppClient.cpp:1049
+#: lobby/XmppClient.cpp:1034
 msgid "Stream error"
 msgstr "Erro de transferência"
 
-#: lobby/XmppClient.cpp:1050
+#: lobby/XmppClient.cpp:1035
 msgid "The incoming stream version is unsupported"
 msgstr "O motor de fluxo de entrada não é suportado"
 
-#: lobby/XmppClient.cpp:1051
+#: lobby/XmppClient.cpp:1036
 msgid "The stream has been closed by the server"
 msgstr "O motor foi fechado pelo servidor"
 
-#: lobby/XmppClient.cpp:1055
+#: lobby/XmppClient.cpp:1040
 msgid "An I/O error occured"
 msgstr "Um erro de Entrada/Saída aconteceu"
 
-#: lobby/XmppClient.cpp:1057
+#: lobby/XmppClient.cpp:1042
 msgid "The connection was refused by the server"
 msgstr "A conexão foi recusada pelo servidor"
 
-#: lobby/XmppClient.cpp:1058
+#: lobby/XmppClient.cpp:1043
 msgid "Resolving the server's hostname failed"
 msgstr "Erro ao resolver o nome do Host"
 
-#: lobby/XmppClient.cpp:1059
+#: lobby/XmppClient.cpp:1044
 msgid "This system is out of memory"
 msgstr "O sistema está sem memória"
 
-#: lobby/XmppClient.cpp:1061
+#: lobby/XmppClient.cpp:1046
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
 msgstr "O certificado do servidor não pôde ser verificado, ou o TLS não completou a comunicação com sucesso"
 
-#: lobby/XmppClient.cpp:1062
+#: lobby/XmppClient.cpp:1047
 msgid "The server did not offer required TLS encryption"
 msgstr "O server não exige encriptação TLS"
 
-#: lobby/XmppClient.cpp:1064
+#: lobby/XmppClient.cpp:1049
 msgid "Authentication failed. Incorrect password or account does not exist"
 msgstr "Falha na autenticação. A senha e/ou conta estão incorretos/não existem"
 
-#: lobby/XmppClient.cpp:1065
+#: lobby/XmppClient.cpp:1050
 msgid "The user or system requested a disconnect"
 msgstr "O usuário, ou o sistema requisitou uma desconexão"
 
-#: lobby/XmppClient.cpp:1066
+#: lobby/XmppClient.cpp:1051
 msgid "There is no active connection"
 msgstr "Não existem conexões ativas"
 
-#: lobby/XmppClient.cpp:1087
+#: lobby/XmppClient.cpp:1072
 msgid "Success"
 msgstr "Sucesso"
 
-#: lobby/XmppClient.cpp:1088
+#: lobby/XmppClient.cpp:1073
 msgid "Not all necessary information provided"
 msgstr "Nem toda informação necessária foi informada"
 
-#: lobby/XmppClient.cpp:1089
+#: lobby/XmppClient.cpp:1074
 msgid "Username already exists"
 msgstr "Nome de usuário já existe"
 
@@ -166,7 +166,7 @@ msgstr "Nome de usuário já existe"
 msgid "Saved game to '%s'"
 msgstr "Jogo salvo em '%s'"
 
-#: ps/Util.cpp:275 ps/Util.cpp:408
+#: ps/Util.cpp:279 ps/Util.cpp:282 ps/Util.cpp:417 ps/Util.cpp:420
 #, c-format
 msgid "Screenshot written to '%s'"
 msgstr "Captura de tela salva em '%s'"
