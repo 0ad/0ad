@@ -38,16 +38,6 @@ ResourceSupply.prototype.Init = function()
 	this.infinite = !isFinite(+this.template.Amount);
 
 	let [type, subtype] = this.template.Type.split('.');
-	let resData = type === "treasure" ?
-		{ "subtypes": Resources.GetNames() } :
-		Resources.GetResource(type);
-
-	if (!resData || !resData.subtypes[subtype])
-	{
-		error("ResourceSupply with invalid resource: " + uneval(resData));
-		Engine.DestroyEntity(this.entity);
-	}
-
 	this.cachedType = { "generic": type, "specific": subtype };
 };
 
