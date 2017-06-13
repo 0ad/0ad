@@ -1147,7 +1147,6 @@ function updatePlayerDisplay()
 		return;
 
 	let resCodes = g_ResourceData.GetCodes();
-	let resNames = g_ResourceData.GetNames();
 	for (let r = 0; r < resCodes.length; ++r)
 	{
 		let resourceObj = Engine.GetGUIObjectByName("resource[" + r + "]");
@@ -1157,7 +1156,7 @@ function updatePlayerDisplay()
 		let res = resCodes[r];
 
 		let tooltip = '[font="' + g_ResourceTitleFont + '"]' +
-			getLocalizedResourceName(resNames[res], "firstWord") + '[/font]';
+			resourceNameFirstWord(res) + '[/font]';
 
 		let descr = g_ResourceData.GetResource(res).description;
 		if (descr)

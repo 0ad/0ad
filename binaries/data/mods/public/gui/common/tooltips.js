@@ -47,6 +47,16 @@ function resourceIcon(resource)
 	return '[icon="icon_' + resource + '"]';
 }
 
+function resourceNameFirstWord(type)
+{
+	return translateWithContext("firstWord", g_ResourceData.GetNames()[type]);
+}
+
+function resourceNameWithinSentence(type)
+{
+	return translateWithContext("withinSentence", g_ResourceData.GetNames()[type]);
+}
+
 function bodyFont(text)
 {
 	return g_TooltipTextFormats.body[0] + text + g_TooltipTextFormats.body[1];

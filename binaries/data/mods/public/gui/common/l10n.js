@@ -1,8 +1,3 @@
-function getLocalizedResourceName(resourceName, context)
-{
-	return translateWithContext(context, resourceName);
-}
-
 /**
  * Format resource amounts to proper english and translate (for example: "200 food, 100 wood, and 300 metal").
  */
@@ -12,7 +7,7 @@ function getLocalizedResourceAmounts(resources)
 		.filter(type => !!resources[type])
 		.map(type => sprintf(translate("%(amount)s %(resourceType)s"), {
 			"amount": resources[type],
-			"resourceType": getLocalizedResourceName(g_ResourceData.GetResource(type).name, "withinSentence")
+			"resourceType": resourceNameWithinSentence(type)
 		}));
 
 	if (amounts.length > 1)
