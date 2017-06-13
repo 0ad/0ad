@@ -261,21 +261,16 @@ void CGUIManager::LoadPage(SGUIPage& page)
 	JS::RootedValue initDataVal(cx);
 	JS::RootedValue hotloadDataVal(cx);
 	JS::RootedValue global(cx, scriptInterface->GetGlobalObject());
+
 	if (page.initData)
 		scriptInterface->ReadStructuredClone(page.initData, &initDataVal);
+
 	if (hotloadData)
 		scriptInterface->ReadStructuredClone(hotloadData, &hotloadDataVal);
 
-	// Call the init() function
-	if (!scriptInterface->CallFunctionVoid(
-			global,
-			"init",
-			initDataVal,
-			hotloadDataVal)
-		)
-	{
+	if (scriptInterface->HasProperty(global, "init") &&
+	    !scriptInterface->CallFunctionVoid(global, "init", initDataVal, hotloadDataVal))
 		LOGERROR("GUI page '%s': Failed to call init() function", utf8_from_wstring(page.name));
-	}
 
 	m_CurrentGUI = oldGUI;
 }
