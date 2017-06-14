@@ -441,7 +441,6 @@ function diplomacyFormatStanceButtons(i, hidden)
 
 function diplomacyFormatTributeButtons(i, hidden)
 {
-	let resNames = g_ResourceData.GetNames();
 	let resCodes = g_ResourceData.GetCodes();
 	let r = 0;
 	for (let resCode of resCodes)
@@ -461,7 +460,7 @@ function diplomacyFormatTributeButtons(i, hidden)
 			continue;
 
 		button.enabled = controlsPlayer(g_ViewedPlayer);
-		button.tooltip = formatTributeTooltip(i, resNames[resCode], 100);
+		button.tooltip = formatTributeTooltip(i, resCode, 100);
 		button.onPress = (function(i, resCode, button) {
 			// Shift+click to send 500, shift+click+click to send 1000, etc.
 			// See INPUT_MASSTRIBUTING in input.js
@@ -479,14 +478,14 @@ function diplomacyFormatTributeButtons(i, hidden)
 					amounts[res] = 0;
 				amounts[resCode] = 100 * multiplier;
 
-				button.tooltip = formatTributeTooltip(i, resNames[resCode], amounts[resCode]);
+				button.tooltip = formatTributeTooltip(i, resCode, amounts[resCode]);
 
 				// This is in a closure so that we have access to `player`, `amounts`, and `multiplier` without some
 				// evil global variable hackery.
 				g_FlushTributing = function() {
 					Engine.PostNetworkCommand({ "type": "tribute", "player": i, "amounts":  amounts });
 					multiplier = 1;
-					button.tooltip = formatTributeTooltip(i, resNames[resCode], 100);
+					button.tooltip = formatTributeTooltip(i, resCode, 100);
 				};
 
 				if (!isBatchTrainPressed)
@@ -713,7 +712,7 @@ function barterOpenCommon(resourceCode, idx, prefix)
 	for (let action of g_BarterActions)
 		barterButton[action] = Engine.GetGUIObjectByName(prefix + action + "Button[" + idx + "]");
 
-	let resource = getLocalizedResourceName(g_ResourceData.GetNames()[resourceCode], "withinSentence");
+	let resource = resourceNameWithinSentence(resourceCode);
 	barterButton.Buy.tooltip = sprintf(translate("Buy %(resource)s"), { "resource": resource });
 	barterButton.Sell.tooltip = sprintf(translate("Sell %(resource)s"), { "resource": resource });
 
@@ -1152,11 +1151,11 @@ function closeOpenDialogs()
 	closeObjectives();
 }
 
-function formatTributeTooltip(playerID, resource, amount)
+function formatTributeTooltip(playerID, resourceCode, amount)
 {
 	return sprintf(translate("Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click to tribute %(greaterAmount)s."), {
 		"resourceAmount": amount,
-		"resourceType": getLocalizedResourceName(resource, "withinSentence"),
+		"resourceType": resourceNameWithinSentence(resourceCode),
 		"playerName": colorizePlayernameByID(playerID),
 		"greaterAmount": amount < 500 ? 500 : amount + 500
 	});

@@ -12,13 +12,10 @@ function layoutSelectionMultiple()
 
 function getResourceTypeDisplayName(resourceType)
 {
-	return getLocalizedResourceName(
-		g_ResourceData.GetNames()[
-			resourceType.generic == "treasure" ?
-				resourceType.specific :
-				resourceType.generic
-		],
-		"firstWord");
+	return resourceNameFirstWord(
+		resourceType.generic == "treasure" ?
+			resourceType.specific :
+			resourceType.generic);
 }
 
 // Updates the health bar of garrisoned units

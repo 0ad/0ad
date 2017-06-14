@@ -101,7 +101,7 @@ var g_ScorePanelsData = {
 			{ "identifier": "playername", "caption": translate("Player name"), "yStart": 26, "width": 200 },
 			...g_ResourceData.GetResources().map(res => ({
 				"identifier": res.code,
-				"caption": translateWithContext("firstWord", res.name),
+				"caption": resourceNameFirstWord(res.code),
 				"yStart": 34,
 				"width": 100
 			})),
@@ -153,8 +153,8 @@ var g_ScorePanelsData = {
 					"caption":
 						// Translation: use %(resourceWithinSentence)s if needed
 						sprintf(translate("%(resourceFirstWord)s exchanged"), {
-							"resourceFirstWord": translateWithContext("firstWord", res.name),
-							"resourceWithinSentence": translateWithContext("withinSentence", res.name)
+							"resourceFirstWord": resourceNameFirstWord(res.code),
+							"resourceWithinSentence": resourceNameWithinSentence(res.code)
 						}),
 					"yStart": 16,
 					"width": 100

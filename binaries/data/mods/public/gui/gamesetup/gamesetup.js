@@ -157,7 +157,7 @@ var g_FormatChatMessage = {
 	"clientlist": (msg, user) => getUsernameList(),
 };
 
-var g_MapFilterList = prepareForDropdown([
+var g_MapFilters = [
 	{
 		"id": "default",
 		"name": translateWithContext("map filter", "Default"),
@@ -195,7 +195,12 @@ var g_MapFilterList = prepareForDropdown([
 		"tooltip": translateWithContext("map filter", "Every map of the chosen maptype."),
 		"filter": mapKeywords => true
 	},
-]);
+];
+
+/**
+ * This contains only filters that have at least one map matching them.
+ */
+var g_MapFilterList;
 
 /**
  * Whether this is a single- or multiplayer match.
@@ -426,7 +431,7 @@ var g_Dropdowns = {
 					"PlayerData": g_DefaultPlayerData.slice(0, 4)
 				};
 
-			reloadMapList();
+			reloadMapFilterList();
 		},
 		"autocomplete": true,
 	},
@@ -436,7 +441,7 @@ var g_Dropdowns = {
 		"labels": () => g_MapFilterList.name,
 		"ids": () => g_MapFilterList.id,
 		"default": () => g_MapFilterList.Default,
-		"defined": () => g_GameAttributes.mapFilter !== undefined,
+		"defined": () => g_MapFilterList.id.indexOf(g_GameAttributes.mapFilter || "") != -1,
 		"get": () => g_GameAttributes.mapFilter,
 		"select": (idx) => {
 			g_GameAttributes.mapFilter = g_MapFilterList.id[idx];
@@ -1361,43 +1366,64 @@ function getMapPreview(map)
 }
 
 /**
- * Initialize the dropdown containing all maps for the selected maptype and mapfilter.
+ * Filter maps with filterFunc and by chosen map type.
+ *
+ * @param {function} filterFunc - Filter function that should be applied.
+ * @return {Array} the maps that match the filterFunc and the chosen map type.
  */
-function reloadMapList()
+function getFilteredMaps(filterFunc)
 {
 	if (!g_MapPath[g_GameAttributes.mapType])
 	{
 		error("Unexpected map type: " + g_GameAttributes.mapType);
-		return;
+		return [];
 	}
 
 	let mapFiles = g_GameAttributes.mapType == "random" ?
 		getJSONFileList(g_GameAttributes.mapPath) :
 		getXMLFileList(g_GameAttributes.mapPath);
 
-	// Apply map filter, if any defined
-	let mapList = [];
-
+	let maps = [];
 	// TODO: Should verify these are valid maps before adding to list
 	for (let mapFile of mapFiles)
 	{
 		let file = g_GameAttributes.mapPath + mapFile;
 		let mapData = loadMapData(file);
-		let filterID = g_MapFilterList.id.findIndex(id => id == g_GameAttributes.mapFilter);
-		let mapFilter = g_MapFilterList.filter[filterID] || undefined;
 
-		if (!mapData.settings || mapFilter && !mapFilter(mapData.settings.Keywords || []))
+		if (!mapData.settings || filterFunc && !filterFunc(mapData.settings.Keywords || []))
 			continue;
 
-		mapList.push({
+		maps.push({
 			"file": file,
 			"name": translate(getMapDisplayName(file)),
 			"color": g_ColorRegular,
 			"description": translate(mapData.settings.Description)
 		});
 	}
+	return maps;
+}
 
-	mapList = mapList.sort(sortNameIgnoreCase);
+/**
+ * Initialize the dropdown containing all map filters for the selected maptype.
+ */
+function reloadMapFilterList()
+{
+	g_MapFilterList = prepareForDropdown(g_MapFilters.filter(
+		mapFilter => getFilteredMaps(mapFilter.filter).length
+	));
+
+	initDropdown("mapFilter");
+	reloadMapList();
+}
+
+/**
+ * Initialize the dropdown containing all maps for the selected maptype and mapfilter.
+ */
+function reloadMapList()
+{
+	let filterID = g_MapFilterList.id.findIndex(id => id == g_GameAttributes.mapFilter);
+	let filterFunc = g_MapFilterList.filter[filterID];
+	let mapList = getFilteredMaps(filterFunc).sort(sortNameIgnoreCase);
 
 	if (g_GameAttributes.mapType == "random")
 		mapList.unshift({
@@ -1475,7 +1501,7 @@ function loadPersistMatchSettings()
 		sanitizePlayerData(mapSettings.PlayerData);
 
 	// Reload, as the maptype or mapfilter might have changed
-	reloadMapList();
+	reloadMapFilterList();
 
 	g_GameAttributes.settings.RatingEnabled = Engine.HasXmppClient();
 	Engine.SetRankedGame(g_GameAttributes.settings.RatingEnabled);
@@ -1857,7 +1883,7 @@ function updateGUIObjects()
 {
 	g_IsInGuiUpdate = true;
 
-	reloadMapList();
+	reloadMapFilterList();
 	updatePlayerAssignmentChoices();
 
 	// Hide exceeding dropdowns and checkboxes
