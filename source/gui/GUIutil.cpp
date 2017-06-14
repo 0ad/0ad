@@ -263,8 +263,8 @@ bool __ParseString<CGUISeries>(const CStrW& UNUSED(Value), CGUISeries& UNUSED(Ou
 
 CMatrix3D GetDefaultGuiMatrix()
 {
-	float xres = g_xres * g_GuiScale;
-	float yres = g_yres * g_GuiScale;
+	float xres = g_xres / g_GuiScale;
+	float yres = g_yres / g_GuiScale;
 
 	CMatrix3D m;
 	m.SetIdentity();
