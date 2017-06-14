@@ -305,7 +305,6 @@ m.isNotWorthBuilding = function(gameState, ent)
  */
 m.isLineInsideEnemyTerritory = function(gameState, pos1, pos2, step=70)
 {
-	let dist = Math.sqrt(API3.SquareVectorDistance(pos1, pos2));
 	let n = Math.floor(Math.sqrt(API3.SquareVectorDistance(pos1, pos2))/step) + 1;
 	let stepx = (pos2[0] - pos1[0]) / n;
 	let stepy = (pos2[1] - pos1[1]) / n;
