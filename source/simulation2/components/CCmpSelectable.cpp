@@ -381,14 +381,14 @@ void CCmpSelectable::HandleMessage(const CMessage& msg, bool UNUSED(global))
 	}
 	case MT_PositionChanged:
 	{
-		if (!m_AlwaysVisible)
-			break;
-
-		const CMessagePositionChanged& msgData = static_cast<const CMessagePositionChanged&> (msg);
-		if (msgData.inWorld && !m_Selected)
-			m_Color.a = m_AlphaMin = MIN_ALPHA_ALWAYS_VISIBLE;
-		else if (!msgData.inWorld)
-			m_Color.a = m_AlphaMin = MIN_ALPHA_UNSELECTED;
+		if (m_AlwaysVisible)
+		{
+			const CMessagePositionChanged& msgData = static_cast<const CMessagePositionChanged&> (msg);
+			if (!msgData.inWorld)
+				m_Color.a = m_AlphaMin = MIN_ALPHA_UNSELECTED;
+			else if (!m_Selected)
+				m_Color.a = m_AlphaMin = MIN_ALPHA_ALWAYS_VISIBLE;
+		}
 
 		InvalidateStaticOverlay();
 		break;
