@@ -284,47 +284,69 @@ m.Army.prototype.clear = function (gameState)
 	while (this.foeEntities.length > 0)
 		this.removeFoe(gameState, this.foeEntities[0]);
 
-	// Go back to our territory, using the nearest (defensive if any) structure.
-	let armyPos = [0, 0];
-	let npos = 0;
+	// Go back to our or allied territory if needed
+	let posOwn = [0, 0];
+	let nOwn = 0;
+	let posAlly = [0, 0];
+	let nAlly = 0;
+	let posOther = [0, 0];
+	let nOther = 0;
 	for (let entId of this.ownEntities)
 	{
 		let ent = gameState.getEntityById(entId);
-		if (!ent)
+		if (!ent || !ent.position())
 			continue;
 		let pos = ent.position();
-		if (!pos || gameState.ai.HQ.territoryMap.getOwner(pos) === PlayerID)
-			continue;
-		armyPos[0] += pos[0];
-		armyPos[1] += pos[1];
-		++npos;
+		let territoryOwner = gameState.ai.HQ.territoryMap.getOwner(pos);
+		if (territoryOwner === PlayerID)
+		{
+			posOwn[0] += pos[0];
+			posOwn[1] += pos[1];
+			++nOwn;
+		}
+		else if (gameState.isPlayerMutualAlly(territoryOwner))
+		{
+			posAlly[0] += pos[0];
+			posAlly[1] += pos[1];
+			++nAlly;
+		}
+		else
+		{
+			posOther[0] += pos[0];
+			posOther[1] += pos[1];
+			++nOther;
+		}
 	}
-	let nearestStructurePos;
+	let destination;
 	let defensiveFound;
 	let distmin;
-	let radius;
-	if (npos > 0)
+	let radius = 0;
+	if (nOwn > 0)
+		destination = [posOwn[0]/nOwn, posOwn[1]/nOwn];
+	else if (nAlly > 0)
+		destination = [posAlly[0]/nAlly, posAlly[1]/nAlly];
+	else
 	{
-		armyPos[0] /= npos;
-		armyPos[1] /= npos;
-		let armyAccess = gameState.ai.accessibility.getAccessValue(armyPos);
-		for (let struct of gameState.getOwnStructures().values())
+		posOther[0] /= nOther;
+		posOther[1] /= nOther;
+		let armyAccess = gameState.ai.accessibility.getAccessValue(posOther);
+		for (let struct of gameState.getAllyStructures().values())
 		{
 			let pos = struct.position();
-			if (!pos || gameState.ai.HQ.territoryMap.getOwner(pos) !== PlayerID)
+			if (!pos || !gameState.isPlayerMutualAlly(gameState.ai.HQ.territoryMap.getOwner(pos)))
 				continue;
 			if (m.getLandAccess(gameState, struct) !== armyAccess)
 				continue;
 			let defensiveStruct = struct.hasDefensiveFire();
 			if (defensiveFound && !defensiveStruct)
 				continue;
-			let dist = API3.SquareVectorDistance(armyPos, pos);
+			let dist = API3.SquareVectorDistance(posOther, pos);
 			if (distmin && dist > distmin && (defensiveFound || !defensiveStruct))
 				continue;
 			if (defensiveStruct)
 				defensiveFound = true;
 			distmin = dist;
-			nearestStructurePos = pos;
+			destination = pos;
 			radius = struct.obstructionRadius();
 		}
 	}
@@ -342,8 +364,8 @@ m.Army.prototype.clear = function (gameState)
 			    gameState.ai.HQ.defenseManager.garrisonAttackedUnit(gameState, ent))
 				continue;
 
-			if (nearestStructurePos && gameState.ai.HQ.territoryMap.getOwner(ent.position()) !== PlayerID)
-				ent.moveToRange(nearestStructurePos[0], nearestStructurePos[1], radius, radius+5);
+			if (destination && !gameState.isPlayerMutualAlly(gameState.ai.HQ.territoryMap.getOwner(ent.position())))
+				ent.moveToRange(destination[0], destination[1], radius, radius+5);
 			else
 				ent.stopMoving();
 		}

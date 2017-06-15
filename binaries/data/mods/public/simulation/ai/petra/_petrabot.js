@@ -11,7 +11,7 @@ m.PetraBot = function PetraBot(settings)
 	this.elapsedTime = 0;
 
 	this.uniqueIDs = {
-		"armies": 0,
+		"armies": 1,	// starts at 1 to allow easier tests on armies ID existence
 		"bases": 1,	// base manager ID starts at one because "0" means "no base" on the map
 		"plans": 0,	// training/building/research plans
 		"transports": 1	// transport plans start at 1 because 0 might be used as none
