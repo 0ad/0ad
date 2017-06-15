@@ -423,7 +423,7 @@ function updateBandbox(bandbox, ev, hidden)
 
 	let scale = +Engine.ConfigDB_GetValue("user", "gui.scale");
 
-	bandbox.size = new GUISize(x0 * scale, y0 * scale, x1 * scale, y1 * scale);
+	bandbox.size = new GUISize(x0 / scale, y0 / scale, x1 / scale, y1 / scale);
 	bandbox.hidden = hidden;
 
 	return [x0, y0, x1, y1];

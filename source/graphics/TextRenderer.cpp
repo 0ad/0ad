@@ -37,8 +37,8 @@ CTextRenderer::CTextRenderer(const CShaderProgramPtr& shader) :
 
 void CTextRenderer::ResetTransform()
 {
-	float xres = g_xres * g_GuiScale;
-	float yres = g_yres * g_GuiScale;
+	float xres = g_xres / g_GuiScale;
+	float yres = g_yres / g_GuiScale;
 
 	m_Transform.SetIdentity();
 	m_Transform.Scale(1.0f, -1.f, 1.0f);

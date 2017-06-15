@@ -1187,10 +1187,10 @@ void CInput::Draw()
 	{
 		glEnable(GL_SCISSOR_TEST);
 		glScissor(
-			cliparea.left / g_GuiScale,
-			g_yres - cliparea.bottom / g_GuiScale,
-			cliparea.GetWidth() / g_GuiScale,
-			cliparea.GetHeight() / g_GuiScale);
+			cliparea.left * g_GuiScale,
+			g_yres - cliparea.bottom * g_GuiScale,
+			cliparea.GetWidth() * g_GuiScale,
+			cliparea.GetHeight() * g_GuiScale);
 	}
 
 	// These are useful later.

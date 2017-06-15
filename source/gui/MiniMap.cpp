@@ -283,10 +283,10 @@ void CMiniMap::DrawViewRect(CMatrix3D transform)
 
 	// Enable Scissoring to restrict the rectangle to only the minimap.
 	glScissor(
-		m_CachedActualSize.left / g_GuiScale,
-		g_Renderer.GetHeight() - m_CachedActualSize.bottom / g_GuiScale,
-		width / g_GuiScale,
-		height / g_GuiScale);
+		m_CachedActualSize.left * g_GuiScale,
+		g_Renderer.GetHeight() - m_CachedActualSize.bottom * g_GuiScale,
+		width * g_GuiScale,
+		height * g_GuiScale);
 	glEnable(GL_SCISSOR_TEST);
 	glLineWidth(2.0f);
 
