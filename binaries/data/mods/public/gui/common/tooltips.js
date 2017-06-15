@@ -57,6 +57,29 @@ function resourceNameWithinSentence(type)
 	return translateWithContext("withinSentence", g_ResourceData.GetNames()[type]);
 }
 
+/**
+ * Format resource amounts to proper english and translate (for example: "200 food, 100 wood and 300 metal").
+ */
+function getLocalizedResourceAmounts(resources)
+{
+	let amounts = g_ResourceData.GetCodes()
+		.filter(type => !!resources[type])
+		.map(type => sprintf(translate("%(amount)s %(resourceType)s"), {
+			"amount": resources[type],
+			"resourceType": resourceNameWithinSentence(type)
+		}));
+
+	if (amounts.length < 2)
+		return amounts.join();
+
+	let lastAmount = amounts.pop();
+	return sprintf(translate("%(previousAmounts)s and %(lastAmount)s"), {
+		// Translation: This comma is used for separating first to penultimate elements in an enumeration.
+		"previousAmounts": amounts.join(translate(", ")),
+		"lastAmount": lastAmount
+	});
+}
+
 function bodyFont(text)
 {
 	return g_TooltipTextFormats.body[0] + text + g_TooltipTextFormats.body[1];
