@@ -42,8 +42,12 @@ var mouseIsOverObject = false;
 // Number of pixels the mouse can move before the action is considered a drag
 var maxDragDelta = 4;
 
-// Store the clicked entity on mousedown or mouseup
-var clickedEntity = 0;
+/**
+ * Store the clicked entity on mousedown or mouseup for single/double/triple clicks to select entities.
+ * If any mousedown or mouseup of a sequence of clicks lands on a unit,
+ * that unit will be selected, which makes it easier to click on moving units.
+ */
+var clickedEntity = INVALID_ENTITY;
 
 // Same double-click behaviour for hotkey presses
 const doublePressTime = 500;
@@ -830,6 +834,9 @@ function handleInputAfterGui(ev)
 		g_ShowGuarded = (ev.type == "hotkeydown");
 		updateAdditionalHighlight();
 	}
+
+	if (inputState != INPUT_NORMAL && inputState != INPUT_SELECTING)
+		clickedEntity = INVALID_ENTITY;
 
 	// State-machine processing:
 
