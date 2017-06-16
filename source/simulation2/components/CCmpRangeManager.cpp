@@ -1917,13 +1917,16 @@ public:
 				if (p > 0 && p <= MAX_LOS_PLAYER_ID)
 				{
 					u32& explored = m_ExploredVertices.at(p);
-					for (int dj = 0; dj <= scale; ++dj)
-						for (int di = 0; di <= scale; ++di)
+					for (int tj = j * scale; tj <= (j+1) * scale; ++tj)
+						for (int ti = i * scale; ti <= (i+1) * scale; ++ti)
 						{
-							u32& losState = m_LosState[(i*scale+di) + (j*scale+dj)*m_TerrainVerticesPerSide];
+							if (LosIsOffWorld(ti, tj))
+								continue;
+
+							u32& losState = m_LosState[ti + tj * m_TerrainVerticesPerSide];
 							if (!(losState & (LOS_EXPLORED << (2*(p-1)))))
 							{
-								explored++;
+								++explored;
 								losState |= (LOS_EXPLORED << (2*(p-1)));
 							}
 						}
