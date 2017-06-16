@@ -13,7 +13,7 @@
 			<object style="ModernLabelText" type="text" size="50%-128 -18 50%+128 14">
 				<translatableAttribute id="caption">Language</translatableAttribute>
 			</object>
-			<object type="text" size="5 50 40% 75" style="ModernLabelText" text_align="left">
+			<object type="text" size="5 50 40% 75" style="ModernLeftLabelText">
 				<translatableAttribute id="caption">Language:</translatableAttribute>
 			</object>
 			<object name="languageList"
@@ -22,7 +22,7 @@
 					size="40%+10 50 100% 75">
 					<action on="SelectionChange">languageSelectionChanged();</action>
 			</object>
-			<object type="text" size="5 80 40% 105" style="ModernLabelText" text_align="left">
+			<object type="text" size="5 80 40% 105" style="ModernLeftLabelText">
 				<translatableAttribute id="caption" comment="A locale is a set of
 					parameters that defines the user’s language, country and any
 					special variant preferences that the user wants to see in

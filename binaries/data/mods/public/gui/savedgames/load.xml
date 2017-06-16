@@ -89,30 +89,30 @@
 			<object name="savedMapName" size="0 0 100% 20" type="text" style="ModernLabelText" />
 			<object name="savedInfoPreview" size="20 20 240 240" type="image" sprite="" />
 
-			<object size="0 250 50% 270" type="text" style="ModernLabelText" text_align="left">
+			<object size="0 250 50% 270" type="text" style="ModernLeftLabelText">
 				<translatableAttribute id="caption">Players:</translatableAttribute>
 			</object>
-			<object name="savedPlayers" size="50% 250 100%-15 270" type="text" style="ModernLabelText" text_align="left" />
-			<object size="0 270 50% 290" type="text" style="ModernLabelText" text_align="left">
+			<object name="savedPlayers" size="50% 250 100%-15 270" type="text" style="ModernLeftLabelText" />
+			<object size="0 270 50% 290" type="text" style="ModernLeftLabelText">
 				<translatableAttribute id="caption">Played time:</translatableAttribute>
 			</object>
-			<object name="savedPlayedTime" size="50% 270 100%-15 290" type="text" style="ModernLabelText" text_align="left" />
-			<object size="0 290 50% 310" type="text" style="ModernLabelText" text_align="left">
+			<object name="savedPlayedTime" size="50% 270 100%-15 290" type="text" style="ModernLeftLabelText" />
+			<object size="0 290 50% 310" type="text" style="ModernLeftLabelText">
 				<translatableAttribute id="caption">Map Type:</translatableAttribute>
 			</object>
-			<object name="savedMapType" size="50% 290 100%-15 310" type="text" style="ModernLabelText" text_align="left" />
-			<object size="0 310 50% 330" type="text" style="ModernLabelText" text_align="left">
+			<object name="savedMapType" size="50% 290 100%-15 310" type="text" style="ModernLeftLabelText" />
+			<object size="0 310 50% 330" type="text" style="ModernLeftLabelText">
 				<translatableAttribute id="caption">Map Size:</translatableAttribute>
 			</object>
-			<object name="savedMapSize" size="50% 310 100%-15 330" type="text" style="ModernLabelText" text_align="left" />
-			<object size="0 330 50% 350" type="text" style="ModernLabelText" text_align="left">
+			<object name="savedMapSize" size="50% 310 100%-15 330" type="text" style="ModernLeftLabelText" />
+			<object size="0 330 50% 350" type="text" style="ModernLeftLabelText">
 				<translatableAttribute id="caption">Victory:</translatableAttribute>
 			</object>
-			<object name="savedVictory" size="50% 330 100%-15 350" type="text" style="ModernLabelText" text_align="left" />
+			<object name="savedVictory" size="50% 330 100%-15 350" type="text" style="ModernLeftLabelText" />
 
 			<object size="0 352 100%-15 353" type="image" sprite="ModernWhiteLine" z="25" />
 
-			<object name="savedMods" size="0 355 100%-15 395" type="text" style="ModernLabelText" text_align="left" />
+			<object name="savedMods" size="0 355 100%-15 395" type="text" style="ModernLeftLabelText" />
 
 			<object size="0 397 100%-15 398" type="image" sprite="ModernWhiteLine" z="25" />
 			<object name="savedPlayersNames" size="0 400 100%-10 100%-32" type="text" style="MapPlayerList" />

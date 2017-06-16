@@ -163,14 +163,14 @@
 
 				<!-- Map Type Caption -->
 				<object size="5 195 50% 225" type="image" sprite="ModernItemBackShadeLeft">
-					<object size="0 0 100%-10 100%" type="text" style="ModernLabelText" text_align="right">
+					<object size="0 0 100%-10 100%" type="text" style="ModernRightLabelText">
 						<translatableAttribute id="caption">Map Type:</translatableAttribute>
 					</object>
 				</object>
 
 				<!-- Map Type Label -->
 				<object size="50% 195 100%-5 225" type="image" sprite="ModernItemBackShadeRight">
-					<object name="sgMapType" size="0 0 100% 100%" type="text" style="ModernLabelText" text_align="left"/>
+					<object name="sgMapType" size="0 0 100% 100%" type="text" style="ModernLeftLabelText"/>
 				</object>
 
 				<!-- Separator Line -->
@@ -178,14 +178,14 @@
 
 				<!-- Map Size Caption -->
 				<object size="5 225 50% 255" type="image" sprite="ModernItemBackShadeLeft">
-					<object size="0 0 100%-10 100%" type="text" style="ModernLabelText" text_align="right">
+					<object size="0 0 100%-10 100%" type="text" style="ModernRightLabelText">
 						<translatableAttribute id="caption">Map Size:</translatableAttribute>
 					</object>
 				</object>
 
 				<!-- Map Size Label -->
 				<object size="50% 225 100%-5 255" type="image" sprite="ModernItemBackShadeRight">
-					<object name="sgMapSize" size="0 0 100% 100%" type="text" style="ModernLabelText" text_align="left"/>
+					<object name="sgMapSize" size="0 0 100% 100%" type="text" style="ModernLeftLabelText"/>
 				</object>
 
 				<!-- Separator Line -->
@@ -193,14 +193,14 @@
 
 				<!-- Victory Condition Caption -->
 				<object size="5 255 50% 285" type="image" sprite="ModernItemBackShadeLeft">
-					<object size="0 0 100%-10 100%" type="text" style="ModernLabelText" text_align="right">
+					<object size="0 0 100%-10 100%" type="text" style="ModernRightLabelText">
 						<translatableAttribute id="caption">Victory:</translatableAttribute>
 					</object>
 				</object>
 
 				<!-- Victory Condition Label -->
 				<object size="50% 255 100%-5 285" type="image" sprite="ModernItemBackShadeRight">
-					<object name="sgVictory" size="0 0 100% 100%" type="text" style="ModernLabelText" text_align="left"/>
+					<object name="sgVictory" size="0 0 100% 100%" type="text" style="ModernLeftLabelText"/>
 				</object>
 
 				<!-- Separator Line -->

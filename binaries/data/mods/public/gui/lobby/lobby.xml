@@ -59,32 +59,32 @@
 		<object name="profilePanel" size="20 100%-305 20% 100%-110">
 			<object name="profileBox" type="image" sprite="ModernDarkBoxGold" size="0 0 100% 100%">
 				<object name="profileArea" size="0 0 100% 100%" hidden="true">
-					<object name="usernameText" size="0 0 100% 45" type="text" style="ModernLabelText" text_align="center" font="sans-bold-16" />
-					<object name="roleText" size="0 45 100% 70" type="text" style="ModernLabelText" text_align="center" font="sans-bold-stroke-12" />
-					<object size="0 70 40%+40 90" type="text" style="ModernLabelText" text_align="right" font="sans-bold-stroke-13">
+					<object name="usernameText" size="0 0 100% 45" type="text" style="ModernLabelText" font="sans-bold-16" />
+					<object name="roleText" size="0 45 100% 70" type="text" style="ModernLabelText" font="sans-bold-stroke-12" />
+					<object size="0 70 40%+40 90" type="text" style="ModernRightLabelText" font="sans-bold-stroke-13">
 						<translatableAttribute id="caption">Current Rank:</translatableAttribute>
 					</object>
-					<object name="rankText" size="40%+45 70 100% 90" type="text" style="ModernLabelText" text_align="left" font="sans-bold-stroke-12" />
-					<object size="0 90 40%+40 110" type="text" style="ModernLabelText" text_align="right" font="sans-bold-stroke-13">
+					<object name="rankText" size="40%+45 70 100% 90" type="text" style="ModernLeftLabelText" font="sans-bold-stroke-12" />
+					<object size="0 90 40%+40 110" type="text" style="ModernRightLabelText" font="sans-bold-stroke-13">
 						<translatableAttribute id="caption">Highest Rating:</translatableAttribute>
 					</object>
-					<object name="highestRatingText" size="40%+45 90 100% 110" type="text" style="ModernLabelText" text_align="left" font="sans-bold-stroke-12" />
-					<object size="0 110 40%+40 130" type="text" style="ModernLabelText" text_align="right" font="sans-bold-stroke-13">
+					<object name="highestRatingText" size="40%+45 90 100% 110" type="text" style="ModernLeftLabelText" font="sans-bold-stroke-12" />
+					<object size="0 110 40%+40 130" type="text" style="ModernRightLabelText" font="sans-bold-stroke-13">
 						<translatableAttribute id="caption">Total Games:</translatableAttribute>
 					</object>
-					<object name="totalGamesText" size="40%+45 110 100% 130" type="text" style="ModernLabelText" text_align="left" font="sans-bold-stroke-12" />
-					<object size="0 130 40%+40 150" type="text" style="ModernLabelText" text_align="right" font="sans-bold-stroke-13">
+					<object name="totalGamesText" size="40%+45 110 100% 130" type="text" style="ModernLeftLabelText" font="sans-bold-stroke-12" />
+					<object size="0 130 40%+40 150" type="text" style="ModernRightLabelText" font="sans-bold-stroke-13">
 						<translatableAttribute id="caption">Wins:</translatableAttribute>
 					</object>
-					<object name="winsText" size="40%+45 130 100% 150" type="text" style="ModernLabelText" text_align="left" font="sans-bold-stroke-12" />
-					<object size="0 150 40%+40 170" type="text" style="ModernLabelText" text_align="right" font="sans-bold-stroke-13">
+					<object name="winsText" size="40%+45 130 100% 150" type="text" style="ModernLeftLabelText" font="sans-bold-stroke-12" />
+					<object size="0 150 40%+40 170" type="text" style="ModernRightLabelText" font="sans-bold-stroke-13">
 						<translatableAttribute id="caption">Losses:</translatableAttribute>
 					</object>
-					<object name="lossesText" size="40%+45 150 100% 170" type="text" style="ModernLabelText" text_align="left" font="sans-bold-stroke-12" />
-					<object size="0 170 40%+40 190" type="text" style="ModernLabelText" text_align="right" font="sans-bold-stroke-13">
+					<object name="lossesText" size="40%+45 150 100% 170" type="text" style="ModernLeftLabelText" font="sans-bold-stroke-12" />
+					<object size="0 170 40%+40 190" type="text" style="ModernRightLabelText" font="sans-bold-stroke-13">
 						<translatableAttribute id="caption">Win Rate:</translatableAttribute>
 					</object>
-					<object name="ratioText" size="40%+45 170 100% 190" type="text" style="ModernLabelText" text_align="left" font="sans-bold-stroke-12" />
+					<object name="ratioText" size="40%+45 170 100% 190" type="text" style="ModernLeftLabelText" font="sans-bold-stroke-12" />
 				</object>
 			</object>
 		</object>
@@ -129,24 +129,24 @@
 
 				<!-- Map Type -->
 				<object size="5 195 50% 240" type="image" sprite="ModernItemBackShadeLeft">
-					<object size="0 0 100%-10 100%" type="text" style="ModernLabelText" text_align="right">
+					<object size="0 0 100%-10 100%" type="text" style="ModernRightLabelText">
 						<translatableAttribute id="caption">Map Type:</translatableAttribute>
 					</object>
 				</object>
 				<object size="50% 195 100%-5 240" type="image" sprite="ModernItemBackShadeRight">
-					<object name="sgMapType" size="0 0 100% 100%" type="text" style="ModernLabelText" text_align="left"/>
+					<object name="sgMapType" size="0 0 100% 100%" type="text" style="ModernLeftLabelText"/>
 				</object>
 
 				<object size="5 239 100%-5 240" type="image" sprite="ModernWhiteLine" z="25"/>
 
 				<!-- Map Size -->
 				<object size="5 240 50% 285" type="image" sprite="ModernItemBackShadeLeft">
-					<object size="0 0 100%-10 100%" type="text" style="ModernLabelText" text_align="right">
+					<object size="0 0 100%-10 100%" type="text" style="ModernRightLabelText">
 						<translatableAttribute id="caption">Map Size:</translatableAttribute>
 					</object>
 				</object>
 				<object size="50% 240 100%-5 285" type="image" sprite="ModernItemBackShadeRight">
-					<object name="sgMapSize" size="0 0 100% 100%" type="text" style="ModernLabelText" text_align="left"/>
+					<object name="sgMapSize" size="0 0 100% 100%" type="text" style="ModernLeftLabelText"/>
 				</object>
 
 				<object size="5 284 100%-5 285" type="image" sprite="ModernWhiteLine" z="25"/>
@@ -158,9 +158,9 @@
 
 				<object type="image" sprite="ModernDarkBoxWhite" size="3% 65%+5 97% 99%">
 					<!-- Number of Players -->
-					<object name="sgNbPlayers" size="3% 3% 97% 3%+15" type="text" style="ModernLeftLabelText" text_align="center"/>
+					<object name="sgNbPlayers" size="3% 3% 97% 3%+15" type="text" style="ModernLabelText"/>
 					<!-- Game Start Time -->
-					<object name="sgGameStartTime" size="3%+24 6% 97% 3%+35" type="text" style="ModernLeftLabelText" text_align="center"/>
+					<object name="sgGameStartTime" size="3%+24 6% 97% 3%+35" type="text" style="ModernLabelText"/>
 
 					<!-- Player Names -->
 					<object name="sgPlayersNames" size="0 0 100% 100%" type="text" style="MapPlayerList"/>
@@ -340,33 +340,33 @@
 			<object name="profileWindowPanel" size="25 95 100%-25 100%-60">
 			<object name="profileWindowBox" type="image" sprite="ModernDarkBoxGold" size="0 0 100% 100%">
 				<object name="profileWindowArea" size="0 0 100% 100%" hidden="true">
-					<object name="profileUsernameText" size="0 0 100% 25" type="text" style="ModernLabelText" text_align="center" font="sans-bold-16" />
-					<object size="0 30 40%+40 50" type="text" style="ModernLabelText" text_align="right" font="sans-bold-stroke-13">
+					<object name="profileUsernameText" size="0 0 100% 25" type="text" style="ModernLabelText" font="sans-bold-16" />
+					<object size="0 30 40%+40 50" type="text" style="ModernRightLabelText" font="sans-bold-stroke-13">
 						<translatableAttribute id="caption">Current Rank:</translatableAttribute>
 					</object>
-					<object name="profileRankText" size="40%+45 30 100% 50" type="text" style="ModernLabelText" text_align="left" font="sans-bold-stroke-12" />
-					<object size="0 50 40%+40 70" type="text" style="ModernLabelText" text_align="right" font="sans-bold-stroke-13">
+					<object name="profileRankText" size="40%+45 30 100% 50" type="text" style="ModernLeftLabelText" font="sans-bold-stroke-12" />
+					<object size="0 50 40%+40 70" type="text" style="ModernRightLabelText" font="sans-bold-stroke-13">
 						<translatableAttribute id="caption">Highest Rating:</translatableAttribute>
 					</object>
-					<object name="profileHighestRatingText" size="40%+45 50 100% 70" type="text" style="ModernLabelText" text_align="left" font="sans-bold-stroke-12" />
-					<object size="0 70 40%+40 90" type="text" style="ModernLabelText" text_align="right" font="sans-bold-stroke-13">
+					<object name="profileHighestRatingText" size="40%+45 50 100% 70" type="text" style="ModernLeftLabelText" font="sans-bold-stroke-12" />
+					<object size="0 70 40%+40 90" type="text" style="ModernRightLabelText" font="sans-bold-stroke-13">
 						<translatableAttribute id="caption">Total Games:</translatableAttribute>
 					</object>
-					<object name="profileTotalGamesText" size="40%+45 70 100% 90" type="text" style="ModernLabelText" text_align="left" font="sans-bold-stroke-12" />
-					<object size="0 90 40%+40 110" type="text" style="ModernLabelText" text_align="right" font="sans-bold-stroke-13">
+					<object name="profileTotalGamesText" size="40%+45 70 100% 90" type="text" style="ModernLeftLabelText" font="sans-bold-stroke-12" />
+					<object size="0 90 40%+40 110" type="text" style="ModernRightLabelText" font="sans-bold-stroke-13">
 						<translatableAttribute id="caption">Wins:</translatableAttribute>
 					</object>
-					<object name="profileWinsText" size="40%+45 90 100% 110" type="text" style="ModernLabelText" text_align="left" font="sans-bold-stroke-12" />
-					<object size="0 110 40%+40 130" type="text" style="ModernLabelText" text_align="right" font="sans-bold-stroke-13">
+					<object name="profileWinsText" size="40%+45 90 100% 110" type="text" style="ModernLeftLabelText" font="sans-bold-stroke-12" />
+					<object size="0 110 40%+40 130" type="text" style="ModernRightLabelText" font="sans-bold-stroke-13">
 						<translatableAttribute id="caption">Losses:</translatableAttribute>
 					</object>
-					<object name="profileLossesText" size="40%+45 110 100% 130" type="text" style="ModernLabelText" text_align="left" font="sans-bold-stroke-12" />
-					<object size="0 130 40%+40 150" type="text" style="ModernLabelText" text_align="right" font="sans-bold-stroke-13">
+					<object name="profileLossesText" size="40%+45 110 100% 130" type="text" style="ModernLeftLabelText" font="sans-bold-stroke-12" />
+					<object size="0 130 40%+40 150" type="text" style="ModernRightLabelText" font="sans-bold-stroke-13">
 						<translatableAttribute id="caption">Win Rate:</translatableAttribute>
 					</object>
-					<object name="profileRatioText" size="40%+45 130 100% 150" type="text" style="ModernLabelText" text_align="left" font="sans-bold-stroke-12" />
+					<object name="profileRatioText" size="40%+45 130 100% 150" type="text" style="ModernLeftLabelText" font="sans-bold-stroke-12" />
 				</object>
-				<object name="profileErrorText" size="25% 25% 75% 75%" type="text" style="ModernLabelText" text_align="center" font="sans-bold-stroke-13" hidden="false">
+				<object name="profileErrorText" size="25% 25% 75% 75%" type="text" style="ModernLabelText" font="sans-bold-stroke-13" hidden="false">
 					<translatableAttribute id="caption">Please enter a player name.</translatableAttribute>
 				</object>
 			</object>

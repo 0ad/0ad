@@ -29,10 +29,10 @@
 			</object>
 		</object>
 		<object name="pageConnect" size="0 32 100% 100%" hidden="true">
-			<object type="text" size="0 0 100% 30" style="ModernLabelText" text_align="center">
+			<object type="text" size="0 0 100% 30" style="ModernLabelText">
 				<translatableAttribute id="caption">Connect to the game lobby</translatableAttribute>
 			</object>
-			<object name="connectUsernameLabel" type="text" size="20 40 50% 70" style="ModernLabelText" text_align="right">
+			<object name="connectUsernameLabel" type="text" size="20 40 50% 70" style="ModernRightLabelText">
 				<translatableAttribute id="caption">Login:</translatableAttribute>
 			</object>
 			<object name="connectUsername" type="input" size="50%+10 40 100%-20 64" style="ModernInput">
@@ -40,7 +40,7 @@
 					this.caption = Engine.ConfigDB_GetValue("user", "lobby.login");
 				</action>
 			</object>
-			<object name="connectPasswordLabel" type="text" size="20 80 50% 110" style="ModernLabelText" text_align="right">
+			<object name="connectPasswordLabel" type="text" size="20 80 50% 110" style="ModernRightLabelText">
 				<translatableAttribute id="caption">Password:</translatableAttribute>
 			</object>
 			<object name="connectPassword" type="input" size="50%+10 80 100%-20 104" style="ModernInput" mask="true" mask_char="*">
@@ -55,21 +55,21 @@
 		</object>
 		<object name="pageRegister" size="0 32 100% 100%" hidden="true">
 
-			<object type="text" style="ModernLabelText" size="0 0 100% 30" text_align="center">
+			<object type="text" size="0 0 100% 30" style="ModernLabelText">
 				<translatableAttribute id="caption">Registration</translatableAttribute>
 			</object>
 
-			<object name="registerUsernameLabel" type="text" size="10 40 50% 70" style="ModernLabelText" text_align="right">
+			<object name="registerUsernameLabel" type="text" size="10 40 50% 70" style="ModernRightLabelText">
 				<translatableAttribute id="caption">Login:</translatableAttribute>
 			</object>
 			<object name="registerUsername" type="input" size="50%+10 40 100%-20 64" style="ModernInput"/>
 
-			<object name="registerPasswordLabel" type="text" size="10 80 50% 110" style="ModernLabelText" text_align="right">
+			<object name="registerPasswordLabel" type="text" size="10 80 50% 110" style="ModernRightLabelText">
 				<translatableAttribute id="caption">Password:</translatableAttribute>
 			</object>
 			<object name="registerPassword" type="input" size="50%+10 80 100%-20 104" style="ModernInput" mask="true" mask_char="*"/>
 
-			<object name="registerPasswordAgainLabel" type="text" size="10 120 50% 150" style="ModernLabelText" text_align="right">
+			<object name="registerPasswordAgainLabel" type="text" size="10 120 50% 150" style="ModernRightLabelText">
 				<translatableAttribute id="caption">Password again:</translatableAttribute>
 			</object>
 			<object name="registerPasswordAgain" type="input" size="50%+10 120 100%-20 144" style="ModernInput" mask="true" mask_char="*"/>
@@ -92,7 +92,7 @@
 			</object>
 
 		</object>
-		<object name="feedback" type="text" size="50 100%-110 100%-50 100%-50" style="ModernLabelText" textcolor="red" text_align="center"/>
+		<object name="feedback" type="text" size="50 100%-110 100%-50 100%-50" style="ModernLabelText" textcolor="red"/>
 		<object name="cancel" type="button" size="18 100%-45 50%-5 100%-17" style="ModernButtonRed" hotkey="cancel">
 			<translatableAttribute id="caption">Cancel</translatableAttribute>
 			<action on="Press">prelobbyCancel();</action>
