@@ -123,6 +123,27 @@ function displayGamestateNotifications()
 }
 
 /**
+ * This function is called from the engine whenever starting a game fails.
+ */
+function cancelOnLoadGameError(msg)
+{
+	Engine.EndGame();
+
+	Engine.SwitchGuiPage("page_pregame.xml");
+
+	if (msg)
+		Engine.PushGuiPage("page_msgbox.xml", {
+			"width": 500,
+			"height": 200,
+			"message": '[font="sans-bold-18"]' + msg + '[/font]',
+			"title": translate("Loading Aborted"),
+			"mode": 2
+		});
+
+	Engine.ResetCursor();
+}
+
+/**
  * Also called from the C++ side when ending the game.
  * The current page can be the summary screen or a message box, so it can't be moved to session/.
  */

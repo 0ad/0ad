@@ -1631,16 +1631,13 @@ void CancelLoad(const CStrW& message)
 	JSAutoRequest rq(cx);
 
 	JS::RootedValue global(cx, pScriptInterface->GetGlobalObject());
-	// Cancel loader
+
 	LDR_Cancel();
 
-	// Call the cancelOnError GUI function, defined in ..gui/common/functions_utility_error.js
-	// So all GUI pages that load games should include this script
-	if (g_GUI && g_GUI->HasPages())
-	{
-		if (pScriptInterface->HasProperty(global, "cancelOnError" ))
-			pScriptInterface->CallFunctionVoid(global, "cancelOnError", message);
-	}
+	if (g_GUI &&
+	    g_GUI->HasPages() &&
+	    pScriptInterface->HasProperty(global, "cancelOnLoadGameError"))
+		pScriptInterface->CallFunctionVoid(global, "cancelOnLoadGameError", message);
 }
 
 bool InDevelopmentCopy()

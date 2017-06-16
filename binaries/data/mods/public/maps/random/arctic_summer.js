@@ -312,6 +312,7 @@ createFood(
 	],
 	avoidClasses(
 		clFood, 20,
+		clHill, 5,
 		clWater, 5));
 
 createFood
