@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Anique van Berne <avanberne@gmail.com>, 2016
+# Bart Groeneveld, 2017
 # Bart Groeneveld, 2016
 # Bart R <bartvrijn@gmail.com>, 2017
 # bilsimon <simontje.bil@gmail.com>, 2014
@@ -38,8 +39,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:01+0200\n"
-"PO-Revision-Date: 2017-06-09 17:33+0000\n"
-"Last-Translator: Christof Verhoeven <christof.verhoeven@gmail.com>\n"
+"PO-Revision-Date: 2017-06-13 08:35+0000\n"
+"Last-Translator: Bart Groeneveld\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -154,7 +155,7 @@ msgstr "Verzoek je vrienden om deze vijand aan te vallen"
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
-msgstr ""
+msgstr "Koop een willekeurig eenheid om van deze speler, en deel in zijn gezichtsveld voor een beperkte periode."
 
 #: gui/session/menu.js:717
 #, javascript-format
@@ -539,7 +540,7 @@ msgstr "Jouw spelstatus is anders dan de spelstatus van de gast."
 #: gui/session/messages.js:690
 msgctxt "Out-Of-Sync"
 msgid "Rejoining Multiplayer games with AIs is not supported yet!"
-msgstr ""
+msgstr "Opnieuw verbinden met multiplayer spellen met AI's is nog niet ondersteund."
 
 #: gui/session/messages.js:694
 msgctxt "Out-Of-Sync"
@@ -549,7 +550,7 @@ msgstr "Verzeker dat alle spelers dezelfde mods gebruiken."
 #: gui/session/messages.js:695
 msgctxt "Out-Of-Sync"
 msgid "Click on \"Report a Bug\" in the main menu to help fix this."
-msgstr ""
+msgstr "Klik op \"Rapporteer fout\" in het hoofdmenu om te helpen met het oplossen."
 
 #: gui/session/messages.js:696
 #, javascript-format
@@ -1029,7 +1030,7 @@ msgstr "Druk op %(hotkey)s om de bondgenoten chat te openen."
 #: gui/session/session.js:409
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
-msgstr ""
+msgstr "Druk %(hotkey)s om de vorige geselecteerd privé-chat te openen."
 
 #: gui/session/session.js:413
 msgid "Find idle worker"
@@ -1041,7 +1042,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
 "the arrows of the other types to modify their shares. You can also press "
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
-msgstr ""
+msgstr "Selecteer het type goederen dat je wilt veranderen door er op te klikken. Gebruik dan de pijlen bij de andere goederen om hun deel te veranderen. Je kunt ook %(hotkey)sindrukken terwijl je een type selecteert, om het aandeel naar 100 %% te brengen."
 
 #: gui/session/session.js:420
 #, javascript-format
@@ -1050,7 +1051,7 @@ msgid ""
 "each time the lower buttons are pressed, %(quantity)s of the upper resource "
 "will be sold for the displayed quantity of the lower. Press and hold "
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
-msgstr ""
+msgstr "Start door het selecteren van het middel dat je wilt verkopen van de bovenste rij. Voor elke keer dat de onderste knoppen worden aangeklikt, wordt%(quantity)svan het bovenste middel verkocht voor de weergegeven hoeveelheid van het onderste middel. Houd %(hotkey)singedrukt om de hoeveelheid tijdelijk met %(multiplier)s te vermenigvuldigen."
 
 #: gui/session/session.js:584
 #, javascript-format
@@ -1138,7 +1139,7 @@ msgstr "Teruggang in de tijd modus"
 #: gui/session/session.js:1381
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
-msgstr ""
+msgstr "%(time)s (%(speed)sx)"
 
 #: gui/session/unit_actions.js:577
 msgid "Origin trade market."
@@ -1222,7 +1223,7 @@ msgstr "Verwijder bewaking"
 #: gui/session/unit_actions.js:1275
 #: gui/session/top_panel/button_trade.xml:(tooltip):9
 msgid "Barter & Trade"
-msgstr ""
+msgstr "Ruilen en handelen"
 
 #: gui/session/unit_actions.js:1293
 msgid "Patrol"
@@ -1442,11 +1443,11 @@ msgstr "Kies een speler om te bekijken"
 
 #: gui/session/trade_window.xml:(caption):9
 msgid "Barter & Trade Goods"
-msgstr ""
+msgstr "Ruilen en handelen van goederen"
 
 #: gui/session/trade_window.xml:(caption):17
 msgid "Barter"
-msgstr ""
+msgstr "Ruilhandel"
 
 #: gui/session/trade_window.xml:(caption):24
 msgid "Sell:"
@@ -1458,7 +1459,7 @@ msgstr "Kopen:"
 
 #: gui/session/trade_window.xml:(caption):32
 msgid "No Markets Available"
-msgstr ""
+msgstr "Geen markten beschikbaar"
 
 #: gui/session/trade_window.xml:(caption):67
 msgid "Trade"
@@ -1529,4 +1530,4 @@ msgstr "Menu"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XXII : Venustas"
-msgstr ""
+msgstr "ALPHA XXII : Venustas"
