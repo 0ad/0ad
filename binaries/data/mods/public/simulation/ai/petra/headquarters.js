@@ -1319,7 +1319,7 @@ m.HQ.prototype.buildMarket = function(gameState, queues)
 
 	gameState.ai.queueManager.changePriority("economicBuilding", 3*this.Config.priorities.economicBuilding);
 	let plan = new m.ConstructionPlan(gameState, "structures/{civ}_market");
-	plan.onStart = function(gameState) { gameState.ai.queueManager.changePriority("economicBuilding", gameState.ai.Config.priorities.economicBuilding); };
+	plan.queueToReset = "economicBuilding";
 	queues.economicBuilding.addPlan(plan);
 };
 
@@ -1399,23 +1399,7 @@ m.HQ.prototype.buildMoreHouses = function(gameState, queues)
 	{
 		let plan = new m.ConstructionPlan(gameState, "structures/{civ}_house");
 		// change the starting condition according to the situation.
-		plan.isGo = function (gameState) {
-			if (!gameState.ai.HQ.canBuild(gameState, "structures/{civ}_house"))
-				return false;
-			if (gameState.getPopulationMax() <= gameState.getPopulationLimit())
-				return false;
-			let freeSlots = gameState.getPopulationLimit() - gameState.getPopulation();
-			for (let ent of gameState.getOwnFoundations().values())
-				freeSlots += ent.getPopulationBonus();
-
-			if (gameState.ai.HQ.saveResources)
-				return freeSlots <= 10;
-			else if (gameState.getPopulation() > 55)
-				return freeSlots <= 21;
-			else if (gameState.getPopulation() > 30)
-				return freeSlots <= 15;
-			return freeSlots <= 10;
-		};
+		plan.isGoRequirement = "houseNeeded";
 		queues.house.addPlan(plan);
 	}
 
@@ -1447,7 +1431,7 @@ m.HQ.prototype.buildMoreHouses = function(gameState, queues)
 				--needed;
 			else if (needed > 0)
 			{
-				houseQueue[i].isGo = function () { return true; };
+				houseQueue[i].isGoRequirement = undefined;
 				--needed;
 			}
 	}
@@ -1561,7 +1545,7 @@ m.HQ.prototype.buildDefenses = function(gameState, queues)
 				if (!numFortresses)
 					gameState.ai.queueManager.changePriority("defenseBuilding", 2*this.Config.priorities.defenseBuilding);
 				let plan = new m.ConstructionPlan(gameState, "structures/{civ}_fortress");
-				plan.onStart = function(gameState) { gameState.ai.queueManager.changePriority("defenseBuilding", gameState.ai.Config.priorities.defenseBuilding); };
+				plan.queueToReset = "defenseBuilding";
 				queues.defenseBuilding.addPlan(plan);
 				return;
 			}
@@ -1593,7 +1577,7 @@ m.HQ.prototype.buildDefenses = function(gameState, queues)
 		if (numTowers > 2 * this.numActiveBase() + 3)
 			gameState.ai.queueManager.changePriority("defenseBuilding", Math.round(0.7*this.Config.priorities.defenseBuilding));
 		let plan = new m.ConstructionPlan(gameState, "structures/{civ}_defense_tower");
-		plan.onStart = function(gameState) { gameState.ai.queueManager.changePriority("defenseBuilding", gameState.ai.Config.priorities.defenseBuilding); };
+		plan.queueToReset = "defenseBuilding";
 		queues.defenseBuilding.addPlan(plan);
 	}
 };
@@ -1633,7 +1617,7 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 			gameState.ai.queueManager.changePriority("militaryBuilding", 2*this.Config.priorities.militaryBuilding);
 			let preferredBase = this.findBestBaseForMilitary(gameState);
 			let plan = new m.ConstructionPlan(gameState, "structures/{civ}_barracks", { "preferredBase": preferredBase });
-			plan.onStart = function(gameState) { gameState.ai.queueManager.changePriority("militaryBuilding", gameState.ai.Config.priorities.militaryBuilding); };
+			plan.queueToReset = "militaryBuilding";
 			queues.militaryBuilding.addPlan(plan);
 			return;
 		}

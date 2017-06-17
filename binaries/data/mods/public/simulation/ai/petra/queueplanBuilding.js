@@ -764,37 +764,58 @@ m.ConstructionPlan.prototype.getResourcesAround = function(gameState, types, i, 
 	return nbcell ? total / nbcell : 0;
 };
 
+m.ConstructionPlan.prototype.isGo = function(gameState)
+{
+	if (this.isGoRequirement && this.isGoRequirement === "houseNeeded")
+	{
+		if (!gameState.ai.HQ.canBuild(gameState, "structures/{civ}_house"))
+			return false;
+		if (gameState.getPopulationMax() <= gameState.getPopulationLimit())
+			return false;
+		let freeSlots = gameState.getPopulationLimit() - gameState.getPopulation();
+		for (let ent of gameState.getOwnFoundations().values())
+			freeSlots += ent.getPopulationBonus();
+
+		if (gameState.ai.HQ.saveResources)
+			return freeSlots <= 10;
+		else if (gameState.getPopulation() > 55)
+			return freeSlots <= 21;
+		else if (gameState.getPopulation() > 30)
+			return freeSlots <= 15;
+		return freeSlots <= 10;
+	}
+	return true;
+};
+
+m.ConstructionPlan.prototype.onStart = function(gameState)
+{
+	if (this.queueToReset)
+		gameState.ai.queueManager.changePriority(this.queueToReset, gameState.ai.Config.priorities[this.queueToReset]);
+};
+
 m.ConstructionPlan.prototype.Serialize = function()
 {
-	let prop = {
+	return {
 		"category": this.category,
 		"type": this.type,
 		"ID": this.ID,
 		"metadata": this.metadata,
 		"cost": this.cost.Serialize(),
 		"number": this.number,
-		"position": this.position
+		"position": this.position,
+		"isGoRequirement": this.isGoRequirement || undefined,
+		"queueToReset": this.queueToReset || undefined
 	};
-
-	let func = {
-		"isGo": uneval(this.isGo),
-		"onStart": uneval(this.onStart)
-	};
-
-	return { "prop": prop, "func": func };
 };
 
 m.ConstructionPlan.prototype.Deserialize = function(gameState, data)
 {
-	for (let key in data.prop)
-		this[key] = data.prop[key];
+	for (let key in data)
+		this[key] = data[key];
 
 	let cost = new API3.Resources();
-	cost.Deserialize(data.prop.cost);
+	cost.Deserialize(data.cost);
 	this.cost = cost;
-
-	for (let fun in data.func)
-		this[fun] = eval(data.func[fun]);
 };
 
 return m;

@@ -582,7 +582,7 @@ m.TradeManager.prototype.prospectForNewMarket = function(gameState, queues)
 		gameState.ai.queueManager.changePriority("economicBuilding", 2*this.Config.priorities.economicBuilding);
 	let plan = new m.ConstructionPlan(gameState, "structures/{civ}_market");
 	if (!this.tradeRoute)
-		plan.onStart = function(gameState) { gameState.ai.queueManager.changePriority("economicBuilding", gameState.ai.Config.priorities.economicBuilding); };
+		plan.queueToReset = "economicBuilding";
 	queues.economicBuilding.addPlan(plan);
 };
 

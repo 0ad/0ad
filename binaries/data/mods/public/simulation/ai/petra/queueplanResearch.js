@@ -71,37 +71,61 @@ m.ResearchPlan.prototype.start = function(gameState)
 	this.onStart(gameState);
 };
 
+m.ResearchPlan.prototype.isGo = function(gameState)
+{
+	if (this.type === gameState.townPhase())
+	{
+		let ret = gameState.getPopulation() >= gameState.ai.Config.Economy.popForTown;
+		if (ret && gameState.ai.HQ.econState !== "growth")
+			gameState.ai.HQ.econState = "growth";
+		else if (!ret && gameState.ai.HQ.econState !== "townPhasing")
+			gameState.ai.HQ.econState = "townPhasing";
+		return ret;
+	}
+	else if (this.type === gameState.cityPhase())
+		gameState.ai.HQ.econState = "cityPhasing";
+	return true;
+};
+
+m.ResearchPlan.prototype.onStart = function(gameState)
+{
+	if (this.queueToReset)
+		gameState.ai.queueManager.changePriority(this.queueToReset, gameState.ai.Config.priorities[this.queueToReset]);
+
+	if (this.type == gameState.townPhase())
+	{
+		gameState.ai.HQ.econState = "growth";
+		gameState.ai.HQ.OnTownPhase(gameState);
+	}
+	else if (this.type == gameState.cityPhase())
+	{
+		gameState.ai.HQ.econState = "growth";
+		gameState.ai.HQ.OnCityPhase(gameState);
+	}
+};
+
 m.ResearchPlan.prototype.Serialize = function()
 {
-	let prop = {
+	return {
 		"category": this.category,
 		"type": this.type,
 		"ID": this.ID,
 		"metadata": this.metadata,
 		"cost": this.cost.Serialize(),
 		"number": this.number,
-		"rush": this.rush
+		"rush": this.rush,
+		"queueToReset": this.queueToReset || undefined
 	};
-
-	let func = {
-		"isGo": uneval(this.isGo),
-		"onStart": uneval(this.onStart)
-	};
-
-	return { "prop": prop, "func": func };
 };
 
 m.ResearchPlan.prototype.Deserialize = function(gameState, data)
 {
-	for (let key in data.prop)
-		this[key] = data.prop[key];
+	for (let key in data)
+		this[key] = data[key];
 
 	let cost = new API3.Resources();
-	cost.Deserialize(data.prop.cost);
+	cost.Deserialize(data.cost);
 	this.cost = cost;
-
-	for (let fun in data.func)
-		this[fun] = eval(data.func[fun]);
 };
 
 return m;
