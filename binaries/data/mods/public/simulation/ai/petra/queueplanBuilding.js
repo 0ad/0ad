@@ -803,7 +803,7 @@ m.ConstructionPlan.prototype.Serialize = function()
 		"cost": this.cost.Serialize(),
 		"number": this.number,
 		"position": this.position,
-		"isGoRequirement": this.isGoRequirement || undefined,
+		"goRequirement": this.goRequirement || undefined,
 		"queueToReset": this.queueToReset || undefined
 	};
 };
