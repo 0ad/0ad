@@ -16,7 +16,7 @@
 
 <script directory="gui/session/"/>
 
-<object name="sn" hotkey="session.gui.toggle">
+<object name="sn">
 	<action on="Tick">
 		onTick();
 	</action>

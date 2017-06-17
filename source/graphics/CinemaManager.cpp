@@ -62,9 +62,6 @@ void CCinemaManager::Update(const float deltaRealTime) const
 	if (!cmpCinemaManager)
 		return;
 
-	UpdateSessionVisibility();
-	UpdateSilhouettesVisibility();
-
 	if (IsPlaying())
 		cmpCinemaManager->PlayQueue(deltaRealTime, g_Game->GetView()->GetCamera());
 }
@@ -75,33 +72,6 @@ void CCinemaManager::Render() const
 		DrawBars();
 	else if (m_DrawPaths)
 		DrawPaths();
-}
-
-void CCinemaManager::UpdateSessionVisibility() const
-{
-	// TODO: Enabling/Disabling does not work if the session GUI page is not the top page.
-	// This can happen in various situations, for example when the player wins/loses the game
-	// while the cinematic is running (a message box is the top page in this case).
-
-	IGUIObject *sn = g_GUI->FindObjectByName("sn");
-	if (!sn)
-		return;
-
-	bool hidden = false;
-	GUI<bool>::GetSetting(sn, "hidden", hidden);
-
-	if (hidden != IsPlaying())
-		sn->SetSetting("hidden", IsPlaying() ? L"true" : L"false");
-}
-
-void CCinemaManager::UpdateSilhouettesVisibility() const
-{
-	if (!CRenderer::IsInitialised())
-		return;
-
-	bool silhouettes = false;
-	CFG_GET_VAL("silhouettes", silhouettes);
-	g_Renderer.SetOptionBool(CRenderer::Option::OPT_SILHOUETTES, !IsEnabled() && silhouettes);
 }
 
 void CCinemaManager::DrawPaths() const

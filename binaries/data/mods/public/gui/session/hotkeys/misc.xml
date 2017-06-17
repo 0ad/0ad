@@ -16,6 +16,10 @@
 		<action on="Press">openChat(g_LastChatAddressee);</action>
 	</object>
 
+	<object hotkey="session.gui.toggle">
+		<action on="Press">g_ShowGUI = !g_ShowGUI;</action>
+	</object>
+
 	<object hotkey="session.gui.menu.toggle">
 		<action on="Press">toggleMenu();</action>
 	</object>
@@ -25,10 +29,7 @@
 	</object>
 
 	<object hotkey="silhouettes">
-		<action on="Press">
-			var newSetting = !Engine.Renderer_GetSilhouettesEnabled();
-			Engine.Renderer_SetSilhouettesEnabled(newSetting);
-		</action>
+		<action on="Press">toggleConfigBool("silhouettes");</action>
 	</object>
 
 	<object hotkey="showsky">

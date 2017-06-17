@@ -129,6 +129,12 @@ var g_DevSettings = {
 };
 
 /**
+ * Whether the entire UI should be hidden (useful for promotional screenshots).
+ * Can be toggled with a hotkey.
+ */
+var g_ShowGUI = true;
+
+/**
  * Whether status bars should be shown for all of the player's units.
  */
 var g_ShowAllStatusBars = false;
@@ -801,6 +807,7 @@ function onSimulationUpdate()
 	if (!g_SimState)
 		return;
 
+	updateCinemaPath();
 	handleNotifications();
 	updateGUIObjects();
 
@@ -846,6 +853,14 @@ function confirmExit()
 	);
 
 	g_ConfirmExit = false;
+}
+
+function updateCinemaPath()
+{
+	let isPlayingCinemaPath = GetSimState().cinemaPlaying;
+
+	Engine.GetGUIObjectByName("sn").hidden = !g_ShowGUI || isPlayingCinemaPath;
+	Engine.Renderer_SetSilhouettesEnabled(!isPlayingCinemaPath && Engine.ConfigDB_GetValue("user", "silhouettes") == "true");
 }
 
 function updateGUIObjects()
@@ -1269,15 +1284,24 @@ function recalculateStatusBarDisplay(remove = false)
 }
 
 /**
+ * Inverts the given configuration boolean and returns the current state.
+ * For example "silhouettes".
+ */
+function toggleConfigBool(configName)
+{
+	let enabled = Engine.ConfigDB_GetValue("user", configName) != "true";
+	Engine.ConfigDB_CreateValue("user", configName, String(enabled));
+	Engine.ConfigDB_WriteValueToFile("user", configName, String(enabled), "config/user.cfg");
+	return enabled;
+}
+
+/**
  * Toggles the display of range overlays of selected entities for the given range type.
  * @param {string} type - for example "Aura"
  */
 function toggleRangeOverlay(type)
 {
-	let configString = "gui.session." + type.toLowerCase() + "range";
-	let enabled = Engine.ConfigDB_GetValue("user", configString) != "true";
-	Engine.ConfigDB_CreateValue("user", configString, String(enabled));
-	Engine.ConfigDB_WriteValueToFile("user", configString, String(enabled), "config/user.cfg");
+	let enabled = toggleConfigBool("gui.session." + type.toLowerCase() + "range");
 
 	Engine.GuiInterfaceCall("EnableVisualRangeOverlayType", {
 		"type": type,
