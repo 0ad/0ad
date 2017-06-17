@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-05-29 09:07+0200\n"
-"PO-Revision-Date: 2017-06-10 18:04+0000\n"
+"PO-Revision-Date: 2017-06-15 16:40+0000\n"
 "Last-Translator: Samuel <srandiny@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -67,11 +67,11 @@ msgstr "Stoa"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:34
 msgid "Hellenic Royal Stoa"
-msgstr "Hellenic Royal Stoa"
+msgstr "Stoa Kerajaan Yunani"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:36
 msgid "Recruit special units."
-msgstr "Rekrut pasukan spesial."
+msgstr "Rekrut unit spesial."
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:39
 #: simulation/templates/template_structure_civic_temple.xml:35
@@ -113,7 +113,7 @@ msgstr "Rumah"
 msgid ""
 "Train healers. Garrison units to heal them at a quick rate (3 HP per "
 "second). Research healing and religious improvements."
-msgstr "Latih penyembuh. Siagakan pasukan untuk menyembuhkan mereka secara cepat (3 HP per detik). Riset peningkatan penyembuhan dan keagamaan."
+msgstr "Melatih tabib. Masukkan pasukan untuk menyembuhkan mereka secara cepat (3 HP per detik). Meneliti peningkatan penyembuhan dan keagamaan."
 
 #: simulation/templates/template_structure_civic_temple.xml:35
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -132,7 +132,7 @@ msgstr "Menara Defensif"
 msgid ""
 "Shoots arrows. Garrison to provide extra defense. Needs the murder holes "
 "tech to protect its foot."
-msgstr "Menembakkan panah. Simpan pasukan untuk pertahanan tambahan. Membutuhkan teknologi lubang pembunuhan untuk melindungi fondasinya."
+msgstr "Menembakkan panah. Masukkan pasukan untuk pertahanan tambahan. Membutuhkan teknologi lubang pembunuh untuk melindungi fondasinya."
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_defense_defense_tower.xml:26
@@ -158,11 +158,11 @@ msgstr "Menara Jaga"
 
 #: simulation/templates/template_structure_defense_sentry_tower.xml:42
 msgid "SentryTower"
-msgstr ""
+msgstr "MenaraJaga"
 
 #: simulation/templates/template_structure_defense_sentry_tower.xml:69
 msgid "Reinforce with stone and upgrade to a defense tower."
-msgstr "Perkuat dengan batu dan tingkatkan ke menara pertahanan."
+msgstr "Perkuat dengan batu dan tingkatkan ke menara defensif."
 
 #: simulation/templates/template_structure_defense_wall.xml:24
 #: simulation/templates/structures/cart_s_wall_long.xml:7
@@ -201,7 +201,7 @@ msgstr "Menara Tembok"
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:51
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
-msgstr "Menembakkan panah. Siagakan pasukan untuk mempertahankan dinding kota dari penyerang."
+msgstr "Menembakkan panah. Masukkan pasukan untuk mempertahankan tembok kota dari penyerang."
 
 #: simulation/templates/template_structure_defense_wallset.xml:10
 msgid "City Wall"
@@ -223,13 +223,13 @@ msgstr "Penyimpanan makanan. Meneliti peningkatan pengumpulan makanan."
 #: simulation/templates/template_structure_economic_farmstead.xml:27
 #: simulation/templates/template_structure_economic_farmstead.xml:24
 msgid "Farmstead"
-msgstr "Persawahan"
+msgstr "Lumbung"
 
 #: simulation/templates/template_structure_economic_market.xml:22
 msgid ""
 "Create trade units to trade between other markets. Barter resources. "
 "Research trading and bartering improvements."
-msgstr "Melatih unit pedagang untuk berdagang dengan pasar lain. Dapat bertukar sumberdaya. Meneliti peningkatan perdagangan dan tukar-menukar."
+msgstr "Melatih unit-unit perdagangan untuk berdagang dengan pasar lain. Dapat bertukar sumberdaya. Meneliti peningkatan perdagangan dan tukar-menukar."
 
 #: simulation/templates/template_structure_economic_market.xml:24
 #: simulation/templates/template_structure_economic_market.xml:21
@@ -241,7 +241,7 @@ msgstr "Pasar"
 msgid ""
 "Dropsite for wood, stone, and metal resources. Research gathering "
 "improvements for these resources."
-msgstr "Penyimpanan sumberdaya kayu, batu, dan logam. Meneliti peningkatan pengumpulan sumberdaya ini."
+msgstr "Penyimpanan sumberdaya kayu, batu, dan logam. Meneliti peningkatan pengumpulan sumberdaya tersebut."
 
 #: simulation/templates/template_structure_economic_storehouse.xml:27
 #: simulation/templates/template_structure_economic_storehouse.xml:24
@@ -287,7 +287,7 @@ msgstr "Pandai Besi"
 msgid ""
 "Build upon a shoreline to construct naval vessels and to open sea trade. "
 "Research naval improvements."
-msgstr "Bangun pada garis pantai untuk membangun kapal angkatan laut dan membuka perdagangan laut. Meneliti peningkatan angkatan laut."
+msgstr "Bangun pada garis pantai untuk membuat kapal angkatan laut dan membuka perdagangan laut. Meneliti peningkatan angkatan laut."
 
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_military_dock.xml:24
@@ -310,7 +310,7 @@ msgstr "Benteng"
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements."
-msgstr "Latih pahlawan, jagoan, dan senjata kepung. Riset peningkatan senjata kepung."
+msgstr "Melatih pahlawan, jagoan, dan senjata kepung. Meneliti peningkatan senjata kepung."
 
 #: simulation/templates/template_structure_military_fortress.xml:65
 #: simulation/templates/template_structure_special.xml:45
@@ -361,7 +361,7 @@ msgstr "Perpustakaan"
 
 #: simulation/templates/template_structure_special_library.xml:19
 msgid "Research special technologies."
-msgstr "Riset teknologi spesial."
+msgstr "Meneliti teknologi spesial."
 
 #: simulation/templates/template_structure_special_rotarymill.xml:22
 msgid "Rotary Mill"
@@ -446,7 +446,7 @@ msgstr "Epiteíkhisma"
 
 #: simulation/templates/structures/athen_fortress.xml:10
 msgid "Build siege engines. Garrison soldiers inside for stout defense."
-msgstr "Buat mesin kepung. Siagakan prajurit didalam untuk pertahanan yang kokoh."
+msgstr "Membuat senjata kepung. Masukkan prajurit untuk pertahanan yang kokoh."
 
 #: simulation/templates/structures/athen_gymnasion.xml:23
 msgid "Gymnasium"
@@ -495,7 +495,7 @@ msgstr "Prytaneîon"
 
 #: simulation/templates/structures/athen_prytaneion.xml:26
 msgid "Train heroes. Research special technologies."
-msgstr "Latih pahlawan. Riset teknologi spesial."
+msgstr "Melatih pahlawan. Meneliti teknologi spesial."
 
 #: simulation/templates/structures/athen_storehouse.xml:5
 #: simulation/templates/structures/mace_storehouse.xml:5
@@ -555,7 +555,7 @@ msgstr "Naós Parthenṓn"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at an extremely quick rate."
-msgstr ""
+msgstr "Membawa kejayaan kepada peradaban anda dan menambah tanah yang luas untuk anda. Masukkan unit Anda untuk menyembuhkan mereka dengan tingkat yang sangat cepat."
 
 #: simulation/templates/structures/brit_barracks.xml:15
 #: simulation/templates/structures/gaul_barracks.xml:15
@@ -614,7 +614,7 @@ msgstr "Broch Briton"
 
 #: simulation/templates/structures/brit_fortress.xml:22
 msgid "Train Brythonic heroes and champions. Construct siege rams."
-msgstr "Melatih pahlawan dan jawara Briton. Membangun pelantak tubruk."
+msgstr "Melatih pahlawan dan jawara Briton. Membuat pelantak tubruk."
 
 #: simulation/templates/structures/brit_house.xml:9
 #: simulation/templates/structures/gaul_house.xml:9
@@ -623,7 +623,7 @@ msgstr "Annedd"
 
 #: simulation/templates/structures/brit_kennel.xml:37
 msgid "Kennel"
-msgstr "Kennel"
+msgstr "Kandang"
 
 #: simulation/templates/structures/brit_kennel.xml:40
 msgid "Train Celtic war dogs."
@@ -666,7 +666,7 @@ msgstr "Gwarchglawdd"
 #: simulation/templates/structures/brit_wall_tower.xml:13
 #: simulation/templates/structures/gaul_wall_tower.xml:13
 msgid "Does not shoot or garrison."
-msgstr "Tidak menembak atau menyimpan"
+msgstr "Tidak menembak atau memasukkan."
 
 #: simulation/templates/structures/brit_wonder.xml:9
 #: simulation/templates/structures/gaul_wonder.xml:9
@@ -712,11 +712,11 @@ msgstr "Namel"
 msgid ""
 "Construct fishing boats to gather meat and merchant ships to trade with "
 "other docks."
-msgstr "Membangun kapal nelayan untuk mengumpulkan daging dan kapal dagang untuk berdagang dengan galangan lain."
+msgstr "Membuat perahu nelayan untuk mengumpulkan daging dan kapal dagang untuk berdagang dengan dermaga lain."
 
 #: simulation/templates/structures/cart_embassy.xml:22
 msgid "Hire mercenaries."
-msgstr "Menyewa prajurit upahan."
+msgstr "Menyewa prajurit bayaran."
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:20
 msgid "Celtic Embassy"
@@ -724,7 +724,7 @@ msgstr "Kedutaan Kelt."
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:22
 msgid "Hire Celtic mercenaries. Research improvements for these mercenaries."
-msgstr "Menyewa prajurit Kelt. Meneliti peningkatan prajurit bayaran ini."
+msgstr "Menyewa prajurit bayaran Kelt. Meneliti peningkatan prajurit bayaran tersebut."
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:13
 msgid "Iberian Embassy"
@@ -732,7 +732,7 @@ msgstr "Kedutaan Iberia"
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:15
 msgid "Hire Iberian mercenaries. Research improvements for these mercenaries."
-msgstr "Menyewa prajurit Iberia. Meneliti peningkatan prajurit bayaran ini."
+msgstr "Menyewa prajurit bayaran Iberia. Meneliti peningkatan prajurit bayaran tersebut."
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:20
 msgid "Italian Embassy"
@@ -740,7 +740,7 @@ msgstr "Kedutaan Italia"
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:22
 msgid "Hire Italian mercenaries. Research improvements for these mercenaries."
-msgstr "Menyewa prajurit Italia. Meneliti peningkatan prajurit bayaran ini."
+msgstr "Menyewa prajurit bayaran Italia. Meneliti peningkatan prajurit bayaran tersebut."
 
 #: simulation/templates/structures/cart_farmstead.xml:9
 msgid "Aḥuzāh"
@@ -784,7 +784,7 @@ msgstr "Maḥṣabah"
 
 #: simulation/templates/structures/cart_super_dock.xml:37
 msgid "Naval Shipyard"
-msgstr "Galangan Kapal"
+msgstr "Galangan Angkatan Laut"
 
 #: simulation/templates/structures/cart_super_dock.xml:38
 msgid "Cothon"
@@ -792,11 +792,11 @@ msgstr "Cothon"
 
 #: simulation/templates/structures/cart_super_dock.xml:39
 msgid "Shipyard"
-msgstr "Galangan kapal"
+msgstr "Galangan Kapal"
 
 #: simulation/templates/structures/cart_super_dock.xml:41
 msgid "Construct and repair mighty warships."
-msgstr "Membangun dan memperbaiki kapal perang"
+msgstr "Membuat dan memperbaiki kapal perang"
 
 #: simulation/templates/structures/cart_temple.xml:14
 msgid "Maqdaš"
@@ -806,7 +806,7 @@ msgstr "Maqdaš"
 msgid ""
 "Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
 "units to heal them at a quick rate."
-msgstr ""
+msgstr "Melatih pendeta untuk menyembuhkan pasukan Anda. Melatih Pasukan tembiang Suci. Masukkan unit untuk menyembuhkan mereka dengan kecepatan cepat."
 
 #: simulation/templates/structures/cart_wall_gate.xml:9
 msgid "Mijdil-šaʿar"
@@ -828,11 +828,11 @@ msgstr "Kuil Ba'al Hammon"
 
 #: simulation/templates/structures/gaul_fortress.xml:8
 msgid "Gallic Dun"
-msgstr "Gallic Dun"
+msgstr "Dun Galia"
 
 #: simulation/templates/structures/gaul_fortress.xml:9
 msgid "Train Gallic heroes and champions. Construct siege rams."
-msgstr "Melatih pahlawan dan jawara Galia. Membangun pelantak tubruk."
+msgstr "Melatih pahlawan dan jawara Galia. Membuat pelantak tubruk."
 
 #: simulation/templates/structures/gaul_outpost.xml:5
 msgid "Gallic Outpost"
@@ -901,7 +901,7 @@ msgstr "Arruga"
 
 #: simulation/templates/structures/iber_monument.xml:9
 msgid "Monument"
-msgstr ""
+msgstr "Monumen"
 
 #: simulation/templates/structures/iber_monument.xml:34
 msgid "Revered Monument"
@@ -955,7 +955,7 @@ msgstr "Teíchisma"
 #: simulation/templates/structures/mace_fortress.xml:10
 msgid ""
 "Train Champions and Heroes. Garrison soldiers inside for stout defense."
-msgstr ""
+msgstr "Melatih Jawara dan Pahlawan. Masukkan prajurit untuk pertahanan kuat."
 
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
@@ -1013,7 +1013,7 @@ msgstr "Vāraṇaśālā"
 
 #: simulation/templates/structures/maur_elephant_stables.xml:28
 msgid "Train elephant units."
-msgstr "Latih unit gajah."
+msgstr "Melatih unit gajah."
 
 #: simulation/templates/structures/maur_farmstead.xml:12
 msgid "Kantu"
@@ -1045,11 +1045,11 @@ msgstr "Uparaksana"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:9
 msgid "Pillar"
-msgstr ""
+msgstr "Pilar"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:34
 msgid "Edict Pillar of Ashoka"
-msgstr "Pilar Dekrit Ashoka"
+msgstr "Pilar Dekrit Asoka"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:35
 msgid "Śāsana Stambha Aśokā"
@@ -1103,7 +1103,7 @@ msgstr "Stratópedo Misthophóron Aigyptiakós"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:33
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
-msgstr "Duduki bangunan ini untuk melatih prajurit bayaran dari Helenistik Mesir"
+msgstr "Ambil alih bangunan ini untuk melatih prajurit bayaran dari Hellenistik Mesir."
 
 #: simulation/templates/structures/pers_apadana.xml:29
 #: simulation/templates/structures/pers_tacara.xml:26
@@ -1167,11 +1167,11 @@ msgstr "Didā"
 
 #: simulation/templates/structures/pers_fortress.xml:7
 msgid "Train Champion Cavalry and Construct Siege Rams."
-msgstr "Melatih Jawara Berkuda dan membangun Pelantak Tubruk."
+msgstr "Melatih Jawara Kavaleri dan Membuat Pelantak Tubruk."
 
 #: simulation/templates/structures/pers_hall.xml:28
 msgid "Persian Hall"
-msgstr "Persian Hall"
+msgstr "Balai Persia"
 
 #: simulation/templates/structures/pers_hall.xml:29
 msgid "Duvarthi Visadahyu"
@@ -1179,7 +1179,7 @@ msgstr "Duvarthi Visadahyu"
 
 #: simulation/templates/structures/pers_hall.xml:31
 msgid "Train War Elephants and Kardakes mercenaries."
-msgstr "Latih Gajah Perang/War Elephant dan Tentara Bayaran Kardakes"
+msgstr "Melatih Gajah Perang dan prajurit bayaran Kardakes."
 
 #: simulation/templates/structures/pers_house.xml:9
 msgid "Huvādā"
@@ -1187,17 +1187,17 @@ msgstr "Huvādā"
 
 #: simulation/templates/structures/pers_ishtar_gate.xml:30
 msgid "Persian Special Building"
-msgstr "Bangunan Khusus Persia"
+msgstr "Bangunan Spesial Persia"
 
 #: simulation/templates/structures/pers_ishtar_gate.xml:31
 msgid "Ishtar Gate of Babylon"
-msgstr "Gerbang Ishtar Babilon"
+msgstr "Gerbang Ishtar Babilonia"
 
 #: simulation/templates/structures/pers_ishtar_gate.xml:32
 msgid ""
 "Increases the loyalty regeneration of nearby structures, making them harder "
 "to capture."
-msgstr "Tingkatkan loyalty regenetion dari bangunan yang berdekatan, untuk membuat mereka lebih sulit untuk diambil alih"
+msgstr "Tingkatkan regenerasi kesetiaan dari bangunan yang berdekatan, untuk membuat mereka lebih sulit untuk diambil alih."
 
 #: simulation/templates/structures/pers_market.xml:12
 msgid "Ardatašta"
@@ -1209,7 +1209,7 @@ msgstr "Didebani"
 
 #: simulation/templates/structures/pers_stables.xml:18
 msgid "Cavalry Stables"
-msgstr "Kandang Kavaleri"
+msgstr "Kandang Kuda Kavaleri"
 
 #: simulation/templates/structures/pers_stables.xml:19
 msgid "Paraspa"
@@ -1221,7 +1221,7 @@ msgstr "Kandang Kuda"
 
 #: simulation/templates/structures/pers_stables.xml:22
 msgid "Train citizen-cavalry units."
-msgstr "Melatih unit rakyat berkuda."
+msgstr "Melatih unit kavaleri-rakyat."
 
 #: simulation/templates/structures/pers_storehouse.xml:5
 msgid "Asiyah"
@@ -1258,7 +1258,7 @@ msgstr "ḥwt-n-mš'"
 msgid ""
 "Train Egyptian and Middle-Eastern citizen-soldiers. Research training "
 "improvements."
-msgstr ""
+msgstr "Melatih prajurit-rakyat Mesir dan Timur Tengah. Meneliti peningkatan pelatihan."
 
 #: simulation/templates/structures/ptol_civil_centre.xml:12
 msgid "pr-'a"
@@ -1292,7 +1292,7 @@ msgstr "ḥwt"
 msgid ""
 "Increase the population limit. Since they are made of mud brick, Egyptian "
 "houses are free of cost, but are very weak."
-msgstr ""
+msgstr "Meningkatkan batas populasi. Karena mereka terbuat dari bata lumpur, rumah-rumah Mesir menjadi gratis, tapi sangat lemah."
 
 #: simulation/templates/structures/ptol_lighthouse.xml:17
 msgid "Lighthouse"
@@ -1324,7 +1324,7 @@ msgstr "Stratopedeía Misthophórōn"
 msgid ""
 "Cheap barracks-like structure that is buildable in neutral territory, but "
 "casts no territory influence. Train Mercenaries."
-msgstr ""
+msgstr "Bangunan seperti barak murah yang dapat dibangun di wilayah netral, tapi tidak memberikan pengaruh wilayah. Melatih Prajurit Bayaran."
 
 #: simulation/templates/structures/ptol_military_colony.xml:10
 msgid "Klēroukhia"
@@ -1335,7 +1335,7 @@ msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other"
 " factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster. Train settler-soldiers of various nationalities."
-msgstr ""
+msgstr "Ini adalah bangunan perluasan wilayah Ptolemaik, seperti Pusat Peradaban bangsa lain. Bangunan ini lebih lemah dan hanya memberi pengaruh wilayah lebih kecil, tapi lebih murah dan lebih cepat dibangun. Melatih prajurit-penetap dari berbagai kebangsaan."
 
 #: simulation/templates/structures/ptol_outpost.xml:5
 msgid "mktr-n-ḫt"
@@ -1370,11 +1370,11 @@ msgstr "Pelengkung Kemenangan"
 
 #: simulation/templates/structures/rome_arch.xml:23
 msgid "Special Imperial Roman building."
-msgstr "Bangunan khusus Kekaisaran Romawi."
+msgstr "Bangunan spesial Kekaisaran Romawi."
 
 #: simulation/templates/structures/rome_army_camp.xml:35
 msgid "ArmyCamp"
-msgstr ""
+msgstr "KampPrajurit"
 
 #: simulation/templates/structures/rome_army_camp.xml:68
 msgid "Entrenched Army Camp"
@@ -1388,7 +1388,7 @@ msgstr "Castrum Vallum"
 msgid ""
 "Build in neutral or enemy territory. Construct siege weapons and train "
 "citizen-soldiers. Heal garrisoned units slowly."
-msgstr ""
+msgstr "Dibangun di wilayah netral atau musuh. Membuat senjata kepung dan melatih prajurit-rakyat. Menyembuhkan unit didalam perlahan."
 
 #: simulation/templates/structures/rome_barracks.xml:18
 msgid "Castrum"
@@ -1492,7 +1492,7 @@ msgstr "Aedes Martis"
 
 #: simulation/templates/structures/rome_temple_mars.xml:15
 msgid "Train healers. Garrison units to heal them at a quick rate."
-msgstr "Latih penyembuh/healer. Kumpulkan unit untuk memulihkan mereka dengan cepat"
+msgstr "Melatih tabib. Masukkan unit untuk menyembuhkan mereka dengan cepat"
 
 #: simulation/templates/structures/rome_temple_vesta.xml:17
 msgid "Temple of Vesta"
@@ -1565,7 +1565,7 @@ msgstr "Phrourion"
 msgid ""
 "Build siege engines and train Champions. Garrison soldiers inside for stout "
 "defense."
-msgstr ""
+msgstr "Membangun senjata kepung dan melatih Jawara. Masukkan prajurit untuk pertahanan kuat."
 
 #: simulation/templates/structures/sele_library.xml:9
 msgid "Bibliothikon"
@@ -1580,7 +1580,7 @@ msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other "
 "factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster. Train settler-soldiers of various nationalities."
-msgstr ""
+msgstr "Ini adalah bangunan perluasan wilayah Seleukia, seperti Pusat Peradaban bangsa lain. Bangunan ini lebih lemah dan hanya memberi pengaruh wilayah lebih kecil, tapi lebih murah dan lebih cepat dibangun. Melatih prajurit-penetap dari berbagai kebangsaan."
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"
@@ -1601,7 +1601,7 @@ msgstr "Teíkhisma"
 #: simulation/templates/structures/spart_fortress.xml:10
 msgid ""
 "Build siege engines. Garrison up to 20 soldiers inside for stout defense."
-msgstr "Merakit alat pengepung. Masukkan hingga 20 prajurit ke dalamnya untuk pertahanan yang kukuh."
+msgstr "Membangun senjata kepung. Masukkan hingga 20 prajurit ke dalamnya untuk pertahanan kuat."
 
 #: simulation/templates/structures/spart_gerousia.xml:21
 msgid "Spartan Senate"
@@ -1625,10 +1625,10 @@ msgstr "Syssítion"
 
 #: simulation/templates/structures/spart_syssiton.xml:27
 msgid "Train Spartan heroes and Spartiate champion hoplites."
-msgstr "Melatih pahlawan Sparta dan Jawara Hoplite Spartiate"
+msgstr "Melatih pahlawan Sparta dan Jawara Hoplite Spartiate."
 
 #: simulation/templates/structures/spart_wonder.xml:17
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at a quick rate."
-msgstr ""
+msgstr "Membawa kejayaan kepada bangsa anda dan menambah tanah yang luas untuk anda. Masukkan unit untuk menyembuhkan mereka dengan kecepatan cepat."

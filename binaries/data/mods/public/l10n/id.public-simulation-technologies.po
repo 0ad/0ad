@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-06-10 18:10+0000\n"
+"PO-Revision-Date: 2017-06-15 18:00+0000\n"
 "Last-Translator: Samuel <srandiny@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgid ""
 "health, 1 extra armor level of every type, 20% extra attack for melee units,"
 " 4m extra range and 5% better precision for ranged units, faster movement "
 "speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "Unit yang dilatih ke kelas berpangkat mendapat banyak kualitas: 20% nyawa ekstra, 1 zirah ekstra untuk semua tipe, 20% serangan ekstra untuk unit jarak dekat, jarak ekstra 4m dan presisi yang 5% lebih baik untuk unit jarak jauh, bergerak lebih cepat dan kecepatan serta jarak penyembuhan tabib ekstra."
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -42,7 +42,7 @@ msgstr "Zirah logam untuk muka kuda."
 msgid ""
 "Equip your cavalry mounts with armor. All Cavalry +1 Hack and Pierce armor "
 "level."
-msgstr "Lengkapi kuda tunggangan Anda dengan zirah. Zirah Tebasan dan Tusukan semua Kavaleri +1"
+msgstr "Lengkapi kuda tunggangan Anda dengan zirah. Semua Kavaleri +1 zirah Tebasan dan Tusukan."
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -103,7 +103,7 @@ msgstr "Chamfron"
 #: simulation/data/technologies/persians/training_levy_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_levy_infantry.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
-msgstr "Terbuka di Fase Kota Kecil"
+msgstr "Terbuka di Fase Kota."
 
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.mace
@@ -120,7 +120,7 @@ msgstr "Prometōpídion"
 
 #: simulation/data/technologies/armor_cav_02.jsondescription
 msgid "Metal armor for a horse's body."
-msgstr "Baju zirah besi untuk kuda."
+msgstr "Zirah logam untuk badan kuda."
 
 #: simulation/data/technologies/armor_cav_02.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_hero_01.jsonrequirementsTooltip
@@ -194,11 +194,11 @@ msgstr "Baju zirah besi untuk kuda."
 #: simulation/data/technologies/successors/unlock_traditional_army.jsonrequirementsTooltip
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
-msgstr "Terbuka di Fase Kota Besar"
+msgstr "Terbuka di Fase Metropolis"
 
 #: simulation/data/technologies/armor_cav_chamfron.jsontooltip
 msgid "Equip your cavalry mounts with armor. All Cavalry +1 Hack armor level."
-msgstr "Lengkapi kuda tunggangan Anda dengan zirah. Zirah Tebasan semua Kavaleri +1."
+msgstr "Lengkapi kuda tunggangan Anda dengan zirah. Semua Kavaleri +1 zirah Tebasan."
 
 #: simulation/data/technologies/armor_hero_01.jsondescription
 msgid ""
@@ -210,7 +210,7 @@ msgstr "Zirah badan dibuat seluruhnya dari besi, logam terkuat yg dapat ditempa 
 msgid ""
 "All heroes +2 Hack Armor Levels and +2 Pierce Armor Levels, but also +50 "
 "Metal Cost."
-msgstr "Semua pahlawan +2 Pertahanan Tebasan dan +2 Pertahanan Tusukan, tapi juga +50 biaya Logam"
+msgstr "Semua pahlawan +2 Zirah Tebasan dan +2 Zirah Tusukan, tapi juga +50 Biaya Logam"
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
@@ -231,17 +231,17 @@ msgstr "Lorica Ferrea"
 #: simulation/data/technologies/armor_infantry_01.jsondescription
 #: simulation/data/technologies/armor_infantry_hack_01.jsondescription
 msgid "Quilted linen or leather body armor for infantrymen."
-msgstr "Linen berlapis atau zirah kulit untuk infanteri."
+msgstr "Lenan berlapis atau zirah kulit untuk infanteri."
 
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
 msgid "All Infantry +1 Hack and Pierce Armor Level."
-msgstr "Semua Infanteri +1 Tebas dan Level Pertahanan Tusuk."
+msgstr "Zirah Tebasan dan Tusukan semua Infanteri +1."
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 #: simulation/data/technologies/armor_infantry_hack_01.jsongenericName
 msgid "Quilted Body Armor"
-msgstr "Zirah Berlapis"
+msgstr "Baju Zirah Berlapis"
 
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.maur
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.spart
@@ -271,12 +271,12 @@ msgstr "Spolas"
 #: simulation/data/technologies/armor_infantry_02.jsondescription
 #: simulation/data/technologies/armor_infantry_hack_02.jsondescription
 msgid "Laminated linen body armor for infantrymen."
-msgstr "Zirah linen berlapis untuk infanteri."
+msgstr "Zirah lenan berlapis untuk infanteri."
 
 #: simulation/data/technologies/armor_infantry_02.jsongenericName
 #: simulation/data/technologies/armor_infantry_hack_02.jsongenericName
 msgid "Laminated Linen Body Armor"
-msgstr "Zirah Linen Berlapis"
+msgstr "Baju Zirah Lenan Berlapis"
 
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.spart
@@ -301,7 +301,7 @@ msgstr "Linothorakes"
 #: simulation/data/technologies/armor_infantry_hack_02.jsontooltip
 #: simulation/data/technologies/armor_infantry_hack_03.jsontooltip
 msgid "All Infantry +1 Hack Armor Level."
-msgstr "Seluruh infanteri +1 Pertahanan Tebasan."
+msgstr "Semua infanteri +1 Zirah Tebasan."
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsondescription
 msgid "Body armor reinforced with bronze scales."
@@ -309,7 +309,7 @@ msgstr "Zirah diperkuat dengan sisik perunggu."
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsongenericName
 msgid "Scale Body Armor"
-msgstr "Zirah Perunggu"
+msgstr "Baju Zirah Bersisik"
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsonspecificName.rome
 msgid "Lorica Squamata"
@@ -324,11 +324,11 @@ msgstr "Zirah dibuat seluruhnya dari perunggu. Hanya prajurit terbaik yang dilen
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsontooltip
 msgid "Champions +2 Hack Armor Levels, but also +10 Metal Cost."
-msgstr "Jawara +2 Pertahanan Tebasan, namun juga +10 biaya Logam."
+msgstr "Jawara +2 Zirah Tebasan, tapi juga +10 Biaya Logam."
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsongenericName
 msgid "Bronze Cuirass Body Armor"
-msgstr "Zirah Perunggu Lapis Baja"
+msgstr "Baju Zirah Perunggu Lapis Baja"
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsonspecificName.rome
 msgid "Lorica Musculata"
@@ -336,11 +336,11 @@ msgstr "Lorica Musculata"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsondescription
 msgid "Plywood construction for large shields."
-msgstr "Konstruksi kayu lapis untuk tameng besar."
+msgstr "Konstruksi kayu lapis untuk perisai besar."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsontooltip
 msgid "Infantry Spearmen +2 Pierce Armor Levels."
-msgstr "Infanteri Penombak +2 Pertahanan Tusukan."
+msgstr "Infanteri Penombak +2 Zirah Tusukan."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsongenericName
 msgid "Plywood Shield Construction"
@@ -362,7 +362,7 @@ msgstr "Perisai terbaik diperkuat pada sudutnya (scutum Romawi) atau sekitar pin
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsontooltip
 msgid "Infantry Spearmen +1 Pierce Armor Levels."
-msgstr "Infanteri Penombak +1 Pertahanan Tusukan."
+msgstr "Infanteri Penombak +1 ZIrah Tusukan."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsongenericName
 msgid "Reinforced Shield"
@@ -378,11 +378,11 @@ msgstr "Aspís"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsondescription
 msgid "A bronze skin hammered over the face of the shield."
-msgstr "Kulit perunggu dipalukan di permukaan perisai."
+msgstr "Kulit perunggu dipasang di permukaan perisai."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsontooltip
 msgid "Infantry Spearmen +1 Pierce Armor Level."
-msgstr "Infanteri Penombak +1 Pertahanan Tusukan."
+msgstr "Infanteri Penombak +1 Zirah Tusukan."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsongenericName
 msgid "Bronze Shield Facing"
@@ -407,7 +407,7 @@ msgstr "Hanya prajurit ternama yang memiliki perisai berlapis perak, sebagaimana
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsontooltip
 msgid "Champions +2 Pierce Armor Levels, but also +10 Metal Cost."
-msgstr "Jawara +2 Pertahanan Tusukan, namun juga +10 biaya Logam."
+msgstr "Jawara +2 Zirah Tusukan, tapi juga +10 Biaya Logam."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsongenericName
 msgid "Silver Shields"
@@ -423,15 +423,15 @@ msgstr "Argyraspís"
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsondescription
 msgid "Lead sheathing protects ship hulls."
-msgstr "Selubung timbal melindungi lambung kapal."
+msgstr "Selubung timbal melindungi badan kapal."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsontooltip
 msgid "Lead sheathing protects ship hulls. +2 levels to all ship armor types."
-msgstr "Selubung timbal melindungi lambung kapal. +2 pertahanan seluruh jenis kapal."
+msgstr "Selubung timbal melindungi badan kapal. +2 zirah semua tipe kapal."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
-msgstr "Selubung Timbal Lambung"
+msgstr "Selubung Timbal Badan"
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsondescription
 msgid "The hypozomata braces the structure of a ship."
@@ -441,7 +441,7 @@ msgstr "Hipozomata mengukuhkan struktur kapal."
 msgid ""
 "The hypozomata braces the ship's structure. +2 levels to all ship armor "
 "types."
-msgstr "Hipozomata mengukuhkan struktur kapal. +2 pertahanan seluruh jenis kapal."
+msgstr "Hipozomata mengukuhkan struktur kapal. +2 zirah semua tipe kapal."
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsongenericName
 msgid "Hypozomata undergirding"
@@ -449,16 +449,16 @@ msgstr "Pendasaran Hipozomata"
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
-msgstr "Balok kayu menguatkan lambung kapal."
+msgstr "Balok kayu menguatkan badan kapal."
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
 msgid ""
 "Wooden reinforcement beams for hulls. +2 levels to all ship armor types."
-msgstr "Balok kayu menguatkan lambung kapal. +2 pertahanan seluruh jenis kapal."
+msgstr "Balok kayu menguatkan badan kapal. +2 zirah semua tipe kapal."
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsongenericName
 msgid "Reinforced hull"
-msgstr "Penguatan Lambung"
+msgstr "Penguatan badan"
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_tower_watch.jsonrequirementsTooltip
@@ -479,7 +479,7 @@ msgstr "Tombak panjang dibuat khusus untuk kavaleri."
 #: simulation/data/technologies/attack_cav_lance.jsontooltip
 msgid ""
 "Equip your melee cavalry with better weapons. Melee Cavalry +2 Hack Attack."
-msgstr "Lengkapi Kavaleri Jarak Dekat dengan senjata yang lebih baik, Kavaleri Jarak Dekat +2 Serangan Tebas."
+msgstr "Lengkapi kavaleri jarak dekat Anda dengan senjata yang lebih baik, Kavaleri Jarak Dekat +2 Serangan Tebas."
 
 #: simulation/data/technologies/attack_cav_lance.jsongenericName
 msgid "Cavalry Lance"
@@ -503,11 +503,11 @@ msgstr "Hasta"
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsondescription
 msgid "Training increases melee attack."
-msgstr "Latihan meningkatkan serangan jarak pendek"
+msgstr "Latihan meningkatkan serangan jarak dekat."
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsontooltip
 msgid "+20% melee cavalry attack."
-msgstr "+20% serangan prajurit berkuda jarak dekat."
+msgstr "+20% serangan kavaleri jarak dekat."
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsongenericName
 msgid "Close Combat Cavalry Training"
@@ -544,7 +544,7 @@ msgstr "Mengganti semua senjata perunggu dengan besi."
 #: simulation/data/technologies/attack_cavalry_melee_02.jsontooltip
 msgid ""
 "Equip your melee cavalry with better weapons. +20% melee cavalry attack."
-msgstr "Lengkapi kavaleri jarak dekat dengan senjata yang lebih baik . +20% serangan  kavaleri jarak pendek"
+msgstr "Lengkapi kavaleri jarak dekat Anda dengan senjata yang lebih baik . +20% serangan kavaleri jarak dekat."
 
 #: simulation/data/technologies/attack_cavalry_melee_02.jsongenericName
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsongenericName
@@ -554,11 +554,11 @@ msgstr "Senjata Besi"
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsondescription
 msgid "Training increases ranged attack."
-msgstr "Latihan meningkatkan serangan jauh"
+msgstr "Latihan meningkatkan serangan jarak jauh."
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsontooltip
 msgid "+20% ranged cavalry attack."
-msgstr "+20% serangan prajurit berkuda jarak jauh."
+msgstr "+20% serangan kavaleri jarak jauh."
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsongenericName
 msgid "Ranged Combat Cavalry Training"
@@ -567,16 +567,16 @@ msgstr "Latihan Pertarungan Jarak Jauh Kavaleri"
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsontooltip
 msgid ""
 "Equip your ranged cavalry with better weapons. +20% ranged cavalry attack."
-msgstr "Lengkapi prajurit berkuda jarak jauh anda dengan senjata lebih baik. +20% serangan prajurit berkuda jarak jauh."
+msgstr "Lengkapi kavaleri jarak jauh anda dengan senjata lebih baik. +20% serangan kavaleri jarak jauh."
 
 #: simulation/data/technologies/attack_champions_elite.jsondescription
 msgid "Guard units have uncommon bravery and valor in battle."
-msgstr "Unit penjaga memiliki keberanian dan kegagahan luar biasa dalam pertempuran."
+msgstr "Unit penjaga memiliki keberanian dan kegagahan yang tidak biasa dalam pertempuran."
 
 #: simulation/data/technologies/attack_champions_elite.jsontooltip
 msgid ""
 "Guard units have uncommon courage and valor in battle. Champions +2 attack."
-msgstr "Unit penjaga memiliki keberanian dan kegagahan luar biasa dalam pertempuran. Jawara +2 serangan."
+msgstr "Unit penjaga memiliki keberanian dan kegagahan yang tidak biasa dalam pertempuran. Jawara +2 serangan."
 
 #: simulation/data/technologies/attack_champions_elite.jsongenericName
 msgid "Heroism"
@@ -600,7 +600,7 @@ msgid ""
 "Often, an infantryman would carry a secondary weapon in addition to his "
 "primary weapon of choice, to be drawn when the primary weapon has failed or "
 "been broken."
-msgstr "Seringkali prajurit membawa senjata tambahan untuk dipakai ketika senjata utama telah rusak."
+msgstr "Seringkali infanteri membawa senjata tambahan selain senjata utama sesuai pilihan, untuk dipakai ketika senjata utama tidak cocok digunakan atau rusak."
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_melee_02.jsontooltip
@@ -671,7 +671,7 @@ msgstr "Átaktoi"
 
 #: simulation/data/technologies/attack_infantry_ranged_02.jsongenericName
 msgid "Ranged Infantry Masterclass"
-msgstr ""
+msgstr "Pelatihan Master Infanteri Jarak Jauh"
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid "The will to fight is crucial to victory."
@@ -680,7 +680,7 @@ msgstr "Semangat tempur penting untuk kemenangan."
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
 msgid ""
 "Inspire your troops with higher pay. All land and naval army +25% attack."
-msgstr ""
+msgstr "Memberikan inspirasi pada prajurit Anda dengan gaji lebih. Semua pasukan darat dan laut +25% serangan."
 
 #: simulation/data/technologies/attack_soldiers_will.jsongenericName
 msgid "Will to fight"
@@ -698,11 +698,11 @@ msgstr "Dýnamis"
 msgid ""
 "Secret steel working techniques give sword blades distinctive and beautiful "
 "markings. Not only that, but the steel's hardness is unparalleled."
-msgstr "Teknik pengerjaan baja rahasia memberi tanda indah dan khas pada pedang. Kekuatan bajanya juga tak tertandingi."
+msgstr "Teknik pengerjaan baja rahasia memberi tanda indah dan khas pada pedang. Tidak hanya itu saja, tapi kekuatan bajanya juga jadi tidak tertandingi."
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
 msgid "+20% Hack attack for all sword units."
-msgstr ""
+msgstr "+20% serangan Tebas pada semua unit berpedang."
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
@@ -720,13 +720,13 @@ msgstr "Baja Toledo"
 msgid ""
 "Crenellations on the battlements allow soldiers wider range of fire in "
 "defending a keep."
-msgstr "Penggerigian benteng memberikan jarak tembak yang lebih luas bagi prajurit."
+msgstr "Penggerigian benteng memberikan jarak tembak yang lebih luas bagi prajurit untuk melindungi benteng."
 
 #: simulation/data/technologies/attack_tower_crenellations.jsontooltip
 msgid ""
 "Install crenellations and murder holes to have 40% more arrows fired per "
 "garrisoned soldier."
-msgstr "Memasang penggerigian dan lubang-lubang untuk menambah 40% panah yang ditembakkan per unit tersimpan."
+msgstr "Memasang penggerigian dan lubang pembunuh untuk menambah sebanyak 40% panah yang ditembakkan per unit didalam."
 
 #: simulation/data/technologies/attack_tower_crenellations.jsongenericName
 msgid "Crenellations"
@@ -738,7 +738,7 @@ msgstr "Perkuat fondasi dalam persiapan akan serangan."
 
 #: simulation/data/technologies/attack_tower_defense.jsontooltip
 msgid "Increases armor level of the defense tower by 2 levels."
-msgstr ""
+msgstr "Meningkatkan zirah pada menara defensif sebanyak 2."
 
 #: simulation/data/technologies/attack_tower_defense.jsongenericName
 msgid "Sturdy Foundations"
@@ -746,7 +746,7 @@ msgstr "Fondasi Kuat"
 
 #: simulation/data/technologies/attack_tower_murderholes.jsondescription
 msgid "Murder holes allow hitting enemies at the foot of the tower."
-msgstr ""
+msgstr "Lubang pembunuh membuat unit bisa untuk menyakiti musuh di kaki menara."
 
 #: simulation/data/technologies/attack_tower_murderholes.jsontooltip
 msgid "Removes defense tower minimum range."
@@ -754,19 +754,19 @@ msgstr "Menghilangkan jarak minimal menara defensif."
 
 #: simulation/data/technologies/attack_tower_murderholes.jsongenericName
 msgid "Murder Holes"
-msgstr ""
+msgstr "Lubang Pembunuh"
 
 #: simulation/data/technologies/attack_tower_range.jsondescription
 msgid "Arrow shooters increase the maximum range of the fire arrows."
-msgstr ""
+msgstr "Penembak panah meningkatkan jarak maksimal dari panah berapi."
 
 #: simulation/data/technologies/attack_tower_range.jsontooltip
 msgid "Increases defense tower maximum range by 8 meters."
-msgstr "Meningkatkan jarak maksimum menara defensif menjadi 8 meter."
+msgstr "Meningkatkan jarak maksimal menara defensif menjadi 8 meter."
 
 #: simulation/data/technologies/attack_tower_range.jsongenericName
 msgid "Arrow Shooters"
-msgstr "Penembak panah"
+msgstr "Penembak Panah"
 
 #: simulation/data/technologies/attack_tower_watch.jsondescription
 msgid "A night's watch increases vigilance."
@@ -798,7 +798,7 @@ msgstr "Penggunaan bahan puing mengurangi biaya dan waktu pembangunan tembok."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
 msgid "City walls -20% build time, but -1 crush armor level."
-msgstr "Tembok kota -20% waktu bangun, tapi -1 pertahanan lindas."
+msgstr "Tembok kota -20% waktu bangun, tapi -1 zirah lindasan."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
@@ -806,7 +806,7 @@ msgstr "Bahan Puing"
 
 #: simulation/data/technologies/decay_outpost.jsondescription
 msgid "Outposts survive twice as long in neutral territory."
-msgstr "Pos Pengawas bertahan dua kali lebih lama di wilayah netral."
+msgstr "Pos bertahan dua kali lebih lama di wilayah netral."
 
 #: simulation/data/technologies/decay_outpost.jsontooltip
 msgid "Territory decay rate -50% for outposts."
@@ -822,7 +822,7 @@ msgid ""
 "extra armor level of every type, 20% extra attack for melee units, extra "
 "range and better precision for ranged units, faster movement speeds and "
 "extra heal speed and range for healers."
-msgstr ""
+msgstr "Unit yang dilatih ke kelas elit mendapat banyak kualitas: 20% nyawa ekstra, 1 zirah ekstra untuk semua tipe, 20% serangan ekstra untuk unit jarak dekat, jarak ekstra dan presisi yang lebih baik untuk unit jarak jauh, bergerak lebih cepat dan kecepatan serta jarak penyembuhan tabib ekstra."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
@@ -830,7 +830,7 @@ msgstr "Membiakkan ternak untuk Makanan."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsontooltip
 msgid "Breed time -25% for domestic animals (sheep, goats, cattle, etc.)."
-msgstr "Waktu biak -25% untuk hewan peliharaan (domba, kambing, sapi, dll)."
+msgstr "Waktu biak -25% untuk hewan domestik (domba, kambing, sapi, dll)."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsongenericName
 msgid "Stockbreeding"
@@ -856,7 +856,7 @@ msgstr "Pekerja menggunakan gerobak yang ditarik kuda. +10 kapasitas bawa seluru
 
 #: simulation/data/technologies/gather_capacity_carts.jsongenericName
 msgid "Horse-drawn Carts"
-msgstr "Gerobak Tarikan Kuda"
+msgstr "Gerobak yang Ditarik Kuda"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsondescription
 msgid "Salting allows to preserve fish longer."
@@ -868,11 +868,11 @@ msgstr "Kapal nelayan +20 kapasitas bawa makanan."
 
 #: simulation/data/technologies/gather_capacity_fishing.jsongenericName
 msgid "Salting Fish"
-msgstr "Menggarami Ikan"
+msgstr "Penggaraman Ikan"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase. Requires Fishing Net."
-msgstr "Terbuka di Fase Kota Kecil. Membutuhkan Jala Ikan."
+msgstr "Terbuka di Fase Kota. Membutuhkan Jala Ikan."
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers use wheelbarrows. +5 shuttle capacity for all resources."
@@ -916,11 +916,11 @@ msgstr "Pekerja bertani +15% lebih cepat."
 
 #: simulation/data/technologies/gather_farming_training.jsongenericName
 msgid "Gather Training"
-msgstr "Latihan berkumpul"
+msgstr "Latihan Mengumpulkan"
 
 #: simulation/data/technologies/gather_fishing_net.jsondescription
 msgid "Nets improve the fishing productivity."
-msgstr ""
+msgstr "Jala meningkatkan produktivitas pemancingan."
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid ""
@@ -944,7 +944,7 @@ msgstr "Pekerja menebang pohon +15% lebih cepat"
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsongenericName
 msgid "Iron Ax Heads"
-msgstr "Kapak Kepala Besi"
+msgstr "Kapak Berkepala Besi"
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 msgid "Workers +50% lumbering rate for trees."
@@ -952,7 +952,7 @@ msgstr "Pekerja menebang pohon +50% lebih cepat."
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Ax Heads"
-msgstr "Kepala Kapak Tajam"
+msgstr "Kapak Berkepala Tajam"
 
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsongenericName
 msgid "Stronger Ax"
@@ -981,7 +981,7 @@ msgstr "Heílōtes"
 
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 msgid "Hire servants to help mine stone. +15% stone gathering rate."
-msgstr ""
+msgstr "Menyewa pembantu untuk membantu menambang batu. +15% tingkat pengumpulan batu."
 
 #: simulation/data/technologies/gather_mining_servants.jsongenericName
 msgid "Servants"
@@ -1009,7 +1009,7 @@ msgstr "Terowong Tambang"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 msgid "Strike a vein of precious silver. +50% metal gathering rate."
-msgstr ""
+msgstr "Menambang perak yang berharga. +50% tingkat pengumpulan logam."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsongenericName
 msgid "Silver Mining"
@@ -1017,11 +1017,11 @@ msgstr "Penambangan Perak"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsonspecificName.mace
 msgid "Mines of Krenides"
-msgstr "Penambangan Krenides"
+msgstr "Tambang Krenides"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsonspecificName.athen
 msgid "Mines of Laureion"
-msgstr "Penambangan Laureion"
+msgstr "Tambang Laureion"
 
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid ""
@@ -1048,7 +1048,7 @@ msgstr "Pasak dan Palu"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
 msgid "Baskets for foraging."
-msgstr ""
+msgstr "Keranjang untuk pemetikan."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 msgid "Equip your foragers with wicker baskets. +50% fruit foraging rate."
@@ -1056,11 +1056,11 @@ msgstr "Memperlengkapi pemetik Anda dengan keranjang anyaman. +50% tingkat pemet
 
 #: simulation/data/technologies/gather_wicker_baskets.jsongenericName
 msgid "Wicker Baskets"
-msgstr "Keranjang Anyam"
+msgstr "Keranjang Anyaman"
 
 #: simulation/data/technologies/heal_barracks.jsondescription
 msgid "Units garrisoned in barracks heal over time."
-msgstr "Unit tersimpan di barak akan pulih selama berjalannya waktu."
+msgstr "Unit didalam barak akan pulih selama berjalannya waktu."
 
 #: simulation/data/technologies/heal_barracks.jsontooltip
 msgid "Units gain health over time while garrisoned in barracks."
@@ -1068,17 +1068,17 @@ msgstr "Nyawa unit bertambah setiap waktu selama berada pada barak."
 
 #: simulation/data/technologies/heal_barracks.jsongenericName
 msgid "Living Conditions"
-msgstr "Hidup sesuai kondisi yang ada"
+msgstr "Kondisi Kehidupan"
 
 #: simulation/data/technologies/heal_range.jsondescription
 #: simulation/data/technologies/heal_range_2.jsondescription
 msgid "Increases the healing and vision range of all healers."
-msgstr ""
+msgstr "Meningkatkan jarak pandang dan penyembuhan semua tabib,"
 
 #: simulation/data/technologies/heal_range.jsontooltip
 #: simulation/data/technologies/heal_range_2.jsontooltip
 msgid "Healers +5 Healing and Vision Range."
-msgstr ""
+msgstr "Tabib +5 Jarak Pandang dan Penyembuhan."
 
 #: simulation/data/technologies/heal_range.jsongenericName
 msgid "Healing Range"
@@ -1132,15 +1132,15 @@ msgstr "Sumpah Hippokrates"
 
 #: simulation/data/technologies/heal_temple.jsondescription
 msgid "Units garrisoned in a temple are healed faster."
-msgstr "Unit tersimpan di kuil lebih cepat sembuh."
+msgstr "Unit didalam kuil disembuhkan lebih cepat."
 
 #: simulation/data/technologies/heal_temple.jsontooltip
 msgid "Temples +50% garrisoned healing rate."
-msgstr "Kuil menyembuhkan garnisun +50% lebih cepat."
+msgstr "Kuil menyembuhkan unit didalam +50% lebih cepat."
 
 #: simulation/data/technologies/heal_temple.jsongenericName
 msgid "Divine Offerings"
-msgstr "Sesajen Dewa"
+msgstr "Persembahan Dewa"
 
 #: simulation/data/technologies/heal_temple.jsonspecificName.mace
 #: simulation/data/technologies/heal_temple.jsonspecificName.spart
@@ -1156,7 +1156,7 @@ msgid ""
 "The loom allowed the creation of finer clothing for settlers. Women of the "
 "household were taught from a young age how to weave on the loom, and "
 "subsequently spent a large share of their lives working with it."
-msgstr ""
+msgstr "Alat tenun membuat pembuatan pakaian yang lebih halus untuk penetap jadi mungkin. Perempuan dalam rumah tangga diajari cara menenun dengan alat tenun sejak muda, dan seterusnya menghabiskan banyak bagian dari hidup mereka untuk menggunakannya."
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "Female Citizens +50% Health."
@@ -1164,7 +1164,7 @@ msgstr "Rakyat Wanita +50% Nyawa."
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
-msgstr "Mesin Tenun"
+msgstr "Alat Tenun"
 
 #: simulation/data/technologies/health_regen_units.jsondescription
 msgid "Unlock health regeneration for your units."
@@ -1180,15 +1180,15 @@ msgstr "Obat Medan Perang"
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsondescription
 msgid "Using geometric masonry increases the sturdiness of defensive walls."
-msgstr "Penggunaan batu geometris meningkatkan kekokohan tembok pertahanan."
+msgstr "Penggunaan teknik pembangunan geometris meningkatkan kekokohan tembok pertahanan."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsontooltip
 msgid "City walls +2 crush armor levels, but +10% build time."
-msgstr "Tembok kota +2 pertahanan lindas, tapi +10% waktu bangun."
+msgstr "Tembok kota +2 zirah lindasan, tapi +10% waktu bangun."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsongenericName
 msgid "Geometric Masonry"
-msgstr "Bebatuan Geometris"
+msgstr "Teknik Pembangunan Geometris"
 
 #: simulation/data/technologies/melee_inf_sidearms.jsontooltip
 msgid "Melee infantry +1 hack attack."
@@ -1196,15 +1196,15 @@ msgstr "Infanteri jarak dekat +1 serangan tebas."
 
 #: simulation/data/technologies/melee_inf_spearheads.jsondescription
 msgid "Using iron instead of bronze gave spears additional piercing power."
-msgstr "Penggunaan besi mengganti perunggu memberikan tambah kekuatan tusukan tombak"
+msgstr "Penggunaan besi menggantikan perunggu memberikan kekuatan tusukan tambahan pada tombak."
 
 #: simulation/data/technologies/melee_inf_spearheads.jsontooltip
 msgid "All Spear units +2 hack attack."
-msgstr "Semua unit tombak +2 serangan tebas"
+msgstr "Semua unit Tombak +2 serangan tebas."
 
 #: simulation/data/technologies/melee_inf_spearheads.jsongenericName
 msgid "Iron Spearheads"
-msgstr "Tombak Kepala Besi"
+msgstr "Tombak Berkepala Besi"
 
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.sele
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.ptol
@@ -1248,7 +1248,7 @@ msgstr "Jarak dan Tingkat Penyembuhan 2"
 
 #: simulation/data/technologies/pair_heal_03.jsongenericName
 msgid "Garrison Healing vs. Self-Healing"
-msgstr "Penyembuhan Garnisun vs. Penyembuhan Sendiri"
+msgstr "Penyembuhan Unit Didalam vs. Penyembuhan Sendiri"
 
 #: simulation/data/technologies/pair_house_01.jsongenericName
 #: simulation/data/technologies/pair_house_02.jsongenericName
@@ -1268,7 +1268,7 @@ msgstr "Tombak vs. Skirmis"
 #: simulation/data/technologies/pair_inf_armor_03.jsongenericName
 #: simulation/data/technologies/pair_inf_armor_04.jsongenericName
 msgid "Infantry Hack Armor vs. Spearmen Pierce Armor"
-msgstr "Pertahanan Tebas Infanteri vs. Pertahanan Tusuk Penombak"
+msgstr "Zirah Tebasn Infanteri vs. Zirah Tusukan Penombak"
 
 #: simulation/data/technologies/pair_levy_01.jsongenericName
 msgid "Levy Infantry vs. Levy Cavalry"
@@ -1284,7 +1284,7 @@ msgstr "Serangan vs. Pengemasan"
 
 #: simulation/data/technologies/pair_siege_cost_armor.jsongenericName
 msgid "Cost vs. Armor"
-msgstr "Biaya vs. Pertahanan"
+msgstr "Biaya vs. Zirah"
 
 #: simulation/data/technologies/pair_tower_01.jsongenericName
 msgid "Night's Watch vs. Crenellations"
@@ -1305,17 +1305,17 @@ msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Citizen soldiers max "
 "health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr ""
+msgstr "Majukan ke Fase Metropolis, yang membuka lebih banyak bangunan dan unit. Radius wilayah dari Pusat Peradaban meningkat lagi sebanyak +50%. Nyawa maks prajurit rakyat meningkat sebanyak +10%. Semua bangunan +9 tingkat penyembuhan unit di dalam."
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
 msgid "City Phase"
-msgstr "Fase Kota Besar"
+msgstr "Fase Metropolis"
 
 #: simulation/data/technologies/phase_city.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "Memerlukan 4 bangunan Fase Kota Kecil baru (kecuali Tembok dan Balai Kota)."
+msgstr "Memerlukan 4 bangunan baru dari Fase Kota (kecuali Tembok dan Pusat Peradaban)."
 
 #: simulation/data/technologies/phase_city.jsonspecificName.mace
 #: simulation/data/technologies/phase_city.jsonspecificName.spart
@@ -1328,7 +1328,7 @@ msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology. This is the Athenian city phase, where metal "
 "gathering rates are boosted because of the 'Silver Owls' bonus."
-msgstr "Majukan dari kota ramai menjadi metropolis sebenarnya, penuh dengan keajaiban teknologi modern. Ini adalah fase kota besar Athena, dimana tingkat pengumpulan logam bertambah karena bonus 'Burung Hantu Perak'."
+msgstr "Majukan dari kota ramai menjadi metropolis sebenarnya, penuh dengan keajaiban teknologi modern. Ini adalah fase metropolis Athena, dimana tingkat pengumpulan logam bertambah karena bonus 'Burung Hantu Perak'."
 
 #: simulation/data/technologies/phase_city_athen.jsontooltip
 msgid ""
@@ -1336,7 +1336,7 @@ msgid ""
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
 "health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr ""
+msgstr "Majukan ke Fase Metropolis, yang membuka lebih banyak bangunan dan unit. Radius wilayah dari Pusat Peradaban meningkat lagi sebanyak +50%. Bonus peradaban 'Burung Hantu Perak' mendapatkan +10% tingkat pengumpulan logam untuk semua pekerja. Nyawa maks prajurit rakyat meningkat sebanyak +10%. Semua bangunan +9 tingkat penyembuhan unit di dalam."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1348,12 +1348,12 @@ msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. Citizen soldiers max health "
 "increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr ""
+msgstr "Majukan ke Fase Kota, yang membuka lebih banyak bangunan dan unit. Radius wilayah dari Pusat Peradaban meningkat sebanyak +30%. Nyawa maks prajurit rakyat meningkat sebanyak +20%. Semua bangunan +7 tingkat penyembuhan unit di dalam."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
 msgid "Town Phase"
-msgstr "Fase Kota Kecil"
+msgstr "Fase Kota"
 
 #: simulation/data/technologies/phase_town.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
@@ -1372,7 +1372,7 @@ msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly. "
 "This is the Athenian town phase, where metal gathering rates are boosted "
 "because of the 'Silver Owls' bonus."
-msgstr "Majukan dari desa kecil ke kota ramai, siap untuk berkembang secara cepat. Ini adalah fase kota kecil Athena, dimana tingkat pengumpulan logam bertambah karena bonus 'Burung Hantu Perak'."
+msgstr "Majukan dari desa kecil ke kota ramai, siap untuk berkembang secara cepat. Ini adalah fase kota Athena, dimana tingkat pengumpulan logam bertambah karena bonus 'Burung Hantu Perak'."
 
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
@@ -1380,7 +1380,7 @@ msgid ""
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers. Citizen soldiers max health "
 "increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr ""
+msgstr "Majukan ke Fase Kota, yang membuka lebih banyak bangunan dan unit. Radius wilayah dari Pusat Peradaban meningkat sebanyak +30%. Bonus peradaban 'Burung Hantu Perak' mendapatkan +10% tingkat pengumpulan logam untuk semua pekerja. Nyawa maks prajurit rakyat meningkat sebanyak +20%. Semua bangunan +7 tingkat penyembuhan unit di dalam."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1395,7 +1395,7 @@ msgstr "Negara atau suku sering membangun ruang makan untuk pesta umum atau untu
 #: simulation/data/technologies/pop_civic_01.jsontooltip
 #: simulation/data/technologies/pop_civic_02.jsontooltip
 msgid "Civic Centers +5 population cap bonus."
-msgstr "Balai Kota +5 bonus batas populasi."
+msgstr "Pusat Peradaban +5 bonus batas populasi."
 
 #: simulation/data/technologies/pop_civic_01.jsongenericName
 msgid "Dining Hall"
@@ -1431,7 +1431,7 @@ msgstr "Ekklēsía"
 msgid ""
 "Home gardens ranged from simple fenced-in areas to large manicured and "
 "colonnaded enclosures."
-msgstr "Kebun rumah bermacam-macam dari daerah berpagar sederhana hingga daerah luas berkolom yang terawat."
+msgstr "Kebun rumah berbentuk bermacam-macam dari daerah sederhana berpagar hingga daerah luas berkolaborasi yang terawat."
 
 #: simulation/data/technologies/pop_house_01.jsontooltip
 #: simulation/data/technologies/pop_house_02.jsontooltip
@@ -1465,7 +1465,7 @@ msgstr "Surga"
 #: simulation/data/technologies/pop_house_02.jsondescription
 msgid ""
 "Homes tended to expand as the wealth and population of a settlement grew."
-msgstr "Rumah cenderung berkembang seiring kekayaan dan populasi penduduk."
+msgstr "Rumah cenderung berkembang seiring perkembangan kekayaan dan populasi penduduk."
 
 #: simulation/data/technologies/pop_house_02.jsongenericName
 msgid "Manors"
@@ -1483,11 +1483,11 @@ msgstr "Keajaiban menarik lebih banyak orang ke peradaban anda."
 msgid ""
 "Enable Glorious Expansion. Further increase the population limit by 40 per "
 "Wonder owned."
-msgstr ""
+msgstr "Mengaktifkan Ekspansi Megah. Meningkatkan lagi batas populasi sebanyak 40 per Keajaiban yang dipunyai."
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
-msgstr ""
+msgstr "Ekspansi Megah"
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsondescription
 msgid ""
@@ -1518,11 +1518,11 @@ msgstr "Amentum"
 
 #: simulation/data/technologies/siege_armor.jsondescription
 msgid "Increased armor on siege weapons"
-msgstr "Meningkatkan pertahanan pada senjata kepung"
+msgstr "Meningkatkan zirah pada senjata kepung"
 
 #: simulation/data/technologies/siege_armor.jsontooltip
 msgid "All Siege weapons +2 Hack armor levels."
-msgstr "Semua senjata kepung +2 tingkat pertahanan tebas."
+msgstr "Semua senjata kepung +2 zirah Tebasan."
 
 #: simulation/data/technologies/siege_armor.jsongenericName
 msgid "Armor plating"
@@ -1534,7 +1534,7 @@ msgstr "Teknologi canggih meningkatkan efisiensi pengepungan"
 
 #: simulation/data/technologies/siege_attack.jsontooltip
 msgid "All siege weapons +25% Crush damage."
-msgstr ""
+msgstr "Semua senjata kepung +25% serangan Lindas."
 
 #: simulation/data/technologies/siege_attack.jsongenericName
 msgid "Advanced Siege"
@@ -1542,11 +1542,11 @@ msgstr "Pengepungan Canggih"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsondescription
 msgid "Improvement to projectile accuracy"
-msgstr "Peningkatan ketepatan peluru"
+msgstr "Peningkatan ketepatan proyektil"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt shooter accuracy increased 25%."
-msgstr ""
+msgstr "Ketepatan penembak panah meningkat sebanyak 25%."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
@@ -1554,7 +1554,7 @@ msgstr "Ketepatan Panah"
 
 #: simulation/data/technologies/siege_cost_metal.jsondescription
 msgid "Siege weapons require less metal resource"
-msgstr "Senjata kepung butuh lebih sedikit logam"
+msgstr "Senjata kepung membutuhkan lebih sedikit logam"
 
 #: simulation/data/technologies/siege_cost_metal.jsontooltip
 msgid "Siege weapons cost 20% less metal"
@@ -1562,15 +1562,15 @@ msgstr "Biaya logam senjata kepung lebih murah 20%"
 
 #: simulation/data/technologies/siege_cost_metal.jsongenericName
 msgid "Metalworker"
-msgstr "Pandai besi"
+msgstr "Pekerja Logam"
 
 #: simulation/data/technologies/siege_cost_wood.jsondescription
 msgid "Siege weapons cost less wood"
-msgstr "Senjata kepung butuh lebih sedikit kayu"
+msgstr "Senjata kepung membutuhkan lebih sedikit kayu"
 
 #: simulation/data/technologies/siege_cost_wood.jsontooltip
 msgid "Siege weapons cost 20% less wood"
-msgstr "Senjata kepung butuh kayu 20% lebih sedikit"
+msgstr "Biaya kayu senjata kepung lebih murah 20%"
 
 #: simulation/data/technologies/siege_cost_wood.jsongenericName
 msgid "Artillery Instructors"
@@ -1578,11 +1578,11 @@ msgstr "Instruktur Artileri"
 
 #: simulation/data/technologies/siege_packing.jsondescription
 msgid "Immobile siege weapons are assembled and disassembled faster"
-msgstr "Senjata kepung diam lebih cepat dibongkar pasang"
+msgstr "Senjata kepung yang tidak bergerak lebih cepat dibongkar pasang"
 
 #: simulation/data/technologies/siege_packing.jsontooltip
 msgid "-25% pack and unpack time for immobile siege weapons."
-msgstr ""
+msgstr "-25% waktu bongkar dan kemas untuk senjata kepung yang tidak bergerak."
 
 #: simulation/data/technologies/siege_packing.jsongenericName
 msgid "Military Engineers"
@@ -1595,43 +1595,43 @@ msgstr "Membiakkan kuda tercepat."
 #: simulation/data/technologies/speed_cavalry_01.jsontooltip
 #: simulation/data/technologies/speed_cavalry_02.jsontooltip
 msgid "+10% cavalry walk speed."
-msgstr "Kecepatan berjalan pasukan kavaleri +10%."
+msgstr "+10% kecepatan berjalan kavaleri."
 
 #: simulation/data/technologies/speed_cavalry_01.jsongenericName
 msgid "Cavalry Breeding"
-msgstr "Pembiakkan Kuda"
+msgstr "Pembiakan Kuda"
 
 #: simulation/data/technologies/speed_cavalry_02.jsondescription
 msgid "Train your horses to move faster."
-msgstr "Latih kudamu agar berjalan lebih cepat"
+msgstr "Melatih kuda agar bergerak lebih cepat."
 
 #: simulation/data/technologies/speed_cavalry_02.jsongenericName
 msgid "Cavalry Speed Training"
-msgstr "Latihan kecepatan pasukan kavaleri"
+msgstr "Latihan Kecepatan Kavaleri"
 
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
-msgstr ""
+msgstr "Merekrut sebuah jaringan informan untuk mengawasi rakyat Anda."
 
 #: simulation/data/technologies/spy_counter.jsontooltip
 msgid "Make your units 50% more expensive to bribe."
-msgstr ""
+msgstr "Membuat unit Anda 50% lebih mahal untuk disogok."
 
 #: simulation/data/technologies/spy_counter.jsongenericName
 msgid "Counterintelligence"
-msgstr ""
+msgstr "Perlawanan Intelijen"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsondescription
 msgid "Improve the international trading profit."
-msgstr ""
+msgstr "Meningkatkan penghasilan perdagangan internasional."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
 msgid "Market +10% International Bonus."
-msgstr ""
+msgstr "Pasar +10% Bonus Internasional."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsongenericName
 msgid "Commercial Treaty"
-msgstr ""
+msgstr "Perjanjian Komersil"
 
 #: simulation/data/technologies/trade_convoys_armor.jsondescription
 msgid "Increases defensive capability of traders."
@@ -1639,26 +1639,26 @@ msgstr "Meningkatkan kemampuan pertahanan pedagang."
 
 #: simulation/data/technologies/trade_convoys_armor.jsontooltip
 msgid "Traders +2 Hack and Pierce armor levels."
-msgstr "Pedagang +2 Pertahanan Tebas dan Tusuk."
+msgstr "Pedagang +2 Zirah Tebasan dan Tusukan."
 
 #: simulation/data/technologies/trade_convoys_armor.jsongenericName
 #: simulation/data/technologies/trade_convoys_speed.jsongenericName
 msgid "Trade Convoys"
-msgstr "Kafilah Dagang"
+msgstr "Konvoi Dagang"
 
 #: simulation/data/technologies/trade_convoys_speed.jsondescription
 msgid ""
 "Increases movement rate of traders, which in turn increases trade income."
-msgstr "Meningkatkan tingkat kecepatan pedagang sehingga meningkatkan pemasukan."
+msgstr "Meningkatkan kecepatan bergerak pedagang sehingga meningkatkan penghasilan."
 
 #: simulation/data/technologies/trade_convoys_speed.jsontooltip
 msgid "Traders +25% Walk Speed, which quickly increases trade income."
-msgstr "Pedagang +25% kecepatan yang meningkatkan pemasukan"
+msgstr "Pedagang +25% Kecepatan Berjalan yang meningkatkan penghasilan dagang."
 
 #: simulation/data/technologies/trade_gain_01.jsondescription
 #: simulation/data/technologies/trade_gain_02.jsondescription
 msgid "The progress in handicraft improves the trading profit."
-msgstr ""
+msgstr "Kemajuan di keterampilan tangan meningkatkan penghasilan dagang."
 
 #: simulation/data/technologies/trade_gain_01.jsontooltip
 msgid "Traders +10% gain."
@@ -1674,14 +1674,14 @@ msgstr "Pedagang +15% pendapatan."
 
 #: simulation/data/technologies/trade_gain_02.jsongenericName
 msgid "Advanced Handicraft"
-msgstr ""
+msgstr "Keterampilan Tangan Canggih"
 
 #: simulation/data/technologies/training_conscription.jsondescription
 #: simulation/data/technologies/persians/training_conscription_infantry.jsondescription
 msgid ""
 "Significantly increase training speed of soldiers at the barracks by "
 "training them in large batches or battalions."
-msgstr "Meningkatkan kecepatan pelatihan prajurit di barak dengan melatih mereka dalam batalyon besar"
+msgstr "Meningkatkan kecepatan pelatihan prajurit di barak dengan melatih mereka dalam kumpulan besar atau batalyon."
 
 #: simulation/data/technologies/training_conscription.jsontooltip
 #: simulation/data/technologies/persians/training_conscription_infantry.jsontooltip
@@ -1728,11 +1728,11 @@ msgstr "Pajak Infanteri"
 
 #: simulation/data/technologies/training_naval_architects.jsondescription
 msgid "Significantly increase build speed of batches of ships at the Dock."
-msgstr "Meningkatkan kecepatan perakitan kapal majemuk di Dermaga."
+msgstr "Meningkatkan kecepatan pembuatan kapal majemuk di Dermaga."
 
 #: simulation/data/technologies/training_naval_architects.jsontooltip
 msgid "Docks increased batch construction speed bonus."
-msgstr "Dermaga meningkatkan kecepatan perakitan majemuk."
+msgstr "Dermaga meningkatkan kecepatan pembuatan majemuk."
 
 #: simulation/data/technologies/training_naval_architects.jsongenericName
 msgid "Naval Architects"
@@ -1742,7 +1742,7 @@ msgstr "Arsitek Kelautan"
 msgid ""
 "Guard units (Champions) are professionals who wield the best weapons and "
 "have the best training."
-msgstr "Unit pengawal (Jawara) adalah ahli yang memegang senjata terhebat dan menjalani latihan terbaik."
+msgstr "Unit penjaga (Jawara) adalah ahli yang memegang senjata terbaik dan menjalani latihan terbaik."
 
 #: simulation/data/technologies/unlock_champion_units.jsontooltip
 msgid "Unlock the ability to train Champions at the barracks."
@@ -1750,7 +1750,7 @@ msgstr "Membuka kemampuan untuk melatih Jawara di barak."
 
 #: simulation/data/technologies/unlock_champion_units.jsongenericName
 msgid "Unlock Champion Units"
-msgstr "Buka unit Jawara"
+msgstr "Membuka unit Jawara"
 
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.mace
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.spart
@@ -1789,15 +1789,15 @@ msgid ""
 "The extension of trade leads to the permanent establishment of storekeepers "
 "and their families in foreign countries, allowing them to exploit the wealth"
 " of these countries."
-msgstr ""
+msgstr "Perluasan perdagangan membawa ke pendirian permanen penjaga toko dan keluarga mereka di luar negeri, membuat mereka bisa memanfaatkan kekayaan negeri tersebut."
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
 msgid "Allows using allied dropsites."
-msgstr "Memperbolehkan menggunakan penyimpanan sekutunya."
+msgstr "Memperbolehkan penggunaan penyimpanan sekutunya."
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsongenericName
 msgid "Diaspora"
-msgstr "Penyebaran"
+msgstr "Diaspora"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsonrequirementsTooltip
 msgid "Requires 3 Traders"
@@ -1808,13 +1808,13 @@ msgid ""
 "By means of trading and travelling people explored beyond the boundaries of "
 "their lands and drew maps of it in order to share and memorize their "
 "discoveries."
-msgstr ""
+msgstr "Dengan tujuan untuk berdagang dan penjelajahan, orang-orang menjelajah melampaui batas wilayah mereka dan menggambar peta mengenai wilayah luar dengan tujuan untuk membagikan dan mengingat apa yang ditemukan mereka."
 
 #: simulation/data/technologies/unlock_shared_los.jsontooltip
 msgid ""
 "See what your allies see, browse their summary and check their resources and"
 " population count in the top panel."
-msgstr ""
+msgstr "Melihat apa yang sekutu Anda lihat, lihat ringkasan mereka dan cek sumberdaya mereka dan jumlah populasinya di panel atas."
 
 #: simulation/data/technologies/unlock_shared_los.jsongenericName
 msgid "Cartography"
@@ -1824,47 +1824,47 @@ msgstr "Pemetaan"
 msgid ""
 "Merchants' first goal was trading, but they also gathered information about "
 "the countries they crossed."
-msgstr ""
+msgstr "Tujuan utama pedagang adalah berdagang, tapi mereka juga mengumpulkan informasi negeri yang mereka lewati."
 
 #: simulation/data/technologies/unlock_spies.jsontooltip
 msgid ""
 "Allows bribing the units of other players in order to share their vision."
-msgstr ""
+msgstr "Memperbolehkan penyogokan unit dari pemain lain dengan tujuan untuk melihat apa yang dia lihat."
 
 #: simulation/data/technologies/unlock_spies.jsongenericName
 msgid "Espionage"
-msgstr ""
+msgstr "Pengintaian"
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsondescription
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsondescription
 msgid "Promote all of your citizen-soldier cavalrymen to Advanced rank."
-msgstr "Naikkan pangkat semua prajurit rakyat berkuda ke pangkat Tinggi."
+msgstr "Tingkatkan semua kavaleri rakyat Anda ke pangkat lebih Tinggi."
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsontooltip
 msgid ""
 "Promote all of your citizen-soldier cavalrymen to Advanced rank. This "
 "increases their military prowess, but decreases their meat gathering rates "
 "-25%. Unlocks Elite Citizen-Cavalry technology."
-msgstr "Naikkan pangkat semua kavaleri rakyat Anda menjadi Tinggi. Ini meningkatkan kecakapan militer mereka namun mengurangi tingkat pengumpulan daging -25%. Membuka teknologi Kavaleri Rakyat Elit."
+msgstr "Tingkatkan semua kavaleri rakyat Anda ke pangkat lebih Tinggi. Ini meningkatkan kecakapan militer mereka namun mengurangi tingkat pengumpulan daging sebanyak -25%. Membuka teknologi Kavaleri Rakyat Elit."
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsongenericName
 msgid "Advanced Citizen-Cavalry"
-msgstr "Prajurit Rakyat Berkuda Tinggi"
+msgstr "Kavaleri Rakyat Berpangkat"
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsondescription
 msgid "Upgrade all of your citizen-soldier infantrymen to Advanced rank."
-msgstr "Tingkatkan semua prajurit rakyat infanteri ke pangkat Tinggi."
+msgstr "Tingkatkan semua infanteri rakyat Anda ke pangkat lebih Tinggi."
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsontooltip
 msgid ""
 "Upgrade all of your citizen-soldier infantrymen to Advanced rank. This "
 "increases their military prowess, but decreases their resource gathering "
 "rates -25%. Unlocks Elite Citizen-Infantry technology."
-msgstr "Tingkatkan semua prajurit rakyat infanteri Anda ke pangkat Tinggi. Ini meningkatkan kecakapan militer mereka namun mengurangi tingkat pengumpulan sumberdaya -25%. Membuka teknologi Prajurit Rakyat Infanteri Elit."
+msgstr "Tingkatkan semua infanteri rakyat Anda ke pangkat lebih Tinggi. Ini meningkatkan kecakapan militer mereka namun mengurangi tingkat pengumpulan sumberdaya sebanyak -25%. Membuka teknologi Infanteri Rakyat Elit."
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsongenericName
 msgid "Advanced Citizen-Infantry"
-msgstr "Prajurit Rakyat Infanteri Tinggi"
+msgstr "Infanteri Rakyat Berpangkat"
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.mace
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.spart
@@ -1874,42 +1874,42 @@ msgstr "Zeugítai"
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsondescription
 msgid "Hire professional mercenaries to fight in your army."
-msgstr ""
+msgstr "Menyewa prajurit bayaran handal untuk berperang bagi prajurit Anda."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid ""
 "Mercenaries are promoted to advanced rank but require +20% training time."
-msgstr ""
+msgstr "Prajurit bayaran ditingkatkan ke pangkat lebih tinggi tapi membutuhkan +20% waktu melatih."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsongenericName
 msgid "Expertise In War"
-msgstr ""
+msgstr "Keahlian di Perang"
 
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsontooltip
 msgid ""
 "Promote all of your citizen-soldier cavalrymen to Elite rank. This increases"
 " their military prowess, but decreases their meat gathering rates another "
 "-25%."
-msgstr "Tingkatkan semua kavaleri rakyat Anda ke pangkat Elit. Ini meningkatkan kecakapan militer mereka namun mengurangi tingkat pengumpulan daging -25% lagi."
+msgstr "Tingkatkan semua kavaleri rakyat Anda ke pangkat Elit. Ini meningkatkan kecakapan militer mereka namun mengurangi lagi tingkat pengumpulan daging sebanyak -25%."
 
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsongenericName
 msgid "Elite Citizen-Cavalry"
-msgstr "Prajurit Rakyat Berkuda Elit"
+msgstr "Kavaleri Rakyat Elit"
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsondescription
 msgid "Upgrade all of your citizen-soldier infantrymen to Elite rank."
-msgstr "Tingkatkan semua prajurit rakyat infanteri ke pangkat Elit."
+msgstr "Tingkatkan semua infanteri rakyat Anda ke pangkat Elit."
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsontooltip
 msgid ""
 "Upgrade all of your citizen-soldier infantrymen to Elite rank. This "
 "increases their military prowess, but decreases their resource gathering "
 "rates another -25%."
-msgstr "Tingkatkan semua prajurit rakyat infanteri Anda ke pangkat Elit. Ini meningkatkan kecakapan militer mereka namun mengurangi tingkat pengumpulan sumberdaya -25% lagi."
+msgstr "Tingkatkan semua infanteri rakyat Anda ke pangkat Elit. Ini meningkatkan kecakapan militer mereka namun mengurangi lagi tingkat pengumpulan sumberdaya sebanyak -25%."
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsongenericName
 msgid "Elite Citizen-Infantry"
-msgstr "Prajurit Rakyat Infanteri Elit"
+msgstr "Infanteri Rakyat Elit"
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.mace
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.spart
@@ -1919,11 +1919,11 @@ msgstr "Pentakosiomédimnoi"
 
 #: simulation/data/technologies/vision_outpost.jsondescription
 msgid "Outposts gain longer vision for scouting."
-msgstr "Pos Pengawas mendapat jarak pengintaian lebih jauh."
+msgstr "Pos mendapat jarak pandang lebih jauh untuk pengintaian."
 
 #: simulation/data/technologies/vision_outpost.jsontooltip
 msgid "Vision Range +50% for Outposts."
-msgstr "Jarak Pandang +50% untuk Pos Pengawas."
+msgstr "Jarak Pandang +50% untuk Pos."
 
 #: simulation/data/technologies/vision_outpost.jsongenericName
 msgid "Carrier Pigeons"
@@ -1934,13 +1934,13 @@ msgid ""
 "Carthaginians built their city walls in three concentric circuits. These "
 "walls were never breached. Even when the city was taken by the Romans, it "
 "was via the city's harbor, not by storming its walls."
-msgstr ""
+msgstr "Bangsa Kartago membangun tembok kota mereka dalam tiga sirkuit yang konsentris. Tembok-tembok ini tidak pernah ditembus. Walaupun kota mereka diambil alih oleh bangsa Romawi, caranya adalah melewati pelabuhan kota, bukan dengan menyerang tembok mereka."
 
 #: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsontooltip
 msgid ""
 "Carthaginian walls, gates, and wall towers have 3x the health of a standard "
 "wall, but also cost twice as much and take twice as long to build."
-msgstr ""
+msgstr "Tembok, gerbang, dan menara tembok Kartago memiliki 3x nyawa dari tembok biasa, tapi juga berharga dua kali lipat dan butuh dibangun dua kali lipat lebih lama."
 
 #: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsongenericName
 msgid "Triple Walls"
@@ -1955,21 +1955,21 @@ msgstr "Prajurit bayaran Kelt dikurangi biaya logamnya."
 msgid ""
 "Hire a Celtic mercenary captain to reduce cost -20 metal for Celtic "
 "mercenaries."
-msgstr "Sewa kapten prajurit bayaran Kelt untuk mengurangi biaya -20 logam untuk prajurit bayaran Kelt."
+msgstr "Menyewa kapten prajurit bayaran Kelt untuk mengurangi biaya logam prajurit bayaran Kelt sebanyak -20."
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsongenericName
 msgid "Celtic Mercenary Captain"
-msgstr "Kapten Bayaran Kelt"
+msgstr "Kapten Prajurit Bayaran Kelt"
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsontooltip
 msgid ""
 "Hire a Gallic mercenary general to reduce cost -20 metal for Celtic "
 "mercenaries."
-msgstr "Sewa jenderal prajurit bayaran Galia untuk mengurangi biaya -20 logam untuk prajurit bayaran Galia."
+msgstr "Menyewa jenderal prajurit bayaran Galia untuk mengurangi biaya logam prajurit bayaran Kelt sebanyak -20."
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsongenericName
 msgid "Gallic Mercenary General"
-msgstr "Jenderal Bayaran Galia"
+msgstr "Jenderal Prajurit Bayaran Galia"
 
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs_2.jsondescription
@@ -1980,21 +1980,21 @@ msgstr "Prajurit bayaran Iberia dikurangi biaya logamnya."
 msgid ""
 "Hire a Lusitanian mercenary captain to reduce cost -20 metal for Iberian "
 "mercenaries."
-msgstr "Sewa kapten prajurit bayaran Lusitania untuk mengurangi biaya -20 logam untuk prajurit bayaran Iberia."
+msgstr "Menyewa kapten prajurit bayaran Lusitania untuk mengurangi biaya logam prajurit bayaran Iberia sebanyak -20."
 
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs.jsongenericName
 msgid "Lusitanian Mercenary Captain"
-msgstr "Kapten Bayaran Lusitania"
+msgstr "Kapten Prajurit Bayaran Lusitania"
 
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs_2.jsontooltip
 msgid ""
 "Hire a Celtiberian mercenary general to reduce cost -20 metal for Iberian "
 "mercenaries."
-msgstr "Sewa jenderal prajurit bayaran Keltiberia untuk mengurangi biaya -20 logam untuk prajurit bayaran Iberia."
+msgstr "Menyewa jenderal prajurit bayaran Keltiberia untuk mengurangi biaya logam prajurit bayaran Iberia sebanyak -20."
 
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs_2.jsongenericName
 msgid "Celtiberian Mercenary General"
-msgstr "Jenderal Bayaran Keltiberia"
+msgstr "Jenderal Prajurit Bayaran Keltiberia"
 
 #: simulation/data/technologies/carthaginians/cost_italian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/cost_italian_mercs_2.jsondescription
@@ -2005,57 +2005,57 @@ msgstr "Prajurit bayaran Italia dikurangi biaya logamnya."
 msgid ""
 "Hire an Italiote mercenary captain to reduce cost -20 metal for Italian "
 "mercenaries."
-msgstr "Sewa kapten prajurit bayaran Italia untuk mengurangi biaya -20 logam untuk prajurit bayaran Italia."
+msgstr "Menyewa kapten prajurit bayaran Italia untuk mengurangi biaya logam prajurit bayaran Italia sebanyak -20."
 
 #: simulation/data/technologies/carthaginians/cost_italian_mercs.jsongenericName
 msgid "Italiote Mercenary Captain"
-msgstr "Kapten Bayaran Italia"
+msgstr "Kapten Prajurit Bayaran Italia"
 
 #: simulation/data/technologies/carthaginians/cost_italian_mercs_2.jsontooltip
 msgid ""
 "Hire an Italiote mercenary general to reduce cost -20 metal for Italian "
 "mercenaries."
-msgstr "Sewa jenderal prajurit bayaran Italia untuk mengurangi biaya -20 logam untuk prajurit bayaran Italia."
+msgstr "Menyewa jenderal prajurit bayaran Italia untuk mengurangi biaya logam prajurit bayaran Italia sebanyak -20."
 
 #: simulation/data/technologies/carthaginians/cost_italian_mercs_2.jsongenericName
 msgid "Italiote Mercenary General"
-msgstr "Jenderal Bayaran Italia"
+msgstr "Jenderal Prajurit Bayaran Italia"
 
 #: simulation/data/technologies/carthaginians/pair_celt_mercs_1.jsongenericName
 msgid "Celtic merc cost vs. recruit time #1"
-msgstr "Biaya bayaran vs. waktu rekrut Kelt 1"
+msgstr "Biaya bayaran vs. waktu rekrut prajurit bayaran Kelt #1"
 
 #: simulation/data/technologies/carthaginians/pair_celt_mercs_2.jsongenericName
 msgid "Celtic merc cost vs. recruit time #2"
-msgstr "Biaya bayaran vs. waktu rekrut Kelt 2"
+msgstr "Biaya bayaran vs. waktu rekrut prajurit bayaran Kelt #2"
 
 #: simulation/data/technologies/carthaginians/pair_iberian_mercs_1.jsongenericName
 msgid "Iberian merc cost vs. recruit time #1"
-msgstr "Biaya bayaran vs. waktu rekrut Iberia 1"
+msgstr "Biaya bayaran vs. waktu rekrut prajurit bayaran Iberia #1"
 
 #: simulation/data/technologies/carthaginians/pair_iberian_mercs_2.jsongenericName
 msgid "Iberian merc cost vs. recruit time #2"
-msgstr "Biaya bayaran vs. waktu rekrut Iberia 2"
+msgstr "Biaya bayaran vs. waktu rekrut prajurit bayaran Iberia #2"
 
 #: simulation/data/technologies/carthaginians/pair_italian_mercs_1.jsongenericName
 msgid "Italian merc cost vs. recruit time #1"
-msgstr "Biaya bayaran vs. waktu rekrut Italia 1"
+msgstr "Biaya bayaran vs. waktu rekrut prajurit bayaran Italia #1"
 
 #: simulation/data/technologies/carthaginians/pair_italian_mercs_2.jsongenericName
 msgid "Italian merc cost vs. recruit time #2"
-msgstr "Biaya bayaran vs. waktu rekrut Italia 2"
+msgstr "Biaya bayaran vs. waktu rekrut prajurit bayaran Italia #2"
 
 #: simulation/data/technologies/carthaginians/special_colonisation.jsondescription
 msgid ""
 "Carthaginians established many trading centers as colonies and ultimately "
 "held dominion over 300 cities and towns in North Africa alone."
-msgstr "Bangsa Kartago membangun banyak pusat dagang sebagai koloni dan akhirnya menguasai 300 kota di Afrika Utara"
+msgstr "Bangsa Kartago membangun banyak pusat dagang sebagai koloni dan akhirnya menguasai 300 kota di Afrika Utara."
 
 #: simulation/data/technologies/carthaginians/special_colonisation.jsontooltip
 msgid ""
 "Carthaginians were colonizers. Civic Centers, Temples, and Houses -25% build"
 " time."
-msgstr "Bangsa Kartago adalah bangsa koloni. Balai Kota, Kuil, dan Rumah -25% waktu bangun."
+msgstr "Bangsa Kartago adalah penjajah. Pusat Peradaban, Kuil, dan Rumah -25% waktu bangun."
 
 #: simulation/data/technologies/carthaginians/special_colonisation.jsongenericName
 msgid "Colonization"
@@ -2066,7 +2066,7 @@ msgid ""
 "Nobody knew better than the Carthaginians where in the ancient world they "
 "were going and going to go; their merchant traders had missions to "
 "everywhere."
-msgstr "Bangsa Kartago paling mengerti di dunia kuno kemana mereka pergi; saudagar mereka punya misi di mana-mana."
+msgstr "Bangsa Kartago paling mengerti kemana mereka pergi di dunia kuno; saudagar mereka punya misi di mana-mana."
 
 #: simulation/data/technologies/carthaginians/special_exploration.jsontooltip
 msgid "Carthaginians were explorers. All Traders and Ships +25% vision range."
@@ -2079,11 +2079,11 @@ msgstr "Penjelajahan"
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsondescription
 msgid ""
 "Significantly increase build speed of batches of ships at the Shipyard."
-msgstr "Meningkatkan waktu secara siknifikan kecepatan buat majemuk kapal di Galangan."
+msgstr "Meningkatkan kecepatan pembangunan majemuk kapal secara siknifikan di Galangan."
 
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsontooltip
 msgid "Shipyard increased batch construction speed bonus."
-msgstr "Galangan meningkatkan bonus kecepatan rakit majemuk."
+msgstr "Galangan meningkatkan bonus kecepatan pembuatan majemuk."
 
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsongenericName
 msgid "Phoenician Naval Architects"
@@ -2124,7 +2124,7 @@ msgstr "Bersekutu dengan kota Iberia untuk mengurangi waktu latih prajurit bayar
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsongenericName
 msgid "Iberian Alliance"
-msgstr "Persekutuan Iberia"
+msgstr "Aliansi Iberia"
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsontooltip
 msgid ""
@@ -2148,7 +2148,7 @@ msgstr "Bersekutu dengan kota Italia untuk mengurangi waktu latih prajurit bayar
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsongenericName
 msgid "Italiote Alliance"
-msgstr "Persekutuan Italia"
+msgstr "Aliansi Italia"
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs_2.jsontooltip
 msgid ""
@@ -2162,48 +2162,48 @@ msgstr "Hegemoni Italia"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsondescription
 msgid "Upgrade all of your Celtic mercenaries to Advanced rank."
-msgstr "Tingkatkan semua prajurit bayaran Kelt ke pangkat Tinggi."
+msgstr "Tingkatkan semua prajurit bayaran Kelt Anda ke pangkat lebih Tinggi."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsontooltip
 msgid ""
 "Upgrade all of your Celtic mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Celtic Mercenaries technology."
-msgstr "Tingkatkan semua prajurit bayaran Kelt Anda ke pangkat Tinggi. Ini meningkatkan kecakapan militer mereka namun mengurangi tingkat pengumpulan sumberdaya -25%. Membuka teknologi Prajurit Bayaran Kelt Elit."
+msgstr "Tingkatkan semua prajurit bayaran Kelt Anda ke pangkat lebih Tinggi. Ini meningkatkan kecakapan militer mereka namun mengurangi tingkat pengumpulan sumberdaya sebanyak -25%. Membuka teknologi Prajurit Bayaran Kelt Elit."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsongenericName
 msgid "Advanced Celtic Mercenaries"
-msgstr "Prajurit Bayaran Kelt Tinggi"
+msgstr "Prajurit Bayaran Kelt Berpangkat"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsondescription
 msgid "Upgrade all of your Iberian mercenaries to Advanced rank."
-msgstr "Tingkatkan semua prajurit bayaran Iberia ke pangkat Tinggi."
+msgstr "Tingkatkan semua prajurit bayaran Iberia Anda ke pangkat lebih Tinggi."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsontooltip
 msgid ""
 "Upgrade all of your Iberian mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Iberian Mercenaries technology."
-msgstr "Tingkatkan semua prajurit bayaran Iberia Anda ke pangkat Tinggi. Ini meningkatkan kecakapan militer mereka namun mengurangi tingkat pengumpulan sumberdaya -25%. Membuka teknologi Prajurit Bayaran Iberia Elit."
+msgstr "Tingkatkan semua prajurit bayaran Iberia Anda ke pangkat lebih Tinggi. Ini meningkatkan kecakapan militer mereka namun mengurangi tingkat pengumpulan sumberdaya sebanyak -25%. Membuka teknologi Prajurit Bayaran Iberia Elit."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsongenericName
 msgid "Advanced Iberian Mercenaries"
-msgstr "Prajurit Bayaran Iberia Tinggi"
+msgstr "Prajurit Bayaran Iberia Berpangkat"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsondescription
 msgid "Upgrade all of your Italiote mercenaries to Advanced rank."
-msgstr "Tingkatkan semua prajurit bayaran Italia ke pangkat Tinggi."
+msgstr "Tingkatkan semua prajurit bayaran Italia Anda ke pangkat lebih Tinggi."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsontooltip
 msgid ""
 "Upgrade all of your Italiote mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Italiote Mercenaries technology."
-msgstr "Tingkatkan semua prajurit bayaran Italia Anda ke pangkat Tinggi. Ini meningkatkan kecakapan militer mereka namun mengurangi tingkat pengumpulan sumberdaya -25%. Membuka teknologi Prajurit Bayaran Italia Elit."
+msgstr "Tingkatkan semua prajurit bayaran Italia Anda ke pangkat lebih Tinggi. Ini meningkatkan kecakapan militer mereka namun mengurangi tingkat pengumpulan sumberdaya sebanyak -25%. Membuka teknologi Prajurit Bayaran Italia Elit."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsongenericName
 msgid "Advanced Italiote Mercenaries"
-msgstr "Prajurit Bayaran Italia Tinggi"
+msgstr "Prajurit Bayaran Italia Berpangkat"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsondescription
 msgid "Upgrade all of your Celtic Mercenaries to Elite rank."
@@ -2250,13 +2250,13 @@ msgstr "Prajurit Bayaran Italia Elit"
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
-msgstr ""
+msgstr "Bangunan Kelt kebanyakan dibuat dari kayu dan fondasi puing."
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsontooltip
 msgid ""
 "Celtic buildings have 20% less health, but are also 20% cheaper and faster "
 "to construct."
-msgstr ""
+msgstr "Bangunan Kelt punya 20% lebih sedikit nyawa, tapi juga 20% lebih murah dan lebih cepat dibangun."
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
 msgid "Wooden Construction"
@@ -2264,7 +2264,7 @@ msgstr "Pembangunan Kayu"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
 msgid "Spear fighting training increases damage of infantry spear units."
-msgstr "Latihan tombak meningkatkan serangan infanteri penombak."
+msgstr "Latihan tombak meningkatkan serangan infanteri bertombak."
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsontooltip
 msgid "Spearmen +2 hack attack."
@@ -2288,7 +2288,7 @@ msgstr "Bangsa Yunani menggunakan bangunan batu dari awal zaman Mykenai."
 msgid ""
 "All structures have 10% more health and capture points, but also take 10% "
 "longer to build."
-msgstr ""
+msgstr "Semua bangunan memiliki 10% lebih banyak nyawa dan poin ambil alih, tapi juga membutuhkan 10% waktu pembangunan lebih lama."
 
 #: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
 msgid "Hellenic Architecture"
@@ -2304,7 +2304,7 @@ msgstr "Bangsa Sparta tidak memiliki pasukan terbesar di dunia, tetapi mereka me
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
 msgid "Spartans have 10% less maximum population."
-msgstr ""
+msgstr "Sparta punya 10% populasi maksimal lebih sedikit."
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
 msgid "Underdogs"
@@ -2366,7 +2366,7 @@ msgstr "Kekaisaran Maurya meliputi puluhan kerajaan yang dulunya terpisah pada d
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsontooltip
 msgid "Mauryans have a 10% higher maximum population limit."
-msgstr ""
+msgstr "Maurya punya 10% batas populasi maksimal lebih banyak."
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
 msgid "Emperor of Emperors"
@@ -2398,15 +2398,15 @@ msgstr "Tradisi Panahan"
 msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
 "resource in India."
-msgstr ""
+msgstr "Bangsa Maurya membangun tembok kota mereka dari kayu, sebuah sumberdaya alam yang banyak di India."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
 msgid "Mauryan city walls have -20% less health and -20% less build time."
-msgstr ""
+msgstr "Tembok kota Maurya punya -20% nyawa dan -20% waktu pembangunan."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"
-msgstr "Dinding Kayu"
+msgstr "Tembok Kayu"
 
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsondescription
 msgid ""
@@ -2420,7 +2420,7 @@ msgstr "Bangsa Persia pernah menerapkan pajak untuk sejumlah besar infanteri pad
 
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsontooltip
 msgid "Persians have a 10% higher maximum population limit."
-msgstr ""
+msgstr "Persia punya 10% batas populasi maksimal lebih banyak."
 
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
 msgid "Great King's Levy"
@@ -2434,7 +2434,7 @@ msgstr "Infanteri jawara Anusiya dilatih dua kali lebih cepat namun nyawa mereka
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
 msgid "Anusiya Champion Infantry -50% train time, but also -10% health."
-msgstr ""
+msgstr "Jawara Infanteri Anusiya -50% waktu melatih, tapi -10% nyawa."
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -2452,7 +2452,7 @@ msgstr "Bangsa Persia membangun Jalan Raya Royal sepanjang 1677 mil dari Sardis 
 msgid ""
 "All Persian structures +25% health and capture points, but also +20% build "
 "time."
-msgstr "Semua bangunan Persia +25% nyawa dan poin penangkapan, tapi juga +20% waktu bangun."
+msgstr "Semua bangunan Persia +25% nyawa dan poin ambil alih, tapi juga +20% waktu bangun."
 
 #: simulation/data/technologies/persians/persian_architecture.jsongenericName
 msgid "Persian Architecture"
@@ -2505,13 +2505,13 @@ msgstr "Wajib Militer Infanteri"
 msgid ""
 "All cavalry -20% train time, but also -5% health. Unlocks Cavalry "
 "Conscription."
-msgstr ""
+msgstr "Semua kavaleri -20% waktu melatih, tapi -5% nyawa. Membuka Wajib Militer Kavaleri."
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
 msgid ""
 "All infantry -20% train time, but also -5% health. Unlocks Infantry "
 "Conscription."
-msgstr ""
+msgstr "Semua infanteri -20% waktu melatih, tapi -5% nyawa. Membuka Wajib Militer Infanteri."
 
 #: simulation/data/technologies/romans/decay_logistics.jsondescription
 msgid "The Romans were masters of the logistics of warfare."
@@ -2558,7 +2558,7 @@ msgstr "Dimulai dari Iskandar, monarki Helenistik mendirikan banyak kota di selu
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
 msgid "Civic centers +100% health and capture points, double default arrows."
-msgstr ""
+msgstr "Pusat peradaban +100% nyawa dan poin ambil alih, menggandakan jumlah panah standar."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"
@@ -2631,7 +2631,7 @@ msgstr "Perisai Perak atau Argyraspidai adalah infanteri berat elit pasukan Make
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with greater "
 "health and armor."
-msgstr ""
+msgstr "Meningkatkan Jawara Infanteri Pembawa Perisai ke Perisai Perak, dengan nyawa dan zirah lebih banyak."
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"

@@ -8,12 +8,13 @@
 # Joshua Randiny <jrandiny2@gmail.com>, 2014-2015
 # Joshua Randiny <jrandiny2@gmail.com>, 2017
 # Samuel <srandiny@gmail.com>, 2014-2016
+# Samuel <srandiny@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:02+0200\n"
-"PO-Revision-Date: 2017-06-10 17:43+0000\n"
-"Last-Translator: Joshua Randiny <jrandiny2@gmail.com>\n"
+"PO-Revision-Date: 2017-06-14 12:17+0000\n"
+"Last-Translator: Samuel <srandiny@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -88,12 +89,12 @@ msgstr "%(nick)s sekarang menjadi moderator."
 
 #: gui/lobby/lobby.js:189
 msgid "You have been unmuted."
-msgstr ""
+msgstr "Anda sekarang tidak dibisukan lagi."
 
 #: gui/lobby/lobby.js:190
 #, javascript-format
 msgid "%(nick)s has been unmuted."
-msgstr ""
+msgstr "%(nick)s tidak dibisukan lagi."
 
 #: gui/lobby/lobby.js:192
 msgid "You are not a moderator anymore."
@@ -111,23 +112,23 @@ msgstr "%(oldnick)s sekarang dikenal sebagai %(newnick)s."
 
 #: gui/lobby/lobby.js:254
 msgid "Set your state to 'Away'."
-msgstr "Setel status jadi 'Pergi'."
+msgstr "Setel status Anda menjadi 'Pergi'."
 
 #: gui/lobby/lobby.js:261
 msgid "Set your state to 'Online'."
-msgstr "Setel status jadi 'Online'."
+msgstr "Setel status Anda menjadi 'Online'."
 
 #: gui/lobby/lobby.js:268
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
-msgstr "Tendang pemain spesifik dari lobi. Penggunaan: /kick nama alasan"
+msgstr "Keluarkan pengguna spesifik dari lobi. Penggunaan: /kick nama alasan"
 
 #: gui/lobby/lobby.js:276
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
-msgstr ""
+msgstr "Larang pemain spesifik dari lobi. Penggunaan: /ban nama alasan"
 
 #: gui/lobby/lobby.js:284
 msgid "Show this help."
-msgstr ""
+msgstr "Tunjukan bantuan ini."
 
 #: gui/lobby/lobby.js:287
 msgid "Chat commands:"
@@ -137,11 +138,11 @@ msgstr ""
 #: gui/lobby/lobby.js:291
 #, javascript-format
 msgid "%(command)s - %(description)s"
-msgstr ""
+msgstr "%(command)s - %(description)s"
 
 #: gui/lobby/lobby.js:304
 msgid "Send a chat message about yourself. Example: /me goes swimming."
-msgstr ""
+msgstr "Kirim pesan percakapan mengenai diri Anda sendiri. Example: /me pergi berenang."
 
 #: gui/lobby/lobby.js:308
 msgid ""
@@ -155,7 +156,7 @@ msgstr ""
 
 #: gui/lobby/lobby.js:319
 msgid "Return to the main menu."
-msgstr ""
+msgstr "Kembali ke menu utama."
 
 #: gui/lobby/lobby.js:389
 msgctxt "map size"
@@ -176,53 +177,53 @@ msgstr "Apa saja"
 #, javascript-format
 msgctxt "gamelist filter"
 msgid "> %(rating)s"
-msgstr ""
+msgstr "> %(rating)s"
 
 #: gui/lobby/lobby.js:407
 #, javascript-format
 msgctxt "gamelist filter"
 msgid "< %(rating)s"
-msgstr ""
+msgstr "< %(rating)s"
 
 #: gui/lobby/lobby.js:480
 msgid "You have been banned from the lobby!"
-msgstr ""
+msgstr "Anda telah dilarang dari lobi!"
 
 #: gui/lobby/lobby.js:481
 msgid "You have been kicked from the lobby!"
-msgstr ""
+msgstr "Anda telah dikeluarkan dari lobi!"
 
 #: gui/lobby/lobby.js:483
 #, javascript-format
 msgid "%(nick)s has been banned from the lobby."
-msgstr ""
+msgstr "%(nick)s telah dilarang dari lobi."
 
 #: gui/lobby/lobby.js:484
 #, javascript-format
 msgid "%(nick)s has been kicked from the lobby."
-msgstr ""
+msgstr "%(nick)s telah dikeluarkan dari lobi."
 
 #: gui/lobby/lobby.js:487
 #, javascript-format
 msgctxt "lobby kick"
 msgid "Reason: %(reason)s"
-msgstr ""
+msgstr "Alasan: %(reason)s"
 
 #: gui/lobby/lobby.js:512
 msgid "BANNED"
-msgstr ""
+msgstr "DILARANG"
 
 #: gui/lobby/lobby.js:512
 msgid "KICKED"
-msgstr ""
+msgstr "DIKELUARKAN"
 
 #: gui/lobby/lobby.js:545
 msgid "Unmark as Buddy"
-msgstr ""
+msgstr "Cabut Tanda Teman"
 
 #: gui/lobby/lobby.js:545
 msgid "Mark as Buddy"
-msgstr ""
+msgstr "Beri Tanda sebagai Teman"
 
 #: gui/lobby/lobby.js:757 gui/lobby/lobby.js:758 gui/lobby/lobby.js:759
 #: gui/lobby/lobby.js:760 gui/lobby/lobby.js:761 gui/lobby/lobby.js:762
@@ -232,13 +233,13 @@ msgstr "N/A"
 #: gui/lobby/lobby.js:783
 #, javascript-format
 msgid "Player \"%(nick)s\" not found."
-msgstr ""
+msgstr "Pemain \"%(nick)s\" tidak ditemukan."
 
 #. Translation: %(time)s is the hour and minute here.
 #: gui/lobby/lobby.js:998
 #, javascript-format
 msgid "Game started at %(time)s"
-msgstr ""
+msgstr "Permainan dimulai pada %(time)s"
 
 #: gui/lobby/lobby.js:999 gui/lobby/lobby.js:1353
 msgid "HH:mm"
@@ -247,11 +248,11 @@ msgstr "HH:mm"
 #: gui/lobby/lobby.js:1003
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
-msgstr ""
+msgstr "Pemain: %(current)s/%(total)s"
 
 #: gui/lobby/lobby.js:1045
 msgid "The game has already started. Do you want to join as observer?"
-msgstr ""
+msgstr "Permainan sudah dimulai. Apakah Anda ingin mengikutinya sebagai pengamat?"
 
 #: gui/lobby/lobby.js:1046
 msgid "Confirmation"
@@ -263,7 +264,7 @@ msgstr "Tidak"
 
 #: gui/lobby/lobby.js:1047
 msgid "Yes"
-msgstr "Iya"
+msgstr "Ya"
 
 #: gui/lobby/lobby.js:1079
 #, javascript-format
@@ -314,11 +315,11 @@ msgstr "== %(message)s"
 #, javascript-format
 msgctxt "lobby private message"
 msgid "(%(private)s) <%(sender)s>"
-msgstr ""
+msgstr "(%(private)s) <%(sender)s>"
 
 #: gui/lobby/lobby.js:1317
 msgid "Private"
-msgstr ""
+msgstr "Pribadi"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
@@ -392,7 +393,7 @@ msgstr "Mohon setujui Persyaratan Layanan dan Persyaratan Penggunaan"
 msgid ""
 "Unknown error. This usually occurs because the same IP address is not "
 "allowed to register more than one account within one hour."
-msgstr ""
+msgstr "Error tidak diketahui. Ini biasanya terjadi karena alamat IP yang sama tidak diizinkan untuk mendaftarkan lebih dari satu akun dalam satu jam."
 
 #: gui/lobby/prelobby.js:172
 msgid "Registered"
@@ -444,7 +445,7 @@ msgstr "Tingkat Kemenangan:"
 
 #: gui/lobby/lobby.xml:(caption):99 gui/lobby/lobby.xml:(caption):293
 msgid "Leaderboard"
-msgstr "Papan skor"
+msgstr "Papan Peringkat"
 
 #: gui/lobby/lobby.xml:(caption):105 gui/lobby/lobby.xml:(caption):328
 msgid "User Profile Lookup"
@@ -473,7 +474,7 @@ msgstr "Menu Utama"
 
 #: gui/lobby/lobby.xml:(caption):261
 msgid "Show only open games"
-msgstr ""
+msgstr "Hanya tunjukkan permainan terbuka"
 
 #: gui/lobby/lobby.xml:(caption):313 gui/lobby/lobby.xml:(caption):375
 msgid "Back"
@@ -493,7 +494,7 @@ msgstr "Tampilkan Profil"
 
 #: gui/lobby/lobby.xml:(caption):370
 msgid "Please enter a player name."
-msgstr ""
+msgstr "Mohon masukkan nama pemain."
 
 #: gui/lobby/lobby.xml:(heading):41
 msgid "Status"
@@ -579,7 +580,7 @@ msgstr "Definisi:"
 msgid ""
 " * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby "
 "provided by Wildfire Games (WFG)."
-msgstr "* \"Layanan\" yang dimaksud adalah Lobi Main Bersama 0 A.D. Empires Ascendant diberikan oleh Wildfire Games (WFG)."
+msgstr "* \"Layanan\" yang dimaksud adalah Lobi Main Bersama 0 A.D. Empires Ascendant yang disediakan oleh Wildfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Service.txt:4 gui/lobby/Terms_of_Use.txt:4
 msgid " * \"You\" are the user of the service."
@@ -593,7 +594,7 @@ msgstr " * \"Kami\" adalah anggota tim Wildfire Games (WFG)."
 msgid ""
 " * \"Rating\" refers to the process of analyzing various user statistics for"
 " the purpose of generating a single comprehensive score."
-msgstr "* \"Peringkat\" merujuk pada proses menganalisis berbagai statistika pengguna untuk tujuan menghasilkan skor yang komprehensif tunggal."
+msgstr "* \"Peringkat\" merujuk pada proses menganalisis berbagai statistika pengguna untuk tujuan menghasilkan skor tunggal yang komprehensif."
 
 #: gui/lobby/Terms_of_Service.txt:7
 msgid " * \"Moderate\" refers to the process of enforcing usage policies."
@@ -689,7 +690,7 @@ msgstr " * \"Peringkat\" merujuk pada skor komprehensif tiap pengguna."
 msgid ""
 " * \"Ranked games\" refers to games in which rating changing statistics are "
 "tracked."
-msgstr " * \"Permainan diperingkati\" merujuk pada permainan dimana statistik pengubah peringkat ditelusuri."
+msgstr " * \"Permainan berperingkat\" merujuk pada permainan dimana statistik pengubah peringkat ditelusuri."
 
 #: gui/lobby/Terms_of_Use.txt:9
 msgid "You agree to:"

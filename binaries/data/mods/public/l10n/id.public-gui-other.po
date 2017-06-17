@@ -10,12 +10,13 @@
 # Joshua Randiny <jrandiny2@gmail.com>, 2014-2015
 # Joshua Randiny <jrandiny2@gmail.com>, 2016
 # Samuel <srandiny@gmail.com>, 2015-2016
+# Samuel <srandiny@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:02+0200\n"
-"PO-Revision-Date: 2017-06-05 15:35+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-06-15 16:41+0000\n"
+"Last-Translator: Samuel <srandiny@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,7 +32,7 @@ msgstr "Permainan %(civilization)s"
 #: gui/civinfo/civinfo.js:99
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
-msgstr[0] "Bonus Kebangsaan"
+msgstr[0] "Bonus Peradaban"
 
 #: gui/civinfo/civinfo.js:104
 msgid "Team Bonus"
@@ -40,12 +41,12 @@ msgstr[0] "Bonus Regu"
 
 #: gui/civinfo/civinfo.js:111
 msgid "Special Technologies"
-msgstr "Teknologi Khusus"
+msgstr "Teknologi Spesial"
 
 #: gui/civinfo/civinfo.js:117
 msgid "Special Building"
 msgid_plural "Special Buildings"
-msgstr[0] "Bangunan Khusus"
+msgstr[0] "Bangunan Spesial"
 
 #: gui/civinfo/civinfo.js:124 gui/summary/layout.js:67
 msgid "Heroes"
@@ -59,7 +60,7 @@ msgstr "Sejarah %(civilization)s"
 #: gui/common/color.js:154
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames."
-msgstr "Tekan %(hotkey)s untuk otomatis melengkapi nama pemain."
+msgstr "Tekan %(hotkey)s untuk melengkapi nama pemain secara otomatis."
 
 #: gui/common/color.js:157
 msgctxt "hotkey"
@@ -71,7 +72,7 @@ msgstr "Tab"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait..."
-msgstr ""
+msgstr "Membuka %(url)s\n di browser web standar. Mohon tunggu..."
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
@@ -90,11 +91,11 @@ msgstr "Acak"
 
 #: gui/common/functions_utility.js:119
 msgid "mm:ss"
-msgstr "mm:dd"
+msgstr "mm:ss"
 
 #: gui/common/functions_utility.js:119
 msgid "HH:mm:ss"
-msgstr "JJ:mm:dd"
+msgstr "HH:mm:ss"
 
 #: gui/common/functions_utility_error.js:12
 msgid "Loading Aborted"
@@ -102,7 +103,7 @@ msgstr "Pemuatan Dibatalkan"
 
 #: gui/common/functions_utility_loadsave.js:15
 msgid "yyyy-MM-dd HH:mm:ss"
-msgstr "tttt-BB-hh JJ:mm:dd"
+msgstr "yyyy-MM-dd HH:mm:ss"
 
 #: gui/common/functions_utility_loadsave.js:23
 #, javascript-format
@@ -247,12 +248,12 @@ msgstr "menang"
 
 #: gui/common/gamedescription.js:198
 msgid "No Team"
-msgstr "Tidak Ada Tim"
+msgstr "Tidak Ada Regu"
 
 #: gui/common/gamedescription.js:199
 #, javascript-format
 msgid "Team %(team)s"
-msgstr "Tim %(team)s"
+msgstr "Regu %(team)s"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or savegame menu or lobby
@@ -273,48 +274,48 @@ msgstr[0] "Pengamat"
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
 msgid_plural "Wonder (%(min)s minutes)"
-msgstr[0] ""
+msgstr[0] "Keajaiban (%(min)s menit)"
 
 #: gui/common/gamedescription.js:244
 #, javascript-format
 msgctxt "victory condition"
 msgid "Capture The Relic (%(min)s minute)"
 msgid_plural "Capture The Relic (%(min)s minutes)"
-msgstr[0] ""
+msgstr[0] "Tangkap Semua Relikui (%(min)s menit)"
 
 #: gui/common/gamedescription.js:260
 msgid "Relic Count"
-msgstr ""
+msgstr "Jumlah Relikui"
 
 #: gui/common/gamedescription.js:267
 msgid "Hero Garrison"
-msgstr ""
+msgstr "Masuknya Pahlawan"
 
 #: gui/common/gamedescription.js:268
 msgid "Heroes can be garrisoned."
-msgstr ""
+msgstr "Pahlawan dapat dimasukkan."
 
 #: gui/common/gamedescription.js:272
 msgid "Exposed Heroes"
-msgstr ""
+msgstr "Tunjukkan Pahlawan"
 
 #: gui/common/gamedescription.js:273
 msgid "Heroes cannot be garrisoned, and they are vulnerable to raids."
-msgstr ""
+msgstr "Pahlawan tidak dapat dimasukkan, dan mereka rentan serangan."
 
 #: gui/common/gamedescription.js:280
 msgid "Rated game"
-msgstr ""
+msgstr "Permainan berperingkat"
 
 #: gui/common/gamedescription.js:281
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
-msgstr ""
+msgstr "Saat pemenang dari permainan ini ditemukan, skor lobi akan diubah."
 
 #: gui/common/gamedescription.js:286
 msgid "Locked Teams"
-msgstr "Tim terkunci"
+msgstr "Regu Terkunci"
 
 #: gui/common/gamedescription.js:287
 msgid "Players can't change the initial teams."
@@ -330,23 +331,23 @@ msgstr "Pemain dapat membuat aliansi dan menyatakan perang dengan aliansi lain."
 
 #: gui/common/gamedescription.js:297
 msgid "Last Man Standing"
-msgstr ""
+msgstr "Orang Terakhir Bertahan"
 
 #: gui/common/gamedescription.js:298
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
-msgstr ""
+msgstr "Hanya satu pemain dapat memenangkan permainan. Bila pemain-pemain yang tersisa bersekutu, permainan akan tetap berlangsung sampai hanya tersisa satu."
 
 #: gui/common/gamedescription.js:302
 msgid "Allied Victory"
-msgstr ""
+msgstr "Persekutuan Menang"
 
 #: gui/common/gamedescription.js:303
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr ""
+msgstr "Jika satu pemain menang, sekutunya juga menang. Jika sebuah kumpulan sekutu tersisa, mereka menang."
 
 #: gui/common/gamedescription.js:309
 msgid "Ceasefire"
@@ -354,12 +355,12 @@ msgstr "Gencatan Senjata"
 
 #: gui/common/gamedescription.js:312 gui/pregame/mainmenu.js:91
 msgid "disabled"
-msgstr "Dinonaktifkan"
+msgstr "dimatikan"
 
 #: gui/common/gamedescription.js:313
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] ""
+msgstr[0] "Untuk %(min)s menit pertama, pemain lain akan tetap netral."
 
 #: gui/common/gamedescription.js:321
 msgid "Map Name"
@@ -396,12 +397,12 @@ msgstr "Batas Populasi"
 
 #: gui/common/gamedescription.js:373
 msgid "Treasures"
-msgstr ""
+msgstr "Harta Karun"
 
 #: gui/common/gamedescription.js:375
 msgctxt "treasures"
 msgid "Disabled"
-msgstr ""
+msgstr "Dimatikan"
 
 #: gui/common/gamedescription.js:376
 msgctxt "treasures"
@@ -410,15 +411,15 @@ msgstr ""
 
 #: gui/common/gamedescription.js:380
 msgid "Revealed Map"
-msgstr ""
+msgstr "Peta Terungkap"
 
 #: gui/common/gamedescription.js:385
 msgid "Explored Map"
-msgstr ""
+msgstr "Peta Terjelajahi"
 
 #: gui/common/gamedescription.js:390
 msgid "Cheats"
-msgstr ""
+msgstr "Cheat"
 
 #: gui/common/gamedescription.js:395 gui/common/tooltips.js:86
 #: gui/common/tooltips.js:141 gui/common/tooltips.js:182
@@ -431,20 +432,20 @@ msgstr "%(label)s %(details)s"
 #: gui/common/gamedescription.js:398
 msgctxt "gamesetup option"
 msgid "enabled"
-msgstr "Diaktifkan"
+msgstr "diaktifkan"
 
 #: gui/common/gamedescription.js:399
 msgctxt "gamesetup option"
 msgid "disabled"
-msgstr "dinonaktifkan"
+msgstr "dimatikan"
 
 #: gui/common/gamedescription.js:416
 msgid "Victorious"
-msgstr ""
+msgstr "Menang"
 
 #: gui/common/gamedescription.js:421
 msgid "Defeated"
-msgstr ""
+msgstr "Kalah"
 
 #: gui/common/l10n.js:13
 #, javascript-format
@@ -481,17 +482,17 @@ msgstr "%(player)s kehilangan koneksi (%(seconds)ss)"
 #: gui/common/network.js:28
 #, javascript-format
 msgid "Bad connection to server (%(milliseconds)sms)"
-msgstr "Koneksi buruk ke server (%(milliseconds)sms)"
+msgstr "Koneksi buruk dengan server (%(milliseconds)sms)"
 
 #: gui/common/network.js:33
 #, javascript-format
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
-msgstr "Koneksi buruk ke %(player)s (%(milliseconds)sms)"
+msgstr "Koneksi buruk dengan %(player)s (%(milliseconds)sms)"
 
 #: gui/common/network.js:66
 msgctxt "network disconnect"
 msgid "Unknown reason"
-msgstr ""
+msgstr "Alasan tidak diketahui"
 
 #: gui/common/network.js:67
 msgid ""
@@ -525,7 +526,7 @@ msgstr "Anda telah dilarang untuk masuk"
 
 #: gui/common/network.js:74
 msgid "Playername in use. If you were disconnected, retry in few seconds"
-msgstr ""
+msgstr "Namapemain telah digunakan. Jika Anda terputus, coba lagi dalam beberapa detik"
 
 #: gui/common/network.js:75
 msgid "Server full"
@@ -534,7 +535,7 @@ msgstr "Server penuh"
 #: gui/common/network.js:76
 msgid ""
 "Player identifier in use. If you were disconnected, retry in few seconds"
-msgstr ""
+msgstr "Pengindentifikasi pemain sedang digunakan. Jika Anda terputus, coba lagi dalam beberapa detik"
 
 #: gui/common/network.js:79
 #, javascript-format
@@ -561,7 +562,7 @@ msgstr "Terputus"
 
 #: gui/common/network.js:107
 msgid "Only the host can kick clients!"
-msgstr ""
+msgstr "Hanya pembuat permainan yang dapat mengeluarkan klien!"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
@@ -605,7 +606,7 @@ msgstr "Sangat Susah"
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
+msgstr[0] "%(min)s menit"
 
 #: gui/common/settings.js:173
 msgctxt "ceasefire"
@@ -628,7 +629,7 @@ msgstr "Perperangan"
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other gamesettings."
-msgstr ""
+msgstr "Sebuah peta dengan relief tanah dan jumlah pemain yang sudah ditentukan. Pilih dengan bebas pengaturan permainan lain."
 
 #: gui/common/settings.js:194
 msgctxt "map"
@@ -639,7 +640,7 @@ msgstr "Acak"
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
-msgstr ""
+msgstr "Membuat sebuah peta unik dengan distribusi sumberdaya berbeda tiap kali. Pilih dengan bebas jumlah pemain dan regu."
 
 #: gui/common/settings.js:199
 msgctxt "map"
@@ -648,7 +649,7 @@ msgstr "Skenario"
 
 #: gui/common/settings.js:200
 msgid "A map with a predefined landscape and matchsettings."
-msgstr ""
+msgstr "Sebuah peta dengan relief tanah dan pengaturan yang sudah ditentukan."
 
 #: gui/common/settings.js:231
 msgctxt "victory condition"
@@ -657,7 +658,7 @@ msgstr "Tidak ada"
 
 #: gui/common/settings.js:232
 msgid "Endless game."
-msgstr ""
+msgstr "Permainan tanpa batas."
 
 #: gui/common/settings.js:273
 msgid "Unlimited"
@@ -703,7 +704,7 @@ msgstr "Serangan Jarak Jauh:"
 
 #: gui/common/tooltips.js:11
 msgid "Capture Attack:"
-msgstr ""
+msgstr "Serangan Ambil Alih:"
 
 #: gui/common/tooltips.js:15
 msgid "Hack"
@@ -719,11 +720,11 @@ msgstr "Lindas"
 
 #: gui/common/tooltips.js:21
 msgid "Circular Splash Damage"
-msgstr ""
+msgstr "Serangan Area Sirkular"
 
 #: gui/common/tooltips.js:22
 msgid "Linear Splash Damage"
-msgstr ""
+msgstr "Serangan Area Linear"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 2 to 10 (+2)
 #. meters, Interval: 3 arrows / 2 seconds
@@ -732,7 +733,7 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s"
 " (%(relativeRange)s) %(rangeUnit)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s (%(relativeRange)s) %(rangeUnit)s, %(rate)s"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 10 (+2)
 #. meters, Interval: 3 arrows / 2 seconds
@@ -741,7 +742,7 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s "
 "(%(relativeRange)s) %(rangeUnit)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s, %(rate)s"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 2 to 10
 #. meters, Interval: 3 arrows / 2 seconds
@@ -750,7 +751,7 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s"
 " %(rangeUnit)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s %(rangeUnit)s, %(rate)s"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 10 meters,
 #. Interval: 3 arrows / 2 seconds
@@ -759,7 +760,7 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s %(rangeUnit)s, "
 "%(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s %(rangeUnit)s, %(rate)s"
 
 #: gui/common/tooltips.js:67
 #, javascript-format
@@ -781,7 +782,7 @@ msgstr "Nyawa:"
 #: gui/common/tooltips.js:97
 #, javascript-format
 msgid "%(healthLabel)s %(current)s / %(max)s"
-msgstr ""
+msgstr "%(healthLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:115
 #, javascript-format
@@ -820,7 +821,7 @@ msgstr "(%(armorPercentage)s)"
 
 #: gui/common/tooltips.js:161
 msgid "(None)"
-msgstr "(Tak ada)"
+msgstr "(Tidak ada)"
 
 #: gui/common/tooltips.js:165
 #, javascript-format
@@ -833,7 +834,7 @@ msgstr "Interval:"
 
 #: gui/common/tooltips.js:187 gui/common/tooltips.js:613
 msgid "Rate:"
-msgstr "Peringkat:"
+msgstr "Tingkat:"
 
 #: gui/common/tooltips.js:194
 #, javascript-format
@@ -847,13 +848,13 @@ msgstr "Jarak:"
 #: gui/common/tooltips.js:216
 #, javascript-format
 msgid "+%(number)s"
-msgstr ""
+msgstr "+%(number)s"
 
 #. Translation: For example "0.5 to 1 meters", "1 (+1) meters" or "1 to 2 (+3)
 #. meters"
 #: gui/common/tooltips.js:220
 msgid "meters"
-msgstr ""
+msgstr "meter"
 
 #: gui/common/tooltips.js:221 gui/common/tooltips.js:610
 #: gui/common/tooltips.js:639
@@ -870,7 +871,7 @@ msgstr "%(label)s: %(value)s"
 #: gui/common/tooltips.js:245
 #, javascript-format
 msgid "Friendly Fire: %(enabled)s"
-msgstr ""
+msgstr "Serangan Nyasar: %(enabled)s"
 
 #: gui/common/tooltips.js:261
 #, javascript-format
@@ -879,7 +880,7 @@ msgstr "%(label)s: %(garrisonLimit)s"
 
 #: gui/common/tooltips.js:262
 msgid "Garrison Limit"
-msgstr ""
+msgstr "Batas Unit Didalam"
 
 #: gui/common/tooltips.js:269
 #, javascript-format
@@ -888,7 +889,7 @@ msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
 #: gui/common/tooltips.js:270 gui/common/tooltips.js:602
 msgid "Heal:"
-msgstr "Pemulihan:"
+msgstr "Penyembuhan:"
 
 #: gui/common/tooltips.js:272 gui/common/tooltips.js:321
 #: gui/common/tooltips.js:335
@@ -916,7 +917,7 @@ msgstr "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 
 #: gui/common/tooltips.js:319
 msgid "Repair Rate:"
-msgstr "Tinkat Perbaikan:"
+msgstr "Tingkat Perbaikan:"
 
 #: gui/common/tooltips.js:323 gui/common/tooltips.js:337
 #: gui/summary/layout.js:64
@@ -953,7 +954,7 @@ msgstr ""
 #: gui/common/tooltips.js:427
 #, javascript-format
 msgid "%(resources)s / %(time)s"
-msgstr ""
+msgstr "%(resources)s / %(time)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
@@ -975,7 +976,7 @@ msgstr "Menara:  %(costs)s"
 #: gui/common/tooltips.js:525
 #, javascript-format
 msgid "Requires %(technology)s"
-msgstr ""
+msgstr "Membutuhkan %(technology)s"
 
 #: gui/common/tooltips.js:537
 #, javascript-format
@@ -1039,7 +1040,7 @@ msgstr "%(auraname)s:"
 #: gui/common/tooltips.js:637
 msgctxt "aura"
 msgid "Range:"
-msgstr ""
+msgstr "Jarak:"
 
 #: gui/common/tooltips.js:654
 #, javascript-format
@@ -1091,13 +1092,13 @@ msgstr "OK"
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
-msgstr ""
+msgstr "Jumlah: %(val)s (min: %(min)s, maks: %(max)s)"
 
 #: gui/options/options.js:332
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
-msgstr ""
+msgstr "Mereset pengaturan akan menghapus semua pengaturan Anda yang tersimpan. Apakah Anda akan melanjutkannya?"
 
 #: gui/options/options.js:333 gui/options/options.js:400
 #: gui/savedgames/load.js:187
@@ -1119,7 +1120,7 @@ msgstr "sedang mengunggah (%f%%)"
 
 #: gui/pregame/mainmenu.js:103
 msgid "upload succeeded"
-msgstr "Pengunggahan Berhasil"
+msgstr "pengunggahan berhasil"
 
 #: gui/pregame/mainmenu.js:105
 #, javascript-format
@@ -1137,7 +1138,7 @@ msgstr "tidak diketahui"
 
 #: gui/pregame/mainmenu.js:126
 msgid "Thank you for helping improve 0 A.D.!"
-msgstr "Terima kasih sudah membantu memperbaiki 0 A.D."
+msgstr "Terima kasih sudah membantu memperbaiki 0 A.D.!"
 
 #: gui/pregame/mainmenu.js:127
 msgid "Anonymous feedback is currently enabled."
@@ -1146,7 +1147,7 @@ msgstr "Pengiriman laporan anonim aktif"
 #: gui/pregame/mainmenu.js:128
 #, javascript-format
 msgid "Status: %(status)s."
-msgstr ""
+msgstr "Status: %(status)s."
 
 #: gui/pregame/mainmenu.js:152
 #, javascript-format
@@ -1194,7 +1195,7 @@ msgstr "Editor skenario tidak tersedia atau gagal dimuat. Lihat catatan permaina
 
 #: gui/pregame/mainmenu.js:277 gui/replaymenu/replay_actions.js:116
 msgid "Error"
-msgstr "Masalah"
+msgstr "Error"
 
 #: gui/pregame/mainmenu.js:283
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
@@ -1211,7 +1212,7 @@ msgstr "Manual"
 
 #: gui/replaymenu/replay_actions.js:88
 msgid "You don't have the same mods active as the replay does."
-msgstr ""
+msgstr "Anda tidak memiliki mod yang sama aktif seperti di tayangan ulang."
 
 #: gui/replaymenu/replay_actions.js:89 gui/savedgames/load.js:174
 #, javascript-format
@@ -1239,11 +1240,11 @@ msgstr "Versi yang dibutuhkan: %(version)s"
 
 #: gui/replaymenu/replay_actions.js:99
 msgid "Incompatible replay"
-msgstr "Replay tidak kompatibel"
+msgstr "Tayangan ulang tidak kompatibel"
 
 #: gui/replaymenu/replay_actions.js:116
 msgid "No summary data available."
-msgstr ""
+msgstr "Tidak ada data ringkasan tersedia."
 
 #: gui/replaymenu/replay_actions.js:163
 msgid "Are you sure you want to delete this replay permanently?"
@@ -1303,7 +1304,7 @@ msgstr "%(min)s - %(max)s menit"
 
 #: gui/replaymenu/replay_filters.js:142
 msgid "Single- and multiplayer"
-msgstr ""
+msgstr "Sendiri- dan bersama"
 
 #: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):472
 msgid "Single Player"
@@ -1320,15 +1321,15 @@ msgstr "Tipe permainan apapun"
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Rated and unrated games"
-msgstr ""
+msgstr "Permainan berperingkat dan tak berperingkat"
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Rated games"
-msgstr ""
+msgstr "Permainan berperingkat"
 
 #: gui/replaymenu/replay_filters.js:168
 msgid "Unrated games"
-msgstr ""
+msgstr "Permainan tak berperingkat"
 
 #: gui/replaymenu/replay_menu.js:193
 msgid "Filter replays by typing one or more, partial or complete playernames."
@@ -1337,7 +1338,7 @@ msgstr ""
 #: gui/replaymenu/replay_menu.js:272
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
-msgstr ""
+msgstr "Pemain: %(numberOfPlayers)s"
 
 #: gui/replaymenu/replay_menu.js:299
 msgid "yyyy-MM-dd HH:mm"
@@ -1350,11 +1351,11 @@ msgstr "yyyy-MM"
 #: gui/savedgames/load.js:119
 #, javascript-format
 msgid "Mods: %(mods)s"
-msgstr ""
+msgstr "Mod: %(mods)s"
 
 #: gui/savedgames/load.js:149
 msgid "This saved game may not be compatible:"
-msgstr "Permainan tersimpan ini mungkin tidak sesuai:"
+msgstr "Permainan tersimpan ini mungkin tidak kompatibel:"
 
 #: gui/savedgames/load.js:154
 #, javascript-format
@@ -1372,11 +1373,11 @@ msgstr "Membutuhkan versi 0 A.D. yang lebih lampau"
 msgid ""
 "It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
 "savegame version %(currentVersion)s."
-msgstr ""
+msgstr "Membutuhkan simpanan permainan 0 A.D. versi %(requiredVersion)s, sementara Anda mempunyai simpanan permainan versi %(currentVersion)s."
 
 #: gui/savedgames/load.js:173
 msgid "The savegame needs a different set of mods:"
-msgstr ""
+msgstr "Simpanan permainan membutuhkan set mod berbeda:"
 
 #: gui/savedgames/load.js:182
 msgid "Do you still want to proceed?"
@@ -1401,7 +1402,7 @@ msgstr "%(val1)s sampai %(val2)s"
 
 #: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):63
 msgid "Score"
-msgstr "Nilai"
+msgstr "Skor"
 
 #: gui/summary/layout.js:5 gui/summary/layout.js:23 gui/summary/layout.js:61
 #: gui/summary/layout.js:101 gui/summary/layout.js:149
@@ -1423,7 +1424,7 @@ msgstr "Skor eksplorasi"
 
 #: gui/summary/layout.js:9
 msgid "Total score"
-msgstr "Nilai total"
+msgstr "Skor total"
 
 #: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):70
 msgid "Buildings"
@@ -1431,7 +1432,7 @@ msgstr "Bangunan"
 
 #: gui/summary/layout.js:24 gui/summary/layout.js:62 gui/summary/layout.js:108
 msgid "Total"
-msgstr "Jumlah"
+msgstr "Total"
 
 #: gui/summary/layout.js:25
 msgid "Houses"
@@ -1443,7 +1444,7 @@ msgstr "Ekonomi"
 
 #: gui/summary/layout.js:27
 msgid "Outposts"
-msgstr "Pos Pengawas"
+msgstr "Pos"
 
 #: gui/summary/layout.js:28
 msgid "Military"
@@ -1451,7 +1452,7 @@ msgstr "Militer"
 
 #: gui/summary/layout.js:29
 msgid "Fortresses"
-msgstr "Benteng-benteng"
+msgstr "Benteng"
 
 #: gui/summary/layout.js:30
 msgid "Civ centers"
@@ -1466,7 +1467,7 @@ msgstr "Keajaiban"
 msgid ""
 "Buildings Statistics (%(constructed)s / %(destroyed)s / %(captured)s / "
 "%(lost)s)"
-msgstr ""
+msgstr "Statistika Bangunan (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):77
 msgid "Units"
@@ -1478,7 +1479,7 @@ msgstr "Infanteri"
 
 #: gui/summary/layout.js:65
 msgid "Cavalry"
-msgstr "Pasukan Kuda"
+msgstr "Kavaleri"
 
 #: gui/summary/layout.js:66
 msgid "Champion"
@@ -1486,11 +1487,11 @@ msgstr "Jawara"
 
 #: gui/summary/layout.js:68
 msgid "Siege"
-msgstr ""
+msgstr "Senjata kepung"
 
 #: gui/summary/layout.js:69
 msgid "Navy"
-msgstr "Kelautan"
+msgstr "Angkatan laut"
 
 #: gui/summary/layout.js:70
 msgid "Traders"
@@ -1499,7 +1500,7 @@ msgstr "Pedagang"
 #: gui/summary/layout.js:74
 #, javascript-format
 msgid "Units Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
-msgstr ""
+msgstr "Statistika Unit (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):84
 msgid "Resources"
@@ -1533,15 +1534,15 @@ msgstr "Pasar"
 #: gui/summary/layout.js:155
 #, javascript-format
 msgid "%(resourceFirstWord)s exchanged"
-msgstr ""
+msgstr "%(resourceFirstWord)s ditukar"
 
 #: gui/summary/layout.js:163
 msgid "Barter efficiency"
-msgstr "Efisiensi barter"
+msgstr "Efisiensi pertukaran"
 
 #: gui/summary/layout.js:164
 msgid "Trade income"
-msgstr "Penghasilan berdagang"
+msgstr "Penghasilan perdagangan"
 
 #: gui/summary/layout.js:179 gui/summary/summary.xml:(caption):98
 #: gui/credits/texts/misc.jsonTitle
@@ -1550,7 +1551,7 @@ msgstr "Lain-lain"
 
 #: gui/summary/layout.js:182
 msgid "Vegetarian ratio"
-msgstr ""
+msgstr "Ratio vegetarian"
 
 #: gui/summary/layout.js:183
 msgid "Feminization"
@@ -1558,23 +1559,23 @@ msgstr "Kefeminiman"
 
 #: gui/summary/layout.js:184
 msgid "Kill / Death ratio"
-msgstr ""
+msgstr "Ratio Membunuh / Dibunuh"
 
 #: gui/summary/layout.js:185
 msgid "Map exploration"
-msgstr ""
+msgstr "Eksplorasi peta"
 
 #: gui/summary/layout.js:186
 msgid "Map control (peak)"
-msgstr ""
+msgstr "Kekuasaan peta (puncak)"
 
 #: gui/summary/layout.js:187
 msgid "Map control (finish)"
-msgstr ""
+msgstr "Kekuasaan peta (di akhir)"
 
 #: gui/summary/layout.js:338
 msgid "Team total"
-msgstr "Total tim"
+msgstr "Total regu"
 
 #: gui/summary/summary.js:30
 msgid "Trained"
@@ -1594,11 +1595,11 @@ msgstr "Terkirim"
 
 #: gui/summary/summary.js:50
 msgid "Bought"
-msgstr ""
+msgstr "Dibeli"
 
 #: gui/summary/summary.js:55
 msgid "Income"
-msgstr ""
+msgstr "Penghasilan"
 
 #: gui/summary/summary.js:60
 msgid "Captured"
@@ -1622,23 +1623,23 @@ msgstr "Terpakai"
 
 #: gui/summary/summary.js:85
 msgid "Received"
-msgstr ""
+msgstr "Didapat"
 
 #: gui/summary/summary.js:90
 msgid "Sold"
-msgstr ""
+msgstr "Terjual"
 
 #: gui/summary/summary.js:95
 msgid "Outcome"
-msgstr ""
+msgstr "Hasil akhir"
 
 #: gui/summary/summary.js:344
 msgid "Are you sure you want to quit the lobby?"
-msgstr ""
+msgstr "Apa Anda yakin ingin keluar dari lobi?"
 
 #: gui/summary/summary.js:395
 msgid "Current Scores"
-msgstr ""
+msgstr "Skor Sekarang"
 
 #: gui/summary/summary.js:397
 msgid "Scores at the end of the game."
@@ -1646,23 +1647,23 @@ msgstr "Skor pada akhir permainan."
 
 #: gui/summary/summary.js:399
 msgid "You have been disconnected."
-msgstr ""
+msgstr "Anda telah terputus."
 
 #: gui/summary/summary.js:401
 msgid "You have left the game."
-msgstr ""
+msgstr "Anda telah meninggalkan permainan."
 
 #: gui/summary/summary.js:403
 msgid "You have won the battle!"
-msgstr ""
+msgstr "Anda telah memenangkan peperangan!"
 
 #: gui/summary/summary.js:405
 msgid "You have been defeated..."
-msgstr ""
+msgstr "Anda telah dikalahkan..."
 
 #: gui/summary/summary.js:406
 msgid "You have abandoned the game."
-msgstr ""
+msgstr "Anda telah meninggalkan permainan."
 
 #: gui/summary/summary.js:411
 #, javascript-format
@@ -1676,11 +1677,11 @@ msgstr "%(mapName)s - %(mapType)s"
 
 #: gui/civinfo/civinfo.xml:(caption):16
 msgid "Civilizations"
-msgstr "Kebangsaan"
+msgstr "Peradaban"
 
 #: gui/civinfo/civinfo.xml:(caption):28
 msgid "Civilization Selection"
-msgstr "Pilihan Bangsa"
+msgstr "Pilihan Peradaban"
 
 #: gui/civinfo/civinfo.xml:(caption):119 gui/credits/credits.xml:(caption):36
 #: gui/options/options.xml:(caption):102
@@ -1690,7 +1691,7 @@ msgstr "Tutup"
 
 #: gui/credits/credits.xml:(caption):18
 msgid "0 A.D. Credits"
-msgstr ""
+msgstr "Kredit 0 A.D."
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
@@ -1719,7 +1720,7 @@ msgstr "Batal"
 
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
-msgstr "Lanjutan"
+msgstr "Tinggi"
 
 #: gui/locale/locale.xml:(caption):46
 #: gui/locale/locale_advanced.xml:(caption):75
@@ -1803,7 +1804,7 @@ msgstr "Simpan"
 
 #: gui/options/options.xml:(tooltip):88
 msgid "Resets user settings to their game default"
-msgstr ""
+msgstr "Reset pengaturan pengguna ke standar permainan"
 
 #: gui/options/options.xml:(tooltip):93
 msgid "Reverts to previous saved settings"
@@ -1815,21 +1816,21 @@ msgstr "Simpan perubahan"
 
 #: gui/options/options.xml:(tooltip):103
 msgid "Unsaved changes affect this session only"
-msgstr ""
+msgstr "Perubahan belum tersimpan hanya berefek pada sesi ini saja"
 
 #: gui/pregame/mainmenu.xml:62
 msgid "Help improve 0 A.D.!"
-msgstr "Bantu memperbaiki 0 A.D.!"
+msgstr "Bantu meningkatkan 0 A.D.!"
 
 #: gui/pregame/mainmenu.xml:64
 msgid ""
 "You can automatically send us anonymous feedback that will help us fix bugs,"
 " and improve performance and compatibility."
-msgstr "Anda bisa mengirim laporan anonim secara otomatis yang bisa membantu kami memperbaiki masalah, memperbaiki performa dan kompabilitas."
+msgstr "Anda bisa mengirim laporan anonim secara otomatis yang bisa membantu kami memperbaiki masalah, meningkatkan performa dan kompabilitas."
 
 #: gui/pregame/mainmenu.xml:540
 msgid "Alpha XXII: Venustas"
-msgstr ""
+msgstr "Alpha XXII: Venustas"
 
 #: gui/pregame/mainmenu.xml:542
 msgid ""
@@ -1847,7 +1848,7 @@ msgstr "Matikan Timbal Balik"
 
 #: gui/pregame/mainmenu.xml:(caption):157
 msgid "Tutorial"
-msgstr ""
+msgstr "Tutorial"
 
 #: gui/pregame/mainmenu.xml:(caption):171
 #: gui/structree/structree.xml:(caption):18
@@ -1921,11 +1922,11 @@ msgstr "Website"
 
 #: gui/pregame/mainmenu.xml:(caption):564
 msgid "Chat"
-msgstr "Pesan"
+msgstr "Percakapan"
 
 #: gui/pregame/mainmenu.xml:(caption):576
 msgid "Report a Bug"
-msgstr "Laporkan masalah"
+msgstr "Laporkan Masalah"
 
 #: gui/pregame/mainmenu.xml:(caption):588
 msgid "Translate the game"
@@ -1933,7 +1934,7 @@ msgstr "Terjemahkan permainan"
 
 #: gui/pregame/mainmenu.xml:(caption):600
 msgid "Credits"
-msgstr ""
+msgstr "Kredit"
 
 #: gui/pregame/mainmenu.xml:(caption):629
 msgid "WILDFIRE GAMES"
@@ -1945,7 +1946,7 @@ msgstr "Buka Petunjuk Permainan 0 A.D."
 
 #: gui/pregame/mainmenu.xml:(tooltip):158
 msgid "Start the economic tutorial."
-msgstr ""
+msgstr "Mulai tutorial ekonomi."
 
 #: gui/pregame/mainmenu.xml:(tooltip):172
 msgid "View the structure tree of civilizations featured in 0 A.D."
@@ -1953,7 +1954,7 @@ msgstr "Lihat pohon struktur dari peradaban di 0 A.D."
 
 #: gui/pregame/mainmenu.xml:(tooltip):189
 msgid "Learn about the many civilizations featured in 0 A.D."
-msgstr "Pelajari lebih lagi tentang kebangsaan di 0 A.D."
+msgstr "Pelajari lebih lagi tentang peradaban di 0 A.D."
 
 #: gui/pregame/mainmenu.xml:(tooltip):214
 msgid "Click here to start a new single player game."
@@ -1979,7 +1980,7 @@ msgstr "Buat permainan bersama.\\n\\nmembutuhkan port UDP 20595 untuk terbuka."
 
 #: gui/pregame/mainmenu.xml:(tooltip):298
 msgid "Launch the multiplayer lobby."
-msgstr "Luncurkan Lobi Permainan Bersama"
+msgstr "Buka lobi permainan bersama."
 
 #: gui/pregame/mainmenu.xml:(tooltip):328
 msgid "Adjust game settings."
@@ -2005,13 +2006,13 @@ msgstr "Tampilkan Jendela Sambutan. Berguna jika anda mematikannya tanpa sengaja
 
 #: gui/pregame/mainmenu.xml:(tooltip):403
 msgid "Select mods to use."
-msgstr "Pilih mod yang kan digunakan."
+msgstr "Pilih mod yang akan digunakan."
 
 #: gui/pregame/mainmenu.xml:(tooltip):458
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations"
-msgstr ""
+msgstr "Belajar cara bermain, memulai tutorial, mempelajari pohon teknologi, dan sejarah dibalik peradaban"
 
 #: gui/pregame/mainmenu.xml:(tooltip):473
 msgid "Challenge the computer player to a single player match."
@@ -2041,15 +2042,15 @@ msgstr "Klik untuk membuka IRC chat 0 A.D. di browser anda. (#0ad di webchat.qua
 
 #: gui/pregame/mainmenu.xml:(tooltip):577
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr "Klik untuk mengunjungi 0 A.D. Trac untuk melaporkan bug, crash, atau galat."
+msgstr "Klik untuk mengunjungi 0 A.D. Trac untuk melaporkan bug, crash, atau error."
 
 #: gui/pregame/mainmenu.xml:(tooltip):589
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr "Klik untuk membuka halaman terjemahan 0 A.D. di peramban anda."
+msgstr "Klik untuk membuka halaman terjemahan 0 A.D. di browser anda."
 
 #: gui/pregame/mainmenu.xml:(tooltip):601
 msgid "Click to see the 0 A.D. credits."
-msgstr ""
+msgstr "Klik untuk melihat kredit 0 A.D."
 
 #: gui/replaymenu/replay_menu.xml:(caption):28
 msgid "Replay Games"
@@ -2057,7 +2058,7 @@ msgstr "Tayangan Ulang Permainan"
 
 #: gui/replaymenu/replay_menu.xml:(caption):126
 msgid "Filter compatible replays"
-msgstr ""
+msgstr "Tayangan ulang kompatibel dengan filter"
 
 #: gui/replaymenu/replay_menu.xml:(caption):167
 #: gui/savedgames/load.xml:(caption):101
@@ -2076,7 +2077,7 @@ msgstr "Kemenangan:"
 
 #: gui/replaymenu/replay_menu.xml:(caption):230
 msgid "Spoiler"
-msgstr ""
+msgstr "Spoiler"
 
 #: gui/replaymenu/replay_menu.xml:(caption):242
 msgid "Main Menu"
@@ -2139,20 +2140,20 @@ msgstr ""
 #: gui/savedgames/load.xml:(heading):44
 msgctxt "replay"
 msgid "Map Type"
-msgstr ""
+msgstr "Tipe Peta"
 
 #: gui/savedgames/load.xml:(heading):52
 msgctxt "replay"
 msgid "Description"
-msgstr ""
+msgstr "Deskripsi"
 
 #: gui/savedgames/load.xml:(caption):57
 msgid "No saved games found."
-msgstr ""
+msgstr "Tidak ada simpanan permainan."
 
 #: gui/savedgames/load.xml:(caption):71
 msgid "Load"
-msgstr "Muatkan"
+msgstr "Muat"
 
 #: gui/savedgames/load.xml:(caption):83
 msgid "Filter compatible saved games"
@@ -2164,7 +2165,7 @@ msgstr "Pemain:"
 
 #: gui/savedgames/load.xml:(caption):97
 msgid "Played time:"
-msgstr "Dimainkan sebanyak:"
+msgstr "Dimainkan selama:"
 
 #: gui/savedgames/save.xml:(caption):16
 msgid "Save Game"
@@ -2201,17 +2202,17 @@ msgstr ""
 #: gui/summary/summary.xml:(caption):167
 msgctxt "summary chart"
 msgid "Category:"
-msgstr ""
+msgstr "Kategori:"
 
 #: gui/summary/summary.xml:(caption):177
 msgctxt "summary chart"
 msgid "Value:"
-msgstr ""
+msgstr "Jumlah:"
 
 #: gui/summary/summary.xml:(caption):187
 msgctxt "summary chart"
 msgid "Type:"
-msgstr ""
+msgstr "Tipe:"
 
 #: gui/summary/summary.xml:(caption):206
 msgid "Replay"
@@ -2224,21 +2225,21 @@ msgstr "Lanjut"
 #: gui/summary/summary.xml:(tooltip):173
 msgctxt "summary chart"
 msgid "Category"
-msgstr ""
+msgstr "Kategori"
 
 #: gui/summary/summary.xml:(tooltip):183
 msgctxt "summary chart"
 msgid "Value"
-msgstr ""
+msgstr "Jumlah"
 
 #: gui/summary/summary.xml:(tooltip):194
 msgctxt "summary chart"
 msgid "Type"
-msgstr ""
+msgstr "Tipe"
 
 #: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
 msgid "Art lead"
-msgstr ""
+msgstr "Pimpinan seni"
 
 #: gui/credits/texts/art.jsonContent[0].Content[1].Subtitle
 msgid "Sound Manager"
@@ -2250,7 +2251,7 @@ msgstr "Komposer"
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Artistic managers"
-msgstr ""
+msgstr "Manajer artistik"
 
 #: gui/credits/texts/art.jsonContent[1].Title
 msgid "Map Making"
@@ -2258,7 +2259,7 @@ msgstr "Pembuat Peta"
 
 #: gui/credits/texts/art.jsonContent[2].Title
 msgid "Random Map Scripts"
-msgstr ""
+msgstr "Program Peta Acak"
 
 #: gui/credits/texts/art.jsonContent[3].Title
 msgid "2D Art"
@@ -2274,7 +2275,7 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[5].Content[2].Subtitle
 msgid "Additional music"
-msgstr ""
+msgstr "Musik tambahan"
 
 #: gui/credits/texts/art.jsonContent[5].Content[3].Subtitle
 msgid "Flute"
@@ -2404,7 +2405,7 @@ msgstr "Tidak ada sejarawan yang disakiti dalam pembuatan proyek ini."
 
 #: gui/credits/texts/special.jsonTitle
 msgid "Special Credits"
-msgstr ""
+msgstr "Kredit Spesial"
 
 #: gui/credits/texts/translators.jsonTitle
 msgid "Translators"
@@ -2549,7 +2550,7 @@ msgstr ""
 #: gui/options/options.jsongeneralSetting[13].parameters.list[2].label
 #: gui/options/options.jsongeneralSetting[14].parameters.list[2].label
 msgid "Disabled"
-msgstr ""
+msgstr "Dimatikan"
 
 #: gui/options/options.jsongeneralSetting[13].tooltip
 msgid ""
@@ -2688,7 +2689,7 @@ msgstr ""
 
 #: gui/options/options.jsonnotificationSetting[2].label
 msgid "Barter"
-msgstr ""
+msgstr "Menukar"
 
 #: gui/options/options.jsonnotificationSetting[3].parameters.list[0].label
 msgid "Disable"
@@ -3103,7 +3104,7 @@ msgstr ""
 
 #: gui/text/tips/army_camp.txt:6
 msgid "- Construct siege weapons and train citizen-soldiers."
-msgstr "- Membangun senjata kepung dan melatih prajurit rakyat."
+msgstr "- Membuat senjata kepung dan melatih prajurit rakyat."
 
 #: gui/text/tips/army_camp.txt:8
 msgid ""
@@ -3171,7 +3172,7 @@ msgstr "- Keduanya dapat dilatih di Kuil, tidak di Benteng seperti jawara lainny
 msgid ""
 "- Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as "
 "heavy shock against siege weapons and skirmishers."
-msgstr "- Gunakan Penombak sebagai infanteri berat melawan pasukan kuda. Gunakan Pasukan kuda sebagai serangan kejut berat melawan senjata kepung dan skirmisher."
+msgstr "- Gunakan Penombak sebagai infanteri berat melawan kavaleri. Gunakan Kavaleri sebagai serangan kejut berat melawan senjata kepung dan penskirmis."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -3215,7 +3216,7 @@ msgstr "- Dapat membawa hingga 40 unit melintasi perairan."
 
 #: gui/text/tips/celtic_war_barge.txt:8
 msgid "- Increases firepower with garrisoned infantry."
-msgstr ""
+msgstr "- Meningkatkan serangan dengan infanteri didalam."
 
 #: gui/text/tips/celtic_war_barge.txt:10
 msgid "- Cannot ram, like other triremes, but has greater health and armor."
@@ -3279,7 +3280,7 @@ msgstr "- Memancing lebih cepat daripada mengumpulkan makanan di ladang."
 msgid ""
 "- Garrison a support unit aboard to double the fishing boat's gathering "
 "rate."
-msgstr ""
+msgstr "- Masukkan unit pendukung kedalam untuk menggandakan tingkat pengumpulan perahu nelayan. "
 
 #: gui/text/tips/fishing.txt:10
 msgid "- Careful! Fish are not an infinite resource!"
@@ -3295,7 +3296,7 @@ msgstr "- Benteng biasanya adalah bangunan terkokoh pada tiap bangsa."
 
 #: gui/text/tips/fortress.txt:4
 msgid "- Trains strong units like Champions, Heroes, and Siege Weapons."
-msgstr ""
+msgstr "- Melatih unit kuat seperti Jawara, Pahlawan, dan Senjata Kepung."
 
 #: gui/text/tips/fortress.txt:6
 msgid "- Gives a population boost."
@@ -3303,7 +3304,7 @@ msgstr "- Meningkatkan kapasitas populasi."
 
 #: gui/text/tips/fortress.txt:8
 msgid "- Garrison soldiers inside to add more firepower to its defense."
-msgstr "- Masukkan prajurit di dalamnya untuk menambah persenjataan pertahanan."
+msgstr "- Masukkan prajurit ke dalam untuk menambah serangan pada pertahanannya."
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"
@@ -3329,7 +3330,7 @@ msgstr "- Kavaleri-Rakyat mendapat bonus dalam Berburu."
 msgid ""
 "- The higher the level of Citizen-Soldier (Advanced, Elite), the better he "
 "fights, but the less efficient he is at gathering."
-msgstr "- Semakin tinggi pangkat Prajurit-Rakyat (Tinggi, Elit), semakin mahir ia bertarung, namun semakin buruk ia dalam pengumpulan."
+msgstr "- Semakin tinggi pangkat Prajurit-Rakyat (Berpangkat, Elit), semakin mahir ia bertarung, namun semakin buruk ia dalam mengumpullkan."
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
@@ -3459,7 +3460,7 @@ msgstr "- Dapat membawa hingga 50 unit."
 
 #: gui/text/tips/quinquereme.txt:6
 msgid "- Increases firepower with garrisoned catapults."
-msgstr ""
+msgstr "- Meningkatkan seranan dengan katapel didalamnya."
 
 #: gui/text/tips/quinquereme.txt:8
 msgid "- Has a ramming attack that sinks enemy ships (NOT IMPLEMENTED YET)."
@@ -3501,7 +3502,7 @@ msgstr "- Biasanya berbiaya 100 Kayu dan 100 Batu. Menara Pertahanan Iberia berb
 
 #: gui/text/tips/scout_towers.txt:6
 msgid "- Has a ranged attack that increases for each garrisoned unit."
-msgstr "- Memiliki serangan jarak jauh yang meningkat seiring jumlah unit tersimpan."
+msgstr "- Memiliki serangan jarak jauh yang meningkat seiring jumlah unit didalam."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
@@ -3658,7 +3659,7 @@ msgstr "-Semua kapal dibuat lebih cepat selama ia masih hidup."
 
 #: gui/text/tips/themistocles.txt:6
 msgid "- The ship he is garrisoned inside sails much faster."
-msgstr ""
+msgstr "- Kapal yang dimasuki dia berlayar lebih cepat."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"

@@ -27,7 +27,7 @@
 				<translatableAttribute id="caption">Joining an existing game.</translatableAttribute>
 			</object>
 
-			<object type="text" size="20 36 50% 66" style="ModernLabelText" text_align="right">
+			<object type="text" size="20 36 50% 66" style="ModernRightLabelText">
 				<translatableAttribute id="caption">Player name:</translatableAttribute>
 			</object>
 
@@ -37,7 +37,7 @@
 				</action>
 			</object>
 
-			<object type="text" size="20 76 50% 106" style="ModernLabelText" text_align="right">
+			<object type="text" size="20 76 50% 106" style="ModernRightLabelText">
 				<translatableAttribute id="caption">Server Hostname or IP:</translatableAttribute>
 			</object>
 
@@ -47,7 +47,7 @@
 				</action>
 			</object>
 
-			<object type="text" size="20 116 50% 146" style="ModernLabelText" text_align="right">
+			<object type="text" size="20 116 50% 146" style="ModernRightLabelText">
 				<translatableAttribute id="caption">Server Port:</translatableAttribute>
 			</object>
 
@@ -69,7 +69,7 @@
 			</object>
 
 			<object name="hostPlayerNameWrapper" hidden="true">
-				<object type="text" size="20 36 50% 66" style="ModernLabelText" text_align="right">
+				<object type="text" size="20 36 50% 66" style="ModernRightLabelText">
 					<translatableAttribute id="caption">Player name:</translatableAttribute>
 				</object>
 
@@ -82,7 +82,7 @@
 
 			<!-- Host server name is only used on games started through the lobby. -->
 			<object name="hostServerNameWrapper" hidden="true">
-				<object type="text" size="20 36 50% 66" style="ModernLabelText" text_align="right">
+				<object type="text" size="20 36 50% 66" style="ModernRightLabelText">
 					<translatableAttribute id="caption">Server name:</translatableAttribute>
 				</object>
 
@@ -94,7 +94,7 @@
 			</object>
 
 			<object>
-				<object type="text" size="20 66 50% 104" style="ModernLabelText" text_align="right">
+				<object type="text" size="20 66 50% 104" style="ModernRightLabelText">
 					<translatableAttribute id="caption">Server Port:</translatableAttribute>
 				</object>
 
@@ -113,7 +113,7 @@
 				<object name="useSTUN" size="120 116 152 146" type="checkbox" style="ModernTickBox">
 					<action on="Press">saveSTUNSetting(String(this.checked));</action>
 				</object>
-				<object type="text" size="146 106 100% 146" style="ModernLabelText" text_align="left">
+				<object type="text" size="146 106 100% 146" style="ModernLeftLabelText">
 					<translatableAttribute id="caption">Use STUN to work around firewalls</translatableAttribute>
 				</object>
 			</object>

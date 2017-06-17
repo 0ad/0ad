@@ -116,7 +116,9 @@ Damage.prototype.MissileHit = function(data, lateness)
 	let cmpProjectileManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ProjectileManager);
 
 	// Deal direct damage if we hit the main target
-	if (this.TestCollision(data.target, data.position, lateness))
+	// and if the target has DamageReceiver (not the case for a mirage for example)
+	let cmpDamageReceiver = Engine.QueryInterface(data.target, IID_DamageReceiver);
+	if (cmpDamageReceiver && this.TestCollision(data.target, data.position, lateness))
 	{
 		this.CauseDamage(data);
 		cmpProjectileManager.RemoveProjectile(data.projectileId);
@@ -263,7 +265,7 @@ Damage.prototype.EntitiesNearPoint = function(origin, radius, players)
 Damage.prototype.TargetKilled = function(attacker, target, attackerOwner)
 {
 	let cmpAttackerOwnership = Engine.QueryInterface(attacker, IID_Ownership);
-	let atkOwner =  cmpAttackerOwnership && cmpAttackerOwnership.GetOwner() != -1 ? cmpAttackerOwnership.GetOwner() : attackerOwner;
+	let atkOwner = cmpAttackerOwnership && cmpAttackerOwnership.GetOwner() != -1 ? cmpAttackerOwnership.GetOwner() : attackerOwner;
 
 	// Add to killer statistics.
 	let cmpKillerPlayerStatisticsTracker = QueryPlayerIDInterface(atkOwner, IID_StatisticsTracker);
