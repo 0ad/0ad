@@ -766,7 +766,7 @@ m.ConstructionPlan.prototype.getResourcesAround = function(gameState, types, i, 
 
 m.ConstructionPlan.prototype.isGo = function(gameState)
 {
-	if (this.isGoRequirement && this.isGoRequirement === "houseNeeded")
+	if (this.goRequirement && this.goRequirement === "houseNeeded")
 	{
 		if (!gameState.ai.HQ.canBuild(gameState, "structures/{civ}_house"))
 			return false;
@@ -778,9 +778,9 @@ m.ConstructionPlan.prototype.isGo = function(gameState)
 
 		if (gameState.ai.HQ.saveResources)
 			return freeSlots <= 10;
-		else if (gameState.getPopulation() > 55)
+		if (gameState.getPopulation() > 55)
 			return freeSlots <= 21;
-		else if (gameState.getPopulation() > 30)
+		if (gameState.getPopulation() > 30)
 			return freeSlots <= 15;
 		return freeSlots <= 10;
 	}

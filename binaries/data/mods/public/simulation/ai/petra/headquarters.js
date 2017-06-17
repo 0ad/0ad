@@ -1399,7 +1399,7 @@ m.HQ.prototype.buildMoreHouses = function(gameState, queues)
 	{
 		let plan = new m.ConstructionPlan(gameState, "structures/{civ}_house");
 		// change the starting condition according to the situation.
-		plan.isGoRequirement = "houseNeeded";
+		plan.goRequirement = "houseNeeded";
 		queues.house.addPlan(plan);
 	}
 
@@ -1431,7 +1431,7 @@ m.HQ.prototype.buildMoreHouses = function(gameState, queues)
 				--needed;
 			else if (needed > 0)
 			{
-				houseQueue[i].isGoRequirement = undefined;
+				houseQueue[i].goRequirement = undefined;
 				--needed;
 			}
 	}
