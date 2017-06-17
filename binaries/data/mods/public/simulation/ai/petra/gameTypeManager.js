@@ -150,20 +150,45 @@ m.GameTypeManager.prototype.checkEvents = function(gameState, events)
 				hero.garrisonEmergency = false;
 
 			let holderEnt = gameState.getEntityById(evt.holder);
-			if (!holderEnt || !holderEnt.hasClass("Ship"))
+			if (!holderEnt)
 				continue;
 
-			// If the hero is garrisoned on a ship, remove its guards
+			if (holderEnt.hasClass("Ship"))
+			{
+				// If the hero is garrisoned on a ship, remove its guards
+				for (let guardId of hero.guards.keys())
+				{
+					let guardEnt = gameState.getEntityById(guardId);
+					if (!guardEnt)
+						continue;
+
+					guardEnt.removeGuard();
+					this.guardEnts.set(guardId, false);
+				}
+				hero.guards.clear();
+				continue;
+			}
+
+			// Move the current guards to the garrison location.
+			// TODO: try to garrison them with the critical ent.
 			for (let guardId of hero.guards.keys())
 			{
 				let guardEnt = gameState.getEntityById(guardId);
 				if (!guardEnt)
 					continue;
 
-				guardEnt.removeGuard();
-				this.guardEnts.set(guardId, false);
+				let plan = guardEnt.getMetadata(PlayerID, "plan");
+
+				// Current military guards (with Soldier class) will have been assigned plan metadata, but healer guards
+				// are not assigned a plan, and so they could be already moving to garrison somewhere due to low health.
+				if (!guardEnt.hasClass("Soldier") && (plan === -2 || plan === -3))
+					continue;
+
+				let pos = holderEnt.position();
+				let radius = holderEnt.obstructionRadius();
+				if (pos)
+					guardEnt.moveToRange(pos[0], pos[1], radius, radius + 5);
 			}
-			hero.guards.clear();
 		}
 	}
 
