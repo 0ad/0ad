@@ -878,8 +878,8 @@ function handleInputAfterGui(ev)
 		case "hotkeydown":
 				if (ev.hotkey.indexOf("selection.group.") == 0)
 				{
-					var now = new Date();
-					if ((now.getTime() - doublePressTimer < doublePressTime) && (ev.hotkey == prevHotkey))
+					let now = Date.now();
+					if (now - doublePressTimer < doublePressTime && ev.hotkey == prevHotkey)
 					{
 						if (ev.hotkey.indexOf("selection.group.select.") == 0)
 						{
@@ -892,7 +892,7 @@ function handleInputAfterGui(ev)
 						var sptr = ev.hotkey.split(".");
 						performGroup(sptr[2], sptr[3]);
 
-						doublePressTimer = now.getTime();
+						doublePressTimer = now;
 						prevHotkey = ev.hotkey;
 					}
 				}

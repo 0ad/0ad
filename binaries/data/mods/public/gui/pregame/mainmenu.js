@@ -14,8 +14,8 @@ var g_BackgroundLayerData = [];
  */
 var g_BackgroundLayerset;
 
-var g_T0 = +(new Date());
-var g_LastTickTime = new Date();
+var g_T0 = Date.now();
+var g_LastTickTime = Date.now();
 
 function init(initData, hotloadData)
 {
@@ -60,7 +60,7 @@ function scrollBackgrounds()
 		var w = h * 16/9;
 		var iw = h * 2;
 
-		var time = (new Date() - g_T0) / 1000;
+		var time = (Date.now() - g_T0) / 1000;
 		var offset = g_BackgroundLayerset[i].offset(time, w);
 		if (g_BackgroundLayerset[i].tiling)
 		{
@@ -113,8 +113,8 @@ function formatUserReportStatus(status)
 
 function onTick()
 {
-	var now = new Date();
-	var tickLength = new Date() - g_LastTickTime;
+	let now = Date.now();
+	let tickLength = Date.now() - g_LastTickTime;
 	g_LastTickTime = now;
 
 	scrollBackgrounds();

@@ -222,7 +222,7 @@ function notifyUser(userName, msgText)
 	    msgText.toLowerCase().indexOf(userName.toLowerCase()) == -1)
 		return;
 
-	let timeNow = new Date().getTime();
+	let timeNow = Date.now();
 
 	if (!g_LastNickNotification || timeNow > g_LastNickNotification + 3000)
 		Engine.PlayUISound("audio/interface/ui/chat_alert.ogg", false);

@@ -908,7 +908,7 @@ function addChatMessage(msg)
 	let historical = {
 		"txt": formatted,
 		"timePrefix": sprintf(translate("\\[%(time)s]"), {
-			"time": Engine.FormatMillisecondsIntoDateStringLocal(new Date().getTime(), translate("HH:mm"))
+			"time": Engine.FormatMillisecondsIntoDateStringLocal(Date.now(), translate("HH:mm"))
 		}),
 		"filter": {}
 	};

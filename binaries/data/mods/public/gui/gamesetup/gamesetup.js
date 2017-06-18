@@ -2151,7 +2151,7 @@ function addChatMessage(msg)
 	if (Engine.ConfigDB_GetValue("user", "chat.timestamp") == "true")
 		text = sprintf(translate("%(time)s %(message)s"), {
 			"time": sprintf(translate("\\[%(time)s]"), {
-				"time": Engine.FormatMillisecondsIntoDateStringLocal(new Date().getTime(), translate("HH:mm"))
+				"time": Engine.FormatMillisecondsIntoDateStringLocal(Date.now(), translate("HH:mm"))
 			}),
 			"message": text
 		});

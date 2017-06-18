@@ -96,7 +96,7 @@ var g_Players = [];
  * Last time when onTick was called().
  * Used for animating the main menu.
  */
-var lastTickTime = new Date();
+var g_LastTickTime = Date.now();
 
 /**
  * Recalculate which units have their status bars shown with this frequency in milliseconds.
@@ -737,9 +737,9 @@ function onTick()
 	if (!g_Settings)
 		return;
 
-	let now = new Date();
-	let tickLength = now - lastTickTime;
-	lastTickTime = now;
+	let now = Date.now();
+	let tickLength = now - g_LastTickTime;
+	g_LastTickTime = now;
 
 	handleNetMessages();
 
