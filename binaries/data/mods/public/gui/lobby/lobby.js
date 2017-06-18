@@ -135,12 +135,14 @@ var g_NetMessageTypes = {
 			if (!g_Kicked)
 				addChatMessage({
 					"from": "system",
+					"time": msg.time,
 					"text": translate("Disconnected.") + " " + msg.text
 				});
 		},
 		"error": msg => {
 			addChatMessage({
 				"from": "system",
+				"time": msg.time,
 				"text": msg.text
 			});
 		}
@@ -154,6 +156,7 @@ var g_NetMessageTypes = {
 				"text": "/special " + sprintf(translate("%(nick)s has joined."), {
 					"nick": msg.text
 				}),
+				"time": msg.time,
 				"isSpecial": true
 			});
 		},
@@ -162,6 +165,7 @@ var g_NetMessageTypes = {
 				"text": "/special " + sprintf(translate("%(nick)s has left."), {
 					"nick": msg.text
 				}),
+				"time": msg.time,
 				"isSpecial": true
 			});
 
@@ -194,6 +198,7 @@ var g_NetMessageTypes = {
 
 			addChatMessage({
 				"text": "/special " + sprintf(txt, { "nick": msg.text }),
+				"time": msg.time,
 				"isSpecial": true
 			});
 
@@ -210,6 +215,7 @@ var g_NetMessageTypes = {
 					"oldnick": msg.text,
 					"newnick": msg.data
 				}),
+				"time": msg.time,
 				"isSpecial": true
 			});
 		},
@@ -223,7 +229,7 @@ var g_NetMessageTypes = {
 			addChatMessage({
 				"from": escapeText(msg.from),
 				"text": escapeText(msg.text),
-				"datetime": msg.datetime
+				"time": msg.time
 			});
 		},
 		"private-message": msg => {
@@ -232,7 +238,7 @@ var g_NetMessageTypes = {
 				addChatMessage({
 					"from": escapeText(msg.from),
 					"text": escapeText(msg.text.trim()),
-					"datetime": msg.datetime,
+					"time": msg.time,
 					"private" : true
 				});
 		}
@@ -492,6 +498,7 @@ function handleKick(banned, nick, reason)
 	{
 		addChatMessage({
 			"text": "/special " + sprintf(kickString, { "nick": nick }) + " " + reason,
+			"time": msg.time,
 			"isSpecial": true
 		});
 		return;
@@ -499,6 +506,7 @@ function handleKick(banned, nick, reason)
 
 	addChatMessage({
 		"from": "system",
+		"time": msg.time,
 		"text": kickString + " " + reason,
 	});
 
@@ -1333,24 +1341,10 @@ function ircFormat(msg)
 	if (Engine.ConfigDB_GetValue("user", "chat.timestamp") != "true")
 		return formattedMessage;
 
-	let time;
-	if (msg.datetime)
-	{
-		let dTime = msg.datetime.split("T");
-		let parserDate = dTime[0].split("-");
-		let parserTime = dTime[1].split(":");
-		// See http://xmpp.org/extensions/xep-0082.html#sect-idp285136 for format of datetime
-		// Date takes Year, Month, Day, Hour, Minute, Second
-		time = new Date(Date.UTC(parserDate[0], parserDate[1], parserDate[2],
-			parserTime[0], parserTime[1], parserTime[2].split("Z")[0]));
-	}
-	else
-		time = new Date(Date.now());
-
 	// Translation: Time as shown in the multiplayer lobby (when you enable it in the options page).
 	// For a list of symbols that you can use, see:
 	// https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1#TOC-Date-Field-Symbol-Table
-	let timeString = Engine.FormatMillisecondsIntoDateStringLocal(time.getTime(), translate("HH:mm"));
+	let timeString = Engine.FormatMillisecondsIntoDateStringLocal(msg.time ? msg.time * 1000 : Date.now(), translate("HH:mm"));
 
 	// Translation: Time prefix as shown in the multiplayer lobby (when you enable it in the options page).
 	let timePrefixString = sprintf(translate("\\[%(time)s]"), {
