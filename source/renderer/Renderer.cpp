@@ -430,6 +430,12 @@ CRenderer::CRenderer()
 	m_Options.m_NoVBO = false;
 	m_Options.m_RenderPath = RP_DEFAULT;
 	m_Options.m_Shadows = false;
+	m_Options.m_WaterUgly = true;
+	m_Options.m_WaterFancyEffects = false;
+	m_Options.m_WaterRealDepth = false;
+	m_Options.m_WaterRefraction = false;
+	m_Options.m_WaterReflection = false;
+	m_Options.m_WaterShadows = false;
 	m_Options.m_ShadowAlphaFix = true;
 	m_Options.m_ARBProgramShadow = true;
 	m_Options.m_ShadowPCF = false;
