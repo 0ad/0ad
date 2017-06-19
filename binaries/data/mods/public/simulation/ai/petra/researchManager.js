@@ -25,18 +25,6 @@ m.ResearchManager.prototype.checkPhase = function(gameState, queues)
 		gameState.hasResearchers(townPhase, true))
 	{
 		let plan = new m.ResearchPlan(gameState, townPhase, true);
-		plan.onStart = function (gameState) {
-			gameState.ai.HQ.econState = "growth";
-			gameState.ai.HQ.OnTownPhase(gameState);
-		};
-		plan.isGo = function (gameState) {
-			let ret = gameState.getPopulation() >= gameState.ai.Config.Economy.popForTown;
-			if (ret && gameState.ai.HQ.econState !== "growth")
-				gameState.ai.HQ.econState = "growth";
-			else if (!ret && gameState.ai.HQ.econState !== "townPhasing")
-				gameState.ai.HQ.econState = "townPhasing";
-			return ret;
-		};
 		queues.majorTech.addPlan(plan);
 	}
 	else if (gameState.canResearch(cityPhase,true) && gameState.ai.elapsedTime > this.Config.Economy.cityPhase &&
@@ -44,14 +32,6 @@ m.ResearchManager.prototype.checkPhase = function(gameState, queues)
 			gameState.hasResearchers(cityPhase, true) && !queues.civilCentre.hasQueuedUnits())
 	{
 		let plan = new m.ResearchPlan(gameState, cityPhase, true);
-		plan.onStart = function (gameState) {
-			gameState.ai.HQ.econState = "growth";
-			gameState.ai.HQ.OnCityPhase(gameState);
-		};
-		plan.isGo = function (gameState) {
-			gameState.ai.HQ.econState = "cityPhasing";
-			return true;
-		};
 		queues.majorTech.addPlan(plan);
 	}
 };
@@ -185,7 +165,7 @@ m.ResearchManager.prototype.update = function(gameState, queues)
 		{
 			gameState.ai.queueManager.changePriority("minorTech", 2*this.Config.priorities.minorTech);
 			let plan = new m.ResearchPlan(gameState, techName.name);
-			plan.onStart = function(gameState) { gameState.ai.queueManager.changePriority("minorTech", gameState.ai.Config.priorities.minorTech); };
+			plan.queueToReset = "minorTech";
 			queues.minorTech.addPlan(plan);
 		}
 		else
@@ -203,7 +183,7 @@ m.ResearchManager.prototype.update = function(gameState, queues)
 		{
 			gameState.ai.queueManager.changePriority("minorTech", 2*this.Config.priorities.minorTech);
 			let plan = new m.ResearchPlan(gameState, techName.name);
-			plan.onStart = function(gameState) { gameState.ai.queueManager.changePriority("minorTech", gameState.ai.Config.priorities.minorTech); };
+			plan.queueToReset = "minorTech";
 			queues.minorTech.addPlan(plan);
 		}
 		else

@@ -3,10 +3,7 @@ RMS.LoadLibrary("heightmap");
 
 InitMap();
 
-/**
- * Start Timer
- */
-let genStartTime = new Date().getTime();
+let genStartTime = Date.now();
 
 /**
  * Returns an approximation of the heights of the tiles between the vertices, a tile centered heightmap
@@ -181,7 +178,7 @@ function getGrad(wrapped = true, scalarField = g_Map.height)
 		max_x -= 1;
 		max_y -= 1;
 	}
-	
+
 	for (let x = 0; x < max_x; ++x)
 	{
 		vectorField.push([]);
@@ -254,10 +251,10 @@ function getPointsByHeight(heightRange, avoidPoints = [], avoidClass = undefined
 	let validVertices = [];
 	let r = 0.5 * (heightmap.length - 1); // Map center x/y as well as radius
 	let avoidMap;
-	
+
 	if (avoidClass !== undefined)
 		avoidMap = g_Map.tileClasses[avoidClass].inclusionCount;
-	
+
 	for (let x = minDistance; x < heightmap.length - minDistance; ++x)
 	{
 		for (let y = minDistance; y < heightmap[0].length - minDistance; ++y)
@@ -284,7 +281,7 @@ function getPointsByHeight(heightRange, avoidPoints = [], avoidClass = undefined
 			placements.push(point);
 		}
 		if (tries != 0 && tries % 100 == 0) // Time Check
-			log(points.length + " points found after " + tries + " tries after " + ((new Date().getTime() - genStartTime) / 1000) + "s");
+			log(points.length + " points found after " + tries + " tries after " + ((Date.now() - genStartTime) / 1000) + "s");
 	}
 
 	return points;
@@ -441,7 +438,7 @@ function placeStartLocationResources(point, foodEntities = ["gaia/flora_bush_ber
 	}
 }
 
-log("Functions loaded after " + ((new Date().getTime() - genStartTime) / 1000) + "s"); // Time Check
+log("Functions loaded after " + ((Date.now() - genStartTime) / 1000) + "s");
 
 /**
  * Environment settings
@@ -553,7 +550,7 @@ myBiome.push({ // 10 Hilltop
 	"textureHS": ["alpine_cliff_c"], "actorHS": [["actor|geology/highland1.xml"], 0.0]
 });
 
-log("Terrain shape generation and texture presets after " + ((new Date().getTime() - genStartTime) / 1000) + "s"); // Time Check
+log("Terrain shape generation and texture presets after " + ((Date.now() - genStartTime) / 1000) + "s");
 
 /**
  * Get start locations
@@ -591,17 +588,17 @@ if (teams.length)
 		{
 			let p1 = playerIDs[(pi + s) % playerIDs.length] - 1;
 			let t1 = getPlayerTeam(p1);
-			
+
 			if (teams.indexOf(t1) === -1)
 				continue;
-			
+
 			for (let pj = pi + 1; pj < playerIDs.length; ++pj)
 			{
 				let p2 = playerIDs[(pj + s) % playerIDs.length] - 1;
 				let t2 = getPlayerTeam(p2);
 				if (t2 != t1)
 					continue;
-				
+
 				let l1 = startLocations[pi];
 				let l2 = startLocations[pj];
 				let dist = getDistance(l1.x, l1.y, l2.x, l2.y);
@@ -609,7 +606,7 @@ if (teams.length)
 					maxTeamDist = dist;
 			}
 		}
-		
+
 		if (maxTeamDist < minDistance)
 		{
 			minDistance = maxTeamDist;
@@ -625,7 +622,7 @@ if (teams.length)
 	}
 }
 
-log("Start location chosen after " + ((new Date().getTime() - genStartTime) / 1000) + "s"); // Time Check
+log("Start location chosen after " + ((Date.now() - genStartTime) / 1000) + "s");
 RMS.SetProgress(30);
 
 /**
@@ -641,7 +638,7 @@ for (let i = 0; i < startLocations.length; ++i)
 	pathPoints = pathPoints.concat(placeRandomPathToHeight(start, target, playerHeight, clPath));
 }
 
-log("Paths placed after " + ((new Date().getTime() - genStartTime) / 1000) + "s"); // Time Check
+log("Paths placed after " + ((Date.now() - genStartTime) / 1000) + "s");
 RMS.SetProgress(45);
 
 /**
@@ -652,7 +649,7 @@ for (let i = 0; i < avoidPoints.length; ++i)
 	avoidPoints[i].dist = 30;
 let resourceSpots = getPointsByHeight({ "min": (heighLimits[3] + heighLimits[4]) / 2, "max": (heighLimits[5] + heighLimits[6]) / 2 }, avoidPoints, clPath);
 
-log("Resource spots chosen after " + ((new Date().getTime() - genStartTime) / 1000) + "s"); // Time Check
+log("Resource spots chosen after " + ((Date.now() - genStartTime) / 1000) + "s");
 RMS.SetProgress(55);
 
 /**
@@ -698,10 +695,10 @@ for (let h = 0; h < heighLimits.length; ++h)
 		let x = areas[h][t].x;
 		let y = areas[h][t].y;
 		let slope = slopeMap[x][y];
-		
+
 		if (slope > maxSlope[h])
 			maxSlope[h] = slope;
-		
+
 		if (slope < minSlope[h])
 			minSlope[h] = slope;
 	}
@@ -718,7 +715,7 @@ for (let h = 0; h < heighLimits.length; ++h)
 		let y = areas[h][t].y;
 		let actor = undefined;
 		let texture = pickRandom(myBiome[h].texture);
-		
+
 		if (slopeMap[x][y] < 0.4 * (minSlope[h] + maxSlope[h]))
 		{
 			if (randBool(myBiome[h].actor[1]))
@@ -730,15 +727,15 @@ for (let h = 0; h < heighLimits.length; ++h)
 			if (randBool(myBiome[h].actorHS[1]))
 				actor = pickRandom(myBiome[h].actorHS[0]);
 		}
-		
+
 		g_Map.texture[x][y] = g_Map.getTextureID(texture);
-		
+
 		if (actor)
 			placeObject(randFloat(x, x + 1), randFloat(y, y + 1), actor, 0, randFloat(0, 2 * PI));
 	}
 }
 
-log("Terrain texture placement finished after " + ((new Date().getTime() - genStartTime) / 1000) + "s"); // Time Check
+log("Terrain texture placement finished after " + ((Date.now() - genStartTime) / 1000) + "s");
 RMS.SetProgress(80);
 
 /**
@@ -770,7 +767,7 @@ for (let i = 0; i < resourceSpots.length; ++i)
 /**
  * Stop Timer
  */
-log("Map generation finished after " + ((new Date().getTime() - genStartTime) / 1000) + "s");
+log("Map generation finished after " + ((Date.now() - genStartTime) / 1000) + "s");
 
 /**
  * Export map data

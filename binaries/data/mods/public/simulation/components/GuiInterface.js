@@ -149,6 +149,11 @@ GuiInterface.prototype.GetSimulationState = function()
 		ret.ceasefireTimeRemaining = ret.ceasefireActive ? cmpCeasefireManager.GetCeasefireStartedTime() + cmpCeasefireManager.GetCeasefireTime() - ret.timeElapsed : 0;
 	}
 
+	// Add cinema path info
+	let cmpCinemaManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_CinemaManager);
+	if (cmpCinemaManager)
+		ret.cinemaPlaying = cmpCinemaManager.IsPlaying();
+
 	// Add the game type and allied victory
 	let cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
 	ret.gameType = cmpEndGameManager.GetGameType();

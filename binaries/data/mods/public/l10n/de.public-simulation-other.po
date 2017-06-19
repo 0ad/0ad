@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-06-09 21:36+0000\n"
+"PO-Revision-Date: 2017-06-16 22:19+0000\n"
 "Last-Translator: Xaver\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -72,7 +72,7 @@ msgstr "Meine Angriffsvorbereitungen gegen %(_player_)s sind fast beendet."
 msgid ""
 "Sorry, I do not have enough soldiers currently; but my next attack will "
 "target %(_player_)s."
-msgstr "Es tut mir Leid, aber ich habe im Moment nicht genug Truppen, dennoch wird mein nächstes Ziel %(_player_)s sein."
+msgstr "Es tut mir Leid, aber ich habe im Moment nicht genug Soldaten; aber mein nächstes Ziel wird %(_player_)s sein."
 
 #: simulation/ai/petra/chatHelper.js:22
 #, javascript-format
@@ -86,7 +86,7 @@ msgstr "Es tut mir Leid, aber meine Truppen sind noch nicht stark genug. Dennoch
 msgid ""
 "I cannot help you against %(_player_)s for the time being, I am planning to "
 "attack %(_player_2)s first."
-msgstr "Ich kann dir zurzeit nicht helfen %(_player_)s anzugreifen, da ich einen Angriff gegen %(_player_2)s geplant habe."
+msgstr "Ich kann dir zurzeit nicht gegen %(_player_)s helfen, da ich zuerst einen Angriff gegen %(_player_2)s geplant habe."
 
 #: simulation/ai/petra/chatHelper.js:30
 #, javascript-format
@@ -96,7 +96,7 @@ msgstr "Hier ist eine Geschenk für dich %(_player_)s. Gebrauche es weise."
 #: simulation/ai/petra/chatHelper.js:31
 #, javascript-format
 msgid "I see you are in a bad situation, %(_player_)s. I hope this helps."
-msgstr "Ich sehe du bist in einer schlimmen Situation, %(_player_)s. Ich hoffe dies hilft dir."
+msgstr "Ich sehe, du bist in einer schlimmen Situation, %(_player_)s. Ich hoffe dies hilft dir."
 
 #: simulation/ai/petra/chatHelper.js:32
 #, javascript-format
@@ -121,7 +121,7 @@ msgstr "Ich würde unsere gemeinsamen Kriegsanstrengungen intensivieren, wenn du
 #, javascript-format
 msgid ""
 "If you can spare me some %(resource)s, I will be able to strengthen my army."
-msgstr "Falls du etwas %(resource)s für mich übrig hast, werde ich meine Armee stärken können."
+msgstr "Falls du etwas %(resource)s für mich übrig hast, kann ich meine Armee stärken."
 
 #: simulation/ai/petra/chatHelper.js:42
 #, javascript-format
@@ -374,7 +374,7 @@ msgstr "%(_player_)s, da du auf mein Friedensangebot nicht reagiert hast, habe i
 msgid ""
 "Warning: This is an advanced tutorial and goes quite fast. If you don't keep"
 " up just restart and try again. Practise makes perfect!"
-msgstr "Achtung: Das ist ein fortgeschrittenes Tutorial und läuft ziemlich schnell. Wenn du nicht mithalten kannst, starte es einfach neu und versuch es nocheinmal. Übung macht den Meister!"
+msgstr "Achtung: Das ist ein fortgeschrittenes Tutorial und läuft ziemlich schnell. Wenn du nicht mithalten kannst, starte es einfach neu und versuch es noch einmal. Übung macht den Meister!"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:8
 msgid ""
@@ -386,7 +386,7 @@ msgstr "Beginnen wir: bilde zuerst eine Gruppe (Umschalttaste + Klick) von 5 Bü
 msgid ""
 "Now, assign your female citizens to gather berries, your cavalryman to hunt "
 "the chickens and the citizen soldiers to gather wood."
-msgstr "Befiehl nun den Bürgerinnen, Beeren zu sammeln, deinen Kavellaristen, Hühner zu jagen und den Bürgersoldaten, Holz zu sammeln."
+msgstr "Befiehl nun den Bürgerinnen, Beeren zu sammeln, deinen Kavalleristen, Hühner zu jagen und den Bürgersoldaten, Holz zu sammeln."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:18
 msgid "Now set the rally point of your civil center on the berries."

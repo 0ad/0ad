@@ -42,9 +42,6 @@ public:
 	void DrawSpline(const RNSpline& spline, const CColor& splineColor, int smoothness, bool lines) const;
 	void DrawNodes(const RNSpline& spline, const CColor& nodesColor) const;
 
-	void UpdateSessionVisibility() const;
-	void UpdateSilhouettesVisibility() const;
-
 	bool IsPlaying() const;
 	bool IsEnabled() const;
 

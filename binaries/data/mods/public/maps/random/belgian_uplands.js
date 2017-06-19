@@ -1,6 +1,6 @@
 // Prepare progress calculation
 var timeArray = [];
-timeArray.push(new Date().getTime());
+timeArray.push(Date.now());
 
 // Importing rmgen libraries
 RMS.LoadLibrary("rmgen");
@@ -98,7 +98,7 @@ textueByHeight.push({"upperHeightLimit": waterHeightAdjusted + 6/6 * (heightRang
 var minTerrainDistToBorder = 3;
 
 // Time check 1
-timeArray.push(new Date().getTime());
+timeArray.push(Date.now());
 RMS.SetProgress(5);
 
 
@@ -274,7 +274,7 @@ while (!goodStartPositionsFound)
 } // END THE GIANT WHILE LOOP
 
 // Time check 2
-timeArray.push(new Date().getTime());
+timeArray.push(Date.now());
 RMS.SetProgress(60);
 
 
@@ -403,7 +403,7 @@ for(var x = minTerrainDistToBorder; x < mapSize - minTerrainDistToBorder; x++)
 }
 
 // Time check 3
-timeArray.push(new Date().getTime());
+timeArray.push(Date.now());
 RMS.SetProgress(90);
 
 
@@ -442,7 +442,7 @@ for (var p = 0; p < numPlayers; p++)
 ExportMap();
 
 // Time check 7
-timeArray.push(new Date().getTime());
+timeArray.push(Date.now());
 
 // Calculate progress percentage with the time checks
 var generationTime = timeArray[timeArray.length - 1] - timeArray[0];
