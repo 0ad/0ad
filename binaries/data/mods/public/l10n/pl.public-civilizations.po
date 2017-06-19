@@ -10,6 +10,7 @@
 # Annunnaky <doublemiu@gmail.com>, 2015
 # Bartłomiej Ozimek <boozimek2@gmail.com>, 2015
 # Daniel Koć <daniel@xn--ko-wla.pl>, 2014
+# Daniel Whatever <Deynyel@protonmail.com>, 2017
 # Dominik Pieczyński <inactive+RiviPN@transifex.com>, 2014
 # domino1162, 2014
 # Grzegorz Lara <gregoriuszgonface@gmail.com>, 2016
@@ -50,14 +51,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:01+0200\n"
-"PO-Revision-Date: 2017-06-05 14:23+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-06-18 23:41+0000\n"
+"Last-Translator: Daniel Whatever <Deynyel@protonmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pl\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #: simulation/data/civs/athen.jsonName
 #: simulation/data/civs/athen.jsonFactions[0].Name
@@ -233,7 +234,7 @@ msgid ""
 "Aegean, thereby laying the foundations of future Athenian power. However, he"
 " was eventually ostracised by the Athenians and forced to flee to the "
 "protection of the Persians."
-msgstr ""
+msgstr "Generał, który namówił Ateńczyków by ci zainwestowali zyski z kopalni srebra w marynarkę 200 tiremów. Ważna postać podczas Wojen Perskich, dowodził zwycięską marynarkę ateńską podczas decydującej bitwy pod Salaminą w 479 p.n.e. Dalej, prowadzil aktywną politykę przeciw  Persom na Wyspch Egejskich, przyczyniajac sie tym samym do mocnej pozycji Aten w przyszłości. Po czasie, jednakże, został on poddany ostracyzmowi przez Ateńczyków, i zmuszony do ucieczki pod protekcję Persów."
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[1].History
 msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
@@ -597,7 +598,7 @@ msgstr "Podobnie do Półwyspu Iberyjskiego, Północna Afryka była znana jako 
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
 msgid "10% bonus of trade profit for allies' international routes."
-msgstr ""
+msgstr "10% bonus do zysków z handlu dla sojuszniczych dróg międzypaństwowych."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -804,7 +805,7 @@ msgstr "Galowie"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
 msgid "-10% research time for technologies of allies."
-msgstr ""
+msgstr "-10% do czasu wynajdywania sojuszniczych technologii."
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druidic Wisdom"
@@ -819,12 +820,12 @@ msgstr ""
 #: simulation/data/civs/gaul.jsonAINames[0]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
 msgid "Viridomarus"
-msgstr ""
+msgstr "Viridomarus"
 
 #: simulation/data/civs/gaul.jsonAINames[1]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[1].Name
 msgid "Brennus"
-msgstr ""
+msgstr "Brennus"
 
 #: simulation/data/civs/gaul.jsonAINames[2]
 msgid "Cativolcus"
@@ -837,7 +838,7 @@ msgstr "Cyngetoryks"
 #: simulation/data/civs/gaul.jsonAINames[4]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[2].Name
 msgid "Vercingetorix"
-msgstr ""
+msgstr "Vercingetorix"
 
 #: simulation/data/civs/gaul.jsonAINames[5]
 msgid "Divico"
@@ -853,7 +854,7 @@ msgstr "Liscus"
 
 #: simulation/data/civs/gaul.jsonAINames[8]
 msgid "Valetiacus"
-msgstr ""
+msgstr "Valetiacus"
 
 #: simulation/data/civs/gaul.jsonAINames[9]
 msgid "Viridovix"
@@ -866,7 +867,7 @@ msgstr "Określona ilość metalu i żywności z każdego zniszczonego lub przej
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
 msgid "Vae Victis"
-msgstr ""
+msgstr "Vae Victis -łac. \"Biada Zwycięzonym\""
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
 msgid ""

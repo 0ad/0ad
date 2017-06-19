@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Asakura, 2017
 # Kanetaka Suto, 2014-2016
 # llen_llen, 2014,2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:02+0200\n"
-"PO-Revision-Date: 2017-06-05 15:23+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-06-18 13:10+0000\n"
+"Last-Translator: Asakura\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -67,16 +68,16 @@ msgstr "%(nick)sが退出しました。"
 
 #: gui/lobby/lobby.js:181
 msgid "You have been muted."
-msgstr ""
+msgstr "あなたは無視されました (mute)"
 
 #: gui/lobby/lobby.js:182
 #, javascript-format
 msgid "%(nick)s has been muted."
-msgstr ""
+msgstr "%(nick)sは無視されました。"
 
 #: gui/lobby/lobby.js:185
 msgid "You are now a moderator."
-msgstr ""
+msgstr "あなたは現在モデレーターです。"
 
 #: gui/lobby/lobby.js:186
 #, javascript-format
@@ -94,7 +95,7 @@ msgstr ""
 
 #: gui/lobby/lobby.js:192
 msgid "You are not a moderator anymore."
-msgstr ""
+msgstr "あなたはもうモデレーターではありません。"
 
 #: gui/lobby/lobby.js:193
 #, javascript-format
@@ -108,11 +109,11 @@ msgstr "%(oldnick)sは名前を%(newnick)sに変更しました。"
 
 #: gui/lobby/lobby.js:254
 msgid "Set your state to 'Away'."
-msgstr ""
+msgstr "ステータスを「離席」に設定します。"
 
 #: gui/lobby/lobby.js:261
 msgid "Set your state to 'Online'."
-msgstr ""
+msgstr "ステータスを「オンライン」に設定します。"
 
 #: gui/lobby/lobby.js:268
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
@@ -124,7 +125,7 @@ msgstr ""
 
 #: gui/lobby/lobby.js:284
 msgid "Show this help."
-msgstr ""
+msgstr "このヘルプを表示します。"
 
 #: gui/lobby/lobby.js:287
 msgid "Chat commands:"
@@ -183,11 +184,11 @@ msgstr ""
 
 #: gui/lobby/lobby.js:480
 msgid "You have been banned from the lobby!"
-msgstr ""
+msgstr "あなたはロビーから締め出されました (ban)"
 
 #: gui/lobby/lobby.js:481
 msgid "You have been kicked from the lobby!"
-msgstr ""
+msgstr "あなたはロビーから跳ね除けられました (kick)"
 
 #: gui/lobby/lobby.js:483
 #, javascript-format
@@ -248,7 +249,7 @@ msgstr ""
 
 #: gui/lobby/lobby.js:1045
 msgid "The game has already started. Do you want to join as observer?"
-msgstr ""
+msgstr "ゲームはすでに始まっています。観戦者として参加しますか？"
 
 #: gui/lobby/lobby.js:1046
 msgid "Confirmation"
@@ -270,12 +271,12 @@ msgstr "このゲームのアドレス「%(ip)s」は正しくない形式です
 #: gui/lobby/lobby.js:1177
 #, javascript-format
 msgid "The command '%(cmd)s' is not supported."
-msgstr ""
+msgstr "「%(cmd)s」コマンドはサポートされていません。"
 
 #: gui/lobby/lobby.js:1189
 #, javascript-format
 msgid "The command '%(cmd)s' is restricted to moderators."
-msgstr ""
+msgstr "「%(cmd)s」コマンドはモデレーター専用です。"
 
 #. Translation: IRC message prefix when the sender uses the /me command.
 #: gui/lobby/lobby.js:1260
