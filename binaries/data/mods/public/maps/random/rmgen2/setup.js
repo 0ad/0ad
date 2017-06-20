@@ -357,7 +357,6 @@ function placeLine(playerIDs, distance, groupedDistance)
 		{
 			players[g_MapInfo.teams[i][p]] = {
 				"id": g_MapInfo.teams[i][p],
-				"angle": g_MapInfo.startAngle + (p + 1) * TWO_PI / g_MapInfo.teams[i].length,
 				"x": 0.5 + (safeDist + p * groupedDistance) * cos(teamAngle),
 				"z": 0.5 + (safeDist + p * groupedDistance) * sin(teamAngle)
 			};
@@ -382,7 +381,6 @@ function placeRadial(playerIDs, distance)
 		var angle = g_MapInfo.startAngle + i * TWO_PI / g_MapInfo.numPlayers;
 		players[i] = {
 			"id": playerIDs[i],
-			"angle": angle,
 			"x": 0.5 + distance * cos(angle),
 			"z": 0.5 + distance * sin(angle)
 		};
@@ -448,7 +446,6 @@ function placeRandom(playerIDs)
 
 		players[i] = {
 			"id": playerIDs[i],
-			"angle": playerAngle,
 			"x": x,
 			"z": z
 		};
@@ -495,7 +492,6 @@ function placeStronghold(playerIDs, distance, groupedDistance)
 			var angle = g_MapInfo.startAngle + (p + 1) * TWO_PI / g_MapInfo.teams[i].length;
 			players[g_MapInfo.teams[i][p]] = {
 				"id": g_MapInfo.teams[i][p],
-				"angle": angle,
 				"x": fractionX + teamGroupDistance * cos(angle),
 				"z": fractionZ + teamGroupDistance * sin(angle)
 			};
@@ -545,7 +541,6 @@ function randomPlayerPlacementAt(singleBases, strongholdBases, heightmapScale, g
 
 				players[p] = {
 					"id": team[p].id,
-					"angle": angle,
 					"x": x + groupedDistance * cos(angle),
 					"z": z + groupedDistance * sin(angle)
 				};
