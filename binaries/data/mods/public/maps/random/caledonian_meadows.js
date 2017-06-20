@@ -376,6 +376,12 @@ log("Start location chosen after " + ((Date.now() - genStartTime) / 1000) + "s")
 RMS.SetProgress(30);
 
 /**
+ * Smooth Start Locations before height region calculation
+ */
+for (let p = 0; p < playerIDs.length; ++p)
+	rectangularSmoothToHeight(startLocations[p], 35, 35, playerHeight, 0.7);
+
+/**
  * Add paths
  */
 let tchm = getTileCenteredHeightmap(); // Calculate tileCenteredHeightMap (This has nothing to to with TILE_CENTERED_HEIGHT_MAP which should be false)
@@ -494,7 +500,6 @@ RMS.SetProgress(80);
 for (let p = 0; p < playerIDs.length; ++p)
 {
 	let point = startLocations[p];
-	rectangularSmoothToHeight(point, 40, 40, playerHeight, 0.7);
 	placeCivDefaultEntities(point.x, point.y, playerIDs[p], { "iberWall": true });
 	placeStartLocationResources(startLocations[p]);
 }
