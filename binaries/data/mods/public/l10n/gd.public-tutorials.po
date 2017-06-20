@@ -1,0 +1,381 @@
+# Translation template for 0 A.D. — Empires Ascendant.
+# Copyright © 2014 Wildfire Games
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
+# 
+# Translators:
+# GunChleoc <fios@foramnagaidhlig.net>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: 0 A.D. — Empires Ascendant\n"
+"POT-Creation-Date: 2017-06-04 14:51+0200\n"
+"PO-Revision-Date: 2017-06-04 14:51+0200\n"
+"Last-Translator: GunChleoc <fios@foramnagaidhlig.net>, 2017\n"
+"Language-Team: Gaelic, Scottish (https://www.transifex.com/wildfire-games/teams/17418/gd/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: gd\n"
+"Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : (n > 2 && n < 20) ? 2 : 3;\n"
+
+#: maps/tutorials/starting_economy_walkthrough.js:3
+msgid ""
+"This tutorial will teach the basics of developing your economy. Typically, you will start with a Civic Center and a couple units in 'Village Phase' and ultimately, your goal will be to develop and expand your empire, often by evolving to 'Town Phase' and 'City Phase' afterward.\n"
+"\n"
+"Before starting, you can toggle between fullscreen and windowed mode using Alt+Enter. You can also change the level of zoom using the mouse wheel and the camera view using any of your keyboard's arrow keys.\n"
+"Adjust the game window to your preferences.\n"
+msgstr ""
+"Ionnsaichidh an t-oideachadh seo dhut na tha bunasach mu leasachadh na h-eaconamaidh agad. Mar as trice, tòisichidh tu le ionad sìobhalta agus beagan aonadan ri linn nan clachan agus ’s e an t-amas deireannach agad a th’ ann gun leasaich is leudaich thu an impireachd agad. Ruigidh tu linntean nam bailtean ’s nam mòr-bhailtean an uairsin gu tric.\n"
+"\n"
+"Mus tòisich thu, ’s urrainn dhut leum a ghearradh eadar na modhan làn-sgrìn is uinneagach le Alt+Enter. ’S urrainn dhut ìre an t-sùm atharrachadh cuideachd le cuibhle na luchaige agus sealladh a’ chamara leis na h-iuchraichean saighde air a’ mheur-chlàr.\n"
+"Nise, cuir gleus air uinneag a’ gheama mar a thogras tu.\n"
+
+#: maps/tutorials/starting_economy_walkthrough.js:6
+msgid ""
+"To start off, select your building, the Civic Center, by clicking on it. A "
+"selection ring in the color of your civilization will be displayed after "
+"clicking."
+msgstr ""
+"Airson tòiseachadh, briog air an togalach agad, seo an t-ionad sìobhalta, "
+"gus a thaghadh. Nochdaidh fàinne taghaidh le dath do shìobhaltais air às "
+"dèidh dhut briogadh air."
+
+#: maps/tutorials/starting_economy_walkthrough.js:9
+msgid ""
+"Now that the Civic Center is selected, you will notice that a production panel will appear on the lower right of your screen detailing the actions that the buildings support. For the production panel, available actions are not masked in any color, while an icon masked in either grey or red indicates that the action has not been unlocked or you do not have sufficient resources to perform that action, respectively. Additionally, you can hover your mouse over any icon to show a tooltip with more details.\n"
+"The top row of buttons contains portraits of units that may be trained at the building while the bottom one or two rows will have researchable technologies. Hover your mouse over the 'II' icon. The tooltip will tell us that advancing to 'Town Phase' requires both more constructed structures as well as more Food and Wood resources."
+msgstr ""
+"Nise on a tha thu air an ionad shìobhalta a thaghadh, chì thu gun deach panail saothrachaidh fhosgladh taobh deas aig bonn na sgrìn a sheallas dhut dè na gnìomhan ris a chuireas an togalach taic. Air an dàrna làimh, bidh coltas àbhaisteach air na gnìomhan as urrainn dhut gabhail aig an àm. Air an làimh eile, seallaidh ìomhaigheag liath dhut nach deach a’ ghlas a thoirt far a’ ghnìomh fhathast agus ìomhaigheag dhearg nach eil stòras gu leòr agad gus an gnìomh a ghabhail aig an àm. A bharrachd air sin, ’s urrainn dhut an luchag a chumail os cionn ìomhaigheag sam bith gus gliocas-sgrìn a shealltainn le barrachd fiosrachaidh.\n"
+"Chì thu dealbhan aonadan as urrainn dhut trèanadh san dàrna ràgh aig a’ bharr agus teicneolasan a ghabhas rannsachadh san ràgh no dhà eile aig a’ bhonn. Cum an luchag agad os cionn na h-ìomhaigheige “II”. Innsidh an gliocas-sgrìn dhut gum feum thu barrachd togalaichean a thogail agus stòras dhe bhiadh is fiodh a chruinneachadh mus dèan thu àrdachadh gu “linn nam bailtean”."
+
+#: maps/tutorials/starting_economy_walkthrough.js:12
+msgid ""
+"You have two main types of starting units: Female Citizens and Citizen "
+"Soldiers. Female Citizens are purely economic units; they have low HP, no "
+"armour, and little to no attack. Citizen Soldiers are workers by default, "
+"but in times of need, can utilizing a weapon to fight. You have two "
+"categories of Citizen Soldiers: Infantry and Cavalry. Female Citizens and "
+"Infantry Citizen Soldiers can gather any land resources while Cavalry "
+"Citizen Soldiers can only gather meat from hunted animals.\n"
+msgstr ""
+"Bidh dà sheòrsa de dh’aonadan agad aig an toiseach: saoranaich bhoireann "
+"agus saighdearan-dùthcha. Chan e ach aonadan eaconamach a tha sna saoranaich"
+" bhoireann; chan eil cus puingean-beatha aca, chan eil armachd sam bith orra"
+" agus ’s gann gu bheil comas ionnsaighe aca. ’S e luchd-obrach a tha sna "
+"saighdearan-dùthcha cuideachd ach cleachdaidh iad airm airson sabaid ri "
+"amannan èiginneach. Am measg nan saighdearan-dùthcha, tha dà sheòrsa ann: "
+"coisridh is eachraidh. Cruinnichidh saoranaich bhoireann agus coisridh-"
+"dùthcha stòras sam bith on tìr fhad ’s nach cruinnich an eachraidh-dùthcha "
+"ach feòil o bheathaichean ri an sealg.\n"
+
+#: maps/tutorials/starting_economy_walkthrough.js:15
+msgid ""
+"As a general rule of thumb, left-clicking represents selection while right-"
+"clicking with an entity selected represents an order (gather, build, fight, "
+"etc.).\n"
+msgstr ""
+"San fharsaingeachd, taghaidh tu nithean le briogadh clì agus cuiridh tu "
+"òrdugh gu aonad le briogadh deas air (cruinnich, tog, thoir ionnsaigh is "
+"msaa.).\n"
+
+#: maps/tutorials/starting_economy_walkthrough.js:18
+msgid ""
+"At this point, Food and Wood are the most important resources for developing your economy, so let's start with gathering food. Females gather non-meat food faster than their male counterparts.\n"
+"There are primarily three ways to select units:\n"
+"1) Hold the left mouse button and drag a selection rectangle that encloses the units you want to select.\n"
+"2) Click on one of them and then add additional units to your selection by shift-clicking each additional unit (or also via the above selection rectangle).\n"
+"3) Double-click on a unit. This will select every unit of the same type as the specified unit in your visible window. Triple-click will select all units of the same type on the entire map.\n"
+" You can click on an empty space on the map to reset the selection. Try each of these methods before tasking all of your Female Citizens to gather the grapes to the southeast of your Civic Center by right-clicking on the grapes when you have all the Female Citizens selected."
+msgstr ""
+"Aig an ìre-sa, ’s e biadh is fiodh a tha sna stòrasan cudromach gus an eaconamaidh agad a leasachadh, mar sin tòisicheamaid le cruinneachadh bìdh. Cruinnichidh na boireannaich biadh ach feòil nas luaithe na na fireannaich. Tha trì prìomh-dhòighean ann gus aonadan a thaghadh:\n"
+"1) Cum sìos putan clì na luchaige agus slaod ceart-cheàrnach taghaidh timcheall air na h-aonadan a bu toigh leat taghadh.\n"
+"2) Briog air aonad agus cum sìos Shift le briogadh air barrachd aonadan gus an cur ris an taghadh an uairsin (obraichidh seo leis a’ cheart-cheàrnadh taghaidh gu h-àrd cuideachd).\n"
+"3) Dèan briogadh dùbailte air aonad. Taghaidh seo gach aonad dhen aon seòrsa am broinn na h-uinneige a chì thu. Ma nì thu trì briogaidhean, taghaidh seo gach aonad dhen aon seòrsa air a’ mhapa gu lèir.\n"
+"’S urrainn dhut briogadh air ionad bàn air a’ mhapa gus an taghadh ath-shuidheachadh. Feuch gach tè dhe na dòighean sin mus iarr thu air na saoranaich bhoireann agad uile na fìon-dhearcan a chruinneachadh a tha gu ear-dheas air an ionad sìobhalta. Gus seo a dhèanamh, tagh na saoranaich bhoireann agad uile an toiseach agus dèan briogadh deas air na fìon-dhearcan an uairsin."
+
+#: maps/tutorials/starting_economy_walkthrough.js:27
+msgid ""
+"Now, let's gather some Wood with your Infantry Citizen Soldiers. Select your"
+" Infantry Citizen Soldiers and order them to gather Wood by right-clicking "
+"on the nearest tree."
+msgstr ""
+"Nise, cruinnicheamaid fiodh leis a’ choisridh-dhùthcha agad. Tagh aonadan na"
+" coisridh-dùthcha agad agus iarr orra fiodh a chruinneachadh le briogadh "
+"deas air a’ chraobh as fhaisge."
+
+#: maps/tutorials/starting_economy_walkthrough.js:36
+msgid ""
+"Cavalry Citizen Soldiers are good for hunting. Select your cavalry and order"
+" him to hunt the chicken around your Civic Center in similar fashion."
+msgstr ""
+"Tha eachraidh-dùthcha math air sealg. Tagh an eachraidh agad agus iarr air "
+"gun sealg e na circ a tha timcheall an ionaid shìobhalta agad air an aon "
+"dòigh."
+
+#: maps/tutorials/starting_economy_walkthrough.js:45
+msgid ""
+"All your units are now gathering resources. We should train more units!\n"
+"First, let's set a rally-point. Setting a rally point on a building that can train units will automatically designate a task to the new unit upon completion of training. We want to send the newly trained units to gather Wood on the group of trees to the south of the Civic Center. To do so, select the Civic Center by clicking on it and then right-click on one of the trees.\n"
+"Rally-Points are indicated by a small flag at the end of the blue line."
+msgstr ""
+"Tha na h-aonadan uile agad a’ cruinneachadh stòrasan a-nis. Bu chòir dhuinn barrachd aonadan a thrèanadh!\n"
+"An toiseach, suidhichidh sinn ceann-cruinneachaidh. Ma shuidhicheas tu ceann-cruinneachaidh air togalach a nì trèanadh air aonadan, thèid saothair iomruineadh dha na h-aonadan ùra nuair a bhios iad deiseil. Bu mhiann leinn na h-aonadan ùra a chur gun bhadan chraobhan gu deas air an ionad shìobhalta ach an cruinnich iad fiodha. Gus seo a dhèanamh, briog air an ionad sìobhalta gus a thaghadh agus dèan briogadh deas air tè dhe na craobhan an uairsin.\n"
+"Thèid cinn-chruinneachaidh a chomharrachadh dhut le bratach bheag air deireadh loidhne ghuirme.\n"
+
+#: maps/tutorials/starting_economy_walkthrough.js:52
+msgid ""
+"Select the Civic Center, then hover your mouse over a tree and right-click "
+"when you see the cursor change into a Wood icon."
+msgstr ""
+"Tagh an t-ionad sìobhalta, cuir an luchag os cionn craoibhe an uairsin agus "
+"dèan briogadh deas nuair a bhios an cùrsair air a dhol ’na ìomhaigheag "
+"fiodha."
+
+#: maps/tutorials/starting_economy_walkthrough.js:60
+msgid ""
+"Now that the rally-point is set, we can produce additional units and they will do their assigned task automatically.\n"
+"As Citizen Soldiers are better than Female Citizens for gathering Wood, select the Civic Center and shift-click on the second unit icon, the hoplites (shift-clicking produces a batch of five units). You can also train units individually by simply clicking, but training 5 units together takes less time than training 5 units individually."
+msgstr ""
+"Nise on a tha sinn air a’ cheann-chruinneachaidh a shuidheachadh, ’s urrainn dhuinn barrachd aonadan a dhèanamh agus tòisichidh iad air an obair aca gu fèin-obrachail.\n"
+"On a tha saighdearan-dùthcha nas fhearr air fiodh a chruinneachadh na saoranaich bhoireann, tagh an t-ionad sìobhalta agus dèan briogadh le Shift air an dàrna ìomhaigheag aonaid; ’s e sin na hoiplidean (trèanaidh briogadh le Shift grunn dhe chòig aonadan). ’S urrainn dhut aonadan fa leth a thrèanadh cuideachd le briogadh simplidh ach bidh trèanadh ghrunn de chòignear nas luaithe na trèanadh chòignear fa leth."
+
+#: maps/tutorials/starting_economy_walkthrough.js:69
+#: maps/tutorials/starting_economy_walkthrough.js:111
+msgid "Do not forget to shift-click to produce several units."
+msgstr ""
+"Cuimhnich gun dèan thu briogadh le Shift gus grunn ionadan a thrèanadh."
+
+#: maps/tutorials/starting_economy_walkthrough.js:70
+msgid "Shift-click on the HOPLITE icon."
+msgstr "Dèan briogadh le sioft air ìomhaigheag an hoiplid."
+
+#: maps/tutorials/starting_economy_walkthrough.js:78
+msgid ""
+"Let's wait for the units to be trained.\n"
+"While waiting, direct your attention to the panel at the top of your screen. On the upper left, you will see your current resource supply (Food, Wood, Stone, and Metal). As each worker brings resources back to the Civic Center (or another dropsite), you will see the amount of the corresponding resource increase. This is a very important concept to keep in mind: gathered resources have to be brought back to a dropsite to be accounted, and you should always try to minimize the distance between resource and nearest dropsite to improve your gathering efficiency."
+msgstr ""
+"Fuiricheamaid gus am bi na h-aonadan air an trèanadh.\n"
+"Fhad ’s a bhios sinn a’ fuireach, nach doir thu sùil air a’ phanail air barr na sgrìn? Air an taobh chlì, chì thu na th’ agad dhe na stòrasan (biadh, fiodh, clach is meatailt). Fhad ’s a bheir an luchd-obrach stòras dhan ionad shìobhalta (no ionad-stòrais sam bith eile), chì thu gum meudaich na th’ agad dheth. Tha e cudromach gun doir thu an aire air sin: feumaidh tu na stòrasan a chruinnicheas tu a thoirt gu ionad-stòrais mus fhaigh thu air a’ chunntas agad iad agus b’ feairrde thu feuchainn nach bi an t-astar eadar an stòras agus an ionad-stòrais ro fhada ach an cruinnich thu na stòrasan nas luaithe."
+
+#: maps/tutorials/starting_economy_walkthrough.js:85
+msgid ""
+"The newly trained units automatically go to the trees and start gathering Wood.\n"
+"But as they have to bring it back to the Civic Center to deposit it, their gathering efficiency suffers from the distance. To fix that, we can build a storehouse, a dropsite for Wood, Stone, and Metal, close to the trees. To do so, select your five newly trained Citizen Solders and look for the construction panel on the bottom right, click on the storehouse icon, move the mouse as close as possible to the trees you want to collect and click on a valid place to build the dropsite.\n"
+"Invalid (obstructed) positions will show the building preview overlay in red."
+msgstr ""
+"Tha na h-aonadan air an ùr-thrèanadh a’ dol dha na craobhan gu fèin-obrachail agus a’ tòiseachadh air fiodh a chruinneachadh.\n"
+"Ach on a dh’fheumas iad a thoirt dhan ionad shìobhalta, chan eil iad cho èifeachdach ’s a bu chòir air sàilleibh an astair. Gus sin a chàradh, ’s urrainn dhuinn taigh-stòrais – sin ionad-stòrais dha dh’fhiodh, clach is meatailt – a thogail faisg air na craobhan. Gus seo a dhèanamh, tagh an còignear shaighdearan-dùthcha a thrèanaich thu agus thoir sùil air a’ phanail togalach taobh deas aig bonn na sgrìn. Briog air ìomhaigheag an taighe-stòrais, gluais an luchag cho faisg air na craobhan ’s a ghabhas agus briog air ionad dligheach gus an t-ionad-stòrais a thogail.\n"
+"Thèid ionadan nach eil dligheach a chomharradh dhut le dath dearg orra san ro-shealladh."
+
+#: maps/tutorials/starting_economy_walkthrough.js:93
+msgid ""
+"The selected workers will automatically start constructing the building once"
+" you place the foundation."
+msgstr ""
+"Tòisichidh an luchd-obrach a thagh thu air an togalach a thogail nuair a "
+"bhios tu air a’ bhonn a chur ann."
+
+#: maps/tutorials/starting_economy_walkthrough.js:102
+msgid ""
+"When construction finishes, the builders default to gathering Wood automatically.\n"
+"Let's train some female workers to gather more food. Select the Civic Center and shift-click on the female citizen icon to train 5."
+msgstr ""
+"Nuair a bhios an togail deiseil, cruinnichidh an luchd-togail fiodh gu fèin-obrachail.\n"
+"Nach trèanaich sinn boireannaich gus barrachd bìdh a chruinneachadh? Tagh an t-ionad sìobhalta agus dèan briogadh le Shift air ìomhaigheag an t-saoranaich bhoirinn gus còignear dhiubh a thrèanadh."
+
+#: maps/tutorials/starting_economy_walkthrough.js:112
+msgid "Shift-click on the FEMALE CITIZEN icon."
+msgstr "Dèan briogadh le sioft air ìomhaigheag an t-saoranaich bhoirinn."
+
+#: maps/tutorials/starting_economy_walkthrough.js:120
+msgid ""
+"Let's wait for the units to be trained.\n"
+"In the meantime, we seem to have enough workers gathering Wood. We should remove the current rally-point of the Civic Center away from gathering Wood. For that purpose, right-click on the Civic Center when it is selected (and the flag icon indicating the rally-point is crossed out)."
+msgstr ""
+"Fuiricheamaid gus am bi na h-aonadan air an trèanadh.\n"
+"San eadar-àm, tha coltas gu bheil luchd-obrach gu leòr againn gus fiodh a chruinneachadh. Bu chòir dhuinn ceann-cruinneachaidh an ionaid shìobhalta a ghluasad air falbh on fhiodh. Air an adhbhar sin, dèan briogadh deas air an ionad shìobhalta às dèidh a thaghadh. Chì thu crois sguabaidh às thar ìomhaigheag a’ bhrataich a sheallas dhut far a bheil an ceann-cruinneachaidh."
+
+#: maps/tutorials/starting_economy_walkthrough.js:128
+msgid ""
+"The units should be ready soon.\n"
+"In the meantime, direct your attention to your population count on the top panel. It is the fifth item from the left, after the resources. It would be prudent to keep an eye on it. It indicates your current population (including those being trained) and the current population limit, which is determined by your built structures."
+msgstr ""
+"Bu chòir dha na h-aonadan agad a bhith deiseil a dh’aithghearr.\n"
+"San eadar-àm, thoir an aire air a’ chunntas-sluaigh sa phanail aig a’ bharr. ’S e an còigeamh nì on taobh chlì ’s às dèidh nan stòrasan a th’ ann. Biodh e glic sùil a chumail air. Innsidh e dhut dè na th’ agad a shluagh (a’ gabhail a-steach an fheadhainn a tha ’gan trèanadh) agus an tomhas-sluaigh as motha a-rèir nan togalaichean a thog thu."
+
+#: maps/tutorials/starting_economy_walkthrough.js:135
+msgid ""
+"As you have nearly reached the population limit, you must increase it by building some new structures if you want to train more units. The most cost effective structure to increase your population limit is the house.\n"
+"Now that the units are ready, let's build two houses."
+msgstr ""
+"Chan fhada gus an ruig thu an tomhas-sluaigh, mar sin feumaidh tu a mheudachadh le togalaichean ùra mus urrainn dhut barrachd aonadan a thrèanadh. ’S e an taigh a tha san togalach as èifeachdaiche gus an tomhas-sluaigh agad a mheudachadh.\n"
+"Nise, on a tha na h-aonadan ùra deiseil, togamaid dà thaigh."
+
+#: maps/tutorials/starting_economy_walkthrough.js:138
+msgid ""
+"Select two of your newly trained Female Citizens and ask them to build these houses in the empty space to the east of the Civic Center. To do so, after selecting the Female Citizens, click on the house icon in the bottom right panel and shift-click on the position in the map where you want to build the first house followed by a shift-click on the position of the second house (when giving orders, shift-click put the order in the queue and the units will automatically switch to the next order in their queue when they finish their work). Press Escape to get rid of the house cursor so you don't spam houses all over the map.\n"
+"Reminder: to select only two Female Citizens, click on the first one and then shift-click on the second one to add her to the selection."
+msgstr ""
+"Tagh dithis dhe na saoranaich bhoireann ùra agus iarr orra gun tog iad na taighean sin san raon fhalamh gu ear air an ionad shìobhalta. Gus seo a dhèanamh, tagh na saoranaich bhoireann, briog air ìomhaigheag an taighe sa phanail taobh deas aig a’ bhonn agus dèan briogadh le Shift air an ionad air a mhapa far a bheil thu airson an dàrna taigh a thogail agus briogadh le Shift eile air ionad an taighe eile (is ciall dha Shift gun lean iad air adhart leis an ath-òrdugh nuair a bhios a’ chiad òrdugh air a choileanadh). Brùth air Escape ach am faigh thu cuidhteas dhe chùrsair an taighe ach nach lìon thu am mapa gu lèir le taighean.\n"
+"Cuimhnich: Gus dithis shaoranach boireann a-mhàin a thaghadh, briog air an dàrna tè agus an uairsin briog le Shift air an tèile gus a cur ris an taghadh."
+
+#: maps/tutorials/starting_economy_walkthrough.js:147
+msgid ""
+"You may notice that berries are a finite supply of food. We will need a more lasting food source. Fields produce an unlimited food resource, but are slower to gather than forageable fruits.\n"
+"But to minimize the distance between a farm and its corresponding food dropsite, we will first build a farmstead."
+msgstr ""
+"’S dòcha gun do mhothaich thu nach mair dearcan gu buan. Tha sinn feumach air tùs bìdh nas seasmhaiche. Seo na bheir achaidhean dhut: biadh gun chrìch ach a bheir nas fhaide a bhuan na cruinneachadh mheasan.\n"
+"Togamaid tuathanas an toiseach ach nach bi astar ro mhòr eadar na h-achaidhean agus an ionad-stòrais."
+
+#: maps/tutorials/starting_economy_walkthrough.js:150
+msgid ""
+"Select the three remaining (idle) Female Citizens and order them to build a farmstead in the center of the large open area to the west of the Civic Center.\n"
+"We will need a decent chunk of space around the farmstead to build fields. In addition, we can see goats on the west side to further improve our food gathering efficiency should we ever decide to hunt them.\n"
+"If you try to select the three idle Female Citizens by selection rectangle them, there is a high chance that one additional gatherers are included in your selection rectangle. To prevent that, hold the 'i' key while grabing: only idle units are then selected. If during your selection you select the cavalry which may now be idle, you can remove it by pressing the control key while clicking on its corresponding portrait in the selection panel on the bottom."
+msgstr ""
+"Tagh an triùir shaoranach boireann a tha air fhàgail dhut (’nan tàmh) agus iarr orra gun tog iad tuathanas ann am meadhan an raoin mhòir fhosgailte gu siar air an ionad shìobhalta.\n"
+"Bidh feum againn air cnap mhòr a thìr timcheall air an tuathanas ach an tog sinn achaidhean ann. A bharrachd air sin, chì sinn gobhair air an taobh shiar a b’ urrainn dhuinn cleachdadh ’nan tùs bìdh èifeachdach nan chuireamaid romhainn an sealg.\n"
+"Ma dh’fheuchas tu ris na boireannaich a thaghadh le ceart-cheàrnach, is mòr an seans gun gabh thu luchd-obrach nach eil thu ag iarraidh a-steach dhan taghadh agad. Cum sìos an iuchair “i” fhad ’s a nì thu an taghadh gus sin a sheachnadh – adhbharaichidh sin nach dèid ach ionadan a tha ’nan tàmh (“idle”) a thaghadh. Ma thaghas sin an t-eachraidh a tha ’na thàmh a-rithist ’s dòcha, seo mar a bheir thu air falbh e: Cum sìos an iuchair Ctrl agus briog air an dealbh aige sa phanail taghaidh aig a’ bhonn."
+
+#: maps/tutorials/starting_economy_walkthrough.js:158
+msgid ""
+"When the farmstead construction is finished, its builders will automatically look for food, and in this case, they will go after the nearby goats.\n"
+"But your house builders will only look for something else to build and, if nothing found, become idle. Let's wait for them to build the houses."
+msgstr ""
+"Nuair a bhios an tuathanas air a thogail, tòisichidh an luchd-obrach a thog e air biadh a shireadh gu fèin-obrachail agus an turas seo, thèid iad an toir air na gobhair am fagas.\n"
+"Gidheadh, bidh an luchd-obrach a thog na taighean a’ sireadh rud eile ri thogail agus mura lorg iad dad, thèid iad ’nan tàmh. Fuiricheamaid gus am bi iad deiseil le togail nan taighean."
+
+#: maps/tutorials/starting_economy_walkthrough.js:167
+msgid ""
+"When both houses are built, select your two Female Citizens and order them "
+"to build a field as close as possible to the farmstead, which is a dropsite "
+"for all types of food."
+msgstr ""
+"Nuair a bhios an dà thaigh air a thogail, tagh an dithis shaoranach boireann"
+" agad agus iarr orra gun tog iad achadh ri taobh an tuathanais far an dèid "
+"gach seòrsa dhe bhiadh a stòradh."
+
+#: maps/tutorials/starting_economy_walkthrough.js:175
+msgid ""
+"When the field is constructed, the builders will automatically start gathering it.\n"
+"The cavalry unit should have slaughtered all chicken by now. Select it and right-click on one of the goats in the west to start hunting them for food."
+msgstr ""
+"Nuair a bhios an t-achadh deiseil, tòisichidh an luchd-togail a bhuan gu fèin-obrachail.\n"
+"Tha sinn an dùil gum bi an t-eachraidh air na circ uile a mharbhadh a-nis. Tagh e agus dèan briogadh deas air fear dhe na gobhair shiar gus an sealg a chum bìdh."
+
+#: maps/tutorials/starting_economy_walkthrough.js:184
+msgid ""
+"A field can have up to five farmers working on it. To add additional "
+"gathereres, select the Civic Center and setup a rally-point on a field by "
+"right-clicking on it. As long as the field is not yet build, new workers "
+"sent by a rally-point will help building it, while they will gather it when "
+"built."
+msgstr ""
+"Faodaidh suas ri còignear obair air an achadh. Gus barrachd thuathanach a "
+"chur ris, tagh an t-ionad sìobhalta agus dèan briogadh deas air an achadh "
+"gus an ceann-cruinneachaidh a shuidheachadh air. Mur eil an achadh deiseil "
+"fhathast, cuidichidh an luchd-obrach ùr leis an togail agus ma tha, "
+"tòisichidh iad air a bhuan."
+
+#: maps/tutorials/starting_economy_walkthrough.js:191
+msgid "Select the Civic Center and right-click on the field."
+msgstr "Tagh an t-ionad sìobhalta agus dèan briogadh deas air an achadh."
+
+#: maps/tutorials/starting_economy_walkthrough.js:198
+msgid ""
+"Now click three times on the female icon in the bottom right panel to train "
+"three additional farmers."
+msgstr ""
+"Nise, briog trì tursan air ìomhaigheag an t-saoranaich bhoirinn sa phanail "
+"taobh deas aig a’ bhonn gus triùir thuathanach a bharrachd a thrèanadh."
+
+#: maps/tutorials/starting_economy_walkthrough.js:207
+msgid "Do a simple left-click to produce a single unit."
+msgstr "Dèan briogadh deas simplidh gus aon aonad a thrèanadh."
+
+#: maps/tutorials/starting_economy_walkthrough.js:208
+msgid "Click on the FEMALE CITIZEN icon."
+msgstr "Dèan briogadh air ìomhaigheag an t-saoranaich bhoirinn."
+
+#: maps/tutorials/starting_economy_walkthrough.js:218
+msgid ""
+"You can increase the gather rates of your workers by researching new technologies available in some buildings.\n"
+"The farming rate, for example, can be improved with a researchable technology in the farmstead. Select the farmstead and look at its production panel on the bottom right. You will see several researchable technologies. Hover the mouse over them to see their costs and effects and click on the one you want to research."
+msgstr ""
+"Bheir thu piseach air dè cho luath ’s a chruinnicheas an luchd-obrach agad stòrasan le teicneolasan a tha ri am faighinn ann an cuid a thogalaichean.\n"
+"Mar eisimpleir, ’s urrainn dhut piseach a thoirt air dè cho luath ’s a thèid achaidhean a bhuan le teicneolas a rannsaicheas tu san tuathanas. Tagh an tuathanas agus thoir sùil air panail an t-saothrachaidh aige taobh deas aig a’ bhonn. Chì thu grunn theicneolas a ghabhas rannsachadh. Cum an luchag os an cionn ach am faic thu dè chosgas is dè nì iad agus briog air am fear a bu toigh leat rannsachadh."
+
+#: maps/tutorials/starting_economy_walkthrough.js:226
+msgid ""
+"We should start preparing to phase up into 'Town Phase', which will unlock many more units and buildings. Select the Civic Center and hover the mouse over the 'Town Phase' icon to see what is still needed.\n"
+"We now have enough resources, but one structure is missing. Although this is an economic tutorial, it is nonetheless useful to be prepared for defense in case of attack, so let's build barracks.\n"
+"Select four of your soldiers and ask them to build a barracks: as before, start selecting the soldiers, click on the barracks icon in the production panel and then lay down a foundation not far from your Civic Center where you want to build."
+msgstr ""
+"Bu chòir dhuinn ar n-ullachadh a-nis ach an ruig sinn “linn nam bailtean” a bheir a’ ghlas far barrachd aonadan is thogalaichean dhuinn. Tagh an t-ionad sìobhalta agus cum an luchag os cionn na h-ìomhaigheige “Linn nam bailtean” ach am faic thu dè tha a dhìth ort fhathast.\n"
+"Tha stòras gu leòr againn a-nis ach tha aon togalach a dhìth oirnn fhathast. Ged as e oideachadh mun eaconamaidh a tha seo, cha bhitheamaid nas bu mhiosa dheth nan robh sinn ullaichte air eagal gun doireadh nàmhaid ionnsaigh oirnn. Mar sin, togamaid taigh-feachd a-nis.\n"
+"Tagh ceathrar dhe na saighdearan agad agus iarr orra gun tog iad taigh-feachd: mar a rinn sinn roimhe, tòisich le taghadh nan saighdearan, briog air ìomhaigheag an taigh-fheachd sa phanail saothrachaidh agus cuir sìos bonn faisg air an ionad shìobhalta agad far a bheil thu airson a thogail ann."
+
+#: maps/tutorials/starting_economy_walkthrough.js:235
+msgid ""
+"Let's wait for the barracks to be built. As this construction is lengthy, "
+"you can add two soldiers to build it faster. To do so, select your Civic "
+"Center and set up a rally-point on the barracks foundation by right-clicking"
+" on it (you should see a hammer icon), and then produce two more builders by"
+" clicking on the hoplite icon twice."
+msgstr ""
+"Feumaidh sinn feitheamh gus am bi an taigh-feachd deiseil. On a bheir seo "
+"greis mhath, ’s urrainn dhut dithis shaighdear a chur ris gus a thogail nas "
+"luaithe. Gus seo a dhèanamh, tagh an t-ionad sìobhalta agad agus suidhich an"
+" ceann-cruinneachaidh air bonn an taigh-fheachd le briogadh deas air (bu "
+"chòir dhut ìomhaigheag ùird fhaicinn) agus an uairsin trèanaich dithis "
+"luchd-togail eile is tu a’ briogadh dà thuras air ìomhaigheag an hoiplid."
+
+#: maps/tutorials/starting_economy_walkthrough.js:243
+msgid ""
+"You should now be able research 'Town Phase'. Select the Civic Center and click on the technology icon.\n"
+"If you still miss some resources (icon with red overlay), wait for them to be gathered by your workers."
+msgstr ""
+"Bu chòir dhut a bhith ullamh a-nis gus “linn nam bailtean” a rannsachadh. Tagh an t-ionad sìobhalta agus briog air ìomhaigheag an teicneolais.\n"
+"Ma tha stòras no dhà a dhìth ort fhathast (bith dath dearg air an ìomhaigheag), fuirich gus am bi an luchd-obrach agad air a chruinneachadh."
+
+#: maps/tutorials/starting_economy_walkthrough.js:251
+msgid ""
+"In later phases, you need usually Stone and Metal to build bigger structures and train better soldiers. Hence, while waiting for the research to be done, you will send half of your idle Citizen Soldiers (who have finished building the Barracks) to gather Stone and the other half to gather Metal.\n"
+"To do so, we could select three Citizen Soldiers and right-click on the Stone mine on the west of the Civic Center (a Stone cursor is shown when you hover the mouse over it while your soldiers are selected). However, these soldiers were gathering Wood, so they may still carry some Wood which would be lost when starting to gather another resource."
+msgstr ""
+"Ri linntean nas adhartaiche, bidh feum agad air clach is meatailt gus togalaichean mòra a thogail agus saighdearan nas fhearr a thrèanadh. Air an adhbhar sin, fhad ’s a bhios sinn a’ feitheamh air an rannsachadh, cuir an dàrna leth dhe na saighdearan-dùthcha a tha ’nan tàmh (an fheadhainn a tha air an taigh-feachd a thogail) gus clach a chruinneachadh agus an leth eile gus meatailt a chruinneachadh.\n"
+"Gus seo a dhèanamh, b’ urrainn dhuinn triùir shaighdearan-dùthcha a thaghadh agus briogadh deas a dhèanamh air a’ mhèinn cloiche gu siar air an ionad shìobhalta (chì thu cùrsair cloiche nuair a chumas tu an luchag os cionn na mèinne fhad ’s a bhios na saighdearan agad air an taghadh). Gidheadh, chruinnich na saighdearan sin fiodh roimhe agus mar sin dh’fhaoidte gu bheil iad a’ giùlan fiodh fhathast a chailleadh tu nan robh thu a’ tòiseachadh air stòras eile a chruinneachadh sa bhad."
+
+#: maps/tutorials/starting_economy_walkthrough.js:254
+msgid ""
+"Thus, we should order them to deposit their Wood in the Civic Center along the way. To do so, we will queue orders with shift-click: select your soldiers, shift-right-click on the Civic Center to deposit their Wood and then shift-right-click on the Stone mine to gather it.\n"
+"Perform a similar order queue with the remaining soldiers and the Metal mine in the west."
+msgstr ""
+"A thoradh air sin, bu chòir dhuinn iarraidh orra gun cuir iad am fiodh aca dhan ionad shìobhalta air an t-slighe a-null. Gus seo a dhèanamh, nì sinn briogadh le Shift a chuireas na h-òrduighean againn ri ciutha: Tagh na saighdearan agad, dèan briogadh deas le Shift air an ionad shìobhalta gus am fiodh aca fhàgail ann agus an uairsin dèan briogadh deas le Shift air a’ mhèinn cloiche gus a thochladh.\n"
+"Cruthaich an t-aon chiutha òrduighean dha na saighdearan a tha air fhàgail dhut cuideachd ach cuir dhan mhèinn meatailt air an taobh siar iad."
+
+#: maps/tutorials/starting_economy_walkthrough.js:273
+msgid ""
+"This is the end of the walkthrough. This should give you a good idea of the "
+"basics of setting up your economy."
+msgstr ""
+"Seo deireadh na treòire. Bu chòir dha dh’fhios a bhith agad a-nis mar a "
+"stèidhicheas tu eaconamaidh bunasach."
+
+#: maps/tutorials/starting_economy_walkthrough.xml:Description:39
+msgid ""
+"This map will give a rough guide for starting the game effectively.  Early "
+"in the game the most important thing is to gather resources as fast as "
+"possible so you are able to build enough troops later."
+msgstr ""
+"Bheir am mapa seo treòir dhut air mar a b’ urrainn dhut gèama a thòiseachadh"
+" gu h-èifeachdach. ’S e an rud as cudromaiche air toiseach a’ gheama gun "
+"cruinnich thu stòrasan cho luath ’s a ghabhas ach an urrainn dhut "
+"saighdearan gu leòr a thrèanadh an uairsin."
+
+#: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
+msgid "Player 1"
+msgstr "Cluicheadair 1"
+
+#: maps/tutorials/starting_economy_walkthrough.xml:Name:39
+msgid "Starting Economy Walkthrough"
+msgstr "Treòir air an eaconamaidh tòiseachaidh"

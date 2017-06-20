@@ -1,0 +1,385 @@
+# Translation template for 0 A.D. — Empires Ascendant.
+# Copyright © 2014 Wildfire Games
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
+# 
+# Translators:
+# Ole Sannes Riiser <OLE-SR@online.no>, 2017
+# Allan Nordhøy <epost@anotheragency.no>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: 0 A.D. — Empires Ascendant\n"
+"POT-Creation-Date: 2017-06-04 14:51+0200\n"
+"PO-Revision-Date: 2017-06-04 14:51+0200\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>, 2017\n"
+"Language-Team: Norwegian Bokmål (https://www.transifex.com/wildfire-games/teams/17418/nb/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: nb\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: maps/tutorials/starting_economy_walkthrough.js:3
+msgid ""
+"This tutorial will teach the basics of developing your economy. Typically, you will start with a Civic Center and a couple units in 'Village Phase' and ultimately, your goal will be to develop and expand your empire, often by evolving to 'Town Phase' and 'City Phase' afterward.\n"
+"\n"
+"Before starting, you can toggle between fullscreen and windowed mode using Alt+Enter. You can also change the level of zoom using the mouse wheel and the camera view using any of your keyboard's arrow keys.\n"
+"Adjust the game window to your preferences.\n"
+msgstr ""
+"Denne veiledningen vil lære deg hovedtrekkene i utviklingen av din økonomi. Typisk vil du begynne med et samfunnssenter og en del enheter i \"landsby-fasen\" og til slutt, vil ditt mål være å utvikle og utvide ditt rike, ofte ved å komme til \"tettsted-fasen\" og \"by-fasen\" etter det.\n"
+"\n"
+"Før du starter, kan du veksle mellom fullskjerm og vindusmodus ved bruk av Alt+Enter. Du kan også endre førstørrelsesnivå med musehjulet og kameriavisningen ved bruk av piltastene på tastaturet. Juster spillvinduet slik du ønsker det."
+
+#: maps/tutorials/starting_economy_walkthrough.js:6
+msgid ""
+"To start off, select your building, the Civic Center, by clicking on it. A "
+"selection ring in the color of your civilization will be displayed after "
+"clicking."
+msgstr ""
+"Til å begynne med, velg din bygning, samfunnssenteret, ved å klikke på den. "
+"En valgring i fargen tilhørende din sivilisasjon vil bli vist etter å ha "
+"klikket."
+
+#: maps/tutorials/starting_economy_walkthrough.js:9
+msgid ""
+"Now that the Civic Center is selected, you will notice that a production panel will appear on the lower right of your screen detailing the actions that the buildings support. For the production panel, available actions are not masked in any color, while an icon masked in either grey or red indicates that the action has not been unlocked or you do not have sufficient resources to perform that action, respectively. Additionally, you can hover your mouse over any icon to show a tooltip with more details.\n"
+"The top row of buttons contains portraits of units that may be trained at the building while the bottom one or two rows will have researchable technologies. Hover your mouse over the 'II' icon. The tooltip will tell us that advancing to 'Town Phase' requires both more constructed structures as well as more Food and Wood resources."
+msgstr ""
+"Nå som samfunnssenteret er valgt, vil du oppdage at et produksjonspanel "
+"kommer til syne nederst til høyre på skjermen som forklarer handlingene du "
+"kan utføre på bygningene. I produksjonspanelet er tilgjengelig valg ikke "
+"maskert i noen farge, mens et ikon maskert i enten grått eller rødt "
+"indikerer at handlingen ikke har blitt låst opp enda, eller at du ikke har "
+"tilstrekkelig med ressurser til å utføre den. Ytterligere kan du holde musa "
+"over et ikon for å vise et verktøystips med ytterligere detaljer. Toppraden "
+"av knapper inneholder portretter av enheter som kan trenes i bygningen mens "
+"den nederste eller de to nederste radene viser teknologier som kan forskes "
+"frem. Hold musa over 'II'-ikonet. Verktøystipset vil fortelle oss at å "
+"avansere til \"tettstedfasen\" krever både mer arbeidskrevende strukturer, "
+"sågar også mer mat- og tre- ressurser."
+
+#: maps/tutorials/starting_economy_walkthrough.js:12
+msgid ""
+"You have two main types of starting units: Female Citizens and Citizen "
+"Soldiers. Female Citizens are purely economic units; they have low HP, no "
+"armour, and little to no attack. Citizen Soldiers are workers by default, "
+"but in times of need, can utilizing a weapon to fight. You have two "
+"categories of Citizen Soldiers: Infantry and Cavalry. Female Citizens and "
+"Infantry Citizen Soldiers can gather any land resources while Cavalry "
+"Citizen Soldiers can only gather meat from hunted animals.\n"
+msgstr ""
+"Du har to hovedtyper av startenheter: Kvinnelige borgere og borgersoldater. "
+"Kvinnelige borgere er bare økonomiske enheter; de har lav HP, ingen "
+"rustning, og lite eller inget angrep. Borgersoldater er arbeidere som "
+"forvalg, men om behovet melder seg, kan de ta til våpen. Du har to "
+"kategorier bysoldater: Infanteri og kavaleri. Kvinnelige borgerer og "
+"infanteribysoldater kan sanke landressurser, mens kavaleribysoldater bare "
+"kan sanke mat fra nedjaktede dyr."
+
+#: maps/tutorials/starting_economy_walkthrough.js:15
+msgid ""
+"As a general rule of thumb, left-clicking represents selection while right-"
+"clicking with an entity selected represents an order (gather, build, fight, "
+"etc.).\n"
+msgstr ""
+"Som hovedregel er venstreklikking utvalg, mens høyreklikking på en enhet "
+"betyr en ordre (sank, bygg, sloss, osv.).\n"
+
+#: maps/tutorials/starting_economy_walkthrough.js:18
+msgid ""
+"At this point, Food and Wood are the most important resources for developing your economy, so let's start with gathering food. Females gather non-meat food faster than their male counterparts.\n"
+"There are primarily three ways to select units:\n"
+"1) Hold the left mouse button and drag a selection rectangle that encloses the units you want to select.\n"
+"2) Click on one of them and then add additional units to your selection by shift-clicking each additional unit (or also via the above selection rectangle).\n"
+"3) Double-click on a unit. This will select every unit of the same type as the specified unit in your visible window. Triple-click will select all units of the same type on the entire map.\n"
+" You can click on an empty space on the map to reset the selection. Try each of these methods before tasking all of your Female Citizens to gather the grapes to the southeast of your Civic Center by right-clicking on the grapes when you have all the Female Citizens selected."
+msgstr ""
+"Akkurat nå er mat og trevirke de viktigste ressursene for å utvikle økonomien din, så la oss starte med matauk. Kvinner sanker mat som ikke er kjøtt raskere enn sine mannlige motsatser.\n"
+"Det er i hovedsak tre måter å velge enheter:\n"
+"1) Hold den venstre museknappen og dra utvelgelsesfirkanten slik at den dekker enhetene du ønsker å velge.\n"
+"2) Klikk på en av dem og legg så til ytterligere enheter til utvalget ditt ved å shift+klikke på hver tilleggsenhet (eller også via utvelgelsesfirkanten).\n"
+"3) Dobbeltklikk på en enhet. Dette vil velge hver enhet av samme type på hele kartet.\n"
+"Du kan klikke på en tom plass på kartet for å tilbakestille utvalget. Prøv hver av disse metodene før du beordrer alle dine kvinnelige borgere til å sanke druer sørøst for samfunnssenteret ved å høyreklikke på druene når du har valgt alle de kvinnelige borgerne."
+
+#: maps/tutorials/starting_economy_walkthrough.js:27
+msgid ""
+"Now, let's gather some Wood with your Infantry Citizen Soldiers. Select your"
+" Infantry Citizen Soldiers and order them to gather Wood by right-clicking "
+"on the nearest tree."
+msgstr ""
+"La oss sanke litt trevirke med dine infanteribysoldater. Velg dine "
+"infanteribysoldater og beordre dem til å sanke trevirke ved å høyreklikke på"
+" nærmeste tre."
+
+#: maps/tutorials/starting_economy_walkthrough.js:36
+msgid ""
+"Cavalry Citizen Soldiers are good for hunting. Select your cavalry and order"
+" him to hunt the chicken around your Civic Center in similar fashion."
+msgstr ""
+"Kavaleriborgersoldater er gode til å jakte. Velg ditt kavaleri og beordre "
+"vedkommende til å jakte kyllingen rundt samfunnssenteret på samme vis."
+
+#: maps/tutorials/starting_economy_walkthrough.js:45
+msgid ""
+"All your units are now gathering resources. We should train more units!\n"
+"First, let's set a rally-point. Setting a rally point on a building that can train units will automatically designate a task to the new unit upon completion of training. We want to send the newly trained units to gather Wood on the group of trees to the south of the Civic Center. To do so, select the Civic Center by clicking on it and then right-click on one of the trees.\n"
+"Rally-Points are indicated by a small flag at the end of the blue line."
+msgstr ""
+"Alle dine enheter henter nå inn ressurser. Vi bør trene opp flere enheter!\n"
+"Først, sett et samlingspunkt. Å sette et samlingspunkt på en bygning som kan trene enheter vil automatisk tildele en oppgave til en ny enhet når den har gjennomgått trening. Vi ønsker å sendte rekrutter til å sanke trevirke fra en treklynge sør for samfunnssenteret. For å gjøre det, velg samfunnssenteret ved å klikke på det, og så høyreklikke på en av trærne.\n"
+"Samlingspunkter indikeres ved et lite flagg på slutten av den blå linjen."
+
+#: maps/tutorials/starting_economy_walkthrough.js:52
+msgid ""
+"Select the Civic Center, then hover your mouse over a tree and right-click "
+"when you see the cursor change into a Wood icon."
+msgstr ""
+"Velg samfunnssenteret, flytt så pekeren over et tre og høyreklikk når du ser"
+" den endre seg til et tre-ikon."
+
+#: maps/tutorials/starting_economy_walkthrough.js:60
+msgid ""
+"Now that the rally-point is set, we can produce additional units and they will do their assigned task automatically.\n"
+"As Citizen Soldiers are better than Female Citizens for gathering Wood, select the Civic Center and shift-click on the second unit icon, the hoplites (shift-clicking produces a batch of five units). You can also train units individually by simply clicking, but training 5 units together takes less time than training 5 units individually."
+msgstr ""
+"Nå som samlingspunktet er satt, kan vi produsere ytterligere enheter og de vil få sin oppgave tildelt automatisk.\n"
+"Siden bysoldater er bedre en kvinnelige borgere på å hente trevirke, velg samfunnssenteret og shift+klikk på det andre enhetsikonet, hopelittene (shift-klikking produserer en gruppe på fem enheter). Du kan også trene enheter individuelt ved å simpelthen klikke på dem, men å trene fem enheter samtidig tar mindre tid enn fem enheter hver for seg."
+
+#: maps/tutorials/starting_economy_walkthrough.js:69
+#: maps/tutorials/starting_economy_walkthrough.js:111
+msgid "Do not forget to shift-click to produce several units."
+msgstr "Ikke glem å shift-klikke for å produsere flerfoldige enheter."
+
+#: maps/tutorials/starting_economy_walkthrough.js:70
+msgid "Shift-click on the HOPLITE icon."
+msgstr "Shift+klikk på HOPELITT-ikonet."
+
+#: maps/tutorials/starting_economy_walkthrough.js:78
+msgid ""
+"Let's wait for the units to be trained.\n"
+"While waiting, direct your attention to the panel at the top of your screen. On the upper left, you will see your current resource supply (Food, Wood, Stone, and Metal). As each worker brings resources back to the Civic Center (or another dropsite), you will see the amount of the corresponding resource increase. This is a very important concept to keep in mind: gathered resources have to be brought back to a dropsite to be accounted, and you should always try to minimize the distance between resource and nearest dropsite to improve your gathering efficiency."
+msgstr ""
+"La oss vente på at enhetene trenes opp.\n"
+"Mens vi venter, rett din oppmerksomhet til panelet på toppen av skjermen. Øverst til venstre, vil du se din nåværende ressursbalanse (mat, trevirke, stein og metall). Når hver arbeider bringer ressurser tilbake til samfunnssenteret (eller et annet leveringspunkt), vil du se mengden av den respektive ressursen gå opp. Dette er et veldig viktig konsept å merke seg: Sankede ressurser må fraktes tilbake til et leveringspunkt for å bli regnet med, og du burde alltid prøve å minimere distansen mellom ressursen og nærmeste leveringspunkt for å høyne effektiviteten."
+
+#: maps/tutorials/starting_economy_walkthrough.js:85
+msgid ""
+"The newly trained units automatically go to the trees and start gathering Wood.\n"
+"But as they have to bring it back to the Civic Center to deposit it, their gathering efficiency suffers from the distance. To fix that, we can build a storehouse, a dropsite for Wood, Stone, and Metal, close to the trees. To do so, select your five newly trained Citizen Solders and look for the construction panel on the bottom right, click on the storehouse icon, move the mouse as close as possible to the trees you want to collect and click on a valid place to build the dropsite.\n"
+"Invalid (obstructed) positions will show the building preview overlay in red."
+msgstr ""
+"De nylig trente enhetene går automatisk til skogen for å starte innsanking av trevirke.\n"
+"Men siden de må bringe den tilbake til samfunnssenteret for avlevering, går deres innsankningstakt ned av hensyn til å måtte gå så langt. For å fikse dette, kan vi bygge et skjul, et leveringspunkt for ved, stein og metall, nært trærne. For å gjøre det, velg dine fem nylig trente borgersoldater og klikk på skjul-ikonet, flytt musa så nært trærne du ønsker å felle, og klikk på en gyldig plass å bygge leveringspunktet.\n"
+"Ugyldige (ulendte) posisjoner vil vise bygningsforhåndsvisningen med rødt overleggslag."
+
+#: maps/tutorials/starting_economy_walkthrough.js:93
+msgid ""
+"The selected workers will automatically start constructing the building once"
+" you place the foundation."
+msgstr ""
+"De valgte arbeiderne vil automatisk starte å konstruere bygningen så snart "
+"du plasserer grunnsteinen."
+
+#: maps/tutorials/starting_economy_walkthrough.js:102
+msgid ""
+"When construction finishes, the builders default to gathering Wood automatically.\n"
+"Let's train some female workers to gather more food. Select the Civic Center and shift-click on the female citizen icon to train 5."
+msgstr ""
+"Når konstruksjonen fullføres, vil bygningsarbeiderne som forvalg begynne å sanke inn trevirke automatisk.\n"
+"La oss trene noen kvinnelige arbeidere til å sanke mer mat. Velg samfunnssenteret og Shift+klikk på det kvinnelige borgersymbolet for å trene fem stykk."
+
+#: maps/tutorials/starting_economy_walkthrough.js:112
+msgid "Shift-click on the FEMALE CITIZEN icon."
+msgstr "Shift-klikk på KVINNELIG BORGER-ikonet."
+
+#: maps/tutorials/starting_economy_walkthrough.js:120
+msgid ""
+"Let's wait for the units to be trained.\n"
+"In the meantime, we seem to have enough workers gathering Wood. We should remove the current rally-point of the Civic Center away from gathering Wood. For that purpose, right-click on the Civic Center when it is selected (and the flag icon indicating the rally-point is crossed out)."
+msgstr ""
+"La oss vente til enhetene er trent opp.\n"
+"I mellomtiden, ser vi ut til å nok arbeidere som samler inn trevirke. Vi burde fjerne nåværende samlingspunkt for samfunnssenteret vekk fra å sanke inn trevirke. For det formålet, høyreklikk på samfunnssentret når det er valgt (og flaggikonet som indikerer at samlingspunktet er utkrysset)."
+
+#: maps/tutorials/starting_economy_walkthrough.js:128
+msgid ""
+"The units should be ready soon.\n"
+"In the meantime, direct your attention to your population count on the top panel. It is the fifth item from the left, after the resources. It would be prudent to keep an eye on it. It indicates your current population (including those being trained) and the current population limit, which is determined by your built structures."
+msgstr ""
+"Enhetene bør være klare snart.\n"
+"I mellomtiden, rett din oppmerksomhet til ditt befolkningsantall på toppanelet. Dette er femte element fra venstre, etter ressursene. Det er en idé å holde et øke med det. Det indikerer din nåværende befolkning (inkludert dem i trening) og gjeldende befolkningsgrense, som bestemmes av dine bygde strukturer."
+
+#: maps/tutorials/starting_economy_walkthrough.js:135
+msgid ""
+"As you have nearly reached the population limit, you must increase it by building some new structures if you want to train more units. The most cost effective structure to increase your population limit is the house.\n"
+"Now that the units are ready, let's build two houses."
+msgstr ""
+"Siden du nesten har nådd befolkningstaket, må du øke det ved å bygge noen nye strukturer hvis du ønsker å trene opp flere enheter. Den mest kostnadseffektive strukturen å øke din befolkningsgrense med er huset.\n"
+"Nå som enhetene er klare, la oss bygge to hus."
+
+#: maps/tutorials/starting_economy_walkthrough.js:138
+msgid ""
+"Select two of your newly trained Female Citizens and ask them to build these houses in the empty space to the east of the Civic Center. To do so, after selecting the Female Citizens, click on the house icon in the bottom right panel and shift-click on the position in the map where you want to build the first house followed by a shift-click on the position of the second house (when giving orders, shift-click put the order in the queue and the units will automatically switch to the next order in their queue when they finish their work). Press Escape to get rid of the house cursor so you don't spam houses all over the map.\n"
+"Reminder: to select only two Female Citizens, click on the first one and then shift-click on the second one to add her to the selection."
+msgstr ""
+"Velg to av dine nylig trente kvinnelige borgere og spør dem om å bygge disse husene i det tomme området øst for samfunnssentret. For å gjøre det, etter å ha valgt de kvinnelige borgerne, klikk på huset på panelet nedest til høyre og shift+klikk på posisjonen i kartet der du ønsker å bygge det første huset, fulgt av et shift+klikk for posisjonen for den andre huset (når du gir ordrer, vil shift+klikk putte ordren i køen når de fullfører arbeidet deres). Trykk Esc for å fjerne huspekeren, slik at du ikke sprer hus rundt omkring på kartet.\n"
+"Påminnelse: For å velge bare to kvinnelige borgere, klikk på den første og så shift+klikk på den andre for å legge henne til i utvalget."
+
+#: maps/tutorials/starting_economy_walkthrough.js:147
+msgid ""
+"You may notice that berries are a finite supply of food. We will need a more lasting food source. Fields produce an unlimited food resource, but are slower to gather than forageable fruits.\n"
+"But to minimize the distance between a farm and its corresponding food dropsite, we will first build a farmstead."
+msgstr ""
+"Du har kanskje lagt merke til at bærbuskene er en begrenset matkilde. Vi trenger noe som varer lengre. Marker produserer en ubegrenset matressurs, men er tregere å høste enn sankbare frukter.\n"
+"For å minimere distansen mellom en gård og dens tilhørende leveringspunkt, vil vi først bygge et gårdshus."
+
+#: maps/tutorials/starting_economy_walkthrough.js:150
+msgid ""
+"Select the three remaining (idle) Female Citizens and order them to build a farmstead in the center of the large open area to the west of the Civic Center.\n"
+"We will need a decent chunk of space around the farmstead to build fields. In addition, we can see goats on the west side to further improve our food gathering efficiency should we ever decide to hunt them.\n"
+"If you try to select the three idle Female Citizens by selection rectangle them, there is a high chance that one additional gatherers are included in your selection rectangle. To prevent that, hold the 'i' key while grabing: only idle units are then selected. If during your selection you select the cavalry which may now be idle, you can remove it by pressing the control key while clicking on its corresponding portrait in the selection panel on the bottom."
+msgstr ""
+"Velg de tre gjenstående (uvirksomme) kvinnelige borgerne og beordre dem til å bygge et gårdshus i midten av det store åpne området vest for samfunnssenteret.\n"
+"Vi trenger en anseelig mengde land rundt vårt gårdshus for å bygge marker. I tillegg, kan vi se geiter på vestsiden for å ytterligere forbedre vår matinnsamlingseffektivitet, skulle vi finne på å jakte på dem.\n"
+"Hvis du velger de tre ledige kvinnelige soldatene ved velge dem med utvelgelsesfirkanten, er det stor sjanse for at noen ytterligere sankere er inkludert i ditt utvalg. For å forhindre det, hold \"i\"-tasten mens du velger: Slik at bare uvirksomme enheter blir valgt. Hvis du under din utvelgelse får med noe kavaleri, som nå kan være uvirksomt, kan du fjerne det ved å trykke kontroll-tasten mens du klikker på dens tilhørende portrett i utvelgelsespanelet på bunnen."
+
+#: maps/tutorials/starting_economy_walkthrough.js:158
+msgid ""
+"When the farmstead construction is finished, its builders will automatically look for food, and in this case, they will go after the nearby goats.\n"
+"But your house builders will only look for something else to build and, if nothing found, become idle. Let's wait for them to build the houses."
+msgstr ""
+"Når gårdshuskonstruksjonen er fullført, vil dens arbeidere se etter mat, og i dette fall, vil de gå etter geitene i nærheten.\n"
+"Men dine husbyggere vil bare se etter noe annet å bygge, og, hvis ingenting finnes, bli uvirksomme. La oss vente at de bygger husene."
+
+#: maps/tutorials/starting_economy_walkthrough.js:167
+msgid ""
+"When both houses are built, select your two Female Citizens and order them "
+"to build a field as close as possible to the farmstead, which is a dropsite "
+"for all types of food."
+msgstr ""
+"Når husene er bygd, velg dine to kvinnelige borgere og beordre dem til å "
+"bygge et jordbruksland så nært gårdshuset som mulig, som er et leveringssted"
+" for alle typer mat."
+
+#: maps/tutorials/starting_economy_walkthrough.js:175
+msgid ""
+"When the field is constructed, the builders will automatically start gathering it.\n"
+"The cavalry unit should have slaughtered all chicken by now. Select it and right-click on one of the goats in the west to start hunting them for food."
+msgstr ""
+"Når gårdsjordet er konstruert, vil arbeiderne starte å sanke det. "
+"Kavalerieenheten burde ha slaktet alle kyllinene nå. Velg det og høyreklikk "
+"på en av geitene i vest for å starte å jakte på dem for mat."
+
+#: maps/tutorials/starting_economy_walkthrough.js:184
+msgid ""
+"A field can have up to five farmers working on it. To add additional "
+"gathereres, select the Civic Center and setup a rally-point on a field by "
+"right-clicking on it. As long as the field is not yet build, new workers "
+"sent by a rally-point will help building it, while they will gather it when "
+"built."
+msgstr ""
+"Et jordbruksfelt kan ha opptil fem arbeidere. For å legge til flere, velg "
+"samfunnssenteret og sett opp et samlingspunkt på et felt ved å høyreklikke "
+"på det. Så lenge feltet enda ikke er bygd, vil arbeidere sendt til et "
+"samlingspunkt hjelpe til med å bygge det, mens de vil høste det når det er "
+"bygd."
+
+#: maps/tutorials/starting_economy_walkthrough.js:191
+msgid "Select the Civic Center and right-click on the field."
+msgstr "Velg samfunnssenteret og høyreklikk på åkeren."
+
+#: maps/tutorials/starting_economy_walkthrough.js:198
+msgid ""
+"Now click three times on the female icon in the bottom right panel to train "
+"three additional farmers."
+msgstr ""
+"Klikk tre ganger på det kvinnelige ikonet på panelet nederst til høyre for å"
+" trene opp tre nye gårdbrukere."
+
+#: maps/tutorials/starting_economy_walkthrough.js:207
+msgid "Do a simple left-click to produce a single unit."
+msgstr "Klikk én gang for å produsere en enkelt enhet."
+
+#: maps/tutorials/starting_economy_walkthrough.js:208
+msgid "Click on the FEMALE CITIZEN icon."
+msgstr "Klikk på KVINNELIG BORGER-ikonet."
+
+#: maps/tutorials/starting_economy_walkthrough.js:218
+msgid ""
+"You can increase the gather rates of your workers by researching new technologies available in some buildings.\n"
+"The farming rate, for example, can be improved with a researchable technology in the farmstead. Select the farmstead and look at its production panel on the bottom right. You will see several researchable technologies. Hover the mouse over them to see their costs and effects and click on the one you want to research."
+msgstr ""
+"Du kan øke innsamlingstakten for dine arbeidere ved å forske frem teknologier som er tilgjengelige i noen bygninger.\n"
+"Gårdsdrifttakten, for eksempel, kan forbedres med en teknologi som finnes i gårdshuset. Velg det og se på produksjonspanelet nederst til høyre. Hold musa over dem for å se kostnad og effekt, for deretter å klikke på det du vil forske på."
+
+#: maps/tutorials/starting_economy_walkthrough.js:226
+msgid ""
+"We should start preparing to phase up into 'Town Phase', which will unlock many more units and buildings. Select the Civic Center and hover the mouse over the 'Town Phase' icon to see what is still needed.\n"
+"We now have enough resources, but one structure is missing. Although this is an economic tutorial, it is nonetheless useful to be prepared for defense in case of attack, so let's build barracks.\n"
+"Select four of your soldiers and ask them to build a barracks: as before, start selecting the soldiers, click on the barracks icon in the production panel and then lay down a foundation not far from your Civic Center where you want to build."
+msgstr ""
+"Vi bør forberede oss på å tre inn i \"tettstedfasen\", som vil låse opp mange flere enheter og bygninger. Velg samfunnssenteret og hold musa over \"tettstedfase\"-ikonet for å se hva som mangler.\n"
+"Vi har nå nok ressurser, men en struktur mangler. Selv om dette er en økonomisk veiledning, er det uansett nyttig å være forberedt på forsvar i tilfelle angrep, så la oss bygge ei brakke.\n"
+"Velg dine fire soldater og be dem om å bygge brakken: Som før, start ved å velge soldatene, klikk på brakke-ikonet i produksjonspanelet og legg så ned grunnsteinen ikke så langt fra samfunnssenteret der du ønsker å bygge."
+
+#: maps/tutorials/starting_economy_walkthrough.js:235
+msgid ""
+"Let's wait for the barracks to be built. As this construction is lengthy, "
+"you can add two soldiers to build it faster. To do so, select your Civic "
+"Center and set up a rally-point on the barracks foundation by right-clicking"
+" on it (you should see a hammer icon), and then produce two more builders by"
+" clicking on the hoplite icon twice."
+msgstr ""
+"La oss vente til brakkene er bygd. Siden denne konstruksjonen lar vente på "
+"seg, kan du legge til to soldater for å bygge den raskere. For å gjøre det, "
+"velg samfunnssenteret og sett et samlingspunkt på brakkenefundamentet ved å "
+"høyreklikke på det (du burde se et hammer-ikon). Produser så to byggere til "
+"ved å klikke på hopelitt-ikonet to ganger."
+
+#: maps/tutorials/starting_economy_walkthrough.js:243
+msgid ""
+"You should now be able research 'Town Phase'. Select the Civic Center and click on the technology icon.\n"
+"If you still miss some resources (icon with red overlay), wait for them to be gathered by your workers."
+msgstr ""
+"Du bør nå kunne forske frem \"tettstedfasen\". Velg samfunnssenteret og klikk på teknologiikonet.\n"
+"Hvis du fremdeles mangler noen ressurser (ikonet med rødt overleggslag), vent på at de blir sanket inn av dine arbeidere."
+
+#: maps/tutorials/starting_economy_walkthrough.js:251
+msgid ""
+"In later phases, you need usually Stone and Metal to build bigger structures and train better soldiers. Hence, while waiting for the research to be done, you will send half of your idle Citizen Soldiers (who have finished building the Barracks) to gather Stone and the other half to gather Metal.\n"
+"To do so, we could select three Citizen Soldiers and right-click on the Stone mine on the west of the Civic Center (a Stone cursor is shown when you hover the mouse over it while your soldiers are selected). However, these soldiers were gathering Wood, so they may still carry some Wood which would be lost when starting to gather another resource."
+msgstr ""
+"I senere faser, trenger du vanligvis stein og metall for å bygge større strukturer og trene opp bedre soldater. Derav, mens du venter på at forskningen fullføres, send halvparten av dine uvirksomme borgersoldater (som har fullført byggingen av brakken) til å samle inn stein og den andre halvparten til å utvinne metall.\n"
+"For å gjøre det, kan vi velge tre borgersoldater og høyreklikke på steinbruddet vest for samfunnssenteret (en stein-peker vil vises når du holder musa over den mens soldatene dine er valgt). Dog samler mange av disse soldatene inn trevirke, så de bærer kanskje fremdeles tre, som vil gå tapt når de begynner å sanke en annen ressurs."
+
+#: maps/tutorials/starting_economy_walkthrough.js:254
+msgid ""
+"Thus, we should order them to deposit their Wood in the Civic Center along the way. To do so, we will queue orders with shift-click: select your soldiers, shift-right-click on the Civic Center to deposit their Wood and then shift-right-click on the Stone mine to gather it.\n"
+"Perform a similar order queue with the remaining soldiers and the Metal mine in the west."
+msgstr ""
+"I så måte bør vi beordre dem om å levne sitt trevirke på samfunnssenteret på veien. For å gjøre det, vil vi legge ordrer i kø med shift+klikk: Velg soldatene dine, shift+klikk på samfunnssenteret for å levne trevirket, og shift+klikk så på steinbruddet for å drive det.\n"
+"Utfør en lignende ordrekø med de gjenstående soldatene og utvinn metall i vest."
+
+#: maps/tutorials/starting_economy_walkthrough.js:273
+msgid ""
+"This is the end of the walkthrough. This should give you a good idea of the "
+"basics of setting up your economy."
+msgstr ""
+"Dette er slutten på veiledningen. Dette burde ha gitt deg en god ide om "
+"hovedtrekkene i å sette opp økonomien din."
+
+#: maps/tutorials/starting_economy_walkthrough.xml:Description:39
+msgid ""
+"This map will give a rough guide for starting the game effectively.  Early "
+"in the game the most important thing is to gather resources as fast as "
+"possible so you are able to build enough troops later."
+msgstr ""
+"Dette kartet gir en grov gjennomgang av hvordan man effektivt starter "
+"spillet. Tidlig i spiller er ressurssanking så raskt som mulig det "
+"viktigste, slik at du kan fremskaffe nok tropper senere."
+
+#: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
+msgid "Player 1"
+msgstr "Spiller 1"
+
+#: maps/tutorials/starting_economy_walkthrough.xml:Name:39
+msgid "Starting Economy Walkthrough"
+msgstr "En gjennomgang av oppstartsøkonomi."

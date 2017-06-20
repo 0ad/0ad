@@ -1,0 +1,386 @@
+# Translation template for 0 A.D. — Empires Ascendant.
+# Copyright © 2014 Wildfire Games
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
+# 
+# Translators:
+# andreac <supercarrer1989@hotmail.it>, 2017
+# Me Lazzi <tema@mailinator.com>, 2017
+# Fabio Pedretti <pedretti.fabio@gmail.com>, 2017
+# Fabrizio Morotti <famorot@tin.it>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: 0 A.D. — Empires Ascendant\n"
+"POT-Creation-Date: 2017-06-04 14:51+0200\n"
+"PO-Revision-Date: 2017-06-04 14:51+0200\n"
+"Last-Translator: Fabrizio Morotti <famorot@tin.it>, 2017\n"
+"Language-Team: Italian (https://www.transifex.com/wildfire-games/teams/17418/it/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: maps/tutorials/starting_economy_walkthrough.js:3
+msgid ""
+"This tutorial will teach the basics of developing your economy. Typically, you will start with a Civic Center and a couple units in 'Village Phase' and ultimately, your goal will be to develop and expand your empire, often by evolving to 'Town Phase' and 'City Phase' afterward.\n"
+"\n"
+"Before starting, you can toggle between fullscreen and windowed mode using Alt+Enter. You can also change the level of zoom using the mouse wheel and the camera view using any of your keyboard's arrow keys.\n"
+"Adjust the game window to your preferences.\n"
+msgstr ""
+"Questo tutorial insegnerà le basi per lo sviluppo della tua economia. Tipicamente, si avrà inizio con un Centro Civico e un paio di unità nella 'Fase Villaggio' e, fondamentalmente, il tuo obiettivo sarà quello di sviluppare e ampliare il tuo impero, spesso evolvendo in seguito a 'Fase Cittadina' e 'Fase Città'.\n"
+"\n"
+"\n"
+"Prima di iniziare, è possibile alternare la modalità schermo intero e finestra utilizzando Alt + Enter. È anche possibile modificare il livello di zoom utilizzando la rotellina del mouse e il punto di vista della telecamera usando uno dei tasti freccia della tastiera.\n"
+"Regola la finestra del gioco alle tue preferenze.\n"
+
+#: maps/tutorials/starting_economy_walkthrough.js:6
+msgid ""
+"To start off, select your building, the Civic Center, by clicking on it. A "
+"selection ring in the color of your civilization will be displayed after "
+"clicking."
+msgstr ""
+"Per iniziare, seleziona il tuo edificio, il Centro Civico, facendo clic su "
+"di esso. Verrà visualizzato un anello di selezione nel colore della tua "
+"civiltà dopo aver fatto clic."
+
+#: maps/tutorials/starting_economy_walkthrough.js:9
+msgid ""
+"Now that the Civic Center is selected, you will notice that a production panel will appear on the lower right of your screen detailing the actions that the buildings support. For the production panel, available actions are not masked in any color, while an icon masked in either grey or red indicates that the action has not been unlocked or you do not have sufficient resources to perform that action, respectively. Additionally, you can hover your mouse over any icon to show a tooltip with more details.\n"
+"The top row of buttons contains portraits of units that may be trained at the building while the bottom one or two rows will have researchable technologies. Hover your mouse over the 'II' icon. The tooltip will tell us that advancing to 'Town Phase' requires both more constructed structures as well as more Food and Wood resources."
+msgstr ""
+"Ora che il Centro Civico è selezionato, noterete che un pannello di gestione apparirà nella parte inferiore destra dello schermo per descrivere in dettaglio le azioni che attengono agli edifici. Per il pannello di gestione, le azioni disponibili non vengono mascherate in alcun colore, mentre un'icona mascherata in grigio o in rosso indica che l'azione non è stata sbloccata o non dispone di risorse sufficienti per l'esecuzione, rispettivamente. Inoltre, è possibile posizionare il mouse su qualsiasi icona per mostrare un tooltip con ulteriori dettagli.\n"
+"La riga superiore dei pulsanti contiene i ritratti delle unità che possono essere addestrate all'edificio, mentre una o due righe inferiori avranno le tecnologie ricercabili. Spostare il mouse sull'icona \"II\". Il tooltip ci dirà che avanzare a 'Town Phase' richiede la costruzione di altri edifici e necessitano  più risorse alimentari e legnose."
+
+#: maps/tutorials/starting_economy_walkthrough.js:12
+msgid ""
+"You have two main types of starting units: Female Citizens and Citizen "
+"Soldiers. Female Citizens are purely economic units; they have low HP, no "
+"armour, and little to no attack. Citizen Soldiers are workers by default, "
+"but in times of need, can utilizing a weapon to fight. You have two "
+"categories of Citizen Soldiers: Infantry and Cavalry. Female Citizens and "
+"Infantry Citizen Soldiers can gather any land resources while Cavalry "
+"Citizen Soldiers can only gather meat from hunted animals.\n"
+msgstr ""
+"Avete due tipi principali di unità per la partenza: Cittadine e Cittadini "
+"Soldati. Le cittadine sono unità puramente economiche; hanno Punti Vita "
+"bassi, nessuna armatura e poco o nessun attacco. I cittadini soldati sono "
+"operai per impostazione predefinita, ma in caso di bisogno, possono "
+"utilizzare un'arma per combattere. Hai due categorie di cittadini soldati: "
+"fanteria e cavalleria. Cittadine e Cittadini Soldati di Fanteria possono "
+"raccogliere risorse dal terreno mentre i Cittadini Soldati Cavalieri possono"
+" solo raccogliere carne da animali cacciati.\n"
+
+#: maps/tutorials/starting_economy_walkthrough.js:15
+msgid ""
+"As a general rule of thumb, left-clicking represents selection while right-"
+"clicking with an entity selected represents an order (gather, build, fight, "
+"etc.).\n"
+msgstr ""
+"Come regola generale, il clic con il tasto sinistro rappresenta la "
+"selezione, mentre fare clic con il pulsante destro con un'entità selezionata"
+" rappresenta un ordine (raccogliere, costruire, combattere, ecc.).\n"
+
+#: maps/tutorials/starting_economy_walkthrough.js:18
+msgid ""
+"At this point, Food and Wood are the most important resources for developing your economy, so let's start with gathering food. Females gather non-meat food faster than their male counterparts.\n"
+"There are primarily three ways to select units:\n"
+"1) Hold the left mouse button and drag a selection rectangle that encloses the units you want to select.\n"
+"2) Click on one of them and then add additional units to your selection by shift-clicking each additional unit (or also via the above selection rectangle).\n"
+"3) Double-click on a unit. This will select every unit of the same type as the specified unit in your visible window. Triple-click will select all units of the same type on the entire map.\n"
+" You can click on an empty space on the map to reset the selection. Try each of these methods before tasking all of your Female Citizens to gather the grapes to the southeast of your Civic Center by right-clicking on the grapes when you have all the Female Citizens selected."
+msgstr ""
+"A questo punto, gli Alimenti e il Legno sono le risorse più importanti per sviluppare la tua economia, quindi cominciamo a raccogliere il cibo. Le femmine raccolgono cibo che non sia carne più velocemente rispetto alle loro controparti maschili\n"
+"Ci sono innanzitutto tre modi per selezionare unità:\n"
+"1) Tenere premuto il pulsante sinistro del mouse e tracciare un rettangolo di selezione che racchiude le unità che si desidera selezionare\n"
+"2) Fare clic su uno di essi e quindi aggiungere unità aggiuntive alla selezione facendo clic con il tasto Shift premuto su ogni unità aggiuntiva (o anche tramite il rettangolo di selezione precedente).\n"
+"3) Fare doppio clic su un'unità. Ciò selezionerà ogni unità dello stesso tipo dell'unità specificata nella finestra visibile. Effettuando un triplo clic saranno selezionate tutte le unità dello stesso tipo sull'intera mappa\n"
+"È possibile fare clic su uno spazio vuoto sulla mappa per ripristinare la selezione normale. Prova ciascuno di questi metodi prima di impegnare tutte le tue cittadine a raccogliere l'uva a sud-est del Centro Civico facendo clic con il pulsante destro del mouse sull'uva quando hai selezionato tutte le Cittadine."
+
+#: maps/tutorials/starting_economy_walkthrough.js:27
+msgid ""
+"Now, let's gather some Wood with your Infantry Citizen Soldiers. Select your"
+" Infantry Citizen Soldiers and order them to gather Wood by right-clicking "
+"on the nearest tree."
+msgstr ""
+"Adesso raccogliamo un po 'di legno con i tuoi Cittadini Soldati di Fanteria."
+" Seleziona i tuoi Fanti Cittadini e ordina loro di raccogliere Legno facendo"
+" clic con il pulsante destro del mouse sull'albero più vicino."
+
+#: maps/tutorials/starting_economy_walkthrough.js:36
+msgid ""
+"Cavalry Citizen Soldiers are good for hunting. Select your cavalry and order"
+" him to hunt the chicken around your Civic Center in similar fashion."
+msgstr ""
+"I Cittadini soldati di Cavalleria sono adatti per la caccia.  Alla stessa "
+"maniera seleziona la tua cavalleria e ordina di cacciare il pollo attorno al"
+" Centro Civico."
+
+#: maps/tutorials/starting_economy_walkthrough.js:45
+msgid ""
+"All your units are now gathering resources. We should train more units!\n"
+"First, let's set a rally-point. Setting a rally point on a building that can train units will automatically designate a task to the new unit upon completion of training. We want to send the newly trained units to gather Wood on the group of trees to the south of the Civic Center. To do so, select the Civic Center by clicking on it and then right-click on one of the trees.\n"
+"Rally-Points are indicated by a small flag at the end of the blue line."
+msgstr ""
+"Tutte le vostre unità stanno ora raccogliendo risorse. Dobbiamo allenare più unità! \n"
+"In primo luogo, fissiamo un punto di raduno. L'impostazione di un punto di raduno da un edificio in grado di addestrare unità designerà automaticamente un compito alla nuova unità al termine della formazione. Vogliamo inviare le unità appena addestrate per raccogliere il Legno sul gruppo di alberi a sud del Centro Civico. Per fare ciò, seleziona il Centro Civico facendo clic su di esso e poi fai clic con il pulsante destro del mouse su uno degli alberi\n"
+"I punti di raduno sono indicati da una piccola bandiera alla fine della linea blu. "
+
+#: maps/tutorials/starting_economy_walkthrough.js:52
+msgid ""
+"Select the Civic Center, then hover your mouse over a tree and right-click "
+"when you see the cursor change into a Wood icon."
+msgstr ""
+"Selezionare il Centro Civico, quindi spostare il mouse su un albero e fare "
+"clic con il pulsante destro del mouse quando si vede il cursore che cambia "
+"in un'icona Legno."
+
+#: maps/tutorials/starting_economy_walkthrough.js:60
+msgid ""
+"Now that the rally-point is set, we can produce additional units and they will do their assigned task automatically.\n"
+"As Citizen Soldiers are better than Female Citizens for gathering Wood, select the Civic Center and shift-click on the second unit icon, the hoplites (shift-clicking produces a batch of five units). You can also train units individually by simply clicking, but training 5 units together takes less time than training 5 units individually."
+msgstr ""
+"Ora che il punto di raduno è impostato, possiamo produrre unità aggiuntive esse svolgeranno automaticamente l'attività assegnata.\n"
+"Poiché i Cittadini Soldati sono migliori delle Cittadine per la raccolta di legno, seleziona il centro civico e fai clic sull'icona della seconda unità, gli Opliti (l'utilizzo di Maiusc+click produce un gruppo di cinque unità). È inoltre possibile allenare singolarmente le unità semplicemente facendo clic, ma la formazione di 5 unità insieme richiede meno tempo rispetto alla formazione di 5 unità singolarmente."
+
+#: maps/tutorials/starting_economy_walkthrough.js:69
+#: maps/tutorials/starting_economy_walkthrough.js:111
+msgid "Do not forget to shift-click to produce several units."
+msgstr "Non dimenticare di usare Maiusc+click per produrre diverse unità."
+
+#: maps/tutorials/starting_economy_walkthrough.js:70
+msgid "Shift-click on the HOPLITE icon."
+msgstr "Fai Maiuscola+Click sull'icona dell'OPLITA"
+
+#: maps/tutorials/starting_economy_walkthrough.js:78
+msgid ""
+"Let's wait for the units to be trained.\n"
+"While waiting, direct your attention to the panel at the top of your screen. On the upper left, you will see your current resource supply (Food, Wood, Stone, and Metal). As each worker brings resources back to the Civic Center (or another dropsite), you will see the amount of the corresponding resource increase. This is a very important concept to keep in mind: gathered resources have to be brought back to a dropsite to be accounted, and you should always try to minimize the distance between resource and nearest dropsite to improve your gathering efficiency."
+msgstr ""
+"Attendi che le unità siano addestrate.\n"
+"Nell'attesa, rivolgi la tua attenzione al pannello nella parte superiore dello schermo. Nella parte in alto a sinistra vedrai lo stato attuale delle risorse (Cibo, Legno, Pietra e Metallo). Poiché ogni lavoratore riporta le risorse al Centro Civico (o ad un altro deposito), vedrai aumentare la quantità delle risorse corrispondenti. Un concetto molto importante da tenere a mente è il seguente: le risorse raccolte devono essere riportate in un deposito per essere conteggiate, e si dovrebbe sempre cercare di ridurre al minimo la distanza tra la risorsa e il deposito più vicino per migliorare l'efficienza di raccolta."
+
+#: maps/tutorials/starting_economy_walkthrough.js:85
+msgid ""
+"The newly trained units automatically go to the trees and start gathering Wood.\n"
+"But as they have to bring it back to the Civic Center to deposit it, their gathering efficiency suffers from the distance. To fix that, we can build a storehouse, a dropsite for Wood, Stone, and Metal, close to the trees. To do so, select your five newly trained Citizen Solders and look for the construction panel on the bottom right, click on the storehouse icon, move the mouse as close as possible to the trees you want to collect and click on a valid place to build the dropsite.\n"
+"Invalid (obstructed) positions will show the building preview overlay in red."
+msgstr ""
+"Le nuove unità addestrate vanno automaticamente agli alberi e cominciano a raccogliere il Legno.\n"
+"Ma poiché devono riportarlo al Centro Civico per depositarlo, la loro efficienza di raccolta è ridotta dalla distanza. Per risolvere questo problema, puoi costruire un magazzino, un deposito di Legno, Pietra e Metallo, vicino agli alberi. A tal fine, seleziona i cinque Soldati Cittadini appena addestrati e guarda il pannello di costruzione in basso a destra, fai clic sull'icona del magazzino, sposta il mouse il più vicino possibile agli alberi che vuoi raccogliere e fai clic su un luogo valido dove costruire il deposito.\n"
+"Le posizioni non valide (ostruite) mostreranno l'anteprima dell'edificio in rosso."
+
+#: maps/tutorials/starting_economy_walkthrough.js:93
+msgid ""
+"The selected workers will automatically start constructing the building once"
+" you place the foundation."
+msgstr ""
+"I lavoratori selezionati inizieranno automaticamente a costruire l'edificio "
+"dopo aver posto la fondazione."
+
+#: maps/tutorials/starting_economy_walkthrough.js:102
+msgid ""
+"When construction finishes, the builders default to gathering Wood automatically.\n"
+"Let's train some female workers to gather more food. Select the Civic Center and shift-click on the female citizen icon to train 5."
+msgstr ""
+"Quando la costruzione termina, i costruttori tornano a raccogliere Legno automaticamente.\n"
+"Addestra alcune lavoratrici per raccogliere più cibo. Seleziona il Centro Civico e fai clic sull'icona della donna per addestrarne 5."
+
+#: maps/tutorials/starting_economy_walkthrough.js:112
+msgid "Shift-click on the FEMALE CITIZEN icon."
+msgstr "Fai Maiuscola+Click sull'icona della Cittadina"
+
+#: maps/tutorials/starting_economy_walkthrough.js:120
+msgid ""
+"Let's wait for the units to be trained.\n"
+"In the meantime, we seem to have enough workers gathering Wood. We should remove the current rally-point of the Civic Center away from gathering Wood. For that purpose, right-click on the Civic Center when it is selected (and the flag icon indicating the rally-point is crossed out)."
+msgstr ""
+"Aspetta che le unità siano addestrate.\n"
+"Nel frattempo, sembri avere abbastanza lavoratori assegnati a raccogliere Legno. Devi rimuovere l'attuale punto di ritrovo del Centro Civico lontano dal punto di raccolta Legno. A tal fine, fai clic con il pulsante destro del mouse sul Centro Civico quando viene selezionato (e l'icona della bandiera che indica il punto di ritrovo diventa barrata)."
+
+#: maps/tutorials/starting_economy_walkthrough.js:128
+msgid ""
+"The units should be ready soon.\n"
+"In the meantime, direct your attention to your population count on the top panel. It is the fifth item from the left, after the resources. It would be prudent to keep an eye on it. It indicates your current population (including those being trained) and the current population limit, which is determined by your built structures."
+msgstr ""
+"Le unità dovrebbero essere pronte presto. \n"
+"Nel frattempo, dirigiti la tua attenzione sul numero della popolazione nel pannello superiore. È il quinto elemento a sinistra, dopo le risorse. Sarebbe prudente tenere d'occhio questo aspetto. Indica la tua attuale popolazione (compresi quelli che vengono addestrati) e il limite attuale della popolazione, determinato dalle strutture costruite."
+
+#: maps/tutorials/starting_economy_walkthrough.js:135
+msgid ""
+"As you have nearly reached the population limit, you must increase it by building some new structures if you want to train more units. The most cost effective structure to increase your population limit is the house.\n"
+"Now that the units are ready, let's build two houses."
+msgstr ""
+"Poiché hai quasi raggiunto il limite della popolazione, dovresti aumentarlo creando nuove strutture se vuoi formare più unità. La struttura più redditizia per aumentare il tuo limite di popolazione è la casa. \n"
+"Ora che le unità sono pronte, costruiamo due case."
+
+#: maps/tutorials/starting_economy_walkthrough.js:138
+msgid ""
+"Select two of your newly trained Female Citizens and ask them to build these houses in the empty space to the east of the Civic Center. To do so, after selecting the Female Citizens, click on the house icon in the bottom right panel and shift-click on the position in the map where you want to build the first house followed by a shift-click on the position of the second house (when giving orders, shift-click put the order in the queue and the units will automatically switch to the next order in their queue when they finish their work). Press Escape to get rid of the house cursor so you don't spam houses all over the map.\n"
+"Reminder: to select only two Female Citizens, click on the first one and then shift-click on the second one to add her to the selection."
+msgstr ""
+"Seleziona due dei tuoi nuovi Donne Cittadine e chiedi loro di costruire queste case nello spazio vuoto a est del Centro Civico. Per farlo, dopo aver selezionato le Donne Cittadine, fai clic sull'icona della casa nel pannello inferiore destro e fai clic sulla posizione nella mappa in cui vuoi costruire la prima casa seguita da un click+maiusc sulla posizione della seconda casa (quando dai ordini, con il click+maiusc premuto si mette l'ordine nella coda e le unità passano automaticamente all'ordine successivo nella loro coda quando finiscono il loro lavoro). Premere Esc per togliere dal cursore l'ordine di costruire case in modo da non spargere le case in tutta la mappa. \n"
+"Promemoria: per selezionare solo due cittadini femminili, fare clic sul primo e poi maiusc+click sul secondo per aggiungerla alla selezione."
+
+#: maps/tutorials/starting_economy_walkthrough.js:147
+msgid ""
+"You may notice that berries are a finite supply of food. We will need a more lasting food source. Fields produce an unlimited food resource, but are slower to gather than forageable fruits.\n"
+"But to minimize the distance between a farm and its corresponding food dropsite, we will first build a farmstead."
+msgstr ""
+"Si può notare che le bacche sono una risorsa finita di cibo. Avrai bisogno di una fonte di cibo più duratura. I campi producono una risorsa alimentare illimitata, ma ci vuole più tempo per raccogliere il foraggio. \n"
+"Ma per ridurre al minimo la distanza tra una fattoria e il relativo deposito di cibo corrispondente, costruiremo prima una fattoria."
+
+#: maps/tutorials/starting_economy_walkthrough.js:150
+msgid ""
+"Select the three remaining (idle) Female Citizens and order them to build a farmstead in the center of the large open area to the west of the Civic Center.\n"
+"We will need a decent chunk of space around the farmstead to build fields. In addition, we can see goats on the west side to further improve our food gathering efficiency should we ever decide to hunt them.\n"
+"If you try to select the three idle Female Citizens by selection rectangle them, there is a high chance that one additional gatherers are included in your selection rectangle. To prevent that, hold the 'i' key while grabing: only idle units are then selected. If during your selection you select the cavalry which may now be idle, you can remove it by pressing the control key while clicking on its corresponding portrait in the selection panel on the bottom."
+msgstr ""
+"Seleziona i tre rimanenti (inattivi) Cittadini Femminili e ordina loro di costruire una fattoria nel centro della grande area aperta ad ovest del Centro Civico.\n"
+"Avrai bisogno di uno spazio adeguato intorno alla fattoria per costruire campi. Inoltre, puoi vedere le capre sul lato ovest per migliorare ulteriormente la nostra efficienza di raccolta degli alimenti se dovessimo mai decidere di macellarle. \n"
+"Se provi a selezionare i tre Cittadini Femminili inattivi, eseguendo una selezione rettangolare, esiste un'alta probabilità che il rettangolo di selezione includa un ulteriore raccoglitore. Per evitare ciò, tieni premuto il tasto 'i' mentre selezioni: verranno quindi selezionate solo le unità inattive. Se durante la selezione prendi anche la cavalleria che può essere inattiva, è possibile rimuoverla premendo il tasto di controllo facendo clic sul relativo ritratto nel pannello di selezione in basso."
+
+#: maps/tutorials/starting_economy_walkthrough.js:158
+msgid ""
+"When the farmstead construction is finished, its builders will automatically look for food, and in this case, they will go after the nearby goats.\n"
+"But your house builders will only look for something else to build and, if nothing found, become idle. Let's wait for them to build the houses."
+msgstr ""
+"Quando la costruzione della fattoria è terminata, i suoi costruttori cercheranno automaticamente il cibo, e in questo caso andranno verso le capre vicine.\n"
+"Ma i tuoi costruttori di case cercheranno solo qualcos'altro da costruire e, se non trovano niente da fare, rimarranno inattivi. Aspetta che abbiano terminato di costruire le case."
+
+#: maps/tutorials/starting_economy_walkthrough.js:167
+msgid ""
+"When both houses are built, select your two Female Citizens and order them "
+"to build a field as close as possible to the farmstead, which is a dropsite "
+"for all types of food."
+msgstr ""
+"Quando entrambe le case sono costruite, seleziona i due Cittadini Femminili "
+"e ordina loro di costruire un campo il più vicino possibile alla fattoria, "
+"che è un deposito per tutti i tipi di cibo."
+
+#: maps/tutorials/starting_economy_walkthrough.js:175
+msgid ""
+"When the field is constructed, the builders will automatically start gathering it.\n"
+"The cavalry unit should have slaughtered all chicken by now. Select it and right-click on one of the goats in the west to start hunting them for food."
+msgstr ""
+"Quando il campo è stato costruito, i costruttori inizieranno automaticamente a raccogliere cibo.\n"
+"La cavalleria dovrebbe aver macellato tutto il pollo ormai. Seleziona e fai clic con il pulsante destro su una delle capre ad ovest per iniziare a cacciarle."
+
+#: maps/tutorials/starting_economy_walkthrough.js:184
+msgid ""
+"A field can have up to five farmers working on it. To add additional "
+"gathereres, select the Civic Center and setup a rally-point on a field by "
+"right-clicking on it. As long as the field is not yet build, new workers "
+"sent by a rally-point will help building it, while they will gather it when "
+"built."
+msgstr ""
+"Un campo può avere fino a cinque raccoglitori che lavorano su di esso. Per "
+"aggiungere altri raccoglitori, seleziona il Centro Civico e imposta un punto"
+" di raccolta su un campo facendo clic con il pulsante destro del mouse. "
+"Finché il campo non è ancora stato costruito, i nuovi lavoratori inviati al "
+"punto di raccolta lo aiuteranno a costruirlo, mentre raccolgono quando è "
+"costruito."
+
+#: maps/tutorials/starting_economy_walkthrough.js:191
+msgid "Select the Civic Center and right-click on the field."
+msgstr ""
+"Seleziona il Centro Civico e fai clic con il pulsante destro del mouse sul "
+"campo."
+
+#: maps/tutorials/starting_economy_walkthrough.js:198
+msgid ""
+"Now click three times on the female icon in the bottom right panel to train "
+"three additional farmers."
+msgstr ""
+"Ora clicca tre volte sull'icona femminile nel pannello inferiore destro per "
+"addestrare altri tre agricoltori."
+
+#: maps/tutorials/starting_economy_walkthrough.js:207
+msgid "Do a simple left-click to produce a single unit."
+msgstr "Fare clic con il pulsante sinistro per produrre una singola unità."
+
+#: maps/tutorials/starting_economy_walkthrough.js:208
+msgid "Click on the FEMALE CITIZEN icon."
+msgstr "Clicca sull'icona della DONNA CITTADINA."
+
+#: maps/tutorials/starting_economy_walkthrough.js:218
+msgid ""
+"You can increase the gather rates of your workers by researching new technologies available in some buildings.\n"
+"The farming rate, for example, can be improved with a researchable technology in the farmstead. Select the farmstead and look at its production panel on the bottom right. You will see several researchable technologies. Hover the mouse over them to see their costs and effects and click on the one you want to research."
+msgstr ""
+"È possibile aumentare i tassi di raccolta dei tuoi lavoratori sviluppando nuove tecnologie disponibili in alcuni edifici.\n"
+"Ad esempio, il tasso di allevamento può essere migliorato con una tecnologia nella fattoria. Seleziona la fattoria e guarda il suo pannello di produzione in basso a destra. Vedrai diverse tecnologie sviluppabili. Sposta il mouse sopra le icone per vedere i loro costi e gli effetti e fai clic su quello che desideri sviluppare."
+
+#: maps/tutorials/starting_economy_walkthrough.js:226
+msgid ""
+"We should start preparing to phase up into 'Town Phase', which will unlock many more units and buildings. Select the Civic Center and hover the mouse over the 'Town Phase' icon to see what is still needed.\n"
+"We now have enough resources, but one structure is missing. Although this is an economic tutorial, it is nonetheless useful to be prepared for defense in case of attack, so let's build barracks.\n"
+"Select four of your soldiers and ask them to build a barracks: as before, start selecting the soldiers, click on the barracks icon in the production panel and then lay down a foundation not far from your Civic Center where you want to build."
+msgstr ""
+"Inizia a prepararti per entrare inella fase fase di 'Fase Cittadina', che sblocca molte altre unità e edifici. Seleziona il Centro Civico e sposta il mouse sull'icona 'Fase Città' per vedere cosa ti manca.\n"
+"Ora disponi di risorse sufficienti, ma manca una struttura. Anche se questo è un tutorial economico, è comunque utile prepararsi alla difesa in caso di attacco, quindi costruisci caserme. \n"
+"Seleziona quattro dei tuoi soldati e chiedi loro di costruire una caserma: come prima, inizia selezionando i soldati, fai clic sull'icona della caserma nel pannello di produzione e poi stabilisci la fondazione non lontano dal Centro Civico in cui vuoi costruire."
+
+#: maps/tutorials/starting_economy_walkthrough.js:235
+msgid ""
+"Let's wait for the barracks to be built. As this construction is lengthy, "
+"you can add two soldiers to build it faster. To do so, select your Civic "
+"Center and set up a rally-point on the barracks foundation by right-clicking"
+" on it (you should see a hammer icon), and then produce two more builders by"
+" clicking on the hoplite icon twice."
+msgstr ""
+"Aspetta che la caserma sia costruita. Poiché questa costruzione è lunga, è "
+"possibile aggiungere due soldati per costruirla più velocemente. Per fare "
+"questo, seleziona il tuo Centro Civico e crea un punto di raccolta sulla "
+"fondazione della caserma facendo clic con il pulsante destro del mouse "
+"(dovresti vedere l'icona del martello) e quindi produci altri due "
+"costruttori cliccando due volte sull'icona Oplita."
+
+#: maps/tutorials/starting_economy_walkthrough.js:243
+msgid ""
+"You should now be able research 'Town Phase'. Select the Civic Center and click on the technology icon.\n"
+"If you still miss some resources (icon with red overlay), wait for them to be gathered by your workers."
+msgstr ""
+"Ora dovresti essere in grado di sviluppare la 'Fase Cittadina'. Seleziona il Centro Civico e fai clic sull'icona della tecnologia.\n"
+"Se manca ancora qualche risorsa (icona evidenziata in rosso), attendi che sia raccolta dai tuoi lavoratori."
+
+#: maps/tutorials/starting_economy_walkthrough.js:251
+msgid ""
+"In later phases, you need usually Stone and Metal to build bigger structures and train better soldiers. Hence, while waiting for the research to be done, you will send half of your idle Citizen Soldiers (who have finished building the Barracks) to gather Stone and the other half to gather Metal.\n"
+"To do so, we could select three Citizen Soldiers and right-click on the Stone mine on the west of the Civic Center (a Stone cursor is shown when you hover the mouse over it while your soldiers are selected). However, these soldiers were gathering Wood, so they may still carry some Wood which would be lost when starting to gather another resource."
+msgstr ""
+"Nelle fasi successive sono necessarie solitamente Pietre and Metalli per costruire strutture più grandi e addestrare soldati migliori. Quindi, aspettando che la sviluppo sia completato, invia metà dei tuoi Soldati Cittadini inattivi (che hanno finito di costruire la caserma) per raccogliere Pietre e l'altra metà per raccogliere Metallo.\n"
+"Per fare questo, puoi selezionare tre Soldati Cittadini e fare clic con il pulsante destro sulla miniera di pietra ad ovest del Centro Civico (un cursore Pietra viene mostrato quando si passa il mouse sopra di essa mentre i soldati sono selezionati). Tuttavia, questi soldati stavano raccogliendo Legno, o potrebbero trasportare un po' di Legno che andrebbe perso nell'iniziare a raccogliere un'altra risorsa."
+
+#: maps/tutorials/starting_economy_walkthrough.js:254
+msgid ""
+"Thus, we should order them to deposit their Wood in the Civic Center along the way. To do so, we will queue orders with shift-click: select your soldiers, shift-right-click on the Civic Center to deposit their Wood and then shift-right-click on the Stone mine to gather it.\n"
+"Perform a similar order queue with the remaining soldiers and the Metal mine in the west."
+msgstr ""
+"Quindi dovresti ordinare loro di depositare il loro Legno nel Centro Civico lungo la strada. Per farlo, dai degli ordini in coda con un maiusc+click: seleziona i tuoi soldati, fai clic con il pulsante destro del mouse sul Centro Civico per depositare loro Legno e poi fai maiusc+clic con il tasto destro sulla miniera di Pietra per raccoglierla.\n"
+"Fai in maniera analoga per i soldati rimanenti e la miniera di Metallo ad ovest."
+
+#: maps/tutorials/starting_economy_walkthrough.js:273
+msgid ""
+"This is the end of the walkthrough. This should give you a good idea of the "
+"basics of setting up your economy."
+msgstr ""
+"Questa è la fine della guida. Ora dovresti avere una buona idea di base su "
+"come impostare la tua economia."
+
+#: maps/tutorials/starting_economy_walkthrough.xml:Description:39
+msgid ""
+"This map will give a rough guide for starting the game effectively.  Early "
+"in the game the most important thing is to gather resources as fast as "
+"possible so you are able to build enough troops later."
+msgstr ""
+"Questa mappa farà da guida di base per iniziare efficacemente il gioco. "
+"All'inizio del gioco la cosa più importante è raccogliere risorse il più "
+"velocemente possibile in modo da poter creare più truppe più tardi."
+
+#: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
+msgid "Player 1"
+msgstr "Giocatore 1"
+
+#: maps/tutorials/starting_economy_walkthrough.xml:Name:39
+msgid "Starting Economy Walkthrough"
+msgstr "Guida all'Avvio dell'Economia"

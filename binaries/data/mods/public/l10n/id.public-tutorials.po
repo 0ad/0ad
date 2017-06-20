@@ -1,0 +1,379 @@
+# Translation template for 0 A.D. — Empires Ascendant.
+# Copyright © 2014 Wildfire Games
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
+# 
+# Translators:
+# Joshua Randiny <jrandiny2@gmail.com>, 2017
+# Samuel <srandiny@gmail.com>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: 0 A.D. — Empires Ascendant\n"
+"POT-Creation-Date: 2017-06-04 14:51+0200\n"
+"PO-Revision-Date: 2017-06-04 14:51+0200\n"
+"Last-Translator: Samuel <srandiny@gmail.com>, 2017\n"
+"Language-Team: Indonesian (https://www.transifex.com/wildfire-games/teams/17418/id/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: id\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: maps/tutorials/starting_economy_walkthrough.js:3
+msgid ""
+"This tutorial will teach the basics of developing your economy. Typically, you will start with a Civic Center and a couple units in 'Village Phase' and ultimately, your goal will be to develop and expand your empire, often by evolving to 'Town Phase' and 'City Phase' afterward.\n"
+"\n"
+"Before starting, you can toggle between fullscreen and windowed mode using Alt+Enter. You can also change the level of zoom using the mouse wheel and the camera view using any of your keyboard's arrow keys.\n"
+"Adjust the game window to your preferences.\n"
+msgstr ""
+"Tutorial ini akan mengajari dasar untuk mengembangkan ekonomi Anda. Biasanya Anda akan mulai dengan sebuah Pusat Peradaban dan beberapa unit di 'Fase Desa' dengan tujuan akhir untuk mengembangkan dan memperluas kerajaan Anda yang biasa dicapai dengan melewati ''Fase Kota' dan 'Fase Metropolis'.\n"
+"Sebelum memulai, Anda bisa menyalakan atau mematikan mode layar penuh dengan menekan Alt+Enter. Anda juga bisa mengubah level perbesaran dengan menggunakan roda pada mouse serta mengubah posisi kamera dengan tombol panah pada keyboard.\n"
+"Silahkan atur sesukamu.\n"
+
+#: maps/tutorials/starting_economy_walkthrough.js:6
+msgid ""
+"To start off, select your building, the Civic Center, by clicking on it. A "
+"selection ring in the color of your civilization will be displayed after "
+"clicking."
+msgstr ""
+"Untuk memulai, pilih Pusat Peradaban anda dengan mengklik padanya. Lingkaran"
+" seleksi berwarna sesuai dengan warna peradaban Anda akan ditampilkan "
+"disekitar pilihan Anda."
+
+#: maps/tutorials/starting_economy_walkthrough.js:9
+msgid ""
+"Now that the Civic Center is selected, you will notice that a production panel will appear on the lower right of your screen detailing the actions that the buildings support. For the production panel, available actions are not masked in any color, while an icon masked in either grey or red indicates that the action has not been unlocked or you do not have sufficient resources to perform that action, respectively. Additionally, you can hover your mouse over any icon to show a tooltip with more details.\n"
+"The top row of buttons contains portraits of units that may be trained at the building while the bottom one or two rows will have researchable technologies. Hover your mouse over the 'II' icon. The tooltip will tell us that advancing to 'Town Phase' requires both more constructed structures as well as more Food and Wood resources."
+msgstr ""
+"Sekarang dengan Pusat Peradaban telah terpilih, Anda akan menyadari bahwa di pojok kanan bawah layar Anda terdapat sebuah panel produksi yang menjelaskan aksi yang dapat dilakukan dengan gedung ini. Aksi yang berwarna abu-abu atau merah menandakan aksi itu belum dapat Anda lakukan atau Anda tidak mempunyai sumber daya yang cukup. Selain itu Anda juga bisa mengarahkan mouse anda diatas ikon yang ada untuk mempelajari detail setiap aksi.\n"
+"Baris paling atas mengandung foto unit yang dapat dilatih di gedung tersebut sementara satu atau dua baris paling bawah berisi teknologi yang dapat Anda riset. Arahkan mouse Anda ke ikon 'II'. Kotak detail akan menunjukan bahwa untuk melanjutkan ke 'Fase Kota' dibutuhkan lebih banyak bangunan juga sumber daya Makanan dan Kayu."
+
+#: maps/tutorials/starting_economy_walkthrough.js:12
+msgid ""
+"You have two main types of starting units: Female Citizens and Citizen "
+"Soldiers. Female Citizens are purely economic units; they have low HP, no "
+"armour, and little to no attack. Citizen Soldiers are workers by default, "
+"but in times of need, can utilizing a weapon to fight. You have two "
+"categories of Citizen Soldiers: Infantry and Cavalry. Female Citizens and "
+"Infantry Citizen Soldiers can gather any land resources while Cavalry "
+"Citizen Soldiers can only gather meat from hunted animals.\n"
+msgstr ""
+"Anda memiliki dua tipe utama untuk unit awal: Rakyat Perempuan dan Prajurit "
+"Rakyat. Rakyat Perempuan adalah unit ekonomi murni; mereka memiliki nyawa "
+"sedikit, tidak ada zirah, dan serangan yang hampir tidak ada. Prajurit "
+"Rakyat adalah pekerja, tapi saat dibutuhkan, dapat menggunakan senjata untuk"
+" bertarung. Anda punya dua kategori Prajurit Rakyat: Infanteri dan Kavaleri."
+" Rakyat Perempuan dan Infanteri Rakyat dapat mengumpulkan sumberdaya darat "
+"apapun sementara Kavaleri Rakyat hanya dapat mengumpulkan daging dari hasil "
+"buruan.\n"
+
+#: maps/tutorials/starting_economy_walkthrough.js:15
+msgid ""
+"As a general rule of thumb, left-clicking represents selection while right-"
+"clicking with an entity selected represents an order (gather, build, fight, "
+"etc.).\n"
+msgstr ""
+"Sebagai petunjuk umum, klik kiri merepresentasikan seleksi sementara klik "
+"kanan merepresentasikan perintah (mengumpulkan, membangun, dll.)\n"
+
+#: maps/tutorials/starting_economy_walkthrough.js:18
+msgid ""
+"At this point, Food and Wood are the most important resources for developing your economy, so let's start with gathering food. Females gather non-meat food faster than their male counterparts.\n"
+"There are primarily three ways to select units:\n"
+"1) Hold the left mouse button and drag a selection rectangle that encloses the units you want to select.\n"
+"2) Click on one of them and then add additional units to your selection by shift-clicking each additional unit (or also via the above selection rectangle).\n"
+"3) Double-click on a unit. This will select every unit of the same type as the specified unit in your visible window. Triple-click will select all units of the same type on the entire map.\n"
+" You can click on an empty space on the map to reset the selection. Try each of these methods before tasking all of your Female Citizens to gather the grapes to the southeast of your Civic Center by right-clicking on the grapes when you have all the Female Citizens selected."
+msgstr ""
+"Pada saat ini, Makanan dan Kayu adalah sumber daya yang paling penting untuk mengembangkan ekonomi Anda. Jadi ayo mulai dengan mengumpulkan makanan. Perempuan lebih baik dibanding laki-laki dalam mengumpulkan makanan selain daging..\n"
+"Ini adalah tiga cara utama untuk memilih unit\n"
+"1) Tekan dan tahan tombol mouse kiri untuk membuat sebuah kotak seleksi diatas unit yang ingin dipilih.\n"
+"2) Tambahkan unit ke dalam seleksi aktif dengan menekan shift disertai klik (atau buat kotak seleksi) pada unit yang ingin ditambahkan.\n"
+"3) Klik dua kali pada unit untuk memilih seluruh unit dengan tipe sama di layar Anda. Klik tiga kali untuk memilih seluruh unit yang sama di seluruh peta\n"
+" Anda dapat mengklik di tempat kosong untuk menghilangkan seleksi. Cobalah semua metode di atas sebelum mengirim Rakyat Perempuan Anda untuk memetik anggur di tenggara dari Pusat Peradaban Anda."
+
+#: maps/tutorials/starting_economy_walkthrough.js:27
+msgid ""
+"Now, let's gather some Wood with your Infantry Citizen Soldiers. Select your"
+" Infantry Citizen Soldiers and order them to gather Wood by right-clicking "
+"on the nearest tree."
+msgstr ""
+"Sekarang, mari mengumpulkan beberapa Kayu dengan Infanteri Rakyat Anda. "
+"Pilih Infanteri Rakyat Anda dan suruh mereka untuk mengumpulkan Kayu dengan "
+"mengklik kanan pada pohon terdekat."
+
+#: maps/tutorials/starting_economy_walkthrough.js:36
+msgid ""
+"Cavalry Citizen Soldiers are good for hunting. Select your cavalry and order"
+" him to hunt the chicken around your Civic Center in similar fashion."
+msgstr ""
+"Kavaleri Rakyat hebat dalam berburu. Pilih kavaleri Anda dan suruh dia untuk"
+" memburuh ayam di sekitar Pusat Peradaban Anda dengan cara yang sama."
+
+#: maps/tutorials/starting_economy_walkthrough.js:45
+msgid ""
+"All your units are now gathering resources. We should train more units!\n"
+"First, let's set a rally-point. Setting a rally point on a building that can train units will automatically designate a task to the new unit upon completion of training. We want to send the newly trained units to gather Wood on the group of trees to the south of the Civic Center. To do so, select the Civic Center by clicking on it and then right-click on one of the trees.\n"
+"Rally-Points are indicated by a small flag at the end of the blue line."
+msgstr ""
+"Semua unit Anda sekarang sedang mengumpulkan sumber daya. Ayo latih lebih banyak unit lagi!\n"
+"Pertama, ayo buat titik berkumpul. Dengan mengatur titik berkumpul dari suatu bangunan yang dapat melatih unit, setiap unit yang baru dilatih akan langsung bergerak menuju titik tersebut dan melakukan aksi yang sesuai secara otomatis. Sekarang cobalah atur titik berkumpul Pusat Peradaban Anda ke kumpulan pohon di sebelah selatan. Caranya adalah dengan mengklik Pusat Peradaban lalu klik kanan pada salah satu pohon yang ada, dengan demikian setiap unit yang dihasilkan akan langsung bergerak untuk menebang pohon.\n"
+"Titik berkumpul ditandai dengan bendera kecil di ujung garis biru."
+
+#: maps/tutorials/starting_economy_walkthrough.js:52
+msgid ""
+"Select the Civic Center, then hover your mouse over a tree and right-click "
+"when you see the cursor change into a Wood icon."
+msgstr ""
+"Pilihlah Pusat Peradaban, lalu letakkan mouse Anda di atas sebatang pohon "
+"dan klik-kanan saat Anda melihat kursor berubah menjadi ikon Kayu."
+
+#: maps/tutorials/starting_economy_walkthrough.js:60
+msgid ""
+"Now that the rally-point is set, we can produce additional units and they will do their assigned task automatically.\n"
+"As Citizen Soldiers are better than Female Citizens for gathering Wood, select the Civic Center and shift-click on the second unit icon, the hoplites (shift-clicking produces a batch of five units). You can also train units individually by simply clicking, but training 5 units together takes less time than training 5 units individually."
+msgstr ""
+"Sekarang dengan telah diaturnya titik berkumpul, kita dapat mulai melatih unit di pusat peradaban kita dan setelah dilatih mereka akan langsung melakukan tugas yang sudah kita tentukan.\n"
+"Karena Prajurit Rakyat lebih baik dari Rakyat Perempuan dalam mengumpulkan Kayu, pilih Pusat Peradaban Anda lalu tekan shift dan klik pada ikon unit kedua, seorang hoplites (dengan menekan shift maka unit yang dihasilkan akan dalam kelipatan 5). Anda juga bisa melatih unit secara individu atau satu-satu, akan tetapi melatih 5 unit sekaligus lebih cepat dari melatih 5 unit secara individu."
+
+#: maps/tutorials/starting_economy_walkthrough.js:69
+#: maps/tutorials/starting_economy_walkthrough.js:111
+msgid "Do not forget to shift-click to produce several units."
+msgstr ""
+"Jangan lupa untuk menekan shift saat menklik untuk memproduksi beberapa "
+"unit."
+
+#: maps/tutorials/starting_economy_walkthrough.js:70
+msgid "Shift-click on the HOPLITE icon."
+msgstr "Shift-klik pada ikon HOPLITE."
+
+#: maps/tutorials/starting_economy_walkthrough.js:78
+msgid ""
+"Let's wait for the units to be trained.\n"
+"While waiting, direct your attention to the panel at the top of your screen. On the upper left, you will see your current resource supply (Food, Wood, Stone, and Metal). As each worker brings resources back to the Civic Center (or another dropsite), you will see the amount of the corresponding resource increase. This is a very important concept to keep in mind: gathered resources have to be brought back to a dropsite to be accounted, and you should always try to minimize the distance between resource and nearest dropsite to improve your gathering efficiency."
+msgstr ""
+"Mari menunggu unit dilatih.\n"
+"Selama menunggu, perhatikan panel di bagian atas layar. Di bagian kiri atas, Anda akan melihat persediaan sumber daya Anda sekarang (Makanan, Kayu, Batu, dan Logam). Setiap kali pekerja membawa kembali sumber daya ke Pusat Peradaban (atau penyimpanan lainnya), Anda akan melihat jumlah dari sumber daya yang dibawa kembali meningkat. Ini adalah konsep yang sangat penting untuk diingat: sumber daya yang dikumpulkan harus dibawa kembali ke penyimpanan agar dihitung, dan Anda harus mencoba untuk meminimalkan jarak antara sumber daya dengan penyimpanan terdekat untuk meningkatkan efisiensi pengumpulan Anda."
+
+#: maps/tutorials/starting_economy_walkthrough.js:85
+msgid ""
+"The newly trained units automatically go to the trees and start gathering Wood.\n"
+"But as they have to bring it back to the Civic Center to deposit it, their gathering efficiency suffers from the distance. To fix that, we can build a storehouse, a dropsite for Wood, Stone, and Metal, close to the trees. To do so, select your five newly trained Citizen Solders and look for the construction panel on the bottom right, click on the storehouse icon, move the mouse as close as possible to the trees you want to collect and click on a valid place to build the dropsite.\n"
+"Invalid (obstructed) positions will show the building preview overlay in red."
+msgstr ""
+"Unit yang baru dilatih tersebut akan secara otomatis bergerak menuju pohon dan mulai mengumpulkan Kayu\n"
+"Akan tetapi karena mereka harus membawanya kembali ke Pusat Peradaban, efisiensi mereka berkurang karena jarak yang jauh. Untuk memperbaikinya, Anda dapat membuat gudang, sebuah tempat penyimpanan untuk Kayu, Batu, dan Logam, yang dapat Anda buat berdekatan dengan pepohonan yang ada. Untuk melakukannya, pilihlah 5 unit Prajurit Rakyat yang baru dilatih dan lihat ke panel konstruksi di pojok kanan bawah, klik pada ikon gudang, lalu klik pada peta untuk menentukan posisi gudang yang Anda inginkan. Usahakanlah untuk membuatnya sedekat mungkin dengan pepohonan yang ingin kita tebang\n"
+"Jika lokasi yang dipilih tidak sah (terhalang) maka bayangan gedung akan menjadi merah."
+
+#: maps/tutorials/starting_economy_walkthrough.js:93
+msgid ""
+"The selected workers will automatically start constructing the building once"
+" you place the foundation."
+msgstr ""
+"Pekerja yang terpilih secara otomatis akan memulai pembangunan saat Anda "
+"meletakkan fondasinya."
+
+#: maps/tutorials/starting_economy_walkthrough.js:102
+msgid ""
+"When construction finishes, the builders default to gathering Wood automatically.\n"
+"Let's train some female workers to gather more food. Select the Civic Center and shift-click on the female citizen icon to train 5."
+msgstr ""
+"Saat pembuatan selesai, para pembangun akan mengumpulkan Kayu secara otomatis.\n"
+"Mari latih beberapa pekerja perempuan untuk mengumpulkan lebih banyak makanan. Pilih Pusat Peradaban dan shift-klik pada ikon rakyat perempuan untuk melatih 5."
+
+#: maps/tutorials/starting_economy_walkthrough.js:112
+msgid "Shift-click on the FEMALE CITIZEN icon."
+msgstr "Shift-klik pada ikon RAKYAT PEREMPUAN."
+
+#: maps/tutorials/starting_economy_walkthrough.js:120
+msgid ""
+"Let's wait for the units to be trained.\n"
+"In the meantime, we seem to have enough workers gathering Wood. We should remove the current rally-point of the Civic Center away from gathering Wood. For that purpose, right-click on the Civic Center when it is selected (and the flag icon indicating the rally-point is crossed out)."
+msgstr ""
+"Ayo kita tunggu unit untuk dilatih.\n"
+"Sambil menunggu, sepertinya unit penebang pohon kita sudah cukup banyak. Kita sebaiknya menghapus titik berkumpul Pusat Peradaban kita yang saat ini diatur untuk menebang pohon. Caranya adalah dengan menyeleksi Pusat Peradaban kita dan mengklik kanan padanya (dan ikon bendera menandakan titik berkumpul yang dicoret)."
+
+#: maps/tutorials/starting_economy_walkthrough.js:128
+msgid ""
+"The units should be ready soon.\n"
+"In the meantime, direct your attention to your population count on the top panel. It is the fifth item from the left, after the resources. It would be prudent to keep an eye on it. It indicates your current population (including those being trained) and the current population limit, which is determined by your built structures."
+msgstr ""
+"Unit Anda akan segera siap.\n"
+"Sambil menunggu, alihkan perhatian Anda ke ikon jumlah populasi di panel atas. Itu adalah ikon ke lima dari kiri, di sebelah sumber daya. Sangatlah bijak untuk selalu memperhatikannya. Angka yang ada menunjukan populasi sekarang (termasuk unit yang sedang dilatih) dan batas populasi sekarang yang ditentukan bangunan yang Anda miliki."
+
+#: maps/tutorials/starting_economy_walkthrough.js:135
+msgid ""
+"As you have nearly reached the population limit, you must increase it by building some new structures if you want to train more units. The most cost effective structure to increase your population limit is the house.\n"
+"Now that the units are ready, let's build two houses."
+msgstr ""
+"Terlihat populasi Anda sudah mendekati limit populasi, limit populasi ini harus segera Anda tambah dengan membangun bangunan tertentu supaya Anda tetap dapat melatih unit. Bangunan yang paling efektif untuk menambah populasi adalah rumah.\n"
+"Sekarang karena unit Anda telah siap, segeralah buat 2 rumah."
+
+#: maps/tutorials/starting_economy_walkthrough.js:138
+msgid ""
+"Select two of your newly trained Female Citizens and ask them to build these houses in the empty space to the east of the Civic Center. To do so, after selecting the Female Citizens, click on the house icon in the bottom right panel and shift-click on the position in the map where you want to build the first house followed by a shift-click on the position of the second house (when giving orders, shift-click put the order in the queue and the units will automatically switch to the next order in their queue when they finish their work). Press Escape to get rid of the house cursor so you don't spam houses all over the map.\n"
+"Reminder: to select only two Female Citizens, click on the first one and then shift-click on the second one to add her to the selection."
+msgstr ""
+"Pilih dua unit Rakyat Perempuan Anda yang baru dilatih dan suruh mereka untuk membuat rumah-rumah ini pada tempat kosong di sebelah timur Pusat Peradaban. Untuk melakukannya, pilih Rakyat Perempuan diikuti dengan mengklik ikon rumah pada panel konstruksi. Lanjutkan dengan menahan shift dan mengklik pada tempat yang kosong untuk meletakkan fondasi rumah pertama dan ikuti dengan fondasi rumah kedua (saat memberi perintah, menekan shift sambil mengklik akan memasukkan perintah berikutnya dalam antrian sehingga unit akan secara otomatis pindah ke pekerjaan berikut setelah pekerjaan pertama selesai). Tekanlah tombol Escape untuk menyingkirkan kursor rumah.\n"
+"Pengingar: Anda dapat menyeleksi dua Rakyat Perempuan dengan menahan shift yang dilanjutkan dengan klik pada kedua unit."
+
+#: maps/tutorials/starting_economy_walkthrough.js:147
+msgid ""
+"You may notice that berries are a finite supply of food. We will need a more lasting food source. Fields produce an unlimited food resource, but are slower to gather than forageable fruits.\n"
+"But to minimize the distance between a farm and its corresponding food dropsite, we will first build a farmstead."
+msgstr ""
+"Mungkin sekarang Anda sadar bahwa beri bukanlah sumber makanan tidak "
+"terhingga. Kita membutuhkan sumber makanan lain yang lebih tahan lama. "
+"Ladang dapat menghasilkan makanan terus menerus, akan tetapi butuh waktu "
+"lebih lama untuk dikumpulkan dibanding buah-buahan. Seperti gudang, kita "
+"akan membuat lumbung untuk mempersingkat jarak antar sumber (ladang) dan "
+"tempat penyimpanannya (lumbung)"
+
+#: maps/tutorials/starting_economy_walkthrough.js:150
+msgid ""
+"Select the three remaining (idle) Female Citizens and order them to build a farmstead in the center of the large open area to the west of the Civic Center.\n"
+"We will need a decent chunk of space around the farmstead to build fields. In addition, we can see goats on the west side to further improve our food gathering efficiency should we ever decide to hunt them.\n"
+"If you try to select the three idle Female Citizens by selection rectangle them, there is a high chance that one additional gatherers are included in your selection rectangle. To prevent that, hold the 'i' key while grabing: only idle units are then selected. If during your selection you select the cavalry which may now be idle, you can remove it by pressing the control key while clicking on its corresponding portrait in the selection panel on the bottom."
+msgstr ""
+"Pilih ketiga Rakyat Perempuan (menganggur) yang ada dan perintahkan mereka untuk membuat lumbung di tengah area besar di sebelah barat Pusat Peradaban.\n"
+"Lahan luas di sekitar lumbung akan digunakan sebagai ladang. Selain itu, dapat terlihat juga beberapa kambing di sebelah barat yang dapat Anda buru untuk makanan.\n"
+"Untuk memudahkan Anda memilih Rakyat Perempuan yang sedang menganggur, Anda dapat menahan tombol 'i' sambil menyeleksi menggunakan kotak seleksi. Jika secara tidak sengaja Anda menseleksi kavaleri, Anda bisa menahan tombol control sambil mengklik unit untuk mengeluarkan unit tersebut dari seleksi aktif."
+
+#: maps/tutorials/starting_economy_walkthrough.js:158
+msgid ""
+"When the farmstead construction is finished, its builders will automatically look for food, and in this case, they will go after the nearby goats.\n"
+"But your house builders will only look for something else to build and, if nothing found, become idle. Let's wait for them to build the houses."
+msgstr ""
+"Saat konstruksi lumbung telah selesai, pembangunnya akan secara otomatis mencari makanan, dalam kasus ini mereka akan mulai memburu kambing yang ada.\n"
+"Akan tetapi pembangun rumah Anda hanya akan mencari pekerjaan membangun lain, jika tidak menemukannya, mereka akan menganggur. Ayo tunggu mereka menyelesaikan membangun rumah."
+
+#: maps/tutorials/starting_economy_walkthrough.js:167
+msgid ""
+"When both houses are built, select your two Female Citizens and order them "
+"to build a field as close as possible to the farmstead, which is a dropsite "
+"for all types of food."
+msgstr ""
+"Saat kedua rumah terbangun, pilih kedua Rakyat Perempuan Anda dan suruh "
+"mereka untuk membangun sebuah ladang sedekat mungkin dengan lumbung, yang "
+"merupakan penyimpanan semua jenis makanan."
+
+#: maps/tutorials/starting_economy_walkthrough.js:175
+msgid ""
+"When the field is constructed, the builders will automatically start gathering it.\n"
+"The cavalry unit should have slaughtered all chicken by now. Select it and right-click on one of the goats in the west to start hunting them for food."
+msgstr ""
+"Saat konstruksi ladang telah selesai, pembangunnya akan otomatis mulai menggarapnya.\n"
+"Unit kavaleri Anda seharusnya sudah membunuh semua ayam yang ada. Pilih dan suruh mereka untuk memburu kambing di sebelah barat."
+
+#: maps/tutorials/starting_economy_walkthrough.js:184
+msgid ""
+"A field can have up to five farmers working on it. To add additional "
+"gathereres, select the Civic Center and setup a rally-point on a field by "
+"right-clicking on it. As long as the field is not yet build, new workers "
+"sent by a rally-point will help building it, while they will gather it when "
+"built."
+msgstr ""
+"Sebuah ladang bisa menampung lima petani. Seperti pada pohon sebelumnya, "
+"Anda dapat mengatur titik berkumpul Pusat Peradaban Anda pada ladang yang "
+"ada agar pekerja yang dihasilkan akan otomatis bekerja di ladang."
+
+#: maps/tutorials/starting_economy_walkthrough.js:191
+msgid "Select the Civic Center and right-click on the field."
+msgstr "Pilih Pusat Peradaban dan klik kanan pada ladang."
+
+#: maps/tutorials/starting_economy_walkthrough.js:198
+msgid ""
+"Now click three times on the female icon in the bottom right panel to train "
+"three additional farmers."
+msgstr ""
+"Sekarang klik ikon female di panel kanan sebanyak tiga kali untuk melatih "
+"tiga petani tambahan."
+
+#: maps/tutorials/starting_economy_walkthrough.js:207
+msgid "Do a simple left-click to produce a single unit."
+msgstr "Lakukan klik-kiri sederhana untuk memproduksi satu unit."
+
+#: maps/tutorials/starting_economy_walkthrough.js:208
+msgid "Click on the FEMALE CITIZEN icon."
+msgstr "Klik pada ikon RAKYAT PEREMPUAN."
+
+#: maps/tutorials/starting_economy_walkthrough.js:218
+msgid ""
+"You can increase the gather rates of your workers by researching new technologies available in some buildings.\n"
+"The farming rate, for example, can be improved with a researchable technology in the farmstead. Select the farmstead and look at its production panel on the bottom right. You will see several researchable technologies. Hover the mouse over them to see their costs and effects and click on the one you want to research."
+msgstr ""
+"Anda dapat meningkatkan laju pengumpulan pekerja Anda dengan meriset teknologi baru di beberapa bangunan.\n"
+"Contohnya, untuk meningkat efisiensi ladang, diperlukan teknologi yang dapat diriset di lumbung. Pilih lumbung Anda dan lihat pada pojok kanan bawah. Ada beberapa teknologi yang dapat anda riset. Pelajari detailnya dengan mengarahkan mouse pada ikon yang ada dan pilih salah satu yang Anda inginkan."
+
+#: maps/tutorials/starting_economy_walkthrough.js:226
+msgid ""
+"We should start preparing to phase up into 'Town Phase', which will unlock many more units and buildings. Select the Civic Center and hover the mouse over the 'Town Phase' icon to see what is still needed.\n"
+"We now have enough resources, but one structure is missing. Although this is an economic tutorial, it is nonetheless useful to be prepared for defense in case of attack, so let's build barracks.\n"
+"Select four of your soldiers and ask them to build a barracks: as before, start selecting the soldiers, click on the barracks icon in the production panel and then lay down a foundation not far from your Civic Center where you want to build."
+msgstr ""
+"Sekarang bersiaplah untuk memasuki 'Fase Kota', yang akan mengizinkan pembangunan bangunan dan pelatihan unit yang lebih banyak. Pilih Pusat Peradaban Anda dan arahkan mouse pada ikon 'Fase Kota' untuk melihat syarat yang dibutuhkan.\n"
+"Sepertinya yang kurang hanyalah satu gedung. Walaupun ini adalah tutorial ekonomi, tetaplah berguna untuk mempersiapkan pertahanan jika sewaktu-waktu diserang, jadi ayo buat barak.\n"
+"Pilihlah empat prajurit Anda dan suruh mereka membuat barak: seperti sebelumnya, mulai dengan memilih prajurit, lalu klik pada ikon barang di panel konstruksi yang dilanjutkan dengan menentukan lokasi fondasinya tidak jauh dari Pusat Peradaban Anda."
+
+#: maps/tutorials/starting_economy_walkthrough.js:235
+msgid ""
+"Let's wait for the barracks to be built. As this construction is lengthy, "
+"you can add two soldiers to build it faster. To do so, select your Civic "
+"Center and set up a rally-point on the barracks foundation by right-clicking"
+" on it (you should see a hammer icon), and then produce two more builders by"
+" clicking on the hoplite icon twice."
+msgstr ""
+"Sekarang ayo tunggu barak untuk selesai dibuat. Karena ini pekerjaan yang "
+"berat, tambahkan dua prajurit lagi untuk mempercepat pembangunannya. Caranya"
+" adalah dengan menetapkan titik berkumpul Pusat Peradaban Anda ke fondasi "
+"barak dengan klik kanan padanya (Anda seharusnya melihat ikon palu) "
+"dilanjutkan dengan melatih dua hoplite."
+
+#: maps/tutorials/starting_economy_walkthrough.js:243
+msgid ""
+"You should now be able research 'Town Phase'. Select the Civic Center and click on the technology icon.\n"
+"If you still miss some resources (icon with red overlay), wait for them to be gathered by your workers."
+msgstr ""
+"Seharusnya Anda sudah bisa melanjutkan ke 'Fase Kota'. Pilih Pusat Peradaban Anda dan klik pada ikon yang sesuai.\n"
+"Jika masih ada sumber daya yang kurang (tanda merah pada ikon), maka tunggu saja sumber daya tersebut dikumpulkan oleh pekerja Anda."
+
+#: maps/tutorials/starting_economy_walkthrough.js:251
+msgid ""
+"In later phases, you need usually Stone and Metal to build bigger structures and train better soldiers. Hence, while waiting for the research to be done, you will send half of your idle Citizen Soldiers (who have finished building the Barracks) to gather Stone and the other half to gather Metal.\n"
+"To do so, we could select three Citizen Soldiers and right-click on the Stone mine on the west of the Civic Center (a Stone cursor is shown when you hover the mouse over it while your soldiers are selected). However, these soldiers were gathering Wood, so they may still carry some Wood which would be lost when starting to gather another resource."
+msgstr ""
+"DI fase berikutnya, biasanya diperlukan Batu dan Logam untuk membangun bangunan besar dan melatih prajurit yang lebih baik. Karenanya, sambil menunggu riset untuk selesai, suruhlah Prajurit Rakyat Anda (yang baru menyelesaikan pembangunan Barak) untuk mengumpulkan Batu dan Logam.\n"
+"Untuk melakukannya, pilih Prajurit Rakyat Anda lalu klik kanan pada tambang Batu di sebelah barat Pusat Peradaban Anda (kursor mouse Anda akan berubah menjadi Batu). Anda juga bisa menyuruh penebang Kayu Anda untuk menambang, akan tetapi semua kayu yang belum disimpan di gudang akan hilang."
+
+#: maps/tutorials/starting_economy_walkthrough.js:254
+msgid ""
+"Thus, we should order them to deposit their Wood in the Civic Center along the way. To do so, we will queue orders with shift-click: select your soldiers, shift-right-click on the Civic Center to deposit their Wood and then shift-right-click on the Stone mine to gather it.\n"
+"Perform a similar order queue with the remaining soldiers and the Metal mine in the west."
+msgstr ""
+"Karenanya, kita harus menyuruh mereka menyimpan dulu Kayu yang mereka punyai di Pusat Peradaban. Untuk melakukannya, kita akan membuat antrian perintah dengan shift-klik: pilih prajurit Anda, shift-klik kanan ke Pusat Peradaban untuk menyimpan Kayu dilanjutkan dengan shift-klik kanan pada tambang Batu untuk menambangnya.\n"
+"Lakukan hal yang sama untuk prajurit sisa dan tambang Logam di sebelah barat."
+
+#: maps/tutorials/starting_economy_walkthrough.js:273
+msgid ""
+"This is the end of the walkthrough. This should give you a good idea of the "
+"basics of setting up your economy."
+msgstr ""
+"Ini adalah akhir dari tutorial ini. Seharusnya Anda sudah mengerti dasar "
+"dari mengatur ekonomi Anda."
+
+#: maps/tutorials/starting_economy_walkthrough.xml:Description:39
+msgid ""
+"This map will give a rough guide for starting the game effectively.  Early "
+"in the game the most important thing is to gather resources as fast as "
+"possible so you are able to build enough troops later."
+msgstr ""
+"Peta ini akan memberikan panduan kasar untuk memulai permainan dengan "
+"efektif. Pada awalan permainan yang paling penting adalah mengumpulkan "
+"sumberdaya secepatnya agar Anda dapat membuat prajurit cukup nanti."
+
+#: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
+msgid "Player 1"
+msgstr "Pemain 1"
+
+#: maps/tutorials/starting_economy_walkthrough.xml:Name:39
+msgid "Starting Economy Walkthrough"
+msgstr "Pengenalan Ekonomi"
