@@ -153,6 +153,10 @@ JS::HandleObject VisualReplay::ReloadReplayCache(ScriptInterface& scriptInterfac
 			// We want to save our progress in searching through the replays
 			break;
 
+		const OsPath replayFile = GetDirectoryName() / directory / L"commands.txt";
+		if (!FileExists(replayFile))
+			continue;
+
 		bool isNew = true;
 		replayCacheMap::iterator it = fileList.find(directory.string8());
 		if (it != fileList.end())
@@ -160,7 +164,7 @@ JS::HandleObject VisualReplay::ReloadReplayCache(ScriptInterface& scriptInterfac
 			if (compareFiles)
 			{
 				CFileInfo fileInfo;
-				GetFileInfo(GetDirectoryName() / directory / L"commands.txt", &fileInfo);
+				GetFileInfo(replayFile, &fileInfo);
 				if (fileInfo.Size() == it->second.second)
 					isNew = false;
 			}
@@ -174,7 +178,7 @@ JS::HandleObject VisualReplay::ReloadReplayCache(ScriptInterface& scriptInterfac
 			if (replayData.isNull())
 			{
 				CFileInfo fileInfo;
-				GetFileInfo(GetDirectoryName() / directory / L"commands.txt", &fileInfo);
+				GetFileInfo(replayFile, &fileInfo);
 				scriptInterface.Eval("({})", &replayData);
 				scriptInterface.SetProperty(replayData, "directory", directory);
 				scriptInterface.SetProperty(replayData, "fileSize", (double)fileInfo.Size());
