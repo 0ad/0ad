@@ -393,7 +393,6 @@ JS::Value VisualReplay::LoadReplayData(ScriptInterface& scriptInterface, const O
 	// Return the actual data
 	JS::RootedValue replayData(cx);
 	scriptInterface.Eval("({})", &replayData);
-	scriptInterface.SetProperty(replayData, "file", replayFile);
 	scriptInterface.SetProperty(replayData, "directory", directory);
 	scriptInterface.SetProperty(replayData, "fileSize", (double)fileSize);
 	scriptInterface.SetProperty(replayData, "attribs", attribs);
