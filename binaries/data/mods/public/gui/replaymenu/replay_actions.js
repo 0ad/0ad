@@ -160,7 +160,8 @@ function deleteReplay()
 
 	messageBox(
 		500, 200,
-		translate("Are you sure you want to delete this replay permanently?") + "\n" + escapeText(replay.file),
+		translate("Are you sure you want to delete this replay permanently?") + "\n" +
+			escapeText(Engine.GetReplayDirectoryName(replay.directory)),
 		translate("Delete replay"),
 		[translate("No"), translate("Yes")],
 		[null, function() { reallyDeleteReplay(replay.directory); }]
