@@ -46,11 +46,6 @@ m.Config = function(difficulty)
 
 	this.buildings =
 	{
-		"base": {
-			"default": [ "structures/{civ}_civil_centre" ],
-			"ptol": [ "structures/{civ}_military_colony" ],
-			"sele": [ "structures/{civ}_military_colony" ]
-		},
 		"advanced": {
 			"default": [],
 			"athen": [ "structures/{civ}_gymnasion", "structures/{civ}_prytaneion",
