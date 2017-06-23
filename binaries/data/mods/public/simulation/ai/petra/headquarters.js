@@ -1490,8 +1490,11 @@ m.HQ.prototype.checkBaseExpansion = function(gameState, queues)
 		return;
 	}
 	// then expand if we have not enough room available for buildings
-	if (this.stopBuilding.size > 1)
+	let nstopped = 0;
+	for (let stopTime of this.stopBuilding.values())
 	{
+		if (stopTime === Infinity || stopTime < gameState.ai.elapsedTime || ++nstopped < 2)
+			continue;
 		if (this.Config.debug > 2)
 			API3.warn("try to build a new base because not enough room to build " + uneval(this.stopBuilding));
 		this.buildNewBase(gameState, queues);
@@ -1514,13 +1517,29 @@ m.HQ.prototype.buildNewBase = function(gameState, queues, resource)
 		return false;
 	if (gameState.getOwnFoundations().filter(API3.Filters.byClass("CivCentre")).hasEntities() || queues.civilCentre.hasQueuedUnits())
 		return false;
-	let template = this.numActiveBase() > 0 ? this.bBase[0] : gameState.applyCiv("structures/{civ}_civil_centre");
-	if (!this.canBuild(gameState, template))
+
+	let template;
+	// We require at least one of this civ civCentre as they may allow specific units or techs
+	let hasOwnCC = false;
+	for (let ent of gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre")).values())
+	{
+		if (ent.owner() !== PlayerID || ent.templateName() !== gameState.applyCiv("structures/{civ}_civil_centre"))
+			continue;
+		hasOwnCC = true;
+		break;
+	}
+	if (hasOwnCC && this.canBuild(gameState, "structures/{civ}_military_colony"))
+		template = "structures/{civ}_military_colony";
+	else if (this.canBuild(gameState, "structures/{civ}_civil_centre"))
+		template = "structures/{civ}_civil_centre";
+	else if (!hasOwnCC && this.canBuild(gameState, "structures/{civ}_military_colony"))
+		template = "structures/{civ}_military_colony";
+	else
 		return false;
 
 	// base "-1" means new base.
 	if (this.Config.debug > 1)
-		API3.warn("new base planned with resource " + resource);
+		API3.warn("new base " + gameState.applyCiv(template) + " planned with resource " + resource);
 	queues.civilCentre.addPlan(new m.ConstructionPlan(gameState, template, { "base": -1, "resource": resource }));
 	return true;
 };
@@ -1829,12 +1848,7 @@ m.HQ.prototype.canBuild = function(gameState, structure)
 
 	let template = gameState.getTemplate(type);
 	if (!template)
-	{
 		this.stopBuilding.set(type, Infinity);
-		if (this.Config.debug > 0)
-			API3.warn("Petra error: trying to build " + structure + " for civ " + 
-			          gameState.getPlayerCiv() + " but no template found.");
-	}
 	if (!template || !template.available(gameState))
 		return false;
 
@@ -1992,7 +2006,9 @@ m.HQ.prototype.updateTerritories = function(gameState)
 	if (!expansion)
 		return;
 	// We've increased our territory, so we may have some new room to build
-	this.stopBuilding.clear();
+	for (let [type, stopTime] of this.stopBuilding)
+		if (stopTime !== Infinity)
+			this.stopBuilding.delete(type);
 	// And if sufficient expansion, check if building a new market would improve our present trade routes
 	let cellArea = this.territoryMap.cellSize * this.territoryMap.cellSize;
 	if (expansion * cellArea > 960)
@@ -2294,7 +2310,6 @@ m.HQ.prototype.Serialize = function()
 		"fortStartTime": this.fortStartTime,
 		"towerStartTime": this.towerStartTime,
 		"fortressStartTime": this.fortressStartTime,
-		"bBase": this.bBase,
 		"bAdvanced": this.bAdvanced,
 		"saveResources": this.saveResources,
 		"saveSpace": this.saveSpace,

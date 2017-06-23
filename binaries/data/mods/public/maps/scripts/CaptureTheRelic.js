@@ -50,8 +50,9 @@ Trigger.prototype.CheckCaptureTheRelicVictory = function(data)
 /**
  * Check if an individual player or team has acquired all relics.
  * Also check if the countdown needs to be stopped if a player/team no longer has all relics.
+ * Reset the countdown if any of the original allies tries to change their diplomacy with one of these allies.
  */
-Trigger.prototype.CheckCaptureTheRelicCountdown = function()
+Trigger.prototype.CheckCaptureTheRelicCountdown = function(data)
 {
 	let cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
 
@@ -67,7 +68,14 @@ Trigger.prototype.CheckCaptureTheRelicCountdown = function()
 
 		if (teamRelicsOwned == this.relics.length)
 		{
-			this.StartCaptureTheRelicCountdown(playerAndAllies);
+			if (!data ||
+			    !this.relicsVictoryCountdownPlayers.length ||
+			    this.relicsVictoryCountdownPlayers.indexOf(data.player) != -1 &&
+			    this.relicsVictoryCountdownPlayers.indexOf(data.otherPlayer) != -1)
+			{
+				this.relicsVictoryCountdownPlayers = playerAndAllies;
+				this.StartCaptureTheRelicCountdown(playerAndAllies);
+			}
 			return;
 		}
 	}
@@ -83,6 +91,7 @@ Trigger.prototype.DeleteCaptureTheRelicVictoryMessages = function()
 	let cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	cmpGuiInterface.DeleteTimeNotification(this.ownRelicsVictoryMessage);
 	cmpGuiInterface.DeleteTimeNotification(this.othersRelicsVictoryMessage);
+	this.relicsVictoryCountdownPlayers = [];
 };
 
 Trigger.prototype.StartCaptureTheRelicCountdown = function(playerAndAllies)
@@ -147,6 +156,7 @@ Trigger.prototype.StartCaptureTheRelicCountdown = function(playerAndAllies)
 	cmpTrigger.relicsVictoryTimer = undefined;
 	cmpTrigger.ownRelicsVictoryMessage = undefined;
 	cmpTrigger.othersRelicsVictoryMessage = undefined;
+	cmpTrigger.relicsVictoryCountdownPlayers = [];
 
 	cmpTrigger.DoAfterDelay(0, "InitCaptureTheRelic", {});
 	cmpTrigger.RegisterTrigger("OnDiplomacyChanged", "CheckCaptureTheRelicCountdown", { "enabled": true });
