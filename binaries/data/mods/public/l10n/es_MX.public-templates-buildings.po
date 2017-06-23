@@ -5,15 +5,15 @@
 # Translators:
 # Alfonso <pfmprogresivo@gmail.com>, 2015
 # Antonio Alvizar <alvizar1616@gmail.com>, 2015
-# Edgar Carballo Domínguez <karvayoEdgar@gmail.com>, 2015-2016
+# Edgar Carballo <karvayoEdgar@gmail.com>, 2015-2016
 # Ivan <navicgamboa@gmail.com>, 2015
 # Leonardo Mondragón <leolen5000@gmail.com>, 2017
 # Luis Gear <ancestro@outlook.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-29 09:07+0200\n"
-"PO-Revision-Date: 2017-05-29 16:12+0000\n"
+"POT-Creation-Date: 2017-06-21 09:03+0200\n"
+"PO-Revision-Date: 2017-06-21 15:05+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Spanish (Mexico) (http://www.transifex.com/wildfire-games/0ad/language/es_MX/)\n"
 "MIME-Version: 1.0\n"
@@ -40,12 +40,9 @@ msgstr "Construido para adquirir grandes pedazos de terreno. Entrena ciudadanos.
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:76
 #: simulation/templates/template_structure_civic_civil_centre.xml:38
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:12
 msgid "CivilCentre"
 msgstr "Centro cívico"
-
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:12
-msgid "Colony"
-msgstr "Colonia"
 
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:33
 #: simulation/templates/structures/ptol_military_colony.xml:9
@@ -159,7 +156,7 @@ msgstr ""
 msgid "Reinforce with stone and upgrade to a defense tower."
 msgstr "Refuerza con piedra y mejora a una torre de defensa."
 
-#: simulation/templates/template_structure_defense_wall.xml:24
+#: simulation/templates/template_structure_defense_wall.xml:26
 #: simulation/templates/structures/cart_s_wall_long.xml:7
 #: simulation/templates/structures/cart_s_wall_medium.xml:7
 #: simulation/templates/structures/cart_s_wall_short.xml:7
@@ -167,7 +164,7 @@ msgstr "Refuerza con piedra y mejora a una torre de defensa."
 msgid "Stone Wall"
 msgstr "Muralla de Piedra"
 
-#: simulation/templates/template_structure_defense_wall.xml:25
+#: simulation/templates/template_structure_defense_wall.xml:27
 #: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "Wall off your town for a stout defense."
 msgstr "Amuralla tu cuidad para una defensa sólida."
@@ -190,11 +187,11 @@ msgid ""
 "This will allow you to let units circulate through your fortifications."
 msgstr "Esto te permitirá a las unidades circular a través de tus fortificaciones."
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:50
+#: simulation/templates/template_structure_defense_wall_tower.xml:52
 msgid "Wall Turret"
 msgstr "Torreta"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:51
+#: simulation/templates/template_structure_defense_wall_tower.xml:53
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "Dispara flechas. Almacena para defender Murallas de la ciudad contra atacantes."
 
@@ -332,12 +329,12 @@ msgstr "Cría ganado para obtener alimento. Asigna aquí a animales domésticos 
 msgid "Corral"
 msgstr "Corral"
 
-#: simulation/templates/template_structure_resource_field.xml:28
 #: simulation/templates/template_structure_resource_field.xml:27
+#: simulation/templates/template_structure_resource_field.xml:26
 msgid "Field"
 msgstr "Campo"
 
-#: simulation/templates/template_structure_resource_field.xml:29
+#: simulation/templates/template_structure_resource_field.xml:28
 msgid "Harvest vegetables for food. Max gatherers: 5."
 msgstr "Cosecha vegetales para producir alimento. Recolectores máximos: 5."
 

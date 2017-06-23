@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-29 09:07+0200\n"
-"PO-Revision-Date: 2017-06-15 16:40+0000\n"
-"Last-Translator: Samuel <srandiny@gmail.com>\n"
+"POT-Creation-Date: 2017-06-21 09:03+0200\n"
+"PO-Revision-Date: 2017-06-21 15:05+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,12 +45,9 @@ msgstr "Bangun untuk memperoleh daerah teritorial yang luas. Melatih rakyat."
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:76
 #: simulation/templates/template_structure_civic_civil_centre.xml:38
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:12
 msgid "CivilCentre"
 msgstr "PusatPeradaban"
-
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:12
-msgid "Colony"
-msgstr "Koloni"
 
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:33
 #: simulation/templates/structures/ptol_military_colony.xml:9
@@ -164,7 +161,7 @@ msgstr "MenaraJaga"
 msgid "Reinforce with stone and upgrade to a defense tower."
 msgstr "Perkuat dengan batu dan tingkatkan ke menara defensif."
 
-#: simulation/templates/template_structure_defense_wall.xml:24
+#: simulation/templates/template_structure_defense_wall.xml:26
 #: simulation/templates/structures/cart_s_wall_long.xml:7
 #: simulation/templates/structures/cart_s_wall_medium.xml:7
 #: simulation/templates/structures/cart_s_wall_short.xml:7
@@ -172,7 +169,7 @@ msgstr "Perkuat dengan batu dan tingkatkan ke menara defensif."
 msgid "Stone Wall"
 msgstr "Tembok Batu"
 
-#: simulation/templates/template_structure_defense_wall.xml:25
+#: simulation/templates/template_structure_defense_wall.xml:27
 #: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "Wall off your town for a stout defense."
 msgstr "Mendindingi kota anda untuk pertahanan yang kukuh."
@@ -195,11 +192,11 @@ msgid ""
 "This will allow you to let units circulate through your fortifications."
 msgstr "Bangunan ini memperbolehkan unit Anda untuk melewati fortifikasi Anda."
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:50
+#: simulation/templates/template_structure_defense_wall_tower.xml:52
 msgid "Wall Turret"
 msgstr "Menara Tembok"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:51
+#: simulation/templates/template_structure_defense_wall_tower.xml:53
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "Menembakkan panah. Masukkan pasukan untuk mempertahankan tembok kota dari penyerang."
 
@@ -337,12 +334,12 @@ msgstr "Memelihara hewan gembala untuk makanan. Simpan hewan peliharaan di sini 
 msgid "Corral"
 msgstr "Kandang Ternak"
 
-#: simulation/templates/template_structure_resource_field.xml:28
 #: simulation/templates/template_structure_resource_field.xml:27
+#: simulation/templates/template_structure_resource_field.xml:26
 msgid "Field"
 msgstr "Ladang"
 
-#: simulation/templates/template_structure_resource_field.xml:29
+#: simulation/templates/template_structure_resource_field.xml:28
 msgid "Harvest vegetables for food. Max gatherers: 5."
 msgstr "Panen sayuran untuk makanan. Pengumpul maksimal: 5."
 
