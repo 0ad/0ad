@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-29 09:07+0200\n"
-"PO-Revision-Date: 2017-05-30 07:21+0000\n"
-"Last-Translator: Dmytro Ryl'kov <tverdislav@ukr.net>\n"
+"POT-Creation-Date: 2017-06-21 09:03+0200\n"
+"PO-Revision-Date: 2017-06-21 15:05+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -44,12 +44,9 @@ msgstr "Будуйте для захоплення великих ділянок
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:76
 #: simulation/templates/template_structure_civic_civil_centre.xml:38
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:12
 msgid "CivilCentre"
 msgstr "Громадський Центр"
-
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:12
-msgid "Colony"
-msgstr "Колонія"
 
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:33
 #: simulation/templates/structures/ptol_military_colony.xml:9
@@ -163,7 +160,7 @@ msgstr "СторожоваВежа"
 msgid "Reinforce with stone and upgrade to a defense tower."
 msgstr "Зміцніть вежі каменем та отримайте оборонну вежу"
 
-#: simulation/templates/template_structure_defense_wall.xml:24
+#: simulation/templates/template_structure_defense_wall.xml:26
 #: simulation/templates/structures/cart_s_wall_long.xml:7
 #: simulation/templates/structures/cart_s_wall_medium.xml:7
 #: simulation/templates/structures/cart_s_wall_short.xml:7
@@ -171,7 +168,7 @@ msgstr "Зміцніть вежі каменем та отримайте обо�
 msgid "Stone Wall"
 msgstr "Кам'яний мур"
 
-#: simulation/templates/template_structure_defense_wall.xml:25
+#: simulation/templates/template_structure_defense_wall.xml:27
 #: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "Wall off your town for a stout defense."
 msgstr "Оточіть своє місто муром для щільної оборони."
@@ -194,11 +191,11 @@ msgid ""
 "This will allow you to let units circulate through your fortifications."
 msgstr "Це дозволить вам надати одиниці можливість обходити ваші укріплення."
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:50
+#: simulation/templates/template_structure_defense_wall_tower.xml:52
 msgid "Wall Turret"
 msgstr "Фортечна вежа"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:51
+#: simulation/templates/template_structure_defense_wall_tower.xml:53
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "Метає стріли. Розмістіть юнітів для захисту муру від нападників."
 
@@ -336,12 +333,12 @@ msgstr "Вирощує отари для їжі. Виберіть домашні
 msgid "Corral"
 msgstr "Загін"
 
-#: simulation/templates/template_structure_resource_field.xml:28
 #: simulation/templates/template_structure_resource_field.xml:27
+#: simulation/templates/template_structure_resource_field.xml:26
 msgid "Field"
 msgstr "Поле"
 
-#: simulation/templates/template_structure_resource_field.xml:29
+#: simulation/templates/template_structure_resource_field.xml:28
 msgid "Harvest vegetables for food. Max gatherers: 5."
 msgstr "Вирощує сільгосппродукцію для їжі. Максимальна кількість збирачів: 5."
 

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-06-21 03:51+0000\n"
+"PO-Revision-Date: 2017-06-21 10:25+0000\n"
 "Last-Translator: Asakura\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -1869,16 +1869,16 @@ msgstr "Zeugítai"
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsondescription
 msgid "Hire professional mercenaries to fight in your army."
-msgstr ""
+msgstr "あなたの軍隊で戦うプロの傭兵を雇います。"
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid ""
 "Mercenaries are promoted to advanced rank but require +20% training time."
-msgstr ""
+msgstr "傭兵は上級ランクに昇進させられますが、+20% の養成時間が必要です。"
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsongenericName
 msgid "Expertise In War"
-msgstr ""
+msgstr "戦争の専門知識"
 
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsontooltip
 msgid ""
@@ -1929,13 +1929,13 @@ msgid ""
 "Carthaginians built their city walls in three concentric circuits. These "
 "walls were never breached. Even when the city was taken by the Romans, it "
 "was via the city's harbor, not by storming its walls."
-msgstr ""
+msgstr "カルタゴは三重の城壁を築きました。この壁は決して破られませんでした。ローマに都市を占領された時でさえ、港からで、壁は突破されませんでした。"
 
 #: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsontooltip
 msgid ""
 "Carthaginian walls, gates, and wall towers have 3x the health of a standard "
 "wall, but also cost twice as much and take twice as long to build."
-msgstr ""
+msgstr "カルタゴの壁、門、櫓は通常の3倍の耐久力がありますが、コストと建設時間は2倍になります。"
 
 #: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsongenericName
 msgid "Triple Walls"
@@ -2251,7 +2251,7 @@ msgstr "ケルトの建物はたいてい木造でがれきの基礎を用いて
 msgid ""
 "Celtic buildings have 20% less health, but are also 20% cheaper and faster "
 "to construct."
-msgstr ""
+msgstr "けるとの建築物は 20%耐久度が低いですが、20%安くかつ早く建設できます。"
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
 msgid "Wooden Construction"
@@ -2283,7 +2283,7 @@ msgstr "ギリシアはミケーネ文明初期から石造建設を用いまし
 msgid ""
 "All structures have 10% more health and capture points, but also take 10% "
 "longer to build."
-msgstr ""
+msgstr "すべての建築物は耐久性と占領ポイントが 10% 増加しますが、建設時間が 10% 長くなります。"
 
 #: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
 msgid "Hellenic Architecture"
@@ -2299,7 +2299,7 @@ msgstr "スパルタの陸軍は当時世界最大ではありませんでした
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
 msgid "Spartans have 10% less maximum population."
-msgstr ""
+msgstr "スパルタは最大人口が10%少ない。"
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsongenericName
 msgid "Underdogs"
@@ -2361,7 +2361,7 @@ msgstr "マウリヤ帝国は、数十の独立王国がかつてあった500万
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsontooltip
 msgid "Mauryans have a 10% higher maximum population limit."
-msgstr ""
+msgstr "マウリヤ朝は最大人口が10%大きい。"
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
 msgid "Emperor of Emperors"
@@ -2393,11 +2393,11 @@ msgstr "弓術の伝統"
 msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
 "resource in India."
-msgstr ""
+msgstr "マウリヤ朝は城壁を木で建設しました。木はインドでは豊富な自然資源でした。"
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
 msgid "Mauryan city walls have -20% less health and -20% less build time."
-msgstr ""
+msgstr "マウリヤ朝の城壁の耐久力は20%低いですが、20%早く建設できます。"
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"
@@ -2415,7 +2415,7 @@ msgstr "ペルシアは戦時に大人数の歩兵の召集を、アケメネス
 
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsontooltip
 msgid "Persians have a 10% higher maximum population limit."
-msgstr ""
+msgstr "ペルシアは最大人口が10%大きい。"
 
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
 msgid "Great King's Levy"
@@ -2429,7 +2429,7 @@ msgstr "アヌシヤ・チャンピオン歩兵の養成が2倍の速さにな�
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
 msgid "Anusiya Champion Infantry -50% train time, but also -10% health."
-msgstr ""
+msgstr "アヌシヤ・チャンピオン歩兵の養成時間が 50% 減りますが、同時に耐久力が 10% 減ります。"
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -2500,13 +2500,13 @@ msgstr "歩兵の徴兵"
 msgid ""
 "All cavalry -20% train time, but also -5% health. Unlocks Cavalry "
 "Conscription."
-msgstr ""
+msgstr "すべての騎兵の養成時間が 20% 短縮しますが、耐久力が 5% 減ります。騎兵の徴兵を研究可能にします。"
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
 msgid ""
 "All infantry -20% train time, but also -5% health. Unlocks Infantry "
 "Conscription."
-msgstr ""
+msgstr "すべての歩兵の養成時間が 20% 短縮しますが 、耐久力は 5% 減少します。歩兵の徴兵を研究可能にします。"
 
 #: simulation/data/technologies/romans/decay_logistics.jsondescription
 msgid "The Romans were masters of the logistics of warfare."
@@ -2553,7 +2553,7 @@ msgstr "アレクサンドロスに始まるギリシアの君主は多くの都
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
 msgid "Civic centers +100% health and capture points, double default arrows."
-msgstr ""
+msgstr "町の中心の耐久力と占領ポイントが100%増加し、無人時の矢の量が2倍になります。"
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"
@@ -2626,7 +2626,7 @@ msgstr "銀盾隊すなわちアルギュラスピダイはマケドニア軍の
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with greater "
 "health and armor."
-msgstr ""
+msgstr "盾持ちチャンピオン歩兵を銀盾隊に昇進させると、耐久力および装甲がアップします。"
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"
