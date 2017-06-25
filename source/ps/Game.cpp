@@ -168,9 +168,9 @@ int CGame::LoadVisualReplayData()
 	return 0;
 }
 
-bool CGame::StartVisualReplay(const std::string& replayPath)
+bool CGame::StartVisualReplay(const OsPath& replayPath)
 {
-	debug_printf("Starting to replay %s\n", replayPath.c_str());
+	debug_printf("Starting to replay %s\n", replayPath.string8().c_str());
 
 	m_IsVisualReplay = true;
 	ScriptInterface& scriptInterface = m_Simulation2->GetScriptInterface();
@@ -178,7 +178,7 @@ bool CGame::StartVisualReplay(const std::string& replayPath)
 	SetTurnManager(new CReplayTurnManager(*m_Simulation2, GetReplayLogger()));
 
 	m_ReplayPath = replayPath;
-	m_ReplayStream = new std::ifstream(m_ReplayPath.c_str());
+	m_ReplayStream = new std::ifstream(OsString(replayPath).c_str());
 
 	std::string type;
 	ENSURE((*m_ReplayStream >> type).good() && type == "start");

@@ -467,20 +467,20 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 	const bool isNonVisualReplay = args.Has("replay");
 	const bool isNonVisual = args.Has("autostart-nonvisual");
 
-	const CStr replayFile =
+	const OsPath replayFile(
 		isVisualReplay ? args.Get("replay-visual") :
-		isNonVisualReplay ? args.Get("replay") : "";
+		isNonVisualReplay ? args.Get("replay") : "");
 
 	if (isVisualReplay || isNonVisualReplay)
 	{
-		if (!FileExists(OsPath(replayFile)))
+		if (!FileExists(replayFile))
 		{
-			debug_printf("ERROR: The requested replay file '%s' does not exist!\n", replayFile.c_str());
+			debug_printf("ERROR: The requested replay file '%s' does not exist!\n", replayFile.string8().c_str());
 			return;
 		}
-		if (DirectoryExists(OsPath(replayFile)))
+		if (DirectoryExists(replayFile))
 		{
-			debug_printf("ERROR: The requested replay file '%s' is a directory!\n", replayFile.c_str());
+			debug_printf("ERROR: The requested replay file '%s' is a directory!\n", replayFile.string8().c_str());
 			return;
 		}
 	}

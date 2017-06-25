@@ -39,7 +39,7 @@ OsPath GetDirectoryName();
 /**
  * Replays the commands.txt file in the given subdirectory visually.
  */
-void StartVisualReplay(const CStrW& directory);
+void StartVisualReplay(const OsPath& directory);
 
 /**
  * Reads the replay Cache file and parses it into a jsObject
@@ -89,22 +89,22 @@ JS::Value LoadReplayData(ScriptInterface& scriptInterface, const OsPath& directo
  * @param replayFile - path to commands.txt, whose parent directory will be deleted.
  * @return true if deletion was successful, false on error
  */
-bool DeleteReplay(const CStrW& replayFile);
+bool DeleteReplay(const OsPath& replayFile);
 
 /**
  * Returns the parsed header of the replay file (commands.txt).
  */
-JS::Value GetReplayAttributes(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& directoryName);
+JS::Value GetReplayAttributes(ScriptInterface::CxPrivate* pCxPrivate, const OsPath& directoryName);
 
 /**
  * Returns whether or not the metadata / summary screen data has been saved properly when the game ended.
  */
-bool HasReplayMetadata(const CStrW& directoryName);
+bool HasReplayMetadata(const OsPath& directoryName);
 
 /**
  * Returns the metadata of a replay.
  */
-JS::Value GetReplayMetadata(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& directoryName);
+JS::Value GetReplayMetadata(ScriptInterface::CxPrivate* pCxPrivate, const OsPath& directoryName);
 
 /**
  * Saves the metadata from the session to metadata.json.

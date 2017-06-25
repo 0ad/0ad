@@ -189,7 +189,7 @@ function reallyDeleteReplay(replayDirectory)
 	var selectedIndex = replaySelection.selected;
 
 	if (!Engine.DeleteReplay(replayDirectory))
-		error(sprintf("Could not delete replay '%(id)s'", { "id": replayDirectory }));
+		error("Could not delete replay!");
 
 	// Refresh replay list
 	init();

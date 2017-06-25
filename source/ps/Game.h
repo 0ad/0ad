@@ -18,9 +18,10 @@
 #ifndef INCLUDED_GAME
 #define INCLUDED_GAME
 
-#include "ps/Errors.h"
 #include <vector>
 
+#include "ps/Errors.h"
+#include "ps/Filesystem.h"
 #include "scriptinterface/ScriptVal.h"
 #include "simulation2/helpers/Player.h"
 
@@ -91,7 +92,7 @@ public:
 	void StartGame(JS::MutableHandleValue attribs, const std::string& savedState);
 	PSRETURN ReallyStartGame();
 
-	bool StartVisualReplay(const std::string& replayPath);
+	bool StartVisualReplay(const OsPath& replayPath);
 
 	/**
 	 * Periodic heartbeat that controls the process. performs all per-frame updates.
@@ -196,7 +197,7 @@ public:
 	inline float GetSimRate() const
 	{	return m_SimRate; }
 
-	inline std::string GetReplayPath() const
+	inline OsPath GetReplayPath() const
 	{	return m_ReplayPath; }
 
 	/**
@@ -222,7 +223,7 @@ private:
 	bool m_IsSavedGame; // true if loading a saved game; false for a new game
 
 	int LoadVisualReplayData();
-	std::string m_ReplayPath;
+	OsPath m_ReplayPath;
 	bool m_IsVisualReplay;
 	std::istream* m_ReplayStream;
 	u32 m_FinalReplayTurn;
