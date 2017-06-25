@@ -1044,7 +1044,8 @@ function joinButton()
 	if (!game)
 		return;
 
-	let username = g_UserRating ? g_Username + " (" + g_UserRating + ")" : g_Username;
+	let rating = getRejoinRating(game);
+	let username = rating ? g_Username + " (" + rating + ")" : g_Username;
 
 	if (game.state == "init" || stringifiedTeamListToPlayerData(game.players).some(player => player.Name == username))
 		joinSelectedGame();
@@ -1097,10 +1098,24 @@ function joinSelectedGame()
 		"ip": ip,
 		"port": port,
 		"name": g_Username,
-		"rating": g_UserRating,
+		"rating": getRejoinRating(game),
 		"useSTUN": !!game.stunIP,
 		"hostJID": game.hostUsername + "@" + g_LobbyServer + "/0ad"
 	});
+}
+
+/**
+ * Rejoin games with the original playername, even if the rating changed meanwhile.
+ */
+function getRejoinRating(game)
+{
+	for (let player of stringifiedTeamListToPlayerData(game.players))
+	{
+		let [nick, rating] = splitRatingFromNick(player.Name);
+		if (nick == g_Username)
+			return rating;
+	}
+	return g_UserRating;
 }
 
 /**
