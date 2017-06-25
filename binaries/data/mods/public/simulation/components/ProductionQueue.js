@@ -261,6 +261,12 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 
 		if (type == "unit")
 		{
+			if (!Number.isInteger(count) || count <= 0)
+			{
+				error("Invalid batch count " + count);
+				return;
+			}
+
 			// Find the template data so we can determine the build costs
 			var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 			var template = cmpTemplateManager.GetTemplate(templateName);
