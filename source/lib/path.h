@@ -1,4 +1,4 @@
-/* Copyright (c) 2013 Wildfire Games
+/* Copyright (c) 2017 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -135,11 +135,20 @@ public:
 	 */
 	std::string string8() const
 	{
-		// TODO: On Unixes, this will only be correct for ASCII or ISO-8859-1
-		// encoded paths; we should probably assume UTF-8 encoding by default
-		// (but take care to handle non-valid-UTF-8 paths safely).
+		Status err;
+#if !OS_WIN
+		// On Unix, assume paths consisting of 8-bit charactes saved in this wide string.
+		std::string spath(path.begin(), path.end());
 
-		return utf8_from_wstring(path);
+		// Return it if it's valid UTF-8
+		wstring_from_utf8(spath, &err);
+		if(err == INFO::OK)
+			return spath;
+
+		// Otherwise assume ISO-8859-1 and let utf8_from_wstring treat each character as a Unicode code point.
+#endif
+		// On Windows, paths are UTF-16 strings. We don't support non-BMP characters so we can assume it's simply a wstring.
+		return utf8_from_wstring(path, &err);
 	}
 
 	bool operator<(const Path& rhs) const
