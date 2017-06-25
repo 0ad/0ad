@@ -690,7 +690,7 @@ function selectGameFromPlayername(playerName)
 	for (let i = 0; i < g_GameList.length; ++i)
 		for (let player of stringifiedTeamListToPlayerData(g_GameList[i].players))
 		{
-			let [nick, rating] = splitRatingFromNick(player.Name);
+			let nick = splitRatingFromNick(player.Name)[0];
 			if (playerName != nick)
 				continue;
 
@@ -883,16 +883,17 @@ function updateGameList()
 			let [nick, rating] = splitRatingFromNick(player.Name);
 
 			if (player.Team != "observer")
-				playerRatings.push(rating);
+				playerRatings.push(rating || g_DefaultLobbyRating);
 
 			// Sort games with playing buddies above games with spectating buddies
 			if (game.hasBuddies < 2 && g_Buddies.indexOf(nick) != -1)
 				game.hasBuddies = player.Team == "observer" ? 1 : 2;
 		}
-			game.gameRating =
-				playerRatings.length ?
-					Math.round(playerRatings.reduce((sum, current) => sum + current) / playerRatings.length) :
-					g_DefaultLobbyRating;
+
+		game.gameRating =
+			playerRatings.length ?
+				Math.round(playerRatings.reduce((sum, current) => sum + current) / playerRatings.length) :
+				g_DefaultLobbyRating;
 
 		return game;
 	}).filter(game => !filterGame(game)).sort((a, b) => {

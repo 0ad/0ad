@@ -23,7 +23,7 @@ function splitRatingFromNick(playerName)
 	let result = /^(\S+)\ \((\d+)\)$/g.exec(playerName);
 
 	if (!result)
-		return [playerName, g_DefaultLobbyRating];
+		return [playerName, ""];
 
 	return [result[1], +result[2]];
 }
