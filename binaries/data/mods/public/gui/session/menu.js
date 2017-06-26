@@ -29,6 +29,7 @@ const STEP = 5;
 const g_IdleTraderTextColor = "orange";
 
 /**
+ * The barter constants should match with the simulation
  * Quantity of goods to sell per click.
  */
 const g_BarterResourceSellQuantity = 100;
