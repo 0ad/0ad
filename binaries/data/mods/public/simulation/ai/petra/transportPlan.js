@@ -317,7 +317,7 @@ m.TransportPlan.prototype.onBoarding = function(gameState)
 							ent.garrison(ship, true);
 						}
 						else			// wait for the ship
-							ent.move(self.boardingPos[shipId][0], self.boardingPos[shipId][1]);
+							ent.moveToRange(self.boardingPos[shipId][0], self.boardingPos[shipId][1], 0, 15);
 					}
 					else
 						self.nTry[ent.id()] = 0;
