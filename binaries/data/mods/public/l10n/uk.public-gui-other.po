@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:02+0200\n"
-"PO-Revision-Date: 2017-06-05 15:35+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-06-25 15:05+0000\n"
+"Last-Translator: Dmytro Ryl'kov <tverdislav@ukr.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -78,7 +78,7 @@ msgstr "Таб"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait..."
-msgstr ""
+msgstr "%(url)s відкривається\nв браузері за умовчуванням. Будь ласка зачекайте...."
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
@@ -301,11 +301,11 @@ msgstr "Кількість реліквій"
 
 #: gui/common/gamedescription.js:267
 msgid "Hero Garrison"
-msgstr ""
+msgstr "Герой у гарнізоні"
 
 #: gui/common/gamedescription.js:268
 msgid "Heroes can be garrisoned."
-msgstr ""
+msgstr "Герої можуть бути розміщені у гарнізоні."
 
 #: gui/common/gamedescription.js:272
 msgid "Exposed Heroes"
@@ -372,9 +372,9 @@ msgstr "відключено"
 #: gui/common/gamedescription.js:313
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Першу хвилину, інший гравець залишається нейтральним."
+msgstr[1] "У першу хвилину, інші гравці залишаються нейтральними."
+msgstr[2] "Перших %(min)s хвилин, інші гравці залишаються нейтральними."
 
 #: gui/common/gamedescription.js:321
 msgid "Map Name"
@@ -411,12 +411,12 @@ msgstr "Ліміт населення"
 
 #: gui/common/gamedescription.js:373
 msgid "Treasures"
-msgstr ""
+msgstr "Скарби"
 
 #: gui/common/gamedescription.js:375
 msgctxt "treasures"
 msgid "Disabled"
-msgstr ""
+msgstr "Відключено"
 
 #: gui/common/gamedescription.js:376
 msgctxt "treasures"
@@ -2586,7 +2586,7 @@ msgstr ""
 #: gui/options/options.jsongeneralSetting[13].parameters.list[2].label
 #: gui/options/options.jsongeneralSetting[14].parameters.list[2].label
 msgid "Disabled"
-msgstr ""
+msgstr "Відключено"
 
 #: gui/options/options.jsongeneralSetting[13].tooltip
 msgid ""
