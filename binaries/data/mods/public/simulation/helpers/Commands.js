@@ -260,6 +260,12 @@ var g_Commands = {
 
 	"train": function(player, cmd, data)
 	{
+		if (!Number.isInteger(cmd.count) || cmd.count <= 0)
+		{
+			warn("Invalid command: can't train " + uneval(cmd.count) + " units");
+			return;
+		}
+
 		// Check entity limits
 		var template = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager).GetTemplate(cmd.template);
 		var unitCategory = null;

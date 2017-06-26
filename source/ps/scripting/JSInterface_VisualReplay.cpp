@@ -60,7 +60,7 @@ void JSI_VisualReplay::AddReplayToCache(ScriptInterface::CxPrivate* pCxPrivate, 
 
 CStrW JSI_VisualReplay::GetReplayDirectoryName(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const CStrW& directoryName)
 {
-	return OsPath(VisualReplay::GetDirectoryName() / directoryName).string();
+	return wstring_from_utf8(OsPath(VisualReplay::GetDirectoryName() / directoryName).string8());
 }
 
 void JSI_VisualReplay::RegisterScriptFunctions(ScriptInterface& scriptInterface)

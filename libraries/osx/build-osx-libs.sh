@@ -20,7 +20,7 @@
 #
 # --------------------------------------------------------------
 # Library versions for ease of updating:
-ZLIB_VERSION="zlib-1.2.8"
+ZLIB_VERSION="zlib-1.2.11"
 CURL_VERSION="curl-7.46.0"
 ICONV_VERSION="libiconv-1.14"
 XML2_VERSION="libxml2-2.9.3"

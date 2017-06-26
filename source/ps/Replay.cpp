@@ -106,11 +106,11 @@ CReplayPlayer::~CReplayPlayer()
 	delete m_Stream;
 }
 
-void CReplayPlayer::Load(const std::string& path)
+void CReplayPlayer::Load(const OsPath& path)
 {
 	ENSURE(!m_Stream);
 
-	m_Stream = new std::ifstream(path.c_str());
+	m_Stream = new std::ifstream(OsString(path).c_str());
 	ENSURE(m_Stream->good());
 }
 

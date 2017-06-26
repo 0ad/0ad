@@ -211,7 +211,7 @@ std::wstring GetCurrentReplayDirectory(ScriptInterface::CxPrivate* UNUSED(pCxPri
 		return std::wstring();
 
 	if (g_Game->IsVisualReplay())
-		return OsPath(g_Game->GetReplayPath()).Parent().Filename().string();
+		return g_Game->GetReplayPath().Parent().Filename().string();
 
 	return g_Game->GetReplayLogger().GetDirectory().Filename().string();
 }

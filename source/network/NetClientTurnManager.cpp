@@ -143,7 +143,7 @@ void CNetClientTurnManager::OnSyncError(u32 turn, const CStr& expectedHash, cons
 	scriptInterface.SetProperty(msg, "players", playerNamesStrings);
 	scriptInterface.SetProperty(msg, "expectedHash", expectedHashHex);
 	scriptInterface.SetProperty(msg, "hash", Hexify(hash));
-	scriptInterface.SetProperty(msg, "path_oos_dump", path.string8());
-	scriptInterface.SetProperty(msg, "path_replay", m_Replay.GetDirectory().string8());
+	scriptInterface.SetProperty(msg, "path_oos_dump", wstring_from_utf8(path.string8()));
+	scriptInterface.SetProperty(msg, "path_replay", wstring_from_utf8(m_Replay.GetDirectory().string8()));
 	m_NetClient.PushGuiMessage(msg);
 }

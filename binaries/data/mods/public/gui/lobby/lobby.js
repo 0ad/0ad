@@ -690,7 +690,7 @@ function selectGameFromPlayername(playerName)
 	for (let i = 0; i < g_GameList.length; ++i)
 		for (let player of stringifiedTeamListToPlayerData(g_GameList[i].players))
 		{
-			let [nick, rating] = splitRatingFromNick(player.Name);
+			let nick = splitRatingFromNick(player.Name)[0];
 			if (playerName != nick)
 				continue;
 
@@ -883,16 +883,17 @@ function updateGameList()
 			let [nick, rating] = splitRatingFromNick(player.Name);
 
 			if (player.Team != "observer")
-				playerRatings.push(rating);
+				playerRatings.push(rating || g_DefaultLobbyRating);
 
 			// Sort games with playing buddies above games with spectating buddies
 			if (game.hasBuddies < 2 && g_Buddies.indexOf(nick) != -1)
 				game.hasBuddies = player.Team == "observer" ? 1 : 2;
 		}
-			game.gameRating =
-				playerRatings.length ?
-					Math.round(playerRatings.reduce((sum, current) => sum + current) / playerRatings.length) :
-					g_DefaultLobbyRating;
+
+		game.gameRating =
+			playerRatings.length ?
+				Math.round(playerRatings.reduce((sum, current) => sum + current) / playerRatings.length) :
+				g_DefaultLobbyRating;
 
 		return game;
 	}).filter(game => !filterGame(game)).sort((a, b) => {
@@ -1043,7 +1044,8 @@ function joinButton()
 	if (!game)
 		return;
 
-	let username = g_UserRating ? g_Username + " (" + g_UserRating + ")" : g_Username;
+	let rating = getRejoinRating(game);
+	let username = rating ? g_Username + " (" + rating + ")" : g_Username;
 
 	if (game.state == "init" || stringifiedTeamListToPlayerData(game.players).some(player => player.Name == username))
 		joinSelectedGame();
@@ -1096,10 +1098,24 @@ function joinSelectedGame()
 		"ip": ip,
 		"port": port,
 		"name": g_Username,
-		"rating": g_UserRating,
+		"rating": getRejoinRating(game),
 		"useSTUN": !!game.stunIP,
 		"hostJID": game.hostUsername + "@" + g_LobbyServer + "/0ad"
 	});
+}
+
+/**
+ * Rejoin games with the original playername, even if the rating changed meanwhile.
+ */
+function getRejoinRating(game)
+{
+	for (let player of stringifiedTeamListToPlayerData(game.players))
+	{
+		let [nick, rating] = splitRatingFromNick(player.Name);
+		if (nick == g_Username)
+			return rating;
+	}
+	return g_UserRating;
 }
 
 /**
