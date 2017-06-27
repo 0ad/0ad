@@ -100,7 +100,7 @@ void CTexturedLineRData::Update(const SOverlayTexturedLine& line)
 
 	CVector3D p0;
 	CVector3D p1(line.m_Coords[0], 0, line.m_Coords[1]);
-	CVector3D p2(line.m_Coords[(1 % n)*2], 0, line.m_Coords[(1 % n)*2+1]);
+	CVector3D p2(line.m_Coords[2], 0, line.m_Coords[3]);
 
 	if (closed)
 		// grab the ending point so as to close the loop
@@ -160,7 +160,7 @@ void CTexturedLineRData::Update(const SOverlayTexturedLine& line)
 			b *= line.m_Thickness / l;
 
 		// Push vertices and indices for each quad in GL_TRIANGLES order. The two triangles of each quad are indexed using
-		// the winding orders (BR, BL, TR) and (TR, BL, TR) (where BR is bottom-right of this iteration's quad, TR top-right etc).
+		// the winding orders (BR, BL, TR) and (TR, BL, TL) (where BR is bottom-right of this iteration's quad, TR top-right etc).
 		SVertex vertex1(p1 + b + norm*OverlayRenderer::OVERLAY_VOFFSET, 0.f, v);
 		SVertex vertex2(p1 - b + norm*OverlayRenderer::OVERLAY_VOFFSET, 1.f, v);
 		vertices.push_back(vertex1);
@@ -224,13 +224,32 @@ void CTexturedLineRData::Update(const SOverlayTexturedLine& line)
 	if (closed)
 	{
 		// close the path
-		indices.push_back(vertices.size()-2);
-		indices.push_back(vertices.size()-1);
-		indices.push_back(0);
+		if (n % 2 == 0)
+		{
+			indices.push_back(vertices.size()-2);
+			indices.push_back(vertices.size()-1);
+			indices.push_back(0);
 
-		indices.push_back(0);
-		indices.push_back(vertices.size()-1);
-		indices.push_back(1);
+			indices.push_back(0);
+			indices.push_back(vertices.size()-1);
+			indices.push_back(1);
+		}
+		else
+		{
+			// add two vertices to have the good UVs for the last quad
+			SVertex vertex1(vertices[0].m_Position, 0.f, 1.f);
+			SVertex vertex2(vertices[1].m_Position, 1.f, 1.f);
+			vertices.push_back(vertex1);
+			vertices.push_back(vertex2);
+
+			indices.push_back(vertices.size()-4);
+			indices.push_back(vertices.size()-3);
+			indices.push_back(vertices.size()-2);
+
+			indices.push_back(vertices.size()-2);
+			indices.push_back(vertices.size()-3);
+			indices.push_back(vertices.size()-1);
+		}
 	}
 	else
 	{

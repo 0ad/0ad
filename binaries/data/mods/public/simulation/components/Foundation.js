@@ -1,7 +1,7 @@
 function Foundation() {}
 
 Foundation.prototype.Schema =
-	"<a:component type='internal'/><empty/>";
+	"<empty/>";
 
 Foundation.prototype.Init = function()
 {
@@ -268,8 +268,7 @@ Foundation.prototype.Build = function(builderEnt, work)
 		error("Foundation " + this.entity + " does not have a health component.");
 		return;
 	}
-	var maxHealth = cmpHealth.GetMaxHitpoints();
-	var deltaHP = Math.max(work, Math.min(maxHealth, work * this.GetBuildRate() * this.buildMultiplier));
+	var deltaHP = work * this.GetBuildRate() * this.buildMultiplier;
 	if (deltaHP > 0)
 		cmpHealth.Increase(deltaHP);
 

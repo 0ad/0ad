@@ -87,6 +87,8 @@ Barter.prototype.ExchangeResources = function(playerEntity, resourceToSell, reso
 		warn("ExchangeResources: player has no markets");
 		return;
 	}
+	if (amount != 100 && amount != 500)
+		return;
 
 	var cmpPlayer = Engine.QueryInterface(playerEntity, IID_Player);
 	var prices = this.GetPrices(playerEntity);
@@ -96,7 +98,6 @@ Barter.prototype.ExchangeResources = function(playerEntity, resourceToSell, reso
 	{
 		var amountToAdd = Math.round(prices["sell"][resourceToSell] / prices["buy"][resourceToBuy] * amount);
 		cmpPlayer.AddResource(resourceToBuy, amountToAdd);
-		var numberOfDeals = Math.round(amount / 100);
 
 		// Display chat message to observers
 		var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
@@ -117,11 +118,12 @@ Barter.prototype.ExchangeResources = function(playerEntity, resourceToSell, reso
 			cmpStatisticsTracker.IncreaseResourcesBoughtCounter(resourceToBuy, amountToAdd);
 		}
 
+		let difference = this.DIFFERENCE_PER_DEAL * amount / 100;
 		// Increase price difference for both exchange resources.
 		// Overall price difference (dynamic +/- constant) can't exceed +-99%.
-		this.priceDifferences[resourceToSell] -= this.DIFFERENCE_PER_DEAL * numberOfDeals;
+		this.priceDifferences[resourceToSell] -= difference;
 		this.priceDifferences[resourceToSell] = Math.min(99 - this.CONSTANT_DIFFERENCE, Math.max(this.CONSTANT_DIFFERENCE - 99, this.priceDifferences[resourceToSell]));
-		this.priceDifferences[resourceToBuy] += this.DIFFERENCE_PER_DEAL * numberOfDeals;
+		this.priceDifferences[resourceToBuy] += difference;
 		this.priceDifferences[resourceToBuy] = Math.min(99 - this.CONSTANT_DIFFERENCE, Math.max(this.CONSTANT_DIFFERENCE - 99, this.priceDifferences[resourceToBuy]));
 	}
 

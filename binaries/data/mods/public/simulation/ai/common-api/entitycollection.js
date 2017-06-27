@@ -153,6 +153,13 @@ m.EntityCollection.prototype.move = function(x, z, queued)
 	return this;
 };
 
+m.EntityCollection.prototype.moveToRange = function(x, z, min, max, queued)
+{
+	queued = queued || false;
+	Engine.PostCommand(PlayerID,{"type": "walk-to-range", "entities": this.toIdArray(), "x": x, "z": z, "min": min, "max": max, "queued": queued });
+	return this;
+};
+
 m.EntityCollection.prototype.attackMove = function(x, z, targetClasses, queued)
 {
 	queued = queued || false;

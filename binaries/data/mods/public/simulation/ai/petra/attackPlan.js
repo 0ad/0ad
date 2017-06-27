@@ -1154,7 +1154,7 @@ m.AttackPlan.prototype.StartAttack = function(gameState)
 				return false;
 			}
 			this.state = "walking";
-			this.unitCollection.move(this.path[0][0], this.path[0][1]);
+			this.unitCollection.moveToRange(this.path[0][0], this.path[0][1], 0, 15);
 		}
 		else
 		{
@@ -1752,7 +1752,7 @@ m.AttackPlan.prototype.UpdateWalking = function(gameState, events)
 	{
 		this.path.shift();
 		if (this.path.length)
-			this.unitCollection.move(this.path[0][0], this.path[0][1]);
+			this.unitCollection.moveToRange(this.path[0][0], this.path[0][1], 0, 15);
 		else
 		{
 			if (this.Config.debug > 1)
@@ -1865,7 +1865,7 @@ m.AttackPlan.prototype.Abort = function(gameState)
 			if (ent.getMetadata(PlayerID, "role") === "attack")
 				ent.stopMoving();
 			if (withdrawal)
-				ent.move(rallyPoint[0], rallyPoint[1]);
+				ent.moveToRange(rallyPoint[0], rallyPoint[1], 0, 15);
 			this.removeUnit(ent);
 		}
 	}

@@ -120,14 +120,24 @@ TS_ASSERT_UNEVAL_EQUALS(cmpBarter.priceDifferences, { "wood": -cmpBarter.DIFFERE
 TS_ASSERT_EQUALS(sold, 100);
 TS_ASSERT_EQUALS(bought, Math.round(100 * (100 - cmpBarter.CONSTANT_DIFFERENCE + 0) / (100 + cmpBarter.CONSTANT_DIFFERENCE + 0)));
 
-// With an amount which is not a multiple of 100, price differences are not updated. That sounds wrong.
+// Amount which is not 100 or 500 is invalid.
 cmpBarter.priceDifferences = { "wood": 0, "stone": 0, "metal": 0 };
 cmpBarter.ExchangeResources(11, "wood", "stone", 40);
-TS_ASSERT_EQUALS(cmpBarter.restoreTimer, 7);
-TS_ASSERT(timerActivated);
+bought = 0;
+sold = 0;
+timerActivated = false;
+TS_ASSERT(!timerActivated);
 TS_ASSERT_UNEVAL_EQUALS(cmpBarter.priceDifferences, { "wood": 0, "stone": 0, "metal": 0 });
-TS_ASSERT_EQUALS(sold, 40);
-TS_ASSERT_EQUALS(bought, Math.round(40 * (100 - cmpBarter.CONSTANT_DIFFERENCE + 0) / (100 + cmpBarter.CONSTANT_DIFFERENCE + 0)));
+TS_ASSERT_EQUALS(sold, 0);
+TS_ASSERT_EQUALS(bought, 0);
+
+// Amount which is NaN is invalid.
+cmpBarter.priceDifferences = { "wood": 0, "stone": 0, "metal": 0 };
+cmpBarter.ExchangeResources(11, "wood", "stone", NaN);
+TS_ASSERT(!timerActivated);
+TS_ASSERT_UNEVAL_EQUALS(cmpBarter.priceDifferences, { "wood": 0, "stone": 0, "metal": 0 });
+TS_ASSERT_EQUALS(sold, 0);
+TS_ASSERT_EQUALS(bought, 0);
 
 cmpBarter.priceDifferences = { "wood": 0, "stone": 99 - cmpBarter.CONSTANT_DIFFERENCE, "metal": 0 };
 cmpBarter.ExchangeResources(11, "wood", "stone", 100);
