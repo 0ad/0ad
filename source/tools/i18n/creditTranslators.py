@@ -35,7 +35,7 @@ import json, os, glob, re
 langs = {
     'bg': 'Български',
     'ca': 'Català',
-    'cs': 'Ceština',
+    'cs': 'Čeština',
     'de': 'Deutsch',
     'en_GB': 'English (UK)',
     'es': 'Español',
