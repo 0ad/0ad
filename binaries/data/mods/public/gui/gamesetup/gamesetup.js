@@ -408,8 +408,9 @@ var g_OptionOrderInit = {
  * colors       - Optional array of colors to tint the according dropdown items with.
  * hidden       - If hidden, both the label and dropdown won't be visible. (default: false)
  * enabled      - Only the label will be shown if the setting is disabled. (default: true)
- * autocomplete - Whether to autocomplete translated values of the string. (default: false)
- *                If disabled, still autocompletes the translated title of the setting.
+ * autocomplete - Marks whether to autocomplete translated values of the string. (default: undefined)
+ *                If not undefined, must be a number that denotes the priority (higher numbers come first).
+ *                If undefined, still autocompletes the translated title of the setting.
  */
 var g_Dropdowns = {
 	"mapType": {
@@ -433,7 +434,7 @@ var g_Dropdowns = {
 
 			reloadMapFilterList();
 		},
-		"autocomplete": true,
+		"autocomplete": 0,
 	},
 	"mapFilter": {
 		"title": () => translate("Map Filter"),
@@ -448,7 +449,7 @@ var g_Dropdowns = {
 			delete g_GameAttributes.map;
 			reloadMapList();
 		},
-		"autocomplete": true,
+		"autocomplete": 0,
 	},
 	"mapSelection": {
 		"title": () => translate("Select Map"),
@@ -462,7 +463,7 @@ var g_Dropdowns = {
 		"select": (idx) => {
 			selectMap(g_MapSelectionList.file[idx]);
 		},
-		"autocomplete": true,
+		"autocomplete": 0,
 	},
 	"mapSize": {
 		"title": () => translate("Map Size"),
@@ -476,7 +477,7 @@ var g_Dropdowns = {
 			g_GameAttributes.settings.Size = g_MapSizes.Tiles[idx];
 		},
 		"hidden": () => g_GameAttributes.mapType != "random",
-		"autocomplete": true,
+		"autocomplete": 0,
 	},
 	"numPlayers": {
 		"title": () => translate("Number of Players"),
@@ -542,7 +543,7 @@ var g_Dropdowns = {
 			g_GameAttributes.settings.StartingResources = g_StartingResources.Resources[idx];
 		},
 		"hidden": () => g_GameAttributes.mapType == "scenario",
-		"autocomplete": true,
+		"autocomplete": 0,
 	},
 	"ceasefire": {
 		"title": () => translate("Ceasefire"),
@@ -570,7 +571,7 @@ var g_Dropdowns = {
 			g_GameAttributes.settings.VictoryScripts = g_VictoryConditions.Scripts[idx];
 		},
 		"enabled": () => g_GameAttributes.mapType != "scenario",
-		"autocomplete": true,
+		"autocomplete": 0,
 	},
 	"relicCount": {
 		"title": () => translate("Relic Count"),
@@ -653,7 +654,7 @@ var g_PlayerDropdowns = {
 			else
 				swapPlayers(choice.substr("guid:".length), idx);
 		},
-		"autocomplete": true,
+		"autocomplete": 100,
 	},
 	"playerTeam": {
 		"labels": (idx) => g_PlayerTeamList.label,
@@ -678,7 +679,7 @@ var g_PlayerDropdowns = {
 			g_GameAttributes.settings.PlayerData[idx].Civ = g_PlayerCivList.code[selectedIdx];
 		},
 		"enabled": () => g_GameAttributes.mapType != "scenario",
-		"autocomplete": true,
+		"autocomplete": 0,
 	},
 	"playerColorPicker": {
 		"labels": (idx) => g_PlayerColorPickerList.map(color => "■"),
@@ -2304,16 +2305,27 @@ function sendRegisterGameStanza()
 	g_GameStanzaTimer = setTimeout(sendRegisterGameStanzaImmediate, g_GameStanzaTimeout * 1000);
 }
 
+/**
+ * Figures out all strings that can be autocompleted and sorts
+ * them by priority (so that playernames are always autocompleted first).
+ */
 function updateAutocompleteEntries()
 {
-	g_Autocomplete = [];
+	let autocomplete = { "0": [] };
 
 	for (let control of [g_Dropdowns, g_Checkboxes])
 		for (let name in control)
-			g_Autocomplete = g_Autocomplete.concat(control[name].title());
+			autocomplete[0] = autocomplete[0].concat(control[name].title());
 
 	for (let dropdown of [g_Dropdowns, g_PlayerDropdowns])
 		for (let name in dropdown)
-			if (dropdown[name].autocomplete)
-				g_Autocomplete = g_Autocomplete.concat(dropdown[name].labels());
+		{
+			let priority = dropdown[name].autocomplete;
+			if (priority === undefined)
+				continue;
+
+			autocomplete[priority] = (autocomplete[priority] || []).concat(dropdown[name].labels());
+		}
+
+	g_Autocomplete = Object.keys(autocomplete).sort().reverse().reduce((all, priority) => all.concat(autocomplete[priority]), []);
 }
