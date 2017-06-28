@@ -368,7 +368,7 @@ Player.prototype.SetTradingGoods = function(tradingGoods)
 	let sumProba = 0;
 	for (let resource in tradingGoods)
 	{
-		if (resCodes.indexOf(resource) == -1)
+		if (resCodes.indexOf(resource) == -1 || tradingGoods[resource] < 0)
 		{
 			error("Invalid trading goods: " + uneval(tradingGoods));
 			return;
@@ -802,9 +802,17 @@ Player.prototype.TributeResource = function(player, amounts)
 	if (this.state != "active" || cmpPlayer.state != "active")
 		return;
 
+	for (let resCode in amounts)
+		if (Resources.GetCodes().indexOf(resCode) == -1 ||
+		    !Number.isInteger(amounts[resCode]) ||
+		    amounts[resCode] < 0)
+		{
+			warn("Invalid tribute amounts: " + uneval(amounts));
+			return;
+		}
+
 	if (!this.SubtractResourcesOrNotify(amounts))
 		return;
-
 	cmpPlayer.AddResources(amounts);
 
 	var total = Object.keys(amounts).reduce((sum, type) => sum + amounts[type], 0);
