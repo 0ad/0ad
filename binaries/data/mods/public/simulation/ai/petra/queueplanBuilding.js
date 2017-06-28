@@ -74,7 +74,7 @@ m.ConstructionPlan.prototype.start = function(gameState)
 	else
 		this.metadata.access = gameState.ai.accessibility.getAccessValue([pos.x, pos.z]);
 
-	if (this.template.buildCategory() === "Dock")
+	if (this.template.buildPlacementType() === "shore")
 	{
 		// adjust a bit the position if needed
 		let cosa = Math.cos(pos.angle);
@@ -106,7 +106,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 {
 	let template = this.template;
 
-	if (template.buildCategory() === "Dock")
+	if (template.buildPlacementType() === "shore")
 		return this.findDockPosition(gameState);
 
 	if (template.hasClass("Storehouse") && this.metadata.base)
@@ -301,7 +301,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	// also not for fields who can be stacked quite a bit
 
 	let obstructions = m.createObstructionMap(gameState, 0, template);
-	//obstructions.dumpIm(template.buildCategory() + "_obstructions.png");
+	//obstructions.dumpIm(template.buildPlacementType() + "_obstructions.png");
 
 	let radius = 0;
 	if (template.hasClass("Fortress") || this.type === gameState.applyCiv("structures/{civ}_siege_workshop") ||
@@ -360,7 +360,7 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 	let territoryMap = gameState.ai.HQ.territoryMap;
 
 	let obstructions = m.createObstructionMap(gameState, 0, template);
-	//obstructions.dumpIm(template.buildCategory() + "_obstructions.png");
+	//obstructions.dumpIm(template.buildPlacementType() + "_obstructions.png");
 
 	let bestIdx;
 	let bestJdx;

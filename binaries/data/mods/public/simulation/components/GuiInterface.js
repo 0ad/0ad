@@ -1690,7 +1690,7 @@ GuiInterface.prototype.GetFoundationSnapData = function(player, data)
 			return minDistEntitySnapData;
 	}
 
-	if (template.BuildRestrictions.Category == "Dock")
+	if (template.BuildRestrictions.PlacementType == "shore")
 	{
 		let angle = GetDockAngle(template, data.x, data.z);
 		if (angle !== undefined)

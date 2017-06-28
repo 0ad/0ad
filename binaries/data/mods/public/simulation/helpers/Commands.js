@@ -1018,7 +1018,7 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 	// If it's a dock, get the right angle.
 	var template = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager).GetTemplate(cmd.template);
 	var angle = cmd.angle;
-	if (template.BuildRestrictions.Category === "Dock")
+	if (template.BuildRestrictions.PlacementType === "shore")
 	{
 		let angleDock = GetDockAngle(template, cmd.x, cmd.z);
 		if (angleDock !== undefined)
