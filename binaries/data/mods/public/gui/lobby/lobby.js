@@ -202,12 +202,8 @@ var g_NetMessageTypes = {
 				"isSpecial": true
 			});
 
-			// Update status information if that player is selected
 			if (g_SelectedPlayer == msg.text)
-			{
-				let playersBox = Engine.GetGUIObjectByName("playersBox");
-				playersBox.selected = playersBox.list.indexOf(g_SelectedPlayer);
-			}
+				updateUserRoleText(g_SelectedPlayer);
 		},
 		"nick": msg => {
 			addChatMessage({
@@ -563,9 +559,6 @@ function updatePlayerList()
 	let sortBy = playersBox.selected_column || "name";
 	let sortOrder = playersBox.selected_column_order || 1;
 
-	if (playersBox.selected > -1)
-		g_SelectedPlayer = playersBox.list[playersBox.selected];
-
 	let buddyStatusList = [];
 	let playerList = [];
 	let presenceList = [];
@@ -635,9 +628,7 @@ function updatePlayerList()
 	playersBox.list_rating = ratingList;
 	playersBox.list = nickList;
 
-	// To reduce rating-server load, only send the GUI event if the selection actually changed
-	if (playersBox.selected != playersBox.list.indexOf(g_SelectedPlayer))
-		playersBox.selected = playersBox.list.indexOf(g_SelectedPlayer);
+	playersBox.selected = playersBox.list.indexOf(g_SelectedPlayer);
 }
 
 /**
@@ -669,21 +660,14 @@ function toggleBuddy()
 }
 
 /**
- * Select the game listing the selected player when toggling the open games filter.
- */
-function selectGameFromSelectedPlayername()
-{
-	let playerList = Engine.GetGUIObjectByName("playersBox");
-	if (playerList.selected >= 0)
-		selectGameFromPlayername(playerList.list[playerList.selected]);
-}
-
-/**
- * Select the game where the given player is currently playing, observing or offline.
+ * Select the game where the selected player is currently playing, observing or offline.
  * Selects in that order to account for players that occur in multiple games.
  */
-function selectGameFromPlayername(playerName)
+function selectGameFromPlayername()
 {
+	if (!g_SelectedPlayer)
+		return;
+
 	let gameList = Engine.GetGUIObjectByName("gamesBox");
 	let foundAsObserver = false;
 
@@ -691,7 +675,7 @@ function selectGameFromPlayername(playerName)
 		for (let player of stringifiedTeamListToPlayerData(g_GameList[i].players))
 		{
 			let nick = splitRatingFromNick(player.Name)[0];
-			if (playerName != nick)
+			if (g_SelectedPlayer != nick)
 				continue;
 
 			if (player.Team == "observer")
@@ -711,13 +695,14 @@ function selectGameFromPlayername(playerName)
 
 function onPlayerListSelection()
 {
-	lookupSelectedUserProfile("playersBox");
-
-	updateToggleBuddy();
-
 	let playerList = Engine.GetGUIObjectByName("playersBox");
-	if (playerList.selected != -1)
-		selectGameFromPlayername(playerList.list[playerList.selected]);
+	if (playerList.selected == playerList.list.indexOf(g_SelectedPlayer))
+		return;
+
+	g_SelectedPlayer = playerList.list[playerList.selected];
+	lookupSelectedUserProfile("playersBox");
+	updateToggleBuddy();
+	selectGameFromPlayername();
 }
 
 function setLeaderboardVisibility(visible)
@@ -761,13 +746,19 @@ function lookupSelectedUserProfile(guiObjectName)
 	Engine.SendGetProfile(playerName);
 
 	Engine.GetGUIObjectByName("usernameText").caption = playerName;
-	Engine.GetGUIObjectByName("roleText").caption = g_RoleNames[Engine.LobbyGetPlayerRole(playerName) || "participant"];
 	Engine.GetGUIObjectByName("rankText").caption = translate("N/A");
 	Engine.GetGUIObjectByName("highestRatingText").caption = translate("N/A");
 	Engine.GetGUIObjectByName("totalGamesText").caption = translate("N/A");
 	Engine.GetGUIObjectByName("winsText").caption = translate("N/A");
 	Engine.GetGUIObjectByName("lossesText").caption = translate("N/A");
 	Engine.GetGUIObjectByName("ratioText").caption = translate("N/A");
+
+	updateUserRoleText(playerName);
+}
+
+function updateUserRoleText(playerName)
+{
+	Engine.GetGUIObjectByName("roleText").caption = g_RoleNames[Engine.LobbyGetPlayerRole(playerName) || "participant"];
 }
 
 /**

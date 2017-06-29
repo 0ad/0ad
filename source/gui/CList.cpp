@@ -207,6 +207,9 @@ void CList::HandleMessage(SGUIMessage& Message)
 
 		if (timer_Time() - m_LastItemClickTime < SELECT_DBLCLICK_RATE && hovered == m_PrevSelectedItem)
 			this->SendEvent(GUIM_MOUSE_DBLCLICK_LEFT_ITEM, "mouseleftdoubleclickitem");
+		else
+			this->SendEvent(GUIM_MOUSE_PRESS_LEFT_ITEM, "mouseleftclickitem");
+
 		m_LastItemClickTime = timer_Time();
 		m_PrevSelectedItem = hovered;
 		break;
