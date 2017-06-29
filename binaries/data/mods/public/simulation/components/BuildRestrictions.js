@@ -221,7 +221,7 @@ BuildRestrictions.prototype.CheckPlacement = function()
 	}
 
 	// Check special requirements
-	if (this.template.Category == "Dock")
+	if (this.template.PlacementType == "shore")
 	{
 		// TODO: Probably should check unit passability classes here, to determine if:
 		//		1. ships can be spawned "nearby"

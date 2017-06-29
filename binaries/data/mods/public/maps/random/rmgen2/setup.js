@@ -374,7 +374,7 @@ function placeLine(playerIDs, distance, groupedDistance)
  */
 function placeRadial(playerIDs, distance)
 {
-	var players = new Array(g_MapInfo.numPlayers);
+	var players = [];
 
 	for (var i = 0; i < g_MapInfo.numPlayers; ++i)
 	{
@@ -395,9 +395,7 @@ function placeRadial(playerIDs, distance)
  */
 function placeRandom(playerIDs)
 {
-	var players = [];
-	var placed = [];
-
+	var locations = [];
 	var attempts = 0;
 	var resets = 0;
 
@@ -411,19 +409,8 @@ function placeRandom(playerIDs)
 		var x = 0.5 + distance * cos(playerAngle);
 		var z = 0.5 + distance * sin(playerAngle);
 
-		var tooClose = false;
-		for (var j = 0; j < placed.length; ++j)
-		{
-			// Minimum distance between initial bases must be a quarter of the map diameter
-			var sep = getDistance(x, z, placed[j].x, placed[j].z);
-			if (sep < 0.25)
-			{
-				tooClose = true;
-				break;
-			}
-		}
-
-		if (tooClose)
+		// Minimum distance between initial bases must be a quarter of the map diameter
+		if (locations.some(loc => getDistance(x, z, loc.x, loc.z) < 0.25))
 		{
 			--i;
 			++attempts;
@@ -431,8 +418,7 @@ function placeRandom(playerIDs)
 			// Reset if we're in what looks like an infinite loop
 			if (attempts > 100)
 			{
-				players = [];
-				placed = [];
+				locations = [];
 				i = -1;
 				attempts = 0;
 				++resets;
@@ -444,18 +430,73 @@ function placeRandom(playerIDs)
 			continue;
 		}
 
-		players[i] = {
-			"id": playerIDs[i],
+		locations[i] = {
 			"x": x,
 			"z": z
 		};
-
-		placed.push(players[i]);
 	}
 
-	for (let i = 0; i < g_MapInfo.numPlayers; ++i)
-		createBase(players[i]);
+	let players = groupPlayersByLocations(playerIDs, locations);
+	for (let player of players)
+		createBase(player);
 
+	return players;
+}
+
+/**
+ *  Pick locations from the given set so that teams end up grouped.
+ *
+ *  @param {Array} playerIDs - sorted by teams.
+ *  @param {Array} locations - array of x/z pairs of possible starting locations.
+ */
+function groupPlayersByLocations(playerIDs, locations)
+{
+	playerIDs = sortPlayers(playerIDs);
+
+	let minDist = Infinity;
+	let minLocations;
+
+	// Of all permutations of starting locations, find the one where
+	// the sum of the distances between allies is minimal, weighted by teamsize.
+	heapsPermute(shuffleArray(locations).slice(0, playerIDs.length), function(permutation)
+	{
+		let dist = 0;
+		let teamDist = 0;
+		let teamSize = 0;
+
+		for (let i = 1; i < playerIDs.length; ++i)
+		{
+			let team1 = g_MapSettings.PlayerData[playerIDs[i - 1]].Team;
+			let team2 = g_MapSettings.PlayerData[playerIDs[i]].Team;
+			++teamSize;
+
+			if (team1 != -1 && team1 == team2)
+				teamDist += getDistance(permutation[i - 1].x, permutation[i - 1].z, permutation[i].x, permutation[i].z);
+			else
+			{
+				dist += teamDist / teamSize;
+				teamDist = 0;
+				teamSize = 0;
+			}
+		}
+
+		if (teamSize)
+			dist += teamDist / teamSize;
+
+		if (dist < minDist)
+		{
+			minDist = dist;
+			minLocations = permutation;
+		}
+	});
+
+	let players = [];
+	for (let i = 0; i < playerIDs.length; ++i)
+	{
+		let player = minLocations[i];
+		player.id = playerIDs[i];
+		players.push(player);
+	}
 	return players;
 }
 
@@ -513,9 +554,8 @@ function placeStronghold(playerIDs, distance, groupedDistance)
 function randomPlayerPlacementAt(singleBases, strongholdBases, heightmapScale, groupedDistance, func)
 {
 	let strongholdBasesRandom = shuffleArray(strongholdBases);
-	let singleBasesRandom = shuffleArray(singleBases);
 
-	if (randBool() &&
+	if (randBool(1/3) &&
 	    g_MapInfo.mapSize >= 256 &&
 	    g_MapInfo.teams.length >= 2 &&
 	    g_MapInfo.teams.length < g_MapInfo.numPlayers &&
@@ -551,23 +591,21 @@ function randomPlayerPlacementAt(singleBases, strongholdBases, heightmapScale, g
 	}
 	else
 	{
-		let players = randomizePlayers();
-		for (let p = 0; p < players.length; ++p)
+		let players = groupPlayersByLocations(randomizePlayers(), singleBases.map(l => ({
+			"x": l[0] / heightmapScale / g_MapInfo.mapSize,
+			"z": l[1] / heightmapScale / g_MapInfo.mapSize
+		})));
+
+		for (let player of players)
 		{
-			let tileX = Math.floor(singleBasesRandom[p][0] / heightmapScale);
-			let tileY = Math.floor(singleBasesRandom[p][1] / heightmapScale);
-
 			if (func)
-				func(tileX, tileY);
+				func(Math.floor(player.x * g_MapInfo.mapSize), Math.floor(player.z * g_MapInfo.mapSize));
 
-			createBase({
-				"id": players[p],
-				"x": tileX / g_MapInfo.mapSize,
-				"z": tileY / g_MapInfo.mapSize
-			});
+			createBase(player);
 		}
 	}
 }
+
 /**
  * Creates tileClass for the default classes and every class given.
  *

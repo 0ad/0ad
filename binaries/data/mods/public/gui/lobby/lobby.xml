@@ -52,6 +52,10 @@
 				<action on="SelectionColumnChange">
 					updatePlayerList();
 				</action>
+				<action on="mouseleftclickitem">
+					// In case of clicking on the same player again
+					selectGameFromPlayername();
+				</action>
 				<action on="mouseleftdoubleclickitem">toggleBuddy();</action>
 			</object>
 		</object>
@@ -268,7 +272,6 @@
 					font="sans-bold-13">
 					<action on="Press">
 						applyFilters();
-						selectGameFromSelectedPlayername();
 					</action>
 				</object>
 			</object>
