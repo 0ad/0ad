@@ -597,6 +597,10 @@ function updateTopPanel()
 	let viewPlayer = Engine.GetGUIObjectByName("viewPlayer");
 	viewPlayer.hidden = !g_IsObserver && !g_DevSettings.changePerspective;
 
+	let followPlayerLabel = Engine.GetGUIObjectByName("followPlayerLabel");
+	followPlayerLabel.hidden = Engine.GetTextWidth(followPlayerLabel.font, followPlayerLabel.caption + "  ") +
+		followPlayerLabel.getComputedSize().left > viewPlayer.getComputedSize().left;
+
 	let resCodes = g_ResourceData.GetCodes();
 	let r = 0;
 	for (let res of resCodes)
@@ -625,7 +629,7 @@ function updateTopPanel()
 
 	let alphaLabel = Engine.GetGUIObjectByName("alphaLabel");
 	alphaLabel.hidden = isPlayer && !viewPlayer.hidden;
-	alphaLabel.size = isPlayer ? "50%+20 0 100%-226 100%" : "200 0 100%-475 100%";
+	alphaLabel.size = isPlayer ? "50%+54 0 100%-293 100%" : "155 0 85%-279 100%";
 
 	Engine.GetGUIObjectByName("pauseButton").enabled = !g_IsObserver || !g_IsNetworked || g_IsController;
 	Engine.GetGUIObjectByName("menuResignButton").enabled = !g_IsObserver;

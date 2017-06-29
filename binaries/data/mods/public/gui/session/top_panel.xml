@@ -10,15 +10,22 @@
 	<!-- ================================  ================================ -->
 	<!-- "Follow Player" option for observers -->
 	<!-- ================================  ================================ -->
-	<object name="optionFollowPlayer" size="50%+64 4 50%+256 100%" hidden="true">
+	<object name="optionFollowPlayer" size="50%+54 4 50%+256 100%" hidden="true">
 
 		<!-- Checkbox -->
-		<object name="followPlayer" type="checkbox" checked="false" style="ModernTickBox" size="0 4 20 100%">
+		<object name="followPlayer"
+			type="checkbox"
+			checked="false"
+			style="ModernTickBox"
+			size="0 4 20 100%"
+			tooltip_style="sessionToolTip"
+		>
+			<translatableAttribute id="tooltip" context="observer mode">Follow Player</translatableAttribute>
 			<action on="Press">g_FollowPlayer = !g_FollowPlayer;</action>
 		</object>
 
 		<!-- Label -->
-		<object type="text" size="20 2 100% 100%" text_align="left" textcolor="white">
+		<object name="followPlayerLabel" type="text" size="20 2 100% 100%" text_align="left" textcolor="white">
 			<translatableAttribute id="caption" context="observer mode">Follow Player</translatableAttribute>
 		</object>
 	</object>
@@ -27,7 +34,7 @@
 	<!-- Switch the view perspective to another player's (for observers and for eased development) -->
 	<!-- ================================  ================================ -->
 	<object
-		size="100%-448 5 100%-293 100%-5"
+		size="85%-279 5 100%-293 100%-5"
 		name="viewPlayer"
 		type="dropdown"
 		hidden="true"

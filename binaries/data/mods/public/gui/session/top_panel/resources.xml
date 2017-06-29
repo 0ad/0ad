@@ -2,7 +2,7 @@
 
 <object size="0 0 50%-90-52 100%" name="resourceCounts">
 	<repeat count="4">
-		<object name="resource[n]" size="0 0 95 100%" type="image" style="resourceCounter" tooltip_style="sessionToolTipBold">
+		<object name="resource[n]" size="0 0 89 100%" type="image" style="resourceCounter" tooltip_style="sessionToolTipBold">
 			<object size="0 -2 40 38" type="image" name="resource[n]_icon" ghost="true"/>
 			<object size="34 0 100%-2 100%-2" type="text" style="resourceText" name="resource[n]_count"/>
 		</object>
