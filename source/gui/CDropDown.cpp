@@ -63,8 +63,13 @@ CDropDown::~CDropDown()
 void CDropDown::SetupText()
 {
 	SetupListRect();
-
 	CList::SetupText();
+}
+
+void CDropDown::UpdateCachedSize()
+{
+	CList::UpdateCachedSize();
+	SetupText();
 }
 
 void CDropDown::HandleMessage(SGUIMessage& Message)
