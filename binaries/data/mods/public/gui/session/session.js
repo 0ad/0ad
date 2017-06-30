@@ -772,6 +772,12 @@ function onTick()
 	Engine.GuiInterfaceCall("ClearRenamedEntities");
 }
 
+function onWindowResized()
+{
+	// Update followPlayerLabel
+	updateTopPanel();
+}
+
 function changeGameSpeed(speed)
 {
 	if (!g_IsNetworked)

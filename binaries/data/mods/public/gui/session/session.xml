@@ -17,8 +17,13 @@
 <script directory="gui/session/"/>
 
 <object name="sn">
+
 	<action on="Tick">
 		onTick();
+	</action>
+
+	<action on="WindowResized">
+		onWindowResized();
 	</action>
 
 	<action on="SimulationUpdate">
