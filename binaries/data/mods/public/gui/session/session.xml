@@ -17,8 +17,13 @@
 <script directory="gui/session/"/>
 
 <object name="sn">
+
 	<action on="Tick">
 		onTick();
+	</action>
+
+	<action on="WindowResized">
+		onWindowResized();
 	</action>
 
 	<action on="SimulationUpdate">
@@ -31,10 +36,6 @@
 
 	<action on="ReplayOutOfSync">
 		onReplayOutOfSync();
-	</action>
-
-	<action on="Press">
-		this.hidden = !this.hidden;
 	</action>
 
 	<!-- Hotkeys won't work properly unless outside menu -->

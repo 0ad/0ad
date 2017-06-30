@@ -211,7 +211,11 @@ m.DiplomacyManager.prototype.checkEvents = function (gameState, events)
 				request.status = "declinedRequest";
 		}
 		else if (gameState.sharedScript.playersData[evt.player].isAlly[PlayerID] && gameState.isPlayerEnemy(evt.player))
-			m.chatAnswerRequestDiplomacy(gameState, evt.player, "ally", "declineSuggestNeutral");
+		{
+			let response = request !== undefined && (request.status === "declinedRequest" || request.status === "allianceBroken") ?
+				"decline" : "declineSuggestNeutral";
+			m.chatAnswerRequestDiplomacy(gameState, evt.player, "ally", response);
+		}
 		else if (gameState.sharedScript.playersData[evt.player].isAlly[PlayerID] && gameState.isPlayerNeutral(evt.player))
 			this.handleDiplomacyRequest(gameState, evt.player, "ally");
 		else if (gameState.sharedScript.playersData[evt.player].isNeutral[PlayerID] && gameState.isPlayerEnemy(evt.player))

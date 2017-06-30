@@ -419,8 +419,16 @@ void CGUIManager::Draw()
 
 void CGUIManager::UpdateResolution()
 {
-	for (const SGUIPage& p : m_PageStack)
+	// Save an immutable copy so iterators aren't invalidated by event handlers
+	PageStackType pageStack = m_PageStack;
+
+	for (const SGUIPage& p : pageStack)
+	{
+		m_CurrentGUI = p.gui;
 		p.gui->UpdateResolution();
+		p.gui->SendEventToAll("WindowResized");
+	}
+	m_CurrentGUI.reset();
 }
 
 bool CGUIManager::TemplateExists(const std::string& templateName) const

@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -78,6 +78,12 @@ public:
 	virtual float GetBufferedZ() const;
 
 protected:
+	/**
+	 * If the size changed, the texts have to be updated as
+	 * the word wrapping depends on the size.
+	 */
+	virtual void UpdateCachedSize();
+
 	/**
 	 * Sets up text, should be called every time changes has been
 	 * made that can change the visual.
