@@ -38,10 +38,6 @@
 		onReplayOutOfSync();
 	</action>
 
-	<action on="Press">
-		this.hidden = !this.hidden;
-	</action>
-
 	<!-- Hotkeys won't work properly unless outside menu -->
 	<include directory="gui/session/hotkeys/"/>
 
