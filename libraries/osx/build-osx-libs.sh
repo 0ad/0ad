@@ -21,26 +21,27 @@
 # --------------------------------------------------------------
 # Library versions for ease of updating:
 ZLIB_VERSION="zlib-1.2.11"
-CURL_VERSION="curl-7.46.0"
-ICONV_VERSION="libiconv-1.14"
-XML2_VERSION="libxml2-2.9.3"
-SDL2_VERSION="SDL2-2.0.4"
-BOOST_VERSION="boost_1_60_0"
-WXWIDGETS_VERSION="wxWidgets-3.0.2"
+CURL_VERSION="curl-7.54.0"
+ICONV_VERSION="libiconv-1.15"
+XML2_VERSION="libxml2-2.9.4"
+SDL2_VERSION="SDL2-2.0.5"
+BOOST_VERSION="boost_1_64_0"
+# NOTE: remember to also update LIB_URL below when changing version
+WXWIDGETS_VERSION="wxWidgets-3.0.3.1"
 # libpng was included as part of X11 but that's removed from Mountain Lion
 # (also the Snow Leopard version was ancient 1.2)
-PNG_VERSION="libpng-1.6.21"
+PNG_VERSION="libpng-1.6.29"
 OGG_VERSION="libogg-1.3.2"
 VORBIS_VERSION="libvorbis-1.3.5"
 # gloox is necessary for multiplayer lobby
-GLOOX_VERSION="gloox-1.0.14"
+GLOOX_VERSION="gloox-1.0.20"
 # NSPR is necessary for threadsafe Spidermonkey
-NSPR_VERSION="4.11"
+NSPR_VERSION="4.15"
 # OS X only includes part of ICU, and only the dylib
 # NOTE: remember to also update LIB_URL below when changing version
-ICU_VERSION="icu4c-56_1"
+ICU_VERSION="icu4c-59_1"
 ENET_VERSION="enet-1.3.13"
-MINIUPNPC_VERSION="miniupnpc-1.9.20151026"
+MINIUPNPC_VERSION="miniupnpc-2.0.20170509"
 # --------------------------------------------------------------
 # Bundled with the game:
 # * SpiderMonkey 38
@@ -334,7 +335,7 @@ echo -e "Building wxWidgets..."
 LIB_VERSION="${WXWIDGETS_VERSION}"
 LIB_ARCHIVE="$LIB_VERSION.tar.bz2"
 LIB_DIRECTORY="$LIB_VERSION"
-LIB_URL="http://download.sourceforge.net/wxwindows/"
+LIB_URL="http://github.com/wxWidgets/wxWidgets/releases/download/v3.0.3.1/"
 
 mkdir -p wxwidgets
 pushd wxwidgets > /dev/null
@@ -359,9 +360,7 @@ then
   if [[ $MIN_OSX_VERSION && ${MIN_OSX_VERSION-_} ]]; then
     CONF_OPTS="$CONF_OPTS --with-macosx-version-min=$MIN_OSX_VERSION"
   fi
-  # patch to fix wxWidgets build on Yosemite (fixed upstream, see http://trac.wxwidgets.org/ticket/16329 )
-  # Force libc++ in CPPFLAGS as well, since CXXFLAGS isn't enough here
-  (patch -p0 -d.. -i../../patches/wxwidgets-webkit-fix.diff && ../configure CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" CPPFLAGS="-stdlib=libc++" LDFLAGS="$LDFLAGS" $CONF_OPTS && make ${JOBS} && make install) || die "wxWidgets build failed"
+  (../configure CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" CPPFLAGS="-stdlib=libc++" LDFLAGS="$LDFLAGS" $CONF_OPTS && make ${JOBS} && make install) || die "wxWidgets build failed"
   popd
   popd
   touch .already-built
@@ -532,7 +531,7 @@ echo -e "Building ICU..."
 LIB_VERSION="${ICU_VERSION}"
 LIB_ARCHIVE="$LIB_VERSION-src.tgz"
 LIB_DIRECTORY="icu"
-LIB_URL="http://download.icu-project.org/files/icu4c/56.1/"
+LIB_URL="http://download.icu-project.org/files/icu4c/59.1/"
 
 mkdir -p icu
 pushd icu > /dev/null
@@ -551,7 +550,7 @@ then
   mkdir -p source/build
   pushd source/build
 
-(CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" ../runConfigureICU MacOSX --prefix=$INSTALL_DIR --disable-shared --enable-static --disable-samples --enable-extras --enable-icuio --enable-layout --enable-tools && make ${JOBS} && make install) || die "ICU build failed"
+(CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" ../runConfigureICU MacOSX --prefix=$INSTALL_DIR --disable-shared --enable-static --disable-samples --enable-extras --enable-icuio --enable-tools && make ${JOBS} && make install) || die "ICU build failed"
   popd
   popd
   touch .already-built
