@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -153,6 +153,11 @@ public:
 	 * so that another call to LoadWaterTextures will begin progressive loading.
 	 */
 	void UnloadWaterTextures();
+
+	/**
+	 * RecomputeWaterData: calculates all derived data from the waterheight
+	 */
+	void RecomputeWaterData();
 
 	/**
 	 * RecomputeWindStrength: calculates the intensity of waves
