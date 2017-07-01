@@ -867,7 +867,7 @@ function confirmExit()
 
 function updateCinemaPath()
 {
-	let isPlayingCinemaPath = GetSimState().cinemaPlaying;
+	let isPlayingCinemaPath = GetSimState().cinemaPlaying && !g_Disconnected;
 
 	Engine.GetGUIObjectByName("sn").hidden = !g_ShowGUI || isPlayingCinemaPath;
 	Engine.Renderer_SetSilhouettesEnabled(!isPlayingCinemaPath && Engine.ConfigDB_GetValue("user", "silhouettes") == "true");

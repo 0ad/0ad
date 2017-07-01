@@ -43,7 +43,7 @@ m.DefenseArmy.prototype.assignUnit = function (gameState, entID)
 
 		// already enough units against it
 		if (this.assignedAgainst[id].length > 8 ||
-			(this.assignedAgainst[id].length > 5 && !eEnt.hasClass("Hero") && !eEnt.hasClass("Siege")))
+			this.assignedAgainst[id].length > 5 && !eEnt.hasClass("Hero") && !m.isSiegeUnit(eEnt))
 			continue;
 
 		let dist = API3.SquareVectorDistance(ent.position(), eEnt.position());

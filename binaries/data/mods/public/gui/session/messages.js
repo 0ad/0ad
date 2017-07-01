@@ -658,6 +658,7 @@ function handleNetStatusMessage(message)
 		Engine.SetPaused(true, false);
 
 		g_Disconnected = true;
+		updateCinemaPath();
 		closeOpenDialogs();
 	}
 }

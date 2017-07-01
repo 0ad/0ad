@@ -99,4 +99,9 @@ RangeVisualization.prototype.OnValueModification = function(msg)
 	this.RegenerateRangeVisualizations(false);
 };
 
+RangeVisualization.prototype.OnDeserialized = function(msg)
+{
+	this.UpdateVisualHealRanges();
+};
+
 Engine.RegisterComponentType(IID_RangeVisualization, "RangeVisualization", RangeVisualization);
