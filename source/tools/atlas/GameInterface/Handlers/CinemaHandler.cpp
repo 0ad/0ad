@@ -340,7 +340,7 @@ BEGIN_COMMAND(AddPathNode)
 			fixed::FromFloat(focus.Y),
 			fixed::FromFloat(focus.Z)
 		);
-		spline.InsertNode(index, target, CFixedVector3D(), fixed::FromInt(1));
+		spline.InsertNode(index + 1, target, CFixedVector3D(), fixed::FromInt(1));
 		
 		spline.BuildSpline();
 		cmpCinemaManager->DeletePath(name);
