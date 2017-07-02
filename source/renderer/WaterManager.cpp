@@ -417,11 +417,13 @@ void WaterManager::UnloadWaterTextures()
 // Calculate our binary heightmap from the terrain heightmap.
 void WaterManager::RecomputeDistanceHeightmap()
 {
+	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+	if (!terrain || !terrain->GetHeightMap())
+		return;
+
 	size_t SideSize = m_MapSize*2;
 	if (m_DistanceHeightmap == NULL)
 		m_DistanceHeightmap = new float[SideSize*SideSize];
-
-	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 
 	// Create a manhattan-distance heightmap.
 	// This is currently upsampled by a factor of 2 to get more precision
@@ -483,6 +485,8 @@ void WaterManager::CreateWaveMeshes()
 {
 	size_t SideSize = m_MapSize*2;
 	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+	if (!terrain || !terrain->GetHeightMap())
+		return;
 
 	for (WaveObject* const& obj : m_ShoreWaves)
 	{
@@ -944,12 +948,14 @@ void WaterManager::RenderWaves(const CFrustum& frustrum)
 // Calculate The blurred normal map to get an idea of where water ought to go.
 void WaterManager::RecomputeBlurredNormalMap()
 {
+	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+	if (!terrain || !terrain->GetHeightMap())
+		return;
+
 	// used to cache terrain normals since otherwise we'd recalculate them a lot (I'm blurring the "normal" map).
 	// this might be updated to actually cache in the terrain manager but that's not for now.
 	if (m_BlurredNormalMap == NULL)
 		m_BlurredNormalMap = new CVector3D[m_MapSize*m_MapSize];
-
-	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 
 	// It's really slow to calculate normals so cache them first.
 	CVector3D* normals = new CVector3D[m_MapSize*m_MapSize];
@@ -997,6 +1003,17 @@ void WaterManager::RecomputeBlurredNormalMap()
 	delete[] normals;
 }
 
+void WaterManager::RecomputeWaterData()
+{
+	if (!m_MapSize)
+		return;
+
+	RecomputeBlurredNormalMap();
+	RecomputeDistanceHeightmap();
+	RecomputeWindStrength();
+	CreateWaveMeshes();
+}
+
 ///////////////////////////////////////////////////////////////////
 // Calculate the strength of the wind at a given point on the map.
 // This is too slow and should support limited recomputation.
@@ -1006,6 +1023,9 @@ void WaterManager::RecomputeWindStrength()
 		m_WindStrength = new float[m_MapSize*m_MapSize];
 
 	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+	if (!terrain || !terrain->GetHeightMap())
+		return;
+
 	float waterLevel = m_WaterHeight;
 
 	CVector2D windDir = CVector2D(cos(m_WindAngle),sin(m_WindAngle));

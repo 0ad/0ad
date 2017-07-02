@@ -16,6 +16,9 @@
  */
 
 #include "precompiled.h"
+
+#include <algorithm>
+
 #include "NUSpline.h"
 #include "Matrix3D.h"
 
@@ -218,7 +221,7 @@ void TNSpline::AddNode(const CFixedVector3D& pos, const CFixedVector3D& rotation
 //Inserts node before position
 void TNSpline::InsertNode(const int index, const CFixedVector3D& pos, const CFixedVector3D& UNUSED(rotation), fixed timePeriod)
 {
-	if (NodeCount >= MAX_SPLINE_NODES || index < 0 || index > NodeCount - 1)
+	if (NodeCount >= MAX_SPLINE_NODES || index < 0 || index > NodeCount)
 		return;
 
 	if (NodeCount == 0)
@@ -230,6 +233,8 @@ void TNSpline::InsertNode(const int index, const CFixedVector3D& pos, const CFix
 	temp.Position = pos;
 	temp.Distance = timePeriod;
 	Node.insert(Node.begin() + index, temp);
+	if (index > 0)
+		std::swap(Node[index].Distance, Node[index - 1].Distance);
 	++NodeCount;
 }
 
