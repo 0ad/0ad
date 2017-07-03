@@ -45,7 +45,7 @@ msgstr ""
 "町の中心が選択されると、画面の右下に生産パネルが表示されます。生産パネルには、建設の詳細が示されています。 "
 "現在、使用不可能なアクションは、グレーまたは赤でマスクされています。これらは、アクションがロックされているか、アクションを実行するための十分な資源がないことを示しています。"
 " "
-"さらに、任意のアイコンの上にマウスを置くと、詳細なツールのヒントが表示されます。一番上のボタンの列には、建物で生産されたユニットの肖像画が含まれ、下の1〜2行には現在研究可能な技術が含まれます。"
+"さらに、任意のアイコンの上にマウスを置くと、詳細なツールのヒントが表示されます。一番上のボタンの列には、建物で生産されたユニットの肖像画が含まれ、下の1〜2行には現在研究可能なテクノロジーが含まれます。"
 " マウスを「II」アイコンの上に移動してください。 "
 "ツールのヒントは、「町の段階」に進むためには、より多くの建物だけでなく、より多くの食料と木材資源を必要とすることを教えてくれるでしょう。"
 
@@ -214,12 +214,17 @@ msgid ""
 "We will need a decent chunk of space around the farmstead to build fields. In addition, we can see goats on the west side to further improve our food gathering efficiency should we ever decide to hunt them.\n"
 "If you try to select the three idle Female Citizens by selection rectangle them, there is a high chance that one additional gatherers are included in your selection rectangle. To prevent that, hold the 'i' key while grabing: only idle units are then selected. If during your selection you select the cavalry which may now be idle, you can remove it by pressing the control key while clicking on its corresponding portrait in the selection panel on the bottom."
 msgstr ""
+"残りの3人の（手の空いている）女性市民を選択し、町の中心の西にある広い空き地の中央に農場を建設するように指示します。\n"
+"田畑を作るためには納屋のまわりに平坦な空き地が必要です。 さらに、西側に見える山羊を狩れば、食糧採集の効率をさらに向上させることができます。\n"
+"3人の手の空いた女性市民を選択すると、 選択した矩形の中に資源収集者が含まれてしまいます。 それを防ぐには、選択中に 「i」 キーを押し続けます。こうすると手の空いたユニットだけが選択されます。 手の空いている騎兵が含まれてしまった場合には、Ctrl キーを押しながら下部の選択パネルで対応する肖像画をクリックすることで騎兵を取り除くことができます。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:158
 msgid ""
 "When the farmstead construction is finished, its builders will automatically look for food, and in this case, they will go after the nearby goats.\n"
 "But your house builders will only look for something else to build and, if nothing found, become idle. Let's wait for them to build the houses."
 msgstr ""
+"納屋が完成すると、その労働者は近くに食料源があれば自動的に採集を始めます。この場合、近くのヤギを追いかけます。\n"
+"しかし、家を建てた労働者は、建造するために材料を探すだけで、何も見つからなければ、手の空いた状態になります。 彼らが家を建てるのを待ってみましょう。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:167
 msgid ""
@@ -227,12 +232,15 @@ msgid ""
 "to build a field as close as possible to the farmstead, which is a dropsite "
 "for all types of food."
 msgstr ""
+"両方の家の建築が終わったら、女性市民2人を選択して、納屋のできるだけ近くに田畑を開墾するように指示します。納屋はあらゆる種類の食糧の回収場所です。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:175
 msgid ""
 "When the field is constructed, the builders will automatically start gathering it.\n"
 "The cavalry unit should have slaughtered all chicken by now. Select it and right-click on one of the goats in the west to start hunting them for food."
 msgstr ""
+"田畑が完成したら、その労働者は自動的に採集を始めます。\n"
+"騎兵ユニットは、今までにすべての鶏を狩り尽したはずです。 騎兵ユニットを選択し、西にいる一頭のヤギを右クリックして、狩りを始めましょう。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:184
 msgid ""
@@ -242,30 +250,34 @@ msgid ""
 "sent by a rally-point will help building it, while they will gather it when "
 "built."
 msgstr ""
+"田畑には最大5人の農民が働くことができます。 採集者を追加するには、町の中心を選択し、田畑の上で右クリックして集合地点を設定します。 "
+"田畑が開墾されるまでの間、集合地点に送られた新しい労働者は開墾を手伝いますが、終わると採集を始めます。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:191
 msgid "Select the Civic Center and right-click on the field."
-msgstr ""
+msgstr "町の中心を選択して、田畑の上で右クリックしてください。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:198
 msgid ""
 "Now click three times on the female icon in the bottom right panel to train "
 "three additional farmers."
-msgstr ""
+msgstr "右下のパネルにある女性のアイコンを3回クリックして、さらに3人の農民を生産します。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:207
 msgid "Do a simple left-click to produce a single unit."
-msgstr ""
+msgstr "単一のユニットを生成するために左クリックを行います。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:208
 msgid "Click on the FEMALE CITIZEN icon."
-msgstr ""
+msgstr "女性市民アイコンをクリックします。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:218
 msgid ""
 "You can increase the gather rates of your workers by researching new technologies available in some buildings.\n"
 "The farming rate, for example, can be improved with a researchable technology in the farmstead. Select the farmstead and look at its production panel on the bottom right. You will see several researchable technologies. Hover the mouse over them to see their costs and effects and click on the one you want to research."
 msgstr ""
+"いくつかの建物では新テクノロジーを研究することによって、労働者の採集率を高めることができます。\n"
+"たとえば、納屋で研究可能なテクノロジーを使用することで、生産率を向上させることができます。 納屋を選択し、右下の生産パネルを見てください。 研究可能な技術がいくつか表示されます。 それらの上にマウスを合わせ、費用と効果を見て、研究したいものをクリックしてください。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:226
 msgid ""
@@ -273,6 +285,9 @@ msgid ""
 "We now have enough resources, but one structure is missing. Although this is an economic tutorial, it is nonetheless useful to be prepared for defense in case of attack, so let's build barracks.\n"
 "Select four of your soldiers and ask them to build a barracks: as before, start selecting the soldiers, click on the barracks icon in the production panel and then lay down a foundation not far from your Civic Center where you want to build."
 msgstr ""
+"我々は、より多くのユニットと建物のロックを解除する「町の段階」への準備を開始する必要があります。 町の中心を選択し、「町の段階」アイコンの上にマウスを合わせると、何がまだ必要なのかがわかります。\n"
+"十分な資源がありますが、1つ建物が足りていません。 これは経済のチュートリアルですが、攻撃の際に防御の準備をすることは有益ですので、兵営を建設しましょう。\n"
+"兵士4人を選んで兵営を建設するように命令してください：前と同じように、 生産パネルの兵営アイコンをクリックし、町の中心からあまり離れていない場所に兵営の基礎を設置してください。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:235
 msgid ""
@@ -282,30 +297,38 @@ msgid ""
 " on it (you should see a hammer icon), and then produce two more builders by"
 " clicking on the hoplite icon twice."
 msgstr ""
+"兵営が建設されるのを待ちましょう。 建設には時間がかかるので、2人の兵士を追加してより早く建設を完了させましょう。 "
+"これには、町の中心を選択して、重装歩兵アイコンを2回クリックして2人の建築家を生産します。兵営の基礎を右クリック（ハンマーアイコンが表示されるはずです）し、集合地点を設定します。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:243
 msgid ""
 "You should now be able research 'Town Phase'. Select the Civic Center and click on the technology icon.\n"
 "If you still miss some resources (icon with red overlay), wait for them to be gathered by your workers."
 msgstr ""
+"あなたは今、「町の段階」の研究ができるはずです。 町の中心を選択し、テクノロジーアイコンをクリックします。\n"
+"まだ資源が不足（赤いオーバーレイが付いたアイコン）している場合は、それらが収集されるのを待ちます。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:251
 msgid ""
 "In later phases, you need usually Stone and Metal to build bigger structures and train better soldiers. Hence, while waiting for the research to be done, you will send half of your idle Citizen Soldiers (who have finished building the Barracks) to gather Stone and the other half to gather Metal.\n"
 "To do so, we could select three Citizen Soldiers and right-click on the Stone mine on the west of the Civic Center (a Stone cursor is shown when you hover the mouse over it while your soldiers are selected). However, these soldiers were gathering Wood, so they may still carry some Wood which would be lost when starting to gather another resource."
 msgstr ""
+"これ以降の段階では、より大きな建物を構築し、より強い兵士を生産するために、通常、石と金属が必要となります。 研究が終わるのを待っている間に、手の空いた市民兵士の半分（兵舎の建設を終えたユニット）を石材の収集、残りの半分を金属の収集に割り当てましょう。\n"
+"これを行うには、3人の兵士を選択し、町の中心の西側の採石場を右クリックしてください（兵士が選択されている間にマウスカーソルを置いたときに石のカーソルが表示されます）。 しかし、これらの兵士たちは木材を集めていたので、別の資源を集め始めると失われてしまう木材を持っているかもしれません。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:254
 msgid ""
 "Thus, we should order them to deposit their Wood in the Civic Center along the way. To do so, we will queue orders with shift-click: select your soldiers, shift-right-click on the Civic Center to deposit their Wood and then shift-right-click on the Stone mine to gather it.\n"
 "Perform a similar order queue with the remaining soldiers and the Metal mine in the west."
 msgstr ""
+"したがって、途中で町の中心に木材を預けるように指示する必要があります。 これを行うには、Shiftクリックで命令をキューに入れます：兵士を選んで町の中心を右クリックして木材を預け、採石場を右クリックして収集を始めます。\n"
+"残りの兵士と西部の金属鉱山についても同様の命令キューを実行します。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:273
 msgid ""
 "This is the end of the walkthrough. This should give you a good idea of the "
 "basics of setting up your economy."
-msgstr ""
+msgstr "これでこのウォークスルーは終了です。 これで基本的な経済基盤をを設定するための知識がついたことでしょう。"
 
 #: maps/tutorials/starting_economy_walkthrough.xml:Description:39
 msgid ""
@@ -313,6 +336,8 @@ msgid ""
 "in the game the most important thing is to gather resources as fast as "
 "possible so you are able to build enough troops later."
 msgstr ""
+"このマップは、ゲームを効果的にスタートするための大まかなガイドを提供します。 "
+"ゲームの早い段階で、最も重要なのは、資源をできるだけ早く収集し、後で十分な軍隊を構築できることです。 "
 
 #: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
 msgid "Player 1"

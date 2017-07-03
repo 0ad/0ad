@@ -62,9 +62,9 @@ msgstr ""
 "tienen poca vida, dal armadura, y poca o nenguna capacidá d'atacar. Los "
 "ciudadanos-soldáu son trabayadores por defeutu, pero en tiempos de crisis, "
 "puen valise d'un arma pa lluchar. Hai dos clases de ciudadanos-soldáu: la "
-"infantería y la caballería. Les ciudadanes y los ciudadanos-soldáu "
-"d'infantería puen recoyer cualquier recursu de la tierra, pero los "
-"ciudadanos-soldáu de caballería namái son a recoyer carne de caza.\n"
+"infantería y la caballería. Les ciudadanes y los ciudadanos-soldáu d'a pie "
+"puen recoyer cualquier recursu de la tierra, pero los ciudadanos-soldáu "
+"montaos namái son a recoyer carne de caza.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:15
 msgid ""
@@ -84,12 +84,12 @@ msgid ""
 "3) Double-click on a unit. This will select every unit of the same type as the specified unit in your visible window. Triple-click will select all units of the same type on the entire map.\n"
 " You can click on an empty space on the map to reset the selection. Try each of these methods before tasking all of your Female Citizens to gather the grapes to the southeast of your Civic Center by right-clicking on the grapes when you have all the Female Citizens selected."
 msgstr ""
-"Yá per agora, alimentos y madera son los recursos más importantes pa desendolcar la economía, asina que vamos entamar a recoyer alimentos. Les muyeres arrecueyen alimentos non cazaos más aína que los homes.\n"
-"Hai trés moos principales d'escoyer a unidaes:\n"
-"1) Caltén calcáu'l botón drechu del mur y fai un rectángulu d'esbilla qu'arrodia les unidaes que quieras escoyer.\n"
-"2) Calca en dalguna d'elles y entós amiesta más unidaes a la esbilla calcando Shift y cada unidá adicional (o tamién per mediu del rectángulu d'esbilla que se mentó enriba).\n"
-"3) Calca dos veces nuna unidá. Esto escoyerá cada unidá de la mesma clas como les unidaes especificaes nel ventanu visible. Calcar trés veces escoyerá toles unidaes de la mesma clas a lo llargo del mapa.\n"
-"Yes a calcar en cualquier espaciu vacíu del mapa pa reafitar la esbilla. Intenta caún d'esto métodos enantes de mandar a toles ciudadanes a recoyer les uves de surdeste del centru cívicu calcando col botón drechu nes uves cuando tengas toles ciudadanes esbillaes."
+"Los alimentos y la madera son yá los recursos más importantes pa desendolcar la economía, asina que vamos entamar a recoyer alimentos. Les muyeres arrecueyen alimentos non cazaos más aína que los homes.\n"
+"Hai principalmente trés moos d'escoyer unidaes:\n"
+"1) Caltener calcáu'l botón drechu del mur y facer un rectángulu d'esbilla alredor de les unidaes que quieras escoyer.\n"
+"2) Calcar en dalguna d'elles y llueu amestar más unidaes a la esbilla calcando Mayús y cada unidá adicional (o tamién usando'l rectángulu d'esbilla que se mentó enriba).\n"
+"3) Calcar dos vegaes nuna unidá. Esto escueye cada unidá de la mesma clas como les unidaes especificaes nel ventanu visible. Calcar trés vegaes escueye toles unidaes de la mesma clas a lo llargo del mapa.\n"
+"Yes a calcar en cualquier espaciu baleru del mapa pa reafitar la esbilla. Prueba caún d'estos métodos enantes de mandar a toles ciudadanes a arrecoyer les uves al sureste del centru cívicu calcando col botón drechu nes uves cuando tengas toles ciudadanes esbillaes."
 
 #: maps/tutorials/starting_economy_walkthrough.js:27
 msgid ""
@@ -97,9 +97,9 @@ msgid ""
 " Infantry Citizen Soldiers and order them to gather Wood by right-clicking "
 "on the nearest tree."
 msgstr ""
-"Agora, vamos recoyer della madera colos ciudadanos-soldáu. Escueyi a los "
-"ciudadanos-soldáu y mándalos recoyer madera calcando col botón derechu nel "
-"árbol más cercanu."
+"Agora bien, vamos recoyer della madera colos ciudadanos-soldáu. Escueyi a "
+"los ciudadanos-soldáu y mándalos recoyer madera calcando col botón derechu "
+"nel árbol más cercanu."
 
 #: maps/tutorials/starting_economy_walkthrough.js:36
 msgid ""
@@ -116,33 +116,42 @@ msgid ""
 "First, let's set a rally-point. Setting a rally point on a building that can train units will automatically designate a task to the new unit upon completion of training. We want to send the newly trained units to gather Wood on the group of trees to the south of the Civic Center. To do so, select the Civic Center by clicking on it and then right-click on one of the trees.\n"
 "Rally-Points are indicated by a small flag at the end of the blue line."
 msgstr ""
+"Toles unidaes tán yá recoyendo recursos. ¡Deberíemos llevantar más unidaes!\n"
+"De mano, vamos afitar un puntu d'alcuentru. Afitar un puntu d'alcuentru nun edificiu capaz de llevantar unidaes da automáticamente una xera a la unidá acabante llevantase. Prestaríamos unviar les unidaes acabantes de llevantase a recoyer madera del arboláu al sur del centru cívicu. Pa faelo, escueyi'l centru cívicu calcando nelli y llueu fai clic col botón derechu nún de los árboles.\n"
+"Una banderina al cabu de la llinia azul val pa indicar los puntos d'alcuentru."
 
 #: maps/tutorials/starting_economy_walkthrough.js:52
 msgid ""
 "Select the Civic Center, then hover your mouse over a tree and right-click "
 "when you see the cursor change into a Wood icon."
 msgstr ""
+"Escueyi'l centru cívicu, entós alluga'l mur enriba un árbol y calca col "
+"botón derechu cuando veas el punteru camudase nun iconu madera."
 
 #: maps/tutorials/starting_economy_walkthrough.js:60
 msgid ""
 "Now that the rally-point is set, we can produce additional units and they will do their assigned task automatically.\n"
 "As Citizen Soldiers are better than Female Citizens for gathering Wood, select the Civic Center and shift-click on the second unit icon, the hoplites (shift-clicking produces a batch of five units). You can also train units individually by simply clicking, but training 5 units together takes less time than training 5 units individually."
 msgstr ""
+"Agora que'l puntu d'alcuentru ta afitáu, podemos producir más unidaes y fadrán la xera que-yos diemos automáticamente.\n"
+"Como los ciudadanos-soldáu tienen más arremangu que les ciudadanes pa recoyer madera, escueyi'l centru cívicu y calcando Mayús fai clic nel iconu de la segunda unidá, los hoplites (faciendo clic al calcar Mayús produz un llote de cinco unidaes). Pues tamién llevantar por separtao a les unidaes faciendo cilcs, pero llevantar cinco unidaes al empar lleva menos tiempu que llevantar cinco unidaes por separtao."
 
 #: maps/tutorials/starting_economy_walkthrough.js:69
 #: maps/tutorials/starting_economy_walkthrough.js:111
 msgid "Do not forget to shift-click to produce several units."
-msgstr ""
+msgstr "Nun escaezas faer clic al calcar Mayús pa producir delles unidaes."
 
 #: maps/tutorials/starting_economy_walkthrough.js:70
 msgid "Shift-click on the HOPLITE icon."
-msgstr ""
+msgstr "Calcando Mayús fai clic nel iconu HOPLITA."
 
 #: maps/tutorials/starting_economy_walkthrough.js:78
 msgid ""
 "Let's wait for the units to be trained.\n"
 "While waiting, direct your attention to the panel at the top of your screen. On the upper left, you will see your current resource supply (Food, Wood, Stone, and Metal). As each worker brings resources back to the Civic Center (or another dropsite), you will see the amount of the corresponding resource increase. This is a very important concept to keep in mind: gathered resources have to be brought back to a dropsite to be accounted, and you should always try to minimize the distance between resource and nearest dropsite to improve your gathering efficiency."
 msgstr ""
+"Vamos aguardar a que les unidaes se llevanten.\n"
+"Al aguardar, dirix l'atención al panel enriba de la pantalla. Na parte arribera esquierda, verás los tos suministros actuales de recursos (alimentos, madera, piedra y metal). De la que los trabayadores devuelven recursos al centru cívicu (u otru depósitu), verás la cantidá del recursu correspondiente medrar. Ye perimportante alcordase d'esti conceutu: los recursos que s'arrecueyen han devolvese al depósitu pa cuntar, y siempre debes tentar d'amenorgar la distancia ente'l recursu y el depósitu más cercanu p'aumentar la eficacia de recoyida."
 
 #: maps/tutorials/starting_economy_walkthrough.js:85
 msgid ""
@@ -150,52 +159,69 @@ msgid ""
 "But as they have to bring it back to the Civic Center to deposit it, their gathering efficiency suffers from the distance. To fix that, we can build a storehouse, a dropsite for Wood, Stone, and Metal, close to the trees. To do so, select your five newly trained Citizen Solders and look for the construction panel on the bottom right, click on the storehouse icon, move the mouse as close as possible to the trees you want to collect and click on a valid place to build the dropsite.\n"
 "Invalid (obstructed) positions will show the building preview overlay in red."
 msgstr ""
+"Les unidaes acabantes llevantase van automáticamente a los árboles y entamen a recoyer madera.\n"
+"Pero darréu que lo tienen de devolver al centru cívicu pa depositalo, la so eficacia de recoyida sufre pola llonxanza. Pa igualo, podemos construyir un almacén, un depósitu de madera, piedra y metal, cerca de los árboles. Pa facelo, escueyi les cinco ciudadanos-soldáu qu'acabasti de llevantar y busca'l panel de construcción na parte baxera derecha, calca l'iconu del almacén, avera'l mur tolo posible a los árboles que quieras recoyer y fai clic nun llugar que valga pa construyir el depósitu.\n"
+"Allugamientos que nun valen (o que tán torgaes) van presentar la vista preliminar del edificiu con una capa colorada.  "
 
 #: maps/tutorials/starting_economy_walkthrough.js:93
 msgid ""
 "The selected workers will automatically start constructing the building once"
 " you place the foundation."
 msgstr ""
+"Los trabayadores escoyíos van entamar automáticamente a construyir "
+"l'edificiu una vegada que pongas les bases."
 
 #: maps/tutorials/starting_economy_walkthrough.js:102
 msgid ""
 "When construction finishes, the builders default to gathering Wood automatically.\n"
 "Let's train some female workers to gather more food. Select the Civic Center and shift-click on the female citizen icon to train 5."
 msgstr ""
+"Cuando fine la construcción, los constructores tornen automáticamente a recoyer madera.\n"
+"Vamos llevantar delles trabayadores pa recoyer más alimentos. Escueyi'l centru cívicu y calcando Mayús fai clic nel iconu de ciudadanes pa llevantar unes cinco."
 
 #: maps/tutorials/starting_economy_walkthrough.js:112
 msgid "Shift-click on the FEMALE CITIZEN icon."
-msgstr ""
+msgstr "Calcando Mayús fai clic nel iconu de CIUDADANES."
 
 #: maps/tutorials/starting_economy_walkthrough.js:120
 msgid ""
 "Let's wait for the units to be trained.\n"
 "In the meantime, we seem to have enough workers gathering Wood. We should remove the current rally-point of the Civic Center away from gathering Wood. For that purpose, right-click on the Civic Center when it is selected (and the flag icon indicating the rally-point is crossed out)."
 msgstr ""
+"Vamos aguardar a que se llevanten les unidaes.\n"
+"Mentanto, paez qu'hai lleñadores d'abondo. Debemos quitar el puntu d'alcuentru del centru cívicu al arboláu. Pa ello, calca col botón drechu nel centru cívicu n'esbillándolu (y queda tacháu l'iconu la bandera qu'indicaba'l puntu d'alcuentru)."
 
 #: maps/tutorials/starting_economy_walkthrough.js:128
 msgid ""
 "The units should be ready soon.\n"
 "In the meantime, direct your attention to your population count on the top panel. It is the fifth item from the left, after the resources. It would be prudent to keep an eye on it. It indicates your current population (including those being trained) and the current population limit, which is determined by your built structures."
 msgstr ""
+"Les unidaes deben aína tar llistos.\n"
+"Mentanto, dirix l'atención a la cifra de población nel panel superior. Ye'l quintu elementu dende la esquierda, detrás de los recursos. Convendríate vixilala. Indica la población actual (incluyendo los que tean llevantándose) y la capacidá de población, determinada polos edificios que construyisti."
 
 #: maps/tutorials/starting_economy_walkthrough.js:135
 msgid ""
 "As you have nearly reached the population limit, you must increase it by building some new structures if you want to train more units. The most cost effective structure to increase your population limit is the house.\n"
 "Now that the units are ready, let's build two houses."
 msgstr ""
+"Como vienes a algamar la capacidá de población, has aumentala construyendo dellos edificios nuevos si quies llevantar más unidaes. La construcción más barata p'aumentar la capacidá población ye la cada.\n"
+"Agora que les unidaes tán llistes, vamos construyir dos cases."
 
 #: maps/tutorials/starting_economy_walkthrough.js:138
 msgid ""
 "Select two of your newly trained Female Citizens and ask them to build these houses in the empty space to the east of the Civic Center. To do so, after selecting the Female Citizens, click on the house icon in the bottom right panel and shift-click on the position in the map where you want to build the first house followed by a shift-click on the position of the second house (when giving orders, shift-click put the order in the queue and the units will automatically switch to the next order in their queue when they finish their work). Press Escape to get rid of the house cursor so you don't spam houses all over the map.\n"
 "Reminder: to select only two Female Citizens, click on the first one and then shift-click on the second one to add her to the selection."
 msgstr ""
+"Escueyi dos de les ciudadanes qu'acabasti de llevantar y mándales construyir estes cases nel espaciu balero al oriente del centru cívicu. Pa faelo, n'esbillando les ciudadanes, calca nel iconu de la casa nel panel baxeru esquierdu y al calcar Mayús fai clic na posición del mapa u quieras construyir la primer casa, y darréu calca Mayús y fai clic na posición de la segunda casa (al dar órdenes, calca Mayús al empar de facer clic pa poner la orde na cola y les unidaes executarán automáticamente a la próxima orde de la cola cuando acaben la so xera). Calca Colar pa facer que'l punteru de casa desapaeza, y ansina nun construyir cases a lo llargo'l mapa.\n"
+"Avisu: pa esbillar namás dos ciudadanes, calca na primera y entós, calcando Mayús, fai clic na segunda p'amestala a la esbilla."
 
 #: maps/tutorials/starting_economy_walkthrough.js:147
 msgid ""
 "You may notice that berries are a finite supply of food. We will need a more lasting food source. Fields produce an unlimited food resource, but are slower to gather than forageable fruits.\n"
 "But to minimize the distance between a farm and its corresponding food dropsite, we will first build a farmstead."
 msgstr ""
+"Pueque te decatares de que les bayes escosen. Vamos precisar d'una fonte d'alimentos que dure más tiempu. Los campos producen alimentos infinitos, pero lleva más tiempu collechalos que la fruta.\n"
+"Pero p'amenorgar la distancia ente la quintana y el so depósitu, vamos empezar por construyir una casería."
 
 #: maps/tutorials/starting_economy_walkthrough.js:150
 msgid ""
@@ -203,12 +229,17 @@ msgid ""
 "We will need a decent chunk of space around the farmstead to build fields. In addition, we can see goats on the west side to further improve our food gathering efficiency should we ever decide to hunt them.\n"
 "If you try to select the three idle Female Citizens by selection rectangle them, there is a high chance that one additional gatherers are included in your selection rectangle. To prevent that, hold the 'i' key while grabing: only idle units are then selected. If during your selection you select the cavalry which may now be idle, you can remove it by pressing the control key while clicking on its corresponding portrait in the selection panel on the bottom."
 msgstr ""
+"Escueyi les trés ciudadanes que resten y mándales construyir una casería metanes de la gran fastera abierta al occidente del centru cívicu.\n"
+"Vamos precisar d'un cachu apreciable d'espaciu alredor de la casería pa construyir quintanes. Amás, podemos ver cabres pel llau occidental pa siguir ameyorando la eficacia de recoyida d'alimentos, casu que decidamos cazales.\n"
+"Si tentes d'escoyer les trés ciudadanes quedes con un rectángulu d'esbilla, ye muncho probable qu'una recoyedora adicional tea incluyida nel rectángulu d'esbilla. Pa torgalo, caltén calcáu'l tecláu «i» al garrar: namás escueye les unidaes quedes. Si al escoyer esbilles la caballería que yá pue tar quedo, yes a quitalo calcando'l tecláu control al faer clic nel retratu correspondiente nel panel d'esbilla que ta embaxo."
 
 #: maps/tutorials/starting_economy_walkthrough.js:158
 msgid ""
 "When the farmstead construction is finished, its builders will automatically look for food, and in this case, they will go after the nearby goats.\n"
 "But your house builders will only look for something else to build and, if nothing found, become idle. Let's wait for them to build the houses."
 msgstr ""
+"Cuando fine la construcción de la casería, les constructores guetarán automáticamente alimentos, y nesti casu, procurarán les cabres cercanes.\n"
+"Pero les constructores de la casa solo buscarán construyir daqué ál y, si nun atopen un res, volveránse quedes. Vamos aguardar a que construyan les cases."
 
 #: maps/tutorials/starting_economy_walkthrough.js:167
 msgid ""
@@ -216,12 +247,17 @@ msgid ""
 "to build a field as close as possible to the farmstead, which is a dropsite "
 "for all types of food."
 msgstr ""
+"Cuando dambes cases queden construyíes, esbilla les dos ciudadanes y "
+"mándales construyir un campu metanes xunto a la casería, que ye un depósitu "
+"pa toa triba d'alimentos. "
 
 #: maps/tutorials/starting_economy_walkthrough.js:175
 msgid ""
 "When the field is constructed, the builders will automatically start gathering it.\n"
 "The cavalry unit should have slaughtered all chicken by now. Select it and right-click on one of the goats in the west to start hunting them for food."
 msgstr ""
+"Cuando'l campu tea construyíu, les constructores van entamar automáticamente a acollechalu.\n"
+"La unidá montada habrá yá matao toles pites. Escuéyila y calca col botón derechu nuna de les cabres al occidente pa entamar a cazales p'alimentos."
 
 #: maps/tutorials/starting_economy_walkthrough.js:184
 msgid ""
@@ -231,24 +267,32 @@ msgid ""
 "sent by a rally-point will help building it, while they will gather it when "
 "built."
 msgstr ""
+"Un campu ye a tener hasta cinco granxeros trabayándolu. P'amestar más "
+"recoyedores, escueyi'l centru cívicu ya afita un puntu d'alcuentru nun campu"
+" calcándolu col botón derechu. Mentanto que nun finare la construcción del "
+"campu, los trabayadores nuevos que s'unvien al puntu d'alcuentru aidarán a "
+"construyilu, inda que lu coyerán cuando construyíu."
 
 #: maps/tutorials/starting_economy_walkthrough.js:191
 msgid "Select the Civic Center and right-click on the field."
-msgstr ""
+msgstr "Escueyi'l centru cívicu y calca col botón derechu nel campu."
 
 #: maps/tutorials/starting_economy_walkthrough.js:198
 msgid ""
 "Now click three times on the female icon in the bottom right panel to train "
 "three additional farmers."
 msgstr ""
+"Agora calca trés vagaes nel iconu de muyeres nel panel baxeru derechu pa "
+"llevantar trés llabradores más."
 
 #: maps/tutorials/starting_economy_walkthrough.js:207
 msgid "Do a simple left-click to produce a single unit."
 msgstr ""
+"Fai un clic cenciellu col botón esquierdu pa producir una única unidá."
 
 #: maps/tutorials/starting_economy_walkthrough.js:208
 msgid "Click on the FEMALE CITIZEN icon."
-msgstr ""
+msgstr "Calca nel iconu de CIUDADANES"
 
 #: maps/tutorials/starting_economy_walkthrough.js:218
 msgid ""
@@ -309,4 +353,4 @@ msgstr "Xugador 1"
 
 #: maps/tutorials/starting_economy_walkthrough.xml:Name:39
 msgid "Starting Economy Walkthrough"
-msgstr ""
+msgstr "Entamando'l percorríu la economía"

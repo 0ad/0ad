@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:02+0200\n"
-"PO-Revision-Date: 2017-06-27 09:58+0000\n"
+"PO-Revision-Date: 2017-07-01 19:24+0000\n"
 "Last-Translator: Dmytro Ryl'kov <tverdislav@ukr.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -313,7 +313,7 @@ msgstr "Представлені герої"
 
 #: gui/common/gamedescription.js:273
 msgid "Heroes cannot be garrisoned, and they are vulnerable to raids."
-msgstr ""
+msgstr "Герої не можуть бути розміщені у гарнізоні, тому що вони вразливі до нападів."
 
 #: gui/common/gamedescription.js:280
 msgid "Rated game"
@@ -372,9 +372,9 @@ msgstr "відключено"
 #: gui/common/gamedescription.js:313
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] "Першу хвилину, інший гравець залишається нейтральним."
-msgstr[1] "У першу хвилину, інші гравці залишаються нейтральними."
-msgstr[2] "Перших %(min)s хвилин, інші гравці залишаються нейтральними."
+msgstr[0] "Першу хвилину, інші гравці залишаються нейтральними."
+msgstr[1] "У перші  %(min)s хвилину, інші гравці залишаються нейтральними."
+msgstr[2] "Перші %(min)s хвилин, інші гравці залишаються нейтральними."
 
 #: gui/common/gamedescription.js:321
 msgid "Map Name"
@@ -416,7 +416,7 @@ msgstr "Скарби"
 #: gui/common/gamedescription.js:375
 msgctxt "treasures"
 msgid "Disabled"
-msgstr "Відключено"
+msgstr "Відключений"
 
 #: gui/common/gamedescription.js:376
 msgctxt "treasures"
@@ -658,7 +658,7 @@ msgstr "Випадково"
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
-msgstr ""
+msgstr "Створіть унікальну карту з різним набором ресурсів кожного разу. Довільно обирайте кількість гравців та команд."
 
 #: gui/common/settings.js:199
 msgctxt "map"
@@ -667,7 +667,7 @@ msgstr "Сценарій"
 
 #: gui/common/settings.js:200
 msgid "A map with a predefined landscape and matchsettings."
-msgstr ""
+msgstr "Карта із заздалегідь визначеним ландшафтом та кількістю гравців"
 
 #: gui/common/settings.js:231
 msgctxt "victory condition"
@@ -1113,7 +1113,7 @@ msgstr "Пусто"
 
 #: gui/locale/locale_advanced.js:92
 msgid "invalid locale"
-msgstr ""
+msgstr "недійсний регіон"
 
 #: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:163
 #: gui/splashscreen/splashscreen.xml:(caption):28
@@ -1124,7 +1124,7 @@ msgstr "ОК"
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
-msgstr ""
+msgstr "Значення:  %(val)s (мінімальне:  %(min)s, максимальне:  %(max)s)"
 
 #: gui/options/options.js:332
 msgid ""
@@ -1659,7 +1659,7 @@ msgstr "Використано"
 
 #: gui/summary/summary.js:85
 msgid "Received"
-msgstr ""
+msgstr "Отримано"
 
 #: gui/summary/summary.js:90
 msgid "Sold"
@@ -1866,7 +1866,7 @@ msgstr "Ви можете автоматично відправляти нам �
 
 #: gui/pregame/mainmenu.xml:540
 msgid "Alpha XXII: Venustas"
-msgstr ""
+msgstr "ALPHA XXII : Привабливість"
 
 #: gui/pregame/mainmenu.xml:542
 msgid ""
@@ -1884,7 +1884,7 @@ msgstr "Відключити відгуки"
 
 #: gui/pregame/mainmenu.xml:(caption):157
 msgid "Tutorial"
-msgstr ""
+msgstr "Посібник"
 
 #: gui/pregame/mainmenu.xml:(caption):171
 #: gui/structree/structree.xml:(caption):18
@@ -1982,7 +1982,7 @@ msgstr "Відкрити ігровий посібник 0 A.D."
 
 #: gui/pregame/mainmenu.xml:(tooltip):158
 msgid "Start the economic tutorial."
-msgstr ""
+msgstr "Для початку перегляньте економічний посібник."
 
 #: gui/pregame/mainmenu.xml:(tooltip):172
 msgid "View the structure tree of civilizations featured in 0 A.D."
@@ -2048,7 +2048,7 @@ msgstr "Виберіть моди для використання."
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations"
-msgstr ""
+msgstr "Дізнайтеся, як грати, почніть із посібника, відкривайте дерева технологій, та історію колишніх цивілізацій"
 
 #: gui/pregame/mainmenu.xml:(tooltip):473
 msgid "Challenge the computer player to a single player match."
@@ -2126,7 +2126,7 @@ msgstr "Видалити"
 
 #: gui/replaymenu/replay_menu.xml:(caption):254
 msgid "Reload Cache"
-msgstr ""
+msgstr "Перезавантажте кеш"
 
 #: gui/replaymenu/replay_menu.xml:(caption):261
 #: gui/summary/summary.xml:(caption):23
@@ -2171,7 +2171,7 @@ msgstr "Тривалість"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):255
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
-msgstr ""
+msgstr "Перебудувати кеш повтору з нуля. Потенційно повільний!"
 
 #: gui/savedgames/load.xml:(heading):44
 msgctxt "replay"
@@ -2459,11 +2459,11 @@ msgstr "Історія чату"
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
-msgstr ""
+msgstr "Показує середній рейтинг гравців-учасників у стовпці списку ігор."
 
 #: gui/options/options.jsonlobbySetting[1].label
 msgid "Game Rating Column"
-msgstr ""
+msgstr "Колонка рейтингу ігор"
 
 #: gui/options/options.jsongeneralSetting[0].tooltip
 msgid "How you want to be addressed in Single Player matches."
@@ -2501,7 +2501,7 @@ msgstr "Пауза в фоновому режимі"
 msgid ""
 "If you disable it, the welcome screen will still appear once, each time a "
 "new version is available. You can always launch it from the main menu."
-msgstr ""
+msgstr "Якщо Ви відключите екран привітання, він все одно буде показаний один раз, щоразу коли буде доступна нова версія. Ви завжди можете запустити його з головного меню."
 
 #: gui/options/options.jsongeneralSetting[4].label
 msgid "Enable Welcome Screen"
@@ -2576,12 +2576,12 @@ msgstr "Зберігати налаштування битви"
 #: gui/options/options.jsongeneralSetting[13].parameters.list[0].label
 #: gui/options/options.jsongeneralSetting[14].parameters.list[0].label
 msgid "Everyone"
-msgstr ""
+msgstr "Усім"
 
 #: gui/options/options.jsongeneralSetting[13].parameters.list[1].label
 #: gui/options/options.jsongeneralSetting[14].parameters.list[1].label
 msgid "Buddies"
-msgstr ""
+msgstr "Друзям"
 
 #: gui/options/options.jsongeneralSetting[13].parameters.list[2].label
 #: gui/options/options.jsongeneralSetting[14].parameters.list[2].label
@@ -2592,17 +2592,17 @@ msgstr "Відключено"
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
-msgstr ""
+msgstr "Автоматично показувати приєднання клієнтів до вільних слотів під час налаштування матчу."
 
 #: gui/options/options.jsongeneralSetting[13].label
 msgid "Assign Players"
-msgstr ""
+msgstr "Призначити гравців"
 
 #: gui/options/options.jsongeneralSetting[14].tooltip
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started"
-msgstr ""
+msgstr "Дозволити всім або лише друзям приєднатись до гри як спостерігачі, після початку гри."
 
 #: gui/options/options.jsongeneralSetting[14].label
 msgid "Late Observer Joins"
@@ -2647,11 +2647,11 @@ msgstr "Візуалізація радіусу аури"
 msgid ""
 "Display the healing range of selected units (can also be toggled in-game "
 "with the hotkey)."
-msgstr ""
+msgstr "Відобразити радіус зцілення вибраних юнітів (також може бути переключено в грі гарячою клавішею)."
 
 #: gui/options/options.jsongeneralSetting[19].label
 msgid "Heal Range Visualization"
-msgstr ""
+msgstr "Візуалізація радіусу зцілення"
 
 #: gui/options/options.jsonsoundSetting[0].tooltip
 msgid "Master audio gain"
@@ -2907,7 +2907,7 @@ msgstr "Збір з тварин, ягідних кущів, риби чи по�
 
 #: simulation/data/resources/metal.jsondescription
 msgid "Mine from metal mines or quarries."
-msgstr ""
+msgstr "Шахти металу або кар'єри."
 
 #: simulation/data/resources/stone.jsondescription
 msgid "Mine from rocks, stone quarries or ruins."
@@ -2915,7 +2915,7 @@ msgstr "Кам'яні шахти, кам'яні кар'єри чи руїни."
 
 #: simulation/data/resources/wood.jsondescription
 msgid "Cut down from trees or groves."
-msgstr ""
+msgstr "Вирубка дерев чи гаїв."
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -3094,7 +3094,7 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr ""
+msgstr "Хоча доволі легкий для досвідченого гравця, рівень ШІ за замовчуванням є доволі складним для новачків, перш ніж вони освоять основні механізми гри. Новачкам рекомендується грати проти більш низького рівня (пісочниця чи дуже легкий). Зміна рівня ШІ здійснюється натисканням на зображення шестерні біля кожного гравця зі ШІ в панелі вибору гравця згори."
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""

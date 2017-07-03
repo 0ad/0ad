@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:01+0200\n"
-"PO-Revision-Date: 2017-06-29 03:35+0000\n"
+"PO-Revision-Date: 2017-07-02 11:22+0000\n"
 "Last-Translator: Asakura\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -94,7 +94,7 @@ msgstr "削除"
 #: gui/session/menu.js:307
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s%(message)s"
 
 #: gui/session/menu.js:387
 #, javascript-format
@@ -133,7 +133,7 @@ msgstr "味方にこの敵を攻撃するよう要請する"
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
-msgstr ""
+msgstr "このプレイヤーからランダムにユニットに賄賂を与え、限られた期間にその視界を共有します。"
 
 #: gui/session/menu.js:717
 #, javascript-format
@@ -258,7 +258,7 @@ msgstr "%(players)sにより休止されました。"
 #: gui/session/menu.js:1105 gui/session/messages.js:679
 msgctxt "Separator for a list of players"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/menu.js:1118 gui/session/menu.xml:(caption):17
 msgid "Manual"
@@ -389,12 +389,12 @@ msgstr ""
 #: gui/session/messages.js:219
 msgctxt "chat history filter"
 msgid "Players chat"
-msgstr ""
+msgstr "プレイヤーチャット"
 
 #: gui/session/messages.js:226
 msgctxt "chat history filter"
 msgid "Ally chat"
-msgstr ""
+msgstr "同盟チャット"
 
 #: gui/session/messages.js:233
 msgctxt "chat history filter"
@@ -404,7 +404,7 @@ msgstr ""
 #: gui/session/messages.js:240
 msgctxt "chat history filter"
 msgid "Observer chat"
-msgstr ""
+msgstr "観戦者チャット"
 
 #: gui/session/messages.js:247
 msgctxt "chat history filter"
@@ -466,24 +466,24 @@ msgstr "%(player)sは%(player2)sと中立になりました。"
 
 #: gui/session/messages.js:569
 msgid "Click to quit this tutorial."
-msgstr ""
+msgstr "クリックしてチュートリアルを終了する。"
 
 #: gui/session/messages.js:570
 msgid "Quit"
-msgstr ""
+msgstr "終了"
 
 #: gui/session/messages.js:574
 msgid "Click when ready."
-msgstr ""
+msgstr "準備ができたらクリック。"
 
 #: gui/session/messages.js:578
 msgid "Follow the instructions."
-msgstr ""
+msgstr "指示に従ってください。"
 
 #: gui/session/messages.js:668
 msgctxt "Separator for a list of client loading messages"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/messages.js:674
 #, javascript-format
@@ -494,17 +494,17 @@ msgstr ""
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Players: %(players)s"
-msgstr ""
+msgstr "プレイヤー：%(players)s"
 
 #: gui/session/messages.js:683
 msgctxt "Out-Of-Sync"
 msgid "Your game state is identical to the hosts game state."
-msgstr ""
+msgstr "ゲームの状態は、ホストのゲーム状態と同じです。"
 
 #: gui/session/messages.js:684
 msgctxt "Out-Of-Sync"
 msgid "Your game state differs from the hosts game state."
-msgstr ""
+msgstr "ゲームの状態はホストのゲーム状態とは異なります。"
 
 #: gui/session/messages.js:690
 msgctxt "Out-Of-Sync"
@@ -550,22 +550,22 @@ msgstr ""
 #: gui/session/messages.js:782
 msgctxt "chat addressee"
 msgid "Everyone"
-msgstr ""
+msgstr "全ての陣営"
 
 #: gui/session/messages.js:790
 msgctxt "chat addressee"
 msgid "Allies"
-msgstr ""
+msgstr "同盟国"
 
 #: gui/session/messages.js:794
 msgctxt "chat addressee"
 msgid "Enemies"
-msgstr ""
+msgstr "敵陣営"
 
 #: gui/session/messages.js:800
 msgctxt "chat addressee"
 msgid "Observers"
-msgstr ""
+msgstr "観戦者"
 
 #: gui/session/messages.js:829 gui/session/selection_details.js:82
 #, javascript-format
@@ -804,7 +804,7 @@ msgstr "シングルクリックで1体を外に出します。Shift+クリッ�
 #: gui/session/selection_panels.js:409 gui/session/selection_panels.js:914
 #, javascript-format
 msgid "Player: %(playername)s"
-msgstr ""
+msgstr "プレイヤー：%(playername)s"
 
 #: gui/session/selection_panels.js:444
 msgid "Lock Gate"
@@ -858,7 +858,7 @@ msgstr ""
 #: gui/session/selection_panels.js:802
 msgctxt "Separator for a list of entity counts"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/selection_panels.js:1111
 #, javascript-format
@@ -981,22 +981,22 @@ msgstr ""
 #: gui/session/session.js:403
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
-msgstr ""
+msgstr "%(hotkey)sを押して公開チャットを開きます。"
 
 #: gui/session/session.js:406
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr ""
+msgstr "%(hotkey)sを押して観戦者チャットを開きます。 "
 
 #: gui/session/session.js:407
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr ""
+msgstr "%(hotkey)sを押して同盟チャットを開きます。  "
 
 #: gui/session/session.js:409
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
-msgstr ""
+msgstr "%(hotkey)sを押して最近選んだプライベートチャットを開きます。  "
 
 #: gui/session/session.js:413
 msgid "Find idle worker"
@@ -1038,7 +1038,7 @@ msgstr "敗北！"
 
 #: gui/session/session.js:844
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: gui/session/session.js:903
 msgctxt "replayFinished"
@@ -1147,7 +1147,7 @@ msgstr ""
 
 #: gui/session/unit_actions.js:1068
 msgid "Destroy the selected units or buildings."
-msgstr ""
+msgstr "選択したユニットまたは建物を破壊します。"
 
 #: gui/session/unit_actions.js:1070
 #, javascript-format
@@ -1226,7 +1226,7 @@ msgstr "半分に満たない占領ポイントしか所持していないため
 
 #: gui/session/unit_actions.js:1474
 msgid "This entity is undeletable"
-msgstr ""
+msgstr "このエンティティは削除できません"
 
 #: gui/session/chat_window.xml:(caption):16
 msgctxt "chat input"
@@ -1250,7 +1250,7 @@ msgstr "キャンセル"
 #: gui/session/chat_window.xml:(caption):95
 msgctxt "chat"
 msgid "History"
-msgstr ""
+msgstr "履歴"
 
 #: gui/session/chat_window.xml:(caption):100
 msgid "Send"
@@ -1401,7 +1401,7 @@ msgstr ""
 
 #: gui/session/top_panel.xml:(caption):47
 msgid "Observer Mode"
-msgstr ""
+msgstr "観戦モード"
 
 #: gui/session/top_panel.xml:(tooltip):39
 msgid "Choose player to view"
@@ -1413,19 +1413,19 @@ msgstr ""
 
 #: gui/session/trade_window.xml:(caption):17
 msgid "Barter"
-msgstr ""
+msgstr "取引"
 
 #: gui/session/trade_window.xml:(caption):24
 msgid "Sell:"
-msgstr ""
+msgstr "販売："
 
 #: gui/session/trade_window.xml:(caption):28
 msgid "Buy:"
-msgstr ""
+msgstr "買付："
 
 #: gui/session/trade_window.xml:(caption):32
 msgid "No Markets Available"
-msgstr ""
+msgstr "市場がありません"
 
 #: gui/session/trade_window.xml:(caption):67
 msgid "Trade"
@@ -1433,7 +1433,7 @@ msgstr "交易"
 
 #: gui/session/trade_window.xml:(caption):75
 msgid "Goods:"
-msgstr ""
+msgstr "商品："
 
 #: gui/session/tutorial_panel.xml:(caption):11
 msgid "Ready"
