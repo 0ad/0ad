@@ -687,7 +687,7 @@ var g_PlayerDropdowns = {
 		"ids": (idx) => g_PlayerColorPickerList.map((color, index) => index),
 		"default": (idx) => idx,
 		"defined": (idx) => g_GameAttributes.settings.PlayerData[idx].Color !== undefined,
-		"get": (idx) => g_GameAttributes.settings.PlayerData[idx].Color,
+		"get": (idx) => g_PlayerColorPickerList.indexOf(g_GameAttributes.settings.PlayerData[idx].Color),
 		"select": (selectedIdx, idx) => {
 			let playerData = g_GameAttributes.settings.PlayerData;
 
