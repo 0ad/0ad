@@ -3431,6 +3431,17 @@ UnitAI.prototype.SetGarrisoned = function()
 	this.isGarrisoned = true;
 };
 
+UnitAI.prototype.GetGarrisonHolder = function()
+{
+	if (this.IsGarrisoned())
+	{
+		for (let order of this.orderQueue)
+			if (order.type == "Garrison" || order.type == "Autogarrison")
+				return order.data.target;
+	}
+	return INVALID_ENTITY;
+};
+
 UnitAI.prototype.IsFleeing = function()
 {
 	var state = this.GetCurrentState().split(".").pop();
@@ -3834,6 +3845,8 @@ UnitAI.prototype.ReplaceOrder = function(type, data)
 			this.UpdateWorkOrders(type);
 	}
 
+	let garrisonHolder = this.IsGarrisoned() && type != "Ungarrison" ? this.GetGarrisonHolder() : null;
+
 	// Special cases of orders that shouldn't be replaced:
 	// 1. Cheering - we're invulnerable, add order after we finish
 	// 2. Packing/unpacking - we're immobile, add order after we finish (unless it's cancel)
@@ -3855,6 +3868,10 @@ UnitAI.prototype.ReplaceOrder = function(type, data)
 		this.orderQueue = [];
 		this.PushOrder(type, data);
 	}
+
+	if (garrisonHolder)
+		this.PushOrder("Garrison", { "target": garrisonHolder });
+
 	Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
 };
 
@@ -3929,6 +3946,13 @@ UnitAI.prototype.BackToWork = function()
 {
 	if (this.workOrders.length == 0)
 		return false;
+
+	if (this.IsGarrisoned())
+	{
+		let cmpGarrisonHolder = Engine.QueryInterface(this.GetGarrisonHolder(), IID_GarrisonHolder);
+		if (!cmpGarrisonHolder || !cmpGarrisonHolder.PerformEject([this.entity], false))
+			return false;
+	}
 
 	// Clear the order queue considering special orders not to avoid
 	if (this.order && this.order.type == "Cheering")
