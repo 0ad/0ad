@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-06-20 06:47+0000\n"
+"PO-Revision-Date: 2017-07-04 07:20+0000\n"
 "Last-Translator: Asakura\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -59,14 +59,14 @@ msgstr "%(_player_)sを攻撃する準備が整いました。"
 msgid ""
 "Sorry, I do not have enough soldiers currently; but my next attack will "
 "target %(_player_)s."
-msgstr ""
+msgstr "残念ながら今のところ我が兵が足りていないのですが、次の攻撃では%(_player_)sを狙っています。"
 
 #: simulation/ai/petra/chatHelper.js:22
 #, javascript-format
 msgid ""
 "Sorry, I still need to strengthen my army. However, I will attack "
 "%(_player_)s next."
-msgstr ""
+msgstr "ごめんなさい、まだ軍隊を強化する必要があります。しかし、次に%(_player_)sを攻撃するつもりです。 "
 
 #: simulation/ai/petra/chatHelper.js:25
 #, javascript-format
@@ -108,7 +108,7 @@ msgstr " %(resource)sをいくらか供与していただければ、我らが�
 #, javascript-format
 msgid ""
 "If you can spare me some %(resource)s, I will be able to strengthen my army."
-msgstr ""
+msgstr "もし%(resource)sをいただけるなら、我が軍を強化することができることでしょう。"
 
 #: simulation/ai/petra/chatHelper.js:42
 #, javascript-format
@@ -810,7 +810,7 @@ msgstr "同盟国"
 #: simulation/components/BuildRestrictions.js:196
 msgctxt "Territory type"
 msgid "unconnected allied"
-msgstr ""
+msgstr "離れた同盟国"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
@@ -1078,11 +1078,11 @@ msgstr "早送り(20倍)"
 msgid ""
 "Capture all relics spread across the map and keep them for a certain time to"
 " win the game."
-msgstr ""
+msgstr "マップ上に散らばっているすべての遺跡を占領し、一定の時間それらを確保すると勝利。"
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
 msgid "Capture The Relic"
-msgstr ""
+msgstr "遺跡占領"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid "Defeat all opponents to win."
@@ -1094,7 +1094,7 @@ msgstr "征服"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Destroy all enemy structures to win."
-msgstr ""
+msgstr "敵のすべての建築物を破壊すると勝利。"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
@@ -1102,7 +1102,7 @@ msgstr "建造物の征服"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
 msgid "Kill all enemy units to win."
-msgstr ""
+msgstr "全ての敵ユニットを倒すと勝利。"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
@@ -1114,7 +1114,7 @@ msgstr ""
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Title
 msgid "Regicide"
-msgstr ""
+msgstr "大逆罪"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid ""
@@ -1162,7 +1162,7 @@ msgstr "極小"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Tooltip
 msgid "This map size has barely any room for even the most basic resources."
-msgstr ""
+msgstr "このマップサイズには、基本的な資源でさえほとんど余裕がありません。"
 
 #: simulation/data/settings/map_sizes.jsonData[1].Name
 msgid "Small"
@@ -1172,7 +1172,7 @@ msgstr "小"
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
 "quickly while still having some room to expand."
-msgstr ""
+msgstr "この小さなマップは１対１の対戦に適しています。プレイヤーは敵に素早く手を伸ばし、さらに拡大する余地があります。"
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Medium"
@@ -1182,7 +1182,7 @@ msgstr "中"
 msgid ""
 "Medium-sized maps provide plenty of space for two players, but even eight "
 "players fit."
-msgstr ""
+msgstr "中サイズのマップは2人のプレイヤーに十分な空間を提供しますが、8人のプレイヤーにも手頃です。"
 
 #: simulation/data/settings/map_sizes.jsonData[3].Name
 msgid "Normal"
@@ -1192,7 +1192,7 @@ msgstr "標準"
 msgid ""
 "This is the ideal mapsize for 4 to 8 players, because there is plenty of "
 "space to expand while the neighbors are quickly reachable."
-msgstr ""
+msgstr "これは、4～8人のプレイヤーのための理想的なマップサイズです。拡張する空間が十分にあり、かつ隣人にはすばやく到達できるためです。"
 
 #: simulation/data/settings/map_sizes.jsonData[4].Name
 msgid "Large"
@@ -1202,7 +1202,7 @@ msgstr "大"
 msgid ""
 "The large mapsize is recommended when great portions of the map are covered "
 "with water or inaccessible mountains."
-msgstr ""
+msgstr "マップの大部分が水または近づけない山々で覆われている場合、大マップがお勧めです。"
 
 #: simulation/data/settings/map_sizes.jsonData[5].Name
 msgid "Very Large"
@@ -1213,7 +1213,7 @@ msgstr "特大"
 msgid ""
 "Very large maps are not recommended as it takes very long to reach the enemy"
 " and the game performance can be reduced."
-msgstr ""
+msgstr "特大マップは、敵に到達するまでには時間がかかり、ゲームのパフォーマンスを低下させるため、お勧めしません。"
 
 #: simulation/data/settings/map_sizes.jsonData[6].Name
 msgid "Giant"

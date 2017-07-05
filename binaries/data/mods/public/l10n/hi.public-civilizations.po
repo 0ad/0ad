@@ -5,13 +5,14 @@
 # Translators:
 # gvidushiin <gvidushiin@gmail.com>, 2014
 # Harshvardhan Singh Bhati <vyal.micro@gmail.com>, 2014
+# Rajarshi Bandopadhyay <theocrat93@gmail.com>, 2017
 # Ravi Kumar, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:01+0200\n"
-"PO-Revision-Date: 2017-06-05 14:23+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-07-05 03:27+0000\n"
+"Last-Translator: Rajarshi Bandopadhyay <theocrat93@gmail.com>\n"
 "Language-Team: Hindi (http://www.transifex.com/wildfire-games/0ad/language/hi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,21 +23,21 @@ msgstr ""
 #: simulation/data/civs/athen.jsonName
 #: simulation/data/civs/athen.jsonFactions[0].Name
 msgid "Athenians"
-msgstr ""
+msgstr "एथेंसवासी"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Description
 msgid "Metal mining gathering rates increased by +10% for each passing age."
-msgstr ""
+msgstr "हर युगांतर के बाद धातु खनिजी की दर में +10% वॄद्धी होगी।"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Name
 msgid "Silver Owls"
-msgstr ""
+msgstr "चाँदी के उल्लू"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].History
 msgid ""
 "The mines at Laureion in Attica provided Athens with a wealth of silver from"
 " which to mint her famous and highly prized coin, The Athenian Owl."
-msgstr ""
+msgstr "लौरियन के खंजरों से एथेंस को ऊँची परिमान में चाँदी मिली और इस चाँदी से एथेंस ने बनाया अपना प्रसिद्ध सिक्का, जिसपर अंकित था चाँदी का उल्लू।"
 
 #: simulation/data/civs/athen.jsonCivBonuses[1].Description
 #: simulation/data/civs/mace.jsonCivBonuses[2].Description
@@ -44,13 +45,13 @@ msgstr ""
 msgid ""
 "Constructing a Theatron increases the territory expanse of all buildings by "
 "+20%."
-msgstr ""
+msgstr "थिएट्रौन की संरचना करने से आपके क्षेत्र का +20% विस्तार होगा।"
 
 #: simulation/data/civs/athen.jsonCivBonuses[1].Name
 #: simulation/data/civs/mace.jsonCivBonuses[2].Name
 #: simulation/data/civs/spart.jsonCivBonuses[2].Name
 msgid "Hellenization"
-msgstr ""
+msgstr "यवनीकरण"
 
 #: simulation/data/civs/athen.jsonCivBonuses[1].History
 #: simulation/data/civs/spart.jsonCivBonuses[2].History
@@ -58,15 +59,15 @@ msgid ""
 "The Greeks were highly successful in Hellenising various foreigners. During "
 "the Hellenistic Age, Greek was the lingua franca of the Ancient World, "
 "spoken widely from Spain to India."
-msgstr ""
+msgstr "यवन विश्व के विभिन्न प्रांतों को यवनीकरित करने में माहिर थे। यवनिक युग में ग्रीक समस्त प्राचीन विश्व की सामान्य भाषा ती। इसे स्पेन से लेकर भारत तक प्रयोग किया जाता था।"
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
 msgid "Ships construct 25% faster."
-msgstr ""
+msgstr "जहाज़ों के संरचना 25% शीघ्रतर होगा।"
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Name
 msgid "Delian League"
-msgstr ""
+msgstr "देलिय संघ"
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].History
 msgid ""
@@ -74,88 +75,88 @@ msgid ""
 "city-states instituted the so-called Delian League in 478 B.C., whose "
 "purpose was to push the Persians out of the Aegean region. The allied states"
 " contributed ships and money, while the Athenians offered their entire navy."
-msgstr ""
+msgstr "सलामिस और मिकाले के जलयुद्ध विजयों के बाद, यवनी नगर-राज्यों ने देलिय संघ नामक संस्था का स्थापना तहत 478 पू. ई. में किया। ईसका उद्येश्य था ईरानियों को एजिय स्थान से हटाना। संबद्ध राज्यों ने जहाज़ और आर्थिक साहायता प्रस्तुत किए और एथेंस ने अपनी पूरी नौसेना ही योगदान किया।"
 
 #: simulation/data/civs/athen.jsonAINames[0]
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[0].Name
 msgid "Themistocles"
-msgstr ""
+msgstr "थर्मिस्टोकल्स"
 
 #: simulation/data/civs/athen.jsonAINames[1]
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[1].Name
 msgid "Pericles"
-msgstr ""
+msgstr "पेरिकल्स"
 
 #: simulation/data/civs/athen.jsonAINames[2]
 msgid "Cimon"
-msgstr ""
+msgstr "शिमौन"
 
 #: simulation/data/civs/athen.jsonAINames[3]
 msgid "Aristides"
-msgstr ""
+msgstr "अरिस्तिडिस"
 
 #: simulation/data/civs/athen.jsonAINames[4]
 msgid "Xenophon"
-msgstr ""
+msgstr "ज़ेनोफौन"
 
 #: simulation/data/civs/athen.jsonAINames[5]
 msgid "Hippias"
-msgstr ""
+msgstr "हिप्लास"
 
 #: simulation/data/civs/athen.jsonAINames[6]
 msgid "Cleisthenes"
-msgstr ""
+msgstr "क्लेइस्थीन्स"
 
 #: simulation/data/civs/athen.jsonAINames[7]
 msgid "Thucydides"
-msgstr ""
+msgstr "थुशिदिदिस"
 
 #: simulation/data/civs/athen.jsonAINames[8]
 msgid "Alcibiades"
-msgstr ""
+msgstr "अलसिबिआदिस"
 
 #: simulation/data/civs/athen.jsonAINames[9]
 msgid "Miltiades"
-msgstr ""
+msgstr "मिटिआदिस"
 
 #: simulation/data/civs/athen.jsonAINames[10]
 msgid "Cleon"
-msgstr ""
+msgstr "क्लिओन"
 
 #: simulation/data/civs/athen.jsonAINames[11]
 msgid "Cleophon"
-msgstr ""
+msgstr "क्लिओफोन"
 
 #: simulation/data/civs/athen.jsonAINames[12]
 msgid "Thrasybulus"
-msgstr ""
+msgstr "थ्रासिबुलस"
 
 #: simulation/data/civs/athen.jsonAINames[13]
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[2].Name
 msgid "Iphicrates"
-msgstr ""
+msgstr "इफिक्राटिस"
 
 #: simulation/data/civs/athen.jsonAINames[14]
 msgid "Demosthenes"
-msgstr ""
+msgstr "दिमोस्थेनीस"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[0].Description
 msgid "Athenian triremes can train Marines (Epibastes Athenaikos)."
-msgstr ""
+msgstr "एथेनीय त्रिरीम अब जलयोद्धाओं (एपिबास्तिस अदेनाइकोस) का संरचना कर सकेगा।"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[0].Name
 msgid "Iphicratean Reforms"
-msgstr ""
+msgstr "इफिक्रेटीय सुधारकाज"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[1].Description
 msgid ""
 "Stone walls can be built in neutral territory. Construction time for walls "
 "is reduced by 50%."
-msgstr ""
+msgstr "पत्थरी दीवारों को तटस्थ क्षेत्र में भी बनाया जा सकता है। दिवारों के निर्माण का समय 50% घट जाएगा।"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[1].Name
 msgid "Long Walls"
-msgstr ""
+msgstr "लंबी दीवारें"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[1].History
 msgid ""
@@ -163,13 +164,13 @@ msgid ""
 "Themistocles and extended 6 km from the city to the port of Piraeus. This "
 "secured the city's sea supply routes and prevented an enemy from starving "
 "out the city during a siege."
-msgstr ""
+msgstr "एथेंस के लंबी दीवारें चालाक थर्मिस्टोकिलिस के देखरेख में बनाए गए थे। ये शहर से 6 किलोमीटर दूर पिराएअस के बंदरगाह तक जाते थे और शहर के समुद्री आपूर्ति पथ को सुरक्षित रखते थे। अत: शहर को घेराबंदी के वक्त भूख से मारना असंभव था।"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[2].Description
 msgid ""
 "The player gains the ability to order spear-armed troops into Phalanx "
 "formation, providing greater attack and armor."
-msgstr ""
+msgstr "खिलाड़ी को अपने भाला सशस्त्र सैन्यों को फलनाक्स गठन में संगठित करने की क्षमता मिलेगी। इससे आक्रमण और कवच दोनो बढ़ेंगे।"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[2].Name
 #: simulation/data/civs/spart.jsonCivBonuses[0].Name
@@ -182,7 +183,7 @@ msgid ""
 "eight men deep and up to eight hundred men wide. The men within overlapped "
 "their shields, presenting a formidable shield wall brimming with 8 foot "
 "spears."
-msgstr ""
+msgstr "युगों-युगों से प्रसिद्ध फलनाक्स गठन का स्थापना लगभग अश्टम शताब्दी पू. ई, में हुआ था। "
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[0].History
 msgid ""
