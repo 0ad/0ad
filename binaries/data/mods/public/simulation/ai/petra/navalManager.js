@@ -38,9 +38,8 @@ m.NavalManager = function(Config)
 /** More initialisation for stuff that needs the gameState */
 m.NavalManager.prototype.init = function(gameState, deserializing)
 {
-	// finished docks
-	this.docks = gameState.getOwnStructures().filter(API3.Filters.and(API3.Filters.byClassesOr(["Dock", "Shipyard"]),
-		API3.Filters.not(API3.Filters.isFoundation())));
+	// docks
+	this.docks = gameState.getOwnStructures().filter(API3.Filters.byClassesOr(["Dock", "Shipyard"]));
 	this.docks.registerUpdates();
 
 	this.ships = gameState.getOwnUnits().filter(API3.Filters.and(API3.Filters.byClass("Ship"), API3.Filters.not(API3.Filters.byMetadata(PlayerID, "role", "trader"))));
@@ -103,16 +102,6 @@ m.NavalManager.prototype.init = function(gameState, deserializing)
 			this.neededWarShips.push(0);
 		}
 	}
-
-	// load units and buildings from the config files
-	let civ = gameState.getPlayerCiv();
-	if (civ in this.Config.buildings.naval)
-		this.bNaval = this.Config.buildings.naval[civ];
-	else
-		this.bNaval = this.Config.buildings.naval['default'];
-
-	for (let i in this.bNaval)
-		this.bNaval[i] = gameState.applyCiv(this.bNaval[i]);
 
 	if (deserializing)
 		return;
@@ -267,9 +256,8 @@ m.NavalManager.prototype.canFishSafely = function(gameState, fish)
 m.NavalManager.prototype.getUnconnectedSeas = function(gameState, region)
 {
 	let seas = gameState.ai.accessibility.regionLinks[region].slice();
-	let docks = gameState.getOwnStructures().filter(API3.Filters.byClass("Dock"));
-	docks.forEach(function (dock) {
-		if (dock.getMetadata(PlayerID, "access") !== region)
+	this.docks.forEach(function (dock) {
+		if (!dock.hasClass("Dock") || dock.getMetadata(PlayerID, "access") !== region)
 			return;
 		let i = seas.indexOf(dock.getMetadata(PlayerID, "sea"));
 		if (i !== -1)
@@ -280,25 +268,25 @@ m.NavalManager.prototype.getUnconnectedSeas = function(gameState, region)
 
 m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 {
-	for (let evt of events.ConstructionFinished)
+	for (let evt of events.Create)
 	{
-		if (!evt || !evt.newentity)
+		if (!evt.entity)
 			continue;
-		let entity = gameState.getEntityById(evt.newentity);
-		if (entity && entity.hasClass("Dock") && entity.isOwn(PlayerID))
-			this.setAccessIndices(gameState, entity);
+		let ent = gameState.getEntityById(evt.entity);
+		if (ent && ent.isOwn(PlayerID) && ent.foundationProgress() !== undefined && (ent.hasClass("Dock") || ent.hasClass("Shipyard")))
+			this.setAccessIndices(gameState, ent);
 	}
 
 	for (let evt of events.TrainingFinished)
 	{
-		if (!evt || !evt.entities)
+		if (!evt.entities)
 			continue;
 		for (let entId of evt.entities)
 		{
-			let entity = gameState.getEntityById(entId);
-			if (!entity || !entity.hasClass("Ship") || !entity.isOwn(PlayerID))
+			let ent = gameState.getEntityById(entId);
+			if (!ent || !ent.hasClass("Ship") || !ent.isOwn(PlayerID))
 				continue;
-			this.setShipIndex(gameState, entity);
+			this.setShipIndex(gameState, ent);
 		}
 	}
 
@@ -319,8 +307,8 @@ m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 		{
 			// just reset the units onBoard metadata and wait for a new ship to be assigned to this plan
 			plan.units.forEach(function (ent) {
-				if ((ent.getMetadata(PlayerID, "onBoard") === "onBoard" && ent.position()) ||
-					ent.getMetadata(PlayerID, "onBoard") === shipId)
+				if (ent.getMetadata(PlayerID, "onBoard") === "onBoard" && ent.position() ||
+				    ent.getMetadata(PlayerID, "onBoard") === shipId)
 					ent.setMetadata(PlayerID, "onBoard", undefined);
 			});
 			plan.needTransportShips = !plan.transportShips.hasEntities();
@@ -349,12 +337,11 @@ m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 
 	for (let evt of events.OwnershipChanged)	// capture events
 	{
-		if (evt.to === PlayerID)
-		{
-			let ent = gameState.getEntityById(evt.entity);
-			if (ent && ent.hasClass("Dock"))
-				this.setAccessIndices(gameState, ent);
-		}
+		if (evt.to !== PlayerID)
+			continue;
+		let ent = gameState.getEntityById(evt.entity);
+		if (ent && (ent.hasClass("Dock") || ent.hasClass("Shipyard")))
+			this.setAccessIndices(gameState, ent);
 	}
 };
 
@@ -511,8 +498,7 @@ m.NavalManager.prototype.maintainFleet = function(gameState, queues)
 {
 	if (queues.ships.hasQueuedUnits())
 		return;
-	if (!gameState.getOwnEntitiesByClass("Dock", true).filter(API3.Filters.isBuilt()).hasEntities() &&
-	    !gameState.getOwnEntitiesByClass("Shipyard", true).filter(API3.Filters.isBuilt()).hasEntities())
+	if (!this.docks.filter(API3.Filters.isBuilt()).hasEntities())
 		return;
 	// check if we have enough transport ships per region.
 	for (let sea = 0; sea < this.seaShips.length; ++sea)
@@ -640,31 +626,24 @@ m.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 	}
 
 	if (gameState.currentPhase() < 2 || gameState.getPopulation() < this.Config.Economy.popForTown + 15 ||
-		queues.militaryBuilding.hasQueuedUnits() || this.bNaval.length === 0)
+	    queues.militaryBuilding.hasQueuedUnits())
 		return;
-	let docks = gameState.getOwnStructures().filter(API3.Filters.byClass("Dock"));
-	if (!docks.hasEntities())
+	if (!this.docks.filter(API3.Filters.byClass("Dock")).hasEntities() ||
+	     this.docks.filter(API3.Filters.byClass("Shipyard")).hasEntities())
 		return;
-	let nNaval = 0;
-	for (let naval of this.bNaval)
-		nNaval += gameState.countEntitiesAndQueuedByType(naval, true);
-
-	if (nNaval === 0 || (nNaval < this.bNaval.length && gameState.getPopulation() > 120))
-	{
-		for (let naval of this.bNaval)
-		{
-			if (gameState.countEntitiesAndQueuedByType(naval, true) < 1 && gameState.ai.HQ.canBuild(gameState, naval))
-			{
-				let wantedLand = {};
-				for (let base of gameState.ai.HQ.baseManagers)
-					if (base.anchor)
-						wantedLand[base.accessIndex] = true;
-				let sea = docks.toEntityArray()[0].getMetadata(PlayerID, "sea");
-				queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, naval, { "land": wantedLand, "sea": sea }));
-				break;
-			}
-		}
-	}
+	let template;
+	if (gameState.ai.HQ.canBuild(gameState, "structures/{civ}_super_dock"))
+		template = "structures/{civ}_super_dock";
+	else if (gameState.ai.HQ.canBuild(gameState, "structures/{civ}_shipyard"))
+		template = "structures/{civ}_shipyard";
+	else
+		return;
+	let wantedLand = {};
+	for (let base of gameState.ai.HQ.baseManagers)
+		if (base.anchor)
+			wantedLand[base.accessIndex] = true;
+	let sea = this.docks.toEntityArray()[0].getMetadata(PlayerID, "sea");
+	queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, template, { "land": wantedLand, "sea": sea }));
 };
 
 /** goal can be either attack (choose ship with best arrowCount) or transport (choose ship with best capacity) */
