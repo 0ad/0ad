@@ -177,10 +177,10 @@ for (let i = 0; i < numPlayers; ++i)
 
 	// Create starting trees
 	let num = Math.floor(hillSize / 60);
-	let tries = 10;
+	let tries = 20;
 	for (let x = 0; x < tries; ++x)
 	{
-		let tAngle = mAngle + randFloat(PI/3, PI/4);
+		let tAngle = randFloat(0, 2 * PI);
 		let tDist = randFloat(10, 12);
 		if (createObjectGroup(
 			new SimpleGroup(
