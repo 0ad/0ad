@@ -57,8 +57,12 @@ function startReplay()
  */
 function reallyStartVisualReplay(replayDirectory)
 {
-	// TODO: enhancement: restore filter settings and selected replay when returning from the summary screen.
-	Engine.StartVisualReplay(replayDirectory);
+	if (!Engine.StartVisualReplay(replayDirectory))
+	{
+		warn('Replay "' + escapeText(Engine.GetReplayDirectoryName(replayDirectory)) + '" not found! Please click on reload cache.');
+		return;
+	}
+
 	Engine.SwitchGuiPage("page_loading.xml", {
 		"attribs": Engine.GetReplayAttributes(replayDirectory),
 		"isNetworked": false,

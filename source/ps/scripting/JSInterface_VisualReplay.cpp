@@ -23,9 +23,9 @@
 #include "ps/Profile.h"
 #include "ps/VisualReplay.h"
 
-void JSI_VisualReplay::StartVisualReplay(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const CStrW& directory)
+bool JSI_VisualReplay::StartVisualReplay(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const CStrW& directory)
 {
-	VisualReplay::StartVisualReplay(directory);
+	return VisualReplay::StartVisualReplay(directory);
 }
 
 bool JSI_VisualReplay::DeleteReplay(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const CStrW& replayFile)
@@ -67,7 +67,7 @@ void JSI_VisualReplay::RegisterScriptFunctions(ScriptInterface& scriptInterface)
 {
 	scriptInterface.RegisterFunction<JS::Value, bool, &GetReplays>("GetReplays");
 	scriptInterface.RegisterFunction<bool, CStrW, &DeleteReplay>("DeleteReplay");
-	scriptInterface.RegisterFunction<void, CStrW, &StartVisualReplay>("StartVisualReplay");
+	scriptInterface.RegisterFunction<bool, CStrW, &StartVisualReplay>("StartVisualReplay");
 	scriptInterface.RegisterFunction<JS::Value, CStrW, &GetReplayAttributes>("GetReplayAttributes");
 	scriptInterface.RegisterFunction<JS::Value, CStrW, &GetReplayMetadata>("GetReplayMetadata");
 	scriptInterface.RegisterFunction<bool, CStrW, &HasReplayMetadata>("HasReplayMetadata");
