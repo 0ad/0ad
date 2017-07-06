@@ -63,11 +63,6 @@ m.Config = function(difficulty)
 			"rome": [ "structures/{civ}_army_camp" ],
 			"sele": [ "structures/{civ}_library" ],
 			"spart": [ "structures/{civ}_syssiton", "structures/{civ}_theatron" ]
-		},
-		"naval": {
-			"default": [],
-//			"brit": [ "structures/{civ}_crannog" ],
-			"cart": [ "structures/{civ}_super_dock" ]
 		}
 	};
 

@@ -213,9 +213,7 @@ m.TransportPlan.prototype.cancelTransport = function(gameState)
 		}
 		if (!base.anchor || !base.anchor.position())
 			return false;
-		this.units.forEach(function (ent) {
-			ent.setMetadata(PlayerID, "base", base.ID);
-		});
+		this.units.forEach(unit => { unit.setMetadata(PlayerID, "base", base.ID); });
 	}
 	this.endIndex = this.startIndex;
 	this.endPos = base.anchor.position();

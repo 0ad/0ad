@@ -216,10 +216,10 @@ var g_NetMessageTypes = {
 			});
 		},
 		"kicked": msg => {
-			handleKick(false, msg.text, msg.data || "");
+			handleKick(false, msg.text, msg.data || "", msg.time);
 		},
 		"banned": msg => {
-			handleKick(true, msg.text, msg.data || "");
+			handleKick(true, msg.text, msg.data || "", msg.time);
 		},
 		"room-message": msg => {
 			addChatMessage({
@@ -475,7 +475,7 @@ function filterGame(game)
 	return false;
 }
 
-function handleKick(banned, nick, reason)
+function handleKick(banned, nick, reason, time)
 {
 	let kickString = nick == g_Username ?
 		banned ?
@@ -494,7 +494,7 @@ function handleKick(banned, nick, reason)
 	{
 		addChatMessage({
 			"text": "/special " + sprintf(kickString, { "nick": nick }) + " " + reason,
-			"time": msg.time,
+			"time": time,
 			"isSpecial": true
 		});
 		return;
@@ -502,7 +502,7 @@ function handleKick(banned, nick, reason)
 
 	addChatMessage({
 		"from": "system",
-		"time": msg.time,
+		"time": time,
 		"text": kickString + " " + reason,
 	});
 
