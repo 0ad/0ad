@@ -20,6 +20,7 @@
 #include "scriptinterface/ScriptInterface.h"
 
 #include "lib/ogl.h"
+#include "lib/snd.h"
 #include "lib/svn_revision.h"
 #include "lib/timer.h"
 #include "lib/utf8.h"
@@ -30,7 +31,6 @@
 #include "lib/sysdep/gfx.h"
 #include "lib/sysdep/numa.h"
 #include "lib/sysdep/os_cpu.h"
-#include "lib/sysdep/snd.h"
 #if ARCH_X86_X64
 # include "lib/sysdep/arch/x86_x64/cache.h"
 # include "lib/sysdep/arch/x86_x64/topology.h"
@@ -266,8 +266,8 @@ void RunHardwareDetection()
 	scriptInterface.SetProperty(settings, "gfx_card", gfx::CardName());
 	scriptInterface.SetProperty(settings, "gfx_drv_ver", gfx::DriverInfo());
 
-	scriptInterface.SetProperty(settings, "snd_card", std::wstring(snd_card));
-	scriptInterface.SetProperty(settings, "snd_drv_ver", std::wstring(snd_drv_ver));
+	scriptInterface.SetProperty(settings, "snd_card", snd_card);
+	scriptInterface.SetProperty(settings, "snd_drv_ver", snd_drv_ver);
 
 	ReportGLLimits(scriptInterface, settings);
 

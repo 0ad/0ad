@@ -803,6 +803,7 @@ function setup_all_libs ()
 	extern_libs = {
 		"boost",
 		"sdl",
+		"openal",
 		"opengl",
 		"libpng",
 		"zlib",
