@@ -1755,24 +1755,17 @@ function unloadSelection()
 		Engine.PostNetworkCommand({ "type": "unload", "entities": ents, "garrisonHolder": parent });
 }
 
-function unloadAllByOwner()
-{
-	var garrisonHolders = g_Selection.toList().filter(e => {
-		var state = GetEntityState(e);
-		return state && state.garrisonHolder;
-	});
-	Engine.PostNetworkCommand({ "type": "unload-all-by-owner", "garrisonHolders": garrisonHolders });
-}
-
 function unloadAll()
 {
-	// Filter out all entities that aren't garrisonable.
-	var garrisonHolders = g_Selection.toList().filter(e => {
-		var state = GetEntityState(e);
+	let garrisonHolders = g_Selection.toList().filter(e => {
+		let state = GetEntityState(e);
 		return state && state.garrisonHolder;
 	});
 
-	Engine.PostNetworkCommand({ "type": "unload-all", "garrisonHolders": garrisonHolders });
+	Engine.PostNetworkCommand({
+		"type": controlsPlayer(GetEntityState(garrisonHolders[0]).player) ? "unload-all" : "unload-all-by-owner",
+		"garrisonHolders": garrisonHolders
+	});
 }
 
 function backToWork()
