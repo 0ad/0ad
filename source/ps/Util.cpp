@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,12 +21,12 @@
 
 #include "lib/posix/posix_utsname.h"
 #include "lib/ogl.h"
+#include "lib/snd.h"
 #include "lib/timer.h"
 #include "lib/bits.h"	// round_up
 #include "lib/allocators/shared_ptr.h"
 #include "lib/sysdep/sysdep.h"	// sys_OpenFile
 #include "lib/sysdep/gfx.h"
-#include "lib/sysdep/snd.h"
 #include "lib/sysdep/cpu.h"
 #include "lib/sysdep/os_cpu.h"
 #if ARCH_X86_X64
@@ -137,8 +137,8 @@ void WriteSystemInfo()
 	fprintf(f, "Video Mode     : %dx%d:%d\n", g_VideoMode.GetXRes(), g_VideoMode.GetYRes(), g_VideoMode.GetBPP());
 
 	// sound
-	fprintf(f, "Sound Card     : %ls\n", snd_card);
-	fprintf(f, "Sound Drivers  : %ls\n", snd_drv_ver);
+	fprintf(f, "Sound Card     : %s\n", snd_card.c_str());
+	fprintf(f, "Sound Drivers  : %s\n", snd_drv_ver.c_str());
 
 	// OpenGL extensions (write them last, since it's a lot of text)
 	const char* exts = ogl_ExtensionString();

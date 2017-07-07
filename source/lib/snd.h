@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2017 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -21,31 +21,27 @@
  */
 
 /*
- * wrapper for Windows Management Instrumentation
+ * sound card detection.
  */
 
-#ifndef INCLUDED_WMI
-#define INCLUDED_WMI
+#ifndef INCLUDED_SND
+#define INCLUDED_SND
 
-#include <map>
-
-// note: we expose the VARIANT value as returned by WMI. this allows other
-// modules to use the values they want directly, rather than forcing
-// everything to be converted to/parsed from strings. it does drag in
-// OLE headers, but this module is entirely Windows-specific anyway.
-#define _WIN32_DCOM
-#include "lib/sysdep/os/win/win.h"
-#include <comdef.h>	// VARIANT
-// contains name and value of all instance properties
-typedef std::map<std::wstring, VARIANT> WmiInstance;
-
-typedef std::vector<WmiInstance> WmiInstances;
+#include <string>
 
 /**
- * get all instances of the requested class.
+ * description of sound card.
  **/
-extern Status wmi_GetClassInstances(const wchar_t* className, WmiInstances& instances);
+extern std::string snd_card;
 
-extern void wmi_Shutdown();
+/**
+ * sound driver identification and version.
+ **/
+extern std::string snd_drv_ver;
 
-#endif	// #ifndef INCLUDED_WMI
+/**
+ * detect sound card and set the above information.
+ **/
+extern void snd_detect();
+
+#endif	// #ifndef INCLUDED_SND

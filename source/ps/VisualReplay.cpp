@@ -49,7 +49,7 @@ OsPath VisualReplay::GetDirectoryName()
 	return OsPath(paths.UserData() / "replays" / engine_version);
 }
 
-void VisualReplay::StartVisualReplay(const OsPath& directory)
+bool VisualReplay::StartVisualReplay(const OsPath& directory)
 {
 	ENSURE(!g_NetServer);
 	ENSURE(!g_NetClient);
@@ -58,10 +58,10 @@ void VisualReplay::StartVisualReplay(const OsPath& directory)
 	const OsPath replayFile = VisualReplay::GetDirectoryName() / directory / L"commands.txt";
 
 	if (!FileExists(replayFile))
-		return;
+		return false;
 
 	g_Game = new CGame(false, false);
-	g_Game->StartVisualReplay(replayFile);
+	return g_Game->StartVisualReplay(replayFile);
 }
 
 bool VisualReplay::ReadCacheFile(ScriptInterface& scriptInterface, JS::MutableHandleObject cachedReplaysObject)
@@ -154,8 +154,6 @@ JS::HandleObject VisualReplay::ReloadReplayCache(ScriptInterface& scriptInterfac
 			break;
 
 		const OsPath replayFile = GetDirectoryName() / directory / L"commands.txt";
-		if (!FileExists(replayFile))
-			continue;
 
 		bool isNew = true;
 		replayCacheMap::iterator it = fileList.find(directory);
@@ -163,6 +161,8 @@ JS::HandleObject VisualReplay::ReloadReplayCache(ScriptInterface& scriptInterfac
 		{
 			if (compareFiles)
 			{
+				if (!FileExists(replayFile))
+					continue;
 				CFileInfo fileInfo;
 				GetFileInfo(replayFile, &fileInfo);
 				if (fileInfo.Size() == it->second.second)
@@ -177,6 +177,8 @@ JS::HandleObject VisualReplay::ReloadReplayCache(ScriptInterface& scriptInterfac
 			JS::RootedValue replayData(cx, LoadReplayData(scriptInterface, directory));
 			if (replayData.isNull())
 			{
+				if (!FileExists(replayFile))
+					continue;
 				CFileInfo fileInfo;
 				GetFileInfo(replayFile, &fileInfo);
 				scriptInterface.Eval("({})", &replayData);

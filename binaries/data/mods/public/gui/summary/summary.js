@@ -390,7 +390,12 @@ function startReplay()
 	if (Engine.HasXmppClient())
 		Engine.StopXmppClient();
 
-	Engine.StartVisualReplay(g_GameData.gui.replayDirectory);
+	if (!Engine.StartVisualReplay(g_GameData.gui.replayDirectory))
+	{
+		warn("Replay file not found!");
+		return;
+	}
+
 	Engine.SwitchGuiPage("page_loading.xml", {
 		"attribs": Engine.GetReplayAttributes(g_GameData.gui.replayDirectory),
 		"isNetworked": false,

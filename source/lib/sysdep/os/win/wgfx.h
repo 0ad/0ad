@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2017 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -23,7 +23,6 @@
 #ifndef INCLUDED_WGFX
 #define INCLUDED_WGFX
 
-extern Status wgfx_CardName(wchar_t* cardName, size_t numChars);
 extern std::wstring wgfx_DriverInfo();
 
 #endif	// #ifndef INCLUDED_WGFX

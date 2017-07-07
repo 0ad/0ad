@@ -1372,7 +1372,7 @@ var g_AllyEntityCommands =
 		},
 		"execute": function(entState)
 		{
-			unloadAllByOwner();
+			unloadAll();
 		},
 	},
 

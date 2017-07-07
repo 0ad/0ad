@@ -23,7 +23,7 @@
 
 namespace JSI_VisualReplay
 {
-	void StartVisualReplay(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& directory);
+	bool StartVisualReplay(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& directory);
 	bool DeleteReplay(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& replayFile);
 	JS::Value GetReplays(ScriptInterface::CxPrivate* pCxPrivate, bool compareFiles);
 	JS::Value GetReplayAttributes(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& directoryName);

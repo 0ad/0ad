@@ -100,10 +100,6 @@
 #define MUST_INIT_X11 0
 #endif
 
-#if OS_WIN
-extern void wmi_Shutdown();
-#endif
-
 extern void restart_engine();
 
 #include <iostream>
@@ -756,12 +752,6 @@ void Shutdown(int flags)
 	}
 
 	g_Profiler2.ShutdownGPU();
-
-	#if OS_WIN
-		TIMER_BEGIN(L"shutdown wmi");
-		wmi_Shutdown();
-		TIMER_END(L"shutdown wmi");
-	#endif
 
 	// Free cursors before shutting down SDL, as they may depend on SDL.
 	cursor_shutdown();

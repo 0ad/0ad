@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2017 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -30,7 +30,6 @@
 #include "lib/sysdep/gfx.h"
 #include "lib/sysdep/os/win/wdll_ver.h"
 #include "lib/sysdep/os/win/wutil.h"
-#include "lib/sysdep/os/win/wmi.h"
 
 #if MSC_VERSION
 #pragma comment(lib, "advapi32.lib")	// registry
@@ -134,25 +133,6 @@ static void AppendDriverVersionsFromKnownFiles(VersionList& versionList)
 	wdll_ver_Append(L"ig4icd32.dll", versionList);
 	wdll_ver_Append(L"ig4icd64.dll", versionList);
 	wdll_ver_Append(L"iglicd32.dll", versionList);
-}
-
-
-Status wgfx_CardName(wchar_t* cardName, size_t numChars)
-{
-	WmiInstances instances;
-	RETURN_STATUS_IF_ERR(wmi_GetClassInstances(L"Win32_VideoController", instances));
-	wchar_t* pos = cardName;
-	for(WmiInstances::iterator it = instances.begin(); it != instances.end(); ++it)
-	{
-		if((*it)[L"Availability"].intVal == 8)	// offline
-			continue;
-		const int ret = swprintf_s(pos, numChars-(pos-cardName), L"%ls; ", (*it)[L"Caption"].bstrVal);
-		if(ret > 0)
-			pos += ret;
-		return INFO::OK;
-	}
-
-	return ERR::FAIL;	// no active card found
 }
 
 

@@ -39,8 +39,8 @@ namespace gfx {
 
 std::wstring CardName()
 {
-	// GL_VENDOR+GL_RENDERER are good enough here, so we don't use wgfx_CardName,
-	// plus that can cause crashes with Nvidia Optimus and some netbooks
+	// GL_VENDOR+GL_RENDERER are good enough here, so we don't use WMI to detect the cards.
+	// On top of that WMI can cause crashes with Nvidia Optimus and some netbooks
 	// see http://trac.wildfiregames.com/ticket/1952
 	//     http://trac.wildfiregames.com/ticket/1575
 	wchar_t cardName[128];

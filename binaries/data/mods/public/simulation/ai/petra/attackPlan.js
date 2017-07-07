@@ -1799,7 +1799,7 @@ m.AttackPlan.prototype.UpdateTarget = function(gameState, events)
 	if (!this.target || !gameState.getEntityById(this.target.id()))
 	{
 		if (this.Config.debug > 1)
-			API3.warn("Seems like our target has been destroyed. Switching.");
+			API3.warn("Seems like our target for plan " + this.name + " has been destroyed or captured. Switching.");
 		this.target = this.getNearestTarget(gameState, this.position, true);
 		if (!this.target)
 		{
@@ -1815,7 +1815,8 @@ m.AttackPlan.prototype.UpdateTarget = function(gameState, events)
 				{
 					if (attack.name === this.name)
 						continue;
-					if (!attack.target || !gameState.getEntityById(attack.target.id()))
+					if (!attack.target || !gameState.getEntityById(attack.target.id()) ||
+					    !gameState.isPlayerEnemy(attack.target.owner()))
 						continue;
 					if (accessIndex !== gameState.ai.accessibility.getAccessValue(attack.targetPos))
 						continue;

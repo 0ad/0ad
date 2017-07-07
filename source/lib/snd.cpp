@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2017 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -25,27 +25,42 @@
  */
 
 #include "precompiled.h"
-#include "lib/sysdep/snd.h"
+#include "lib/snd.h"
 
-#if OS_WIN
-# include "lib/sysdep/os/win/wsnd.h"
-#endif
+#include <stdio.h>
+#include <stdlib.h>
 
+#include "lib/external_libraries/openal.h"
 
-wchar_t snd_card[SND_CARD_LEN];
-wchar_t snd_drv_ver[SND_DRV_VER_LEN];
+std::string snd_card;
+std::string snd_drv_ver;
 
 void snd_detect()
 {
-	// note: OpenAL alGetString is worthless: it only returns
-	// OpenAL API version and renderer (e.g. "Software").
+	// OpenAL alGetString might not return anything interesting on certain platforms
+	// (see https://stackoverflow.com/questions/28960638 for an example).
+	// However our previous code supported only Windows, and alGetString does work on
+	// Windows, so this is an improvement.
 
-#if OS_WIN
-	win_get_snd_info();
-#else
-	// At least reset the values for unhandled platforms.
-	ENSURE(SND_CARD_LEN >= 8 && SND_DRV_VER_LEN >= 8);	// protect strcpy
-	wcscpy_s(snd_card, ARRAY_SIZE(snd_card), L"Unknown");
-	wcscpy_s(snd_drv_ver, ARRAY_SIZE(snd_drv_ver), L"Unknown");
-#endif
+	// Sound cards
+
+	const ALCchar* devices = nullptr;
+	if (alcIsExtensionPresent(nullptr, "ALC_enumeration_EXT") == AL_TRUE)
+	{
+		if (alcIsExtensionPresent(nullptr, "ALC_enumerate_all_EXT") == AL_TRUE)
+			devices = alcGetString(nullptr, ALC_ALL_DEVICES_SPECIFIER);
+		else
+			devices = alcGetString(nullptr, ALC_DEVICE_SPECIFIER);
+	}
+	WARN_IF_FALSE(devices);
+
+	snd_card.clear();
+	do {
+		snd_card += devices;
+		devices += strlen(devices) + 1;
+		snd_card += "; ";
+	} while (*devices);
+
+	// Driver version
+	snd_drv_ver = alGetString(AL_VERSION);
 }

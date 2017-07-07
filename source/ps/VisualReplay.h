@@ -39,7 +39,7 @@ OsPath GetDirectoryName();
 /**
  * Replays the commands.txt file in the given subdirectory visually.
  */
-void StartVisualReplay(const OsPath& directory);
+bool StartVisualReplay(const OsPath& directory);
 
 /**
  * Reads the replay Cache file and parses it into a jsObject
