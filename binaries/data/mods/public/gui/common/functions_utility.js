@@ -130,24 +130,6 @@ function removeDupes(array)
 	}
 }
 
-// Filter out conflicting characters and limit the length of a given name.
-// @param name Name to be filtered.
-// @param stripUnicode Whether or not to remove unicode characters.
-// @param stripSpaces Whether or not to remove whitespace.
-function sanitizePlayerName(name, stripUnicode, stripSpaces)
-{
-	// We delete the '[', ']' characters (GUI tags) and delete the ',' characters (player name separators) by default.
-	var sanitizedName = name.replace(/[\[\],]/g, "");
-	// Optionally strip unicode
-	if (stripUnicode)
-		sanitizedName = sanitizedName.replace(/[^\x20-\x7f]/g, "");
-	// Optionally strip whitespace
-	if (stripSpaces)
-		sanitizedName = sanitizedName.replace(/\s/g, "");
-	// Limit the length to 20 characters
-	return sanitizedName.substr(0,20);
-}
-
 function singleplayerName()
 {
 	return Engine.ConfigDB_GetValue("user", "playername.singleplayer") || Engine.GetSystemUsername();
