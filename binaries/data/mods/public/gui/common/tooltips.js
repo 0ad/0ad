@@ -42,6 +42,12 @@ function getCostTypes()
 	return g_ResourceData.GetCodes().concat(["population", "populationBonus", "time"]);
 }
 
+/**
+ * If true, always shows whether the splash damage deals friendly fire.
+ * Otherwise display the friendly fire tooltip only if it does.
+ */
+var g_AlwaysDisplayFriendlyFire = false;
+
 function resourceIcon(resource)
 {
 	return '[icon="icon_' + resource + '"]';
@@ -275,15 +281,17 @@ function getSplashDamageTooltip(template)
 		if (!splash)
 			continue;
 
-		tooltips.push([
-			sprintf(translate("%(label)s: %(value)s"), {
-				"label": headerFont(g_SplashDamageTypes[splash.shape]),
-				"value": damageTypesToText(splash)
-			}),
-			sprintf(translate("Friendly Fire: %(enabled)s"), {
+		let splashDamageTooltip = sprintf(translate("%(label)s: %(value)s"), {
+			"label": headerFont(g_SplashDamageTypes[splash.shape]),
+			"value": damageTypesToText(splash)
+		})
+
+		if (g_AlwaysDisplayFriendlyFire || splash.friendlyFire)
+			splashDamageTooltip += commaFont(translate(", ")) + sprintf(translate("Friendly Fire: %(enabled)s"), {
 				"enabled": splash.friendlyFire ? translate("Yes") : translate("No")
-			})
-		].join(commaFont(translate(", "))));
+			});
+
+		tooltips.push(splashDamageTooltip);
 	}
 
 	// If multiple attack types deal splash damage, the attack type should be shown to differentiate.

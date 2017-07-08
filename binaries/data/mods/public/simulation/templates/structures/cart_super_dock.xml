@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
+  <Armour>
+    <Pierce>35</Pierce>
+  </Armour>
   <Auras datatype="tokens">
     structures/cart_super_dock_repair
   </Auras>
@@ -8,6 +11,10 @@
     <PlacementType>shore</PlacementType>
     <Category>Dock</Category>
   </BuildRestrictions>
+  <Capturable>
+    <CapturePoints>2000</CapturePoints>
+    <GarrisonRegenRate>10</GarrisonRegenRate>
+  </Capturable>
   <Cost>
     <PopulationBonus>10</PopulationBonus>
     <BuildTime>500</BuildTime>

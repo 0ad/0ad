@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:02+0200\n"
-"PO-Revision-Date: 2017-07-04 20:01+0000\n"
+"PO-Revision-Date: 2017-07-07 00:34+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -82,7 +82,7 @@ msgstr ""
 #: gui/common/functions_utility.js:108
 msgctxt "map selection"
 msgid "Random"
-msgstr ""
+msgstr "Al debalu"
 
 #: gui/common/functions_utility.js:119
 msgid "mm:ss"
@@ -129,7 +129,7 @@ msgstr ""
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
 #: gui/summary/summary.js:346
 msgid "No"
-msgstr ""
+msgstr "Non"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:246
 #: gui/options/options.js:334 gui/options/options.js:401
@@ -137,7 +137,7 @@ msgstr ""
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
 #: gui/summary/summary.js:346
 msgid "Yes"
-msgstr ""
+msgstr "Sí"
 
 #: gui/common/functions_utility_loadsave.js:106
 #, javascript-format
@@ -283,11 +283,11 @@ msgstr[1] ""
 
 #: gui/common/gamedescription.js:260
 msgid "Relic Count"
-msgstr ""
+msgstr "Númberu de reliquies"
 
 #: gui/common/gamedescription.js:267
 msgid "Hero Garrison"
-msgstr ""
+msgstr "Guarnición de los héroes"
 
 #: gui/common/gamedescription.js:268
 msgid "Heroes can be garrisoned."
@@ -321,7 +321,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:291
 msgid "Diplomacy"
-msgstr ""
+msgstr "Diplomacia"
 
 #: gui/common/gamedescription.js:292
 msgid "Players can make alliances and declare war on allies."
@@ -329,7 +329,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:297
 msgid "Last Man Standing"
-msgstr ""
+msgstr "El caberu home de pie"
 
 #: gui/common/gamedescription.js:298
 msgid ""
@@ -349,7 +349,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:309
 msgid "Ceasefire"
-msgstr ""
+msgstr "Altu'l fueu"
 
 #: gui/common/gamedescription.js:312 gui/pregame/mainmenu.js:91
 msgid "disabled"
@@ -367,11 +367,11 @@ msgstr ""
 
 #: gui/common/gamedescription.js:326
 msgid "Map Type"
-msgstr ""
+msgstr "Tipu de mapa"
 
 #: gui/common/gamedescription.js:335
 msgid "Map Size"
-msgstr ""
+msgstr "Tamañu del mapa"
 
 #: gui/common/gamedescription.js:342
 msgid "Map Description"
@@ -383,7 +383,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:354
 msgid "Starting Resources"
-msgstr ""
+msgstr "Recursos nicieros"
 
 #: gui/common/gamedescription.js:355
 #, javascript-format
@@ -410,15 +410,15 @@ msgstr ""
 
 #: gui/common/gamedescription.js:380
 msgid "Revealed Map"
-msgstr ""
+msgstr "Mapa descubiertu"
 
 #: gui/common/gamedescription.js:385
 msgid "Explored Map"
-msgstr ""
+msgstr "Mapa esploráu"
 
 #: gui/common/gamedescription.js:390
 msgid "Cheats"
-msgstr ""
+msgstr "Trucos"
 
 #: gui/common/gamedescription.js:395 gui/common/tooltips.js:86
 #: gui/common/tooltips.js:141 gui/common/tooltips.js:182
@@ -426,7 +426,7 @@ msgstr ""
 #: gui/common/tooltips.js:718
 #, javascript-format
 msgid "%(label)s %(details)s"
-msgstr ""
+msgstr "%(label)s %(details)s"
 
 #: gui/common/gamedescription.js:398
 msgctxt "gamesetup option"
@@ -466,7 +466,7 @@ msgstr ""
 #: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:119
 #: gui/savedgames/load.js:175 gui/savedgames/load.js:178
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/common/network.js:17
 #, javascript-format
@@ -545,7 +545,7 @@ msgstr ""
 #: gui/common/network.js:91
 #, javascript-format
 msgid "Reason: %(reason)s."
-msgstr ""
+msgstr "Razón: %(reason)s."
 
 #: gui/common/network.js:96
 msgid "Lost connection to the server."
@@ -635,7 +635,7 @@ msgstr ""
 #: gui/common/settings.js:194
 msgctxt "map"
 msgid "Random"
-msgstr ""
+msgstr "Al debalu"
 
 #: gui/common/settings.js:195
 msgid ""
@@ -655,7 +655,7 @@ msgstr ""
 #: gui/common/settings.js:231
 msgctxt "victory condition"
 msgid "None"
-msgstr ""
+msgstr "Nengún"
 
 #: gui/common/settings.js:232
 msgid "Endless game."
@@ -683,7 +683,7 @@ msgstr "Descoñocío"
 #: gui/common/settings.js:356
 msgctxt "map size"
 msgid "Default"
-msgstr ""
+msgstr "Por defeutu"
 
 #: gui/common/settings.js:368
 msgctxt "population capacity"
@@ -780,7 +780,7 @@ msgstr[1] ""
 
 #: gui/common/tooltips.js:87 gui/common/tooltips.js:98
 msgid "Health:"
-msgstr ""
+msgstr "Vida:"
 
 #: gui/common/tooltips.js:97
 #, javascript-format
@@ -909,7 +909,7 @@ msgstr ""
 #: gui/common/tooltips.js:302
 msgctxt "projectiles"
 msgid "Default"
-msgstr ""
+msgstr "Por defeutu"
 
 #: gui/common/tooltips.js:307
 msgctxt "projectiles"
@@ -1075,7 +1075,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:719
 msgid "Loot:"
-msgstr ""
+msgstr "Botín:"
 
 #: gui/credits/credits.js:69
 #, javascript-format
@@ -1085,7 +1085,7 @@ msgstr ""
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:77
 msgctxt "localeCountry"
 msgid "None"
-msgstr ""
+msgstr "Nengún"
 
 #: gui/locale/locale_advanced.js:92
 msgid "invalid locale"
@@ -1094,7 +1094,7 @@ msgstr ""
 #: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:163
 #: gui/splashscreen/splashscreen.xml:(caption):28
 msgid "OK"
-msgstr ""
+msgstr "ACORDIES"
 
 #: gui/options/options.js:169
 #, javascript-format
@@ -1185,7 +1185,7 @@ msgstr ""
 #: gui/pregame/mainmenu.js:248
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
-msgstr ""
+msgstr "Construyir: %(buildDate)s (%(revision)s)"
 
 #: gui/pregame/mainmenu.js:260
 msgid "Are you sure you want to quit 0 A.D.?"
@@ -1193,7 +1193,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.js:261 gui/summary/summary.js:345
 msgid "Confirmation"
-msgstr ""
+msgstr "Confirmación"
 
 #: gui/pregame/mainmenu.js:276
 msgid ""
@@ -1216,7 +1216,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.js:293 gui/pregame/mainmenu.xml:(caption):140
 msgid "Manual"
-msgstr ""
+msgstr "Manual"
 
 #: gui/replaymenu/replay_actions.js:88
 msgid "You don't have the same mods active as the replay does."
@@ -1265,27 +1265,27 @@ msgstr ""
 #: gui/replaymenu/replay_filters.js:50
 msgctxt "datetime"
 msgid "Any"
-msgstr ""
+msgstr "Cualquier"
 
 #: gui/replaymenu/replay_filters.js:66
 msgctxt "map size"
 msgid "Any"
-msgstr ""
+msgstr "Cualquier"
 
 #: gui/replaymenu/replay_filters.js:82
 msgctxt "map name"
 msgid "Any"
-msgstr ""
+msgstr "Cualquier"
 
 #: gui/replaymenu/replay_filters.js:98
 msgctxt "population capacity"
 msgid "Any"
-msgstr ""
+msgstr "Cualquier"
 
 #: gui/replaymenu/replay_filters.js:117
 msgctxt "duration"
 msgid "Any"
-msgstr ""
+msgstr "Cualquier"
 
 #. Translation: Shorter duration than max minutes.
 #: gui/replaymenu/replay_filters.js:121
@@ -1697,7 +1697,7 @@ msgstr ""
 #: gui/options/options.xml:(caption):102
 #: gui/structree/structree.xml:(caption):124
 msgid "Close"
-msgstr ""
+msgstr "Zarrar"
 
 #: gui/credits/credits.xml:(caption):18
 msgid "0 A.D. Credits"
@@ -1810,7 +1810,7 @@ msgstr ""
 
 #: gui/options/options.xml:(caption):97 gui/savedgames/save.xml:(caption):48
 msgid "Save"
-msgstr ""
+msgstr "Guardar"
 
 #: gui/options/options.xml:(tooltip):88
 msgid "Resets user settings to their game default"
@@ -1867,7 +1867,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):188
 msgid "History"
-msgstr ""
+msgstr "Hestoria"
 
 #: gui/pregame/mainmenu.xml:(caption):213
 msgid "Matches"
@@ -1896,7 +1896,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):327
 msgid "Options"
-msgstr ""
+msgstr "Opciones"
 
 #: gui/pregame/mainmenu.xml:(caption):360
 msgid "Replays"
@@ -1924,7 +1924,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):517
 msgid "Exit"
-msgstr ""
+msgstr "Colar"
 
 #: gui/pregame/mainmenu.xml:(caption):552
 msgid "Website"
@@ -1932,7 +1932,7 @@ msgstr "Sitiu Web"
 
 #: gui/pregame/mainmenu.xml:(caption):564
 msgid "Chat"
-msgstr ""
+msgstr "Charrar"
 
 #: gui/pregame/mainmenu.xml:(caption):576
 msgid "Report a Bug"
@@ -2096,7 +2096,7 @@ msgstr ""
 #: gui/replaymenu/replay_menu.xml:(caption):248
 #: gui/savedgames/load.xml:(caption):66 gui/savedgames/save.xml:(caption):43
 msgid "Delete"
-msgstr ""
+msgstr "Desanciciar"
 
 #: gui/replaymenu/replay_menu.xml:(caption):254
 msgid "Reload Cache"
@@ -2105,7 +2105,7 @@ msgstr ""
 #: gui/replaymenu/replay_menu.xml:(caption):261
 #: gui/summary/summary.xml:(caption):23
 msgid "Summary"
-msgstr ""
+msgstr "Resume"
 
 #: gui/replaymenu/replay_menu.xml:(caption):267
 msgid "Start Replay"
@@ -2150,7 +2150,7 @@ msgstr ""
 #: gui/savedgames/load.xml:(heading):44
 msgctxt "replay"
 msgid "Map Type"
-msgstr ""
+msgstr "Tipu de mapa"
 
 #: gui/savedgames/load.xml:(heading):52
 msgctxt "replay"
@@ -2191,7 +2191,7 @@ msgstr ""
 
 #: gui/splashscreen/splashscreen.xml:(caption):17
 msgid "Show this message in the future"
-msgstr ""
+msgstr "Amuesa esti mensax nel futuru"
 
 #: gui/splashscreen/splashscreen.xml:(caption):22
 msgid "Known Issues (web)"
@@ -2550,7 +2550,7 @@ msgstr ""
 #: gui/options/options.jsongeneralSetting[13].parameters.list[0].label
 #: gui/options/options.jsongeneralSetting[14].parameters.list[0].label
 msgid "Everyone"
-msgstr ""
+msgstr "Toos"
 
 #: gui/options/options.jsongeneralSetting[13].parameters.list[1].label
 #: gui/options/options.jsongeneralSetting[14].parameters.list[1].label
@@ -2691,7 +2691,7 @@ msgstr ""
 
 #: gui/options/options.jsonnotificationSetting[1].label
 msgid "Tribute"
-msgstr ""
+msgstr "Regalar"
 
 #: gui/options/options.jsonnotificationSetting[2].tooltip
 msgid "Show a chat notification to observers when a player bartered resources"
@@ -2699,7 +2699,7 @@ msgstr ""
 
 #: gui/options/options.jsonnotificationSetting[2].label
 msgid "Barter"
-msgstr ""
+msgstr "Trocar"
 
 #: gui/options/options.jsonnotificationSetting[3].parameters.list[0].label
 msgid "Disable"

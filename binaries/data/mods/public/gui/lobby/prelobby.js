@@ -91,8 +91,9 @@ function onTick()
 		continueButton.enabled = false;
 		feedback.caption = translate("Please enter your username");
 	}
-	// Check that they are using a valid username.
-	else if (username != sanitizePlayerName(username, true, true))
+
+	// Prevent registation (but not login) with non-alphanumerical characters
+	if (!pageRegisterHidden && (!username.match(/^[a-z0-9._-]*$/i) || username.length > 20))
 	{
 		continueButton.enabled = false;
 		feedback.caption = translate("Usernames can't contain \\[, ], unicode, whitespace, or commas");
@@ -180,8 +181,8 @@ function onTick()
 		{
 			Engine.PopGuiPage();
 			Engine.SwitchGuiPage("page_lobby.xml");
-			Engine.ConfigDB_CreateValue("user", "playername.multiplayer", sanitizePlayerName(username, true, true));
-			Engine.ConfigDB_WriteValueToFile("user", "playername.multiplayer", sanitizePlayerName(username, true, true), "config/user.cfg");
+			Engine.ConfigDB_CreateValue("user", "playername.multiplayer", username);
+			Engine.ConfigDB_WriteValueToFile("user", "playername.multiplayer", username, "config/user.cfg");
 			Engine.ConfigDB_CreateValue("user", "lobby.login", username);
 			Engine.ConfigDB_WriteValueToFile("user", "lobby.login", username, "config/user.cfg");
 			// We only store the encrypted password, so make sure to re-encrypt it if changed before saving.
@@ -263,6 +264,8 @@ function openTermsOfUse()
 function prelobbyCancel()
 {
 	lobbyStop();
+
+	Engine.GetGUIObjectByName("feedback").caption = "";
 
 	if (Engine.GetGUIObjectByName("pageWelcome").hidden)
 		switchPage("welcome");
