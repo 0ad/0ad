@@ -2,13 +2,7 @@
 <Entity parent="template_unit_support_female_citizen">
   <Attack>
     <Melee>
-      <Bonuses>
-       <BonusSiege>
-          <Classes>Siege</Classes>
-          <Multiplier>2.5</Multiplier>
-        </BonusSiege>
-      </Bonuses>
-      <RestrictedClasses datatype="tokens">-Infantry -Cavalry -Champion -CitizenSoldier -Hero</RestrictedClasses>
+       <Hack op="mul">1.5</Hack>
     </Melee>
   </Attack>
   <Builder>
@@ -19,7 +13,7 @@
     </Entities>
   </Builder>
   <Health>
-    <Max op="mul">1.8</Max>
+    <Max op="mul">1.4</Max>
   </Health>
   <Identity>
     <Civ>spart</Civ>
@@ -31,7 +25,6 @@
     <SelectionGroupName>units/spart_support_female_citizen</SelectionGroupName>
   </Identity>
   <UnitAI>
-    <DefaultStance>standground</DefaultStance>
     <CanPatrol>true</CanPatrol>
   </UnitAI>
   <VisualActor>

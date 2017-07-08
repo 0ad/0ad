@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_support_female_citizen">
   <Attack>
-    <Melee>
-      <Hack op="mul">3.5</Hack>
-    </Melee>
   </Attack>
   <Builder>
     <Entities datatype="tokens">
@@ -11,9 +8,6 @@
       structures/brit_rotarymill
     </Entities>
   </Builder>
-  <Health>
-    <Max op="mul">1.5</Max>
-  </Health>
   <Identity>
     <Civ>brit</Civ>
     <SpecificName>Bodu</SpecificName>
