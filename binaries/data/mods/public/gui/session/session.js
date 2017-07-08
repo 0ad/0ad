@@ -776,6 +776,8 @@ function onWindowResized()
 {
 	// Update followPlayerLabel
 	updateTopPanel();
+
+	resizeChatWindow();
 }
 
 function changeGameSpeed(speed)

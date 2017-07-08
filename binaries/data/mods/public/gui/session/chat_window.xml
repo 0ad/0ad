@@ -2,14 +2,17 @@
 
 <object
 	name="chatDialogPanel"
-	size="50%-210 50%-410 50%+210 50%+60"
 	type="image"
 	hidden="true"
 	sprite="genericPanel"
 	z="90"
 >
+	<!-- Mock objects storing the chat window size -->
+	<object name="chatDialogPanelLarge" size="50%-216 22%-75 50%+216 78%-85"/>
+	<object name="chatDialogPanelSmall" size="50%-216 50%-140 50%+216 50%-20"/>
+
 	<!-- Chat History Page -->
-	<object type="image" name="chatHistoryPage" size="0 0 100% 300" hidden="false">
+	<object type="image" name="chatHistoryPage" size="0 0 100% 100%-120">
 
 		<!-- Chat History Filter -->
 		<object type="text" size="16 12 60 32" style="ModernLeftLabelText">
@@ -85,18 +88,18 @@
 			name="extendedChat"
 			checked="false"
 			style="ModernTickBox"
-			size="50%-50 100%-38 50%-24 100%-12"
+			size="50%-40 100%-38 50%-20 100%-12"
 		>
 			<action on="Press">onToggleChatWindowExtended();</action>
 		</object>
 
 		<!-- Extended Chat Label -->
-		<object type="text" size="50%-24 100%-38 50%+40 100%-12" text_align="left" textcolor="white">
+		<object type="text" size="50%-20 100%-38 50%+50 100%-12" text_align="left" textcolor="white">
 			<translatableAttribute id="caption" context="chat">History</translatableAttribute>
 		</object>
 
 		<!-- Send Button -->
-		<object size="60%+16 100%-40 100%-16 100%-12" type="button" style="StoneButton">
+		<object size="70%-16 100%-40 100%-16 100%-12" type="button" style="StoneButton">
 			<translatableAttribute id="caption">Send</translatableAttribute>
 			<action on="Press">submitChatInput();</action>
 		</object>
