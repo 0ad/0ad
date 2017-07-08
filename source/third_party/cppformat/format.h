@@ -81,9 +81,13 @@
 // Variadic templates are available in GCC since version 4.4
 // (http://gcc.gnu.org/projects/cxx0x.html) and in Visual C++
 // since version 2013.
+# if defined(_MSC_VER) && _MSC_VER >= 1800
+#  define FMT_USE_VARIADIC_TEMPLATES 1
+# else
 # define FMT_USE_VARIADIC_TEMPLATES \
    (FMT_HAS_FEATURE(cxx_variadic_templates) || \
-       (FMT_GCC_VERSION >= 404 && __cplusplus >= 201103) || (defined(_MSC_VER) && _MSC_VER >= 1800))
+       (FMT_GCC_VERSION >= 404 && __cplusplus >= 201103))
+# endif
 #endif
 
 #ifndef FMT_USE_RVALUE_REFERENCES
@@ -91,10 +95,12 @@
 // as the latter doesn't provide std::move.
 # if defined(FMT_GNUC_LIBSTD_VERSION) && FMT_GNUC_LIBSTD_VERSION <= 402
 #  define FMT_USE_RVALUE_REFERENCES 0
+# elif defined(_MSC_VER) && _MSC_VER >= 1600
+#  define FMT_USE_RVALUE_REFERENCES 1
 # else
 #  define FMT_USE_RVALUE_REFERENCES \
     (FMT_HAS_FEATURE(cxx_rvalue_references) || \
-        (FMT_GCC_VERSION >= 403 && __cplusplus >= 201103) || (defined(_MSC_VER) && _MSC_VER >= 1600))
+        (FMT_GCC_VERSION >= 403 && __cplusplus >= 201103))
 # endif
 #endif
 
