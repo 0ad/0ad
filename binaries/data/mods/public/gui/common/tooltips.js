@@ -284,7 +284,7 @@ function getSplashDamageTooltip(template)
 		let splashDamageTooltip = sprintf(translate("%(label)s: %(value)s"), {
 			"label": headerFont(g_SplashDamageTypes[splash.shape]),
 			"value": damageTypesToText(splash)
-		})
+		});
 
 		if (g_AlwaysDisplayFriendlyFire || splash.friendlyFire)
 			splashDamageTooltip += commaFont(translate(", ")) + sprintf(translate("Friendly Fire: %(enabled)s"), {
