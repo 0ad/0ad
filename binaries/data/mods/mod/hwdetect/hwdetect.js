@@ -230,7 +230,7 @@ function RunDetection(settings)
 	}
 
 	// Disable most graphics features on software renderers
-	if (GL_RENDERER.match(/^(Software Rasterizer|Gallium \S* on (llvm|soft)pipe.*|Mesa X11|Apple Software Renderer|GDI Generic)$/))
+	if (GL_RENDERER.match(/^(Software Rasterizer|.*(llvm|soft)pipe.*|Mesa X11|Apple Software Renderer|GDI Generic)$/))
 	{
 		warnings.push("You are using '" + GL_RENDERER + "' graphics driver, expect very poor performance!");
 		warnings.push("If possible install a proper graphics driver for your hardware.");
