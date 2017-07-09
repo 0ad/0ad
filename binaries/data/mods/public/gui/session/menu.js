@@ -284,13 +284,20 @@ function resizeChatWindow()
 
 	// Resize the window
 	let chatDialogPanel = Engine.GetGUIObjectByName("chatDialogPanel");
-	let chatPage = Engine.GetGUIObjectByName("chatPage");
-	let panelSize = chatDialogPanel.size;
-	let topOffset = 80;
-	let height = -chatPage.size.top + (extended ? chatHistoryPage.size.bottom : 0);
-	panelSize.top = -height / 2 - topOffset;
-	panelSize.bottom = height / 2 - topOffset;
-	chatDialogPanel.size = panelSize;
+	if (extended)
+	{
+		chatDialogPanel.size = Engine.GetGUIObjectByName("chatDialogPanelLarge").size;
+		// Adjust the width so that the chat history is in the golden ratio
+		let chatHistory = Engine.GetGUIObjectByName("chatHistory");
+		let height = chatHistory.getComputedSize().bottom - chatHistory.getComputedSize().top;
+		let width = (1 + Math.sqrt(5)) / 2 * height;
+		let size = chatDialogPanel.size;
+		size.left = -width/2 - chatHistory.size.left;
+		size.right = width/2 + chatHistory.size.left;
+		chatDialogPanel.size = size;
+	}
+	else
+		chatDialogPanel.size = Engine.GetGUIObjectByName("chatDialogPanelSmall").size;
 }
 
 function updateChatHistory()

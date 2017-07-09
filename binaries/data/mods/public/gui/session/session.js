@@ -776,6 +776,8 @@ function onWindowResized()
 {
 	// Update followPlayerLabel
 	updateTopPanel();
+
+	resizeChatWindow();
 }
 
 function changeGameSpeed(speed)
@@ -1004,7 +1006,7 @@ function updatePanelEntities()
 	let panelEntIndex = ent => g_PanelEntityOrder.findIndex(entClass =>
 		GetEntityState(ent).identity.classes.indexOf(entClass) != -1);
 
-	g_PanelEntities = g_PanelEntities.sort((panelEntA, panelEntB) => panelEntIndex(panelEntA.ent) - panelEntIndex(panelEntB.ent))
+	g_PanelEntities = g_PanelEntities.sort((panelEntA, panelEntB) => panelEntIndex(panelEntA.ent) - panelEntIndex(panelEntB.ent));
 }
 
 function createPanelEntityTooltip(panelEntState, template)
