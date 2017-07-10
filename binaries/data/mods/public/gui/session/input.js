@@ -1762,6 +1762,9 @@ function unloadAll()
 		return state && state.garrisonHolder;
 	});
 
+	if (!garrisonHolders.length)
+		return;
+
 	Engine.PostNetworkCommand({
 		"type": controlsPlayer(GetEntityState(garrisonHolders[0]).player) ? "unload-all" : "unload-all-by-owner",
 		"garrisonHolders": garrisonHolders
