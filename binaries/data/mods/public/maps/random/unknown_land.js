@@ -552,7 +552,7 @@ else if (md == 4) //central river
 		for (var i = 0; i <= randIntInclusive(8, (scaleByMapSize(12,20))); i++)
 		{
 			var cLocation = randFloat(0.05,0.95);
-			var tang = randFloat(PI*0.2, PI*0.8)*((randIntInclusive(2)-0.5)*2);
+			var tang = randFloat(PI*0.2, PI*0.8)*((randIntInclusive(0, 1)-0.5)*2);
 			if (tang > 0)
 			{
 				var cDistance = 0.05;
