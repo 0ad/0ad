@@ -10,6 +10,7 @@
 # Lukasz B <boberstarosta@gmail.com>, 2016
 # Marcin Kozłowski <martinkoaz@gmail.com>, 2014
 # Marcin S <dzidek1003@o2.pl>, 2016
+# Marek Opłotny <oplotny.marek@gmail.com>, 2017
 # Mateusz Klaczynski <onufryklaczynski@gmail.com>, 2017
 # Mateusz Kubicz <zabsik1@wp.pl>, 2017
 # miragae <miragae@gmail.com>, 2014
@@ -20,14 +21,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:02+0200\n"
-"PO-Revision-Date: 2017-06-05 15:23+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-07-09 13:34+0000\n"
+"Last-Translator: Marek Opłotny <oplotny.marek@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pl\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #: gui/lobby/lobby.js:44
 msgid "Online"
@@ -60,7 +61,7 @@ msgstr "Gracz"
 
 #: gui/lobby/lobby.js:54
 msgid "Muted Player"
-msgstr ""
+msgstr "Gracz wyciszony"
 
 #: gui/lobby/lobby.js:138
 msgid "Disconnected."
@@ -78,39 +79,39 @@ msgstr "%(nick)s opuścił grę."
 
 #: gui/lobby/lobby.js:181
 msgid "You have been muted."
-msgstr ""
+msgstr "Zostałeś wyciszony."
 
 #: gui/lobby/lobby.js:182
 #, javascript-format
 msgid "%(nick)s has been muted."
-msgstr ""
+msgstr "%(nick)s został wyciszony.\""
 
 #: gui/lobby/lobby.js:185
 msgid "You are now a moderator."
-msgstr ""
+msgstr "Zostałeś moderatorem."
 
 #: gui/lobby/lobby.js:186
 #, javascript-format
 msgid "%(nick)s is now a moderator."
-msgstr ""
+msgstr "%(nick)s został moderaotem."
 
 #: gui/lobby/lobby.js:189
 msgid "You have been unmuted."
-msgstr ""
+msgstr "Wyciszenie zostało cofnięte."
 
 #: gui/lobby/lobby.js:190
 #, javascript-format
 msgid "%(nick)s has been unmuted."
-msgstr ""
+msgstr "Wyciszenie %(nick)s zostało cofnięte."
 
 #: gui/lobby/lobby.js:192
 msgid "You are not a moderator anymore."
-msgstr ""
+msgstr "Już nie jesteś moderatorem."
 
 #: gui/lobby/lobby.js:193
 #, javascript-format
 msgid "%(nick)s is not a moderator anymore."
-msgstr ""
+msgstr "%(nick)s już nie jest moderatorem."
 
 #: gui/lobby/lobby.js:209
 #, javascript-format
@@ -119,27 +120,27 @@ msgstr "%(oldnick)s nazywa się teraz %(newnick)s."
 
 #: gui/lobby/lobby.js:254
 msgid "Set your state to 'Away'."
-msgstr ""
+msgstr "Ustaw status na 'Oddalony'."
 
 #: gui/lobby/lobby.js:261
 msgid "Set your state to 'Online'."
-msgstr ""
+msgstr "Ustaw status na 'Dostępny'."
 
 #: gui/lobby/lobby.js:268
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
-msgstr ""
+msgstr "Wyrzuć wybranego użytkownika z poczekalni. Użycie: /kick nick powód"
 
 #: gui/lobby/lobby.js:276
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
-msgstr ""
+msgstr "Zablokuj wybranego użytkownika w poczekalni. Użycie: /ban nick powód"
 
 #: gui/lobby/lobby.js:284
 msgid "Show this help."
-msgstr ""
+msgstr "Pokaż tę pomoc."
 
 #: gui/lobby/lobby.js:287
 msgid "Chat commands:"
-msgstr ""
+msgstr "Polecenia czatu:"
 
 #. Translation: Chat command help format
 #: gui/lobby/lobby.js:291
@@ -149,36 +150,36 @@ msgstr ""
 
 #: gui/lobby/lobby.js:304
 msgid "Send a chat message about yourself. Example: /me goes swimming."
-msgstr ""
+msgstr "Wyślij wiadomość o swoim statusie. Przykład: /me przerwa na kawę"
 
 #: gui/lobby/lobby.js:308
 msgid ""
 "Send text as a chat message (even if it starts with slash). Example: /say "
 "/help is a great command."
-msgstr ""
+msgstr "Wyślij wiadomość na czacie (nawet w przypadku gdy zaczyna się od ukośnika).\nPrzykład: /say /help to wspaniałe polecenie"
 
 #: gui/lobby/lobby.js:312
 msgid "Clear all chat scrollback."
-msgstr ""
+msgstr "Wyczyść historię czatu."
 
 #: gui/lobby/lobby.js:319
 msgid "Return to the main menu."
-msgstr ""
+msgstr "Powrót do głównego menu."
 
 #: gui/lobby/lobby.js:389
 msgctxt "map size"
 msgid "Any"
-msgstr "dowolny"
+msgstr "Dowolna"
 
 #: gui/lobby/lobby.js:394
 msgctxt "player number"
 msgid "Any"
-msgstr "dowolny"
+msgstr "Dowolny"
 
 #: gui/lobby/lobby.js:398 gui/lobby/lobby.js:412
 msgctxt "map"
 msgid "Any"
-msgstr "dowolny"
+msgstr "Dowolna"
 
 #: gui/lobby/lobby.js:406
 #, javascript-format
@@ -226,11 +227,11 @@ msgstr "WYRZUCONY"
 
 #: gui/lobby/lobby.js:545
 msgid "Unmark as Buddy"
-msgstr ""
+msgstr "Odznacz jako Kumpel"
 
 #: gui/lobby/lobby.js:545
 msgid "Mark as Buddy"
-msgstr ""
+msgstr "Oznacz jako Kumpel"
 
 #: gui/lobby/lobby.js:757 gui/lobby/lobby.js:758 gui/lobby/lobby.js:759
 #: gui/lobby/lobby.js:760 gui/lobby/lobby.js:761 gui/lobby/lobby.js:762
@@ -281,12 +282,12 @@ msgstr "Adres tej gry: '%(ip)s' nie jest poprawny."
 #: gui/lobby/lobby.js:1177
 #, javascript-format
 msgid "The command '%(cmd)s' is not supported."
-msgstr ""
+msgstr "Polecenie '%(cmd)s' nie jest wspierane."
 
 #: gui/lobby/lobby.js:1189
 #, javascript-format
 msgid "The command '%(cmd)s' is restricted to moderators."
-msgstr ""
+msgstr "Polecenie '%(cmd)s' dostępne wyłącznie dla moderatora."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
 #: gui/lobby/lobby.js:1260
@@ -481,7 +482,7 @@ msgstr "Menu główne"
 
 #: gui/lobby/lobby.xml:(caption):261
 msgid "Show only open games"
-msgstr ""
+msgstr "Pokaż wyłącznie otwarte rozgrywki."
 
 #: gui/lobby/lobby.xml:(caption):313 gui/lobby/lobby.xml:(caption):375
 msgid "Back"

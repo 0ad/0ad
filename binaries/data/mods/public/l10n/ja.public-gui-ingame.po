@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:01+0200\n"
-"PO-Revision-Date: 2017-07-02 11:22+0000\n"
+"PO-Revision-Date: 2017-07-09 05:20+0000\n"
 "Last-Translator: Asakura\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -488,7 +488,7 @@ msgstr ", "
 #: gui/session/messages.js:674
 #, javascript-format
 msgid "Out-Of-Sync error on turn %(turn)s."
-msgstr ""
+msgstr "%(turn)sターンで同期エラーが発生しました。"
 
 #: gui/session/messages.js:678
 #, javascript-format
@@ -509,12 +509,12 @@ msgstr "ゲームの状態はホストのゲーム状態とは異なります。
 #: gui/session/messages.js:690
 msgctxt "Out-Of-Sync"
 msgid "Rejoining Multiplayer games with AIs is not supported yet!"
-msgstr ""
+msgstr "AIによる再参加はサポートされていません！"
 
 #: gui/session/messages.js:694
 msgctxt "Out-Of-Sync"
 msgid "Ensure all players use the same mods."
-msgstr ""
+msgstr "すべてのプレイヤーが同じMODを使用していることを確認してください。"
 
 #: gui/session/messages.js:695
 msgctxt "Out-Of-Sync"
@@ -535,17 +535,17 @@ msgstr ""
 
 #: gui/session/messages.js:708 gui/session/messages.js:719
 msgid "Out of Sync"
-msgstr ""
+msgstr "同期できません"
 
 #: gui/session/messages.js:716
 msgid "Out-Of-Sync error!"
-msgstr ""
+msgstr "同期エラーが発生しました！"
 
 #. Translation: This is shown if replay is out of sync
 #: gui/session/messages.js:718
 msgctxt "Out-Of-Sync"
 msgid "The current game state is different from the original game state."
-msgstr ""
+msgstr "ゲームの状態は元のゲーム状態とは異なります。"
 
 #: gui/session/messages.js:782
 msgctxt "chat addressee"
@@ -976,7 +976,7 @@ msgstr "自然"
 #: gui/session/session.js:401
 msgctxt "chat input"
 msgid "Type the message to send."
-msgstr ""
+msgstr "送信するメッセージを入力します。"
 
 #: gui/session/session.js:403
 #, javascript-format
@@ -1156,11 +1156,11 @@ msgstr ""
 
 #: gui/session/unit_actions.js:1107
 msgid "Abort the current order."
-msgstr ""
+msgstr "現在の命令を中止します。"
 
 #: gui/session/unit_actions.js:1126
 msgid "Order the selected units to garrison in a building or unit."
-msgstr ""
+msgstr "選択したユニットへ建物やユニットに駐屯することを命令します。"
 
 #: gui/session/unit_actions.js:1149
 msgid "Unload"
@@ -1168,11 +1168,11 @@ msgstr "外に出す"
 
 #: gui/session/unit_actions.js:1167
 msgid "Order the selected units to repair a building or mechanical unit."
-msgstr ""
+msgstr "選択したユニットに建物や機械ユニットの修理を命令します。"
 
 #: gui/session/unit_actions.js:1186
 msgid "Focus on Rally Point."
-msgstr ""
+msgstr "集合地点に移動する。"
 
 #: gui/session/unit_actions.js:1221
 msgid "Back to Work"
@@ -1180,7 +1180,7 @@ msgstr "仕事に戻す"
 
 #: gui/session/unit_actions.js:1240
 msgid "Order the selected units to guard a building or unit."
-msgstr ""
+msgstr "選択したユニットへ建物やユニットの護衛を命令します。"
 
 #: gui/session/unit_actions.js:1258
 msgid "Remove guard"
@@ -1189,7 +1189,7 @@ msgstr "護衛解除"
 #: gui/session/unit_actions.js:1275
 #: gui/session/top_panel/button_trade.xml:(tooltip):9
 msgid "Barter & Trade"
-msgstr ""
+msgstr "取引と交易"
 
 #: gui/session/unit_actions.js:1293
 msgid "Patrol"
@@ -1197,7 +1197,7 @@ msgstr ""
 
 #: gui/session/unit_actions.js:1294
 msgid "Attack all encountered enemy units while avoiding buildings."
-msgstr ""
+msgstr "建物を避けながら、遭遇敵したすべてのユニットを攻撃します。"
 
 #: gui/session/unit_actions.js:1320
 msgid "Press to allow allies to use this dropsite"
@@ -1209,15 +1209,15 @@ msgstr ""
 
 #: gui/session/unit_actions.js:1389
 msgid "You are allowed to use this dropsite"
-msgstr ""
+msgstr "この回収施設を使用することは許可されています"
 
 #: gui/session/unit_actions.js:1394
 msgid "The use of this dropsite is prohibited"
-msgstr ""
+msgstr "この回収施設の使用は禁止されています"
 
 #: gui/session/unit_actions.js:1468
 msgid "The entity has to be killed before it can be gathered from"
-msgstr ""
+msgstr "エンティティは、それを収集する前に破壊しなければならない"
 
 #: gui/session/unit_actions.js:1471
 msgid ""
@@ -1384,7 +1384,7 @@ msgstr "終了"
 #: gui/session/objectives_window.xml:(caption):15
 #: gui/session/top_panel/button_objectives.xml:(tooltip):15
 msgid "Objectives"
-msgstr ""
+msgstr "目標"
 
 #: gui/session/session.xml:(caption):77
 msgid "Game Paused"

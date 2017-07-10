@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:02+0200\n"
-"PO-Revision-Date: 2017-06-18 13:10+0000\n"
+"PO-Revision-Date: 2017-07-09 09:39+0000\n"
 "Last-Translator: Asakura\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -82,11 +82,11 @@ msgstr "あなたは現在モデレーターです。"
 #: gui/lobby/lobby.js:186
 #, javascript-format
 msgid "%(nick)s is now a moderator."
-msgstr ""
+msgstr "%(nick)sは現在モデレーターです。"
 
 #: gui/lobby/lobby.js:189
 msgid "You have been unmuted."
-msgstr ""
+msgstr "あなたは無視されました (mute)"
 
 #: gui/lobby/lobby.js:190
 #, javascript-format
@@ -149,11 +149,11 @@ msgstr ""
 
 #: gui/lobby/lobby.js:312
 msgid "Clear all chat scrollback."
-msgstr ""
+msgstr "全てのチャット履歴をクリアします。"
 
 #: gui/lobby/lobby.js:319
 msgid "Return to the main menu."
-msgstr ""
+msgstr "メインメニューに戻ります。"
 
 #: gui/lobby/lobby.js:389
 msgctxt "map size"
@@ -390,7 +390,7 @@ msgstr "サービス規約および利用規約をご承諾ください"
 msgid ""
 "Unknown error. This usually occurs because the same IP address is not "
 "allowed to register more than one account within one hour."
-msgstr ""
+msgstr "不明なエラー。 これは通常、1時間以内に同じIPアドレスから複数のアカウントを登録できないために発生します。"
 
 #: gui/lobby/prelobby.js:172
 msgid "Registered"
@@ -491,7 +491,7 @@ msgstr "プロフィールを見る"
 
 #: gui/lobby/lobby.xml:(caption):370
 msgid "Please enter a player name."
-msgstr ""
+msgstr "プレイヤー名を入力してください"
 
 #: gui/lobby/lobby.xml:(heading):41
 msgid "Status"

@@ -27,6 +27,7 @@
 # Marcin Kozłowski <martinkoaz@gmail.com>, 2015
 # Marcin Malinowski <szyszka45@gmail.com>, 2015
 # Marcin S <dzidek1003@o2.pl>, 2016-2017
+# Marek Opłotny <oplotny.marek@gmail.com>, 2017
 # Michał Garapich <michal@garapich.pl>, 2013
 # Michał Karol, 2016
 # Michał Karol, 2015
@@ -55,14 +56,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:01+0200\n"
-"PO-Revision-Date: 2017-06-05 14:30+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-07-09 14:13+0000\n"
+"Last-Translator: Marek Opłotny <oplotny.marek@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pl\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #: gui/session/input.js:143
 #, javascript-format
@@ -142,7 +143,7 @@ msgstr "%(time)s %(message)s"
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Time remaining until ceasefire is over: %(time)s."
-msgstr ""
+msgstr "Czas pozostały do zakończenia wstrzymania broni: %(time)s"
 
 #: gui/session/menu.js:411
 msgctxt "team"
@@ -327,7 +328,7 @@ msgstr "Pauza przez %(players)s"
 #: gui/session/menu.js:1105 gui/session/messages.js:679
 msgctxt "Separator for a list of players"
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/session/menu.js:1118 gui/session/menu.xml:(caption):17
 msgid "Manual"
@@ -407,7 +408,7 @@ msgstr "Powód: %(reason)s."
 
 #: gui/session/messages.js:149
 msgid "Waiting for players to connect:"
-msgstr ""
+msgstr "Oczekiwanie na połączenie graczy:"
 
 #: gui/session/messages.js:150
 msgid "Synchronising gameplay with other players..."
@@ -535,7 +536,7 @@ msgstr "%(player)s jest teraz neutralny wobec %(player2)s."
 
 #: gui/session/messages.js:569
 msgid "Click to quit this tutorial."
-msgstr ""
+msgstr "Kliknij, aby opuścić ten samouczek."
 
 #: gui/session/messages.js:570
 msgid "Quit"
@@ -547,33 +548,33 @@ msgstr ""
 
 #: gui/session/messages.js:578
 msgid "Follow the instructions."
-msgstr ""
+msgstr "Podążaj za wskazówkami."
 
 #: gui/session/messages.js:668
 msgctxt "Separator for a list of client loading messages"
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/session/messages.js:674
 #, javascript-format
 msgid "Out-Of-Sync error on turn %(turn)s."
-msgstr ""
+msgstr "Błąd Out-Of-Sync w turze %(turn)s."
 
 #: gui/session/messages.js:678
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Players: %(players)s"
-msgstr ""
+msgstr "Gracze: %(players)s"
 
 #: gui/session/messages.js:683
 msgctxt "Out-Of-Sync"
 msgid "Your game state is identical to the hosts game state."
-msgstr ""
+msgstr "Twoja gra jest zsynchronizowana z hostem."
 
 #: gui/session/messages.js:684
 msgctxt "Out-Of-Sync"
 msgid "Your game state differs from the hosts game state."
-msgstr ""
+msgstr "Twoja gra uległa desynchronizacji z hostem."
 
 #: gui/session/messages.js:690
 msgctxt "Out-Of-Sync"
@@ -583,38 +584,38 @@ msgstr ""
 #: gui/session/messages.js:694
 msgctxt "Out-Of-Sync"
 msgid "Ensure all players use the same mods."
-msgstr ""
+msgstr "Upewnij się, że wszyscy gracze używają tych samych modyfikacji."
 
 #: gui/session/messages.js:695
 msgctxt "Out-Of-Sync"
 msgid "Click on \"Report a Bug\" in the main menu to help fix this."
-msgstr ""
+msgstr "Kliknij na \"Zgłoś błąd w grze\" w głównym menu aby pomóc w naprawie tego."
 
 #: gui/session/messages.js:696
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Replay saved to %(filepath)s"
-msgstr ""
+msgstr "Powtórka zapisana do %(filepath)s"
 
 #: gui/session/messages.js:699
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Dumping current state to %(filepath)s"
-msgstr ""
+msgstr "Zrzuć aktualny status do %(filepath)s"
 
 #: gui/session/messages.js:708 gui/session/messages.js:719
 msgid "Out of Sync"
-msgstr ""
+msgstr "Desynchronizacja"
 
 #: gui/session/messages.js:716
 msgid "Out-Of-Sync error!"
-msgstr ""
+msgstr "Błąd Synchronizacji!"
 
 #. Translation: This is shown if replay is out of sync
 #: gui/session/messages.js:718
 msgctxt "Out-Of-Sync"
 msgid "The current game state is different from the original game state."
-msgstr ""
+msgstr "Stan aktualnej rozgrywki różni się od stanu oryginalnego rozgrywki."
 
 #: gui/session/messages.js:782
 msgctxt "chat addressee"
@@ -677,7 +678,7 @@ msgstr "%(player)s wysłał Ci %(amounts)s."
 #: gui/session/messages.js:1014
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
-msgstr ""
+msgstr "Wysłałeś %(player2)s %(amounts)s"
 
 #: gui/session/messages.js:1019
 #, javascript-format
@@ -702,7 +703,7 @@ msgstr "Zostałeś zaatakowany przez %(attacker)s!"
 #: gui/session/messages.js:1070
 #, javascript-format
 msgid "%(player)s is advancing to the %(phaseName)s."
-msgstr ""
+msgstr "%(player)s przechodzi do %(phaseName)s"
 
 #: gui/session/messages.js:1072
 #, javascript-format
@@ -712,7 +713,7 @@ msgstr ""
 #: gui/session/messages.js:1075
 #, javascript-format
 msgid "%(player)s has reached the %(phaseName)s."
-msgstr ""
+msgstr "%(player)s wszedł w %(phaseName)s"
 
 #: gui/session/messages.js:1127
 #, javascript-format
@@ -917,7 +918,7 @@ msgstr "%(population)s %(neededSlots)s"
 #: gui/session/selection_panels.js:642
 msgctxt "countdown format"
 msgid "m:ss"
-msgstr ""
+msgstr "m:ss"
 
 #: gui/session/selection_panels.js:795
 #, javascript-format
@@ -936,7 +937,7 @@ msgstr "Pozostało %(entityCounts)s"
 #: gui/session/selection_panels.js:802
 msgctxt "Separator for a list of entity counts"
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/session/selection_panels.js:1111
 #, javascript-format
@@ -1074,7 +1075,7 @@ msgstr "Wciśnij %(hotkey)s aby otworzyć sojuszniczy czat."
 #: gui/session/session.js:409
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
-msgstr ""
+msgstr "Naciśnij %(hotkey)s w celu przywrócenia poprzedniego prywatnego czatu."
 
 #: gui/session/session.js:413
 msgid "Find idle worker"
@@ -1116,7 +1117,7 @@ msgstr "POKONANY!"
 
 #: gui/session/session.js:844
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: gui/session/session.js:903
 msgctxt "replayFinished"
@@ -1491,15 +1492,15 @@ msgstr ""
 
 #: gui/session/trade_window.xml:(caption):17
 msgid "Barter"
-msgstr ""
+msgstr "Wymiana"
 
 #: gui/session/trade_window.xml:(caption):24
 msgid "Sell:"
-msgstr ""
+msgstr "Sprzedaj:"
 
 #: gui/session/trade_window.xml:(caption):28
 msgid "Buy:"
-msgstr ""
+msgstr "Kup:"
 
 #: gui/session/trade_window.xml:(caption):32
 msgid "No Markets Available"
