@@ -336,11 +336,11 @@ m.Template = m.Class({
 	},
 
 	"researchableTechs": function(civ) {
-		if (this.civ() !== civ)     // techs can only be researched in structures from the player civ TODO no more true
-			return undefined;
 		let templates = this.get("ProductionQueue/Technologies/_string");
 		if (!templates)
 			return undefined;
+		if (civ)
+			templates = templates.replace(/\{civ\}/g, civ);
 		return templates.split(/\s+/);
 	},
 
