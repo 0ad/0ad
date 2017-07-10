@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2008-2011 Edgewall Software
-# Copyright (C) 2013-2014 Wildfire Games
+# Copyright (C) 2008-2011 Edgewall Software.
+# Copyright (C) 2013-2014 Wildfire Games.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification, are permitted provided that the
