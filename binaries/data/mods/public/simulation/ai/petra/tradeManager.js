@@ -540,8 +540,18 @@ m.TradeManager.prototype.checkTrader = function(gameState, ent)
 		(possibleRoute.target.id() != presentRoute.source && possibleRoute.target.id() != presentRoute.target))
 	{
 		// Trader will be assigned in updateTrader
-		ent.stopMoving();
 		ent.setMetadata(PlayerID, "route", undefined);
+		if (!possibleRoute && !ent.hasClass("Ship"))
+		{
+			let closestBase = m.getBestBase(gameState, ent, true);
+			if (closestBase.accessIndex == access)
+			{
+				let closestBasePos = closestBase.anchor.position();
+				ent.moveToRange(closestBasePos[0], closestBasePos[1], 0, 15);
+				return;
+			}
+		}
+		ent.stopMoving();
 	}
 };
 
@@ -605,17 +615,15 @@ m.TradeManager.prototype.update = function(gameState, events, queues)
 	if (this.routeProspection)
 		this.prospectForNewMarket(gameState, queues);
 
-	let self = this;
-
 	if (this.checkEvents(gameState, events))  // true if one market was built or destroyed
 	{
-		this.traders.forEach(function(ent) { self.checkTrader(gameState, ent); });
+		this.traders.forEach(ent => { this.checkTrader(gameState, ent); });
 		this.checkRoutes(gameState);
 	}
 
 	if (this.tradeRoute)
 	{
-		this.traders.forEach(function(ent) { self.updateTrader(gameState, ent); });
+		this.traders.forEach(ent => { this.updateTrader(gameState, ent); });
 		if (gameState.ai.playedTurn % 5 === 0)
 			this.trainMoreTraders(gameState, queues);
 		if (gameState.ai.playedTurn % 20 === 0 && this.traders.length >= 2)
