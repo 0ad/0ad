@@ -581,34 +581,36 @@ static void FocusHeight(CGameViewImpl* m, bool smooth)
 	const CVector3D nearPoint = position + forwards * m->ViewNear;
 	const CVector3D pivotPoint = position + forwards * m->Zoom.GetSmoothedValue();
 
-	const float ground = m->Game->GetWorld()->GetTerrain()->GetExactGroundLevel(nearPoint.X, nearPoint.Z);
+	const float ground = std::max(
+		m->Game->GetWorld()->GetTerrain()->GetExactGroundLevel(nearPoint.X, nearPoint.Z),
+		g_Renderer.GetWaterManager()->m_WaterHeight);
 
 	// filter ground levels for smooth camera movement
 	const float filtered_near_ground = m->Game->GetWorld()->GetTerrain()->GetFilteredGroundLevel(nearPoint.X, nearPoint.Z, near_radius);
 	const float filtered_pivot_ground = m->Game->GetWorld()->GetTerrain()->GetFilteredGroundLevel(pivotPoint.X, pivotPoint.Z, pivot_radius);
 
 	// filtered maximum visible ground level in view
-	const float filtered_ground = std::max(filtered_near_ground, filtered_pivot_ground);
+	const float filtered_ground = std::max(
+		std::max(filtered_near_ground, filtered_pivot_ground),
+		g_Renderer.GetWaterManager()->m_WaterHeight);
 
 	// target camera height above pivot point
 	const float pivot_height = -forwards.Y * (m->Zoom.GetSmoothedValue() - m->ViewNear);
+
 	// minimum camera height above filtered ground level
 	const float min_height = (m->HeightMin + ground - filtered_ground);
 
 	const float target_height = std::max(pivot_height, min_height);
 	const float height = (nearPoint.Y - filtered_ground);
 	const float diff = target_height - height;
+
 	if (fabsf(diff) < 0.0001f)
 		return;
 
 	if (smooth)
-	{
 		m->PosY.AddSmoothly(diff);
-	}
 	else
-	{
 		m->PosY.Add(diff);
-	}
 }
 
 CVector3D CGameView::GetSmoothPivot(CCamera& camera) const
