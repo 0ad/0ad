@@ -4975,7 +4975,13 @@ UnitAI.prototype.AddOrder = function(type, data, queued)
 	if (queued)
 		this.PushOrder(type, data);
 	else
+	{
+		// May happen if an order arrives on the same turn the unit is garrisoned
+		// in that case, just forget the order as this will lead to an infinite loop
+		if (this.IsGarrisoned() && !this.IsTurret() && type != "Ungarrison")
+			return;
 		this.ReplaceOrder(type, data);
+	}
 };
 
 /**

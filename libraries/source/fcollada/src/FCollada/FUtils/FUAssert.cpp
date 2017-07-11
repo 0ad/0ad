@@ -3,7 +3,7 @@
 	Portions of the code are:
 	Copyright (C) 2005-2007 Sony Computer Entertainment America
 	Portions of the code are:
-	Copyright (C) 2013 Wildfire Games
+	Copyright (C) 2013 Wildfire Games.
 	
 	MIT License: http://www.opensource.org/licenses/mit-license.php
 */

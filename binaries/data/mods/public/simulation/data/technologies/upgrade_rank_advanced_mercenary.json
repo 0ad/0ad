@@ -13,7 +13,7 @@
 	"tooltip": "Mercenaries are promoted to advanced rank but require +20% training time.",
 	"modifications": [
 		{ "value": "Promotion/RequiredXp", "replace": 0, "affects": "Basic" },
-		{ "value": "Cost/BuildTime", "multiply": 1.2 }
+		{ "value": "Cost/BuildTime", "multiply": 1.2, "affects": "Advanced" }
 	],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml",
 	"affects": ["Mercenary"]

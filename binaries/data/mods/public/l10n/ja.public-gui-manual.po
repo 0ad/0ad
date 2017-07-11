@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:05+0200\n"
-"PO-Revision-Date: 2017-06-26 11:42+0000\n"
+"PO-Revision-Date: 2017-07-09 12:20+0000\n"
 "Last-Translator: Asakura\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -56,7 +56,7 @@ msgid ""
 "pressing Alt + Enter. In windowed mode, you can resize the window. If the "
 "game runs too slowly, you can change some settings in the options window: "
 "try disabling the \"HQ Water Effects\" and \"Shadows\" options."
-msgstr ""
+msgstr "[font=\"sans-14\"]Alt + Enterを押すと、フルスクリーンモードとウィンドウモードを切り替えることができます。 ウィンドウモードでは、ウィンドウのサイズを変更できます。 ゲームの実行が遅すぎる場合は、オプションウィンドウでいくつかの設定を変更することができます。「高品質の水面効果」と「影」を無効にしてみてください。"
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
@@ -147,19 +147,19 @@ msgstr "まず最初にプレイしたいマップのタイプを選びます：
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] — A map created "
 "automatically from a script"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]ランダムマップ[font=\"sans-14\"] — スクリプトによって自動生成されたマップです"
 
 #: gui/manual/intro.txt:33
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] — A map created by "
 "map designers and with fixed civilisations"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]シナリオマップ[font=\"sans-14\"] — デザイナーによるマップです。文明は固定されています。"
 
 #: gui/manual/intro.txt:34
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] — A map created by "
 "map designers but where the civilisations can be chosen"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]小戦闘マップ[font=\"sans-14\"] — デザイナーによるマップです。文明の選択が可能です。"
 
 #: gui/manual/intro.txt:36
 msgid ""
@@ -168,7 +168,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The \"All Maps\" filter shows all maps together in one "
 "list."
-msgstr ""
+msgstr "マップをさらにフィルタリングすることができます。 デフォルトマップは一般にプレイ可能なマップです。 海洋マップは、すべての対戦相手が土地に到達できるわけではないマップです。デモマップはテスト目的で使用されるマップです（一般的には役に立たちません）。 「すべてのマップ」フィルタは、すべてのマップを1つのリストにまとめて表示します。"
 
 #: gui/manual/intro.txt:38
 msgid ""
@@ -289,7 +289,7 @@ msgstr "T： チームへチャットを送信"
 
 #: gui/manual/intro.txt:65
 msgid "L: Chat with the previously selected private chat partner"
-msgstr ""
+msgstr "L: 以前に選択したプライベートチャットの相手とチャット"
 
 #: gui/manual/intro.txt:66
 msgid "Pause: Pause/resume the game"
@@ -297,7 +297,7 @@ msgstr "Pause： ゲームを休止/再開"
 
 #: gui/manual/intro.txt:67
 msgid "Delete: Delete currently selected units/buildings"
-msgstr ""
+msgstr "Delete: 現在選択されているユニット／建物を削除"
 
 #: gui/manual/intro.txt:68
 msgid ""

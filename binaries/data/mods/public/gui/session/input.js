@@ -1707,14 +1707,6 @@ function stopUnits(entities)
 	Engine.PostNetworkCommand({ "type": "stop", "entities": entities, "queued": false });
 }
 
-function unload(garrisonHolder, entities)
-{
-	if (Engine.HotkeyIsPressed("session.unloadtype"))
-		Engine.PostNetworkCommand({ "type": "unload", "entities": entities, "garrisonHolder": garrisonHolder });
-	else
-		Engine.PostNetworkCommand({ "type": "unload", "entities": [entities[0]], "garrisonHolder": garrisonHolder });
-}
-
 function unloadTemplate(template, owner)
 {
 	// Filter out all entities that aren't garrisonable.
@@ -1761,6 +1753,9 @@ function unloadAll()
 		let state = GetEntityState(e);
 		return state && state.garrisonHolder;
 	});
+
+	if (!garrisonHolders.length)
+		return;
 
 	Engine.PostNetworkCommand({
 		"type": controlsPlayer(GetEntityState(garrisonHolders[0]).player) ? "unload-all" : "unload-all-by-owner",

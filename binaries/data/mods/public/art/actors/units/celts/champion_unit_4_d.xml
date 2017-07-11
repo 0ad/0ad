@@ -39,5 +39,8 @@
       <textures><texture file="skeletal/kart_isw_a_05.dds" name="baseTex"/></textures>
     </variant>
   </group>
+  <group>
+    <variant file="biped/death_infantry.xml"/>
+  </group>
   <material>player_trans.xml</material>
 </actor>
