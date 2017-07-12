@@ -35,10 +35,12 @@ import json, os, glob, re
 langs = {
     'bg': 'Български',
     'ca': 'Català',
-    'cs': 'Ceština',
+    'cs': 'Čeština',
     'de': 'Deutsch',
+    'el': 'Ελληνικά',
     'en_GB': 'English (UK)',
     'es': 'Español',
+    'eu': 'Euskara',
     'fr': 'Français',
     'gd': 'Gàidhlig',
     'gl': 'Galego',
@@ -53,7 +55,8 @@ langs = {
     'ru': 'Русский',
     'sk': 'Slovenčina',
     'sv': 'Svenska',
-    'tr': 'Türkçe'}
+    'tr': 'Türkçe',
+    'uk': 'Українська'}
 
 root = '../../../'
 

@@ -24,6 +24,7 @@
 # Mar321 <grobelskimarcin@gmail.com>, 2013
 # Marcin Malinowski <szyszka45@gmail.com>, 2015
 # Marcin S <dzidek1003@o2.pl>, 2016
+# Marek Opłotny <oplotny.marek@gmail.com>, 2017
 # Matthew <chimerionk@gmail.com>, 2015
 # mhnxo <mhnxo123@gmail.com>, 2014
 # Michał Czerwiński <michal.czerwinski@gmail.com>, 2015
@@ -48,14 +49,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:05+0200\n"
-"PO-Revision-Date: 2017-06-04 15:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-07-10 10:55+0000\n"
+"Last-Translator: Marek Opłotny <oplotny.marek@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pl\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #: gui/aiconfig/aiconfig.js:6
 msgctxt "ai"
@@ -104,7 +105,7 @@ msgstr "Pozostań w gotowości"
 
 #: gui/gamesetup/gamesetup.js:118
 msgid "Stay ready even when the game settings change."
-msgstr ""
+msgstr "Bądź gotowy nawet jeżeli ustawienia rozgrywki się zmienią."
 
 #: gui/gamesetup/gamesetup.js:123
 msgid "I'm not ready!"
@@ -174,7 +175,7 @@ msgstr "Mapy demonstracyjne"
 #: gui/gamesetup/gamesetup.js:177
 msgctxt "map filter"
 msgid "These maps are not playable but for demonstration purposes only."
-msgstr ""
+msgstr "Te mapy nie są grywalne, służą jedynie do celów demonstracyjnych."
 
 #: gui/gamesetup/gamesetup.js:182
 msgid "New Maps"
@@ -183,7 +184,7 @@ msgstr "Nowe Mapy"
 #: gui/gamesetup/gamesetup.js:183
 msgctxt "map filter"
 msgid "Maps that are brand new in this release of the game."
-msgstr ""
+msgstr "Nowe mapy z ostatniego wydania gry."
 
 #: gui/gamesetup/gamesetup.js:188
 msgid "Trigger Maps"
@@ -192,7 +193,7 @@ msgstr "Mapa Wyzwalacz"
 #: gui/gamesetup/gamesetup.js:189
 msgctxt "map filter"
 msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr ""
+msgstr "Mapy zawierające scenariusz i mogące tworzyć wrogie jednostki."
 
 #: gui/gamesetup/gamesetup.js:194
 msgid "All Maps"
@@ -201,7 +202,7 @@ msgstr "Wszystkie mapy"
 #: gui/gamesetup/gamesetup.js:195
 msgctxt "map filter"
 msgid "Every map of the chosen maptype."
-msgstr ""
+msgstr "Wszystkie mapy dla wybranego typu mapy."
 
 #: gui/gamesetup/gamesetup.js:411
 msgid "Map Type"
@@ -256,7 +257,7 @@ msgstr "Wybierz limit populacji."
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr ""
+msgstr "Ostrzeżenie: Wydajność może spaść jeżeli wszyscy %(players)s gracze osiągną %(popCap)s populacji."
 
 #: gui/gamesetup/gamesetup.js:523
 msgid "Starting Resources"
@@ -265,7 +266,7 @@ msgstr "Zasoby początkowe"
 #: gui/gamesetup/gamesetup.js:526
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
-msgstr ""
+msgstr "Początkowa wartość każdego zasobu: %(resources)s"
 
 #: gui/gamesetup/gamesetup.js:529
 msgid "Select the game's starting resources."
@@ -273,7 +274,7 @@ msgstr "Wybierz początkowe zasoby w grze."
 
 #: gui/gamesetup/gamesetup.js:543
 msgid "Ceasefire"
-msgstr ""
+msgstr "Zawieszenie broni"
 
 #: gui/gamesetup/gamesetup.js:544
 msgid "Set time where no attacks are possible."
@@ -281,7 +282,7 @@ msgstr "Ustaw czas gdy nie są możliwe ataki."
 
 #: gui/gamesetup/gamesetup.js:556
 msgid "Victory Condition"
-msgstr ""
+msgstr "Warunki zwycięstwa"
 
 #: gui/gamesetup/gamesetup.js:557
 msgid "Select victory condition."
@@ -289,23 +290,23 @@ msgstr "Wybierz warunek zwycięstwa."
 
 #: gui/gamesetup/gamesetup.js:571
 msgid "Relic Count"
-msgstr ""
+msgstr "Liczba reliktów"
 
 #: gui/gamesetup/gamesetup.js:572
 msgid "Total number of relics spawned on the map."
-msgstr ""
+msgstr "Maksymalna liczba reliktów stworzonych na mapie."
 
 #: gui/gamesetup/gamesetup.js:585
 msgid "Victory Duration"
-msgstr ""
+msgstr "Czas do zwycięstwa"
 
 #: gui/gamesetup/gamesetup.js:586
 msgid "Number of minutes until the player has won."
-msgstr ""
+msgstr "Ilość minut potrzebnych do wygranej gracza."
 
 #: gui/gamesetup/gamesetup.js:601
 msgid "Game Speed"
-msgstr ""
+msgstr "Prędkość Rozgrywki"
 
 #: gui/gamesetup/gamesetup.js:602
 msgid "Select game speed."
@@ -313,7 +314,7 @@ msgstr "Wybierz szybkość gry."
 
 #: gui/gamesetup/gamesetup.js:665
 msgid "Chose the civilization for this player"
-msgstr ""
+msgstr "Wybierz cywilizację dla tego gracza"
 
 #: gui/gamesetup/gamesetup.js:705
 msgid "Hero Garrison"
@@ -327,7 +328,7 @@ msgstr ""
 #. explored map options!
 #: gui/gamesetup/gamesetup.js:719
 msgid "Revealed Map"
-msgstr ""
+msgstr "Mapa ujawniona"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
@@ -339,7 +340,7 @@ msgstr "Wł./Wył.  odsłonięcie mapy (pełna widoczność)."
 #. explored map options!
 #: gui/gamesetup/gamesetup.js:737
 msgid "Explored Map"
-msgstr ""
+msgstr "Mapa zbadana"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
@@ -361,11 +362,11 @@ msgstr "Wyłącz szpiegów"
 
 #: gui/gamesetup/gamesetup.js:762
 msgid "Disable spies during the game."
-msgstr ""
+msgstr "Wyłącz szpiegów w trakcie rozgrywki."
 
 #: gui/gamesetup/gamesetup.js:772
 msgid "Teams Locked"
-msgstr ""
+msgstr "Drużyny zablokowane"
 
 #: gui/gamesetup/gamesetup.js:773
 msgid "Toggle locked teams."
@@ -373,7 +374,7 @@ msgstr "Wł./Wył. sztywne drużyny."
 
 #: gui/gamesetup/gamesetup.js:786
 msgid "Last Man Standing"
-msgstr ""
+msgstr "Ostatni na polu bitwy"
 
 #: gui/gamesetup/gamesetup.js:787
 msgid ""
@@ -391,7 +392,7 @@ msgstr "Wł./Wył. kody."
 
 #: gui/gamesetup/gamesetup.js:812
 msgid "Rated Game"
-msgstr ""
+msgstr "Gra rankingowa"
 
 #: gui/gamesetup/gamesetup.js:813
 msgid "Toggle if this game will be rated for the leaderboard."
@@ -400,7 +401,7 @@ msgstr "Wł./Wył. ocenę gry w tabeli wyników."
 #: gui/gamesetup/gamesetup.js:838
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames or settings."
-msgstr ""
+msgstr "Naciśnij %(hotkey)s aby uzupełnić nazwę gracza albo ustawienia."
 
 #: gui/gamesetup/gamesetup.js:846
 msgid "Return to the lobby."
@@ -422,7 +423,7 @@ msgstr "Rozpocznij grę z bieżącymi ustawieniami."
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)"
-msgstr ""
+msgstr "Rozpocznij nową grę z obecnymi ustawieniami (wyłączone dopóki wszyscy gracze nie będą gotowi)"
 
 #: gui/gamesetup/gamesetup.js:1405
 msgctxt "map selection"
@@ -432,7 +433,7 @@ msgstr "Losowe "
 #: gui/gamesetup/gamesetup.js:1682 gui/gamesetup/gamesetup.js:1721
 #, javascript-format
 msgid "%(option)s:"
-msgstr ""
+msgstr "%(option)s:"
 
 #: gui/gamesetup/gamesetup.js:1687
 msgctxt "option value"
