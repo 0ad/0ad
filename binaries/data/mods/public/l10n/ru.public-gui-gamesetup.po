@@ -53,7 +53,7 @@
 # Vic Grin <aliented@mail.ru>, 2016
 # Vitalii Mostipaka <imprtat@gmail.com>, 2013
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2015
-# Vladislav Belov <vladislavbelovdev@gmail.com>, 2015-2016
+# Vladislav Belov <vladislavbelovdev@gmail.com>, 2015-2017
 # Vladislav <swsh0t@gmail.com>, 2013
 # vlitomsk <kvas.omsk@gmail.com>, 2014
 # webslavic <webslavic@yahoo.com>, 2014
@@ -73,8 +73,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:05+0200\n"
-"PO-Revision-Date: 2017-07-04 15:34+0000\n"
-"Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
+"PO-Revision-Date: 2017-07-10 14:47+0000\n"
+"Last-Translator: Vladislav Belov <vladislavbelovdev@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -298,7 +298,7 @@ msgstr "Выберите стартовые ресурсы."
 
 #: gui/gamesetup/gamesetup.js:543
 msgid "Ceasefire"
-msgstr ""
+msgstr "Прекращение военных действий"
 
 #: gui/gamesetup/gamesetup.js:544
 msgid "Set time where no attacks are possible."
@@ -314,7 +314,7 @@ msgstr "Выбрать условия победы."
 
 #: gui/gamesetup/gamesetup.js:571
 msgid "Relic Count"
-msgstr ""
+msgstr "Количество реликвий"
 
 #: gui/gamesetup/gamesetup.js:572
 msgid "Total number of relics spawned on the map."
@@ -322,11 +322,11 @@ msgstr "Общее число реликвий на карте."
 
 #: gui/gamesetup/gamesetup.js:585
 msgid "Victory Duration"
-msgstr ""
+msgstr "Время для победы"
 
 #: gui/gamesetup/gamesetup.js:586
 msgid "Number of minutes until the player has won."
-msgstr ""
+msgstr "Количество минут, после которых игрок выигрывает."
 
 #: gui/gamesetup/gamesetup.js:601
 msgid "Game Speed"
@@ -352,7 +352,7 @@ msgstr ""
 #. explored map options!
 #: gui/gamesetup/gamesetup.js:719
 msgid "Revealed Map"
-msgstr ""
+msgstr "Открытая карта"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
@@ -364,7 +364,7 @@ msgstr "Использовать открытую карту (видима вс�
 #. explored map options!
 #: gui/gamesetup/gamesetup.js:737
 msgid "Explored Map"
-msgstr ""
+msgstr "Исследованная карта"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
@@ -390,7 +390,7 @@ msgstr "Отключить шпионов в течение игры."
 
 #: gui/gamesetup/gamesetup.js:772
 msgid "Teams Locked"
-msgstr ""
+msgstr "Фиксированные команды"
 
 #: gui/gamesetup/gamesetup.js:773
 msgid "Toggle locked teams."
@@ -398,7 +398,7 @@ msgstr "Включить / выключить фиксированные ком�
 
 #: gui/gamesetup/gamesetup.js:786
 msgid "Last Man Standing"
-msgstr ""
+msgstr "Последний герой"
 
 #: gui/gamesetup/gamesetup.js:787
 msgid ""
@@ -416,7 +416,7 @@ msgstr "Включить / выключить возможность испол�
 
 #: gui/gamesetup/gamesetup.js:812
 msgid "Rated Game"
-msgstr ""
+msgstr "Рейтинговая игра"
 
 #: gui/gamesetup/gamesetup.js:813
 msgid "Toggle if this game will be rated for the leaderboard."

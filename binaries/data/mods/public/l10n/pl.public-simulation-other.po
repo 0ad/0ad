@@ -15,6 +15,7 @@
 # Lukasz B <boberstarosta@gmail.com>, 2015-2016
 # Marcin Malinowski <szyszka45@gmail.com>, 2015
 # Marcin S <dzidek1003@o2.pl>, 2016-2017
+# Marek Opłotny <oplotny.marek@gmail.com>, 2017
 # Michał Karol, 2016
 # Michał Koźlarek <m.kozlarek@vp.pl>, 2015
 # miragae <miragae@gmail.com>, 2014-2015
@@ -25,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-06-19 00:02+0000\n"
-"Last-Translator: Daniel Whatever <Deynyel@protonmail.com>\n"
+"PO-Revision-Date: 2017-07-10 11:43+0000\n"
+"Last-Translator: Marek Opłotny <oplotny.marek@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -66,45 +67,45 @@ msgstr "%(_player_)s"
 #: simulation/ai/petra/chatHelper.js:18
 #, javascript-format
 msgid "I am finishing preparations to attack %(_player_)s."
-msgstr ""
+msgstr "Kończę przygotowania do ataku %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:21
 #, javascript-format
 msgid ""
 "Sorry, I do not have enough soldiers currently; but my next attack will "
 "target %(_player_)s."
-msgstr ""
+msgstr "Przepraszam, nie mam wystarczająco zołnierzy; ale mój następny atak będzie na %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:22
 #, javascript-format
 msgid ""
 "Sorry, I still need to strengthen my army. However, I will attack "
 "%(_player_)s next."
-msgstr ""
+msgstr "Przepraszam, muszę wzmocnić swoją armie. Jednak później zaatakuje %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:25
 #, javascript-format
 msgid ""
 "I cannot help you against %(_player_)s for the time being, I am planning to "
 "attack %(_player_2)s first."
-msgstr ""
+msgstr "Nie mogę wesprzeć cię przeciwko %(_player_)s w tej chwili, wpierw planuje atak na %(_player_2)s."
 
 #: simulation/ai/petra/chatHelper.js:30
 #, javascript-format
 msgid "Here is a gift for you, %(_player_)s. Make good use of it."
-msgstr ""
+msgstr "Mam dla ciebie podarunek, %(_player_)s. Wykorzystaj go dobrze."
 
 #: simulation/ai/petra/chatHelper.js:31
 #, javascript-format
 msgid "I see you are in a bad situation, %(_player_)s. I hope this helps."
-msgstr ""
+msgstr "Widzę że masz kłopoty, %(_player_)s. Mam nadzieję że to pomoże."
 
 #: simulation/ai/petra/chatHelper.js:32
 #, javascript-format
 msgid ""
 "I can help you this time, %(_player_)s, but you should manage your resources"
 " more carefully in the future."
-msgstr ""
+msgstr "Wesprę cię tym razem, %(_player_)s, jednak w przyszłości lepiej zarządzaj swoimi zasobami."
 
 #: simulation/ai/petra/chatHelper.js:36
 #, javascript-format
@@ -122,7 +123,7 @@ msgstr "Uczestniczyłbym skuteczniej w naszych wspólnych działaniach wojennych
 #, javascript-format
 msgid ""
 "If you can spare me some %(resource)s, I will be able to strengthen my army."
-msgstr ""
+msgstr "Jeśli możesz przekazać mi trochę %(resource)s, będę mógł wzmocnić swoją armię."
 
 #: simulation/ai/petra/chatHelper.js:42
 #, javascript-format
@@ -156,48 +157,48 @@ msgstr "%(_player_)s jest teraz moim wrogiem."
 #: simulation/ai/petra/chatHelper.js:61
 #, javascript-format
 msgid "I cannot accept your offer to become allies, %(_player_)s."
-msgstr ""
+msgstr "Nie mogę zaakceptować twojej oferty sojuszu, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:64
 #, javascript-format
 msgid ""
 "I will not be your ally, %(_player_)s. However, I will consider a neutrality"
 " pact."
-msgstr ""
+msgstr "Nie będę twym sojusznikiem, %(_player_)s. Jednakże rozważę pakt o neutralności."
 
 #: simulation/ai/petra/chatHelper.js:65
 #, javascript-format
 msgid ""
 "I reject your request for alliance, %(_player_)s, but we could become "
 "neutral."
-msgstr ""
+msgstr "Odrzucam twoją ofertę sojuszu, %(_player_)s, jednak możemy stać się neutralni."
 
 #: simulation/ai/petra/chatHelper.js:66
 #, javascript-format
 msgid "%(_player_)s, only a neutrality agreement is conceivable to me."
-msgstr ""
+msgstr "%(_player_)s, jedynie układ o neutralności jest możliwy."
 
 #: simulation/ai/petra/chatHelper.js:69
 #, javascript-format
 msgid ""
 "Our previous alliance did not work out, %(_player_)s. I must decline your "
 "offer."
-msgstr ""
+msgstr "Nasz poprzedni sojusz się nie sprawdził, %(_player_)s. Muszę odrzucić twoją ofertę."
 
 #: simulation/ai/petra/chatHelper.js:70
 #, javascript-format
 msgid "I won’t ally you again, %(_player_)s!"
-msgstr ""
+msgstr "Nie sprzymierzę się z tobą, %(_player_)s!"
 
 #: simulation/ai/petra/chatHelper.js:71
 #, javascript-format
 msgid "No more alliances between us, %(_player_)s!"
-msgstr ""
+msgstr "Nigdy więcej sojuszu między nami, %(_player_)s!"
 
 #: simulation/ai/petra/chatHelper.js:72
 #, javascript-format
 msgid "Your request for peace means nothing to me anymore, %(_player_)s!"
-msgstr ""
+msgstr "Twoje prośby o pokój nic dla mnie więcej nie znaczą, %(_player_)s!"
 
 #: simulation/ai/petra/chatHelper.js:73
 #, javascript-format
@@ -215,7 +216,7 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:77
 #, javascript-format
 msgid "An alliance between us is a good idea, %(_player_)s."
-msgstr ""
+msgstr "Sojusz pomiędzy nami to dobry pomysł, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:78
 #, javascript-format
