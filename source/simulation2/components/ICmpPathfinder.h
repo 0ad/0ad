@@ -78,10 +78,10 @@ public:
 	virtual const Grid<NavcellData>& GetPassabilityGrid() = 0;
 
 	/**
-	 * Passes the lazily-stored dirtiness data collected from
-	 * the obstruction manager during the previous grid update.
+	 * Get the accumulated dirtiness information since the last time the AI accessed and flushed it.
 	 */
-	virtual const GridUpdateInformation& GetDirtinessData() const = 0;
+	virtual const GridUpdateInformation& GetAIPathfinderDirtinessInformation() const = 0;
+	virtual void FlushAIPathfinderDirtinessInformation() = 0;
 
 	/**
 	 * Get a grid representing the distance to the shore of the terrain tile.

@@ -151,12 +151,12 @@ public:
 	Grid<NavcellData>* m_Grid; // terrain/passability information
 	Grid<NavcellData>* m_TerrainOnlyGrid; // same as m_Grid, but only with terrain, to avoid some recomputations
 
-	// Update data, used for clever updates and then stored for the AI manager
-	GridUpdateInformation m_ObstructionsDirty;
+	// Keep clever updates in memory to avoid memory fragmentation from the grid.
+	// This should be used only in UpdateGrid(), there is no guarantee the data is properly initialized anywhere else.
+	GridUpdateInformation m_DirtinessInformation;
+	// The data from clever updates is stored for the AI manager
+	GridUpdateInformation m_AIPathfinderDirtinessInformation;
 	bool m_TerrainDirty;
-	// When other components request the passability grid and trigger an update,
-	// the following regular update should not clean the dirtiness state.
-	bool m_PreserveUpdateInformations;
 
 	// Interface to the long-range pathfinder.
 	LongPathfinder m_LongPathfinder;
@@ -233,7 +233,15 @@ public:
 
 	virtual const Grid<NavcellData>& GetPassabilityGrid();
 
-	virtual const GridUpdateInformation& GetDirtinessData() const;
+	virtual const GridUpdateInformation& GetAIPathfinderDirtinessInformation() const
+	{
+		return m_AIPathfinderDirtinessInformation;
+	}
+
+	virtual void FlushAIPathfinderDirtinessInformation()
+	{
+		m_AIPathfinderDirtinessInformation.Clean();
+	}
 
 	virtual Grid<u16> ComputeShoreGrid(bool expandOnWater = false);
 

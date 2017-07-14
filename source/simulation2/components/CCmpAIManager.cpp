@@ -1114,7 +1114,7 @@ public:
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 		if (cmpPathfinder)
 		{
-			const GridUpdateInformation& dirtinessInformations = cmpPathfinder->GetDirtinessData();
+			const GridUpdateInformation& dirtinessInformations = cmpPathfinder->GetAIPathfinderDirtinessInformation();
 
 			if (dirtinessInformations.dirty || m_JustDeserialized)
 			{
@@ -1127,6 +1127,8 @@ public:
 					dirtinessInformations.globallyDirty, dirtinessInformations.dirtinessGrid, m_JustDeserialized,
 					nonPathfindingPassClassMasks, pathfindingPassClassMasks);
 			}
+
+			cmpPathfinder->FlushAIPathfinderDirtinessInformation();
 		}
 
 		// Update the territory data
