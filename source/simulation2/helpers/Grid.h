@@ -90,6 +90,19 @@ public:
 		delete[] m_Data;
 	}
 
+	bool operator==(const Grid& g) const
+	{
+		if (!compare_sizes(&g) || m_DirtyID != g.m_DirtyID)
+			return false;
+
+		return memcmp(m_Data, g.m_Data, m_W*m_H*sizeof(T)) == 0;
+	}
+
+	bool blank() const
+	{
+		return m_W == 0 && m_H == 0;
+	}
+
 	void reset()
 	{
 		if (m_Data)
@@ -106,6 +119,18 @@ public:
 			m_Data[i] += g.m_Data[i];
 	}
 
+	void bitwise_or(const Grid& g)
+	{
+		if (this == &g)
+			return;
+
+#if GRID_BOUNDS_DEBUG
+		ENSURE(g.m_W == m_W && g.m_H == m_H);
+#endif
+		for (int i = 0; i < m_H*m_W; ++i)
+			m_Data[i] |= g.m_Data[i];
+	}
+
 	void set(int i, int j, const T& value)
 	{
 #if GRID_BOUNDS_DEBUG
@@ -120,6 +145,12 @@ public:
 		ENSURE(0 <= i && i < m_W && 0 <= j && j < m_H);
 #endif
 		return m_Data[j*m_W + i];
+	}
+
+	template<typename U>
+	bool compare_sizes(const Grid<U>* g) const
+	{
+		return m_W == g->m_W && m_H == g->m_H;
 	}
 
 	u16 m_W, m_H;
@@ -200,24 +231,35 @@ public:
 };
 
 /**
- * Structure holding grid dirtiness informations, for clever updates
- *
- * Note: globallyDirty should be used to know which parts of the grid have been changed after an update,
- * whereas globalRecompute should be used during the update itself, to avoid unnecessary recomputations.
+ * Structure holding grid dirtiness informations, for clever updates.
  */
 struct GridUpdateInformation
 {
 	bool dirty;
 	bool globallyDirty;
-	bool globalRecompute;
 	Grid<u8> dirtinessGrid;
 
-	void swap(GridUpdateInformation& b)
+	/**
+	 * Update the information with additionnal needed updates, then erase the source of additions.
+	 * This can usually be optimized through a careful memory management.
+	 */
+	void MergeAndClear(GridUpdateInformation& b)
 	{
-		std::swap(dirty, b.dirty);
-		std::swap(globallyDirty, b.globallyDirty);
-		std::swap(globalRecompute, b.globalRecompute);
-		dirtinessGrid.swap(b.dirtinessGrid);
+		ENSURE(dirtinessGrid.compare_sizes(&b.dirtinessGrid));
+
+		bool wasDirty = dirty;
+
+		dirty |= b.dirty;
+		globallyDirty |= b.globallyDirty;
+
+		// If the current grid is useless, swap it
+		if (!wasDirty)
+			dirtinessGrid.swap(b.dirtinessGrid);
+		// If the new grid isn't used, don't bother updating it
+		else if (dirty && !globallyDirty)
+			dirtinessGrid.bitwise_or(b.dirtinessGrid);
+
+		b.Clean();
 	}
 
 	/**
@@ -227,7 +269,6 @@ struct GridUpdateInformation
 	{
 		dirty = false;
 		globallyDirty = false;
-		globalRecompute = false;
 		dirtinessGrid.reset();
 	}
 };

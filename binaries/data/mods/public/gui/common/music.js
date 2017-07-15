@@ -51,8 +51,16 @@ function Music()
 Music.prototype.resetTracks = function()
 {
 	this.tracks = {
-		MENU: ["Honor_Bound.ogg"],
-		PEACE: [],
+		"MENU": ["Honor_Bound.ogg"].concat(shuffleArray([
+			"An_old_Warhorse_goes_to_Pasture.ogg",
+			"Calm_Before_the_Storm.ogg",
+			"Juno_Protect_You.ogg"
+		])),
+		"PEACE": [
+			"Tale_of_Warriors.ogg",
+			"Tavern_in_the_Mist.ogg",
+			"The_Road_Ahead.ogg"
+		],
 		BATTLE: ["Taiko_1.ogg", "Taiko_2.ogg"],
 		VICTORY : ["You_are_Victorious!.ogg"],
 		DEFEAT : ["Dried_Tears.ogg"]
@@ -79,23 +87,23 @@ Music.prototype.updateState = function()
 			break;
 
 		case this.states.MENU:
-			this.switchMusic(pickRandom(this.tracks.MENU), 0, true);
+			this.startPlayList(this.tracks.MENU, 0, true);
 			break;
 
 		case this.states.PEACE:
-			this.startPlayList(this.tracks.PEACE, 3.0, true);
+			this.startPlayList(shuffleArray(this.tracks.PEACE), 3.0, true);
 			break;
 
 		case this.states.BATTLE:
-			this.startPlayList(this.tracks.BATTLE, 2.0, true);
+			this.startPlayList(shuffleArray(this.tracks.BATTLE), 2.0, true);
 			break;
 
 		case this.states.VICTORY:
-			this.startPlayList(this.tracks.VICTORY, 2.0, true);
+			this.startPlayList(shuffleArray(this.tracks.VICTORY), 2.0, true);
 			break;
 
 		case this.states.DEFEAT:
-			this.startPlayList(this.tracks.DEFEAT, 2.0, true);
+			this.startPlayList(shuffleArray(this.tracks.DEFEAT), 2.0, true);
 			break;
 
 		default:
@@ -138,13 +146,6 @@ Music.prototype.startPlayList = function(tracks, fadeInPeriod, isLooping)
 		Engine.AddPlaylistItem( this.RELATIVE_MUSIC_PATH + tracks[i] );
 	}
 
-	Engine.StartPlaylist(isLooping);
-};
-
-Music.prototype.switchMusic = function(track, fadeInPeriod, isLooping)
-{
-  Engine.ClearPlaylist();
-	Engine.AddPlaylistItem( this.RELATIVE_MUSIC_PATH + track );
 	Engine.StartPlaylist(isLooping);
 };
 

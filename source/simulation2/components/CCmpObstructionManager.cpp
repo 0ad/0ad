@@ -160,7 +160,6 @@ public:
 
 		m_UpdateInformations.dirty = true;
 		m_UpdateInformations.globallyDirty = true;
-		m_UpdateInformations.globalRecompute = true;
 
 		m_PassabilityCircular = false;
 
@@ -501,11 +500,8 @@ public:
 
 	virtual void UpdateInformations(GridUpdateInformation& informations)
 	{
-		// If the pathfinder wants to perform a full update, don't change that.
-		if (m_UpdateInformations.dirty && !informations.globalRecompute)
-			informations.swap(m_UpdateInformations);
-
-		m_UpdateInformations.Clean();
+		if (!m_UpdateInformations.dirtinessGrid.blank())
+			informations.MergeAndClear(m_UpdateInformations);
 	}
 
 private:
@@ -523,7 +519,6 @@ private:
 	{
 		m_UpdateInformations.dirty = true;
 		m_UpdateInformations.globallyDirty = true;
-		m_UpdateInformations.globalRecompute = true;
 		m_UpdateInformations.dirtinessGrid.reset();
 
 		m_DebugOverlayDirty = true;
