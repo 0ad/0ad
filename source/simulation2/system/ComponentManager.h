@@ -310,7 +310,7 @@ public:
 	bool SerializeState(std::ostream& stream);
 	bool DeserializeState(std::istream& stream);
 
-	std::string GenerateSchema();
+	std::string GenerateSchema() const;
 
 	ScriptInterface& GetScriptInterface() { return m_ScriptInterface; }
 
