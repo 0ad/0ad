@@ -127,7 +127,9 @@ void CTooltip::SetupText()
 	// Reposition the tooltip if it's falling off the screen:
 
 	extern int g_xres, g_yres;
-	float screenw = (float)g_xres, screenh = (float)g_yres;
+	extern float g_GuiScale;
+	float screenw = g_xres / g_GuiScale;
+	float screenh = g_yres / g_GuiScale;
 
 	if (size.pixel.top < 0.f)
 		size.pixel.bottom -= size.pixel.top, size.pixel.top = 0.f;
