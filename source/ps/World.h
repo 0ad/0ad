@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -36,7 +36,6 @@ ERROR_TYPE(Game_World, MapLoadFailed);
 
 class CGame;
 class CUnitManager;
-class CTerritoryManager;
 class CTerrain;
 class CStrW;
 
@@ -61,10 +60,6 @@ class CWorld
 	 * pointer to the CUnitManager that holds all the units in the world.
 	 **/
 	CUnitManager *m_UnitManager;
-	/**
-	 * pointer to the CTerritoryManager that holds territory matrix for the world.
-	 **/
-	CTerritoryManager *m_TerritoryManager;
 
 public:
 	CWorld(CGame *pGame);
@@ -95,13 +90,6 @@ public:
 	 **/
 	inline CUnitManager &GetUnitManager()
 	{	return *m_UnitManager; }
-	/**
-	 * Get the pointer to the territory manager object.
-	 *
-	 * @return CTerritoryManager * the value of m_TerritoryManager.
-	 **/
-	inline CTerritoryManager *GetTerritoryManager()
-	{	return m_TerritoryManager; }
 };
 
 // rationale: see definition.
