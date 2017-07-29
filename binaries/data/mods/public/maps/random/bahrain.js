@@ -379,7 +379,7 @@ addElements(shuffleArray([
 RMS.SetProgress(80);
 
 log("Adding more decoratives...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[
 			new SimpleObject("actor|props/special/eyecandy/awning_wood_small.xml", 1, 1, 1, 7),
@@ -403,7 +403,7 @@ RMS.SetProgress(85);
 log("Creating food treasures...");
 for (let treasure of ["wood", "food_bin"])
 {
-	createObjectGroups(
+	createObjectGroupsDeprecated(
 		new SimpleGroup(
 			[new SimpleObject("gaia/special_treasure_" + treasure, 1, 1, 0, 2)],
 			true
@@ -421,7 +421,7 @@ for (let treasure of ["wood", "food_bin"])
 RMS.SetProgress(90);
 
 log("Creating shipwrecks...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[new SimpleObject("other/special_treasure_shipwreck_sail_boat_cut", 1, 1, 0, 1)],
 		true

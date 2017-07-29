@@ -171,7 +171,7 @@ paintTerrainBasedOnHeight(3.12, 29, 1, tCliff);
 paintTileClassBasedOnHeight(3.12, 29, 1, clHill);
 
 for (let triggerPointTreasure of triggerPointTreasures)
-	createObjectGroups(
+	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(triggerPointTreasure, 1, 1, 0, 0)], true, clWomen),
 		0,
 		[avoidClasses(clForest, 5, clPlayer, 5, clHill, 5), stayClasses(clLand, 5)],

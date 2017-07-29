@@ -457,7 +457,7 @@ group = new SimpleGroup(
 	[new SimpleObject(aTree, 1,1, 0,1)],
 	true
 );
-createObjectGroups(
+createObjectGroupsDeprecated(
 	group, 0,
 	avoidClasses(clLand, 5),
 	scaleByMapSize(200, 800), 50

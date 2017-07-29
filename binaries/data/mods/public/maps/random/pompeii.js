@@ -251,7 +251,7 @@ for (let smoke of smokeActors)
 RMS.SetProgress(70);
 
 log("Adding gatherable stone ruins...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[new SimpleObject("gaia/special_ruins_stone_statues_roman", 1, 1, 1, 4)],
 		true,
@@ -272,7 +272,7 @@ createObjectGroups(
 RMS.SetProgress(75);
 
 log("Adding stone ruins...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[
 			new SimpleObject("other/unfinished_greek_temple", 0, 1, 1, 4),
@@ -304,7 +304,7 @@ var shipwrecks = [
 	"barrels_floating"
 ].map(shipwreck => new SimpleObject("actor|props/special/eyecandy/" + shipwreck + ".xml", 0, 1, 1, 20));
 
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup(shipwrecks, true, g_TileClasses.decorative),
 	0,
 	[
@@ -326,7 +326,7 @@ var ruins = [
 	"vase_rome_a"
 ].map(ruin => new SimpleObject("actor|props/special/eyecandy/" + ruin + ".xml", 0, 1, 1, 20));
 
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup(ruins, true, g_TileClasses.decorative),
 	0,
 	avoidClasses(
@@ -343,7 +343,7 @@ createObjectGroups(
 RMS.SetProgress(90);
 
 log("Adding bodies...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[new SimpleObject("actor|props/special/eyecandy/skeleton.xml", 3, 10, 1, 7)],
 		true,

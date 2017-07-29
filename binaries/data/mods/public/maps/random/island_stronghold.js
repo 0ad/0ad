@@ -423,7 +423,7 @@ if (random_terrain == g_BiomeDesert)
 		[new SimpleObject(oObelisk, 1, 1, 0, 1)],
 		true
 	);
-	createObjectGroups(
+	createObjectGroupsDeprecated(
 		group, 0,
 		[avoidClasses(clBaseResource, 0, clHill, 0, clRock, 0, clMetal, 0, clFood, 0), stayClasses(clLand, 1)],
 		scaleByMapSize(3, 8), 1000
@@ -468,7 +468,7 @@ let group = new SimpleGroup(
 	[new SimpleObject(aRockMedium, 1, 3, 0, 1)],
 	true
 );
-createObjectGroups(
+createObjectGroupsDeprecated(
 	group, 0,
 	[avoidClasses(clForest, 0, clHill, 0), stayClasses(clLand, 2)],
 	scaleByMapSize(16, 262), 50
@@ -479,7 +479,7 @@ group = new SimpleGroup(
 	[new SimpleObject(aRockLarge, 1, 2, 0, 1), new SimpleObject(aRockMedium, 1, 3, 0, 2)],
 	true
 );
-createObjectGroups(
+createObjectGroupsDeprecated(
 	group, 0,
 	[avoidClasses(clForest, 0, clHill, 0), stayClasses(clLand, 2)],
 	scaleByMapSize(8, 131), 50
@@ -490,7 +490,7 @@ group = new SimpleGroup(
 	[new SimpleObject(oFish, 2, 3, 0, 2)],
 	true, clFood
 );
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clLand, 4, clFood, 20),
 	25 * numPlayers, 60
 );
@@ -500,7 +500,7 @@ group = new SimpleGroup(
 	[new SimpleObject(oWhale, 1, 1, 0, 3)],
 	true, clFood
 );
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clLand, 4),avoidClasses(clFood, 8)],
 	scaleByMapSize(5, 20), 100
 );
@@ -510,7 +510,7 @@ group = new SimpleGroup(
 	[new SimpleObject(oShipwreck, 1, 1, 0, 1)],
 	true, clFood
 );
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clLand, 4),avoidClasses(clFood, 8)],
 	scaleByMapSize(12, 16), 100
 );
@@ -520,7 +520,7 @@ group = new SimpleGroup(
 	[new SimpleObject(oShipDebris, 1, 1, 0, 1)],
 	true, clFood
 );
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clLand, 4),avoidClasses(clFood, 8)],
 	scaleByMapSize(10, 20), 100
 );
@@ -532,7 +532,7 @@ let planetm = random_terrain == 7 ? 8 : 1;
 group = new SimpleGroup(
 	[new SimpleObject(aGrassShort, 1, 2, 0, 1, -PI / 8, PI / 8)]
 );
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clHill, 2, clPlayer, 2, clDirt, 0), stayClasses(clLand, 3)],
 	planetm * scaleByMapSize(13, 200)
 );
@@ -543,7 +543,7 @@ log("Creating large grass tufts...");
 group = new SimpleGroup(
 	[new SimpleObject(aGrass, 2, 4, 0, 1.8, -PI / 8, PI / 8), new SimpleObject(aGrassShort, 3, 6, 1.2,2.5, -PI / 8, PI / 8)]
 );
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clHill, 2, clPlayer, 2, clDirt, 1, clForest, 0), stayClasses(clLand, 5)],
 	planetm * scaleByMapSize(13, 200)
 );

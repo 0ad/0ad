@@ -258,13 +258,13 @@ if (mapSize > 150 && randBool())
 }
 log("Creating some straggler trees around the Passage...");
 group = new SimpleGroup([new SimpleObject(ePalmTall, 1,1, 0,0),new SimpleObject(ePalmShort, 1,2, 1,2), new SimpleObject(aBushA, 0,2, 1,3)], true, clForest);
-createObjectGroups(group, 0, stayClasses(clPassage,1), scaleByMapSize(60,250), 100  );
+createObjectGroupsDeprecated(group, 0, stayClasses(clPassage,1), scaleByMapSize(60,250), 100  );
 
 log("Creating stone mines...");
 // create large stone quarries
 group = new SimpleGroup([new SimpleObject(eStoneMine, 1,1, 0,0),new SimpleObject(ePalmShort, 1,2, 3,3),new SimpleObject(ePalmTall, 0,1, 3,3)
 						 ,new SimpleObject(aBushB, 1,1, 2,2), new SimpleObject(aBushA, 0,2, 1,3)], true, clRock);
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 10, clForest, 1, clPlayer, 30, clRock, 10,clBaseResource, 2, clHill, 1),
 	scaleByMapSize(6,25), 100
 );
@@ -273,7 +273,7 @@ log("Creating metal mines...");
 // create large metal quarries
 group = new SimpleGroup([new SimpleObject(eMetalMine, 1,1, 0,0),new SimpleObject(ePalmShort, 1,2, 2,3),new SimpleObject(ePalmTall, 0,1, 2,2)
 						 ,new SimpleObject(aBushB, 1,1, 2,2), new SimpleObject(aBushA, 0,2, 1,3)], true, clMetal);
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 10, clForest, 1, clPlayer, 30, clMetal, 10,clBaseResource, 2, clRock, 10, clHill, 1),
 	scaleByMapSize(6,25), 100
 );
@@ -281,7 +281,7 @@ RMS.SetProgress(65);
 
 log("Creating small decorative rocks...");
 group = new SimpleGroup( [new SimpleObject(aRock, 2,4, 0,2)], true, undefined );
-createObjectGroups(group, 0, avoidClasses(clWater, 3, clForest, 0, clPlayer, 10, clHill, 1, clFood, 20), 30, scaleByMapSize(10,50) );
+createObjectGroupsDeprecated(group, 0, avoidClasses(clWater, 3, clForest, 0, clPlayer, 10, clHill, 1, clFood, 20), 30, scaleByMapSize(10,50) );
 
 RMS.SetProgress(70);
 // create deer
@@ -290,7 +290,7 @@ group = new SimpleGroup(
 	[new SimpleObject(eCamel, 1,2, 0,4)],
 	true, clFood
 );
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 3, clForest, 0, clPlayer, 10, clHill, 1, clFood, 20),
 	1 * numPlayers, 50
 );
@@ -303,7 +303,7 @@ group = new SimpleGroup(
 	[new SimpleObject(eGazelle, 2,4, 0,2)],
 	true, clFood
 );
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 3, clForest, 0, clPlayer, 10, clHill, 1, clFood, 20),
 	1 * numPlayers, 50
 );
@@ -330,7 +330,7 @@ log("Creating small grass tufts...");
 group = new SimpleGroup(
 	[new SimpleObject(rba1, 1,2, 0,1, -PI/8,PI/8)]
 );
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 2, clHill, 2, clPlayer, 2, clDirt, 0),
 	planetm * scaleByMapSize(13, 200)
 );
@@ -344,7 +344,7 @@ log("Creating bushes...");
 group = new SimpleGroup(
 	[new SimpleObject(aBushB, 1,2, 0,2), new SimpleObject(aBushA, 2,4, 0,2)]
 );
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 2, clHill, 1, clPlayer, 1, clPassage, 1),
 	scaleByMapSize(10, 40), 20
 );

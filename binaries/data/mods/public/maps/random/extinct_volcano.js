@@ -285,7 +285,7 @@ createLayeredPatches(
 RMS.SetProgress(50);
 
 log("Creating stone mines...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[
 			new SimpleObject(oStoneSmall, 0, 2, 0, 4),
@@ -308,7 +308,7 @@ createObjectGroups(
 RMS.SetProgress(55);
 
 log("Creating small stone quarries...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oStoneSmall, 2, 5, 1, 3)], true, clRock),
 	0,
 	[
@@ -325,7 +325,7 @@ createObjectGroups(
 RMS.SetProgress(60);
 
 log("Creating metal mines...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oMetalLarge, 1, 1, 0, 4)], true, clMetal),
 	0,
 	[
@@ -343,7 +343,7 @@ createObjectGroups(
 RMS.SetProgress(65);
 
 log("Creating towers...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oTower, 1, 1, 0, 4)], true, clTower),
 	0,
 	[
@@ -464,7 +464,7 @@ log("Creating straggler trees and bushes...");
 var types = [oTree, oTree2, oTree3, oTree4, oBush];
 var num = Math.floor(numStragglers / types.length);
 for (let type of types)
-	createObjectGroups(
+	createObjectGroupsDeprecated(
 		new SimpleGroup(
 			[new SimpleObject(type, 1, 1, 0, 3)],
 			true,
@@ -484,7 +484,7 @@ for (let type of types)
 RMS.SetProgress(90);
 
 log("Creating straggler bushes...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[new SimpleObject(oBush, 1, 3, 0, 3)],
 		true,
@@ -504,7 +504,7 @@ createObjectGroups(
 RMS.SetProgress(95);
 
 log("Creating rain drops...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[new SimpleObject(aRain, 2, 2, 1, 4)],
 		true,

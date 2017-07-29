@@ -366,7 +366,7 @@ for (var i = 0; i < numPlayers; i++)
 	createObjectGroup(group, 0);
 
 	group = new SimpleGroup([new SimpleObject(ePine, 1,3, 1,4),new SimpleObject(ePalmTall, 0,1, 1,4),new SimpleObject(eFanPalm, 0,1, 0,2)], true, clForest);
-	createObjectGroups(group, 0, [avoidClasses(clBaseResource,3, clSettlement,0), stayClasses(clPlayer,1)], 150, 1000);
+	createObjectGroupsDeprecated(group, 0, [avoidClasses(clBaseResource,3, clSettlement,0), stayClasses(clPlayer,1)], 150, 1000);
 }
 
 RMS.SetProgress(40);
@@ -535,14 +535,14 @@ RMS.SetProgress(65);
 log("Creating stone mines...");
 // create large stone quarries
 group = new SimpleGroup([new SimpleObject(eStoneMine, 1,1, 0,0),new SimpleObject(aBushB, 1,1, 2,2), new SimpleObject(aBushA, 0,2, 1,3)], true, clBaseResource);
-createObjectGroups(group, 0,[stayClasses(clCorsica, 1),avoidClasses(clWater, 3, clPlayer,2 , clBaseResource, 2,clCliffs,1)],  scaleByMapSize(6,25), 1000  );
-createObjectGroups(group, 0,[stayClasses(clSardinia, 1),avoidClasses(clWater, 3, clPlayer,2 , clBaseResource, 2,clCliffs,1)],  scaleByMapSize(6,25), 1000  );
+createObjectGroupsDeprecated(group, 0,[stayClasses(clCorsica, 1),avoidClasses(clWater, 3, clPlayer,2 , clBaseResource, 2,clCliffs,1)],  scaleByMapSize(6,25), 1000  );
+createObjectGroupsDeprecated(group, 0,[stayClasses(clSardinia, 1),avoidClasses(clWater, 3, clPlayer,2 , clBaseResource, 2,clCliffs,1)],  scaleByMapSize(6,25), 1000  );
 
 log("Creating metal mines...");
 // create large metal quarries
 group = new SimpleGroup([new SimpleObject(eMetalMine, 1,1, 0,0),new SimpleObject(aBushB, 1,1, 2,2), new SimpleObject(aBushA, 0,2, 1,3)], true, clBaseResource);
-createObjectGroups(group, 0,[avoidClasses(clWater, 3, clPlayer,2 , clBaseResource, 2,clCliffs,1),stayClasses(clCorsica, 1)],  scaleByMapSize(6,25), 1000  );
-createObjectGroups(group, 0,[avoidClasses(clWater, 3, clPlayer,2 , clBaseResource, 2,clCliffs,1),stayClasses(clSardinia, 1)],  scaleByMapSize(6,25), 1000  );
+createObjectGroupsDeprecated(group, 0,[avoidClasses(clWater, 3, clPlayer,2 , clBaseResource, 2,clCliffs,1),stayClasses(clCorsica, 1)],  scaleByMapSize(6,25), 1000  );
+createObjectGroupsDeprecated(group, 0,[avoidClasses(clWater, 3, clPlayer,2 , clBaseResource, 2,clCliffs,1),stayClasses(clSardinia, 1)],  scaleByMapSize(6,25), 1000  );
 
 log("Creating grass patches...");
 placer = new ClumpPlacer(20, 0.3, 0.06, 0.5);
@@ -551,8 +551,8 @@ createAreas( placer, [painter,paintClass(clForest)], avoidClasses(clWater, 1,clP
 
 log ("creating forests");
 var TreeGroup = new SimpleGroup([new SimpleObject(ePine, 3,6, 1,3),new SimpleObject(ePalmTall, 1,3, 1,3),new SimpleObject(eFanPalm, 0,2, 0,2),new SimpleObject(eApple, 0,1, 1,2)], true, clForest);
-createObjectGroups(TreeGroup, 0, [avoidClasses(clWater, 1, clForest, 0,clPlayer, 0,clBaseResource, 2,clCliffs,2), stayClasses(clCorsica, 3)],  scaleByMapSize(350,2500), 100 );
-createObjectGroups(TreeGroup, 0, [avoidClasses(clWater, 1, clForest, 0,clPlayer, 0,clBaseResource, 2,clCliffs,2), stayClasses(clSardinia, 3)],  scaleByMapSize(350,2500), 100 );
+createObjectGroupsDeprecated(TreeGroup, 0, [avoidClasses(clWater, 1, clForest, 0,clPlayer, 0,clBaseResource, 2,clCliffs,2), stayClasses(clCorsica, 3)],  scaleByMapSize(350,2500), 100 );
+createObjectGroupsDeprecated(TreeGroup, 0, [avoidClasses(clWater, 1, clForest, 0,clPlayer, 0,clBaseResource, 2,clCliffs,2), stayClasses(clSardinia, 3)],  scaleByMapSize(350,2500), 100 );
 
 RMS.SetProgress(75);
 
@@ -560,7 +560,7 @@ RMS.SetProgress(75);
 // create small decorative rocks
 log("Creating small decorative rocks...");
 group = new SimpleGroup( [new SimpleObject(aRock, 1,3, 0,1),new SimpleObject(aStandingStone, 0,2, 0,3)], true );
-createObjectGroups( group, 0, avoidClasses(clWater, 0, clForest, 0, clPlayer, 0,clBaseResource, 0, clPassage, 2),
+createObjectGroupsDeprecated( group, 0, avoidClasses(clWater, 0, clForest, 0, clPlayer, 0,clBaseResource, 0, clPassage, 2),
 	scaleByMapSize(16, 262), 50
 );
 
@@ -569,26 +569,26 @@ createObjectGroups( group, 0, avoidClasses(clWater, 0, clForest, 0, clPlayer, 0,
 log("Creating large decorative rocks...");
 group = new SimpleGroup( [new SimpleObject(aLargeRock, 1,2, 0,1), new SimpleObject(aRock, 1,3, 0,2)], true
 );
-createObjectGroups( group, 0, avoidClasses(clWater, 0, clForest, 0, clPlayer, 0,clBaseResource, 0, clPassage, 2),
+createObjectGroupsDeprecated( group, 0, avoidClasses(clWater, 0, clForest, 0, clPlayer, 0,clBaseResource, 0, clPassage, 2),
 	scaleByMapSize(8, 131), 50
 );
-createObjectGroups( group, 0, borderClasses(clWater, 5,10), scaleByMapSize(100,800), 500);
+createObjectGroupsDeprecated( group, 0, borderClasses(clWater, 5,10), scaleByMapSize(100,800), 500);
 
 // create decorative grass
 log("Creating beautification...");
 group = new SimpleGroup( [new SimpleObject(aPlantA, 3,7, 0,3),new SimpleObject(aPlantB, 3,6, 0,3),new SimpleObject(aPlantC, 1,4, 0,4)], true );
-createObjectGroups( group, 0, avoidClasses(clWater, 0,clBaseResource, 0, clShore,3), scaleByMapSize(100, 600), 50  );
+createObjectGroupsDeprecated( group, 0, avoidClasses(clWater, 0,clBaseResource, 0, clShore,3), scaleByMapSize(100, 600), 50  );
 group = new SimpleGroup( [new SimpleObject(aPlantB, 5,20, 0,5),new SimpleObject(aPlantC, 4,10, 0,4)], true );
-createObjectGroups( group, 0, avoidClasses(clWater, 0,clBaseResource, 0, clShore,3), scaleByMapSize(100, 600), 50  );
+createObjectGroupsDeprecated( group, 0, avoidClasses(clWater, 0,clBaseResource, 0, clShore,3), scaleByMapSize(100, 600), 50  );
 
 RMS.SetProgress(80);
 
 log("Creating animals...");
 group = new SimpleGroup( [new SimpleObject(ePig, 2,4, 0,3)] );
-createObjectGroups( group, 0, avoidClasses(clWater, 3,clBaseResource, 0), scaleByMapSize(20, 100), 50  );
+createObjectGroupsDeprecated( group, 0, avoidClasses(clWater, 3,clBaseResource, 0), scaleByMapSize(20, 100), 50  );
 
 group = new SimpleGroup( [new SimpleObject(eFish, 1,2, 0,3)] );
-createObjectGroups( group, 0, [avoidClasses(clCreek,3,clShore,3),stayClasses(clWater, 3)], scaleByMapSize(50, 150), 100  );
+createObjectGroupsDeprecated( group, 0, [avoidClasses(clCreek,3,clShore,3),stayClasses(clWater, 3)], scaleByMapSize(50, 150), 100  );
 
 RMS.SetProgress(90);
 

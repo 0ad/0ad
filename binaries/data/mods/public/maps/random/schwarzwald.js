@@ -408,7 +408,7 @@ var types = [aReeds];	// some variation
 for (var i = 0; i < types.length; ++i)
 {
 	var group = new SimpleGroup([new SimpleObject(types[i], 1,1, 0,0)], true);
-	createObjectGroups(group, 0,
+	createObjectGroupsDeprecated(group, 0,
 		borderClasses(clWater, 0, 6),
 		scaleByMapSize(960, 2000), 1000
 	);

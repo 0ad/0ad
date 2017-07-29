@@ -284,7 +284,7 @@ group = new SimpleGroup(
 	[new SimpleObject(oFood, 2,3, 0,2)],
 	true, clTreasure
 );
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clForest, 0, clPlayer, 18, clHill, 1, clFood, 5),
 	3 * numPlayers, 50
 );
@@ -295,7 +295,7 @@ group = new SimpleGroup(
 	[new SimpleObject(oWood, 2,3, 0,2)],
 	true, clTreasure
 );
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clForest, 0, clPlayer, 18, clHill, 1),
 	3 * numPlayers, 50
 );
@@ -316,7 +316,7 @@ for (var i = 0; i < types.length; ++i)
 		[new SimpleObject(types[i], 1,1, 0,3)],
 		true, clForest
 	);
-	createObjectGroups(group, 0,
+	createObjectGroupsDeprecated(group, 0,
 		stayClasses(clHill, 2),
 		num
 	);

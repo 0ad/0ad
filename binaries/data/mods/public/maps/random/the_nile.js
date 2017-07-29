@@ -315,7 +315,7 @@ group = new SimpleGroup(
 	[new SimpleObject(aReeds, 1,3, 0,1)],
 	true
 );
-createObjectGroupsByAreas(group, 0,
+createObjectGroupsByAreasDeprecated(group, 0,
 	stayClasses(clPond, 1),
 	numLakes, 100,
 	waterAreas
@@ -326,7 +326,7 @@ group = new SimpleGroup(
 	[new SimpleObject(aLillies, 1,3, 0,1)],
 	true
 );
-createObjectGroupsByAreas(group, 0,
+createObjectGroupsByAreasDeprecated(group, 0,
 	stayClasses(clPond, 1),
 	numLakes, 100,
 	waterAreas
@@ -401,14 +401,14 @@ RMS.SetProgress(60);
 log("Creating stone mines...");
 // create large stone quarries
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clRock);
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clForest, 1, clPlayer, 20, clRock, 10, clWater, 1, clPond, 1),
 	scaleByMapSize(4,16), 100
 );
 
 // create small stone quarries
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3)], true, clRock);
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clForest, 1, clPlayer, 20, clRock, 10, clWater, 1, clPond, 1),
 	scaleByMapSize(4,16), 100
 );
@@ -416,7 +416,7 @@ createObjectGroups(group, 0,
 log("Creating metal mines...");
 // create large metal quarries
 group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,4)], true, clMetal);
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clWater, 1, clPond, 1),
 	scaleByMapSize(4,16), 100
 );
@@ -424,14 +424,14 @@ createObjectGroups(group, 0,
 log("Creating stone mines...");
 // create large stone quarries
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clRock);
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clForest, 1, clPlayer, 20, clRock, 10, clWater, 1, clPond, 1), stayClasses(clDesert, 3)],
 	scaleByMapSize(6,20), 100
 );
 
 // create small stone quarries
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3)], true, clRock);
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clForest, 1, clPlayer, 20, clRock, 10, clWater, 1, clPond, 1), stayClasses(clDesert, 3)],
 	scaleByMapSize(6,20), 100
 );
@@ -439,7 +439,7 @@ createObjectGroups(group, 0,
 log("Creating metal mines...");
 // create large metal quarries
 group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,4)], true, clMetal);
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clWater, 1, clPond, 1), stayClasses(clDesert, 3)],
 	scaleByMapSize(6,20), 100
 );
@@ -452,7 +452,7 @@ group = new SimpleGroup(
 	[new SimpleObject(aDecorativeRock, 1,3, 0,1)],
 	true
 );
-createObjectGroups(
+createObjectGroupsDeprecated(
 	group, 0,
 	avoidClasses(clWater, 1, clForest, 0, clPlayer, 0, clPond, 1),
 	scaleByMapSize(16, 262), 50
@@ -465,7 +465,7 @@ group = new SimpleGroup(
 	[new SimpleObject(aBush2, 1,2, 0,1), new SimpleObject(aBush1, 1,3, 0,2), new SimpleObject(aBush4, 1,2, 0,1), new SimpleObject(aBush3, 1,3, 0,2)],
 	true
 );
-createObjectGroups(
+createObjectGroupsDeprecated(
 	group, 0,
 	avoidClasses(clWater, 1, clPlayer, 0, clPond, 1),
 	scaleByMapSize(20, 180), 50
@@ -476,7 +476,7 @@ RMS.SetProgress(70);
 // create gazelles
 log("Creating gazelles...");
 group = new SimpleGroup([new SimpleObject(oGazelle, 5,7, 0,4)], true, clFood);
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clForest, 0, clPlayer, 20, clWater, 1, clFood, 10, clDesert, 5, clPond, 1),
 	3*scaleByMapSize(5,20), 50
 );
@@ -484,7 +484,7 @@ createObjectGroups(group, 0,
 // create goats
 log("Creating goats...");
 group = new SimpleGroup([new SimpleObject(oGoat, 2,4, 0,3)], true, clFood);
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clForest, 0, clPlayer, 20, clWater, 1, clFood, 10, clDesert, 5, clPond, 1),
 	3*scaleByMapSize(5,20), 50
 );
@@ -492,13 +492,13 @@ createObjectGroups(group, 0,
 // create treasures
 log("Creating treasures...");
 group = new SimpleGroup([new SimpleObject(oFood, 1,1, 0,2)], true, clTreasure);
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clForest, 0, clPlayer, 20, clWater, 1, clFood, 2, clDesert, 5, clTreasure, 6, clPond, 1),
 	3*scaleByMapSize(5,20), 50
 );
 
 group = new SimpleGroup([new SimpleObject(oWood, 1,1, 0,2)], true, clTreasure);
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clForest, 0, clPlayer, 20, clWater, 1, clFood, 2, clDesert, 5, clTreasure, 6, clPond, 1),
 	3*scaleByMapSize(5,20), 50
 );
@@ -506,7 +506,7 @@ createObjectGroups(group, 0,
 // create camels
 log("Creating camels...");
 group = new SimpleGroup([new SimpleObject(oCamel, 2,4, 0,2)], true, clFood);
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clForest, 0, clPlayer, 20, clWater, 1, clFood, 10, clDesert, 5, clTreasure, 2, clPond, 1),
 	3*scaleByMapSize(5,20), 50
 );
@@ -520,7 +520,7 @@ var num = floor(0.5 * numStragglers / types.length);
 for (var i = 0; i < types.length; ++i)
 {
 	group = new SimpleGroup([new SimpleObject(types[i], 1,1, 0,0)], true);
-	createObjectGroups(group, 0,
+	createObjectGroupsDeprecated(group, 0,
 		avoidClasses(clForest, 0, clWater, 1, clPlayer, 20, clMetal, 6, clDesert, 1, clTreasure, 2, clPond, 1),
 		num
 	);
@@ -531,7 +531,7 @@ var num = floor(0.1 * numStragglers / types.length);
 for (var i = 0; i < types.length; ++i)
 {
 	group = new SimpleGroup([new SimpleObject(types[i], 1,1, 0,0)], true);
-	createObjectGroups(group, 0,
+	createObjectGroupsDeprecated(group, 0,
 		avoidClasses(clForest, 0, clWater, 1, clPlayer, 20, clMetal, 6, clTreasure, 2),
 		num
 	);
@@ -544,7 +544,7 @@ var num = floor(numStragglers / types.length);
 for (var i = 0; i < types.length; ++i)
 {
 	group = new SimpleGroup([new SimpleObject(types[i], 1,1, 0,0)], true);
-	createObjectGroups(group, 0,
+	createObjectGroupsDeprecated(group, 0,
 		borderClasses(clPond, 1, 4),
 		num
 	);
@@ -556,7 +556,7 @@ group = new SimpleGroup(
 	[new SimpleObject(eObelisk, 1,1, 0,1)],
 	true
 );
-createObjectGroups(
+createObjectGroupsDeprecated(
 	group, 0,
 	[avoidClasses(clWater, 4, clForest, 3, clPlayer, 20, clMetal, 6, clRock, 2, clPond, 4, clTreasure, 2), stayClasses(clDesert, 3)],
 	scaleByMapSize(5, 30), 50
@@ -567,7 +567,7 @@ group = new SimpleGroup(
 	[new SimpleObject(ePyramid, 1,1, 0,1)],
 	true
 );
-createObjectGroups(
+createObjectGroupsDeprecated(
 	group, 0,
 	[avoidClasses(clWater, 7, clForest, 6, clPlayer, 20, clMetal, 5, clRock, 5, clPond, 7, clTreasure, 2), stayClasses(clDesert, 3)],
 	scaleByMapSize(2, 6), 50
