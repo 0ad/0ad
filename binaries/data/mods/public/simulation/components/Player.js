@@ -175,7 +175,7 @@ Player.prototype.SetMaxPopulation = function(max)
 
 Player.prototype.GetMaxPopulation = function()
 {
-	return Math.round(ApplyValueModificationsToPlayer("Player/MaxPopulation", this.maxPop, this.entity, this.playerID));
+	return Math.round(ApplyValueModificationsToEntity("Player/MaxPopulation", this.maxPop, this.entity));
 };
 
 Player.prototype.GetBarterMultiplier = function()
@@ -763,7 +763,7 @@ Player.prototype.OnValueModification = function(msg)
 		return;
 
 	if (msg.valueNames.indexOf("Player/SpyCostMultiplier") != -1)
-		this.spyCostMultiplier = ApplyValueModificationsToPlayer("Player/SpyCostMultiplier", +this.template.SpyCostMultiplier, this.entity, this.playerID);
+		this.spyCostMultiplier = ApplyValueModificationsToEntity("Player/SpyCostMultiplier", +this.template.SpyCostMultiplier, this.entity);
 
 	if (msg.valueNames.some(mod => mod.startsWith("Player/BarterMultiplier/")))
 		for (let res in this.template.BarterMultiplier.Buy)
