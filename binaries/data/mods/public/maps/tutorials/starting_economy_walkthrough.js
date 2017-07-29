@@ -157,9 +157,10 @@ let tutorialGoals = [
 	{
 		"instructions": markForTranslation("When the farmstead construction is finished, its builders will automatically look for food, and in this case, they will go after the nearby goats.\nBut your house builders will only look for something else to build and, if nothing found, become idle. Let's wait for them to build the houses."),
 		"OnStructureBuilt": function(msg)
-		{
+		{warn("h1: " + this.count);
 			if (TriggerHelper.EntityHasClass(msg.building, "House") && ++this.count == 2)
 				this.NextGoal();
+			warn("h2: " + this.count);
 		},
 	},
 	{
