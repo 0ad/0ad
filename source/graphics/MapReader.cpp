@@ -209,14 +209,7 @@ void CMapReader::LoadRandomMap(const CStrW& scriptFile, JSRuntime* rt, JS::Handl
 // UnpackMap: unpack the given data from the raw data stream into local variables
 int CMapReader::UnpackMap()
 {
-	// now unpack everything into local data
-	int ret = UnpackTerrain();
-	if (ret != 0)	// failed or timed out
-	{
-		return ret;
-	}
-
-	return 0;
+	return UnpackTerrain();
 }
 
 // UnpackTerrain: unpack the terrain from the end of the input data stream
