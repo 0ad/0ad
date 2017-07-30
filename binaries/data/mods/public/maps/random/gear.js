@@ -405,7 +405,7 @@ createMines(
 );
 
 log("Creating fish...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oFish, 1,1, 0,3)], true, clFood),
 	0,
 	[stayClasses(clWater, 8), avoidClasses(clFood, 14)],

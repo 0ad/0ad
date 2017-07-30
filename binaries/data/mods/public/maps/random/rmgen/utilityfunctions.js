@@ -188,7 +188,7 @@ function createMines(mines, constraint, tileclass, count)
 	for (var i = 0; i < mines.length; ++i)
 	{
 		var group = new SimpleGroup(mines[i], true, tileclass);
-		createObjectGroups(group, 0,
+		createObjectGroupsDeprecated(group, 0,
 			constraint,
 			count, 70
 		);
@@ -229,7 +229,7 @@ function createDecoration(objects, counts, constraint)
 			objects[i],
 			true
 		);
-		createObjectGroups(
+		createObjectGroupsDeprecated(
 			group, 0,
 			constraint,
 			counts[i], 5
@@ -248,7 +248,7 @@ function createFood(objects, counts, constraint, tileclass)
 			objects[i],
 			true, tileclass
 		);
-		createObjectGroups(
+		createObjectGroupsDeprecated(
 			group, 0,
 			constraint,
 			counts[i], 50
@@ -273,7 +273,7 @@ function createStragglerTrees(types, constraint, tileclass)
 			[new SimpleObject(types[i], 1,1, 0,3)],
 			true, tileclass
 		);
-		createObjectGroups(group, 0,
+		createObjectGroupsDeprecated(group, 0,
 			constraint,
 			num
 		);

@@ -1100,7 +1100,7 @@ void CComponentManager::SendGlobalMessage(entity_id_t ent, const CMessage& msg)
 	}
 }
 
-std::string CComponentManager::GenerateSchema()
+std::string CComponentManager::GenerateSchema() const
 {
 	std::string numericOperation =
 		"<optional>"

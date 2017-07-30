@@ -296,7 +296,7 @@ group = new SimpleGroup(
 	[new SimpleObject(oFish, 2, 3, 0, 2)],
 	true, clFood
 );
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clHill, 10, clFood, 20),
 	10 * numPlayers, 60
 );
@@ -411,7 +411,7 @@ log("Creating small grass tufts...");
 group = new SimpleGroup(
 	[new SimpleObject(aGrassShort, 1, 2, 0, 1, -PI / 8, PI / 8)]
 );
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clMountain, 2, clPlayer, 2, clDirt, 0), stayClasses(clHill, 8)],
 	planetm * scaleByMapSize(13, 200)
 );

@@ -255,7 +255,7 @@ addElements([
 RMS.SetProgress(80);
 
 log("Adding reeds...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[
 			new SimpleObject(g_Decoratives.reeds, 5, 12, 1, 4),
@@ -275,7 +275,7 @@ createObjectGroups(
 RMS.SetProgress(85);
 
 log("Adding dust...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[new SimpleObject(g_Decoratives.dust, 1, 1, 1, 4)],
 		false

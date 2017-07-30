@@ -516,7 +516,7 @@ SimpleGroup.prototype.place = function(player, constraint)
 		var objs = element.place(this.x, this.z, player, this.avoidSelf, constraint);
 
 		if (objs === undefined)
-			return false;
+			return undefined;
 
 		resultObjs = resultObjs.concat(objs);
 	}
@@ -532,7 +532,7 @@ SimpleGroup.prototype.place = function(player, constraint)
 			this.tileClass.add(Math.floor(obj.position.x/CELL_SIZE), Math.floor(obj.position.z/CELL_SIZE));
 	}
 
-	return true;
+	return resultObjs;
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -560,7 +560,7 @@ RandomGroup.prototype.place = function(player, constraint)
 {
 	var resultObjs = pickRandom(this.elements).place(this.x, this.z, player, this.avoidSelf, constraint);
 	if (resultObjs === undefined)
-		return false;
+		return undefined;
 
 	// Add placed objects to map
 	for (let obj of resultObjs)
@@ -572,5 +572,5 @@ RandomGroup.prototype.place = function(player, constraint)
 			this.tileClass.add(Math.floor(obj.position.x/CELL_SIZE), Math.floor(obj.position.z/CELL_SIZE));
 	}
 
-	return true;
+	return resultObjs;
 };

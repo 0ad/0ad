@@ -225,7 +225,7 @@ for (var i = 0; i < scaleByMapSize(12,30); ++i)
 log("Creating metal mines...");
 // create large metal quarries
 group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,4)], true, clMetal);
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clPlayer, 20, clMetal, 10, clRock, 8, clWater, 4),
 	scaleByMapSize(2,8), 100
 );
@@ -238,7 +238,7 @@ group = new SimpleGroup(
 	[new SimpleObject(aRock, 1,3, 0,3)],
 	true
 );
-createObjectGroups(
+createObjectGroupsDeprecated(
 	group, 0,
 	avoidClasses(clPlayer, 7, clWater, 1),
 	scaleByMapSize(200, 1200), 1
@@ -252,7 +252,7 @@ group = new SimpleGroup(
 	[new SimpleObject(oGazelle, 5,7, 0,4)],
 	true, clFood
 );
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 1, clPlayer, 20, clFood, 11),
 	scaleByMapSize(4,12), 50
 );
@@ -263,7 +263,7 @@ group = new SimpleGroup(
 	[new SimpleObject(oZebra, 5,7, 0,4)],
 	true, clFood
 );
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 1, clPlayer, 20, clFood, 11),
 	scaleByMapSize(4,12), 50
 );
@@ -274,7 +274,7 @@ group = new SimpleGroup(
 	[new SimpleObject(oGiraffe, 2,4, 0,4), new SimpleObject(oGiraffeInfant, 0,2, 0,4)],
 	true, clFood
 );
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 1, clPlayer, 20, clFood, 11),
 	scaleByMapSize(4,12), 50
 );
@@ -285,7 +285,7 @@ group = new SimpleGroup(
 	[new SimpleObject(oElephant, 2,4, 0,4), new SimpleObject(oElephantInfant, 0,2, 0,4)],
 	true, clFood
 );
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 1, clPlayer, 20, clFood, 11),
 	scaleByMapSize(4,12), 50
 );
@@ -296,7 +296,7 @@ group = new SimpleGroup(
 	[new SimpleObject(oLion, 0,1, 0,4), new SimpleObject(oLioness, 2,3, 0,4)],
 	true, clFood
 );
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 1, clPlayer, 20, clFood, 11),
 	scaleByMapSize(4,12), 50
 );
@@ -307,7 +307,7 @@ group = new SimpleGroup(
 	[new SimpleObject(oBerryBush, 5,7, 0,4)],
 	true, clFood
 );
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 3, clPlayer, 20, clFood, 12, clRock, 7, clMetal, 6),
 	randIntInclusive(1, 4) * numPlayers + 2, 50
 );
@@ -322,7 +322,7 @@ group = new SimpleGroup(
 	[new SimpleObject(oBaobab, 1,1, 0,3)],
 	true, clForest
 );
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clForest, 1, clPlayer, 20, clMetal, 6, clRock, 7, clWater, 1),
 	num
 );
@@ -333,7 +333,7 @@ log("Creating large grass tufts...");
 group = new SimpleGroup(
 	[new SimpleObject(aBush, 2,4, 0,1.8, -PI/8,PI/8)]
 );
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 3, clPlayer, 2, clForest, 0),
 	scaleByMapSize(100, 1200)
 );

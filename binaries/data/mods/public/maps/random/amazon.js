@@ -249,7 +249,7 @@ addElements(shuffleArray([
 RMS.SetProgress(80);
 
 log("Adding lillies...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[
 			new SimpleObject(g_Decoratives.lillies, 5, 12, 1, 4),

@@ -4279,7 +4279,7 @@ UnitAI.prototype.FindNearbyGarrisonHolder = function()
 			return false;
 
 		var cmpGarrisonHolder = Engine.QueryInterface(ent, IID_GarrisonHolder);
-		return cmpGarrisonHolder.AllowedToGarrison(this.entity) && !cmpGarrisonHolder.IsFull();
+		return cmpGarrisonHolder.IsAllowedToGarrison(this.entity) && !cmpGarrisonHolder.IsFull();
 	});
 };
 

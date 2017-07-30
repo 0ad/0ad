@@ -528,7 +528,7 @@ log("Paint seabed...");
 paintTerrainBasedOnHeight(-20, -3, 3, tSeaDepths);
 
 log("Creating island metal mines...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oMetalLarge, 1, 1, 0, 4)], true, clMetal),
 	0,
 	[avoidClasses(clMetal, 50, clRock, 10), stayClasses(clIsland, 5)],
@@ -536,7 +536,7 @@ createObjectGroups(
 );
 
 log("Creating island stone mines...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oStoneLarge, 1, 1, 0, 4)], true, clRock),
 	0,
 	[avoidClasses(clMetal, 10, clRock, 50), stayClasses(clIsland, 5)],
@@ -545,7 +545,7 @@ createObjectGroups(
 RMS.SetProgress(65);
 
 log("Creating island towers...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oTower, 1, 1, 0, 4)], true, clTower),
 	0,
 	[avoidClasses(clMetal, 4, clRock, 4, clTower, 20), stayClasses(clIsland, 7)],
@@ -553,7 +553,7 @@ createObjectGroups(
 );
 
 log("Creating island outposts...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oOutpost, 1, 1, 0, 4)], true, clOutpost),
 	0,
 	[avoidClasses(clMetal, 4, clRock, 4, clTower, 5, clOutpost, 20), stayClasses(clIsland, 7)],
@@ -561,7 +561,7 @@ createObjectGroups(
 );
 
 log("Creating metal mines...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oMetalLarge, 1, 1, 0, 4)], true, clMetal),
 	0,
 	[avoidClasses(clForest, 4, clBaseResource, 20, clMetal, 50, clRock, 20, clWater, 4, clHill, 4, clGauls, 5, clPath, 5)],
@@ -569,7 +569,7 @@ createObjectGroups(
 );
 
 log("Creating stone mines...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oStoneLarge, 1, 1, 0, 4)], true, clRock),
 	0,
 	[avoidClasses(clForest, 4, clBaseResource, 20, clMetal, 20, clRock, 50, clWater, 4, clHill, 4, clGauls, 5, clPath, 5)],
@@ -577,7 +577,7 @@ createObjectGroups(
 );
 
 log("Creating stone ruins...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(oStoneRuins, 1, 1, 0, 4)], true, clRock),
 		0,
 		[avoidClasses(clForest, 2, clPlayer, 12, clMetal, 6, clRock, 25, clWater, 4, clHill, 4, clGauls, 5, clPath, 1)],
@@ -714,7 +714,7 @@ RMS.SetProgress(98);
 
 log("Creating treasures...");
 for (let i = 0; i < randomTreasureCount; ++i)
-	createObjectGroups(
+	createObjectGroupsDeprecated(
 		new SimpleGroup(
 			[new SimpleObject(pickRandom(oTreasures), 1, 1, 0, 2)],
 			true, clTreasure
@@ -747,7 +747,7 @@ createDecoration(
 );
 
 log("Creating spawn points for ships...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(triggerPointShipSpawn, 1, 1, 0, 0)], true, clShip),
 	0,
 	[avoidClasses(clShip, 5, clIsland, 4), stayClasses(clWater, 10)],
@@ -756,7 +756,7 @@ createObjectGroups(
 );
 
 log("Creating patrol points for ships...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(triggerPointShipPatrol, 1, 1, 0, 0)], true, clShipPatrol),
 	0,
 	[avoidClasses(clShipPatrol, 5, clIsland, 3), stayClasses(clWater, 4)],
@@ -766,7 +766,7 @@ createObjectGroups(
 
 log("Creating ungarrison points for ships...");
 for (let i = 0; i < 2; ++i)
-	createObjectGroups(
+	createObjectGroupsDeprecated(
 		new SimpleGroup(
 			[new SimpleObject(
 				i == 0 ? triggerPointShipUnloadLeft : triggerPointShipUnloadRight,
@@ -784,7 +784,7 @@ log("Creating patrol points for land attackers...");
 addToClass(mapSize/2, mapSize/2, clMiddle);
 for (let i = 0; i < 2; ++i)
 {
-	createObjectGroups(
+	createObjectGroupsDeprecated(
 		new SimpleGroup(
 			[new SimpleObject(
 				i == 0 ? triggerPointLandPatrolLeft : triggerPointLandPatrolRight,
@@ -802,7 +802,7 @@ for (let i = 0; i < 2; ++i)
 	);
 
 	if (gallicCC)
-		createObjectGroups(
+		createObjectGroupsDeprecated(
 			new SimpleGroup(
 				[new SimpleObject(
 					i == 0 ? triggerPointCCAttackerPatrolLeft : triggerPointCCAttackerPatrolRight,
@@ -831,7 +831,7 @@ for (let i = 0; i < 2; ++i)
 }
 
 log("Creating water logs...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(aWaterLog, 1, 1, 0, 0)], true, clWaterLog),
 	0,
 	[avoidClasses(clShip, 3, clIsland, 4), stayClasses(clWater, 4)],

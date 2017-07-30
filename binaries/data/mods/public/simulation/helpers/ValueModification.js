@@ -15,14 +15,6 @@ function ApplyValueModificationsToEntity(tech_type, current_value, entity)
 	return cmpAuraManager.ApplyModifications(tech_type, value, entity);
 }
 
-function ApplyValueModificationsToPlayer(tech_type, current_value, playerEntity, playerID)
-{
-	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-	let entityTemplateName = cmpTemplateManager.GetCurrentTemplateName(playerEntity);
-	let entityTemplate = cmpTemplateManager.GetTemplate(entityTemplateName);
-	return ApplyValueModificationsToTemplate(tech_type, current_value, playerID, entityTemplate);
-}
-
 function ApplyValueModificationsToTemplate(tech_type, current_value, playerID, template)
 {
 	let value = current_value;
@@ -37,5 +29,4 @@ function ApplyValueModificationsToTemplate(tech_type, current_value, playerID, t
 }
 
 Engine.RegisterGlobal("ApplyValueModificationsToEntity", ApplyValueModificationsToEntity);
-Engine.RegisterGlobal("ApplyValueModificationsToPlayer", ApplyValueModificationsToPlayer);
 Engine.RegisterGlobal("ApplyValueModificationsToTemplate", ApplyValueModificationsToTemplate);

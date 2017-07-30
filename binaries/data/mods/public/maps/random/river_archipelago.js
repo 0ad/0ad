@@ -215,7 +215,7 @@ RMS.SetProgress(35);
 log("Creating gaia...");
 for (let i = 0; i < 2; ++i)
 	for (let j = 0; j < scaleByMapSize(1, 8); ++j)
-		createObjectGroups(
+		createObjectGroupsDeprecated(
 			new SimpleGroup(
 				[
 					new SimpleObject(oSpearman, 8, 12, 2, 3),
@@ -300,7 +300,7 @@ log("Creating straggler trees...");
 var types = [oTree, oPalm1, oPalm2];
 var num = Math.floor(numStragglers / types.length);
 for (let type of types)
-	createObjectGroups(
+	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(type, 1, 1, 0, 3)], true, clForest),
 		0,
 		avoidClasses(
@@ -352,7 +352,7 @@ for (let i = 0; i < sizes.length; ++i)
 		scaleByMapSize(20, 80));
 
 log("Creating stone mines...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[
 			new SimpleObject(oStoneSmall, 0, 2, 0, 4),
@@ -372,7 +372,7 @@ createObjectGroups(
 		100);
 
 log("Creating small stone mines...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oStoneSmall, 2, 5, 1, 3)], true, clRock),
 	0,
 	avoidClasses(
@@ -386,7 +386,7 @@ createObjectGroups(
 	100);
 
 log("Creating metal mines...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oMetalLarge, 1, 1, 0, 4)], true, clMetal),
 	0,
 	avoidClasses(
@@ -401,7 +401,7 @@ createObjectGroups(
 	100);
 
 log("Creating small decorative rocks...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(aRockMedium, 1, 3, 0, 1)], true),
 	0,
 	avoidClasses(
@@ -415,7 +415,7 @@ createObjectGroups(
 	50);
 
 log("Creating large decorative rocks...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup([
 			new SimpleObject(aRockLarge, 1, 2, 0, 1),
 			new SimpleObject(aRockMedium, 1, 3, 0, 2)
@@ -433,7 +433,7 @@ createObjectGroups(
 	50);
 
 log("Creating small grass tufts...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(aBush1, 1, 2, 0, 1, -PI/8, PI/8)]),
 	0,
 	avoidClasses(
@@ -447,7 +447,7 @@ createObjectGroups(
 RMS.SetProgress(70);
 
 log("Creating large grass tufts...");
-	createObjectGroups(
+	createObjectGroupsDeprecated(
 		new SimpleGroup([
 			new SimpleObject(aBush2, 2, 4, 0, 1.8, -PI/8, PI/8),
 			new SimpleObject(aBush1, 3, 6, 1.2, 2.5, -PI/8, PI/8)
@@ -465,7 +465,7 @@ log("Creating large grass tufts...");
 RMS.SetProgress(85);
 
 log("Creating bushes...");
-	createObjectGroups(
+	createObjectGroupsDeprecated(
 		new SimpleGroup([
 			new SimpleObject(aBush3, 1, 2, 0, 2),
 			new SimpleObject(aBush2, 2, 4, 0, 2)
@@ -479,7 +479,7 @@ log("Creating bushes...");
 		8 * scaleByMapSize(13, 200), 50);
 
 log("Creating deer...");
-	createObjectGroups(
+	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(oDeer, 5, 7, 0, 4)], true, clFood),
 		0,
 		avoidClasses(
@@ -493,7 +493,7 @@ log("Creating deer...");
 		50);
 
 log("Creating boar...");
-	createObjectGroups(
+	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(oBoar, 2, 4, 0, 4)], true, clFood),
 		0,
 		avoidClasses(
@@ -507,7 +507,7 @@ log("Creating boar...");
 		50);
 
 log("Creating tigers...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oTiger, 1, 1, 0, 4)], true, clFood),
 	0,
 	avoidClasses(
@@ -522,7 +522,7 @@ createObjectGroups(
 RMS.SetProgress(95);
 
 log("Creating berry bush...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oBush, 5, 7, 0, 4)], true, clFood),
 	0,
 	avoidClasses(
@@ -536,7 +536,7 @@ createObjectGroups(
 		50);
 
 log("Creating fish...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oFish, 2, 3, 0, 2)], true, clFood),
 	0,
 	[avoidClasses(clFood, 15), stayClasses(clWater, 4)],

@@ -1,4 +1,4 @@
-const NATURAL_COLOR = "255 255 255 255"; // pure white
+const g_NaturalColor = "255 255 255 255"; // pure white
 
 function StatusBars() {}
 
@@ -20,13 +20,12 @@ StatusBars.prototype.Schema =
  * Modders who need extra sprites can just modify this array, and
  * provide the right methods.
  */
-StatusBars.prototype.Sprites =
-	[
-		"PackBar",
-		"ResourceSupplyBar",
-		"CaptureBar",
-		"HealthBar",
-		"AuraIcons",
+StatusBars.prototype.Sprites = [
+	"PackBar",
+	"ResourceSupplyBar",
+	"CaptureBar",
+	"HealthBar",
+	"AuraIcons",
 	];
 
 StatusBars.prototype.Init = function()
@@ -36,11 +35,11 @@ StatusBars.prototype.Init = function()
 };
 
 /**
- * Don't serialise this.enabled since it's modified by the GUI
+ * Don't serialise this.enabled since it's modified by the GUI.
  */
 StatusBars.prototype.Serialize = function()
 {
-	return {"auraSources": this.auraSources};
+	return { "auraSources": this.auraSources };
 };
 
 StatusBars.prototype.Deserialize = function(data)
@@ -108,12 +107,12 @@ StatusBars.prototype.RegenerateSprites = function()
 
 	let yoffset = 0;
 	for (let sprite of this.Sprites)
-		yoffset += this["Add"+sprite](cmpOverlayRenderer, yoffset);
+		yoffset += this["Add" + sprite](cmpOverlayRenderer, yoffset);
 };
 
 // Internal helper functions
 /**
- * Generic piece of code to add a bar
+ * Generic piece of code to add a bar.
  */
 StatusBars.prototype.AddBar = function(cmpOverlayRenderer, yoffset, type, amount)
 {
@@ -126,20 +125,20 @@ StatusBars.prototype.AddBar = function(cmpOverlayRenderer, yoffset, type, amount
 
 	// background
 	cmpOverlayRenderer.AddSprite(
-		"art/textures/ui/session/icons/"+type+"_bg.png",
-		{ "x": -width/2, "y": yoffset },
-		{ "x": width/2, "y": height + yoffset},
+		"art/textures/ui/session/icons/" + type + "_bg.png",
+		{ "x": -width / 2, "y": yoffset },
+		{ "x": width / 2, "y": height + yoffset },
 		offset,
-		NATURAL_COLOR
+		g_NaturalColor
 	);
 
 	// foreground
 	cmpOverlayRenderer.AddSprite(
-		"art/textures/ui/session/icons/"+type+"_fg.png",
-		{ "x": -width/2, "y": yoffset},
-		{ "x": width*(amount - 0.5), "y": height + yoffset},
+		"art/textures/ui/session/icons/" + type + "_fg.png",
+		{ "x": -width / 2, "y": yoffset },
+		{ "x": width * (amount - 0.5), "y": height + yoffset },
 		offset,
-		NATURAL_COLOR
+		g_NaturalColor
 	);
 
 	return height * 1.2;
@@ -163,7 +162,7 @@ StatusBars.prototype.AddHealthBar = function(cmpOverlayRenderer, yoffset)
 		return 0;
 
 	let cmpHealth = QueryMiragedInterface(this.entity, IID_Health);
-	if (!cmpHealth || !cmpHealth.GetHitpoints() > 0)
+	if (!cmpHealth || cmpHealth.GetHitpoints() <= 0)
 		return 0;
 
 	return this.AddBar(cmpOverlayRenderer, yoffset, "health", cmpHealth.GetHitpoints() / cmpHealth.GetMaxHitpoints());
@@ -215,7 +214,7 @@ StatusBars.prototype.AddCaptureBar = function(cmpOverlayRenderer, yoffset)
 		cmpOverlayRenderer.AddSprite(
 			"art/textures/ui/session/icons/capture_bar.png",
 			{ "x": startSize, "y": yoffset },
-			{ "x": startSize + size, "y": height + yoffset},
+			{ "x": startSize + size, "y": height + yoffset },
 			offset,
 			strColor
 		);
@@ -223,7 +222,7 @@ StatusBars.prototype.AddCaptureBar = function(cmpOverlayRenderer, yoffset)
 		return size + startSize;
 	};
 
-	// first handle the owner's points, to keep those points on the left for clarity
+	// First handle the owner's points, to keep those points on the left for clarity
 	let size = setCaptureBarPart(owner, -width / 2);
 	for (let i in cp)
 		if (i != owner && cp[i] > 0)
@@ -259,17 +258,15 @@ StatusBars.prototype.AddAuraIcons = function(cmpOverlayRenderer, yoffset)
 	{
 		cmpOverlayRenderer.AddSprite(
 			icon,
-			{ "x": xoffset - iconSize/2, "y": yoffset },
-			{ "x": xoffset + iconSize/2, "y": iconSize + yoffset },
+			{ "x": xoffset - iconSize / 2, "y": yoffset },
+			{ "x": xoffset + iconSize / 2, "y": iconSize + yoffset },
 			offset,
-			NATURAL_COLOR
+			g_NaturalColor
 		);
 		xoffset += iconSize * 1.2;
 	}
 
 	return iconSize + this.template.BarHeight / 2;
 };
-
-
 
 Engine.RegisterComponentType(IID_StatusBars, "StatusBars", StatusBars);

@@ -57,11 +57,6 @@ CMapReader::CMapReader()
 	: xml_reader(0), m_PatchesPerSide(0), m_MapGen(0)
 {
 	cur_terrain_tex = 0;	// important - resets generator state
-
-	// Maps that don't override the default probably want the old lighting model
-	//m_LightEnv.SetLightingModel("old");
-	//pPostproc->SetPostEffect(L"default");
-
 }
 
 // LoadMap: try to load the map from given file; reinitialise the scene to new data if successful
@@ -214,14 +209,7 @@ void CMapReader::LoadRandomMap(const CStrW& scriptFile, JSRuntime* rt, JS::Handl
 // UnpackMap: unpack the given data from the raw data stream into local variables
 int CMapReader::UnpackMap()
 {
-	// now unpack everything into local data
-	int ret = UnpackTerrain();
-	if (ret != 0)	// failed or timed out
-	{
-		return ret;
-	}
-
-	return 0;
+	return UnpackTerrain();
 }
 
 // UnpackTerrain: unpack the terrain from the end of the input data stream

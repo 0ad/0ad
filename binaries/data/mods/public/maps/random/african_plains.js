@@ -256,7 +256,7 @@ group = new SimpleGroup(
 	[new SimpleObject(oGiraffe, 2,4, 0,4), new SimpleObject(oGiraffe2, 0,2, 0,4)],
 	true, clFood
 );
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 3, clPlayer, 20, clFood, 11, clHill, 4),
 	scaleByMapSize(4,12), 50
 );
@@ -266,7 +266,7 @@ group = new SimpleGroup(
 	[new SimpleObject(oElephant, 2,4, 0,4), new SimpleObject(oElephant2, 0,2, 0,4)],
 	true, clFood
 );
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 3, clPlayer, 20, clFood, 11, clHill, 4),
 	scaleByMapSize(4,12), 50
 );
@@ -276,7 +276,7 @@ group = new SimpleGroup(
 	[new SimpleObject(oLion, 0,1, 0,4), new SimpleObject(oLioness, 2,3, 0,4)],
 	true, clFood
 );
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 3, clPlayer, 20, clFood, 11, clHill, 4),
 	scaleByMapSize(4,12), 50
 );

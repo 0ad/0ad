@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -36,7 +36,7 @@ class CDynamicSubscription
 {
 	struct CompareIComponent
 	{
-		bool operator()(const IComponent* cmpA, const IComponent* cmpB)
+		bool operator()(const IComponent* cmpA, const IComponent* cmpB) const
 		{
 			entity_id_t entityA = cmpA->GetEntityId();
 			entity_id_t entityB = cmpB->GetEntityId();

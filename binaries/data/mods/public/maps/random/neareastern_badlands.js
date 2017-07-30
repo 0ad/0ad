@@ -275,7 +275,7 @@ group = new SimpleGroup(
 	[new RandomObject([aDecorativeRock, aBush2, aBush3], 3,8, 0,2)],
 	true
 );
-createObjectGroupsByAreas(group, 0,
+createObjectGroupsByAreasDeprecated(group, 0,
 	borderClasses(clHill1, 0, 3),
 	scaleByMapSize(40,200), 50,
 	hillAreas
@@ -306,8 +306,7 @@ terrainPainter = new LayeredPainter(
 elevationPainter = new SmoothElevationPainter(ELEVATION_MODIFY, 16, 1);
 createAreas(placer, [terrainPainter, elevationPainter],
 	[stayClasses(clHill1, 0)],
-	scaleByMapSize(15,25), 50,
-	hillAreas
+	scaleByMapSize(15,25), 50
 );
 RMS.SetProgress(60);
 
@@ -346,20 +345,20 @@ RMS.SetProgress(70);
 
 log("Creating stone mines...");
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4), new RandomObject(aBushes, 2,4, 0,2)], true, clRock);
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clHill1, 1)],
 	scaleByMapSize(4,16), 100
 );
 
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3), new RandomObject(aBushes, 2,4, 0,2)], true, clRock);
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clHill1, 1)],
 	scaleByMapSize(4,16), 100
 );
 
 log("Creating metal mines...");
 group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,4), new RandomObject(aBushes, 2,4, 0,2)], true, clMetal);
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clForest, 1, clPlayer, 10, clMetal, 10, clRock, 5, clHill1, 1)],
 	scaleByMapSize(4,16), 100
 );
@@ -368,21 +367,21 @@ RMS.SetProgress(80);
 
 log("Creating gazelles...");
 group = new SimpleGroup([new SimpleObject(oGazelle, 5,7, 0,4)], true, clFood);
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clForest, 0, clPlayer, 5, clHill1, 1, clFood, 10),
 	scaleByMapSize(5,20), 50
 );
 
 log("Creating goats...");
 group = new SimpleGroup([new SimpleObject(oGoat, 2,4, 0,3)], true, clFood);
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clForest, 0, clPlayer, 5, clHill1, 1, clFood, 10),
 	scaleByMapSize(5,20), 50
 );
 
 log("Creating camels...");
 group = new SimpleGroup([new SimpleObject(oCamel, 2,4, 0,2)], true, clFood);
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clForest, 0, clPlayer, 5, clHill1, 1, clFood, 10),
 	scaleByMapSize(5,20), 50
 );
@@ -394,7 +393,7 @@ var num = floor(numStragglers / types.length);
 for (var i = 0; i < types.length; ++i)
 {
 	group = new SimpleGroup([new SimpleObject(types[i], 1,1, 0,0)], true);
-	createObjectGroups(group, 0,
+	createObjectGroupsDeprecated(group, 0,
 		avoidClasses(clForest, 0, clHill1, 1, clPlayer, 4, clMetal, 6, clRock, 6),
 		num
 	);
@@ -403,14 +402,14 @@ RMS.SetProgress(90);
 
 log("Creating bushes...");
 group = new SimpleGroup([new RandomObject(aBushes, 2,3, 0,2)]);
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clHill1, 1, clPlayer, 0, clForest, 0),
 	scaleByMapSize(16, 262)
 );
 
 log("Creating more decorative rocks...");
 group = new SimpleGroup([new SimpleObject(aDecorativeRock, 1,2, 0,2)]);
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clHill1, 1, clPlayer, 0, clForest, 0),
 	scaleByMapSize(16, 262)
 );

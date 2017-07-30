@@ -281,7 +281,7 @@ addElements(shuffleArray([
 RMS.SetProgress(80);
 
 log("Adding reeds...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[
 			new SimpleObject(g_Decoratives.reeds, 5, 12, 1, 2),

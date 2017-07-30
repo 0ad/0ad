@@ -187,7 +187,7 @@ for (let i = 0; i < scaleByMapSize(12, 30); ++i)
 }
 
 log("Creating metal mines...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup([new SimpleObject(oMetalLarge, 1, 1, 0, 4)], true, clMetal),
 	0,
 	avoidClasses(clPlayer, 20, clMetal, 10, clRock, 8, clWater, 4),
@@ -196,7 +196,7 @@ createObjectGroups(
 RMS.SetProgress(65);
 
 log("Creating small decorative rocks...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[new SimpleObject(aRock, 1, 3, 0, 3)],
 		true
@@ -208,7 +208,7 @@ createObjectGroups(
 RMS.SetProgress(70);
 
 log("Creating boar...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[new SimpleObject(oBoar, 1, 2, 0, 4)],
 		true, clFood
@@ -219,7 +219,7 @@ createObjectGroups(
 );
 
 log("Creating tigers...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[new SimpleObject(oTiger, 2, 2, 0, 4)],
 		true, clFood
@@ -230,7 +230,7 @@ createObjectGroups(
 );
 
 log("Creating crocodiles...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[new SimpleObject(oCrocodile, 2, 4, 0, 4)],
 		true, clFood
@@ -240,7 +240,7 @@ createObjectGroups(
 );
 
 log("Creating elephants...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[
 			new SimpleObject(oElephant, 2, 4, 0, 4),
@@ -254,7 +254,7 @@ createObjectGroups(
 );
 
 log("Creating rabbits...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[new SimpleObject(oRabbit, 5, 6, 0, 4)],
 		true, clFood
@@ -275,7 +275,7 @@ createFood(
 );
 
 log("Creating berry bush...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[new SimpleObject(oBerryBush, 5, 7, 0, 4)],
 		true, clFood
@@ -287,7 +287,7 @@ createObjectGroups(
 RMS.SetProgress(85);
 
 log("Creating trees...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[new SimpleObject(oTree, 1, 7, 0, 3)],
 		true, clForest
@@ -298,7 +298,7 @@ createObjectGroups(
 );
 
 log("Creating large grass tufts...");
-createObjectGroups(
+createObjectGroupsDeprecated(
 	new SimpleGroup(
 		[new SimpleObject(aBush, 2, 4, 0, 1.8, -PI/8, PI/8)]
 	),

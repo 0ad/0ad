@@ -343,7 +343,7 @@ function addDecoration(constraint, size, deviation, fill)
 	{
 		var decorCount = Math.floor(counts[i] * fill);
 		var group = new SimpleGroup(decorations[i], true);
-		createObjectGroups(group, 0, constraint, decorCount, 5);
+		createObjectGroupsDeprecated(group, 0, constraint, decorCount, 5);
 	}
 }
 
@@ -486,10 +486,10 @@ function addLakes(constraint, size, deviation, fill)
 	]);
 
 	var group = new SimpleGroup([new SimpleObject(g_Decoratives.rockMedium, 1, 3, 1, 3)], true, g_TileClasses.dirt);
-	createObjectGroups(group, 0, [stayClasses(g_TileClasses.water, 1), borderClasses(g_TileClasses.water, 4, 3)], 1000, 100);
+	createObjectGroupsDeprecated(group, 0, [stayClasses(g_TileClasses.water, 1), borderClasses(g_TileClasses.water, 4, 3)], 1000, 100);
 
 	group = new SimpleGroup([new SimpleObject(g_Decoratives.reeds, 10, 15, 1, 3), new SimpleObject(g_Decoratives.rockMedium, 1, 3, 1, 3)], true, g_TileClasses.dirt);
-	createObjectGroups(group, 0, [stayClasses(g_TileClasses.water, 2), borderClasses(g_TileClasses.water, 4, 3)], 1000, 100);
+	createObjectGroupsDeprecated(group, 0, [stayClasses(g_TileClasses.water, 2), borderClasses(g_TileClasses.water, 4, 3)], 1000, 100);
 }
 
 /**
@@ -678,12 +678,12 @@ function addProps(constraint, size, deviation, fill)
 	{
 		var propCount = Math.floor(counts[i] * fill);
 		var group = new SimpleGroup(props[i], true);
-		createObjectGroups(group, 0, constraint, propCount, 5);
+		createObjectGroupsDeprecated(group, 0, constraint, propCount, 5);
 	}
 
 	// Add decorative trees
 	var trees = new SimpleObject(g_Decoratives.tree, 5 * offset, 30 * offset, 2, 3 * offset + 10);
-	createObjectGroups(new SimpleGroup([trees], true), 0, constraint, counts[0] * 5 * fill, 5);
+	createObjectGroupsDeprecated(new SimpleGroup([trees], true), 0, constraint, counts[0] * 5 * fill, 5);
 }
 
 /**
@@ -759,7 +759,7 @@ function addAnimals(constraint, size, deviation, fill)
 	for (var i = 0; i < animals.length; ++i)
 	{
 		var group = new SimpleGroup(animals[i], true, g_TileClasses.animals);
-		createObjectGroups(group, 0, constraint, Math.floor(counts[i]), 50);
+		createObjectGroupsDeprecated(group, 0, constraint, Math.floor(counts[i]), 50);
 	}
 }
 
@@ -780,7 +780,7 @@ function addBerries(constraint, size, deviation, fill)
 	for (var i = 0; i < berries.length; ++i)
 	{
 		var group = new SimpleGroup(berries[i], true, g_TileClasses.berries);
-		createObjectGroups(group, 0, constraint, Math.floor(count), 40);
+		createObjectGroupsDeprecated(group, 0, constraint, Math.floor(count), 40);
 	}
 }
 
@@ -805,7 +805,7 @@ function addFish(constraint, size, deviation, fill)
 	for (var i = 0; i < fish.length; ++i)
 	{
 		var group = new SimpleGroup(fish[i], true, g_TileClasses.fish);
-		createObjectGroups(group, 0, constraint, floor(counts[i]), 50);
+		createObjectGroupsDeprecated(group, 0, constraint, floor(counts[i]), 50);
 	}
 }
 
@@ -868,7 +868,7 @@ function addMetal(constraint, size, deviation, fill)
 	for (var i = 0; i < mines.length; ++i)
 	{
 		var group = new SimpleGroup(mines[i], true, g_TileClasses.metal);
-		createObjectGroups(group, 0, constraint, count, 100);
+		createObjectGroupsDeprecated(group, 0, constraint, count, 100);
 	}
 }
 
@@ -881,7 +881,7 @@ function addSmallMetal(constraint, size, mixes, amounts)
 	for (let i = 0; i < mines.length; ++i)
 	{
 		let group = new SimpleGroup(mines[i], true, g_TileClasses.metal);
-		createObjectGroups(group, 0, constraint, count, 100);
+		createObjectGroupsDeprecated(group, 0, constraint, count, 100);
 	}
 }
 
@@ -909,7 +909,7 @@ function addStone(constraint, size, deviation, fill)
 	for (var i = 0; i < mines.length; ++i)
 	{
 		var group = new SimpleGroup(mines[i], true, g_TileClasses.rock);
-		createObjectGroups(group, 0, constraint, count, 100);
+		createObjectGroupsDeprecated(group, 0, constraint, count, 100);
 	}
 }
 
@@ -964,7 +964,7 @@ function addStragglerTrees(constraint, size, deviation, fill)
 		min = Math.min(min, treesMax);
 
 		var group = new SimpleGroup([new SimpleObject(trees[i], min, treesMax, minDist, maxDist)], true, g_TileClasses.forest);
-		createObjectGroups(group, 0, constraint, count);
+		createObjectGroupsDeprecated(group, 0, constraint, count);
 	}
 }
 

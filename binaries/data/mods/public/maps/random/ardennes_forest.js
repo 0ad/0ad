@@ -310,7 +310,7 @@ for (var i = 0; i < sizes.length; i++)
 			new SimpleObject(aCeltHouse, 0,1, 4,5),
 			new SimpleObject(aCeltLongHouse, 1,1, 4,5)
 		], true, clHillDeco);
-		createObjectGroupsByAreas(
+		createObjectGroupsByAreasDeprecated(
 			group, 0,
 			[avoidClasses(clHillDeco, 3), stayClasses(clHill, 3)],
 			ravine.length * 5, 20,
@@ -321,7 +321,7 @@ for (var i = 0; i < sizes.length; i++)
 		[
 			new SimpleObject(aCeltHomestead, 1,1, 1,1)
 		], true, clHillDeco);
-		createObjectGroupsByAreas(
+		createObjectGroupsByAreasDeprecated(
 			group, 0,
 			[avoidClasses(clHillDeco, 5), stayClasses(clHill, 4)],
 			ravine.length * 2, 100,
@@ -499,7 +499,7 @@ RMS.SetProgress(75);
 log("Creating stone mines...");
 // create stone quarries
 var group = new SimpleGroup([new SimpleObject(oStoneSmall, 1,2, 0,4), new SimpleObject(oStoneLarge, 0,1, 0,4)], true, clRock);
-createObjectGroupsByAreas(group, 0,
+createObjectGroupsByAreasDeprecated(group, 0,
 	[avoidClasses(clHill, 4, clForest, 2, clPlayer, 20, clRock, 10)],
 	scaleByMapSize(6,20), 100,
 	[explorableArea]
@@ -507,7 +507,7 @@ createObjectGroupsByAreas(group, 0,
 
 // create small stone quarries
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3)], true, clRock);
-createObjectGroupsByAreas(group, 0,
+createObjectGroupsByAreasDeprecated(group, 0,
 	[avoidClasses(clHill, 4, clForest, 2, clPlayer, 20, clRock, 10)],
 	scaleByMapSize(6,20), 100,
 	[explorableArea]
@@ -516,7 +516,7 @@ createObjectGroupsByAreas(group, 0,
 log("Creating metal mines...");
 // create metal quarries
 group = new SimpleGroup([new SimpleObject(oMetalSmall, 1,2, 0,4), new SimpleObject(oMetalLarge, 0,1, 0,4)], true, clMetal);
-createObjectGroupsByAreas(group, 0,
+createObjectGroupsByAreasDeprecated(group, 0,
 	[avoidClasses(clHill, 4, clForest, 2, clPlayer, 20, clMetal, 10, clRock, 5)],
 	scaleByMapSize(6,20), 100,
 	[explorableArea]
@@ -530,7 +530,7 @@ group = new SimpleGroup(
 	[new SimpleObject(oDeer, 5,7, 0,4)],
 	true, clFood
 );
-createObjectGroupsByAreas(group, 0,
+createObjectGroupsByAreasDeprecated(group, 0,
 	avoidClasses(clHill, 4, clForest, 0, clPlayer, 0, clBaseResource, 20),
 	3 * numPlayers, 100,
 	[explorableArea]
@@ -540,7 +540,7 @@ group = new SimpleGroup(
 	[new SimpleObject(oBoar, 2,3, 0,5)],
 	true, clFood
 );
-createObjectGroupsByAreas(group, 0,
+createObjectGroupsByAreasDeprecated(group, 0,
 	avoidClasses(clHill, 4, clForest, 0, clPlayer, 0, clBaseResource, 15),
 	numPlayers, 50,
 	[explorableArea]
@@ -550,7 +550,7 @@ group = new SimpleGroup(
 	[new SimpleObject(oBear, 1,1, 0,4)],
 	false, clFood
 );
-createObjectGroupsByAreas(group, 0,
+createObjectGroupsByAreasDeprecated(group, 0,
 	avoidClasses(clHill, 4, clForest, 0, clPlayer, 20),
 	scaleByMapSize(3, 12), 200,
 	[explorableArea]
@@ -564,7 +564,7 @@ group = new SimpleGroup(
 	[new SimpleObject(oBerryBush, 5,7, 0,4)],
 	true, clFood
 );
-createObjectGroups(group, 0,
+createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 4, clFood, 20),
 	randIntInclusive(3, 12) * numPlayers + 2, 50
 );
@@ -580,7 +580,7 @@ group = new SimpleGroup(
 	],
 	true
 );
-createObjectGroupsByAreas(
+createObjectGroupsByAreasDeprecated(
 	group, 0,
 	avoidClasses(clForest, 0),
 	scaleByMapSize(5, 50), 50,
@@ -600,7 +600,7 @@ for (var i = 0; i < types.length; ++i)
 		true, clForest
 	);
 
-	createObjectGroupsByAreas(group, 0,
+	createObjectGroupsByAreasDeprecated(group, 0,
 		avoidClasses(clForest, 4, clHill, 5, clPlayer, 10, clBaseResource, 2, clMetal, 5, clRock, 5),
 		num, 20,
 		[explorableArea]
@@ -614,7 +614,7 @@ log("Creating grass tufts...");
 group = new SimpleGroup(
 	[new SimpleObject(aGrassLarge, 1,2, 0,1, -PI/8,PI/8)]
 );
-createObjectGroupsByAreas(group, 0,
+createObjectGroupsByAreasDeprecated(group, 0,
 	avoidClasses(clHill, 2, clPlayer, 2),
 	scaleByMapSize(50, 300), 20,
 	[explorableArea]

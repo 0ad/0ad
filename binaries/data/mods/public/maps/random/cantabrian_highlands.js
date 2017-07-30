@@ -209,7 +209,7 @@ log("Creating reeds...");
 group = new SimpleGroup(
 	[new SimpleObject(aReeds, 5,10, 0,4), new SimpleObject(aLillies, 0,1, 0,4)], true
 );
-createObjectGroupsByAreas(group, 0,
+createObjectGroupsByAreasDeprecated(group, 0,
 	[borderClasses(clWater, 3, 0), stayClasses(clWater, 1)],
 	numLakes, 100,
 	waterAreas
@@ -217,7 +217,7 @@ createObjectGroupsByAreas(group, 0,
 RMS.SetProgress(20);
 
 log("Creating fish...");
-createObjectGroupsByAreas(
+createObjectGroupsByAreasDeprecated(
 	new SimpleGroup(
 		[new SimpleObject(oFish, 1,1, 0,1)],
 		true, clFood
