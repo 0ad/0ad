@@ -6,12 +6,13 @@
 # Asakura, 2015,2017
 # Kanetaka Suto, 2014-2015
 # llen_llen, 2014
+# red hare <www3@hotmail.co.jp>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:05+0200\n"
-"PO-Revision-Date: 2017-07-09 12:20+0000\n"
-"Last-Translator: Asakura\n"
+"PO-Revision-Date: 2017-07-20 02:25+0000\n"
+"Last-Translator: red hare <www3@hotmail.co.jp>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -168,7 +169,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The \"All Maps\" filter shows all maps together in one "
 "list."
-msgstr "マップをさらにフィルタリングすることができます。 デフォルトマップは一般にプレイ可能なマップです。 海洋マップは、すべての対戦相手が土地に到達できるわけではないマップです。デモマップはテスト目的で使用されるマップです（一般的には役に立たちません）。 「すべてのマップ」フィルタは、すべてのマップを1つのリストにまとめて表示します。"
+msgstr "マップをさらにフィルタリングすることができます。 デフォルトマップは一般にプレイ可能なマップです。 海洋マップは、すべての対戦相手が土地に到達できるわけではないマップです。デモマップはテスト目的で使用されるマップです (一般的には役に立たちません) 。「すべてのマップ」フィルタは、すべてのマップを1つのリストにまとめて表示します。"
 
 #: gui/manual/intro.txt:38
 msgid ""
@@ -177,7 +178,7 @@ msgid ""
 "controls which player (decides where you start on the map etc). The options "
 "are either a human player, an AI or no player at all (the opponent will just"
 " be idle)."
-msgstr ""
+msgstr "最後に設定を変更します。 ランダムマップでは、プレイヤーの人数やマップの大きさなどが含まれます。シナリオでは、誰がどのプレイヤーで参加するか (マップ内のどこが開始位置となるかなどが決まります) だけが選択できます。 オプションは、人間のプレイヤーかAI、プレイヤーなしいずれかです )(敵ただ遊んでるだけです) 。"
 
 #: gui/manual/intro.txt:40
 msgid "When you are ready to start, click the \"Start game\" button."
@@ -303,31 +304,31 @@ msgstr "Delete: 現在選択されているユニット／建物を削除"
 msgid ""
 "Shift + Delete: Delete currently selected units/buildings without "
 "confirmation"
-msgstr ""
+msgstr "Shift + Delete: 現在選択されているユニット／建物を確認せずに削除"
 
 #: gui/manual/intro.txt:69
 msgid "/ (ForwardSlash): Select idle fighter"
-msgstr ""
+msgstr "/ (ForwardSlash): 手の空いた兵士を選択"
 
 #: gui/manual/intro.txt:70
 msgid "Shift + /: add idle fighter to selection"
-msgstr ""
+msgstr "Shift + /: 手の空いた兵士を選択に加える"
 
 #: gui/manual/intro.txt:71
 msgid "Alt + /: Select all idle fighters"
-msgstr ""
+msgstr "Alt + /: 手の空いた兵士をすべて選択する"
 
 #: gui/manual/intro.txt:72
 msgid ". (Period): Select idle worker (including citizen soldiers)"
-msgstr ""
+msgstr ". (Period): 手の空いた労働者を選択する (市民兵士を含みます)"
 
 #: gui/manual/intro.txt:73
 msgid "Shift + .: add idle worker to selection (including citizen soldiers)"
-msgstr ""
+msgstr "Shift + .: 手の空いた労働者を選択に加える (市民兵士を含みます)"
 
 #: gui/manual/intro.txt:74
 msgid "Alt + .: Select all idle workers (including citizen soldiers)"
-msgstr ""
+msgstr "Alt + .: 手の空いた労働者をすべて選択する (市民兵士を含みます)"
 
 #: gui/manual/intro.txt:75
 msgid "H: Stop (halt) the currently selected units."
@@ -335,11 +336,11 @@ msgstr "H： 選択中のユニットを停止"
 
 #: gui/manual/intro.txt:76
 msgid "Y: The unit will go back to work"
-msgstr ""
+msgstr "Y: ユニットを仕事に戻す"
 
 #: gui/manual/intro.txt:77
 msgid "U: Unload the garrisoned units of the selected buildings"
-msgstr ""
+msgstr "U: 建物に駐屯している守備隊を開放する"
 
 #: gui/manual/intro.txt:78
 msgid ""
@@ -389,7 +390,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:86
 msgid "Tab: See all status bars (which would also show the building progress)"
-msgstr ""
+msgstr "Tab: すべてのステータスバーを表示します（建設の進行状況も表示されます）"
 
 #: gui/manual/intro.txt:88
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
@@ -401,11 +402,11 @@ msgstr "[font=\"sans-14\"]建物をCtrl+右クリック： 駐屯"
 
 #: gui/manual/intro.txt:90
 msgid "J + Right Click on building: Repair"
-msgstr ""
+msgstr "Jを押しながら建物上で右クリック：修繕"
 
 #: gui/manual/intro.txt:91
 msgid "P + Right Click: Patrol"
-msgstr ""
+msgstr "P + 右クリックでパトロール"
 
 #: gui/manual/intro.txt:92
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
@@ -498,11 +499,11 @@ msgstr "Alt+Z： 空の表示の切替え"
 #: gui/manual/intro.txt:111
 msgid ""
 "Alt + V: Toggle aura range visualizations of selected units and structures"
-msgstr ""
+msgstr "Alt + V: 選択したユニットと建造物のオーラ範囲の表示を切り替えます"
 
 #: gui/manual/intro.txt:112
 msgid "Alt + B: Toggle heal range visualizations of selected units"
-msgstr ""
+msgstr "Alt + B: 選択したユニットの治療範囲の表示を切り替えます"
 
 #: gui/manual/intro.txt:114
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
@@ -561,7 +562,7 @@ msgstr "Shift+マウスホイール下回転： 土地の周囲を反時計回�
 msgid ""
 "F: Follow the selected unit (move the camera to stop it from following the "
 "unit)"
-msgstr ""
+msgstr "F: 選択されたユニットに付いていきます (カメラを動かすと止まります)"
 
 #: gui/manual/intro.txt:128
 msgid "R: Reset camera zoom/orientation"
@@ -581,7 +582,7 @@ msgstr "Alt+W： ワイヤーフレームモードの切替え"
 
 #: gui/manual/intro.txt:132
 msgid "Middle Mouse Button: Keep pressed and move the mouse to pan"
-msgstr ""
+msgstr "マウスの中ボタン： 押したままでマウスを動かすことでパンします"
 
 #: gui/manual/intro.txt:134
 msgid "[font=\"sans-bold-14\"]During Building Placement"

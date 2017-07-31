@@ -8,18 +8,19 @@
 # Deltamat <mathias.broendum@gmail.com>, 2014
 # Wachsmuth <emilistrupkarlsmose@gmail.com>, 2014-2015
 # Fijure <mathiasik@live.dk>, 2014
-# jarlgjessing <jarlgjessing@gmail.com>, 2014
+# Jarl Gjessing <inactive+jarlgjessing@transifex.com>, 2014
 # Mads Dyrmann <madsdyrmannlarsen@gmail.com>, 2015
 # Mads Overgård Henningsen <mads.overgaard@live.dk>, 2014-2015
 # MrKahr <mdsandersen@gmail.com>, 2014
 # Nicolai Nystrup-Eriksen <nicolain-e@hotmail.dk>, 2014
+# Thomas Thomsen <tcthomsen@gmail.com>, 2017
 # Wachsmuth <emilistrupkarlsmose@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:05+0200\n"
-"PO-Revision-Date: 2017-06-04 15:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-07-21 19:22+0000\n"
+"Last-Translator: Thomas Thomsen <tcthomsen@gmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/wildfire-games/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -48,7 +49,7 @@ msgstr "Tilfældig"
 
 #: gui/gamesetup/gamesetup.js:72
 msgid "Picks one civilization at random when the game starts."
-msgstr ""
+msgstr "Vælger en tilfældig civilisation ved spillets start."
 
 #: gui/gamesetup/gamesetup.js:110
 #, javascript-format
@@ -57,11 +58,11 @@ msgstr "* %(username)s er ikke klar."
 
 #: gui/gamesetup/gamesetup.js:111
 msgid "I'm ready"
-msgstr ""
+msgstr "Jeg er klar"
 
 #: gui/gamesetup/gamesetup.js:112
 msgid "State that you are ready to play."
-msgstr ""
+msgstr "Tilkendegiv, at du er klar til at spille."
 
 #: gui/gamesetup/gamesetup.js:116
 #, javascript-format
@@ -70,7 +71,7 @@ msgstr "* %(username)s er klar!"
 
 #: gui/gamesetup/gamesetup.js:117
 msgid "Stay ready"
-msgstr ""
+msgstr "Forbliv klar"
 
 #: gui/gamesetup/gamesetup.js:118
 msgid "Stay ready even when the game settings change."
@@ -78,7 +79,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:123
 msgid "I'm not ready!"
-msgstr ""
+msgstr "Jeg er ikke klar."
 
 #: gui/gamesetup/gamesetup.js:124
 msgid "State that you are not ready to play."
@@ -101,12 +102,12 @@ msgstr "%(username)s har forladt"
 #: gui/gamesetup/gamesetup.js:150
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr ""
+msgstr "%(username)s er blevet smidt af"
 
 #: gui/gamesetup/gamesetup.js:151
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr ""
+msgstr "%(username)s er blevet forment adgang"
 
 #: gui/gamesetup/gamesetup.js:152
 #, javascript-format
@@ -121,12 +122,12 @@ msgstr "<%(username)s>"
 #: gui/gamesetup/gamesetup.js:163
 msgctxt "map filter"
 msgid "Default"
-msgstr ""
+msgstr "Standard"
 
 #: gui/gamesetup/gamesetup.js:164
 msgctxt "map filter"
 msgid "All maps except naval and demo maps."
-msgstr ""
+msgstr "Alle baner pånær søfarts- og demobaner."
 
 #: gui/gamesetup/gamesetup.js:170
 msgid "Naval Maps"
@@ -135,7 +136,7 @@ msgstr "Vandbaner"
 #: gui/gamesetup/gamesetup.js:171
 msgctxt "map filter"
 msgid "Maps where ships are needed to reach the enemy."
-msgstr ""
+msgstr "Baner, hvor skibe er nødvendige for at nå fjenden."
 
 #: gui/gamesetup/gamesetup.js:176
 msgid "Demo Maps"
@@ -148,7 +149,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:182
 msgid "New Maps"
-msgstr ""
+msgstr "Nye baner"
 
 #: gui/gamesetup/gamesetup.js:183
 msgctxt "map filter"
@@ -191,7 +192,7 @@ msgstr "Vælg et banefilter."
 
 #: gui/gamesetup/gamesetup.js:449
 msgid "Select Map"
-msgstr ""
+msgstr "Vælg bane"
 
 #: gui/gamesetup/gamesetup.js:450
 msgid "Select a map to play on."
@@ -199,7 +200,7 @@ msgstr "Vælg en bane at spille på."
 
 #: gui/gamesetup/gamesetup.js:463
 msgid "Map Size"
-msgstr ""
+msgstr "Banestørrelse"
 
 #: gui/gamesetup/gamesetup.js:464
 msgid "Select map size. (Larger sizes may reduce performance.)"
@@ -207,7 +208,7 @@ msgstr "Vælg banestørrelse. (Større størrelser kan reducere ydelse)"
 
 #: gui/gamesetup/gamesetup.js:477
 msgid "Number of Players"
-msgstr ""
+msgstr "Antal spillere"
 
 #: gui/gamesetup/gamesetup.js:478
 msgid "Select number of players."
@@ -215,11 +216,11 @@ msgstr "Vælg antal spillere. "
 
 #: gui/gamesetup/gamesetup.js:497
 msgid "Population Cap"
-msgstr ""
+msgstr "Befolkningsgrænse"
 
 #: gui/gamesetup/gamesetup.js:504
 msgid "Select population limit."
-msgstr ""
+msgstr "Vælg befolkningsgrænse."
 
 #: gui/gamesetup/gamesetup.js:507
 #, javascript-format
@@ -271,11 +272,11 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:586
 msgid "Number of minutes until the player has won."
-msgstr ""
+msgstr "Antal minutter indtil spilleren har vundet."
 
 #: gui/gamesetup/gamesetup.js:601
 msgid "Game Speed"
-msgstr ""
+msgstr "Spilhastighed"
 
 #: gui/gamesetup/gamesetup.js:602
 msgid "Select game speed."
@@ -553,7 +554,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):108
 msgid "Pick a color."
-msgstr ""
+msgstr "Vælg en farve."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):111
 msgid "Select player."
@@ -618,7 +619,7 @@ msgstr ""
 msgid ""
 "\"The gods help those that help themselves.\" - Aesop (\"Hercules and the "
 "Wagoner\")"
-msgstr ""
+msgstr "\"Guderne hjælper dem, der hjælper sig selv.\" - Æsop (\"Herkules og vognføreren\")"
 
 #: gui/text/quotes.txt:8
 msgid ""

@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Cengizhan Asıliskender <ceas08@gmail.com>, 2016
+# Emre Yildirim <sendtoemre@gmail.com>, 2017
 # Ender Türsen <ado.ender@gmail.com>, 2017
 # Eren Ramiz <kumbasar2004@hotmail.com>, 2016
 # Hasan Baran Kırmızı <hasanbaran98@gmail.com>, 2016
@@ -17,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-06-28 00:32+0000\n"
-"Last-Translator: yakup <mutouk@yandex.ru>\n"
+"PO-Revision-Date: 2017-07-18 11:36+0000\n"
+"Last-Translator: Emre Yildirim <sendtoemre@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,11 +29,11 @@ msgstr ""
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
 msgid "Dockyard Repairs"
-msgstr "Tersaneyi Onarın."
+msgstr "Tersane Onarımı"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Heals garrisoned ship at 10 HP per second."
-msgstr "Garnizon gemiyi saniyede 10 HP'de iyileştirir."
+msgstr "Garnizon altındaki gemiyi saniyede 10 HP iyileştirir."
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
@@ -44,7 +45,7 @@ msgstr "Birimleri saniyede 3 CP ile iyileştirir"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
-msgstr "Dini Şevk"
+msgstr "Dini Coşku"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "+20% attack damage for soldiers."
@@ -52,7 +53,7 @@ msgstr "Askerler için +20% saldırı gücü."
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Power of Knowledge"
-msgstr "Bilgi Gücü"
+msgstr "Bilginin Gücü"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
 msgid ""
@@ -65,7 +66,7 @@ msgstr "Sadakat"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "+50% garrisoned loyalty regeneration rate for structures."
-msgstr ""
+msgstr "Binalar için +50% daha fazla garnizon sadakat üretim oranı"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraName
 msgid "Edict of Ashoka"
@@ -77,7 +78,7 @@ msgstr "Tüccarlar için +20% hareket hızı."
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraName
 msgid "Farming bonus"
-msgstr "Çiftçilik ödülü"
+msgstr "Tarım Bonusu"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraDescription
 msgid "+25% gather rate for workers in the grainfields."
@@ -787,7 +788,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/rome_hero_scipio.jsonauraName
 msgid "Triumph"
-msgstr ""
+msgstr "Zafer"
 
 #: simulation/data/auras/units/heroes/rome_hero_scipio.jsonauraDescription
 msgid "+20% attack and +2 capture for soldiers and siege engines."
@@ -795,7 +796,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraName
 msgid "Ilarchès"
-msgstr ""
+msgstr "Ilarchès"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraDescription
 msgid "All cavalry gains +2 levels of all armor types."
@@ -803,19 +804,19 @@ msgstr "Tüm süvariler tüm zırh türlerinde+2 kazanır."
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.jsonauraName
 msgid "Renowned Conqueror"
-msgstr ""
+msgstr "Şanlı Fatih"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.jsonauraDescription
 msgid "-20% health for enemy buildings, siege engines and ships."
-msgstr ""
+msgstr "Düşman binaları, mancınıkları ve gemileri için -20% can."
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.jsonauraName
 msgid "Zooiarchos"
-msgstr ""
+msgstr "Zooiarchos"
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.jsonauraDescription
 msgid "+20% attack and movement speed for war elephants."
-msgstr ""
+msgstr "Savaş filleri için +20% saldırı ve hareket hızı."
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraName
 msgid "Helot Reforms"
@@ -823,12 +824,12 @@ msgstr "Köle Reformları"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
 msgid "+25% attack and +1 armor for javelin infantry soldiers."
-msgstr ""
+msgstr "Cirit piyade askerleri için +25% saldırı ve +1 zırh."
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
 msgid "Last Stand"
-msgstr ""
+msgstr "Son Kale"
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraDescription
 msgid "+25% attack and +1 capture for spear soldiers."
-msgstr ""
+msgstr "Mızrak akserleri için +25% saldırı ve +1 ele geçirme."

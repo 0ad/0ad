@@ -8,9 +8,9 @@
 # jalal natsheh <jalal-natsheh@hotmail.com>, 2017
 # Majid Al-Dharrab, 2014
 # mustapha ali abdulkarim <baghdadhost@gmail.com>, 2014
-# Rayan <nitro361@gmail.com>, 2015
+# nitro361 <nitro361@gmail.com>, 2015
 # Omar Anwar <omaraglan91@yahoo.com>, 2017
-# Rayan <nitro361@gmail.com>, 2015
+# nitro361 <nitro361@gmail.com>, 2015
 # Safa Alfulaij <safa1996alfulaij@gmail.com>, 2014
 # slimkhan, 2014
 # Tux-Tn <sarhanaissi@gmail.com>, 2013
@@ -21,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:05+0200\n"
-"PO-Revision-Date: 2017-06-04 15:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-07-21 17:05+0000\n"
+"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,7 +51,7 @@ msgstr "عشوائيّة"
 
 #: gui/gamesetup/gamesetup.js:72
 msgid "Picks one civilization at random when the game starts."
-msgstr "إختر حضارة عشوائياً حين بدء اللعبة"
+msgstr "انتقِ حضارة عشوائيًّا عند بدء اللعبة."
 
 #: gui/gamesetup/gamesetup.js:110
 #, javascript-format
@@ -129,7 +129,7 @@ msgstr "الافتراضيّ"
 #: gui/gamesetup/gamesetup.js:164
 msgctxt "map filter"
 msgid "All maps except naval and demo maps."
-msgstr "كل الخرائط باستثناء الخرائط البحرية والتجربية."
+msgstr "كلّ الخرائط باستثناء تلك البحريّة والتّجربيّة."
 
 #: gui/gamesetup/gamesetup.js:170
 msgid "Naval Maps"
@@ -138,7 +138,7 @@ msgstr "الخرائط البحريّة"
 #: gui/gamesetup/gamesetup.js:171
 msgctxt "map filter"
 msgid "Maps where ships are needed to reach the enemy."
-msgstr "خرائط حيث تحتاج السفن للوصول للعدو."
+msgstr "الخرائط التي تطلب سفنًا للوصول إلى العدوّ."
 
 #: gui/gamesetup/gamesetup.js:176
 msgid "Demo Maps"
@@ -147,16 +147,16 @@ msgstr "الخرائط التّجريبيّة"
 #: gui/gamesetup/gamesetup.js:177
 msgctxt "map filter"
 msgid "These maps are not playable but for demonstration purposes only."
-msgstr "هذه الخرائط ليس قابلة للعب لكن من أجل غرض الإثبات فقط."
+msgstr "هذه خرائط لا يمكن اللعب عليها ووظيفتها الوحيدة هي عرض الميزة التي تقدّمها."
 
 #: gui/gamesetup/gamesetup.js:182
 msgid "New Maps"
-msgstr "خرائط جديدة "
+msgstr "الخرائط الجديدة"
 
 #: gui/gamesetup/gamesetup.js:183
 msgctxt "map filter"
 msgid "Maps that are brand new in this release of the game."
-msgstr "خرائط جديدة في هذا الأصدار من اللعبة. "
+msgstr "الخرائط الجديدة في الإصدارة هذه من اللعبة."
 
 #: gui/gamesetup/gamesetup.js:188
 msgid "Trigger Maps"
@@ -174,7 +174,7 @@ msgstr "كلّ الخرائط"
 #: gui/gamesetup/gamesetup.js:195
 msgctxt "map filter"
 msgid "Every map of the chosen maptype."
-msgstr ""
+msgstr "كلّ خريطة من نوع الخرائط المنتقى."
 
 #: gui/gamesetup/gamesetup.js:411
 msgid "Map Type"
@@ -194,7 +194,7 @@ msgstr "اختر مرشّح خرائط."
 
 #: gui/gamesetup/gamesetup.js:449
 msgid "Select Map"
-msgstr "حدد خريطة"
+msgstr "اختر خريطة"
 
 #: gui/gamesetup/gamesetup.js:450
 msgid "Select a map to play on."
@@ -202,7 +202,7 @@ msgstr "اختر خريطة للّعب عليها."
 
 #: gui/gamesetup/gamesetup.js:463
 msgid "Map Size"
-msgstr "حجم الخريطة"
+msgstr "مقاس الخريطة"
 
 #: gui/gamesetup/gamesetup.js:464
 msgid "Select map size. (Larger sizes may reduce performance.)"
@@ -218,11 +218,11 @@ msgstr "اختر عدد اللاعبين."
 
 #: gui/gamesetup/gamesetup.js:497
 msgid "Population Cap"
-msgstr "حد الكثافة السكانية"
+msgstr "حدّ السّكّانيّة"
 
 #: gui/gamesetup/gamesetup.js:504
 msgid "Select population limit."
-msgstr "اختار "
+msgstr "اختر حدّ السّكّانيّة."
 
 #: gui/gamesetup/gamesetup.js:507
 #, javascript-format
@@ -246,7 +246,7 @@ msgstr "اختر موارد بدء اللعبة."
 
 #: gui/gamesetup/gamesetup.js:543
 msgid "Ceasefire"
-msgstr "وقف إطلاق النار"
+msgstr "الهدنة"
 
 #: gui/gamesetup/gamesetup.js:544
 msgid "Set time where no attacks are possible."
@@ -254,7 +254,7 @@ msgstr "ضع الوقت حيث لا يمكن الهجوم خلاله."
 
 #: gui/gamesetup/gamesetup.js:556
 msgid "Victory Condition"
-msgstr "حالة الفوز"
+msgstr "شرط الفوز"
 
 #: gui/gamesetup/gamesetup.js:557
 msgid "Select victory condition."
@@ -270,11 +270,11 @@ msgstr "عدد الأثار التي تظهر علي الخريطة."
 
 #: gui/gamesetup/gamesetup.js:585
 msgid "Victory Duration"
-msgstr "وقت الفوز"
+msgstr "مدّة النّصر"
 
 #: gui/gamesetup/gamesetup.js:586
 msgid "Number of minutes until the player has won."
-msgstr "عدد الدقائق حتي فوز اللاعب."
+msgstr "عدد الدّقائق حتّى يُعتبر أنّ اللاعب قد فاز."
 
 #: gui/gamesetup/gamesetup.js:601
 msgid "Game Speed"
@@ -286,7 +286,7 @@ msgstr "اختر سرعة اللعبة."
 
 #: gui/gamesetup/gamesetup.js:665
 msgid "Chose the civilization for this player"
-msgstr ""
+msgstr "اختر حضارة هذا اللاعب."
 
 #: gui/gamesetup/gamesetup.js:705
 msgid "Hero Garrison"
@@ -322,7 +322,7 @@ msgstr "رجح الخرائط المكتشفة(رؤيه الخرائط الأو�
 
 #: gui/gamesetup/gamesetup.js:750
 msgid "Disable Treasures"
-msgstr "عطل الكنوز"
+msgstr "عطّل الكنوز"
 
 #: gui/gamesetup/gamesetup.js:751
 msgid "Disable all treasures on the map."
@@ -330,7 +330,7 @@ msgstr "عطّل كلّ الكنوز في الخريطة."
 
 #: gui/gamesetup/gamesetup.js:761
 msgid "Disable Spies"
-msgstr "عطل الجواسيس"
+msgstr "عطّل الجواسيس"
 
 #: gui/gamesetup/gamesetup.js:762
 msgid "Disable spies during the game."
@@ -338,7 +338,7 @@ msgstr "عطّل الجواسيس أثناء اللعب."
 
 #: gui/gamesetup/gamesetup.js:772
 msgid "Teams Locked"
-msgstr "إغلاق الفرق"
+msgstr "الفِرق مقفلة"
 
 #: gui/gamesetup/gamesetup.js:773
 msgid "Toggle locked teams."
@@ -364,7 +364,7 @@ msgstr "بدّل إمكانيّة استخدام الغشّ."
 
 #: gui/gamesetup/gamesetup.js:812
 msgid "Rated Game"
-msgstr "لعبة مصنفة"
+msgstr "لعبة مقيّمة"
 
 #: gui/gamesetup/gamesetup.js:813
 msgid "Toggle if this game will be rated for the leaderboard."
@@ -395,7 +395,7 @@ msgstr "ابدأ لعبة جديدة بالإعدادات الحالّيّة."
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)"
-msgstr "ابدأ لعبة جديدة بالإعدادات الحالية (معطلة حتي يصبح كل اللاعبيين جاهزيين)"
+msgstr "ابدأ لعبة جديدة بالإعدادات الحاليّة (معطّل حتّى يجهز كلّ اللاعبين)"
 
 #: gui/gamesetup/gamesetup.js:1405
 msgctxt "map selection"
@@ -605,7 +605,7 @@ msgstr ""
 msgid ""
 "\"Time in the long run teaches all things.\" - Aeschylus (\"Prometheus "
 "Bound\", 981)"
-msgstr ""
+msgstr "\"”الوقت وهو يَكْبُر يُعلِّم كلّ شيء.“ - إسخيلوس (”برومثيوس في الأغلال“، 981)"
 
 #: gui/text/quotes.txt:5
 msgid ""

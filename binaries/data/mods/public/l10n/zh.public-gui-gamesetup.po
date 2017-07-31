@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# rentt777 <35974380@qq.com>, 2017
 # Christian Xia <wood_elf@126.com>, 2016
 # hyln9 <hyln9@live.cn>, 2014
 # REN.Haowei <jean.clcf@gmail.com>, 2014
@@ -25,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:05+0200\n"
-"PO-Revision-Date: 2017-06-04 15:42+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-07-25 10:06+0000\n"
+"Last-Translator: rentt777 <35974380@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -55,7 +56,7 @@ msgstr "随机"
 
 #: gui/gamesetup/gamesetup.js:72
 msgid "Picks one civilization at random when the game starts."
-msgstr ""
+msgstr "当游戏开始时，随机挑选一个文明。"
 
 #: gui/gamesetup/gamesetup.js:110
 #, javascript-format
@@ -133,7 +134,7 @@ msgstr "默认"
 #: gui/gamesetup/gamesetup.js:164
 msgctxt "map filter"
 msgid "All maps except naval and demo maps."
-msgstr ""
+msgstr "除海战和演示地图以外的所有地图。"
 
 #: gui/gamesetup/gamesetup.js:170
 msgid "Naval Maps"
@@ -142,7 +143,7 @@ msgstr "海事地图"
 #: gui/gamesetup/gamesetup.js:171
 msgctxt "map filter"
 msgid "Maps where ships are needed to reach the enemy."
-msgstr ""
+msgstr "需要船只才能到达敌人的地图。"
 
 #: gui/gamesetup/gamesetup.js:176
 msgid "Demo Maps"
@@ -151,7 +152,7 @@ msgstr "演示地图"
 #: gui/gamesetup/gamesetup.js:177
 msgctxt "map filter"
 msgid "These maps are not playable but for demonstration purposes only."
-msgstr ""
+msgstr "这些地图不是可玩的，只是出于演示目的。"
 
 #: gui/gamesetup/gamesetup.js:182
 msgid "New Maps"
@@ -160,7 +161,7 @@ msgstr "新地图"
 #: gui/gamesetup/gamesetup.js:183
 msgctxt "map filter"
 msgid "Maps that are brand new in this release of the game."
-msgstr ""
+msgstr "在游戏发布的时候，地图是全新的。"
 
 #: gui/gamesetup/gamesetup.js:188
 msgid "Trigger Maps"
@@ -169,7 +170,7 @@ msgstr "触发地图"
 #: gui/gamesetup/gamesetup.js:189
 msgctxt "map filter"
 msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr ""
+msgstr "有脚本事件和潜在生成的敌人单位的地图。"
 
 #: gui/gamesetup/gamesetup.js:194
 msgid "All Maps"
@@ -178,11 +179,11 @@ msgstr "所有地图"
 #: gui/gamesetup/gamesetup.js:195
 msgctxt "map filter"
 msgid "Every map of the chosen maptype."
-msgstr ""
+msgstr "选定地图类型的所有地图"
 
 #: gui/gamesetup/gamesetup.js:411
 msgid "Map Type"
-msgstr ""
+msgstr "地图类型"
 
 #: gui/gamesetup/gamesetup.js:412
 msgid "Select a map type."
@@ -190,7 +191,7 @@ msgstr "选择一个地图类型."
 
 #: gui/gamesetup/gamesetup.js:434
 msgid "Map Filter"
-msgstr ""
+msgstr "地图筛选器"
 
 #: gui/gamesetup/gamesetup.js:435
 msgid "Select a map filter."
@@ -198,7 +199,7 @@ msgstr "选择一个地图筛选器."
 
 #: gui/gamesetup/gamesetup.js:449
 msgid "Select Map"
-msgstr ""
+msgstr "选择地图"
 
 #: gui/gamesetup/gamesetup.js:450
 msgid "Select a map to play on."
@@ -206,7 +207,7 @@ msgstr "选择一个地图来开始游戏."
 
 #: gui/gamesetup/gamesetup.js:463
 msgid "Map Size"
-msgstr ""
+msgstr "地图尺寸"
 
 #: gui/gamesetup/gamesetup.js:464
 msgid "Select map size. (Larger sizes may reduce performance.)"
@@ -214,7 +215,7 @@ msgstr "选择地图大小. (大的地图可能会影响性能)"
 
 #: gui/gamesetup/gamesetup.js:477
 msgid "Number of Players"
-msgstr ""
+msgstr "玩家数"
 
 #: gui/gamesetup/gamesetup.js:478
 msgid "Select number of players."
@@ -222,27 +223,27 @@ msgstr "选择玩家数量"
 
 #: gui/gamesetup/gamesetup.js:497
 msgid "Population Cap"
-msgstr ""
+msgstr "人口上限"
 
 #: gui/gamesetup/gamesetup.js:504
 msgid "Select population limit."
-msgstr ""
+msgstr "选择人口上限"
 
 #: gui/gamesetup/gamesetup.js:507
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr ""
+msgstr "警告：当所有的%(players)s玩家都到达人口上限%(popCap)s时，会有性能问题"
 
 #: gui/gamesetup/gamesetup.js:523
 msgid "Starting Resources"
-msgstr ""
+msgstr "初始资源"
 
 #: gui/gamesetup/gamesetup.js:526
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
-msgstr ""
+msgstr "初始资源数%(resources)s"
 
 #: gui/gamesetup/gamesetup.js:529
 msgid "Select the game's starting resources."
@@ -250,7 +251,7 @@ msgstr "选择游戏初始资源."
 
 #: gui/gamesetup/gamesetup.js:543
 msgid "Ceasefire"
-msgstr ""
+msgstr "停火"
 
 #: gui/gamesetup/gamesetup.js:544
 msgid "Set time where no attacks are possible."
@@ -258,7 +259,7 @@ msgstr "在没有攻击时设置时间是可能的。"
 
 #: gui/gamesetup/gamesetup.js:556
 msgid "Victory Condition"
-msgstr ""
+msgstr "胜利条件"
 
 #: gui/gamesetup/gamesetup.js:557
 msgid "Select victory condition."
@@ -266,15 +267,15 @@ msgstr "选择胜利条件."
 
 #: gui/gamesetup/gamesetup.js:571
 msgid "Relic Count"
-msgstr ""
+msgstr "遗迹数"
 
 #: gui/gamesetup/gamesetup.js:572
 msgid "Total number of relics spawned on the map."
-msgstr ""
+msgstr "地图上总的遗迹数"
 
 #: gui/gamesetup/gamesetup.js:585
 msgid "Victory Duration"
-msgstr ""
+msgstr "胜利的持续时间"
 
 #: gui/gamesetup/gamesetup.js:586
 msgid "Number of minutes until the player has won."
@@ -282,7 +283,7 @@ msgstr "直到玩家胜利的分钟数。"
 
 #: gui/gamesetup/gamesetup.js:601
 msgid "Game Speed"
-msgstr ""
+msgstr "游戏速度"
 
 #: gui/gamesetup/gamesetup.js:602
 msgid "Select game speed."
@@ -290,21 +291,21 @@ msgstr "选择游戏速度."
 
 #: gui/gamesetup/gamesetup.js:665
 msgid "Chose the civilization for this player"
-msgstr ""
+msgstr "选择一个文明"
 
 #: gui/gamesetup/gamesetup.js:705
 msgid "Hero Garrison"
-msgstr ""
+msgstr "英雄驻军"
 
 #: gui/gamesetup/gamesetup.js:706
 msgid "Toggle whether heroes can be garrisoned."
-msgstr ""
+msgstr "触发英雄是否可以驻守。"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
 #: gui/gamesetup/gamesetup.js:719
 msgid "Revealed Map"
-msgstr ""
+msgstr "显示的地图"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
@@ -316,7 +317,7 @@ msgstr "-- 切换显示全地图 （显示所有）。"
 #. explored map options!
 #: gui/gamesetup/gamesetup.js:737
 msgid "Explored Map"
-msgstr ""
+msgstr "探索过的地图"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
@@ -326,7 +327,7 @@ msgstr "切换已经勘探过的地图 ( 显示最初的地图 ) 。"
 
 #: gui/gamesetup/gamesetup.js:750
 msgid "Disable Treasures"
-msgstr ""
+msgstr "取消宝藏系统"
 
 #: gui/gamesetup/gamesetup.js:751
 msgid "Disable all treasures on the map."
@@ -334,7 +335,7 @@ msgstr "停用在地图上的所有宝藏。"
 
 #: gui/gamesetup/gamesetup.js:761
 msgid "Disable Spies"
-msgstr ""
+msgstr "禁用间谍"
 
 #: gui/gamesetup/gamesetup.js:762
 msgid "Disable spies during the game."
@@ -342,7 +343,7 @@ msgstr "游戏中禁用间谍。"
 
 #: gui/gamesetup/gamesetup.js:772
 msgid "Teams Locked"
-msgstr ""
+msgstr "锁定组队"
 
 #: gui/gamesetup/gamesetup.js:773
 msgid "Toggle locked teams."
@@ -350,7 +351,7 @@ msgstr "开启组队锁定."
 
 #: gui/gamesetup/gamesetup.js:786
 msgid "Last Man Standing"
-msgstr ""
+msgstr "最后屹立在战场上者"
 
 #: gui/gamesetup/gamesetup.js:787
 msgid ""
@@ -360,7 +361,7 @@ msgstr "不论最后是切换为剩余玩家还是剩余的盟友，都可一起
 
 #: gui/gamesetup/gamesetup.js:799
 msgid "Cheats"
-msgstr ""
+msgstr "作弊"
 
 #: gui/gamesetup/gamesetup.js:800
 msgid "Toggle the usability of cheats."
@@ -368,7 +369,7 @@ msgstr "开启允许秘籍."
 
 #: gui/gamesetup/gamesetup.js:812
 msgid "Rated Game"
-msgstr ""
+msgstr "排位赛"
 
 #: gui/gamesetup/gamesetup.js:813
 msgid "Toggle if this game will be rated for the leaderboard."
@@ -377,7 +378,7 @@ msgstr "-- 切换本比赛是否算入排位。"
 #: gui/gamesetup/gamesetup.js:838
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames or settings."
-msgstr ""
+msgstr "按 %(hotkey)s 自动输入玩家名字或设置"
 
 #: gui/gamesetup/gamesetup.js:846
 msgid "Return to the lobby."
@@ -399,7 +400,7 @@ msgstr "使用当前的设置开始一局新游戏."
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)"
-msgstr ""
+msgstr "使用当前的设置开始一局新游戏。(禁用直到所有玩家准备好)"
 
 #: gui/gamesetup/gamesetup.js:1405
 msgctxt "map selection"
@@ -409,12 +410,12 @@ msgstr "随机"
 #: gui/gamesetup/gamesetup.js:1682 gui/gamesetup/gamesetup.js:1721
 #, javascript-format
 msgid "%(option)s:"
-msgstr ""
+msgstr "%(option)s:"
 
 #: gui/gamesetup/gamesetup.js:1687
 msgctxt "option value"
 msgid "Unknown"
-msgstr ""
+msgstr "未知"
 
 #: gui/gamesetup/gamesetup.js:1714
 msgid "Yes"
@@ -591,7 +592,7 @@ msgid ""
 "\"Zeus \\[...] established his law: wisdom comes through suffering. \\[...] "
 "So men against their will learn to practice moderation. \\[...] Such grace "
 "is harsh and violent.\" - Aeschylus (\"Oresteia\", I. 176-183)"
-msgstr ""
+msgstr "\"宙斯 \\[...] 建立他的律法:智慧源于苦难。 \\[...] 因此，反对他们的人将学会节制 \\[...] 这种恩典是残酷和暴力的。\" - 埃斯库罗斯 (\"俄瑞斯忒斯\", I. 176-183)"
 
 #: gui/text/quotes.txt:2
 msgid ""

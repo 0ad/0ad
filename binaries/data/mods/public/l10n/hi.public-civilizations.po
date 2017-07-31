@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Bakul Choudhary <choudharybakul809kv@gmail.com>, 2017
 # gvidushiin <gvidushiin@gmail.com>, 2014
 # Harshvardhan Singh Bhati <vyal.micro@gmail.com>, 2014
 # Rajarshi Bandopadhyay <theocrat93@gmail.com>, 2017
@@ -11,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:01+0200\n"
-"PO-Revision-Date: 2017-07-05 03:27+0000\n"
-"Last-Translator: Rajarshi Bandopadhyay <theocrat93@gmail.com>\n"
+"PO-Revision-Date: 2017-07-14 12:16+0000\n"
+"Last-Translator: Bakul Choudhary <choudharybakul809kv@gmail.com>\n"
 "Language-Team: Hindi (http://www.transifex.com/wildfire-games/0ad/language/hi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,11 +28,11 @@ msgstr "एथेंसवासी"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Description
 msgid "Metal mining gathering rates increased by +10% for each passing age."
-msgstr "हर युगांतर के बाद धातु खनिजी की दर में +10% वॄद्धी होगी।"
+msgstr "हर युग बीतने पर धातु खनन की दर में +10% वृद्धि "
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Name
 msgid "Silver Owls"
-msgstr "चाँदी के उल्लू"
+msgstr "रजत उलूक"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].History
 msgid ""
@@ -51,7 +52,7 @@ msgstr "थिएट्रौन की संरचना करने से �
 #: simulation/data/civs/mace.jsonCivBonuses[2].Name
 #: simulation/data/civs/spart.jsonCivBonuses[2].Name
 msgid "Hellenization"
-msgstr "यवनीकरण"
+msgstr "हेलेनीकरण"
 
 #: simulation/data/civs/athen.jsonCivBonuses[1].History
 #: simulation/data/civs/spart.jsonCivBonuses[2].History
@@ -59,11 +60,11 @@ msgid ""
 "The Greeks were highly successful in Hellenising various foreigners. During "
 "the Hellenistic Age, Greek was the lingua franca of the Ancient World, "
 "spoken widely from Spain to India."
-msgstr "यवन विश्व के विभिन्न प्रांतों को यवनीकरित करने में माहिर थे। यवनिक युग में ग्रीक समस्त प्राचीन विश्व की सामान्य भाषा ती। इसे स्पेन से लेकर भारत तक प्रयोग किया जाता था।"
+msgstr "यूनान विश्व के विभिन्न प्रांतों के हेलेनीकरण में बहुत सफल रहा। हेलेनिक युग में यूनानी प्राचीन जगत की सामान्य भाषा हो गई थी। इसे स्पेन से लेकर भारत तक बोला और समझा जाता था।"
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Description
 msgid "Ships construct 25% faster."
-msgstr "जहाज़ों के संरचना 25% शीघ्रतर होगा।"
+msgstr "जहाज़ निर्माण 25% तेज़ होगा"
 
 #: simulation/data/civs/athen.jsonTeamBonuses[0].Name
 msgid "Delian League"
@@ -142,11 +143,11 @@ msgstr "दिमोस्थेनीस"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[0].Description
 msgid "Athenian triremes can train Marines (Epibastes Athenaikos)."
-msgstr "एथेनीय त्रिरीम अब जलयोद्धाओं (एपिबास्तिस अदेनाइकोस) का संरचना कर सकेगा।"
+msgstr "एथेनीय त्रिरीम जलयोद्धाओं (एपिबास्तिस अदेनाइकोस) को तैयार कर सकेंगी"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[0].Name
 msgid "Iphicratean Reforms"
-msgstr "इफिक्रेटीय सुधारकाज"
+msgstr "इफिक्रेटीय सुधारकार्य"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[1].Description
 msgid ""
@@ -183,7 +184,7 @@ msgid ""
 "eight men deep and up to eight hundred men wide. The men within overlapped "
 "their shields, presenting a formidable shield wall brimming with 8 foot "
 "spears."
-msgstr "युगों-युगों से प्रसिद्ध फलनाक्स गठन का स्थापना लगभग अश्टम शताब्दी पू. ई, में हुआ था। "
+msgstr "फालांक्स सैन्यव्यूहरचना 8वीं सदी ईसा पूर्व के करीब विकसित हुई थी। इसकी गहराई में आठ और चौड़ाई में सौ इन्सान होते थे। सैनिक ढालों को एक दूसरे से फंसा कर एक दुर्जेय ढालों की दीवार बनाते थे जो कि पूरी तरह से 8 फुट लम्बे भालों से भरी होती थी"
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -1453,7 +1454,7 @@ msgstr "चंद्रगुप्त मौर्य"
 #: simulation/data/civs/maur.jsonAINames[1]
 #: simulation/data/civs/maur.jsonFactions[0].Heroes[1].Name
 msgid "Ashoka the Great"
-msgstr "महान अशोक"
+msgstr "महान् अशोक"
 
 #: simulation/data/civs/maur.jsonAINames[2]
 msgid "Ashokavardhan Maurya"
@@ -1513,19 +1514,19 @@ msgstr ""
 msgid ""
 "India was a land of archery. The bulk of any Indian army was made up of "
 "highly skilled archers, armed with bamboo longbows."
-msgstr ""
+msgstr "भारत धनुर्धारियों का देश था। भारतीय सेना का एक बड़ा भाग अत्यंत निपुण धनुर्धरों से बना होता था जो कि बांस के धनुषों का इस्तेमाल करते थे।"
 
 #: simulation/data/civs/maur.jsonFactions[0].Heroes[0].History
 msgid "Founder of the Mauryan Empire."
-msgstr ""
+msgstr "मौर्य साम्राज्य के संस्थापक"
 
 #: simulation/data/civs/maur.jsonFactions[0].Heroes[1].History
 msgid "Last great emperor of the Mauryan dynasty."
-msgstr ""
+msgstr "मौर्य साम्राज्य के आखिरी महान शासक"
 
 #: simulation/data/civs/maur.jsonFactions[0].Heroes[2].History
 msgid "Great teacher and advisor to Chandragupta Maurya."
-msgstr ""
+msgstr "चन्द्रगुप्त मौर्य के विशेष आचार्य और सलाहकार"
 
 #: simulation/data/civs/maur.jsonFactions[0].Heroes[2].Name
 msgid "Acharya Chāṇakya"
@@ -1547,7 +1548,7 @@ msgstr ""
 
 #: simulation/data/civs/maur.jsonStructures[1].Name
 msgid "Edict Pillar of Ashoka"
-msgstr "अशोक का राजाज्ञा स्तंभ"
+msgstr "अशोक लेखस्तम्भ"
 
 #: simulation/data/civs/maur.jsonStructures[1].Special
 msgid ""

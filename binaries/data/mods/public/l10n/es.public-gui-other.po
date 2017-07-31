@@ -6,6 +6,7 @@
 # Albert, 2016
 # ninovolador <ignacio.rodriguez.mo@gmail.com>, 2015
 # Javier Rojas <hekeine@gmail.com>, 2017
+# José Javier Domínguez Reina <jjdominguez@gmail.com>, 2017
 # juanda097 <juanda097@openmailbox.org>, 2014-2015
 # Master Dark <yochan003@hotmail.com>, 2016
 # Mihai Pantazi <malexandru_70@hotmail.com>, 2016-2017
@@ -17,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:02+0200\n"
-"PO-Revision-Date: 2017-06-07 22:12+0000\n"
-"Last-Translator: Mihai Pantazi <malexandru_70@hotmail.com>\n"
+"PO-Revision-Date: 2017-07-28 11:07+0000\n"
+"Last-Translator: José Javier Domínguez Reina <jjdominguez@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -309,7 +310,7 @@ msgstr "Héroes expuestos"
 
 #: gui/common/gamedescription.js:273
 msgid "Heroes cannot be garrisoned, and they are vulnerable to raids."
-msgstr ""
+msgstr "Los héroes no pueden ser guarnecidos, y son vulnerables a las incursiones."
 
 #: gui/common/gamedescription.js:280
 msgid "Rated game"
@@ -416,7 +417,7 @@ msgstr "Deshabilitado"
 #: gui/common/gamedescription.js:376
 msgctxt "treasures"
 msgid "As defined by the map."
-msgstr ""
+msgstr "Según lo definido por el mapa."
 
 #: gui/common/gamedescription.js:380
 msgid "Revealed Map"
@@ -640,7 +641,7 @@ msgstr "Escaramuza"
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other gamesettings."
-msgstr ""
+msgstr "Un mapa con un paisaje predefinido y el número de jugadores. Selecciona libremente las otras configuraciones del juego."
 
 #: gui/common/settings.js:194
 msgctxt "map"
@@ -651,7 +652,7 @@ msgstr "Aleatorio"
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
-msgstr ""
+msgstr "Cree un mapa único con una distribución de recursos diferente cada vez. Seleccione libremente el número de jugadores y equipos."
 
 #: gui/common/settings.js:199
 msgctxt "map"
@@ -660,7 +661,7 @@ msgstr "Escenario"
 
 #: gui/common/settings.js:200
 msgid "A map with a predefined landscape and matchsettings."
-msgstr ""
+msgstr "Un mapa con un terreno predefinido y ajustes de configuraciones."
 
 #: gui/common/settings.js:231
 msgctxt "victory condition"
@@ -1099,7 +1100,7 @@ msgstr "Ninguna"
 
 #: gui/locale/locale_advanced.js:92
 msgid "invalid locale"
-msgstr ""
+msgstr "Locale no valida"
 
 #: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:163
 #: gui/splashscreen/splashscreen.xml:(caption):28
@@ -1571,7 +1572,7 @@ msgstr "Otros"
 
 #: gui/summary/layout.js:182
 msgid "Vegetarian ratio"
-msgstr ""
+msgstr "Ratio vegetariano"
 
 #: gui/summary/layout.js:183
 msgid "Feminization"
@@ -1587,11 +1588,11 @@ msgstr "Exploración de mapa"
 
 #: gui/summary/layout.js:186
 msgid "Map control (peak)"
-msgstr ""
+msgstr "Control de mapa (carga máxima)"
 
 #: gui/summary/layout.js:187
 msgid "Map control (finish)"
-msgstr ""
+msgstr "Control de mapa (acabado)"
 
 #: gui/summary/layout.js:338
 msgid "Team total"
@@ -2032,7 +2033,7 @@ msgstr "Elige los mods que quieras jugar."
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations"
-msgstr ""
+msgstr "Aprende a jugar, empieza con el tutorial, descubre los árboles tecnológicos, y la historia que hay detrás de cada civilización"
 
 #: gui/pregame/mainmenu.xml:(tooltip):473
 msgid "Challenge the computer player to a single player match."
@@ -2110,7 +2111,7 @@ msgstr "Eliminar"
 
 #: gui/replaymenu/replay_menu.xml:(caption):254
 msgid "Reload Cache"
-msgstr ""
+msgstr "Recargando Cache"
 
 #: gui/replaymenu/replay_menu.xml:(caption):261
 #: gui/summary/summary.xml:(caption):23
@@ -2155,7 +2156,7 @@ msgstr "Duración"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):255
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
-msgstr ""
+msgstr "Reconstruyendo la caché de reproducción desde el inicio. Esto es potencialmente lento!"
 
 #: gui/savedgames/load.xml:(heading):44
 msgctxt "replay"
@@ -2443,7 +2444,7 @@ msgstr "Historial de chat"
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
-msgstr ""
+msgstr "Muestra la calificación media de los jugadores participantes en una columna del panel de juego.."
 
 #: gui/options/options.jsonlobbySetting[1].label
 msgid "Game Rating Column"
@@ -2576,7 +2577,7 @@ msgstr "Deshabilitado"
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
-msgstr ""
+msgstr "Automáticamente se asigna a los clientes que se unen a las partidas con jugadores libres durante la configuración de la partida."
 
 #: gui/options/options.jsongeneralSetting[13].label
 msgid "Assign Players"

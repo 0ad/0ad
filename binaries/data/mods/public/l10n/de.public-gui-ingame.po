@@ -68,8 +68,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:01+0200\n"
-"PO-Revision-Date: 2017-07-08 16:12+0000\n"
-"Last-Translator: Xaver\n"
+"PO-Revision-Date: 2017-07-17 08:54+0000\n"
+"Last-Translator: Wuzzy <almikes@aol.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -337,7 +337,7 @@ msgstr "Das Entwickler-Overlay wurde geöffnet."
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
-msgstr "Zahle %(resourceAmount)s %(resourceType)s als Tribut an %(playerName)s. Umschalt-Klick um %(greaterAmount)s als Tribut zu zahlen."
+msgstr "Zahle %(resourceAmount)s %(resourceType)s als Tribut an %(playerName)s. Umschalt+Klick, um %(greaterAmount)s als Tribut zu zahlen."
 
 #. Translation: A player that left the game joins again
 #: gui/session/messages.js:97
@@ -861,7 +861,7 @@ msgstr "%(name)s ausquartieren"
 
 #: gui/session/selection_panels.js:406
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
-msgstr "Klicke um 1 Einheit auszuquartieren. Shift-klicke um alle Einheiten dieses Typs auszuquartieren."
+msgstr "Klicke um 1 Einheit auszuquartieren. Umschalt+Klick, um alle Einheiten dieses Typs auszuquartieren."
 
 #: gui/session/selection_panels.js:409 gui/session/selection_panels.js:914
 #, javascript-format
@@ -1030,7 +1030,7 @@ msgstr "%(action)s um %(number)s auszubilden."
 
 #: gui/session/selection_panels_helpers.js:167
 msgid "Shift-click"
-msgstr "Umschalt-Klick"
+msgstr "Umschalt+Klick"
 
 #: gui/session/session.js:287
 msgid "Gaia"

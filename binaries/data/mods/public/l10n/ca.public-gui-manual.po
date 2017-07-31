@@ -6,13 +6,14 @@
 # Catalanoic <catalanoic@gmail.com>, 2016-2017
 # I M <ibrarm9@gmail.com>, 2016
 # José Verdú Díaz <pepv@hotmail.es>, 2016
+# Klan Ruiz Martin <rodamit@gmail.com>, 2017
 # Haommin <tfs.msimangu@gmail.com>, 2014-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:05+0200\n"
-"PO-Revision-Date: 2017-06-05 09:56+0000\n"
-"Last-Translator: Catalanoic <catalanoic@gmail.com>\n"
+"PO-Revision-Date: 2017-07-21 18:44+0000\n"
+"Last-Translator: Klan Ruiz Martin <rodamit@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -57,7 +58,7 @@ msgid ""
 "pressing Alt + Enter. In windowed mode, you can resize the window. If the "
 "game runs too slowly, you can change some settings in the options window: "
 "try disabling the \"HQ Water Effects\" and \"Shadows\" options."
-msgstr ""
+msgstr "[font = 'sans-14'] Pots canviar entre mode finestra i pantalla completa prement Alt + Retorn. En el mode finestra pots redimensionar arrossegant des de les cantonades. Si el joc va massa lent pots provar a canviar els paràmetres de «Aigua d'alta qualitat» i «Ombres»."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
@@ -169,7 +170,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The \"All Maps\" filter shows all maps together in one "
 "list."
-msgstr ""
+msgstr "Els mapes es poden filtrar encara més. Els mapes originals solen ser els més divertits. En els mapes navals no es pot accedir a molts enemics per terra, i els mapes de demostració són només de prova (no per jugar). En filtrar els mapes per «tots» tindràs accés a qualsevol mapa que no es mostri de qualsevol altra forma."
 
 #: gui/manual/intro.txt:38
 msgid ""
@@ -416,7 +417,7 @@ msgstr "Maj + Clic dret: Posa l'ordre de moure's/construir/collir/etc a la cua"
 msgid ""
 "Shift + Left Click when training units: Add units in batches (the batch size"
 " is 5 by default and can be changed in the options)"
-msgstr ""
+msgstr "Shift + Clic esquerre Quan estiguin entrenant unitats: Afegeix unitats en grups (el grup per defecte és 5 i pot ser canviat en les opcions)."
 
 #: gui/manual/intro.txt:94
 msgid ""
@@ -499,11 +500,11 @@ msgstr "Alt + Z: Mostra/amaga el cel"
 #: gui/manual/intro.txt:111
 msgid ""
 "Alt + V: Toggle aura range visualizations of selected units and structures"
-msgstr ""
+msgstr "Alt + V: Canvia visualitzacions del rang aura d'unitats i estructures seleccionades"
 
 #: gui/manual/intro.txt:112
 msgid "Alt + B: Toggle heal range visualizations of selected units"
-msgstr ""
+msgstr "Alt + B: Mostra/oculta l'àrea de curació de les unitats seleccionades."
 
 #: gui/manual/intro.txt:114
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
@@ -562,7 +563,7 @@ msgstr "Maj + Rodeta del ratolí cap avall: Gira la càmera en sentit antihorari
 msgid ""
 "F: Follow the selected unit (move the camera to stop it from following the "
 "unit)"
-msgstr ""
+msgstr "F: Segueix la unitat seleccionada (mou la càmera per deixar de seguir la unitat)"
 
 #: gui/manual/intro.txt:128
 msgid "R: Reset camera zoom/orientation"

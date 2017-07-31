@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:02+0200\n"
-"PO-Revision-Date: 2017-07-06 02:53+0000\n"
+"PO-Revision-Date: 2017-07-30 13:12+0000\n"
 "Last-Translator: Asakura\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -57,7 +57,7 @@ msgstr "%(civilization)sの歴史"
 #: gui/common/color.js:154
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames."
-msgstr ""
+msgstr "%(hotkey)sを押してプレイヤー名を自動決定します。"
 
 #: gui/common/color.js:157
 msgctxt "hotkey"
@@ -149,7 +149,7 @@ msgstr ""
 #: gui/common/functions_utility_loadsave.js:111
 #, javascript-format
 msgid "Hold %(hotkey)s to delete without confirmation."
-msgstr ""
+msgstr "確認せずに削除するには、%(hotkey)sを押し続けます。"
 
 #: gui/common/gamedescription.js:48
 msgid "A randomly selected map."
@@ -164,84 +164,84 @@ msgstr "すみませんが、説明はありません。"
 #: gui/common/gamedescription.js:105
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:108
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:114
 #, javascript-format
 msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:117
 #, javascript-format
 msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:127
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
-msgstr ""
+msgstr "%(playerName)s (オフライン)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:130
 #, javascript-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (オフライン, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:137
 #, javascript-format
 msgid "%(playerName)s (%(civ)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:140
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:144
 #, javascript-format
 msgid "%(playerName)s"
-msgstr ""
+msgstr "%(playerName)s"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:147
 #, javascript-format
 msgid "%(playerName)s (%(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(state)s)"
 
 #: gui/common/gamedescription.js:168
 msgid "Unknown Civilization"
-msgstr ""
+msgstr "未確認の文明"
 
 #: gui/common/gamedescription.js:175
 msgctxt "playerstate"
 msgid "defeated"
-msgstr ""
+msgstr "敗北"
 
 #: gui/common/gamedescription.js:176
 msgctxt "playerstate"
 msgid "won"
-msgstr ""
+msgstr "勝利"
 
 #: gui/common/gamedescription.js:198
 msgid "No Team"
@@ -250,7 +250,7 @@ msgstr "チームなし"
 #: gui/common/gamedescription.js:199
 #, javascript-format
 msgid "Team %(team)s"
-msgstr ""
+msgstr "%(team)sチーム"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or savegame menu or lobby
@@ -259,7 +259,7 @@ msgstr ""
 msgid ""
 "%(team)s:\n"
 "%(playerDescriptions)s"
-msgstr ""
+msgstr "%(team)s:\n%(playerDescriptions)s"
 
 #: gui/common/gamedescription.js:210
 msgid "Observer"
@@ -271,18 +271,18 @@ msgstr[0] "観戦者"
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
 msgid_plural "Wonder (%(min)s minutes)"
-msgstr[0] ""
+msgstr[0] "象徴 (%(min)s minutes)"
 
 #: gui/common/gamedescription.js:244
 #, javascript-format
 msgctxt "victory condition"
 msgid "Capture The Relic (%(min)s minute)"
 msgid_plural "Capture The Relic (%(min)s minutes)"
-msgstr[0] ""
+msgstr[0] "遺跡争奪 (%(min)s分)"
 
 #: gui/common/gamedescription.js:260
 msgid "Relic Count"
-msgstr ""
+msgstr "遺跡の数"
 
 #: gui/common/gamedescription.js:267
 msgid "Hero Garrison"
@@ -308,47 +308,47 @@ msgstr ""
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
-msgstr ""
+msgstr "このゲームの勝者が決定されると、ロビースコアが更新されます。"
 
 #: gui/common/gamedescription.js:286
 msgid "Locked Teams"
-msgstr ""
+msgstr "固定チーム"
 
 #: gui/common/gamedescription.js:287
 msgid "Players can't change the initial teams."
-msgstr ""
+msgstr "初期のチームを変更することはできません。"
 
 #: gui/common/gamedescription.js:291
 msgid "Diplomacy"
-msgstr ""
+msgstr "外交"
 
 #: gui/common/gamedescription.js:292
 msgid "Players can make alliances and declare war on allies."
-msgstr ""
+msgstr "プレイヤーは同盟を結ぶことも同盟国に宣戦布告することもできます。"
 
 #: gui/common/gamedescription.js:297
 msgid "Last Man Standing"
-msgstr ""
+msgstr "最後の生き残り"
 
 #: gui/common/gamedescription.js:298
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
-msgstr ""
+msgstr "勝利できるプレイヤーは一人だけです。 残りのプレイヤーが同盟している場合は、一人になるまでゲームは続きます。"
 
 #: gui/common/gamedescription.js:302
 msgid "Allied Victory"
-msgstr ""
+msgstr "同盟の勝利"
 
 #: gui/common/gamedescription.js:303
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr ""
+msgstr "同盟国の一人が勝利すれば、その同盟国のすべてが勝利者となります。"
 
 #: gui/common/gamedescription.js:309
 msgid "Ceasefire"
-msgstr ""
+msgstr "停戦"
 
 #: gui/common/gamedescription.js:312 gui/pregame/mainmenu.js:91
 msgid "disabled"
@@ -361,15 +361,15 @@ msgstr[0] ""
 
 #: gui/common/gamedescription.js:321
 msgid "Map Name"
-msgstr ""
+msgstr "マップ名"
 
 #: gui/common/gamedescription.js:326
 msgid "Map Type"
-msgstr ""
+msgstr "マップの種類"
 
 #: gui/common/gamedescription.js:335
 msgid "Map Size"
-msgstr ""
+msgstr "マップサイズ"
 
 #: gui/common/gamedescription.js:342
 msgid "Map Description"
@@ -377,16 +377,16 @@ msgstr "マップの説明"
 
 #: gui/common/gamedescription.js:345
 msgid "Randomly selects a map from the list"
-msgstr "mappuwo "
+msgstr "リストの中からマップをランダムに選択"
 
 #: gui/common/gamedescription.js:354
 msgid "Starting Resources"
-msgstr ""
+msgstr "初期資源"
 
 #: gui/common/gamedescription.js:355
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
-msgstr ""
+msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
 #: gui/common/gamedescription.js:365
 msgid "Population Limit"
@@ -394,17 +394,17 @@ msgstr "人口の上限"
 
 #: gui/common/gamedescription.js:373
 msgid "Treasures"
-msgstr ""
+msgstr "財宝"
 
 #: gui/common/gamedescription.js:375
 msgctxt "treasures"
 msgid "Disabled"
-msgstr ""
+msgstr "無効"
 
 #: gui/common/gamedescription.js:376
 msgctxt "treasures"
 msgid "As defined by the map."
-msgstr ""
+msgstr "マップで定義されています。"
 
 #: gui/common/gamedescription.js:380
 msgid "Revealed Map"
@@ -416,7 +416,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:390
 msgid "Cheats"
-msgstr ""
+msgstr "チート"
 
 #: gui/common/gamedescription.js:395 gui/common/tooltips.js:86
 #: gui/common/tooltips.js:141 gui/common/tooltips.js:182
@@ -429,12 +429,12 @@ msgstr "%(label)s %(details)s"
 #: gui/common/gamedescription.js:398
 msgctxt "gamesetup option"
 msgid "enabled"
-msgstr ""
+msgstr "有効化"
 
 #: gui/common/gamedescription.js:399
 msgctxt "gamesetup option"
 msgid "disabled"
-msgstr ""
+msgstr "無効"
 
 #: gui/common/gamedescription.js:416
 msgid "Victorious"
@@ -551,7 +551,7 @@ msgstr "サーバーとの接続が切れました。"
 
 #: gui/common/network.js:97
 msgid "Failed to connect to the server."
-msgstr ""
+msgstr "サーバへの接続に失敗しました。"
 
 #: gui/common/network.js:99
 msgid "Disconnected"
@@ -559,7 +559,7 @@ msgstr "通信遮断"
 
 #: gui/common/network.js:107
 msgid "Only the host can kick clients!"
-msgstr ""
+msgstr "クライアントを跳ね除ける (kick) ことができるのはホストだけです！"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
@@ -603,7 +603,7 @@ msgstr "とても難しい"
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
+msgstr[0] "%(min)s分"
 
 #: gui/common/settings.js:173
 msgctxt "ceasefire"
@@ -1064,7 +1064,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:719
 msgid "Loot:"
-msgstr ""
+msgstr "略奪"
 
 #: gui/credits/credits.js:69
 #, javascript-format
@@ -1335,7 +1335,7 @@ msgstr ""
 #: gui/replaymenu/replay_menu.js:272
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
-msgstr ""
+msgstr "プレイヤー数：%(numberOfPlayers)s"
 
 #: gui/replaymenu/replay_menu.js:299
 msgid "yyyy-MM-dd HH:mm"
@@ -1548,7 +1548,7 @@ msgstr "その他"
 
 #: gui/summary/layout.js:182
 msgid "Vegetarian ratio"
-msgstr ""
+msgstr "菜食率"
 
 #: gui/summary/layout.js:183
 msgid "Feminization"
@@ -1556,7 +1556,7 @@ msgstr "女性比率"
 
 #: gui/summary/layout.js:184
 msgid "Kill / Death ratio"
-msgstr ""
+msgstr "殺害 / 死亡比率"
 
 #: gui/summary/layout.js:185
 msgid "Map exploration"
@@ -1596,7 +1596,7 @@ msgstr ""
 
 #: gui/summary/summary.js:55
 msgid "Income"
-msgstr ""
+msgstr "収入"
 
 #: gui/summary/summary.js:60
 msgid "Captured"
@@ -1620,11 +1620,11 @@ msgstr ""
 
 #: gui/summary/summary.js:85
 msgid "Received"
-msgstr ""
+msgstr "受領"
 
 #: gui/summary/summary.js:90
 msgid "Sold"
-msgstr ""
+msgstr "売却"
 
 #: gui/summary/summary.js:95
 msgid "Outcome"
@@ -1636,7 +1636,7 @@ msgstr ""
 
 #: gui/summary/summary.js:395
 msgid "Current Scores"
-msgstr ""
+msgstr "現在の得点"
 
 #: gui/summary/summary.js:397
 msgid "Scores at the end of the game."
@@ -1644,23 +1644,23 @@ msgstr "ゲーム終了時の得点です。"
 
 #: gui/summary/summary.js:399
 msgid "You have been disconnected."
-msgstr ""
+msgstr "接続が切れました。"
 
 #: gui/summary/summary.js:401
 msgid "You have left the game."
-msgstr ""
+msgstr "ゲームを離れました。"
 
 #: gui/summary/summary.js:403
 msgid "You have won the battle!"
-msgstr ""
+msgstr "戦いに勝利しました！"
 
 #: gui/summary/summary.js:405
 msgid "You have been defeated..."
-msgstr ""
+msgstr "敗北しました..."
 
 #: gui/summary/summary.js:406
 msgid "You have abandoned the game."
-msgstr ""
+msgstr "ゲームを放棄しました。"
 
 #: gui/summary/summary.js:411
 #, javascript-format
@@ -1785,11 +1785,11 @@ msgstr "ロビー設定"
 
 #: gui/options/options.xml:(caption):75
 msgid "Chat Notification Settings"
-msgstr ""
+msgstr "チャット通知設定"
 
 #: gui/options/options.xml:(caption):87
 msgid "Reset"
-msgstr ""
+msgstr "リセット"
 
 #: gui/options/options.xml:(caption):92
 msgid "Revert"
@@ -1801,7 +1801,7 @@ msgstr "保存"
 
 #: gui/options/options.xml:(tooltip):88
 msgid "Resets user settings to their game default"
-msgstr ""
+msgstr "ユーザー設定をリセットしてデフォルトに戻す"
 
 #: gui/options/options.xml:(tooltip):93
 msgid "Reverts to previous saved settings"
@@ -1809,7 +1809,7 @@ msgstr ""
 
 #: gui/options/options.xml:(tooltip):98
 msgid "Saves changes"
-msgstr ""
+msgstr "変更を保存"
 
 #: gui/options/options.xml:(tooltip):103
 msgid "Unsaved changes affect this session only"
@@ -1827,7 +1827,7 @@ msgstr "自動で匿名のフィードバックを送り、バグの修正と性
 
 #: gui/pregame/mainmenu.xml:540
 msgid "Alpha XXII: Venustas"
-msgstr ""
+msgstr "Alpha XXII: Venustas"
 
 #: gui/pregame/mainmenu.xml:542
 msgid ""
@@ -1845,7 +1845,7 @@ msgstr "フィードバック\n無効化"
 
 #: gui/pregame/mainmenu.xml:(caption):157
 msgid "Tutorial"
-msgstr ""
+msgstr "チュートリアル"
 
 #: gui/pregame/mainmenu.xml:(caption):171
 #: gui/structree/structree.xml:(caption):18
@@ -1943,7 +1943,7 @@ msgstr " 0 A.D. ゲームマニュアルを開きます。"
 
 #: gui/pregame/mainmenu.xml:(tooltip):158
 msgid "Start the economic tutorial."
-msgstr ""
+msgstr "経済のチュートリアルを始める"
 
 #: gui/pregame/mainmenu.xml:(tooltip):172
 msgid "View the structure tree of civilizations featured in 0 A.D."
@@ -2137,16 +2137,16 @@ msgstr ""
 #: gui/savedgames/load.xml:(heading):44
 msgctxt "replay"
 msgid "Map Type"
-msgstr ""
+msgstr "マップの種類"
 
 #: gui/savedgames/load.xml:(heading):52
 msgctxt "replay"
 msgid "Description"
-msgstr ""
+msgstr "説明"
 
 #: gui/savedgames/load.xml:(caption):57
 msgid "No saved games found."
-msgstr ""
+msgstr "保存したゲームがありません"
 
 #: gui/savedgames/load.xml:(caption):71
 msgid "Load"
@@ -2154,7 +2154,7 @@ msgstr "読込み"
 
 #: gui/savedgames/load.xml:(caption):83
 msgid "Filter compatible saved games"
-msgstr ""
+msgstr "適合する保存されたゲームに絞り込む"
 
 #: gui/savedgames/load.xml:(caption):93
 msgid "Players:"
@@ -2213,7 +2213,7 @@ msgstr ""
 
 #: gui/summary/summary.xml:(caption):206
 msgid "Replay"
-msgstr ""
+msgstr "リプレイ"
 
 #: gui/summary/summary.xml:(caption):211
 msgid "Continue"
@@ -2547,7 +2547,7 @@ msgstr ""
 #: gui/options/options.jsongeneralSetting[13].parameters.list[2].label
 #: gui/options/options.jsongeneralSetting[14].parameters.list[2].label
 msgid "Disabled"
-msgstr ""
+msgstr "無効"
 
 #: gui/options/options.jsongeneralSetting[13].tooltip
 msgid ""
@@ -2770,11 +2770,11 @@ msgstr "降水"
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
-msgstr ""
+msgstr "OFF の場合は、可能な限り低い設定を使用して水面を描画します。 他の設定とは無関係です。"
 
 #: gui/options/options.jsongraphicsSetting[7].label
 msgid "Activate water effects"
-msgstr ""
+msgstr "水面効果を有効にする"
 
 #: gui/options/options.jsongraphicsSetting[8].tooltip
 msgid ""
@@ -2846,21 +2846,21 @@ msgstr "VSync"
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
-msgstr ""
+msgstr "CPU の負荷を抑えるため、すべてのメニューで描画頻度を制限します。制限を無効にするには、最大に設定します。"
 
 #: gui/options/options.jsongraphicsSetting[16].label
 msgid "FPS throttling in menus"
-msgstr ""
+msgstr "メニューのフレームレートを制限"
 
 #: gui/options/options.jsongraphicsSetting[17].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
-msgstr ""
+msgstr "CPU の負荷を抑えるため、ゲーム中の描画頻度を制限します。制限を無効にするには、最大に設定します。"
 
 #: gui/options/options.jsongraphicsSetting[17].label
 msgid "FPS throttling in games"
-msgstr ""
+msgstr "ゲームのフレームレートを制限"
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."

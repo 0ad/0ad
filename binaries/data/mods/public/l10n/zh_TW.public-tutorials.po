@@ -99,6 +99,9 @@ msgid ""
 "First, let's set a rally-point. Setting a rally point on a building that can train units will automatically designate a task to the new unit upon completion of training. We want to send the newly trained units to gather Wood on the group of trees to the south of the Civic Center. To do so, select the Civic Center by clicking on it and then right-click on one of the trees.\n"
 "Rally-Points are indicated by a small flag at the end of the blue line."
 msgstr ""
+"您所有的單位現在都在採集資源了。我們應該訓練更多單位！\n"
+"首先，來設定集結˙點吧。在建築物上設定集結點將會讓訓練完成的單位自動前往進行所指派的任務。我們想要將新訓練的單位派到城鎮中心以南的森林採集木頭。要這麼做，點選城鎮中心以選取它，並在其中一棵樹上以右鍵點選。\n"
+"集結點會以藍線終點的一個小棋子來標示。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:52
 msgid ""
@@ -111,6 +114,8 @@ msgid ""
 "Now that the rally-point is set, we can produce additional units and they will do their assigned task automatically.\n"
 "As Citizen Soldiers are better than Female Citizens for gathering Wood, select the Civic Center and shift-click on the second unit icon, the hoplites (shift-clicking produces a batch of five units). You can also train units individually by simply clicking, but training 5 units together takes less time than training 5 units individually."
 msgstr ""
+"現在集結點已經設定好了，我們可以生產額外的單位，並讓他們自動去做被指派的工作。\n"
+"民兵比女性市民更擅長採集木頭，選取城鎮中心並按住 Shift再點選第二個單位圖示，重裝步兵（按住 Shift 再點選可以生產一批五個的單位）。您也可以簡單地點選來單獨訓練每一個單位，但是一次訓練 5 個單位比分開訓練 5 的單位的時間還少。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:69
 #: maps/tutorials/starting_economy_walkthrough.js:111
@@ -126,6 +131,8 @@ msgid ""
 "Let's wait for the units to be trained.\n"
 "While waiting, direct your attention to the panel at the top of your screen. On the upper left, you will see your current resource supply (Food, Wood, Stone, and Metal). As each worker brings resources back to the Civic Center (or another dropsite), you will see the amount of the corresponding resource increase. This is a very important concept to keep in mind: gathered resources have to be brought back to a dropsite to be accounted, and you should always try to minimize the distance between resource and nearest dropsite to improve your gathering efficiency."
 msgstr ""
+"讓我們等候單位訓練出來。\n"
+"當等待時，將您的注意力轉移到您螢幕頂部的面板。在左上方，您可以看到您目前的資源儲備（食物、木頭、石頭與金屬）。每個工人都會回到城鎮中心（或是其他放置點）放置採集到的資源，您將會看到對應資源的數量增加。這是一個非常重要的概念，必須牢記：採集到的資源必須回到可以放置資源的地方，您應該減少資源與放置點的距離，以提高資源的採集效率。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:85
 msgid ""
@@ -133,6 +140,9 @@ msgid ""
 "But as they have to bring it back to the Civic Center to deposit it, their gathering efficiency suffers from the distance. To fix that, we can build a storehouse, a dropsite for Wood, Stone, and Metal, close to the trees. To do so, select your five newly trained Citizen Solders and look for the construction panel on the bottom right, click on the storehouse icon, move the mouse as close as possible to the trees you want to collect and click on a valid place to build the dropsite.\n"
 "Invalid (obstructed) positions will show the building preview overlay in red."
 msgstr ""
+"新訓練的單位自動到樹林邊並開始採集木頭。\n"
+"但是他們必須將其帶回至城鎮中心來放置它，因為距離太遠了，所以效率也隨之降低。要修復這件事，我們可以建造一棟倉庫，這是一個木頭、石頭與金屬的放置點。要這麼做，選取您新訓練出來的民兵，並在右下角找尋建造面板，在倉庫的圖示上點選，並在可用的空間中點選以建造放置點。\n"
+"無效（有障礙）的位置將會以紅色的建築物預覽覆蓋曾顯示。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:93
 msgid ""
@@ -157,12 +167,16 @@ msgid ""
 "Let's wait for the units to be trained.\n"
 "In the meantime, we seem to have enough workers gathering Wood. We should remove the current rally-point of the Civic Center away from gathering Wood. For that purpose, right-click on the Civic Center when it is selected (and the flag icon indicating the rally-point is crossed out)."
 msgstr ""
+"讓我們等候單位訓練出來。\n"
+"與此同時，我們已經有足夠的工人來採集木頭了。我們應該移除目前的從城鎮中心到木頭的集結點。為此，當城鎮中心被選取時，在其上以右鍵點選（然後指示集結點的旗子圖示就會被移除）。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:128
 msgid ""
 "The units should be ready soon.\n"
 "In the meantime, direct your attention to your population count on the top panel. It is the fifth item from the left, after the resources. It would be prudent to keep an eye on it. It indicates your current population (including those being trained) and the current population limit, which is determined by your built structures."
 msgstr ""
+"單位很快就會準備好了。\n"
+"與此同時，將您的注意力轉移到頂部面板的人口統計。它是從左邊數過來的第五項，就在資源之後。請謹慎觀察它，它指明了您目前的人口（包含了那些已經訓練出來的）以及目前的人口上限，其由您建造的建築物決定。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:135
 msgid ""
@@ -177,6 +191,8 @@ msgid ""
 "Select two of your newly trained Female Citizens and ask them to build these houses in the empty space to the east of the Civic Center. To do so, after selecting the Female Citizens, click on the house icon in the bottom right panel and shift-click on the position in the map where you want to build the first house followed by a shift-click on the position of the second house (when giving orders, shift-click put the order in the queue and the units will automatically switch to the next order in their queue when they finish their work). Press Escape to get rid of the house cursor so you don't spam houses all over the map.\n"
 "Reminder: to select only two Female Citizens, click on the first one and then shift-click on the second one to add her to the selection."
 msgstr ""
+"選取您新訓練的兩個女性市民並讓她們去城鎮中心東邊的空間建造這些房屋。要這麼做，先選取女性市民，並在右下角面板的房屋圖示上點選，並在地圖上您想要建慥第一間房屋的地方按  Shift 並點選，並在第二間房屋的位置上以同樣的方式如法炮製（當給予順序時，Shift 並點選將會給予佇列順序，單位將會在一個完成時切換到下一個）。按下 Esc 來擺脫房屋游標，這樣您才不會一直把房屋擺滿整張地圖。\n"
+"提醒：要選取兩個女性公民，先點選其中一個再 Shift 並點選另外一個以將她加入到選擇中。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:147
 msgid ""
@@ -192,12 +208,17 @@ msgid ""
 "We will need a decent chunk of space around the farmstead to build fields. In addition, we can see goats on the west side to further improve our food gathering efficiency should we ever decide to hunt them.\n"
 "If you try to select the three idle Female Citizens by selection rectangle them, there is a high chance that one additional gatherers are included in your selection rectangle. To prevent that, hold the 'i' key while grabing: only idle units are then selected. If during your selection you select the cavalry which may now be idle, you can remove it by pressing the control key while clicking on its corresponding portrait in the selection panel on the bottom."
 msgstr ""
+"選取三個剩下的（空閒）女性市民，並命令她們在城鎮中心以西的大開放區域中建造一座農場。\n"
+"我們在農場周圍將會需要一塊很大的地，這樣才有空間建造農田。此外，如果我們決定要狩獵的話，我們可以看到西邊的山羊將可以進一步改進我們的食物採集效率。\n"
+"如果您嘗試透過拉出矩形來選取三個空閒的女性市民，則您的選取中很可能會包含一個額外的採集者。為了避免這種狀況，在選取時按住 'i' 鍵：僅有空閒的單位會被選取。若您的選取中同時選取到了現在可能也是空閒中的騎兵，您可以在底部面板中在按下對應的小頭像時同時按下 Ctrl 鍵來移除他們。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:158
 msgid ""
 "When the farmstead construction is finished, its builders will automatically look for food, and in this case, they will go after the nearby goats.\n"
 "But your house builders will only look for something else to build and, if nothing found, become idle. Let's wait for them to build the houses."
 msgstr ""
+"當農場建築完成時，它的建築者將會自動開始採集食物，在這個例子中，她們將會去獵取附近的山羊。\n"
+"但是您建築房屋的工人就只會尋找其他建築物來建造，一直到沒有其他建築物可以建造為止，然後就會閒置。讓我們等待她們建造房屋。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:167
 msgid ""
@@ -222,6 +243,7 @@ msgid ""
 "sent by a rally-point will help building it, while they will gather it when "
 "built."
 msgstr ""
+"一塊農田最多可以容納五個農夫在其上工作。要加入更多採集者，選取城鎮中心並右鍵點選農田來設定集結點。只要農田還沒建造完成，被送到集結點的新工人就會協助建造它，然後她們就會在建造完成後開始採集。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:191
 msgid "Select the Civic Center and right-click on the field."
@@ -246,6 +268,8 @@ msgid ""
 "You can increase the gather rates of your workers by researching new technologies available in some buildings.\n"
 "The farming rate, for example, can be improved with a researchable technology in the farmstead. Select the farmstead and look at its production panel on the bottom right. You will see several researchable technologies. Hover the mouse over them to see their costs and effects and click on the one you want to research."
 msgstr ""
+"您可以透過在某些建築物中研發新科技來提升您的工人的採集速率。\n"
+"例如農田的採集速率，可以透過在農場中研發可研究的科技來改進。選取農場，並在右下角查看其生產面板。您將會看到數種可研究的技術，將游標懸停其上以查看其成本與效果，然後點選您想要研究的科技。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:226
 msgid ""
@@ -253,6 +277,9 @@ msgid ""
 "We now have enough resources, but one structure is missing. Although this is an economic tutorial, it is nonetheless useful to be prepared for defense in case of attack, so let's build barracks.\n"
 "Select four of your soldiers and ask them to build a barracks: as before, start selecting the soldiers, click on the barracks icon in the production panel and then lay down a foundation not far from your Civic Center where you want to build."
 msgstr ""
+"我們需要開始準備進階到「鄉鎮階段」，其將會解鎖更多的單位與建築物。選取城鎮中心並將滑鼠游標懸停在「鄉鎮階段」的圖示上來檢視還需要哪些東西。\n"
+"我們現在有足夠的資源了，但是還缺一棟建築物。雖然這是經濟教學，為了面對可能的攻擊，我們仍然需要蓋一棟軍營來做準備。\n"
+"選取您的四個士兵，並讓他們去建造軍營：就像之前一樣，先選取士兵，再點選在生產面板上的軍營圖示，並將其基地放在離您的城鎮中心不遠的地方來建造。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:235
 msgid ""
@@ -262,6 +289,7 @@ msgid ""
 " on it (you should see a hammer icon), and then produce two more builders by"
 " clicking on the hoplite icon twice."
 msgstr ""
+"讓我們等候軍營建造完成。由於這個建造時間會比較久一點，您可以增加兩名士兵來加快建造速度。為此，選取您的城鎮中心，並在軍營的基地上右鍵點選（您應該會看到鎚子的圖示）來設定集結點，然後在重裝步兵的圖示上點選兩次來生產兩個建造者。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:243
 msgid ""
@@ -276,12 +304,16 @@ msgid ""
 "In later phases, you need usually Stone and Metal to build bigger structures and train better soldiers. Hence, while waiting for the research to be done, you will send half of your idle Citizen Soldiers (who have finished building the Barracks) to gather Stone and the other half to gather Metal.\n"
 "To do so, we could select three Citizen Soldiers and right-click on the Stone mine on the west of the Civic Center (a Stone cursor is shown when you hover the mouse over it while your soldiers are selected). However, these soldiers were gathering Wood, so they may still carry some Wood which would be lost when starting to gather another resource."
 msgstr ""
+"在後面的階段中，您常會需要石頭與金屬來建造更大的建築物，並訓練更好的士兵。因此，在等待工作完成時，您將會需要送出一半的閒置民兵（已經完成軍營）採集石頭，另一半採集金屬。\n"
+"要這麼做，我們可以選取三個民兵，並在城鎮中心西邊的石頭礦脈上右鍵點選（當您選好您的士兵，並將滑鼠游標懸停在其上時，其將會顯示石頭圖示的游標）。然而，這些士兵正在採集木頭，所以他們在開始採集另一種資源時就會讓原本在採集的木頭遺失。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:254
 msgid ""
 "Thus, we should order them to deposit their Wood in the Civic Center along the way. To do so, we will queue orders with shift-click: select your soldiers, shift-right-click on the Civic Center to deposit their Wood and then shift-right-click on the Stone mine to gather it.\n"
 "Perform a similar order queue with the remaining soldiers and the Metal mine in the west."
 msgstr ""
+"因此，我們應該命令他們在路上將木頭放到城鎮中心。要這麼做，我們將按照 Shift + 點擊來排列順序：選取您的士兵，在城鎮中心上 Shift + 右鍵點選來讓他們放置木頭，並在石頭礦脈上 Shift + 右鍵點選以讓他們採集它。\n"
+"對剩下的士兵與西邊的金屬礦脈執行相同的命令佇列。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:273
 msgid ""
@@ -294,7 +326,7 @@ msgid ""
 "This map will give a rough guide for starting the game effectively.  Early "
 "in the game the most important thing is to gather resources as fast as "
 "possible so you are able to build enough troops later."
-msgstr ""
+msgstr "這張地圖對於如何有效率的開始遊戲會有個概略性的說明。在遊戲的前期，最重要的事情就是盡可能快速的採集資源，這樣您才能在之後建造足夠的軍隊。"
 
 #: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
 msgid "Player 1"

@@ -5,14 +5,14 @@
 # Translators:
 # Nicolas Auvray <na.itms76@gmail.com>, 2017
 # Omar Anwar <omaraglan91@yahoo.com>, 2017
-# Rayan <nitro361@gmail.com>, 2015
+# nitro361 <nitro361@gmail.com>, 2015
 # صفا الفليج <safaalfulaij@hotmail.com>, 2015-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-06-14 15:46+0000\n"
-"Last-Translator: Omar Anwar <omaraglan91@yahoo.com>\n"
+"PO-Revision-Date: 2017-07-21 17:19+0000\n"
+"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +25,7 @@ msgstr ""
 msgid ""
 "I am starting a massive military campaign against %(_player_)s, come and "
 "join me."
-msgstr "أنا أبدأ حملة عسكريّة ضخمة ضدّ %(_player_)s، تعال وانضمّ معي."
+msgstr "أنا أبدأ حملة عسكريّة ضخمة ضدّ %(_player_)s، تعال انضمّ معي."
 
 #: simulation/ai/petra/chatHelper.js:7
 #, javascript-format
@@ -52,7 +52,7 @@ msgstr "دعنى أجمع جيشي وأنا سوف انضم إليك ضد %(_pla
 #: simulation/ai/petra/chatHelper.js:18
 #, javascript-format
 msgid "I am finishing preparations to attack %(_player_)s."
-msgstr "أنا أنهى تجهيزاتى للهجوم على  %(_player_)s."
+msgstr "أنا أُنهي التّجهيزات لمهاجمة %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:21
 #, javascript-format
@@ -66,7 +66,7 @@ msgstr "أعتذر، لا أملك ما يكفي من الجنود حاليًّ�
 msgid ""
 "Sorry, I still need to strengthen my army. However, I will attack "
 "%(_player_)s next."
-msgstr "أسف، انا ما زلت بحاجة لتقوية جيشى. على اية حال، انا سوف اهجم على  %(_player_)s تالياً."
+msgstr "أعتذر، ما زلت بحاجة إلى تقوية جيشي. بأيّ حال، سأهاجم %(_player_)s بعد ذلك."
 
 #: simulation/ai/petra/chatHelper.js:25
 #, javascript-format
@@ -78,7 +78,7 @@ msgstr "لا يمكنني مساعدتك بهجومك ضدّ %(_player_)s حال
 #: simulation/ai/petra/chatHelper.js:30
 #, javascript-format
 msgid "Here is a gift for you, %(_player_)s. Make good use of it."
-msgstr "هذه هدية لك،  %(_player_)s. استخدمها جيدأ."
+msgstr "هاك هديّة لك يا %(_player_)s. أحسِن استخدامها."
 
 #: simulation/ai/petra/chatHelper.js:31
 #, javascript-format
@@ -108,7 +108,7 @@ msgstr "انا سوف اساعدك اكثر فعالية فى جهد الحرب 
 #, javascript-format
 msgid ""
 "If you can spare me some %(resource)s, I will be able to strengthen my army."
-msgstr "اذا امكنك الاستغناء عن بعض  %(resource)s، انا سوف استطيع تقوية جيشى."
+msgstr "إن أعرتني بعض %(resource)s، سأتمكّن من تقوية جيشي."
 
 #: simulation/ai/petra/chatHelper.js:42
 #, javascript-format
@@ -132,7 +132,7 @@ msgstr "أصبحنا أنا و%(_player_)s حلفاء الآن."
 #: simulation/ai/petra/chatHelper.js:51
 #, javascript-format
 msgid "%(_player_)s and I are now neutral."
-msgstr "%(_player_)s وأنا الآن محايدا معى."
+msgstr "%(_player_)s"
 
 #: simulation/ai/petra/chatHelper.js:54
 #, javascript-format
@@ -149,19 +149,19 @@ msgstr "لا يمكنني قبول عرضك لنكون حلفاء يا %(_player
 msgid ""
 "I will not be your ally, %(_player_)s. However, I will consider a neutrality"
 " pact."
-msgstr "انا لن اكون حليفك،  %(_player_)s. على اية حال، انا سوف اخذ فى الحسبان حياديتها."
+msgstr "لن أكون حليفك يا %(_player_)s. بأيّ حال، سأعتبر ذلك ميثاق حياد."
 
 #: simulation/ai/petra/chatHelper.js:65
 #, javascript-format
 msgid ""
 "I reject your request for alliance, %(_player_)s, but we could become "
 "neutral."
-msgstr "انا رفضت طلبك لكى نكون حلفاء،  %(_player_)s، لكن يمكننا ان نكون حياديين."
+msgstr "أرفض طلبك لتحالفنا يا %(_player_)s، لكن يمكن أن نكون على الحياد."
 
 #: simulation/ai/petra/chatHelper.js:66
 #, javascript-format
 msgid "%(_player_)s, only a neutrality agreement is conceivable to me."
-msgstr "%(_player_)s، فقط اتفاق حيادي يمكن تصوره."
+msgstr "يا %(_player_)s، ما أتصوّره هو اتّفاق حياد فقط لا غير."
 
 #: simulation/ai/petra/chatHelper.js:69
 #, javascript-format
@@ -189,19 +189,19 @@ msgstr "طلبك السّلام لم يعد يعني لي شيئًا بعد ال
 #, javascript-format
 msgid ""
 "My answer to your repeated peace proposal will remain war, %(_player_)s!"
-msgstr "جوابى لطلبك المتواصل للاتفاق السلام سوف يبقى الحرب،  %(_player_)s!"
+msgstr "جوابي لطلبك المتواصل لعرض السّلام سيكون الحرب لا غير يا %(_player_)s!"
 
 #: simulation/ai/petra/chatHelper.js:76
 #, javascript-format
 msgid ""
 "I will accept your offer to become allies, %(_player_)s. We will both "
 "benefit from this partnership."
-msgstr "انا سوف أقبل طلبك لكي نصبح حلفاء،  %(_player_)s. نحن الاثنيين سوف نستفيد من هذا التعاون."
+msgstr "سأقبل عرضك لنكون حلفاء يا %(_player_)s. سينتفع كلانا من هذه الشّراكة."
 
 #: simulation/ai/petra/chatHelper.js:77
 #, javascript-format
 msgid "An alliance between us is a good idea, %(_player_)s."
-msgstr "تحالف بيننا هى فكرة جيدة،  %(_player_)s."
+msgstr "التّحالف بيننا فكرة جيّدة يا %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:78
 #, javascript-format
@@ -212,47 +212,47 @@ msgstr "دع كلاً من شعبنا يزدهر من هذا السلام،  %(_
 #: simulation/ai/petra/chatHelper.js:79
 #, javascript-format
 msgid "We have found common ground, %(_player_)s. I accept the alliance."
-msgstr "لقد  ارضية مشتركة مشتركة، %(_player_)s. أنا أقبل التحالف."
+msgstr "لقد وجدنا أرضيّة مشتركة يا  %(_player_)s. أقبل التّحالف."
 
 #: simulation/ai/petra/chatHelper.js:80
 #, javascript-format
 msgid "%(_player_)s, consider us allies from now on."
-msgstr "%(_player_)s، اعتبرنا متحالفين من الان."
+msgstr "اعتبرنا حلفاء من الآن فصاعدًا يا %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:83
 #, javascript-format
 msgid ""
 "I will ally with you, %(_player_)s, but only if you send me a tribute of "
 "%(_amount_)s %(_resource_)s."
-msgstr "انا سوف اتحالف معك،  %(_player_)s، لكن فقط اذا ارسلت لى ضريبة بـ %(_amount_)s %(_resource_)s."
+msgstr "سأتحالف معك يا %(_player_)s، ولكن فقط إن أرسلت إليّ %(_amount_)s من %(_resource_)s كجزية."
 
 #: simulation/ai/petra/chatHelper.js:84
 #, javascript-format
 msgid ""
 "%(_player_)s, you must send me a tribute of %(_amount_)s %(_resource_)s "
 "before I accept an alliance with you."
-msgstr "%(_player_)s، يجب عليك ان ترسل لى ضريبة بـ  %(_amount_)s %(_resource_)s قبل أن أقبل التحالف معك."
+msgstr "يا %(_player_)s، عليك إرسال جزية %(_amount_)s من %(_resource_)s قبل أن أقبل التّحالف معك."
 
 #: simulation/ai/petra/chatHelper.js:85
 #, javascript-format
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
 " %(_player_)s,"
-msgstr "ما لم ترسل لى  %(_amount_)s %(_resource_)s، التحالف لا يمن انشائة،  %(_player_)s،"
+msgstr "إن لم ترسل إليّ %(_amount_)s من %(_resource_)s، لن يتشكّل أيّ تحالف يا %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:88
 #, javascript-format
 msgid ""
 "%(_player_)s, my offer still stands. I will ally with you only if you send "
 "me a tribute of %(_amount_)s %(_resource_)s."
-msgstr "%(_player_)s، عرضى ما زال موجودا. أنا سوف أتحالف معك فقط اذا ارسلت لى جزية بـ %(_amount_)s %(_resource_)s."
+msgstr "ما زال عرضي قائمًا يا %(_player_)s. سأتحالف معك فقط إن أرسلت إليّ %(_amount_)s من %(_resource_)s كجزية."
 
 #: simulation/ai/petra/chatHelper.js:89
 #, javascript-format
 msgid ""
 "I’m still waiting for %(_amount_)s %(_resource_)s before accepting your "
 "alliance, %(_player_)s."
-msgstr "أنا ما زلت أنتظر  %(_amount_)s %(_resource_)s، قبل قبول التحالف معك، %(_player_)s."
+msgstr "ما زلت أنتظر %(_amount_)s من %(_resource_)s قبل قبول عرض التّحالف يا %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:90 simulation/ai/petra/chatHelper.js:111
 #, javascript-format
@@ -264,7 +264,7 @@ msgstr "%(_player_)s، إذا لم ترسل لى جزء من  %(_amount_)s %(_re
 #: simulation/ai/petra/chatHelper.js:95
 #, javascript-format
 msgid "I will not become neutral with you, %(_player_)s."
-msgstr "انا لن اكون حياديا معك، %(_player_)s."
+msgstr "لن أصبح على الحياد معك يا %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:96
 #, javascript-format
@@ -276,7 +276,7 @@ msgstr "%(_player_)s، أنا يجب أن أرفض عرضك للحيادية."
 msgid ""
 "Our previous neutrality agreement ended in failure, %(_player_)s; I will not"
 " consider another one."
-msgstr "وثيقة الحيادية السابقة انتهت بالفشل،  %(_player_)s; انا لن افعل واحدة أخرى. "
+msgstr "اتّقاق الحياد السّابق انتهى بالفشل يا %(_player_)s، لن أفكّر بإبرام غيره."
 
 #: simulation/ai/petra/chatHelper.js:102
 #, javascript-format
@@ -348,7 +348,7 @@ msgstr "%(_player_)s، سوف يكون من مصلحتنا إذا تفواضنا
 #: simulation/ai/petra/chatHelper.js:132
 #, javascript-format
 msgid "%(_player_)s, I have decided to revoke my offer for a neutrality pact."
-msgstr "%(_player_)s، لقد قررت أن أسحب عرضي لإتفاقية الحياد."
+msgstr "يا %(_player_)s، قرّرت سحب عرضي لنصبح على الحياد."
 
 #: simulation/ai/petra/chatHelper.js:133
 #, javascript-format
@@ -569,7 +569,7 @@ msgstr "في هذه النقطة أنت تستطيع إستخدام كلامن �
 msgid ""
 "From this point you have a good base to build an army and wipe out the "
 "opposition."
-msgstr "أنت تمتلك الآن أساسًا جيّدًا لبناء جيش ومسح خصومك عن الوجود."
+msgstr "أنت تمتلك الآن أساسًا جيّدًا لبناء جيش ومسح خصمك عن الوجود."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:233
 msgid "The key points to remember are:"
@@ -859,12 +859,12 @@ msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
 msgid_plural ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
-msgstr[0] "%(name)s بعيد جداً عن %(category)s, يجب أن يكون في حدود %(distance)s متر"
-msgstr[1] "%(name)s بعيد جداً عن %(category)s, يجب أن يكون في حدود %(distance)s متر"
-msgstr[2] "%(name)s بعيد جداً عن %(category)s, يجب أن يكون في حدود %(distance)s متر"
-msgstr[3] "%(name)s بعيد جداً عن %(category)s, يجب أن يكون في حدود %(distance)s متر"
-msgstr[4] "%(name)s بعيد جداً عن %(category)s, يجب أن يكون في حدود %(distance)s متر"
-msgstr[5] "%(name)s بعيد جداً عن %(category)s, يجب أن يكون في حدود %(distance)s متر"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
@@ -986,7 +986,7 @@ msgstr "لا يمكن تطوير كيان فى ثكنة."
 #: simulation/helpers/Commands.js:750
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
-msgstr "تم طلب الهجوم على  %(_player_)s."
+msgstr "طُلب الهجوم على %(_player_)s."
 
 #: simulation/helpers/Commands.js:783
 msgid "There are no bribable units"
@@ -1096,7 +1096,7 @@ msgstr "إحتلال الأثار"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid "Defeat all opponents to win."
-msgstr "اهزم كل الخصوم لكى تفوز."
+msgstr "اهزم كلّ الخصوم لتفوز."
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
@@ -1112,7 +1112,7 @@ msgstr "إحتلال المبانى"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
 msgid "Kill all enemy units to win."
-msgstr "اقتل كل جنود الاعداء لكى تفوز."
+msgstr "اقتل كلّ وحدات الأعداء لتفوز."
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
@@ -1120,7 +1120,7 @@ msgstr "قتل الجنود"
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Description
 msgid "Defeat opponents by killing their hero."
-msgstr "اهزم الخصوم بقتل الملك الخاص بهم."
+msgstr "اهزم الخصوم بقتل أشاوسهم."
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Title
 msgid "Regicide"
@@ -1130,7 +1130,7 @@ msgstr "قتل الملك"
 msgid ""
 "Be the first to build or capture a wonder and keep it for a certain time to "
 "win the game."
-msgstr "كُن أوّل من يبني أو يسيطر على عجيبة وأبقها عندك لبعض الوقت لتربح اللعبة."
+msgstr "كُن أوّل من يبني أو يسيطر على عجيبة وأبقها عندك لوقت محدّد لتفوز باللعبة."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
@@ -1168,45 +1168,45 @@ msgstr "قتال الموت"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Name
 msgid "Tiny"
-msgstr "دقيق"
+msgstr "ضئيلة"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Tooltip
 msgid "This map size has barely any room for even the most basic resources."
-msgstr "حجم الخريطة لديه بالكاد مساحة حتي للموارد الأساسية."
+msgstr "مقاس الخريطة هذه يكفي بالكاد للموارد الأساسيّة حتّى."
 
 #: simulation/data/settings/map_sizes.jsonData[1].Name
 msgid "Small"
-msgstr "صغير"
+msgstr "صغيرة"
 
 #: simulation/data/settings/map_sizes.jsonData[1].Tooltip
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
 "quickly while still having some room to expand."
-msgstr "الخرائط الصغيرة جيدة للعب 1 ضد 1، حيث يمكن للاعبين الوصول إلي العدو بسرعة في حين أن هناك مساحة كافية للتوسع."
+msgstr "الخرائط الصّغيرة مناسبة لمبارزات الواحد ضدّ الواحد، حيث يمكن للاعبين الوصول إلى أعدائهم بسرعة كما ووجود مساحات كافية للتّوسّع."
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Medium"
-msgstr "متوسط"
+msgstr "متوسّطة"
 
 #: simulation/data/settings/map_sizes.jsonData[2].Tooltip
 msgid ""
 "Medium-sized maps provide plenty of space for two players, but even eight "
 "players fit."
-msgstr "الخرائط المتوسطة الحجم توفر الكثير من المساحة لللاعبين فقط، لكن حتى ثمانية لاعبين يمكنهم اللعب."
+msgstr "الخرائط متوسّطة المقاس توفّر مساحات شاسعة للاعبين إثنين، ولكنّها تكفي لثمانية لاعبين أيضًا."
 
 #: simulation/data/settings/map_sizes.jsonData[3].Name
 msgid "Normal"
-msgstr "عادي"
+msgstr "عاديّة"
 
 #: simulation/data/settings/map_sizes.jsonData[3].Tooltip
 msgid ""
 "This is the ideal mapsize for 4 to 8 players, because there is plenty of "
 "space to expand while the neighbors are quickly reachable."
-msgstr ""
+msgstr "هذا هو مقاس الخريطة الأمثل لأربع إلى ثمان لاعبين، وذلك بسبب وجود مساحات كافية للتّوسّع كما وإمكانيّة الوصول بسرعة إلى الجيران."
 
 #: simulation/data/settings/map_sizes.jsonData[4].Name
 msgid "Large"
-msgstr "كبير"
+msgstr "كبيرة"
 
 #: simulation/data/settings/map_sizes.jsonData[4].Tooltip
 msgid ""
@@ -1216,18 +1216,18 @@ msgstr ""
 
 #: simulation/data/settings/map_sizes.jsonData[5].Name
 msgid "Very Large"
-msgstr "كبير جداً"
+msgstr "كبيرة جدًّا"
 
 #: simulation/data/settings/map_sizes.jsonData[5].Tooltip
 #: simulation/data/settings/map_sizes.jsonData[6].Tooltip
 msgid ""
 "Very large maps are not recommended as it takes very long to reach the enemy"
 " and the game performance can be reduced."
-msgstr "خرائط كبيرة جداً ليست مُفضلة بسبب الوقت الطويل للوصول إلي الأعداء كما أن السرعة والأداء للعبة قد يهبط."
+msgstr "الخرائط الضّخمة جدًّا غير مستحسنة إذ أنّ الوقت اللازم للوصول إلى العدوّ طويل جدًّا كما أن أداء اللعبة قد يقلّ."
 
 #: simulation/data/settings/map_sizes.jsonData[6].Name
 msgid "Giant"
-msgstr "ضخم"
+msgstr "ضخمة"
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"

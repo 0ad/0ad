@@ -16,12 +16,13 @@
 # SuroX <peter.surovcik@gmail.com>, 2016
 # Peter Tuharsky <peter.tuharsky@gmail.com>, 2015-2016
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
+# Angen <slavomir.slovenkai@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:01+0200\n"
-"PO-Revision-Date: 2017-06-05 14:30+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-07-29 06:19+0000\n"
+"Last-Translator: Angen <slavomir.slovenkai@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -281,7 +282,7 @@ msgstr "Pozastavené hráčmi %(players)s"
 #: gui/session/menu.js:1105 gui/session/messages.js:679
 msgctxt "Separator for a list of players"
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/session/menu.js:1118 gui/session/menu.xml:(caption):17
 msgid "Manual"
@@ -489,7 +490,7 @@ msgstr "%(player)s odteraz voči %(player2)s neutrálny."
 
 #: gui/session/messages.js:569
 msgid "Click to quit this tutorial."
-msgstr ""
+msgstr "Klikni pre ukončenie tutoriálu"
 
 #: gui/session/messages.js:570
 msgid "Quit"
@@ -501,12 +502,12 @@ msgstr ""
 
 #: gui/session/messages.js:578
 msgid "Follow the instructions."
-msgstr ""
+msgstr "Nasleduj inštrukcie."
 
 #: gui/session/messages.js:668
 msgctxt "Separator for a list of client loading messages"
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/session/messages.js:674
 #, javascript-format
@@ -887,7 +888,7 @@ msgstr ""
 #: gui/session/selection_panels.js:802
 msgctxt "Separator for a list of entity counts"
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/session/selection_panels.js:1111
 #, javascript-format
@@ -1279,7 +1280,7 @@ msgstr "Zrušiť"
 #: gui/session/chat_window.xml:(caption):95
 msgctxt "chat"
 msgid "History"
-msgstr ""
+msgstr "História"
 
 #: gui/session/chat_window.xml:(caption):100
 msgid "Send"

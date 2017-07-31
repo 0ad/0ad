@@ -6,11 +6,12 @@
 # Asakura, 2015,2017
 # Kanetaka Suto, 2014-2016
 # llen_llen, 2016
+# red hare <www3@hotmail.co.jp>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-07-02 08:05+0000\n"
+"PO-Revision-Date: 2017-07-20 02:20+0000\n"
 "Last-Translator: Asakura\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +26,7 @@ msgid ""
 "health, 1 extra armor level of every type, 20% extra attack for melee units,"
 " 4m extra range and 5% better precision for ranged units, faster movement "
 "speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "上級クラスに訓練されたユニットは、20％の追加の耐久力、あらゆるタイプの +1 追加装甲レベル、近接ユニットの20％の追加攻撃、遠隔ユニットのための4mの範囲増加と5%の精度向上、より速い移動速度、 治療者のための範囲を得ます。"
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -675,7 +676,7 @@ msgstr "戦意は勝利への鍵です。"
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
 msgid ""
 "Inspire your troops with higher pay. All land and naval army +25% attack."
-msgstr "高い報酬を与えて兵士たちの戦意を高揚させます。すべての陸軍と海軍の攻撃力が25%上がります。"
+msgstr "高い報酬を与えて兵士たちの戦意を高揚させます。すべての陸軍と海軍の攻撃力が+25%上がります。"
 
 #: simulation/data/technologies/attack_soldiers_will.jsongenericName
 msgid "Will to fight"
@@ -805,7 +806,7 @@ msgstr "中立地帯の前哨地の寿命が2倍になります。"
 
 #: simulation/data/technologies/decay_outpost.jsontooltip
 msgid "Territory decay rate -50% for outposts."
-msgstr ""
+msgstr "前哨基地の領地の減少率は50％です。"
 
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
@@ -1300,7 +1301,7 @@ msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Citizen soldiers max "
 "health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr ""
+msgstr "都市の段階へ進むとより多様な建物やユニットが利用可能になります。町の中心の領地半径はさらに 50%増加します。市民兵士の最大耐久力が 10% 上昇します。すべての建物に駐屯時の修復率が9増加します。 "
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -1331,7 +1332,7 @@ msgid ""
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
 "health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr ""
+msgstr "都市の段階へ進むとより多様な建物やユニットが利用可能になります。町の中心の領地半径はさらに50%増加します。「フクロウ銀貨」文明ボーナスによって、全労働者の金属採掘速度がさらに10%上昇します。市民兵士の最大耐久力が +10% 上昇します。すべての建物に駐屯時の修復率が9増加します。 "
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1375,7 +1376,7 @@ msgid ""
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers. Citizen soldiers max health "
 "increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr ""
+msgstr "都市の段階へ進むとより多様な建物やユニットが利用可能になります。町の中心の領地半径はさらに30%増加します。「フクロウ銀貨」文明ボーナスによって、全労働者の金属採掘速度がさらに10%上昇します。市民兵士の最大耐久力が +20% 上昇します。すべての建物に駐屯時の修復率が7増加します。 "
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1478,7 +1479,7 @@ msgstr "奇観はあなたの文明に多くの人々を惹きつけます。"
 msgid ""
 "Enable Glorious Expansion. Further increase the population limit by 40 per "
 "Wonder owned."
-msgstr ""
+msgstr "威信の伝播を有効にします。１象徴あたり人口上限が40増加します。"
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
@@ -1606,7 +1607,7 @@ msgstr "騎兵の走行訓練"
 
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
-msgstr ""
+msgstr "人々を監視するために情報提供組織を招集してください。"
 
 #: simulation/data/technologies/spy_counter.jsontooltip
 msgid "Make your units 50% more expensive to bribe."
@@ -1792,7 +1793,7 @@ msgstr "同盟の回収施設を使用できます。"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsongenericName
 msgid "Diaspora"
-msgstr ""
+msgstr "ディアスポラ"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsonrequirementsTooltip
 msgid "Requires 3 Traders"

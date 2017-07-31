@@ -14,7 +14,7 @@
 # Simple88, 2016
 # v00d00911 <agroworker@mail.ru>, 2014
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2015
-# Vladislav Belov <vladislavbelovdev@gmail.com>, 2016
+# Vladislav Belov <vladislavbelovdev@gmail.com>, 2016-2017
 # Woratiklis, 2015
 # Алексей72 <Alteza.72ru@mail.ru>, 2014
 # Николай Авдеев <nickkolok@mail.ru>, 2016
@@ -23,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:02+0200\n"
-"PO-Revision-Date: 2017-06-05 15:23+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-07-18 11:29+0000\n"
+"Last-Translator: Vladislav Belov <vladislavbelovdev@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -90,12 +90,12 @@ msgstr ""
 
 #: gui/lobby/lobby.js:185
 msgid "You are now a moderator."
-msgstr ""
+msgstr "Вы теперь модератор."
 
 #: gui/lobby/lobby.js:186
 #, javascript-format
 msgid "%(nick)s is now a moderator."
-msgstr ""
+msgstr "%(nick)s теперь модератор."
 
 #: gui/lobby/lobby.js:189
 msgid "You have been unmuted."
@@ -108,7 +108,7 @@ msgstr ""
 
 #: gui/lobby/lobby.js:192
 msgid "You are not a moderator anymore."
-msgstr ""
+msgstr "Вы больше не модератор."
 
 #: gui/lobby/lobby.js:193
 #, javascript-format
@@ -138,11 +138,11 @@ msgstr ""
 
 #: gui/lobby/lobby.js:284
 msgid "Show this help."
-msgstr ""
+msgstr "Показать эту подсказку."
 
 #: gui/lobby/lobby.js:287
 msgid "Chat commands:"
-msgstr ""
+msgstr "Команды чата:"
 
 #. Translation: Chat command help format
 #: gui/lobby/lobby.js:291
@@ -162,7 +162,7 @@ msgstr ""
 
 #: gui/lobby/lobby.js:312
 msgid "Clear all chat scrollback."
-msgstr ""
+msgstr "Очистить окно чата."
 
 #: gui/lobby/lobby.js:319
 msgid "Return to the main menu."
@@ -289,7 +289,7 @@ msgstr "Команда '%(cmd)s' не поддерживается."
 #: gui/lobby/lobby.js:1189
 #, javascript-format
 msgid "The command '%(cmd)s' is restricted to moderators."
-msgstr ""
+msgstr "Команда '%(cmd)s' только для модераторов."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
 #: gui/lobby/lobby.js:1260
@@ -484,7 +484,7 @@ msgstr "Главное меню"
 
 #: gui/lobby/lobby.xml:(caption):261
 msgid "Show only open games"
-msgstr ""
+msgstr "Показывать только открытые игры"
 
 #: gui/lobby/lobby.xml:(caption):313 gui/lobby/lobby.xml:(caption):375
 msgid "Back"

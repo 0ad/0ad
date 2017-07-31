@@ -21,6 +21,7 @@
 # ridergr <ridergr@gmail.com>, 2014
 # Savoritias <inactive+Savoritias@transifex.com>, 2014
 # Sotiris K <sotok42@gmail.com>, 2015
+# Steven Gikas <stevengk123@gmail.com>, 2017
 # Vasilis Drosos <basilisd@gmail.com>, 2016-2017
 # XTos <christos.kyratzis@gmail.com>, 2014
 # Yiannis Fistikis <jfistikis@mailinator.com>, 2013
@@ -31,8 +32,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:01+0200\n"
-"PO-Revision-Date: 2017-06-06 11:45+0000\n"
-"Last-Translator: Aristomahos Nikiforakis <barbounism@gmail.com>\n"
+"PO-Revision-Date: 2017-07-26 21:32+0000\n"
+"Last-Translator: Steven Gikas <stevengk123@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -65,7 +66,7 @@ msgstr "Τα ορυχεία στο Λαύριο της Αττικής παρεί
 msgid ""
 "Constructing a Theatron increases the territory expanse of all buildings by "
 "+20%."
-msgstr "Κατασκευάζοντας ένα Θέατρο αυξάνεται +20% η επέκταση περιοχής για όλα τα κτίρια."
+msgstr "Με την κατασκευή ενός Θεάτρου αυξάνεται κατά +20% η επέκταση περιοχής για όλα τα κτίρια."
 
 #: simulation/data/civs/athen.jsonCivBonuses[1].Name
 #: simulation/data/civs/mace.jsonCivBonuses[2].Name
@@ -162,7 +163,7 @@ msgstr "Δημοσθένης"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[0].Description
 msgid "Athenian triremes can train Marines (Epibastes Athenaikos)."
-msgstr "Οι Αθηναϊκές τρηίρεις μπορούν να εκπαιδεύσουν ναύτες (Επιβαστές Αθηναϊκοί)"
+msgstr "Οι Αθηναϊκές τριήρεις μπορούν να εκπαιδεύσουν Ναυτικούς (Αθηναϊκός Επιβαστής)"
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[0].Name
 msgid "Iphicratean Reforms"
@@ -190,7 +191,7 @@ msgstr "Τα Μακρά Τείχη της Αθήνας κατασκευάστη�
 msgid ""
 "The player gains the ability to order spear-armed troops into Phalanx "
 "formation, providing greater attack and armor."
-msgstr "Ο παίχτης κερδίζει την ικανότητα να διατάζει τους οπλισμένους με δόρυ στρατιώτες του να δημιουργήσουν φάλαγγα, παρέχοντας καλύτερη επίθεση και θωράκιση."
+msgstr "Ο παίχτης αποκτάει την ικανότητα να διατάζει τους οπλισμένους με δόρυ στρατιώτες του να δημιουργήσουν Φάλαγγα, παρέχοντας καλύτερη επίθεση και θωράκιση."
 
 #: simulation/data/civs/athen.jsonFactions[0].Technologies[2].Name
 #: simulation/data/civs/spart.jsonCivBonuses[0].Name
@@ -257,7 +258,7 @@ msgid ""
 "Greek theatres were places where the immortal tragedies of Aeschylus, "
 "Sophocles and many other talented dramatists were staged to the delight of "
 "the populace. They were instrumental in enriching Hellenic culture."
-msgstr "Τα Ελλανικά θέατρα ήταν τα μέρη όπου οι αιώνιες τραγωδίες του Αισχύλου, του Σοφοκλή και πολλών άλλων ταλαντούχων τραγικών παρουσιάζονταν προς τέρψην του κοινού. Ήταν τα όργανα του εμπλουτισμού της Ελληνικής κουλτούρας. "
+msgstr "Τα Ελληνικά θέατρα ήταν τα μέρη όπου οι αιώνιες τραγωδίες του Αισχύλου, του Σοφοκλή και πολλών άλλων ταλαντούχων τραγικών παρουσιάζονταν προς την ευχαρίστηση του κοινού. Ήταν τα όργανα του εμπλουτισμού της Ελληνικής κουλτούρας. "
 
 #: simulation/data/civs/athen.jsonStructures[1].Name
 msgid "Gymnasion"
@@ -272,7 +273,7 @@ msgstr "Εκπαιδεύστε πρωταθλητές και ανακαλύψτ�
 msgid ""
 "The Gymnasion was a vital place in Hellenic cities, where physical exercises"
 " were performed and social contacts established."
-msgstr "Το Γυμνάσιο ήταν ένα ζωτικό μέρος των Ελληνικών πόλεων, όπου εκτός από τη σωματική άσκηση εδραιώνονταν και κοινονικές επαφές."
+msgstr "Το Γυμνάσιο ήταν ένα ζωτικό μέρος των Ελληνικών πόλεων, όπου εκτός από τη σωματική άσκηση εδραιώνονταν και κοινωνικές επαφές."
 
 #: simulation/data/civs/athen.jsonStructures[2].Name
 msgid "Prytaneion"
@@ -286,7 +287,7 @@ msgstr "Εκπαιδεύστε ήρωες και ανακαλύψτε τεχνο
 msgid ""
 "The Prytaneion is the meeting place for the city elders to dine and to make "
 "swift decisions."
-msgstr "Η Πρυτανεία είναι το μέρος όπου οι πρεσβύτεροι συγκεντρώνονται για να δειπνίσουν και να λάβουν σημαντικές αποφάσεις."
+msgstr "Το Πρυτανείον είναι το μέρος όπου οι πρεσβύτεροι συγκεντρώνονται για να δειπνίσουν και να λάβουν σημαντικές αποφάσεις."
 
 #: simulation/data/civs/athen.jsonHistory
 msgid ""
@@ -294,7 +295,7 @@ msgid ""
 "Athens was famed as a center for the arts, learning and philosophy. The "
 "Athenians were also powerful warriors, particularly at sea. At its peak, "
 "Athens dominated a large part of the Hellenic world for several decades."
-msgstr "Εκτός από λίκνο του Δυτικού πολιτισμού και γενέτειρα της δημοκρατίας, η Αθήνα ήταν ξακουστή σαν κέντρο τεχνών, μάθησης και φιλοσοφίας. Επίσης οι Αθηναίοι ήταν ισχυροί πολεμιστές, ειδικά στη θάλασσα. Στη ακμή της, η Αθήνα κυριάρχησε σε ένα μεγάλο κομμάτι του Ελληνικού κόσμου για αρκετές δεκαετίες."
+msgstr "Ως το λίκνο του Δυτικού πολιτισμού και γενέτειρα της δημοκρατίας, η Αθήνα ήταν ξακουστή σαν κέντρο τεχνών, μάθησης και φιλοσοφίας. Επίσης οι Αθηναίοι ήταν ισχυροί πολεμιστές, ειδικά στη θάλασσα. Στη ακμή της, η Αθήνα κυριάρχησε σε ένα μεγάλο κομμάτι του Ελληνικού κόσμου για αρκετές δεκαετίες."
 
 #: simulation/data/civs/brit.jsonName
 #: simulation/data/civs/brit.jsonFactions[0].Name
