@@ -794,7 +794,7 @@ void XmppClient::handleMUCParticipantPresence(glooxwrapper::MUCRoom*, const gloo
 		}
 		else
 		{
-			DbgXMPP(nick << " left the room (flags " << flags << participant.flags << ")");
+			DbgXMPP(nick << " left the room (flags " << participant.flags << ")");
 			CreateGUIMessage("chat", "leave", nick);
 		}
 
