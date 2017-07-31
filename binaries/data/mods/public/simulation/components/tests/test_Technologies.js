@@ -508,3 +508,76 @@ template.requirements = {
 TS_ASSERT_UNEVAL_EQUALS(DeriveTechnologyRequirements(template, "civA"), [{ "techs": ["tech1"] }]);
 TS_ASSERT_UNEVAL_EQUALS(DeriveTechnologyRequirements(template, "civC"), [{ "techs": ["tech2"] }]);
 TS_ASSERT_UNEVAL_EQUALS(DeriveTechnologyRequirements(template, "civD"), false);
+
+// Test DeriveModificationsFromTech
+template = {
+	"modifications": [{
+		"value": "ResourceGatherer/Rates/food.grain",
+		"multiply": 15,
+		"affects": "Spearman Swordman"
+	},
+	{
+		"value": "ResourceGatherer/Rates/food.meat",
+		"multiply": 10
+	}],
+	"affects": ["Female", "CitizenSoldier Melee"]
+};
+let techMods = {
+	"ResourceGatherer/Rates/food.grain": [{
+		"affects": [
+			["Female", "Spearman", "Swordman"],
+			["CitizenSoldier", "Melee", "Spearman", "Swordman"]
+		],
+		"multiply": 15
+	}],
+	"ResourceGatherer/Rates/food.meat": [{
+		"affects": [
+			["Female"],
+			["CitizenSoldier", "Melee"]
+		],
+		"multiply": 10
+	}]
+};
+TS_ASSERT_UNEVAL_EQUALS(DeriveModificationsFromTech(template), techMods);
+
+template = {
+	"modifications": [{
+		"value": "ResourceGatherer/Rates/food.grain",
+		"multiply": 15,
+		"affects": "Spearman"
+	},
+	{
+		"value": "ResourceGatherer/Rates/food.grain",
+		"multiply": 15,
+		"affects": "Swordman"
+	},
+	{
+		"value": "ResourceGatherer/Rates/food.meat",
+		"multiply": 10
+	}],
+	"affects": ["Female", "CitizenSoldier Melee"]
+};
+techMods = {
+	"ResourceGatherer/Rates/food.grain": [{
+		"affects": [
+			["Female", "Spearman"],
+			["CitizenSoldier", "Melee", "Spearman"]
+		],
+		"multiply": 15
+	},
+	{
+		"affects": [
+			["Female", "Swordman"],
+			["CitizenSoldier", "Melee", "Swordman"]
+		],
+		"multiply": 15
+	}],
+	"ResourceGatherer/Rates/food.meat": [{
+		"affects": [
+			["Female"],
+			["CitizenSoldier", "Melee"]
+		],
+		"multiply": 10
+	}]
+};
+TS_ASSERT_UNEVAL_EQUALS(DeriveModificationsFromTech(template), techMods);
