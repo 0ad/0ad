@@ -8,8 +8,12 @@
 	<include>common/sprites.xml</include>
 	<include>common/styles.xml</include>
 
-	<include>structree/styles.xml</include>
-	<include>structree/sprites.xml</include>
-	<include>structree/structree.xml</include>
-	<include>structree/setup.xml</include>
+	<include>reference/common/sprites.xml</include>
+	<include>reference/common/styles.xml</include>
+
+	<include>reference/structree/sprites.xml</include>
+	<include>reference/structree/styles.xml</include>
+	<include>reference/structree/structree.xml</include>
+
+	<include>reference/common/setup.xml</include>
 </page>

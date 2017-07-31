@@ -1,32 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <styles>
 	<style name="TreeDisplay"
-		sprite="ModernDarkBoxGold"
 		scrollbar="true"
 		scrollbar_style="ModernScrollBar"
+		sprite="ModernDarkBoxGold"
 	/>
 
 	<style name="StructNameSpecific"
-		textcolor="white"
 		font="sans-12"
-		text_align="center"
 		size="8 0 100%-8 20"
+		text_align="center"
+		textcolor="white"
 	/>
 
 	<style name="StructBox"
-		sprite="ModernDarkBoxGold"
 		size="4 4 68 68+16"
+		sprite="ModernDarkBoxGold"
 	/>
 
 	<style name="StructIcon"
 		size="50%-24 8+16 50%+24 8+16+48"
-		tooltip_style="treeTooltip"
+		tooltip_style="referenceTooltip"
 	/>
 
 	<style name="ProdBox"
 		size="0 0 20 20"
 		sprite="stretched:pregame/shell/logo/wfg_logo_white.png"
-		tooltip_style="treeTooltip"
+		tooltip_style="referenceTooltip"
 	/>
 </styles>

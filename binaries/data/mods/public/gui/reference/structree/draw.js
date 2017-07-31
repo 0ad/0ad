@@ -1,24 +1,3 @@
-var g_DrawLimits = {}; // GUI limits. Populated by predraw()
-
-var g_TooltipFunctions = [
-	getEntityNamesFormatted,
-	getEntityCostTooltip,
-	getEntityTooltip,
-	getAurasTooltip,
-	getHealthTooltip,
-	getHealerTooltip,
-	getAttackTooltip,
-	getSplashDamageTooltip,
-	getArmorTooltip,
-	getGarrisonTooltip,
-	getProjectilesTooltip,
-	getSpeedTooltip,
-	getGatherTooltip,
-	getPopulationBonusTooltip,
-	getResourceTrickleTooltip,
-	getLootTooltip
-];
-
 /**
  * Draw the structree
  *
@@ -65,7 +44,7 @@ function draw()
 				"stretched:session/portraits/"+stru.icon;
 
 			Engine.GetGUIObjectByName("phase["+i+"]_struct["+s+"]_icon").tooltip =
-				assembleTooltip(stru);
+				buildText(stru, g_TooltipFunctions);
 
 			Engine.GetGUIObjectByName("phase["+i+"]_struct["+s+"]_name").caption =
 				translate(stru.name.specific);
@@ -151,7 +130,6 @@ function draw()
 
 		hideRemaining("phase["+i+"]", s);
 
-		let offset = getPositionOffset(i);
 		// Resize phase bars
 		for (let j = 1; j < phaseList.length - i; ++j)
 		{
@@ -176,7 +154,7 @@ function draw()
 
 		trainer = g_ParsedData.units[trainer];
 		Engine.GetGUIObjectByName("trainer["+t+"]_icon").sprite = "stretched:session/portraits/"+trainer.icon;
-		Engine.GetGUIObjectByName("trainer["+t+"]_icon").tooltip = assembleTooltip(trainer);
+		Engine.GetGUIObjectByName("trainer["+t+"]_icon").tooltip = buildText(trainer, g_TooltipFunctions);
 		Engine.GetGUIObjectByName("trainer["+t+"]_name").caption = translate(trainer.name.specific);
 		thisEle.hidden = false;
 
@@ -232,31 +210,48 @@ function draw()
 	size.right = t > 0 ? -124 : -4;
 	Engine.GetGUIObjectByName("display_tree").size = size;
 
-	Engine.GetGUIObjectByName("display_trainers").hidden = t == 0;
+	Engine.GetGUIObjectByName("display_trainers").hidden = t === 0;
 }
 
-function drawProdIcon(pha, s, r, p, prod)
+/**
+ * Draws production icons.
+ *
+ * These are the small icons on the gray bars.
+ *
+ * @param {string} phase - The phase that the parent entity (the entity that
+ *                         builds/trains/researches this entity) belongs to.
+ * @param {number} parentID - Which parent entity it belongs to on the main phase rows.
+ * @param {number} rowID - Which production row of the parent entity the production
+ *                         icon sits on, if applicable.
+ * @param {number} iconID - Which production icon to affect.
+ * @param {object} template - The entity being produced.
+ * @return {boolean} True is successfully drawn, False if no space left to draw.
+ */
+function drawProdIcon(phase, parentID, rowID, iconID, template)
 {
-	let prodEle = Engine.GetGUIObjectByName("phase["+pha+"]_struct["+s+"]_row["+r+"]_prod["+p+"]");
+	let prodEle = Engine.GetGUIObjectByName("phase["+phase+"]_struct["+parentID+"]_row["+rowID+"]_prod["+iconID+"]");
 
-	if (pha === null)
-		prodEle = Engine.GetGUIObjectByName("trainer["+s+"]_prod["+p+"]");
+	if (phase === null)
+		prodEle = Engine.GetGUIObjectByName("trainer["+parentID+"]_prod["+iconID+"]");
 
 	if (prodEle === undefined)
 	{
-		error("The "+(pha === null ? "trainer units" : "structures") + " of \"" + g_SelectedCiv +
+		error("The " + (phase === null ? "trainer units" : "structures") + " of \"" + g_SelectedCiv +
 		      "\" have more production icons than can be supported by the current GUI layout");
 		return false;
 	}
 
-	prodEle.sprite = "stretched:session/portraits/"+prod.icon;
-	prodEle.tooltip = assembleTooltip(prod);
+	prodEle.sprite = "stretched:session/portraits/"+template.icon;
+	prodEle.tooltip = buildText(template, g_TooltipFunctions);
 	prodEle.hidden = false;
 	return true;
 }
 
 /**
  * Calculate row position offset (accounting for different number of prod rows per phase).
+ *
+ * @param {number} idx
+ * @return {number}
  */
 function getPositionOffset(idx)
 {
@@ -270,7 +265,7 @@ function getPositionOffset(idx)
 
 /**
  * Positions certain elements that only need to be positioned once
- * (as <repeat> does not reposition automatically).
+ * (as <repeat> does not position automatically).
  *
  * Also detects limits on what the GUI can display by iterating through the set
  * elements of the GUI. These limits are then used by draw().
@@ -336,8 +331,8 @@ function predraw()
 			}
 
 			// Hide unused struct rows
-			for (let j = phaseCount - i; j < phaseCount; ++j)
-				Engine.GetGUIObjectByName("phase["+i+"]_struct["+s+"]_row["+j+"]").hidden = true;
+			for (let r = phaseCount - i; r < phaseCount; ++r)
+				Engine.GetGUIObjectByName("phase["+i+"]_struct["+s+"]_row["+r+"]").hidden = true;
 
 			let size = ele.size;
 			size.bottom += Object.keys(g_DrawLimits[pha].prodQuant).length*24;
@@ -376,7 +371,7 @@ function predraw()
 			p++;
 			prodEle = Engine.GetGUIObjectByName("trainer["+t+"]_prod["+p+"]");
 		} while (prodEle !== undefined);
-		Engine.GetGUIObjectByName("trainer["+t+"]_row").size = "4 100%-24"+" 100%-4 100%";
+		Engine.GetGUIObjectByName("trainer["+t+"]_row").size = "4 100%-24 100%-4 100%";
 		g_DrawLimits.trainer.prodQuant = p;
 
 		let size = ele.size;
@@ -393,17 +388,6 @@ function predraw()
 	g_DrawLimits.trainer.trainerQuant = t;
 }
 
-/**
- * Assemble a tooltip text
- *
- * @param  template Information about a Unit, a Structure or a Technology
- * @return  The tooltip text, formatted.
- */
-function assembleTooltip(template)
-{
-	return g_TooltipFunctions.map(func => func(template)).filter(tip => tip).join("\n");
-}
-
 function drawPhaseIcons()
 {
 	for (let i = 0; i < g_ParsedData.phaseList.length; ++i)
@@ -415,6 +399,10 @@ function drawPhaseIcons()
 	}
 }
 
+/**
+ * @param {string} guiObjectName
+ * @param {number} phaseIndex
+ */
 function drawPhaseIcon(guiObjectName, phaseIndex)
 {
 	let phaseName = g_ParsedData.phaseList[phaseIndex];

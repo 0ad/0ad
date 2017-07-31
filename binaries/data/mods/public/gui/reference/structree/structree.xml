@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <objects>
 	<script file="gui/common/functions_civinfo.js"/>
 	<script file="gui/common/functions_global_object.js"/>
 	<script file="gui/common/functions_utility.js"/>
 	<script file="gui/common/tooltips.js"/>
-	<script file="gui/structree/structree.js"/>
-	<script file="gui/structree/draw.js"/>
-	<script file="gui/structree/helper.js"/>
-	<script file="gui/structree/load.js"/>
+	<script directory="gui/reference/common/"/>
+	<script file="gui/reference/structree/structree.js"/>
+	<script file="gui/reference/structree/draw.js"/>
 
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" z="0" sprite="BackgroundTranslucent"/>
@@ -80,7 +78,7 @@
 			</object>
 
 			<object type="image" name="tree_display" style="TreeDisplay" size="48+16+8 0 100%-12 100%">
-				<include file="gui/structree/rows.xml"/>
+				<include file="gui/reference/structree/rows.xml"/>
 			</object>
 		</object>
 
@@ -98,7 +96,7 @@
 			</object>
 
 			<object type="image" style="TreeDisplay" size="0 24 100% 100%" name="trainers">
-				<repeat count="3" var="t">
+				<repeat count="6" var="t">
 					<object type="image" style="StructBox" name="trainer[t]">
 						<object type="text" style="StructNameSpecific" name="trainer[t]_name"/>
 						<object type="image" style="StructIcon" name="trainer[t]_icon"
@@ -122,7 +120,7 @@
 			hotkey="cancel"
 		>
 			<translatableAttribute id="caption">Close</translatableAttribute>
-			<action on="Press">closeStrucTree();</action>
+			<action on="Press">closePage();</action>
 		</object>
 
 	</object>
