@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -53,10 +53,7 @@ void CTerritoryTexture::DeleteTexture()
 bool CTerritoryTexture::UpdateDirty()
 {
 	CmpPtr<ICmpTerritoryManager> cmpTerritoryManager(m_Simulation, SYSTEM_ENTITY);
-	if (!cmpTerritoryManager)
-		return false;
-
-	return cmpTerritoryManager->NeedUpdate(&m_DirtyID);
+	return cmpTerritoryManager && cmpTerritoryManager->NeedUpdate(&m_DirtyID);
 }
 
 void CTerritoryTexture::BindTexture(int unit)
@@ -156,16 +153,12 @@ void CTerritoryTexture::RecomputeTexture(int unit)
 
 	PROFILE("recompute territory texture");
 
-	std::vector<u8> bitmap;
-	bitmap.resize(m_MapSize * m_MapSize * 4);
-
 	CmpPtr<ICmpTerritoryManager> cmpTerritoryManager(m_Simulation, SYSTEM_ENTITY);
 	if (!cmpTerritoryManager)
 		return;
 
-	const Grid<u8> territories = cmpTerritoryManager->GetTerritoryGrid();
-
-	GenerateBitmap(territories, &bitmap[0], m_MapSize, m_MapSize);
+	std::vector<u8> bitmap(m_MapSize * m_MapSize * 4);
+	GenerateBitmap(cmpTerritoryManager->GetTerritoryGrid(), &bitmap[0], m_MapSize, m_MapSize);
 
 	g_Renderer.BindTexture(unit, m_Texture);
 	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_MapSize, m_MapSize, GL_RGBA, GL_UNSIGNED_BYTE, &bitmap[0]);
