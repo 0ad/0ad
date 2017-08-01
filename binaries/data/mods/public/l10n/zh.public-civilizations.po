@@ -20,13 +20,13 @@
 # hiahoo lee (leaber) <zodiac8765@gmail.com>, 2014
 # 吴善俊 <sjwuny@126.com>, 2014
 # 李武军 <lwj7863439@gmail.com>, 2017
-# 艳伟 车 <313049312@qq.com>, 2016
+# 艳伟 车 <313049312@qq.com>, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:01+0200\n"
-"PO-Revision-Date: 2017-07-06 07:33+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-07-23 10:44+0000\n"
+"Last-Translator: rentt777 <35974380@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -208,7 +208,7 @@ msgid ""
 "Aegean, thereby laying the foundations of future Athenian power. However, he"
 " was eventually ostracised by the Athenians and forced to flee to the "
 "protection of the Persians."
-msgstr ""
+msgstr "地米斯托克利是古希腊杰出的政治家、军事家。他在雅典政坛上极力主张发展海军，劝说雅典人把他们从银矿的收入投资建造200艘三层桨座之战船。这一举措竟成了取得波斯战争胜利的关键。在公元前479年萨拉米湾海战，他指挥雅典海军，将大约六百艘波斯军舰诱入雅典外的萨拉米湾，然后予以一举歼灭。萨拉米湾海战以后，他的个人声望和权力达到顶峰。但是，雅典人害怕出现一个军事独裁者，结果他被放逐，十年内不许回到雅典。但之后有人得到他私通波斯的证据，于是雅典政府在整个希腊通缉他，他因此逃往波斯帝国寻求庇护。"
 
 #: simulation/data/civs/athen.jsonFactions[0].Heroes[1].History
 msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
@@ -572,7 +572,7 @@ msgstr "与伊比利亚半岛不同，北非被称为马国，能够每年生产
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
 msgid "10% bonus of trade profit for allies' international routes."
-msgstr ""
+msgstr "所有盟友间的贸易路线 奖励+10%的利润。"
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -779,7 +779,7 @@ msgstr "高卢人"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
 msgid "-10% research time for technologies of allies."
-msgstr ""
+msgstr "-10%的盟友技术研究时间。"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druidic Wisdom"
@@ -789,17 +789,17 @@ msgstr "德鲁伊智慧"
 msgid ""
 "The Druids of the Gauls maintained an organized religion that advanced the "
 "technology of their people even during wartime."
-msgstr ""
+msgstr "凯尔特人的德鲁伊维持的宗教组织，即使在战时也推动着先进的技术进步。"
 
 #: simulation/data/civs/gaul.jsonAINames[0]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
 msgid "Viridomarus"
-msgstr ""
+msgstr "鲁斯"
 
 #: simulation/data/civs/gaul.jsonAINames[1]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[1].Name
 msgid "Brennus"
-msgstr ""
+msgstr "布伦努斯"
 
 #: simulation/data/civs/gaul.jsonAINames[2]
 msgid "Cativolcus"
@@ -812,7 +812,7 @@ msgstr "Cingetorix"
 #: simulation/data/civs/gaul.jsonAINames[4]
 #: simulation/data/civs/gaul.jsonFactions[0].Heroes[2].Name
 msgid "Vercingetorix"
-msgstr ""
+msgstr "韦辛格托里克斯"
 
 #: simulation/data/civs/gaul.jsonAINames[5]
 msgid "Divico"
@@ -1626,7 +1626,7 @@ msgstr "由于阿契美尼德帝国的庞大规模及其组织结构，波斯人
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
 msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr ""
+msgstr "所有盟友的陆路商人收入 +15%。"
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"

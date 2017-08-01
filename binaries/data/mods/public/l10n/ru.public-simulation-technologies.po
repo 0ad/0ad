@@ -23,6 +23,7 @@
 # micha030201 <micha030201@gmail.com>, 2014
 # micha030201 <micha030201@gmail.com>, 2014
 # Prince Moth <princemoth@rambler.ru>, 2016
+# Roman M. Yagodin <roman.yagodin@gmail.com>, 2017
 # Rudeboy1988 <sheva-gitara@mail.ru>, 2014
 # Simple88, 2016
 # Rudeboy1988 <sheva-gitara@mail.ru>, 2014
@@ -42,8 +43,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-07-08 22:20+0000\n"
-"Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
+"PO-Revision-Date: 2017-07-19 06:09+0000\n"
+"Last-Translator: Roman M. Yagodin <roman.yagodin@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -753,7 +754,7 @@ msgstr "Зубчатые стены с бойницами увеличивают
 msgid ""
 "Install crenellations and murder holes to have 40% more arrows fired per "
 "garrisoned soldier."
-msgstr "Соорудите зубцы и горизонтальные бойницы, чтобы на 40% увеличить количество выпускаемых стрел солдатами гарнизона."
+msgstr "Установите зубцы и дыры-убийцы, чтобы на 40% увеличить количество выпускаемых стрел солдатами гарнизона."
 
 #: simulation/data/technologies/attack_tower_crenellations.jsongenericName
 msgid "Crenellations"
@@ -773,7 +774,7 @@ msgstr "Крепкий фундамент"
 
 #: simulation/data/technologies/attack_tower_murderholes.jsondescription
 msgid "Murder holes allow hitting enemies at the foot of the tower."
-msgstr "Бойницы позволяют поражать врагов у подножья башни."
+msgstr "Дыры-убийцы позволяют поражать врагов у подножья башни."
 
 #: simulation/data/technologies/attack_tower_murderholes.jsontooltip
 msgid "Removes defense tower minimum range."
@@ -781,7 +782,7 @@ msgstr "Убирает минимальный радиус атаки оборо
 
 #: simulation/data/technologies/attack_tower_murderholes.jsongenericName
 msgid "Murder Holes"
-msgstr "Бойницы"
+msgstr "Дыры-убийцы"
 
 #: simulation/data/technologies/attack_tower_range.jsondescription
 msgid "Arrow shooters increase the maximum range of the fire arrows."
@@ -1729,7 +1730,7 @@ msgstr "Объявление призыва новобранцев в кавал
 #: simulation/data/technologies/training_levy_cavalry.jsontooltip
 msgid ""
 "All cavalry -20% train time, but also -10 health. Unlocks Conscription."
-msgstr "Время обучения всей конницы снижается на -20%, но при этом уменьшается на -10 здоровье. Доступно при открытии \"Воинская повинность\"."
+msgstr "-20% ко времени обучения всей конницы, но также -10 к здоровью. Открывает \"Воинская повинность\"."
 
 #: simulation/data/technologies/training_levy_cavalry.jsongenericName
 #: simulation/data/technologies/persians/training_levy_cavalry.jsongenericName
@@ -1746,7 +1747,7 @@ msgstr "Объявление призыва новобранцев в пехот
 #: simulation/data/technologies/training_levy_infantry.jsontooltip
 msgid ""
 "All infantry -10% train time, but also -5 health. Unlocks Conscription."
-msgstr "Время обучения всей пехоты снижается на -10%, но при этом уменьшается на -5 здоровье. Доступно при открытии \"Воинская повинность\"."
+msgstr "-10% ко времени обучения всей пехоты, но также -5 к здоровью. Открывает \"Воинская повинность\"."
 
 #: simulation/data/technologies/training_levy_infantry.jsongenericName
 #: simulation/data/technologies/persians/training_levy_infantry.jsongenericName
@@ -2532,13 +2533,13 @@ msgstr "Призыв пехотинцев"
 msgid ""
 "All cavalry -20% train time, but also -5% health. Unlocks Cavalry "
 "Conscription."
-msgstr ""
+msgstr "-20% ко времени обучения всей конницы,  но также -5% к здоровью. Открывает \"Призыв конников\"."
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
 msgid ""
 "All infantry -20% train time, but also -5% health. Unlocks Infantry "
 "Conscription."
-msgstr ""
+msgstr "-20% ко времени обучения всей пехоты, но также -5% к здоровью. Открывает \"Призыв пехотинцев\"."
 
 #: simulation/data/technologies/romans/decay_logistics.jsondescription
 msgid "The Romans were masters of the logistics of warfare."

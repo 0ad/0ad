@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:02+0200\n"
-"PO-Revision-Date: 2017-07-09 09:39+0000\n"
+"PO-Revision-Date: 2017-07-30 09:56+0000\n"
 "Last-Translator: Asakura\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -50,7 +50,7 @@ msgstr "プレイヤー"
 
 #: gui/lobby/lobby.js:54
 msgid "Muted Player"
-msgstr ""
+msgstr "ミュートされたプレイヤー"
 
 #: gui/lobby/lobby.js:138
 msgid "Disconnected."
@@ -68,12 +68,12 @@ msgstr "%(nick)sが退出しました。"
 
 #: gui/lobby/lobby.js:181
 msgid "You have been muted."
-msgstr "あなたは無視されました (mute)"
+msgstr "あなたはミュートされました。"
 
 #: gui/lobby/lobby.js:182
 #, javascript-format
 msgid "%(nick)s has been muted."
-msgstr "%(nick)sは無視されました。"
+msgstr "%(nick)sはミュートされました。"
 
 #: gui/lobby/lobby.js:185
 msgid "You are now a moderator."
@@ -86,12 +86,12 @@ msgstr "%(nick)sは現在モデレーターです。"
 
 #: gui/lobby/lobby.js:189
 msgid "You have been unmuted."
-msgstr "あなたは無視されました (mute)"
+msgstr "あなたはミュートされました。"
 
 #: gui/lobby/lobby.js:190
 #, javascript-format
 msgid "%(nick)s has been unmuted."
-msgstr ""
+msgstr "%(nick)sは復帰しました(unmuted)。"
 
 #: gui/lobby/lobby.js:192
 msgid "You are not a moderator anymore."
@@ -100,7 +100,7 @@ msgstr "あなたはもうモデレーターではありません。"
 #: gui/lobby/lobby.js:193
 #, javascript-format
 msgid "%(nick)s is not a moderator anymore."
-msgstr ""
+msgstr "%(nick)sはもうモデレーターではありません。"
 
 #: gui/lobby/lobby.js:209
 #, javascript-format
@@ -129,13 +129,13 @@ msgstr "このヘルプを表示します。"
 
 #: gui/lobby/lobby.js:287
 msgid "Chat commands:"
-msgstr ""
+msgstr "チャットコマンド:"
 
 #. Translation: Chat command help format
 #: gui/lobby/lobby.js:291
 #, javascript-format
 msgid "%(command)s - %(description)s"
-msgstr ""
+msgstr "%(command)s - %(description)s"
 
 #: gui/lobby/lobby.js:304
 msgid "Send a chat message about yourself. Example: /me goes swimming."
@@ -174,13 +174,13 @@ msgstr "不問"
 #, javascript-format
 msgctxt "gamelist filter"
 msgid "> %(rating)s"
-msgstr ""
+msgstr "> %(rating)s"
 
 #: gui/lobby/lobby.js:407
 #, javascript-format
 msgctxt "gamelist filter"
 msgid "< %(rating)s"
-msgstr ""
+msgstr "< %(rating)s"
 
 #: gui/lobby/lobby.js:480
 msgid "You have been banned from the lobby!"
@@ -193,18 +193,18 @@ msgstr "あなたはロビーから跳ね除けられました (kick)"
 #: gui/lobby/lobby.js:483
 #, javascript-format
 msgid "%(nick)s has been banned from the lobby."
-msgstr ""
+msgstr "%(nick)sはロビーから締め出されました (ban)"
 
 #: gui/lobby/lobby.js:484
 #, javascript-format
 msgid "%(nick)s has been kicked from the lobby."
-msgstr ""
+msgstr "%(nick)sはロビーから跳ね除けられました (kick)"
 
 #: gui/lobby/lobby.js:487
 #, javascript-format
 msgctxt "lobby kick"
 msgid "Reason: %(reason)s"
-msgstr ""
+msgstr "理由: %(reason)s"
 
 #: gui/lobby/lobby.js:512
 msgid "BANNED"
@@ -230,13 +230,13 @@ msgstr "N/A"
 #: gui/lobby/lobby.js:783
 #, javascript-format
 msgid "Player \"%(nick)s\" not found."
-msgstr ""
+msgstr "プレイヤー \"%(nick)s\" が見つかりません."
 
 #. Translation: %(time)s is the hour and minute here.
 #: gui/lobby/lobby.js:998
 #, javascript-format
 msgid "Game started at %(time)s"
-msgstr ""
+msgstr "ゲームは%(time)sに開始します"
 
 #: gui/lobby/lobby.js:999 gui/lobby/lobby.js:1353
 msgid "HH:mm"
@@ -253,15 +253,15 @@ msgstr "ゲームはすでに始まっています。観戦者として参加し
 
 #: gui/lobby/lobby.js:1046
 msgid "Confirmation"
-msgstr ""
+msgstr "確認"
 
 #: gui/lobby/lobby.js:1047
 msgid "No"
-msgstr ""
+msgstr "いいえ"
 
 #: gui/lobby/lobby.js:1047
 msgid "Yes"
-msgstr ""
+msgstr "はい"
 
 #: gui/lobby/lobby.js:1079
 #, javascript-format
@@ -312,11 +312,11 @@ msgstr "== %(message)s"
 #, javascript-format
 msgctxt "lobby private message"
 msgid "(%(private)s) <%(sender)s>"
-msgstr ""
+msgstr "(%(private)s) <%(sender)s>"
 
 #: gui/lobby/lobby.js:1317
 msgid "Private"
-msgstr ""
+msgstr "プライベート"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).

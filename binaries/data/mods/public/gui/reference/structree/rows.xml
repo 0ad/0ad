@@ -3,7 +3,7 @@
 <object name="phase_rows">
 	<repeat count="4" var="k">
 		<object name="phase[k]">
-			<repeat count="12" var="s">
+			<repeat count="20" var="s">
 				<object type="image" style="StructBox" name="phase[k]_struct[s]">
 					<object type="text" style="StructNameSpecific" name="phase[k]_struct[s]_name"/>
 					<object type="image" style="StructIcon" name="phase[k]_struct[s]_icon"

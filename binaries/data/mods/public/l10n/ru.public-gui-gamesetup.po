@@ -43,7 +43,8 @@
 # Pavel Kyzmin <Virus191288@gmail.com>, 2013
 # Павел Монахов <mpolr21@gmail.com>, 2014
 # Prince Moth <princemoth@rambler.ru>, 2016
-# sad2shade <sad.2.shade@gmail.com>, 2014
+# Roman M. Yagodin <roman.yagodin@gmail.com>, 2017
+# Константин <sad.2.shade@gmail.com>, 2014
 # Simple88, 2014
 # Simple88, 2014
 # sorrymak <dearalcher@gmail.com>, 2013
@@ -74,8 +75,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:05+0200\n"
-"PO-Revision-Date: 2017-07-12 21:12+0000\n"
-"Last-Translator: MIKHAIL DOMCHENKOV <agplastictown@yandex.ru>\n"
+"PO-Revision-Date: 2017-07-28 12:11+0000\n"
+"Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -282,7 +283,7 @@ msgstr "Выберите предел населения."
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr ""
+msgstr "Внимание: Возможны проблемы с производительностью в случае, если каждый из %(players)s игроков достигнет населения %(popCap)s."
 
 #: gui/gamesetup/gamesetup.js:523
 msgid "Starting Resources"
@@ -1477,7 +1478,7 @@ msgstr "\"Выс­шим зако­ном да будет бла­го наро�
 msgid ""
 "\"Endless money forms the sinews of war.\" - Marcus Tullius Cicero "
 "(\"Philippics\", Philippica V., sec. 5)"
-msgstr ""
+msgstr "\"Деньги - нерв войны.\" - Марк Туллий Цицерон (\"Филиппики\", V филиппика, разд. 5)"
 
 #: gui/text/quotes.txt:124
 msgid ""
@@ -1516,7 +1517,7 @@ msgstr ""
 msgid ""
 "\"Whom the Gods love dies young.\" - Menander (\"The Double Deceiver\", "
 "fragment 4)"
-msgstr ""
+msgstr "\"Богов любимцы умирают юными.\" - Менандр (\"Двойной обман\", фрагмент 4)"
 
 #: gui/text/quotes.txt:130
 msgid "\"I call a fig a fig, a spade a spade.\" - Menander (fragment 545 K)"
@@ -1773,14 +1774,14 @@ msgid ""
 "Africanus in his epitaph, after he who defeated Hannibal was repeatedly "
 "accused of crimes by the Roman Senate (Valerius Maximus, \"Nine books on "
 "memorable deeds and sayings\", 5.3.2)"
-msgstr ""
+msgstr "\"Неблагодарная отчизна, у тебя нет даже моих костей!\" - слова Сципиона Африканского, по его приказу выгравированные на его могильной плите после того, как его, одержавшего победу над Ганнибалом, Сенат постоянно обвинял в преступлениях (Валерий Максим, \"Девять книг примечательных поступков и изречений\", 5.3.2)"
 
 #: gui/text/quotes.txt:162
 msgid ""
 "\"Prepare for war, since you have been unable to endure a peace.\" - Scipio "
 "Africanus, replying to Hannibal's offer of peace terms before the Battle of "
 "Zama (Livius, \"Ab Urbe Condita\", XXX. 31)"
-msgstr ""
+msgstr "\"Готовь­тесь к войне, ибо вы не в силах пере­но­сить мир.\" - ответ Сципиона Африканского Ганнибалу на его мирное предложение перед битвой при Заме (Тит Ливий \"История Рима от основания города\", книга XXX. 31)"
 
 #: gui/text/quotes.txt:163
 msgid ""
@@ -1839,13 +1840,13 @@ msgstr "\"Он так отстро­ил город, что по пра­ву г
 
 #: gui/text/quotes.txt:170
 msgid "\"Moderation in all things.\" - Terence (\"The Girl from Andros\", 61)"
-msgstr ""
+msgstr "\"Главное правило в жизни – ничего сверх меры\". - Теренций (\"Девушка с Андроса\", 61)"
 
 #: gui/text/quotes.txt:171
 msgid ""
 "\"Fortune favors the bold.\" - Terence in a play about a great Athenian "
 "admiral (\"Phormio\", 203)"
-msgstr ""
+msgstr "\"Удача благоволит смелым.\" - Теренций в пьесе о великом афинском адмирале (\"Формион\", 203)"
 
 #: gui/text/quotes.txt:172
 msgid ""
@@ -1989,14 +1990,14 @@ msgid ""
 "\"A prudent commander will never take risks unnecessarily, except when it is"
 " clear beforehand that he will have the advantage.\" - Xenophon (\"The "
 "Cavalry General\", 4.13)"
-msgstr ""
+msgstr "\"Долг благоразумного начальника никогда не рисковать по своей воле, разве когда для него наперед ясно его превосходство над неприятелем.\" - Ксенофонт (\"О коннице\", 4.13)"
 
 #: gui/text/quotes.txt:191
 msgid ""
 "\"Attack the enemy where he is weakest, even if that is a long way off, "
 "since hard work is less dangerous than a struggle against superior forces.\""
 " - Xenophon (\"The Cavalry General\", sec. 4.14)"
-msgstr ""
+msgstr "\"Хорошо напасть с той сторону на неприятеля, с которой он особенно слаб, даже если неприятель далеко находится, потому что гораздо безопаснее сильно потрудиться, чем бороться с сильнейшим.\" - Ксенофонт (\"О коннице\", 4.14)"
 
 #: gui/text/quotes.txt:192
 msgid ""
@@ -2004,7 +2005,7 @@ msgid ""
 "small force appear large and a large one small, to appear absent when close "
 "at hand, and within striking distance when a long way off.\" - Xenophon "
 "(\"The Cavalry General\", sec. 5)"
-msgstr ""
+msgstr "\"Он должен уметь показать мало всадников как много, и много как мало, представить что его нет, когда он есть, и что он есть, когда его нет.\" - Ксенофонт (\"О коннице\", 5)"
 
 #: gui/text/quotes.txt:193
 msgid ""

@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# David Sowa <isithere2@yahoo.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:02+0200\n"
-"PO-Revision-Date: 2017-07-07 00:34+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-07-14 01:18+0000\n"
+"Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,65 +20,65 @@ msgstr ""
 #: gui/civinfo/civinfo.js:96
 #, javascript-format
 msgid "%(civilization)s Gameplay"
-msgstr ""
+msgstr "Xugabilidá %(civilization)s"
 
 #: gui/civinfo/civinfo.js:99
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Beneficiu civilización"
+msgstr[1] "Beneficios de civilización"
 
 #: gui/civinfo/civinfo.js:104
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Beneficiu equipu"
+msgstr[1] "Beneficios d'equipu"
 
 #: gui/civinfo/civinfo.js:111
 msgid "Special Technologies"
-msgstr ""
+msgstr "Teunoloxíes especiales"
 
 #: gui/civinfo/civinfo.js:117
 msgid "Special Building"
 msgid_plural "Special Buildings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Edificiu especial"
+msgstr[1] "Edificios especiales"
 
 #: gui/civinfo/civinfo.js:124 gui/summary/layout.js:67
 msgid "Heroes"
-msgstr ""
+msgstr "Héroes"
 
 #: gui/civinfo/civinfo.js:134
 #, javascript-format
 msgid "History of the %(civilization)s"
-msgstr ""
+msgstr "Hestoria de la %(civilization)s"
 
 #: gui/common/color.js:154
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames."
-msgstr ""
+msgstr "Calca en %(hotkey)s p'autocompletar los nomes de los xugadores."
 
 #: gui/common/color.js:157
 msgctxt "hotkey"
 msgid "Tab"
-msgstr ""
+msgstr "Tab"
 
 #: gui/common/functions_global_object.js:57
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait..."
-msgstr ""
+msgstr "Abriendo %(url)s\n nel restolador predetermináu. Espera por favor..."
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
-msgstr ""
+msgstr "Abriendo la páxina"
 
 #. dennis-ignore: *
 #: gui/common/functions_global_object.js:70
 #, javascript-format
 msgid "FPS: %(fps)4s"
-msgstr ""
+msgstr "FPS: %(fps)4s"
 
 #: gui/common/functions_utility.js:108
 msgctxt "map selection"
@@ -86,42 +87,42 @@ msgstr "Al debalu"
 
 #: gui/common/functions_utility.js:119
 msgid "mm:ss"
-msgstr ""
+msgstr "mm:ss"
 
 #: gui/common/functions_utility.js:119
 msgid "HH:mm:ss"
-msgstr ""
+msgstr "HH:mm:ss"
 
 #: gui/common/functions_utility_error.js:12
 msgid "Loading Aborted"
-msgstr ""
+msgstr "Encaboxóse la carga"
 
 #: gui/common/functions_utility_loadsave.js:15
 msgid "yyyy-MM-dd HH:mm:ss"
-msgstr ""
+msgstr "yyyy-MM-dd HH:mm:ss"
 
 #: gui/common/functions_utility_loadsave.js:23
 #, javascript-format
 msgid "%(dateString)s %(map)s - %(description)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s - %(description)s"
 
 #: gui/common/functions_utility_loadsave.js:24
 #, javascript-format
 msgid "%(dateString)s %(map)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s"
 
 #: gui/common/functions_utility_loadsave.js:85 gui/savedgames/save.js:63
 #, javascript-format
 msgid "\"%(label)s\""
-msgstr ""
+msgstr "«%(label)s»"
 
 #: gui/common/functions_utility_loadsave.js:87
 msgid "Saved game will be permanently deleted, are you sure?"
-msgstr ""
+msgstr "La partida guardada desaniciaráse dafechu, ¿tas seguru?"
 
 #: gui/common/functions_utility_loadsave.js:88
 msgid "DELETE"
-msgstr ""
+msgstr "DESANICIAR"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:246
 #: gui/options/options.js:334 gui/options/options.js:401
@@ -142,113 +143,113 @@ msgstr "Sí"
 #: gui/common/functions_utility_loadsave.js:106
 #, javascript-format
 msgid "Delete the selected entry using %(hotkey)s."
-msgstr ""
+msgstr "Desanicia la entrada escoyida usando %(hotkey)s."
 
 #: gui/common/functions_utility_loadsave.js:111
 #, javascript-format
 msgid "Hold %(hotkey)s to delete without confirmation."
-msgstr ""
+msgstr "Caltén %(hotkey)s calcáu pa desaniciar ensin confirmación."
 
 #: gui/common/gamedescription.js:48
 msgid "A randomly selected map."
-msgstr ""
+msgstr "Un mapa que s'escoyó al debalu."
 
 #: gui/common/gamedescription.js:55 gui/common/gamedescription.js:348
 msgid "Sorry, no description available."
-msgstr ""
+msgstr "Nenguna descripción disponible. "
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:105
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:108
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:114
 #, javascript-format
 msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdifficulty)s %(AIname)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:117
 #, javascript-format
 msgid "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:127
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
-msgstr ""
+msgstr "%(playerName)s (ENSIN CONEXÓN)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:130
 #, javascript-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (ENSIN CONEXÓN, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:137
 #, javascript-format
 msgid "%(playerName)s (%(civ)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:140
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:144
 #, javascript-format
 msgid "%(playerName)s"
-msgstr ""
+msgstr "%(playerName)s"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:147
 #, javascript-format
 msgid "%(playerName)s (%(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(state)s)"
 
 #: gui/common/gamedescription.js:168
 msgid "Unknown Civilization"
-msgstr ""
+msgstr "Civilización desconocida"
 
 #: gui/common/gamedescription.js:175
 msgctxt "playerstate"
 msgid "defeated"
-msgstr ""
+msgstr "derrota"
 
 #: gui/common/gamedescription.js:176
 msgctxt "playerstate"
 msgid "won"
-msgstr ""
+msgstr "victoria"
 
 #: gui/common/gamedescription.js:198
 msgid "No Team"
-msgstr ""
+msgstr "Dengún equipu"
 
 #: gui/common/gamedescription.js:199
 #, javascript-format
 msgid "Team %(team)s"
-msgstr ""
+msgstr "Equipu %(team)s"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or savegame menu or lobby
@@ -257,29 +258,29 @@ msgstr ""
 msgid ""
 "%(team)s:\n"
 "%(playerDescriptions)s"
-msgstr ""
+msgstr "%(team)s:\n%(playerDescriptions)s"
 
 #: gui/common/gamedescription.js:210
 msgid "Observer"
 msgid_plural "Observers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Espectador"
+msgstr[1] "Espectadores"
 
 #: gui/common/gamedescription.js:232
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
 msgid_plural "Wonder (%(min)s minutes)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Maraviya (%(min)s minutu)"
+msgstr[1] "Maraviya (%(min)s minutos)"
 
 #: gui/common/gamedescription.js:244
 #, javascript-format
 msgctxt "victory condition"
 msgid "Capture The Relic (%(min)s minute)"
 msgid_plural "Capture The Relic (%(min)s minutes)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Captura la reliquia (%(min)s minutu)"
+msgstr[1] "Captura la reliquia (%(min)s minutos)"
 
 #: gui/common/gamedescription.js:260
 msgid "Relic Count"
@@ -291,33 +292,33 @@ msgstr "Guarnición de los héroes"
 
 #: gui/common/gamedescription.js:268
 msgid "Heroes can be garrisoned."
-msgstr ""
+msgstr "Los héroes puen guarnecese."
 
 #: gui/common/gamedescription.js:272
 msgid "Exposed Heroes"
-msgstr ""
+msgstr "Héroes espuestos"
 
 #: gui/common/gamedescription.js:273
 msgid "Heroes cannot be garrisoned, and they are vulnerable to raids."
-msgstr ""
+msgstr "Los héroes nun son a guarnecese, y los asaltos puen mancalos."
 
 #: gui/common/gamedescription.js:280
 msgid "Rated game"
-msgstr ""
+msgstr "Partida evaluada"
 
 #: gui/common/gamedescription.js:281
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
-msgstr ""
+msgstr "En determinando'l ganador d'esta partida axustaráse´l marcador na sala d'espera."
 
 #: gui/common/gamedescription.js:286
 msgid "Locked Teams"
-msgstr ""
+msgstr "Equipos fixos"
 
 #: gui/common/gamedescription.js:287
 msgid "Players can't change the initial teams."
-msgstr ""
+msgstr "Los xugadores nun puen camudar los equipos iniciales."
 
 #: gui/common/gamedescription.js:291
 msgid "Diplomacy"
@@ -325,7 +326,7 @@ msgstr "Diplomacia"
 
 #: gui/common/gamedescription.js:292
 msgid "Players can make alliances and declare war on allies."
-msgstr ""
+msgstr "Los xugadores puen aliase y declarar la guerra a aliaos."
 
 #: gui/common/gamedescription.js:297
 msgid "Last Man Standing"
@@ -335,17 +336,17 @@ msgstr "El caberu home de pie"
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
-msgstr ""
+msgstr "Namái un xugador pue ganar la partida. Si los otros xugadores son aliaos, la partida sigue fasta qu´ún quede."
 
 #: gui/common/gamedescription.js:302
 msgid "Allied Victory"
-msgstr ""
+msgstr "Victoria aliada"
 
 #: gui/common/gamedescription.js:303
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr ""
+msgstr "Si gana un xugador, los aliaos ganen tamién. Si un grupu d´aliaos queda, ganen."
 
 #: gui/common/gamedescription.js:309
 msgid "Ceasefire"
@@ -353,17 +354,17 @@ msgstr "Altu'l fueu"
 
 #: gui/common/gamedescription.js:312 gui/pregame/mainmenu.js:91
 msgid "disabled"
-msgstr ""
+msgstr "desactiváu"
 
 #: gui/common/gamedescription.js:313
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Pel primer minutu, los otros xugadores tarán neutrales."
+msgstr[1] "Pelos primeros%(min)s minutos, los otros xugadores tarán neutrales."
 
 #: gui/common/gamedescription.js:321
 msgid "Map Name"
-msgstr ""
+msgstr "Nome´l mapa"
 
 #: gui/common/gamedescription.js:326
 msgid "Map Type"
@@ -375,11 +376,11 @@ msgstr "Tamañu del mapa"
 
 #: gui/common/gamedescription.js:342
 msgid "Map Description"
-msgstr ""
+msgstr "Descripción del mapa"
 
 #: gui/common/gamedescription.js:345
 msgid "Randomly selects a map from the list"
-msgstr ""
+msgstr "Escueye al debalu un mapa de la llista."
 
 #: gui/common/gamedescription.js:354
 msgid "Starting Resources"
@@ -388,25 +389,25 @@ msgstr "Recursos nicieros"
 #: gui/common/gamedescription.js:355
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
-msgstr ""
+msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
 #: gui/common/gamedescription.js:365
 msgid "Population Limit"
-msgstr ""
+msgstr "Capacidá población"
 
 #: gui/common/gamedescription.js:373
 msgid "Treasures"
-msgstr ""
+msgstr "Ayalgues"
 
 #: gui/common/gamedescription.js:375
 msgctxt "treasures"
 msgid "Disabled"
-msgstr ""
+msgstr "Desactivaes"
 
 #: gui/common/gamedescription.js:376
 msgctxt "treasures"
 msgid "As defined by the map."
-msgstr ""
+msgstr "Según el mapa"
 
 #: gui/common/gamedescription.js:380
 msgid "Revealed Map"
@@ -431,30 +432,30 @@ msgstr "%(label)s %(details)s"
 #: gui/common/gamedescription.js:398
 msgctxt "gamesetup option"
 msgid "enabled"
-msgstr ""
+msgstr "activáu"
 
 #: gui/common/gamedescription.js:399
 msgctxt "gamesetup option"
 msgid "disabled"
-msgstr ""
+msgstr "desactiváu"
 
 #: gui/common/gamedescription.js:416
 msgid "Victorious"
-msgstr ""
+msgstr "Victoriosu"
 
 #: gui/common/gamedescription.js:421
 msgid "Defeated"
-msgstr ""
+msgstr "Derrotáu"
 
 #: gui/common/l10n.js:13
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
-msgstr ""
+msgstr "%(amount)s %(resourceType)s"
 
 #: gui/common/l10n.js:21
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
-msgstr ""
+msgstr "%(previousAmounts)s y %(lastAmount)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
@@ -471,27 +472,27 @@ msgstr ","
 #: gui/common/network.js:17
 #, javascript-format
 msgid "Losing connection to server (%(seconds)ss)"
-msgstr ""
+msgstr "Ta perdiéndose la conexón al sirvidor (%(seconds)ss)"
 
 #: gui/common/network.js:22
 #, javascript-format
 msgid "%(player)s losing connection (%(seconds)ss)"
-msgstr ""
+msgstr "%(player)s ta perdiendo la conexón (%(seconds)ss)"
 
 #: gui/common/network.js:28
 #, javascript-format
 msgid "Bad connection to server (%(milliseconds)sms)"
-msgstr ""
+msgstr "Mala conexón al sirvidor (%(milliseconds)sms)"
 
 #: gui/common/network.js:33
 #, javascript-format
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
-msgstr ""
+msgstr "Mala conexón a %(player)s (%(milliseconds)sms)"
 
 #: gui/common/network.js:66
 msgctxt "network disconnect"
 msgid "Unknown reason"
-msgstr ""
+msgstr "Razón descoñocida"
 
 #: gui/common/network.js:67
 msgid ""
@@ -501,7 +502,7 @@ msgstr ""
 
 #: gui/common/network.js:68
 msgid "The host has ended the game"
-msgstr ""
+msgstr "L'anfitrión finó la partida"
 
 #: gui/common/network.js:69
 msgid "Incorrect network protocol version"
@@ -509,19 +510,19 @@ msgstr ""
 
 #: gui/common/network.js:70
 msgid "Game is loading, please try again later"
-msgstr ""
+msgstr "La partida ta cargándose, vuelvi a tentalo más sero"
 
 #: gui/common/network.js:71
 msgid "Game has already started, no observers allowed"
-msgstr ""
+msgstr "Yá emprimó la partida, nun se permiten espectadores"
 
 #: gui/common/network.js:72
 msgid "You have been kicked"
-msgstr ""
+msgstr "Espuxáronte"
 
 #: gui/common/network.js:73
 msgid "You have been banned"
-msgstr ""
+msgstr "Bloquiáronte"
 
 #: gui/common/network.js:74
 msgid "Playername in use. If you were disconnected, retry in few seconds"
@@ -529,17 +530,17 @@ msgstr ""
 
 #: gui/common/network.js:75
 msgid "Server full"
-msgstr ""
+msgstr "Los sirvidores tán enllenos"
 
 #: gui/common/network.js:76
 msgid ""
 "Player identifier in use. If you were disconnected, retry in few seconds"
-msgstr ""
+msgstr "L'identificador de xugadores ta n'usu. Si te desconectaron, vuelvi a tentalo nunos segundos. "
 
 #: gui/common/network.js:79
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
-msgstr ""
+msgstr "\\[valor non válidu %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
 #: gui/common/network.js:91
@@ -549,7 +550,7 @@ msgstr "Razón: %(reason)s."
 
 #: gui/common/network.js:96
 msgid "Lost connection to the server."
-msgstr ""
+msgstr "Perdióse la conexón al sirvidor."
 
 #: gui/common/network.js:97
 msgid "Failed to connect to the server."
@@ -557,74 +558,74 @@ msgstr ""
 
 #: gui/common/network.js:99
 msgid "Disconnected"
-msgstr ""
+msgstr "Desconectáu"
 
 #: gui/common/network.js:107
 msgid "Only the host can kick clients!"
-msgstr ""
+msgstr "¡Namái l'anfitrión ye a espuxar a veceros!"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
 #: gui/common/network.js:161
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
-msgstr ""
+msgstr "Usuarios (%(num)s): %(users)s"
 
 #: gui/common/settings.js:108
 msgctxt "aiDiff"
 msgid "Sandbox"
-msgstr ""
+msgstr "Caxa de sable"
 
 #: gui/common/settings.js:112
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr ""
+msgstr "Perfácil"
 
 #: gui/common/settings.js:116
 msgctxt "aiDiff"
 msgid "Easy"
-msgstr ""
+msgstr "Fácil"
 
 #: gui/common/settings.js:120
 msgctxt "aiDiff"
 msgid "Medium"
-msgstr ""
+msgstr "Medio"
 
 #: gui/common/settings.js:125
 msgctxt "aiDiff"
 msgid "Hard"
-msgstr ""
+msgstr "Difícil"
 
 #: gui/common/settings.js:129
 msgctxt "aiDiff"
 msgid "Very Hard"
-msgstr ""
+msgstr "Perdifícil"
 
 #: gui/common/settings.js:151
 #, javascript-format
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(min)s minutu"
+msgstr[1] "%(min)s minutos"
 
 #: gui/common/settings.js:173
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr ""
+msgstr "Dengún altu'l fueu"
 
 #: gui/common/settings.js:174
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(minutes)s minutu"
+msgstr[1] "%(minutes)s minutos"
 
 #: gui/common/settings.js:188
 msgctxt "map"
 msgid "Skirmish"
-msgstr ""
+msgstr "Escaramuza"
 
 #: gui/common/settings.js:189
 msgid ""
@@ -646,7 +647,7 @@ msgstr ""
 #: gui/common/settings.js:199
 msgctxt "map"
 msgid "Scenario"
-msgstr ""
+msgstr "Escenariu"
 
 #: gui/common/settings.js:200
 msgid "A map with a predefined landscape and matchsettings."
@@ -659,53 +660,53 @@ msgstr "Nengún"
 
 #: gui/common/settings.js:232
 msgid "Endless game."
-msgstr ""
+msgstr "Partida ensin fin."
 
 #: gui/common/settings.js:273
 msgid "Unlimited"
-msgstr ""
+msgstr "Ensin llende"
 
 #: gui/common/settings.js:321
 msgctxt "AI name"
 msgid "Unknown"
-msgstr "Descoñocío"
+msgstr "Descoñocíu"
 
 #: gui/common/settings.js:332
 msgctxt "AI difficulty"
 msgid "Unknown"
-msgstr "Descoñocío"
+msgstr "Descoñocida"
 
 #: gui/common/settings.js:344
 msgctxt "map type"
 msgid "Unknown"
-msgstr "Descoñocío"
+msgstr "Descoñocíu"
 
 #: gui/common/settings.js:356
 msgctxt "map size"
 msgid "Default"
-msgstr "Por defeutu"
+msgstr "Predetermináu"
 
 #: gui/common/settings.js:368
 msgctxt "population capacity"
 msgid "Unknown"
-msgstr "Descoñocío"
+msgstr "Descoñocida"
 
 #: gui/common/settings.js:380
 msgctxt "victory condition"
 msgid "Unknown"
-msgstr "Descoñocío"
+msgstr "Descoñocida"
 
 #: gui/common/tooltips.js:9
 msgid "Melee Attack:"
-msgstr ""
+msgstr "Ataque cuerpu a cuerpu:"
 
 #: gui/common/tooltips.js:10
 msgid "Ranged Attack:"
-msgstr ""
+msgstr "Ataque a distancia:"
 
 #: gui/common/tooltips.js:11
 msgid "Capture Attack:"
-msgstr ""
+msgstr "Ataque de captura:"
 
 #: gui/common/tooltips.js:15
 msgid "Hack"
@@ -767,16 +768,16 @@ msgstr ""
 #, javascript-format
 msgid "%(time)s %(second)s"
 msgid_plural "%(time)s %(second)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(time)s %(second)s"
+msgstr[1] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:69 gui/common/tooltips.js:273
 #: gui/common/tooltips.js:322 gui/common/tooltips.js:336
 #: gui/common/tooltips.js:615
 msgid "second"
 msgid_plural "seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "segundu"
+msgstr[1] "segundos"
 
 #: gui/common/tooltips.js:87 gui/common/tooltips.js:98
 msgid "Health:"
@@ -785,53 +786,53 @@ msgstr "Vida:"
 #: gui/common/tooltips.js:97
 #, javascript-format
 msgid "%(healthLabel)s %(current)s / %(max)s"
-msgstr ""
+msgstr "%(healthLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:115
 #, javascript-format
 msgid "%(arrowcount)s %(arrows)s"
 msgid_plural "%(arrowcount)s %(arrows)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(arrowcount)s %(arrows)s"
+msgstr[1] "%(arrowcount)s %(arrows)s"
 
 #: gui/common/tooltips.js:117
 msgid "arrow"
 msgid_plural "arrows"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "flecha"
+msgstr[1] "fleches"
 
 #: gui/common/tooltips.js:120
 #, javascript-format
 msgid "%(arrowString)s / %(timeString)s"
-msgstr ""
+msgstr "%(arrowString)s / %(timeString)s"
 
 #: gui/common/tooltips.js:131
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s %%"
 
 #: gui/common/tooltips.js:142
 msgid "Armor:"
-msgstr ""
+msgstr "Armadura:"
 
 #: gui/common/tooltips.js:145
 #, javascript-format
 msgid "%(damage)s %(damageType)s %(armorPercentage)s"
-msgstr ""
+msgstr "%(damage)s %(damageType)s %(armorPercentage)s"
 
 #: gui/common/tooltips.js:150
 #, javascript-format
 msgid "(%(armorPercentage)s)"
-msgstr ""
+msgstr "(%(armorPercentage)s)"
 
 #: gui/common/tooltips.js:161
 msgid "(None)"
-msgstr ""
+msgstr "(Dengún)"
 
 #: gui/common/tooltips.js:165
 #, javascript-format
 msgid "%(damage)s %(damageType)s"
-msgstr ""
+msgstr "%(damage)s %(damageType)s"
 
 #: gui/common/tooltips.js:186
 msgid "Interval:"
@@ -839,68 +840,68 @@ msgstr ""
 
 #: gui/common/tooltips.js:187 gui/common/tooltips.js:613
 msgid "Rate:"
-msgstr ""
+msgstr "Ritmu:"
 
 #: gui/common/tooltips.js:194
 #, javascript-format
 msgid "%(attackLabel)s %(details)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(details)s, %(rate)s"
 
 #: gui/common/tooltips.js:213 gui/common/tooltips.js:608
 msgid "Range:"
-msgstr ""
+msgstr "Algame:"
 
 #: gui/common/tooltips.js:216
 #, javascript-format
 msgid "+%(number)s"
-msgstr ""
+msgstr "+%(number)s"
 
 #. Translation: For example "0.5 to 1 meters", "1 (+1) meters" or "1 to 2 (+3)
 #. meters"
 #: gui/common/tooltips.js:220
 msgid "meters"
-msgstr ""
+msgstr "metros"
 
 #: gui/common/tooltips.js:221 gui/common/tooltips.js:610
 #: gui/common/tooltips.js:639
 msgid "meter"
 msgid_plural "meters"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "metru"
+msgstr[1] "metros"
 
 #: gui/common/tooltips.js:241 gui/common/tooltips.js:296
 #: gui/common/tooltips.js:301 gui/common/tooltips.js:306
 #, javascript-format
 msgid "%(label)s: %(value)s"
-msgstr ""
+msgstr "%(label)s: %(value)s"
 
 #: gui/common/tooltips.js:245
 #, javascript-format
 msgid "Friendly Fire: %(enabled)s"
-msgstr ""
+msgstr "Fueu amigo: %(enabled)s"
 
 #: gui/common/tooltips.js:261
 #, javascript-format
 msgid "%(label)s: %(garrisonLimit)s"
-msgstr ""
+msgstr "%(label)s: %(garrisonLimit)s"
 
 #: gui/common/tooltips.js:262
 msgid "Garrison Limit"
-msgstr ""
+msgstr "Capacidá guarnición"
 
 #: gui/common/tooltips.js:269
 #, javascript-format
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
-msgstr ""
+msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
 #: gui/common/tooltips.js:270 gui/common/tooltips.js:602
 msgid "Heal:"
-msgstr ""
+msgstr "Curar:"
 
 #: gui/common/tooltips.js:272 gui/common/tooltips.js:321
 #: gui/common/tooltips.js:335
 msgid "Health"
-msgstr ""
+msgstr "Vida"
 
 #: gui/common/tooltips.js:297
 msgid "Projectile Limit"
@@ -914,16 +915,16 @@ msgstr "Por defeutu"
 #: gui/common/tooltips.js:307
 msgctxt "projectiles"
 msgid "Per Unit"
-msgstr ""
+msgstr "Por unidá"
 
 #: gui/common/tooltips.js:318
 #, javascript-format
 msgid "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
-msgstr ""
+msgstr "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 
 #: gui/common/tooltips.js:319
 msgid "Repair Rate:"
-msgstr ""
+msgstr "Ritmu de reparación:"
 
 #: gui/common/tooltips.js:323 gui/common/tooltips.js:337
 #: gui/summary/layout.js:64
@@ -933,16 +934,16 @@ msgstr "Trabayador"
 #: gui/common/tooltips.js:332
 #, javascript-format
 msgid "%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
-msgstr ""
+msgstr "%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 
 #: gui/common/tooltips.js:333
 msgid "Build Rate:"
-msgstr ""
+msgstr "Ritmu de construcción:"
 
 #: gui/common/tooltips.js:369 gui/common/tooltips.js:554
 #, javascript-format
 msgid "%(component)s %(cost)s"
-msgstr ""
+msgstr "%(component)s %(cost)s"
 
 #: gui/common/tooltips.js:405
 msgid "Gather Rates:"
@@ -1048,7 +1049,7 @@ msgstr ""
 #: gui/common/tooltips.js:637
 msgctxt "aura"
 msgid "Range:"
-msgstr ""
+msgstr "Algame:"
 
 #: gui/common/tooltips.js:654
 #, javascript-format
@@ -1265,27 +1266,27 @@ msgstr ""
 #: gui/replaymenu/replay_filters.js:50
 msgctxt "datetime"
 msgid "Any"
-msgstr "Cualquier"
+msgstr "Cualquiera"
 
 #: gui/replaymenu/replay_filters.js:66
 msgctxt "map size"
 msgid "Any"
-msgstr "Cualquier"
+msgstr "Cualquiera"
 
 #: gui/replaymenu/replay_filters.js:82
 msgctxt "map name"
 msgid "Any"
-msgstr "Cualquier"
+msgstr "Cualquiera"
 
 #: gui/replaymenu/replay_filters.js:98
 msgctxt "population capacity"
 msgid "Any"
-msgstr "Cualquier"
+msgstr "Cualquiera"
 
 #: gui/replaymenu/replay_filters.js:117
 msgctxt "duration"
 msgid "Any"
-msgstr "Cualquier"
+msgstr "Cualquiera"
 
 #. Translation: Shorter duration than max minutes.
 #: gui/replaymenu/replay_filters.js:121
@@ -2126,7 +2127,7 @@ msgstr ""
 #: gui/savedgames/load.xml:(heading):48
 msgctxt "replay"
 msgid "Map Name"
-msgstr ""
+msgstr "Nome´l mapa"
 
 #: gui/replaymenu/replay_menu.xml:(heading):98
 msgctxt "replay"
@@ -2560,7 +2561,7 @@ msgstr ""
 #: gui/options/options.jsongeneralSetting[13].parameters.list[2].label
 #: gui/options/options.jsongeneralSetting[14].parameters.list[2].label
 msgid "Disabled"
-msgstr ""
+msgstr "Desactivaes"
 
 #: gui/options/options.jsongeneralSetting[13].tooltip
 msgid ""
@@ -3009,7 +3010,7 @@ msgstr ""
 #: simulation/data/resources/wood.jsonsubtypes.ruins
 msgctxt "firstWord"
 msgid "Ruins"
-msgstr ""
+msgstr "Ruines"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
@@ -3017,21 +3018,21 @@ msgstr ""
 #: simulation/data/resources/wood.jsonsubtypes.ruins
 msgctxt "withinSentence"
 msgid "Ruins"
-msgstr ""
+msgstr "Ruines"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: simulation/data/resources/stone.jsonsubtypes.rock
 msgctxt "firstWord"
 msgid "Rock"
-msgstr ""
+msgstr "Peña"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: simulation/data/resources/stone.jsonsubtypes.rock
 msgctxt "withinSentence"
 msgid "Rock"
-msgstr ""
+msgstr "Peña"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -3052,14 +3053,14 @@ msgstr ""
 #: simulation/data/resources/wood.jsonsubtypes.tree
 msgctxt "firstWord"
 msgid "Tree"
-msgstr ""
+msgstr "Árbole"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: simulation/data/resources/wood.jsonsubtypes.tree
 msgctxt "withinSentence"
 msgid "Tree"
-msgstr ""
+msgstr "Árbole"
 
 #: gui/gamesetup/ai.txt:1
 msgid ""

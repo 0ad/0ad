@@ -4,17 +4,17 @@
 # 
 # Translators:
 # Hamza ESSAD <essadhamza@outlook.fr>, 2017
-# Rayan <nitro361@gmail.com>, 2015
+# nitro361 <nitro361@gmail.com>, 2015
 # Omar Anwar <omaraglan91@yahoo.com>, 2017
-# Rayan <nitro361@gmail.com>, 2015
+# nitro361 <nitro361@gmail.com>, 2015
 # Safa Alfulaij <safa1996alfulaij@gmail.com>, 2014
 # صفا الفليج <safaalfulaij@hotmail.com>, 2014-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:02+0200\n"
-"PO-Revision-Date: 2017-06-05 15:35+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-07-21 16:46+0000\n"
+"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -85,7 +85,7 @@ msgstr "Tab"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait..."
-msgstr ""
+msgstr "يفتح %(url)s\nفي متصفّح الوبّ الافتراضيّ. رجاءً انتظر..."
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
@@ -173,7 +173,7 @@ msgstr "خريطة محدّدة عشوائيًّا."
 
 #: gui/common/gamedescription.js:55 gui/common/gamedescription.js:348
 msgid "Sorry, no description available."
-msgstr "آسفون، لا وصف متوفّر."
+msgstr "نأسف، لا وصف متوفّر."
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
@@ -292,12 +292,12 @@ msgstr[5] "مشاهدين"
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
 msgid_plural "Wonder (%(min)s minutes)"
-msgstr[0] "اعجوبة( %(min)s دقيقة)"
-msgstr[1] "اعجوبة( %(min)s دقيقة)"
-msgstr[2] "اعجوبة( %(min)s دقيقة)"
-msgstr[3] "اعجوبة( %(min)s دقيقة)"
-msgstr[4] "اعجوبة( %(min)s دقيقة)"
-msgstr[5] "اعجوبة( %(min)s دقيقة)"
+msgstr[0] "عجيبة (أقلّ من دقيقة)"
+msgstr[1] "عجيبة (دقيقة واحدة)"
+msgstr[2] "عجيبة (دقيقتان)"
+msgstr[3] "عجيبة (%(min)s دقائق)"
+msgstr[4] "عجيبة (%(min)s دقيقة)"
+msgstr[5] "عجيبة (%(min)s دقيقة)"
 
 #: gui/common/gamedescription.js:244
 #, javascript-format
@@ -333,7 +333,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:280
 msgid "Rated game"
-msgstr "لعبة مقيمة"
+msgstr "لعبة مقيّمة"
 
 #: gui/common/gamedescription.js:281
 msgid ""
@@ -343,11 +343,11 @@ msgstr "حينما الفائز بالمباراة يُحدد، القناة س�
 
 #: gui/common/gamedescription.js:286
 msgid "Locked Teams"
-msgstr "فرق مغلقة"
+msgstr "الفِرق مُقفلة"
 
 #: gui/common/gamedescription.js:287
 msgid "Players can't change the initial teams."
-msgstr "لا يمكن للّاعبين تغيير فِرقهم المبدئيّة."
+msgstr "لا يمكن للاعبين تغيير فِرقهم المبدئيّة."
 
 #: gui/common/gamedescription.js:291
 msgid "Diplomacy"
@@ -355,11 +355,11 @@ msgstr "الدبلوماسية"
 
 #: gui/common/gamedescription.js:292
 msgid "Players can make alliances and declare war on allies."
-msgstr "يمكن للّاعبين إنشاء تحالفات وإعلان الحرب على حلفائهم."
+msgstr "يمكن للاعبين إنشاء تحالفات وإعلان الحرب على حلفائهم."
 
 #: gui/common/gamedescription.js:297
 msgid "Last Man Standing"
-msgstr "الباقى الاخير"
+msgstr "آخر مَن يبقى"
 
 #: gui/common/gamedescription.js:298
 msgid ""
@@ -405,7 +405,7 @@ msgstr "نوع الخريطة"
 
 #: gui/common/gamedescription.js:335
 msgid "Map Size"
-msgstr "حجم الخريطة"
+msgstr "مقاس الخريطة"
 
 #: gui/common/gamedescription.js:342
 msgid "Map Description"
@@ -595,7 +595,7 @@ msgstr "قُطع الاتّصال"
 
 #: gui/common/network.js:107
 msgid "Only the host can kick clients!"
-msgstr "فقط المُضيف يمكنه طرد المستخدميين!"
+msgstr "يمكن للمضيف فقد طرد العملاء!"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
@@ -948,7 +948,7 @@ msgstr "%(label)s: %(garrisonLimit)s"
 
 #: gui/common/tooltips.js:262
 msgid "Garrison Limit"
-msgstr ""
+msgstr "حدّ الاحتماء"
 
 #: gui/common/tooltips.js:269
 #, javascript-format
@@ -1118,7 +1118,7 @@ msgstr "%(auraname)s:"
 #: gui/common/tooltips.js:637
 msgctxt "aura"
 msgid "Range:"
-msgstr ""
+msgstr "المدى:"
 
 #: gui/common/tooltips.js:654
 #, javascript-format
@@ -1134,7 +1134,7 @@ msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
 #: gui/common/tooltips.js:681
 msgid "Classes:"
-msgstr ""
+msgstr "الفئات:"
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the value.
@@ -1159,7 +1159,7 @@ msgstr "بلا"
 
 #: gui/locale/locale_advanced.js:92
 msgid "invalid locale"
-msgstr ""
+msgstr "محليّة غير صالحة"
 
 #: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:163
 #: gui/splashscreen/splashscreen.xml:(caption):28
@@ -1225,7 +1225,7 @@ msgstr "التّغذية الاسترجاعيّة المجهولة الهويّ�
 #: gui/pregame/mainmenu.js:128
 #, javascript-format
 msgid "Status: %(status)s."
-msgstr ""
+msgstr "الحالة: %(status)s."
 
 #: gui/pregame/mainmenu.js:152
 #, javascript-format
@@ -1242,7 +1242,7 @@ msgstr ""
 #. the user will need a better graphics card.
 #: gui/pregame/mainmenu.js:161
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
-msgstr "فضلًا انقر \"اطّلع على المزيد\" لمعلومات أكثر أو \"حسنًا\" للمتابعة."
+msgstr "رجاءً انقر \"اطّلع على المزيد\" لمعلومات أكثر أو \"حسنًا\" للمتابعة."
 
 #: gui/pregame/mainmenu.js:162
 msgid "WARNING!"
@@ -1277,7 +1277,7 @@ msgstr "خطأ"
 
 #: gui/pregame/mainmenu.js:283
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
-msgstr "أطلق ردهة متعدّدة اللاعبين. \\[عُطّلت عند البناء]"
+msgstr "أطلق ردهة اللاعبين. \\[عُطّلت عند البناء]"
 
 #: gui/pregame/mainmenu.js:288 gui/pregame/mainmenu.xml:(caption):72
 #: gui/pregame/mainmenu.xml:(caption):94
@@ -1290,17 +1290,17 @@ msgstr "الكتيّب"
 
 #: gui/replaymenu/replay_actions.js:88
 msgid "You don't have the same mods active as the replay does."
-msgstr ""
+msgstr "ليست لديك ذات التّعديلات التي في هذه الإعادة."
 
 #: gui/replaymenu/replay_actions.js:89 gui/savedgames/load.js:174
 #, javascript-format
 msgid "Required: %(mods)s"
-msgstr ""
+msgstr "المطلوبة: %(mods)s"
 
 #: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:177
 #, javascript-format
 msgid "Active: %(mods)s"
-msgstr ""
+msgstr "النّشطة: %(mods)s"
 
 #: gui/replaymenu/replay_actions.js:94
 msgid "This replay is not compatible with your version of the game!"
@@ -1400,7 +1400,7 @@ msgstr "لاعب واحد"
 
 #: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):487
 msgid "Multiplayer"
-msgstr "متعدّدة اللاعبين"
+msgstr "لعبة جماعيّة"
 
 #: gui/replaymenu/replay_filters.js:155
 msgctxt "victory condition"
@@ -1647,7 +1647,7 @@ msgstr ""
 
 #: gui/summary/layout.js:184
 msgid "Kill / Death ratio"
-msgstr ""
+msgstr "نسبة القتل / الموت"
 
 #: gui/summary/layout.js:185
 msgid "Map exploration"
@@ -1727,11 +1727,11 @@ msgstr "أمتأكّد من الخروج من الرّدهة؟"
 
 #: gui/summary/summary.js:395
 msgid "Current Scores"
-msgstr ""
+msgstr "النّتائج الحاليّة"
 
 #: gui/summary/summary.js:397
 msgid "Scores at the end of the game."
-msgstr ""
+msgstr "النّتائج في نهاية اللعبة."
 
 #: gui/summary/summary.js:399
 msgid "You have been disconnected."
@@ -1876,7 +1876,7 @@ msgstr "إعدادات الرّدهة"
 
 #: gui/options/options.xml:(caption):75
 msgid "Chat Notification Settings"
-msgstr ""
+msgstr "إعدادات إخطارات الدّردشة"
 
 #: gui/options/options.xml:(caption):87
 msgid "Reset"
@@ -2060,11 +2060,11 @@ msgstr "انقر هنا لتحميل لعبة محفوظة."
 
 #: gui/pregame/mainmenu.xml:(tooltip):268
 msgid "Joining an existing multiplayer game."
-msgstr "انضمّ إلى لعبة متعدّدة اللاعبين موجودة."
+msgstr "انضمّ إلى لعبة جماعيّة موجودة."
 
 #: gui/pregame/mainmenu.xml:(tooltip):283
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
-msgstr "استضف لعبة متعدّدة اللاعبين.\\n\\nفتح منفذ UDP بالرّقم 20595 مطلوب."
+msgstr "استضف لعبة جماعيّة.\\n\\nفتح منفذ UDP بالرّقم 20595 مطلوب."
 
 #: gui/pregame/mainmenu.xml:(tooltip):298
 msgid "Launch the multiplayer lobby."
@@ -2100,7 +2100,7 @@ msgstr "حدّد التّعديلات التي ستُستخدم."
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations"
-msgstr ""
+msgstr "تعلّم كيف تلعب، وابدأ التّدريب، واستكشف شجرة التّقنيّات وتاريخ الحضارات السّحيق"
 
 #: gui/pregame/mainmenu.xml:(tooltip):473
 msgid "Challenge the computer player to a single player match."
@@ -2108,7 +2108,7 @@ msgstr "تحدّ لاعبًا حاسوبيًّا في مبارزة لاعب وا
 
 #: gui/pregame/mainmenu.xml:(tooltip):488
 msgid "Fight against one or more human players in a multiplayer game."
-msgstr "حارب ضدّ لاعب بشر أو أكثر في لعبة متعدّدة اللاعبين."
+msgstr "حارب ضدّ لاعب بشر أو أكثر في لعبة جماعيّة."
 
 #: gui/pregame/mainmenu.xml:(tooltip):503
 msgid "Game options and scenario design tools."
@@ -2233,11 +2233,11 @@ msgstr "نوع الخريطة"
 #: gui/savedgames/load.xml:(heading):52
 msgctxt "replay"
 msgid "Description"
-msgstr ""
+msgstr "الوصف"
 
 #: gui/savedgames/load.xml:(caption):57
 msgid "No saved games found."
-msgstr ""
+msgstr "لم يُعثر على ألعاب محفوظة."
 
 #: gui/savedgames/load.xml:(caption):71
 msgid "Load"
@@ -2578,7 +2578,7 @@ msgstr "تلميحات مفصّلة"
 
 #: gui/options/options.jsongeneralSetting[7].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
-msgstr "أظهر أيّ اللاعبين لديه اتّصال سيّء في ألعاب متعدّدة اللاعبين."
+msgstr "أظهر أيّ اللاعبين لديه اتّصال سيّء في الألعاب الجماعيّة."
 
 #: gui/options/options.jsongeneralSetting[7].label
 msgid "Network Warnings"
@@ -2711,7 +2711,7 @@ msgstr "مستوى الصّوت الأساسيّ"
 
 #: gui/options/options.jsonsoundSetting[0].label
 msgid "Master Volume"
-msgstr ""
+msgstr "المستوى الرّئيسيّ"
 
 #: gui/options/options.jsonsoundSetting[1].tooltip
 msgid "In game music gain"
@@ -2719,7 +2719,7 @@ msgstr "مستوى الصّوت داخل اللعبة"
 
 #: gui/options/options.jsonsoundSetting[1].label
 msgid "Music Volume"
-msgstr ""
+msgstr "مستوى الموسيقى"
 
 #: gui/options/options.jsonsoundSetting[2].tooltip
 msgid "In game ambient sound gain"
@@ -2865,7 +2865,7 @@ msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[7].label
 msgid "Activate water effects"
-msgstr ""
+msgstr "فعّل تأثيرات المياه"
 
 #: gui/options/options.jsongraphicsSetting[8].tooltip
 msgid ""
@@ -3316,7 +3316,7 @@ msgstr "مركز المدينة"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "- The \"foundation\" of your new colony."
-msgstr ""
+msgstr "- \"أساسات\" مستعمرتك الجديدة."
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "- Claim large tracts of territory."
@@ -3324,7 +3324,7 @@ msgstr ""
 
 #: gui/text/tips/civic_centres.txt:6
 msgid "- Can be built in friendly and neutral territory."
-msgstr ""
+msgstr "- يمكن بناؤه في الأقاليم الصّديقة والمحايدة."
 
 #: gui/text/tips/civic_centres.txt:8
 msgid "- Train Female Citizens and basic Citizen-Soldiers."
@@ -3354,7 +3354,7 @@ msgstr "الصّيد"
 
 #: gui/text/tips/fishing.txt:2
 msgid "- Fish the seas for a bountiful harvest."
-msgstr ""
+msgstr "- صِد في البحار لحصاد وافر."
 
 #: gui/text/tips/fishing.txt:4
 msgid "- Fishing boats carry a large amount of food per trip."
@@ -3362,7 +3362,7 @@ msgstr ""
 
 #: gui/text/tips/fishing.txt:6
 msgid "- Fishing is faster than gathering food on fields."
-msgstr ""
+msgstr "- الصّيد أسرع من جمع الغذاء من الحقول."
 
 #: gui/text/tips/fishing.txt:8
 msgid ""
@@ -3507,7 +3507,7 @@ msgstr "- كلّ المباني الفارسيّة أقوى بنسبة 25%."
 
 #: gui/text/tips/persian_architecture.txt:6
 msgid "- Build time lengthened by +20% as a consequence."
-msgstr ""
+msgstr "- يزيد وقت البناء بنسبة 20% نتيجة لذلك."
 
 #: gui/text/tips/persian_architecture.txt:8
 msgid ""
@@ -3751,7 +3751,7 @@ msgstr ""
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
-msgstr ""
+msgstr "ثلاثيّة المجاديف"
 
 #: gui/text/tips/triremes.txt:2
 msgid "- The Medium Warship."
@@ -3760,11 +3760,11 @@ msgstr ""
 #: gui/text/tips/triremes.txt:4
 msgid ""
 "- Available to the Romans, Carthaginians, Hellenic factions, and Persians."
-msgstr ""
+msgstr "- متوفّرة للرومان، والقرطاجيّين، والفصائل اليونانيّة والفُرس."
 
 #: gui/text/tips/triremes.txt:6
 msgid "- Good for transporting or fighting."
-msgstr ""
+msgstr "- جيّدة للنّقل أو القتال."
 
 #: gui/text/tips/triremes.txt:8
 msgid "- Garrison troops aboard to increase fire power."
@@ -3842,7 +3842,7 @@ msgstr "- 2000 غذاء."
 
 #: gui/text/tips/whales.txt:6
 msgid "- Gatherable by Fishing Boats after the whale is killed."
-msgstr ""
+msgstr "- يمكن جمعه باستخدام قوارب الصّيد بعد أن يُقتل."
 
 #: gui/text/tips/whales.txt:8
 msgid "- Roam around the oceans of the game and flee when attacked."

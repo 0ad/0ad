@@ -35,7 +35,8 @@
 # Pavel Kyzmin <Virus191288@gmail.com>, 2013
 # Павел Монахов <mpolr21@gmail.com>, 2014
 # Prince Moth <princemoth@rambler.ru>, 2016
-# sad2shade <sad.2.shade@gmail.com>, 2014
+# Roman M. Yagodin <roman.yagodin@gmail.com>, 2017
+# Константин <sad.2.shade@gmail.com>, 2014
 # sorrymak <dearalcher@gmail.com>, 2013
 # under.quol <under.quol@gmail.com>, 2013
 # Uzumaker Uzumaki <uzumaki1337pro@gmail.com>, 2017
@@ -59,7 +60,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:01+0200\n"
-"PO-Revision-Date: 2017-06-30 20:58+0000\n"
+"PO-Revision-Date: 2017-07-28 12:16+0000\n"
 "Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -331,7 +332,7 @@ msgstr "Приостановлено игроком %(players)s"
 #: gui/session/menu.js:1105 gui/session/messages.js:679
 msgctxt "Separator for a list of players"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/menu.js:1118 gui/session/menu.xml:(caption):17
 msgid "Manual"
@@ -556,7 +557,7 @@ msgstr "Следуйте указаниям."
 #: gui/session/messages.js:668
 msgctxt "Separator for a list of client loading messages"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/messages.js:674
 #, javascript-format
@@ -598,7 +599,7 @@ msgstr ""
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Replay saved to %(filepath)s"
-msgstr ""
+msgstr "Повтор сохранен в %(filepath)s"
 
 #: gui/session/messages.js:699
 #, javascript-format
@@ -608,11 +609,11 @@ msgstr ""
 
 #: gui/session/messages.js:708 gui/session/messages.js:719
 msgid "Out of Sync"
-msgstr ""
+msgstr "Рассинхронизация"
 
 #: gui/session/messages.js:716
 msgid "Out-Of-Sync error!"
-msgstr ""
+msgstr "Ошибка синхронизации!"
 
 #. Translation: This is shown if replay is out of sync
 #: gui/session/messages.js:718
@@ -940,7 +941,7 @@ msgstr "Осталось: %(entityCounts)s"
 #: gui/session/selection_panels.js:802
 msgctxt "Separator for a list of entity counts"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/selection_panels.js:1111
 #, javascript-format
@@ -1519,7 +1520,7 @@ msgstr "Товары:"
 
 #: gui/session/tutorial_panel.xml:(caption):11
 msgid "Ready"
-msgstr ""
+msgstr "Готово"
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"
@@ -1578,4 +1579,4 @@ msgstr "Меню"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XXII : Venustas"
-msgstr ""
+msgstr "Альфа XXII : Очарование"

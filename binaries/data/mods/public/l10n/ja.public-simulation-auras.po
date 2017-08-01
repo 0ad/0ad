@@ -4,11 +4,12 @@
 # 
 # Translators:
 # Asakura, 2017
+# red hare <www3@hotmail.co.jp>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-07-02 08:40+0000\n"
+"PO-Revision-Date: 2017-07-22 05:49+0000\n"
 "Last-Translator: Asakura\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +24,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Heals garrisoned ship at 10 HP per second."
-msgstr ""
+msgstr "駐屯艦隊の耐久力が毎秒 10 回復します。 "
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
@@ -43,12 +44,12 @@ msgstr ""
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Power of Knowledge"
-msgstr ""
+msgstr "知識の力"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
 msgid ""
 "Reduce the cost and research time of technologies by 10% per library owned."
-msgstr ""
+msgstr "所有する図書館ごとに10％ずつコストと技術研究時間を削減します。"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraName
 msgid "Loyalty"
@@ -64,7 +65,7 @@ msgstr "アショカの勅書"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraDescription
 msgid "+20% movement speed for traders."
-msgstr ""
+msgstr "商人の移動速度が20%増加します。"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraName
 msgid "Farming bonus"
@@ -88,7 +89,7 @@ msgstr "ギリシャ化"
 
 #: simulation/data/auras/structures/theatron.jsonauraDescription
 msgid "Increase territory influence by 20% per theatron owned."
-msgstr ""
+msgstr "テアトロンごとに20%の領土効果が拡張します。"
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -96,11 +97,11 @@ msgstr "壁による防護"
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraDescription
 msgid "Soldiers on walls have +3 armor and higher vision."
-msgstr ""
+msgstr "壁上の兵士は装甲レベルと視界が3上昇します。"
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraName
 msgid "Symbol of Greatness"
-msgstr ""
+msgstr "偉大さの象徴"
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraDescription
 msgid "Increase the population limit by 10 per wonder owned."
@@ -122,7 +123,7 @@ msgstr "デロス同盟"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Ships construct 25% faster."
-msgstr ""
+msgstr "船の製造が25%早くなる"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
@@ -164,11 +165,11 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraDescription
 msgid "+20% sell prices at market."
-msgstr ""
+msgstr "市場販売価格が20%上昇する。"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
-msgstr ""
+msgstr "アショーカ王信仰の支え"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
 msgid ""
@@ -193,11 +194,11 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraName
 msgid "Conscription"
-msgstr ""
+msgstr "徴兵"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
 msgid "-20% training time for allied infantry."
-msgstr ""
+msgstr "同盟兵士の生産時間が 20% 減少します。"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
@@ -216,7 +217,7 @@ msgstr ""
 msgid ""
 "Increases the health for citizen-soldier infantry spearmen by 10% for allies"
 " of Spartan players."
-msgstr ""
+msgstr "スパルタプレイヤーの同盟国に対して、市民兵の槍兵の体力を10％増加させます。"
 
 #: simulation/data/auras/units/female_inspiration.jsonauraName
 msgid "Inspiration"
@@ -476,7 +477,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
 msgid "Naval Commander"
-msgstr ""
+msgstr "海軍司令官"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraDescription
 msgid ""
@@ -535,7 +536,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraName
 msgid "Cavalry Commander"
-msgstr ""
+msgstr "騎兵指揮官"
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraDescription
 msgid "+30% attack for cavalry melee soldiers."
@@ -559,7 +560,7 @@ msgstr "彼の存命中採集効率が+15%になります。"
 
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraName
 msgid "Celtic Warlord"
-msgstr ""
+msgstr "ケルト将軍"
 
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraDescription
 msgid "+20% attack and +1 capture for soldiers and siege engines."

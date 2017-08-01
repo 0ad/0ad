@@ -9,6 +9,7 @@
 # Ivan Korovin <i.d.korovin@gmail.com>, 2017
 # Nergal Sham <sham-nergal@mail.ru>, 2016
 # Prince Moth <princemoth@rambler.ru>, 2016
+# Roman M. Yagodin <roman.yagodin@gmail.com>, 2017
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2016
 # Woratiklis, 2016
 # Дмитрий <polsha_d@mail.ru>, 2016
@@ -18,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-07-07 12:55+0000\n"
-"Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
+"PO-Revision-Date: 2017-07-19 07:14+0000\n"
+"Last-Translator: Roman M. Yagodin <roman.yagodin@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,7 +46,7 @@ msgstr "Лечит юнитов на 3 HP в секунду."
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
-msgstr ""
+msgstr "Религиозное рвение"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "+20% attack damage for soldiers."
@@ -53,7 +54,7 @@ msgstr "+20% к атаке солдат."
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Power of Knowledge"
-msgstr ""
+msgstr "Сила знаний"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
 msgid ""
@@ -174,7 +175,7 @@ msgstr "Стандартизированная валюта"
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraDescription
 msgid "+20% sell prices at market."
-msgstr ""
+msgstr "+20% к ценам продажи на рынке."
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
@@ -230,7 +231,7 @@ msgstr ""
 
 #: simulation/data/auras/units/female_inspiration.jsonauraName
 msgid "Inspiration"
-msgstr ""
+msgstr "Вдохновение"
 
 #: simulation/data/auras/units/female_inspiration.jsonauraDescription
 msgid "+10% build rate and gather rate for citizen soldiers."
@@ -458,7 +459,7 @@ msgstr "Улучшения строя"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraDescription
 msgid "All soldiers in his formation +15% speed and +3 armor."
-msgstr ""
+msgstr "Все воины в его боевом порядке получают +15% к скорости и +3 к броне."
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraName
 msgid "Peltast Reforms"
@@ -466,7 +467,7 @@ msgstr "Улучшения пельтастов"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraDescription
 msgid "All javelin infantry +15% speed."
-msgstr "Вся стрелковая кавалерия +15% к скорости."
+msgstr "+15% к скорости конницы метателей копий."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
 msgid "Periclean Building Program"
@@ -482,7 +483,7 @@ msgstr "Храм Афины"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "-25% stone cost and +2 garrisoned heal rate for temples."
-msgstr ""
+msgstr "-25% к стоимости в камне и +2 к скорости восстановления здоровья для гарнизона храмов."
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
 msgid "Naval Commander"
@@ -541,7 +542,7 @@ msgstr "Тактик"
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraDescription
 msgid "+20% attack and +1 capture for all allied soldiers and siege engines."
-msgstr ""
+msgstr "+20% к атаке и +1 к захвату для всех союзных солдат и осадных орудий."
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraName
 msgid "Cavalry Commander"
@@ -549,7 +550,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraDescription
 msgid "+30% attack for cavalry melee soldiers."
-msgstr ""
+msgstr "+30% к атаке для конницы ближнего боя."
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraName
 msgid "Sacker of Rome"
@@ -557,7 +558,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraDescription
 msgid "+15 Metal loot for every enemy unit killed."
-msgstr ""
+msgstr "+15 металла за каждого убитого врага."
 
 #: simulation/data/auras/units/heroes/gaul_hero_britomartus.jsonauraName
 msgid "Preparation for War"
@@ -573,11 +574,11 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraDescription
 msgid "+20% attack and +1 capture for soldiers and siege engines."
-msgstr ""
+msgstr "+20% к атаке и +1 к захвату для солдатов и осадных орудий."
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraName
 msgid "Inspired Defense"
-msgstr ""
+msgstr "Вдохновенная защита"
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraDescription
 msgid ""
@@ -593,11 +594,11 @@ msgstr "Храбый защитник"
 msgid ""
 "75% more arrows per soldier for the building or siege tower he is garrisoned"
 " in."
-msgstr ""
+msgstr "На 75% больше стрел в секунду на каждого солдата гарнизона здания или осадной башни."
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraName
 msgid "Battle Fervor"
-msgstr ""
+msgstr "Жажда битвы"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraDescription
 msgid "+1 armor for soldiers."
@@ -623,7 +624,7 @@ msgstr ""
 msgid ""
 "+100% resources loot increase for every enemy unit killed or structure "
 "destroyed."
-msgstr ""
+msgstr "+100% трофейных ресурсов за каждого убмтого врага или разрушенное сооружение."
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_1.jsonauraName
 msgid "Imperialism"
@@ -639,7 +640,7 @@ msgstr "Завоеватель"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_2.jsonauraDescription
 msgid "-50% garrisoned regeneration rate for enemy civic centers."
-msgstr ""
+msgstr "-50% к восстановлению здоровья гарнизонов вражеских городских центров."
 
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraName
 msgid "Taxiarchès"
@@ -647,7 +648,7 @@ msgstr "Таксиарх"
 
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraDescription
 msgid "+20% attack and +20% capture for pikemen."
-msgstr ""
+msgstr "+20% к атаке и +20% к захвату для пикенёров."
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraName
 msgid "Besieger"
@@ -690,11 +691,11 @@ msgstr "Учитель"
 msgid ""
 "Empower a building with -20% cost and -50% research time while he is "
 "garrisoned in it."
-msgstr ""
+msgstr "Находясь в здании, дает -20% к цене и -50% ко времени исследования."
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
 msgid "Regeneration"
-msgstr ""
+msgstr "Восстановление здоровья"
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraName
 msgid "Forefront Leader"
@@ -702,7 +703,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraDescription
 msgid "+20% attack and +1 capture for cavalry soldiers."
-msgstr ""
+msgstr "+20% к атаке и +1 к захвату для конников."
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraName
 msgid "Leadership"
@@ -726,7 +727,7 @@ msgstr "Патриот"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraDescription
 msgid "-20% attack repeat time for soldiers and siege engines."
-msgstr ""
+msgstr "-20% к задержке между атаками для солдат и осадных орудий."
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.jsonauraName
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.jsonauraName
@@ -747,7 +748,7 @@ msgstr "Рафия"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraDescription
 msgid "Pikemen have 40% greater health during his lifetime."
-msgstr ""
+msgstr "Пикинёры имеют на 40% здоровья больше."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraName
 msgid "Patron of Construction"
@@ -776,7 +777,7 @@ msgstr "+15% к атаке кавалерии."
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraDescription
 msgid "-10% attack for enemy infantry."
-msgstr ""
+msgstr "-10% к атаке пехоты противника."
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraName
 msgid "Shield of Rome"
@@ -792,7 +793,7 @@ msgstr "Триумф"
 
 #: simulation/data/auras/units/heroes/rome_hero_scipio.jsonauraDescription
 msgid "+20% attack and +2 capture for soldiers and siege engines."
-msgstr ""
+msgstr "+20% к атаке и +2 к захвату для солдатов и осадных орудий."
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraName
 msgid "Ilarchès"
@@ -824,12 +825,12 @@ msgstr "Реформы Илотов"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
 msgid "+25% attack and +1 armor for javelin infantry soldiers."
-msgstr ""
+msgstr "+25% к атаке и +1 к броне пехотинцам-метателям копий."
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
 msgid "Last Stand"
-msgstr ""
+msgstr "Последний бой"
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraDescription
 msgid "+25% attack and +1 capture for spear soldiers."
-msgstr ""
+msgstr "+25% к атаке и +1 к захвату для копейщиков."
