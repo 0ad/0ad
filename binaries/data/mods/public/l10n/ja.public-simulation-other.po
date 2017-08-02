@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-07-20 02:41+0000\n"
-"Last-Translator: red hare <www3@hotmail.co.jp>\n"
+"PO-Revision-Date: 2017-07-31 10:59+0000\n"
+"Last-Translator: Asakura\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -174,7 +174,7 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:70
 #, javascript-format
 msgid "I won’t ally you again, %(_player_)s!"
-msgstr ""
+msgstr "再び%(_player_)sと同盟することはないでしょう！"
 
 #: simulation/ai/petra/chatHelper.js:71
 #, javascript-format
@@ -265,12 +265,12 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:95
 #, javascript-format
 msgid "I will not become neutral with you, %(_player_)s."
-msgstr ""
+msgstr "%(_player_)sと中立関係にはなれないでしょう。"
 
 #: simulation/ai/petra/chatHelper.js:96
 #, javascript-format
 msgid "%(_player_)s, I must decline your request for a neutrality pact."
-msgstr ""
+msgstr "%(_player_)sとの中立協定の申請を辞退しなければなりません。"
 
 #: simulation/ai/petra/chatHelper.js:99
 #, javascript-format
@@ -968,11 +968,11 @@ msgstr ""
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
-msgstr ""
+msgstr "距離の条件を満たしていないか、地形的な問題のためアップグレードできません。"
 
 #: simulation/helpers/Commands.js:704
 msgid "Cannot upgrade a garrisoned entity."
-msgstr ""
+msgstr "駐屯中のエンティティはアップグレードできません。"
 
 #: simulation/helpers/Commands.js:750
 #, javascript-format
@@ -981,7 +981,7 @@ msgstr "%(_player_)s への攻撃要求です。"
 
 #: simulation/helpers/Commands.js:783
 msgid "There are no bribable units"
-msgstr ""
+msgstr "買収できるユニットがいません。"
 
 #: simulation/helpers/Commands.js:828
 msgid "Unable to ungarrison unit(s)"
@@ -1087,7 +1087,7 @@ msgstr "遺跡占領"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid "Defeat all opponents to win."
-msgstr ""
+msgstr "すべての敵を倒すと勝利。"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
@@ -1121,7 +1121,7 @@ msgstr "大逆罪"
 msgid ""
 "Be the first to build or capture a wonder and keep it for a certain time to "
 "win the game."
-msgstr ""
+msgstr "象徴を最初に建造または占領し、一定時間それらを確保すると勝利。"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
@@ -1229,7 +1229,7 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -50% for Sandbox to +60% for Very Hard (Medium 0%). In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "Petraは0 A.D.の既定のAIボットです。問題点はWildfire Gamesまでご報告ください（メインメニューのリンクを参照）。\n\nこのAIは資源獲得（採集速度および貿易収入の双方）において不正なボーナスを有します。ボーナス値は、「練習」の-50% から「とても難しい」の+60% までの変動幅があります（「中」＝±0%）。また、「練習」レベルは拡張や攻撃を行いません。"
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"

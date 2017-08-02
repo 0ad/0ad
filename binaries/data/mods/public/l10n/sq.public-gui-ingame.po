@@ -5,12 +5,13 @@
 # Translators:
 # Alket Rexhepi <alketii@gmail.com>, 2016-2017
 # Fitim Miftari <miftarifitim@gmail.com>, 2016
+# Jonathan Wagstaff <jonathanmwagstaff@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:01+0200\n"
-"PO-Revision-Date: 2017-07-28 17:07+0000\n"
-"Last-Translator: Alket Rexhepi <alketii@gmail.com>\n"
+"PO-Revision-Date: 2017-08-01 05:28+0000\n"
+"Last-Translator: Jonathan Wagstaff <jonathanmwagstaff@gmail.com>\n"
 "Language-Team: Albanian (http://www.transifex.com/wildfire-games/0ad/language/sq/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -177,7 +178,7 @@ msgstr[1] "Janë gjithsej %(inactiveString)s."
 
 #: gui/session/menu.js:838
 msgid "There are no land traders."
-msgstr "Nuk ka asnjë tregtar"
+msgstr "Nuk ka asnjë tregtar tokash"
 
 #: gui/session/menu.js:846
 #, javascript-format
@@ -216,7 +217,7 @@ msgid_plural ""
 "There are %(numberGarrisoned)s land traders garrisoned on a trading merchant"
 " ship"
 msgstr[0] "Është %(numberGarrisoned)s tregtar tokësor i vendosur në një anije tregtare"
-msgstr[1] "Janë %(numberGarrisoned)s tregtarë tokësor të vendosur në një anije tregtare"
+msgstr[1] "Janë %(numberGarrisoned)s tregtarë tokash të vendosur në një anije tregtare"
 
 #: gui/session/menu.js:902
 msgid "There are no merchant ships."
@@ -785,11 +786,11 @@ msgstr ","
 
 #: gui/session/selection_panels.js:78
 msgid "Raise an alert!"
-msgstr "Rrit përditshmërinë! "
+msgstr "Shpall një alarm! "
 
 #: gui/session/selection_panels.js:82
 msgid "Increase the alert level to protect more units"
-msgstr "Rrit përditshmërinë për të mbrojtur më shumë njësite "
+msgstr "Rrit niveli i alarmit për të mbrojtur më shumë njësite "
 
 #: gui/session/selection_panels.js:85
 msgid "End of alert."
@@ -835,7 +836,7 @@ msgstr "Anulo Shpaketimin"
 
 #: gui/session/selection_panels.js:630
 msgid "Insufficient population capacity:"
-msgstr "Kapacitet i pamjaftueshëm i popullatës:"
+msgstr "Kapacitet është i pamjaftueshëm per popullatën:"
 
 #: gui/session/selection_panels.js:631
 #, javascript-format
