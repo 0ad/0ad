@@ -9,6 +9,7 @@
 # Lukasz B <boberstarosta@gmail.com>, 2016
 # Marcin Malinowski <szyszka45@gmail.com>, 2015
 # Marcin S <dzidek1003@o2.pl>, 2016
+# Marek Balicki <m.s.balicki@gmail.com>, 2017
 # Marek Opłotny <oplotny.marek@gmail.com>, 2017
 # Mateusz Klaczynski <onufryklaczynski@gmail.com>, 2017
 # mhnxo <mhnxo123@gmail.com>, 2014
@@ -18,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:05+0200\n"
-"PO-Revision-Date: 2017-07-10 12:08+0000\n"
-"Last-Translator: Marek Opłotny <oplotny.marek@gmail.com>\n"
+"PO-Revision-Date: 2017-08-03 09:14+0000\n"
+"Last-Translator: Marek Balicki <m.s.balicki@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,7 +65,7 @@ msgid ""
 "pressing Alt + Enter. In windowed mode, you can resize the window. If the "
 "game runs too slowly, you can change some settings in the options window: "
 "try disabling the \"HQ Water Effects\" and \"Shadows\" options."
-msgstr ""
+msgstr "[font=\"sans-14\"]Możesz przełączać pomiędzy trybem pełnoekranowym a okienkowym wciskając Alt + Enter. W trybie okienkowym możesz zmieniać rozmiary okna. Jeśli gra działa za wolno, możesz zmienić kilka ustawień w oknie opcji: spróbuj wyłączyć opcje Efektu Wody i Cieni."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
@@ -197,7 +198,7 @@ msgstr "[font=\"sans-bold-16\"]Klawisze funkcyjne:"
 
 #: gui/manual/intro.txt:43
 msgid "[font=\"sans-bold-14\"]Program-wide"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Szerokość okna"
 
 #: gui/manual/intro.txt:44
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
@@ -423,7 +424,7 @@ msgstr "Shift + Prawy przycisk myszy: Kolejka budowania/zbierania/itd. "
 msgid ""
 "Shift + Left Click when training units: Add units in batches (the batch size"
 " is 5 by default and can be changed in the options)"
-msgstr ""
+msgstr "Przy kliknięciu na jednostkę do szkolenia przytrzymaj shift: Zakolejkuj wiele jednostek na raz (domyślna ilość to 5 jednostek i można ją zmienić w opcjach)"
 
 #: gui/manual/intro.txt:94
 msgid ""
@@ -506,11 +507,11 @@ msgstr "Alt +Z: Przełącznik nieba"
 #: gui/manual/intro.txt:111
 msgid ""
 "Alt + V: Toggle aura range visualizations of selected units and structures"
-msgstr ""
+msgstr "Alt + V: Przełącz widok zasięgu aury wybranych jednostek i struktur"
 
 #: gui/manual/intro.txt:112
 msgid "Alt + B: Toggle heal range visualizations of selected units"
-msgstr ""
+msgstr "Alt + B: Przełącz widok zasięgu leczenia wybranych jednostek"
 
 #: gui/manual/intro.txt:114
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
@@ -569,7 +570,7 @@ msgstr "Shift + Kółko myszy obrócone w dół: Obrót kamery przeciwnie do ruc
 msgid ""
 "F: Follow the selected unit (move the camera to stop it from following the "
 "unit)"
-msgstr ""
+msgstr "F: Podążaj za wybraną jednostką (przesuń kamerę, by przestać śledzić)"
 
 #: gui/manual/intro.txt:128
 msgid "R: Reset camera zoom/orientation"
