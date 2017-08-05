@@ -27,6 +27,7 @@
 # Marcin Kozłowski <martinkoaz@gmail.com>, 2015
 # Marcin Malinowski <szyszka45@gmail.com>, 2015
 # Marcin S <dzidek1003@o2.pl>, 2016-2017
+# Marek Balicki <m.s.balicki@gmail.com>, 2017
 # Marek Opłotny <oplotny.marek@gmail.com>, 2017
 # Michał Garapich <michal@garapich.pl>, 2013
 # Michał Karol, 2016
@@ -56,8 +57,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:01+0200\n"
-"PO-Revision-Date: 2017-07-10 12:01+0000\n"
-"Last-Translator: Marek Opłotny <oplotny.marek@gmail.com>\n"
+"PO-Revision-Date: 2017-08-03 09:14+0000\n"
+"Last-Translator: Marek Balicki <m.s.balicki@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -176,7 +177,7 @@ msgstr "Wezwij sojusznika do ataku na tego wroga."
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
-msgstr ""
+msgstr "Przekup losową jednostkę tego gracza i uzyskaj jej wizję na ograniczony czas."
 
 #: gui/session/menu.js:717
 #, javascript-format
@@ -540,7 +541,7 @@ msgstr "Kliknij, aby opuścić ten samouczek."
 
 #: gui/session/messages.js:570
 msgid "Quit"
-msgstr ""
+msgstr "Wyjdź"
 
 #: gui/session/messages.js:574
 msgid "Click when ready."
@@ -579,7 +580,7 @@ msgstr "Twoja gra uległa desynchronizacji z hostem."
 #: gui/session/messages.js:690
 msgctxt "Out-Of-Sync"
 msgid "Rejoining Multiplayer games with AIs is not supported yet!"
-msgstr ""
+msgstr "Ponowne połączenie do gry dla wielu graczy z graczami komputerowymi nie jest jeszcze wspomagane!"
 
 #: gui/session/messages.js:694
 msgctxt "Out-Of-Sync"
@@ -708,7 +709,7 @@ msgstr "%(player)s przechodzi do %(phaseName)s"
 #: gui/session/messages.js:1072
 #, javascript-format
 msgid "The %(phaseName)s of %(player)s has been aborted."
-msgstr ""
+msgstr "%(phaseName)s gracza %(player)s zostało anulowane."
 
 #: gui/session/messages.js:1075
 #, javascript-format
@@ -1087,7 +1088,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
 "the arrows of the other types to modify their shares. You can also press "
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
-msgstr ""
+msgstr "Wybierz jeden rodzaj dóbr, który chcesz modyfikować poprzez kliknięcie, a następnie użyj strzałek do zmodyfikowania udziałów innych dóbr. Możesz również wcisnąć %(hotkey)s podczas wybierania pierwszego typu dóbr by podnieść udział do 100 %%."
 
 #: gui/session/session.js:420
 #, javascript-format
@@ -1096,7 +1097,7 @@ msgid ""
 "each time the lower buttons are pressed, %(quantity)s of the upper resource "
 "will be sold for the displayed quantity of the lower. Press and hold "
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
-msgstr ""
+msgstr "Zacznij od wybrania surowca, który chciałbyś sprzedać z górnego rzędu. Za każdym razem, kiedy dolny przycisk jest wciśnięty, %(quantity)s górnego surowca będzie sprzedane za wskazaną ilość niższego surowca. Wciśnij i przytrzymaj %(hotkey)s, by tymczasowo pomnożyć ilość wymienianą o %(multiplier)s."
 
 #: gui/session/session.js:584
 #, javascript-format
@@ -1268,7 +1269,7 @@ msgstr "Usuń straż"
 #: gui/session/unit_actions.js:1275
 #: gui/session/top_panel/button_trade.xml:(tooltip):9
 msgid "Barter & Trade"
-msgstr ""
+msgstr "Wymiana i Handel"
 
 #: gui/session/unit_actions.js:1293
 msgid "Patrol"
@@ -1488,7 +1489,7 @@ msgstr "Wybierz gracza do podglądu"
 
 #: gui/session/trade_window.xml:(caption):9
 msgid "Barter & Trade Goods"
-msgstr ""
+msgstr "Handel wymienny towarów"
 
 #: gui/session/trade_window.xml:(caption):17
 msgid "Barter"
@@ -1504,7 +1505,7 @@ msgstr "Kup:"
 
 #: gui/session/trade_window.xml:(caption):32
 msgid "No Markets Available"
-msgstr ""
+msgstr "Żadnych dostępnych targów"
 
 #: gui/session/trade_window.xml:(caption):67
 msgid "Trade"
@@ -1512,7 +1513,7 @@ msgstr "Handel"
 
 #: gui/session/trade_window.xml:(caption):75
 msgid "Goods:"
-msgstr ""
+msgstr "Towary:"
 
 #: gui/session/tutorial_panel.xml:(caption):11
 msgid "Ready"

@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-05 09:02+0200\n"
-"PO-Revision-Date: 2017-06-10 14:58+0000\n"
-"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
+"POT-Creation-Date: 2017-08-02 09:02+0200\n"
+"PO-Revision-Date: 2017-08-03 09:14+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -90,6 +90,10 @@ msgstr "Αρχική σελίδα"
 msgid "FPS: %(fps)4s"
 msgstr "FPS: %(fps)4s"
 
+#: gui/common/functions_global_object.js:139
+msgid "Loading Aborted"
+msgstr "Φόρτωση Εγκαταλείφθηκε"
+
 #: gui/common/functions_utility.js:108
 msgctxt "map selection"
 msgid "Random"
@@ -102,10 +106,6 @@ msgstr "mm:ss"
 #: gui/common/functions_utility.js:119
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
-
-#: gui/common/functions_utility_error.js:12
-msgid "Loading Aborted"
-msgstr "Φόρτωση Εγκαταλείφθηκε"
 
 #: gui/common/functions_utility_loadsave.js:15
 msgid "yyyy-MM-dd HH:mm:ss"
@@ -134,19 +134,19 @@ msgstr "Το σοσμένο παιχνίδι θα διαγραφεί μόνιμ�
 msgid "DELETE"
 msgstr "ΔΙΑΓΡΑΦΗ"
 
-#: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:246
+#: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:291
 #: gui/options/options.js:334 gui/options/options.js:401
-#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:165
+#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:170
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
-#: gui/summary/summary.js:346
+#: gui/summary/summary.js:367
 msgid "No"
 msgstr "Όχι"
 
-#: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:246
+#: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:291
 #: gui/options/options.js:334 gui/options/options.js:401
-#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:165
+#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:170
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
-#: gui/summary/summary.js:346
+#: gui/summary/summary.js:367
 msgid "Yes"
 msgstr "Ναι"
 
@@ -431,10 +431,10 @@ msgstr "Εξερευνημένος Χάρτης"
 msgid "Cheats"
 msgstr "Ζαβολιές"
 
-#: gui/common/gamedescription.js:395 gui/common/tooltips.js:86
-#: gui/common/tooltips.js:141 gui/common/tooltips.js:182
-#: gui/common/tooltips.js:404 gui/common/tooltips.js:425
-#: gui/common/tooltips.js:718
+#: gui/common/gamedescription.js:395 gui/common/tooltips.js:130
+#: gui/common/tooltips.js:185 gui/common/tooltips.js:226
+#: gui/common/tooltips.js:451 gui/common/tooltips.js:472
+#: gui/common/tooltips.js:763
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -456,28 +456,6 @@ msgstr "Νικηφόρος"
 #: gui/common/gamedescription.js:421
 msgid "Defeated"
 msgstr "Ηττήθηκε"
-
-#: gui/common/l10n.js:13
-#, javascript-format
-msgid "%(amount)s %(resourceType)s"
-msgstr "%(amount)s %(resourceType)s"
-
-#: gui/common/l10n.js:21
-#, javascript-format
-msgid "%(previousAmounts)s and %(lastAmount)s"
-msgstr "%(previousAmounts)s και %(lastAmount)s"
-
-#. Translation: This comma is used for separating first to penultimate
-#. elements in an enumeration.
-#: gui/common/l10n.js:23 gui/common/network.js:162 gui/common/tooltips.js:154
-#: gui/common/tooltips.js:168 gui/common/tooltips.js:248
-#: gui/common/tooltips.js:277 gui/common/tooltips.js:310
-#: gui/common/tooltips.js:583 gui/common/tooltips.js:617
-#: gui/common/tooltips.js:682 gui/replaymenu/replay_actions.js:89
-#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:119
-#: gui/savedgames/load.js:175 gui/savedgames/load.js:178
-msgid ", "
-msgstr ", "
 
 #: gui/common/network.js:17
 #, javascript-format
@@ -580,6 +558,17 @@ msgstr "Μόνο ο εξυπηρετητής μπορεί να διώξει πα
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
 msgstr "Χρήστες (%(num)s): %(users)s"
+
+#: gui/common/network.js:162 gui/common/tooltips.js:84
+#: gui/common/tooltips.js:198 gui/common/tooltips.js:212
+#: gui/common/tooltips.js:290 gui/common/tooltips.js:323
+#: gui/common/tooltips.js:356 gui/common/tooltips.js:628
+#: gui/common/tooltips.js:662 gui/common/tooltips.js:727
+#: gui/replaymenu/replay_actions.js:93 gui/replaymenu/replay_actions.js:94
+#: gui/savedgames/load.js:119 gui/savedgames/load.js:175
+#: gui/savedgames/load.js:178
+msgid ", "
+msgstr ", "
 
 #: gui/common/settings.js:108
 msgctxt "aiDiff"
@@ -774,264 +763,274 @@ msgid ""
 "%(rate)s"
 msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s %(rangeUnit)s, %(rate)s"
 
-#: gui/common/tooltips.js:67
+#: gui/common/tooltips.js:73
+#, javascript-format
+msgid "%(amount)s %(resourceType)s"
+msgstr "%(amount)s %(resourceType)s"
+
+#: gui/common/tooltips.js:82
+#, javascript-format
+msgid "%(previousAmounts)s and %(lastAmount)s"
+msgstr "%(previousAmounts)s και %(lastAmount)s"
+
+#: gui/common/tooltips.js:111
 #, javascript-format
 msgid "%(time)s %(second)s"
 msgid_plural "%(time)s %(second)s"
 msgstr[0] "%(time)s %(second)s"
 msgstr[1] "%(time)s %(second)s"
 
-#: gui/common/tooltips.js:69 gui/common/tooltips.js:273
-#: gui/common/tooltips.js:322 gui/common/tooltips.js:336
-#: gui/common/tooltips.js:615
+#: gui/common/tooltips.js:113 gui/common/tooltips.js:319
+#: gui/common/tooltips.js:368 gui/common/tooltips.js:382
+#: gui/common/tooltips.js:660
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "δευτερόλεπτα"
 msgstr[1] "δευτερόλεπτα"
 
-#: gui/common/tooltips.js:87 gui/common/tooltips.js:98
+#: gui/common/tooltips.js:131 gui/common/tooltips.js:142
 msgid "Health:"
 msgstr "Υγεία:"
 
-#: gui/common/tooltips.js:97
+#: gui/common/tooltips.js:141
 #, javascript-format
 msgid "%(healthLabel)s %(current)s / %(max)s"
 msgstr "%(healthLabel)s %(current)s / %(max)s"
 
-#: gui/common/tooltips.js:115
+#: gui/common/tooltips.js:159
 #, javascript-format
 msgid "%(arrowcount)s %(arrows)s"
 msgid_plural "%(arrowcount)s %(arrows)s"
 msgstr[0] "%(arrowcount)s %(arrows)s"
 msgstr[1] "%(arrowcount)s %(arrows)s"
 
-#: gui/common/tooltips.js:117
+#: gui/common/tooltips.js:161
 msgid "arrow"
 msgid_plural "arrows"
 msgstr[0] "βέλη"
 msgstr[1] "βέλη"
 
-#: gui/common/tooltips.js:120
+#: gui/common/tooltips.js:164
 #, javascript-format
 msgid "%(arrowString)s / %(timeString)s"
 msgstr "%(arrowString)s / %(timeString)s"
 
-#: gui/common/tooltips.js:131
+#: gui/common/tooltips.js:175
 #, javascript-format
 msgid "%(percentage)s%%"
 msgstr "%(percentage)s%%"
 
-#: gui/common/tooltips.js:142
+#: gui/common/tooltips.js:186
 msgid "Armor:"
 msgstr "Πανοπλία:"
 
-#: gui/common/tooltips.js:145
+#: gui/common/tooltips.js:189
 #, javascript-format
 msgid "%(damage)s %(damageType)s %(armorPercentage)s"
 msgstr "%(damage)s %(damageType)s %(armorPercentage)s"
 
-#: gui/common/tooltips.js:150
+#: gui/common/tooltips.js:194
 #, javascript-format
 msgid "(%(armorPercentage)s)"
 msgstr "(%(armorPercentage)s)"
 
-#: gui/common/tooltips.js:161
+#: gui/common/tooltips.js:205
 msgid "(None)"
 msgstr "(Καμία)"
 
-#: gui/common/tooltips.js:165
+#: gui/common/tooltips.js:209
 #, javascript-format
 msgid "%(damage)s %(damageType)s"
 msgstr "%(damage)s %(damageType)s"
 
-#: gui/common/tooltips.js:186
+#: gui/common/tooltips.js:230
 msgid "Interval:"
 msgstr "Διάστημα:"
 
-#: gui/common/tooltips.js:187 gui/common/tooltips.js:613
+#: gui/common/tooltips.js:231 gui/common/tooltips.js:658
 msgid "Rate:"
 msgstr "Βαθμός:"
 
-#: gui/common/tooltips.js:194
+#: gui/common/tooltips.js:238
 #, javascript-format
 msgid "%(attackLabel)s %(details)s, %(rate)s"
 msgstr "%(attackLabel)s %(details)s, %(rate)s"
 
-#: gui/common/tooltips.js:213 gui/common/tooltips.js:608
+#: gui/common/tooltips.js:257 gui/common/tooltips.js:653
 msgid "Range:"
 msgstr "Απόσταση:"
 
-#: gui/common/tooltips.js:216
+#: gui/common/tooltips.js:260
 #, javascript-format
 msgid "+%(number)s"
 msgstr "+%(number)s"
 
 #. Translation: For example "0.5 to 1 meters", "1 (+1) meters" or "1 to 2 (+3)
 #. meters"
-#: gui/common/tooltips.js:220
+#: gui/common/tooltips.js:264
 msgid "meters"
 msgstr "μέτρα"
 
-#: gui/common/tooltips.js:221 gui/common/tooltips.js:610
-#: gui/common/tooltips.js:639
+#: gui/common/tooltips.js:265 gui/common/tooltips.js:655
+#: gui/common/tooltips.js:684
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] "μέτρα"
 msgstr[1] "μέτρα"
 
-#: gui/common/tooltips.js:241 gui/common/tooltips.js:296
-#: gui/common/tooltips.js:301 gui/common/tooltips.js:306
+#: gui/common/tooltips.js:284 gui/common/tooltips.js:342
+#: gui/common/tooltips.js:347 gui/common/tooltips.js:352
 #, javascript-format
 msgid "%(label)s: %(value)s"
 msgstr "%(label)s: %(value)s"
 
-#: gui/common/tooltips.js:245
+#: gui/common/tooltips.js:290
 #, javascript-format
 msgid "Friendly Fire: %(enabled)s"
 msgstr "Φίλια Πυρά: %(enabled)s"
 
-#: gui/common/tooltips.js:261
+#: gui/common/tooltips.js:307
 #, javascript-format
 msgid "%(label)s: %(garrisonLimit)s"
 msgstr "%(label)s: %(garrisonLimit)s"
 
-#: gui/common/tooltips.js:262
+#: gui/common/tooltips.js:308
 msgid "Garrison Limit"
 msgstr "Όρια Οχύρωσης"
 
-#: gui/common/tooltips.js:269
+#: gui/common/tooltips.js:315
 #, javascript-format
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
-#: gui/common/tooltips.js:270 gui/common/tooltips.js:602
+#: gui/common/tooltips.js:316 gui/common/tooltips.js:647
 msgid "Heal:"
 msgstr "Θεραπεύω"
 
-#: gui/common/tooltips.js:272 gui/common/tooltips.js:321
-#: gui/common/tooltips.js:335
+#: gui/common/tooltips.js:318 gui/common/tooltips.js:367
+#: gui/common/tooltips.js:381
 msgid "Health"
 msgstr "Υγεία"
 
-#: gui/common/tooltips.js:297
+#: gui/common/tooltips.js:343
 msgid "Projectile Limit"
 msgstr "Όριο Βλήματος"
 
-#: gui/common/tooltips.js:302
+#: gui/common/tooltips.js:348
 msgctxt "projectiles"
 msgid "Default"
 msgstr "Προεπιλογή"
 
-#: gui/common/tooltips.js:307
+#: gui/common/tooltips.js:353
 msgctxt "projectiles"
 msgid "Per Unit"
 msgstr "Ανά Μονάδα"
 
-#: gui/common/tooltips.js:318
+#: gui/common/tooltips.js:364
 #, javascript-format
 msgid "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 msgstr "%(repairRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 
-#: gui/common/tooltips.js:319
+#: gui/common/tooltips.js:365
 msgid "Repair Rate:"
 msgstr "Συντελεστής Επιδιόρθωσης:"
 
-#: gui/common/tooltips.js:323 gui/common/tooltips.js:337
+#: gui/common/tooltips.js:369 gui/common/tooltips.js:383
 #: gui/summary/layout.js:64
 msgid "Worker"
 msgstr "Εργάτης"
 
-#: gui/common/tooltips.js:332
+#: gui/common/tooltips.js:378
 #, javascript-format
 msgid "%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 msgstr "%(buildRateLabel)s %(value)s %(health)s / %(second)s / %(worker)s"
 
-#: gui/common/tooltips.js:333
+#: gui/common/tooltips.js:379
 msgid "Build Rate:"
 msgstr "Συντελεστής Χτισίματος:"
 
-#: gui/common/tooltips.js:369 gui/common/tooltips.js:554
+#: gui/common/tooltips.js:416 gui/common/tooltips.js:599
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
 
-#: gui/common/tooltips.js:405
+#: gui/common/tooltips.js:452
 msgid "Gather Rates:"
 msgstr "Συντελεστής Συγκομιδής:"
 
-#: gui/common/tooltips.js:408 gui/common/tooltips.js:430
+#: gui/common/tooltips.js:455 gui/common/tooltips.js:477
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
 
-#: gui/common/tooltips.js:426
+#: gui/common/tooltips.js:473
 msgid "Resource Trickle:"
 msgstr "Διάχυση Πόρων:"
 
-#: gui/common/tooltips.js:427
+#: gui/common/tooltips.js:474
 #, javascript-format
 msgid "%(resources)s / %(time)s"
 msgstr "%(resources)s / %(time)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/common/tooltips.js:481
+#: gui/common/tooltips.js:526
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr "%(resourceIcon)s %(minimum)s μέχρι %(resourceIcon)s %(maximum)s"
 
-#: gui/common/tooltips.js:510
+#: gui/common/tooltips.js:555
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr "Τείχη:  %(costs)s"
 
-#: gui/common/tooltips.js:511
+#: gui/common/tooltips.js:556
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr "Πύργοι: %(costs)s"
 
-#: gui/common/tooltips.js:525
+#: gui/common/tooltips.js:570
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Απαιτείται η τεχνολογία %(technology)s"
 
-#: gui/common/tooltips.js:537
+#: gui/common/tooltips.js:582
 #, javascript-format
 msgid "%(label)s %(populationBonus)s"
 msgstr "%(label)s %(populationBonus)s"
 
-#: gui/common/tooltips.js:538
+#: gui/common/tooltips.js:583
 msgid "Population Bonus:"
 msgstr "Πληθυσμιακό Όφελος:"
 
-#: gui/common/tooltips.js:560
+#: gui/common/tooltips.js:605
 msgid "Insufficient resources:"
 msgstr "Μη επαρκείς πόροι"
 
-#: gui/common/tooltips.js:576
+#: gui/common/tooltips.js:621
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:577
+#: gui/common/tooltips.js:622
 msgid "Speed:"
 msgstr "Ταχύτητα:"
 
-#: gui/common/tooltips.js:579 gui/common/tooltips.js:584
+#: gui/common/tooltips.js:624 gui/common/tooltips.js:629
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:581
+#: gui/common/tooltips.js:626
 msgid "Walk"
 msgstr "Περπάτα"
 
-#: gui/common/tooltips.js:586
+#: gui/common/tooltips.js:631
 msgid "Run"
 msgstr "Τρέξε"
 
-#: gui/common/tooltips.js:601 gui/common/tooltips.js:607
-#: gui/common/tooltips.js:612 gui/common/tooltips.js:636
+#: gui/common/tooltips.js:646 gui/common/tooltips.js:652
+#: gui/common/tooltips.js:657 gui/common/tooltips.js:681
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
@@ -1040,51 +1039,51 @@ msgstr[1] "%(label)s %(val)s %(unit)s"
 
 #. Translation: Short for hit points (or health points) that are healed in one
 #. healing action
-#: gui/common/tooltips.js:605
+#: gui/common/tooltips.js:650
 msgid "HP"
 msgid_plural "HP"
 msgstr[0] "Αντοχή"
 msgstr[1] "Αντοχή"
 
-#: gui/common/tooltips.js:628
+#: gui/common/tooltips.js:673
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:629
+#: gui/common/tooltips.js:674
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s:"
 
-#: gui/common/tooltips.js:637
+#: gui/common/tooltips.js:682
 msgctxt "aura"
 msgid "Range:"
 msgstr "Βεληνεκές:"
 
-#: gui/common/tooltips.js:654
+#: gui/common/tooltips.js:699
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
 #. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian
 #. Marine)[/font]"
-#: gui/common/tooltips.js:666
+#: gui/common/tooltips.js:711
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
-#: gui/common/tooltips.js:681
+#: gui/common/tooltips.js:726
 msgid "Classes:"
 msgstr "Τάξεις:"
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the value.
-#: gui/common/tooltips.js:709
+#: gui/common/tooltips.js:754
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr "%(component)s %(loot)s"
 
-#: gui/common/tooltips.js:719
+#: gui/common/tooltips.js:764
 msgid "Loot:"
 msgstr "Λάφυρα:"
 
@@ -1202,7 +1201,7 @@ msgstr "Έκδοση: %(buildDate)s (%(revision)s)"
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Θέλετε σίγουρα να αποχωρήσετε από το 0 A.D.;"
 
-#: gui/pregame/mainmenu.js:261 gui/summary/summary.js:345
+#: gui/pregame/mainmenu.js:261 gui/summary/summary.js:366
 msgid "Confirmation"
 msgstr "Επιβεβαίωση"
 
@@ -1212,7 +1211,7 @@ msgid ""
 "for additional information."
 msgstr "Ο Επεξεργαστής Σεναρίων δεν είναι διαθέσιμος ή η φόρτωσή του απέτυχε.Κοιτάξτε τις εγγραφές παιχνιδιού για περισσότερες πληροφορίες."
 
-#: gui/pregame/mainmenu.js:277 gui/replaymenu/replay_actions.js:116
+#: gui/pregame/mainmenu.js:277 gui/replaymenu/replay_actions.js:120
 msgid "Error"
 msgstr "Σφάλμα"
 
@@ -1220,56 +1219,61 @@ msgstr "Σφάλμα"
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "Εκκίνηση του λόμπι πολλαπλών παικτών. \\[DISABLED BY BUILD]"
 
-#: gui/pregame/mainmenu.js:288 gui/pregame/mainmenu.xml:(caption):72
-#: gui/pregame/mainmenu.xml:(caption):94
+#: gui/pregame/mainmenu.js:288 gui/pregame/mainmenu.xml:(caption):71
+#: gui/pregame/mainmenu.xml:(caption):93
 msgid "Technical Details"
 msgstr "Τεχνικές λεπτομέριες"
 
-#: gui/pregame/mainmenu.js:293 gui/pregame/mainmenu.xml:(caption):140
+#: gui/pregame/mainmenu.js:293 gui/pregame/mainmenu.xml:(caption):139
 msgid "Manual"
 msgstr "Εγχειρίδιο χρήσης"
 
-#: gui/replaymenu/replay_actions.js:88
+#: gui/reference/common/load.js:233
+#, javascript-format
+msgid "%(health_min)s to %(health_max)s"
+msgstr ""
+
+#: gui/replaymenu/replay_actions.js:92
 msgid "You don't have the same mods active as the replay does."
 msgstr "Δεν είναι ενεργά τα ίδια mod με αυτά της επανάληψης."
 
-#: gui/replaymenu/replay_actions.js:89 gui/savedgames/load.js:174
+#: gui/replaymenu/replay_actions.js:93 gui/savedgames/load.js:174
 #, javascript-format
 msgid "Required: %(mods)s"
 msgstr "Απαιτείται: %(mods)s"
 
-#: gui/replaymenu/replay_actions.js:90 gui/savedgames/load.js:177
+#: gui/replaymenu/replay_actions.js:94 gui/savedgames/load.js:177
 #, javascript-format
 msgid "Active: %(mods)s"
 msgstr "Ενεργοποίηση: %(mods)s"
 
-#: gui/replaymenu/replay_actions.js:94
+#: gui/replaymenu/replay_actions.js:98
 msgid "This replay is not compatible with your version of the game!"
 msgstr "Αυτή η επανάληψη δεν είναι συμβατή με την έκδοση του παιχνιδιού!"
 
-#: gui/replaymenu/replay_actions.js:95
+#: gui/replaymenu/replay_actions.js:99
 #, javascript-format
 msgid "Your version: %(version)s"
 msgstr "Τρέχων έκδοση: %(version)s"
 
-#: gui/replaymenu/replay_actions.js:96
+#: gui/replaymenu/replay_actions.js:100
 #, javascript-format
 msgid "Required version: %(version)s"
 msgstr "Απαιτείται η έκδοση: %(version)s"
 
-#: gui/replaymenu/replay_actions.js:99
+#: gui/replaymenu/replay_actions.js:103
 msgid "Incompatible replay"
 msgstr "Ασυμβίβαστη επανάληψη"
 
-#: gui/replaymenu/replay_actions.js:116
+#: gui/replaymenu/replay_actions.js:120
 msgid "No summary data available."
 msgstr "Δεν υπάρχουν διαθέσιμα συνοπτικά δεδομένα."
 
-#: gui/replaymenu/replay_actions.js:163
+#: gui/replaymenu/replay_actions.js:167
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr "Θέλετε να σβήσετε αυτή την επανάληψη μόνιμα;"
 
-#: gui/replaymenu/replay_actions.js:164
+#: gui/replaymenu/replay_actions.js:169
 msgid "Delete replay"
 msgstr "Διαγραφή επανάληψης"
 
@@ -1327,11 +1331,11 @@ msgstr "%(min)s - %(max)s λεπτά"
 msgid "Single- and multiplayer"
 msgstr "Παιχνίδι ενός και πολλών παιχτών"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):472
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):471
 msgid "Single Player"
 msgstr "Παιχνίδι για έναν παίκτη"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):487
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):486
 msgid "Multiplayer"
 msgstr "Παιχνίδι για πολλούς παίκτες"
 
@@ -1416,18 +1420,13 @@ msgstr "Το σωσμένο παιχνίδι θα αντικατασταθεί �
 msgid "OVERWRITE SAVE"
 msgstr "ΑΝΤΙΚΑΤΑΣΤΑΣΗ ΣΩΣΜΕΝΟΥ ΠΑΙΧΝΙΔΙΟΥ"
 
-#: gui/structree/load.js:126
-#, javascript-format
-msgid "%(val1)s to %(val2)s"
-msgstr "%(val1)s σε %(val2)s"
-
-#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):63
+#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):64
 msgid "Score"
 msgstr "Βαθμολογία"
 
 #: gui/summary/layout.js:5 gui/summary/layout.js:23 gui/summary/layout.js:61
 #: gui/summary/layout.js:101 gui/summary/layout.js:149
-#: gui/summary/layout.js:181 gui/summary/summary.xml:(caption):112
+#: gui/summary/layout.js:181 gui/summary/summary.xml:(caption):113
 msgid "Player name"
 msgstr "Όνομα παίκτη"
 
@@ -1447,7 +1446,7 @@ msgstr "Βαθμολογία εξερεύνησης"
 msgid "Total score"
 msgstr "Συνολική Βαθμολογία"
 
-#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):70
+#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):71
 msgid "Buildings"
 msgstr "Κτίρια"
 
@@ -1490,7 +1489,7 @@ msgid ""
 "%(lost)s)"
 msgstr "Στατιστικά Κτιρίων (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):77
+#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):78
 msgid "Units"
 msgstr "Μονάδες"
 
@@ -1523,7 +1522,7 @@ msgstr "Εμπόροι"
 msgid "Units Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 msgstr "Στατιστικά Μονάδων (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):84
+#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):85
 msgid "Resources"
 msgstr "Πόροι"
 
@@ -1547,7 +1546,7 @@ msgstr "Λεηλασία"
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
 msgstr "Στατιστικά Πώρων (%(gathered)s / %(used)s)"
 
-#: gui/summary/layout.js:147 gui/summary/summary.xml:(caption):91
+#: gui/summary/layout.js:147 gui/summary/summary.xml:(caption):92
 msgid "Market"
 msgstr "Αγορά"
 
@@ -1565,7 +1564,7 @@ msgstr "Αποτελεσματικότητα ανταλλαγών"
 msgid "Trade income"
 msgstr "Εμπορικό κέρδος"
 
-#: gui/summary/layout.js:179 gui/summary/summary.xml:(caption):98
+#: gui/summary/layout.js:179 gui/summary/summary.xml:(caption):99
 #: gui/credits/texts/misc.jsonTitle
 msgid "Miscellaneous"
 msgstr "Διάφορα"
@@ -1654,44 +1653,44 @@ msgstr "Πωλήθηκαν"
 msgid "Outcome"
 msgstr "Εξαγωγές"
 
-#: gui/summary/summary.js:344
+#: gui/summary/summary.js:365
 msgid "Are you sure you want to quit the lobby?"
 msgstr "Θέλετε σίγουρα να βγείτε από το λόμπι;"
 
-#: gui/summary/summary.js:395
+#: gui/summary/summary.js:421
 msgid "Current Scores"
 msgstr "Τρέχων Βαθμολογία"
 
-#: gui/summary/summary.js:397
+#: gui/summary/summary.js:423
 msgid "Scores at the end of the game."
 msgstr "Βαθμολογίες με τη λήξη του παιχνιδιού."
 
-#: gui/summary/summary.js:399
+#: gui/summary/summary.js:425
 msgid "You have been disconnected."
 msgstr "Αποσυνδεθήκατε."
 
-#: gui/summary/summary.js:401
+#: gui/summary/summary.js:427
 msgid "You have left the game."
 msgstr "Αποχώρησες από το παιχνίδι."
 
-#: gui/summary/summary.js:403
+#: gui/summary/summary.js:429
 msgid "You have won the battle!"
 msgstr "Κερδίσατε τη μάχη!"
 
-#: gui/summary/summary.js:405
+#: gui/summary/summary.js:431
 msgid "You have been defeated..."
 msgstr "Ηττηθήκατε..."
 
-#: gui/summary/summary.js:406
+#: gui/summary/summary.js:432
 msgid "You have abandoned the game."
 msgstr "Εγκαταλείψατε το παιχνίδι."
 
-#: gui/summary/summary.js:411
+#: gui/summary/summary.js:437
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Χρόνος παιχνιδιού που έχει παρέλθει: %(time)s"
 
-#: gui/summary/summary.js:419
+#: gui/summary/summary.js:445
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
@@ -1705,8 +1704,8 @@ msgid "Civilization Selection"
 msgstr "Επιλογή Πολιτισμού"
 
 #: gui/civinfo/civinfo.xml:(caption):119 gui/credits/credits.xml:(caption):36
-#: gui/options/options.xml:(caption):102
-#: gui/structree/structree.xml:(caption):124
+#: gui/options/options.xml:(caption):103
+#: gui/reference/structree/structree.xml:(caption):122
 msgid "Close"
 msgstr "Κλείσιμο"
 
@@ -1716,7 +1715,7 @@ msgstr "Συντελεστές του 0 A.D."
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
-#: gui/pregame/mainmenu.xml:(caption):344
+#: gui/pregame/mainmenu.xml:(caption):343
 msgid "Language"
 msgstr "Γλώσσα"
 
@@ -1787,291 +1786,299 @@ msgstr "Προαιρετικά ο τετραψήφιος κώδικας σενα
 msgid "Not implemented yet."
 msgstr "Δέν έχει ενσωματωθεί ακόμα."
 
-#: gui/options/options.xml:(caption):18
+#: gui/options/options.xml:(caption):19
 msgid "Game Options"
 msgstr "Επιλογές Παιχνιδιού"
 
-#: gui/options/options.xml:(caption):22
+#: gui/options/options.xml:(caption):23
 msgid "General"
 msgstr "Γενικά"
 
-#: gui/options/options.xml:(caption):35
+#: gui/options/options.xml:(caption):36
 msgid "Graphics Settings"
 msgstr "Ρυθμίσεις Γραφικών"
 
-#: gui/options/options.xml:(caption):49
+#: gui/options/options.xml:(caption):50
 msgid "Sound Settings"
 msgstr "Ρυθμίσεις Ήχου"
 
-#: gui/options/options.xml:(caption):62
+#: gui/options/options.xml:(caption):63
 msgid "Lobby Settings"
 msgstr "Ρυθμίσεις Λόμπι"
 
-#: gui/options/options.xml:(caption):75
+#: gui/options/options.xml:(caption):76
 msgid "Chat Notification Settings"
 msgstr "Ρυθμίσεις Ειδοποιήσεων Συνομιλίας"
 
-#: gui/options/options.xml:(caption):87
+#: gui/options/options.xml:(caption):88
 msgid "Reset"
 msgstr "Επαναφορά"
 
-#: gui/options/options.xml:(caption):92
+#: gui/options/options.xml:(caption):93
 msgid "Revert"
 msgstr "Επαναφορά"
 
-#: gui/options/options.xml:(caption):97 gui/savedgames/save.xml:(caption):48
+#: gui/options/options.xml:(caption):98 gui/savedgames/save.xml:(caption):48
 msgid "Save"
 msgstr "Αποθήκευση"
 
-#: gui/options/options.xml:(tooltip):88
+#: gui/options/options.xml:(tooltip):89
 msgid "Resets user settings to their game default"
 msgstr "Επαναφορά τον ρυθμίσεων του χρήστη στις προεπιλογές του παιχνιδιού"
 
-#: gui/options/options.xml:(tooltip):93
+#: gui/options/options.xml:(tooltip):94
 msgid "Reverts to previous saved settings"
 msgstr "Επαναφορά στις προηγούμενες αποθηκευμένες ρυθμίσεις"
 
-#: gui/options/options.xml:(tooltip):98
+#: gui/options/options.xml:(tooltip):99
 msgid "Saves changes"
 msgstr "Αποθήκευση αλλαγών"
 
-#: gui/options/options.xml:(tooltip):103
+#: gui/options/options.xml:(tooltip):104
 msgid "Unsaved changes affect this session only"
 msgstr "Οι μη αποθηκευμένες αλλαγές επηρεάζουν αυτή τη συνεδρία μόνο"
 
-#: gui/pregame/mainmenu.xml:62
+#: gui/pregame/mainmenu.xml:61
 msgid "Help improve 0 A.D.!"
 msgstr "Βοηθήστε στη βελτίωση του 0 A.D.! "
 
-#: gui/pregame/mainmenu.xml:64
+#: gui/pregame/mainmenu.xml:63
 msgid ""
 "You can automatically send us anonymous feedback that will help us fix bugs,"
 " and improve performance and compatibility."
 msgstr "Μπορείτε να μας στέλνετε αυτόματα ανώνυμες πληροφορίες που θα μας βοηθήσουν στη διόρθωση των σφαλμάτων κώδικα, καθώς και στη βελτίωση της απόδοσης και της συμβατότητας του παιχνιδιού."
 
-#: gui/pregame/mainmenu.xml:540
+#: gui/pregame/mainmenu.xml:539
 msgid "Alpha XXII: Venustas"
 msgstr "ΑΛΦΑ ΚΒ': Βενουστάς"
 
-#: gui/pregame/mainmenu.xml:542
+#: gui/pregame/mainmenu.xml:541
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
 msgstr "ΠΡΟΕΙΔΟΠΟΙΗΣΗ: Το παιχνίδι βρίσκεται ακόμα σε φάση ανάπτυξης και αυτή η έκδοσή του είναι πρώιμη. Πολλές δυνατότητες και λειτουργίες δεν έχουν προστεθεί ακόμα."
 
-#: gui/pregame/mainmenu.xml:(caption):68
+#: gui/pregame/mainmenu.xml:(caption):67
 msgid "Enable Feedback"
 msgstr "Ενεργοποίηση Ανάδρασης"
 
-#: gui/pregame/mainmenu.xml:(caption):90
+#: gui/pregame/mainmenu.xml:(caption):89
 msgid "Disable Feedback"
 msgstr "Απενεργοποίηση αποστολής πληροφοριών"
 
-#: gui/pregame/mainmenu.xml:(caption):157
+#: gui/pregame/mainmenu.xml:(caption):156
 msgid "Tutorial"
 msgstr " Οδηγός Εκμάθησης"
 
-#: gui/pregame/mainmenu.xml:(caption):171
-#: gui/structree/structree.xml:(caption):18
+#: gui/pregame/mainmenu.xml:(caption):170
+#: gui/reference/structree/structree.xml:(caption):16
 msgid "Structure Tree"
 msgstr "Δέντρο κατασκευής"
 
-#: gui/pregame/mainmenu.xml:(caption):188
+#: gui/pregame/mainmenu.xml:(caption):187
 msgid "History"
 msgstr "Ιστορία"
 
-#: gui/pregame/mainmenu.xml:(caption):213
+#: gui/pregame/mainmenu.xml:(caption):212
 msgid "Matches"
 msgstr "Αναμετρήσεις"
 
-#: gui/pregame/mainmenu.xml:(caption):227
+#: gui/pregame/mainmenu.xml:(caption):226
 msgid "Campaigns"
 msgstr "Εκστρατείες"
 
-#: gui/pregame/mainmenu.xml:(caption):244 gui/savedgames/load.xml:(caption):20
+#: gui/pregame/mainmenu.xml:(caption):243 gui/savedgames/load.xml:(caption):20
 msgid "Load Game"
 msgstr "Φόρτωση παιχνιδιού"
 
 #. Join a game by specifying the host's IP address.
-#: gui/pregame/mainmenu.xml:(caption):267
+#: gui/pregame/mainmenu.xml:(caption):266
 msgid "Join Game"
 msgstr "Συμμετοχή στο παιχνίδι"
 
-#: gui/pregame/mainmenu.xml:(caption):282
+#: gui/pregame/mainmenu.xml:(caption):281
 msgid "Host Game"
 msgstr "Φιλοξενία παιχνιδιού"
 
-#: gui/pregame/mainmenu.xml:(caption):297
+#: gui/pregame/mainmenu.xml:(caption):296
 msgid "Game Lobby"
 msgstr "Λόμπι Παιχνιδιού"
 
-#: gui/pregame/mainmenu.xml:(caption):327
+#: gui/pregame/mainmenu.xml:(caption):326
 msgid "Options"
 msgstr "Επιλογές"
 
-#: gui/pregame/mainmenu.xml:(caption):360
+#: gui/pregame/mainmenu.xml:(caption):359
 msgid "Replays"
 msgstr "Επαναλήψεις"
 
-#: gui/pregame/mainmenu.xml:(caption):374
+#: gui/pregame/mainmenu.xml:(caption):373
 msgid "Scenario Editor"
 msgstr "Επεξεργαστής Σεναρίων"
 
-#: gui/pregame/mainmenu.xml:(caption):387
+#: gui/pregame/mainmenu.xml:(caption):386
 msgid "Welcome Screen"
 msgstr "Οθόνη Καλωσορίσματος"
 
-#: gui/pregame/mainmenu.xml:(caption):402
+#: gui/pregame/mainmenu.xml:(caption):401
 msgid "Mod Selection"
 msgstr "Επιλογή Mod"
 
-#: gui/pregame/mainmenu.xml:(caption):457
+#: gui/pregame/mainmenu.xml:(caption):456
 msgid "Learn To Play"
 msgstr "Μάθετε πώς παίζεται"
 
-#: gui/pregame/mainmenu.xml:(caption):502
+#: gui/pregame/mainmenu.xml:(caption):501
 msgid "Tools & Options"
 msgstr "Εργαλεία & Επιλογές"
 
-#: gui/pregame/mainmenu.xml:(caption):517
+#: gui/pregame/mainmenu.xml:(caption):516
 msgid "Exit"
 msgstr "Έξοδος"
 
-#: gui/pregame/mainmenu.xml:(caption):552
+#: gui/pregame/mainmenu.xml:(caption):551
 msgid "Website"
 msgstr "Ιστοσελίδα"
 
-#: gui/pregame/mainmenu.xml:(caption):564
+#: gui/pregame/mainmenu.xml:(caption):563
 msgid "Chat"
 msgstr "Συνομιλία"
 
-#: gui/pregame/mainmenu.xml:(caption):576
+#: gui/pregame/mainmenu.xml:(caption):575
 msgid "Report a Bug"
 msgstr "Αναφορά ενός Σφάλματος"
 
-#: gui/pregame/mainmenu.xml:(caption):588
+#: gui/pregame/mainmenu.xml:(caption):587
 msgid "Translate the game"
 msgstr "Μετάφραση παιχνιδιού"
 
-#: gui/pregame/mainmenu.xml:(caption):600
+#: gui/pregame/mainmenu.xml:(caption):599
 msgid "Credits"
 msgstr "Συντελεστές"
 
-#: gui/pregame/mainmenu.xml:(caption):629
+#: gui/pregame/mainmenu.xml:(caption):628
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
-#: gui/pregame/mainmenu.xml:(tooltip):141
+#: gui/pregame/mainmenu.xml:(tooltip):140
 msgid "Open the 0 A.D. Game Manual."
 msgstr "Ανοόξτε το εγχειρίδιο χρήσης του 0 A.D."
 
-#: gui/pregame/mainmenu.xml:(tooltip):158
+#: gui/pregame/mainmenu.xml:(tooltip):157
 msgid "Start the economic tutorial."
 msgstr "Ξεκίνα τον οδηγό εκμάθησης της οικονομίας"
 
-#: gui/pregame/mainmenu.xml:(tooltip):172
+#: gui/pregame/mainmenu.xml:(tooltip):171
 msgid "View the structure tree of civilizations featured in 0 A.D."
 msgstr "Εμφανίζει την δενδροδομή τον πολιτισμών που εμπεριέχονται στο 0 A.D."
 
-#: gui/pregame/mainmenu.xml:(tooltip):189
+#: gui/pregame/mainmenu.xml:(tooltip):188
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "Μάθετε για τους διάφορους πολιτισμούς που εμφανίζονται στο 0 A.D."
 
-#: gui/pregame/mainmenu.xml:(tooltip):214
+#: gui/pregame/mainmenu.xml:(tooltip):213
 msgid "Click here to start a new single player game."
 msgstr "Κλικ εδώ για να αρχίσετε ένα νέο παιχνίδι για έναν παίκτη."
 
-#: gui/pregame/mainmenu.xml:(tooltip):228
+#: gui/pregame/mainmenu.xml:(tooltip):227
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
 msgstr "Αναβιώστε την Ιστορία μέσω ιστορικών πολεμικών εκστρατειών. \\[ΔΕΝ ΕΧΕΙ ΥΛΟΠΟΙΗΘΕΙ ΑΚΟΜΑ]"
 
-#: gui/pregame/mainmenu.xml:(tooltip):245
+#: gui/pregame/mainmenu.xml:(tooltip):244
 msgid "Click here to load a saved game."
 msgstr "Κλικ εδώ για φόρτωση ενός αποθηκευμένου παιχνιδιού."
 
-#: gui/pregame/mainmenu.xml:(tooltip):268
+#: gui/pregame/mainmenu.xml:(tooltip):267
 msgid "Joining an existing multiplayer game."
 msgstr "Συμμετοχή σε υπάρχον παιχνίδι για πολλούς παίκτες."
 
-#: gui/pregame/mainmenu.xml:(tooltip):283
+#: gui/pregame/mainmenu.xml:(tooltip):282
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr "Φιλοξενήστε ένα παιχνίδι για πολλούς παίκτες (multiplayer).\\n\\nΑπαιτείται να είναι ανοιχτή η θύρα UDP 20595."
 
-#: gui/pregame/mainmenu.xml:(tooltip):298
+#: gui/pregame/mainmenu.xml:(tooltip):297
 msgid "Launch the multiplayer lobby."
 msgstr "Εκκίνηση του λόμπι πολλαπλών παικτών."
 
-#: gui/pregame/mainmenu.xml:(tooltip):328
+#: gui/pregame/mainmenu.xml:(tooltip):327
 msgid "Adjust game settings."
 msgstr "Προσαρμόστε τις ρυθμίσεις του παιχνιδιού."
 
-#: gui/pregame/mainmenu.xml:(tooltip):345
+#: gui/pregame/mainmenu.xml:(tooltip):344
 msgid "Choose the language of the game."
 msgstr "Επιλογή της γλώσσας του παιχνιδιού."
 
-#: gui/pregame/mainmenu.xml:(tooltip):361
+#: gui/pregame/mainmenu.xml:(tooltip):360
 msgid "Playback previous games."
 msgstr "Αναπαραγωγή προηγούμενων παιχνιδιών."
 
-#: gui/pregame/mainmenu.xml:(tooltip):375
+#: gui/pregame/mainmenu.xml:(tooltip):374
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Ανοίξτε τον επεξεργαστή σεναρίων \"Atlas Scenario Editor\" σε νέο παράθυρο. Για πιο αξιόπιστη λειτουργία του, εκκινήστε το παιχνίδι από γραμμή εντολών, με το όρισμα \"-editor\"."
 
-#: gui/pregame/mainmenu.xml:(tooltip):388
+#: gui/pregame/mainmenu.xml:(tooltip):387
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "Εμφάνιση της Οθόνης Υποδοχής. Χρήσιμο αν αποκρύφθηκε κατά λάθος."
 
-#: gui/pregame/mainmenu.xml:(tooltip):403
+#: gui/pregame/mainmenu.xml:(tooltip):402
 msgid "Select mods to use."
 msgstr "Επιλογή mods προς χρήση."
 
-#: gui/pregame/mainmenu.xml:(tooltip):458
+#: gui/pregame/mainmenu.xml:(tooltip):457
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations"
 msgstr "Μάθετε πως να παίζεται, ξεκινήστε τον οδηγό εκπαίδευσης, ανακαλύψτε τις δομές της τεχνολογίας και την ιστορία πίσω από τους πολιτισμούς"
 
-#: gui/pregame/mainmenu.xml:(tooltip):473
+#: gui/pregame/mainmenu.xml:(tooltip):472
 msgid "Challenge the computer player to a single player match."
 msgstr "Προκαλέστε τον υπολογιστή σε μια αναμέτρηση για έναν παίκτη (single player)."
 
-#: gui/pregame/mainmenu.xml:(tooltip):488
+#: gui/pregame/mainmenu.xml:(tooltip):487
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Πολεμήστε εναντίον ενός ή περισσότερων παικτών, σε ένα παιχνίδι για πολλούς παίκτες (multiplayer)."
 
-#: gui/pregame/mainmenu.xml:(tooltip):503
+#: gui/pregame/mainmenu.xml:(tooltip):502
 msgid "Game options and scenario design tools."
 msgstr "Επιλογές παιχνιδιού και εργαλεία σχεδίασης σεναρίων."
 
-#: gui/pregame/mainmenu.xml:(tooltip):518
+#: gui/pregame/mainmenu.xml:(tooltip):517
 msgid "Exits the game."
 msgstr "Βγαίνει από το παιχνίδι"
 
-#: gui/pregame/mainmenu.xml:(tooltip):553
+#: gui/pregame/mainmenu.xml:(tooltip):552
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Κάντε κλικ για άνοιγμα του play0ad.com στο πρόγραμμα περιήγησης web που χρησιμοποιείτε."
 
-#: gui/pregame/mainmenu.xml:(tooltip):565
+#: gui/pregame/mainmenu.xml:(tooltip):564
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "Κάντε κλικ για να ανοίξετε τη συνομιλία μέσω IRC του 0 A.D., μέσα από το πρόγραμμα περιήγησης που χρησιμοποιείτε. (#0ad στο διακομιστή webchat.quakenet.org)"
 
-#: gui/pregame/mainmenu.xml:(tooltip):577
+#: gui/pregame/mainmenu.xml:(tooltip):576
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "Κάντε κλικ για να επισκεφτείτε το σύστημα Καταγραφής του 0 A.D. για αναφορά κάποιου σφάλματος στον κώδικα (bug), κάποιου αιφνίδιου τερματισμού λειτουργίας ή κάποιου άλλου σφάλματος. "
 
-#: gui/pregame/mainmenu.xml:(tooltip):589
+#: gui/pregame/mainmenu.xml:(tooltip):588
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "Κλικάρετε για να ανοίξετε την σελίδα μετάφρασης του  0 A.D. στον εξυπηρετητή σας."
 
-#: gui/pregame/mainmenu.xml:(tooltip):601
+#: gui/pregame/mainmenu.xml:(tooltip):600
 msgid "Click to see the 0 A.D. credits."
 msgstr "Κάνε κλικ για να δεις τους συντελεστές του 0 A.D."
+
+#: gui/reference/structree/structree.xml:(caption):28
+msgid "Civilization:"
+msgstr "Πολιτισμός:"
+
+#: gui/reference/structree/structree.xml:(caption):95
+msgid "Trainer Units"
+msgstr "Εκπαιδευτής Μονάδων"
 
 #: gui/replaymenu/replay_menu.xml:(caption):28
 msgid "Replay Games"
@@ -2114,7 +2121,7 @@ msgid "Reload Cache"
 msgstr "Επαναφόρτωση Προσωρινής Μνήμης"
 
 #: gui/replaymenu/replay_menu.xml:(caption):261
-#: gui/summary/summary.xml:(caption):23
+#: gui/summary/summary.xml:(caption):24
 msgid "Summary"
 msgstr "Σύνοψη"
 
@@ -2208,52 +2215,44 @@ msgstr "Δείξε αυτό το μήνυμα στο μέλλον"
 msgid "Known Issues (web)"
 msgstr "Γνωστά ζητήματα (ιστός)"
 
-#: gui/structree/structree.xml:(caption):30
-msgid "Civilization:"
-msgstr "Πολιτισμός:"
-
-#: gui/structree/structree.xml:(caption):97
-msgid "Trainer Units"
-msgstr "Εκπαιδευτής Μονάδων"
-
-#: gui/summary/summary.xml:(caption):105
+#: gui/summary/summary.xml:(caption):106
 msgid "Charts"
 msgstr "Διαγράμματα"
 
-#: gui/summary/summary.xml:(caption):167
+#: gui/summary/summary.xml:(caption):168
 msgctxt "summary chart"
 msgid "Category:"
 msgstr "Κατηγορία:"
 
-#: gui/summary/summary.xml:(caption):177
+#: gui/summary/summary.xml:(caption):178
 msgctxt "summary chart"
 msgid "Value:"
 msgstr "Τιμή:"
 
-#: gui/summary/summary.xml:(caption):187
+#: gui/summary/summary.xml:(caption):188
 msgctxt "summary chart"
 msgid "Type:"
 msgstr "Τύπος:"
 
-#: gui/summary/summary.xml:(caption):206
+#: gui/summary/summary.xml:(caption):207
 msgid "Replay"
 msgstr "Επανάληψη"
 
-#: gui/summary/summary.xml:(caption):211
+#: gui/summary/summary.xml:(caption):212
 msgid "Continue"
 msgstr "Συνέχεια"
 
-#: gui/summary/summary.xml:(tooltip):173
+#: gui/summary/summary.xml:(tooltip):174
 msgctxt "summary chart"
 msgid "Category"
 msgstr "Κατηγορία"
 
-#: gui/summary/summary.xml:(tooltip):183
+#: gui/summary/summary.xml:(tooltip):184
 msgctxt "summary chart"
 msgid "Value"
 msgstr "Τιμή"
 
-#: gui/summary/summary.xml:(tooltip):194
+#: gui/summary/summary.xml:(tooltip):195
 msgctxt "summary chart"
 msgid "Type"
 msgstr "Τύπος"
