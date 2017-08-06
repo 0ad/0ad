@@ -295,8 +295,9 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 	for (let evt of state.events.TrainingFinished)
 	{	// Apply metadata stored in training queues
 		for (let entId of evt.entities)
-			for (let key in evt.metadata)
-				this.setMetadata(evt.owner, this._entities.get(entId), key, evt.metadata[key]);
+			if (this._entities.has(entId))
+				for (let key in evt.metadata)
+					this.setMetadata(evt.owner, this._entities.get(entId), key, evt.metadata[key]);
 	}
 
 	for (let evt of state.events.ConstructionFinished)
