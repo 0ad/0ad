@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Albert, 2016
+# hola jaaj <vespejo3@gmail.com>, 2017
 # ninovolador <ignacio.rodriguez.mo@gmail.com>, 2015
 # Javier Rojas <hekeine@gmail.com>, 2017
 # José Javier Domínguez Reina <jjdominguez@gmail.com>, 2017
@@ -18,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-02 09:02+0200\n"
-"PO-Revision-Date: 2017-08-03 09:14+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-08-05 19:31+0000\n"
+"Last-Translator: Swyter <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -78,7 +79,7 @@ msgstr "Tab"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait..."
-msgstr "Abriendo %(url)s\nen el navegador predeterminado. Por favor, espere..."
+msgstr "Abriendo %(url)s\nen tu navegador, un momento."
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
@@ -298,7 +299,7 @@ msgstr "Número de reliquias"
 
 #: gui/common/gamedescription.js:267
 msgid "Hero Garrison"
-msgstr "Héroe guarnecido"
+msgstr "Guarnición de héroe"
 
 #: gui/common/gamedescription.js:268
 msgid "Heroes can be garrisoned."
@@ -310,7 +311,7 @@ msgstr "Héroes expuestos"
 
 #: gui/common/gamedescription.js:273
 msgid "Heroes cannot be garrisoned, and they are vulnerable to raids."
-msgstr "Los héroes no pueden ser guarnecidos, y son vulnerables a las incursiones."
+msgstr "Los héroes no pueden guarnecerse y son vulnerables a las incursiones."
 
 #: gui/common/gamedescription.js:280
 msgid "Rated game"
@@ -412,7 +413,7 @@ msgstr "Tesoros"
 #: gui/common/gamedescription.js:375
 msgctxt "treasures"
 msgid "Disabled"
-msgstr "Deshabilitado"
+msgstr "Desactivado"
 
 #: gui/common/gamedescription.js:376
 msgctxt "treasures"
@@ -630,7 +631,7 @@ msgstr "Escaramuza"
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other gamesettings."
-msgstr "Un mapa con un paisaje predefinido y el número de jugadores. Selecciona libremente las otras configuraciones del juego."
+msgstr "Un mapa con un terreno y número de jugadores preestablecidos. Puedes cambiar los ajustes de partida."
 
 #: gui/common/settings.js:194
 msgctxt "map"
@@ -650,7 +651,7 @@ msgstr "Escenario"
 
 #: gui/common/settings.js:200
 msgid "A map with a predefined landscape and matchsettings."
-msgstr "Un mapa con un terreno predefinido y ajustes de configuraciones."
+msgstr "Un mapa con un terreno y ajustes de partida preestablecidos."
 
 #: gui/common/settings.js:231
 msgctxt "victory condition"
@@ -717,7 +718,7 @@ msgstr "Perforación"
 
 #: gui/common/tooltips.js:17
 msgid "Crush"
-msgstr "Destructor"
+msgstr "Aplastamiento"
 
 #: gui/common/tooltips.js:21
 msgid "Circular Splash Damage"
@@ -1099,7 +1100,7 @@ msgstr "Ninguna"
 
 #: gui/locale/locale_advanced.js:92
 msgid "invalid locale"
-msgstr "Locale no valida"
+msgstr "Idioma incorrecto"
 
 #: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:163
 #: gui/splashscreen/splashscreen.xml:(caption):28
@@ -1110,7 +1111,7 @@ msgstr "Aceptar"
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
-msgstr "Valor: %(val)s (min: %(min)s, max: %(max)s)"
+msgstr "Valor: %(val)s (mín: %(min)s, max: %(max)s)"
 
 #: gui/options/options.js:332
 msgid ""
@@ -1231,7 +1232,7 @@ msgstr "Manual"
 #: gui/reference/common/load.js:233
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
-msgstr ""
+msgstr "%(health_min)s a %(health_max)s"
 
 #: gui/replaymenu/replay_actions.js:92
 msgid "You don't have the same mods active as the replay does."
@@ -1579,7 +1580,7 @@ msgstr "Feminizado"
 
 #: gui/summary/layout.js:184
 msgid "Kill / Death ratio"
-msgstr "Proporción de Asesinatos / Muertes"
+msgstr "Muertes ajenas / propias"
 
 #: gui/summary/layout.js:185
 msgid "Map exploration"
@@ -1619,7 +1620,7 @@ msgstr "Comprado"
 
 #: gui/summary/summary.js:55
 msgid "Income"
-msgstr "Ingreso"
+msgstr "Ingresado"
 
 #: gui/summary/summary.js:60
 msgid "Captured"
@@ -2118,7 +2119,7 @@ msgstr "Eliminar"
 
 #: gui/replaymenu/replay_menu.xml:(caption):254
 msgid "Reload Cache"
-msgstr "Recargando Cache"
+msgstr "Recargar caché"
 
 #: gui/replaymenu/replay_menu.xml:(caption):261
 #: gui/summary/summary.xml:(caption):24
@@ -2163,7 +2164,7 @@ msgstr "Duración"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):255
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
-msgstr "Reconstruyendo la caché de reproducción desde el inicio. Esto es potencialmente lento!"
+msgstr "Reconstruir la caché de repetición desde el principio, puede tardar un poco."
 
 #: gui/savedgames/load.xml:(heading):44
 msgctxt "replay"
@@ -2365,11 +2366,11 @@ msgstr "2ª recaudación de fondos"
 msgid ""
 "Indiegogo 2013 campaign\n"
 "More than 1000 donators (!), including:"
-msgstr "Campaña en Indiegogo de 2013\nMás de 1.000 participantes (!), incluyendo a:"
+msgstr "Campaña en Indiegogo de 2013\nMás de 1.000 participantes (¡!), incluyendo a:"
 
 #: gui/credits/texts/donators.jsonTitle
 msgid "Donors"
-msgstr "Donantes"
+msgstr "Donaciones"
 
 #: gui/credits/texts/misc.jsonContent[0].Content[0].Subtitle
 msgid "Head"
@@ -2570,7 +2571,7 @@ msgstr "Amigos"
 #: gui/options/options.jsongeneralSetting[13].parameters.list[2].label
 #: gui/options/options.jsongeneralSetting[14].parameters.list[2].label
 msgid "Disabled"
-msgstr "Deshabilitado"
+msgstr "Desactivado"
 
 #: gui/options/options.jsongeneralSetting[13].tooltip
 msgid ""
@@ -2580,13 +2581,13 @@ msgstr "Automáticamente se asigna a los clientes que se unen a las partidas con
 
 #: gui/options/options.jsongeneralSetting[13].label
 msgid "Assign Players"
-msgstr "Asignar Jugadores"
+msgstr "Asignar jugadores"
 
 #: gui/options/options.jsongeneralSetting[14].tooltip
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started"
-msgstr ""
+msgstr "Permitir que todo el mundo o sólo amigos se unan al juego como observadores después de que empezase"
 
 #: gui/options/options.jsongeneralSetting[14].label
 msgid "Late Observer Joins"
@@ -2625,17 +2626,17 @@ msgstr "Muestra el rango de auras de las unidades y estructuras seleccionadas (t
 
 #: gui/options/options.jsongeneralSetting[18].label
 msgid "Aura Range Visualization"
-msgstr "Visualizar distancia de aura"
+msgstr "Ver distancia de aura"
 
 #: gui/options/options.jsongeneralSetting[19].tooltip
 msgid ""
 "Display the healing range of selected units (can also be toggled in-game "
 "with the hotkey)."
-msgstr ""
+msgstr "Muestra el rango de salud de las unidades seleccionadas (también se puede alternar en el juego con la tecla de acceso rápido)."
 
 #: gui/options/options.jsongeneralSetting[19].label
 msgid "Heal Range Visualization"
-msgstr ""
+msgstr "Ver distancia de curación"
 
 #: gui/options/options.jsonsoundSetting[0].tooltip
 msgid "Master audio gain"
@@ -2643,7 +2644,7 @@ msgstr "Volumen de sonido general"
 
 #: gui/options/options.jsonsoundSetting[0].label
 msgid "Master Volume"
-msgstr "Volumen Maestro"
+msgstr "Volumen general"
 
 #: gui/options/options.jsonsoundSetting[1].tooltip
 msgid "In game music gain"
@@ -2651,7 +2652,7 @@ msgstr "Volumen de la música del juego"
 
 #: gui/options/options.jsonsoundSetting[1].label
 msgid "Music Volume"
-msgstr "Volumen de la Música"
+msgstr "Volumen de música"
 
 #: gui/options/options.jsonsoundSetting[2].tooltip
 msgid "In game ambient sound gain"
@@ -2659,7 +2660,7 @@ msgstr "Volumen de los sonidos ambientales"
 
 #: gui/options/options.jsonsoundSetting[2].label
 msgid "Ambient Volume"
-msgstr "Volumen del Ambiente"
+msgstr "Volumen ambiental"
 
 #: gui/options/options.jsonsoundSetting[3].tooltip
 msgid "In game unit action sound gain"
@@ -2667,7 +2668,7 @@ msgstr "Volumen de los sonidos emitidos por las unidades del juego"
 
 #: gui/options/options.jsonsoundSetting[3].label
 msgid "Action Volume"
-msgstr "Volumen de la Acción"
+msgstr "Volumen de unidades"
 
 #: gui/options/options.jsonsoundSetting[4].tooltip
 msgid "UI sound gain"
@@ -2675,7 +2676,7 @@ msgstr "Volumen de los sonidos emitidos por la interfaz de usuario"
 
 #: gui/options/options.jsonsoundSetting[4].label
 msgid "UI Volume"
-msgstr "Volumen de la Interfaz de Usuario"
+msgstr "Volumen de interfaz"
 
 #: gui/options/options.jsonsoundSetting[5].tooltip
 msgid "Receive audio notification when someone types your nick"
@@ -2713,11 +2714,11 @@ msgstr "Intercambio"
 
 #: gui/options/options.jsonnotificationSetting[3].parameters.list[0].label
 msgid "Disable"
-msgstr "Deshabilitar"
+msgstr "Desactivar"
 
 #: gui/options/options.jsonnotificationSetting[3].parameters.list[1].label
 msgid "Completed"
-msgstr "Completado"
+msgstr "Terminado"
 
 #: gui/options/options.jsonnotificationSetting[3].parameters.list[2].label
 msgid "All displayed"
@@ -2727,7 +2728,7 @@ msgstr "Todo visible"
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode"
-msgstr "Mostrar una notificación del chat si tú o un aliado habéis comenzado, abortado o completado una nueva fase, y fases de todos los jugadores en el modo observador."
+msgstr "Mostrar una notificación del chat si tú o un aliado habéis comenzado, cancelado o completado una nueva fase, y mostrar las fases de todos los jugadores en el modo observador."
 
 #: gui/options/options.jsonnotificationSetting[3].label
 msgid "Phase"
@@ -2751,7 +2752,7 @@ msgstr "Postproceso"
 
 #: gui/options/options.jsongraphicsSetting[2].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
-msgstr "Número de efectos de shader. ES NECESARIO REINICIAR EL JUEGO"
+msgstr "Cantidad de efectos de sombreadores. Necesita REINICIAR EL JUEGO"
 
 #: gui/options/options.jsongraphicsSetting[2].label
 msgid "Graphics quality"
@@ -2887,19 +2888,19 @@ msgstr "Limitar FPS en la partida"
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."
-msgstr "Recolección de animales, arbustos de bayas, peces o campos."
+msgstr "Obtenla de animales, arbustos de bayas, peces o huertos."
 
 #: simulation/data/resources/metal.jsondescription
 msgid "Mine from metal mines or quarries."
-msgstr ""
+msgstr "Se extrae de minas de metal y canteras."
 
 #: simulation/data/resources/stone.jsondescription
 msgid "Mine from rocks, stone quarries or ruins."
-msgstr "Extraer de rocas, canteras de piedra o ruinas."
+msgstr "Se extrae de rocas, canteras de piedra o ruinas."
 
 #: simulation/data/resources/wood.jsondescription
 msgid "Cut down from trees or groves."
-msgstr ""
+msgstr "Recógela talando árboles y arboledas."
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -3078,7 +3079,7 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr ""
+msgstr "Aunque sea razonablemente fácil para el jugador experto, el nivel de la IA supone todo un reto para jugadores nuevos que todavía desconozcan los rudimentos del juego.\n\nEs recomendable bajar el nivel (a «de prueba» o «fácil») en las primeras partidas. Puedes cambiarlo haciendo clic sobre cada botón con engranaje en el panel de selección de jugadores, encima de este mensaje."
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
@@ -3105,7 +3106,7 @@ msgstr "[imgleft=\"iconLag\"]El juego puede ralentizarse en mapas grandes o al m
 msgid ""
 "[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
 "toggle forming and disbanding formations as desired."
-msgstr "[imgleft=\"iconFormation\"]Las formaciones son un trabajo en desarrollo, pero puedes alternar formando o desarmando formaciones como desees."
+msgstr "[imgleft=\"iconFormation\"]Las formaciones todavía no están terminadas, pero aún así puedes alternar formando o desarmando formaciones."
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"

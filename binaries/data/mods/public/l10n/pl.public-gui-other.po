@@ -14,7 +14,7 @@
 # Leszek Szary, 2014-2015
 # Lukasz B <boberstarosta@gmail.com>, 2015-2016
 # Marcin Malinowski <szyszka45@gmail.com>, 2015
-# Marcin S <dzidek1003@o2.pl>, 2016
+# Marcin S <dzidek1003@o2.pl>, 2016-2017
 # Marek Opłotny <oplotny.marek@gmail.com>, 2017
 # Michał Karol, 2016
 # Michał Karol, 2015
@@ -32,8 +32,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-02 09:02+0200\n"
-"PO-Revision-Date: 2017-08-03 09:14+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-08-06 06:52+0000\n"
+"Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -98,7 +98,7 @@ msgstr "Tab"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait..."
-msgstr ""
+msgstr "Otwieranie %(url)s\nw domyślnej przeglądarce. Proszę czekać..."
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
@@ -440,7 +440,7 @@ msgstr ""
 #: gui/common/gamedescription.js:375
 msgctxt "treasures"
 msgid "Disabled"
-msgstr ""
+msgstr "Wyłączone"
 
 #: gui/common/gamedescription.js:376
 msgctxt "treasures"
@@ -479,7 +479,7 @@ msgstr "Wyłączone"
 
 #: gui/common/gamedescription.js:416
 msgid "Victorious"
-msgstr ""
+msgstr "Zwycięski"
 
 #: gui/common/gamedescription.js:421
 msgid "Defeated"
@@ -766,7 +766,7 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s"
 " (%(relativeRange)s) %(rangeUnit)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s (%(relativeRange)s) %(rangeUnit)s, %(rate)s"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 10 (+2)
 #. meters, Interval: 3 arrows / 2 seconds
@@ -775,7 +775,7 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s "
 "(%(relativeRange)s) %(rangeUnit)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s, %(rate)s"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 2 to 10
 #. meters, Interval: 3 arrows / 2 seconds
@@ -784,7 +784,7 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s"
 " %(rangeUnit)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s %(rangeUnit)s, %(rate)s"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 10 meters,
 #. Interval: 3 arrows / 2 seconds
@@ -793,7 +793,7 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s %(rangeUnit)s, "
 "%(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s %(rangeUnit)s, %(rate)s"
 
 #: gui/common/tooltips.js:73
 #, javascript-format
@@ -831,7 +831,7 @@ msgstr "Zdrowie:"
 #: gui/common/tooltips.js:141
 #, javascript-format
 msgid "%(healthLabel)s %(current)s / %(max)s"
-msgstr ""
+msgstr "%(healthLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:159
 #, javascript-format
@@ -903,13 +903,13 @@ msgstr "Zasięg:"
 #: gui/common/tooltips.js:260
 #, javascript-format
 msgid "+%(number)s"
-msgstr ""
+msgstr "+%(number)s"
 
 #. Translation: For example "0.5 to 1 meters", "1 (+1) meters" or "1 to 2 (+3)
 #. meters"
 #: gui/common/tooltips.js:264
 msgid "meters"
-msgstr ""
+msgstr "metrów"
 
 #: gui/common/tooltips.js:265 gui/common/tooltips.js:655
 #: gui/common/tooltips.js:684
@@ -1012,7 +1012,7 @@ msgstr ""
 #: gui/common/tooltips.js:474
 #, javascript-format
 msgid "%(resources)s / %(time)s"
-msgstr ""
+msgstr "%(resources)s / %(time)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
@@ -1104,7 +1104,7 @@ msgstr "%(auraname)s:"
 #: gui/common/tooltips.js:682
 msgctxt "aura"
 msgid "Range:"
-msgstr ""
+msgstr "Zasięg:"
 
 #: gui/common/tooltips.js:699
 #, javascript-format
@@ -1156,7 +1156,7 @@ msgstr "OK"
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
-msgstr ""
+msgstr "Wartość: %(val)s (min: %(min)s, max: %(max)s)"
 
 #: gui/options/options.js:332
 msgid ""
@@ -1211,7 +1211,7 @@ msgstr "Anonimowe wsparcie jest obecnie aktywne."
 #: gui/pregame/mainmenu.js:128
 #, javascript-format
 msgid "Status: %(status)s."
-msgstr ""
+msgstr "Status: %(status)s."
 
 #: gui/pregame/mainmenu.js:152
 #, javascript-format
@@ -1277,7 +1277,7 @@ msgstr "Poradnik"
 #: gui/reference/common/load.js:233
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
-msgstr ""
+msgstr "%(health_min)s do %(health_max)s"
 
 #: gui/replaymenu/replay_actions.js:92
 msgid "You don't have the same mods active as the replay does."
@@ -1413,7 +1413,7 @@ msgstr "Filtruj replaye wpisując jedną lub więcej, częściowych lub kompletn
 #: gui/replaymenu/replay_menu.js:272
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
-msgstr ""
+msgstr "Gracze: %(numberOfPlayers)s"
 
 #: gui/replaymenu/replay_menu.js:299
 msgid "yyyy-MM-dd HH:mm"
@@ -1633,7 +1633,7 @@ msgstr ""
 
 #: gui/summary/layout.js:185
 msgid "Map exploration"
-msgstr ""
+msgstr "Odkrycie mapy"
 
 #: gui/summary/layout.js:186
 msgid "Map control (peak)"
@@ -1693,11 +1693,11 @@ msgstr "Użyto"
 
 #: gui/summary/summary.js:85
 msgid "Received"
-msgstr ""
+msgstr "Przyjęto"
 
 #: gui/summary/summary.js:90
 msgid "Sold"
-msgstr ""
+msgstr "Sprzedane"
 
 #: gui/summary/summary.js:95
 msgid "Outcome"
@@ -1900,7 +1900,7 @@ msgstr "Możesz automatycznie wysyłać nam anonimowe wsparcie, które pomoże n
 
 #: gui/pregame/mainmenu.xml:539
 msgid "Alpha XXII: Venustas"
-msgstr ""
+msgstr "Alpha XXII: Venustas"
 
 #: gui/pregame/mainmenu.xml:541
 msgid ""
@@ -1918,7 +1918,7 @@ msgstr "Wyłącz wsparcie"
 
 #: gui/pregame/mainmenu.xml:(caption):156
 msgid "Tutorial"
-msgstr ""
+msgstr "Samouczek"
 
 #: gui/pregame/mainmenu.xml:(caption):170
 #: gui/reference/structree/structree.xml:(caption):16
@@ -2016,7 +2016,7 @@ msgstr "Otwórz instrukcję do 0 A.D"
 
 #: gui/pregame/mainmenu.xml:(tooltip):157
 msgid "Start the economic tutorial."
-msgstr ""
+msgstr "Rozpocznij ekonomiczny samouczek."
 
 #: gui/pregame/mainmenu.xml:(tooltip):171
 msgid "View the structure tree of civilizations featured in 0 A.D."
@@ -2223,7 +2223,7 @@ msgstr "Typ mapy"
 #: gui/savedgames/load.xml:(heading):52
 msgctxt "replay"
 msgid "Description"
-msgstr ""
+msgstr "Opis"
 
 #: gui/savedgames/load.xml:(caption):57
 msgid "No saved games found."
@@ -2267,22 +2267,22 @@ msgstr "Znane problemy (strona internetowa)"
 
 #: gui/summary/summary.xml:(caption):106
 msgid "Charts"
-msgstr ""
+msgstr "Wykresy"
 
 #: gui/summary/summary.xml:(caption):168
 msgctxt "summary chart"
 msgid "Category:"
-msgstr ""
+msgstr "Kategoria:"
 
 #: gui/summary/summary.xml:(caption):178
 msgctxt "summary chart"
 msgid "Value:"
-msgstr ""
+msgstr "Wartość:"
 
 #: gui/summary/summary.xml:(caption):188
 msgctxt "summary chart"
 msgid "Type:"
-msgstr ""
+msgstr "Typ:"
 
 #: gui/summary/summary.xml:(caption):207
 msgid "Replay"
@@ -2295,17 +2295,17 @@ msgstr "Kontynuuj"
 #: gui/summary/summary.xml:(tooltip):174
 msgctxt "summary chart"
 msgid "Category"
-msgstr ""
+msgstr "Kategoria"
 
 #: gui/summary/summary.xml:(tooltip):184
 msgctxt "summary chart"
 msgid "Value"
-msgstr ""
+msgstr "Wartość"
 
 #: gui/summary/summary.xml:(tooltip):195
 msgctxt "summary chart"
 msgid "Type"
-msgstr ""
+msgstr "Typ"
 
 #: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
 msgid "Art lead"
@@ -2610,7 +2610,7 @@ msgstr "Zapamiętaj ustawienia rozgrywki"
 #: gui/options/options.jsongeneralSetting[13].parameters.list[0].label
 #: gui/options/options.jsongeneralSetting[14].parameters.list[0].label
 msgid "Everyone"
-msgstr ""
+msgstr "Każdy"
 
 #: gui/options/options.jsongeneralSetting[13].parameters.list[1].label
 #: gui/options/options.jsongeneralSetting[14].parameters.list[1].label
@@ -2620,7 +2620,7 @@ msgstr ""
 #: gui/options/options.jsongeneralSetting[13].parameters.list[2].label
 #: gui/options/options.jsongeneralSetting[14].parameters.list[2].label
 msgid "Disabled"
-msgstr ""
+msgstr "Wyłączone "
 
 #: gui/options/options.jsongeneralSetting[13].tooltip
 msgid ""
@@ -2701,7 +2701,7 @@ msgstr "Głośność muzyki w trakcie gry"
 
 #: gui/options/options.jsonsoundSetting[1].label
 msgid "Music Volume"
-msgstr ""
+msgstr "Głośność muzyki"
 
 #: gui/options/options.jsonsoundSetting[2].tooltip
 msgid "In game ambient sound gain"
@@ -2717,7 +2717,7 @@ msgstr "Głośność akcji jednostek w trakcie gry"
 
 #: gui/options/options.jsonsoundSetting[3].label
 msgid "Action Volume"
-msgstr ""
+msgstr "Głośność akcji"
 
 #: gui/options/options.jsonsoundSetting[4].tooltip
 msgid "UI sound gain"
@@ -2741,7 +2741,7 @@ msgstr ""
 
 #: gui/options/options.jsonnotificationSetting[0].label
 msgid "Attack"
-msgstr ""
+msgstr "Atak"
 
 #: gui/options/options.jsonnotificationSetting[1].tooltip
 msgid ""
@@ -2763,11 +2763,11 @@ msgstr "Wymiana"
 
 #: gui/options/options.jsonnotificationSetting[3].parameters.list[0].label
 msgid "Disable"
-msgstr ""
+msgstr "Wyłączone"
 
 #: gui/options/options.jsonnotificationSetting[3].parameters.list[1].label
 msgid "Completed"
-msgstr ""
+msgstr "Wykonano"
 
 #: gui/options/options.jsonnotificationSetting[3].parameters.list[2].label
 msgid "All displayed"

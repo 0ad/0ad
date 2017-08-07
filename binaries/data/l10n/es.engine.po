@@ -6,20 +6,21 @@
 # Adrian Sbardella <sbardemadrian@gmail.com>, 2014
 # Diego Bruschetti <d.bruschetti@hotmail.com>, 2014
 # Edgardo <edgar_916@live.cl>, 2015
+# hola jaaj <vespejo3@gmail.com>, 2017
 # fca1970 <iobaladi@yahoo.es>, 2014
 # juanda097 <juanda097@openmailbox.org>, 2014-2015
 # Mihai Pantazi <malexandru_70@hotmail.com>, 2016
 # OJankano <ojankano@hotmail.com>, 2014
 # Pablo Rodríguez <pablrdriguez@gmail.com>, 2016
 # Samuel Roman <lemeash@gmail.com>, 2016
-# Swyter <Swyterzone@gmail.com>, 2013-2014,2016
+# Swyter <Swyterzone@gmail.com>, 2013-2014,2016-2017
 # tarod kaos <tarodofchaos@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-19 09:25+0100\n"
-"PO-Revision-Date: 2016-04-16 15:10+0000\n"
-"Last-Translator: Mihai Pantazi <malexandru_70@hotmail.com>\n"
+"POT-Creation-Date: 2017-05-27 14:48+0200\n"
+"PO-Revision-Date: 2017-08-05 18:26+0000\n"
+"Last-Translator: Swyter <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,144 +30,144 @@ msgstr ""
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:823
+#: gui/scripting/ScriptFunctions.cpp:826
 #, c-format
 msgid "%s (custom build)"
 msgstr "%s (versión propia)"
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:828
+#. dennis-ignore: *
+#: gui/scripting/ScriptFunctions.cpp:832
 #, c-format
 msgid "%s (%ls)"
 msgstr "%s (%ls)"
 
-#: gui/scripting/ScriptFunctions.cpp:849
+#: gui/scripting/ScriptFunctions.cpp:853
 msgid "custom build"
 msgstr "versión propia"
 
-#: i18n/L10n.cpp:252
+#: i18n/L10n.cpp:251
 msgid "Long strings"
 msgstr "Cadenas largas"
 
-#: lobby/XmppClient.cpp:750
+#: lobby/XmppClient.cpp:720
 msgid "unknown subtype (see logs)"
-msgstr "Subtipo desconocido (vea registros)"
+msgstr "Subtipo desconocido (mira los registros)"
 
-#: lobby/XmppClient.cpp:1001 lobby/XmppClient.cpp:1045
-#: lobby/XmppClient.cpp:1084
+#: lobby/XmppClient.cpp:986 lobby/XmppClient.cpp:1030
+#: lobby/XmppClient.cpp:1069
 msgid "Error"
 msgstr "Error"
 
-#: lobby/XmppClient.cpp:1004 lobby/XmppClient.cpp:1048
+#: lobby/XmppClient.cpp:989 lobby/XmppClient.cpp:1033
 msgid "No error"
 msgstr "Sin error"
 
-#: lobby/XmppClient.cpp:1006
+#: lobby/XmppClient.cpp:991
 msgid "Player already logged in"
 msgstr "El jugador ya ha iniciado sesión"
 
-#: lobby/XmppClient.cpp:1008
+#: lobby/XmppClient.cpp:993
 msgid "Forbidden"
 msgstr "Prohibido"
 
-#: lobby/XmppClient.cpp:1010
+#: lobby/XmppClient.cpp:995
 msgid "Internal server error"
-msgstr "Error interno del servidor"
+msgstr "El servidor ha tenido un problema"
 
-#: lobby/XmppClient.cpp:1014
+#: lobby/XmppClient.cpp:999
 msgid "Not allowed"
 msgstr "No está permitido"
 
-#: lobby/XmppClient.cpp:1015
+#: lobby/XmppClient.cpp:1000
 msgid "Not authorized"
 msgstr "Sin autorización"
 
-#: lobby/XmppClient.cpp:1018
+#: lobby/XmppClient.cpp:1003
 msgid "Recipient temporarily unavailable"
 msgstr "Destinatario temporalmente fuera de servicio"
 
-#: lobby/XmppClient.cpp:1020
+#: lobby/XmppClient.cpp:1005
 msgid "Registration required"
-msgstr "Registro requerido"
+msgstr "Primero tienes que registrarte"
 
-#: lobby/XmppClient.cpp:1024
+#: lobby/XmppClient.cpp:1009
 msgid "Service unavailable"
-msgstr "Servicio no disponible"
+msgstr "Fuera de servicio"
 
-#: lobby/XmppClient.cpp:1029 lobby/XmppClient.cpp:1068
-#: lobby/XmppClient.cpp:1097
+#: lobby/XmppClient.cpp:1014 lobby/XmppClient.cpp:1053
 msgid "Unknown error"
 msgstr "Error desconocido"
 
-#: lobby/XmppClient.cpp:1049
+#: lobby/XmppClient.cpp:1034
 msgid "Stream error"
 msgstr "Error de envío"
 
-#: lobby/XmppClient.cpp:1050
+#: lobby/XmppClient.cpp:1035
 msgid "The incoming stream version is unsupported"
 msgstr "La versión del mensaje recibido no se soporta"
 
-#: lobby/XmppClient.cpp:1051
+#: lobby/XmppClient.cpp:1036
 msgid "The stream has been closed by the server"
 msgstr "El servidor a cortado toda comunicación"
 
-#: lobby/XmppClient.cpp:1055
+#: lobby/XmppClient.cpp:1040
 msgid "An I/O error occured"
 msgstr "Se ha producido un error de E/S (de entrada/salida)"
 
-#: lobby/XmppClient.cpp:1057
+#: lobby/XmppClient.cpp:1042
 msgid "The connection was refused by the server"
 msgstr "El servidor ha rechazado la comunicación"
 
-#: lobby/XmppClient.cpp:1058
+#: lobby/XmppClient.cpp:1043
 msgid "Resolving the server's hostname failed"
 msgstr "No se ha podido resolver el nombre del servidor"
 
-#: lobby/XmppClient.cpp:1059
+#: lobby/XmppClient.cpp:1044
 msgid "This system is out of memory"
 msgstr "El sistema no tiene suficiente memoria"
 
-#: lobby/XmppClient.cpp:1061
+#: lobby/XmppClient.cpp:1046
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
 msgstr "No se pudo verificar el certificado del servidor o no se completó la conexión del todo"
 
-#: lobby/XmppClient.cpp:1062
+#: lobby/XmppClient.cpp:1047
 msgid "The server did not offer required TLS encryption"
 msgstr "El servidor no ofrece cifrado TLS, que es necesario por seguridad"
 
-#: lobby/XmppClient.cpp:1064
+#: lobby/XmppClient.cpp:1049
 msgid "Authentication failed. Incorrect password or account does not exist"
 msgstr "Fallo de autenticación. Contraseña incorrecta o cuenta inexistente"
 
-#: lobby/XmppClient.cpp:1065
+#: lobby/XmppClient.cpp:1050
 msgid "The user or system requested a disconnect"
 msgstr "El usuario o el sistema han pedido desconectarse"
 
-#: lobby/XmppClient.cpp:1066
+#: lobby/XmppClient.cpp:1051
 msgid "There is no active connection"
 msgstr "No hay ninguna conexión activa"
 
-#: lobby/XmppClient.cpp:1087
+#: lobby/XmppClient.cpp:1072
 msgid "Success"
 msgstr "Todo correcto"
 
-#: lobby/XmppClient.cpp:1088
+#: lobby/XmppClient.cpp:1073
 msgid "Not all necessary information provided"
 msgstr "No se ha proporcionado toda la información necesaria"
 
-#: lobby/XmppClient.cpp:1089
+#: lobby/XmppClient.cpp:1074
 msgid "Username already exists"
 msgstr "El nombre de usuario ya existe"
 
 #: ps/SavedGame.cpp:133
 #, c-format
 msgid "Saved game to '%s'"
-msgstr "Partida guardada en '%s'"
+msgstr "Partida guardada en «%s»"
 
-#: ps/Util.cpp:275 ps/Util.cpp:408
+#: ps/Util.cpp:279 ps/Util.cpp:282 ps/Util.cpp:417 ps/Util.cpp:420
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr "La captura de pantalla se ha guardado en '%s'"
+msgstr "La captura de pantalla se ha guardado en «%s»"

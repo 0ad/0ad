@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:02+0200\n"
-"PO-Revision-Date: 2017-06-07 21:30+0000\n"
-"Last-Translator: Mihai Pantazi <malexandru_70@hotmail.com>\n"
+"PO-Revision-Date: 2017-08-05 18:25+0000\n"
+"Last-Translator: Swyter <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -80,7 +80,7 @@ msgstr "Han silenciado a %(nick)s."
 
 #: gui/lobby/lobby.js:185
 msgid "You are now a moderator."
-msgstr "Acaban de ascenderte a moderador."
+msgstr "Te acaban de ascender a moderador."
 
 #: gui/lobby/lobby.js:186
 #, javascript-format
@@ -116,7 +116,7 @@ msgstr "Actualiza tu estado a «Ausente»."
 
 #: gui/lobby/lobby.js:261
 msgid "Set your state to 'Online'."
-msgstr "Actualiza tu estado a «Online»."
+msgstr "Actualiza tu estado a «en línea»."
 
 #: gui/lobby/lobby.js:268
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
@@ -132,7 +132,7 @@ msgstr "Mostrar esta ayuda."
 
 #: gui/lobby/lobby.js:287
 msgid "Chat commands:"
-msgstr "Comandos de chat:"
+msgstr "Órdenes del chat:"
 
 #. Translation: Chat command help format
 #: gui/lobby/lobby.js:291
@@ -183,7 +183,7 @@ msgstr "%(rating)s"
 #, javascript-format
 msgctxt "gamelist filter"
 msgid "< %(rating)s"
-msgstr "%(rating)s"
+msgstr "< %(rating)s"
 
 #: gui/lobby/lobby.js:480
 msgid "You have been banned from the lobby!"
@@ -219,11 +219,11 @@ msgstr "EXPULSADO"
 
 #: gui/lobby/lobby.js:545
 msgid "Unmark as Buddy"
-msgstr "Desmarcar como Amigo"
+msgstr "Quitar de amigos"
 
 #: gui/lobby/lobby.js:545
 msgid "Mark as Buddy"
-msgstr "Marcar como Amigo"
+msgstr "Añadir a amigos"
 
 #: gui/lobby/lobby.js:757 gui/lobby/lobby.js:758 gui/lobby/lobby.js:759
 #: gui/lobby/lobby.js:760 gui/lobby/lobby.js:761 gui/lobby/lobby.js:762
@@ -256,7 +256,7 @@ msgstr "La partida ya ha empezado, ¿quieres unirte como observador?"
 
 #: gui/lobby/lobby.js:1046
 msgid "Confirmation"
-msgstr "Confirmación"
+msgstr "Confirmar decisión"
 
 #: gui/lobby/lobby.js:1047
 msgid "No"
@@ -274,12 +274,12 @@ msgstr "No parece que la dirección de la partida '%(ip)s' sea válida."
 #: gui/lobby/lobby.js:1177
 #, javascript-format
 msgid "The command '%(cmd)s' is not supported."
-msgstr "El comando '%(cmd)s' no está soportado."
+msgstr "La orden «%(cmd)s» no está disponible."
 
 #: gui/lobby/lobby.js:1189
 #, javascript-format
 msgid "The command '%(cmd)s' is restricted to moderators."
-msgstr "El comando '%(cmd)s' está restringido a los moderadores."
+msgstr "Sólo los moderadores pueden utilizar  «%(cmd)s»."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
 #: gui/lobby/lobby.js:1260
@@ -474,7 +474,7 @@ msgstr "Menú principal"
 
 #: gui/lobby/lobby.xml:(caption):261
 msgid "Show only open games"
-msgstr "Mostrar solo juegos abiertos"
+msgstr "Mostrar solo las partidas abiertas."
 
 #: gui/lobby/lobby.xml:(caption):313 gui/lobby/lobby.xml:(caption):375
 msgid "Back"
