@@ -42,7 +42,10 @@ Builder.prototype.GetEntitiesList = function()
 		return entities;
 
 	let disabledTemplates = cmpPlayer.GetDisabledTemplates();
-	return entities.filter(ent => !disabledTemplates[ent]);
+
+	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+
+	return entities.filter(ent => !disabledTemplates[ent] && cmpTemplateManager.TemplateExists(ent));
 };
 
 Builder.prototype.GetRange = function()
