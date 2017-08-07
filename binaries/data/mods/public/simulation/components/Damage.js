@@ -65,6 +65,27 @@ Damage.prototype.TestCollision = function(ent, point, lateness)
 };
 
 /**
+ * Get the list of players affected by the damage.
+ * @param {number}  attackerOwner - the player id of the attacker.
+ * @param {boolean} friendlyFire - a flag indicating if allied entities are also damaged.
+ * @return {number[]} - the ids of players need to be damaged
+ */
+Damage.prototype.GetPlayersToDamage = function(attackerOwner, friendlyFire)
+{
+	let cmpPlayer = QueryPlayerIDInterface(attackerOwner);
+
+	if (!friendlyFire)
+		return cmpPlayer.GetEnemies();
+
+	let playersToDamage = [];
+	let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
+	for (let i = 0; i < numPlayers; ++i)
+		playersToDamage.push(i)
+
+	return playersToDamage;
+}
+
+/**
  * Handles hit logic after the projectile travel time has passed.
  * @param {Object}   data - the data sent by the caller.
  * @param {number}   data.attacker - the entity id of the attacker.
@@ -90,16 +111,6 @@ Damage.prototype.MissileHit = function(data, lateness)
 	// Do this first in case the direct hit kills the target
 	if (data.isSplash)
 	{
-		let playersToDamage = [];
-		if (!data.friendlyFire)
-			playersToDamage = QueryPlayerIDInterface(data.attackerOwner).GetEnemies();
-		else
-		{
-			let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
-			for (let i = 0; i < numPlayers; ++i)
-				playersToDamage.push(i);
-		}
-
 		this.CauseSplashDamage({
 			"attacker": data.attacker,
 			"origin": Vector2D.from3D(data.position),
@@ -107,7 +118,7 @@ Damage.prototype.MissileHit = function(data, lateness)
 			"shape": data.shape,
 			"strengths": data.splashStrengths,
 			"direction": data.direction,
-			"playersToDamage": playersToDamage,
+			"playersToDamage": this.GetPlayersToDamage(data.attackerOwner, data.friendlyFire),
 			"type": data.type,
 			"attackerOwner": data.attackerOwner
 		});

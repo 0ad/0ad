@@ -48,11 +48,12 @@ let data = {
 };
 
 AddMock(atkPlayerEntity, IID_Player, {
-	GetEnemies: () => [targetOwner],
+	GetEnemies: () => [targetOwner]
 });
 
 AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
 	GetPlayerByID: (id) => atkPlayerEntity,
+	GetNumPlayers: () => 5
 });
 
 AddMock(SYSTEM_ENTITY, IID_RangeManager, {
@@ -122,3 +123,10 @@ TestDamage();
 cmpAttack.PerformAttack("Ranged", target);
 Engine.DestroyEntity(attacker);
 TestDamage();
+
+atkPlayerEntity = 1;
+AddMock(atkPlayerEntity, IID_Player, {
+	GetEnemies: () => [2, 3]
+});
+TS_ASSERT_UNEVAL_EQUALS(cmpDamage.GetPlayersToDamage(atkPlayerEntity, true), [0, 1, 2, 3, 4]);
+TS_ASSERT_UNEVAL_EQUALS(cmpDamage.GetPlayersToDamage(atkPlayerEntity, false), [2, 3]);

@@ -10,6 +10,14 @@
       <RepeatTime>100</RepeatTime>
     </Melee>
   </Attack>
+  <DeathDamage>
+    <Shape>Circular</Shape>
+    <Range>30</Range>
+    <FriendlyFire>true</FriendlyFire>
+    <Hack>300.0</Hack>
+    <Pierce>300.0</Pierce>
+    <Crush>300.0</Crush>
+  </DeathDamage>
   <Cost>
     <BuildTime>30</BuildTime>
     <Resources>

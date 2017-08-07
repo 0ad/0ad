@@ -434,6 +434,7 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 		"armour": null,
 		"attack": null,
 		"buildingAI": null,
+		"deathDamage": null,
 		"heal": null,
 		"isBarterMarket": null,
 		"loot": null,
@@ -520,6 +521,14 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 			"garrisonArrowClasses": cmpBuildingAI.GetGarrisonArrowClasses(),
 			"arrowCount": cmpBuildingAI.GetArrowCount()
 		};
+
+	let cmpDeathDamage = Engine.QueryInterface(ent, IID_DeathDamage);
+	if (cmpDeathDamage)
+		ret.deathDeath = {
+			"hack": cmpDeathDamage.GetDeathDamageStrengths("hack"),
+			"pierce": cmpDeathDamage.GetDeathDamageStrengths("pierce"),
+			"crush": cmpDeathDamage.GetDeathDamageStrengths("crush")
+	};
 
 	let cmpObstruction = Engine.QueryInterface(ent, IID_Obstruction);
 	if (cmpObstruction)

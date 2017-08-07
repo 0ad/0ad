@@ -13,6 +13,14 @@
       <Spread>2.0</Spread>
     </Ranged>
   </Attack>
+  <DeathDamage>
+    <Shape>Circular</Shape>
+    <Range>20</Range>
+    <FriendlyFire>true</FriendlyFire>
+    <Hack>200.0</Hack>
+    <Pierce>200.0</Pierce>
+    <Crush>200.0</Crush>
+  </DeathDamage>
   <Footprint replace="">
     <Square width="6.0" depth="20.0"/>
     <Height>4.5</Height>

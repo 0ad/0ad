@@ -31,7 +31,8 @@ function attackComponentTest(defenderClass, isEnemy, test_function)
 
 	AddMock(attacker, IID_Position, {
 		"IsInWorld": () => true,
-		"GetHeightOffset": () => 5
+		"GetHeightOffset": () => 5,
+		"GetPosition2D": () => new Vector2D(1, 2)
 	});
 
 	AddMock(attacker, IID_Ownership, {
@@ -67,11 +68,21 @@ function attackComponentTest(defenderClass, isEnemy, test_function)
 			"MaxRange": 80,
 			"PrepareTime": 300,
 			"RepeatTime": 500,
+			"ProjectileSpeed": 50,
+			"Spread": 2.5,
 			"PreferredClasses": {
 				"_string": "Archer"
 			},
 			"RestrictedClasses": {
 				"_string": "Elephant"
+			},
+			"Splash" : {
+				"Shape": "Circular",
+				"Range": 10,
+				"FriendlyFire": "false",
+				"Hack": 0.0,
+				"Pierce": 15.0,
+				"Crush": 35.0
 			}
 		},
 		"Capture" : {
@@ -134,6 +145,8 @@ attackComponentTest(undefined, true ,(attacker, cmpAttack, defender) => {
 		"prepare": 0,
 		"repeat": 1000
 	});
+
+	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetSplashDamage("Ranged"), { "hack": 0, "pierce": 15, "crush": 35, "friendlyFire": false, "shape": "Circular" });
 });
 
 for (let className of ["Infantry", "Cavalry"])
