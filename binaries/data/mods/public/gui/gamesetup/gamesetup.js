@@ -575,10 +575,10 @@ var g_Dropdowns = {
 	},
 	"relicCount": {
 		"title": () => translate("Relic Count"),
-		"tooltip": (hoverIdx) => translate("Total number of relics spawned on the map."),
+		"tooltip": (hoverIdx) => translate("Total number of relics spawned on the map. Relic victory is most realistic with only one or two relics. With greater numbers, the relics are important to capture to receive aura bonuses."),
 		"labels": () => g_RelicCountList,
 		"ids": () => g_RelicCountList,
-		"default": () => g_RelicCountList.indexOf(5),
+		"default": () => g_RelicCountList.indexOf(2),
 		"defined": () => g_GameAttributes.settings.RelicCount !== undefined,
 		"get": () => g_GameAttributes.settings.RelicCount,
 		"select": (idx) => {
