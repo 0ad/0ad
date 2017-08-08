@@ -546,23 +546,35 @@ function controlsPlayer(playerID)
 }
 
 /**
- * Called when a player has won or was defeated.
+ * Called when one or more players have won or were defeated.
+ *
+ * @param {array} - IDs of the players who have won or were defeated.
+ * @param {object} - a plural string stating the victory reason.
+ * @param {boolean} - whether these players have won or lost.
  */
-function playerFinished(player, won)
+function playersFinished(players, victoryString, won)
 {
-	if (player == Engine.GetPlayerID())
+	addChatMessage({
+		"type": "defeat-victory",
+		"message": victoryString,
+		"players": players
+	});
+
+	if (players.indexOf(Engine.GetPlayerID()) != -1)
 		reportGame();
+
+	sendLobbyPlayerlistUpdate();
 
 	updatePlayerData();
 	updateChatAddressees();
 
-	if (player != g_ViewedPlayer)
+	if (players.indexOf(g_ViewedPlayer) == -1)
 		return;
 
 	// Select "observer" item on loss. On win enable observermode without changing perspective
 	Engine.GetGUIObjectByName("viewPlayer").selected = won ? g_ViewedPlayer + 1 : 0;
 
-	if (player != Engine.GetPlayerID() || Engine.IsAtlasRunning())
+	if (players.indexOf(Engine.GetPlayerID()) == -1 || Engine.IsAtlasRunning())
 		return;
 
 	global.music.setState(
@@ -657,9 +669,7 @@ function resignGame(leaveGameAfterResign)
 		return;
 
 	Engine.PostNetworkCommand({
-		"type": "defeat-player",
-		"playerId": Engine.GetPlayerID(),
-		"resign": true
+		"type": "resign"
 	});
 
 	if (!leaveGameAfterResign)

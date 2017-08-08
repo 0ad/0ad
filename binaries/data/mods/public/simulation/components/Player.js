@@ -395,7 +395,13 @@ Player.prototype.GetState = function()
 	return this.state;
 };
 
-Player.prototype.SetState = function(newState, resign)
+/**
+ * @param {string} newState - Either "defeated" or "won".
+ * @param {string|undefined} message - A string to be shown in chat, for example
+ *     markForTranslation("%(player)s has been defeated (failed objective).").
+ *     If it is undefined, the caller MUST send that GUI notification manually.
+ */
+Player.prototype.SetState = function(newState, message)
 {
 	if (this.state != "active")
 		return;
@@ -438,17 +444,21 @@ Player.prototype.SetState = function(newState, resign)
 	Engine.BroadcastMessage(won ? MT_PlayerWon : MT_PlayerDefeated, { "playerId": this.playerID });
 
 	let cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-	if (won)
-		cmpGUIInterface.PushNotification({
-			"type": "won",
-			"players": [this.playerID]
-		});
-	else
-		cmpGUIInterface.PushNotification({
-			"type": "defeat",
-			"players": [this.playerID],
-			"resign": resign
-		});
+	if (message)
+		if (won)
+			cmpGUIInterface.PushNotification({
+				"type": "won",
+				"players": [this.playerID],
+				"allies": [this.playerID],
+				"message": message
+			});
+		else
+			cmpGUIInterface.PushNotification({
+				"type": "defeat",
+				"players": [this.playerID],
+				"allies": [this.playerID],
+				"message": message
+			});
 };
 
 Player.prototype.GetTeam = function()

@@ -96,7 +96,16 @@ Trigger.prototype.BattleMessage = function()
 
 Trigger.prototype.Victory = function(playerID)
 {
-	TriggerHelper.SetPlayerWon(playerID);
+	TriggerHelper.SetPlayerWon(
+		playerID,
+		n => markForPluralTranslation(
+			"%(lastPlayer)s has won (treasure collected).",
+			"%(players)s and %(lastPlayer)s have won (treasure collected).",
+			n),
+		n => markForPluralTranslation(
+			"%(lastPlayer)s has been defeated (treasure collected).",
+			"%(players)s and %(lastPlayer)s have been defeated (treasure collected).",
+			n));
 };
 
 var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);

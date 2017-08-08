@@ -48,12 +48,27 @@ EndGameManager.prototype.SetGameType = function(newGameType, newSettings = {})
 	Engine.BroadcastMessage(MT_GameTypeChanged, {});
 };
 
-EndGameManager.prototype.MarkPlayerAsWon = function(playerID)
+/**
+ * Sets the given player (and the allies if allied victory is enabled) as a winner.
+ *
+ * @param {number} playerID - The player that should win.
+ * @param {function} victoryReason - Function that maps from number to plural string, for example
+ *   n => markForPluralTranslation(
+ *       "%(lastPlayer)s has won (game mode).",
+ *       "%(players)s and %(lastPlayer)s have won (game mode).",
+ *       n));
+ */
+EndGameManager.prototype.MarkPlayerAsWon = function(playerID, victoryString, defeatString)
 {
 	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	let numPlayers = cmpPlayerManager.GetNumPlayers();
 
 	this.skipAlliedVictoryCheck = true;
+
+	let winningPlayers = [];
+	let defeatedPlayers = [];
+
+	let cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 
 	// Group win/defeat messages
 	for (let won of [false, true])
@@ -63,8 +78,35 @@ EndGameManager.prototype.MarkPlayerAsWon = function(playerID)
 			let hasWon = playerID == i || this.alliedVictory && cmpPlayer.IsMutualAlly(playerID);
 
 			if (hasWon == won)
-				cmpPlayer.SetState(won ? "won" : "defeated");
+			{
+				if (won)
+				{
+					cmpPlayer.SetState("won", undefined);
+					winningPlayers.push(i);
+				}
+				else
+				{
+					cmpPlayer.SetState("defeated", undefined);
+					defeatedPlayers.push(i);
+				}
+			}
 		}
+
+		if (winningPlayers.length)
+			cmpGUIInterface.PushNotification({
+				"type": "won",
+				"players": [winningPlayers[0]],
+				"allies" : winningPlayers,
+				"message": victoryString(winningPlayers.length)
+			});
+
+		if (defeatedPlayers.length)
+			cmpGUIInterface.PushNotification({
+				"type": "defeat",
+				"players": [defeatedPlayers[0]],
+				"allies" : defeatedPlayers,
+				"message": defeatString(defeatedPlayers.length)
+			});
 
 	this.skipAlliedVictoryCheck = false;
 };
@@ -106,12 +148,24 @@ EndGameManager.prototype.AlliedVictoryCheck = function()
 	}
 
 	if (this.alliedVictory || allies.length == 1)
+	{
 		for (let playerID of allies)
 		{
 			let cmpPlayer = QueryPlayerIDInterface(playerID);
 			if (cmpPlayer)
-				cmpPlayer.SetState("won");
+				cmpPlayer.SetState("won", undefined);
 		}
+
+		cmpGuiInterface.PushNotification({
+			"type": "won",
+			"players": [allies[0]],
+			"allies" : allies,
+			"message": markForPluralTranslation(
+				"%(lastPlayer)s has won (last player alive).",
+				"%(players)s and %(lastPlayer)s have won (last players alive).",
+				allies.length)
+		});
+	}
 	else
 		this.lastManStandingMessage = cmpGuiInterface.AddTimeNotification({
 			"message": markForTranslation("Last remaining player wins."),

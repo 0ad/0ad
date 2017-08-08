@@ -105,8 +105,6 @@ var g_Teams = [];
 // TODO set g_PlayerCount as playerCounters.length
 var g_PlayerCount = 0;
 
-// Count players without team (or all if teams are not displayed)
-var g_WithoutTeam = 0;
 var g_GameData;
 var g_ResourceData = new Resources();
 
@@ -294,13 +292,13 @@ function adjustTabDividers(tabSize)
 function updatePanelData(panelInfo)
 {
 	resetGeneralPanel();
-	resetDataHelpers();
 	updateGeneralPanelHeadings(panelInfo.headings);
 	updateGeneralPanelTitles(panelInfo.titleHeadings);
 	let rowPlayerObjectWidth = updateGeneralPanelCounter(panelInfo.counters);
 	updateGeneralPanelTeams();
 
-	let playerBoxesCounts = [ ];
+	let index = g_GameData.sim.playerStates[1].sequences.time.length - 1;
+	let playerBoxesCounts = [];
 	for (let i = 0; i < g_PlayerCount; ++i)
 	{
 		let playerState = g_GameData.sim.playerStates[i+1];
@@ -347,14 +345,12 @@ function updatePanelData(panelInfo)
 		civIcon.sprite = "stretched:" + g_CivData[playerState.civ].Emblem;
 		civIcon.tooltip = g_CivData[playerState.civ].Name;
 
-		updateCountersPlayer(playerState, panelInfo.counters, panelInfo.headings, playerCounterValue);
-
-		calculateTeamCounters(playerState);
+		updateCountersPlayer(playerState, panelInfo.counters, panelInfo.headings, playerCounterValue, index);
 	}
 
 	let teamCounterFn = panelInfo.teamCounterFn;
 	if (g_Teams && teamCounterFn)
-		teamCounterFn(panelInfo.counters, g_GameData.sim.playerStates[1].sequences.time.length - 1);
+		updateCountersTeam(teamCounterFn, panelInfo.counters, panelInfo.headings, index);
 }
 
 function confirmStartReplay()
@@ -455,13 +451,15 @@ function init(data)
 	if (g_GameData.sim.mapSettings.LockTeams)
 	{
 		// Count teams
-		for (let t = 0; t < g_PlayerCount; ++t)
+		for (let player = 1; player <= g_PlayerCount; ++player)
 		{
-			let playerTeam = g_GameData.sim.playerStates[t+1].team;
-			g_Teams[playerTeam] = (g_Teams[playerTeam] || 0) + 1;
+			let playerTeam = g_GameData.sim.playerStates[player].team;
+			if (!g_Teams[playerTeam])
+				g_Teams[playerTeam] = [];
+			g_Teams[playerTeam].push(player);
 		}
 
-		if (g_Teams.length == g_PlayerCount)
+		if (g_Teams.every(team => team && team.length < 2))
 			g_Teams = false;	// Each player has his own team. Displaying teams makes no sense.
 	}
 	else
@@ -474,13 +472,7 @@ function init(data)
 			g_GameData.sim.playerStates[p+1].team = -1;
 	}
 
-	g_WithoutTeam = g_PlayerCount;
-	if (g_Teams)
-	{
-		// Count players without team (or all if teams are not displayed)
-		for (let i = 0; i < g_Teams.length; ++i)
-			g_WithoutTeam -= g_Teams[i] ? g_Teams[i] : 0;
-	}
+	calculateTeamCounterDataHelper();
 
 	initCharts();
 	selectPanel(Engine.GetGUIObjectByName("scorePanelButton"));

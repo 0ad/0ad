@@ -56,8 +56,8 @@ Trigger.prototype.CheckWonderVictory = function(data)
 		"translateMessage": true,
 	}, wonderDuration);
 
-	timer = cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_EndGameManager,
-		"MarkPlayerAsWon", wonderDuration, data.to);
+	timer = cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_Trigger,
+		"WonderVictorySetWinner", wonderDuration, data.to);
 
 	this.wonderVictoryTimers[ent] = timer;
 	this.wonderVictoryMessages[ent] = messages;
@@ -74,6 +74,21 @@ Trigger.prototype.DeleteWonderVictoryMessages = function(data)
 		cmpGuiInterface.DeleteTimeNotification(this.wonderVictoryMessages[ent].otherMessage);
 		cmpTimer.CancelTimer(this.wonderVictoryTimers[ent]);
 	}
+};
+
+Trigger.prototype.WonderVictorySetWinner = function(playerID)
+{
+	let cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
+	cmpEndGameManager.MarkPlayerAsWon(
+		playerID,
+		n => markForPluralTranslation(
+			"%(lastPlayer)s has won (wonder victory).",
+			"%(players)s and %(lastPlayer)s have won (wonder victory).",
+			n),
+		n => markForPluralTranslation(
+			"%(lastPlayer)s has been defeated (wonder victory).",
+			"%(players)s and %(lastPlayer)s have been defeated (wonder victory).",
+			n));
 };
 
 {

@@ -126,8 +126,7 @@ var g_FormatChatMessage = {
 		),
 	"clientlist": msg => getUsernameList(),
 	"message": msg => formatChatCommand(msg),
-	"defeat": msg => formatDefeatMessage(msg),
-	"won": msg => formatWinMessage(msg),
+	"defeat-victory": msg => formatDefeatVictoryMessage(msg.message, msg.players),
 	"diplomacy": msg => formatDiplomacyMessage(msg),
 	"tribute": msg => formatTributeMessage(msg),
 	"barter": msg => formatBarterMessage(msg),
@@ -315,24 +314,11 @@ var g_NotificationsTypes =
 	},
 	"defeat": function(notification, player)
 	{
-		addChatMessage({
-			"type": "defeat",
-			"guid": findGuidForPlayerID(player),
-			"player": player,
-			"resign": !!notification.resign
-		});
-		playerFinished(player, false);
-		sendLobbyPlayerlistUpdate();
+		playersFinished(notification.allies, notification.message, false);
 	},
 	"won": function(notification, player)
 	{
-		addChatMessage({
-			"type": "won",
-			"guid": findGuidForPlayerID(player),
-			"player": player
-		});
-		playerFinished(player, true);
-		sendLobbyPlayerlistUpdate();
+		playersFinished(notification.allies, notification.message, true);
 	},
 	"diplomacy": function(notification, player)
 	{
@@ -966,20 +952,20 @@ function colorizePlayernameParameters(parameters)
 			parameters[param] = colorizePlayernameByID(parameters[param]);
 }
 
-function formatDefeatMessage(msg)
+function formatDefeatVictoryMessage(message, players)
 {
-	return sprintf(
-		msg.resign ?
-			translate("%(player)s has resigned.") :
-			translate("%(player)s has been defeated."),
-		{ "player": colorizePlayernameByID(msg.player) }
-	);
-}
+	if (!message.pluralMessage)
+		return sprintf(translate(message), {
+			"player": colorizePlayernameByID(players[0])
+		});
 
-function formatWinMessage(msg)
-{
-	return sprintf(translate("%(player)s has won."), {
-		"player": colorizePlayernameByID(msg.player)
+	let mPlayers = players.map(playerID => colorizePlayernameByID(playerID));
+	let lastPlayer = mPlayers.pop();
+
+	return sprintf(translatePlural(message.message, message.pluralMessage, message.pluralCount), {
+		// Translation: This comma is used for separating first to penultimate elements in an enumeration.
+		"players": mPlayers.join(translate(", ")),
+		"lastPlayer": lastPlayer
 	});
 }
 

@@ -184,7 +184,7 @@ var g_ScorePanelsData = {
 			{ "identifier": "killDeath", "caption": translate("Kill / Death ratio"), "yStart": 16, "width": 100 },
 			{ "identifier": "mapExploration", "caption": translate("Map exploration"), "yStart": 16, "width": 100 },
 			{ "identifier": "mapControlPeak", "caption": translate("Map control (peak)"), "yStart": 16, "width": 100 },
-			{ "identifier": "mapControlFinish", "caption": translate("Map control (finish)"), "yStart": 16, "width": 100 }
+			{ "identifier": "mapControl", "caption": translate("Map control (finish)"), "yStart": 16, "width": 100 }
 		],
 		"titleHeadings": [],
 		"counters": [
@@ -295,7 +295,7 @@ function updateGeneralPanelCounter(counters)
 
 				if (g_Teams[t])
 				{
-					let yStart = 25 + g_Teams[t] * (g_PlayerBoxYSize + g_PlayerBoxGap) + 3 + counters[w].verticalOffset;
+					let yStart = 25 + g_Teams[t].length * (g_PlayerBoxYSize + g_PlayerBoxGap) + 3 + counters[w].verticalOffset;
 					counterTotalObject = Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + w + "]");
 					counterTotalObject.size = (left + 20) + " " + yStart + " " + (left + counters[w].width) + " 100%";
 					counterTotalObject.hidden = false;
@@ -310,16 +310,18 @@ function updateGeneralPanelCounter(counters)
 
 function updateGeneralPanelTeams()
 {
-	if (!g_Teams || g_WithoutTeam > 0)
+	let withoutTeam = !g_Teams[-1] ? 0 : g_Teams[-1].length;
+
+	if (!g_Teams || withoutTeam > 0)
 		Engine.GetGUIObjectByName("noTeamsBox").hidden = false;
 
 	if (!g_Teams)
 		return;
 
-	let yStart = g_TeamsBoxYStart + g_WithoutTeam * (g_PlayerBoxYSize + g_PlayerBoxGap);
-	for (let i = 0; i < g_Teams.length; ++i)
+	let yStart = g_TeamsBoxYStart + withoutTeam * (g_PlayerBoxYSize + g_PlayerBoxGap) + (withoutTeam ? 30 : 0);
+	for (let i in g_Teams)
 	{
-		if (!g_Teams[i])
+		if (i == -1)
 			continue;
 
 		let teamBox = Engine.GetGUIObjectByName("teamBoxt["+i+"]");
@@ -328,18 +330,18 @@ function updateGeneralPanelTeams()
 		teamBoxSize.top = yStart;
 		teamBox.size = teamBoxSize;
 
-		yStart += 30 + g_Teams[i] * (g_PlayerBoxYSize + g_PlayerBoxGap) + 32;
+		yStart += 30 + g_Teams[i].length * (g_PlayerBoxYSize + g_PlayerBoxGap) + 32;
 
-		Engine.GetGUIObjectByName("teamNameHeadingt["+i+"]").caption = "Team "+(i+1);
+		Engine.GetGUIObjectByName("teamNameHeadingt["+i+"]").caption = "Team " + (+i + 1);
 
 		let teamHeading = Engine.GetGUIObjectByName("teamHeadingt["+i+"]");
-		let yStartTotal = 30 + g_Teams[i] * (g_PlayerBoxYSize + g_PlayerBoxGap) + 10;
+		let yStartTotal = 30 + g_Teams[i].length * (g_PlayerBoxYSize + g_PlayerBoxGap) + 10;
 		teamHeading.size = "50 " + yStartTotal + " 100% " + (yStartTotal + 20);
 		teamHeading.caption = translate("Team total");
 	}
 
 	// If there are no players without team, hide "player name" heading
-	if (!g_WithoutTeam)
+	if (!withoutTeam)
 		Engine.GetGUIObjectByName("playerNameHeading").caption = "";
 }
 

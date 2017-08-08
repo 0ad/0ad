@@ -345,7 +345,10 @@ Trigger.prototype.OnOwnershipChanged = function(data)
 	if (data.entity == this.playerCivicCenter[data.from])
 	{
 		this.playerCivicCenter[data.from] = undefined;
-		TriggerHelper.DefeatPlayer(data.from);
+
+		TriggerHelper.DefeatPlayer(
+			data.from,
+			markForTranslation("%(player)s has been defeated (lost civic center)."));
 	}
 	else if (data.entity == this.treasureFemale[data.from])
 	{

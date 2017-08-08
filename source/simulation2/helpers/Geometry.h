@@ -91,15 +91,6 @@ fixed DistanceToSquareSquared(const CFixedVector2D& point,
 CFixedVector2D NearestPointOnSquare(const CFixedVector2D& point,
 	const CFixedVector2D& u, const CFixedVector2D& v, const CFixedVector2D& halfSize);
 
-/**
- * Given a circle of radius @p radius, and a chord of length @p chordLength
- * on this circle, computes the central angle formed by
- * connecting the chord's endpoints to the center of the circle.
- *
- * @param radius Radius of the circle; must be strictly positive.
- */
-float ChordToCentralAngle(const float chordLength, const float radius);
-
 bool TestRaySquare(const CFixedVector2D& a, const CFixedVector2D& b, const CFixedVector2D& u, const CFixedVector2D& v, const CFixedVector2D& halfSize);
 
 bool TestRayAASquare(const CFixedVector2D& a, const CFixedVector2D& b, const CFixedVector2D& halfSize);

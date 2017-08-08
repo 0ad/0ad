@@ -505,13 +505,11 @@ void CCmpSelectable::UpdateTexturedLineOverlay(const SOverlayDescriptor* overlay
 	else
 	{
 		const float radius = (buildingOverlay ? fpSize0_fixed.ToFloat() : overlayDescriptor->m_Radius) + overlay.m_Thickness / 3.f;
-		float stepAngle;
-		unsigned numSteps;
-		SimRender::AngularStepFromChordLen(TERRAIN_TILE_SIZE / 3.f, radius, stepAngle, numSteps);
 
-		for (unsigned i = 0; i < numSteps; ++i)
+		u32 numSteps = ceilf(float(2 * M_PI) * radius / (TERRAIN_TILE_SIZE / 3.f));
+		for (u32 i = 0; i < numSteps; ++i)
 		{
-			float angle = i * stepAngle;
+			float angle = i * float(2 * M_PI) / numSteps;
 			float px = origin.X + radius * sinf(angle);
 			float pz = origin.Y + radius * cosf(angle);
 

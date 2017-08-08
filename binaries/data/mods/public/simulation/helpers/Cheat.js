@@ -50,7 +50,7 @@ function Cheat(input)
 	case "defeatplayer":
 		cmpPlayer = QueryPlayerIDInterface(input.parameter);
 		if (cmpPlayer)
-			cmpPlayer.SetState("defeated");
+			cmpPlayer.SetState("defeated", markForTranslation("%(player)s has been defeated (cheat)."));
 		return;
 	case "createunits":
 		var cmpProductionQueue = input.selected.length && Engine.QueryInterface(input.selected[0], IID_ProductionQueue);

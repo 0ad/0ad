@@ -1,7 +1,9 @@
 Trigger.prototype.CheckRegicideDefeat = function(data)
 {
 	if (data.entity == this.regicideHeroes[data.from])
-		TriggerHelper.DefeatPlayer(data.from);
+		TriggerHelper.DefeatPlayer(
+			data.from,
+			markForTranslation("%(player)s has been defeated (lost hero)."));
 };
 
 Trigger.prototype.InitRegicideGame = function(msg)
