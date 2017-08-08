@@ -1,10 +1,5 @@
 var g_TeamHelperData = [];
 
-function resetDataHelpers()
-{
-	g_TeamHelperData = [];
-}
-
 function calculatePercent(divident, divisor)
 {
 	return { "percent": divisor ? Math.floor(100 * divident / divisor) : 0 };
@@ -28,73 +23,101 @@ function formatSummaryValue(values)
 	return ret;
 }
 
-/**
- * Remove color tags, whitespace, + and % to read numerical values from the GUI objects.
- * Remove \n only when removeLineFeed == true
- * TODO: access the data directly instead of this ugly hack.
- */
-function cleanGUICaption(team, player, counter, removeLineFeed = true)
+function getPlayerValuesPerTeam(team, index, type, counters, headings)
 {
-	let caption = Engine.GetGUIObjectByName("valueDataTeam[" + team + "][" + player + "][" + counter + "]").caption;
-	if (removeLineFeed)
-		return caption.replace(/\[([\w\' \\\"\/\=]*)\]|\+|\%|\s/g, "");
-	else
-		return caption.replace(/\[([\w\' \\\"\/\=]*)\]|[\t\r \f]/g, "");
+	let fn = counters[headings.map(heading => heading.identifier).indexOf(type) - 1].fn;
+	return g_Teams[team].map(player => fn(g_GameData.sim.playerStates[player], index, type));
 }
 
-function updateCountersPlayer(playerState, counters, headings, idGUI)
+function updateCountersPlayer(playerState, counters, headings, idGUI, index)
 {
-	let index = playerState.sequences.time.length - 1;
-	for (let w in counters)
+	for (let n in counters)
 	{
-		let fn = counters[w].fn;
-		Engine.GetGUIObjectByName(idGUI + "[" + w + "]").caption = formatSummaryValue(fn && fn(playerState, index, headings[+w+1].identifier));
+		let fn = counters[n].fn;
+		Engine.GetGUIObjectByName(idGUI + "[" + n + "]").caption =
+			formatSummaryValue(fn && fn(playerState, index, headings[+n + 1].identifier));
+	}
+}
+
+function updateCountersTeam(teamFn, counters, headings, index)
+{
+	for (let team in g_Teams)
+	{
+		if (team == -1)
+			continue;
+
+		for (let n in counters)
+			Engine.GetGUIObjectByName("valueDataTeam[" + team + "][" + n + "]").caption =
+				formatSummaryValue(teamFn(team, index, headings[+n + 1].identifier, counters, headings));
 	}
 }
 
 /**
- * Add two arrays element-wise. So addArray([1, 2], [7, 42]) will result in [8, 44].
+ * Add two objects property-wise and writes the result to obj1.
+ * So summaryAddObject([1, 2], [7, 42]) will result in [8, 44] and
+ * summaryAddObject({ "f": 3, "o", 5 }, { "f": -1, "o", 42 }) will result in { "f": 2, "o", 47 }.
  *
- * @param {Array} array1 - first summand array.
- * @param {Array} array2 - second summand array.
- * @returns {Array} the element-wise sum of array1 and array2.
+ * @param {Object} obj1 - First summand object. This will be set to the sum of both.
+ * @param {Object} obj2 - Second summand object.
  */
-function addArray(array1, array2)
+function summaryAddObject(obj1, obj2)
 {
-	array1 = array1.map((value, index) => value + array2[index]);
+	for (let p in obj1)
+		obj1[p] += obj2[p];
 }
 
-// Updates g_TeamHelperData by appending some data from playerState
-function calculateTeamCounters(playerState)
+/**
+ * The sum of all elements of an array. So summaryArraySum([1, 2]) will be 3 and
+ * summaryArraySum([{ "f": 3, "o", 5 }, { "f": -1, "o", 42 }]) will be { "f": 2, "o", 47 }.
+ *
+ * @param {Array} array - The array to sum up.
+ * @returns the sum of all elements.
+ */
+function summaryArraySum(array)
 {
-	if (!g_TeamHelperData[playerState.team])
+	return array.reduce((sum, val) => {
+		if (typeof sum != "object")
+			return sum + val;
+		summaryAddObject(sum, val);
+		return sum;
+	});
+}
+
+function calculateTeamCounterDataHelper()
+{
+	for (let i = 0; i < g_PlayerCount; ++i)
 	{
-		g_TeamHelperData[playerState.team] = {};
-		for (let value of ["food", "vegetarianFood", "femaleCitizen", "worker", "enemyUnitsKilled",
-		                   "unitsLost", "percentMapControlled", "peakPercentMapControlled",
-		                   "percentMapExplored", "totalBought", "totalSold"])
-			g_TeamHelperData[playerState.team][value] = new Array(playerState.sequences.time.length).fill(0);
+		let playerState = g_GameData.sim.playerStates[i + 1];
+
+		if (!g_TeamHelperData[playerState.team])
+		{
+			g_TeamHelperData[playerState.team] = {};
+			for (let value of ["food", "vegetarianFood", "femaleCitizen", "worker", "enemyUnitsKilled",
+			                   "unitsLost", "mapControl", "mapControlPeak",
+			                   "mapExploration", "totalBought", "totalSold"])
+				g_TeamHelperData[playerState.team][value] = new Array(playerState.sequences.time.length).fill(0);
+		}
+
+		summaryAddObject(g_TeamHelperData[playerState.team].food, playerState.sequences.resourcesGathered.food);
+		summaryAddObject(g_TeamHelperData[playerState.team].vegetarianFood, playerState.sequences.resourcesGathered.vegetarianFood);
+
+		summaryAddObject(g_TeamHelperData[playerState.team].femaleCitizen, playerState.sequences.unitsTrained.FemaleCitizen);
+		summaryAddObject(g_TeamHelperData[playerState.team].worker, playerState.sequences.unitsTrained.Worker);
+
+		summaryAddObject(g_TeamHelperData[playerState.team].enemyUnitsKilled, playerState.sequences.enemyUnitsKilled.total);
+		summaryAddObject(g_TeamHelperData[playerState.team].unitsLost, playerState.sequences.unitsLost.total);
+
+		g_TeamHelperData[playerState.team].mapControl = playerState.sequences.teamPercentMapControlled;
+		g_TeamHelperData[playerState.team].mapControlPeak = playerState.sequences.teamPeakPercentMapControlled;
+
+		g_TeamHelperData[playerState.team].mapExploration = playerState.sequences.teamPercentMapExplored;
+
+		for (let type in playerState.sequences.resourcesBought)
+			summaryAddObject(g_TeamHelperData[playerState.team].totalBought, playerState.sequences.resourcesBought[type]);
+
+		for (let type in playerState.sequences.resourcesSold)
+			summaryAddObject(g_TeamHelperData[playerState.team].totalSold, playerState.sequences.resourcesSold[type]);
 	}
-
-	addArray(g_TeamHelperData[playerState.team].food, playerState.sequences.resourcesGathered.food);
-	addArray(g_TeamHelperData[playerState.team].vegetarianFood, playerState.sequences.resourcesGathered.vegetarianFood);
-
-	addArray(g_TeamHelperData[playerState.team].femaleCitizen, playerState.sequences.unitsTrained.FemaleCitizen);
-	addArray(g_TeamHelperData[playerState.team].worker, playerState.sequences.unitsTrained.Worker);
-
-	addArray(g_TeamHelperData[playerState.team].enemyUnitsKilled, playerState.sequences.enemyUnitsKilled.total);
-	addArray(g_TeamHelperData[playerState.team].unitsLost, playerState.sequences.unitsLost.total);
-
-	g_TeamHelperData[playerState.team].percentMapControlled = playerState.sequences.teamPercentMapControlled;
-	g_TeamHelperData[playerState.team].peakPercentMapControlled = playerState.sequences.teamPeakPercentMapControlled;
-
-	g_TeamHelperData[playerState.team].percentMapExplored = playerState.sequences.teamPercentMapExplored;
-
-	for (let type in playerState.sequences.resourcesBought)
-		addArray(g_TeamHelperData[playerState.team].totalBought, playerState.sequences.resourcesBought[type]);
-
-	for (let type in playerState.sequences.resourcesSold)
-		addArray(g_TeamHelperData[playerState.team].totalSold, playerState.sequences.resourcesSold[type]);
 }
 
 function calculateEconomyScore(playerState, index)
@@ -130,33 +153,16 @@ function calculateScoreTotal(playerState, index)
 		calculateExplorationScore(playerState, index);
 }
 
-function calculateScoreTeam(counters, index)
+function calculateScoreTeam(team, index, type, counters, headings)
 {
-	for (let t in g_Teams)
-	{
-		if (t == -1)
-			continue;
+	if (type == "explorationScore")
+		return g_TeamHelperData[team].mapExploration[index] * 10;
+	if (type == "totalScore")
+		return ["economyScore", "militaryScore", "explorationScore"].map(
+			t => calculateScoreTeam(team, index, t, counters, headings)).reduce(
+			(sum, value) => sum + value);
 
-		let teamTotalScore = 0;
-		for (let w in counters)
-		{
-			let total = 0;
-
-			if (w == 2)	// Team exploration score (not additive)
-				total = g_TeamHelperData[t].percentMapExplored[index] * 10;
-			else
-				for (let p = 0; p < g_Teams[t]; ++p)
-					total += +Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + p + "][" + w + "]").caption;
-
-			if (w < 3)
-			{
-				teamTotalScore += total;
-				Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + w + "]").caption = total;
-			}
-			else
-				Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + w + "]").caption = teamTotalScore;
-		}
-	}
+	return summaryArraySum(getPlayerValuesPerTeam(team, index, type, counters, headings));
 }
 
 function calculateBuildings(playerState, index, type)
@@ -169,80 +175,14 @@ function calculateBuildings(playerState, index, type)
 	};
 }
 
-function calculateBuildingsTeam(counters, index)
+function calculateBuildingsTeam(team, index, type, counters, headings)
 {
-	for (let t in g_Teams)
-	{
-		if (t == -1)
-			continue;
-
-		for (let w in counters)
-		{
-			let total = {
-				"constructed" : 0,
-				"destroyed" : 0,
-				"captured" : 0,
-				"lost" : 0
-			};
-
-			for (let p = 0; p < g_Teams[t]; ++p)
-			{
-				let splitCaption = cleanGUICaption(t, p, w, false).split("\n");
-				let first = splitCaption[0].split("/");
-				let second = splitCaption[1].split("/");
-
-				total.constructed += +first[0];
-				total.destroyed += +first[1];
-				total.captured += +second[0];
-				total.lost += +second[1];
-			}
-
-			Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + w + "]").caption =
-				formatSummaryValue(total);
-		}
-	}
+	return summaryArraySum(getPlayerValuesPerTeam(team, index, type, counters, headings));
 }
 
-function calculateUnitsTeam(counters, index)
+function calculateUnitsTeam(team, index, type, counters, headings)
 {
-	for (let t in g_Teams)
-	{
-		if (t == -1)
-			continue;
-
-		for (let w in counters)
-		{
-			let total =
-			{
-				"trained": 0,
-				"killed": 0,
-				"captured" : 0,
-				"lost": 0
-			};
-
-			for (let p = 0; p < g_Teams[t]; ++p)
-			{
-				let splitCaption = cleanGUICaption(t, p, w, false).split("\n");
-				let first = splitCaption[0].split("/");
-				total.trained += +first[0];
-				total.killed += +first[1];
-
-				if (w == 0 || w == 6)
-				{
-					let second = splitCaption[1].split("/");
-					total.captured += +second[0];
-					total.lost += +second[1];
-				}
-				else
-					total.lost += +splitCaption[1];
-			}
-
-			if (w != 0 && w != 6)
-				delete total.captured;
-
-			Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + w + "]").caption = formatSummaryValue(total);
-		}
-	}
+	return summaryArraySum(getPlayerValuesPerTeam(team, index, type, counters, headings));
 }
 
 function calculateUnitsWithCaptured(playerState, index, type)
@@ -304,46 +244,9 @@ function calculateTributeSent(playerState, index)
 	};
 }
 
-function calculateResourcesTeam(counters, index)
+function calculateResourcesTeam(team, index, type, counters, headings)
 {
-	for (let t in g_Teams)
-	{
-		if (t == -1)
-			continue;
-
-		for (let w in counters)
-		{
-			let total = {
-				"income": 0,
-				"outcome": 0
-			};
-
-			for (let p = 0; p < g_Teams[t]; ++p)
-			{
-				let caption = cleanGUICaption(t, p, w);
-
-				if (w >= 6)
-					total.income += +caption;
-				else
-				{
-					let splitCaption = caption.split("/");
-
-					total.income += +splitCaption[0];
-					total.outcome += +splitCaption[1];
-				}
-			}
-
-			let teamTotal;
-			if (w >= 6)
-				teamTotal = total.income;
-			else if (w == 5)
-				teamTotal = { "sent": total.income, "received": total.outcome };
-			else
-				teamTotal = { "gathered": total.income, "used": total.outcome };
-
-			Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + w + "]").caption = formatSummaryValue(teamTotal);
-		}
-	}
+	return summaryArraySum(getPlayerValuesPerTeam(team, index, type, counters, headings));
 }
 
 function calculateResourceExchanged(playerState, index, type)
@@ -373,45 +276,12 @@ function calculateTradeIncome(playerState, index)
 	return playerState.sequences.tradeIncome[index];
 }
 
-function calculateMarketTeam(counters, index)
+function calculateMarketTeam(team, index, type, counters, headings)
 {
-	for (let t in g_Teams)
-	{
-		if (t == -1)
-			continue;
+	if (type == "barterEfficency")
+		return calculatePercent(g_TeamHelperData[team].totalBought[index], g_TeamHelperData[team].totalSold[index]);
 
-		for (let w in counters)
-		{
-			let total = {
-				"income": 0,
-				"outcome": 0
-			};
-
-			for (let p = 0; p < g_Teams[t]; ++p)
-			{
-				let caption = cleanGUICaption(t, p, w);
-
-				if (w >= 4)
-					total.income += +caption;
-				else
-				{
-					let splitCaption = caption.split("/");
-					total.income += +splitCaption[0];
-					total.outcome += +splitCaption[1];
-				}
-			}
-
-			let teamTotal;
-			if (w == 4)
-				teamTotal = calculatePercent(g_TeamHelperData[t].totalBought[index], g_TeamHelperData[t].totalSold[index]);
-			else if (w > 4)
-				teamTotal = total.income;
-			else
-				teamTotal = total;
-
-			Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + w + "]").caption = formatSummaryValue(teamTotal);
-		}
-	}
+	return summaryArraySum(getPlayerValuesPerTeam(team, index, type, counters, headings));
 }
 
 function calculateVegetarianRatio(playerState, index)
@@ -450,31 +320,16 @@ function calculateMapPeakControl(playerState, index)
 	return { "percent": playerState.sequences.peakPercentMapControlled[index] };
 }
 
-function calculateMiscellaneousTeam(counters, index)
+function calculateMiscellaneousTeam(team, index, type)
 {
-	for (let t in g_Teams)
-	{
-		if (t == -1)
-			continue;
+	if (type == "vegetarianRatio")
+		return calculatePercent(g_TeamHelperData[team].vegetarianFood[index], g_TeamHelperData[team].food[index]);
 
-		for (let w in counters)
-		{
-			let teamTotal;
+	if (type == "feminization")
+		return calculatePercent(g_TeamHelperData[team].femaleCitizen[index], g_TeamHelperData[team].worker[index]);
 
-			if (w == 0)
-				teamTotal = calculatePercent(g_TeamHelperData[t].vegetarianFood[index], g_TeamHelperData[t].food[index]);
-			else if (w == 1)
-				teamTotal = calculatePercent(g_TeamHelperData[t].femaleCitizen[index], g_TeamHelperData[t].worker[index]);
-			else if (w == 2)
-				teamTotal = calculateRatio(g_TeamHelperData[t].enemyUnitsKilled[index], g_TeamHelperData[t].unitsLost[index]);
-			else if (w == 3)
-				teamTotal = { "percent": g_TeamHelperData[t].percentMapExplored[index] };
-			else if (w == 4)
-				teamTotal = { "percent": g_TeamHelperData[t].peakPercentMapControlled[index] };
-			else if (w == 5)
-				teamTotal = { "percent": g_TeamHelperData[t].percentMapControlled[index] };
+	if (type == "killDeath")
+		return calculateRatio(g_TeamHelperData[team].enemyUnitsKilled[index], g_TeamHelperData[team].unitsLost[index]);
 
-			Engine.GetGUIObjectByName("valueDataTeam[" + t + "][" + w + "]").caption = formatSummaryValue(teamTotal);
-		}
-	}
+	return { "percent": g_TeamHelperData[team][type][index] };
 }
