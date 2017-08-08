@@ -7,6 +7,7 @@ Engine.LoadComponentScript("interfaces/Builder.js");
 Engine.LoadComponentScript("interfaces/Capturable.js");
 Engine.LoadComponentScript("interfaces/CeasefireManager.js");
 Engine.LoadComponentScript("interfaces/DamageReceiver.js");
+Engine.LoadComponentScript("interfaces/DeathDamage.js");
 Engine.LoadComponentScript("interfaces/EndGameManager.js");
 Engine.LoadComponentScript("interfaces/EntityLimits.js");
 Engine.LoadComponentScript("interfaces/Foundation.js");
@@ -644,6 +645,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedEntityState(-1, 10), {
 	armour: null,
 	attack: null,
 	buildingAI: null,
+	deathDamage:null,
 	heal: null,
 	isBarterMarket: true,
 	loot: null,

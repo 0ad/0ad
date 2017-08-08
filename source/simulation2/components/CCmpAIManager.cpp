@@ -29,6 +29,7 @@
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/Profile.h"
+#include "ps/TemplateLoader.h"
 #include "ps/Util.h"
 #include "simulation2/components/ICmpAIInterface.h"
 #include "simulation2/components/ICmpCommandQueue.h"
@@ -230,6 +231,7 @@ public:
 		m_ScriptInterface->RegisterFunction<JS::Value, JS::HandleValue, JS::HandleValue, pass_class_t, CAIWorker::ComputePath>("ComputePath");
 
 		m_ScriptInterface->RegisterFunction<void, std::wstring, std::vector<u32>, u32, u32, u32, CAIWorker::DumpImage>("DumpImage");
+		m_ScriptInterface->RegisterFunction<CParamNode, std::string, CAIWorker::GetTemplate>("GetTemplate");
 	}
 
 	~CAIWorker()
@@ -323,6 +325,19 @@ public:
 
 		for (Waypoint& wp : ret.m_Waypoints)
 			waypoints.emplace_back(wp.x, wp.z);
+	}
+
+	static CParamNode GetTemplate(ScriptInterface::CxPrivate* pCxPrivate, const std::string& name)
+	{
+		ENSURE(pCxPrivate->pCBData);
+		CAIWorker* self = static_cast<CAIWorker*> (pCxPrivate->pCBData);
+
+		return self->GetTemplate(name);
+	}
+
+	CParamNode GetTemplate(const std::string& name)
+	{
+		return m_TemplateLoader.GetTemplateFileData(name).GetChild("Entity");
 	}
 
 	static void ForceGC(ScriptInterface::CxPrivate* pCxPrivate)
@@ -927,6 +942,7 @@ private:
 
 	shared_ptr<ObjectIdCache<std::wstring> > m_SerializablePrototypes;
 	std::map<std::wstring, JS::Heap<JSObject*> > m_DeserializablePrototypes;
+	CTemplateLoader m_TemplateLoader;
 };
 
 

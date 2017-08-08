@@ -178,6 +178,16 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources, modif
 		}
 	}
 
+	if (template.DeathDamage)
+	{
+		ret.deathDamage = {
+			"hack": getEntityValue("DeathDamage/Hack"),
+			"pierce": getEntityValue("DeathDamage/Pierce"),
+			"crush": getEntityValue("DeathDamage/Crush"),
+			"friendlyFire": template.DeathDamage.FriendlyFire != "false"
+		};
+	}
+
 	if (template.Auras)
 	{
 		ret.auras = {};

@@ -48,8 +48,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:05+0200\n"
-"PO-Revision-Date: 2017-07-31 01:07+0000\n"
-"Last-Translator: Gonzalo Fleming <gonzafg2@gmail.com>\n"
+"PO-Revision-Date: 2017-08-05 18:25+0000\n"
+"Last-Translator: Swyter <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -78,7 +78,7 @@ msgstr "Aleatorio"
 
 #: gui/gamesetup/gamesetup.js:72
 msgid "Picks one civilization at random when the game starts."
-msgstr "Elije una civilización aleatoria cuando el juego comience."
+msgstr "La civilización se elige al azar al empezar la partida."
 
 #: gui/gamesetup/gamesetup.js:110
 #, javascript-format
@@ -100,7 +100,7 @@ msgstr "* ¡%(username)s está listo!"
 
 #: gui/gamesetup/gamesetup.js:117
 msgid "Stay ready"
-msgstr "Estate preparado"
+msgstr "Preparado"
 
 #: gui/gamesetup/gamesetup.js:118
 msgid "Stay ready even when the game settings change."
@@ -151,12 +151,12 @@ msgstr "<%(username)s>"
 #: gui/gamesetup/gamesetup.js:163
 msgctxt "map filter"
 msgid "Default"
-msgstr "Por defecto"
+msgstr "Predeterminado"
 
 #: gui/gamesetup/gamesetup.js:164
 msgctxt "map filter"
 msgid "All maps except naval and demo maps."
-msgstr "Todos los mapas excepto navales y demo"
+msgstr "Todos los mapas excepto los navales y de demostración."
 
 #: gui/gamesetup/gamesetup.js:170
 msgid "Naval Maps"
@@ -174,7 +174,7 @@ msgstr "Mapas de ejemplo"
 #: gui/gamesetup/gamesetup.js:177
 msgctxt "map filter"
 msgid "These maps are not playable but for demonstration purposes only."
-msgstr "Estos mapas no son jugables, solo tienen uso demostrativo."
+msgstr "Estos mapas son sólo de prueba."
 
 #: gui/gamesetup/gamesetup.js:182
 msgid "New Maps"
@@ -183,7 +183,7 @@ msgstr "Mapas nuevos"
 #: gui/gamesetup/gamesetup.js:183
 msgctxt "map filter"
 msgid "Maps that are brand new in this release of the game."
-msgstr "Los jugadores comienzan alrededor de un lago situado en el centro del mapa."
+msgstr "Mapas añadidos en la última versión del juego."
 
 #: gui/gamesetup/gamesetup.js:188
 msgid "Trigger Maps"
@@ -201,7 +201,7 @@ msgstr "Todos los mapas"
 #: gui/gamesetup/gamesetup.js:195
 msgctxt "map filter"
 msgid "Every map of the chosen maptype."
-msgstr "Todos los mapas de los tipos elegidos."
+msgstr "Todos los mapas del tipo seleccionado."
 
 #: gui/gamesetup/gamesetup.js:411
 msgid "Map Type"
@@ -249,7 +249,7 @@ msgstr "Población máxima"
 
 #: gui/gamesetup/gamesetup.js:504
 msgid "Select population limit."
-msgstr "Seleccionar limite de población."
+msgstr "Elige la población máxima."
 
 #: gui/gamesetup/gamesetup.js:507
 #, javascript-format
@@ -313,15 +313,15 @@ msgstr "Elige la velocidad de juego."
 
 #: gui/gamesetup/gamesetup.js:665
 msgid "Chose the civilization for this player"
-msgstr "Elija civilización para este jugador"
+msgstr "Elige la civilización de este jugador"
 
 #: gui/gamesetup/gamesetup.js:705
 msgid "Hero Garrison"
-msgstr "Héroe guarnecido"
+msgstr "Guarnición de héroe"
 
 #: gui/gamesetup/gamesetup.js:706
 msgid "Toggle whether heroes can be garrisoned."
-msgstr "Seleccionar, si los héroes pueden ser guarnecidos."
+msgstr "Elige si los héroes pueden guarnecerse."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
@@ -427,7 +427,7 @@ msgstr "Comenzar una nueva partida con los ajustes actuales (cuando todo el mund
 #: gui/gamesetup/gamesetup.js:1405
 msgctxt "map selection"
 msgid "Random"
-msgstr "Aleatorio"
+msgstr "Al azar"
 
 #: gui/gamesetup/gamesetup.js:1682 gui/gamesetup/gamesetup.js:1721
 #, javascript-format
@@ -632,13 +632,13 @@ msgstr "\"En el corazón de cada tirano florece al final su veneno, el no poder 
 msgid ""
 "\"Time in the long run teaches all things.\" - Aeschylus (\"Prometheus "
 "Bound\", 981)"
-msgstr "\"A la larga el tiempo enseña todas las cosas.\" - Esquilio (\"Prometeo Encadenado\", 981)"
+msgstr "«A la larga el tiempo enseña todas las cosas.» - Esquilio («Prometeo encadenado», 981)"
 
 #: gui/text/quotes.txt:5
 msgid ""
 "\"His resolve is not to seem, but to be, the best.\" - Aeschylus (\"Seven "
 "Against Thebes\", 592)"
-msgstr "\"Su decisión es no parecer; es serlo, el mejor.\" - Esquilo (\"Siete contra Tebas\", 592)"
+msgstr "«Ser, más que parecer.» - Esquilo («Los siete contra Tebas», 592)"
 
 #: gui/text/quotes.txt:6
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus (fragment 383)"
@@ -648,17 +648,17 @@ msgstr "«Un necio próspero es una pesada carga». - Esquilo (fragmento 383)"
 msgid ""
 "\"The gods help those that help themselves.\" - Aesop (\"Hercules and the "
 "Wagoner\")"
-msgstr "«Los dioses ayudan a aquellos que se ayudan a sí mismos». - Esopo («Hércules y el Carretero»)"
+msgstr "«Los dioses ayudan a aquellos que se ayudan a sí mismos». - Esopo («Hércules y el carretero»)"
 
 #: gui/text/quotes.txt:8
 msgid ""
 "\"It is thrifty to prepare today for the wants of tomorrow.\" - Aesop (\"The"
 " Ant and the Grasshopper\")"
-msgstr "\"Es provechoso preparar hoy para lo que se quiere mañana.\" - Esopo (\"La hormiga y la cigarra\")"
+msgstr "«Es de provecho prepararse hoy para los deseos del mañana.\" - Esopo («La hormiga y la cigarra»)"
 
 #: gui/text/quotes.txt:9
 msgid "\"Union gives strength.\" - Aesop (\"The Bundle of Sticks\")"
-msgstr "\"La unión da fuerza\". - Esopo (\"El paquete de palos\")"
+msgstr "«La unión hace la fuerza.» - Esopo («La gavilla de palos»)"
 
 #: gui/text/quotes.txt:10
 msgid ""
@@ -680,19 +680,19 @@ msgstr "\"La vanidad puede llevar a la auto destrucción.\" - Esopo (\"La rana y
 
 #: gui/text/quotes.txt:13
 msgid "\"Slow and steady wins the race.\" - Aesop (\"The Hare and the Tortoise\")"
-msgstr "«Quien es lento pero constante, gana la carrera». - Esopo («La Liebre y la Tortuga»)"
+msgstr "«Más vale ir lento pero seguro.» - Esopo («La liebre y la tortuga») "
 
 #: gui/text/quotes.txt:14
 msgid ""
 "\"Better be wise by the misfortunes of others than by your own.\" - Aesop "
 "(\"The Lion, the Ass, and the Fox Hunting\")"
-msgstr "\"Es mejor ser sabio por las desgracias de los demás que por las propias\" - Esopo (\"El Asno, la Zorra y el León\")"
+msgstr "«Es mejor ser sabio por las desgracias ajenas que por las propias.» - Esopo («El león, la zorra y el asno»)"
 
 #: gui/text/quotes.txt:15
 msgid ""
 "\"Enemies' promises were made to be broken.\" - Aesop (\"The Nurse and the "
 "Wolf\")"
-msgstr "«Las promesas de los enemigos fueron hechas para ser rotas». - Esopo («El Lobo y la Anciana»)"
+msgstr "«Las promesas de tus enemigos nacieron para romperse.» - Esopo («El lobo y la anciana»)"
 
 #: gui/text/quotes.txt:16
 msgid "\"Any excuse will serve a tyrant.\" - Aesop (\"The Wolf and the Lamb\")"
@@ -709,7 +709,7 @@ msgstr "\"Si he hecho algo noble, seré recordado, y si no lo hago, todas las es
 msgid ""
 "\"Spartans do not ask how many, only where the enemy are.\" - Agis II of "
 "Sparta (Plutarch, \"Moralia\", XVI. \"Sayings of Spartans\", 215d)"
-msgstr "Los espartanos no preguntan cuántos, sólo donde están los enemigos. - Agis II de Esparta (Plutarco, \"Moralia\", XVI. \"Dichos de espartanos\", 215d)"
+msgstr "«Los espartanos preguntan la ubicación del enemigo sin importar su número.» - Agis II de Esparta (Plutarco, «Moralia», XVI. «Dichos de espartanos», 215d)"
 
 #: gui/text/quotes.txt:19
 msgid ""
@@ -722,7 +722,7 @@ msgstr "\"No llores por mí, si sufro por una injusticia, mi situación es más 
 msgid ""
 "\"Sex and sleep alone make me conscious that I am mortal.\" - Alexander the "
 "Great (Plutarch, \"Parallel Lives\", \"Alexander\", sec. 22)"
-msgstr "\"El sexo y dormir solamente me hacen ser consciente de que soy mortal.\" - Alejandro Magno (Plutarco, \"Vidas Paralelas\", \"Alejandro\", sec. 22)"
+msgstr "«El sexo y el sueño me recuerdan mi mortalidad.» - Alejandro Magno (Plutarco, «Vidas paralelas», «Alejandro», sec. 22)"
 
 #: gui/text/quotes.txt:21
 msgid ""
@@ -1159,7 +1159,7 @@ msgstr ""
 msgid ""
 "\"Men willingly believe what they wish.\" - Gaius Julius Caesar (\"De Bello "
 "Gallico\", III. 18)"
-msgstr "\"Los hombres creen voluntariamente lo que desean.\" - Cayo Julio César (\"De Bello Gallico\", III, 18)"
+msgstr "«Los hombres creen lo que quieren creer.» - Cayo Julio César (\"De bello gallico\", III, 18)"
 
 #: gui/text/quotes.txt:83
 msgid ""

@@ -26,10 +26,11 @@ msgid ""
 "Before starting, you can toggle between fullscreen and windowed mode using Alt+Enter. You can also change the level of zoom using the mouse wheel and the camera view using any of your keyboard's arrow keys.\n"
 "Adjust the game window to your preferences.\n"
 msgstr ""
-"Este tutorial le enseñará los conceptos básicos del desarrollo de su economía. Habitualmente, comenzará con un Centro Cívico y un par de unidades en la «Fase Inicial» y por último, su meta será desarrollar y expandir su imperio, evolucionando a la «Fase Intermedia» y después a la «Fase Urbana».\n"
+"Este tutorial te enseñará los conceptos básicos de la parte económica. Por lo general se empieza con un centro cívico y un puñado de unidades de «fase inicial» con el fin último de desarrollar y expandir tu imperio, mejorándolo a la «fase intermedia» y después a la «fase urbana».\n"
 "\n"
-"Antes de comenzar, puede alternar entre la pantalla completa y el modo ventana usando Alt+Enter. También puede cambiar el nivel de zoom usando la rueda del ratón, y la vista de la cámara utilizando cualquiera de las flechas de su teclado.\n"
-"Ajuste la ventana de juego a sus preferencias.\n"
+"Antes de comenzar, recuerda que puedes alternar entre pantalla completa y el modo ventana usando la combinación de teclas Alt + Intro. También puedes acercar o alejar la cámara girando la rueda del ratón, y moverte con cualquiera de las flechas direccionales del teclado.\n"
+"\n"
+"Ajusta la ventana de juego a tu gusto.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:6
 msgid ""
@@ -37,17 +38,17 @@ msgid ""
 "selection ring in the color of your civilization will be displayed after "
 "clicking."
 msgstr ""
-"Para empezar, seleccione su edificio, el Centro Cívico, haciendo clic sobre "
-"él. Una vez seleccionado, haciendo click sobre él, aparecerá una marca "
-"alrededor suya en el color de su civilización."
+"Lo primero es aprender a seleccionar tu edificio, el centro cívico. Haz clic"
+" sobre él, una vez seleccionado verás como aparece un anillo con el color de"
+" tu civilización."
 
 #: maps/tutorials/starting_economy_walkthrough.js:9
 msgid ""
 "Now that the Civic Center is selected, you will notice that a production panel will appear on the lower right of your screen detailing the actions that the buildings support. For the production panel, available actions are not masked in any color, while an icon masked in either grey or red indicates that the action has not been unlocked or you do not have sufficient resources to perform that action, respectively. Additionally, you can hover your mouse over any icon to show a tooltip with more details.\n"
 "The top row of buttons contains portraits of units that may be trained at the building while the bottom one or two rows will have researchable technologies. Hover your mouse over the 'II' icon. The tooltip will tell us that advancing to 'Town Phase' requires both more constructed structures as well as more Food and Wood resources."
 msgstr ""
-"Ahora que el Centro Cívico está seleccionado, notará que el panel de producción aparecerá en la parte inferior derecha de su pantalla detallando las acciones que se pueden realizar sobre los edificios. En el panel de producción, las acciones disponibles no están marcadas o coloreadas en ningún color, mientras que un icono coloreado en gris o rojo indica que la acción no se ha desbloqueado o que no tiene recursos suficientes para realizar esa acción, respectivamente. Además, puede colocar el ratón sobre cualquier icono para mostrar un cuadro de información extra con más detalles.\n"
-"La fila superior de botones contiene imágenes de unidades que pueden ser entrenadas en el edificio mientras que en la parte inferior, una o dos filas, tendrán tecnologías de investigación. Mueva el ratón sobre el ícono 'II'. El cuadro de información extra nos dirá que estructuras son necesarias que estén construidas y que recursos de comida y madera son necesarios para avanzar a la \"Fase Pueblo\" (Town Phase o Fase Intermedia)"
+"Ahora que el centro cívico está seleccionado verás como aparece un panel de producción en parte inferior derecha de la pantalla, detallando lo que puedes hacer en el edificio actual. Las acciones que estén disponibles aparecen tal cual, mientras que un icono coloreado en gris indica que la acción no se ha desbloqueado, y rojo que no dispone de los recursos suficientes. Además, si dejas el cursor sobre cualquier icono verás como aparece un cuadro de información extra con más detalles.\n"
+"La fila superior de botones contiene imágenes de unidades que puedes reclutar en el edificio mientras que en las filas de abajo tendrás tecnologías de investigación. Mueve el cursor sobre el ícono «II». El cuadro de información extra nos dirá las estructuras que tienes que construir y la cantidad de comida y madera necesaria para avanzar a la «fase intermedia»."
 
 #: maps/tutorials/starting_economy_walkthrough.js:12
 msgid ""
@@ -59,15 +60,14 @@ msgid ""
 "Infantry Citizen Soldiers can gather any land resources while Cavalry "
 "Citizen Soldiers can only gather meat from hunted animals.\n"
 msgstr ""
-"Usted tiene dos tipos principales de unidades de partida: Ciudadanas y "
-"Soldados Ciudadanos. Las Ciudadanas son unidades puramente económicas; "
-"Tienen pocos puntos de vida ()HP), sin armadura, y poco o ningún ataque. Los"
-" Soldados Ciudadanos son trabajadores por defecto, pero en tiempos de "
-"necesidad, puede utilizar un arma para luchar. Usted tiene dos categorías de"
-" Soldados Ciudadanos: Infantería y Caballería. Las Ciudadanas y los Soldados"
-" Ciudadanos de Infantería pueden reunir cualquier recurso terrestre mientras"
-" que la Caballería Ciudadano de sólo puede recolectar carne de animales que "
-"hayan cazado.\n"
+"Al principio empiezas con dos unidades: las ciudadanas y los ciudadanos "
+"soldado. Las ciudadanas son unidades estrictamente económicas; tienen pocos "
+"puntos de vida (PV), sin armadura, y un ataque paupérrimo. Los ciudadanos "
+"soldado también son trabajadores, pero pueden recurrir a las armas en "
+"tiempos de necesidad. Estos hombres pueden ir a pie o a caballo, tanto las "
+"ciudadanas como las versiones a pie de los hombres pueden recolectar "
+"cualquier recurso terrestre, pero las versiones a caballo sólo pueden "
+"recolectar la carne de los animales cazados."
 
 #: maps/tutorials/starting_economy_walkthrough.js:15
 msgid ""
@@ -154,11 +154,12 @@ msgstr ""
 #: maps/tutorials/starting_economy_walkthrough.js:69
 #: maps/tutorials/starting_economy_walkthrough.js:111
 msgid "Do not forget to shift-click to produce several units."
-msgstr "No olvide hacer shift-clic para producir varias unidades."
+msgstr ""
+"Recuerda que puedes producir varias unidades a la vez con Mayús + clic."
 
 #: maps/tutorials/starting_economy_walkthrough.js:70
 msgid "Shift-click on the HOPLITE icon."
-msgstr "Shift-clic sobre el icono HOPLITA."
+msgstr "Haz Mayús + clic sobre el icono HOPLITA."
 
 #: maps/tutorials/starting_economy_walkthrough.js:78
 msgid ""
@@ -183,8 +184,8 @@ msgid ""
 "The selected workers will automatically start constructing the building once"
 " you place the foundation."
 msgstr ""
-"Los trabajadores seleccionados empezarán automáticamente a construir el "
-"edificio una vez que haya colocado los cimientos."
+"Los trabajadores seleccionados empezarán a construir el edificio por su "
+"cuenta una vez se hayan colocado los cimientos."
 
 #: maps/tutorials/starting_economy_walkthrough.js:102
 msgid ""
@@ -198,7 +199,7 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:112
 msgid "Shift-click on the FEMALE CITIZEN icon."
-msgstr "Shift-clic sobre el icono de la CIUDADANA."
+msgstr "Haz Mayús + clic sobre el icono de la CIUDADANA."
 
 #: maps/tutorials/starting_economy_walkthrough.js:120
 msgid ""
@@ -293,7 +294,7 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:191
 msgid "Select the Civic Center and right-click on the field."
-msgstr "Seleccione el Centro Cívico y haga click derecho sobre el huerto."
+msgstr "Selecciona el centro cívico y haz clic derecho sobre el huerto."
 
 #: maps/tutorials/starting_economy_walkthrough.js:198
 msgid ""
@@ -305,12 +306,11 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:207
 msgid "Do a simple left-click to produce a single unit."
-msgstr ""
-"Haga un simple clic con el botón izquierdo para producir una sola unidad."
+msgstr "Haz clic con el botón izquierdo para producir una sola unidad."
 
 #: maps/tutorials/starting_economy_walkthrough.js:208
 msgid "Click on the FEMALE CITIZEN icon."
-msgstr "Clic sobre el icono de la CIUDADANA."
+msgstr "Haz clic sobre el icono de la CIUDADANA."
 
 #: maps/tutorials/starting_economy_walkthrough.js:218
 msgid ""

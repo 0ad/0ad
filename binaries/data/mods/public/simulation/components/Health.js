@@ -217,33 +217,41 @@ Health.prototype.Reduce = function(amount)
 		// might get called multiple times)
 		if (this.hitpoints)
 		{
+			this.hitpoints = 0;
+			this.RegisterHealthChanged(oldHitpoints);
 			state.killed = true;
+
+			let cmpDeathDamage = Engine.QueryInterface(this.entity, IID_DeathDamage);
+			if (cmpDeathDamage)
+				cmpDeathDamage.CauseDeathDamage();
 
 			PlaySound("death", this.entity);
 
-			// If SpawnEntityOnDeath is set, spawn the entity
-			if(this.template.SpawnEntityOnDeath)
+			if (this.template.SpawnEntityOnDeath)
 				this.CreateDeathSpawnedEntity();
 
-			if (this.template.DeathType == "corpse")
+			switch (this.template.DeathType)
 			{
+			case "corpse":
 				this.CreateCorpse();
-				Engine.DestroyEntity(this.entity);
-			}
-			else if (this.template.DeathType == "vanish")
+				break;
+
+			case "remain":
 			{
-				Engine.DestroyEntity(this.entity);
-			}
-			else if (this.template.DeathType == "remain")
-			{
-				var resource = this.CreateCorpse(true);
+				let resource = this.CreateCorpse(true);
 				if (resource != INVALID_ENTITY)
 					Engine.BroadcastMessage(MT_EntityRenamed, { entity: this.entity, newentity: resource });
-				Engine.DestroyEntity(this.entity);
 			}
 
-			this.hitpoints = 0;
-			this.RegisterHealthChanged(oldHitpoints);
+			case "vanish":
+				break;
+
+			default:
+				error("Invalid template.DeathType: " + this.template.DeathType);
+				break;
+			}
+
+			Engine.DestroyEntity(this.entity);
 		}
 
 	}
