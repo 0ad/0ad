@@ -29,7 +29,7 @@ Trigger.prototype.ConquestHandlerOwnerShipChanged = function(msg)
 		{
 			let cmpPlayer = QueryPlayerIDInterface(msg.from);
 			if (cmpPlayer)
-				cmpPlayer.SetState("defeated");
+				cmpPlayer.SetState("defeated", this.conquestDefeatReason);
 		}
 	}
 };

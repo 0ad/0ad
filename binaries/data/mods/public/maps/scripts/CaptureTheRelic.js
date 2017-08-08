@@ -145,8 +145,23 @@ Trigger.prototype.StartCaptureTheRelicCountdown = function(playerAndAllies)
 		"translateMessage": true
 	}, captureTheRelicDuration);
 
-	this.relicsVictoryTimer = cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_EndGameManager,
-		"MarkPlayerAsWon", captureTheRelicDuration, playerAndAllies[0]);
+	this.relicsVictoryTimer = cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_Trigger,
+		"CaptureTheRelicVictorySetWinner", captureTheRelicDuration, playerAndAllies[0]);
+};
+
+Trigger.prototype.CaptureTheRelicVictorySetWinner = function(playerID)
+{
+	let cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
+	cmpEndGameManager.MarkPlayerAsWon(
+		playerID,
+		n => markForPluralTranslation(
+			"%(lastPlayer)s has won (Capture the Relic).",
+			"%(players)s and %(lastPlayer)s have won (Capture the Relic).",
+			n),
+		n => markForPluralTranslation(
+			"%(lastPlayer)s has been defeated (Capture the Relic).",
+			"%(players)s and %(lastPlayer)s have been defeated (Capture the Relic).",
+			n));
 };
 
 {

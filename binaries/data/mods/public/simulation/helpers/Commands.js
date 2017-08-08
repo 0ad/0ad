@@ -437,11 +437,11 @@ var g_Commands = {
 		}
 	},
 
-	"defeat-player": function(player, cmd, data)
+	"resign": function(player, cmd, data)
 	{
 		let cmpPlayer = QueryPlayerIDInterface(player);
 		if (cmpPlayer)
-			cmpPlayer.SetState("defeated", !!cmd.resign);
+			cmpPlayer.SetState("defeated", markForTranslation("%(player)s has resigned."));
 	},
 
 	"garrison": function(player, cmd, data)

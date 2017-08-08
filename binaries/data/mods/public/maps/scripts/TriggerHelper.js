@@ -116,22 +116,34 @@ TriggerHelper.GetResourceType = function(entity)
 
 /**
  * The given player will win the game.
- * If it's not a last man standing game, then allies will win too.
+ * If it's not a last man standing game, then allies will win too and others will be defeated.
+ *
+ * @param {number} playerID - The player who will win.
+ * @param {function} victoryReason - Function that maps from number to plural string, for example
+ *     n => markForPluralTranslation(
+ *         "%(lastPlayer)s has won (game mode).",
+ *         "%(players)s and %(lastPlayer)s have won (game mode).",
+ *         n));
+ * It's a function since we don't know in advance how many players will have won.
  */
-TriggerHelper.SetPlayerWon = function(playerID)
+TriggerHelper.SetPlayerWon = function(playerID, victoryReason, defeatReason)
 {
 	let cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
-	cmpEndGameManager.MarkPlayerAsWon(playerID);
+	cmpEndGameManager.MarkPlayerAsWon(playerID, victoryReason, defeatReason);
 };
 
 /**
- * Defeats a player
+ * Defeats a single player.
+ *
+ * @param {number} - ID of that player.
+ * @param {string} - String to be shown in chat, for example
+ *                   markForTranslation("%(player)s has been defeated (objective).")
  */
-TriggerHelper.DefeatPlayer = function(playerID)
+TriggerHelper.DefeatPlayer = function(playerID, defeatReason)
 {
 	let cmpPlayer = QueryPlayerIDInterface(playerID);
 	if (cmpPlayer)
-		cmpPlayer.SetState("defeated");
+		cmpPlayer.SetState("defeated", defeatReason);
 };
 
 /**
