@@ -31,11 +31,6 @@ CFixedVector2D Geometry::GetHalfBoundingBox(const CFixedVector2D& u, const CFixe
 	);
 }
 
-float Geometry::ChordToCentralAngle(const float chordLength, const float radius)
-{
-	return acosf(1.f - SQR(chordLength)/(2.f*SQR(radius))); // cfr. law of cosines
-}
-
 fixed Geometry::DistanceToSquare(const CFixedVector2D& point, const CFixedVector2D& u, const CFixedVector2D& v, const CFixedVector2D& halfSize, bool countInsideAsZero)
 {
 	/*

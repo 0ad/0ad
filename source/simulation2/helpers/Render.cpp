@@ -561,13 +561,6 @@ void SimRender::ConstructDashedLine(const std::vector<CVector2D>& keyPoints, SDa
 
 }
 
-void SimRender::AngularStepFromChordLen(const float maxChordLength, const float radius, float& out_stepAngle, unsigned& out_numSteps)
-{
-	float maxAngle = Geometry::ChordToCentralAngle(maxChordLength, radius);
-	out_numSteps = ceilf(float(2*M_PI)/maxAngle);
-	out_stepAngle = float(2*M_PI)/out_numSteps;
-}
-
 // TODO: this serves a similar purpose to SplitLine above, but is more general. Also, SplitLine seems to be implemented more
 // efficiently, might be nice to take some cues from it
 void SimRender::SubdividePoints(std::vector<CVector2D>& points, float maxSegmentLength, bool closed)
