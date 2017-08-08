@@ -137,7 +137,6 @@ public:
 				"<LineThickness>0.75</LineThickness>"
 				"<LineStartCap>round</LineStartCap>"
 				"<LineEndCap>square</LineEndCap>"
-				"<LineColor r='20' g='128' b='240'></LineColor>"
 				"<LineDashColor r='158' g='11' b='15'></LineDashColor>"
 				"<LinePassabilityClass>default</LinePassabilityClass>"
 			"</a:example>"
@@ -152,17 +151,6 @@ public:
 			"</element>"
 			"<element name='LineThickness' a:help='Thickness of the marker line connecting the entity to the rally point marker'>"
 				"<data type='decimal'/>"
-			"</element>"
-			"<element name='LineColor'>"
-				"<attribute name='r'>"
-					"<data type='integer'><param name='minInclusive'>0</param><param name='maxInclusive'>255</param></data>"
-				"</attribute>"
-				"<attribute name='g'>"
-					"<data type='integer'><param name='minInclusive'>0</param><param name='maxInclusive'>255</param></data>"
-				"</attribute>"
-				"<attribute name='b'>"
-					"<data type='integer'><param name='minInclusive'>0</param><param name='maxInclusive'>255</param></data>"
-				"</attribute>"
 			"</element>"
 			"<element name='LineDashColor'>"
 				"<attribute name='r'>"
@@ -228,7 +216,9 @@ public:
 			break;
 		case MT_OwnershipChanged:
 			{
-				UpdateMarkers(); // update marker variation to new player's civilization
+				// Update marker variation to the new player's civilization
+				UpdateMarkers();
+				UpdateLineColor();
 			}
 			break;
 		case MT_TurnStart:
@@ -350,6 +340,11 @@ private:
 	}
 
 	/**
+	* Helper function to set the line color to its owner's color.
+	*/
+	void UpdateLineColor();
+
+	/**
 	 * Repositions the rally point markers; moves them outside of the world (ie. hides them), or positions them at the currently
 	 * set rally points. Also updates the actor's variation according to the entity's current owning player's civilization.
 	 *
@@ -451,19 +446,11 @@ void CCmpRallyPointRenderer::Init(const CParamNode& paramNode)
 	m_LastMarkerCount = 0;
 	m_EnableDebugNodeOverlay = false;
 
+	UpdateLineColor();
 	// ---------------------------------------------------------------------------------------------
 	// load some XML configuration data (schema guarantees that all these nodes are valid)
 
 	m_MarkerTemplate = paramNode.GetChild("MarkerTemplate").ToString();
-
-	const CParamNode& lineColor = paramNode.GetChild("LineColor");
-	m_LineColor = CColor(
-		lineColor.GetChild("@r").ToInt()/255.f,
-		lineColor.GetChild("@g").ToInt()/255.f,
-		lineColor.GetChild("@b").ToInt()/255.f,
-		1.f
-	);
-
 	const CParamNode& lineDashColor = paramNode.GetChild("LineDashColor");
 	m_LineDashColor = CColor(
 		lineDashColor.GetChild("@r").ToInt()/255.f,
@@ -560,6 +547,28 @@ void CCmpRallyPointRenderer::UpdateMarkers()
 			cmpVisualActor->SetVariant("civ", CStrW(cmpPlayer->GetCiv()).ToUTF8());
 	}
 	m_LastMarkerCount = m_RallyPoints.size() - 1;
+}
+
+
+void CCmpRallyPointRenderer::UpdateLineColor()
+{
+	CmpPtr<ICmpOwnership> cmpOwnership(GetEntityHandle());
+	if (!cmpOwnership)
+		return;
+
+	player_id_t owner = cmpOwnership->GetOwner();
+	if (owner == INVALID_PLAYER)
+		return;
+
+	CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSystemEntity());
+	if (!cmpPlayerManager)
+		return;
+
+	CmpPtr<ICmpPlayer> cmpPlayer(GetSimContext(), cmpPlayerManager->GetPlayerByID(owner));
+	if (!cmpPlayer)
+		return;
+
+	m_LineColor = cmpPlayer->GetColor();
 }
 
 void CCmpRallyPointRenderer::RecomputeAllRallyPointPaths()
