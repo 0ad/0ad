@@ -1,4 +1,5 @@
 Engine.LoadHelperScript("Player.js");
+Engine.LoadComponentScript("interfaces/Builder.js");
 Engine.LoadComponentScript("interfaces/Cost.js");
 Engine.LoadComponentScript("interfaces/Foundation.js");
 Engine.LoadComponentScript("interfaces/Health.js");
@@ -126,15 +127,36 @@ function testFoundation(...mocks)
 	TS_ASSERT_EQUALS(cmpFoundation.maxProgress, 0);
 	TS_ASSERT_EQUALS(cmpFoundation.initialised, true);
 
-	// BUILDER COUNT
+	// BUILDER COUNT, BUILD RATE, TIME REMAINING
+	AddMock(10, IID_Builder, { "GetRate": () => 1.0 });
+	AddMock(11, IID_Builder, { "GetRate": () => 1.0 });
 	let twoBuilderMultiplier = Math.pow(2, cmpFoundation.buildTimePenalty) / 2;
+	let threeBuilderMultiplier = Math.pow(3, cmpFoundation.buildTimePenalty) / 3;
+
+	TS_ASSERT_EQUALS(cmpFoundation.CalculateBuildMultiplier(1), 1);
+	TS_ASSERT_EQUALS(cmpFoundation.CalculateBuildMultiplier(2), twoBuilderMultiplier);
+	TS_ASSERT_EQUALS(cmpFoundation.CalculateBuildMultiplier(3), threeBuilderMultiplier);
+
+	TS_ASSERT_EQUALS(cmpFoundation.GetBuildRate(), 2);
 	TS_ASSERT_EQUALS(cmpFoundation.GetNumBuilders(), 0);
+	TS_ASSERT_EQUALS(cmpFoundation.totalBuilderRate, 0);
 	cmpFoundation.AddBuilder(10);
 	TS_ASSERT_EQUALS(cmpFoundation.GetNumBuilders(), 1);
 	TS_ASSERT_EQUALS(cmpFoundation.buildMultiplier, 1);
+	TS_ASSERT_EQUALS(cmpFoundation.totalBuilderRate, 1);
+	// Foundation starts with 1 hp, so there's 50 * 99/100 = 49.5 seconds left.
+	TS_ASSERT_UNEVAL_EQUALS(cmpFoundation.GetBuildTime(), {
+		'timeRemaining': 49.5,
+		'timeSpeedup': 49.5 - 49.5 / (2 * twoBuilderMultiplier)
+	});
 	cmpFoundation.AddBuilder(11);
 	TS_ASSERT_EQUALS(cmpFoundation.GetNumBuilders(), 2);
 	TS_ASSERT_EQUALS(cmpFoundation.buildMultiplier, twoBuilderMultiplier);
+	TS_ASSERT_EQUALS(cmpFoundation.totalBuilderRate, 2);
+	TS_ASSERT_UNEVAL_EQUALS(cmpFoundation.GetBuildTime(), {
+		'timeRemaining': 49.5 / (2 * twoBuilderMultiplier),
+		'timeSpeedup': 49.5 / (2 * twoBuilderMultiplier) - 49.5 / (3 * threeBuilderMultiplier)
+	});
 	cmpFoundation.AddBuilder(11);
 	TS_ASSERT_EQUALS(cmpFoundation.GetNumBuilders(), 2);
 	TS_ASSERT_EQUALS(cmpFoundation.buildMultiplier, twoBuilderMultiplier);
@@ -144,6 +166,7 @@ function testFoundation(...mocks)
 	cmpFoundation.RemoveBuilder(11);
 	TS_ASSERT_EQUALS(cmpFoundation.GetNumBuilders(), 1);
 	TS_ASSERT_EQUALS(cmpFoundation.buildMultiplier, 1);
+	TS_ASSERT_EQUALS(cmpFoundation.totalBuilderRate, 1);
 
 	// COMMIT FOUNDATION
 	TS_ASSERT_EQUALS(cmpFoundation.committed, false);
@@ -152,6 +175,7 @@ function testFoundation(...mocks)
 	TS_ASSERT_EQUALS(cmpFoundation.committed, true);
 	TS_ASSERT_EQUALS(foundationHP, 1 + work * cmpFoundation.GetBuildRate() * cmpFoundation.buildMultiplier);
 	TS_ASSERT_EQUALS(cmpFoundation.maxProgress, foundationHP / maxHP);
+	TS_ASSERT_EQUALS(cmpFoundation.totalBuilderRate, 5);
 
 	// FINISH CONSTRUCTION
 	Engine.AddEntity = function(template) {

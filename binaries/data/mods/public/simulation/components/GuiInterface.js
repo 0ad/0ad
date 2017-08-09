@@ -443,6 +443,7 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 		"promotion": null,
 		"repairRate": null,
 		"buildRate": null,
+		"buildTime": null,
 		"resourceDropsite": null,
 		"resourceGatherRates": null,
 		"resourceSupply": null,
@@ -547,7 +548,10 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 
 	let cmpFoundation = Engine.QueryInterface(ent, IID_Foundation);
 	if (cmpFoundation)
+	{
 		ret.buildRate = cmpFoundation.GetBuildRate();
+		ret.buildTime = cmpFoundation.GetBuildTime();
+	}
 
 	let cmpResourceSupply = QueryMiragedInterface(ent, IID_ResourceSupply);
 	if (cmpResourceSupply)
