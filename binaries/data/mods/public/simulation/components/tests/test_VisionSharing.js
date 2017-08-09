@@ -1,5 +1,6 @@
 Engine.LoadHelperScript("Player.js");
 Engine.LoadHelperScript("ValueModification.js");
+Engine.LoadHelperScript("Commands.js");
 Engine.LoadComponentScript("interfaces/GarrisonHolder.js");
 Engine.LoadComponentScript("interfaces/TechnologyManager.js");
 Engine.LoadComponentScript("interfaces/AuraManager.js");

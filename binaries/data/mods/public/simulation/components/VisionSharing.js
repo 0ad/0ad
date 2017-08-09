@@ -8,6 +8,11 @@ VisionSharing.prototype.Schema =
 		"<element name='Duration' a:help='Duration (in second) of the vision sharing for spies'>" +
 			"<ref name='positiveDecimal'/>" +
 		"</element>" +
+	"</optional>" +
+	"<optional>" +
+		"<element name='FailureCostRatio' a:help='Fraction of the bribe cost that will be incured if a bribe failed'>" +
+			"<ref name='nonNegativeDecimal'/>" +
+		"</element>" +
 	"</optional>";
 
 VisionSharing.prototype.Init = function()
@@ -118,14 +123,7 @@ VisionSharing.prototype.AddSpy = function(player, timeLength)
 		return 0;
 
 	let template = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager).GetTemplate("special/spy");
-	let costs = {};
-	// Additional cost for this owner
-	let cmpPlayerBribed = QueryPlayerIDInterface(cmpOwnership.GetOwner());
-	let multiplier = cmpPlayerBribed.GetSpyCostMultiplier();
-	for (let res in template.Cost.Resources)
-		costs[res] = Math.floor(multiplier * ApplyValueModificationsToTemplate("Cost/Resources/" + res, +template.Cost.Resources[res], player, template));
-	let cmpPlayerSpy = QueryPlayerIDInterface(player);
-	if (!cmpPlayerSpy || !cmpPlayerSpy.TrySubtractResources(costs))
+	if (!IncurBribeCost(template, player, cmpOwnership.GetOwner(), false))
 		return 0;
 
 	// If no duration given, take it from the spy template and scale it with the ent vision

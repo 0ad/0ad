@@ -783,12 +783,16 @@ var g_Commands = {
 			});
 		}
 		else
+		{
+			let template = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager).GetTemplate("special/spy");
+			IncurBribeCost(template, player, cmd.player, true);
 			cmpGUIInterface.PushNotification({
 				"type": "text",
 				"players": [player],
 				"message": markForTranslation("There are no bribable units"),
 				"translateMessage": true
 			});
+		}
 	},
 
 	"diplomacy-request": function(player, cmd, data)
@@ -1685,8 +1689,32 @@ function FilterEntityListWithAllies(entities, player, controlAll)
 	return entities.filter(ent => CanControlUnitOrIsAlly(ent, player, controlAll));
 }
 
+/**
+ * Incur the player with the cost of a bribe, optionally multiply the cost with
+ * the additionalMultiplier
+ */
+function IncurBribeCost(template, player, playerBribed, failedBribe)
+{
+	let cmpPlayerBribed = QueryPlayerIDInterface(playerBribed);
+	if (!cmpPlayerBribed)
+		return false;
+
+	let costs = {};
+	// Additional cost for this owner
+	let multiplier = cmpPlayerBribed.GetSpyCostMultiplier();
+	if (failedBribe)
+		multiplier *= template.VisionSharing.FailureCostRatio;
+
+	for (let res in template.Cost.Resources)
+		costs[res] = Math.floor(multiplier * ApplyValueModificationsToTemplate("Cost/Resources/" + res, +template.Cost.Resources[res], player, template));
+
+	let cmpPlayer = QueryPlayerIDInterface(player);
+	return cmpPlayer && cmpPlayer.TrySubtractResources(costs);
+}
+
 Engine.RegisterGlobal("GetFormationRequirements", GetFormationRequirements);
 Engine.RegisterGlobal("CanMoveEntsIntoFormation", CanMoveEntsIntoFormation);
 Engine.RegisterGlobal("GetDockAngle", GetDockAngle);
 Engine.RegisterGlobal("ProcessCommand", ProcessCommand);
 Engine.RegisterGlobal("g_Commands", g_Commands);
+Engine.RegisterGlobal("IncurBribeCost", IncurBribeCost);
