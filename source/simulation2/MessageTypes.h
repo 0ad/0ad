@@ -490,6 +490,22 @@ public:
 };
 
 /**
+ * Sent by atlas if the playercolor has been changed.
+ */
+class CMessagePlayerColorChanged : public CMessage
+{
+public:
+	DEFAULT_MESSAGE_IMPL(PlayerColorChanged)
+
+	CMessagePlayerColorChanged(player_id_t player) :
+		player(player)
+	{
+	}
+
+	player_id_t player;
+};
+
+/**
  * Sent by aura and tech managers when a value of a certain template's component is changed
  */
 class CMessageTemplateModification : public CMessage

@@ -77,6 +77,7 @@ class CCmpRallyPointRenderer : public ICmpRallyPointRenderer
 public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
+		componentManager.SubscribeGloballyToMessageType(MT_PlayerColorChanged);
 		componentManager.SubscribeToMessageType(MT_OwnershipChanged);
 		componentManager.SubscribeToMessageType(MT_TurnStart);
 		componentManager.SubscribeToMessageType(MT_Destroy);
@@ -204,6 +205,18 @@ public:
 	{
 		switch (msg.GetType())
 		{
+		case MT_PlayerColorChanged:
+			{
+				const CMessagePlayerColorChanged& msgData = static_cast<const CMessagePlayerColorChanged&> (msg);
+
+				CmpPtr<ICmpOwnership> cmpOwnership(GetEntityHandle());
+				if (!cmpOwnership || msgData.player != cmpOwnership->GetOwner())
+					break;
+
+				UpdateLineColor();
+				ConstructAllOverlayLines();
+			}
+			break;
 		case MT_RenderSubmit:
 			{
 				PROFILE("RallyPoint::RenderSubmit");

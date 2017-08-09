@@ -60,6 +60,7 @@ MESSAGE(VisionSharingChanged)
 MESSAGE(MinimapPing)
 MESSAGE(CinemaPathEnded)
 MESSAGE(CinemaQueueEnded)
+MESSAGE(PlayerColorChanged)
 
 // TemplateManager must come before all other (non-test) components,
 // so that it is the first to be (de)serialized

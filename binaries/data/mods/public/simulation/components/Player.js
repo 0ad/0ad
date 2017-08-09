@@ -31,7 +31,7 @@ Player.prototype.Init = function()
 	this.playerID = undefined;
 	this.name = undefined;	// define defaults elsewhere (supporting other languages)
 	this.civ = undefined;
-	this.color = { "r": 0.0, "g": 0.0, "b": 0.0, "a": 1.0 };
+	this.color = undefined;
 	this.popUsed = 0; // population of units owned or trained by this player
 	this.popBonuses = 0; // sum of population bonuses of player's entities
 	this.maxPop = 300; // maximum population
@@ -120,7 +120,15 @@ Player.prototype.GetCiv = function()
 
 Player.prototype.SetColor = function(r, g, b)
 {
+	var colorInitialized = !!this.color;
+
 	this.color = { "r": r/255.0, "g": g/255.0, "b": b/255.0, "a": 1.0 };
+
+	// Used in Atlas
+	if (colorInitialized)
+		Engine.BroadcastMessage(MT_PlayerColorChanged, {
+			"player": this.playerID
+		});
 };
 
 Player.prototype.GetColor = function()

@@ -60,6 +60,7 @@ public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
 		componentManager.SubscribeGloballyToMessageType(MT_OwnershipChanged);
+		componentManager.SubscribeGloballyToMessageType(MT_PlayerColorChanged);
 		componentManager.SubscribeGloballyToMessageType(MT_PositionChanged);
 		componentManager.SubscribeGloballyToMessageType(MT_ValueModification);
 		componentManager.SubscribeToMessageType(MT_ObstructionMapShapeChanged);
@@ -170,6 +171,11 @@ public:
 		{
 			const CMessageOwnershipChanged& msgData = static_cast<const CMessageOwnershipChanged&> (msg);
 			MakeDirtyIfRelevantEntity(msgData.entity);
+			break;
+		}
+		case MT_PlayerColorChanged:
+		{
+			MakeDirty();
 			break;
 		}
 		case MT_PositionChanged:
