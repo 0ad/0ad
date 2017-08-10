@@ -178,6 +178,8 @@ Damage.prototype.CauseSplashDamage = function(data)
 	// Get nearby entities and define variables
 	let nearEnts = this.EntitiesNearPoint(data.origin, data.radius, data.playersToDamage);
 	let damageMultiplier = 1;
+	let direction = Vector2D.from3D(data.direction);
+
 	// Cycle through all the nearby entities and damage it appropriately based on its distance from the origin.
 	for (let ent of nearEnts)
 	{
@@ -189,17 +191,18 @@ Damage.prototype.CauseSplashDamage = function(data)
 			// Get position of entity relative to splash origin.
 			let relativePos = entityPosition.sub(data.origin);
 
+			// Get the position relative to the missile direction.
+			let parallelPos = relativePos.dot(direction);
+			let perpPos = relativePos.cross(direction);
+
 			// The width of linear splash is one fifth of the normal splash radius.
 			let width = data.radius / 5;
 
-			// Effectivly rotate the axis to align with the missile direction.
-			let parallelDist = relativePos.dot(data.direction); // z axis
-			let perpDist = Math.abs(relativePos.cross(data.direction)); // y axis
-
-			// Check that the unit is within the distance at which it will get damaged.
-			if (parallelDist > -width && perpDist < width) // If in radius, quadratic falloff in both directions
-				damageMultiplier = (data.radius * data.radius - parallelDist * parallelDist) / (data.radius * data.radius) *
-								   (width * width - perpDist * perpDist) / (width * width);
+			// Check that the unit is within the distance splash width of the line starting at the missile's
+			// landing point which extends in the direction of the missile for length splash radius.
+			if (parallelPos >= 0 && Math.abs(perpPos) < width) // If in radius, quadratic falloff in both directions
+				damageMultiplier = (1 - parallelPos * parallelPos / (data.radius * data.radius)) *
+					(1 - perpPos * perpPos / (width * width));
 			else
 				damageMultiplier = 0;
 		}
