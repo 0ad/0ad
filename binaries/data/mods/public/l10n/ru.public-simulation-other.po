@@ -17,6 +17,7 @@
 # Prince Moth <princemoth@rambler.ru>, 2016
 # Roman M. Yagodin <roman.yagodin@gmail.com>, 2017
 # Simple88, 2016
+# Валерий Дмиртиевич Степанов <valera1111@yandex.ru>, 2017
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2016
 # Woratiklis, 2015-2016
 # Yegor <revolver45@inbox.ru>, 2014
@@ -27,8 +28,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-07-18 12:45+0000\n"
-"Last-Translator: Roman M. Yagodin <roman.yagodin@gmail.com>\n"
+"PO-Revision-Date: 2017-08-07 17:17+0000\n"
+"Last-Translator: Валерий Дмиртиевич Степанов <valera1111@yandex.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1184,7 +1185,7 @@ msgstr "Крошечная"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Tooltip
 msgid "This map size has barely any room for even the most basic resources."
-msgstr ""
+msgstr "На карте этого размера практически нет места даже для самых основных ресурсов."
 
 #: simulation/data/settings/map_sizes.jsonData[1].Name
 msgid "Small"
@@ -1194,7 +1195,7 @@ msgstr "Маленькая"
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
 "quickly while still having some room to expand."
-msgstr ""
+msgstr "Маленькие карты подходят для игры 1 на 1, так как игроки могут быстро добраться до врага, всё ещё имея немного места для расширения. "
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Medium"
@@ -1204,7 +1205,7 @@ msgstr "Нормальная"
 msgid ""
 "Medium-sized maps provide plenty of space for two players, but even eight "
 "players fit."
-msgstr ""
+msgstr "Средние карты дают много места для двух игроков, но вмещают даже восемь."
 
 #: simulation/data/settings/map_sizes.jsonData[3].Name
 msgid "Normal"
@@ -1214,7 +1215,7 @@ msgstr "Обычная"
 msgid ""
 "This is the ideal mapsize for 4 to 8 players, because there is plenty of "
 "space to expand while the neighbors are quickly reachable."
-msgstr ""
+msgstr "Это идеальный размер для 4 - 8 игроков потому, что здесь много места для расширения, и, в то же время, соседи быстро доступны. "
 
 #: simulation/data/settings/map_sizes.jsonData[4].Name
 msgid "Large"
@@ -1224,7 +1225,7 @@ msgstr "Большая"
 msgid ""
 "The large mapsize is recommended when great portions of the map are covered "
 "with water or inaccessible mountains."
-msgstr ""
+msgstr "Большие карты рекомендуются, когда крупные области карты покрыты водой или непроходимыми горами."
 
 #: simulation/data/settings/map_sizes.jsonData[5].Name
 msgid "Very Large"
@@ -1235,7 +1236,7 @@ msgstr "Очень большая"
 msgid ""
 "Very large maps are not recommended as it takes very long to reach the enemy"
 " and the game performance can be reduced."
-msgstr ""
+msgstr "Очень большие карты не рекомендуются, так как до противника становится далеко добираться и производительность игры может снизиться."
 
 #: simulation/data/settings/map_sizes.jsonData[6].Name
 msgid "Giant"

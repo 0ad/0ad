@@ -55,6 +55,7 @@ public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
 		componentManager.SubscribeToMessageType(MT_OwnershipChanged);
+		componentManager.SubscribeToMessageType(MT_PlayerColorChanged);
 		componentManager.SubscribeToMessageType(MT_PositionChanged);
 		componentManager.SubscribeToMessageType(MT_TerrainChanged);
 		componentManager.SubscribeToMessageType(MT_WaterChanged);
@@ -263,6 +264,11 @@ public:
 	 */
 	void ResetRangeOverlays();
 
+	/**
+	 * Set the color of the current owner.
+	 */
+	void UpdatePlayerColor();
+
 private:
 	SOverlayDescriptor m_OverlayDescriptor;
 	SOverlayTexturedLine* m_BuildingOverlay;
@@ -362,21 +368,19 @@ void CCmpSelectable::HandleMessage(const CMessage& msg, bool UNUSED(global))
 		if (msgData.to == INVALID_PLAYER)
 			break;
 
-		// update the selection highlight color
-		CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSystemEntity());
-		if (!cmpPlayerManager)
-			break;
-
-		CmpPtr<ICmpPlayer> cmpPlayer(GetSimContext(), cmpPlayerManager->GetPlayerByID(msgData.to));
-		if (!cmpPlayer)
-			break;
-
-		// Update the highlight color, while keeping the current alpha target value intact
-		// (i.e. baseline + delta), so that any ongoing fades simply continue with the new color.
-		CColor color = cmpPlayer->GetColor();
-		SetSelectionHighlight(CColor(color.r, color.g, color.b, m_FadeBaselineAlpha + m_FadeDeltaAlpha), m_Selected);
-
+		UpdatePlayerColor();
 		InvalidateStaticOverlay();
+		break;
+	}
+	case MT_PlayerColorChanged:
+	{
+		const CMessagePlayerColorChanged& msgData = static_cast<const CMessagePlayerColorChanged&> (msg);
+
+		CmpPtr<ICmpOwnership> cmpOwnership(GetEntityHandle());
+		if (!cmpOwnership || msgData.player != cmpOwnership->GetOwner())
+			break;
+
+		UpdatePlayerColor();
 		break;
 	}
 	case MT_PositionChanged:
@@ -407,6 +411,31 @@ void CCmpSelectable::HandleMessage(const CMessage& msg, bool UNUSED(global))
 		break;
 	}
 	}
+}
+
+void CCmpSelectable::UpdatePlayerColor()
+{
+	CmpPtr<ICmpOwnership> cmpOwnership(GetEntityHandle());
+
+	CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSystemEntity());
+	if (!cmpPlayerManager)
+		return;
+
+	// Default to white if there's no owner (e.g. decorative, editor-only actors)
+	CColor color(1.0, 1.0, 1.0, 1.0);
+
+	if (cmpOwnership)
+	{
+		CmpPtr<ICmpPlayer> cmpPlayer(GetSimContext(), cmpPlayerManager->GetPlayerByID(cmpOwnership->GetOwner()));
+		if (cmpPlayer)
+			color = cmpPlayer->GetColor();
+	}
+
+	// Update the highlight color, while keeping the current alpha target value intact
+	// (i.e. baseline + delta), so that any ongoing fades simply continue with the new color.
+	color.a = m_FadeBaselineAlpha + m_FadeDeltaAlpha;
+
+	SetSelectionHighlight(color, m_Selected);
 }
 
 void CCmpSelectable::ResetRangeOverlays()
@@ -616,29 +645,7 @@ void CCmpSelectable::RenderSubmit(SceneCollector& collector)
 	{
 		if (!m_Cached)
 		{
-			// Default to white if there's no owner (e.g. decorative, editor-only actors)
-			CColor color = CColor(1.0, 1.0, 1.0, 1.0);
-			CmpPtr<ICmpOwnership> cmpOwnership(GetEntityHandle());
-			if (cmpOwnership)
-			{
-				player_id_t owner = cmpOwnership->GetOwner();
-				if (owner == INVALID_PLAYER)
-					return;
-
-				// Try to initialize m_Color to the owning player's color.
-				CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSystemEntity());
-				if (!cmpPlayerManager)
-					return;
-
-				CmpPtr<ICmpPlayer> cmpPlayer(GetSimContext(), cmpPlayerManager->GetPlayerByID(owner));
-				if (!cmpPlayer)
-					return;
-
-				color = cmpPlayer->GetColor();
-			}
-			color.a = m_FadeBaselineAlpha + m_FadeDeltaAlpha;
-
-			SetSelectionHighlight(color, m_Selected);
+			UpdatePlayerColor();
 			m_Cached = true;
 		}
 

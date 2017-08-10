@@ -519,6 +519,22 @@ CMessage* CMessageCinemaQueueEnded::FromJSVal(ScriptInterface& scriptInterface, 
 
 ////////////////////////////////////////////////////////////////
 
+JS::Value CMessagePlayerColorChanged::ToJSVal(ScriptInterface& scriptInterface) const
+{
+	TOJSVAL_SETUP();
+	SET_MSG_PROPERTY(player);
+	return JS::ObjectValue(*obj);
+}
+
+CMessage* CMessagePlayerColorChanged::FromJSVal(ScriptInterface& scriptInterface, JS::HandleValue val)
+{
+	FROMJSVAL_SETUP();
+	GET_MSG_PROPERTY(player_id_t, player);
+	return new CMessagePlayerColorChanged(player);
+}
+
+////////////////////////////////////////////////////////////////
+
 CMessage* CMessageFromJSVal(int mtid, ScriptInterface& scriptingInterface, JS::HandleValue val)
 {
 	switch (mtid)

@@ -16,38 +16,22 @@
   <group>
     <variant frequency="1" name="tunic 2">
       <mesh>skeletal/new/m_tunic_short.dae</mesh>
-      <textures><texture file="skeletal/hele_ijv_a_2.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/hele_ijv_a_2.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="tunic 3">
       <mesh>skeletal/new/m_tunic_long.dae</mesh>
-      <textures><texture file="skeletal/hele_ijv_a_3.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/hele_ijv_a_3.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
     <variant file="biped/attack_ranged_archer_hip.xml"/>
+    <variant file="biped/attack_capture.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
-    <variant file="biped/female_death.xml"/>
-    <variant file="biped/female_gather_tree.xml"/>
-    <variant file="biped/female_gather_grain.xml"/>
-    <variant file="biped/female_gather_fruit.xml"/>
-    <variant file="biped/female_gather_meat.xml"/>
-    <variant file="biped/female_gather_rock.xml"/>
-    <variant file="biped/female_gather_ore.xml"/>
-    <variant file="biped/female_gather_ruins.xml"/>
-    <variant file="biped/gather_praise.xml"/>
-    <variant file="biped/female_build.xml"/>
-    <variant file="biped/female_build_farm.xml"/>
-    <variant file="biped/female_carry_food.xml"/>
-    <variant file="biped/female_carry_meat.xml"/>
-    <variant file="biped/female_carry_wood.xml"/>
-    <variant file="biped/female_carry_stone.xml"/>
-    <variant file="biped/female_carry_metal.xml"/>
-    <variant file="biped/female_carry_food_idle.xml"/>
-    <variant file="biped/female_carry_meat_idle.xml"/>
-    <variant file="biped/female_carry_wood_idle.xml"/>
-    <variant file="biped/female_carry_stone_idle.xml"/>
-    <variant file="biped/female_carry_metal_idle.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>

@@ -12,13 +12,12 @@ Foundation.prototype.Init = function()
 	// its obstruction once there's nothing in the way.
 	this.committed = false;
 
-	this.builders = []; // builder entities
-	this.buildMultiplier = 1; // Multiplier for the amount of work builders do.
+	this.builders = new Map(); // Map of builder entities to their work per second
+	this.totalBuilderRate = 0; // Total amount of work the builders do each second
+	this.buildMultiplier = 1; // Multiplier for the amount of work builders do
+	this.buildTimePenalty = 0.7; // Penalty for having multiple builders
 
 	this.previewEntity = INVALID_ENTITY;
-
-	// Penalty for multiple builders
-	this.buildTimePenalty = 0.7;
 };
 
 Foundation.prototype.InitialiseConstruction = function(owner, template)
@@ -78,7 +77,7 @@ Foundation.prototype.GetBuildPercentage = function()
 
 Foundation.prototype.GetNumBuilders = function()
 {
-	return this.builders.length;
+	return this.builders.size;
 };
 
 Foundation.prototype.IsFinished = function()
@@ -122,44 +121,60 @@ Foundation.prototype.OnDestroy = function()
  */
 Foundation.prototype.AddBuilder = function(builderEnt)
 {
-	if (this.builders.indexOf(builderEnt) != -1)
+	if (this.builders.has(builderEnt))
 		return;
 
-	this.builders.push(builderEnt);
+	this.builders.set(builderEnt, Engine.QueryInterface(builderEnt, IID_Builder).GetRate());
+	this.totalBuilderRate += this.builders.get(builderEnt);
+	this.SetBuildMultiplier();
+
 	let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
 	if (cmpVisual)
-		cmpVisual.SetVariable("numbuilders", this.builders.length);
+		cmpVisual.SetVariable("numbuilders", this.builders.size);
 
-	this.SetBuildMultiplier();
-	Engine.PostMessage(this.entity, MT_FoundationBuildersChanged, { "to": this.builders });
+	Engine.PostMessage(this.entity, MT_FoundationBuildersChanged, { "to": [...this.builders.keys()] });
 };
 
 Foundation.prototype.RemoveBuilder = function(builderEnt)
 {
-	let index = this.builders.indexOf(builderEnt);
-	if (index == -1)
+	if (!this.builders.has(builderEnt))
 		return;
 
-	this.builders.splice(index, 1);
+	this.totalBuilderRate -= this.builders.get(builderEnt);
+	this.builders.delete(builderEnt);
+	this.SetBuildMultiplier();
+
 	let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
 	if (cmpVisual)
-		cmpVisual.SetVariable("numbuilders", this.builders.length);
+		cmpVisual.SetVariable("numbuilders", this.builders.size);
 
-	this.SetBuildMultiplier();
-	Engine.PostMessage(this.entity, MT_FoundationBuildersChanged, { "to": this.builders });
- };
+	Engine.PostMessage(this.entity, MT_FoundationBuildersChanged, { "to": [...this.builders.keys()] });
+};
 
 /**
- * Sets the build rate multiplier, which is applied to all builders.
- * Yields a total rate of construction equal to numBuilders^0.7
+ * The build multiplier is a penalty that is applied to each builder.
+ * For example, ten women build at a combined rate of 10^0.7 = 5.01 instead of 10.
  */
+Foundation.prototype.CalculateBuildMultiplier = function(num)
+{
+	return num < 2 ? 1 : Math.pow(num, this.buildTimePenalty) / num;
+};
+
 Foundation.prototype.SetBuildMultiplier = function()
 {
-	let numBuilders = this.builders.length;
-	if (numBuilders < 2)
-		this.buildMultiplier = 1;
-	else
-		this.buildMultiplier = Math.pow(numBuilders, this.buildTimePenalty) / numBuilders;
+	this.buildMultiplier = this.CalculateBuildMultiplier(this.GetNumBuilders());
+};
+
+Foundation.prototype.GetBuildTime = function()
+{
+	let timeLeft = (1 - this.GetBuildProgress()) * Engine.QueryInterface(this.entity, IID_Cost).GetBuildTime();
+	let rate = this.totalBuilderRate * this.buildMultiplier;
+	// The rate if we add another woman to the foundation.
+	let rateNew = (this.totalBuilderRate + 1) * this.CalculateBuildMultiplier(this.GetNumBuilders() + 1);
+	return {
+		"timeRemaining": timeLeft / rate,
+		"timeSpeedup": timeLeft / rate - timeLeft / rateNew
+	};
 };
 
 /**
@@ -271,6 +286,10 @@ Foundation.prototype.Build = function(builderEnt, work)
 	var deltaHP = work * this.GetBuildRate() * this.buildMultiplier;
 	if (deltaHP > 0)
 		cmpHealth.Increase(deltaHP);
+
+	// Update the total builder rate
+	this.totalBuilderRate += work - this.builders.get(builderEnt);
+	this.builders.set(builderEnt, work);
 
 	var progress = this.GetBuildProgress();
 

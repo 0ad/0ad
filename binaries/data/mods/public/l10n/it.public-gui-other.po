@@ -18,14 +18,15 @@
 # Michele Marongiu <michelemarongiu@gmail.com>, 2016
 # Nicola Jelmorini, 2014-2015
 # Paolo <paolo.libardi@gmail.com>, 2015
+# Riccardo Cariboni <riccardo99car@gmail.com>, 2017
 # Sergio <leonesergio96@gmail.com>, 2015
 # andreac <supercarrer1989@hotmail.it>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-02 09:02+0200\n"
-"PO-Revision-Date: 2017-08-03 09:14+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-08-08 07:51+0000\n"
+"Last-Translator: Riccardo Cariboni <riccardo99car@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -376,7 +377,7 @@ msgstr "disabilitato"
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
 msgstr[0] "Per il primo minuto, gli altri giocatori rimangono neutrali."
-msgstr[1] "Per i primi %(min)s minuti, gli altri giocatori rimangono neutrali."
+msgstr[1] "Per i primi %(min)s minuti, gli altri giocatori rimarranno neutrali."
 
 #: gui/common/gamedescription.js:321
 msgid "Map Name"
@@ -500,7 +501,7 @@ msgstr "L'host ha finito la partita."
 
 #: gui/common/network.js:69
 msgid "Incorrect network protocol version"
-msgstr "Errata versione del protocollo di rete"
+msgstr "Versione del protocollo di rete errata"
 
 #: gui/common/network.js:70
 msgid "Game is loading, please try again later"
@@ -520,7 +521,7 @@ msgstr "Sei stato bannato"
 
 #: gui/common/network.js:74
 msgid "Playername in use. If you were disconnected, retry in few seconds"
-msgstr "Nome del giocatore in uso. Se sarai disconnesso, riprova tra pochi secondi."
+msgstr "Nome del giocatore in uso. Se sei stato disconnesso, riprova tra pochi secondi."
 
 #: gui/common/network.js:75
 msgid "Server full"
@@ -647,7 +648,7 @@ msgstr "Casuale"
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
-msgstr "Crea un unica mappa con una diversa distribuzione di risorse ogni volta. Puoi scegliere liberamente il numero di giocatori e squadre."
+msgstr "Crea un mappa unica con una diversa distribuzione di risorse ogni volta. Puoi scegliere liberamente il numero di giocatori e squadre."
 
 #: gui/common/settings.js:199
 msgctxt "map"
@@ -711,7 +712,7 @@ msgstr "Attacco \"a Distanza\":"
 
 #: gui/common/tooltips.js:11
 msgid "Capture Attack:"
-msgstr "Attacco e Cattura:"
+msgstr "Attacco \"di Cattura\":"
 
 #: gui/common/tooltips.js:15
 msgid "Hack"
@@ -1091,7 +1092,7 @@ msgstr "%(component)s %(loot)s"
 
 #: gui/common/tooltips.js:764
 msgid "Loot:"
-msgstr "Bottino"
+msgstr "Bottino:"
 
 #: gui/credits/credits.js:69
 #, javascript-format
@@ -1101,7 +1102,7 @@ msgstr "%(nick)s - %(name)s"
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:77
 msgctxt "localeCountry"
 msgid "None"
-msgstr "No"
+msgstr "Nessuno"
 
 #: gui/locale/locale_advanced.js:92
 msgid "invalid locale"
@@ -1237,7 +1238,7 @@ msgstr "Manuale"
 #: gui/reference/common/load.js:233
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
-msgstr ""
+msgstr " %(health_min)s a %(health_max)s"
 
 #: gui/replaymenu/replay_actions.js:92
 msgid "You don't have the same mods active as the replay does."

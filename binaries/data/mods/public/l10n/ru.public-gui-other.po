@@ -32,6 +32,7 @@
 # webslavic <webslavic@yahoo.com>, 2014-2015
 # Woratiklis, 2015
 # Алексей72 <Alteza.72ru@mail.ru>, 2014
+# Валерий Дмиртиевич Степанов <valera1111@yandex.ru>, 2017
 # Виталий Орехов <7opex0@mail.ru>, 2016
 # Николай Авдеев <nickkolok@mail.ru>, 2016
 # Олег Шевченко <olegrock@gmail.com>, 2017
@@ -39,8 +40,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-02 09:02+0200\n"
-"PO-Revision-Date: 2017-08-03 09:14+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-08-07 17:38+0000\n"
+"Last-Translator: Валерий Дмиртиевич Степанов <valera1111@yandex.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -402,10 +403,10 @@ msgstr "отключён"
 #: gui/common/gamedescription.js:313
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Первую минуту другие игроки остаются нейтральными."
+msgstr[1] "Первые %(min)s минут другие игроки остаются нейтральными."
+msgstr[2] "Первые %(min)s минут другие игроки остаются нейтральными."
+msgstr[3] "Первые %(min)s минут другие игроки остаются нейтральными."
 
 #: gui/common/gamedescription.js:321
 msgid "Map Name"
@@ -1284,7 +1285,7 @@ msgstr "Руководство"
 #: gui/reference/common/load.js:233
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
-msgstr ""
+msgstr "%(health_min)s - %(health_max)s"
 
 #: gui/replaymenu/replay_actions.js:92
 msgid "You don't have the same mods active as the replay does."

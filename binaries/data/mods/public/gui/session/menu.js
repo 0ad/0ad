@@ -556,6 +556,15 @@ function diplomacyFormatSpyRequestButton(i, hidden)
 				"cost": modifiedTemplate.cost,
 				"player": g_ViewedPlayer
 			});
+			let costRatio = Engine.GetTemplate("special/spy").VisionSharing.FailureCostRatio;
+			if (costRatio > 0)
+			{
+				tooltips.push(translate("A failed bribe will cost you:"));
+				for (let res in modifiedTemplate.cost)
+					modifiedTemplate.cost[res] = Math.floor(costRatio * modifiedTemplate.cost[res]);
+				tooltips.push(getEntityCostTooltip(modifiedTemplate));
+			}
+
 			if (neededResources)
 			{
 				if (button.enabled)
