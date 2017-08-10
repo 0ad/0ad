@@ -99,13 +99,13 @@ var g_ScorePanelsData = {
 		"caption": translate("Resources"),
 		"headings": [
 			{ "identifier": "playername", "caption": translate("Player name"), "yStart": 26, "width": 200 },
+			{ "identifier": "total", "caption": translate("Total"), "yStart": 34, "width": 110 },
 			...g_ResourceData.GetResources().map(res => ({
 				"identifier": res.code,
 				"caption": resourceNameFirstWord(res.code),
 				"yStart": 34,
 				"width": 100
 			})),
-			{ "identifier": "total", "caption": translate("Total"), "yStart": 34, "width": 110 },
 			{
 				"identifier": "tributes",
 				"caption": sprintf(translate("Tributes \n(%(sent)s / %(received)s)"),
@@ -131,12 +131,12 @@ var g_ScorePanelsData = {
 			},
 		],
 		"counters": [
+			{ "width": 110, "fn": calculateTotalResources, "verticalOffset": 12 },
 			...g_ResourceData.GetCodes().map(code => ({
 				"fn": calculateResources,
 				"verticalOffset": 12,
 				"width": 100
 			})),
-			{ "width": 110, "fn": calculateTotalResources, "verticalOffset": 12 },
 			{ "width": 121, "fn": calculateTributeSent, "verticalOffset": 12 },
 			{ "width": 100, "fn": calculateTreasureCollected, "verticalOffset": 12 },
 			{ "width": 100, "fn": calculateLootCollected, "verticalOffset": 12 }
