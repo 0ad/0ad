@@ -289,14 +289,15 @@ if (gallicCC)
 		wallStyles.palisades.spikeMid = new WallElement("spikeIn", oAngleSpikes, -PI/2, 0.7);
 		wallStyles.palisades.gateGap = new WallElement("gateGap", undefined, PI, 3.6);
 
-		let manySpikes = new Array(4).fill("tall_spikes");
+		let fourSpikes = new Array(4).fill("tall_spikes");
+		let sixSpikes = new Array(6).fill("tall_spikes");
+
 		let spikes = [
 			"gateGap",
-			"spikeMid", ...manySpikes,
-			"spikeIn", ...manySpikes,
-			"spikeMid", ...manySpikes,
-			"spikeMid", ...manySpikes,
-			"spikeIn", ...manySpikes,
+			"spikeMid", ...fourSpikes,
+			"spikeIn", ...sixSpikes, "spikeMid",
+			"gateGap", "spikeMid", ...fourSpikes,
+			"spikeIn", ...fourSpikes,
 			"spikeMid"
 		];
 		spikes = spikes.concat(spikes);
