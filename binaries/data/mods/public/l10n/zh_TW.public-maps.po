@@ -4,16 +4,16 @@
 # 
 # Translators:
 # Cheng-Chia Tseng <pswo10680@gmail.com>, 2015
-# jaco boolean <daan0014119@gmail.com>, 2017
+# Yuan <daan0014119@gmail.com>, 2017
 # Jeff Huang <s8321414@gmail.com>, 2014-2017
 # Mysterelee <8161525@qq.com>, 2014
 # You-Ruei Tzeng <e222et@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:08+0200\n"
-"PO-Revision-Date: 2017-06-04 16:48+0000\n"
-"Last-Translator: jaco boolean <daan0014119@gmail.com>\n"
+"POT-Creation-Date: 2017-08-09 09:05+0200\n"
+"PO-Revision-Date: 2017-08-10 01:15+0000\n"
+"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -860,6 +860,11 @@ msgstr "第一波攻擊將會在 %(time)s 後到來！"
 msgid "An enemy wave is attacking!"
 msgstr "有一波敵人來襲！"
 
+#: maps/random/survivalofthefittest_triggers.js:351
+#, javascript-format
+msgid "%(player)s has been defeated (lost civic center)."
+msgstr "%(player)s 已被擊敗（失去城鎮中心）。"
+
 #: maps/scenarios/Cinema_Demo.js:6
 msgid "Cutscene starts after 5 seconds"
 msgstr "過場動畫將於 5 秒後開始"
@@ -916,6 +921,19 @@ msgstr "您收集了一份寶藏！"
 #: maps/scenarios/treasure_islands.js:92
 msgid "Defeat your enemy to win!"
 msgstr "打敗您的敵人以獲得勝利！"
+
+#: maps/scenarios/treasure_islands.js:101
+#, javascript-format
+msgid "%(lastPlayer)s has won (treasure collected)."
+msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
+msgstr[0] "%(players)s 與 %(lastPlayer)s 已經獲勝（已蒐集寶藏）。"
+
+#: maps/scenarios/treasure_islands.js:105
+#, javascript-format
+msgid "%(lastPlayer)s has been defeated (treasure collected)."
+msgid_plural ""
+"%(players)s and %(lastPlayer)s have been defeated (treasure collected)."
+msgstr[0] "%(players)s 與 %(lastPlayer)s 已被擊敗（已蒐集寶藏）。"
 
 #: maps/scenarios/Arcadia.xml:Description:39
 msgid ""
