@@ -364,8 +364,9 @@ void CCmpSelectable::HandleMessage(const CMessage& msg, bool UNUSED(global))
 	{
 		const CMessageOwnershipChanged& msgData = static_cast<const CMessageOwnershipChanged&> (msg);
 
-		// don't update color if there's no new owner (e.g. the unit died)
-		if (msgData.to == INVALID_PLAYER)
+		// Ignore newly constructed entities, as they receive their color upon first selection
+		// Ignore deleted entities because they won't be rendered
+		if (msgData.from == INVALID_PLAYER || msgData.to == INVALID_PLAYER)
 			break;
 
 		UpdatePlayerColor();

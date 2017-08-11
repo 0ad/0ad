@@ -229,9 +229,18 @@ public:
 			break;
 		case MT_OwnershipChanged:
 			{
-				// Update marker variation to the new player's civilization
-				UpdateMarkers();
+				const CMessageOwnershipChanged& msgData = static_cast<const CMessageOwnershipChanged&> (msg);
+
+				// Ignore destroyed entities
+				if (msgData.to == INVALID_PLAYER)
+					break;
+
+				// Required for both the initial and capturing players color
 				UpdateLineColor();
+
+				// Support capturing, even though RallyPoint is typically deleted then
+				UpdateMarkers();
+				ConstructAllOverlayLines();
 			}
 			break;
 		case MT_TurnStart:
