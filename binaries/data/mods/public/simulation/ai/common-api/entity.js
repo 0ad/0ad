@@ -299,7 +299,7 @@ m.Template = m.Class({
 	},
 
 	// returns, if it exists, the multiplier from each attack against a given class
-	getMultiplierAgainst: function(type, againstClass) {
+	"getMultiplierAgainst": function(type, againstClass) {
 		if (!this.get("Attack/" + type +""))
 			return undefined;
 
@@ -310,7 +310,7 @@ m.Template = m.Class({
 				let bonusClasses = this.get("Attack/" + type + "/Bonuses/" + b + "/Classes");
 				if (!bonusClasses)
 					continue;
-				for (let bcl of bonusesClasses.split(" "))
+				for (let bcl of bonusClasses.split(" "))
 					if (bcl === againstClass)
 						return +this.get("Attack/" + type + "/Bonuses/" + b + "/Multiplier");
 			}
