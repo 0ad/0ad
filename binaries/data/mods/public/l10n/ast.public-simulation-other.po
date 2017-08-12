@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-08-08 23:37+0000\n"
+"POT-Creation-Date: 2017-08-09 09:04+0200\n"
+"PO-Revision-Date: 2017-08-09 19:08+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -730,32 +730,32 @@ msgstr "Avérase l'enemigu. Llevanta más soldaos pa espuxalo."
 msgid ""
 "The enemy's attack has been defeated. Now build a market and temple while "
 "assigning new units to gather any required resources."
-msgstr ""
+msgstr "Venciesti l'ataque del enemigu. Agora construyi un mercáu y un templu de la que destines les unidaes nueves a recoyer cualquier recursu que faiga falta."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:104
 msgid ""
 "Now that City Phase requirements have been reached, select your Civil Center"
 " and advance to City Phase."
-msgstr ""
+msgstr "Agora que satisfixesti toles condiciones de la etapa urbana, esbilla'l centru cívicu y avanza a la etapa urbana."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:110
 msgid ""
 "Now that you are in City Phase, build a fortress nearby and use it to build "
 "2 Battering Rams."
-msgstr ""
+msgstr "Agora que tas na etapa urbana, construyi una fortaleza per ende y valte d'ella pa llevantar 2 arietes."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:115
 msgid ""
 "Stop all your soldiers gathering resources and instead task small groups to "
 "find the enemy Civil Center on the map. Female citizens should continue to "
 "gather resources."
-msgstr ""
+msgstr "Apara tolos soldaos que tean arrecoyendo y encarga a unes bandines que vaigan en cata del centru cívicu enemigu. Les ciudadanes deben siguir recoyendo."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:122
 msgid ""
 "The enemy's base has been spotted, send your siege weapons and all remaining"
 " soldiers to destroy it."
-msgstr ""
+msgstr "Endilgaron la base del enemigu, unvia les máquines d'asediu y tolos soldaos que resten pa desfacelu."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:126
 msgid "The enemy has been defeated. All tutorial tasks are now completed…"
@@ -892,7 +892,14 @@ msgstr ""
 msgid "You can attack now!"
 msgstr ""
 
-#: simulation/components/EndGameManager.js:117
+#: simulation/components/EndGameManager.js:163
+#, javascript-format
+msgid "%(lastPlayer)s has won (last player alive)."
+msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: simulation/components/EndGameManager.js:171
 msgid "Last remaining player wins."
 msgstr ""
 
@@ -938,12 +945,17 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr ""
 
-#: simulation/components/ProductionQueue.js:395
+#: simulation/components/ProductionQueue.js:401
 msgid "The production queue is full."
 msgstr ""
 
-#: simulation/components/ProductionQueue.js:774
+#: simulation/components/ProductionQueue.js:780
 msgid "Can't find free space to spawn trained units"
+msgstr ""
+
+#: simulation/helpers/Cheat.js:53
+#, javascript-format
+msgid "%(player)s has been defeated (cheat)."
 msgstr ""
 
 #: simulation/helpers/Cheat.js:62
@@ -958,38 +970,43 @@ msgstr ""
 msgid "(Cheat - reveal map)"
 msgstr ""
 
-#: simulation/helpers/Commands.js:580
+#: simulation/helpers/Commands.js:444
+#, javascript-format
+msgid "%(player)s has resigned."
+msgstr ""
+
+#: simulation/helpers/Commands.js:586
 msgid "(Cheat - promoted units)"
 msgstr ""
 
-#: simulation/helpers/Commands.js:694
+#: simulation/helpers/Commands.js:700
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr ""
 
-#: simulation/helpers/Commands.js:704
+#: simulation/helpers/Commands.js:710
 msgid "Cannot upgrade a garrisoned entity."
 msgstr ""
 
-#: simulation/helpers/Commands.js:750
+#: simulation/helpers/Commands.js:756
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr ""
 
-#: simulation/helpers/Commands.js:783
+#: simulation/helpers/Commands.js:789
 msgid "There are no bribable units"
 msgstr ""
 
-#: simulation/helpers/Commands.js:828
+#: simulation/helpers/Commands.js:834
 msgid "Unable to ungarrison unit(s)"
 msgstr ""
 
-#: simulation/helpers/Commands.js:842
+#: simulation/helpers/Commands.js:848
 msgid "Some unit(s) can't go back to work"
 msgstr ""
 
-#: simulation/helpers/Commands.js:1096
+#: simulation/helpers/Commands.js:1102
 msgid "The building's technology requirements are not met."
 msgstr ""
 

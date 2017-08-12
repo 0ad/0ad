@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# jaco boolean <daan0014119@gmail.com>, 2017
+# Yuan <daan0014119@gmail.com>, 2017
 # Jeff Huang <s8321414@gmail.com>, 2014-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-06-04 16:49+0000\n"
-"Last-Translator: jaco boolean <daan0014119@gmail.com>\n"
+"POT-Creation-Date: 2017-08-09 09:04+0200\n"
+"PO-Revision-Date: 2017-08-10 01:16+0000\n"
+"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -891,7 +891,13 @@ msgstr "您可以在 %(time)s 內攻擊"
 msgid "You can attack now!"
 msgstr "您現在可以攻擊了！"
 
-#: simulation/components/EndGameManager.js:117
+#: simulation/components/EndGameManager.js:163
+#, javascript-format
+msgid "%(lastPlayer)s has won (last player alive)."
+msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
+msgstr[0] "%(players)s 與 %(lastPlayer)s 已經獲勝（最後生還者）。"
+
+#: simulation/components/EndGameManager.js:171
 msgid "Last remaining player wins."
 msgstr "最後留下的玩家獲勝。"
 
@@ -937,13 +943,18 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "資源不足 - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:395
+#: simulation/components/ProductionQueue.js:401
 msgid "The production queue is full."
 msgstr "生產佇列已滿。"
 
-#: simulation/components/ProductionQueue.js:774
+#: simulation/components/ProductionQueue.js:780
 msgid "Can't find free space to spawn trained units"
 msgstr "找不到空間產出已訓練的單位"
+
+#: simulation/helpers/Cheat.js:53
+#, javascript-format
+msgid "%(player)s has been defeated (cheat)."
+msgstr "%(player)s 已被擊敗（作弊）。"
 
 #: simulation/helpers/Cheat.js:62
 msgid "You need to select a building that trains units."
@@ -957,38 +968,43 @@ msgstr "（作弊 - 控制所有單位）"
 msgid "(Cheat - reveal map)"
 msgstr "（作弊 ─ 揭露地圖）"
 
-#: simulation/helpers/Commands.js:580
+#: simulation/helpers/Commands.js:444
+#, javascript-format
+msgid "%(player)s has resigned."
+msgstr "%(player)s 已放棄。"
+
+#: simulation/helpers/Commands.js:586
 msgid "(Cheat - promoted units)"
 msgstr "（作弊 - 升級所有單位）"
 
-#: simulation/helpers/Commands.js:694
+#: simulation/helpers/Commands.js:700
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "無法升級，因為必須的距離無法被驗證，或是地形有阻礙。"
 
-#: simulation/helpers/Commands.js:704
+#: simulation/helpers/Commands.js:710
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "無法升級已駐守的實體。"
 
-#: simulation/helpers/Commands.js:750
+#: simulation/helpers/Commands.js:756
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "請攻擊 %(_player_)s。"
 
-#: simulation/helpers/Commands.js:783
+#: simulation/helpers/Commands.js:789
 msgid "There are no bribable units"
 msgstr "沒有可賄賂的單位"
 
-#: simulation/helpers/Commands.js:828
+#: simulation/helpers/Commands.js:834
 msgid "Unable to ungarrison unit(s)"
 msgstr "無法解除單位駐軍"
 
-#: simulation/helpers/Commands.js:842
+#: simulation/helpers/Commands.js:848
 msgid "Some unit(s) can't go back to work"
 msgstr "部份單位無法回到工作崗位"
 
-#: simulation/helpers/Commands.js:1096
+#: simulation/helpers/Commands.js:1102
 msgid "The building's technology requirements are not met."
 msgstr "建築物的科技需求不符合。"
 

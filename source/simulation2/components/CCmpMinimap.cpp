@@ -174,7 +174,7 @@ public:
 			const CMessageOwnershipChanged& msgData = static_cast<const CMessageOwnershipChanged&> (msg);
 
 			// If there's no new owner (e.g. the unit is dying) then don't try updating the color
-			if (msgData.to == -1)
+			if (msgData.to == INVALID_PLAYER)
 				break;
 
 			// Find the new player's color

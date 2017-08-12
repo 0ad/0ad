@@ -20,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-06-05 17:03+0000\n"
-"Last-Translator: Fabrizio Morotti <famorot@tin.it>\n"
+"POT-Creation-Date: 2017-08-09 09:04+0200\n"
+"PO-Revision-Date: 2017-08-09 14:25+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -905,7 +905,14 @@ msgstr "Puoi attaccare in %(time)s"
 msgid "You can attack now!"
 msgstr "Puoi attaccare ora!"
 
-#: simulation/components/EndGameManager.js:117
+#: simulation/components/EndGameManager.js:163
+#, javascript-format
+msgid "%(lastPlayer)s has won (last player alive)."
+msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: simulation/components/EndGameManager.js:171
 msgid "Last remaining player wins."
 msgstr "L'ultimo giocatore rimasto vince."
 
@@ -951,13 +958,18 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Risorse Insufficienti - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:395
+#: simulation/components/ProductionQueue.js:401
 msgid "The production queue is full."
 msgstr "La coda di produzione è piena."
 
-#: simulation/components/ProductionQueue.js:774
+#: simulation/components/ProductionQueue.js:780
 msgid "Can't find free space to spawn trained units"
 msgstr "Non c'è spazio libero per posizionare le unità addestrate"
+
+#: simulation/helpers/Cheat.js:53
+#, javascript-format
+msgid "%(player)s has been defeated (cheat)."
+msgstr ""
 
 #: simulation/helpers/Cheat.js:62
 msgid "You need to select a building that trains units."
@@ -971,38 +983,43 @@ msgstr "(Trucco - controlla tutte le unità)"
 msgid "(Cheat - reveal map)"
 msgstr "(Trucco - rivela la mappa)"
 
-#: simulation/helpers/Commands.js:580
+#: simulation/helpers/Commands.js:444
+#, javascript-format
+msgid "%(player)s has resigned."
+msgstr ""
+
+#: simulation/helpers/Commands.js:586
 msgid "(Cheat - promoted units)"
 msgstr "(Trucco - unità promosse)"
 
-#: simulation/helpers/Commands.js:694
+#: simulation/helpers/Commands.js:700
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Non è possibile aggiornare, poiché i requisiti della distanza non sono verificati o gli spazi sono ostruiti."
 
-#: simulation/helpers/Commands.js:704
+#: simulation/helpers/Commands.js:710
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "Non si possono promuovere le unità acquartierate."
 
-#: simulation/helpers/Commands.js:750
+#: simulation/helpers/Commands.js:756
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Richiesto attacco contro %(_player_)s."
 
-#: simulation/helpers/Commands.js:783
+#: simulation/helpers/Commands.js:789
 msgid "There are no bribable units"
 msgstr "Non ci sono unità corruttibili."
 
-#: simulation/helpers/Commands.js:828
+#: simulation/helpers/Commands.js:834
 msgid "Unable to ungarrison unit(s)"
 msgstr "Impossibile rilasciare la(le) unità dalla guarnigione."
 
-#: simulation/helpers/Commands.js:842
+#: simulation/helpers/Commands.js:848
 msgid "Some unit(s) can't go back to work"
 msgstr "(Una o) più unità non possono tornare a lavoro"
 
-#: simulation/helpers/Commands.js:1096
+#: simulation/helpers/Commands.js:1102
 msgid "The building's technology requirements are not met."
 msgstr "Le tecnologie richieste per l'edificio non sono state sviluppate. "
 

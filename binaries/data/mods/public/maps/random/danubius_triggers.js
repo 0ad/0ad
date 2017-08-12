@@ -301,8 +301,14 @@ Trigger.prototype.SpawnCCAttackers = function()
 	let time = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer).GetTime() / 60 / 1000;
 	let mapSize = Engine.QueryInterface(SYSTEM_ENTITY, IID_Terrain).GetMapSize();
 
+	let [spawnLeft, spawnRight] = this.GetActiveRiversides();
+
 	for (let gaiaCC of this.civicCenters)
 	{
+		let isLeft = Engine.QueryInterface(gaiaCC, IID_Position).GetPosition2D().x < mapSize / 2;
+		if (isLeft && !spawnLeft || !isLeft && !spawnRight)
+			continue;
+
 		let toSpawn = this.GetAttackerComposition(ccAttackerCount(time), false);
 		this.debugLog("Spawning civic center attackers at " + gaiaCC + ": " + uneval(toSpawn));
 
@@ -318,7 +324,7 @@ Trigger.prototype.SpawnCCAttackers = function()
 			ccAttackers = ccAttackers.concat(ents);
 		}
 
-		let patrolPointRef = Engine.QueryInterface(gaiaCC, IID_Position).GetPosition2D().x < mapSize / 2 ?
+		let patrolPointRef = isLeft ?
 			triggerPointCCAttackerPatrolLeft :
 			triggerPointCCAttackerPatrolRight;
 
@@ -535,33 +541,41 @@ Trigger.prototype.AttackAndPatrol = function(attackers, targetClass, triggerPoin
 };
 
 /**
- * Order all ships to abort naval warfare and move to the shoreline all few minutes.
+ * To avoid unloading unlimited amounts of units on empty riversides,
+ * only add attackers to riversides where player buildings exist that are
+ * actually targeted.
  */
-Trigger.prototype.UngarrisonShipsOrder = function()
+Trigger.prototype.GetActiveRiversides = function()
 {
-	// To avoid unloading unlimited amounts of units on empty riversides,
-	// only ungarrison on riversides where player buildings exist
-
-	let ungarrisonLeft = false;
-	let ungarrisonRight = false;
-
 	let mapSize = Engine.QueryInterface(SYSTEM_ENTITY, IID_Terrain).GetMapSize();
+
+	let left = false;
+	let right = false;
 
 	for (let ent of Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).GetNonGaiaEntities())
 	{
 		let cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
-		if (!cmpIdentity || !cmpIdentity.HasClass("Structure"))
+		if (!cmpIdentity || !cmpIdentity.HasClass(siegeTargetClass))
 			continue;
 
 		if (Engine.QueryInterface(ent, IID_Position).GetPosition2D().x < mapSize / 2)
-			ungarrisonLeft = true;
+			left = true;
 		else
-			ungarrisonRight = true;
+			right = true;
 
-		if (ungarrisonLeft && ungarrisonRight)
+		if (left && right)
 			break;
 	}
 
+	return [left, right];
+};
+
+/**
+ * Order all ships to abort naval warfare and move to the shoreline all few minutes.
+ */
+Trigger.prototype.UngarrisonShipsOrder = function()
+{
+	let [ungarrisonLeft, ungarrisonRight] = this.GetActiveRiversides();
 	if (!ungarrisonLeft && !ungarrisonRight)
 		return;
 

@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:08+0200\n"
-"PO-Revision-Date: 2017-07-23 14:13+0000\n"
+"POT-Creation-Date: 2017-08-09 09:05+0200\n"
+"PO-Revision-Date: 2017-08-09 19:09+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -867,6 +867,11 @@ msgstr "Az első hullám %(time)s percen belül fog indulni!"
 msgid "An enemy wave is attacking!"
 msgstr "Egy ellenséges hullám támad!"
 
+#: maps/random/survivalofthefittest_triggers.js:351
+#, javascript-format
+msgid "%(player)s has been defeated (lost civic center)."
+msgstr "%(player)s vesztett (elvesztette a városházát)."
+
 #: maps/scenarios/Cinema_Demo.js:6
 msgid "Cutscene starts after 5 seconds"
 msgstr "A bejátszás 5 másodperc után indul"
@@ -923,6 +928,21 @@ msgstr "Begyűjtöttél egy kincset!"
 #: maps/scenarios/treasure_islands.js:92
 msgid "Defeat your enemy to win!"
 msgstr "Győzd le az ellenséget a győzelemért!"
+
+#: maps/scenarios/treasure_islands.js:101
+#, javascript-format
+msgid "%(lastPlayer)s has won (treasure collected)."
+msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
+msgstr[0] "%(lastPlayer)s nyert (begyűjtött kincs)."
+msgstr[1] "%(players)s és %(lastPlayer)s nyertek (begyűjtött kincs)."
+
+#: maps/scenarios/treasure_islands.js:105
+#, javascript-format
+msgid "%(lastPlayer)s has been defeated (treasure collected)."
+msgid_plural ""
+"%(players)s and %(lastPlayer)s have been defeated (treasure collected)."
+msgstr[0] "%(lastPlayer)s vesztett (begyűjtött kincs)."
+msgstr[1] "%(players)s és %(lastPlayer)s vesztettek (begyűjtött kincs)."
 
 #: maps/scenarios/Arcadia.xml:Description:39
 msgid ""

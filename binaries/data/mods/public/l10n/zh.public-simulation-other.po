@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-06-04 15:55+0000\n"
+"POT-Creation-Date: 2017-08-09 09:04+0200\n"
+"PO-Revision-Date: 2017-08-09 14:25+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -896,7 +896,13 @@ msgstr "您可以在 %(time)s 内攻击"
 msgid "You can attack now!"
 msgstr "您现在可以攻击了！"
 
-#: simulation/components/EndGameManager.js:117
+#: simulation/components/EndGameManager.js:163
+#, javascript-format
+msgid "%(lastPlayer)s has won (last player alive)."
+msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
+msgstr[0] ""
+
+#: simulation/components/EndGameManager.js:171
 msgid "Last remaining player wins."
 msgstr "最后剩下的玩家获胜。"
 
@@ -942,13 +948,18 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "资源不足 - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:395
+#: simulation/components/ProductionQueue.js:401
 msgid "The production queue is full."
 msgstr "生产队列已满。"
 
-#: simulation/components/ProductionQueue.js:774
+#: simulation/components/ProductionQueue.js:780
 msgid "Can't find free space to spawn trained units"
 msgstr "无法找到可用空间来部署受训单位"
+
+#: simulation/helpers/Cheat.js:53
+#, javascript-format
+msgid "%(player)s has been defeated (cheat)."
+msgstr ""
 
 #: simulation/helpers/Cheat.js:62
 msgid "You need to select a building that trains units."
@@ -962,38 +973,43 @@ msgstr "(作弊 - 控制所有单位)"
 msgid "(Cheat - reveal map)"
 msgstr "(作弊——显示全部地图)"
 
-#: simulation/helpers/Commands.js:580
+#: simulation/helpers/Commands.js:444
+#, javascript-format
+msgid "%(player)s has resigned."
+msgstr ""
+
+#: simulation/helpers/Commands.js:586
 msgid "(Cheat - promoted units)"
 msgstr "(作弊 - 已晋升单位)"
 
-#: simulation/helpers/Commands.js:694
+#: simulation/helpers/Commands.js:700
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "因距离需求未获得验证，或地势被阻断而无法升级。"
 
-#: simulation/helpers/Commands.js:704
+#: simulation/helpers/Commands.js:710
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "无法升级已驻守的独立存在的实体。"
 
-#: simulation/helpers/Commands.js:750
+#: simulation/helpers/Commands.js:756
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "已请求向 %(_player_)s 发动攻击。"
 
-#: simulation/helpers/Commands.js:783
+#: simulation/helpers/Commands.js:789
 msgid "There are no bribable units"
 msgstr ""
 
-#: simulation/helpers/Commands.js:828
+#: simulation/helpers/Commands.js:834
 msgid "Unable to ungarrison unit(s)"
 msgstr "无法撤离单位"
 
-#: simulation/helpers/Commands.js:842
+#: simulation/helpers/Commands.js:848
 msgid "Some unit(s) can't go back to work"
 msgstr "某些单位无法返回工作岗位"
 
-#: simulation/helpers/Commands.js:1096
+#: simulation/helpers/Commands.js:1102
 msgid "The building's technology requirements are not met."
 msgstr "该建筑的科技要求不满足。"
 

@@ -22,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:08+0200\n"
-"PO-Revision-Date: 2017-06-07 19:03+0000\n"
-"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
+"POT-Creation-Date: 2017-08-09 09:05+0200\n"
+"PO-Revision-Date: 2017-08-09 14:44+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -871,6 +871,11 @@ msgstr "Το πρώτο κύμμα θα αρχίσει σε %(time)s!"
 msgid "An enemy wave is attacking!"
 msgstr "Ενα κύμα εχθρών επιτίθετε!"
 
+#: maps/random/survivalofthefittest_triggers.js:351
+#, javascript-format
+msgid "%(player)s has been defeated (lost civic center)."
+msgstr ""
+
 #: maps/scenarios/Cinema_Demo.js:6
 msgid "Cutscene starts after 5 seconds"
 msgstr "Η σκηνή ξεκινά μετά από 5 δευτερόλεπτα"
@@ -927,6 +932,21 @@ msgstr "Έχετε συλλέξει ένα θησαυρό!"
 #: maps/scenarios/treasure_islands.js:92
 msgid "Defeat your enemy to win!"
 msgstr "Κατέβαλλε τον εχθρό σου για να νικήσεις!"
+
+#: maps/scenarios/treasure_islands.js:101
+#, javascript-format
+msgid "%(lastPlayer)s has won (treasure collected)."
+msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: maps/scenarios/treasure_islands.js:105
+#, javascript-format
+msgid "%(lastPlayer)s has been defeated (treasure collected)."
+msgid_plural ""
+"%(players)s and %(lastPlayer)s have been defeated (treasure collected)."
+msgstr[0] ""
+msgstr[1] ""
 
 #: maps/scenarios/Arcadia.xml:Description:39
 msgid ""

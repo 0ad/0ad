@@ -13,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:08+0200\n"
-"PO-Revision-Date: 2017-07-25 17:24+0000\n"
-"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
+"POT-Creation-Date: 2017-08-09 09:05+0200\n"
+"PO-Revision-Date: 2017-08-09 14:44+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -862,6 +862,11 @@ msgstr "ستبدأ أوّل موجة خلال %(time)s!"
 msgid "An enemy wave is attacking!"
 msgstr "موجة للأعداء تهاجم!"
 
+#: maps/random/survivalofthefittest_triggers.js:351
+#, javascript-format
+msgid "%(player)s has been defeated (lost civic center)."
+msgstr ""
+
 #: maps/scenarios/Cinema_Demo.js:6
 msgid "Cutscene starts after 5 seconds"
 msgstr "يبدأ المقطع السّينمائيّ بعد 5 ثوان"
@@ -918,6 +923,29 @@ msgstr ""
 #: maps/scenarios/treasure_islands.js:92
 msgid "Defeat your enemy to win!"
 msgstr "اهزم عدوّك للفوز."
+
+#: maps/scenarios/treasure_islands.js:101
+#, javascript-format
+msgid "%(lastPlayer)s has won (treasure collected)."
+msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: maps/scenarios/treasure_islands.js:105
+#, javascript-format
+msgid "%(lastPlayer)s has been defeated (treasure collected)."
+msgid_plural ""
+"%(players)s and %(lastPlayer)s have been defeated (treasure collected)."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: maps/scenarios/Arcadia.xml:Description:39
 msgid ""

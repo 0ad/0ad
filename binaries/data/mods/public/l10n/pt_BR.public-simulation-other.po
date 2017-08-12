@@ -7,7 +7,7 @@
 # borg 2k <estevanborg@gmail.com>, 2017
 # Ernan, 2014
 # Gustavo Moitinho <gustavo.moitinho@outlook.com>, 2016
-# Igor Aleixo <igor.pavao@gmail.com>, 2016
+# Igor Aleixo <igor.pavao@gmail.com>, 2016-2017
 # Jose Victor <josevictor@openmailbox.org>, 2017
 # Leonardo Barcihello <barichello@gmail.com>, 2014
 # Matheus Clemente <matheus.xb@gmail.com>, 2014-2015
@@ -23,9 +23,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-06-04 18:57+0000\n"
-"Last-Translator: borg 2k <estevanborg@gmail.com>\n"
+"POT-Creation-Date: 2017-08-09 09:04+0200\n"
+"PO-Revision-Date: 2017-08-10 05:21+0000\n"
+"Last-Translator: Igor Aleixo <igor.pavao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -908,7 +908,14 @@ msgstr "Você pode atacar em %(time)s"
 msgid "You can attack now!"
 msgstr "Você pode atacar agora!"
 
-#: simulation/components/EndGameManager.js:117
+#: simulation/components/EndGameManager.js:163
+#, javascript-format
+msgid "%(lastPlayer)s has won (last player alive)."
+msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: simulation/components/EndGameManager.js:171
 msgid "Last remaining player wins."
 msgstr "Último jogador restante ganha."
 
@@ -954,13 +961,18 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Recursos insuficientes - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:395
+#: simulation/components/ProductionQueue.js:401
 msgid "The production queue is full."
 msgstr "A fila de produção está cheia."
 
-#: simulation/components/ProductionQueue.js:774
+#: simulation/components/ProductionQueue.js:780
 msgid "Can't find free space to spawn trained units"
 msgstr "Não é possível encontrar espaço livre para gerar unidades treinadas"
+
+#: simulation/helpers/Cheat.js:53
+#, javascript-format
+msgid "%(player)s has been defeated (cheat)."
+msgstr "%(player)s foi derrotado (trapaça)."
 
 #: simulation/helpers/Cheat.js:62
 msgid "You need to select a building that trains units."
@@ -974,38 +986,43 @@ msgstr "(Trapaça - controlar todas as unidades)"
 msgid "(Cheat - reveal map)"
 msgstr "(Trapaça - revelar mapa)"
 
-#: simulation/helpers/Commands.js:580
+#: simulation/helpers/Commands.js:444
+#, javascript-format
+msgid "%(player)s has resigned."
+msgstr "%(player)s renunciou"
+
+#: simulation/helpers/Commands.js:586
 msgid "(Cheat - promoted units)"
 msgstr "(Trapaça - unidades promovidas)"
 
-#: simulation/helpers/Commands.js:694
+#: simulation/helpers/Commands.js:700
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Melhoramento impossível devido a terreno obstruído ou requerimento de distância não verificado."
 
-#: simulation/helpers/Commands.js:704
+#: simulation/helpers/Commands.js:710
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "Impossível melhorar uma entidade abrigada."
 
-#: simulation/helpers/Commands.js:750
+#: simulation/helpers/Commands.js:756
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Ataque contra %(_player_)s solicitado."
 
-#: simulation/helpers/Commands.js:783
+#: simulation/helpers/Commands.js:789
 msgid "There are no bribable units"
 msgstr "Não há unidades subornáveis. "
 
-#: simulation/helpers/Commands.js:828
+#: simulation/helpers/Commands.js:834
 msgid "Unable to ungarrison unit(s)"
 msgstr "Impossível abrigar unidade(s)"
 
-#: simulation/helpers/Commands.js:842
+#: simulation/helpers/Commands.js:848
 msgid "Some unit(s) can't go back to work"
 msgstr "Alguma(s) unidade(s) não pode(m) voltar ao trabalho"
 
-#: simulation/helpers/Commands.js:1096
+#: simulation/helpers/Commands.js:1102
 msgid "The building's technology requirements are not met."
 msgstr "Os requisitos tecnológicos da construção não foram atingidos."
 

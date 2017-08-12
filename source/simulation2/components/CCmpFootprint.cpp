@@ -20,6 +20,7 @@
 #include "simulation2/system/Component.h"
 #include "ICmpFootprint.h"
 
+#include "ps/Profile.h"
 #include "simulation2/components/ICmpObstruction.h"
 #include "simulation2/components/ICmpObstructionManager.h"
 #include "simulation2/components/ICmpPathfinder.h"
@@ -129,6 +130,8 @@ public:
 
 	virtual CFixedVector3D PickSpawnPoint(entity_id_t spawned) const
 	{
+		PROFILE3("PickSpawnPoint");
+
 		// Try to find a free space around the building's footprint.
 		// (Note that we use the footprint, not the obstruction shape - this might be a bit dodgy
 		// because the footprint might be inside the obstruction, but it hopefully gives us a nicer
@@ -259,6 +262,8 @@ public:
 
 	virtual CFixedVector3D PickSpawnPointBothPass(entity_id_t spawned) const
 	{
+		PROFILE3("PickSpawnPointBothPass");
+
 		// Try to find a free space inside and around this footprint
 		// at the intersection between the footprint passability and the unit passability.
 		// (useful for example for destroyed ships where the spawning point should be in the intersection
