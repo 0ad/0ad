@@ -487,6 +487,9 @@ function getPreferredEntities(ents)
 
 function handleInputBeforeGui(ev, hoveredObject)
 {
+	if (GetSimState().cinemaPlaying)
+		return false;
+
 	// Capture mouse position so we can use it for displaying cursors,
 	// and key states
 	switch (ev.type)
@@ -810,6 +813,9 @@ function handleInputBeforeGui(ev, hoveredObject)
 
 function handleInputAfterGui(ev)
 {
+	if (GetSimState().cinemaPlaying)
+		return false;
+
 	if (ev.hotkey === undefined)
 		ev.hotkey = null;
 

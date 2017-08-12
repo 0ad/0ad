@@ -238,31 +238,6 @@ void CCinemaManager::DrawBars() const
 #endif
 }
 
-InReaction cinema_manager_handler(const SDL_Event_* ev)
-{
-	// put any events that must be processed even if inactive here
-	if (!g_Game || !g_Game->IsGameStarted())
-		return IN_PASS;
-
-	CCinemaManager* pCinemaManager = g_Game->GetView()->GetCinema();
-
-	return pCinemaManager->HandleEvent(ev);
-}
-
-InReaction CCinemaManager::HandleEvent(const SDL_Event_* ev) const
-{
-	switch (ev->ev.type)
-	{
-	case SDL_MOUSEBUTTONDOWN:
-	case SDL_MOUSEBUTTONUP:
-		// Prevent selection of units while the path is playing
-		if (IsPlaying())
-			return IN_HANDLED;
-	default:
-		return IN_PASS;
-	}
-}
-
 bool CCinemaManager::IsEnabled() const
 {
 	CmpPtr<ICmpCinemaManager> cmpCinemaManager(g_Game->GetSimulation2()->GetSimContext().GetSystemEntity());
