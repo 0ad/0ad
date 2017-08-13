@@ -170,7 +170,7 @@ Damage.prototype.MissileHit = function(data, lateness)
  * @param {Object}   data.strengths - data of the form { 'hack': number, 'pierce': number, 'crush': number }.
  * @param {string}   data.type - the type of damage.
  * @param {number}   data.attackerOwner - the player id of the attacker.
- * @param {Vector3D} data.direction - the unit vector defining the direction.
+ * @param {Vector3D} [data.direction] - the unit vector defining the direction.
  * @param {number[]} data.playersToDamage - the array of player id's to damage.
  */
 Damage.prototype.CauseSplashDamage = function(data)
@@ -178,7 +178,6 @@ Damage.prototype.CauseSplashDamage = function(data)
 	// Get nearby entities and define variables
 	let nearEnts = this.EntitiesNearPoint(data.origin, data.radius, data.playersToDamage);
 	let damageMultiplier = 1;
-	let direction = Vector2D.from3D(data.direction);
 
 	// Cycle through all the nearby entities and damage it appropriately based on its distance from the origin.
 	for (let ent of nearEnts)
@@ -192,6 +191,7 @@ Damage.prototype.CauseSplashDamage = function(data)
 			let relativePos = entityPosition.sub(data.origin);
 
 			// Get the position relative to the missile direction.
+			let direction = Vector2D.from3D(data.direction);
 			let parallelPos = relativePos.dot(direction);
 			let perpPos = relativePos.cross(direction);
 

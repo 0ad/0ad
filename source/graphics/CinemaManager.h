@@ -51,14 +51,11 @@ public:
 	 */
 	void Update(const float deltaRealTime) const;
 
-	InReaction HandleEvent(const SDL_Event_* ev) const;
 	bool GetPathsDrawing() const;
 	void SetPathsDrawing(const bool drawPath);
 
 private:
 	bool m_DrawPaths;
 };
-
-extern InReaction cinema_manager_handler(const SDL_Event_* ev);
 
 #endif

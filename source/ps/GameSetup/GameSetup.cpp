@@ -580,8 +580,6 @@ static void InitInput()
 
 	in_add_handler(touch_input_handler);
 
-	in_add_handler(cinema_manager_handler);
-
 	// must be registered after (called before) the GUI which relies on these globals
 	in_add_handler(GlobalsInputHandler);
 }

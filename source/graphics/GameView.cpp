@@ -1053,7 +1053,7 @@ void CGameView::SetCameraProjection()
 InReaction game_view_handler(const SDL_Event_* ev)
 {
 	// put any events that must be processed even if inactive here
-	if(!g_app_has_focus || !g_Game || !g_Game->IsGameStarted())
+	if (!g_app_has_focus || !g_Game || !g_Game->IsGameStarted() || g_Game->GetView()->GetCinema()->IsEnabled())
 		return IN_PASS;
 
 	CGameView *pView=g_Game->GetView();

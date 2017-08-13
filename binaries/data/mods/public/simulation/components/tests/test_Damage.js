@@ -17,7 +17,7 @@ Engine.LoadComponentScript("Attack.js");
 Engine.LoadComponentScript("Damage.js");
 Engine.LoadComponentScript("Timer.js");
 
-let Test_Generic = function()
+function Test_Generic()
 {
 	ResetState();
 
@@ -53,17 +53,17 @@ let Test_Generic = function()
 	};
 
 	AddMock(atkPlayerEntity, IID_Player, {
-		GetEnemies: () => [targetOwner]
+		"GetEnemies": () => [targetOwner]
 	});
 
 	AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
-		GetPlayerByID: (id) => atkPlayerEntity,
-		GetNumPlayers: () => 5
+		"GetPlayerByID": (id) => atkPlayerEntity,
+		"GetNumPlayers": () => 5
 	});
 
 	AddMock(SYSTEM_ENTITY, IID_RangeManager, {
-		ExecuteQueryAroundPos: () => [target],
-		GetElevationAdaptedRange: (pos, rot, max, bonus, a) => max,
+		"ExecuteQueryAroundPos": () => [target],
+		"GetElevationAdaptedRange": (pos, rot, max, bonus, a) => max,
 	});
 
 	AddMock(SYSTEM_ENTITY, IID_ProjectileManager, {
@@ -72,16 +72,16 @@ let Test_Generic = function()
 	});
 
 	AddMock(target, IID_Position, {
-		GetPosition: () => targetPos,
-		GetPreviousPosition: () => targetPos,
-		GetPosition2D: () => new Vector2D(3, 3),
-		IsInWorld: () => true,
+		"GetPosition": () => targetPos,
+		"GetPreviousPosition": () => targetPos,
+		"GetPosition2D": () => new Vector2D(3, 3),
+		"IsInWorld": () => true,
 	});
 
 	AddMock(target, IID_Health, {});
 
 	AddMock(target, IID_DamageReceiver, {
-		TakeDamage: (hack, pierce, crush) => { damageTaken = true; return { "killed": false, "change": -crush }; },
+		"TakeDamage": (hack, pierce, crush) => { damageTaken = true; return { "killed": false, "change": -crush }; },
 	});
 
 	Engine.PostMessage = function(ent, iid, message)
@@ -90,17 +90,17 @@ let Test_Generic = function()
 	};
 
 	AddMock(target, IID_Footprint, {
-		GetShape: () => ({ "type": "circle", "radius": 20 }),
+		"GetShape": () => ({ "type": "circle", "radius": 20 }),
 	});
 
 	AddMock(attacker, IID_Ownership, {
-		GetOwner: () => attackerOwner,
+		"GetOwner": () => attackerOwner,
 	});
 
 	AddMock(attacker, IID_Position, {
-		GetPosition: () => new Vector3D(2, 0, 3),
-		GetRotation: () => new Vector3D(1, 2, 3),
-		IsInWorld: () => true,
+		"GetPosition": () => new Vector3D(2, 0, 3),
+		"GetRotation": () => new Vector3D(1, 2, 3),
+		"IsInWorld": () => true,
 	});
 
 	function TestDamage()
@@ -131,7 +131,7 @@ let Test_Generic = function()
 
 	atkPlayerEntity = 1;
 	AddMock(atkPlayerEntity, IID_Player, {
-		GetEnemies: () => [2, 3]
+		"GetEnemies": () => [2, 3]
 	});
 	TS_ASSERT_UNEVAL_EQUALS(cmpDamage.GetPlayersToDamage(atkPlayerEntity, true), [0, 1, 2, 3, 4]);
 	TS_ASSERT_UNEVAL_EQUALS(cmpDamage.GetPlayersToDamage(atkPlayerEntity, false), [2, 3]);
@@ -139,7 +139,7 @@ let Test_Generic = function()
 
 Test_Generic();
 
-let TestLinearSplashDamage = function()
+function TestLinearSplashDamage()
 {
 	ResetState();
 	Engine.PostMessage = (ent, iid, message) => {};
@@ -169,23 +169,23 @@ let TestLinearSplashDamage = function()
 	let cmpDamage = ConstructComponent(SYSTEM_ENTITY, "Damage");
 
 	AddMock(SYSTEM_ENTITY, IID_RangeManager, {
-		ExecuteQueryAroundPos: () => [60, 61, 62],
+		"ExecuteQueryAroundPos": () => [60, 61, 62],
 	});
 
 	AddMock(60, IID_Position, {
-		GetPosition2D: () => new Vector2D(2.2, -0.4),
+		"GetPosition2D": () => new Vector2D(2.2, -0.4),
 	});
 
 	AddMock(61, IID_Position, {
-		GetPosition2D: () => new Vector2D(0, 0),
+		"GetPosition2D": () => new Vector2D(0, 0),
 	});
 
 	AddMock(62, IID_Position, {
-		GetPosition2D: () => new Vector2D(5, 2),
+		"GetPosition2D": () => new Vector2D(5, 2),
 	});
 
 	AddMock(60, IID_DamageReceiver, {
-		TakeDamage: (hack, pierce, crush) => {
+		"TakeDamage": (hack, pierce, crush) => {
 			TS_ASSERT_EQUALS(hack + pierce + crush, 100 * fallOff(2.2, -0.4));
 			return { "killed": false, "change": -(hack + pierce + crush) };
 		}
@@ -199,7 +199,7 @@ let TestLinearSplashDamage = function()
 	});
 
 	AddMock(62, IID_DamageReceiver, {
-		TakeDamage: (hack, pierce, crush) => {
+		"TakeDamage": (hack, pierce, crush) => {
 			TS_ASSERT_EQUALS(hack + pierce + crush, 0);
 			return { "killed": false, "change": -(hack + pierce + crush) };
 		}
@@ -210,7 +210,7 @@ let TestLinearSplashDamage = function()
 	data.direction = new Vector3D(0.6, 747, 0.8);
 
 	AddMock(60, IID_DamageReceiver, {
-		TakeDamage: (hack, pierce, crush) => {
+		"TakeDamage": (hack, pierce, crush) => {
 			TS_ASSERT_EQUALS(hack + pierce + crush, 100 * fallOff(1, 2));
 			return { "killed": false, "change": -(hack + pierce + crush) };
 		}
@@ -220,3 +220,91 @@ let TestLinearSplashDamage = function()
 };
 
 TestLinearSplashDamage();
+
+function TestCircularSplashDamage()
+{
+	ResetState();
+	Engine.PostMessage = (ent, iid, message) => {};
+
+	const radius = 10;
+
+	let fallOff = function(r)
+	{
+		return 1 - r * r / (radius * radius);
+	}
+
+	let cmpDamage = ConstructComponent(SYSTEM_ENTITY, "Damage");
+
+	AddMock(SYSTEM_ENTITY, IID_RangeManager, {
+		"ExecuteQueryAroundPos": () => [60, 61, 62],
+	});
+
+	AddMock(60, IID_Position, {
+		"GetPosition2D": () => new Vector2D(3, 4),
+	});
+
+	AddMock(61, IID_Position, {
+		"GetPosition2D": () => new Vector2D(0, 0),
+	});
+
+	AddMock(62, IID_Position, {
+		"GetPosition2D": () => new Vector2D(3.6, 3.2),
+	});
+
+	AddMock(63, IID_Position, {
+		"GetPosition2D": () => new Vector2D(5, -3),
+	});
+
+	// Target on the frontier of the shape
+	AddMock(64, IID_Position, {
+		"GetPosition2D": () => new Vector2D(4, -2),
+	});
+
+	AddMock(60, IID_DamageReceiver, {
+		"TakeDamage": (hack, pierce, crush) => {
+			TS_ASSERT_EQUALS(hack + pierce + crush, 100 * fallOff(0));
+			return { "killed": false, "change": -(hack + pierce + crush) };
+		}
+	});
+
+	AddMock(61, IID_DamageReceiver, {
+		"TakeDamage": (hack, pierce, crush) => {
+			TS_ASSERT_EQUALS(hack + pierce + crush, 100 * fallOff(5));
+			return { "killed": false, "change": -(hack + pierce + crush) };
+		}
+	});
+
+	AddMock(62, IID_DamageReceiver, {
+		"TakeDamage": (hack, pierce, crush) => {
+			TS_ASSERT_EQUALS(hack + pierce + crush, 100 * fallOff(1));
+			return { "killed": false, "change": -(hack + pierce + crush) };
+		}
+	});
+
+	AddMock(63, IID_DamageReceiver, {
+		"TakeDamage": (hack, pierce, crush) => {
+			TS_ASSERT_EQUALS(hack + pierce + crush, 0);
+			return { "killed": false, "change": -(hack + pierce + crush) };
+		}
+	});
+
+	AddMock(64, IID_DamageReceiver, {
+		"TakeDamage": (hack, pierce, crush) => {
+			TS_ASSERT_EQUALS(hack + pierce + crush, 0);
+			return { "killed": false, "change": -(hack + pierce + crush) };
+		}
+	});
+
+	cmpDamage.CauseSplashDamage({
+		"attacker": 50,
+		"origin": new Vector2D(3, 4),
+		"radius": radius,
+		"shape": "Circular",
+		"strengths": { "hack" : 100, "pierce" : 0, "crush": 0 },
+		"playersToDamage": [2],
+		"type": "Ranged",
+		"attackerOwner": 1
+	});
+};
+
+TestCircularSplashDamage();
