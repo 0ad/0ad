@@ -316,7 +316,7 @@ m.GarrisonManager.prototype.addDecayingStructure = function(gameState, entId, ju
 	if (this.decayingStructures.has(entId))
 		return true;
 	let ent = gameState.getEntityById(entId);
-	if (!ent || (!(ent.hasClass("Barracks") && justCaptured) && !ent.hasDefensiveFire()))
+	if (!ent || !(ent.hasClass("Barracks") && justCaptured) && !ent.hasDefensiveFire())
 		return false;
 	if (!ent.territoryDecayRate() || !ent.garrisonRegenRate())
 		return false;

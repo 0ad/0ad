@@ -192,7 +192,7 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	gameState.ai.queueManager.addQueue("plan_" + this.name +"_siege", priority);
 
 	// each array is [ratio, [associated classes], associated EntityColl, associated unitStat, name ]
-	this.buildOrder = [];
+	this.buildOrders = [];
 	this.canBuildUnits = gameState.ai.HQ.canBuildUnits;
 
 	// some variables used during the attack
@@ -223,7 +223,7 @@ m.AttackPlan.prototype.init = function(gameState)
 		this.unit[cat] = this.unitCollection.filter(API3.Filters.byClassesAnd(Unit.classes));
 		this.unit[cat].registerUpdates();
 		if (this.canBuildUnits)
-			this.buildOrder.push([0, Unit.classes, this.unit[cat], Unit, cat]);
+			this.buildOrders.push([0, Unit.classes, this.unit[cat], Unit, cat]);
 	}
 };
 
@@ -320,7 +320,7 @@ m.AttackPlan.prototype.addBuildOrder = function(gameState, name, unitStats, rese
 		let Unit = this.unitStat[name];
 		this.unit[name] = this.unitCollection.filter(API3.Filters.byClassesAnd(Unit.classes));
 		this.unit[name].registerUpdates();
-		this.buildOrder.push([0, Unit.classes, this.unit[name], Unit, name]);
+		this.buildOrders.push([0, Unit.classes, this.unit[name], Unit, name]);
 		if (resetQueue)
 		{
 			this.queue.empty();
@@ -439,7 +439,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 			}
 			this.trainMoreUnits(gameState);
 			// may happen if we have no more training facilities and build orders are canceled
-			if (!this.buildOrder.length)
+			if (!this.buildOrders.length)
 				return 0;	// will abort the plan
 		}
 		return 1;
@@ -502,16 +502,16 @@ m.AttackPlan.prototype.trainMoreUnits = function(gameState)
 	// let's sort by training advancement, ie 'current size / target size'
 	// count the number of queued units too.
 	// substract priority.
-	for (let i = 0; i < this.buildOrder.length; ++i)
+	for (let order of this.buildOrders)
 	{
-		let special = "Plan_" + this.name + "_" + this.buildOrder[i][4];
+		let special = "Plan_" + this.name + "_" + order[4];
 		let aQueued = gameState.countOwnQueuedEntitiesWithMetadata("special", special);
 		aQueued += this.queue.countQueuedUnitsWithMetadata("special", special);
 		aQueued += this.queueChamp.countQueuedUnitsWithMetadata("special", special);
 		aQueued += this.queueSiege.countQueuedUnitsWithMetadata("special", special);
-		this.buildOrder[i][0] = this.buildOrder[i][2].length + aQueued;
+		order[0] = order[2].length + aQueued;
 	}
-	this.buildOrder.sort(function (a,b) {
+	this.buildOrders.sort(function (a,b) {
 		let va = a[0]/a[3].targetSize - a[3].priority;
 		if (a[0] >= a[3].targetSize)
 			va += 1000;
@@ -525,7 +525,7 @@ m.AttackPlan.prototype.trainMoreUnits = function(gameState)
 	{
 		API3.warn("====================================");
 		API3.warn("======== build order for plan " + this.name);
-		for (let order of this.buildOrder)
+		for (let order of this.buildOrders)
 		{
 			let specialData = "Plan_"+this.name+"_"+order[4];
 			let inTraining = gameState.countOwnQueuedEntitiesWithMetadata("special", specialData);
@@ -538,14 +538,14 @@ m.AttackPlan.prototype.trainMoreUnits = function(gameState)
 		API3.warn("====================================");
 	}
 
-	let firstOrder = this.buildOrder[0];
+	let firstOrder = this.buildOrders[0];
 	if (firstOrder[0] < firstOrder[3].targetSize)
 	{
 		// find the actual queue we want
 		let queue = this.queue;
 		if (firstOrder[3].classes.indexOf("Siege") !== -1 ||
-			(gameState.getPlayerCiv() == "maur" && firstOrder[3].classes.indexOf("Elephant") !== -1 &&
-			                                       firstOrder[3].classes.indexOf("Champion") !== -1))
+			gameState.getPlayerCiv() == "maur" && firstOrder[3].classes.indexOf("Elephant") !== -1 &&
+			                                      firstOrder[3].classes.indexOf("Champion") !== -1)
 			queue = this.queueSiege;
 		else if (firstOrder[3].classes.indexOf("Hero") !== -1)
 			queue = this.queueSiege;
@@ -562,7 +562,7 @@ m.AttackPlan.prototype.trainMoreUnits = function(gameState)
 				if (this.Config.debug > 1)
 					API3.warn("attack no template found " + firstOrder[1]);
 				delete this.unitStat[firstOrder[4]];	// deleting the associated unitstat.
-				this.buildOrder.splice(0,1);
+				this.buildOrders.splice(0,1);
 			}
 			else
 			{
@@ -1435,7 +1435,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			if (siegeUnit)
 			{
 				let mStruct = enemyStructures.filter(function (enemy) {
-					if (!enemy.position() || (enemy.hasClass("StoneWall") && !ent.canAttackClass("StoneWall")))
+					if (!enemy.position() || enemy.hasClass("StoneWall") && !ent.canAttackClass("StoneWall"))
 						return false;
 					if (API3.SquareVectorDistance(enemy.position(), ent.position()) > range)
 						return false;
@@ -1551,7 +1551,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 					let mStruct = enemyStructures.filter(function (enemy) {
 						if (self.isBlocked && enemy.id() !== this.target.id())
 							return false;
-						if (!enemy.position() || (enemy.hasClass("StoneWall") && !ent.canAttackClass("StoneWall")))
+						if (!enemy.position() || enemy.hasClass("StoneWall") && !ent.canAttackClass("StoneWall"))
 							return false;
 						if (API3.SquareVectorDistance(enemy.position(), ent.position()) > range)
 							return false;

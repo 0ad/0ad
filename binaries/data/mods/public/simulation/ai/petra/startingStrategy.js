@@ -152,7 +152,7 @@ m.HQ.prototype.regionAnalysis = function(gameState)
 		let civ = gameState.getPlayerCiv();
 		for (let ent of gameState.getOwnEntities().values())
 		{
-			if (!ent.position() || (!ent.hasClass("Unit") && !ent.trainableEntities(civ)))
+			if (!ent.position() || !ent.hasClass("Unit") && !ent.trainableEntities(civ))
 				continue;
 			let land = accessibility.getAccessValue(ent.position());
 			if (land > 1)
@@ -507,7 +507,7 @@ m.HQ.prototype.configFirstBase = function(gameState)
 			// if we start with enough workers, put our available resources in this first dropsite
 			// same thing if our pop exceed the allowed one, as we will need several houses
 			let numWorkers = gameState.getOwnUnits().filter(API3.Filters.byClass("Worker")).length;
-			if ((numWorkers > 12 && newDP.quality > 60) ||
+			if (numWorkers > 12 && newDP.quality > 60 ||
 				gameState.getPopulation() > gameState.getPopulationLimit() + 20)
 			{
 				let cost = new API3.Resources(gameState.getTemplate(template).cost());

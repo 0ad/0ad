@@ -180,7 +180,7 @@ m.Army.prototype.addOwn = function (gameState, id, force)
 	if (this.ownEntities.indexOf(id) !== -1)
 		return false;
 	let ent = gameState.getEntityById(id);
-	if (!ent || (!ent.position() && !force))
+	if (!ent || !ent.position() && !force)
 		return false;
 
 	this.ownEntities.push(id);
