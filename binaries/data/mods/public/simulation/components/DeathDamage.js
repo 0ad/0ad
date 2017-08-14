@@ -28,7 +28,7 @@ DeathDamage.prototype.Schema =
 		"<Pierce>10.0</Pierce>" +
 		"<Crush>50.0</Crush>" +
 	"</a:example>" +
-	"<element name='Shape' a:help='Shape of the splash damage, can be circular or linear'><text/></element>" +
+	"<element name='Shape' a:help='Shape of the splash damage, can be circular'><text/></element>" +
 	"<element name='Range' a:help='Size of the area affected by the splash'><ref name='nonNegativeDecimal'/></element>" +
 	"<element name='FriendlyFire' a:help='Whether the splash damage can hurt non enemy units'><data type='boolean'/></element>" +
 	"<element name='Hack' a:help='Hack damage strength'><ref name='nonNegativeDecimal'/></element>" +
