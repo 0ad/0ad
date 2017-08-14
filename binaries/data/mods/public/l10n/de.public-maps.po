@@ -21,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-09 09:05+0200\n"
-"PO-Revision-Date: 2017-08-09 14:44+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-08-13 10:10+0000\n"
+"Last-Translator: Xaver\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -872,7 +872,7 @@ msgstr "Ein gegnerische Welle greift an!"
 #: maps/random/survivalofthefittest_triggers.js:351
 #, javascript-format
 msgid "%(player)s has been defeated (lost civic center)."
-msgstr ""
+msgstr "%(player)s wurde besiegt (Verwaltungssitz verloren)."
 
 #: maps/scenarios/Cinema_Demo.js:6
 msgid "Cutscene starts after 5 seconds"
@@ -935,16 +935,16 @@ msgstr "Besiege deinen Gegner, um zu gewinnen!"
 #, javascript-format
 msgid "%(lastPlayer)s has won (treasure collected)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "2 %(lastPlayer)s haben gewonnen (Schatz gesammelt)."
+msgstr[1] "%(players)s und %(lastPlayer)s haben gewonnen (Schatz gesammelt)."
 
 #: maps/scenarios/treasure_islands.js:105
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (treasure collected)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (treasure collected)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s wurde besiegt (Schatz gesammelt)."
+msgstr[1] "%(players)s und %(lastPlayer)s wurden besiegt (Schatz gesammelt)."
 
 #: maps/scenarios/Arcadia.xml:Description:39
 msgid ""
@@ -2287,7 +2287,7 @@ msgid ""
 "This represents the Libyan Desert, part of the Saharan Desert, West of the Nile River in Egypt.\n"
 "\n"
 "Iberians do not receive their circuit walls here. Instead, all factions receive 4 free Defense Towers."
-msgstr "Ein alter Favorit. Diese weite, flache Wüstenkarte wird von zwei Oasen durchdrungen. \n\nHier wird die Libysche Wüste, ein Teil der Sahara westlich des Nils in Ägypten, dargestellt.\n\nIberer erhalten hier keine umgebenden Mauern. Stattdessen erhalten alle Fraktionen 4 kostenlose Verteidigungstürme."
+msgstr "Ein alter Favorit. Diese weite, flache Wüstenkarte wird von einer üppigen Oase in der Mitte durchdrungen. \n\nHier wird die Libysche Wüste, ein Teil der Sahara westlich des Nils in Ägypten, dargestellt.\n\nIberer erhalten hier keine umgebenden Mauern. Stattdessen erhalten alle Fraktionen 4 kostenlose Verteidigungstürme."
 
 #: maps/skirmishes/Libyan Oasis (2).xml:Name:39
 msgid "Libyan Oasis (2)"
@@ -2304,7 +2304,7 @@ msgstr "Die Karte wird in der Mitte von einem Fluss mit einigen seichten Stellen
 
 #: maps/skirmishes/Lorraine Plain (2).xml:Name:40
 msgid "Lorraine Plain (2)"
-msgstr "Lothringisches Plateau (2)"
+msgstr "Lothringisches Ebene (2)"
 
 #: maps/skirmishes/Median Oasis (2).xml:Description:39 maps/skirmishes/Median
 #: Oasis (4).xml:Description:39
@@ -2468,7 +2468,7 @@ msgid ""
 "A barren land with little wood and few animals. Treasures dot the landscape and will be essential to early growth.\n"
 "\n"
 "The player who sets up a profitable trade caravan earliest may gain a decisive advantage."
-msgstr "Ein unfruchtbares Ödland mit wenig Holz und wenigen Tieren. Schätze verteilen sich auf die Landschaft, die unerlässlich sind, um frühes Wachstum zu ermöglichen.\n\nDer Spieler, der sich am frühesten profitable Handelswege eröffnet, verschafft sich einen entscheidenden Vorteil."
+msgstr "Ein unfruchtbares Ödland mit wenig Holz und wenigen Tieren. Schätze verteilen sich auf die Landschaft und sind unerlässlich für frühes Wachstum.\n\nDer Spieler, der sich am frühesten profitable Handelswege eröffnet, verschafft sich einen entscheidenden Vorteil."
 
 #: maps/skirmishes/Syria (2).xml:Name:39
 msgid "Syria (2)"

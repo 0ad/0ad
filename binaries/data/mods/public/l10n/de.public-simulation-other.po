@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-09 09:04+0200\n"
-"PO-Revision-Date: 2017-08-09 14:25+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-08-11 09:19+0000\n"
+"Last-Translator: Xaver\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -912,8 +912,8 @@ msgstr "Du kannst jetzt angreifen!"
 #, javascript-format
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s hat gewonnen (letzter überlebender Spieler)."
+msgstr[1] "%(players)s und %(lastPlayer)s haben gewonnen (letzte überlebende Spieler)."
 
 #: simulation/components/EndGameManager.js:171
 msgid "Last remaining player wins."
@@ -972,7 +972,7 @@ msgstr "Es konnte kein freier Platz gefunden werden, um ausgebildete Einheiten z
 #: simulation/helpers/Cheat.js:53
 #, javascript-format
 msgid "%(player)s has been defeated (cheat)."
-msgstr ""
+msgstr "%(player)s wurde besiegt (Cheat)."
 
 #: simulation/helpers/Cheat.js:62
 msgid "You need to select a building that trains units."
@@ -989,7 +989,7 @@ msgstr "(Cheat - Karte aufdecken)"
 #: simulation/helpers/Commands.js:444
 #, javascript-format
 msgid "%(player)s has resigned."
-msgstr ""
+msgstr "%(player)s hat aufgegeben."
 
 #: simulation/helpers/Commands.js:586
 msgid "(Cheat - promoted units)"
