@@ -11,8 +11,8 @@
 # ike20 <mvaldman@seznam.cz>, 2014
 # Jaroslav Lichtblau <dragonlord@seznam.cz>, 2016
 # Lukas Koutsky <tekumseh65@seznam.cz>, 2015
-# OndraK <kajinond@fjfi.cvut.cz>, 2014
-# fri, 2014-2016
+# OndraK <ondrej.kajinek@gmail.com>, 2014
+# fri, 2014-2017
 # Pavel Šindelář <pavelsin123@gmail.com>, 2015
 # Petr Hála <halapetr@selfnet.cz>, 2014
 # Robin Kriebel <kriebel.robin@gmail.com>, 2016-2017
@@ -25,8 +25,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-05 09:01+0200\n"
-"PO-Revision-Date: 2017-06-06 11:56+0000\n"
-"Last-Translator: Robin Kriebel <kriebel.robin@gmail.com>\n"
+"PO-Revision-Date: 2017-08-12 17:09+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -327,7 +327,7 @@ msgstr "Keltské náboženství a druidství inspirovalo jejich bojovného ducha
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Description
 msgid "-20% resources cost for allies healers."
-msgstr "-20% cena pro spojenecké léčitele"
+msgstr "-20% z ceny pro spojenecké léčitele"
 
 #: simulation/data/civs/brit.jsonTeamBonuses[0].Name
 msgid "Druids"
@@ -572,7 +572,7 @@ msgstr "Narozdíl od Pyrenejského poloostrova byla severní Afrika známa jako 
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
 msgid "10% bonus of trade profit for allies' international routes."
-msgstr "10% přídavek k obchodním výnosům na spojeneckých mezinárodních cestách"
+msgstr "10% přídavek k obchodním výnosům na spojeneckých mezinárodních cestách."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -841,7 +841,7 @@ msgstr "Určité množství kovu a jídla, jež bylo převzato z každé zničen
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
 msgid "Vae Victis"
-msgstr "Vae Victis"
+msgstr "Běda poraženým"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -1187,7 +1187,7 @@ msgstr "Řekové byli velice úspěšní v helenizaci různých cizinců. Během
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Description
 msgid "+20% sell prices at market."
-msgstr "+20% prodejní ceny na trhu."
+msgstr "+20% k prodejní ceně na trhu."
 
 #: simulation/data/civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -1448,7 +1448,7 @@ msgstr "Kšátriové, neboli válečníci, jsou jednou ze čtyřech varen (spole
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Description
 msgid "Allied temples and temple technologies -50% cost and research time."
-msgstr "-50 % z ceny a výzkumného času pro spojenecké technologie chrámů."
+msgstr "Spojenecké chrámy a chrámové technologie -50% z ceny a výzkumného času."
 
 #: simulation/data/civs/maur.jsonTeamBonuses[0].Name
 msgid "Ashoka's Religious Support"
@@ -1626,7 +1626,7 @@ msgstr "Peršané mohli na základě prosté velikosti Achjmenovské říše a z
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Description
 msgid "Higher income (+15%) from land trade routes for ally's traders."
-msgstr "Vyšší příjem (+15%) z pozemních obchodních cest pro obchodníky spojeneců."
+msgstr "Vyšší příjem (+15%) z pozemních obchodních cest pro obchodníky spojenců."
 
 #: simulation/data/civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -2104,11 +2104,11 @@ msgstr "Římské občanství bylo ve starověkém světě vysoko ceněno. Zákl
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Description
 msgid "-20% training time for allied infantry."
-msgstr "-20% času trénování jednotek pro spojeneckou pěchotu."
+msgstr "-20% z času na výcvik jednotek pro spojeneckou pěchotu."
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].Name
 msgid "Conscription"
-msgstr "Branná povinnost"
+msgstr "Odvody"
 
 #: simulation/data/civs/rome.jsonTeamBonuses[0].History
 msgid ""
@@ -2606,7 +2606,7 @@ msgstr "Na základě Ústavy napsané mýtickým zákonodarcem Lykurgem byla zř
 msgid ""
 "Increases the health for citizen-soldier infantry spearmen by 10% for allies"
 " of Spartan players."
-msgstr ""
+msgstr "Zvyšuje zdraví občanských pěších kopiníků o 10% pro spojence Sparťanů."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"

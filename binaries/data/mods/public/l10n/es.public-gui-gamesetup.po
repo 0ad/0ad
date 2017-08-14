@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Adrian Sbardella <sbardemadrian@gmail.com>, 2017
 # Ageoneitor JT <ageoneitor@mail.com>, 2014
 # Albert, 2017
 # Ancel0 <ancel0@openmailbox.org>, 2013
@@ -31,6 +32,7 @@
 # matiasng37 <matiasng37@gmail.com>, 2013
 # memmaker650 <memmaker650@gmail.com>, 2014
 # Mihai Pantazi <malexandru_70@hotmail.com>, 2017
+# papalote alreves <papalotealreves@gmail.com>, 2017
 # Pedro Luis <pedrochusma@gmail.com>, 2014
 # Pretorg <fpgelmejor2@hotmail.com>, 2014
 # Rafael Castro <drill.hurricane@hotmail.com>, 2013
@@ -48,8 +50,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-09 09:03+0200\n"
-"PO-Revision-Date: 2017-08-09 16:10+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-08-12 06:43+0000\n"
+"Last-Translator: Adrian Sbardella <sbardemadrian@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -256,7 +258,7 @@ msgstr "Elige la población máxima."
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr "Advertencia: Habrán problemas de rendimiento si todos los %(players)s alcanzan %(popCap)s de población."
+msgstr "Advertencia: Podrían haber problemas de rendimiento si todos los %(players)s jugadores alcanzan %(popCap)s de población."
 
 #: gui/gamesetup/gamesetup.js:529
 msgid "Starting Resources"
@@ -296,7 +298,7 @@ msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
-msgstr ""
+msgstr "El número total de las reliquias generadas en el mapa. La victoria de Reliquia es más realista con sólo una o dos reliquias. Con números mayores, las reliquias son importantes para capturar y recibir bonos de aura."
 
 #: gui/gamesetup/gamesetup.js:591
 msgid "Victory Duration"
@@ -725,7 +727,7 @@ msgstr "\"No llores por mí, si sufro por una injusticia, mi situación es más 
 msgid ""
 "\"Sex and sleep alone make me conscious that I am mortal.\" - Alexander the "
 "Great (Plutarch, \"Parallel Lives\", \"Alexander\", sec. 22)"
-msgstr "«El sexo y el sueño me recuerdan mi mortalidad.» - Alejandro Magno (Plutarco, «Vidas paralelas», «Alejandro», sec. 22)"
+msgstr "«El sexo y dormir solo, me hacen consciente de que soy mortal.» - Alejandro Magno (Plutarco, «Vidas paralelas», «Alejandro», sec. 22)"
 
 #: gui/text/quotes.txt:21
 msgid ""
@@ -741,7 +743,7 @@ msgid ""
 "danger; and it is delightful to live a life of valor and to die leaving "
 "behind immortal glory.\" - Alexander the Great, addressing his troops "
 "(Arrian, \"The Anabasis of Alexander\", 5.26)"
-msgstr "\"Gloriosos son los hechos de aquellos que sufren trabajo y corren el riesgo de peligro; y es muy agradable vivir una vida de valor y morir dejando atrás la gloria inmortal.\" - Alejandro Magno, direccionando sus tropas  (Arriano de Nicomedia, \"Anábasis de Alejandro Magno\", 5,26)"
+msgstr "\"Gloriosos son los actos de aquellos que se someten al trabajo y corren el riesgo del peligro; y es deleitoso vivir una vida de valor y morir dejando atrás una gloria inmortal.\" - Alejandro Magno, direccionando a sus tropas  (Arriano de Nicomedia, \"Anábasis de Alejandro Magno\", 5,26)"
 
 #: gui/text/quotes.txt:23
 msgid ""
@@ -784,14 +786,14 @@ msgid ""
 " covetously.\" - Anacharsis, a Scythian philosopher who travelled to Greece "
 "(Diogenes Laertius, \"The Lives and Opinions of Eminent Philosophers\", "
 "Anarchsis, sec. 5)"
-msgstr ""
+msgstr "\"El Ágora es un lugar establecido para que hombres engañen al otro, y se comporten codiciosamente.\" - Anacarsis, un filósofo Escita que viajó por Grecia (Diógenes Laërtius, \"Vidas, opiniones y sentencias de los filósofos más ilustres\", Anacarsis, sec. 5)"
 
 #: gui/text/quotes.txt:29
 msgid ""
 "\"It was not by taking care of the fields, but of ourselves, that we "
 "acquired those fields.\" - Anaxandridas II of Sparta (Plutarch, \"Moralia\","
 " XVI. \"Sayings of Spartans\", 217a)"
-msgstr ""
+msgstr "\"No fue por cuidar los campos, sino de nosotros, aquellos quienes adquirimos esos campos.\" - Anaxandridas II de Esparta (Plutarco, \"Moralia\", XVI. \"Dichos de Espartanos\", 217a)"
 
 #: gui/text/quotes.txt:30
 msgid ""
@@ -817,20 +819,20 @@ msgstr "\"Dadme un punto de apoyo y moveré el mundo\" - Arquímedes, sobre el u
 msgid ""
 "\"It is from their foes, not their friends, that cities learn the lesson of "
 "building high walls and ships of war.\" - Aristophanes (\"Birds\")"
-msgstr ""
+msgstr "\"Es de sus enemigos, no de sus amigos, que las ciudades aprenden la lección de construir muros altos y navíos de guerra.\" - Aristófanes (\"Las aves\")"
 
 #: gui/text/quotes.txt:34
 msgid ""
 "\"It is obligatory, especially for a philosopher, to sacrifice even one's "
 "closest personal ties in defense of the truth.\" - Aristotle (\"Nicomachean "
 "Ethics\", I. 1096a.11)"
-msgstr ""
+msgstr "\"Es obligatorio, especialmente para un filósofo, sacrificar incluso las más cercanas ataduras personales en defensa de la verdad.\" - Aristóteles (\"Ética Nicomáquea\", I. 1096a.11)"
 
 #: gui/text/quotes.txt:35
 msgid ""
 "\"Happiness depends on leisure; for we are busy to have leisure, and make "
 "war to live in peace.\" - Aristotle (\"Nicomachean Ethics\", X. 1177b.4)"
-msgstr ""
+msgstr "\"La felicidad depende del ocio; para nosotros es atareado disponer de ocio, y hacer guerra para vivir en paz.\" - Aristóteles (\"Ética Nicomáquea\", X. 1177b.4)"
 
 #: gui/text/quotes.txt:36
 msgid ""
@@ -849,7 +851,7 @@ msgid ""
 "\"I have gained this by philosophy: that I do without being commanded what "
 "others do only from fear of the law.\" - Aristotle (Diogenes Laertius, \"The"
 " Lives and Opinions of Eminent Philosophers\", Aristotle, sec. 20)"
-msgstr ""
+msgstr "\"Lo conseguí a través de la filosofía: hago sin ser comandado lo que otros hacen sólo por miedo a la ley.\" - Aristóteles (Diógenes Laërtius, \"Vidas, opiniones y sentencias de los filósofos más ilustres\", Aristóteles, sec. 20)"
 
 #: gui/text/quotes.txt:39
 msgid ""
@@ -867,7 +869,7 @@ msgid ""
 " it, immediately poured it upon the ground in the sight of all.\" - Arrian "
 "about Alexander's march through the Gedrosian desert (\"The Anabasis of "
 "Alexander\", 6.26)"
-msgstr ""
+msgstr "\"El mismo Alejandro, agobiado por la sed, con mucho dolor y dificultad no obstante guió al ejército a pie \\[...]. En este momento algunos de los soldados de armamento ligero \\[...] encontraron un poco de agua \\[...], echaron el agua en un casco y lo llevaron a él. Él la tomó, y elogiando a los hombres que la trajeron, inmediatamente la echó al suelo a la vista de todos.\" - Arriano sobre La marcha de Alejandro a través del desierto de Gedrosia (\"Anábasis de Alejandro Magno\", 6.26)"
 
 #: gui/text/quotes.txt:41
 msgid ""
@@ -878,21 +880,21 @@ msgid ""
 "Persian] had already raised his sword against Alexander from behind when "
 "Clitus \\[...] cut his arm off.\" - Arrian about the Battle of the Granicus "
 "(\"The Anabasis of Alexander\", 1.15)"
-msgstr ""
+msgstr "\"Lanzando su lanza hacia la cara de Mitrídates, él \\[Alejandro] lo tiró al suelo. Después Rhoesaces \\[un Persa] \\[...] lo hirió en la cabeza con su espada. \\[...] Alejandro lo tiró también al suelo, perforando con su lanza a través de su armadura su pecho. Sphithridates  \\[un Persa] ya había levantado su espada en contra de Alejandro por la espalda cuando Clitus \\[...]  le cortó su brazo.\" - Arriano sobre la Batalla del Gránico (\"Anábasis de Alejandro Magno\", 1.15)"
 
 #: gui/text/quotes.txt:42
 msgid ""
 "\"Let every man remind their descendants that they also are soldiers who "
 "must not desert the ranks of their ancestors, or retreat out of cowardice.\""
 " - Aspasia (Plato, \"Menexenus\", 246b)"
-msgstr ""
+msgstr "\"Deja que todo hombre les recuerde a sus descendientes que ellos también son soldados quienes no deben abandonar las filas de sus ancestros, ni retirarse a la cobardía.\" - Aspasia (Platón, \"Menexeno\", 246b)"
 
 #: gui/text/quotes.txt:43
 msgid ""
 "\"Quintilius Varus, give me back my legions!\" - Augustus, after three "
 "legions were annihilated in the Battle of the Teutoburg Forest (Suetonius, "
 "\"Divus Augustus\", sec. 23)"
-msgstr ""
+msgstr "\"Quintilo Varo, devuélveme mis legiones!\" - Augusto, luego de que tres legiones fueran aniquiladas en la Batalla del bosque de Teutoburgo (Suetonius, \"Divus Augustus\", sec. 23)"
 
 #: gui/text/quotes.txt:44
 msgid ""
@@ -900,7 +902,7 @@ msgid ""
 "raised an army with which I liberated the state, which was oppressed by the "
 "tyranny of a faction.\" - Augustus, in his autobiography (\"Res Gestae Divi "
 "Augusti\", sec. 1)"
-msgstr ""
+msgstr "\"En mis diecinueve años, bajo mi propia iniciativa y bajo mi propio dispendio, levanté un ejército con el cual liberé al estado, que estaba oprimido por la tiranaría de un bando.\" - Augusto, en su autobiografía (\"Res Gestae Divi Augusti\", sec. 1)"
 
 #: gui/text/quotes.txt:45
 msgid ""
@@ -909,28 +911,28 @@ msgid ""
 "foreign nations which could with safety be pardoned I preferred to save "
 "rather than to destroy.\" - Augustus, in his autobiography (\"Res Gestae "
 "Divi Augusti\", sec. 3)"
-msgstr ""
+msgstr "\"Guerras, ambas civiles y extranjeras, he combatido por todo el mundo, en el mar y en la tierra, y cuando victorioso liberé a todos los ciudadanos que pidieron por perdón. Preferí salvar en vez de destruir las naciones foráneas que pudieron ser perdonadas sin peligro\" (\"Res Gestae Divi Augusti\", sec. 3)"
 
 #: gui/text/quotes.txt:46
 msgid ""
 "\"Choose the course which you adopt with deliberation; but when you have "
 "adopted it, then persevere in it with firmness.\" - Bias of Priene (Diogenes"
 " Laertius, \"The Lives and Opinions of Eminent Philosophers\", Bias, sec. 5)"
-msgstr ""
+msgstr "\"Escoge el camino que adoptes con deliberación; pero cuando lo hayas adoptado, entonces persevera con firmeza.\" -Bías de Priene (Diogenes Laërtius, \"Vidas, opiniones y sentencias de los filósofos más ilustres\", Bías, sec. 5)"
 
 #: gui/text/quotes.txt:47
 msgid ""
 "\"How stupid it was for the king to tear out his hair in grief, as if "
 "baldness were a cure for sorrow.\" - Bion of Borysthenes (Cicero, \"Tusculan"
 " Disputations\", III. 26)"
-msgstr ""
+msgstr "\"Que estúpido fue para el rey desgarrar su pelo en dolor, como si la calvicie fuera una cura para el sufrimiento.\" - Bión de Borístenes (Cicerón, \"Tusculanae Disputationes\", III. 26)"
 
 #: gui/text/quotes.txt:48
 msgid ""
 "\"He has not acquired a fortune; the fortune has acquired him.\" - Bion of "
 "Borysthenes, referring to a wealthy miser (Diogenes Laertius, \"The Lives "
 "and Opinions of Eminent Philosophers\", Bion, sec. 50)"
-msgstr ""
+msgstr "\"Él no adquirió su fortuna; la fortuna lo adquirió a él.\" - Bión de Borístenes, refiriéndose a una rica miseria (Diógenes Laërtius, \"Vidas, opiniones y sentencias de los filósofos más ilustres\", Bión, sec. 50)"
 
 #: gui/text/quotes.txt:49
 msgid ""
@@ -940,14 +942,14 @@ msgid ""
 " gold, but not without using false weights and adding the weight of his "
 "sword on the scale when the Romans complained (Polybius, \"Histories\", II. "
 "18)"
-msgstr ""
+msgstr "\"Aflicción para el derrotado!\" - Brennus, cabecilla Galo que se apoderó de Roma (con excepción de una guarnición en Colina Capitolina). Cuando Camillus llegó de Veyes y lo sitió, él negoció su retirada a cambio de 1000 libras de oro, pero no sin usar pesos falsos y añadir el peso de su espada en la balanza cuando los Romanos reclamaron (Polybius, \"Historias de Polibio\", II. 18)"
 
 #: gui/text/quotes.txt:50
 msgid ""
 "\"Robbery, slaughter, plunder, they \\[the Romans] deceivingly name empire; "
 "they make a wasteland and call it peace.\" - Calgacus, Caledonian chieftain "
 "in a speech before the Battle of Mons Graupius (Tacitus, \"Agricola\", 30)"
-msgstr ""
+msgstr "\"Robo, masacre, saqueo, ellos \\[los Romanos] engañosamente nombrados imperio; crean un peladero y lo llaman paz.\" - Calgacus, cabecilla Caledonio en un discurso antes de la Batalla del monte Graupius (Tacitus, \"Agrícola\", 30)"
 
 #: gui/text/quotes.txt:51
 msgid "\"Set a thief to catch a thief.\" - Callimachus (\"Epigrams\", 44)"
@@ -958,7 +960,7 @@ msgid ""
 "\"All mankind rules its women, and we rule all mankind, but our women rule "
 "us.\" - Cato the Elder (Plutarch, \"Moralia\", III. \"Sayings of Romans\", "
 "198e)"
-msgstr ""
+msgstr "\"Toda la humanidad gobierna a sus mujeres, y nosotros gobernamos toda la humanidad, pero nuestras mujeres nos gobiernas\". - Cato El Anciano (Plutarch, \"Moralia\", III. \"Dichos de los Romanos\", 198AC)"
 
 #: gui/text/quotes.txt:53
 msgid ""
@@ -983,7 +985,7 @@ msgstr "\"Por otro lado, considero que Cartago debe ser destruído.\" - Catón e
 msgid ""
 "\"If a king is energetic, his subjects will be equally energetic.\" - "
 "Chanakya (\"Arthashastra\", I. \"Concerning Discipline\", chapter 19)"
-msgstr ""
+msgstr "\"Si un rey es energético, sus temas de conversación deben ser igual de energéticos\". -Chanakya (\"Arthashastra\", I. \"Sobre la Disciplina\", Cap.19)"
 
 #: gui/text/quotes.txt:57
 msgid ""
@@ -991,14 +993,14 @@ msgid ""
 "he who awards mild punishment becomes contemptible. But whoever imposes "
 "punishment as deserved becomes respectable.\" - Chanakya (\"Arthashastra\", "
 "I. \"Concerning Discipline\", chapter 4)"
-msgstr ""
+msgstr "\"Aquel que imponga castigo severo se vuelve repulsivo para el pueblo; mientras quien premia castigos menores se vuelve despreciable. Pero aquel que imponga castigo justo se vuelve respetable.\" -Chanakya (\"Arthashastra\", I. \"Sobre la Disciplina\", Capítulo 4)"
 
 #: gui/text/quotes.txt:58
 msgid ""
 "\"We did not flinch but gave our lives to save Greece when her fate hung on "
 "a razor's edge.\" - Corinthian epitaph to their fallen of the Persian Wars "
 "(Plutarch, \"Moralia\", XI. \"On the Malice of Herodotus\", 870e)"
-msgstr ""
+msgstr "\"No vacilamos al dar nuestras vidas para salvar a Grecia cuando su destino colgó del filo de la navaja.\" - Epitafio Corintio a sus caídos de las Guerras Persas (Plutarco, \"Moralia\", XI. \"Sobre la maldad de Herodotus\", 870e)"
 
 #: gui/text/quotes.txt:59
 msgid ""
@@ -1021,7 +1023,7 @@ msgid ""
 "\"I am Darius, the great king, king of kings, the king of Persia, the king "
 "of countries, \\[...] 23 lands in total.\" - Darius I. (Behistun "
 "inscription, column I, 1-6)"
-msgstr ""
+msgstr "\"Soy Darius, el gran rey, rey de reyes, el rey de Persia, el rey de países,  \\[...] 23 tierras en total.\" - Darius I. (Inscripción Behistun, columna I, 1-6)"
 
 #: gui/text/quotes.txt:62
 msgid ""
