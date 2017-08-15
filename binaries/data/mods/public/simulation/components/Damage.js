@@ -80,10 +80,10 @@ Damage.prototype.GetPlayersToDamage = function(attackerOwner, friendlyFire)
 	let playersToDamage = [];
 	let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
 	for (let i = 0; i < numPlayers; ++i)
-		playersToDamage.push(i)
+		playersToDamage.push(i);
 
 	return playersToDamage;
-}
+};
 
 /**
  * Handles hit logic after the projectile travel time has passed.

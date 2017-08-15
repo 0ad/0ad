@@ -82,7 +82,13 @@ function attackComponentTest(defenderClass, isEnemy, test_function)
 				"FriendlyFire": "false",
 				"Hack": 0.0,
 				"Pierce": 15.0,
-				"Crush": 35.0
+				"Crush": 35.0,
+				"Bonuses": {
+					"BonusCav": {
+						"Classes": "Cavalry",
+						"Multiplier": 2
+					}
+				}
 			}
 		},
 		"Capture" : {
@@ -135,6 +141,12 @@ attackComponentTest(undefined, true ,(attacker, cmpAttack, defender) => {
 		"pierce": 10,
 		"crush": 0
 	});
+	
+	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackStrengths("Ranged.Splash"), {
+		"hack": 0.0,
+		"pierce": 15.0,
+		"crush": 35.0
+	});
 
 	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetTimers("Ranged"), {
 		"prepare": 300,
@@ -153,6 +165,7 @@ for (let className of ["Infantry", "Cavalry"])
 	attackComponentTest(className, true, (attacker, cmpAttack, defender) => {
 		TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackBonus("Melee", defender), className == "Cavalry" ? 2 : 1);
 		TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackBonus("Ranged", defender), 1);
+		TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackBonus("Ranged.Splash", defender), className == "Cavalry" ? 2 : 1);
 		TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackBonus("Capture", defender), 1);
 		TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackBonus("Slaughter", defender), 1);
 	});
@@ -216,7 +229,7 @@ function testGetBestAttackAgainst(defenderClass, bestAttack, isBuilding = false)
 		if (!isBuilding)
 			allowCapturing.push(false);
 
-		let attack = undefined;
+		let attack;
 		if (defenderClass == "Domestic")
 			attack = "Slaughter";
 		else if (defenderClass == "Structure")
@@ -234,6 +247,7 @@ testGetBestAttackAgainst("Structure", "Capture", true);
 
 function testPredictTimeToTarget(selfPosition, horizSpeed, targetPosition, targetVelocity)
 {
+	ResetState();
 	let cmpAttack = ConstructComponent(1, "Attack", {});
 	let timeToTarget = cmpAttack.PredictTimeToTarget(selfPosition, horizSpeed, targetPosition, targetVelocity);
 	if (timeToTarget === false)

@@ -4,7 +4,7 @@ var PETRA = function(m)
 /** returns true if this unit should be considered as a siege unit */
 m.isSiegeUnit = function(ent)
 {
-	return ent.hasClass("Siege") || (ent.hasClass("Elephant") && ent.hasClass("Champion"));
+	return ent.hasClass("Siege") || ent.hasClass("Elephant") && ent.hasClass("Champion");
 };
 
 /** returns some sort of DPS * health factor. If you specify a class, it'll use the modifiers against that class too. */
@@ -294,7 +294,7 @@ m.isNotWorthBuilding = function(gameState, ent)
 	if (gameState.ai.HQ.territoryMap.getOwner(ent.position()) !== PlayerID)
 	{
 		let buildTerritories = ent.buildTerritories();
-		if (buildTerritories && (!buildTerritories.length || (buildTerritories.length === 1 && buildTerritories[0] === "own")))
+		if (buildTerritories && (!buildTerritories.length || buildTerritories.length === 1 && buildTerritories[0] === "own"))
 			return true;
 	}
 	return false;

@@ -484,7 +484,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 				});
 				// TODO  add also a test on remaining resources
 				let total = this.gatherers[type].used + this.gatherers[type].lost;
-				if (total > 150 || (total > 60 && type !== "wood"))
+				if (total > 150 || total > 60 && type !== "wood")
 				{
 					let ratio = this.gatherers[type].lost / total;
 					if (ratio > 0.15)
@@ -815,7 +815,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 			targetNB = 4;
 		else if (target.hasClass("Fortress"))
 			targetNB = 7;
-		if (target.getMetadata(PlayerID, "baseAnchor") === true || (target.hasClass("Wonder") && gameState.getGameType() === "wonder"))
+		if (target.getMetadata(PlayerID, "baseAnchor") === true || target.hasClass("Wonder") && gameState.getGameType() === "wonder")
 		{
 			targetNB = 15;
 			maxTotalBuilders = Math.max(maxTotalBuilders, 15);
@@ -887,7 +887,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		// don't repair if we're still under attack, unless it's a vital (civcentre or wall) building that's getting destroyed.
 		if (gameState.ai.HQ.isNearInvadingArmy(target.position()))
 			if (target.healthLevel() > 0.5 ||
-				(!target.hasClass("CivCentre") && !target.hasClass("StoneWall") && (!target.hasClass("Wonder") || gameState.getGameType() !== "wonder")))
+				!target.hasClass("CivCentre") && !target.hasClass("StoneWall") && (!target.hasClass("Wonder") || gameState.getGameType() !== "wonder"))
 				continue;
 		else if (noRepair && !target.hasClass("CivCentre"))
 			continue;
@@ -900,7 +900,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		let targetNB = 1;
 		if (target.hasClass("Fortress"))
 			targetNB = 3;
-		if (target.getMetadata(PlayerID, "baseAnchor") === true || (target.hasClass("Wonder") && gameState.getGameType() === "wonder"))
+		if (target.getMetadata(PlayerID, "baseAnchor") === true || target.hasClass("Wonder") && gameState.getGameType() === "wonder")
 		{
 			maxTotalBuilders = Math.ceil(workers.length * 0.3);
 			targetNB = 5;
