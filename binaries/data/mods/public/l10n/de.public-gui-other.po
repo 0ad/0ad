@@ -42,7 +42,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-02 09:02+0200\n"
-"PO-Revision-Date: 2017-08-13 10:18+0000\n"
+"PO-Revision-Date: 2017-08-14 14:52+0000\n"
 "Last-Translator: Xaver\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -2291,7 +2291,7 @@ msgstr "Sound Manager"
 
 #: gui/credits/texts/art.jsonContent[0].Content[2].Subtitle
 msgid "Composer"
-msgstr "Komposition"
+msgstr "Komponist"
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Artistic managers"
@@ -2351,7 +2351,7 @@ msgstr "Blechflöten"
 
 #: gui/credits/texts/art.jsonContent[5].Content[10].Subtitle
 msgid "Viola, violin"
-msgstr "Geige"
+msgstr "Bratsche, Geige"
 
 #: gui/credits/texts/art.jsonContent[5].Title
 msgid "Music"
@@ -2389,7 +2389,7 @@ msgstr "2. Pledgie-Spendenaktion"
 msgid ""
 "Indiegogo 2013 campaign\n"
 "More than 1000 donators (!), including:"
-msgstr "Indiegogo-Kampangie in 2013\nÜber 1000 Spender (!), inklusive:"
+msgstr "Indiegogo-Kampagne 2013\nÜber 1000 Spender (!), inklusive:"
 
 #: gui/credits/texts/donators.jsonTitle
 msgid "Donors"
@@ -2645,7 +2645,7 @@ msgstr "Zeitstempel im Chat"
 msgid ""
 "Display the range of auras of selected units and structures (can also be "
 "toggled in-game with the hotkey)."
-msgstr "Zeigt die Reichweite von Auras für ausgewählte Einheiten und Gebäude an (kann auch während des Spiels mit der Schnellzugriffstaste umgeschaltet werden)."
+msgstr "Zeigt die Reichweite von Auren für ausgewählte Einheiten und Gebäude an (kann auch während des Spiels mit der Schnellzugriffstaste umgeschaltet werden)."
 
 #: gui/options/options.jsongeneralSetting[18].label
 msgid "Aura Range Visualization"
@@ -2703,7 +2703,7 @@ msgstr "UI-Lautstärke"
 
 #: gui/options/options.jsonsoundSetting[5].tooltip
 msgid "Receive audio notification when someone types your nick"
-msgstr "Eine Tonsignal abspielen, wenn jemand deinen Spitznamen eingibt"
+msgstr "Ein Tonsignal abspielen, wenn jemand deinen Spitznamen eingibt"
 
 #: gui/options/options.jsonsoundSetting[5].label
 msgid "Nick Notification"
@@ -2721,7 +2721,7 @@ msgstr "Angriff"
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode"
-msgstr "Eine Chat-Benachrichtigung zeigen, wenn ein Verbündeter Rohstoffe an ein anderes Teammitglied per Tribut zukommen lässt zeigen, falls die Teams gesperrt sind und sich alle Tribute im Zuschauermodus befinden."
+msgstr "Eine Chat-Benachrichtigung zeigen, wenn bei festen Teams ein Verbündeter einem anderen Teammitglied Rohstoffe als Tribut gibt und im Zuschauermodus alle Tribute."
 
 #: gui/options/options.jsonnotificationSetting[1].label
 msgid "Tribute"
@@ -2729,7 +2729,7 @@ msgstr "Tribut"
 
 #: gui/options/options.jsonnotificationSetting[2].tooltip
 msgid "Show a chat notification to observers when a player bartered resources"
-msgstr "zeigt den Zuschauern eine Chatnachricht an, wenn ein Spieler Resourcen gehandelt hat"
+msgstr "Zuschauern eine Chat-Benachrichtigung anzeigen, wenn ein Spieler Ressourcen gehandelt hat"
 
 #: gui/options/options.jsonnotificationSetting[2].label
 msgid "Barter"
@@ -2903,7 +2903,7 @@ msgstr "FPS-Begrenzung in Menüs"
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
-msgstr "Um die CPU-Auslastung zu reduzieren, wird dies die Renderhäufigzeit in laufenden Spielen begrenzen. Auf das Maximum setzen, um die Begrenzung zu deaktivieren."
+msgstr "Um die CPU-Auslastung zu reduzieren, wird dies die Renderhäufigkeit in laufenden Spielen begrenzen. Auf das Maximum setzen, um die Begrenzung zu deaktivieren."
 
 #: gui/options/options.jsongraphicsSetting[17].label
 msgid "FPS throttling in games"
@@ -3164,11 +3164,11 @@ msgstr "KASERNE"
 msgid ""
 "- Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr "– Trainiere alle Bürgersoldaten. Einige Fraktionen erlauben hier auch das Trainieren von Gardesoldaten."
+msgstr "– Trainiere alle Bürgersoldaten. Einige Fraktionen erlauben hier auch das Trainieren von Gardisten."
 
 #: gui/text/tips/barracks.txt:4
 msgid "- Research military technologies unique to each faction."
-msgstr "– Erforsche militärische Technologie, die für jede Fraktion einmalig ist."
+msgstr "– Erforsche militärische Technologien, die für jede Fraktion einmalig sind."
 
 #: gui/text/tips/barracks.txt:6
 msgid ""
@@ -3210,7 +3210,7 @@ msgstr "– Gardespeerträger und berittene Lanzenträgergardisten für Karthago
 msgid ""
 "- Both are trainable from the Temple, instead of the Fortress like most "
 "other champions."
-msgstr "– Beide können im Tempel ausgebildet werden, statt in der Festung, wie die meisten anderen Gardisten."
+msgstr "– Beide können im Tempel statt in der Festung, wie die meisten anderen Gardisten, ausgebildet werden."
 
 #: gui/text/tips/carth_sacred_band.txt:6
 msgid ""
@@ -3230,7 +3230,7 @@ msgstr "– Fernkampfbelagerungswaffe, die effektiv gegen Gebäude ist."
 msgid ""
 "- May upgrade to flaming projectiles for extra effectiveness against "
 "buildings and units."
-msgstr "– Kann Feuergeschosse verschießen, um noch mehr Schaden an Gebäuden und Einheiten zu verursachen."
+msgstr "– Kann mit Feuergeschossen aufgerüstet werden, um noch mehr Schaden an Gebäuden und Einheiten zu verursachen."
 
 #: gui/text/tips/catapults.txt:6
 msgid "- Expensive and slow."
@@ -3318,7 +3318,7 @@ msgstr "– Fischerboote holen auf jedem Fischzug große Mengen an Nahrung."
 
 #: gui/text/tips/fishing.txt:6
 msgid "- Fishing is faster than gathering food on fields."
-msgstr "– Das Fischen ist schneller als die Nahrungssuche auf den Feldern."
+msgstr "– Fischen ist schneller als die Nahrungsproduktion auf Feldern."
 
 #: gui/text/tips/fishing.txt:8
 msgid ""
@@ -3360,7 +3360,7 @@ msgstr "– Nutze Bürgersoldaten und Bürgerinnen um Rohstoffe zu sammeln."
 
 #: gui/text/tips/gathering.txt:4
 msgid "- Female Citizens are bonused with Farming and Foraging."
-msgstr "– Bürgerinnen besitzen einen Sammel- und Feldbewirtschaftungsbonus."
+msgstr "– Bürgerinnen haben einen Bonus auf Ackerbau und Sammeln"
 
 #: gui/text/tips/gathering.txt:6
 msgid "- Citizen-Soldiers are bonused with Mining."
@@ -3368,7 +3368,7 @@ msgstr "– Bürgersoldaten haben einen Bonus im Bergbau."
 
 #: gui/text/tips/gathering.txt:8
 msgid "- Cavalry Citizen-Soldiers are bonused with Hunting."
-msgstr "– Kavalleriesoladen erhalten den Jagdbonus."
+msgstr "– Berittene Bürgersoldaten haben einen Jagdbonus."
 
 #: gui/text/tips/gathering.txt:10
 msgid ""
@@ -3392,7 +3392,7 @@ msgstr "– Einheiten in seiner Formation sind schneller und stärker."
 
 #: gui/text/tips/iphicrates.txt:6
 msgid "- Skirmishers move faster while he lives."
-msgstr "– Plänkler sind zu seiner Lebzeit schneller."
+msgstr "– Plänkler sind zu seinen Lebzeiten schneller."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
@@ -3425,7 +3425,7 @@ msgstr "– Ein billiger, schnell errichteter Wall, der allen Fraktionen zur Ver
 
 #: gui/text/tips/palisades.txt:4
 msgid "- Most factions have access to them in Village Phase."
-msgstr "– Die meisten Fraktionen können sie ab der Siedlungsphase verwenden."
+msgstr "– Die meisten Fraktionen können sie ab der Dorfphase verwenden."
 
 #: gui/text/tips/palisades.txt:6
 msgid ""
@@ -3668,12 +3668,12 @@ msgstr "– Einquartierte Einheiten werden schneller geheilt."
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"
-msgstr "TERRITORALER ZERFALL"
+msgstr "TERRITORIALER ZERFALL"
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
 "- Decay happens when buildings are not connected to an allied Civil Center."
-msgstr "– Der Zerfall tritt auf, wenn Gebäude nicht mit einem verbündeten Verwaltungszentrum verbunden sind."
+msgstr "– Zerfall tritt auf, wenn Gebäude nicht mit einem verbündeten Verwaltungssitz verbunden sind."
 
 #: gui/text/tips/territory_decay.txt:5
 msgid ""
@@ -3798,7 +3798,7 @@ msgstr "– 2000 Nahrung."
 
 #: gui/text/tips/whales.txt:6
 msgid "- Gatherable by Fishing Boats after the whale is killed."
-msgstr "– Können von Fischerbooten gesammelt werden, nachdem der Wal getötet wurde"
+msgstr "– Können von Fischerbooten gesammelt werden, nachdem der Wal getötet wurde."
 
 #: gui/text/tips/whales.txt:8
 msgid "- Roam around the oceans of the game and flee when attacked."
