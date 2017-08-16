@@ -63,6 +63,14 @@ Mirage.prototype.Mirages = function(iid)
 // ============================
 // Parent entity data
 
+Mirage.prototype.CopyIdentity = function(cmpIdentity)
+{
+	this.miragedIids.add(IID_Identity);
+	this.classesList = cmpIdentity.GetClassesList();
+};
+
+Mirage.prototype.GetClassesList = function() { return this.classesList };
+
 // Foundation data
 
 Mirage.prototype.CopyFoundation = function(cmpFoundation)
