@@ -112,6 +112,10 @@ Fogging.prototype.LoadMirage = function(player)
 	cmpMirageVisualActor.SetActorSeed(cmpParentVisualActor.GetActorSeed());
 
 	// Store valuable information into the mirage component (especially for the GUI)
+	var cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
+	if (cmpIdentity)
+		cmpMirage.CopyIdentity(cmpIdentity);
+
 	var cmpFoundation = Engine.QueryInterface(this.entity, IID_Foundation);
 	if (cmpFoundation)
 		cmpMirage.CopyFoundation(cmpFoundation);

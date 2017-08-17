@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Aber Wagen <betagamersyt@gmail.com>, 2017
 # Albert, 2017
 # ninovolador <ignacio.rodriguez.mo@gmail.com>, 2015
 # Javier Rojas <hekeine@gmail.com>, 2017
@@ -18,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-09 09:05+0200\n"
-"PO-Revision-Date: 2017-08-10 02:08+0000\n"
-"Last-Translator: Joaquin Cubelli <jcubellidl@gmail.com>\n"
+"PO-Revision-Date: 2017-08-16 00:12+0000\n"
+"Last-Translator: Aber Wagen <betagamersyt@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -932,16 +933,16 @@ msgstr "¡Acaba con el enemigo para ganar!"
 #, javascript-format
 msgid "%(lastPlayer)s has won (treasure collected)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s"
+msgstr[1] "%(players)s y %(lastPlayer)s han ganado (tesoro recogido)."
 
 #: maps/scenarios/treasure_islands.js:105
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (treasure collected)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (treasure collected)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s ha sido derrotado (tesoro recogido)."
+msgstr[1] "%(players)s y %(lastPlayer)s han sido derrotados (tesoro recogido)."
 
 #: maps/scenarios/Arcadia.xml:Description:39
 msgid ""

@@ -230,7 +230,7 @@ Attack.prototype.CanAttack = function(target, wantedTypes)
 	if (!cmpThisPosition || !cmpTargetPosition || !cmpThisPosition.IsInWorld() || !cmpTargetPosition.IsInWorld())
 		return false;
 
-	let cmpIdentity = Engine.QueryInterface(target, IID_Identity);
+	let cmpIdentity = QueryMiragedInterface(target, IID_Identity);
 	if (!cmpIdentity)
 		return false;
 
