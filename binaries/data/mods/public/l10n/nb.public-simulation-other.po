@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-09 09:04+0200\n"
-"PO-Revision-Date: 2017-08-09 14:25+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-08-16 11:15+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -898,8 +898,8 @@ msgstr "Du kan angripe nå!"
 #, javascript-format
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s har vunnet (siste spiller i live)."
+msgstr[1] "%(players)s og %(lastPlayer)s har vunnet (siste spillere i live)."
 
 #: simulation/components/EndGameManager.js:171
 msgid "Last remaining player wins."
@@ -958,7 +958,7 @@ msgstr "Kan ikke finne ledig rom for å frembringe trente enheter"
 #: simulation/helpers/Cheat.js:53
 #, javascript-format
 msgid "%(player)s has been defeated (cheat)."
-msgstr ""
+msgstr "%(player)s har blitt beseiret (juks)."
 
 #: simulation/helpers/Cheat.js:62
 msgid "You need to select a building that trains units."
@@ -975,7 +975,7 @@ msgstr "(Juks - avslør kart)"
 #: simulation/helpers/Commands.js:444
 #, javascript-format
 msgid "%(player)s has resigned."
-msgstr ""
+msgstr "%(player)s har trukket seg."
 
 #: simulation/helpers/Commands.js:586
 msgid "(Cheat - promoted units)"

@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-09 09:04+0200\n"
-"PO-Revision-Date: 2017-08-09 14:25+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-08-16 21:11+0000\n"
+"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -900,8 +900,8 @@ msgstr "Eraso dezakezu, orain!"
 #, javascript-format
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s irabazi du (azken Jokalaria bizirik)."
+msgstr[1] "%(players)s eta %(lastPlayer)s irabazi dute (azken Jokalariak bizirik)."
 
 #: simulation/components/EndGameManager.js:171
 msgid "Last remaining player wins."
@@ -960,7 +960,7 @@ msgstr "Erreklutatutako unitateak ea daukate agertzeko nahikoa toki"
 #: simulation/helpers/Cheat.js:53
 #, javascript-format
 msgid "%(player)s has been defeated (cheat)."
-msgstr ""
+msgstr "%(player)s garaitua izan da (amarrua)."
 
 #: simulation/helpers/Cheat.js:62
 msgid "You need to select a building that trains units."
@@ -977,7 +977,7 @@ msgstr "(Amarrua: mapa erakutsi)"
 #: simulation/helpers/Commands.js:444
 #, javascript-format
 msgid "%(player)s has resigned."
-msgstr ""
+msgstr "%(player)s amore eman du."
 
 #: simulation/helpers/Commands.js:586
 msgid "(Cheat - promoted units)"
