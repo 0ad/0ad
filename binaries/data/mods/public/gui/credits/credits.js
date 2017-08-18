@@ -1,7 +1,6 @@
 var g_PanelNames = ["special", "programming", "art", "translators", "misc", "donators"];
 var g_ButtonNames = {};
 var g_PanelTexts = {};
-var g_ActivePanel = -1;
 
 function init()
 {
@@ -84,13 +83,9 @@ function parseHelper(list)
 
 function selectPanel(i)
 {
-	if (g_ActivePanel != -1)
-	{
-		let oldPanelButton = Engine.GetGUIObjectByName("creditsPanelButton[" + g_ActivePanel+ "]");
-		oldPanelButton.sprite = "BackgroundBox";
-	}
+	Engine.GetGUIObjectByName("creditsPanelButtons").children.forEach((button, j) => {
+		button.sprite = i == j ? "ForegroundBox" : "BackgroundBox";
+	});
 
-	g_ActivePanel = i;
-	Engine.GetGUIObjectByName("creditsPanelButton[" + i + "]").sprite = "ForegroundBox";
 	Engine.GetGUIObjectByName("creditsText").caption = g_PanelTexts[g_PanelNames[i]];
 }

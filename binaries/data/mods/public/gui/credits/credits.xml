@@ -18,7 +18,7 @@
 			<translatableAttribute id="caption">0 A.D. Credits</translatableAttribute>
 		</object>
 
-		<object type="image" size="20 30 210 100%-54">
+		<object name="creditsPanelButtons" type="image" size="20 30 210 100%-54">
 			<repeat count="20">
 				<object name="creditsPanelButton[n]" type="button" sprite="BackgroundBox" sound_pressed="audio/interface/ui/ui_button_click.ogg" size="0 0 190 30" hidden="true">
 					<object type="text" name="creditsPanelButtonText[n]" style="ModernLabelText" ghost="true">
