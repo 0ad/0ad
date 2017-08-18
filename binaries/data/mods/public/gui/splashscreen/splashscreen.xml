@@ -12,7 +12,7 @@
 			<translatableAttribute id="caption">Welcome!</translatableAttribute>
 		</object>
 
-		<object name="mainText" type="text" sprite="ModernDarkBoxGold" style="textPanel" size="20 20 100%-20 100%-52">
+		<object name="mainText" type="text" style="ModernTextPanel" size="20 20 100%-20 100%-52">
 			<object name="displaySplashScreenText" size="30 100%-30 100% 100%-8" type="text" style="ModernLeftLabelText">
 				<translatableAttribute id="caption">Show this message in the future</translatableAttribute>
 			</object>

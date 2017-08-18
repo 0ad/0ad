@@ -28,7 +28,7 @@
 		</object>
 
 		<object type="image" sprite="ModernFade" size="220 30 100%-20 100%-54">
-			<object name="creditsText" type="text" style="textPanel" scroll_top="true" />
+			<object name="creditsText" type="text" style="ModernTextPanel" text_align="center" scroll_top="true"/>
 		</object>
 
 		<!-- Close dialog -->

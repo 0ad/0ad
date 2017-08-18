@@ -13,7 +13,7 @@
 		</object>
 
 		<object type="image" sprite="ModernFade" size="20 20 100%-20 100%-58">
-			<object name="mainText" type="text" style="textPanel"/>
+			<object name="mainText" type="text" style="ModernTextPanel"/>
 		</object>
 
 		<object type="button" style="ModernButtonRed" tooltip_style="snToolTip" size="100%-308 100%-52 100%-168 100%-24" hotkey="cancel">
