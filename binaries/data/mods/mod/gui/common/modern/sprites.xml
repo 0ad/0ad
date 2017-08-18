@@ -152,33 +152,6 @@
 			size = "50%+102 0%-18 50%+134 15"
 		/>
 	</sprite>
-
-		<!--
-	==========================================
-	- Panel -
-	==========================================
-	-->
-	<sprite name = "ModernPanel">
-
-		<!-- background -->
-		<image backcolor = "12 12 12"/>
-		<image texture = "global/modern/background.png"
-			texture_size = "0 0 1024 1024"
-			size = "12 22 100%-12 100%-12"
-		/>
-
-		<!-- shading -->
-		<!-- we just mirror the same texture on the top and bottom -->
-		<image texture = "global/modern/shadow-high.png"
-			texture_size = "0 0 1024 256"
-			size = "12 100%-268 100%-12 100%-12"
-		/>
-
-		<image texture = "global/modern/shadow-high.png"
-			texture_size = "1024 256 0 0"
-			size = "12 22 100%-12 268"
-		/>
-	</sprite>
 	<!--
 	==========================================
 	- Box -
