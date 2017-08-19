@@ -259,7 +259,7 @@ function setupControl(option, i, category)
 				control.list = option.parameters.list.map(e => translate(e.label));
 				let values = option.parameters.list.map(e => e.value);
 				control.list_data = values;
-				control.selected = values.indexOf(config);
+				control.selected = values.map(String).indexOf(config);
 				break;
 			default:
 				warn("Unknown option source type '" + param + "'");
