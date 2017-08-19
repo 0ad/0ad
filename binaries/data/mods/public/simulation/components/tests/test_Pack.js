@@ -144,7 +144,8 @@ cmpPack.PackProgress({}, 100);
 
 TS_ASSERT(cmpPack.IsPacking());
 TS_ASSERT_EQUALS(cmpPack.GetElapsedTime(), 1800 + 100 + PACKING_INTERVAL);
-TS_ASSERT_EQUALS(cmpPack.GetProgress(), (1800 + 100 + PACKING_INTERVAL) / 2000); // Shouldn't we cap at 1?
+// Cap progress at 100%
+TS_ASSERT_EQUALS(cmpPack.GetProgress(), 1);
 TS_ASSERT_EQUALS(cmpPack.timer, 7);
 TS_ASSERT(timerActivated);
 

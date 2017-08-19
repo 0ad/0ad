@@ -109,7 +109,7 @@ Pack.prototype.GetElapsedTime = function()
 
 Pack.prototype.GetProgress = function()
 {
-	return this.elapsedTime / this.GetPackTime();
+	return Math.min(this.elapsedTime / this.GetPackTime(), 1);
 };
 
 Pack.prototype.SetElapsedTime = function(time)
