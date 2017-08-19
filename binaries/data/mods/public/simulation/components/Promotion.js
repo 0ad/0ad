@@ -59,7 +59,7 @@ Promotion.prototype.Promote = function(promotedTemplateName)
 	// change promoted unit health to the same percent of hitpoints as unit had before promotion
 	var cmpPromotedUnitHealth = Engine.QueryInterface(promotedUnitEntity, IID_Health);
 	var healthFraction = Math.max(0, Math.min(1, cmpCurrentUnitHealth.GetHitpoints() / cmpCurrentUnitHealth.GetMaxHitpoints()));
-	var promotedUnitHitpoints = Math.round(cmpPromotedUnitHealth.GetMaxHitpoints() * healthFraction);
+	var promotedUnitHitpoints = cmpPromotedUnitHealth.GetMaxHitpoints() * healthFraction;
 	cmpPromotedUnitHealth.SetHitpoints(promotedUnitHitpoints);
 
 	var cmpPromotedUnitPromotion = Engine.QueryInterface(promotedUnitEntity, IID_Promotion);
