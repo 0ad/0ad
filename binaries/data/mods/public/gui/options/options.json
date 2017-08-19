@@ -152,7 +152,7 @@
 		},
 		{
 			"type": "slider",
-			"label": "Graphics quality",
+			"label": "Shader Effects",
 			"tooltip": "Number of shader effects. REQUIRES GAME RESTART",
 			"parameters": { "config": "materialmgr.quality", "min": 0, "max": 10 }
 		},
@@ -183,7 +183,7 @@
 		},
 		{
 			"type": "invertedboolean",
-			"label": "Activate water effects",
+			"label": "Water Effects",
 			"tooltip": "When OFF, use the lowest settings possible to render water. This makes other settings irrelevant.",
 			"parameters": { "config": "waterugly", "renderer": "WaterUgly" },
 			"dependencies": [ "waterfancyeffects", "waterrealdepth", "waterreflection", "waterrefraction", "watershadows" ]
@@ -238,13 +238,13 @@
 		},
 		{
 			"type": "slider",
-			"label": "FPS throttling in menus",
+			"label": "FPS Throttling in Menus",
 			"tooltip": "To save CPU workload, throttle render frequency in all menus. Set to maximum to disable throttling.",
 			"parameters": { "config": "adaptivefps.menu", "min": 20, "max": 100 }
 		},
 		{
 			"type": "slider",
-			"label": "FPS throttling in games",
+			"label": "FPS Throttling in Games",
 			"tooltip": "To save CPU workload, throttle render frequency in running games. Set to maximum to disable throttling.",
 			"parameters": { "config": "adaptivefps.session", "min": 20, "max": 100 }
 		}

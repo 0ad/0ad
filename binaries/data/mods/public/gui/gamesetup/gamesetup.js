@@ -854,7 +854,7 @@ var g_MiscControls = {
 	},
 	"startGame": {
 		"caption": () =>
-			g_IsController ? translate("Start game!") : g_ReadyData[g_IsReady].caption,
+			g_IsController ? translate("Start Game!") : g_ReadyData[g_IsReady].caption,
 		"tooltip": (hoverIdx) =>
 			!g_IsController ?
 				g_ReadyData[g_IsReady].tooltip :

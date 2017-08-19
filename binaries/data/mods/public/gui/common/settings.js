@@ -132,7 +132,7 @@ function loadAIDifficulties()
 }
 
 /**
- * Loads available victory times for victory conditions like Wonder and Capture The Relic.
+ * Loads available victory times for victory conditions like Wonder and Capture the Relic.
  */
 function loadVictoryDuration()
 {

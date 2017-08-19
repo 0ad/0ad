@@ -453,7 +453,7 @@
 					size="4 4 100%-4 32"
 					tooltip_style="pgToolTip"
 				>
-					<translatableAttribute id="caption">Learn To Play</translatableAttribute>
+					<translatableAttribute id="caption">Learn to Play</translatableAttribute>
 					<translatableAttribute id="tooltip">Learn how to play, start the tutorial, discover the technology trees, and the history behind the civilizations</translatableAttribute>
 					<action on="Press">
 						closeMenu();
@@ -536,7 +536,7 @@
 					<!-- IMPORTANT: remember to update session/top_panel/label.xml in sync with this: -->
 					<attribute id="caption">
 						<keep>[font="sans-bold-16"]</keep>
-						<translate>Alpha XXII: Venustas</translate>
+						<translate>Alpha XXIII: Ken Wood</translate>
 						<keep>[/font]\n\n</keep>
 						<translate>WARNING: This is an early development version of the game. Many features have not been added yet.</translate>
 					</attribute>
@@ -584,7 +584,7 @@
 					tooltip_style="pgToolTip"
 					size="8 100%-72 100%-8 100%-44"
 				>
-					<translatableAttribute id="caption">Translate the game</translatableAttribute>
+					<translatableAttribute id="caption">Translate the Game</translatableAttribute>
 					<translatableAttribute id="tooltip">Click to open the 0 A.D. translate page in your browser.</translatableAttribute>
 					<action on="Press"><![CDATA[
 						openURL("http://trac.wildfiregames.com/wiki/Localization");
