@@ -50,7 +50,7 @@ function ChangeEntityTemplate(oldEnt, newTemplate)
 	if (cmpHealth && cmpNewHealth)
 	{
 		var healthLevel = Math.max(0, Math.min(1, cmpHealth.GetHitpoints() / cmpHealth.GetMaxHitpoints()));
-		cmpNewHealth.SetHitpoints(Math.round(cmpNewHealth.GetMaxHitpoints() * healthLevel));
+		cmpNewHealth.SetHitpoints(cmpNewHealth.GetMaxHitpoints() * healthLevel);
 	}
 
 	var cmpUnitAI = Engine.QueryInterface(oldEnt, IID_UnitAI);
