@@ -121,9 +121,9 @@ function selectPanel(panel)
 
 	for (let button of Engine.GetGUIObjectByName("summaryWindow").children)
 		if (button.name.endsWith("PanelButton"))
-			button.sprite = "BackgroundTab";
+			button.sprite = "ModernTabHorizontalBackground";
 
-	panel.sprite = "ForegroundTab";
+	panel.sprite = "ModernTabHorizontalForeground";
 
 	adjustTabDividers(panel.size);
 

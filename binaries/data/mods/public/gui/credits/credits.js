@@ -84,7 +84,7 @@ function parseHelper(list)
 function selectPanel(i)
 {
 	Engine.GetGUIObjectByName("creditsPanelButtons").children.forEach((button, j) => {
-		button.sprite = i == j ? "ForegroundBox" : "BackgroundBox";
+		button.sprite = i == j ? "ModernTabVerticalForeground" : "ModernTabVerticalBackground";
 	});
 
 	Engine.GetGUIObjectByName("creditsText").caption = g_PanelTexts[g_PanelNames[i]];

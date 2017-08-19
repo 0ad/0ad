@@ -549,6 +549,58 @@
 	</sprite>
 	<!--
 	==========================================
+	- Horizontal Tabs -
+	==========================================
+	-->
+	<sprite name="ModernTabHorizontalForeground">
+		<image backcolor="255 255 255 40" size="0 0 100% 100%"/>
+		<!-- Left, Top, Right Edge -->
+		<image backcolor="gold" size="0 0 2 100%"/>
+		<image backcolor="gold" size="2 0 100%-2 2"/>
+		<image backcolor="gold" size="100%-2 0 100% 100%"/>
+	</sprite>
+
+	<sprite name="ModernTabHorizontalBackground">
+		<image backcolor="50 35 0 120" size="0 0 100% 100%"/>
+		<!-- Left, Top, Right Edge -->
+		<image backcolor="gold" size="0 0 1 100%"/>
+		<image backcolor="gold" size="1 0 100%-1 1"/>
+		<image backcolor="gold" size="100%-1 0 100% 100%"/>
+	</sprite>
+	<sprite name="ModernTabHorizontalSpacer">
+		<image backcolor="gold" size="0 0 100% 100%"/>
+	</sprite>
+	<sprite name="ModernTabHorizontalFrame">
+		<image backcolor="255 255 255 40" size="0 0 100% 100%"/>
+		<!-- Left, Right, Bottom Edge -->
+		<image backcolor="gold" size="0 0 2 100%"/>
+		<image backcolor="gold" size="100%-2 0 100% 100%"/>
+		<image backcolor="gold" size="2 100%-2 100%-2 100%"/>
+	</sprite>
+	<!--
+	==========================================
+	- Vertical Tabs -
+	==========================================
+	-->
+	<sprite name="ModernTabVerticalBackground">
+		<image backcolor="50 35 0 120" size="0 0 100% 100%"/>
+		<!-- Left, Top, Right, Bottom Edge -->
+		<image backcolor="gold" size="0 0 1 100%"/>
+		<image backcolor="gold" size="1 0 100%-1 1"/>
+		<image backcolor="gold" size="100%-1 0 100% 100%"/>
+		<image backcolor="gold" size="0 100%-1 100% 100%"/>
+	</sprite>
+
+	<sprite name="ModernTabVerticalForeground">
+		<image backcolor="255 255 255 40" size="0 0 100% 100%"/>
+		<!-- Left, Top, Right, Bottom Edge -->
+		<image backcolor="gold" size="0 0 2 100%"/>
+		<image backcolor="gold" size="2 0 100%-2 2"/>
+		<image backcolor="gold" size="100%-2 0 100% 100%"/>
+		<image backcolor="gold" size="2 100%-2 100%-2 100%"/>
+	</sprite>
+	<!--
+	==========================================
 	- Basic. -
 	==========================================
 	-->

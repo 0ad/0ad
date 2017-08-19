@@ -55,59 +55,59 @@
 
 		</object>
 
-		<object name="tabDividerLeft" type="image" sprite="TabSpacer" size="172 120 174 122"/>
-		<object name="tabDividerRight" type="image" sprite="TabSpacer" size="328 120 330 122"/>
+		<object name="tabDividerLeft" type="image" sprite="ModernTabHorizontalSpacer" size="172 120 174 122"/>
+		<object name="tabDividerRight" type="image" sprite="ModernTabHorizontalSpacer" size="328 120 330 122"/>
 
-		<object name="scorePanelButton" type="button" sprite="ForegroundTab" style="TabButton" size="20 92 136 120">
+		<object name="scorePanelButton" type="button" style="ModernTabButtonHorizontal" size="20 92 136 120">
 			<action on="Press">selectPanel(this);</action>
 			<object type="text" style="ModernLabelText" ghost="true">
 				<translatableAttribute id="caption">Score</translatableAttribute>
 			</object>
 		</object>
 
-		<object name="buildingsPanelButton" type="button" sprite="BackgroundTab" style="TabButton" size="142 92 260 120">
+		<object name="buildingsPanelButton" type="button" style="ModernTabButtonHorizontal" size="142 92 260 120">
 			<action on="Press">selectPanel(this);</action>
 			<object type="text" style="ModernLabelText" ghost="true">
 				<translatableAttribute id="caption">Buildings</translatableAttribute>
 			</object>
 		</object>
 
-		<object name="unitsPanelButton" type="button" sprite="BackgroundTab" style="TabButton" size="266 92 384 120">
+		<object name="unitsPanelButton" type="button" style="ModernTabButtonHorizontal" size="266 92 384 120">
 			<action on="Press">selectPanel(this);</action>
 			<object type="text" style="ModernLabelText" ghost="true">
 				<translatableAttribute id="caption">Units</translatableAttribute>
 			</object>
 		</object>
 
-		<object name="resourcesPanelButton" type="button" sprite="BackgroundTab" style="TabButton" size="390 92 508 120">
+		<object name="resourcesPanelButton" type="button" style="ModernTabButtonHorizontal" size="390 92 508 120">
 			<action on="Press">selectPanel(this);</action>
 			<object type="text" style="ModernLabelText" ghost="true">
 				<translatableAttribute id="caption">Resources</translatableAttribute>
 			</object>
 		</object>
 
-		<object name="marketPanelButton" type="button" sprite="BackgroundTab" style="TabButton" size="514 92 632 120">
+		<object name="marketPanelButton" type="button" style="ModernTabButtonHorizontal" size="514 92 632 120">
 			<action on="Press">selectPanel(this);</action>
 			<object type="text" style="ModernLabelText" ghost="true">
 				<translatableAttribute id="caption">Market</translatableAttribute>
 			</object>
 		</object>
 
-		<object name="miscPanelButton" type="button" sprite="BackgroundTab" style="TabButton" size="638 92 756 120">
+		<object name="miscPanelButton" type="button" style="ModernTabButtonHorizontal" size="638 92 756 120">
 			<action on="Press">selectPanel(this);</action>
 			<object type="text" style="ModernLabelText" ghost="true">
 				<translatableAttribute id="caption">Miscellaneous</translatableAttribute>
 			</object>
 		</object>
 
-		<object name="chartsPanelButton" type="button" sprite="BackgroundTab" style="TabButton" size="762 92 880 120">
+		<object name="chartsPanelButton" type="button" style="ModernTabButtonHorizontal" size="762 92 880 120">
 			<action on="Press">selectPanel(this);</action>
 			<object type="text" style="ModernLabelText" ghost="true">
 				<translatableAttribute id="caption">Charts</translatableAttribute>
 			</object>
 		</object>
 
-		<object name="generalPanel" type="image" sprite="ForegroundBody" size="20 120 100%-20 100%-54">
+		<object name="generalPanel" type="image" sprite="ModernTabHorizontalFrame" size="20 120 100%-20 100%-54">
 			<object size="0 0 100% 100%-50">
 				<object name="playerNameHeading" type="text" style="ModernLeftTopLabelText">
 					<translatableAttribute id="caption">Player name</translatableAttribute>
@@ -156,7 +156,7 @@
 			</object>
 		</object>
 		
-		<object name="chartsPanel" type="image" sprite="ForegroundBody" size="20 120 100%-20 100%-54">
+		<object name="chartsPanel" type="image" sprite="ModernTabHorizontalFrame" size="20 120 100%-20 100%-54">
 			<repeat count="2" var="k">
 				<object name="chart[k]Part" size="15 0 50%-10 100%-35">
 					<object type="text" style="ModernLeftLabelText" size="1 6 145 26">
