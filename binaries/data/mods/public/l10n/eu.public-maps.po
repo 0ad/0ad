@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-09 09:05+0200\n"
-"PO-Revision-Date: 2017-08-09 14:44+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-08-16 21:08+0000\n"
+"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -862,7 +862,7 @@ msgstr "Etsaien saldoa eraso dator!"
 #: maps/random/survivalofthefittest_triggers.js:351
 #, javascript-format
 msgid "%(player)s has been defeated (lost civic center)."
-msgstr ""
+msgstr "%(player)s menderatua izan da (gizarte zentroak galdu du). "
 
 #: maps/scenarios/Cinema_Demo.js:6
 msgid "Cutscene starts after 5 seconds"
@@ -925,16 +925,16 @@ msgstr "Garaitu etsaia garaipena lortzeko!"
 #, javascript-format
 msgid "%(lastPlayer)s has won (treasure collected)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s irabazi du (altxorra jasorik)."
+msgstr[1] "%(players)s and %(lastPlayer)s irabazi dute (altxorra jasorik)."
 
 #: maps/scenarios/treasure_islands.js:105
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (treasure collected)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (treasure collected)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s garaitua izan da (altxorra jasorik)."
+msgstr[1] "%(players)s eta %(lastPlayer)s garaituak izan dira (altxorra jasorik)."
 
 #: maps/scenarios/Arcadia.xml:Description:39
 msgid ""
