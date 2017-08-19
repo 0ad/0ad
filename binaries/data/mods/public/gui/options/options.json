@@ -161,7 +161,22 @@
 			"label": "Shadows",
 			"tooltip": "Enable shadows",
 			"parameters": {  "config": "shadows", "renderer": "Shadows" },
-			"dependencies": [ "shadowpcf" ]
+			"dependencies": [ "shadowquality", "shadowpcf" ]
+		},
+		{
+			"type": "dropdown",
+			"label": "Shadow Quality",
+			"tooltip": "Shadow map resolution. High values can crash the game when using a graphics card with low memory! REQUIRES GAME RESTART",
+			"parameters": {
+				"config": "shadowquality",
+				"list": [
+					{ "value": -2, "label": "Very Low" },
+					{ "value": -1, "label": "Low" },
+					{ "value": 0, "label": "Medium" },
+					{ "value": 1, "label": "High" },
+					{ "value": 2, "label": "Very High" }
+				]
+			}
 		},
 		{
 			"type": "boolean",

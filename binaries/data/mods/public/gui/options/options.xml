@@ -35,7 +35,7 @@
 			<object style="ModernLabelText" type="text" size="0 5 100% 25">
 				<translatableAttribute id="caption">Graphics Settings</translatableAttribute>
 			</object>
-			<repeat count="21">
+			<repeat count="22">
 				<object name="graphicsSetting[n]" size="0 25 100% 50" hidden="true">
 					<object name="graphicsSettingLabel[n]" size="0 0 65% 100%" type="text" style="ModernLeftLabelText"/>
 					<object name="graphicsSettingTickbox[n]" size="90% 5 100% 100%+5" type="checkbox" style="ModernTickBox" hidden="true"/>
