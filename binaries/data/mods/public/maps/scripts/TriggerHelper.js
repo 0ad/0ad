@@ -212,4 +212,14 @@ TriggerHelper.GetLandSpawnPoints = function()
 	return neutralSpawnPoints.length ? neutralSpawnPoints : nonNeutralSpawnPoints;
 };
 
+TriggerHelper.HasDealtWithTech = function(playerID, techName)
+{
+	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	let playerEnt = cmpPlayerManager.GetPlayerByID(playerID);
+	let cmpTechnologyManager = Engine.QueryInterface(playerEnt, IID_TechnologyManager);
+	return cmpTechnologyManager && (cmpTechnologyManager.IsTechnologyQueued(techName) ||
+	                                cmpTechnologyManager.IsTechnologyStarted(techName) ||
+	                                cmpTechnologyManager.IsTechnologyResearched(techName))
+};
+
 Engine.RegisterGlobal("TriggerHelper", TriggerHelper);

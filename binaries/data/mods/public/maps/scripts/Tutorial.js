@@ -1,6 +1,5 @@
 Trigger.prototype.InitTutorial = function(data)
 {
-	this.count = 0;
 	this.index = 0;
 	this.fullText = "";
 	this.tutorialEvents = [];
@@ -15,6 +14,10 @@ Trigger.prototype.InitTutorial = function(data)
 		for (let key in goal)
 		{
 			if (typeof goal[key] !== "function" || this.tutorialEvents.indexOf(key) != -1)
+				continue;
+			if (key === "Init")
+				continue;
+			if (key === "IsDone")
 				continue;
 			let action = key + "Trigger";
 			this.RegisterTrigger(key, action, { "enabled": false });
@@ -32,6 +35,14 @@ Trigger.prototype.NextGoal = function(deserializing = false)
 	let goal = this.tutorialGoals[this.index];
 	let needDelay = true;
 	let readyButton = false;
+
+	Trigger.prototype.Init = goal.Init || null;
+	if (!deserializing && this.Init)
+		this.Init();
+
+	Trigger.prototype.IsDone = goal.IsDone || (() => false);
+	let goalAlreadyDone = this.IsDone();
+
 	for (let event of this.tutorialEvents)
 	{
 		let action = event + "Trigger";
@@ -39,22 +50,25 @@ Trigger.prototype.NextGoal = function(deserializing = false)
 		{
 			Trigger.prototype[action] = goal[event];
 			this.EnableTrigger(event, action);
-			needDelay = false;
-			if (!deserializing)
-				this.count = 0;
+			if (!goalAlreadyDone)
+				needDelay = false;
 		}
 		else
 			this.DisableTrigger(event, action);
 	}
-	if (needDelay)	// no actions for the next goal
+
+	// Goals without actions to be performed by the player must have
+	// - either the property delay (a value > 0 to wait for a given time, and -1 to display the Ready button)
+	// - or no trigger functions (needDelay will be set automatically to true and the Ready button displayed)
+	if (goal.delay || needDelay)
 	{
-		if (goal.delay)
+		if (goal.delay && goal.delay > 0)
 			this.DoAfterDelay(+goal.delay, "NextGoal", {});
 		else
 		{
 			this.EnableTrigger("OnPlayerCommand", "OnPlayerCommandTrigger");
 			Trigger.prototype.OnPlayerCommandTrigger = function(msg)
-			{ 
+			{
 				if (msg.cmd.type == "dialog-answer" && msg.cmd.tutorial && msg.cmd.tutorial == "ready")
 					this.NextGoal();
 			};
