@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!--
-  - This file contains the sprites for the 'modern' style GUI.
-  -
-  -->
-
 <sprites>
-
 	<!--
 	==========================================
 	- Scrollbar -
@@ -49,7 +43,6 @@
 			texture_size = "0 0 1024 256"
 			size = "12 100%-268 100%-12 100%-12"
 		/>
-
 		<image texture = "global/modern/shadow-high.png"
 			texture_size = "1024 256 0 0"
 			size = "12 22 100%-12 268"
@@ -78,9 +71,7 @@
 			real_texture_placement = "32 32 0 0"
 			size = "50%+122 4 50%+154 37"
 		/>
-
 	</sprite>
-
 	<!--
 	==========================================
 	- Dialog -
@@ -100,7 +91,6 @@
 			texture_size = "0 0 1024 128"
 			size = "4 100%-132 100%-4 100%-4"
 		/>
-
 		<image texture = "global/modern/shadow-low.png"
 			texture_size = "1024 128 0 0"
 			size = "4 0 100%-4 128"
@@ -399,150 +389,6 @@
 			size="100%-8 8 100% 100%-8"
 		/>
 		<image texture="global/modern/button/red-unselected-right-bottom.png"
-			real_texture_placement="0 0 8 8"
-			size="100%-8 100%-8 100% 100%"
-		/>
-	</sprite>
-	<!-- GRAY -->
-	<sprite name="ModernButtonGray">
-		<!-- Background -->
-		<image texture="global/modern/button/gray-unselected-background.png"
-			real_texture_placement="0 0 512 128"
-			texture_size="0 0 512 128"
-			size="2 2 100%-2 100%-2"
-		/>
-		<!-- Left -->
-		<image texture="global/modern/button/gray-unselected-left-top.png"
-			real_texture_placement="0 0 8 8"
-			size="0 0 8 8"
-		/>
-		<image texture="global/modern/button/gray-unselected-left-center.png"
-			real_texture_placement="0 0 8 16"
-			texture_size="0 0 8 16"
-			size="0 8 8 100%-8"
-		/>
-		<image texture="global/modern/button/gray-unselected-left-bottom.png"
-			real_texture_placement="0 0 8 8"
-			size="0 100%-8 8 100%"
-		/>
-		<!-- Center -->
-		<image texture="global/modern/button/gray-unselected-center-top.png"
-			real_texture_placement="0 0 128 8"
-			texture_size="0 0 128 8"
-			size="8 0 100%-8 8"
-		/>
-		<image texture="global/modern/button/gray-unselected-center-bottom.png"
-			real_texture_placement="0 0 128 8"
-			texture_size="0 0 128 8"
-			size="8 100%-8 100%-8 100%"
-		/>
-		<!-- Right -->
-		<image texture="global/modern/button/gray-unselected-right-top.png"
-			real_texture_placement="0 0 8 8"
-			size="100%-8 0 100% 8"
-		/>
-		<image texture="global/modern/button/gray-unselected-right-center.png"
-			real_texture_placement="0 0 8 16"
-			texture_size="0 0 8 16"
-			size="100%-8 8 100% 100%-8"
-		/>
-		<image texture="global/modern/button/gray-unselected-right-bottom.png"
-			real_texture_placement="0 0 8 8"
-			size="100%-8 100%-8 100% 100%"
-		/>
-	</sprite>
-	<sprite name="ModernButtonGrayOver">
-		<!-- Background -->
-		<image texture="global/modern/button/gray-unselected-background.png"
-			real_texture_placement="0 0 512 128"
-			texture_size="0 0 512 128"
-			size="2 2 100%-2 100%-2"
-		>
-			<effect add_color="42 42 42 0"/>
-		</image>
-		<!-- Left -->
-		<image texture="global/modern/button/gray-unselected-left-top.png"
-			real_texture_placement="0 0 8 8"
-			size="0 0 8 8"
-		/>
-		<image texture="global/modern/button/gray-unselected-left-center.png"
-			real_texture_placement="0 0 8 16"
-			texture_size="0 0 8 16"
-			size="0 8 8 100%-8"
-		/>
-		<image texture="global/modern/button/gray-unselected-left-bottom.png"
-			real_texture_placement="0 0 8 8"
-			size="0 100%-8 8 100%"
-		/>
-		<!-- Center -->
-		<image texture="global/modern/button/gray-unselected-center-top.png"
-			real_texture_placement="0 0 128 8"
-			texture_size="0 0 128 8"
-			size="8 0 100%-8 8"
-		/>
-		<image texture="global/modern/button/gray-unselected-center-bottom.png"
-			real_texture_placement="0 0 128 8"
-			texture_size="0 0 128 8"
-			size="8 100%-8 100%-8 100%"
-		/>
-		<!-- Right -->
-		<image texture="global/modern/button/gray-unselected-right-top.png"
-			real_texture_placement="0 0 8 8"
-			size="100%-8 0 100% 8"
-		/>
-		<image texture="global/modern/button/gray-unselected-right-center.png"
-			real_texture_placement="0 0 8 16"
-			texture_size="0 0 8 16"
-			size="100%-8 8 100% 100%-8"
-		/>
-		<image texture="global/modern/button/gray-unselected-right-bottom.png"
-			real_texture_placement="0 0 8 8"
-			size="100%-8 100%-8 100% 100%"
-		/>
-	</sprite>
-	<sprite name="ModernButtonGrayDisabled">
-		<!-- Background -->
-		<image texture="global/modern/button/gray-unselected-background.png"
-			real_texture_placement="0 0 512 128"
-			texture_size="0 0 512 128"
-			size="2 2 100%-2 100%-2"
-		/>
-		<!-- Left -->
-		<image texture="global/modern/button/gray-unselected-left-top.png"
-			real_texture_placement="0 0 8 8"
-			size="0 0 8 8"
-		/>
-		<image texture="global/modern/button/gray-unselected-left-center.png"
-			real_texture_placement="0 0 8 16"
-			texture_size="0 0 8 16"
-			size="0 8 8 100%-8"
-		/>
-		<image texture="global/modern/button/gray-unselected-left-bottom.png"
-			real_texture_placement="0 0 8 8"
-			size="0 100%-8 8 100%"
-		/>
-		<!-- Center -->
-		<image texture="global/modern/button/gray-unselected-center-top.png"
-			real_texture_placement="0 0 128 8"
-			texture_size="0 0 128 8"
-			size="8 0 100%-8 8"
-		/>
-		<image texture="global/modern/button/gray-unselected-center-bottom.png"
-			real_texture_placement="0 0 128 8"
-			texture_size="0 0 128 8"
-			size="8 100%-8 100%-8 100%"
-		/>
-		<!-- Right -->
-		<image texture="global/modern/button/gray-unselected-right-top.png"
-			real_texture_placement="0 0 8 8"
-			size="100%-8 0 100% 8"
-		/>
-		<image texture="global/modern/button/gray-unselected-right-center.png"
-			real_texture_placement="0 0 8 16"
-			texture_size="0 0 8 16"
-			size="100%-8 8 100% 100%-8"
-		/>
-		<image texture="global/modern/button/gray-unselected-right-bottom.png"
 			real_texture_placement="0 0 8 8"
 			size="100%-8 100%-8 100% 100%"
 		/>
