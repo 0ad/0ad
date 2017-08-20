@@ -66,14 +66,11 @@
 			<!-- Replay List in that left panel -->
 			<object name="replaySelection"
 				size="0 35 100% 100%-24"
-				style="ModernList"
 				type="olist"
+				style="ModernSortedList"
 				sortable="true"
 				selected_column="months"
 				selected_column_order="-1"
-				sprite_asc="ModernArrowDown"
-				sprite_desc="ModernArrowUp"
-				sprite_not_sorted="ModernNotSorted"
 				font="sans-stroke-13"
 			>
 
