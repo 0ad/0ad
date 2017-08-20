@@ -243,8 +243,8 @@ function getGameDescription(extended = false)
 			title = sprintf(
 				translatePluralWithContext(
 					"victory condition",
-					"Capture The Relic (%(min)s minute)",
-					"Capture The Relic (%(min)s minutes)",
+					"Capture the Relic (%(min)s minute)",
+					"Capture the Relic (%(min)s minutes)",
 					g_GameAttributes.settings.VictoryDuration
 				),
 				{ "min": g_GameAttributes.settings.VictoryDuration }

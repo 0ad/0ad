@@ -421,7 +421,7 @@ function displayMultiple(entStates)
 				"hitpoints": capturePoints[playerID],
 				"maxHitpoints": maxCapturePoints
 			},
-			translate("Capture points:"));
+			translate("Capture Points:"));
 	}
 
 	let numberOfUnits = Engine.GetGUIObjectByName("numberOfUnits");

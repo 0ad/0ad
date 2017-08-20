@@ -299,7 +299,7 @@ BuildRestrictions.prototype.CheckPlacement = function()
 				var result = markForPluralTranslation(
 					"%(name)s too far from a %(category)s, must be within %(distance)s meter",
 					"%(name)s too far from a %(category)s, must be within %(distance)s meters",
-					+this.template.Distance.MinDistance);
+					+this.template.Distance.MaxDistance);
 
 				result.success = false;
 				result.translateMessage = true;

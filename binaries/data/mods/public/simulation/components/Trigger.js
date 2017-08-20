@@ -229,7 +229,7 @@ Trigger.prototype.OnGlobalInitGame = function(msg)
 
 Trigger.prototype.OnGlobalConstructionFinished = function(msg)
 {
-	this.CallEvent("StructureBuilt", { "building": msg.newentity });
+	this.CallEvent("StructureBuilt", { "building": msg.newentity, "foundation": msg.entity });
 };
 
 Trigger.prototype.OnGlobalTrainingFinished = function(msg)

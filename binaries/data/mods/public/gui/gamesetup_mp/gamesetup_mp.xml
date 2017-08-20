@@ -28,7 +28,7 @@
 			</object>
 
 			<object type="text" size="20 36 50% 66" style="ModernRightLabelText">
-				<translatableAttribute id="caption">Player name:</translatableAttribute>
+				<translatableAttribute id="caption">Player Name:</translatableAttribute>
 			</object>
 
 			<object name="joinPlayerName" type="input" size="50%+10 40 100%-20 64" style="ModernInput">
@@ -70,7 +70,7 @@
 
 			<object name="hostPlayerNameWrapper" hidden="true">
 				<object type="text" size="20 36 50% 66" style="ModernRightLabelText">
-					<translatableAttribute id="caption">Player name:</translatableAttribute>
+					<translatableAttribute id="caption">Player Name:</translatableAttribute>
 				</object>
 
 				<object name="hostPlayerName" type="input" size="50%+10 40 100%-20 64" style="ModernInput">
@@ -83,7 +83,7 @@
 			<!-- Host server name is only used on games started through the lobby. -->
 			<object name="hostServerNameWrapper" hidden="true">
 				<object type="text" size="20 36 50% 66" style="ModernRightLabelText">
-					<translatableAttribute id="caption">Server name:</translatableAttribute>
+					<translatableAttribute id="caption">Server Name:</translatableAttribute>
 				</object>
 
 				<object name="hostServerName" type="input" size="50%+10 40 100%-20 64" style="ModernInput">

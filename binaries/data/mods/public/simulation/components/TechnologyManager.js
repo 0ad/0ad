@@ -89,9 +89,19 @@ TechnologyManager.prototype.CanProduce = function (templateName)
 	return true;
 };
 
+TechnologyManager.prototype.IsTechnologyQueued = function(tech)
+{
+	return this.researchQueued[tech] !== undefined;
+};
+
 TechnologyManager.prototype.IsTechnologyResearched = function(tech)
 {
-	return (this.researchedTechs[tech] !== undefined);
+	return this.researchedTechs[tech] !== undefined;
+};
+
+TechnologyManager.prototype.IsTechnologyStarted = function(tech)
+{
+	return this.researchStarted[tech] !== undefined;
 };
 
 // Checks the requirements for a technology to see if it can be researched at the current time

@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,6 +25,7 @@
 #include "lib/bits.h"
 #include "lib/ogl.h"
 #include "ps/CLogger.h"
+#include "ps/ConfigDB.h"
 #include "ps/Profile.h"
 
 #include "graphics/LightEnv.h"
@@ -55,6 +56,8 @@ struct ShadowMapInternals
 	GLuint Texture;
 	// width, height of shadow map
 	int Width, Height;
+	// Shadow map quality (-2 - Very Low, -1 - Low, 0 - Medium, 1 - High, 2 - Very High)
+	int QualityLevel;
 	// used width, height of shadow map
 	int EffectiveWidth, EffectiveHeight;
 	// transform light space into projected light space
@@ -107,6 +110,7 @@ ShadowMap::ShadowMap()
 	m->DummyTexture = 0;
 	m->Width = 0;
 	m->Height = 0;
+	m->QualityLevel = 0;
 	m->EffectiveWidth = 0;
 	m->EffectiveHeight = 0;
 	m->DepthTextureBits = 0;
@@ -385,8 +389,33 @@ void ShadowMapInternals::CreateTexture()
 	}
 	else
 	{
+		CFG_GET_VAL("shadowquality", QualityLevel);
+
 		// get shadow map size as next power of two up from view width/height
-		Width = Height = (int)round_up_to_pow2((unsigned)std::max(g_Renderer.GetWidth(), g_Renderer.GetHeight()));
+		int shadow_map_size = (int)round_up_to_pow2((unsigned)std::max(g_Renderer.GetWidth(), g_Renderer.GetHeight()));
+		switch (QualityLevel)
+		{
+		// Very Low
+		case -2:
+			shadow_map_size /= 4;
+			break;
+		// Low
+		case -1:
+			shadow_map_size /= 2;
+			break;
+		// High
+		case 1:
+			shadow_map_size *= 2;
+			break;
+		// Ultra
+		case 2:
+			shadow_map_size *= 4;
+			break;
+		// Medium as is
+		default:
+			break;
+		}
+		Width = Height = shadow_map_size;
 	}
 	// Clamp to the maximum texture size
 	Width = std::min(Width, (int)ogl_max_tex_size);

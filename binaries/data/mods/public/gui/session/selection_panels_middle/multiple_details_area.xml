@@ -27,7 +27,6 @@
 	<object size= "100%-38 50 100%-18 100%-44" type="image" tooltip_style="sessionToolTip">
 	<!-- Health bar -->
 	<object size="4 0 11 100%" type="image" name="healthMultiple" tooltip_style="sessionToolTip">
-		<translatableAttribute id="tooltip">Hitpoints</translatableAttribute>
 		<object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
 		<object type="image" sprite="healthBackground" ghost="true"/>
 		<object type="image" sprite="healthForeground" ghost="true" name="healthBarMultiple"/>
@@ -36,7 +35,6 @@
 
 	<!-- Capture bar -->
 	<object size="15 0 22 100%" type="image" name="captureMultiple" tooltip_style="sessionToolTip">
-		<translatableAttribute id="tooltip">Capture points</translatableAttribute>
 		<object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
 		<repeat count="9">
 			<object type="image" sprite="playerColorBackground" ghost="true" name="captureBarMultiple[n]" hidden="true"/>

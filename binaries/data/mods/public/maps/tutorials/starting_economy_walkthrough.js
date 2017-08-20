@@ -100,6 +100,10 @@ let tutorialGoals = [
 	},
 	{
 		"instructions": markForTranslation("When construction finishes, the builders default to gathering Wood automatically.\nLet's train some female workers to gather more food. Select the Civic Center and shift-click on the female citizen icon to train 5."),
+		"Init": function()
+		{
+			this.trainingDone = false;
+		},
 		"OnTrainingQueued": function(msg)
 		{
 			if (msg.unitTemplate != "units/athen_support_female_citizen" || +msg.count == 1)
@@ -122,29 +126,65 @@ let tutorialGoals = [
 		{
 			if (msg.cmd.type == "unset-rallypoint")
 				this.NextGoal();
+		},
+		"OnTrainingFinished": function(msg)
+		{
+			this.trainingDone = true;
 		}
 	},
 	{
 		"instructions": markForTranslation("The units should be ready soon.\nIn the meantime, direct your attention to your population count on the top panel. It is the fifth item from the left, after the resources. It would be prudent to keep an eye on it. It indicates your current population (including those being trained) and the current population limit, which is determined by your built structures."),
+		"IsDone": function(msg)
+		{
+			return this.trainingDone;
+		},
 		"OnTrainingFinished": function(msg)
 		{
 			this.NextGoal();
 		}
 	},
 	{
-		"instructions": markForTranslation("As you have nearly reached the population limit, you must increase it by building some new structures if you want to train more units. The most cost effective structure to increase your population limit is the house.\nNow that the units are ready, let's build two houses."),
+		"instructions": markForTranslation("As you have nearly reached the population limit, you must increase it by building some new structures if you want to train more units. The most cost effective structure to increase your population limit is the house.\nNow that the units are ready, let's see how to build several houses in a row.")
 	},
 	{
 		"instructions": markForTranslation("Select two of your newly trained Female Citizens and ask them to build these houses in the empty space to the east of the Civic Center. To do so, after selecting the Female Citizens, click on the house icon in the bottom right panel and shift-click on the position in the map where you want to build the first house followed by a shift-click on the position of the second house (when giving orders, shift-click put the order in the queue and the units will automatically switch to the next order in their queue when they finish their work). Press Escape to get rid of the house cursor so you don't spam houses all over the map.\nReminder: to select only two Female Citizens, click on the first one and then shift-click on the second one to add her to the selection."),
-		"OnPlayerCommand": function(msg)
+		"Init": function()
 		{
-			if (msg.cmd.type == "construct" && msg.cmd.template == "structures/athen_house" &&
-				++this.count == 2)
-				this.NextGoal();
+			this.houseGoal = new Set();
+			this.houseCount = 0;
+		},
+		"IsDone": function()
+		{
+			return this.houseCount > 1;
+		},
+		"OnOwnershipChanged": function(msg)
+		{
+			if (msg.from != -1 && this.houseGoal.has(+msg.entity))
+			{
+				this.houseGoal.delete(+msg.entity);
+				let cmpFoundation = Engine.QueryInterface(+msg.entity, IID_Foundation);
+				if (cmpFoundation && cmpFoundation.GetBuildProgress() < 1)	// Destroyed before built
+					--this.houseCount;
+			}
+			else if (msg.from == -1 && msg.to == this.playerID &&
+			         Engine.QueryInterface(+msg.entity, IID_Foundation) &&
+			         TriggerHelper.EntityHasClass(+msg.entity, "House"))
+			{
+				this.houseGoal.add(+msg.entity);
+				++this.houseCount;
+				if (this.IsDone())
+					this.NextGoal();
+			}
 		}
 	},
 	{
 		"instructions": markForTranslation("You may notice that berries are a finite supply of food. We will need a more lasting food source. Fields produce an unlimited food resource, but are slower to gather than forageable fruits.\nBut to minimize the distance between a farm and its corresponding food dropsite, we will first build a farmstead."),
+		"delay": -1,
+		"OnOwnershipChanged": function(msg)
+		{
+			if (this.houseGoal.has(+msg.entity))
+				this.houseGoal.delete(+msg.entity);
+		}
 	},
 	{
 		"instructions": markForTranslation("Select the three remaining (idle) Female Citizens and order them to build a farmstead in the center of the large open area to the west of the Civic Center.\nWe will need a decent chunk of space around the farmstead to build fields. In addition, we can see goats on the west side to further improve our food gathering efficiency should we ever decide to hunt them.\nIf you try to select the three idle Female Citizens by selection rectangle them, there is a high chance that one additional gatherers are included in your selection rectangle. To prevent that, hold the 'i' key while grabing: only idle units are then selected. If during your selection you select the cavalry which may now be idle, you can remove it by pressing the control key while clicking on its corresponding portrait in the selection panel on the bottom."),
@@ -152,15 +192,26 @@ let tutorialGoals = [
 		{
 			if (msg.cmd.type == "construct" && msg.cmd.template == "structures/athen_farmstead")
 				this.NextGoal();
+		},
+		"OnOwnershipChanged": function(msg)
+		{
+			if (this.houseGoal.has(+msg.entity))
+				this.houseGoal.delete(+msg.entity);
 		}
 	},
 	{
 		"instructions": markForTranslation("When the farmstead construction is finished, its builders will automatically look for food, and in this case, they will go after the nearby goats.\nBut your house builders will only look for something else to build and, if nothing found, become idle. Let's wait for them to build the houses."),
-		"OnStructureBuilt": function(msg)
+		"IsDone": function()
 		{
-			if (TriggerHelper.EntityHasClass(msg.building, "House") && ++this.count == 2)
-				this.NextGoal();
+			return !this.houseGoal.size;
 		},
+		"OnOwnershipChanged": function(msg)
+		{
+			if (this.houseGoal.has(+msg.entity))
+				this.houseGoal.delete(+msg.entity);
+			if (this.IsDone())
+				this.NextGoal();
+		}
 	},
 	{
 		"name": "buildField",
@@ -172,11 +223,11 @@ let tutorialGoals = [
 		}
 	},
 	{
-		"instructions": markForTranslation("When the field is constructed, the builders will automatically start gathering it.\nThe cavalry unit should have slaughtered all chicken by now. Select it and right-click on one of the goats in the west to start hunting them for food."),
+		"instructions": markForTranslation("When the field is constructed, the builders will automatically start gathering it.\nThe cavalry unit should have slaughtered all chicken by now. Select it and explore the south-west area: there is a lake with some camels around. Move your cavalry by right-clicking on the point you want to go, and when you see a herd of camels, right-click on one of them to start hunting for food."),
 		"OnPlayerCommand": function(msg)
 		{
 			if (msg.cmd.type == "gather" && msg.cmd.target &&
-				TriggerHelper.GetResourceType(msg.cmd.target).specific == "meat")
+			    TriggerHelper.GetResourceType(msg.cmd.target).specific == "meat")
 				this.NextGoal();
 		}
 	},
@@ -196,6 +247,10 @@ let tutorialGoals = [
 	},
 	{
 		"instructions": markForTranslation("Now click three times on the female icon in the bottom right panel to train three additional farmers."),
+		"Init": function(msg)
+		{
+			this.femaleCount = 0;
+		},
 		"OnTrainingQueued": function(msg)
 		{
 			if (msg.unitTemplate != "units/athen_support_female_citizen" || +msg.count != 1)
@@ -203,19 +258,23 @@ let tutorialGoals = [
 				let entity = msg.trainerEntity;
 				let cmpProductionQueue = Engine.QueryInterface(entity, IID_ProductionQueue);
 				cmpProductionQueue.ResetQueue();
-				let txt = +msg.count == 1 ?
-					markForTranslation("Do a simple left-click to produce a single unit.") :
+				let txt = +msg.count != 1 ?
+					markForTranslation("Do not shift-click to produce a single unit.") :
 					markForTranslation("Click on the FEMALE CITIZEN icon.");
 				this.WarningMessage(txt);
 				return;
 			}
-			if (++this.count < 3)
-				return;
-			this.NextGoal();
+			if (++this.femaleCount == 3)
+				this.NextGoal();
 		}
 	},
 	{
 		"instructions": markForTranslation("You can increase the gather rates of your workers by researching new technologies available in some buildings.\nThe farming rate, for example, can be improved with a researchable technology in the farmstead. Select the farmstead and look at its production panel on the bottom right. You will see several researchable technologies. Hover the mouse over them to see their costs and effects and click on the one you want to research."),
+		"IsDone": function()
+		{
+			return TriggerHelper.HasDealtWithTech(this.playerID, "gather_wicker_baskets") ||
+			       TriggerHelper.HasDealtWithTech(this.playerID, "gather_farming_plows");
+		},
 		"OnResearchQueued": function(msg)
 		{
 			if (msg.technologyTemplate && TriggerHelper.EntityHasClass(msg.researcherEntity, "Farmstead"))
@@ -240,7 +299,11 @@ let tutorialGoals = [
 		},
 	},
 	{
-		"instructions": markForTranslation("You should now be able research 'Town Phase'. Select the Civic Center and click on the technology icon.\nIf you still miss some resources (icon with red overlay), wait for them to be gathered by your workers."),
+		"instructions": markForTranslation("You should now be able to research 'Town Phase'. Select the Civic Center and click on the technology icon.\nIf you still miss some resources (icon with red overlay), wait for them to be gathered by your workers."),
+		"IsDone": function()
+		{
+			return TriggerHelper.HasDealtWithTech(this.playerID, "phase_town_athen");
+		},
 		"OnResearchQueued": function(msg)
 		{
 			if (msg.technologyTemplate && TriggerHelper.EntityHasClass(msg.researcherEntity, "CivilCentre"))
@@ -252,20 +315,33 @@ let tutorialGoals = [
 	},
 	{
 		"instructions": markForTranslation("Thus, we should order them to deposit their Wood in the Civic Center along the way. To do so, we will queue orders with shift-click: select your soldiers, shift-right-click on the Civic Center to deposit their Wood and then shift-right-click on the Stone mine to gather it.\nPerform a similar order queue with the remaining soldiers and the Metal mine in the west."),
+		"Init": function()
+		{
+			this.stone = false;
+			this.metal = false;
+		},
+		"IsDone": function()
+		{
+			if (!this.stone || !this.metal)
+				return false;
+			return TriggerHelper.HasDealtWithTech(this.playerID, "phase_town_athen");
+
+		},
 		"OnPlayerCommand": function(msg)
 		{
-			if (msg.cmd.type == "gather" && msg.cmd.target &&
-				TriggerHelper.GetResourceType(msg.cmd.target).generic == "stone" &&
-				++this.count == 3)
-				this.NextGoal();
-			if (msg.cmd.type == "gather" && msg.cmd.target &&
-				TriggerHelper.GetResourceType(msg.cmd.target).generic == "metal" &&
-				++this.count == 3)
+			if (msg.cmd.type == "gather" && msg.cmd.target)
+			{
+				if (TriggerHelper.GetResourceType(msg.cmd.target).generic == "stone")
+					this.stone = true;
+				else if (TriggerHelper.GetResourceType(msg.cmd.target).generic == "metal")
+					this.metal = true;
+			}
+			if (this.IsDone())
 				this.NextGoal();
 		},
 		"OnResearchFinished": function(msg)
 		{
-			if (msg.tech == "phase_town_athen" && ++this.count == 3)
+			if (this.IsDone())
 				this.NextGoal();
 		}
 	},
@@ -276,4 +352,5 @@ let tutorialGoals = [
 
 Trigger.prototype.tutorialGoals = tutorialGoals;
 var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
+cmpTrigger.playerID = 1;
 cmpTrigger.RegisterTrigger("OnInitGame", "InitTutorial", { "enabled": true });
