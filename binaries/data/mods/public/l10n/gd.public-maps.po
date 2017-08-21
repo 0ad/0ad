@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-09 09:05+0200\n"
-"PO-Revision-Date: 2017-08-09 14:44+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-08-19 14:07+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -861,7 +861,7 @@ msgstr "Tha an nàmhaid a’ toirt ionnsaigh ort!"
 #: maps/random/survivalofthefittest_triggers.js:351
 #, javascript-format
 msgid "%(player)s has been defeated (lost civic center)."
-msgstr ""
+msgstr "Chaidh ruaig a chur air %(player)s (chailleadh an t-ionad sìobhalta)."
 
 #: maps/scenarios/Cinema_Demo.js:6
 msgid "Cutscene starts after 5 seconds"
@@ -924,20 +924,20 @@ msgstr "Cuir ruaig air an nàmhaid airson buannachd fhaighinn!"
 #, javascript-format
 msgid "%(lastPlayer)s has won (treasure collected)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Bhuannaich %(lastPlayer)s (thogadh ulaidh)."
+msgstr[1] "Bhuannaich %(players)s ’s %(lastPlayer)s (thog iad ulaidh)."
+msgstr[2] "Bhuannaich %(players)s ’s %(lastPlayer)s (thog iad ulaidh)."
+msgstr[3] "Bhuannaich %(players)s ’s %(lastPlayer)s (thog iad ulaidh)."
 
 #: maps/scenarios/treasure_islands.js:105
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (treasure collected)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (treasure collected)."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Chaidh ruaig a chur air %(lastPlayer)s (thogadh ulaidh)."
+msgstr[1] "Chaidh ruaig a chur air %(players)s ’s %(lastPlayer)s (thogadh ulaidh)."
+msgstr[2] "Chaidh ruaig a chur air %(players)s ’s %(lastPlayer)s (thogadh ulaidh)."
+msgstr[3] "Chaidh ruaig a chur air %(players)s ’s %(lastPlayer)s (thogadh ulaidh)."
 
 #: maps/scenarios/Arcadia.xml:Description:39
 msgid ""
