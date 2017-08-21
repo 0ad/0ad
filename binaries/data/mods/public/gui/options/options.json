@@ -166,9 +166,10 @@
 		{
 			"type": "dropdown",
 			"label": "Shadow Quality",
-			"tooltip": "Shadow map resolution. High values can crash the game when using a graphics card with low memory! REQUIRES GAME RESTART",
+			"tooltip": "Shadow map resolution. High values can crash the game when using a graphics card with low memory!",
 			"parameters": {
 				"config": "shadowquality",
+				"function": "Renderer_RecreateShadowMap",
 				"list": [
 					{ "value": -2, "label": "Very Low" },
 					{ "value": -1, "label": "Low" },
@@ -197,10 +198,10 @@
 			"parameters": { "config": "particles", "renderer": "Particles" }
 		},
 		{
-			"type": "invertedboolean",
+			"type": "boolean",
 			"label": "Water Effects",
 			"tooltip": "When OFF, use the lowest settings possible to render water. This makes other settings irrelevant.",
-			"parameters": { "config": "waterugly", "renderer": "WaterUgly" },
+			"parameters": { "config": "watereffects", "renderer": "WaterEffects" },
 			"dependencies": [ "waterfancyeffects", "waterrealdepth", "waterreflection", "waterrefraction", "watershadows" ]
 		},
 		{

@@ -229,10 +229,19 @@ var g_NetMessageTypes = {
 			});
 		},
 		"private-message": msg => {
-			if (Engine.LobbyGetPlayerRole(msg.from) == "moderator")
+			// Announcements and the Message of the Day are sent by the server directly
+			if (!msg.from)
+				messageBox(
+					400, 250,
+					msg.text.trim(),
+					translate("Notice")
+				);
+
+			// We intend to not support private messages between users
+			if (!msg.from || Engine.LobbyGetPlayerRole(msg.from) == "moderator")
 				// some XMPP clients send trailing whitespace
 				addChatMessage({
-					"from": escapeText(msg.from),
+					"from": escapeText(msg.from || "system"),
 					"text": escapeText(msg.text.trim()),
 					"time": msg.time,
 					"private" : true

@@ -91,18 +91,19 @@ function onTick()
 		continueButton.enabled = false;
 		feedback.caption = translate("Please enter your username");
 	}
-
 	// Prevent registation (but not login) with non-alphanumerical characters
-	if (!pageRegisterHidden && (!username.match(/^[a-z0-9._-]*$/i) || username.length > 20))
+	else if (!pageRegisterHidden && (!username.match(/^[a-z0-9._-]*$/i) || username.length > 20))
 	{
 		continueButton.enabled = false;
-		feedback.caption = translate("Usernames can't contain \\[, ], unicode, whitespace, or commas");
+		feedback.caption = translate("Invalid username");
 	}
 	// Check that they entered a password.
 	else if (!password)
 	{
 		continueButton.enabled = false;
-		feedback.caption = translate("Please enter your password");
+		feedback.caption = pageRegisterHidden ?
+			translateWithContext("login", "Please enter your password") :
+			translateWithContext("register", "Please enter your password");
 	}
 	// Allow them to connect if tests pass up to this point.
 	else if (pageRegisterHidden)

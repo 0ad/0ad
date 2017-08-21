@@ -79,28 +79,25 @@ Trigger.prototype.NextGoal = function(deserializing = false)
 	this.GoalMessage(goal.instructions, readyButton, ++this.index == this.tutorialGoals.length);
 };
 
-Trigger.prototype.GoalMessage = function(text, readyButton=false, leave=false)
+Trigger.prototype.GoalMessage = function(instructions, readyButton=false, leave=false)
 {
 	let cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	cmpGUIInterface.PushNotification({
 		"type": "tutorial",
 		"players": [1],
-		"message": text,
-		"translateMessage": true,
+		"instructions": instructions,
 		"readyButton": readyButton,
 		"leave": leave
 	});
 };
 
-Trigger.prototype.WarningMessage = function(txt)
+Trigger.prototype.WarningMessage = function(warning)
 {
 	let cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	cmpGUIInterface.PushNotification({
 		"type": "tutorial",
 		"players": [1],
-		"message": txt,
-		"translateMessage": true,
-		"warning": true
+		"warning": warning
 	});
 };
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -1485,7 +1485,10 @@ void CPatchRData::RenderWater(CShaderProgramPtr& shader, bool onlyShore, bool fi
 		g_Renderer.m_Stats.m_DrawCalls++;
 		g_Renderer.m_Stats.m_WaterTris += m_VBWaterIndices->m_Count / 3;
 	}
-	if (m_VBWaterShore != 0x0 && g_Renderer.GetWaterManager()->m_WaterFancyEffects && !g_Renderer.GetWaterManager()->m_WaterUgly)
+
+	if (m_VBWaterShore != 0x0 &&
+	    g_Renderer.GetWaterManager()->m_WaterEffects &&
+	    g_Renderer.GetWaterManager()->m_WaterFancyEffects)
 	{
 		SWaterVertex *base=(SWaterVertex *)m_VBWaterShore->m_Owner->Bind();
 

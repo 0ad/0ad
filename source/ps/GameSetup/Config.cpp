@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -42,7 +42,7 @@ bool g_RenderActors = true;
 bool g_Shadows = false;
 bool g_ShadowPCF = false;
 
-bool g_WaterUgly = false;
+bool g_WaterEffects = true;
 bool g_WaterFancyEffects = false;
 bool g_WaterRealDepth = false;
 bool g_WaterRefraction = false;
@@ -96,7 +96,7 @@ static void LoadGlobals()
 	CFG_GET_VAL("shadows", g_Shadows);
 	CFG_GET_VAL("shadowpcf", g_ShadowPCF);
 
-	CFG_GET_VAL("waterugly", g_WaterUgly);
+	CFG_GET_VAL("watereffects", g_WaterEffects);
 	CFG_GET_VAL("waterfancyeffects", g_WaterFancyEffects);
 	CFG_GET_VAL("waterrealdepth", g_WaterRealDepth);
 	CFG_GET_VAL("waterrefraction", g_WaterRefraction);

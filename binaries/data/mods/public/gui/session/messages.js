@@ -538,15 +538,18 @@ function updateTutorial(notification)
 
 	if (notification.warning)
 	{
-		Engine.GetGUIObjectByName("tutorialWarning").caption = "[color=\"orange\"]" + translate(notification.message) + "[/color]";
+		Engine.GetGUIObjectByName("tutorialWarning").caption = '[color="orange"]' + translate(notification.warning) + '[/color]';
 		return;
 	}
 
 	let tutorialText = Engine.GetGUIObjectByName("tutorialText");
-	let caption = tutorialText.caption.replace('[color=\"yellow\"]', '').replace('[/color]', '');
-	if (caption)
-		caption += "\n";
-	tutorialText.caption = caption + "[color=\"yellow\"]" + translate(notification.message) + "[/color]";
+	tutorialText.caption =
+		tutorialText.caption.replace('[color="yellow"]', '').replace('[/color]', '') +
+		(tutorialText.caption ? "\n" : "" ) +
+		'[color="yellow"]' +
+		notification.instructions.reduce((instructions, item) => instructions + translate(item), "") +
+		'[/color]';
+
 	if (notification.readyButton)
 	{
 		Engine.GetGUIObjectByName("tutorialReady").hidden = false;

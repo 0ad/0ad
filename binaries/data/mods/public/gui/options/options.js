@@ -74,7 +74,6 @@ function setupControl(option, i, category)
 	switch (option.type)
 	{
 	case "boolean":
-	case "invertedboolean":
 		// More space for the label
 		let text = Engine.GetGUIObjectByName(category + "Label[" + i + "]");
 		let size = text.size;
@@ -109,23 +108,18 @@ function setupControl(option, i, category)
 				warn("Unknown option source type '" + param + "'");
 			}
 		}
-		// invertedboolean when we want to display the opposite of the flag value
-		var inverted = option.type === "invertedboolean";
-		if (inverted)
-			checked = !checked;
 
-		onUpdate = function(key, keyRenderer, inverted)
+		onUpdate = function(key, keyRenderer)
 		{
 			return function()
 			{
-				let val = inverted ? !this.checked : this.checked;
 				if (keyRenderer)
-					Engine["Renderer_Set" + keyRenderer + "Enabled"](val);
-				Engine.ConfigDB_CreateValue("user", key, String(val));
+					Engine["Renderer_Set" + keyRenderer + "Enabled"](this.checked);
+				Engine.ConfigDB_CreateValue("user", key, String(this.checked));
 				Engine.ConfigDB_SetChanges("user", true);
 				updateOptionPanel();
 			};
-		}(key, keyRenderer, inverted);
+		}(key, keyRenderer);
 
 		// Load final data to the control element.
 		control.checked = checked;
@@ -244,9 +238,11 @@ function setupControl(option, i, category)
 		control.onMouseLeave = onUpdate;
 		break;
 	case "dropdown":
+	{
 		control = Engine.GetGUIObjectByName(category + "Dropdown[" + i + "]");
 		control.onSelectionChange = function(){};  // just the time to setup the value
 		let config;
+		let callbackFunction;
 
 		for (let param in option.parameters)
 		{
@@ -254,6 +250,10 @@ function setupControl(option, i, category)
 			{
 			case "config":
 				config = Engine.ConfigDB_GetValue("user", key);
+				break;
+			case "function":
+				if (Engine[option.parameters.function])
+					callbackFunction = option.parameters.function;
 				break;
 			case "list":
 				control.list = option.parameters.list.map(e => translate(e.label));
@@ -266,18 +266,21 @@ function setupControl(option, i, category)
 			}
 		}
 
-		onUpdate = function(key)
+		onUpdate = function(key, callbackFunction)
 		{
 			return function()
 			{
 				Engine.ConfigDB_CreateValue("user", key, this.list_data[this.selected]);
 				Engine.ConfigDB_SetChanges("user", true);
+				if (callbackFunction)
+					Engine[callbackFunction](this.list_data[this.selected]);
 				updateOptionPanel();
 			};
-		}(key);
+		}(key, callbackFunction);
 
 		control.onSelectionChange = onUpdate;
 		break;
+	}
 	default:
 		warn("Unknown option type " + option.type + ", assuming string.");
 		control = Engine.GetGUIObjectByName(category + "Input[" + i + "]");
@@ -299,7 +302,7 @@ function updateOptionPanel()
 	for (let item in g_Controls)
 	{
 		let control = g_Controls[item];
-		if (control.type !== "boolean" && control.type !== "invertedboolean" || !control.dependencies)
+		if (control.type != "boolean" || !control.dependencies)
 			continue;
 
 		for (let dependency of control.dependencies)
@@ -354,7 +357,7 @@ function revertChanges()
 		// needs to update renderer values (which are all of boolean type)
 		if (control.parameters.renderer)
 		{
-			if (control.type !== "boolean" && control.type !== "invertedboolean")
+			if (control.type != "boolean")
 			{
 				warn("Invalid type option " + control.type + " defined in renderer for " + item + ": will not be reverted");
 				continue;
@@ -365,7 +368,7 @@ function revertChanges()
 		// and the possible function calls (which are of number or string types)
 		if (control.parameters.function)
 		{
-			if (control.type !== "string" && control.type !== "number" && control.type !== "slider")
+			if (control.type != "string" && control.type != "number" && control.type != "slider" && control.type != "dropdown")
 			{
 				warn("Invalid type option " + control.type + " defined with function for " + item + ": will not be reverted");
 				continue;

@@ -77,8 +77,8 @@ public:
 	int m_WaterCurrentTex;
 	bool m_RenderWater;
 
-	// Force the use of the fixed function for rendering.
-	bool m_WaterUgly;
+	// If disabled, force the use of the fixed function for rendering.
+	bool m_WaterEffects;
 	// Those variables register the current quality level. If there is a change, I have to recompile the shader.
 	// Use real depth or use the fake precomputed one.
 	bool m_WaterRealDepth;

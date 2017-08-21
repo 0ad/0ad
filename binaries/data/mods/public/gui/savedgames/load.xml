@@ -22,14 +22,11 @@
 
 		<object type="image" size="0 20 630 100%">
 			<object name="gameSelection"
+				style="ModernSortedList"
 				selected_column="date"
 				selected_column_order="-1"
 				sortable="true"
 				size="24 4 100%-24 100%-70"
-				sprite_asc="ModernArrowDown"
-				sprite_desc="ModernArrowUp"
-				sprite_not_sorted="ModernNotSorted"
-				style="ModernList"
 				type="olist"
 			>
 				<action on="SelectionChange">selectionChanged();</action>

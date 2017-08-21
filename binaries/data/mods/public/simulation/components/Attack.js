@@ -501,7 +501,7 @@ Attack.prototype.PerformAttack = function(type, target)
 
 		// Add inaccuracy based on spread.
 		let distanceModifiedSpread = ApplyValueModificationsToEntity("Attack/Ranged/Spread", +this.template.Ranged.Spread, this.entity) *
-			targetPosition.horizDistanceTo(selfPosition) / 100;
+			predictedPosition.horizDistanceTo(selfPosition) / 100;
 
 		let randNorm = randomNormal2D();
 		let offsetX = randNorm[0] * distanceModifiedSpread;
