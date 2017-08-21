@@ -112,7 +112,7 @@ WaterManager::WaterManager()
 
 	m_ShoreWaves_VBIndices = NULL;
 
-	m_WaterUgly = false;
+	m_WaterEffects = true;
 	m_WaterFancyEffects = false;
 	m_WaterRealDepth = false;
 	m_WaterRefraction = false;
@@ -1119,8 +1119,9 @@ void WaterManager::SetMapSize(size_t size)
 // This will set the bools properly
 void WaterManager::UpdateQuality()
 {
-	if (g_Renderer.GetOptionBool(CRenderer::OPT_WATERUGLY) != m_WaterUgly) {
-		m_WaterUgly = g_Renderer.GetOptionBool(CRenderer::OPT_WATERUGLY);
+	if (g_Renderer.GetOptionBool(CRenderer::OPT_WATEREFFECTS) != m_WaterEffects)
+	{
+		m_WaterEffects = g_Renderer.GetOptionBool(CRenderer::OPT_WATEREFFECTS);
 		m_NeedsReloading = true;
 	}
 	if (g_Renderer.GetOptionBool(CRenderer::OPT_WATERFANCYEFFECTS) != m_WaterFancyEffects) {
@@ -1147,9 +1148,5 @@ void WaterManager::UpdateQuality()
 
 bool WaterManager::WillRenderFancyWater()
 {
-	if (!g_Renderer.GetCapabilities().m_PrettyWater)
-		return false;
-	if (!m_RenderWater || m_WaterUgly)
-		return false;
-	return true;
+	return m_RenderWater && m_WaterEffects && g_Renderer.GetCapabilities().m_PrettyWater;
 }

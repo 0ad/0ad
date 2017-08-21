@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -50,8 +50,8 @@ extern bool g_RenderActors;
 // flag to switch on shadows
 extern bool g_Shadows;
 
-// Force the use of the fixed function for rendering water.
-extern bool g_WaterUgly;
+// If disabled, force the use of the fixed function for rendering water.
+extern bool g_WaterEffects;
 // Add foam and waves near the shores, trails following ships, and other HQ things.
 extern bool g_WaterFancyEffects;
 // Use real depth for water rendering.

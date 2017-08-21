@@ -197,10 +197,10 @@
 			"parameters": { "config": "particles", "renderer": "Particles" }
 		},
 		{
-			"type": "invertedboolean",
+			"type": "boolean",
 			"label": "Water Effects",
 			"tooltip": "When OFF, use the lowest settings possible to render water. This makes other settings irrelevant.",
-			"parameters": { "config": "waterugly", "renderer": "WaterUgly" },
+			"parameters": { "config": "watereffects", "renderer": "WaterEffects" },
 			"dependencies": [ "waterfancyeffects", "waterrealdepth", "waterreflection", "waterrefraction", "watershadows" ]
 		},
 		{

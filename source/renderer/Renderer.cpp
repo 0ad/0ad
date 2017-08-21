@@ -430,7 +430,7 @@ CRenderer::CRenderer()
 	m_Options.m_NoVBO = false;
 	m_Options.m_RenderPath = RP_DEFAULT;
 	m_Options.m_Shadows = false;
-	m_Options.m_WaterUgly = true;
+	m_Options.m_WaterEffects = false;
 	m_Options.m_WaterFancyEffects = false;
 	m_Options.m_WaterRealDepth = false;
 	m_Options.m_WaterRefraction = false;
@@ -691,8 +691,8 @@ void CRenderer::SetOptionBool(enum Option opt,bool value)
 			m_Options.m_Shadows = value;
 			MakeShadersDirty();
 			break;
-		case OPT_WATERUGLY:
-			m_Options.m_WaterUgly = value;
+		case OPT_WATEREFFECTS:
+			m_Options.m_WaterEffects = value;
 			break;
 		case OPT_WATERFANCYEFFECTS:
 			m_Options.m_WaterFancyEffects = value;
@@ -751,8 +751,8 @@ bool CRenderer::GetOptionBool(enum Option opt) const
 			return m_Options.m_NoVBO;
 		case OPT_SHADOWS:
 			return m_Options.m_Shadows;
-		case OPT_WATERUGLY:
-			return m_Options.m_WaterUgly;
+		case OPT_WATEREFFECTS:
+			return m_Options.m_WaterEffects;
 		case OPT_WATERFANCYEFFECTS:
 			return m_Options.m_WaterFancyEffects;
 		case OPT_WATERREALDEPTH:

@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,7 +34,7 @@ namespace JSI_Renderer
 	DECLARE_BOOLEAN_SCRIPT_SETTING(ShadowPCF);
 	DECLARE_BOOLEAN_SCRIPT_SETTING(Particles);
 	DECLARE_BOOLEAN_SCRIPT_SETTING(PreferGLSL);
-	DECLARE_BOOLEAN_SCRIPT_SETTING(WaterUgly);
+	DECLARE_BOOLEAN_SCRIPT_SETTING(WaterEffects);
 	DECLARE_BOOLEAN_SCRIPT_SETTING(WaterFancyEffects);
 	DECLARE_BOOLEAN_SCRIPT_SETTING(WaterRealDepth);
 	DECLARE_BOOLEAN_SCRIPT_SETTING(WaterReflection);

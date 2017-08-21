@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -75,7 +75,7 @@ public:
 	enum Option {
 		OPT_NOVBO,
 		OPT_SHADOWS,
-		OPT_WATERUGLY,
+		OPT_WATEREFFECTS,
 		OPT_WATERFANCYEFFECTS,
 		OPT_WATERREALDEPTH,
 		OPT_WATERREFLECTION,
@@ -138,7 +138,7 @@ public:
 		bool m_NoVBO;
 		bool m_Shadows;
 
-		bool m_WaterUgly;
+		bool m_WaterEffects;
 		bool m_WaterFancyEffects;
 		bool m_WaterRealDepth;
 		bool m_WaterRefraction;

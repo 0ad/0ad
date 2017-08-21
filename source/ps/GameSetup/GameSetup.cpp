@@ -614,8 +614,8 @@ static void InitRenderer()
 	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS, g_Shadows);
 	g_ConfigDB.SetValueBool(CFG_SYSTEM, "shadows", g_Shadows);
 
-	g_Renderer.SetOptionBool(CRenderer::OPT_WATERUGLY, g_WaterUgly);
-	g_ConfigDB.SetValueBool(CFG_SYSTEM, "waterugly", g_WaterUgly);
+	g_Renderer.SetOptionBool(CRenderer::OPT_WATEREFFECTS, g_WaterEffects);
+	g_ConfigDB.SetValueBool(CFG_SYSTEM, "watereffects", g_WaterEffects);
 	g_Renderer.SetOptionBool(CRenderer::OPT_WATERFANCYEFFECTS, g_WaterFancyEffects);
 	g_ConfigDB.SetValueBool(CFG_SYSTEM, "waterfancyeffects", g_WaterFancyEffects);
 	g_Renderer.SetOptionBool(CRenderer::OPT_WATERREALDEPTH, g_WaterRealDepth);
