@@ -333,8 +333,6 @@ public:
 
 	ShadowMap& GetShadowMap();
 
-	static void RegisterScriptFunctions(ScriptInterface& scriptInterface);
-
 	/**
 	 * Resets the render state to default, that was before a game started
 	 */
