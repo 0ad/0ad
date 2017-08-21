@@ -1,3 +1,4 @@
+Engine.LoadHelperScript("DamageBonus.js");
 Engine.LoadHelperScript("Player.js");
 Engine.LoadHelperScript("ValueModification.js");
 Engine.LoadComponentScript("interfaces/Auras.js");
@@ -86,7 +87,7 @@ function attackComponentTest(defenderClass, isEnemy, test_function)
 				"Bonuses": {
 					"BonusCav": {
 						"Classes": "Cavalry",
-						"Multiplier": 2
+						"Multiplier": 3
 					}
 				}
 			}
@@ -163,11 +164,21 @@ attackComponentTest(undefined, true ,(attacker, cmpAttack, defender) => {
 
 for (let className of ["Infantry", "Cavalry"])
 	attackComponentTest(className, true, (attacker, cmpAttack, defender) => {
-		TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackBonus("Melee", defender), className == "Cavalry" ? 2 : 1);
-		TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackBonus("Ranged", defender), 1);
-		TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackBonus("Ranged.Splash", defender), className == "Cavalry" ? 2 : 1);
-		TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackBonus("Capture", defender), 1);
-		TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackBonus("Slaughter", defender), 1);
+
+		TS_ASSERT_EQUALS(cmpAttack.GetBonusTemplate("Melee").BonusCav.Multiplier, 2);
+		// Check that we don't leak data
+		let bonus = cmpAttack.GetBonusTemplate("Melee");
+		bonus.BonusCav.Multiplier = 2.7;
+		TS_ASSERT_EQUALS(cmpAttack.GetBonusTemplate("Melee").BonusCav.Multiplier, 2);
+
+		TS_ASSERT(cmpAttack.GetBonusTemplate("Capture") === null);
+
+		let getAttackBonus = (t, e) => GetDamageBonus(e, cmpAttack.GetBonusTemplate(t));
+		TS_ASSERT_UNEVAL_EQUALS(getAttackBonus("Melee", defender), className == "Cavalry" ? 2 : 1);
+		TS_ASSERT_UNEVAL_EQUALS(getAttackBonus("Ranged", defender), 1);
+		TS_ASSERT_UNEVAL_EQUALS(getAttackBonus("Ranged.Splash", defender), className == "Cavalry" ? 3 : 1);
+		TS_ASSERT_UNEVAL_EQUALS(getAttackBonus("Capture", defender), 1);
+		TS_ASSERT_UNEVAL_EQUALS(getAttackBonus("Slaughter", defender), 1);
 	});
 
 // CanAttack rejects elephant attack due to RestrictedClasses

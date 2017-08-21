@@ -1,3 +1,4 @@
+Engine.LoadHelperScript("DamageBonus.js");
 Engine.LoadHelperScript("Player.js");
 Engine.LoadHelperScript("Sound.js");
 Engine.LoadHelperScript("ValueModification.js");
@@ -36,8 +37,7 @@ function Test_Generic()
 	let type = "Melee";
 	let damageTaken = false;
 
-	cmpAttack.GetAttackStrengths = (type) => ({ "hack": 0, "pierce": 0, "crush": damage });
-	cmpAttack.GetAttackBonus = (type, target) => 1.0;
+	cmpAttack.GetAttackStrengths = attackType => ({ "hack": 0, "pierce": 0, "crush": damage });
 
 	let data = {
 		"attacker": attacker,
@@ -57,24 +57,19 @@ function Test_Generic()
 	});
 
 	AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
-		"GetPlayerByID": (id) => atkPlayerEntity,
+		"GetPlayerByID": id => atkPlayerEntity,
 		"GetNumPlayers": () => 5
 	});
 
-	AddMock(SYSTEM_ENTITY, IID_RangeManager, {
-		"ExecuteQueryAroundPos": () => [target],
-		"GetElevationAdaptedRange": (pos, rot, max, bonus, a) => max,
-	});
-
 	AddMock(SYSTEM_ENTITY, IID_ProjectileManager, {
-		RemoveProjectile: () => {},
-		LaunchProjectileAtPoint: (ent, pos, speed, gravity) => {},
+		"RemoveProjectile": () => {},
+		"LaunchProjectileAtPoint": (ent, pos, speed, gravity) => {},
 	});
 
 	AddMock(target, IID_Position, {
 		"GetPosition": () => targetPos,
 		"GetPreviousPosition": () => targetPos,
-		"GetPosition2D": () => new Vector2D(3, 3),
+		"GetPosition2D": () => Vector2D.From(targetPos),
 		"IsInWorld": () => true,
 	});
 
@@ -117,13 +112,6 @@ function Test_Generic()
 	cmpDamage.CauseDamage(data);
 	TestDamage();
 
-	data.friendlyFire = false;
-	data.range = 10;
-	data.shape = "Circular";
-	data.isSplash = true;
-	cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_Damage, "MissileHit", 1000, data);
-	TestDamage();
-
 	// Check for damage still being dealt if the attacker dies
 	cmpAttack.PerformAttack("Ranged", target);
 	Engine.DestroyEntity(attacker);
@@ -164,7 +152,9 @@ function TestLinearSplashDamage()
 	let fallOff = function(x,y)
 	{
 		return (1 - x * x / (data.radius * data.radius)) * (1 - 25 * y * y / (data.radius * data.radius));
-	}
+	};
+
+	let hitEnts = new Set();
 
 	let cmpDamage = ConstructComponent(SYSTEM_ENTITY, "Damage");
 
@@ -186,6 +176,7 @@ function TestLinearSplashDamage()
 
 	AddMock(60, IID_DamageReceiver, {
 		"TakeDamage": (hack, pierce, crush) => {
+			hitEnts.add(60);
 			TS_ASSERT_EQUALS(hack + pierce + crush, 100 * fallOff(2.2, -0.4));
 			return { "killed": false, "change": -(hack + pierce + crush) };
 		}
@@ -193,6 +184,7 @@ function TestLinearSplashDamage()
 
 	AddMock(61, IID_DamageReceiver, {
 		TakeDamage: (hack, pierce, crush) => {
+			hitEnts.add(61);
 			TS_ASSERT_EQUALS(hack + pierce + crush, 100 * fallOff(0, 0));
 			return { "killed": false, "change": -(hack + pierce + crush) };
 		}
@@ -200,24 +192,34 @@ function TestLinearSplashDamage()
 
 	AddMock(62, IID_DamageReceiver, {
 		"TakeDamage": (hack, pierce, crush) => {
+			hitEnts.add(62);
 			TS_ASSERT_EQUALS(hack + pierce + crush, 0);
 			return { "killed": false, "change": -(hack + pierce + crush) };
 		}
 	});
 
 	cmpDamage.CauseSplashDamage(data);
+	TS_ASSERT(hitEnts.has(60));
+	TS_ASSERT(hitEnts.has(61));
+	TS_ASSERT(hitEnts.has(62));
+	hitEnts.clear();
 
 	data.direction = new Vector3D(0.6, 747, 0.8);
 
 	AddMock(60, IID_DamageReceiver, {
 		"TakeDamage": (hack, pierce, crush) => {
+			hitEnts.add(60);
 			TS_ASSERT_EQUALS(hack + pierce + crush, 100 * fallOff(1, 2));
 			return { "killed": false, "change": -(hack + pierce + crush) };
 		}
 	});
 
 	cmpDamage.CauseSplashDamage(data);
-};
+	TS_ASSERT(hitEnts.has(60));
+	TS_ASSERT(hitEnts.has(61));
+	TS_ASSERT(hitEnts.has(62));
+	hitEnts.clear();
+}
 
 TestLinearSplashDamage();
 
@@ -231,12 +233,12 @@ function TestCircularSplashDamage()
 	let fallOff = function(r)
 	{
 		return 1 - r * r / (radius * radius);
-	}
+	};
 
 	let cmpDamage = ConstructComponent(SYSTEM_ENTITY, "Damage");
 
 	AddMock(SYSTEM_ENTITY, IID_RangeManager, {
-		"ExecuteQueryAroundPos": () => [60, 61, 62],
+		"ExecuteQueryAroundPos": () => [60, 61, 62, 64],
 	});
 
 	AddMock(60, IID_Position, {
@@ -252,12 +254,12 @@ function TestCircularSplashDamage()
 	});
 
 	AddMock(63, IID_Position, {
-		"GetPosition2D": () => new Vector2D(5, -3),
+		"GetPosition2D": () => new Vector2D(10, -10),
 	});
 
 	// Target on the frontier of the shape
 	AddMock(64, IID_Position, {
-		"GetPosition2D": () => new Vector2D(4, -2),
+		"GetPosition2D": () => new Vector2D(9, -4),
 	});
 
 	AddMock(60, IID_DamageReceiver, {
@@ -283,8 +285,7 @@ function TestCircularSplashDamage()
 
 	AddMock(63, IID_DamageReceiver, {
 		"TakeDamage": (hack, pierce, crush) => {
-			TS_ASSERT_EQUALS(hack + pierce + crush, 0);
-			return { "killed": false, "change": -(hack + pierce + crush) };
+			TS_ASSERT(false);
 		}
 	});
 
@@ -305,6 +306,232 @@ function TestCircularSplashDamage()
 		"type": "Ranged",
 		"attackerOwner": 1
 	});
-};
+}
 
 TestCircularSplashDamage();
+
+function Test_MissileHit()
+{
+	ResetState();
+	Engine.PostMessage = (ent, iid, message) => {};
+
+	let cmpDamage = ConstructComponent(SYSTEM_ENTITY, "Damage");
+
+	let target = 60;
+	let targetOwner = 1;
+	let targetPos = new Vector3D(3, 10, 0);
+	let hitEnts = new Set();
+
+	AddMock(SYSTEM_ENTITY, IID_Timer, {
+		"GetLatestTurnLength": () => 500
+	});
+
+	const radius = 10;
+
+	let data = {
+		"type": "Ranged",
+		"attacker": 70,
+		"target": 60,
+		"strengths": { "hack": 0, "pierce": 100, "crush": 0 },
+		"position": targetPos,
+		"direction": new Vector3D(1, 0, 0),
+		"projectileId": 9,
+		"bonus": undefined,
+		"isSplash": false,
+		"attackerOwner": 1
+	};
+
+	AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
+		"GetPlayerByID": id => id == 1 ? 10 : 11,
+		"GetNumPlayers": () => 2
+	});
+
+	AddMock(SYSTEM_ENTITY, IID_ProjectileManager, {
+		"RemoveProjectile": () => {},
+		"LaunchProjectileAtPoint": (ent, pos, speed, gravity) => {},
+	});
+
+	AddMock(60, IID_Position, {
+		"GetPosition": () => targetPos,
+		"GetPreviousPosition": () => targetPos,
+		"GetPosition2D": () => Vector2D.From(targetPos),
+		"IsInWorld": () => true,
+	});
+
+	AddMock(60, IID_Health, {});
+
+	AddMock(60, IID_DamageReceiver, {
+		"TakeDamage": (hack, pierce, crush) => {
+			TS_ASSERT_EQUALS(hack + pierce + crush, 100);
+			hitEnts.add(60);
+			return { "killed": false, "change": -(hack + pierce + crush) };
+		}
+	});
+
+	AddMock(60, IID_Footprint, {
+		"GetShape": () => ({ "type": "circle", "radius": 20 }),
+	});
+
+	AddMock(70, IID_Ownership, {
+		"GetOwner": () => 1,
+	});
+
+	AddMock(70, IID_Position, {
+		"GetPosition": () => new Vector3D(0, 0, 0),
+		"GetRotation": () => new Vector3D(0, 0, 0),
+		"IsInWorld": () => true,
+	});
+
+	AddMock(10, IID_Player, {
+		"GetEnemies": () => [2]
+	});
+
+	cmpDamage.MissileHit(data, 0);
+	TS_ASSERT(hitEnts.has(60));
+	hitEnts.clear();
+
+	// The main target is not hit but another one is hit.
+
+	AddMock(60, IID_Position, {
+		"GetPosition": () => new Vector3D(900, 10, 0),
+		"GetPreviousPosition": () => new Vector3D(900, 10, 0),
+		"GetPosition2D": () => new Vector2D(900, 0),
+		"IsInWorld": () => true,
+	});
+
+	AddMock(60, IID_DamageReceiver, {
+		"TakeDamage": (hack, pierce, crush) => {
+			TS_ASSERT_EQUALS(false);
+			return { "killed": false, "change": -(hack + pierce + crush) };
+		}
+	});
+
+	AddMock(SYSTEM_ENTITY, IID_RangeManager, {
+		"ExecuteQueryAroundPos": () => [61]
+	});
+
+	AddMock(61, IID_Position, {
+		"GetPosition": () => targetPos,
+		"GetPreviousPosition": () => targetPos,
+		"GetPosition2D": () => Vector2D.from3D(targetPos),
+		"IsInWorld": () => true,
+	});
+
+	AddMock(61, IID_Health, {});
+
+	AddMock(61, IID_DamageReceiver, {
+		"TakeDamage": (hack, pierce, crush) => {
+			TS_ASSERT_EQUALS(hack + pierce + crush, 100);
+			hitEnts.add(61);
+			return { "killed": false, "change": -(hack + pierce + crush) };
+		}
+	});
+
+	AddMock(61, IID_Footprint, {
+		"GetShape": () => ({ "type": "circle", "radius": 20 }),
+	});
+
+	cmpDamage.MissileHit(data, 0);
+	TS_ASSERT(hitEnts.has(61));
+	hitEnts.clear();
+
+	// Add a splash damage.
+
+	data.friendlyFire = false;
+	data.radius = 10;
+	data.shape = "Circular";
+	data.isSplash = true;
+	data.splashStrengths = { "hack": 0, "pierce": 0, "crush": 200 };
+
+	AddMock(SYSTEM_ENTITY, IID_RangeManager, {
+		"ExecuteQueryAroundPos": () => [61, 62]
+	});
+
+	let dealtDamage = 0;
+	AddMock(61, IID_DamageReceiver, {
+		"TakeDamage": (hack, pierce, crush) => {
+			dealtDamage += hack + pierce + crush;
+			hitEnts.add(61);
+			return { "killed": false, "change": -(hack + pierce + crush) };
+		}
+	});
+
+	AddMock(62, IID_Position, {
+		"GetPosition": () => new Vector3D(8, 10, 0),
+		"GetPreviousPosition": () => new Vector3D(8, 10, 0),
+		"GetPosition2D": () => new Vector2D(8, 0),
+		"IsInWorld": () => true,
+	});
+
+	AddMock(62, IID_Health, {});
+
+	AddMock(62, IID_DamageReceiver, {
+		"TakeDamage": (hack, pierce, crush) => {
+			TS_ASSERT_EQUALS(hack + pierce + crush, 200 * 0.75);
+			hitEnts.add(62);
+			return { "killed": false, "change": -(hack + pierce + crush) };
+		}
+	});
+
+	AddMock(62, IID_Footprint, {
+		"GetShape": () => ({ "type": "circle", "radius": 20 }),
+	});
+
+	cmpDamage.MissileHit(data, 0);
+	TS_ASSERT(hitEnts.has(61));
+	TS_ASSERT_EQUALS(dealtDamage, 100 + 200);
+	dealtDamage = 0;
+	TS_ASSERT(hitEnts.has(62));
+	hitEnts.clear();
+
+	// Add some hard counters bonus.
+
+	Engine.DestroyEntity(62);
+	AddMock(SYSTEM_ENTITY, IID_RangeManager, {
+		"ExecuteQueryAroundPos": () => [61]
+	});
+
+	let bonus= { "BonusCav": { "Classes": "Cavalry", "Multiplier": 400 } };
+	let splashBonus = { "BonusCav": { "Classes": "Cavalry", "Multiplier": 10000 } };
+
+	AddMock(61, IID_Identity, {
+		"HasClass": cl => cl == "Cavalry"
+	});
+
+	data.bonus = bonus;
+	cmpDamage.MissileHit(data, 0);
+	TS_ASSERT(hitEnts.has(61));
+	TS_ASSERT_EQUALS(dealtDamage, 400 * 100 + 200);
+	dealtDamage = 0;
+	hitEnts.clear();
+
+	data.splashBonus = splashBonus;
+	cmpDamage.MissileHit(data, 0);
+	TS_ASSERT(hitEnts.has(61));
+	TS_ASSERT_EQUALS(dealtDamage, 400 * 100 + 10000 * 200);
+	dealtDamage = 0;
+	hitEnts.clear();
+
+	data.bonus = undefined;
+	cmpDamage.MissileHit(data, 0);
+	TS_ASSERT(hitEnts.has(61));
+	TS_ASSERT_EQUALS(dealtDamage, 100 + 10000 * 200);
+	dealtDamage = 0;
+	hitEnts.clear();
+
+	data.bonus = null;
+	cmpDamage.MissileHit(data, 0);
+	TS_ASSERT(hitEnts.has(61));
+	TS_ASSERT_EQUALS(dealtDamage, 100 + 10000 * 200);
+	dealtDamage = 0;
+	hitEnts.clear();
+
+	data.bonus = {};
+	cmpDamage.MissileHit(data, 0);
+	TS_ASSERT(hitEnts.has(61));
+	TS_ASSERT_EQUALS(dealtDamage, 100 + 10000 * 200);
+	dealtDamage = 0;
+	hitEnts.clear();
+}
+
+Test_MissileHit();

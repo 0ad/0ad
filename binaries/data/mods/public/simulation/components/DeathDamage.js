@@ -55,6 +55,13 @@ DeathDamage.prototype.GetDeathDamageStrengths = function(type)
 	};
 };
 
+DeathDamage.prototype.GetBonusTemplate = function()
+{
+	if (this.template.Bonuses)
+		return clone(this.template.Bonuses);
+	return null;
+};
+
 DeathDamage.prototype.CauseDeathDamage = function()
 {
 	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
@@ -78,6 +85,7 @@ DeathDamage.prototype.CauseDeathDamage = function()
 		"radius": radius,
 		"shape": this.template.Shape,
 		"strengths": this.GetDeathDamageStrengths("Death"),
+		"splashBonus": this.GetBonusTemplate(),
 		"playersToDamage": playersToDamage,
 		"type": "Death",
 		"attackerOwner": owner

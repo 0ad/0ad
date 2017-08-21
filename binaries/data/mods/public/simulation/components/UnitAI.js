@@ -4684,14 +4684,6 @@ UnitAI.prototype.GetBestAttackAgainst = function(target, allowCapture)
 	return cmpAttack.GetBestAttackAgainst(target, allowCapture);
 };
 
-UnitAI.prototype.GetAttackBonus = function(type, target)
-{
-	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-	if (!cmpAttack)
-		return 1;
-	return cmpAttack.GetAttackBonus(type, target);
-};
-
 /**
  * Try to find one of the given entities which can be attacked,
  * and start attacking it.

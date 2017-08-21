@@ -1,3 +1,4 @@
+Engine.LoadHelperScript("DamageBonus.js");
 Engine.LoadHelperScript("ValueModification.js");
 Engine.LoadComponentScript("interfaces/AuraManager.js");
 Engine.LoadComponentScript("interfaces/Damage.js");
@@ -41,6 +42,7 @@ let result = {
 	"radius": template.Range,
 	"shape": template.Shape,
 	"strengths": modifiedDamage,
+	"splashBonus": null,
 	"playersToDamage": playersToDamage,
 	"type": "Death",
 	"attackerOwner": player
@@ -60,5 +62,11 @@ AddMock(deadEnt, IID_Ownership, {
 	"GetOwner": () => player
 });
 
+TS_ASSERT_UNEVAL_EQUALS(cmpDeathDamage.GetDeathDamageStrengths(), modifiedDamage);
+cmpDeathDamage.CauseDeathDamage();
+
+let splashBonus = { "BonusCav": { "Classes": "Cavalry", "Multiplier": 3 } };
+cmpDeathDamage.template.Bonuses = splashBonus;
+result.splashBonus = splashBonus;
 TS_ASSERT_UNEVAL_EQUALS(cmpDeathDamage.GetDeathDamageStrengths(), modifiedDamage);
 cmpDeathDamage.CauseDeathDamage();
