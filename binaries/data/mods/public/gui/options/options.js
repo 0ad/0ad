@@ -7,7 +7,7 @@ function init(data)
 		g_HasCallback = true;
 	g_Controls = {};
 
-	var options = Engine.ReadJSONFile("gui/options/options.json");
+	let options = Engine.ReadJSONFile("gui/options/options.json");
 	for (let category in options)
 	{
 		let lastSize;
@@ -46,12 +46,11 @@ function init(data)
 			{
 				if (!opt.label || !opt.parameters || !opt.parameters.config)
 					continue;
-				if (!opt.dependencies || opt.dependencies.indexOf(config) === -1)
+				if (!opt.dependencies || opt.dependencies.indexOf(config) == -1)
 					continue;
 				label.caption = "      " + label.caption;
 				break;
 			}
-			// Show element.
 			body.hidden = false;
 		}
 	}
@@ -67,9 +66,9 @@ function init(data)
  */
 function setupControl(option, i, category)
 {
-	var control;
-	var onUpdate;
-	var key = option.parameters.config;
+	let control;
+	let onUpdate;
+	let key = option.parameters.config;
 
 	switch (option.type)
 	{
@@ -88,7 +87,7 @@ function setupControl(option, i, category)
 			switch (param)
 			{
 			case "config":
-				checked = Engine.ConfigDB_GetValue("user", key) === "true";
+				checked = Engine.ConfigDB_GetValue("user", key) == "true";
 				break;
 			case "renderer":
 				keyRenderer = option.parameters.renderer;
@@ -98,7 +97,7 @@ function setupControl(option, i, category)
 					keyRenderer = undefined;
 					break;
 				}
-				if (Engine["Renderer_Get" + keyRenderer + "Enabled"]() !== checked)
+				if (Engine["Renderer_Get" + keyRenderer + "Enabled"]() != checked)
 				{
 					warn("Incompatible renderer option value for " + keyRenderer);
 					Engine["Renderer_Set" + keyRenderer + "Enabled"](checked);
@@ -223,7 +222,7 @@ function setupControl(option, i, category)
 					this.caption = minval;
 				if (maxval && +maxval < +this.caption)
 					this.caption = maxval;
-				if (Engine.ConfigDB_GetValue("user", key) === this.caption)
+				if (Engine.ConfigDB_GetValue("user", key) == this.caption)
 					return;
 				Engine.ConfigDB_CreateValue("user", key, this.caption);
 				Engine.ConfigDB_SetChanges("user", true);
@@ -324,7 +323,7 @@ function updateOptionPanel()
 function registerChanges()
 {
 	for (let item in g_Controls)
-		if (g_Controls[item].type === "number" || g_Controls[item].type === "string")
+		if (g_Controls[item].type == "number" || g_Controls[item].type == "string")
 			g_Controls[item].control.onPress();
 }
 
@@ -362,7 +361,7 @@ function revertChanges()
 				warn("Invalid type option " + control.type + " defined in renderer for " + item + ": will not be reverted");
 				continue;
 			}
-			let checked = Engine.ConfigDB_GetValue("user", item) === "true";
+			let checked = Engine.ConfigDB_GetValue("user", item) == "true";
 			Engine["Renderer_Set" + control.parameters.renderer + "Enabled"](checked);
 		}
 		// and the possible function calls (which are of number or string types)
