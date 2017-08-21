@@ -4,50 +4,46 @@
   <group>
     <variant frequency="1" name="foundation 6x6 a">
       <mesh>structural/found_6x6_a.dae</mesh>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="Idle">
       <props>
         <prop actor="props/structures/decals/dirt_6x6.xml" attachpoint="root"/>
         <prop actor="particle/construction_dust.xml" attachpoint="root"/>
-		<prop actor="props/special/eyecandy/wood_pile.xml" attachpoint="woodpile001" maxheight="20" minheight="-20"/>
-		<prop actor="props/special/eyecandy/wood_pile.xml" attachpoint="woodpile002" maxheight="20" minheight="-20"/>
-		<prop actor="props/special/eyecandy/wood_pile.xml" attachpoint="woodpile003" maxheight="20" minheight="-20"/>
-		<prop actor="props/special/eyecandy/Delimitator.xml" attachpoint="delimitator001" maxheight="20" minheight="-20"/>	
-		<prop actor="props/special/eyecandy/Delimitator.xml" attachpoint="delimitator002" maxheight="20" minheight="-20"/>	
-		<prop actor="props/special/eyecandy/Delimitator.xml" attachpoint="delimitator003" maxheight="20" minheight="-20"/>	
-		<prop actor="props/special/eyecandy/Delimitator.xml" attachpoint="delimitator004" maxheight="20" minheight="-20"/>
-		<prop actor="props/special/eyecandy/Brick.xml" attachpoint="brick001" maxheight="20" minheight="-20"/>		
-		<prop actor="props/special/eyecandy/Brick.xml" attachpoint="brick002" maxheight="20" minheight="-20"/>		
-		<prop actor="props/special/eyecandy/Brick.xml" attachpoint="brick003" maxheight="20" minheight="-20"/>		
-		<prop actor="props/special/eyecandy/Brick.xml" attachpoint="brick004" maxheight="20" minheight="-20"/>		
-		<prop actor="props/special/eyecandy/Brick.xml" attachpoint="brick005" maxheight="20" minheight="-20"/>		
-		<prop actor="props/special/eyecandy/Box.xml" attachpoint="box001" maxheight="20" minheight="-20"/>	
-		<prop actor="props/special/eyecandy/Box.xml" attachpoint="box002" maxheight="20" minheight="-20"/>	
-		<prop actor="props/special/eyecandy/Box.xml" attachpoint="box003" maxheight="20" minheight="-20"/>
-		<prop actor="props/special/eyecandy/Box.xml" attachpoint="box004" maxheight="20" minheight="-20"/>	
-		<prop actor="props/special/eyecandy/handcart_1.xml" attachpoint="handcart001" maxheight="20" minheight="-20"/>
-		<prop actor="props/special/eyecandy/handcart_1.xml" attachpoint="handcart002" maxheight="20" minheight="-20"/>
-		<prop actor="props/special/eyecandy/Brick_Pile3.xml" attachpoint="brickpile001" maxheight="20" minheight="-20"/>		
-		<prop actor="props/special/eyecandy/Brick_Pile3.xml" attachpoint="brickpile002" maxheight="20" minheight="-20"/>		
-		<prop actor="props/special/eyecandy/Brick_Pile3.xml" attachpoint="brickpile003" maxheight="20" minheight="-20"/>		
-		<prop actor="props/special/eyecandy/Vase.xml" attachpoint="vase001" maxheight="20" minheight="-20"/>		
-		<prop actor="props/special/eyecandy/Vase.xml" attachpoint="vase002" maxheight="20" minheight="-20"/>		
-		<prop actor="props/special/eyecandy/Plank_Pile_Big_a.xml" attachpoint="plankpile001" maxheight="20" minheight="-20"/>				
+        <prop actor="props/special/eyecandy/wood_pile.xml" attachpoint="woodpile001" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/wood_pile.xml" attachpoint="woodpile002" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/wood_pile.xml" attachpoint="woodpile003" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/Delimitator.xml" attachpoint="delimitator001" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/Delimitator.xml" attachpoint="delimitator002" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/Delimitator.xml" attachpoint="delimitator003" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/Delimitator.xml" attachpoint="delimitator004" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/Brick.xml" attachpoint="brick001" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/Brick.xml" attachpoint="brick002" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/Brick.xml" attachpoint="brick003" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/Brick.xml" attachpoint="brick004" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/Brick.xml" attachpoint="brick005" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/Box.xml" attachpoint="box001" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/Box.xml" attachpoint="box002" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/Box.xml" attachpoint="box003" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/Box.xml" attachpoint="box004" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/handcart_1.xml" attachpoint="handcart001" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/handcart_1.xml" attachpoint="handcart002" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/Brick_Pile3.xml" attachpoint="brickpile001" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/Brick_Pile3.xml" attachpoint="brickpile002" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/Brick_Pile3.xml" attachpoint="brickpile003" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/Vase.xml" attachpoint="vase001" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/Vase.xml" attachpoint="vase002" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/Plank_Pile_Big_a.xml" attachpoint="plankpile001" maxheight="20" minheight="-20"/>
       </props>
+      <textures>
+        <texture file="structural/foundation.dds" name="baseTex"/>
+      </textures>
     </variant>
-    <variant name="scaffold">
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant frequency="1" name="scaffold">
       <props>
         <prop actor="props/structures/construction/scaf_4x4.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_6x6.xml" attachpoint="root"/>
         <prop actor="particle/construction_dust.xml" attachpoint="root"/>
       </props>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1">
-      <textures><texture file="structural/foundation.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>
