@@ -101,7 +101,9 @@ function onTick()
 	else if (!password)
 	{
 		continueButton.enabled = false;
-		feedback.caption = translate("Please enter your password");
+		feedback.caption = pageRegisterHidden ?
+			translateWithContext("login", "Please enter your password") :
+			translateWithContext("register", "Please enter your password");
 	}
 	// Allow them to connect if tests pass up to this point.
 	else if (pageRegisterHidden)
