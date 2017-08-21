@@ -2126,6 +2126,11 @@ CFontManager& CRenderer::GetFontManager()
 	return m->fontManager;
 }
 
+ShadowMap& CRenderer::GetShadowMap()
+{
+	return m->shadow;
+}
+
 void CRenderer::ResetState()
 {
 	// Clear all emitters, that were created in previous games

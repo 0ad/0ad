@@ -166,9 +166,10 @@
 		{
 			"type": "dropdown",
 			"label": "Shadow Quality",
-			"tooltip": "Shadow map resolution. High values can crash the game when using a graphics card with low memory! REQUIRES GAME RESTART",
+			"tooltip": "Shadow map resolution. High values can crash the game when using a graphics card with low memory!",
 			"parameters": {
 				"config": "shadowquality",
+				"function": "Renderer_RecreateShadowMap",
 				"list": [
 					{ "value": -2, "label": "Very Low" },
 					{ "value": -1, "label": "Low" },

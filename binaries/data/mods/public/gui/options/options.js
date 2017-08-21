@@ -238,9 +238,11 @@ function setupControl(option, i, category)
 		control.onMouseLeave = onUpdate;
 		break;
 	case "dropdown":
+	{
 		control = Engine.GetGUIObjectByName(category + "Dropdown[" + i + "]");
 		control.onSelectionChange = function(){};  // just the time to setup the value
 		let config;
+		let callbackFunction;
 
 		for (let param in option.parameters)
 		{
@@ -248,6 +250,10 @@ function setupControl(option, i, category)
 			{
 			case "config":
 				config = Engine.ConfigDB_GetValue("user", key);
+				break;
+			case "function":
+				if (Engine[option.parameters.function])
+					callbackFunction = option.parameters.function;
 				break;
 			case "list":
 				control.list = option.parameters.list.map(e => translate(e.label));
@@ -260,18 +266,21 @@ function setupControl(option, i, category)
 			}
 		}
 
-		onUpdate = function(key)
+		onUpdate = function(key, callbackFunction)
 		{
 			return function()
 			{
 				Engine.ConfigDB_CreateValue("user", key, this.list_data[this.selected]);
 				Engine.ConfigDB_SetChanges("user", true);
+				if (callbackFunction)
+					Engine[callbackFunction](this.list_data[this.selected]);
 				updateOptionPanel();
 			};
-		}(key);
+		}(key, callbackFunction);
 
 		control.onSelectionChange = onUpdate;
 		break;
+	}
 	default:
 		warn("Unknown option type " + option.type + ", assuming string.");
 		control = Engine.GetGUIObjectByName(category + "Input[" + i + "]");
@@ -359,7 +368,7 @@ function revertChanges()
 		// and the possible function calls (which are of number or string types)
 		if (control.parameters.function)
 		{
-			if (control.type !== "string" && control.type !== "number" && control.type !== "slider")
+			if (control.type != "string" && control.type != "number" && control.type != "slider" && control.type != "dropdown")
 			{
 				warn("Invalid type option " + control.type + " defined with function for " + item + ": will not be reverted");
 				continue;

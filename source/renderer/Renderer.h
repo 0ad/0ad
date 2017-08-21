@@ -48,6 +48,7 @@ class CTextureManager;
 class CTimeManager;
 class RenderPathVertexShader;
 class ScriptInterface;
+class ShadowMap;
 class SkyManager;
 class TerrainRenderer;
 class WaterManager;
@@ -329,6 +330,8 @@ public:
 	 * @return capabilities structure
 	 */
 	const Caps& GetCapabilities() const { return m_Caps; }
+
+	ShadowMap& GetShadowMap();
 
 	static void RegisterScriptFunctions(ScriptInterface& scriptInterface);
 
