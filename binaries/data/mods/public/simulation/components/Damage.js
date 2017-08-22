@@ -97,11 +97,14 @@ Damage.prototype.GetPlayersToDamage = function(attackerOwner, friendlyFire)
  * @param {boolean}  data.isSplash - a flag indicating if it's splash damage.
  * @param {Vector3D} data.position - the expected position of the target.
  * @param {number}   data.projectileId - the id of the projectile.
- * @param {Vector3D} data.direction - The unit vector defining the direction
+ * @param {Vector3D} data.direction - the unit vector defining the direction.
+ * @param {Object}   data.bonus - the attack bonus template from the attacker.
  * ***When splash damage***
  * @param {boolean}  data.friendlyFire - a flag indicating if allied entities are also damaged.
  * @param {number}   data.radius - the radius of the splash damage.
  * @param {string}   data.shape - the shape of the splash range.
+ * @param {Object}   data.splashBonus - the attack bonus template from the attacker.
+ * @param {Object}   data.splashStrengths - data of the form { 'hack': number, 'pierce': number, 'crush': number }.
  */
 Damage.prototype.MissileHit = function(data, lateness)
 {
@@ -117,6 +120,7 @@ Damage.prototype.MissileHit = function(data, lateness)
 			"radius": data.radius,
 			"shape": data.shape,
 			"strengths": data.splashStrengths,
+			"splashBonus": data.splashBonus,
 			"direction": data.direction,
 			"playersToDamage": this.GetPlayersToDamage(data.attackerOwner, data.friendlyFire),
 			"type": data.type,
@@ -131,6 +135,7 @@ Damage.prototype.MissileHit = function(data, lateness)
 	let cmpDamageReceiver = Engine.QueryInterface(data.target, IID_DamageReceiver);
 	if (cmpDamageReceiver && this.TestCollision(data.target, data.position, lateness))
 	{
+		data.multiplier = GetDamageBonus(data.target, data.bonus);
 		this.CauseDamage(data);
 		cmpProjectileManager.RemoveProjectile(data.projectileId);
 		return;
@@ -147,11 +152,12 @@ Damage.prototype.MissileHit = function(data, lateness)
 	{
 		if (!this.TestCollision(ent, data.position, lateness))
 			continue;
+
 		this.CauseDamage({
 			"strengths": data.strengths,
 			"target": ent,
 			"attacker": data.attacker,
-			"multiplier": data.multiplier,
+			"multiplier": GetDamageBonus(ent, data.bonus),
 			"type": data.type,
 			"attackerOwner": data.attackerOwner
 		});
@@ -170,7 +176,8 @@ Damage.prototype.MissileHit = function(data, lateness)
  * @param {Object}   data.strengths - data of the form { 'hack': number, 'pierce': number, 'crush': number }.
  * @param {string}   data.type - the type of damage.
  * @param {number}   data.attackerOwner - the player id of the attacker.
- * @param {Vector3D} [data.direction] - the unit vector defining the direction.
+ * @param {Vector3D} [data.direction] - the unit vector defining the direction. Needed for linear splash damage.
+ * @param {Object}   data.splashBonus - the attack bonus template from the attacker.
  * @param {number[]} data.playersToDamage - the array of player id's to damage.
  */
 Damage.prototype.CauseSplashDamage = function(data)
@@ -210,6 +217,10 @@ Damage.prototype.CauseSplashDamage = function(data)
 		{
 			warn("The " + data.shape + " splash damage shape is not implemented!");
 		}
+
+		if (data.splashBonus)
+			damageMultiplier *= GetDamageBonus(ent, data.splashBonus);
+
 		// Call CauseDamage which reduces the hitpoints, posts network command, plays sounds....
 		this.CauseDamage({
 			"strengths": data.strengths,

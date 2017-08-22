@@ -41,7 +41,7 @@ Trigger.prototype.CheckWonderVictory = function(data)
 	let wonderDuration = cmpEndGameManager.GetGameTypeSettings().victoryDuration || 0;
 
 	messages.otherMessage = cmpGuiInterface.AddTimeNotification({
-		"message": markForTranslation("%(_player_)s will have won in %(time)s"),
+		"message": markForTranslation("%(_player_)s will win in %(time)s."),
 		"players": players,
 		"parameters": {
 			"_player_": cmpPlayer.GetPlayerID()
@@ -51,7 +51,7 @@ Trigger.prototype.CheckWonderVictory = function(data)
 	}, wonderDuration);
 
 	messages.ownMessage = cmpGuiInterface.AddTimeNotification({
-		"message": markForTranslation("You will have won in %(time)s"),
+		"message": markForTranslation("You will win in %(time)s."),
 		"players": [data.to],
 		"translateMessage": true,
 	}, wonderDuration);

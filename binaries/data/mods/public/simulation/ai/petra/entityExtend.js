@@ -164,7 +164,6 @@ m.allowCapture = function(gameState, ent, target)
 	return capture > antiCapture + sumCapturePoints/80;
 };
 
-/** copy of GetAttackBonus from Attack.js */
 m.getAttackBonus = function(ent, target, type)
 {
 	let attackBonus = 1;

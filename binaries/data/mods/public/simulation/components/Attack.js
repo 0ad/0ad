@@ -432,33 +432,14 @@ Attack.prototype.GetRange = function(type)
 	return { "max": max, "min": min, "elevationBonus": elevationBonus };
 };
 
-// Calculate the attack damage multiplier against a target
-Attack.prototype.GetAttackBonus = function(type, target)
+Attack.prototype.GetBonusTemplate = function(type)
 {
-	let attackBonus = 1;
 	let template = this.template[type];
 	if (!template)
 		template = this.template[type.split(".")[0]].Splash;
-
 	if (template.Bonuses)
-	{
-		let cmpIdentity = Engine.QueryInterface(target, IID_Identity);
-		if (!cmpIdentity)
-			return 1;
-
-		// Multiply the bonuses for all matching classes
-		for (let key in template.Bonuses)
-		{
-			let bonus = template.Bonuses[key];
-			if (bonus.Civ && bonus.Civ !== cmpIdentity.GetCiv())
-				continue;
-			if (bonus.Classes && bonus.Classes.split(/\s+/).some(cls => !cmpIdentity.HasClass(cls)))
-				continue;
-			attackBonus *= bonus.Multiplier;
-		}
-	}
-
-	return attackBonus;
+		return clone(template.Bonuses);
+	return null;
 };
 
 /**
@@ -528,7 +509,7 @@ Attack.prototype.PerformAttack = function(type, target)
 			"position": realTargetPosition,
 			"direction": missileDirection,
 			"projectileId": id,
-			"multiplier": this.GetAttackBonus(type, target),
+			"bonus": this.GetBonusTemplate(type),
 			"isSplash": false,
 			"attackerOwner": attackerOwner
 		};
@@ -538,7 +519,8 @@ Attack.prototype.PerformAttack = function(type, target)
 			data.radius = +this.template.Ranged.Splash.Range;
 			data.shape = this.template.Ranged.Splash.Shape;
 			data.isSplash = true;
-			data.splashStrengths = this.GetAttackStrengths(type+".Splash");
+			data.splashStrengths = this.GetAttackStrengths(type + ".Splash");
+			data.splashBonus = this.GetBonusTemplate(type + ".Splash");
 		}
 		cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_Damage, "MissileHit", timeToTarget * 1000, data);
 	}
@@ -547,7 +529,7 @@ Attack.prototype.PerformAttack = function(type, target)
 		if (attackerOwner == -1)
 			return;
 
-		let multiplier = this.GetAttackBonus(type, target);
+		let multiplier = GetDamageBonus(target, this.GetBonusTemplate(type));
 		let cmpHealth = Engine.QueryInterface(target, IID_Health);
 		if (!cmpHealth || cmpHealth.GetHitpoints() == 0)
 			return;
@@ -574,7 +556,7 @@ Attack.prototype.PerformAttack = function(type, target)
 			"strengths": this.GetAttackStrengths(type),
 			"target": target,
 			"attacker": this.entity,
-			"multiplier": this.GetAttackBonus(type, target),
+			"multiplier": GetDamageBonus(target, this.GetBonusTemplate(type)),
 			"type": type,
 			"attackerOwner": attackerOwner
 		});
@@ -609,7 +591,7 @@ Attack.prototype.PredictTimeToTarget = function(selfPosition, horizSpeed, target
 		return c / (Math.sqrt(disc) - b);
 
 	return false;
-}
+};
 
 Attack.prototype.OnValueModification = function(msg)
 {

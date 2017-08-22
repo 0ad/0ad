@@ -15,7 +15,7 @@
 # Nicolas Auvray <na.itms76@gmail.com>, 2017
 # Nicolas Frasson <nicfrasson@gmail.com>, 2014-2015
 # pizzaiolo, 2015
-# Pedro Augustus Diniz Falcão Silva <pedro.falcao.ufcg@gmail.com>, 2015-2016
+# Pedro Augustus Diniz Falcão Silva <pedro.falcao.ufcg@gmail.com>, 2015-2017
 # PedroDognani <pedro_dognani_@hotmail.com>, 2015
 # Rafael Monteiro <rafaelimabsb2@hotmail.com>, 2016
 # Raphael Mendonça, 2014
@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-09 09:05+0200\n"
-"PO-Revision-Date: 2017-08-10 05:10+0000\n"
-"Last-Translator: Igor Aleixo <igor.pavao@gmail.com>\n"
+"PO-Revision-Date: 2017-08-19 15:09+0000\n"
+"Last-Translator: Pedro Augustus Diniz Falcão Silva <pedro.falcao.ufcg@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -190,7 +190,7 @@ msgid ""
 "Fertile lands surrounded by harsh terrain.\n"
 "Remains of recent snowfalls still haunt the forests, and torrential rivers from the snowmelt have barely died away.\n"
 "Aiming at a realistic terrain, this map might not always be balanced."
-msgstr "Terras férteis rodeado por terreno áspero.⏎ \nOs restos de nevascas recentes ainda assombram as florestas, e os rios torrenciais que se fundiram com a neve mal acabaram.⏎ \nVisando um terreno realista, este mapa pode nem sempre ser equilibrado."
+msgstr "Terras férteis rodeadas por terreno áspero.\nOs restos de nevascas recentes ainda assombram as florestas, e os rios torrenciais que se fundiram com a neve mal acabaram.\nVisando um terreno realista, este mapa pode nem sempre ser equilibrado."
 
 #: maps/random/caledonian_meadows.jsonsettings.Name
 msgid "Caledonian Meadows"
@@ -941,23 +941,23 @@ msgstr "Derrote seu inimigo para vencer!"
 #, javascript-format
 msgid "%(lastPlayer)s has won (treasure collected)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s foi vitorioso (tesouro coletado)."
+msgstr[1] "%(players)s e %(lastPlayer)s foram vitoriosos (tesouro coletado)."
 
 #: maps/scenarios/treasure_islands.js:105
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (treasure collected)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (treasure collected)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s foi derrotado (tesouro coletado)."
+msgstr[1] "%(players)s e %(lastPlayer)s foram derrotados (tesouro coletado)."
 
 #: maps/scenarios/Arcadia.xml:Description:39
 msgid ""
 "Springtime in Arcadia, Greece. Spring rains have gorged what would otherwise be dry creek beds throughout the rest of the year, dividing the lands between two warring tribes. \n"
 "\n"
 "Players start on either side of a mountainous region rich in resources. Extra starting buildings help players jumpstart building their new colonies."
-msgstr "Primavera na Arcádia, Grécia. Chuvas de primavera tem empanturrado o que seria um riacho seco no restante do ano, dividindo as terras entre duas tribos rivais.\n\nOs jogadores começam em ambos os lados de uma região montanhosa rica em recursos. Edifícios iniciais extras ajudam os jogadores a construírem suas novas colônias."
+msgstr "Primavera na Arcádia, Grécia. Chuvas de primavera têm empanturrado o que seria um riacho seco no restante do ano, dividindo as terras entre duas tribos rivais.\n\nOs jogadores começam em ambos os lados de uma região montanhosa rica em recursos. Edifícios iniciais extras ajudam os jogadores a construírem suas novas colônias."
 
 #: maps/scenarios/Arcadia.xml:PlayerData[0].Name:39
 #: maps/scenarios/Belgian_Bog_night.xml:PlayerData[0].Name:39

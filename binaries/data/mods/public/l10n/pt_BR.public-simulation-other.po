@@ -14,7 +14,7 @@
 # Mihailov Vasilievic Filho, 2015
 # Nicolas Frasson <nicfrasson@gmail.com>, 2014
 # pizzaiolo, 2015
-# Pedro Augustus Diniz Falcão Silva <pedro.falcao.ufcg@gmail.com>, 2015-2016
+# Pedro Augustus Diniz Falcão Silva <pedro.falcao.ufcg@gmail.com>, 2015-2017
 # PedroDognani <pedro_dognani_@hotmail.com>, 2015
 # Rafael Monteiro <rafaelimabsb2@hotmail.com>, 2016
 # Raphael Mendonça, 2014
@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-09 09:04+0200\n"
-"PO-Revision-Date: 2017-08-10 05:21+0000\n"
-"Last-Translator: Igor Aleixo <igor.pavao@gmail.com>\n"
+"PO-Revision-Date: 2017-08-19 15:02+0000\n"
+"Last-Translator: Pedro Augustus Diniz Falcão Silva <pedro.falcao.ufcg@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -912,8 +912,8 @@ msgstr "Você pode atacar agora!"
 #, javascript-format
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s foi vitorioso(a) (último jogador restante)."
+msgstr[1] "%(players)s e %(lastPlayer)s foram vitoriosos (últimos jogadores restantes)."
 
 #: simulation/components/EndGameManager.js:171
 msgid "Last remaining player wins."

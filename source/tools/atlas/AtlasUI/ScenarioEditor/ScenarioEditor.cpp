@@ -335,6 +335,9 @@ enum
 	ID_DumpState,
 	ID_DumpBinaryState,
 
+	ID_Manual,
+	ID_ReportBug,
+
 	ID_Toolbar // must be last in the list
 };
 
@@ -366,7 +369,10 @@ BEGIN_EVENT_TABLE(ScenarioEditor, wxFrame)
 	EVT_MENU(ID_RenderPathFixed, ScenarioEditor::OnRenderPath)
 	EVT_MENU(ID_RenderPathShader, ScenarioEditor::OnRenderPath)
 
-    EVT_MENU_OPEN(ScenarioEditor::OnMenuOpen)
+	EVT_MENU(ID_Manual, ScenarioEditor::OnHelp)
+	EVT_MENU(ID_ReportBug, ScenarioEditor::OnHelp)
+
+	EVT_MENU_OPEN(ScenarioEditor::OnMenuOpen)
 
 	EVT_IDLE(ScenarioEditor::OnIdle)
 END_EVENT_TABLE()
@@ -485,6 +491,36 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 		menuMisc->AppendSubMenu(menuRP, _("Render &path"));
 		menuRP->Append(ID_RenderPathFixed, _("&Fixed function"));
 		menuRP->Append(ID_RenderPathShader, _("&Shader (default)"));
+	}
+
+	wxMenu *menuHelp = new wxMenu;
+	menuBar->Append(menuHelp, _("&Help"));
+	{
+		const wxString helpPath("../data/tools/atlas/help.json");
+		if (wxFileExists(helpPath))
+		{
+			wxFFile helpFile(helpPath);
+			wxString helpData;
+			helpFile.ReadAll(&helpData);
+			AtObj data = AtlasObject::LoadFromJSON(std::string(helpData));
+		#define ADD_HELP_ITEM(id) \
+				do { \
+					if (!data[#id].hasContent()) \
+						break; \
+					if (!data[#id]["title"].hasContent() || !data[#id]["url"].hasContent()) \
+						break; \
+					menuHelp->Append(ID_##id, _(wxString(data[#id]["title"])), _(wxString(data[#id]["tooltip"]))); \
+					m_HelpData.insert(std::make_pair( \
+						ID_##id, \
+						HelpItem(wxString(data[#id]["title"]), wxString(data[#id]["tooltip"]), wxString(data[#id]["url"])) \
+					)); \
+				} while (0)
+			ADD_HELP_ITEM(Manual);
+			ADD_HELP_ITEM(ReportBug);
+		#undef ADD_HELP_ITEM
+		}
+		else
+			wxLogError(_("'%ls' does not exist"), helpPath.c_str());
 	}
 
 	m_FileHistory.LoadFromSubDir(*wxConfigBase::Get());
@@ -941,6 +977,19 @@ void ScenarioEditor::OnDumpState(wxCommandEvent& event)
 void ScenarioEditor::OnSelectedObjectsChange(const std::vector<ObjectID>& selectedObjects)
 {
     GetMenuBar()->Enable(ID_Copy, !selectedObjects.empty());
+}
+
+void ScenarioEditor::OnHelp(wxCommandEvent& event)
+{
+	std::map<int, HelpItem>::const_iterator it = m_HelpData.find(event.GetId());
+	if (it == m_HelpData.end())
+		return;
+	wxMessageDialog* dialog = new wxMessageDialog(
+		nullptr, _("Do you want to open '" + it->second.m_URL + "'?"),
+		_("Atlas"), wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION
+	);
+	if (dialog->ShowModal() == wxID_YES)
+		wxLaunchDefaultBrowser(it->second.m_URL);
 }
 
 void ScenarioEditor::OnMenuOpen(wxMenuEvent& event)
