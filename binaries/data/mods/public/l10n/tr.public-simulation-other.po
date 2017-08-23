@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-08-09 09:04+0200\n"
-"PO-Revision-Date: 2017-08-09 14:25+0000\n"
+"POT-Creation-Date: 2017-08-21 09:05+0200\n"
+"PO-Revision-Date: 2017-08-21 15:58+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -927,26 +927,26 @@ msgstr "%(category)s eğitim limiti %(limit)s e  ulaşıldı"
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s limiti %(limit)s e  ulaşıldı"
 
-#: simulation/components/Player.js:296
+#: simulation/components/Player.js:304
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "Yetersiz kaynaklar - %(resourceAmount1)s %(resourceType1)s"
 
-#: simulation/components/Player.js:298
+#: simulation/components/Player.js:306
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "Yetersiz kaynaklar - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:300
+#: simulation/components/Player.js:308
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "Yetersiz kaynaklar - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:302
+#: simulation/components/Player.js:310
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -1003,19 +1003,19 @@ msgstr "Garnizon bir varlığı yükseltemezsiniz."
 msgid "Attack against %(_player_)s requested."
 msgstr "%(_player_)s e karşı saldırı istendi."
 
-#: simulation/helpers/Commands.js:789
+#: simulation/helpers/Commands.js:792
 msgid "There are no bribable units"
 msgstr "Rüşvet birimleri yok"
 
-#: simulation/helpers/Commands.js:834
+#: simulation/helpers/Commands.js:838
 msgid "Unable to ungarrison unit(s)"
 msgstr "Birim(ler) garnizona yerleşemiyor"
 
-#: simulation/helpers/Commands.js:848
+#: simulation/helpers/Commands.js:852
 msgid "Some unit(s) can't go back to work"
 msgstr "Bazı birim(ler) çalışmaa geri dönemiyor"
 
-#: simulation/helpers/Commands.js:1102
+#: simulation/helpers/Commands.js:1106
 msgid "The building's technology requirements are not met."
 msgstr "Bu yapının teknoloji gereksinimleri karşılanamamaktadır."
 
@@ -1106,7 +1106,7 @@ msgid ""
 msgstr "Haritada yayılmış tüm kalıntıları yakalayın ve oyunu kazanmak için belli bir süre tutun."
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
-msgid "Capture The Relic"
+msgid "Capture the Relic"
 msgstr ""
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description

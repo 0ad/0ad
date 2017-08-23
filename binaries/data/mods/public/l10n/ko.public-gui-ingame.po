@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-08-11 09:02+0200\n"
-"PO-Revision-Date: 2017-08-11 16:04+0000\n"
+"POT-Creation-Date: 2017-08-21 09:03+0200\n"
+"PO-Revision-Date: 2017-08-21 15:11+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,7 @@ msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] "추가 사정 거리: %(range)s 미터"
 
-#: gui/session/input.js:707
+#: gui/session/input.js:710
 msgid "Cannot build wall here!"
 msgstr "여기에는 장벽을 세울 수 없습니다!"
 
@@ -258,7 +258,7 @@ msgstr "멈춤"
 msgid "Paused by %(players)s"
 msgstr "플레이어에 의해 일시중지 됨."
 
-#: gui/session/menu.js:1121 gui/session/messages.js:666
+#: gui/session/menu.js:1121 gui/session/messages.js:669
 msgctxt "Separator for a list of players"
 msgid ", "
 msgstr ""
@@ -467,179 +467,179 @@ msgstr "%(player)s 는 이제 %(player2)s 와 전쟁입니다."
 msgid "%(player)s is now neutral with %(player2)s."
 msgstr "%(player)s 는 이제 %(player2)s 와 중립 상태입니다."
 
-#: gui/session/messages.js:555
+#: gui/session/messages.js:558
 msgid "Click to quit this tutorial."
 msgstr ""
 
-#: gui/session/messages.js:556
+#: gui/session/messages.js:559
 msgid "Quit"
 msgstr ""
 
-#: gui/session/messages.js:560
+#: gui/session/messages.js:563
 msgid "Click when ready."
 msgstr ""
 
-#: gui/session/messages.js:564
+#: gui/session/messages.js:567
 msgid "Follow the instructions."
 msgstr ""
 
-#: gui/session/messages.js:655
+#: gui/session/messages.js:658
 msgctxt "Separator for a list of client loading messages"
 msgid ", "
 msgstr ""
 
-#: gui/session/messages.js:661
+#: gui/session/messages.js:664
 #, javascript-format
 msgid "Out-Of-Sync error on turn %(turn)s."
 msgstr ""
 
-#: gui/session/messages.js:665
+#: gui/session/messages.js:668
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Players: %(players)s"
 msgstr ""
 
-#: gui/session/messages.js:670
+#: gui/session/messages.js:673
 msgctxt "Out-Of-Sync"
 msgid "Your game state is identical to the hosts game state."
 msgstr ""
 
-#: gui/session/messages.js:671
+#: gui/session/messages.js:674
 msgctxt "Out-Of-Sync"
 msgid "Your game state differs from the hosts game state."
 msgstr ""
 
-#: gui/session/messages.js:677
+#: gui/session/messages.js:680
 msgctxt "Out-Of-Sync"
 msgid "Rejoining Multiplayer games with AIs is not supported yet!"
 msgstr ""
 
-#: gui/session/messages.js:681
+#: gui/session/messages.js:684
 msgctxt "Out-Of-Sync"
 msgid "Ensure all players use the same mods."
 msgstr ""
 
-#: gui/session/messages.js:682
+#: gui/session/messages.js:685
 msgctxt "Out-Of-Sync"
 msgid "Click on \"Report a Bug\" in the main menu to help fix this."
-msgstr ""
-
-#: gui/session/messages.js:683
-#, javascript-format
-msgctxt "Out-Of-Sync"
-msgid "Replay saved to %(filepath)s"
 msgstr ""
 
 #: gui/session/messages.js:686
 #, javascript-format
 msgctxt "Out-Of-Sync"
+msgid "Replay saved to %(filepath)s"
+msgstr ""
+
+#: gui/session/messages.js:689
+#, javascript-format
+msgctxt "Out-Of-Sync"
 msgid "Dumping current state to %(filepath)s"
 msgstr ""
 
-#: gui/session/messages.js:695 gui/session/messages.js:706
+#: gui/session/messages.js:698 gui/session/messages.js:709
 msgid "Out of Sync"
 msgstr ""
 
-#: gui/session/messages.js:703
+#: gui/session/messages.js:706
 msgid "Out-Of-Sync error!"
 msgstr ""
 
 #. Translation: This is shown if replay is out of sync
-#: gui/session/messages.js:705
+#: gui/session/messages.js:708
 msgctxt "Out-Of-Sync"
 msgid "The current game state is different from the original game state."
 msgstr ""
 
-#: gui/session/messages.js:769
+#: gui/session/messages.js:772
 msgctxt "chat addressee"
 msgid "Everyone"
 msgstr "누구나"
 
-#: gui/session/messages.js:777
+#: gui/session/messages.js:780
 msgctxt "chat addressee"
 msgid "Allies"
 msgstr "연합군"
 
-#: gui/session/messages.js:781
+#: gui/session/messages.js:784
 msgctxt "chat addressee"
 msgid "Enemies"
 msgstr "적"
 
-#: gui/session/messages.js:787
+#: gui/session/messages.js:790
 msgctxt "chat addressee"
 msgid "Observers"
 msgstr "관찰자들"
 
-#: gui/session/messages.js:816 gui/session/selection_details.js:79
+#: gui/session/messages.js:819 gui/session/selection_details.js:79
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
 msgstr "\\[비접속] %(player)s"
 
-#: gui/session/messages.js:897
+#: gui/session/messages.js:900
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr ""
 
-#: gui/session/messages.js:898
+#: gui/session/messages.js:901
 msgid "HH:mm"
 msgstr ""
 
-#: gui/session/messages.js:942
+#: gui/session/messages.js:945
 msgid "Unknown Player"
 msgstr "모르는 플레이어"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an enumeration.
-#: gui/session/messages.js:967
+#: gui/session/messages.js:970
 msgid ", "
 msgstr ""
 
-#: gui/session/messages.js:999
+#: gui/session/messages.js:1002
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s 가 %(amounts)s 를 보냈습니다."
 
-#: gui/session/messages.js:1001
+#: gui/session/messages.js:1004
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
 msgstr ""
 
-#: gui/session/messages.js:1006
+#: gui/session/messages.js:1009
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
 msgstr "%(player)s 가 %(player2)s 에게 %(amounts)s 를 보냈습니다."
 
-#: gui/session/messages.js:1026
+#: gui/session/messages.js:1029
 #, javascript-format
 msgid "%(player)s bartered %(amountsBought)s for %(amountsSold)s."
 msgstr ""
 
-#: gui/session/messages.js:1039
+#: gui/session/messages.js:1042
 #, javascript-format
 msgid "Your livestock has been attacked by %(attacker)s!"
 msgstr "여러분의 가축이 %(attacker)s 에게 공격받고 있습니다!"
 
-#: gui/session/messages.js:1040
+#: gui/session/messages.js:1043
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "%(attacker)s 에게 공격받고 있습니다!"
 
-#: gui/session/messages.js:1057
+#: gui/session/messages.js:1060
 #, javascript-format
 msgid "%(player)s is advancing to the %(phaseName)s."
 msgstr ""
 
-#: gui/session/messages.js:1059
+#: gui/session/messages.js:1062
 #, javascript-format
 msgid "The %(phaseName)s of %(player)s has been aborted."
 msgstr ""
 
-#: gui/session/messages.js:1062
+#: gui/session/messages.js:1065
 #, javascript-format
 msgid "%(player)s has reached the %(phaseName)s."
 msgstr ""
 
-#: gui/session/messages.js:1114
+#: gui/session/messages.js:1117
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
@@ -730,9 +730,8 @@ msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
 #: gui/session/selection_details.js:424
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):32
-msgid "Capture points:"
-msgstr "캡쳐 점수"
+msgid "Capture Points:"
+msgstr ""
 
 #: gui/session/selection_details.js:432
 #, javascript-format
@@ -1443,17 +1442,16 @@ msgid "Yes or no?"
 msgstr "예 혹은 아니오?"
 
 #: gui/session/selection_panels_left/garrison_panel.xml:(tooltip):14
-#: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):30
 msgid "Hitpoints"
 msgstr "체력"
-
-#: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):39
-msgid "Capture points"
-msgstr "점령 장소"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):18
 msgid "Health:"
 msgstr "건강:"
+
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):32
+msgid "Capture points:"
+msgstr "캡쳐 점수"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):60
 msgid "Attack and Armor"
@@ -1478,8 +1476,8 @@ msgid ""
 msgstr "그룹화된 유닛을 선택하려면 마우스클릭,  그룹화된 유닛에 포커스를 맞추려면 마우스 더블클릭,  그룹을 해산하려면 마우스 오른쪽 클릭하세요"
 
 #: gui/session/top_panel/button_game_speed.xml:(tooltip):10
-msgid "Game speed"
-msgstr "게임 속도"
+msgid "Game Speed"
+msgstr ""
 
 #: gui/session/top_panel/button_game_speed.xml:(tooltip):18
 msgid "Choose game speed"
@@ -1490,5 +1488,5 @@ msgid "Menu"
 msgstr "메뉴"
 
 #: gui/session/top_panel/label.xml:(caption):4
-msgid "ALPHA XXII : Venustas"
+msgid "ALPHA XXIII : Ken Wood"
 msgstr ""

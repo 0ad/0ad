@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-08-02 09:02+0200\n"
-"PO-Revision-Date: 2017-08-06 17:40+0000\n"
-"Last-Translator: GunChleoc\n"
+"POT-Creation-Date: 2017-08-21 09:04+0200\n"
+"PO-Revision-Date: 2017-08-21 16:12+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -133,18 +133,18 @@ msgid "DELETE"
 msgstr "SGUAB ÀS"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:291
-#: gui/options/options.js:334 gui/options/options.js:401
+#: gui/options/options.js:337 gui/options/options.js:404
 #: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:170
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
-#: gui/summary/summary.js:367
+#: gui/summary/summary.js:363
 msgid "No"
 msgstr "Chan eil"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:291
-#: gui/options/options.js:334 gui/options/options.js:401
+#: gui/options/options.js:337 gui/options/options.js:404
 #: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:170
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
-#: gui/summary/summary.js:367
+#: gui/summary/summary.js:363
 msgid "Yes"
 msgstr "Tha"
 
@@ -289,12 +289,12 @@ msgstr[3] "Mìorbhail (%(min)s mionaid)"
 #: gui/common/gamedescription.js:244
 #, javascript-format
 msgctxt "victory condition"
-msgid "Capture The Relic (%(min)s minute)"
-msgid_plural "Capture The Relic (%(min)s minutes)"
-msgstr[0] "Glac na taisean (%(min)s mhionaid)"
-msgstr[1] "Glac na taisean (%(min)s mhionaid)"
-msgstr[2] "Glac na taisean (%(min)s mionaidean)"
-msgstr[3] "Glac na taisean (%(min)s mionaid)"
+msgid "Capture the Relic (%(min)s minute)"
+msgid_plural "Capture the Relic (%(min)s minutes)"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: gui/common/gamedescription.js:260
 msgid "Relic Count"
@@ -1111,7 +1111,7 @@ msgstr "%(component)s %(loot)s"
 msgid "Loot:"
 msgstr "Spùinn:"
 
-#: gui/credits/credits.js:69
+#: gui/credits/credits.js:68
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s – %(name)s"
@@ -1130,24 +1130,24 @@ msgstr "sgeama ionadail mì-dhligheach"
 msgid "OK"
 msgstr "Ceart ma-thà"
 
-#: gui/options/options.js:169
+#: gui/options/options.js:163
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "Luach: %(val)s (as lugha: %(min)s, as motha: %(max)s)"
 
-#: gui/options/options.js:332
+#: gui/options/options.js:335
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "Ma dh’ath-shuidhicheas tu na roghainnean, thèid na roghainnean air an sàbhaladh agad atharrachadh. A bheil thu airson leantainn air adhart?"
 
-#: gui/options/options.js:333 gui/options/options.js:400
+#: gui/options/options.js:336 gui/options/options.js:403
 #: gui/savedgames/load.js:187
 msgid "Warning"
 msgstr "Rabhadh"
 
-#: gui/options/options.js:399
+#: gui/options/options.js:402
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Tha atharraichean gun sàbhaladh agad, a bheil thu airson an uinneag seo a dhùnadh?"
 
@@ -1225,7 +1225,7 @@ msgstr "Togail: %(buildDate)s (%(revision)s)"
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "A bheil thu cinnteach gu bheil thu airson 0 A.D. fhàgail?"
 
-#: gui/pregame/mainmenu.js:261 gui/summary/summary.js:366
+#: gui/pregame/mainmenu.js:261 gui/summary/summary.js:362
 msgid "Confirmation"
 msgstr "Dearbhadh"
 
@@ -1478,7 +1478,7 @@ msgstr "Iomlan"
 msgid "Buildings"
 msgstr "Togalaichean"
 
-#: gui/summary/layout.js:24 gui/summary/layout.js:62 gui/summary/layout.js:108
+#: gui/summary/layout.js:24 gui/summary/layout.js:62 gui/summary/layout.js:102
 msgid "Total"
 msgstr "Iomlan"
 
@@ -1621,7 +1621,7 @@ msgstr "Smachd air a’  (as motha)"
 msgid "Map control (finish)"
 msgstr "Smachd air a’ mhapa (deireannach)"
 
-#: gui/summary/layout.js:338
+#: gui/summary/layout.js:340
 msgid "Team total"
 msgstr "Iomlan an sgioba"
 
@@ -1681,44 +1681,44 @@ msgstr "Reic"
 msgid "Outcome"
 msgstr "Toradh"
 
-#: gui/summary/summary.js:365
+#: gui/summary/summary.js:361
 msgid "Are you sure you want to quit the lobby?"
 msgstr "A bheil thu cinnteach gu bheil thu airson an lobaidh fhàgail?"
 
-#: gui/summary/summary.js:421
+#: gui/summary/summary.js:417
 msgid "Current Scores"
 msgstr "Na sgòran an-dràsta"
 
-#: gui/summary/summary.js:423
+#: gui/summary/summary.js:419
 msgid "Scores at the end of the game."
 msgstr "Sgòran air deireadh a’ gheama."
 
-#: gui/summary/summary.js:425
+#: gui/summary/summary.js:421
 msgid "You have been disconnected."
 msgstr "Chaidh do cheangal a bhriseadh."
 
-#: gui/summary/summary.js:427
+#: gui/summary/summary.js:423
 msgid "You have left the game."
 msgstr "Dh’fhàg thu an geama."
 
-#: gui/summary/summary.js:429
+#: gui/summary/summary.js:425
 msgid "You have won the battle!"
 msgstr "Thug thu buaidh air càch!"
 
-#: gui/summary/summary.js:431
+#: gui/summary/summary.js:427
 msgid "You have been defeated..."
 msgstr "Chaidh ruaig a chur ort…"
 
-#: gui/summary/summary.js:432
+#: gui/summary/summary.js:428
 msgid "You have abandoned the game."
 msgstr "Thrèig thu an geama."
 
-#: gui/summary/summary.js:437
+#: gui/summary/summary.js:433
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "An ùine a dh’fhalbh sa gheama: %(time)s"
 
-#: gui/summary/summary.js:445
+#: gui/summary/summary.js:441
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s – %(mapType)s"
@@ -1762,7 +1762,7 @@ msgstr "Sgeama ionadail:"
 
 #: gui/locale/locale.xml:(caption):36
 #: gui/locale/locale_advanced.xml:(caption):65
-#: gui/savedgames/load.xml:(caption):61 gui/savedgames/save.xml:(caption):38
+#: gui/savedgames/load.xml:(caption):58 gui/savedgames/save.xml:(caption):38
 msgid "Cancel"
 msgstr "Sguir dheth"
 
@@ -1877,8 +1877,8 @@ msgid ""
 msgstr "’S urrainn dhut fiosrachadh gun ainm a chur thugainn gu fèin-obrachail a chuidicheas ach an càraich sinn bugaichean is an doir sinn piseach air an dèanadas is co-chòrdalachd."
 
 #: gui/pregame/mainmenu.xml:539
-msgid "Alpha XXII: Venustas"
-msgstr "Alpha XXII: Venustas"
+msgid "Alpha XXIII: Ken Wood"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:541
 msgid ""
@@ -1953,8 +1953,8 @@ msgid "Mod Selection"
 msgstr "Taghadh nan tuilleadan"
 
 #: gui/pregame/mainmenu.xml:(caption):456
-msgid "Learn To Play"
-msgstr "Leabhar-mìneachaidh"
+msgid "Learn to Play"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):501
 msgid "Tools & Options"
@@ -1977,8 +1977,8 @@ msgid "Report a Bug"
 msgstr "Dèan aithris air buga"
 
 #: gui/pregame/mainmenu.xml:(caption):587
-msgid "Translate the game"
-msgstr "Eadar-theangaich an geama"
+msgid "Translate the Game"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):599
 msgid "Credits"
@@ -2112,114 +2112,114 @@ msgstr "Aonadan trèanaidh"
 msgid "Replay Games"
 msgstr "Ath-chluiche gheamannan"
 
-#: gui/replaymenu/replay_menu.xml:(caption):126
+#: gui/replaymenu/replay_menu.xml:(caption):123
 msgid "Filter compatible replays"
 msgstr "Feadhainn cho-chòrdail a-mhàin"
 
-#: gui/replaymenu/replay_menu.xml:(caption):167
-#: gui/savedgames/load.xml:(caption):101
+#: gui/replaymenu/replay_menu.xml:(caption):164
+#: gui/savedgames/load.xml:(caption):98
 msgid "Map Type:"
 msgstr "Seòrsa a’ mhapa:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):182
-#: gui/savedgames/load.xml:(caption):105
+#: gui/replaymenu/replay_menu.xml:(caption):179
+#: gui/savedgames/load.xml:(caption):102
 msgid "Map Size:"
 msgstr "Meud a’ mhapa:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):197
-#: gui/savedgames/load.xml:(caption):109
+#: gui/replaymenu/replay_menu.xml:(caption):194
+#: gui/savedgames/load.xml:(caption):106
 msgid "Victory:"
 msgstr "Buaidh:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):230
+#: gui/replaymenu/replay_menu.xml:(caption):227
 msgid "Spoiler"
 msgstr "Spoiler"
 
-#: gui/replaymenu/replay_menu.xml:(caption):242
+#: gui/replaymenu/replay_menu.xml:(caption):239
 msgid "Main Menu"
 msgstr "A’ phrìomh chlàr-taice"
 
-#: gui/replaymenu/replay_menu.xml:(caption):248
-#: gui/savedgames/load.xml:(caption):66 gui/savedgames/save.xml:(caption):43
+#: gui/replaymenu/replay_menu.xml:(caption):245
+#: gui/savedgames/load.xml:(caption):63 gui/savedgames/save.xml:(caption):43
 msgid "Delete"
 msgstr "Sguab às"
 
-#: gui/replaymenu/replay_menu.xml:(caption):254
+#: gui/replaymenu/replay_menu.xml:(caption):251
 msgid "Reload Cache"
 msgstr "Ath-luchdaich an tasgadan"
 
-#: gui/replaymenu/replay_menu.xml:(caption):261
+#: gui/replaymenu/replay_menu.xml:(caption):258
 #: gui/summary/summary.xml:(caption):24
 msgid "Summary"
 msgstr "Gearr-chunntas"
 
-#: gui/replaymenu/replay_menu.xml:(caption):267
+#: gui/replaymenu/replay_menu.xml:(caption):264
 msgid "Start Replay"
 msgstr "Tòisich air ath-chluiche"
 
-#: gui/replaymenu/replay_menu.xml:(heading):86
-#: gui/savedgames/load.xml:(heading):40
+#: gui/replaymenu/replay_menu.xml:(heading):83
+#: gui/savedgames/load.xml:(heading):37
 msgctxt "replay"
 msgid "Date / Time"
 msgstr "Ceann-là ’s àm"
 
-#: gui/replaymenu/replay_menu.xml:(heading):90
+#: gui/replaymenu/replay_menu.xml:(heading):87
 msgctxt "replay"
 msgid "Players"
 msgstr "Cluicheadairean"
 
-#: gui/replaymenu/replay_menu.xml:(heading):94
-#: gui/savedgames/load.xml:(heading):48
+#: gui/replaymenu/replay_menu.xml:(heading):91
+#: gui/savedgames/load.xml:(heading):45
 msgctxt "replay"
 msgid "Map Name"
 msgstr "Ainm a’ mhapa"
 
-#: gui/replaymenu/replay_menu.xml:(heading):98
+#: gui/replaymenu/replay_menu.xml:(heading):95
 msgctxt "replay"
 msgid "Size"
 msgstr "Meud"
 
-#: gui/replaymenu/replay_menu.xml:(heading):102
+#: gui/replaymenu/replay_menu.xml:(heading):99
 msgctxt "replay"
 msgid "Population"
 msgstr "Sluagh"
 
-#: gui/replaymenu/replay_menu.xml:(heading):106
+#: gui/replaymenu/replay_menu.xml:(heading):103
 msgctxt "replay"
 msgid "Duration"
 msgstr "Faide"
 
-#: gui/replaymenu/replay_menu.xml:(tooltip):255
+#: gui/replaymenu/replay_menu.xml:(tooltip):252
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
 msgstr "Ath-luchdaich tasgadan na h-ath-chluiche às ùr. Dh’fhaoidte gun doir seo ùine mhòr!"
 
-#: gui/savedgames/load.xml:(heading):44
+#: gui/savedgames/load.xml:(heading):41
 msgctxt "replay"
 msgid "Map Type"
 msgstr "Seòrsa a’ mhapa"
 
-#: gui/savedgames/load.xml:(heading):52
+#: gui/savedgames/load.xml:(heading):49
 msgctxt "replay"
 msgid "Description"
 msgstr "Tuairisgeul"
 
-#: gui/savedgames/load.xml:(caption):57
+#: gui/savedgames/load.xml:(caption):54
 msgid "No saved games found."
 msgstr "Cha deach geama air a shàbhaladh a lorg."
 
-#: gui/savedgames/load.xml:(caption):71
+#: gui/savedgames/load.xml:(caption):68
 msgid "Load"
 msgstr "Luchdaich"
 
-#: gui/savedgames/load.xml:(caption):83
+#: gui/savedgames/load.xml:(caption):80
 msgid "Filter compatible saved games"
 msgstr "Criathraich geamannan air an sàbhaladh co-chòrdail"
 
-#: gui/savedgames/load.xml:(caption):93
+#: gui/savedgames/load.xml:(caption):90
 msgid "Players:"
 msgstr "Cluicheadairean:"
 
-#: gui/savedgames/load.xml:(caption):97
+#: gui/savedgames/load.xml:(caption):94
 msgid "Played time:"
 msgstr "An ùine a chaidh a chluich:"
 
@@ -2247,40 +2247,40 @@ msgstr "Duilgheadasan as aithne dhuinn (lìon)"
 msgid "Charts"
 msgstr "Cairtean"
 
-#: gui/summary/summary.xml:(caption):168
+#: gui/summary/summary.xml:(caption):163
 msgctxt "summary chart"
 msgid "Category:"
 msgstr "Roinn-seòrsa:"
 
-#: gui/summary/summary.xml:(caption):178
+#: gui/summary/summary.xml:(caption):173
 msgctxt "summary chart"
 msgid "Value:"
 msgstr "Luach:"
 
-#: gui/summary/summary.xml:(caption):188
+#: gui/summary/summary.xml:(caption):183
 msgctxt "summary chart"
 msgid "Type:"
 msgstr "Seòrsa:"
 
-#: gui/summary/summary.xml:(caption):207
+#: gui/summary/summary.xml:(caption):202
 msgid "Replay"
 msgstr "Ath-chluiche"
 
-#: gui/summary/summary.xml:(caption):212
+#: gui/summary/summary.xml:(caption):207
 msgid "Continue"
 msgstr "Lean air adhart"
 
-#: gui/summary/summary.xml:(tooltip):174
+#: gui/summary/summary.xml:(tooltip):169
 msgctxt "summary chart"
 msgid "Category"
 msgstr "Roinn-seòrsa"
 
-#: gui/summary/summary.xml:(tooltip):184
+#: gui/summary/summary.xml:(tooltip):179
 msgctxt "summary chart"
 msgid "Value"
 msgstr "Luach"
 
-#: gui/summary/summary.xml:(tooltip):195
+#: gui/summary/summary.xml:(tooltip):190
 msgctxt "summary chart"
 msgid "Type"
 msgstr "Seòrsa"
@@ -2782,8 +2782,8 @@ msgid "Number of shader effects. REQUIRES GAME RESTART"
 msgstr "Àireamh nan èifeachdan sgàileadair. FEUMAIDH TU AN GEAMA A THÒISEACHADH ÀS ÙR"
 
 #: gui/options/options.jsongraphicsSetting[2].label
-msgid "Graphics quality"
-msgstr "Càileachd na grafaigeachd"
+msgid "Shader Effects"
+msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[3].tooltip
 msgid "Enable shadows"
@@ -2793,125 +2793,155 @@ msgstr "Cuir na sgàilean an comas"
 msgid "Shadows"
 msgstr "Sgàilean"
 
+#: gui/options/options.jsongraphicsSetting[4].parameters.list[0].label
+msgid "Very Low"
+msgstr ""
+
+#: gui/options/options.jsongraphicsSetting[4].parameters.list[1].label
+msgid "Low"
+msgstr ""
+
+#: gui/options/options.jsongraphicsSetting[4].parameters.list[2].label
+msgid "Medium"
+msgstr ""
+
+#: gui/options/options.jsongraphicsSetting[4].parameters.list[3].label
+msgid "High"
+msgstr ""
+
+#: gui/options/options.jsongraphicsSetting[4].parameters.list[4].label
+msgid "Very High"
+msgstr ""
+
 #: gui/options/options.jsongraphicsSetting[4].tooltip
+msgid ""
+"Shadow map resolution. High values can crash the game when using a graphics "
+"card with low memory!"
+msgstr ""
+
+#: gui/options/options.jsongraphicsSetting[4].label
+msgid "Shadow Quality"
+msgstr ""
+
+#: gui/options/options.jsongraphicsSetting[5].tooltip
 msgid "Smooth shadows"
 msgstr "Sgàilean rèidhe"
 
-#: gui/options/options.jsongraphicsSetting[4].label
+#: gui/options/options.jsongraphicsSetting[5].label
 msgid "Shadow Filtering"
 msgstr "Criathradh sgàile"
 
-#: gui/options/options.jsongraphicsSetting[5].tooltip
+#: gui/options/options.jsongraphicsSetting[6].tooltip
 msgid "Show outlines of units behind buildings"
 msgstr "Seall aonadan air cùlaibh thogalaichean ’nan sgàil-riochdan"
 
-#: gui/options/options.jsongraphicsSetting[5].label
+#: gui/options/options.jsongraphicsSetting[6].label
 msgid "Unit Silhouettes"
 msgstr "Sgàil-riochdan nan aonadan"
 
-#: gui/options/options.jsongraphicsSetting[6].tooltip
+#: gui/options/options.jsongraphicsSetting[7].tooltip
 msgid "Enable particles"
 msgstr "Cuir na mìrean an comas"
 
-#: gui/options/options.jsongraphicsSetting[6].label
+#: gui/options/options.jsongraphicsSetting[7].label
 msgid "Particles"
 msgstr "Mìrean"
 
-#: gui/options/options.jsongraphicsSetting[7].tooltip
+#: gui/options/options.jsongraphicsSetting[8].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "Nuair a bhios e DHETH, cleachd an roghainn as ìsle gus uisge a reandaradh. Cha bhi ciall sna roghainnean eile an uairsin."
 
-#: gui/options/options.jsongraphicsSetting[7].label
-msgid "Activate water effects"
-msgstr "Gnìomhaich na h-èifeachdan uisge"
+#: gui/options/options.jsongraphicsSetting[8].label
+msgid "Water Effects"
+msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[8].tooltip
+#: gui/options/options.jsongraphicsSetting[9].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "Cleachd an càileachd as fhearr airson èifeachdan uisge, a’ reandaradh stuadhan cladaich, cop na mara ’s lorgan nan long."
 
-#: gui/options/options.jsongraphicsSetting[8].label
+#: gui/options/options.jsongraphicsSetting[9].label
 msgid "HQ Water Effects"
 msgstr "Èifeachdan uisge le càileachd àrd"
 
-#: gui/options/options.jsongraphicsSetting[9].tooltip
+#: gui/options/options.jsongraphicsSetting[10].tooltip
 msgid "Use actual water depth in rendering calculations"
 msgstr "Cleachd fìor-dhoimhne uisge ann an àireamhachadh an reandaraidh"
 
-#: gui/options/options.jsongraphicsSetting[9].label
+#: gui/options/options.jsongraphicsSetting[10].label
 msgid "Real Water Depth"
 msgstr "Fìor-dhoimhne uisge"
 
-#: gui/options/options.jsongraphicsSetting[10].tooltip
+#: gui/options/options.jsongraphicsSetting[11].tooltip
 msgid "Allow water to reflect a mirror image"
 msgstr "Leig le uisge dealbh faileis a thilgeil air ais"
 
-#: gui/options/options.jsongraphicsSetting[10].label
+#: gui/options/options.jsongraphicsSetting[11].label
 msgid "Water Reflections"
 msgstr "Faileas uisge"
 
-#: gui/options/options.jsongraphicsSetting[11].tooltip
+#: gui/options/options.jsongraphicsSetting[12].tooltip
 msgid "Use a real water refraction map and not transparency"
 msgstr "Cleachd mapa fìor sholas-bhriseadh uisge seach trìd-shoilleireachd"
 
-#: gui/options/options.jsongraphicsSetting[11].label
+#: gui/options/options.jsongraphicsSetting[12].label
 msgid "Water Refraction"
 msgstr "Solas-briseadh uisge"
 
-#: gui/options/options.jsongraphicsSetting[12].tooltip
+#: gui/options/options.jsongraphicsSetting[13].tooltip
 msgid "Cast shadows on water"
 msgstr "Tilg sgàil air uisge"
 
-#: gui/options/options.jsongraphicsSetting[12].label
+#: gui/options/options.jsongraphicsSetting[13].label
 msgid "Shadows on Water"
 msgstr "Sgàilean air an uisge"
 
-#: gui/options/options.jsongraphicsSetting[13].tooltip
+#: gui/options/options.jsongraphicsSetting[14].tooltip
 msgid "Lift darkness and fog-of-war smoothly"
 msgstr "Tog dubhar agus ceò a’ chogaidh gu rèidh"
 
-#: gui/options/options.jsongraphicsSetting[13].label
+#: gui/options/options.jsongraphicsSetting[14].label
 msgid "Smooth LOS"
 msgstr "Loidhne-amhairc rèidh"
 
-#: gui/options/options.jsongraphicsSetting[14].tooltip
+#: gui/options/options.jsongraphicsSetting[15].tooltip
 msgid "Render Sky"
 msgstr "Reandaraich na speuran"
 
-#: gui/options/options.jsongraphicsSetting[14].label
+#: gui/options/options.jsongraphicsSetting[15].label
 msgid "Show Sky"
 msgstr "Seall na speuran"
 
-#: gui/options/options.jsongraphicsSetting[15].tooltip
+#: gui/options/options.jsongraphicsSetting[16].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "Ruith sioncronachadh inghearach gus sracadh na sgrìn a chàradh. FEUMAIDH TU AN GEAMA A THÒISEACHADH ÀS ÙR"
 
-#: gui/options/options.jsongraphicsSetting[15].label
+#: gui/options/options.jsongraphicsSetting[16].label
 msgid "VSync"
 msgstr "Sioncronachadh-V"
 
-#: gui/options/options.jsongraphicsSetting[16].tooltip
+#: gui/options/options.jsongraphicsSetting[17].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr "Gus an eallach air a’ CPU ìsleachadh, tachd dè cho tric ’s a thèid na clàran-taice a reandaradh. Suidhich air an luach as motha gus an tachdadh a chur às comas."
 
-#: gui/options/options.jsongraphicsSetting[16].label
-msgid "FPS throttling in menus"
-msgstr "Tachdadh an FPS sna clàra-taice"
+#: gui/options/options.jsongraphicsSetting[17].label
+msgid "FPS Throttling in Menus"
+msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[17].tooltip
+#: gui/options/options.jsongraphicsSetting[18].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
 msgstr "Gus an eallach air a’ CPU ìsleachadh, tachd dè cho tric ’s a thèid nithean a’ gheama a reandaradh. Suidhich air an luach as motha gus an tachdadh a chur às comas."
 
-#: gui/options/options.jsongraphicsSetting[17].label
-msgid "FPS throttling in games"
-msgstr "Tachdadh an FPS sna geamannan"
+#: gui/options/options.jsongraphicsSetting[18].label
+msgid "FPS Throttling in Games"
+msgstr ""
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."

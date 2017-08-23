@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-08-02 09:02+0200\n"
-"PO-Revision-Date: 2017-08-03 09:14+0000\n"
+"POT-Creation-Date: 2017-08-21 09:04+0200\n"
+"PO-Revision-Date: 2017-08-22 07:25+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -132,18 +132,18 @@ msgid "DELETE"
 msgstr "ИЗТРИВАНЕ"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:291
-#: gui/options/options.js:334 gui/options/options.js:401
+#: gui/options/options.js:337 gui/options/options.js:404
 #: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:170
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
-#: gui/summary/summary.js:367
+#: gui/summary/summary.js:363
 msgid "No"
 msgstr "Не"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:291
-#: gui/options/options.js:334 gui/options/options.js:401
+#: gui/options/options.js:337 gui/options/options.js:404
 #: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:170
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
-#: gui/summary/summary.js:367
+#: gui/summary/summary.js:363
 msgid "Yes"
 msgstr "Да"
 
@@ -284,8 +284,8 @@ msgstr[1] "Чудо (%(min)s минути)"
 #: gui/common/gamedescription.js:244
 #, javascript-format
 msgctxt "victory condition"
-msgid "Capture The Relic (%(min)s minute)"
-msgid_plural "Capture The Relic (%(min)s minutes)"
+msgid "Capture the Relic (%(min)s minute)"
+msgid_plural "Capture the Relic (%(min)s minutes)"
 msgstr[0] "Заграбване на реликви (%(min)s минута)"
 msgstr[1] "Заграбване на реликви (%(min)s минути)"
 
@@ -1084,7 +1084,7 @@ msgstr "%(component)s %(loot)s"
 msgid "Loot:"
 msgstr "Плячка:"
 
-#: gui/credits/credits.js:69
+#: gui/credits/credits.js:68
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s — %(name)s"
@@ -1103,24 +1103,24 @@ msgstr "неправилна стойност"
 msgid "OK"
 msgstr "Добре"
 
-#: gui/options/options.js:169
+#: gui/options/options.js:163
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "Стойност: %(val)s (мин.: %(min)s, макс.: %(max)s)"
 
-#: gui/options/options.js:332
+#: gui/options/options.js:335
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "Възстановяването ще заличи запазените Ви настройки. Искате ли да продължите?"
 
-#: gui/options/options.js:333 gui/options/options.js:400
+#: gui/options/options.js:336 gui/options/options.js:403
 #: gui/savedgames/load.js:187
 msgid "Warning"
 msgstr "Внимание"
 
-#: gui/options/options.js:399
+#: gui/options/options.js:402
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Има незапазени промени. Искате ли да затворите този прозорец?"
 
@@ -1198,7 +1198,7 @@ msgstr "Версия: %(buildDate)s (%(revision)s)"
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Наистина ли искате да излезете от 0 A.D.?"
 
-#: gui/pregame/mainmenu.js:261 gui/summary/summary.js:366
+#: gui/pregame/mainmenu.js:261 gui/summary/summary.js:362
 msgid "Confirmation"
 msgstr "Потвърждаване"
 
@@ -1447,7 +1447,7 @@ msgstr "Общ резултат"
 msgid "Buildings"
 msgstr "Сгради"
 
-#: gui/summary/layout.js:24 gui/summary/layout.js:62 gui/summary/layout.js:108
+#: gui/summary/layout.js:24 gui/summary/layout.js:62 gui/summary/layout.js:102
 msgid "Total"
 msgstr "Общо"
 
@@ -1590,7 +1590,7 @@ msgstr "Контрол над картата (най-голям)"
 msgid "Map control (finish)"
 msgstr "Контрол над картата (накрая)"
 
-#: gui/summary/layout.js:338
+#: gui/summary/layout.js:340
 msgid "Team total"
 msgstr "Общо за отбора"
 
@@ -1650,44 +1650,44 @@ msgstr "продадени"
 msgid "Outcome"
 msgstr "разход"
 
-#: gui/summary/summary.js:365
+#: gui/summary/summary.js:361
 msgid "Are you sure you want to quit the lobby?"
 msgstr "Наистина ли искате да напуснете чакалнята?"
 
-#: gui/summary/summary.js:421
+#: gui/summary/summary.js:417
 msgid "Current Scores"
 msgstr "Текущи резултати"
 
-#: gui/summary/summary.js:423
+#: gui/summary/summary.js:419
 msgid "Scores at the end of the game."
 msgstr "Резултати в края на играта."
 
-#: gui/summary/summary.js:425
+#: gui/summary/summary.js:421
 msgid "You have been disconnected."
 msgstr "Връзката беше прекъсната."
 
-#: gui/summary/summary.js:427
+#: gui/summary/summary.js:423
 msgid "You have left the game."
 msgstr "Вие напуснахте играта."
 
-#: gui/summary/summary.js:429
+#: gui/summary/summary.js:425
 msgid "You have won the battle!"
 msgstr "Вие спечелихте битката!"
 
-#: gui/summary/summary.js:431
+#: gui/summary/summary.js:427
 msgid "You have been defeated..."
 msgstr "Вие бяхте загубихте…"
 
-#: gui/summary/summary.js:432
+#: gui/summary/summary.js:428
 msgid "You have abandoned the game."
 msgstr "Вие напуснахте играта."
 
-#: gui/summary/summary.js:437
+#: gui/summary/summary.js:433
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Игрално време: %(time)s"
 
-#: gui/summary/summary.js:445
+#: gui/summary/summary.js:441
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s — %(mapType)s"
@@ -1731,7 +1731,7 @@ msgstr "Идентификатор:"
 
 #: gui/locale/locale.xml:(caption):36
 #: gui/locale/locale_advanced.xml:(caption):65
-#: gui/savedgames/load.xml:(caption):61 gui/savedgames/save.xml:(caption):38
+#: gui/savedgames/load.xml:(caption):58 gui/savedgames/save.xml:(caption):38
 msgid "Cancel"
 msgstr "Отказ"
 
@@ -1846,8 +1846,8 @@ msgid ""
 msgstr "Можете да ни изпращате автоматична анонимна информация, която ще ни помогне в поправянето на грешки и подобряването на производителността и съвместимостта."
 
 #: gui/pregame/mainmenu.xml:539
-msgid "Alpha XXII: Venustas"
-msgstr "Алфа XXII : Венустас"
+msgid "Alpha XXIII: Ken Wood"
+msgstr "Алфа XXIII: Кен Ууд"
 
 #: gui/pregame/mainmenu.xml:541
 msgid ""
@@ -1922,7 +1922,7 @@ msgid "Mod Selection"
 msgstr "Избор на модификации"
 
 #: gui/pregame/mainmenu.xml:(caption):456
-msgid "Learn To Play"
+msgid "Learn to Play"
 msgstr "Как се играе"
 
 #: gui/pregame/mainmenu.xml:(caption):501
@@ -1946,7 +1946,7 @@ msgid "Report a Bug"
 msgstr "Съобщете за грешка"
 
 #: gui/pregame/mainmenu.xml:(caption):587
-msgid "Translate the game"
+msgid "Translate the Game"
 msgstr "Преведете играта"
 
 #: gui/pregame/mainmenu.xml:(caption):599
@@ -2081,114 +2081,114 @@ msgstr "Обучаващи единици"
 msgid "Replay Games"
 msgstr "Гледане на записи"
 
-#: gui/replaymenu/replay_menu.xml:(caption):126
+#: gui/replaymenu/replay_menu.xml:(caption):123
 msgid "Filter compatible replays"
 msgstr "Само съвместими повторения"
 
-#: gui/replaymenu/replay_menu.xml:(caption):167
-#: gui/savedgames/load.xml:(caption):101
+#: gui/replaymenu/replay_menu.xml:(caption):164
+#: gui/savedgames/load.xml:(caption):98
 msgid "Map Type:"
 msgstr "Вид на картата:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):182
-#: gui/savedgames/load.xml:(caption):105
+#: gui/replaymenu/replay_menu.xml:(caption):179
+#: gui/savedgames/load.xml:(caption):102
 msgid "Map Size:"
 msgstr "Размер на картата:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):197
-#: gui/savedgames/load.xml:(caption):109
+#: gui/replaymenu/replay_menu.xml:(caption):194
+#: gui/savedgames/load.xml:(caption):106
 msgid "Victory:"
 msgstr "Победа:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):230
+#: gui/replaymenu/replay_menu.xml:(caption):227
 msgid "Spoiler"
 msgstr "Разкриване на резултатите"
 
-#: gui/replaymenu/replay_menu.xml:(caption):242
+#: gui/replaymenu/replay_menu.xml:(caption):239
 msgid "Main Menu"
 msgstr "Главно меню"
 
-#: gui/replaymenu/replay_menu.xml:(caption):248
-#: gui/savedgames/load.xml:(caption):66 gui/savedgames/save.xml:(caption):43
+#: gui/replaymenu/replay_menu.xml:(caption):245
+#: gui/savedgames/load.xml:(caption):63 gui/savedgames/save.xml:(caption):43
 msgid "Delete"
 msgstr "Изтриване"
 
-#: gui/replaymenu/replay_menu.xml:(caption):254
+#: gui/replaymenu/replay_menu.xml:(caption):251
 msgid "Reload Cache"
 msgstr "Презареждане на кеша"
 
-#: gui/replaymenu/replay_menu.xml:(caption):261
+#: gui/replaymenu/replay_menu.xml:(caption):258
 #: gui/summary/summary.xml:(caption):24
 msgid "Summary"
 msgstr "Обобщение"
 
-#: gui/replaymenu/replay_menu.xml:(caption):267
+#: gui/replaymenu/replay_menu.xml:(caption):264
 msgid "Start Replay"
 msgstr "Пускане"
 
-#: gui/replaymenu/replay_menu.xml:(heading):86
-#: gui/savedgames/load.xml:(heading):40
+#: gui/replaymenu/replay_menu.xml:(heading):83
+#: gui/savedgames/load.xml:(heading):37
 msgctxt "replay"
 msgid "Date / Time"
 msgstr "Дата / час"
 
-#: gui/replaymenu/replay_menu.xml:(heading):90
+#: gui/replaymenu/replay_menu.xml:(heading):87
 msgctxt "replay"
 msgid "Players"
 msgstr "Играчи"
 
-#: gui/replaymenu/replay_menu.xml:(heading):94
-#: gui/savedgames/load.xml:(heading):48
+#: gui/replaymenu/replay_menu.xml:(heading):91
+#: gui/savedgames/load.xml:(heading):45
 msgctxt "replay"
 msgid "Map Name"
 msgstr "Име на картата"
 
-#: gui/replaymenu/replay_menu.xml:(heading):98
+#: gui/replaymenu/replay_menu.xml:(heading):95
 msgctxt "replay"
 msgid "Size"
 msgstr "Размер"
 
-#: gui/replaymenu/replay_menu.xml:(heading):102
+#: gui/replaymenu/replay_menu.xml:(heading):99
 msgctxt "replay"
 msgid "Population"
 msgstr "Население"
 
-#: gui/replaymenu/replay_menu.xml:(heading):106
+#: gui/replaymenu/replay_menu.xml:(heading):103
 msgctxt "replay"
 msgid "Duration"
 msgstr "Времетраене"
 
-#: gui/replaymenu/replay_menu.xml:(tooltip):255
+#: gui/replaymenu/replay_menu.xml:(tooltip):252
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
 msgstr "Повторно изграждане на кеша на повторенията от нулата. Може да отнеме много време!"
 
-#: gui/savedgames/load.xml:(heading):44
+#: gui/savedgames/load.xml:(heading):41
 msgctxt "replay"
 msgid "Map Type"
 msgstr "Вид на картата"
 
-#: gui/savedgames/load.xml:(heading):52
+#: gui/savedgames/load.xml:(heading):49
 msgctxt "replay"
 msgid "Description"
 msgstr "Описание"
 
-#: gui/savedgames/load.xml:(caption):57
+#: gui/savedgames/load.xml:(caption):54
 msgid "No saved games found."
 msgstr "Няма намерени запазени игри."
 
-#: gui/savedgames/load.xml:(caption):71
+#: gui/savedgames/load.xml:(caption):68
 msgid "Load"
 msgstr "Зареждане"
 
-#: gui/savedgames/load.xml:(caption):83
+#: gui/savedgames/load.xml:(caption):80
 msgid "Filter compatible saved games"
 msgstr "Само съвместими запазени игри"
 
-#: gui/savedgames/load.xml:(caption):93
+#: gui/savedgames/load.xml:(caption):90
 msgid "Players:"
 msgstr "Играчи:"
 
-#: gui/savedgames/load.xml:(caption):97
+#: gui/savedgames/load.xml:(caption):94
 msgid "Played time:"
 msgstr "Изиграно време:"
 
@@ -2216,40 +2216,40 @@ msgstr "Известни проблеми (в Интернет)"
 msgid "Charts"
 msgstr "Графики"
 
-#: gui/summary/summary.xml:(caption):168
+#: gui/summary/summary.xml:(caption):163
 msgctxt "summary chart"
 msgid "Category:"
 msgstr "Категория:"
 
-#: gui/summary/summary.xml:(caption):178
+#: gui/summary/summary.xml:(caption):173
 msgctxt "summary chart"
 msgid "Value:"
 msgstr "Стойност:"
 
-#: gui/summary/summary.xml:(caption):188
+#: gui/summary/summary.xml:(caption):183
 msgctxt "summary chart"
 msgid "Type:"
 msgstr "Вид:"
 
-#: gui/summary/summary.xml:(caption):207
+#: gui/summary/summary.xml:(caption):202
 msgid "Replay"
 msgstr "Пускане на записа"
 
-#: gui/summary/summary.xml:(caption):212
+#: gui/summary/summary.xml:(caption):207
 msgid "Continue"
 msgstr "Напред"
 
-#: gui/summary/summary.xml:(tooltip):174
+#: gui/summary/summary.xml:(tooltip):169
 msgctxt "summary chart"
 msgid "Category"
 msgstr "Категория"
 
-#: gui/summary/summary.xml:(tooltip):184
+#: gui/summary/summary.xml:(tooltip):179
 msgctxt "summary chart"
 msgid "Value"
 msgstr "Стойност"
 
-#: gui/summary/summary.xml:(tooltip):195
+#: gui/summary/summary.xml:(tooltip):190
 msgctxt "summary chart"
 msgid "Type"
 msgstr "Вид"
@@ -2751,8 +2751,8 @@ msgid "Number of shader effects. REQUIRES GAME RESTART"
 msgstr "Брой шейдърни ефекти. ИЗИСКВА РЕСТАРТИРАНЕ НА ИГРАТА"
 
 #: gui/options/options.jsongraphicsSetting[2].label
-msgid "Graphics quality"
-msgstr "Качество на графиката"
+msgid "Shader Effects"
+msgstr "Шейдърни ефекти"
 
 #: gui/options/options.jsongraphicsSetting[3].tooltip
 msgid "Enable shadows"
@@ -2762,124 +2762,154 @@ msgstr "Включване на сенките"
 msgid "Shadows"
 msgstr "Сенки"
 
+#: gui/options/options.jsongraphicsSetting[4].parameters.list[0].label
+msgid "Very Low"
+msgstr ""
+
+#: gui/options/options.jsongraphicsSetting[4].parameters.list[1].label
+msgid "Low"
+msgstr ""
+
+#: gui/options/options.jsongraphicsSetting[4].parameters.list[2].label
+msgid "Medium"
+msgstr ""
+
+#: gui/options/options.jsongraphicsSetting[4].parameters.list[3].label
+msgid "High"
+msgstr ""
+
+#: gui/options/options.jsongraphicsSetting[4].parameters.list[4].label
+msgid "Very High"
+msgstr ""
+
 #: gui/options/options.jsongraphicsSetting[4].tooltip
+msgid ""
+"Shadow map resolution. High values can crash the game when using a graphics "
+"card with low memory!"
+msgstr "Резолюция на картите за сенките. Високите стойности могат да причинят срив на играта, ако използвате видео карта с малко памет!"
+
+#: gui/options/options.jsongraphicsSetting[4].label
+msgid "Shadow Quality"
+msgstr "Качество на сенките"
+
+#: gui/options/options.jsongraphicsSetting[5].tooltip
 msgid "Smooth shadows"
 msgstr "Гладки сенки"
 
-#: gui/options/options.jsongraphicsSetting[4].label
+#: gui/options/options.jsongraphicsSetting[5].label
 msgid "Shadow Filtering"
 msgstr "Филтриране на сенките"
 
-#: gui/options/options.jsongraphicsSetting[5].tooltip
+#: gui/options/options.jsongraphicsSetting[6].tooltip
 msgid "Show outlines of units behind buildings"
 msgstr "Показване на очертания на единиците когато се намират зад сграда"
 
-#: gui/options/options.jsongraphicsSetting[5].label
+#: gui/options/options.jsongraphicsSetting[6].label
 msgid "Unit Silhouettes"
 msgstr "Силуети на единиците"
 
-#: gui/options/options.jsongraphicsSetting[6].tooltip
+#: gui/options/options.jsongraphicsSetting[7].tooltip
 msgid "Enable particles"
 msgstr "Включване на частиците"
 
-#: gui/options/options.jsongraphicsSetting[6].label
+#: gui/options/options.jsongraphicsSetting[7].label
 msgid "Particles"
 msgstr "Частици"
 
-#: gui/options/options.jsongraphicsSetting[7].tooltip
+#: gui/options/options.jsongraphicsSetting[8].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "Когато е изключено, ще се използват най-ниските възможни настройки за изчертаване на водата. Ако това бъде включено, другите настройки за водата ще бъдат пренебрегнати."
 
-#: gui/options/options.jsongraphicsSetting[7].label
-msgid "Activate water effects"
-msgstr "Включване на водните ефекти"
+#: gui/options/options.jsongraphicsSetting[8].label
+msgid "Water Effects"
+msgstr "Водни ефекти"
 
-#: gui/options/options.jsongraphicsSetting[8].tooltip
+#: gui/options/options.jsongraphicsSetting[9].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "Използване на по-качествени ефекти за водата, вълните, морската пяна и следите на корабите."
 
-#: gui/options/options.jsongraphicsSetting[8].label
+#: gui/options/options.jsongraphicsSetting[9].label
 msgid "HQ Water Effects"
 msgstr "Висококачествени водни ефекти"
 
-#: gui/options/options.jsongraphicsSetting[9].tooltip
+#: gui/options/options.jsongraphicsSetting[10].tooltip
 msgid "Use actual water depth in rendering calculations"
 msgstr "Използване на истинската дълбочина на водата по време на изчисленията за изчертаването"
 
-#: gui/options/options.jsongraphicsSetting[9].label
+#: gui/options/options.jsongraphicsSetting[10].label
 msgid "Real Water Depth"
 msgstr "Истинска дълбочина на водата"
 
-#: gui/options/options.jsongraphicsSetting[10].tooltip
+#: gui/options/options.jsongraphicsSetting[11].tooltip
 msgid "Allow water to reflect a mirror image"
 msgstr "Позволяване на водата да отразява огледално изображение"
 
-#: gui/options/options.jsongraphicsSetting[10].label
+#: gui/options/options.jsongraphicsSetting[11].label
 msgid "Water Reflections"
 msgstr "Водни отражения"
 
-#: gui/options/options.jsongraphicsSetting[11].tooltip
+#: gui/options/options.jsongraphicsSetting[12].tooltip
 msgid "Use a real water refraction map and not transparency"
 msgstr "Използване на истинска карта на пречупване на светлината във водата, а не само прозрачност."
 
-#: gui/options/options.jsongraphicsSetting[11].label
+#: gui/options/options.jsongraphicsSetting[12].label
 msgid "Water Refraction"
 msgstr "Лъчево пречупване във водата"
 
-#: gui/options/options.jsongraphicsSetting[12].tooltip
+#: gui/options/options.jsongraphicsSetting[13].tooltip
 msgid "Cast shadows on water"
 msgstr "Хвърляне на сенки върху водата"
 
-#: gui/options/options.jsongraphicsSetting[12].label
+#: gui/options/options.jsongraphicsSetting[13].label
 msgid "Shadows on Water"
 msgstr "Сенки върху водата"
 
-#: gui/options/options.jsongraphicsSetting[13].tooltip
+#: gui/options/options.jsongraphicsSetting[14].tooltip
 msgid "Lift darkness and fog-of-war smoothly"
 msgstr "Плавно повдигане на тъмнината и мъглата на войната"
 
-#: gui/options/options.jsongraphicsSetting[13].label
+#: gui/options/options.jsongraphicsSetting[14].label
 msgid "Smooth LOS"
 msgstr "Плавна граница на видимост"
 
-#: gui/options/options.jsongraphicsSetting[14].tooltip
+#: gui/options/options.jsongraphicsSetting[15].tooltip
 msgid "Render Sky"
 msgstr "Изчертаване на небето"
 
-#: gui/options/options.jsongraphicsSetting[14].label
+#: gui/options/options.jsongraphicsSetting[15].label
 msgid "Show Sky"
 msgstr "Небе"
 
-#: gui/options/options.jsongraphicsSetting[15].tooltip
+#: gui/options/options.jsongraphicsSetting[16].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "Вертикалната синхронизация предотвратява разкъсването на картината. ИЗИСКВА РЕСТАРТИРАНЕ НА ИГРАТА"
 
-#: gui/options/options.jsongraphicsSetting[15].label
+#: gui/options/options.jsongraphicsSetting[16].label
 msgid "VSync"
 msgstr "Вертикална синхронизация"
 
-#: gui/options/options.jsongraphicsSetting[16].tooltip
+#: gui/options/options.jsongraphicsSetting[17].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr "Намаляване на натоварването на процесора чрез ограничаване на честотата на изчертаване, когато сте из менютата на играта. Задайте на максимум, за да изключите ограничението."
 
-#: gui/options/options.jsongraphicsSetting[16].label
-msgid "FPS throttling in menus"
+#: gui/options/options.jsongraphicsSetting[17].label
+msgid "FPS Throttling in Menus"
 msgstr "Ограничаване на кадрите/сек в менютата"
 
-#: gui/options/options.jsongraphicsSetting[17].tooltip
+#: gui/options/options.jsongraphicsSetting[18].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
 msgstr "Намаляване на натоварването на процесора чрез забавяне на честотата на изчертаване по време на игра. Задайте на максимум, за да изключите забавянето."
 
-#: gui/options/options.jsongraphicsSetting[17].label
-msgid "FPS throttling in games"
+#: gui/options/options.jsongraphicsSetting[18].label
+msgid "FPS Throttling in Games"
 msgstr "Ограничаване на кадрите/сек в игра"
 
 #: simulation/data/resources/food.jsondescription
