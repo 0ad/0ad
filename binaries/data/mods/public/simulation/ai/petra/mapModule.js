@@ -87,10 +87,11 @@ m.createObstructionMap = function(gameState, accessIndex, template)
 
 	if (template && template.buildDistance())
 	{
-		let minDist = +template.buildDistance().MinDistance;
-		let fromClass = template.buildDistance().FromClass;
-		if (minDist && fromClass)
+		let distance = template.buildDistance();
+		let minDist = +distance.MinDistance;
+		if (minDist)
 		{
+			let fromClass = distance.FromClass;
 			let cellSize = passabilityMap.cellSize;
 			let cellDist = 1 + minDist / cellSize;
 			let structures = gameState.getOwnStructures().filter(API3.Filters.byClass(fromClass));

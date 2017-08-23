@@ -146,7 +146,7 @@ m.GameState.prototype.getTemplate = function(type)
 	if (!this.templates[type])
 		return null;
 
-	return new m.Template(this.templates[type]);
+	return new m.Template(this.sharedScript, type, this.templates[type]);
 };
 
 m.GameState.prototype.applyCiv = function(str)

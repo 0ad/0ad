@@ -5,9 +5,14 @@ var API3 = function(m)
 // It's completely raw data, except it's slightly cleverer now and then.
 m.Template = m.Class({
 
-	_init: function(template)
+	_init: function(sharedAI, templateName, template)
 	{
+		this._templateName = templateName;
 		this._template = template;
+		// save a reference to the template tech modifications
+		if (!sharedAI._templatesModifications[this._templateName])
+			sharedAI._templatesModifications[this._templateName] = {};
+		this._templateModif = sharedAI._templatesModifications[this._templateName];
 		this._tpCache = new Map();
 	},
 
@@ -18,8 +23,12 @@ m.Template = m.Class({
 		let value = this._template;
 		if (this._entityModif && this._entityModif.has(string))
 			return this._entityModif.get(string);
-		else if (this._templateModif && this._templateModif.has(string))
-			return this._templateModif.get(string);
+		else if (this._templateModif)
+		{
+			let owner = this._entity ? this._entity.owner : PlayerID;
+			if (this._templateModif[owner] && this._templateModif[owner].has(string))
+				return this._templateModif[owner].get(string);
+		}
 
 		if (!this._tpCache.has(string))
 		{
@@ -459,8 +468,14 @@ m.Template = m.Class({
 		return time;
 	},
 
-	buildDistance: function() {
-		return this.get("BuildRestrictions/Distance");
+	"buildDistance": function() {
+		let distance = this.get("BuildRestrictions/Distance");
+		if (!distance)
+			return undefined;
+		let ret = {};
+		for (let key in distance)
+			ret[key] = this.get("BuildRestrictions/Distance/" + key);
+		return ret;
 	},
 
 	buildPlacementType: function() {
@@ -529,16 +544,14 @@ m.Entity = m.Class({
 
 	_init: function(sharedAI, entity)
 	{
-		this._super.call(this, sharedAI.GetTemplate(entity.template));
+		this._super.call(this, sharedAI, entity.template, sharedAI.GetTemplate(entity.template));
 
-		this._templateName = entity.template;
 		this._entity = entity;
-
 		this._ai = sharedAI;
 		// save a reference to the template tech modifications
-		if (!sharedAI._templatesModifications[entity.owner][this._templateName])
-			sharedAI._templatesModifications[entity.owner][this._templateName] = new Map();
-		this._templateModif = sharedAI._templatesModifications[entity.owner][this._templateName];
+		if (!sharedAI._templatesModifications[this._templateName])
+			sharedAI._templatesModifications[this._templateName] = {};
+		this._templateModif = sharedAI._templatesModifications[this._templateName];
 		// save a reference to the entity tech/aura modifications
 		if (!sharedAI._entitiesModifications.has(entity.id))
 			sharedAI._entitiesModifications.set(entity.id, new Map());
