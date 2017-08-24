@@ -318,7 +318,7 @@ var g_GameStanzaTimeout = 2;
 /**
  * Index of the GUI timer.
  */
-var g_GameStanzaTimer = undefined;
+var g_GameStanzaTimer;
 
 /**
  * Only send a lobby update if something actually changed.
@@ -692,9 +692,9 @@ var g_PlayerDropdowns = {
 			let playerData = g_GameAttributes.settings.PlayerData;
 
 			// If someone else has that color, give that player the old color
-			let pData = playerData.find(pData => sameColor(g_PlayerColorPickerList[selectedIdx], pData.Color));
-			if (pData)
-				pData.Color = playerData[idx].Color;
+			let sameColorPData = playerData.find(pData => sameColor(g_PlayerColorPickerList[selectedIdx], pData.Color));
+			if (sameColorPData)
+				sameColorPData.Color = playerData[idx].Color;
 
 			playerData[idx].Color = g_PlayerColorPickerList[selectedIdx];
 			ensureUniquePlayerColors(playerData);
@@ -943,7 +943,7 @@ function init(attribs)
 
 	g_IsNetworked = attribs.type != "offline";
 	g_IsController = attribs.type != "client";
-	g_IsTutorial = attribs.tutorial && attribs.tutorial == true;
+	g_IsTutorial = !!attribs.tutorial;
 	g_ServerName = attribs.serverName;
 	g_ServerPort = attribs.serverPort;
 	g_StunEndpoint = attribs.stunEndpoint;
@@ -1144,7 +1144,7 @@ function saveSPTipsSetting()
 
 function verticallyDistributeGUIObjects(parent, objectHeight, ignore)
 {
-	let yPos = undefined;
+	let yPos;
 
 	let parentObject = Engine.GetGUIObjectByName(parent);
 	for (let child of parentObject.children)
@@ -1699,7 +1699,7 @@ function updateGUIDropdown(name, idx = undefined)
 	let hidden = indexHidden || obj.hidden && obj.hidden(idx);
 
 	dropdown.hidden = !g_IsController || !enabled || hidden;
-	dropdown.selected = indexHidden ? -1 : selected;
+	dropdown.selected = selected;
 	dropdown.tooltip = !indexHidden && obj.tooltip ? obj.tooltip(-1, idx) : "";
 
 	if (frame)
@@ -2037,11 +2037,11 @@ function updatePlayerAssignmentChoices()
 	initPlayerDropdowns("playerAssignment");
 }
 
-function swapPlayers(guid, newSlot)
+function swapPlayers(guidToSwap, newSlot)
 {
 	// Player slots are indexed from 0 as Gaia is omitted.
 	let newPlayerID = newSlot + 1;
-	let playerID = g_PlayerAssignments[guid].player;
+	let playerID = g_PlayerAssignments[guidToSwap].player;
 
 	// Attempt to swap the player or AI occupying the target slot,
 	// if any, into the slot this player is currently in.
@@ -2075,9 +2075,9 @@ function swapPlayers(guid, newSlot)
 	}
 
 	if (g_IsNetworked)
-		Engine.AssignNetworkPlayer(newPlayerID, guid);
+		Engine.AssignNetworkPlayer(newPlayerID, guidToSwap);
 	else
-		g_PlayerAssignments[guid].player = newPlayerID;
+		g_PlayerAssignments[guidToSwap].player = newPlayerID;
 
 	g_GameAttributes.settings.PlayerData[newSlot].AI = "";
 }
@@ -2259,7 +2259,7 @@ function sendRegisterGameStanzaImmediate()
 	if (!g_IsController || !Engine.HasXmppClient())
 		return;
 
-	if (g_GameStanzaTimer != undefined)
+	if (g_GameStanzaTimer !== undefined)
 	{
 		clearTimeout(g_GameStanzaTimer);
 		g_GameStanzaTimer = undefined;
@@ -2299,7 +2299,7 @@ function sendRegisterGameStanza()
 	if (!g_IsController || !Engine.HasXmppClient())
 		return;
 
-	if (g_GameStanzaTimer != undefined)
+	if (g_GameStanzaTimer !== undefined)
 		clearTimeout(g_GameStanzaTimer);
 
 	g_GameStanzaTimer = setTimeout(sendRegisterGameStanzaImmediate, g_GameStanzaTimeout * 1000);
