@@ -150,7 +150,6 @@ var g_IsTrainingBlocked = false;
 var g_SimState;
 var g_EntityStates = {};
 var g_TemplateData = {};
-var g_TemplateDataWithoutLocalization = {};
 var g_TechnologyData = {};
 var g_ResourceData = new Resources();
 
@@ -231,17 +230,6 @@ function GetTemplateData(templateName)
 	}
 
 	return g_TemplateData[templateName];
-}
-
-function GetTemplateDataWithoutLocalization(templateName)
-{
-	if (!(templateName in g_TemplateDataWithoutLocalization))
-	{
-		let template = Engine.GuiInterfaceCall("GetTemplateData", templateName);
-		g_TemplateDataWithoutLocalization[templateName] = template;
-	}
-
-	return g_TemplateDataWithoutLocalization[templateName];
 }
 
 function GetTechnologyData(technologyName, civ)
