@@ -505,7 +505,7 @@ But for now everything is put in there.)
 Now you have to add C++/JS conversions into MessageTypeConversions.cpp, so scripts can send and receive messages:
 
 @code
-JS::Value CMessageExample::ToJSVal(ScriptInterface& scriptInterface) const
+JS::Value CMessageExample::ToJSVal(const ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();
 	SET_MSG_PROPERTY(x);
@@ -513,7 +513,7 @@ JS::Value CMessageExample::ToJSVal(ScriptInterface& scriptInterface) const
 	return JS::ObjectValue(*obj);
 }
 
-CMessage* CMessageExample::FromJSVal(ScriptInterface& scriptInterface, JS::HandleValue val)
+CMessage* CMessageExample::FromJSVal(const ScriptInterface& scriptInterface, JS::HandleValue val)
 {
 	FROMJSVAL_SETUP();
 	GET_MSG_PROPERTY(int, x);
@@ -528,12 +528,12 @@ with a set of scalar fields.)
 If you don't want to support scripts sending/receiving the message, you can implement stub functions instead:
 
 @code
-JS::Value CMessageExample::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
+JS::Value CMessageExample::ToJSVal(const ScriptInterface& UNUSED(scriptInterface)) const
 {
 	return JS::UndefinedValue();
 }
 
-CMessage* CMessageExample::FromJSVal(ScriptInterface& UNUSED(scriptInterface), JS::HandleValue UNUSED(val))
+CMessage* CMessageExample::FromJSVal(const ScriptInterface& UNUSED(scriptInterface), JS::HandleValue UNUSED(val))
 {
 	return NULL;
 }

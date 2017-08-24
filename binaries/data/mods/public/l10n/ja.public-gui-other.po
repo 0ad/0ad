@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-08-02 09:02+0200\n"
-"PO-Revision-Date: 2017-08-03 09:14+0000\n"
+"POT-Creation-Date: 2017-08-21 09:04+0200\n"
+"PO-Revision-Date: 2017-08-21 16:12+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -126,18 +126,18 @@ msgid "DELETE"
 msgstr "消去"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:291
-#: gui/options/options.js:334 gui/options/options.js:401
+#: gui/options/options.js:337 gui/options/options.js:404
 #: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:170
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
-#: gui/summary/summary.js:367
+#: gui/summary/summary.js:363
 msgid "No"
 msgstr "いいえ"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:291
-#: gui/options/options.js:334 gui/options/options.js:401
+#: gui/options/options.js:337 gui/options/options.js:404
 #: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:170
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
-#: gui/summary/summary.js:367
+#: gui/summary/summary.js:363
 msgid "Yes"
 msgstr "はい"
 
@@ -276,9 +276,9 @@ msgstr[0] "象徴 (%(min)s minutes)"
 #: gui/common/gamedescription.js:244
 #, javascript-format
 msgctxt "victory condition"
-msgid "Capture The Relic (%(min)s minute)"
-msgid_plural "Capture The Relic (%(min)s minutes)"
-msgstr[0] "遺跡争奪 (%(min)s分)"
+msgid "Capture the Relic (%(min)s minute)"
+msgid_plural "Capture the Relic (%(min)s minutes)"
+msgstr[0] ""
 
 #: gui/common/gamedescription.js:260
 msgid "Relic Count"
@@ -1065,7 +1065,7 @@ msgstr ""
 msgid "Loot:"
 msgstr "略奪"
 
-#: gui/credits/credits.js:69
+#: gui/credits/credits.js:68
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr ""
@@ -1084,24 +1084,24 @@ msgstr ""
 msgid "OK"
 msgstr "OK"
 
-#: gui/options/options.js:169
+#: gui/options/options.js:163
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr ""
 
-#: gui/options/options.js:332
+#: gui/options/options.js:335
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr ""
 
-#: gui/options/options.js:333 gui/options/options.js:400
+#: gui/options/options.js:336 gui/options/options.js:403
 #: gui/savedgames/load.js:187
 msgid "Warning"
 msgstr "警告"
 
-#: gui/options/options.js:399
+#: gui/options/options.js:402
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr ""
 
@@ -1179,7 +1179,7 @@ msgstr "Build: %(buildDate)s (%(revision)s)"
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "本当に0 A.D.を終了しますか?"
 
-#: gui/pregame/mainmenu.js:261 gui/summary/summary.js:366
+#: gui/pregame/mainmenu.js:261 gui/summary/summary.js:362
 msgid "Confirmation"
 msgstr "確認"
 
@@ -1426,7 +1426,7 @@ msgstr "総合得点"
 msgid "Buildings"
 msgstr "建物"
 
-#: gui/summary/layout.js:24 gui/summary/layout.js:62 gui/summary/layout.js:108
+#: gui/summary/layout.js:24 gui/summary/layout.js:62 gui/summary/layout.js:102
 msgid "Total"
 msgstr "合計"
 
@@ -1569,7 +1569,7 @@ msgstr ""
 msgid "Map control (finish)"
 msgstr ""
 
-#: gui/summary/layout.js:338
+#: gui/summary/layout.js:340
 msgid "Team total"
 msgstr "チーム合計"
 
@@ -1629,44 +1629,44 @@ msgstr "売却"
 msgid "Outcome"
 msgstr ""
 
-#: gui/summary/summary.js:365
+#: gui/summary/summary.js:361
 msgid "Are you sure you want to quit the lobby?"
 msgstr ""
 
-#: gui/summary/summary.js:421
+#: gui/summary/summary.js:417
 msgid "Current Scores"
 msgstr "現在の得点"
 
-#: gui/summary/summary.js:423
+#: gui/summary/summary.js:419
 msgid "Scores at the end of the game."
 msgstr "ゲーム終了時の得点です。"
 
-#: gui/summary/summary.js:425
+#: gui/summary/summary.js:421
 msgid "You have been disconnected."
 msgstr "接続が切れました。"
 
-#: gui/summary/summary.js:427
+#: gui/summary/summary.js:423
 msgid "You have left the game."
 msgstr "ゲームを離れました。"
 
-#: gui/summary/summary.js:429
+#: gui/summary/summary.js:425
 msgid "You have won the battle!"
 msgstr "戦いに勝利しました！"
 
-#: gui/summary/summary.js:431
+#: gui/summary/summary.js:427
 msgid "You have been defeated..."
 msgstr "敗北しました..."
 
-#: gui/summary/summary.js:432
+#: gui/summary/summary.js:428
 msgid "You have abandoned the game."
 msgstr "ゲームを放棄しました。"
 
-#: gui/summary/summary.js:437
+#: gui/summary/summary.js:433
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "ゲーム経過時間：%(time)s"
 
-#: gui/summary/summary.js:445
+#: gui/summary/summary.js:441
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
@@ -1710,7 +1710,7 @@ msgstr "ロケール："
 
 #: gui/locale/locale.xml:(caption):36
 #: gui/locale/locale_advanced.xml:(caption):65
-#: gui/savedgames/load.xml:(caption):61 gui/savedgames/save.xml:(caption):38
+#: gui/savedgames/load.xml:(caption):58 gui/savedgames/save.xml:(caption):38
 msgid "Cancel"
 msgstr "キャンセル"
 
@@ -1825,8 +1825,8 @@ msgid ""
 msgstr "自動で匿名のフィードバックを送り、バグの修正と性能および互換性の向上に協力することができます。"
 
 #: gui/pregame/mainmenu.xml:539
-msgid "Alpha XXII: Venustas"
-msgstr "Alpha XXII: Venustas"
+msgid "Alpha XXIII: Ken Wood"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:541
 msgid ""
@@ -1901,8 +1901,8 @@ msgid "Mod Selection"
 msgstr "MODの選択"
 
 #: gui/pregame/mainmenu.xml:(caption):456
-msgid "Learn To Play"
-msgstr "遊び方を学ぶ"
+msgid "Learn to Play"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):501
 msgid "Tools & Options"
@@ -1925,7 +1925,7 @@ msgid "Report a Bug"
 msgstr "バグを報告する"
 
 #: gui/pregame/mainmenu.xml:(caption):587
-msgid "Translate the game"
+msgid "Translate the Game"
 msgstr ""
 
 #: gui/pregame/mainmenu.xml:(caption):599
@@ -2060,114 +2060,114 @@ msgstr ""
 msgid "Replay Games"
 msgstr "ゲームのリプレイ"
 
-#: gui/replaymenu/replay_menu.xml:(caption):126
+#: gui/replaymenu/replay_menu.xml:(caption):123
 msgid "Filter compatible replays"
 msgstr "適合するリプレイに絞り込む"
 
-#: gui/replaymenu/replay_menu.xml:(caption):167
-#: gui/savedgames/load.xml:(caption):101
+#: gui/replaymenu/replay_menu.xml:(caption):164
+#: gui/savedgames/load.xml:(caption):98
 msgid "Map Type:"
 msgstr "マップの種類："
 
-#: gui/replaymenu/replay_menu.xml:(caption):182
-#: gui/savedgames/load.xml:(caption):105
+#: gui/replaymenu/replay_menu.xml:(caption):179
+#: gui/savedgames/load.xml:(caption):102
 msgid "Map Size:"
 msgstr "マップの大きさ："
 
-#: gui/replaymenu/replay_menu.xml:(caption):197
-#: gui/savedgames/load.xml:(caption):109
+#: gui/replaymenu/replay_menu.xml:(caption):194
+#: gui/savedgames/load.xml:(caption):106
 msgid "Victory:"
 msgstr "勝利："
 
-#: gui/replaymenu/replay_menu.xml:(caption):230
+#: gui/replaymenu/replay_menu.xml:(caption):227
 msgid "Spoiler"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):242
+#: gui/replaymenu/replay_menu.xml:(caption):239
 msgid "Main Menu"
 msgstr "メインメニュー"
 
-#: gui/replaymenu/replay_menu.xml:(caption):248
-#: gui/savedgames/load.xml:(caption):66 gui/savedgames/save.xml:(caption):43
+#: gui/replaymenu/replay_menu.xml:(caption):245
+#: gui/savedgames/load.xml:(caption):63 gui/savedgames/save.xml:(caption):43
 msgid "Delete"
 msgstr "削除"
 
-#: gui/replaymenu/replay_menu.xml:(caption):254
+#: gui/replaymenu/replay_menu.xml:(caption):251
 msgid "Reload Cache"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):261
+#: gui/replaymenu/replay_menu.xml:(caption):258
 #: gui/summary/summary.xml:(caption):24
 msgid "Summary"
 msgstr "成績"
 
-#: gui/replaymenu/replay_menu.xml:(caption):267
+#: gui/replaymenu/replay_menu.xml:(caption):264
 msgid "Start Replay"
 msgstr "リプレイ開始"
 
-#: gui/replaymenu/replay_menu.xml:(heading):86
-#: gui/savedgames/load.xml:(heading):40
+#: gui/replaymenu/replay_menu.xml:(heading):83
+#: gui/savedgames/load.xml:(heading):37
 msgctxt "replay"
 msgid "Date / Time"
 msgstr "日付 / 時間"
 
-#: gui/replaymenu/replay_menu.xml:(heading):90
+#: gui/replaymenu/replay_menu.xml:(heading):87
 msgctxt "replay"
 msgid "Players"
 msgstr "プレイヤー数"
 
-#: gui/replaymenu/replay_menu.xml:(heading):94
-#: gui/savedgames/load.xml:(heading):48
+#: gui/replaymenu/replay_menu.xml:(heading):91
+#: gui/savedgames/load.xml:(heading):45
 msgctxt "replay"
 msgid "Map Name"
 msgstr "マップ名"
 
-#: gui/replaymenu/replay_menu.xml:(heading):98
+#: gui/replaymenu/replay_menu.xml:(heading):95
 msgctxt "replay"
 msgid "Size"
 msgstr "大きさ"
 
-#: gui/replaymenu/replay_menu.xml:(heading):102
+#: gui/replaymenu/replay_menu.xml:(heading):99
 msgctxt "replay"
 msgid "Population"
 msgstr "人口"
 
-#: gui/replaymenu/replay_menu.xml:(heading):106
+#: gui/replaymenu/replay_menu.xml:(heading):103
 msgctxt "replay"
 msgid "Duration"
 msgstr "期間"
 
-#: gui/replaymenu/replay_menu.xml:(tooltip):255
+#: gui/replaymenu/replay_menu.xml:(tooltip):252
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
 msgstr ""
 
-#: gui/savedgames/load.xml:(heading):44
+#: gui/savedgames/load.xml:(heading):41
 msgctxt "replay"
 msgid "Map Type"
 msgstr "マップの種類"
 
-#: gui/savedgames/load.xml:(heading):52
+#: gui/savedgames/load.xml:(heading):49
 msgctxt "replay"
 msgid "Description"
 msgstr "説明"
 
-#: gui/savedgames/load.xml:(caption):57
+#: gui/savedgames/load.xml:(caption):54
 msgid "No saved games found."
 msgstr "保存したゲームがありません"
 
-#: gui/savedgames/load.xml:(caption):71
+#: gui/savedgames/load.xml:(caption):68
 msgid "Load"
 msgstr "読込み"
 
-#: gui/savedgames/load.xml:(caption):83
+#: gui/savedgames/load.xml:(caption):80
 msgid "Filter compatible saved games"
 msgstr "適合する保存されたゲームに絞り込む"
 
-#: gui/savedgames/load.xml:(caption):93
+#: gui/savedgames/load.xml:(caption):90
 msgid "Players:"
 msgstr "プレイヤー:"
 
-#: gui/savedgames/load.xml:(caption):97
+#: gui/savedgames/load.xml:(caption):94
 msgid "Played time:"
 msgstr ""
 
@@ -2195,40 +2195,40 @@ msgstr "既知の問題(ウェブ)"
 msgid "Charts"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):168
+#: gui/summary/summary.xml:(caption):163
 msgctxt "summary chart"
 msgid "Category:"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):178
+#: gui/summary/summary.xml:(caption):173
 msgctxt "summary chart"
 msgid "Value:"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):188
+#: gui/summary/summary.xml:(caption):183
 msgctxt "summary chart"
 msgid "Type:"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):207
+#: gui/summary/summary.xml:(caption):202
 msgid "Replay"
 msgstr "リプレイ"
 
-#: gui/summary/summary.xml:(caption):212
+#: gui/summary/summary.xml:(caption):207
 msgid "Continue"
 msgstr "続行"
 
-#: gui/summary/summary.xml:(tooltip):174
+#: gui/summary/summary.xml:(tooltip):169
 msgctxt "summary chart"
 msgid "Category"
 msgstr ""
 
-#: gui/summary/summary.xml:(tooltip):184
+#: gui/summary/summary.xml:(tooltip):179
 msgctxt "summary chart"
 msgid "Value"
 msgstr ""
 
-#: gui/summary/summary.xml:(tooltip):195
+#: gui/summary/summary.xml:(tooltip):190
 msgctxt "summary chart"
 msgid "Type"
 msgstr ""
@@ -2730,8 +2730,8 @@ msgid "Number of shader effects. REQUIRES GAME RESTART"
 msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[2].label
-msgid "Graphics quality"
-msgstr "グラフィックス品質"
+msgid "Shader Effects"
+msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[3].tooltip
 msgid "Enable shadows"
@@ -2741,125 +2741,155 @@ msgstr "影を表示します"
 msgid "Shadows"
 msgstr "影"
 
+#: gui/options/options.jsongraphicsSetting[4].parameters.list[0].label
+msgid "Very Low"
+msgstr ""
+
+#: gui/options/options.jsongraphicsSetting[4].parameters.list[1].label
+msgid "Low"
+msgstr ""
+
+#: gui/options/options.jsongraphicsSetting[4].parameters.list[2].label
+msgid "Medium"
+msgstr ""
+
+#: gui/options/options.jsongraphicsSetting[4].parameters.list[3].label
+msgid "High"
+msgstr ""
+
+#: gui/options/options.jsongraphicsSetting[4].parameters.list[4].label
+msgid "Very High"
+msgstr ""
+
 #: gui/options/options.jsongraphicsSetting[4].tooltip
+msgid ""
+"Shadow map resolution. High values can crash the game when using a graphics "
+"card with low memory!"
+msgstr ""
+
+#: gui/options/options.jsongraphicsSetting[4].label
+msgid "Shadow Quality"
+msgstr ""
+
+#: gui/options/options.jsongraphicsSetting[5].tooltip
 msgid "Smooth shadows"
 msgstr "影を滑らかにします"
 
-#: gui/options/options.jsongraphicsSetting[4].label
+#: gui/options/options.jsongraphicsSetting[5].label
 msgid "Shadow Filtering"
 msgstr "影のフィルタリング"
 
-#: gui/options/options.jsongraphicsSetting[5].tooltip
+#: gui/options/options.jsongraphicsSetting[6].tooltip
 msgid "Show outlines of units behind buildings"
 msgstr "建物の影に隠れたユニットの輪郭を表示します"
 
-#: gui/options/options.jsongraphicsSetting[5].label
+#: gui/options/options.jsongraphicsSetting[6].label
 msgid "Unit Silhouettes"
 msgstr "ユニットのシルエット"
 
-#: gui/options/options.jsongraphicsSetting[6].tooltip
+#: gui/options/options.jsongraphicsSetting[7].tooltip
 msgid "Enable particles"
 msgstr "降水を許可します"
 
-#: gui/options/options.jsongraphicsSetting[6].label
+#: gui/options/options.jsongraphicsSetting[7].label
 msgid "Particles"
 msgstr "降水"
 
-#: gui/options/options.jsongraphicsSetting[7].tooltip
+#: gui/options/options.jsongraphicsSetting[8].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "OFF の場合は、可能な限り低い設定を使用して水面を描画します。 他の設定とは無関係です。"
 
-#: gui/options/options.jsongraphicsSetting[7].label
-msgid "Activate water effects"
-msgstr "水面効果を有効にする"
+#: gui/options/options.jsongraphicsSetting[8].label
+msgid "Water Effects"
+msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[8].tooltip
+#: gui/options/options.jsongraphicsSetting[9].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "水面に高品質な効果を与え、岸辺の波、泡、船の航跡を描画します。"
 
-#: gui/options/options.jsongraphicsSetting[8].label
+#: gui/options/options.jsongraphicsSetting[9].label
 msgid "HQ Water Effects"
 msgstr "高品質の水面効果"
 
-#: gui/options/options.jsongraphicsSetting[9].tooltip
+#: gui/options/options.jsongraphicsSetting[10].tooltip
 msgid "Use actual water depth in rendering calculations"
 msgstr "実際の水深で描画計算します"
 
-#: gui/options/options.jsongraphicsSetting[9].label
+#: gui/options/options.jsongraphicsSetting[10].label
 msgid "Real Water Depth"
 msgstr "リアルな水深"
 
-#: gui/options/options.jsongraphicsSetting[10].tooltip
+#: gui/options/options.jsongraphicsSetting[11].tooltip
 msgid "Allow water to reflect a mirror image"
 msgstr "水面が反射で鏡のように像を映すようにします"
 
-#: gui/options/options.jsongraphicsSetting[10].label
+#: gui/options/options.jsongraphicsSetting[11].label
 msgid "Water Reflections"
 msgstr "水面の反射"
 
-#: gui/options/options.jsongraphicsSetting[11].tooltip
+#: gui/options/options.jsongraphicsSetting[12].tooltip
 msgid "Use a real water refraction map and not transparency"
 msgstr "リアルな水面屈折マップを用い、不透明にします。"
 
-#: gui/options/options.jsongraphicsSetting[11].label
+#: gui/options/options.jsongraphicsSetting[12].label
 msgid "Water Refraction"
 msgstr "水面の屈折"
 
-#: gui/options/options.jsongraphicsSetting[12].tooltip
+#: gui/options/options.jsongraphicsSetting[13].tooltip
 msgid "Cast shadows on water"
 msgstr "水面に影を落とします"
 
-#: gui/options/options.jsongraphicsSetting[12].label
+#: gui/options/options.jsongraphicsSetting[13].label
 msgid "Shadows on Water"
 msgstr "水面の影"
 
-#: gui/options/options.jsongraphicsSetting[13].tooltip
+#: gui/options/options.jsongraphicsSetting[14].tooltip
 msgid "Lift darkness and fog-of-war smoothly"
 msgstr "暗闇と戦場の霧が滑らかに移動します"
 
-#: gui/options/options.jsongraphicsSetting[13].label
+#: gui/options/options.jsongraphicsSetting[14].label
 msgid "Smooth LOS"
 msgstr "滑らかな視界移動"
 
-#: gui/options/options.jsongraphicsSetting[14].tooltip
+#: gui/options/options.jsongraphicsSetting[15].tooltip
 msgid "Render Sky"
 msgstr "空を描画します"
 
-#: gui/options/options.jsongraphicsSetting[14].label
+#: gui/options/options.jsongraphicsSetting[15].label
 msgid "Show Sky"
 msgstr "空の表示"
 
-#: gui/options/options.jsongraphicsSetting[15].tooltip
+#: gui/options/options.jsongraphicsSetting[16].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "垂直同期を実行して画面の乱れを修正します。ゲームの再起動が必要です。"
 
-#: gui/options/options.jsongraphicsSetting[15].label
+#: gui/options/options.jsongraphicsSetting[16].label
 msgid "VSync"
 msgstr "VSync"
 
-#: gui/options/options.jsongraphicsSetting[16].tooltip
+#: gui/options/options.jsongraphicsSetting[17].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr "CPU の負荷を抑えるため、すべてのメニューで描画頻度を制限します。制限を無効にするには、最大に設定します。"
 
-#: gui/options/options.jsongraphicsSetting[16].label
-msgid "FPS throttling in menus"
-msgstr "メニューのフレームレートを制限"
+#: gui/options/options.jsongraphicsSetting[17].label
+msgid "FPS Throttling in Menus"
+msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[17].tooltip
+#: gui/options/options.jsongraphicsSetting[18].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
 msgstr "CPU の負荷を抑えるため、ゲーム中の描画頻度を制限します。制限を無効にするには、最大に設定します。"
 
-#: gui/options/options.jsongraphicsSetting[17].label
-msgid "FPS throttling in games"
-msgstr "ゲームのフレームレートを制限"
+#: gui/options/options.jsongraphicsSetting[18].label
+msgid "FPS Throttling in Games"
+msgstr ""
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."

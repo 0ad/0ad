@@ -31,7 +31,7 @@ class CComponentTypeScript
 {
 	NONCOPYABLE(CComponentTypeScript);
 public:
-	CComponentTypeScript(ScriptInterface& scriptInterface, JS::HandleValue instance);
+	CComponentTypeScript(const ScriptInterface& scriptInterface, JS::HandleValue instance);
 
 	JS::Value GetInstance() const { return m_Instance.get(); }
 
@@ -68,7 +68,7 @@ public:
 	}
 
 private:
-	ScriptInterface& m_ScriptInterface;
+	const ScriptInterface& m_ScriptInterface;
 	JS::PersistentRootedValue m_Instance;
 	bool m_HasCustomSerialize;
 	bool m_HasCustomDeserialize;

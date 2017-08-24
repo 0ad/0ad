@@ -301,7 +301,7 @@ void XmppClient::SendIqGetProfile(const std::string& player)
  *
  * @param data A JS array of game statistics
  */
-void XmppClient::SendIqGameReport(ScriptInterface& scriptInterface, JS::HandleValue data)
+void XmppClient::SendIqGameReport(const ScriptInterface& scriptInterface, JS::HandleValue data)
 {
 	glooxwrapper::JID xpartamuppJid(m_xpartamuppId);
 
@@ -334,7 +334,7 @@ void XmppClient::SendIqGameReport(ScriptInterface& scriptInterface, JS::HandleVa
  *
  * @param data A JS array of game attributes
  */
-void XmppClient::SendIqRegisterGame(ScriptInterface& scriptInterface, JS::HandleValue data)
+void XmppClient::SendIqRegisterGame(const ScriptInterface& scriptInterface, JS::HandleValue data)
 {
 	glooxwrapper::JID xpartamuppJid(m_xpartamuppId);
 
@@ -453,7 +453,7 @@ void XmppClient::handleOOB(const glooxwrapper::JID&, const glooxwrapper::OOB&)
  *
  * @return A JS array containing all known players and their presences
  */
-void XmppClient::GUIGetPlayerList(ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
+void XmppClient::GUIGetPlayerList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
 {
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
@@ -478,7 +478,7 @@ void XmppClient::GUIGetPlayerList(ScriptInterface& scriptInterface, JS::MutableH
  *
  * @return A JS array containing all known games
  */
-void XmppClient::GUIGetGameList(ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
+void XmppClient::GUIGetGameList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
 {
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
@@ -502,7 +502,7 @@ void XmppClient::GUIGetGameList(ScriptInterface& scriptInterface, JS::MutableHan
  *
  * @return A JS array containing all known leaderboard data
  */
-void XmppClient::GUIGetBoardList(ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
+void XmppClient::GUIGetBoardList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
 {
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
@@ -526,7 +526,7 @@ void XmppClient::GUIGetBoardList(ScriptInterface& scriptInterface, JS::MutableHa
  *
  * @return A JS array containing the specific user's profile data
  */
-void XmppClient::GUIGetProfile(ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
+void XmppClient::GUIGetProfile(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
 {
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
@@ -552,7 +552,7 @@ void XmppClient::GUIGetProfile(ScriptInterface& scriptInterface, JS::MutableHand
 /**
  * Send GUI message queue when queried.
  */
-void XmppClient::GuiPollMessage(ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
+void XmppClient::GuiPollMessage(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
 {
 	if (m_GuiMessageQueue.empty())
 	{

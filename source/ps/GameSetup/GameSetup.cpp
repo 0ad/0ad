@@ -408,7 +408,7 @@ ErrorReactionInternal psDisplayError(const wchar_t* UNUSED(text), size_t UNUSED(
 	return ERI_NOT_IMPLEMENTED;
 }
 
-std::vector<CStr>& GetMods(const CmdLineArgs& args, int flags)
+const std::vector<CStr>& GetMods(const CmdLineArgs& args, int flags)
 {
 	const bool init_mods = (flags & INIT_MODS) == INIT_MODS;
 	const bool add_user = !InDevelopmentCopy() && !args.Has("noUserMod");

@@ -48,7 +48,7 @@ bool StartVisualReplay(const OsPath& directory);
  * @param cachedReplaysObject - the cached replays.
  * @return true on succes
  */
-bool ReadCacheFile(ScriptInterface& scriptInterface, JS::MutableHandleObject cachedReplaysObject);
+bool ReadCacheFile(const ScriptInterface& scriptInterface, JS::MutableHandleObject cachedReplaysObject);
 
 /**
  * Stores the replay list in the replay cache file
@@ -56,7 +56,7 @@ bool ReadCacheFile(ScriptInterface& scriptInterface, JS::MutableHandleObject cac
  * @param scriptInterface - the ScriptInterface in which to create the return data.
  * @param replays - the replay list to store.
  */
-void StoreCacheFile(ScriptInterface& scriptInterface, JS::HandleObject replays);
+void StoreCacheFile(const ScriptInterface& scriptInterface, JS::HandleObject replays);
 
 /**
  * Load the replay cache and check if there are new/deleted replays. If so, update the cache.
@@ -65,7 +65,7 @@ void StoreCacheFile(ScriptInterface& scriptInterface, JS::HandleObject replays);
  * @param compareFiles - compare the directory name and the FileSize of the replays and the cache.
  * @return cache entries
  */
-JS::HandleObject ReloadReplayCache(ScriptInterface& scriptInterface, bool compareFiles);
+JS::HandleObject ReloadReplayCache(const ScriptInterface& scriptInterface, bool compareFiles);
 
 /**
  * Get a list of replays to display in the GUI.
@@ -75,13 +75,13 @@ JS::HandleObject ReloadReplayCache(ScriptInterface& scriptInterface, bool compar
  *                       but nearly ensures, that no changed replay is missed.
  * @return array of objects containing replay data
  */
-JS::Value GetReplays(ScriptInterface& scriptInterface, bool compareFiles);
+JS::Value GetReplays(const ScriptInterface& scriptInterface, bool compareFiles);
 
 /**
  * Parses a commands.txt file and extracts metadata.
  * Works similarly to CGame::LoadReplayData().
  */
-JS::Value LoadReplayData(ScriptInterface& scriptInterface, const OsPath& directory);
+JS::Value LoadReplayData(const ScriptInterface& scriptInterface, const OsPath& directory);
 
 /**
  * Permanently deletes the visual replay (including the parent directory)
@@ -114,7 +114,7 @@ void SaveReplayMetadata(ScriptInterface* scriptInterface);
 /**
 * Adds a replay to the replayCache.
 */
-void AddReplayToCache(ScriptInterface& scriptInterface, const CStrW& directoryName);
+void AddReplayToCache(const ScriptInterface& scriptInterface, const CStrW& directoryName);
 }
 
 #endif

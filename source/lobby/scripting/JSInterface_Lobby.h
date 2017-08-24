@@ -24,7 +24,7 @@
 
 namespace JSI_Lobby
 {
-	void RegisterScriptFunctions(ScriptInterface& scriptInterface);
+	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
 
 	bool HasXmppClient(ScriptInterface::CxPrivate* pCxPrivate);
 	bool IsRankedGame(ScriptInterface::CxPrivate* pCxPrivate);

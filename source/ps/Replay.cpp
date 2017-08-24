@@ -41,7 +41,7 @@
 #include <ctime>
 #include <fstream>
 
-CReplayLogger::CReplayLogger(ScriptInterface& scriptInterface) :
+CReplayLogger::CReplayLogger(const ScriptInterface& scriptInterface) :
 	m_ScriptInterface(scriptInterface), m_Stream(NULL)
 {
 }

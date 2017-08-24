@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -484,9 +484,9 @@ namespace
 
 	struct DumpTable
 	{
-		ScriptInterface& m_ScriptInterface;
+		const ScriptInterface& m_ScriptInterface;
 		JS::PersistentRooted<JS::Value> m_Root;
-		DumpTable(ScriptInterface& scriptInterface, JS::HandleValue root) :
+		DumpTable(const ScriptInterface& scriptInterface, JS::HandleValue root) :
 			m_ScriptInterface(scriptInterface), m_Root(scriptInterface.GetJSRuntime(), root)
 		{
 		}
@@ -600,7 +600,7 @@ void CProfileViewer::SaveToFile()
 	m->outputStream.flush();
 }
 
-JS::Value CProfileViewer::SaveToJS(ScriptInterface& scriptInterface)
+JS::Value CProfileViewer::SaveToJS(const ScriptInterface& scriptInterface)
 {
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);

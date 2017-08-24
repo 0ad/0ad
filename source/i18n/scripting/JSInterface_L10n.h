@@ -42,7 +42,7 @@ namespace JSI_L10n
 	 *
 	 * @sa GuiScriptingInit()
 	 */
-	void RegisterScriptFunctions(ScriptInterface& ScriptInterface);
+	void RegisterScriptFunctions(const ScriptInterface& ScriptInterface);
 
 	/**
 	 * Returns the translation of the specified string to the

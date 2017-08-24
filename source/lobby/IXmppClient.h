@@ -36,8 +36,8 @@ public:
 	virtual void recv() = 0;
 	virtual void SendIqGetBoardList() = 0;
 	virtual void SendIqGetProfile(const std::string& player) = 0;
-	virtual void SendIqGameReport(ScriptInterface& scriptInterface, JS::HandleValue data) = 0;
-	virtual void SendIqRegisterGame(ScriptInterface& scriptInterface, JS::HandleValue data) = 0;
+	virtual void SendIqGameReport(const ScriptInterface& scriptInterface, JS::HandleValue data) = 0;
+	virtual void SendIqRegisterGame(const ScriptInterface& scriptInterface, JS::HandleValue data) = 0;
 	virtual void SendIqUnregisterGame() = 0;
 	virtual void SendIqChangeStateGame(const std::string& nbp, const std::string& players) = 0;
 	virtual void SetNick(const std::string& nick) = 0;
@@ -48,14 +48,14 @@ public:
 	virtual void GetPresence(const std::string& nickname, std::string& presence) = 0;
 	virtual void GetRole(const std::string& nickname, std::string& role) = 0;
 	virtual void GetSubject(std::string& subject) = 0;
-	virtual void GUIGetPlayerList(ScriptInterface& scriptInterface, JS::MutableHandleValue ret) = 0;
+	virtual void GUIGetPlayerList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret) = 0;
 	virtual void ClearPresenceUpdates() = 0;
 	virtual int GetMucMessageCount() = 0;
-	virtual void GUIGetGameList(ScriptInterface& scriptInterface, JS::MutableHandleValue ret) = 0;
-	virtual void GUIGetBoardList(ScriptInterface& scriptInterface, JS::MutableHandleValue ret) = 0;
-	virtual void GUIGetProfile(ScriptInterface& scriptInterface, JS::MutableHandleValue ret) = 0;
+	virtual void GUIGetGameList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret) = 0;
+	virtual void GUIGetBoardList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret) = 0;
+	virtual void GUIGetProfile(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret) = 0;
 
-	virtual void GuiPollMessage(ScriptInterface& scriptInterface, JS::MutableHandleValue ret) = 0;
+	virtual void GuiPollMessage(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret) = 0;
 	virtual void SendMUCMessage(const std::string& message) = 0;
 
 	virtual void SendStunEndpointToHost(StunClient::StunEndpoint* stunEndpoint, const std::string& hostJID) = 0;

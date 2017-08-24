@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,7 +27,7 @@
 
 #include "lib/byte_order.h"
 
-CStdDeserializer::CStdDeserializer(ScriptInterface& scriptInterface, std::istream& stream) :
+CStdDeserializer::CStdDeserializer(const ScriptInterface& scriptInterface, std::istream& stream) :
 	m_ScriptInterface(scriptInterface), m_Stream(stream),
 	m_dummyObject(scriptInterface.GetJSRuntime())
 {

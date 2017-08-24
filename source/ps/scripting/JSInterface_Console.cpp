@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -47,7 +47,7 @@ void JSI_Console::SetVisibleEnabled(ScriptInterface::CxPrivate* UNUSED(pCxPrivat
 	g_Console->SetVisible(Enabled);
 }
 
-void JSI_Console::RegisterScriptFunctions(ScriptInterface& scriptInterface)
+void JSI_Console::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 {
 	scriptInterface.RegisterFunction<bool, &JSI_Console::GetVisibleEnabled>("Console_GetVisibleEnabled");
 	scriptInterface.RegisterFunction<void, bool, &JSI_Console::SetVisibleEnabled>("Console_SetVisibleEnabled");

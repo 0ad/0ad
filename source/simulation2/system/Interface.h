@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,7 +21,7 @@
 #include "simulation2/system/IComponent.h"
 
 #define DECLARE_INTERFACE_TYPE(iname) \
-	virtual bool NewJSObject(ScriptInterface& scriptInterface, JS::MutableHandleObject out) const; \
+	virtual bool NewJSObject(const ScriptInterface& scriptInterface, JS::MutableHandleObject out) const; \
 	static void InterfaceInit(ScriptInterface& scriptInterface); \
 	static int GetInterfaceId() { return IID_##iname; }
 

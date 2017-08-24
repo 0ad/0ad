@@ -64,8 +64,8 @@ public:
 	void recv();
 	void SendIqGetBoardList();
 	void SendIqGetProfile(const std::string& player);
-	void SendIqGameReport(ScriptInterface& scriptInterface, JS::HandleValue data);
-	void SendIqRegisterGame(ScriptInterface& scriptInterface, JS::HandleValue data);
+	void SendIqGameReport(const ScriptInterface& scriptInterface, JS::HandleValue data);
+	void SendIqRegisterGame(const ScriptInterface& scriptInterface, JS::HandleValue data);
 	void SendIqUnregisterGame();
 	void SendIqChangeStateGame(const std::string& nbp, const std::string& players);
 	void SetNick(const std::string& nick);
@@ -77,15 +77,12 @@ public:
 	void GetRole(const std::string& nickname, std::string& role);
 	void GetSubject(std::string& subject);
 
-	void GUIGetPlayerList(ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
-	void GUIGetGameList(ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
-	void GUIGetBoardList(ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
-	void GUIGetProfile(ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
+	void GUIGetPlayerList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
+	void GUIGetGameList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
+	void GUIGetBoardList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
+	void GUIGetProfile(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
 
 	void SendStunEndpointToHost(StunClient::StunEndpoint* stunEndpoint, const std::string& hostJID);
-
-	//Script
-	ScriptInterface& GetScriptInterface();
 
 protected:
 	/* Xmpp handlers */
@@ -146,7 +143,7 @@ public:
 		std::wstring message;
 		std::time_t time;
 	};
-	void GuiPollMessage(ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
+	void GuiPollMessage(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
 	void SendMUCMessage(const std::string& message);
 	void ClearPresenceUpdates();
 	int GetMucMessageCount();

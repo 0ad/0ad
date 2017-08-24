@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -45,7 +45,7 @@ private:
 class CHashSerializer : public CBinarySerializer<CHashSerializerImpl>
 {
 public:
-	CHashSerializer(ScriptInterface& scriptInterface);
+	CHashSerializer(const ScriptInterface& scriptInterface);
 
 	size_t GetHashLength();
 	const u8* ComputeHash();

@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,14 +31,14 @@ public:
 	virtual int GetType() const = 0;
 	virtual const char* GetScriptHandlerName() const = 0;
 	virtual const char* GetScriptGlobalHandlerName() const = 0;
-	virtual JS::Value ToJSVal(ScriptInterface&) const = 0;
-	JS::Value ToJSValCached(ScriptInterface&) const;
+	virtual JS::Value ToJSVal(const ScriptInterface&) const = 0;
+	JS::Value ToJSValCached(const ScriptInterface&) const;
 private:
 	mutable std::unique_ptr<JS::PersistentRootedValue> m_Cached;
 };
 // TODO: GetType could be replaced with a plain member variable to avoid some
 // virtual calls, if that turns out to be worthwhile
 
-CMessage* CMessageFromJSVal(int mtid, ScriptInterface&, JS::HandleValue);
+CMessage* CMessageFromJSVal(int mtid, const ScriptInterface&, JS::HandleValue);
 
 #endif // INCLUDED_MESSAGE

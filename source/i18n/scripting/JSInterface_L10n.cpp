@@ -157,7 +157,7 @@ void JSI_L10n::ReevaluateCurrentLocaleAndReload(ScriptInterface::CxPrivate* UNUS
 }
 
 
-void JSI_L10n::RegisterScriptFunctions(ScriptInterface& scriptInterface)
+void JSI_L10n::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 {
 	scriptInterface.RegisterFunction<std::wstring, std::wstring, &Translate>("Translate");
 	scriptInterface.RegisterFunction<std::wstring, std::string, std::wstring, &TranslateWithContext>("TranslateWithContext");

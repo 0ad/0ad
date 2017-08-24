@@ -373,7 +373,7 @@ PSRETURN CMapSummaryReader::LoadMap(const VfsPath& pathname)
 	return PSRETURN_OK;
 }
 
-void CMapSummaryReader::GetMapSettings(ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
+void CMapSummaryReader::GetMapSettings(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
 {
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);

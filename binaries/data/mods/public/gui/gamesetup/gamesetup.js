@@ -1431,7 +1431,7 @@ function reloadMapList()
 			"file": "random",
 			"name": translateWithContext("map selection", "Random"),
 			"color": g_ColorRandom,
-			"description": "Picks one of the maps of the given maptype and filter at random."
+			"description": translate("Pick any of the given maps at random.")
 		});
 
 	g_MapSelectionList = prepareForDropdown(mapList);

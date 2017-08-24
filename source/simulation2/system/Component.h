@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -42,7 +42,7 @@
 	}
 
 #define DEFAULT_COMPONENT_ALLOCATOR(cname) \
-	static IComponent* Allocate(ScriptInterface&, JS::HandleValue) { return new CCmp##cname(); } \
+	static IComponent* Allocate(const ScriptInterface&, JS::HandleValue) { return new CCmp##cname(); } \
 	static void Deallocate(IComponent* cmp) { delete static_cast<CCmp##cname*> (cmp); } \
 	virtual int GetComponentTypeId() const \
 	{ \
@@ -51,7 +51,7 @@
 
 #define DEFAULT_SCRIPT_WRAPPER(cname) \
 	static void ClassInit(CComponentManager& UNUSED(componentManager)) { } \
-	static IComponent* Allocate(ScriptInterface& scriptInterface, JS::HandleValue instance) \
+	static IComponent* Allocate(const ScriptInterface& scriptInterface, JS::HandleValue instance) \
 	{ \
 		return new CCmp##cname(scriptInterface, instance); \
 	} \
@@ -59,7 +59,7 @@
 	{ \
 		delete static_cast<CCmp##cname*> (cmp); \
 	} \
-	CCmp##cname(ScriptInterface& scriptInterface, JS::HandleValue instance) : m_Script(scriptInterface, instance) { } \
+	CCmp##cname(const ScriptInterface& scriptInterface, JS::HandleValue instance) : m_Script(scriptInterface, instance) { } \
 	static std::string GetSchema() \
 	{ \
 		return "<a:component type='script-wrapper'/><empty/>"; \

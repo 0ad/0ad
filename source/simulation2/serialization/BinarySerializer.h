@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -83,13 +83,13 @@ protected:
 class CBinarySerializerScriptImpl
 {
 public:
-	CBinarySerializerScriptImpl(ScriptInterface& scriptInterface, ISerializer& serializer);
+	CBinarySerializerScriptImpl(const ScriptInterface& scriptInterface, ISerializer& serializer);
 
 	void ScriptString(const char* name, JS::HandleString string);
 	void HandleScriptVal(JS::HandleValue val);
 	void SetSerializablePrototypes(shared_ptr<ObjectIdCache<std::wstring> > prototypes);
 private:
-	ScriptInterface& m_ScriptInterface;
+	const ScriptInterface& m_ScriptInterface;
 	ISerializer& m_Serializer;
 
 	ObjectIdCache<u32> m_ScriptBackrefs;
@@ -111,7 +111,7 @@ class CBinarySerializer : public ISerializer
 {
 	NONCOPYABLE(CBinarySerializer);
 public:
-	CBinarySerializer(ScriptInterface& scriptInterface) :
+	CBinarySerializer(const ScriptInterface& scriptInterface) :
 		m_ScriptImpl(new CBinarySerializerScriptImpl(scriptInterface, *this)),
 		m_RawStreamBuf(m_Impl),
 		m_RawStream(&m_RawStreamBuf)
@@ -119,7 +119,7 @@ public:
 	}
 
 	template <typename A>
-	CBinarySerializer(ScriptInterface& scriptInterface, A& a) :
+	CBinarySerializer(const ScriptInterface& scriptInterface, A& a) :
 		m_ScriptImpl(new CBinarySerializerScriptImpl(scriptInterface, *this)),
 		m_Impl(a),
 		m_RawStreamBuf(m_Impl),

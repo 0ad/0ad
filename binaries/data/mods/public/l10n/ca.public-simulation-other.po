@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-08-09 09:04+0200\n"
-"PO-Revision-Date: 2017-08-09 14:25+0000\n"
+"POT-Creation-Date: 2017-08-21 09:05+0200\n"
+"PO-Revision-Date: 2017-08-21 15:58+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -923,26 +923,26 @@ msgstr "%(category)s s'ha arribat al límit de reclutament de %(limit)s"
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s s'ha arribat al límit de %(limit)s"
 
-#: simulation/components/Player.js:296
+#: simulation/components/Player.js:304
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "Recursos insuficients - %(resourceAmount1)s %(resourceType1)s"
 
-#: simulation/components/Player.js:298
+#: simulation/components/Player.js:306
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "Recursos insuficients - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:300
+#: simulation/components/Player.js:308
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "Recursos insuficients - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:302
+#: simulation/components/Player.js:310
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -999,19 +999,19 @@ msgstr "No es pot millorar una entitat refugiada."
 msgid "Attack against %(_player_)s requested."
 msgstr "S'ha sol·licitat un atac contra %(_player_)s."
 
-#: simulation/helpers/Commands.js:789
+#: simulation/helpers/Commands.js:792
 msgid "There are no bribable units"
 msgstr ""
 
-#: simulation/helpers/Commands.js:834
+#: simulation/helpers/Commands.js:838
 msgid "Unable to ungarrison unit(s)"
 msgstr "No es poden expulsar les unitats"
 
-#: simulation/helpers/Commands.js:848
+#: simulation/helpers/Commands.js:852
 msgid "Some unit(s) can't go back to work"
 msgstr "Algunes unitats no poden tornar a la feina"
 
-#: simulation/helpers/Commands.js:1102
+#: simulation/helpers/Commands.js:1106
 msgid "The building's technology requirements are not met."
 msgstr "No s'han aconseguit totes les tecnologies necessàries."
 
@@ -1102,7 +1102,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
-msgid "Capture The Relic"
+msgid "Capture the Relic"
 msgstr ""
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description

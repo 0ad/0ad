@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -46,7 +46,7 @@ void DeserializeRNG(const std::string& str, boost::rand48& rng)
 	s >> rng;
 }
 
-bool CComponentManager::DumpDebugState(std::ostream& stream, bool includeDebugInfo)
+bool CComponentManager::DumpDebugState(std::ostream& stream, bool includeDebugInfo) const
 {
 	CDebugSerializer serializer(m_ScriptInterface, stream, includeDebugInfo);
 
@@ -95,7 +95,7 @@ bool CComponentManager::DumpDebugState(std::ostream& stream, bool includeDebugIn
 	return true;
 }
 
-bool CComponentManager::ComputeStateHash(std::string& outHash, bool quick)
+bool CComponentManager::ComputeStateHash(std::string& outHash, bool quick) const
 {
 	// Hash serialization: this includes the minimal data necessary to detect
 	// differences in the state, and ignores things like counts and names
@@ -177,7 +177,7 @@ bool CComponentManager::ComputeStateHash(std::string& outHash, bool quick)
  * version), but it doesn't seem worth having a separate codepath for that.)
  */
 
-bool CComponentManager::SerializeState(std::ostream& stream)
+bool CComponentManager::SerializeState(std::ostream& stream) const
 {
 	CStdSerializer serializer(m_ScriptInterface, stream);
 

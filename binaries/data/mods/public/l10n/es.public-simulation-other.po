@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-08-09 09:04+0200\n"
-"PO-Revision-Date: 2017-08-16 00:08+0000\n"
-"Last-Translator: Aber Wagen <betagamersyt@gmail.com>\n"
+"POT-Creation-Date: 2017-08-21 09:05+0200\n"
+"PO-Revision-Date: 2017-08-22 15:51+0000\n"
+"Last-Translator: Mihai Pantazi <malexandru_70@hotmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -927,26 +927,26 @@ msgstr "%(category)s ha llegado al límite de reclutamiento de %(limit)s"
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s ha llegado al límite de %(limit)s"
 
-#: simulation/components/Player.js:296
+#: simulation/components/Player.js:304
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "No hay recursos suficientes - %(resourceAmount1)s %(resourceType1)s"
 
-#: simulation/components/Player.js:298
+#: simulation/components/Player.js:306
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "No hay recursos suficientes - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:300
+#: simulation/components/Player.js:308
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "No hay recursos suficientes - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:302
+#: simulation/components/Player.js:310
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -1003,19 +1003,19 @@ msgstr "No puedes mejorar una entidad guarnecida."
 msgid "Attack against %(_player_)s requested."
 msgstr "Se ha solicitado un ataque contra %(_player_)s."
 
-#: simulation/helpers/Commands.js:789
+#: simulation/helpers/Commands.js:792
 msgid "There are no bribable units"
 msgstr "No hay unidades sobornables"
 
-#: simulation/helpers/Commands.js:834
+#: simulation/helpers/Commands.js:838
 msgid "Unable to ungarrison unit(s)"
 msgstr "No se han podido desguarnecer las unidades"
 
-#: simulation/helpers/Commands.js:848
+#: simulation/helpers/Commands.js:852
 msgid "Some unit(s) can't go back to work"
 msgstr "Alguna unidad (unidades) no pueden volver al trabajo"
 
-#: simulation/helpers/Commands.js:1102
+#: simulation/helpers/Commands.js:1106
 msgid "The building's technology requirements are not met."
 msgstr "Todavía no se han cumplido los requisitos tecnológicos del edificio."
 
@@ -1106,8 +1106,8 @@ msgid ""
 msgstr "Captura y retiene las reliquias dispersas por el mapa durante cierto tiempo para ganar la partida."
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
-msgid "Capture The Relic"
-msgstr "Capturar la reliquia"
+msgid "Capture the Relic"
+msgstr "Capturar la Reliquia"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid "Defeat all opponents to win."

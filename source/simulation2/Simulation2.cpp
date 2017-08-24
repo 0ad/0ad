@@ -161,7 +161,7 @@ public:
 		SerializationTestState* primaryStateBefore, SerializationTestState* primaryStateAfter,
 		SerializationTestState* secondaryStateBefore, SerializationTestState* secondaryStateAfter);
 
-	static std::vector<SimulationCommand> CloneCommandsFromOtherContext(ScriptInterface& oldScript, ScriptInterface& newScript,
+	static std::vector<SimulationCommand> CloneCommandsFromOtherContext(const ScriptInterface& oldScript, const ScriptInterface& newScript,
 		const std::vector<SimulationCommand>& commands)
 	{
 		JSContext* cxOld = oldScript.GetContext();

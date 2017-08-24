@@ -78,7 +78,7 @@ extern void RenderCursor(bool RenderingState);
 
 class CmdLineArgs;
 class Paths;
-extern std::vector<CStr>& GetMods(const CmdLineArgs& args, int flags);
+extern const std::vector<CStr>& GetMods(const CmdLineArgs& args, int flags);
 extern void MountMods(const Paths& paths, const std::vector<CStr>& mods);
 /**
  * Returns true if successful, false if mods changed and restart_engine was called.

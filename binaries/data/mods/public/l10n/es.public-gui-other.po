@@ -18,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-08-02 09:02+0200\n"
-"PO-Revision-Date: 2017-08-05 19:31+0000\n"
-"Last-Translator: Swyter <Swyterzone@gmail.com>\n"
+"POT-Creation-Date: 2017-08-21 09:04+0200\n"
+"PO-Revision-Date: 2017-08-22 16:03+0000\n"
+"Last-Translator: Mihai Pantazi <malexandru_70@hotmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -136,18 +136,18 @@ msgid "DELETE"
 msgstr "ELIMINAR"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:291
-#: gui/options/options.js:334 gui/options/options.js:401
+#: gui/options/options.js:337 gui/options/options.js:404
 #: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:170
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
-#: gui/summary/summary.js:367
+#: gui/summary/summary.js:363
 msgid "No"
 msgstr "No"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:291
-#: gui/options/options.js:334 gui/options/options.js:401
+#: gui/options/options.js:337 gui/options/options.js:404
 #: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:170
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
-#: gui/summary/summary.js:367
+#: gui/summary/summary.js:363
 msgid "Yes"
 msgstr "Sí"
 
@@ -288,10 +288,10 @@ msgstr[1] "Maravilla (%(min)s minutos)"
 #: gui/common/gamedescription.js:244
 #, javascript-format
 msgctxt "victory condition"
-msgid "Capture The Relic (%(min)s minute)"
-msgid_plural "Capture The Relic (%(min)s minutes)"
-msgstr[0] "Captura la reliquia (%(min)s minuto)"
-msgstr[1] "Captura la reliquia (%(min)s minutos)"
+msgid "Capture the Relic (%(min)s minute)"
+msgid_plural "Capture the Relic (%(min)s minutes)"
+msgstr[0] "Capturar la Reliquia (%(min)s minuto)"
+msgstr[1] "Capturar la Reliquia (%(min)s minutos)"
 
 #: gui/common/gamedescription.js:260
 msgid "Relic Count"
@@ -1088,7 +1088,7 @@ msgstr "%(component)s %(loot)s"
 msgid "Loot:"
 msgstr "Saqueo:"
 
-#: gui/credits/credits.js:69
+#: gui/credits/credits.js:68
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
@@ -1107,24 +1107,24 @@ msgstr "Idioma incorrecto"
 msgid "OK"
 msgstr "Aceptar"
 
-#: gui/options/options.js:169
+#: gui/options/options.js:163
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "Valor: %(val)s (mín: %(min)s, max: %(max)s)"
 
-#: gui/options/options.js:332
+#: gui/options/options.js:335
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "Restaurar los valores originales borrará tus ajustes. ¿Quieres continuar?"
 
-#: gui/options/options.js:333 gui/options/options.js:400
+#: gui/options/options.js:336 gui/options/options.js:403
 #: gui/savedgames/load.js:187
 msgid "Warning"
 msgstr "Cuidado"
 
-#: gui/options/options.js:399
+#: gui/options/options.js:402
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Tienes cambios sin guardar. ¿Quieres cerrar la ventana?"
 
@@ -1202,7 +1202,7 @@ msgstr "Versión: %(buildDate)s (%(revision)s)"
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "¿Seguro que quieres salir de 0 A.D.?"
 
-#: gui/pregame/mainmenu.js:261 gui/summary/summary.js:366
+#: gui/pregame/mainmenu.js:261 gui/summary/summary.js:362
 msgid "Confirmation"
 msgstr "Confirmar decisión"
 
@@ -1451,7 +1451,7 @@ msgstr "Puntuación total"
 msgid "Buildings"
 msgstr "Edificios"
 
-#: gui/summary/layout.js:24 gui/summary/layout.js:62 gui/summary/layout.js:108
+#: gui/summary/layout.js:24 gui/summary/layout.js:62 gui/summary/layout.js:102
 msgid "Total"
 msgstr "Total"
 
@@ -1594,7 +1594,7 @@ msgstr "Control de mapa (carga máxima)"
 msgid "Map control (finish)"
 msgstr "Control de mapa (acabado)"
 
-#: gui/summary/layout.js:338
+#: gui/summary/layout.js:340
 msgid "Team total"
 msgstr "Total de equipo"
 
@@ -1654,44 +1654,44 @@ msgstr "Vendido"
 msgid "Outcome"
 msgstr "Resultado"
 
-#: gui/summary/summary.js:365
+#: gui/summary/summary.js:361
 msgid "Are you sure you want to quit the lobby?"
 msgstr "¿Seguro que quieres salir de la sala multijugador?"
 
-#: gui/summary/summary.js:421
+#: gui/summary/summary.js:417
 msgid "Current Scores"
 msgstr "Puntuación actual"
 
-#: gui/summary/summary.js:423
+#: gui/summary/summary.js:419
 msgid "Scores at the end of the game."
 msgstr "Puntuación al final de la partida."
 
-#: gui/summary/summary.js:425
+#: gui/summary/summary.js:421
 msgid "You have been disconnected."
 msgstr "Te han desconectado."
 
-#: gui/summary/summary.js:427
+#: gui/summary/summary.js:423
 msgid "You have left the game."
 msgstr "Has dejado la partida."
 
-#: gui/summary/summary.js:429
+#: gui/summary/summary.js:425
 msgid "You have won the battle!"
 msgstr "¡Has ganado la batalla!"
 
-#: gui/summary/summary.js:431
+#: gui/summary/summary.js:427
 msgid "You have been defeated..."
 msgstr "Has sido derrotado..."
 
-#: gui/summary/summary.js:432
+#: gui/summary/summary.js:428
 msgid "You have abandoned the game."
 msgstr "Has abandonado la partida."
 
-#: gui/summary/summary.js:437
+#: gui/summary/summary.js:433
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Tiempo de partida transcurrido: %(time)s"
 
-#: gui/summary/summary.js:445
+#: gui/summary/summary.js:441
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
@@ -1735,7 +1735,7 @@ msgstr "Idioma:"
 
 #: gui/locale/locale.xml:(caption):36
 #: gui/locale/locale_advanced.xml:(caption):65
-#: gui/savedgames/load.xml:(caption):61 gui/savedgames/save.xml:(caption):38
+#: gui/savedgames/load.xml:(caption):58 gui/savedgames/save.xml:(caption):38
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -1850,8 +1850,8 @@ msgid ""
 msgstr "Puedes enviarnos automáticamente informes anónimos para ayudarnos a mejorar el rendimiento, resolver problemas, y hacer el juego más compatible."
 
 #: gui/pregame/mainmenu.xml:539
-msgid "Alpha XXII: Venustas"
-msgstr "Alfa XXII: Venustas"
+msgid "Alpha XXIII: Ken Wood"
+msgstr "Alfa XXIII: Ken Wood"
 
 #: gui/pregame/mainmenu.xml:541
 msgid ""
@@ -1926,8 +1926,8 @@ msgid "Mod Selection"
 msgstr "Selección de mods"
 
 #: gui/pregame/mainmenu.xml:(caption):456
-msgid "Learn To Play"
-msgstr "Aprender a jugar"
+msgid "Learn to Play"
+msgstr "Aprender a Jugar"
 
 #: gui/pregame/mainmenu.xml:(caption):501
 msgid "Tools & Options"
@@ -1950,8 +1950,8 @@ msgid "Report a Bug"
 msgstr "Informar de un fallo"
 
 #: gui/pregame/mainmenu.xml:(caption):587
-msgid "Translate the game"
-msgstr "Traducir el juego"
+msgid "Translate the Game"
+msgstr "Traducir el Juego"
 
 #: gui/pregame/mainmenu.xml:(caption):599
 msgid "Credits"
@@ -2085,114 +2085,114 @@ msgstr "Unidades instructoras"
 msgid "Replay Games"
 msgstr "Repeticiones"
 
-#: gui/replaymenu/replay_menu.xml:(caption):126
+#: gui/replaymenu/replay_menu.xml:(caption):123
 msgid "Filter compatible replays"
 msgstr "Ocultar repeticiones incompatibles"
 
-#: gui/replaymenu/replay_menu.xml:(caption):167
-#: gui/savedgames/load.xml:(caption):101
+#: gui/replaymenu/replay_menu.xml:(caption):164
+#: gui/savedgames/load.xml:(caption):98
 msgid "Map Type:"
 msgstr "Tipo de mapa:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):182
-#: gui/savedgames/load.xml:(caption):105
+#: gui/replaymenu/replay_menu.xml:(caption):179
+#: gui/savedgames/load.xml:(caption):102
 msgid "Map Size:"
 msgstr "Tamaño del mapa:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):197
-#: gui/savedgames/load.xml:(caption):109
+#: gui/replaymenu/replay_menu.xml:(caption):194
+#: gui/savedgames/load.xml:(caption):106
 msgid "Victory:"
 msgstr "Victoria:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):230
+#: gui/replaymenu/replay_menu.xml:(caption):227
 msgid "Spoiler"
 msgstr "Oculto"
 
-#: gui/replaymenu/replay_menu.xml:(caption):242
+#: gui/replaymenu/replay_menu.xml:(caption):239
 msgid "Main Menu"
 msgstr "Menú principal"
 
-#: gui/replaymenu/replay_menu.xml:(caption):248
-#: gui/savedgames/load.xml:(caption):66 gui/savedgames/save.xml:(caption):43
+#: gui/replaymenu/replay_menu.xml:(caption):245
+#: gui/savedgames/load.xml:(caption):63 gui/savedgames/save.xml:(caption):43
 msgid "Delete"
 msgstr "Eliminar"
 
-#: gui/replaymenu/replay_menu.xml:(caption):254
+#: gui/replaymenu/replay_menu.xml:(caption):251
 msgid "Reload Cache"
 msgstr "Recargar caché"
 
-#: gui/replaymenu/replay_menu.xml:(caption):261
+#: gui/replaymenu/replay_menu.xml:(caption):258
 #: gui/summary/summary.xml:(caption):24
 msgid "Summary"
 msgstr "Resumen"
 
-#: gui/replaymenu/replay_menu.xml:(caption):267
+#: gui/replaymenu/replay_menu.xml:(caption):264
 msgid "Start Replay"
 msgstr "Ver repetición"
 
-#: gui/replaymenu/replay_menu.xml:(heading):86
-#: gui/savedgames/load.xml:(heading):40
+#: gui/replaymenu/replay_menu.xml:(heading):83
+#: gui/savedgames/load.xml:(heading):37
 msgctxt "replay"
 msgid "Date / Time"
 msgstr "Fecha / hora"
 
-#: gui/replaymenu/replay_menu.xml:(heading):90
+#: gui/replaymenu/replay_menu.xml:(heading):87
 msgctxt "replay"
 msgid "Players"
 msgstr "Jugadores"
 
-#: gui/replaymenu/replay_menu.xml:(heading):94
-#: gui/savedgames/load.xml:(heading):48
+#: gui/replaymenu/replay_menu.xml:(heading):91
+#: gui/savedgames/load.xml:(heading):45
 msgctxt "replay"
 msgid "Map Name"
 msgstr "Nombre del mapa"
 
-#: gui/replaymenu/replay_menu.xml:(heading):98
+#: gui/replaymenu/replay_menu.xml:(heading):95
 msgctxt "replay"
 msgid "Size"
 msgstr "Tamaño"
 
-#: gui/replaymenu/replay_menu.xml:(heading):102
+#: gui/replaymenu/replay_menu.xml:(heading):99
 msgctxt "replay"
 msgid "Population"
 msgstr "Población"
 
-#: gui/replaymenu/replay_menu.xml:(heading):106
+#: gui/replaymenu/replay_menu.xml:(heading):103
 msgctxt "replay"
 msgid "Duration"
 msgstr "Duración"
 
-#: gui/replaymenu/replay_menu.xml:(tooltip):255
+#: gui/replaymenu/replay_menu.xml:(tooltip):252
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
 msgstr "Reconstruir la caché de repetición desde el principio, puede tardar un poco."
 
-#: gui/savedgames/load.xml:(heading):44
+#: gui/savedgames/load.xml:(heading):41
 msgctxt "replay"
 msgid "Map Type"
 msgstr "Tipo de mapa"
 
-#: gui/savedgames/load.xml:(heading):52
+#: gui/savedgames/load.xml:(heading):49
 msgctxt "replay"
 msgid "Description"
 msgstr "Descripción"
 
-#: gui/savedgames/load.xml:(caption):57
+#: gui/savedgames/load.xml:(caption):54
 msgid "No saved games found."
 msgstr "No se encontraron partidas guardadas."
 
-#: gui/savedgames/load.xml:(caption):71
+#: gui/savedgames/load.xml:(caption):68
 msgid "Load"
 msgstr "Cargar"
 
-#: gui/savedgames/load.xml:(caption):83
+#: gui/savedgames/load.xml:(caption):80
 msgid "Filter compatible saved games"
 msgstr "Ocultar partidas guardadas incompatibles"
 
-#: gui/savedgames/load.xml:(caption):93
+#: gui/savedgames/load.xml:(caption):90
 msgid "Players:"
 msgstr "Jugadores:"
 
-#: gui/savedgames/load.xml:(caption):97
+#: gui/savedgames/load.xml:(caption):94
 msgid "Played time:"
 msgstr "Tiempo jugado:"
 
@@ -2220,40 +2220,40 @@ msgstr "Problemas conocidos (web)"
 msgid "Charts"
 msgstr "Gráficos"
 
-#: gui/summary/summary.xml:(caption):168
+#: gui/summary/summary.xml:(caption):163
 msgctxt "summary chart"
 msgid "Category:"
 msgstr "Categoría:"
 
-#: gui/summary/summary.xml:(caption):178
+#: gui/summary/summary.xml:(caption):173
 msgctxt "summary chart"
 msgid "Value:"
 msgstr "Valor:"
 
-#: gui/summary/summary.xml:(caption):188
+#: gui/summary/summary.xml:(caption):183
 msgctxt "summary chart"
 msgid "Type:"
 msgstr "Tipo:"
 
-#: gui/summary/summary.xml:(caption):207
+#: gui/summary/summary.xml:(caption):202
 msgid "Replay"
 msgstr "Repetición"
 
-#: gui/summary/summary.xml:(caption):212
+#: gui/summary/summary.xml:(caption):207
 msgid "Continue"
 msgstr "Continuar"
 
-#: gui/summary/summary.xml:(tooltip):174
+#: gui/summary/summary.xml:(tooltip):169
 msgctxt "summary chart"
 msgid "Category"
 msgstr "Categoría"
 
-#: gui/summary/summary.xml:(tooltip):184
+#: gui/summary/summary.xml:(tooltip):179
 msgctxt "summary chart"
 msgid "Value"
 msgstr "Valor"
 
-#: gui/summary/summary.xml:(tooltip):195
+#: gui/summary/summary.xml:(tooltip):190
 msgctxt "summary chart"
 msgid "Type"
 msgstr "Tipo"
@@ -2755,8 +2755,8 @@ msgid "Number of shader effects. REQUIRES GAME RESTART"
 msgstr "Cantidad de efectos de sombreadores. Necesita REINICIAR EL JUEGO"
 
 #: gui/options/options.jsongraphicsSetting[2].label
-msgid "Graphics quality"
-msgstr "Calidad gráfica"
+msgid "Shader Effects"
+msgstr "Efectos de Sombreadores"
 
 #: gui/options/options.jsongraphicsSetting[3].tooltip
 msgid "Enable shadows"
@@ -2766,124 +2766,154 @@ msgstr "Activa las sombras"
 msgid "Shadows"
 msgstr "Sombras"
 
+#: gui/options/options.jsongraphicsSetting[4].parameters.list[0].label
+msgid "Very Low"
+msgstr "Muy Bajo"
+
+#: gui/options/options.jsongraphicsSetting[4].parameters.list[1].label
+msgid "Low"
+msgstr "Bajo"
+
+#: gui/options/options.jsongraphicsSetting[4].parameters.list[2].label
+msgid "Medium"
+msgstr "Medio"
+
+#: gui/options/options.jsongraphicsSetting[4].parameters.list[3].label
+msgid "High"
+msgstr "Alto"
+
+#: gui/options/options.jsongraphicsSetting[4].parameters.list[4].label
+msgid "Very High"
+msgstr "Muy Alto"
+
 #: gui/options/options.jsongraphicsSetting[4].tooltip
+msgid ""
+"Shadow map resolution. High values can crash the game when using a graphics "
+"card with low memory!"
+msgstr "Resolución del mapa de sombras. ¡Los valores altos pueden bloquear el juego cuando se usa una tarjeta gráfica con poca memoria!"
+
+#: gui/options/options.jsongraphicsSetting[4].label
+msgid "Shadow Quality"
+msgstr "Calidad de Sombras"
+
+#: gui/options/options.jsongraphicsSetting[5].tooltip
 msgid "Smooth shadows"
 msgstr "Suaviza las sombras"
 
-#: gui/options/options.jsongraphicsSetting[4].label
+#: gui/options/options.jsongraphicsSetting[5].label
 msgid "Shadow Filtering"
 msgstr "Filtrado de sombras"
 
-#: gui/options/options.jsongraphicsSetting[5].tooltip
+#: gui/options/options.jsongraphicsSetting[6].tooltip
 msgid "Show outlines of units behind buildings"
 msgstr "Muestra las siluetas de unidades ocultas tras edificios"
 
-#: gui/options/options.jsongraphicsSetting[5].label
+#: gui/options/options.jsongraphicsSetting[6].label
 msgid "Unit Silhouettes"
 msgstr "Siluetas de unidades"
 
-#: gui/options/options.jsongraphicsSetting[6].tooltip
+#: gui/options/options.jsongraphicsSetting[7].tooltip
 msgid "Enable particles"
 msgstr "Activa los efectos de partículas"
 
-#: gui/options/options.jsongraphicsSetting[6].label
+#: gui/options/options.jsongraphicsSetting[7].label
 msgid "Particles"
 msgstr "Partículas"
 
-#: gui/options/options.jsongraphicsSetting[7].tooltip
+#: gui/options/options.jsongraphicsSetting[8].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "Al desactivarse utiliza los ajustes más sencillos para dibujar el agua, aumentando el rendimiento significativamente. Al activarse inutiliza otras opciones relacionadas."
 
-#: gui/options/options.jsongraphicsSetting[7].label
-msgid "Activate water effects"
-msgstr "Agua de alta fidelidad"
+#: gui/options/options.jsongraphicsSetting[8].label
+msgid "Water Effects"
+msgstr "Efectos de Agua"
 
-#: gui/options/options.jsongraphicsSetting[8].tooltip
+#: gui/options/options.jsongraphicsSetting[9].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "Utiliza los efectos visuales más complejos al dibujar el agua, incluyendo olas costeras, espuma en la orilla y estelas de barcos en la superficie."
 
-#: gui/options/options.jsongraphicsSetting[8].label
+#: gui/options/options.jsongraphicsSetting[9].label
 msgid "HQ Water Effects"
 msgstr "Agua de alta calidad"
 
-#: gui/options/options.jsongraphicsSetting[9].tooltip
+#: gui/options/options.jsongraphicsSetting[10].tooltip
 msgid "Use actual water depth in rendering calculations"
 msgstr "Utiliza la profundidad real de la superficie del agua a la hora de calcular su color"
 
-#: gui/options/options.jsongraphicsSetting[9].label
+#: gui/options/options.jsongraphicsSetting[10].label
 msgid "Real Water Depth"
 msgstr "Agua con profundidad real"
 
-#: gui/options/options.jsongraphicsSetting[10].tooltip
+#: gui/options/options.jsongraphicsSetting[11].tooltip
 msgid "Allow water to reflect a mirror image"
 msgstr "Reflejar el entorno en la superficie del agua"
 
-#: gui/options/options.jsongraphicsSetting[10].label
+#: gui/options/options.jsongraphicsSetting[11].label
 msgid "Water Reflections"
 msgstr "Reflejos en el agua"
 
-#: gui/options/options.jsongraphicsSetting[11].tooltip
+#: gui/options/options.jsongraphicsSetting[12].tooltip
 msgid "Use a real water refraction map and not transparency"
 msgstr "Utilizar un mapa de refracción real para el agua además de su transparencia"
 
-#: gui/options/options.jsongraphicsSetting[11].label
+#: gui/options/options.jsongraphicsSetting[12].label
 msgid "Water Refraction"
 msgstr "Refracción en el agua"
 
-#: gui/options/options.jsongraphicsSetting[12].tooltip
+#: gui/options/options.jsongraphicsSetting[13].tooltip
 msgid "Cast shadows on water"
 msgstr "Proyectar sombras sobre el agua"
 
-#: gui/options/options.jsongraphicsSetting[12].label
+#: gui/options/options.jsongraphicsSetting[13].label
 msgid "Shadows on Water"
 msgstr "Sombras en el agua"
 
-#: gui/options/options.jsongraphicsSetting[13].tooltip
+#: gui/options/options.jsongraphicsSetting[14].tooltip
 msgid "Lift darkness and fog-of-war smoothly"
 msgstr "La niebla de guerra y su oscuridad se desvanecen suavemente"
 
-#: gui/options/options.jsongraphicsSetting[13].label
+#: gui/options/options.jsongraphicsSetting[14].label
 msgid "Smooth LOS"
 msgstr "Línea de visión suave"
 
-#: gui/options/options.jsongraphicsSetting[14].tooltip
+#: gui/options/options.jsongraphicsSetting[15].tooltip
 msgid "Render Sky"
 msgstr "Muestra el cielo sobre el mapa"
 
-#: gui/options/options.jsongraphicsSetting[14].label
+#: gui/options/options.jsongraphicsSetting[15].label
 msgid "Show Sky"
 msgstr "Mostrar cielo"
 
-#: gui/options/options.jsongraphicsSetting[15].tooltip
+#: gui/options/options.jsongraphicsSetting[16].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "Mantener la sincronización vertical de la pantalla para evitar el llamado «screen tearing». ES NECESARIO REINICIAR EL JUEGO"
 
-#: gui/options/options.jsongraphicsSetting[15].label
+#: gui/options/options.jsongraphicsSetting[16].label
 msgid "VSync"
 msgstr "Sincronización vertical"
 
-#: gui/options/options.jsongraphicsSetting[16].tooltip
+#: gui/options/options.jsongraphicsSetting[17].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr "Puedes limitar la velocidad de dibujado en los menús para gastar menos recursos del procesador y reducir la temperatura y el gasto energético. Ponlo al máximo para desactivar el limitador."
 
-#: gui/options/options.jsongraphicsSetting[16].label
-msgid "FPS throttling in menus"
+#: gui/options/options.jsongraphicsSetting[17].label
+msgid "FPS Throttling in Menus"
 msgstr "Limitar FPS en los menús"
 
-#: gui/options/options.jsongraphicsSetting[17].tooltip
+#: gui/options/options.jsongraphicsSetting[18].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
 msgstr "Puedes limitar la velocidad de dibujado durante la partida para gastar menos recursos del procesador y reducir la temperatura y el gasto energético. Ponlo al máximo para desactivar el limitador."
 
-#: gui/options/options.jsongraphicsSetting[17].label
-msgid "FPS throttling in games"
+#: gui/options/options.jsongraphicsSetting[18].label
+msgid "FPS Throttling in Games"
 msgstr "Limitar FPS en la partida"
 
 #: simulation/data/resources/food.jsondescription

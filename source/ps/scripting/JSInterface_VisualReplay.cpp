@@ -63,7 +63,7 @@ CStrW JSI_VisualReplay::GetReplayDirectoryName(ScriptInterface::CxPrivate* UNUSE
 	return wstring_from_utf8(OsPath(VisualReplay::GetDirectoryName() / directoryName).string8());
 }
 
-void JSI_VisualReplay::RegisterScriptFunctions(ScriptInterface& scriptInterface)
+void JSI_VisualReplay::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 {
 	scriptInterface.RegisterFunction<JS::Value, bool, &GetReplays>("GetReplays");
 	scriptInterface.RegisterFunction<bool, CStrW, &DeleteReplay>("DeleteReplay");

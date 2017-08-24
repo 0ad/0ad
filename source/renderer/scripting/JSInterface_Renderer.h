@@ -47,7 +47,7 @@ namespace JSI_Renderer
 	DECLARE_BOOLEAN_SCRIPT_SETTING(Postproc);
 	DECLARE_BOOLEAN_SCRIPT_SETTING(DisplayFrustum);
 
-	void RegisterScriptFunctions(ScriptInterface& scriptInterface);
+	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
 }
 
 #undef DECLARE_BOOLEAN_SCRIPT_SETTING

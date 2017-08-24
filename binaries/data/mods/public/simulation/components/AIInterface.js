@@ -216,18 +216,17 @@ AIInterface.prototype.OnTemplateModification = function(msg)
 	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	if (!this.templates)
 	{
-		this.templates = cmpTemplateManager.FindAllTemplates(false);
-		for (let i = 0; i < this.templates.length; ++i)
+		this.templates = [];
+		for (let templateName of cmpTemplateManager.FindAllTemplates(false))
 		{
-			// remove templates that we obviously don't care about.
-			if (this.templates[i].startsWith("skirmish/"))
-				this.templates.splice(i--,1);
-			else
-			{
-				let template = cmpTemplateManager.GetTemplateWithoutValidation(this.templates[i]);
-				if (!template || !template.Identity || !template.Identity.Civ)
-					this.templates.splice(i--,1);
-			}
+			// Remove templates that we obviously don't care about.
+			if (templateName.startsWith("rubble/") || templateName.startsWith("skirmish/") ||
+			    templateName.startsWith("special_filter/"))
+				continue;
+			let template = cmpTemplateManager.GetTemplateWithoutValidation(templateName);
+			if (!template || !template.Identity || !template.Identity.Civ)
+				continue;
+			this.templates.push(templateName);
 		}
 	}
 

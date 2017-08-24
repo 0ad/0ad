@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -123,7 +123,7 @@ void JSI_Mod::SetMods(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std:
 	g_modsLoaded = mods;
 }
 
-void JSI_Mod::RegisterScriptFunctions(ScriptInterface& scriptInterface)
+void JSI_Mod::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 {
 	scriptInterface.RegisterFunction<JS::Value, &JSI_Mod::GetAvailableMods>("GetAvailableMods");
 	scriptInterface.RegisterFunction<void, &JSI_Mod::RestartEngine>("RestartEngine");

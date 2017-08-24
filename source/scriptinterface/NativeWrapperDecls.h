@@ -59,7 +59,8 @@ template <typename T> struct MaybeRef;
 // Define RegisterFunction<TR, T0..., f>
 #define OVERLOADS(z, i, data) \
 	template <typename R, TYPENAME_T0_HEAD(z,i)  R (*fptr) ( ScriptInterface::CxPrivate* T0_TAIL_MAYBE_REF(z,i) )> \
-	void RegisterFunction(const char* name) { \
+	void RegisterFunction(const char* name) const \
+	{ \
 		Register(name, call<R  T0_TAIL(z,i), fptr>, nargs<T0(z,i)>()); \
 	}
 BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)

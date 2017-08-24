@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-05 09:02+0200\n"
-"PO-Revision-Date: 2017-06-05 15:23+0000\n"
+"POT-Creation-Date: 2017-08-21 09:04+0200\n"
+"PO-Revision-Date: 2017-08-21 15:17+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -54,296 +54,300 @@ msgstr "Jugador"
 msgid "Muted Player"
 msgstr ""
 
-#: gui/lobby/lobby.js:138
+#: gui/lobby/lobby.js:139
 msgid "Disconnected."
 msgstr "Desconnectat."
 
-#: gui/lobby/lobby.js:154
+#: gui/lobby/lobby.js:156
 #, javascript-format
 msgid "%(nick)s has joined."
 msgstr "%(nick)s ha arribat."
 
-#: gui/lobby/lobby.js:162
+#: gui/lobby/lobby.js:165
 #, javascript-format
 msgid "%(nick)s has left."
 msgstr "%(nick)s ha marxat."
 
-#: gui/lobby/lobby.js:181
-msgid "You have been muted."
-msgstr ""
-
-#: gui/lobby/lobby.js:182
-#, javascript-format
-msgid "%(nick)s has been muted."
-msgstr ""
-
 #: gui/lobby/lobby.js:185
-msgid "You are now a moderator."
+msgid "You have been muted."
 msgstr ""
 
 #: gui/lobby/lobby.js:186
 #, javascript-format
-msgid "%(nick)s is now a moderator."
+msgid "%(nick)s has been muted."
 msgstr ""
 
 #: gui/lobby/lobby.js:189
-msgid "You have been unmuted."
+msgid "You are now a moderator."
 msgstr ""
 
 #: gui/lobby/lobby.js:190
 #, javascript-format
-msgid "%(nick)s has been unmuted."
-msgstr ""
-
-#: gui/lobby/lobby.js:192
-msgid "You are not a moderator anymore."
+msgid "%(nick)s is now a moderator."
 msgstr ""
 
 #: gui/lobby/lobby.js:193
+msgid "You have been unmuted."
+msgstr ""
+
+#: gui/lobby/lobby.js:194
+#, javascript-format
+msgid "%(nick)s has been unmuted."
+msgstr ""
+
+#: gui/lobby/lobby.js:196
+msgid "You are not a moderator anymore."
+msgstr ""
+
+#: gui/lobby/lobby.js:197
 #, javascript-format
 msgid "%(nick)s is not a moderator anymore."
 msgstr ""
 
-#: gui/lobby/lobby.js:209
+#: gui/lobby/lobby.js:210
 #, javascript-format
 msgid "%(oldnick)s is now known as %(newnick)s."
 msgstr "%(oldnick)s ara es diu %(newnick)s."
 
-#: gui/lobby/lobby.js:254
+#: gui/lobby/lobby.js:237
+msgid "Notice"
+msgstr ""
+
+#: gui/lobby/lobby.js:265
 msgid "Set your state to 'Away'."
 msgstr ""
 
-#: gui/lobby/lobby.js:261
+#: gui/lobby/lobby.js:272
 msgid "Set your state to 'Online'."
 msgstr ""
 
-#: gui/lobby/lobby.js:268
+#: gui/lobby/lobby.js:279
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
 msgstr ""
 
-#: gui/lobby/lobby.js:276
+#: gui/lobby/lobby.js:287
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
 msgstr ""
 
-#: gui/lobby/lobby.js:284
+#: gui/lobby/lobby.js:295
 msgid "Show this help."
 msgstr ""
 
-#: gui/lobby/lobby.js:287
+#: gui/lobby/lobby.js:298
 msgid "Chat commands:"
 msgstr ""
 
 #. Translation: Chat command help format
-#: gui/lobby/lobby.js:291
+#: gui/lobby/lobby.js:302
 #, javascript-format
 msgid "%(command)s - %(description)s"
 msgstr ""
 
-#: gui/lobby/lobby.js:304
+#: gui/lobby/lobby.js:315
 msgid "Send a chat message about yourself. Example: /me goes swimming."
 msgstr ""
 
-#: gui/lobby/lobby.js:308
+#: gui/lobby/lobby.js:319
 msgid ""
 "Send text as a chat message (even if it starts with slash). Example: /say "
 "/help is a great command."
 msgstr ""
 
-#: gui/lobby/lobby.js:312
+#: gui/lobby/lobby.js:323
 msgid "Clear all chat scrollback."
 msgstr ""
 
-#: gui/lobby/lobby.js:319
+#: gui/lobby/lobby.js:330
 msgid "Return to the main menu."
 msgstr ""
 
-#: gui/lobby/lobby.js:389
+#: gui/lobby/lobby.js:400
 msgctxt "map size"
 msgid "Any"
 msgstr "Qualsevol"
 
-#: gui/lobby/lobby.js:394
+#: gui/lobby/lobby.js:405
 msgctxt "player number"
 msgid "Any"
 msgstr "Qualsevol"
 
-#: gui/lobby/lobby.js:398 gui/lobby/lobby.js:412
+#: gui/lobby/lobby.js:409 gui/lobby/lobby.js:423
 msgctxt "map"
 msgid "Any"
 msgstr "Qualsevol"
 
-#: gui/lobby/lobby.js:406
+#: gui/lobby/lobby.js:417
 #, javascript-format
 msgctxt "gamelist filter"
 msgid "> %(rating)s"
 msgstr ""
 
-#: gui/lobby/lobby.js:407
+#: gui/lobby/lobby.js:418
 #, javascript-format
 msgctxt "gamelist filter"
 msgid "< %(rating)s"
 msgstr ""
 
-#: gui/lobby/lobby.js:480
+#: gui/lobby/lobby.js:491
 msgid "You have been banned from the lobby!"
 msgstr ""
 
-#: gui/lobby/lobby.js:481
+#: gui/lobby/lobby.js:492
 msgid "You have been kicked from the lobby!"
 msgstr ""
 
-#: gui/lobby/lobby.js:483
+#: gui/lobby/lobby.js:494
 #, javascript-format
 msgid "%(nick)s has been banned from the lobby."
 msgstr ""
 
-#: gui/lobby/lobby.js:484
+#: gui/lobby/lobby.js:495
 #, javascript-format
 msgid "%(nick)s has been kicked from the lobby."
 msgstr ""
 
-#: gui/lobby/lobby.js:487
+#: gui/lobby/lobby.js:498
 #, javascript-format
 msgctxt "lobby kick"
 msgid "Reason: %(reason)s"
 msgstr ""
 
-#: gui/lobby/lobby.js:512
+#: gui/lobby/lobby.js:525
 msgid "BANNED"
 msgstr ""
 
-#: gui/lobby/lobby.js:512
+#: gui/lobby/lobby.js:525
 msgid "KICKED"
 msgstr ""
 
-#: gui/lobby/lobby.js:545
+#: gui/lobby/lobby.js:558
 msgid "Unmark as Buddy"
 msgstr ""
 
-#: gui/lobby/lobby.js:545
+#: gui/lobby/lobby.js:558
 msgid "Mark as Buddy"
 msgstr ""
 
-#: gui/lobby/lobby.js:757 gui/lobby/lobby.js:758 gui/lobby/lobby.js:759
-#: gui/lobby/lobby.js:760 gui/lobby/lobby.js:761 gui/lobby/lobby.js:762
+#: gui/lobby/lobby.js:758 gui/lobby/lobby.js:759 gui/lobby/lobby.js:760
+#: gui/lobby/lobby.js:761 gui/lobby/lobby.js:762 gui/lobby/lobby.js:763
 msgid "N/A"
 msgstr "No disponible"
 
-#: gui/lobby/lobby.js:783
+#: gui/lobby/lobby.js:791
 #, javascript-format
 msgid "Player \"%(nick)s\" not found."
 msgstr ""
 
 #. Translation: %(time)s is the hour and minute here.
-#: gui/lobby/lobby.js:998
+#: gui/lobby/lobby.js:1007
 #, javascript-format
 msgid "Game started at %(time)s"
 msgstr "La partida comença a les %(time)s"
 
-#: gui/lobby/lobby.js:999 gui/lobby/lobby.js:1353
+#: gui/lobby/lobby.js:1008 gui/lobby/lobby.js:1363
 msgid "HH:mm"
 msgstr "HH:mm"
 
-#: gui/lobby/lobby.js:1003
+#: gui/lobby/lobby.js:1012
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
 msgstr "Jugadors: %(current)s/%(total)s"
 
-#: gui/lobby/lobby.js:1045
+#: gui/lobby/lobby.js:1055
 msgid "The game has already started. Do you want to join as observer?"
 msgstr "La partida ja ha començat. Vols unir-te com a observador?"
 
-#: gui/lobby/lobby.js:1046
+#: gui/lobby/lobby.js:1056
 msgid "Confirmation"
 msgstr "Confirmació"
 
-#: gui/lobby/lobby.js:1047
+#: gui/lobby/lobby.js:1057
 msgid "No"
 msgstr "No"
 
-#: gui/lobby/lobby.js:1047
+#: gui/lobby/lobby.js:1057
 msgid "Yes"
 msgstr "Sí"
 
-#: gui/lobby/lobby.js:1079
+#: gui/lobby/lobby.js:1089
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr "L'adreça d'aquesta partida '%(ip)s' no sembla ser vàlida."
 
-#: gui/lobby/lobby.js:1177
+#: gui/lobby/lobby.js:1201
 #, javascript-format
 msgid "The command '%(cmd)s' is not supported."
 msgstr ""
 
-#: gui/lobby/lobby.js:1189
+#: gui/lobby/lobby.js:1213
 #, javascript-format
 msgid "The command '%(cmd)s' is restricted to moderators."
 msgstr ""
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:1260
+#: gui/lobby/lobby.js:1284
 #, javascript-format
 msgid "* %(sender)s"
 msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:1265
+#: gui/lobby/lobby.js:1289
 #, javascript-format
 msgid "%(sender)s %(action)s"
 msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:1274 gui/lobby/lobby.js:1295 gui/lobby/lobby.js:1321
+#: gui/lobby/lobby.js:1298 gui/lobby/lobby.js:1319 gui/lobby/lobby.js:1345
 #, javascript-format
 msgid "<%(sender)s>"
 msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:1279 gui/lobby/lobby.js:1300 gui/lobby/lobby.js:1326
+#: gui/lobby/lobby.js:1303 gui/lobby/lobby.js:1324 gui/lobby/lobby.js:1350
 #, javascript-format
 msgid "%(sender)s %(message)s"
 msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:1289
+#: gui/lobby/lobby.js:1313
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/lobby/lobby.js:1315
+#: gui/lobby/lobby.js:1339
 #, javascript-format
 msgctxt "lobby private message"
 msgid "(%(private)s) <%(sender)s>"
 msgstr "(%(private)s) <%(sender)s>"
 
-#: gui/lobby/lobby.js:1317
+#: gui/lobby/lobby.js:1341
 msgid "Private"
 msgstr "Privat"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
-#: gui/lobby/lobby.js:1356
+#: gui/lobby/lobby.js:1366
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:1361
+#: gui/lobby/lobby.js:1371
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/lobby/lobby.js:1400
+#: gui/lobby/lobby.js:1410
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
 msgstr "%(nick)s (%(rating)s)"
 
-#: gui/lobby/lobby.js:1415
+#: gui/lobby/lobby.js:1425
 msgctxt "Used for an undefined winning rate"
 msgid "-"
 msgstr "-"
 
-#: gui/lobby/lobby.js:1417
+#: gui/lobby/lobby.js:1427
 #, javascript-format
 msgid "%(percentage)s%%"
 msgstr "%(percentage)s%%"
@@ -361,56 +365,62 @@ msgid "Please enter your username"
 msgstr "Escriviu el nom d'usuari"
 
 #: gui/lobby/prelobby.js:98
-msgid "Usernames can't contain \\[, ], unicode, whitespace, or commas"
-msgstr "Els noms d'usuari no poden contenir \\[, ], unicode, espais en blanc ni comes"
+msgid "Invalid username"
+msgstr ""
 
-#: gui/lobby/prelobby.js:104
+#: gui/lobby/prelobby.js:105
+msgctxt "login"
 msgid "Please enter your password"
-msgstr "Escriviu la contrasenya"
+msgstr ""
 
-#: gui/lobby/prelobby.js:117
+#: gui/lobby/prelobby.js:106
+msgctxt "register"
+msgid "Please enter your password"
+msgstr ""
+
+#: gui/lobby/prelobby.js:119
 msgid "Please enter your password again"
 msgstr "Torneu a escriure la contrasenya"
 
-#: gui/lobby/prelobby.js:123
+#: gui/lobby/prelobby.js:125
 msgid "Passwords do not match"
 msgstr "Les contrasenyes no coincideixen"
 
-#: gui/lobby/prelobby.js:129
+#: gui/lobby/prelobby.js:131
 msgid "Please read the Terms of Service"
 msgstr "Llegiu els termes del servei"
 
-#: gui/lobby/prelobby.js:135
+#: gui/lobby/prelobby.js:137
 msgid "Please read the Terms of Use"
 msgstr "Llegiu els termes d'ús"
 
-#: gui/lobby/prelobby.js:141
+#: gui/lobby/prelobby.js:143
 msgid "Please agree to the Terms of Service and Terms of Use"
 msgstr "Accepteu els termes del servei i els termes d'ús"
 
-#: gui/lobby/prelobby.js:166
+#: gui/lobby/prelobby.js:168
 msgid ""
 "Unknown error. This usually occurs because the same IP address is not "
 "allowed to register more than one account within one hour."
 msgstr ""
 
-#: gui/lobby/prelobby.js:172
+#: gui/lobby/prelobby.js:174
 msgid "Registered"
 msgstr "Registrat"
 
-#: gui/lobby/prelobby.js:234
+#: gui/lobby/prelobby.js:236
 msgid "Register"
 msgstr "Registre"
 
-#: gui/lobby/prelobby.js:240 gui/lobby/prelobby.xml:(caption):101
+#: gui/lobby/prelobby.js:242 gui/lobby/prelobby.xml:(caption):101
 msgid "Connect"
 msgstr "Connecta"
 
-#: gui/lobby/prelobby.js:250 gui/lobby/prelobby.xml:(caption):78
+#: gui/lobby/prelobby.js:252 gui/lobby/prelobby.xml:(caption):78
 msgid "Terms of Service"
 msgstr "Termes del servei"
 
-#: gui/lobby/prelobby.js:259 gui/lobby/prelobby.xml:(caption):83
+#: gui/lobby/prelobby.js:261 gui/lobby/prelobby.xml:(caption):83
 msgid "Terms of Use"
 msgstr "Termes d'ús"
 
@@ -418,116 +428,116 @@ msgstr "Termes d'ús"
 msgid "Multiplayer Lobby"
 msgstr "Sala multijugador"
 
-#: gui/lobby/lobby.xml:(caption):65 gui/lobby/lobby.xml:(caption):345
+#: gui/lobby/lobby.xml:(caption):66 gui/lobby/lobby.xml:(caption):342
 msgid "Current Rank:"
 msgstr "Classificació actual:"
 
-#: gui/lobby/lobby.xml:(caption):69 gui/lobby/lobby.xml:(caption):349
+#: gui/lobby/lobby.xml:(caption):70 gui/lobby/lobby.xml:(caption):346
 msgid "Highest Rating:"
 msgstr "Classificació més alta:"
 
-#: gui/lobby/lobby.xml:(caption):73 gui/lobby/lobby.xml:(caption):353
+#: gui/lobby/lobby.xml:(caption):74 gui/lobby/lobby.xml:(caption):350
 msgid "Total Games:"
 msgstr "Partides totals:"
 
-#: gui/lobby/lobby.xml:(caption):77 gui/lobby/lobby.xml:(caption):357
+#: gui/lobby/lobby.xml:(caption):78 gui/lobby/lobby.xml:(caption):354
 msgid "Wins:"
 msgstr "Victòries:"
 
-#: gui/lobby/lobby.xml:(caption):81 gui/lobby/lobby.xml:(caption):361
+#: gui/lobby/lobby.xml:(caption):82 gui/lobby/lobby.xml:(caption):358
 msgid "Losses:"
 msgstr "Derrotes:"
 
-#: gui/lobby/lobby.xml:(caption):85 gui/lobby/lobby.xml:(caption):365
+#: gui/lobby/lobby.xml:(caption):86 gui/lobby/lobby.xml:(caption):362
 msgid "Win Rate:"
 msgstr "Ràtio de victòries:"
 
-#: gui/lobby/lobby.xml:(caption):99 gui/lobby/lobby.xml:(caption):293
+#: gui/lobby/lobby.xml:(caption):100 gui/lobby/lobby.xml:(caption):290
 msgid "Leaderboard"
 msgstr "Màximes puntuacions"
 
-#: gui/lobby/lobby.xml:(caption):105 gui/lobby/lobby.xml:(caption):328
+#: gui/lobby/lobby.xml:(caption):106 gui/lobby/lobby.xml:(caption):325
 msgid "User Profile Lookup"
 msgstr "Cerca d'usuaris"
 
-#: gui/lobby/lobby.xml:(caption):133
+#: gui/lobby/lobby.xml:(caption):134
 msgid "Map Type:"
 msgstr "Tipus de mapa:"
 
-#: gui/lobby/lobby.xml:(caption):145
+#: gui/lobby/lobby.xml:(caption):146
 msgid "Map Size:"
 msgstr "Mida del mapa:"
 
 #. Join the game currently selected in the list.
-#: gui/lobby/lobby.xml:(caption):170
+#: gui/lobby/lobby.xml:(caption):171
 msgid "Join Game"
 msgstr "Uneix-te a una partida"
 
-#: gui/lobby/lobby.xml:(caption):176
+#: gui/lobby/lobby.xml:(caption):177
 msgid "Host Game"
 msgstr "Crea una partida"
 
-#: gui/lobby/lobby.xml:(caption):183
+#: gui/lobby/lobby.xml:(caption):184
 msgid "Main Menu"
 msgstr "Menú principal"
 
-#: gui/lobby/lobby.xml:(caption):261
+#: gui/lobby/lobby.xml:(caption):259
 msgid "Show only open games"
 msgstr ""
 
-#: gui/lobby/lobby.xml:(caption):313 gui/lobby/lobby.xml:(caption):375
+#: gui/lobby/lobby.xml:(caption):310 gui/lobby/lobby.xml:(caption):372
 msgid "Back"
 msgstr "Enrere"
 
-#: gui/lobby/lobby.xml:(caption):319
+#: gui/lobby/lobby.xml:(caption):316
 msgid "Update"
 msgstr "Actualitza"
 
-#: gui/lobby/lobby.xml:(caption):331
+#: gui/lobby/lobby.xml:(caption):328
 msgid "Enter username:"
 msgstr "Escriviu el nom d'usuari:"
 
-#: gui/lobby/lobby.xml:(caption):337
+#: gui/lobby/lobby.xml:(caption):334
 msgid "View Profile"
 msgstr "Mostra el perfil"
 
-#: gui/lobby/lobby.xml:(caption):370
+#: gui/lobby/lobby.xml:(caption):367
 msgid "Please enter a player name."
 msgstr "Si us plau, introdueixi un nom de jugador."
 
-#: gui/lobby/lobby.xml:(heading):41
+#: gui/lobby/lobby.xml:(heading):38
 msgid "Status"
 msgstr "Estat"
 
-#: gui/lobby/lobby.xml:(heading):44 gui/lobby/lobby.xml:(heading):207
-#: gui/lobby/lobby.xml:(heading):303
+#: gui/lobby/lobby.xml:(heading):41 gui/lobby/lobby.xml:(heading):205
+#: gui/lobby/lobby.xml:(heading):300
 msgid "Name"
 msgstr "Nom"
 
-#: gui/lobby/lobby.xml:(heading):47 gui/lobby/lobby.xml:(heading):222
-#: gui/lobby/lobby.xml:(heading):306
+#: gui/lobby/lobby.xml:(heading):44 gui/lobby/lobby.xml:(heading):220
+#: gui/lobby/lobby.xml:(heading):303
 msgid "Rating"
 msgstr "Puntuació"
 
-#: gui/lobby/lobby.xml:(heading):210
+#: gui/lobby/lobby.xml:(heading):208
 msgid "Map Name"
 msgstr "Nom del mapa"
 
-#: gui/lobby/lobby.xml:(heading):213
+#: gui/lobby/lobby.xml:(heading):211
 msgctxt "map"
 msgid "Size"
 msgstr "Mida"
 
-#: gui/lobby/lobby.xml:(heading):216
+#: gui/lobby/lobby.xml:(heading):214
 msgctxt "map"
 msgid "Type"
 msgstr "Tipus"
 
-#: gui/lobby/lobby.xml:(heading):219
+#: gui/lobby/lobby.xml:(heading):217
 msgid "Players"
 msgstr "Jugadors"
 
-#: gui/lobby/lobby.xml:(heading):300
+#: gui/lobby/lobby.xml:(heading):297
 msgid "Rank"
 msgstr "Rang"
 

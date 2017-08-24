@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,7 +28,7 @@
 
 namespace JSI_GameView
 {
-	void RegisterScriptFunctions(ScriptInterface& ScriptInterface);
+	void RegisterScriptFunctions(const ScriptInterface& ScriptInterface);
 
 	DECLARE_BOOLEAN_SCRIPT_SETTING(Culling);
 	DECLARE_BOOLEAN_SCRIPT_SETTING(LockCullCamera);

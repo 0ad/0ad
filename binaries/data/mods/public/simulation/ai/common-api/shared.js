@@ -141,11 +141,7 @@ m.SharedScript.prototype.GetTemplate = function(name)
 m.SharedScript.prototype.init = function(state, deserialization)
 {
 	if (!deserialization)
-	{
 		this._entitiesModifications = new Map();
-		for (let i = 0; i < state.players.length; ++i)
-			this._templatesModifications[i] = {};
-	}
 
 	this.ApplyTemplatesDelta(state);
 
@@ -390,9 +386,11 @@ m.SharedScript.prototype.ApplyTemplatesDelta = function(state)
 		for (let template in playerDiff)
 		{
 			let changes = playerDiff[template];
-			if (!this._templatesModifications[player][template])
-				this._templatesModifications[player][template] = new Map();
-			let modif = this._templatesModifications[player][template];
+			if (!this._templatesModifications[template])
+				this._templatesModifications[template] = {};
+			if (!this._templatesModifications[template][player])
+				this._templatesModifications[template][player] = new Map();
+			let modif = this._templatesModifications[template][player];
 			for (let change of changes)
 				modif.set(change.variable, change.value);
 		}

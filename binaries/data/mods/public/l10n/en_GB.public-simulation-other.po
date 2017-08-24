@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-08-09 09:04+0200\n"
-"PO-Revision-Date: 2017-08-09 14:25+0000\n"
+"POT-Creation-Date: 2017-08-21 09:05+0200\n"
+"PO-Revision-Date: 2017-08-21 15:58+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
@@ -925,26 +925,26 @@ msgstr "%(category)s training limit of %(limit)s reached"
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s limit of %(limit)s reached"
 
-#: simulation/components/Player.js:296
+#: simulation/components/Player.js:304
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 
-#: simulation/components/Player.js:298
+#: simulation/components/Player.js:306
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:300
+#: simulation/components/Player.js:308
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:302
+#: simulation/components/Player.js:310
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -1001,19 +1001,19 @@ msgstr "Cannot upgrade a garrisoned entity."
 msgid "Attack against %(_player_)s requested."
 msgstr "Attack against %(_player_)s requested."
 
-#: simulation/helpers/Commands.js:789
+#: simulation/helpers/Commands.js:792
 msgid "There are no bribable units"
 msgstr "There are no bribable units"
 
-#: simulation/helpers/Commands.js:834
+#: simulation/helpers/Commands.js:838
 msgid "Unable to ungarrison unit(s)"
 msgstr "Unable to ungarrison unit(s)"
 
-#: simulation/helpers/Commands.js:848
+#: simulation/helpers/Commands.js:852
 msgid "Some unit(s) can't go back to work"
 msgstr "Some unit(s) can't go back to work"
 
-#: simulation/helpers/Commands.js:1102
+#: simulation/helpers/Commands.js:1106
 msgid "The building's technology requirements are not met."
 msgstr "The building's technology requirements are not met."
 
@@ -1104,8 +1104,8 @@ msgid ""
 msgstr "Capture all relics spread across the map and keep them for a certain time to win the game."
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
-msgid "Capture The Relic"
-msgstr "Capture The Relic"
+msgid "Capture the Relic"
+msgstr ""
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid "Defeat all opponents to win."

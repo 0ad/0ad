@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -70,7 +70,7 @@ Status SavePrefix(const CStrW& prefix, const CStrW& description, CSimulation2& s
  *	loaded from simulation.dat inside the archive.
  * @return INFO::OK if successfully loaded, else an error Status
  */
-Status Load(const std::wstring& name, ScriptInterface& scriptInterface, JS::MutableHandleValue metadata, std::string& savedState);
+Status Load(const std::wstring& name, const ScriptInterface& scriptInterface, JS::MutableHandleValue metadata, std::string& savedState);
 
 /**
  * Get list of saved games for GUI script usage
@@ -78,7 +78,7 @@ Status Load(const std::wstring& name, ScriptInterface& scriptInterface, JS::Muta
  * @param scriptInterface the ScriptInterface in which to create the return data.
  * @return array of objects containing saved game data
  */
-JS::Value GetSavedGames(ScriptInterface& scriptInterface);
+JS::Value GetSavedGames(const ScriptInterface& scriptInterface);
 
 /**
  * Permanently deletes the saved game archive with the given name
@@ -94,7 +94,7 @@ bool DeleteSavedGame(const std::wstring& name);
  * @param scriptInterface the ScriptInterface in which to create the return data.
  * @return list of objects containing saved game data
  */
-JS::Value GetEngineInfo(ScriptInterface& scriptInterface);
+JS::Value GetEngineInfo(const ScriptInterface& scriptInterface);
 
 }
 

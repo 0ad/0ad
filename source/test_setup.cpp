@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -135,9 +135,9 @@ namespace
 	}
 }
 
-void ScriptTestSetup(ScriptInterface& ifc)
+void ScriptTestSetup(const ScriptInterface& scriptinterface)
 {
-	ifc.RegisterFunction<void, std::wstring, script_TS_FAIL>("TS_FAIL");
+	scriptinterface.RegisterFunction<void, std::wstring, script_TS_FAIL>("TS_FAIL");
 
 	// Load the TS_* function definitions
 	// (We don't use VFS because tests might not have the normal VFS paths loaded)
@@ -145,6 +145,6 @@ void ScriptTestSetup(ScriptInterface& ifc)
 	std::ifstream ifs(OsString(path).c_str());
 	ENSURE(ifs.good());
 	std::string content((std::istreambuf_iterator<char>(ifs)), std::istreambuf_iterator<char>());
-	bool ok = ifc.LoadScript(L"test_setup.js", content);
+	bool ok = scriptinterface.LoadScript(L"test_setup.js", content);
 	ENSURE(ok);
 }

@@ -49,7 +49,7 @@ public:
 
 private:
 	// Component allocation types
-	typedef IComponent* (*AllocFunc)(ScriptInterface& scriptInterface, JS::HandleValue ctor);
+	typedef IComponent* (*AllocFunc)(const ScriptInterface& scriptInterface, JS::HandleValue ctor);
 	typedef void (*DeallocFunc)(IComponent*);
 
 	// ComponentTypes come in three types:
@@ -303,11 +303,11 @@ public:
 	void SetRNGSeed(u32 seed);
 
 	// Various state serialization functions:
-	bool ComputeStateHash(std::string& outHash, bool quick);
-	bool DumpDebugState(std::ostream& stream, bool includeDebugInfo);
+	bool ComputeStateHash(std::string& outHash, bool quick) const;
+	bool DumpDebugState(std::ostream& stream, bool includeDebugInfo) const;
 	// FlushDestroyedComponents must be called before SerializeState (since the destruction queue
 	// won't get serialized)
-	bool SerializeState(std::ostream& stream);
+	bool SerializeState(std::ostream& stream) const;
 	bool DeserializeState(std::istream& stream);
 
 	std::string GenerateSchema() const;

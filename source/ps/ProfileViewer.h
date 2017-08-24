@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -191,7 +191,7 @@ public:
 	 * SaveToJS: Return a script value containing the current profiler data
 	 * (for all profile tables).
 	 */
-	JS::Value SaveToJS(ScriptInterface& scriptInterface);
+	JS::Value SaveToJS(const ScriptInterface& scriptInterface);
 
 	/**
 	 * ShowTable: Set the named profile table to be the displayed one. If it

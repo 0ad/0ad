@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -57,7 +57,7 @@ IMPLEMENT_BOOLEAN_SCRIPT_SETTING(ConstrainCamera);
 scriptInterface.RegisterFunction<bool, &JSI_GameView::Get##NAME##Enabled>("GameView_Get" #NAME "Enabled"); \
 scriptInterface.RegisterFunction<void, bool, &JSI_GameView::Set##NAME##Enabled>("GameView_Set" #NAME "Enabled");
 
-void JSI_GameView::RegisterScriptFunctions(ScriptInterface& scriptInterface)
+void JSI_GameView::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 {
 	REGISTER_BOOLEAN_SCRIPT_SETTING(Culling);
 	REGISTER_BOOLEAN_SCRIPT_SETTING(LockCullCamera);

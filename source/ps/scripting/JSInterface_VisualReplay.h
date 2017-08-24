@@ -30,7 +30,7 @@ namespace JSI_VisualReplay
 	bool HasReplayMetadata(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& directoryName);
 	JS::Value GetReplayMetadata(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& directoryName);
 	void AddReplayToCache(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& directoryName);
-	void RegisterScriptFunctions(ScriptInterface& scriptInterface);
+	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
 	CStrW GetReplayDirectoryName(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& directoryName);
 }
 

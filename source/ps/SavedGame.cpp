@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -154,7 +154,7 @@ public:
 	 * for the metadata because it would be error prone with rooting and the stack-based rooting
 	 * types and confusing (a chain of pointers pointing to other pointers).
 	 */
-	CGameLoader(ScriptInterface& scriptInterface, std::string* savedState) :
+	CGameLoader(const ScriptInterface& scriptInterface, std::string* savedState) :
 		m_ScriptInterface(scriptInterface),
 		m_Metadata(scriptInterface.GetJSRuntime()),
 		m_SavedState(savedState)
@@ -192,12 +192,12 @@ public:
 
 private:
 
-	ScriptInterface& m_ScriptInterface;
+	const ScriptInterface& m_ScriptInterface;
 	JS::PersistentRooted<JS::Value> m_Metadata;
 	std::string* m_SavedState;
 };
 
-Status SavedGames::Load(const std::wstring& name, ScriptInterface& scriptInterface, JS::MutableHandleValue metadata, std::string& savedState)
+Status SavedGames::Load(const std::wstring& name, const ScriptInterface& scriptInterface, JS::MutableHandleValue metadata, std::string& savedState)
 {
 	// Determine the filename to load
 	const VfsPath basename(L"saves/" + name);
@@ -221,7 +221,7 @@ Status SavedGames::Load(const std::wstring& name, ScriptInterface& scriptInterfa
 	return INFO::OK;
 }
 
-JS::Value SavedGames::GetSavedGames(ScriptInterface& scriptInterface)
+JS::Value SavedGames::GetSavedGames(const ScriptInterface& scriptInterface)
 {
 	TIMER(L"GetSavedGames");
 	JSContext* cx = scriptInterface.GetContext();
@@ -294,7 +294,7 @@ bool SavedGames::DeleteSavedGame(const std::wstring& name)
 	return true;
 }
 
-JS::Value SavedGames::GetEngineInfo(ScriptInterface& scriptInterface)
+JS::Value SavedGames::GetEngineInfo(const ScriptInterface& scriptInterface)
 {
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);

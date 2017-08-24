@@ -33,7 +33,7 @@ struct StunEndpoint {
 
 void SendStunRequest(ENetHost* transactionHost, u32 targetIp, u16 targetPort);
 
-JS::Value FindStunEndpointHost(ScriptInterface& scriptInterface, int port);
+JS::Value FindStunEndpointHost(const ScriptInterface& scriptInterface, int port);
 
 StunEndpoint* FindStunEndpointJoin(ENetHost* transactionHost);
 

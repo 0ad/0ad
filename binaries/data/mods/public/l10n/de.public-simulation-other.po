@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-08-09 09:04+0200\n"
-"PO-Revision-Date: 2017-08-11 09:19+0000\n"
+"POT-Creation-Date: 2017-08-21 09:05+0200\n"
+"PO-Revision-Date: 2017-08-22 17:22+0000\n"
 "Last-Translator: Xaver\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -934,26 +934,26 @@ msgstr "%(category)s Ausbildungslimit von %(limit)s erreicht"
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s Limit von %(limit)s erreicht"
 
-#: simulation/components/Player.js:296
+#: simulation/components/Player.js:304
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "Nicht genug Rohstoffe – %(resourceAmount1)s %(resourceType1)s"
 
-#: simulation/components/Player.js:298
+#: simulation/components/Player.js:306
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "Nicht genug Rohstoffe – %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:300
+#: simulation/components/Player.js:308
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "Nicht genug Rohstoffe – %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:302
+#: simulation/components/Player.js:310
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -1010,19 +1010,19 @@ msgstr "Eine besetzte Entität kann nicht aufgerüstet werden."
 msgid "Attack against %(_player_)s requested."
 msgstr "Angriff gegen %(_player_)s erbeten."
 
-#: simulation/helpers/Commands.js:789
+#: simulation/helpers/Commands.js:792
 msgid "There are no bribable units"
 msgstr "Es gibt keine bestechlichen Einheiten."
 
-#: simulation/helpers/Commands.js:834
+#: simulation/helpers/Commands.js:838
 msgid "Unable to ungarrison unit(s)"
 msgstr "Einheit(en) können nicht ausquartiert werden"
 
-#: simulation/helpers/Commands.js:848
+#: simulation/helpers/Commands.js:852
 msgid "Some unit(s) can't go back to work"
 msgstr "Einige Einheit(en) können die Arbeit nicht wieder aufnehmen"
 
-#: simulation/helpers/Commands.js:1102
+#: simulation/helpers/Commands.js:1106
 msgid "The building's technology requirements are not met."
 msgstr "Erforderliche Technologien für das Gebäude fehlen."
 
@@ -1113,8 +1113,8 @@ msgid ""
 msgstr "Erbeute alle über die Karte verstreuten Reliquien und behalte diese für eine gewisse Zeit, um das Spiel zu gewinnen."
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
-msgid "Capture The Relic"
-msgstr "Erbeute die Reliquie."
+msgid "Capture the Relic"
+msgstr "Erbeute die Reliquie"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid "Defeat all opponents to win."

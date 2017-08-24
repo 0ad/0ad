@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -54,7 +54,7 @@ static u8 GetArrayType(js::Scalar::Type arrayType)
 	}
 }
 
-CBinarySerializerScriptImpl::CBinarySerializerScriptImpl(ScriptInterface& scriptInterface, ISerializer& serializer) :
+CBinarySerializerScriptImpl::CBinarySerializerScriptImpl(const ScriptInterface& scriptInterface, ISerializer& serializer) :
 	m_ScriptInterface(scriptInterface), m_Serializer(serializer), m_ScriptBackrefs(scriptInterface.GetRuntime()),
 	m_SerializablePrototypes(new ObjectIdCache<std::wstring>(scriptInterface.GetRuntime())), m_ScriptBackrefsNext(1)
 {
