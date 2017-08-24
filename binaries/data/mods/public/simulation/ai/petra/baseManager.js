@@ -496,8 +496,9 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 						{
 							// No good dropsite, try to build a new base if no base already planned,
 							// and if not possible, be less strict on dropsite quality
-							if (!gameState.ai.HQ.buildNewBase(gameState, queues, type) && newDP.quality > Math.min(25, 50*0.15/ratio) &&
-								gameState.ai.HQ.canBuild(gameState, "structures/{civ}_storehouse"))
+							if ((!gameState.ai.HQ.canExpand || !gameState.ai.HQ.buildNewBase(gameState, queues, type)) &&
+							    newDP.quality > Math.min(25, 50*0.15/ratio) &&
+							    gameState.ai.HQ.canBuild(gameState, "structures/{civ}_storehouse"))
 								queues.dropsites.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_storehouse", { "base": this.ID, "type": type }, newDP.pos));
 						}
 					}

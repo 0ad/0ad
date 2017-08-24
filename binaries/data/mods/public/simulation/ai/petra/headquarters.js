@@ -2247,7 +2247,7 @@ m.HQ.prototype.update = function(gameState, queues, events)
 	}
 
 	if (this.numActiveBase() < 1 ||
-		(this.Config.difficulty > 0 && gameState.ai.playedTurn % 10 == 7 && gameState.currentPhase() > 1))
+		(this.canExpand && gameState.ai.playedTurn % 10 == 7 && gameState.currentPhase() > 1))
 		this.checkBaseExpansion(gameState, queues);
 
 	if (gameState.currentPhase() > 1)
@@ -2316,6 +2316,7 @@ m.HQ.prototype.Serialize = function()
 		"needCorral": this.needCorral,
 		"needFarm": this.needFarm,
 		"needFish": this.needFish,
+		"canExpand": this.canExpand,
 		"canBuildUnits": this.canBuildUnits,
 		"navalMap": this.navalMap,
 		"landRegions": this.landRegions,
