@@ -99,7 +99,7 @@
 			<translatableAttribute id="tooltip">Saves changes</translatableAttribute>
 			<action on="Press">saveChanges();</action>
 		</object>
-		<object type="button" style="ModernButtonRed" size="50%+136 100%-44 50%+236 100%-16">
+		<object type="button" style="ModernButtonRed" size="50%+136 100%-44 50%+236 100%-16" hotkey="cancel">
 			<translatableAttribute id="caption">Close</translatableAttribute>
 			<translatableAttribute id="tooltip">Unsaved changes affect this session only</translatableAttribute>
 			<action on="Press">closePage();</action>
