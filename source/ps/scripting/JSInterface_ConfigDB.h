@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -33,7 +33,7 @@ namespace JSI_ConfigDB
 	bool WriteValueToFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& cfgNsString, const std::string& name, const std::string& value, const Path& path);
 	bool Reload(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& cfgNsString);
 	bool SetFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& cfgNsString, const Path& path);
-	void RegisterScriptFunctions(ScriptInterface& scriptInterface);
+	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
 }
 
 #endif

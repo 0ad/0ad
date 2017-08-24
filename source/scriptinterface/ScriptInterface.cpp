@@ -56,7 +56,7 @@ struct ScriptInterface_impl
 {
 	ScriptInterface_impl(const char* nativeScopeName, const shared_ptr<ScriptRuntime>& runtime);
 	~ScriptInterface_impl();
-	void Register(const char* name, JSNative fptr, uint nargs);
+	void Register(const char* name, JSNative fptr, uint nargs) const;
 
 	// Take care to keep this declaration before heap rooted members. Destructors of heap rooted
 	// members have to be called before the runtime destructor.
@@ -393,7 +393,7 @@ ScriptInterface_impl::~ScriptInterface_impl()
 	JS_DestroyContext(m_cx);
 }
 
-void ScriptInterface_impl::Register(const char* name, JSNative fptr, uint nargs)
+void ScriptInterface_impl::Register(const char* name, JSNative fptr, uint nargs) const
 {
 	JSAutoRequest rq(m_cx);
 	JS::RootedObject nativeScope(m_cx, m_nativeScope);
@@ -489,7 +489,7 @@ bool ScriptInterface::ReplaceNondeterministicRNG(boost::rand48& rng)
 	return false;
 }
 
-void ScriptInterface::Register(const char* name, JSNative fptr, size_t nargs)
+void ScriptInterface::Register(const char* name, JSNative fptr, size_t nargs) const
 {
 	m->Register(name, fptr, (uint)nargs);
 }
@@ -612,7 +612,7 @@ bool ScriptInterface::SetGlobal_(const char* name, JS::HandleValue value, bool r
 	return ok;
 }
 
-bool ScriptInterface::SetProperty_(JS::HandleValue obj, const char* name, JS::HandleValue value, bool constant, bool enumerate)
+bool ScriptInterface::SetProperty_(JS::HandleValue obj, const char* name, JS::HandleValue value, bool constant, bool enumerate) const
 {
 	JSAutoRequest rq(m->m_cx);
 	uint attrs = 0;
@@ -630,7 +630,7 @@ bool ScriptInterface::SetProperty_(JS::HandleValue obj, const char* name, JS::Ha
 	return true;
 }
 
-bool ScriptInterface::SetProperty_(JS::HandleValue obj, const wchar_t* name, JS::HandleValue value, bool constant, bool enumerate)
+bool ScriptInterface::SetProperty_(JS::HandleValue obj, const wchar_t* name, JS::HandleValue value, bool constant, bool enumerate) const
 {
 	JSAutoRequest rq(m->m_cx);
 	uint attrs = 0;
@@ -649,7 +649,7 @@ bool ScriptInterface::SetProperty_(JS::HandleValue obj, const wchar_t* name, JS:
 	return true;
 }
 
-bool ScriptInterface::SetPropertyInt_(JS::HandleValue obj, int name, JS::HandleValue value, bool constant, bool enumerate)
+bool ScriptInterface::SetPropertyInt_(JS::HandleValue obj, int name, JS::HandleValue value, bool constant, bool enumerate) const
 {
 	JSAutoRequest rq(m->m_cx);
 	uint attrs = 0;
@@ -1103,7 +1103,7 @@ void ScriptInterface::ForceGC()
 	JS_GC(this->GetJSRuntime());
 }
 
-JS::Value ScriptInterface::CloneValueFromOtherContext(ScriptInterface& otherContext, JS::HandleValue val)
+JS::Value ScriptInterface::CloneValueFromOtherContext(const ScriptInterface& otherContext, JS::HandleValue val) const
 {
 	PROFILE("CloneValueFromOtherContext");
 	JSAutoRequest rq(m->m_cx);
@@ -1124,7 +1124,7 @@ ScriptInterface::StructuredClone::~StructuredClone()
 		JS_ClearStructuredClone(m_Data, m_Size, NULL, NULL);
 }
 
-shared_ptr<ScriptInterface::StructuredClone> ScriptInterface::WriteStructuredClone(JS::HandleValue v)
+shared_ptr<ScriptInterface::StructuredClone> ScriptInterface::WriteStructuredClone(JS::HandleValue v) const
 {
 	JSAutoRequest rq(m->m_cx);
 	u64* data = NULL;
@@ -1141,7 +1141,7 @@ shared_ptr<ScriptInterface::StructuredClone> ScriptInterface::WriteStructuredClo
 	return ret;
 }
 
-void ScriptInterface::ReadStructuredClone(const shared_ptr<ScriptInterface::StructuredClone>& ptr, JS::MutableHandleValue ret)
+void ScriptInterface::ReadStructuredClone(const shared_ptr<ScriptInterface::StructuredClone>& ptr, JS::MutableHandleValue ret) const
 {
 	JSAutoRequest rq(m->m_cx);
 	JS_ReadStructuredClone(m->m_cx, ptr->m_Data, ptr->m_Size, JS_STRUCTURED_CLONE_VERSION, ret, NULL, NULL);

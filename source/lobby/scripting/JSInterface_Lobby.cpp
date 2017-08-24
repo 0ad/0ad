@@ -27,7 +27,7 @@
 #include "third_party/encryption/pkcs5_pbkdf2.h"
 #include "third_party/encryption/sha.h"
 
-void JSI_Lobby::RegisterScriptFunctions(ScriptInterface& scriptInterface)
+void JSI_Lobby::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 {
 	// Lobby functions
 	scriptInterface.RegisterFunction<bool, &JSI_Lobby::HasXmppClient>("HasXmppClient");

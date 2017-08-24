@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -59,7 +59,7 @@ public:
 class CBufferBinarySerializer : public CBinarySerializer<CBufferBinarySerializerImpl>
 {
 public:
-	CBufferBinarySerializer(ScriptInterface& scriptInterface, u8* buffer) :
+	CBufferBinarySerializer(const ScriptInterface& scriptInterface, u8* buffer) :
 		CBinarySerializer<CBufferBinarySerializerImpl>(scriptInterface, buffer)
 	{
 	}
@@ -98,7 +98,7 @@ public:
 class CLengthBinarySerializer : public CBinarySerializer<CLengthBinarySerializerImpl>
 {
 public:
-	CLengthBinarySerializer(ScriptInterface& scriptInterface) :
+	CLengthBinarySerializer(const ScriptInterface& scriptInterface) :
 		CBinarySerializer<CLengthBinarySerializerImpl>(scriptInterface)
 	{
 	}
@@ -109,19 +109,19 @@ public:
 	}
 };
 
-CSimulationMessage::CSimulationMessage(ScriptInterface& scriptInterface) :
-	CNetMessage(NMT_SIMULATION_COMMAND), m_ScriptInterface(&scriptInterface), m_Data(scriptInterface.GetJSRuntime())
+CSimulationMessage::CSimulationMessage(const ScriptInterface& scriptInterface) :
+	CNetMessage(NMT_SIMULATION_COMMAND), m_ScriptInterface(scriptInterface), m_Data(scriptInterface.GetJSRuntime())
 {
 }
 
-CSimulationMessage::CSimulationMessage(ScriptInterface& scriptInterface, u32 client, i32 player, u32 turn, JS::HandleValue data) :
-	CNetMessage(NMT_SIMULATION_COMMAND), m_ScriptInterface(&scriptInterface),
+CSimulationMessage::CSimulationMessage(const ScriptInterface& scriptInterface, u32 client, i32 player, u32 turn, JS::HandleValue data) :
+	CNetMessage(NMT_SIMULATION_COMMAND), m_ScriptInterface(scriptInterface),
 	m_Client(client), m_Player(player), m_Turn(turn), m_Data(scriptInterface.GetJSRuntime(), data)
 {
 }
 
 CSimulationMessage::CSimulationMessage(const CSimulationMessage& orig) :
-	m_Data(orig.m_ScriptInterface->GetJSRuntime()),
+	m_Data(orig.m_ScriptInterface.GetJSRuntime()),
 	m_Client(orig.m_Client),
 	m_Player(orig.m_Player),
 	m_ScriptInterface(orig.m_ScriptInterface),
@@ -136,7 +136,7 @@ u8* CSimulationMessage::Serialize(u8* pBuffer) const
 	// TODO: ought to handle serialization exceptions
 	// TODO: ought to represent common commands more efficiently
 	u8* pos = CNetMessage::Serialize(pBuffer);
-	CBufferBinarySerializer serializer(*m_ScriptInterface, pos);
+	CBufferBinarySerializer serializer(m_ScriptInterface, pos);
 	serializer.NumberU32_Unbounded("client", m_Client);
 	serializer.NumberI32_Unbounded("player", m_Player);
 	serializer.NumberU32_Unbounded("turn", m_Turn);
@@ -151,7 +151,7 @@ const u8* CSimulationMessage::Deserialize(const u8* pStart, const u8* pEnd)
 	// TODO: ought to represent common commands more efficiently
 	const u8* pos = CNetMessage::Deserialize(pStart, pEnd);
 	std::istringstream stream(std::string(pos, pEnd));
-	CStdDeserializer deserializer(*m_ScriptInterface, stream);
+	CStdDeserializer deserializer(m_ScriptInterface, stream);
 	deserializer.NumberU32_Unbounded("client", m_Client);
 	deserializer.NumberI32_Unbounded("player", m_Player);
 	deserializer.NumberU32_Unbounded("turn", m_Turn);
@@ -163,7 +163,7 @@ size_t CSimulationMessage::GetSerializedLength() const
 {
 	// TODO: serializing twice is stupidly inefficient - we should just
 	// do it once, store the result, and use it here and in Serialize
-	CLengthBinarySerializer serializer(*m_ScriptInterface);
+	CLengthBinarySerializer serializer(m_ScriptInterface);
 	serializer.NumberU32_Unbounded("client", m_Client);
 	serializer.NumberI32_Unbounded("player", m_Player);
 	serializer.NumberU32_Unbounded("turn", m_Turn);
@@ -176,7 +176,7 @@ size_t CSimulationMessage::GetSerializedLength() const
 
 CStr CSimulationMessage::ToString() const
 {
-	std::string source = m_ScriptInterface->ToString(const_cast<JS::PersistentRootedValue*>(&m_Data));
+	std::string source = m_ScriptInterface.ToString(const_cast<JS::PersistentRootedValue*>(&m_Data));
 
 	std::stringstream stream;
 	stream << "CSimulationMessage { m_Client: " << m_Client << ", m_Player: " << m_Player << ", m_Turn: " << m_Turn << ", m_Data: " << source << " }";
@@ -184,12 +184,12 @@ CStr CSimulationMessage::ToString() const
 }
 
 
-CGameSetupMessage::CGameSetupMessage(ScriptInterface& scriptInterface) :
+CGameSetupMessage::CGameSetupMessage(const ScriptInterface& scriptInterface) :
 	CNetMessage(NMT_GAME_SETUP), m_ScriptInterface(scriptInterface), m_Data(scriptInterface.GetJSRuntime())
 {
 }
 
-CGameSetupMessage::CGameSetupMessage(ScriptInterface& scriptInterface, JS::HandleValue data) :
+CGameSetupMessage::CGameSetupMessage(const ScriptInterface& scriptInterface, JS::HandleValue data) :
 	CNetMessage(NMT_GAME_SETUP), m_ScriptInterface(scriptInterface),
 	m_Data(scriptInterface.GetJSRuntime(), data)
 {

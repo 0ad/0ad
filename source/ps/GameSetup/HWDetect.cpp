@@ -67,10 +67,10 @@
 
 #endif
 
-static void ReportGLLimits(ScriptInterface& scriptInterface, JS::HandleValue settings);
+static void ReportGLLimits(const ScriptInterface& scriptInterface, JS::HandleValue settings);
 
 #if ARCH_X86_X64
-void ConvertCaches(ScriptInterface& scriptInterface, x86_x64::IdxCache idxCache, JS::MutableHandleValue ret)
+void ConvertCaches(const ScriptInterface& scriptInterface, x86_x64::IdxCache idxCache, JS::MutableHandleValue ret)
 {
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
@@ -93,7 +93,7 @@ void ConvertCaches(ScriptInterface& scriptInterface, x86_x64::IdxCache idxCache,
 	}
 }
 
-void ConvertTLBs(ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
+void ConvertTLBs(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
 {
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
@@ -351,7 +351,7 @@ void RunHardwareDetection()
 	scriptInterface.CallFunctionVoid(global, "RunHardwareDetection", settings);
 }
 
-static void ReportGLLimits(ScriptInterface& scriptInterface, JS::HandleValue settings)
+static void ReportGLLimits(const ScriptInterface& scriptInterface, JS::HandleValue settings)
 {
 	const char* errstr = "(error)";
 

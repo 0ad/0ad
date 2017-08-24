@@ -93,7 +93,7 @@ CStr CNetMessage::ToString() const
 
 CNetMessage* CNetMessageFactory::CreateMessage(const void* pData,
 											   size_t dataSize,
-											   ScriptInterface& scriptInterface)
+											   const ScriptInterface& scriptInterface)
 {
 	CNetMessage* pNewMessage = NULL;
 	CNetMessage header;

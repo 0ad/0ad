@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -129,7 +129,7 @@ std::vector<T> ts_make_vector(T* start, size_t size_bytes)
 
 class ScriptInterface;
 // Script-based testing setup (defined in test_setup.cpp). Defines TS_* functions.
-void ScriptTestSetup(ScriptInterface&);
+void ScriptTestSetup(const ScriptInterface&);
 
 // Default game data directory
 // (TODO: game-specific functions like this probably shouldn't be inside lib/, but it's useful

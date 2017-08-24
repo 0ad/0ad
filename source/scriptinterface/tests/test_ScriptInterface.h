@@ -188,7 +188,7 @@ public:
 		handle_templates_test(script, val, &out, nbrVal);
 	}
 
-	void handle_templates_test(ScriptInterface& script, JS::HandleValue val, JS::MutableHandleValue out, JS::HandleValue nbrVal)
+	void handle_templates_test(const ScriptInterface& script, JS::HandleValue val, JS::MutableHandleValue out, JS::HandleValue nbrVal)
 	{
 		int nbr = 0;
 

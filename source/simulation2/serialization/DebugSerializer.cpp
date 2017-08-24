@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -52,7 +52,7 @@ std::string canonfloat(T value, int prec)
 	return r;
 }
 
-CDebugSerializer::CDebugSerializer(ScriptInterface& scriptInterface, std::ostream& stream, bool includeDebugInfo) :
+CDebugSerializer::CDebugSerializer(const ScriptInterface& scriptInterface, std::ostream& stream, bool includeDebugInfo) :
 	m_ScriptInterface(scriptInterface), m_Stream(stream), m_IsDebug(includeDebugInfo), m_Indent(0)
 {
 }

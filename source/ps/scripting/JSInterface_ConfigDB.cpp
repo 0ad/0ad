@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -133,7 +133,7 @@ bool JSI_ConfigDB::SetFile(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const
 	return true;
 }
 
-void JSI_ConfigDB::RegisterScriptFunctions(ScriptInterface& scriptInterface)
+void JSI_ConfigDB::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 {
 	scriptInterface.RegisterFunction<bool, std::wstring, &JSI_ConfigDB::HasChanges>("ConfigDB_HasChanges");
 	scriptInterface.RegisterFunction<bool, std::wstring, bool, &JSI_ConfigDB::SetChanges>("ConfigDB_SetChanges");

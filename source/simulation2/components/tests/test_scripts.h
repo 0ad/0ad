@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -36,7 +36,7 @@ public:
 		g_VFS.reset();
 	}
 
-	static void load_script(ScriptInterface& scriptInterface, const VfsPath& pathname)
+	static void load_script(const ScriptInterface& scriptInterface, const VfsPath& pathname)
 	{
 		CVFSFile file;
 		TS_ASSERT_EQUALS(file.Load(g_VFS, pathname), PSRETURN_OK);

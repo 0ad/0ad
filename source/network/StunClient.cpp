@@ -360,7 +360,7 @@ bool STUNRequestAndResponse(ENetHost* transactionHost)
 	       ParseStunResponse(buffer);
 }
 
-JS::Value StunClient::FindStunEndpointHost(ScriptInterface& scriptInterface, int port)
+JS::Value StunClient::FindStunEndpointHost(const ScriptInterface& scriptInterface, int port)
 {
 	ENetAddress hostAddr{ENET_HOST_ANY, (u16)port};
 	ENetHost* transactionHost = enet_host_create(&hostAddr, 1, 1, 0, 0);

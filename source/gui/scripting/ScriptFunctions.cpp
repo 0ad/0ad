@@ -965,7 +965,7 @@ static TimerUnit js_timer_overhead;
 static TimerClient js_timer_clients[MAX_JS_TIMERS];
 static wchar_t js_timer_descriptions_buf[MAX_JS_TIMERS * 12];	// depends on MAX_JS_TIMERS and format string below
 
-static void InitJsTimers(ScriptInterface& scriptInterface)
+static void InitJsTimers(const ScriptInterface& scriptInterface)
 {
 	wchar_t* pos = js_timer_descriptions_buf;
 	for(size_t i = 0; i < MAX_JS_TIMERS; i++)

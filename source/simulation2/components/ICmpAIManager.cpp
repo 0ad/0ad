@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -38,7 +38,7 @@ struct GetAIsHelper
 {
 	NONCOPYABLE(GetAIsHelper);
 public:
-	GetAIsHelper(ScriptInterface& scriptInterface) :
+	GetAIsHelper(const ScriptInterface& scriptInterface) :
 		m_ScriptInterface(scriptInterface),
 		m_AIs(scriptInterface.GetJSRuntime())
 	{
@@ -78,10 +78,10 @@ public:
 	}
 
 	JS::PersistentRootedObject m_AIs;
-	ScriptInterface& m_ScriptInterface;
+	const ScriptInterface& m_ScriptInterface;
 };
 
-JS::Value ICmpAIManager::GetAIs(ScriptInterface& scriptInterface)
+JS::Value ICmpAIManager::GetAIs(const ScriptInterface& scriptInterface)
 {
 	GetAIsHelper helper(scriptInterface);
 	helper.Run();

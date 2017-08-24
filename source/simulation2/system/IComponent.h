@@ -60,7 +60,7 @@ public:
 	 * Returns false by default, indicating that a scripted wrapper of this IComponent is not supported.
 	 * Derrived classes should return true if they implement such a wrapper.
 	 */
-	virtual bool NewJSObject(ScriptInterface& scriptInterface, JS::MutableHandleObject out) const;
+	virtual bool NewJSObject(const ScriptInterface& scriptInterface, JS::MutableHandleObject out) const;
 	virtual JS::Value GetJSInstance() const;
 	virtual int GetComponentTypeId() const = 0;
 

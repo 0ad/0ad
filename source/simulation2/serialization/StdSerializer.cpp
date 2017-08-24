@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,7 +24,7 @@ CStdSerializerImpl::CStdSerializerImpl(std::ostream& stream) :
 {
 }
 
-CStdSerializer::CStdSerializer(ScriptInterface& scriptInterface, std::ostream& stream) :
+CStdSerializer::CStdSerializer(const ScriptInterface& scriptInterface, std::ostream& stream) :
 	CBinarySerializer<CStdSerializerImpl>(scriptInterface, stream)
 {
 }

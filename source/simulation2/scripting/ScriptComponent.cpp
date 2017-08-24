@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,7 +22,7 @@
 #include "simulation2/serialization/ISerializer.h"
 #include "simulation2/serialization/IDeserializer.h"
 
-CComponentTypeScript::CComponentTypeScript(ScriptInterface& scriptInterface, JS::HandleValue instance) :
+CComponentTypeScript::CComponentTypeScript(const ScriptInterface& scriptInterface, JS::HandleValue instance) :
 	m_ScriptInterface(scriptInterface), m_Instance(scriptInterface.GetJSRuntime(), instance)
 {
 	// Cache the property detection for efficiency

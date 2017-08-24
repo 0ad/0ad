@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,7 +32,7 @@ public:
 	 * @param stream Stream to receive UTF-8 encoded output
 	 * @param includeDebugInfo If true then additional non-deterministic data will be included in the output
 	 */
-	CDebugSerializer(ScriptInterface& scriptInterface, std::ostream& stream, bool includeDebugInfo = true);
+	CDebugSerializer(const ScriptInterface& scriptInterface, std::ostream& stream, bool includeDebugInfo = true);
 
 	void Comment(const std::string& comment);
 	void TextLine(const std::string& text);
@@ -58,7 +58,7 @@ protected:
 	virtual void PutRaw(const char* name, const u8* data, size_t len);
 
 private:
-	ScriptInterface& m_ScriptInterface;
+	const ScriptInterface& m_ScriptInterface;
 	std::ostream& m_Stream;
 	bool m_IsDebug;
 	int m_Indent;

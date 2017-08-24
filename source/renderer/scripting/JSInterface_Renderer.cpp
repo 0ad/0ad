@@ -71,7 +71,7 @@ void JSI_Renderer::RecreateShadowMap(ScriptInterface::CxPrivate* UNUSED(pCxPriva
 scriptInterface.RegisterFunction<bool, &JSI_Renderer::Get##NAME##Enabled>("Renderer_Get" #NAME "Enabled"); \
 scriptInterface.RegisterFunction<void, bool, &JSI_Renderer::Set##NAME##Enabled>("Renderer_Set" #NAME "Enabled");
 
-void JSI_Renderer::RegisterScriptFunctions(ScriptInterface& scriptInterface)
+void JSI_Renderer::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 {
 	scriptInterface.RegisterFunction<std::string, &JSI_Renderer::GetRenderPath>("Renderer_GetRenderPath");
 	scriptInterface.RegisterFunction<void, std::string, &JSI_Renderer::SetRenderPath>("Renderer_SetRenderPath");

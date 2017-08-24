@@ -64,7 +64,7 @@ bool VisualReplay::StartVisualReplay(const OsPath& directory)
 	return g_Game->StartVisualReplay(replayFile);
 }
 
-bool VisualReplay::ReadCacheFile(ScriptInterface& scriptInterface, JS::MutableHandleObject cachedReplaysObject)
+bool VisualReplay::ReadCacheFile(const ScriptInterface& scriptInterface, JS::MutableHandleObject cachedReplaysObject)
 {
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
@@ -89,7 +89,7 @@ bool VisualReplay::ReadCacheFile(ScriptInterface& scriptInterface, JS::MutableHa
 	return false;
 }
 
-void VisualReplay::StoreCacheFile(ScriptInterface& scriptInterface, JS::HandleObject replays)
+void VisualReplay::StoreCacheFile(const ScriptInterface& scriptInterface, JS::HandleObject replays)
 {
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
@@ -104,7 +104,7 @@ void VisualReplay::StoreCacheFile(ScriptInterface& scriptInterface, JS::HandleOb
 		LOGERROR("Could not store the replay cache");
 }
 
-JS::HandleObject VisualReplay::ReloadReplayCache(ScriptInterface& scriptInterface, bool compareFiles)
+JS::HandleObject VisualReplay::ReloadReplayCache(const ScriptInterface& scriptInterface, bool compareFiles)
 {
 	TIMER(L"ReloadReplayCache");
 	JSContext* cx = scriptInterface.GetContext();
@@ -217,7 +217,7 @@ JS::HandleObject VisualReplay::ReloadReplayCache(ScriptInterface& scriptInterfac
 	return replays;
 }
 
-JS::Value VisualReplay::GetReplays(ScriptInterface& scriptInterface, bool compareFiles)
+JS::Value VisualReplay::GetReplays(const ScriptInterface& scriptInterface, bool compareFiles)
 {
 	TIMER(L"GetReplays");
 	JSContext* cx = scriptInterface.GetContext();
@@ -320,7 +320,7 @@ inline int getReplayDuration(std::istream* replayStream, const OsPath& fileName,
 	return -1;
 }
 
-JS::Value VisualReplay::LoadReplayData(ScriptInterface& scriptInterface, const OsPath& directory)
+JS::Value VisualReplay::LoadReplayData(const ScriptInterface& scriptInterface, const OsPath& directory)
 {
 	// The directory argument must not be constant, otherwise concatenating will fail
 	const OsPath replayFile = GetDirectoryName() / directory / L"commands.txt";
@@ -434,7 +434,7 @@ JS::Value VisualReplay::GetReplayAttributes(ScriptInterface::CxPrivate* pCxPriva
 	return attribs;
 }
 
-void VisualReplay::AddReplayToCache(ScriptInterface& scriptInterface, const CStrW& directoryName)
+void VisualReplay::AddReplayToCache(const ScriptInterface& scriptInterface, const CStrW& directoryName)
 {
 	TIMER(L"AddReplayToCache");
 	JSContext* cx = scriptInterface.GetContext();

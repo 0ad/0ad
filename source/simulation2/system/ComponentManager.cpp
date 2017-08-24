@@ -40,9 +40,9 @@ public:
 	virtual int GetType() const { return mtid; }
 	virtual const char* GetScriptHandlerName() const { return handlerName.c_str(); }
 	virtual const char* GetScriptGlobalHandlerName() const { return globalHandlerName.c_str(); }
-	virtual JS::Value ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const { return msg.get(); }
+	virtual JS::Value ToJSVal(const ScriptInterface& UNUSED(scriptInterface)) const { return msg.get(); }
 
-	CMessageScripted(ScriptInterface& scriptInterface, int mtid, const std::string& name, JS::HandleValue msg) :
+	CMessageScripted(const ScriptInterface& scriptInterface, int mtid, const std::string& name, JS::HandleValue msg) :
 		mtid(mtid), handlerName("On" + name), globalHandlerName("OnGlobal" + name), msg(scriptInterface.GetJSRuntime(), msg)
 	{
 	}

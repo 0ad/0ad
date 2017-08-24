@@ -73,7 +73,7 @@ class CReplayLogger : public IReplayLogger
 {
 	NONCOPYABLE(CReplayLogger);
 public:
-	CReplayLogger(ScriptInterface& scriptInterface);
+	CReplayLogger(const ScriptInterface& scriptInterface);
 	~CReplayLogger();
 
 	virtual void StartGame(JS::MutableHandleValue attribs);
@@ -82,7 +82,7 @@ public:
 	virtual OsPath GetDirectory() const;
 
 private:
-	ScriptInterface& m_ScriptInterface;
+	const ScriptInterface& m_ScriptInterface;
 	std::ostream* m_Stream;
 	OsPath m_Directory;
 };
