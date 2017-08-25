@@ -120,7 +120,7 @@ Promotion.prototype.Promote = function(promotedTemplateName)
 		}
 	}
 
-	Engine.BroadcastMessage(MT_EntityRenamed, { entity: this.entity, newentity: promotedUnitEntity });
+	Engine.PostMessage(this.entity, MT_EntityRenamed, { "entity": this.entity, "newentity": promotedUnitEntity });
 
 	// Destroy current entity
 	Engine.DestroyEntity(this.entity);

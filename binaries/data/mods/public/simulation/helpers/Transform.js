@@ -95,7 +95,7 @@ function ChangeEntityTemplate(oldEnt, newTemplate)
 
 	TransferGarrisonedUnits(oldEnt, newEnt);
 
-	Engine.BroadcastMessage(MT_EntityRenamed, { "entity": oldEnt, "newentity": newEnt });
+	Engine.PostMessage(oldEnt, MT_EntityRenamed, { "entity": oldEnt, "newentity": newEnt });
 
 	Engine.DestroyEntity(oldEnt);
 
