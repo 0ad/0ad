@@ -410,7 +410,7 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 		// Load the map into the secondary simulation
 
 		LDR_BeginRegistering();
-		CMapReader* mapReader = new CMapReader; // automatically deletes itself
+		std::unique_ptr<CMapReader> mapReader(new CMapReader);
 
 		std::string mapType;
 		scriptInterface.GetProperty(m_InitAttributes, "mapType", mapType);

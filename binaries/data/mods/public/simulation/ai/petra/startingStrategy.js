@@ -36,6 +36,9 @@ m.HQ.prototype.gameAnalysis = function(gameState)
 	// Assign entities and resources in the different bases
 	this.assignStartingEntities(gameState);
 
+
+	// Sandbox difficulty should not try to expand
+	this.canExpand = this.Config.difficulty != 0;
 	// If no base yet, check if we can construct one. If not, dispatch our units to possible tasks/attacks
 	this.canBuildUnits = true;
 	if (!gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")).hasEntities())

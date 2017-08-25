@@ -933,9 +933,10 @@ void XmppClient::GetRole(const std::string& nick, std::string& role)
  *****************************************************/
 
 /**
- * Compute the POSIX timestamp of a message. Uses message datetime when possible, current time otherwise.
+ * Parse and return the timestamp of a historic chat message and return the current time for new chat messages.
+ * Historic chat messages are implement as DelayedDelivers as specified in XEP-0203.
+ * Hence, their timestamp MUST be in UTC and conform to the DateTime format XEP-0082.
  *
- * @param msg The message on which to base the computation.
  * @returns Seconds since the epoch.
  */
 std::time_t XmppClient::ComputeTimestamp(const glooxwrapper::Message& msg) const
@@ -944,7 +945,7 @@ std::time_t XmppClient::ComputeTimestamp(const glooxwrapper::Message& msg) const
 	if (!msg.when())
 		return std::time(nullptr);
 
-	// See XEP-0082 for the date format
+	// The locale is irrelevant, because the XMPP date format doesn't contain written month names
 	return g_L10n.ParseDateTime(msg.when()->stamp().to_string(), "Y-M-d'T'H:m:sZ", Locale::getUS()) / 1000.0;
 }
 

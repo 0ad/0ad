@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -72,7 +72,7 @@ public:
 		sim2.LoadDefaultScripts();
 		sim2.ResetState();
 
-		CMapReader* mapReader = new CMapReader(); // it'll call "delete this" itself
+		std::unique_ptr<CMapReader> mapReader(new CMapReader());
 
 		LDR_BeginRegistering();
 		mapReader->LoadMap(L"maps/skirmishes/Median Oasis (2).pmp",
@@ -183,7 +183,7 @@ public:
 		sim2.LoadDefaultScripts();
 		sim2.ResetState();
 
-		CMapReader* mapReader = new CMapReader(); // it'll call "delete this" itself
+		std::unique_ptr<CMapReader> mapReader(new CMapReader());
 
 		LDR_BeginRegistering();
 		mapReader->LoadMap(L"maps/scenarios/Peloponnese.pmp",
@@ -238,7 +238,7 @@ public:
 		sim2.LoadDefaultScripts();
 		sim2.ResetState();
 
-		CMapReader* mapReader = new CMapReader(); // it'll call "delete this" itself
+		std::unique_ptr<CMapReader> mapReader(new CMapReader());
 
 		LDR_BeginRegistering();
 		mapReader->LoadMap(L"maps/scenarios/Peloponnese.pmp",

@@ -86,9 +86,6 @@ private:
 	// read entity data from the XML file
 	int ReadXMLEntities();
 
-	// clean up everything used during delayed load
-	int DelayLoadFinished();
-
 	// Copy random map settings over to sim
 	int LoadRMSettings();
 
@@ -128,7 +125,6 @@ private:
 
 	CMapGenerator* m_MapGen;
 
-	// state latched by LoadMap and held until DelayedLoadFinished
 	CFileUnpacker unpacker;
 	CTerrain* pTerrain;
 	WaterManager* pWaterMan;
