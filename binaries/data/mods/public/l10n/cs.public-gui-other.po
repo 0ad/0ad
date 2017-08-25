@@ -8,6 +8,7 @@
 # Jaroslav Lichtblau <dragonlord@seznam.cz>, 2016
 # Josef Hrdina <hrdinajosef11@gmail.com>, 2016
 # Lukas Koutsky <tekumseh65@seznam.cz>, 2015
+# Marek Harok <kenturin@seznam.cz>, 2017
 # fri, 2014-2017
 # Pavel Šindelář <pavelsin123@gmail.com>, 2015
 # Petr Hála <halapetr@selfnet.cz>, 2016-2017
@@ -17,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-21 09:04+0200\n"
-"PO-Revision-Date: 2017-08-21 16:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-08-24 15:03+0000\n"
+"Last-Translator: Marek Harok <kenturin@seznam.cz>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -413,7 +414,7 @@ msgstr "Populační mez"
 
 #: gui/common/gamedescription.js:373
 msgid "Treasures"
-msgstr ""
+msgstr "Poklad"
 
 #: gui/common/gamedescription.js:375
 msgctxt "treasures"
@@ -1073,7 +1074,7 @@ msgstr "%(auraname)s:"
 #: gui/common/tooltips.js:682
 msgctxt "aura"
 msgid "Range:"
-msgstr ""
+msgstr "Dosah:"
 
 #: gui/common/tooltips.js:699
 #, javascript-format
@@ -1596,7 +1597,7 @@ msgstr "Poženštění"
 
 #: gui/summary/layout.js:184
 msgid "Kill / Death ratio"
-msgstr ""
+msgstr "Poměr zabití a smrtí"
 
 #: gui/summary/layout.js:185
 msgid "Map exploration"
@@ -1636,7 +1637,7 @@ msgstr ""
 
 #: gui/summary/summary.js:55
 msgid "Income"
-msgstr ""
+msgstr "Příjem"
 
 #: gui/summary/summary.js:60
 msgid "Captured"
@@ -1660,11 +1661,11 @@ msgstr "Použito"
 
 #: gui/summary/summary.js:85
 msgid "Received"
-msgstr ""
+msgstr "Obdržet"
 
 #: gui/summary/summary.js:90
 msgid "Sold"
-msgstr ""
+msgstr "Prodat"
 
 #: gui/summary/summary.js:95
 msgid "Outcome"
@@ -1885,7 +1886,7 @@ msgstr "Zakázat zpětnou vazbu"
 
 #: gui/pregame/mainmenu.xml:(caption):156
 msgid "Tutorial"
-msgstr ""
+msgstr "Tutorial"
 
 #: gui/pregame/mainmenu.xml:(caption):170
 #: gui/reference/structree/structree.xml:(caption):16
@@ -1943,7 +1944,7 @@ msgstr "Výběr pozměněné verze"
 
 #: gui/pregame/mainmenu.xml:(caption):456
 msgid "Learn to Play"
-msgstr ""
+msgstr "Jak hrát"
 
 #: gui/pregame/mainmenu.xml:(caption):501
 msgid "Tools & Options"
@@ -1967,7 +1968,7 @@ msgstr "Nahlásit chybu"
 
 #: gui/pregame/mainmenu.xml:(caption):587
 msgid "Translate the Game"
-msgstr ""
+msgstr "Přelož hru"
 
 #: gui/pregame/mainmenu.xml:(caption):599
 msgid "Credits"
@@ -2135,7 +2136,7 @@ msgstr "Smazat"
 
 #: gui/replaymenu/replay_menu.xml:(caption):251
 msgid "Reload Cache"
-msgstr ""
+msgstr "Znovunačíst mezipaměť"
 
 #: gui/replaymenu/replay_menu.xml:(caption):258
 #: gui/summary/summary.xml:(caption):24
@@ -2234,7 +2235,7 @@ msgstr "Známé problémy (web)"
 
 #: gui/summary/summary.xml:(caption):106
 msgid "Charts"
-msgstr ""
+msgstr "Grafy"
 
 #: gui/summary/summary.xml:(caption):163
 msgctxt "summary chart"
@@ -2244,12 +2245,12 @@ msgstr ""
 #: gui/summary/summary.xml:(caption):173
 msgctxt "summary chart"
 msgid "Value:"
-msgstr ""
+msgstr "Hodnota:"
 
 #: gui/summary/summary.xml:(caption):183
 msgctxt "summary chart"
 msgid "Type:"
-msgstr ""
+msgstr "Dosah aury"
 
 #: gui/summary/summary.xml:(caption):202
 msgid "Replay"
@@ -2660,7 +2661,7 @@ msgstr "Hlavní hlasitost"
 
 #: gui/options/options.jsonsoundSetting[0].label
 msgid "Master Volume"
-msgstr ""
+msgstr "Celková hlasitost"
 
 #: gui/options/options.jsonsoundSetting[1].tooltip
 msgid "In game music gain"
@@ -2676,7 +2677,7 @@ msgstr "Hlasitost šumění okolí"
 
 #: gui/options/options.jsonsoundSetting[2].label
 msgid "Ambient Volume"
-msgstr ""
+msgstr "Zvuky prostředí"
 
 #: gui/options/options.jsonsoundSetting[3].tooltip
 msgid "In game unit action sound gain"
@@ -2738,7 +2739,7 @@ msgstr ""
 
 #: gui/options/options.jsonnotificationSetting[3].parameters.list[2].label
 msgid "All displayed"
-msgstr ""
+msgstr "Vypnout vše"
 
 #: gui/options/options.jsonnotificationSetting[3].tooltip
 msgid ""
@@ -2784,23 +2785,23 @@ msgstr "Stíny"
 
 #: gui/options/options.jsongraphicsSetting[4].parameters.list[0].label
 msgid "Very Low"
-msgstr ""
+msgstr "Velmi nízké"
 
 #: gui/options/options.jsongraphicsSetting[4].parameters.list[1].label
 msgid "Low"
-msgstr ""
+msgstr "Nízké "
 
 #: gui/options/options.jsongraphicsSetting[4].parameters.list[2].label
 msgid "Medium"
-msgstr ""
+msgstr "Střední "
 
 #: gui/options/options.jsongraphicsSetting[4].parameters.list[3].label
 msgid "High"
-msgstr ""
+msgstr "Vysoké"
 
 #: gui/options/options.jsongraphicsSetting[4].parameters.list[4].label
 msgid "Very High"
-msgstr ""
+msgstr "Velmi vysoké"
 
 #: gui/options/options.jsongraphicsSetting[4].tooltip
 msgid ""
@@ -2844,7 +2845,7 @@ msgstr "Když je VYPNUTO, použít nejnižší možnou kvalitu nastavení pro kr
 
 #: gui/options/options.jsongraphicsSetting[8].label
 msgid "Water Effects"
-msgstr ""
+msgstr "Efekty vody"
 
 #: gui/options/options.jsongraphicsSetting[9].tooltip
 msgid ""
