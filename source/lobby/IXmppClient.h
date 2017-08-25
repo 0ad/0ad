@@ -50,7 +50,6 @@ public:
 	virtual void GetSubject(std::string& subject) = 0;
 	virtual void GUIGetPlayerList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret) = 0;
 	virtual void ClearPresenceUpdates() = 0;
-	virtual int GetMucMessageCount() = 0;
 	virtual void GUIGetGameList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret) = 0;
 	virtual void GUIGetBoardList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret) = 0;
 	virtual void GUIGetProfile(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret) = 0;

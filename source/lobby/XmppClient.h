@@ -146,7 +146,6 @@ public:
 	void GuiPollMessage(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
 	void SendMUCMessage(const std::string& message);
 	void ClearPresenceUpdates();
-	int GetMucMessageCount();
 protected:
 	void PushGuiMessage(XmppClient::GUIMessage message);
 	void CreateGUIMessage(const std::string& type, const std::string& level, const std::string& text = "", const std::string& data = "");
