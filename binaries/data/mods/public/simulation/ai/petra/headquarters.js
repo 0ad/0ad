@@ -18,9 +18,7 @@ var PETRA = function(m)
 m.HQ = function(Config)
 {
 	this.Config = Config;
-
-	this.econState = "growth";	// existing values: growth, townPhasing and cityPhasing.
-	this.currentPhase = undefined;
+	this.phasing = 0;	// existing values: 0 means no, i > 0 means phasing towards phase i
 
 	// Cache the rates.
 	this.turnCache = {};
@@ -411,13 +409,90 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 	}
 };
 
-/** Called by the "town phase" research plan once it's started */
-m.HQ.prototype.OnTownPhase = function(gameState)
+/** Ensure that all requirements are met when phasing up*/
+m.HQ.prototype.checkPhaseRequirements = function(gameState, queues)
 {
+	if (gameState.getNumberOfPhases() == this.currentPhase)
+		return;
+
+	let requirements = gameState.getPhaseEntityRequirements(this.currentPhase + 1);
+	let plan;
+	let queue;
+	for (let entityReq of requirements)
+	{
+		// Village requirements are met elsewhere by constructing more houses
+		if (entityReq.class === "Village" || entityReq.class === "NotField")
+			continue;
+		if (gameState.getOwnEntitiesByClass(entityReq.class, true).length >= entityReq.count)
+			continue;
+		switch (entityReq.class)
+		{
+		case "Town":
+			if (!queues.economicBuilding.hasQueuedUnits() &&
+			    !queues.militaryBuilding.hasQueuedUnits() &&
+			    !queues.defenseBuilding.hasQueuedUnits())
+			{
+				if (!gameState.getOwnEntitiesByClass("BarterMarket", true).hasEntities() &&
+				    this.canBuild(gameState, "structures/{civ}_market"))
+				{
+					plan = new m.ConstructionPlan(gameState, "structures/{civ}_market");
+					queue = "economicBuilding";
+					break;
+				}
+				if (!gameState.getOwnEntitiesByClass("Temple", true).hasEntities() &&
+				    this.canBuild(gameState, "structures/{civ}_temple"))
+				{
+					plan = new m.ConstructionPlan(gameState, "structures/{civ}_temple");
+					queue = "economicBuilding";
+					break;
+				}
+				if (!gameState.getOwnEntitiesByClass("Blacksmith", true).hasEntities() &&
+				    this.canBuild(gameState, "structures/{civ}_blacksmith"))
+				{
+					plan = new m.ConstructionPlan(gameState, "structures/{civ}_blacksmith");
+					queue = "militaryBuilding";
+					break;
+				}
+				if (this.canBuild(gameState, "structures/{civ}_defense_tower"))
+				{
+					plan = new m.ConstructionPlan(gameState, "structures/{civ}_defense_tower");
+					queue = "defenseBuilding";
+					break;
+				}
+			}
+			break;
+		default:
+			// All classes not dealt with inside vanilla game.
+			// We put them for the time being on the economic queue, except if wonder
+			queue = entityReq.class === "Wonder" ? "wonder" : "economicBuilding";
+			if (!queues[queue].hasQueuedUnits())
+			{
+				let structure = gameState.findStructureWithClass([entityReq.class]);
+				if (structure && this.canBuild(gameState, structure))
+					plan = new m.ConstructionPlan(gameState, structure);
+			}
+		}
+
+		if (plan)
+		{
+			if (queue == "wonder")
+			{
+				gameState.ai.queueManager.changePriority("majorTech", 400);
+				plan.queueToReset = "majorTech";
+			}
+			else
+			{
+				gameState.ai.queueManager.changePriority(queue, 1000);
+				plan.queueToReset = queue;
+			}
+			queues[queue].addPlan(plan);
+			return;
+		}
+	}
 };
 
-/** Called by the "city phase" research plan once it's started */
-m.HQ.prototype.OnCityPhase = function(gameState)
+/** Called by any "phase" research plan once it's started */
+m.HQ.prototype.OnPhaseUp = function(gameState, phase)
 {
 };
 
@@ -477,10 +552,10 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 	let numberQueued = numberOfQueuedSupports + numberOfQueuedSoldiers;
 	let numberTotal = numberOfWorkers + numberQueued;
 
-	if (this.saveResources && numberTotal > this.Config.Economy.popForTown + 10)
+	if (this.saveResources && numberTotal > this.Config.Economy.popPhase2 + 10)
 		return;
-	if (numberTotal > this.targetNumWorkers || (numberTotal >= this.Config.Economy.popForTown &&
-		gameState.currentPhase() == 1 && !gameState.isResearching(gameState.townPhase())))
+	if (numberTotal > this.targetNumWorkers || (numberTotal >= this.Config.Economy.popPhase2 &&
+		this.currentPhase == 1 && !gameState.isResearching(gameState.getPhaseName(2))))
 		return;
 	if (numberQueued > 50 || (numberOfQueuedSupports > 20 && numberOfQueuedSoldiers > 20) || numberInTraining > 15)
 		return;
@@ -974,7 +1049,7 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 			else if (!distcc2 || dist < distcc2)
 				distcc2 = dist;
 		}
-		if (minDist < 1 || (minDist > 170000 && !this.navalMap))
+		if (minDist < 1 || minDist > 170000 && !this.navalMap)
 			continue;
 
 		delta = Math.sqrt(distcc0) - 300;  // favor a distance of 300
@@ -1269,18 +1344,8 @@ m.HQ.prototype.buildTemple = function(gameState, queues)
 		!gameState.getOwnEntitiesByClass("BarterMarket", true).hasEntities())
 		return;
 	// Try to build a temple earlier if in regicide to recruit healer guards
-	// or if we are ready to switch to city phase but miss some town phase structure
-	if (gameState.currentPhase() < 3 && gameState.getGameType() !== "regicide")
-	{
-		if (gameState.currentPhase() < 2 || this.econState !== "cityPhasing")
-			return;
-		let requirements = gameState.getPhaseEntityRequirements(3);
-		if (!requirements.length)
-			return;
-		for (let entityReq of requirements)
-			if (gameState.getOwnStructures().filter(API3.Filters.byClass(entityReq.class)).length >= entityReq.count)
-				return;
-	}
+	if (this.currentPhase < 3 && gameState.getGameType() !== "regicide")
+		return;
 	if (!this.canBuild(gameState, "structures/{civ}_temple"))
 		return;
 	queues.economicBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_temple"));
@@ -1349,16 +1414,16 @@ m.HQ.prototype.manageCorral = function(gameState, queues)
 		return;
 
 	let nCorral = gameState.getOwnEntitiesByClass("Corral", true).length;
-	if (nCorral === 0 ||
-		(gameState.isTemplateDisabled(gameState.applyCiv("structures/{civ}_field")) &&
-		 nCorral < gameState.currentPhase() && gameState.getPopulation() > 30*nCorral))
+	if (!nCorral || gameState.isTemplateDisabled(gameState.applyCiv("structures/{civ}_field")) &&
+	                nCorral < this.currentPhase && gameState.getPopulation() > 30*nCorral)
 	{
 		if (this.canBuild(gameState, "structures/{civ}_corral"))
 		{
 			queues.corral.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_corral"));
 			return;
 		}
-		if (nCorral === 0) return;
+		if (!nCorral)
+			return;
 	}
 
 	// And train some animals
@@ -1395,7 +1460,7 @@ m.HQ.prototype.buildMoreHouses = function(gameState, queues)
 		return;
 
 	let numPlanned = queues.house.length();
-	if (numPlanned < 3 || (numPlanned < 5 && gameState.getPopulation() > 80))
+	if (numPlanned < 3 || numPlanned < 5 && gameState.getPopulation() > 80)
 	{
 		let plan = new m.ConstructionPlan(gameState, "structures/{civ}_house");
 		// change the starting condition according to the situation.
@@ -1403,13 +1468,13 @@ m.HQ.prototype.buildMoreHouses = function(gameState, queues)
 		queues.house.addPlan(plan);
 	}
 
-	if (numPlanned > 0 && this.econState == "townPhasing" && gameState.getPhaseEntityRequirements(2).length)
+	if (numPlanned > 0 && this.phasing && gameState.getPhaseEntityRequirements(this.phasing).length)
 	{
 		let houseTemplateName = gameState.applyCiv("structures/{civ}_house");
 		let houseTemplate = gameState.getTemplate(houseTemplateName);
 
 		let needed = 0;
-		for (let entityReq of gameState.getPhaseEntityRequirements(2))
+		for (let entityReq of gameState.getPhaseEntityRequirements(this.phasing))
 		{
 			if (!houseTemplate.hasClass(entityReq.class))
 				continue;
@@ -1477,19 +1542,19 @@ m.HQ.prototype.buildMoreHouses = function(gameState, queues)
 		gameState.ai.queueManager.changePriority("house", priority);
 };
 
-/** checks the status of the territory expansion. If no new economic bases created, build some strategic ones. */
+/** Checks the status of the territory expansion. If no new economic bases created, build some strategic ones. */
 m.HQ.prototype.checkBaseExpansion = function(gameState, queues)
 {
 	if (queues.civilCentre.hasQueuedUnits())
 		return;
-	// first build one cc if all have been destroyed
+	// First build one cc if all have been destroyed
 	let activeBases = this.numActiveBase();
 	if (activeBases === 0)
 	{
 		this.buildFirstBase(gameState);
 		return;
 	}
-	// then expand if we have not enough room available for buildings
+	// Then expand if we have not enough room available for buildings
 	let nstopped = 0;
 	for (let stopTime of this.stopBuilding.values())
 	{
@@ -1500,7 +1565,10 @@ m.HQ.prototype.checkBaseExpansion = function(gameState, queues)
 		this.buildNewBase(gameState, queues);
 		return;
 	}
-	// then expand if we have lots of units (threshold depending on the aggressivity value)
+	// If we've already planned to phase up, wait a bit before trying to expand
+	if (this.phasing)
+		return;
+	// Finally expand if we have lots of units (threshold depending on the aggressivity value)
 	let numUnits = gameState.getOwnUnits().length;
 	let numvar = 10 * (1 - this.Config.personality.aggressive);
 	if (numUnits > activeBases * (65 + numvar + (10 + numvar)*(activeBases-1)) || (this.saveResources && numUnits > 50))
@@ -1513,7 +1581,7 @@ m.HQ.prototype.checkBaseExpansion = function(gameState, queues)
 
 m.HQ.prototype.buildNewBase = function(gameState, queues, resource)
 {
-	if (this.numActiveBase() > 0 && gameState.currentPhase() == 1 && !gameState.isResearching(gameState.townPhase()))
+	if (this.numActiveBase() > 0 && this.currentPhase == 1 && !gameState.isResearching(gameState.getPhaseName(2)))
 		return false;
 	if (gameState.getOwnFoundations().filter(API3.Filters.byClass("CivCentre")).hasEntities() || queues.civilCentre.hasQueuedUnits())
 		return false;
@@ -1547,10 +1615,10 @@ m.HQ.prototype.buildNewBase = function(gameState, queues, resource)
 /** Deals with building fortresses and towers along our border with enemies. */
 m.HQ.prototype.buildDefenses = function(gameState, queues)
 {
-	if ((this.saveResources && !this.canBarter) || queues.defenseBuilding.hasQueuedUnits())
+	if (this.saveResources && !this.canBarter || queues.defenseBuilding.hasQueuedUnits())
 		return;
 
-	if (!this.saveResources && (gameState.currentPhase() > 2 || gameState.isResearching(gameState.cityPhase())))
+	if (!this.saveResources && (this.currentPhase > 2 || gameState.isResearching(gameState.getPhaseName(3))))
 	{
 		// try to build fortresses
 		if (this.canBuild(gameState, "structures/{civ}_fortress"))
@@ -1571,7 +1639,7 @@ m.HQ.prototype.buildDefenses = function(gameState, queues)
 		}
 	}
 
-	if (this.Config.Military.numSentryTowers && gameState.currentPhase() < 2 && this.canBuild(gameState, "structures/{civ}_sentry_tower"))
+	if (this.Config.Military.numSentryTowers && this.currentPhase < 2 && this.canBuild(gameState, "structures/{civ}_sentry_tower"))
 	{
 		let numTowers = gameState.getOwnEntitiesByClass("Tower", true).length;	// we count all towers, including wall towers
 		let towerLapseTime = this.saveResource ? (1 + 0.5*numTowers) * this.towerLapseTime : this.towerLapseTime;
@@ -1583,7 +1651,7 @@ m.HQ.prototype.buildDefenses = function(gameState, queues)
 		return;
 	}
 
-	if (gameState.currentPhase() < 2 || !this.canBuild(gameState, "structures/{civ}_defense_tower"))
+	if (this.currentPhase < 2 || !this.canBuild(gameState, "structures/{civ}_defense_tower"))
 		return;
 
 	let numTowers = gameState.getOwnEntitiesByClass("DefenseTower", true).filter(API3.Filters.byClass("Town")).length;
@@ -1620,7 +1688,7 @@ m.HQ.prototype.buildBlacksmith = function(gameState, queues)
  */
 m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 {
-	if ((this.saveResources && !this.canBarter) || queues.militaryBuilding.hasQueuedUnits())
+	if (this.saveResources && !this.canBarter || queues.militaryBuilding.hasQueuedUnits())
 		return;
 
 	if (this.canBuild(gameState, "structures/{civ}_barracks"))
@@ -1631,7 +1699,8 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 
 		// first barracks.
 		if (!barrackNb && (gameState.getPopulation() > this.Config.Military.popForBarracks1 ||
-			(this.econState == "townPhasing" && gameState.getOwnStructures().filter(API3.Filters.byClass("Village")).length < 5)))
+			(this.phasing == 2 &&
+		         gameState.getOwnStructures().filter(API3.Filters.byClass("Village")).length < 5)))
 		{
 			gameState.ai.queueManager.changePriority("militaryBuilding", 2*this.Config.priorities.militaryBuilding);
 			let preferredBase = this.findBestBaseForMilitary(gameState);
@@ -1665,7 +1734,7 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 	if (this.saveResources)
 		return;
 
-	if (gameState.currentPhase() < 3 || gameState.getPopulation() < 80 || !this.bAdvanced.length)
+	if (this.currentPhase < 3 || gameState.getPopulation() < 80 || !this.bAdvanced.length)
 		return;
 
 	//build advanced military buildings
@@ -1673,7 +1742,7 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 	for (let advanced of this.bAdvanced)
 		nAdvanced += gameState.countEntitiesAndQueuedByType(advanced, true);
 
-	if (!nAdvanced || (nAdvanced < this.bAdvanced.length && gameState.getPopulation() > 110))
+	if (!nAdvanced || nAdvanced < this.bAdvanced.length && gameState.getPopulation() > 110)
 	{
 		for (let advanced of this.bAdvanced)
 		{
@@ -1751,7 +1820,7 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 			{
 				let time = 0;
 				for (let item of queue)
-					if (item.progress > 0 || (item.metadata && item.metadata.garrisonType))
+					if (item.progress > 0 || item.metadata && item.metadata.garrisonType)
 						time += item.timeRemaining;
 				if (time/1000 > 5)
 					continue;
@@ -1829,7 +1898,7 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 	return true;
 };
 
-m.HQ.prototype.canBuild = function(gameState, structure)
+m.HQ.prototype.canBuild = function(gameState, structure, debug = false)
 {
 	let type = gameState.applyCiv(structure);
 	// available room to build it
@@ -1854,7 +1923,7 @@ m.HQ.prototype.canBuild = function(gameState, structure)
 
 	if (!gameState.findBuilder(type))
 	{
-		this.stopBuild(gameState, type, 120);
+		this.stopBuilding.set(type, gameState.ai.elapsedTime + 120);
 		return false;
 	}
 
@@ -1873,7 +1942,10 @@ m.HQ.prototype.canBuild = function(gameState, structure)
 	let limits = gameState.getEntityLimits();
 	let category = template.buildCategory();
 	if (category && limits[category] !== undefined && gameState.getEntityCounts()[category] >= limits[category])
+	{
+		this.stopBuilding.set(type, gameState.ai.elapsedTime + 60);
 		return false;
+	}
 
 	return true;
 };
@@ -2211,29 +2283,43 @@ m.HQ.prototype.update = function(gameState, queues, events)
 	this.turnCache = {};
 	this.territoryMap = m.createTerritoryMap(gameState);
 	this.canBarter = gameState.getOwnEntitiesByClass("BarterMarket", true).filter(API3.Filters.isBuilt()).hasEntities();
+	// TODO find a better way to update
+	if (this.currentPhase != gameState.currentPhase())
+	{
+		if (this.Config.debug > 0)
+			API3.warn(" civ " + gameState.getPlayerCiv() + " has phasedUp from " + this.currentPhase +
+			          " to " + gameState.currentPhase() + " at time " + gameState.ai.elapsedTime +
+				  " phasing " + this.phasing);
+		this.currentPhase = gameState.currentPhase();
 
-	if (this.Config.debug > 1)
+		// In principle, this.phasing should be already reset to 0 when starting the research
+		// but this does not work in case of an autoResearch tech
+		if (this.phasing)
+			this.phasing = 0;
+	}
+
+/*	if (this.Config.debug > 1)
 	{
 		gameState.getOwnUnits().forEach (function (ent) {
 			if (!ent.position())
 				return;
 			m.dumpEntity(ent);
 		});
-	}
+	} */
 
 	this.checkEvents(gameState, events, queues);
 
-	this.researchManager.checkPhase(gameState, queues);
-
-	// TODO find a better way to update
-	if (this.currentPhase != gameState.currentPhase())
-		this.currentPhase = gameState.currentPhase();
+	if (this.phasing)
+		this.checkPhaseRequirements(gameState, queues);
+	else
+		this.researchManager.checkPhase(gameState, queues);
 
 	if (this.numActiveBase() > 0)
 	{
-		this.trainMoreWorkers(gameState, queues);
+		if (gameState.ai.playedTurn % 4 == 0)
+			this.trainMoreWorkers(gameState, queues);
 
-		if (gameState.ai.playedTurn % 2 == 1)
+		if (gameState.ai.playedTurn % 4 == 1)
 			this.buildMoreHouses(gameState,queues);
 
 		if ((!this.saveResources || this.canBarter) && gameState.ai.playedTurn % 4 == 2)
@@ -2247,10 +2333,10 @@ m.HQ.prototype.update = function(gameState, queues, events)
 	}
 
 	if (this.numActiveBase() < 1 ||
-		(this.canExpand && gameState.ai.playedTurn % 10 == 7 && gameState.currentPhase() > 1))
+	    this.canExpand && gameState.ai.playedTurn % 10 == 7 && this.currentPhase > 1)
 		this.checkBaseExpansion(gameState, queues);
 
-	if (gameState.currentPhase() > 1)
+	if (this.currentPhase > 1)
 	{
 		if (!this.canBarter)
 			this.buildMarket(gameState, queues);
@@ -2299,8 +2385,7 @@ m.HQ.prototype.update = function(gameState, queues, events)
 m.HQ.prototype.Serialize = function()
 {
 	let properties = {
-		"econState": this.econState,
-		"currentPhase": this.currentPhase,
+		"phasing": this.phasing,
 		"wantedRates": this.wantedRates,
 		"currentRates": this.currentRates,
 		"lastFailedGather": this.lastFailedGather,

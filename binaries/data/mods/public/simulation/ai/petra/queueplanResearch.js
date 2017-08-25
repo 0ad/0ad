@@ -71,36 +71,18 @@ m.ResearchPlan.prototype.start = function(gameState)
 	this.onStart(gameState);
 };
 
-m.ResearchPlan.prototype.isGo = function(gameState)
-{
-	if (this.type === gameState.townPhase())
-	{
-		let ret = gameState.getPopulation() >= gameState.ai.Config.Economy.popForTown;
-		if (ret && gameState.ai.HQ.econState !== "growth")
-			gameState.ai.HQ.econState = "growth";
-		else if (!ret && gameState.ai.HQ.econState !== "townPhasing")
-			gameState.ai.HQ.econState = "townPhasing";
-		return ret;
-	}
-	else if (this.type === gameState.cityPhase())
-		gameState.ai.HQ.econState = "cityPhasing";
-	return true;
-};
-
 m.ResearchPlan.prototype.onStart = function(gameState)
 {
 	if (this.queueToReset)
 		gameState.ai.queueManager.changePriority(this.queueToReset, gameState.ai.Config.priorities[this.queueToReset]);
 
-	if (this.type == gameState.townPhase())
+	for (let i = gameState.getNumberOfPhases(); i > 0; --i)
 	{
-		gameState.ai.HQ.econState = "growth";
-		gameState.ai.HQ.OnTownPhase(gameState);
-	}
-	else if (this.type == gameState.cityPhase())
-	{
-		gameState.ai.HQ.econState = "growth";
-		gameState.ai.HQ.OnCityPhase(gameState);
+		if (this.type != gameState.getPhaseName(i))
+			continue;
+		gameState.ai.HQ.phasing = 0;
+		gameState.ai.HQ.OnPhaseUp(gameState, i);
+		break;
 	}
 };
 

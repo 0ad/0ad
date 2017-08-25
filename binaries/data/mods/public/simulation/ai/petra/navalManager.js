@@ -625,7 +625,7 @@ m.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 		}
 	}
 
-	if (gameState.currentPhase() < 2 || gameState.getPopulation() < this.Config.Economy.popForTown + 15 ||
+	if (gameState.currentPhase() < 2 || gameState.getPopulation() < this.Config.Economy.popPhase2 + 15 ||
 	    queues.militaryBuilding.hasQueuedUnits())
 		return;
 	if (!this.docks.filter(API3.Filters.byClass("Dock")).hasEntities() ||

@@ -87,7 +87,7 @@ m.ConstructionPlan.prototype.start = function(gameState)
 				builder.construct(this.type, pos.x+shift*sina, pos.z+shift*cosa, pos.angle, this.metadata);
 		}
 	}
-	else if (pos.xx === undefined || (pos.x == pos.xx && pos.z == pos.zz))
+	else if (pos.xx === undefined || pos.x == pos.xx && pos.z == pos.zz)
 		builder.construct(this.type, pos.x, pos.z, pos.angle, this.metadata);
 	else // try with the lowest, move towards us unless we're same
 	{
@@ -182,7 +182,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	else	// No position was specified so try and find a sensible place to build
 	{
 		// give a small > 0 level as the result of addInfluence is constrained to be > 0
-		// if we really need houses (i.e. townPhasing without enough village building), do not apply these constraints
+		// if we really need houses (i.e. Phasing without enough village building), do not apply these constraints
 		if (this.metadata && this.metadata.base !== undefined)
 		{
 			let base = this.metadata.base;
@@ -645,7 +645,7 @@ m.ConstructionPlan.prototype.isDockLocation = function(gameState, j, dimension, 
 			continue;
 		let k = pos[0] + pos[1]*gameState.ai.accessibility.width;
 		let landPass = gameState.ai.accessibility.landPassMap[k];
-		if (landPass < 2 || (wantedLand && !wantedLand[landPass]))
+		if (landPass < 2 || wantedLand && !wantedLand[landPass])
 			continue;
 		pos = gameState.ai.accessibility.gamePosToMapPos([x - dist*a[0], z - dist*a[1]]);
 		if (pos[0] < 0 || pos[0] >= gameState.ai.accessibility.width)
