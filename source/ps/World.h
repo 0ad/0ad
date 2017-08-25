@@ -38,6 +38,7 @@ class CGame;
 class CUnitManager;
 class CTerrain;
 class CStrW;
+class CMapReader;
 
 /**
  * CWorld is a general data class containing whatever is needed to accurately represent the world.
@@ -61,6 +62,8 @@ class CWorld
 	 **/
 	CUnitManager *m_UnitManager;
 
+	CMapReader* m_MapReader;
+
 public:
 	CWorld(CGame *pGame);
 	~CWorld();
@@ -74,6 +77,11 @@ public:
 	Initialize the World - generate and load the random map
 	*/
 	void RegisterInitRMS(const CStrW& scriptFile, JSRuntime* rt, JS::HandleValue settings, int playerID);
+
+	/**
+	 * Explicitly delete m_MapReader once the map has finished loading.
+	 **/
+	int DeleteMapReader();
 
 	/**
 	 * Get the pointer to the terrain object.

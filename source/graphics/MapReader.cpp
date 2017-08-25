@@ -65,7 +65,6 @@ void CMapReader::LoadMap(const VfsPath& pathname, JSRuntime* rt,  JS::HandleValu
 						 CLightEnv *pLightEnv_, CGameView *pGameView_, CCinemaManager* pCinema_, CTriggerManager* pTrigMan_, CPostprocManager* pPostproc_,
 						 CSimulation2 *pSimulation2_, const CSimContext* pSimContext_, int playerID_, bool skipEntities)
 {
-	// latch parameters (held until DelayedLoadFinished)
 	pTerrain = pTerrain_;
 	pLightEnv = pLightEnv_;
 	pGameView = pGameView_;
@@ -140,8 +139,6 @@ void CMapReader::LoadMap(const VfsPath& pathname, JSRuntime* rt,  JS::HandleValu
 
 	// load map settings script (must be done after reading map)
 	RegMemFun(this, &CMapReader::LoadMapSettings, L"CMapReader::LoadMapSettings", 5);
-
-	RegMemFun(this, &CMapReader::DelayLoadFinished, L"CMapReader::DelayLoadFinished", 5);
 }
 
 // LoadRandomMap: try to load the map data; reinitialise the scene to new data if successful
@@ -150,7 +147,6 @@ void CMapReader::LoadRandomMap(const CStrW& scriptFile, JSRuntime* rt, JS::Handl
 						 CLightEnv *pLightEnv_, CGameView *pGameView_, CCinemaManager* pCinema_, CTriggerManager* pTrigMan_, CPostprocManager* pPostproc_,
 						 CSimulation2 *pSimulation2_, int playerID_)
 {
-	// latch parameters (held until DelayedLoadFinished)
 	m_ScriptFile = scriptFile;
 	pSimulation2 = pSimulation2_;
 	pSimContext = pSimulation2 ? &pSimulation2->GetSimContext() : NULL;
@@ -202,8 +198,6 @@ void CMapReader::LoadRandomMap(const CStrW& scriptFile, JSRuntime* rt, JS::Handl
 
 	// load map settings script (must be done after reading map)
 	RegMemFun(this, &CMapReader::LoadMapSettings, L"CMapReader::LoadMapSettings", 5);
-
-	RegMemFun(this, &CMapReader::DelayLoadFinished, L"CMapReader::DelayLoadFinished", 5);
 }
 
 // UnpackMap: unpack the given data from the raw data stream into local variables
@@ -1199,14 +1193,6 @@ int CMapReader::ReadXMLEntities()
 	}
 
 	return ret;
-}
-
-int CMapReader::DelayLoadFinished()
-{
-	// we were dynamically allocated by CWorld::Initialize
-	delete this;
-
-	return 0;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
