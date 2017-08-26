@@ -1089,18 +1089,10 @@ g_SelectionPanels.Upgrade = {
 				"player": data.player
 			});
 
-		let neededResources;
-		if (data.item.cost)
-		{
-			for (let cost in data.item.cost)
-				if (cost != "time")
-					data.item.cost[cost] *= data.unitEntStates.length;
-
-			neededResources = Engine.GuiInterfaceCall("GetNeededResources", {
-				"cost": data.item.cost,
-				"player": data.player
-			});
-		}
+		let neededResources = data.item.cost && Engine.GuiInterfaceCall("GetNeededResources", {
+			"cost": multiplyEntityCosts(data.item, data.unitEntStates.length),
+			"player": data.player
+		});
 
 		let limits = getEntityLimitAndCount(data.playerState, data.item.entity);
 		let progress = data.unitEntStates[0].upgrade.progress || 0;
@@ -1121,7 +1113,7 @@ g_SelectionPanels.Upgrade = {
 				}));
 
 			tooltips.push(
-				getEntityCostTooltip(data.item),
+				getEntityCostComponentsTooltipString(data.item, undefined, data.unitEntStates.length),
 				formatLimitString(limits.entLimit, limits.entCount, limits.entLimitChangers),
 				getRequiredTechnologyTooltip(technologyEnabled, data.item.requiredTechnology, GetSimState().players[data.player].civ),
 				getNeededResourcesTooltip(neededResources));
