@@ -258,9 +258,6 @@ g_SelectionPanels.Construction = {
 				"player": data.player
 			});
 
-		if (template.wallSet)
-			template.auras = GetTemplateData(template.wallSet.templates.long).auras;
-
 		data.button.onPress = function () { startBuildingPlacement(data.item, data.playerState); };
 
 		let tooltips = [

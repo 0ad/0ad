@@ -664,19 +664,20 @@ function getHealerTooltip(template)
 
 function getAurasTooltip(template)
 {
-	if (!template.auras)
+	let auras = template.auras || template.wallSet && GetTemplateData(template.wallSet.templates.long).auras;
+	if (!auras)
 		return "";
 
 	let tooltips = [];
-	for (let auraID in template.auras)
+	for (let auraID in auras)
 	{
 		let tooltip = sprintf(translate("%(auralabel)s %(aurainfo)s"), {
 			"auralabel": headerFont(sprintf(translate("%(auraname)s:"), {
-				"auraname": translate(template.auras[auraID].name)
+				"auraname": translate(auras[auraID].name)
 			})),
-			"aurainfo": bodyFont(translate(template.auras[auraID].description))
+			"aurainfo": bodyFont(translate(auras[auraID].description))
 		});
-		let radius = +template.auras[auraID].radius;
+		let radius = +auras[auraID].radius;
 		if (radius)
 			tooltip += " " + sprintf(translatePlural("%(label)s %(val)s %(unit)s", "%(label)s %(val)s %(unit)s", radius), {
 				"label": translateWithContext("aura", "Range:"),
