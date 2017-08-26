@@ -111,20 +111,19 @@ var g_SelectedGamePort = "";
 var g_Kicked = false;
 
 /**
- * Notifications sent by XmppClient.cpp
+ * Processing of notifications sent by XmppClient.cpp.
+ *
+ * @returns true if the playerlist GUI must be updated.
  */
 var g_NetMessageTypes = {
 	"system": {
 		// Three cases are handled in prelobby.js
-		"registered": msg => {
-		},
-		"connected": msg => {
-		},
+		"registered": msg => false,
+		"connected": msg => false,
 		"disconnected": msg => {
 
 			updateGameList();
 			updateLeaderboard();
-			updatePlayerList();
 
 			Engine.GetGUIObjectByName("chatInput").hidden = true;
 
@@ -138,6 +137,7 @@ var g_NetMessageTypes = {
 					"time": msg.time,
 					"text": translate("Disconnected.") + " " + msg.text
 				});
+			return true;
 		},
 		"error": msg => {
 			addChatMessage({
@@ -145,11 +145,13 @@ var g_NetMessageTypes = {
 				"time": msg.time,
 				"text": msg.text
 			});
+			return false;
 		}
 	},
 	"chat": {
 		"subject": msg => {
 			updateSubject(msg.text);
+			return false;
 		},
 		"join": msg => {
 			addChatMessage({
@@ -159,6 +161,7 @@ var g_NetMessageTypes = {
 				"time": msg.time,
 				"isSpecial": true
 			});
+			return true;
 		},
 		"leave": msg => {
 			addChatMessage({
@@ -171,9 +174,10 @@ var g_NetMessageTypes = {
 
 			if (msg.text == g_Username)
 				Engine.DisconnectXmppClient();
+
+			return true;
 		},
-		"presence": msg => {
-		},
+		"presence": msg => true,
 		"role": msg => {
 			Engine.GetGUIObjectByName("chatInput").hidden = Engine.LobbyGetPlayerRole(g_Username) == "visitor";
 
@@ -204,6 +208,8 @@ var g_NetMessageTypes = {
 
 			if (g_SelectedPlayer == msg.text)
 				updateUserRoleText(g_SelectedPlayer);
+
+			return false;
 		},
 		"nick": msg => {
 			addChatMessage({
@@ -214,12 +220,15 @@ var g_NetMessageTypes = {
 				"time": msg.time,
 				"isSpecial": true
 			});
+			return true;
 		},
 		"kicked": msg => {
 			handleKick(false, msg.text, msg.data || "", msg.time);
+			return true;
 		},
 		"banned": msg => {
 			handleKick(true, msg.text, msg.data || "", msg.time);
+			return true;
 		},
 		"room-message": msg => {
 			addChatMessage({
@@ -227,6 +236,7 @@ var g_NetMessageTypes = {
 				"text": escapeText(msg.text),
 				"time": msg.time
 			});
+			return false;
 		},
 		"private-message": msg => {
 			// Announcements and the Message of the Day are sent by the server directly
@@ -246,13 +256,25 @@ var g_NetMessageTypes = {
 					"time": msg.time,
 					"private" : true
 				});
+			return false;
 		}
 	},
 	"game": {
-		"gamelist": msg => updateGameList(),
-		"profile": msg => updateProfile(),
-		"leaderboard": msg => updateLeaderboard(),
-		"ratinglist": msg => updatePlayerList()
+		"gamelist": msg => {
+			updateGameList();
+			return false;
+		},
+		"profile": msg => {
+			updateProfile();
+			return false;
+		},
+		"leaderboard": msg => {
+			updateLeaderboard();
+			return false;
+		},
+		"ratinglist": msg => {
+			return true;
+		}
 	}
 };
 
@@ -1137,6 +1159,8 @@ function onTick()
 {
 	updateTimers();
 
+	let updateList = false;
+
 	while (true)
 	{
 		let msg = Engine.LobbyGuiPollMessage();
@@ -1153,13 +1177,15 @@ function onTick()
 			warn("Unrecognised message level: " + msg.level);
 			continue;
 		}
-		g_NetMessageTypes[msg.type][msg.level](msg);
 
-		// To improve performance, only update the playerlist GUI when
-		// the last update in the current stack is processed
-		if (msg.type == "chat" && Engine.LobbyGetMucMessageCount() == 0)
-			updatePlayerList();
+		if (g_NetMessageTypes[msg.type][msg.level](msg))
+			updateList = true;
 	}
+
+	// To improve performance, only update the playerlist GUI when
+	// the last update in the current stack is processed
+	if (updateList)
+		updatePlayerList();
 }
 
 /**

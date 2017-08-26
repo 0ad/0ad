@@ -412,7 +412,7 @@ Foundation.prototype.Build = function(builderEnt, work)
 
 		Engine.PostMessage(this.entity, MT_ConstructionFinished,
 			{ "entity": this.entity, "newentity": building });
-		Engine.BroadcastMessage(MT_EntityRenamed, { entity: this.entity, newentity: building });
+		Engine.PostMessage(this.entity, MT_EntityRenamed, { "entity": this.entity, "newentity": building });
 
 		Engine.DestroyEntity(this.entity);
 	}

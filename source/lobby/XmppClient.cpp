@@ -614,18 +614,6 @@ void XmppClient::ClearPresenceUpdates()
 }
 
 /**
- * Used in order to update the GUI only once when multiple updates are queued.
- */
-int XmppClient::GetMucMessageCount()
-{
-	return std::count_if(m_GuiMessageQueue.begin(), m_GuiMessageQueue.end(),
-		[](XmppClient::GUIMessage& message)
-		{
-			return message.type == L"chat";
-		});
-}
-
-/**
  * Handle a room message.
  */
 void XmppClient::handleMUCMessage(glooxwrapper::MUCRoom*, const glooxwrapper::Message& msg, bool priv)

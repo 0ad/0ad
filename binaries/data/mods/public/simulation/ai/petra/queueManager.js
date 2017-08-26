@@ -416,7 +416,7 @@ m.QueueManager.prototype.update = function(gameState)
 m.QueueManager.prototype.checkPausedQueues = function(gameState)
 {
 	let numWorkers = gameState.countOwnEntitiesAndQueuedWithRole("worker");
-	let workersMin = Math.min(Math.max(12, 24 * this.Config.popScaling), this.Config.Economy.popForTown);
+	let workersMin = Math.min(Math.max(12, 24 * this.Config.popScaling), this.Config.Economy.popPhase2);
 	for (let q in this.queues)
 	{
 		let toBePaused = false;

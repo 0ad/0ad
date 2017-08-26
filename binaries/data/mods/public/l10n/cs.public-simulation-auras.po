@@ -6,6 +6,7 @@
 # lynx121 <adam.ostruszka@seznam.cz>, 2016
 # Jaroslav Lichtblau <dragonlord@seznam.cz>, 2016
 # J D <jonas.dyba@gmail.com>, 2016
+# Marek Harok <kenturin@seznam.cz>, 2017
 # fri, 2016-2017
 # Petr Hála <halapetr@selfnet.cz>, 2016-2017
 # Robin Kriebel <kriebel.robin@gmail.com>, 2016-2017
@@ -13,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-08-12 17:08+0000\n"
-"Last-Translator: fri\n"
+"PO-Revision-Date: 2017-08-24 14:53+0000\n"
+"Last-Translator: Marek Harok <kenturin@seznam.cz>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -151,7 +152,7 @@ msgstr "Moudrost druidů"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "-20% research time for technologies of allies."
-msgstr ""
+msgstr "-20% času výzkumu pro technologie spojenců"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
@@ -229,7 +230,7 @@ msgstr "Inspirace"
 
 #: simulation/data/auras/units/female_inspiration.jsonauraDescription
 msgid "+10% build rate and gather rate for citizen soldiers."
-msgstr ""
+msgstr "+10% k rychlosti stavby a sběru pro vojáky."
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraName
 msgid "Economic Reforms"
@@ -622,7 +623,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_1.jsonauraName
 msgid "Imperialism"
-msgstr ""
+msgstr "Imperialismus"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_1.jsonauraDescription
 msgid "+10% territory effect for all buildings while he lives."
@@ -630,7 +631,7 @@ msgstr "+10% územní účinek pro všechny budovy po dobu jeho života."
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_2.jsonauraName
 msgid "Conqueror"
-msgstr ""
+msgstr "Dobyvatel"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_2.jsonauraDescription
 msgid "-50% garrisoned regeneration rate for enemy civic centers."
@@ -642,7 +643,7 @@ msgstr "Taxiarchès"
 
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraDescription
 msgid "+20% attack and +20% capture for pikemen."
-msgstr ""
+msgstr "+20% útok a +20% obsazování pro kopiníky."
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraName
 msgid "Besieger"
@@ -654,7 +655,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraName
 msgid "Rise of Macedon"
-msgstr ""
+msgstr "Vzestup Makedonie"
 
 #: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraDescription
 msgid "+20% attack and +2 capture for champion units."
@@ -671,7 +672,7 @@ msgstr "Všichni vojáci +20% na útoku, dokud Pyrrhos žije, ale také -15% na 
 
 #: simulation/data/auras/units/heroes/maur_hero_ashoka.jsonauraName
 msgid "Buddhism"
-msgstr ""
+msgstr "Buddhismus"
 
 #: simulation/data/auras/units/heroes/maur_hero_ashoka.jsonauraDescription
 msgid "Temples and temple technologies -50% cost, in resources and time."
@@ -679,7 +680,7 @@ msgstr "Všechny hráčovy chrámové technologie -50 % z ceny a výzkumného č
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraName
 msgid "Teacher"
-msgstr ""
+msgstr "Učitel"
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraDescription
 msgid ""
@@ -689,7 +690,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
 msgid "Regeneration"
-msgstr ""
+msgstr "Regenerace"
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraName
 msgid "Forefront Leader"
@@ -697,15 +698,15 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraDescription
 msgid "+20% attack and +1 capture for cavalry soldiers."
-msgstr ""
+msgstr "+20% k útoku a +1 bod obsazování pro jízdu"
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraName
 msgid "Leadership"
-msgstr ""
+msgstr "Vedení"
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraDescription
 msgid "+10% movement speed for all soldiers, siege engines and traders."
-msgstr ""
+msgstr "+10% rychlosti pohybu pro všechny vojáky, obléhací stroje a obchodníky."
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraName
 msgid "Administrator"
@@ -775,7 +776,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraName
 msgid "Shield of Rome"
-msgstr ""
+msgstr "Štít Říma."
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraDescription
 msgid "+2 armor for all units and structures."
@@ -799,11 +800,11 @@ msgstr "Veškerá jízda získá +2 úrovně všech typů brnění."
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.jsonauraName
 msgid "Renowned Conqueror"
-msgstr ""
+msgstr "Věhlasný dobyvatel"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.jsonauraDescription
 msgid "-20% health for enemy buildings, siege engines and ships."
-msgstr ""
+msgstr "-20% zdraví pro nepřátelské budovy, obléhací stroje a lodě"
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.jsonauraName
 msgid "Zooiarchos"
@@ -811,7 +812,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.jsonauraDescription
 msgid "+20% attack and movement speed for war elephants."
-msgstr ""
+msgstr "+20% k útoku a rychlosti pohybu pro válečné slony."
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraName
 msgid "Helot Reforms"
@@ -819,7 +820,7 @@ msgstr "Hélótské reformy"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
 msgid "+25% attack and +1 armor for javelin infantry soldiers."
-msgstr ""
+msgstr "+25% útok a +1 zbroje pro oštěpaře."
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
 msgid "Last Stand"

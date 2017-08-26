@@ -206,7 +206,7 @@ Mirage.prototype.OnVisibilityChanged = function(msg)
 	if (this.parent == INVALID_ENTITY)
 		Engine.DestroyEntity(this.entity);
 	else
-		Engine.BroadcastMessage(MT_EntityRenamed, { entity: this.entity, newentity: this.parent });
+		Engine.PostMessage(this.entity, MT_EntityRenamed, { "entity": this.entity, "newentity": this.parent });
 };
 
 Engine.RegisterComponentType(IID_Mirage, "Mirage", Mirage);

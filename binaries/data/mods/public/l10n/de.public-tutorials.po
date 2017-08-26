@@ -194,6 +194,7 @@ msgstr ""
 msgid ""
 "All your units are now gathering resources. We should train more units!\n"
 msgstr ""
+"Alle deine Einheiten sammeln jetzt Ressourcen. Wir sollten mehr ausbilden!\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:71
 msgid ""
@@ -204,11 +205,19 @@ msgid ""
 "select the Civic Center by clicking on it and then right-click on one of the"
 " trees.\n"
 msgstr ""
+"Setzen wir zuerst einen Sammelpunkt. Indem man einen Sammelpunkt bei einem "
+"Gebäude, das Einheiten ausbilden kann, setzt, wird automatisch allen "
+"ausgebildeten Einheiten ein Befehl gegeben. Wir wollen die neu ausgebildeten"
+" Einheiten in dem Hain südlich des Verwaltungssitzes Holz sammeln lassen. "
+"Wähle dafür den Verwaltungssitz aus, indem du darauf klickst, und klicke "
+"dann rechts auf einen der Bäume.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:72
 msgid ""
 "Rally-Points are indicated by a small flag at the end of the blue line."
 msgstr ""
+"Sammelpunkte werden mit einer kleinen Fahne am Ende der blauen Linie "
+"angezeigt."
 
 #: maps/tutorials/starting_economy_walkthrough.js:80
 msgid ""
@@ -223,6 +232,8 @@ msgid ""
 "Now that the rally-point is set, we can produce additional units and they "
 "will do their assigned task automatically.\n"
 msgstr ""
+"Jetzt, wo der Sammelpunkt gesetzt ist, können wir mehr Einheiten ausbilden "
+"und sie werden ihre zugewiesenen Aufgaben automatisch erledigen."
 
 #: maps/tutorials/starting_economy_walkthrough.js:90
 msgid ""
@@ -232,6 +243,12 @@ msgid ""
 " units individually by simply clicking, but training 5 units together takes "
 "less time than training 5 units individually."
 msgstr ""
+"Da Bürgersoldaten im Holzsammeln besser als Bürgerinnen sind, wähle den "
+"Verwaltungssitz aus, halte die Umschalttaste gedrückt und klicke auf das "
+"zweite Einheiten-Symbol, die Hopliten (Umschalt+Klick bildet fünf Einheiten "
+"auf einmal aus). Du kannst Einheiten auch mit einfachen Klicks einzeln "
+"ausbilden, aber 5 Einheiten auf einmal dauern weniger lange als sie einzeln "
+"auszubilden."
 
 #: maps/tutorials/starting_economy_walkthrough.js:100
 #: maps/tutorials/starting_economy_walkthrough.js:159
@@ -245,7 +262,7 @@ msgstr "Halte die Umschalttaste gedrückt und klicke auf das HOPLIT-Symbol."
 #: maps/tutorials/starting_economy_walkthrough.js:110
 #: maps/tutorials/starting_economy_walkthrough.js:169
 msgid "Let's wait for the units to be trained.\n"
-msgstr ""
+msgstr "Warten wir, bis die Einheiten fertig sind.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:111
 msgid ""
@@ -255,6 +272,11 @@ msgid ""
 "(or another dropsite), you will see the amount of the corresponding resource"
 " increase.\n"
 msgstr ""
+"Während wir warten, richte deine Aufmerksamkeit einmal auf das Feld oben auf"
+" deinem Bildschirm. Oben links siehst du deinen aktuellen Ressourcenvorrat "
+"(Nahrung, Holz, Stein und Metall). Wenn ein Arbeiter Ressourcen zum "
+"Verwaltungssitz bringt (oder zu einem anderen Lager), siehst du, wie sich "
+"der Wert der jeweiligen Ressource erhöht.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:112
 msgid ""
@@ -263,12 +285,18 @@ msgid ""
 " minimize the distance between resource and nearest dropsite to improve your"
 " gathering efficiency."
 msgstr ""
+"Es ist sehr wichtig zu beachten: Gesammelte Ressourcen müssen zu einem Lager"
+" gebracht werden, um gezählt zu werden, und du solltest immer versuchen, die"
+" Distanz zwischen der Ressource und dem nächsten Lager zu minimieren, um die"
+" Sammeleffizienz zu maximieren."
 
 #: maps/tutorials/starting_economy_walkthrough.js:121
 msgid ""
 "The newly trained units automatically go to the trees and start gathering "
 "Wood.\n"
 msgstr ""
+"Die neu ausgebildeten Einheiten bewegen sich automatisch zu den Bäumen und "
+"beginnen, Holz zu sammeln.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:122
 msgid ""
@@ -280,12 +308,19 @@ msgid ""
 "the mouse as close as possible to the trees you want to collect and click on"
 " a valid place to build the dropsite.\n"
 msgstr ""
+"Aber wenn sie es zurück zum Verwaltungssitz bringen, um es abzuladen, leidet"
+" die Sammeleffizienz wegen der Entfernung. Um das zu beheben, können wir bei"
+" den Bäumen ein Lagerhaus bauen, ein Lager für Holz, Stein und Metall. Wähle"
+" dazu deine fünf neu ausgebildeten Bürgersoldaten aus und schau auf das "
+"Baumenü rechts unten. Klicke auf das Lagerhaus-Symbol, bewege die Maus so "
+"nahe wie möglich zu den Bäumen, die du sammeln willst und klicke auf einen "
+"gültigen Platz, um das Lager zu bauen.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:123
 msgid ""
 "Invalid (obstructed) positions will show the building preview overlay in "
 "red."
-msgstr ""
+msgstr "Auf ungültigen (blockierten) Positionen wird die Gebäudevorschau rot."
 
 #: maps/tutorials/starting_economy_walkthrough.js:133
 msgid ""
@@ -300,12 +335,17 @@ msgid ""
 "When construction finishes, the builders default to gathering Wood "
 "automatically.\n"
 msgstr ""
+"Wenn der Bau fertig ist, beginnen die Arbeiter automatisch, Holz zu "
+"sammeln.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:145
 msgid ""
 "Let's train some female workers to gather more food. Select the Civic Center"
 " and shift-click on the female citizen icon to train 5."
 msgstr ""
+"Bilden wir noch ein paar Bürgerinnen aus, um mehr Nahrung zu sammeln. Wähle "
+"den Verwaltungssitz aus und Umschalt+Klick auf das Bürgerinnen-Symbol, um 5 "
+"auszubilden."
 
 #: maps/tutorials/starting_economy_walkthrough.js:160
 msgid "Shift-click on the FEMALE CITIZEN icon."
@@ -319,10 +359,15 @@ msgid ""
 " For that purpose, right-click on the Civic Center when it is selected (and "
 "the flag icon indicating the rally-point is crossed out)."
 msgstr ""
+"In der Zwischenzeit scheinen wir genug Arbeiter haben, die Holz abbauen. Wir"
+" sollten den derzeitigen Sammelpunkt des Verwaltungssitzes von dem Baum "
+"entfernen. Klicke dazu rechts auf den Verwaltungssitz, wenn er ausgewählt "
+"ist (und das Fahnensymbol, das anzeigt, dass der Sammelpunkt durchgestrichen"
+" ist)."
 
 #: maps/tutorials/starting_economy_walkthrough.js:184
 msgid "The units should be ready soon.\n"
-msgstr ""
+msgstr "Die Einheiten sollten bald bereit sein.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:185
 msgid ""

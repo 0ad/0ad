@@ -209,7 +209,7 @@ m.Worker.prototype.update = function(gameState, ent)
 		// okay so apparently we aren't working.
 		// Unless we've been explicitely told to keep our role, make us idle.
 		let target = gameState.getEntityById(ent.getMetadata(PlayerID, "target-foundation"));
-		if (!target || (target.foundationProgress() === undefined && target.needsRepair() === false))
+		if (!target || target.foundationProgress() === undefined && target.needsRepair() === false)
 		{
 			ent.setMetadata(PlayerID, "subrole", "idle");
 			ent.setMetadata(PlayerID, "target-foundation", undefined);

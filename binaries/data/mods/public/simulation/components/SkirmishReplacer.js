@@ -71,7 +71,7 @@ SkirmishReplacer.prototype.ReplaceEntities = function()
 	var cmpReplacementOwnership = Engine.QueryInterface(replacement, IID_Ownership);
 	cmpReplacementOwnership.SetOwner(cmpCurOwnership.GetOwner());
 
-	Engine.BroadcastMessage(MT_EntityRenamed, { "entity": this.entity, "newentity": replacement });
+	Engine.PostMessage(this.entity, MT_EntityRenamed, { "entity": this.entity, "newentity": replacement });
 	Engine.DestroyEntity(this.entity);
 };
 

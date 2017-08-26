@@ -40,7 +40,9 @@ m.Queue.prototype.check= function(gameState)
 	{
 		if (!this.plans[0].isInvalid(gameState))
 			return;
-		this.plans.shift();
+		let plan = this.plans.shift();
+		if (plan.queueToReset)
+			gameState.ai.queueManager.changePriority(plan.queueToReset, gameState.ai.Config.priorities[plan.queueToReset]);
 	}
 };
 

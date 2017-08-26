@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-21 09:04+0200\n"
-"PO-Revision-Date: 2017-08-21 16:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-08-24 02:43+0000\n"
+"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -278,7 +278,7 @@ msgstr[0] "奇觀（%(min)s 分鐘）"
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
 msgid_plural "Capture the Relic (%(min)s minutes)"
-msgstr[0] ""
+msgstr[0] "取得遺蹟（%(min)s 分鐘）"
 
 #: gui/common/gamedescription.js:260
 msgid "Relic Count"
@@ -1826,7 +1826,7 @@ msgstr "您可以自動向我們發送能幫我們修復臭蟲並改善效能和
 
 #: gui/pregame/mainmenu.xml:539
 msgid "Alpha XXIII: Ken Wood"
-msgstr ""
+msgstr "ALPHA XXIII : Ken Wood"
 
 #: gui/pregame/mainmenu.xml:541
 msgid ""
@@ -1902,7 +1902,7 @@ msgstr "Mod 選擇"
 
 #: gui/pregame/mainmenu.xml:(caption):456
 msgid "Learn to Play"
-msgstr ""
+msgstr "遊戲指南"
 
 #: gui/pregame/mainmenu.xml:(caption):501
 msgid "Tools & Options"
@@ -1926,7 +1926,7 @@ msgstr "回報臭蟲"
 
 #: gui/pregame/mainmenu.xml:(caption):587
 msgid "Translate the Game"
-msgstr ""
+msgstr "翻譯本遊戲"
 
 #: gui/pregame/mainmenu.xml:(caption):599
 msgid "Credits"
@@ -2731,7 +2731,7 @@ msgstr "陰影效果的數量。需要重新啟動遊戲"
 
 #: gui/options/options.jsongraphicsSetting[2].label
 msgid "Shader Effects"
-msgstr ""
+msgstr "陰影特效"
 
 #: gui/options/options.jsongraphicsSetting[3].tooltip
 msgid "Enable shadows"
@@ -2743,33 +2743,33 @@ msgstr "陰影"
 
 #: gui/options/options.jsongraphicsSetting[4].parameters.list[0].label
 msgid "Very Low"
-msgstr ""
+msgstr "非常低"
 
 #: gui/options/options.jsongraphicsSetting[4].parameters.list[1].label
 msgid "Low"
-msgstr ""
+msgstr "低"
 
 #: gui/options/options.jsongraphicsSetting[4].parameters.list[2].label
 msgid "Medium"
-msgstr ""
+msgstr "中"
 
 #: gui/options/options.jsongraphicsSetting[4].parameters.list[3].label
 msgid "High"
-msgstr ""
+msgstr "高"
 
 #: gui/options/options.jsongraphicsSetting[4].parameters.list[4].label
 msgid "Very High"
-msgstr ""
+msgstr "非常高"
 
 #: gui/options/options.jsongraphicsSetting[4].tooltip
 msgid ""
 "Shadow map resolution. High values can crash the game when using a graphics "
 "card with low memory!"
-msgstr ""
+msgstr "陰影解析度。太高的值可能會在使用較低記憶體顯示卡的時候讓您的遊戲當機！"
 
 #: gui/options/options.jsongraphicsSetting[4].label
 msgid "Shadow Quality"
-msgstr ""
+msgstr "陰影品質"
 
 #: gui/options/options.jsongraphicsSetting[5].tooltip
 msgid "Smooth shadows"
@@ -2803,7 +2803,7 @@ msgstr "當關閉時，儘可能使用最低階的設定來繪製水面。這將
 
 #: gui/options/options.jsongraphicsSetting[8].label
 msgid "Water Effects"
-msgstr ""
+msgstr "水面效果"
 
 #: gui/options/options.jsongraphicsSetting[9].tooltip
 msgid ""
@@ -2879,7 +2879,7 @@ msgstr "為了降低 CPU 負載，在所有選單中限制算繪頻率。設定�
 
 #: gui/options/options.jsongraphicsSetting[17].label
 msgid "FPS Throttling in Menus"
-msgstr ""
+msgstr "在選單中限制 FPS"
 
 #: gui/options/options.jsongraphicsSetting[18].tooltip
 msgid ""
@@ -2889,7 +2889,7 @@ msgstr "為了降低 CPU 負載，在遊戲中限制算繪頻率。設定為最�
 
 #: gui/options/options.jsongraphicsSetting[18].label
 msgid "FPS Throttling in Games"
-msgstr ""
+msgstr "在遊戲中限制 FPS"
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."

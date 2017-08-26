@@ -319,8 +319,6 @@ m.GameTypeManager.prototype.buildWonder = function(gameState, queues)
 	    !gameState.ai.HQ.canBuild(gameState, "structures/{civ}_wonder"))
 		return;
 
-	if (!queues.wonder)
-		gameState.ai.queueManager.addQueue("wonder", 1000);
 	queues.wonder.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_wonder"));
 };
 

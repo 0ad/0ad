@@ -85,6 +85,8 @@ m.Template = m.Class({
 			return 2;
 		if (techRequired === "phase_city")
 			return 3;
+		if (techRequired.startsWith("phase_"))
+			return 4;
 		return 0;
 	},
 

@@ -240,7 +240,7 @@ Health.prototype.Reduce = function(amount)
 			{
 				let resource = this.CreateCorpse(true);
 				if (resource != INVALID_ENTITY)
-					Engine.BroadcastMessage(MT_EntityRenamed, { entity: this.entity, newentity: resource });
+					Engine.PostMessage(this.entity, MT_EntityRenamed, { "entity": this.entity, "newentity": resource });
 			}
 
 			case "vanish":

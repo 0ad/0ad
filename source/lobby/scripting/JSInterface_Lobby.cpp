@@ -47,7 +47,6 @@ void JSI_Lobby::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, std::wstring, std::wstring, &JSI_Lobby::SendChangeStateGame>("SendChangeStateGame");
 	scriptInterface.RegisterFunction<JS::Value, &JSI_Lobby::GetPlayerList>("GetPlayerList");
 	scriptInterface.RegisterFunction<void, &JSI_Lobby::LobbyClearPresenceUpdates>("LobbyClearPresenceUpdates");
-	scriptInterface.RegisterFunction<int, &JSI_Lobby::LobbyGetMucMessageCount>("LobbyGetMucMessageCount");
 	scriptInterface.RegisterFunction<JS::Value, &JSI_Lobby::GetGameList>("GetGameList");
 	scriptInterface.RegisterFunction<JS::Value, &JSI_Lobby::GetBoardList>("GetBoardList");
 	scriptInterface.RegisterFunction<JS::Value, &JSI_Lobby::GetProfile>("GetProfile");
@@ -182,11 +181,6 @@ void JSI_Lobby::LobbyClearPresenceUpdates(ScriptInterface::CxPrivate* UNUSED(pCx
 		return;
 
 	g_XmppClient->ClearPresenceUpdates();
-}
-
-int JSI_Lobby::LobbyGetMucMessageCount(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-{
-	return g_XmppClient ? g_XmppClient->GetMucMessageCount() : 0;
 }
 
 JS::Value JSI_Lobby::GetGameList(ScriptInterface::CxPrivate* pCxPrivate)

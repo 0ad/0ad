@@ -46,7 +46,7 @@ m.GameState.prototype.init = function(SharedScript, state, player) {
 		}
 		for (let tech of techs)
 		{
-			let template = (this.getTemplate(tech))._template;
+			let template = this.getTemplate(tech)._template;
 			if (template.replaces && template.replaces.indexOf(phase.name) != -1)
 			{
 				let reqs = DeriveTechnologyRequirements(template, civ);
@@ -58,6 +58,17 @@ m.GameState.prototype.init = function(SharedScript, state, player) {
 				}
 			}
 		}
+	}
+	// Then check if this mod has an additionnal phase
+	for (let tech of techs)
+	{
+		let template = this.getTemplate(tech)._template;
+		if (!template.supersedes || template.supersedes != this.phases[2].name)
+			continue;
+		let reqs = DeriveTechnologyRequirements(template, civ);
+		if (reqs)
+			this.phases.push({ "name": tech, "requirements": reqs });
+		break;
 	}
 };
 
@@ -167,14 +178,14 @@ m.GameState.prototype.currentPhase = function()
 	return 0;
 };
 
-m.GameState.prototype.townPhase = function()
+m.GameState.prototype.getNumberOfPhases = function()
 {
-	return this.phases[1].name;
+	return this.phases.length;
 };
 
-m.GameState.prototype.cityPhase = function()
+m.GameState.prototype.getPhaseName = function(i)
 {
-	return this.phases[2].name;
+	return this.phases[i-1] ? this.phases[i-1].name : undefined;
 };
 
 m.GameState.prototype.getPhaseEntityRequirements = function(i)
@@ -224,7 +235,7 @@ m.GameState.prototype.canResearch = function(techTemplateName, noRequirementChec
 	    this.playerData.researchedTechs[techTemplateName])
 		return false;
 
-	if (noRequirementCheck === true)
+	if (noRequirementCheck)
 		return true;
 
 	// if this is a pair, we must check that the pair tech is not being researched
@@ -772,10 +783,12 @@ m.GameState.prototype.findAvailableTech = function()
 			if (this.canResearch(techs[1]._templateName))
 				ret.push([techs[1]._templateName, techs[1]] );
 		}
-		else
-			if (this.canResearch(tech) && template._templateName != this.townPhase() &&
-			                              template._templateName != this.cityPhase())
+		else if (this.canResearch(tech))
+		{
+			// Phases are treated separately
+			if (this.phases.every(phase => template._templateName != phase.name))
 				ret.push( [tech, template] );
+		}
 	}
 	return ret;
 };
@@ -877,6 +890,33 @@ m.GameState.prototype.findResearchers = function(templateName, noRequirementChec
 		}
 		return false;
 	});
+};
+
+/**
+ * Get any buildable structure with a given class
+ * TODO when several available, choose the best one
+ */
+m.GameState.prototype.findStructureWithClass = function(classes)
+{
+	let entTemplates = new Set();
+	for (let ent of this.getOwnUnits().values())
+	{
+		if (entTemplates.has(ent.templateName()))
+			continue;
+		let buildables = ent.buildableEntities();
+		for (let buildable of buildables)
+		{
+			if (this.isTemplateDisabled(buildable))
+				continue;
+			let template = this.getTemplate(buildable);
+			if (!template || !template.available(this))
+				continue;
+			if (MatchesClassList(template.classes(), classes))
+				return buildable;
+		}
+		entTemplates.add(ent.templateName());
+	}
+	return undefined;
 };
 
 m.GameState.prototype.getEntityLimits = function()

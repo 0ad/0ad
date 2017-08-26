@@ -17,22 +17,25 @@ m.ResearchManager.prototype.checkPhase = function(gameState, queues)
 {
 	if (queues.majorTech.hasQueuedUnits())
 		return;
+	// Don't try to phase up if already trying to gather resources for a civil-centre or wonder
+	if (queues.civilCentre.hasQueuedUnits() || queues.wonder.hasQueuedUnits())
+		return;
 
-	let townPhase = gameState.townPhase();
-	let cityPhase = gameState.cityPhase();
+	let currentPhaseIndex = gameState.currentPhase();
+	let nextPhaseName = gameState.getPhaseName(currentPhaseIndex+1);
+	if (!nextPhaseName)
+		return;
 
-	if (gameState.canResearch(townPhase,true) && gameState.getPopulation() >= this.Config.Economy.popForTown - 10 &&
-		gameState.hasResearchers(townPhase, true))
+	let petraRequirements =
+		currentPhaseIndex == 1 && gameState.getPopulation() >= this.Config.Economy.popPhase2 ||
+		currentPhaseIndex == 2 && gameState.getOwnEntitiesByRole("worker", true).length > this.Config.Economy.workPhase3 ||
+		currentPhaseIndex >= 3 && gameState.getOwnEntitiesByRole("worker", true).length > this.Config.Economy.workPhase4;
+	if (petraRequirements && gameState.hasResearchers(nextPhaseName, true))
 	{
-		let plan = new m.ResearchPlan(gameState, townPhase, true);
-		queues.majorTech.addPlan(plan);
-	}
-	else if (gameState.canResearch(cityPhase,true) && gameState.ai.elapsedTime > this.Config.Economy.cityPhase &&
-			gameState.getOwnEntitiesByRole("worker", true).length > this.Config.Economy.workForCity &&
-			gameState.hasResearchers(cityPhase, true) && !queues.civilCentre.hasQueuedUnits())
-	{
-		let plan = new m.ResearchPlan(gameState, cityPhase, true);
-		queues.majorTech.addPlan(plan);
+		gameState.ai.HQ.phasing = currentPhaseIndex + 1;
+		// Reset the queue priority in case it was changed during a previous phase update
+		gameState.ai.queueManager.changePriority("majorTech", gameState.ai.Config.priorities.majorTech);
+		queues.majorTech.addPlan(new m.ResearchPlan(gameState, nextPhaseName, true));
 	}
 };
 
