@@ -1,4 +1,14 @@
 /**
+ * Array of structure template names when given a civ and a phase name.
+ */
+var g_BuildList = {};
+
+/**
+ * Array of template names that can be trained from a unit, given a civ and unit template name.  
+ */
+var g_TrainList = {};
+
+/**
  * Initialize the page
  *
  * @param {object} data - Parameters passed from the code that calls this page into existence.
@@ -47,7 +57,7 @@ function selectCiv(civCode)
 	g_CurrentModifiers = deriveModifications(g_AutoResearchTechList);
 
 	// If a buildList already exists, then this civ has already been parsed
-	if (g_CivData[g_SelectedCiv].buildList)
+	if (g_BuildList[g_SelectedCiv])
 	{
 		draw();
 		drawPhaseIcons();
@@ -168,8 +178,8 @@ function selectCiv(civCode)
 		trainerList.push(unitCode);
 	}
 
-	g_CivData[g_SelectedCiv].buildList = buildList;
-	g_CivData[g_SelectedCiv].trainList = trainerList;
+	g_BuildList[g_SelectedCiv] = buildList;
+	g_TrainList[g_SelectedCiv] = trainerList;
 
 	draw();
 	drawPhaseIcons();

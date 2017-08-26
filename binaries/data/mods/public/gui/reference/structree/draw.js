@@ -26,7 +26,7 @@ function draw()
 		let s = 0;
 		let y = 0;
 
-		for (let stru of g_CivData[g_SelectedCiv].buildList[pha])
+		for (let stru of g_BuildList[g_SelectedCiv][pha])
 		{
 			let thisEle = Engine.GetGUIObjectByName("phase["+i+"]_struct["+s+"]");
 			if (thisEle === undefined)
@@ -143,7 +143,7 @@ function draw()
 	}
 
 	let t = 0;
-	for (let trainer of g_CivData[g_SelectedCiv].trainList)
+	for (let trainer of g_TrainList[g_SelectedCiv])
 	{
 		let thisEle = Engine.GetGUIObjectByName("trainer["+t+"]");
 		if (thisEle === undefined)
