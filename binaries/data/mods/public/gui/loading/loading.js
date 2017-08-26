@@ -1,5 +1,5 @@
-let g_Data;
-const g_EndPieceWidth = 16;
+var g_Data;
+var g_EndPieceWidth = 16;
 
 function init(data)
 {

@@ -1,7 +1,7 @@
 /**
  * Number of milliseconds to display network warnings.
  */
-const g_NetworkWarningTimeout = 3000;
+var g_NetworkWarningTimeout = 3000;
 
 /**
  * Currently displayed network warnings. At most one message per user.

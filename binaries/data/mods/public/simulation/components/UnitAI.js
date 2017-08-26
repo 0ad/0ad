@@ -5638,7 +5638,7 @@ UnitAI.prototype.GetTargetsFromUnit = function()
 	if (!cmpAttack)
 		return [];
 
-	const attackfilter = function(e) {
+	var attackfilter = function(e) {
 		var cmpOwnership = Engine.QueryInterface(e, IID_Ownership);
 		if (cmpOwnership && cmpOwnership.GetOwner() > 0)
 			return true;
@@ -6057,7 +6057,7 @@ UnitAI.prototype.AttackEntitiesByPreference = function(ents)
 	if (!cmpAttack)
 		return false;
 
-	const attackfilter = function(e) {
+	var attackfilter = function(e) {
 		var cmpOwnership = Engine.QueryInterface(e, IID_Ownership);
 		if (cmpOwnership && cmpOwnership.GetOwner() > 0)
 			return true;

@@ -1928,7 +1928,7 @@ function updateGUIObjects()
 
 function rightAlignCancelButton()
 {
-	const offset = 10;
+	let offset = 10;
 
 	let startGame = Engine.GetGUIObjectByName("startGame");
 	let right = startGame.hidden ? startGame.size.right : startGame.size.left - offset;

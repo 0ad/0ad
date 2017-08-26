@@ -740,9 +740,8 @@ function getLootTooltip(template)
 			template.trader && template.trader.goods
 		);
 
-	const lootTypes = g_ResourceData.GetCodes().concat(["xp"]);
 	let lootLabels = [];
-	for (let type of lootTypes)
+	for (let type of g_ResourceData.GetCodes().concat(["xp"]))
 	{
 		let loot =
 			(template.loot && template.loot[type] || 0) +

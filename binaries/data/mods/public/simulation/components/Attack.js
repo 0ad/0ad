@@ -281,11 +281,11 @@ Attack.prototype.CanAttack = function(target, wantedTypes)
  */
 Attack.prototype.GetPreference = function(target)
 {
-	const cmpIdentity = Engine.QueryInterface(target, IID_Identity);
+	let cmpIdentity = Engine.QueryInterface(target, IID_Identity);
 	if (!cmpIdentity)
 		return undefined;
 
-	const targetClasses = cmpIdentity.GetClassesList();
+	let targetClasses = cmpIdentity.GetClassesList();
 
 	let minPref = null;
 	for (let type of this.GetAttackTypes())

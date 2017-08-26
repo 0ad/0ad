@@ -9,9 +9,9 @@ function draw()
 	if (!Object.keys(g_DrawLimits).length)
 		predraw();
 
-	const leftMargin = Engine.GetGUIObjectByName("tree_display").size.left;
-	const defWidth = 96;
-	const defMargin = 4;
+	let leftMargin = Engine.GetGUIObjectByName("tree_display").size.left;
+	let defWidth = 96;
+	let defMargin = 4;
 
 	let phaseList = g_ParsedData.phaseList;
 

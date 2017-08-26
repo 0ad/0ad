@@ -11,7 +11,7 @@ const g_MapTypes = prepareForDropdown(g_Settings && g_Settings.MapTypes);
 /**
  * A symbol which is prepended to the username of moderators.
  */
-const g_ModeratorPrefix = "@";
+var g_ModeratorPrefix = "@";
 
 /**
  * Current username. Cannot contain whitespace.
@@ -26,7 +26,7 @@ const g_LobbyServer = Engine.ConfigDB_GetValue("user", "lobby.server");
 /**
  * Current games will be listed in these colors.
  */
-const g_GameColors = {
+var g_GameColors = {
 	"init": "0 219 0",
 	"waiting": "255 127 0",
 	"running": "219 0 0"
@@ -35,12 +35,12 @@ const g_GameColors = {
 /**
  * Initial sorting order of the gamelist.
  */
-const g_GameStatusOrder = ["init", "waiting", "running"];
+var g_GameStatusOrder = ["init", "waiting", "running"];
 
 /**
  * The playerlist will be assembled using these values.
  */
-const g_PlayerStatuses = {
+var g_PlayerStatuses = {
 	"available": { "color": "0 219 0",     "status": translate("Online") },
 	"away":      { "color": "229 76 13",   "status": translate("Away") },
 	"playing":   { "color": "200 0 0",     "status": translate("Busy") },
@@ -48,7 +48,7 @@ const g_PlayerStatuses = {
 	"unknown":   { "color": "178 178 178", "status": translateWithContext("lobby presence", "Unknown") }
 };
 
-const g_RoleNames = {
+ var g_RoleNames = {
 	"moderator": translate("Moderator"),
 	"participant": translate("Player"),
 	"visitor": translate("Muted Player")
@@ -57,22 +57,22 @@ const g_RoleNames = {
 /**
  * Color for error messages in the chat.
  */
-const g_SystemColor = "150 0 0";
+var g_SystemColor = "150 0 0";
 
 /**
  * Color for private messages in the chat.
  */
-const g_PrivateMessageColor = "0 150 0";
+var g_PrivateMessageColor = "0 150 0";
 
 /**
  * Used for highlighting the sender of chat messages.
  */
-const g_SenderFont = "sans-bold-13";
+var g_SenderFont = "sans-bold-13";
 
 /**
  * Color to highlight chat commands in the explanation.
  */
-const g_ChatCommandColor = "200 200 255";
+var g_ChatCommandColor = "200 200 255";
 
 /**
  * All chat messages received since init (i.e. after lobby join and after returning from a game).

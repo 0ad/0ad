@@ -1,7 +1,5 @@
-var userReportEnabledText; // contains the original version with "$status" placeholder
 var currentSubmenuType; // contains submenu type
-const MARGIN = 4; // menu border size
-
+var MARGIN = 4; // menu border size
 var g_ShowSplashScreens;
 
 /**
@@ -23,8 +21,6 @@ function init(initData, hotloadData)
 
 	global.music.setState(global.music.states.MENU);
 
-	userReportEnabledText = Engine.GetGUIObjectByName("userReportEnabledText").caption;
-
 	// Initialize currentSubmenuType with placeholder to avoid null when switching
 	currentSubmenuType = "submenuSinglePlayer";
 
@@ -37,7 +33,7 @@ function init(initData, hotloadData)
 	g_BackgroundLayerset = pickRandom(g_BackgroundLayerData);
 	for (let i = 0; i < g_BackgroundLayerset.length; ++i)
 	{
-		var guiObj = Engine.GetGUIObjectByName("background["+i+"]");
+		let guiObj = Engine.GetGUIObjectByName("background["+i+"]");
 		guiObj.hidden = false;
 		guiObj.sprite = g_BackgroundLayerset[i].sprite;
 		guiObj.z = i;
@@ -53,18 +49,18 @@ function scrollBackgrounds()
 {
 	for (let i = 0; i < g_BackgroundLayerset.length; ++i)
 	{
-		var guiObj = Engine.GetGUIObjectByName("background["+i+"]");
+		let guiObj = Engine.GetGUIObjectByName("background["+i+"]");
 
-		var screen = guiObj.parent.getComputedSize();
-		var h = screen.bottom - screen.top;
-		var w = h * 16/9;
-		var iw = h * 2;
+		let screen = guiObj.parent.getComputedSize();
+		let h = screen.bottom - screen.top;
+		let w = h * 16/9;
+		let iw = h * 2;
 
-		var time = (Date.now() - g_T0) / 1000;
-		var offset = g_BackgroundLayerset[i].offset(time, w);
+		let offset = g_BackgroundLayerset[i].offset((Date.now() - g_T0) / 1000, w);
+
 		if (g_BackgroundLayerset[i].tiling)
 		{
-			var left = offset % iw;
+			let left = offset % iw;
 			if (left >= 0)
 				left -= iw;
 			guiObj.size = new GUISize(left, screen.top, screen.right, screen.bottom);
@@ -76,16 +72,15 @@ function scrollBackgrounds()
 
 function submitUserReportMessage()
 {
-	var input = Engine.GetGUIObjectByName("userReportMessageInput");
-	var msg = input.caption;
-	if (msg.length)
-		Engine.SubmitUserReport("message", 1, msg);
+	let input = Engine.GetGUIObjectByName("userReportMessageInput");
+	if (input.caption.length)
+		Engine.SubmitUserReport("message", 1, input.caption);
 	input.caption = "";
 }
 
 function formatUserReportStatus(status)
 {
-	var d = status.split(/:/, 3);
+	let d = status.split(/:/, 3);
 
 	if (d[0] == "disabled")
 		return translate("disabled");
@@ -98,7 +93,7 @@ function formatUserReportStatus(status)
 
 	if (d[0] == "completed")
 	{
-		var httpCode = d[1];
+		let httpCode = d[1];
 		if (httpCode == 200)
 			return translate("upload succeeded");
 		else
@@ -182,18 +177,18 @@ function EnableUserReport(Enabled)
  */
 function updateMenuPosition(dt)
 {
-	var submenu = Engine.GetGUIObjectByName("submenu");
+	let submenu = Engine.GetGUIObjectByName("submenu");
 
 	if (submenu.hidden == false)
 	{
 		// Number of pixels per millisecond to move
-		const SPEED = 1.2;
+		let SPEED = 1.2;
 
-		var maxOffset = Engine.GetGUIObjectByName("mainMenu").size.right - submenu.size.left;
+		let maxOffset = Engine.GetGUIObjectByName("mainMenu").size.right - submenu.size.left;
 		if (maxOffset > 0)
 		{
-			var offset = Math.min(SPEED * dt, maxOffset);
-			var size = submenu.size;
+			let offset = Math.min(SPEED * dt, maxOffset);
+			let size = submenu.size;
 			size.left += offset;
 			size.right += offset;
 			submenu.size = size;
@@ -209,22 +204,22 @@ function openMenu(newSubmenu, position, buttonHeight, numButtons)
 	currentSubmenuType = newSubmenu;
 	Engine.GetGUIObjectByName(currentSubmenuType).hidden = false;
 
-	var submenu = Engine.GetGUIObjectByName("submenu");
-	var top = position - MARGIN;
-	var bottom = position + ((buttonHeight + MARGIN) * numButtons);
+	let submenu = Engine.GetGUIObjectByName("submenu");
+	let top = position - MARGIN;
+	let bottom = position + ((buttonHeight + MARGIN) * numButtons);
 	submenu.size = new GUISize(submenu.size.left, top, submenu.size.right, bottom);
 
 	// Blend in right border of main menu into the left border of the submenu
 	blendSubmenuIntoMain(top, bottom);
 
-	Engine.GetGUIObjectByName("submenu").hidden = false;
+	submenu.hidden = false;
 }
 
 function closeMenu()
 {
 	Engine.GetGUIObjectByName(currentSubmenuType).hidden = true;
 
-	var submenu = Engine.GetGUIObjectByName("submenu");
+	let submenu = Engine.GetGUIObjectByName("submenu");
 	submenu.hidden = true;
 	submenu.size = Engine.GetGUIObjectByName("mainMenu").size;
 
@@ -236,11 +231,8 @@ function closeMenu()
  */
 function blendSubmenuIntoMain(topPosition, bottomPosition)
 {
-	var topSprite = Engine.GetGUIObjectByName("MainMenuPanelRightBorderTop");
-	topSprite.size = "100%-2 0 100% " + (topPosition + MARGIN);
-
-	var bottomSprite = Engine.GetGUIObjectByName("MainMenuPanelRightBorderBottom");
-	bottomSprite.size = "100%-2 " + (bottomPosition) + " 100% 100%";
+	Engine.GetGUIObjectByName("MainMenuPanelRightBorderTop").size = "100%-2 0 100% " + (topPosition + MARGIN);
+	Engine.GetGUIObjectByName("MainMenuPanelRightBorderBottom").size = "100%-2 " + (bottomPosition) + " 100% 100%";
 }
 
 function getBuildString()
