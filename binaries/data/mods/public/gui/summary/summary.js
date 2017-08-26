@@ -1,3 +1,5 @@
+const g_CivData = loadCivData(false, false);
+
 const g_MaxHeadingTitle= 9;
 
 // const for filtering long collective headings
@@ -97,9 +99,11 @@ var g_SummaryTypes = {
 	}
 };
 
-const g_InfinitySymbol = "\u221E";
+/**
+ * Translation: Unicode encoded infinity symbol indicating a division by zero in the summary screen.
+ */
+var g_InfinitySymbol = translate("\u221E");
 
-var g_CivData = loadCivData();
 var g_Teams = [];
 
 // TODO set g_PlayerCount as playerCounters.length

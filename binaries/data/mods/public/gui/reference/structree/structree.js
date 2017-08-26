@@ -18,8 +18,6 @@ function init(data = {})
 	if (data.callback)
 		g_CallbackSet = true;
 
-	init_civs();
-
 	let civList = Object.keys(g_CivData).map(civ => ({
 		"name": g_CivData[civ].Name,
 		"code": civ,

@@ -1,14 +1,6 @@
 var g_SelectedCiv = "";
 var g_CallbackSet = false;
 
-/**
- * Initialises civ data. Not done automatically in case a page doesn't want it.
- */
-function init_civs()
-{
-	g_CivData = loadCivData(true);
-}
-
 function closePage()
 {
 	if (g_CallbackSet)

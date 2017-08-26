@@ -1,5 +1,7 @@
 const g_IsReplay = Engine.IsVisualReplay();
 
+const g_CivData = loadCivData(false, true);
+
 const g_Ceasefire = prepareForDropdown(g_Settings && g_Settings.Ceasefire);
 const g_GameSpeeds = prepareForDropdown(g_Settings && g_Settings.GameSpeeds.filter(speed => !speed.ReplayOnly || g_IsReplay));
 const g_MapSizes = prepareForDropdown(g_Settings && g_Settings.MapSizes);
@@ -102,11 +104,6 @@ var g_LastTickTime = Date.now();
  * Recalculate which units have their status bars shown with this frequency in milliseconds.
  */
 const g_StatusBarUpdate = 200;
-
-/**
- * Not constant as we add "gaia".
- */
-var g_CivData = {};
 
 /**
  * For restoring selection, order and filters when returning to the replay menu
@@ -276,9 +273,6 @@ function init(initData, hotloadData)
 	}
 
 	updatePlayerData();
-
-	g_CivData = loadCivData();
-	g_CivData.gaia = { "Code": "gaia", "Name": translate("Gaia") };
 
 	g_BarterSell = g_ResourceData.GetCodes()[0];
 
