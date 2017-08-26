@@ -592,9 +592,10 @@ g_SelectionPanels.Queue = {
 			{
 				if (!state.production || !state.production.queue[i])
 					continue;
-				let item = state.production.queue[i];
-				item.producingEnt = state.id;
-				queue.push(item);
+				queue.push({
+					"producingEnt": state.id,
+					"queuedItem": state.production.queue[i]
+				});
 				foundNew = true;
 			}
 		}
@@ -612,40 +613,45 @@ g_SelectionPanels.Queue = {
 	},
 	"setupButton": function(data)
 	{
+		let queuedItem = data.item.queuedItem;
+
 		// Differentiate between units and techs
 		let template;
-		if (data.item.unitTemplate)
-			template = GetTemplateData(data.item.unitTemplate);
-		else if (data.item.technologyTemplate)
-			template = GetTechnologyData(data.item.technologyTemplate);
-
-		if (!template)
+		if (queuedItem.unitTemplate)
+			template = GetTemplateData(queuedItem.unitTemplate);
+		else if (queuedItem.technologyTemplate)
+			template = GetTechnologyData(queuedItem.technologyTemplate);
+		else
+		{
+			warning("Unknown production queue template " + uneval(queuedItem));
 			return false;
+		}
 
-		data.button.onPress = function() { removeFromProductionQueue(data.item.producingEnt, data.item.id); };
+		data.button.onPress = function() { removeFromProductionQueue(data.item.producingEnt, queuedItem.id); };
 
 		let tooltip = getEntityNames(template);
-		if (data.item.neededSlots)
+		if (queuedItem.neededSlots)
 		{
 			tooltip += "\n[color=\"red\"]" + translate("Insufficient population capacity:") + "\n[/color]";
 			tooltip += sprintf(translate("%(population)s %(neededSlots)s"), {
 				"population": resourceIcon("population"),
-				"neededSlots": data.item.neededSlots
+				"neededSlots": queuedItem.neededSlots
 			});
 		}
 		data.button.tooltip = tooltip;
 
-		data.countDisplay.caption = data.item.count > 1 ? data.item.count : "";
+		data.countDisplay.caption = queuedItem.count > 1 ? queuedItem.count : "";
 
 		// Show the time remaining to finish the first item
 		if (data.i == 0)
-			Engine.GetGUIObjectByName("queueTimeRemaining").caption = Engine.FormatMillisecondsIntoDateStringGMT(data.item.timeRemaining, translateWithContext("countdown format", "m:ss"));
+			Engine.GetGUIObjectByName("queueTimeRemaining").caption =
+				Engine.FormatMillisecondsIntoDateStringGMT(queuedItem.timeRemaining, translateWithContext("countdown format", "m:ss"));
 
 		let guiObject = Engine.GetGUIObjectByName("unitQueueProgressSlider["+data.i+"]");
 		let size = guiObject.size;
 
 		// Buttons are assumed to be square, so left/right offsets can be used for top/bottom.
-		size.top = size.left + Math.round(data.item.progress * (size.right - size.left));
+		size.top = size.left + Math.round(queuedItem.progress * (size.right - size.left));
 		guiObject.size = size;
 
 		if (template.icon)
