@@ -681,8 +681,7 @@ GuiInterface.prototype.GetTechnologyData = function(player, data)
 		return null;
 	}
 
-	let cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
-	return GetTechnologyDataHelper(template, data.civ || cmpPlayer.GetCiv(), Resources);
+	return GetTechnologyDataHelper(template, data.civ, Resources);
 };
 
 GuiInterface.prototype.IsTechnologyResearched = function(player, data)

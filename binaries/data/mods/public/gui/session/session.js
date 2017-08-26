@@ -142,12 +142,13 @@ var g_ShowAllStatusBars = false;
 var g_IsTrainingBlocked = false;
 
 /**
- * Cache simulation state (updated on every simulation update).
+ * Cache of simulation state and template data (apart from TechnologyData, updated on every simulation update).
  */
 var g_SimState;
 var g_EntityStates = {};
 var g_TemplateData = {};
 var g_TechnologyData = {};
+
 var g_ResourceData = new Resources();
 
 /**
@@ -799,15 +800,14 @@ function updateIdleWorkerButton()
 	else if (idleWorkerButton.sprite != prefix + "minimap-idle-highlight.png")
 		idleWorkerButton.sprite = prefix + "minimap-idle.png";
 }
-
 function onSimulationUpdate()
 {
+	// Templates change depending on technologies and auras, so they have to be reloaded every turn.
+	// g_TechnologyData data never changes, so it shouldn't be deleted.
 	g_EntityStates = {};
 	g_TemplateData = {};
-	g_TechnologyData = {};
 
 	g_SimState = Engine.GuiInterfaceCall("GetSimulationState");
-
 	if (!g_SimState)
 		return;
 
@@ -1231,7 +1231,7 @@ function updateResearchDisplay()
 		if (numButtons >= 10)
 			break;
 
-		let template = GetTechnologyData(tech);
+		let template = GetTechnologyData(tech, g_Players[g_ViewedPlayer].civ);
 		let button = Engine.GetGUIObjectByName("researchStartedButton[" + numButtons + "]");
 		button.hidden = false;
 		button.tooltip = getEntityNames(template);
