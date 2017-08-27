@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -173,55 +173,61 @@ END_EVENT_TABLE();
 TerrainSidebar::TerrainSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContainer, wxWindow* bottomBarContainer) :
 	Sidebar(scenarioEditor, sidebarContainer, bottomBarContainer)
 {
+	wxSizer* scrollSizer = new wxBoxSizer(wxVERTICAL);
+	wxScrolledWindow* scrolledWindow = new wxScrolledWindow(this);
+	scrolledWindow->SetScrollRate(10, 10);
+	scrolledWindow->SetSizer(scrollSizer);
+	m_MainSizer->Add(scrolledWindow, wxSizerFlags().Proportion(1).Expand());
+
 	{
 		/////////////////////////////////////////////////////////////////////////
 		// Terrain elevation
-		wxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Elevation tools"));
+		wxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, scrolledWindow, _("Elevation tools"));
 		wxSizer* gridSizer = new wxGridSizer(4);
-		gridSizer->Add(Tooltipped(new ToolButton(scenarioEditor.GetToolManager(), this, _("Modify"), _T("AlterElevation")),
+		gridSizer->Add(Tooltipped(new ToolButton(scenarioEditor.GetToolManager(), scrolledWindow, _("Modify"), _T("AlterElevation"), wxSize(48, -1)),
 			_("Brush with left mouse buttons to raise terrain,\nright mouse button to lower it")), wxSizerFlags().Expand());
-		gridSizer->Add(Tooltipped(new ToolButton(scenarioEditor.GetToolManager(), this, _("Ridge"), _T("PikeElevation")),
+		gridSizer->Add(Tooltipped(new ToolButton(scenarioEditor.GetToolManager(), scrolledWindow, _("Ridge"), _T("PikeElevation"), wxSize(48, -1)),
 			_("Brush with left mouse buttons to raise terrain,\nright mouse button to lower it")), wxSizerFlags().Expand());
-		gridSizer->Add(Tooltipped(new ToolButton(scenarioEditor.GetToolManager(), this, _("Smooth"), _T("SmoothElevation")),
+		gridSizer->Add(Tooltipped(new ToolButton(scenarioEditor.GetToolManager(), scrolledWindow, _("Smooth"), _T("SmoothElevation"), wxSize(48, -1)),
 			_("Brush with left mouse button to smooth terrain,\nright mouse button to roughen it")), wxSizerFlags().Expand());
-		gridSizer->Add(Tooltipped(new ToolButton(scenarioEditor.GetToolManager(), this, _("Flatten"), _T("FlattenElevation")),
+		gridSizer->Add(Tooltipped(new ToolButton(scenarioEditor.GetToolManager(), scrolledWindow, _("Flatten"), _T("FlattenElevation"), wxSize(48, -1)),
 			_("Brush with left mouse button to flatten terrain")), wxSizerFlags().Expand());
 		sizer->Add(gridSizer, wxSizerFlags().Expand());
-		m_MainSizer->Add(sizer, wxSizerFlags().Expand().Border(wxTOP, 10));
+		scrollSizer->Add(sizer, wxSizerFlags().Expand().Border(wxTOP, 10));
 	}
 
 	{
 		/////////////////////////////////////////////////////////////////////////
 		// Terrain texture
-		wxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Texture tools"));
+		wxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, scrolledWindow, _("Texture tools"));
 		wxSizer* gridSizer = new wxGridSizer(3);
-		gridSizer->Add(Tooltipped(new ToolButton(scenarioEditor.GetToolManager(), this, _("Paint"), _T("PaintTerrain")),
+		gridSizer->Add(Tooltipped(new ToolButton(scenarioEditor.GetToolManager(), scrolledWindow, _("Paint"), _T("PaintTerrain"), wxSize(48, -1)),
 			_("Brush with left mouse button to paint texture dominantly,\nright mouse button to paint submissively.\nShift-left-click for eyedropper tool")), wxSizerFlags().Expand());
-		gridSizer->Add(Tooltipped(new ToolButton(scenarioEditor.GetToolManager(), this, _("Replace"), _T("ReplaceTerrain")),
+		gridSizer->Add(Tooltipped(new ToolButton(scenarioEditor.GetToolManager(), scrolledWindow, _("Replace"), _T("ReplaceTerrain"), wxSize(48, -1)),
 			_("Replace all of a terrain texture with a new one")), wxSizerFlags().Expand());
-		gridSizer->Add(Tooltipped(new ToolButton(scenarioEditor.GetToolManager(), this, _("Fill"), _T("FillTerrain")),
+		gridSizer->Add(Tooltipped(new ToolButton(scenarioEditor.GetToolManager(), scrolledWindow, _("Fill"), _T("FillTerrain"), wxSize(48, -1)),
 			_T("Bucket fill a patch of terrain texture with a new one")), wxSizerFlags().Expand());
 		sizer->Add(gridSizer, wxSizerFlags().Expand());
-		m_MainSizer->Add(sizer, wxSizerFlags().Expand().Border(wxTOP, 10));
+		scrollSizer->Add(sizer, wxSizerFlags().Expand().Border(wxTOP, 10));
 	}
 
 	{
 		/////////////////////////////////////////////////////////////////////////
 		// Brush settings
-		wxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Brush"));
+		wxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, scrolledWindow, _("Brush"));
 
-		m_TexturePreview = new TexturePreviewPanel(this);
+		m_TexturePreview = new TexturePreviewPanel(scrolledWindow);
 		sizer->Add(m_TexturePreview, wxSizerFlags(1).Expand());
 
-		g_Brush_Elevation.CreateUI(this, sizer);
-		m_MainSizer->Add(sizer, wxSizerFlags().Expand().Border(wxTOP, 10));
+		g_Brush_Elevation.CreateUI(scrolledWindow, sizer);
+		scrollSizer->Add(sizer, wxSizerFlags().Expand().Border(wxTOP, 10));
 	}
 
 	{
 		/////////////////////////////////////////////////////////////////////////
 		// Visualise
-		wxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Visualise"));
-		m_MainSizer->Add(sizer, wxSizerFlags().Expand().Border(wxTOP, 10));
+		wxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, scrolledWindow, _("Visualise"));
+		scrollSizer->Add(sizer, wxSizerFlags().Expand().Border(wxTOP, 10));
 
 		wxFlexGridSizer* visSizer = new wxFlexGridSizer(2, 5, 5);
 		visSizer->AddGrowableCol(1);
@@ -229,24 +235,24 @@ TerrainSidebar::TerrainSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebar
 
 		wxArrayString defaultChoices;
 		defaultChoices.Add(_("(none)"));
-		m_PassabilityChoice = new wxChoice(this, ID_Passability, wxDefaultPosition, wxDefaultSize, defaultChoices);
+		m_PassabilityChoice = new wxChoice(scrolledWindow, ID_Passability, wxDefaultPosition, wxDefaultSize, defaultChoices);
 		m_PassabilityChoice->SetSelection(0);
 
-		visSizer->Add(new wxStaticText(this, wxID_ANY, _("Passability")), wxSizerFlags().Align(wxALIGN_CENTER|wxALIGN_RIGHT));
+		visSizer->Add(new wxStaticText(scrolledWindow, wxID_ANY, _("Passability")), wxSizerFlags().Align(wxALIGN_CENTER|wxALIGN_RIGHT));
 		visSizer->Add(Tooltipped(m_PassabilityChoice,
 			_("View passability classes")), wxSizerFlags().Expand());
 
-		visSizer->Add(new wxStaticText(this, wxID_ANY, _("Priorities")), wxSizerFlags().Align(wxALIGN_CENTER|wxALIGN_RIGHT));
-		visSizer->Add(Tooltipped(new wxCheckBox(this, ID_ShowPriorities, _("")),
+		visSizer->Add(new wxStaticText(scrolledWindow, wxID_ANY, _("Priorities")), wxSizerFlags().Align(wxALIGN_CENTER|wxALIGN_RIGHT));
+		visSizer->Add(Tooltipped(new wxCheckBox(scrolledWindow, ID_ShowPriorities, _("")),
 			_("Show terrain texture priorities")));
 	}
 
 	{
 		/////////////////////////////////////////////////////////////////////////
 		// Misc tools
-		wxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Misc tools"));
-		sizer->Add(new wxButton(this, ID_ResizeMap, _("Resize map")), wxSizerFlags().Expand());
-		m_MainSizer->Add(sizer, wxSizerFlags().Expand().Border(wxTOP, 10));
+		wxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, scrolledWindow, _("Misc tools"));
+		sizer->Add(new wxButton(scrolledWindow, ID_ResizeMap, _("Resize map")), wxSizerFlags().Expand());
+		scrollSizer->Add(sizer, wxSizerFlags().Expand().Border(wxTOP, 10));
 	}
 
 	m_BottomBar = new TerrainBottomBar(scenarioEditor, bottomBarContainer);

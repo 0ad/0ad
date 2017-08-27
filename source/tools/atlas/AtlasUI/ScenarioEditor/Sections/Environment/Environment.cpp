@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -212,7 +212,7 @@ EnvironmentSidebar::EnvironmentSidebar(ScenarioEditor& scenarioEditor, wxWindow*
 	wxScrolledWindow* scrolledWindow = new wxScrolledWindow(this);
 	scrolledWindow->SetScrollRate(10, 10);
 	scrolledWindow->SetSizer(scrollSizer);
-	m_MainSizer->Add(scrolledWindow,  wxSizerFlags().Expand().Proportion(1));
+	m_MainSizer->Add(scrolledWindow,  wxSizerFlags().Proportion(1).Expand());
 
 	wxSizer* waterSizer = new wxStaticBoxSizer(wxVERTICAL, scrolledWindow, _T("Water settings"));
 	scrollSizer->Add(waterSizer, wxSizerFlags().Expand());

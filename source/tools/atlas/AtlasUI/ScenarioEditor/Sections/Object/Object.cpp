@@ -129,37 +129,43 @@ ObjectSidebar::ObjectSidebar(
 	: Sidebar(scenarioEditor, sidebarContainer, bottomBarContainer),
 	  p(new ObjectSidebarImpl(scenarioEditor))
 {
+	wxSizer* scrollSizer = new wxBoxSizer(wxVERTICAL);
+	wxScrolledWindow* scrolledWindow = new wxScrolledWindow(this);
+	scrolledWindow->SetScrollRate(10, 10);
+	scrolledWindow->SetSizer(scrollSizer);
+	m_MainSizer->Add(scrolledWindow, wxSizerFlags().Proportion(1).Expand());
+
 	wxBoxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
-	sizer->Add(new wxStaticText(this, wxID_ANY, _("Filter")), wxSizerFlags().Align(wxALIGN_CENTER));
+	sizer->Add(new wxStaticText(scrolledWindow, wxID_ANY, _("Filter")), wxSizerFlags().Align(wxALIGN_CENTER));
 	sizer->Add(
 		Tooltipped(
-			new wxTextCtrl(this, ID_ObjectFilter),
+			new wxTextCtrl(scrolledWindow, ID_ObjectFilter),
 			_("Enter text to filter object list")
 		),
 		wxSizerFlags().Expand().Proportion(1)
 	);
-	m_MainSizer->Add(sizer, wxSizerFlags().Expand());
-	m_MainSizer->AddSpacer(3);
+	scrollSizer->Add(sizer, wxSizerFlags().Expand());
+	scrollSizer->AddSpacer(3);
 
 	// ------------------------------------------------------------------------------------------
 
 	wxArrayString strings;
 	strings.Add(_("Entities"));
 	strings.Add(_("Actors (all)"));
-	wxChoice* objectType = new wxChoice(this, ID_ObjectType, wxDefaultPosition, wxDefaultSize, strings);
+	wxChoice* objectType = new wxChoice(scrolledWindow, ID_ObjectType, wxDefaultPosition, wxDefaultSize, strings);
 	objectType->SetSelection(0);
-	m_MainSizer->Add(objectType, wxSizerFlags().Expand());
-	m_MainSizer->AddSpacer(3);
+	scrollSizer->Add(objectType, wxSizerFlags().Expand());
+	scrollSizer->AddSpacer(3);
 
 	// ------------------------------------------------------------------------------------------
 
-	p->m_ObjectListBox = new wxListBox(this, ID_SelectObject, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_HSCROLL);
-	m_MainSizer->Add(p->m_ObjectListBox, wxSizerFlags().Proportion(1).Expand());
-	m_MainSizer->AddSpacer(3);
+	p->m_ObjectListBox = new wxListBox(scrolledWindow, ID_SelectObject, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_HSCROLL);
+	scrollSizer->Add(p->m_ObjectListBox, wxSizerFlags().Proportion(1).Expand());
+	scrollSizer->AddSpacer(3);
 
 	// ------------------------------------------------------------------------------------------
 
-	m_MainSizer->Add(new wxButton(this, ID_ToggleViewer, _("Switch to Actor Viewer")), wxSizerFlags().Expand());
+	scrollSizer->Add(new wxButton(scrolledWindow, ID_ToggleViewer, _("Switch to Actor Viewer")), wxSizerFlags().Expand());
 
 	// ------------------------------------------------------------------------------------------
 

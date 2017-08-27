@@ -289,34 +289,41 @@ void MapSettingsControl::SendToEngine()
 MapSidebar::MapSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
 	: Sidebar(scenarioEditor, sidebarContainer, bottomBarContainer), m_SimState(SimInactive)
 {
-	m_MapSettingsCtrl = new MapSettingsControl(this, m_ScenarioEditor);
-	m_MainSizer->Add(m_MapSettingsCtrl, wxSizerFlags().Expand());
+	wxSizer* scrollSizer = new wxBoxSizer(wxVERTICAL);
+	wxScrolledWindow* scrolledWindow = new wxScrolledWindow(this);
+	scrolledWindow->SetScrollRate(10, 10);
+	scrolledWindow->SetSizer(scrollSizer);
+	m_MainSizer->Add(scrolledWindow, wxSizerFlags().Expand().Proportion(1));
+
+	m_MapSettingsCtrl = new MapSettingsControl(scrolledWindow, m_ScenarioEditor);
+	scrollSizer->Add(m_MapSettingsCtrl, wxSizerFlags().Expand());
 
 	{
 		/////////////////////////////////////////////////////////////////////////
 		// Random map settings
-		wxStaticBoxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Random map"));
+		wxStaticBoxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, scrolledWindow, _("Random map"));
+		scrollSizer->Add(sizer, wxSizerFlags().Expand());
 
-		sizer->Add(new wxChoice(this, ID_RandomScript), wxSizerFlags().Expand());
+		sizer->Add(new wxChoice(scrolledWindow, ID_RandomScript), wxSizerFlags().Expand());
 
 		sizer->AddSpacer(5);
 
-		sizer->Add(new wxButton(this, ID_OpenPlayerPanel, _T("Change players")), wxSizerFlags().Expand());
+		sizer->Add(new wxButton(scrolledWindow, ID_OpenPlayerPanel, _T("Change players")), wxSizerFlags().Expand());
 
 		sizer->AddSpacer(5);
 
 		wxFlexGridSizer* gridSizer = new wxFlexGridSizer(2, 5, 5);
 		gridSizer->AddGrowableCol(1);
 
-		wxChoice* sizeChoice = new wxChoice(this, ID_RandomSize);
-		gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Map size")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
+		wxChoice* sizeChoice = new wxChoice(scrolledWindow, ID_RandomSize);
+		gridSizer->Add(new wxStaticText(scrolledWindow, wxID_ANY, _("Map size")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 		gridSizer->Add(sizeChoice, wxSizerFlags().Expand());
 
-		gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Random seed")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
+		gridSizer->Add(new wxStaticText(scrolledWindow, wxID_ANY, _("Random seed")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 		wxBoxSizer* seedSizer = new wxBoxSizer(wxHORIZONTAL);
-		seedSizer->Add(Tooltipped(new wxTextCtrl(this, ID_RandomSeed, _T("0"), wxDefaultPosition, wxDefaultSize, 0, wxTextValidator(wxFILTER_NUMERIC)),
+		seedSizer->Add(Tooltipped(new wxTextCtrl(scrolledWindow, ID_RandomSeed, _T("0"), wxDefaultPosition, wxDefaultSize, 0, wxTextValidator(wxFILTER_NUMERIC)),
 			_("Seed value for random map")), wxSizerFlags(1).Expand());
-		seedSizer->Add(Tooltipped(new wxButton(this, ID_RandomReseed, _("R"), wxDefaultPosition, wxSize(24, -1)),
+		seedSizer->Add(Tooltipped(new wxButton(scrolledWindow, ID_RandomReseed, _("R"), wxDefaultPosition, wxSize(24, -1)),
 			_("New random seed")));
 		gridSizer->Add(seedSizer, wxSizerFlags().Expand());
 
@@ -324,30 +331,29 @@ MapSidebar::MapSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContaine
 
 		sizer->AddSpacer(5);
 
-		sizer->Add(Tooltipped(new wxButton(this, ID_RandomGenerate, _("Generate map")),
+		sizer->Add(Tooltipped(new wxButton(scrolledWindow, ID_RandomGenerate, _("Generate map")),
 			_("Run selected random map script")), wxSizerFlags().Expand());
-
-		m_MainSizer->Add(sizer, wxSizerFlags().Expand().Border(wxTOP, 10));
 	}
 
 	{
 		/////////////////////////////////////////////////////////////////////////
 		// Simulation buttons
-		wxStaticBoxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Simulation test"));
+		wxStaticBoxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, scrolledWindow, _("Simulation test"));
+		scrollSizer->Add(sizer, wxSizerFlags().Expand().Border(wxTOP, 8));
+
 		wxGridSizer* gridSizer = new wxGridSizer(5);
-		gridSizer->Add(Tooltipped(new wxButton(this, ID_SimPlay, _("Play")),
+		gridSizer->Add(Tooltipped(new wxButton(scrolledWindow, ID_SimPlay, _("Play"), wxDefaultPosition, wxSize(48, -1)),
 			_("Run the simulation at normal speed")), wxSizerFlags().Expand());
-		gridSizer->Add(Tooltipped(new wxButton(this, ID_SimFast, _("Fast")),
+		gridSizer->Add(Tooltipped(new wxButton(scrolledWindow, ID_SimFast, _("Fast"), wxDefaultPosition, wxSize(48, -1)),
 			_("Run the simulation at 8x speed")), wxSizerFlags().Expand());
-		gridSizer->Add(Tooltipped(new wxButton(this, ID_SimSlow, _("Slow")),
+		gridSizer->Add(Tooltipped(new wxButton(scrolledWindow, ID_SimSlow, _("Slow"), wxDefaultPosition, wxSize(48, -1)),
 			_("Run the simulation at 1/8x speed")), wxSizerFlags().Expand());
-		gridSizer->Add(Tooltipped(new wxButton(this, ID_SimPause, _("Pause")),
+		gridSizer->Add(Tooltipped(new wxButton(scrolledWindow, ID_SimPause, _("Pause"), wxDefaultPosition, wxSize(48, -1)),
 			_("Pause the simulation")), wxSizerFlags().Expand());
-		gridSizer->Add(Tooltipped(new wxButton(this, ID_SimReset, _("Reset")),
+		gridSizer->Add(Tooltipped(new wxButton(scrolledWindow, ID_SimReset, _("Reset"), wxDefaultPosition, wxSize(48, -1)),
 			_("Reset the editor to initial state")), wxSizerFlags().Expand());
 		sizer->Add(gridSizer, wxSizerFlags().Expand());
 		UpdateSimButtons();
-		m_MainSizer->Add(sizer, wxSizerFlags().Expand().Border(wxTOP, 10));
 	}
 }
 
