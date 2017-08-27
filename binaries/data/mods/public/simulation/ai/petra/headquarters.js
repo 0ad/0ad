@@ -930,6 +930,8 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 
 	Engine.ProfileStop();
 
+	if (bestVal === undefined)
+		return false;
 	let cut = 60;
 	if (fromStrategic || proximity)  // be less restrictive
 		cut = 30;

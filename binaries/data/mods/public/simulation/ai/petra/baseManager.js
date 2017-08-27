@@ -471,7 +471,8 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 				}
 			}
 		}
-		else if (!queues.dropsites.hasQueuedUnits() && !gameState.getOwnFoundations().filter(API3.Filters.byClass("Storehouse")).hasEntities())
+		else if (!queues.dropsites.hasQueuedUnits() && !gameState.getOwnFoundations().filter(API3.Filters.byClass("Storehouse")).hasEntities() &&
+		         gameState.sharedScript.resourceMaps[type])
 		{
 			if (gameState.ai.playedTurn > this.gatherers[type].nextCheck)
 			{
