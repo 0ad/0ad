@@ -185,7 +185,7 @@ m.GameTypeManager.prototype.checkEvents = function(gameState, events)
 					continue;
 
 				let pos = holderEnt.position();
-				let radius = holderEnt.obstructionRadius();
+				let radius = holderEnt.obstructionRadius().max;
 				if (pos)
 					guardEnt.moveToRange(pos[0], pos[1], radius, radius + 5);
 			}

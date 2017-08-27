@@ -969,7 +969,7 @@ m.AttackPlan.prototype.checkTargetObstruction = function(gameState, target, posi
 
 	let pathPos = [path[0].x, path[0].y];
 	let dist = API3.VectorDistance(pathPos, targetPos);
-	let radius = target.obstructionRadius();
+	let radius = target.obstructionRadius().max;
 	for (let struct of gameState.getEnemyStructures().values())
 	{
 		if (!struct.position() || !struct.get("Obstruction") || struct.hasClass("Field"))

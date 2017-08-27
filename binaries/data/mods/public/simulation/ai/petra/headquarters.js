@@ -810,14 +810,14 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 
 	let bestIdx;
 	let bestVal;
-	let radius = Math.ceil(template.obstructionRadius() / obstructions.cellSize);
+	let radius = Math.ceil(template.obstructionRadius().max / obstructions.cellSize);
 	let scale = 250 * 250;
 	let proxyAccess;
 	let nbShips = this.navalManager.transportShips.length;
 	if (proximity)	// this is our first base
 	{
 		// if our first base, ensure room around
-		radius = Math.ceil((template.obstructionRadius() + 8) / obstructions.cellSize);
+		radius = Math.ceil((template.obstructionRadius().max + 8) / obstructions.cellSize);
 		// scale is the typical scale at which we want to find a location for our first base
 		// look for bigger scale if we start from a ship (access < 2) or from a small island
 		let cellArea = gameState.getPassabilityMap().cellSize * gameState.getPassabilityMap().cellSize;
@@ -992,7 +992,7 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 
 	let bestIdx;
 	let bestVal;
-	let radius = Math.ceil(template.obstructionRadius() / obstructions.cellSize);
+	let radius = Math.ceil(template.obstructionRadius().max / obstructions.cellSize);
 
 	let width = this.territoryMap.width;
 	let cellSize = this.territoryMap.cellSize;
@@ -1124,7 +1124,7 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 	let bestIdx;
 	let bestJdx;
 	let bestVal;
-	let radius = Math.ceil(template.obstructionRadius() / obstructions.cellSize);
+	let radius = Math.ceil(template.obstructionRadius().max / obstructions.cellSize);
 	let isNavalMarket = template.hasClass("NavalMarket");
 
 	let width = this.territoryMap.width;
@@ -1252,9 +1252,9 @@ m.HQ.prototype.findDefensiveLocation = function(gameState, template)
 	let isFortress = template.hasClass("Fortress");
 	let radius;
 	if (isFortress)
-		radius = Math.floor((template.obstructionRadius() + 8) / obstructions.cellSize);
+		radius = Math.floor((template.obstructionRadius().max + 8) / obstructions.cellSize);
 	else
-		radius = Math.ceil(template.obstructionRadius() / obstructions.cellSize);
+		radius = Math.ceil(template.obstructionRadius().max / obstructions.cellSize);
 
 	for (let j = 0; j < this.territoryMap.length; ++j)
 	{

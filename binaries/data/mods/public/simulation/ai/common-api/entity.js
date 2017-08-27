@@ -139,10 +139,11 @@ m.Template = m.Class({
 	},
 
 	/**
-	 * Returns the radius of a circle surrounding this entity's
-	 * obstruction shape, or undefined if no obstruction.
+	 * Returns { "max": max, "min": min } or undefined if no obstruction.
+	 * max: radius of the outer circle surrounding this entity's obstruction shape
+	 * min: radius of the inner circle
 	 */
-	obstructionRadius: function() {
+	"obstructionRadius": function() {
 		if (!this.get("Obstruction"))
 			return undefined;
 
@@ -150,20 +151,32 @@ m.Template = m.Class({
 		{
 			let w = +this.get("Obstruction/Static/@width");
 			let h = +this.get("Obstruction/Static/@depth");
-			return Math.sqrt(w*w + h*h) / 2;
+			return { "max": Math.sqrt(w*w + h*h) / 2, "min": Math.min(h, w) / 2 };
 		}
 
 		if (this.get("Obstruction/Unit"))
-			return +this.get("Obstruction/Unit/@radius");
+		{
+			let r = +this.get("Obstruction/Unit/@radius");
+			return { "max": r, "min": r };
+		}
 
-		return 0; // this should never happen
+		let right = this.get("Obstruction/Obstructions/Right");
+		let left = this.get("Obstruction/Obstructions/Left");
+		if (left && right)
+		{
+			let w = +right["@x"] + +right["@width"]/2 - +left["@x"] + +left["@width"]/2;
+			let h = Math.max(+right["@z"] + +right["@depth"]/2, +left["@z"] + +left["@depth"]/2)
+			      - Math.min(+right["@z"] - +right["@depth"]/2, +left["@z"] - +left["@depth"]/2);
+			return { "max": Math.sqrt(w*w + h*h) / 2, "min": Math.min(h, w) / 2 };
+		}
+
+		return { "max": 0, "min": 0 }; // Units have currently no obstructions
 	},
 
 	/**
-	 * Returns the radius of a circle surrounding this entity's
-	 * footprint.
+	 * Returns the radius of a circle surrounding this entity's footprint.
 	 */
-	footprintRadius: function() {
+	"footprintRadius": function() {
 		if (!this.get("Footprint"))
 			return undefined;
 
