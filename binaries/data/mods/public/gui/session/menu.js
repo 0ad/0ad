@@ -1149,18 +1149,21 @@ function toggleDeveloperOverlay()
 		markForTranslation("The Developer Overlay was closed.") :
 		markForTranslation("The Developer Overlay was opened.");
 
-	Engine.PostNetworkCommand({
-		"type": "aichat",
-		"message": message,
-		"translateMessage": true,
-		"translateParameters": [],
-		"parameters": {}
-	});
+	// Only players can send the simulation chat command
+	if (Engine.GetPlayerID() == -1)
+		submitChatDirectly(message);
+	else
+		Engine.PostNetworkCommand({
+			"type": "aichat",
+			"message": message,
+			"translateMessage": true,
+			"translateParameters": [],
+			"parameters": {}
+		});
 }
 
 function closeOpenDialogs()
 {
-	 // TODO: also close message boxes
 	closeMenu();
 	closeChat();
 	closeDiplomacy();
