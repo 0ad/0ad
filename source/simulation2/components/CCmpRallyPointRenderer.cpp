@@ -199,6 +199,7 @@ public:
 	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
 	{
 		Init(paramNode);
+		// The dependent components have not been deserialized, so the color is loaded on first SetDisplayed
 	}
 
 	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
@@ -315,6 +316,13 @@ public:
 		if (m_Displayed != displayed)
 		{
 			m_Displayed = displayed;
+
+			// Set color after all dependent components are deserialized
+			if (displayed && m_LineColor.r < 0)
+			{
+				UpdateLineColor();
+				ConstructAllOverlayLines();
+			}
 
 			// move the markers out of oblivion and back into the real world, or vice-versa
 			UpdateMarkers();
