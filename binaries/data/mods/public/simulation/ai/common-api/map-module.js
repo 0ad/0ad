@@ -271,9 +271,16 @@ m.Map.prototype.isObstructedTile = function(kx, ky, radius)
 	let w = this.width;
 	if (kx < radius || kx >= w - radius || ky < radius || ky >= w - radius || this.map[kx+ky*w] === 0)
 		return true;
+	if (!this.pattern || this.pattern[0] != radius)
+	{
+		this.pattern = [radius];
+		let r2 = radius * radius;
+		for (let i = 1; i <= radius; ++i)
+			this.pattern.push(Math.floor(Math.sqrt(r2 - (i-0.5)*(i-0.5)) + 0.5));
+	}
 	for (let dy = 0; dy <= radius; ++dy)
 	{
-		let dxmax = dy === 0 ? radius : Math.ceil(Math.sqrt(radius*radius - (dy-0.5)*(dy-0.5)));
+		let dxmax = this.pattern[dy];
 		let xp = kx + (ky + dy)*w;
 		let xm = kx + (ky - dy)*w;
 		for (let dx = -dxmax; dx <= dxmax; ++dx)

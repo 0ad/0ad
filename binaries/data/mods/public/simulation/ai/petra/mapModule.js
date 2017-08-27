@@ -88,9 +88,12 @@ m.createObstructionMap = function(gameState, accessIndex, template)
 	if (template && template.buildDistance())
 	{
 		let distance = template.buildDistance();
-		let minDist = +distance.MinDistance;
+		let minDist = distance && distance.MinDistance ? +distance.MinDistance : 0;
 		if (minDist)
 		{
+			let obstructionRadius = template.obstructionRadius();
+			if (obstructionRadius)
+				minDist -= obstructionRadius.min;
 			let fromClass = distance.FromClass;
 			let cellSize = passabilityMap.cellSize;
 			let cellDist = 1 + minDist / cellSize;
