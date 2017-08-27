@@ -964,8 +964,10 @@ function updateGUIStatusBar(nameOfBar, points, maxPoints, direction)
 
 function updatePanelEntities()
 {
-	let playerState = GetSimState().players[g_ViewedPlayer];
-	let panelEnts = playerState ? playerState.panelEntities : [];
+	let panelEnts =
+		g_ViewedPlayer == -1 ?
+			GetSimState().players.reduce((ents, pState) => ents.concat(pState.panelEntities), []) :
+			GetSimState().players[g_ViewedPlayer].panelEntities;
 
 	g_PanelEntities = g_PanelEntities.filter(panelEnt => panelEnts.find(ent => ent == panelEnt.ent));
 

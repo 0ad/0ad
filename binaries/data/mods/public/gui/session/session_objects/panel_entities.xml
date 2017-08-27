@@ -4,7 +4,7 @@
 	size="0 36 50 93"
 >
 	<!-- Displays buttons for the most important units like heroes and relics -->
-	<repeat count="14" var="n">
+	<repeat count="19" var="n">
 		<object name="panelEntityButton[n]" size="0 0 50 50" type="button" hidden="true" style="iconButton" tooltip_style="sessionToolTip">
 			<object name="panelEntityImage[n]" size="5 5 100%-5 100%-5" type="image" ghost="true"/>
 			<object name="panelEntityHitOverlay[n]" hidden="true" type="image" ghost="true" size="5 5 100%-5 100%-5"/>
