@@ -88,7 +88,7 @@ m.createObstructionMap = function(gameState, accessIndex, template)
 	if (template && template.buildDistance())
 	{
 		let distance = template.buildDistance();
-		let minDist = distance && distance.MinDistance ? +distance.MinDistance : 0;
+		let minDist = distance.MinDistance ? +distance.MinDistance : 0;
 		if (minDist)
 		{
 			let obstructionRadius = template.obstructionRadius();
