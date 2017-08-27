@@ -1,15 +1,13 @@
-const g_MaxHeadingTitle= 9;
+const g_CivData = loadCivData(false, false);
 
-// const for filtering long collective headings
-const g_LongHeadingWidth = 250;
+var g_MaxHeadingTitle = 9;
+var g_LongHeadingWidth = 250;
+var g_PlayerBoxYSize = 40;
+var g_PlayerBoxGap = 2;
+var g_PlayerBoxAlpha = " 50";
+var g_TeamsBoxYStart = 40;
 
-const g_PlayerBoxYSize = 40;
-const g_PlayerBoxGap = 2;
-const g_PlayerBoxAlpha = " 50";
-const g_PlayerColorBoxAlpha = " 255";
-const g_TeamsBoxYStart = 40;
-
-const g_TypeColors = {
+var g_TypeColors = {
 	"blue": "196 198 255",
 	"green": "201 255 200",
 	"red": "255 213 213",
@@ -97,9 +95,11 @@ var g_SummaryTypes = {
 	}
 };
 
-const g_InfinitySymbol = "\u221E";
+/**
+ * Translation: Unicode encoded infinity symbol indicating a division by zero in the summary screen.
+ */
+var g_InfinitySymbol = translate("\u221E");
 
-var g_CivData = loadCivData();
 var g_Teams = [];
 
 // TODO set g_PlayerCount as playerCounters.length

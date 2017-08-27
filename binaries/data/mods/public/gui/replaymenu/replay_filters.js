@@ -1,7 +1,7 @@
 /**
  * Allow to filter replays by duration in 15min / 30min intervals.
  */
-const g_DurationFilterIntervals = [
+var g_DurationFilterIntervals = [
 	{ "min":  -1, "max":  -1 },
 	{ "min":  -1, "max":  15 },
 	{ "min":  15, "max":  30 },
@@ -180,8 +180,8 @@ function initRatedGamesFilter(ratedGames)
  */
 function filterReplays()
 {
-	const sortKey = Engine.GetGUIObjectByName("replaySelection").selected_column;
-	const sortOrder = Engine.GetGUIObjectByName("replaySelection").selected_column_order;
+	let sortKey = Engine.GetGUIObjectByName("replaySelection").selected_column;
+	let sortOrder = Engine.GetGUIObjectByName("replaySelection").selected_column_order;
 
 	g_ReplaysFiltered = g_Replays.filter(replay => filterReplay(replay)).sort((a, b) =>
 	{

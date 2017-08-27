@@ -11,6 +11,12 @@ const g_VictoryConditions = prepareForDropdown(g_Settings && g_Settings.VictoryC
 const g_VictoryDurations = prepareForDropdown(g_Settings && g_Settings.VictoryDurations);
 
 /**
+ * Offer users to select playable civs only.
+ * Load unselectable civs as they could appear in scenario maps.
+ */
+const g_CivData = loadCivData(false, false);
+
+/**
  * Highlight the "random" dropdownlist item.
  */
 var g_ColorRandom = "orange";
@@ -55,12 +61,6 @@ var g_PlayerTeamList = prepareForDropdown([{
 		}))
 	)
 );
-
-/**
- * Offer users to select playable civs only.
- * Load unselectable civs as they could appear in scenario maps.
- */
-var g_CivData = loadCivData();
 
 /**
  * Number of relics: [1, ..., NumCivs]
@@ -1928,7 +1928,7 @@ function updateGUIObjects()
 
 function rightAlignCancelButton()
 {
-	const offset = 10;
+	let offset = 10;
 
 	let startGame = Engine.GetGUIObjectByName("startGame");
 	let right = startGame.hidden ? startGame.size.right : startGame.size.left - offset;

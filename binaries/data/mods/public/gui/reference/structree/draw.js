@@ -9,9 +9,9 @@ function draw()
 	if (!Object.keys(g_DrawLimits).length)
 		predraw();
 
-	const leftMargin = Engine.GetGUIObjectByName("tree_display").size.left;
-	const defWidth = 96;
-	const defMargin = 4;
+	let leftMargin = Engine.GetGUIObjectByName("tree_display").size.left;
+	let defWidth = 96;
+	let defMargin = 4;
 
 	let phaseList = g_ParsedData.phaseList;
 
@@ -26,7 +26,7 @@ function draw()
 		let s = 0;
 		let y = 0;
 
-		for (let stru of g_CivData[g_SelectedCiv].buildList[pha])
+		for (let stru of g_BuildList[g_SelectedCiv][pha])
 		{
 			let thisEle = Engine.GetGUIObjectByName("phase["+i+"]_struct["+s+"]");
 			if (thisEle === undefined)
@@ -143,7 +143,7 @@ function draw()
 	}
 
 	let t = 0;
-	for (let trainer of g_CivData[g_SelectedCiv].trainList)
+	for (let trainer of g_TrainList[g_SelectedCiv])
 	{
 		let thisEle = Engine.GetGUIObjectByName("trainer["+t+"]");
 		if (thisEle === undefined)

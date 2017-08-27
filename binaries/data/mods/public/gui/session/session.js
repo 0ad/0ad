@@ -1,5 +1,7 @@
 const g_IsReplay = Engine.IsVisualReplay();
 
+const g_CivData = loadCivData(false, true);
+
 const g_Ceasefire = prepareForDropdown(g_Settings && g_Settings.Ceasefire);
 const g_GameSpeeds = prepareForDropdown(g_Settings && g_Settings.GameSpeeds.filter(speed => !speed.ReplayOnly || g_IsReplay));
 const g_MapSizes = prepareForDropdown(g_Settings && g_Settings.MapSizes);
@@ -23,7 +25,7 @@ var g_ResourceTitleFont = "sans-bold-16";
 /**
  * A random file will be played. TODO: more variety
  */
-const g_Ambient = [ "audio/ambient/dayscape/day_temperate_gen_03.ogg" ];
+var g_Ambient = ["audio/ambient/dayscape/day_temperate_gen_03.ogg"];
 
 /**
  * Map, player and match settings set in gamesetup.
@@ -101,12 +103,7 @@ var g_LastTickTime = Date.now();
 /**
  * Recalculate which units have their status bars shown with this frequency in milliseconds.
  */
-const g_StatusBarUpdate = 200;
-
-/**
- * Not constant as we add "gaia".
- */
-var g_CivData = {};
+var g_StatusBarUpdate = 200;
 
 /**
  * For restoring selection, order and filters when returning to the replay menu
@@ -145,12 +142,13 @@ var g_ShowAllStatusBars = false;
 var g_IsTrainingBlocked = false;
 
 /**
- * Cache simulation state (updated on every simulation update).
+ * Cache of simulation state and template data (apart from TechnologyData, updated on every simulation update).
  */
 var g_SimState;
 var g_EntityStates = {};
 var g_TemplateData = {};
 var g_TechnologyData = {};
+
 var g_ResourceData = new Resources();
 
 /**
@@ -276,9 +274,6 @@ function init(initData, hotloadData)
 	}
 
 	updatePlayerData();
-
-	g_CivData = loadCivData();
-	g_CivData.gaia = { "Code": "gaia", "Name": translate("Gaia") };
 
 	g_BarterSell = g_ResourceData.GetCodes()[0];
 
@@ -805,15 +800,14 @@ function updateIdleWorkerButton()
 	else if (idleWorkerButton.sprite != prefix + "minimap-idle-highlight.png")
 		idleWorkerButton.sprite = prefix + "minimap-idle.png";
 }
-
 function onSimulationUpdate()
 {
+	// Templates change depending on technologies and auras, so they have to be reloaded every turn.
+	// g_TechnologyData data never changes, so it shouldn't be deleted.
 	g_EntityStates = {};
 	g_TemplateData = {};
-	g_TechnologyData = {};
 
 	g_SimState = Engine.GuiInterfaceCall("GetSimulationState");
-
 	if (!g_SimState)
 		return;
 
@@ -1237,7 +1231,7 @@ function updateResearchDisplay()
 		if (numButtons >= 10)
 			break;
 
-		let template = GetTechnologyData(tech);
+		let template = GetTechnologyData(tech, g_Players[g_ViewedPlayer].civ);
 		let button = Engine.GetGUIObjectByName("researchStartedButton[" + numButtons + "]");
 		button.hidden = false;
 		button.tooltip = getEntityNames(template);

@@ -7,12 +7,12 @@ const g_Cheats = getCheatsData();
 /**
  * Number of seconds after which chatmessages will disappear.
  */
-const g_ChatTimeout = 30;
+var g_ChatTimeout = 30;
 
 /**
  * Maximum number of lines to display simultaneously.
  */
-const g_ChatLines = 20;
+var g_ChatLines = 20;
 
 /**
  * The currently displayed strings, limited by the given timeframe and limit above.
@@ -586,7 +586,7 @@ function updateTimeNotifications()
 		if (n.translateParameters)
 			translateObjectKeys(parameters, n.translateParameters);
 
-		parameters.time = timeToString(n.endTime - g_SimState.timeElapsed);
+		parameters.time = timeToString(n.endTime - GetSimState().timeElapsed);
 
 		colorizePlayernameParameters(parameters);
 

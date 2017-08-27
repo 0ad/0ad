@@ -1,10 +1,10 @@
 // Limits selection size
-const g_MaxSelectionSize = 200;
+var g_MaxSelectionSize = 200;
 
 // Alpha value of hovered/mouseover/highlighted selection overlays
 // (should probably be greater than always visible alpha value,
 //	see CCmpSelectable)
-const g_HighlightedAlpha = 0.75;
+var g_HighlightedAlpha = 0.75;
 
 function _setHighlight(ents, alpha, selected)
 {

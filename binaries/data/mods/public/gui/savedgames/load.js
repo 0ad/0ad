@@ -3,7 +3,7 @@ var g_SavedGamesMetadata = [];
 /**
  * Needed for formatPlayerInfo to show the player civs in the details.
  */
-const g_CivData = loadCivData();
+const g_CivData = loadCivData(false, false);
 
 function init()
 {
@@ -28,8 +28,8 @@ function init()
 		return game.metadata;
 	});
 
-	const sortKey = gameSelection.selected_column;
-	const sortOrder = gameSelection.selected_column_order;
+	let sortKey = gameSelection.selected_column;
+	let sortOrder = gameSelection.selected_column_order;
 	g_SavedGamesMetadata = g_SavedGamesMetadata.sort((a, b) =>
 	{
 		let cmpA, cmpB;

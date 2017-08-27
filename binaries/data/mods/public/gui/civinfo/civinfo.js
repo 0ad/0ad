@@ -1,7 +1,7 @@
 /**
- * Load playable civs.
+ * Display selectable civs only.
  */
-const g_CivData = loadCivData(true);
+const g_CivData = loadCivData(true, false);
 
 /**
  * Initialize the dropdown containing all the available civs.

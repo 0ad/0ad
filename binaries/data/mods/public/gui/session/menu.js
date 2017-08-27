@@ -1,11 +1,11 @@
 // Menu / panel border size
-const MARGIN = 4;
+var MARGIN = 4;
 
 // Includes the main menu button
 const NUM_BUTTONS = 9;
 
 // Regular menu buttons
-const BUTTON_HEIGHT = 32;
+var BUTTON_HEIGHT = 32;
 
 // The position where the bottom of the menu will end up (currently 228)
 const END_MENU_POSITION = (BUTTON_HEIGHT * NUM_BUTTONS) + MARGIN;
@@ -20,13 +20,13 @@ const MENU_TOP = MENU_BOTTOM - END_MENU_POSITION;
 const INITIAL_MENU_POSITION = "100%-164 " + MENU_TOP + " 100% " + MENU_BOTTOM;
 
 // Number of pixels per millisecond to move
-const MENU_SPEED = 1.2;
+var MENU_SPEED = 1.2;
 
 // Trade menu: step for probability changes
-const STEP = 5;
+var STEP = 5;
 
 // Shown in the trade dialog.
-const g_IdleTraderTextColor = "orange";
+var g_IdleTraderTextColor = "orange";
 
 /**
  * The barter constants should match with the simulation
