@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -226,14 +226,14 @@ public:
 			// Camera
 			wxStaticBoxSizer* cameraSizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Starting Camera"));
 			wxGridSizer* gridSizer = new wxGridSizer(3);
-			wxButton* cameraSet = new wxButton(this, ID_CameraSet, _("Set"));
+			wxButton* cameraSet = new wxButton(this, ID_CameraSet, _("Set"), wxDefaultPosition, wxSize(48, -1));
 			gridSizer->Add(Tooltipped(cameraSet,
 				_("Set player camera to this view")), wxSizerFlags().Expand());
-			wxButton* cameraView = new wxButton(this, ID_CameraView, _("View"));
+			wxButton* cameraView = new wxButton(this, ID_CameraView, _("View"), wxDefaultPosition, wxSize(48, -1));
 			cameraView->Enable(false);
 			gridSizer->Add(Tooltipped(cameraView,
 				_("View the player camera")), wxSizerFlags().Expand());
-			wxButton* cameraClear = new wxButton(this, ID_CameraClear, _("Clear"));
+			wxButton* cameraClear = new wxButton(this, ID_CameraClear, _("Clear"), wxDefaultPosition, wxSize(48, -1));
 			cameraClear->Enable(false);
 			gridSizer->Add(Tooltipped(cameraClear,
 				_("Clear player camera")), wxSizerFlags().Expand());
@@ -956,8 +956,14 @@ void PlayerSettingsControl::SendToEngine()
 PlayerSidebar::PlayerSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
 	: Sidebar(scenarioEditor, sidebarContainer, bottomBarContainer), m_Loaded(false)
 {
-	m_PlayerSettingsCtrl = new PlayerSettingsControl(this, m_ScenarioEditor);
-	m_MainSizer->Add(m_PlayerSettingsCtrl, wxSizerFlags().Expand());
+	wxSizer* scrollSizer = new wxBoxSizer(wxVERTICAL);
+	wxScrolledWindow* scrolledWindow = new wxScrolledWindow(this);
+	scrolledWindow->SetScrollRate(10, 10);
+	scrolledWindow->SetSizer(scrollSizer);
+	m_MainSizer->Add(scrolledWindow, wxSizerFlags().Proportion(1).Expand());
+
+	m_PlayerSettingsCtrl = new PlayerSettingsControl(scrolledWindow, m_ScenarioEditor);
+	scrollSizer->Add(m_PlayerSettingsCtrl, wxSizerFlags().Expand());
 }
 
 void PlayerSidebar::OnCollapse(wxCollapsiblePaneEvent& WXUNUSED(evt))

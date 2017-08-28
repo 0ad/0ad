@@ -347,7 +347,7 @@ m.Army.prototype.clear = function (gameState)
 				defensiveFound = true;
 			distmin = dist;
 			destination = pos;
-			radius = struct.obstructionRadius();
+			radius = struct.obstructionRadius().max;
 		}
 	}
 	while (this.ownEntities.length > 0)

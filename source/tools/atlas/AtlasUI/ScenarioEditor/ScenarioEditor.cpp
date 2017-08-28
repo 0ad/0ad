@@ -496,10 +496,12 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 	wxMenu *menuHelp = new wxMenu;
 	menuBar->Append(menuHelp, _("&Help"));
 	{
-		const wxString helpPath("../data/tools/atlas/help.json");
-		if (wxFileExists(helpPath))
+		wxFileName helpPath (_T("tools/atlas/"));
+		helpPath.MakeAbsolute(Datafile::GetDataDirectory());
+		helpPath.SetFullName("help.json");
+		if (wxFileExists(helpPath.GetFullPath()))
 		{
-			wxFFile helpFile(helpPath);
+			wxFFile helpFile(helpPath.GetFullPath());
 			wxString helpData;
 			helpFile.ReadAll(&helpData);
 			AtObj data = AtlasObject::LoadFromJSON(std::string(helpData));
@@ -520,7 +522,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 		#undef ADD_HELP_ITEM
 		}
 		else
-			wxLogError(_("'%ls' does not exist"), helpPath.c_str());
+			wxLogError(_("'%ls' does not exist"), helpPath.GetFullPath().c_str());
 	}
 
 	m_FileHistory.LoadFromSubDir(*wxConfigBase::Get());

@@ -1038,11 +1038,20 @@ function initGUIObjects()
 		return;
 	}
 
-	Engine.GetGUIObjectByName("loadingWindow").hidden = true;
-	Engine.GetGUIObjectByName("setupWindow").hidden = false;
+	// Don't lift the curtain until the controls are updated the first time
+	if (!g_IsNetworked)
+		hideLoadingWindow();
+}
 
-	if (g_IsNetworked)
-		Engine.GetGUIObjectByName("chatInput").focus();
+function hideLoadingWindow()
+{
+	let loadingWindow = Engine.GetGUIObjectByName("loadingWindow");
+	if (loadingWindow.hidden)
+		return;
+
+	loadingWindow.hidden = true;
+	Engine.GetGUIObjectByName("setupWindow").hidden = false;
+	Engine.GetGUIObjectByName("chatInput").focus();
 }
 
 /**
@@ -1260,6 +1269,8 @@ function handleGamesetupMessage(message)
 	resetReadyData();
 
 	updateGUIObjects();
+
+	hideLoadingWindow();
 }
 
 /**

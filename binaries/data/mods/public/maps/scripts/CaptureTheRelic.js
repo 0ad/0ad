@@ -127,11 +127,11 @@ Trigger.prototype.StartCaptureTheRelicCountdown = function(playerAndAllies)
 	let isTeam = playerAndAllies.length > 1;
 	this.ownRelicsVictoryMessage = cmpGuiInterface.AddTimeNotification({
 		"message": isTeam ?
-			markForTranslation("%(player)s's team has captured all relics and will win in %(time)s.") :
-			markForTranslation("%(player)s has captured all relics and will win in %(time)s."),
+			markForTranslation("%(_player_)s's team has captured all relics and will win in %(time)s.") :
+			markForTranslation("%(_player_)s has captured all relics and will win in %(time)s."),
 		"players": others,
 		"parameters": {
-			"player": cmpPlayer.GetName()
+			"_player_": cmpPlayer.GetPlayerID()
 		},
 		"translateMessage": true,
 		"translateParameters": []

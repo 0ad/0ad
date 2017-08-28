@@ -31,6 +31,7 @@ function lobbyStartConnect()
 	if (Engine.HasXmppClient())
 		Engine.StopXmppClient();
 
+	Engine.GetGUIObjectByName("continue").enabled = false;
 	let username = Engine.GetGUIObjectByName("connectUsername").caption;
 	let password = Engine.GetGUIObjectByName("connectPassword").caption;
 	let feedback = Engine.GetGUIObjectByName("feedback");
@@ -55,6 +56,7 @@ function lobbyStartRegister()
 	if (Engine.HasXmppClient())
 		Engine.StopXmppClient();
 
+	Engine.GetGUIObjectByName("continue").enabled = false;
 	let account = Engine.GetGUIObjectByName("registerUsername").caption;
 	let password = Engine.GetGUIObjectByName("registerPassword").caption;
 	let feedback = Engine.GetGUIObjectByName("feedback");

@@ -306,11 +306,11 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	let radius = 0;
 	if (template.hasClass("Fortress") || this.type === gameState.applyCiv("structures/{civ}_siege_workshop") ||
 		this.type === gameState.applyCiv("structures/{civ}_elephant_stables"))
-		radius = Math.floor((template.obstructionRadius() + 12) / obstructions.cellSize);
+		radius = Math.floor((template.obstructionRadius().max + 12) / obstructions.cellSize);
 	else if (template.resourceDropsiteTypes() === undefined && !template.hasClass("House") && !template.hasClass("Field"))
-		radius = Math.ceil((template.obstructionRadius() + 4) / obstructions.cellSize);
+		radius = Math.ceil((template.obstructionRadius().max + 4) / obstructions.cellSize);
 	else
-		radius = Math.ceil((template.obstructionRadius() + 0.5) / obstructions.cellSize);
+		radius = Math.ceil((template.obstructionRadius().max + 0.5) / obstructions.cellSize);
 
 	let bestTile;
 	let bestVal;
@@ -383,7 +383,7 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 		wantedLand[proxyAccess] = true;
 	}
 	let dropsiteTypes = template.resourceDropsiteTypes();
-	let radius = Math.ceil(template.obstructionRadius() / obstructions.cellSize);
+	let radius = Math.ceil(template.obstructionRadius().max / obstructions.cellSize);
 
 	let halfSize = 0;    // used for dock angle
 	let halfDepth = 0;   // used by checkPlacement
