@@ -26,6 +26,7 @@
 # polien delamarque <m.oleil@laposte.net>, 2016
 # Romain Mesnil <bnb6avekk6@protonmail.com>, 2016
 # Polakrity <sxk-fr@live.fr>, 2014,2017
+# Tiber7 - Danilo B. Guttadauria <danilo.guttadauria@gmail.com>, 2017
 # Valentin Chevalier <valche5@hotmail.com>, 2015
 # Victor de le Rue <victordeleruefr@gmail.com>, 2017
 # Vincent Pouliquen <vins_om@hotmail.fr>, 2014
@@ -33,8 +34,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-21 09:03+0200\n"
-"PO-Revision-Date: 2017-06-21 15:05+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-08-26 20:48+0000\n"
+"Last-Translator: Tiber7 - Danilo B. Guttadauria <danilo.guttadauria@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -79,7 +80,7 @@ msgstr "Stoa"
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:34
 msgid "Hellenic Royal Stoa"
-msgstr "Stoa royale hellénique"
+msgstr "Stoa hellénique royale."
 
 #: simulation/templates/template_structure_civic_hellenic_royal_stoa.xml:36
 msgid "Recruit special units."
@@ -125,7 +126,7 @@ msgstr "Maison"
 msgid ""
 "Train healers. Garrison units to heal them at a quick rate (3 HP per "
 "second). Research healing and religious improvements."
-msgstr "Former des guérisseurs. Mettre des unités en garnison pour les soigner rapidement (3 PV par seconde). Rechercher des améliorations de guérison et de religion."
+msgstr "Entraîner des guérisseurs. Poster des unités en garnison pour les soigner rapidement (3 PV par seconde). Rechercher des améliorations de guérison et de religion."
 
 #: simulation/templates/template_structure_civic_temple.xml:35
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -144,7 +145,7 @@ msgstr "Tour de défense"
 msgid ""
 "Shoots arrows. Garrison to provide extra defense. Needs the murder holes "
 "tech to protect its foot."
-msgstr "Tire des flèches. Mettre en garnison des unités pour fournir une défense supplémentaire. Nécessite la technologie \"Meurtrières\" pour se protéger au niveau de sa base."
+msgstr "Tire des flèches. Poster des unités en garnison pour fournir une défense supplémentaire. Nécessite la technologie \"Meurtrières\" pour protéger sa base."
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_defense_defense_tower.xml:26
@@ -155,7 +156,7 @@ msgstr "Tour de défense"
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly "
 "converts to Gaia while in neutral territory."
-msgstr "Construire en territoire neutre ou sur votre territoire pour explorer des zones de la carte. Tombe peu à peu sous le contrôle de Gaia en territoire neutre."
+msgstr "Construire en territoire neutre ou sur votre territoire pour explorer des zones de la carte. Tombe peu à peu sous le contrôle de Gaïa en territoire neutre."
 
 #: simulation/templates/template_structure_defense_outpost.xml:65
 #: simulation/templates/template_structure_defense_outpost.xml:33
@@ -166,7 +167,7 @@ msgstr "Avant-poste"
 #: simulation/templates/template_structure_defense_sentry_tower.xml:40
 #: simulation/templates/template_structure_defense_sentry_tower.xml:39
 msgid "Sentry Tower"
-msgstr "Tour de sentinelle"
+msgstr "Tour Sentinelle"
 
 #: simulation/templates/template_structure_defense_sentry_tower.xml:42
 msgid "SentryTower"
@@ -205,7 +206,7 @@ msgstr "Les longues portions de mur peuvent être converties en portes."
 #: simulation/templates/template_structure_defense_wall_long.xml:47
 msgid ""
 "This will allow you to let units circulate through your fortifications."
-msgstr "Permet aux unités de franchir les murs de la ville."
+msgstr "Permet aux unités de franchir les fortifications."
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:52
 msgid "Wall Turret"
@@ -279,7 +280,7 @@ msgstr "Militaire"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
 msgid "Train citizen-soldiers. Research training improvements."
-msgstr "Former des citoyens-soldats. Rechercher les améliorations d'entraînement."
+msgstr "Entraîner des citoyens-soldats. Rechercher les améliorations d'entraînement."
 
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_barracks.xml:29
@@ -373,7 +374,7 @@ msgstr "Bibliothèque"
 
 #: simulation/templates/template_structure_special_library.xml:19
 msgid "Research special technologies."
-msgstr "Rechercher des technologies spécifiques."
+msgstr "Rechercher des technologies spéciales."
 
 #: simulation/templates/template_structure_special_rotarymill.xml:22
 msgid "Rotary Mill"
@@ -458,7 +459,7 @@ msgstr "Epiteíkhisma"
 
 #: simulation/templates/structures/athen_fortress.xml:10
 msgid "Build siege engines. Garrison soldiers inside for stout defense."
-msgstr "Construire des engins de siège. Mettre des soldats en garnison pour une défense robuste."
+msgstr "Construire des engins de siège. Poster des soldats en garnison pour une défense robuste."
 
 #: simulation/templates/structures/athen_gymnasion.xml:23
 msgid "Gymnasium"
@@ -567,7 +568,7 @@ msgstr "Naós Parthenṓn"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at an extremely quick rate."
-msgstr "Apporter la gloire à votre civilisation et ajouter de grandes étendues de terres à votre empire. Mettre des unités en garnison pour les soigner rapidement."
+msgstr "Apporter la gloire à votre civilisation et ajouter de grandes étendues de terres à votre empire. Poster des unités en garnison pour les soigner extrêmement rapidement."
 
 #: simulation/templates/structures/brit_barracks.xml:15
 #: simulation/templates/structures/gaul_barracks.xml:15
@@ -626,7 +627,7 @@ msgstr "Broch breton"
 
 #: simulation/templates/structures/brit_fortress.xml:22
 msgid "Train Brythonic heroes and champions. Construct siege rams."
-msgstr "Entraîner les héros et champions bretons. Permet la construction des béliers de siège."
+msgstr "Entraîner les héros et champions bretons. Permet la construction de béliers."
 
 #: simulation/templates/structures/brit_house.xml:9
 #: simulation/templates/structures/gaul_house.xml:9
@@ -714,7 +715,7 @@ msgstr "Mijdil"
 
 #: simulation/templates/structures/cart_dock.xml:17
 msgid "Commercial Port"
-msgstr "Port de commerce"
+msgstr "Port commercial"
 
 #: simulation/templates/structures/cart_dock.xml:18
 msgid "Namel"
@@ -818,7 +819,7 @@ msgstr "Maqdaš"
 msgid ""
 "Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
 "units to heal them at a quick rate."
-msgstr "Former des prêtresses pour soigner vos troupes. Former les piquiers du Bataillon Sacré. Mettre des unités en garnison pour les soigner rapidement."
+msgstr "Entraîner des prêtresses pour soigner vos troupes. Entraîner les piquiers du Bataillon Sacré. Poster des unités en garnison pour les soigner rapidement."
 
 #: simulation/templates/structures/cart_wall_gate.xml:9
 msgid "Mijdil-šaʿar"
@@ -927,7 +928,7 @@ msgstr "Gur Oroigarri"
 msgid ""
 "All units within vision of this monument will fight harder. Buildings in the"
 " territory of the monument do not decay."
-msgstr "Toutes les unités dans le champ de vision de ce monument se battront plus intensément. Les bâtiments sur le territoire de ce monument ne changent pas d’allégeance."
+msgstr "Toutes les unités ayant ce monument dans leur champ de vision se battront plus intensément. Les bâtiments sur le territoire de ce monument ne changent pas d’allégeance."
 
 #: simulation/templates/structures/iber_outpost.xml:5
 msgid "Iberian Outpost"
@@ -967,7 +968,7 @@ msgstr "Teíchisma"
 #: simulation/templates/structures/mace_fortress.xml:10
 msgid ""
 "Train Champions and Heroes. Garrison soldiers inside for stout defense."
-msgstr "Former les champions et héros. Mettre des soldats en garnison pour une défense robuste."
+msgstr "Entraîner des champions et des héros. Poster des soldats en garnison pour une défense robuste."
 
 #: simulation/templates/structures/mace_library.xml:5
 #: simulation/templates/structures/ptol_library.xml:5
@@ -984,7 +985,7 @@ msgstr "Atelier de siège"
 
 #: simulation/templates/structures/mace_siege_workshop.xml:20
 msgid "Build siege engines. Research siege technologies."
-msgstr "Construire des engins de siège. Recherche des technologies de siège."
+msgstr "Construire des engins de siège. Rechercher des technologies de siège."
 
 #: simulation/templates/structures/mace_temple.xml:9
 #: simulation/templates/structures/spart_temple.xml:9
@@ -1041,7 +1042,7 @@ msgstr "Durg"
 
 #: simulation/templates/structures/maur_fortress.xml:6
 msgid "Train heroes and champion units."
-msgstr "Entraîner les héros et champions."
+msgstr "Entraîner des héros et des unités championnes."
 
 #: simulation/templates/structures/maur_house.xml:9
 msgid "Griham"
@@ -1057,7 +1058,7 @@ msgstr "Uparaksana"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:9
 msgid "Pillar"
-msgstr "Pillier"
+msgstr "Pilier"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:34
 msgid "Edict Pillar of Ashoka"
@@ -1115,7 +1116,7 @@ msgstr "Stratópedo Misthophóron Aigyptiakós"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:33
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
-msgstr "Capturer cette structure pour entraîner des mercenaires d'Égypte hellénistique."
+msgstr "Capturer ce bâtiment pour entraîner des mercenaires d'Égypte hellénistique."
 
 #: simulation/templates/structures/pers_apadana.xml:29
 #: simulation/templates/structures/pers_tacara.xml:26
@@ -1179,7 +1180,7 @@ msgstr "Didā"
 
 #: simulation/templates/structures/pers_fortress.xml:7
 msgid "Train Champion Cavalry and Construct Siege Rams."
-msgstr "Entraîner la cavalerie championne et construire des béliers de siège."
+msgstr "Entraîner la cavalerie championne et construire des béliers."
 
 #: simulation/templates/structures/pers_hall.xml:28
 msgid "Persian Hall"
@@ -1191,7 +1192,7 @@ msgstr "Duvarthi Visadahyu"
 
 #: simulation/templates/structures/pers_hall.xml:31
 msgid "Train War Elephants and Kardakes mercenaries."
-msgstr "Former des éléphants de guerre et mercenaires kardakes."
+msgstr "Dresser des éléphants de guerre et mercenaires Kardakes."
 
 #: simulation/templates/structures/pers_house.xml:9
 msgid "Huvādā"
@@ -1209,7 +1210,7 @@ msgstr "Porte d'Ishtar de Babylone"
 msgid ""
 "Increases the loyalty regeneration of nearby structures, making them harder "
 "to capture."
-msgstr "Augmente la régénération de fidélité des structures à proximité, ce qui les rend plus difficiles à capturer."
+msgstr "Augmente la régénération de fidélité des bâtiments à proximité, ce qui les rend plus difficiles à capturer."
 
 #: simulation/templates/structures/pers_market.xml:12
 msgid "Ardatašta"
@@ -1233,7 +1234,7 @@ msgstr "Étables"
 
 #: simulation/templates/structures/pers_stables.xml:22
 msgid "Train citizen-cavalry units."
-msgstr "Former des unités de cavalerie citoyenne."
+msgstr "Entraîner des unités de cavalerie citoyenne."
 
 #: simulation/templates/structures/pers_storehouse.xml:5
 msgid "Asiyah"
@@ -1270,7 +1271,7 @@ msgstr "ḥwt-n-mš'"
 msgid ""
 "Train Egyptian and Middle-Eastern citizen-soldiers. Research training "
 "improvements."
-msgstr "Former des citoyens-soldats d'Égypte et du Moyen-Orient. Rechercher des améliorations de formation."
+msgstr "Entraîner des citoyens-soldats d'Égypte et du Moyen-Orient. Rechercher des améliorations d'entraînement."
 
 #: simulation/templates/structures/ptol_civil_centre.xml:12
 msgid "pr-'a"
@@ -1304,7 +1305,7 @@ msgstr "ḥwt"
 msgid ""
 "Increase the population limit. Since they are made of mud brick, Egyptian "
 "houses are free of cost, but are very weak."
-msgstr "Augmente la limite de population. Étant faites en briques de terre, les maisons égyptiennes ne coûtent pas de ressources, mais sont très fragiles."
+msgstr "Augmente la limite de population. Étant faites en briques d'argile, les maisons égyptiennes ne coûtent pas de ressources, mais sont très fragiles."
 
 #: simulation/templates/structures/ptol_lighthouse.xml:17
 msgid "Lighthouse"
@@ -1336,7 +1337,7 @@ msgstr "Stratopedeía Misthophórōn"
 msgid ""
 "Cheap barracks-like structure that is buildable in neutral territory, but "
 "casts no territory influence. Train Mercenaries."
-msgstr "Structure peu coûteuse semblable aux casernes, qui est constructible en territoire neutre, mais ne possède aucune influence territoriale. Permet la formation des mercenaires."
+msgstr "Bâtiment peu coûteux, semblable aux casernes, qui est constructible en territoire neutre, mais ne possède aucune influence territoriale. Permet la formation de mercenaires."
 
 #: simulation/templates/structures/ptol_military_colony.xml:10
 msgid "Klēroukhia"
@@ -1504,7 +1505,7 @@ msgstr "Aedes Martis"
 
 #: simulation/templates/structures/rome_temple_mars.xml:15
 msgid "Train healers. Garrison units to heal them at a quick rate."
-msgstr "Former des guérisseurs. Mettre des unités en garnison pour les soigner à un rythme rapide."
+msgstr "Entraîner des guérisseurs. Poster des unités en garnison pour les soigner rapidement."
 
 #: simulation/templates/structures/rome_temple_vesta.xml:17
 msgid "Temple of Vesta"
@@ -1577,7 +1578,7 @@ msgstr "Phrourion"
 msgid ""
 "Build siege engines and train Champions. Garrison soldiers inside for stout "
 "defense."
-msgstr "Construire des engins de siège et former des champions. Mettre des soldats en garnison pour une défense robuste."
+msgstr "Construire des engins de siège et entraîner des champions. Poster des soldats en garnison pour une défense robuste."
 
 #: simulation/templates/structures/sele_library.xml:9
 msgid "Bibliothikon"
@@ -1604,7 +1605,7 @@ msgstr "Naós"
 
 #: simulation/templates/structures/sele_wonder.xml:12
 msgid "Temple of Pythian Apollo"
-msgstr "Temple de la Pythie d'Apollon"
+msgstr "Temple d'Apollon Pythien"
 
 #: simulation/templates/structures/spart_fortress.xml:9
 msgid "Teíkhisma"
@@ -1637,10 +1638,10 @@ msgstr "Syssítion"
 
 #: simulation/templates/structures/spart_syssiton.xml:27
 msgid "Train Spartan heroes and Spartiate champion hoplites."
-msgstr "Entraîner des héros spartiates et champions hoplites spartiates."
+msgstr "Entraîner les héros spartiates et les champions hoplites spartiates."
 
 #: simulation/templates/structures/spart_wonder.xml:17
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison units to heal them at a quick rate."
-msgstr "Apporter la gloire à votre civilisation et ajouter de grandes étendues de terres à votre empire. Mettre des unités en garnison pour les soigner rapidement."
+msgstr "Apporter la gloire à votre civilisation et ajouter de grandes étendues de terres à votre empire. Poster des unités en garnison pour les soigner rapidement."

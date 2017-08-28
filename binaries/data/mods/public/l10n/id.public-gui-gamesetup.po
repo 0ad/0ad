@@ -15,14 +15,15 @@
 # Joshua Randiny <jrandiny2@gmail.com>, 2017
 # Joshua Randiny <jrandiny2@gmail.com>, 2013-2014
 # La Ode Muh. Fadlun Akbar <fadlun.net@gmail.com>, 2014
+# Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>, 2017
 # Samuel <srandiny@gmail.com>, 2014-2016
 # Samuel <srandiny@gmail.com>, 2017
 # Yusufabdiauzan <yusufabdiauzan@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-08-21 09:03+0200\n"
-"PO-Revision-Date: 2017-08-21 15:36+0000\n"
+"POT-Creation-Date: 2017-08-25 09:03+0200\n"
+"PO-Revision-Date: 2017-08-25 15:32+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -389,7 +390,7 @@ msgstr "Kembali ke menu utama."
 
 #: gui/gamesetup/gamesetup.js:857
 msgid "Start Game!"
-msgstr ""
+msgstr "Mulai Permainan!"
 
 #: gui/gamesetup/gamesetup.js:863
 msgid "Start a new game with the current settings."
@@ -405,6 +406,10 @@ msgstr "Memulai permainan dengan pengaturan ini (dimatikan sampai semua pemain s
 msgctxt "map selection"
 msgid "Random"
 msgstr "Acak"
+
+#: gui/gamesetup/gamesetup.js:1434
+msgid "Pick any of the given maps at random."
+msgstr ""
 
 #: gui/gamesetup/gamesetup.js:1709 gui/gamesetup/gamesetup.js:1748
 #, javascript-format

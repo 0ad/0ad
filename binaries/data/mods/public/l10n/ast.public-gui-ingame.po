@@ -4,12 +4,13 @@
 # 
 # Translators:
 # David Sowa <isithere2@yahoo.com>, 2017
+# enolp <enolp@softastur.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-21 09:03+0200\n"
-"PO-Revision-Date: 2017-08-21 15:11+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-08-27 12:18+0000\n"
+"Last-Translator: enolp <enolp@softastur.org>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,11 +34,11 @@ msgstr[1] "Media l'algame estra: %(range)s metros"
 
 #: gui/session/input.js:710
 msgid "Cannot build wall here!"
-msgstr "¡La muria nun pue construyise equí!"
+msgstr "¡Equí nun pue construyise la muralla!"
 
 #: gui/session/menu.js:133
 msgid "Are you sure you want to resign?"
-msgstr "¿Seguru que quies rindite?"
+msgstr "¿De xuru que quies rindite?"
 
 #: gui/session/menu.js:134 gui/session/menu.js:166 gui/session/menu.js:177
 msgid "Confirmation"
@@ -64,7 +65,7 @@ msgstr "¿Seguru que quies colar?"
 
 #: gui/session/menu.js:176
 msgid "Do you want to resign or will you return soon?"
-msgstr "¿Quies rindite o vuelves llueu?"
+msgstr "¿Quies rindite o volverás más sero?"
 
 #: gui/session/menu.js:178
 msgid "I will return"
@@ -76,7 +77,7 @@ msgstr "Ríndome"
 
 #: gui/session/menu.js:198
 msgid "Destroy everything currently selected?"
-msgstr "¿Desfaer tolo esbillao?"
+msgstr "¿Destruyir tolo esbillao anguaño?"
 
 #: gui/session/menu.js:199
 msgid "Delete"
@@ -128,7 +129,7 @@ msgstr "Sobornar a una unidá al debalu d'esti xugador y compartir la so vista p
 
 #: gui/session/menu.js:562
 msgid "A failed bribe will cost you:"
-msgstr ""
+msgstr "Un sobornu fallíu costaráte:"
 
 #: gui/session/menu.js:733
 #, javascript-format
@@ -208,7 +209,7 @@ msgstr[1] "%(numberOfLandTraders)s comerciantes terrestres inactivos"
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgstr[0] "%(numberGarrisoned)s guarnecíu nun barcu comercial activu"
-msgstr[1] "%(numberGarrisoned)s guarnecíos nun barcu comercial activu"
+msgstr[1] "%(numberGarrisoned)s guarecíos nun barcu comercial activu"
 
 #: gui/session/menu.js:890
 #, javascript-format
@@ -219,7 +220,7 @@ msgid_plural ""
 "There are %(numberGarrisoned)s land traders garrisoned on a trading merchant"
 " ship"
 msgstr[0] "Hai %(numberGarrisoned)s comerciante terrestre guarnecíu nun barcu comercial activu "
-msgstr[1] "Hai %(numberGarrisoned)s comerciantes terrestres guarnecíos nun barcu comercial activu"
+msgstr[1] "Hai %(numberGarrisoned)s comerciantes terrestres guarecíos nun barcu comercial activu"
 
 #: gui/session/menu.js:918
 msgid "There are no merchant ships."
@@ -383,12 +384,12 @@ msgstr "Priváu"
 #: gui/session/messages.js:208
 msgctxt "chat history filter"
 msgid "Chat and notifications"
-msgstr "Chat y notificaciones"
+msgstr "Charra y avisos"
 
 #: gui/session/messages.js:213
 msgctxt "chat history filter"
 msgid "Chat messages"
-msgstr "Mensaxes de chat"
+msgstr "Mensaxes de charra"
 
 #: gui/session/messages.js:218
 msgctxt "chat history filter"
@@ -413,7 +414,7 @@ msgstr "Chat ente espectadores"
 #: gui/session/messages.js:246
 msgctxt "chat history filter"
 msgid "Private chat"
-msgstr "Chat priváu"
+msgstr "Charra privada"
 
 #: gui/session/messages.js:252
 msgid "You have won!"
@@ -426,17 +427,17 @@ msgstr "¡Venciéronte!"
 #: gui/session/messages.js:261
 #, javascript-format
 msgid "You are now allied with %(player)s."
-msgstr "Tas yá aliáu con %(player)s."
+msgstr "Agora tas aliáu con %(player)s."
 
 #: gui/session/messages.js:262
 #, javascript-format
 msgid "You are now at war with %(player)s."
-msgstr "Tas yá en guerra con %(player)s."
+msgstr "Agora tas en guerra con %(player)s."
 
 #: gui/session/messages.js:263
 #, javascript-format
 msgid "You are now neutral with %(player)s."
-msgstr "Tas yá neutral con %(player)s."
+msgstr ""
 
 #: gui/session/messages.js:266
 #, javascript-format
@@ -549,7 +550,7 @@ msgstr "¡Fallu de sincronización!"
 #: gui/session/messages.js:708
 msgctxt "Out-Of-Sync"
 msgid "The current game state is different from the original game state."
-msgstr "L'estáu actual del xuegu ye diferente al estáu orixinal del xuegu."
+msgstr "L'estáu actual del xuegu ye diferente al so estáu orixinal."
 
 #: gui/session/messages.js:772
 msgctxt "chat addressee"
@@ -593,7 +594,7 @@ msgstr "Xugador desconocíu"
 #. elements in an enumeration.
 #: gui/session/messages.js:970
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/messages.js:1002
 #, javascript-format
@@ -734,7 +735,7 @@ msgstr "(%(genericName)s)"
 
 #: gui/session/selection_details.js:424
 msgid "Capture Points:"
-msgstr ""
+msgstr "Puntos de captura:"
 
 #: gui/session/selection_details.js:432
 #, javascript-format
@@ -778,7 +779,7 @@ msgstr ","
 
 #: gui/session/selection_panels.js:78
 msgid "Raise an alert!"
-msgstr "¡Xubir el nivel d'alerta!"
+msgstr "¡Xubíi'l nivel d'alerta!"
 
 #: gui/session/selection_panels.js:82
 msgid "Increase the alert level to protect more units"
@@ -804,11 +805,11 @@ msgstr "Xugador: %(playername)s"
 
 #: gui/session/selection_panels.js:444
 msgid "Lock Gate"
-msgstr "Pesllar la puerta"
+msgstr "Pesllar puerta"
 
 #: gui/session/selection_panels.js:450
 msgid "Unlock Gate"
-msgstr "Despesllar la puerta"
+msgstr "Abrir puerta"
 
 #: gui/session/selection_panels.js:523
 msgid "Pack"
@@ -850,7 +851,7 @@ msgstr[1] "%(number)s entidaes de clas %(class)s"
 #: gui/session/selection_panels.js:801
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
-msgstr "Númberu que resta: %(entityCounts)s"
+msgstr "%(entityCounts)s restantes"
 
 #: gui/session/selection_panels.js:802
 msgctxt "Separator for a list of entity counts"
@@ -888,7 +889,7 @@ msgstr "Agresivu"
 #: gui/session/selection_panels_helpers.js:57
 msgctxt "stance"
 msgid "Defensive"
-msgstr "A la defensiva"
+msgstr "Defensivu"
 
 #: gui/session/selection_panels_helpers.js:59
 msgctxt "stance"
@@ -1019,7 +1020,7 @@ msgstr "Entama por escoyer el recursu que quieras vender de la fila arribera. Ca
 #: gui/session/session.js:602
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
-msgstr "%(civ)s - Árbole de construcciones"
+msgstr "%(civ)s - Árbole d'estructures"
 
 #: gui/session/session.js:865
 msgid "Do you want to quit?"
@@ -1035,12 +1036,12 @@ msgstr "¡VENCÍU!"
 
 #: gui/session/session.js:873
 msgid "OK"
-msgstr "ACORDIES"
+msgstr "ACEUTAR"
 
 #: gui/session/session.js:940
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
-msgstr "Finó la reproducción. ¿Quies colar?"
+msgstr "Finó la repitición. ¿Quies colar?"
 
 #: gui/session/session.js:941
 msgctxt "replayFinished"
@@ -1140,11 +1141,11 @@ msgstr "Ganancia esperao: %(gain)s"
 
 #: gui/session/unit_actions.js:1050 gui/session/unit_actions.js:1368
 msgid "Unload All."
-msgstr "Descargar a toos."
+msgstr "Descárgalo too."
 
 #: gui/session/unit_actions.js:1068
 msgid "Destroy the selected units or buildings."
-msgstr "Desfaer les unidaes o edificios escoyíos."
+msgstr "Destrúi les unidaes o consctrucciones esbillaes."
 
 #: gui/session/unit_actions.js:1070
 #, javascript-format
@@ -1153,19 +1154,19 @@ msgstr "Usa %(hotkey)s pa evitar el diálogu confirmación."
 
 #: gui/session/unit_actions.js:1107
 msgid "Abort the current order."
-msgstr "Anular el mandáu actual."
+msgstr "Albuerta la orde actual."
 
 #: gui/session/unit_actions.js:1126
 msgid "Order the selected units to garrison in a building or unit."
-msgstr "Mandar a les unidaes escoyíes guarnecer un edificiu o unidá."
+msgstr "Ordena a les unidaes esbillaes que guarezan nuna construcción o unidá."
 
 #: gui/session/unit_actions.js:1149
 msgid "Unload"
-msgstr "Descargái"
+msgstr "undefined"
 
 #: gui/session/unit_actions.js:1167
 msgid "Order the selected units to repair a building or mechanical unit."
-msgstr "Mandar a les unidaes escoyíes iguar un edificiu o unidá mecánica."
+msgstr "Ordena a les unidaes esbillaes iguar una construcción o unidá mecánica."
 
 #: gui/session/unit_actions.js:1186
 msgid "Focus on Rally Point."
@@ -1173,7 +1174,7 @@ msgstr "Concentráivos nel puntu d'alcuentru."
 
 #: gui/session/unit_actions.js:1221
 msgid "Back to Work"
-msgstr "Tornái a trabayar"
+msgstr "Volver al trabayu"
 
 #: gui/session/unit_actions.js:1240
 msgid "Order the selected units to guard a building or unit."
@@ -1210,7 +1211,7 @@ msgstr "Tienes permisu pa usar esti depósitu"
 
 #: gui/session/unit_actions.js:1394
 msgid "The use of this dropsite is prohibited"
-msgstr "Nun tienes permisu usar esti depósitu"
+msgstr "Prohíbese l'usu d'esti depósitu"
 
 #: gui/session/unit_actions.js:1468
 msgid "The entity has to be killed before it can be gathered from"
@@ -1219,11 +1220,11 @@ msgstr "Hai que matar la entidá p'arrecoyer d'ella"
 #: gui/session/unit_actions.js:1471
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
-msgstr "Nun yes a destruyir esta entidá yá que-yos pertenecen menos del mediu de los puntos de captura "
+msgstr "Nun pues destruyir esta entidá darréu que tienes menos de la metá de puntos de captura"
 
 #: gui/session/unit_actions.js:1474
 msgid "This entity is undeletable"
-msgstr "Nun yes a desaniciar esta entidá"
+msgstr "Nun pue desaniciase esta entidá"
 
 #: gui/session/chat_window.xml:(caption):19
 msgctxt "chat input"
@@ -1389,7 +1390,7 @@ msgstr "Partida posada"
 
 #: gui/session/session.xml:(caption):80
 msgid "Click to Resume Game"
-msgstr "Calca pa siguir xugando"
+msgstr "Calca pa siguir cola partida"
 
 #: gui/session/top_panel.xml:(tooltip):23
 #: gui/session/top_panel.xml:(caption):29
@@ -1423,7 +1424,7 @@ msgstr "Mercar:"
 
 #: gui/session/trade_window.xml:(caption):32
 msgid "No Markets Available"
-msgstr "Dengún mercáu disponible"
+msgstr "Nun hai mercaos disponibles"
 
 #: gui/session/trade_window.xml:(caption):67
 msgid "Trade"
@@ -1481,7 +1482,7 @@ msgstr "Calca pa escoyer a unidaes agrupaes, calca dos veces pa concentrar les u
 
 #: gui/session/top_panel/button_game_speed.xml:(tooltip):10
 msgid "Game Speed"
-msgstr ""
+msgstr "Velocidá del xuegu"
 
 #: gui/session/top_panel/button_game_speed.xml:(tooltip):18
 msgid "Choose game speed"
@@ -1493,4 +1494,4 @@ msgstr "Menú"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XXIII : Ken Wood"
-msgstr ""
+msgstr "ALPHA XXIII : Ken Wood"

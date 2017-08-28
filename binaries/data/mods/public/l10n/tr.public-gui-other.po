@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-21 09:04+0200\n"
-"PO-Revision-Date: 2017-08-21 16:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-08-26 23:37+0000\n"
+"Last-Translator: yakup <mutouk@yandex.ru>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -79,7 +79,7 @@ msgstr "Sekme"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait..."
-msgstr ""
+msgstr "Açılıyor %(url)s\n varsayılan tarayıcıda. Lütfen bekleyiniz..."
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
@@ -290,12 +290,12 @@ msgstr[1] "Merak etme (%(min)s dakika)"
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
 msgid_plural "Capture the Relic (%(min)s minutes)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Kutsal emane Yakalama (%(min)s dakika)"
+msgstr[1] "Kutsal emanet Yakalama (%(min)s dakika)"
 
 #: gui/common/gamedescription.js:260
 msgid "Relic Count"
-msgstr ""
+msgstr "Kutsal emanet Sayısı"
 
 #: gui/common/gamedescription.js:267
 msgid "Hero Garrison"
@@ -303,15 +303,15 @@ msgstr "Kahraman Garnizonu"
 
 #: gui/common/gamedescription.js:268
 msgid "Heroes can be garrisoned."
-msgstr ""
+msgstr "Kahramanlar garnizon edilebilir."
 
 #: gui/common/gamedescription.js:272
 msgid "Exposed Heroes"
-msgstr ""
+msgstr "Korunmasız Kahramanlar"
 
 #: gui/common/gamedescription.js:273
 msgid "Heroes cannot be garrisoned, and they are vulnerable to raids."
-msgstr ""
+msgstr "Kahramanlar görevden alınamaz ve baskınlara karşı savunmasızdırlar."
 
 #: gui/common/gamedescription.js:280
 msgid "Rated game"
@@ -370,8 +370,8 @@ msgstr "devre dışı bırakılmış"
 #: gui/common/gamedescription.js:313
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "İlk dakika için, diğer oyuncular tarafsız kalacak."
+msgstr[1] "İlk %(min)s dakika için, diğer oyuncular tarafsız kalacak."
 
 #: gui/common/gamedescription.js:321
 msgid "Map Name"
@@ -408,7 +408,7 @@ msgstr "Nüfus Limiti"
 
 #: gui/common/gamedescription.js:373
 msgid "Treasures"
-msgstr ""
+msgstr "Hazineler"
 
 #: gui/common/gamedescription.js:375
 msgctxt "treasures"
@@ -524,7 +524,7 @@ msgstr "Sunucu dolu"
 #: gui/common/network.js:76
 msgid ""
 "Player identifier in use. If you were disconnected, retry in few seconds"
-msgstr ""
+msgstr "Kullanılan oyuncu tanımlayıcı. Bağlantı kesildiyse, birkaç saniye içinde tekrar deneyin"
 
 #: gui/common/network.js:79
 #, javascript-format
@@ -631,7 +631,7 @@ msgstr "Çatışma"
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other gamesettings."
-msgstr ""
+msgstr "Önceden tanımlanmış manzara ve oyuncu sayısı olan bir harita. Diğer oyun ayarlarını serbestçe seçin."
 
 #: gui/common/settings.js:194
 msgctxt "map"
@@ -642,7 +642,7 @@ msgstr "Rastgele"
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
-msgstr ""
+msgstr "Her seferinde farklı bir kaynak dağıtımı ile benzersiz bir harita oluşturun. Oyuncuların ve takımların sayısını serbestçe seçin."
 
 #: gui/common/settings.js:199
 msgctxt "map"
@@ -651,7 +651,7 @@ msgstr "Senaryo"
 
 #: gui/common/settings.js:200
 msgid "A map with a predefined landscape and matchsettings."
-msgstr ""
+msgstr "Önceden tanımlanmış manzara ve maç ayarlarını içeren bir harita."
 
 #: gui/common/settings.js:231
 msgctxt "victory condition"
@@ -1059,7 +1059,7 @@ msgstr "%(auraname)s:"
 #: gui/common/tooltips.js:682
 msgctxt "aura"
 msgid "Range:"
-msgstr ""
+msgstr "Menzil:"
 
 #: gui/common/tooltips.js:699
 #, javascript-format
@@ -1232,7 +1232,7 @@ msgstr "Kılavuz"
 #: gui/reference/common/load.js:233
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
-msgstr ""
+msgstr "%(health_min)s e %(health_max)s"
 
 #: gui/replaymenu/replay_actions.js:92
 msgid "You don't have the same mods active as the replay does."
@@ -1572,7 +1572,7 @@ msgstr "Çeşitli"
 
 #: gui/summary/layout.js:182
 msgid "Vegetarian ratio"
-msgstr ""
+msgstr "Vejetaryen oranı"
 
 #: gui/summary/layout.js:183
 msgid "Feminization"
@@ -1580,19 +1580,19 @@ msgstr "Kadınlaşma"
 
 #: gui/summary/layout.js:184
 msgid "Kill / Death ratio"
-msgstr ""
+msgstr "Öldürülme / Vefa oranı"
 
 #: gui/summary/layout.js:185
 msgid "Map exploration"
-msgstr ""
+msgstr "Harita açığa çıkması"
 
 #: gui/summary/layout.js:186
 msgid "Map control (peak)"
-msgstr ""
+msgstr "Harita kontrol (tepe)"
 
 #: gui/summary/layout.js:187
 msgid "Map control (finish)"
-msgstr ""
+msgstr "Harita kontrol (bitiş)"
 
 #: gui/summary/layout.js:340
 msgid "Team total"
@@ -1616,7 +1616,7 @@ msgstr "Gönderildi"
 
 #: gui/summary/summary.js:50
 msgid "Bought"
-msgstr ""
+msgstr "Satın"
 
 #: gui/summary/summary.js:55
 msgid "Income"
@@ -1644,15 +1644,15 @@ msgstr "Kullanıldı"
 
 #: gui/summary/summary.js:85
 msgid "Received"
-msgstr ""
+msgstr "Alındı"
 
 #: gui/summary/summary.js:90
 msgid "Sold"
-msgstr ""
+msgstr "Satıldı"
 
 #: gui/summary/summary.js:95
 msgid "Outcome"
-msgstr ""
+msgstr "Sonuç"
 
 #: gui/summary/summary.js:361
 msgid "Are you sure you want to quit the lobby?"
@@ -1851,7 +1851,7 @@ msgstr "Hataları onarmakta bize yardımcı olmak için otomatik olarak anonim g
 
 #: gui/pregame/mainmenu.xml:539
 msgid "Alpha XXIII: Ken Wood"
-msgstr ""
+msgstr "Alfa XXIII: Ken Wood"
 
 #: gui/pregame/mainmenu.xml:541
 msgid ""
@@ -1927,7 +1927,7 @@ msgstr "Mod Seçimi"
 
 #: gui/pregame/mainmenu.xml:(caption):456
 msgid "Learn to Play"
-msgstr ""
+msgstr "Oynamasını Öğren"
 
 #: gui/pregame/mainmenu.xml:(caption):501
 msgid "Tools & Options"
@@ -1951,7 +1951,7 @@ msgstr "Hatayı Bildirin"
 
 #: gui/pregame/mainmenu.xml:(caption):587
 msgid "Translate the Game"
-msgstr ""
+msgstr "Bu oyunu çevir "
 
 #: gui/pregame/mainmenu.xml:(caption):599
 msgid "Credits"
@@ -2033,7 +2033,7 @@ msgstr "Kullanılacak modları seç."
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations"
-msgstr ""
+msgstr "Oyun oynamayı, öğreticiyi başlatmayı, teknoloji ağaçlarını keşfetmeyi ve uygarlıkların arkasındaki tarihi öğrenin."
 
 #: gui/pregame/mainmenu.xml:(tooltip):472
 msgid "Challenge the computer player to a single player match."
@@ -2119,7 +2119,7 @@ msgstr "Sil"
 
 #: gui/replaymenu/replay_menu.xml:(caption):251
 msgid "Reload Cache"
-msgstr ""
+msgstr "Önbelleği Yeniden Yükle"
 
 #: gui/replaymenu/replay_menu.xml:(caption):258
 #: gui/summary/summary.xml:(caption):24
@@ -2164,7 +2164,7 @@ msgstr "Süre"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):252
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
-msgstr ""
+msgstr "Sıfırdan oynatma önbelleğini kurun. Potansiyel olarak yavaş!"
 
 #: gui/savedgames/load.xml:(heading):41
 msgctxt "replay"
@@ -2444,11 +2444,11 @@ msgstr "Sohbet Biriktirme Listesi"
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
-msgstr ""
+msgstr "Katılımcı oyuncuların ortalama oylarını oyun listesinin bir sütununa gösterin."
 
 #: gui/options/options.jsonlobbySetting[1].label
 msgid "Game Rating Column"
-msgstr ""
+msgstr "Oyun Değerlendirme Sütunu"
 
 #: gui/options/options.jsongeneralSetting[0].tooltip
 msgid "How you want to be addressed in Single Player matches."
@@ -2577,11 +2577,11 @@ msgstr "Devre dışı"
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
-msgstr ""
+msgstr "Eşleşme kurulumu sırasında müşterilere ücretsiz oyuncu yuvalarına otomatik olarak atayın."
 
 #: gui/options/options.jsongeneralSetting[13].label
 msgid "Assign Players"
-msgstr ""
+msgstr "Oyuncular ata"
 
 #: gui/options/options.jsongeneralSetting[14].tooltip
 msgid ""
@@ -2622,21 +2622,21 @@ msgstr "Sohbet Zaman damgası"
 msgid ""
 "Display the range of auras of selected units and structures (can also be "
 "toggled in-game with the hotkey)."
-msgstr ""
+msgstr "Seçilen ünitelerin ve yapıların auralarının aralıklarını gösterin (aynı zamanda kısayol tuşuna basarak oyunda geçiş yapabilirsiniz)"
 
 #: gui/options/options.jsongeneralSetting[18].label
 msgid "Aura Range Visualization"
-msgstr ""
+msgstr "Aura Bölgesi Görselleştirme"
 
 #: gui/options/options.jsongeneralSetting[19].tooltip
 msgid ""
 "Display the healing range of selected units (can also be toggled in-game "
 "with the hotkey)."
-msgstr ""
+msgstr "Seçilen birimlerin iyileştirme aralığını görüntüleyin (kısayol tuşu ile oyunda geçiş yapılabilir)."
 
 #: gui/options/options.jsongeneralSetting[19].label
 msgid "Heal Range Visualization"
-msgstr ""
+msgstr "İyileştirme Alanı Görselleştirme"
 
 #: gui/options/options.jsonsoundSetting[0].tooltip
 msgid "Master audio gain"
@@ -2722,13 +2722,13 @@ msgstr "Tamamlandı"
 
 #: gui/options/options.jsonnotificationSetting[3].parameters.list[2].label
 msgid "All displayed"
-msgstr ""
+msgstr "Tümü gösterildi"
 
 #: gui/options/options.jsonnotificationSetting[3].tooltip
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode"
-msgstr ""
+msgstr "Siz veya bir müttefik başladıysanız, iptal ederseniz veya yeni bir evre tamamladıysanız ve gözlemci modundaki tüm oyuncuların evreleri ile bir sohbet bildirimi gösterin"
 
 #: gui/options/options.jsonnotificationSetting[3].label
 msgid "Phase"
@@ -2752,11 +2752,11 @@ msgstr "Yayın Düzenleme"
 
 #: gui/options/options.jsongraphicsSetting[2].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Gölgelendirici efektlerinin sayısı. OYUN YENİDEN BAŞLATILMASI GEREKİYOR"
 
 #: gui/options/options.jsongraphicsSetting[2].label
 msgid "Shader Effects"
-msgstr ""
+msgstr "Gölgeleme Efektleri"
 
 #: gui/options/options.jsongraphicsSetting[3].tooltip
 msgid "Enable shadows"
@@ -2768,33 +2768,33 @@ msgstr "Gölgeler"
 
 #: gui/options/options.jsongraphicsSetting[4].parameters.list[0].label
 msgid "Very Low"
-msgstr ""
+msgstr "Çok Düşük"
 
 #: gui/options/options.jsongraphicsSetting[4].parameters.list[1].label
 msgid "Low"
-msgstr ""
+msgstr "Düşük"
 
 #: gui/options/options.jsongraphicsSetting[4].parameters.list[2].label
 msgid "Medium"
-msgstr ""
+msgstr "Orta"
 
 #: gui/options/options.jsongraphicsSetting[4].parameters.list[3].label
 msgid "High"
-msgstr ""
+msgstr "Yüksek"
 
 #: gui/options/options.jsongraphicsSetting[4].parameters.list[4].label
 msgid "Very High"
-msgstr ""
+msgstr "Çok Yüksek"
 
 #: gui/options/options.jsongraphicsSetting[4].tooltip
 msgid ""
 "Shadow map resolution. High values can crash the game when using a graphics "
 "card with low memory!"
-msgstr ""
+msgstr "Gölge harita çözünürlüğü. Düşük değerli bir grafik kartı kullanırken yüksek değerler oyunu düşürebilir!"
 
 #: gui/options/options.jsongraphicsSetting[4].label
 msgid "Shadow Quality"
-msgstr ""
+msgstr "Gölge Kalitesi"
 
 #: gui/options/options.jsongraphicsSetting[5].tooltip
 msgid "Smooth shadows"
@@ -2828,7 +2828,7 @@ msgstr "Kapatıldığında, Su kaplama işlemede mümkün olan düşük ayarlar�
 
 #: gui/options/options.jsongraphicsSetting[8].label
 msgid "Water Effects"
-msgstr ""
+msgstr "Su Efektleri"
 
 #: gui/options/options.jsongraphicsSetting[9].tooltip
 msgid ""
@@ -2900,37 +2900,37 @@ msgstr "VSync"
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
-msgstr ""
+msgstr "CPU'nun iş yükünü azaltmak için, tüm menülerdeki oluşturma frekansını azaltın. Kısıtlamayı devre dışı bırakmak için maksimum değer olarak ayarlayın."
 
 #: gui/options/options.jsongraphicsSetting[17].label
 msgid "FPS Throttling in Menus"
-msgstr ""
+msgstr "FPS Menülerde Kısma"
 
 #: gui/options/options.jsongraphicsSetting[18].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
-msgstr ""
+msgstr "CPU'nun iş yükünü azaltmak için, çalışan oyunları oynatma sıklığını azaltın. Kısıtlamayı devre dışı bırakmak için maksimum değer olarak ayarlayın."
 
 #: gui/options/options.jsongraphicsSetting[18].label
 msgid "FPS Throttling in Games"
-msgstr ""
+msgstr "Oyunlarda FPS Azaltma"
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."
-msgstr ""
+msgstr "Hayvanlar, çalılar, balıklar veya tarlalardan hasat yapın."
 
 #: simulation/data/resources/metal.jsondescription
 msgid "Mine from metal mines or quarries."
-msgstr ""
+msgstr "Metal madenleri veya ocaklarından maden elde edin."
 
 #: simulation/data/resources/stone.jsondescription
 msgid "Mine from rocks, stone quarries or ruins."
-msgstr ""
+msgstr "Taş ocaklarından veya harabelerden taş madeni elde edin."
 
 #: simulation/data/resources/wood.jsondescription
 msgid "Cut down from trees or groves."
-msgstr ""
+msgstr "Ağaçlardan veya korulardan kesin."
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.

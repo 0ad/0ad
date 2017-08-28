@@ -12,6 +12,7 @@
 # Nicolas Auvray <na.itms76@gmail.com>, 2017
 # Shinyu Wu <shinyu@gnu.hk>, 2016
 # Tianran Yao <yaotianran@gmail.com>, 2016
+# Vince Luo <vinceluo11@gmail.com>, 2017
 # liulitchi <xingzuo88@qq.com>, 2017
 # 呂正 <jack.lvzheng@gmail.com>, 2015
 # 玉堂白鹤 <yjwork@qq.com>, 2015
@@ -19,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-21 09:04+0200\n"
-"PO-Revision-Date: 2017-08-21 16:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-08-28 02:10+0000\n"
+"Last-Translator: Vince Luo <vinceluo11@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -445,7 +446,7 @@ msgstr "取消"
 
 #: gui/common/gamedescription.js:416
 msgid "Victorious"
-msgstr ""
+msgstr "胜利"
 
 #: gui/common/gamedescription.js:421
 msgid "Defeated"
@@ -599,7 +600,7 @@ msgstr "非常困难"
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
+msgstr[0] "%(min)s分钟"
 
 #: gui/common/settings.js:173
 msgctxt "ceasefire"
@@ -726,7 +727,7 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s"
 " (%(relativeRange)s) %(rangeUnit)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s%(damageTypes)s,%(rangeLabel)s%(minRange)s到%(maxRange)s(%(relativeRange)s)%(rangeUnit)s,%(rate)s"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 10 (+2)
 #. meters, Interval: 3 arrows / 2 seconds
@@ -735,7 +736,7 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s "
 "(%(relativeRange)s) %(rangeUnit)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s%(damageTypes)s,%(rangeLabel)s%(maxRange)s(%(relativeRange)s)%(rangeUnit)s,%(rate)s"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 2 to 10
 #. meters, Interval: 3 arrows / 2 seconds
@@ -744,7 +745,7 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(minRange)s to %(maxRange)s"
 " %(rangeUnit)s, %(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s%(damageTypes)s,%(rangeLabel)s%(minRange)s到%(maxRange)s%(rangeUnit)s,%(rate)s"
 
 #. Translation: For example: Ranged Attack: 12.0 Pierce, Range: 10 meters,
 #. Interval: 3 arrows / 2 seconds
@@ -753,7 +754,7 @@ msgstr ""
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(maxRange)s %(rangeUnit)s, "
 "%(rate)s"
-msgstr ""
+msgstr "%(attackLabel)s%(damageTypes)s,%(rangeLabel)s%(maxRange)s%(rangeUnit)s,%(rate)s"
 
 #: gui/common/tooltips.js:73
 #, javascript-format
@@ -785,7 +786,7 @@ msgstr "生命值："
 #: gui/common/tooltips.js:141
 #, javascript-format
 msgid "%(healthLabel)s %(current)s / %(max)s"
-msgstr ""
+msgstr "%(healthLabel)s%(current)s/%(max)s"
 
 #: gui/common/tooltips.js:159
 #, javascript-format
@@ -851,13 +852,13 @@ msgstr "范围："
 #: gui/common/tooltips.js:260
 #, javascript-format
 msgid "+%(number)s"
-msgstr ""
+msgstr "+%(number)s"
 
 #. Translation: For example "0.5 to 1 meters", "1 (+1) meters" or "1 to 2 (+3)
 #. meters"
 #: gui/common/tooltips.js:264
 msgid "meters"
-msgstr ""
+msgstr "米"
 
 #: gui/common/tooltips.js:265 gui/common/tooltips.js:655
 #: gui/common/tooltips.js:684
@@ -957,7 +958,7 @@ msgstr ""
 #: gui/common/tooltips.js:474
 #, javascript-format
 msgid "%(resources)s / %(time)s"
-msgstr ""
+msgstr "%(resources)s/%(time)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
@@ -1043,7 +1044,7 @@ msgstr "%(auraname)s:"
 #: gui/common/tooltips.js:682
 msgctxt "aura"
 msgid "Range:"
-msgstr ""
+msgstr "范围: "
 
 #: gui/common/tooltips.js:699
 #, javascript-format
@@ -1084,7 +1085,7 @@ msgstr "无"
 
 #: gui/locale/locale_advanced.js:92
 msgid "invalid locale"
-msgstr ""
+msgstr "无效的场所"
 
 #: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:163
 #: gui/splashscreen/splashscreen.xml:(caption):28
@@ -1095,7 +1096,7 @@ msgstr "确定"
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
-msgstr ""
+msgstr "值: %(val)s(最小: %(min)s, 最大: %(max)s)"
 
 #: gui/options/options.js:335
 msgid ""
@@ -1150,7 +1151,7 @@ msgstr "匿名反馈已启用"
 #: gui/pregame/mainmenu.js:128
 #, javascript-format
 msgid "Status: %(status)s."
-msgstr ""
+msgstr "状态: %(status)s。"
 
 #: gui/pregame/mainmenu.js:152
 #, javascript-format
@@ -1216,7 +1217,7 @@ msgstr "手册"
 #: gui/reference/common/load.js:233
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
-msgstr ""
+msgstr "%(health_min)s到%(health_max)s"
 
 #: gui/replaymenu/replay_actions.js:92
 msgid "You don't have the same mods active as the replay does."
@@ -1346,7 +1347,7 @@ msgstr ""
 #: gui/replaymenu/replay_menu.js:272
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
-msgstr ""
+msgstr "玩家: %(numberOfPlayers)s"
 
 #: gui/replaymenu/replay_menu.js:299
 msgid "yyyy-MM-dd HH:mm"
@@ -1554,7 +1555,7 @@ msgstr "杂项"
 
 #: gui/summary/layout.js:182
 msgid "Vegetarian ratio"
-msgstr ""
+msgstr "素食者比例"
 
 #: gui/summary/layout.js:183
 msgid "Feminization"
@@ -1562,19 +1563,19 @@ msgstr "女性化"
 
 #: gui/summary/layout.js:184
 msgid "Kill / Death ratio"
-msgstr ""
+msgstr "杀死/死亡比例"
 
 #: gui/summary/layout.js:185
 msgid "Map exploration"
-msgstr ""
+msgstr "地图探测"
 
 #: gui/summary/layout.js:186
 msgid "Map control (peak)"
-msgstr ""
+msgstr "地图控制(最高点)"
 
 #: gui/summary/layout.js:187
 msgid "Map control (finish)"
-msgstr ""
+msgstr "地图控制(完成)"
 
 #: gui/summary/layout.js:340
 msgid "Team total"
@@ -1598,11 +1599,11 @@ msgstr "送出的"
 
 #: gui/summary/summary.js:50
 msgid "Bought"
-msgstr ""
+msgstr "已买入"
 
 #: gui/summary/summary.js:55
 msgid "Income"
-msgstr ""
+msgstr "收入"
 
 #: gui/summary/summary.js:60
 msgid "Captured"
@@ -1626,15 +1627,15 @@ msgstr "已使用的"
 
 #: gui/summary/summary.js:85
 msgid "Received"
-msgstr ""
+msgstr "已收到"
 
 #: gui/summary/summary.js:90
 msgid "Sold"
-msgstr ""
+msgstr "已卖出"
 
 #: gui/summary/summary.js:95
 msgid "Outcome"
-msgstr ""
+msgstr "支出"
 
 #: gui/summary/summary.js:361
 msgid "Are you sure you want to quit the lobby?"
@@ -1791,7 +1792,7 @@ msgstr "大厅设置"
 
 #: gui/options/options.xml:(caption):76
 msgid "Chat Notification Settings"
-msgstr ""
+msgstr "聊天提醒设置"
 
 #: gui/options/options.xml:(caption):88
 msgid "Reset"
@@ -1851,7 +1852,7 @@ msgstr "取消反馈"
 
 #: gui/pregame/mainmenu.xml:(caption):156
 msgid "Tutorial"
-msgstr ""
+msgstr "教程"
 
 #: gui/pregame/mainmenu.xml:(caption):170
 #: gui/reference/structree/structree.xml:(caption):16
@@ -1909,7 +1910,7 @@ msgstr "Mod 选择"
 
 #: gui/pregame/mainmenu.xml:(caption):456
 msgid "Learn to Play"
-msgstr ""
+msgstr "学习如何游戏"
 
 #: gui/pregame/mainmenu.xml:(caption):501
 msgid "Tools & Options"
@@ -1933,7 +1934,7 @@ msgstr "报告游戏错误"
 
 #: gui/pregame/mainmenu.xml:(caption):587
 msgid "Translate the Game"
-msgstr ""
+msgstr "翻译游戏"
 
 #: gui/pregame/mainmenu.xml:(caption):599
 msgid "Credits"
@@ -1949,7 +1950,7 @@ msgstr "打开 0 A.D. 游戏手册。"
 
 #: gui/pregame/mainmenu.xml:(tooltip):157
 msgid "Start the economic tutorial."
-msgstr ""
+msgstr "开始经济类教学"
 
 #: gui/pregame/mainmenu.xml:(tooltip):171
 msgid "View the structure tree of civilizations featured in 0 A.D."
@@ -2015,7 +2016,7 @@ msgstr "选择一个 mods 使用。"
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations"
-msgstr ""
+msgstr "学习如何游戏，开始教程，探索科技树以及文明背后的历史"
 
 #: gui/pregame/mainmenu.xml:(tooltip):472
 msgid "Challenge the computer player to a single player match."
@@ -2101,7 +2102,7 @@ msgstr "删除"
 
 #: gui/replaymenu/replay_menu.xml:(caption):251
 msgid "Reload Cache"
-msgstr ""
+msgstr "加载缓存"
 
 #: gui/replaymenu/replay_menu.xml:(caption):258
 #: gui/summary/summary.xml:(caption):24
@@ -2156,11 +2157,11 @@ msgstr "地图类型"
 #: gui/savedgames/load.xml:(heading):49
 msgctxt "replay"
 msgid "Description"
-msgstr ""
+msgstr "说明"
 
 #: gui/savedgames/load.xml:(caption):54
 msgid "No saved games found."
-msgstr ""
+msgstr "未找到已保存的游戏"
 
 #: gui/savedgames/load.xml:(caption):68
 msgid "Load"
@@ -2200,22 +2201,22 @@ msgstr "已知问题 (网页)"
 
 #: gui/summary/summary.xml:(caption):106
 msgid "Charts"
-msgstr ""
+msgstr "图表"
 
 #: gui/summary/summary.xml:(caption):163
 msgctxt "summary chart"
 msgid "Category:"
-msgstr ""
+msgstr "种类: "
 
 #: gui/summary/summary.xml:(caption):173
 msgctxt "summary chart"
 msgid "Value:"
-msgstr ""
+msgstr "值: "
 
 #: gui/summary/summary.xml:(caption):183
 msgctxt "summary chart"
 msgid "Type:"
-msgstr ""
+msgstr "类型: "
 
 #: gui/summary/summary.xml:(caption):202
 msgid "Replay"
@@ -2228,17 +2229,17 @@ msgstr "继续"
 #: gui/summary/summary.xml:(tooltip):169
 msgctxt "summary chart"
 msgid "Category"
-msgstr ""
+msgstr "种类"
 
 #: gui/summary/summary.xml:(tooltip):179
 msgctxt "summary chart"
 msgid "Value"
-msgstr ""
+msgstr "值"
 
 #: gui/summary/summary.xml:(tooltip):190
 msgctxt "summary chart"
 msgid "Type"
-msgstr ""
+msgstr "类型"
 
 #: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
 msgid "Art lead"
@@ -2543,12 +2544,12 @@ msgstr "保持遭遇战设定"
 #: gui/options/options.jsongeneralSetting[13].parameters.list[0].label
 #: gui/options/options.jsongeneralSetting[14].parameters.list[0].label
 msgid "Everyone"
-msgstr ""
+msgstr "所有人"
 
 #: gui/options/options.jsongeneralSetting[13].parameters.list[1].label
 #: gui/options/options.jsongeneralSetting[14].parameters.list[1].label
 msgid "Buddies"
-msgstr ""
+msgstr "伙伴"
 
 #: gui/options/options.jsongeneralSetting[13].parameters.list[2].label
 #: gui/options/options.jsongeneralSetting[14].parameters.list[2].label
@@ -2634,7 +2635,7 @@ msgstr "游戏音乐控制"
 
 #: gui/options/options.jsonsoundSetting[1].label
 msgid "Music Volume"
-msgstr ""
+msgstr "音乐音量"
 
 #: gui/options/options.jsonsoundSetting[2].tooltip
 msgid "In game ambient sound gain"
@@ -2674,7 +2675,7 @@ msgstr ""
 
 #: gui/options/options.jsonnotificationSetting[0].label
 msgid "Attack"
-msgstr ""
+msgstr "攻击"
 
 #: gui/options/options.jsonnotificationSetting[1].tooltip
 msgid ""
@@ -2684,7 +2685,7 @@ msgstr ""
 
 #: gui/options/options.jsonnotificationSetting[1].label
 msgid "Tribute"
-msgstr ""
+msgstr "贡品"
 
 #: gui/options/options.jsonnotificationSetting[2].tooltip
 msgid "Show a chat notification to observers when a player bartered resources"
@@ -2692,7 +2693,7 @@ msgstr ""
 
 #: gui/options/options.jsonnotificationSetting[2].label
 msgid "Barter"
-msgstr ""
+msgstr "以物易物"
 
 #: gui/options/options.jsonnotificationSetting[3].parameters.list[0].label
 msgid "Disable"
@@ -2700,11 +2701,11 @@ msgstr ""
 
 #: gui/options/options.jsonnotificationSetting[3].parameters.list[1].label
 msgid "Completed"
-msgstr ""
+msgstr "完成"
 
 #: gui/options/options.jsonnotificationSetting[3].parameters.list[2].label
 msgid "All displayed"
-msgstr ""
+msgstr "所有展示"
 
 #: gui/options/options.jsonnotificationSetting[3].tooltip
 msgid ""
@@ -2714,7 +2715,7 @@ msgstr ""
 
 #: gui/options/options.jsonnotificationSetting[3].label
 msgid "Phase"
-msgstr ""
+msgstr "阶段"
 
 #: gui/options/options.jsongraphicsSetting[0].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)"
@@ -2738,7 +2739,7 @@ msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[2].label
 msgid "Shader Effects"
-msgstr ""
+msgstr "着色特效"
 
 #: gui/options/options.jsongraphicsSetting[3].tooltip
 msgid "Enable shadows"
@@ -2750,23 +2751,23 @@ msgstr "阴影效果"
 
 #: gui/options/options.jsongraphicsSetting[4].parameters.list[0].label
 msgid "Very Low"
-msgstr ""
+msgstr "非常低"
 
 #: gui/options/options.jsongraphicsSetting[4].parameters.list[1].label
 msgid "Low"
-msgstr ""
+msgstr "低"
 
 #: gui/options/options.jsongraphicsSetting[4].parameters.list[2].label
 msgid "Medium"
-msgstr ""
+msgstr "中等"
 
 #: gui/options/options.jsongraphicsSetting[4].parameters.list[3].label
 msgid "High"
-msgstr ""
+msgstr "高"
 
 #: gui/options/options.jsongraphicsSetting[4].parameters.list[4].label
 msgid "Very High"
-msgstr ""
+msgstr "非常高"
 
 #: gui/options/options.jsongraphicsSetting[4].tooltip
 msgid ""
@@ -2776,7 +2777,7 @@ msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[4].label
 msgid "Shadow Quality"
-msgstr ""
+msgstr "阴影质量"
 
 #: gui/options/options.jsongraphicsSetting[5].tooltip
 msgid "Smooth shadows"
@@ -2810,7 +2811,7 @@ msgstr "处于关闭状态时，尽可能使用最低设置来渲染水面。这
 
 #: gui/options/options.jsongraphicsSetting[8].label
 msgid "Water Effects"
-msgstr ""
+msgstr "水面特效"
 
 #: gui/options/options.jsongraphicsSetting[9].tooltip
 msgid ""

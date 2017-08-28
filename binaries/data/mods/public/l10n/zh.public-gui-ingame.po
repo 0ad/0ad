@@ -20,6 +20,7 @@
 # rentt777 <35974380@qq.com>, 2014
 # samrmrf, 2013
 # simsilver <yihuanlingjian@gmail.com>, 2014
+# Vince Luo <vinceluo11@gmail.com>, 2017
 # wuxb <wuxb45@gmail.com>, 2014
 # wuxb <wuxb45@gmail.com>, 2014
 # xingtong, 2013
@@ -35,8 +36,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-21 09:03+0200\n"
-"PO-Revision-Date: 2017-08-21 15:11+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-08-28 02:09+0000\n"
+"Last-Translator: Vince Luo <vinceluo11@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -153,7 +154,7 @@ msgstr "贿赂该玩家的一个随机单位并在有限期间内共享其视野
 
 #: gui/session/menu.js:562
 msgid "A failed bribe will cost you:"
-msgstr ""
+msgstr "一个失败的贿赂将要花费你: "
 
 #: gui/session/menu.js:733
 #, javascript-format
@@ -278,7 +279,7 @@ msgstr "由 %(players)s暂停"
 #: gui/session/menu.js:1121 gui/session/messages.js:669
 msgctxt "Separator for a list of players"
 msgid ", "
-msgstr ""
+msgstr "，"
 
 #: gui/session/menu.js:1134 gui/session/menu.xml:(caption):17
 msgid "Manual"
@@ -486,24 +487,24 @@ msgstr "%(player)s 已与 %(player2)s 和解。"
 
 #: gui/session/messages.js:558
 msgid "Click to quit this tutorial."
-msgstr ""
+msgstr "点击退出这个教程。"
 
 #: gui/session/messages.js:559
 msgid "Quit"
-msgstr ""
+msgstr "退出"
 
 #: gui/session/messages.js:563
 msgid "Click when ready."
-msgstr ""
+msgstr "准备好后点击"
 
 #: gui/session/messages.js:567
 msgid "Follow the instructions."
-msgstr ""
+msgstr "遵照指示"
 
 #: gui/session/messages.js:658
 msgctxt "Separator for a list of client loading messages"
 msgid ", "
-msgstr ""
+msgstr "，"
 
 #: gui/session/messages.js:664
 #, javascript-format
@@ -514,17 +515,17 @@ msgstr ""
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Players: %(players)s"
-msgstr ""
+msgstr "玩家: %(players)s"
 
 #: gui/session/messages.js:673
 msgctxt "Out-Of-Sync"
 msgid "Your game state is identical to the hosts game state."
-msgstr ""
+msgstr "你的游戏状态与服务器的游戏状态完全一致。"
 
 #: gui/session/messages.js:674
 msgctxt "Out-Of-Sync"
 msgid "Your game state differs from the hosts game state."
-msgstr ""
+msgstr "你的游戏状态与服务器的游戏状态不一致。"
 
 #: gui/session/messages.js:680
 msgctxt "Out-Of-Sync"
@@ -534,18 +535,18 @@ msgstr ""
 #: gui/session/messages.js:684
 msgctxt "Out-Of-Sync"
 msgid "Ensure all players use the same mods."
-msgstr ""
+msgstr "确保所有玩家使用的相同游戏模组。"
 
 #: gui/session/messages.js:685
 msgctxt "Out-Of-Sync"
 msgid "Click on \"Report a Bug\" in the main menu to help fix this."
-msgstr ""
+msgstr "在主菜单中点击“报告错误”来帮助解决它。"
 
 #: gui/session/messages.js:686
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Replay saved to %(filepath)s"
-msgstr ""
+msgstr "回放保存到了%(filepath)s"
 
 #: gui/session/messages.js:689
 #, javascript-format
@@ -609,7 +610,7 @@ msgstr "未知玩家"
 #. elements in an enumeration.
 #: gui/session/messages.js:970
 msgid ", "
-msgstr ""
+msgstr "，"
 
 #: gui/session/messages.js:1002
 #, javascript-format
@@ -868,7 +869,7 @@ msgstr "剩余：%(entityCounts)s "
 #: gui/session/selection_panels.js:802
 msgctxt "Separator for a list of entity counts"
 msgid ", "
-msgstr ""
+msgstr "，"
 
 #: gui/session/selection_panels.js:1111
 #, javascript-format
@@ -1048,7 +1049,7 @@ msgstr "战败!"
 
 #: gui/session/session.js:873
 msgid "OK"
-msgstr ""
+msgstr "好的"
 
 #: gui/session/session.js:940
 msgctxt "replayFinished"
@@ -1199,7 +1200,7 @@ msgstr "移除守卫"
 #: gui/session/unit_actions.js:1275
 #: gui/session/top_panel/button_trade.xml:(tooltip):9
 msgid "Barter & Trade"
-msgstr ""
+msgstr "以物易物 & 贸易"
 
 #: gui/session/unit_actions.js:1293
 msgid "Patrol"
@@ -1420,11 +1421,11 @@ msgstr "观察者模式"
 
 #: gui/session/trade_window.xml:(caption):9
 msgid "Barter & Trade Goods"
-msgstr ""
+msgstr "以物易物 & 贸易商品"
 
 #: gui/session/trade_window.xml:(caption):17
 msgid "Barter"
-msgstr ""
+msgstr "以物易物"
 
 #: gui/session/trade_window.xml:(caption):24
 msgid "Sell:"
@@ -1448,7 +1449,7 @@ msgstr "货物："
 
 #: gui/session/tutorial_panel.xml:(caption):11
 msgid "Ready"
-msgstr ""
+msgstr "准备"
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"
@@ -1494,7 +1495,7 @@ msgstr "单击选择群组，双击跟踪群组，右击解散群组。"
 
 #: gui/session/top_panel/button_game_speed.xml:(tooltip):10
 msgid "Game Speed"
-msgstr ""
+msgstr "游戏速度"
 
 #: gui/session/top_panel/button_game_speed.xml:(tooltip):18
 msgid "Choose game speed"

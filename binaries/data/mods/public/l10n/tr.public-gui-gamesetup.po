@@ -41,9 +41,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-08-21 09:03+0200\n"
-"PO-Revision-Date: 2017-08-21 15:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-08-25 09:03+0200\n"
+"PO-Revision-Date: 2017-08-26 23:38+0000\n"
+"Last-Translator: yakup <mutouk@yandex.ru>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -186,7 +186,7 @@ msgstr "Tetikleyici Haritalar"
 #: gui/gamesetup/gamesetup.js:189
 msgctxt "map filter"
 msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr ""
+msgstr "Komutlu etkinliklerle gelen ve potansiyel olarak düşman birimlerini oluşturan haritalar."
 
 #: gui/gamesetup/gamesetup.js:194
 msgid "All Maps"
@@ -283,7 +283,7 @@ msgstr "Galibiyet koşulunu seç."
 
 #: gui/gamesetup/gamesetup.js:577
 msgid "Relic Count"
-msgstr ""
+msgstr "Kutsal emanet Sayısı"
 
 #: gui/gamesetup/gamesetup.js:578
 msgid ""
@@ -419,12 +419,16 @@ msgstr "Geçerli ayarlarla yeni bir oyun başlat."
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)"
-msgstr ""
+msgstr "Geçerli ayarlarla yeni bir oyun başlatın (tüm oyuncular hazır oluncaya dek devre dışı bırakın)"
 
 #: gui/gamesetup/gamesetup.js:1432
 msgctxt "map selection"
 msgid "Random"
 msgstr "Rastgele"
+
+#: gui/gamesetup/gamesetup.js:1434
+msgid "Pick any of the given maps at random."
+msgstr ""
 
 #: gui/gamesetup/gamesetup.js:1709 gui/gamesetup/gamesetup.js:1748
 #, javascript-format

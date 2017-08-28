@@ -6,7 +6,7 @@
 # Etienne Beguin <eti.beguin@gmail.com>, 2017
 # Fabrizio Marana, 2015
 # Laurene Albrand, 2015
-# leper <leper@wildfiregames.com>, 2014-2015
+# leper <leper@wildfiregames.com>, 2014-2015,2017
 # pilino1234 <pilino1234@zoho.eu>, 2016
 # pilino1234 <pilino1234@zoho.eu>, 2016
 # pilino1234 <pilino1234@zoho.eu>, 2016-2017
@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-21 09:05+0200\n"
-"PO-Revision-Date: 2017-08-21 15:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-08-25 17:13+0000\n"
+"Last-Translator: leper <leper@wildfiregames.com>\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -980,7 +980,7 @@ msgstr "(Cheat - reveal map)"
 #: simulation/helpers/Commands.js:444
 #, javascript-format
 msgid "%(player)s has resigned."
-msgstr ""
+msgstr "%(player)s has resigned."
 
 #: simulation/helpers/Commands.js:586
 msgid "(Cheat - promoted units)"
@@ -1105,7 +1105,7 @@ msgstr "Capture all relics spread across the map and keep them for a certain tim
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
 msgid "Capture the Relic"
-msgstr ""
+msgstr "Capture the Relic"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid "Defeat all opponents to win."

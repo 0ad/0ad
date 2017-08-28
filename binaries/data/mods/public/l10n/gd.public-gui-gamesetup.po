@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-08-21 09:03+0200\n"
-"PO-Revision-Date: 2017-08-21 15:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-08-25 09:03+0200\n"
+"PO-Revision-Date: 2017-08-26 21:06+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -378,7 +378,7 @@ msgstr "Till dhan phrìomh chlàr-taice."
 
 #: gui/gamesetup/gamesetup.js:857
 msgid "Start Game!"
-msgstr ""
+msgstr "Tòisich air geama!"
 
 #: gui/gamesetup/gamesetup.js:863
 msgid "Start a new game with the current settings."
@@ -394,6 +394,10 @@ msgstr "Tòisich air geama ùr leis na roghainnean làithreach (à comas gus am 
 msgctxt "map selection"
 msgid "Random"
 msgstr "Tuaireamach"
+
+#: gui/gamesetup/gamesetup.js:1434
+msgid "Pick any of the given maps at random."
+msgstr "Tagh gin dhe na mapaichean seo air thuaiream."
 
 #: gui/gamesetup/gamesetup.js:1709 gui/gamesetup/gamesetup.js:1748
 #, javascript-format

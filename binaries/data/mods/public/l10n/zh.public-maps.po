@@ -10,6 +10,7 @@
 # Mysterelee <8161525@qq.com>, 2014
 # Revolve Yao <revolveyao@outlook.com>, 2016
 # Siwei Chen <chensiwei@tsinghua.edu.cn>, 2016
+# Vince Luo <vinceluo11@gmail.com>, 2017
 # Wong Arfa <arfa244@gmail.com>, 2016
 # liulitchi <xingzuo88@qq.com>, 2014,2017
 # 李武军 <lwj7863439@gmail.com>, 2016-2017
@@ -18,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-09 09:05+0200\n"
-"PO-Revision-Date: 2017-08-09 14:44+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-08-28 01:04+0000\n"
+"Last-Translator: Vince Luo <vinceluo11@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -115,7 +116,7 @@ msgstr ""
 
 #: maps/random/arctic_summer.jsonsettings.Name
 msgid "Arctic Summer"
-msgstr ""
+msgstr "北极之夏"
 
 #: maps/random/ardennes_forest.jsonsettings.Description
 msgid ""
@@ -174,7 +175,7 @@ msgstr ""
 
 #: maps/random/botswanan_haven.jsonsettings.Name
 msgid "Botswanan Haven"
-msgstr ""
+msgstr "博茨瓦纳港口"
 
 #: maps/random/caledonian_meadows.jsonsettings.Description
 msgid ""
@@ -298,7 +299,7 @@ msgstr ""
 
 #: maps/random/extinct_volcano.jsonsettings.Name
 msgid "Extinct Volcano"
-msgstr ""
+msgstr "死火山"
 
 #: maps/random/flood.jsonsettings.Description
 msgid ""
@@ -414,7 +415,7 @@ msgstr ""
 
 #: maps/random/india.jsonsettings.Name
 msgid "India"
-msgstr ""
+msgstr "印度"
 
 #: maps/random/island_stronghold.jsonsettings.Description
 msgid ""
@@ -623,7 +624,7 @@ msgstr ""
 
 #: maps/random/polar_sea.jsonsettings.Name
 msgid "Polar Sea"
-msgstr ""
+msgstr "极地海洋"
 
 #: maps/random/pompeii.jsonsettings.Description
 msgid ""
@@ -835,27 +836,27 @@ msgstr "城墙演示"
 
 #: maps/random/wild_lake.jsonsettings.Description
 msgid "A lake surrounded by hills."
-msgstr ""
+msgstr "一个被丘陵环绕的湖泊"
 
 #: maps/random/wild_lake.jsonsettings.Name
 msgid "Wild Lake"
-msgstr ""
+msgstr "野外湖泊"
 
 #: maps/random/extinct_volcano_triggers.js:65
 msgid "It keeps on raining, we will have to evacuate soon!"
-msgstr ""
+msgstr "天一直在下雨，我们不得不尽快撤退。"
 
 #: maps/random/extinct_volcano_triggers.js:66
 msgid "The rivers are standing high, we need to find a safe place!"
-msgstr ""
+msgstr "河流已经处于高水位了，我们需要寻找到一个安全的地方。"
 
 #: maps/random/extinct_volcano_triggers.js:67
 msgid "We have to find dry ground, our lands will drown soon!"
-msgstr ""
+msgstr "不久，我们的土地将要被淹没，我们不得不找一个较为干燥的地方。"
 
 #: maps/random/extinct_volcano_triggers.js:68
 msgid "The lakes start swallowing the land, we have to find shelter!"
-msgstr ""
+msgstr "湖泊开始淹没土地，我们不得不寻找一个避难所。"
 
 #: maps/random/survivalofthefittest_triggers.js:193
 #, javascript-format
@@ -869,11 +870,11 @@ msgstr "有一波敌人来袭！"
 #: maps/random/survivalofthefittest_triggers.js:351
 #, javascript-format
 msgid "%(player)s has been defeated (lost civic center)."
-msgstr ""
+msgstr "%(player)s已战败(失去市政中心)。"
 
 #: maps/scenarios/Cinema_Demo.js:6
 msgid "Cutscene starts after 5 seconds"
-msgstr ""
+msgstr "剧情画面5秒钟后开始"
 
 #: maps/scenarios/Triggers_demo.js:73
 msgid "Testing the yes-no dialog. Do you want to say sure or rather not?"
@@ -932,14 +933,14 @@ msgstr "打败您的敌人以获得胜利！"
 #, javascript-format
 msgid "%(lastPlayer)s has won (treasure collected)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
-msgstr[0] ""
+msgstr[0] "%(players)s和%(lastPlayer)s取得胜利(已收集财宝)。"
 
 #: maps/scenarios/treasure_islands.js:105
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (treasure collected)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (treasure collected)."
-msgstr[0] ""
+msgstr[0] "%(players)s和%(lastPlayer)s已战败(已收集财宝)。"
 
 #: maps/scenarios/Arcadia.xml:Description:39
 msgid ""
@@ -1264,7 +1265,7 @@ msgstr "薛西斯一世"
 
 #: maps/scenarios/Cinema_Demo.xml:PlayerData[2].Name:40
 msgid "You"
-msgstr ""
+msgstr "你"
 
 #: maps/scenarios/Cinema_Demo.xml:Name:40
 msgid "Cinema Demo"

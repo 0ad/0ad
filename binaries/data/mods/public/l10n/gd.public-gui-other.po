@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-21 09:04+0200\n"
-"PO-Revision-Date: 2017-08-21 16:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-08-26 21:03+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -291,10 +291,10 @@ msgstr[3] "Mìorbhail (%(min)s mionaid)"
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
 msgid_plural "Capture the Relic (%(min)s minutes)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Glac na taisean (%(min)s mhionaid)"
+msgstr[1] "Glac na taisean (%(min)s mhionaid)"
+msgstr[2] "Glac na taisean (%(min)s mionaidean)"
+msgstr[3] "Glac na taisean (%(min)s mionaid)"
 
 #: gui/common/gamedescription.js:260
 msgid "Relic Count"
@@ -1878,7 +1878,7 @@ msgstr "’S urrainn dhut fiosrachadh gun ainm a chur thugainn gu fèin-obrachai
 
 #: gui/pregame/mainmenu.xml:539
 msgid "Alpha XXIII: Ken Wood"
-msgstr ""
+msgstr "Alpha XXIII: Ken Wood"
 
 #: gui/pregame/mainmenu.xml:541
 msgid ""
@@ -1954,7 +1954,7 @@ msgstr "Taghadh nan tuilleadan"
 
 #: gui/pregame/mainmenu.xml:(caption):456
 msgid "Learn to Play"
-msgstr ""
+msgstr "Cobhair"
 
 #: gui/pregame/mainmenu.xml:(caption):501
 msgid "Tools & Options"
@@ -1978,7 +1978,7 @@ msgstr "Dèan aithris air buga"
 
 #: gui/pregame/mainmenu.xml:(caption):587
 msgid "Translate the Game"
-msgstr ""
+msgstr "Eadar-theangaich an geama"
 
 #: gui/pregame/mainmenu.xml:(caption):599
 msgid "Credits"
@@ -2783,7 +2783,7 @@ msgstr "Àireamh nan èifeachdan sgàileadair. FEUMAIDH TU AN GEAMA A THÒISEACH
 
 #: gui/options/options.jsongraphicsSetting[2].label
 msgid "Shader Effects"
-msgstr ""
+msgstr "Èifeachdan sgàileadair"
 
 #: gui/options/options.jsongraphicsSetting[3].tooltip
 msgid "Enable shadows"
@@ -2795,23 +2795,23 @@ msgstr "Sgàilean"
 
 #: gui/options/options.jsongraphicsSetting[4].parameters.list[0].label
 msgid "Very Low"
-msgstr ""
+msgstr "Glè ìosal"
 
 #: gui/options/options.jsongraphicsSetting[4].parameters.list[1].label
 msgid "Low"
-msgstr ""
+msgstr "Ìosal"
 
 #: gui/options/options.jsongraphicsSetting[4].parameters.list[2].label
 msgid "Medium"
-msgstr ""
+msgstr "Meadhanach"
 
 #: gui/options/options.jsongraphicsSetting[4].parameters.list[3].label
 msgid "High"
-msgstr ""
+msgstr "Àrd"
 
 #: gui/options/options.jsongraphicsSetting[4].parameters.list[4].label
 msgid "Very High"
-msgstr ""
+msgstr "Glè àrd"
 
 #: gui/options/options.jsongraphicsSetting[4].tooltip
 msgid ""
@@ -2821,7 +2821,7 @@ msgstr ""
 
 #: gui/options/options.jsongraphicsSetting[4].label
 msgid "Shadow Quality"
-msgstr ""
+msgstr "Càileachd nam faileasan"
 
 #: gui/options/options.jsongraphicsSetting[5].tooltip
 msgid "Smooth shadows"
@@ -2855,7 +2855,7 @@ msgstr "Nuair a bhios e DHETH, cleachd an roghainn as ìsle gus uisge a reandara
 
 #: gui/options/options.jsongraphicsSetting[8].label
 msgid "Water Effects"
-msgstr ""
+msgstr "Èifeachdan uisge"
 
 #: gui/options/options.jsongraphicsSetting[9].tooltip
 msgid ""
@@ -2931,7 +2931,7 @@ msgstr "Gus an eallach air a’ CPU ìsleachadh, tachd dè cho tric ’s a thèi
 
 #: gui/options/options.jsongraphicsSetting[17].label
 msgid "FPS Throttling in Menus"
-msgstr ""
+msgstr "Tachdadh an FPS sna clàra-taice"
 
 #: gui/options/options.jsongraphicsSetting[18].tooltip
 msgid ""
@@ -2941,7 +2941,7 @@ msgstr "Gus an eallach air a’ CPU ìsleachadh, tachd dè cho tric ’s a thèi
 
 #: gui/options/options.jsongraphicsSetting[18].label
 msgid "FPS Throttling in Games"
-msgstr ""
+msgstr "Tachdadh an FPS sna geamannan"
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."
