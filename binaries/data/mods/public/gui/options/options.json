@@ -142,13 +142,13 @@
 			"type": "boolean",
 			"label": "Prefer GLSL",
 			"tooltip": "Use OpenGL 2.0 shaders (recommended)",
-			"parameters": { "config": "preferglsl", "renderer": "PreferGLSL" }
+			"parameters": { "config": "preferglsl", "function": "Renderer_SetPreferGLSLEnabled" }
 		},
 		{
 			"type": "boolean",
 			"label": "Post Processing",
 			"tooltip": "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)",
-			"parameters": { "config": "postproc", "renderer": "Postproc" }
+			"parameters": { "config": "postproc", "function": "Renderer_SetPostprocEnabled" }
 		},
 		{
 			"type": "slider",
@@ -160,7 +160,7 @@
 			"type": "boolean",
 			"label": "Shadows",
 			"tooltip": "Enable shadows",
-			"parameters": {  "config": "shadows", "renderer": "Shadows" },
+			"parameters": {  "config": "shadows", "function": "Renderer_SetShadowsEnabled" },
 			"dependencies": [ "shadowquality", "shadowpcf" ]
 		},
 		{
@@ -183,68 +183,68 @@
 			"type": "boolean",
 			"label": "Shadow Filtering",
 			"tooltip": "Smooth shadows",
-			"parameters": { "config": "shadowpcf", "renderer": "ShadowPCF" }
+			"parameters": { "config": "shadowpcf", "function": "Renderer_SetShadowPCFEnabled" }
 		},
 		{
 			"type": "boolean",
 			"label": "Unit Silhouettes",
 			"tooltip": "Show outlines of units behind buildings",
-			"parameters": { "config": "silhouettes", "renderer": "Silhouettes" }
+			"parameters": { "config": "silhouettes", "function": "Renderer_SetSilhouettesEnabled" }
 		},
 		{
 			"type": "boolean",
 			"label": "Particles",
 			"tooltip": "Enable particles",
-			"parameters": { "config": "particles", "renderer": "Particles" }
+			"parameters": { "config": "particles", "function": "Renderer_SetParticlesEnabled" }
 		},
 		{
 			"type": "boolean",
 			"label": "Water Effects",
 			"tooltip": "When OFF, use the lowest settings possible to render water. This makes other settings irrelevant.",
-			"parameters": { "config": "watereffects", "renderer": "WaterEffects" },
+			"parameters": { "config": "watereffects", "function": "Renderer_SetWaterEffectsEnabled" },
 			"dependencies": [ "waterfancyeffects", "waterrealdepth", "waterreflection", "waterrefraction", "watershadows" ]
 		},
 		{
 			"type": "boolean",
 			"label": "HQ Water Effects",
 			"tooltip": "Use higher-quality effects for water, rendering coastal waves, shore foam, and ships trails.",
-			"parameters": { "config": "waterfancyeffects", "renderer": "WaterFancyEffects" }
+			"parameters": { "config": "waterfancyeffects", "function": "Renderer_SetWaterFancyEffectsEnabled" }
 		},
 		{
 			"type": "boolean",
 			"label": "Real Water Depth",
 			"tooltip": "Use actual water depth in rendering calculations",
-			"parameters": { "config": "waterrealdepth", "renderer": "WaterRealDepth" }
+			"parameters": { "config": "waterrealdepth", "function": "Renderer_SetWaterRealDepthEnabled" }
 		},
 		{
 			"type": "boolean",
 			"label": "Water Reflections",
 			"tooltip": "Allow water to reflect a mirror image",
-			"parameters": { "config": "waterreflection", "renderer": "WaterReflection" }
+			"parameters": { "config": "waterreflection", "function": "Renderer_SetWaterReflectionEnabled" }
 		},
 		{
 			"type": "boolean",
 			"label": "Water Refraction",
 			"tooltip": "Use a real water refraction map and not transparency",
-			"parameters": { "config": "waterrefraction", "renderer": "WaterRefraction" }
+			"parameters": { "config": "waterrefraction", "function": "Renderer_SetWaterRefractionEnabled" }
 		},
 		{
 			"type": "boolean",
 			"label": "Shadows on Water",
 			"tooltip": "Cast shadows on water",
-			"parameters": { "config": "watershadows", "renderer": "WaterShadows" }
+			"parameters": { "config": "watershadows", "function": "Renderer_SetWaterShadowsEnabled" }
 		},
 		{
 			"type": "boolean",
 			"label": "Smooth LOS",
 			"tooltip": "Lift darkness and fog-of-war smoothly",
-			"parameters": { "config": "smoothlos", "renderer": "SmoothLOS" }
+			"parameters": { "config": "smoothlos", "function": "Renderer_SetSmoothLOSEnabled" }
 		},
 		{
 			"type": "boolean",
 			"label": "Show Sky",
 			"tooltip": "Render Sky",
-			"parameters": { "config": "showsky", "renderer": "ShowSky" }
+			"parameters": { "config": "showsky", "function": "Renderer_SetShowSkyEnabled" }
 		},
 		{
 			"type": "boolean",
