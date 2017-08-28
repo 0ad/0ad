@@ -162,11 +162,18 @@ function onTick()
 
 		g_LobbyIsConnecting = false;
 
-		switch(message.level) {
+		switch (message.level)
+		{
 		case "error":
+		{
+			Engine.GetGUIObjectByName("feedback").caption = message.text;
+			g_DisplayingSystemMessage = true;
+			Engine.StopXmppClient();
+			break;
+		}
 		case "disconnected":
 		{
-			Engine.GetGUIObjectByName("feedback").caption = message.text ||
+			Engine.GetGUIObjectByName("feedback").caption = message.reason ||
 				translate("Unknown error. This usually occurs because the same IP address is not allowed to register more than one account within one hour.");
 			g_DisplayingSystemMessage = true;
 			Engine.StopXmppClient();

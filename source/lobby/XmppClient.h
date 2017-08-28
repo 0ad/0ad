@@ -135,20 +135,26 @@ public:
 	/* Messages */
 	struct GUIMessage
 	{
-		std::wstring type;
-		std::wstring level;
-		std::wstring text;
-		std::wstring data;
-		std::wstring from;
-		std::wstring message;
+		std::string type;
+		std::string level;
+		std::string property1_name;
+		std::string property1_value;
+		std::string property2_name;
+		std::string property2_value;
 		std::time_t time;
 	};
 	void GuiPollMessage(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
 	void SendMUCMessage(const std::string& message);
 	void ClearPresenceUpdates();
 protected:
-	void PushGuiMessage(XmppClient::GUIMessage message);
-	void CreateGUIMessage(const std::string& type, const std::string& level, const std::string& text = "", const std::string& data = "");
+	void CreateGUIMessage(
+		const std::string& type,
+		const std::string& level = "",
+		const std::string& property1_name = "",
+		const std::string& property1_value = "",
+		const std::string& property2_name = "",
+		const std::string& property2_value = "",
+		const std::time_t time = std::time_t(nullptr));
 
 private:
 	/// Map of players

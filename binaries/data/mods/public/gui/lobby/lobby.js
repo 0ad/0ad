@@ -135,7 +135,7 @@ var g_NetMessageTypes = {
 				addChatMessage({
 					"from": "system",
 					"time": msg.time,
-					"text": translate("Disconnected.") + " " + msg.text
+					"text": translate("Disconnected.") + " " + msg.reason
 				});
 			return true;
 		},
@@ -150,13 +150,23 @@ var g_NetMessageTypes = {
 	},
 	"chat": {
 		"subject": msg => {
-			updateSubject(msg.text);
+			updateSubject(msg.subject);
+
+			if (msg.nick)
+				addChatMessage({
+					"text": "/special " + sprintf(translate("%(nick)s changed the lobby subject to %(subject)s"), {
+						"nick": msg.nick,
+						"subject": msg.subject
+					}),
+					"time": msg.time,
+					"isSpecial": true
+				});
 			return false;
 		},
 		"join": msg => {
 			addChatMessage({
 				"text": "/special " + sprintf(translate("%(nick)s has joined."), {
-					"nick": msg.text
+					"nick": msg.nick
 				}),
 				"time": msg.time,
 				"isSpecial": true
@@ -166,13 +176,13 @@ var g_NetMessageTypes = {
 		"leave": msg => {
 			addChatMessage({
 				"text": "/special " + sprintf(translate("%(nick)s has left."), {
-					"nick": msg.text
+					"nick": msg.nick
 				}),
 				"time": msg.time,
 				"isSpecial": true
 			});
 
-			if (msg.text == g_Username)
+			if (msg.nick == g_Username)
 				Engine.DisconnectXmppClient();
 
 			return true;
@@ -181,18 +191,18 @@ var g_NetMessageTypes = {
 		"role": msg => {
 			Engine.GetGUIObjectByName("chatInput").hidden = Engine.LobbyGetPlayerRole(g_Username) == "visitor";
 
-			let me = g_Username == msg.text;
-			let role = Engine.LobbyGetPlayerRole(msg.text);
+			let me = g_Username == msg.nick;
+			let newrole = Engine.LobbyGetPlayerRole(msg.nick);
 			let txt =
-				role == "visitor" ?
+				newrole == "visitor" ?
 					me ?
 						translate("You have been muted.") :
 						translate("%(nick)s has been muted.") :
-				role == "moderator" ?
+				newrole == "moderator" ?
 					me ?
 						translate("You are now a moderator.") :
 						translate("%(nick)s is now a moderator.") :
-				msg.data == "visitor" ?
+				msg.oldrole == "visitor" ?
 					me ?
 						translate("You have been unmuted.") :
 						translate("%(nick)s has been unmuted.") :
@@ -201,12 +211,12 @@ var g_NetMessageTypes = {
 						translate("%(nick)s is not a moderator anymore.");
 
 			addChatMessage({
-				"text": "/special " + sprintf(txt, { "nick": msg.text }),
+				"text": "/special " + sprintf(txt, { "nick": msg.nick }),
 				"time": msg.time,
 				"isSpecial": true
 			});
 
-			if (g_SelectedPlayer == msg.text)
+			if (g_SelectedPlayer == msg.nick)
 				updateUserRoleText(g_SelectedPlayer);
 
 			return false;
@@ -214,8 +224,8 @@ var g_NetMessageTypes = {
 		"nick": msg => {
 			addChatMessage({
 				"text": "/special " + sprintf(translate("%(oldnick)s is now known as %(newnick)s."), {
-					"oldnick": msg.text,
-					"newnick": msg.data
+					"oldnick": msg.oldnick,
+					"newnick": msg.newnick
 				}),
 				"time": msg.time,
 				"isSpecial": true
@@ -223,11 +233,11 @@ var g_NetMessageTypes = {
 			return true;
 		},
 		"kicked": msg => {
-			handleKick(false, msg.text, msg.data || "", msg.time);
+			handleKick(false, msg.nick, msg.reason, msg.time);
 			return true;
 		},
 		"banned": msg => {
-			handleKick(true, msg.text, msg.data || "", msg.time);
+			handleKick(true, msg.nick, msg.reason, msg.time);
 			return true;
 		},
 		"room-message": msg => {
@@ -550,8 +560,6 @@ function handleKick(banned, nick, reason, time)
 
 /**
  * Update the subject GUI object.
- *
- * @param {string} newSubject
  */
 function updateSubject(newSubject)
 {
