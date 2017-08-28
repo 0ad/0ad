@@ -245,26 +245,32 @@ m.HQ.prototype.structureAnalysis = function(gameState)
  */
 m.HQ.prototype.buildFirstBase = function(gameState)
 {
-	let total = gameState.getResources();
-	let template = gameState.applyCiv("structures/{civ}_civil_centre");
-	if (gameState.isTemplateDisabled(template))
+	if (gameState.ai.queues.civilCentre.hasQueuedUnits())
 		return;
-	template = gameState.getTemplate(template);
+	let templateName = gameState.applyCiv("structures/{civ}_civil_centre");
+	if (gameState.isTemplateDisabled(templateName))
+		return;
+	let template = gameState.getTemplate(templateName);
+	if (!template)
+		return;
+	let total = gameState.getResources();
 	let goal = "civil_centre";
-	let docks = gameState.getOwnStructures().filter(API3.Filters.byClass("Dock"));
-	if (!total.canAfford(new API3.Resources(template.cost())) && !docks.hasEntities())
+	if (!total.canAfford(new API3.Resources(template.cost())) && 
+	    !this.navalManager.docks.filter(API3.Filters.byClass("Dock")).hasEntities())
 	{
 		// not enough resource to build a cc, try with a dock to accumulate resources if none yet
 		if (gameState.ai.queues.dock.hasQueuedUnits())
 			return;
-		template = gameState.applyCiv("structures/{civ}_dock");
-		if (gameState.isTemplateDisabled(template))
+		templateName = gameState.applyCiv("structures/{civ}_dock");
+		if (gameState.isTemplateDisabled(templateName))
 			return;
-		template = gameState.getTemplate(template);
-		if (!total.canAfford(new API3.Resources(template.cost())))
+		template = gameState.getTemplate(templateName);
+		if (!template || !total.canAfford(new API3.Resources(template.cost())))
 			return;
 		goal = "dock";
 	}
+	if (!this.canBuild(gameState, templateName))
+		return;
 
 	// We first choose as startingPoint the point where we have the more units
 	let startingPoint = [];
