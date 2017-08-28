@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,9 +26,11 @@
 #include "lib/ogl.h"
 #include "lib/external_libraries/libsdl.h"
 #include "lib/sysdep/gfx.h"
+#include "lib/tex/tex.h"
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
+#include "ps/Filesystem.h"
 #include "ps/Game.h"
 #include "ps/GameSetup/Config.h"
 #include "renderer/Renderer.h"
@@ -254,6 +256,8 @@ bool CVideoMode::InitSDL()
 		m_WindowedW = w;
 		m_WindowedH = h;
 	}
+
+	SetWindowIcon();
 
 	return true;
 }
@@ -487,4 +491,37 @@ SDL_Window* CVideoMode::GetWindow()
 {
 	ENSURE(m_IsInitialised);
 	return m_Window;
+}
+
+void CVideoMode::SetWindowIcon()
+{
+	std::shared_ptr<u8> iconFile;
+	size_t iconFileSize;
+	if (g_VFS->LoadFile("art/textures/icons/window.png", iconFile, iconFileSize) != INFO::OK)
+	{
+		LOGWARNING("Window icon not found.");
+		return;
+	}
+
+	Tex iconTexture;
+	if (iconTexture.decode(iconFile, iconFileSize) != INFO::OK)
+		return;
+
+	// Convert to required BGRA format.
+	const size_t iconFlags = (iconTexture.m_Flags | TEX_BGR) & ~TEX_DXT;
+	if (iconTexture.transform_to(iconFlags) != INFO::OK)
+		return;
+
+	void* bgra_img = iconTexture.get_data();
+	if (!bgra_img)
+		return;
+
+	SDL_Surface *iconSurface = SDL_CreateRGBSurfaceFrom(bgra_img,
+		iconTexture.m_Width, iconTexture.m_Height, 32, iconTexture.m_Width * 4,
+		0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000);
+	if (!iconSurface)
+		return;
+
+	SDL_SetWindowIcon(m_Window, iconSurface);
+	SDL_FreeSurface(iconSurface);
 }

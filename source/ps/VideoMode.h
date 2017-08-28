@@ -80,6 +80,8 @@ public:
 
 	SDL_Window* GetWindow();
 
+	void SetWindowIcon();
+
 private:
 	void ReadConfig();
 	int GetBestBPP();
