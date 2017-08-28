@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -48,7 +48,7 @@ const entity_id_t SYSTEM_ENTITY = 1;
 // aren't retained in saved games, etc)
 // The distinction is encoded in the entity ID, so that they're easily distinguished.
 //
-// We want all entity_id_ts to fit in jsval ints, i.e. 1-2^30 .. 2^30-1 (inclusive)
+// We want all entity_id_ts to fit in an integer JS::Value, i.e. 1-2^30 .. 2^30-1 (inclusive)
 // We want them to be unsigned ints (actually it shouldn't matter but unsigned seems simpler)
 // We want 1 tag bit
 // So we have 1 JS-reserved bit, 1 unused sign bit, 1 local tag bit, 29 counter bits

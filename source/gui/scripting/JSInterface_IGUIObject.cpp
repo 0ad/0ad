@@ -587,7 +587,7 @@ bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Handle
 }
 
 
-bool JSI_IGUIObject::construct(JSContext* cx, uint argc, jsval* vp)
+bool JSI_IGUIObject::construct(JSContext* cx, uint argc, JS::Value* vp)
 {
 	JSAutoRequest rq(cx);
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
@@ -614,7 +614,7 @@ void JSI_IGUIObject::init(ScriptInterface& scriptInterface)
 	scriptInterface.DefineCustomObjectType(&JSI_class, construct, 1, JSI_props, JSI_methods, NULL, NULL);
 }
 
-bool JSI_IGUIObject::toString(JSContext* cx, uint UNUSED(argc), jsval* vp)
+bool JSI_IGUIObject::toString(JSContext* cx, uint UNUSED(argc), JS::Value* vp)
 {
 	JSAutoRequest rq(cx);
 	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);
@@ -632,7 +632,7 @@ bool JSI_IGUIObject::toString(JSContext* cx, uint UNUSED(argc), jsval* vp)
 	return true;
 }
 
-bool JSI_IGUIObject::focus(JSContext* cx, uint UNUSED(argc), jsval* vp)
+bool JSI_IGUIObject::focus(JSContext* cx, uint UNUSED(argc), JS::Value* vp)
 {
 	JSAutoRequest rq(cx);
 	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);
@@ -649,7 +649,7 @@ bool JSI_IGUIObject::focus(JSContext* cx, uint UNUSED(argc), jsval* vp)
 	return true;
 }
 
-bool JSI_IGUIObject::blur(JSContext* cx, uint UNUSED(argc), jsval* vp)
+bool JSI_IGUIObject::blur(JSContext* cx, uint UNUSED(argc), JS::Value* vp)
 {
 	JSAutoRequest rq(cx);
 	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);
@@ -666,7 +666,7 @@ bool JSI_IGUIObject::blur(JSContext* cx, uint UNUSED(argc), jsval* vp)
 	return true;
 }
 
-bool JSI_IGUIObject::getComputedSize(JSContext* cx, uint UNUSED(argc), jsval* vp)
+bool JSI_IGUIObject::getComputedSize(JSContext* cx, uint UNUSED(argc), JS::Value* vp)
 {
 	JSAutoRequest rq(cx);
 	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);

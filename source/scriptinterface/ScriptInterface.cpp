@@ -138,7 +138,7 @@ void ErrorReporter(JSContext* cx, const char* message, JSErrorReport* report)
 
 // Functions in the global namespace:
 
-bool print(JSContext* cx, uint argc, jsval* vp)
+bool print(JSContext* cx, uint argc, JS::Value* vp)
 {
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
 	for (uint i = 0; i < args.length(); ++i)
@@ -153,7 +153,7 @@ bool print(JSContext* cx, uint argc, jsval* vp)
 	return true;
 }
 
-bool logmsg(JSContext* cx, uint argc, jsval* vp)
+bool logmsg(JSContext* cx, uint argc, JS::Value* vp)
 {
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
 	if (args.length() < 1)
@@ -170,7 +170,7 @@ bool logmsg(JSContext* cx, uint argc, jsval* vp)
 	return true;
 }
 
-bool warn(JSContext* cx, uint argc, jsval* vp)
+bool warn(JSContext* cx, uint argc, JS::Value* vp)
 {
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
 	if (args.length() < 1)
@@ -187,7 +187,7 @@ bool warn(JSContext* cx, uint argc, jsval* vp)
 	return true;
 }
 
-bool error(JSContext* cx, uint argc, jsval* vp)
+bool error(JSContext* cx, uint argc, JS::Value* vp)
 {
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
 	if (args.length() < 1)
@@ -204,7 +204,7 @@ bool error(JSContext* cx, uint argc, jsval* vp)
 	return true;
 }
 
-bool deepcopy(JSContext* cx, uint argc, jsval* vp)
+bool deepcopy(JSContext* cx, uint argc, JS::Value* vp)
 {
 	JSAutoRequest rq(cx);
 
@@ -223,7 +223,7 @@ bool deepcopy(JSContext* cx, uint argc, jsval* vp)
 	return true;
 }
 
-bool ProfileStart(JSContext* cx, uint argc, jsval* vp)
+bool ProfileStart(JSContext* cx, uint argc, JS::Value* vp)
 {
 	const char* name = "(ProfileStart)";
 
@@ -252,7 +252,7 @@ bool ProfileStart(JSContext* cx, uint argc, jsval* vp)
 	return true;
 }
 
-bool ProfileStop(JSContext* UNUSED(cx), uint UNUSED(argc), jsval* vp)
+bool ProfileStop(JSContext* UNUSED(cx), uint UNUSED(argc), JS::Value* vp)
 {
 	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);
 	if (CProfileManager::IsInitialised() && ThreadUtil::IsMainThread())
@@ -264,7 +264,7 @@ bool ProfileStop(JSContext* UNUSED(cx), uint UNUSED(argc), jsval* vp)
 	return true;
 }
 
-bool ProfileAttribute(JSContext* cx, uint argc, jsval* vp)
+bool ProfileAttribute(JSContext* cx, uint argc, JS::Value* vp)
 {
 	const char* name = "(ProfileAttribute)";
 
@@ -308,7 +308,7 @@ static double generate_uniform_real(boost::rand48& rng, double min, double max)
 	}
 }
 
-bool Math_random(JSContext* cx, uint UNUSED(argc), jsval* vp)
+bool Math_random(JSContext* cx, uint UNUSED(argc), JS::Value* vp)
 {
 	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);
 	double r;
@@ -580,7 +580,7 @@ bool ScriptInterface::CallFunction_(JS::HandleValue val, const char* name, JS::H
 	return ok;
 }
 
-jsval ScriptInterface::GetGlobalObject()
+JS::Value ScriptInterface::GetGlobalObject()
 {
 	JSAutoRequest rq(m->m_cx);
 	return JS::ObjectValue(*JS::CurrentGlobalOrNull(m->m_cx));

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,11 +27,11 @@ namespace JSI_IGUIObject
 	extern JSFunctionSpec JSI_methods[];
 	bool getProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::MutableHandleValue vp);
 	bool setProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, bool UNUSED(strict), JS::MutableHandleValue vp);
-	bool construct(JSContext* cx, uint argc, jsval* vp);
-	bool toString(JSContext* cx, uint argc, jsval* vp);
-	bool focus(JSContext* cx, uint argc, jsval* vp);
-	bool blur(JSContext* cx, uint argc, jsval* vp);
-	bool getComputedSize(JSContext* cx, uint argc, jsval* vp);
+	bool construct(JSContext* cx, uint argc, JS::Value* vp);
+	bool toString(JSContext* cx, uint argc, JS::Value* vp);
+	bool focus(JSContext* cx, uint argc, JS::Value* vp);
+	bool blur(JSContext* cx, uint argc, JS::Value* vp);
+	bool getComputedSize(JSContext* cx, uint argc, JS::Value* vp);
 	void init(ScriptInterface& scriptInterface);
 }
 

@@ -122,7 +122,7 @@ void CStdDeserializer::GetScriptBackref(u32 tag, JS::MutableHandleObject ret)
 
 ////////////////////////////////////////////////////////////////
 
-jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject appendParent)
+JS::Value CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject appendParent)
 {
 	JSContext* cx = m_ScriptInterface.GetContext();
 	JSAutoRequest rq(cx);

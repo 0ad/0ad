@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -55,7 +55,7 @@ public:
 	virtual void StringASCII(const char* name, std::string& out, uint32_t minlength, uint32_t maxlength);
 	virtual void String(const char* name, std::wstring& out, uint32_t minlength, uint32_t maxlength);
 
-	/// Deserialize a jsval, replacing 'out'
+	/// Deserialize a JS::Value, replacing 'out'
 	virtual void ScriptVal(const char* name, JS::MutableHandleValue out) = 0;
 
 	/// Deserialize an object value, appending properties to object 'objVal'

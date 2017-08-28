@@ -48,7 +48,7 @@ protected:
 	virtual void Get(const char* name, u8* data, size_t len);
 
 private:
-	jsval ReadScriptVal(const char* name, JS::HandleObject appendParent);
+	JS::Value ReadScriptVal(const char* name, JS::HandleObject appendParent);
 	void ReadStringLatin1(const char* name, std::vector<JS::Latin1Char>& str);
 	void ReadStringUTF16(const char* name, utf16string& str);
 

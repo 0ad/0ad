@@ -70,21 +70,21 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 // (Definition comes later, since it depends on some things we haven't defined yet)
 #define OVERLOADS(z, i, data) \
 	template <typename R, TYPENAME_T0_HEAD(z,i)  R (*fptr) ( ScriptInterface::CxPrivate* T0_TAIL_MAYBE_REF(z,i) )> \
-	static bool call(JSContext* cx, uint argc, jsval* vp);
+	static bool call(JSContext* cx, uint argc, JS::Value* vp);
 BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 #undef OVERLOADS
 
 // Similar, for class methods
 #define OVERLOADS(z, i, data) \
 	template <typename R, TYPENAME_T0_HEAD(z,i)  JSClass* CLS, typename TC, R (TC::*fptr) ( T0_MAYBE_REF(z,i) )> \
-	static bool callMethod(JSContext* cx, uint argc, jsval* vp);
+	static bool callMethod(JSContext* cx, uint argc, JS::Value* vp);
 BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 #undef OVERLOADS
 
 // const methods
 #define OVERLOADS(z, i, data) \
 	template <typename R, TYPENAME_T0_HEAD(z,i)  JSClass* CLS, typename TC, R (TC::*fptr) ( T0_MAYBE_REF(z,i) ) const> \
-	static bool callMethodConst(JSContext* cx, uint argc, jsval* vp);
+	static bool callMethodConst(JSContext* cx, uint argc, JS::Value* vp);
 BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 #undef OVERLOADS
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,7 +35,7 @@ JSFunctionSpec JSI_GUISize::JSI_methods[] =
 	JS_FS_END
 };
 
-bool JSI_GUISize::construct(JSContext* cx, uint argc, jsval* vp)
+bool JSI_GUISize::construct(JSContext* cx, uint argc, JS::Value* vp)
 {
 	JSAutoRequest rq(cx);
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
@@ -91,7 +91,7 @@ CStr ToPercentString(double pix, double per)
 	return CStr::FromDouble(per)+"%"+(pix == 0.0 ? CStr() : pix > 0.0 ? CStr("+")+CStr::FromDouble(pix) : CStr::FromDouble(pix));
 }
 
-bool JSI_GUISize::toString(JSContext* cx, uint argc, jsval* vp)
+bool JSI_GUISize::toString(JSContext* cx, uint argc, JS::Value* vp)
 {
 	UNUSED2(argc);
 	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);
@@ -143,7 +143,7 @@ JSFunctionSpec JSI_GUIColor::JSI_methods[] =
 	JS_FS_END
 };
 
-bool JSI_GUIColor::construct(JSContext* cx, uint argc, jsval* vp)
+bool JSI_GUIColor::construct(JSContext* cx, uint argc, JS::Value* vp)
 {
 	JSAutoRequest rq(cx);
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
@@ -173,7 +173,7 @@ bool JSI_GUIColor::construct(JSContext* cx, uint argc, jsval* vp)
 	return true;
 }
 
-bool JSI_GUIColor::toString(JSContext* cx, uint argc, jsval* vp)
+bool JSI_GUIColor::toString(JSContext* cx, uint argc, JS::Value* vp)
 {
 	UNUSED2(argc);
 	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);
@@ -212,7 +212,7 @@ JSFunctionSpec JSI_GUIMouse::JSI_methods[] =
 	JS_FS_END
 };
 
-bool JSI_GUIMouse::construct(JSContext* cx, uint argc, jsval* vp)
+bool JSI_GUIMouse::construct(JSContext* cx, uint argc, JS::Value* vp)
 {
 	JSAutoRequest rq(cx);
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
@@ -238,7 +238,7 @@ bool JSI_GUIMouse::construct(JSContext* cx, uint argc, jsval* vp)
 	return true;
 }
 
-bool JSI_GUIMouse::toString(JSContext* cx, uint argc, jsval* vp)
+bool JSI_GUIMouse::toString(JSContext* cx, uint argc, JS::Value* vp)
 {
 	UNUSED2(argc);
 	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);

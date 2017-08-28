@@ -28,7 +28,7 @@ class CDebugSerializer : public ISerializer
 	NONCOPYABLE(CDebugSerializer);
 public:
 	/**
-	 * @param scriptInterface Script interface corresponding to any jsvals passed to ScriptVal()
+	 * @param scriptInterface Script interface corresponding to any JS::Value passed to ScriptVal()
 	 * @param stream Stream to receive UTF-8 encoded output
 	 * @param includeDebugInfo If true then additional non-deterministic data will be included in the output
 	 */
