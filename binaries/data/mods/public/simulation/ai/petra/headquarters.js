@@ -1409,6 +1409,46 @@ m.HQ.prototype.buildFarmstead = function(gameState, queues)
 	queues.economicBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_farmstead"));
 };
 
+/**
+ * Try to build a wonder when required
+ * force = true when called from the gameTypeManager in case of Wonder mode
+ */
+m.HQ.prototype.buildWonder = function(gameState, queues, force = false)
+{
+	if (queues.wonder && queues.wonder.hasQueuedUnits() ||
+	    gameState.getOwnEntitiesByClass("Wonder", true).hasEntities() ||
+	    !this.canBuild(gameState, "structures/{civ}_wonder"))
+		return;
+
+	if (!force)
+	{
+		let templateName = gameState.applyCiv("structures/{civ}_wonder");
+		if (gameState.isTemplateDisabled(templateName))
+			return;
+		let template = gameState.getTemplate(templateName);
+		if (!template)
+			return;
+		// Check that we have enough resources to start thinking to build a wonder
+		let cost = template.cost();
+		let resources = gameState.getResources();
+		let highLevel = 0;
+		let lowLevel = 0;
+		for (let res in cost)
+		{
+			if (resources[res] && resources[res] > 0.7 * cost[res])
+				++highLevel;
+			else if (!resources[res] || resources[res] < 0.3 * cost[res])
+				++lowLevel;
+		}
+		if (highLevel == 0 || lowLevel > 1)
+			return;
+	}
+
+	if (this.Config.debug > 0)
+		API3.warn(" civ " + gameState.getPlayerCiv() + " starts a plan for Wonder");
+	queues.wonder.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_wonder"));
+};
+
 /** Build a corral, and train animals there */
 m.HQ.prototype.manageCorral = function(gameState, queues)
 {
@@ -2348,6 +2388,10 @@ m.HQ.prototype.update = function(gameState, queues, events)
 			this.buildBlacksmith(gameState, queues);
 			this.buildTemple(gameState, queues);
 		}
+
+		if (gameState.ai.playedTurn % 30 === 0 &&
+		    gameState.getPopulation() > 0.9 * gameState.getPopulationMax())
+			this.buildWonder(gameState, queues, false);
 	}
 
 	this.tradeManager.update(gameState, events, queues);
