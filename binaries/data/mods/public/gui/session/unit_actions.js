@@ -341,8 +341,6 @@ var unitActions =
 				"queued": queued
 			});
 
-			DrawTargetMarker(target);
-
 			Engine.GuiInterfaceCall("PlaySound", {
 				"name": "order_repair",
 				"entity": selection[0]

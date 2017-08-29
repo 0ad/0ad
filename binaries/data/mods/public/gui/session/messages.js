@@ -419,7 +419,7 @@ var g_NotificationsTypes =
 		// Ignore boring animals
 		let entState = cmd.entities && cmd.entities[0] && GetEntityState(cmd.entities[0]);
 		if (entState && entState.identity && entState.identity.classes &&
-				entState.identity.classes.indexOf("Animal") != -1)
+		    entState.identity.classes.indexOf("Animal") != -1)
 			return;
 
 		// Focus the building to construct
@@ -432,6 +432,9 @@ var g_NotificationsTypes =
 		// Focus commanded entities, but don't lose previous focus when training units
 		else if (cmd.type != "train" && cmd.type != "research" && entState)
 			setCameraFollow(cmd.entities[0]);
+
+		if (["walk", "attack-walk", "patrol"].indexOf(cmd.type) != -1)
+			DrawTargetMarker(cmd);
 
 		// Select units affected by that command
 		let selection = [];
