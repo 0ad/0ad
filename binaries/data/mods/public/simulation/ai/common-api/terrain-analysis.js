@@ -251,7 +251,7 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 		return false;
 	}
 
-	if ((!onWater && this.landPassMap[startIndex] !== 0) || (onWater && this.navalPassMap[startIndex] !== 0) )
+	if (!onWater && this.landPassMap[startIndex] !== 0 || onWater && this.navalPassMap[startIndex] !== 0 )
 		return false;	// already painted.
 
 	let floodFor = "land";
