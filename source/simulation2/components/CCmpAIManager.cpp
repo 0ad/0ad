@@ -64,7 +64,7 @@ extern void kill_mainloop();
  * will block until it's actually completed, so the rest of the engine should avoid
  * reading it for as long as possible.
  *
- * JS values are passed between the game and AI threads using ScriptInterface::StructuredClone.
+ * JS::Values are passed between the game and AI threads using ScriptInterface::StructuredClone.
  *
  * TODO: actually the thread isn't implemented yet, because performance hasn't been
  * sufficiently problematic to justify the complexity yet, but the CAIWorker interface

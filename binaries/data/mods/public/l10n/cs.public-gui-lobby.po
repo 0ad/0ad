@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-21 09:04+0200\n"
-"PO-Revision-Date: 2017-08-21 15:17+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-08-26 18:56+0000\n"
+"Last-Translator: Petr Hála <halapetr@selfnet.cz>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -75,7 +75,7 @@ msgstr "Byl jste umlčen."
 #: gui/lobby/lobby.js:186
 #, javascript-format
 msgid "%(nick)s has been muted."
-msgstr ""
+msgstr "%(nick)s byl umlčen."
 
 #: gui/lobby/lobby.js:189
 msgid "You are now a moderator."
@@ -93,7 +93,7 @@ msgstr "Byl jste odmlčen."
 #: gui/lobby/lobby.js:194
 #, javascript-format
 msgid "%(nick)s has been unmuted."
-msgstr ""
+msgstr "%(nick)s už není umlčen."
 
 #: gui/lobby/lobby.js:196
 msgid "You are not a moderator anymore."
@@ -102,7 +102,7 @@ msgstr "Už nejste moderátor."
 #: gui/lobby/lobby.js:197
 #, javascript-format
 msgid "%(nick)s is not a moderator anymore."
-msgstr ""
+msgstr "%(nick)s už není moderátor."
 
 #: gui/lobby/lobby.js:210
 #, javascript-format

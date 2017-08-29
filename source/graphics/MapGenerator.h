@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -78,7 +78,7 @@ private:
  * Thread-safety:
  * - Initialize and constructor/destructor must be called from the main thread.
  * - ScriptInterface created and destroyed by thread
- * - StructuredClone used to return JS map data - jsvals can't be used across threads/runtimes
+ * - StructuredClone used to return JS map data - JS:Values can't be used across threads/runtimes.
  */
 class CMapGeneratorWorker
 {

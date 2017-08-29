@@ -112,7 +112,7 @@ struct ScriptInterface_NativeMethodWrapper<void, TC>
 // JSFastNative-compatible function that wraps the function identified in the template argument list
 #define OVERLOADS(z, i, data) \
 	template <typename R, TYPENAME_T0_HEAD(z,i)  R (*fptr) ( ScriptInterface::CxPrivate* T0_TAIL_MAYBE_REF(z,i) )> \
-	bool ScriptInterface::call(JSContext* cx, uint argc, jsval* vp) \
+	bool ScriptInterface::call(JSContext* cx, uint argc, JS::Value* vp) \
 	{ \
 		JS::CallArgs args = JS::CallArgsFromVp(argc, vp); \
 		JSAutoRequest rq(cx); \
@@ -128,7 +128,7 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 // Same idea but for methods
 #define OVERLOADS(z, i, data) \
 	template <typename R, TYPENAME_T0_HEAD(z,i)  JSClass* CLS, typename TC, R (TC::*fptr) ( T0_MAYBE_REF(z,i) )> \
-	bool ScriptInterface::callMethod(JSContext* cx, uint argc, jsval* vp) \
+	bool ScriptInterface::callMethod(JSContext* cx, uint argc, JS::Value* vp) \
 	{ \
 		JS::CallArgs args = JS::CallArgsFromVp(argc, vp); \
 		JSAutoRequest rq(cx); \
@@ -148,7 +148,7 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 // const methods
 #define OVERLOADS(z, i, data) \
 	template <typename R, TYPENAME_T0_HEAD(z,i)  JSClass* CLS, typename TC, R (TC::*fptr) ( T0_MAYBE_REF(z,i) ) const> \
-	bool ScriptInterface::callMethodConst(JSContext* cx, uint argc, jsval* vp) \
+	bool ScriptInterface::callMethodConst(JSContext* cx, uint argc, JS::Value* vp) \
 	{ \
 		JS::CallArgs args = JS::CallArgsFromVp(argc, vp); \
 		JSAutoRequest rq(cx); \

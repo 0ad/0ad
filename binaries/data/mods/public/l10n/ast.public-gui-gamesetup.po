@@ -4,12 +4,13 @@
 # 
 # Translators:
 # David Sowa <isithere2@yahoo.com>, 2017
+# enolp <enolp@softastur.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-08-21 09:03+0200\n"
-"PO-Revision-Date: 2017-08-21 15:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-08-25 09:03+0200\n"
+"PO-Revision-Date: 2017-08-26 09:23+0000\n"
+"Last-Translator: enolp <enolp@softastur.org>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -47,7 +48,7 @@ msgstr "* %(username)s nun ta llistu."
 
 #: gui/gamesetup/gamesetup.js:111
 msgid "I'm ready"
-msgstr "Toi llistu"
+msgstr "Toi preparáu"
 
 #: gui/gamesetup/gamesetup.js:112
 msgid "State that you are ready to play."
@@ -56,11 +57,11 @@ msgstr "Conseña que tas llistu pa xugar."
 #: gui/gamesetup/gamesetup.js:116
 #, javascript-format
 msgid "* %(username)s is ready!"
-msgstr "* ¡%(username)s ta llistu!"
+msgstr "* ¡%(username)s ta preparáu!"
 
 #: gui/gamesetup/gamesetup.js:117
 msgid "Stay ready"
-msgstr "Calténte llistu"
+msgstr "Siguir preparáu"
 
 #: gui/gamesetup/gamesetup.js:118
 msgid "Stay ready even when the game settings change."
@@ -68,7 +69,7 @@ msgstr "Calténte llistu inclusive cuando cambien los axustes del xuegu."
 
 #: gui/gamesetup/gamesetup.js:123
 msgid "I'm not ready!"
-msgstr "¡Nun toi llistu!"
+msgstr "¡Nun toi preparáu!"
 
 #: gui/gamesetup/gamesetup.js:124
 msgid "State that you are not ready to play."
@@ -284,7 +285,7 @@ msgstr "Guarnición de los héroes"
 
 #: gui/gamesetup/gamesetup.js:712
 msgid "Toggle whether heroes can be garrisoned."
-msgstr "Activa si quies guarnecer a los héroes."
+msgstr "Activa si quies guarecer a los héroes."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
@@ -346,7 +347,7 @@ msgstr "Activa si quies que gane'l caberu xugador o'l caberu grupu d'aliaos."
 
 #: gui/gamesetup/gamesetup.js:805
 msgid "Cheats"
-msgstr "Trucos"
+msgstr "Trampes"
 
 #: gui/gamesetup/gamesetup.js:806
 msgid "Toggle the usability of cheats."
@@ -391,6 +392,10 @@ msgstr "Entama una partida nueva cola configuración actual (desactivao fasta qu
 msgctxt "map selection"
 msgid "Random"
 msgstr "Al debalu"
+
+#: gui/gamesetup/gamesetup.js:1434
+msgid "Pick any of the given maps at random."
+msgstr ""
 
 #: gui/gamesetup/gamesetup.js:1709 gui/gamesetup/gamesetup.js:1748
 #, javascript-format

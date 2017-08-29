@@ -135,7 +135,7 @@ public:
 		roundtrip<u32>(1073741823, "1073741823"); // JSVAL_INT_MAX
 
 		{
-			TestLogger log; // swallow warnings about values not being stored as INT jsvals
+			TestLogger log; // swallow warnings about values not being stored as integer JS::Values
 			roundtrip<i32>(1073741824, "1073741824"); // JSVAL_INT_MAX+1
 			roundtrip<i32>(-1073741825, "-1073741825"); // JSVAL_INT_MIN-1
 			roundtrip<u32>(1073741824, "1073741824"); // JSVAL_INT_MAX+1

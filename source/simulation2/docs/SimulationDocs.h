@@ -110,7 +110,7 @@ corresponding to the C++ const method
 For methods exposed to scripts like this, the arguments should be simple types or const references.
 Check scriptinterface/NativeWrapperDefns.h for which simple types are pass-by-value.
 
-The arguments and return types will be automatically converted between C++ and JS values.
+The arguments and return types will be automatically converted between C++ and JS::Values.
 To do this, @c ToJSVal<ReturnType> and @c FromJSVal<ArgTypeN> must be defined (if they
 haven't already been defined for another method), as described below.
 
@@ -135,7 +135,7 @@ Non-basic data types from the game engine typically go in simulation2/scripting/
 (They could go in different files if that turns out to be cleaner - it doesn't matter where they're
 defined as long as the linker finds them).
 
-To convert from a C++ type @c T to a JS value, define:
+To convert from a C++ type @c T to a JS::Value, define:
 
 @code
 template<> void ScriptInterface::ToJSVal<T>(JSContext* cx, JS::MutableHandleValue ret, const T& val)
@@ -149,7 +149,7 @@ to do the conversion (possibly calling @c ToJSVal recursively).
 On error, you should execute @c ret.setUndefined() and probably report an error message somehow.
 Be careful about JS garbage collection (don't let it collect the objects you're constructing before you return them).
 
-To convert from a JS value to a C++ type @c T, define:
+To convert from a JS::Value to a C++ type @c T, define:
 
 @code
 template<> bool ScriptInterface::FromJSVal<T>(JSContext* cx, JS::HandleValue v, T& out)

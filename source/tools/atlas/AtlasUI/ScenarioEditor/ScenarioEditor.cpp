@@ -505,7 +505,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 			wxString helpData;
 			helpFile.ReadAll(&helpData);
 			AtObj data = AtlasObject::LoadFromJSON(std::string(helpData));
-		#define ADD_HELP_ITEM(id) \
+#define ADD_HELP_ITEM(id) \
 				do { \
 					if (!data[#id].hasContent()) \
 						break; \
@@ -519,7 +519,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 				} while (0)
 			ADD_HELP_ITEM(Manual);
 			ADD_HELP_ITEM(ReportBug);
-		#undef ADD_HELP_ITEM
+#undef ADD_HELP_ITEM
 		}
 		else
 			wxLogError(_("'%ls' does not exist"), helpPath.GetFullPath().c_str());

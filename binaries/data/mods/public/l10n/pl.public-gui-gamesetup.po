@@ -49,8 +49,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-08-21 09:03+0200\n"
-"PO-Revision-Date: 2017-08-21 15:36+0000\n"
+"POT-Creation-Date: 2017-08-25 09:03+0200\n"
+"PO-Revision-Date: 2017-08-25 15:32+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -433,6 +433,10 @@ msgstr "Rozpocznij nową grę z obecnymi ustawieniami (wyłączone dopóki wszys
 msgctxt "map selection"
 msgid "Random"
 msgstr "Losowe "
+
+#: gui/gamesetup/gamesetup.js:1434
+msgid "Pick any of the given maps at random."
+msgstr ""
 
 #: gui/gamesetup/gamesetup.js:1709 gui/gamesetup/gamesetup.js:1748
 #, javascript-format

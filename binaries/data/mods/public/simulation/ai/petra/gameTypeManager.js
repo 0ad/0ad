@@ -312,16 +312,6 @@ m.GameTypeManager.prototype.removeGuardsFromCriticalEnt = function(gameState, cr
 	this.criticalEnts.delete(criticalEntId);
 };
 
-m.GameTypeManager.prototype.buildWonder = function(gameState, queues)
-{
-	if (queues.wonder && queues.wonder.hasQueuedUnits() ||
-	    gameState.getOwnEntitiesByClass("Wonder", true).hasEntities() ||
-	    !gameState.ai.HQ.canBuild(gameState, "structures/{civ}_wonder"))
-		return;
-
-	queues.wonder.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_wonder"));
-};
-
 /**
  * Try to keep some military units guarding any criticalEnts, if we can afford it.
  * If we have too low a population and require units for other needs, remove guards so they can be reassigned.
@@ -547,7 +537,7 @@ m.GameTypeManager.prototype.update = function(gameState, events, queues)
 
 	if (gameState.getGameType() === "wonder" && gameState.ai.playedTurn % 10 === 0)
 	{
-		this.buildWonder(gameState, queues);
+		gameState.ai.HQ.buildWonder(gameState, queues, true);
 		this.manageCriticalEntGuards(gameState);
 	}
 

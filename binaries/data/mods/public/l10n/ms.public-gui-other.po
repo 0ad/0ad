@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-21 09:04+0200\n"
-"PO-Revision-Date: 2017-08-25 06:59+0000\n"
+"PO-Revision-Date: 2017-08-27 15:37+0000\n"
 "Last-Translator: abuyop <abuyop@gmail.com>\n"
 "Language-Team: Malay (http://www.transifex.com/wildfire-games/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
@@ -690,7 +690,7 @@ msgstr "Serangan Tangkap:"
 
 #: gui/common/tooltips.js:15
 msgid "Hack"
-msgstr "Godam"
+msgstr "Tetak"
 
 #: gui/common/tooltips.js:16
 msgid "Pierce"
@@ -863,7 +863,7 @@ msgstr "%(label)s: %(value)s"
 #: gui/common/tooltips.js:290
 #, javascript-format
 msgid "Friendly Fire: %(enabled)s"
-msgstr ""
+msgstr "Api Rakan: %(enabled)s"
 
 #: gui/common/tooltips.js:307
 #, javascript-format
@@ -1148,7 +1148,7 @@ msgid ""
 "(fixed function) graphics. This option will be removed in a future 0 A.D. "
 "release, to allow for more advanced graphics features. We advise upgrading "
 "your graphics card to a more recent, shader-compatible model."
-msgstr ""
+msgstr "%(startWarning)s Amaran: %(endWarning)s Anda kelihatan menggunakan grafik bukan-pelorek (fungsi tetap). Pilihan ini akan dibuang dalam keluaran 0 A.D. akan datang, untuk membolehkan lebih banyak fitur grafik lanjutan. Kami sarankan anda menatar kad grafik anda untuk model lebih terkini dan serasi-pelorek."
 
 #. Translation: This is the second paragraph of a warning. The
 #. warning explains that the user is using “non-shader“ graphics,
@@ -1374,7 +1374,7 @@ msgstr "Ia perlukan 0 A.D. versi permainansimpan %(requiredVersion)s, ketika and
 
 #: gui/savedgames/load.js:173
 msgid "The savegame needs a different set of mods:"
-msgstr ""
+msgstr "Simpan permainan perlukan set mod yang berbeza:"
 
 #: gui/savedgames/load.js:182
 msgid "Do you still want to proceed?"
@@ -1712,7 +1712,7 @@ msgstr "Batal"
 
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
-msgstr "Lanjutan"
+msgstr "Mahir"
 
 #: gui/locale/locale.xml:(caption):46
 #: gui/locale/locale_advanced.xml:(caption):75
@@ -2699,7 +2699,7 @@ msgstr "Semua dipaparkan"
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode"
-msgstr ""
+msgstr "Tunjuk pemberitahuan sembang jika anda atau sekutu anda telah bermula, dihenti paksa atau melepasi ke fasa baharu, dan fasa bagi semua pemain dalam mod pemerhati"
 
 #: gui/options/options.jsonnotificationSetting[3].label
 msgid "Phase"
@@ -2795,7 +2795,7 @@ msgstr "Butiran"
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
-msgstr ""
+msgstr "Bila MATI, guna tetapan terendah yang mungkin untuk menerap air. Ia menjadikan tetapan lain tidak relevan."
 
 #: gui/options/options.jsongraphicsSetting[8].label
 msgid "Water Effects"
@@ -3126,7 +3126,7 @@ msgstr "- Susut ke pemilik wilayah bila dibina dalam wilayah bukan-sekutu"
 
 #: gui/text/tips/army_camp.txt:6
 msgid "- Construct siege weapons and train citizen-soldiers."
-msgstr "- Bina senjata pengepung dan latih warga-aksar."
+msgstr "- Bina senjata pengepung dan latih askar-rakyat."
 
 #: gui/text/tips/army_camp.txt:8
 msgid ""
@@ -3142,7 +3142,7 @@ msgstr "BEREK"
 msgid ""
 "- Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr "- Latih semua warga-askar. Sesetengah puak boleh membuka latihan pahlawan juga."
+msgstr "- Latih semua askar-rakyat. Sesetengah puak boleh membuka latihan pahlawan juga."
 
 #: gui/text/tips/barracks.txt:4
 msgid "- Research military technologies unique to each faction."
@@ -3152,7 +3152,7 @@ msgstr "- Kaji teknologi unik ketenteraan bagi setiap puak."
 msgid ""
 "- Build one early to train citizen-soldiers while you phase up your "
 "settlement."
-msgstr "- Bina sorang warga-askar lebih awal ketika fasa penempatan anda."
+msgstr "- Bina sorang askar-rakyat lebih awal ketika fasa penempatan anda."
 
 #: gui/text/tips/barracks.txt:8
 msgid "- Build in a forward base to resupply your assault with fresh troops."
@@ -3174,7 +3174,7 @@ msgstr "- Kaji penataran senjata dan perisai untuk unit anda."
 msgid ""
 "- Garrison a citizen-soldier inside to research faster (NOT IMPLEMENTED "
 "YET)."
-msgstr "- Garison warga-askar di dalam supaya kajian menjadi lebih pantas (BELUM LAGI DILAKSANAKAN)."
+msgstr "- Garison askar-rakyat di dalam supaya kajian menjadi lebih pantas (BELUM LAGI DILAKSANAKAN)."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -3262,7 +3262,7 @@ msgstr "- Boleh dibina dalam wilayah rakan dan neutral."
 
 #: gui/text/tips/civic_centres.txt:8
 msgid "- Train Female Citizens and basic Citizen-Soldiers."
-msgstr "- Latih Warga Perempuan dan Warga-Askar asas."
+msgstr "- Latih Rakyat Perempuan dan Askar-Rakyat asas."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
@@ -3280,7 +3280,7 @@ msgstr "- Latih askar upahan dari setiap kedutaan bertema-etnik."
 msgid ""
 "- Mercenary \"citizen-soldiers\" have their normal Food cost converted to "
 "Metal cost."
-msgstr "- \"Warga-aksar\" upahan memerlukan kos Makanan biasa kepada kos Logam."
+msgstr "- \"Aksar-rakyat\" upahan memerlukan kos Makanan biasa kepada kos Logam."
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
@@ -3334,11 +3334,11 @@ msgstr "PENGUMPULAN SUMBER"
 
 #: gui/text/tips/gathering.txt:2
 msgid "- Use Citizen-Soldiers and Female Citizens to gather resources."
-msgstr "- Guna Askar-Rakyat dan Warga Perempuan menghimpun sumber."
+msgstr "- Guna Askar-Rakyat dan Rakyat Perempuan menghimpun sumber."
 
 #: gui/text/tips/gathering.txt:4
 msgid "- Female Citizens are bonused with Farming and Foraging."
-msgstr "- Warga Perempuan adalah bonus dengan Pertanian dan Pengumpulan Makanan."
+msgstr "- Rakyat Perempuan adalah bonus dengan Pertanian dan Pengumpulan Makanan."
 
 #: gui/text/tips/gathering.txt:6
 msgid "- Citizen-Soldiers are bonused with Mining."
@@ -3346,7 +3346,7 @@ msgstr "- Aksar-Rakyat adalah bonus dengan Perlombongan."
 
 #: gui/text/tips/gathering.txt:8
 msgid "- Cavalry Citizen-Soldiers are bonused with Hunting."
-msgstr "- Warga-Askar Berkuda mempunyai kelebihan dalam Pemburuan."
+msgstr "- Askar-Rakyat Berkuda mempunyai kelebihan dalam Pemburuan."
 
 #: gui/text/tips/gathering.txt:10
 msgid ""
@@ -3562,7 +3562,7 @@ msgstr "- Digunakan terhadap askar berkuda untuk dapatkan bonus serangan."
 
 #: gui/text/tips/spearmen.txt:6
 msgid "- Decent hack attack make them good front line troops."
-msgstr "- Serangan cantas yang sesuai untuk dijadikan pasukan barisan hadapan."
+msgstr "- Serangan tetak yang sesuai untuk dijadikan pasukan barisan hadapan yang bagus."
 
 #: gui/text/tips/spearmen.txt:8
 msgid ""
@@ -3580,7 +3580,7 @@ msgstr "- Struktur khas untuk puak Yunani."
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Trains Heavy Skirmishers and Sword Infantry Champions."
-msgstr ""
+msgstr "- Latih Askar Peninjau Berperisai dan Pahlawan Infantri Pedang."
 
 #: gui/text/tips/stoa.txt:6
 msgid "- Grants +10 Population."
@@ -3598,7 +3598,7 @@ msgstr "- Rumah simpanan murah untuk sumber bukan makanan (kayu, batu, logam)."
 msgid ""
 "- Research technologies to improve the gathering capabilities of your "
 "citizens."
-msgstr "- Kaji teknologi untuk mempertingkatkan keupayaan mengumpul warga anda."
+msgstr "- Kaji teknologi untuk mempertingkatkan keupayaan mengumpul sumber warga anda."
 
 #: gui/text/tips/syntagma.txt:1
 msgid "SYNTAGMA FORMATION"

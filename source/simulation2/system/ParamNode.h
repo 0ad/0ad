@@ -186,7 +186,7 @@ public:
 	 */
 	const CParamNode& GetChild(const char* name) const;
 	// (Children are returned as const in order to allow future optimisations, where we assume
-	// a node is always modified explicitly and not indirectly via its children, e.g. to cache jsvals)
+	// a node is always modified explicitly and not indirectly via its children, e.g. to cache JS::Values)
 
 	/**
 	 * Returns true if this is a valid CParamNode, false if it represents a non-existent node
@@ -240,8 +240,8 @@ public:
 	void ToXML(std::wostream& strm) const;
 
 	/**
-	 * Returns a jsval representation of this node and its children.
-	 * If @p cacheValue is true, then the same jsval will be returned each time
+	 * Returns a JS::Value representation of this node and its children.
+	 * If @p cacheValue is true, then the same JS::Value will be returned each time
 	 * this is called (regardless of whether you passed the same @p cx - be careful
 	 * to only use the cache in one context).
 	 * When caching, the lifetime of @p cx must be longer than the lifetime of this node.

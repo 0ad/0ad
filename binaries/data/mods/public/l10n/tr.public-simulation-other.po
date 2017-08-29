@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-21 09:05+0200\n"
-"PO-Revision-Date: 2017-08-21 15:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-08-26 23:00+0000\n"
+"Last-Translator: yakup <mutouk@yandex.ru>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -218,7 +218,7 @@ msgstr "Her iki halkımız da barışçıl bir birliktelik, %(_player_)s gelişs
 #: simulation/ai/petra/chatHelper.js:79
 #, javascript-format
 msgid "We have found common ground, %(_player_)s. I accept the alliance."
-msgstr ""
+msgstr "Ortak bir zemin bulduk, %(_player_)s. Ittifakı kabul ediyorum."
 
 #: simulation/ai/petra/chatHelper.js:80
 #, javascript-format
@@ -324,7 +324,7 @@ msgstr "%(_player_)s, Yakında %(_amount_)s %(_resource_)s sana teklif verdikten
 msgid ""
 "%(_player_)s, it would help both of our civilizations if we formed an "
 "alliance. If you become allies with me, I will respond in kind."
-msgstr ""
+msgstr "%(_player_)s, bir ittifak kursak, her iki medeniyetimize de yardımcı olur. Benimle müttefikler olursan, aynen karşılık vereceğim."
 
 #: simulation/ai/petra/chatHelper.js:122
 #, javascript-format
@@ -335,33 +335,33 @@ msgstr "%(_player_)s, ittifak teklifimin süresi doldu."
 #, javascript-format
 msgid ""
 "%(_player_)s, I have rescinded my previous offer for an alliance between us."
-msgstr ""
+msgstr "%(_player_)s, Aramızdaki bir ittifak için önceki teklifimi iptal ettim."
 
 #: simulation/ai/petra/chatHelper.js:128
 #, javascript-format
 msgid ""
 "%(_player_)s, I would like to request a neutrality pact between our "
 "civilizations. If you become neutral with me, I will respond in kind."
-msgstr ""
+msgstr "%(_player_)s, Medeniyetlerimiz arasında bir tarafsızlık anlaşması istemek istiyorum. Benimle nötr olursan, aynen karşılık vereceğim."
 
 #: simulation/ai/petra/chatHelper.js:129
 #, javascript-format
 msgid ""
 "%(_player_)s, it would be both to our benefit if we negotiated a neutrality "
 "pact. I will become neutral with you if you do the same."
-msgstr ""
+msgstr "%(_player_)s, bir tarafsızlık anlaşması yapsaydık hem faydası olurdu. Siz de aynısını yaparsanız sizinle tarafsız kalacağım."
 
 #: simulation/ai/petra/chatHelper.js:132
 #, javascript-format
 msgid "%(_player_)s, I have decided to revoke my offer for a neutrality pact."
-msgstr ""
+msgstr "%(_player_)s, Teklifimi tarafsızlık anlaşması için iptal etmeye karar verdim."
 
 #: simulation/ai/petra/chatHelper.js:133
 #, javascript-format
 msgid ""
 "%(_player_)s, as you have failed to respond to my request for peace between "
 "us, I have abrogated my offer."
-msgstr ""
+msgstr "%(_player_)s, aramızdaki barış istemimi yanıtlamadığınız için, teklifimi kaldırdım."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -905,8 +905,8 @@ msgstr "Şimdi sen saldırabilirsin!"
 #, javascript-format
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s kazandı (kalan oyuncular yaşıyor)."
+msgstr[1] "%(players)s ve %(lastPlayer)s Kazandı (kalan oyuncular yaşıyor)."
 
 #: simulation/components/EndGameManager.js:171
 msgid "Last remaining player wins."
@@ -965,7 +965,7 @@ msgstr "Eğitimli birlikler oluşturmak için yeterli boş yer yok"
 #: simulation/helpers/Cheat.js:53
 #, javascript-format
 msgid "%(player)s has been defeated (cheat)."
-msgstr ""
+msgstr "%(player)s Yenildi (hile)."
 
 #: simulation/helpers/Cheat.js:62
 msgid "You need to select a building that trains units."
@@ -982,7 +982,7 @@ msgstr "(Hile - Haritayı açığa çıkar)"
 #: simulation/helpers/Commands.js:444
 #, javascript-format
 msgid "%(player)s has resigned."
-msgstr ""
+msgstr "%(player)s istifa etti."
 
 #: simulation/helpers/Commands.js:586
 msgid "(Cheat - promoted units)"
@@ -1107,7 +1107,7 @@ msgstr "Haritada yayılmış tüm kalıntıları yakalayın ve oyunu kazanmak i�
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
 msgid "Capture the Relic"
-msgstr ""
+msgstr "Rahibe Yakalama"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid "Defeat all opponents to win."
@@ -1197,7 +1197,7 @@ msgstr "Küçük"
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
 "quickly while still having some room to expand."
-msgstr ""
+msgstr "Küçük haritalar 1v1 müsabakalar için uygundur, çünkü oyuncular genişleyebilecekleri bir odaya sahipken düşmana hızlı bir şekilde ulaşabilirler."
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Medium"
@@ -1207,7 +1207,7 @@ msgstr "Orta"
 msgid ""
 "Medium-sized maps provide plenty of space for two players, but even eight "
 "players fit."
-msgstr ""
+msgstr "Orta ölçekli haritalar iki oyuncu için geniş alan sağlar, ancak sekiz oyuncu için bile uygundur."
 
 #: simulation/data/settings/map_sizes.jsonData[3].Name
 msgid "Normal"
@@ -1217,7 +1217,7 @@ msgstr "Normal"
 msgid ""
 "This is the ideal mapsize for 4 to 8 players, because there is plenty of "
 "space to expand while the neighbors are quickly reachable."
-msgstr ""
+msgstr "4 ila 8 oyuncu için ideal harita boyutu, çünkü komşulara hızlı bir şekilde ulaşılabilir durumdaysa genişleyebilecek alan vardır."
 
 #: simulation/data/settings/map_sizes.jsonData[4].Name
 msgid "Large"
@@ -1227,7 +1227,7 @@ msgstr "Büyük"
 msgid ""
 "The large mapsize is recommended when great portions of the map are covered "
 "with water or inaccessible mountains."
-msgstr ""
+msgstr "Haritanın büyük bölümleri su veya erişilemeyen dağlarla kaplandığında büyük harita boyutu önerilir."
 
 #: simulation/data/settings/map_sizes.jsonData[5].Name
 msgid "Very Large"
@@ -1238,7 +1238,7 @@ msgstr "Çok Büyük"
 msgid ""
 "Very large maps are not recommended as it takes very long to reach the enemy"
 " and the game performance can be reduced."
-msgstr ""
+msgstr "Çok büyük haritalar önerilmez, çünkü düşmana ulaşmak çok uzun sürer ve oyun performansı düşebilir."
 
 #: simulation/data/settings/map_sizes.jsonData[6].Name
 msgid "Giant"

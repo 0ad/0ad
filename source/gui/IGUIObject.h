@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -16,29 +16,11 @@
  */
 
 /*
-The base class of an object
-
---Overview--
-
-	All objects are derived from this class, it's an ADT
-	so it can't be used per se
-
-	Also contains a Dummy object which is used for
-	 completely blank objects.
-
---Usage--
-
-	Write about how to use it here
-
---Examples--
-
-	Provide examples of how to use this code, if necessary
-
---More info--
-
-	Check GUI.h
-
-*/
+ * The base class of an object.
+ * All objects are derived from this class.
+ * It's an abstract data type, so it can't be used per se.
+ * Also contains a Dummy object which is used for completely blank objects.
+ */
 
 #ifndef INCLUDED_IGUIOBJECT
 #define INCLUDED_IGUIOBJECT
@@ -91,26 +73,6 @@ struct SGUISetting
 };
 
 /**
- * Base settings, all objects possess these settings
- * in their m_BaseSettings
- * Instructions can be found in the documentations.
- */
-/*struct SGUIBaseSettings
-{
-	//int				banan;
-	bool			m_Absolute;
-	CStr			m_Caption;	// Is usually set within an XML element and not in the attributes
-	bool			m_Enabled;
-	bool			m_Ghost;
-	bool			m_Hidden;
-	CClientArea		m_Size;
-	CStr			m_Style;
-	float			m_Z;
-};*/
-
-//////////////////////////////////////////////////////////
-
-/**
  * GUI object such as a button or an input-box.
  * Abstract data type !
  */
@@ -124,7 +86,7 @@ class IGUIObject
 	// Allow getProperty to access things like GetParent()
 	friend bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::MutableHandleValue vp);
 	friend bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, bool UNUSED(strict), JS::MutableHandleValue vp);
-	friend bool JSI_IGUIObject::getComputedSize(JSContext* cx, uint argc, jsval* vp);
+	friend bool JSI_IGUIObject::getComputedSize(JSContext* cx, uint argc, JS::Value* vp);
 
 public:
 	IGUIObject();

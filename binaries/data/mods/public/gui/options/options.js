@@ -80,8 +80,6 @@ function setupControl(option, i, category)
 		text.size = size;
 		control = Engine.GetGUIObjectByName(category + "Tickbox[" + i + "]");
 		let checked;
-		let keyRenderer;
-
 		for (let param in option.parameters)
 		{
 			switch (param)
@@ -89,36 +87,24 @@ function setupControl(option, i, category)
 			case "config":
 				checked = Engine.ConfigDB_GetValue("user", key) == "true";
 				break;
-			case "renderer":
-				keyRenderer = option.parameters.renderer;
-				if (!Engine["Renderer_Get" + keyRenderer + "Enabled"])
-				{
-					warn("Invalid renderer key " + keyRenderer);
-					keyRenderer = undefined;
-					break;
-				}
-				if (Engine["Renderer_Get" + keyRenderer + "Enabled"]() != checked)
-				{
-					warn("Incompatible renderer option value for " + keyRenderer);
-					Engine["Renderer_Set" + keyRenderer + "Enabled"](checked);
-				}
+			case "function":
 				break;
 			default:
 				warn("Unknown option source type '" + param + "'");
 			}
 		}
 
-		onUpdate = function(key, keyRenderer)
+		onUpdate = function(key)
 		{
 			return function()
 			{
-				if (keyRenderer)
-					Engine["Renderer_Set" + keyRenderer + "Enabled"](this.checked);
+				if (option.parameters.function)
+					Engine[option.parameters.function](this.checked);
 				Engine.ConfigDB_CreateValue("user", key, String(this.checked));
 				Engine.ConfigDB_SetChanges("user", true);
 				updateOptionPanel();
 			};
-		}(key, keyRenderer);
+		}(key);
 
 		// Load final data to the control element.
 		control.checked = checked;
@@ -353,27 +339,15 @@ function revertChanges()
 	for (let item in g_Controls)
 	{
 		let control = g_Controls[item];
-		// needs to update renderer values (which are all of boolean type)
-		if (control.parameters.renderer)
-		{
-			if (control.type != "boolean")
-			{
-				warn("Invalid type option " + control.type + " defined in renderer for " + item + ": will not be reverted");
-				continue;
-			}
-			let checked = Engine.ConfigDB_GetValue("user", item) == "true";
-			Engine["Renderer_Set" + control.parameters.renderer + "Enabled"](checked);
-		}
-		// and the possible function calls (which are of number or string types)
 		if (control.parameters.function)
 		{
-			if (control.type != "string" && control.type != "number" && control.type != "slider" && control.type != "dropdown")
-			{
-				warn("Invalid type option " + control.type + " defined with function for " + item + ": will not be reverted");
-				continue;
-			}
-			let caption = Engine.ConfigDB_GetValue("user", item);
-			Engine[control.parameters.function](+caption);
+			let value = Engine.ConfigDB_GetValue("user", item);
+			Engine[control.parameters.function](
+				(control.type == "string" || control.type == "dropdown") ?
+					value :
+				control.type == "boolean" ?
+					value == "true" :
+					+value);
 		}
 	}
 	Engine.ConfigDB_SetChanges("user", false);

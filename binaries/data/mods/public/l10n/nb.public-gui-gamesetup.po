@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-08-21 09:03+0200\n"
-"PO-Revision-Date: 2017-08-21 15:36+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-08-25 09:03+0200\n"
+"PO-Revision-Date: 2017-08-28 05:38+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -266,7 +266,7 @@ msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
-msgstr ""
+msgstr "Totalt antall relikvier som oppstår på kartet. Relikvieseier er mest sannsynlig med bare ett eller to relikvier. Med større antall, blir relikviene viktige å erobre for å motta aurabonuser."
 
 #: gui/gamesetup/gamesetup.js:591
 msgid "Victory Duration"
@@ -385,7 +385,7 @@ msgstr "Gå tilbake til hovedmeny."
 
 #: gui/gamesetup/gamesetup.js:857
 msgid "Start Game!"
-msgstr ""
+msgstr "Start spillet!"
 
 #: gui/gamesetup/gamesetup.js:863
 msgid "Start a new game with the current settings."
@@ -401,6 +401,10 @@ msgstr "Start et nytt spill med gjeldende innstillinger (avskrudd til alle spill
 msgctxt "map selection"
 msgid "Random"
 msgstr "Tilfeldig"
+
+#: gui/gamesetup/gamesetup.js:1434
+msgid "Pick any of the given maps at random."
+msgstr "Velg et av de angitte kartene tilfeldig."
 
 #: gui/gamesetup/gamesetup.js:1709 gui/gamesetup/gamesetup.js:1748
 #, javascript-format

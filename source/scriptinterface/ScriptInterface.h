@@ -134,7 +134,7 @@ public:
 	JSObject* CreateCustomObject(const std::string & typeName) const;
 	void DefineCustomObjectType(JSClass *clasp, JSNative constructor, uint minArgs, JSPropertySpec *ps, JSFunctionSpec *fs, JSPropertySpec *static_ps, JSFunctionSpec *static_fs);
 
-	jsval GetGlobalObject();
+	JS::Value GetGlobalObject();
 
 	JSClass* GetGlobalClass();
 
@@ -269,12 +269,12 @@ public:
 	JS::Value CloneValueFromOtherContext(const ScriptInterface& otherContext, JS::HandleValue val) const;
 
 	/**
-	 * Convert a jsval to a C++ type. (This might trigger GC.)
+	 * Convert a JS::Value to a C++ type. (This might trigger GC.)
 	 */
 	template<typename T> static bool FromJSVal(JSContext* cx, const JS::HandleValue val, T& ret);
 
 	/**
-	 * Convert a C++ type to a jsval. (This might trigger GC. The return
+	 * Convert a C++ type to a JS::Value. (This might trigger GC. The return
 	 * value must be rooted if you don't want it to be collected.)
 	 * NOTE: We are passing the JS::Value by reference instead of returning it by value.
 	 * The reason is a memory corruption problem that appears to be caused by a bug in Visual Studio.
@@ -303,7 +303,7 @@ public:
 	bool MathRandom(double& nbr);
 
 	/**
-	 * Structured clones are a way to serialize 'simple' JS values into a buffer
+	 * Structured clones are a way to serialize 'simple' JS::Values into a buffer
 	 * that can safely be passed between contexts and runtimes and threads.
 	 * A StructuredClone can be stored and read multiple times if desired.
 	 * We wrap them in shared_ptr so memory management is automatic and
