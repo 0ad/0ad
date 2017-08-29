@@ -1051,6 +1051,16 @@ GuiInterface.prototype.DisplayRallyPoint = function(player, cmd)
 	}
 };
 
+GuiInterface.prototype.AddTargetMarker = function(player, cmd)
+{
+	let ent = Engine.AddLocalEntity(cmd.template);
+	if (!ent)
+		return;
+
+	let cmpPosition = Engine.QueryInterface(ent, IID_Position);
+	cmpPosition.JumpTo(cmd.x, cmd.z);
+};
+
 /**
  * Display the building placement preview.
  * cmd.template is the name of the entity template, or "" to disable the preview.
@@ -2003,6 +2013,7 @@ let exposedFunctions = {
 	"GetPlayerEntities": 1,
 	"GetNonGaiaEntities": 1,
 	"DisplayRallyPoint": 1,
+	"AddTargetMarker": 1,
 	"SetBuildingPlacementPreview": 1,
 	"SetWallPlacementPreview": 1,
 	"GetFoundationSnapData": 1,

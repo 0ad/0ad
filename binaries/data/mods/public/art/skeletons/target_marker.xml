@@ -1,0 +1,185 @@
+<skeletons>
+    <standard_skeleton id="target_marker" title="Target Marker">
+        <bone name="arrow01_rear">
+            <bone name="arrow01_bone01">
+                <bone name="arrow01_bone02">
+                    <bone name="arrow01_bone03">
+                        <bone name="arrow01_bone04">
+                            <bone name="arrow01_bone05">
+                                <bone name="arrow01_bone06">
+                                    <bone name="arrow01_bone07">
+                                        <bone name="arrow_01_tip"></bone>
+                                    </bone>
+                                </bone>
+                            </bone>
+                        </bone>
+                    </bone>
+                </bone>
+            </bone>
+        </bone>
+        <bone name="arrow02_rear">
+            <bone name="arrow02_bone01">
+                <bone name="arrow02_bone02">
+                    <bone name="arrow02_bone03">
+                        <bone name="arrow02_bone04">
+                            <bone name="arrow02_bone05">
+                                <bone name="arrow02_bone06">
+                                    <bone name="arrow02_bone07">
+                                        <bone name="arrow_02_tip"></bone>
+                                    </bone>
+                                </bone>
+                            </bone>
+                        </bone>
+                    </bone>
+                </bone>
+            </bone>
+        </bone>
+        <bone name="arrow03_rear">
+            <bone name="arrow03_bone01">
+                <bone name="arrow03_bone02">
+                    <bone name="arrow03_bone03">
+                        <bone name="arrow03_bone04">
+                            <bone name="arrow03_bone05">
+                                <bone name="arrow03_bone06">
+                                    <bone name="arrow03_bone07">
+                                        <bone name="arrow_03_tip"></bone>
+                                    </bone>
+                                </bone>
+                            </bone>
+                        </bone>
+                    </bone>
+                </bone>
+            </bone>
+        </bone>
+        <bone name="arrow04_rear">
+            <bone name="arrow04_bone01">
+                <bone name="arrow04_bone02">
+                    <bone name="arrow04_bone03">
+                        <bone name="arrow04_bone04">
+                            <bone name="arrow04_bone05">
+                                <bone name="arrow04_bone06">
+                                    <bone name="arrow04_bone07">
+                                        <bone name="arrow_04_tip"></bone>
+                                    </bone>
+                                </bone>
+                            </bone>
+                        </bone>
+                    </bone>
+                </bone>
+            </bone>
+        </bone>
+    </standard_skeleton>
+    <skeleton target="target_marker" title="Target Marker">
+        <identifier>
+            <root>arrow01_rear</root>
+        </identifier>
+        <bone name="arrow01_rear">
+            <target>arrow01_rear</target>
+            <bone name="arrow01_bone01">
+                <target>arrow01_bone01</target>
+                <bone name="arrow01_bone02">
+                    <target>arrow01_bone02</target>
+                    <bone name="arrow01_bone03">
+                        <target>arrow01_bone03</target>
+                        <bone name="arrow01_bone04">
+                            <target>arrow01_bone04</target>
+                            <bone name="arrow01_bone05">
+                                <target>arrow01_bone05</target>
+                                <bone name="arrow01_bone06">
+                                    <target>arrow01_bone06</target>
+                                    <bone name="arrow01_bone07">
+                                        <target>arrow01_bone07</target>
+                                        <bone name="arrow_01_tip">
+                                            <target>arrow_01_tip</target>
+                                        </bone>
+                                    </bone>
+                                </bone>
+                            </bone>
+                        </bone>
+                    </bone>
+                </bone>
+            </bone>
+        </bone>
+        <bone name="arrow02_rear">
+            <target>arrow02_rear</target>
+            <bone name="arrow02_bone01">
+                <target>arrow02_bone01</target>
+                <bone name="arrow02_bone02">
+                    <target>arrow02_bone02</target>
+                    <bone name="arrow02_bone03">
+                        <target>arrow02_bone03</target>
+                        <bone name="arrow02_bone04">
+                            <target>arrow02_bone04</target>
+                            <bone name="arrow02_bone05">
+                                <target>arrow02_bone05</target>
+                                <bone name="arrow02_bone06">
+                                    <target>arrow02_bone06</target>
+                                    <bone name="arrow02_bone07">
+                                        <target>arrow02_bone07</target>
+                                        <bone name="arrow_02_tip">
+                                            <target>arrow_02_tip</target>
+                                        </bone>
+                                    </bone>
+                                </bone>
+                            </bone>
+                        </bone>
+                    </bone>
+                </bone>
+            </bone>
+        </bone>
+        <bone name="arrow03_rear">
+            <target>arrow03_rear</target>
+            <bone name="arrow03_bone01">
+                <target>arrow03_bone01</target>
+                <bone name="arrow03_bone02">
+                    <target>arrow03_bone02</target>
+                    <bone name="arrow03_bone03">
+                        <target>arrow03_bone03</target>
+                        <bone name="arrow03_bone04">
+                            <target>arrow03_bone04</target>
+                            <bone name="arrow03_bone05">
+                                <target>arrow03_bone05</target>
+                                <bone name="arrow03_bone06">
+                                    <target>arrow03_bone06</target>
+                                    <bone name="arrow03_bone07">
+                                        <target>arrow03_bone07</target>
+                                        <bone name="arrow_03_tip">
+                                            <target>arrow_03_tip</target>
+                                        </bone>
+                                    </bone>
+                                </bone>
+                            </bone>
+                        </bone>
+                    </bone>
+                </bone>
+            </bone>
+        </bone>
+        <bone name="arrow04_rear">
+            <target>arrow04_rear</target>
+            <bone name="arrow04_bone01">
+                <target>arrow04_bone01</target>
+                <bone name="arrow04_bone02">
+                    <target>arrow04_bone02</target>
+                    <bone name="arrow04_bone03">
+                        <target>arrow04_bone03</target>
+                        <bone name="arrow04_bone04">
+                            <target>arrow04_bone04</target>
+                            <bone name="arrow04_bone05">
+                                <target>arrow04_bone05</target>
+                                <bone name="arrow04_bone06">
+                                    <target>arrow04_bone06</target>
+                                    <bone name="arrow04_bone07">
+                                        <target>arrow04_bone07</target>
+                                        <bone name="arrow_04_tip">
+                                            <target>arrow_04_tip</target>
+                                        </bone>
+                                    </bone>
+                                </bone>
+                            </bone>
+                        </bone>
+                    </bone>
+                </bone>
+            </bone>
+        </bone>
+    </skeleton>
+</skeletons>

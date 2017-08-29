@@ -1,4 +1,12 @@
 /**
+ * Specifies which template should indicate the target location of a player command,
+ * given a command type.
+ */
+var g_TargetMarker = {
+	"move": "special/target_marker"
+};
+
+/**
  * Which enemy entity types will be attacked on sight when patroling.
  */
 var g_PatrolTargets = ["Unit"];
@@ -45,6 +53,8 @@ var unitActions =
 				"queued": queued
 			});
 
+			DrawTargetMarker(target);
+
 			Engine.GuiInterfaceCall("PlaySound", {
 				"name": "order_walk",
 				"entity": selection[0]
@@ -84,6 +94,8 @@ var unitActions =
 				"targetClasses": targetClasses,
 				"queued": queued
 			});
+
+			DrawTargetMarker(target);
 
 			Engine.GuiInterfaceCall("PlaySound", {
 				"name": "order_walk",
@@ -229,6 +241,9 @@ var unitActions =
 				"queued": queued,
 				"allowCapture": false
 			});
+
+			DrawTargetMarker(target);
+
 			Engine.GuiInterfaceCall("PlaySound", { "name": "order_patrol", "entity": selection[0] });
 			return true;
 		},
@@ -325,6 +340,8 @@ var unitActions =
 				"autocontinue": true,
 				"queued": queued
 			});
+
+			DrawTargetMarker(target);
 
 			Engine.GuiInterfaceCall("PlaySound", {
 				"name": "order_repair",
@@ -1474,4 +1491,13 @@ function isUndeletable(entState)
 		return translate("This entity is undeletable");
 
 	return false;
+}
+
+function DrawTargetMarker(target)
+{
+	Engine.GuiInterfaceCall("AddTargetMarker", {
+		"template": g_TargetMarker.move,
+		"x": target.x,
+		"z": target.z
+	});
 }

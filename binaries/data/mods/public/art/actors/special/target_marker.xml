@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Target Marker">
+      <animations>
+        <animation file="other/target_marker.dae" name="Idle" speed="150"/>
+      </animations>
+      <mesh>skeletal/target_marker.dae</mesh>
+      <textures>
+        <texture file="skeletal/target_marker_red_and_gold.png" name="baseTex"/>
+        <texture file="skeletal/target_marker_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_spec.xml</material>
+</actor>

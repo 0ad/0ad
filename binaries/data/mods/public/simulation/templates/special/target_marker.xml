@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="special/actor">
+  <Decay>
+    <Active>true</Active>
+    <SinkingAnim>false</SinkingAnim>
+    <DelayTime>0.5</DelayTime>
+    <SinkRate>1000000</SinkRate>
+    <SinkAccel>0</SinkAccel>
+  </Decay>
+  <Position>
+    <Floating>true</Floating>
+  </Position>
+  <VisualActor>
+    <Actor>special/target_marker.xml</Actor>
+  </VisualActor>
+</Entity>
