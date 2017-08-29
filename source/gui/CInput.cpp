@@ -25,7 +25,6 @@
 #include "graphics/FontMetrics.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/TextRenderer.h"
-#include "lib/external_libraries/libsdl.h"
 #include "lib/ogl.h"
 #include "lib/sysdep/clipboard.h"
 #include "lib/timer.h"
@@ -100,7 +99,8 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 	{
 		if (m_ComposingText)
 			return IN_HANDLED;
-		return(ManuallyHandleHotkeyEvent(ev));
+
+		return ManuallyHandleHotkeyEvent(ev);
 	}
 	// SDL2 has a new method of text input that better supports Unicode and CJK
 	// see https://wiki.libsdl.org/Tutorials/TextInput
@@ -186,339 +186,18 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 	{
 		if (m_ComposingText)
 			return IN_HANDLED;
+
 		// Since the GUI framework doesn't handle to set settings
 		//  in Unicode (CStrW), we'll simply retrieve the actual
 		//  pointer and edit that.
 		CStrW* pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
-		bool shiftKeyPressed = g_keys[SDLK_RSHIFT] || g_keys[SDLK_LSHIFT];
 
-		int szChar = 0;
+		SDL_Keycode keyCode = 0;
 		if (ev->ev.type == SDL_KEYDOWN)
-			szChar = ev->ev.key.keysym.sym;
-		wchar_t cooked = 0;
+			keyCode = ev->ev.key.keysym.sym;
 
-		switch (szChar)
-		{
-		case SDLK_TAB: // '\t'
-			/* Auto Complete */
-			// We just send the tab event to JS and let it figure out autocomplete.
-			SendEvent(GUIM_TAB, "tab");
-			break;
-
-		case SDLK_BACKSPACE: // '\b'
-			m_WantedX = 0.0f;
-
-			if (SelectingText())
-				DeleteCurSelection();
-			else
-			{
-				m_iBufferPos_Tail = -1;
-
-				if (pCaption->empty() || m_iBufferPos == 0)
-					break;
-
-				if (m_iBufferPos == (int)pCaption->length())
-					*pCaption = pCaption->Left((long)pCaption->length()-1);
-				else
-					*pCaption = pCaption->Left(m_iBufferPos-1) +
-								pCaption->Right((long)pCaption->length()-m_iBufferPos);
-
-				--m_iBufferPos;
-
-				UpdateText(m_iBufferPos, m_iBufferPos+1, m_iBufferPos);
-
-			}
-
-			UpdateAutoScroll();
-			break;
-
-		case SDLK_DELETE:
-			m_WantedX = 0.0f;
-			// If selection:
-			if (SelectingText())
-				DeleteCurSelection();
-			else
-			{
-				if (pCaption->empty() || m_iBufferPos == (int)pCaption->length())
-					break;
-
-				*pCaption = pCaption->Left(m_iBufferPos) +
-				            pCaption->Right((long)pCaption->length()-(m_iBufferPos+1));
-
-				UpdateText(m_iBufferPos, m_iBufferPos+1, m_iBufferPos);
-			}
-
-			UpdateAutoScroll();
-			break;
-
-		case SDLK_HOME:
-			// If there's not a selection, we should create one now
-			if (!shiftKeyPressed)
-			{
-				// Make sure a selection isn't created.
-				m_iBufferPos_Tail = -1;
-			}
-			else if (!SelectingText())
-			{
-				// Place tail at the current point:
-				m_iBufferPos_Tail = m_iBufferPos;
-			}
-
-			m_iBufferPos = 0;
-			m_WantedX = 0.0f;
-
-			UpdateAutoScroll();
-			break;
-
-		case SDLK_END:
-			// If there's not a selection, we should create one now
-			if (!shiftKeyPressed)
-			{
-				// Make sure a selection isn't created.
-				m_iBufferPos_Tail = -1;
-			}
-			else if (!SelectingText())
-			{
-				// Place tail at the current point:
-				m_iBufferPos_Tail = m_iBufferPos;
-			}
-
-			m_iBufferPos = (long)pCaption->length();
-			m_WantedX = 0.0f;
-
-			UpdateAutoScroll();
-			break;
-
-		/**
-		 * Conventions for Left/Right when text is selected:
-		 *
-		 * References:
-		 *
-		 * Visual Studio
-		 *  Visual Studio has the 'newer' approach, used by newer versions of
-		 * things, and in newer applications. A left press will always place
-		 * the pointer on the left edge of the selection, and then of course
-		 * remove the selection. Right will do the exact same thing.
-		 * If you have the pointer on the right edge and press right, it will
-		 * in other words just remove the selection.
-		 *
-		 * Windows (eg. Notepad)
-		 *  A left press always takes the pointer a step to the left and
-		 * removes the selection as if it were never there in the first place.
-		 * Right of course does the same thing but to the right.
-		 *
-		 * I chose the Visual Studio convention. Used also in Word, gtk 2.0, MSN
-		 * Messenger.
-		 */
-		case SDLK_LEFT:
-			m_WantedX = 0.f;
-
-			if (shiftKeyPressed || !SelectingText())
-			{
-				if (!shiftKeyPressed)
-					m_iBufferPos_Tail = -1;
-				else if (!SelectingText())
-					m_iBufferPos_Tail = m_iBufferPos;
-
-				if (m_iBufferPos > 0)
-					--m_iBufferPos;
-			}
-			else
-			{
-				if (m_iBufferPos_Tail < m_iBufferPos)
-					m_iBufferPos = m_iBufferPos_Tail;
-
-				m_iBufferPos_Tail = -1;
-			}
-
-			UpdateAutoScroll();
-			break;
-
-		case SDLK_RIGHT:
-			m_WantedX = 0.0f;
-
-			if (shiftKeyPressed || !SelectingText())
-			{
-				if (!shiftKeyPressed)
-					m_iBufferPos_Tail = -1;
-				else if (!SelectingText())
-					m_iBufferPos_Tail = m_iBufferPos;
-
-				if (m_iBufferPos < (int)pCaption->length())
-					++m_iBufferPos;
-			}
-			else
-			{
-				if (m_iBufferPos_Tail > m_iBufferPos)
-					m_iBufferPos = m_iBufferPos_Tail;
-
-				m_iBufferPos_Tail = -1;
-			}
-
-			UpdateAutoScroll();
-			break;
-
-		/**
-		 * Conventions for Up/Down when text is selected:
-		 *
-		 * References:
-		 *
-		 * Visual Studio
-		 *  Visual Studio has a very strange approach, down takes you below the
-		 * selection to the next row, and up to the one prior to the whole
-		 * selection. The weird part is that it is always aligned as the
-		 * 'pointer'. I decided this is to much work for something that is
-		 * a bit arbitrary
-		 *
-		 * Windows (eg. Notepad)
-		 *  Just like with left/right, the selection is destroyed and it moves
-		 * just as if there never were a selection.
-		 *
-		 * I chose the Notepad convention even though I use the VS convention with
-		 * left/right.
-		 */
-		case SDLK_UP:
-		{
-			if (!shiftKeyPressed)
-				m_iBufferPos_Tail = -1;
-			else if (!SelectingText())
-				m_iBufferPos_Tail = m_iBufferPos;
-
-			std::list<SRow>::iterator current = m_CharacterPositions.begin();
-			while (current != m_CharacterPositions.end())
-			{
-				if (m_iBufferPos >= current->m_ListStart &&
-					m_iBufferPos <= current->m_ListStart+(int)current->m_ListOfX.size())
-					break;
-
-				++current;
-			}
-
-			float pos_x;
-
-			if (m_iBufferPos-current->m_ListStart == 0)
-				pos_x = 0.f;
-			else
-				pos_x = current->m_ListOfX[m_iBufferPos-current->m_ListStart-1];
-
-			if (m_WantedX > pos_x)
-				pos_x = m_WantedX;
-
-			// Now change row:
-			if (current != m_CharacterPositions.begin())
-			{
-				--current;
-
-				// Find X-position:
-				m_iBufferPos = current->m_ListStart + GetXTextPosition(current, pos_x, m_WantedX);
-			}
-			// else we can't move up
-
-			UpdateAutoScroll();
-			break;
-		}
-
-		case SDLK_DOWN:
-		{
-			if (!shiftKeyPressed)
-				m_iBufferPos_Tail = -1;
-			else if (!SelectingText())
-				m_iBufferPos_Tail = m_iBufferPos;
-
-			std::list<SRow>::iterator current = m_CharacterPositions.begin();
-			while (current != m_CharacterPositions.end())
-			{
-				if (m_iBufferPos >= current->m_ListStart &&
-					m_iBufferPos <= current->m_ListStart+(int)current->m_ListOfX.size())
-					break;
-
-				++current;
-			}
-
-			float pos_x;
-
-			if (m_iBufferPos-current->m_ListStart == 0)
-				pos_x = 0.f;
-			else
-				pos_x = current->m_ListOfX[m_iBufferPos-current->m_ListStart-1];
-
-			if (m_WantedX > pos_x)
-				pos_x = m_WantedX;
-
-			// Now change row:
-			// Add first, so we can check if it's .end()
-			++current;
-			if (current != m_CharacterPositions.end())
-			{
-				// Find X-position:
-				m_iBufferPos = current->m_ListStart + GetXTextPosition(current, pos_x, m_WantedX);
-			}
-			// else we can't move up
-
-			UpdateAutoScroll();
-			break;
-		}
-
-		case SDLK_PAGEUP:
-			GetScrollBar(0).ScrollMinusPlenty();
-			UpdateAutoScroll();
-			break;
-
-		case SDLK_PAGEDOWN:
-			GetScrollBar(0).ScrollPlusPlenty();
-			UpdateAutoScroll();
-			break;
-		/* END: Message History Lookup */
-
-		case SDLK_KP_ENTER:
-		case SDLK_RETURN:
-			// 'Return' should do a Press event for single liners (e.g. submitting forms)
-			//  otherwise a '\n' character will be added.
-		{
-			bool multiline;
-			GUI<bool>::GetSetting(this, "multiline", multiline);
-			if (!multiline)
-			{
-				SendEvent(GUIM_PRESSED, "press");
-				break;
-			}
-
-			cooked = '\n'; // Change to '\n' and do default:
-			// NOTE: Fall-through
-		}
-		default: // Insert a character
-		{
-			// In SDL2, we no longer get Unicode wchars via SDL_Keysym
-			// we use text input events instead and they provide UTF-8 chars
-			if (ev->ev.type == SDL_KEYDOWN && cooked == 0)
-				return IN_HANDLED;
-
-			// check max length
-			int max_length;
-			GUI<int>::GetSetting(this, "max_length", max_length);
-			if (max_length != 0 && (int)pCaption->length() >= max_length)
-				break;
-
-			m_WantedX = 0.0f;
-
-			if (SelectingText())
-				DeleteCurSelection();
-			m_iBufferPos_Tail = -1;
-
-			if (m_iBufferPos == (int)pCaption->length())
-				*pCaption += cooked;
-			else
-				*pCaption = pCaption->Left(m_iBufferPos) + cooked +
-							pCaption->Right((long) pCaption->length()-m_iBufferPos);
-
-			UpdateText(m_iBufferPos, m_iBufferPos, m_iBufferPos+1);
-
-			++m_iBufferPos;
-
-			UpdateAutoScroll();
-			break;
-		}
-		}
+		ManuallyImmutableHandleKeyDownEvent(keyCode, pCaption);
+		ManuallyMutableHandleKeyDownEvent(keyCode, pCaption);
 
 		UpdateBufferPositionSetting();
 		return IN_HANDLED;
@@ -527,6 +206,349 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 	return IN_PASS;
 }
 
+void CInput::ManuallyMutableHandleKeyDownEvent(const SDL_Keycode keyCode, CStrW* pCaption)
+{
+	wchar_t cooked = 0;
+
+	switch (keyCode)
+	{
+	case SDLK_TAB:
+	{
+		SendEvent(GUIM_TAB, "tab");
+		break;
+	}
+	case SDLK_BACKSPACE:
+	{
+		m_WantedX = 0.0f;
+
+		if (SelectingText())
+			DeleteCurSelection();
+		else
+		{
+			m_iBufferPos_Tail = -1;
+
+			if (pCaption->empty() || m_iBufferPos == 0)
+				break;
+
+			if (m_iBufferPos == (int)pCaption->length())
+				*pCaption = pCaption->Left((long)pCaption->length() - 1);
+			else
+				*pCaption = pCaption->Left(m_iBufferPos - 1) +
+				pCaption->Right((long)pCaption->length() - m_iBufferPos);
+
+			--m_iBufferPos;
+
+			UpdateText(m_iBufferPos, m_iBufferPos + 1, m_iBufferPos);
+
+		}
+
+		UpdateAutoScroll();
+		break;
+	}
+	case SDLK_DELETE:
+	{
+		m_WantedX = 0.0f;
+
+		if (SelectingText())
+			DeleteCurSelection();
+		else
+		{
+			if (pCaption->empty() || m_iBufferPos == (int)pCaption->length())
+				break;
+
+			*pCaption = pCaption->Left(m_iBufferPos) +
+				pCaption->Right((long)pCaption->length() - (m_iBufferPos + 1));
+
+			UpdateText(m_iBufferPos, m_iBufferPos + 1, m_iBufferPos);
+		}
+
+		UpdateAutoScroll();
+		break;
+	}
+	case SDLK_KP_ENTER:
+	case SDLK_RETURN:
+	{
+		// 'Return' should do a Press event for single liners (e.g. submitting forms)
+		//  otherwise a '\n' character will be added.
+		bool multiline;
+		GUI<bool>::GetSetting(this, "multiline", multiline);
+		if (!multiline)
+		{
+			SendEvent(GUIM_PRESSED, "press");
+			break;
+		}
+
+		cooked = '\n'; // Change to '\n' and do default:
+		// NOTE: Fall-through
+	}
+	default: // Insert a character
+	{
+		// In SDL2, we no longer get Unicode wchars via SDL_Keysym
+		// we use text input events instead and they provide UTF-8 chars
+		if (cooked == 0)
+			return;
+
+		// check max length
+		int max_length;
+		GUI<int>::GetSetting(this, "max_length", max_length);
+		if (max_length != 0 && (int)pCaption->length() >= max_length)
+			break;
+
+		m_WantedX = 0.0f;
+
+		if (SelectingText())
+			DeleteCurSelection();
+		m_iBufferPos_Tail = -1;
+
+		if (m_iBufferPos == (int)pCaption->length())
+			*pCaption += cooked;
+		else
+			*pCaption = pCaption->Left(m_iBufferPos) + cooked +
+			pCaption->Right((long)pCaption->length() - m_iBufferPos);
+
+		UpdateText(m_iBufferPos, m_iBufferPos, m_iBufferPos + 1);
+
+		++m_iBufferPos;
+
+		UpdateAutoScroll();
+		break;
+	}
+	}
+}
+
+void CInput::ManuallyImmutableHandleKeyDownEvent(const SDL_Keycode keyCode, CStrW* pCaption)
+{
+	bool shiftKeyPressed = g_keys[SDLK_RSHIFT] || g_keys[SDLK_LSHIFT];
+
+	switch (keyCode)
+	{
+	case SDLK_HOME:
+	{
+		// If there's not a selection, we should create one now
+		if (!shiftKeyPressed)
+		{
+			// Make sure a selection isn't created.
+			m_iBufferPos_Tail = -1;
+		}
+		else if (!SelectingText())
+		{
+			// Place tail at the current point:
+			m_iBufferPos_Tail = m_iBufferPos;
+		}
+
+		m_iBufferPos = 0;
+		m_WantedX = 0.0f;
+
+		UpdateAutoScroll();
+		break;
+	}
+	case SDLK_END:
+	{
+		// If there's not a selection, we should create one now
+		if (!shiftKeyPressed)
+		{
+			// Make sure a selection isn't created.
+			m_iBufferPos_Tail = -1;
+		}
+		else if (!SelectingText())
+		{
+			// Place tail at the current point:
+			m_iBufferPos_Tail = m_iBufferPos;
+		}
+
+		m_iBufferPos = (long)pCaption->length();
+		m_WantedX = 0.0f;
+
+		UpdateAutoScroll();
+		break;
+	}
+	/**
+	 * Conventions for Left/Right when text is selected:
+	 *
+	 * References:
+	 *
+	 * Visual Studio
+	 *  Visual Studio has the 'newer' approach, used by newer versions of
+	 * things, and in newer applications. A left press will always place
+	 * the pointer on the left edge of the selection, and then of course
+	 * remove the selection. Right will do the exact same thing.
+	 * If you have the pointer on the right edge and press right, it will
+	 * in other words just remove the selection.
+	 *
+	 * Windows (eg. Notepad)
+	 *  A left press always takes the pointer a step to the left and
+	 * removes the selection as if it were never there in the first place.
+	 * Right of course does the same thing but to the right.
+	 *
+	 * I chose the Visual Studio convention. Used also in Word, gtk 2.0, MSN
+	 * Messenger.
+	 */
+	case SDLK_LEFT:
+	{
+		m_WantedX = 0.f;
+
+		if (shiftKeyPressed || !SelectingText())
+		{
+			if (!shiftKeyPressed)
+				m_iBufferPos_Tail = -1;
+			else if (!SelectingText())
+				m_iBufferPos_Tail = m_iBufferPos;
+
+			if (m_iBufferPos > 0)
+				--m_iBufferPos;
+		}
+		else
+		{
+			if (m_iBufferPos_Tail < m_iBufferPos)
+				m_iBufferPos = m_iBufferPos_Tail;
+
+			m_iBufferPos_Tail = -1;
+		}
+
+		UpdateAutoScroll();
+		break;
+	}
+	case SDLK_RIGHT:
+	{
+		m_WantedX = 0.0f;
+
+		if (shiftKeyPressed || !SelectingText())
+		{
+			if (!shiftKeyPressed)
+				m_iBufferPos_Tail = -1;
+			else if (!SelectingText())
+				m_iBufferPos_Tail = m_iBufferPos;
+
+			if (m_iBufferPos < (int)pCaption->length())
+				++m_iBufferPos;
+		}
+		else
+		{
+			if (m_iBufferPos_Tail > m_iBufferPos)
+				m_iBufferPos = m_iBufferPos_Tail;
+
+			m_iBufferPos_Tail = -1;
+		}
+
+		UpdateAutoScroll();
+		break;
+	}
+	/**
+	 * Conventions for Up/Down when text is selected:
+	 *
+	 * References:
+	 *
+	 * Visual Studio
+	 *  Visual Studio has a very strange approach, down takes you below the
+	 * selection to the next row, and up to the one prior to the whole
+	 * selection. The weird part is that it is always aligned as the
+	 * 'pointer'. I decided this is to much work for something that is
+	 * a bit arbitrary
+	 *
+	 * Windows (eg. Notepad)
+	 *  Just like with left/right, the selection is destroyed and it moves
+	 * just as if there never were a selection.
+	 *
+	 * I chose the Notepad convention even though I use the VS convention with
+	 * left/right.
+	 */
+	case SDLK_UP:
+	{
+		if (!shiftKeyPressed)
+			m_iBufferPos_Tail = -1;
+		else if (!SelectingText())
+			m_iBufferPos_Tail = m_iBufferPos;
+
+		std::list<SRow>::iterator current = m_CharacterPositions.begin();
+		while (current != m_CharacterPositions.end())
+		{
+			if (m_iBufferPos >= current->m_ListStart &&
+			    m_iBufferPos <= current->m_ListStart + (int)current->m_ListOfX.size())
+				break;
+
+			++current;
+		}
+
+		float pos_x;
+		if (m_iBufferPos - current->m_ListStart == 0)
+			pos_x = 0.f;
+		else
+			pos_x = current->m_ListOfX[m_iBufferPos - current->m_ListStart - 1];
+
+		if (m_WantedX > pos_x)
+			pos_x = m_WantedX;
+
+		// Now change row:
+		if (current != m_CharacterPositions.begin())
+		{
+			--current;
+
+			// Find X-position:
+			m_iBufferPos = current->m_ListStart + GetXTextPosition(current, pos_x, m_WantedX);
+		}
+		// else we can't move up
+
+		UpdateAutoScroll();
+		break;
+	}
+	case SDLK_DOWN:
+	{
+		if (!shiftKeyPressed)
+			m_iBufferPos_Tail = -1;
+		else if (!SelectingText())
+			m_iBufferPos_Tail = m_iBufferPos;
+
+		std::list<SRow>::iterator current = m_CharacterPositions.begin();
+		while (current != m_CharacterPositions.end())
+		{
+			if (m_iBufferPos >= current->m_ListStart &&
+			    m_iBufferPos <= current->m_ListStart + (int)current->m_ListOfX.size())
+				break;
+
+			++current;
+		}
+
+		float pos_x;
+
+		if (m_iBufferPos - current->m_ListStart == 0)
+			pos_x = 0.f;
+		else
+			pos_x = current->m_ListOfX[m_iBufferPos - current->m_ListStart - 1];
+
+		if (m_WantedX > pos_x)
+			pos_x = m_WantedX;
+
+		// Now change row:
+		// Add first, so we can check if it's .end()
+		++current;
+		if (current != m_CharacterPositions.end())
+		{
+			// Find X-position:
+			m_iBufferPos = current->m_ListStart + GetXTextPosition(current, pos_x, m_WantedX);
+		}
+		// else we can't move up
+
+		UpdateAutoScroll();
+		break;
+	}
+	case SDLK_PAGEUP:
+	{
+		GetScrollBar(0).ScrollMinusPlenty();
+		UpdateAutoScroll();
+		break;
+	}
+	case SDLK_PAGEDOWN:
+	{
+		GetScrollBar(0).ScrollPlusPlenty();
+		UpdateAutoScroll();
+		break;
+	}
+	default:
+	{
+		break;
+	}
+	}
+}
 
 InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 {
@@ -777,10 +799,8 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 
 		return IN_HANDLED;
 	}
-	else
-	{
-		return IN_PASS;
-	}
+
+	return IN_PASS;
 }
 
 
@@ -2044,7 +2064,7 @@ void CInput::UpdateAutoScroll()
 		while (current != m_CharacterPositions.end())
 		{
 			if (m_iBufferPos >= current->m_ListStart &&
-				m_iBufferPos <= current->m_ListStart+(int)current->m_ListOfX.size())
+			    m_iBufferPos <= current->m_ListStart + (int)current->m_ListOfX.size())
 				break;
 
 			++current;
