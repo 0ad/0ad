@@ -154,7 +154,7 @@ protected:
 		const std::string& property1_value = "",
 		const std::string& property2_name = "",
 		const std::string& property2_value = "",
-		const std::time_t time = std::time_t(nullptr));
+		const std::time_t time = std::time(nullptr));
 
 private:
 	/// Map of players
