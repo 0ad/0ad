@@ -229,6 +229,7 @@ void XmppClient::onDisconnect(gloox::ConnectionError error)
 	m_GameList.clear();
 	m_PlayerMap.clear();
 	m_Profile.clear();
+	m_HistoricGuiMessages.clear();
 
 	CreateGUIMessage("system", "disconnected", "reason", ConnectionErrorToString(error));
 }
@@ -569,19 +570,12 @@ void XmppClient::CreateGUIMessage(
 	m_GuiMessageQueue.push_back(std::move(message));
 }
 
-void XmppClient::GuiPollMessage(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
+JS::Value XmppClient::GuiMessageToJSVal(const ScriptInterface& scriptInterface, const GUIMessage& message, const bool historic)
 {
-	if (m_GuiMessageQueue.empty())
-	{
-		ret.setUndefined();
-		return;
-	}
-
-	GUIMessage message = m_GuiMessageQueue.front();
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
-
-	scriptInterface.Eval("({})", ret);
+	JS::RootedValue ret(cx);
+	scriptInterface.Eval("({})", &ret);
 	scriptInterface.SetProperty(ret, "type", wstring_from_utf8(message.type));
 	if (!message.level.empty())
 		scriptInterface.SetProperty(ret, "level", wstring_from_utf8(message.level));
@@ -590,7 +584,38 @@ void XmppClient::GuiPollMessage(const ScriptInterface& scriptInterface, JS::Muta
 	if (!message.property2_name.empty())
 		scriptInterface.SetProperty(ret, message.property2_name.c_str(), wstring_from_utf8(message.property2_value));
 	scriptInterface.SetProperty(ret, "time", (double)message.time);
+	scriptInterface.SetProperty(ret, "historic", historic);
+	return ret;
+}
+
+JS::Value XmppClient::GuiPollNewMessage(const ScriptInterface& scriptInterface)
+{
+	if (m_GuiMessageQueue.empty())
+		return JS::UndefinedValue();
+
+	GUIMessage message = m_GuiMessageQueue.front();
 	m_GuiMessageQueue.pop_front();
+
+	// Since there can be hundreds of presence changes while playing a game, ignore these for performance
+	if (message.type == "chat" && message.level != "presence")
+		m_HistoricGuiMessages.push_back(message);
+
+	return GuiMessageToJSVal(scriptInterface, message, false);
+}
+
+JS::Value XmppClient::GuiPollHistoricMessages(const ScriptInterface& scriptInterface)
+{
+	JSContext* cx = scriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+	JS::RootedObject ret(cx, JS_NewArrayObject(cx, 0));
+
+	uint32_t i = 0;
+	for (const GUIMessage& message : m_HistoricGuiMessages)
+	{
+		JS::RootedValue msg(cx, GuiMessageToJSVal(scriptInterface, message, true));
+		JS_SetElement(cx, ret, i++, msg);
+	}
+	return JS::ObjectValue(*ret);
 }
 
 /**

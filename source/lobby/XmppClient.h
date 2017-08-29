@@ -143,7 +143,9 @@ public:
 		std::string property2_value;
 		std::time_t time;
 	};
-	void GuiPollMessage(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
+	JS::Value GuiMessageToJSVal(const ScriptInterface& scriptInterface, const GUIMessage& message, const bool historic);
+	JS::Value GuiPollNewMessage(const ScriptInterface& scriptInterface);
+	JS::Value GuiPollHistoricMessages(const ScriptInterface& scriptInterface);
 	void SendMUCMessage(const std::string& message);
 	void ClearPresenceUpdates();
 protected:
@@ -167,6 +169,8 @@ private:
 	std::vector<const glooxwrapper::Tag*> m_Profile;
 	/// Queue of messages for the GUI
 	std::deque<GUIMessage> m_GuiMessageQueue;
+	/// Cache of all GUI messages received since the login
+	std::vector<GUIMessage> m_HistoricGuiMessages;
 	/// Current room subject/topic.
 	std::string m_Subject;
 };

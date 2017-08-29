@@ -154,7 +154,7 @@ function onTick()
 
 	// Handle queued messages from the XMPP client (if running and if any)
 	let message;
-	while ((message = Engine.LobbyGuiPollMessage()) != undefined)
+	while ((message = Engine.LobbyGuiPollNewMessage()) != undefined)
 	{
 		// TODO: Properly deal with unrecognized messages
 		if (message.type != "system" || !message.level)

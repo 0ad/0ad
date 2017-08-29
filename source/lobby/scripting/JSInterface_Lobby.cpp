@@ -50,7 +50,8 @@ void JSI_Lobby::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<JS::Value, &JSI_Lobby::GetGameList>("GetGameList");
 	scriptInterface.RegisterFunction<JS::Value, &JSI_Lobby::GetBoardList>("GetBoardList");
 	scriptInterface.RegisterFunction<JS::Value, &JSI_Lobby::GetProfile>("GetProfile");
-	scriptInterface.RegisterFunction<JS::Value, &JSI_Lobby::LobbyGuiPollMessage>("LobbyGuiPollMessage");
+	scriptInterface.RegisterFunction<JS::Value, &JSI_Lobby::LobbyGuiPollNewMessage>("LobbyGuiPollNewMessage");
+	scriptInterface.RegisterFunction<JS::Value, &JSI_Lobby::LobbyGuiPollHistoricMessages>("LobbyGuiPollHistoricMessages");
 	scriptInterface.RegisterFunction<void, std::wstring, &JSI_Lobby::LobbySendMessage>("LobbySendMessage");
 	scriptInterface.RegisterFunction<void, std::wstring, &JSI_Lobby::LobbySetPlayerPresence>("LobbySetPlayerPresence");
 	scriptInterface.RegisterFunction<void, std::wstring, &JSI_Lobby::LobbySetNick>("LobbySetNick");
@@ -225,18 +226,20 @@ JS::Value JSI_Lobby::GetProfile(ScriptInterface::CxPrivate* pCxPrivate)
 	return profileFetch;
 }
 
-JS::Value JSI_Lobby::LobbyGuiPollMessage(ScriptInterface::CxPrivate* pCxPrivate)
+JS::Value JSI_Lobby::LobbyGuiPollNewMessage(ScriptInterface::CxPrivate* pCxPrivate)
 {
 	if (!g_XmppClient)
 		return JS::UndefinedValue();
 
-	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
+	return g_XmppClient->GuiPollNewMessage(*(pCxPrivate->pScriptInterface));
+}
 
-	JS::RootedValue poll(cx);
-	g_XmppClient->GuiPollMessage(*(pCxPrivate->pScriptInterface), &poll);
+JS::Value JSI_Lobby::LobbyGuiPollHistoricMessages(ScriptInterface::CxPrivate* pCxPrivate)
+{
+	if (!g_XmppClient)
+		return JS::UndefinedValue();
 
-	return poll;
+	return g_XmppClient->GuiPollHistoricMessages(*(pCxPrivate->pScriptInterface));
 }
 
 void JSI_Lobby::LobbySendMessage(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& message)
