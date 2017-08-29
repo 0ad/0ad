@@ -106,7 +106,7 @@
 			</object>
 
 			<!-- Filename -->
-			<object name="replayFilename" type="text" size="0 100%-24 100% 100%" font="sans-14" textcolor="white" sprite="ReplayMenuFilenameBackground"/>
+			<object name="replayFilename" type="input" size="0 100%-24 100% 100%" style="ModernInput" readonly="true" font="sans-14" sprite="ReplayMenuFilenameBackground"/>
 
 		</object>
 

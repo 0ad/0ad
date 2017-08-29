@@ -185,6 +185,9 @@ protected:
 
 	/// If the cursor should be drawn or not.
 	bool m_CursorVisState;
+
+	/// If enabled, it is only allowed to select and copy text.
+	bool m_Readonly;
 };
 
 #endif // INCLUDED_CINPUT

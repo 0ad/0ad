@@ -43,7 +43,7 @@ extern int g_yres;
 CInput::CInput()
 	: m_iBufferPos(-1), m_iBufferPos_Tail(-1), m_SelectingText(false), m_HorizontalScroll(0.f),
 	m_PrevTime(0.0), m_CursorVisState(true), m_CursorBlinkRate(0.5), m_ComposingText(false),
-	m_iComposedLength(0), m_iComposedPos(0), m_iInsertPos(0)
+	m_iComposedLength(0), m_iComposedPos(0), m_iInsertPos(0), m_Readonly(false)
 {
 	AddSetting(GUIST_int,					"buffer_position");
 	AddSetting(GUIST_float,					"buffer_zone");
@@ -54,6 +54,7 @@ CInput::CInput()
 	AddSetting(GUIST_bool,					"mask");
 	AddSetting(GUIST_int,					"max_length");
 	AddSetting(GUIST_bool,					"multiline");
+	AddSetting(GUIST_bool,					"readonly");
 	AddSetting(GUIST_bool,					"scrollbar");
 	AddSetting(GUIST_CStr,					"scrollbar_style");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
@@ -106,6 +107,9 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 	// see https://wiki.libsdl.org/Tutorials/TextInput
 	else if (ev->ev.type == SDL_TEXTINPUT)
 	{
+		if (m_Readonly)
+			return IN_PASS;
+
 		// Text has been committed, either single key presses or through an IME
 		CStrW* pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
 		std::wstring text = wstring_from_utf8(ev->ev.text.text);
@@ -138,6 +142,9 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 	}
 	else if (ev->ev.type == SDL_TEXTEDITING)
 	{
+		if (m_Readonly)
+			return IN_PASS;
+
 		// Text is being composed with an IME
 		// TODO: indicate this by e.g. underlining the uncommitted text
 		CStrW* pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
@@ -208,6 +215,9 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 
 void CInput::ManuallyMutableHandleKeyDownEvent(const SDL_Keycode keyCode, CStrW* pCaption)
 {
+	if (m_Readonly)
+		return;
+
 	wchar_t cooked = 0;
 
 	switch (keyCode)
@@ -556,8 +566,12 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 	bool shiftKeyPressed = g_keys[SDLK_RSHIFT] || g_keys[SDLK_LSHIFT];
 
 	std::string hotkey = static_cast<const char*>(ev->ev.user.data1);
+
 	if (hotkey == "paste")
 	{
+		if (m_Readonly)
+			return IN_PASS;
+
 		m_WantedX = 0.0f;
 
 		wchar_t* text = sys_clipboard_get();
@@ -585,6 +599,9 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 	}
 	else if (hotkey == "copy" || hotkey == "cut")
 	{
+		if (m_Readonly && hotkey == "cut")
+			return IN_PASS;
+
 		m_WantedX = 0.0f;
 
 		if (SelectingText())
@@ -618,6 +635,9 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 	}
 	else if (hotkey == "text.delete.left")
 	{
+		if (m_Readonly)
+			return IN_PASS;
+
 		m_WantedX = 0.0f;
 
 		if (SelectingText())
@@ -661,6 +681,9 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 	}
 	else if (hotkey == "text.delete.right")
 	{
+		if (m_Readonly)
+			return IN_PASS;
+
 		m_WantedX = 0.0f;
 
 		if (SelectingText())
@@ -867,6 +890,9 @@ void CInput::HandleMessage(SGUIMessage& Message)
 			UpdateText();
 		}
 		UpdateAutoScroll();
+
+		if (Message.value == CStr("readonly"))
+			GUI<bool>::GetSetting(this, "readonly", m_Readonly);
 		break;
 	}
 
@@ -1051,6 +1077,8 @@ void CInput::HandleMessage(SGUIMessage& Message)
 
 		UpdateText();
 		UpdateAutoScroll();
+
+		GUI<bool>::GetSetting(this, "readonly", m_Readonly);
 		break;
 	}
 
