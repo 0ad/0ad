@@ -55,8 +55,8 @@ m.TradeManager.prototype.trainMoreTraders = function(gameState, queues)
 		}
 	});
         if (numTraders >= this.targetNumTraders &&
-		((!this.tradeRoute.sea && numLandTraders >= Math.floor(this.targetNumTraders/2)) ||
-		  (this.tradeRoute.sea && numSeaTraders >= Math.floor(this.targetNumTraders/2))))
+		(!this.tradeRoute.sea && numLandTraders >= Math.floor(this.targetNumTraders/2) ||
+		  this.tradeRoute.sea && numSeaTraders >= Math.floor(this.targetNumTraders/2)))
 		return;
 
 	let template;
@@ -536,8 +536,8 @@ m.TradeManager.prototype.checkTrader = function(gameState, ent)
 	let possibleRoute = this.checkRoutes(gameState, access);
 	// Warning:  presentRoute is from metadata, so contains entity ids
 	if (!possibleRoute ||
-		(possibleRoute.source.id() != presentRoute.source && possibleRoute.source.id() != presentRoute.target) ||
-		(possibleRoute.target.id() != presentRoute.source && possibleRoute.target.id() != presentRoute.target))
+	    possibleRoute.source.id() != presentRoute.source && possibleRoute.source.id() != presentRoute.target ||
+	    possibleRoute.target.id() != presentRoute.source && possibleRoute.target.id() != presentRoute.target)
 	{
 		// Trader will be assigned in updateTrader
 		ent.setMetadata(PlayerID, "route", undefined);

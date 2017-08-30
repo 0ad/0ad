@@ -68,6 +68,7 @@ ex_settings =
   attribute maxwidth { xsd:decimal }? &
   attribute multiline { bool }?&
   attribute offset { pos }?&
+  attribute readonly { bool }?&
   attribute scrollbar { bool }?&
   attribute scrollbar_style { text }?&
   attribute scroll_bottom { bool }?&

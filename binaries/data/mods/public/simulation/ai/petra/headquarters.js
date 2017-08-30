@@ -1444,8 +1444,6 @@ m.HQ.prototype.buildWonder = function(gameState, queues, force = false)
 			return;
 	}
 
-	if (this.Config.debug > 0)
-		API3.warn(" civ " + gameState.getPlayerCiv() + " starts a plan for Wonder");
 	queues.wonder.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_wonder"));
 };
 
@@ -2253,7 +2251,7 @@ m.HQ.prototype.updateCaptureStrength = function(gameState)
 			let orderData = ent.unitAIOrderData();
 			if (!orderData || !orderData.length || !orderData[0].attackType)
 				continue;
-			if ((orderData[0].attackType === "Capture") !== allowCapture)
+			if (orderData[0].attackType === "Capture" !== allowCapture)
 				ent.attack(targetId, allowCapture);
 		}
 	}

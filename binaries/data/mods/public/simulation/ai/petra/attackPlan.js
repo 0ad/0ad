@@ -1274,7 +1274,26 @@ m.AttackPlan.prototype.update = function(gameState, events)
 					}
 				}
 				else
-				{	// if units are attacked, abandon their target (if it was a structure or a support) and retaliate
+				{
+					// Look first for nearby units to help us if possible
+					let collec = this.unitCollection.filterNearest(ourUnit.position(), 2);
+					for (let ent of collec.values())
+					{
+						if (m.isSiegeUnit(ent))
+							continue;
+						let orderData = ent.unitAIOrderData();
+						if (orderData && orderData.length && orderData[0].target)
+						{
+							if (orderData[0].target === attacker.id())
+								continue;
+							let target = gameState.getEntityById(orderData[0].target);
+							if (target && !target.hasClass("Structure") && !target.hasClass("Support"))
+								continue;
+						}
+						ent.attack(attacker.id(),  m.allowCapture(gameState, ent, attacker));
+						ent.setMetadata(PlayerID, "lastAttackPlanUpdateTime", time);
+					}
+					// Then the unit under attack: abandon its target (if it was a structure or a support) and retaliate
 					// also if our unit is attacking a range unit and the attacker is a melee unit, retaliate
 					let orderData = ourUnit.unitAIOrderData();
 					if (orderData && orderData.length && orderData[0].target)

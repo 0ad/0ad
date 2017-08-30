@@ -233,18 +233,19 @@ var g_NetMessageTypes = {
 			return true;
 		},
 		"kicked": msg => {
-			handleKick(false, msg.nick, msg.reason, msg.time);
+			handleKick(false, msg.nick, msg.reason, msg.time, msg.historic);
 			return true;
 		},
 		"banned": msg => {
-			handleKick(true, msg.nick, msg.reason, msg.time);
+			handleKick(true, msg.nick, msg.reason, msg.time, msg.historic);
 			return true;
 		},
 		"room-message": msg => {
 			addChatMessage({
 				"from": escapeText(msg.from),
 				"text": escapeText(msg.text),
-				"time": msg.time
+				"time": msg.time,
+				"historic": msg.historic
 			});
 			return false;
 		},
@@ -264,7 +265,8 @@ var g_NetMessageTypes = {
 					"from": escapeText(msg.from || "system"),
 					"text": escapeText(msg.text.trim()),
 					"time": msg.time,
-					"private" : true
+					"historic": msg.historic,
+					"private": true
 				});
 			return false;
 		}
@@ -395,6 +397,10 @@ function init(attribs)
 
 	updateToggleBuddy();
 	Engine.GetGUIObjectByName("chatInput").tooltip = colorizeAutocompleteHotkey();
+
+	// Get all messages since the login
+	for (let msg of Engine.LobbyGuiPollHistoricMessages())
+		g_NetMessageTypes[msg.type][msg.level](msg);
 }
 
 function updateLobbyColumns()
@@ -516,7 +522,7 @@ function filterGame(game)
 	return false;
 }
 
-function handleKick(banned, nick, reason, time)
+function handleKick(banned, nick, reason, time, historic)
 {
 	let kickString = nick == g_Username ?
 		banned ?
@@ -536,6 +542,7 @@ function handleKick(banned, nick, reason, time)
 		addChatMessage({
 			"text": "/special " + sprintf(kickString, { "nick": nick }) + " " + reason,
 			"time": time,
+			"historic": historic,
 			"isSpecial": true
 		});
 		return;
@@ -1171,7 +1178,7 @@ function onTick()
 
 	while (true)
 	{
-		let msg = Engine.LobbyGuiPollMessage();
+		let msg = Engine.LobbyGuiPollNewMessage();
 		if (!msg)
 			break;
 
@@ -1270,7 +1277,9 @@ function addChatMessage(msg)
 		if (g_Username != msg.from)
 		{
 			msg.text = msg.text.replace(g_Username, colorPlayerName(g_Username));
-			notifyUser(g_Username, msg.text);
+
+			if (!msg.historic)
+				notifyUser(g_Username, msg.text);
 		}
 	}
 

@@ -277,6 +277,11 @@
         </attribute>
       </optional>
       <optional>
+        <attribute name="readonly">
+          <ref name="bool"/>
+        </attribute>
+      </optional>
+      <optional>
         <attribute name="scrollbar">
           <ref name="bool"/>
         </attribute>

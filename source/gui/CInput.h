@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,6 +19,7 @@
 #define INCLUDED_CINPUT
 
 #include "GUI.h"
+#include "lib/external_libraries/libsdl.h"
 
 /**
  * Text field where you can input and edit the text.
@@ -63,6 +64,16 @@ protected:
 	 * Handle events manually to catch keyboard inputting.
 	 */
 	virtual InReaction ManuallyHandleEvent(const SDL_Event_* ev);
+
+	/**
+	* Handle events manually to catch keys which change the text.
+	*/
+	virtual void ManuallyMutableHandleKeyDownEvent(const SDL_Keycode keyCode, CStrW* pCaption);
+
+	/**
+	* Handle events manually to catch keys which don't change the text.
+	*/
+	virtual void ManuallyImmutableHandleKeyDownEvent(const SDL_Keycode keyCode, CStrW* pCaption);
 
 	/**
 	 * Handle hotkey events (called by ManuallyHandleEvent)
@@ -174,6 +185,9 @@ protected:
 
 	/// If the cursor should be drawn or not.
 	bool m_CursorVisState;
+
+	/// If enabled, it is only allowed to select and copy text.
+	bool m_Readonly;
 };
 
 #endif // INCLUDED_CINPUT
