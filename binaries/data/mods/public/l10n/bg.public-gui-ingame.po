@@ -15,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-08-21 09:03+0200\n"
-"PO-Revision-Date: 2017-08-22 04:55+0000\n"
-"Last-Translator: Любомир Василев\n"
+"POT-Creation-Date: 2017-08-28 09:03+0200\n"
+"PO-Revision-Date: 2017-08-28 16:35+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -52,12 +52,12 @@ msgid "Confirmation"
 msgstr "Потвърждаване"
 
 #: gui/session/menu.js:135 gui/session/menu.js:167 gui/session/menu.js:200
-#: gui/session/session.js:873 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:855 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Не"
 
 #: gui/session/menu.js:135 gui/session/menu.js:167 gui/session/menu.js:200
-#: gui/session/session.js:873 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:855 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Да"
 
@@ -284,7 +284,7 @@ msgstr "Слоят за разработчици беше затворен."
 msgid "The Developer Overlay was opened."
 msgstr "Слоят за разработчици беше отворен."
 
-#: gui/session/menu.js:1173
+#: gui/session/menu.js:1176
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -380,7 +380,7 @@ msgstr "* %(user)s %(message)s"
 msgid "Team"
 msgstr "Отбор"
 
-#: gui/session/messages.js:171 gui/session/session.js:314
+#: gui/session/messages.js:171 gui/session/session.js:297
 msgid "Observer"
 msgstr "Наблюдател"
 
@@ -796,90 +796,90 @@ msgstr "Увеличава нивото на тревога, за да бъда�
 msgid "End of alert."
 msgstr "Край на тревогата."
 
-#: gui/session/selection_panels.js:404
+#: gui/session/selection_panels.js:401
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "Премахване на %(name)s"
 
-#: gui/session/selection_panels.js:406
+#: gui/session/selection_panels.js:403
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Натиснете веднъж за премахване на 1. Шифт + щракване за премахване на всички от този вид."
 
-#: gui/session/selection_panels.js:409 gui/session/selection_panels.js:914
+#: gui/session/selection_panels.js:406 gui/session/selection_panels.js:917
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "Играч: %(playername)s"
 
-#: gui/session/selection_panels.js:444
+#: gui/session/selection_panels.js:441
 msgid "Lock Gate"
 msgstr "Заключване на портата"
 
-#: gui/session/selection_panels.js:450
+#: gui/session/selection_panels.js:447
 msgid "Unlock Gate"
 msgstr "Отключване на портата"
 
-#: gui/session/selection_panels.js:523
+#: gui/session/selection_panels.js:520
 msgid "Pack"
 msgstr "Опаковане"
 
-#: gui/session/selection_panels.js:531
+#: gui/session/selection_panels.js:528
 msgid "Unpack"
 msgstr "Разопаковане"
 
-#: gui/session/selection_panels.js:539
+#: gui/session/selection_panels.js:536
 msgid "Cancel Packing"
 msgstr "Спиране на опаковането"
 
-#: gui/session/selection_panels.js:547
+#: gui/session/selection_panels.js:544
 msgid "Cancel Unpacking"
 msgstr "Спиране на разопаковането"
 
-#: gui/session/selection_panels.js:630
+#: gui/session/selection_panels.js:632
 msgid "Insufficient population capacity:"
 msgstr "Недостатъчен капацитет за население:"
 
-#: gui/session/selection_panels.js:631
+#: gui/session/selection_panels.js:633
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:642
+#: gui/session/selection_panels.js:645
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
 
-#: gui/session/selection_panels.js:795
+#: gui/session/selection_panels.js:798
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] "%(number)s обект от клас %(class)s"
 msgstr[1] "%(number)s обекта от клас %(class)s"
 
-#: gui/session/selection_panels.js:801
+#: gui/session/selection_panels.js:804
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "Остават: %(entityCounts)s"
 
-#: gui/session/selection_panels.js:802
+#: gui/session/selection_panels.js:805
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ", "
 
-#: gui/session/selection_panels.js:1111
+#: gui/session/selection_panels.js:1106
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
 msgstr "Надграждане до %(name)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1116
+#: gui/session/selection_panels.js:1111
 #, javascript-format
 msgid "Upgrade into a %(name)s."
 msgstr "Надграждане до %(name)s."
 
-#: gui/session/selection_panels.js:1132
+#: gui/session/selection_panels.js:1127
 msgid "Cancel Upgrading"
 msgstr "Спиране на надграждането"
 
-#: gui/session/selection_panels.js:1137
+#: gui/session/selection_panels.js:1132
 msgid "Cannot upgrade when the entity is already upgrading."
 msgstr "Не можете да надградите нещо, което вече се надгражда."
 
@@ -974,40 +974,36 @@ msgstr "%(action)s за обучение на %(number)s."
 msgid "Shift-click"
 msgstr "Шифт + ляв бутон"
 
-#: gui/session/session.js:293
-msgid "Gaia"
-msgstr "Природа"
-
-#: gui/session/session.js:407
+#: gui/session/session.js:390
 msgctxt "chat input"
 msgid "Type the message to send."
 msgstr "Въведете съобщението."
 
-#: gui/session/session.js:409
+#: gui/session/session.js:392
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
 msgstr "Натиснете %(hotkey)s, за да отворите публичния чат."
 
-#: gui/session/session.js:412
+#: gui/session/session.js:395
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
 msgstr "Натиснете %(hotkey)s, за да отворите чата за наблюдатели."
 
-#: gui/session/session.js:413
+#: gui/session/session.js:396
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
 msgstr "Натиснете %(hotkey)s, за да отворите чата за съюзници."
 
-#: gui/session/session.js:415
+#: gui/session/session.js:398
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
 msgstr "Натиснете %(hotkey)s, за да отворите последно избрания чат за наблюдатели."
 
-#: gui/session/session.js:419
+#: gui/session/session.js:402
 msgid "Find idle worker"
 msgstr "Търсене на бездействащ работник"
 
-#: gui/session/session.js:422
+#: gui/session/session.js:405
 #, javascript-format
 msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
@@ -1015,7 +1011,7 @@ msgid ""
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
 msgstr "Изберете един вид стока, който искате да промените, като щракнете с мишката и след това използвайте стрелките на другите видове, за да промените техните отношения. Можете също така да натиснете %(hotkey)s при избирането на вида стока, което ще направи отношението ѝ 100%%."
 
-#: gui/session/session.js:426
+#: gui/session/session.js:409
 #, javascript-format
 msgid ""
 "Start by selecting the resource you wish to sell from the upper row. For "
@@ -1024,90 +1020,90 @@ msgid ""
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
 msgstr "Първо, на горния ред изберете от кой ресурс искате да продавате. При всяко натискане на някой от по-долните бутони, %(quantity)s от горния ресурс ще бъде продадено за посоченото количество от долния. Натиснете и задръжте клавиша %(hotkey)s, за да умножите временно търгуваното количество по %(multiplier)s."
 
-#: gui/session/session.js:602
+#: gui/session/session.js:585
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s — Дърво на сградите"
 
-#: gui/session/session.js:865
+#: gui/session/session.js:847
 msgid "Do you want to quit?"
 msgstr "Искате ли да излезете?"
 
-#: gui/session/session.js:871
+#: gui/session/session.js:853
 msgid "VICTORIOUS!"
 msgstr "ПОБЕДИТЕЛ!"
 
-#: gui/session/session.js:872
+#: gui/session/session.js:854
 msgid "DEFEATED!"
 msgstr "ПОБЕДЕН!"
 
-#: gui/session/session.js:873
+#: gui/session/session.js:855
 msgid "OK"
 msgstr "Добре"
 
-#: gui/session/session.js:940
+#: gui/session/session.js:922
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "Записът свърши. Искате ли да излезете?"
 
-#: gui/session/session.js:941
+#: gui/session/session.js:923
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Потвърждаване"
 
-#: gui/session/session.js:942
+#: gui/session/session.js:924
 msgctxt "replayFinished"
 msgid "No"
 msgstr "Не"
 
-#: gui/session/session.js:942
+#: gui/session/session.js:924
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Да"
 
-#: gui/session/session.js:1168
+#: gui/session/session.js:1152
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
 msgstr "%(playername)s: %(statValue)s"
 
-#: gui/session/session.js:1171
+#: gui/session/session.js:1155
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
-#: gui/session/session.js:1209
+#: gui/session/session.js:1193
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
 msgstr "%(popCount)s/%(popLimit)s"
 
-#: gui/session/session.js:1210
+#: gui/session/session.js:1194
 msgid "Population (current / limit)"
 msgstr "Население (текущо / максимално)"
 
-#: gui/session/session.js:1211
+#: gui/session/session.js:1195
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Максимално население: %(popCap)s"
 
-#: gui/session/session.js:1398
+#: gui/session/session.js:1382
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Версия: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:1408
+#: gui/session/session.js:1392
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Бележка: Изкривяването на времето е предназначено за разработчици и не може да се използва твърде продължително. Неправилната употреба може да изчерпа паметта или да предизвика срив."
 
-#: gui/session/session.js:1409
+#: gui/session/session.js:1393
 msgid "Time warp mode"
 msgstr "Изкривяване на времето"
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
-#: gui/session/session.js:1426
+#: gui/session/session.js:1410
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (х%(speed)s)"

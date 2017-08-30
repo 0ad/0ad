@@ -27,16 +27,22 @@ msgid ""
 " ultimately, your goal will be to develop and expand your empire, often by "
 "evolving to 'Town Phase' and 'City Phase' afterward.\n"
 msgstr ""
+"Ez az oktatójáték megtanítja a gazdaság fejlesztésének alapjait. Jellemzően "
+"egy Városházával indulsz és néhány egységgel a „Falusi szakaszban”, a célod "
+"pedig a birodalmad fejlesztése és a terjeszkedés, miközben gyakran „Városi "
+"szakaszba” és „Nagyvárosi szakaszba” fejlődsz.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:5
 msgid ""
 "\n"
 "Before starting, you can toggle between fullscreen and windowed mode using Alt+Enter. You can also change the level of zoom using the mouse wheel and the camera view using any of your keyboard's arrow keys.\n"
 msgstr ""
+"\n"
+"Mielőtt nekikezdesz, válthatsz a teljes képernyős és az ablakos mód között az Alt+Enter billentyűkombinációval. A nagyítási szintet is állíthatod az egérgörgővel, a nézetet pedig a billentyűzet iránygombjaival."
 
 #: maps/tutorials/starting_economy_walkthrough.js:6
 msgid "Adjust the game window to your preferences.\n"
-msgstr ""
+msgstr "Állítsd be a játékablakot a számodra megfelelő módon.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:11
 msgid ""
@@ -57,6 +63,13 @@ msgid ""
 "sufficient resources to perform that action, respectively. Additionally, you"
 " can hover your mouse over any icon to show a tooltip with more details.\n"
 msgstr ""
+"Most, hogy a Városháza ki van jelölve, feltűnhet, hogy a képernyő jobb alsó "
+"sarkában megjelenik egy termelési panel, ami az épület által támogatott "
+"tevékenységeket részletezi. A termelési panelen az elérhető tevékenységek "
+"nincsenek elszínezve, míg a szürke vagy piros ikonok jelzik a még nem "
+"elérhető tevékenységet, illetve amelyek elvégzéséhez nem áll rendelkezésre "
+"elegendő nyersanyag. Bármely ikonra húzva az egeret felugró jegyzet jelenik "
+"meg a további részletekkel.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:17
 msgid ""
@@ -66,6 +79,11 @@ msgid ""
 "that advancing to 'Town Phase' requires both more constructed structures as "
 "well as more Food and Wood resources."
 msgstr ""
+"A legfelső sor gomb olyan egységek portréit tartalmazza, amelyek képezhetőek"
+" az épületben, míg az alsó egy vagy két sorban a kutatható technológiák "
+"vannak. Húzd az egeret a „II” ikonra. A felugró jegyzet elmondja, hogy a "
+"„Városi fázisba” fejlődéshez nem csak több felépített épület, hanem több "
+"Élelem és Fa is szükséges."
 
 #: maps/tutorials/starting_economy_walkthrough.js:22
 msgid ""
@@ -77,6 +95,13 @@ msgid ""
 "Citizen Soldiers can gather any land resources while Cavalry Citizen "
 "Soldiers can only gather meat from hunted animals.\n"
 msgstr ""
+"Két fő egységtípus van kezdetben: Női polgár és Polgári katona. A Női "
+"polgárok kizárólag gazdasági egységek: alacsony HP, nincs páncél, elenyésző "
+"támadás. A Polgári katonák alapesetben dolgozók, de szükség esetén "
+"fegyverhasználatra is képesek. A Polgári katonáknak két kategóriája van: "
+"gyalogság és lovasság. A Női polgárok és a Gyalogos polgári katonák "
+"bármilyen földi nyersanyagot begyűjthetnek, míg a Lovas polgári katonák csak"
+" az elejtett állatok húsát gyűjthetik.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:27
 msgid ""
@@ -93,16 +118,21 @@ msgid ""
 " your economy, so let's start with gathering food. Females gather non-meat "
 "food faster than their male counterparts.\n"
 msgstr ""
+"A játéknak ebben a szakaszában az Élelem és a Fa a legfontosabb nyersanyag a"
+" gazdaság fejlesztéséhez, úgyhogy kezdjünk élelmet gyűjtögetni. A nők a nem "
+"hús élelmet gyorsabban gyűjtik, mint a férfiak."
 
 #: maps/tutorials/starting_economy_walkthrough.js:33
 msgid "There are primarily three ways to select units:\n"
-msgstr ""
+msgstr "Alapvetően három mód van az egységek kijelölésére:\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:34
 msgid ""
 "1) Hold the left mouse button and drag a selection rectangle that encloses "
 "the units you want to select.\n"
 msgstr ""
+"1.: Tartsd lenyomva a bal egérgombot, és húzz egy kijelölő téglalapot a "
+"kijelölni kívánt egységek köré.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:35
 msgid ""
@@ -110,6 +140,9 @@ msgid ""
 "shift-clicking each additional unit (or also via the above selection "
 "rectangle).\n"
 msgstr ""
+"2.: Kattints rá egyikükre, majd a további egységek kijelöléséhez a Shiftet "
+"lenyomva tartva kattints minden további egységre (vagy jelöld ki a fentebb "
+"említett kijelölő téglalappal)."
 
 #: maps/tutorials/starting_economy_walkthrough.js:36
 msgid ""
@@ -117,6 +150,9 @@ msgid ""
 "the specified unit in your visible window. Triple-click will select all "
 "units of the same type on the entire map.\n"
 msgstr ""
+"3.: Dupla kattintás egy egységen. Így minden, a kijelölttel megegyező típusú"
+" egység kijelölésre kerül az ablakban látható területen. Tripla kattintással"
+" a pályán szereplő összes megegyező típusú egység kijelölésre kerül."
 
 #: maps/tutorials/starting_economy_walkthrough.js:37
 msgid ""
@@ -125,6 +161,11 @@ msgid ""
 "grapes to the southeast of your Civic Center by right-clicking on the grapes"
 " when you have all the Female Citizens selected."
 msgstr ""
+"A pályán üres területre kattintva törölheted a kijelölést. Próbáld ki ezeket"
+" a módszereket, mielőtt az összes női polgár egységednek feladatul szabod, "
+"hogy a városházától dél-keletre szőlőt gyűjtögessenek. Ha már minden női "
+"polgárodat kijelölted, ezt úgy teheted meg, hogy jobb egérgombbal kattintasz"
+" a szőlőkre."
 
 #: maps/tutorials/starting_economy_walkthrough.js:48
 msgid ""
@@ -141,11 +182,13 @@ msgid ""
 "Cavalry Citizen Soldiers are good for hunting. Select your cavalry and order"
 " him to hunt the chickens around your Civic Center in similar fashion."
 msgstr ""
+"A Lovas polgári katonák vadászatra jók. Válaszd ki a lovast, és hasonló "
+"módon utasítsd, hogy vadásszon csirkékre a Városháza körül."
 
 #: maps/tutorials/starting_economy_walkthrough.js:70
 msgid ""
 "All your units are now gathering resources. We should train more units!\n"
-msgstr ""
+msgstr "Minden egységed nyersanyagokat gyűjt. Ideje több egységet képezni!\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:71
 msgid ""
@@ -156,11 +199,17 @@ msgid ""
 "select the Civic Center by clicking on it and then right-click on one of the"
 " trees.\n"
 msgstr ""
+"Először határozz meg egy gyülekezési pontot! Ha a gyülekezési pontot olyan "
+"épületre határozod meg, ami képes egységek képzésére, a képzés befejeztével "
+"automatikusan feladatot kapnak. Szeretnénk, ha az újonnan képzett egységek a"
+" Városházától délre lévő facsoportból gyűjtögetnének Fát. Ehhez jelöld ki a "
+"Városházát úgy, hogy rákattintasz, majd a jobb egérgombbal kattints az egyik"
+" fára.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:72
 msgid ""
 "Rally-Points are indicated by a small flag at the end of the blue line."
-msgstr ""
+msgstr "A gyülekezési pontokat a kék vonal végén lévő kis zászlók jelzik."
 
 #: maps/tutorials/starting_economy_walkthrough.js:80
 msgid ""
@@ -175,6 +224,8 @@ msgid ""
 "Now that the rally-point is set, we can produce additional units and they "
 "will do their assigned task automatically.\n"
 msgstr ""
+"Most hogy a gyülekezési pont meg lett adva, további egységeket készíthetünk,"
+" és automatikusan a kiosztott feladatukat fogják végezni.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:90
 msgid ""
@@ -184,6 +235,11 @@ msgid ""
 " units individually by simply clicking, but training 5 units together takes "
 "less time than training 5 units individually."
 msgstr ""
+"Mivel a Polgári katonák jobbak a Favágásban, mint a Női polgárok, válaszd ki"
+" a Városházát, és a Shiftet lenyomva kattints a második ikonra, a hoplitákra"
+" (a Shift+kattintás 5 egységet gyárt egy csoportban). Egyesével is "
+"képezhetsz egységeket, de 5 egység létrehozása együtt gyorsabb, mint 5 "
+"egység külön-külön."
 
 #: maps/tutorials/starting_economy_walkthrough.js:100
 #: maps/tutorials/starting_economy_walkthrough.js:159
@@ -199,7 +255,7 @@ msgstr "A Shiftet lenyomva kattints a HOPLITA ikonra."
 #: maps/tutorials/starting_economy_walkthrough.js:110
 #: maps/tutorials/starting_economy_walkthrough.js:169
 msgid "Let's wait for the units to be trained.\n"
-msgstr ""
+msgstr "Várjuk meg, amíg az egységek kiképződnek.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:111
 msgid ""
@@ -209,6 +265,10 @@ msgid ""
 "(or another dropsite), you will see the amount of the corresponding resource"
 " increase.\n"
 msgstr ""
+"Amíg várunk, irányítsd a figyelmed a felső panelre. Bal fent láthatod a "
+"jelenlegi nyersanyagkészletet (Élelem, Fa, Kő és Fém). Ahogy a munkások "
+"nyersanyagokat hoznak vissza a Városházába (vagy egy másik lerakóhoz), "
+"láthatod, hogy a készletek nőnek."
 
 #: maps/tutorials/starting_economy_walkthrough.js:112
 msgid ""
@@ -217,12 +277,17 @@ msgid ""
 " minimize the distance between resource and nearest dropsite to improve your"
 " gathering efficiency."
 msgstr ""
+" Ez egy nagyon fontos dolog: a gyűjtött nyersanyagokat vissza kell vinni egy"
+" lerakóhoz, hogy számítsanak, és mindig érdemes minimalizálni a nyersanyag "
+"és a lerakó közti távolságot, hogy javítsd a begyűjtési hatékonyságod."
 
 #: maps/tutorials/starting_economy_walkthrough.js:121
 msgid ""
 "The newly trained units automatically go to the trees and start gathering "
 "Wood.\n"
 msgstr ""
+"A frissen kiképzett egységek automatikusan a fákhoz mennek, és elkezdenek "
+"Fát gyűjteni.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:122
 msgid ""
@@ -234,12 +299,21 @@ msgid ""
 "the mouse as close as possible to the trees you want to collect and click on"
 " a valid place to build the dropsite.\n"
 msgstr ""
+"De mivel vissza kell vinniük a Városházához, a begyűjtési hatékonyságuk "
+"csorbát szenved a távolság miatt. Ennek orvosolására, építhetünk egy "
+"raktárat, egy lerakót a Fához, Kőhöz és Fémhez, közel a fákhoz. Ehhez "
+"válaszd ki az öt frissen kiképzett Polgári katonát, és keresd meg az "
+"építkezés panelt jobb lent, kattints a raktár ikonra, mozgasd az egeret "
+"olyan közel a fákhoz, amennyire az lehetséges, és kattints egy érvényes "
+"helyre, ahol megépüljön a lerakó.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:123
 msgid ""
 "Invalid (obstructed) positions will show the building preview overlay in "
 "red."
 msgstr ""
+"Az érvénytelen (akadályozott) területeket az épület előnézet vörös színe "
+"jelzi."
 
 #: maps/tutorials/starting_economy_walkthrough.js:133
 msgid ""
@@ -254,12 +328,17 @@ msgid ""
 "When construction finishes, the builders default to gathering Wood "
 "automatically.\n"
 msgstr ""
+"Amikor az építkezés befejeződik, a munkások automatikus visszatérnek fát "
+"gyűjteni.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:145
 msgid ""
 "Let's train some female workers to gather more food. Select the Civic Center"
 " and shift-click on the female citizen icon to train 5."
 msgstr ""
+"Képezz ki néhány munkásnőt, hogy gyűjtsenek több élelmet. Válaszd ki a "
+"Városházát, és a Shiftet lenyomva kattints a női polgár ikonra, hogy "
+"kiképezz 5-öt."
 
 #: maps/tutorials/starting_economy_walkthrough.js:160
 msgid "Shift-click on the FEMALE CITIZEN icon."
@@ -272,10 +351,14 @@ msgid ""
 " For that purpose, right-click on the Civic Center when it is selected (and "
 "the flag icon indicating the rally-point is crossed out)."
 msgstr ""
+"Eközben úgy tűnik, hogy elég dolgozónk van Fa gyűjtésére. A Városháza "
+"jelenlegi gyűjtőpontját távolabbra kell mozdítanunk Fa gyűjtéséhez. "
+"Kattintsunk tehát jobb egérgombbal Városházán a kijelölés után (a zászló "
+"ikon jelzi a kitűzött gyülekezőpontot.)"
 
 #: maps/tutorials/starting_economy_walkthrough.js:184
 msgid "The units should be ready soon.\n"
-msgstr ""
+msgstr "Az egységek hamarosan készen lesznek.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:185
 msgid ""
@@ -285,6 +368,11 @@ msgid ""
 "(including those being trained) and the current population limit, which is "
 "determined by your built structures."
 msgstr ""
+"Eközben légy figyelmes a  népesség számára a felső panelen. Ez a "
+"nyersanyagok után az ötödik elem balról. Bölcs dolog ezt szemmel tartani, "
+"ugyanis jelzi az aktuális népesség számát (az éppen képzés alatt állókkal "
+"együtt) és az aktuális népességkorlátot is, melyet a felépített épületek "
+"határoznak meg."
 
 #: maps/tutorials/starting_economy_walkthrough.js:198
 msgid ""
@@ -292,12 +380,17 @@ msgid ""
 "building some new structures if you want to train more units. The most cost "
 "effective structure to increase your population limit is the house.\n"
 msgstr ""
+"Ha megközelítjük a népességi korlátot, de további egységeket akarunk "
+"kiképezni, akkor új épületeket kell építenünk, hogy megnöveljük a korlátot. "
+"A legolcsóbb épület, mellyel növelhető a népességkorlát, a ház."
 
 #: maps/tutorials/starting_economy_walkthrough.js:199
 msgid ""
 "Now that the units are ready, let's see how to build several houses in a "
 "row."
 msgstr ""
+"Most, hogy az egységek készen állnak, nézzük hogyan építsünk néhány házat "
+"egy sorban."
 
 #: maps/tutorials/starting_economy_walkthrough.js:204
 msgid ""
@@ -311,12 +404,24 @@ msgid ""
 "their work). Press Escape to get rid of the house cursor so you don't spam "
 "houses all over the map.\n"
 msgstr ""
+"Jelölj ki az előbb kiképzett női polgárok közül kettőt és utasítsd őket, "
+"hogy a városházától keletre egy üres helyen építsék fel ezeket a házakat. "
+"Ehhez a két női polgár kijelölése után kattints a ház ikonra a jobb oldali "
+"alsó panelen, majd a Shiftet lenyomva kattints arra a helyre a térképen, "
+"ahol az első házat szeretnéd felépíteni és újra a Shiftet lenyomva kattints "
+"a másik helyre, ahova a második házat szeretnéd (utasítások kiadásánál a "
+"Shiftel történő kattintások révén az utasítások sorba lesznek állítva és az "
+"egységek automatikusan hozzákezdenek a következő utasításnak, ha végeztek az"
+" előzővel). Az Escape lenyomásával lehet megszabadulni a ház kurzortól, hogy"
+" ne legyen a térkép teleszemetelve házakkal.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:205
 msgid ""
 "Reminder: to select only two Female Citizens, click on the first one and "
 "then shift-click on the second one to add her to the selection."
 msgstr ""
+"Emlékeztető: két női polgár kijelöléséhez előbb kattints az elsőre, majd a "
+"Shiftet lenyomva kattints a másodikra, hogy így hozzáadd őt a kijelöléshez. "
 
 #: maps/tutorials/starting_economy_walkthrough.js:238
 msgid ""
@@ -324,12 +429,17 @@ msgid ""
 " lasting food source. Fields produce an unlimited food resource, but are "
 "slower to gather than forageable fruits.\n"
 msgstr ""
+"Észrevehetjük, hogy a bogyók élelemforrásként végesek. Tartósabb "
+"élelemforrásra van szükségünk. A mezők vég nélkül képesek élelmet termelni, "
+"de lassabb a begyűjtésük, mint a takarmánygyümölcsöknek.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:239
 msgid ""
 "But to minimize the distance between a farm and its corresponding food "
 "dropsite, we will first build a farmstead."
 msgstr ""
+"Annak érdekében, hogy csökkentsük a farm és a megfelelő élelem-lerakóhely "
+"között, előbb építeni fogunk egy tanyát."
 
 #: maps/tutorials/starting_economy_walkthrough.js:250
 msgid ""
@@ -337,6 +447,9 @@ msgid ""
 "farmstead in the center of the large open area to the west of the Civic "
 "Center.\n"
 msgstr ""
+"Jelöld ki a maradék három (tétlen) női polgárt és utasítsd őket, hogy "
+"építsenek egy tanyát a városházától nyugatra elterülő nagy nyitott térség "
+"közepére.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:251
 msgid ""
@@ -344,6 +457,10 @@ msgid ""
 "In addition, we can see goats on the west side to further improve our food "
 "gathering efficiency should we ever decide to hunt them.\n"
 msgstr ""
+"Egy jókora szabad területre van szükségünk a tanya körül, hogy mezőket "
+"hozzunk létre. Továbbá kecskéket is láthatunk a nyugati oldalon, amelyekkel "
+"jelentősen javíthatjuk az élelem betakarításai hatékonyságunkat, ha a "
+"levadászásukról döntünk majd.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:252
 msgid ""
@@ -355,18 +472,29 @@ msgid ""
 "the control key while clicking on its corresponding portrait in the "
 "selection panel on the bottom."
 msgstr ""
+"Ha a három  tétlen női polgárt kijelölési téglalappal próbálod kijelölni, "
+"nagy az esély rá, hogy néhány további begyűjtésen dolgozó egység is "
+"belekerül a kijelölésbe. Ennek megelőzésére tartsd lenyomva az „i” gombot "
+"húzás közben: így csak a tétlen egységek lesznek kijelölve. Ha esetleg "
+"közben néhány nem tétlen lovasság is belekerült a kijelölésbe, el lehet "
+"távolítani őket úgy, hogy a Control gombot nyomva tartjuk és a megfelelő "
+"portréra kattintunk alul a kijelölés panelen. "
 
 #: maps/tutorials/starting_economy_walkthrough.js:267
 msgid ""
 "When the farmstead construction is finished, its builders will automatically"
 " look for food, and in this case, they will go after the nearby goats.\n"
 msgstr ""
+"Amikor a tanya építése befejeződött, az építői automatikusan élelem után "
+"fognak kutatni, és ez esetben a legközelebbi kecskék felé fognak indulni.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:268
 msgid ""
 "But your house builders will only look for something else to build and, if "
 "nothing found, become idle. Let's wait for them to build the houses."
 msgstr ""
+"De a házépítők csak egy másik építkezést fognak keresni és ha nem találnak, "
+"akkor tétlenek maradnak. Várjuk meg, amíg felépítik azokat a házakat."
 
 #: maps/tutorials/starting_economy_walkthrough.js:284
 msgid ""
@@ -374,12 +502,15 @@ msgid ""
 "to build a field as close as possible to the farmstead, which is a dropsite "
 "for all types of food."
 msgstr ""
+"Amikor mindkét ház kész, jelöld ki a két női polgárt és utasítsd őket, hogy "
+"építsenek két mezőt a lehető legközelebb a tanyához, ami minden élelmiszer "
+"lerakóhelye lesz."
 
 #: maps/tutorials/starting_economy_walkthrough.js:294
 msgid ""
 "When the field is constructed, the builders will automatically start "
 "gathering it.\n"
-msgstr ""
+msgstr "Amikor a mező elkészül, az építők automatikusan begyűjtésbe kezdenek.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:295
 msgid ""
@@ -388,6 +519,11 @@ msgid ""
 "your cavalry by right-clicking on the point you want to go, and when you see"
 " a herd of camels, right-click on one of them to start hunting for food."
 msgstr ""
+"A lovassági egységek mostanra már minden csirkét le kellett vágjanak. Jelöld"
+" ki őket és fedezd fel velük a délnyugati körzetet: van arra egy tó és "
+"körülötte néhány teve. Mozgasd a lovasokat jobb kattintással arra a pontra, "
+"ahová menni szeretnél. Amikor feltűnik a tevecsorda, kattintsunk jobb "
+"egérgombbal az egyikükre, hogy kezdődjék a vadászat."
 
 #: maps/tutorials/starting_economy_walkthrough.js:306
 msgid ""
@@ -397,6 +533,11 @@ msgid ""
 "sent by a rally-point will help building it, while they will gather it when "
 "built."
 msgstr ""
+"Egy mezőn összesen öt farmer dolgozhat egyszerre. További begyűjtésen "
+"dolgozó hozzáadásához jelöld ki a városházát és helyezd a mezőre a "
+"gyülekezőhelyet jobb kattintással rajta. Amíg a mező nem készül el, a "
+"gyülekezőhelyre küldött dolgozók az építésében segítenek, az elkészültekor "
+"pedig hozzálátnak a begyűjtéshez."
 
 #: maps/tutorials/starting_economy_walkthrough.js:314
 msgid "Select the Civic Center and right-click on the field."
@@ -412,7 +553,7 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:336
 msgid "Do not shift-click to produce a single unit."
-msgstr ""
+msgstr "Ne kattints Shift lenyomásával egyetlen egység létrehozásához."
 
 #: maps/tutorials/starting_economy_walkthrough.js:337
 msgid "Click on the FEMALE CITIZEN icon."
@@ -423,6 +564,8 @@ msgid ""
 "You can increase the gather rates of your workers by researching new "
 "technologies available in some buildings.\n"
 msgstr ""
+"A dolgozók gyűjtési sebessége fokozható új technológiák kutatásával, amely "
+"bizonyos épületekben érhető el. "
 
 #: maps/tutorials/starting_economy_walkthrough.js:348
 msgid ""
@@ -432,6 +575,11 @@ msgid ""
 "Hover the mouse over them to see their costs and effects and click on the "
 "one you want to research."
 msgstr ""
+"Például a termesztési sebesség a tanyán kutatható technológiákkal "
+"fejleszthető. Jelöld ki a tanyát és vess egy pillantást a termelési "
+"paneljére alul, jobbra. Néhány kutatható technológia lesz látható ott. Az "
+"egeret fölé húzva látható a költségük és hatásuk, valamint egyikükre "
+"kattintva elkezdhető a kutatásuk."
 
 #: maps/tutorials/starting_economy_walkthrough.js:363
 msgid ""
@@ -439,6 +587,9 @@ msgid ""
 "many more units and buildings. Select the Civic Center and hover the mouse "
 "over the 'Town Phase' icon to see what is still needed.\n"
 msgstr ""
+"Fel kell készülnünk a városi szakaszra való felfejlődésre, amely sok "
+"egységet és épületet fog hozni. Jelöld ki a városházát és húzd az egeret a "
+"Városi szakasz ikon fölé, hogy megláthasd mi hiányzik még."
 
 #: maps/tutorials/starting_economy_walkthrough.js:364
 msgid ""
@@ -446,6 +597,9 @@ msgid ""
 " an economic tutorial, it is nonetheless useful to be prepared for defense "
 "in case of attack, so let's build barracks.\n"
 msgstr ""
+"Most már van elég nyersanyagunk, de egy épület még hiányzik. Noha ez egy "
+"gazdasági oktatójáték, ennek ellenére hasznos felkészülni egy esetleges "
+"támadás esetén való védekezésre. Szóval, építsünk laktanyát!\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:365
 msgid ""
@@ -454,6 +608,10 @@ msgid ""
 "panel and then lay down a foundation not far from your Civic Center where "
 "you want to build."
 msgstr ""
+"Jelölj ki négy katonát és utasítd őket laktanya építésére: mint az előbb, "
+"kezd a katonák kijelölésével, majd kattints a laktanya ikonra a termelési "
+"panelen, végül vess alapot nem olyan messze a városházától, ahová építeni "
+"kívánsz."
 
 #: maps/tutorials/starting_economy_walkthrough.js:376
 msgid ""
