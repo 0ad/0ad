@@ -226,10 +226,10 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources, modif
 			};
 
 			if (template.BuildRestrictions.Distance.MinDistance)
-				ret.buildRestrictions.distance.min = +template.BuildRestrictions.Distance.MinDistance;
+				ret.buildRestrictions.distance.min = getEntityValue("BuildRestrctions/Distance/MinDistance");
 
 			if (template.BuildRestrictions.Distance.MaxDistance)
-				ret.buildRestrictions.distance.max = +template.BuildRestrictions.Distance.MaxDistance;
+				ret.buildRestrictions.distance.max = getEntityValue("BuildRestrctions/Distance/MaxDistance");
 		}
 	}
 
