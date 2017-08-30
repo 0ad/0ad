@@ -516,7 +516,7 @@ inline bool OnTheWay(int i, int j, int di, int dj, const PathGoal& goal)
 	else
 	{
 		if (j < ((goal.z - hh) / Pathfinding::NAVCELL_SIZE).ToInt_RoundToNegInfinity() ||
-			j >((goal.z + hh) / Pathfinding::NAVCELL_SIZE).ToInt_RoundToNegInfinity())
+			j > ((goal.z + hh) / Pathfinding::NAVCELL_SIZE).ToInt_RoundToNegInfinity())
 			return false;
 	}
 
@@ -530,7 +530,7 @@ inline bool OnTheWay(int i, int j, int di, int dj, const PathGoal& goal)
 	else
 	{
 		if (i < ((goal.x - hw) / Pathfinding::NAVCELL_SIZE).ToInt_RoundToNegInfinity() ||
-			i >((goal.x + hh) / Pathfinding::NAVCELL_SIZE).ToInt_RoundToNegInfinity())
+			i > ((goal.x + hw) / Pathfinding::NAVCELL_SIZE).ToInt_RoundToNegInfinity())
 			return false;
 	}
 
