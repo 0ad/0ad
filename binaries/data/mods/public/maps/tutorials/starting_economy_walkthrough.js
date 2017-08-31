@@ -1,4 +1,4 @@
-let tutorialGoals = [
+Trigger.prototype.tutorialGoals = [
 	{
 		"instructions": [
 			markForTranslation("This tutorial will teach the basics of developing your economy. Typically, you will start with a Civic Center and a couple units in 'Village Phase' and ultimately, your goal will be to develop and expand your empire, often by evolving to 'Town Phase' and 'City Phase' afterward.\n"),
@@ -444,7 +444,8 @@ let tutorialGoals = [
 	}
 ];
 
-Trigger.prototype.tutorialGoals = tutorialGoals;
-var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
-cmpTrigger.playerID = 1;
-cmpTrigger.RegisterTrigger("OnInitGame", "InitTutorial", { "enabled": true });
+{
+	let cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
+	cmpTrigger.playerID = 1;
+	cmpTrigger.RegisterTrigger("OnInitGame", "InitTutorial", { "enabled": true });
+}

@@ -13,11 +13,11 @@ Trigger.prototype.InitTutorial = function(data)
 	{
 		for (let key in goal)
 		{
-			if (typeof goal[key] !== "function" || this.tutorialEvents.indexOf(key) != -1)
+			if (typeof goal[key] != "function" || this.tutorialEvents.indexOf(key) != -1)
 				continue;
-			if (key === "Init")
+			if (key == "Init")
 				continue;
-			if (key === "IsDone")
+			if (key == "IsDone")
 				continue;
 			let action = key + "Trigger";
 			this.RegisterTrigger(key, action, { "enabled": false });
@@ -85,7 +85,7 @@ Trigger.prototype.GoalMessage = function(instructions, readyButton=false, leave=
 	cmpGUIInterface.PushNotification({
 		"type": "tutorial",
 		"players": [1],
-		"instructions": instructions,
+		"instructions": typeof instructions == "string" ? [instructions] : instructions,
 		"readyButton": readyButton,
 		"leave": leave
 	});
