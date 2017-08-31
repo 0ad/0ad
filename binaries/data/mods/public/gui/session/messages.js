@@ -429,6 +429,10 @@ var g_NotificationsTypes =
 			if (targetState)
 				Engine.CameraMoveTo(targetState.position.x, targetState.position.z);
 		}
+		else if (cmd.type == "delete-entities" && notification.position)
+		{
+			Engine.CameraMoveTo(notification.position.x, notification.position.y);
+		}
 		// Focus commanded entities, but don't lose previous focus when training units
 		else if (cmd.type != "train" && cmd.type != "research" && entState)
 			setCameraFollow(cmd.entities[0]);

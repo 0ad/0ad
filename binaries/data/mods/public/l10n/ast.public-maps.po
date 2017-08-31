@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-09 09:05+0200\n"
-"PO-Revision-Date: 2017-08-26 09:22+0000\n"
+"PO-Revision-Date: 2017-08-28 21:01+0000\n"
 "Last-Translator: enolp <enolp@softastur.org>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -860,7 +860,7 @@ msgstr "¡Una onda enemiga ta atacando!"
 #: maps/random/survivalofthefittest_triggers.js:351
 #, javascript-format
 msgid "%(player)s has been defeated (lost civic center)."
-msgstr ""
+msgstr "Derrotaron a %(player)s (perdió'l centru cívicu)."
 
 #: maps/scenarios/Cinema_Demo.js:6
 msgid "Cutscene starts after 5 seconds"
@@ -923,16 +923,16 @@ msgstr "¡Venci al enemigu pa ganar!"
 #, javascript-format
 msgid "%(lastPlayer)s has won (treasure collected)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s ganó (recoyó ayagalges)."
+msgstr[1] "%(players)s y %(lastPlayer)s ganaron (recoyeron ayagalges)."
 
 #: maps/scenarios/treasure_islands.js:105
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (treasure collected)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (treasure collected)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Derrotaron a %(player)s (recoyeron ayalgues)."
+msgstr[1] "Derrotaron a %(player)s y %(lastPlayer)s (recoyeron ayalgues)."
 
 #: maps/scenarios/Arcadia.xml:Description:39
 msgid ""

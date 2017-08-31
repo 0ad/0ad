@@ -96,7 +96,9 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 {
 	ENSURE(m_iBufferPos != -1);
 
-	if (ev->ev.type == SDL_HOTKEYDOWN)
+	switch (ev->ev.type)
+	{
+	case SDL_HOTKEYDOWN:
 	{
 		if (m_ComposingText)
 			return IN_HANDLED;
@@ -105,7 +107,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 	}
 	// SDL2 has a new method of text input that better supports Unicode and CJK
 	// see https://wiki.libsdl.org/Tutorials/TextInput
-	else if (ev->ev.type == SDL_TEXTINPUT)
+	case SDL_TEXTINPUT:
 	{
 		if (m_Readonly)
 			return IN_PASS;
@@ -140,7 +142,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 
 		return IN_HANDLED;
 	}
-	else if (ev->ev.type == SDL_TEXTEDITING)
+	case SDL_TEXTEDITING:
 	{
 		if (m_Readonly)
 			return IN_PASS;
@@ -189,7 +191,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 
 		return IN_HANDLED;
 	}
-	else if (ev->ev.type == SDL_KEYDOWN)
+	case SDL_KEYDOWN:
 	{
 		if (m_ComposingText)
 			return IN_HANDLED;
@@ -198,10 +200,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 		//  in Unicode (CStrW), we'll simply retrieve the actual
 		//  pointer and edit that.
 		CStrW* pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
-
-		SDL_Keycode keyCode = 0;
-		if (ev->ev.type == SDL_KEYDOWN)
-			keyCode = ev->ev.key.keysym.sym;
+		SDL_Keycode keyCode = ev->ev.key.keysym.sym;
 
 		ManuallyImmutableHandleKeyDownEvent(keyCode, pCaption);
 		ManuallyMutableHandleKeyDownEvent(keyCode, pCaption);
@@ -209,8 +208,11 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 		UpdateBufferPositionSetting();
 		return IN_HANDLED;
 	}
-
-	return IN_PASS;
+	default:
+	{
+		return IN_PASS;
+	}
+	}
 }
 
 void CInput::ManuallyMutableHandleKeyDownEvent(const SDL_Keycode keyCode, CStrW* pCaption)

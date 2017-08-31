@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-08-21 09:04+0200\n"
-"PO-Revision-Date: 2017-08-21 16:12+0000\n"
+"POT-Creation-Date: 2017-08-28 09:03+0200\n"
+"PO-Revision-Date: 2017-08-28 15:06+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -72,6 +72,10 @@ msgstr "Πάτα %(hotkey)s για να ολοκληρώσεις αυτόματ�
 msgctxt "hotkey"
 msgid "Tab"
 msgstr "Tab"
+
+#: gui/common/functions_civinfo.js:31
+msgid "Gaia"
+msgstr ""
 
 #: gui/common/functions_global_object.js:57
 #, javascript-format
@@ -135,16 +139,16 @@ msgid "DELETE"
 msgstr "ΔΙΑΓΡΑΦΗ"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:291
-#: gui/options/options.js:337 gui/options/options.js:404
-#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:170
+#: gui/options/options.js:336 gui/options/options.js:403
+#: gui/pregame/mainmenu.js:254 gui/replaymenu/replay_actions.js:170
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
 #: gui/summary/summary.js:363
 msgid "No"
 msgstr "Όχι"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:291
-#: gui/options/options.js:337 gui/options/options.js:404
-#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:170
+#: gui/options/options.js:336 gui/options/options.js:403
+#: gui/pregame/mainmenu.js:254 gui/replaymenu/replay_actions.js:170
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
 #: gui/summary/summary.js:363
 msgid "Yes"
@@ -362,7 +366,7 @@ msgstr "Αν ένας παίχτης κερδίσει, αυτός ή οι σύμ
 msgid "Ceasefire"
 msgstr "Παύση Πυρός"
 
-#: gui/common/gamedescription.js:312 gui/pregame/mainmenu.js:91
+#: gui/common/gamedescription.js:312 gui/pregame/mainmenu.js:86
 msgid "disabled"
 msgstr "απενεργοπ."
 
@@ -563,7 +567,7 @@ msgstr "Χρήστες (%(num)s): %(users)s"
 #: gui/common/tooltips.js:198 gui/common/tooltips.js:212
 #: gui/common/tooltips.js:290 gui/common/tooltips.js:323
 #: gui/common/tooltips.js:356 gui/common/tooltips.js:628
-#: gui/common/tooltips.js:662 gui/common/tooltips.js:727
+#: gui/common/tooltips.js:662 gui/common/tooltips.js:728
 #: gui/replaymenu/replay_actions.js:93 gui/replaymenu/replay_actions.js:94
 #: gui/savedgames/load.js:119 gui/savedgames/load.js:175
 #: gui/savedgames/load.js:178
@@ -872,7 +876,7 @@ msgid "meters"
 msgstr "μέτρα"
 
 #: gui/common/tooltips.js:265 gui/common/tooltips.js:655
-#: gui/common/tooltips.js:684
+#: gui/common/tooltips.js:685
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] "μέτρα"
@@ -1030,7 +1034,7 @@ msgid "Run"
 msgstr "Τρέξε"
 
 #: gui/common/tooltips.js:646 gui/common/tooltips.js:652
-#: gui/common/tooltips.js:657 gui/common/tooltips.js:681
+#: gui/common/tooltips.js:657 gui/common/tooltips.js:682
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
@@ -1045,34 +1049,34 @@ msgid_plural "HP"
 msgstr[0] "Αντοχή"
 msgstr[1] "Αντοχή"
 
-#: gui/common/tooltips.js:673
+#: gui/common/tooltips.js:674
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:674
+#: gui/common/tooltips.js:675
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s:"
 
-#: gui/common/tooltips.js:682
+#: gui/common/tooltips.js:683
 msgctxt "aura"
 msgid "Range:"
 msgstr "Βεληνεκές:"
 
-#: gui/common/tooltips.js:699
+#: gui/common/tooltips.js:700
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
 #. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian
 #. Marine)[/font]"
-#: gui/common/tooltips.js:711
+#: gui/common/tooltips.js:712
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
-#: gui/common/tooltips.js:726
+#: gui/common/tooltips.js:727
 msgid "Classes:"
 msgstr "Τάξεις:"
 
@@ -1101,73 +1105,73 @@ msgstr "Καμία"
 msgid "invalid locale"
 msgstr "Μη έγκυρη μετάφραση"
 
-#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:163
+#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:158
 #: gui/splashscreen/splashscreen.xml:(caption):28
 msgid "OK"
 msgstr "ΟΚ"
 
-#: gui/options/options.js:163
+#: gui/options/options.js:162
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "Τιμή: %(val)s (ελάχιστη: %(min)s, μέγιστη: %(max)s)"
 
-#: gui/options/options.js:335
+#: gui/options/options.js:334
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "Επαναφέροντας τις ρυθμίσεις θα διαγραφούν οι αποθηκευμένες ρυθμίσεις. Να συνεχιστεί;"
 
-#: gui/options/options.js:336 gui/options/options.js:403
+#: gui/options/options.js:335 gui/options/options.js:402
 #: gui/savedgames/load.js:187
 msgid "Warning"
 msgstr "Προειδοποίηση"
 
-#: gui/options/options.js:402
+#: gui/options/options.js:401
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Δεν έχετε αποθηκεύσει όλες τις αλλαγές, θέλετε να κλείσετε αυτό το παράθυρο;"
 
-#: gui/pregame/mainmenu.js:94
+#: gui/pregame/mainmenu.js:89
 msgid "connecting to server"
 msgstr "σύνδεση με διακομιστή"
 
-#: gui/pregame/mainmenu.js:97
+#: gui/pregame/mainmenu.js:92
 #, javascript-format
 msgid "uploading (%f%%)"
 msgstr "αποστολή (%f%%)"
 
-#: gui/pregame/mainmenu.js:103
+#: gui/pregame/mainmenu.js:98
 msgid "upload succeeded"
 msgstr "αποστολή επιτυχής"
 
-#: gui/pregame/mainmenu.js:105
+#: gui/pregame/mainmenu.js:100
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
 msgstr "το ανέβασμα απέτυχε (%(errorCode)s)"
 
-#: gui/pregame/mainmenu.js:109
+#: gui/pregame/mainmenu.js:104
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
 msgstr "το ανέβασμα απέτυχε (%(errorMessage)s)"
 
-#: gui/pregame/mainmenu.js:111
+#: gui/pregame/mainmenu.js:106
 msgid "unknown"
 msgstr "άγνωστο"
 
-#: gui/pregame/mainmenu.js:126
+#: gui/pregame/mainmenu.js:121
 msgid "Thank you for helping improve 0 A.D.!"
 msgstr "Σας ευχαριστούμε για τη συμβολή σας στη βελτίωση του 0 A.D.!"
 
-#: gui/pregame/mainmenu.js:127
+#: gui/pregame/mainmenu.js:122
 msgid "Anonymous feedback is currently enabled."
 msgstr "Η αποστολή ανώνυμων πληροφοριών είναι προς το παρόν ενεργοποιημένη."
 
-#: gui/pregame/mainmenu.js:128
+#: gui/pregame/mainmenu.js:123
 #, javascript-format
 msgid "Status: %(status)s."
 msgstr "Κατάσταση: %(status)s."
 
-#: gui/pregame/mainmenu.js:152
+#: gui/pregame/mainmenu.js:147
 #, javascript-format
 msgid ""
 "%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
@@ -1180,51 +1184,51 @@ msgstr "%(startWarning)sΠροειδοποίηση:%(endWarning)s Φαίνετα
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:161
+#: gui/pregame/mainmenu.js:156
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "Πατήστε \"Περισσότερα\" για περισσότερες πληροφορίες ή \"OK\" για να συνεχίσετε."
 
-#: gui/pregame/mainmenu.js:162
+#: gui/pregame/mainmenu.js:157
 msgid "WARNING!"
 msgstr "ΠΡΟΕΙΔΟΠΟΙΗΣΗ!"
 
-#: gui/pregame/mainmenu.js:163
+#: gui/pregame/mainmenu.js:158
 msgid "Read More"
 msgstr "Διαβάστε περισσότερα"
 
-#: gui/pregame/mainmenu.js:248
+#: gui/pregame/mainmenu.js:240
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Έκδοση: %(buildDate)s (%(revision)s)"
 
-#: gui/pregame/mainmenu.js:260
+#: gui/pregame/mainmenu.js:252
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Θέλετε σίγουρα να αποχωρήσετε από το 0 A.D.;"
 
-#: gui/pregame/mainmenu.js:261 gui/summary/summary.js:362
+#: gui/pregame/mainmenu.js:253 gui/summary/summary.js:362
 msgid "Confirmation"
 msgstr "Επιβεβαίωση"
 
-#: gui/pregame/mainmenu.js:276
+#: gui/pregame/mainmenu.js:268
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "Ο Επεξεργαστής Σεναρίων δεν είναι διαθέσιμος ή η φόρτωσή του απέτυχε.Κοιτάξτε τις εγγραφές παιχνιδιού για περισσότερες πληροφορίες."
 
-#: gui/pregame/mainmenu.js:277 gui/replaymenu/replay_actions.js:120
+#: gui/pregame/mainmenu.js:269 gui/replaymenu/replay_actions.js:120
 msgid "Error"
 msgstr "Σφάλμα"
 
-#: gui/pregame/mainmenu.js:283
+#: gui/pregame/mainmenu.js:275
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "Εκκίνηση του λόμπι πολλαπλών παικτών. \\[DISABLED BY BUILD]"
 
-#: gui/pregame/mainmenu.js:288 gui/pregame/mainmenu.xml:(caption):71
+#: gui/pregame/mainmenu.js:280 gui/pregame/mainmenu.xml:(caption):71
 #: gui/pregame/mainmenu.xml:(caption):93
 msgid "Technical Details"
 msgstr "Τεχνικές λεπτομέριες"
 
-#: gui/pregame/mainmenu.js:293 gui/pregame/mainmenu.xml:(caption):139
+#: gui/pregame/mainmenu.js:285 gui/pregame/mainmenu.xml:(caption):139
 msgid "Manual"
 msgstr "Εγχειρίδιο χρήσης"
 
@@ -1597,61 +1601,65 @@ msgstr "Έλεγχος χάρτη (τέλος)"
 msgid "Team total"
 msgstr "Σύνολο ομάδας"
 
-#: gui/summary/summary.js:30
+#: gui/summary/summary.js:28
 msgid "Trained"
 msgstr "Εκπαιδεύτηκαν"
 
-#: gui/summary/summary.js:35
+#: gui/summary/summary.js:33
 msgid "Constructed"
 msgstr "Κατασκευάστηκαν"
 
-#: gui/summary/summary.js:40
+#: gui/summary/summary.js:38
 msgid "Gathered"
 msgstr "Συγκομιδή"
 
-#: gui/summary/summary.js:45
+#: gui/summary/summary.js:43
 msgid "Sent"
 msgstr "Στάλθηκαν"
 
-#: gui/summary/summary.js:50
+#: gui/summary/summary.js:48
 msgid "Bought"
 msgstr "Αγορασμένα"
 
-#: gui/summary/summary.js:55
+#: gui/summary/summary.js:53
 msgid "Income"
 msgstr "Έσοδα"
 
-#: gui/summary/summary.js:60
+#: gui/summary/summary.js:58
 msgid "Captured"
 msgstr "Καταλήφθηκαν"
 
-#: gui/summary/summary.js:65
+#: gui/summary/summary.js:63
 msgid "Destroyed"
 msgstr "Καταστράφηκαν"
 
-#: gui/summary/summary.js:70
+#: gui/summary/summary.js:68
 msgid "Killed"
 msgstr "Φονεύθηκαν"
 
-#: gui/summary/summary.js:75
+#: gui/summary/summary.js:73
 msgid "Lost"
 msgstr "Χάθηκαν"
 
-#: gui/summary/summary.js:80
+#: gui/summary/summary.js:78
 msgid "Used"
 msgstr "Χρησιμοποιήθηκαν"
 
-#: gui/summary/summary.js:85
+#: gui/summary/summary.js:83
 msgid "Received"
 msgstr "Ελήφθησαν"
 
-#: gui/summary/summary.js:90
+#: gui/summary/summary.js:88
 msgid "Sold"
 msgstr "Πωλήθηκαν"
 
-#: gui/summary/summary.js:95
+#: gui/summary/summary.js:93
 msgid "Outcome"
 msgstr "Εξαγωγές"
+
+#: gui/summary/summary.js:101
+msgid "∞"
+msgstr ""
 
 #: gui/summary/summary.js:361
 msgid "Are you sure you want to quit the lobby?"

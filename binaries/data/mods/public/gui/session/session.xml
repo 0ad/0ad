@@ -72,7 +72,7 @@
 
 	<!-- Pause Overlay -->
 	<object type="button" name="pauseOverlay" size="0 0 100% 100%" tooltip_style="sessionToolTip" hidden="true" z="0">
-		<object size="0 0 100% 100%" type="image" sprite="devCommandsBackground" ghost="true" z="0"/>
+		<object size="0 0 100% 100%" type="image" sprite="sessionOverlayBackground" ghost="true" z="0"/>
 		<object size="50%-128 40%-20 50%+128 40%+20" type="text" style="PauseText" ghost="true" z="0">
 			<translatableAttribute id="caption">Game Paused</translatableAttribute>
 		</object>

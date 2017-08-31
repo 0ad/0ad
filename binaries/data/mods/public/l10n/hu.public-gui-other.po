@@ -18,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-08-21 09:04+0200\n"
-"PO-Revision-Date: 2017-08-21 16:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-08-28 09:03+0200\n"
+"PO-Revision-Date: 2017-08-28 17:02+0000\n"
+"Last-Translator: Gyuris Gellért <gellert.gyuris@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -73,6 +73,10 @@ msgstr "Nyomd meg a játékosnevek automatikus kiegészítéséhez: %(hotkey)s"
 msgctxt "hotkey"
 msgid "Tab"
 msgstr "Tab"
+
+#: gui/common/functions_civinfo.js:31
+msgid "Gaia"
+msgstr "Gaia"
 
 #: gui/common/functions_global_object.js:57
 #, javascript-format
@@ -136,16 +140,16 @@ msgid "DELETE"
 msgstr "TÖRLÉS"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:291
-#: gui/options/options.js:337 gui/options/options.js:404
-#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:170
+#: gui/options/options.js:336 gui/options/options.js:403
+#: gui/pregame/mainmenu.js:254 gui/replaymenu/replay_actions.js:170
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
 #: gui/summary/summary.js:363
 msgid "No"
 msgstr "Nem"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:291
-#: gui/options/options.js:337 gui/options/options.js:404
-#: gui/pregame/mainmenu.js:262 gui/replaymenu/replay_actions.js:170
+#: gui/options/options.js:336 gui/options/options.js:403
+#: gui/pregame/mainmenu.js:254 gui/replaymenu/replay_actions.js:170
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
 #: gui/summary/summary.js:363
 msgid "Yes"
@@ -290,8 +294,8 @@ msgstr[1] "Csoda (%(min)s perc)"
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
 msgid_plural "Capture the Relic (%(min)s minutes)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Szerezd meg az ereklyéket (%(min)s perc)"
+msgstr[1] "Szerezd meg az ereklyéket (%(min)s perc)"
 
 #: gui/common/gamedescription.js:260
 msgid "Relic Count"
@@ -363,7 +367,7 @@ msgstr "Ha egy játékos nyer, akkor a szövetségesei is. Ha csak egy szövets�
 msgid "Ceasefire"
 msgstr "Tűzszünet"
 
-#: gui/common/gamedescription.js:312 gui/pregame/mainmenu.js:91
+#: gui/common/gamedescription.js:312 gui/pregame/mainmenu.js:86
 msgid "disabled"
 msgstr "letiltva"
 
@@ -564,7 +568,7 @@ msgstr "Felhasználók (%(num)s): %(users)s"
 #: gui/common/tooltips.js:198 gui/common/tooltips.js:212
 #: gui/common/tooltips.js:290 gui/common/tooltips.js:323
 #: gui/common/tooltips.js:356 gui/common/tooltips.js:628
-#: gui/common/tooltips.js:662 gui/common/tooltips.js:727
+#: gui/common/tooltips.js:662 gui/common/tooltips.js:728
 #: gui/replaymenu/replay_actions.js:93 gui/replaymenu/replay_actions.js:94
 #: gui/savedgames/load.js:119 gui/savedgames/load.js:175
 #: gui/savedgames/load.js:178
@@ -873,7 +877,7 @@ msgid "meters"
 msgstr "méter"
 
 #: gui/common/tooltips.js:265 gui/common/tooltips.js:655
-#: gui/common/tooltips.js:684
+#: gui/common/tooltips.js:685
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] "méter"
@@ -1031,7 +1035,7 @@ msgid "Run"
 msgstr "Futás"
 
 #: gui/common/tooltips.js:646 gui/common/tooltips.js:652
-#: gui/common/tooltips.js:657 gui/common/tooltips.js:681
+#: gui/common/tooltips.js:657 gui/common/tooltips.js:682
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
@@ -1046,34 +1050,34 @@ msgid_plural "HP"
 msgstr[0] "ÉP"
 msgstr[1] "ÉP"
 
-#: gui/common/tooltips.js:673
+#: gui/common/tooltips.js:674
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:674
+#: gui/common/tooltips.js:675
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s:"
 
-#: gui/common/tooltips.js:682
+#: gui/common/tooltips.js:683
 msgctxt "aura"
 msgid "Range:"
 msgstr "Hatótáv:"
 
-#: gui/common/tooltips.js:699
+#: gui/common/tooltips.js:700
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
 #. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian
 #. Marine)[/font]"
-#: gui/common/tooltips.js:711
+#: gui/common/tooltips.js:712
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
-#: gui/common/tooltips.js:726
+#: gui/common/tooltips.js:727
 msgid "Classes:"
 msgstr "Osztályok:"
 
@@ -1102,73 +1106,73 @@ msgstr "Nincs"
 msgid "invalid locale"
 msgstr "érvénytelen területi beállítás"
 
-#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:163
+#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:158
 #: gui/splashscreen/splashscreen.xml:(caption):28
 msgid "OK"
 msgstr "OK"
 
-#: gui/options/options.js:163
+#: gui/options/options.js:162
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "Érték: %(val)s (legalább: %(min)s, legfeljebb: %(max)s)"
 
-#: gui/options/options.js:335
+#: gui/options/options.js:334
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "A beállítások helyreállítása törli a mentett beállításaid. Folytatni szeretnéd?"
 
-#: gui/options/options.js:336 gui/options/options.js:403
+#: gui/options/options.js:335 gui/options/options.js:402
 #: gui/savedgames/load.js:187
 msgid "Warning"
 msgstr "Figyelmeztetés"
 
-#: gui/options/options.js:402
+#: gui/options/options.js:401
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Mentetlen módosításaid vannak, szeretnéd bezárni ezt az ablakot?"
 
-#: gui/pregame/mainmenu.js:94
+#: gui/pregame/mainmenu.js:89
 msgid "connecting to server"
 msgstr "csatlakozás a kiszolgálóhoz"
 
-#: gui/pregame/mainmenu.js:97
+#: gui/pregame/mainmenu.js:92
 #, javascript-format
 msgid "uploading (%f%%)"
 msgstr "feltöltés (%f%%)"
 
-#: gui/pregame/mainmenu.js:103
+#: gui/pregame/mainmenu.js:98
 msgid "upload succeeded"
 msgstr "feltöltés sikeres"
 
-#: gui/pregame/mainmenu.js:105
+#: gui/pregame/mainmenu.js:100
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
 msgstr "nem sikerült a feltöltés (%(errorCode)s)"
 
-#: gui/pregame/mainmenu.js:109
+#: gui/pregame/mainmenu.js:104
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
 msgstr "nem sikerült a feltöltés (%(errorMessage)s)"
 
-#: gui/pregame/mainmenu.js:111
+#: gui/pregame/mainmenu.js:106
 msgid "unknown"
 msgstr "ismeretlen"
 
-#: gui/pregame/mainmenu.js:126
+#: gui/pregame/mainmenu.js:121
 msgid "Thank you for helping improve 0 A.D.!"
 msgstr "Köszönjük, hogy segítesz a 0 A.D. tökéletesítésében!"
 
-#: gui/pregame/mainmenu.js:127
+#: gui/pregame/mainmenu.js:122
 msgid "Anonymous feedback is currently enabled."
 msgstr "A névtelen visszajelzés engedélyezve van."
 
-#: gui/pregame/mainmenu.js:128
+#: gui/pregame/mainmenu.js:123
 #, javascript-format
 msgid "Status: %(status)s."
 msgstr "Állapot: %(status)s."
 
-#: gui/pregame/mainmenu.js:152
+#: gui/pregame/mainmenu.js:147
 #, javascript-format
 msgid ""
 "%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
@@ -1181,51 +1185,51 @@ msgstr "%(startWarning)sFigyelem:%(endWarning)s Úgy tűnik shader nélküli (fi
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:161
+#: gui/pregame/mainmenu.js:156
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "Kattints a \"További információk\" lehetőségre vagy az \"OK\"-ra a folytatáshoz."
 
-#: gui/pregame/mainmenu.js:162
+#: gui/pregame/mainmenu.js:157
 msgid "WARNING!"
 msgstr "FIGYELEM!"
 
-#: gui/pregame/mainmenu.js:163
+#: gui/pregame/mainmenu.js:158
 msgid "Read More"
 msgstr "További információk"
 
-#: gui/pregame/mainmenu.js:248
+#: gui/pregame/mainmenu.js:240
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Verzió: %(buildDate)s (%(revision)s)"
 
-#: gui/pregame/mainmenu.js:260
+#: gui/pregame/mainmenu.js:252
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Biztosan kilépsz a 0 A.D. játékból?"
 
-#: gui/pregame/mainmenu.js:261 gui/summary/summary.js:362
+#: gui/pregame/mainmenu.js:253 gui/summary/summary.js:362
 msgid "Confirmation"
 msgstr "Megerősítés"
 
-#: gui/pregame/mainmenu.js:276
+#: gui/pregame/mainmenu.js:268
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "A küldetésszerkesztő nem érhető el vagy nem sikerült betölteni. További információkért tekintsd meg a játéknaplókat."
 
-#: gui/pregame/mainmenu.js:277 gui/replaymenu/replay_actions.js:120
+#: gui/pregame/mainmenu.js:269 gui/replaymenu/replay_actions.js:120
 msgid "Error"
 msgstr "Hiba"
 
-#: gui/pregame/mainmenu.js:283
+#: gui/pregame/mainmenu.js:275
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "Többjátékos váró indítása. \\[BUILD ÁLTAL LETILTVA]"
 
-#: gui/pregame/mainmenu.js:288 gui/pregame/mainmenu.xml:(caption):71
+#: gui/pregame/mainmenu.js:280 gui/pregame/mainmenu.xml:(caption):71
 #: gui/pregame/mainmenu.xml:(caption):93
 msgid "Technical Details"
 msgstr "Technikai részletek"
 
-#: gui/pregame/mainmenu.js:293 gui/pregame/mainmenu.xml:(caption):139
+#: gui/pregame/mainmenu.js:285 gui/pregame/mainmenu.xml:(caption):139
 msgid "Manual"
 msgstr "Kézikönyv"
 
@@ -1598,61 +1602,65 @@ msgstr "Térképbirtoklás (végérték)"
 msgid "Team total"
 msgstr "Összes csapat"
 
-#: gui/summary/summary.js:30
+#: gui/summary/summary.js:28
 msgid "Trained"
 msgstr "Kiképzett"
 
-#: gui/summary/summary.js:35
+#: gui/summary/summary.js:33
 msgid "Constructed"
 msgstr "Épített"
 
-#: gui/summary/summary.js:40
+#: gui/summary/summary.js:38
 msgid "Gathered"
 msgstr "Begyűjtött"
 
-#: gui/summary/summary.js:45
+#: gui/summary/summary.js:43
 msgid "Sent"
 msgstr "Adott"
 
-#: gui/summary/summary.js:50
+#: gui/summary/summary.js:48
 msgid "Bought"
 msgstr "Vásárlás"
 
-#: gui/summary/summary.js:55
+#: gui/summary/summary.js:53
 msgid "Income"
 msgstr "Bejövetel"
 
-#: gui/summary/summary.js:60
+#: gui/summary/summary.js:58
 msgid "Captured"
 msgstr "Elfoglalt"
 
-#: gui/summary/summary.js:65
+#: gui/summary/summary.js:63
 msgid "Destroyed"
 msgstr "Lerombolt"
 
-#: gui/summary/summary.js:70
+#: gui/summary/summary.js:68
 msgid "Killed"
 msgstr "Megölt"
 
-#: gui/summary/summary.js:75
+#: gui/summary/summary.js:73
 msgid "Lost"
 msgstr "Elvesztett"
 
-#: gui/summary/summary.js:80
+#: gui/summary/summary.js:78
 msgid "Used"
 msgstr "Felhasznált"
 
-#: gui/summary/summary.js:85
+#: gui/summary/summary.js:83
 msgid "Received"
 msgstr "Kapott"
 
-#: gui/summary/summary.js:90
+#: gui/summary/summary.js:88
 msgid "Sold"
 msgstr "Eladott"
 
-#: gui/summary/summary.js:95
+#: gui/summary/summary.js:93
 msgid "Outcome"
 msgstr "Kimenetel"
+
+#: gui/summary/summary.js:101
+msgid "∞"
+msgstr "∞"
 
 #: gui/summary/summary.js:361
 msgid "Are you sure you want to quit the lobby?"
@@ -1851,7 +1859,7 @@ msgstr "Küldhetsz nekünk névtelen visszajelzést, ami segít a hibák kijaví
 
 #: gui/pregame/mainmenu.xml:539
 msgid "Alpha XXIII: Ken Wood"
-msgstr ""
+msgstr "Alpha XXIII : Ken Wood"
 
 #: gui/pregame/mainmenu.xml:541
 msgid ""
@@ -1927,7 +1935,7 @@ msgstr "Modok választása"
 
 #: gui/pregame/mainmenu.xml:(caption):456
 msgid "Learn to Play"
-msgstr ""
+msgstr "Hogyan kell játszani?"
 
 #: gui/pregame/mainmenu.xml:(caption):501
 msgid "Tools & Options"
@@ -1951,7 +1959,7 @@ msgstr "Hiba bejelentése"
 
 #: gui/pregame/mainmenu.xml:(caption):587
 msgid "Translate the Game"
-msgstr ""
+msgstr "A játék fordítása"
 
 #: gui/pregame/mainmenu.xml:(caption):599
 msgid "Credits"
@@ -2756,7 +2764,7 @@ msgstr "Árnyaló hatások száma. A JÁTÉK ÚJRAINDÍTÁSÁT IGÉNYLI"
 
 #: gui/options/options.jsongraphicsSetting[2].label
 msgid "Shader Effects"
-msgstr ""
+msgstr "Árnyaló hatások"
 
 #: gui/options/options.jsongraphicsSetting[3].tooltip
 msgid "Enable shadows"
@@ -2768,33 +2776,33 @@ msgstr "Árnyékok"
 
 #: gui/options/options.jsongraphicsSetting[4].parameters.list[0].label
 msgid "Very Low"
-msgstr ""
+msgstr "Nagyon alacsony"
 
 #: gui/options/options.jsongraphicsSetting[4].parameters.list[1].label
 msgid "Low"
-msgstr ""
+msgstr "Alacsony"
 
 #: gui/options/options.jsongraphicsSetting[4].parameters.list[2].label
 msgid "Medium"
-msgstr ""
+msgstr "Közepes"
 
 #: gui/options/options.jsongraphicsSetting[4].parameters.list[3].label
 msgid "High"
-msgstr ""
+msgstr "Magas"
 
 #: gui/options/options.jsongraphicsSetting[4].parameters.list[4].label
 msgid "Very High"
-msgstr ""
+msgstr "Nagyon magas"
 
 #: gui/options/options.jsongraphicsSetting[4].tooltip
 msgid ""
 "Shadow map resolution. High values can crash the game when using a graphics "
 "card with low memory!"
-msgstr ""
+msgstr "Árnyéktérkép felbontása. A magas értékek a játék összeomlását okozhatják egy kevés memóriával rendelkező videokártyán!"
 
 #: gui/options/options.jsongraphicsSetting[4].label
 msgid "Shadow Quality"
-msgstr ""
+msgstr "Árnyékok minősége"
 
 #: gui/options/options.jsongraphicsSetting[5].tooltip
 msgid "Smooth shadows"
@@ -2828,7 +2836,7 @@ msgstr "Ha kikapcsolt, akkor a legalacsonyabb beállítások kerülnek használa
 
 #: gui/options/options.jsongraphicsSetting[8].label
 msgid "Water Effects"
-msgstr ""
+msgstr "Vízeffektek"
 
 #: gui/options/options.jsongraphicsSetting[9].tooltip
 msgid ""
@@ -2904,7 +2912,7 @@ msgstr "A CPU terhelés csökkentése érdekében, a renderelés gyakoriságána
 
 #: gui/options/options.jsongraphicsSetting[17].label
 msgid "FPS Throttling in Menus"
-msgstr ""
+msgstr "FPS korlátozás a menükben"
 
 #: gui/options/options.jsongraphicsSetting[18].tooltip
 msgid ""
@@ -2914,7 +2922,7 @@ msgstr "A CPU terhelés csökkentése érdekében, a renderelés gyakoriságána
 
 #: gui/options/options.jsongraphicsSetting[18].label
 msgid "FPS Throttling in Games"
-msgstr ""
+msgstr "FPS korlátozás a játékokban"
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."

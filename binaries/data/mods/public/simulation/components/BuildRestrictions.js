@@ -254,6 +254,11 @@ BuildRestrictions.prototype.CheckPlacement = function()
 			return result;	// Fail
 		}
 	}
+	
+	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+
+	let templateName = cmpTemplateManager.GetCurrentTemplateName(this.entity);
+	let template = cmpTemplateManager.GetTemplate(templateName.substr(templateName.lastIndexOf("|") + 1));
 
 	// Check distance restriction
 	if (this.template.Distance)
@@ -268,45 +273,43 @@ BuildRestrictions.prototype.CheckPlacement = function()
 			return cmpIdentity.GetClassesList().indexOf(cat) > -1;
 		};
 
-		if (this.template.Distance.MinDistance)
+		if (this.template.Distance.MinDistance !== undefined)
 		{
-			var dist = +this.template.Distance.MinDistance;
-			var nearEnts = cmpRangeManager.ExecuteQuery(this.entity, 0, dist, [cmpPlayer.GetPlayerID()], IID_BuildRestrictions).filter(filter);
-			if (nearEnts.length)
+			let minDistance = ApplyValueModificationsToTemplate("BuildRestrictions/Distance/MinDistance", +this.template.Distance.MinDistance, cmpPlayer.GetPlayerID(), template);
+			if (cmpRangeManager.ExecuteQuery(this.entity, 0, minDistance, [cmpPlayer.GetPlayerID()], IID_BuildRestrictions).some(filter))
 			{
-				var result = markForPluralTranslation(
+				let result = markForPluralTranslation(
 					"%(name)s too close to a %(category)s, must be at least %(distance)s meter away",
 					"%(name)s too close to a %(category)s, must be at least %(distance)s meters away",
-					+this.template.Distance.MinDistance);
+					minDistance);
 
 				result.success = false;
 				result.translateMessage = true;
 				result.parameters = {
 					"name": name,
 					"category": cat,
-					"distance": this.template.Distance.MinDistance
+					"distance": minDistance
 				};
 				result.translateParameters = ["name", "category"];
 				return result;  // Fail
 			}
 		}
-		if (this.template.Distance.MaxDistance)
+		if (this.template.Distance.MaxDistance !== undefined)
 		{
-			var dist = +this.template.Distance.MaxDistance;
-			var nearEnts = cmpRangeManager.ExecuteQuery(this.entity, 0, dist, [cmpPlayer.GetPlayerID()], IID_BuildRestrictions).filter(filter);
-			if (!nearEnts.length)
+			let maxDistance = ApplyValueModificationsToTemplate("BuildRestrictions/Distance/MaxDistance", +this.template.Distance.MaxDistance, cmpPlayer.GetPlayerID(), template);
+			if (!cmpRangeManager.ExecuteQuery(this.entity, 0, maxDistance, [cmpPlayer.GetPlayerID()], IID_BuildRestrictions).some(filter))
 			{
-				var result = markForPluralTranslation(
+				let result = markForPluralTranslation(
 					"%(name)s too far from a %(category)s, must be within %(distance)s meter",
 					"%(name)s too far from a %(category)s, must be within %(distance)s meters",
-					+this.template.Distance.MaxDistance);
+					maxDistance);
 
 				result.success = false;
 				result.translateMessage = true;
 				result.parameters = {
 					"name": name,
 					"category": cat,
-					"distance": this.template.Distance.MaxDistance
+					"distance": maxDistance
 				};
 				result.translateParameters = ["name", "category"];
 				return result;	// Fail

@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-08-21 09:03+0200\n"
-"PO-Revision-Date: 2017-08-27 12:18+0000\n"
+"POT-Creation-Date: 2017-08-28 09:03+0200\n"
+"PO-Revision-Date: 2017-08-28 20:57+0000\n"
 "Last-Translator: enolp <enolp@softastur.org>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -45,12 +45,12 @@ msgid "Confirmation"
 msgstr "Confirmación"
 
 #: gui/session/menu.js:135 gui/session/menu.js:167 gui/session/menu.js:200
-#: gui/session/session.js:873 gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/session.js:855 gui/session/dialogs/yes_no.xml:(caption):24
 msgid "No"
 msgstr "Non"
 
 #: gui/session/menu.js:135 gui/session/menu.js:167 gui/session/menu.js:200
-#: gui/session/session.js:873 gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/session.js:855 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
 msgstr "Sí"
 
@@ -277,7 +277,7 @@ msgstr "Zarróse la superposición programadora."
 msgid "The Developer Overlay was opened."
 msgstr "Abrióse la superposición programadora."
 
-#: gui/session/menu.js:1173
+#: gui/session/menu.js:1176
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -373,7 +373,7 @@ msgstr "* %(user)s %(message)s"
 msgid "Team"
 msgstr "Equipu"
 
-#: gui/session/messages.js:171 gui/session/session.js:314
+#: gui/session/messages.js:171 gui/session/session.js:297
 msgid "Observer"
 msgstr "Espectador"
 
@@ -437,7 +437,7 @@ msgstr "Agora tas en guerra con %(player)s."
 #: gui/session/messages.js:263
 #, javascript-format
 msgid "You are now neutral with %(player)s."
-msgstr ""
+msgstr "Agora yes neutral con %(player)s."
 
 #: gui/session/messages.js:266
 #, javascript-format
@@ -789,90 +789,90 @@ msgstr "Aumenta'l nivel d'alerta pa protexer más unidaes"
 msgid "End of alert."
 msgstr "Fin de l'alerta."
 
-#: gui/session/selection_panels.js:404
+#: gui/session/selection_panels.js:401
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "Descargar %(name)s"
 
-#: gui/session/selection_panels.js:406
+#: gui/session/selection_panels.js:403
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Calca una vez pa descargar a ún. Usa Mayús-clic pa descargar a tolos d'esta triba."
 
-#: gui/session/selection_panels.js:409 gui/session/selection_panels.js:914
+#: gui/session/selection_panels.js:406 gui/session/selection_panels.js:917
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "Xugador: %(playername)s"
 
-#: gui/session/selection_panels.js:444
+#: gui/session/selection_panels.js:441
 msgid "Lock Gate"
 msgstr "Pesllar puerta"
 
-#: gui/session/selection_panels.js:450
+#: gui/session/selection_panels.js:447
 msgid "Unlock Gate"
 msgstr "Abrir puerta"
 
-#: gui/session/selection_panels.js:523
+#: gui/session/selection_panels.js:520
 msgid "Pack"
 msgstr "Cargar"
 
-#: gui/session/selection_panels.js:531
+#: gui/session/selection_panels.js:528
 msgid "Unpack"
 msgstr "Descargar"
 
-#: gui/session/selection_panels.js:539
+#: gui/session/selection_panels.js:536
 msgid "Cancel Packing"
 msgstr "Encaboxar la carga"
 
-#: gui/session/selection_panels.js:547
+#: gui/session/selection_panels.js:544
 msgid "Cancel Unpacking"
 msgstr "Encaboxar la descarga"
 
-#: gui/session/selection_panels.js:630
+#: gui/session/selection_panels.js:632
 msgid "Insufficient population capacity:"
 msgstr "La capacidá población nun ye abonda:"
 
-#: gui/session/selection_panels.js:631
+#: gui/session/selection_panels.js:633
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:642
+#: gui/session/selection_panels.js:645
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
 
-#: gui/session/selection_panels.js:795
+#: gui/session/selection_panels.js:798
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] "%(number)s entidá de clas %(class)s"
 msgstr[1] "%(number)s entidaes de clas %(class)s"
 
-#: gui/session/selection_panels.js:801
+#: gui/session/selection_panels.js:804
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "%(entityCounts)s restantes"
 
-#: gui/session/selection_panels.js:802
+#: gui/session/selection_panels.js:805
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ","
 
-#: gui/session/selection_panels.js:1111
+#: gui/session/selection_panels.js:1106
 #, javascript-format
 msgid "Upgrade into a %(name)s. %(tooltip)s"
 msgstr "Ascender a %(name)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1116
+#: gui/session/selection_panels.js:1111
 #, javascript-format
 msgid "Upgrade into a %(name)s."
 msgstr "Ascender a %(name)s."
 
-#: gui/session/selection_panels.js:1132
+#: gui/session/selection_panels.js:1127
 msgid "Cancel Upgrading"
 msgstr "Encaboxar l'ascensu"
 
-#: gui/session/selection_panels.js:1137
+#: gui/session/selection_panels.js:1132
 msgid "Cannot upgrade when the entity is already upgrading."
 msgstr "La entidá nun ye a ascender cuando yá ta ascendiendo."
 
@@ -967,40 +967,36 @@ msgstr "%(action)s pa llevantar %(number)s."
 msgid "Shift-click"
 msgstr "Mayús-clic"
 
-#: gui/session/session.js:293
-msgid "Gaia"
-msgstr "Xea"
-
-#: gui/session/session.js:407
+#: gui/session/session.js:390
 msgctxt "chat input"
 msgid "Type the message to send."
 msgstr "Teclia'l mensaxe pa unvialu."
 
-#: gui/session/session.js:409
+#: gui/session/session.js:392
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
 msgstr "Calca %(hotkey)s p'abrir el chat públicu."
 
-#: gui/session/session.js:412
+#: gui/session/session.js:395
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
 msgstr "Calca %(hotkey)s p'abrir el chat espectador."
 
-#: gui/session/session.js:413
+#: gui/session/session.js:396
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
 msgstr "Calca %(hotkey)s p'abrir el chat aliáu."
 
-#: gui/session/session.js:415
+#: gui/session/session.js:398
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
 msgstr "Calca %(hotkey)s p'abrir el chat priváu qu'escoyesti enantes."
 
-#: gui/session/session.js:419
+#: gui/session/session.js:402
 msgid "Find idle worker"
 msgstr "Atopar un trabayador inactivu"
 
-#: gui/session/session.js:422
+#: gui/session/session.js:405
 #, javascript-format
 msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
@@ -1008,7 +1004,7 @@ msgid ""
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
 msgstr "Escueyi'l tipu bienes que quieras camudar calcando nél, y dempués usa les fleches de los otros tipos pa camuda-yos la proporción. Pues tamién calcar %(hotkey)s al escoyer un tipu bienes p'afita-y la proporción a 100 %%."
 
-#: gui/session/session.js:426
+#: gui/session/session.js:409
 #, javascript-format
 msgid ""
 "Start by selecting the resource you wish to sell from the upper row. For "
@@ -1017,90 +1013,90 @@ msgid ""
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
 msgstr "Entama por escoyer el recursu que quieras vender de la fila arribera. Cada vegada que calques los botones baxeros, viéndese %(quantity)s de los recursos arriberos al preciu de la cantidá de los baxeros. Caltén calcáu %(hotkey)s pa multiplicar temporalmente la cantidá cambiada por %(multiplier)s."
 
-#: gui/session/session.js:602
+#: gui/session/session.js:585
 #, javascript-format
 msgid "%(civ)s - Structure Tree"
 msgstr "%(civ)s - Árbole d'estructures"
 
-#: gui/session/session.js:865
+#: gui/session/session.js:847
 msgid "Do you want to quit?"
 msgstr "¿Quies colar?"
 
-#: gui/session/session.js:871
+#: gui/session/session.js:853
 msgid "VICTORIOUS!"
 msgstr "¡VICTORIOSU!"
 
-#: gui/session/session.js:872
+#: gui/session/session.js:854
 msgid "DEFEATED!"
 msgstr "¡VENCÍU!"
 
-#: gui/session/session.js:873
+#: gui/session/session.js:855
 msgid "OK"
 msgstr "ACEUTAR"
 
-#: gui/session/session.js:940
+#: gui/session/session.js:922
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
 msgstr "Finó la repitición. ¿Quies colar?"
 
-#: gui/session/session.js:941
+#: gui/session/session.js:923
 msgctxt "replayFinished"
 msgid "Confirmation"
 msgstr "Confirmación"
 
-#: gui/session/session.js:942
+#: gui/session/session.js:924
 msgctxt "replayFinished"
 msgid "No"
 msgstr "Non"
 
-#: gui/session/session.js:942
+#: gui/session/session.js:924
 msgctxt "replayFinished"
 msgid "Yes"
 msgstr "Sí"
 
-#: gui/session/session.js:1168
+#: gui/session/session.js:1152
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
 msgstr "%(playername)s: %(statValue)s"
 
-#: gui/session/session.js:1171
+#: gui/session/session.js:1155
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
-#: gui/session/session.js:1209
+#: gui/session/session.js:1193
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
 msgstr "%(popCount)s/%(popLimit)s"
 
-#: gui/session/session.js:1210
+#: gui/session/session.js:1194
 msgid "Population (current / limit)"
 msgstr "Población (actual / llende)"
 
-#: gui/session/session.js:1211
+#: gui/session/session.js:1195
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Población máximo: %(popCap)s"
 
-#: gui/session/session.js:1398
+#: gui/session/session.js:1382
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Construyir: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:1408
+#: gui/session/session.js:1392
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Nota: El mou deformación del tiempu ye una opción programadora, y nun ta pensáu pa usase per munchu tiempu. Emplegalu de miente incorreuta pue facer que'l xuegu quede ensin memoria o falle."
 
-#: gui/session/session.js:1409
+#: gui/session/session.js:1393
 msgid "Time warp mode"
 msgstr "Mou deformación del tiempu"
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
-#: gui/session/session.js:1426
+#: gui/session/session.js:1410
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)sx)"
