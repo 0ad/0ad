@@ -40,10 +40,8 @@
 {
   "CircularMap": true,
   "Description": "This is a basic tutorial to get you started playing 0 A.D.",
-  "GameType": "conquest",
-  "Keywords": [
-    "demo"
-  ],
+  "GameType": "endless",
+  "Keywords": ["demo"],
   "LockTeams": false,
   "Name": "Introductory Tutorial",
   "PlayerData": [
@@ -65,8 +63,8 @@
       "Team": -1
     },
     {
-      "AI": "tutorial-ai",
-      "Civ": "cart",
+      "AI": "",
+      "Civ": "athen",
       "Color": {
         "b": 20,
         "g": 20,
@@ -83,7 +81,12 @@
     }
   ],
   "Preview": "Introductory_Tutorial.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "TriggerScripts": [
+    "scripts/TriggerHelper.js",
+    "scripts/Tutorial.js",
+    "scenarios/Introductory_Tutorial.js"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>
@@ -4066,157 +4069,157 @@
 		</Entity>
 		<Entity uid="904">
 			<Template>gaia/flora_tree_dead</Template>
-			<Player>2</Player>
+			<Player>0</Player>
 			<Position x="342.1027" z="264.7233"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="905">
 			<Template>gaia/flora_tree_euro_beech</Template>
-			<Player>2</Player>
+			<Player>0</Player>
 			<Position x="345.98322" z="258.13758"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="906">
 			<Template>gaia/flora_tree_euro_beech</Template>
-			<Player>2</Player>
+			<Player>0</Player>
 			<Position x="357.94999" z="242.52845"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="907">
 			<Template>gaia/flora_tree_euro_beech</Template>
-			<Player>2</Player>
+			<Player>0</Player>
 			<Position x="366.93171" z="223.9339"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="908">
 			<Template>gaia/flora_tree_oak</Template>
-			<Player>2</Player>
+			<Player>0</Player>
 			<Position x="364.68461" z="234.81965"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="909">
 			<Template>gaia/flora_tree_oak</Template>
-			<Player>2</Player>
+			<Player>0</Player>
 			<Position x="355.62165" z="255.33942"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="910">
 			<Template>gaia/flora_tree_oak</Template>
-			<Player>2</Player>
+			<Player>0</Player>
 			<Position x="333.52533" z="270.98804"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="911">
 			<Template>gaia/flora_tree_oak</Template>
-			<Player>2</Player>
+			<Player>0</Player>
 			<Position x="106.74198" z="554.55561"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="912">
 			<Template>gaia/flora_tree_oak</Template>
-			<Player>2</Player>
+			<Player>0</Player>
 			<Position x="113.03136" z="579.13471"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="913">
 			<Template>gaia/flora_tree_oak</Template>
-			<Player>2</Player>
+			<Player>0</Player>
 			<Position x="99.37262" z="599.35047"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="914">
 			<Template>gaia/flora_tree_oak_large</Template>
-			<Player>2</Player>
+			<Player>0</Player>
 			<Position x="85.4023" z="575.65198"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="915">
 			<Template>gaia/flora_tree_oak_large</Template>
-			<Player>2</Player>
+			<Player>0</Player>
 			<Position x="110.14855" z="562.87372"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="916">
 			<Template>gaia/flora_tree_oak_large</Template>
-			<Player>2</Player>
+			<Player>0</Player>
 			<Position x="112.81067" z="535.44507"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="917">
 			<Template>gaia/flora_tree_carob</Template>
-			<Player>2</Player>
+			<Player>0</Player>
 			<Position x="108.1707" z="600.34815"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="918">
 			<Template>gaia/flora_tree_carob</Template>
-			<Player>2</Player>
+			<Player>0</Player>
 			<Position x="117.47388" z="572.34467"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="919">
 			<Template>gaia/flora_tree_carob</Template>
-			<Player>2</Player>
+			<Player>0</Player>
 			<Position x="105.24753" z="544.9994"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="920">
 			<Template>gaia/flora_tree_poplar</Template>
-			<Player>2</Player>
+			<Player>0</Player>
 			<Position x="90.96926" z="548.09888"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="921">
 			<Template>gaia/flora_tree_poplar</Template>
-			<Player>2</Player>
+			<Player>0</Player>
 			<Position x="92.65961" z="568.76301"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="922">
 			<Template>gaia/flora_tree_poplar</Template>
-			<Player>2</Player>
+			<Player>0</Player>
 			<Position x="87.55578" z="589.90741"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="923">
 			<Template>gaia/flora_tree_poplar</Template>
-			<Player>2</Player>
+			<Player>0</Player>
 			<Position x="102.4559" z="587.0813"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="924">
 			<Template>gaia/flora_tree_poplar</Template>
-			<Player>2</Player>
+			<Player>0</Player>
 			<Position x="116.39847" z="589.42347"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="925">
 			<Template>gaia/flora_tree_euro_beech</Template>
-			<Player>2</Player>
+			<Player>0</Player>
 			<Position x="101.42736" z="569.49201"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="926">
 			<Template>gaia/flora_tree_euro_beech</Template>
-			<Player>2</Player>
+			<Player>0</Player>
 			<Position x="90.23523" z="554.83973"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="927">
 			<Template>gaia/flora_tree_euro_beech</Template>
-			<Player>2</Player>
+			<Player>0</Player>
 			<Position x="77.74418" z="566.66541"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="928">
 			<Template>gaia/flora_tree_euro_beech</Template>
-			<Player>2</Player>
+			<Player>0</Player>
 			<Position x="102.13585" z="610.37989"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="929">
 			<Template>gaia/flora_tree_euro_beech</Template>
-			<Player>2</Player>
+			<Player>0</Player>
 			<Position x="120.7789" z="607.1272"/>
 			<Orientation y="2.35621"/>
 		</Entity>
@@ -4282,25 +4285,25 @@
 		</Entity>
 		<Entity uid="944">
 			<Template>gaia/geology_stonemine_medit_quarry</Template>
-			<Player>2</Player>
+			<Player>0</Player>
 			<Position x="228.18204" z="669.21045"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="945">
 			<Template>gaia/geology_stonemine_medit_quarry</Template>
-			<Player>2</Player>
+			<Player>0</Player>
 			<Position x="246.55753" z="668.75287"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="946">
 			<Template>gaia/geology_metal_mediterranean_slabs</Template>
-			<Player>2</Player>
+			<Player>0</Player>
 			<Position x="270.07816" z="663.3772"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="947">
 			<Template>gaia/geology_metal_mediterranean_slabs</Template>
-			<Player>2</Player>
+			<Player>0</Player>
 			<Position x="286.58524" z="659.51655"/>
 			<Orientation y="2.35621"/>
 		</Entity>
