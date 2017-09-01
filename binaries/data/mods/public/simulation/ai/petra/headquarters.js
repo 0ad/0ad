@@ -141,8 +141,8 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 	{
 		if (evt.player !== PlayerID && evt.otherPlayer !== PlayerID)
 			continue;
-		gameState.resetAllyStructures();
-		gameState.resetEnemyStructures();
+		// Reset the entities collections which depend on diplomacy
+		gameState.resetOnDiplomacyChanged();
 		break;
 	}
 
@@ -1108,7 +1108,7 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
  */
 m.HQ.prototype.findMarketLocation = function(gameState, template)
 {
-	let markets = gameState.updatingCollection("ExclusiveAllyMarkets", API3.Filters.byClass("Market"), gameState.getExclusiveAllyEntities()).toEntityArray();
+	let markets = gameState.updatingCollection("diplo-ExclusiveAllyMarkets", API3.Filters.byClass("Market"), gameState.getExclusiveAllyEntities()).toEntityArray();
 	if (!markets.length)
 		markets = gameState.updatingCollection("OwnMarkets", API3.Filters.byClass("Market"), gameState.getOwnStructures()).toEntityArray();
 
@@ -2198,7 +2198,7 @@ m.HQ.prototype.isNearInvadingArmy = function(pos)
 m.HQ.prototype.isUnderEnemyFire = function(gameState, pos, radius = 0)
 {
 	if (!this.turnCache.firingStructures)
-		this.turnCache.firingStructures = gameState.updatingCollection("FiringStructures", API3.Filters.hasDefensiveFire(), gameState.getEnemyStructures());
+		this.turnCache.firingStructures = gameState.updatingCollection("diplo-FiringStructures", API3.Filters.hasDefensiveFire(), gameState.getEnemyStructures());
 	for (let ent of this.turnCache.firingStructures.values())
 	{
 		let range = radius + ent.attackRange("Ranged").max;
