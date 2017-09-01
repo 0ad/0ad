@@ -771,6 +771,7 @@ CPreprocessor::Token CPreprocessor::GetArgument (Token &oArg, bool iExpand)
         {
             case Token::TK_EOS:
                 Error (Line, "Unfinished list of arguments");
+                FALLTHROUGH;
             case Token::TK_ERROR:
                 return Token (Token::TK_ERROR);
             case Token::TK_PUNCTUATION:
@@ -844,6 +845,7 @@ CPreprocessor::Token CPreprocessor::GetArguments (int &oNumArgs, Token *&oArgs,
         {
             case Token::TK_EOS:
                 Error (Line, "Unfinished list of arguments");
+                FALLTHROUGH;
             case Token::TK_ERROR:
                 return Token (Token::TK_ERROR);
 
@@ -1282,6 +1284,7 @@ CPreprocessor::Token CPreprocessor::Parse (const Token &iSource)
                     empty_lines = 0;
                 }
                 // Fallthrough to default
+                FALLTHROUGH;
             case Token::TK_WHITESPACE:
                 // Fallthrough to default
             default:

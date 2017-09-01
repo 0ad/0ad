@@ -295,7 +295,7 @@ void CInput::ManuallyMutableHandleKeyDownEvent(const SDL_Keycode keyCode, CStrW*
 		}
 
 		cooked = '\n'; // Change to '\n' and do default:
-		// NOTE: Fall-through
+		FALLTHROUGH;
 	}
 	default: // Insert a character
 	{

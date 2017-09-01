@@ -352,7 +352,7 @@ void CTexturedLineRData::CreateLineCap(const SOverlayTexturedLine& line, const C
 			radius *= 1.5f; // make it a bit sharper (note that we don't use the radius for the butt-end corner points so it should be ok)
 			centerVertex.m_UVs[0] = 0.480f; // slight visual correction to make the texture match up better at the corner points
 		}
-		// fall-through
+		FALLTHROUGH;
 	case SOverlayTexturedLine::LINECAP_ROUND:
 		{
 			// Draw a rounded line cap in the 3D plane of the line specified by the two corner points and the normal vector of the

@@ -408,8 +408,8 @@ public:
 			const CMessageValueModification& msgData = static_cast<const CMessageValueModification&> (msg);
 			if (msgData.component != L"UnitMotion")
 				break;
+			FALLTHROUGH;
 		}
-		// fall-through
 		case MT_OwnershipChanged:
 		case MT_Deserialized:
 		{
