@@ -196,10 +196,6 @@ function setupControl(option, i, category)
 			}
 		}
 
-		// as the enter key is not necessarily pressed after modifying an entry, we will register the input also
-		// - when the mouse leave the control (MouseLeave event)
-		// - or when saving or closing the window (registerChanges function)
-		// so we must ensure that something has indeed been modified
 		onUpdate = function(key, functionBody, minval, maxval)
 		{
 			return function()
@@ -219,8 +215,7 @@ function setupControl(option, i, category)
 		}(key, functionBody, minval, maxval);
 
 		control.caption = caption;
-		control.onPress = onUpdate;
-		control.onMouseLeave = onUpdate;
+		control.onTextEdit = onUpdate;
 		break;
 	case "dropdown":
 	{
@@ -303,16 +298,6 @@ function updateOptionPanel()
 	Engine.GetGUIObjectByName("saveChanges").enabled = hasChanges;
 }
 
-/**
- * Register changes of input (text and number) controls
- */
-function registerChanges()
-{
-	for (let item in g_Controls)
-		if (g_Controls[item].type == "number" || g_Controls[item].type == "string")
-			g_Controls[item].control.onPress();
-}
-
 function setDefaults()
 {
 	messageBox(
@@ -356,7 +341,6 @@ function revertChanges()
 
 function saveChanges()
 {
-	registerChanges();
 	Engine.ConfigDB_WriteFile("user", "config/user.cfg");
 	Engine.ConfigDB_SetChanges("user", false);
 	updateOptionPanel();
@@ -367,7 +351,6 @@ function saveChanges()
  **/
 function closePage()
 {
-	registerChanges();
 	if (Engine.ConfigDB_HasChanges("user"))
 	{
 		messageBox(

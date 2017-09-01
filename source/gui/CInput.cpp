@@ -138,6 +138,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 		m_iBufferPos_Tail = -1;
 
 		UpdateAutoScroll();
+		SendEvent(GUIM_TEXTEDIT, "textedit");
 
 		return IN_HANDLED;
 	}
@@ -187,6 +188,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 		UpdateText(m_iBufferPos, m_iBufferPos, m_iBufferPos+1);
 
 		UpdateAutoScroll();
+		SendEvent(GUIM_TEXTEDIT, "textedit");
 
 		return IN_HANDLED;
 	}
@@ -226,6 +228,8 @@ void CInput::ManuallyMutableHandleKeyDownEvent(const SDL_Keycode keyCode, CStrW*
 	case SDLK_TAB:
 	{
 		SendEvent(GUIM_TAB, "tab");
+		// Don't send a textedit event, because it should only
+		// be sent if the GUI control changes the text
 		break;
 	}
 	case SDLK_BACKSPACE:
@@ -253,6 +257,7 @@ void CInput::ManuallyMutableHandleKeyDownEvent(const SDL_Keycode keyCode, CStrW*
 		}
 
 		UpdateAutoScroll();
+		SendEvent(GUIM_TEXTEDIT, "textedit");
 		break;
 	}
 	case SDLK_DELETE:
@@ -273,6 +278,7 @@ void CInput::ManuallyMutableHandleKeyDownEvent(const SDL_Keycode keyCode, CStrW*
 		}
 
 		UpdateAutoScroll();
+		SendEvent(GUIM_TEXTEDIT, "textedit");
 		break;
 	}
 	case SDLK_KP_ENTER:
@@ -321,6 +327,7 @@ void CInput::ManuallyMutableHandleKeyDownEvent(const SDL_Keycode keyCode, CStrW*
 		++m_iBufferPos;
 
 		UpdateAutoScroll();
+		SendEvent(GUIM_TEXTEDIT, "textedit");
 		break;
 	}
 	}
@@ -593,6 +600,8 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 			UpdateBufferPositionSetting();
 
 			sys_clipboard_free(text);
+
+			SendEvent(GUIM_TEXTEDIT, "textedit");
 		}
 
 		return IN_HANDLED;
@@ -628,6 +637,7 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 			{
 				DeleteCurSelection();
 				UpdateAutoScroll();
+				SendEvent(GUIM_TEXTEDIT, "textedit");
 			}
 		}
 
@@ -674,6 +684,7 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 
 			UpdateBufferPositionSetting();
 			DeleteCurSelection();
+			SendEvent(GUIM_TEXTEDIT, "textedit");
 		}
 		UpdateAutoScroll();
 		return IN_HANDLED;
@@ -712,6 +723,7 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 			DeleteCurSelection();
 		}
 		UpdateAutoScroll();
+		SendEvent(GUIM_TEXTEDIT, "textedit");
 		return IN_HANDLED;
 	}
 	else if (hotkey == "text.move.left")
