@@ -66,7 +66,6 @@ CInput::CInput()
 
 	CFG_GET_VAL("gui.cursorblinkrate", m_CursorBlinkRate);
 
-	// Add scroll-bar
 	CGUIScrollBarVertical* bar = new CGUIScrollBarVertical();
 	bar->SetRightAligned(true);
 	AddScrollBar(bar);
@@ -251,7 +250,6 @@ void CInput::ManuallyMutableHandleKeyDownEvent(const SDL_Keycode keyCode, CStrW*
 			--m_iBufferPos;
 
 			UpdateText(m_iBufferPos, m_iBufferPos + 1, m_iBufferPos);
-
 		}
 
 		UpdateAutoScroll();
@@ -643,9 +641,8 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 		m_WantedX = 0.0f;
 
 		if (SelectingText())
-		{
 			DeleteCurSelection();
-		}
+
 		if (!pCaption->empty() && m_iBufferPos != 0)
 		{
 			m_iBufferPos_Tail = m_iBufferPos;
@@ -660,7 +657,7 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 				m_iBufferPos--;
 			}
 
-			// If we end up on a puctuation char we just delete it (treat punct like a word)
+			// If we end up on a punctuation char we just delete it (treat punct like a word)
 			if (iswpunct(searchString[m_iBufferPos - 1]))
 				m_iBufferPos--;
 			else
@@ -689,9 +686,8 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 		m_WantedX = 0.0f;
 
 		if (SelectingText())
-		{
 			DeleteCurSelection();
-		}
+
 		if (!pCaption->empty() && m_iBufferPos < (int)pCaption->length())
 		{
 			// Delete the word to the right of the cursor
@@ -725,13 +721,9 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 		if (shiftKeyPressed || !SelectingText())
 		{
 			if (!shiftKeyPressed)
-			{
 				m_iBufferPos_Tail = -1;
-			}
 			else if (!SelectingText())
-			{
 				m_iBufferPos_Tail = m_iBufferPos;
-			}
 
 			if (!pCaption->empty() && m_iBufferPos != 0)
 			{
@@ -782,13 +774,9 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 		if (shiftKeyPressed || !SelectingText())
 		{
 			if (!shiftKeyPressed)
-			{
 				m_iBufferPos_Tail = -1;
-			}
 			else if (!SelectingText())
-			{
 				m_iBufferPos_Tail = m_iBufferPos;
-			}
 
 			if (!pCaption->empty() && m_iBufferPos < (int)pCaption->length())
 			{
@@ -891,13 +879,14 @@ void CInput::HandleMessage(SGUIMessage& Message)
 
 			UpdateText();
 		}
+
 		UpdateAutoScroll();
 
 		if (Message.value == CStr("readonly"))
 			GUI<bool>::GetSetting(this, "readonly", m_Readonly);
+
 		break;
 	}
-
 	case GUIM_MOUSE_PRESS_LEFT:
 	{
 		bool scrollbar, multiline;
@@ -932,7 +921,6 @@ void CInput::HandleMessage(SGUIMessage& Message)
 		//  for the user though.
 		break;
 	}
-
 	case GUIM_MOUSE_DBLCLICK_LEFT:
 	{
 		if (m_ComposingText)
@@ -1037,21 +1025,20 @@ void CInput::HandleMessage(SGUIMessage& Message)
 			}
 			// go to the right until we hit whitespace or punctuation
 			while (++m_iBufferPos_Tail < (int)pCaption->length())
-			{
 				if (iswspace((*pCaption)[m_iBufferPos_Tail]) || iswpunct((*pCaption)[m_iBufferPos_Tail]))
 					break;
-			}
 		}
 		UpdateAutoScroll();
 		break;
 	}
-
 	case GUIM_MOUSE_RELEASE_LEFT:
+	{
 		if (m_SelectingText)
 			m_SelectingText = false;
 		break;
-
+	}
 	case GUIM_MOUSE_MOTION:
+	{
 		// If we just pressed down and started to move before releasing
 		//  this is one way of selecting larger portions of text.
 		if (m_SelectingText)
@@ -1065,7 +1052,7 @@ void CInput::HandleMessage(SGUIMessage& Message)
 			UpdateAutoScroll();
 		}
 		break;
-
+	}
 	case GUIM_LOAD:
 	{
 		GetScrollBar(0).SetX(m_CachedActualSize.right);
@@ -1083,8 +1070,8 @@ void CInput::HandleMessage(SGUIMessage& Message)
 		GUI<bool>::GetSetting(this, "readonly", m_Readonly);
 		break;
 	}
-
 	case GUIM_GOT_FOCUS:
+	{
 		m_iBufferPos = 0;
 		m_PrevTime = 0.0;
 		m_CursorVisState = false;
@@ -1098,8 +1085,9 @@ void CInput::HandleMessage(SGUIMessage& Message)
 		SDL_SetTextInputRect(&rect);
 		SDL_StartTextInput();
 		break;
-
+	}
 	case GUIM_LOST_FOCUS:
+	{
 		if (m_ComposingText)
 		{
 			// Simulate a final text editing event to clear the composition
@@ -1115,9 +1103,11 @@ void CInput::HandleMessage(SGUIMessage& Message)
 		m_iBufferPos = -1;
 		m_iBufferPos_Tail = -1;
 		break;
-
+	}
 	default:
+	{
 		break;
+	}
 	}
 	UpdateBufferPositionSetting();
 }
@@ -1148,17 +1138,15 @@ void CInput::Draw()
 	{
 		// check if the cursor visibility state needs to be changed
 		double currTime = timer_Time();
-		if ((currTime - m_PrevTime) >= m_CursorBlinkRate)
+		if (currTime - m_PrevTime >= m_CursorBlinkRate)
 		{
 			m_CursorVisState = !m_CursorVisState;
 			m_PrevTime = currTime;
 		}
 	}
 	else
-	{
 		// should always be visible
 		m_CursorVisState = true;
-	}
 
 	// First call draw on ScrollBarOwner
 	bool scrollbar;
@@ -1225,11 +1213,11 @@ void CInput::Draw()
 
 		// substract scrollbar from cliparea
 		if (cliparea.right > GetScrollBar(0).GetOuterRect().left &&
-			cliparea.right <= GetScrollBar(0).GetOuterRect().right)
+		    cliparea.right <= GetScrollBar(0).GetOuterRect().right)
 			cliparea.right = GetScrollBar(0).GetOuterRect().left;
 
 		if (cliparea.left >= GetScrollBar(0).GetOuterRect().left &&
-			cliparea.left < GetScrollBar(0).GetOuterRect().right)
+		    cliparea.left < GetScrollBar(0).GetOuterRect().right)
 			cliparea.left = GetScrollBar(0).GetOuterRect().right;
 	}
 
@@ -1324,8 +1312,7 @@ void CInput::Draw()
 		     it != m_CharacterPositions.end();
 		     ++it, buffered_y += ls, x_pointer = 0.f)
 		{
-			if (multiline
-			    && buffered_y > m_CachedActualSize.GetHeight())
+			if (multiline && buffered_y > m_CachedActualSize.GetHeight())
 				break;
 
 			// We might as well use 'i' here to iterate, because we need it
@@ -1344,22 +1331,17 @@ void CInput::Draw()
 					box_x = x_pointer;
 				}
 
-				// no else!
-
 				const bool at_end = (i == (int)it->m_ListOfX.size()+1);
 
-				if (drawing_box == true &&
-					(it->m_ListStart + i == VirtualTo || at_end))
+				if (drawing_box && (it->m_ListStart + i == VirtualTo || at_end))
 				{
 					// Depending on if it's just a row change, or if it's
 					//  the end of the select box, do slightly different things.
 					if (at_end)
 					{
 						if (it->m_ListStart + i != VirtualFrom)
-						{
 							// and actually add a white space! yes, this is done in any common input
 							x_pointer += (float)font.GetCharacterWidth(L' ');
-						}
 					}
 					else
 					{
@@ -1371,10 +1353,11 @@ void CInput::Draw()
 					// Set 'rect' depending on if it's a multiline control, or a one-line control
 					if (multiline)
 					{
-						rect = CRect(m_CachedActualSize.left+box_x+buffer_zone,
-								   m_CachedActualSize.top+buffered_y+(h-ls)/2,
-								   m_CachedActualSize.left+x_pointer+buffer_zone,
-								   m_CachedActualSize.top+buffered_y+(h+ls)/2);
+						rect = CRect(
+							m_CachedActualSize.left + box_x + buffer_zone,
+							m_CachedActualSize.top + buffered_y + (h - ls) / 2,
+							m_CachedActualSize.left + x_pointer + buffer_zone,
+							m_CachedActualSize.top + buffered_y + (h + ls) / 2);
 
 						if (rect.bottom < m_CachedActualSize.top)
 							continue;
@@ -1387,10 +1370,11 @@ void CInput::Draw()
 					}
 					else // if one-line
 					{
-						rect = CRect(m_CachedActualSize.left+box_x+buffer_zone-m_HorizontalScroll,
-								   m_CachedActualSize.top+buffered_y+(h-ls)/2,
-								   m_CachedActualSize.left+x_pointer+buffer_zone-m_HorizontalScroll,
-								   m_CachedActualSize.top+buffered_y+(h+ls)/2);
+						rect = CRect(
+							m_CachedActualSize.left + box_x + buffer_zone - m_HorizontalScroll,
+							m_CachedActualSize.top + buffered_y + (h - ls) / 2,
+							m_CachedActualSize.left + x_pointer + buffer_zone - m_HorizontalScroll,
+							m_CachedActualSize.top + buffered_y + (h + ls) / 2);
 
 						if (rect.left < m_CachedActualSize.left)
 							rect.left = m_CachedActualSize.left;
@@ -1439,8 +1423,7 @@ void CInput::Draw()
 	{
 		if (buffered_y + buffer_zone >= -ls || !multiline)
 		{
-			if (multiline
-			    && buffered_y + buffer_zone > m_CachedActualSize.GetHeight())
+			if (multiline && buffered_y + buffer_zone > m_CachedActualSize.GetHeight())
 				break;
 
 			CMatrix3D savedTransform = textRenderer.GetTransform();
@@ -1470,24 +1453,21 @@ void CInput::Draw()
 				}
 
 				// End of selected area, change back color
-				if (SelectingText() &&
-					it->m_ListStart + i == VirtualTo)
+				if (SelectingText() && it->m_ListStart + i == VirtualTo)
 				{
 					using_selected_color = false;
 					textRenderer.Color(color);
 				}
 
 				// selecting only one, then we need only to draw a cursor.
-				if (i != (int)it->m_ListOfX.size()
-				    && it->m_ListStart + i == m_iBufferPos
-					&& m_CursorVisState)
+				if (i != (int)it->m_ListOfX.size() && it->m_ListStart + i == m_iBufferPos && m_CursorVisState)
 					textRenderer.Put(0.0f, 0.0f, L"_");
 
 				// Drawing selected area
 				if (SelectingText() &&
-					it->m_ListStart + i >= VirtualFrom &&
-					it->m_ListStart + i < VirtualTo &&
-					using_selected_color == false)
+				    it->m_ListStart + i >= VirtualFrom &&
+				    it->m_ListStart + i < VirtualTo &&
+				    !using_selected_color)
 				{
 					using_selected_color = true;
 					textRenderer.Color(color_selected);
@@ -1502,8 +1482,8 @@ void CInput::Draw()
 				}
 
 				// check it's now outside a one-liner, then we'll break
-				if (!multiline && i < (int)it->m_ListOfX.size()
-				    && it->m_ListOfX[i] - m_HorizontalScroll > m_CachedActualSize.GetWidth()-buffer_zone)
+				if (!multiline && i < (int)it->m_ListOfX.size() &&
+				    it->m_ListOfX[i] - m_HorizontalScroll > m_CachedActualSize.GetWidth() - buffer_zone)
 					break;
 			}
 
@@ -1561,8 +1541,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 
 	if (font_name.empty())
 	{
-		// Destroy everything stored, there's no font, so there can be
-		//  no data.
+		// Destroy everything stored, there's no font, so there can be no data.
 		m_CharacterPositions.clear();
 		return;
 	}
@@ -1611,8 +1590,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 		     it != m_CharacterPositions.end();
 		     ++it, ++i)
 		{
-			if (destroy_row_from_used == false &&
-				it->m_ListStart > from)
+			if (!destroy_row_from_used && it->m_ListStart > from)
 			{
 				// Destroy the previous line, and all to 'to_before'
 				destroy_row_from = it;
@@ -1628,11 +1606,9 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 					--destroy_row_from;
 			}
 
-			if (destroy_row_to_used == false &&
-				it->m_ListStart > to_before)
+			if (!destroy_row_to_used && it->m_ListStart > to_before)
 			{
 				destroy_row_to = it;
-
 				destroy_row_to_used = true;
 
 				// If it isn't the last row, we'll add another row to delete,
@@ -1654,7 +1630,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 			}
 		}
 
-		if (destroy_row_from_used == false)
+		if (!destroy_row_from_used)
 		{
 			destroy_row_from = m_CharacterPositions.end();
 			--destroy_row_from;
@@ -1666,7 +1642,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 			current_line = destroy_row_from;
 		}
 
-		if (destroy_row_to_used == false)
+		if (!destroy_row_to_used)
 		{
 			destroy_row_to = m_CharacterPositions.end();
 			check_point_row_start = -1;
@@ -1727,12 +1703,10 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 			current_line = m_CharacterPositions.insert(current_line, row);
 			++current_line;
 
-
 			// Setup the next row:
 			row.m_ListOfX.clear();
 			row.m_ListStart = i+1;
 			x_pos = 0.f;
-
 		}
 		else
 		{
@@ -1811,8 +1785,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 				     it != m_CharacterPositions.end();
 				     ++it, ++i)
 				{
-					if (destroy_row_from_used == false &&
-						it->m_ListStart > check_point_row_start)
+					if (!destroy_row_from_used && it->m_ListStart > check_point_row_start)
 					{
 						// Destroy the previous line, and all to 'to_before'
 						//if (i >= 2)
@@ -1824,8 +1797,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 						//--destroy_row_from;
 					}
 
-					if (destroy_row_to_used == false &&
-						it->m_ListStart > check_point_row_end)
+					if (!destroy_row_to_used && it->m_ListStart > check_point_row_end)
 					{
 						destroy_row_to = it;
 						destroy_row_to_used = true;
@@ -1851,7 +1823,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 					}
 				}
 
-				if (destroy_row_from_used == false)
+				if (!destroy_row_from_used)
 				{
 					destroy_row_from = m_CharacterPositions.end();
 					--destroy_row_from;
@@ -1859,7 +1831,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 					current_line = destroy_row_from;
 				}
 
-				if (destroy_row_to_used == false)
+				if (!destroy_row_to_used)
 				{
 					destroy_row_to = m_CharacterPositions.end();
 					check_point_row_start = check_point_row_end = -1;
@@ -1896,7 +1868,6 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 
 	bool scrollbar;
 	GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
-	// Update scollbar
 	if (scrollbar)
 	{
 		GetScrollBar(0).SetScrollRange(m_CharacterPositions.size() * font.GetLineSpacing() + buffer_zone*2.f);
