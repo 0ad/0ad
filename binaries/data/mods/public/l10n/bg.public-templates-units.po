@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:06+0200\n"
-"PO-Revision-Date: 2017-06-06 07:50+0000\n"
+"POT-Creation-Date: 2017-08-30 09:02+0200\n"
+"PO-Revision-Date: 2017-08-31 05:39+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr "Конник"
 
 #: simulation/templates/template_unit_cavalry.xml:38
 #: simulation/templates/template_unit_infantry.xml:64
-#: simulation/templates/template_unit_support_female_citizen.xml:51
+#: simulation/templates/template_unit_support_female_citizen.xml:49
 msgid "Citizen"
 msgstr "Гражданин"
 
@@ -48,13 +48,13 @@ msgstr "Во̀ин"
 #: simulation/templates/template_unit_dog.xml:46
 #: simulation/templates/template_unit_infantry.xml:65
 #: simulation/templates/template_unit_support_healer.xml:22
-#: simulation/templates/units/brit_support_healer_b.xml:9
-#: simulation/templates/units/cart_support_healer_b.xml:10
-#: simulation/templates/units/gaul_support_healer_b.xml:9
-#: simulation/templates/units/iber_support_healer_b.xml:11
+#: simulation/templates/units/brit_support_healer_b.xml:8
+#: simulation/templates/units/cart_support_healer_b.xml:9
+#: simulation/templates/units/gaul_support_healer_b.xml:8
+#: simulation/templates/units/iber_support_healer_b.xml:10
 #: simulation/templates/units/maur_support_healer_b.xml:9
-#: simulation/templates/units/pers_support_healer_b.xml:10
-#: simulation/templates/units/rome_support_healer_b.xml:11
+#: simulation/templates/units/pers_support_healer_b.xml:9
+#: simulation/templates/units/rome_support_healer_b.xml:10
 msgctxt "Rank"
 msgid "Basic"
 msgstr "Начален"
@@ -74,7 +74,7 @@ msgstr "Начален"
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:25
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:25
 #: simulation/templates/template_unit_infantry_melee.xml:19
-#: simulation/templates/template_unit_mechanical_ship_fire.xml:34
+#: simulation/templates/template_unit_mechanical_ship_fire.xml:42
 #: simulation/templates/template_unit_mechanical_siege_ram.xml:35
 #: simulation/templates/units/maur_ship_trireme.xml:19
 msgid "Melee"
@@ -234,12 +234,12 @@ msgstr "Пиконосец"
 msgid "Champion Pikeman"
 msgstr "Гвардейски пиконосец"
 
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:37
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:36
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:35
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:27
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:27
-#: simulation/templates/template_unit_infantry_melee_pikeman.xml:30
-#: simulation/templates/template_unit_infantry_melee_spearman.xml:28
+#: simulation/templates/template_unit_infantry_melee_pikeman.xml:29
+#: simulation/templates/template_unit_infantry_melee_spearman.xml:27
 msgid "Counters: 3x vs. Cavalry."
 msgstr "Ефикасност: 3х с-у конница."
 
@@ -327,7 +327,7 @@ msgid "Hero Swordsman"
 msgstr "Геройски мечоносец"
 
 #: simulation/templates/template_unit_infantry.xml:64
-#: simulation/templates/template_unit_support_female_citizen.xml:51
+#: simulation/templates/template_unit_support_female_citizen.xml:49
 #: simulation/templates/template_unit_support_slave.xml:39
 msgid "Worker"
 msgstr "Работник"
@@ -375,7 +375,7 @@ msgid "Light Warship"
 msgstr "Лек военен кораб"
 
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:49
-#: simulation/templates/template_unit_mechanical_ship_fire.xml:34
+#: simulation/templates/template_unit_mechanical_ship_fire.xml:42
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:59
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:49
 msgid "Warship"
@@ -388,15 +388,15 @@ msgstr "Военен кораб"
 msgid "Garrison units for transport and to increase firepower."
 msgstr "Качете единици на борда за превоз и увеличаване на огневата мощ."
 
-#: simulation/templates/template_unit_mechanical_ship_fire.xml:33
+#: simulation/templates/template_unit_mechanical_ship_fire.xml:41
 msgid "Fire Ship"
 msgstr "Огнен кораб"
 
-#: simulation/templates/template_unit_mechanical_ship_fire.xml:34
+#: simulation/templates/template_unit_mechanical_ship_fire.xml:42
 msgid "Fireship"
 msgstr "Огнен кораб"
 
-#: simulation/templates/template_unit_mechanical_ship_fire.xml:35
+#: simulation/templates/template_unit_mechanical_ship_fire.xml:43
 msgid ""
 "Rapidly drain the health of enemy ships. Slowly loses health due to being on"
 " fire, so use the Fire Ship quickly."
@@ -407,10 +407,8 @@ msgid "Fishing Boat"
 msgstr "Рибарска лодка"
 
 #: simulation/templates/template_unit_mechanical_ship_fishing.xml:34
-msgid ""
-"Fish the waters for Food. Garrison a support or infantry unit inside to "
-"boost fishing rate."
-msgstr "Ловете риба, за да си набавите храна. Качете на борда помощна или пехотна единица, за да увеличите бързината на риболова."
+msgid "Fish the waters for food."
+msgstr "Ловете риба във водата за храна."
 
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:27
 msgid "Merchantman"
@@ -484,7 +482,7 @@ msgstr "Обсадна кула"
 msgid "Support"
 msgstr "Подкрепа"
 
-#: simulation/templates/template_unit_support_female_citizen.xml:47
+#: simulation/templates/template_unit_support_female_citizen.xml:46
 msgid "Female Citizen"
 msgstr "Жена"
 
@@ -507,7 +505,7 @@ msgstr "Роб"
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
 msgstr "Събирач с ограничено време на живот. По-ефективен е при копаене и сечене."
 
-#: simulation/templates/template_unit_support_trader.xml:18
+#: simulation/templates/template_unit_support_trader.xml:17
 msgid "Trade resources between your own markets and those of your allies."
 msgstr "Търгувайте ресурси между своите пазари и тези на съюзниците Ви."
 
@@ -784,11 +782,11 @@ msgstr "Пелтастѝс тракс"
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:15
 #: simulation/templates/units/mace_infantry_archer_b.xml:22
 #: simulation/templates/units/mace_infantry_slinger_b.xml:22
-#: simulation/templates/units/merc_black_cloak.xml:16
-#: simulation/templates/units/merc_thorakites.xml:26
-#: simulation/templates/units/merc_thureophoros.xml:17
-#: simulation/templates/units/pers_kardakes_hoplite.xml:15
-#: simulation/templates/units/pers_kardakes_skirmisher.xml:15
+#: simulation/templates/units/merc_black_cloak.xml:15
+#: simulation/templates/units/merc_thorakites.xml:25
+#: simulation/templates/units/merc_thureophoros.xml:16
+#: simulation/templates/units/pers_kardakes_hoplite.xml:14
+#: simulation/templates/units/pers_kardakes_skirmisher.xml:14
 #: simulation/templates/units/ptol_cavalry_javelinist_merc_b.xml:14
 #: simulation/templates/units/ptol_cavalry_spearman_merc_b.xml:14
 #: simulation/templates/units/ptol_infantry_archer_b.xml:19
@@ -796,8 +794,8 @@ msgstr "Пелтастѝс тракс"
 #: simulation/templates/units/ptol_infantry_spearman_merc_b.xml:22
 #: simulation/templates/units/ptol_infantry_swordsman_merc_b.xml:23
 #: simulation/templates/units/samnite_skirmisher.xml:7
-#: simulation/templates/units/samnite_spearman.xml:8
-#: simulation/templates/units/samnite_swordsman.xml:8
+#: simulation/templates/units/samnite_spearman.xml:7
+#: simulation/templates/units/samnite_swordsman.xml:7
 #: simulation/templates/units/sele_cavalry_spearman_merc_b.xml:15
 #: simulation/templates/units/sele_infantry_archer_merc_b.xml:22
 #: simulation/templates/units/sele_infantry_swordsman_merc_b.xml:23
@@ -1005,13 +1003,13 @@ msgstr "Венетик понти"
 msgid "Transport many soldiers across the sea."
 msgstr "Транспортиране на голямо количество во̀ини през морето."
 
-#: simulation/templates/units/brit_support_female_citizen.xml:19
-#: simulation/templates/units/gaul_support_female_citizen.xml:18
+#: simulation/templates/units/brit_support_female_citizen.xml:11
+#: simulation/templates/units/gaul_support_female_citizen.xml:10
 msgid "Bodu"
 msgstr "Боду"
 
-#: simulation/templates/units/brit_support_female_citizen.xml:20
-#: simulation/templates/units/gaul_support_female_citizen.xml:19
+#: simulation/templates/units/brit_support_female_citizen.xml:12
+#: simulation/templates/units/gaul_support_female_citizen.xml:11
 msgid "Celtic Woman"
 msgstr "Келтска жена"
 
@@ -1183,7 +1181,7 @@ msgstr "Нуун-машот"
 msgid "Seḥer"
 msgstr "Сехер"
 
-#: simulation/templates/units/cart_ship_merchant.xml:11
+#: simulation/templates/units/cart_ship_merchant.xml:10
 msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures. Carthaginians "
@@ -1252,13 +1250,13 @@ msgstr "Солдурос"
 msgid "Brennus"
 msgstr "Брен"
 
-#: simulation/templates/units/gaul_hero_britomartus.xml:8
-msgid "Britomartus"
-msgstr "Бритомарт"
-
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:8
 msgid "Vercingetorix"
 msgstr "Верцингеторикс"
+
+#: simulation/templates/units/gaul_hero_viridomarus.xml:8
+msgid "Britomartus"
+msgstr "Бритомарт"
 
 #: simulation/templates/units/gaul_ship_fishing.xml:5
 msgid "Lembus"
@@ -1276,7 +1274,7 @@ msgstr "Лантзари"
 msgid "Leial Zalduneria"
 msgstr "Леял залдунерия"
 
-#: simulation/templates/units/iber_champion_cavalry.xml:15
+#: simulation/templates/units/iber_champion_cavalry.xml:14
 msgid "Special: Flaming javelins. Good vs. Buildings."
 msgstr "Специалност: Горящи метателни копия. Добри срещу сгради."
 
@@ -1706,7 +1704,7 @@ msgstr "Вавилонска колесница с коси"
 msgid "Babiruviya Ratha"
 msgstr "Бабирувия рата"
 
-#: simulation/templates/units/pers_cavalry_archer_b.xml:15
+#: simulation/templates/units/pers_cavalry_archer_b.xml:14
 msgid "Causes trample damage to enemy units."
 msgstr "Нанася погазващи щети на вражеските единици."
 
@@ -1889,7 +1887,7 @@ msgstr "Арамейски търговец"
 msgid "Tamkarum Arami"
 msgstr "Тамкарум арами"
 
-#: simulation/templates/units/pers_support_trader.xml:13
+#: simulation/templates/units/pers_support_trader.xml:12
 msgid ""
 "Trade resources between your own markets and those of your allies. Persians "
 "have a +25% land trading bonus."
@@ -2431,11 +2429,11 @@ msgstr "Периекски хоплит"
 msgid "Hoplítēs Períoikos"
 msgstr "Хоплѝтис перѝокос"
 
-#: simulation/templates/units/spart_support_female_citizen.xml:27
+#: simulation/templates/units/spart_support_female_citizen.xml:21
 msgid "Spartan Woman"
 msgstr "Спартанска жена"
 
-#: simulation/templates/units/spart_support_female_citizen.xml:28
+#: simulation/templates/units/spart_support_female_citizen.xml:22
 msgid "Spartiâtis"
 msgstr "Спартиятис"
 
@@ -2443,11 +2441,11 @@ msgstr "Спартиятис"
 msgid "Émporos Períoikos"
 msgstr "Ѐмпорос перѝойкос"
 
-#: simulation/templates/units/theb_mechanical_siege_fireraiser.xml:22
+#: simulation/templates/units/theb_mechanical_siege_fireraiser.xml:30
 msgid "Fire Raiser"
 msgstr "Подпалвач"
 
-#: simulation/templates/units/theb_mechanical_siege_fireraiser.xml:23
+#: simulation/templates/units/theb_mechanical_siege_fireraiser.xml:31
 msgid "Pyrobolos"
 msgstr "Пироболос"
 
@@ -2459,7 +2457,7 @@ msgstr "Тивански хоплит от Свещения отряд"
 msgid "Hieroû Thebaíou Lókhou Hoplítai"
 msgstr "Хиероу тебаѝоу ло̀кхоу хоплѝтаи"
 
-#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:9
+#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:8
 msgid "Champion Spearman."
 msgstr "Гвардейски копиеносец."
 
