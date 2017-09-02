@@ -255,7 +255,7 @@ m.HQ.prototype.buildFirstBase = function(gameState)
 		return;
 	let total = gameState.getResources();
 	let goal = "civil_centre";
-	if (!total.canAfford(new API3.Resources(template.cost())) && 
+	if (!total.canAfford(new API3.Resources(template.cost())) &&
 	    !this.navalManager.docks.filter(API3.Filters.byClass("Dock")).hasEntities())
 	{
 		// not enough resource to build a cc, try with a dock to accumulate resources if none yet

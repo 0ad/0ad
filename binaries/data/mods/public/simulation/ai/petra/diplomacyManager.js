@@ -193,7 +193,7 @@ m.DiplomacyManager.prototype.checkEvents = function (gameState, events)
 			    gameState.sharedScript.playersData[evt.player].isNeutral[PlayerID] && sentRequest.requestType === "neutral")
 				this.changePlayerDiplomacy(gameState, evt.player, sentRequest.requestType);
 
-			// Just remove the request if the other player switched their stance to a different and/or more negative state 
+			// Just remove the request if the other player switched their stance to a different and/or more negative state
 			// TODO: Keep this send request and take it into account for later diplomacy changes (maybe be less inclined to offer to this player)
 			this.sentDiplomacyRequests.delete(evt.player);
 			continue;

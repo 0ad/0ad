@@ -384,7 +384,7 @@ m.DefenseManager.prototype.assignDefenders = function(gameState)
 			return;
 		if (ent.hasClass("Support") || ent.attackTypes() === undefined)
 			return;
-		if (ent.hasClass("Siege") && !ent.hasClass("Melee"))
+		if (ent.hasClass("Catapult"))
 			return;
 		if (ent.hasClass("FishingBoat") || ent.hasClass("Trader"))
 			return;
@@ -477,6 +477,10 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 		}
 	}
 
+	let allAttacked = {};
+	for (let evt of events.Attacked)
+		allAttacked[evt.target] = evt.attacker;
+
 	for (let evt of events.Attacked)
 	{
 		let target = gameState.getEntityById(evt.target);
@@ -559,8 +563,8 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 			continue;
 		}
 
-		// try to garrison any attacked range siege unit
-		if (target.hasClass("Siege") && !target.hasClass("Melee") &&
+		// try to garrison any attacked catapult
+		if (target.hasClass("Catapult") &&
 			!target.getMetadata(PlayerID, "transport") && plan !== -2 && plan !== -3)
 		{
 			this.garrisonSiegeUnit(gameState, target);
@@ -572,6 +576,63 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 
 		if (target.isGarrisonHolder() && target.getArrowMultiplier())
 			this.garrisonUnitsInside(gameState, target, {"attacker": attacker});
+
+		if (target.hasClass("Unit") && attacker.hasClass("Unit"))
+		{
+			// Consider if we should retaliate or continue our task
+			if (target.hasClass("Support") || target.attackTypes() === undefined)
+				continue;
+			let orderData = target.unitAIOrderData();
+			let currentTarget = orderData && orderData.length && orderData[0].target ?
+				gameState.getEntityById(orderData[0].target) : undefined;
+			if (currentTarget)
+			{
+				let unitAIState = target.unitAIState();
+				let unitAIStateOrder = unitAIState ? unitAIState.split(".")[1] : "";
+				if (unitAIStateOrder == "COMBAT" && (currentTarget == attacker.id() ||
+					!currentTarget.hasClass("Structure") && !currentTarget.hasClass("Support")))
+					continue;
+				if (unitAIStateOrder == "REPAIR" && currentTarget.hasDefensiveFire())
+					continue;
+				if (unitAIStateOrder == "COMBAT" && !m.isSiegeUnit(currentTarget) &&
+				    gameState.ai.HQ.capturableTargets.has(orderData[0].target))
+				{
+					// take the nearest unit also attacking this structure to help us
+					let capturableTarget = gameState.ai.HQ.capturableTargets.get(orderData[0].target);
+					let minDist;
+					let minEnt;
+					let pos = attacker.position();
+					capturableTarget.ents.delete(target.id());
+					for (let entId of capturableTarget.ents)
+					{
+						if (allAttacked[entId])
+							continue;
+						let ent = gameState.getEntityById(entId);
+						if (!ent || !ent.position())
+							continue;
+						// Check that the unit is still attacking the structure (since the last played turn)
+						let state = ent.unitAIState();
+						if (!state || !state.split(".")[1] || state.split(".")[1] !== "COMBAT")
+							continue;
+						let entOrderData = ent.unitAIOrderData();
+						if (!entOrderData || !entOrderData.length || !entOrderData[0].target ||
+						     entOrderData[0].target != orderData[0].target)
+							continue;
+						let dist = API3.SquareVectorDistance(pos, ent.position());
+						if (minEnt && dist > minDist)
+							continue;
+						minDist = dist;
+						minEnt = ent;
+					}
+					if (minEnt)
+					{
+						capturableTarget.ents.delete(minEnt.id());
+						minEnt.attack(attacker.id(),  m.allowCapture(gameState, minEnt, attacker));
+					}
+				}
+			}
+			target.attack(attacker.id(),  m.allowCapture(gameState, target, attacker));
+		}
 	}
 };
 
