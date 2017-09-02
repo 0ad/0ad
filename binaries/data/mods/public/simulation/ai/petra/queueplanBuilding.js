@@ -313,23 +313,21 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 		radius = Math.ceil((template.obstructionRadius().max + 0.5) / obstructions.cellSize);
 
 	let bestTile;
-	let bestVal;
 	if (template.hasClass("House") && !alreadyHasHouses)
 	{
 		// try to get some space to place several houses first
 		bestTile = placement.findBestTile(3*radius, obstructions);
-		bestVal = bestTile[1];
+		if (!bestTile.val)
+			bestTile = undefined;
 	}
 
-	if (bestVal === undefined || bestVal === -1)
-	{
+	if (!bestTile)
 		bestTile = placement.findBestTile(radius, obstructions);
-		bestVal = bestTile[1];
-	}
-	let bestIdx = bestTile[0];
 
-	if (bestVal <= 0)
+	if (!bestTile.val)
 		return false;
+
+	let bestIdx = bestTile.idx;
 
 	let x = (bestIdx % obstructions.width + 0.5) * obstructions.cellSize;
 	let z = (Math.floor(bestIdx / obstructions.width) + 0.5) * obstructions.cellSize;

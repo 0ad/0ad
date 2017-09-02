@@ -392,7 +392,7 @@ m.TradeManager.prototype.checkEvents = function(gameState, events)
 m.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 {
 	let market1 = gameState.updatingCollection("OwnMarkets", API3.Filters.byClass("Market"), gameState.getOwnStructures());
-	let market2 = gameState.updatingCollection("ExclusiveAllyMarkets", API3.Filters.byClass("Market"), gameState.getExclusiveAllyEntities());
+	let market2 = gameState.updatingCollection("diplo-ExclusiveAllyMarkets", API3.Filters.byClass("Market"), gameState.getExclusiveAllyEntities());
 	if (market1.length + market2.length < 2)  // We have to wait  ... markets will be built soon
 	{
 		this.tradeRoute = undefined;
@@ -562,7 +562,7 @@ m.TradeManager.prototype.prospectForNewMarket = function(gameState, queues)
 	if (!gameState.ai.HQ.canBuild(gameState, "structures/{civ}_market"))
 		return;
 	if (!gameState.updatingCollection("OwnMarkets", API3.Filters.byClass("Market"), gameState.getOwnStructures()).length &&
-		!gameState.updatingCollection("ExclusiveAllyMarkets", API3.Filters.byClass("Market"), gameState.getExclusiveAllyEntities()).length)
+		!gameState.updatingCollection("diplo-ExclusiveAllyMarkets", API3.Filters.byClass("Market"), gameState.getExclusiveAllyEntities()).length)
 		return;
 	let template = gameState.getTemplate(gameState.applyCiv("structures/{civ}_market"));
 	if (!template)

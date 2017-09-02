@@ -1,6 +1,8 @@
 var g_HasCallback = false;
 var g_Controls;
 
+var g_DependentLabelIndentation = 25;
+
 function init(data)
 {
 	if (data && data.callback)
@@ -41,16 +43,12 @@ function init(data)
 			}
 			else
 				lastSize = body.size;
-			// small right shift of options which depends on another one
-			for (let opt of options[category])
-			{
-				if (!opt.label || !opt.parameters || !opt.parameters.config)
-					continue;
-				if (!opt.dependencies || opt.dependencies.indexOf(config) == -1)
-					continue;
-				label.caption = "      " + label.caption;
-				break;
-			}
+
+			let labelSize = label.size;
+			labelSize.left = option.dependency ? g_DependentLabelIndentation : 0;
+			labelSize.rright = g_Controls[config].control.size.rleft;
+			label.size = labelSize;
+
 			body.hidden = false;
 		}
 	}
@@ -73,11 +71,6 @@ function setupControl(option, i, category)
 	switch (option.type)
 	{
 	case "boolean":
-		// More space for the label
-		let text = Engine.GetGUIObjectByName(category + "Label[" + i + "]");
-		let size = text.size;
-		size.rright = 87;
-		text.size = size;
 		control = Engine.GetGUIObjectByName(category + "Tickbox[" + i + "]");
 		let checked;
 		for (let param in option.parameters)
@@ -196,10 +189,6 @@ function setupControl(option, i, category)
 			}
 		}
 
-		// as the enter key is not necessarily pressed after modifying an entry, we will register the input also
-		// - when the mouse leave the control (MouseLeave event)
-		// - or when saving or closing the window (registerChanges function)
-		// so we must ensure that something has indeed been modified
 		onUpdate = function(key, functionBody, minval, maxval)
 		{
 			return function()
@@ -219,8 +208,7 @@ function setupControl(option, i, category)
 		}(key, functionBody, minval, maxval);
 
 		control.caption = caption;
-		control.onPress = onUpdate;
-		control.onMouseLeave = onUpdate;
+		control.onTextEdit = onUpdate;
 		break;
 	case "dropdown":
 	{
@@ -283,34 +271,19 @@ function setupControl(option, i, category)
 
 function updateOptionPanel()
 {
-	// Update dependencies
 	for (let item in g_Controls)
 	{
-		let control = g_Controls[item];
-		if (control.type != "boolean" || !control.dependencies)
-			continue;
+		let enabled =
+			!g_Controls[item].dependencies ||
+			g_Controls[item].dependencies.every(config => Engine.ConfigDB_GetValue("user", config) == "true");
 
-		for (let dependency of control.dependencies)
-		{
-			g_Controls[dependency].control.enabled = control.control.checked;
-			g_Controls[dependency].label.enabled = control.control.checked;
-		}
+		g_Controls[item].control.enabled = enabled;
+		g_Controls[item].label.enabled = enabled;
 	}
 
-	// And main buttons
 	let hasChanges = Engine.ConfigDB_HasChanges("user");
 	Engine.GetGUIObjectByName("revertChanges").enabled = hasChanges;
 	Engine.GetGUIObjectByName("saveChanges").enabled = hasChanges;
-}
-
-/**
- * Register changes of input (text and number) controls
- */
-function registerChanges()
-{
-	for (let item in g_Controls)
-		if (g_Controls[item].type == "number" || g_Controls[item].type == "string")
-			g_Controls[item].control.onPress();
 }
 
 function setDefaults()
@@ -356,7 +329,6 @@ function revertChanges()
 
 function saveChanges()
 {
-	registerChanges();
 	Engine.ConfigDB_WriteFile("user", "config/user.cfg");
 	Engine.ConfigDB_SetChanges("user", false);
 	updateOptionPanel();
@@ -367,7 +339,6 @@ function saveChanges()
  **/
 function closePage()
 {
-	registerChanges();
 	if (Engine.ConfigDB_HasChanges("user"))
 	{
 		messageBox(

@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-08-28 09:03+0200\n"
-"PO-Revision-Date: 2017-08-28 15:06+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-08-30 09:02+0200\n"
+"PO-Revision-Date: 2017-08-30 21:30+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -70,7 +70,7 @@ msgstr "Fane"
 
 #: gui/common/functions_civinfo.js:31
 msgid "Gaia"
-msgstr ""
+msgstr "Gaia"
 
 #: gui/common/functions_global_object.js:57
 #, javascript-format
@@ -134,7 +134,7 @@ msgid "DELETE"
 msgstr "SLETT"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:291
-#: gui/options/options.js:336 gui/options/options.js:403
+#: gui/options/options.js:322 gui/options/options.js:377
 #: gui/pregame/mainmenu.js:254 gui/replaymenu/replay_actions.js:170
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
 #: gui/summary/summary.js:363
@@ -142,7 +142,7 @@ msgid "No"
 msgstr "Nei"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:291
-#: gui/options/options.js:336 gui/options/options.js:403
+#: gui/options/options.js:322 gui/options/options.js:377
 #: gui/pregame/mainmenu.js:254 gui/replaymenu/replay_actions.js:170
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
 #: gui/summary/summary.js:363
@@ -288,8 +288,8 @@ msgstr[1] "Underverk (%(min)s minute)"
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
 msgid_plural "Capture the Relic (%(min)s minutes)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Erobre relikviet (%(min)s minutt)"
+msgstr[1] "Erobre relikviet (%(min)s minutter)"
 
 #: gui/common/gamedescription.js:260
 msgid "Relic Count"
@@ -1105,24 +1105,24 @@ msgstr "Ugyldig lokale"
 msgid "OK"
 msgstr "OK"
 
-#: gui/options/options.js:162
+#: gui/options/options.js:148
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "Verdi: %(val)s (min: %(min)s, maks: %(max)s)"
 
-#: gui/options/options.js:334
+#: gui/options/options.js:320
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "Tilbakestilling av valg vil slette dine lagrede innstillinger. Ønsker du å fortsette?"
 
-#: gui/options/options.js:335 gui/options/options.js:402
+#: gui/options/options.js:321 gui/options/options.js:376
 #: gui/savedgames/load.js:187
 msgid "Warning"
 msgstr "Advarsel"
 
-#: gui/options/options.js:401
+#: gui/options/options.js:375
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Du har endringer som ikke er lagret, ønsker du å lukke dette vinduet?"
 
@@ -1654,7 +1654,7 @@ msgstr "Resultat"
 
 #: gui/summary/summary.js:101
 msgid "∞"
-msgstr ""
+msgstr "∞"
 
 #: gui/summary/summary.js:361
 msgid "Are you sure you want to quit the lobby?"
@@ -1853,7 +1853,7 @@ msgstr "Du kan automatisk sende oss anonyme tilbakemeldinger som vil hjelpe oss 
 
 #: gui/pregame/mainmenu.xml:539
 msgid "Alpha XXIII: Ken Wood"
-msgstr ""
+msgstr "Alpha XVIII: Ken Wood"
 
 #: gui/pregame/mainmenu.xml:541
 msgid ""
@@ -2758,7 +2758,7 @@ msgstr "Antall skyggeleggingseffekter. KREVER OMSTART AV SPILLET"
 
 #: gui/options/options.jsongraphicsSetting[2].label
 msgid "Shader Effects"
-msgstr ""
+msgstr "Skyggeleggingseffekter"
 
 #: gui/options/options.jsongraphicsSetting[3].tooltip
 msgid "Enable shadows"
@@ -2792,7 +2792,7 @@ msgstr "Veldig høy"
 msgid ""
 "Shadow map resolution. High values can crash the game when using a graphics "
 "card with low memory!"
-msgstr ""
+msgstr "Skyggekastingsoppløsning. Høye verdier kan kræsje spillet når du bruker et grafikkort med lite minne!"
 
 #: gui/options/options.jsongraphicsSetting[4].label
 msgid "Shadow Quality"
@@ -2906,7 +2906,7 @@ msgstr "For å spare prosessorarbeidsmengde, begrens tegnefrekvensen i menyer. S
 
 #: gui/options/options.jsongraphicsSetting[17].label
 msgid "FPS Throttling in Menus"
-msgstr ""
+msgstr "Skjermtaktsbegrensning i menyer"
 
 #: gui/options/options.jsongraphicsSetting[18].tooltip
 msgid ""
@@ -2916,7 +2916,7 @@ msgstr "For å spare prosessorarbeidsmengde, begrens tegnefrekvensen i kjørende
 
 #: gui/options/options.jsongraphicsSetting[18].label
 msgid "FPS Throttling in Games"
-msgstr ""
+msgstr "Skjermtaktsbegrensning i spill"
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."
@@ -3330,12 +3330,6 @@ msgid "- Fishing is faster than gathering food on fields."
 msgstr "-Fiske er mer formålstjenlig enn sanking av mat på markene."
 
 #: gui/text/tips/fishing.txt:8
-msgid ""
-"- Garrison a support unit aboard to double the fishing boat's gathering "
-"rate."
-msgstr "- Stasjoner en hjelpe-enhet ombord for å doble fiskebåtens fangst-hastighet."
-
-#: gui/text/tips/fishing.txt:10
 msgid "- Careful! Fish are not an infinite resource!"
 msgstr "- Forsiktig! Det finnes ikke uendelig med fisk!"
 

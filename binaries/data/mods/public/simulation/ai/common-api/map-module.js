@@ -227,7 +227,7 @@ m.Map.prototype.add = function(map)
 m.Map.prototype.findBestTile = function(radius, obstruction)
 {
 	let bestIdx;
-	let bestVal = -1;
+	let bestVal = 0;
 	for (let j = 0; j < this.length; ++j)
 	{
 		if (this.map[j] <= bestVal)
@@ -239,7 +239,7 @@ m.Map.prototype.findBestTile = function(radius, obstruction)
 		bestIdx = i;
 	}
 
-	return [bestIdx, bestVal];
+	return { "idx": bestIdx, "val": bestVal };
 };
 
 /** return any non obstructed (small) tile inside the (big) tile i from obstruction map */

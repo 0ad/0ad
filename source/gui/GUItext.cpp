@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -327,7 +327,7 @@ void CGUIString::SetValue(const CStrW& str)
 						LOGERROR("Parameter without value at pos %d '%s'", p, utf8_from_wstring(str));
 						break;
 					}
-					// fall-through
+					FALLTHROUGH;
 				case L'=':
 					// parse a quoted parameter
 					if (closing) // We still parse them to make error handling cleaner
@@ -354,7 +354,7 @@ void CGUIString::SetValue(const CStrW& str)
 								break;
 							}
 							// NOTE: We do not support \n in tag parameters
-							// fall-through
+							FALLTHROUGH;
 						default:
 							param.push_back(str[p]);
 						}
@@ -419,7 +419,7 @@ void CGUIString::SetValue(const CStrW& str)
 				m_RawString.push_back(L'\n');
 				break;
 			}
-			// fall-through
+			FALLTHROUGH;
 		default:
 			++rawpos;
 			m_RawString.push_back(str[p]);

@@ -3,6 +3,8 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Albert F., 2017
+# Albert F. <alb.fontquerni@gmail.com>, 2017
 # Catalanoic <catalanoic@gmail.com>, 2016
 # Francesc Famadas <kiski97@gmail.com>, 2015
 # Francesc Saló <whitrix@hotmail.es>, 2017
@@ -19,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-25 09:03+0200\n"
-"PO-Revision-Date: 2017-08-25 15:32+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-08-30 13:01+0000\n"
+"Last-Translator: Albert F. <alb.fontquerni@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -49,7 +51,7 @@ msgstr "Aleatori"
 
 #: gui/gamesetup/gamesetup.js:72
 msgid "Picks one civilization at random when the game starts."
-msgstr ""
+msgstr "Escull una civilització aleatòriament quan comença la partida."
 
 #: gui/gamesetup/gamesetup.js:110
 #, javascript-format
@@ -122,12 +124,12 @@ msgstr "<%(username)s>"
 #: gui/gamesetup/gamesetup.js:163
 msgctxt "map filter"
 msgid "Default"
-msgstr ""
+msgstr "Per defecte"
 
 #: gui/gamesetup/gamesetup.js:164
 msgctxt "map filter"
 msgid "All maps except naval and demo maps."
-msgstr ""
+msgstr "Tots els mapes excepte els navals i els de demostració."
 
 #: gui/gamesetup/gamesetup.js:170
 msgid "Naval Maps"
@@ -172,11 +174,11 @@ msgstr "Tots els mapes"
 #: gui/gamesetup/gamesetup.js:195
 msgctxt "map filter"
 msgid "Every map of the chosen maptype."
-msgstr ""
+msgstr "Cada mapa del tipus escolit"
 
 #: gui/gamesetup/gamesetup.js:417
 msgid "Map Type"
-msgstr ""
+msgstr "Tipus de mapa"
 
 #: gui/gamesetup/gamesetup.js:418
 msgid "Select a map type."
@@ -184,7 +186,7 @@ msgstr "Seleccioneu el tipus de mapa."
 
 #: gui/gamesetup/gamesetup.js:440
 msgid "Map Filter"
-msgstr ""
+msgstr "Filtre de mapes"
 
 #: gui/gamesetup/gamesetup.js:441
 msgid "Select a map filter."
@@ -192,7 +194,7 @@ msgstr "Seleccioneu un filtre de mapa."
 
 #: gui/gamesetup/gamesetup.js:455
 msgid "Select Map"
-msgstr ""
+msgstr "Seleccioneu el mapa"
 
 #: gui/gamesetup/gamesetup.js:456
 msgid "Select a map to play on."
@@ -200,7 +202,7 @@ msgstr "Seleccioneu un mapa on jugar."
 
 #: gui/gamesetup/gamesetup.js:469
 msgid "Map Size"
-msgstr ""
+msgstr "Mida del mapa"
 
 #: gui/gamesetup/gamesetup.js:470
 msgid "Select map size. (Larger sizes may reduce performance.)"
@@ -208,7 +210,7 @@ msgstr "Seleccioneu la mida del mapa. (Les mides grans poden reduir el rendiment
 
 #: gui/gamesetup/gamesetup.js:483
 msgid "Number of Players"
-msgstr ""
+msgstr "Nombre de jugadors"
 
 #: gui/gamesetup/gamesetup.js:484
 msgid "Select number of players."
@@ -220,7 +222,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:510
 msgid "Select population limit."
-msgstr ""
+msgstr "Seleccioneu el límit de població"
 
 #: gui/gamesetup/gamesetup.js:513
 #, javascript-format
@@ -231,7 +233,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:529
 msgid "Starting Resources"
-msgstr ""
+msgstr "Recursos inicials"
 
 #: gui/gamesetup/gamesetup.js:532
 #, javascript-format
@@ -244,7 +246,7 @@ msgstr "Selecciona els recursos inicials de la partida."
 
 #: gui/gamesetup/gamesetup.js:549
 msgid "Ceasefire"
-msgstr ""
+msgstr "Alto el foc"
 
 #: gui/gamesetup/gamesetup.js:550
 msgid "Set time where no attacks are possible."
@@ -252,7 +254,7 @@ msgstr "Ajusta el temps on no es pot atacar."
 
 #: gui/gamesetup/gamesetup.js:562
 msgid "Victory Condition"
-msgstr ""
+msgstr "Condició de victòria"
 
 #: gui/gamesetup/gamesetup.js:563
 msgid "Select victory condition."
@@ -279,7 +281,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:607
 msgid "Game Speed"
-msgstr ""
+msgstr "Velocitat del joc"
 
 #: gui/gamesetup/gamesetup.js:608
 msgid "Select game speed."
@@ -287,7 +289,7 @@ msgstr "Selecciona la velocitat del joc:"
 
 #: gui/gamesetup/gamesetup.js:671
 msgid "Chose the civilization for this player"
-msgstr ""
+msgstr "Escull la civilització per aquest jugador"
 
 #: gui/gamesetup/gamesetup.js:711
 msgid "Hero Garrison"
@@ -301,7 +303,7 @@ msgstr ""
 #. explored map options!
 #: gui/gamesetup/gamesetup.js:725
 msgid "Revealed Map"
-msgstr ""
+msgstr "Mapa revelat"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
@@ -313,7 +315,7 @@ msgstr "Activa o desactiva el mapa revelat (permet veure-ho tot)."
 #. explored map options!
 #: gui/gamesetup/gamesetup.js:743
 msgid "Explored Map"
-msgstr ""
+msgstr "Mapa explorat"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
@@ -339,7 +341,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:778
 msgid "Teams Locked"
-msgstr ""
+msgstr "Equips bloquejats"
 
 #: gui/gamesetup/gamesetup.js:779
 msgid "Toggle locked teams."
@@ -357,7 +359,7 @@ msgstr "Activa si l'últim jugador restant o l'últim conjunt restant de victòr
 
 #: gui/gamesetup/gamesetup.js:805
 msgid "Cheats"
-msgstr ""
+msgstr "Trucs"
 
 #: gui/gamesetup/gamesetup.js:806
 msgid "Toggle the usability of cheats."
@@ -374,7 +376,7 @@ msgstr "Permet o no que la puntuació d'aquesta partida entri a la classificaci�
 #: gui/gamesetup/gamesetup.js:844
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames or settings."
-msgstr ""
+msgstr "Premeu %(hotkey)s per autocompletar els noms dels jugadors o les opcions."
 
 #: gui/gamesetup/gamesetup.js:852
 msgid "Return to the lobby."
@@ -386,7 +388,7 @@ msgstr "Torna al menú principal."
 
 #: gui/gamesetup/gamesetup.js:857
 msgid "Start Game!"
-msgstr ""
+msgstr "Comença la partida!"
 
 #: gui/gamesetup/gamesetup.js:863
 msgid "Start a new game with the current settings."
@@ -410,12 +412,12 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:1709 gui/gamesetup/gamesetup.js:1748
 #, javascript-format
 msgid "%(option)s:"
-msgstr ""
+msgstr "%(option)s:"
 
 #: gui/gamesetup/gamesetup.js:1714
 msgctxt "option value"
 msgid "Unknown"
-msgstr ""
+msgstr "Desconegut"
 
 #: gui/gamesetup/gamesetup.js:1741
 msgid "Yes"
@@ -527,7 +529,7 @@ msgstr "Equip"
 
 #: gui/gamesetup/gamesetup.xml:(caption):141
 msgid "Show this message in the future"
-msgstr ""
+msgstr "Mostra aquest missatge en el futur"
 
 #: gui/gamesetup/gamesetup.xml:(caption):225
 msgid "Send"
@@ -636,7 +638,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:9
 msgid "\"Union gives strength.\" - Aesop (\"The Bundle of Sticks\")"
-msgstr ""
+msgstr "\"La unió fa la força.\" - Isop "
 
 #: gui/text/quotes.txt:10
 msgid ""
@@ -658,7 +660,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:13
 msgid "\"Slow and steady wins the race.\" - Aesop (\"The Hare and the Tortoise\")"
-msgstr ""
+msgstr "\"El lent i constant guanya la cursa.\" - Isop (\"La llebre i la tortuga\")"
 
 #: gui/text/quotes.txt:14
 msgid ""
@@ -779,7 +781,7 @@ msgstr ""
 msgid ""
 "\"The fox knows many tricks; the hedgehog one good one.\" - Archilochus "
 "(fragment 201)"
-msgstr ""
+msgstr "\"La guineu coneix molts trucs; l'eriçó, un de bo.\" - Arquíloc (fragment 201)"
 
 #: gui/text/quotes.txt:32
 msgid ""
@@ -811,7 +813,7 @@ msgstr ""
 msgid ""
 "\"Man is by nature a political animal.\" - Aristotle (\"Politics\", I. "
 "1253a.2)"
-msgstr ""
+msgstr "L'home és, per naturalesa, un animal polític.\" - Aristòtil (\"Política\", I. 1253a.2)"
 
 #: gui/text/quotes.txt:37
 msgid ""

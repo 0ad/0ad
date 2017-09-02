@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -81,7 +81,8 @@ enum EGUIMessageType
 	GUIM_LOST_FOCUS,
 	GUIM_PRESSED_MOUSE_RIGHT,
 	GUIM_DOUBLE_PRESSED_MOUSE_RIGHT,
-	GUIM_TAB				// Used by CInput
+	GUIM_TAB,				// Used by CInput
+	GUIM_TEXTEDIT
 };
 
 /**

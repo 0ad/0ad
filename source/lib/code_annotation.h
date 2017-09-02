@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (c) 2017 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -386,5 +386,17 @@ template<typename T, size_t n> char (*ArraySizeDeducer(T (&)[n]))[n];
 // widening it via preprocessor.
 #define WIDEN2(x) L ## x
 #define WIDEN(x) WIDEN2(x)
+
+// TODO: Replace this with [[fallthrough]] once we support C++17
+#if __has_cpp_attribute(fallthrough) || defined(__cplusplus) && __cplusplus >= 201703L
+# define FALLTHROUGH [[fallthrough]]
+#elif __has_cpp_attribute(gnu::fallthrough)
+# define FALLTHROUGH [[gnu::fallthrough]]
+#elif __has_cpp_attribute(clang::fallthrough)
+# define FALLTHROUGH [[clang::fallthrough]]
+#else
+# define FALLTHROUGH
+// TODO: Maybe use __fallthrough for the MSVC code analyzer (also figure out if we need to add some switch when switching to a newer version of VS that supports [[fallthrough]]
+#endif
 
 #endif	// #ifndef INCLUDED_CODE_ANNOTATION
