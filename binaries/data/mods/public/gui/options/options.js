@@ -82,20 +82,20 @@ var g_OptionType = {
 		"guiToValue": control => +control.caption,
 		"guiSetter": "onTextEdit",
 		"sanitizeValue": (value, option) =>
-			Math.min(option.parameters.max || Infinity,
-			Math.max(option.parameters.min || -Infinity, value)),
+			Math.min(option.max || Infinity,
+			Math.max(option.min || -Infinity, value)),
 		"tooltip": (value, option) =>
 			sprintf(
-				option.parameters.min !== undefined && option.parameters.max !== undefined ?
+				option.min !== undefined && option.max !== undefined ?
 					translateWithContext("option number", "Min: %(min)s, Max: %(max)s") :
-				option.parameters.min !== undefined && option.parameters.max === undefined ?
+				option.min !== undefined && option.max === undefined ?
 					translateWithContext("option number", "Min: %(min)s") :
-				option.parameters.min === undefined && option.parameters.max !== undefined ?
+				option.min === undefined && option.max !== undefined ?
 					translateWithContext("option number", "Max: %(max)s") :
 					"",
 				{
-					"min": option.parameters.min,
-					"max": option.parameters.max
+					"min": option.min,
+					"max": option.max
 				})
 	},
 	"dropdown":
@@ -107,8 +107,8 @@ var g_OptionType = {
 		"guiToValue": control => control.list_data[control.selected],
 		"guiSetter": "onSelectionChange",
 		"initGUI": (option, control) => {
-			control.list = option.parameters.list.map(e => e.label);
-			control.list_data = option.parameters.list.map(e => e.value);
+			control.list = option.list.map(e => e.label);
+			control.list_data = option.list.map(e => e.value);
 		},
 	},
 	"slider":
@@ -120,14 +120,14 @@ var g_OptionType = {
 		"guiToValue": control => control.value,
 		"guiSetter": "onValueChange",
 		"initGUI": (option, control) => {
-			control.max_value = option.parameters.max;
-			control.min_value = option.parameters.min;
+			control.max_value = option.max;
+			control.min_value = option.min;
 		},
 		"tooltip": (value, option) =>
 			sprintf(translateWithContext("slider number", "Value: %(val)s (min: %(min)s, max: %(max)s)"), {
 				"val": value.toFixed(2),
-				"min": option.parameters.min.toFixed(2),
-				"max": option.parameters.max.toFixed(2)
+				"min": option.min.toFixed(2),
+				"max": option.max.toFixed(2)
 			})
 	}
 };
@@ -213,7 +213,7 @@ function displayOptions()
 		// Load option data
 		let option = g_Options[g_SelectedCategory].options[i];
 		let optionType = g_OptionType[option.type];
-		let value = optionType.configToValue(Engine.ConfigDB_GetValue("user", option.parameters.config));
+		let value = optionType.configToValue(Engine.ConfigDB_GetValue("user", option.config));
 
 		// Setup control
 		let control = Engine.GetGUIObjectByName("option_control_" + option.type + "[" + i + "]");
@@ -237,11 +237,11 @@ function displayOptions()
 
 			control.tooltip = option.tooltip + "\n" + (optionType.tooltip && optionType.tooltip(value, option));
 
-			Engine.ConfigDB_CreateValue("user", option.parameters.config, String(value));
+			Engine.ConfigDB_CreateValue("user", option.config, String(value));
 			Engine.ConfigDB_SetChanges("user", true);
 
-			if (option.parameters.function)
-				Engine[option.parameters.function](value);
+			if (option.function)
+				Engine[option.function](value);
 
 			enableButtons();
 		};
@@ -296,7 +296,7 @@ function reallySetDefaults()
 {
 	for (let category in g_Options)
 		for (let option of g_Options[category].options)
-			Engine.ConfigDB_RemoveValue("user", option.parameters.config);
+			Engine.ConfigDB_RemoveValue("user", option.config);
 
 	Engine.ConfigDB_WriteFile("user", "config/user.cfg");
 	revertChanges();
@@ -309,10 +309,10 @@ function revertChanges()
 
 	for (let category in g_Options)
 		for (let option of g_Options[category].options)
-			if (option.parameters.function)
-				Engine[option.parameters.function](
+			if (option.function)
+				Engine[option.function](
 					g_OptionType[option.type].configToValue(
-						Engine.ConfigDB_GetValue("user", option.parameters.config)));
+						Engine.ConfigDB_GetValue("user", option.config)));
 
 	displayOptions();
 }
