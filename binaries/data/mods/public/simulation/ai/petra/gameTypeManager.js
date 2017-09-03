@@ -18,7 +18,7 @@ m.GameTypeManager = function(Config)
 	this.tryCaptureGaiaRelicLocal = false;
 	this.tryCaptureGaiaRelicLocalLapseTime = -1;
 	// Gaia relics which we are targeting currently and have not captured yet
-	this.targetedGaiaRelics = new Set(); 
+	this.targetedGaiaRelics = new Set();
 };
 
 /**
@@ -339,7 +339,7 @@ m.GameTypeManager.prototype.manageCriticalEntGuards = function(gameState)
 
 				if (guardEnt.getMetadata(PlayerID, "guardedEnt"))
 					guardEnt.setMetadata(PlayerID, "guardedEnt", undefined);
-				
+
 				if (++numWorkers >= 20)
 					break;
 			}

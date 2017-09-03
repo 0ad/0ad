@@ -88,7 +88,7 @@ m.answerDiplomacyRequestMessages = {
 			markForTranslation("%(_player_)s, my offer still stands. I will ally with you only if you send me a tribute of %(_amount_)s %(_resource_)s."),
 			markForTranslation("I’m still waiting for %(_amount_)s %(_resource_)s before accepting your alliance, %(_player_)s."),
 			markForTranslation("%(_player_)s, if you do not send me part of the %(_amount_)s %(_resource_)s tribute soon, I will break off our negotiations.")
-		]		
+		]
 	},
 	"neutral": {
 		"decline": [
@@ -109,7 +109,7 @@ m.answerDiplomacyRequestMessages = {
 		"waitingForTribute": [
 			markForTranslation("%(_player_)s, I will not accept your neutrality request unless you tribute me %(_amount_)s %(_resource_)s soon."),
 			markForTranslation("%(_player_)s, if you do not send me part of the %(_amount_)s %(_resource_)s tribute soon, I will break off our negotiations.")
-		]		
+		]
 	}
 };
 

@@ -878,11 +878,9 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 				continue;
 
 			if (minDist > 170000 && !this.navalMap)	// Reject if too far from any allied cc (not connected)
-			{
-				norm = 0;
 				continue;
-			}
-			else if (minDist > 130000)     // Disfavor if quite far from any allied cc
+
+			if (minDist > 130000)     // Disfavor if quite far from any allied cc
 			{
 				if (this.navalMap)
 				{
@@ -1192,7 +1190,7 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 		API3.warn("this would give a trading gain of " + expectedGain);
 	// do not keep it if gain is too small, except if this is our first BarterMarket
 	if (expectedGain < this.tradeManager.minimalGain ||
-		(expectedGain < 8 && (!template.hasClass("BarterMarket") || gameState.getOwnEntitiesByClass("BarterMarket", true).hasEntities())))
+	    expectedGain < 8 && (!template.hasClass("BarterMarket") || gameState.getOwnEntitiesByClass("BarterMarket", true).hasEntities()))
 		return false;
 
 	let x = (bestIdx % obstructions.width + 0.5) * obstructions.cellSize;
@@ -1544,9 +1542,9 @@ m.HQ.prototype.buildMoreHouses = function(gameState, queues)
 	if (this.requireHouses)
 	{
 		let houseTemplate = gameState.getTemplate(gameState.applyCiv("structures/{civ}_house"));
-			if (gameState.getPhaseEntityRequirements(2).every(req =>
-				!houseTemplate.hasClass(req.class) || gameState.getOwnStructures().filter(API3.Filters.byClass(req.class)).length >= req.count))
-				this.requireHouses = undefined;
+		if (!this.phasing || gameState.getPhaseEntityRequirements(this.phasing).every(req =>
+			!houseTemplate.hasClass(req.class) || gameState.getOwnStructures().filter(API3.Filters.byClass(req.class)).length >= req.count))
+			this.requireHouses = undefined;
 	}
 
 	// When population limit too tight
@@ -1611,7 +1609,7 @@ m.HQ.prototype.checkBaseExpansion = function(gameState, queues)
 	// Finally expand if we have lots of units (threshold depending on the aggressivity value)
 	let numUnits = gameState.getOwnUnits().length;
 	let numvar = 10 * (1 - this.Config.personality.aggressive);
-	if (numUnits > activeBases * (65 + numvar + (10 + numvar)*(activeBases-1)) || (this.saveResources && numUnits > 50))
+	if (numUnits > activeBases * (65 + numvar + (10 + numvar)*(activeBases-1)) || this.saveResources && numUnits > 50)
 	{
 		if (this.Config.debug > 2)
 			API3.warn("try to build a new base because of population " + numUnits + " for " + activeBases + " CCs");
@@ -1739,8 +1737,7 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 
 		// first barracks.
 		if (!barrackNb && (gameState.getPopulation() > this.Config.Military.popForBarracks1 ||
-			(this.phasing == 2 &&
-		         gameState.getOwnStructures().filter(API3.Filters.byClass("Village")).length < 5)))
+		    this.phasing == 2 && gameState.getOwnStructures().filter(API3.Filters.byClass("Village")).length < 5))
 		{
 			gameState.ai.queueManager.changePriority("militaryBuilding", 2*this.Config.priorities.militaryBuilding);
 			let preferredBase = this.findBestBaseForMilitary(gameState);
@@ -1971,7 +1968,7 @@ m.HQ.prototype.canBuild = function(gameState, structure, debug = false)
 	{
 		// if no base, check that we can build outside our territory
 		let buildTerritories = template.buildTerritories();
-		if (buildTerritories && (!buildTerritories.length || (buildTerritories.length === 1 && buildTerritories[0] === "own")))
+		if (buildTerritories && (!buildTerritories.length || buildTerritories.length === 1 && buildTerritories[0] === "own"))
 		{
 			this.stopBuilding.set(type, gameState.ai.elapsedTime + 180);
 			return false;
@@ -2251,7 +2248,7 @@ m.HQ.prototype.updateCaptureStrength = function(gameState)
 			let orderData = ent.unitAIOrderData();
 			if (!orderData || !orderData.length || !orderData[0].attackType)
 				continue;
-			if (orderData[0].attackType === "Capture" !== allowCapture)
+			if ((orderData[0].attackType === "Capture") !== allowCapture)
 				ent.attack(targetId, allowCapture);
 		}
 	}
