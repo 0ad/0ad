@@ -2,182 +2,182 @@
 	{
 		"label": "General",
 		"options":
-	[
-		{
-			"type": "string",
-			"label": "Playername (Single Player)",
-			"tooltip": "How you want to be addressed in Single Player matches.",
+		[
+			{
+				"type": "string",
+				"label": "Playername (Single Player)",
+				"tooltip": "How you want to be addressed in Single Player matches.",
 				"config": "playername.singleplayer"
-		},
-		{
-			"type": "string",
-			"label": "Playername (Multiplayer)",
-			"tooltip": "How you want to be addressed in Multiplayer matches (except lobby).",
+			},
+			{
+				"type": "string",
+				"label": "Playername (Multiplayer)",
+				"tooltip": "How you want to be addressed in Multiplayer matches (except lobby).",
 				"config": "playername.multiplayer"
-		},
-		{
-			"type": "boolean",
-			"label": "Windowed Mode",
-			"tooltip": "Start 0 A.D. in a window",
+			},
+			{
+				"type": "boolean",
+				"label": "Windowed Mode",
+				"tooltip": "Start 0 A.D. in a window",
 				"config": "windowed"
-		},
-		{
-			"type": "boolean",
-			"label": "Background Pause",
-			"tooltip": "Pause single player games when window loses focus",
+			},
+			{
+				"type": "boolean",
+				"label": "Background Pause",
+				"tooltip": "Pause single player games when window loses focus",
 				"config": "pauseonfocusloss"
-		},
-		{
-			"type": "boolean",
-			"label": "Enable Welcome Screen",
-			"tooltip": "If you disable it, the welcome screen will still appear once, each time a new version is available. You can always launch it from the main menu.",
+			},
+			{
+				"type": "boolean",
+				"label": "Enable Welcome Screen",
+				"tooltip": "If you disable it, the welcome screen will still appear once, each time a new version is available. You can always launch it from the main menu.",
 				"config": "gui.splashscreen.enable"
-		},
-		{
-			"type": "boolean",
-			"label": "Enable Game Setting Tips",
-			"tooltip": "Show tips when setting up a game.",
+			},
+			{
+				"type": "boolean",
+				"label": "Enable Game Setting Tips",
+				"tooltip": "Show tips when setting up a game.",
 				"config": "gui.gamesetup.enabletips"
-		},
-		{
-			"type": "boolean",
-			"label": "Detailed Tooltips",
-			"tooltip": "Show detailed tooltips for trainable units in unit-producing buildings.",
+			},
+			{
+				"type": "boolean",
+				"label": "Detailed Tooltips",
+				"tooltip": "Show detailed tooltips for trainable units in unit-producing buildings.",
 				"config": "showdetailedtooltips"
-		},
-		{
-			"type": "boolean",
-			"label": "Network Warnings",
-			"tooltip": "Show which player has a bad connection in multiplayer games.",
+			},
+			{
+				"type": "boolean",
+				"label": "Network Warnings",
+				"tooltip": "Show which player has a bad connection in multiplayer games.",
 				"config": "overlay.netwarnings"
-		},
-		{
-			"type": "boolean",
-			"label": "FPS Overlay",
-			"tooltip": "Show frames per second in top right corner.",
+			},
+			{
+				"type": "boolean",
+				"label": "FPS Overlay",
+				"tooltip": "Show frames per second in top right corner.",
 				"config": "overlay.fps"
-		},
-		{
-			"type": "boolean",
-			"label": "Realtime Overlay",
-			"tooltip": "Show current system time in top right corner.",
+			},
+			{
+				"type": "boolean",
+				"label": "Realtime Overlay",
+				"tooltip": "Show current system time in top right corner.",
 				"config": "overlay.realtime"
-		},
-		{
-			"type": "boolean",
-			"label": "Gametime Overlay",
-			"tooltip": "Show current simulation time in top right corner.",
+			},
+			{
+				"type": "boolean",
+				"label": "Gametime Overlay",
+				"tooltip": "Show current simulation time in top right corner.",
 				"config": "gui.session.timeelapsedcounter"
-		},
-		{
-			"type": "boolean",
-			"label": "Ceasefire Time Overlay",
-			"tooltip": "Always show the remaining ceasefire time.",
+			},
+			{
+				"type": "boolean",
+				"label": "Ceasefire Time Overlay",
+				"tooltip": "Always show the remaining ceasefire time.",
 				"config": "gui.session.ceasefirecounter"
-		},
-		{
-			"type": "boolean",
-			"label": "Persist Match Settings",
-			"tooltip": "Save and restore match settings for quick reuse when hosting another game",
+			},
+			{
+				"type": "boolean",
+				"label": "Persist Match Settings",
+				"tooltip": "Save and restore match settings for quick reuse when hosting another game",
 				"config": "persistmatchsettings"
-		},
-		{
-			"type": "dropdown",
-			"label": "Assign Players",
-			"tooltip": "Automatically assign joining clients to free player slots during the match setup.",
+			},
+			{
+				"type": "dropdown",
+				"label": "Assign Players",
+				"tooltip": "Automatically assign joining clients to free player slots during the match setup.",
 				"config": "gui.gamesetup.assignplayers",
 				"list": [
 					{ "value": "everyone", "label": "Everyone" },
 					{ "value": "buddies", "label": "Buddies" },
 					{ "value": "disabled", "label": "Disabled" }
 				]
-		},
-		{
-			"type": "dropdown",
-			"label": "Late Observer Joins",
-			"tooltip": "Allow everybody or buddies only to join the game as observer after it started",
+			},
+			{
+				"type": "dropdown",
+				"label": "Late Observer Joins",
+				"tooltip": "Allow everybody or buddies only to join the game as observer after it started",
 				"config": "network.lateobservers",
 				"list": [
 					{ "value": "everyone", "label": "Everyone" },
 					{ "value": "buddies", "label": "Buddies" },
 					{ "value": "disabled", "label": "Disabled" }
 				]
-		},
-		{
-			"type": "number",
-			"label": "Observer Limit",
-			"tooltip": "Prevent further observers from joining if the limit is reached",
+			},
+			{
+				"type": "number",
+				"label": "Observer Limit",
+				"tooltip": "Prevent further observers from joining if the limit is reached",
 				"config": "network.observerlimit",
 				"min": 0,
 				"max": 32
-		},
-		{
-			"type": "number",
-			"label": "Batch Training Size",
-			"tooltip": "Number of units trained per batch",
+			},
+			{
+				"type": "number",
+				"label": "Batch Training Size",
+				"tooltip": "Number of units trained per batch",
 				"config": "gui.session.batchtrainingsize",
 				"min": 1,
 				"max": 20
-		},
-		{
-			"type": "boolean",
-			"label": "Chat Timestamp",
-			"tooltip": "Show time that messages are posted in the lobby, gamesetup and ingame chat.",
+			},
+			{
+				"type": "boolean",
+				"label": "Chat Timestamp",
+				"tooltip": "Show time that messages are posted in the lobby, gamesetup and ingame chat.",
 				"config": "chat.timestamp"
-		},
-		{
-			"type": "boolean",
-			"label": "Aura Range Visualization",
-			"tooltip": "Display the range of auras of selected units and structures (can also be toggled in-game with the hotkey).",
+			},
+			{
+				"type": "boolean",
+				"label": "Aura Range Visualization",
+				"tooltip": "Display the range of auras of selected units and structures (can also be toggled in-game with the hotkey).",
 				"config": "gui.session.aurarange"
-		},
-		{
-			"type": "boolean",
-			"label": "Heal Range Visualization",
-			"tooltip": "Display the healing range of selected units (can also be toggled in-game with the hotkey).",
+			},
+			{
+				"type": "boolean",
+				"label": "Heal Range Visualization",
+				"tooltip": "Display the healing range of selected units (can also be toggled in-game with the hotkey).",
 				"config": "gui.session.healrange"
-		}
+			}
 		]
 	},
 	{
 		"label": "Graphics",
 		"tooltip": "Set the balance between performance and visual appearance.",
 		"options":
-	[
-		{
-			"type": "boolean",
-			"label": "Prefer GLSL",
-			"tooltip": "Use OpenGL 2.0 shaders (recommended)",
+		[
+			{
+				"type": "boolean",
+				"label": "Prefer GLSL",
+				"tooltip": "Use OpenGL 2.0 shaders (recommended)",
 				"config": "preferglsl",
 				"function": "Renderer_SetPreferGLSLEnabled"
-		},
-		{
-			"type": "boolean",
-			"label": "Post Processing",
-			"tooltip": "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)",
+			},
+			{
+				"type": "boolean",
+				"label": "Post Processing",
+				"tooltip": "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)",
 				"config": "postproc",
 				"function": "Renderer_SetPostprocEnabled"
-		},
-		{
-			"type": "slider",
-			"label": "Shader Effects",
-			"tooltip": "Number of shader effects. REQUIRES GAME RESTART",
+			},
+			{
+				"type": "slider",
+				"label": "Shader Effects",
+				"tooltip": "Number of shader effects. REQUIRES GAME RESTART",
 				"config": "materialmgr.quality",
 				"min": 0,
 				"max": 10
-		},
-		{
-			"type": "boolean",
-			"label": "Shadows",
-			"tooltip": "Enable shadows",
+			},
+			{
+				"type": "boolean",
+				"label": "Shadows",
+				"tooltip": "Enable shadows",
 				"config": "shadows",
 				"function": "Renderer_SetShadowsEnabled"
-		},
-		{
-			"type": "dropdown",
-			"label": "Shadow Quality",
-			"tooltip": "Shadow map resolution. High values can crash the game when using a graphics card with low memory!",
-			"dependencies": ["shadows"],
+			},
+			{
+				"type": "dropdown",
+				"label": "Shadow Quality",
+				"tooltip": "Shadow map resolution. High values can crash the game when using a graphics card with low memory!",
+				"dependencies": ["shadows"],
 				"config": "shadowquality",
 				"function": "Renderer_RecreateShadowMap",
 				"list": [
@@ -187,218 +187,218 @@
 					{ "value": 1, "label": "High" },
 					{ "value": 2, "label": "Very High" }
 				]
-		},
-		{
-			"type": "boolean",
-			"label": "Shadow Filtering",
-			"tooltip": "Smooth shadows",
-			"dependencies": ["shadows"],
+			},
+			{
+				"type": "boolean",
+				"label": "Shadow Filtering",
+				"tooltip": "Smooth shadows",
+				"dependencies": ["shadows"],
 				"config": "shadowpcf",
 				"function": "Renderer_SetShadowPCFEnabled"
-		},
-		{
-			"type": "boolean",
-			"label": "Unit Silhouettes",
-			"tooltip": "Show outlines of units behind buildings",
+			},
+			{
+				"type": "boolean",
+				"label": "Unit Silhouettes",
+				"tooltip": "Show outlines of units behind buildings",
 				"config": "silhouettes",
 				"function": "Renderer_SetSilhouettesEnabled"
-		},
-		{
-			"type": "boolean",
-			"label": "Particles",
-			"tooltip": "Enable particles",
+			},
+			{
+				"type": "boolean",
+				"label": "Particles",
+				"tooltip": "Enable particles",
 				"config": "particles",
 				"function": "Renderer_SetParticlesEnabled"
-		},
-		{
-			"type": "boolean",
-			"label": "Water Effects",
-			"tooltip": "When OFF, use the lowest settings possible to render water. This makes other settings irrelevant.",
+			},
+			{
+				"type": "boolean",
+				"label": "Water Effects",
+				"tooltip": "When OFF, use the lowest settings possible to render water. This makes other settings irrelevant.",
 				"config": "watereffects",
 				"function": "Renderer_SetWaterEffectsEnabled"
-		},
-		{
-			"type": "boolean",
-			"label": "HQ Water Effects",
-			"tooltip": "Use higher-quality effects for water, rendering coastal waves, shore foam, and ships trails.",
-			"dependencies": ["watereffects"],
+			},
+			{
+				"type": "boolean",
+				"label": "HQ Water Effects",
+				"tooltip": "Use higher-quality effects for water, rendering coastal waves, shore foam, and ships trails.",
+				"dependencies": ["watereffects"],
 				"config": "waterfancyeffects",
 				"function": "Renderer_SetWaterFancyEffectsEnabled"
-		},
-		{
-			"type": "boolean",
-			"label": "Real Water Depth",
-			"tooltip": "Use actual water depth in rendering calculations",
-			"dependencies": ["watereffects"],
+			},
+			{
+				"type": "boolean",
+				"label": "Real Water Depth",
+				"tooltip": "Use actual water depth in rendering calculations",
+				"dependencies": ["watereffects"],
 				"config": "waterrealdepth",
 				"function": "Renderer_SetWaterRealDepthEnabled"
-		},
-		{
-			"type": "boolean",
-			"label": "Water Reflections",
-			"tooltip": "Allow water to reflect a mirror image",
-			"dependencies": ["watereffects"],
+			},
+			{
+				"type": "boolean",
+				"label": "Water Reflections",
+				"tooltip": "Allow water to reflect a mirror image",
+				"dependencies": ["watereffects"],
 				"config": "waterreflection",
 				"function": "Renderer_SetWaterReflectionEnabled"
-		},
-		{
-			"type": "boolean",
-			"label": "Water Refraction",
-			"tooltip": "Use a real water refraction map and not transparency",
-			"dependencies": ["watereffects"],
+			},
+			{
+				"type": "boolean",
+				"label": "Water Refraction",
+				"tooltip": "Use a real water refraction map and not transparency",
+				"dependencies": ["watereffects"],
 				"config": "waterrefraction",
 				"function": "Renderer_SetWaterRefractionEnabled"
-		},
-		{
-			"type": "boolean",
-			"label": "Shadows on Water",
-			"tooltip": "Cast shadows on water",
-			"dependencies": ["watereffects"],
+			},
+			{
+				"type": "boolean",
+				"label": "Shadows on Water",
+				"tooltip": "Cast shadows on water",
+				"dependencies": ["watereffects"],
 				"config": "watershadows",
 				"function": "Renderer_SetWaterShadowsEnabled"
-		},
-		{
-			"type": "boolean",
-			"label": "Smooth LOS",
-			"tooltip": "Lift darkness and fog-of-war smoothly",
+			},
+			{
+				"type": "boolean",
+				"label": "Smooth LOS",
+				"tooltip": "Lift darkness and fog-of-war smoothly",
 				"config": "smoothlos",
 				"function": "Renderer_SetSmoothLOSEnabled"
-		},
-		{
-			"type": "boolean",
-			"label": "Show Sky",
-			"tooltip": "Render Sky",
+			},
+			{
+				"type": "boolean",
+				"label": "Show Sky",
+				"tooltip": "Render Sky",
 				"config": "showsky",
 				"function": "Renderer_SetShowSkyEnabled"
-		},
-		{
-			"type": "boolean",
-			"label": "VSync",
-			"tooltip": "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART",
+			},
+			{
+				"type": "boolean",
+				"label": "VSync",
+				"tooltip": "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART",
 				"config": "vsync"
-		},
-		{
-			"type": "slider",
-			"label": "FPS Throttling in Menus",
-			"tooltip": "To save CPU workload, throttle render frequency in all menus. Set to maximum to disable throttling.",
+			},
+			{
+				"type": "slider",
+				"label": "FPS Throttling in Menus",
+				"tooltip": "To save CPU workload, throttle render frequency in all menus. Set to maximum to disable throttling.",
 				"config": "adaptivefps.menu",
 				"min": 20,
 				"max": 100
-		},
-		{
-			"type": "slider",
-			"label": "FPS Throttling in Games",
-			"tooltip": "To save CPU workload, throttle render frequency in running games. Set to maximum to disable throttling.",
+			},
+			{
+				"type": "slider",
+				"label": "FPS Throttling in Games",
+				"tooltip": "To save CPU workload, throttle render frequency in running games. Set to maximum to disable throttling.",
 				"config": "adaptivefps.session",
 				"min": 20,
 				"max": 100
-		}
+			}
 		]
 	},
 	{
 		"label": "Sound",
 		"options":
-	[
-		{
-			"type": "slider",
-			"label": "Master Volume",
-			"tooltip": "Master audio gain",
+		[
+			{
+				"type": "slider",
+				"label": "Master Volume",
+				"tooltip": "Master audio gain",
 				"config": "sound.mastergain",
 				"function": "SetMasterGain",
 				"min": 0,
 				"max": 2
-		},
-		{
-			"type": "slider",
-			"label": "Music Volume",
-			"tooltip": "In game music gain",
+			},
+			{
+				"type": "slider",
+				"label": "Music Volume",
+				"tooltip": "In game music gain",
 				"config": "sound.musicgain",
 				"function": "SetMusicGain",
 				"min": 0,
 				"max": 2
-		},
-		{
-			"type": "slider",
-			"label": "Ambient Volume",
-			"tooltip": "In game ambient sound gain",
+			},
+			{
+				"type": "slider",
+				"label": "Ambient Volume",
+				"tooltip": "In game ambient sound gain",
 				"config": "sound.ambientgain",
 				"function": "SetAmbientGain",
 				"min": 0,
 				"max": 2
-		},
-		{
-			"type": "slider",
-			"label": "Action Volume",
-			"tooltip": "In game unit action sound gain",
+			},
+			{
+				"type": "slider",
+				"label": "Action Volume",
+				"tooltip": "In game unit action sound gain",
 				"config": "sound.actiongain",
 				"function": "SetActionGain",
 				"min": 0,
 				"max": 2
-		},
-		{
-			"type": "slider",
-			"label": "UI Volume",
-			"tooltip": "UI sound gain",
+			},
+			{
+				"type": "slider",
+				"label": "UI Volume",
+				"tooltip": "UI sound gain",
 				"config": "sound.uigain",
 				"function": "SetUIGain",
 				"min": 0,
 				"max": 2
-		},
-		{
-			"type": "boolean",
-			"label": "Nick Notification",
-			"tooltip": "Receive audio notification when someone types your nick",
+			},
+			{
+				"type": "boolean",
+				"label": "Nick Notification",
+				"tooltip": "Receive audio notification when someone types your nick",
 				"config": "sound.notify.nick"
-		}
-	]
+			}
+		]
 	},
 	{
 		"label": "Lobby",
 		"tooltip": "These settings only affect the multiplayer.",
 		"options":
-	[
-		{
-			"type": "number",
-			"label": "Chat Backlog",
-			"tooltip": "Number of backlogged messages to load when joining the lobby",
+		[
+			{
+				"type": "number",
+				"label": "Chat Backlog",
+				"tooltip": "Number of backlogged messages to load when joining the lobby",
 				"config": "lobby.history",
 				"min": "0"
-		},
-		{
-			"type": "boolean",
-			"label": "Game Rating Column",
-			"tooltip": "Show the average rating of the participating players in a column of the gamelist.",
+			},
+			{
+				"type": "boolean",
+				"label": "Game Rating Column",
+				"tooltip": "Show the average rating of the participating players in a column of the gamelist.",
 				"config": "lobby.columns.gamerating"
-		}
+			}
 		]
 	},
 	{
 		"label": "Chat Notifications",
 		"tooltip": "Regulate the verbosity of chat notifications.",
 		"options":
-	[
-		{
-			"type": "boolean",
-			"label": "Attack",
-			"tooltip": "Show a chat notification if you are attacked by another player",
+		[
+			{
+				"type": "boolean",
+				"label": "Attack",
+				"tooltip": "Show a chat notification if you are attacked by another player",
 				"config": "gui.session.notifications.attack"
-		},
-		{
-			"type": "boolean",
-			"label": "Tribute",
-			"tooltip": "Show a chat notification if an ally tributes resources to another team member if teams are locked, and all tributes in observer mode",
+			},
+			{
+				"type": "boolean",
+				"label": "Tribute",
+				"tooltip": "Show a chat notification if an ally tributes resources to another team member if teams are locked, and all tributes in observer mode",
 				"config": "gui.session.notifications.tribute"
-		},
-		{
-			"type": "boolean",
-			"label": "Barter",
-			"tooltip": "Show a chat notification to observers when a player bartered resources",
+			},
+			{
+				"type": "boolean",
+				"label": "Barter",
+				"tooltip": "Show a chat notification to observers when a player bartered resources",
 				"config": "gui.session.notifications.barter"
-		},
-		{
-			"type": "dropdown",
-			"label": "Phase",
-			"tooltip": "Show a chat notification if you or an ally have started, aborted or completed a new phase, and phases of all players in observer mode",
+			},
+			{
+				"type": "dropdown",
+				"label": "Phase",
+				"tooltip": "Show a chat notification if you or an ally have started, aborted or completed a new phase, and phases of all players in observer mode",
 				"config": "gui.session.notifications.phase",
 				"list": [
 					{ "value": "none", "label": "Disable" },
@@ -406,6 +406,6 @@
 					{ "value": "all", "label": "All displayed" }
 				]
 			}
-	]
+		]
 	}
 ]
