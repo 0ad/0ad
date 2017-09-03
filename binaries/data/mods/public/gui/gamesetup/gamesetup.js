@@ -972,8 +972,7 @@ function init(attribs)
 function initDefaults()
 {
 	// Remove gaia from both arrays
-	g_DefaultPlayerData = g_Settings.PlayerDefaults;
-	g_DefaultPlayerData.shift();
+	g_DefaultPlayerData = clone(g_Settings.PlayerDefaults.slice(1));
 
 	// Don't change the underlying defaults file, as Atlas uses that file too
 	for (let i in g_DefaultPlayerData)
@@ -981,6 +980,8 @@ function initDefaults()
 		g_DefaultPlayerData[i].Civ = "random";
 		g_DefaultPlayerData[i].Team = -1;
 	}
+
+	g_DefaultPlayerData = deepfreeze(g_DefaultPlayerData);
 }
 
 /**

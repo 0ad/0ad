@@ -30,5 +30,5 @@ function loadCivData(selectableOnly, gaia)
 	if (gaia)
 		civData.gaia = { "Code": "gaia", "Name": translate("Gaia") };
 
-	return civData;
+	return deepfreeze(civData);
 }

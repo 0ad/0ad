@@ -30,7 +30,7 @@ var g_Ambient = ["audio/ambient/dayscape/day_temperate_gen_03.ogg"];
 /**
  * Map, player and match settings set in gamesetup.
  */
-const g_GameAttributes = Object.freeze(Engine.GetInitAttributes());
+const g_GameAttributes = deepfreeze(Engine.GetInitAttributes());
 
 /**
  * Is this user in control of game settings (i.e. is a network server, or offline player).
@@ -191,7 +191,7 @@ var g_HasIdleWorker = false;
 function GetSimState()
 {
 	if (!g_SimState)
-		g_SimState = Engine.GuiInterfaceCall("GetSimulationState");
+		g_SimState = deepfreeze(Engine.GuiInterfaceCall("GetSimulationState"));
 
 	return g_SimState;
 }
@@ -199,7 +199,15 @@ function GetSimState()
 function GetEntityState(entId)
 {
 	if (!g_EntityStates[entId])
+	{
 		g_EntityStates[entId] = Engine.GuiInterfaceCall("GetEntityState", entId);
+
+		// Freeze all existing properties, but allow GetExtendedEntityState to extend the object
+		if (g_EntityStates[entId])
+			for (let name of Object.getOwnPropertyNames(g_EntityStates[entId]))
+				if (typeof prop == 'object' && prop !== null)
+					deepfreeze(g_EntityStates[entId][name])
+	}
 
 	return g_EntityStates[entId];
 }
@@ -207,15 +215,16 @@ function GetEntityState(entId)
 function GetExtendedEntityState(entId)
 {
 	let entState = GetEntityState(entId);
-	if (!entState || entState.extended)
-		return entState;
+	if (entState && !entState.extended)
+	{
+		let extension = Engine.GuiInterfaceCall("GetExtendedEntityState", entId);
+		for (let prop in extension)
+			entState[prop] = extension[prop];
+		entState.extended = true;
+		g_EntityStates[entId] = deepfreeze(entState);
+	}
 
-	let extension = Engine.GuiInterfaceCall("GetExtendedEntityState", entId);
-	for (let prop in extension)
-		entState[prop] = extension[prop];
-	entState.extended = true;
-	g_EntityStates[entId] = entState;
-	return entState;
+	return g_EntityStates[entId];
 }
 
 function GetTemplateData(templateName)
@@ -224,7 +233,7 @@ function GetTemplateData(templateName)
 	{
 		let template = Engine.GuiInterfaceCall("GetTemplateData", templateName);
 		translateObjectKeys(template, ["specific", "generic", "tooltip"]);
-		g_TemplateData[templateName] = template;
+		g_TemplateData[templateName] = deepfreeze(template);
 	}
 
 	return g_TemplateData[templateName];
@@ -239,7 +248,7 @@ function GetTechnologyData(technologyName, civ)
 	{
 		let template = Engine.GuiInterfaceCall("GetTechnologyData", { "name": technologyName, "civ": civ });
 		translateObjectKeys(template, ["specific", "generic", "description", "tooltip", "requirementsTooltip"]);
-		g_TechnologyData[civ][technologyName] = template;
+		g_TechnologyData[civ][technologyName] = deepfreeze(template);
 	}
 
 	return g_TechnologyData[civ][technologyName];
@@ -806,9 +815,9 @@ function onSimulationUpdate()
 	// g_TechnologyData data never changes, so it shouldn't be deleted.
 	g_EntityStates = {};
 	g_TemplateData = {};
+	g_SimState = undefined;
 
-	g_SimState = Engine.GuiInterfaceCall("GetSimulationState");
-	if (!g_SimState)
+	if (!GetSimState())
 		return;
 
 	updateCinemaPath();

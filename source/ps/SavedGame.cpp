@@ -305,6 +305,8 @@ JS::Value SavedGames::GetEngineInfo(const ScriptInterface& scriptInterface)
 	scriptInterface.SetProperty(metainfo, "version_minor", SAVED_GAME_VERSION_MINOR);
 	scriptInterface.SetProperty(metainfo, "engine_version", std::string(engine_version));
 	scriptInterface.SetProperty(metainfo, "mods", g_modsLoaded);
+
+	scriptInterface.FreezeObject(metainfo, true);
+
 	return metainfo;
 }
-

@@ -1,6 +1,5 @@
 /**
  * All known cheat commands.
- * @type {Object}
  */
 const g_Cheats = getCheatsData();
 
@@ -455,8 +454,6 @@ var g_NotificationsTypes =
 
 /**
  * Loads all known cheat commands.
- *
- * @returns {Object}
  */
 function getCheatsData()
 {
@@ -471,7 +468,7 @@ function getCheatsData()
 		else
 			cheats[currentCheat.Name] = currentCheat.Data;
 	}
-	return cheats;
+	return deepfreeze(cheats);
 }
 
 /**
