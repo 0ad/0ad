@@ -1,285 +1,280 @@
-var g_HasCallback = false;
-var g_Controls;
+/**
+ * Translated JSON file contents.
+ */
+var g_Options;
 
+/**
+ * Numerical index of the chosen category.
+ */
+var g_SelectedCategory;
+
+/**
+ * Remember whether to unpause running singleplayer games.
+ */
+var g_HasCallback;
+
+/**
+ * Vertical size of a tab button.
+ */
+var g_TabButtonHeight = 30;
+
+/**
+ * Vertical space between two tab buttons.
+ */
+var g_TabButtonDist = 5;
+
+/**
+ * Vertical distance between the top of the page and the first option.
+ */
+var g_OptionControlOffset = 5;
+
+/**
+ * Vertical size of each option control.
+ */
+var g_OptionControlHeight = 26;
+
+/**
+ * Vertical distance between two consecutive options.
+ */
+var g_OptionControlDist = 2;
+
+/**
+ * Horizontal indentation to distinguish options that depend on another option.
+ */
 var g_DependentLabelIndentation = 25;
 
-function init(data)
-{
-	if (data && data.callback)
-		g_HasCallback = true;
-	g_Controls = {};
-
-	let options = Engine.ReadJSONFile("gui/options/options.json");
-	for (let category in options)
+/**
+ * Defines the parsing of config strings and GUI control interaction for the different option types.
+ *
+ * @property configToValue - parses a string from the user config to a value of the declared type.
+ * @property valueToGui - sets the GUI control to display the given value.
+ * @property guiToValue - returns the value of the GUI control.
+ * @property guiSetter - event name that should be considered a value change of the GUI control.
+ * @property initGUI - sets properties of the GUI control that are independent of the current value.
+ * @property sanitizeValue - ensures that a given value is in the defined value range.
+ * @property tooltip - appends a custom tooltip to the given option description depending on the current value.
+ */
+var g_OptionType = {
+	"boolean":
 	{
-		let lastSize;
-		for (let i = 0; i < options[category].length; ++i)
-		{
-			let option = options[category][i];
-			if (!option.label || !option.parameters || !option.parameters.config)
-				continue;
-			let body = Engine.GetGUIObjectByName(category + "[" + i + "]");
-			let label = Engine.GetGUIObjectByName(category + "Label[" + i + "]");
-			let config = option.parameters.config;
-			g_Controls[config] = {
-				"control": setupControl(option, i, category),
-				"label": label,
-				"type": option.type,
-				"dependencies": option.dependencies || undefined,
-				"parameters": option.parameters
-			};
-			label.caption = translate(option.label);
-			label.tooltip = option.tooltip ? translate(option.tooltip) : "";
-			// Move each element to the correct place.
-			if (lastSize)
-			{
-				let newSize = new GUISize();
-				newSize.left = lastSize.left;
-				newSize.rright = lastSize.rright;
-				newSize.top = lastSize.bottom;
-				newSize.bottom = newSize.top + 26;
-				body.size = newSize;
-				lastSize = newSize;
-			}
-			else
-				lastSize = body.size;
-
-			let labelSize = label.size;
-			labelSize.left = option.dependency ? g_DependentLabelIndentation : 0;
-			labelSize.rright = g_Controls[config].control.size.rleft;
-			label.size = labelSize;
-
-			body.hidden = false;
-		}
+		"configToValue": config => config == "true",
+		"valueToGui": (value, control) => {
+			control.checked = value;
+		},
+		"guiToValue": control => control.checked,
+		"guiSetter": "onPress"
+	},
+	"string":
+	{
+		"configToValue": value => value,
+		"valueToGui": (value, control) => {
+			control.caption = value;
+		},
+		"guiToValue": control => control.caption,
+		"guiSetter": "onTextEdit"
+	},
+	"number":
+	{
+		"configToValue": value => +value,
+		"valueToGui": (value, control) => {
+			control.caption = value;
+		},
+		"guiToValue": control => +control.caption,
+		"guiSetter": "onTextEdit",
+		"sanitizeValue": (value, option) =>
+			Math.min(option.parameters.max || Infinity,
+			Math.max(option.parameters.min || -Infinity, value)),
+		"tooltip": (value, option) =>
+			sprintf(
+				option.parameters.min !== undefined && option.parameters.max !== undefined ?
+					translateWithContext("option number", "Min: %(min)s, Max: %(max)s") :
+				option.parameters.min !== undefined && option.parameters.max === undefined ?
+					translateWithContext("option number", "Min: %(min)s") :
+				option.parameters.min === undefined && option.parameters.max !== undefined ?
+					translateWithContext("option number", "Max: %(max)s") :
+					"",
+				{
+					"min": option.parameters.min,
+					"max": option.parameters.max
+				})
+	},
+	"dropdown":
+	{
+		"configToValue": value => value,
+		"valueToGui": (value, control) => {
+			control.selected = control.list_data.indexOf(value);
+		},
+		"guiToValue": control => control.list_data[control.selected],
+		"guiSetter": "onSelectionChange",
+		"initGUI": (option, control) => {
+			control.list = option.parameters.list.map(e => e.label);
+			control.list_data = option.parameters.list.map(e => e.value);
+		},
+	},
+	"slider":
+	{
+		"configToValue": value => +value,
+		"valueToGui": (value, control) => {
+			control.value = +value;
+		},
+		"guiToValue": control => control.value,
+		"guiSetter": "onValueChange",
+		"initGUI": (option, control) => {
+			control.max_value = option.parameters.max;
+			control.min_value = option.parameters.min;
+		},
+		"tooltip": (value, option) =>
+			sprintf(translateWithContext("slider number", "Value: %(val)s (min: %(min)s, max: %(max)s)"), {
+				"val": value.toFixed(2),
+				"min": option.parameters.min.toFixed(2),
+				"max": option.parameters.max.toFixed(2)
+			})
 	}
+};
 
-	updateOptionPanel();
+function init(data, hotloadData)
+{
+	g_HasCallback = hotloadData && hotloadData.callback || data && data.callback;
+	g_SelectedCategory = hotloadData ? hotloadData.selectedCategory : 0;
+
+	g_Options = Engine.ReadJSONFile("gui/options/options.json");
+	translateObjectKeys(g_Options, ["label", "tooltip"]);
+	deepfreeze(g_Options);
+
+	placeTabButtons();
+	displayOptions();
+}
+
+function getHotloadData()
+{
+	return {
+		"selectedCategory": g_SelectedCategory,
+		"callback": g_HasCallback
+	};
+}
+
+function placeTabButtons()
+{
+	for (let category in g_Options)
+	{
+		let button = Engine.GetGUIObjectByName("tabButton[" + category + "]");
+		if (!button)
+		{
+			warn("Too few tab-buttons!");
+			break;
+		}
+
+		button.hidden = false;
+
+		let size = button.size;
+		size.top = category * (g_TabButtonHeight + g_TabButtonDist);
+		size.bottom = size.top + g_TabButtonHeight;
+		button.size = size;
+		button.tooltip = g_Options[category].tooltip || "";
+
+		button.onPress = (category => function() {
+			g_SelectedCategory = category;
+			displayOptions();
+		})(category);
+
+		Engine.GetGUIObjectByName("tabButtonText[" + category + "]").caption = g_Options[category].label;
+	}
 }
 
 /**
- * Setup the apropriate control for a given option.
- *
- * @param option Structure containing the data to setup an option.
- * @param prefix Prefix to use when accessing control, for example "generalSetting" when the tickbox name is generalSettingTickbox[i].
+ * Sets up labels and controls of all options of the currently selected category.
  */
-function setupControl(option, i, category)
+function displayOptions()
 {
-	let control;
-	let onUpdate;
-	let key = option.parameters.config;
+	// Highlight the selected tab
+	Engine.GetGUIObjectByName("tabButtons").children.forEach((button, i) => {
+		button.sprite = i == g_SelectedCategory ? "ModernTabVerticalForeground" : "ModernTabVerticalBackground";
+	});
 
-	switch (option.type)
+	// Hide all controls
+	for (let body of Engine.GetGUIObjectByName("option_controls").children)
 	{
-	case "boolean":
-		control = Engine.GetGUIObjectByName(category + "Tickbox[" + i + "]");
-		let checked;
-		for (let param in option.parameters)
-		{
-			switch (param)
-			{
-			case "config":
-				checked = Engine.ConfigDB_GetValue("user", key) == "true";
-				break;
-			case "function":
-				break;
-			default:
-				warn("Unknown option source type '" + param + "'");
-			}
-		}
+		body.hidden = true;
+		for (let control of body.children)
+			control.hidden = true;
+	}
 
-		onUpdate = function(key)
-		{
-			return function()
-			{
-				if (option.parameters.function)
-					Engine[option.parameters.function](this.checked);
-				Engine.ConfigDB_CreateValue("user", key, String(this.checked));
-				Engine.ConfigDB_SetChanges("user", true);
-				updateOptionPanel();
-			};
-		}(key);
-
-		// Load final data to the control element.
-		control.checked = checked;
-		control.onPress = onUpdate;
-		break;
-	case "slider":
-		control = Engine.GetGUIObjectByName(category + "Slider[" + i + "]");
-		let value;
-		let callbackFunction;
-		let minvalue;
-		let maxvalue;
-
-		for (let param in option.parameters)
-		{
-			switch (param)
-			{
-			case "config":
-				value = +Engine.ConfigDB_GetValue("user", key);
-				break;
-			case "function":
-				if (Engine[option.parameters.function])
-					callbackFunction = option.parameters.function;
-				break;
-			case "min":
-				minvalue = +option.parameters.min;
-				break;
-			case "max":
-				maxvalue = +option.parameters.max;
-				break;
-			default:
-				warn("Unknown option source type '" + param + "'");
-			}
-		}
-
-		onUpdate = function(key, callbackFunction, minvalue, maxvalue)
-		{
-			return function()
-			{
-				this.tooltip =
-					(option.tooltip ? translate(option.tooltip) + "\n" : "") +
-					sprintf(translateWithContext("slider number", "Value: %(val)s (min: %(min)s, max: %(max)s)"), {
-						"val": +this.value.toFixed(2),
-						"min": +minvalue.toFixed(2),
-						"max": +maxvalue.toFixed(2)
-					});
-
-				if (+Engine.ConfigDB_GetValue("user", key) === this.value)
-					return;
-				Engine.ConfigDB_CreateValue("user", key, this.value);
-				Engine.ConfigDB_SetChanges("user", true);
-				if (callbackFunction)
-					Engine[callbackFunction](+this.value);
-				updateOptionPanel();
-			};
-		}(key, callbackFunction, minvalue, maxvalue);
-
-		control.value = value;
-		control.max_value = maxvalue;
-		control.min_value = minvalue;
-		control.onValueChange = onUpdate;
-		break;
-	case "number":
-	case "string":
-		control = Engine.GetGUIObjectByName(category + "Input[" + i + "]");
-		let caption;
-		let functionBody;
-		let minval;
-		let maxval;
-
-		for (let param in option.parameters)
-		{
-			switch (param)
-			{
-			case "config":
-				caption = Engine.ConfigDB_GetValue("user", key);
-				break;
-			case "function":
-				if (Engine[option.parameters.function])
-					functionBody = option.parameters.function;
-				break;
-			case "min":
-				minval = option.parameters.min;
-				break;
-			case "max":
-				maxval = option.parameters.max;
-				break;
-			default:
-				warn("Unknown option source type '" + param + "'");
-			}
-		}
-
-		onUpdate = function(key, functionBody, minval, maxval)
-		{
-			return function()
-			{
-				if (minval && +minval > +this.caption)
-					this.caption = minval;
-				if (maxval && +maxval < +this.caption)
-					this.caption = maxval;
-				if (Engine.ConfigDB_GetValue("user", key) == this.caption)
-					return;
-				Engine.ConfigDB_CreateValue("user", key, this.caption);
-				Engine.ConfigDB_SetChanges("user", true);
-				if (functionBody)
-					Engine[functionBody](+this.caption);
-				updateOptionPanel();
-			};
-		}(key, functionBody, minval, maxval);
-
-		control.caption = caption;
-		control.onTextEdit = onUpdate;
-		break;
-	case "dropdown":
+	// Initialize label and control of each option for this category
+	for (let i = 0; i < g_Options[g_SelectedCategory].options.length; ++i)
 	{
-		control = Engine.GetGUIObjectByName(category + "Dropdown[" + i + "]");
-		control.onSelectionChange = function(){};  // just the time to setup the value
-		let config;
-		let callbackFunction;
+		// Position vertically
+		let body = Engine.GetGUIObjectByName("option_control[" + i + "]");
+		let bodySize = body.size;
+		bodySize.top = g_OptionControlOffset + i * (g_OptionControlHeight + g_OptionControlDist);
+		bodySize.bottom = bodySize.top + g_OptionControlHeight;
+		body.size = bodySize;
+		body.hidden = false;
 
-		for (let param in option.parameters)
-		{
-			switch (param)
+		// Load option data
+		let option = g_Options[g_SelectedCategory].options[i];
+		let optionType = g_OptionType[option.type];
+		let value = optionType.configToValue(Engine.ConfigDB_GetValue("user", option.parameters.config));
+
+		// Setup control
+		let control = Engine.GetGUIObjectByName("option_control_" + option.type + "[" + i + "]");
+		control.tooltip = option.tooltip + "\n" + (optionType.tooltip && optionType.tooltip(value, option));
+		control.hidden = false;
+
+		if (optionType.initGUI)
+			optionType.initGUI(option, control);
+
+		control[optionType.guiSetter] = function() {};
+		optionType.valueToGui(value, control);
+
+		control[optionType.guiSetter] = function() {
+
+			let value = optionType.guiToValue(control);
+			if (optionType.sanitizeValue)
 			{
-			case "config":
-				config = Engine.ConfigDB_GetValue("user", key);
-				break;
-			case "function":
-				if (Engine[option.parameters.function])
-					callbackFunction = option.parameters.function;
-				break;
-			case "list":
-				control.list = option.parameters.list.map(e => translate(e.label));
-				let values = option.parameters.list.map(e => e.value);
-				control.list_data = values;
-				control.selected = values.map(String).indexOf(config);
-				break;
-			default:
-				warn("Unknown option source type '" + param + "'");
+				value = optionType.sanitizeValue(value, option);
+				optionType.valueToGui(value, control);
 			}
-		}
 
-		onUpdate = function(key, callbackFunction)
-		{
-			return function()
-			{
-				Engine.ConfigDB_CreateValue("user", key, this.list_data[this.selected]);
-				Engine.ConfigDB_SetChanges("user", true);
-				if (callbackFunction)
-					Engine[callbackFunction](this.list_data[this.selected]);
-				updateOptionPanel();
-			};
-		}(key, callbackFunction);
+			control.tooltip = option.tooltip + "\n" + (optionType.tooltip && optionType.tooltip(value, option));
 
-		control.onSelectionChange = onUpdate;
-		break;
+			Engine.ConfigDB_CreateValue("user", option.parameters.config, String(value));
+			Engine.ConfigDB_SetChanges("user", true);
+
+			if (option.parameters.function)
+				Engine[option.parameters.function](value);
+
+			enableButtons();
+		};
+
+		// Setup label
+		let label = Engine.GetGUIObjectByName("option_label[" + i + "]");
+		label.caption = option.label;
+		label.tooltip = option.tooltip;
+		label.hidden = false;
+
+		let labelSize = label.size;
+		labelSize.left = option.dependencies ? g_DependentLabelIndentation : 0;
+		labelSize.rright = control.size.rleft;
+		label.size = labelSize;
 	}
-	default:
-		warn("Unknown option type " + option.type + ", assuming string.");
-		control = Engine.GetGUIObjectByName(category + "Input[" + i + "]");
-		break;
-	}
-	control.hidden = false;
 
-	if (option.type == "slider")
-		control.onValueChange();
-	else
-		control.tooltip = option.tooltip ? translate(option.tooltip) : "";
-
-	return control;
+	enableButtons();
 }
 
-function updateOptionPanel()
+/**
+ * Enable exactly the buttons whose dependencies are met.
+ */
+function enableButtons()
 {
-	for (let item in g_Controls)
-	{
-		let enabled =
-			!g_Controls[item].dependencies ||
-			g_Controls[item].dependencies.every(config => Engine.ConfigDB_GetValue("user", config) == "true");
+	g_Options[g_SelectedCategory].options.forEach((option, i) => {
 
-		g_Controls[item].control.enabled = enabled;
-		g_Controls[item].label.enabled = enabled;
-	}
+		let enabled =
+			!option.dependencies ||
+			option.dependencies.every(config => Engine.ConfigDB_GetValue("user", config) == "true");
+
+		Engine.GetGUIObjectByName("option_label[" + i + "]").enabled = enabled;
+		Engine.GetGUIObjectByName("option_control_" + option.type + "[" + i + "]").enabled = enabled;
+	});
 
 	let hasChanges = Engine.ConfigDB_HasChanges("user");
 	Engine.GetGUIObjectByName("revertChanges").enabled = hasChanges;
@@ -299,8 +294,9 @@ function setDefaults()
 
 function reallySetDefaults()
 {
-	for (let item in g_Controls)
-		Engine.ConfigDB_RemoveValue("user", item);
+	for (let category in g_Options)
+		for (let option of g_Options[category].options)
+			Engine.ConfigDB_RemoveValue("user", option.parameters.config);
 
 	Engine.ConfigDB_WriteFile("user", "config/user.cfg");
 	revertChanges();
@@ -309,29 +305,23 @@ function reallySetDefaults()
 function revertChanges()
 {
 	Engine.ConfigDB_Reload("user");
-	for (let item in g_Controls)
-	{
-		let control = g_Controls[item];
-		if (control.parameters.function)
-		{
-			let value = Engine.ConfigDB_GetValue("user", item);
-			Engine[control.parameters.function](
-				(control.type == "string" || control.type == "dropdown") ?
-					value :
-				control.type == "boolean" ?
-					value == "true" :
-					+value);
-		}
-	}
 	Engine.ConfigDB_SetChanges("user", false);
-	init();
+
+	for (let category in g_Options)
+		for (let option of g_Options[category].options)
+			if (option.parameters.function)
+				Engine[option.parameters.function](
+					g_OptionType[option.type].configToValue(
+						Engine.ConfigDB_GetValue("user", option.parameters.config)));
+
+	displayOptions();
 }
 
 function saveChanges()
 {
 	Engine.ConfigDB_WriteFile("user", "config/user.cfg");
 	Engine.ConfigDB_SetChanges("user", false);
-	updateOptionPanel();
+	enableButtons();
 }
 
 /**

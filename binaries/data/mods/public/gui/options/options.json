@@ -1,5 +1,7 @@
-{
-	"generalSetting":
+[
+	{
+		"label": "General",
+		"options":
 	[
 		{
 			"type": "string",
@@ -135,8 +137,12 @@
 			"tooltip": "Display the healing range of selected units (can also be toggled in-game with the hotkey).",
 			"parameters": { "config": "gui.session.healrange" }
 		}
-	],
-	"graphicsSetting":
+		]
+	},
+	{
+		"label": "Graphics",
+		"tooltip": "Set the balance between performance and visual appearance.",
+		"options":
 	[
 		{
 			"type": "boolean",
@@ -269,8 +275,11 @@
 			"tooltip": "To save CPU workload, throttle render frequency in running games. Set to maximum to disable throttling.",
 			"parameters": { "config": "adaptivefps.session", "min": 20, "max": 100 }
 		}
-	],
-	"soundSetting":
+		]
+	},
+	{
+		"label": "Sound",
+		"options":
 	[
 		{
 			"type": "slider",
@@ -308,8 +317,12 @@
 			"tooltip": "Receive audio notification when someone types your nick",
 			"parameters": { "config": "sound.notify.nick" }
 		}
-	],
-	"lobbySetting":
+	]
+	},
+	{
+		"label": "Lobby",
+		"tooltip": "These settings only affect the multiplayer.",
+		"options":
 	[
 		{
 			"type": "number",
@@ -323,8 +336,12 @@
 			"tooltip": "Show the average rating of the participating players in a column of the gamelist.",
 			"parameters": { "config": "lobby.columns.gamerating" }
 		}
-	],
-	"notificationSetting":
+		]
+	},
+	{
+		"label": "Chat Notifications",
+		"tooltip": "Regulate the verbosity of chat notifications.",
+		"options":
 	[
 		{
 			"type": "boolean",
@@ -358,4 +375,5 @@
 			}
 		}
 	]
-}
+	}
+]
