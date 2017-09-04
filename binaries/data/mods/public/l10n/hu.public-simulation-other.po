@@ -13,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-08-21 09:05+0200\n"
-"PO-Revision-Date: 2017-08-28 16:55+0000\n"
-"Last-Translator: Gyuris Gellért <gellert.gyuris@gmail.com>\n"
+"POT-Creation-Date: 2017-09-01 09:03+0200\n"
+"PO-Revision-Date: 2017-09-02 06:11+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -360,413 +360,6 @@ msgid ""
 "us, I have abrogated my offer."
 msgstr "%(_player_)s, mivel nem válaszoltál a békekötési kérésemre, ezért visszavontam az ajánlatomat."
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:3
-msgid ""
-"Warning: This is an advanced tutorial and goes quite fast. If you don't keep"
-" up just restart and try again. Practise makes perfect!"
-msgstr "Figyelem: Ez egy speciális tanítójáték, amely viszonylag gyorsan halad. Ha nem tudsz lépést tartani, egyszerűen indítsd újra és próbáld meg még egyszer. Gyakorlat teszi a mestert!"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:8
-msgid ""
-"Lets get started, first train a batch (shift click) of 5 female citizens "
-"from the CC (Civil Center)."
-msgstr "Kezdjünk hozzá! Először csoportosan képezz ki (Shift + kattintás) 5 női polgárt a városházában."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:13
-msgid ""
-"Now, assign your female citizens to gather berries, your cavalryman to hunt "
-"the chickens and the citizen soldiers to gather wood."
-msgstr "Most oszd be a női polgárokat, hogy bogyókat szedjenek, a lovast, hogy csirkékre vadásszon, és a polgári katonákat, hogy fát gyűjtsenek."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:18
-msgid "Now set the rally point of your civil center on the berries."
-msgstr "Most állítsd be a városháza gyülekezőhelyét a bogyókra."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:23
-msgid ""
-"Queue some slingers to train after the female citizens, you won't have "
-"enough resources for a batch."
-msgstr "Állíts a sorba néhány parittyást a női polgárok után, mivel nem lesz elég nyersanyagod egy csoporthoz."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:28
-msgid ""
-"When your female citizens have finished training, use 4 to build a house "
-"nearby."
-msgstr "Amikor a női polgárok kiképzése befejeződik, használj 4-et egy ház építéséhez a közelben."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:33
-msgid ""
-"Set the CC's rally point on the nearby trees, queue more slingers, you want "
-"to train 6 right now."
-msgstr "Állítsd a városháza gyülekezőhelyét a közeli fákra, állíts sorba több parittyást, képezz ki rögtön 6-ot."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:38
-msgid "Queue a batch of 5 female citizens."
-msgstr "Állíts sorba csoportosan 5 női polgárt."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:43
-msgid "Use shift-click to queue another house for the 4 builders."
-msgstr "Használd a Shift + kattintást egy másik ház sorba állításához a 4 építő számára."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:48
-msgid ""
-"Set the rally point back to the berries once all of the citizen soldiers "
-"have finished training."
-msgstr "Állítsd vissza a gyülekezőpontot a bogyókra, amint az összes polgári katona kiképzése befejeződött."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:53
-msgid ""
-"Send one citizen soldier to gather stone, send 2 others to build a "
-"storehouse near the southern trees."
-msgstr "Küldj egy polgári katonát követ fejteni, másik 2-t pedig küldj raktárat építeni a déli fák közelébe."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:58
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:78
-msgid "Queue another 5 female citizens."
-msgstr "Állíts sorba további 5 női polgárt."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:63
-msgid "Use a female citizen to construct a field next to your CC."
-msgstr "Használj egy női polgárt egy mező építéséhez a városháza mellé."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:68
-msgid ""
-"Your cavalryman has probably run out of chickens by now, there are some "
-"goats to the left of your base."
-msgstr "A lovasodnak mostanra már valószínűleg elfogytak a csirkéi. Van néhány kecske a bázistól balra."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:73
-msgid "Use 2-3 more female citizens to construct the field."
-msgstr "Használj még 2-3 női polgárt a mező építéséhez."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:83
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:128
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:138
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:163
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:188
-msgid "Queue another house."
-msgstr "Állíts sorba még egy házat."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:88
-msgid ""
-"The berry bushes are getting crowded, send some female citizens to work the "
-"field, set the rally point there."
-msgstr "A bogyóbokroknál nagy a zsúfoltság, küldj néhány női polgárt a mezőre dolgozni. Állítsd oda a gyülekezőhelyet."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:93
-msgid "Queue another 5 female citizens, these should gather stone."
-msgstr "Állíts sorba további 5 női polgárt. Nekik követ kell fejteniük."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:98
-msgid ""
-"Move your woodcutters to the trees near the storehouse so they don’t have to"
-" walk as far."
-msgstr "Vidd át a favágókat a raktár melletti fákhoz, hogy ne kelljen olyan sokat gyalogolniuk."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:103
-msgid ""
-"Make sure the workers from the berry bushes are used to gather from the "
-"field rather than standing idle when they run out."
-msgstr "Győződj meg arról, hogy a bogyóbokroknál dolgozók a mezőn termeljenek ahelyett, hogy tétlenül álljanak, amikor elfogyott a bogyó."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:108
-msgid "Queue another house to be built."
-msgstr "Állíts sorba egy újabb házépítést."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:113
-msgid "Queue 5 more female citizens. These will gather wood."
-msgstr "Állíts sorba további 5 női polgárt. Ők fát fognak vágni."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:118
-msgid ""
-"Build another field, this decreases the amount of walking for your female "
-"citizens."
-msgstr "Építs még egy mezőt. Ez csökkenti a női polgárok gyaloglási idejét."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:123
-msgid ""
-"Train some more slingers, send them to gather stone. Train about 5, you may "
-"not have enough resources for a batch right now."
-msgstr "Képezz ki még néhány parittyást, és küldd őket követ fejteni. Képezz ki körülbelül 5-öt, bár valószínűleg most még nincs elég nyersanyagod a csoportos kiképzéshez."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:133
-msgid "Queue another batch of 5 female citizens. These will gather wood."
-msgstr "Állíts sorba csoportosan még 5 női polgárt. Ők fát fognak vágni."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:143
-msgid "Queue a batch of spearmen."
-msgstr "Állíts sorba egy csoport lándzsást."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:148
-msgid "Research the stone mining technology from the storehouse."
-msgstr "Fejleszd ki a kőfejtési technológiát a raktárban."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:153
-msgid "Queue a batch of slingers."
-msgstr "Állíts sorba egy csoport parittyást."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:158
-msgid ""
-"Move 3 women from wood and 3 from stone to farming. Women are cheap to train"
-" initially but later in the game it is best to maximize efficiency as you "
-"are able to train more citizen soldiers."
-msgstr "Helyezz át 3 nőt a favágóktól és 3-at a kőfejtőktől a termesztőkhöz. A nők kiképzése kezdetben olcsó, de a játék későbbi szakaszában célszerű a hatékonyság maximalizálása, ugyanis képes leszel több polgári katonát kiképezni."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:168
-msgid ""
-"The slingers that you queued earlier should gather stone once they are "
-"trained."
-msgstr "A korábban sorba állított parittyásoknak követ kell fejteniük, amint a kiképzésük befejeződött."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:173
-msgid "Queue a batch of spearmen, they should gather wood."
-msgstr "Állíts sorba egy csoport lándzsást. Nekik fát kell vágniuk."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:178
-msgid "Next queue a batch of slingers."
-msgstr "Ezután állíts sorba egy csoport parittyást."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:183
-msgid ""
-"Send some of the stone miners to mine metal, getting ready for the next age."
-msgstr "Küldj néhány kőfejtőt fémet bányászni, hogy készen állj a következő korszakra."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:193
-msgid "Start researching Phase 2."
-msgstr "Kezdd el a 2. szakasz fejlesztését."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:198
-msgid "Queue some slingers."
-msgstr "Állíts sorba néhány parittyást."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:203
-msgid ""
-"When you have advanced, use a single citizen soldier to place a barracks "
-"foundation. Then use the rest of the non food or house building female "
-"citizens to construct it."
-msgstr "Amikor felfejlődtél, használj egyetlen polgári katonát a laktanyák alapjának lerakásához. Ezután használd a maradék nem élelmet termelő vagy házat építő női polgárt a felépítéséhez."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:208
-msgid "Queue 5 more females for construction work."
-msgstr "Állíts sorba még 5 nőt az építési munkálatokhoz."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:213
-msgid ""
-"Queue a batch of slingers to gather the trees on the north side of your "
-"base."
-msgstr "Állíts sorba egy csoport parittyást, hogy kivágják a bázis északi oldalán lévő fákat."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:218
-msgid ""
-"This is the end of the walkthrough. This should give you a good idea of how "
-"to build up a nice economy rapidly."
-msgstr "Ez az oktatójáték vége. Remélhetőleg sok jó ötletet kaptál, hogyan lehet egy jó gazdaságot gyorsan kiépíteni."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:223
-msgid ""
-"At this point you should be able to fully use both training facilities, keep"
-" putting units into economic work, to keep growing faster and faster."
-msgstr "Ezen a ponton már képesnek kell lenned teljesen kihasználni mindkét kiképző épületet, az egységeket gazdasági munkára fogni, hogy egyre gyorsuló növekedést produkáljanak."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:228
-msgid ""
-"From this point you have a good base to build an army and wipe out the "
-"opposition."
-msgstr "Ettől a ponttól jó alapod van egy hadsereget építeni, és eltörölni az ellenfelet."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:233
-msgid "The key points to remember are:"
-msgstr "A legfontosabb megjegyzendő dolgok:"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:238
-msgid ""
-" - Don't have any idle units. Shift click queuing and rally points are very "
-"useful."
-msgstr " - Ne legyen tétlen egységed. A Shift + kattintásos sorba állítás és a gyülekezőhely nagyon hasznos."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:243
-msgid ""
-" - Use all of your resources, stockpiled resources are waste, having too "
-"much of a resource is waste."
-msgstr " - Minden nyersanyagot használj fel. A felhalmozott nyersanyagok haszontalanok, túl sok nyersanyagot birtokolni pazarlás."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:248
-msgid ""
-" - Use the right units for the right task, female citizens gather food, "
-"cavalry hunt, citizen soldiers do the rest."
-msgstr " - A megfelelő egységet használd az adott feladathoz: a női polgárok élelmet gyűjtsenek, a lovasok vadásszanak, a polgári katonák csináljanak minden mást."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:253
-msgid ""
-" - Don't be afraid to swap units from one resource to another, see point 2. "
-"Make sure they deposit what they are carrying first though."
-msgstr " - Ne félj átcsoportosítani egységeket egyik nyersanyagról a másikra (lásd a 2. pontot). Győződj meg arról, hogy lerakják, amit előzőleg szállítottak."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:258
-msgid ""
-" - Build enough houses, your CC should be kept busy as much as possible."
-msgstr " - Építs elég házat, a városházát annyira le kell terhelni, amennyire csak lehet."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:263
-msgid ""
-" - Female citizens are cheap, so you can build more of them and gather more "
-"resources."
-msgstr " - A női polgárok olcsóak, ezért többet létre lehet hozni belőlük, és több nyersanyagot gyűjthetnek."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:268
-msgid ""
-" - Don't get carried away on the last point or you will get raided and have "
-"no defense."
-msgstr " - Ne ragadj le az előző pontnál, különben le fognak rohanni, ha nincs védelmed."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:273
-msgid ""
-"Each map is different, so you will need to play slightly differently on "
-"each. This should give an outline for a high resource map."
-msgstr "Minden térkép más, ezért némileg máshogy kell játszani mindegyiken. Ez az útmutatás a nyersanyagokban gazdag térképekre vonatkozik."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:4
-msgid ""
-"Welcome to the 0 A.D. tutorial. First left-click on a female citizen, then "
-"Right-click on a berry bush nearby to make the unit collect food. Female "
-"citizens gather food faster than other units."
-msgstr "Üdvözlünk a 0 A.D. oktatójátékában. Először kattints a bal gombbal egy női polgárra, majd kattints a jobb gombbal egy közeli bogyóbokorra, hogy az egység élelmet gyűjtsön. A női polgárok gyorsabban gyűjtenek élelmet a többi egységnél."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:7
-msgid ""
-"Select the citizen-soldier, right-click on a tree near the Civil Center to "
-"begin collecting wood. Citizen-soldiers gather wood faster than female "
-"citizens."
-msgstr "Jelölj ki egy polgári katonát, majd kattints a jobb gombbal egy városháza közelében lévő fára a favágás megkezdéséhez. A polgári katonák gyorsabban vágják a fát a női polgároknál."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:11
-msgid ""
-"Select the Civil Center building, and shift-click on the Hoplite icon (2nd "
-"in the row) once to begin training 5 Hoplites."
-msgstr "Jelöld ki a városháza épületét, majd a Shift lenyomása közben kattints egyszer a hoplita ikonra (2. a sorban) az 5 hoplita kiképzésének megkezdéséhez."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:15
-msgid ""
-"Select the two idle female citizens and build a house nearby by selecting "
-"the house icon. Place the house by left-clicking on a piece of land."
-msgstr "Jelöld ki a két tétlen női polgárt, és építs a közelben egy házat a ház ikont kiválasztva. Bal kattintással helyezd el a házat egy üres földterületre."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:21
-msgid ""
-"Select the newly trained Hoplites and assign them to build a storehouse "
-"beside some nearby trees. They will begin to gather wood when it's "
-"constructed."
-msgstr "Jelöld ki az újonnan kiképzett hoplitákat, és utasítsd őket egy raktár építésére a közeli fák mellé. Amint végeznek az építéssel, nekiállnak fát vágni."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:27
-msgid ""
-"Build a set of 5 skirmishers by shift-clicking on the skirmisher icon (3rd "
-"in the row) in the Civil Center."
-msgstr "Építs egy 5-ös csoport csatárt a Shift lenyomása közben a csatár ikonra (3. a sorban) történő bal kattintással a városházán."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:33
-msgid ""
-"Build a farmstead in an open space beside the Civil Center using any idle "
-"builders."
-msgstr "Építs egy tanyát egy üres területen a városháza mellé valamelyik tétlen építővel."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:39
-msgid ""
-"Once the farmstead is constructed, its builders will automatically begin "
-"gathering food if there is any nearby. Select the builders and instead make "
-"them construct a field beside the farmstead."
-msgstr "Amint a tanya felépült, az építői automatikusan elkezdenek élelmet gyűjteni, ha találnak valamit a közelben. Jelöld ki az építőket, és inkább építtess velük egy mezőt a tanya mellé."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:45
-msgid ""
-"The field's builders will now automatically begin collecting food from the "
-"field. Using the newly created group of skirmishers, get them to build "
-"another house nearby."
-msgstr "A mező építői automatikusan el fognak kezdeni élelmet gyűjteni a mezőről. Az újonnan létrehozott csatárok csoportjával építtess egy újabb házat a közelben."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:51
-msgid ""
-"Train 5 Hoplites from the Civil Center. Select the Civil Center and with it "
-"selected right click on a tree nearby. Units from the Civil Center will now "
-"automatically gather wood."
-msgstr "Képezz ki 5 hoplitát a városházában. Jelöld ki a városházát, és miközben az ki van jelölve, jobb kattintással válassz egy fát a közelben. Az egységek a városházából így automatikusan fát fognak vágni."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:57
-msgid ""
-"Order the idle Skirmishers to build an outpost to the north east at the edge"
-" of your territory.  This will be the fifth Village Phase structure that you"
-" have built, allowing you to advance to the Town Phase."
-msgstr "Rendeld a tétlen csatárokat egy előőrs építéséhez a területed északkeleti részére. Ez lesz az ötödik felépített épület a falusi szakaszban, amely lehetővé teszi a fejlesztést a városi szakaszra."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:63
-msgid ""
-"Select the Civil Center again and advance to Town Phase by clicking on the "
-"'II' icon. This will allow Town Phase buildings to be constructed."
-msgstr "Jelöld ki újra városházát, és fejleszd városi szakaszra a „II” ikonra való kattintással. Ez lehetővé fogja tenni a városi szakaszhoz tartozó épületek építését."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:69
-msgid ""
-"Start building 5 female citizens in the Civil Center and set its rally point"
-" to the farm (right click on it)."
-msgstr "Kezdd el 5 női polgár létrehozását a városházában, és állítsd be a gyülekezőhelyüket a farmra (jobb kattintás a farmon)."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:74
-msgid ""
-"Build a Barracks nearby. Whenever your population limit is reached, build an"
-" extra house using any available builder units."
-msgstr "Építs egy laktanyát a közelben. Valahányszor a eléred népességkorlátot, építs egy további házat bármely elérhető építő egységgel."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:80
-msgid ""
-"Prepare for an attack by an enemy player. Build more soldiers using the "
-"Barracks, and get idle soldiers to build a Defense Tower near your Outpost."
-msgstr "Készülj fel egy támadásra valamelyik ellenséges játékostól. Hozz létre több katonát a laktanyákban, és a tétlen katonákkal építtess védőtornyot az előőrs közelében."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:86
-msgid ""
-"Build a Blacksmith and research the Infantry Training technology (sword "
-"icon) to improve infantry hack attack."
-msgstr "Építs egy kovácsműhelyet, és fejleszd ki a Gyalogsági kiképzés technológiát (kard ikon) a gyalogsági vágás támadás növeléséhez."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:92
-msgid "The enemy is coming. Build more soldiers to fight off the enemies."
-msgstr "Ellenség érkezik. Hozz létre több katonát, hogy leküzd az ellenséget."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:99
-msgid ""
-"The enemy's attack has been defeated. Now build a market and temple while "
-"assigning new units to gather any required resources."
-msgstr "Az ellenséges támadás visszaverve. Most építs piacot és templomot, miközben új egységeket rendelsz a szükséges nyersanyagok gyűjtéséhez."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:104
-msgid ""
-"Now that City Phase requirements have been reached, select your Civil Center"
-" and advance to City Phase."
-msgstr "Most már teljesítetted a nagyvárosi szakasz követelményeit. Jelöld ki a városházát, és fejleszd fel nagyvárosi szakaszra."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:110
-msgid ""
-"Now that you are in City Phase, build a fortress nearby and use it to build "
-"2 Battering Rams."
-msgstr "Mostantól nagyvárosi szakaszban vagy. Építs egy erődöt a közelben, és hozz létre benne 2 faltörő kost."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:115
-msgid ""
-"Stop all your soldiers gathering resources and instead task small groups to "
-"find the enemy Civil Center on the map. Female citizens should continue to "
-"gather resources."
-msgstr "Minden katonát vonj vissza a nyersanyagok gyűjtésétől, és kis csoportokat alkotva inkább kerestesd meg velük az ellenséges városházát a térképen. A női polgárok folytassák a nyersanyagok gyűjtését."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:122
-msgid ""
-"The enemy's base has been spotted, send your siege weapons and all remaining"
-" soldiers to destroy it."
-msgstr "Az ellenséges bázist felfedezték. Küldd az ostromgépeidet és az összes megmaradt katonádat annak lerombolására."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:126
-msgid "The enemy has been defeated. All tutorial tasks are now completed…"
-msgstr "Az ellenséget legyőzted. Most már az összes oktatófeladat teljesítve…"
-
 #: simulation/components/BuildRestrictions.js:87
 #, javascript-format
 msgid "%(name)s cannot be built due to unknown error"
@@ -841,7 +434,7 @@ msgstr "%(name)s nem építhető %(territoryType)s területre. Érvényes terül
 msgid "%(name)s must be built on a valid shoreline"
 msgstr "%(name)s csak érvényes partvonalra építhető"
 
-#: simulation/components/BuildRestrictions.js:277
+#: simulation/components/BuildRestrictions.js:281
 #, javascript-format
 msgid ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meter "
@@ -852,7 +445,7 @@ msgid_plural ""
 msgstr[0] "%(name)s és %(category)s túl közel vannak egymáshoz, legalább%(distance)s méter távolság kell legyen közöttük"
 msgstr[1] "%(name)s és %(category)s túl közel vannak egymáshoz, legalább%(distance)s méter távolság kell legyen közöttük"
 
-#: simulation/components/BuildRestrictions.js:299
+#: simulation/components/BuildRestrictions.js:302
 #, javascript-format
 msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
@@ -863,28 +456,28 @@ msgstr[1] "%(name)s és %(category)s túl messze vannak egymástól, legfeljebb 
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:339
+#: simulation/components/BuildRestrictions.js:342
 msgctxt "Territory type list"
 msgid "own"
 msgstr "saját"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:341
+#: simulation/components/BuildRestrictions.js:344
 msgctxt "Territory type list"
 msgid "ally"
 msgstr "szövetséges"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:343
+#: simulation/components/BuildRestrictions.js:346
 msgctxt "Territory type list"
 msgid "neutral"
 msgstr "semleges"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:345
+#: simulation/components/BuildRestrictions.js:348
 msgctxt "Territory type list"
 msgid "enemy"
 msgstr "ellenséges"
@@ -968,51 +561,51 @@ msgstr "%(player)s vesztett (csalás)."
 msgid "You need to select a building that trains units."
 msgstr "Ki kell választanod egy épületet, amely egységeket képez ki."
 
-#: simulation/helpers/Commands.js:124
+#: simulation/helpers/Commands.js:133
 msgid "(Cheat - control all units)"
 msgstr "(Csalás - összes egység irányítása)"
 
-#: simulation/helpers/Commands.js:139
+#: simulation/helpers/Commands.js:148
 msgid "(Cheat - reveal map)"
 msgstr "(Csalás - térkép felfedése)"
 
-#: simulation/helpers/Commands.js:444
+#: simulation/helpers/Commands.js:453
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr "%(player)s feladta."
 
-#: simulation/helpers/Commands.js:586
+#: simulation/helpers/Commands.js:595
 msgid "(Cheat - promoted units)"
 msgstr "(Csalás - előléptetett egységek)"
 
-#: simulation/helpers/Commands.js:700
+#: simulation/helpers/Commands.js:709
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Nem fejleszthető, mivel a távolsági követelmények nincsenek ellenőrizve, vagy a terep akadályozza."
 
-#: simulation/helpers/Commands.js:710
+#: simulation/helpers/Commands.js:719
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "A beszállásolt egység nem fejleszthető."
 
-#: simulation/helpers/Commands.js:756
+#: simulation/helpers/Commands.js:765
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "%(_player_)s ellen támadást kértek."
 
-#: simulation/helpers/Commands.js:792
+#: simulation/helpers/Commands.js:801
 msgid "There are no bribable units"
 msgstr "Nincsenek lefizethető egységek."
 
-#: simulation/helpers/Commands.js:838
+#: simulation/helpers/Commands.js:847
 msgid "Unable to ungarrison unit(s)"
 msgstr "Nem lehet kiengedni az egységeket"
 
-#: simulation/helpers/Commands.js:852
+#: simulation/helpers/Commands.js:861
 msgid "Some unit(s) can't go back to work"
 msgstr "Néhány egység nem tud visszamenni dolgozni"
 
-#: simulation/helpers/Commands.js:1106
+#: simulation/helpers/Commands.js:1115
 msgid "The building's technology requirements are not met."
 msgstr "Az épület technológiai követelményei nincsenek teljesítve."
 
@@ -1251,13 +844,3 @@ msgid ""
 "\n"
 "The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -50% for Sandbox to +60% for Very Hard (Medium 0%). In addition, the Sandbox level does not expand nor attack."
 msgstr "Petra a 0 A.D. alapértelmezett MI botja. Kérjük jelentsd a hibákat a Wildfire Games-nek (lásd a hivatkozást a főmenüben).\n\nA MI bónusz/büntetés rendszert alkalmaz a nyersanyagok felhalmozására (gyűjtési sebességre és kereskedés növekedésre is) -50%-tól a homokozóban +60%-ig nagyon nehéz szinten (a közepes szint 0%). Továbbá a homokozó szinten nincs terjeszkedés és támadás."
-
-#: simulation/ai/tutorial-ai/data.jsonname
-msgid "Tutorial AI"
-msgstr "Oktatójáték MI"
-
-#: simulation/ai/tutorial-ai/data.jsondescription
-msgid ""
-"The Tutorial AI should only be used on the \"Introductory Tutorial\" "
-"scenario."
-msgstr "Az oktatójáték MI csak a „Bevezető oktatójáték” küldetésben használható."

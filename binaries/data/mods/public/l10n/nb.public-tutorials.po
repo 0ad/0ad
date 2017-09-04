@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2017-08-21 09:07+0200\n"
-"PO-Revision-Date: 2017-08-21 09:07+0200\n"
+"POT-Creation-Date: 2017-09-01 09:05+0200\n"
+"PO-Revision-Date: 2017-09-01 09:05+0200\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>, 2017\n"
 "Language-Team: Norwegian Bokmål (https://www.transifex.com/wildfire-games/teams/17418/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -17,6 +17,240 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: nb\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: maps/tutorials/Introductory_Tutorial.js:3
+msgid "Welcome to the 0 A.D. tutorial."
+msgstr "Velkommen til 0 A.D-veilederen."
+
+#: maps/tutorials/Introductory_Tutorial.js:6
+msgid ""
+"First left-click on a female citizen, then Right-click on a berry bush "
+"nearby to make the unit collect food. Female citizens gather food faster "
+"than other units."
+msgstr ""
+"Først, venstreklikk på en kvinnelig borger, høyreklikk på en bærbuske i "
+"nærheten for å be henne om å sanke mat. Kvinnelige borgere sanker mat "
+"raskere enn andre enheter."
+
+#: maps/tutorials/Introductory_Tutorial.js:15
+msgid ""
+"Select the citizen-soldier, right-click on a tree near the Civil Center to "
+"begin collecting wood. Citizen-soldiers gather wood faster than female "
+"citizens."
+msgstr ""
+"Velg bysoldaten, høyreklikk på et tre nært samfunnssenteret for å begynne "
+"sankingen av trevirke. Bysoldater sanker tre raskere enn sine kvinnelige "
+"motstykker."
+
+#: maps/tutorials/Introductory_Tutorial.js:24
+msgid ""
+"Select the Civil Center building, and shift-click on the Hoplite icon (2nd "
+"in the row) once to begin training 5 Hoplites."
+msgstr ""
+"Velg samfunnssenterbygningen, shift-klikk på hoplitt-ikonet (nr. to på "
+"raden) én gang for å begynne opptrening av fem hoplitter."
+
+#: maps/tutorials/Introductory_Tutorial.js:32
+#: maps/tutorials/Introductory_Tutorial.js:69
+#: maps/tutorials/Introductory_Tutorial.js:151
+#: maps/tutorials/Introductory_Tutorial.js:227
+#: maps/tutorials/starting_economy_walkthrough.js:100
+#: maps/tutorials/starting_economy_walkthrough.js:159
+msgid "Do not forget to shift-click to produce several units."
+msgstr "Ikke glem å shift-klikke for å produsere flerfoldige enheter."
+
+#: maps/tutorials/Introductory_Tutorial.js:33
+#: maps/tutorials/Introductory_Tutorial.js:152
+#: maps/tutorials/starting_economy_walkthrough.js:101
+msgid "Shift-click on the HOPLITE icon."
+msgstr "Shift-klikk på HOPLITT-ikonet."
+
+#: maps/tutorials/Introductory_Tutorial.js:41
+msgid ""
+"Select the two idle female citizens and build a house nearby by selecting "
+"the house icon. Place the house by left-clicking on a piece of land."
+msgstr ""
+"Velg de to arbeidsledige kvinnelige borgerne og bygg et hus i nærheten ved å"
+" velge hus-ikonet. Plasser bygningen ved å venstre-klikke på et ledig "
+"område."
+
+#: maps/tutorials/Introductory_Tutorial.js:49
+msgid ""
+"When they are ready, select the newly trained Hoplites and assign them to "
+"build a storehouse beside some nearby trees. They will begin to gather wood "
+"when it's constructed."
+msgstr ""
+"Når de er klare, velg de nytrente hoplittene og beordre dem til å lage et "
+"lager ved siden av noen trær i nærheten. De vil begynne å sanke tømmer når "
+"lagere er ferdig."
+
+#: maps/tutorials/Introductory_Tutorial.js:57
+msgid ""
+"Build a set of 5 skirmishers by shift-clicking on the skirmisher icon (3rd "
+"in the row) in the Civil Center."
+msgstr ""
+
+#: maps/tutorials/Introductory_Tutorial.js:70
+msgid "Shift-click on the SKIRMISHER icon."
+msgstr ""
+
+#: maps/tutorials/Introductory_Tutorial.js:78
+msgid ""
+"Build a farmstead in an open space beside the Civil Center using any idle "
+"builders."
+msgstr ""
+"Bygg en gårdsbygning i et åpent område ved siden av samfunnssenteret ved å "
+"bruke arbeidsledige byggere."
+
+#: maps/tutorials/Introductory_Tutorial.js:90
+msgid "Let's wait for the farmstead to be built."
+msgstr "La oss vente på at gårdsbygningen reises."
+
+#: maps/tutorials/Introductory_Tutorial.js:102
+msgid ""
+"Once the farmstead is constructed, its builders will automatically begin "
+"gathering food if there is any nearby. Select the builders and instead make "
+"them construct a field beside the farmstead."
+msgstr ""
+"Straks gårdsbygningen er ferdig vil byggerne automatisk sanke mat dersom det"
+" finnes i nærheten. Velg byggerne og få dem til å lage en åker ved siden av "
+"gårdsbygningen isteden."
+
+#: maps/tutorials/Introductory_Tutorial.js:126
+msgid ""
+"The field's builders will now automatically begin collecting food from the "
+"field. Using the newly created group of skirmishers, get them to build "
+"another house nearby."
+msgstr ""
+"De som lager åkeren vil nå automatisk begynne å sanke korn. Bruk de nytrente"
+" frontsoldatene til å lage et hus til i nærheten."
+
+#: maps/tutorials/Introductory_Tutorial.js:134
+msgid ""
+"Train 5 Hoplites from the Civil Center. Select the Civil Center and with it "
+"selected right click on a tree nearby. Units from the Civil Center will now "
+"automatically gather wood."
+msgstr ""
+"Tren fem hoplitter fra samfunnssenteret. Velg det og høyreklikk på et tre i "
+"nærheten. Enheter fra samfunnsenteret vil nå automatisk sanke trevirke."
+
+#: maps/tutorials/Introductory_Tutorial.js:166
+msgid ""
+"Select the Civic Center, then hover your mouse over the tree and right-click"
+" when you see your cursor change into a Wood icon."
+msgstr ""
+"Velg samfunnssenteret, flytt så pekeren over treet og høyreklikk når du ser "
+"den endre seg til et tre-ikon."
+
+#: maps/tutorials/Introductory_Tutorial.js:175
+msgid ""
+"Order the idle Skirmishers to build an outpost to the north east at the edge"
+" of your territory.  This will be the fifth Village Phase structure that you"
+" have built, allowing you to advance to the Town Phase."
+msgstr ""
+"Beordre arbeidsledige fortropper til å bygge en utpost i nord-øst av ditt "
+"territorium. Dette vil være den femte bygningen i landsby-fasen slik at du "
+"nå kan gå videre til by-fasen."
+
+#: maps/tutorials/Introductory_Tutorial.js:183
+msgid ""
+"Select the Civil Center again and advance to Town Phase by clicking on the "
+"'II' icon (you have to wait for the outpost to be built first). This will "
+"allow Town Phase buildings to be constructed."
+msgstr ""
+
+#: maps/tutorials/Introductory_Tutorial.js:195
+msgid ""
+"While waiting for the phasing up, you may reaffect your idle workers to "
+"gathering the resources you are short of."
+msgstr ""
+
+#: maps/tutorials/Introductory_Tutorial.js:210
+msgid ""
+"Start building 5 female citizens in the Civil Center and set its rally point"
+" to the farm (right click on it)."
+msgstr ""
+"Start med å trene fem kvinnelige borgere i samfunnssenteret og sett "
+"marsjmålet på gården (høyreklikk)."
+
+#: maps/tutorials/Introductory_Tutorial.js:228
+msgid "Shift-click on the FEMALE icon."
+msgstr "Shift-klikk på det KVINNELIGE ikonet."
+
+#: maps/tutorials/Introductory_Tutorial.js:248
+msgid ""
+"Build a Barracks nearby. Whenever your population limit is reached, build an"
+" extra house using any available builder units."
+msgstr ""
+"Bygg kaserner i nærheten. Bygg nye bolighus ved hjelp av alle ledige enheter"
+" hver gang befolkningsgrensen nås."
+
+#: maps/tutorials/Introductory_Tutorial.js:256
+msgid ""
+"Prepare for an attack by an enemy player. Build more soldiers using the "
+"Barracks, and get idle soldiers to build a Defense Tower near your Outpost."
+msgstr ""
+"Forbered deg på angrep fra en fiendtlig spiller. Tren flere soldater i "
+"kasernene og få arbeidsløse soldater til å byge et forsvarstårn nær "
+"utposten."
+
+#: maps/tutorials/Introductory_Tutorial.js:264
+msgid ""
+"Build a Blacksmith and research the Infantry Training technology (sword "
+"icon) to improve infantry hack attack."
+msgstr ""
+"Bygg ei smie og utforsk teknologi for trening av fotsoldatteknologi (sverd-"
+"ikonet) for å forbedre fotsoldaters hugg-angrep."
+
+#: maps/tutorials/Introductory_Tutorial.js:272
+msgid "The enemy is coming. Build more soldiers to fight off the enemies."
+msgstr "Fienden kommer. Bygg flere soldater for å bekjempe fienden."
+
+#: maps/tutorials/Introductory_Tutorial.js:280
+msgid "Try to repel the attack."
+msgstr "Prøv å stå imot angrepet."
+
+#: maps/tutorials/Introductory_Tutorial.js:290
+msgid ""
+"The enemy's attack has been defeated. Now build a market and a temple while "
+"assigning new units to gather any required resources."
+msgstr ""
+"Fiendens angrep har blitt slått ned. Bygg et marked og et tempel mens du ber"
+" nye enheter om å samle inn nødvendige ressurser."
+
+#: maps/tutorials/Introductory_Tutorial.js:311
+msgid ""
+"When that City Phase requirements have been reached, select your Civil "
+"Center and advance to City Phase."
+msgstr ""
+
+#: maps/tutorials/Introductory_Tutorial.js:319
+msgid ""
+"While waiting for the phase change, you may build more soldiers at the "
+"barracks."
+msgstr ""
+
+#: maps/tutorials/Introductory_Tutorial.js:327
+msgid ""
+"Now that you are in City Phase, build a fortress nearby (gather some stone "
+"first if needed) and then use it to build 2 Battering Rams."
+msgstr ""
+
+#: maps/tutorials/Introductory_Tutorial.js:349
+msgid ""
+"Stop all your soldiers gathering resources and instead task small groups to "
+"find the enemy Civil Center on the map. Once The enemy's base has been "
+"spotted, send your siege weapons and all remaining soldiers to destroy it.\n"
+msgstr ""
+
+#: maps/tutorials/Introductory_Tutorial.js:350
+msgid "Female citizens should continue to gather resources."
+msgstr "Kvinnelige borgere burde fortsette å samle ressurser."
+
+#: maps/tutorials/Introductory_Tutorial.js:361
+msgid "The enemy has been defeated. These tutorial tasks are now completed."
+msgstr ""
+"Fienden har blitt beseiret. Disse veiledningsoppgavene er nå fullførte."
 
 #: maps/tutorials/starting_economy_walkthrough.js:4
 msgid ""
@@ -235,19 +469,10 @@ msgid ""
 "less time than training 5 units individually."
 msgstr ""
 "Siden bysoldater er bedre en kvinnelige borgere på å hente trevirke, velg "
-"samfunnssenteret og shift-klikk på det andre enhetsikonet, hopelittene "
+"samfunnssenteret og shift-klikk på det andre enhetsikonet, hoplittene "
 "(shift-klikking produserer en gruppe på fem enheter). Du kan også trene "
 "enheter individuelt ved å simpelthen klikke på dem, men å trene fem enheter "
 "samtidig tar mindre tid enn fem enheter hver for seg."
-
-#: maps/tutorials/starting_economy_walkthrough.js:100
-#: maps/tutorials/starting_economy_walkthrough.js:159
-msgid "Do not forget to shift-click to produce several units."
-msgstr "Ikke glem å shift-klikke for å produsere flerfoldige enheter."
-
-#: maps/tutorials/starting_economy_walkthrough.js:101
-msgid "Shift-click on the HOPLITE icon."
-msgstr "Shift+klikk på HOPELITT-ikonet."
 
 #: maps/tutorials/starting_economy_walkthrough.js:110
 #: maps/tutorials/starting_economy_walkthrough.js:169
@@ -332,7 +557,7 @@ msgid ""
 " and shift-click on the female citizen icon to train 5."
 msgstr ""
 "La oss trene noen kvinnelige arbeidere til å sanke mer mat. Velg "
-"samfunnssenteret og Shift+klikk på det kvinnelige borgersymbolet for å trene"
+"samfunnssenteret og Shift-klikk på det kvinnelige borgersymbolet for å trene"
 " fem stykk."
 
 #: maps/tutorials/starting_economy_walkthrough.js:160
@@ -403,9 +628,9 @@ msgstr ""
 "Velg to av dine nylig trente kvinnelige borgere og spør dem om å bygge disse"
 " husene i det tomme området øst for samfunnssentret. For å gjøre det, etter "
 "å ha valgt de kvinnelige borgerne, klikk på huset på panelet nedest til "
-"høyre og shift-klikk på posisjonen i kartet der du ønsker å bygge det første"
-" huset, fulgt av et shift+klikk for posisjonen for den andre huset (når du "
-"gir ordrer, vil shift+klikk putte ordren i køen når de fullfører arbeidet "
+"høyre og Shift-klikk på posisjonen i kartet der du ønsker å bygge det første"
+" huset, fulgt av et Shift-klikk for posisjonen for den andre huset (når du "
+"gir ordrer, vil Shift-klikk putte ordren i køen når de fullfører arbeidet "
 "deres). Trykk Esc for å fjerne huspekeren, slik at du ikke sprer hus rundt "
 "omkring på kartet."
 
@@ -415,7 +640,7 @@ msgid ""
 "then shift-click on the second one to add her to the selection."
 msgstr ""
 "Påminnelse: For å velge bare to kvinnelige borgere, klikk på den første og "
-"så shift+klikk på den andre for å legge henne til i utvalget."
+"så Shift-klikk på den andre for å legge henne til i utvalget."
 
 #: maps/tutorials/starting_economy_walkthrough.js:238
 msgid ""
@@ -619,7 +844,7 @@ msgstr ""
 "seg, kan du legge til to soldater for å bygge den raskere. For å gjøre det, "
 "velg samfunnssenteret og sett et samlingspunkt på brakkenefundamentet ved å "
 "høyreklikke på det (du burde se et hammer-ikon). Produser så to byggere til "
-"ved å klikke på hopelitt-ikonet to ganger."
+"ved å klikke på hoplitt-ikonet to ganger."
 
 #: maps/tutorials/starting_economy_walkthrough.js:386
 msgid ""
@@ -672,9 +897,9 @@ msgid ""
 "then shift-right-click on the Stone mine to gather it.\n"
 msgstr ""
 "I så måte bør vi beordre dem om å levne sitt trevirke på samfunnssenteret på"
-" veien. For å gjøre det, vil vi legge ordrer i kø med shift+klikk: Velg "
-"soldatene dine, shift+klikk på samfunnssenteret for å levne trevirket, og "
-"shift+klikk så på steinbruddet for å drive det.\n"
+" veien. For å gjøre det, vil vi legge ordrer i kø med Shift-klikk: Velg "
+"soldatene dine, Shift-klikk på samfunnssenteret for å levne trevirket, og "
+"Shift-klikk så på steinbruddet for å drive det.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:408
 msgid ""
@@ -692,6 +917,25 @@ msgstr ""
 "Dette er slutten på veiledningen. Dette burde ha gitt deg en god ide om "
 "hovedtrekkene i å sette opp økonomien din."
 
+#: maps/tutorials/Introductory_Tutorial.xml:Description:39
+msgid "This is a basic tutorial to get you started playing 0 A.D."
+msgstr ""
+"Dette er en grunnleggende veiledning som har til hensikt å hjelpe deg igang "
+"med å spille 0 A.D"
+
+#: maps/tutorials/Introductory_Tutorial.xml:PlayerData[0].Name:39
+#: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
+msgid "Player 1"
+msgstr "Spiller 1"
+
+#: maps/tutorials/Introductory_Tutorial.xml:PlayerData[1].Name:39
+msgid "Player 2"
+msgstr "Spiller 1"
+
+#: maps/tutorials/Introductory_Tutorial.xml:Name:39
+msgid "Introductory Tutorial"
+msgstr "Introduksjons-veiledning"
+
 #: maps/tutorials/starting_economy_walkthrough.xml:Description:39
 msgid ""
 "This map will give a rough guide for starting the game effectively.  Early "
@@ -701,10 +945,6 @@ msgstr ""
 "Dette kartet gir en grov gjennomgang av hvordan man effektivt starter "
 "spillet. Tidlig i spiller er ressurssanking så raskt som mulig det "
 "viktigste, slik at du kan fremskaffe nok tropper senere."
-
-#: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
-msgid "Player 1"
-msgstr "Spiller 1"
 
 #: maps/tutorials/starting_economy_walkthrough.xml:Name:39
 msgid "Starting Economy Walkthrough"

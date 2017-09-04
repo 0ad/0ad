@@ -8,6 +8,7 @@
 # Annunnaky <doublemiu@gmail.com>, 2015
 # Arthur Glovchynski <kontakt.artix@gmail.com>, 2015
 # Astinus Eberhard <inactive+Astinus@transifex.com>, 2015
+# Bartosz B <bartosz@bobin.eu>, 2017
 # Filip Juszczak <fifon.pl@gmail.com>, 2015
 # Gregory <pixelpeon@gmail.com>, 2015
 # Leszek Szary, 2014-2015
@@ -27,9 +28,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-08-09 09:05+0200\n"
-"PO-Revision-Date: 2017-08-09 14:44+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-09-01 09:03+0200\n"
+"PO-Revision-Date: 2017-09-03 19:58+0000\n"
+"Last-Translator: Bartosz B <bartosz@bobin.eu>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -879,7 +880,7 @@ msgstr "Fala wrogich wojsk atakuje!"
 #: maps/random/survivalofthefittest_triggers.js:351
 #, javascript-format
 msgid "%(player)s has been defeated (lost civic center)."
-msgstr ""
+msgstr "%(player)s został pokonany (utrata centrum osady)."
 
 #: maps/scenarios/Cinema_Demo.js:6
 msgid "Cutscene starts after 5 seconds"
@@ -942,10 +943,10 @@ msgstr "Pokonaj swojego wroga by wygrać!"
 #, javascript-format
 msgid "%(lastPlayer)s has won (treasure collected)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(lastPlayer)s wygrał (zebrano skarb)"
+msgstr[1] "%(lastPlayer)s wygrał (zebrano skarb)"
+msgstr[2] "%(lastPlayer)s wygrał (zebrano skarb)"
+msgstr[3] "%(players)s i %(lastPlayer)s wygrali (zebrano skarb)"
 
 #: maps/scenarios/treasure_islands.js:105
 #, javascript-format
@@ -971,9 +972,8 @@ msgstr "Nastała wiosna w greckiej Arcadii. Wiosenne deszcze użyżniły to co n
 #: and Albion.xml:PlayerData[0].Name:27 maps/scenarios/Fast
 #: Oasis.xml:PlayerData[0].Name:27
 #: maps/scenarios/Flight_demo_2.xml:PlayerData[0].Name:27
-#: maps/scenarios/Gold_Rush.xml:PlayerData[0].Name:27
-#: maps/scenarios/Introductory_Tutorial.xml:PlayerData[0].Name:39
-#: maps/scenarios/Laconia 01.xml:PlayerData[0].Name:27
+#: maps/scenarios/Gold_Rush.xml:PlayerData[0].Name:27 maps/scenarios/Laconia
+#: 01.xml:PlayerData[0].Name:27
 #: maps/scenarios/Migration.xml:PlayerData[0].Name:27
 #: maps/scenarios/Necropolis.xml:PlayerData[0].Name:39 maps/scenarios/Saharan
 #: Oases.xml:PlayerData[0].Name:27 maps/scenarios/Sandbox -
@@ -1039,9 +1039,8 @@ msgstr "Gracz 1 "
 #: and Albion.xml:PlayerData[1].Name:27 maps/scenarios/Fast
 #: Oasis.xml:PlayerData[1].Name:27
 #: maps/scenarios/Flight_demo_2.xml:PlayerData[1].Name:27
-#: maps/scenarios/Gold_Rush.xml:PlayerData[1].Name:27
-#: maps/scenarios/Introductory_Tutorial.xml:PlayerData[1].Name:39
-#: maps/scenarios/Laconia 01.xml:PlayerData[1].Name:27
+#: maps/scenarios/Gold_Rush.xml:PlayerData[1].Name:27 maps/scenarios/Laconia
+#: 01.xml:PlayerData[1].Name:27
 #: maps/scenarios/Migration.xml:PlayerData[1].Name:27
 #: maps/scenarios/Necropolis.xml:PlayerData[1].Name:39 maps/scenarios/Saharan
 #: Oases.xml:PlayerData[1].Name:27 maps/scenarios/Sandbox -
@@ -1474,14 +1473,6 @@ msgstr "Przykład importowania mapy wysokościowej. Obraz mapy miał rozmiar 512
 #: maps/scenarios/Height Map Import - Demo (Greece-Small).xml:Name:27
 msgid "Height Map Import Demo - Greece (small)"
 msgstr "Import mapy wysokości - Grecja (mała)"
-
-#: maps/scenarios/Introductory_Tutorial.xml:Description:39
-msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr "To jest podstawowy samouczek pozwalający zapoznać się z grą 0 A.D."
-
-#: maps/scenarios/Introductory_Tutorial.xml:Name:39
-msgid "Introductory Tutorial"
-msgstr "Samouczek wprowadzający"
 
 #: maps/scenarios/Laconia 01.xml:Description:27
 msgid ""
