@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -82,7 +82,7 @@ static AtSmartPtr<AtNode> ConvertNode(json_spirit::Value node)
 		json_spirit::Array nodeChildren = node.get_array();
 		json_spirit::Array::iterator itr = nodeChildren.begin();
 
-		for (; itr != nodeChildren.end(); itr++)
+		for (; itr != nodeChildren.end(); ++itr)
 		{
 			obj->children.insert(AtNode::child_pairtype(
 				"item", ConvertNode(*itr)
@@ -93,7 +93,7 @@ static AtSmartPtr<AtNode> ConvertNode(json_spirit::Value node)
 	{
 		json_spirit::Object objectProperties = node.get_obj();
 		json_spirit::Object::iterator itr = objectProperties.begin();
-		for (; itr != objectProperties.end(); itr++)
+		for (; itr != objectProperties.end(); ++itr)
 		{
 			obj->children.insert(AtNode::child_pairtype(
 				itr->name_, ConvertNode(itr->value_)
