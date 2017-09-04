@@ -129,7 +129,8 @@
             {
                 "extractor": "javascript",
                 "filemasks": [
-                    "gui/lobby/**.js"
+                    "gui/lobby/**.js",
+                    "gui/prelobby/**.js"
                 ],
                 "options": {
                     "format": "javascript-format",
@@ -150,7 +151,8 @@
             {
                 "extractor": "xml",
                 "filemasks": [
-                    "gui/lobby/**.xml"
+                    "gui/lobby/**.xml",
+                    "gui/prelobby/**.xml"
                 ],
                 "options": {
                     "keywords": {
@@ -164,8 +166,8 @@
             {
                 "extractor": "txt",
                 "filemasks": [
-                    "gui/lobby/Terms_of_Service.txt",
-                    "gui/lobby/Terms_of_Use.txt"
+                    "gui/prelobby/Terms_of_Service.txt",
+                    "gui/prelobby/Terms_of_Use.txt"
                 ],
                 "options": {
                 }
