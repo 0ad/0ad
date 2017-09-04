@@ -217,7 +217,7 @@ function displayOptions()
 
 		// Setup control
 		let control = Engine.GetGUIObjectByName("option_control_" + option.type + "[" + i + "]");
-		control.tooltip = option.tooltip + "\n" + (optionType.tooltip && optionType.tooltip(value, option));
+		control.tooltip = option.tooltip + (optionType.tooltip ? "\n" + optionType.tooltip(value, option) : "");
 		control.hidden = false;
 
 		if (optionType.initGUI)
@@ -235,7 +235,7 @@ function displayOptions()
 				optionType.valueToGui(value, control);
 			}
 
-			control.tooltip = option.tooltip + "\n" + (optionType.tooltip && optionType.tooltip(value, option));
+			control.tooltip = option.tooltip + (optionType.tooltip ? "\n" + optionType.tooltip(value, option) : "");
 
 			Engine.ConfigDB_CreateValue("user", option.config, String(value));
 			Engine.ConfigDB_SetChanges("user", true);
