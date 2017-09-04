@@ -525,11 +525,7 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 
 	let cmpDeathDamage = Engine.QueryInterface(ent, IID_DeathDamage);
 	if (cmpDeathDamage)
-		ret.deathDeath = {
-			"hack": cmpDeathDamage.GetDeathDamageStrengths("hack"),
-			"pierce": cmpDeathDamage.GetDeathDamageStrengths("pierce"),
-			"crush": cmpDeathDamage.GetDeathDamageStrengths("crush")
-	};
+		ret.deathDamage = cmpDeathDamage.GetDeathDamageStrengths();
 
 	let cmpObstruction = Engine.QueryInterface(ent, IID_Obstruction);
 	if (cmpObstruction)
