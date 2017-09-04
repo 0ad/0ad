@@ -223,6 +223,21 @@ bool deepcopy(JSContext* cx, uint argc, JS::Value* vp)
 	return true;
 }
 
+bool deepfreeze(JSContext* cx, uint argc, JS::Value* vp)
+{
+	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
+
+	if (args.length() != 1 || !args.get(0).isObject())
+	{
+		JS_ReportError(cx, "deepfreeze requires exactly one object as an argument.");
+		return false;
+	}
+
+	ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface->FreezeObject(args.get(0), true);
+	args.rval().set(args.get(0));
+	return true;
+}
+
 bool ProfileStart(JSContext* cx, uint argc, JS::Value* vp)
 {
 	const char* name = "(ProfileStart)";
@@ -375,6 +390,7 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 	JS_DefineFunction(m_cx, globalRootedVal, "warn",  ::warn,         1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
 	JS_DefineFunction(m_cx, globalRootedVal, "error", ::error,        1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
 	JS_DefineFunction(m_cx, globalRootedVal, "deepcopy", ::deepcopy,  1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
+	JS_DefineFunction(m_cx, globalRootedVal, "deepfreeze", ::deepfreeze, 1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
 
 	Register("ProfileStart", ::ProfileStart, 1);
 	Register("ProfileStop", ::ProfileStop, 0);

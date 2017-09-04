@@ -16,6 +16,9 @@ DataTemplateManager.prototype.Init = function()
 
 	for (let auraName of this.ListAllAuras())
 		this.GetAuraTemplate(auraName);
+
+	deepfreeze(this.allTechs);
+	deepfreeze(this.allAuras);
 };
 
 DataTemplateManager.prototype.GetTechnologyTemplate = function(template)

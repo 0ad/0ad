@@ -60,6 +60,11 @@ function Resources()
 		this.resourceData.find(resource => resource.code == a),
 		this.resourceData.find(resource => resource.code == b)
 	));
+
+	deepfreeze(this.resourceData);
+	deepfreeze(this.resourceDataObj);
+	deepfreeze(this.resourceCodes);
+	deepfreeze(this.resourceNames);
 }
 
 /**

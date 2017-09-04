@@ -51,10 +51,10 @@ function getMapDescriptionAndPreview(mapType, mapName)
 	else if (Engine.FileExists(mapName + ".xml"))
 		mapData = Engine.LoadMapSettings(mapName + ".xml");
 
-	return {
+	return deepfreeze({
 		"description": mapData && mapData.settings && mapData.settings.Description ? translate(mapData.settings.Description) : translate("Sorry, no description available."),
 		"preview": mapData && mapData.settings && mapData.settings.Preview ? mapData.settings.Preview : "nopreview.png"
-	};
+	});
 }
 
 /**

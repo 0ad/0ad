@@ -45,7 +45,7 @@ function loadSettingsValues()
 	if (Object.keys(settings).some(key => settings[key] === undefined))
 		return undefined;
 
-	return settings;
+	return deepfreeze(settings);
 }
 
 /**
@@ -307,7 +307,7 @@ function prepareForDropdown(settingValues)
 		if (settingValues[index].Default)
 			settings.Default = +index;
 	}
-	return settings;
+	return deepfreeze(settings);
 }
 
 /**
