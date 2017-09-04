@@ -550,8 +550,19 @@ m.NavalManager.prototype.moveApart = function(gameState)
 		let sea = ship.getMetadata(PlayerID, "sea");
 		if (ship.getMetadata(PlayerID, "transporter") === undefined)
 		{
-			if (ship.isIdle())	// do not stay idle near a dock to not disturb other ships
+			if (ship.isIdle())
 			{
+				// Check if there are some treasure around
+				let currentPos = ship.position();
+				if (!currentPos)
+					return;
+				let treasurePosChecked = ship.getMetadata(PlayerID, "treasurePosChecked");
+				if ((!treasurePosChecked || treasurePosChecked[0] != currentPos[0] ||
+				                            treasurePosChecked[1] != currentPos[1]) &&
+				     m.gatherTreasure(gameState, ship, true))
+					return;
+				ship.setMetadata(PlayerID, "treasurePosChecked", currentPos);
+				// Do not stay idle near a dock to not disturb other ships
 				gameState.getAllyStructures().filter(API3.Filters.byClass("Dock")).forEach(function(dock) {
 					if (dock.getMetadata(PlayerID, "sea") !== sea)
 						return;
