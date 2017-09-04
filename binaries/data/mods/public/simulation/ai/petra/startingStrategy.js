@@ -44,7 +44,7 @@ m.HQ.prototype.gameAnalysis = function(gameState)
 	if (!gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")).hasEntities())
 	{
 		let template = gameState.applyCiv("structures/{civ}_civil_centre");
-		if (gameState.isTemplateDisabled(template) || !gameState.getTemplate(template).available(gameState))
+		if (!gameState.isTemplateAvailable(template) || !gameState.getTemplate(template).available(gameState))
 		{
 			if (this.Config.debug > 1)
 				API3.warn(" this AI is unable to produce any units");
@@ -235,7 +235,7 @@ m.HQ.prototype.structureAnalysis = function(gameState)
 	let civ = civref in this.Config.buildings.advanced ? civref : 'default';
 	this.bAdvanced = [];
 	for (let advanced of this.Config.buildings.advanced[civ])
-		if (!gameState.isTemplateDisabled(gameState.applyCiv(advanced)))
+		if (gameState.isTemplateAvailable(gameState.applyCiv(advanced)))
 			this.bAdvanced.push(gameState.applyCiv(advanced));
 };
 
