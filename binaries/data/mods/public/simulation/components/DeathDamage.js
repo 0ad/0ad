@@ -42,7 +42,7 @@ DeathDamage.prototype.Init = function()
 
 DeathDamage.prototype.Serialize = null; // we have no dynamic state to save
 
-DeathDamage.prototype.GetDeathDamageStrengths = function(type)
+DeathDamage.prototype.GetDeathDamageStrengths = function()
 {
 	// Work out the damage values with technology effects
 	let applyMods = damageType =>
@@ -84,7 +84,7 @@ DeathDamage.prototype.CauseDeathDamage = function()
 		"origin": pos,
 		"radius": radius,
 		"shape": this.template.Shape,
-		"strengths": this.GetDeathDamageStrengths("Death"),
+		"strengths": this.GetDeathDamageStrengths(),
 		"splashBonus": this.GetBonusTemplate(),
 		"playersToDamage": playersToDamage,
 		"type": "Death",

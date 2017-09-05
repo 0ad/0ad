@@ -99,7 +99,7 @@ m.getLandAccess = function(gameState, ent)
 	return access;
 };
 
-m.getSeaAccess = function(gameState, ent)
+m.getSeaAccess = function(gameState, ent, warning = true)
 {
 	let sea = ent.getMetadata(PlayerID, "sea");
 	if (!sea)
@@ -118,7 +118,7 @@ m.getSeaAccess = function(gameState, ent)
 					break;
 			}
 		}
-		if (sea < 2)
+		if (warning && sea < 2)
 			API3.warn("ERROR in Petra getSeaAccess because of position with sea index " + sea);
 		ent.setMetadata(PlayerID, "sea", sea);
 	}
@@ -315,6 +315,50 @@ m.isLineInsideEnemyTerritory = function(gameState, pos1, pos2, step=70)
 			return true;
 	}
 	return false;
+};
+
+m.gatherTreasure = function(gameState, ent, water = false)
+{
+	if (!gameState.ai.HQ.treasures.hasEntities())
+		return false;
+	if (!ent || !ent.position())
+		return false;
+	let rates = ent.resourceGatherRates();
+	if (!rates || !rates.treasure || rates.treasure <= 0)
+		return false;
+	let treasureFound;
+	let distmin = Math.min();
+	let access = gameState.ai.accessibility.getAccessValue(ent.position(), water);
+	for (let treasure of gameState.ai.HQ.treasures.values())
+	{
+		if (m.IsSupplyFull(gameState, treasure))
+			continue;
+		// let some time for the previous gatherer to reach the treasure before trying again
+		let lastGathered = treasure.getMetadata(PlayerID, "lastGathered");
+		if (lastGathered && gameState.ai.elapsedTime - lastGathered < 20)
+			continue;
+		if (!water && access !== m.getLandAccess(gameState, treasure))
+			continue;
+		if (water && access !== m.getSeaAccess(gameState, treasure, false))
+			continue;
+		let territoryOwner = gameState.ai.HQ.territoryMap.getOwner(treasure.position());
+		if (territoryOwner !== 0 && !gameState.isPlayerAlly(territoryOwner))
+			continue;
+		let dist = API3.SquareVectorDistance(ent.position(), treasure.position());
+		if (dist > 120000 || territoryOwner !== PlayerID && dist > 14000) // AI has no LOS, so restrict it a bit
+			continue;
+		if (dist > distmin)
+			continue;
+		distmin = dist;
+		treasureFound = treasure;
+	}
+	if (!treasureFound)
+		return false;
+	treasureFound.setMetadata(PlayerID, "lastGathered", gameState.ai.elapsedTime);
+	ent.gather(treasureFound);
+	gameState.ai.HQ.AddTCGatherer(treasureFound.id());
+	ent.setMetadata(PlayerID, "supply", treasureFound.id());
+	return true;
 };
 
 m.dumpEntity = function(ent)

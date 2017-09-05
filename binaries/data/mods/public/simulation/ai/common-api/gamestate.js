@@ -916,11 +916,16 @@ m.GameState.prototype.getEntityCounts = function()
 	return this.playerData.entityCounts;
 };
 
-m.GameState.prototype.isTemplateDisabled = function(template)
+m.GameState.prototype.isTemplateAvailable = function(templateName)
 {
-	if (!this.playerData.disabledTemplates[template])
+	return this.templates[templateName] && !this.isTemplateDisabled(templateName);
+};
+
+m.GameState.prototype.isTemplateDisabled = function(templateName)
+{
+	if (!this.playerData.disabledTemplates[templateName])
 		return false;
-	return this.playerData.disabledTemplates[template];
+	return this.playerData.disabledTemplates[templateName];
 };
 
 /** Checks whether the maximum number of buildings have been constructed for a certain catergory */

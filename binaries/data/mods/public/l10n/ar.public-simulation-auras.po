@@ -5,6 +5,7 @@
 # Translators:
 # Ahmed Albahhar <tomucazipu@getapet.net>, 2017
 # Ibrahim Al-Darra <achtenacht88@gmail.com>, 2017
+# ibrahim mahfod ghamdi <barho0om_55@hotmail.com>, 2017
 # Mohamed Moanis <mohamed_moanis@outlook.com>, 2017
 # Nopar Despar <nopardespar@gmail.com>, 2017
 # Omar Anwar <omaraglan91@yahoo.com>, 2016-2017
@@ -14,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-07-21 08:34+0000\n"
-"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
+"PO-Revision-Date: 2017-09-04 03:15+0000\n"
+"Last-Translator: ibrahim mahfod ghamdi <barho0om_55@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -62,7 +63,7 @@ msgstr "الولاء"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "+50% garrisoned loyalty regeneration rate for structures."
-msgstr ""
+msgstr "50% تجدد الولاء للمباني المثكونة"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraName
 msgid "Edict of Ashoka"
@@ -381,7 +382,7 @@ msgstr "منتقم وكريشيا"
 msgid ""
 "After the rape of Lucretia by the son of King Tarquinius Superbus and her subsequent suicide, Brutus vowed to avenge her and overthrow the monarchy.\n"
 "Female citizens cost 20% less and work 10% faster."
-msgstr ""
+msgstr "بعد اغتصاب لوكريتشيا من قبل ابن الملك تاركوينيوس سوبربوس وانتحارها لاحقا, تعهد بروتس بالإنتقام لها والاطاحة بالملكية. المواطنات ارخص بـ20% ويعملون اسرع بـ10%"
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraName
 msgid "Founder and Defender of the Republic"
@@ -436,7 +437,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraDescription
 msgid "-5% resource cost for spear infantry champions."
-msgstr ""
+msgstr "-5% موارد اقل لمشاة الرماحين الابطال"
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_3.jsonauraName
 msgid "Iron Pelanors"
@@ -478,7 +479,7 @@ msgstr "معبد أثينا"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "-25% stone cost and +2 garrisoned heal rate for temples."
-msgstr ""
+msgstr "25%- حجر و+2  علاج للثاكنين في المعبد"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
 msgid "Naval Commander"
@@ -488,7 +489,7 @@ msgstr "قائد البحريّة"
 msgid ""
 "When garrisoned in a ship, the ship is +50% faster and trains batches of "
 "units faster."
-msgstr ""
+msgstr "عندما يثكن في سفينة ,تكون السفينة سارع بـ50% وتدرب دفعات الوحدات اسرع."
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraName
 msgid "Naval Architect"
@@ -496,7 +497,7 @@ msgstr "مهندس البحرية"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraDescription
 msgid "-20% build time and -50% metal cost for ships during his lifespan."
-msgstr ""
+msgstr "20%- وقت بناء السفينة, 50%- اقل تكلفة معدن خلال حياته"
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraName
 msgid "Champion Army"
@@ -504,7 +505,7 @@ msgstr "جيش الأبطال"
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraDescription
 msgid "+20% attack, +2 capture and +10% speed for champion units."
-msgstr ""
+msgstr "+20% هجوم , +2 احتلال و +10% سرعة لـوحدات الأبطال."
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraName
 msgid "Guerrilla Chief"
@@ -537,7 +538,7 @@ msgstr "التكتيكي"
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraDescription
 msgid "+20% attack and +1 capture for all allied soldiers and siege engines."
-msgstr ""
+msgstr "+٢٠٪ هجوم و +1 احتلال لجميع وحدات الحلفاء واسلحة الحصار."
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraName
 msgid "Cavalry Commander"
@@ -545,7 +546,7 @@ msgstr "قائد الخيّالة"
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraDescription
 msgid "+30% attack for cavalry melee soldiers."
-msgstr ""
+msgstr "+30% هجوم لخيّالة الاشتباك القريب"
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraName
 msgid "Sacker of Rome"
@@ -553,7 +554,7 @@ msgstr "ناهب روما"
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraDescription
 msgid "+15 Metal loot for every enemy unit killed."
-msgstr ""
+msgstr "غنيمة +15 معدن لكل وحدة عدو قُتلت"
 
 #: simulation/data/auras/units/heroes/gaul_hero_britomartus.jsonauraName
 msgid "Preparation for War"
@@ -569,7 +570,7 @@ msgstr "أمراء الحرب السلتين"
 
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraDescription
 msgid "+20% attack and +1 capture for soldiers and siege engines."
-msgstr ""
+msgstr "+٢٠٪ هجوم و +1 احتلال للجنود و أسلحة الحصار."
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraName
 msgid "Inspired Defense"
@@ -635,7 +636,7 @@ msgstr "الفاتح"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_2.jsonauraDescription
 msgid "-50% garrisoned regeneration rate for enemy civic centers."
-msgstr ""
+msgstr "-50% اقل لمعدل التجدد لمقر الحضارة المثكون"
 
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraName
 msgid "Taxiarchès"
@@ -686,7 +687,7 @@ msgstr "المُعلم"
 msgid ""
 "Empower a building with -20% cost and -50% research time while he is "
 "garrisoned in it."
-msgstr ""
+msgstr "مكن البناء مع -20% تكلفة اقل و-50% وقت اقل لدراسة التقنيات للمباني المثكونة منه."
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
 msgid "Regeneration"
@@ -743,7 +744,7 @@ msgstr "رافيا"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraDescription
 msgid "Pikemen have 40% greater health during his lifetime."
-msgstr ""
+msgstr "الرامحون  يملكون 40% صحة أكثر خلال فترة حياته."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraName
 msgid "Patron of Construction"

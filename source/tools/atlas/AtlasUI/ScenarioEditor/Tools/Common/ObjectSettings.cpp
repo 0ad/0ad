@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -151,11 +151,6 @@ void ObjectSettings::OnSelectionChange(const std::vector<AtlasMessage::ObjectID>
 
 void ObjectSettings::PostToGame()
 {
-	if (m_SelectedObjects.empty())
-		return;
-
-	for (std::vector<AtlasMessage::ObjectID>::iterator it = m_SelectedObjects.begin(); it != m_SelectedObjects.end(); it++)
-	{
-		POST_COMMAND(SetObjectSettings, (m_View, *it, GetSettings()));
-	}
+	for (AtlasMessage::ObjectID& obj : m_SelectedObjects)
+		POST_COMMAND(SetObjectSettings, (m_View, obj, GetSettings()));
 }

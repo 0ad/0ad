@@ -238,10 +238,8 @@ void ActorViewerImpl::UpdatePropListRecursive(CModelAbstract* modelAbstract)
 	if (model)
 	{
 		std::vector<CModel::Prop>& modelProps = model->GetProps();
-		for (size_t i=0; i < modelProps.size(); i++)
+		for (CModel::Prop& modelProp : modelProps)
 		{
-			CModel::Prop& modelProp = modelProps[i];
-
 			Props.push_back(modelProp);
 			if (modelProp.m_Model)
 				UpdatePropListRecursive(modelProp.m_Model);

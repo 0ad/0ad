@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Albert F. <alb.fontquerni@gmail.com>, 2017
 # Catalanoic <catalanoic@gmail.com>, 2016
 # Francesc Saló <whitrix@hotmail.es>, 2015
 # José Verdú Díaz <pepv@hotmail.es>, 2017
@@ -10,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-08-09 09:05+0200\n"
-"PO-Revision-Date: 2017-08-09 14:44+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-09-01 09:03+0200\n"
+"PO-Revision-Date: 2017-09-01 15:38+0000\n"
+"Last-Translator: Albert F. <alb.fontquerni@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,7 +33,7 @@ msgstr "Mar Egeu"
 msgid ""
 "The central region of the vast continent of Africa, birthplace of humanity. "
 "Players start in a lush area teeming with vegetation and wildlife."
-msgstr ""
+msgstr "La regió central del vast continent d'Àfrica, lloc de naixement de la humanitat. Els jugadors comencen en una zona exuberant plena de vegetació i fauna."
 
 #: maps/random/african_plains.jsonsettings.Name
 msgid "African Plains"
@@ -104,7 +105,7 @@ msgid ""
 "animals, profiting from its milder climate. Wolves, ever present, have shed "
 "their winter clothes; deer, hares and muskox populate the plains. The last "
 "traces of winter are rapidly disappearing, only to reappear very soon."
-msgstr ""
+msgstr "L'estiu ha arribat a les regions fredes del nord i, amb ella, també molts animals, aprofitant el seu clima més suau. Els llops, sempre presents,s'han tret la seva roba d'hivern; els cérvols, les llebres i els bous mesquers poblen les planes. Les últimes empremtes d'hivern desapareixen ràpidament, només per reaparèixer molt aviat."
 
 #: maps/random/arctic_summer.jsonsettings.Name
 msgid "Arctic Summer"
@@ -828,7 +829,7 @@ msgstr "Demostració de muralla"
 
 #: maps/random/wild_lake.jsonsettings.Description
 msgid "A lake surrounded by hills."
-msgstr ""
+msgstr "Un llac rodejat de turons."
 
 #: maps/random/wild_lake.jsonsettings.Name
 msgid "Wild Lake"
@@ -836,19 +837,19 @@ msgstr "Llac Salvatge"
 
 #: maps/random/extinct_volcano_triggers.js:65
 msgid "It keeps on raining, we will have to evacuate soon!"
-msgstr ""
+msgstr "Segueix plovent, haurem d'evacuar aviat!"
 
 #: maps/random/extinct_volcano_triggers.js:66
 msgid "The rivers are standing high, we need to find a safe place!"
-msgstr ""
+msgstr "Els rius són alts, hem de trobar un lloc segur!"
 
 #: maps/random/extinct_volcano_triggers.js:67
 msgid "We have to find dry ground, our lands will drown soon!"
-msgstr ""
+msgstr "Hem de trobar terra ferma, les nostres terres s'inundaran aviat!"
 
 #: maps/random/extinct_volcano_triggers.js:68
 msgid "The lakes start swallowing the land, we have to find shelter!"
-msgstr ""
+msgstr "Els llacs comencen a engolir la terra, hem de trobar refugi!"
 
 #: maps/random/survivalofthefittest_triggers.js:193
 #, javascript-format
@@ -862,7 +863,7 @@ msgstr "Us ataca una onada enemiga!"
 #: maps/random/survivalofthefittest_triggers.js:351
 #, javascript-format
 msgid "%(player)s has been defeated (lost civic center)."
-msgstr ""
+msgstr "%(player)s ha estat vençut (ha perdut el centre cívic)."
 
 #: maps/scenarios/Cinema_Demo.js:6
 msgid "Cutscene starts after 5 seconds"
@@ -925,16 +926,16 @@ msgstr "Derroteu l'enemic per guanyar!"
 #, javascript-format
 msgid "%(lastPlayer)s has won (treasure collected)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s ha guanyat (tresor recollit)."
+msgstr[1] "%(players)s i %(lastPlayer)s han guanyat (tresor recollit)."
 
 #: maps/scenarios/treasure_islands.js:105
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (treasure collected)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (treasure collected)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s ha estat vençut (tresor recollit)."
+msgstr[1] "%(players)s i %(lastPlayer)s han estat vençuts (tresor recollit)."
 
 #: maps/scenarios/Arcadia.xml:Description:39
 msgid ""
@@ -950,9 +951,8 @@ msgstr "Primavera a Arcàdia, Grècia. Les pluges primaverals han omplert els ll
 #: and Albion.xml:PlayerData[0].Name:27 maps/scenarios/Fast
 #: Oasis.xml:PlayerData[0].Name:27
 #: maps/scenarios/Flight_demo_2.xml:PlayerData[0].Name:27
-#: maps/scenarios/Gold_Rush.xml:PlayerData[0].Name:27
-#: maps/scenarios/Introductory_Tutorial.xml:PlayerData[0].Name:39
-#: maps/scenarios/Laconia 01.xml:PlayerData[0].Name:27
+#: maps/scenarios/Gold_Rush.xml:PlayerData[0].Name:27 maps/scenarios/Laconia
+#: 01.xml:PlayerData[0].Name:27
 #: maps/scenarios/Migration.xml:PlayerData[0].Name:27
 #: maps/scenarios/Necropolis.xml:PlayerData[0].Name:39 maps/scenarios/Saharan
 #: Oases.xml:PlayerData[0].Name:27 maps/scenarios/Sandbox -
@@ -1018,9 +1018,8 @@ msgstr "Jugador 1"
 #: and Albion.xml:PlayerData[1].Name:27 maps/scenarios/Fast
 #: Oasis.xml:PlayerData[1].Name:27
 #: maps/scenarios/Flight_demo_2.xml:PlayerData[1].Name:27
-#: maps/scenarios/Gold_Rush.xml:PlayerData[1].Name:27
-#: maps/scenarios/Introductory_Tutorial.xml:PlayerData[1].Name:39
-#: maps/scenarios/Laconia 01.xml:PlayerData[1].Name:27
+#: maps/scenarios/Gold_Rush.xml:PlayerData[1].Name:27 maps/scenarios/Laconia
+#: 01.xml:PlayerData[1].Name:27
 #: maps/scenarios/Migration.xml:PlayerData[1].Name:27
 #: maps/scenarios/Necropolis.xml:PlayerData[1].Name:39 maps/scenarios/Saharan
 #: Oases.xml:PlayerData[1].Name:27 maps/scenarios/Sandbox -
@@ -1251,11 +1250,11 @@ msgstr "Prova de concepte de campanya estratègica"
 
 #: maps/scenarios/Cinema_Demo.xml:Description:40
 msgid "Demo map for cinematic camera movements."
-msgstr ""
+msgstr "Mapa de demostració per a moviments cinemàtics de la càmera."
 
 #: maps/scenarios/Cinema_Demo.xml:PlayerData[1].Name:40
 msgid "Xerxes I"
-msgstr ""
+msgstr "Xerxes I"
 
 #: maps/scenarios/Cinema_Demo.xml:PlayerData[2].Name:40
 msgid "You"
@@ -1453,14 +1452,6 @@ msgstr "Un exemple d'importació de mapes d'alçada. La imatge era en escala de 
 #: maps/scenarios/Height Map Import - Demo (Greece-Small).xml:Name:27
 msgid "Height Map Import Demo - Greece (small)"
 msgstr "Demostració d'importació de mapes d'alçada - Grècia (petit)"
-
-#: maps/scenarios/Introductory_Tutorial.xml:Description:39
-msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr "Això és un tutorial bàsic per aprendre a jugar al 0 A.D."
-
-#: maps/scenarios/Introductory_Tutorial.xml:Name:39
-msgid "Introductory Tutorial"
-msgstr "Tutorial introductori"
 
 #: maps/scenarios/Laconia 01.xml:Description:27
 msgid ""

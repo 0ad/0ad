@@ -10,13 +10,14 @@
 # Mário Branco <branco.ana8@gmail.com>, 2017
 # mogafi, 2014
 # Pedro matias <pmsm1100@gmail.com>, 2015
+# Pedro Santos <estevespubl@gmail.com>, 2017
 # Tiago Martins <tiguhmartins@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-08-09 09:05+0200\n"
-"PO-Revision-Date: 2017-08-09 14:44+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-09-01 09:03+0200\n"
+"PO-Revision-Date: 2017-09-03 17:53+0000\n"
+"Last-Translator: Pedro Santos <estevespubl@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,7 +41,7 @@ msgstr ""
 
 #: maps/random/african_plains.jsonsettings.Name
 msgid "African Plains"
-msgstr ""
+msgstr "Savana Africana"
 
 #: maps/random/alpine_lakes.jsonsettings.Description
 msgid ""
@@ -112,7 +113,7 @@ msgstr ""
 
 #: maps/random/arctic_summer.jsonsettings.Name
 msgid "Arctic Summer"
-msgstr ""
+msgstr "Verão Ártico"
 
 #: maps/random/ardennes_forest.jsonsettings.Description
 msgid ""
@@ -256,7 +257,7 @@ msgstr ""
 
 #: maps/random/danubius.jsonsettings.Name
 msgid "Danubius"
-msgstr ""
+msgstr "Danúbio"
 
 #: maps/random/deep_forest.jsonsettings.Description
 msgid "A deep dark forest in Germania."
@@ -295,7 +296,7 @@ msgstr ""
 
 #: maps/random/extinct_volcano.jsonsettings.Name
 msgid "Extinct Volcano"
-msgstr ""
+msgstr "Vulcão Extinto"
 
 #: maps/random/flood.jsonsettings.Description
 msgid ""
@@ -520,7 +521,7 @@ msgstr ""
 
 #: maps/random/mediterranean.jsonsettings.Name
 msgid "Mediterranean"
-msgstr ""
+msgstr "Mediterrâneo"
 
 #: maps/random/migration.jsonsettings.Description
 msgid ""
@@ -562,7 +563,7 @@ msgstr ""
 
 #: maps/random/ngorongoro.jsonsettings.Name
 msgid "Ngorongoro"
-msgstr ""
+msgstr "Ngorongoro"
 
 #: maps/random/northern_lights.jsonsettings.Description
 msgid ""
@@ -632,7 +633,7 @@ msgstr ""
 
 #: maps/random/pompeii.jsonsettings.Name
 msgid "Pompeii"
-msgstr ""
+msgstr "Pompeia"
 
 #: maps/random/pyrenean_sierra.jsonsettings.Description
 msgid ""
@@ -832,7 +833,7 @@ msgstr "Demonstração de Muralhas"
 
 #: maps/random/wild_lake.jsonsettings.Description
 msgid "A lake surrounded by hills."
-msgstr ""
+msgstr "Um lago rodeado por colinas."
 
 #: maps/random/wild_lake.jsonsettings.Name
 msgid "Wild Lake"
@@ -840,24 +841,24 @@ msgstr ""
 
 #: maps/random/extinct_volcano_triggers.js:65
 msgid "It keeps on raining, we will have to evacuate soon!"
-msgstr ""
+msgstr "Continua a chover, teremos que evacuar em breve!"
 
 #: maps/random/extinct_volcano_triggers.js:66
 msgid "The rivers are standing high, we need to find a safe place!"
-msgstr ""
+msgstr "Os rios vão cheios, precisamos encontrar um local seguro"
 
 #: maps/random/extinct_volcano_triggers.js:67
 msgid "We have to find dry ground, our lands will drown soon!"
-msgstr ""
+msgstr "Precisamos encontrar terra seca, as nossas terras em breve ficarão submersas!"
 
 #: maps/random/extinct_volcano_triggers.js:68
 msgid "The lakes start swallowing the land, we have to find shelter!"
-msgstr ""
+msgstr "Os lagos começam a inundar a terra, precisamos achar abrigo!"
 
 #: maps/random/survivalofthefittest_triggers.js:193
 #, javascript-format
 msgid "The first wave will start in %(time)s!"
-msgstr ""
+msgstr "O primeiro ataque vai começar em%(time)s!"
 
 #: maps/random/survivalofthefittest_triggers.js:327
 msgid "An enemy wave is attacking!"
@@ -866,11 +867,11 @@ msgstr "Uma onda de inimigos esá a atacar!"
 #: maps/random/survivalofthefittest_triggers.js:351
 #, javascript-format
 msgid "%(player)s has been defeated (lost civic center)."
-msgstr ""
+msgstr "%(player)s foi derrotado (perdeu o centro cívico)."
 
 #: maps/scenarios/Cinema_Demo.js:6
 msgid "Cutscene starts after 5 seconds"
-msgstr ""
+msgstr "A história começa em 5 segundos"
 
 #: maps/scenarios/Triggers_demo.js:73
 msgid "Testing the yes-no dialog. Do you want to say sure or rather not?"
@@ -954,9 +955,8 @@ msgstr "As chuvas da Primavera encheram o rio em Arcádia, na Grécia, em vez da
 #: and Albion.xml:PlayerData[0].Name:27 maps/scenarios/Fast
 #: Oasis.xml:PlayerData[0].Name:27
 #: maps/scenarios/Flight_demo_2.xml:PlayerData[0].Name:27
-#: maps/scenarios/Gold_Rush.xml:PlayerData[0].Name:27
-#: maps/scenarios/Introductory_Tutorial.xml:PlayerData[0].Name:39
-#: maps/scenarios/Laconia 01.xml:PlayerData[0].Name:27
+#: maps/scenarios/Gold_Rush.xml:PlayerData[0].Name:27 maps/scenarios/Laconia
+#: 01.xml:PlayerData[0].Name:27
 #: maps/scenarios/Migration.xml:PlayerData[0].Name:27
 #: maps/scenarios/Necropolis.xml:PlayerData[0].Name:39 maps/scenarios/Saharan
 #: Oases.xml:PlayerData[0].Name:27 maps/scenarios/Sandbox -
@@ -1022,9 +1022,8 @@ msgstr "Jogador 1"
 #: and Albion.xml:PlayerData[1].Name:27 maps/scenarios/Fast
 #: Oasis.xml:PlayerData[1].Name:27
 #: maps/scenarios/Flight_demo_2.xml:PlayerData[1].Name:27
-#: maps/scenarios/Gold_Rush.xml:PlayerData[1].Name:27
-#: maps/scenarios/Introductory_Tutorial.xml:PlayerData[1].Name:39
-#: maps/scenarios/Laconia 01.xml:PlayerData[1].Name:27
+#: maps/scenarios/Gold_Rush.xml:PlayerData[1].Name:27 maps/scenarios/Laconia
+#: 01.xml:PlayerData[1].Name:27
 #: maps/scenarios/Migration.xml:PlayerData[1].Name:27
 #: maps/scenarios/Necropolis.xml:PlayerData[1].Name:39 maps/scenarios/Saharan
 #: Oases.xml:PlayerData[1].Name:27 maps/scenarios/Sandbox -
@@ -1259,11 +1258,11 @@ msgstr ""
 
 #: maps/scenarios/Cinema_Demo.xml:PlayerData[1].Name:40
 msgid "Xerxes I"
-msgstr ""
+msgstr "Xerxes I"
 
 #: maps/scenarios/Cinema_Demo.xml:PlayerData[2].Name:40
 msgid "You"
-msgstr ""
+msgstr "Tu"
 
 #: maps/scenarios/Cinema_Demo.xml:Name:40
 msgid "Cinema Demo"
@@ -1457,14 +1456,6 @@ msgstr "Um exemplo de importação de mapa de alturas. A imagem tinha 512x512 p�
 #: maps/scenarios/Height Map Import - Demo (Greece-Small).xml:Name:27
 msgid "Height Map Import Demo - Greece (small)"
 msgstr "Demonstração de Importação de Mapa de Alturas - Grécia (pequeno)"
-
-#: maps/scenarios/Introductory_Tutorial.xml:Description:39
-msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr "Isto é um tutorial básico para aprender a jogar 0 A.D."
-
-#: maps/scenarios/Introductory_Tutorial.xml:Name:39
-msgid "Introductory Tutorial"
-msgstr "Tutorial de Iniciação"
 
 #: maps/scenarios/Laconia 01.xml:Description:27
 msgid ""

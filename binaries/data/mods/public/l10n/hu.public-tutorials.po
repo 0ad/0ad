@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2017-08-21 09:07+0200\n"
-"PO-Revision-Date: 2017-08-21 09:07+0200\n"
+"POT-Creation-Date: 2017-09-01 09:05+0200\n"
+"PO-Revision-Date: 2017-09-01 09:05+0200\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>, 2017\n"
 "Language-Team: Hungarian (https://www.transifex.com/wildfire-games/teams/17418/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -19,6 +19,261 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: hu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: maps/tutorials/Introductory_Tutorial.js:3
+msgid "Welcome to the 0 A.D. tutorial."
+msgstr "Üdvözlünk a 0 A.D. oktatójátékában!"
+
+#: maps/tutorials/Introductory_Tutorial.js:6
+msgid ""
+"First left-click on a female citizen, then Right-click on a berry bush "
+"nearby to make the unit collect food. Female citizens gather food faster "
+"than other units."
+msgstr ""
+"Először kattints a bal gombbal egy női polgárra, majd kattints a jobb "
+"gombbal egy közeli bogyóbokorra, hogy az egység élelmet gyűjtsön. A női "
+"polgárok gyorsabban gyűjtenek élelmet a többi egységnél."
+
+#: maps/tutorials/Introductory_Tutorial.js:15
+msgid ""
+"Select the citizen-soldier, right-click on a tree near the Civil Center to "
+"begin collecting wood. Citizen-soldiers gather wood faster than female "
+"citizens."
+msgstr ""
+"Jelölj ki egy polgári katonát, majd kattints a jobb gombbal egy városháza "
+"közelében lévő fára a favágás megkezdéséhez. A polgári katonák gyorsabban "
+"vágják a fát a női polgároknál."
+
+#: maps/tutorials/Introductory_Tutorial.js:24
+msgid ""
+"Select the Civil Center building, and shift-click on the Hoplite icon (2nd "
+"in the row) once to begin training 5 Hoplites."
+msgstr ""
+"Jelöld ki a városháza épületét, majd a Shift lenyomása közben kattints "
+"egyszer a hoplita ikonra (2. a sorban) az 5 hoplita kiképzésének "
+"megkezdéséhez."
+
+#: maps/tutorials/Introductory_Tutorial.js:32
+#: maps/tutorials/Introductory_Tutorial.js:69
+#: maps/tutorials/Introductory_Tutorial.js:151
+#: maps/tutorials/Introductory_Tutorial.js:227
+#: maps/tutorials/starting_economy_walkthrough.js:100
+#: maps/tutorials/starting_economy_walkthrough.js:159
+msgid "Do not forget to shift-click to produce several units."
+msgstr ""
+"Ne felejtsd el lenyomni a Shift billentyűt kattintáskor, hogy több egységez "
+"hozz létre."
+
+#: maps/tutorials/Introductory_Tutorial.js:33
+#: maps/tutorials/Introductory_Tutorial.js:152
+#: maps/tutorials/starting_economy_walkthrough.js:101
+msgid "Shift-click on the HOPLITE icon."
+msgstr "A Shiftet lenyomva kattints a HOPLITA ikonra."
+
+#: maps/tutorials/Introductory_Tutorial.js:41
+msgid ""
+"Select the two idle female citizens and build a house nearby by selecting "
+"the house icon. Place the house by left-clicking on a piece of land."
+msgstr ""
+"Jelöld ki a két tétlen női polgárt, és építs a közelben egy házat a ház "
+"ikont kiválasztva. Bal kattintással helyezd el a házat egy üres "
+"földterületre."
+
+#: maps/tutorials/Introductory_Tutorial.js:49
+msgid ""
+"When they are ready, select the newly trained Hoplites and assign them to "
+"build a storehouse beside some nearby trees. They will begin to gather wood "
+"when it's constructed."
+msgstr ""
+"Amikor készen állnak, jelöld ki az újonnan kiképzett hoplitákat, és utasítsd"
+" őket egy raktár építésére a közeli fák mellé. Amint végeznek az építéssel, "
+"nekiállnak fát vágni."
+
+#: maps/tutorials/Introductory_Tutorial.js:57
+msgid ""
+"Build a set of 5 skirmishers by shift-clicking on the skirmisher icon (3rd "
+"in the row) in the Civil Center."
+msgstr ""
+"Építs egy 5-ös csoport csatárt a Shift lenyomása közben a csatár ikonra (3. "
+"a sorban) történő bal kattintással a városházán."
+
+#: maps/tutorials/Introductory_Tutorial.js:70
+msgid "Shift-click on the SKIRMISHER icon."
+msgstr "A Shiftet lenyomva kattints a CSATÁR ikonra."
+
+#: maps/tutorials/Introductory_Tutorial.js:78
+msgid ""
+"Build a farmstead in an open space beside the Civil Center using any idle "
+"builders."
+msgstr ""
+"Építs egy tanyát egy üres területen a városháza mellé valamelyik tétlen "
+"építővel."
+
+#: maps/tutorials/Introductory_Tutorial.js:90
+msgid "Let's wait for the farmstead to be built."
+msgstr "Várjuk meg, amíg a tanya felépül."
+
+#: maps/tutorials/Introductory_Tutorial.js:102
+msgid ""
+"Once the farmstead is constructed, its builders will automatically begin "
+"gathering food if there is any nearby. Select the builders and instead make "
+"them construct a field beside the farmstead."
+msgstr ""
+"Amint a tanya felépült, az építői automatikusan elkezdenek élelmet gyűjteni,"
+" ha találnak valamit a közelben. Jelöld ki az építőket, és inkább építtess "
+"velük egy mezőt a tanya mellé."
+
+#: maps/tutorials/Introductory_Tutorial.js:126
+msgid ""
+"The field's builders will now automatically begin collecting food from the "
+"field. Using the newly created group of skirmishers, get them to build "
+"another house nearby."
+msgstr ""
+"A mező építői automatikusan el fognak kezdeni élelmet gyűjteni a mezőről. Az"
+" újonnan létrehozott csatárok csoportjával építtess egy újabb házat a "
+"közelben."
+
+#: maps/tutorials/Introductory_Tutorial.js:134
+msgid ""
+"Train 5 Hoplites from the Civil Center. Select the Civil Center and with it "
+"selected right click on a tree nearby. Units from the Civil Center will now "
+"automatically gather wood."
+msgstr ""
+"Képezz ki 5 hoplitát a városházában. Jelöld ki a városházát, és miközben az "
+"ki van jelölve, jobb kattintással válassz egy fát a közelben. Az egységek a "
+"városházából így automatikusan fát fognak vágni."
+
+#: maps/tutorials/Introductory_Tutorial.js:166
+msgid ""
+"Select the Civic Center, then hover your mouse over the tree and right-click"
+" when you see your cursor change into a Wood icon."
+msgstr ""
+"Jelöld ki a Városházát, majd húzd egy fa fölé az egeret, és kattints a jobb "
+"egérgombbal, amikor a kurzor Fa ikonná változik."
+
+#: maps/tutorials/Introductory_Tutorial.js:175
+msgid ""
+"Order the idle Skirmishers to build an outpost to the north east at the edge"
+" of your territory.  This will be the fifth Village Phase structure that you"
+" have built, allowing you to advance to the Town Phase."
+msgstr ""
+"Rendeld a tétlen csatárokat egy előőrs építéséhez a területed északkeleti "
+"részére. Ez lesz az ötödik felépített épület a falusi szakaszban, amely "
+"lehetővé teszi a fejlesztést a városi szakaszra."
+
+#: maps/tutorials/Introductory_Tutorial.js:183
+msgid ""
+"Select the Civil Center again and advance to Town Phase by clicking on the "
+"'II' icon (you have to wait for the outpost to be built first). This will "
+"allow Town Phase buildings to be constructed."
+msgstr ""
+"Jelöld ki újra városházát, és fejleszd városi szakaszra a „II” ikonra való "
+"kattintással (meg kell várni előbb az előörs felépültét). Ez lehetővé fogja "
+"tenni a városi szakaszhoz tartozó épületek építését."
+
+#: maps/tutorials/Introductory_Tutorial.js:195
+msgid ""
+"While waiting for the phasing up, you may reaffect your idle workers to "
+"gathering the resources you are short of."
+msgstr ""
+"A fázisemelésre való várakozás közben a tétlen dolgozókat vissza lehet "
+"küldeni azon nyersanyagok begyűjtésébe, amivel épp híján vagyunk."
+
+#: maps/tutorials/Introductory_Tutorial.js:210
+msgid ""
+"Start building 5 female citizens in the Civil Center and set its rally point"
+" to the farm (right click on it)."
+msgstr ""
+"Kezdd el 5 női polgár létrehozását a városházában, és állítsd be a "
+"gyülekezőhelyüket a farmra (jobb kattintás a farmon)."
+
+#: maps/tutorials/Introductory_Tutorial.js:228
+msgid "Shift-click on the FEMALE icon."
+msgstr "A Shiftet lenyomva kattints a NŐ ikonra."
+
+#: maps/tutorials/Introductory_Tutorial.js:248
+msgid ""
+"Build a Barracks nearby. Whenever your population limit is reached, build an"
+" extra house using any available builder units."
+msgstr ""
+"Építs egy laktanyát a közelben. Valahányszor a eléred népességkorlátot, "
+"építs egy további házat bármely elérhető építő egységgel."
+
+#: maps/tutorials/Introductory_Tutorial.js:256
+msgid ""
+"Prepare for an attack by an enemy player. Build more soldiers using the "
+"Barracks, and get idle soldiers to build a Defense Tower near your Outpost."
+msgstr ""
+"Készülj fel egy támadásra valamelyik ellenséges játékostól. Hozz létre több "
+"katonát a laktanyákban, és a tétlen katonákkal építtess védőtornyot az "
+"előőrs közelében."
+
+#: maps/tutorials/Introductory_Tutorial.js:264
+msgid ""
+"Build a Blacksmith and research the Infantry Training technology (sword "
+"icon) to improve infantry hack attack."
+msgstr ""
+"Építs egy kovácsműhelyet, és fejleszd ki a Gyalogsági kiképzés technológiát "
+"(kard ikon) a gyalogsági vágás támadás növeléséhez."
+
+#: maps/tutorials/Introductory_Tutorial.js:272
+msgid "The enemy is coming. Build more soldiers to fight off the enemies."
+msgstr "Ellenség érkezik. Hozz létre több katonát, hogy leküzd az ellenséget."
+
+#: maps/tutorials/Introductory_Tutorial.js:280
+msgid "Try to repel the attack."
+msgstr "Próbáld visszaverni a támadást."
+
+#: maps/tutorials/Introductory_Tutorial.js:290
+msgid ""
+"The enemy's attack has been defeated. Now build a market and a temple while "
+"assigning new units to gather any required resources."
+msgstr ""
+"Az ellenséges támadás visszaverve. Most építs piacot és templomot, miközben "
+"új egységeket rendelsz a szükséges nyersanyagok gyűjtéséhez."
+
+#: maps/tutorials/Introductory_Tutorial.js:311
+msgid ""
+"When that City Phase requirements have been reached, select your Civil "
+"Center and advance to City Phase."
+msgstr ""
+"Amikor teljesítetted a nagyvárosi szakasz követelményeit. Jelöld ki a "
+"városházát, és fejleszd fel nagyvárosi szakaszra."
+
+#: maps/tutorials/Introductory_Tutorial.js:319
+msgid ""
+"While waiting for the phase change, you may build more soldiers at the "
+"barracks."
+msgstr ""
+"A fázisváltásra való várakozás közben katonákat képezhetsz ki a "
+"laktanyákban. "
+
+#: maps/tutorials/Introductory_Tutorial.js:327
+msgid ""
+"Now that you are in City Phase, build a fortress nearby (gather some stone "
+"first if needed) and then use it to build 2 Battering Rams."
+msgstr ""
+"Mostantól nagyvárosi szakaszban vagy. Építs egy erődöt a közelben (ha "
+"szükséges, gyűjts előbb követ), és aztán hozz létre benne 2 faltörő kost."
+
+#: maps/tutorials/Introductory_Tutorial.js:349
+msgid ""
+"Stop all your soldiers gathering resources and instead task small groups to "
+"find the enemy Civil Center on the map. Once The enemy's base has been "
+"spotted, send your siege weapons and all remaining soldiers to destroy it.\n"
+msgstr ""
+"Minden katonát vonj vissza a nyersanyagok gyűjtésétől, és kis csoportokat "
+"alkotva inkább kerestesd meg velük az ellenséges városházát a térképen. "
+"Amikor az ellenséges bázist felfedezik, küldd az ostromgépeidet és az összes"
+" megmaradt katonádat annak lerombolására. "
+
+#: maps/tutorials/Introductory_Tutorial.js:350
+msgid "Female citizens should continue to gather resources."
+msgstr "A női polgárok folytassák a nyersanyagok gyűjtését. "
+
+#: maps/tutorials/Introductory_Tutorial.js:361
+msgid "The enemy has been defeated. These tutorial tasks are now completed."
+msgstr "Az ellenséget legyőzted. A tanítójáték feladatai teljesültek..."
 
 #: maps/tutorials/starting_economy_walkthrough.js:4
 msgid ""
@@ -240,17 +495,6 @@ msgstr ""
 " (a Shift+kattintás 5 egységet gyárt egy csoportban). Egyesével is "
 "képezhetsz egységeket, de 5 egység létrehozása együtt gyorsabb, mint 5 "
 "egység külön-külön."
-
-#: maps/tutorials/starting_economy_walkthrough.js:100
-#: maps/tutorials/starting_economy_walkthrough.js:159
-msgid "Do not forget to shift-click to produce several units."
-msgstr ""
-"Ne felejtsd el lenyomni a Shift billentyűt kattintáskor, hogy több egységez "
-"hozz létre."
-
-#: maps/tutorials/starting_economy_walkthrough.js:101
-msgid "Shift-click on the HOPLITE icon."
-msgstr "A Shiftet lenyomva kattints a HOPLITA ikonra."
 
 #: maps/tutorials/starting_economy_walkthrough.js:110
 #: maps/tutorials/starting_economy_walkthrough.js:169
@@ -698,6 +942,24 @@ msgstr ""
 "Ez az oktatójáték vége. Ez elég információt kellett adjon ahhoz, hogy jó "
 "gazdaságot építs ki."
 
+#: maps/tutorials/Introductory_Tutorial.xml:Description:39
+msgid "This is a basic tutorial to get you started playing 0 A.D."
+msgstr ""
+"Ez egy egyszerű tanulópálya, ami megtanít, hogyan játssz a 0 A.D. játékkal."
+
+#: maps/tutorials/Introductory_Tutorial.xml:PlayerData[0].Name:39
+#: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
+msgid "Player 1"
+msgstr "1. játékos"
+
+#: maps/tutorials/Introductory_Tutorial.xml:PlayerData[1].Name:39
+msgid "Player 2"
+msgstr "2. játékos"
+
+#: maps/tutorials/Introductory_Tutorial.xml:Name:39
+msgid "Introductory Tutorial"
+msgstr "Bemutató tanulópálya"
+
 #: maps/tutorials/starting_economy_walkthrough.xml:Description:39
 msgid ""
 "This map will give a rough guide for starting the game effectively.  Early "
@@ -707,10 +969,6 @@ msgstr ""
 "Ez a térkép támpontot ad, hogyan kezdj egy játékot eredményesen. A játék "
 "elején a legfontosabb a nyersanyagok lehető leggyorsabb gyűjtése, hogy aztán"
 " minél több csapatot hozhass létre."
-
-#: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
-msgid "Player 1"
-msgstr "1. játékos"
 
 #: maps/tutorials/starting_economy_walkthrough.xml:Name:39
 msgid "Starting Economy Walkthrough"

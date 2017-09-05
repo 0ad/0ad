@@ -8,9 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-08-21 09:05+0200\n"
-"PO-Revision-Date: 2017-08-24 02:41+0000\n"
-"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
+"POT-Creation-Date: 2017-09-01 09:03+0200\n"
+"PO-Revision-Date: 2017-09-01 15:40+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -355,413 +355,6 @@ msgid ""
 "us, I have abrogated my offer."
 msgstr "%(_player_)s，因為您沒有回應我的請求，所以我廢除了我們的條約。"
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:3
-msgid ""
-"Warning: This is an advanced tutorial and goes quite fast. If you don't keep"
-" up just restart and try again. Practise makes perfect!"
-msgstr "警告：這是一個進階的教學課程，速度非常快。如果您跟不上只需要重新啟動並再試一次。熟能生巧！"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:8
-msgid ""
-"Lets get started, first train a batch (shift click) of 5 female citizens "
-"from the CC (Civil Center)."
-msgstr "就讓我們開始，首先按著 Shift 並點擊城鎮中心中的市民按鈕，訓練一批5個的女市民。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:13
-msgid ""
-"Now, assign your female citizens to gather berries, your cavalryman to hunt "
-"the chickens and the citizen soldiers to gather wood."
-msgstr "現在，指派您的女性市民去收集果樹叢，您的騎兵去獵雞，並指派民兵去收集木頭。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:18
-msgid "Now set the rally point of your civil center on the berries."
-msgstr "現在在果樹叢上設定城鎮中心的集結點。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:23
-msgid ""
-"Queue some slingers to train after the female citizens, you won't have "
-"enough resources for a batch."
-msgstr "在女性市民後面增加幾個投石兵，您將會沒有足夠的資源訓練一整隊的士兵。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:28
-msgid ""
-"When your female citizens have finished training, use 4 to build a house "
-"nearby."
-msgstr "當您的女性市民訓練完成後，指派4個在附近建造一棟房舍。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:33
-msgid ""
-"Set the CC's rally point on the nearby trees, queue more slingers, you want "
-"to train 6 right now."
-msgstr "將城鎮中心的集結點設定到附近的樹木上，並訓練6個投石兵。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:38
-msgid "Queue a batch of 5 female citizens."
-msgstr "訓練一批5個的女市民。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:43
-msgid "Use shift-click to queue another house for the 4 builders."
-msgstr "使用按住 Shift 並單擊的方式讓剛才那4個建築工人再建造另一棟房舍。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:48
-msgid ""
-"Set the rally point back to the berries once all of the citizen soldiers "
-"have finished training."
-msgstr "一旦所有的民兵訓練完畢，設定集結點到附近的果樹叢上。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:53
-msgid ""
-"Send one citizen soldier to gather stone, send 2 others to build a "
-"storehouse near the southern trees."
-msgstr "派一個民兵去收集石頭，並派其他2個在南邊的樹林附近建造一棟倉庫。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:58
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:78
-msgid "Queue another 5 female citizens."
-msgstr "再訓練5個女性市民。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:63
-msgid "Use a female citizen to construct a field next to your CC."
-msgstr "派一個女市民在您的城鎮中心旁建造一個農田。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:68
-msgid ""
-"Your cavalryman has probably run out of chickens by now, there are some "
-"goats to the left of your base."
-msgstr "您的騎兵現在可能已經無雞可獵了，您基地的左邊有一些山羊可供獵取。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:73
-msgid "Use 2-3 more female citizens to construct the field."
-msgstr "指派2-3個或更多的女性市民去建造農田。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:83
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:128
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:138
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:163
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:188
-msgid "Queue another house."
-msgstr "將另一棟房舍排進建造佇列。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:88
-msgid ""
-"The berry bushes are getting crowded, send some female citizens to work the "
-"field, set the rally point there."
-msgstr "果樹叢已經人滿為患了，指派一些女性市民去耕種，並在那裡設定集結點。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:93
-msgid "Queue another 5 female citizens, these should gather stone."
-msgstr "再訓練5個女市民去採集石頭。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:98
-msgid ""
-"Move your woodcutters to the trees near the storehouse so they don’t have to"
-" walk as far."
-msgstr "將您的伐木工移動到靠近倉庫的樹木，這樣他們就不用走太遠。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:103
-msgid ""
-"Make sure the workers from the berry bushes are used to gather from the "
-"field rather than standing idle when they run out."
-msgstr "請確保您在果樹叢工作的市民在採集結束後到農田去工作，而不是閒著發呆。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:108
-msgid "Queue another house to be built."
-msgstr "建造更多的房舍。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:113
-msgid "Queue 5 more female citizens. These will gather wood."
-msgstr "訓練5個女市民。讓她們去伐木。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:118
-msgid ""
-"Build another field, this decreases the amount of walking for your female "
-"citizens."
-msgstr "再建造一個農田，這可以減少女市民所走的路程。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:123
-msgid ""
-"Train some more slingers, send them to gather stone. Train about 5, you may "
-"not have enough resources for a batch right now."
-msgstr "訓練更多的投石兵，指派他們去收集石頭。大約訓練5個，您可能沒有足夠的資源訓練一隊。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:133
-msgid "Queue another batch of 5 female citizens. These will gather wood."
-msgstr "再訓練另外 5 個女性市民。讓她們去伐木。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:143
-msgid "Queue a batch of spearmen."
-msgstr "訓練一隊矛兵。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:148
-msgid "Research the stone mining technology from the storehouse."
-msgstr "在倉庫處研究採石科技。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:153
-msgid "Queue a batch of slingers."
-msgstr "訓練一隊投石兵。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:158
-msgid ""
-"Move 3 women from wood and 3 from stone to farming. Women are cheap to train"
-" initially but later in the game it is best to maximize efficiency as you "
-"are able to train more citizen soldiers."
-msgstr "從伐木及採石的市民中各選取3個去耕種。女性市民在初期很便宜，但在遊戲的稍後，為了讓效率最大化，您應該訓練更多的民兵。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:168
-msgid ""
-"The slingers that you queued earlier should gather stone once they are "
-"trained."
-msgstr "早先訓練的投石兵應該在訓練完成後立即去採石。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:173
-msgid "Queue a batch of spearmen, they should gather wood."
-msgstr "訓練一隊矛兵，他們應該去收集木頭。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:178
-msgid "Next queue a batch of slingers."
-msgstr "然後訓練一隊投石兵。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:183
-msgid ""
-"Send some of the stone miners to mine metal, getting ready for the next age."
-msgstr "指派一些石礦礦工去收集金屬，為進階到下一個時代做準備。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:193
-msgid "Start researching Phase 2."
-msgstr "開始研究第二階段。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:198
-msgid "Queue some slingers."
-msgstr "訓練一些投石兵。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:203
-msgid ""
-"When you have advanced, use a single citizen soldier to place a barracks "
-"foundation. Then use the rest of the non food or house building female "
-"citizens to construct it."
-msgstr "當您升級後，使用單一個民兵放置軍營的地基。然後使用非採集食物或建造房舍的女性市民去建造它。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:208
-msgid "Queue 5 more females for construction work."
-msgstr "再訓練5個女性市民來協助建造工作。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:213
-msgid ""
-"Queue a batch of slingers to gather the trees on the north side of your "
-"base."
-msgstr "訓練一隊投石兵來收集基地北方的樹木。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:218
-msgid ""
-"This is the end of the walkthrough. This should give you a good idea of how "
-"to build up a nice economy rapidly."
-msgstr "本教學課程到此結束。它應該會給您一個快速發展經濟的好主意。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:223
-msgid ""
-"At this point you should be able to fully use both training facilities, keep"
-" putting units into economic work, to keep growing faster and faster."
-msgstr "此時您應該可以充份利用這兩個訓練設施，不斷的讓單位投入經濟工作，讓經濟發展越來越快。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:228
-msgid ""
-"From this point you have a good base to build an army and wipe out the "
-"opposition."
-msgstr "現在您已經俱備建立一支軍隊的基礎，快去消滅您的對手吧。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:233
-msgid "The key points to remember are:"
-msgstr "需要記住的幾點是："
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:238
-msgid ""
-" - Don't have any idle units. Shift click queuing and rally points are very "
-"useful."
-msgstr " - 不要有任何閒置的單位。按住 Shift 並點擊訓練以及設定集結點非常有用。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:243
-msgid ""
-" - Use all of your resources, stockpiled resources are waste, having too "
-"much of a resource is waste."
-msgstr " - 使用您所有的資源，囤積大量未使用的資源是浪費。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:248
-msgid ""
-" - Use the right units for the right task, female citizens gather food, "
-"cavalry hunt, citizen soldiers do the rest."
-msgstr " - 對的人作對的事，女性市民收集食物，騎兵獵取動物，其餘的就交給民兵吧。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:253
-msgid ""
-" - Don't be afraid to swap units from one resource to another, see point 2. "
-"Make sure they deposit what they are carrying first though."
-msgstr " - 調派單位去採集另一種資源時不要猶豫，見第二點。但確保先讓他們帶回手中已採集的。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:258
-msgid ""
-" - Build enough houses, your CC should be kept busy as much as possible."
-msgstr " - 建造足夠的房舍，您的城鎮中心應該在任何時候都盡可能保持忙碌。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:263
-msgid ""
-" - Female citizens are cheap, so you can build more of them and gather more "
-"resources."
-msgstr " - 女性市民很便宜，所以您可以多訓練一點來收集更多的資源。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:268
-msgid ""
-" - Don't get carried away on the last point or you will get raided and have "
-"no defense."
-msgstr " - 別在前一點過於執著，當您薄弱的防禦遇上敵人的突襲時將會欲哭無淚。"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:273
-msgid ""
-"Each map is different, so you will need to play slightly differently on "
-"each. This should give an outline for a high resource map."
-msgstr "每個地圖各有不同，所以您必須因地制宜。以上是您在有大量資源的地圖上所需要做的。"
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:4
-msgid ""
-"Welcome to the 0 A.D. tutorial. First left-click on a female citizen, then "
-"Right-click on a berry bush nearby to make the unit collect food. Female "
-"citizens gather food faster than other units."
-msgstr "歡迎來到0 A.D.教學課程。首先左鍵點擊一個女性市民，然後右鍵點擊附近的果樹叢讓單位採集食物。女性市民收集食物的速度比其他單位更快。"
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:7
-msgid ""
-"Select the citizen-soldier, right-click on a tree near the Civil Center to "
-"begin collecting wood. Citizen-soldiers gather wood faster than female "
-"citizens."
-msgstr "選擇民兵，然後在城鎮中心附近的樹木上右鍵點擊，讓他去伐木。民兵的伐木速度比女性市民快。"
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:11
-msgid ""
-"Select the Civil Center building, and shift-click on the Hoplite icon (2nd "
-"in the row) once to begin training 5 Hoplites."
-msgstr "選擇城鎮中心，並在重裝步兵的圖示上(第2排)按住 Shift 並點擊一次以開始訓練5個重裝步兵。"
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:15
-msgid ""
-"Select the two idle female citizens and build a house nearby by selecting "
-"the house icon. Place the house by left-clicking on a piece of land."
-msgstr "選擇兩個閒置的女性市民並選擇房舍的圖示以在附近建造房子。將房舍以左鍵置於自己的領土上。"
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:21
-msgid ""
-"Select the newly trained Hoplites and assign them to build a storehouse "
-"beside some nearby trees. They will begin to gather wood when it's "
-"constructed."
-msgstr "選擇新訓練的重裝步兵並指派他們去樹林旁建造倉庫。他們將會在建造完成後開始收集木頭。"
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:27
-msgid ""
-"Build a set of 5 skirmishers by shift-clicking on the skirmisher icon (3rd "
-"in the row) in the Civil Center."
-msgstr "按住 Shift 並在城鎮中心中的散兵的圖示上（第3排）點擊以訓練5個散兵。"
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:33
-msgid ""
-"Build a farmstead in an open space beside the Civil Center using any idle "
-"builders."
-msgstr "使用任何閒置的建造工人以在城鎮中心旁的空地上建造農場。"
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:39
-msgid ""
-"Once the farmstead is constructed, its builders will automatically begin "
-"gathering food if there is any nearby. Select the builders and instead make "
-"them construct a field beside the farmstead."
-msgstr "一旦農場建造完成，它的建造者就會開始收集附近可以採收的食物。選取剛才的建造者，讓他們在農場旁邊建造農田。"
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:45
-msgid ""
-"The field's builders will now automatically begin collecting food from the "
-"field. Using the newly created group of skirmishers, get them to build "
-"another house nearby."
-msgstr "農田的建造者將會自動開始從農田中收集食物。並派新訓練的一隊散兵在附近建造另一棟房舍。"
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:51
-msgid ""
-"Train 5 Hoplites from the Civil Center. Select the Civil Center and with it "
-"selected right click on a tree nearby. Units from the Civil Center will now "
-"automatically gather wood."
-msgstr "從城鎮中心訓練5個重裝步兵。選擇城鎮中心，然候在選取城鎮中心的狀態下以右鍵點擊附近的樹木。從城鎮中心出來的單位現在會自動去收集木頭。"
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:57
-msgid ""
-"Order the idle Skirmishers to build an outpost to the north east at the edge"
-" of your territory.  This will be the fifth Village Phase structure that you"
-" have built, allowing you to advance to the Town Phase."
-msgstr "指派閒置的散兵在您的領土東北方的邊境建造一個前哨站。這將會是您村莊階段的第五座建築物，再來您就可以升級到鄉鎮階段了。"
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:63
-msgid ""
-"Select the Civil Center again and advance to Town Phase by clicking on the "
-"'II' icon. This will allow Town Phase buildings to be constructed."
-msgstr "再度選取城鎮中心並按下 'II' 的按鈕進階到鄉鎮階段。這將會讓您可以建造鄉鎮階段的建築物。"
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:69
-msgid ""
-"Start building 5 female citizens in the Civil Center and set its rally point"
-" to the farm (right click on it)."
-msgstr "在城鎮中心訓練5個女性市民，並將其集結點設定於農田(在它上面點擊右鍵)。"
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:74
-msgid ""
-"Build a Barracks nearby. Whenever your population limit is reached, build an"
-" extra house using any available builder units."
-msgstr "在附近建造一座軍營。每當您的人口到達上限，就指派任何可用的建築工人去建造額外的房舍。"
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:80
-msgid ""
-"Prepare for an attack by an enemy player. Build more soldiers using the "
-"Barracks, and get idle soldiers to build a Defense Tower near your Outpost."
-msgstr "準備迎擊敵人的進攻。使用軍營訓練更多的士兵，並指派空閒的士兵在您的前哨附近建造防禦塔。"
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:86
-msgid ""
-"Build a Blacksmith and research the Infantry Training technology (sword "
-"icon) to improve infantry hack attack."
-msgstr "建造一座兵工廠並研究步兵訓練科技(劍的圖示)以提高步兵劈砍的攻擊力。"
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:92
-msgid "The enemy is coming. Build more soldiers to fight off the enemies."
-msgstr "敵人來襲。訓練更多的士兵以擊退敵人。"
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:99
-msgid ""
-"The enemy's attack has been defeated. Now build a market and temple while "
-"assigning new units to gather any required resources."
-msgstr "敵人被擊退了。現在建造一座市集和修道院，並指派新的單位去收集任何需要的資源。"
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:104
-msgid ""
-"Now that City Phase requirements have been reached, select your Civil Center"
-" and advance to City Phase."
-msgstr "現在，城市階段的需求已達成，選取您的城鎮中心並進階到城市階段。"
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:110
-msgid ""
-"Now that you are in City Phase, build a fortress nearby and use it to build "
-"2 Battering Rams."
-msgstr "現在，您已經進到了城市階段，在附近建造一座城堡並利用它建造兩個攻城鎚。"
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:115
-msgid ""
-"Stop all your soldiers gathering resources and instead task small groups to "
-"find the enemy Civil Center on the map. Female citizens should continue to "
-"gather resources."
-msgstr "讓您的士兵停止收集資源，並把他們組成小對在地圖上搜尋敵方的城鎮中心。女性市民應該繼續收集資源。"
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:122
-msgid ""
-"The enemy's base has been spotted, send your siege weapons and all remaining"
-" soldiers to destroy it."
-msgstr "敵人的基地已經被發現了，派遣您所有的攻城武器及士兵去摧毀它。"
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:126
-msgid "The enemy has been defeated. All tutorial tasks are now completed…"
-msgstr "敵人被打敗了。所有教學任務到都已完成..."
-
 #: simulation/components/BuildRestrictions.js:87
 #, javascript-format
 msgid "%(name)s cannot be built due to unknown error"
@@ -836,7 +429,7 @@ msgstr "不能在 %(territoryType)s 的領土上建造 %(name)s 。有效的領�
 msgid "%(name)s must be built on a valid shoreline"
 msgstr "必須在有效的海岸線上建造 %(name)s"
 
-#: simulation/components/BuildRestrictions.js:277
+#: simulation/components/BuildRestrictions.js:281
 #, javascript-format
 msgid ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meter "
@@ -846,7 +439,7 @@ msgid_plural ""
 "away"
 msgstr[0] "%(name)s 距離 %(category)s 太近，必須要有至少 %(distance)s 公尺的距離"
 
-#: simulation/components/BuildRestrictions.js:299
+#: simulation/components/BuildRestrictions.js:302
 #, javascript-format
 msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
@@ -856,28 +449,28 @@ msgstr[0] "%(name)s 距離 %(category)s 太遠，必須在 %(distance)s 公尺�
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:339
+#: simulation/components/BuildRestrictions.js:342
 msgctxt "Territory type list"
 msgid "own"
 msgstr "自己的"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:341
+#: simulation/components/BuildRestrictions.js:344
 msgctxt "Territory type list"
 msgid "ally"
 msgstr "盟友的"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:343
+#: simulation/components/BuildRestrictions.js:346
 msgctxt "Territory type list"
 msgid "neutral"
 msgstr "中立的"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:345
+#: simulation/components/BuildRestrictions.js:348
 msgctxt "Territory type list"
 msgid "enemy"
 msgstr "敵方的"
@@ -960,51 +553,51 @@ msgstr "%(player)s 已被擊敗（作弊）。"
 msgid "You need to select a building that trains units."
 msgstr "您需要選取一棟要訓練單位的建築物。"
 
-#: simulation/helpers/Commands.js:124
+#: simulation/helpers/Commands.js:133
 msgid "(Cheat - control all units)"
 msgstr "（作弊 - 控制所有單位）"
 
-#: simulation/helpers/Commands.js:139
+#: simulation/helpers/Commands.js:148
 msgid "(Cheat - reveal map)"
 msgstr "（作弊 ─ 揭露地圖）"
 
-#: simulation/helpers/Commands.js:444
+#: simulation/helpers/Commands.js:453
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr "%(player)s 已放棄。"
 
-#: simulation/helpers/Commands.js:586
+#: simulation/helpers/Commands.js:595
 msgid "(Cheat - promoted units)"
 msgstr "（作弊 - 升級所有單位）"
 
-#: simulation/helpers/Commands.js:700
+#: simulation/helpers/Commands.js:709
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "無法升級，因為必須的距離無法被驗證，或是地形有阻礙。"
 
-#: simulation/helpers/Commands.js:710
+#: simulation/helpers/Commands.js:719
 msgid "Cannot upgrade a garrisoned entity."
 msgstr "無法升級已駐守的實體。"
 
-#: simulation/helpers/Commands.js:756
+#: simulation/helpers/Commands.js:765
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "請攻擊 %(_player_)s。"
 
-#: simulation/helpers/Commands.js:792
+#: simulation/helpers/Commands.js:801
 msgid "There are no bribable units"
 msgstr "沒有可賄賂的單位"
 
-#: simulation/helpers/Commands.js:838
+#: simulation/helpers/Commands.js:847
 msgid "Unable to ungarrison unit(s)"
 msgstr "無法解除單位駐軍"
 
-#: simulation/helpers/Commands.js:852
+#: simulation/helpers/Commands.js:861
 msgid "Some unit(s) can't go back to work"
 msgstr "部份單位無法回到工作崗位"
 
-#: simulation/helpers/Commands.js:1106
+#: simulation/helpers/Commands.js:1115
 msgid "The building's technology requirements are not met."
 msgstr "建築物的科技需求不符合。"
 
@@ -1243,13 +836,3 @@ msgid ""
 "\n"
 "The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -50% for Sandbox to +60% for Very Hard (Medium 0%). In addition, the Sandbox level does not expand nor attack."
 msgstr "Petra 是預設的 0 A.D. AI 機器人。請回報問題給 Wildfire Games （見在主選單中的連結）。\n\nAI 在資源儲備上有加值／減值（不論是採集速率或是貿易收入），從測試區用的 -50% 到非常難的 +60%（中等 = 0%）。另外，測試區等級不會拓展也不會攻擊。"
-
-#: simulation/ai/tutorial-ai/data.jsonname
-msgid "Tutorial AI"
-msgstr "教學 AI"
-
-#: simulation/ai/tutorial-ai/data.jsondescription
-msgid ""
-"The Tutorial AI should only be used on the \"Introductory Tutorial\" "
-"scenario."
-msgstr "入門 AI 應該只能在「入門」劇情中使用。"

@@ -326,7 +326,7 @@ m.Worker.prototype.startGathering = function(gameState)
 	let access = gameState.ai.accessibility.getAccessValue(this.ent.position());
 
 	// First look for possible treasure if any
-	if (this.gatherTreasure(gameState))
+	if (m.gatherTreasure(gameState, this.ent))
 		return true;
 
 	let resource = this.ent.getMetadata(PlayerID, "gather-type");
@@ -609,7 +609,7 @@ m.Worker.prototype.startGathering = function(gameState)
 m.Worker.prototype.startHunting = function(gameState, position)
 {
 	// First look for possible treasure if any
-	if (!position && this.gatherTreasure(gameState))
+	if (!position && m.gatherTreasure(gameState, this.ent))
 		return true;
 
 	let resources = gameState.getHuntableSupplies();
@@ -832,14 +832,16 @@ m.Worker.prototype.buildAnyField = function(gameState, baseID)
 {
 	if (!this.ent.isBuilder())
 		return false;
-	let baseFoundations = gameState.getOwnFoundations().filter(API3.Filters.byMetadata(PlayerID, "base", baseID));
-	let maxGatherers = gameState.getTemplate(gameState.applyCiv("structures/{civ}_field")).maxGatherers();
+	let template = gameState.getTemplate(gameState.applyCiv("structures/{civ}_field"));
+	if (!template)
+		return false;
+	let maxGatherers = template.maxGatherers();
 	let bestFarmEnt = false;
 	let bestFarmDist = 10000000;
 	let pos = this.ent.position();
-	for (let found of baseFoundations.values())
+	for (let found of gameState.getOwnFoundations().values())
 	{
-		if (!found.hasClass("Field"))
+		if (found.getMetadata(PlayerID, "base") != baseID || !found.hasClass("Field"))
 			continue;
 		let current = found.getBuildersNb();
 		if (current === undefined || current >= maxGatherers)
@@ -851,47 +853,6 @@ m.Worker.prototype.buildAnyField = function(gameState, baseID)
 		bestFarmDist = dist;
 	}
 	return bestFarmEnt;
-};
-
-/**
- * Look for some treasure to gather
- */
-m.Worker.prototype.gatherTreasure = function(gameState)
-{
-	let rates = this.ent.resourceGatherRates();
-	if (!rates || !rates.treasure || rates.treasure <= 0)
-		return false;
-	let treasureFound;
-	let distmin = Math.min();
-	let access = gameState.ai.accessibility.getAccessValue(this.ent.position());
-	for (let treasure of gameState.ai.HQ.treasures.values())
-	{
-		if (m.IsSupplyFull(gameState, treasure))
-			continue;
-		// let some time for the previous gatherer to reach the treasure befor trying again
-		let lastGathered = treasure.getMetadata(PlayerID, "lastGathered");
-		if (lastGathered && gameState.ai.elapsedTime - lastGathered < 20)
-			continue;
-		if (access !== m.getLandAccess(gameState, treasure))
-			continue;
-		let territoryOwner = gameState.ai.HQ.territoryMap.getOwner(treasure.position());
-		if (territoryOwner !== 0 && !gameState.isPlayerAlly(territoryOwner))
-			continue;
-		let dist = API3.SquareVectorDistance(this.ent.position(), treasure.position());
-		if (territoryOwner !== PlayerID && dist > 14000)  //  AI has no LOS, so restrict it a bit
-			continue;
-		if (dist > distmin)
-			continue;
-		distmin = dist;
-		treasureFound = treasure;
-	}
-	if (!treasureFound)
-		return false;
-	treasureFound.setMetadata(PlayerID, "lastGathered", gameState.ai.elapsedTime);
-	this.ent.gather(treasureFound);
-	gameState.ai.HQ.AddTCGatherer(treasureFound.id());
-	this.ent.setMetadata(PlayerID, "supply", treasureFound.id());
-	return true;
 };
 
 /**

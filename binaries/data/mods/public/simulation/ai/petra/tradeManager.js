@@ -113,10 +113,17 @@ m.TradeManager.prototype.trainMoreTraders = function(gameState, queues)
 
 m.TradeManager.prototype.updateTrader = function(gameState, ent)
 {
+	if (ent.hasClass("Ship") && gameState.ai.playedTurn % 5 === 0 &&
+	    !ent.unitAIState().startsWith("INDIVIDUAL.GATHER") &&
+	    m.gatherTreasure(gameState, ent, true))
+		return;
+
 	if (!this.hasTradeRoute() || !ent.isIdle() || !ent.position())
 		return;
 	if (ent.getMetadata(PlayerID, "transport") !== undefined)
 		return;
+
+	// TODO if the trader is idle and has workOrders, restore them to avoid losing the current gain
 
 	Engine.ProfileStart("Trade Manager");
 	let access = ent.hasClass("Ship") ? ent.getMetadata(PlayerID, "sea") : gameState.ai.accessibility.getAccessValue(ent.position());

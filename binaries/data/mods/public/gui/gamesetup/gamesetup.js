@@ -429,7 +429,7 @@ var g_Dropdowns = {
 
 			if (g_GameAttributes.mapType != "scenario")
 				g_GameAttributes.settings = {
-					"PlayerData": g_DefaultPlayerData.slice(0, 4)
+					"PlayerData": clone(g_DefaultPlayerData.slice(0, 4))
 				};
 
 			reloadMapFilterList();
@@ -493,7 +493,7 @@ var g_Dropdowns = {
 			let pData = g_GameAttributes.settings.PlayerData;
 			g_GameAttributes.settings.PlayerData =
 				num > pData.length ?
-					pData.concat(g_DefaultPlayerData.slice(pData.length, num)) :
+					pData.concat(clone(g_DefaultPlayerData.slice(pData.length, num))) :
 					pData.slice(0, num);
 			unassignInvalidPlayers(num);
 			sanitizePlayerData(g_GameAttributes.settings.PlayerData);
@@ -981,7 +981,7 @@ function initDefaults()
 		g_DefaultPlayerData[i].Team = -1;
 	}
 
-	g_DefaultPlayerData = deepfreeze(g_DefaultPlayerData);
+	deepfreeze(g_DefaultPlayerData);
 }
 
 /**
@@ -1543,7 +1543,7 @@ function sanitizePlayerData(playerData)
 		// Use defaults if the map doesn't specify a value
 		for (let prop in g_DefaultPlayerData[index])
 			if (!(prop in pData))
-				pData[prop] = g_DefaultPlayerData[index][prop];
+				pData[prop] = clone(g_DefaultPlayerData[index][prop]);
 
 		// Replace colors with the best matching color of PlayerDefaults
 		if (g_GameAttributes.mapType != "scenario")

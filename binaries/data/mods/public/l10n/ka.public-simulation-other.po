@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-08-21 09:05+0200\n"
-"PO-Revision-Date: 2017-08-21 15:58+0000\n"
+"POT-Creation-Date: 2017-09-01 09:03+0200\n"
+"PO-Revision-Date: 2017-09-01 15:40+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Georgian (http://www.transifex.com/wildfire-games/0ad/language/ka/)\n"
 "MIME-Version: 1.0\n"
@@ -354,413 +354,6 @@ msgid ""
 "us, I have abrogated my offer."
 msgstr ""
 
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:3
-msgid ""
-"Warning: This is an advanced tutorial and goes quite fast. If you don't keep"
-" up just restart and try again. Practise makes perfect!"
-msgstr "გაფრთხილება: ეს არის გამოცდილი გზამკვლევი და საკმაოდ სწრაფად მიდის. შენ თუ ვერ მიჰყვები, უბრალოდ ხელახლა ჩართე და სცადე ისევ. ვარჯიში ხდის უნაკლოს!"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:8
-msgid ""
-"Lets get started, first train a batch (shift click) of 5 female citizens "
-"from the CC (Civil Center)."
-msgstr "დავიწყოთ, ჯერ გამოიყვანე 5 მოქალაქე ქალი (shift წკაპი) სც-დან (სამოქალაქო ცენტრი)."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:13
-msgid ""
-"Now, assign your female citizens to gather berries, your cavalryman to hunt "
-"the chickens and the citizen soldiers to gather wood."
-msgstr "ახლა, გაუშვი შენ მოქალაქე ქალები კენკრის მოსაგროვებლად, შენი მხედარი რომ ინადიროს ქათმებზე და მოქალაქე ჯარისკაცები, რომ შეაგროვონ ხე."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:18
-msgid "Now set the rally point of your civil center on the berries."
-msgstr "ახლა დააყენე სამოქალაქო ცენტრის შეკრების წერტილი კენკრებზე."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:23
-msgid ""
-"Queue some slingers to train after the female citizens, you won't have "
-"enough resources for a batch."
-msgstr "რიგში ჩააყენე რამდენიმე მეშურდულე, რომ გაწვრთნა მოქალაქე ქალების შემდეგ, ბევრის ერთად გამოყვანისთვის საჭირო სახსრები არ გექნება."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:28
-msgid ""
-"When your female citizens have finished training, use 4 to build a house "
-"nearby."
-msgstr "როცა შენი მოქალაქე ქალები დაასრულებენ წვრთნას, 4 მათგანი გამოიყენე ახლომახლო სახლის ასაშენებლად."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:33
-msgid ""
-"Set the CC's rally point on the nearby trees, queue more slingers, you want "
-"to train 6 right now."
-msgstr "დააყენე სც-ს შეკრების ადგილი ახლომახლო ხეებზე, რიგში ჩააყენე მეტი მეშურდულე, შენ გინდა რომ ახლა 6 გამოიყვანო."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:38
-msgid "Queue a batch of 5 female citizens."
-msgstr "რიგში ჩააყენე ერთად 5 ქალი მოქალაქე."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:43
-msgid "Use shift-click to queue another house for the 4 builders."
-msgstr "გამოიყენე shift-წკაპი რომ რიგში ჩააყენო კიდევ ერთი სახლი 4 მშენებელისთვის."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:48
-msgid ""
-"Set the rally point back to the berries once all of the citizen soldiers "
-"have finished training."
-msgstr "დააყენე შეკრების ადგილი უკან, კენკრებზე როგორც კი მოქალაქე ჯარისკაცები წვრთნას მორჩებიან."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:53
-msgid ""
-"Send one citizen soldier to gather stone, send 2 others to build a "
-"storehouse near the southern trees."
-msgstr "გააგზავნე ერთი მოქალაქე ჯარისკაცი ქვის მოსაგროვებლად, გაგზავნე 2 სხვა, რომ რომ ააშენონ საწყობი სამხრეთის ხეებთან."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:58
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:78
-msgid "Queue another 5 female citizens."
-msgstr "რიგში ჩააყენე კიდევ 5 მოქალაქე ქალი."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:63
-msgid "Use a female citizen to construct a field next to your CC."
-msgstr "გამოიყენე მოქალაქე ქალი რომ მოაწყოს ყანა სც-თან ახლოს."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:68
-msgid ""
-"Your cavalryman has probably run out of chickens by now, there are some "
-"goats to the left of your base."
-msgstr "შენს მხედარს სავარაუდოდ მეტი ქათამი აღარ დარჩა, მარცხნივ, ბანაკის ახლოს თხებია."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:73
-msgid "Use 2-3 more female citizens to construct the field."
-msgstr "გამოიყენე 2-3-ით მეტი მოქალაქე ქალი რომ მოაწყოს ყანა."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:83
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:128
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:138
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:163
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:188
-msgid "Queue another house."
-msgstr "რიგში ჩააყენე კიდევ ერთი სახლი"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:88
-msgid ""
-"The berry bushes are getting crowded, send some female citizens to work the "
-"field, set the rally point there."
-msgstr "კენკრის ბუჩქებს ხალხი აწყდება, რამდენიმე მოქალაქე ქალი ყანაში სამუშაოდ გაგზავნე, მანდვე დააყენე შეკრების წერტილი."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:93
-msgid "Queue another 5 female citizens, these should gather stone."
-msgstr "რიგში ჩააყენე კიდევ 5 მოქალაქე ქალი, ქვა უნდა მოაგროვონ."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:98
-msgid ""
-"Move your woodcutters to the trees near the storehouse so they don’t have to"
-" walk as far."
-msgstr "წაიყვანე ხის მჭრელები საწყობთან, რომ ბევრი სიარული არ დაჭირდეთ."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:103
-msgid ""
-"Make sure the workers from the berry bushes are used to gather from the "
-"field rather than standing idle when they run out."
-msgstr "დარწმუნდი, რომ კენკრის ბუჩქებზე ნამუშევარი მუშები ყანიდან მოიპოვებენ და არ დგანან უსაქმოდ."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:108
-msgid "Queue another house to be built."
-msgstr "მორიგი სახლი ჩააყენე რიგში."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:113
-msgid "Queue 5 more female citizens. These will gather wood."
-msgstr "რიგში ჩააყენე კიდევ 5 მოქალაქე ქალი. ესენი ხეს მოჩეხენ."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:118
-msgid ""
-"Build another field, this decreases the amount of walking for your female "
-"citizens."
-msgstr "ააშენე მორიგი ყანა, ეს შეამცირებს მოქალაქე ქალების სიარულის რაოდენობას."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:123
-msgid ""
-"Train some more slingers, send them to gather stone. Train about 5, you may "
-"not have enough resources for a batch right now."
-msgstr "გაწვრთენი მეტი მეშურდულე, გაგზავნე ისინი ქვის მოსაპოვებლად. გაწვრთენი დაახლოებით 5, ამჟამად შეიძლება არ გქონდეს საკმარისი სახსრები ერთიანად გამოსაყვანად."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:133
-msgid "Queue another batch of 5 female citizens. These will gather wood."
-msgstr ""
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:143
-msgid "Queue a batch of spearmen."
-msgstr "რიგში ერთიანად ჩააყენე სასროლ შუბიანები."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:148
-msgid "Research the stone mining technology from the storehouse."
-msgstr "საწყობიდან გამოიკვლიე ქვის მოპოვების ტექნოლოგია."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:153
-msgid "Queue a batch of slingers."
-msgstr "რიგში ჩააყენე ბევრი მეშურდულე ერთად."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:158
-msgid ""
-"Move 3 women from wood and 3 from stone to farming. Women are cheap to train"
-" initially but later in the game it is best to maximize efficiency as you "
-"are able to train more citizen soldiers."
-msgstr "წაიყვანე 3 ქალი ხიდან და 3 ქვიდან ფერმაში. ქალების გაწვრთნა იაფია, მაგრამ მოგვიანებით, ეფექტურობისთვის უკეთესია თუ შეძლებ მოქალაქე ჯარისკაცების გაწვრთნას."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:168
-msgid ""
-"The slingers that you queued earlier should gather stone once they are "
-"trained."
-msgstr "მეშურდულეები, რომლებიც ადრე ჩააყენე რიგში, ქვას მოიპოვებენ როგორც კი გაიწვრთნებიან."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:173
-msgid "Queue a batch of spearmen, they should gather wood."
-msgstr "რიგში ჩააყენე სასროლ შუბიანები, ისინი ხეს მოაგროვებენ."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:178
-msgid "Next queue a batch of slingers."
-msgstr "შემდეგ რიგში ჩააყენე ბევრი მეშურდულე ერთად."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:183
-msgid ""
-"Send some of the stone miners to mine metal, getting ready for the next age."
-msgstr "გაგზავნე რამდენიმე ქვის მომპოვებელი ლითონის მოსაპოვებლად, მოემზადე შემდეგი ხანისთვის."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:193
-msgid "Start researching Phase 2."
-msgstr "დაიწყე მე-2 ფაზის გამოკვლევა."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:198
-msgid "Queue some slingers."
-msgstr "რიგში ჩააყენე რამდენიმე მეშურდულე."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:203
-msgid ""
-"When you have advanced, use a single citizen soldier to place a barracks "
-"foundation. Then use the rest of the non food or house building female "
-"citizens to construct it."
-msgstr "როცა გამოცდილი გახდები, გამოიყენე ერთი მოქალაქე ჯარისკაცი, რომ დადგა საძირკველი. შემდეგ გამოიყენე დარჩენილი არა საჭმლის მომპოვებელი და სახლის მშენებელი მოქალაქე ქალები, რომ ააშენო ის."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:208
-msgid "Queue 5 more females for construction work."
-msgstr "რიგში ჩააყენე 5-ით მეტი ქალი სამშენებლო სამუშაოებისთვის."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:213
-msgid ""
-"Queue a batch of slingers to gather the trees on the north side of your "
-"base."
-msgstr "რიგში ჩააყენე მეშურდულეების ჯგუფი, რომ ბაზის ჩრდილოეთით მოაგროვონ ხეები."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:218
-msgid ""
-"This is the end of the walkthrough. This should give you a good idea of how "
-"to build up a nice economy rapidly."
-msgstr "ეს არის დახმარების დასასრული. ამას უნდა მოეცა მაგალითი, თუ სწრაფად როგორ მოაწყო კარგი ეკონომიკა."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:223
-msgid ""
-"At this point you should be able to fully use both training facilities, keep"
-" putting units into economic work, to keep growing faster and faster."
-msgstr "ამ ეტაპზე შენ სრულად უნდა იყენებდე ორივე საწვრთნელ დაწესებულებას, ერთეულების ეკონომიკური დავალებებს აძლევდე, და შეუჩერებლად შეგეძლოს განვითარება."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:228
-msgid ""
-"From this point you have a good base to build an army and wipe out the "
-"opposition."
-msgstr "აქედან უკვე კარგი საფუძველი გაქვს რომ შექმნა ჯარი და გაანადგურო მოწინააღმდეგე."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:233
-msgid "The key points to remember are:"
-msgstr "მთავარია დაიმახსოვრო:"
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:238
-msgid ""
-" - Don't have any idle units. Shift click queuing and rally points are very "
-"useful."
-msgstr "- არ იყოლიო არცერთი უსაქმო ერთეული. Shift დაწკაპებით გაკეთებული რიგები და შეკრების ადგილები ძალიან გამოსადეგია."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:243
-msgid ""
-" - Use all of your resources, stockpiled resources are waste, having too "
-"much of a resource is waste."
-msgstr "- მთლიანად გამოიყენე სახსრები, დაყენებული სახსრები ნაგავია, ძალიან ბევრი სახსრის ქონაც ნაგავია."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:248
-msgid ""
-" - Use the right units for the right task, female citizens gather food, "
-"cavalry hunt, citizen soldiers do the rest."
-msgstr "- სწორად შეურჩიე ერთეულებს დავალებები, მოქალაქე ქალები საჭმელს აგროვებენ, მხედრები ნადირობენ, მოქალაქე ჯარისკაცები დანარჩენ საქმეს აკეთებენ."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:253
-msgid ""
-" - Don't be afraid to swap units from one resource to another, see point 2. "
-"Make sure they deposit what they are carrying first though."
-msgstr "- არ შეგეშინდეს რომ ცვალო ერთეულები ერთი წყაროდან მეორეზე, ნახე თავი 2. ოღონდ ჯერ დარწმუნდი ჩააბარონ ის, რასაც ატარებენ. "
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:258
-msgid ""
-" - Build enough houses, your CC should be kept busy as much as possible."
-msgstr ""
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:263
-msgid ""
-" - Female citizens are cheap, so you can build more of them and gather more "
-"resources."
-msgstr "- ქალი მოქალაქეები იაფია, შეგიძლია მეტი გამოიყვანო სახსრების მოსაძიებლად."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:268
-msgid ""
-" - Don't get carried away on the last point or you will get raided and have "
-"no defense."
-msgstr "- სულ ასე არ ქნა, თორემ თავს დაგესხმებიან და თავდაცვა არ გექნება."
-
-#: simulation/ai/tutorial-ai/economic_walkthrough.js:273
-msgid ""
-"Each map is different, so you will need to play slightly differently on "
-"each. This should give an outline for a high resource map."
-msgstr "ყველა რუკა სხვადასხვანაირია, ასე რომ დაგჭირდება ყველაზე ოდნავ განსხვავებულად ითამაშო. ეს შეიძლება გამოიკვეთოს სახსრებით უხვ რუკაზე."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:4
-msgid ""
-"Welcome to the 0 A.D. tutorial. First left-click on a female citizen, then "
-"Right-click on a berry bush nearby to make the unit collect food. Female "
-"citizens gather food faster than other units."
-msgstr "კეთილი იყოს შენი მოსვლა 0 A.D.-ს გზამკვლევში. პირველ რიგში მარცხენა დაწკაპე მოქალაქე ქალზე, შემდეგ მარჯვენა დაწკაპე ახლომახლო კენკრის ბუჩქზე რომ დაავალო მას საჭმლის მოგროვება. ქალები საჭმელს სხვებზე სწრაფად აგროვებენ."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:7
-msgid ""
-"Select the citizen-soldier, right-click on a tree near the Civil Center to "
-"begin collecting wood. Citizen-soldiers gather wood faster than female "
-"citizens."
-msgstr "აირჩიე მოქალაქე-ჯარისკაცი, მარჯვე დაწკაპე ხეზე სამოქალაქო ცენტრთან ახლოს, რომ დაიწყოს ხის მოგროვება. მოქალაქე-ჯარისკაცები ხეს ქალებზე სწრაფად აგროვებენ."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:11
-msgid ""
-"Select the Civil Center building, and shift-click on the Hoplite icon (2nd "
-"in the row) once to begin training 5 Hoplites."
-msgstr "აირჩიე სამოქალაქო ცენტრის შენობა და shift-დაწკაპე ერთხელ ჰოპლიტის ხატულაზე (რიგში მე-2) რომ დაიწყო 5 ჰოპლიტის გამოყვანა."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:15
-msgid ""
-"Select the two idle female citizens and build a house nearby by selecting "
-"the house icon. Place the house by left-clicking on a piece of land."
-msgstr "აირჩიე  ორი უსაქმო მოქალაქე ქალი და ააშენე სახლი ახლომახლო, სახლის ხატულის არჩევით. მარცხენა-წკაპით დასვი სახლი მიწის ნაკვეთზე."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:21
-msgid ""
-"Select the newly trained Hoplites and assign them to build a storehouse "
-"beside some nearby trees. They will begin to gather wood when it's "
-"constructed."
-msgstr "აირჩიე ახლად გაწვრთნილი ჰოპლიტები და ააშენებინე საწყობი ახლომახლო ხეებთან. ისინი დაიწყებენ ხის მოგროვებას, როგორც კი შენებას მორჩებიან."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:27
-msgid ""
-"Build a set of 5 skirmishers by shift-clicking on the skirmisher icon (3rd "
-"in the row) in the Civil Center."
-msgstr "გამოიყვანე 5 შემტაკებელი shift-წკაპით შემტაკებლის ხატულაზე (რიგში მე-3) სამოქალაქო ცენტრში."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:33
-msgid ""
-"Build a farmstead in an open space beside the Civil Center using any idle "
-"builders."
-msgstr "ააშენე ფერმა სამოქალაქო ცენტრთან ახლოს, ღია ადგილას ნებისმიერი უსაქმო მშენებლის გამოყენებით."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:39
-msgid ""
-"Once the farmstead is constructed, its builders will automatically begin "
-"gathering food if there is any nearby. Select the builders and instead make "
-"them construct a field beside the farmstead."
-msgstr "როგორც კი ფერმა აშენდება, მისი მშენებლები ავტომატურად დაიწყებენ საჭმლის მოგროვებას, თუ წყაროა ახლომახლო. მონიშნე მშენებლები და მოაწყობინე ყანა ფერმასთან ახლოს."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:45
-msgid ""
-"The field's builders will now automatically begin collecting food from the "
-"field. Using the newly created group of skirmishers, get them to build "
-"another house nearby."
-msgstr "ყანის მომწყობები ავტომატურად დაიწყებენ საჭმლის მოგროვებას ამ ყანიდან. ახლად შექმნილი შემტაკებლების ჯუფის გამოყენებით ახლომახლო ააშენე მორიგი სახლი."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:51
-msgid ""
-"Train 5 Hoplites from the Civil Center. Select the Civil Center and with it "
-"selected right click on a tree nearby. Units from the Civil Center will now "
-"automatically gather wood."
-msgstr "გაწვრთენი 5 ჰოპლიტი სამოქალაქო ცენტრში. აირჩიე სამოქალაქო ცენტრი და მარჯვენა დაწკაპე ახლომახლო ხეზე. სამოქალაქო ცენტრიდან გამოსული ერთეულები ავტომატურად დაიწყებენ ხის მოგროვებას."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:57
-msgid ""
-"Order the idle Skirmishers to build an outpost to the north east at the edge"
-" of your territory.  This will be the fifth Village Phase structure that you"
-" have built, allowing you to advance to the Town Phase."
-msgstr "უბრძანე უსაქმო შემტაკებლებს რომ ააშენონ საგუშაგო ჩრდილო აღმოსავლეთითი, შენი ტერიტორიის კიდეში. ეს იქნება მეხუთე სოფლის ფაზის შენობა, რაც შენ ააშენე. ეს გაძლევს ქალაქის ფაზაში გადასვლის საშუალებას."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:63
-msgid ""
-"Select the Civil Center again and advance to Town Phase by clicking on the "
-"'II' icon. This will allow Town Phase buildings to be constructed."
-msgstr "ისევ აირჩიე სამოქალაქო ცენტრი და გადადი ქალაქის ფაზაში II ხატულაზე დაჭერით. ეს საშუალებას მოგცემს ააშენო ქალაქის ფაზის შენობები."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:69
-msgid ""
-"Start building 5 female citizens in the Civil Center and set its rally point"
-" to the farm (right click on it)."
-msgstr "დაიწყე 5 მოქალაქე ქალის გამოყვანა სამოქალაქო ცენტრში და დასვი შეკრების წერტილი ფერმაზე (მასზე მარჯვენა წკაპით)"
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:74
-msgid ""
-"Build a Barracks nearby. Whenever your population limit is reached, build an"
-" extra house using any available builder units."
-msgstr "ააშენე ყაზარმა ახლომახლო. როცა კი შენი მოსახლეობის ზღვარი მიიღწევა, ააშენებინე დამატებითი სახლი ნებისმიერ მშენებელ ერთეულს."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:80
-msgid ""
-"Prepare for an attack by an enemy player. Build more soldiers using the "
-"Barracks, and get idle soldiers to build a Defense Tower near your Outpost."
-msgstr "მოემზადე მტრისგან თადასხმისთვის. ყაზარმიდან გამოიყვანე მეტი ჯარისკაცი და ააშენებინე თავდაცვის კოშკი უსაქმო ჯარისკაცებს საგუშაგოსთან ახლოს."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:86
-msgid ""
-"Build a Blacksmith and research the Infantry Training technology (sword "
-"icon) to improve infantry hack attack."
-msgstr "ააშენე სამჭედლო და გამოიკვლიე ქვეითების წვრთნის ტექნოლოგია (ხმლის ხატულა) რომ გააუმჯობესო ქვეითების მჭრელი თავდასხმა"
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:92
-msgid "The enemy is coming. Build more soldiers to fight off the enemies."
-msgstr "მტერი მოდის. გამოიყვანე მეტი ჯარისკაცი, რომ ებრძოლონ მტერს."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:99
-msgid ""
-"The enemy's attack has been defeated. Now build a market and temple while "
-"assigning new units to gather any required resources."
-msgstr "მტრის თავდასხმა მოგერიებულია. ახლა ააშენე ბაზარი და ტაძარი და ასევე მიუთითე ახალ ერთეულებს მოიძიონ საჭირო სახსრები."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:104
-msgid ""
-"Now that City Phase requirements have been reached, select your Civil Center"
-" and advance to City Phase."
-msgstr "ახლა, როცა დიდი ქალაქის ფაზის საჭიროებები დაკმაყოფილებულია, მონიშნე სამოქალაქო ცენტრი და გადაიყვანე დიდი ქალაქის ფაზაში."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:110
-msgid ""
-"Now that you are in City Phase, build a fortress nearby and use it to build "
-"2 Battering Rams."
-msgstr "ახლა, როცა შენ ხარი დიდი ქალაქის ფაზაში, ააშენე ციხე-სიმაგრე ახლომახლო და გამოიყვანე 2 გამანადგურებელი გამრღვევი."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:115
-msgid ""
-"Stop all your soldiers gathering resources and instead task small groups to "
-"find the enemy Civil Center on the map. Female citizens should continue to "
-"gather resources."
-msgstr "შეაწყვეტინე ყველა ჯარისკაცს სახსრების მოგროვება და დავალება მიეცი პატარა ჯგუფს, რომ რუკაზე იპოვონ მტრის სამოქალაქო ცენტრი. მოქალაქე ქალებმა უნდა განაგრძონ სახსრების მოპოვება."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:122
-msgid ""
-"The enemy's base has been spotted, send your siege weapons and all remaining"
-" soldiers to destroy it."
-msgstr "მტრის ბაზა ნაპოვნია, გაგზავნე შენი საალყე იარაღები და სხვა მებრძოლები რომ დაანგრიონ ის."
-
-#: simulation/ai/tutorial-ai/introductory_tutorial.js:126
-msgid "The enemy has been defeated. All tutorial tasks are now completed…"
-msgstr "მტერი დამარცხდა. გზამკვლევის ყველა დავალება შესრულებულია..."
-
 #: simulation/components/BuildRestrictions.js:87
 #, javascript-format
 msgid "%(name)s cannot be built due to unknown error"
@@ -835,7 +428,7 @@ msgstr "%(name)s არ შეიძლება აშენდეს ასე
 msgid "%(name)s must be built on a valid shoreline"
 msgstr "%(name)s უნდა აშენდეს მართებულ ნაპირზე."
 
-#: simulation/components/BuildRestrictions.js:277
+#: simulation/components/BuildRestrictions.js:281
 #, javascript-format
 msgid ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meter "
@@ -845,7 +438,7 @@ msgid_plural ""
 "away"
 msgstr[0] ""
 
-#: simulation/components/BuildRestrictions.js:299
+#: simulation/components/BuildRestrictions.js:302
 #, javascript-format
 msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
@@ -855,28 +448,28 @@ msgstr[0] ""
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:339
+#: simulation/components/BuildRestrictions.js:342
 msgctxt "Territory type list"
 msgid "own"
 msgstr "საკუთარი"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:341
+#: simulation/components/BuildRestrictions.js:344
 msgctxt "Territory type list"
 msgid "ally"
 msgstr "მოკავშირე"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:343
+#: simulation/components/BuildRestrictions.js:346
 msgctxt "Territory type list"
 msgid "neutral"
 msgstr "ნეიტრალური"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:345
+#: simulation/components/BuildRestrictions.js:348
 msgctxt "Territory type list"
 msgid "enemy"
 msgstr "მტერი"
@@ -959,51 +552,51 @@ msgstr ""
 msgid "You need to select a building that trains units."
 msgstr ""
 
-#: simulation/helpers/Commands.js:124
+#: simulation/helpers/Commands.js:133
 msgid "(Cheat - control all units)"
 msgstr ""
 
-#: simulation/helpers/Commands.js:139
+#: simulation/helpers/Commands.js:148
 msgid "(Cheat - reveal map)"
 msgstr ""
 
-#: simulation/helpers/Commands.js:444
+#: simulation/helpers/Commands.js:453
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr ""
 
-#: simulation/helpers/Commands.js:586
+#: simulation/helpers/Commands.js:595
 msgid "(Cheat - promoted units)"
 msgstr ""
 
-#: simulation/helpers/Commands.js:700
+#: simulation/helpers/Commands.js:709
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr ""
 
-#: simulation/helpers/Commands.js:710
+#: simulation/helpers/Commands.js:719
 msgid "Cannot upgrade a garrisoned entity."
 msgstr ""
 
-#: simulation/helpers/Commands.js:756
+#: simulation/helpers/Commands.js:765
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr ""
 
-#: simulation/helpers/Commands.js:792
+#: simulation/helpers/Commands.js:801
 msgid "There are no bribable units"
 msgstr ""
 
-#: simulation/helpers/Commands.js:838
+#: simulation/helpers/Commands.js:847
 msgid "Unable to ungarrison unit(s)"
 msgstr ""
 
-#: simulation/helpers/Commands.js:852
+#: simulation/helpers/Commands.js:861
 msgid "Some unit(s) can't go back to work"
 msgstr ""
 
-#: simulation/helpers/Commands.js:1106
+#: simulation/helpers/Commands.js:1115
 msgid "The building's technology requirements are not met."
 msgstr ""
 
@@ -1242,13 +835,3 @@ msgid ""
 "\n"
 "The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -50% for Sandbox to +60% for Very Hard (Medium 0%). In addition, the Sandbox level does not expand nor attack."
 msgstr ""
-
-#: simulation/ai/tutorial-ai/data.jsonname
-msgid "Tutorial AI"
-msgstr "გზამკვლევი ხი"
-
-#: simulation/ai/tutorial-ai/data.jsondescription
-msgid ""
-"The Tutorial AI should only be used on the \"Introductory Tutorial\" "
-"scenario."
-msgstr "გზამკვლევი ხი შეიძლება გამოყენებული იქნას მხოლოდ \"შესავალი გზამკვლევის\" სცენარში."

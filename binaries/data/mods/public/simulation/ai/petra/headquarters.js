@@ -561,7 +561,7 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 		return;
 
 	// Choose whether we want soldiers or support units.
-	let supportRatio = gameState.isTemplateDisabled(gameState.applyCiv("structures/{civ}_field")) ? Math.min(this.supportRatio, 0.1) : this.supportRatio;
+	let supportRatio = gameState.isTemplateAvailable(gameState.applyCiv("structures/{civ}_field")) ? this.supportRatio : Math.min(this.supportRatio, 0.1);
 	let supportMax = supportRatio * this.targetNumWorkers;
 	let supportNum = supportMax * Math.atan(numberTotal/supportMax) / 1.570796;
 
@@ -1452,7 +1452,7 @@ m.HQ.prototype.manageCorral = function(gameState, queues)
 		return;
 
 	let nCorral = gameState.getOwnEntitiesByClass("Corral", true).length;
-	if (!nCorral || gameState.isTemplateDisabled(gameState.applyCiv("structures/{civ}_field")) &&
+	if (!nCorral || !gameState.isTemplateAvailable(gameState.applyCiv("structures/{civ}_field")) &&
 	                nCorral < this.currentPhase && gameState.getPopulation() > 30*nCorral)
 	{
 		if (this.canBuild(gameState, "structures/{civ}_corral"))
@@ -1494,7 +1494,8 @@ m.HQ.prototype.manageCorral = function(gameState, queues)
  */
 m.HQ.prototype.buildMoreHouses = function(gameState, queues)
 {
-	if (gameState.getPopulationMax() <= gameState.getPopulationLimit())
+	if (!gameState.isTemplateAvailable(gameState.applyCiv("structures/{civ}_house")) ||
+	    gameState.getPopulationMax() <= gameState.getPopulationLimit())
 		return;
 
 	let numPlanned = queues.house.length();
