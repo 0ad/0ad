@@ -348,52 +348,31 @@ var g_PopulationCapacityRecommendation = 1200;
  * the others in the "more options" dialog.
  */
 var g_OptionOrderGUI = {
-	"map": {
-		"Dropdown": [
-			"mapType",
-			"mapFilter",
-			"mapSelection",
-			"numPlayers",
-			"mapSize",
-		],
-		"Checkbox": [
-		],
-	},
-	"more": {
-		"Dropdown": [
-			"biome",
-			"gameSpeed",
-			"victoryCondition",
-			"relicCount",
-			"victoryDuration",
-			"populationCap",
-			"startingResources",
-			"ceasefire",
-		],
-		"Checkbox": [
-			"regicideGarrison",
-			"exploreMap",
-			"revealMap",
-			"disableTreasures",
-			"disableSpies",
-			"lockTeams",
-			"lastManStanding",
-			"enableCheats",
-			"enableRating",
-		]
-	}
-};
-
-/**
- * These options must be initialized first, in the given order.
- */
-var g_OptionOrderInit = {
-	"dropdowns": [
+	"map": [
 		"mapType",
 		"mapFilter",
-		"mapSelection"
+		"mapSelection",
+		"numPlayers",
+		"mapSize"
 	],
-	"checkboxes": [
+	"more": [
+		"biome",
+		"gameSpeed",
+		"victoryCondition",
+		"relicCount",
+		"victoryDuration",
+		"populationCap",
+		"startingResources",
+		"ceasefire",
+		"regicideGarrison",
+		"exploreMap",
+		"revealMap",
+		"disableTreasures",
+		"disableSpies",
+		"lockTeams",
+		"lastManStanding",
+		"enableCheats",
+		"enableRating"
 	]
 };
 
@@ -417,6 +396,7 @@ var g_OptionOrderInit = {
  * autocomplete - Marks whether to autocomplete translated values of the string. (default: undefined)
  *                If not undefined, must be a number that denotes the priority (higher numbers come first).
  *                If undefined, still autocompletes the translated title of the setting.
+ * initOrder    - Options with lower values will be initialized first.
  */
 var g_Dropdowns = {
 	"mapType": {
@@ -441,6 +421,7 @@ var g_Dropdowns = {
 			reloadMapFilterList();
 		},
 		"autocomplete": 0,
+		"initOrder": 1
 	},
 	"mapFilter": {
 		"title": () => translate("Map Filter"),
@@ -456,6 +437,7 @@ var g_Dropdowns = {
 			reloadMapList();
 		},
 		"autocomplete": 0,
+		"initOrder": 2
 	},
 	"mapSelection": {
 		"title": () => translate("Select Map"),
@@ -470,6 +452,7 @@ var g_Dropdowns = {
 			selectMap(g_MapSelectionList.file[idx]);
 		},
 		"autocomplete": 0,
+		"initOrder": 3
 	},
 	"mapSize": {
 		"title": () => translate("Map Size"),
@@ -484,6 +467,7 @@ var g_Dropdowns = {
 		},
 		"hidden": () => g_GameAttributes.mapType != "random",
 		"autocomplete": 0,
+		"initOrder": 1000
 	},
 	"biome": {
 		"title": () => translate("Biome"),
@@ -497,6 +481,7 @@ var g_Dropdowns = {
 			g_GameAttributes.settings.Biome = g_BiomeList && g_BiomeList.Id[idx];
 		},
 		"hidden": () => !g_BiomeList,
+		"initOrder": 1000
 	},
 	"numPlayers": {
 		"title": () => translate("Number of Players"),
@@ -517,6 +502,7 @@ var g_Dropdowns = {
 			unassignInvalidPlayers(num);
 			sanitizePlayerData(g_GameAttributes.settings.PlayerData);
 		},
+		"initOrder": 1000
 	},
 	"populationCap": {
 		"title": () => translate("Population Cap"),
@@ -543,6 +529,7 @@ var g_Dropdowns = {
 			g_GameAttributes.settings.PopulationCap = g_PopulationCapacities.Population[idx];
 		},
 		"enabled": () => g_GameAttributes.mapType != "scenario",
+		"initOrder": 1000
 	},
 	"startingResources": {
 		"title": () => translate("Starting Resources"),
@@ -563,6 +550,7 @@ var g_Dropdowns = {
 		},
 		"hidden": () => g_GameAttributes.mapType == "scenario",
 		"autocomplete": 0,
+		"initOrder": 1000
 	},
 	"ceasefire": {
 		"title": () => translate("Ceasefire"),
@@ -576,6 +564,7 @@ var g_Dropdowns = {
 			g_GameAttributes.settings.Ceasefire = g_Ceasefire.Duration[idx];
 		},
 		"enabled": () => g_GameAttributes.mapType != "scenario",
+		"initOrder": 1000
 	},
 	"victoryCondition": {
 		"title": () => translate("Victory Condition"),
@@ -591,6 +580,7 @@ var g_Dropdowns = {
 		},
 		"enabled": () => g_GameAttributes.mapType != "scenario",
 		"autocomplete": 0,
+		"initOrder": 1000
 	},
 	"relicCount": {
 		"title": () => translate("Relic Count"),
@@ -605,6 +595,7 @@ var g_Dropdowns = {
 		},
 		"hidden": () => g_GameAttributes.settings.GameType != "capture_the_relic",
 		"enabled": () => g_GameAttributes.mapType != "scenario",
+		"initOrder": 1000
 	},
 	"victoryDuration": {
 		"title": () => translate("Victory Duration"),
@@ -621,6 +612,7 @@ var g_Dropdowns = {
 			g_GameAttributes.settings.GameType != "wonder" &&
 			g_GameAttributes.settings.GameType != "capture_the_relic",
 		"enabled": () => g_GameAttributes.mapType != "scenario",
+		"initOrder": 1000
 	},
 	"gameSpeed": {
 		"title": () => translate("Game Speed"),
@@ -633,6 +625,7 @@ var g_Dropdowns = {
 		"select": (idx) => {
 			g_GameAttributes.gameSpeed = g_GameSpeeds.Speed[idx];
 		},
+		"initOrder": 1000
 	},
 };
 
@@ -737,6 +730,7 @@ var g_Checkboxes = {
 		},
 		"hidden": () => g_GameAttributes.settings.GameType != "regicide",
 		"enabled": () => g_GameAttributes.mapType != "scenario",
+		"initOrder": 1000
 	},
 	"revealMap": {
 		"title": () =>
@@ -755,6 +749,7 @@ var g_Checkboxes = {
 				g_Checkboxes.exploreMap.set(true);
 		},
 		"enabled": () => g_GameAttributes.mapType != "scenario",
+		"initOrder": 1000
 	},
 	"exploreMap": {
 		"title":
@@ -770,6 +765,7 @@ var g_Checkboxes = {
 			g_GameAttributes.settings.ExploreMap = checked;
 		},
 		"enabled": () => g_GameAttributes.mapType != "scenario" && !g_GameAttributes.settings.RevealMap,
+		"initOrder": 1000
 	},
 	"disableTreasures": {
 		"title": () => translate("Disable Treasures"),
@@ -781,6 +777,7 @@ var g_Checkboxes = {
 			g_GameAttributes.settings.DisableTreasures = checked;
 		},
 		"enabled": () => g_GameAttributes.mapType != "scenario",
+		"initOrder": 1000
 	},
 	"disableSpies": {
 		"title": () => translate("Disable Spies"),
@@ -792,6 +789,7 @@ var g_Checkboxes = {
 			g_GameAttributes.settings.DisableSpies = checked;
 		},
 		"enabled": () => g_GameAttributes.mapType != "scenario",
+		"initOrder": 1000
 	},
 	"lockTeams": {
 		"title": () => translate("Teams Locked"),
@@ -806,6 +804,7 @@ var g_Checkboxes = {
 		"enabled": () =>
 			g_GameAttributes.mapType != "scenario" &&
 			!g_GameAttributes.settings.RatingEnabled,
+		"initOrder": 1000
 	},
 	"lastManStanding": {
 		"title": () => translate("Last Man Standing"),
@@ -819,6 +818,7 @@ var g_Checkboxes = {
 		"enabled": () =>
 			g_GameAttributes.mapType != "scenario" &&
 			!g_GameAttributes.settings.LockTeams,
+		"initOrder": 1000
 	},
 	"enableCheats": {
 		"title": () => translate("Cheats"),
@@ -832,6 +832,7 @@ var g_Checkboxes = {
 				checked && !g_GameAttributes.settings.RatingEnabled;
 		},
 		"enabled": () => !g_GameAttributes.settings.RatingEnabled,
+		"initOrder": 1000
 	},
 	"enableRating": {
 		"title": () => translate("Rated Game"),
@@ -849,6 +850,7 @@ var g_Checkboxes = {
 				g_Checkboxes.enableCheats.set(false);
 			}
 		},
+		"initOrder": 1000
 	},
 };
 
@@ -1027,19 +1029,21 @@ function supplementDefaults()
  */
 function initGUIObjects()
 {
-	for (let dropdown of g_OptionOrderInit.dropdowns)
-		initDropdown(dropdown);
-
+	// Copy all initOrder values into one object
+	let initOrder = {};
 	for (let dropdown in g_Dropdowns)
-		if (g_OptionOrderInit.dropdowns.indexOf(dropdown) == -1)
-			initDropdown(dropdown);
-
-	for (let checkbox of g_OptionOrderInit.checkboxes)
-		initCheckbox(checkbox);
-
+		initOrder[dropdown] = g_Dropdowns[dropdown].initOrder;
 	for (let checkbox in g_Checkboxes)
-		if (g_OptionOrderInit.checkboxes.indexOf(checkbox) == -1)
-			initCheckbox(checkbox);
+		initOrder[checkbox] = g_Checkboxes[checkbox].initOrder;
+
+	// Sort the object on initOrder so we can init the options in an arbitrary order
+	for (let option of Object.keys(initOrder).sort((a, b) => initOrder[a] - initOrder[b]))
+		if (g_Dropdowns[option])
+			initDropdown(option);
+		else if (g_Checkboxes[option])
+			initCheckbox(option);
+		else
+			warn('The option "' + option + '" is not defined.');
 
 	for (let dropdown in g_PlayerDropdowns)
 		initPlayerDropdowns(dropdown);
@@ -1075,30 +1079,33 @@ function hideLoadingWindow()
 }
 
 /**
- * The main options (like map selection) and player arrays have specific names.
- * Options in the "More Options" dialog use a generic name.
+ * Options in the "More Options" or "Map" panel use a generic name.
+ * Player settings use custom names.
  */
 function getGUIObjectNameFromSetting(name)
 {
 	for (let panel in g_OptionOrderGUI)
-		for (let type in g_OptionOrderGUI[panel])
-		{
-			let idx = g_OptionOrderGUI[panel][type].indexOf(name);
-			if (idx != -1)
-				return [panel + "Option" + type, "[" + idx + "]"];
-		}
+	{
+		let idx = g_OptionOrderGUI[panel].indexOf(name);
+		if (idx != -1)
+			return [
+				panel + "Option",
+				g_Dropdowns[name] ? "Dropdown" : "Checkbox",
+				"[" + idx + "]"
+			];
+	}
 
 	// Assume there is a GUI object with exactly that setting name
-	return [name, ""];
+	return [name, "", ""];
 }
 
 function initDropdown(name, idx)
 {
-	let [guiName, guiIdx] = getGUIObjectNameFromSetting(name);
+	let [guiName, guiType, guiIdx] = getGUIObjectNameFromSetting(name);
 	let idxName = idx === undefined ? "": "[" + idx + "]";
 	let data = (idx === undefined ? g_Dropdowns : g_PlayerDropdowns)[name];
 
-	let dropdown = Engine.GetGUIObjectByName(guiName + guiIdx + idxName);
+	let dropdown = Engine.GetGUIObjectByName(guiName + guiType + guiIdx + idxName);
 
 	dropdown.list = data.labels(idx).map((label, id) =>
 		data.colors && data.colors(idx) ?
@@ -1136,8 +1143,8 @@ function initPlayerDropdowns(name)
 
 function initCheckbox(name)
 {
-	let [guiName, guiIdx] = getGUIObjectNameFromSetting(name);
-	Engine.GetGUIObjectByName(guiName + guiIdx).onPress = function() {
+	let [guiName, guiType, guiIdx] = getGUIObjectNameFromSetting(name);
+	Engine.GetGUIObjectByName(guiName + guiType + guiIdx).onPress = function() {
 
 		let obj = g_Checkboxes[name];
 
@@ -1745,13 +1752,16 @@ function isControlArrayElementHidden(idx)
  */
 function updateGUIDropdown(name, idx = undefined)
 {
-	let [guiName, guiIdx] = getGUIObjectNameFromSetting(name);
+	let [guiName, guiType, guiIdx] = getGUIObjectNameFromSetting(name);
 	let idxName = idx === undefined ? "": "[" + idx + "]";
 
-	let dropdown = Engine.GetGUIObjectByName(guiName + guiIdx + idxName);
+	let dropdown = Engine.GetGUIObjectByName(guiName + guiType + guiIdx + idxName);
 	let label = Engine.GetGUIObjectByName(guiName + "Text" + guiIdx + idxName);
 	let frame = Engine.GetGUIObjectByName(guiName + "Frame" + guiIdx + idxName);
 	let title = Engine.GetGUIObjectByName(guiName + "Title" + guiIdx + idxName);
+
+	if (guiType == "Dropdown")
+		Engine.GetGUIObjectByName(guiName + "Checkbox" + guiIdx).hidden = true;	
 
 	let indexHidden = isControlArrayElementHidden(idx);
 	let obj = (idx === undefined ? g_Dropdowns : g_PlayerDropdowns)[name];
@@ -1789,11 +1799,14 @@ function updateGUICheckbox(name)
 	let hidden = obj.hidden && obj.hidden();
 	let enabled = !obj.enabled || obj.enabled();
 
-	let [guiName, guiIdx] = getGUIObjectNameFromSetting(name);
-	let checkbox = Engine.GetGUIObjectByName(guiName + guiIdx);
+	let [guiName, guiType, guiIdx] = getGUIObjectNameFromSetting(name);
+	let checkbox = Engine.GetGUIObjectByName(guiName + guiType + guiIdx);
 	let label = Engine.GetGUIObjectByName(guiName + "Text" + guiIdx);
 	let frame = Engine.GetGUIObjectByName(guiName + "Frame" + guiIdx);
 	let title = Engine.GetGUIObjectByName(guiName + "Title" + guiIdx);
+
+	if (guiType == "Checkbox")
+		Engine.GetGUIObjectByName(guiName + "Dropdown" + guiIdx).hidden = true;	
 
 	checkbox.checked = checked;
 	checkbox.enabled = enabled;
