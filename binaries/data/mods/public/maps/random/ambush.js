@@ -3,7 +3,7 @@ RMS.LoadLibrary("rmgen2");
 
 InitMap();
 
-randomizeBiome();
+setSelectedBiome();
 initMapSettings();
 initTileClasses();
 

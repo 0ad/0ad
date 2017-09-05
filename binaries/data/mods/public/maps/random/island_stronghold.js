@@ -18,7 +18,7 @@ const g_InitialMines = 1;
 const g_InitialMineDistance = 14;
 const g_InitialTrees = 50;
 
-let random_terrain = randomizeBiome([g_BiomeSavanna]);
+setSelectedBiome();
 
 const tMainTerrain = rBiomeT1();
 const tForestFloor1 = rBiomeT2();
@@ -374,7 +374,7 @@ createForests(
  [avoidClasses(clPlayer, 10, clForest, 20, clHill, 10, clBaseResource, 5, clRock, 6, clMetal, 6), stayClasses(clLand, 3)],
  clForest,
  1.0,
- random_terrain
+ currentBiome()
 );
 
 log("Creating hills...");
@@ -416,7 +416,7 @@ createFood(
 	[avoidClasses(clForest, 0, clPlayer, 15, clHill, 1, clFood, 4, clRock, 6, clMetal, 6), stayClasses(clLand, 2)]
 );
 
-if (random_terrain == g_BiomeDesert)
+if (currentBiome() == g_BiomeDesert)
 {
 	log("Creating obelisks");
 	let group = new SimpleGroup(
@@ -432,7 +432,7 @@ if (random_terrain == g_BiomeDesert)
 
 log("Creating dirt patches...");
 let sizes = [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)];
-let numb = random_terrain == g_BiomeSavanna ? 3 : 1;
+let numb = currentBiome() == g_BiomeSavanna ? 3 : 1;
 
 for (let i = 0; i < sizes.length; ++i)
 {
@@ -528,7 +528,7 @@ createObjectGroupsDeprecated(group, 0,
 placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, radius, [stayClasses(clLand, 5)]);
 
 log("Creating small grass tufts...");
-let planetm = random_terrain == 7 ? 8 : 1;
+let planetm = currentBiome() == 7 ? 8 : 1;
 group = new SimpleGroup(
 	[new SimpleObject(aGrassShort, 1, 2, 0, 1, -PI / 8, PI / 8)]
 );

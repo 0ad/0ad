@@ -1,11 +1,25 @@
-const g_BiomeTemperate = 1;
-const g_BiomeSnowy = 2;
-const g_BiomeDesert = 3;
-const g_BiomeAlpine = 4;
-const g_BiomeMediterranean = 5;
-const g_BiomeSavanna = 6;
-const g_BiomeTropic = 7;
-const g_BiomeAutumn = 8;
+/**
+ * Use constants as biome identifiers, so that we get reference errors if there is a typo.
+ */
+const g_BiomeTemperate = "temperate";
+const g_BiomeSnowy = "snowy";
+const g_BiomeDesert = "desert";
+const g_BiomeAlpine = "alpine";
+const g_BiomeMediterranean = "mediterranean";
+const g_BiomeSavanna = "savanna";
+const g_BiomeTropic = "tropic";
+const g_BiomeAutumn = "autumn";
+
+const g_Biomes = deepfreeze([
+	g_BiomeTemperate,
+	g_BiomeSnowy,
+	g_BiomeDesert,
+	g_BiomeAlpine,
+	g_BiomeMediterranean,
+	g_BiomeSavanna,
+	g_BiomeTropic,
+	g_BiomeAutumn
+]);
 
 var g_BiomeID = g_BiomeTemperate;
 
@@ -55,23 +69,35 @@ var g_Decoratives = {
 	"tree": "actor|flora/trees/oak.xml"
 };
 
-/**
- * Randomizes environment, optionally excluding some biome IDs.
- */
-function randomizeBiome(avoid = [])
+function currentBiome()
 {
-	let biomeIndex;
-	do
-		biomeIndex = randIntInclusive(1, 8);
-	while (avoid.indexOf(biomeIndex) != -1);
-
-	setBiome(biomeIndex);
-
-	return biomeIndex;
+	return g_BiomeID;
 }
 
-function setBiome(biomeIndex)
+function setSelectedBiome()
 {
+	if (g_Biomes.indexOf(g_MapSettings.Biome) == -1)
+	{
+		error("Can't set biome '" + g_MapSettings.Biome + "'");
+		return;
+	}
+
+	setBiome(g_MapSettings.Biome);
+}
+
+function randomizeBiome()
+{
+	setBiome(pickRandom(g_Biomes));
+	return g_BiomeID;
+}
+
+function setBiome(biomeID)
+{
+	if (g_Biomes.indexOf(biomeID) == -1)
+		warn("Unknown biome: '" + biomeID + "'");
+	else
+		g_BiomeID = biomeID;
+
 	setSkySet(pickRandom(["cirrus", "cumulus", "sunny"]));
 
 	setSunRotation(randFloat(0, TWO_PI));
@@ -79,8 +105,6 @@ function setBiome(biomeIndex)
 
 	setUnitsAmbientColor(0.57, 0.58, 0.55);
 	setTerrainAmbientColor(0.447059, 0.509804, 0.54902);
-
-	g_BiomeID = biomeIndex;
 
 	if (g_BiomeID == g_BiomeTemperate)
 	{

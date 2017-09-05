@@ -7,7 +7,7 @@ RMS.LoadLibrary("rmgen2");
 InitMap();
 
 log("Initializing tile classes...");
-setBiome(2);
+setBiome(g_BiomeSnowy);
 initMapSettings();
 initTileClasses(["island"]);
 

@@ -203,6 +203,11 @@ var g_MapFilters = [
 var g_MapFilterList;
 
 /**
+ * Array of biome identifiers supported by the currently selected map.
+ */
+var g_BiomeList;
+
+/**
  * Whether this is a single- or multiplayer match.
  */
 var g_IsNetworked;
@@ -356,6 +361,7 @@ var g_OptionOrderGUI = {
 	},
 	"more": {
 		"Dropdown": [
+			"biome",
 			"gameSpeed",
 			"victoryCondition",
 			"relicCount",
@@ -478,6 +484,19 @@ var g_Dropdowns = {
 		},
 		"hidden": () => g_GameAttributes.mapType != "random",
 		"autocomplete": 0,
+	},
+	"biome": {
+		"title": () => translate("Biome"),
+		"tooltip": (hoverIdx) => translate("Select the flora and fauna."),
+		"labels": () => g_BiomeList ? g_BiomeList.Title : [],
+		"ids": () => g_BiomeList ? g_BiomeList.Id : [],
+		"default": () => 0,
+		"defined": () => g_GameAttributes.settings.Biome !== undefined,
+		"get": () => g_GameAttributes.settings.Biome,
+		"select": (idx) => {
+			g_GameAttributes.settings.Biome = g_BiomeList && g_BiomeList.Id[idx];
+		},
+		"hidden": () => !g_BiomeList,
 	},
 	"numPlayers": {
 		"title": () => translate("Number of Players"),
@@ -1450,6 +1469,35 @@ function reloadMapList()
 	initDropdown("mapSelection");
 }
 
+function reloadBiomeList()
+{
+	let biomeList;
+
+	if (g_GameAttributes.mapType == "random" && g_GameAttributes.settings.SupportedBiomes)
+	{
+		if (g_GameAttributes.settings.SupportedBiomes === true)
+			biomeList = g_Settings.Biomes;
+		else
+		{
+			biomeList = g_Settings.Biomes.filter(
+				biome => g_GameAttributes.settings.SupportedBiomes.indexOf(biome.Id) != -1);
+
+			for (let biome of g_GameAttributes.settings.SupportedBiomes)
+				if (g_Settings.Biomes.every(bio => bio.Id != biome))
+					warn("Map '" + g_GameAttributes.map + "' contains unknown biome '" + biome + "'")
+		}
+	}
+
+	g_BiomeList = biomeList && prepareForDropdown(
+		[{
+			"Id": "random",
+			"Title": translateWithContext("biome", "Random"),
+			"Description": translate("Pick a biome at random.")
+		}].concat(biomeList));
+
+	initDropdown("biome");
+}
+
 function loadMapData(name)
 {
 	if (!name || !g_MapPath[g_GameAttributes.mapType])
@@ -1515,6 +1563,7 @@ function loadPersistMatchSettings()
 
 	// Reload, as the maptype or mapfilter might have changed
 	reloadMapFilterList();
+	reloadBiomeList();
 
 	g_GameAttributes.settings.RatingEnabled = Engine.HasXmppClient();
 	Engine.SetRankedGame(g_GameAttributes.settings.RatingEnabled);
@@ -1650,7 +1699,7 @@ function ensureUniquePlayerColors(playerData)
 function selectMap(name)
 {
 	// Reset some map specific properties which are not necessarily redefined on each map
-	for (let prop of ["TriggerScripts", "CircularMap", "Garrison", "DisabledTemplates"])
+	for (let prop of ["TriggerScripts", "CircularMap", "Garrison", "DisabledTemplates", "Biome", "SupportedBiomes"])
 		g_GameAttributes.settings[prop] = undefined;
 
 	let mapData = loadMapData(name);
@@ -1681,6 +1730,7 @@ function selectMap(name)
 		for (let prop in mapSettings)
 			g_GameAttributes.settings[prop] = mapSettings[prop];
 
+	reloadBiomeList();
 	unassignInvalidPlayers(g_GameAttributes.settings.PlayerData.length);
 	supplementDefaults();
 }
@@ -1801,6 +1851,9 @@ function launchGame()
 		g_GameAttributes.settings.VictoryScripts = victoryScriptsSelected;
 		g_GameAttributes.settings.GameType = gameTypeSelected;
 	}
+
+	if (g_GameAttributes.settings.Biome == "random")
+		g_GameAttributes.settings.Biome = pickRandom(g_GameAttributes.settings.SupportedBiomes);
 
 	g_GameAttributes.settings.TriggerScripts = g_GameAttributes.settings.VictoryScripts.concat(g_GameAttributes.settings.TriggerScripts || []);
 

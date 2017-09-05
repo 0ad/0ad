@@ -7,7 +7,7 @@ RMS.LoadLibrary("rmgen2");
 InitMap();
 
 log("Initializing tile classes...");
-setBiome(6);
+setBiome(g_BiomeSavanna);
 initMapSettings();
 initTileClasses(["eden", "highlands"]);
 
