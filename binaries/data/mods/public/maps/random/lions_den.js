@@ -382,34 +382,34 @@ function createSunkenTerrain(players)
 	var lower = g_Terrains.tier2Terrain;
 	var road = g_Terrains.road;
 
-	if (g_MapInfo.biome == g_BiomeSnowy)
+	if (currentBiome() == g_BiomeSnowy)
 	{
 		middle = g_Terrains.tier2Terrain;
 		lower = g_Terrains.tier1Terrain;
 	}
 
-	if (g_MapInfo.biome == g_BiomeAlpine)
+	if (currentBiome() == g_BiomeAlpine)
 	{
 		middle = g_Terrains.shore;
 		lower = g_Terrains.tier4Terrain;
 	}
 
-	if (g_MapInfo.biome == g_BiomeMediterranean)
+	if (currentBiome() == g_BiomeMediterranean)
 	{
 		middle = g_Terrains.tier1Terrain;
 		lower = g_Terrains.forestFloor1;
 	}
 
-	if (g_MapInfo.biome == g_BiomeSavanna)
+	if (currentBiome() == g_BiomeSavanna)
 	{
 		middle = g_Terrains.tier2Terrain;
 		lower = g_Terrains.tier4Terrain;
 	}
 
-	if (g_MapInfo.biome == g_BiomeTropic || g_MapInfo.biome == g_BiomeAutumn)
+	if (currentBiome() == g_BiomeTropic || currentBiome() == g_BiomeAutumn)
 		road = g_Terrains.roadWild;
 
-	if (g_MapInfo.biome == g_BiomeAutumn)
+	if (currentBiome() == g_BiomeAutumn)
 		middle = g_Terrains.shore;
 
 	var expSize = g_MapInfo.mapArea * 0.015 / (g_MapInfo.numPlayers / 4);

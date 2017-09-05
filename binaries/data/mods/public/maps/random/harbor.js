@@ -346,13 +346,13 @@ function addSpines()
 	let spineTile = g_Terrains.dirt;
 	let elevation = 35;
 
-	if (g_MapInfo.biome == 2)
+	if (currentBiome() == g_BiomeSnowy)
 		spineTile = g_Terrains.tier1Terrain;
 
-	if (g_MapInfo.biome == 4 || g_MapInfo.biome == 6)
+	if (currentBiome() == g_BiomeAlpine || currentBiome() == g_BiomeSavanna)
 		spineTile = g_Terrains.tier2Terrain;
 
-	if (g_MapInfo.biome == 8)
+	if (currentBiome() == g_BiomeAutumn)
 		spineTile = g_Terrains.tier4Terrain;
 
 	let split = 1;

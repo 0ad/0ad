@@ -237,7 +237,7 @@ function createBase(player, walls = true)
 	);
 
 	// Create starting trees
-	var num = g_MapInfo.biome == g_BiomeSavanna ? 5 : 15;
+	var num = currentBiome() == g_BiomeSavanna ? 5 : 15;
 	for (var tries = 0; tries < 10; ++tries)
 	{
 		var tAngle = randFloat(0, TWO_PI);
@@ -652,7 +652,6 @@ function initMapSettings()
 
 	let numPlayers = getNumPlayers();
 	g_MapInfo = {
-		"biome": g_BiomeID,
 		"numPlayers": numPlayers,
 		"teams": getTeams(numPlayers),
 		"startAngle": randFloat(0, TWO_PI)

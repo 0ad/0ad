@@ -141,72 +141,70 @@ let wildLakeBiome = [
 	}
 ];
 
-// Mercenary camps
-var mercenaryCampGuards = [
-	// Temperate 1 mace
-	[
-		{ "Template" : "structures/merc_camp_egyptian" },
-		{ "Template" : "units/mace_infantry_javelinist_b", "Count" : 4 },
-		{ "Template" : "units/mace_cavalry_spearman_e", "Count" : 3 },
-		{ "Template" : "units/mace_infantry_archer_a", "Count" : 4 },
-		{ "Template" : "units/mace_champion_infantry_a", "Count" : 3 }
-	],
-	// Snowy 2 brit
-	[
-		{ "Template" : "structures/ptol_mercenary_camp" },
-		{ "Template" : "units/brit_infantry_javelinist_b", "Count" : 4 },
-		{ "Template" : "units/brit_cavalry_swordsman_e", "Count" : 3 },
-		{ "Template" : "units/brit_infantry_slinger_a", "Count" : 4 },
-		{ "Template" : "units/brit_champion_infantry", "Count" : 3 }
-	],
-	// Desert 3 pers
-	[
-		{ "Template" : "structures/ptol_mercenary_camp" },
-		{ "Template" : "units/pers_infantry_javelinist_b", "Count" : 4 },
-		{ "Template" : "units/pers_cavalry_swordsman_e", "Count" : 3 },
-		{ "Template" : "units/pers_infantry_archer_a", "Count" : 4 },
-		{ "Template" : "units/pers_champion_infantry", "Count" : 3 }
-	],
-	// Alpine 4 rome
-	[
-		{ "Template" : "structures/ptol_mercenary_camp" },
-		{ "Template" : "units/rome_infantry_swordsman_b", "Count" : 4 },
-		{ "Template" : "units/rome_cavalry_spearman_e", "Count" : 3 },
-		{ "Template" : "units/rome_infantry_javelinist_a", "Count" : 4 },
-		{ "Template" : "units/rome_champion_infantry", "Count" : 3 }
-	],
-	// Mediterranean 5 iber
-	[
-		{ "Template" : "structures/merc_camp_egyptian" },
-		{ "Template" : "units/iber_infantry_javelinist_b", "Count" : 4 },
-		{ "Template" : "units/iber_cavalry_spearman_e", "Count" : 3 },
-		{ "Template" : "units/iber_infantry_slinger_a", "Count" : 4 },
-		{ "Template" : "units/iber_champion_infantry", "Count" : 3 }
-	],
-	// Savanna 6 sele
-	[
-		{ "Template" : "structures/merc_camp_egyptian" },
-		{ "Template" : "units/sele_infantry_javelinist_b", "Count" : 4 },
-		{ "Template" : "units/sele_cavalry_spearman_merc_e", "Count" : 3 },
-		{ "Template" : "units/sele_infantry_spearman_a", "Count" : 4 },
-		{ "Template" : "units/sele_champion_infantry_swordsman", "Count" : 3 }
-	],
-	// Tropic 7 ptol
-	[
-		{ "Template" : "structures/merc_camp_egyptian" },
-		{ "Template" : "units/ptol_infantry_javelinist_b", "Count" : 4 },
-		{ "Template" : "units/ptol_cavalry_archer_e", "Count" : 3 },
-		{ "Template" : "units/ptol_infantry_slinger_a", "Count" : 4 },
-		{ "Template" : "units/ptol_champion_infantry_pikeman", "Count" : 3 }
-	],
-	// Autumn 8 gaul
-	[
-		{ "Template" : "structures/ptol_mercenary_camp" },
-		{ "Template" : "units/gaul_infantry_javelinist_b", "Count" : 4 },
-		{ "Template" : "units/gaul_cavalry_swordsman_e", "Count" : 3 },
-		{ "Template" : "units/gaul_infantry_slinger_a", "Count" : 4 },
-		{ "Template" : "units/gaul_champion_infantry", "Count" : 3 }
-	]
+var mercenaryCampGuards = {};
+
+mercenaryCampGuards[g_BiomeTemperate] = [
+	{ "Template" : "structures/merc_camp_egyptian" },
+	{ "Template" : "units/mace_infantry_javelinist_b", "Count" : 4 },
+	{ "Template" : "units/mace_cavalry_spearman_e", "Count" : 3 },
+	{ "Template" : "units/mace_infantry_archer_a", "Count" : 4 },
+	{ "Template" : "units/mace_champion_infantry_a", "Count" : 3 }
+];
+
+mercenaryCampGuards[g_BiomeSnowy] = [
+	{ "Template" : "structures/ptol_mercenary_camp" },
+	{ "Template" : "units/brit_infantry_javelinist_b", "Count" : 4 },
+	{ "Template" : "units/brit_cavalry_swordsman_e", "Count" : 3 },
+	{ "Template" : "units/brit_infantry_slinger_a", "Count" : 4 },
+	{ "Template" : "units/brit_champion_infantry", "Count" : 3 }
+];
+
+mercenaryCampGuards[g_BiomeDesert] = [
+	{ "Template" : "structures/ptol_mercenary_camp" },
+	{ "Template" : "units/pers_infantry_javelinist_b", "Count" : 4 },
+	{ "Template" : "units/pers_cavalry_swordsman_e", "Count" : 3 },
+	{ "Template" : "units/pers_infantry_archer_a", "Count" : 4 },
+	{ "Template" : "units/pers_champion_infantry", "Count" : 3 }
+];
+
+mercenaryCampGuards[g_BiomeAlpine] = [
+	{ "Template" : "structures/ptol_mercenary_camp" },
+	{ "Template" : "units/rome_infantry_swordsman_b", "Count" : 4 },
+	{ "Template" : "units/rome_cavalry_spearman_e", "Count" : 3 },
+	{ "Template" : "units/rome_infantry_javelinist_a", "Count" : 4 },
+	{ "Template" : "units/rome_champion_infantry", "Count" : 3 }
+];
+
+mercenaryCampGuards[g_BiomeMediterranean] = [
+	{ "Template" : "structures/merc_camp_egyptian" },
+	{ "Template" : "units/iber_infantry_javelinist_b", "Count" : 4 },
+	{ "Template" : "units/iber_cavalry_spearman_e", "Count" : 3 },
+	{ "Template" : "units/iber_infantry_slinger_a", "Count" : 4 },
+	{ "Template" : "units/iber_champion_infantry", "Count" : 3 }
+];
+
+mercenaryCampGuards[g_BiomeSavanna] = [
+	{ "Template" : "structures/merc_camp_egyptian" },
+	{ "Template" : "units/sele_infantry_javelinist_b", "Count" : 4 },
+	{ "Template" : "units/sele_cavalry_spearman_merc_e", "Count" : 3 },
+	{ "Template" : "units/sele_infantry_spearman_a", "Count" : 4 },
+	{ "Template" : "units/sele_champion_infantry_swordsman", "Count" : 3 }
+];
+
+mercenaryCampGuards[g_BiomeTropic] = [
+	{ "Template" : "structures/merc_camp_egyptian" },
+	{ "Template" : "units/ptol_infantry_javelinist_b", "Count" : 4 },
+	{ "Template" : "units/ptol_cavalry_archer_e", "Count" : 3 },
+	{ "Template" : "units/ptol_infantry_slinger_a", "Count" : 4 },
+	{ "Template" : "units/ptol_champion_infantry_pikeman", "Count" : 3 }
+];
+
+mercenaryCampGuards[g_BiomeAutumn] = [
+	{ "Template" : "structures/ptol_mercenary_camp" },
+	{ "Template" : "units/gaul_infantry_javelinist_b", "Count" : 4 },
+	{ "Template" : "units/gaul_cavalry_swordsman_e", "Count" : 3 },
+	{ "Template" : "units/gaul_infantry_slinger_a", "Count" : 4 },
+	{ "Template" : "units/gaul_champion_infantry", "Count" : 3 }
 ];
 
 /**
@@ -268,29 +266,21 @@ function placeGrove(point,
 	}
 }
 
-// Food, fences with domestic animals
-let farmEntities = [
-	// Temperate 1 mace
-	{ "building" : "structures/mace_farmstead", "animal" : "gaia/fauna_pig" },
-	// Snowy 2 brit
-	{ "building" : "structures/brit_farmstead", "animal" : "gaia/fauna_sheep" },
-	// Desert 3 pers
-	{ "building" : "structures/pers_farmstead", "animal" : "gaia/fauna_camel" },
-	// Alpine 4 rome
-	{ "building" : "structures/rome_farmstead", "animal" : "gaia/fauna_sheep" },
-	// Mediterranean 5 iber
-	{ "building" : "structures/iber_farmstead", "animal" : "gaia/fauna_pig" },
-	// Savanna 6 sele
-	{ "building" : "structures/sele_farmstead", "animal" : "gaia/fauna_horse" },
-	// Tropic 7 ptol
-	{ "building" : "structures/ptol_farmstead", "animal" : "gaia/fauna_camel" },
-	// Autumn 8 gaul
-	{ "building" : "structures/gaul_farmstead", "animal" : "gaia/fauna_horse" }
-];
-wallStyles.other.sheepIn = new WallElement("sheepIn", farmEntities[g_BiomeID - 1].animal, PI / 4, -1.5, 0.75, PI/2);
+var farmEntities = {};
+
+farmEntities[g_BiomeTemperate] = { "building": "structures/mace_farmstead", "animal": "gaia/fauna_pig" };
+farmEntities[g_BiomeSnowy] = { "building": "structures/brit_farmstead", "animal": "gaia/fauna_sheep" };
+farmEntities[g_BiomeDesert] = { "building": "structures/pers_farmstead", "animal": "gaia/fauna_camel" };
+farmEntities[g_BiomeAlpine] = { "building": "structures/rome_farmstead", "animal": "gaia/fauna_sheep" };
+farmEntities[g_BiomeMediterranean] = { "building": "structures/iber_farmstead", "animal": "gaia/fauna_pig" };
+farmEntities[g_BiomeSavanna] = { "building": "structures/sele_farmstead", "animal": "gaia/fauna_horse" };
+farmEntities[g_BiomeTropic] = { "building": "structures/ptol_farmstead", "animal": "gaia/fauna_camel" };
+farmEntities[g_BiomeAutumn] = { "building": "structures/gaul_farmstead", "animal": "gaia/fauna_horse" };
+
+wallStyles.other.sheepIn = new WallElement("sheepIn", farmEntities[currentBiome()].animal, PI / 4, -1.5, 0.75, PI/2);
 wallStyles.other.foodBin = new WallElement("foodBin", "gaia/special_treasure_food_bin", PI/2, 1.5);
-wallStyles.other.sheep = new WallElement("sheep", farmEntities[g_BiomeID - 1].animal, 0, 0, 0.75);
-wallStyles.other.farm = new WallElement("farm", farmEntities[g_BiomeID - 1].building, PI, 0, -3);
+wallStyles.other.sheep = new WallElement("sheep", farmEntities[currentBiome()].animal, 0, 0, 0.75);
+wallStyles.other.farm = new WallElement("farm", farmEntities[currentBiome()].building, PI, 0, -3);
 let fences = [
 	new Fortress("fence", ["foodBin", "farm", "bench", "sheepIn", "fence", "sheepIn", "fence", "sheepIn", "fence"]),
 	new Fortress("fence", ["foodBin", "farm", "fence", "sheepIn", "fence", "sheepIn", "bench", "sheep", "fence", "sheepIn", "fence"]),
@@ -347,7 +337,7 @@ function placeStartLocationResources(
 {
 	function getRandDist()
 	{
-		return averageDistToCC + randFloat(-dAverageDistToCC, dAverageDistToCC)
+		return averageDistToCC + randFloat(-dAverageDistToCC, dAverageDistToCC);
 	}
 
 	let currentAngle = randFloat(0, TWO_PI);
@@ -411,7 +401,6 @@ setWaterHeight(waterHeight);
 // Generate base terrain shape
 let lowH = heightRange.min;
 let medH = (heightRange.min + heightRange.max) / 2;
-let higH = heightRange.max;
 
 // Lake
 let initialHeightmap = [
@@ -630,7 +619,7 @@ for (let h = 0; h < heighLimits.length; ++h)
 	{
 		let x = areas[h][t].x;
 		let y = areas[h][t].y;
-		let actor = undefined;
+		let actor;
 		let texture = pickRandom(wildLakeBiome[h].texture);
 
 		if (slopeMap[x][y] < 0.5 * (minSlope[h] + maxSlope[h]))
@@ -696,7 +685,7 @@ for (let i = 0; i < resourceSpots.length; ++i)
 	{
 		if (mercenaryCamps)
 		{
-			createStartingPlayerEntities(resourceSpots[i].x, resourceSpots[i].y, 0, mercenaryCampGuards[g_BiomeID - 1]);
+			createStartingPlayerEntities(resourceSpots[i].x, resourceSpots[i].y, 0, mercenaryCampGuards[currentBiome()]);
 			rectangularSmoothToHeight(resourceSpots[i], 15, 15, g_Map.height[resourceSpots[i].x][resourceSpots[i].y], 0.5);
 			--mercenaryCamps;
 		}

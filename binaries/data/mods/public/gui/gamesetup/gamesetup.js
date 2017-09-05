@@ -473,6 +473,7 @@ var g_Dropdowns = {
 		"title": () => translate("Biome"),
 		"tooltip": (hoverIdx) => translate("Select the flora and fauna."),
 		"labels": () => g_BiomeList ? g_BiomeList.Title : [],
+		"colors": (idx) => g_BiomeList ? g_BiomeList.Color : [],
 		"ids": () => g_BiomeList ? g_BiomeList.Id : [],
 		"default": () => 0,
 		"defined": () => g_GameAttributes.settings.Biome !== undefined,
@@ -1499,8 +1500,14 @@ function reloadBiomeList()
 		[{
 			"Id": "random",
 			"Title": translateWithContext("biome", "Random"),
-			"Description": translate("Pick a biome at random.")
-		}].concat(biomeList));
+			"Description": translate("Pick a biome at random."),
+			"Color": g_ColorRandom
+		}].concat(biomeList.map(biome => ({
+			"Id": biome.Id,
+			"Title": biome.Title,
+			"Description": biome.Description,
+			"Color": g_ColorRegular
+		}))));
 
 	initDropdown("biome");
 }
@@ -1866,7 +1873,10 @@ function launchGame()
 	}
 
 	if (g_GameAttributes.settings.Biome == "random")
-		g_GameAttributes.settings.Biome = pickRandom(g_GameAttributes.settings.SupportedBiomes);
+		g_GameAttributes.settings.Biome = pickRandom(
+			g_GameAttributes.settings.SupportedBiomes === true ?
+				g_BiomeList.Id :
+				g_GameAttributes.settings.SupportedBiomes);
 
 	g_GameAttributes.settings.TriggerScripts = g_GameAttributes.settings.VictoryScripts.concat(g_GameAttributes.settings.TriggerScripts || []);
 
