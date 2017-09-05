@@ -528,7 +528,7 @@ createObjectGroupsDeprecated(group, 0,
 placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, radius, [stayClasses(clLand, 5)]);
 
 log("Creating small grass tufts...");
-let planetm = currentBiome() == 7 ? 8 : 1;
+let planetm = currentBiome() == g_BiomeTropic ? 8 : 1;
 group = new SimpleGroup(
 	[new SimpleObject(aGrassShort, 1, 2, 0, 1, -PI / 8, PI / 8)]
 );

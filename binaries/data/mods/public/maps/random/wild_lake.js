@@ -15,7 +15,7 @@ function getArray(stringOrArrayOfStrings)
 	return stringOrArrayOfStrings;
 }
 
-randomizeBiome()
+setSelectedBiome();
 
 // Terrain, entities and actors
 let wildLakeBiome = [

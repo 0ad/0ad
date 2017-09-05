@@ -1,7 +1,6 @@
 RMS.LoadLibrary("rmgen");
 
-//random terrain textures
-var random_terrain = randomizeBiome();
+setSelectedBiome();
 
 const tMainTerrain = rBiomeT1();
 const tForestFloor1 = rBiomeT2();
@@ -250,7 +249,7 @@ createForests(
  avoidClasses(clPlayer, 20, clForest, 17, clHill, 0, clWater, 2),
  clForest,
  1.0,
- random_terrain
+ currentBiome()
 );
 
 RMS.SetProgress(50);
@@ -299,7 +298,7 @@ RMS.SetProgress(65);
 // create decoration
 var planetm = 1;
 
-if (random_terrain == g_BiomeTropic)
+if (currentBiome() == g_BiomeTropic)
 	planetm = 8;
 
 createDecoration

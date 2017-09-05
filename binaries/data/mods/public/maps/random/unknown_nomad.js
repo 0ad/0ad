@@ -1,8 +1,8 @@
 RMS.LoadLibrary("rmgen");
 
 TILE_CENTERED_HEIGHT_MAP = true;
-//random terrain textures
-var rt = randomizeBiome();
+
+setSelectedBiome();
 
 var tGrass = rBiomeT1();
 var tGrassPForest = rBiomeT2();
@@ -1401,13 +1401,13 @@ createAreas(
 
 var multiplier = sqrt(randFloat(0.5,1.2)*randFloat(0.5,1.2));
 // calculate desired number of trees for map (based on size)
-if (rt == 6)
+if (currentBiome() == g_BiomeSavanna)
 {
 var MIN_TREES = floor(200*multiplier);
 var MAX_TREES = floor(1250*multiplier);
 var P_FOREST = randFloat(0.02, 0.05);
 }
-else if (rt == 7)
+else if (currentBiome() == g_BiomeTropic)
 {
 var MIN_TREES = floor(1000*multiplier);
 var MAX_TREES = floor(6000*multiplier);
@@ -1430,7 +1430,7 @@ var types = [
 	[[tGrassPForest, tGrass, pForestP], [tGrassPForest, pForestP]]
 ];	// some variation
 
-if (rt == 6)
+if (currentBiome() == g_BiomeSavanna)
 {
 var size = numForest / (0.5 * scaleByMapSize(2,8) * numPlayers);
 }
@@ -1459,7 +1459,7 @@ RMS.SetProgress(50);
 log("Creating dirt patches...");
 var sizes = [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)];
 var numb = 1;
-if (rt == 6)
+if (currentBiome() == g_BiomeSavanna)
 	numb = 3;
 for (var i = 0; i < sizes.length; i++)
 {
