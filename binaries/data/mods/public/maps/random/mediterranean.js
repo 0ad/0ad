@@ -7,7 +7,7 @@ RMS.LoadLibrary("rmgen2");
 InitMap();
 
 log("Initializing environment...");
-setBiome(1);
+setBiome(g_BiomeTemperate);
 initMapSettings();
 initTileClasses(["autumn", "desert", "medit", "polar", "steppe", "temp"]);
 

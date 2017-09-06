@@ -567,6 +567,7 @@
             {
                 "extractor": "json",
                 "filemasks": [
+                    "simulation/data/settings/biomes.json",
                     "simulation/data/settings/victory_conditions/*.json"
                 ],
                 "options": {

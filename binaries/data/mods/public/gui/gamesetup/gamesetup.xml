@@ -148,16 +148,16 @@
 			<!-- Map Options -->
 			<object name="mapOptions" size="100%-425 355 100%-25 470">
 
-				<repeat count="15" var="n">
-					<object name="mapOptionDropdownFrame[n]" size="0 0 100% 30">
+				<repeat count="30" var="n">
+					<object name="mapOptionFrame[n]" size="0 0 100% 30">
 						<object
-							name="mapOptionDropdownTitle[n]"
+							name="mapOptionTitle[n]"
 							type="text"
 							size="0 0 140 28"
 							style="ModernRightLabelText"
 						/>
 						<object
-							name="mapOptionDropdownText[n]"
+							name="mapOptionText[n]"
 							type="text"
 							size="150 0 100% 28"
 							style="ModernLeftLabelText"
@@ -168,23 +168,6 @@
 							size="150 0 100% 28"
 							style="ModernDropDown"
 							tooltip_style="onscreenToolTip"
-						/>
-					</object>
-				</repeat>
-
-				<repeat count="15" var="n">
-					<object name="mapOptionCheckboxFrame[n]" size="0 0 100% 30">
-						<object
-							name="mapOptionCheckboxTitle[n]"
-							type="text"
-							size="0 0 140 28"
-							style="ModernRightLabelText"
-						/>
-						<object
-							name="mapOptionCheckboxText[n]"
-							type="text"
-							size="150 0 100% 28"
-							style="ModernLeftLabelText"
 						/>
 						<object
 							name="mapOptionCheckbox[n]"
@@ -296,16 +279,16 @@
 					<translatableAttribute id="caption">More Options</translatableAttribute>
 				</object>
 
-				<repeat count="15" var="n">
-					<object name="moreOptionDropdownFrame[n]" size="14 30 94% 60">
+				<repeat count="30" var="n">
+					<object name="moreOptionFrame[n]" size="14 30 94% 60">
 						<object
-							name="moreOptionDropdownTitle[n]"
+							name="moreOptionTitle[n]"
 							type="text"
 							size="0 0 40% 28"
 							style="ModernRightLabelText"
 						/>
 						<object
-							name="moreOptionDropdownText[n]"
+							name="moreOptionText[n]"
 							type="text"
 							size="40% 0 100% 28"
 							style="ModernLeftLabelText"
@@ -316,23 +299,6 @@
 							size="40%+10 0 100% 28"
 							style="ModernDropDown"
 							tooltip_style="onscreenToolTip"
-						/>
-					</object>
-				</repeat>
-
-				<repeat count="15" var="n">
-					<object name="moreOptionCheckboxFrame[n]" size="14 30 94% 60">
-						<object
-							name="moreOptionCheckboxTitle[n]"
-							type="text"
-							size="0 0 40% 28"
-							style="ModernRightLabelText"
-						/>
-						<object
-							name="moreOptionCheckboxText[n]"
-							type="text"
-							size="40% 0 100% 28"
-							style="ModernLeftLabelText"
 						/>
 						<object
 							name="moreOptionCheckbox[n]"

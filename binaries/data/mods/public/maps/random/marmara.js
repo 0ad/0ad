@@ -7,7 +7,7 @@ RMS.LoadLibrary("rmgen2");
 InitMap();
 
 log("Initializing tile classes...");
-setBiome(5);
+setBiome(g_BiomeMediterranean);
 initMapSettings();
 initTileClasses();
 

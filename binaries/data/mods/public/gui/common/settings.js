@@ -36,6 +36,7 @@ function loadSettingsValues()
 		"GameSpeeds": loadSettingValuesFile("game_speeds.json"),
 		"MapTypes": loadMapTypes(),
 		"MapSizes": loadSettingValuesFile("map_sizes.json"),
+		"Biomes": loadSettingValuesFile("biomes.json"),
 		"PlayerDefaults": loadPlayerDefaults(),
 		"PopulationCapacities": loadPopulationCapacities(),
 		"StartingResources": loadSettingValuesFile("starting_resources.json"),

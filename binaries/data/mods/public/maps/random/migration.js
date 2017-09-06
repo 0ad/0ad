@@ -1,7 +1,6 @@
 RMS.LoadLibrary("rmgen");
 
-//random terrain textures
-var random_terrain = randomizeBiome();
+setSelectedBiome();
 
 const tMainTerrain = rBiomeT1();
 const tForestFloor1 = rBiomeT2();
@@ -258,13 +257,13 @@ createAreas(
 RMS.SetProgress(34);
 
 // calculate desired number of trees for map (based on size)
-if (random_terrain == g_BiomeSavanna)
+if (currentBiome() == g_BiomeSavanna)
 {
 	var MIN_TREES = 200;
 	var MAX_TREES = 1250;
 	var P_FOREST = 0.02;
 }
-else if (random_terrain == g_BiomeTropic)
+else if (currentBiome() == g_BiomeTropic)
 {
 	var MIN_TREES = 1000;
 	var MAX_TREES = 6000;
@@ -288,7 +287,7 @@ var types = [
 ];	// some variation
 
 var size = numForest / (scaleByMapSize(2,8) * numPlayers) *
-	(random_terrain == g_BiomeSavanna ? 2 : 1);
+	(currentBiome() == g_BiomeSavanna ? 2 : 1);
 
 var num = floor(size / types.length);
 for (var i = 0; i < types.length; ++i)
@@ -449,7 +448,7 @@ for (var i = 0; i < types.length; ++i)
 }
 RMS.SetProgress(86);
 
-var planetm = random_terrain == g_BiomeTropic ? 8 : 1;
+var planetm = currentBiome() == g_BiomeTropic ? 8 : 1;
 
 log("Creating small grass tufts...");
 group = new SimpleGroup(

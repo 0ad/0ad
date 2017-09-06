@@ -1,6 +1,6 @@
 RMS.LoadLibrary("rmgen");
 
-let random_terrain = randomizeBiome([g_BiomeSavanna]);
+setSelectedBiome();
 
 const tMainTerrain = rBiomeT1();
 const tForestFloor1 = rBiomeT2();
@@ -17,7 +17,7 @@ const tWater = rBiomeT15();
 let tHill = rBiomeT8();
 let tDirt = rBiomeT9();
 
-if (random_terrain == g_BiomeTemperate)
+if (currentBiome() == g_BiomeTemperate)
 {
 	tDirt = ["medit_shrubs_a", "grass_field"];
 	tHill = ["grass_field", "peat_temp"];
@@ -306,7 +306,7 @@ createForests(
 	[avoidClasses(clPlayer, 25, clForest, 10, clBaseResource, 3, clMetal, 6, clRock, 3, clMountain, 2), stayClasses(clHill, 6)],
 	clForest,
 	0.7,
-	random_terrain
+	currentBiome()
 );
 
 log("Creating straggeler trees...");
@@ -317,7 +317,7 @@ RMS.SetProgress(65);
 
 log("Creating dirt patches...");
 let sizes = [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)];
-let numb = random_terrain == g_BiomeSavanna ? 3 : 1;
+let numb = currentBiome() == g_BiomeSavanna ? 3 : 1;
 
 for (let i = 0; i < sizes.length; ++i)
 {
@@ -378,7 +378,7 @@ log("Creating more straggeler trees...");
 createStragglerTrees(types, avoidClasses(clWater, 5, clForest, 7, clMountain, 1, clPlayer, 30, clMetal, 6, clRock, 3));
 
 log("Creating decoration...");
-let planetm = random_terrain == g_BiomeTropic ? 8 : 1;
+let planetm = currentBiome() == g_BiomeTropic ? 8 : 1;
 createDecoration
 (
 	[
@@ -404,7 +404,7 @@ createForests(
 	avoidClasses(clPlayer, 30, clHill, 10, clFood, 5),
 	clForest,
 	0.1,
-	random_terrain
+	currentBiome()
 );
 
 log("Creating small grass tufts...");

@@ -7,7 +7,7 @@ RMS.LoadLibrary("rmgen2");
 InitMap();
 
 log("Initializing tile classes...");
-setBiome(4);
+setBiome(g_BiomeAlpine);
 initMapSettings();
 initTileClasses(["shallowWater"]);
 

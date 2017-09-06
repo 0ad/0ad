@@ -2,7 +2,7 @@ RMS.LoadLibrary("rmgen");
 
 TILE_CENTERED_HEIGHT_MAP = true;
 
-var random_terrain = randomizeBiome();
+setSelectedBiome();
 
 const tMainTerrain = rBiomeT1();
 const tForestFloor1 = rBiomeT2();
@@ -224,7 +224,7 @@ createForests(
  [avoidClasses(clPlayer, 20, clForest, 17, clHill, 0), stayClasses(clLand, 4)],
  clForest,
  1.0,
- random_terrain
+ currentBiome()
 );
 RMS.SetProgress(50);
 
@@ -264,7 +264,7 @@ createMines(
 RMS.SetProgress(65);
 
 log("Creating decoration...");
-var planetm = random_terrain == g_BiomeTropic ? 8 : 1;
+var planetm = currentBiome() == g_BiomeTropic ? 8 : 1;
 createDecoration
 (
  [[new SimpleObject(aRockMedium, 1,3, 0,1)],

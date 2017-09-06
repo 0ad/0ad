@@ -162,6 +162,28 @@ Trader.prototype.CanTrade = function(target)
 	return !cmpTraderPlayer.IsEnemy(targetPlayerId);
 };
 
+Trader.prototype.AddResources = function(ent, gain)
+{
+	let cmpPlayer = QueryOwnerInterface(ent);
+	if (cmpPlayer)
+		cmpPlayer.AddResource(this.goods.type, gain);
+
+	let cmpStatisticsTracker = QueryOwnerInterface(ent, IID_StatisticsTracker);
+	if (cmpStatisticsTracker)
+		cmpStatisticsTracker.IncreaseTradeIncomeCounter(gain);
+};
+
+Trader.prototype.GenerateResources = function(currentMarket, nextMarket)
+{
+	this.AddResources(this.entity, this.goods.amount.traderGain);
+
+	if (this.goods.amount.market1Gain)
+		this.AddResources(currentMarket, this.goods.amount.market1Gain);
+
+	if (this.goods.amount.market2Gain)
+		this.AddResources(nextMarket, this.goods.amount.market2Gain);
+};
+
 Trader.prototype.PerformTrade = function(currentMarket)
 {
 	let previousMarket = this.markets[this.index];
@@ -175,37 +197,7 @@ Trader.prototype.PerformTrade = function(currentMarket)
 	let nextMarket = this.markets[this.index];
 
 	if (this.goods.amount && this.goods.amount.traderGain)
-	{
-		let cmpPlayer = QueryOwnerInterface(this.entity);
-		if (cmpPlayer)
-			cmpPlayer.AddResource(this.goods.type, this.goods.amount.traderGain);
-
-		let cmpStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
-		if (cmpStatisticsTracker)
-			cmpStatisticsTracker.IncreaseTradeIncomeCounter(this.goods.amount.traderGain);
-
-		if (this.goods.amount.market1Gain)
-		{
-			cmpPlayer = QueryOwnerInterface(previousMarket);
-			if (cmpPlayer)
-				cmpPlayer.AddResource(this.goods.type, this.goods.amount.market1Gain);
-
-			cmpStatisticsTracker = QueryOwnerInterface(previousMarket, IID_StatisticsTracker);
-			if (cmpStatisticsTracker)
-				cmpStatisticsTracker.IncreaseTradeIncomeCounter(this.goods.amount.market1Gain);
-		}
-
-		if (this.goods.amount.market2Gain)
-		{
-			cmpPlayer = QueryOwnerInterface(nextMarket);
-			if (cmpPlayer)
-				cmpPlayer.AddResource(this.goods.type, this.goods.amount.market2Gain);
-
-			cmpStatisticsTracker = QueryOwnerInterface(nextMarket, IID_StatisticsTracker);
-			if (cmpStatisticsTracker)
-				cmpStatisticsTracker.IncreaseTradeIncomeCounter(this.goods.amount.market2Gain);
-		}
-	}
+		this.GenerateResources(previousMarket, nextMarket);
 
 	let cmpPlayer = QueryOwnerInterface(this.entity);
 	if (!cmpPlayer)
