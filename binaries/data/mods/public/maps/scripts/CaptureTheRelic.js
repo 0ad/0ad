@@ -122,7 +122,7 @@ Trigger.prototype.StartCaptureTheRelicCountdown = function(playerAndAllies)
 
 	let cmpPlayer = QueryOwnerInterface(this.relics[0], IID_Player);
 	let cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
-	let captureTheRelicDuration = cmpEndGameManager.GetGameTypeSettings().victoryDuration || 0;
+	let captureTheRelicDuration = cmpEndGameManager.GetGameTypeSettings().relicDuration;
 
 	let isTeam = playerAndAllies.length > 1;
 	this.ownRelicsVictoryMessage = cmpGuiInterface.AddTimeNotification({

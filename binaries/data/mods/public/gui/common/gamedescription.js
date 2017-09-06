@@ -233,9 +233,9 @@ function getGameDescription(extended = false)
 					"victory condition",
 					"Wonder (%(min)s minute)",
 					"Wonder (%(min)s minutes)",
-					g_GameAttributes.settings.VictoryDuration
+					g_GameAttributes.settings.WonderDuration
 				),
-				{ "min": g_GameAttributes.settings.VictoryDuration }
+				{ "min": g_GameAttributes.settings.WonderDuration }
 			);
 
 		let isCaptureTheRelic = g_VictoryConditions.Name[victoryIdx] == "capture_the_relic";
@@ -245,9 +245,9 @@ function getGameDescription(extended = false)
 					"victory condition",
 					"Capture the Relic (%(min)s minute)",
 					"Capture the Relic (%(min)s minutes)",
-					g_GameAttributes.settings.VictoryDuration
+					g_GameAttributes.settings.RelicDuration
 				),
-				{ "min": g_GameAttributes.settings.VictoryDuration }
+				{ "min": g_GameAttributes.settings.RelicDuration }
 			);
 
 		titles.push({

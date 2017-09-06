@@ -4,7 +4,7 @@ Engine.LoadComponentScript("EndGameManager.js");
 let cmpEndGameManager = ConstructComponent(SYSTEM_ENTITY, "EndGameManager");
 
 let playerEnt1 = 1;
-let victoryDuration = 2 * 60 * 1000;
+let wonderDuration = 2 * 60 * 1000;
 
 AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
 	"GetNumPlayers": () => 4
@@ -23,7 +23,7 @@ AddMock(playerEnt1, IID_Player, {
 TS_ASSERT_EQUALS(cmpEndGameManager.skipAlliedVictoryCheck, true);
 cmpEndGameManager.SetAlliedVictory(true);
 TS_ASSERT_EQUALS(cmpEndGameManager.GetAlliedVictory(), true);
-cmpEndGameManager.SetGameType("wonder", { "victoryDuration": victoryDuration });
+cmpEndGameManager.SetGameType("wonder", { "wonderDuration": wonderDuration });
 TS_ASSERT_EQUALS(cmpEndGameManager.skipAlliedVictoryCheck, false);
 TS_ASSERT(cmpEndGameManager.GetGameType() == "wonder");
-TS_ASSERT_EQUALS(cmpEndGameManager.GetGameTypeSettings().victoryDuration, victoryDuration);
+TS_ASSERT_EQUALS(cmpEndGameManager.GetGameTypeSettings().wonderDuration, wonderDuration);

@@ -360,7 +360,8 @@ var g_OptionOrderGUI = {
 		"gameSpeed",
 		"victoryCondition",
 		"relicCount",
-		"victoryDuration",
+		"relicDuration",
+		"wonderDuration",
 		"populationCap",
 		"startingResources",
 		"ceasefire",
@@ -598,20 +599,33 @@ var g_Dropdowns = {
 		"enabled": () => g_GameAttributes.mapType != "scenario",
 		"initOrder": 1000
 	},
-	"victoryDuration": {
-		"title": () => translate("Victory Duration"),
-		"tooltip": (hoverIdx) => translate("Number of minutes until the player has won."),
+	"relicDuration": {
+		"title": () => translate("Relic Duration"),
+		"tooltip": (hoverIdx) => translate("Minutes until the player has achieved Relic Victory."),
 		"labels": () => g_VictoryDurations.Title,
 		"ids": () => g_VictoryDurations.Duration,
 		"default": () => g_VictoryDurations.Default,
-		"defined": () => g_GameAttributes.settings.VictoryDuration !== undefined,
-		"get": () => g_GameAttributes.settings.VictoryDuration,
+		"defined": () => g_GameAttributes.settings.RelicDuration !== undefined,
+		"get": () => g_GameAttributes.settings.RelicDuration,
 		"select": (idx) => {
-			g_GameAttributes.settings.VictoryDuration = g_VictoryDurations.Duration[idx];
+			g_GameAttributes.settings.RelicDuration = g_VictoryDurations.Duration[idx];
 		},
-		"hidden": () =>
-			g_GameAttributes.settings.GameType != "wonder" &&
-			g_GameAttributes.settings.GameType != "capture_the_relic",
+		"hidden": () => g_GameAttributes.settings.GameType != "capture_the_relic",
+		"enabled": () => g_GameAttributes.mapType != "scenario",
+		"initOrder": 1000
+	},
+	"wonderDuration": {
+		"title": () => translate("Wonder Duration"),
+		"tooltip": (hoverIdx) => translate("Minutes until the player has achieved Wonder Victory."),
+		"labels": () => g_VictoryDurations.Title,
+		"ids": () => g_VictoryDurations.Duration,
+		"default": () => g_VictoryDurations.Default,
+		"defined": () => g_GameAttributes.settings.WonderDuration !== undefined,
+		"get": () => g_GameAttributes.settings.WonderDuration,
+		"select": (idx) => {
+			g_GameAttributes.settings.WonderDuration = g_VictoryDurations.Duration[idx];
+		},
+		"hidden": () => g_GameAttributes.settings.GameType != "wonder",
 		"enabled": () => g_GameAttributes.mapType != "scenario",
 		"initOrder": 1000
 	},
@@ -1729,7 +1743,8 @@ function selectMap(name)
 
 	if (g_GameAttributes.mapType == "scenario")
 	{
-		delete g_GameAttributes.settings.VictoryDuration;
+		delete g_GameAttributes.settings.RelicDuration;
+		delete g_GameAttributes.settings.WonderDuration;
 		delete g_GameAttributes.settings.LastManStanding;
 		delete g_GameAttributes.settings.RegicideGarrison;
 	}
