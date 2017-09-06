@@ -136,6 +136,9 @@ Attack.prototype.Schema =
 				"<element name='ProjectileSpeed' a:help='Speed of projectiles (in metres per second)'>" +
 					"<ref name='positiveDecimal'/>" +
 				"</element>" +
+				"<element name='Gravity' a:help='The gravity affecting the projectile. This affects the shape of the flight curve.'>" +
+					"<ref name='nonNegativeDecimal'/>" +
+				"</element>" +
 				"<element name='Spread' a:help='Standard deviation of the bivariate normal distribution of hits at 100 meters. A disk at 100 meters from the attacker with this radius (2x this radius, 3x this radius) is expected to include the landing points of 39.3% (86.5%, 98.9%) of the rounds.'><ref name='nonNegativeDecimal'/></element>" +
 				Attack.prototype.bonusesSchema +
 				Attack.prototype.preferredClassesSchema +
@@ -462,7 +465,7 @@ Attack.prototype.PerformAttack = function(type, target)
 		//  * Obstacles like walls should block projectiles entirely
 
 		let horizSpeed = +this.template[type].ProjectileSpeed;
-		let gravity = 9.81; // this affects the shape of the curve; assume it's constant for now
+		let gravity = +this.template[type].Gravity;
 		//horizSpeed /= 2; gravity /= 2; // slow it down for testing
 
 		let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
