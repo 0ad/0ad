@@ -299,7 +299,7 @@ let fences = [
 ];
 let num = fences.length;
 for (let i = 0; i < num; ++i)
-	fences.push(new Fortress("fence", deepcopy(fences[i].wall).reverse()));
+	fences.push(new Fortress("fence", clone(fences[i].wall).reverse()));
 
 // Camps with fire and gold treasure
 function placeCamp(point,
@@ -647,7 +647,7 @@ RMS.SetProgress(80);
 /**
  * Get resource spots after players start locations calculation and paths
  */
-let avoidPoints = deepcopy(startLocations);
+let avoidPoints = clone(startLocations);
 for (let i = 0; i < avoidPoints.length; ++i)
 	avoidPoints[i].dist = 30;
 let resourceSpots = getPointsByHeight(resourceSpotHeightRange, avoidPoints, clPath);

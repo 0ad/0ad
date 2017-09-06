@@ -13,7 +13,7 @@ function placeRandomPathToHeight(
 	width = 10, distance = 4, strength = 0.08, heightmap = g_Map.height)
 {
 	let pathPoints = [];
-	let position = deepcopy(start);
+	let position = clone(start);
 	while (true)
 	{
 		rectangularSmoothToHeight(position, width, width, targetHeight, strength, heightmap);
@@ -85,7 +85,7 @@ let fences = [
 ];
 let num = fences.length;
 for (let i = 0; i < num; ++i)
-	fences.push(new Fortress("fence", deepcopy(fences[i].wall).reverse()));
+	fences.push(new Fortress("fence", clone(fences[i].wall).reverse()));
 
 // Groves, only Wood
 let groveEntities = ["gaia/flora_bush_temperate", "gaia/flora_tree_euro_beech"];
@@ -400,7 +400,7 @@ RMS.SetProgress(45);
 /**
  * Get resource spots after players start locations calculation
  */
-let avoidPoints = deepcopy(startLocations);
+let avoidPoints = clone(startLocations);
 for (let i = 0; i < avoidPoints.length; ++i)
 	avoidPoints[i].dist = 30;
 let resourceSpots = getPointsByHeight({ "min": (heighLimits[3] + heighLimits[4]) / 2, "max": (heighLimits[5] + heighLimits[6]) / 2 }, avoidPoints, clPath);

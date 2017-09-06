@@ -136,11 +136,6 @@ Vector2D.prototype.distanceTo = function(v)
 // Static functions that return a new vector object.
 // Note that object creation is slow in JS, so use them only when necessary
 
-Vector2D.clone = function(v)
-{
-	return new Vector2D(v.x, v.y);
-};
-
 Vector2D.from3D = function(v)
 {
 	return new Vector2D(v.x, v.z);
@@ -310,11 +305,6 @@ Vector3D.prototype.horizDistanceTo = function(v)
 //
 // Static functions that return a new vector object.
 // Note that object creation is slow in JS, so use them only when really necessary
-
-Vector3D.clone = function(v)
-{
-	return new Vector3D(v.x, v.y, v.z);
-};
 
 Vector3D.add = function(v1, v2)
 {

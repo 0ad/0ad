@@ -570,7 +570,7 @@ function getOrderOfPointsForShortestClosePath(points)
 	}
 
 	// Just add the first 3 points
-	let pointsToAdd = deepcopy(points);
+	let pointsToAdd = clone(points);
 	for (let i = 0; i < 3; ++i)
 	{
 		order.push(i);

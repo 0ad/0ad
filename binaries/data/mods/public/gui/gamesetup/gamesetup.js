@@ -1731,7 +1731,7 @@ function selectMap(name)
 		g_GameAttributes.settings[prop] = undefined;
 
 	let mapData = loadMapData(name);
-	let mapSettings = mapData && mapData.settings ? deepcopy(mapData.settings) : {};
+	let mapSettings = mapData && mapData.settings ? clone(mapData.settings) : {};
 
 	// Reset victory conditions
 	if (g_GameAttributes.mapType != "random")

@@ -118,7 +118,7 @@ while (!goodStartPositionsFound)
 	log("Starting giant while loop try " + tries);
 
 	// Generate reliefmap
-	var myReliefmap = deepcopy(g_Map.height);
+	var myReliefmap = clone(g_Map.height);
 	setRandomHeightmap(heightRange.min, heightRange.max, myReliefmap);
 	for (var i = 0; i < 50 + mapSize/4; i++) // Cycles depend on mapsize (more cycles -> bigger structures)
 		globalSmoothHeightmap(0.8, myReliefmap);
@@ -175,7 +175,7 @@ while (!goodStartPositionsFound)
 			possibleStartPositionsTemp.push(possibleStartPositions[i]);
 			// placeTerrain(possibleStartPositions[i][0], possibleStartPositions[i][1], "purple"); // Only works properly for 1 loop
 	}
-	possibleStartPositions = deepcopy(possibleStartPositionsTemp);
+	possibleStartPositions = clone(possibleStartPositionsTemp);
 
 	// Reduce to tiles near low and high ground (Rectangular check since faster) to make sure each player has access to all resource types.
 	var possibleStartPositionsTemp = [];
@@ -210,7 +210,7 @@ while (!goodStartPositionsFound)
 			// placeTerrain(possibleStartPositions[i][0], possibleStartPositions[i][1], "red"); // Only works properly for 1 loop
 	}
 
-	possibleStartPositions = deepcopy(possibleStartPositionsTemp);
+	possibleStartPositions = clone(possibleStartPositionsTemp);
 
 	if(possibleStartPositions.length > numPlayers)
 		enoughTiles = true;
