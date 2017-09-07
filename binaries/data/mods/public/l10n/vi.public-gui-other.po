@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-08-30 09:02+0200\n"
-"PO-Revision-Date: 2017-08-30 15:18+0000\n"
+"POT-Creation-Date: 2017-09-04 09:02+0200\n"
+"PO-Revision-Date: 2017-09-04 15:06+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/wildfire-games/0ad/language/vi/)\n"
 "MIME-Version: 1.0\n"
@@ -126,7 +126,7 @@ msgid "DELETE"
 msgstr "XÓA"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:291
-#: gui/options/options.js:322 gui/options/options.js:377
+#: gui/options/options.js:290 gui/options/options.js:338
 #: gui/pregame/mainmenu.js:254 gui/replaymenu/replay_actions.js:170
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
 #: gui/summary/summary.js:363
@@ -134,7 +134,7 @@ msgid "No"
 msgstr "Không"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:291
-#: gui/options/options.js:322 gui/options/options.js:377
+#: gui/options/options.js:290 gui/options/options.js:338
 #: gui/pregame/mainmenu.js:254 gui/replaymenu/replay_actions.js:170
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
 #: gui/summary/summary.js:363
@@ -1084,24 +1084,42 @@ msgstr ""
 msgid "OK"
 msgstr "OK"
 
-#: gui/options/options.js:148
+#: gui/options/options.js:90
+#, javascript-format
+msgctxt "option number"
+msgid "Min: %(min)s, Max: %(max)s"
+msgstr ""
+
+#: gui/options/options.js:92
+#, javascript-format
+msgctxt "option number"
+msgid "Min: %(min)s"
+msgstr ""
+
+#: gui/options/options.js:94
+#, javascript-format
+msgctxt "option number"
+msgid "Max: %(max)s"
+msgstr ""
+
+#: gui/options/options.js:127
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr ""
 
-#: gui/options/options.js:320
+#: gui/options/options.js:288
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr ""
 
-#: gui/options/options.js:321 gui/options/options.js:376
+#: gui/options/options.js:289 gui/options/options.js:337
 #: gui/savedgames/load.js:187
 msgid "Warning"
 msgstr "Cảnh báo"
 
-#: gui/options/options.js:375
+#: gui/options/options.js:336
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr ""
 
@@ -1197,12 +1215,12 @@ msgstr "Lỗi"
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr ""
 
-#: gui/pregame/mainmenu.js:280 gui/pregame/mainmenu.xml:(caption):71
-#: gui/pregame/mainmenu.xml:(caption):93
+#: gui/pregame/mainmenu.js:280 gui/pregame/mainmenu.xml:(caption):69
+#: gui/pregame/mainmenu.xml:(caption):96
 msgid "Technical Details"
 msgstr "Chi Tiết Kỹ Thuật"
 
-#: gui/pregame/mainmenu.js:285 gui/pregame/mainmenu.xml:(caption):139
+#: gui/pregame/mainmenu.js:285 gui/pregame/mainmenu.xml:(caption):147
 msgid "Manual"
 msgstr "Hướng dẫn"
 
@@ -1307,11 +1325,11 @@ msgstr ""
 msgid "Single- and multiplayer"
 msgstr ""
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):471
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):465
 msgid "Single Player"
 msgstr "Chơi Đơn"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):486
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):480
 msgid "Multiplayer"
 msgstr "Nhiều Người Chơi"
 
@@ -1684,7 +1702,7 @@ msgid "Civilization Selection"
 msgstr "Chọn nền văn minh"
 
 #: gui/civinfo/civinfo.xml:(caption):119 gui/credits/credits.xml:(caption):36
-#: gui/options/options.xml:(caption):103
+#: gui/options/options.xml:(caption):60
 #: gui/reference/structree/structree.xml:(caption):122
 msgid "Close"
 msgstr "Đóng"
@@ -1695,7 +1713,7 @@ msgstr ""
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
-#: gui/pregame/mainmenu.xml:(caption):343
+#: gui/pregame/mainmenu.xml:(caption):339
 msgid "Language"
 msgstr "Ngôn ngữ"
 
@@ -1766,117 +1784,97 @@ msgstr "Mã ký tự tùy chọn theo sau mã ngôn ngữ"
 msgid "Not implemented yet."
 msgstr ""
 
-#: gui/options/options.xml:(caption):19
+#: gui/options/options.xml:(caption):15
 msgid "Game Options"
 msgstr "Tùy chỉnh game"
 
-#: gui/options/options.xml:(caption):23
-msgid "General"
-msgstr "Tổng quát"
-
-#: gui/options/options.xml:(caption):36
-msgid "Graphics Settings"
-msgstr "Thiết lập đồ họa"
-
-#: gui/options/options.xml:(caption):50
-msgid "Sound Settings"
-msgstr "Thiết lập âm thanh"
-
-#: gui/options/options.xml:(caption):63
-msgid "Lobby Settings"
-msgstr "Thiết lập phòng đợi"
-
-#: gui/options/options.xml:(caption):76
-msgid "Chat Notification Settings"
-msgstr ""
-
-#: gui/options/options.xml:(caption):88
+#: gui/options/options.xml:(caption):42
 msgid "Reset"
 msgstr ""
 
-#: gui/options/options.xml:(caption):93
+#: gui/options/options.xml:(caption):48
 msgid "Revert"
 msgstr ""
 
-#: gui/options/options.xml:(caption):98 gui/savedgames/save.xml:(caption):48
+#: gui/options/options.xml:(caption):54 gui/savedgames/save.xml:(caption):48
 msgid "Save"
 msgstr "Lưu"
 
-#: gui/options/options.xml:(tooltip):89
+#: gui/options/options.xml:(tooltip):43
 msgid "Resets user settings to their game default"
 msgstr ""
 
-#: gui/options/options.xml:(tooltip):94
+#: gui/options/options.xml:(tooltip):49
 msgid "Reverts to previous saved settings"
 msgstr ""
 
-#: gui/options/options.xml:(tooltip):99
+#: gui/options/options.xml:(tooltip):55
 msgid "Saves changes"
 msgstr ""
 
-#: gui/options/options.xml:(tooltip):104
+#: gui/options/options.xml:(tooltip):61
 msgid "Unsaved changes affect this session only"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:61
+#: gui/pregame/mainmenu.xml:59
 msgid "Help improve 0 A.D.!"
 msgstr "Giúp phát triển 0 A.D.!"
 
-#: gui/pregame/mainmenu.xml:63
+#: gui/pregame/mainmenu.xml:61
 msgid ""
 "You can automatically send us anonymous feedback that will help us fix bugs,"
 " and improve performance and compatibility."
 msgstr "Tự động gửi thông tin phản hồi ẩn danh để giúp chúng tôi sửa lỗi, và nâng cao hiệu suất và tính tương thích."
 
-#: gui/pregame/mainmenu.xml:539
+#: gui/pregame/mainmenu.xml:533
 msgid "Alpha XXIII: Ken Wood"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:541
+#: gui/pregame/mainmenu.xml:535
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
 msgstr "CHÚ Ý: Đây là bản đang còn được phát triển của trò chơi. Nhiều tình năng vẫn chưa được thêm vào."
 
-#: gui/pregame/mainmenu.xml:(caption):67
+#: gui/pregame/mainmenu.xml:(caption):65
 msgid "Enable Feedback"
 msgstr "Bật phản hồi"
 
-#: gui/pregame/mainmenu.xml:(caption):89
+#: gui/pregame/mainmenu.xml:(caption):92
 msgid "Disable Feedback"
 msgstr "Tắt phản hồi"
 
-#: gui/pregame/mainmenu.xml:(caption):156
+#: gui/pregame/mainmenu.xml:(caption):166
 msgid "Tutorial"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):170
+#: gui/pregame/mainmenu.xml:(caption):180
 #: gui/reference/structree/structree.xml:(caption):16
 msgid "Structure Tree"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):187
+#: gui/pregame/mainmenu.xml:(caption):195
 msgid "History"
 msgstr "Lịch sử"
 
-#: gui/pregame/mainmenu.xml:(caption):212
+#: gui/pregame/mainmenu.xml:(caption):218
 msgid "Matches"
 msgstr "Trận đấu"
 
-#: gui/pregame/mainmenu.xml:(caption):226
+#: gui/pregame/mainmenu.xml:(caption):232
 msgid "Campaigns"
 msgstr "Nhiệm vụ"
 
-#: gui/pregame/mainmenu.xml:(caption):243 gui/savedgames/load.xml:(caption):20
+#: gui/pregame/mainmenu.xml:(caption):245 gui/savedgames/load.xml:(caption):20
 msgid "Load Game"
 msgstr "Load Game"
 
 #. Join a game by specifying the host's IP address.
-#: gui/pregame/mainmenu.xml:(caption):266
+#: gui/pregame/mainmenu.xml:(caption):268
 msgid "Join Game"
 msgstr "Tham Gia Màn Chơi"
 
-#: gui/pregame/mainmenu.xml:(caption):281
+#: gui/pregame/mainmenu.xml:(caption):282
 msgid "Host Game"
 msgstr "Chủ Trận Đấu"
 
@@ -1884,97 +1882,97 @@ msgstr "Chủ Trận Đấu"
 msgid "Game Lobby"
 msgstr "Phòng đợi"
 
-#: gui/pregame/mainmenu.xml:(caption):326
+#: gui/pregame/mainmenu.xml:(caption):325
 msgid "Options"
 msgstr "Thiết lập"
 
-#: gui/pregame/mainmenu.xml:(caption):359
+#: gui/pregame/mainmenu.xml:(caption):353
 msgid "Replays"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):373
+#: gui/pregame/mainmenu.xml:(caption):367
 msgid "Scenario Editor"
 msgstr "Chỉnh Sửa Màn Chơi"
 
-#: gui/pregame/mainmenu.xml:(caption):386
+#: gui/pregame/mainmenu.xml:(caption):380
 msgid "Welcome Screen"
 msgstr "Màn hình chào"
 
-#: gui/pregame/mainmenu.xml:(caption):401
+#: gui/pregame/mainmenu.xml:(caption):396
 msgid "Mod Selection"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):456
+#: gui/pregame/mainmenu.xml:(caption):450
 msgid "Learn to Play"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):501
+#: gui/pregame/mainmenu.xml:(caption):495
 msgid "Tools & Options"
 msgstr "Công cụ & Thiết lập"
 
-#: gui/pregame/mainmenu.xml:(caption):516
+#: gui/pregame/mainmenu.xml:(caption):510
 msgid "Exit"
 msgstr "Thoát"
 
-#: gui/pregame/mainmenu.xml:(caption):551
+#: gui/pregame/mainmenu.xml:(caption):545
 msgid "Website"
 msgstr "Trang web"
 
-#: gui/pregame/mainmenu.xml:(caption):563
+#: gui/pregame/mainmenu.xml:(caption):557
 msgid "Chat"
 msgstr "Chat"
 
-#: gui/pregame/mainmenu.xml:(caption):575
+#: gui/pregame/mainmenu.xml:(caption):569
 msgid "Report a Bug"
 msgstr "Báo lỗi"
 
-#: gui/pregame/mainmenu.xml:(caption):587
+#: gui/pregame/mainmenu.xml:(caption):581
 msgid "Translate the Game"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):599
+#: gui/pregame/mainmenu.xml:(caption):593
 msgid "Credits"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):628
+#: gui/pregame/mainmenu.xml:(caption):622
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
-#: gui/pregame/mainmenu.xml:(tooltip):140
+#: gui/pregame/mainmenu.xml:(tooltip):148
 msgid "Open the 0 A.D. Game Manual."
 msgstr "Mở Hướng dẫn cho 0 A.D."
 
-#: gui/pregame/mainmenu.xml:(tooltip):157
+#: gui/pregame/mainmenu.xml:(tooltip):167
 msgid "Start the economic tutorial."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):171
+#: gui/pregame/mainmenu.xml:(tooltip):181
 msgid "View the structure tree of civilizations featured in 0 A.D."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):188
+#: gui/pregame/mainmenu.xml:(tooltip):196
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "Tìm hiểu về các nền văn minh có trong 0 A.D."
 
-#: gui/pregame/mainmenu.xml:(tooltip):213
+#: gui/pregame/mainmenu.xml:(tooltip):219
 msgid "Click here to start a new single player game."
 msgstr "Click vào đây để bắt đầu màn chơi đơn mới."
 
-#: gui/pregame/mainmenu.xml:(tooltip):227
+#: gui/pregame/mainmenu.xml:(tooltip):233
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):244
+#: gui/pregame/mainmenu.xml:(tooltip):246
 msgid "Click here to load a saved game."
 msgstr "Click vào đây để load game đã save."
 
-#: gui/pregame/mainmenu.xml:(tooltip):267
+#: gui/pregame/mainmenu.xml:(tooltip):269
 msgid "Joining an existing multiplayer game."
 msgstr "Tham gia màn chơi nhiều người hiện có."
 
-#: gui/pregame/mainmenu.xml:(tooltip):282
+#: gui/pregame/mainmenu.xml:(tooltip):283
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr "Tạo một trò chơi qua mạng.\\n\\nYêu cầu cổng UDP 20595 phải đang mở."
 
@@ -1982,73 +1980,73 @@ msgstr "Tạo một trò chơi qua mạng.\\n\\nYêu cầu cổng UDP 20595 ph�
 msgid "Launch the multiplayer lobby."
 msgstr "Vào phòng đợi nhiều người chơi."
 
-#: gui/pregame/mainmenu.xml:(tooltip):327
+#: gui/pregame/mainmenu.xml:(tooltip):326
 msgid "Adjust game settings."
 msgstr "Tùy chỉnh thiết lập của game."
 
-#: gui/pregame/mainmenu.xml:(tooltip):344
+#: gui/pregame/mainmenu.xml:(tooltip):340
 msgid "Choose the language of the game."
 msgstr "Chọn ngôn ngữ cho game."
 
-#: gui/pregame/mainmenu.xml:(tooltip):360
+#: gui/pregame/mainmenu.xml:(tooltip):354
 msgid "Playback previous games."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):374
+#: gui/pregame/mainmenu.xml:(tooltip):368
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Mở chương trình Atlas trong cửa sổ mới. Bạn có thể chạy chương trình bằng cách chạy trò chơi với phần dòng lệnh \"-editor\" ở cuối. "
 
-#: gui/pregame/mainmenu.xml:(tooltip):387
+#: gui/pregame/mainmenu.xml:(tooltip):381
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "Hiện Màn hình chào. Có ích khi bạn lỡ tắt đi."
 
-#: gui/pregame/mainmenu.xml:(tooltip):402
+#: gui/pregame/mainmenu.xml:(tooltip):397
 msgid "Select mods to use."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):457
+#: gui/pregame/mainmenu.xml:(tooltip):451
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(tooltip):472
+#: gui/pregame/mainmenu.xml:(tooltip):466
 msgid "Challenge the computer player to a single player match."
 msgstr "Đấu với máy tính trong một màn chơi đơn."
 
-#: gui/pregame/mainmenu.xml:(tooltip):487
+#: gui/pregame/mainmenu.xml:(tooltip):481
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Đấu với một hoặc nhiều người khác qua mạng."
 
-#: gui/pregame/mainmenu.xml:(tooltip):502
+#: gui/pregame/mainmenu.xml:(tooltip):496
 msgid "Game options and scenario design tools."
 msgstr "Thiết lập trò chơi và công cụ thiết kế màn chơi."
 
-#: gui/pregame/mainmenu.xml:(tooltip):517
+#: gui/pregame/mainmenu.xml:(tooltip):511
 msgid "Exits the game."
 msgstr "Thoát khỏi game."
 
-#: gui/pregame/mainmenu.xml:(tooltip):552
+#: gui/pregame/mainmenu.xml:(tooltip):546
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Click vào để mở play0ad.com trong trình duyệt."
 
-#: gui/pregame/mainmenu.xml:(tooltip):564
+#: gui/pregame/mainmenu.xml:(tooltip):558
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "Click vào để mở phòng chat IRC cho 0 A.D. trong trình duyệt. (0ad trên webchat.quakenet.org)"
 
-#: gui/pregame/mainmenu.xml:(tooltip):576
+#: gui/pregame/mainmenu.xml:(tooltip):570
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "Nhấp vào để vào trang 0 A.D. Trac để báo lỗi và sai sót trong game."
 
-#: gui/pregame/mainmenu.xml:(tooltip):588
+#: gui/pregame/mainmenu.xml:(tooltip):582
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "Nhấp vào để mở trang dự án dịch 0 A.D. trong trình duyệt."
 
-#: gui/pregame/mainmenu.xml:(tooltip):600
+#: gui/pregame/mainmenu.xml:(tooltip):594
 msgid "Click to see the 0 A.D. credits."
 msgstr ""
 
@@ -2314,6 +2312,7 @@ msgid "Music"
 msgstr ""
 
 #: gui/credits/texts/art.jsonContent[6].Title
+#: gui/options/options.json[2].label
 msgid "Sound"
 msgstr ""
 
@@ -2411,488 +2410,516 @@ msgstr ""
 msgid "Translators"
 msgstr ""
 
-#: gui/options/options.jsonlobbySetting[0].tooltip
-msgid "Number of backlogged messages to load when joining the lobby"
-msgstr "Số tin nhắn đã qua được hiện lại khi vào phòng chờ"
-
-#: gui/options/options.jsonlobbySetting[0].label
-msgid "Chat Backlog"
-msgstr "Lịch sử chat"
-
-#: gui/options/options.jsonlobbySetting[1].tooltip
-msgid ""
-"Show the average rating of the participating players in a column of the "
-"gamelist."
-msgstr ""
-
-#: gui/options/options.jsonlobbySetting[1].label
-msgid "Game Rating Column"
-msgstr ""
-
-#: gui/options/options.jsongeneralSetting[0].tooltip
+#: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in Single Player matches."
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[0].label
+#: gui/options/options.json[0].options[0].label
 msgid "Playername (Single Player)"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[1].tooltip
+#: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in Multiplayer matches (except lobby)."
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[1].label
+#: gui/options/options.json[0].options[1].label
 msgid "Playername (Multiplayer)"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[2].tooltip
+#: gui/options/options.json[0].options[2].tooltip
 msgid "Start 0 A.D. in a window"
 msgstr "Chạy 0 A.D. trong cửa sổ"
 
-#: gui/options/options.jsongeneralSetting[2].label
+#: gui/options/options.json[0].options[2].label
 msgid "Windowed Mode"
 msgstr "Chế độ cửa sổ"
 
-#: gui/options/options.jsongeneralSetting[3].tooltip
+#: gui/options/options.json[0].options[3].tooltip
 msgid "Pause single player games when window loses focus"
 msgstr "Ngừng trò chơi một trò chơi khi cửa sổ không được chọn"
 
-#: gui/options/options.jsongeneralSetting[3].label
+#: gui/options/options.json[0].options[3].label
 msgid "Background Pause"
 msgstr "Ngừng chạy nền"
 
-#: gui/options/options.jsongeneralSetting[4].tooltip
+#: gui/options/options.json[0].options[4].tooltip
 msgid ""
 "If you disable it, the welcome screen will still appear once, each time a "
 "new version is available. You can always launch it from the main menu."
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[4].label
+#: gui/options/options.json[0].options[4].label
 msgid "Enable Welcome Screen"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[5].tooltip
+#: gui/options/options.json[0].options[5].tooltip
 msgid "Show tips when setting up a game."
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[5].label
+#: gui/options/options.json[0].options[5].label
 msgid "Enable Game Setting Tips"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[6].tooltip
+#: gui/options/options.json[0].options[6].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[6].label
+#: gui/options/options.json[0].options[6].label
 msgid "Detailed Tooltips"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[7].tooltip
+#: gui/options/options.json[0].options[7].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[7].label
+#: gui/options/options.json[0].options[7].label
 msgid "Network Warnings"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[8].tooltip
+#: gui/options/options.json[0].options[8].tooltip
 msgid "Show frames per second in top right corner."
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[8].label
+#: gui/options/options.json[0].options[8].label
 msgid "FPS Overlay"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[9].tooltip
+#: gui/options/options.json[0].options[9].tooltip
 msgid "Show current system time in top right corner."
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[9].label
+#: gui/options/options.json[0].options[9].label
 msgid "Realtime Overlay"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[10].tooltip
+#: gui/options/options.json[0].options[10].tooltip
 msgid "Show current simulation time in top right corner."
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[10].label
+#: gui/options/options.json[0].options[10].label
 msgid "Gametime Overlay"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[11].tooltip
+#: gui/options/options.json[0].options[11].tooltip
 msgid "Always show the remaining ceasefire time."
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[11].label
+#: gui/options/options.json[0].options[11].label
 msgid "Ceasefire Time Overlay"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[12].tooltip
+#: gui/options/options.json[0].options[12].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[12].label
+#: gui/options/options.json[0].options[12].label
 msgid "Persist Match Settings"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[13].parameters.list[0].label
-#: gui/options/options.jsongeneralSetting[14].parameters.list[0].label
+#: gui/options/options.json[0].options[13].list[0].label
+#: gui/options/options.json[0].options[14].list[0].label
 msgid "Everyone"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[13].parameters.list[1].label
-#: gui/options/options.jsongeneralSetting[14].parameters.list[1].label
+#: gui/options/options.json[0].options[13].list[1].label
+#: gui/options/options.json[0].options[14].list[1].label
 msgid "Buddies"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[13].parameters.list[2].label
-#: gui/options/options.jsongeneralSetting[14].parameters.list[2].label
+#: gui/options/options.json[0].options[13].list[2].label
+#: gui/options/options.json[0].options[14].list[2].label
 msgid "Disabled"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[13].tooltip
+#: gui/options/options.json[0].options[13].tooltip
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[13].label
+#: gui/options/options.json[0].options[13].label
 msgid "Assign Players"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[14].tooltip
+#: gui/options/options.json[0].options[14].tooltip
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[14].label
+#: gui/options/options.json[0].options[14].label
 msgid "Late Observer Joins"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[15].tooltip
+#: gui/options/options.json[0].options[15].tooltip
 msgid "Prevent further observers from joining if the limit is reached"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[15].label
+#: gui/options/options.json[0].options[15].label
 msgid "Observer Limit"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[16].tooltip
+#: gui/options/options.json[0].options[16].tooltip
 msgid "Number of units trained per batch"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[16].label
+#: gui/options/options.json[0].options[16].label
 msgid "Batch Training Size"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[17].tooltip
+#: gui/options/options.json[0].options[17].tooltip
 msgid ""
 "Show time that messages are posted in the lobby, gamesetup and ingame chat."
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[17].label
+#: gui/options/options.json[0].options[17].label
 msgid "Chat Timestamp"
 msgstr "Thời điểm của tin nhắn"
 
-#: gui/options/options.jsongeneralSetting[18].tooltip
+#: gui/options/options.json[0].options[18].tooltip
 msgid ""
 "Display the range of auras of selected units and structures (can also be "
 "toggled in-game with the hotkey)."
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[18].label
+#: gui/options/options.json[0].options[18].label
 msgid "Aura Range Visualization"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[19].tooltip
+#: gui/options/options.json[0].options[19].tooltip
 msgid ""
 "Display the healing range of selected units (can also be toggled in-game "
 "with the hotkey)."
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[19].label
+#: gui/options/options.json[0].options[19].label
 msgid "Heal Range Visualization"
 msgstr ""
 
-#: gui/options/options.jsonsoundSetting[0].tooltip
-msgid "Master audio gain"
-msgstr "Tăng âm thanh chính"
+#: gui/options/options.json[0].label
+msgid "General"
+msgstr "Tổng quát"
 
-#: gui/options/options.jsonsoundSetting[0].label
-msgid "Master Volume"
-msgstr ""
-
-#: gui/options/options.jsonsoundSetting[1].tooltip
-msgid "In game music gain"
-msgstr "Tăng nhạc trong trò chơi"
-
-#: gui/options/options.jsonsoundSetting[1].label
-msgid "Music Volume"
-msgstr ""
-
-#: gui/options/options.jsonsoundSetting[2].tooltip
-msgid "In game ambient sound gain"
-msgstr "Tăng nhạc nền trong trò chơi"
-
-#: gui/options/options.jsonsoundSetting[2].label
-msgid "Ambient Volume"
-msgstr ""
-
-#: gui/options/options.jsonsoundSetting[3].tooltip
-msgid "In game unit action sound gain"
-msgstr "Tăng tiếng động của đơn vị"
-
-#: gui/options/options.jsonsoundSetting[3].label
-msgid "Action Volume"
-msgstr ""
-
-#: gui/options/options.jsonsoundSetting[4].tooltip
-msgid "UI sound gain"
-msgstr "Tăng tiến trong giao diện trò chơi"
-
-#: gui/options/options.jsonsoundSetting[4].label
-msgid "UI Volume"
-msgstr ""
-
-#: gui/options/options.jsonsoundSetting[5].tooltip
-msgid "Receive audio notification when someone types your nick"
-msgstr ""
-
-#: gui/options/options.jsonsoundSetting[5].label
-msgid "Nick Notification"
-msgstr ""
-
-#: gui/options/options.jsonnotificationSetting[0].tooltip
-msgid "Show a chat notification if you are attacked by another player"
-msgstr ""
-
-#: gui/options/options.jsonnotificationSetting[0].label
-msgid "Attack"
-msgstr ""
-
-#: gui/options/options.jsonnotificationSetting[1].tooltip
-msgid ""
-"Show a chat notification if an ally tributes resources to another team "
-"member if teams are locked, and all tributes in observer mode"
-msgstr ""
-
-#: gui/options/options.jsonnotificationSetting[1].label
-msgid "Tribute"
-msgstr ""
-
-#: gui/options/options.jsonnotificationSetting[2].tooltip
-msgid "Show a chat notification to observers when a player bartered resources"
-msgstr ""
-
-#: gui/options/options.jsonnotificationSetting[2].label
-msgid "Barter"
-msgstr ""
-
-#: gui/options/options.jsonnotificationSetting[3].parameters.list[0].label
-msgid "Disable"
-msgstr ""
-
-#: gui/options/options.jsonnotificationSetting[3].parameters.list[1].label
-msgid "Completed"
-msgstr ""
-
-#: gui/options/options.jsonnotificationSetting[3].parameters.list[2].label
-msgid "All displayed"
-msgstr ""
-
-#: gui/options/options.jsonnotificationSetting[3].tooltip
-msgid ""
-"Show a chat notification if you or an ally have started, aborted or "
-"completed a new phase, and phases of all players in observer mode"
-msgstr ""
-
-#: gui/options/options.jsonnotificationSetting[3].label
-msgid "Phase"
-msgstr ""
-
-#: gui/options/options.jsongraphicsSetting[0].tooltip
+#: gui/options/options.json[1].options[0].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)"
 msgstr "Sử dụng hiệu ứng đổ bóng OpenGL 2.0 (khuyến khích)"
 
-#: gui/options/options.jsongraphicsSetting[0].label
+#: gui/options/options.json[1].options[0].label
 msgid "Prefer GLSL"
 msgstr "Ưu tiên GLSL"
 
-#: gui/options/options.jsongraphicsSetting[1].tooltip
+#: gui/options/options.json[1].options[1].tooltip
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
 msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[1].label
+#: gui/options/options.json[1].options[1].label
 msgid "Post Processing"
 msgstr "Hậu xử lý"
 
-#: gui/options/options.jsongraphicsSetting[2].tooltip
+#: gui/options/options.json[1].options[2].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
 msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[2].label
+#: gui/options/options.json[1].options[2].label
 msgid "Shader Effects"
 msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[3].tooltip
+#: gui/options/options.json[1].options[3].tooltip
 msgid "Enable shadows"
 msgstr "Bật hiệu ứng bóng đổ"
 
-#: gui/options/options.jsongraphicsSetting[3].label
+#: gui/options/options.json[1].options[3].label
 msgid "Shadows"
 msgstr "Bóng"
 
-#: gui/options/options.jsongraphicsSetting[4].parameters.list[0].label
+#: gui/options/options.json[1].options[4].list[0].label
 msgid "Very Low"
 msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[4].parameters.list[1].label
+#: gui/options/options.json[1].options[4].list[1].label
 msgid "Low"
 msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[4].parameters.list[2].label
+#: gui/options/options.json[1].options[4].list[2].label
 msgid "Medium"
 msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[4].parameters.list[3].label
+#: gui/options/options.json[1].options[4].list[3].label
 msgid "High"
 msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[4].parameters.list[4].label
+#: gui/options/options.json[1].options[4].list[4].label
 msgid "Very High"
 msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[4].tooltip
+#: gui/options/options.json[1].options[4].tooltip
 msgid ""
 "Shadow map resolution. High values can crash the game when using a graphics "
 "card with low memory!"
 msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[4].label
+#: gui/options/options.json[1].options[4].label
 msgid "Shadow Quality"
 msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[5].tooltip
+#: gui/options/options.json[1].options[5].tooltip
 msgid "Smooth shadows"
 msgstr "Làm mượt bóng"
 
-#: gui/options/options.jsongraphicsSetting[5].label
+#: gui/options/options.json[1].options[5].label
 msgid "Shadow Filtering"
 msgstr "Lọc bóng"
 
-#: gui/options/options.jsongraphicsSetting[6].tooltip
+#: gui/options/options.json[1].options[6].tooltip
 msgid "Show outlines of units behind buildings"
 msgstr "Hiện hình đơn vị đằng sau công trình"
 
-#: gui/options/options.jsongraphicsSetting[6].label
+#: gui/options/options.json[1].options[6].label
 msgid "Unit Silhouettes"
 msgstr "Bóng của đơn vị"
 
-#: gui/options/options.jsongraphicsSetting[7].tooltip
+#: gui/options/options.json[1].options[7].tooltip
 msgid "Enable particles"
 msgstr "Bật hiệu ứng hạt"
 
-#: gui/options/options.jsongraphicsSetting[7].label
+#: gui/options/options.json[1].options[7].label
 msgid "Particles"
 msgstr "Hạt"
 
-#: gui/options/options.jsongraphicsSetting[8].tooltip
+#: gui/options/options.json[1].options[8].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[8].label
+#: gui/options/options.json[1].options[8].label
 msgid "Water Effects"
 msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[9].tooltip
+#: gui/options/options.json[1].options[9].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[9].label
+#: gui/options/options.json[1].options[9].label
 msgid "HQ Water Effects"
 msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[10].tooltip
+#: gui/options/options.json[1].options[10].tooltip
 msgid "Use actual water depth in rendering calculations"
 msgstr "Sử dụng độ sâu thật cho tính toán vẽ đồ họa"
 
-#: gui/options/options.jsongraphicsSetting[10].label
+#: gui/options/options.json[1].options[10].label
 msgid "Real Water Depth"
 msgstr "Độ sâu thật"
 
-#: gui/options/options.jsongraphicsSetting[11].tooltip
+#: gui/options/options.json[1].options[11].tooltip
 msgid "Allow water to reflect a mirror image"
 msgstr "Cho phép nước phản chiếu lại hình ảnh"
 
-#: gui/options/options.jsongraphicsSetting[11].label
+#: gui/options/options.json[1].options[11].label
 msgid "Water Reflections"
 msgstr "Mặt nước phản chiếu"
 
-#: gui/options/options.jsongraphicsSetting[12].tooltip
+#: gui/options/options.json[1].options[12].tooltip
 msgid "Use a real water refraction map and not transparency"
 msgstr "Sử dụng bản đồ khúc xạ thật và không trong suốt "
 
-#: gui/options/options.jsongraphicsSetting[12].label
+#: gui/options/options.json[1].options[12].label
 msgid "Water Refraction"
 msgstr "Khúc xạ trong nước"
 
-#: gui/options/options.jsongraphicsSetting[13].tooltip
+#: gui/options/options.json[1].options[13].tooltip
 msgid "Cast shadows on water"
 msgstr "Đổ bóng trên mặt nước"
 
-#: gui/options/options.jsongraphicsSetting[13].label
+#: gui/options/options.json[1].options[13].label
 msgid "Shadows on Water"
 msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[14].tooltip
+#: gui/options/options.json[1].options[14].tooltip
 msgid "Lift darkness and fog-of-war smoothly"
 msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[14].label
+#: gui/options/options.json[1].options[14].label
 msgid "Smooth LOS"
 msgstr "Làm mượt LOS"
 
-#: gui/options/options.jsongraphicsSetting[15].tooltip
+#: gui/options/options.json[1].options[15].tooltip
 msgid "Render Sky"
 msgstr "Vẽ bầu trời"
 
-#: gui/options/options.jsongraphicsSetting[15].label
+#: gui/options/options.json[1].options[15].label
 msgid "Show Sky"
 msgstr "Hiện bầu trời"
 
-#: gui/options/options.jsongraphicsSetting[16].tooltip
+#: gui/options/options.json[1].options[16].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "Chạy đồng bộ dọc để sửa tình trạng màn hình bị vỡ. PHẢI KHỞI ĐỘNG LẠI"
 
-#: gui/options/options.jsongraphicsSetting[16].label
+#: gui/options/options.json[1].options[16].label
 msgid "VSync"
 msgstr "VSync"
 
-#: gui/options/options.jsongraphicsSetting[17].tooltip
+#: gui/options/options.json[1].options[17].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[17].label
+#: gui/options/options.json[1].options[17].label
 msgid "FPS Throttling in Menus"
 msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[18].tooltip
+#: gui/options/options.json[1].options[18].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
 msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[18].label
+#: gui/options/options.json[1].options[18].label
 msgid "FPS Throttling in Games"
+msgstr ""
+
+#: gui/options/options.json[1].tooltip
+msgid "Set the balance between performance and visual appearance."
+msgstr ""
+
+#: gui/options/options.json[1].label
+msgid "Graphics"
+msgstr ""
+
+#: gui/options/options.json[2].options[0].tooltip
+msgid "Master audio gain"
+msgstr "Tăng âm thanh chính"
+
+#: gui/options/options.json[2].options[0].label
+msgid "Master Volume"
+msgstr ""
+
+#: gui/options/options.json[2].options[1].tooltip
+msgid "In game music gain"
+msgstr "Tăng nhạc trong trò chơi"
+
+#: gui/options/options.json[2].options[1].label
+msgid "Music Volume"
+msgstr ""
+
+#: gui/options/options.json[2].options[2].tooltip
+msgid "In game ambient sound gain"
+msgstr "Tăng nhạc nền trong trò chơi"
+
+#: gui/options/options.json[2].options[2].label
+msgid "Ambient Volume"
+msgstr ""
+
+#: gui/options/options.json[2].options[3].tooltip
+msgid "In game unit action sound gain"
+msgstr "Tăng tiếng động của đơn vị"
+
+#: gui/options/options.json[2].options[3].label
+msgid "Action Volume"
+msgstr ""
+
+#: gui/options/options.json[2].options[4].tooltip
+msgid "UI sound gain"
+msgstr "Tăng tiến trong giao diện trò chơi"
+
+#: gui/options/options.json[2].options[4].label
+msgid "UI Volume"
+msgstr ""
+
+#: gui/options/options.json[2].options[5].tooltip
+msgid "Receive audio notification when someone types your nick"
+msgstr ""
+
+#: gui/options/options.json[2].options[5].label
+msgid "Nick Notification"
+msgstr ""
+
+#: gui/options/options.json[3].options[0].tooltip
+msgid "Number of backlogged messages to load when joining the lobby"
+msgstr "Số tin nhắn đã qua được hiện lại khi vào phòng chờ"
+
+#: gui/options/options.json[3].options[0].label
+msgid "Chat Backlog"
+msgstr "Lịch sử chat"
+
+#: gui/options/options.json[3].options[1].tooltip
+msgid ""
+"Show the average rating of the participating players in a column of the "
+"gamelist."
+msgstr ""
+
+#: gui/options/options.json[3].options[1].label
+msgid "Game Rating Column"
+msgstr ""
+
+#: gui/options/options.json[3].tooltip
+msgid "These settings only affect the multiplayer."
+msgstr ""
+
+#: gui/options/options.json[3].label
+msgid "Lobby"
+msgstr ""
+
+#: gui/options/options.json[4].options[0].tooltip
+msgid "Show a chat notification if you are attacked by another player"
+msgstr ""
+
+#: gui/options/options.json[4].options[0].label
+msgid "Attack"
+msgstr ""
+
+#: gui/options/options.json[4].options[1].tooltip
+msgid ""
+"Show a chat notification if an ally tributes resources to another team "
+"member if teams are locked, and all tributes in observer mode"
+msgstr ""
+
+#: gui/options/options.json[4].options[1].label
+msgid "Tribute"
+msgstr ""
+
+#: gui/options/options.json[4].options[2].tooltip
+msgid "Show a chat notification to observers when a player bartered resources"
+msgstr ""
+
+#: gui/options/options.json[4].options[2].label
+msgid "Barter"
+msgstr ""
+
+#: gui/options/options.json[4].options[3].list[0].label
+msgid "Disable"
+msgstr ""
+
+#: gui/options/options.json[4].options[3].list[1].label
+msgid "Completed"
+msgstr ""
+
+#: gui/options/options.json[4].options[3].list[2].label
+msgid "All displayed"
+msgstr ""
+
+#: gui/options/options.json[4].options[3].tooltip
+msgid ""
+"Show a chat notification if you or an ally have started, aborted or "
+"completed a new phase, and phases of all players in observer mode"
+msgstr ""
+
+#: gui/options/options.json[4].options[3].label
+msgid "Phase"
+msgstr ""
+
+#: gui/options/options.json[4].tooltip
+msgid "Regulate the verbosity of chat notifications."
+msgstr ""
+
+#: gui/options/options.json[4].label
+msgid "Chat Notifications"
 msgstr ""
 
 #: simulation/data/resources/food.jsondescription

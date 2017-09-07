@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-08-30 09:02+0200\n"
-"PO-Revision-Date: 2017-08-30 15:18+0000\n"
+"POT-Creation-Date: 2017-09-04 09:02+0200\n"
+"PO-Revision-Date: 2017-09-04 15:06+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -138,7 +138,7 @@ msgid "DELETE"
 msgstr "删除"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:291
-#: gui/options/options.js:322 gui/options/options.js:377
+#: gui/options/options.js:290 gui/options/options.js:338
 #: gui/pregame/mainmenu.js:254 gui/replaymenu/replay_actions.js:170
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
 #: gui/summary/summary.js:363
@@ -146,7 +146,7 @@ msgid "No"
 msgstr "否"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:291
-#: gui/options/options.js:322 gui/options/options.js:377
+#: gui/options/options.js:290 gui/options/options.js:338
 #: gui/pregame/mainmenu.js:254 gui/replaymenu/replay_actions.js:170
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
 #: gui/summary/summary.js:363
@@ -1096,24 +1096,42 @@ msgstr "无效的场所"
 msgid "OK"
 msgstr "确定"
 
-#: gui/options/options.js:148
+#: gui/options/options.js:90
+#, javascript-format
+msgctxt "option number"
+msgid "Min: %(min)s, Max: %(max)s"
+msgstr ""
+
+#: gui/options/options.js:92
+#, javascript-format
+msgctxt "option number"
+msgid "Min: %(min)s"
+msgstr ""
+
+#: gui/options/options.js:94
+#, javascript-format
+msgctxt "option number"
+msgid "Max: %(max)s"
+msgstr ""
+
+#: gui/options/options.js:127
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "值: %(val)s(最小: %(min)s, 最大: %(max)s)"
 
-#: gui/options/options.js:320
+#: gui/options/options.js:288
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "重置选项会清除您已保存的设置。是否要继续?"
 
-#: gui/options/options.js:321 gui/options/options.js:376
+#: gui/options/options.js:289 gui/options/options.js:337
 #: gui/savedgames/load.js:187
 msgid "Warning"
 msgstr "警告"
 
-#: gui/options/options.js:375
+#: gui/options/options.js:336
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "您有未保存的更改，是否要关闭窗口?"
 
@@ -1209,12 +1227,12 @@ msgstr "错误"
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "启动多人游戏大厅.[编译时被禁用]"
 
-#: gui/pregame/mainmenu.js:280 gui/pregame/mainmenu.xml:(caption):71
-#: gui/pregame/mainmenu.xml:(caption):93
+#: gui/pregame/mainmenu.js:280 gui/pregame/mainmenu.xml:(caption):69
+#: gui/pregame/mainmenu.xml:(caption):96
 msgid "Technical Details"
 msgstr "技术详情"
 
-#: gui/pregame/mainmenu.js:285 gui/pregame/mainmenu.xml:(caption):139
+#: gui/pregame/mainmenu.js:285 gui/pregame/mainmenu.xml:(caption):147
 msgid "Manual"
 msgstr "手册"
 
@@ -1319,11 +1337,11 @@ msgstr "%(min)s - %(max)s 分钟"
 msgid "Single- and multiplayer"
 msgstr "单人和多人游戏"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):471
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):465
 msgid "Single Player"
 msgstr "单人游戏"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):486
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):480
 msgid "Multiplayer"
 msgstr "多人对战"
 
@@ -1696,7 +1714,7 @@ msgid "Civilization Selection"
 msgstr "选择文明"
 
 #: gui/civinfo/civinfo.xml:(caption):119 gui/credits/credits.xml:(caption):36
-#: gui/options/options.xml:(caption):103
+#: gui/options/options.xml:(caption):60
 #: gui/reference/structree/structree.xml:(caption):122
 msgid "Close"
 msgstr "关闭"
@@ -1707,7 +1725,7 @@ msgstr "0 A.D. 职员名单"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
-#: gui/pregame/mainmenu.xml:(caption):343
+#: gui/pregame/mainmenu.xml:(caption):339
 msgid "Language"
 msgstr "语言"
 
@@ -1778,117 +1796,97 @@ msgstr "与语言代码 （在 ISO 15924 中列出）一致的可选四字母脚
 msgid "Not implemented yet."
 msgstr "尚未实施。"
 
-#: gui/options/options.xml:(caption):19
+#: gui/options/options.xml:(caption):15
 msgid "Game Options"
 msgstr "游戏选项"
 
-#: gui/options/options.xml:(caption):23
-msgid "General"
-msgstr "通用的"
-
-#: gui/options/options.xml:(caption):36
-msgid "Graphics Settings"
-msgstr "图形设置"
-
-#: gui/options/options.xml:(caption):50
-msgid "Sound Settings"
-msgstr "声音设置"
-
-#: gui/options/options.xml:(caption):63
-msgid "Lobby Settings"
-msgstr "大厅设置"
-
-#: gui/options/options.xml:(caption):76
-msgid "Chat Notification Settings"
-msgstr "聊天提醒设置"
-
-#: gui/options/options.xml:(caption):88
+#: gui/options/options.xml:(caption):42
 msgid "Reset"
 msgstr "重置"
 
-#: gui/options/options.xml:(caption):93
+#: gui/options/options.xml:(caption):48
 msgid "Revert"
 msgstr "还原"
 
-#: gui/options/options.xml:(caption):98 gui/savedgames/save.xml:(caption):48
+#: gui/options/options.xml:(caption):54 gui/savedgames/save.xml:(caption):48
 msgid "Save"
 msgstr "保存"
 
-#: gui/options/options.xml:(tooltip):89
+#: gui/options/options.xml:(tooltip):43
 msgid "Resets user settings to their game default"
 msgstr "将用户设置重置为游戏的默认值"
 
-#: gui/options/options.xml:(tooltip):94
+#: gui/options/options.xml:(tooltip):49
 msgid "Reverts to previous saved settings"
 msgstr "还原为之前的已保存设置"
 
-#: gui/options/options.xml:(tooltip):99
+#: gui/options/options.xml:(tooltip):55
 msgid "Saves changes"
 msgstr "保存更改"
 
-#: gui/options/options.xml:(tooltip):104
+#: gui/options/options.xml:(tooltip):61
 msgid "Unsaved changes affect this session only"
 msgstr "未保存的更改将只影响此会话"
 
-#: gui/pregame/mainmenu.xml:61
+#: gui/pregame/mainmenu.xml:59
 msgid "Help improve 0 A.D.!"
 msgstr "帮助改善 0 A.D.!"
 
-#: gui/pregame/mainmenu.xml:63
+#: gui/pregame/mainmenu.xml:61
 msgid ""
 "You can automatically send us anonymous feedback that will help us fix bugs,"
 " and improve performance and compatibility."
 msgstr "您能自动发送匿名反馈给我们，以便修复错误以及改善性能和兼容性。"
 
-#: gui/pregame/mainmenu.xml:539
+#: gui/pregame/mainmenu.xml:533
 msgid "Alpha XXIII: Ken Wood"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:541
+#: gui/pregame/mainmenu.xml:535
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
 msgstr "警告：这是一个早期开发的游戏版本。许多功能没有被加进去。"
 
-#: gui/pregame/mainmenu.xml:(caption):67
+#: gui/pregame/mainmenu.xml:(caption):65
 msgid "Enable Feedback"
 msgstr "激活反馈"
 
-#: gui/pregame/mainmenu.xml:(caption):89
+#: gui/pregame/mainmenu.xml:(caption):92
 msgid "Disable Feedback"
 msgstr "取消反馈"
 
-#: gui/pregame/mainmenu.xml:(caption):156
+#: gui/pregame/mainmenu.xml:(caption):166
 msgid "Tutorial"
 msgstr "教程"
 
-#: gui/pregame/mainmenu.xml:(caption):170
+#: gui/pregame/mainmenu.xml:(caption):180
 #: gui/reference/structree/structree.xml:(caption):16
 msgid "Structure Tree"
 msgstr "结构树"
 
-#: gui/pregame/mainmenu.xml:(caption):187
+#: gui/pregame/mainmenu.xml:(caption):195
 msgid "History"
 msgstr "历史"
 
-#: gui/pregame/mainmenu.xml:(caption):212
+#: gui/pregame/mainmenu.xml:(caption):218
 msgid "Matches"
 msgstr "对战"
 
-#: gui/pregame/mainmenu.xml:(caption):226
+#: gui/pregame/mainmenu.xml:(caption):232
 msgid "Campaigns"
 msgstr "战役"
 
-#: gui/pregame/mainmenu.xml:(caption):243 gui/savedgames/load.xml:(caption):20
+#: gui/pregame/mainmenu.xml:(caption):245 gui/savedgames/load.xml:(caption):20
 msgid "Load Game"
 msgstr "载入游戏"
 
 #. Join a game by specifying the host's IP address.
-#: gui/pregame/mainmenu.xml:(caption):266
+#: gui/pregame/mainmenu.xml:(caption):268
 msgid "Join Game"
 msgstr "加入游戏"
 
-#: gui/pregame/mainmenu.xml:(caption):281
+#: gui/pregame/mainmenu.xml:(caption):282
 msgid "Host Game"
 msgstr "创建游戏"
 
@@ -1896,97 +1894,97 @@ msgstr "创建游戏"
 msgid "Game Lobby"
 msgstr "游戏大厅"
 
-#: gui/pregame/mainmenu.xml:(caption):326
+#: gui/pregame/mainmenu.xml:(caption):325
 msgid "Options"
 msgstr "选项"
 
-#: gui/pregame/mainmenu.xml:(caption):359
+#: gui/pregame/mainmenu.xml:(caption):353
 msgid "Replays"
 msgstr "重玩"
 
-#: gui/pregame/mainmenu.xml:(caption):373
+#: gui/pregame/mainmenu.xml:(caption):367
 msgid "Scenario Editor"
 msgstr "场景编辑器"
 
-#: gui/pregame/mainmenu.xml:(caption):386
+#: gui/pregame/mainmenu.xml:(caption):380
 msgid "Welcome Screen"
 msgstr "欢迎屏幕"
 
-#: gui/pregame/mainmenu.xml:(caption):401
+#: gui/pregame/mainmenu.xml:(caption):396
 msgid "Mod Selection"
 msgstr "Mod 选择"
 
-#: gui/pregame/mainmenu.xml:(caption):456
+#: gui/pregame/mainmenu.xml:(caption):450
 msgid "Learn to Play"
 msgstr "学习如何游戏"
 
-#: gui/pregame/mainmenu.xml:(caption):501
+#: gui/pregame/mainmenu.xml:(caption):495
 msgid "Tools & Options"
 msgstr "工具和选项"
 
-#: gui/pregame/mainmenu.xml:(caption):516
+#: gui/pregame/mainmenu.xml:(caption):510
 msgid "Exit"
 msgstr "退出"
 
-#: gui/pregame/mainmenu.xml:(caption):551
+#: gui/pregame/mainmenu.xml:(caption):545
 msgid "Website"
 msgstr "官网"
 
-#: gui/pregame/mainmenu.xml:(caption):563
+#: gui/pregame/mainmenu.xml:(caption):557
 msgid "Chat"
 msgstr "聊天"
 
-#: gui/pregame/mainmenu.xml:(caption):575
+#: gui/pregame/mainmenu.xml:(caption):569
 msgid "Report a Bug"
 msgstr "报告游戏错误"
 
-#: gui/pregame/mainmenu.xml:(caption):587
+#: gui/pregame/mainmenu.xml:(caption):581
 msgid "Translate the Game"
 msgstr "翻译游戏"
 
-#: gui/pregame/mainmenu.xml:(caption):599
+#: gui/pregame/mainmenu.xml:(caption):593
 msgid "Credits"
 msgstr "职员名单"
 
-#: gui/pregame/mainmenu.xml:(caption):628
+#: gui/pregame/mainmenu.xml:(caption):622
 msgid "WILDFIRE GAMES"
 msgstr "野火游戏"
 
-#: gui/pregame/mainmenu.xml:(tooltip):140
+#: gui/pregame/mainmenu.xml:(tooltip):148
 msgid "Open the 0 A.D. Game Manual."
 msgstr "打开 0 A.D. 游戏手册。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):157
+#: gui/pregame/mainmenu.xml:(tooltip):167
 msgid "Start the economic tutorial."
 msgstr "开始经济类教学"
 
-#: gui/pregame/mainmenu.xml:(tooltip):171
+#: gui/pregame/mainmenu.xml:(tooltip):181
 msgid "View the structure tree of civilizations featured in 0 A.D."
 msgstr "观看 0 A.D. 中文明的结构树。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):188
+#: gui/pregame/mainmenu.xml:(tooltip):196
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "了解0 A.D.游戏中众多文明的特色"
 
-#: gui/pregame/mainmenu.xml:(tooltip):213
+#: gui/pregame/mainmenu.xml:(tooltip):219
 msgid "Click here to start a new single player game."
 msgstr "点击这里以开始单人游戏。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):227
+#: gui/pregame/mainmenu.xml:(tooltip):233
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
 msgstr "通过史诗般的战役来重现历史。\\[尚未实现]"
 
-#: gui/pregame/mainmenu.xml:(tooltip):244
+#: gui/pregame/mainmenu.xml:(tooltip):246
 msgid "Click here to load a saved game."
 msgstr "加载已保存的游戏"
 
-#: gui/pregame/mainmenu.xml:(tooltip):267
+#: gui/pregame/mainmenu.xml:(tooltip):269
 msgid "Joining an existing multiplayer game."
 msgstr "加入一个已创建的多人游戏"
 
-#: gui/pregame/mainmenu.xml:(tooltip):282
+#: gui/pregame/mainmenu.xml:(tooltip):283
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr "创建多人游戏.\\n\\n需要打开UDP 端口 20595."
 
@@ -1994,73 +1992,73 @@ msgstr "创建多人游戏.\\n\\n需要打开UDP 端口 20595."
 msgid "Launch the multiplayer lobby."
 msgstr "启动多人游戏大厅"
 
-#: gui/pregame/mainmenu.xml:(tooltip):327
+#: gui/pregame/mainmenu.xml:(tooltip):326
 msgid "Adjust game settings."
 msgstr "调整游戏设置."
 
-#: gui/pregame/mainmenu.xml:(tooltip):344
+#: gui/pregame/mainmenu.xml:(tooltip):340
 msgid "Choose the language of the game."
 msgstr "选择游戏语言。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):360
+#: gui/pregame/mainmenu.xml:(tooltip):354
 msgid "Playback previous games."
 msgstr "回放以前的游戏。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):374
+#: gui/pregame/mainmenu.xml:(tooltip):368
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "在新窗口打开场景编辑器。您可以在命令行以参数\"-editor\"启动游戏使此功能更稳定。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):387
+#: gui/pregame/mainmenu.xml:(tooltip):381
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "显示欢迎屏幕（如果被您隐藏）。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):402
+#: gui/pregame/mainmenu.xml:(tooltip):397
 msgid "Select mods to use."
 msgstr "选择一个 mods 使用。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):457
+#: gui/pregame/mainmenu.xml:(tooltip):451
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations"
 msgstr "学习如何游戏，开始教程，探索科技树以及文明背后的历史"
 
-#: gui/pregame/mainmenu.xml:(tooltip):472
+#: gui/pregame/mainmenu.xml:(tooltip):466
 msgid "Challenge the computer player to a single player match."
 msgstr "人机对战"
 
-#: gui/pregame/mainmenu.xml:(tooltip):487
+#: gui/pregame/mainmenu.xml:(tooltip):481
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "在多人游戏中和其他的人类玩家作战"
 
-#: gui/pregame/mainmenu.xml:(tooltip):502
+#: gui/pregame/mainmenu.xml:(tooltip):496
 msgid "Game options and scenario design tools."
 msgstr "游戏选项和场景编辑器"
 
-#: gui/pregame/mainmenu.xml:(tooltip):517
+#: gui/pregame/mainmenu.xml:(tooltip):511
 msgid "Exits the game."
 msgstr "退出游戏"
 
-#: gui/pregame/mainmenu.xml:(tooltip):552
+#: gui/pregame/mainmenu.xml:(tooltip):546
 msgid "Click to open play0ad.com in your web browser."
 msgstr "点击进入游戏官网play0ad.com"
 
-#: gui/pregame/mainmenu.xml:(tooltip):564
+#: gui/pregame/mainmenu.xml:(tooltip):558
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "点击在浏览器里打开0 A.D. IRC(网络即时聊天) - 频道#0ad 在webchat.quakenet.org"
 
-#: gui/pregame/mainmenu.xml:(tooltip):576
+#: gui/pregame/mainmenu.xml:(tooltip):570
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "单击访问 0 A.D. Trac 报告bug，崩溃或错误。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):588
+#: gui/pregame/mainmenu.xml:(tooltip):582
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "单击在浏览器里打开0 A.D. 翻译页面。"
 
-#: gui/pregame/mainmenu.xml:(tooltip):600
+#: gui/pregame/mainmenu.xml:(tooltip):594
 msgid "Click to see the 0 A.D. credits."
 msgstr "单击查看 0 A.D. 职员名单。"
 
@@ -2326,6 +2324,7 @@ msgid "Music"
 msgstr "音乐"
 
 #: gui/credits/texts/art.jsonContent[6].Title
+#: gui/options/options.json[2].label
 msgid "Sound"
 msgstr "音效"
 
@@ -2423,488 +2422,516 @@ msgstr "特殊职员名单"
 msgid "Translators"
 msgstr "翻译"
 
-#: gui/options/options.jsonlobbySetting[0].tooltip
-msgid "Number of backlogged messages to load when joining the lobby"
-msgstr "加入大厅时，要载入的聊天记录数。"
-
-#: gui/options/options.jsonlobbySetting[0].label
-msgid "Chat Backlog"
-msgstr "聊天记录"
-
-#: gui/options/options.jsonlobbySetting[1].tooltip
-msgid ""
-"Show the average rating of the participating players in a column of the "
-"gamelist."
-msgstr ""
-
-#: gui/options/options.jsonlobbySetting[1].label
-msgid "Game Rating Column"
-msgstr ""
-
-#: gui/options/options.jsongeneralSetting[0].tooltip
+#: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in Single Player matches."
 msgstr "您希望如何在单人匹配中处理。"
 
-#: gui/options/options.jsongeneralSetting[0].label
+#: gui/options/options.json[0].options[0].label
 msgid "Playername (Single Player)"
 msgstr "玩家名称 ( 单人玩家 )"
 
-#: gui/options/options.jsongeneralSetting[1].tooltip
+#: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in Multiplayer matches (except lobby)."
 msgstr "您希望如何在多人匹配中处理 ( 大厅除外 ) 。"
 
-#: gui/options/options.jsongeneralSetting[1].label
+#: gui/options/options.json[0].options[1].label
 msgid "Playername (Multiplayer)"
 msgstr "玩家名称 ( 多人玩家 )"
 
-#: gui/options/options.jsongeneralSetting[2].tooltip
+#: gui/options/options.json[0].options[2].tooltip
 msgid "Start 0 A.D. in a window"
 msgstr "启动0 A.D. 在新窗口"
 
-#: gui/options/options.jsongeneralSetting[2].label
+#: gui/options/options.json[0].options[2].label
 msgid "Windowed Mode"
 msgstr "窗口模式"
 
-#: gui/options/options.jsongeneralSetting[3].tooltip
+#: gui/options/options.json[0].options[3].tooltip
 msgid "Pause single player games when window loses focus"
 msgstr "离开游戏窗口时暂停单人游戏"
 
-#: gui/options/options.jsongeneralSetting[3].label
+#: gui/options/options.json[0].options[3].label
 msgid "Background Pause"
 msgstr "窗口失去焦点时暂停"
 
-#: gui/options/options.jsongeneralSetting[4].tooltip
+#: gui/options/options.json[0].options[4].tooltip
 msgid ""
 "If you disable it, the welcome screen will still appear once, each time a "
 "new version is available. You can always launch it from the main menu."
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[4].label
+#: gui/options/options.json[0].options[4].label
 msgid "Enable Welcome Screen"
 msgstr "激活欢迎界面"
 
-#: gui/options/options.jsongeneralSetting[5].tooltip
+#: gui/options/options.json[0].options[5].tooltip
 msgid "Show tips when setting up a game."
 msgstr "设定游戏时显示提示。"
 
-#: gui/options/options.jsongeneralSetting[5].label
+#: gui/options/options.json[0].options[5].label
 msgid "Enable Game Setting Tips"
 msgstr "执行设置提示"
 
-#: gui/options/options.jsongeneralSetting[6].tooltip
+#: gui/options/options.json[0].options[6].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
 msgstr "在可生产单位的建筑物中显示详细的单位提示信息。"
 
-#: gui/options/options.jsongeneralSetting[6].label
+#: gui/options/options.json[0].options[6].label
 msgid "Detailed Tooltips"
 msgstr "详细工具提示"
 
-#: gui/options/options.jsongeneralSetting[7].tooltip
+#: gui/options/options.json[0].options[7].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
 msgstr "显示多人游戏连接不稳定的玩家。"
 
-#: gui/options/options.jsongeneralSetting[7].label
+#: gui/options/options.json[0].options[7].label
 msgid "Network Warnings"
 msgstr "网络警告"
 
-#: gui/options/options.jsongeneralSetting[8].tooltip
+#: gui/options/options.json[0].options[8].tooltip
 msgid "Show frames per second in top right corner."
 msgstr "在右上角显示帧率。"
 
-#: gui/options/options.jsongeneralSetting[8].label
+#: gui/options/options.json[0].options[8].label
 msgid "FPS Overlay"
 msgstr "每秒帧数覆盖层"
 
-#: gui/options/options.jsongeneralSetting[9].tooltip
+#: gui/options/options.json[0].options[9].tooltip
 msgid "Show current system time in top right corner."
 msgstr "在右上角显示目前的系统时间。"
 
-#: gui/options/options.jsongeneralSetting[9].label
+#: gui/options/options.json[0].options[9].label
 msgid "Realtime Overlay"
 msgstr "实际时间覆盖层"
 
-#: gui/options/options.jsongeneralSetting[10].tooltip
+#: gui/options/options.json[0].options[10].tooltip
 msgid "Show current simulation time in top right corner."
 msgstr "在右上角显示目前的模拟时间。"
 
-#: gui/options/options.jsongeneralSetting[10].label
+#: gui/options/options.json[0].options[10].label
 msgid "Gametime Overlay"
 msgstr "游戏时间覆盖层"
 
-#: gui/options/options.jsongeneralSetting[11].tooltip
+#: gui/options/options.json[0].options[11].tooltip
 msgid "Always show the remaining ceasefire time."
 msgstr "总是显示剩余的停火时间。"
 
-#: gui/options/options.jsongeneralSetting[11].label
+#: gui/options/options.json[0].options[11].label
 msgid "Ceasefire Time Overlay"
 msgstr "停火时间覆盖层"
 
-#: gui/options/options.jsongeneralSetting[12].tooltip
+#: gui/options/options.json[0].options[12].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game"
 msgstr "储存及复原遭遇战设定以供另一场游戏快速利用"
 
-#: gui/options/options.jsongeneralSetting[12].label
+#: gui/options/options.json[0].options[12].label
 msgid "Persist Match Settings"
 msgstr "保持遭遇战设定"
 
-#: gui/options/options.jsongeneralSetting[13].parameters.list[0].label
-#: gui/options/options.jsongeneralSetting[14].parameters.list[0].label
+#: gui/options/options.json[0].options[13].list[0].label
+#: gui/options/options.json[0].options[14].list[0].label
 msgid "Everyone"
 msgstr "所有人"
 
-#: gui/options/options.jsongeneralSetting[13].parameters.list[1].label
-#: gui/options/options.jsongeneralSetting[14].parameters.list[1].label
+#: gui/options/options.json[0].options[13].list[1].label
+#: gui/options/options.json[0].options[14].list[1].label
 msgid "Buddies"
 msgstr "伙伴"
 
-#: gui/options/options.jsongeneralSetting[13].parameters.list[2].label
-#: gui/options/options.jsongeneralSetting[14].parameters.list[2].label
+#: gui/options/options.json[0].options[13].list[2].label
+#: gui/options/options.json[0].options[14].list[2].label
 msgid "Disabled"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[13].tooltip
+#: gui/options/options.json[0].options[13].tooltip
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[13].label
+#: gui/options/options.json[0].options[13].label
 msgid "Assign Players"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[14].tooltip
+#: gui/options/options.json[0].options[14].tooltip
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[14].label
+#: gui/options/options.json[0].options[14].label
 msgid "Late Observer Joins"
 msgstr "最近加入的观察者"
 
-#: gui/options/options.jsongeneralSetting[15].tooltip
+#: gui/options/options.json[0].options[15].tooltip
 msgid "Prevent further observers from joining if the limit is reached"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[15].label
+#: gui/options/options.json[0].options[15].label
 msgid "Observer Limit"
 msgstr "观察者上限"
 
-#: gui/options/options.jsongeneralSetting[16].tooltip
+#: gui/options/options.json[0].options[16].tooltip
 msgid "Number of units trained per batch"
 msgstr "每批的单位训练数"
 
-#: gui/options/options.jsongeneralSetting[16].label
+#: gui/options/options.json[0].options[16].label
 msgid "Batch Training Size"
 msgstr "每批训练规模"
 
-#: gui/options/options.jsongeneralSetting[17].tooltip
+#: gui/options/options.json[0].options[17].tooltip
 msgid ""
 "Show time that messages are posted in the lobby, gamesetup and ingame chat."
 msgstr "在游戏大厅显示设置及聊天的时间信息。"
 
-#: gui/options/options.jsongeneralSetting[17].label
+#: gui/options/options.json[0].options[17].label
 msgid "Chat Timestamp"
 msgstr "聊天时间戳"
 
-#: gui/options/options.jsongeneralSetting[18].tooltip
+#: gui/options/options.json[0].options[18].tooltip
 msgid ""
 "Display the range of auras of selected units and structures (can also be "
 "toggled in-game with the hotkey)."
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[18].label
+#: gui/options/options.json[0].options[18].label
 msgid "Aura Range Visualization"
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[19].tooltip
+#: gui/options/options.json[0].options[19].tooltip
 msgid ""
 "Display the healing range of selected units (can also be toggled in-game "
 "with the hotkey)."
 msgstr ""
 
-#: gui/options/options.jsongeneralSetting[19].label
+#: gui/options/options.json[0].options[19].label
 msgid "Heal Range Visualization"
 msgstr ""
 
-#: gui/options/options.jsonsoundSetting[0].tooltip
-msgid "Master audio gain"
-msgstr "音频主控制"
+#: gui/options/options.json[0].label
+msgid "General"
+msgstr "通用的"
 
-#: gui/options/options.jsonsoundSetting[0].label
-msgid "Master Volume"
-msgstr ""
-
-#: gui/options/options.jsonsoundSetting[1].tooltip
-msgid "In game music gain"
-msgstr "游戏音乐控制"
-
-#: gui/options/options.jsonsoundSetting[1].label
-msgid "Music Volume"
-msgstr "音乐音量"
-
-#: gui/options/options.jsonsoundSetting[2].tooltip
-msgid "In game ambient sound gain"
-msgstr "游戏环境音效控制"
-
-#: gui/options/options.jsonsoundSetting[2].label
-msgid "Ambient Volume"
-msgstr ""
-
-#: gui/options/options.jsonsoundSetting[3].tooltip
-msgid "In game unit action sound gain"
-msgstr "游戏单位动作声音控制"
-
-#: gui/options/options.jsonsoundSetting[3].label
-msgid "Action Volume"
-msgstr ""
-
-#: gui/options/options.jsonsoundSetting[4].tooltip
-msgid "UI sound gain"
-msgstr "UI声音控制"
-
-#: gui/options/options.jsonsoundSetting[4].label
-msgid "UI Volume"
-msgstr ""
-
-#: gui/options/options.jsonsoundSetting[5].tooltip
-msgid "Receive audio notification when someone types your nick"
-msgstr "当有人输入你的昵称时接收音频通知"
-
-#: gui/options/options.jsonsoundSetting[5].label
-msgid "Nick Notification"
-msgstr "昵称通知"
-
-#: gui/options/options.jsonnotificationSetting[0].tooltip
-msgid "Show a chat notification if you are attacked by another player"
-msgstr ""
-
-#: gui/options/options.jsonnotificationSetting[0].label
-msgid "Attack"
-msgstr "攻击"
-
-#: gui/options/options.jsonnotificationSetting[1].tooltip
-msgid ""
-"Show a chat notification if an ally tributes resources to another team "
-"member if teams are locked, and all tributes in observer mode"
-msgstr ""
-
-#: gui/options/options.jsonnotificationSetting[1].label
-msgid "Tribute"
-msgstr "贡品"
-
-#: gui/options/options.jsonnotificationSetting[2].tooltip
-msgid "Show a chat notification to observers when a player bartered resources"
-msgstr ""
-
-#: gui/options/options.jsonnotificationSetting[2].label
-msgid "Barter"
-msgstr "以物易物"
-
-#: gui/options/options.jsonnotificationSetting[3].parameters.list[0].label
-msgid "Disable"
-msgstr ""
-
-#: gui/options/options.jsonnotificationSetting[3].parameters.list[1].label
-msgid "Completed"
-msgstr "完成"
-
-#: gui/options/options.jsonnotificationSetting[3].parameters.list[2].label
-msgid "All displayed"
-msgstr "所有展示"
-
-#: gui/options/options.jsonnotificationSetting[3].tooltip
-msgid ""
-"Show a chat notification if you or an ally have started, aborted or "
-"completed a new phase, and phases of all players in observer mode"
-msgstr ""
-
-#: gui/options/options.jsonnotificationSetting[3].label
-msgid "Phase"
-msgstr "阶段"
-
-#: gui/options/options.jsongraphicsSetting[0].tooltip
+#: gui/options/options.json[1].options[0].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)"
 msgstr "使用 OpenGL 2.0 着色器（推荐）"
 
-#: gui/options/options.jsongraphicsSetting[0].label
+#: gui/options/options.json[1].options[0].label
 msgid "Prefer GLSL"
 msgstr "偏好高级渲染"
 
-#: gui/options/options.jsongraphicsSetting[1].tooltip
+#: gui/options/options.json[1].options[1].tooltip
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
 msgstr "使用萤幕空间后处理过滤器(HDR、Bloom、DOF 等)"
 
-#: gui/options/options.jsongraphicsSetting[1].label
+#: gui/options/options.json[1].options[1].label
 msgid "Post Processing"
 msgstr "后处理"
 
-#: gui/options/options.jsongraphicsSetting[2].tooltip
+#: gui/options/options.json[1].options[2].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
 msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[2].label
+#: gui/options/options.json[1].options[2].label
 msgid "Shader Effects"
 msgstr "着色特效"
 
-#: gui/options/options.jsongraphicsSetting[3].tooltip
+#: gui/options/options.json[1].options[3].tooltip
 msgid "Enable shadows"
 msgstr "开启阴影效果"
 
-#: gui/options/options.jsongraphicsSetting[3].label
+#: gui/options/options.json[1].options[3].label
 msgid "Shadows"
 msgstr "阴影效果"
 
-#: gui/options/options.jsongraphicsSetting[4].parameters.list[0].label
+#: gui/options/options.json[1].options[4].list[0].label
 msgid "Very Low"
 msgstr "非常低"
 
-#: gui/options/options.jsongraphicsSetting[4].parameters.list[1].label
+#: gui/options/options.json[1].options[4].list[1].label
 msgid "Low"
 msgstr "低"
 
-#: gui/options/options.jsongraphicsSetting[4].parameters.list[2].label
+#: gui/options/options.json[1].options[4].list[2].label
 msgid "Medium"
 msgstr "中等"
 
-#: gui/options/options.jsongraphicsSetting[4].parameters.list[3].label
+#: gui/options/options.json[1].options[4].list[3].label
 msgid "High"
 msgstr "高"
 
-#: gui/options/options.jsongraphicsSetting[4].parameters.list[4].label
+#: gui/options/options.json[1].options[4].list[4].label
 msgid "Very High"
 msgstr "非常高"
 
-#: gui/options/options.jsongraphicsSetting[4].tooltip
+#: gui/options/options.json[1].options[4].tooltip
 msgid ""
 "Shadow map resolution. High values can crash the game when using a graphics "
 "card with low memory!"
 msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[4].label
+#: gui/options/options.json[1].options[4].label
 msgid "Shadow Quality"
 msgstr "阴影质量"
 
-#: gui/options/options.jsongraphicsSetting[5].tooltip
+#: gui/options/options.json[1].options[5].tooltip
 msgid "Smooth shadows"
 msgstr "平滑阴影"
 
-#: gui/options/options.jsongraphicsSetting[5].label
+#: gui/options/options.json[1].options[5].label
 msgid "Shadow Filtering"
 msgstr "阴影过滤"
 
-#: gui/options/options.jsongraphicsSetting[6].tooltip
+#: gui/options/options.json[1].options[6].tooltip
 msgid "Show outlines of units behind buildings"
 msgstr "显示被建筑物遮挡的物体的轮廓"
 
-#: gui/options/options.jsongraphicsSetting[6].label
+#: gui/options/options.json[1].options[6].label
 msgid "Unit Silhouettes"
 msgstr "单位剪影"
 
-#: gui/options/options.jsongraphicsSetting[7].tooltip
+#: gui/options/options.json[1].options[7].tooltip
 msgid "Enable particles"
 msgstr "开启粒子效果"
 
-#: gui/options/options.jsongraphicsSetting[7].label
+#: gui/options/options.json[1].options[7].label
 msgid "Particles"
 msgstr "粒子效果"
 
-#: gui/options/options.jsongraphicsSetting[8].tooltip
+#: gui/options/options.json[1].options[8].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "处于关闭状态时，尽可能使用最低设置来渲染水面。这与其他设置无关。"
 
-#: gui/options/options.jsongraphicsSetting[8].label
+#: gui/options/options.json[1].options[8].label
 msgid "Water Effects"
 msgstr "水面特效"
 
-#: gui/options/options.jsongraphicsSetting[9].tooltip
+#: gui/options/options.json[1].options[9].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "使用较高品质的水面效果，算绘靠近岸边的波浪，海岸波浪，以及船迹。"
 
-#: gui/options/options.jsongraphicsSetting[9].label
+#: gui/options/options.json[1].options[9].label
 msgid "HQ Water Effects"
 msgstr "高质量水面效果"
 
-#: gui/options/options.jsongraphicsSetting[10].tooltip
+#: gui/options/options.json[1].options[10].tooltip
 msgid "Use actual water depth in rendering calculations"
 msgstr "使用真实水深进行渲染"
 
-#: gui/options/options.jsongraphicsSetting[10].label
+#: gui/options/options.json[1].options[10].label
 msgid "Real Water Depth"
 msgstr "真实水深"
 
-#: gui/options/options.jsongraphicsSetting[11].tooltip
+#: gui/options/options.json[1].options[11].tooltip
 msgid "Allow water to reflect a mirror image"
 msgstr "使水面反射镜像"
 
-#: gui/options/options.jsongraphicsSetting[11].label
+#: gui/options/options.json[1].options[11].label
 msgid "Water Reflections"
 msgstr "水面反射效果"
 
-#: gui/options/options.jsongraphicsSetting[12].tooltip
+#: gui/options/options.json[1].options[12].tooltip
 msgid "Use a real water refraction map and not transparency"
 msgstr "使用不透明的有真实水面折射效果的地图"
 
-#: gui/options/options.jsongraphicsSetting[12].label
+#: gui/options/options.json[1].options[12].label
 msgid "Water Refraction"
 msgstr "水面折射效果"
 
-#: gui/options/options.jsongraphicsSetting[13].tooltip
+#: gui/options/options.json[1].options[13].tooltip
 msgid "Cast shadows on water"
 msgstr "显示水中倒影"
 
-#: gui/options/options.jsongraphicsSetting[13].label
+#: gui/options/options.json[1].options[13].label
 msgid "Shadows on Water"
 msgstr "水中倒影"
 
-#: gui/options/options.jsongraphicsSetting[14].tooltip
+#: gui/options/options.json[1].options[14].tooltip
 msgid "Lift darkness and fog-of-war smoothly"
 msgstr "平滑移除黑色区域及战争迷雾"
 
-#: gui/options/options.jsongraphicsSetting[14].label
+#: gui/options/options.json[1].options[14].label
 msgid "Smooth LOS"
 msgstr "LOS平滑 "
 
-#: gui/options/options.jsongraphicsSetting[15].tooltip
+#: gui/options/options.json[1].options[15].tooltip
 msgid "Render Sky"
 msgstr "渲染天空"
 
-#: gui/options/options.jsongraphicsSetting[15].label
+#: gui/options/options.json[1].options[15].label
 msgid "Show Sky"
 msgstr "显示天空"
 
-#: gui/options/options.jsongraphicsSetting[16].tooltip
+#: gui/options/options.json[1].options[16].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "使用垂直同步以修复屏幕撕裂。需要重启游戏"
 
-#: gui/options/options.jsongraphicsSetting[16].label
+#: gui/options/options.json[1].options[16].label
 msgid "VSync"
 msgstr "垂直同步"
 
-#: gui/options/options.jsongraphicsSetting[17].tooltip
+#: gui/options/options.json[1].options[17].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[17].label
+#: gui/options/options.json[1].options[17].label
 msgid "FPS Throttling in Menus"
 msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[18].tooltip
+#: gui/options/options.json[1].options[18].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
 msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[18].label
+#: gui/options/options.json[1].options[18].label
 msgid "FPS Throttling in Games"
+msgstr ""
+
+#: gui/options/options.json[1].tooltip
+msgid "Set the balance between performance and visual appearance."
+msgstr ""
+
+#: gui/options/options.json[1].label
+msgid "Graphics"
+msgstr ""
+
+#: gui/options/options.json[2].options[0].tooltip
+msgid "Master audio gain"
+msgstr "音频主控制"
+
+#: gui/options/options.json[2].options[0].label
+msgid "Master Volume"
+msgstr ""
+
+#: gui/options/options.json[2].options[1].tooltip
+msgid "In game music gain"
+msgstr "游戏音乐控制"
+
+#: gui/options/options.json[2].options[1].label
+msgid "Music Volume"
+msgstr "音乐音量"
+
+#: gui/options/options.json[2].options[2].tooltip
+msgid "In game ambient sound gain"
+msgstr "游戏环境音效控制"
+
+#: gui/options/options.json[2].options[2].label
+msgid "Ambient Volume"
+msgstr ""
+
+#: gui/options/options.json[2].options[3].tooltip
+msgid "In game unit action sound gain"
+msgstr "游戏单位动作声音控制"
+
+#: gui/options/options.json[2].options[3].label
+msgid "Action Volume"
+msgstr ""
+
+#: gui/options/options.json[2].options[4].tooltip
+msgid "UI sound gain"
+msgstr "UI声音控制"
+
+#: gui/options/options.json[2].options[4].label
+msgid "UI Volume"
+msgstr ""
+
+#: gui/options/options.json[2].options[5].tooltip
+msgid "Receive audio notification when someone types your nick"
+msgstr "当有人输入你的昵称时接收音频通知"
+
+#: gui/options/options.json[2].options[5].label
+msgid "Nick Notification"
+msgstr "昵称通知"
+
+#: gui/options/options.json[3].options[0].tooltip
+msgid "Number of backlogged messages to load when joining the lobby"
+msgstr "加入大厅时，要载入的聊天记录数。"
+
+#: gui/options/options.json[3].options[0].label
+msgid "Chat Backlog"
+msgstr "聊天记录"
+
+#: gui/options/options.json[3].options[1].tooltip
+msgid ""
+"Show the average rating of the participating players in a column of the "
+"gamelist."
+msgstr ""
+
+#: gui/options/options.json[3].options[1].label
+msgid "Game Rating Column"
+msgstr ""
+
+#: gui/options/options.json[3].tooltip
+msgid "These settings only affect the multiplayer."
+msgstr ""
+
+#: gui/options/options.json[3].label
+msgid "Lobby"
+msgstr ""
+
+#: gui/options/options.json[4].options[0].tooltip
+msgid "Show a chat notification if you are attacked by another player"
+msgstr ""
+
+#: gui/options/options.json[4].options[0].label
+msgid "Attack"
+msgstr "攻击"
+
+#: gui/options/options.json[4].options[1].tooltip
+msgid ""
+"Show a chat notification if an ally tributes resources to another team "
+"member if teams are locked, and all tributes in observer mode"
+msgstr ""
+
+#: gui/options/options.json[4].options[1].label
+msgid "Tribute"
+msgstr "贡品"
+
+#: gui/options/options.json[4].options[2].tooltip
+msgid "Show a chat notification to observers when a player bartered resources"
+msgstr ""
+
+#: gui/options/options.json[4].options[2].label
+msgid "Barter"
+msgstr "以物易物"
+
+#: gui/options/options.json[4].options[3].list[0].label
+msgid "Disable"
+msgstr ""
+
+#: gui/options/options.json[4].options[3].list[1].label
+msgid "Completed"
+msgstr "完成"
+
+#: gui/options/options.json[4].options[3].list[2].label
+msgid "All displayed"
+msgstr "所有展示"
+
+#: gui/options/options.json[4].options[3].tooltip
+msgid ""
+"Show a chat notification if you or an ally have started, aborted or "
+"completed a new phase, and phases of all players in observer mode"
+msgstr ""
+
+#: gui/options/options.json[4].options[3].label
+msgid "Phase"
+msgstr "阶段"
+
+#: gui/options/options.json[4].tooltip
+msgid "Regulate the verbosity of chat notifications."
+msgstr ""
+
+#: gui/options/options.json[4].label
+msgid "Chat Notifications"
 msgstr ""
 
 #: simulation/data/resources/food.jsondescription

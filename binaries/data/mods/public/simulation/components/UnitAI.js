@@ -3890,7 +3890,7 @@ UnitAI.prototype.GetOrderData = function()
 	var orders = [];
 	for (let order of this.orderQueue)
 		if (order.data)
-			orders.push(deepcopy(order.data));
+			orders.push(clone(order.data));
 
 	return orders;
 };

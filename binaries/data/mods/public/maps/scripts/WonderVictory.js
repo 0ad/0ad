@@ -38,7 +38,7 @@ Trigger.prototype.CheckWonderVictory = function(data)
 
 	let cmpPlayer = QueryOwnerInterface(ent, IID_Player);
 	let cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
-	let wonderDuration = cmpEndGameManager.GetGameTypeSettings().victoryDuration || 0;
+	let wonderDuration = cmpEndGameManager.GetGameTypeSettings().wonderDuration;
 
 	messages.otherMessage = cmpGuiInterface.AddTimeNotification({
 		"message": markForTranslation("%(_player_)s will win in %(time)s."),

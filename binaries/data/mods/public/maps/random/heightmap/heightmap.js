@@ -250,7 +250,7 @@ function setBaseTerrainDiamondSquare(minHeight = MIN_HEIGHT, maxHeight = MAX_HEI
 				}
 			}
 		}
-		initialHeightmap = deepcopy(newHeightmap);
+		initialHeightmap = clone(newHeightmap);
 		offset /= Math.pow(2, smoothness);
 	}
 
@@ -269,7 +269,7 @@ function setBaseTerrainDiamondSquare(minHeight = MIN_HEIGHT, maxHeight = MAX_HEI
  */
 function globalSmoothHeightmap(strength = 0.8, heightmap = g_Map.height, smoothMap = [[1, 0], [1, 1], [0, 1], [-1, 1], [-1, 0], [-1, -1], [0, -1], [1, -1]])
 {
-	let referenceHeightmap = deepcopy(heightmap);
+	let referenceHeightmap = clone(heightmap);
 	let max_x = heightmap.length;
 	let max_y = heightmap[0].length;
 	for (let x = 0; x < max_x; ++x)
@@ -350,7 +350,7 @@ function rectangularSmoothToHeight(center, dx, dy, targetHeight, strength = 0.8,
 function getPointsByHeight(heightRange, avoidPoints = [], avoidClass = undefined, minDistance = 20, maxTries = 2 * g_Map.size, heightmap = g_Map.height, isCircular = g_MapSettings.CircularMap)
 {
 	let points = [];
-	let placements = deepcopy(avoidPoints);
+	let placements = clone(avoidPoints);
 	let validVertices = [];
 	let r = 0.5 * (heightmap.length - 1); // Map center x/y as well as radius
 	let avoidMap;

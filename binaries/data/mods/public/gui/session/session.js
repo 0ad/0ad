@@ -1123,7 +1123,7 @@ function updateDebug()
 
 	debug.hidden = false;
 
-	let conciseSimState = deepcopy(GetSimState());
+	let conciseSimState = clone(GetSimState());
 	conciseSimState.players = "<<<omitted>>>";
 	let text = "simulation: " + uneval(conciseSimState);
 

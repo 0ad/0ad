@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-08-30 09:02+0200\n"
-"PO-Revision-Date: 2017-08-30 15:18+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-09-04 09:02+0200\n"
+"PO-Revision-Date: 2017-09-04 16:58+0000\n"
+"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -67,7 +67,7 @@ msgstr "Erlaitza"
 
 #: gui/common/functions_civinfo.js:31
 msgid "Gaia"
-msgstr ""
+msgstr "Gaia"
 
 #: gui/common/functions_global_object.js:57
 #, javascript-format
@@ -131,7 +131,7 @@ msgid "DELETE"
 msgstr "Ezabatu"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:291
-#: gui/options/options.js:322 gui/options/options.js:377
+#: gui/options/options.js:290 gui/options/options.js:338
 #: gui/pregame/mainmenu.js:254 gui/replaymenu/replay_actions.js:170
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
 #: gui/summary/summary.js:363
@@ -139,7 +139,7 @@ msgid "No"
 msgstr "Ez"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:291
-#: gui/options/options.js:322 gui/options/options.js:377
+#: gui/options/options.js:290 gui/options/options.js:338
 #: gui/pregame/mainmenu.js:254 gui/replaymenu/replay_actions.js:170
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
 #: gui/summary/summary.js:363
@@ -285,8 +285,8 @@ msgstr[1] "Miragarria  (%(min)s minutuak) "
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
 msgid_plural "Capture the Relic (%(min)s minutes)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Atzeman Erlikia  (%(min)s minutua) "
+msgstr[1] "Atzeman Erlikia  (%(min)s minutuak) "
 
 #: gui/common/gamedescription.js:260
 msgid "Relic Count"
@@ -1102,24 +1102,42 @@ msgstr "baliorik gabeko kokalekua"
 msgid "OK"
 msgstr "Ados"
 
-#: gui/options/options.js:148
+#: gui/options/options.js:90
+#, javascript-format
+msgctxt "option number"
+msgid "Min: %(min)s, Max: %(max)s"
+msgstr "Gutx: %(min)s, Gehi: %(max)s"
+
+#: gui/options/options.js:92
+#, javascript-format
+msgctxt "option number"
+msgid "Min: %(min)s"
+msgstr "Gutx: %(min)s"
+
+#: gui/options/options.js:94
+#, javascript-format
+msgctxt "option number"
+msgid "Max: %(max)s"
+msgstr "Gehi: %(max)s"
+
+#: gui/options/options.js:127
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "Balioa: %(val)s (gutxien: %(min)s, gehien: %(max)s)"
 
-#: gui/options/options.js:320
+#: gui/options/options.js:288
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "Hasierako egoerara bueltatzeak zure ezarpenak ezabatuko ditu. Jarraitu nahi duzu?"
 
-#: gui/options/options.js:321 gui/options/options.js:376
+#: gui/options/options.js:289 gui/options/options.js:337
 #: gui/savedgames/load.js:187
 msgid "Warning"
 msgstr "Kontuz"
 
-#: gui/options/options.js:375
+#: gui/options/options.js:336
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Gorde gabeko aldaketak dituzu. Leiho hau itxi nahi duzu?"
 
@@ -1215,12 +1233,12 @@ msgstr "Errorea"
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "Jokalari anitzen gelan sartu. \\[KONPILAZIOGATIK DESGAITUA]"
 
-#: gui/pregame/mainmenu.js:280 gui/pregame/mainmenu.xml:(caption):71
-#: gui/pregame/mainmenu.xml:(caption):93
+#: gui/pregame/mainmenu.js:280 gui/pregame/mainmenu.xml:(caption):69
+#: gui/pregame/mainmenu.xml:(caption):96
 msgid "Technical Details"
 msgstr "Xehetasun teknikoak"
 
-#: gui/pregame/mainmenu.js:285 gui/pregame/mainmenu.xml:(caption):139
+#: gui/pregame/mainmenu.js:285 gui/pregame/mainmenu.xml:(caption):147
 msgid "Manual"
 msgstr "Gidaliburua"
 
@@ -1327,11 +1345,11 @@ msgstr "%(min)s - %(max)s min"
 msgid "Single- and multiplayer"
 msgstr "Jokalari anitza edo bakarra"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):471
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):465
 msgid "Single Player"
 msgstr "Jokalari bakarra"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):486
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):480
 msgid "Multiplayer"
 msgstr "Jokalari ugari"
 
@@ -1651,7 +1669,7 @@ msgstr "Emaitza"
 
 #: gui/summary/summary.js:101
 msgid "∞"
-msgstr ""
+msgstr "∞"
 
 #: gui/summary/summary.js:361
 msgid "Are you sure you want to quit the lobby?"
@@ -1704,7 +1722,7 @@ msgid "Civilization Selection"
 msgstr "Zibilizazioaren Aukeraketa"
 
 #: gui/civinfo/civinfo.xml:(caption):119 gui/credits/credits.xml:(caption):36
-#: gui/options/options.xml:(caption):103
+#: gui/options/options.xml:(caption):60
 #: gui/reference/structree/structree.xml:(caption):122
 msgid "Close"
 msgstr "Itxi"
@@ -1715,7 +1733,7 @@ msgstr "0 A.D. Kredituak"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
-#: gui/pregame/mainmenu.xml:(caption):343
+#: gui/pregame/mainmenu.xml:(caption):339
 msgid "Language"
 msgstr "Hizkuntza"
 
@@ -1786,117 +1804,97 @@ msgstr "Aukerako posta kodea, lau hizkikoa, hizkuntzaren kodearen atzetik (ISO 1
 msgid "Not implemented yet."
 msgstr "Oraindik ezarri gabe."
 
-#: gui/options/options.xml:(caption):19
+#: gui/options/options.xml:(caption):15
 msgid "Game Options"
 msgstr "Partidaren aukerak"
 
-#: gui/options/options.xml:(caption):23
-msgid "General"
-msgstr "Orokorra"
-
-#: gui/options/options.xml:(caption):36
-msgid "Graphics Settings"
-msgstr "Ezarpen Grafikoak"
-
-#: gui/options/options.xml:(caption):50
-msgid "Sound Settings"
-msgstr "Soinu Ezarpenak"
-
-#: gui/options/options.xml:(caption):63
-msgid "Lobby Settings"
-msgstr "Jokalari Anitzeko Aretoko Ezarpenak"
-
-#: gui/options/options.xml:(caption):76
-msgid "Chat Notification Settings"
-msgstr "Txat eta Notifikazio Ezarpenak"
-
-#: gui/options/options.xml:(caption):88
+#: gui/options/options.xml:(caption):42
 msgid "Reset"
 msgstr "Leheneratu"
 
-#: gui/options/options.xml:(caption):93
+#: gui/options/options.xml:(caption):48
 msgid "Revert"
 msgstr "Itzuli"
 
-#: gui/options/options.xml:(caption):98 gui/savedgames/save.xml:(caption):48
+#: gui/options/options.xml:(caption):54 gui/savedgames/save.xml:(caption):48
 msgid "Save"
 msgstr "Gorde"
 
-#: gui/options/options.xml:(tooltip):89
+#: gui/options/options.xml:(tooltip):43
 msgid "Resets user settings to their game default"
 msgstr "Ezarpenak hasierakoetara leheneratzen ditu"
 
-#: gui/options/options.xml:(tooltip):94
+#: gui/options/options.xml:(tooltip):49
 msgid "Reverts to previous saved settings"
 msgstr "Lehen gordetako ezarpenetara itzultzen da"
 
-#: gui/options/options.xml:(tooltip):99
+#: gui/options/options.xml:(tooltip):55
 msgid "Saves changes"
 msgstr "Aldaketak gorde"
 
-#: gui/options/options.xml:(tooltip):104
+#: gui/options/options.xml:(tooltip):61
 msgid "Unsaved changes affect this session only"
 msgstr "Gordetzen ez diren aldaketek oraingo saioari baino ez diote eragingo"
 
-#: gui/pregame/mainmenu.xml:61
+#: gui/pregame/mainmenu.xml:59
 msgid "Help improve 0 A.D.!"
 msgstr "Lagundu 0 A.D. hobetzen!"
 
-#: gui/pregame/mainmenu.xml:63
+#: gui/pregame/mainmenu.xml:61
 msgid ""
 "You can automatically send us anonymous feedback that will help us fix bugs,"
 " and improve performance and compatibility."
 msgstr "Automatikoki bidal diezagukezu informazioa anonimoa, honela erroreak konpontzen eta errendimendua eta bateragarritasuna hobetzen lagunduz."
 
-#: gui/pregame/mainmenu.xml:539
+#: gui/pregame/mainmenu.xml:533
 msgid "Alpha XXIII: Ken Wood"
-msgstr ""
+msgstr "Alpha XXIII: Ken Wood"
 
-#: gui/pregame/mainmenu.xml:541
+#: gui/pregame/mainmenu.xml:535
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
 msgstr "ABISUA: Honakoa jokoaren garapeneko bertsio gazte eta berdea da. Hainbat ezaugarri ez daude gehituta oraindik."
 
-#: gui/pregame/mainmenu.xml:(caption):67
+#: gui/pregame/mainmenu.xml:(caption):65
 msgid "Enable Feedback"
 msgstr "Txostenak Gaitu"
 
-#: gui/pregame/mainmenu.xml:(caption):89
+#: gui/pregame/mainmenu.xml:(caption):92
 msgid "Disable Feedback"
 msgstr "Txostenak Desgaitu"
 
-#: gui/pregame/mainmenu.xml:(caption):156
+#: gui/pregame/mainmenu.xml:(caption):166
 msgid "Tutorial"
 msgstr "Tutoretza"
 
-#: gui/pregame/mainmenu.xml:(caption):170
+#: gui/pregame/mainmenu.xml:(caption):180
 #: gui/reference/structree/structree.xml:(caption):16
 msgid "Structure Tree"
 msgstr "Egitura zuhaitza"
 
-#: gui/pregame/mainmenu.xml:(caption):187
+#: gui/pregame/mainmenu.xml:(caption):195
 msgid "History"
 msgstr "Historia"
 
-#: gui/pregame/mainmenu.xml:(caption):212
+#: gui/pregame/mainmenu.xml:(caption):218
 msgid "Matches"
 msgstr "Partidak"
 
-#: gui/pregame/mainmenu.xml:(caption):226
+#: gui/pregame/mainmenu.xml:(caption):232
 msgid "Campaigns"
 msgstr "Kanpainak"
 
-#: gui/pregame/mainmenu.xml:(caption):243 gui/savedgames/load.xml:(caption):20
+#: gui/pregame/mainmenu.xml:(caption):245 gui/savedgames/load.xml:(caption):20
 msgid "Load Game"
 msgstr "Kargatu partida"
 
 #. Join a game by specifying the host's IP address.
-#: gui/pregame/mainmenu.xml:(caption):266
+#: gui/pregame/mainmenu.xml:(caption):268
 msgid "Join Game"
 msgstr "Batu partida batera"
 
-#: gui/pregame/mainmenu.xml:(caption):281
+#: gui/pregame/mainmenu.xml:(caption):282
 msgid "Host Game"
 msgstr "Ostatatu partida bat"
 
@@ -1904,97 +1902,97 @@ msgstr "Ostatatu partida bat"
 msgid "Game Lobby"
 msgstr "Jokalari Anitzen Gela"
 
-#: gui/pregame/mainmenu.xml:(caption):326
+#: gui/pregame/mainmenu.xml:(caption):325
 msgid "Options"
 msgstr "Aukerak"
 
-#: gui/pregame/mainmenu.xml:(caption):359
+#: gui/pregame/mainmenu.xml:(caption):353
 msgid "Replays"
 msgstr "Errepikapenak"
 
-#: gui/pregame/mainmenu.xml:(caption):373
+#: gui/pregame/mainmenu.xml:(caption):367
 msgid "Scenario Editor"
 msgstr "Jokalekuaren editorea"
 
-#: gui/pregame/mainmenu.xml:(caption):386
+#: gui/pregame/mainmenu.xml:(caption):380
 msgid "Welcome Screen"
 msgstr "Ongietorri Pantaila"
 
-#: gui/pregame/mainmenu.xml:(caption):401
+#: gui/pregame/mainmenu.xml:(caption):396
 msgid "Mod Selection"
 msgstr "Mod Aukeraketa"
 
-#: gui/pregame/mainmenu.xml:(caption):456
+#: gui/pregame/mainmenu.xml:(caption):450
 msgid "Learn to Play"
-msgstr ""
+msgstr "Ikasi nola jolastu"
 
-#: gui/pregame/mainmenu.xml:(caption):501
+#: gui/pregame/mainmenu.xml:(caption):495
 msgid "Tools & Options"
 msgstr "Tresnak eta aukerak"
 
-#: gui/pregame/mainmenu.xml:(caption):516
+#: gui/pregame/mainmenu.xml:(caption):510
 msgid "Exit"
 msgstr "Irten"
 
-#: gui/pregame/mainmenu.xml:(caption):551
+#: gui/pregame/mainmenu.xml:(caption):545
 msgid "Website"
 msgstr "Webgunea"
 
-#: gui/pregame/mainmenu.xml:(caption):563
+#: gui/pregame/mainmenu.xml:(caption):557
 msgid "Chat"
 msgstr "Txata"
 
-#: gui/pregame/mainmenu.xml:(caption):575
+#: gui/pregame/mainmenu.xml:(caption):569
 msgid "Report a Bug"
 msgstr "Eman errore baten berri"
 
-#: gui/pregame/mainmenu.xml:(caption):587
+#: gui/pregame/mainmenu.xml:(caption):581
 msgid "Translate the Game"
-msgstr ""
+msgstr "Jokoa itzuli"
 
-#: gui/pregame/mainmenu.xml:(caption):599
+#: gui/pregame/mainmenu.xml:(caption):593
 msgid "Credits"
 msgstr "Kredituak"
 
-#: gui/pregame/mainmenu.xml:(caption):628
+#: gui/pregame/mainmenu.xml:(caption):622
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
-#: gui/pregame/mainmenu.xml:(tooltip):140
+#: gui/pregame/mainmenu.xml:(tooltip):148
 msgid "Open the 0 A.D. Game Manual."
 msgstr "Ireki 0 A.D. jolasteko eskuliburua."
 
-#: gui/pregame/mainmenu.xml:(tooltip):157
+#: gui/pregame/mainmenu.xml:(tooltip):167
 msgid "Start the economic tutorial."
 msgstr "Ekonomia tutoretza hasi."
 
-#: gui/pregame/mainmenu.xml:(tooltip):171
+#: gui/pregame/mainmenu.xml:(tooltip):181
 msgid "View the structure tree of civilizations featured in 0 A.D."
 msgstr "0 A.D.en azaltzen den eraikinen zuhaitza."
 
-#: gui/pregame/mainmenu.xml:(tooltip):188
+#: gui/pregame/mainmenu.xml:(tooltip):196
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "Ezagutu hobeto 0 A.D.-n azaltzen diren zibilizazio desberdinak."
 
-#: gui/pregame/mainmenu.xml:(tooltip):213
+#: gui/pregame/mainmenu.xml:(tooltip):219
 msgid "Click here to start a new single player game."
 msgstr "Egin klik hemen jokalari bakarreko partida berria hasteko."
 
-#: gui/pregame/mainmenu.xml:(tooltip):227
+#: gui/pregame/mainmenu.xml:(tooltip):233
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
 msgstr "Bizi historia antzinako gudu kanpaina ospetsuen bidez. \\[ORAINDIK EGITEKE]"
 
-#: gui/pregame/mainmenu.xml:(tooltip):244
+#: gui/pregame/mainmenu.xml:(tooltip):246
 msgid "Click here to load a saved game."
 msgstr "Egin klik hemen gordetako partida bat kargatzeko."
 
-#: gui/pregame/mainmenu.xml:(tooltip):267
+#: gui/pregame/mainmenu.xml:(tooltip):269
 msgid "Joining an existing multiplayer game."
 msgstr "Batu existitzen den jokalari ugariko partida batera."
 
-#: gui/pregame/mainmenu.xml:(tooltip):282
+#: gui/pregame/mainmenu.xml:(tooltip):283
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr "Eman ostatu jokalari ugariko partida bati.\\n\\n20595 UDP ataka irekita izan behar duzu."
 
@@ -2002,73 +2000,73 @@ msgstr "Eman ostatu jokalari ugariko partida bati.\\n\\n20595 UDP ataka irekita 
 msgid "Launch the multiplayer lobby."
 msgstr "Jokalari anitzen gelan sartu"
 
-#: gui/pregame/mainmenu.xml:(tooltip):327
+#: gui/pregame/mainmenu.xml:(tooltip):326
 msgid "Adjust game settings."
 msgstr "Doitu partidaren ezarpenak."
 
-#: gui/pregame/mainmenu.xml:(tooltip):344
+#: gui/pregame/mainmenu.xml:(tooltip):340
 msgid "Choose the language of the game."
 msgstr "Hautatu partidaren hizkuntza."
 
-#: gui/pregame/mainmenu.xml:(tooltip):360
+#: gui/pregame/mainmenu.xml:(tooltip):354
 msgid "Playback previous games."
 msgstr "Aurreko partidak erreproduzitu."
 
-#: gui/pregame/mainmenu.xml:(tooltip):374
+#: gui/pregame/mainmenu.xml:(tooltip):368
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Ireki Atlas jokaleku-editorea leiho berrian. Hau era fidagarriagoan irekitzeko, exekutatu jokoa \"-editor\" agindu-lerroko argumentua erabiliz."
 
-#: gui/pregame/mainmenu.xml:(tooltip):387
+#: gui/pregame/mainmenu.xml:(tooltip):381
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "Bistaratu ongietorriaren pantaila. Erruz ezkutatu baduzu ondo dator."
 
-#: gui/pregame/mainmenu.xml:(tooltip):402
+#: gui/pregame/mainmenu.xml:(tooltip):397
 msgid "Select mods to use."
 msgstr "Aukeratu zein mods-ekin jolastu nahi duzun"
 
-#: gui/pregame/mainmenu.xml:(tooltip):457
+#: gui/pregame/mainmenu.xml:(tooltip):451
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations"
 msgstr "Jolasten ikasi, tutoretza hasi, aurkitu teknologien zuhaitza eta zibilizazioen atzean dagoen historia."
 
-#: gui/pregame/mainmenu.xml:(tooltip):472
+#: gui/pregame/mainmenu.xml:(tooltip):466
 msgid "Challenge the computer player to a single player match."
 msgstr "Bota erronka ordenagailuaren jokalariari, jokalari bakarreko partidan."
 
-#: gui/pregame/mainmenu.xml:(tooltip):487
+#: gui/pregame/mainmenu.xml:(tooltip):481
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Lehiatu hezur-haragizko jokalari bat edo gehiagoren kontra, jokalari ugariko partidan."
 
-#: gui/pregame/mainmenu.xml:(tooltip):502
+#: gui/pregame/mainmenu.xml:(tooltip):496
 msgid "Game options and scenario design tools."
 msgstr "Jokoaren aukerak eta jokalekua diseinatzeko tresnak."
 
-#: gui/pregame/mainmenu.xml:(tooltip):517
+#: gui/pregame/mainmenu.xml:(tooltip):511
 msgid "Exits the game."
 msgstr "Partidatik ateratzen da."
 
-#: gui/pregame/mainmenu.xml:(tooltip):552
+#: gui/pregame/mainmenu.xml:(tooltip):546
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Egin klik nabigatzailean play0ad.com webgunea irekitzeko."
 
-#: gui/pregame/mainmenu.xml:(tooltip):564
+#: gui/pregame/mainmenu.xml:(tooltip):558
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "Egin klik 0 A.D.-ren IRC txata nabigatzailean irekitzeko. (#0ad - webchat.quakenet.org)"
 
-#: gui/pregame/mainmenu.xml:(tooltip):576
+#: gui/pregame/mainmenu.xml:(tooltip):570
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "Egin klik 0 A.D. Trac zerbitzaria bisitatzeko, akats, kraskatze edo errore baten berri emateko, "
 
-#: gui/pregame/mainmenu.xml:(tooltip):588
+#: gui/pregame/mainmenu.xml:(tooltip):582
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "Egin klik 0 A.D. itzultzeko orria zure nabigatzailean irekitzeko."
 
-#: gui/pregame/mainmenu.xml:(tooltip):600
+#: gui/pregame/mainmenu.xml:(tooltip):594
 msgid "Click to see the 0 A.D. credits."
 msgstr "Klikatu 0 A.D. taldea osatzen duten kideak ikusteko."
 
@@ -2334,6 +2332,7 @@ msgid "Music"
 msgstr "Musika"
 
 #: gui/credits/texts/art.jsonContent[6].Title
+#: gui/options/options.json[2].label
 msgid "Sound"
 msgstr "Soinua"
 
@@ -2431,489 +2430,517 @@ msgstr "Kreditu bereziak"
 msgid "Translators"
 msgstr "Itzultzaileak"
 
-#: gui/options/options.jsonlobbySetting[0].tooltip
-msgid "Number of backlogged messages to load when joining the lobby"
-msgstr "Jokalari anitzen gelan sartzerakoan historian kargatu beharreko mezuen zenbatekoa"
-
-#: gui/options/options.jsonlobbySetting[0].label
-msgid "Chat Backlog"
-msgstr "Txataren historia"
-
-#: gui/options/options.jsonlobbySetting[1].tooltip
-msgid ""
-"Show the average rating of the participating players in a column of the "
-"gamelist."
-msgstr "Parte hartzen duten jokalarien batezbesteko puntuazioa erakusten du jokoen zerrendako zutabe batean."
-
-#: gui/options/options.jsonlobbySetting[1].label
-msgid "Game Rating Column"
-msgstr "Jokoaren puntuazio zutabea."
-
-#: gui/options/options.jsongeneralSetting[0].tooltip
+#: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in Single Player matches."
 msgstr "Jokalari bakarreko partidetan erabiltzeko izena."
 
-#: gui/options/options.jsongeneralSetting[0].label
+#: gui/options/options.json[0].options[0].label
 msgid "Playername (Single Player)"
 msgstr "Jokalariaren izena (jokalari bat)"
 
-#: gui/options/options.jsongeneralSetting[1].tooltip
+#: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in Multiplayer matches (except lobby)."
 msgstr "Jokalari anitzetako partidetan erabiltzeko izena (salbu hizketako gelan)"
 
-#: gui/options/options.jsongeneralSetting[1].label
+#: gui/options/options.json[0].options[1].label
 msgid "Playername (Multiplayer)"
 msgstr "Jokalariaren izena (jokalari anitza)"
 
-#: gui/options/options.jsongeneralSetting[2].tooltip
+#: gui/options/options.json[0].options[2].tooltip
 msgid "Start 0 A.D. in a window"
 msgstr "Abiarazi 0 A.D. leiho batean"
 
-#: gui/options/options.jsongeneralSetting[2].label
+#: gui/options/options.json[0].options[2].label
 msgid "Windowed Mode"
 msgstr "Leiho modua"
 
-#: gui/options/options.jsongeneralSetting[3].tooltip
+#: gui/options/options.json[0].options[3].tooltip
 msgid "Pause single player games when window loses focus"
 msgstr "Pausatu jokalari bakarreko partidak leihoak fokua galtzen duenean"
 
-#: gui/options/options.jsongeneralSetting[3].label
+#: gui/options/options.json[0].options[3].label
 msgid "Background Pause"
 msgstr "Atzealdeko pausa"
 
-#: gui/options/options.jsongeneralSetting[4].tooltip
+#: gui/options/options.json[0].options[4].tooltip
 msgid ""
 "If you disable it, the welcome screen will still appear once, each time a "
 "new version is available. You can always launch it from the main menu."
 msgstr "Nahiz desgaitu, ongietorri pantaila bertsio berri bat dagoen bakoitzeko behin erakutsiko da. Nahi izan ezkero menu nagusitik sartu ahal izango duzu."
 
-#: gui/options/options.jsongeneralSetting[4].label
+#: gui/options/options.json[0].options[4].label
 msgid "Enable Welcome Screen"
 msgstr "Ongietorri pantaila gaitu"
 
-#: gui/options/options.jsongeneralSetting[5].tooltip
+#: gui/options/options.json[0].options[5].tooltip
 msgid "Show tips when setting up a game."
 msgstr "Aholkuak erakusten ditu partida berria konfiguratzean."
 
-#: gui/options/options.jsongeneralSetting[5].label
+#: gui/options/options.json[0].options[5].label
 msgid "Enable Game Setting Tips"
 msgstr "Aholkuak gaitu partida prestatzean"
 
-#: gui/options/options.jsongeneralSetting[6].tooltip
+#: gui/options/options.json[0].options[6].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
 msgstr "Sortze unitateetako eraikinetan erreklutatu daitezken unitateen ezaugarriak azalduko dituen testuak erakutsi pantailan ."
 
-#: gui/options/options.jsongeneralSetting[6].label
+#: gui/options/options.json[0].options[6].label
 msgid "Detailed Tooltips"
 msgstr "Laguntza zehatza"
 
-#: gui/options/options.jsongeneralSetting[7].tooltip
+#: gui/options/options.json[0].options[7].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
 msgstr "Interneteko jokoetan konexio txarra duten jokalariak erakusten ditu."
 
-#: gui/options/options.jsongeneralSetting[7].label
+#: gui/options/options.json[0].options[7].label
 msgid "Network Warnings"
 msgstr "Sareko oharrak"
 
-#: gui/options/options.jsongeneralSetting[8].tooltip
+#: gui/options/options.json[0].options[8].tooltip
 msgid "Show frames per second in top right corner."
 msgstr "Segundoko fotogramak erakutsi goian eskuin aldeko kantoian."
 
-#: gui/options/options.jsongeneralSetting[8].label
+#: gui/options/options.json[0].options[8].label
 msgid "FPS Overlay"
 msgstr "Gainjarri FPS"
 
-#: gui/options/options.jsongeneralSetting[9].tooltip
+#: gui/options/options.json[0].options[9].tooltip
 msgid "Show current system time in top right corner."
 msgstr "Bistaratu sistemaren ordua goi eskumako ertzean."
 
-#: gui/options/options.jsongeneralSetting[9].label
+#: gui/options/options.json[0].options[9].label
 msgid "Realtime Overlay"
 msgstr "Gainjarri ordu erreala"
 
-#: gui/options/options.jsongeneralSetting[10].tooltip
+#: gui/options/options.json[0].options[10].tooltip
 msgid "Show current simulation time in top right corner."
 msgstr "Bistaratu uneko simulazio denbora goi eskumako ertzean."
 
-#: gui/options/options.jsongeneralSetting[10].label
+#: gui/options/options.json[0].options[10].label
 msgid "Gametime Overlay"
 msgstr "Gainjarri partida denbora"
 
-#: gui/options/options.jsongeneralSetting[11].tooltip
+#: gui/options/options.json[0].options[11].tooltip
 msgid "Always show the remaining ceasefire time."
 msgstr "Beti bistaratu geratzen den sueten denbora."
 
-#: gui/options/options.jsongeneralSetting[11].label
+#: gui/options/options.json[0].options[11].label
 msgid "Ceasefire Time Overlay"
 msgstr "Gainjarri sueten denbora"
 
-#: gui/options/options.jsongeneralSetting[12].tooltip
+#: gui/options/options.json[0].options[12].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game"
 msgstr "Gorde eta berrezarri partidaren ezarpenak erraz berrerabiltzeko beste partida bat ostatatzean"
 
-#: gui/options/options.jsongeneralSetting[12].label
+#: gui/options/options.json[0].options[12].label
 msgid "Persist Match Settings"
 msgstr "Eutsi partidaren ezarpenei"
 
-#: gui/options/options.jsongeneralSetting[13].parameters.list[0].label
-#: gui/options/options.jsongeneralSetting[14].parameters.list[0].label
+#: gui/options/options.json[0].options[13].list[0].label
+#: gui/options/options.json[0].options[14].list[0].label
 msgid "Everyone"
 msgstr "Guztiak"
 
-#: gui/options/options.jsongeneralSetting[13].parameters.list[1].label
-#: gui/options/options.jsongeneralSetting[14].parameters.list[1].label
+#: gui/options/options.json[0].options[13].list[1].label
+#: gui/options/options.json[0].options[14].list[1].label
 msgid "Buddies"
 msgstr "Lagunak"
 
-#: gui/options/options.jsongeneralSetting[13].parameters.list[2].label
-#: gui/options/options.jsongeneralSetting[14].parameters.list[2].label
+#: gui/options/options.json[0].options[13].list[2].label
+#: gui/options/options.json[0].options[14].list[2].label
 msgid "Disabled"
 msgstr "Desgaituta"
 
-#: gui/options/options.jsongeneralSetting[13].tooltip
+#: gui/options/options.json[0].options[13].tooltip
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
 msgstr "Partidaren ezarpenak zehazten diren bitartean jokalari librentzako zuloetara elkartzen diren bezeroei automatikoki eman."
 
-#: gui/options/options.jsongeneralSetting[13].label
+#: gui/options/options.json[0].options[13].label
 msgid "Assign Players"
 msgstr "Jokalariak Esleitu"
 
-#: gui/options/options.jsongeneralSetting[14].tooltip
+#: gui/options/options.json[0].options[14].tooltip
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started"
 msgstr "Utzi denak edo lagunak bakarrik hasitako partidetara begirale gisa batu daitezen."
 
-#: gui/options/options.jsongeneralSetting[14].label
+#: gui/options/options.json[0].options[14].label
 msgid "Late Observer Joins"
 msgstr "Ikusle berantiarrak"
 
-#: gui/options/options.jsongeneralSetting[15].tooltip
+#: gui/options/options.json[0].options[15].tooltip
 msgid "Prevent further observers from joining if the limit is reached"
 msgstr "Behin muga gainditu ezkero ikusle gehiago batzea eragozten du."
 
-#: gui/options/options.jsongeneralSetting[15].label
+#: gui/options/options.json[0].options[15].label
 msgid "Observer Limit"
 msgstr "Gehieneko ikusleak"
 
-#: gui/options/options.jsongeneralSetting[16].tooltip
+#: gui/options/options.json[0].options[16].tooltip
 msgid "Number of units trained per batch"
 msgstr "Taldeka erreklutatutako unitateen zenbatekoa"
 
-#: gui/options/options.jsongeneralSetting[16].label
+#: gui/options/options.json[0].options[16].label
 msgid "Batch Training Size"
 msgstr "Taldeka erreklutatutakoen tamaina"
 
-#: gui/options/options.jsongeneralSetting[17].tooltip
+#: gui/options/options.json[0].options[17].tooltip
 msgid ""
 "Show time that messages are posted in the lobby, gamesetup and ingame chat."
 msgstr "Jokalari anitzen Gelako txaten mezuak noiz argitaratu ziren erakusten du, partida sortzean eta jokoaren bitartean."
 
-#: gui/options/options.jsongeneralSetting[17].label
+#: gui/options/options.json[0].options[17].label
 msgid "Chat Timestamp"
 msgstr "Eguna eta ordua erakutsi"
 
-#: gui/options/options.jsongeneralSetting[18].tooltip
+#: gui/options/options.json[0].options[18].tooltip
 msgid ""
 "Display the range of auras of selected units and structures (can also be "
 "toggled in-game with the hotkey)."
 msgstr "Aukeratutako unitate eta egituren auraren maila erakusten du (sarbide azkarreko tekla erabiliz ere jokoan txandakatu daiteke)."
 
-#: gui/options/options.jsongeneralSetting[18].label
+#: gui/options/options.json[0].options[18].label
 msgid "Aura Range Visualization"
 msgstr "Auraren Distantzia Ikusi"
 
-#: gui/options/options.jsongeneralSetting[19].tooltip
+#: gui/options/options.json[0].options[19].tooltip
 msgid ""
 "Display the healing range of selected units (can also be toggled in-game "
 "with the hotkey)."
 msgstr "Aukeratutako unitateen sendatze maila erakutsi (sarbide azkarreko tekla erabiliz ere jokoan txandakatu daiteke)."
 
-#: gui/options/options.jsongeneralSetting[19].label
+#: gui/options/options.json[0].options[19].label
 msgid "Heal Range Visualization"
 msgstr "Sendatze Maila Ikusi"
 
-#: gui/options/options.jsonsoundSetting[0].tooltip
-msgid "Master audio gain"
-msgstr "Soinu orokorraren bolumena"
+#: gui/options/options.json[0].label
+msgid "General"
+msgstr "Orokorra"
 
-#: gui/options/options.jsonsoundSetting[0].label
-msgid "Master Volume"
-msgstr "Bolumen Nagusia"
-
-#: gui/options/options.jsonsoundSetting[1].tooltip
-msgid "In game music gain"
-msgstr "Jokoko musikaren bolumena"
-
-#: gui/options/options.jsonsoundSetting[1].label
-msgid "Music Volume"
-msgstr "Musika Bolumena"
-
-#: gui/options/options.jsonsoundSetting[2].tooltip
-msgid "In game ambient sound gain"
-msgstr "Inguruneko soinuen bolumena"
-
-#: gui/options/options.jsonsoundSetting[2].label
-msgid "Ambient Volume"
-msgstr "Giro Bolumena"
-
-#: gui/options/options.jsonsoundSetting[3].tooltip
-msgid "In game unit action sound gain"
-msgstr "Joko unitateek sortzen duten soinuen bolumena"
-
-#: gui/options/options.jsonsoundSetting[3].label
-msgid "Action Volume"
-msgstr "Akzioaren Bolumena"
-
-#: gui/options/options.jsonsoundSetting[4].tooltip
-msgid "UI sound gain"
-msgstr "Norberaren interfazaren soinuen bolumena"
-
-#: gui/options/options.jsonsoundSetting[4].label
-msgid "UI Volume"
-msgstr "UI Bolumena"
-
-#: gui/options/options.jsonsoundSetting[5].tooltip
-msgid "Receive audio notification when someone types your nick"
-msgstr "Norbaitek zure izena aipatzen den bakoitzean soinu bat entzungo duzu."
-
-#: gui/options/options.jsonsoundSetting[5].label
-msgid "Nick Notification"
-msgstr "Erabiltzailearen notifikazioa"
-
-#: gui/options/options.jsonnotificationSetting[0].tooltip
-msgid "Show a chat notification if you are attacked by another player"
-msgstr "Txatean argitaratu beste jokalari baten erasoa jasotzean"
-
-#: gui/options/options.jsonnotificationSetting[0].label
-msgid "Attack"
-msgstr "Erasoa"
-
-#: gui/options/options.jsonnotificationSetting[1].tooltip
-msgid ""
-"Show a chat notification if an ally tributes resources to another team "
-"member if teams are locked, and all tributes in observer mode"
-msgstr "Txatean argitaratu aliatuen arteko baliabideen trukea taldeak blokeaturik badaude eta betiere ikusle moduan"
-
-#: gui/options/options.jsonnotificationSetting[1].label
-msgid "Tribute"
-msgstr "Tributoa"
-
-#: gui/options/options.jsonnotificationSetting[2].tooltip
-msgid "Show a chat notification to observers when a player bartered resources"
-msgstr "Ikusleen txatean  edozein baliabide trukea "
-
-#: gui/options/options.jsonnotificationSetting[2].label
-msgid "Barter"
-msgstr "Trukea"
-
-#: gui/options/options.jsonnotificationSetting[3].parameters.list[0].label
-msgid "Disable"
-msgstr "Desgaitu"
-
-#: gui/options/options.jsonnotificationSetting[3].parameters.list[1].label
-msgid "Completed"
-msgstr "Osaturik"
-
-#: gui/options/options.jsonnotificationSetting[3].parameters.list[2].label
-msgid "All displayed"
-msgstr "Dena agerian"
-
-#: gui/options/options.jsonnotificationSetting[3].tooltip
-msgid ""
-"Show a chat notification if you or an ally have started, aborted or "
-"completed a new phase, and phases of all players in observer mode"
-msgstr "Zuk edo zure aliatuak hasi, utzi edo fase berri bat osatu baduzue eta begirale moduan dauden jokalari guztien faseak txatean jakinarazpena erakutsi."
-
-#: gui/options/options.jsonnotificationSetting[3].label
-msgid "Phase"
-msgstr "Fasea"
-
-#: gui/options/options.jsongraphicsSetting[0].tooltip
+#: gui/options/options.json[1].options[0].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)"
 msgstr "Erabili OpenGL 2.0 shaderrak (gomendatua)"
 
-#: gui/options/options.jsongraphicsSetting[0].label
+#: gui/options/options.json[1].options[0].label
 msgid "Prefer GLSL"
 msgstr "GLSL nahiago"
 
-#: gui/options/options.jsongraphicsSetting[1].tooltip
+#: gui/options/options.json[1].options[1].tooltip
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
 msgstr "Erabili post prozesatze iragazkiak (HDR, dirdira, DOF, etaba)"
 
-#: gui/options/options.jsongraphicsSetting[1].label
+#: gui/options/options.json[1].options[1].label
 msgid "Post Processing"
 msgstr "Post prozesatzea"
 
-#: gui/options/options.jsongraphicsSetting[2].tooltip
+#: gui/options/options.json[1].options[2].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
 msgstr "Shaderren efektuen zenbatekoa. JOKOA BERRABIARAZI BEHAR DA"
 
-#: gui/options/options.jsongraphicsSetting[2].label
+#: gui/options/options.json[1].options[2].label
 msgid "Shader Effects"
-msgstr ""
+msgstr "Itzal Efektuak"
 
-#: gui/options/options.jsongraphicsSetting[3].tooltip
+#: gui/options/options.json[1].options[3].tooltip
 msgid "Enable shadows"
 msgstr "Gaitu itzalak"
 
-#: gui/options/options.jsongraphicsSetting[3].label
+#: gui/options/options.json[1].options[3].label
 msgid "Shadows"
 msgstr "Itzalak"
 
-#: gui/options/options.jsongraphicsSetting[4].parameters.list[0].label
+#: gui/options/options.json[1].options[4].list[0].label
 msgid "Very Low"
-msgstr ""
+msgstr "Oso baxua"
 
-#: gui/options/options.jsongraphicsSetting[4].parameters.list[1].label
+#: gui/options/options.json[1].options[4].list[1].label
 msgid "Low"
-msgstr ""
+msgstr "Baxua"
 
-#: gui/options/options.jsongraphicsSetting[4].parameters.list[2].label
+#: gui/options/options.json[1].options[4].list[2].label
 msgid "Medium"
-msgstr ""
+msgstr "Ertaina"
 
-#: gui/options/options.jsongraphicsSetting[4].parameters.list[3].label
+#: gui/options/options.json[1].options[4].list[3].label
 msgid "High"
-msgstr ""
+msgstr "Altua"
 
-#: gui/options/options.jsongraphicsSetting[4].parameters.list[4].label
+#: gui/options/options.json[1].options[4].list[4].label
 msgid "Very High"
-msgstr ""
+msgstr "Oso altua"
 
-#: gui/options/options.jsongraphicsSetting[4].tooltip
+#: gui/options/options.json[1].options[4].tooltip
 msgid ""
 "Shadow map resolution. High values can crash the game when using a graphics "
 "card with low memory!"
-msgstr ""
+msgstr "Itzal maparen bereizmena. Memoria gutxi duen txartel grafikoa erabili ezkero balore altuek jokoa blokea dezakete!"
 
-#: gui/options/options.jsongraphicsSetting[4].label
+#: gui/options/options.json[1].options[4].label
 msgid "Shadow Quality"
-msgstr ""
+msgstr "Itzalen Kalitatea"
 
-#: gui/options/options.jsongraphicsSetting[5].tooltip
+#: gui/options/options.json[1].options[5].tooltip
 msgid "Smooth shadows"
 msgstr "Itzal leunak"
 
-#: gui/options/options.jsongraphicsSetting[5].label
+#: gui/options/options.json[1].options[5].label
 msgid "Shadow Filtering"
 msgstr "Itzalen iragazketa"
 
-#: gui/options/options.jsongraphicsSetting[6].tooltip
+#: gui/options/options.json[1].options[6].tooltip
 msgid "Show outlines of units behind buildings"
 msgstr "Bistaratu eraikinen atzean dauden unitateen siluetak "
 
-#: gui/options/options.jsongraphicsSetting[6].label
+#: gui/options/options.json[1].options[6].label
 msgid "Unit Silhouettes"
 msgstr "Unitateen siluetak"
 
-#: gui/options/options.jsongraphicsSetting[7].tooltip
+#: gui/options/options.json[1].options[7].tooltip
 msgid "Enable particles"
 msgstr "Gaitu partikulak"
 
-#: gui/options/options.jsongraphicsSetting[7].label
+#: gui/options/options.json[1].options[7].label
 msgid "Particles"
 msgstr "Partikulak"
 
-#: gui/options/options.jsongraphicsSetting[8].tooltip
+#: gui/options/options.json[1].options[8].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "Desaktibatzean erabili ezarpen baxuena ura errendatzeko. Honek beste ezarpenak garrantzi gabekoak bihurtzen ditu."
 
-#: gui/options/options.jsongraphicsSetting[8].label
+#: gui/options/options.json[1].options[8].label
 msgid "Water Effects"
-msgstr ""
+msgstr "Ur Efektuak"
 
-#: gui/options/options.jsongraphicsSetting[9].tooltip
+#: gui/options/options.json[1].options[9].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "Ura marraztean ikusmen efektu konplexuenak erabiltzen ditu, kostaldeko olatuak barne, aparra itsasbazterrean eta itsasontzien estelak ur azalean."
 
-#: gui/options/options.jsongraphicsSetting[9].label
+#: gui/options/options.json[1].options[9].label
 msgid "HQ Water Effects"
 msgstr "Kalitate handiko ur efektuak"
 
-#: gui/options/options.jsongraphicsSetting[10].tooltip
+#: gui/options/options.json[1].options[10].tooltip
 msgid "Use actual water depth in rendering calculations"
 msgstr "Erabili uraren egiazko sakontasuna errendatze kalkuluetan"
 
-#: gui/options/options.jsongraphicsSetting[10].label
+#: gui/options/options.json[1].options[10].label
 msgid "Real Water Depth"
 msgstr "Ur sakontasun erreala"
 
-#: gui/options/options.jsongraphicsSetting[11].tooltip
+#: gui/options/options.json[1].options[11].tooltip
 msgid "Allow water to reflect a mirror image"
 msgstr "Baimendu urak irudiaren ispilu bat islatzea"
 
-#: gui/options/options.jsongraphicsSetting[11].label
+#: gui/options/options.json[1].options[11].label
 msgid "Water Reflections"
 msgstr "Uraren islapenak"
 
-#: gui/options/options.jsongraphicsSetting[12].tooltip
+#: gui/options/options.json[1].options[12].tooltip
 msgid "Use a real water refraction map and not transparency"
 msgstr "Erabili egiazko uraren errefrakzio mapa eta ez gardentasuna"
 
-#: gui/options/options.jsongraphicsSetting[12].label
+#: gui/options/options.json[1].options[12].label
 msgid "Water Refraction"
 msgstr "Uraren errefrakzioa"
 
-#: gui/options/options.jsongraphicsSetting[13].tooltip
+#: gui/options/options.json[1].options[13].tooltip
 msgid "Cast shadows on water"
 msgstr "Sortu itzalak uretan"
 
-#: gui/options/options.jsongraphicsSetting[13].label
+#: gui/options/options.json[1].options[13].label
 msgid "Shadows on Water"
 msgstr "Itzalak uretan"
 
-#: gui/options/options.jsongraphicsSetting[14].tooltip
+#: gui/options/options.json[1].options[14].tooltip
 msgid "Lift darkness and fog-of-war smoothly"
 msgstr "Altxatu leunki iluntasuna eta gatazka lainoa"
 
-#: gui/options/options.jsongraphicsSetting[14].label
+#: gui/options/options.json[1].options[14].label
 msgid "Smooth LOS"
 msgstr "LOS leuna"
 
-#: gui/options/options.jsongraphicsSetting[15].tooltip
+#: gui/options/options.json[1].options[15].tooltip
 msgid "Render Sky"
 msgstr "Errendatu zerua"
 
-#: gui/options/options.jsongraphicsSetting[15].label
+#: gui/options/options.json[1].options[15].label
 msgid "Show Sky"
 msgstr "Bistaratu zerua"
 
-#: gui/options/options.jsongraphicsSetting[16].tooltip
+#: gui/options/options.json[1].options[16].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "Pantailako zutikako sinkronizazioa mantendu «screen tearing» deituriko ekiditeko. JOKOA BERRABIARAZI BEHAR DA"
 
-#: gui/options/options.jsongraphicsSetting[16].label
+#: gui/options/options.json[1].options[16].label
 msgid "VSync"
 msgstr "VSync"
 
-#: gui/options/options.jsongraphicsSetting[17].tooltip
+#: gui/options/options.json[1].options[17].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr "Marrazte abiadura mugatu dezakezu menuan prozesatzailean baliabide gutxiago jateko eta tenperatura eta energia gastua murrizteko. Gehienezko tamainan jarri mugatzailea ezgaitzeko."
 
-#: gui/options/options.jsongraphicsSetting[17].label
+#: gui/options/options.json[1].options[17].label
 msgid "FPS Throttling in Menus"
-msgstr ""
+msgstr "FPSa Menuetan Mugatu"
 
-#: gui/options/options.jsongraphicsSetting[18].tooltip
+#: gui/options/options.json[1].options[18].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
 msgstr "Marrazte abiadura mugatu dezakezu partida jokatzean prozesatzailean baliabide gutxiago jateko eta tenperatura eta energia gastua murrizteko. Gehienezko tamainan jarri mugatzailea ezgaitzeko."
 
-#: gui/options/options.jsongraphicsSetting[18].label
+#: gui/options/options.json[1].options[18].label
 msgid "FPS Throttling in Games"
-msgstr ""
+msgstr "FPSa Partidan Mugatu"
+
+#: gui/options/options.json[1].tooltip
+msgid "Set the balance between performance and visual appearance."
+msgstr "Eragiketa eta ikusizko itxura arteko oreka ezarri."
+
+#: gui/options/options.json[1].label
+msgid "Graphics"
+msgstr "Grafikoak"
+
+#: gui/options/options.json[2].options[0].tooltip
+msgid "Master audio gain"
+msgstr "Soinu orokorraren bolumena"
+
+#: gui/options/options.json[2].options[0].label
+msgid "Master Volume"
+msgstr "Bolumen Nagusia"
+
+#: gui/options/options.json[2].options[1].tooltip
+msgid "In game music gain"
+msgstr "Jokoko musikaren bolumena"
+
+#: gui/options/options.json[2].options[1].label
+msgid "Music Volume"
+msgstr "Musika Bolumena"
+
+#: gui/options/options.json[2].options[2].tooltip
+msgid "In game ambient sound gain"
+msgstr "Inguruneko soinuen bolumena"
+
+#: gui/options/options.json[2].options[2].label
+msgid "Ambient Volume"
+msgstr "Giro Bolumena"
+
+#: gui/options/options.json[2].options[3].tooltip
+msgid "In game unit action sound gain"
+msgstr "Joko unitateek sortzen duten soinuen bolumena"
+
+#: gui/options/options.json[2].options[3].label
+msgid "Action Volume"
+msgstr "Akzioaren Bolumena"
+
+#: gui/options/options.json[2].options[4].tooltip
+msgid "UI sound gain"
+msgstr "Norberaren interfazaren soinuen bolumena"
+
+#: gui/options/options.json[2].options[4].label
+msgid "UI Volume"
+msgstr "UI Bolumena"
+
+#: gui/options/options.json[2].options[5].tooltip
+msgid "Receive audio notification when someone types your nick"
+msgstr "Norbaitek zure izena aipatzen den bakoitzean soinu bat entzungo duzu."
+
+#: gui/options/options.json[2].options[5].label
+msgid "Nick Notification"
+msgstr "Erabiltzailearen notifikazioa"
+
+#: gui/options/options.json[3].options[0].tooltip
+msgid "Number of backlogged messages to load when joining the lobby"
+msgstr "Jokalari anitzen gelan sartzerakoan historian kargatu beharreko mezuen zenbatekoa"
+
+#: gui/options/options.json[3].options[0].label
+msgid "Chat Backlog"
+msgstr "Txataren historia"
+
+#: gui/options/options.json[3].options[1].tooltip
+msgid ""
+"Show the average rating of the participating players in a column of the "
+"gamelist."
+msgstr "Parte hartzen duten jokalarien batezbesteko puntuazioa erakusten du jokoen zerrendako zutabe batean."
+
+#: gui/options/options.json[3].options[1].label
+msgid "Game Rating Column"
+msgstr "Jokoaren puntuazio zutabea."
+
+#: gui/options/options.json[3].tooltip
+msgid "These settings only affect the multiplayer."
+msgstr "Ezarpen hauek jokalari anitzen modura baino ez die eragiten."
+
+#: gui/options/options.json[3].label
+msgid "Lobby"
+msgstr "Gela"
+
+#: gui/options/options.json[4].options[0].tooltip
+msgid "Show a chat notification if you are attacked by another player"
+msgstr "Txatean argitaratu beste jokalari baten erasoa jasotzean"
+
+#: gui/options/options.json[4].options[0].label
+msgid "Attack"
+msgstr "Erasoa"
+
+#: gui/options/options.json[4].options[1].tooltip
+msgid ""
+"Show a chat notification if an ally tributes resources to another team "
+"member if teams are locked, and all tributes in observer mode"
+msgstr "Txatean argitaratu aliatuen arteko baliabideen trukea taldeak blokeaturik badaude eta betiere ikusle moduan"
+
+#: gui/options/options.json[4].options[1].label
+msgid "Tribute"
+msgstr "Tributoa"
+
+#: gui/options/options.json[4].options[2].tooltip
+msgid "Show a chat notification to observers when a player bartered resources"
+msgstr "Ikusleen txatean  edozein baliabide trukea "
+
+#: gui/options/options.json[4].options[2].label
+msgid "Barter"
+msgstr "Trukea"
+
+#: gui/options/options.json[4].options[3].list[0].label
+msgid "Disable"
+msgstr "Desgaitu"
+
+#: gui/options/options.json[4].options[3].list[1].label
+msgid "Completed"
+msgstr "Osaturik"
+
+#: gui/options/options.json[4].options[3].list[2].label
+msgid "All displayed"
+msgstr "Dena agerian"
+
+#: gui/options/options.json[4].options[3].tooltip
+msgid ""
+"Show a chat notification if you or an ally have started, aborted or "
+"completed a new phase, and phases of all players in observer mode"
+msgstr "Zuk edo zure aliatuak hasi, utzi edo fase berri bat osatu baduzue eta begirale moduan dauden jokalari guztien faseak txatean jakinarazpena erakutsi."
+
+#: gui/options/options.json[4].options[3].label
+msgid "Phase"
+msgstr "Fasea"
+
+#: gui/options/options.json[4].tooltip
+msgid "Regulate the verbosity of chat notifications."
+msgstr "Txat jarioen zenbatekoa arautu."
+
+#: gui/options/options.json[4].label
+msgid "Chat Notifications"
+msgstr "Txat Jakinarazpenak"
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."

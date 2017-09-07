@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-08-30 09:02+0200\n"
-"PO-Revision-Date: 2017-08-30 15:18+0000\n"
+"POT-Creation-Date: 2017-09-04 09:02+0200\n"
+"PO-Revision-Date: 2017-09-04 15:06+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -139,7 +139,7 @@ msgid "DELETE"
 msgstr "ΔΙΑΓΡΑΦΗ"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:291
-#: gui/options/options.js:322 gui/options/options.js:377
+#: gui/options/options.js:290 gui/options/options.js:338
 #: gui/pregame/mainmenu.js:254 gui/replaymenu/replay_actions.js:170
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
 #: gui/summary/summary.js:363
@@ -147,7 +147,7 @@ msgid "No"
 msgstr "Όχι"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:291
-#: gui/options/options.js:322 gui/options/options.js:377
+#: gui/options/options.js:290 gui/options/options.js:338
 #: gui/pregame/mainmenu.js:254 gui/replaymenu/replay_actions.js:170
 #: gui/savedgames/load.js:188 gui/savedgames/save.js:66
 #: gui/summary/summary.js:363
@@ -1110,24 +1110,42 @@ msgstr "Μη έγκυρη μετάφραση"
 msgid "OK"
 msgstr "ΟΚ"
 
-#: gui/options/options.js:148
+#: gui/options/options.js:90
+#, javascript-format
+msgctxt "option number"
+msgid "Min: %(min)s, Max: %(max)s"
+msgstr ""
+
+#: gui/options/options.js:92
+#, javascript-format
+msgctxt "option number"
+msgid "Min: %(min)s"
+msgstr ""
+
+#: gui/options/options.js:94
+#, javascript-format
+msgctxt "option number"
+msgid "Max: %(max)s"
+msgstr ""
+
+#: gui/options/options.js:127
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "Τιμή: %(val)s (ελάχιστη: %(min)s, μέγιστη: %(max)s)"
 
-#: gui/options/options.js:320
+#: gui/options/options.js:288
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "Επαναφέροντας τις ρυθμίσεις θα διαγραφούν οι αποθηκευμένες ρυθμίσεις. Να συνεχιστεί;"
 
-#: gui/options/options.js:321 gui/options/options.js:376
+#: gui/options/options.js:289 gui/options/options.js:337
 #: gui/savedgames/load.js:187
 msgid "Warning"
 msgstr "Προειδοποίηση"
 
-#: gui/options/options.js:375
+#: gui/options/options.js:336
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Δεν έχετε αποθηκεύσει όλες τις αλλαγές, θέλετε να κλείσετε αυτό το παράθυρο;"
 
@@ -1223,12 +1241,12 @@ msgstr "Σφάλμα"
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "Εκκίνηση του λόμπι πολλαπλών παικτών. \\[DISABLED BY BUILD]"
 
-#: gui/pregame/mainmenu.js:280 gui/pregame/mainmenu.xml:(caption):71
-#: gui/pregame/mainmenu.xml:(caption):93
+#: gui/pregame/mainmenu.js:280 gui/pregame/mainmenu.xml:(caption):69
+#: gui/pregame/mainmenu.xml:(caption):96
 msgid "Technical Details"
 msgstr "Τεχνικές λεπτομέριες"
 
-#: gui/pregame/mainmenu.js:285 gui/pregame/mainmenu.xml:(caption):139
+#: gui/pregame/mainmenu.js:285 gui/pregame/mainmenu.xml:(caption):147
 msgid "Manual"
 msgstr "Εγχειρίδιο χρήσης"
 
@@ -1335,11 +1353,11 @@ msgstr "%(min)s - %(max)s λεπτά"
 msgid "Single- and multiplayer"
 msgstr "Παιχνίδι ενός και πολλών παιχτών"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):471
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):465
 msgid "Single Player"
 msgstr "Παιχνίδι για έναν παίκτη"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):486
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):480
 msgid "Multiplayer"
 msgstr "Παιχνίδι για πολλούς παίκτες"
 
@@ -1712,7 +1730,7 @@ msgid "Civilization Selection"
 msgstr "Επιλογή Πολιτισμού"
 
 #: gui/civinfo/civinfo.xml:(caption):119 gui/credits/credits.xml:(caption):36
-#: gui/options/options.xml:(caption):103
+#: gui/options/options.xml:(caption):60
 #: gui/reference/structree/structree.xml:(caption):122
 msgid "Close"
 msgstr "Κλείσιμο"
@@ -1723,7 +1741,7 @@ msgstr "Συντελεστές του 0 A.D."
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
-#: gui/pregame/mainmenu.xml:(caption):343
+#: gui/pregame/mainmenu.xml:(caption):339
 msgid "Language"
 msgstr "Γλώσσα"
 
@@ -1794,117 +1812,97 @@ msgstr "Προαιρετικά ο τετραψήφιος κώδικας σενα
 msgid "Not implemented yet."
 msgstr "Δέν έχει ενσωματωθεί ακόμα."
 
-#: gui/options/options.xml:(caption):19
+#: gui/options/options.xml:(caption):15
 msgid "Game Options"
 msgstr "Επιλογές Παιχνιδιού"
 
-#: gui/options/options.xml:(caption):23
-msgid "General"
-msgstr "Γενικά"
-
-#: gui/options/options.xml:(caption):36
-msgid "Graphics Settings"
-msgstr "Ρυθμίσεις Γραφικών"
-
-#: gui/options/options.xml:(caption):50
-msgid "Sound Settings"
-msgstr "Ρυθμίσεις Ήχου"
-
-#: gui/options/options.xml:(caption):63
-msgid "Lobby Settings"
-msgstr "Ρυθμίσεις Λόμπι"
-
-#: gui/options/options.xml:(caption):76
-msgid "Chat Notification Settings"
-msgstr "Ρυθμίσεις Ειδοποιήσεων Συνομιλίας"
-
-#: gui/options/options.xml:(caption):88
+#: gui/options/options.xml:(caption):42
 msgid "Reset"
 msgstr "Επαναφορά"
 
-#: gui/options/options.xml:(caption):93
+#: gui/options/options.xml:(caption):48
 msgid "Revert"
 msgstr "Επαναφορά"
 
-#: gui/options/options.xml:(caption):98 gui/savedgames/save.xml:(caption):48
+#: gui/options/options.xml:(caption):54 gui/savedgames/save.xml:(caption):48
 msgid "Save"
 msgstr "Αποθήκευση"
 
-#: gui/options/options.xml:(tooltip):89
+#: gui/options/options.xml:(tooltip):43
 msgid "Resets user settings to their game default"
 msgstr "Επαναφορά τον ρυθμίσεων του χρήστη στις προεπιλογές του παιχνιδιού"
 
-#: gui/options/options.xml:(tooltip):94
+#: gui/options/options.xml:(tooltip):49
 msgid "Reverts to previous saved settings"
 msgstr "Επαναφορά στις προηγούμενες αποθηκευμένες ρυθμίσεις"
 
-#: gui/options/options.xml:(tooltip):99
+#: gui/options/options.xml:(tooltip):55
 msgid "Saves changes"
 msgstr "Αποθήκευση αλλαγών"
 
-#: gui/options/options.xml:(tooltip):104
+#: gui/options/options.xml:(tooltip):61
 msgid "Unsaved changes affect this session only"
 msgstr "Οι μη αποθηκευμένες αλλαγές επηρεάζουν αυτή τη συνεδρία μόνο"
 
-#: gui/pregame/mainmenu.xml:61
+#: gui/pregame/mainmenu.xml:59
 msgid "Help improve 0 A.D.!"
 msgstr "Βοηθήστε στη βελτίωση του 0 A.D.! "
 
-#: gui/pregame/mainmenu.xml:63
+#: gui/pregame/mainmenu.xml:61
 msgid ""
 "You can automatically send us anonymous feedback that will help us fix bugs,"
 " and improve performance and compatibility."
 msgstr "Μπορείτε να μας στέλνετε αυτόματα ανώνυμες πληροφορίες που θα μας βοηθήσουν στη διόρθωση των σφαλμάτων κώδικα, καθώς και στη βελτίωση της απόδοσης και της συμβατότητας του παιχνιδιού."
 
-#: gui/pregame/mainmenu.xml:539
+#: gui/pregame/mainmenu.xml:533
 msgid "Alpha XXIII: Ken Wood"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:541
+#: gui/pregame/mainmenu.xml:535
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
 msgstr "ΠΡΟΕΙΔΟΠΟΙΗΣΗ: Το παιχνίδι βρίσκεται ακόμα σε φάση ανάπτυξης και αυτή η έκδοσή του είναι πρώιμη. Πολλές δυνατότητες και λειτουργίες δεν έχουν προστεθεί ακόμα."
 
-#: gui/pregame/mainmenu.xml:(caption):67
+#: gui/pregame/mainmenu.xml:(caption):65
 msgid "Enable Feedback"
 msgstr "Ενεργοποίηση Ανάδρασης"
 
-#: gui/pregame/mainmenu.xml:(caption):89
+#: gui/pregame/mainmenu.xml:(caption):92
 msgid "Disable Feedback"
 msgstr "Απενεργοποίηση αποστολής πληροφοριών"
 
-#: gui/pregame/mainmenu.xml:(caption):156
+#: gui/pregame/mainmenu.xml:(caption):166
 msgid "Tutorial"
 msgstr " Οδηγός Εκμάθησης"
 
-#: gui/pregame/mainmenu.xml:(caption):170
+#: gui/pregame/mainmenu.xml:(caption):180
 #: gui/reference/structree/structree.xml:(caption):16
 msgid "Structure Tree"
 msgstr "Δέντρο κατασκευής"
 
-#: gui/pregame/mainmenu.xml:(caption):187
+#: gui/pregame/mainmenu.xml:(caption):195
 msgid "History"
 msgstr "Ιστορία"
 
-#: gui/pregame/mainmenu.xml:(caption):212
+#: gui/pregame/mainmenu.xml:(caption):218
 msgid "Matches"
 msgstr "Αναμετρήσεις"
 
-#: gui/pregame/mainmenu.xml:(caption):226
+#: gui/pregame/mainmenu.xml:(caption):232
 msgid "Campaigns"
 msgstr "Εκστρατείες"
 
-#: gui/pregame/mainmenu.xml:(caption):243 gui/savedgames/load.xml:(caption):20
+#: gui/pregame/mainmenu.xml:(caption):245 gui/savedgames/load.xml:(caption):20
 msgid "Load Game"
 msgstr "Φόρτωση παιχνιδιού"
 
 #. Join a game by specifying the host's IP address.
-#: gui/pregame/mainmenu.xml:(caption):266
+#: gui/pregame/mainmenu.xml:(caption):268
 msgid "Join Game"
 msgstr "Συμμετοχή στο παιχνίδι"
 
-#: gui/pregame/mainmenu.xml:(caption):281
+#: gui/pregame/mainmenu.xml:(caption):282
 msgid "Host Game"
 msgstr "Φιλοξενία παιχνιδιού"
 
@@ -1912,97 +1910,97 @@ msgstr "Φιλοξενία παιχνιδιού"
 msgid "Game Lobby"
 msgstr "Λόμπι Παιχνιδιού"
 
-#: gui/pregame/mainmenu.xml:(caption):326
+#: gui/pregame/mainmenu.xml:(caption):325
 msgid "Options"
 msgstr "Επιλογές"
 
-#: gui/pregame/mainmenu.xml:(caption):359
+#: gui/pregame/mainmenu.xml:(caption):353
 msgid "Replays"
 msgstr "Επαναλήψεις"
 
-#: gui/pregame/mainmenu.xml:(caption):373
+#: gui/pregame/mainmenu.xml:(caption):367
 msgid "Scenario Editor"
 msgstr "Επεξεργαστής Σεναρίων"
 
-#: gui/pregame/mainmenu.xml:(caption):386
+#: gui/pregame/mainmenu.xml:(caption):380
 msgid "Welcome Screen"
 msgstr "Οθόνη Καλωσορίσματος"
 
-#: gui/pregame/mainmenu.xml:(caption):401
+#: gui/pregame/mainmenu.xml:(caption):396
 msgid "Mod Selection"
 msgstr "Επιλογή Mod"
 
-#: gui/pregame/mainmenu.xml:(caption):456
+#: gui/pregame/mainmenu.xml:(caption):450
 msgid "Learn to Play"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):501
+#: gui/pregame/mainmenu.xml:(caption):495
 msgid "Tools & Options"
 msgstr "Εργαλεία & Επιλογές"
 
-#: gui/pregame/mainmenu.xml:(caption):516
+#: gui/pregame/mainmenu.xml:(caption):510
 msgid "Exit"
 msgstr "Έξοδος"
 
-#: gui/pregame/mainmenu.xml:(caption):551
+#: gui/pregame/mainmenu.xml:(caption):545
 msgid "Website"
 msgstr "Ιστοσελίδα"
 
-#: gui/pregame/mainmenu.xml:(caption):563
+#: gui/pregame/mainmenu.xml:(caption):557
 msgid "Chat"
 msgstr "Συνομιλία"
 
-#: gui/pregame/mainmenu.xml:(caption):575
+#: gui/pregame/mainmenu.xml:(caption):569
 msgid "Report a Bug"
 msgstr "Αναφορά ενός Σφάλματος"
 
-#: gui/pregame/mainmenu.xml:(caption):587
+#: gui/pregame/mainmenu.xml:(caption):581
 msgid "Translate the Game"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:(caption):599
+#: gui/pregame/mainmenu.xml:(caption):593
 msgid "Credits"
 msgstr "Συντελεστές"
 
-#: gui/pregame/mainmenu.xml:(caption):628
+#: gui/pregame/mainmenu.xml:(caption):622
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
-#: gui/pregame/mainmenu.xml:(tooltip):140
+#: gui/pregame/mainmenu.xml:(tooltip):148
 msgid "Open the 0 A.D. Game Manual."
 msgstr "Ανοόξτε το εγχειρίδιο χρήσης του 0 A.D."
 
-#: gui/pregame/mainmenu.xml:(tooltip):157
+#: gui/pregame/mainmenu.xml:(tooltip):167
 msgid "Start the economic tutorial."
 msgstr "Ξεκίνα τον οδηγό εκμάθησης της οικονομίας"
 
-#: gui/pregame/mainmenu.xml:(tooltip):171
+#: gui/pregame/mainmenu.xml:(tooltip):181
 msgid "View the structure tree of civilizations featured in 0 A.D."
 msgstr "Εμφανίζει την δενδροδομή τον πολιτισμών που εμπεριέχονται στο 0 A.D."
 
-#: gui/pregame/mainmenu.xml:(tooltip):188
+#: gui/pregame/mainmenu.xml:(tooltip):196
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "Μάθετε για τους διάφορους πολιτισμούς που εμφανίζονται στο 0 A.D."
 
-#: gui/pregame/mainmenu.xml:(tooltip):213
+#: gui/pregame/mainmenu.xml:(tooltip):219
 msgid "Click here to start a new single player game."
 msgstr "Κλικ εδώ για να αρχίσετε ένα νέο παιχνίδι για έναν παίκτη."
 
-#: gui/pregame/mainmenu.xml:(tooltip):227
+#: gui/pregame/mainmenu.xml:(tooltip):233
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
 msgstr "Αναβιώστε την Ιστορία μέσω ιστορικών πολεμικών εκστρατειών. \\[ΔΕΝ ΕΧΕΙ ΥΛΟΠΟΙΗΘΕΙ ΑΚΟΜΑ]"
 
-#: gui/pregame/mainmenu.xml:(tooltip):244
+#: gui/pregame/mainmenu.xml:(tooltip):246
 msgid "Click here to load a saved game."
 msgstr "Κλικ εδώ για φόρτωση ενός αποθηκευμένου παιχνιδιού."
 
-#: gui/pregame/mainmenu.xml:(tooltip):267
+#: gui/pregame/mainmenu.xml:(tooltip):269
 msgid "Joining an existing multiplayer game."
 msgstr "Συμμετοχή σε υπάρχον παιχνίδι για πολλούς παίκτες."
 
-#: gui/pregame/mainmenu.xml:(tooltip):282
+#: gui/pregame/mainmenu.xml:(tooltip):283
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr "Φιλοξενήστε ένα παιχνίδι για πολλούς παίκτες (multiplayer).\\n\\nΑπαιτείται να είναι ανοιχτή η θύρα UDP 20595."
 
@@ -2010,73 +2008,73 @@ msgstr "Φιλοξενήστε ένα παιχνίδι για πολλούς π�
 msgid "Launch the multiplayer lobby."
 msgstr "Εκκίνηση του λόμπι πολλαπλών παικτών."
 
-#: gui/pregame/mainmenu.xml:(tooltip):327
+#: gui/pregame/mainmenu.xml:(tooltip):326
 msgid "Adjust game settings."
 msgstr "Προσαρμόστε τις ρυθμίσεις του παιχνιδιού."
 
-#: gui/pregame/mainmenu.xml:(tooltip):344
+#: gui/pregame/mainmenu.xml:(tooltip):340
 msgid "Choose the language of the game."
 msgstr "Επιλογή της γλώσσας του παιχνιδιού."
 
-#: gui/pregame/mainmenu.xml:(tooltip):360
+#: gui/pregame/mainmenu.xml:(tooltip):354
 msgid "Playback previous games."
 msgstr "Αναπαραγωγή προηγούμενων παιχνιδιών."
 
-#: gui/pregame/mainmenu.xml:(tooltip):374
+#: gui/pregame/mainmenu.xml:(tooltip):368
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Ανοίξτε τον επεξεργαστή σεναρίων \"Atlas Scenario Editor\" σε νέο παράθυρο. Για πιο αξιόπιστη λειτουργία του, εκκινήστε το παιχνίδι από γραμμή εντολών, με το όρισμα \"-editor\"."
 
-#: gui/pregame/mainmenu.xml:(tooltip):387
+#: gui/pregame/mainmenu.xml:(tooltip):381
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "Εμφάνιση της Οθόνης Υποδοχής. Χρήσιμο αν αποκρύφθηκε κατά λάθος."
 
-#: gui/pregame/mainmenu.xml:(tooltip):402
+#: gui/pregame/mainmenu.xml:(tooltip):397
 msgid "Select mods to use."
 msgstr "Επιλογή mods προς χρήση."
 
-#: gui/pregame/mainmenu.xml:(tooltip):457
+#: gui/pregame/mainmenu.xml:(tooltip):451
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations"
 msgstr "Μάθετε πως να παίζεται, ξεκινήστε τον οδηγό εκπαίδευσης, ανακαλύψτε τις δομές της τεχνολογίας και την ιστορία πίσω από τους πολιτισμούς"
 
-#: gui/pregame/mainmenu.xml:(tooltip):472
+#: gui/pregame/mainmenu.xml:(tooltip):466
 msgid "Challenge the computer player to a single player match."
 msgstr "Προκαλέστε τον υπολογιστή σε μια αναμέτρηση για έναν παίκτη (single player)."
 
-#: gui/pregame/mainmenu.xml:(tooltip):487
+#: gui/pregame/mainmenu.xml:(tooltip):481
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Πολεμήστε εναντίον ενός ή περισσότερων παικτών, σε ένα παιχνίδι για πολλούς παίκτες (multiplayer)."
 
-#: gui/pregame/mainmenu.xml:(tooltip):502
+#: gui/pregame/mainmenu.xml:(tooltip):496
 msgid "Game options and scenario design tools."
 msgstr "Επιλογές παιχνιδιού και εργαλεία σχεδίασης σεναρίων."
 
-#: gui/pregame/mainmenu.xml:(tooltip):517
+#: gui/pregame/mainmenu.xml:(tooltip):511
 msgid "Exits the game."
 msgstr "Βγαίνει από το παιχνίδι"
 
-#: gui/pregame/mainmenu.xml:(tooltip):552
+#: gui/pregame/mainmenu.xml:(tooltip):546
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Κάντε κλικ για άνοιγμα του play0ad.com στο πρόγραμμα περιήγησης web που χρησιμοποιείτε."
 
-#: gui/pregame/mainmenu.xml:(tooltip):564
+#: gui/pregame/mainmenu.xml:(tooltip):558
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "Κάντε κλικ για να ανοίξετε τη συνομιλία μέσω IRC του 0 A.D., μέσα από το πρόγραμμα περιήγησης που χρησιμοποιείτε. (#0ad στο διακομιστή webchat.quakenet.org)"
 
-#: gui/pregame/mainmenu.xml:(tooltip):576
+#: gui/pregame/mainmenu.xml:(tooltip):570
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "Κάντε κλικ για να επισκεφτείτε το σύστημα Καταγραφής του 0 A.D. για αναφορά κάποιου σφάλματος στον κώδικα (bug), κάποιου αιφνίδιου τερματισμού λειτουργίας ή κάποιου άλλου σφάλματος. "
 
-#: gui/pregame/mainmenu.xml:(tooltip):588
+#: gui/pregame/mainmenu.xml:(tooltip):582
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "Κλικάρετε για να ανοίξετε την σελίδα μετάφρασης του  0 A.D. στον εξυπηρετητή σας."
 
-#: gui/pregame/mainmenu.xml:(tooltip):600
+#: gui/pregame/mainmenu.xml:(tooltip):594
 msgid "Click to see the 0 A.D. credits."
 msgstr "Κάνε κλικ για να δεις τους συντελεστές του 0 A.D."
 
@@ -2342,6 +2340,7 @@ msgid "Music"
 msgstr "Μουσική"
 
 #: gui/credits/texts/art.jsonContent[6].Title
+#: gui/options/options.json[2].label
 msgid "Sound"
 msgstr "Ήχος"
 
@@ -2439,488 +2438,516 @@ msgstr "Ειδικές Μνείες"
 msgid "Translators"
 msgstr "Μεταφραστές"
 
-#: gui/options/options.jsonlobbySetting[0].tooltip
-msgid "Number of backlogged messages to load when joining the lobby"
-msgstr "Ο αριθμός των προηγούμενων μηνυμάτων που θα φορτωθεί όταν γίνει σύνδεση με το λόμπι"
-
-#: gui/options/options.jsonlobbySetting[0].label
-msgid "Chat Backlog"
-msgstr "Συνομιλία Ανεκτέλεστων"
-
-#: gui/options/options.jsonlobbySetting[1].tooltip
-msgid ""
-"Show the average rating of the participating players in a column of the "
-"gamelist."
-msgstr "Εμφάνιση τη μέση βαθμολογία των συμμετεχόντων παικτών σε μια στήλη στη λίστα των παιχνιδιών."
-
-#: gui/options/options.jsonlobbySetting[1].label
-msgid "Game Rating Column"
-msgstr "Στήλη Βαθμολογίας Παιχνιδιού"
-
-#: gui/options/options.jsongeneralSetting[0].tooltip
+#: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in Single Player matches."
 msgstr "Πώς θέλετε να αντιμετωπιστούν οι αγώνες για έναν παίκτη."
 
-#: gui/options/options.jsongeneralSetting[0].label
+#: gui/options/options.json[0].options[0].label
 msgid "Playername (Single Player)"
 msgstr "Όνομα παίχτη (Παιχνίδι για ένα παίχτη)"
 
-#: gui/options/options.jsongeneralSetting[1].tooltip
+#: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in Multiplayer matches (except lobby)."
 msgstr "Πώς θέλετε να αντιμετωπιστούν οι αγώνες Πολλούς Παίχτες (εξαιρούνται τα λόμπι)."
 
-#: gui/options/options.jsongeneralSetting[1].label
+#: gui/options/options.json[0].options[1].label
 msgid "Playername (Multiplayer)"
 msgstr "Όνομα παίχτη (Παιχνίδι για πολλούς παίχτες)"
 
-#: gui/options/options.jsongeneralSetting[2].tooltip
+#: gui/options/options.json[0].options[2].tooltip
 msgid "Start 0 A.D. in a window"
 msgstr "Ξεκινήστε 0 μ.Χ. σε ένα παράθυρο"
 
-#: gui/options/options.jsongeneralSetting[2].label
+#: gui/options/options.json[0].options[2].label
 msgid "Windowed Mode"
 msgstr "Εκτέλεση σε Παράθυρο"
 
-#: gui/options/options.jsongeneralSetting[3].tooltip
+#: gui/options/options.json[0].options[3].tooltip
 msgid "Pause single player games when window loses focus"
 msgstr "Παύση παιχνιδιού με έναν παίκτη όταν χάνετε η εστίαση στο παράθυρο "
 
-#: gui/options/options.jsongeneralSetting[3].label
+#: gui/options/options.json[0].options[3].label
 msgid "Background Pause"
 msgstr "Παύση στο παρασκήνιο"
 
-#: gui/options/options.jsongeneralSetting[4].tooltip
+#: gui/options/options.json[0].options[4].tooltip
 msgid ""
 "If you disable it, the welcome screen will still appear once, each time a "
 "new version is available. You can always launch it from the main menu."
 msgstr "Αν την απενεργοποιήσεις, η οθόνη καλωσορίσματος θα εμφανίζεται κάθε φορά που μια νέα έκδοση είναι διαθέσιμη. Μπορείς πάντα να την ξεκινήσεις από το κύριο μενού."
 
-#: gui/options/options.jsongeneralSetting[4].label
+#: gui/options/options.json[0].options[4].label
 msgid "Enable Welcome Screen"
 msgstr "Ενεργοποίηση Οθόνης Υποδοχής"
 
-#: gui/options/options.jsongeneralSetting[5].tooltip
+#: gui/options/options.json[0].options[5].tooltip
 msgid "Show tips when setting up a game."
 msgstr "Εμφάνιση συμβουλών όταν ρυθμίζετε ένα παιχνίδι."
 
-#: gui/options/options.jsongeneralSetting[5].label
+#: gui/options/options.json[0].options[5].label
 msgid "Enable Game Setting Tips"
 msgstr "Ενεργοποίηση Συμβουλών Ρυθμίσεων Παιχνιδιού"
 
-#: gui/options/options.jsongeneralSetting[6].tooltip
+#: gui/options/options.json[0].options[6].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
 msgstr "Εμφάνιση λεπτομερειών επεξηγήσεων εργαλείων για εκπαιδεύσιμες μονάδες σε μονάδα παραγωγής κτιρίων."
 
-#: gui/options/options.jsongeneralSetting[6].label
+#: gui/options/options.json[0].options[6].label
 msgid "Detailed Tooltips"
 msgstr "Λεπτομερείς Επεξηγήσεις"
 
-#: gui/options/options.jsongeneralSetting[7].tooltip
+#: gui/options/options.json[0].options[7].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
 msgstr "Εμφανίζει ποιοι παίχτες έχουν κακή σύνδεση με τα παιχνίδια για πολλούς παίχτες."
 
-#: gui/options/options.jsongeneralSetting[7].label
+#: gui/options/options.json[0].options[7].label
 msgid "Network Warnings"
 msgstr "Προειδοποιήσεις Δικτύου"
 
-#: gui/options/options.jsongeneralSetting[8].tooltip
+#: gui/options/options.json[0].options[8].tooltip
 msgid "Show frames per second in top right corner."
 msgstr "Δείτε τα καρέ ανά δευτερόλεπτο στην πάνω δεξιά γωνία."
 
-#: gui/options/options.jsongeneralSetting[8].label
+#: gui/options/options.json[0].options[8].label
 msgid "FPS Overlay"
 msgstr "Εμφάνιση Ρυθμού Καρέ Ανά Δευτερόλεπτο (FPS)"
 
-#: gui/options/options.jsongeneralSetting[9].tooltip
+#: gui/options/options.json[0].options[9].tooltip
 msgid "Show current system time in top right corner."
 msgstr "Εμφάνιση της τρέχουσας ώρας συστήματος σε πάνω δεξιά γωνία."
 
-#: gui/options/options.jsongeneralSetting[9].label
+#: gui/options/options.json[0].options[9].label
 msgid "Realtime Overlay"
 msgstr "Εμφάνιση Πραγματικής Ώρας"
 
-#: gui/options/options.jsongeneralSetting[10].tooltip
+#: gui/options/options.json[0].options[10].tooltip
 msgid "Show current simulation time in top right corner."
 msgstr "Εμφάνιση της τρέχουσας ώρας εξομοίωσης στην πάνω δεξιά γωνία."
 
-#: gui/options/options.jsongeneralSetting[10].label
+#: gui/options/options.json[0].options[10].label
 msgid "Gametime Overlay"
 msgstr "Εμφάνιση Χρόνου Παιχνιδιού"
 
-#: gui/options/options.jsongeneralSetting[11].tooltip
+#: gui/options/options.json[0].options[11].tooltip
 msgid "Always show the remaining ceasefire time."
 msgstr "Πάντα δείχνε τον εναπωμείνοντα χρόνο κατάπαυσης πυρός"
 
-#: gui/options/options.jsongeneralSetting[11].label
+#: gui/options/options.json[0].options[11].label
 msgid "Ceasefire Time Overlay"
 msgstr "Εμφάνιση Χρόνου Παύσης Πυρός"
 
-#: gui/options/options.jsongeneralSetting[12].tooltip
+#: gui/options/options.json[0].options[12].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game"
 msgstr "Αποθηκεύει και επαναφέρει τις ρυθμίσεις του αγώνα για γρήγορη επαναχρησιμοποίηση, όταν φιλοξενιθεί ένα άλλο παιχνίδι"
 
-#: gui/options/options.jsongeneralSetting[12].label
+#: gui/options/options.json[0].options[12].label
 msgid "Persist Match Settings"
 msgstr "Ρυθμίσεις Αγώνα που Υπάρχουν"
 
-#: gui/options/options.jsongeneralSetting[13].parameters.list[0].label
-#: gui/options/options.jsongeneralSetting[14].parameters.list[0].label
+#: gui/options/options.json[0].options[13].list[0].label
+#: gui/options/options.json[0].options[14].list[0].label
 msgid "Everyone"
 msgstr "Όλοι"
 
-#: gui/options/options.jsongeneralSetting[13].parameters.list[1].label
-#: gui/options/options.jsongeneralSetting[14].parameters.list[1].label
+#: gui/options/options.json[0].options[13].list[1].label
+#: gui/options/options.json[0].options[14].list[1].label
 msgid "Buddies"
 msgstr "Φίλοι"
 
-#: gui/options/options.jsongeneralSetting[13].parameters.list[2].label
-#: gui/options/options.jsongeneralSetting[14].parameters.list[2].label
+#: gui/options/options.json[0].options[13].list[2].label
+#: gui/options/options.json[0].options[14].list[2].label
 msgid "Disabled"
 msgstr "Απενεργοποιήθηκε"
 
-#: gui/options/options.jsongeneralSetting[13].tooltip
+#: gui/options/options.json[0].options[13].tooltip
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
 msgstr "Αυτόματη εκχώρηση συμμετεχόντων σε ελεύθερες θέσεις παικτών κατά τη διάρκεια της ρύθμισης του αγώνα."
 
-#: gui/options/options.jsongeneralSetting[13].label
+#: gui/options/options.json[0].options[13].label
 msgid "Assign Players"
 msgstr "Εκχώρηση Παιχτών"
 
-#: gui/options/options.jsongeneralSetting[14].tooltip
+#: gui/options/options.json[0].options[14].tooltip
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started"
 msgstr "Επιτρέπει σε όλους ή μόνο στους φίλους να συνδεθούν στο παιχνίδι ως παρατηρητές μετά την έναρξη του παιχνιδιού."
 
-#: gui/options/options.jsongeneralSetting[14].label
+#: gui/options/options.json[0].options[14].label
 msgid "Late Observer Joins"
 msgstr "Καθυστερημένη Σύνδεση Παρατηρητών"
 
-#: gui/options/options.jsongeneralSetting[15].tooltip
+#: gui/options/options.json[0].options[15].tooltip
 msgid "Prevent further observers from joining if the limit is reached"
 msgstr "Αποτρέπει την περαιτέρω σύνδεση παρατηρητών εφόσον επιτευχθεί το όριο"
 
-#: gui/options/options.jsongeneralSetting[15].label
+#: gui/options/options.json[0].options[15].label
 msgid "Observer Limit"
 msgstr "Όριο Παρατηρητών"
 
-#: gui/options/options.jsongeneralSetting[16].tooltip
+#: gui/options/options.json[0].options[16].tooltip
 msgid "Number of units trained per batch"
 msgstr "Αριθμός των μονάδων που θα εκπαιδεύονται ανά παρτίδα"
 
-#: gui/options/options.jsongeneralSetting[16].label
+#: gui/options/options.json[0].options[16].label
 msgid "Batch Training Size"
 msgstr "Μέγεθος Παρτίδας Εκπαίδευσης"
 
-#: gui/options/options.jsongeneralSetting[17].tooltip
+#: gui/options/options.json[0].options[17].tooltip
 msgid ""
 "Show time that messages are posted in the lobby, gamesetup and ingame chat."
 msgstr "Εμφάνιση του χρόνου που τα μηνύματα αποστέλλονται στο λόμπι, στην διαμόρφωση παιχνιδιού και εντός της συνομιλίας μέσα στο παιχνίδι."
 
-#: gui/options/options.jsongeneralSetting[17].label
+#: gui/options/options.json[0].options[17].label
 msgid "Chat Timestamp"
 msgstr "Χρονοθέτηση Συνομιλίας"
 
-#: gui/options/options.jsongeneralSetting[18].tooltip
+#: gui/options/options.json[0].options[18].tooltip
 msgid ""
 "Display the range of auras of selected units and structures (can also be "
 "toggled in-game with the hotkey)."
 msgstr "Εμφάνιση του βεληνεκές της αύρας τον επιλεγμένων μονάδων και κτιρίων (μπορεί να αλλάξει και μέσα στο παιχνίδι με το πλήκτρο συντόμευσης)."
 
-#: gui/options/options.jsongeneralSetting[18].label
+#: gui/options/options.json[0].options[18].label
 msgid "Aura Range Visualization"
 msgstr "Οπτικοποίηση Βεληνεκές Αύρας"
 
-#: gui/options/options.jsongeneralSetting[19].tooltip
+#: gui/options/options.json[0].options[19].tooltip
 msgid ""
 "Display the healing range of selected units (can also be toggled in-game "
 "with the hotkey)."
 msgstr "Εμφάνιση του βεληνεκές της θεραπείας τον επιλεγμένων μονάδων (μπορεί να αλλάξει και μέσα στο παιχνίδι με το πλήκτρο συντόμευσης)."
 
-#: gui/options/options.jsongeneralSetting[19].label
+#: gui/options/options.json[0].options[19].label
 msgid "Heal Range Visualization"
 msgstr "Οπτικοποίηση Βεληνεκές Θεραπείας"
 
-#: gui/options/options.jsonsoundSetting[0].tooltip
-msgid "Master audio gain"
-msgstr "Ένταση κεντρικού ήχου"
+#: gui/options/options.json[0].label
+msgid "General"
+msgstr "Γενικά"
 
-#: gui/options/options.jsonsoundSetting[0].label
-msgid "Master Volume"
-msgstr "Γενική Ένταση"
-
-#: gui/options/options.jsonsoundSetting[1].tooltip
-msgid "In game music gain"
-msgstr "Ένταση ήχου μέσα στο παιχνίδι"
-
-#: gui/options/options.jsonsoundSetting[1].label
-msgid "Music Volume"
-msgstr "Ένταση Μουσικής"
-
-#: gui/options/options.jsonsoundSetting[2].tooltip
-msgid "In game ambient sound gain"
-msgstr "Ένταση ήχων περιβάλλοντος μέσα στο παιχνίδι"
-
-#: gui/options/options.jsonsoundSetting[2].label
-msgid "Ambient Volume"
-msgstr "Ένταση Ήχων Περιβάλλοντος"
-
-#: gui/options/options.jsonsoundSetting[3].tooltip
-msgid "In game unit action sound gain"
-msgstr "Ένταση τους ήχου της δράσης των μονάδων μέσα στο παιχνίδι"
-
-#: gui/options/options.jsonsoundSetting[3].label
-msgid "Action Volume"
-msgstr "Ένταση Δράσης"
-
-#: gui/options/options.jsonsoundSetting[4].tooltip
-msgid "UI sound gain"
-msgstr "Ένταση ήχου διεπαφής χρήστη"
-
-#: gui/options/options.jsonsoundSetting[4].label
-msgid "UI Volume"
-msgstr "Ένταση Διεπαφής Χρήστη"
-
-#: gui/options/options.jsonsoundSetting[5].tooltip
-msgid "Receive audio notification when someone types your nick"
-msgstr "Λαμβάνεις ηχητική προειδοποίηση όταν κάποιος πληκτρολογεί τον ψευδώνυμό σου."
-
-#: gui/options/options.jsonsoundSetting[5].label
-msgid "Nick Notification"
-msgstr "Προειδοποίηση για το Ψευδώνυμο"
-
-#: gui/options/options.jsonnotificationSetting[0].tooltip
-msgid "Show a chat notification if you are attacked by another player"
-msgstr "Δείχνει μία ειδοποίηση στη συζήτηση αν δεχθείς επίθεση από άλλον παίχτη"
-
-#: gui/options/options.jsonnotificationSetting[0].label
-msgid "Attack"
-msgstr "Επίθεση"
-
-#: gui/options/options.jsonnotificationSetting[1].tooltip
-msgid ""
-"Show a chat notification if an ally tributes resources to another team "
-"member if teams are locked, and all tributes in observer mode"
-msgstr "Δείχνει μια ειδοποίηση στη συζήτηση αν ένας σύμμαχος προσφέρει πόρους σε ένα μέλος μίας άλλης ομάδας αν οι ομάδες είναι κλειδωμένες και όλοι οι φόροι σε λειτουργία παρατήρησης"
-
-#: gui/options/options.jsonnotificationSetting[1].label
-msgid "Tribute"
-msgstr "Φόρος"
-
-#: gui/options/options.jsonnotificationSetting[2].tooltip
-msgid "Show a chat notification to observers when a player bartered resources"
-msgstr "Δείχνει μία ειδοποίηση στη συζήτηση των παρατηρητών όταν ένας παίχτης κάνει ανταλλαγή πόρων"
-
-#: gui/options/options.jsonnotificationSetting[2].label
-msgid "Barter"
-msgstr "Ανταλλαγή εμπορευμάτων"
-
-#: gui/options/options.jsonnotificationSetting[3].parameters.list[0].label
-msgid "Disable"
-msgstr "Απενεργοποίηση"
-
-#: gui/options/options.jsonnotificationSetting[3].parameters.list[1].label
-msgid "Completed"
-msgstr "Ολοκληρώθηκε"
-
-#: gui/options/options.jsonnotificationSetting[3].parameters.list[2].label
-msgid "All displayed"
-msgstr "Εμφάνιση όλων"
-
-#: gui/options/options.jsonnotificationSetting[3].tooltip
-msgid ""
-"Show a chat notification if you or an ally have started, aborted or "
-"completed a new phase, and phases of all players in observer mode"
-msgstr "Δείχνει μια ειδοποίηση στη συζήτηση αν ένας σύμμαχος ξεκίνησε, ακύρωσε ή ολοκλήρωσε μία νέα φάση και θέτει τις φάσεις για όλους τους παίχτες σε λειτουργία παρατήρησης."
-
-#: gui/options/options.jsonnotificationSetting[3].label
-msgid "Phase"
-msgstr "Φάση"
-
-#: gui/options/options.jsongraphicsSetting[0].tooltip
+#: gui/options/options.json[1].options[0].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)"
 msgstr "Χρήση του OpenGL 2.0 για τους ανταυγαστήρες (προτείνετε)"
 
-#: gui/options/options.jsongraphicsSetting[0].label
+#: gui/options/options.json[1].options[0].label
 msgid "Prefer GLSL"
 msgstr "Προτίμηση OpenGL Shading Language"
 
-#: gui/options/options.jsongraphicsSetting[1].tooltip
+#: gui/options/options.json[1].options[1].tooltip
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
 msgstr "Χρήση μετεπεξεργασμένων screen-space φίλτρων (HDR, Bloom, DOF, κλπ)"
 
-#: gui/options/options.jsongraphicsSetting[1].label
+#: gui/options/options.json[1].options[1].label
 msgid "Post Processing"
 msgstr "Μετεπεξαργασία"
 
-#: gui/options/options.jsongraphicsSetting[2].tooltip
+#: gui/options/options.json[1].options[2].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
 msgstr "Αριθμός επίδρασης ανταυγαστήρων. ΑΠΑΙΤΕΙΤΑΙ ΕΠΑΝΕΚΚΙΝΗΣΗ ΤΟΥ ΠΑΙΧΝΙΔΙΟΥ"
 
-#: gui/options/options.jsongraphicsSetting[2].label
+#: gui/options/options.json[1].options[2].label
 msgid "Shader Effects"
 msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[3].tooltip
+#: gui/options/options.json[1].options[3].tooltip
 msgid "Enable shadows"
 msgstr "Ενεργοποίηση Σκιών"
 
-#: gui/options/options.jsongraphicsSetting[3].label
+#: gui/options/options.json[1].options[3].label
 msgid "Shadows"
 msgstr "Σκιές"
 
-#: gui/options/options.jsongraphicsSetting[4].parameters.list[0].label
+#: gui/options/options.json[1].options[4].list[0].label
 msgid "Very Low"
 msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[4].parameters.list[1].label
+#: gui/options/options.json[1].options[4].list[1].label
 msgid "Low"
 msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[4].parameters.list[2].label
+#: gui/options/options.json[1].options[4].list[2].label
 msgid "Medium"
 msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[4].parameters.list[3].label
+#: gui/options/options.json[1].options[4].list[3].label
 msgid "High"
 msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[4].parameters.list[4].label
+#: gui/options/options.json[1].options[4].list[4].label
 msgid "Very High"
 msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[4].tooltip
+#: gui/options/options.json[1].options[4].tooltip
 msgid ""
 "Shadow map resolution. High values can crash the game when using a graphics "
 "card with low memory!"
 msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[4].label
+#: gui/options/options.json[1].options[4].label
 msgid "Shadow Quality"
 msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[5].tooltip
+#: gui/options/options.json[1].options[5].tooltip
 msgid "Smooth shadows"
 msgstr "Ομαλές Σκιές"
 
-#: gui/options/options.jsongraphicsSetting[5].label
+#: gui/options/options.json[1].options[5].label
 msgid "Shadow Filtering"
 msgstr "Φιλτράρισμα Σκιών"
 
-#: gui/options/options.jsongraphicsSetting[6].tooltip
+#: gui/options/options.json[1].options[6].tooltip
 msgid "Show outlines of units behind buildings"
 msgstr "Εμφάνιση του περιγράμματος των μονάδων πίσω από τα κτίρια"
 
-#: gui/options/options.jsongraphicsSetting[6].label
+#: gui/options/options.json[1].options[6].label
 msgid "Unit Silhouettes"
 msgstr "Σιλουέτες Μονάδων"
 
-#: gui/options/options.jsongraphicsSetting[7].tooltip
+#: gui/options/options.json[1].options[7].tooltip
 msgid "Enable particles"
 msgstr "Ενεργοποίηση σωματιδίων"
 
-#: gui/options/options.jsongraphicsSetting[7].label
+#: gui/options/options.json[1].options[7].label
 msgid "Particles"
 msgstr "Σωματίδια"
 
-#: gui/options/options.jsongraphicsSetting[8].tooltip
+#: gui/options/options.json[1].options[8].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "Όταν είναι ΑΠΕΝΕΡΓΟΠΟΙΗΜΕΝΟ, χρησιμοποιεί τις χαμηλότερες δυνατές ρυθμίσεις για την απεικόνιση του νερού. Αυτό απενεργοποιεί τις άλλες ρυθμίσεις."
 
-#: gui/options/options.jsongraphicsSetting[8].label
+#: gui/options/options.json[1].options[8].label
 msgid "Water Effects"
 msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[9].tooltip
+#: gui/options/options.json[1].options[9].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "Χρησιμοποίηση της μέγιστη ποιότητα των εφέ του νερού, εμφανίζει τα κύματα, το άφρισμα των ακτών και τα ίχνη των πλοίων."
 
-#: gui/options/options.jsongraphicsSetting[9].label
+#: gui/options/options.json[1].options[9].label
 msgid "HQ Water Effects"
 msgstr "HQ Εμφάνιση Νερού"
 
-#: gui/options/options.jsongraphicsSetting[10].tooltip
+#: gui/options/options.json[1].options[10].tooltip
 msgid "Use actual water depth in rendering calculations"
 msgstr "Χρησιμοποιήστε το πραγματικό βάθος νερού στους υπολογισμούς απεικόνισης"
 
-#: gui/options/options.jsongraphicsSetting[10].label
+#: gui/options/options.json[1].options[10].label
 msgid "Real Water Depth"
 msgstr "Πραγματικό Βάθος Νερού"
 
-#: gui/options/options.jsongraphicsSetting[11].tooltip
+#: gui/options/options.json[1].options[11].tooltip
 msgid "Allow water to reflect a mirror image"
 msgstr "Επιτρέψτε το νερό να αντανακλά ένα είδωλο"
 
-#: gui/options/options.jsongraphicsSetting[11].label
+#: gui/options/options.json[1].options[11].label
 msgid "Water Reflections"
 msgstr "Αντανακλάσεις Νερού"
 
-#: gui/options/options.jsongraphicsSetting[12].tooltip
+#: gui/options/options.json[1].options[12].tooltip
 msgid "Use a real water refraction map and not transparency"
 msgstr "Χρησιμοποιήστε έναν πραγματικής διάθλασης νερού χάρτη και όχι διαφάνεια"
 
-#: gui/options/options.jsongraphicsSetting[12].label
+#: gui/options/options.json[1].options[12].label
 msgid "Water Refraction"
 msgstr "Διάθλαση Nερού"
 
-#: gui/options/options.jsongraphicsSetting[13].tooltip
+#: gui/options/options.json[1].options[13].tooltip
 msgid "Cast shadows on water"
 msgstr "Ρίχτε σκιές στο νερό"
 
-#: gui/options/options.jsongraphicsSetting[13].label
+#: gui/options/options.json[1].options[13].label
 msgid "Shadows on Water"
 msgstr "Σκιές στο Νερό"
 
-#: gui/options/options.jsongraphicsSetting[14].tooltip
+#: gui/options/options.json[1].options[14].tooltip
 msgid "Lift darkness and fog-of-war smoothly"
 msgstr "Άρει το σκοτάδι και την ομίχλη-του-πολέμου ομαλά"
 
-#: gui/options/options.jsongraphicsSetting[14].label
+#: gui/options/options.json[1].options[14].label
 msgid "Smooth LOS"
 msgstr "Εξομάλυνση Γραμμών Ιστοσελίδας"
 
-#: gui/options/options.jsongraphicsSetting[15].tooltip
+#: gui/options/options.json[1].options[15].tooltip
 msgid "Render Sky"
 msgstr "Απόδοση Ουρανού"
 
-#: gui/options/options.jsongraphicsSetting[15].label
+#: gui/options/options.json[1].options[15].label
 msgid "Show Sky"
 msgstr "Εμφάνιση Ουρανού"
 
-#: gui/options/options.jsongraphicsSetting[16].tooltip
+#: gui/options/options.json[1].options[16].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "Εκτέλεση κάθετου συγχρονισμού για να αποφευχθεί το \"σχίσιμο\" της οθόνης. ΑΠΑΙΤΕΙΤΑΙ ΕΠΑΝΕΚΚΙΝΗΣΗ ΤΟΥ ΠΑΙΧΝΙΔΙΟΥ"
 
-#: gui/options/options.jsongraphicsSetting[16].label
+#: gui/options/options.json[1].options[16].label
 msgid "VSync"
 msgstr "VSync"
 
-#: gui/options/options.jsongraphicsSetting[17].tooltip
+#: gui/options/options.json[1].options[17].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr "Για να περιορίσεις το φόρτο εργασίας του Επεξεργαστή, ελάττωσε το ρυθμό ανανέωσης σε όλα τα μενού. Ρύθμισέ το στο μέγιστο για να απενεργοποιήσετε τον περιορισμό."
 
-#: gui/options/options.jsongraphicsSetting[17].label
+#: gui/options/options.json[1].options[17].label
 msgid "FPS Throttling in Menus"
 msgstr ""
 
-#: gui/options/options.jsongraphicsSetting[18].tooltip
+#: gui/options/options.json[1].options[18].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
 msgstr "Για να περιορίσεις το φόρτο εργασίας του Επεξεργαστή, ελάττωσε το ρυθμό ανανέωσης απόδοσης γραφικών στα τρέχων παιχνίδια. Ρύθμισέ το στο μέγιστο για να απενεργοποιήσετε τον περιορισμό."
 
-#: gui/options/options.jsongraphicsSetting[18].label
+#: gui/options/options.json[1].options[18].label
 msgid "FPS Throttling in Games"
+msgstr ""
+
+#: gui/options/options.json[1].tooltip
+msgid "Set the balance between performance and visual appearance."
+msgstr ""
+
+#: gui/options/options.json[1].label
+msgid "Graphics"
+msgstr ""
+
+#: gui/options/options.json[2].options[0].tooltip
+msgid "Master audio gain"
+msgstr "Ένταση κεντρικού ήχου"
+
+#: gui/options/options.json[2].options[0].label
+msgid "Master Volume"
+msgstr "Γενική Ένταση"
+
+#: gui/options/options.json[2].options[1].tooltip
+msgid "In game music gain"
+msgstr "Ένταση ήχου μέσα στο παιχνίδι"
+
+#: gui/options/options.json[2].options[1].label
+msgid "Music Volume"
+msgstr "Ένταση Μουσικής"
+
+#: gui/options/options.json[2].options[2].tooltip
+msgid "In game ambient sound gain"
+msgstr "Ένταση ήχων περιβάλλοντος μέσα στο παιχνίδι"
+
+#: gui/options/options.json[2].options[2].label
+msgid "Ambient Volume"
+msgstr "Ένταση Ήχων Περιβάλλοντος"
+
+#: gui/options/options.json[2].options[3].tooltip
+msgid "In game unit action sound gain"
+msgstr "Ένταση τους ήχου της δράσης των μονάδων μέσα στο παιχνίδι"
+
+#: gui/options/options.json[2].options[3].label
+msgid "Action Volume"
+msgstr "Ένταση Δράσης"
+
+#: gui/options/options.json[2].options[4].tooltip
+msgid "UI sound gain"
+msgstr "Ένταση ήχου διεπαφής χρήστη"
+
+#: gui/options/options.json[2].options[4].label
+msgid "UI Volume"
+msgstr "Ένταση Διεπαφής Χρήστη"
+
+#: gui/options/options.json[2].options[5].tooltip
+msgid "Receive audio notification when someone types your nick"
+msgstr "Λαμβάνεις ηχητική προειδοποίηση όταν κάποιος πληκτρολογεί τον ψευδώνυμό σου."
+
+#: gui/options/options.json[2].options[5].label
+msgid "Nick Notification"
+msgstr "Προειδοποίηση για το Ψευδώνυμο"
+
+#: gui/options/options.json[3].options[0].tooltip
+msgid "Number of backlogged messages to load when joining the lobby"
+msgstr "Ο αριθμός των προηγούμενων μηνυμάτων που θα φορτωθεί όταν γίνει σύνδεση με το λόμπι"
+
+#: gui/options/options.json[3].options[0].label
+msgid "Chat Backlog"
+msgstr "Συνομιλία Ανεκτέλεστων"
+
+#: gui/options/options.json[3].options[1].tooltip
+msgid ""
+"Show the average rating of the participating players in a column of the "
+"gamelist."
+msgstr "Εμφάνιση τη μέση βαθμολογία των συμμετεχόντων παικτών σε μια στήλη στη λίστα των παιχνιδιών."
+
+#: gui/options/options.json[3].options[1].label
+msgid "Game Rating Column"
+msgstr "Στήλη Βαθμολογίας Παιχνιδιού"
+
+#: gui/options/options.json[3].tooltip
+msgid "These settings only affect the multiplayer."
+msgstr ""
+
+#: gui/options/options.json[3].label
+msgid "Lobby"
+msgstr ""
+
+#: gui/options/options.json[4].options[0].tooltip
+msgid "Show a chat notification if you are attacked by another player"
+msgstr "Δείχνει μία ειδοποίηση στη συζήτηση αν δεχθείς επίθεση από άλλον παίχτη"
+
+#: gui/options/options.json[4].options[0].label
+msgid "Attack"
+msgstr "Επίθεση"
+
+#: gui/options/options.json[4].options[1].tooltip
+msgid ""
+"Show a chat notification if an ally tributes resources to another team "
+"member if teams are locked, and all tributes in observer mode"
+msgstr "Δείχνει μια ειδοποίηση στη συζήτηση αν ένας σύμμαχος προσφέρει πόρους σε ένα μέλος μίας άλλης ομάδας αν οι ομάδες είναι κλειδωμένες και όλοι οι φόροι σε λειτουργία παρατήρησης"
+
+#: gui/options/options.json[4].options[1].label
+msgid "Tribute"
+msgstr "Φόρος"
+
+#: gui/options/options.json[4].options[2].tooltip
+msgid "Show a chat notification to observers when a player bartered resources"
+msgstr "Δείχνει μία ειδοποίηση στη συζήτηση των παρατηρητών όταν ένας παίχτης κάνει ανταλλαγή πόρων"
+
+#: gui/options/options.json[4].options[2].label
+msgid "Barter"
+msgstr "Ανταλλαγή εμπορευμάτων"
+
+#: gui/options/options.json[4].options[3].list[0].label
+msgid "Disable"
+msgstr "Απενεργοποίηση"
+
+#: gui/options/options.json[4].options[3].list[1].label
+msgid "Completed"
+msgstr "Ολοκληρώθηκε"
+
+#: gui/options/options.json[4].options[3].list[2].label
+msgid "All displayed"
+msgstr "Εμφάνιση όλων"
+
+#: gui/options/options.json[4].options[3].tooltip
+msgid ""
+"Show a chat notification if you or an ally have started, aborted or "
+"completed a new phase, and phases of all players in observer mode"
+msgstr "Δείχνει μια ειδοποίηση στη συζήτηση αν ένας σύμμαχος ξεκίνησε, ακύρωσε ή ολοκλήρωσε μία νέα φάση και θέτει τις φάσεις για όλους τους παίχτες σε λειτουργία παρατήρησης."
+
+#: gui/options/options.json[4].options[3].label
+msgid "Phase"
+msgstr "Φάση"
+
+#: gui/options/options.json[4].tooltip
+msgid "Regulate the verbosity of chat notifications."
+msgstr ""
+
+#: gui/options/options.json[4].label
+msgid "Chat Notifications"
 msgstr ""
 
 #: simulation/data/resources/food.jsondescription

@@ -47,8 +47,10 @@ function LoadMapSettings(settings)
 	let gameTypeSettings = {};
 	if (settings.GameType && settings.GameType == "capture_the_relic")
 		gameTypeSettings.relicCount = settings.RelicCount;
-	if (settings.VictoryDuration)
-		gameTypeSettings.victoryDuration = settings.VictoryDuration * 60 * 1000;
+	if (settings.GameType && settings.GameType == "capture_the_relic")
+		gameTypeSettings.relicDuration = settings.RelicDuration * 60 * 1000;
+	if (settings.GameType && settings.GameType == "wonder")
+		gameTypeSettings.wonderDuration = settings.WonderDuration * 60 * 1000;
 	if (settings.GameType && settings.GameType == "regicide")
 		gameTypeSettings.regicideGarrison = settings.RegicideGarrison;
 	if (settings.GameType)
