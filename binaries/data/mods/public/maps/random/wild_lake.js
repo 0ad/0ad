@@ -1,4 +1,5 @@
 RMS.LoadLibrary("rmgen");
+RMS.LoadLibrary("rmbiome");
 RMS.LoadLibrary("heightmap");
 
 InitMap();

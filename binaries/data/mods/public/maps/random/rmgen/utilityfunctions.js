@@ -77,64 +77,39 @@ function createMountains(terrain, constraint, tileclass, count, maxHeight, minRa
 		);
 }
 
-function createForests(terrainset, constraint, tileclass, numMultiplier, biomeID)
+function createForests(terrainset, constraint, tileclass, numMultiplier = 1, minTrees = 500, maxTrees = 3000, forestProbability = 0.7)
 {
 	log("Creating forests...");
 
-	tileclass = (tileclass !== undefined ? tileclass : clForest);
-	constraint = (constraint !== undefined ? constraint : avoidClasses(clPlayer, 20, clForest, 17, clHill, 0));
-	numMultiplier = (numMultiplier !== undefined ? numMultiplier : 1.0);
-	biomeID = (biomeID !== undefined ? biomeID : 0);
+	tileclass = tileclass || clForest;
+	constraint = constraint || avoidClasses(clPlayer, 20, clForest, 17, clHill, 0);
 
 	var [tM, tFF1, tFF2, tF1, tF2] = terrainset;
+	var totalTrees = scaleByMapSize(minTrees, maxTrees);
+	var numForest = totalTrees * forestProbability;
+	g_numStragglerTrees = totalTrees * (1.0 - forestProbability);
 
-	if (biomeID == g_BiomeSavanna)
-	{
-		var MIN_TREES = 200 * numMultiplier;
-		var MAX_TREES = 1250 * numMultiplier;
-		var P_FOREST = 0;
-	}
-	else if (biomeID == g_BiomeTropic)
-	{
-		var MIN_TREES = 1000 * numMultiplier;
-		var MAX_TREES = 6000 * numMultiplier;
-		var P_FOREST = 0.52;
-	}
-	else
-	{
-		var MIN_TREES = 500 * numMultiplier;
-		var MAX_TREES = 3000 * numMultiplier;
-		var P_FOREST = 0.7;
-	}
-	var totalTrees = scaleByMapSize(MIN_TREES, MAX_TREES);
-	var numForest = totalTrees * P_FOREST;
-	g_numStragglerTrees = totalTrees * (1.0 - P_FOREST);
+	if (!forestProbability)
+		return;
 
 	log("Creating forests...");
-	var types = [
+
+	let types = [
 		[[tFF2, tM, tF1], [tFF2, tF1]],
 		[[tFF1, tM, tF2], [tFF1, tF2]]
-	];	// some variation
+	];
 
-	if (biomeID != g_BiomeSavanna)
-	{
-		var size = numForest / (scaleByMapSize(3,6) * numPlayers);
-		var num = floor(size / types.length);
-		for (var i = 0; i < types.length; ++i)
-		{
-			var placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), numForest / num, 0.5);
-			var painter = new LayeredPainter(
-				types[i],		// terrains
-				[2]											// widths
-				);
-			createAreas(
-				placer,
-				[painter, paintClass(tileclass)],
-				constraint,
-				num
-			);
-		}
-	}
+	let num = Math.floor(numForest / (scaleByMapSize(3,6) * numPlayers) / types.length);
+	for (let type of types)
+		createAreas(
+			new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), numForest / num, 0.5),
+			[
+				new LayeredPainter(type, [2]),
+				paintClass(tileclass)
+			],
+			constraint,
+			num
+		);
 }
 
 function createLayeredPatches(sizes, terrainset, twidthset, constraint, count, tileclass, failfraction)

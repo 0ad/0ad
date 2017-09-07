@@ -1,4 +1,5 @@
 RMS.LoadLibrary("rmgen");
+RMS.LoadLibrary("rmbiome");
 
 setSelectedBiome();
 
@@ -376,13 +377,12 @@ createHills([tCliff, tCliff, tHill], [avoidClasses(clPlayer, 2, clHill, 8, clHil
 // create hills outside the canyon
 createHills([tCliff, tCliff, tMainTerrain], avoidClasses(clLand, 1, clHill, 1), clHill, scaleByMapSize(20, 150), undefined, undefined, undefined, undefined, 40);
 
-// create forests
 createForests(
  [tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
  [avoidClasses(clPlayer, 1, clForest, 15, clHill, 1, clHill2, 0), stayClasses(clLand, 4)],
  clForest,
- 1.0,
- currentBiome()
+ 1,
+ ...rBiomeTreeCount(1)
 );
 
 RMS.SetProgress(50);

@@ -69,6 +69,12 @@ var g_Decoratives = {
 	"tree": "actor|flora/trees/oak.xml"
 };
 
+var g_TreeCount = {
+	"minTrees": 500,
+	"maxTrees": 3000,
+	"forestProbability": 0.7
+};
+
 function currentBiome()
 {
 	return g_BiomeID;
@@ -83,12 +89,6 @@ function setSelectedBiome()
 	}
 
 	setBiome(g_MapSettings.Biome);
-}
-
-function randomizeBiome()
-{
-	setBiome(pickRandom(g_Biomes));
-	return g_BiomeID;
 }
 
 function setBiome(biomeID)
@@ -579,10 +579,15 @@ function setBiome(biomeID)
 			"bushSmall": "actor|props/flora/bush_dry_a.xml",
 			"tree": "actor|flora/trees/baobab.xml"
 		};
+
+		g_TreeCount = {
+			"minTrees": 200,
+			"maxTrees": 1250,
+			"forestProbability": 0
+		};
 	}
 	else if (g_BiomeID == g_BiomeTropic)
 	{
-
 		// Bora-Bora ish. Quite transparent, not wavy.
 		// Mostly for shallow maps. Maps where the water level goes deeper should use a much darker Water Color to simulate deep water holes.
 		setWaterColor(0.584,0.824,0.929);
@@ -642,6 +647,12 @@ function setBiome(biomeID)
 			"bushMedium": "actor|props/flora/plant_tropic_large.xml",
 			"bushSmall": "actor|props/flora/plant_tropic_large.xml",
 			"tree": "actor|flora/trees/tree_tropic.xml"
+		};
+
+		g_TreeCount = {
+			"minTrees": 1000,
+			"maxTrees": 6000,
+			"forestProbabilityp": 0.52
 		};
 	}
 	else if (g_BiomeID == g_BiomeAutumn)
@@ -707,6 +718,15 @@ function setBiome(biomeID)
 			"tree": "actor|flora/trees/european_beech_aut.xml"
 		};
 	}
+}
+
+function rBiomeTreeCount(multiplier = 1)
+{
+	return [
+		g_TreeCount.minTrees * multiplier,
+		g_TreeCount.maxTrees * multiplier,
+		g_TreeCount.forestProbability
+	];
 }
 
 function rBiomeT1()

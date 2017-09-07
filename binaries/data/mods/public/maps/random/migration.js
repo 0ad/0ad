@@ -1,4 +1,5 @@
 RMS.LoadLibrary("rmgen");
+RMS.LoadLibrary("rmbiome");
 
 setSelectedBiome();
 

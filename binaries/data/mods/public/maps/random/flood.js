@@ -1,4 +1,5 @@
 RMS.LoadLibrary("rmgen");
+RMS.LoadLibrary("rmbiome");
 
 setSelectedBiome();
 
@@ -306,8 +307,7 @@ createForests(
 	[avoidClasses(clPlayer, 25, clForest, 10, clBaseResource, 3, clMetal, 6, clRock, 3, clMountain, 2), stayClasses(clHill, 6)],
 	clForest,
 	0.7,
-	currentBiome()
-);
+	...rBiomeTreeCount(0.7));
 
 log("Creating straggeler trees...");
 let types = [oTree1, oTree2, oTree4, oTree3];
@@ -404,8 +404,7 @@ createForests(
 	avoidClasses(clPlayer, 30, clHill, 10, clFood, 5),
 	clForest,
 	0.1,
-	currentBiome()
-);
+	...rBiomeTreeCount(0.1));
 
 log("Creating small grass tufts...");
 group = new SimpleGroup(

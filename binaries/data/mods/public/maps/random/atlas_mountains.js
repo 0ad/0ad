@@ -179,14 +179,11 @@ createMountains(tCliff, avoidClasses(clPlayer, 20, clHill, 8), clHill, scaleByMa
 
 RMS.SetProgress(25);
 
-// create forests
 createForests(
  [tGrass, tForestFloor, tForestFloor, pForest1, pForest2],
  avoidClasses(clPlayer, 20, clForest, 14, clHill, 1),
  clForest,
- 0.6,
- 0
-);
+ 0.6);
 
 RMS.SetProgress(40);
 

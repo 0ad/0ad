@@ -12,6 +12,7 @@ function getPlayerTileCoordinates(playerIdx, teamIdx, fractionX, fractionZ)
 }
 
 RMS.LoadLibrary("rmgen");
+RMS.LoadLibrary("rmbiome");
 RMS.LoadLibrary("heightmap");
 
 const g_InitialMines = 1;
@@ -373,9 +374,8 @@ createForests(
  [tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
  [avoidClasses(clPlayer, 10, clForest, 20, clHill, 10, clBaseResource, 5, clRock, 6, clMetal, 6), stayClasses(clLand, 3)],
  clForest,
- 1.0,
- currentBiome()
-);
+ 1,
+ ...rBiomeTreeCount(1));
 
 log("Creating hills...");
 let placer = new ChainPlacer(1, floor(scaleByMapSize(4, 6)), floor(scaleByMapSize(16, 40)), 0.5);

@@ -1,4 +1,5 @@
 RMS.LoadLibrary("rmgen");
+RMS.LoadLibrary("rmbiome");
 
 TILE_CENTERED_HEIGHT_MAP = true;
 

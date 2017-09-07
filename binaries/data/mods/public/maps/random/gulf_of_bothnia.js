@@ -355,14 +355,11 @@ if (randBool())
 else
 	createMountains(tCliff, avoidClasses(clPlayer, 20, clHill, 15, clWater, 0), clHill, scaleByMapSize(1, 4) * numPlayers);
 
-// create forests
 createForests(
  [tPrimary, tForestFloor, tForestFloor, pForest, pForest],
  avoidClasses(clPlayer, 20, clForest, 16, clHill, 0, clWater, 2),
  clForest,
- 1.0,
- random_terrain
-);
+ 1.0);
 
 RMS.SetProgress(60);
 

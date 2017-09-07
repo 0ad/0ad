@@ -483,6 +483,7 @@ var g_Dropdowns = {
 			g_GameAttributes.settings.Biome = g_BiomeList && g_BiomeList.Id[idx];
 		},
 		"hidden": () => !g_BiomeList,
+		"autocomplete": 0,
 		"initOrder": 1000
 	},
 	"numPlayers": {

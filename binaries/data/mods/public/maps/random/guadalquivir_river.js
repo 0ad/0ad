@@ -273,14 +273,11 @@ paintTerrainBasedOnHeight(-8, 1, 2, tWater);
 // create bumps
 createBumps([avoidClasses(clPlayer, 20, clRiver, 1), stayClasses(clLand, 3)]);
 
-// create forests
 createForests(
  [tGrass, tForestFloorP, tForestFloorC, pForestC, pForestP],
  [avoidClasses(clPlayer, 20, clForest, 17, clHill, 0, clRiver, 1), stayClasses(clLand, 7)],
  clForest,
- 1.0,
- 0
-);
+ 1.0);
 
 RMS.SetProgress(50);
 
