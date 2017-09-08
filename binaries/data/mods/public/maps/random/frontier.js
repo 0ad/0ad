@@ -1,5 +1,6 @@
 RMS.LoadLibrary("rmgen");
 RMS.LoadLibrary("rmgen2");
+RMS.LoadLibrary("rmbiome");
 
 InitMap();
 

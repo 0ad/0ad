@@ -1,0 +1,81 @@
+{
+	"Environment": {
+		"SunColor": { "r": 0.733, "g": 0.746, "b": 0.574 },
+		"Water": {
+			"WaterBody": {
+				"Color": { "r": 0, "g": 0.227, "b": 0.843 },
+				"Tint": { "r": 0, "g": 0.545, "b": 0.859 },
+				"Murkiness": 0.22,
+				"Waviness": 1
+			}
+		},
+		"Fog": {
+			"FogThickness": 0,
+			"FogFactor": 0.5,
+			"FogColor": { "r": 0.852, "g": 0.746, "b": 0.493 }
+		},
+		"Postproc": {
+			"PostprocEffect": "hdr",
+			"Saturation": 0.42,
+			"Contrast": 0.67,
+			"Bloom": 0.23
+		}
+	},
+	"Terrains": {
+		"mainTerrain": [
+			"desert_dirt_rough",
+			"desert_dirt_rough_2",
+			"desert_sand_dunes_50",
+			"desert_sand_smooth"
+		],
+		"forestFloor1": "forestfloor_dirty",
+		"forestFloor2": "desert_forestfloor_palms",
+		"cliff": [
+			"desert_cliff_1",
+			"desert_cliff_2",
+			"desert_cliff_3",
+			"desert_cliff_4",
+			"desert_cliff_5"
+		],
+		"tier1Terrain": "desert_dirt_rough",
+		"tier2Terrain": "desert_dirt_rocks_1",
+		"tier3Terrain": "desert_dirt_rocks_2",
+		"tier4Terrain": "desert_dirt_rough",
+		"hill": [
+			"desert_dirt_rocks_1",
+			"desert_dirt_rocks_2",
+			"desert_dirt_rocks_3"
+		],
+		"dirt": [
+			"desert_lakebed_dry",
+			"desert_lakebed_dry_b"
+		],
+		"road": "desert_city_tile",
+		"roadWild": "desert_city_tile",
+		"shoreBlend": "desert_shore_stones",
+		"shore": "desert_sand_smooth",
+		"water": "desert_sand_wet"
+	},
+	"Gaia": {
+		"fruitBush": "gaia/flora_bush_grapes",
+		"chicken": "gaia/fauna_chicken",
+		"mainHuntableAnimal": "gaia/fauna_camel",
+		"fish": "gaia/fauna_fish",
+		"secondaryHuntableAnimal": "gaia/fauna_gazelle",
+		"stoneLarge": "gaia/geology_stonemine_desert_quarry",
+		"stoneSmall": "gaia/geology_stone_desert_small",
+		"metalLarge": "gaia/geology_metal_desert_slabs",
+		"tree3": "gaia/flora_tree_fig"
+	},
+	"Decoratives": {
+		"grass": "actor|props/flora/grass_soft_dry_small_tall.xml",
+		"grassShort": "actor|props/flora/grass_soft_dry_large.xml",
+		"reeds": "actor|props/flora/reeds_pond_lush_a.xml",
+		"lillies": "actor|props/flora/reeds_pond_lush_b.xml",
+		"rockLarge": "actor|geology/stone_desert_med.xml",
+		"rockMedium": "actor|geology/stone_desert_med.xml",
+		"bushMedium": "actor|props/flora/bush_desert_dry_a.xml",
+		"bushSmall": "actor|props/flora/bush_desert_dry_a.xml",
+		"tree": "actor|flora/trees/palm_date.xml"
+	}
+}

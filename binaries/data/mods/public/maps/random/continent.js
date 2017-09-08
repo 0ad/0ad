@@ -1,4 +1,5 @@
 RMS.LoadLibrary("rmgen");
+RMS.LoadLibrary("rmbiome");
 
 setSelectedBiome();
 
@@ -230,14 +231,12 @@ if (randBool())
 else
 	createMountains(tCliff, [avoidClasses(clPlayer, 20, clHill, 15, clBaseResource, 3), stayClasses(clLand, 5)], clHill, scaleByMapSize(1, 4) * numPlayers);
 
-// create forests
 createForests(
  [tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
  [avoidClasses(clPlayer, 20, clForest, 17, clHill, 0, clBaseResource,2), stayClasses(clLand, 4)],
  clForest,
  1.0,
- currentBiome()
-);
+ ...rBiomeTreeCount(1));
 
 RMS.SetProgress(50);
 
@@ -285,7 +284,7 @@ RMS.SetProgress(65);
 // create decoration
 var planetm = 1;
 
-if (currentBiome() == g_BiomeTropic)
+if (currentBiome() == "tropic")
 	planetm = 8;
 
 createDecoration

@@ -249,6 +249,8 @@ m.Map.prototype.getNonObstructedTile = function(i, radius, obstruction)
 	let ix = (i % this.width) * ratio;
 	let iy = Math.floor(i / this.width) * ratio;
 	let w = obstruction.width;
+	let r2 = radius * radius;
+	let lastPoint;
 	for (let kx = ix; kx < ix + ratio; ++kx)
 	{
 		if (kx < radius || kx >= w - radius)
@@ -257,9 +259,11 @@ m.Map.prototype.getNonObstructedTile = function(i, radius, obstruction)
 		{
 			if (ky < radius || ky >= w - radius)
 				continue;
-			if (obstruction.isObstructedTile(kx, ky, radius))
+			if (lastPoint && (kx - lastPoint.x)*(kx - lastPoint.x) + (ky - lastPoint.y)*(ky - lastPoint.y) < r2)
 				continue;
-			return kx + ky*w;
+			lastPoint = obstruction.isObstructedTile(kx, ky, radius);
+			if (!lastPoint)
+				return kx + ky*w;
 		}
 	}
 	return -1;
@@ -269,8 +273,8 @@ m.Map.prototype.getNonObstructedTile = function(i, radius, obstruction)
 m.Map.prototype.isObstructedTile = function(kx, ky, radius)
 {
 	let w = this.width;
-	if (kx < radius || kx >= w - radius || ky < radius || ky >= w - radius || this.map[kx+ky*w] === 0)
-		return true;
+	if (kx < radius || kx >= w - radius || ky < radius || ky >= w - radius || this.map[kx+ky*w] == 0)
+		return { "x": kx, "y": ky };
 	if (!this.pattern || this.pattern[0] != radius)
 	{
 		this.pattern = [radius];
@@ -283,11 +287,19 @@ m.Map.prototype.isObstructedTile = function(kx, ky, radius)
 		let dxmax = this.pattern[dy];
 		let xp = kx + (ky + dy)*w;
 		let xm = kx + (ky - dy)*w;
-		for (let dx = -dxmax; dx <= dxmax; ++dx)
-			if (this.map[xp + dx] === 0 || this.map[xm + dx] === 0)
-				return true;
+		for (let dx = 0; dx <= dxmax; ++dx)
+		{
+			if (this.map[xp + dx] == 0)
+				return { "x": kx + dx, "y": ky + dy };
+			if (this.map[xm + dx] == 0)
+				return { "x": kx + dx, "y": ky - dy };
+			if (this.map[xp - dx] == 0)
+				return { "x": kx - dx, "y": ky + dy };
+			if (this.map[xm - dx] == 0)
+				return { "x": kx - dx, "y": ky - dy };
+		}
 	}
-	return false;
+	return null;
 };
 
 /**

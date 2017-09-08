@@ -1,4 +1,5 @@
 RMS.LoadLibrary("rmgen");
+RMS.LoadLibrary("rmbiome");
 
 setSelectedBiome();
 
@@ -185,8 +186,7 @@ createForests(
 	[avoidClasses(clPlayer, 20, clForest, 5, clHill, 0, clBaseResource,2, clWomen, 5), stayClasses(clLand, 4)],
 	clForest,
 	1,
-	currentBiome()
-);
+	...rBiomeTreeCount(1));
 
 if (randBool())
 	createHills(
@@ -230,7 +230,7 @@ createPatches(
 );
 
 var planetm = 1;
-if (currentBiome() == g_BiomeTropic)
+if (currentBiome() == "tropic")
 	planetm = 8;
 
 createDecoration(

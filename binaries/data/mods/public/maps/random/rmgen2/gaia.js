@@ -25,10 +25,10 @@ function addBluffs(constraint, size, deviation, fill)
 
 	var constrastTerrain = g_Terrains.tier2Terrain;
 
-	if (currentBiome() == g_BiomeTropic)
+	if (currentBiome() == "tropic")
 		constrastTerrain = g_Terrains.dirt;
 
-	if (currentBiome() == g_BiomeAutumn)
+	if (currentBiome() == "autumn")
 		constrastTerrain = g_Terrains.tier3Terrain;
 
 	var count = fill * scaleByMapSize(15, 15);
@@ -243,7 +243,7 @@ function addBluffs(constraint, size, deviation, fill)
 		}
 	]));
 
-	let savanna = currentBiome() == g_BiomeSavanna;
+	let savanna = currentBiome() == "savanna";
 	addElements(shuffleArray([
 		{
 			"func": addStragglerTrees,
@@ -328,7 +328,7 @@ function addDecoration(constraint, size, deviation, fill)
 	];
 
 	var baseCount = 1;
-	if (currentBiome() == g_BiomeTropic)
+	if (currentBiome() == "tropic")
 		baseCount = 8;
 
 	var counts = [
@@ -445,13 +445,13 @@ function addLakes(constraint, size, deviation, fill)
 {
 	var lakeTile = g_Terrains.water;
 
-	if (currentBiome() == g_BiomeTemperate || currentBiome() == g_BiomeTropic)
+	if (currentBiome() == "temperate" || currentBiome() == "tropic")
 		lakeTile = g_Terrains.dirt;
 
-	if (currentBiome() == g_BiomeMediterranean)
+	if (currentBiome() == "mediterranean")
 		lakeTile = g_Terrains.tier2Terrain;
 
-	if (currentBiome() == g_BiomeAutumn)
+	if (currentBiome() == "autumn")
 		lakeTile = g_Terrains.shore;
 
 	addElevation(constraint, {
@@ -564,13 +564,13 @@ function addPlateaus(constraint, size, deviation, fill)
 {
 	var plateauTile = g_Terrains.dirt;
 
-	if (currentBiome() == g_BiomeSnowy)
+	if (currentBiome() == "snowy")
 		plateauTile = g_Terrains.tier1Terrain;
 
-	if (currentBiome() == g_BiomeAlpine || currentBiome() == g_BiomeSavanna)
+	if (currentBiome() == "alpine" || currentBiome() == "savanna")
 		plateauTile = g_Terrains.tier2Terrain;
 
-	if (currentBiome() == g_BiomeAutumn)
+	if (currentBiome() == "autumn")
 		plateauTile = g_Terrains.tier4Terrain;
 
 	addElevation(constraint, {
@@ -701,25 +701,25 @@ function addValleys(constraint, size, deviation, fill)
 	var valleySlope = g_Terrains.tier1Terrain;
 	var valleyFloor = g_Terrains.tier4Terrain;
 
-	if (currentBiome() == g_BiomeDesert)
+	if (currentBiome() == "desert")
 	{
 		valleySlope = g_Terrains.tier3Terrain;
 		valleyFloor = g_Terrains.dirt;
 	}
 
-	if (currentBiome() == g_BiomeMediterranean)
+	if (currentBiome() == "mediterranean")
 	{
 		valleySlope = g_Terrains.tier2Terrain;
 		valleyFloor = g_Terrains.dirt;
 	}
 
-	if (currentBiome() == g_BiomeAlpine || currentBiome() == g_BiomeSavanna)
+	if (currentBiome() == "alpine" || currentBiome() == "savanna")
 		valleyFloor = g_Terrains.tier2Terrain;
 
-	if (currentBiome() == g_BiomeTropic)
+	if (currentBiome() == "tropic")
 		valleySlope = g_Terrains.dirt;
 
-	if (currentBiome() == g_BiomeAutumn)
+	if (currentBiome() == "autumn")
 		valleyFloor = g_Terrains.tier3Terrain;
 
 	addElevation(constraint, {
@@ -819,7 +819,7 @@ function addForests(constraint, size, deviation, fill)
 	fill = fill || 1;
 
 	// No forests for the african biome
-	if (currentBiome() == g_BiomeSavanna)
+	if (currentBiome() == "savanna")
 		return;
 
 	var types = [
@@ -923,7 +923,7 @@ function addStragglerTrees(constraint, size, deviation, fill)
 	fill = fill || 1;
 
 	// Ensure minimum distribution on african biome
-	if (currentBiome() == g_BiomeSavanna)
+	if (currentBiome() == "savanna")
 	{
 		fill = Math.max(fill, 2);
 		size = Math.max(size, 1);
@@ -945,7 +945,7 @@ function addStragglerTrees(constraint, size, deviation, fill)
 	var maxDist = 5 * offset;
 
 	// More trees for the african biome
-	if (currentBiome() == g_BiomeSavanna)
+	if (currentBiome() == "savanna")
 	{
 		min = 3 * offset;
 		max = 5 * offset;
@@ -958,7 +958,7 @@ function addStragglerTrees(constraint, size, deviation, fill)
 		var treesMax = max;
 
 		// Don't clump fruit trees
-		if (i == 2 && (currentBiome() == g_BiomeDesert || currentBiome() == g_BiomeMediterranean))
+		if (i == 2 && (currentBiome() == "desert" || currentBiome() == "mediterranean"))
 			treesMax = 1;
 
 		min = Math.min(min, treesMax);

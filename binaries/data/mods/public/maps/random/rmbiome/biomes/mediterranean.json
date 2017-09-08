@@ -1,0 +1,75 @@
+{
+	"Environment": {
+		"Water": {
+			"WaterBody": {
+				"Color": { "r": 0.024, "g": 0.212, "b": 0.024 },
+				"Tint": { "r": 0.133, "g": 0.725, "b": 0.855 },
+				"Murkiness": 0.8,
+				"Waviness": 3
+			}
+		},
+		"Fog": {
+			"FogThickness": 0.25,
+			"FogFactor": 0.3
+		},
+		"Postproc": {
+			"PostprocEffect": "hdr",
+			"Saturation": 0.51,
+			"Contrast": 0.62,
+			"Bloom": 0.12
+		}
+	},
+	"Terrains": {
+		"mainTerrain": [
+			"medit_grass_field_a",
+			"medit_grass_field_b"
+		],
+		"forestFloor1": "medit_grass_field",
+		"forestFloor2": "medit_grass_shrubs",
+		"cliff": [
+			"medit_cliff_grass",
+			"medit_cliff_greek",
+			"medit_cliff_greek_2",
+			"medit_cliff_aegean",
+			"medit_cliff_italia",
+			"medit_cliff_italia_grass"
+		],
+		"tier1Terrain": "medit_grass_field_b",
+		"tier2Terrain": "medit_grass_field_brown",
+		"tier3Terrain": "medit_grass_field_dry",
+		"tier4Terrain": "medit_grass_wild",
+		"hill": [
+			"medit_rocks_grass_shrubs",
+			"medit_rocks_shrubs"
+		],
+		"dirt": [
+			"medit_dirt",
+			"medit_dirt_b"
+		],
+		"road": "medit_city_tile",
+		"roadWild": "medit_city_tile",
+		"shoreBlend": "medit_sand",
+		"shore": "sand_grass_25",
+		"water": "medit_sand_wet"
+	},
+	"Gaia": {
+		"chicken": "gaia/fauna_chicken",
+		"mainHuntableAnimal": "gaia/fauna_deer",
+		"fish": "gaia/fauna_fish",
+		"secondaryHuntableAnimal": "gaia/fauna_sheep",
+		"stoneLarge": "gaia/geology_stonemine_medit_quarry",
+		"stoneSmall": "gaia/geology_stone_mediterranean",
+		"metalLarge": "gaia/geology_metal_mediterranean_slabs"
+	},
+	"Decoratives": {
+		"grass": "actor|props/flora/grass_soft_large_tall.xml",
+		"grassShort": "actor|props/flora/grass_soft_large.xml",
+		"reeds": "actor|props/flora/reeds_pond_lush_b.xml",
+		"lillies": "actor|props/flora/water_lillies.xml",
+		"rockLarge": "actor|geology/stone_granite_large.xml",
+		"rockMedium": "actor|geology/stone_granite_med.xml",
+		"bushMedium": "actor|props/flora/bush_medit_me.xml",
+		"bushSmall": "actor|props/flora/bush_medit_sm.xml",
+		"tree": "actor|flora/trees/palm_cretan_date.xml"
+	}
+}

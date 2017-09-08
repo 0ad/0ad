@@ -3,11 +3,12 @@
 
 RMS.LoadLibrary("rmgen");
 RMS.LoadLibrary("rmgen2");
+RMS.LoadLibrary("rmbiome");
 
 InitMap();
 
 log("Initializing biome...");
-setBiome(g_BiomeDesert);
+setBiome("desert");
 initMapSettings();
 initTileClasses();
 

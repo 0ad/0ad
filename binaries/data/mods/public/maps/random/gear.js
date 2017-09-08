@@ -1,4 +1,5 @@
 RMS.LoadLibrary("rmgen");
+RMS.LoadLibrary("rmbiome");
 
 TILE_CENTERED_HEIGHT_MAP = true;
 
@@ -362,9 +363,8 @@ createForests(
  [tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
  avoidClasses(clPlayer, 20, clForest, 17, clHill, 0, clWater, 2),
  clForest,
- 1.0,
- currentBiome()
-);
+ 1,
+ ...rBiomeTreeCount(1));
 
 RMS.SetProgress(50);
 
@@ -416,7 +416,7 @@ RMS.SetProgress(65);
 // create decoration
 var planetm = 1;
 
-if (currentBiome() == g_BiomeTropic)
+if (currentBiome() == "tropic")
 	planetm = 8;
 
 createDecoration

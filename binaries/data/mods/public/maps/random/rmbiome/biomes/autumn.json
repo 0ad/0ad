@@ -1,0 +1,82 @@
+{
+	"Environment": {
+		"Water": {
+			"WaterBody": {
+				"Color": { "r": 0.157, "g": 0.149, "b": 0.443 },
+				"Tint": { "r": 0.443, "g": 0.42, "b": 0.824 },
+				"Murkiness": 0.83,
+				"Waviness": 2.5
+			}
+		},
+		"Fog": {
+			"FogThickness": 0.22,
+			"FogFactor": 0.35,
+			"FogColor":  { "r": 0.82, "g": 0.82, "b": 0.73 }
+		},
+		"Postproc": {
+			"PostprocEffect": "hdr",
+			"Saturation": 0.56,
+			"Contrast": 0.56,
+			"Bloom": 0.38
+		}
+	},
+	"Terrains": {
+		"mainTerrain": [
+			"temp_grass_aut",
+			"temp_grass_aut",
+			"temp_grass_d_aut"
+		],
+		"forestFloor1": "temp_plants_bog_aut",
+		"forestFloor2": "temp_forestfloor_aut",
+		"cliff": [
+			"temp_cliff_a",
+			"temp_cliff_b"
+		],
+		"tier1Terrain": "temp_grass_plants_aut",
+		"tier2Terrain": [
+			"temp_grass_b_aut",
+			"temp_grass_c_aut"
+		],
+		"tier3Terrain": [
+			"temp_grass_b_aut",
+			"temp_grass_long_b_aut"
+		],
+		"tier4Terrain": "temp_grass_plants_aut",
+		"hill": "temp_highlands_aut",
+		"dirt": [
+			"temp_cliff_a",
+			"temp_cliff_b"
+		],
+		"road": "temp_road_aut",
+		"roadWild": "temp_road_overgrown_aut",
+		"shoreBlend": "temp_grass_plants_aut",
+		"shore": "temp_forestfloor_pine",
+		"water": "medit_sand_wet"
+	},
+	"Gaia": {
+		"tree1": "gaia/flora_tree_euro_beech_aut",
+		"tree2": "gaia/flora_tree_euro_beech_aut",
+		"tree3": "gaia/flora_tree_pine",
+		"tree4": "gaia/flora_tree_oak_aut",
+		"tree5": "gaia/flora_tree_oak_aut",
+		"fruitBush": "gaia/flora_bush_berry",
+		"chicken": "gaia/fauna_chicken",
+		"mainHuntableAnimal": "gaia/fauna_deer",
+		"fish": "gaia/fauna_fish",
+		"secondaryHuntableAnimal": "gaia/fauna_rabbit",
+		"stoneLarge": "gaia/geology_stonemine_temperate_quarry",
+		"stoneSmall": "gaia/geology_stone_temperate",
+		"metalLarge": "gaia/geology_metal_temperate_slabs"
+	},
+	"Decoratives": {
+		"grass": "actor|props/flora/grass_soft_dry_small_tall.xml",
+		"grassShort": "actor|props/flora/grass_soft_dry_large.xml",
+		"reeds": "actor|props/flora/reeds_pond_dry.xml",
+		"lillies": "actor|geology/stone_granite_large.xml",
+		"rockLarge": "actor|geology/stone_granite_large.xml",
+		"rockMedium": "actor|geology/stone_granite_med.xml",
+		"bushMedium": "actor|props/flora/bush_desert_dry_a.xml",
+		"bushSmall": "actor|props/flora/bush_desert_dry_a.xml",
+		"tree": "actor|flora/trees/european_beech_aut.xml"
+	}
+}

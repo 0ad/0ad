@@ -277,7 +277,6 @@ createForests(
  avoidClasses(clPlayer, 20, clForest, 17, clHill, 0, clWater, 6),
  clForest,
  1.0,
- 0
 );
 RMS.SetProgress(70);
 

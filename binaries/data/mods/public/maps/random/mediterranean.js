@@ -3,11 +3,12 @@
 
 RMS.LoadLibrary("rmgen");
 RMS.LoadLibrary("rmgen2");
+RMS.LoadLibrary("rmbiome");
 
 InitMap();
 
 log("Initializing environment...");
-setBiome(g_BiomeTemperate);
+setBiome("temperate");
 initMapSettings();
 initTileClasses(["autumn", "desert", "medit", "polar", "steppe", "temp"]);
 

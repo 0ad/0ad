@@ -3,11 +3,12 @@
 
 RMS.LoadLibrary("rmgen");
 RMS.LoadLibrary("rmgen2");
+RMS.LoadLibrary("rmbiome");
 
 InitMap();
 
 log("Initializing tile classes...");
-setBiome(g_BiomeSnowy);
+setBiome("snowy");
 initMapSettings();
 initTileClasses(["island"]);
 

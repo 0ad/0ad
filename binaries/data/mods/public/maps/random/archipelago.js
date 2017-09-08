@@ -1,4 +1,5 @@
 RMS.LoadLibrary("rmgen");
+RMS.LoadLibrary("rmbiome");
 
 TILE_CENTERED_HEIGHT_MAP = true;
 
@@ -223,9 +224,8 @@ createForests(
  [tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
  [avoidClasses(clPlayer, 20, clForest, 17, clHill, 0), stayClasses(clLand, 4)],
  clForest,
- 1.0,
- currentBiome()
-);
+ 1,
+ ...rBiomeTreeCount(1));
 RMS.SetProgress(50);
 
 log("Creating dirt patches...");
@@ -264,7 +264,7 @@ createMines(
 RMS.SetProgress(65);
 
 log("Creating decoration...");
-var planetm = currentBiome() == g_BiomeTropic ? 8 : 1;
+var planetm = currentBiome() == "tropic" ? 8 : 1;
 createDecoration
 (
  [[new SimpleObject(aRockMedium, 1,3, 0,1)],

@@ -1,0 +1,76 @@
+{
+	"Environment":
+	{
+		"SunColor": { "r": 0.550, "g": 0.601, "b": 0.644 },
+		"Water": {
+			"WaterBody": {
+				"Color": { "r": 0.067, "g": 0.212, "b": 0.361 },
+				"Tint": { "r": 0.4, "g": 0.486, "b": 0.765 },
+				"Murkiness": 0.83,
+				"Waviness": 5.5
+			}
+		},
+		"Fog": {
+			"FogThickness": 0.21,
+			"FogFactor": 0.6
+		},
+		"Postproc": {
+			"PostprocEffect": "hdr",
+			"Saturation": 0.37
+		}
+	},
+	"Terrains": {
+		"mainTerrain": [
+			"polar_snow_b",
+			"snow grass 75",
+			"snow rocks",
+			"snow forest"
+		],
+		"forestFloor1": "polar_tundra_snow",
+		"forestFloor2": "polar_tundra_snow",
+		"cliff": [
+			"alpine_cliff_a",
+			"alpine_cliff_b"
+		],
+		"tier1Terrain": "polar_snow_a",
+		"tier2Terrain": "polar_ice_snow",
+		"tier3Terrain": "polar_ice",
+		"tier4Terrain": "snow grass 2",
+		"hill": [
+			"polar_snow_rocks",
+			"polar_cliff_snow"
+		],
+		"dirt": "snow grass 2",
+		"road": "new_alpine_citytile",
+		"roadWild": "polar_ice_cracked",
+		"shoreBlend": "polar_ice",
+		"shore": "alpine_shore_rocks_icy",
+		"water": "alpine_shore_rocks"
+	},
+	"Gaia": {
+		"tree1": "gaia/flora_tree_pine_w",
+		"tree2": "gaia/flora_tree_pine_w",
+		"tree3": "gaia/flora_tree_pine_w",
+		"tree4": "gaia/flora_tree_pine_w",
+		"tree5": "gaia/flora_tree_pine",
+		"fruitBush": "gaia/flora_bush_berry",
+		"chicken": "gaia/fauna_chicken",
+		"mainHuntableAnimal": "gaia/fauna_muskox",
+		"fish": "gaia/fauna_fish_tuna",
+		"secondaryHuntableAnimal": "gaia/fauna_walrus",
+		"stoneLarge": "gaia/geology_stonemine_alpine_quarry",
+		"stoneSmall": "gaia/geology_stone_alpine_a",
+		"metalLarge": "gaia/geology_metal_alpine_slabs"
+	},
+	"Decoratives": {
+		"grass": "actor|props/flora/grass_soft_dry_small_tall.xml",
+		"grassShort": "actor|props/flora/grass_soft_dry_large.xml",
+		"reeds": "actor|props/flora/reeds_pond_dry.xml",
+		"lillies": "actor|geology/stone_granite_large.xml",
+		"rockLarge": "actor|geology/stone_granite_large.xml",
+		"rockMedium": "actor|geology/stone_granite_med.xml",
+		"bushMedium": "actor|props/flora/bush_desert_dry_a.xml",
+		"bushSmall": "actor|props/flora/bush_desert_dry_a.xml",
+		"tree": "actor|flora/trees/pine_w.xml"
+	}
+}
