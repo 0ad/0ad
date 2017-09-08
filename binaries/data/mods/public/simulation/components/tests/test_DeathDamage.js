@@ -65,8 +65,10 @@ AddMock(deadEnt, IID_Ownership, {
 TS_ASSERT_UNEVAL_EQUALS(cmpDeathDamage.GetDeathDamageStrengths(), modifiedDamage);
 cmpDeathDamage.CauseDeathDamage();
 
+// Test splash damage bonus
 let splashBonus = { "BonusCav": { "Classes": "Cavalry", "Multiplier": 3 } };
-cmpDeathDamage.template.Bonuses = splashBonus;
+template.Bonuses = splashBonus;
+cmpDeathDamage = ConstructComponent(deadEnt, "DeathDamage", template);
 result.splashBonus = splashBonus;
 TS_ASSERT_UNEVAL_EQUALS(cmpDeathDamage.GetDeathDamageStrengths(), modifiedDamage);
 cmpDeathDamage.CauseDeathDamage();

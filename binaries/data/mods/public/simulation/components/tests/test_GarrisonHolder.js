@@ -133,8 +133,6 @@ TS_ASSERT_EQUALS(cmpGarrisonHolder.GetCapacity(), 10);
 TS_ASSERT_EQUALS(cmpGarrisonHolder.GetGarrisonedEntitiesCount(), 0);
 TS_ASSERT_EQUALS(cmpGarrisonHolder.CanPickup(unitToGarrisonId), false);
 
-cmpGarrisonHolder.template.Pickup = true;
-TS_ASSERT_EQUALS(cmpGarrisonHolder.CanPickup(unitToGarrisonId), true);
 TS_ASSERT_EQUALS(cmpGarrisonHolder.CanPickup(enemyUnitId), false);
 TS_ASSERT_EQUALS(cmpGarrisonHolder.IsFull(), false);
 TS_ASSERT_EQUALS(cmpGarrisonHolder.IsAllowedToGarrison(enemyUnitId), false);

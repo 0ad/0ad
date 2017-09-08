@@ -57,9 +57,7 @@ DeathDamage.prototype.GetDeathDamageStrengths = function()
 
 DeathDamage.prototype.GetBonusTemplate = function()
 {
-	if (this.template.Bonuses)
-		return clone(this.template.Bonuses);
-	return null;
+	return this.template.Bonuses || null;
 };
 
 DeathDamage.prototype.CauseDeathDamage = function()

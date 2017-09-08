@@ -167,10 +167,6 @@ for (let className of ["Infantry", "Cavalry"])
 	attackComponentTest(className, true, (attacker, cmpAttack, defender) => {
 
 		TS_ASSERT_EQUALS(cmpAttack.GetBonusTemplate("Melee").BonusCav.Multiplier, 2);
-		// Check that we don't leak data
-		let bonus = cmpAttack.GetBonusTemplate("Melee");
-		bonus.BonusCav.Multiplier = 2.7;
-		TS_ASSERT_EQUALS(cmpAttack.GetBonusTemplate("Melee").BonusCav.Multiplier, 2);
 
 		TS_ASSERT(cmpAttack.GetBonusTemplate("Capture") === null);
 
