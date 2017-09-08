@@ -23,12 +23,11 @@
     <Max>1500</Max>
   </Health>
   <Identity>
-    <VisibleClasses datatype="tokens">Javelin Ranged</VisibleClasses>
-    <GenericName>Hero Cavalry Skirmisher</GenericName>
-    <RequiredTechnology>phase_city</RequiredTechnology>
     <Formations datatype="tokens">
       formations/skirmish
     </Formations>
+    <GenericName>Hero Cavalry Skirmisher</GenericName>
+    <VisibleClasses datatype="tokens">Javelin Ranged</VisibleClasses>
   </Identity>
   <UnitMotion>
     <WalkSpeed>17.0</WalkSpeed>

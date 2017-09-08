@@ -8,12 +8,13 @@
   </Cost>
   <Identity>
     <Civ>cart</Civ>
-    <SelectionGroupName>units/cart_cavalry_swordsman_gaul_b</SelectionGroupName>
-    <GenericName>Gallic Mercenary Cavalry</GenericName>
-    <SpecificName>Ḥayyāl Ḥerev Raḫūv</SpecificName>
     <Classes datatype="tokens">Celt</Classes>
-    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
+    <GenericName>Gallic Mercenary Cavalry</GenericName>
     <Icon>units/cart_cavalry_swordsman_2.png</Icon>
+    <RequiredTechnology>phase_town</RequiredTechnology>
+    <SelectionGroupName>units/cart_cavalry_swordsman_gaul_b</SelectionGroupName>
+    <SpecificName>Ḥayyāl Ḥerev Raḫūv</SpecificName>
+    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
   </Identity>
   <Promotion>
     <Entity>units/cart_cavalry_swordsman_gaul_a</Entity>

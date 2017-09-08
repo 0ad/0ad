@@ -7,11 +7,10 @@
     <PassRange>20</PassRange>
   </Gate>
   <Identity>
-    <GenericName>City Gate</GenericName>
-    <Tooltip>Allow units access through a city wall. Can be locked to prevent access.</Tooltip>
     <Classes datatype="tokens">Gates</Classes>
+    <GenericName>City Gate</GenericName>
     <Icon>structures/gate.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Tooltip>Allow units access through a city wall. Can be locked to prevent access.</Tooltip>
   </Identity>
   <Obstruction>
     <Static disable=""/>
