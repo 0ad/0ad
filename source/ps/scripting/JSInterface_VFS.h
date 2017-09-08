@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -41,34 +41,21 @@ namespace JSI_VFS
 	JS::Value BuildDirEntList(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& path, const std::wstring& filterStr, bool recurse);
 
 	// Return true iff the file exists
-	//
-	// if (fileExists(filename) { ... }
-	//   filename: VFS filename (may include path)
 	bool FileExists(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& filename);
 
 	// Return time [seconds since 1970] of the last modification to the specified file.
-	//
-	// mtime = getFileMTime(filename);
-	//   filename: VFS filename (may include path)
 	double GetFileMTime(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filename);
 
 	// Return current size of file.
-	//
-	// size = getFileSize(filename);
-	//   filename: VFS filename (may include path)
 	unsigned int GetFileSize(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filename);
 
 	// Return file contents in a string.
-	//
-	// contents = readFile(filename);
-	//   filename: VFS filename (may include path)
 	JS::Value ReadFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filename);
 
 	// Return file contents as an array of lines.
-	//
-	// lines = readFileLines(filename);
-	//   filename: VFS filename (may include path)
 	JS::Value ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filename);
+
+	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
 }
 
 #endif

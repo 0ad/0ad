@@ -1044,15 +1044,9 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	JSI_Sound::RegisterScriptFunctions(scriptInterface);
 	JSI_L10n::RegisterScriptFunctions(scriptInterface);
 	JSI_Lobby::RegisterScriptFunctions(scriptInterface);
+	JSI_VFS::RegisterScriptFunctions(scriptInterface);
 	JSI_VisualReplay::RegisterScriptFunctions(scriptInterface);
 
-	// VFS (external)
-	scriptInterface.RegisterFunction<JS::Value, std::wstring, std::wstring, bool, &JSI_VFS::BuildDirEntList>("BuildDirEntList");
-	scriptInterface.RegisterFunction<bool, CStrW, JSI_VFS::FileExists>("FileExists");
-	scriptInterface.RegisterFunction<double, std::wstring, &JSI_VFS::GetFileMTime>("GetFileMTime");
-	scriptInterface.RegisterFunction<unsigned int, std::wstring, &JSI_VFS::GetFileSize>("GetFileSize");
-	scriptInterface.RegisterFunction<JS::Value, std::wstring, &JSI_VFS::ReadFile>("ReadFile");
-	scriptInterface.RegisterFunction<JS::Value, std::wstring, &JSI_VFS::ReadFileLines>("ReadFileLines");
 	// GUI manager functions:
 	scriptInterface.RegisterFunction<void, std::wstring, JS::HandleValue, &PushGuiPage>("PushGuiPage");
 	scriptInterface.RegisterFunction<void, std::wstring, JS::HandleValue, &SwitchGuiPage>("SwitchGuiPage");

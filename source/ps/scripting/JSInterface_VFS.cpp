@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -38,8 +38,6 @@
 	else if (err < 0)\
 		LOGERROR("Unknown failure in VFS %i", err );
 	/* else: success */
-
-
 
 
 // state held across multiple BuildDirEntListCB calls; init by BuildDirEntList.
@@ -102,19 +100,12 @@ JS::Value JSI_VFS::BuildDirEntList(ScriptInterface::CxPrivate* pCxPrivate, const
 }
 
 // Return true iff the file exits
-//
-// if (fileExists(filename)) { ... }
-//   filename: VFS filename (may include path)
 bool JSI_VFS::FileExists(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const CStrW& filename)
 {
 	return (g_VFS->GetFileInfo(filename, 0) == INFO::OK);
 }
 
-
 // Return time [seconds since 1970] of the last modification to the specified file.
-//
-// mtime = getFileMTime(filename);
-//   filename: VFS filename (may include path)
 double JSI_VFS::GetFileMTime(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& filename)
 {
 	CFileInfo fileInfo;
@@ -124,11 +115,7 @@ double JSI_VFS::GetFileMTime(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), con
 	return (double)fileInfo.MTime();
 }
 
-
 // Return current size of file.
-//
-// size = getFileSize(filename);
-//   filename: VFS filename (may include path)
 unsigned int JSI_VFS::GetFileSize(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& filename)
 {
 	CFileInfo fileInfo;
@@ -138,11 +125,7 @@ unsigned int JSI_VFS::GetFileSize(ScriptInterface::CxPrivate* UNUSED(pCxPrivate)
 	return (unsigned int)fileInfo.Size();
 }
 
-
 // Return file contents in a string. Assume file is UTF-8 encoded text.
-//
-// contents = readFile(filename);
-//   filename: VFS filename (may include path)
 JS::Value JSI_VFS::ReadFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filename)
 {
 	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
@@ -163,18 +146,12 @@ JS::Value JSI_VFS::ReadFile(ScriptInterface::CxPrivate* pCxPrivate, const std::w
 	return ret;
 }
 
-
 // Return file contents as an array of lines. Assume file is UTF-8 encoded text.
-//
-// lines = readFileLines(filename);
-//   filename: VFS filename (may include path)
 JS::Value JSI_VFS::ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filename)
 {
 	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
 	JSAutoRequest rq(cx);
-	//
-	// read file
-	//
+
 	CVFSFile file;
 	if (file.Load(g_VFS, filename) != PSRETURN_OK)
 		return JSVAL_NULL;
@@ -184,10 +161,7 @@ JS::Value JSI_VFS::ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, const s
 	// Fix CRLF line endings. (This function will only ever be used on text files.)
 	contents.Replace("\r\n", "\n");
 
-	//
 	// split into array of strings (one per line)
-	//
-
 	std::stringstream ss(contents);
 	JS::RootedObject line_array(cx, JS_NewArrayObject(cx, JS::HandleValueArray::empty()));
 	std::string line;
@@ -202,4 +176,14 @@ JS::Value JSI_VFS::ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, const s
 	}
 
 	return JS::ObjectValue(*line_array);
+}
+
+void JSI_VFS::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
+{
+	scriptInterface.RegisterFunction<JS::Value, std::wstring, std::wstring, bool, &JSI_VFS::BuildDirEntList>("BuildDirEntList");
+	scriptInterface.RegisterFunction<bool, CStrW, JSI_VFS::FileExists>("FileExists");
+	scriptInterface.RegisterFunction<double, std::wstring, &JSI_VFS::GetFileMTime>("GetFileMTime");
+	scriptInterface.RegisterFunction<unsigned int, std::wstring, &JSI_VFS::GetFileSize>("GetFileSize");
+	scriptInterface.RegisterFunction<JS::Value, std::wstring, &JSI_VFS::ReadFile>("ReadFile");
+	scriptInterface.RegisterFunction<JS::Value, std::wstring, &JSI_VFS::ReadFileLines>("ReadFileLines");
 }
