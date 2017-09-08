@@ -1,0 +1,81 @@
+{
+	"Environment": {
+		"Water": {
+			"WaterBody": {
+				"Color": { "r": 0.055, "g": 0.176, "b": 0.431 },
+				"Tint": { "r": 0.227, "g": 0.749, "b": 0.549 },
+				"Murkiness": 0.77,
+				"Waviness": 1.5
+			}
+		},
+		"Fog": {
+			"FogThickness": 0.15,
+			"FogFactor": 0.25,
+			"FogColor": { "r": 0.847059, "g": 0.737255, "b": 0.482353 }
+		},
+		"Postproc": {
+			"PostprocEffect": "hdr",
+			"Contrast": 0.57031,
+			"Bloom": 0.34
+		}
+	},
+	"Terrains": {
+		"mainTerrain": [
+			"savanna_grass_a",
+			"savanna_grass_b"
+		],
+		"forestFloor1": "savanna_forestfloor_a",
+		"forestFloor2": "savanna_forestfloor_b",
+		"cliff": [
+			"savanna_cliff_a",
+			"savanna_cliff_b"
+		],
+		"tier1Terrain": "savanna_shrubs_a",
+		"tier2Terrain": "savanna_dirt_rocks_b",
+		"tier3Terrain": "savanna_dirt_rocks_a",
+		"tier4Terrain": "savanna_grass_a",
+		"hill": [
+			"savanna_grass_a",
+			"savanna_grass_b"
+		],
+		"dirt": [
+			"savanna_dirt_rocks_b",
+			"dirt_brown_e"
+		],
+		"road": "savanna_tile_a",
+		"roadWild": "savanna_tile_a",
+		"shoreBlend": "savanna_riparian",
+		"shore": "savanna_riparian_bank",
+		"water": "savanna_riparian_wet"
+	},
+	"Gaia": {
+		"tree1": "gaia/flora_tree_baobab",
+		"tree2": "gaia/flora_tree_baobab",
+		"tree3": "gaia/flora_tree_baobab",
+		"tree4": "gaia/flora_tree_baobab",
+		"tree5": "gaia/flora_tree_baobab",
+		"fruitBush": "gaia/flora_bush_grapes",
+		"chicken": "gaia/fauna_chicken",
+		"fish": "gaia/fauna_fish",
+		"secondaryHuntableAnimal": "gaia/fauna_gazelle",
+		"stoneLarge": "gaia/geology_stonemine_desert_quarry",
+		"stoneSmall": "gaia/geology_stone_savanna_small",
+		"metalLarge": "gaia/geology_metal_savanna_slabs"
+	},
+	"Decoratives": {
+		"grass": "actor|props/flora/grass_savanna.xml",
+		"grassShort": "actor|props/flora/grass_medit_field.xml",
+		"reeds": "actor|props/flora/reeds_pond_lush_a.xml",
+		"lillies": "actor|props/flora/reeds_pond_lush_b.xml",
+		"rockLarge": "actor|geology/stone_savanna_med.xml",
+		"rockMedium": "actor|geology/stone_savanna_med.xml",
+		"bushMedium": "actor|props/flora/bush_desert_dry_a.xml",
+		"bushSmall": "actor|props/flora/bush_dry_a.xml",
+		"tree": "actor|flora/trees/baobab.xml"
+	},
+	"TreeCount": {
+		"minTrees": 200,
+		"maxTrees": 1250,
+		"forestProbability": 0
+	}
+}

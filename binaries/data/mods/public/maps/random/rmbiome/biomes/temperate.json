@@ -1,0 +1,63 @@
+{
+	"Environment": {
+		"Water": {
+			"WaterBody": {
+				"Color": { "r": 0.114, "g": 0.192, "b": 0.463 },
+				"Tint": { "r": 0.255, "g": 0.361, "b": 0.651 },
+				"Murkiness": 0.83,
+				"Waviness": 5.5
+			}
+		},
+		"Fog": {
+			"FogThickness": 0.25,
+			"FogFactor": 0.4
+		},
+		"Postproc": {
+			"PostprocEffect": "hdr",
+			"Saturation": 0.62,
+			"Contrast": 0.62,
+			"Bloom": 0.3
+		}
+	},
+	"Terrains": {
+		"cliff": [
+			"temp_cliff_a",
+			"temp_cliff_b"
+		],
+		"hill": [
+			"temp_dirt_gravel",
+			"temp_dirt_gravel_b"
+		],
+		"dirt": [
+			"temp_dirt_gravel",
+			"temp_dirt_gravel_b"
+		],
+		"road": "temp_road",
+		"roadWild": "temp_road_overgrown",
+		"shoreBlend": "temp_mud_plants",
+		"shore": "sand_grass_25",
+		"water": "medit_sand_wet"
+	},
+	"Gaia": {
+		"fruitBush": "gaia/flora_bush_berry",
+		"chicken": "gaia/fauna_chicken",
+		"fish": "gaia/fauna_fish",
+		"mainHuntableAnimal": "gaia/fauna_deer",
+		"secondaryHuntableAnimal": "gaia/fauna_sheep",
+		"stoneLarge": "gaia/geology_stonemine_temperate_quarry",
+		"stoneSmall": "gaia/geology_stone_temperate",
+		"metalLarge": "gaia/geology_metal_temperate_slabs",
+		"tree3": "gaia/flora_tree_apple"
+	},
+	"Decoratives": {
+		"grass": "actor|props/flora/grass_soft_large_tall.xml",
+		"grassShort": "actor|props/flora/grass_soft_large.xml",
+		"reeds": "actor|props/flora/reeds_pond_lush_a.xml",
+		"lillies": "actor|props/flora/water_lillies.xml",
+		"rockLarge": "actor|geology/stone_granite_large.xml",
+		"rockMedium": "actor|geology/stone_granite_med.xml",
+		"bushMedium": "actor|props/flora/bush_medit_me.xml",
+		"bushSmall": "actor|props/flora/bush_medit_sm.xml",
+		"tree": "actor|flora/trees/oak.xml"
+	}
+}

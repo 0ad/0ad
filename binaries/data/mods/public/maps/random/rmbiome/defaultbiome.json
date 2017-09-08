@@ -1,0 +1,83 @@
+{
+	"Environment": {
+		"TerrainAmbientColor": { "r": 0.447059, "g": 0.509804, "b": 0.54902 },
+		"UnitsAmbientColor": { "r": 0.57, "g": 0.58, "b": 0.55 },
+		"Water": {
+			"WaterBody": {
+				"Color": { "r": 0.0, "g": 0.047, "b": 0.286 },
+				"Tint": { "r": 0.471, "g": 0.776, "b": 0.863 },
+				"Murkiness": 0.82,
+				"Waviness": 2
+			}
+		},
+		"Fog": {
+			"FogThickness": 0.26,
+			"FogFactor": 0.4
+		},
+		"Postproc": {
+			"PostprocEffect": "hdr",
+			"Saturation": 0.48,
+			"Contrast": 0.53,
+			"Bloom": 0.12
+		}
+	},
+	"Terrains": {
+		"mainTerrain": [
+			"temp_grass_long_b"
+		],
+		"forestFloor1": "temp_forestfloor_pine",
+		"forestFloor2": "temp_plants_bog",
+		"tier1Terrain": "temp_grass_d",
+		"tier2Terrain": "temp_grass_c",
+		"tier3Terrain": "temp_grass_clovers_2",
+		"tier4Terrain": "temp_grass_plants",
+		"cliff": [
+			"temp_cliff_a",
+			"temp_cliff_b"
+		],
+		"hill": [
+			"temp_dirt_gravel",
+			"temp_dirt_gravel_b"
+		],
+		"dirt": [
+			"temp_dirt_gravel",
+			"temp_dirt_gravel_b"
+		],
+		"road": "temp_road",
+		"roadWild": "temp_road_overgrown",
+		"shoreBlend": "temp_mud_plants",
+		"shore": "sand_grass_25",
+		"water": "medit_sand_wet"
+	},
+	"Gaia": {
+		"tree1": "gaia/flora_tree_oak",
+		"tree2": "gaia/flora_tree_oak_large",
+		"tree3": "gaia/flora_tree_apple",
+		"tree4": "gaia/flora_tree_pine",
+		"tree5": "gaia/flora_tree_aleppo_pine",
+		"fruitBush": "gaia/flora_bush_berry",
+		"chicken": "gaia/fauna_chicken",
+		"fish": "gaia/fauna_fish",
+		"mainHuntableAnimal": "gaia/fauna_deer",
+		"secondaryHuntableAnimal": "gaia/fauna_sheep",
+		"stoneLarge": "gaia/geology_stonemine_medit_quarry",
+		"stoneSmall": "gaia/geology_stone_mediterranean",
+		"metalLarge": "gaia/geology_metal_mediterranean_slabs"
+	},
+	"Decoratives": {
+		"grass": "actor|props/flora/grass_soft_large_tall.xml",
+		"grassShort": "actor|props/flora/grass_soft_large.xml",
+		"reeds": "actor|props/flora/reeds_pond_lush_a.xml",
+		"lillies": "actor|props/flora/pond_lillies_large.xml",
+		"rockLarge": "actor|geology/stone_granite_large.xml",
+		"rockMedium": "actor|geology/stone_granite_med.xml",
+		"bushMedium": "actor|props/flora/bush_medit_me.xml",
+		"bushSmall": "actor|props/flora/bush_medit_sm.xml",
+		"tree": "actor|flora/trees/oak.xml"
+	},
+	"TreeCount": {
+		"minTrees": 500,
+		"maxTrees": 3000,
+		"forestProbability": 0.7
+	}
+}
