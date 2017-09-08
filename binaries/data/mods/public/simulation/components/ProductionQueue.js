@@ -596,44 +596,47 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 		}
 	}
 
-	var cmpAutoGarrison = undefined;
+	let cmpAutoGarrison;
 	if (cmpRallyPoint)
 	{
-		var data = cmpRallyPoint.GetData()[0];
+		let data = cmpRallyPoint.GetData()[0];
 		if (data && data.target && data.target == this.entity && data.command == "garrison")
 			cmpAutoGarrison = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
 	}
 
-	for (var i = 0; i < count; ++i)
+	for (let i = 0; i < count; ++i)
 	{
-		var ent = this.entityCache[0];
-
-		if (cmpAutoGarrison && cmpAutoGarrison.PerformGarrison(ent))
+		let ent = this.entityCache[0];
+		let cmpNewOwnership = Engine.QueryInterface(ent, IID_Ownership);
+		let garrisoned = false;
+		
+		if (cmpAutoGarrison)
 		{
-			let cmpNewOwnership = Engine.QueryInterface(ent, IID_Ownership);
-			cmpNewOwnership.SetOwner(cmpOwnership.GetOwner());
+			// Temporary owner affectation needed for GarrisonHolder checks
+			cmpNewOwnership.SetOwnerQuiet(cmpOwnership.GetOwner());
+			garrisoned = cmpAutoGarrison.PerformGarrison(ent);
+			cmpNewOwnership.SetOwnerQuiet(-1);
+		}
+
+		if (garrisoned)
+		{
 			let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-			cmpUnitAI.Autogarrison(this.entity);
+			if (cmpUnitAI)
+				cmpUnitAI.Autogarrison(this.entity);
 		}
 		else
 		{
-			var pos = cmpFootprint.PickSpawnPoint(ent);
+			let pos = cmpFootprint.PickSpawnPoint(ent);
 			if (pos.y < 0)
-			{
-				// Fail: there wasn't any space to spawn the unit
 				break;
-			}
-			else
-			{
-				// Successfully spawned
-				let cmpNewOwnership = Engine.QueryInterface(ent, IID_Ownership);
-				cmpNewOwnership.SetOwner(cmpOwnership.GetOwner());
-				let cmpNewPosition = Engine.QueryInterface(ent, IID_Position);
-				cmpNewPosition.JumpTo(pos.x, pos.z);
-				// TODO: what direction should they face in?
-				spawnedEnts.push(ent);
-			}
+
+			let cmpNewPosition = Engine.QueryInterface(ent, IID_Position);
+			// TODO: what direction should they face in?
+			cmpNewPosition.JumpTo(pos.x, pos.z);
+			spawnedEnts.push(ent);
 		}
+
+		cmpNewOwnership.SetOwner(cmpOwnership.GetOwner());
 
 		var cmpPlayerStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
 		cmpPlayerStatisticsTracker.IncreaseTrainedUnitsCounter(ent);

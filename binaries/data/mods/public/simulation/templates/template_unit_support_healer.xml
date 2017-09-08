@@ -16,10 +16,11 @@
     <Max>85</Max>
   </Health>
   <Identity>
-    <VisibleClasses datatype="tokens">Healer</VisibleClasses>
     <GenericName>Healer</GenericName>
-    <Tooltip>Heal units.</Tooltip>
     <Rank>Basic</Rank>
+    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Tooltip>Heal units.</Tooltip>
+    <VisibleClasses datatype="tokens">Healer</VisibleClasses>
   </Identity>
   <Promotion>
     <RequiredXp>200</RequiredXp>

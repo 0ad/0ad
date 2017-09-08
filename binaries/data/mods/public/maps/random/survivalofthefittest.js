@@ -3,30 +3,30 @@ RMS.LoadLibrary("rmbiome");
 
 setSelectedBiome();
 
-const tMainTerrain = rBiomeT1();
-const tForestFloor1 = rBiomeT2();
-const tForestFloor2 = rBiomeT3();
-const tCliff = rBiomeT4();
-const tHill = rBiomeT8();
-const tTier1Terrain = rBiomeT5();
-const tTier2Terrain = rBiomeT6();
-const tTier3Terrain = rBiomeT7();
-const tTier4Terrain = rBiomeT12();
+const tMainTerrain = g_Terrains.mainTerrain;
+const tForestFloor1 = g_Terrains.forestFloor1;
+const tForestFloor2 = g_Terrains.forestFloor2;
+const tCliff = g_Terrains.cliff;
+const tHill = g_Terrains.hill;
+const tTier1Terrain = g_Terrains.tier1Terrain;
+const tTier2Terrain = g_Terrains.tier2Terrain;
+const tTier3Terrain = g_Terrains.tier3Terrain;
+const tTier4Terrain = g_Terrains.tier4Terrain;
 
 // gaia entities
-const oTree1 = rBiomeE1();
-const oTree2 = rBiomeE2();
-const oTree3 = rBiomeE3();
-const oTree4 = rBiomeE4();
-const oTree5 = rBiomeE5();
+const oTree1 = g_Gaia.tree1;
+const oTree2 = g_Gaia.tree2;
+const oTree3 = g_Gaia.tree3;
+const oTree4 = g_Gaia.tree4;
+const oTree5 = g_Gaia.tree5;
 
 // decorative props
-const aGrass = rBiomeA1();
-const aGrassShort = rBiomeA2();
-const aRockLarge = rBiomeA5();
-const aRockMedium = rBiomeA6();
-const aBushMedium = rBiomeA7();
-const aBushSmall = rBiomeA8();
+const aGrass = g_Decoratives.grass;
+const aGrassShort = g_Decoratives.grassShort;
+const aRockLarge = g_Decoratives.rockLarge;
+const aRockMedium = g_Decoratives.rockMedium;
+const aBushMedium = g_Decoratives.bushMedium;
+const aBushSmall = g_Decoratives.bushSmall;
 const aWaypointFlag = "actor|props/special/common/waypoint_flag.xml";
 
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];

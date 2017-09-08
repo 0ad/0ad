@@ -8,23 +8,23 @@ var g_Components = {};
 Engine.RegisterComponentType = function(iid, name, ctor)
 {
 	TS_ASSERT(!g_ComponentTypes[name]);
-	g_ComponentTypes[name] = { iid: iid, ctor: ctor };
+	g_ComponentTypes[name] = { "iid": iid, "ctor": ctor };
 };
 
 Engine.RegisterSystemComponentType = function(iid, name, ctor)
 {
 	TS_ASSERT(!g_ComponentTypes[name]);
-	g_ComponentTypes[name] = { iid: iid, ctor: ctor };
+	g_ComponentTypes[name] = { "iid": iid, "ctor": ctor };
 };
 
 Engine.RegisterInterface = function(name)
 {
-	global["IID_"+name] = g_NewIID++;
+	global["IID_" + name] = g_NewIID++;
 };
 
 Engine.RegisterMessageType = function(name)
 {
-	global["MT_"+name] = g_NewMTID++;
+	global["MT_" + name] = g_NewMTID++;
 };
 
 Engine.QueryInterface = function(ent, iid)
@@ -41,9 +41,9 @@ Engine.RegisterGlobal = function(name, value)
 
 Engine.DestroyEntity = function(ent)
 {
-	for (var cid in g_Components[ent])
+	for (let cid in g_Components[ent])
 	{
-		var cmp = g_Components[ent][cid];
+		let cmp = g_Components[ent][cid];
 		if (cmp && cmp.Deinit)
 			cmp.Deinit();
 	}
@@ -85,9 +85,23 @@ global.DeleteMock = function(ent, iid)
 
 global.ConstructComponent = function(ent, name, template)
 {
-	var cmp = new g_ComponentTypes[name].ctor();
-	cmp.entity = ent;
-	cmp.template = template;
+	let cmp = new g_ComponentTypes[name].ctor();
+
+	Object.defineProperties(cmp, {
+		"entity": {
+			"value": ent,
+			"configurable": false,
+			"enumerable": false,
+			"writable": false
+		},
+		"template": {
+			"value": template && deepfreeze(clone(template)),
+			"configurable": false,
+			"enumerable": false,
+			"writable": false
+		}
+	});
+
 	cmp.Init();
 
 	if (!g_Components[ent])

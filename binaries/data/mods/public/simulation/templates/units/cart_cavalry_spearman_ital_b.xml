@@ -8,12 +8,13 @@
   </Cost>
   <Identity>
     <Civ>cart</Civ>
-    <SelectionGroupName>units/cart_cavalry_spearman_ital_b</SelectionGroupName>
-    <GenericName>Italic Cavalry</GenericName>
-    <SpecificName>Ḥayyāl Romaḥ Raḫūv</SpecificName>
     <Classes datatype="tokens">Italian</Classes>
-    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
+    <GenericName>Italic Cavalry</GenericName>
     <Icon>units/cart_cavalry_spearman.png</Icon>
+    <RequiredTechnology>phase_town</RequiredTechnology>
+    <SelectionGroupName>units/cart_cavalry_spearman_ital_b</SelectionGroupName>
+    <SpecificName>Ḥayyāl Romaḥ Raḫūv</SpecificName>
+    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
   </Identity>
   <Promotion>
     <Entity>units/cart_cavalry_spearman_ital_a</Entity>

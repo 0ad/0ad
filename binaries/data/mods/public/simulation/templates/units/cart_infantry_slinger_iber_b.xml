@@ -17,12 +17,13 @@
   </Cost>
   <Identity>
     <Civ>cart</Civ>
-    <SelectionGroupName>units/cart_infantry_slinger_iber_b</SelectionGroupName>
-    <GenericName>Balearic Slinger</GenericName>
-    <SpecificName>Qallāʿ Ibušimi</SpecificName>
     <Classes datatype="tokens">Iberian</Classes>
-    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
+    <GenericName>Balearic Slinger</GenericName>
     <Icon>units/cart_infantry_slinger.png</Icon>
+    <RequiredTechnology>phase_town</RequiredTechnology>
+    <SelectionGroupName>units/cart_infantry_slinger_iber_b</SelectionGroupName>
+    <SpecificName>Qallāʿ Ibušimi</SpecificName>
+    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
   </Identity>
   <Promotion>
     <Entity>units/cart_infantry_slinger_iber_a</Entity>

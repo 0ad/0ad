@@ -440,9 +440,8 @@ Attack.prototype.GetBonusTemplate = function(type)
 	let template = this.template[type];
 	if (!template)
 		template = this.template[type.split(".")[0]].Splash;
-	if (template.Bonuses)
-		return clone(template.Bonuses);
-	return null;
+
+	return template.Bonuses || null;
 };
 
 /**

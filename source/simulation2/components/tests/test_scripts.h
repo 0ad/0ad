@@ -66,6 +66,7 @@ public:
 
 		VfsPaths paths;
 		TS_ASSERT_OK(vfs::GetPathnames(g_VFS, L"simulation/components/tests/", L"test_*.js", paths));
+		paths.push_back(VfsPath(L"simulation/components/tests/setup_test.js"));
 		for (const VfsPath& path : paths)
 		{
 			CSimContext context;
