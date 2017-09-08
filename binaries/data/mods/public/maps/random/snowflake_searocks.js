@@ -1656,13 +1656,13 @@ for (var ix = 0; ix < mapSize; ix++)
 }
 
 // calculate desired number of trees for map (based on size)
-if (currentBiome() == g_BiomeSavanna)
+if (currentBiome() == "savanna")
 {
 	var MIN_TREES = 200;
 	var MAX_TREES = 1250;
 	var P_FOREST = 0.02;
 }
-else if (currentBiome() == g_BiomeTropic)
+else if (currentBiome() == "tropic")
 {
 	var MIN_TREES = 1000;
 	var MAX_TREES = 6000;
@@ -1685,7 +1685,7 @@ var types = [
 	[[tForestFloor1, tMainTerrain, pForest2], [tForestFloor1, pForest2]]
 ];	// some variation
 
-if (currentBiome() == g_BiomeSavanna)
+if (currentBiome() == "savanna")
 	var size = numForest / (0.5 * scaleByMapSize(2,8) * numPlayers);
 else
 	var size = numForest / (scaleByMapSize(2,8) * numPlayers);
@@ -1848,7 +1848,7 @@ for (var i = 0; i < types.length; ++i)
 }
 
 var planetm = 1;
-if (currentBiome() == g_BiomeTropic)
+if (currentBiome() == "tropic")
 	planetm = 8;
 
 //create small grass tufts

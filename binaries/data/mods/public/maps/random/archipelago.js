@@ -264,7 +264,7 @@ createMines(
 RMS.SetProgress(65);
 
 log("Creating decoration...");
-var planetm = currentBiome() == g_BiomeTropic ? 8 : 1;
+var planetm = currentBiome() == "tropic" ? 8 : 1;
 createDecoration
 (
  [[new SimpleObject(aRockMedium, 1,3, 0,1)],

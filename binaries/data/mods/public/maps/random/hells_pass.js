@@ -227,13 +227,13 @@ function placeBarriers()
 {
 	var spineTerrain = g_Terrains.dirt;
 
-	if (currentBiome() == g_BiomeSnowy)
+	if (currentBiome() == "snowy")
 		spineTerrain = g_Terrains.tier1Terrain;
 
-	if (currentBiome() == g_BiomeAlpine || currentBiome() == g_BiomeSavanna)
+	if (currentBiome() == "alpine" || currentBiome() == "savanna")
 		spineTerrain = g_Terrains.tier2Terrain;
 
-	if (currentBiome() == g_BiomeAutumn)
+	if (currentBiome() == "autumn")
 		spineTerrain = g_Terrains.tier4Terrain;
 
 	// create mountain ranges

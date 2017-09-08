@@ -416,7 +416,7 @@ createFood(
 	[avoidClasses(clForest, 0, clPlayer, 15, clHill, 1, clFood, 4, clRock, 6, clMetal, 6), stayClasses(clLand, 2)]
 );
 
-if (currentBiome() == g_BiomeDesert)
+if (currentBiome() == "desert")
 {
 	log("Creating obelisks");
 	let group = new SimpleGroup(
@@ -432,7 +432,7 @@ if (currentBiome() == g_BiomeDesert)
 
 log("Creating dirt patches...");
 let sizes = [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)];
-let numb = currentBiome() == g_BiomeSavanna ? 3 : 1;
+let numb = currentBiome() == "savanna" ? 3 : 1;
 
 for (let i = 0; i < sizes.length; ++i)
 {
@@ -528,7 +528,7 @@ createObjectGroupsDeprecated(group, 0,
 placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, radius, [stayClasses(clLand, 5)]);
 
 log("Creating small grass tufts...");
-let planetm = currentBiome() == g_BiomeTropic ? 8 : 1;
+let planetm = currentBiome() == "tropic" ? 8 : 1;
 group = new SimpleGroup(
 	[new SimpleObject(aGrassShort, 1, 2, 0, 1, -PI / 8, PI / 8)]
 );

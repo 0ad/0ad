@@ -321,13 +321,13 @@ createAreas(
 
 
 // calculate desired number of trees for map (based on size)
-if (currentBiome() == g_BiomeSavanna)
+if (currentBiome() == "savanna")
 {
 	var MIN_TREES = 200;
 	var MAX_TREES = 1250;
 	var P_FOREST = 0;
 }
-else if (currentBiome() == g_BiomeTropic)
+else if (currentBiome() == "tropic")
 {
 	var MIN_TREES = 1000;
 	var MAX_TREES = 6000;
@@ -350,7 +350,7 @@ var types = [
 	[[tForestFloor1, tMainTerrain, pForest2], [tForestFloor1, pForest2]]
 ];	// some variation
 
-if (currentBiome() != g_BiomeSavanna)
+if (currentBiome() != "savanna")
 {
 	var size = numForest / (scaleByMapSize(3,6) * numPlayers);
 	var num = floor(size / types.length);
@@ -375,7 +375,7 @@ RMS.SetProgress(50);
 log("Creating dirt patches...");
 var sizes = [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)];
 var numb = 1;
-if (currentBiome() == g_BiomeSavanna)
+if (currentBiome() == "savanna")
 	numb = 3;
 for (var i = 0; i < sizes.length; i++)
 {
@@ -527,7 +527,7 @@ for (var i = 0; i < types.length; ++i)
 }
 
 var planetm = 1;
-if (currentBiome() == g_BiomeTropic)
+if (currentBiome() == "tropic")
 	planetm = 8;
 
 //create small grass tufts

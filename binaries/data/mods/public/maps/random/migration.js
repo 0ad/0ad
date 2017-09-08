@@ -258,13 +258,13 @@ createAreas(
 RMS.SetProgress(34);
 
 // calculate desired number of trees for map (based on size)
-if (currentBiome() == g_BiomeSavanna)
+if (currentBiome() == "savanna")
 {
 	var MIN_TREES = 200;
 	var MAX_TREES = 1250;
 	var P_FOREST = 0.02;
 }
-else if (currentBiome() == g_BiomeTropic)
+else if (currentBiome() == "tropic")
 {
 	var MIN_TREES = 1000;
 	var MAX_TREES = 6000;
@@ -288,7 +288,7 @@ var types = [
 ];	// some variation
 
 var size = numForest / (scaleByMapSize(2,8) * numPlayers) *
-	(currentBiome() == g_BiomeSavanna ? 2 : 1);
+	(currentBiome() == "savanna" ? 2 : 1);
 
 var num = floor(size / types.length);
 for (var i = 0; i < types.length; ++i)
@@ -449,7 +449,7 @@ for (var i = 0; i < types.length; ++i)
 }
 RMS.SetProgress(86);
 
-var planetm = currentBiome() == g_BiomeTropic ? 8 : 1;
+var planetm = currentBiome() == "tropic" ? 8 : 1;
 
 log("Creating small grass tufts...");
 group = new SimpleGroup(

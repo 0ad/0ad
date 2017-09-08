@@ -18,7 +18,7 @@ const tTier4Terrain = rBiomeT12();
 const tShoreBlend = rBiomeT13();
 var tShore = rBiomeT14();
 var tWater = rBiomeT15();
-if (currentBiome() == g_BiomeTropic)
+if (currentBiome() == "tropic")
 {
 	tShore = "tropic_dirt_b_plants";
 	tWater = "tropic_dirt_b";
@@ -427,7 +427,7 @@ RMS.SetProgress(65);
 // create decoration
 var planetm = 1;
 
-if (currentBiome() == g_BiomeTropic)
+if (currentBiome() == "tropic")
 	planetm = 8;
 
 createDecoration

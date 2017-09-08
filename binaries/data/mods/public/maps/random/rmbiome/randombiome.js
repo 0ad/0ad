@@ -1,23 +1,11 @@
 RMS.LoadLibrary("rmbiome/biomes");
 
-/**
- * Use constants as biome identifiers, so that we get reference errors if there is a typo.
- */
-const g_BiomeTemperate = "temperate";
-const g_BiomeSnowy = "snowy";
-const g_BiomeDesert = "desert";
-const g_BiomeAlpine = "alpine";
-const g_BiomeMediterranean = "mediterranean";
-const g_BiomeSavanna = "savanna";
-const g_BiomeTropic = "tropic";
-const g_BiomeAutumn = "autumn";
+var g_BiomeID;
 
 var g_Terrains = {};
 var g_Gaia = {};
 var g_Decoratives = {};
 var g_TreeCount = {};
-
-var g_BiomeID = g_BiomeTemperate;
 
 function currentBiome()
 {

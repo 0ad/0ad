@@ -429,7 +429,7 @@ RMS.SetProgress(65);
 // create decoration
 var planetm = 1;
 
-if (currentBiome() == g_BiomeTropic)
+if (currentBiome() == "tropic")
 	planetm = 8;
 
 createDecoration

@@ -230,7 +230,7 @@ createPatches(
 );
 
 var planetm = 1;
-if (currentBiome() == g_BiomeTropic)
+if (currentBiome() == "tropic")
 	planetm = 8;
 
 createDecoration(
