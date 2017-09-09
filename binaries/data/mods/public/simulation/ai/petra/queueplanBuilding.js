@@ -772,7 +772,11 @@ m.ConstructionPlan.prototype.isGo = function(gameState)
 			return false;
 		let freeSlots = gameState.getPopulationLimit() - gameState.getPopulation();
 		for (let ent of gameState.getOwnFoundations().values())
-			freeSlots += ent.getPopulationBonus();
+		{
+			let template = gameState.getBuiltTemplate(ent.templateName());
+			if (template)
+				freeSlots += template.getPopulationBonus();
+		}
 
 		if (gameState.ai.HQ.saveResources)
 			return freeSlots <= 10;
