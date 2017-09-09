@@ -290,6 +290,11 @@ function placeTerrain(x, z, terrain)
 	g_Map.placeTerrain(x, z, createTerrain(terrain));
 }
 
+function initTerrain(tileClass)
+{
+	g_Map.initTerrain(createTerrain(tileClass));
+}
+
 function isCircularMap()
 {
 	return !!g_MapSettings.CircularMap;

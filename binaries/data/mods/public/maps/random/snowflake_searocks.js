@@ -63,17 +63,7 @@ var clBaseResource = createTileClass();
 var clSettlement = createTileClass();
 var clLand = createTileClass();
 
-//Paint the whole map
-
-for (var ix = 0; ix < mapSize; ix++)
-{
-	for (var iz = 0; iz < mapSize; iz++)
-	{
-		var x = ix / (mapSize + 1.0);
-		var z = iz / (mapSize + 1.0);
-			placeTerrain(ix, iz, tWater);
-	}
-}
+initTerrain(tWater);
 
 const radius = scaleByMapSize(15,30);
 const cliffRadius = 2;

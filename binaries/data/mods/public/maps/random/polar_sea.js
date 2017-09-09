@@ -45,9 +45,7 @@ var clWolf = createTileClass();
 // Expected by rmgen1
 var clForest = createTileClass();
 
-for (let ix = 0; ix < mapSize; ++ix)
-	for (let iz = 0; iz < mapSize; ++iz)
-		placeTerrain(ix, iz, tPrimary);
+initTerrain(tPrimary);
 
 var playerIDs = [];
 for (let i = 0; i < numPlayers; ++i)

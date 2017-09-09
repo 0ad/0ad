@@ -69,15 +69,7 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clCP = createTileClass();
 
-for (var ix = 0; ix < mapSize; ix++)
-{
-	for (var iz = 0; iz < mapSize; iz++)
-	{
-		var x = ix / (mapSize + 1.0);
-		var z = iz / (mapSize + 1.0);
-			placeTerrain(ix, iz, tDirtMain);
-	}
-}
+initTerrain(tDirtMain);
 
 var playerIDs = [];
 for (var i = 0; i < numPlayers; i++)

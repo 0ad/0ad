@@ -54,15 +54,7 @@ var clBaseResource = createTileClass();
 var clSettlement = createTileClass();
 var clDune = createTileClass();
 
-for (var ix = 0; ix < mapSize; ix++)
-{
-	for (var iz = 0; iz < mapSize; iz++)
-	{
-		var x = ix / (mapSize + 1.0);
-		var z = iz / (mapSize + 1.0);
-			placeTerrain(ix, iz, tSand);
-	}
-}
+initTerrain(tSand);
 
 // randomize player order
 var playerIDs = [];

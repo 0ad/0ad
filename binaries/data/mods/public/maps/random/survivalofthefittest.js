@@ -54,9 +54,7 @@ var clBaseResource = createTileClass();
 var clLand = createTileClass();
 var clWomen = createTileClass();
 
-for (var ix = 0; ix < mapSize; ix++)
-	for (var iz = 0; iz < mapSize; iz++)
-		placeTerrain(ix, iz, tMainTerrain);
+initTerrain(tMainTerrain);
 
 var ix = Math.round(fractionToTiles(0.5));
 var iz = Math.round(fractionToTiles(0.5));

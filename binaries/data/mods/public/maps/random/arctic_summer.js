@@ -54,10 +54,7 @@ var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
-// Cover the ground with the primary terrain chosen in the beginning
-for (let ix = 0; ix < mapSize; ++ix)
-	for (let iz = 0; iz < mapSize; ++iz)
-		placeTerrain(ix, iz, tPrimary);
+initTerrain(tPrimary);
 
 // Randomize player order
 var playerIDs = [];

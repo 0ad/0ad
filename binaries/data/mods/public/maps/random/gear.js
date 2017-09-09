@@ -66,9 +66,7 @@ var clBaseResource = createTileClass();
 var clSettlement = createTileClass();
 var clLand = createTileClass();
 
-for (var ix = 0; ix < mapSize; ix++)
-	for (var iz = 0; iz < mapSize; iz++)
-		placeTerrain(ix, iz, tMainTerrain);
+initTerrain(tMainTerrain);
 
 var fx = fractionToTiles(0.5);
 var fz = fractionToTiles(0.5);

@@ -69,9 +69,7 @@ let clMetal = createTileClass();
 let clFood = createTileClass();
 let clBaseResource = createTileClass();
 
-for (let ix = 0; ix < mapSize; ++ix)
-	for (let iz = 0; iz < mapSize; ++iz)
-		placeTerrain(ix, iz, tWater);
+initTerrain(tWater);
 
 // Randomize player order
 let playerIDs = [];
