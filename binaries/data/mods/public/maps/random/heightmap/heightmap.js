@@ -100,17 +100,18 @@ function getStartLocationsByHeightmap(heightRange, maxTries = 1000, minDistToBor
 
 /**
  * Meant to place e.g. resource spots within a height range
- * @param {array} [heightRange] - The height range in which to place the entities (An associative array with keys "min" and "max" each containing a float)
- * @param {array} [avoidPoints] - An array of 2D points (arrays of length 2), points that will be avoided in the given minDistance e.g. start locations
- * @param {number} [minDistance=30] - How many tile widths the entities to place have to be away from each other, start locations and the map border
+ *
+ * @param {array} heightRange - The height range in which to place the entities (An associative array with keys "min" and "max" each containing a float)
+ * @param {array} avoidPoints - An array of 2D points (arrays of length 2), points that will be avoided in the given minDistance e.g. start locations
+ * @param {number} minDistance - How many tile widths the entities to place have to be away from each other, start locations and the map border
+ * @param {array} entityList - Entity/actor strings to be placed with placeObject()
  * @param {array} [heightmap=g_Map.height] - The reliefmap the entities should be distributed on
- * @param {array} [entityList=[g_Gaia.stoneLarge, g_Gaia.metalLarge]] - Entity/actor strings to be placed with placeObject()
  * @param {number} [playerID=0] - Index of the player the entities should be placed for. Gaia is 0.
  * @param {number} [maxTries=1000] - How often random player distributions are rolled to be compared
  * @param {boolean} [isCircular=g_MapSettings.CircularMap] - If the map is circular or rectangular
  * @return {array} [placements] Array of points where entities were placed
  */
-function distributeEntitiesByHeight(heightRange, avoidPoints, minDistance = 30, entityList = [g_Gaia.stoneLarge, g_Gaia.metalLarge],
+function distributeEntitiesByHeight(heightRange, avoidPoints, minDistance, entityList,
 	playerID = 0, maxTries = 1000, heightmap = g_Map.height, isCircular = g_MapSettings.CircularMap)
 {
 	let validPoints = [];

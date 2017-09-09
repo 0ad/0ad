@@ -262,8 +262,8 @@ for (var i=0; i < numPlayers; i++)
 }
 
 // Add further stone and metal mines
-distributeEntitiesByHeight({ 'min': heighLimits[3], 'max': ((heighLimits[4] + heighLimits[3]) / 2) }, startLocations, 40);
-distributeEntitiesByHeight({ 'min': ((heighLimits[5] + heighLimits[6]) / 2), 'max': heighLimits[7] }, startLocations, 40);
+distributeEntitiesByHeight({ 'min': heighLimits[3], 'max': ((heighLimits[4] + heighLimits[3]) / 2) }, startLocations, 40, [templateStoneMine, templateMetalMine]);
+distributeEntitiesByHeight({ 'min': ((heighLimits[5] + heighLimits[6]) / 2), 'max': heighLimits[7] }, startLocations, 40, [templateStoneMine, templateMetalMine]);
 
 RMS.SetProgress(50);
 
