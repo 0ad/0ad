@@ -124,7 +124,6 @@ PathPlacer.prototype.place = function(constraint)
 		var pz2 = Math.round(nz2 + ndx * taperedWidth);
 		segments2.push(new PointXZ(px2, pz2));
 
-
 	}
 
 	var retVec = [];

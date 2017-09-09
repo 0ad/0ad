@@ -18,7 +18,6 @@ const tDirtCracks = "medit_dirt_c";
 const tShore = "medit_sand";
 const tWater = "medit_sand_wet";
 
-// gaia entities
 const oBerryBush = "gaia/flora_bush_berry";
 const oDeer = "gaia/fauna_deer";
 const oFish = "gaia/fauna_fish";
@@ -34,7 +33,6 @@ const oFanPalm = "gaia/flora_tree_medit_fan_palm";
 const oPoplar = "gaia/flora_tree_poplar_lombardy";
 const oCypress = "gaia/flora_tree_cypress";
 
-// decorative props
 const aBush1 = "actor|props/flora/bush_medit_sm.xml";
 const aBush2 = "actor|props/flora/bush_medit_me.xml";
 const aBush3 = "actor|props/flora/bush_medit_la.xml";
@@ -45,15 +43,11 @@ const aDecorativeRock = "actor|geology/stone_granite_med.xml";
 // terrain + entity (for painting)
 const pForest = [tForestFloor, tForestFloor + TERRAIN_SEPARATOR + oCarob, tForestFloor + TERRAIN_SEPARATOR + oDatePalm, tForestFloor + TERRAIN_SEPARATOR + oSDatePalm, tForestFloor];
 
-log("Initializing map...");
-
 InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
 const mapArea = mapSize*mapSize;
-
-// create tile classes
 
 var clPlayer = createTileClass();
 var clForest = createTileClass();
@@ -67,7 +61,6 @@ var clSettlement = createTileClass();
 var clGrass = createTileClass();
 var clHill = createTileClass();
 
-// create the main river
 log("Creating the main river");
 var placer = new PathPlacer(fractionToTiles(0.5 + cos(3 * PI / 4)), fractionToTiles(0.5 + sin(3 * PI / 4)), fractionToTiles(0.5 + cos(- PI / 4)), fractionToTiles(0.5 + sin(- PI / 4)), scaleByMapSize(15,70), 0.2, 3*(scaleByMapSize(5,15)), 0.04, 0.01);
 var terrainPainter = new LayeredPainter(
@@ -127,8 +120,6 @@ for (var i = 0; i < numPlayers; i++)
 }
 playerIDs = primeSortPlayers(sortPlayers(playerIDs));
 
-// place players
-
 var playerX = new Array(numPlayers);
 var playerZ = new Array(numPlayers);
 var playerAngle = new Array(numPlayers);
@@ -160,7 +151,6 @@ for (var i = 0; i < numPlayers; i++)
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
 
-	// some constants
 	var radius = scaleByMapSize(15,25);
 	var cliffRadius = 2;
 	var elevation = 20;
@@ -178,7 +168,6 @@ for (var i = 0; i < numPlayers; i++)
 	var painter = new LayeredPainter([tCityPlaza, tCity], [1]);
 	createArea(placer, painter, null);
 
-	// create starting units
 	placeCivDefaultEntities(fx, fz, id, { 'iberWall': 'towers' });
 
 	placeDefaultChicken(fx, fz, clBaseResource);
@@ -236,10 +225,8 @@ for (var i = 0; i < numPlayers; i++)
 
 RMS.SetProgress(40);
 
-// create bumps
 createBumps(avoidClasses(clWater, 2, clPlayer, 20));
 
-// create forests
 createForests(
  [tForestFloor, tForestFloor, tForestFloor, pForest, pForest],
  avoidClasses(clPlayer, 20, clForest, 17, clWater, 2, clBaseResource, 3),
@@ -248,13 +235,11 @@ createForests(
 
 RMS.SetProgress(50);
 
-// create hills
 if (randBool())
 	createHills([tGrass, tCliff, tHill], avoidClasses(clPlayer, 20, clForest, 1, clHill, 15, clWater, 3), clHill, scaleByMapSize(3, 15));
 else
 	createMountains(tCliff, avoidClasses(clPlayer, 20, clForest, 1, clHill, 15, clWater, 3), clHill, scaleByMapSize(3, 15));
 
-// create grass patches
 log("Creating grass patches...");
 createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
@@ -265,7 +250,6 @@ createLayeredPatches(
 
 RMS.SetProgress(55);
 
-// create dirt patches
 log("Creating dirt patches...");
 createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
@@ -277,7 +261,6 @@ createLayeredPatches(
 RMS.SetProgress(60);
 
 log("Creating stone mines...");
-// create stone quarries
 createMines(
  [
   [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
@@ -287,7 +270,6 @@ createMines(
 );
 
 log("Creating metal mines...");
-// create large metal quarries
 createMines(
  [
   [new SimpleObject(oMetalLarge, 1,1, 0,4)]
@@ -298,7 +280,6 @@ createMines(
 
 RMS.SetProgress(65);
 
-// create decoration
 createDecoration
 (
  [[new SimpleObject(aDecorativeRock, 1,3, 0,1)],
@@ -313,7 +294,6 @@ createDecoration
 
 RMS.SetProgress(70);
 
-// create fish
 createFood
 (
  [
@@ -325,7 +305,6 @@ createFood
  [avoidClasses(clFood, 10), stayClasses(clWater, 5)]
 );
 
-// create animals
 createFood
 (
  [
@@ -341,7 +320,6 @@ createFood
  avoidClasses(clForest, 0, clPlayer, 8, clWater, 1, clFood, 10, clHill, 1)
 );
 
-// create fruits
 createFood
 (
  [
@@ -355,12 +333,10 @@ createFood
 
 RMS.SetProgress(90);
 
-// create straggler trees
 log("Creating straggler trees...");
 var types = [oDatePalm, oSDatePalm, oCarob, oFanPalm, oPoplar, oCypress];	// some variation
 createStragglerTrees(types, avoidClasses(clForest, 1, clWater, 2, clPlayer, 8, clMetal, 6, clHill, 1));
 
-// Set environment
 setSkySet("sunny");
 setSunColor(0.917, 0.828, 0.734);
 setWaterColor(0, 0.501961, 1);
@@ -377,5 +353,4 @@ setPPContrast(0.62);
 setPPSaturation(0.51);
 setPPBloom(0.12);
 
-// Export map data
 ExportMap();

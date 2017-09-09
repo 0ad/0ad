@@ -1,7 +1,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 //	passageMaker
 //
-//	Function for creating shallow water between two given points by changing the heiight of all tiles in
+//	Function for creating shallow water between two given points by changing the height of all tiles in
 //	the path with height less than or equal to "maxheight" to "height"
 //
 //	x1,z1: 	Starting point of path
@@ -127,7 +127,6 @@ function rndRiver(f, seed)
 	}
 	return rndRa;
 }
-
 
 /////////////////////////////////////////////////////////////////////////////////////////
 // createStartingPlayerEntities
@@ -353,7 +352,6 @@ function paintTileClassBasedOnHeight(minheight, maxheight, mode, tileclass)
 		}
 	}
 }
-
 
 function unPaintTileClassBasedOnHeight(minheight, maxheight, mode, tileclass)
 {
@@ -704,7 +702,6 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraint,
 			continue;
 		else
 			circles.push([cx, cz, radius]);
-
 
 		for (var ix = sx; ix <= lx; ++ix)
 		{

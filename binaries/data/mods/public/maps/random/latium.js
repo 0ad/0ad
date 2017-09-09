@@ -2,7 +2,6 @@ RMS.LoadLibrary("rmgen");
 
 const WATER_WIDTH = 0.1;
 
-// terrain textures
 const tOceanDepths = "medit_sea_depths";
 const tOceanRockDeep = "medit_sea_coral_deep";
 const tOceanRockShallow = "medit_rocks_wet";
@@ -24,7 +23,6 @@ const tGrassCliff = "medit_cliff_italia_grass";
 const tCliff = ["medit_cliff_italia", "medit_cliff_italia", "medit_cliff_italia_grass"];
 const tForestFloor = "medit_grass_wild";
 
-// gaia entities
 const oBeech = "gaia/flora_tree_euro_beech";
 const oBerryBush = "gaia/flora_bush_berry";
 const oCarob = "gaia/flora_tree_carob";
@@ -42,7 +40,6 @@ const oStoneLarge = "gaia/geology_stonemine_medit_quarry";
 const oStoneSmall = "gaia/geology_stone_mediterranean";
 const oMetalLarge = "gaia/geology_metal_mediterranean_slabs";
 
-// decorative props
 const aBushLargeDry = "actor|props/flora/bush_medit_la_dry.xml";
 const aBushLarge = "actor|props/flora/bush_medit_la.xml";
 const aBushMedDry = "actor|props/flora/bush_medit_me_dry.xml";
@@ -62,7 +59,6 @@ const pPineForest = [tForestFloor+TERRAIN_SEPARATOR+oPine, tGrass];
 const pPoplarForest = [tForestFloor+TERRAIN_SEPARATOR+oLombardyPoplar, tGrass];
 const pMainForest = [tForestFloor+TERRAIN_SEPARATOR+oCarob, tForestFloor+TERRAIN_SEPARATOR+oBeech, tGrass, tGrass];
 
-log("Initializing map...");
 InitMap();
 
 const numPlayers = getNumPlayers();
@@ -142,7 +138,6 @@ var noise4 = new Noise2D(scaleByMapSize(6, 24));
 var noise5 = new Noise2D(scaleByMapSize(11, 44));
 
 for (var ix = 0; ix <= mapSize; ix++)
-{
 	for (var iz = 0; iz <= mapSize; iz++)
 	{
 		var x = ix / (mapSize + 1.0);
@@ -156,13 +151,9 @@ for (var ix = 0; ix <= mapSize; ix++)
 
 		// add the rough shape of the water
 		if (x < WATER_WIDTH)
-		{
 			h = max(-16.0, -28.0*(WATER_WIDTH-x)/WATER_WIDTH);
-		}
 		else if (x > 1.0-WATER_WIDTH)
-		{
 			h = max(-16.0, -28.0*(x-(1.0-WATER_WIDTH))/WATER_WIDTH);
-		}
 		else
 		{
 			distToWater = (0.5 - WATER_WIDTH - abs(x-0.5));
@@ -205,11 +196,8 @@ for (var ix = 0; ix <= mapSize; ix++)
 			if (cliffNoise > 0)
 				h += 19 * min(cliffNoise, 0.045) / 0.045;
 		}
-
-		// set the height
 		setHeight(ix, iz, h);
 	}
-}
 RMS.SetProgress(15);
 
 log("Painting terrain...");
@@ -220,7 +208,6 @@ var noise9 = new Noise2D(scaleByMapSize(26, 104));
 var noise10 = new Noise2D(scaleByMapSize(50, 200));
 
 for (var ix = 0; ix < mapSize; ix++)
-{
 	for (var iz = 0; iz < mapSize; iz++)
 	{
 		var x = ix / (mapSize + 1.0);
@@ -327,9 +314,7 @@ for (var ix = 0; ix < mapSize; ix++)
 		{
 			var grassNoise = (noise8.get(x,z) + 0.6*noise9.get(x,z)) / 1.6;
 			if (grassNoise < 0.3)
-			{
 				t = (diffH > 1.2) ? tDirtCliff : tDirt;
-			}
 			else if (grassNoise < 0.34)
 			{
 				t = (diffH > 1.2) ? tGrassCliff : tGrassDry;
@@ -541,7 +526,6 @@ createObjectGroupsDeprecated(group, 0,
 	1.5 * numPlayers, 100
 );
 
-// Adjust environment
 setSkySet("sunny");
 setWaterColor(0.024,0.262,0.224);
 setWaterTint(0.133, 0.325,0.255);

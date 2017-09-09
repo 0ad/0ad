@@ -13,7 +13,6 @@ const tDirt = ["desert_dirt_rough", "desert_dirt_rough_2"];
 const tRoad = "desert_shore_stones";;
 const tRoadWild = "desert_grass_a_stones";;
 
-// gaia entities
 const oTamarix = "gaia/flora_tree_tamarix";
 const oPalm = "gaia/flora_tree_date_palm";
 const oPine = "gaia/flora_tree_aleppo_pine";
@@ -26,7 +25,6 @@ const oStoneLarge = "gaia/geology_stonemine_desert_quarry";
 const oStoneSmall = "gaia/geology_stone_desert_small";
 const oMetalLarge = "gaia/geology_metal_desert_slabs";
 
-// decorative props
 const aFlower1 = "actor|props/flora/decals_flowers_daisies.xml";
 const aWaterFlower = "actor|props/flora/water_lillies.xml";
 const aReedsA = "actor|props/flora/reeds_pond_lush_a.xml";
@@ -40,15 +38,11 @@ const aSand = "actor|particle/blowing_sand.xml";
 const pForestP = [tForestFloor2 + TERRAIN_SEPARATOR + oPalm, tForestFloor2];
 const pForestT = [tForestFloor1 + TERRAIN_SEPARATOR + oTamarix,tForestFloor2];
 
-log("Initializing map...");
-
 InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
 const mapArea = mapSize*mapSize;
-
-// create tile classes
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -67,8 +61,6 @@ for (var i = 0; i < numPlayers; i++)
 	playerIDs.push(i+1);
 }
 playerIDs = sortPlayers(playerIDs);
-
-// place players
 
 var playerX = new Array(numPlayers);
 var playerZ = new Array(numPlayers);
@@ -115,7 +107,6 @@ for (var i = 0; i < numPlayers; i++)
 	var painter = new LayeredPainter([tRoadWild, tRoad], [3]);
 	createArea(placer, painter, null);
 
-	// create starting units
 	placeCivDefaultEntities(fx, fz, id);
 
 	placeDefaultChicken(fx, fz, clBaseResource);
@@ -171,7 +162,6 @@ for (var i = 0; i < numPlayers; i++)
 
 RMS.SetProgress(10);
 
-// create bumps
 log("Creating bumps...");
 placer = new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1);
 painter = new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2);
@@ -182,7 +172,6 @@ createAreas(
 	scaleByMapSize(300, 800)
 );
 
-// create hills
 log("Creating hills...");
 placer = new ChainPlacer(1, floor(scaleByMapSize(4, 6)), floor(scaleByMapSize(16, 40)), 0.5);
 var terrainPainter = new LayeredPainter(
@@ -208,7 +197,6 @@ var totalTrees = scaleByMapSize(MIN_TREES, MAX_TREES);
 var numForest = totalTrees * P_FOREST;
 var numStragglers = totalTrees * (1.0 - P_FOREST);
 
-// create forests
 log("Creating forests...");
 var types = [
 	[[tMainDirt, tForestFloor2, pForestP], [tForestFloor2, pForestP]],
@@ -233,7 +221,6 @@ for (var i = 0; i < types.length; ++i)
 
 RMS.SetProgress(40);
 
-// create dirt patches
 log("Creating dirt patches...");
 var sizes = [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)];
 for (var i = 0; i < sizes.length; i++)
@@ -252,7 +239,6 @@ for (var i = 0; i < sizes.length; i++)
 }
 RMS.SetProgress(60);
 
-// create big patches
 log("Creating big patches...");
 var sizes = [scaleByMapSize(6, 30), scaleByMapSize(10, 50), scaleByMapSize(16, 70)];
 for (var i = 0; i < sizes.length; i++)
@@ -272,14 +258,13 @@ for (var i = 0; i < sizes.length; i++)
 RMS.SetProgress(70);
 
 log("Creating stone mines...");
-// create large stone quarries
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4), new RandomObject(aBushes, 2,4, 0,2)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clHill, 1, clGrass, 1)],
 	scaleByMapSize(2,8), 100
 );
 
-// create small stone quarries
+log("Creating small stone quarries...");
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3), new RandomObject(aBushes, 2,4, 0,2)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clHill, 1, clGrass, 1)],
@@ -287,14 +272,12 @@ createObjectGroupsDeprecated(group, 0,
 );
 
 log("Creating metal mines...");
-// create large metal quarries
 group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,4), new RandomObject(aBushes, 2,4, 0,2)], true, clMetal);
 createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clForest, 1, clPlayer, 10, clMetal, 10, clRock, 5, clHill, 1, clGrass, 1)],
 	scaleByMapSize(2,8), 100
 );
 
-// create small decorative rocks
 log("Creating small decorative rocks...");
 group = new SimpleGroup(
 	[new SimpleObject(aRock, 1,3, 0,1)],
@@ -306,8 +289,6 @@ createObjectGroupsDeprecated(
 	scaleByMapSize(16, 262), 50
 );
 
-
-//create bushes
 log("Creating bushes...");
 group = new SimpleGroup(
 	[new SimpleObject(aBushB, 1,2, 0,1), new SimpleObject(aBushA, 1,3, 0,2)],
@@ -318,10 +299,8 @@ createObjectGroupsDeprecated(
 	avoidClasses(clForest, 0, clPlayer, 0, clHill, 0),
 	scaleByMapSize(50, 500), 50
 );
-
 RMS.SetProgress(80);
 
-// create gazelle
 log("Creating gazelle...");
 group = new SimpleGroup(
 	[new SimpleObject(oGazelle, 5,7, 0,4)],
@@ -332,7 +311,6 @@ createObjectGroupsDeprecated(group, 0,
 	3 * numPlayers, 50
 );
 
-// create lions
 log("Creating lions...");
 group = new SimpleGroup(
 	[new SimpleObject(oLion, 2,3, 0,2)],
@@ -343,7 +321,6 @@ createObjectGroupsDeprecated(group, 0,
 	3 * numPlayers, 50
 );
 
-// create camels
 log("Creating camels...");
 group = new SimpleGroup(
 	[new SimpleObject(oCamel, 2,3, 0,2)],
@@ -353,12 +330,8 @@ createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clForest, 0, clPlayer, 1, clHill, 1, clFood, 20, clGrass, 2),
 	3 * numPlayers, 50
 );
-
-
-
 RMS.SetProgress(85);
 
-// create straggler trees
 log("Creating straggler trees...");
 var types = [oPalm, oTamarix, oPine];	// some variation
 var num = floor(numStragglers / types.length);
@@ -374,7 +347,6 @@ for (var i = 0; i < types.length; ++i)
 	);
 }
 
-// create inner straggler trees
 log("Creating straggler trees...");
 var types = [oPalm, oTamarix, oPine];	// some variation
 var num = floor(numStragglers / types.length);
@@ -390,7 +362,6 @@ for (var i = 0; i < types.length; ++i)
 	);
 }
 
-// Set environment
 setSkySet("sunny");
 setSunElevation(PI / 8);
 setSunRotation(randFloat(0, TWO_PI));
@@ -408,5 +379,4 @@ setPPContrast(0.65);
 setPPSaturation(0.42);
 setPPBloom(0.6);
 
-// Export map data
 ExportMap();

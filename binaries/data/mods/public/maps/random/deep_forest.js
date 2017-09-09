@@ -1,17 +1,13 @@
 RMS.LoadLibrary("rmgen");
 
-// initialize map
-log("Initializing map...");
 InitMap();
 
-// Setup tile classes
 var clPlayer = createTileClass();
 var clPath = createTileClass();
 var clHill = createTileClass();
 var clForest = createTileClass();
 var clBaseResource = createTileClass();
 
-// Setup Templates
 var templateStone = "gaia/geology_stone_temperate";
 var templateStoneMine = "gaia/geology_stonemine_temperate_quarry";
 var templateMetal = "gaia/geology_metal_temperate";
@@ -19,7 +15,6 @@ var templateMetalMine = "gaia/geology_metal_temperate_slabs";
 var startingResourcees = ["gaia/flora_tree_oak_large", "gaia/flora_bush_temperate", templateStoneMine,
 	"gaia/flora_bush_grapes", "gaia/flora_tree_apple", "gaia/flora_bush_berry", templateMetalMine, "gaia/flora_bush_badlands"];
 
-// Setup terrain
 var terrainWood = ['temp_grass_mossy|gaia/flora_tree_oak', 'temp_forestfloor_pine|gaia/flora_tree_pine', 'temp_mud_plants|gaia/flora_tree_dead',
 	'temp_plants_bog|gaia/flora_tree_oak_large', "temp_dirt_gravel_plants|gaia/flora_tree_aleppo_pine", 'temp_forestfloor_autumn|gaia/flora_tree_carob']; //'temp_forestfloor_autumn|gaia/flora_tree_fig'
 var terrainWoodBorder = ['temp_grass_plants|gaia/flora_tree_euro_beech', 'temp_grass_mossy|gaia/flora_tree_poplar', 'temp_grass_mossy|gaia/flora_tree_poplar_lombardy',
@@ -41,15 +36,12 @@ var terrainHillBorder = ["temp_highlands", "temp_highlands", "temp_highlands", "
 	"temp_highlands", "temp_highlands", "temp_highlands", "temp_cliff_b", "temp_dirt_gravel_plants",
 	"temp_highlands|gaia/fauna_goat"];
 
-
-// Setup map
 var mapSize = getMapSize();
 var mapRadius = mapSize/2;
 var playableMapRadius = mapRadius - 5;
 var mapCenterX = mapRadius;
 var mapCenterZ = mapRadius;
 
-// Setup players and bases
 var numPlayers = getNumPlayers();
 var baseRadius = 20;
 var minPlayerRadius = min(mapRadius-1.5*baseRadius, 5*mapRadius/8);
@@ -90,12 +82,14 @@ for (var i=0; i < numPlayers; i++)
 	var z = round(mapCenterZ + randFloat(minPlayerRadius, maxPlayerRadius)*sin(playerAngle[i]));
 	playerStartLocX[i] = x;
 	playerStartLocZ[i] = z;
-	// Place starting entities
+
 	placeCivDefaultEntities(x, z, i+1);
+
 	// Place base texture
 	var placer = new ClumpPlacer(2*baseRadius*baseRadius, 2/3, 1/8, 10, x, z);
 	var painter = [new LayeredPainter([terrainBaseBorder, terrainBase, terrainBaseCenter], [baseRadius/4, baseRadius/4]), paintClass(clPlayer)];
 	createArea(placer, painter);
+
 	// Place starting resources
 	var distToSL = 10;
 	var resStartAngle = playerAngle[i] + PI;
@@ -139,7 +133,8 @@ for (var i = 0; i < maxI; i++)
 		{
 			var x = mapCenterX;
 			var z = mapCenterZ;
-		};
+		}
+
 		if (j < numPlayers)
 		{
 			var targetX = playerStartLocX[j];
@@ -149,7 +144,8 @@ for (var i = 0; i < maxI; i++)
 		{
 			var targetX = mapCenterX;
 			var targetZ = mapCenterZ;
-		};
+		}
+
 		// Prepare path placement
 		var angle = getAngle(x, z, targetX, targetZ);
 		x += round(pathSucsessRadius*cos(angle));
@@ -216,16 +212,17 @@ for (var x = 0; x < mapSize; x++)
 {
 	for (var z = 0;z < mapSize;z++)
 	{
-		// Some variables
 		var radius = Math.pow(Math.pow(mapCenterX - x - 0.5, 2) + Math.pow(mapCenterZ - z - 0.5, 2), 1/2); // The 0.5 is a correction for the entities placed on the center of tiles
 		var minDistToSL = mapSize;
 		for (var i=0; i < numPlayers; i++)
 			minDistToSL = min(minDistToSL, getDistance(playerStartLocX[i], playerStartLocZ[i], x, z));
+
 		// Woods tile based
 		var tDensFactSL = max(min((minDistToSL - baseRadius) / baseRadius, 1), 0);
 		var tDensFactRad = abs((resourceRadius - radius) / resourceRadius);
 		var tDensFactEC = max(min((radius - radiusEC) / radiusEC, 1), 0);
 		var tDensActual = maxTreeDensity * tDensFactSL * tDensFactRad * tDensFactEC;
+
 		if (randBool(tDensActual) && radius < playableMapRadius)
 		{
 			if (tDensActual < randFloat(0, bushChance * maxTreeDensity))
@@ -241,15 +238,13 @@ for (var x = 0; x < mapSize; x++)
 				createArea(placer, painter, avoidClasses(clPath, 2, clHill, 1));
 			}
 		}
+
 		// General hight map
 		var hVarMiddleHill = mapSize/64 * (1+cos(3*PI/2 * radius/mapRadius));
 		var hVarHills = 5*(1+sin(x/10)*sin(z/10));
 		setHeight(x, z, getHeight(x, z) + hVarMiddleHill + hVarHills + 1);
 	}
 }
-
 RMS.SetProgress(95);
 
-
-// Export map data
 ExportMap();

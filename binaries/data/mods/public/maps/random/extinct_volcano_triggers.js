@@ -90,7 +90,6 @@ Trigger.prototype.DebugLog = function(txt)
 	print("DEBUG [" + time + "] " + txt + "\n");
 };
 
-
 Trigger.prototype.GarrisonWoodenTowers = function()
 {
 	for (let gaiaEnt of Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).GetEntitiesByPlayer(0))

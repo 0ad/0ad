@@ -13,14 +13,12 @@ const tTier2Terrain = g_Terrains.tier2Terrain;
 const tTier3Terrain = g_Terrains.tier3Terrain;
 const tTier4Terrain = g_Terrains.tier4Terrain;
 
-// gaia entities
 const oTree1 = g_Gaia.tree1;
 const oTree2 = g_Gaia.tree2;
 const oTree3 = g_Gaia.tree3;
 const oTree4 = g_Gaia.tree4;
 const oTree5 = g_Gaia.tree5;
 
-// decorative props
 const aGrass = g_Decoratives.grass;
 const aGrassShort = g_Decoratives.grassShort;
 const aRockLarge = g_Decoratives.rockLarge;
@@ -43,7 +41,6 @@ const triggerPointTreasures = [
 	"special/trigger_point_D"
 ];
 
-log("Initializing map...");
 InitMap();
 
 var numPlayers = getNumPlayers();

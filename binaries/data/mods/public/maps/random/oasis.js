@@ -1,6 +1,5 @@
 RMS.LoadLibrary("rmgen");
 
-//random terrain textures
 const tSand = ["desert_sand_dunes_100", "desert_dirt_cracks","desert_sand_smooth", "desert_dirt_rough", "desert_dirt_rough_2", "desert_sand_smooth"];
 const tDune = ["desert_sand_dunes_50"];
 const tBigDune = ["desert_sand_dunes_50"];
@@ -13,7 +12,6 @@ const tShoreBlend = "desert_sand_wet";
 const tShore = "dirta";
 const tWater = "desert_sand_wet";
 
-// gaia entities
 const ePalmShort = "gaia/flora_tree_cretan_date_palm_short";
 const ePalmTall = "gaia/flora_tree_cretan_date_palm_tall";
 const eBush = "gaia/flora_bush_grapes";
@@ -25,7 +23,6 @@ const eStoneMine = "gaia/geology_stonemine_desert_quarry";
 const eStoneMineSmall = "gaia/geology_stone_desert_small";
 const eMetalMine = "gaia/geology_metal_desert_slabs";
 
-// decorative props
 const aFlower1 = "actor|props/flora/decals_flowers_daisies.xml";
 const aWaterFlower = "actor|props/flora/water_lillies.xml";
 const aReedsA = "actor|props/flora/reeds_pond_lush_a.xml";
@@ -39,15 +36,11 @@ const pForestMain = [tForestFloor + TERRAIN_SEPARATOR + ePalmShort, tForestFloor
 const pOasisForestLight = [tForestFloor + TERRAIN_SEPARATOR + ePalmShort, tForestFloor + TERRAIN_SEPARATOR + ePalmTall, tForestFloor,tForestFloor,tForestFloor
 					,tForestFloor,tForestFloor,tForestFloor,tForestFloor];
 
-log("Initializing map...");
-
 InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
 const mapArea = mapSize*mapSize;
-
-// create tile classes
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -74,13 +67,10 @@ for (var ix = 0; ix < mapSize; ix++)
 // randomize player order
 var playerIDs = [];
 for (var i = 0; i < numPlayers; i++)
-{
 	playerIDs.push(i+1);
-}
 playerIDs = sortPlayers(playerIDs);
 
 // place players
-
 var playerX = new Array(numPlayers);
 var playerZ = new Array(numPlayers);
 var playerAngle = new Array(numPlayers);
@@ -100,7 +90,6 @@ for (var i = 0; i < numPlayers; i++)
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
 
-	// some constants
 	var radius = scaleByMapSize(15,25);
 	var elevation = 20;
 
@@ -121,7 +110,6 @@ for (var i = 0; i < numPlayers; i++)
 	var painter = new LayeredPainter([tRoadWild, tRoad], [1]);
 	createArea(placer, painter, null);
 
-	// create starting units
 	placeCivDefaultEntities(fx, fz, id);
 
 	placeDefaultChicken(fx, fz, clBaseResource);
@@ -204,10 +192,8 @@ for (var i = 0; i < numPlayers; i++)
 
 	// TODO: add a few random trees here and there
 }
-
 RMS.SetProgress(20);
 
-// create bumps
 log("Creating bumps...");
 placer = new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1);
 painter = new SmoothElevationPainter(ELEVATION_MODIFY, 4, 3);
@@ -228,7 +214,6 @@ createAreas( placer, [terrainPainter, painter],
 			avoidClasses(clPlayer, 10, clBaseResource, 6),
 			scaleByMapSize(15, 50)
 			);
-
 
 log("Creating actual oasis...");
 var size = mapSize * 0.2;
@@ -261,7 +246,6 @@ group = new SimpleGroup([new SimpleObject(ePalmTall, 1,1, 0,0),new SimpleObject(
 createObjectGroupsDeprecated(group, 0, stayClasses(clPassage,1), scaleByMapSize(60,250), 100  );
 
 log("Creating stone mines...");
-// create large stone quarries
 group = new SimpleGroup([new SimpleObject(eStoneMine, 1,1, 0,0),new SimpleObject(ePalmShort, 1,2, 3,3),new SimpleObject(ePalmTall, 0,1, 3,3)
 						 ,new SimpleObject(aBushB, 1,1, 2,2), new SimpleObject(aBushA, 0,2, 1,3)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
@@ -270,7 +254,6 @@ createObjectGroupsDeprecated(group, 0,
 );
 
 log("Creating metal mines...");
-// create large metal quarries
 group = new SimpleGroup([new SimpleObject(eMetalMine, 1,1, 0,0),new SimpleObject(ePalmShort, 1,2, 2,3),new SimpleObject(ePalmTall, 0,1, 2,2)
 						 ,new SimpleObject(aBushB, 1,1, 2,2), new SimpleObject(aBushA, 0,2, 1,3)], true, clMetal);
 createObjectGroupsDeprecated(group, 0,
@@ -284,7 +267,7 @@ group = new SimpleGroup( [new SimpleObject(aRock, 2,4, 0,2)], true, undefined );
 createObjectGroupsDeprecated(group, 0, avoidClasses(clWater, 3, clForest, 0, clPlayer, 10, clHill, 1, clFood, 20), 30, scaleByMapSize(10,50) );
 
 RMS.SetProgress(70);
-// create deer
+
 log("Creating Camels...");
 group = new SimpleGroup(
 	[new SimpleObject(eCamel, 1,2, 0,4)],
@@ -294,10 +277,8 @@ createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 3, clForest, 0, clPlayer, 10, clHill, 1, clFood, 20),
 	1 * numPlayers, 50
 );
-
 RMS.SetProgress(75);
 
-// create sheep
 log("Creating Gazelles...");
 group = new SimpleGroup(
 	[new SimpleObject(eGazelle, 2,4, 0,2)],
@@ -307,9 +288,8 @@ createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 3, clForest, 0, clPlayer, 10, clHill, 1, clFood, 20),
 	1 * numPlayers, 50
 );
-
 RMS.SetProgress(85);
-// create lions
+
 log("Creating Oasis Animals...");
 for (var p = 0; p < scaleByMapSize(5,30); p++)
 {
@@ -325,7 +305,6 @@ for (var p = 0; p < scaleByMapSize(5,30); p++)
 }
 /*
 var planetm = 8;
-//create small grass tufts
 log("Creating small grass tufts...");
 group = new SimpleGroup(
 	[new SimpleObject(rba1, 1,2, 0,1, -PI/8,PI/8)]
@@ -339,7 +318,6 @@ RMS.SetProgress(90);
 
 RMS.SetProgress(95);
 
-// create bushes
 log("Creating bushes...");
 group = new SimpleGroup(
 	[new SimpleObject(aBushB, 1,2, 0,2), new SimpleObject(aBushA, 2,4, 0,2)]
@@ -350,7 +328,6 @@ createObjectGroupsDeprecated(group, 0,
 );
 log ("Creating Sand blows and beautifications");
 for (var sandx = 0; sandx < mapSize; sandx += 4)
-{
 	for (var sandz = 0; sandz < mapSize; sandz += 4)
 	{
 		if (getHeight(sandx,sandz) > 3.4)
@@ -372,6 +349,7 @@ for (var sandx = 0; sandx < mapSize; sandx += 4)
 				group = new SimpleGroup( [new SimpleObject(aReedsA, 5,12, 0,2),new SimpleObject(aReedsB, 5,12, 0,2)], true, undefined, sandx,sandz );
 				createObjectGroup(group, 0);
 			}
+
 			if (getTileClass(clPassage).countInRadius(sandx,sandz,2,true) > 0) {
 				if (randBool(0.4))
 				{
@@ -386,7 +364,6 @@ for (var sandx = 0; sandx < mapSize; sandx += 4)
 			}
 		}
 	}
-}
 
 setSkySet("sunny");
 setSunColor(0.914,0.827,0.639);
@@ -399,7 +376,5 @@ setWaterType("clap");
 setWaterMurkiness(0.5);
 setTerrainAmbientColor(0.45, 0.5, 0.6);
 setUnitsAmbientColor(0.501961, 0.501961, 0.501961);
-
-// Export map data
 
 ExportMap();

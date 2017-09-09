@@ -1,6 +1,5 @@
 RMS.LoadLibrary("rmgen");
 
-// terrain textures
 const tGrass = ["medit_rocks_grass_shrubs", "medit_rocks_shrubs"];
 const tForestFloor = "medit_grass_field_dry";
 const tCliff = "medit_cliff_italia";
@@ -15,7 +14,6 @@ const tShoreBlend = "medit_sand";
 const tShore = "medit_sand";
 const tWater = "medit_sand";
 
-// gaia entities
 const oCarob = "gaia/flora_tree_carob";
 const oAleppoPine = "gaia/flora_tree_aleppo_pine";
 const oBerryBush = "gaia/flora_bush_berry";
@@ -28,8 +26,6 @@ const oMetalLarge = "gaia/geology_metal_mediterranean_slabs";
 const oWood = "gaia/special_treasure_wood";
 const oFood = "gaia/special_treasure_food_bin";
 
-
-// decorative props
 const aGrass = "actor|props/flora/grass_soft_large_tall.xml";
 const aGrassShort = "actor|props/flora/grass_soft_large.xml";
 const aRockLarge = "actor|geology/stone_granite_large.xml";
@@ -39,21 +35,15 @@ const aBushSmall = "actor|props/flora/bush_medit_sm.xml";
 const aCarob = "actor|flora/trees/carob.xml";
 const aAleppoPine = "actor|flora/trees/aleppo_pine.xml";
 
-
-
 // terrain + entity (for painting)
 const pForest1 = [tForestFloor + TERRAIN_SEPARATOR + oCarob, tForestFloor];
 const pForest2 = [tForestFloor + TERRAIN_SEPARATOR + oAleppoPine, tForestFloor];
-
-log("Initializing map...");
 
 InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
 const mapArea = mapSize*mapSize;
-
-// create tile classes
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -74,8 +64,6 @@ for (var i = 0; i < numPlayers; i++)
 }
 playerIDs = sortPlayers(playerIDs);
 
-// place players
-
 var playerX = new Array(numPlayers);
 var playerZ = new Array(numPlayers);
 var playerAngle = new Array(numPlayers);
@@ -93,7 +81,6 @@ for (var i = 0; i < numPlayers; i++)
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
 
-	// some constants
 	var radius = scaleByMapSize(15,25);
 	var cliffRadius = 2;
 	var elevation = 20;
@@ -115,7 +102,6 @@ for (var i = 0; i < numPlayers; i++)
 	var painter = new LayeredPainter([tRoadWild, tRoad], [1]);
 	createArea(placer, painter, null);
 
-	// create starting units
 	placeCivDefaultEntities(fx, fz, id);
 
 	placeDefaultChicken(fx, fz, clBaseResource);
@@ -172,7 +158,6 @@ for (var i = 0; i < numPlayers; i++)
 
 RMS.SetProgress(10);
 
-// create bumps
 createBumps(avoidClasses(clPlayer, 9));
 
 createMountains(tCliff, avoidClasses(clPlayer, 20, clHill, 8), clHill, scaleByMapSize(20, 120));
@@ -187,7 +172,6 @@ createForests(
 
 RMS.SetProgress(40);
 
-// create dirt patches
 log("Creating dirt patches...");
 createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
@@ -196,7 +180,6 @@ createLayeredPatches(
  avoidClasses(clForest, 0, clHill, 0, clDirt, 3, clPlayer, 10)
 );
 
-// create grass patches
 log("Creating grass patches...");
 createLayeredPatches(
  [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
@@ -208,7 +191,6 @@ createLayeredPatches(
 RMS.SetProgress(50);
 
 log("Creating stone mines...");
-// create stone quarries
 createMines(
  [
   [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
@@ -218,7 +200,6 @@ createMines(
 );
 
 log("Creating metal mines...");
-// create large metal quarries
 createMines(
  [
   [new SimpleObject(oMetalLarge, 1,1, 0,4)]
@@ -229,7 +210,6 @@ createMines(
 
 RMS.SetProgress(60);
 
-// create decoration
 createDecoration
 (
  [[new SimpleObject(aRockMedium, 1,3, 0,1)],
@@ -250,7 +230,6 @@ createDecoration
 
 RMS.SetProgress(75);
 
-// create animals
 createFood
 (
  [
@@ -263,7 +242,6 @@ createFood
  ]
 );
 
-// create fruits
 createFood
 (
  [
@@ -275,7 +253,6 @@ createFood
  avoidClasses(clForest, 0, clPlayer, 20, clHill, 1, clFood, 10)
 );
 
-// create food treasures
 log("Creating food treasures...");
 group = new SimpleGroup(
 	[new SimpleObject(oFood, 2,3, 0,2)],
@@ -286,7 +263,6 @@ createObjectGroupsDeprecated(group, 0,
 	3 * numPlayers, 50
 );
 
-// create wood treasures
 log("Creating food treasures...");
 group = new SimpleGroup(
 	[new SimpleObject(oWood, 2,3, 0,2)],
@@ -299,11 +275,9 @@ createObjectGroupsDeprecated(group, 0,
 
 RMS.SetProgress(80);
 
-// create straggler trees
 var types = [oCarob, oAleppoPine];	// some variation
 createStragglerTrees(types, avoidClasses(clForest, 1, clHill, 1, clPlayer, 10, clMetal, 6, clRock, 6, clTreasure, 4));
 
-// create hill trees
 log("Creating hill trees...");
 var types = [aCarob, aAleppoPine];	// some variation
 var num = floor(0.2 * g_numStragglerTrees / types.length);
@@ -327,5 +301,4 @@ setPPContrast(0.45);
 setPPSaturation(0.56);
 setPPBloom(0.1);
 
-// Export map data
 ExportMap();

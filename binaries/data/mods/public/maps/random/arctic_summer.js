@@ -39,7 +39,6 @@ var aRockMedium = "actor|geology/stone_granite_med.xml";
 
 const pForest = [tForestFloor + TERRAIN_SEPARATOR + oBush, tForestFloor + TERRAIN_SEPARATOR + oBush2, tForestFloor];
 
-log("Initializing map...");
 InitMap();
 
 const numPlayers = getNumPlayers();

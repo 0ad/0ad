@@ -42,7 +42,6 @@ const aShrub = "actor|props/flora/shrub_tropic_plant_flower.xml";
 const aFlower = "actor|props/flora/flower_bright.xml";
 const aPalm = "actor|props/flora/shrub_fanpalm.xml";
 
-log("Initializing map...");
 InitMap();
 
 const numPlayers = getNumPlayers();

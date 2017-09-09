@@ -19,7 +19,6 @@ const tShoreBlend = g_Terrains.shoreBlend;
 const tShore = g_Terrains.shore;
 const tWater = g_Terrains.water;
 
-// gaia entities
 const oTree1 = g_Gaia.tree1;
 const oTree2 = g_Gaia.tree2;
 const oTree3 = g_Gaia.tree3;
@@ -34,7 +33,6 @@ const oStoneSmall = g_Gaia.stoneSmall;
 const oMetalLarge = g_Gaia.metalLarge;
 const oWood = "gaia/special_treasure_wood";
 
-// decorative props
 const aGrass = g_Decoratives.grass;
 const aGrassShort = g_Decoratives.grassShort;
 const aReeds = g_Decoratives.reeds;
@@ -47,15 +45,12 @@ const aBushSmall = g_Decoratives.bushSmall;
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
-log("Initializing map...");
-
 InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
 const mapArea = mapSize*mapSize;
 
-// create tile classes
 var clPlayer = createTileClass();
 var clHill = createTileClass();
 var clForest = createTileClass();
@@ -92,7 +87,6 @@ for (var i = 0; i < numPlayers; i++)
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
 
-	// some constants
 	var radius = scaleByMapSize(15,25);
 	var shoreRadius = 4;
 	var elevation = 3;
@@ -122,7 +116,6 @@ for (var i = 0; i < numPlayers; i++)
 	var painter = new LayeredPainter([tRoadWild, tRoad], [1]);
 	createArea(placer, painter, null);
 
-	// create starting units
 	placeCivDefaultEntities(fx, fz, id, { 'iberWall': false });
 
 	placeDefaultChicken(fx, fz, clBaseResource);
@@ -357,7 +350,6 @@ createObjectGroupsDeprecated(group, 0,
 RMS.SetProgress(54);
 
 log("Creating metal mines...");
-// create large metal quarries
 group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,4)], true, clMetal);
 createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clForest, 1, clPlayer, 10, clMetal, 10, clRock, 5, clHill, 1), stayClasses(clLand, 7)],
@@ -365,7 +357,6 @@ createObjectGroupsDeprecated(group, 0,
 );
 RMS.SetProgress(58);
 
-// create small decorative rocks
 log("Creating small decorative rocks...");
 group = new SimpleGroup(
 	[new SimpleObject(aRockMedium, 1,3, 0,1)],
@@ -378,7 +369,6 @@ createObjectGroupsDeprecated(
 );
 RMS.SetProgress(62);
 
-// create large decorative rocks
 log("Creating large decorative rocks...");
 group = new SimpleGroup(
 	[new SimpleObject(aRockLarge, 1,2, 0,1), new SimpleObject(aRockMedium, 1,3, 0,2)],

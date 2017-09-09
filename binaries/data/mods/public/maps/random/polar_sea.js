@@ -11,7 +11,6 @@ var tRoadWild = "polar_ice_cracked";
 var tShore = "polar_ice_snow";
 var tWater = "polar_ice_c";
 
-// gaia entities
 var oArcticFox = "gaia/fauna_fox_arctic";
 var oWolf = "trigger/fauna_wolf_snow_attack";
 var oMuskox = "gaia/fauna_muskox";
@@ -24,12 +23,10 @@ var oStoneSmall = "gaia/geology_stone_alpine_a";
 var oMetalLarge = "gaia/geology_metal_desert_badlands_slabs";
 var oWood = "gaia/special_treasure_wood";
 
-// decorative props
 var aRockLarge = "actor|geology/stone_granite_med.xml";
 var aRockMedium = "actor|geology/stone_granite_med.xml";
 var aIceberg = "actor|props/special/eyecandy/iceberg.xml";
 
-log("Initializing map...");
 InitMap();
 
 const numPlayers = getNumPlayers();

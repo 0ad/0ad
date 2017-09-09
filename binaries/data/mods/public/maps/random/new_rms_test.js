@@ -1,13 +1,9 @@
 RMS.LoadLibrary("rmgen");
 
-log("Initializing map...");
-
 InitMap();
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
-
-// create tile classes
 
 var clPlayer = createTileClass();
 var clPath = createTileClass();
@@ -24,8 +20,6 @@ for (var i = 0; i < numPlayers; i++)
 	playerIDs.push(i+1);
 }
 playerIDs = sortPlayers(playerIDs);
-
-// place players
 
 var playerX = new Array(numPlayers);
 var playerZ = new Array(numPlayers);
@@ -50,11 +44,7 @@ for (var i=0; i < numPlayers; i++)
 	var ix = round(fx);
 	var iz = round(fz);
 
-	// create starting units
 	placeCivDefaultEntities(fx, fz, id);
 }
 
-
-
-// Export map data
 ExportMap();

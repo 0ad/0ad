@@ -11,7 +11,6 @@ const tCityTiles = "savanna_tile_a";
 const tShore = "savanna_riparian_bank";
 const tWater = "savanna_riparian_wet";
 
-// gaia entities
 const oBaobab = "gaia/flora_tree_baobab";
 const oBerryBush = "gaia/flora_bush_berry";
 const oGazelle = "gaia/fauna_gazelle";
@@ -25,11 +24,8 @@ const oZebra = "gaia/fauna_zebra";
 const oStoneSmall = "gaia/geology_stone_savanna_small";
 const oMetalLarge = "gaia/geology_metal_savanna_slabs";
 
-// decorative props
 const aBush = "actor|props/flora/bush_medit_sm_dry.xml";
 const aRock = "actor|geology/stone_savanna_med.xml";
-
-log("Initializing map...");
 
 InitMap();
 
@@ -37,7 +33,6 @@ var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
 var mapArea = mapSize*mapSize;
 
-// create tile classes
 var clPlayer = createTileClass();
 var clHill = createTileClass();
 var clForest = createTileClass();
@@ -57,8 +52,6 @@ for (var i = 0; i < numPlayers; i++)
 }
 playerIDs = sortPlayers(playerIDs);
 
-// place players
-
 var playerX = new Array(numPlayers);
 var playerZ = new Array(numPlayers);
 var playerAngle = new Array(numPlayers);
@@ -77,7 +70,6 @@ for (var i = 0; i < numPlayers; i++)
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
 
-	// some constants
 	var radius = scaleByMapSize(15,25);
 	var cliffRadius = 2;
 	var elevation = 20;
@@ -93,7 +85,6 @@ for (var i = 0; i < numPlayers; i++)
 	addToClass(ix-5, iz, clPlayer);
 	addToClass(ix, iz-5, clPlayer);
 
-	// create starting units
 	placeCivDefaultEntities(fx, fz, id);
 
 	placeDefaultChicken(fx, fz, clBaseResource);
@@ -153,7 +144,6 @@ for (var i = 0; i < numPlayers; i++)
 
 RMS.SetProgress(20);
 
-// create big patches
 log("Creating big patches...");
 var patches = [tGrass2, tGrass3];
 for (var i = 0; i < patches.length; i++)
@@ -168,7 +158,6 @@ for (var i = 0; i < patches.length; i++)
 	);
 }
 
-// create small patches
 log("Creating small patches...");
 var patches = [tDirt1, tDirt2, tDirt3];
 var sizes = [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)];
@@ -187,7 +176,6 @@ for (var i = 0; i < sizes.length; i++)
 	}
 }
 
-// create water holes
 log("Creating water holes...");
 placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), floor(scaleByMapSize(20, 60)), 1);
 var terrainPainter = new LayeredPainter(
@@ -202,7 +190,6 @@ createAreas(
 	scaleByMapSize(1, 3)
 );
 
-
 RMS.SetProgress(55);
 
 var playerConstraint = new AvoidTileClassConstraint(clPlayer, 30);
@@ -210,7 +197,6 @@ var minesConstraint = new AvoidTileClassConstraint(clRock, 25);
 var waterConstraint = new AvoidTileClassConstraint(clWater, 10);
 
 log("Creating stone mines...");
-// create stone mines
 for (var i = 0; i < scaleByMapSize(12,30); ++i)
 {
 	var mX = randIntExclusive(0, mapSize);
@@ -223,7 +209,6 @@ for (var i = 0; i < scaleByMapSize(12,30); ++i)
 }
 
 log("Creating metal mines...");
-// create large metal quarries
 group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,4)], true, clMetal);
 createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clPlayer, 20, clMetal, 10, clRock, 8, clWater, 4),
@@ -232,7 +217,6 @@ createObjectGroupsDeprecated(group, 0,
 
 RMS.SetProgress(65);
 
-// create small decorative rocks
 log("Creating small decorative rocks...");
 group = new SimpleGroup(
 	[new SimpleObject(aRock, 1,3, 0,3)],
@@ -246,7 +230,6 @@ createObjectGroupsDeprecated(
 
 RMS.SetProgress(70);
 
-// create gazelle
 log("Creating gazelle...");
 group = new SimpleGroup(
 	[new SimpleObject(oGazelle, 5,7, 0,4)],
@@ -257,7 +240,6 @@ createObjectGroupsDeprecated(group, 0,
 	scaleByMapSize(4,12), 50
 );
 
-// create zebra
 log("Creating zebra...");
 group = new SimpleGroup(
 	[new SimpleObject(oZebra, 5,7, 0,4)],
@@ -268,7 +250,6 @@ createObjectGroupsDeprecated(group, 0,
 	scaleByMapSize(4,12), 50
 );
 
-// create giraffe
 log("Creating giraffe...");
 group = new SimpleGroup(
 	[new SimpleObject(oGiraffe, 2,4, 0,4), new SimpleObject(oGiraffeInfant, 0,2, 0,4)],
@@ -279,7 +260,6 @@ createObjectGroupsDeprecated(group, 0,
 	scaleByMapSize(4,12), 50
 );
 
-// create elephants
 log("Creating elephants...");
 group = new SimpleGroup(
 	[new SimpleObject(oElephant, 2,4, 0,4), new SimpleObject(oElephantInfant, 0,2, 0,4)],
@@ -290,7 +270,6 @@ createObjectGroupsDeprecated(group, 0,
 	scaleByMapSize(4,12), 50
 );
 
-// create lions
 log("Creating lions...");
 group = new SimpleGroup(
 	[new SimpleObject(oLion, 0,1, 0,4), new SimpleObject(oLioness, 2,3, 0,4)],
@@ -301,7 +280,6 @@ createObjectGroupsDeprecated(group, 0,
 	scaleByMapSize(4,12), 50
 );
 
-// create berry bush
 log("Creating berry bush...");
 group = new SimpleGroup(
 	[new SimpleObject(oBerryBush, 5,7, 0,4)],
@@ -314,8 +292,6 @@ createObjectGroupsDeprecated(group, 0,
 
 RMS.SetProgress(85);
 
-
-// create straggler trees
 log("Creating straggler trees...");
 var num = scaleByMapSize(70, 500);
 group = new SimpleGroup(
@@ -327,8 +303,6 @@ createObjectGroupsDeprecated(group, 0,
 	num
 );
 
-
-// create large grass tufts
 log("Creating large grass tufts...");
 group = new SimpleGroup(
 	[new SimpleObject(aBush, 2,4, 0,1.8, -PI/8,PI/8)]

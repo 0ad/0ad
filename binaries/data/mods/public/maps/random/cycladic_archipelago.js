@@ -1,6 +1,5 @@
 RMS.LoadLibrary("rmgen");
 
-// terrain textures
 const tOceanDepths = "medit_sea_depths";
 const tOceanRockDeep = "medit_sea_coral_deep";
 const tOceanRockShallow = "medit_rocks_wet";
@@ -25,7 +24,6 @@ const tGrassCliff = "medit_cliff_italia_grass";
 const tCliff = ["medit_cliff_italia", "medit_cliff_italia", "medit_cliff_italia_grass"];
 const tForestFloor = "medit_forestfloor_a";
 
-// gaia entities
 const oBeech = "gaia/flora_tree_euro_beech";
 const oBerryBush = "gaia/flora_bush_berry";
 const oCarob = "gaia/flora_tree_carob";
@@ -47,7 +45,6 @@ const oMetalLarge = "gaia/geology_metal_mediterranean_slabs";
 const oShipwreck = "other/special_treasure_shipwreck";
 const oShipDebris = "other/special_treasure_shipwreck_debris";
 
-// decorative props
 const aBushLargeDry = "actor|props/flora/bush_medit_la_dry.xml";
 const aBushLarge = "actor|props/flora/bush_medit_la.xml";
 const aBushMedDry = "actor|props/flora/bush_medit_me_dry.xml";
@@ -60,14 +57,12 @@ const aRockLarge = "actor|geology/stone_granite_large.xml";
 const aRockMed = "actor|geology/stone_granite_med.xml";
 const aRockSmall = "actor|geology/stone_granite_small.xml";
 
-
 // terrain + entity (for painting)
 const pPalmForest = [tForestFloor+TERRAIN_SEPARATOR+oPalm, tGrass];
 const pPineForest = [tForestFloor+TERRAIN_SEPARATOR+oPine, tGrass];
 const pPoplarForest = [tForestFloor+TERRAIN_SEPARATOR+oLombardyPoplar, tGrass];
 const pMainForest = [tForestFloor+TERRAIN_SEPARATOR+oCarob, tForestFloor+TERRAIN_SEPARATOR+oBeech, tGrass, tGrass];
 
-log("Initializing map...");
 InitMap();
 
 const numPlayers = getNumPlayers();
@@ -133,7 +128,6 @@ for (var i = 0; i < numIslands; ++i)
 	var terrainPainter = new LayeredPainter([tOceanRockDeep, tOceanCoral], [5]);
 	createArea(placer, [terrainPainter, paintClass(clCoral)],avoidClasses(clCoral,0));
 }
-
 
 //create spoke islands
 //put down base resources and animals but do not populate

@@ -33,7 +33,6 @@ const tTier4Terrain = g_Terrains.tier4Terrain;
 const tShore = g_Terrains.shore;
 const tWater = g_Terrains.water;
 
-// gaia entities
 const oTree1 = g_Gaia.tree1;
 const oTree2 = g_Gaia.tree2;
 const oTree3 = g_Gaia.tree3;
@@ -51,7 +50,6 @@ const oShipwreck = "other/special_treasure_shipwreck";
 const oShipDebris = "other/special_treasure_shipwreck_debris";
 const oObelisk = "other/obelisk";
 
-// decorative props
 const aGrass = g_Decoratives.grass;
 const aGrassShort = g_Decoratives.grassShort;
 const aRockLarge = g_Decoratives.rockLarge;
@@ -60,13 +58,11 @@ const aRockMedium = g_Decoratives.rockMedium;
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
-log("Initializing map...");
 InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
 
-// create tile classes
 let clPlayer = createTileClass();
 let clHill = createTileClass();
 let clForest = createTileClass();
@@ -164,7 +160,6 @@ for (let i = 0; i < teams.length; ++i)
 		);
 		createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
 
-		// create starting units
 		placeCivDefaultEntities(fx, fz, teams[i][p], { "iberWall": false });
 	}
 

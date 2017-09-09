@@ -14,7 +14,6 @@ var tCitytiles = "savanna_tile_a";
 var tShore = "savanna_riparian_bank";
 var tWater = "savanna_riparian_wet";
 
-// gaia entities
 var oBaobab = "gaia/flora_tree_baobab";
 var oPalm = "gaia/flora_tree_senegal_date_palm";
 var oBerryBush = "gaia/flora_bush_berry";
@@ -34,13 +33,11 @@ var oFish = "gaia/fauna_fish";
 var oStoneSmall = "gaia/geology_stone_savanna_small";
 var oMetalLarge = "gaia/geology_metal_savanna_slabs";
 
-// decorative props
 var aBush = "actor|props/flora/bush_medit_sm_dry.xml";
 var aRock = "actor|geology/stone_savanna_med.xml";
 
 const pForest = [tForestFloor + TERRAIN_SEPARATOR + oPalm, tForestFloor];
 
-log("Initializing map...");
 InitMap();
 
 const numPlayers = getNumPlayers();

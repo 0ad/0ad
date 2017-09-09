@@ -22,7 +22,6 @@ const oMetalLarge = "gaia/geology_metal_savanna_slabs";
 const aBush = "actor|props/flora/bush_medit_sm_dry.xml";
 const aRock = "actor|geology/stone_savanna_med.xml";
 
-log("Initializing map...");
 InitMap();
 
 var numPlayers = getNumPlayers();

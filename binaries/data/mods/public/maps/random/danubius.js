@@ -119,7 +119,6 @@ const normalMapSize = 320;
 // Minimum distance from the map border to ship ungarrison points
 const ShorelineDistance = 15;
 
-log("Initializing map...");
 InitMap();
 
 const numPlayers = getNumPlayers();

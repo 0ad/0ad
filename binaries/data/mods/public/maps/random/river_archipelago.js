@@ -39,7 +39,6 @@ const pForestD = [tForestFloor + TERRAIN_SEPARATOR + oTree, tForestFloor];
 const pForestP1 = [tForestFloor + TERRAIN_SEPARATOR + oPalm1, tForestFloor];
 const pForestP2 = [tForestFloor + TERRAIN_SEPARATOR + oPalm2, tForestFloor];
 
-log("Initializing map...");
 InitMap();
 
 const numPlayers = getNumPlayers();

@@ -5,33 +5,22 @@ log('Initializing map...');
 
 InitMap();
 
-
-////////////////
-//
-//  Initializing
-//
-////////////////
-
-//sky
 setSkySet("fog");
 setFogFactor(0.35);
 setFogThickness(0.19);
 
-// water
 setWaterColor(0.501961, 0.501961, 0.501961);
 setWaterTint(0.25098, 0.501961, 0.501961);
 setWaterWaviness(0.5);
 setWaterType("clap");
 setWaterMurkiness(0.75);
 
-// post processing
 setPPSaturation(0.37);
 setPPContrast(0.4);
 setPPBrightness(0.4);
 setPPEffect("hdr");
 setPPBloom(0.4);
 
-// Setup tile classes
 var clPlayer = createTileClass();
 var clPath = createTileClass();
 var clHill = createTileClass();
@@ -42,7 +31,6 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clOpen = createTileClass();
 
-// Setup Templates
 var templateStone = 'gaia/geology_stone_alpine_a';
 var templateStoneMine = 'gaia/geology_stonemine_alpine_quarry';
 var templateMetal = 'actor|geology/stone_granite_med.xml';
@@ -58,8 +46,6 @@ var aBushSmall = 'actor|props/flora/bush_medit_sm.xml';
 var aReeds = 'actor|props/flora/reeds_pond_lush_b.xml';
 var oFish = "gaia/fauna_fish";
 
-
-// Setup terrain
 var terrainWood = ['alpine_forrestfloor|gaia/flora_tree_oak', 'alpine_forrestfloor|gaia/flora_tree_pine'];
 
 var terrainWoodBorder = ['new_alpine_grass_mossy|gaia/flora_tree_oak', 'alpine_forrestfloor|gaia/flora_tree_pine',
@@ -109,14 +95,12 @@ var terrainHillBorder = ['temp_highlands', 'temp_highlands', 'temp_highlands', '
 var tWater = ['dirt_brown_d'];
 var tWaterBorder = ['dirt_brown_d'];
 
-// Setup map
 var mapSize = getMapSize();
 var mapRadius = mapSize/2;
 var playableMapRadius = mapRadius - 5;
 var mapCenterX = mapRadius;
 var mapCenterZ = mapRadius;
 
-// Setup players and bases
 var numPlayers = getNumPlayers();
 var baseRadius = 15;
 var minPlayerRadius = min(mapRadius-1.5*baseRadius, 5*mapRadius/8);
@@ -129,21 +113,17 @@ var playerAngleStart = randFloat(0, 2*PI);
 var playerAngleAddAvrg = 2*PI / numPlayers;
 var playerAngleMaxOff = playerAngleAddAvrg/4;
 
-// Setup paths
 var pathSucsessRadius = baseRadius/2;
 var pathAngleOff = PI/2;
 var pathWidth = 10; // This is not really the path's thickness in tiles but the number of tiles in the clumbs of the path
 
-// Setup additional resources
-var resourceRadius = 2*mapRadius/3; // 3*mapRadius/8;
-//var resourcePerPlayer = [templateStone, templateMetalMine];
+var resourceRadius = 2/3 * mapRadius;
 
 // Setup woods
 // For large maps there are memory errors with too many trees.  A density of 256*192/mapArea works with 0 players.
 // Around each player there is an area without trees so with more players the max density can increase a bit.
 var maxTreeDensity = min(256 * (192 + 8 * numPlayers) / (mapSize * mapSize), 1); // Has to be tweeked but works ok
 var bushChance = 1/3; // 1 means 50% chance in deepest wood, 0.5 means 25% chance in deepest wood
-
 
 ////////////////
 //
@@ -169,7 +149,6 @@ HeightPlacer.prototype.place = function (constraint) {
     }
     return ret;
 };
-
 
 ////////////////
 // Set height limits and water level by map size
@@ -236,8 +215,6 @@ for (var i=0; i < numPlayers; i++)
 	playerStartLocX[i] = x;
 	playerStartLocZ[i] = z;
 
-	// Place starting entities
-
 	rectangularSmoothToHeight({"x": x,"y": z} , 20, 20, playerHeight, 0.8);
 
 	placeCivDefaultEntities(x, z, i+1, { 'iberWall': false });
@@ -281,7 +258,6 @@ paintTileClassBasedOnHeight(heightRange.min,  heighLimits[2], 1, clWater);
 
 RMS.SetProgress(60);
 
-// Place paths
 log("Placing paths...");
 
 var doublePaths = true;
@@ -365,7 +341,6 @@ for (var i = 0; i < maxI; i++)
 
 RMS.SetProgress(75);
 
-//create general decoration
 log("Creating decoration...");
 createDecoration
 (
@@ -387,7 +362,6 @@ createDecoration
 
 RMS.SetProgress(80);
 
-//create fish
 log("Growing fish...");
 createFood
 (
@@ -402,7 +376,6 @@ createFood
 
 RMS.SetProgress(85);
 
-// create reeds
 log("Planting reeds...");
 var types = [aReeds];	// some variation
 for (var i = 0; i < types.length; ++i)
@@ -416,7 +389,6 @@ for (var i = 0; i < types.length; ++i)
 
 RMS.SetProgress(90);
 
-// place trees
 log("Planting trees...");
 for (var x = 0; x < mapSize; x++)
 {

@@ -13,17 +13,15 @@ const tShoreBlend = "desert_shore_stones";
 const tShore = "dirta";
 const tWater = "desert_sand_wet";
 
-// gaia entities
 const oPoplar = "gaia/flora_tree_poplar_lombardy";
 const oBush = "gaia/flora_bush_temperate";
 const oBerryBush = "gaia/flora_bush_berry";
-const oRabbid = "gaia/fauna_rabbit";
+const oRabbit = "gaia/fauna_rabbit";
 const oSheep = "gaia/fauna_sheep";
 const oStoneLarge = "gaia/geology_stonemine_medit_quarry";
 const oStoneSmall = "gaia/geology_stone_mediterranean";
 const oMetalLarge = "gaia/geology_metal_mediterranean_slabs";
 
-// decorative props
 const aGrass = "actor|props/flora/grass_soft_small_tall.xml";
 const aGrassShort = "actor|props/flora/grass_soft_large.xml";
 const aRockLarge = "actor|geology/stone_granite_med.xml";
@@ -33,15 +31,12 @@ const aBushSmall = "actor|props/flora/bush_medit_sm.xml";
 
 const pForest = [tForestFloor + TERRAIN_SEPARATOR + oPoplar, tForestFloor];
 
-log("Initializing map...");
-
 InitMap();
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
 var mapArea = mapSize*mapSize;
 
-// create tile classes
 var clPlayer = createTileClass();
 var clHill = createTileClass();
 var clForest = createTileClass();
@@ -60,8 +55,6 @@ for (var i = 0; i < numPlayers; i++)
 }
 playerIDs = sortPlayers(playerIDs);
 
-// place players
-
 var playerX = new Array(numPlayers);
 var playerZ = new Array(numPlayers);
 var playerAngle = new Array(numPlayers);
@@ -79,7 +72,6 @@ for (var i = 0; i < numPlayers; i++)
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
 
-	// some constants
 	var radius = scaleByMapSize(15,25);
 	var cliffRadius = 2;
 	var elevation = 20;
@@ -101,7 +93,6 @@ for (var i = 0; i < numPlayers; i++)
 	var painter = new LayeredPainter([tRoadWild, tRoad], [1]);
 	createArea(placer, painter, null);
 
-	// create starting units
 	placeCivDefaultEntities(fx, fz, id);
 
 	placeDefaultChicken(fx, fz, clBaseResource);
@@ -159,7 +150,6 @@ for (var i = 0; i < numPlayers; i++)
 
 RMS.SetProgress(20);
 
-// create bumps
 log("Creating bumps...");
 placer = new ChainPlacer(1, floor(scaleByMapSize(4, 6)), floor(scaleByMapSize(2, 5)), 0.5);
 painter = new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2);
@@ -180,7 +170,6 @@ var totalTrees = scaleByMapSize(MIN_TREES, MAX_TREES);
 var numForest = totalTrees * P_FOREST;
 var numStragglers = totalTrees * (1.0 - P_FOREST);
 
-// create forests
 log("Creating forests...");
 var types = [[[tForestFloor, tGrass, pForest], [tForestFloor, pForest]]];	// some variation
 
@@ -202,10 +191,8 @@ for (var i = 0; i < types.length; ++i)
 	);
 }
 
-
 RMS.SetProgress(50);
 
-// create grass patches
 log("Creating grass patches...");
 createLayeredPatches(
  [scaleByMapSize(5, 48), scaleByMapSize(6, 84), scaleByMapSize(8, 128)],
@@ -216,7 +203,6 @@ createLayeredPatches(
  clDirt
 );
 
-// create dirt patches
 log("Creating dirt patches...");
 createLayeredPatches(
  [scaleByMapSize(5, 32), scaleByMapSize(6, 48), scaleByMapSize(7, 80)],
@@ -229,7 +215,6 @@ createLayeredPatches(
 
 RMS.SetProgress(55);
 
-// create big patches
 log("Creating big patches...");
 createLayeredPatches(
  [scaleByMapSize(10, 60), scaleByMapSize(15, 90), scaleByMapSize(20, 120)],
@@ -243,14 +228,13 @@ createLayeredPatches(
 RMS.SetProgress(55);
 
 log("Creating stone mines...");
-// create large stone quarries
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clForest, 1, clPlayer, 20, clRock, 10, clHill, 1),
 	scaleByMapSize(1,4), 100
 );
 
-// create small stone quarries
+log("Creating small stone quarries...");
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clForest, 1, clPlayer, 20, clRock, 10, clHill, 1),
@@ -258,7 +242,6 @@ createObjectGroupsDeprecated(group, 0,
 );
 
 log("Creating metal mines...");
-// create large metal quarries
 group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,4)], true, clMetal);
 createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clHill, 1),
@@ -267,7 +250,6 @@ createObjectGroupsDeprecated(group, 0,
 
 RMS.SetProgress(65);
 
-// create small decorative rocks
 log("Creating small decorative rocks...");
 group = new SimpleGroup(
 	[new SimpleObject(aRockMedium, 1,3, 0,1)],
@@ -279,8 +261,6 @@ createObjectGroupsDeprecated(
 	scaleByMapSize(16, 262), 50
 );
 
-
-// create large decorative rocks
 log("Creating large decorative rocks...");
 group = new SimpleGroup(
 	[new SimpleObject(aRockLarge, 1,2, 0,1), new SimpleObject(aRockMedium, 1,3, 0,2)],
@@ -294,10 +274,9 @@ createObjectGroupsDeprecated(
 
 RMS.SetProgress(70);
 
-// create rabbid
-log("Creating rabbid...");
+log("Creating rabbits...");
 group = new SimpleGroup(
-	[new SimpleObject(oRabbid, 5,7, 0,4)],
+	[new SimpleObject(oRabbit, 5,7, 0,4)],
 	true, clFood
 );
 createObjectGroupsDeprecated(group, 0,
@@ -305,7 +284,6 @@ createObjectGroupsDeprecated(group, 0,
 	6 * numPlayers, 50
 );
 
-// create berry bush
 log("Creating berry bush...");
 group = new SimpleGroup(
 	[new SimpleObject(oBerryBush, 5,7, 0,4)],
@@ -318,7 +296,6 @@ createObjectGroupsDeprecated(group, 0,
 
 RMS.SetProgress(75);
 
-// create sheep
 log("Creating sheep...");
 group = new SimpleGroup(
 	[new SimpleObject(oSheep, 2,3, 0,2)],
@@ -331,8 +308,6 @@ createObjectGroupsDeprecated(group, 0,
 
 RMS.SetProgress(85);
 
-
-// create straggler trees
 log("Creating straggler trees...");
 var types = [oBush, oPoplar];	// some variation
 var num = floor(numStragglers / types.length);
@@ -348,7 +323,6 @@ for (var i = 0; i < types.length; ++i)
 	);
 }
 
-// create large grass tufts
 log("Creating large grass tufts...");
 group = new SimpleGroup(
 	[new SimpleObject(aGrass, 2,4, 0,1.8, -PI/8,PI/8), new SimpleObject(aGrassShort, 3,6, 1.2,2.5, -PI/8,PI/8)]
@@ -360,7 +334,6 @@ createObjectGroupsDeprecated(group, 0,
 
 RMS.SetProgress(95);
 
-// create bushes
 log("Creating bushes...");
 group = new SimpleGroup(
 	[new SimpleObject(aBushMedium, 1,2, 0,2), new SimpleObject(aBushSmall, 2,4, 0,2)]

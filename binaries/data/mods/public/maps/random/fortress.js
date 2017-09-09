@@ -1,6 +1,5 @@
 RMS.LoadLibrary("rmgen");
 
-// terrain textures
 const tGrass = ["temp_grass_aut", "temp_grass_aut", "temp_grass_d_aut"];
 const tForestFloor = "temp_grass_aut";
 const tGrassA = "temp_grass_plants_aut";
@@ -16,7 +15,6 @@ const tShoreBlend = "temp_grass_plants_aut";
 const tShore = "temp_plants_bog_aut";
 const tWater = "temp_mud_a";
 
-// gaia entities
 const oBeech = "gaia/flora_tree_euro_beech_aut";
 const oOak = "gaia/flora_tree_oak_aut";
 const oPine = "gaia/flora_tree_pine";
@@ -32,7 +30,6 @@ const oFood = "gaia/special_treasure_food_bin";
 const oMetal = "gaia/special_treasure_metal";
 const oStone = "gaia/special_treasure_stone";
 
-// decorative props
 const aGrass = "actor|props/flora/grass_soft_dry_small_tall.xml";
 const aGrassShort = "actor|props/flora/grass_soft_dry_large.xml";
 const aRockLarge = "actor|geology/stone_granite_med.xml";
@@ -46,7 +43,6 @@ const pForestD = [tForestFloor + TERRAIN_SEPARATOR + oBeech, tForestFloor];
 const pForestO = [tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor];
 const pForestP = [tForestFloor + TERRAIN_SEPARATOR + oPine, tForestFloor];
 
-log("Initializing map...");
 InitMap();
 
 const numPlayers = getNumPlayers();
@@ -319,7 +315,6 @@ createDecoration
 );
 RMS.SetProgress(80);
 
-// create animals
 createFood
 (
  [
@@ -334,7 +329,6 @@ createFood
 );
 RMS.SetProgress(85);
 
-// create fruits
 createFood
 (
  [

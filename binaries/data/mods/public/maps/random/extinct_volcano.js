@@ -53,7 +53,6 @@ const pForestP = [
 	tForestFloor1
 ];
 
-log("Initializing map...");
 InitMap();
 
 var P_FOREST = 0.7;
@@ -65,7 +64,6 @@ var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
 var mapArea = mapSize * mapSize;
 
-// create tile classes
 var clPlayer = createTileClass();
 var clHill = createTileClass();
 var clFood = createTileClass();

@@ -21,7 +21,6 @@ const tShoreBlend = g_Terrains.shoreBlend;
 const tShore = g_Terrains.shore;
 const tWater = g_Terrains.water;
 
-// gaia entities
 const oTree1 = g_Gaia.tree1;
 const oTree2 = g_Gaia.tree2;
 const oTree3 = g_Gaia.tree3;
@@ -35,7 +34,6 @@ const oStoneLarge = g_Gaia.stoneLarge;
 const oStoneSmall = g_Gaia.stoneSmall;
 const oMetalLarge = g_Gaia.metalLarge;
 
-// decorative props
 const aGrass = g_Decoratives.grass;
 const aGrassShort = g_Decoratives.grassShort;
 const aReeds = g_Decoratives.reeds;
@@ -48,8 +46,6 @@ const aBushSmall = g_Decoratives.bushSmall;
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
-log("Initializing map...");
-
 InitMap();
 
 const numPlayers = getNumPlayers();
@@ -57,8 +53,6 @@ const mapSize = getMapSize();
 const mapArea = mapSize*mapSize;
 
 log(mapSize);
-
-// create tile classes
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -120,7 +114,6 @@ for (var i = 0; i < numPlayers; i++)
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
 
-	// some constants
 	var radius = scaleByMapSize(15,25);
 	var cliffRadius = 2;
 	var elevation = 20;
@@ -272,7 +265,6 @@ for (var m = 0; m < numPlayers*split; m++)
 	createArea(placer, [terrainPainter, elevationPainter], null);
 }
 
-
 var fx = fractionToTiles(0.5);
 var fz = fractionToTiles(0.5);
 ix = round(fx);
@@ -413,7 +405,6 @@ createObjectGroupsDeprecated(
 
 RMS.SetProgress(65);
 
-// create decoration
 var planetm = 1;
 
 if (currentBiome() == "tropic")
@@ -439,7 +430,6 @@ createDecoration
 
 RMS.SetProgress(70);
 
-// create animals
 createFood
 (
  [
@@ -453,7 +443,6 @@ createFood
  avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 20)
 );
 
-// create fruits
 createFood
 (
  [
@@ -465,10 +454,7 @@ createFood
  avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 10)
 );
 
-// create straggler trees
 var types = [oTree1, oTree2, oTree4, oTree3];	// some variation
 createStragglerTrees(types, avoidClasses(clWater, 5, clForest, 7, clHill, 1, clPlayer, 12, clMetal, 6, clRock, 6));
 
-
-// Export map data
 ExportMap();

@@ -21,7 +21,6 @@ const tShoreBlend = g_Terrains.shoreBlend;
 const tShore = g_Terrains.shore;
 const tWater = g_Terrains.water;
 
-// gaia entities
 const oTree1 = g_Gaia.tree1;
 const oTree2 = g_Gaia.tree2;
 const oTree3 = g_Gaia.tree3;
@@ -36,7 +35,6 @@ const oStoneSmall = g_Gaia.stoneSmall;
 const oMetalLarge = g_Gaia.metalLarge;
 const oWood = "gaia/special_treasure_wood";
 
-// decorative props
 const aGrass = g_Decoratives.grass;
 const aGrassShort = g_Decoratives.grassShort;
 const aReeds = g_Decoratives.reeds;
@@ -49,15 +47,11 @@ const aBushSmall = g_Decoratives.bushSmall;
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
-log("Initializing map...");
-
 InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
 const mapArea = mapSize*mapSize;
-
-// create tile classes
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -87,7 +81,6 @@ var needsAdditionalWood = false;
 //*****************************************************************************************************************************
 if (md == 2) //continent
 {
-
 	// randomize player order
 	var playerIDs = [];
 	for (var i = 0; i < numPlayers; i++)
@@ -97,7 +90,6 @@ if (md == 2) //continent
 	playerIDs = sortPlayers(playerIDs);
 
 	// place players
-
 	var playerX = new Array(numPlayers);
 	var playerZ = new Array(numPlayers);
 	var playerAngle = new Array(numPlayers);
@@ -189,7 +181,6 @@ for (var i = 0; i < numPlayers; i++)
 playerIDs = primeSortPlayers(sortPlayers(playerIDs));
 
 	// place players
-
 	var playerX = new Array(numPlayers);
 	var playerZ = new Array(numPlayers);
 	var playerAngle = new Array(numPlayers);
@@ -243,7 +234,6 @@ playerIDs = primeSortPlayers(sortPlayers(playerIDs));
 			playerX[i] = playerPos[i];
 		}
 	}
-
 
 	var WATER_WIDTH = randFloat(0.22,0.3)+scaleByMapSize(1,4)/20;
 	log("Creating sea");
@@ -348,7 +338,6 @@ playerIDs = primeSortPlayers(sortPlayers(playerIDs));
 		}
 	}
 
-
 	// linked
 	if (mdd1 == 1) //vertical
 	{
@@ -372,7 +361,6 @@ playerIDs = primeSortPlayers(sortPlayers(playerIDs));
 	var mdd2 = randIntInclusive(1,7);
 	if (mdd2 == 1)
 	{
-		// create islands
 		log("Creating islands...");
 		placer = new ChainPlacer(floor(scaleByMapSize(4, 7)), floor(scaleByMapSize(7, 10)), floor(scaleByMapSize(16, 40)), 0.07);
 		terrainPainter = new LayeredPainter(
@@ -389,7 +377,6 @@ playerIDs = primeSortPlayers(sortPlayers(playerIDs));
 	}
 	else if (mdd2 == 2)
 	{
-		// create extentions
 		log("Creating extentions...");
 		placer = new ClumpPlacer(randIntInclusive(scaleByMapSize(13,24),scaleByMapSize(24,45))*randIntInclusive(scaleByMapSize(13,24),scaleByMapSize(24,45)), 0.80, 0.1, 10);
 		terrainPainter = new LayeredPainter(
@@ -428,7 +415,6 @@ else if (md == 4) //central river
 	playerIDs = primeSortPlayers(sortPlayers(playerIDs));
 
 	// place players
-
 	var playerX = new Array(numPlayers);
 	var playerZ = new Array(numPlayers);
 	var playerAngle = new Array(numPlayers);
@@ -484,7 +470,6 @@ else if (md == 4) //central river
 		}
 	}
 
-	// create the main river
 	log("Creating the main river");
 
 	if (mdd1 == 2)
@@ -521,7 +506,6 @@ else if (md == 4) //central river
 	var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -4, 2);
 	createArea(placer, [painter, elevationPainter], avoidClasses(clPlayer, 8));
 
-	// create the shallows of the main river
 	log("Creating the shallows of the main river");
 
 	for (var i = 0; i <= randIntInclusive(1, scaleByMapSize(4,8)); i++)
@@ -547,7 +531,6 @@ else if (md == 4) //central river
 			createArea(placer, paintClass(clPlayer), null);
 		}
 
-		// create tributaries
 		log("Creating tributaries");
 
 		for (var i = 0; i <= randIntInclusive(8, (scaleByMapSize(12,20))); i++)
@@ -573,7 +556,6 @@ else if (md == 4) //central river
 					var placer = new PathPlacer(floor(point[0]), floor(point[1]), floor(fractionToTiles(0.5 + 0.49*cos(tang))), floor(fractionToTiles(0.5 + 0.49*sin(tang))), scaleByMapSize(10,20), 0.4, 3*(scaleByMapSize(1,4)), 0.1, 0.05);
 				else
 					var placer = new PathPlacer(floor(point[0]), floor(point[1]), floor(fractionToTiles(0.5 + 0.49*sin(tang))), floor(fractionToTiles(0.5 + 0.49*cos(tang))), scaleByMapSize(10,20), 0.4, 3*(scaleByMapSize(1,4)), 0.1, 0.05);
-
 
 				var terrainPainter = new LayeredPainter(
 					[tShore, tWater, tWater],		// terrains
@@ -612,8 +594,6 @@ else if (md == 5) //rivers and lake
 	}
 	playerIDs = sortPlayers(playerIDs);
 
-	// place players
-
 	var playerX = new Array(numPlayers);
 	var playerZ = new Array(numPlayers);
 	var playerAngle = new Array(numPlayers);
@@ -635,8 +615,6 @@ else if (md == 5) //rivers and lake
 		addToClass(ix-5, iz, clPlayer);
 		addToClass(ix, iz-5, clPlayer);
 	}
-
-
 
 	for (var ix = 0; ix < mapSize; ix++)
 	{
@@ -669,9 +647,7 @@ else if (md == 5) //rivers and lake
 		);
 		createArea(placer, [terrainPainter, elevationPainter, paintClass(clWater)], null);
 
-		// create shore jaggedness
 		log("Creating shore jaggedness...");
-
 		placer = new ChainPlacer(2, floor(scaleByMapSize(4, 6)), 3, 1);
 		terrainPainter = new LayeredPainter(
 			[tCliff, tHill],		// terrains
@@ -726,7 +702,6 @@ else if (md == 6) //edge seas
 	playerIDs = sortPlayers(playerIDs);
 
 	// place players
-
 	var playerX = new Array(numPlayers);
 	var playerZ = new Array(numPlayers);
 	var playerPos = new Array(numPlayers);
@@ -863,7 +838,6 @@ else if (md == 6) //edge seas
 		}
 	}
 
-	// create shore jaggedness
 	log("Creating shore jaggedness...");
 	placer = new ChainPlacer(2, floor(scaleByMapSize(4, 6)), 3, 1);
 	terrainPainter = new LayeredPainter(
@@ -894,7 +868,6 @@ else if (md == 6) //edge seas
 	var mdd3 = randIntInclusive(1,5);
 	if (mdd3 == 1)
 	{
-		// create islands
 		log("Creating islands...");
 		placer = new ChainPlacer(floor(scaleByMapSize(4, 7)), floor(scaleByMapSize(7, 10)), floor(scaleByMapSize(16, 40)), 0.07);
 		terrainPainter = new LayeredPainter(
@@ -911,7 +884,6 @@ else if (md == 6) //edge seas
 	}
 	else if (mdd3 == 2)
 	{
-		// create extentions
 		log("Creating extentions...");
 		placer = new ChainPlacer(floor(scaleByMapSize(4, 7)), floor(scaleByMapSize(7, 10)), floor(scaleByMapSize(16, 40)), 0.07);
 		terrainPainter = new LayeredPainter(
@@ -930,7 +902,6 @@ else if (md == 6) //edge seas
 //********************************************************************************************************
 else if (md == 7) //gulf
 {
-
 	for (var ix = 0; ix < mapSize; ix++)
 	{
 		for (var iz = 0; iz < mapSize; iz++)
@@ -952,7 +923,6 @@ else if (md == 7) //gulf
 	playerIDs = sortPlayers(playerIDs);
 
 	// place players
-
 	var playerX = new Array(numPlayers);
 	var playerZ = new Array(numPlayers);
 	var playerAngle = new Array(numPlayers);
@@ -1038,7 +1008,6 @@ else if (md == 7) //gulf
 //********************************************************************************************************
 else if (md == 8) //lakes
 {
-
 	// randomize player order
 	var playerIDs = [];
 	for (var i = 0; i < numPlayers; i++)
@@ -1048,7 +1017,6 @@ else if (md == 8) //lakes
 	playerIDs = sortPlayers(playerIDs);
 
 	// place players
-
 	var playerX = new Array(numPlayers);
 	var playerZ = new Array(numPlayers);
 	var playerAngle = new Array(numPlayers);
@@ -1095,9 +1063,7 @@ else if (md == 8) //lakes
 	var chosenPoint;
 	var lakeAreaLen;
 
-	// create lakes
 	log("Creating lakes...");
-
 	var numLakes = scaleByMapSize(5, 16);
 	for (var i = 0; i < numLakes; ++i)
 	{
@@ -1145,8 +1111,6 @@ else if (md == 9) //passes
 	}
 	playerIDs = sortPlayers(playerIDs);
 
-	// place players
-
 	var playerX = new Array(numPlayers);
 	var playerZ = new Array(numPlayers);
 	var playerAngle = new Array(numPlayers);
@@ -1169,7 +1133,6 @@ else if (md == 9) //passes
 		}
 	}
 
-	//create ranges
 	log ("Creating ranges...");
 	for (var m = 0; m < numPlayers; m++)
 	{
@@ -1248,8 +1211,6 @@ else if (md == 10) //lowlands
 	}
 	playerIDs = sortPlayers(playerIDs);
 
-	// place players
-
 	var playerX = new Array(numPlayers);
 	var playerZ = new Array(numPlayers);
 	var playerAngle = new Array(numPlayers);
@@ -1271,7 +1232,6 @@ else if (md == 10) //lowlands
 				setHeight(ix, iz, 30);
 		}
 	}
-
 
 	var radius = scaleByMapSize(18,32);
 	var cliffRadius = 2;
@@ -1372,8 +1332,6 @@ else //mainland
 	}
 	playerIDs = sortPlayers(playerIDs);
 
-	// place players
-
 	var playerX = new Array(numPlayers);
 	var playerZ = new Array(numPlayers);
 	var playerAngle = new Array(numPlayers);
@@ -1413,7 +1371,6 @@ for (var i = 0; i < numPlayers; i++)
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
 
-	// some constants
 	var radius = scaleByMapSize(17,29);
 	var shoreRadius = 4;
 	var elevation = 3;
@@ -1425,9 +1382,7 @@ for (var i = 0; i < numPlayers; i++)
 	var ix = round(fx);
 	var iz = round(fz);
 
-	// create starting units
 	placeCivDefaultEntities(fx, fz, id);
-
 	placeDefaultChicken(fx, fz, clBaseResource);
 
 	// create berry bushes
@@ -1507,7 +1462,6 @@ for (var i = 0; i < numPlayers; i++)
 	createArea(placer, [painter, paintClass(clPlayer)], null);
 }
 
-// create bumps
 log("Creating bumps...");
 placer = new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1);
 painter = new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2);
@@ -1518,7 +1472,6 @@ createAreas(
 	randIntInclusive(0,scaleByMapSize(200, 400))
 );
 
-// create hills
 log("Creating hills...");
 placer = new ChainPlacer(1, floor(scaleByMapSize(4, 6)), floor(scaleByMapSize(16, 40)), 0.5);
 terrainPainter = new LayeredPainter(
@@ -1557,7 +1510,6 @@ var totalTrees = scaleByMapSize(MIN_TREES, MAX_TREES);
 var numForest = totalTrees * P_FOREST;
 var numStragglers = totalTrees * (1.0 - P_FOREST);
 
-// create forests
 log("Creating forests...");
 var types = [
 	[[tForestFloor2, tMainTerrain, pForest1], [tForestFloor2, pForest1]],
@@ -1585,7 +1537,6 @@ if (currentBiome() != "savanna")
 }
 
 RMS.SetProgress(50);
-// create dirt patches
 log("Creating dirt patches...");
 var sizes = [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)];
 var numb = 1;
@@ -1606,7 +1557,6 @@ for (var i = 0; i < sizes.length; i++)
 	);
 }
 
-// create grass patches
 log("Creating grass patches...");
 var sizes = [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)];
 for (var i = 0; i < sizes.length; i++)
@@ -1622,16 +1572,14 @@ for (var i = 0; i < sizes.length; i++)
 }
 RMS.SetProgress(55);
 
-
 log("Creating stone mines...");
-// create large stone quarries
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clForest, 1, clPlayer, 20, clRock, 10, clHill, 1), stayClasses(clLand, 4)],
 	randIntInclusive(scaleByMapSize(2,9),scaleByMapSize(9,40)), 100
 );
 
-// create small stone quarries
+log("Creating small stone quarries...");
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clForest, 1, clPlayer, 20, clRock, 10, clHill, 1), stayClasses(clLand, 4)],
@@ -1639,7 +1587,6 @@ createObjectGroupsDeprecated(group, 0,
 );
 
 log("Creating metal mines...");
-// create large metal quarries
 group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,4)], true, clMetal);
 createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clHill, 1), stayClasses(clLand, 4)],
@@ -1648,7 +1595,6 @@ createObjectGroupsDeprecated(group, 0,
 
 RMS.SetProgress(65);
 
-// create small decorative rocks
 log("Creating small decorative rocks...");
 group = new SimpleGroup(
 	[new SimpleObject(aRockMedium, 1,3, 0,1)],
@@ -1660,8 +1606,6 @@ createObjectGroupsDeprecated(
 	scaleByMapSize(16, 262), 50
 );
 
-
-// create large decorative rocks
 log("Creating large decorative rocks...");
 group = new SimpleGroup(
 	[new SimpleObject(aRockLarge, 1,2, 0,1), new SimpleObject(aRockMedium, 1,3, 0,2)],
@@ -1672,10 +1616,8 @@ createObjectGroupsDeprecated(
 	[avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0), stayClasses(clLand, 4)],
 	scaleByMapSize(8, 131), 50
 );
-
 RMS.SetProgress(70);
 
-// create deer
 log("Creating deer...");
 group = new SimpleGroup(
 	[new SimpleObject(oMainHuntableAnimal, 5,7, 0,4)],
@@ -1686,7 +1628,6 @@ createObjectGroupsDeprecated(group, 0,
 	randIntInclusive(numPlayers+3, 5*numPlayers+4), 50
 );
 
-// create berry bush
 log("Creating berry bush...");
 group = new SimpleGroup(
 	[new SimpleObject(oFruitBush, 5,7, 0,4)],
@@ -1696,10 +1637,8 @@ createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clWater, 0, clForest, 0, clPlayer, 20, clHill, 1, clFood, 20), stayClasses(clLand, 4)],
 	randIntInclusive(1, 4) * numPlayers + 2, 50
 );
-
 RMS.SetProgress(75);
 
-// create sheep
 log("Creating sheep...");
 group = new SimpleGroup(
 	[new SimpleObject(oSecondaryHuntableAnimal, 2,3, 0,2)],
@@ -1710,7 +1649,6 @@ createObjectGroupsDeprecated(group, 0,
 	randIntInclusive(numPlayers+3, 5*numPlayers+4), 50
 );
 
-// create fish
 log("Creating fish...");
 group = new SimpleGroup(
 	[new SimpleObject(oFish, 2,3, 0,2)],
@@ -1720,11 +1658,8 @@ createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clLand, 5, clForest, 0, clPlayer, 0, clHill, 0, clFood, 20),
 	randIntInclusive(15, 40) * numPlayers, 60
 );
-
 RMS.SetProgress(85);
 
-
-// create straggler trees
 log("Creating straggler trees...");
 var types = [oTree1, oTree2, oTree4, oTree3];	// some variation
 var num = floor(numStragglers / types.length);
@@ -1744,7 +1679,6 @@ var planetm = 1;
 if (currentBiome() == "tropic")
 	planetm = 8;
 
-//create small grass tufts
 log("Creating small grass tufts...");
 group = new SimpleGroup(
 	[new SimpleObject(aGrassShort, 1,2, 0,1, -PI/8,PI/8)]
@@ -1753,10 +1687,8 @@ createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clWater, 2, clHill, 2, clPlayer, 2, clDirt, 0), stayClasses(clLand, 4)],
 	planetm * scaleByMapSize(13, 200)
 );
-
 RMS.SetProgress(90);
 
-// create large grass tufts
 log("Creating large grass tufts...");
 group = new SimpleGroup(
 	[new SimpleObject(aGrass, 2,4, 0,1.8, -PI/8,PI/8), new SimpleObject(aGrassShort, 3,6, 1.2,2.5, -PI/8,PI/8)]
@@ -1765,10 +1697,8 @@ createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clWater, 3, clHill, 2, clPlayer, 2, clDirt, 1, clForest, 0), stayClasses(clLand, 4)],
 	planetm * scaleByMapSize(13, 200)
 );
-
 RMS.SetProgress(95);
 
-// create shallow flora
 log("Creating shallow flora...");
 group = new SimpleGroup(
 	[new SimpleObject(aLillies, 1,2, 0,2), new SimpleObject(aReeds, 2,4, 0,2)]
@@ -1778,7 +1708,6 @@ createObjectGroupsDeprecated(group, 0,
 	60 * scaleByMapSize(13, 200), 80
 );
 
-// create bushes
 log("Creating bushes...");
 group = new SimpleGroup(
 	[new SimpleObject(aBushMedium, 1,2, 0,2), new SimpleObject(aBushSmall, 2,4, 0,2)]
@@ -1792,5 +1721,4 @@ setSkySet(pickRandom(["cirrus", "cumulus", "sunny", "sunny 1", "mountainous", "s
 setSunRotation(randFloat(0, TWO_PI));
 setSunElevation(randFloat(PI/ 5, PI / 3));
 
-// Export map data
 ExportMap();

@@ -1,6 +1,5 @@
 RMS.LoadLibrary("rmgen");
 
-// terrain textures
 const tCity = "desert_city_tile";
 const tCityPlaza = "desert_city_tile_plaza";
 const tSand = "desert_dirt_rough";
@@ -16,7 +15,6 @@ const tDirtCracks = "desert_dirt_cracks";
 const tShore = "desert_shore_stones";
 const tWaterDeep = "desert_shore_stones_wet";
 
-// gaia entities
 const oBerryBush = "gaia/flora_bush_grapes";
 const oCamel = "gaia/fauna_camel";
 const oFish = "gaia/fauna_fish";
@@ -30,7 +28,6 @@ const oMetalLarge = "gaia/geology_metal_desert_slabs";
 const oDatePalm = "gaia/flora_tree_date_palm";
 const oSDatePalm = "gaia/flora_tree_senegal_date_palm";
 
-// decorative props
 const aBush1 = "actor|props/flora/bush_desert_a.xml";
 const aBush2 = "actor|props/flora/bush_desert_dry_a.xml";
 const aBush3 = "actor|props/flora/bush_dry_a.xml";
@@ -42,7 +39,6 @@ const aDecorativeRock = "actor|geology/stone_desert_med.xml";
 const pForest = [tForestFloor + TERRAIN_SEPARATOR + oDatePalm, tForestFloor + TERRAIN_SEPARATOR + oSDatePalm, tForestFloor];
 const pForestOasis = [tGrass + TERRAIN_SEPARATOR + oDatePalm, tGrass + TERRAIN_SEPARATOR + oSDatePalm, tGrass];
 
-log("Initializing map...");
 InitMap();
 
 const numPlayers = getNumPlayers();
@@ -107,7 +103,6 @@ for (var i = 0; i < numPlayers; i++)
 	var painter = new LayeredPainter([tCity, tCityPlaza], [3]);
 	createArea(placer, painter, null);
 
-	// create starting units
 	placeCivDefaultEntities(fx, fz, id);
 
 	placeDefaultChicken(fx, fz, clBaseResource);
@@ -331,7 +326,6 @@ var totalTrees = scaleByMapSize(MIN_TREES, MAX_TREES);
 var numForest = totalTrees * P_FOREST;
 var numStragglers = totalTrees * (1.0 - P_FOREST);
 
-// create forests
 log("Creating forests...");
 var num = scaleByMapSize(10,30);
 placer = new ClumpPlacer(numForest / num, 0.15, 0.1, 0.5);

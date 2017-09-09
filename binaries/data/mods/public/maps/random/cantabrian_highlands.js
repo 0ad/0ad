@@ -1,6 +1,5 @@
 RMS.LoadLibrary("rmgen");
 
-// terrain textures
 const tGrass = ["temp_grass", "temp_grass", "temp_grass_d"];
 const tGrassPForest = "temp_plants_bog";
 const tGrassDForest = "temp_plants_bog";
@@ -18,7 +17,6 @@ const tShoreBlend = "temp_grass_plants";
 const tShore = "temp_plants_bog";
 const tWater = "temp_mud_a";
 
-// gaia entities
 const oOak = "gaia/flora_tree_oak";
 const oOakLarge = "gaia/flora_tree_oak_large";
 const oApple = "gaia/flora_tree_apple";
@@ -32,7 +30,6 @@ const oStoneLarge = "gaia/geology_stonemine_temperate_quarry";
 const oStoneSmall = "gaia/geology_stone_temperate";
 const oMetalLarge = "gaia/geology_metal_temperate_slabs";
 
-// decorative props
 const aGrass = "actor|props/flora/grass_soft_large_tall.xml";
 const aGrassShort = "actor|props/flora/grass_soft_large.xml";
 const aReeds = "actor|props/flora/reeds_pond_lush_a.xml";
@@ -46,7 +43,6 @@ const aBushSmall = "actor|props/flora/bush_medit_sm.xml";
 const pForestD = [tGrassDForest + TERRAIN_SEPARATOR + oOak, tGrassDForest + TERRAIN_SEPARATOR + oOakLarge, tGrassDForest];
 const pForestP = [tGrassPForest + TERRAIN_SEPARATOR + oPine, tGrassPForest + TERRAIN_SEPARATOR + oAleppoPine, tGrassPForest];
 
-log("Initializing map...");
 InitMap();
 
 var numPlayers = getNumPlayers();
@@ -88,7 +84,6 @@ for (var i = 0; i < numPlayers; i++)
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
 
-	// some constants
 	var radius = scaleByMapSize(15,25);
 	var cliffRadius = 2;
 	var elevation = 20;
@@ -133,7 +128,6 @@ for (var i = 0; i < numPlayers; i++)
 	var painter = new LayeredPainter([tRoadWild, tRoad], [1]);
 	createArea(placer, painter, null);
 
-	// create starting units
 	placeCivDefaultEntities(fx, fz, id, { 'iberWall': false });
 
 	placeDefaultChicken(fx, fz, clBaseResource);

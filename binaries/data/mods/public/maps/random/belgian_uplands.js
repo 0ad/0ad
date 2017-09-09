@@ -6,13 +6,10 @@ timeArray.push(Date.now());
 RMS.LoadLibrary("rmgen");
 RMS.LoadLibrary("heightmap");
 
-log("Initializing map...");
-
 InitMap();
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
-
 
 // Function to apply a heightmap
 function setReliefmap(reliefmap)
@@ -22,7 +19,6 @@ function setReliefmap(reliefmap)
 		for (var y = 0; y <= mapSize; y++)
 			setHeight(x, y, reliefmap[x][y]);
 }
-
 
 // Set target min and max height depending on map size to make average stepness the same on all map sizes
 var heightRange = {"min": MIN_HEIGHT * mapSize / 8192, "max": MAX_HEIGHT * mapSize / 8192};
@@ -35,7 +31,6 @@ if (mapSize < 200) // Sink the waterlevel on tiny maps to ensure enough space
 var waterHeight = -MIN_HEIGHT + heightRange.min + averageWaterCoverage * (heightRange.max - heightRange.min);
 var waterHeightAdjusted = waterHeight + MIN_HEIGHT;
 setWaterHeight(waterHeight);
-
 
 //////////
 // Prepare terrain texture by height placement
@@ -100,7 +95,6 @@ var minTerrainDistToBorder = 3;
 // Time check 1
 timeArray.push(Date.now());
 RMS.SetProgress(5);
-
 
 // START THE GIANT WHILE LOOP:
 // - Generate Heightmap
@@ -223,7 +217,7 @@ while (!goodStartPositionsFound)
 	// Find a good start position derivation
 	if (enoughTiles)
 	{
-		// Get some random start location derivations. NOTE: Itterating over all possible derivations is just to much (valid points ** numPlayers)
+		// Get some random start location derivations. NOTE: Iterating over all possible derivations is just too much (valid points * numPlayers)
 		var maxTries = 100000; // floor(800000 / (Math.pow(numPlayers, 2) / 2));
 		var possibleDerivations = [];
 		for (var i = 0; i < maxTries; i++)
@@ -276,7 +270,6 @@ while (!goodStartPositionsFound)
 // Time check 2
 timeArray.push(Date.now());
 RMS.SetProgress(60);
-
 
 ////////
 // Paint terrain by height and add props
@@ -406,7 +399,6 @@ for(var x = minTerrainDistToBorder; x < mapSize - minTerrainDistToBorder; x++)
 timeArray.push(Date.now());
 RMS.SetProgress(90);
 
-
 ////////
 // Place players and start resources
 ////////
@@ -437,8 +429,6 @@ for (var p = 0; p < numPlayers; p++)
 	}
 }
 
-
-// Export map data
 ExportMap();
 
 // Time check 7

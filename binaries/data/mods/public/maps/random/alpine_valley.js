@@ -67,17 +67,14 @@ else
 	var aBushSmall = "actor|props/flora/bush_medit_sm_dry.xml";
 }
 
-//other constants
 const pForest = [tForestFloor + TERRAIN_SEPARATOR + oPine, tForestFloor];
 
-log("Initializing map...");
 InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
 const mapArea = mapSize*mapSize;
 
-// create tile classes
 var clPlayer = createTileClass();
 var clHill = createTileClass();
 var clForest = createTileClass();
@@ -122,7 +119,6 @@ for (var i = 0; i < numPlayers; i++)
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
 
-	// some constants
 	var radius = scaleByMapSize(15,25);
 	var cliffRadius = 2;
 	var elevation = 20;

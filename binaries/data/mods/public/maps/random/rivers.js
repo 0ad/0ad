@@ -23,7 +23,6 @@ if (currentBiome() == "tropic")
 	tShore = "tropic_dirt_b_plants";
 	tWater = "tropic_dirt_b";
 }
-// gaia entities
 const oTree1 = g_Gaia.tree1;
 const oTree2 = g_Gaia.tree2;
 const oTree3 = g_Gaia.tree3;
@@ -37,7 +36,6 @@ const oStoneLarge = g_Gaia.stoneLarge;
 const oStoneSmall = g_Gaia.stoneSmall;
 const oMetalLarge = g_Gaia.metalLarge;
 
-// decorative props
 const aGrass = g_Decoratives.grass;
 const aGrassShort = g_Decoratives.grassShort;
 const aReeds = g_Decoratives.reeds;
@@ -50,15 +48,11 @@ const aBushSmall = g_Decoratives.bushSmall;
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
-log("Initializing map...");
-
 InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
 const mapArea = mapSize*mapSize;
-
-// create tile classes
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -103,13 +97,10 @@ createArea(placer, [terrainPainter, elevationPainter, paintClass(clWater)], null
 // randomize player order
 var playerIDs = [];
 for (var i = 0; i < numPlayers; i++)
-{
 	playerIDs.push(i+1);
-}
 playerIDs = sortPlayers(playerIDs);
 
 // place players
-
 var playerX = new Array(numPlayers);
 var playerZ = new Array(numPlayers);
 var playerAngle = new Array(numPlayers);
@@ -127,7 +118,6 @@ for (var i = 0; i < numPlayers; i++)
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
 
-	// some constants
 	var radius = scaleByMapSize(15,25);
 	var cliffRadius = 2;
 	var elevation = 20;
@@ -149,7 +139,6 @@ for (var i = 0; i < numPlayers; i++)
 	var painter = new LayeredPainter([tRoadWild, tRoad], [1]);
 	createArea(placer, painter, null);
 
-	// create starting units
 	placeCivDefaultEntities(fx, fz, id);
 
 	placeDefaultChicken(fx, fz, clBaseResource);
@@ -168,9 +157,8 @@ for (var i = 0; i < numPlayers; i++)
 	// create metal mine
 	var mAngle = bbAngle;
 	while(abs(mAngle - bbAngle) < PI/3)
-	{
 		mAngle = randFloat(0, TWO_PI);
-	}
+
 	var mDist = 12;
 	var mX = round(fx + mDist * cos(mAngle));
 	var mZ = round(fz + mDist * sin(mAngle));
@@ -213,16 +201,12 @@ var PZ = new Array(numPlayers+1);
 //isRiver actually tells us if two points must be joined by river
 var isRiver = new Array(numPlayers+1);
 for (var q=0; q <numPlayers+1; q++)
-{
 	isRiver[q]=new Array(numPlayers+1);
-}
 
 //At first nothing is joined
-for (var m = 0; m < numPlayers+1; m++){
-	for (var n = 0; n < numPlayers+1; n++){
+for (let m = 0; m < numPlayers + 1; ++m)
+	for (let n = 0; n < numPlayers + 1; ++n)
 		isRiver[m][n] = 0;
-	}
-}
 
 //creating the first point in the center. all others are
 //connected to this one so all of our rivers join together
@@ -233,6 +217,7 @@ var ix = round(fx);
 var iz = round(fz);
 PX[numPlayers]= fx;
 PZ[numPlayers]= fz;
+
 var riverAngle = new Array(numPlayers);
 for (var c = 0 ; c < numPlayers ; c++)
 {
@@ -244,13 +229,9 @@ for (var c = 0 ; c < numPlayers ; c++)
 	//log (playerIDs[c], ",,," ,playerIDs[0]);
 	//isRiver[c][numPlayers]=1;
 	if ((c == numPlayers-1)&&(!areAllies(playerIDs[c]-1, playerIDs[0]-1)))
-	{
 		isRiver[c][numPlayers]=1;
-	}
 	else if ((c < numPlayers-1)&&(!areAllies(playerIDs[c]-1, playerIDs[c+1]-1)))
-	{
 		isRiver[c][numPlayers]=1;
-	}
 }
 
 //theta is the start value for rndRiver function. seed implies
@@ -260,21 +241,19 @@ var theta = new Array(numPlayers);
 var seed = new Array(numPlayers);
 var shallowpoint = new Array(numPlayers);
 var shallowlength = new Array(numPlayers);
-for (var q=0; q <numPlayers+1; q++)
+for (let q = 0; q < numPlayers + 1; ++q)
 {
 	theta[q]=randFloat(0, 1);
 	seed[q]=randFloat(2,3);
 	shallowpoint[q]=randFloat(0.2,0.7);
 	shallowlength[q]=randFloat(0.12,0.21);
 }
-//create rivers
+
+log ("Creating rivers...");
 //checking all the tiles
 for (var ix = 0; ix < mapSize; ix++)
-{
 	for (var iz = 0; iz < mapSize; iz++)
-	{
 		for (var m = 0; m < numPlayers+1; m++)
-		{
 			for (var n = 0; n < numPlayers+1; n++)
 			{
 				//checking if there is a river between those points
@@ -359,16 +338,11 @@ for (var ix = 0; ix < mapSize; ix++)
 					}
 				}
 			}
-		}
-	}
-}
 
 RMS.SetProgress(40);
 
-// create bumps
 createBumps(avoidClasses(clWater, 2, clPlayer, 20));
 
-// create hills
 if (randBool())
 	createHills([tMainTerrain, tCliff, tHill], avoidClasses(clPlayer, 20, clHill, 15, clWater, 2), clHill, scaleByMapSize(3, 15));
 else
@@ -383,7 +357,6 @@ createForests(
 
 RMS.SetProgress(50);
 
-// create dirt patches
 log("Creating dirt patches...");
 createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
@@ -392,7 +365,6 @@ createLayeredPatches(
  avoidClasses(clWater, 3, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12)
 );
 
-// create grass patches
 log("Creating grass patches...");
 createPatches(
  [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
@@ -403,7 +375,6 @@ createPatches(
 RMS.SetProgress(55);
 
 log("Creating stone mines...");
-// create stone quarries
 createMines(
  [
   [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
@@ -413,7 +384,6 @@ createMines(
 );
 
 log("Creating metal mines...");
-// create large metal quarries
 createMines(
  [
   [new SimpleObject(oMetalLarge, 1,1, 0,4)]
@@ -424,7 +394,6 @@ createMines(
 
 RMS.SetProgress(65);
 
-// create decoration
 var planetm = 1;
 
 if (currentBiome() == "tropic")
@@ -463,7 +432,6 @@ createDecoration
 
 RMS.SetProgress(70);
 
-// create animals
 createFood
 (
  [
@@ -477,7 +445,6 @@ createFood
  avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 20)
 );
 
-// create fruits
 createFood
 (
  [
@@ -489,7 +456,6 @@ createFood
  avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 10)
 );
 
-// create fish
 createFood
 (
  [
@@ -503,12 +469,10 @@ createFood
 
 RMS.SetProgress(85);
 
-// create straggler trees
 var types = [oTree1, oTree2, oTree4, oTree3];	// some variation
 createStragglerTrees(types, avoidClasses(clWater, 5, clForest, 7, clHill, 1, clPlayer, 12, clMetal, 6, clRock, 6));
 
 setWaterWaviness(3.0);
 setWaterType("lake");
-// Export map data
 
 ExportMap();

@@ -179,7 +179,6 @@ function createBase(player, walls = true)
 	addToClass(ix - 5, iz, g_TileClasses.player);
 	addToClass(ix, iz - 5, g_TileClasses.player);
 
-	// Create starting units
 	if (walls && g_MapInfo.mapSize > 192)
 		placeCivDefaultEntities(fx, fz, player.id);
 	else

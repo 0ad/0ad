@@ -83,15 +83,12 @@ else
 //other constants
 const pForest = [tForestFloor + TERRAIN_SEPARATOR + oPine, tForestFloor];
 
-log("Initializing map...");
-
 InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
 const mapArea = mapSize*mapSize;
 
-// create tile classes
 var clPlayer = createTileClass();
 var clHill = createTileClass();
 var clForest = createTileClass();
@@ -140,7 +137,6 @@ for (var i = 0; i < numPlayers; i++)
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
 
-	// some constants
 	var radius = scaleByMapSize(15,25);
 	var cliffRadius = 2;
 	var elevation = 20;
@@ -162,7 +158,6 @@ for (var i = 0; i < numPlayers; i++)
 	var painter = new LayeredPainter([tRoadWild, tRoad], [1]);
 	createArea(placer, painter, null);
 
-	// create starting units
 	placeCivDefaultEntities(fx, fz, id);
 
 	placeDefaultChicken(fx, fz, clBaseResource);
@@ -181,9 +176,8 @@ for (var i = 0; i < numPlayers; i++)
 	// create metal mine
 	var mAngle = bbAngle;
 	while(abs(mAngle - bbAngle) < PI/3)
-	{
 		mAngle = randFloat(0, TWO_PI);
-	}
+
 	var mDist = 12;
 	var mX = round(fx + mDist * cos(mAngle));
 	var mZ = round(fz + mDist * sin(mAngle));
@@ -220,7 +214,6 @@ for (var i = 0; i < numPlayers; i++)
 
 RMS.SetProgress(20);
 
-// create hills
 log("Creating hills...");
 createMountains(tCliff, avoidClasses(clPlayer, 20, clHill, 8), clHill, scaleByMapSize(10, 40) * numPlayers, floor(scaleByMapSize(40, 60)), floor(scaleByMapSize(4, 5)), floor(scaleByMapSize(7, 15)), floor(scaleByMapSize(5, 15)));
 
@@ -235,10 +228,8 @@ for (var x = 0; x < mapSize; ++x)
 		if (playerConstraint.allows(x, z) && waterConstraint.allows(x, z))
 			lakeAreas.push([x, z]);
 
-var chosenPoint;
 var lakeAreaLen;
 
-// create lakes
 log("Creating lakes...");
 
 var numLakes = scaleByMapSize(5, 16);
@@ -248,7 +239,7 @@ for (var i = 0; i < numLakes; ++i)
 	if (!lakeAreaLen)
 		break;
 
-	chosenPoint = pickRandom(lakeAreas);
+	let chosenPoint = pickRandom(lakeAreas);
 
 	placer = new ChainPlacer(1, floor(scaleByMapSize(4, 8)), floor(scaleByMapSize(40, 180)), 0.7, chosenPoint[0], chosenPoint[1]);
 	var terrainPainter = new LayeredPainter(
@@ -279,10 +270,8 @@ for (var i = 0; i < numLakes; ++i)
 paintTerrainBasedOnHeight(3, floor(scaleByMapSize(20, 40)), 0, tCliff);
 paintTerrainBasedOnHeight(floor(scaleByMapSize(20, 40)), 100, 3, tSnowLimited);
 
-// create bumps
 createBumps(avoidClasses(clWater, 2, clPlayer, 20));
 
-// create forests
 createForests(
  [tPrimary, tForestFloor, tForestFloor, pForest, pForest],
  avoidClasses(clPlayer, 20, clForest, 17, clHill, 0, clWater, 2),
@@ -292,7 +281,6 @@ createForests(
 
 RMS.SetProgress(60);
 
-// create dirt patches
 log("Creating dirt patches...");
 createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
@@ -301,7 +289,6 @@ createLayeredPatches(
  avoidClasses(clWater, 3, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12)
 );
 
-// create grass patches
 log("Creating grass patches...");
 createPatches(
  [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
@@ -312,7 +299,6 @@ createPatches(
 RMS.SetProgress(65);
 
 log("Creating stone mines...");
-// create stone quarries
 createMines(
  [
   [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
@@ -322,7 +308,6 @@ createMines(
 );
 
 log("Creating metal mines...");
-// create large metal quarries
 createMines(
  [
   [new SimpleObject(oMetalLarge, 1,1, 0,4)]
@@ -333,7 +318,6 @@ createMines(
 
 RMS.SetProgress(70);
 
-// create decoration
 createDecoration
 (
  [[new SimpleObject(aRockMedium, 1,3, 0,1)],
@@ -354,7 +338,6 @@ createDecoration
 
 RMS.SetProgress(75);
 
-// create animals
 createFood
 (
  [
@@ -368,7 +351,6 @@ createFood
  avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 20)
 );
 
-// create fruits
 createFood
 (
  [
@@ -380,7 +362,6 @@ createFood
  avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 10)
 );
 
-// create fish
 createFood
 (
  [
@@ -394,7 +375,6 @@ createFood
 
 RMS.SetProgress(85);
 
-// create straggler trees
 var types = [oPine];
 createStragglerTrees(types, avoidClasses(clWater, 5, clForest, 3, clHill, 1, clPlayer, 12, clMetal, 6, clRock, 6));
 
@@ -407,5 +387,4 @@ setWaterMurkiness(0.82);
 setWaterWaviness(3.0);
 setWaterType("clap");
 
-// Export map data
 ExportMap();

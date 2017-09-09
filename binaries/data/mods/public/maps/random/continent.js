@@ -19,7 +19,6 @@ const tShoreBlend = g_Terrains.shoreBlend;
 const tShore = g_Terrains.shore;
 const tWater = g_Terrains.water;
 
-// gaia entities
 const oTree1 = g_Gaia.tree1;
 const oTree2 = g_Gaia.tree2;
 const oTree3 = g_Gaia.tree3;
@@ -33,7 +32,6 @@ const oStoneLarge = g_Gaia.stoneLarge;
 const oStoneSmall = g_Gaia.stoneSmall;
 const oMetalLarge = g_Gaia.metalLarge;
 
-// decorative props
 const aGrass = g_Decoratives.grass;
 const aGrassShort = g_Decoratives.grassShort;
 const aReeds = g_Decoratives.reeds;
@@ -46,15 +44,11 @@ const aBushSmall = g_Decoratives.bushSmall;
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
-log("Initializing map...");
-
 InitMap();
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
 var mapArea = mapSize*mapSize;
-
-// create tile classes
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -66,8 +60,6 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clSettlement = createTileClass();
 var clLand = createTileClass();
-//Create the continent body
-
 
 for (var ix = 0; ix < mapSize; ix++)
 {
@@ -104,8 +96,6 @@ for (var i = 0; i < numPlayers; i++)
 }
 playerIDs = sortPlayers(playerIDs);
 
-// place players
-
 var playerX = new Array(numPlayers);
 var playerZ = new Array(numPlayers);
 var playerAngle = new Array(numPlayers);
@@ -123,7 +113,6 @@ for (var i = 0; i < numPlayers; i++)
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
 
-	// some constants
 	var radius = scaleByMapSize(15,25);
 	var cliffRadius = 2;
 	var elevation = 20;
@@ -147,7 +136,6 @@ for (var i = 0; i < numPlayers; i++)
 	);
 	createArea(placer, [elevationPainter, paintClass(clLand)], null);
 
-	// create starting units
 	placeCivDefaultEntities(fx, fz, id);
 
 	placeDefaultChicken(fx, fz, clBaseResource);
@@ -223,7 +211,6 @@ for (var i = 0; i < numPlayers; ++i)
 	createArea(placer, painter, null);
 }
 
-// create bumps
 createBumps([avoidClasses(clPlayer, 10), stayClasses(clLand, 5)]);
 
 if (randBool())
@@ -240,7 +227,6 @@ createForests(
 
 RMS.SetProgress(50);
 
-// create dirt patches
 log("Creating dirt patches...");
 createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
@@ -249,7 +235,6 @@ createLayeredPatches(
  [avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12), stayClasses(clLand, 5)]
 );
 
-// create grass patches
 log("Creating grass patches...");
 createPatches(
  [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
@@ -260,7 +245,6 @@ createPatches(
 RMS.SetProgress(55);
 
 log("Creating stone mines...");
-// create stone quarries
 createMines(
  [
   [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
@@ -270,7 +254,6 @@ createMines(
 );
 
 log("Creating metal mines...");
-// create large metal quarries
 createMines(
  [
   [new SimpleObject(oMetalLarge, 1,1, 0,4)]
@@ -307,7 +290,6 @@ createDecoration
 
 RMS.SetProgress(70);
 
-// create animals
 createFood
 (
  [
@@ -321,7 +303,6 @@ createFood
  [avoidClasses(clForest, 0, clPlayer, 20, clHill, 1, clFood, 20), stayClasses(clLand, 5)]
 );
 
-// create fruits
 createFood
 (
  [
@@ -333,7 +314,6 @@ createFood
  [avoidClasses(clForest, 0, clPlayer, 20, clHill, 1, clFood, 10), stayClasses(clLand, 5)]
 );
 
-// create fish
 createFood
 (
  [
@@ -347,12 +327,10 @@ createFood
 
 RMS.SetProgress(85);
 
-// create straggler trees
 log("Creating straggler trees...");
 var types = [oTree1, oTree2, oTree4, oTree3];	// some variation
 createStragglerTrees(types, [avoidClasses(clForest, 7, clHill, 1, clPlayer, 9, clMetal, 6, clRock, 6), stayClasses(clLand, 7)]);
 setWaterWaviness(1.0);
 setWaterType("ocean");
 
-// Export map data
 ExportMap();

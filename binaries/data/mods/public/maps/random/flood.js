@@ -48,7 +48,6 @@ const aBushSmall = g_Decoratives.bushSmall;
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
-log("Initializing map...");
 InitMap();
 
 const radius = scaleByMapSize(15, 25);
@@ -59,7 +58,6 @@ const mapSize = getMapSize();
 const mapArea = mapSize * mapSize;
 const centerOfMap = mapSize / 2;
 
-// Create tile classes
 let clPlayer = createTileClass();
 let clHill = createTileClass();
 let clMountain = createTileClass();
