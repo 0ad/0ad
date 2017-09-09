@@ -33,6 +33,8 @@
 #define NETCLIENTTURN_LOG(...)
 #endif
 
+extern CStrW g_UniqueLogPostfix;
+
 CNetClientTurnManager::CNetClientTurnManager(CSimulation2& simulation, CNetClient& client, int clientId, IReplayLogger& replay)
 	: CTurnManager(simulation, DEFAULT_TURN_LENGTH_MP, clientId, replay), m_NetClient(client)
 {
@@ -116,8 +118,8 @@ void CNetClientTurnManager::OnSyncError(u32 turn, const CStr& expectedHash, cons
 	std::string hash;
 	ENSURE(m_Simulation2.ComputeStateHash(hash, !TurnNeedsFullHash(turn)));
 
-	OsPath path = psLogDir() / "oos_dump.txt";
-	std::ofstream file (OsString(path).c_str(), std::ofstream::out | std::ofstream::trunc);
+	OsPath oosdumpPath(psLogDir() / (L"oos_dump" + g_UniqueLogPostfix + L".txt"));
+	std::ofstream file (OsString(oosdumpPath).c_str(), std::ofstream::out | std::ofstream::trunc);
 	m_Simulation2.DumpDebugState(file);
 	file.close();
 
@@ -131,7 +133,7 @@ void CNetClientTurnManager::OnSyncError(u32 turn, const CStr& expectedHash, cons
 		playerNamesStrings.push_back(name);
 	}
 
-	LOGERROR("Out-Of-Sync on turn %d\nPlayers: %s\nDumping state to %s", turn, playerNamesString.str().c_str(), path.string8());
+	LOGERROR("Out-Of-Sync on turn %d\nPlayers: %s\nDumping state to %s", turn, playerNamesString.str().c_str(), oosdumpPath.string8());
 
 	ScriptInterface& scriptInterface = m_NetClient.GetScriptInterface();
 	JSContext* cx = scriptInterface.GetContext();
@@ -143,7 +145,7 @@ void CNetClientTurnManager::OnSyncError(u32 turn, const CStr& expectedHash, cons
 	scriptInterface.SetProperty(msg, "players", playerNamesStrings);
 	scriptInterface.SetProperty(msg, "expectedHash", expectedHashHex);
 	scriptInterface.SetProperty(msg, "hash", Hexify(hash));
-	scriptInterface.SetProperty(msg, "path_oos_dump", wstring_from_utf8(path.string8()));
+	scriptInterface.SetProperty(msg, "path_oos_dump", wstring_from_utf8(oosdumpPath.string8()));
 	scriptInterface.SetProperty(msg, "path_replay", wstring_from_utf8(m_Replay.GetDirectory().string8()));
 	m_NetClient.PushGuiMessage(msg);
 }
