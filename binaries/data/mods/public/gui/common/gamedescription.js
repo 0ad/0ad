@@ -348,6 +348,15 @@ function getGameDescription(extended = false)
 				translate("Sorry, no description available."),
 	});
 
+	if (g_GameAttributes.settings.Biome)
+	{
+		let biome = g_Settings.Biomes.find(biome => biome.Id == g_GameAttributes.settings.Biome);
+		titles.push({
+			"label": translate("Biome"),
+			"value": biome ? biome.Title : translateWithContext("biome", "Random")
+		});
+	}
+
 	if (extended)
 	{
 		titles.push({

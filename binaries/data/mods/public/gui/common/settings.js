@@ -15,6 +15,12 @@ const g_MaxTeams = 4;
 const g_SettingsDirectory = "simulation/data/settings/";
 
 /**
+ * Directory containing all biomes supported for random map scripts.
+ */
+const g_BiomesDirectory = "maps/random/rmbiome/biomes/";
+
+
+/**
  * An object containing all values given by setting name.
  * Used by lobby, gamesetup, session, summary screen and replay menu.
  */
@@ -36,7 +42,7 @@ function loadSettingsValues()
 		"GameSpeeds": loadSettingValuesFile("game_speeds.json"),
 		"MapTypes": loadMapTypes(),
 		"MapSizes": loadSettingValuesFile("map_sizes.json"),
-		"Biomes": loadSettingValuesFile("biomes.json"),
+		"Biomes": loadBiomes(),
 		"PlayerDefaults": loadPlayerDefaults(),
 		"PopulationCapacities": loadPopulationCapacities(),
 		"StartingResources": loadSettingValuesFile("starting_resources.json"),
@@ -201,6 +207,18 @@ function loadMapTypes()
 			"Description": translate("A map with a predefined landscape and matchsettings.")
 		}
 	];
+}
+
+function loadBiomes()
+{
+	return Engine.BuildDirEntList(g_BiomesDirectory, "*.json", false).map(file => {
+		let description = Engine.ReadJSONFile(file).Description;
+		return {
+			"Id": file.substr(g_BiomesDirectory.length).slice(0, -".json".length),
+			"Title": translateWithContext("biome definition", description.Title),
+			"Description": translateWithContext("biome definition", description.Description)
+		};
+	});
 }
 
 /**

@@ -62,7 +62,8 @@ function loadBiomeFile(file)
 	};
 
 	for (let rmsGlobal in biome)
-		copyProperties(biome[rmsGlobal], global["g_" + rmsGlobal]);
+		if (rmsGlobal != "Description")
+			copyProperties(biome[rmsGlobal], global["g_" + rmsGlobal]);
 }
 
 function rBiomeTreeCount(multiplier = 1)

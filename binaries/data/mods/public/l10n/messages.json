@@ -665,6 +665,19 @@
                         }
                     }
                 }
+            },
+            {
+                "extractor": "json",
+                "filemasks": [
+                    "maps/random/rmbiome/biomes/**.json"
+                ],
+                "options": {
+                    "keywords": [
+                        "Title",
+                        "Description"
+                    ],
+                    "context": "biome definition"
+                }
             }
         ]
     },

@@ -1611,12 +1611,8 @@ for (var i = 0; i < types.length; ++i)
 	);
 }
 
-var planetm = 1;
-if (rt==7)
-{
-	planetm = 8;
-}
-//create small grass tufts
+var planetm = currentBiome() == "tropic" ? 8 : 1;
+
 log("Creating small grass tufts...");
 group = new SimpleGroup(
 	[new SimpleObject(aGrassShort, 1,2, 0,1, -PI/8,PI/8)]

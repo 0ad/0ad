@@ -472,7 +472,7 @@ var g_Dropdowns = {
 	},
 	"biome": {
 		"title": () => translate("Biome"),
-		"tooltip": (hoverIdx) => translate("Select the flora and fauna."),
+		"tooltip": (hoverIdx) => g_BiomeList && g_BiomeList.Description && g_BiomeList.Description[hoverIdx] || translate("Select the flora and fauna."),
 		"labels": () => g_BiomeList ? g_BiomeList.Title : [],
 		"colors": (idx) => g_BiomeList ? g_BiomeList.Color : [],
 		"ids": () => g_BiomeList ? g_BiomeList.Id : [],
@@ -1501,14 +1501,8 @@ function reloadBiomeList()
 		if (g_GameAttributes.settings.SupportedBiomes === true)
 			biomeList = g_Settings.Biomes;
 		else
-		{
 			biomeList = g_Settings.Biomes.filter(
 				biome => g_GameAttributes.settings.SupportedBiomes.indexOf(biome.Id) != -1);
-
-			for (let biome of g_GameAttributes.settings.SupportedBiomes)
-				if (g_Settings.Biomes.every(bio => bio.Id != biome))
-					warn("Map '" + g_GameAttributes.map + "' contains unknown biome '" + biome + "'")
-		}
 	}
 
 	g_BiomeList = biomeList && prepareForDropdown(
