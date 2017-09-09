@@ -65,13 +65,7 @@ var clPond = createTileClass();
 var clShore = createTileClass();
 var clTreasure = createTileClass();
 
-// randomize player order
-var playerIDs = [];
-for (var i = 0; i < numPlayers; i++)
-{
-	playerIDs.push(i+1);
-}
-playerIDs = sortPlayers(playerIDs);
+var playerIDs = sortAllPlayers();
 
 var playerX = new Array(numPlayers);
 var playerZ = new Array(numPlayers);

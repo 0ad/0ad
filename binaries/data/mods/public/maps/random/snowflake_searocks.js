@@ -68,14 +68,8 @@ initTerrain(tWater);
 const radius = scaleByMapSize(15,30);
 const cliffRadius = 2;
 const elevation = 20;
-// randomize player order
 
-var playerIDs = [];
-for (var i = 0; i < numPlayers; i++)
-{
-	playerIDs.push(i+1);
-}
-playerIDs = sortPlayers(playerIDs);
+var playerIDs = sortAllPlayers();
 
 var playerX = new Array(numPlayers);
 var playerZ = new Array(numPlayers);

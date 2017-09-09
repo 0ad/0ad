@@ -314,11 +314,7 @@ if (gallicCC)
 }
 RMS.SetProgress(10);
 
-// Randomize player order
-var playerIDs = [];
-for (let i = 0; i < numPlayers; ++i)
-	playerIDs.push(i + 1);
-playerIDs = primeSortPlayers(sortPlayers(playerIDs));
+var playerIDs = primeSortAllPlayers();
 
 // Place players
 var playerX = [];

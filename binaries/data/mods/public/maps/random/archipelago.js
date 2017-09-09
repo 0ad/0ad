@@ -64,11 +64,7 @@ var clBaseResource = createTileClass();
 var clSettlement = createTileClass();
 var clLand = createTileClass();
 
-var playerIDs = [];
-for (var i = 0; i < numPlayers; i++)
-	playerIDs.push(i+1);
-
-playerIDs = sortPlayers(playerIDs);
+var playerIDs = sortAllPlayers();
 
 // place players
 var playerX = new Array(numPlayers);

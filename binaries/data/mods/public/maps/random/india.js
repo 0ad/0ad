@@ -35,10 +35,7 @@ var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
-var playerIDs = [];
-for (let i = 0; i < numPlayers; ++i)
-	playerIDs.push(i+1);
-playerIDs = sortPlayers(playerIDs);
+var playerIDs = sortAllPlayers();
 
 var playerX = [];
 var playerZ = [];

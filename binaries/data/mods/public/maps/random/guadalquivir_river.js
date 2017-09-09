@@ -91,11 +91,7 @@ var elevationPainter = new SmoothElevationPainter(
 );
 createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
 
-// randomize player order
-var playerIDs = [];
-for (var i = 0; i < numPlayers; i++)
-	playerIDs.push(i+1);
-playerIDs = primeSortPlayers(sortPlayers(playerIDs));
+var playerIDs = primeSortAllPlayers();
 
 // place players
 var playerX = new Array(numPlayers);

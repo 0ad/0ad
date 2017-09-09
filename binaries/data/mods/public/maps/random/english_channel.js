@@ -63,11 +63,7 @@ var clBaseResource = createTileClass();
 var clSettlement = createTileClass();
 var clShallow = createTileClass();
 
-// randomize player order
-var playerIDs = [];
-for (var i = 0; i < numPlayers; i++)
-	playerIDs.push(i+1);
-playerIDs = primeSortPlayers(sortPlayers(playerIDs));
+var playerIDs = primeSortAllPlayers();
 
 // place players
 var playerX = [];

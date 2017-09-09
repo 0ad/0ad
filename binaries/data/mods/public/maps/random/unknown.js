@@ -77,13 +77,7 @@ if (md == 1) //archipelago and island
 	needsAdditionalWood = true;
 	iberianTowers = true;
 
-	// randomize player order
-	var playerIDs = [];
-	for (var i = 0; i < numPlayers; i++)
-	{
-		playerIDs.push(i+1);
-	}
-	playerIDs = sortPlayers(playerIDs);
+	var playerIDs = sortAllPlayers();
 
 	var playerX = new Array(numPlayers);
 	var playerZ = new Array(numPlayers);
@@ -205,14 +199,7 @@ if (md == 1) //archipelago and island
 //********************************************************************************************************
 else if (md == 2) //continent
 {
-
-	// randomize player order
-	var playerIDs = [];
-	for (var i = 0; i < numPlayers; i++)
-	{
-		playerIDs.push(i+1);
-	}
-	playerIDs = sortPlayers(playerIDs);
+	var playerIDs = sortAllPlayers();
 
 	var playerX = new Array(numPlayers);
 	var playerZ = new Array(numPlayers);
@@ -316,13 +303,7 @@ else if (md == 2) //continent
 //********************************************************************************************************
 else if (md == 3) //central sea
 {
-// randomize player order
-var playerIDs = [];
-for (var i = 0; i < numPlayers; i++)
-{
-	playerIDs.push(i+1);
-}
-playerIDs = primeSortPlayers(sortPlayers(playerIDs));
+	var playerIDs = primeSortAllPlayers();
 
 	var playerX = new Array(numPlayers);
 	var playerZ = new Array(numPlayers);
@@ -551,13 +532,7 @@ else if (md == 4) //central river
 		}
 	}
 
-	// randomize player order
-	var playerIDs = [];
-	for (var i = 0; i < numPlayers; i++)
-	{
-		playerIDs.push(i+1);
-	}
-	playerIDs = primeSortPlayers(sortPlayers(playerIDs));
+	var playerIDs = primeSortAllPlayers();
 
 	var playerX = new Array(numPlayers);
 	var playerZ = new Array(numPlayers);
@@ -733,14 +708,7 @@ else if (md == 4) //central river
 //********************************************************************************************************
 else if (md == 5) //rivers and lake
 {
-
-	// randomize player order
-	var playerIDs = [];
-	for (var i = 0; i < numPlayers; i++)
-	{
-		playerIDs.push(i+1);
-	}
-	playerIDs = sortPlayers(playerIDs);
+	var playerIDs = sortAllPlayers();
 
 	var playerX = new Array(numPlayers);
 	var playerZ = new Array(numPlayers);
@@ -896,13 +864,7 @@ else if (md == 6) //edge seas
 
 	var mdd1 = randIntInclusive(1,2);
 
-	// randomize player order
-	var playerIDs = [];
-	for (var i = 0; i < numPlayers; i++)
-	{
-		playerIDs.push(i+1);
-	}
-	playerIDs = sortPlayers(playerIDs);
+	var playerIDs = sortAllPlayers();
 
 	var playerX = new Array(numPlayers);
 	var playerZ = new Array(numPlayers);
@@ -1147,13 +1109,7 @@ else if (md == 7) //gulf
 
 	var mdd1 = randFloat(0,4);
 
-	// randomize player order
-	var playerIDs = [];
-	for (var i = 0; i < numPlayers; i++)
-	{
-		playerIDs.push(i+1);
-	}
-	playerIDs = sortPlayers(playerIDs);
+	var playerIDs = sortAllPlayers();
 
 	var playerX = new Array(numPlayers);
 	var playerZ = new Array(numPlayers);
@@ -1240,14 +1196,7 @@ else if (md == 7) //gulf
 //********************************************************************************************************
 else if (md == 8) //lakes
 {
-
-	// randomize player order
-	var playerIDs = [];
-	for (var i = 0; i < numPlayers; i++)
-	{
-		playerIDs.push(i+1);
-	}
-	playerIDs = sortPlayers(playerIDs);
+	var playerIDs = sortAllPlayers();
 
 	var playerX = new Array(numPlayers);
 	var playerZ = new Array(numPlayers);
@@ -1312,14 +1261,7 @@ else if (md == 8) //lakes
 //********************************************************************************************************
 else if (md == 9) //passes
 {
-
-	// randomize player order
-	var playerIDs = [];
-	for (var i = 0; i < numPlayers; i++)
-	{
-		playerIDs.push(i+1);
-	}
-	playerIDs = sortPlayers(playerIDs);
+	var playerIDs = sortAllPlayers();
 
 	var playerX = new Array(numPlayers);
 	var playerZ = new Array(numPlayers);
@@ -1413,13 +1355,7 @@ else if (md == 9) //passes
 //********************************************************************************************************
 else if (md == 10) //lowlands
 {
-	// randomize player order
-	var playerIDs = [];
-	for (var i = 0; i < numPlayers; i++)
-	{
-		playerIDs.push(i+1);
-	}
-	playerIDs = sortPlayers(playerIDs);
+	var playerIDs = sortAllPlayers();
 
 	var playerX = new Array(numPlayers);
 	var playerZ = new Array(numPlayers);
@@ -1533,14 +1469,7 @@ else if (md == 10) //lowlands
 //********************************************************************************************************
 else //mainland
 {
-
-	// randomize player order
-	var playerIDs = [];
-	for (var i = 0; i < numPlayers; i++)
-	{
-		playerIDs.push(i+1);
-	}
-	playerIDs = sortPlayers(playerIDs);
+	var playerIDs = sortAllPlayers();
 
 	var playerX = new Array(numPlayers);
 	var playerZ = new Array(numPlayers);

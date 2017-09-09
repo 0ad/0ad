@@ -286,17 +286,9 @@ for (var ix = 0; ix < mapSize; ix++)
 	}
 }
 
-// randomize player order
-var playerIDs = [];
-for (var i = 0; i < numPlayers; i++)
-{
-	playerIDs.push(i+1);
-}
-playerIDs = primeSortPlayers(sortPlayers(playerIDs));
+var playerIDs = primeSortAllPlayers();
 
 // place players
-// TODO: sort players by team
-
 var playerX = new Array(numPlayers);
 var playerZ = new Array(numPlayers);
 var playerAngle = new Array(numPlayers);

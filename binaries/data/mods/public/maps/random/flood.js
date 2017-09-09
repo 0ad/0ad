@@ -71,11 +71,7 @@ let clBaseResource = createTileClass();
 
 initTerrain(tWater);
 
-// Randomize player order
-let playerIDs = [];
-for (let i = 0; i < numPlayers; ++i)
-	playerIDs.push(i+1);
-playerIDs = sortPlayers(playerIDs);
+let playerIDs = sortAllPlayers();
 
 // Place players
 let playerX = [];

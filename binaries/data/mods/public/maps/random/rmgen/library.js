@@ -380,6 +380,20 @@ function sortPlayers(playerIndices)
 	return shuffleArray(playerIndices).sort((p1, p2) => getPlayerTeam(p1 - 1) - getPlayerTeam(p2 - 1));
 }
 
+/**
+ * Mix player indices but sort by team.
+ *
+ * @returns {Array} - every item is an array of player indices
+ */
+function sortAllPlayers()
+{
+	let playerIDs = [];
+	for (let i = 0; i < getNumPlayers(); ++i)
+		playerIDs.push(i+1);
+
+	return sortPlayers(playerIDs);
+}
+
 function primeSortPlayers(playerIndices)
 {
 	if (!playerIndices.length)
@@ -393,6 +407,11 @@ function primeSortPlayers(playerIndices)
 	}
 
 	return prime;
+}
+
+function primeSortAllPlayers()
+{
+	return primeSortPlayers(sortAllPlayers());
 }
 
 function getStartingEntities(player)

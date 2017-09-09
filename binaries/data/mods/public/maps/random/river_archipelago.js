@@ -101,11 +101,7 @@ for (let i = 0; i < stripWidths.length; ++i)
 }
 RMS.SetProgress(20);
 
-// Randomize player order
-var playerIDs = [];
-for (let i = 0; i < numPlayers; ++i)
-	playerIDs.push(i+1);
-playerIDs = sortPlayers(playerIDs);
+var playerIDs = sortAllPlayers();
 
 // Either left vs right or top vs bottom
 var leftVSRight = randBool();

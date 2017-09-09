@@ -76,13 +76,7 @@ if (md == 1) //archipelago and island
 {
 	needsAdditionalWood = true;
 
-	// randomize player order
-	var playerIDs = [];
-	for (var i = 0; i < numPlayers; i++)
-	{
-		playerIDs.push(i+1);
-	}
-	playerIDs = sortPlayers(playerIDs);
+	var playerIDs = sortAllPlayers();
 
 	var radius = scaleByMapSize(17, 29);
 	var hillSize = PI * radius * radius;
@@ -142,14 +136,7 @@ if (md == 1) //archipelago and island
 //********************************************************************************************************
 else if (md == 2) //continent
 {
-
-	// randomize player order
-	var playerIDs = [];
-	for (var i = 0; i < numPlayers; i++)
-	{
-		playerIDs.push(i+1);
-	}
-	playerIDs = sortPlayers(playerIDs);
+	var playerIDs = sortAllPlayers();
 
 	var fx = fractionToTiles(0.5);
 	var fz = fractionToTiles(0.5);
@@ -227,13 +214,7 @@ else if (md == 2) //continent
 //********************************************************************************************************
 else if (md == 3) //central sea
 {
-	// randomize player order
-	var playerIDs = [];
-	for (var i = 0; i < numPlayers; i++)
-	{
-		playerIDs.push(i+1);
-	}
-	playerIDs = primeSortPlayers(sortPlayers(playerIDs));
+	var playerIDs = primeSortAllPlayers();
 
 	var WATER_WIDTH = randFloat(0.22,0.3)+scaleByMapSize(1,4)/20;
 	log("Creating sea");
@@ -407,13 +388,7 @@ else if (md == 4) //central river
 		}
 	}
 
-	// randomize player order
-	var playerIDs = [];
-	for (var i = 0; i < numPlayers; i++)
-	{
-		playerIDs.push(i+1);
-	}
-	playerIDs = primeSortPlayers(sortPlayers(playerIDs));
+	var playerIDs = primeSortAllPlayers();
 
 	log("Creating the main river");
 
@@ -522,14 +497,7 @@ else if (md == 4) //central river
 //********************************************************************************************************
 else if (md == 5) //rivers and lake
 {
-
-	// randomize player order
-	var playerIDs = [];
-	for (var i = 0; i < numPlayers; i++)
-	{
-		playerIDs.push(i+1);
-	}
-	playerIDs = sortPlayers(playerIDs);
+	var playerIDs = sortAllPlayers();
 
 	for (var ix = 0; ix < mapSize; ix++)
 	{
@@ -638,13 +606,7 @@ else if (md == 6) //edge seas
 
 	var mdd1 = randIntInclusive(1,2);
 
-	// randomize player order
-	var playerIDs = [];
-	for (var i = 0; i < numPlayers; i++)
-	{
-		playerIDs.push(i+1);
-	}
-	playerIDs = sortPlayers(playerIDs);
+	var playerIDs = sortAllPlayers();
 
 	var mdd2 = randIntInclusive(1,3);
 	var fadedistance = 7;
@@ -863,13 +825,7 @@ else if (md == 7) //gulf
 
 	var mdd1 = randIntInclusive(1,4);
 
-	// randomize player order
-	var playerIDs = [];
-	for (var i = 0; i < numPlayers; i++)
-	{
-		playerIDs.push(i+1);
-	}
-	playerIDs = sortPlayers(playerIDs);
+	var playerIDs = sortAllPlayers();
 
 	var fx = fractionToTiles(0.5);
 	var fz = fractionToTiles(0.5);
@@ -932,14 +888,7 @@ else if (md == 7) //gulf
 //********************************************************************************************************
 else if (md == 8) //lakes
 {
-
-	// randomize player order
-	var playerIDs = [];
-	for (var i = 0; i < numPlayers; i++)
-	{
-		playerIDs.push(i+1);
-	}
-	playerIDs = sortPlayers(playerIDs);
+	var playerIDs = sortAllPlayers();
 
 	for (var ix = 0; ix < mapSize; ix++)
 	{
@@ -980,13 +929,7 @@ else if (md == 8) //lakes
 //********************************************************************************************************
 else if (md == 9) //passes
 {
-	// randomize player order
-	var playerIDs = [];
-	for (var i = 0; i < numPlayers; i++)
-	{
-		playerIDs.push(i+1);
-	}
-	playerIDs = sortPlayers(playerIDs);
+	var playerIDs = sortAllPlayers();
 
 	for (var ix = 0; ix < mapSize; ix++)
 	{
@@ -1069,13 +1012,7 @@ else if (md == 9) //passes
 //********************************************************************************************************
 else if (md == 10) //lowlands
 {
-	// randomize player order
-	var playerIDs = [];
-	for (var i = 0; i < numPlayers; i++)
-	{
-		playerIDs.push(i+1);
-	}
-	playerIDs = sortPlayers(playerIDs);
+	var playerIDs = sortAllPlayers();
 
 	for (var ix = 0; ix < mapSize; ix++)
 	{
@@ -1177,14 +1114,7 @@ else if (md == 10) //lowlands
 //********************************************************************************************************
 else //mainland
 {
-
-	// randomize player order
-	var playerIDs = [];
-	for (var i = 0; i < numPlayers; i++)
-	{
-		playerIDs.push(i+1);
-	}
-	playerIDs = sortPlayers(playerIDs);
+	var playerIDs = sortAllPlayers();
 
 	for (var ix = 0; ix < mapSize; ix++)
 	{

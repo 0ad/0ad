@@ -81,11 +81,7 @@ var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
-// randomize player order
-var playerIDs = [];
-for (var i = 0; i < numPlayers; i++)
-	playerIDs.push(i+1);
-playerIDs = sortPlayers(playerIDs);
+var playerIDs = sortAllPlayers();
 
 //array holding starting islands based on number of players
 var startingPlaces=[[0],[0,3],[0,2,4],[0,1,3,4],[0,1,2,3,4],[0,1,2,3,4,5]];

@@ -57,11 +57,7 @@ var clForest = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
-// Randomize player order
-var playerIDs = [];
-for (let i = 0; i < numPlayers; ++i)
-	playerIDs.push(i + 1);
-playerIDs = sortPlayers(playerIDs);
+var playerIDs = sortAllPlayers();
 
 var startAngle = randFloat(0, 2 * PI);
 for (let i = 0; i < numPlayers; ++i)

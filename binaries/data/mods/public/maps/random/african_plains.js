@@ -56,11 +56,7 @@ var clBaseResource = createTileClass();
 
 initTerrain(tPrimary);
 
-// Randomize player order
-var playerIDs = [];
-for (var i = 0; i < numPlayers; ++i)
-	playerIDs.push(i+1);
-playerIDs = sortPlayers(playerIDs);
+var playerIDs = sortAllPlayers();
 
 // Place players
 var playerX = [];

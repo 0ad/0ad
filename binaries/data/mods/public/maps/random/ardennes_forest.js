@@ -101,11 +101,7 @@ for (var ix = 0; ix < mapSize; ix++)
 		}
 	}
 
-// randomize player order
-var playerIDs = [];
-for (var i = 0; i < numPlayers; i++)
-	playerIDs.push(i+1);
-playerIDs = sortPlayers(playerIDs);
+var playerIDs = sortAllPlayers();
 
 var playerX = new Array(numPlayers);
 var playerZ = new Array(numPlayers);

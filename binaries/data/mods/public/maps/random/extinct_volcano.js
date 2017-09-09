@@ -80,11 +80,7 @@ var clRain = createTileClass();
 
 var ccMountainHeight = 25;
 
-// randomize player order
-var playerIDs = [];
-for (let i = 0; i < numPlayers; ++i)
-	playerIDs.push(i+1);
-playerIDs = sortPlayers(playerIDs);
+var playerIDs = sortAllPlayers();
 
 // Place players
 var startAngle = randFloat(0, 2 * PI);
