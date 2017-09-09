@@ -69,19 +69,7 @@ const radius = scaleByMapSize(15,30);
 const cliffRadius = 2;
 const elevation = 20;
 
-var playerIDs = sortAllPlayers();
-
-var playerX = new Array(numPlayers);
-var playerZ = new Array(numPlayers);
-var playerAngle = new Array(numPlayers);
-
-var startAngle = randFloat(0, TWO_PI);
-for (var i = 0; i < numPlayers; i++)
-{
-	playerAngle[i] = startAngle + i*TWO_PI/numPlayers;
-	playerX[i] = 0.5 + 0.35*cos(playerAngle[i]);
-	playerZ[i] = 0.5 + 0.35*sin(playerAngle[i]);
-}
+var [playerIDs, playerX, playerZ, playerAngle, startAngle] = radialPlayerPlacement();
 
 // Creating other islands
 var numIslands = 0;

@@ -73,20 +73,10 @@ var needsAdditionalWood = false;
 //*****************************************************************************************************************************
 if (md == 2) //continent
 {
-	var playerIDs = sortAllPlayers();
+	var [playerIDs, playerX, playerZ, playerAngle] = radialPlayerPlacement(0.25);
 
-	// place players
-	var playerX = new Array(numPlayers);
-	var playerZ = new Array(numPlayers);
-	var playerAngle = new Array(numPlayers);
-
-	var startAngle = randFloat(0, TWO_PI);
 	for (var i = 0; i < numPlayers; i++)
 	{
-		playerAngle[i] = startAngle + i*TWO_PI/numPlayers;
-		playerX[i] = 0.5 + 0.25*cos(playerAngle[i]);
-		playerZ[i] = 0.5 + 0.25*sin(playerAngle[i]);
-
 		var fx = fractionToTiles(playerX[i]);
 		var fz = fractionToTiles(playerZ[i]);
 		var ix = round(fx);
@@ -559,20 +549,10 @@ else if (md == 4) //central river
 //********************************************************************************************************
 else if (md == 5) //rivers and lake
 {
+	var [playerIDs, playerX, playerZ] = radialPlayerPlacement();
 
-	var playerIDs = sortAllPlayers();
-
-	var playerX = new Array(numPlayers);
-	var playerZ = new Array(numPlayers);
-	var playerAngle = new Array(numPlayers);
-
-	var startAngle = randFloat(0, TWO_PI);
 	for (var i = 0; i < numPlayers; i++)
 	{
-		playerAngle[i] = startAngle + i*TWO_PI/numPlayers;
-		playerX[i] = 0.5 + 0.35*cos(playerAngle[i]);
-		playerZ[i] = 0.5 + 0.35*sin(playerAngle[i]);
-
 		var fx = fractionToTiles(playerX[i]);
 		var fz = fractionToTiles(playerZ[i]);
 		var ix = round(fx);
@@ -964,20 +944,7 @@ else if (md == 7) //gulf
 //********************************************************************************************************
 else if (md == 8) //lakes
 {
-	var playerIDs = sortAllPlayers();
-
-	// place players
-	var playerX = new Array(numPlayers);
-	var playerZ = new Array(numPlayers);
-	var playerAngle = new Array(numPlayers);
-
-	var startAngle = randFloat(0, TWO_PI);
-	for (var i = 0; i < numPlayers; i++)
-	{
-		playerAngle[i] = startAngle + i*TWO_PI/numPlayers;
-		playerX[i] = 0.5 + 0.35*cos(playerAngle[i]);
-		playerZ[i] = 0.5 + 0.35*sin(playerAngle[i]);
-	}
+	var [playerIDs, playerX, playerZ, playerAngle] = radialPlayerPlacement();
 
 	for (var ix = 0; ix < mapSize; ix++)
 	{
@@ -1052,19 +1019,7 @@ else if (md == 8) //lakes
 //********************************************************************************************************
 else if (md == 9) //passes
 {
-	var playerIDs = sortAllPlayers();
-
-	var playerX = new Array(numPlayers);
-	var playerZ = new Array(numPlayers);
-	var playerAngle = new Array(numPlayers);
-
-	var startAngle = randFloat(0, TWO_PI);
-	for (var i = 0; i < numPlayers; i++)
-	{
-		playerAngle[i] = startAngle + i*TWO_PI/numPlayers;
-		playerX[i] = 0.5 + 0.35*cos(playerAngle[i]);
-		playerZ[i] = 0.5 + 0.35*sin(playerAngle[i]);
-	}
+	var [playerIDs, playerX, playerZ, playerAngle] = radialPlayerPlacement();
 
 	for (var ix = 0; ix < mapSize; ix++)
 	{
@@ -1146,19 +1101,7 @@ else if (md == 9) //passes
 //********************************************************************************************************
 else if (md == 10) //lowlands
 {
-	var playerIDs = sortAllPlayers();
-
-	var playerX = new Array(numPlayers);
-	var playerZ = new Array(numPlayers);
-	var playerAngle = new Array(numPlayers);
-
-	var startAngle = randFloat(0, TWO_PI);
-	for (var i = 0; i < numPlayers; i++)
-	{
-		playerAngle[i] = startAngle + i*TWO_PI/numPlayers;
-		playerX[i] = 0.5 + 0.35*cos(playerAngle[i]);
-		playerZ[i] = 0.5 + 0.35*sin(playerAngle[i]);
-	}
+	var [playerIDs, playerX, playerZ, playerAngle] = radialPlayerPlacement();
 
 	for (var ix = 0; ix < mapSize; ix++)
 	{
@@ -1260,19 +1203,7 @@ else if (md == 10) //lowlands
 //********************************************************************************************************
 else //mainland
 {
-	var playerIDs = sortAllPlayers();
-
-	var playerX = new Array(numPlayers);
-	var playerZ = new Array(numPlayers);
-	var playerAngle = new Array(numPlayers);
-
-	var startAngle = randFloat(0, TWO_PI);
-	for (var i = 0; i < numPlayers; i++)
-	{
-		playerAngle[i] = startAngle + i*TWO_PI/numPlayers;
-		playerX[i] = 0.5 + 0.35*cos(playerAngle[i]);
-		playerZ[i] = 0.5 + 0.35*sin(playerAngle[i]);
-	}
+	var [playerIDs, playerX, playerZ, playerAngle] = radialPlayerPlacement();
 
 	for (var ix = 0; ix < mapSize; ix++)
 	{

@@ -414,6 +414,26 @@ function primeSortAllPlayers()
 	return primeSortPlayers(sortAllPlayers());
 }
 
+function radialPlayerPlacement(percentRadius = 0.35)
+{
+	let playerIDs = sortAllPlayers();
+
+	let playerX = [];
+	let playerZ = [];
+	let playerAngle = [];
+
+	let startAngle = randFloat(0, TWO_PI);
+
+	for (let i = 0; i < numPlayers; ++i)
+	{
+		playerAngle[i] = startAngle + i * TWO_PI / numPlayers;
+		playerX[i] = 0.5 + percentRadius * Math.cos(playerAngle[i]);
+		playerZ[i] = 0.5 + percentRadius * Math.sin(playerAngle[i]);
+	}
+
+	return [playerIDs, playerX, playerZ, playerAngle, startAngle];
+}
+
 function getStartingEntities(player)
 {
 	let civ = getCivCode(player);

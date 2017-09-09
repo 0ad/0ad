@@ -69,21 +69,13 @@ createArea(
 	],
 	null);
 
-var playerIDs = sortAllPlayers();
+var [playerIDs, playerX, playerZ, playerAngle, startAngle] = radialPlayerPlacement(0.3);
 
-// place players
-var playerX = new Array(numPlayers);
-var playerZ = new Array(numPlayers);
 var attackerX = new Array(numPlayers);
 var attackerZ = new Array(numPlayers);
-var playerAngle = new Array(numPlayers);
 
-var startAngle = randFloat(0, 2 * PI);
 for (let  i = 0; i < numPlayers; ++i)
 {
-	playerAngle[i] = startAngle + i * 2 * PI / numPlayers;
-	playerX[i] = 0.5 + 0.3*cos(playerAngle[i]);
-	playerZ[i] = 0.5 + 0.3*sin(playerAngle[i]);
 	attackerX[i] = 0.5 + 0.45*cos(playerAngle[i]);
 	attackerZ[i] = 0.5 + 0.45*sin(playerAngle[i]);
 }

@@ -47,19 +47,7 @@ var clForest = createTileClass();
 
 initTerrain(tPrimary);
 
-var playerIDs = sortAllPlayers();
-
-var playerX = new Array(numPlayers);
-var playerZ = new Array(numPlayers);
-var playerAngle = new Array(numPlayers);
-
-var startAngle = randFloat(0, TWO_PI);
-for (let i = 0; i < numPlayers; ++i)
-{
-	playerAngle[i] = startAngle + i * TWO_PI / numPlayers;
-	playerX[i] = 0.5 + 0.35 * Math.cos(playerAngle[i]);
-	playerZ[i] = 0.5 + 0.35 * Math.sin(playerAngle[i]);
-}
+var [playerIDs, playerX, playerZ] = radialPlayerPlacement();
 
 RMS.SetProgress(20);
 

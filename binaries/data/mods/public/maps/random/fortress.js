@@ -60,24 +60,13 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clSettlement = createTileClass();
 
-var playerIDs = sortAllPlayers();
-
-// place players
-var playerX = new Array(numPlayers);
-var playerZ = new Array(numPlayers);
-var playerAngle = new Array(numPlayers);
-var baseRadius = 30;
-
-var startAngle = randFloat(0, TWO_PI);
-for (var i = 0; i < numPlayers; i++)
-{
-	playerAngle[i] = startAngle + i*TWO_PI/numPlayers;
-	playerX[i] = mapSize*(0.5 + 0.35*cos(playerAngle[i]));
-	playerZ[i] = mapSize*(0.5 + 0.35*sin(playerAngle[i]));
-}
+var [playerIDs, playerX, playerZ] = radialPlayerPlacement();
 
 for (var i=0; i < numPlayers; i++)
 {
+	playerX[i] *= mapSize;
+	playerZ[i] *= mapSize;
+
 	var startEntities = getStartingEntities(i);
 	// Place starting entities
 	createStartingPlayerEntities(playerX[i], playerZ[i], i+1, startEntities);

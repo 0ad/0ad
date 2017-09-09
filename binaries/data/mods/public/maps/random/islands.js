@@ -64,20 +64,7 @@ var clBaseResource = createTileClass();
 var clSettlement = createTileClass();
 var clLand = createTileClass();
 
-var playerIDs = sortAllPlayers();
-
-// place players
-var playerX = new Array(numPlayers);
-var playerZ = new Array(numPlayers);
-var playerAngle = new Array(numPlayers);
-
-var startAngle = randFloat(0, TWO_PI);
-for (var i = 0; i < numPlayers; i++)
-{
-	playerAngle[i] = startAngle + i*TWO_PI/numPlayers;
-	playerX[i] = 0.5 + 0.35*cos(playerAngle[i]);
-	playerZ[i] = 0.5 + 0.35*sin(playerAngle[i]);
-}
+var [playerIDs, playerX, playerZ, playerAngle] = radialPlayerPlacement();
 
 for (var i = 0; i < numPlayers; i++)
 {

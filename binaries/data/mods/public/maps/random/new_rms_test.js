@@ -13,19 +13,7 @@ var clRock = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
-var playerIDs = sortAllPlayers();
-
-var playerX = new Array(numPlayers);
-var playerZ = new Array(numPlayers);
-var playerAngle = new Array(numPlayers);
-
-var startAngle = randFloat(0, 2 * PI);
-for (var i=0; i < numPlayers; i++)
-{
-	playerAngle[i] = startAngle + i*2*PI/numPlayers;
-	playerX[i] = 0.5 + 0.39*cos(playerAngle[i]);
-	playerZ[i] = 0.5 + 0.39*sin(playerAngle[i]);
-}
+var [playerIDs, playerX, playerZ] = radialPlayerPlacement(0.39);
 
 for (var i=0; i < numPlayers; i++)
 {

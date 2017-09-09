@@ -80,19 +80,7 @@ var elevationPainter = new SmoothElevationPainter(
 );
 createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
 
-var playerIDs = sortAllPlayers();
-
-var playerX = new Array(numPlayers);
-var playerZ = new Array(numPlayers);
-var playerAngle = new Array(numPlayers);
-
-var startAngle = randFloat(0, TWO_PI);
-for (var i = 0; i < numPlayers; i++)
-{
-	playerAngle[i] = startAngle + i*TWO_PI/numPlayers;
-	playerX[i] = 0.5 + 0.25*cos(playerAngle[i]);
-	playerZ[i] = 0.5 + 0.25*sin(playerAngle[i]);
-}
+var [playerIDs, playerX, playerZ] = radialPlayerPlacement(0.25);
 
 for (var i = 0; i < numPlayers; i++)
 {
