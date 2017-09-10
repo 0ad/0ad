@@ -1271,15 +1271,19 @@ function getRandomDeviation(base, deviation)
  * Import a given digital elevation model.
  * Scale it to the mapsize and paint the textures specified by coordinate on it.
  *
- * @param heightmap - An array with a square number of heights
- * @param tilemap - The IDs of the palletmap to be painted for each heightmap tile
- * @param pallet - The tile texture names used by the tilemap.
  * @return the ratio of heightmap tiles per map size tiles
  */
-function paintHeightmap(heightmap, tilemap, pallet, func = undefined)
+function paintHeightmap(mapName, func = undefined)
 {
+	/**
+	 * @property heightmap - An array with a square number of heights.
+	 * @property tilemap - The IDs of the palletmap to be painted for each heightmap tile.
+	 * @property pallet - The tile texture names used by the tilemap.
+	 */
+	let mapData = RMS.ReadJSONFile("maps/random/" + mapName + ".hmap");
+
 	let mapSize = getMapSize(); // Width of the map in terrain tiles
-	let hmSize = Math.sqrt(heightmap.length);
+	let hmSize = Math.sqrt(mapData.heightmap.length);
 	let scale = hmSize / (mapSize + 1); // There are mapSize + 1 vertices (each 1 tile is surrounded by 2x2 vertices)
 
 	for (let x = 0; x <= mapSize; ++x)
@@ -1306,14 +1310,14 @@ function paintHeightmap(heightmap, tilemap, pallet, func = undefined)
 			let neighbors = [];
 			for (let localXi = 0; localXi < 4; ++localXi)
 				for (let localYi = 0; localYi < 4; ++localYi)
-					neighbors.push(heightmap[(hmTile.x + localXi + shift.x - 1) * hmSize + (hmTile.y + localYi + shift.y - 1)]);
+					neighbors.push(mapData.heightmap[(hmTile.x + localXi + shift.x - 1) * hmSize + (hmTile.y + localYi + shift.y - 1)]);
 
 			setHeight(x, y, bicubicInterpolation(hmPoint.x - hmTile.x - shift.x, hmPoint.y - hmTile.y - shift.y, ...neighbors) / scale);
 
 			if (x < mapSize && y < mapSize)
 			{
 				let i = hmTile.x * hmSize + hmTile.y;
-				let tile = pallet[tilemap[i]];
+				let tile = mapData.pallet[mapData.tilemap[i]];
 				placeTerrain(x, y, tile);
 
 				if (func)
