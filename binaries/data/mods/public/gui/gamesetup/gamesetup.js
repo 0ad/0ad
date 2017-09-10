@@ -1885,7 +1885,7 @@ function launchGame()
 	if (g_GameAttributes.settings.Biome == "random")
 		g_GameAttributes.settings.Biome = pickRandom(
 			g_GameAttributes.settings.SupportedBiomes === true ?
-				g_BiomeList.Id :
+				g_BiomeList.Id.slice(1) :
 				g_GameAttributes.settings.SupportedBiomes);
 
 	g_GameAttributes.settings.TriggerScripts = g_GameAttributes.settings.VictoryScripts.concat(g_GameAttributes.settings.TriggerScripts || []);
