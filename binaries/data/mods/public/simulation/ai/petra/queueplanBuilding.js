@@ -204,7 +204,8 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 				let x = Math.round(pos[0] / cellSize);
 				let z = Math.round(pos[1] / cellSize);
 
-				if (ent.resourceDropsiteTypes() && ent.resourceDropsiteTypes().indexOf("food") !== -1)
+				let struct = ent.foundationProgress() === undefined ? ent : gameState.getBuiltTemplate(ent.templateName());
+				if (struct.resourceDropsiteTypes() && struct.resourceDropsiteTypes().indexOf("food") !== -1)
 				{
 					if (template.hasClass("Field") || template.hasClass("Corral"))
 						placement.addInfluence(x, z, 80/cellSize, 50);
@@ -224,7 +225,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 				else if (template.hasClass("Farmstead") && (!ent.hasClass("Field") && !ent.hasClass("Corral") &&
 					(!ent.hasClass("StoneWall") || ent.hasClass("Gates"))))
 					placement.addInfluence(x, z, 100/cellSize, -25);       // move farmsteads away to make room (StoneWall test needed for iber)
-				else if (template.hasClass("GarrisonFortress") && ent.genericName() == "House")
+				else if (template.hasClass("GarrisonFortress") && struct.genericName() == "House")
 					placement.addInfluence(x, z, 120/cellSize, -50);
 				else if (template.hasClass("Military"))
 					placement.addInfluence(x, z, 40/cellSize, -40);
