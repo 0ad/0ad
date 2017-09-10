@@ -1,6 +1,5 @@
 RMS.LoadLibrary("rmgen");
 
-// terrain textures
 const tGrass = ["temp_grass_aut", "temp_grass_aut", "temp_grass_d_aut"];
 const tForestFloor = "temp_grass_aut";
 const tGrassA = "temp_grass_plants_aut";
@@ -16,7 +15,6 @@ const tShoreBlend = "temp_grass_plants_aut";
 const tShore = "temp_plants_bog_aut";
 const tWater = "temp_mud_a";
 
-// gaia entities
 const oBeech = "gaia/flora_tree_euro_beech_aut";
 const oOak = "gaia/flora_tree_oak_aut";
 const oPine = "gaia/flora_tree_pine";
@@ -32,7 +30,6 @@ const oFood = "gaia/special_treasure_food_bin";
 const oMetal = "gaia/special_treasure_metal";
 const oStone = "gaia/special_treasure_stone";
 
-// decorative props
 const aGrass = "actor|props/flora/grass_soft_dry_small_tall.xml";
 const aGrassShort = "actor|props/flora/grass_soft_dry_large.xml";
 const aRockLarge = "actor|geology/stone_granite_med.xml";
@@ -46,7 +43,6 @@ const pForestD = [tForestFloor + TERRAIN_SEPARATOR + oBeech, tForestFloor];
 const pForestO = [tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor];
 const pForestP = [tForestFloor + TERRAIN_SEPARATOR + oPine, tForestFloor];
 
-log("Initializing map...");
 InitMap();
 
 const numPlayers = getNumPlayers();
@@ -64,29 +60,13 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clSettlement = createTileClass();
 
-// randomize player order
-var playerIDs = [];
-for (var i = 0; i < numPlayers; i++)
-	playerIDs.push(i+1);
-
-playerIDs = sortPlayers(playerIDs);
-
-// place players
-var playerX = new Array(numPlayers);
-var playerZ = new Array(numPlayers);
-var playerAngle = new Array(numPlayers);
-var baseRadius = 30;
-
-var startAngle = randFloat(0, TWO_PI);
-for (var i = 0; i < numPlayers; i++)
-{
-	playerAngle[i] = startAngle + i*TWO_PI/numPlayers;
-	playerX[i] = mapSize*(0.5 + 0.35*cos(playerAngle[i]));
-	playerZ[i] = mapSize*(0.5 + 0.35*sin(playerAngle[i]));
-}
+var [playerIDs, playerX, playerZ] = radialPlayerPlacement();
 
 for (var i=0; i < numPlayers; i++)
 {
+	playerX[i] *= mapSize;
+	playerZ[i] *= mapSize;
+
 	var startEntities = getStartingEntities(i);
 	// Place starting entities
 	createStartingPlayerEntities(playerX[i], playerZ[i], i+1, startEntities);
@@ -319,7 +299,6 @@ createDecoration
 );
 RMS.SetProgress(80);
 
-// create animals
 createFood
 (
  [
@@ -334,7 +313,6 @@ createFood
 );
 RMS.SetProgress(85);
 
-// create fruits
 createFood
 (
  [

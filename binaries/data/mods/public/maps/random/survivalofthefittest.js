@@ -13,14 +13,12 @@ const tTier2Terrain = g_Terrains.tier2Terrain;
 const tTier3Terrain = g_Terrains.tier3Terrain;
 const tTier4Terrain = g_Terrains.tier4Terrain;
 
-// gaia entities
 const oTree1 = g_Gaia.tree1;
 const oTree2 = g_Gaia.tree2;
 const oTree3 = g_Gaia.tree3;
 const oTree4 = g_Gaia.tree4;
 const oTree5 = g_Gaia.tree5;
 
-// decorative props
 const aGrass = g_Decoratives.grass;
 const aGrassShort = g_Decoratives.grassShort;
 const aRockLarge = g_Decoratives.rockLarge;
@@ -43,7 +41,6 @@ const triggerPointTreasures = [
 	"special/trigger_point_D"
 ];
 
-log("Initializing map...");
 InitMap();
 
 var numPlayers = getNumPlayers();
@@ -57,9 +54,7 @@ var clBaseResource = createTileClass();
 var clLand = createTileClass();
 var clWomen = createTileClass();
 
-for (var ix = 0; ix < mapSize; ix++)
-	for (var iz = 0; iz < mapSize; iz++)
-		placeTerrain(ix, iz, tMainTerrain);
+initTerrain(tMainTerrain);
 
 var ix = Math.round(fractionToTiles(0.5));
 var iz = Math.round(fractionToTiles(0.5));
@@ -74,25 +69,13 @@ createArea(
 	],
 	null);
 
-// randomize player order
-var playerIDs = [];
-for (var i = 0; i < numPlayers; i++)
-	playerIDs.push(i+1);
-playerIDs = sortPlayers(playerIDs);
+var [playerIDs, playerX, playerZ, playerAngle, startAngle] = radialPlayerPlacement(0.3);
 
-// place players
-var playerX = new Array(numPlayers);
-var playerZ = new Array(numPlayers);
-var attackerX = new Array(numPlayers);
-var attackerZ = new Array(numPlayers);
-var playerAngle = new Array(numPlayers);
+var attackerX = [];
+var attackerZ = [];
 
-var startAngle = randFloat(0, 2 * PI);
 for (let  i = 0; i < numPlayers; ++i)
 {
-	playerAngle[i] = startAngle + i * 2 * PI / numPlayers;
-	playerX[i] = 0.5 + 0.3*cos(playerAngle[i]);
-	playerZ[i] = 0.5 + 0.3*sin(playerAngle[i]);
 	attackerX[i] = 0.5 + 0.45*cos(playerAngle[i]);
 	attackerZ[i] = 0.5 + 0.45*sin(playerAngle[i]);
 }

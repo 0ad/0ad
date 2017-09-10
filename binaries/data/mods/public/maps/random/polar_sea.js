@@ -11,7 +11,6 @@ var tRoadWild = "polar_ice_cracked";
 var tShore = "polar_ice_snow";
 var tWater = "polar_ice_c";
 
-// gaia entities
 var oArcticFox = "gaia/fauna_fox_arctic";
 var oWolf = "trigger/fauna_wolf_snow_attack";
 var oMuskox = "gaia/fauna_muskox";
@@ -24,12 +23,10 @@ var oStoneSmall = "gaia/geology_stone_alpine_a";
 var oMetalLarge = "gaia/geology_metal_desert_badlands_slabs";
 var oWood = "gaia/special_treasure_wood";
 
-// decorative props
 var aRockLarge = "actor|geology/stone_granite_med.xml";
 var aRockMedium = "actor|geology/stone_granite_med.xml";
 var aIceberg = "actor|props/special/eyecandy/iceberg.xml";
 
-log("Initializing map...");
 InitMap();
 
 const numPlayers = getNumPlayers();
@@ -48,26 +45,9 @@ var clWolf = createTileClass();
 // Expected by rmgen1
 var clForest = createTileClass();
 
-for (let ix = 0; ix < mapSize; ++ix)
-	for (let iz = 0; iz < mapSize; ++iz)
-		placeTerrain(ix, iz, tPrimary);
+initTerrain(tPrimary);
 
-var playerIDs = [];
-for (let i = 0; i < numPlayers; ++i)
-	playerIDs.push(i+1);
-playerIDs = sortPlayers(playerIDs);
-
-var playerX = new Array(numPlayers);
-var playerZ = new Array(numPlayers);
-var playerAngle = new Array(numPlayers);
-
-var startAngle = randFloat(0, TWO_PI);
-for (let i = 0; i < numPlayers; ++i)
-{
-	playerAngle[i] = startAngle + i * TWO_PI / numPlayers;
-	playerX[i] = 0.5 + 0.35 * Math.cos(playerAngle[i]);
-	playerZ[i] = 0.5 + 0.35 * Math.sin(playerAngle[i]);
-}
+var [playerIDs, playerX, playerZ] = radialPlayerPlacement();
 
 RMS.SetProgress(20);
 

@@ -745,7 +745,7 @@ m.BaseManager.prototype.pickBuilders = function(gameState, workers, number)
  */
 m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 {
-	let foundations = this.buildings.filter(API3.Filters.and(API3.Filters.isFoundation(),API3.Filters.not(API3.Filters.byClass("Field")))).toEntityArray();
+	let foundations = this.buildings.filter(API3.Filters.and(API3.Filters.isFoundation(), API3.Filters.not(API3.Filters.byClass("Field"))));
 
 	let damagedBuildings = this.buildings.filter(ent => ent.foundationProgress() === undefined && ent.needsRepair());
 
@@ -758,10 +758,10 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 	let idleBuilderWorkers = builderWorkers.filter(API3.Filters.isIdle());
 
 	// if we're constructing and we have the foundations to our base anchor, only try building that.
-	if (this.constructing === true && this.buildings.filter(API3.Filters.and(API3.Filters.isFoundation(), API3.Filters.byMetadata(PlayerID, "baseAnchor", true))).hasEntities())
+	if (this.constructing && foundations.filter(API3.Filters.byMetadata(PlayerID, "baseAnchor", true)).hasEntities())
 	{
-		foundations = this.buildings.filter(API3.Filters.byMetadata(PlayerID, "baseAnchor", true)).toEntityArray();
-		let tID = foundations[0].id();
+		foundations = foundations.filter(API3.Filters.byMetadata(PlayerID, "baseAnchor", true));
+		let tID = foundations.toEntityArray()[0].id();
 		workers.forEach(function (ent) {
 			let target = ent.getMetadata(PlayerID, "target-foundation");
 			if (target && target != tID)
@@ -790,7 +790,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 
 	let builderTot = builderWorkers.length - idleBuilderWorkers.length;
 
-	for (let target of foundations)
+	for (let target of foundations.values())
 	{
 		if (target.hasClass("Field"))
 			continue; // we do not build fields

@@ -140,7 +140,7 @@ function resetTerrain(terrain, tc, elevation)
  */
 function addBases(type = "radial", distance = 0.3, groupedDistance = 0.05)
 {
-	var playerIDs = randomizePlayers();
+	let playerIDs = sortAllPlayers();
 
 	switch(type)
 	{
@@ -179,7 +179,6 @@ function createBase(player, walls = true)
 	addToClass(ix - 5, iz, g_TileClasses.player);
 	addToClass(ix, iz - 5, g_TileClasses.player);
 
-	// Create starting units
 	if (walls && g_MapInfo.mapSize > 192)
 		placeCivDefaultEntities(fx, fz, player.id);
 	else
@@ -315,20 +314,6 @@ function randomStartingPositionPattern()
 		"distance": randFloat(0.2, 0.35),
 		"separation": randFloat(0.05, 0.1)
 	};
-}
-
-/**
- * Mix player indices but sort by team.
- *
- * @returns {Array} - every item is an array of player indices
- */
-function randomizePlayers()
-{
-	var playerIDs = [];
-	for (var i = 0; i < g_MapInfo.numPlayers; ++i)
-		playerIDs.push(i + 1);
-
-	return sortPlayers(playerIDs);
 }
 
 /**
@@ -591,7 +576,7 @@ function randomPlayerPlacementAt(singleBases, strongholdBases, heightmapScale, g
 	}
 	else
 	{
-		let players = groupPlayersByLocations(randomizePlayers(), singleBases.map(l => ({
+		let players = groupPlayersByLocations(sortAllPlayers(), singleBases.map(l => ({
 			"x": l[0] / heightmapScale / g_MapInfo.mapSize,
 			"z": l[1] / heightmapScale / g_MapInfo.mapSize
 		})));

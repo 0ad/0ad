@@ -64,8 +64,8 @@ function LayeredPainter(terrainArray, widths)
 LayeredPainter.prototype.paint = function(area)
 {
 	var size = getMapSize();
-	var saw = new Array(size);
-	var dist = new Array(size);
+	var saw = [];
+	var dist = [];
 
 	// init typed arrays
 	for (var i = 0; i < size; ++i)
@@ -214,10 +214,10 @@ SmoothElevationPainter.prototype.paint = function(area)
 
 	var mapSize = getMapSize()+1;
 
-	var saw = new  Array(mapSize);
-	var dist = new Array(mapSize);
-	var gotHeightPt = new Array(mapSize);
-	var newHeight = new Array(mapSize);
+	var saw = [];
+	var dist = [];
+	var gotHeightPt = [];
+	var newHeight = [];
 
 	// init typed arrays
 	for (var i = 0; i < mapSize; ++i)

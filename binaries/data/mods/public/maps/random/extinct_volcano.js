@@ -53,7 +53,6 @@ const pForestP = [
 	tForestFloor1
 ];
 
-log("Initializing map...");
 InitMap();
 
 var P_FOREST = 0.7;
@@ -65,7 +64,6 @@ var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
 var mapArea = mapSize * mapSize;
 
-// create tile classes
 var clPlayer = createTileClass();
 var clHill = createTileClass();
 var clFood = createTileClass();
@@ -82,26 +80,16 @@ var clRain = createTileClass();
 
 var ccMountainHeight = 25;
 
-// randomize player order
-var playerIDs = [];
-for (let i = 0; i < numPlayers; ++i)
-	playerIDs.push(i+1);
-playerIDs = sortPlayers(playerIDs);
+var [playerIDs, playerX, playerZ] = radialPlayerPlacement();
 
-// Place players
-var startAngle = randFloat(0, 2 * PI);
 for (let i = 0; i < numPlayers; ++i)
 {
-	let playerAngle = startAngle + i * 2 * PI / numPlayers;
-	let playerX = 0.5 + 0.35 * Math.cos(playerAngle);
-	let playerZ = 0.5 + 0.35 * Math.sin(playerAngle);
-
 	let id = playerIDs[i];
 	log("Creating base for player " + id + "...");
 	let radius = scaleByMapSize(15, 25);
 
-	let fx = fractionToTiles(playerX);
-	let fz = fractionToTiles(playerZ);
+	let fx = fractionToTiles(playerX[i]);
+	let fz = fractionToTiles(playerZ[i]);
 	let ix = Math.round(fx);
 	let iz = Math.round(fz);
 

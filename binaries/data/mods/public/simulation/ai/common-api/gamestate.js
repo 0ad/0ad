@@ -157,6 +157,17 @@ m.GameState.prototype.getTemplate = function(type)
 	return new m.Template(this.sharedScript, type, this.templates[type]);
 };
 
+/** Return the template of the structure built from this foundation */
+m.GameState.prototype.getBuiltTemplate = function(foundationName)
+{
+	if (!foundationName.startsWith("foundation|"))
+	{
+		warn("Foundation " + foundationName + " not recognised as a foundation.");
+		return null;
+	}
+	return this.getTemplate(foundationName.substr(11));
+};
+
 m.GameState.prototype.applyCiv = function(str)
 {
 	return str.replace(/\{civ\}/g, this.playerData.civ);

@@ -11,27 +11,23 @@ var tLava1 = "LavaTest05";
 var tLava2 = "LavaTest04";
 var tLava3 = "LavaTest03";
 
-// gaia entities
 var oTree = "gaia/flora_tree_dead";
 var oStoneLarge = "gaia/geology_stonemine_alpine_quarry";
 var oStoneSmall = "gaia/geology_stone_alpine_a";
 var oMetalLarge = "gaia/geology_metal_alpine_slabs";
 
-// decorative props
 var aRockLarge = "actor|geology/stone_granite_med.xml";
 var aRockMedium = "actor|geology/stone_granite_med.xml";
 
 var pForestD = [tGrassC + TERRAIN_SEPARATOR + oTree, tGrassC];
 var pForestP = [tGrassB + TERRAIN_SEPARATOR + oTree, tGrassB];
 
-log("Initializing map...");
 InitMap();
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
 var mapArea = mapSize*mapSize;
 
-// create tile classes
 var clPlayer = createTileClass();
 var clHill = createTileClass();
 var clForest = createTileClass();
@@ -40,24 +36,7 @@ var clRock = createTileClass();
 var clMetal = createTileClass();
 var clBaseResource = createTileClass();
 
-// randomize player order
-var playerIDs = [];
-for (var i = 0; i < numPlayers; i++)
-	playerIDs.push(i+1);
-playerIDs = sortPlayers(playerIDs);
-
-// place players
-var playerX = new Array(numPlayers);
-var playerZ = new Array(numPlayers);
-var playerAngle = new Array(numPlayers);
-
-var startAngle = randFloat(0, TWO_PI);
-for (var i = 0; i < numPlayers; i++)
-{
-	playerAngle[i] = startAngle + i*TWO_PI/numPlayers;
-	playerX[i] = 0.5 + 0.35*cos(playerAngle[i]);
-	playerZ[i] = 0.5 + 0.35*sin(playerAngle[i]);
-}
+var [playerIDs, playerX, playerZ] = radialPlayerPlacement();
 
 for (var i = 0; i < numPlayers; i++)
 {
@@ -83,7 +62,6 @@ for (var i = 0; i < numPlayers; i++)
 	var painter = new LayeredPainter([tRoadWild, tRoad], [1]);
 	createArea(placer, painter, null);
 
-	// create starting units
 	placeCivDefaultEntities(fx, fz, id);
 
 	// create metal mine
@@ -146,7 +124,6 @@ createAreas(
 	avoidClasses(clPlayer, 12, clHill, 15, clBaseResource, 2),
 	scaleByMapSize(2, 8) * numPlayers
 );
-
 
 // calculate desired number of trees for map (based on size)
 var MIN_TREES = 200;
@@ -237,7 +214,7 @@ createObjectGroupsDeprecated(group, 0,
 	scaleByMapSize(4,16), 100
 );
 
-// create small stone quarries
+log("Creating small stone mines...");
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clHill, 1),
@@ -263,7 +240,6 @@ createObjectGroupsDeprecated(
 	avoidClasses(clForest, 0, clPlayer, 0, clHill, 0),
 	scaleByMapSize(16, 262), 50
 );
-
 
 log("Creating large decorative rocks...");
 group = new SimpleGroup(

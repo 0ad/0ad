@@ -42,7 +42,6 @@ const aShrub = "actor|props/flora/shrub_tropic_plant_flower.xml";
 const aFlower = "actor|props/flora/flower_bright.xml";
 const aPalm = "actor|props/flora/shrub_fanpalm.xml";
 
-log("Initializing map...");
 InitMap();
 
 const numPlayers = getNumPlayers();
@@ -58,23 +57,17 @@ var clForest = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
-// Randomize player order
-var playerIDs = [];
-for (let i = 0; i < numPlayers; ++i)
-	playerIDs.push(i + 1);
-playerIDs = sortPlayers(playerIDs);
+var [playerIDs, playerX, playerZ] = radialPlayerPlacement();
 
-var startAngle = randFloat(0, 2 * PI);
 for (let i = 0; i < numPlayers; ++i)
 {
-	let playerAngle = startAngle + i * 2 * PI / numPlayers;
 	let id = playerIDs[i];
 	log("Creating base for player " + id + "...");
 	let radius = scaleByMapSize(15, 25);
 
 	// Get the x and z in tiles
-	let fx = fractionToTiles(0.5 + 0.35 * Math.cos(playerAngle));
-	let fz = fractionToTiles(0.5 + 0.35 * Math.sin(playerAngle));
+	let fx = fractionToTiles(playerX[i]);
+	let fz = fractionToTiles(playerZ[i]);
 	let ix = Math.round(fx);
 	let iz = Math.round(fz);
 

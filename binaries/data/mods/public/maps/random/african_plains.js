@@ -14,7 +14,6 @@ var tCitytiles = "savanna_tile_a";
 var tShore = "savanna_riparian_bank";
 var tWater = "savanna_riparian_wet";
 
-// gaia entities
 var oBaobab = "gaia/flora_tree_baobab";
 var oPalm = "gaia/flora_tree_senegal_date_palm";
 var oBerryBush = "gaia/flora_bush_berry";
@@ -34,13 +33,11 @@ var oFish = "gaia/fauna_fish";
 var oStoneSmall = "gaia/geology_stone_savanna_small";
 var oMetalLarge = "gaia/geology_metal_savanna_slabs";
 
-// decorative props
 var aBush = "actor|props/flora/bush_medit_sm_dry.xml";
 var aRock = "actor|geology/stone_savanna_med.xml";
 
 const pForest = [tForestFloor + TERRAIN_SEPARATOR + oPalm, tForestFloor];
 
-log("Initializing map...");
 InitMap();
 
 const numPlayers = getNumPlayers();
@@ -57,33 +54,9 @@ var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
-// Cover the ground with the primary terrain chosen in the beginning
-for (var ix = 0; ix < mapSize; ++ix)
-	for (var iz = 0; iz < mapSize; ++iz)
-	{
-		var x = ix / (mapSize + 1.0);
-		var z = iz / (mapSize + 1.0);
-		placeTerrain(ix, iz, tPrimary);
-	}
+initTerrain(tPrimary);
 
-// Randomize player order
-var playerIDs = [];
-for (var i = 0; i < numPlayers; ++i)
-	playerIDs.push(i+1);
-playerIDs = sortPlayers(playerIDs);
-
-// Place players
-var playerX = [];
-var playerZ = [];
-var playerAngle = [];
-
-var startAngle = randFloat(0, TWO_PI);
-for (var i = 0; i < numPlayers; ++i)
-{
-	playerAngle[i] = startAngle + i*TWO_PI/numPlayers;
-	playerX[i] = 0.5 + 0.35 * cos(playerAngle[i]);
-	playerZ[i] = 0.5 + 0.35 * sin(playerAngle[i]);
-}
+var [playerIDs, playerX, playerZ] = radialPlayerPlacement();
 
 for (var i = 0; i < numPlayers; ++i)
 {

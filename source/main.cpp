@@ -83,7 +83,13 @@ that of Atlas depending on commandline parameters.
 #include <unistd.h> // geteuid
 #endif // OS_UNIX
 
+#if MSC_VERSION
+#include <process.h>
+#define getpid _getpid // Use the non-deprecated function name
+#endif
+
 extern bool g_GameRestarted;
+extern CStrW g_UniqueLogPostfix;
 
 void kill_mainloop();
 
@@ -462,6 +468,9 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 		LOGERROR("-autostart-nonvisual cant be used alone. A map with -autostart=\"TYPEDIR/MAPNAME\" is needed.");
 		return;
 	}
+
+	if (args.Has("unique-logs"))
+		g_UniqueLogPostfix = L"_" + std::to_wstring(std::time(nullptr)) + L"_" + std::to_wstring(getpid());
 
 	const bool isVisualReplay = args.Has("replay-visual");
 	const bool isNonVisualReplay = args.Has("replay");

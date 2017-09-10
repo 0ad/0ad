@@ -64,6 +64,8 @@ Advanced / diagnostic:
 -rejointest=N       simulates a rejoin and checks simulation state each turn for serialization
                     errors; this is similar to a serialization test but much faster and
                     less complete. It should be enough for debugging most rejoin OOSes.
+-unique-logs        adds unix timestamp and process id to the filename of mainlog.html, interestinglog.html
+                    and oos_dump.txt to prevent these files from becoming overwritten by another pyrogenesis process.
 
 Windows-specific:
 -wQpcTscSafe        allow timing via QueryPerformanceCounter despite the fact

@@ -4,5 +4,4 @@ RMS.LoadLibrary("rmgen");
 
 InitMap();
 
-// Export map data
 ExportMap();

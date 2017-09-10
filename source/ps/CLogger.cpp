@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,6 +34,7 @@
 
 #include <boost/algorithm/string/replace.hpp>
 
+CStrW g_UniqueLogPostfix;
 static const double RENDER_TIMEOUT = 10.0; // seconds before messages are deleted
 static const double RENDER_TIMEOUT_RATE = 10.0; // number of timed-out messages deleted per second
 static const size_t RENDER_LIMIT = 20; // maximum messages on screen at once
@@ -65,10 +66,11 @@ const char* html_header1 = "</h2>\n";
 
 CLogger::CLogger()
 {
-	OsPath mainlogPath(psLogDir()/"mainlog.html");
+	OsPath mainlogPath(psLogDir() / (L"mainlog" + g_UniqueLogPostfix + L".html"));
 	m_MainLog = new std::ofstream(OsString(mainlogPath).c_str(), std::ofstream::out | std::ofstream::trunc);
+	debug_printf("Writing the mainlog at %s\n", mainlogPath.string8().c_str());
 
-	OsPath interestinglogPath(psLogDir()/"interestinglog.html");
+	OsPath interestinglogPath(psLogDir() / (L"interestinglog" + g_UniqueLogPostfix + L".html"));
 	m_InterestingLog = new std::ofstream(OsString(interestinglogPath).c_str(), std::ofstream::out | std::ofstream::trunc);
 
 	m_OwnsStreams = true;

@@ -39,7 +39,6 @@ var aRockMedium = "actor|geology/stone_granite_med.xml";
 
 const pForest = [tForestFloor + TERRAIN_SEPARATOR + oBush, tForestFloor + TERRAIN_SEPARATOR + oBush2, tForestFloor];
 
-log("Initializing map...");
 InitMap();
 
 const numPlayers = getNumPlayers();
@@ -55,29 +54,18 @@ var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
-// Cover the ground with the primary terrain chosen in the beginning
-for (let ix = 0; ix < mapSize; ++ix)
-	for (let iz = 0; iz < mapSize; ++iz)
-		placeTerrain(ix, iz, tPrimary);
+initTerrain(tPrimary);
 
-// Randomize player order
-var playerIDs = [];
-for (let i = 0; i < numPlayers; ++i)
-	playerIDs.push(i+1);
-playerIDs = sortPlayers(playerIDs);
+var [playerIDs, playerX, playerZ] = radialPlayerPlacement();
 
-var startAngle = randFloat(0, 2 * PI);
 for (let i = 0; i < numPlayers; i++)
 {
 	log("Creating base for player " + playerIDs[i]);
-	let playerAngle = startAngle + i * 2 * PI / numPlayers;
-	let playerX = 0.5 + 0.35 * Math.cos(playerAngle);
-	let playerZ = 0.5 + 0.35 * Math.sin(playerAngle);
 	let radius = scaleByMapSize(15, 25);
 
 	// Get the x and z in tiles
-	let fx = fractionToTiles(playerX);
-	let fz = fractionToTiles(playerZ);
+	let fx = fractionToTiles(playerX[i]);
+	let fz = fractionToTiles(playerZ[i]);
 	let ix = Math.round(fx);
 	let iz = Math.round(fz);
 

@@ -33,7 +33,6 @@
 // ?Think of something to enable splitting walls into two walls so more complex walls can be build and roads can have branches/crossroads?
 // ?Readjust placement angle for wall elements with bending when used in linear/circular walls by their bending?
 
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //  WallElement class definition
 //
@@ -441,7 +440,6 @@ function getWallLength(wall, style)
 
 	return length;
 }
-
 
 /////////////////////////////////////////////
 // Define the different wall placer functions

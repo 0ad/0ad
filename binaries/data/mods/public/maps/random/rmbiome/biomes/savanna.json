@@ -14,13 +14,13 @@
 		},
 		"Fog": {
 			"FogThickness": 0.15,
-			"FogFactor": 0.25,
+			"FogFactor": 0.0025,
 			"FogColor": { "r": 0.847059, "g": 0.737255, "b": 0.482353 }
 		},
 		"Postproc": {
 			"PostprocEffect": "hdr",
-			"Contrast": 0.57031,
-			"Bloom": 0.34
+			"Contrast": 1.07031,
+			"Bloom": 0.132
 		}
 	},
 	"Terrains": {

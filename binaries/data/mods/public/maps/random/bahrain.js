@@ -78,7 +78,6 @@ var scale = paintHeightmap(getHeightMap(), getTileMap(), getTilePallet(), (tile,
 });
 RMS.SetProgress(20);
 
-
 log("Paint tile classes...");
 paintTileClassBasedOnHeight(-100, -1, 3, g_TileClasses.water);
 RMS.SetProgress(40);

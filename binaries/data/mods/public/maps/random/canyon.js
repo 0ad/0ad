@@ -19,7 +19,6 @@ const tShoreBlend = g_Terrains.shoreBlend;
 const tShore = g_Terrains.shore;
 const tWater = g_Terrains.water;
 
-// gaia entities
 const oTree1 = g_Gaia.tree1;
 const oTree2 = g_Gaia.tree2;
 const oTree3 = g_Gaia.tree3;
@@ -35,7 +34,6 @@ const oMetalLarge = g_Gaia.metalLarge;
 const oWood = "gaia/special_treasure_wood";
 const oFood = "gaia/special_treasure_food_bin";
 
-// decorative props
 const aGrass = g_Decoratives.grass;
 const aGrassShort = g_Decoratives.grassShort;
 const aReeds = g_Decoratives.reeds;
@@ -49,15 +47,11 @@ const aTree = g_Decoratives.tree;
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
-log("Initializing map...");
-
 InitMap();
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
 var mapArea = mapSize*mapSize;
-
-// create tile classes
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -71,15 +65,7 @@ var clBaseResource = createTileClass();
 var clSettlement = createTileClass();
 var clLand = createTileClass();
 
-for (var ix = 0; ix < mapSize; ix++)
-{
-	for (var iz = 0; iz < mapSize; iz++)
-	{
-		var x = ix / (mapSize + 1.0);
-		var z = iz / (mapSize + 1.0);
-			placeTerrain(ix, iz, tMainTerrain);
-	}
-}
+initTerrain(tMainTerrain);
 
 var fx = fractionToTiles(0.5);
 var fz = fractionToTiles(0.5);
@@ -100,34 +86,13 @@ var elevationPainter = new SmoothElevationPainter(
 );
 createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
 
-// randomize player order
-var playerIDs = [];
-for (var i = 0; i < numPlayers; i++)
-{
-	playerIDs.push(i+1);
-}
-playerIDs = sortPlayers(playerIDs);
-
-// place players
-
-var playerX = new Array(numPlayers);
-var playerZ = new Array(numPlayers);
-var playerAngle = new Array(numPlayers);
-
-var startAngle = randFloat(0, TWO_PI);
-for (var i = 0; i < numPlayers; i++)
-{
-	playerAngle[i] = startAngle + i*TWO_PI/numPlayers;
-	playerX[i] = 0.5 + 0.35*cos(playerAngle[i]);
-	playerZ[i] = 0.5 + 0.35*sin(playerAngle[i]);
-}
+var [playerIDs, playerX, playerZ] = radialPlayerPlacement();
 
 for (var i = 0; i < numPlayers; i++)
 {
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
 
-	// some constants
 	var radius = scaleByMapSize(18,32);
 	var cliffRadius = 2;
 	var elevation = 20;
@@ -150,7 +115,6 @@ for (var i = 0; i < numPlayers; i++)
 	);
 	createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
 
-	// create starting units
 	placeCivDefaultEntities(fx, fz, id);
 
 	placeDefaultChicken(fx, fz, clBaseResource);
@@ -260,15 +224,15 @@ for (var g = 0; g < scaleByMapSize(5,30); g++)
 	var newarea = createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], avoidClasses(clLand, 6));
 	if (newarea !== null)
 	{
-		var distances = new Array(0);
+		var distances = [];
 		var d1 = 9999;
 		var d2 = 9999;
 		var p1 = -1;
 		var p2 = 0;
+
 		for (var i = 0; i < numPlayers; i++)
-		{
 			distances.push(sqrt((tx-mapSize*playerX[i])*(tx-mapSize*playerX[i])+(tz-mapSize*playerZ[i])*(tz-mapSize*playerZ[i])));
-		}
+
 		for (var a = 0; a < numPlayers; a++)
 		{
 			if (d1 >= distances[a])
@@ -313,7 +277,6 @@ for (var g = 0; g < scaleByMapSize(5,30); g++)
 		}
 	}
 }
-
 
 for (var i = 0; i < numPlayers; i++)
 {
@@ -368,10 +331,8 @@ RMS.SetProgress(20);
 paintTerrainBasedOnHeight(3.1, 29, 0, tCliff);
 paintTileClassBasedOnHeight(3.1, 32, 0, clHill2);
 
-// create bumps
 createBumps([avoidClasses(clPlayer, 2), stayClasses(clLand, 2)]);
 
-// create hills
 createHills([tCliff, tCliff, tHill], [avoidClasses(clPlayer, 2, clHill, 8, clHill2, 8), stayClasses(clLand, 5)], clHill, scaleByMapSize(10, 40));
 
 // create hills outside the canyon
@@ -387,7 +348,6 @@ createForests(
 
 RMS.SetProgress(50);
 
-// create dirt patches
 log("Creating dirt patches...");
 createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
@@ -396,7 +356,6 @@ createLayeredPatches(
  [avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 4, clHill2, 0), stayClasses(clLand, 3)]
 );
 
-// create grass patches
 log("Creating grass patches...");
 createPatches(
  [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
@@ -405,7 +364,6 @@ createPatches(
 );
 
 log("Creating stone mines...");
-// create stone quarries
 createMines(
  [
   [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
@@ -415,7 +373,6 @@ createMines(
 );
 
 log("Creating metal mines...");
-// create large metal quarries
 createMines(
  [
   [new SimpleObject(oMetalLarge, 1,1, 0,4)]
@@ -426,7 +383,6 @@ createMines(
 
 RMS.SetProgress(65);
 
-// create decoration
 var planetm = 1;
 
 if (currentBiome() == "tropic")
@@ -450,7 +406,6 @@ createDecoration
  avoidClasses(clForest, 0, clPlayer, 0, clHill, 0)
 );
 
-// create actor trees
 log("Creating actor trees...");
 group = new SimpleGroup(
 	[new SimpleObject(aTree, 1,1, 0,1)],
@@ -464,7 +419,6 @@ createObjectGroupsDeprecated(
 
 RMS.SetProgress(70);
 
-// create animals
 createFood
 (
  [
@@ -478,7 +432,6 @@ createFood
  [avoidClasses(clForest, 0, clPlayer, 4, clHill, 1, clFood, 20, clHill2, 1), stayClasses(clLand, 3)]
 );
 
-// create fruits
 createFood
 (
  [
@@ -492,14 +445,11 @@ createFood
 
 RMS.SetProgress(85);
 
-
-// create straggler trees
 log("Creating straggler trees...");
 var types = [oTree1, oTree2, oTree4, oTree3];	// some variation
 createStragglerTrees(types, [avoidClasses(clForest, 1, clHill, 1, clPlayer, 9, clMetal, 6, clRock, 6, clHill2, 1), stayClasses(clLand, 3)]);
 
-
-// create treasures
+log("Creating treasures...");
 var fx = fractionToTiles(0.5);
 var fz = fractionToTiles(0.5);
 for (let i = 0; i < randIntInclusive(3, 8); ++i)
@@ -508,5 +458,4 @@ for (let i = 0; i < randIntInclusive(3, 8); ++i)
 for (let i = 0; i < randIntInclusive(3, 8); ++i)
 	placeObject(fx + randFloat(-7, 7), fz + randFloat(-7, 7), oFood, 0, randFloat(0, 2 * PI));
 
-// Export map data
 ExportMap();

@@ -1,6 +1,5 @@
 RMS.LoadLibrary("rmgen");
 
-// terrain textures
 const tGrass = ["temp_grass", "temp_grass", "temp_grass_d"];
 const tGrassPForest = "temp_plants_bog";
 const tGrassDForest = "temp_plants_bog";
@@ -18,7 +17,6 @@ const tShoreBlend = "temp_grass_plants";
 const tShore = "temp_dirt_gravel";
 const tWater = "temp_dirt_gravel_b";
 
-// gaia entities
 const oBeech = "gaia/flora_tree_euro_beech";
 const oPoplar = "gaia/flora_tree_poplar";
 const oApple = "gaia/flora_tree_apple";
@@ -32,7 +30,6 @@ const oStoneLarge = "gaia/geology_stonemine_temperate_quarry";
 const oStoneSmall = "gaia/geology_stone_temperate";
 const oMetalLarge = "gaia/geology_metal_temperate_slabs";
 
-// decorative props
 const aGrass = "actor|props/flora/grass_soft_large_tall.xml";
 const aGrassShort = "actor|props/flora/grass_soft_large.xml";
 const aRockLarge = "actor|geology/stone_granite_large.xml";
@@ -48,14 +45,12 @@ const pForestP = [tGrassPForest + TERRAIN_SEPARATOR + oOak, tGrassPForest];
 
 const WATER_WIDTH = 0.25;
 
-log("Initializing map...");
 InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
 const mapArea = mapSize*mapSize;
 
-// create tile classes
 var clPlayer = createTileClass();
 var clHill = createTileClass();
 var clForest = createTileClass();
@@ -68,29 +63,14 @@ var clBaseResource = createTileClass();
 var clSettlement = createTileClass();
 var clShallow = createTileClass();
 
-// randomize player order
-var playerIDs = [];
-for (var i = 0; i < numPlayers; i++)
-	playerIDs.push(i+1);
-playerIDs = primeSortPlayers(sortPlayers(playerIDs));
+var playerIDs = primeSortAllPlayers();
+var playerPos = placePlayersRiver();
 
-// place players
 var playerX = [];
 var playerZ = [];
-var playerAngle = [];
-var playerPos = [];
-var iop = 0;
 
 for (var i = 0; i < numPlayers; i++)
 {
-	iop = i - 1;
-	if (numPlayers % 2 == 0)
-		playerPos[i] = ((iop + abs(iop % 2)) / 2 + 1) / ((numPlayers / 2) + 1);
-	else if (iop % 2 != 0)
-		playerPos[i] = ((iop + abs(iop % 2)) / 2 + 1) / (((numPlayers + 1) / 2) + 1);
-	else
-		playerPos[i] = (iop / 2 + 1) / (((numPlayers - 1) / 2) + 1);
-
 	playerZ[i] = 0.2 + 0.6*(i%2);
 	playerX[i] = playerPos[i];
 }
@@ -100,7 +80,6 @@ for (var i = 0; i < numPlayers; i++)
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
 
-	// some constants
 	var radius = scaleByMapSize(15,25);
 	var cliffRadius = 2;
 	var elevation = 20;
@@ -123,7 +102,6 @@ for (var i = 0; i < numPlayers; i++)
 	var painter = new LayeredPainter([tRoadWild, tRoad], [1]);
 	createArea(placer, [painter, paintClass(clPlayer)], null);
 
-	// create starting units
 	placeCivDefaultEntities(fx, fz, id);
 
 	placeDefaultChicken(fx, fz, clBaseResource);
@@ -142,9 +120,8 @@ for (var i = 0; i < numPlayers; i++)
 	// create metal mine
 	var mAngle = bbAngle;
 	while(abs(mAngle - bbAngle) < PI/3)
-	{
 		mAngle = randFloat(0, TWO_PI);
-	}
+
 	var mDist = 12;
 	var mX = round(fx + mDist * cos(mAngle));
 	var mZ = round(fz + mDist * sin(mAngle));
@@ -181,10 +158,13 @@ for (var i = 0; i < numPlayers; i++)
 RMS.SetProgress(10);
 
 log("Creating sea");
+
 var theta = randFloat(0, 1);
 var theta2 = randFloat(0, 1);
+
 var seed = randFloat(2,3);
 var seed2 = randFloat(2,3);
+
 for (var ix = 0; ix < mapSize; ix++)
 	for (var iz = 0; iz < mapSize; iz++)
 	{
@@ -276,7 +256,7 @@ createForests(
  [tGrass, tGrassDForest, tGrassDForest, pForestD, pForestD],
  avoidClasses(clPlayer, 20, clForest, 17, clHill, 0, clWater, 6),
  clForest,
- 1.0,
+ 1.0
 );
 RMS.SetProgress(70);
 
@@ -347,7 +327,6 @@ createDecoration
  stayClasses(clShallow, 0)
 );
 
-// create animals
 createFood
 (
  [
@@ -363,7 +342,6 @@ createFood
  avoidClasses(clWater, 1, clForest, 0, clPlayer, 20, clHill, 0, clFood, 15)
 );
 
-// create fruits
 createFood
 (
  [
@@ -375,7 +353,6 @@ createFood
  avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 10)
 );
 
-// create fish
 createFood
 (
  [
@@ -389,7 +366,6 @@ log("Creating straggler trees...");
 var types = [oBeech, oPoplar, oApple];	// some variation
 createStragglerTrees(types, avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 8, clMetal, 6, clRock, 6));
 
-// Set environment
 setSkySet("cirrus");
 setWaterColor(0.114, 0.192, 0.463);
 setWaterTint(0.255, 0.361, 0.651);

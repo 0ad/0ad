@@ -1,16 +1,12 @@
 RMS.LoadLibrary("rmgen");
 
-// initialize map
-log("Initializing map...");
 InitMap();
-
 
 // General map setup
 var mapSize = getMapSize();
 var mapCenterX = mapSize/2;
 var mapCenterY = mapSize/2;
 const BUILDING_ANlE = -PI/4;
-
 
 ////////////////////////////////////////
 // Demonstration code for wall placement
@@ -54,7 +50,6 @@ const BUILDING_ANlE = -PI/4;
 // Some other arguments are taken but all of them are optional and in most cases not needed
 // One example is maxAngle for placeCircularWall that defines how far the wall will circumvent the center. Default is 2*PI which makes a full circle
 
-
 // General wall placement setup
 const distToMapBorder = 5;
 const distToOtherWalls = 10;
@@ -64,7 +59,6 @@ var actualY = distToMapBorder;
 // Wall styles are chosen by strings so the civ strings got by getCivCode() can be used
 // Other styles may be present as well but besides the civ styles only 'palisades' includes all wall element types (yet)
 const wallStyleList = ["athen", "brit", "cart", "gaul", "iber", "mace", "maur", "pers", "ptol", "rome", "sele", "spart", "rome_siege", "palisades"];
-
 
 ////////////////////////////////////////
 // Custom wall placement (element based)
@@ -152,7 +146,6 @@ actualY += 2 * radius + distToOtherWalls; // Increase actualY for next wall plac
 var maxWallLength = (mapSize - actualY - distToMapBorder - distToOtherWalls); // Just for this maps design. How long the longest wall will be
 var numWallsPerStyle = floor(buildableMapSize / distToOtherWalls / wallStyleList.length); // Just for this maps design. How many walls of the same style will be placed
 for (var styleIndex = 0; styleIndex < wallStyleList.length; styleIndex++)
-{
 	for (var wallIndex = 0; wallIndex < numWallsPerStyle; wallIndex++)
 	{
 		var startX = actualX + (styleIndex * numWallsPerStyle + wallIndex) * distToOtherWalls; // X coordinate the wall will start from
@@ -166,10 +159,8 @@ for (var styleIndex = 0; styleIndex < wallStyleList.length; styleIndex++)
 		// placeObject(startX, startY, 'other/obelisk', 0, 0*PI); // Place visual marker to see where exsactly the wall begins
 		// placeObject(endX, endY, 'other/obelisk', 0, 0*PI); // Place visual marker to see where exsactly the wall ends
 	}
-}
+
 actualX = distToMapBorder; // Reset actualX
 actualY += maxWallLength + distToOtherWalls; // Increase actualY for next wall placement method
 
-
-// Export map data
 ExportMap();

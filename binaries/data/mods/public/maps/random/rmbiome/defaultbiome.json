@@ -1,25 +1,7 @@
 {
 	"Environment": {
 		"TerrainAmbientColor": { "r": 0.447059, "g": 0.509804, "b": 0.54902 },
-		"UnitsAmbientColor": { "r": 0.57, "g": 0.58, "b": 0.55 },
-		"Water": {
-			"WaterBody": {
-				"Color": { "r": 0.0, "g": 0.047, "b": 0.286 },
-				"Tint": { "r": 0.471, "g": 0.776, "b": 0.863 },
-				"Murkiness": 0.82,
-				"Waviness": 2
-			}
-		},
-		"Fog": {
-			"FogThickness": 0.26,
-			"FogFactor": 0.4
-		},
-		"Postproc": {
-			"PostprocEffect": "hdr",
-			"Saturation": 0.48,
-			"Contrast": 0.53,
-			"Bloom": 0.12
-		}
+		"UnitsAmbientColor": { "r": 0.57, "g": 0.58, "b": 0.55 }
 	},
 	"Terrains": {
 		"mainTerrain": [

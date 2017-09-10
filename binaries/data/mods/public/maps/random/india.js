@@ -22,7 +22,6 @@ const oMetalLarge = "gaia/geology_metal_savanna_slabs";
 const aBush = "actor|props/flora/bush_medit_sm_dry.xml";
 const aRock = "actor|geology/stone_savanna_med.xml";
 
-log("Initializing map...");
 InitMap();
 
 var numPlayers = getNumPlayers();
@@ -36,21 +35,7 @@ var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
-var playerIDs = [];
-for (let i = 0; i < numPlayers; ++i)
-	playerIDs.push(i+1);
-playerIDs = sortPlayers(playerIDs);
-
-var playerX = [];
-var playerZ = [];
-var startAngle = randFloat(0, 2 * PI);
-
-for (let i = 0; i < numPlayers; ++i)
-{
-	let playerAngle = startAngle + i * 2 * PI / numPlayers;
-	playerX[i] = 0.5 + 0.35 * Math.cos(playerAngle);
-	playerZ[i] = 0.5 + 0.35 * Math.sin(playerAngle);
-}
+var [playerIDs, playerX, playerZ] = radialPlayerPlacement();
 
 for (let i = 0; i < numPlayers; ++i)
 {

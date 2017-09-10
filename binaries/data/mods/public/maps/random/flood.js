@@ -48,7 +48,6 @@ const aBushSmall = g_Decoratives.bushSmall;
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
-log("Initializing map...");
 InitMap();
 
 const radius = scaleByMapSize(15, 25);
@@ -59,7 +58,6 @@ const mapSize = getMapSize();
 const mapArea = mapSize * mapSize;
 const centerOfMap = mapSize / 2;
 
-// Create tile classes
 let clPlayer = createTileClass();
 let clHill = createTileClass();
 let clMountain = createTileClass();
@@ -71,28 +69,9 @@ let clMetal = createTileClass();
 let clFood = createTileClass();
 let clBaseResource = createTileClass();
 
-for (let ix = 0; ix < mapSize; ++ix)
-	for (let iz = 0; iz < mapSize; ++iz)
-		placeTerrain(ix, iz, tWater);
+initTerrain(tWater);
 
-// Randomize player order
-let playerIDs = [];
-for (let i = 0; i < numPlayers; ++i)
-	playerIDs.push(i+1);
-playerIDs = sortPlayers(playerIDs);
-
-// Place players
-let playerX = [];
-let playerZ = [];
-let playerAngle = [];
-
-let startAngle = randFloat(0, TWO_PI);
-for (let i = 0; i < numPlayers; ++i)
-{
-	playerAngle[i] = startAngle + i * TWO_PI/numPlayers;
-	playerX[i] = 0.5 + 0.38 * cos(playerAngle[i]);
-	playerZ[i] = 0.5 + 0.38 * sin(playerAngle[i]);
-}
+var [playerIDs, playerX, playerZ] = radialPlayerPlacement(0.38);
 
 let fx = fractionToTiles(0.5);
 let fz = fractionToTiles(0.5);
