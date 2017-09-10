@@ -463,7 +463,8 @@ m.Worker.prototype.startGathering = function(gameState)
 	let shouldBuild = this.ent.isBuilder() && foundations.some(function(foundation) {
 		if (!foundation || foundation.getMetadata(PlayerID, "access") !== access)
 			return false;
-		if (foundation.resourceDropsiteTypes() && foundation.resourceDropsiteTypes().indexOf(resource) !== -1)
+		let structure = gameState.getBuiltTemplate(foundation.templateName());
+		if (structure.resourceDropsiteTypes() && structure.resourceDropsiteTypes().indexOf(resource) !== -1)
 		{
 			if (foundation.getMetadata(PlayerID, "base") !== this.baseID)
 				this.ent.setMetadata(PlayerID, "base", foundation.getMetadata(PlayerID, "base"));
@@ -528,7 +529,8 @@ m.Worker.prototype.startGathering = function(gameState)
 	shouldBuild = this.ent.isBuilder() && foundations.some(function(foundation) {
 		if (!foundation || foundation.getMetadata(PlayerID, "access") === access)
 			return false;
-		if (foundation.resourceDropsiteTypes() && foundation.resourceDropsiteTypes().indexOf(resource) !== -1)
+		let structure = gameState.getBuiltTemplate(foundation.templateName());
+		if (structure.resourceDropsiteTypes() && structure.resourceDropsiteTypes().indexOf(resource) !== -1)
 		{
 			let foundationAccess = m.getLandAccess(gameState, foundation);
 			if (navalManager.requireTransport(gameState, this.ent, access, foundationAccess, foundation.position()))

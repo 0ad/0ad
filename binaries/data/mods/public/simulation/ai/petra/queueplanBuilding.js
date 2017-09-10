@@ -225,7 +225,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 				else if (template.hasClass("Farmstead") && (!ent.hasClass("Field") && !ent.hasClass("Corral") &&
 					(!ent.hasClass("StoneWall") || ent.hasClass("Gates"))))
 					placement.addInfluence(x, z, 100/cellSize, -25);       // move farmsteads away to make room (StoneWall test needed for iber)
-				else if (template.hasClass("GarrisonFortress") && struct.genericName() == "House")
+				else if (template.hasClass("GarrisonFortress") && ent.hasClass("House"))
 					placement.addInfluence(x, z, 120/cellSize, -50);
 				else if (template.hasClass("Military"))
 					placement.addInfluence(x, z, 40/cellSize, -40);
