@@ -149,61 +149,24 @@ if (md == 2) //continent
 else if (md == 3) //central sea
 {
 	var playerIDs = primeSortAllPlayers();
-
-	// place players
-	var playerX = new Array(numPlayers);
-	var playerZ = new Array(numPlayers);
-	var playerAngle = new Array(numPlayers);
-	var playerPos = new Array(numPlayers);
-	var iop = 0;
+	var playerPos = placePlayersRiver();
+	var playerX = [];
+	var playerZ = [];
+	var playerAngle = [];
 
 	var mdd1 = randIntInclusive(1,2);
 	if (mdd1 == 1) //vertical
-	{
 		for (var i = 0; i < numPlayers; i++)
 		{
-			iop = i - 1;
-			if (!(numPlayers%2)){
-				playerPos[i] = ((iop + abs(iop%2))/2 + 1) / ((numPlayers / 2) + 1);
-			}
-			else
-			{
-				if (iop%2)
-				{
-					playerPos[i] = ((iop + abs(iop%2))/2 + 1) / (((numPlayers + 1) / 2) + 1);
-				}
-				else
-				{
-					playerPos[i] = ((iop)/2 + 1) / ((((numPlayers - 1)) / 2) + 1);
-				}
-			}
 			playerZ[i] = playerPos[i];
 			playerX[i] = 0.2 + 0.6*(i%2);
 		}
-	}
 	else //horizontal
-	{
 		for (var i = 0; i < numPlayers; i++)
 		{
-			iop = i - 1;
-			if (!(numPlayers%2)){
-				playerPos[i] = ((iop + abs(iop%2))/2 + 1) / ((numPlayers / 2) + 1);
-			}
-			else
-			{
-				if (iop%2)
-				{
-					playerPos[i] = ((iop + abs(iop%2))/2 + 1) / (((numPlayers + 1) / 2) + 1);
-				}
-				else
-				{
-					playerPos[i] = ((iop)/2 + 1) / ((((numPlayers - 1)) / 2) + 1);
-				}
-			}
 			playerZ[i] = 0.2 + 0.6*(i%2);
 			playerX[i] = playerPos[i];
 		}
-	}
 
 	var WATER_WIDTH = randFloat(0.22,0.3)+scaleByMapSize(1,4)/20;
 	log("Creating sea");
@@ -377,62 +340,25 @@ else if (md == 4) //central river
 	}
 
 	var playerIDs = primeSortAllPlayers();
+	var playerPos = placePlayersRiver();
 
-	// place players
-	var playerX = new Array(numPlayers);
-	var playerZ = new Array(numPlayers);
-	var playerAngle = new Array(numPlayers);
-	var playerPos = new Array(numPlayers);
-	var iop = 0;
+	var playerX = [];
+	var playerZ = [];
+	var playerAngle = [];
+
 	var mdd1 = randIntInclusive(1,2);
 	if (mdd1 == 1) //horizontal
-	{
 		for (var i = 0; i < numPlayers; i++)
 		{
-			iop = i - 1;
-			if (!(numPlayers%2)){
-				playerPos[i] = ((iop + abs(iop%2))/2 + 1) / ((numPlayers / 2) + 1);
-			}
-			else
-			{
-				if (iop%2)
-				{
-					playerPos[i] = ((iop + abs(iop%2))/2 + 1) / (((numPlayers + 1) / 2) + 1);
-				}
-				else
-				{
-					playerPos[i] = ((iop)/2 + 1) / ((((numPlayers - 1)) / 2) + 1);
-				}
-			}
-
 			playerZ[i] = 0.25 + 0.5*(i%2);
 			playerX[i] = playerPos[i];
 		}
-	}
 	else //vertical
-	{
 		for (var i = 0; i < numPlayers; i++)
 		{
-			iop = i - 1;
-			if (!(numPlayers%2)){
-				playerPos[i] = ((iop + abs(iop%2))/2 + 1) / ((numPlayers / 2) + 1);
-			}
-			else
-			{
-				if (iop%2)
-				{
-					playerPos[i] = ((iop + abs(iop%2))/2 + 1) / (((numPlayers + 1) / 2) + 1);
-				}
-				else
-				{
-					playerPos[i] = ((iop)/2 + 1) / ((((numPlayers - 1)) / 2) + 1);
-				}
-			}
-
 			playerZ[i] = playerPos[i];
 			playerX[i] = 0.25 + 0.5*(i%2);
 		}
-	}
 
 	log("Creating the main river");
 

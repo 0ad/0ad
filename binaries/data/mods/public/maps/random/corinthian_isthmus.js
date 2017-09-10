@@ -113,29 +113,13 @@ paintTerrainBasedOnHeight(2, 5, 1, tGrass);
 paintTileClassBasedOnHeight(-6, 0.5, 1, clWater);
 
 var playerIDs = primeSortAllPlayers();
+var playerPos = placePlayersRiver();
 
-var playerX = new Array(numPlayers);
-var playerZ = new Array(numPlayers);
-var playerAngle = new Array(numPlayers);
-var playerPos = new Array(numPlayers);
-var iop = 0;
+var playerX = [];
+var playerZ = [];
+
 for (var i = 0; i < numPlayers; i++)
 {
-	iop = i - 1;
-	if (!(numPlayers%2)){
-		playerPos[i] = ((iop + abs(iop%2))/2 + 1) / ((numPlayers / 2) + 1);
-	}
-	else
-	{
-		if (iop%2)
-		{
-			playerPos[i] = ((iop + abs(iop%2))/2 + 1) / (((numPlayers + 1) / 2) + 1);
-		}
-		else
-		{
-			playerPos[i] = ((iop)/2 + 1) / ((((numPlayers - 1)) / 2) + 1);
-		}
-	}
 	playerZ[i] = Math.sqrt(0.5)*(0.6*(i%2) - 0.8 + playerPos[i]) + 0.5;
 	playerX[i] = Math.sqrt(0.5)*(0.6*(i%2) + 0.2 - playerPos[i]) + 0.5;
 }

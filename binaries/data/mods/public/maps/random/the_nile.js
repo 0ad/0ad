@@ -73,25 +73,12 @@ var clShore = createTileClass();
 var clTreasure = createTileClass();
 
 var playerIDs = primeSortAllPlayers();
+var playerPos = placePlayersRiver();
+var playerX = [];
+var playerZ = [];
 
-// place players
-var playerX = new Array(numPlayers);
-var playerZ = new Array(numPlayers);
-var playerAngle = new Array(numPlayers);
-var playerPos = new Array(numPlayers);
-var iop = 0;
 for (var i = 0; i < numPlayers; i++)
 {
-	iop = i - 1;
-	if (numPlayers % 2 == 0)
-		playerPos[i] = ((iop + abs(iop%2))/2 + 1) / ((numPlayers / 2) + 1);
-	else
-	{
-		if (iop%2)
-			playerPos[i] = ((iop + abs(iop%2))/2 + 1) / (((numPlayers + 1) / 2) + 1);
-		else
-			playerPos[i] = ((iop)/2 + 1) / ((((numPlayers - 1)) / 2) + 1);
-	}
 	playerZ[i] = playerPos[i];
 	playerX[i] = 0.30 + 0.4*(i%2);
 }

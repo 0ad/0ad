@@ -59,30 +59,13 @@ var clSettlement = createTileClass();
 var clShallow = createTileClass();
 
 var playerIDs = primeSortAllPlayers();
+var playerPos = placePlayersRiver();
 
-var playerX = new Array(numPlayers);
-var playerZ = new Array(numPlayers);
-var playerAngle = new Array(numPlayers);
-var playerPos = new Array(numPlayers);
-var iop = 0;
+var playerX = [];
+var playerZ = [];
+
 for (var i = 0; i < numPlayers; i++)
 {
-	iop = i - 1;
-	if (!(numPlayers%2)){
-		playerPos[i] = ((iop + abs(iop%2))/2 + 1) / ((numPlayers / 2) + 1);
-	}
-	else
-	{
-		if (iop%2)
-		{
-			playerPos[i] = ((iop + abs(iop%2))/2 + 1) / (((numPlayers + 1) / 2) + 1);
-		}
-		else
-		{
-			playerPos[i] = ((iop)/2 + 1) / ((((numPlayers - 1)) / 2) + 1);
-		}
-	}
-
 	playerZ[i] = 0.25 + 0.5*(i%2);
 	playerX[i] = playerPos[i];
 }
