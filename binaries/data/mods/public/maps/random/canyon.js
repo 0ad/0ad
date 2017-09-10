@@ -224,15 +224,15 @@ for (var g = 0; g < scaleByMapSize(5,30); g++)
 	var newarea = createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], avoidClasses(clLand, 6));
 	if (newarea !== null)
 	{
-		var distances = new Array(0);
+		var distances = [];
 		var d1 = 9999;
 		var d2 = 9999;
 		var p1 = -1;
 		var p2 = 0;
+
 		for (var i = 0; i < numPlayers; i++)
-		{
 			distances.push(sqrt((tx-mapSize*playerX[i])*(tx-mapSize*playerX[i])+(tz-mapSize*playerZ[i])*(tz-mapSize*playerZ[i])));
-		}
+
 		for (var a = 0; a < numPlayers; a++)
 		{
 			if (d1 >= distances[a])

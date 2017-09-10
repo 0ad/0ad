@@ -72,8 +72,8 @@ function TileClass(size, id)
 {
 	this.id = id;
 	this.size = size;
-	this.inclusionCount = new Array(size);
-	this.rangeCount = new Array(size);
+	this.inclusionCount = [];
+	this.rangeCount = [];
 
 	for (var i=0; i < size; ++i)
 	{

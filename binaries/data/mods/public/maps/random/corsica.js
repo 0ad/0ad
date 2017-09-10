@@ -224,13 +224,11 @@ elevationPainter = new SmoothElevationPainter(ELEVATION_MODIFY, 30,fractionToTil
 createArea( placer, [elevationPainter],  null);
 
 log("Creating players");
-
 var playerIDs = sortAllPlayers();
 
-// place players
-var playerX = new Array(numPlayers);
-var playerZ = new Array(numPlayers);
-var playerAngle = new Array(numPlayers);
+var playerX = [];
+var playerZ = [];
+var playerAngle = [];
 
 var island = 0;
 var formerTeam = getPlayerTeam(0);

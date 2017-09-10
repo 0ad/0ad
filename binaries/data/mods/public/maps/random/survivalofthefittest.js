@@ -71,8 +71,8 @@ createArea(
 
 var [playerIDs, playerX, playerZ, playerAngle, startAngle] = radialPlayerPlacement(0.3);
 
-var attackerX = new Array(numPlayers);
-var attackerZ = new Array(numPlayers);
+var attackerX = [];
+var attackerZ = [];
 
 for (let  i = 0; i < numPlayers; ++i)
 {

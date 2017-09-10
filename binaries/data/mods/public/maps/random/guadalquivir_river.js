@@ -94,9 +94,9 @@ createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null)
 var playerIDs = primeSortAllPlayers();
 
 // place players
-var playerX = new Array(numPlayers);
-var playerZ = new Array(numPlayers);
-var playerAngle = new Array(numPlayers);
+var playerX = [];
+var playerZ = [];
+var playerAngle = [];
 
 var startAngle = 0;
 for (var i = 0; i < numPlayers; i++)

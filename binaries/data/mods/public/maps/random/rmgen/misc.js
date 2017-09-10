@@ -611,14 +611,12 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraint,
 	var size = getMapSize();
 	var queueEmpty = (q.length ? false : true);
 
-	var gotRet = new Array(size);
+	var gotRet = [];
 	for (var i = 0; i < size; ++i)
 	{
-		gotRet[i] = new Array(size);
+		gotRet[i] = [];
 		for (var j = 0; j < size; ++j)
-		{
 			gotRet[i][j] = -1;
-		}
 	}
 
 	--size;

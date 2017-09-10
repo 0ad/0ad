@@ -172,17 +172,17 @@ for (var i = 0; i < numPlayers; i++)
 RMS.SetProgress(20);
 
 //init rivers
-var PX = new Array(numPlayers+1);
-var PZ = new Array(numPlayers+1);
-//isRiver actually tells us if two points must be joined by river
-var isRiver = new Array(numPlayers+1);
-for (var q=0; q <numPlayers+1; q++)
-	isRiver[q]=new Array(numPlayers+1);
+var PX = [];
+var PZ = [];
 
-//At first nothing is joined
+//isRiver actually tells us if two points must be joined by river
+var isRiver = [];
 for (let m = 0; m < numPlayers + 1; ++m)
+{
+	isRiver[m] = [];
 	for (let n = 0; n < numPlayers + 1; ++n)
 		isRiver[m][n] = 0;
+}
 
 //creating the first point in the center. all others are
 //connected to this one so all of our rivers join together
@@ -194,7 +194,7 @@ var iz = round(fz);
 PX[numPlayers]= fx;
 PZ[numPlayers]= fz;
 
-var riverAngle = new Array(numPlayers);
+var riverAngle = [];
 for (var c = 0 ; c < numPlayers ; c++)
 {
 	//creating other points of the river and making them
@@ -213,10 +213,10 @@ for (var c = 0 ; c < numPlayers ; c++)
 //theta is the start value for rndRiver function. seed implies
 //the randomness. we must have one of these for each river we create.
 //shallowpoint and shallow length define the place and size of the shallow part
-var theta = new Array(numPlayers);
-var seed = new Array(numPlayers);
-var shallowpoint = new Array(numPlayers);
-var shallowlength = new Array(numPlayers);
+var theta = [];
+var seed = [];
+var shallowpoint = [];
+var shallowlength = [];
 for (let q = 0; q < numPlayers + 1; ++q)
 {
 	theta[q]=randFloat(0, 1);

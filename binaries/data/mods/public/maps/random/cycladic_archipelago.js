@@ -87,9 +87,10 @@ var playerIDs = sortAllPlayers();
 var startingPlaces=[[0],[0,3],[0,2,4],[0,1,3,4],[0,1,2,3,4],[0,1,2,3,4,5]];
 
 var numIslands = Math.max(6, numPlayers);
-var islandX = new Array(numIslands);
-var islandZ = new Array(numIslands);
-var islandAngle = new Array(numIslands);
+var islandX = [];
+var islandZ = [];
+var islandAngle = [];
+
 //holds all land areas
 var areas = [];
 

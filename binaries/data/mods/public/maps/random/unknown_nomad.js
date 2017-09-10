@@ -1138,8 +1138,8 @@ paintTileClassBasedOnHeight(-6, 0, 1, clWater);
 paintTileClassBasedOnHeight(0, 3.12, 1, clLand);
 paintTileClassBasedOnHeight(3.12, 40, 1, clHill);
 
-var playerX = new Array(numPlayers);
-var playerZ = new Array(numPlayers);
+var playerX = [];
+var playerZ = [];
 var distmin = scaleByMapSize(60,240);
 distmin *= distmin;
 

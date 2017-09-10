@@ -31,10 +31,10 @@ SemiRandomElevationPainter.prototype.paint = function(area)
 
 	var mapSize = getMapSize()+1;
 
-	var saw = new  Array(mapSize);
-	var dist = new Array(mapSize);
-	var gotHeightPt = new Array(mapSize);
-	var newHeight = new Array(mapSize);
+	var saw = [];
+	var dist = [];
+	var gotHeightPt = [];
+	var newHeight = [];
 
 	// init typed arrays
 	for (var i = 0; i < mapSize; ++i)
@@ -289,9 +289,9 @@ for (var ix = 0; ix < mapSize; ix++)
 var playerIDs = primeSortAllPlayers();
 
 // place players
-var playerX = new Array(numPlayers);
-var playerZ = new Array(numPlayers);
-var playerAngle = new Array(numPlayers);
+var playerX = [];
+var playerZ = [];
+var playerAngle = [];
 
 for (var i = 0; i < numPlayers; i++)
 {

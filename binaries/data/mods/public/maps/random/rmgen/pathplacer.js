@@ -52,11 +52,9 @@ PathPlacer.prototype.place = function(constraint)
 	var offset = 1 + Math.floor(dist/4 * this.c);
 
 	var size = getMapSize();
-	var gotRet = new Array(size);
+	var gotRet = [];
 	for (var i = 0; i < size; ++i)
-	{
 		gotRet[i] = new Uint8Array(size);			// bool / uint8
-	}
 
 	// Generate random offsets
 	var ctrlVals = new Float32Array(numSteps);		//float32

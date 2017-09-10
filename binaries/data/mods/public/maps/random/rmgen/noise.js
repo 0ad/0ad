@@ -25,11 +25,11 @@ function Noise2D(freq)
 {
 	freq = Math.floor(freq);
 	this.freq = freq;
-	this.grads = new Array(freq);
+	this.grads = [];
 
 	for (var i=0; i < freq; ++i)
 	{
-		this.grads[i] = new Array(freq);
+		this.grads[i] = [];
 		for (var j=0; j < freq; ++j)
 		{
 			var a = randFloat(0, 2 * PI);
@@ -77,14 +77,14 @@ function Noise3D(freq, vfreq)
 	vfreq = Math.floor(vfreq);
 	this.freq = freq;
 	this.vfreq = vfreq;
-	this.grads = new Array(freq);
+	this.grads = [];
 
 	for (var i=0; i < freq; ++i)
 	{
-		this.grads[i] = new Array(freq);
+		this.grads[i] = [];
 		for (var j=0; j < freq; ++j)
 		{
-			this.grads[i][j] = new Array(vfreq);
+			this.grads[i][j] = [];
 			for(var k=0; k < vfreq; ++k)
 			{
 				var v = new Vector3D();

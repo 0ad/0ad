@@ -55,17 +55,6 @@ var clMountains = createTileClass();
 
 var playerIDs = sortAllPlayers();
 
-var playerX = new Array(numPlayers);
-var playerZ = new Array(numPlayers);
-var playerPos = new Array(numPlayers);
-
-for (var i = 0; i < numPlayers; i++)
-{
-	playerPos[i] = (i + 1) / (numPlayers + 1);
-	playerX[i] = 0.45 + 0.2*(i%2);
-	playerZ[i] = playerPos[i];
-}
-
 for (var i = 0; i < numPlayers; i++)
 {
 	var id = playerIDs[i];
@@ -76,8 +65,8 @@ for (var i = 0; i < numPlayers; i++)
 	var elevation = 20;
 
 	// get the x and z in tiles
-	var fx = fractionToTiles(playerX[i]);
-	var fz = fractionToTiles(playerZ[i]);
+	var fx = fractionToTiles(0.45 + 0.2 * (i % 2));
+	var fz = fractionToTiles((i + 1) / (numPlayers + 1));
 	var ix = round(fx);
 	var iz = round(fz);
 	addToClass(ix, iz, clPlayer);

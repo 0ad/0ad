@@ -80,8 +80,8 @@ var playerIDs = sortAllPlayers();
 
 log("Creating players...");
 
-var playerX = new Array(numPlayers+1);
-var playerZ = new Array(numPlayers+1);
+var playerX = [];
+var playerZ = [];
 
 var numLeftPlayers = ceil(numPlayers/2);
 for (var i = 1; i <= numLeftPlayers; i++)

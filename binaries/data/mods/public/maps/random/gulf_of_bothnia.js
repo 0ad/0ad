@@ -140,9 +140,9 @@ initTerrain(tPrimary);
 
 var playerIDs = sortAllPlayers();
 
-var playerX = new Array(numPlayers);
-var playerZ = new Array(numPlayers);
-var playerAngle = new Array(numPlayers);
+var playerX = [];
+var playerZ = [];
+var playerAngle = [];
 
 var startAngle = -PI/6;
 for (var i = 0; i < numPlayers; i++)

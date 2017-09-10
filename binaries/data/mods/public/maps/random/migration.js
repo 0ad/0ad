@@ -65,9 +65,9 @@ var clLand = createTileClass();
 var playerIDs = sortAllPlayers();
 
 // place players
-var playerX = new Array(numPlayers);
-var playerZ = new Array(numPlayers);
-var playerAngle = new Array(numPlayers);
+var playerX = [];
+var playerZ = [];
+var playerAngle = [];
 
 var startAngle = PI/2 + PI/14;
 for (var i = 0; i < numPlayers; i++)

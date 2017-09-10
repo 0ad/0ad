@@ -765,9 +765,9 @@ else if (md == 6) //edge seas
 
 	var playerIDs = sortAllPlayers();
 
-	var playerX = new Array(numPlayers);
-	var playerZ = new Array(numPlayers);
-	var playerPos = new Array(numPlayers);
+	var playerX = [];
+	var playerZ = [];
+	var playerPos = [];
 
 	for (var i = 0; i < numPlayers; i++)
 	{
@@ -1010,9 +1010,9 @@ else if (md == 7) //gulf
 
 	var playerIDs = sortAllPlayers();
 
-	var playerX = new Array(numPlayers);
-	var playerZ = new Array(numPlayers);
-	var playerAngle = new Array(numPlayers);
+	var playerX = [];
+	var playerZ = [];
+	var playerAngle = [];
 
 	var startAngle = -PI/6 + (mdd1-1)*PI/2;
 	for (var i = 0; i < numPlayers; i++)
