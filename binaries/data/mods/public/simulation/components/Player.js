@@ -451,22 +451,16 @@ Player.prototype.SetState = function(newState, message)
 
 	Engine.BroadcastMessage(won ? MT_PlayerWon : MT_PlayerDefeated, { "playerId": this.playerID });
 
-	let cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	if (message)
-		if (won)
-			cmpGUIInterface.PushNotification({
-				"type": "won",
-				"players": [this.playerID],
-				"allies": [this.playerID],
-				"message": message
-			});
-		else
-			cmpGUIInterface.PushNotification({
-				"type": "defeat",
-				"players": [this.playerID],
-				"allies": [this.playerID],
-				"message": message
-			});
+	{
+		let cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+		cmpGUIInterface.PushNotification({
+			"type": won ? "won" : "defeat",
+			"players": [this.playerID],
+			"allies": [this.playerID],
+			"message": message
+		});
+	}
 };
 
 Player.prototype.GetTeam = function()
