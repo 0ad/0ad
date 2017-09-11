@@ -60,6 +60,13 @@ EndGameManager.prototype.SetGameType = function(newGameType, newSettings = {})
  */
 EndGameManager.prototype.MarkPlayerAsWon = function(playerID, victoryString, defeatString)
 {
+	let state = QueryPlayerIDInterface(playerID).GetState();
+	if (state != "active")
+	{
+		warn("Can't mark player " + playerID + " as won, since the state is " + state);
+		return;
+	}
+
 	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	let numPlayers = cmpPlayerManager.GetNumPlayers();
 
@@ -75,6 +82,9 @@ EndGameManager.prototype.MarkPlayerAsWon = function(playerID, victoryString, def
 		for (let i = 1; i < numPlayers; ++i)
 		{
 			let cmpPlayer = QueryPlayerIDInterface(i);
+			if (cmpPlayer.GetState() != "active")
+				continue;
+
 			let hasWon = playerID == i || this.alliedVictory && cmpPlayer.IsMutualAlly(playerID);
 
 			if (hasWon == won)
