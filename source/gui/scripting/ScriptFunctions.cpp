@@ -33,7 +33,6 @@
 #include "lib/external_libraries/enet.h"
 #include "lib/svn_revision.h"
 #include "lib/sysdep/sysdep.h"
-#include "lib/timer.h"
 #include "lib/utf8.h"
 #include "lobby/scripting/JSInterface_Lobby.h"
 #include "lobby/IXmppClient.h"
@@ -950,77 +949,6 @@ int GetTextWidth(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const CStr& fon
 	return width;
 }
 
-//-----------------------------------------------------------------------------
-// Timer
-//-----------------------------------------------------------------------------
-
-
-// Script profiling functions: Begin timing a piece of code with StartJsTimer(num)
-// and stop timing with StopJsTimer(num). The results will be printed to stdout
-// when the game exits.
-
-static const size_t MAX_JS_TIMERS = 20;
-static TimerUnit js_start_times[MAX_JS_TIMERS];
-static TimerUnit js_timer_overhead;
-static TimerClient js_timer_clients[MAX_JS_TIMERS];
-static wchar_t js_timer_descriptions_buf[MAX_JS_TIMERS * 12];	// depends on MAX_JS_TIMERS and format string below
-
-static void InitJsTimers(const ScriptInterface& scriptInterface)
-{
-	wchar_t* pos = js_timer_descriptions_buf;
-	for(size_t i = 0; i < MAX_JS_TIMERS; i++)
-	{
-		const wchar_t* description = pos;
-		pos += swprintf_s(pos, 12, L"js_timer %d", (int)i)+1;
-		timer_AddClient(&js_timer_clients[i], description);
-	}
-
-	// call several times to get a good approximation of 'hot' performance.
-	// note: don't use a separate timer slot to warm up and then judge
-	// overhead from another: that causes worse results (probably some
-	// caching effects inside JS, but I don't entirely understand why).
-	std::wstring calibration_script =
-		L"Engine.StartXTimer(0);\n" \
-		L"Engine.StopXTimer (0);\n" \
-		L"\n";
-	scriptInterface.LoadGlobalScript("timer_calibration_script", calibration_script);
-	// slight hack: call LoadGlobalScript twice because we can't average several
-	// TimerUnit values because there's no operator/. this way is better anyway
-	// because it hopefully avoids the one-time JS init overhead.
-	js_timer_clients[0].sum.SetToZero();
-	scriptInterface.LoadGlobalScript("timer_calibration_script", calibration_script);
-	js_timer_clients[0].sum.SetToZero();
-	js_timer_clients[0].num_calls = 0;
-}
-
-void StartJsTimer(ScriptInterface::CxPrivate* pCxPrivate, unsigned int slot)
-{
-	ONCE(InitJsTimers(*(pCxPrivate->pScriptInterface)));
-
-	if (slot >= MAX_JS_TIMERS)
-	{
-		LOGERROR("Exceeded the maximum number of timer slots for scripts!");
-		return;
-	}
-
-	js_start_times[slot].SetFromTimer();
-}
-
-void StopJsTimer(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), unsigned int slot)
-{
-	if (slot >= MAX_JS_TIMERS)
-	{
-		LOGERROR("Exceeded the maximum number of timer slots for scripts!");
-		return;
-	}
-
-	TimerUnit now;
-	now.SetFromTimer();
-	now.Subtract(js_timer_overhead);
-	BillingPolicy_Default()(&js_timer_clients[slot], js_start_times[slot], now);
-	js_start_times[slot].SetToZero();
-}
-
 /**
  * Microseconds since the epoch.
  */
@@ -1138,8 +1066,6 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, std::string, int, std::wstring, &SubmitUserReport>("SubmitUserReport");
 
 	// Development/debugging functions
-	scriptInterface.RegisterFunction<void, unsigned int, &StartJsTimer>("StartXTimer");
-	scriptInterface.RegisterFunction<void, unsigned int, &StopJsTimer>("StopXTimer");
 	scriptInterface.RegisterFunction<double, &GetMicroseconds>("GetMicroseconds");
 	scriptInterface.RegisterFunction<void, float, &SetSimRate>("SetSimRate");
 	scriptInterface.RegisterFunction<float, &GetSimRate>("GetSimRate");
