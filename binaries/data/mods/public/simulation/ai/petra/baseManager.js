@@ -74,9 +74,9 @@ m.BaseManager.prototype.assignEntity = function(gameState, ent)
 
 m.BaseManager.prototype.setAnchor = function(gameState, anchorEntity)
 {
-	if (!anchorEntity.hasClass("Structure") || !anchorEntity.hasTerritoryInfluence())
+	if (!anchorEntity.hasClass("CivCentre"))
 	{
-		warn("Error: Petra base " + this.ID + " has been assigned an anchor building that has no territorial influence.");
+		warn("Error: Petra base " + this.ID + " has been assigned an anchor that is not a civil centre.");
 		return false;
 	}
 	this.anchor = anchorEntity;

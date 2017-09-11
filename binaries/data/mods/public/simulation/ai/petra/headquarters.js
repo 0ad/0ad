@@ -1139,7 +1139,7 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 			continue;
 		if (this.basesMap.map[j] === 0)   // only in our territory
 			continue;
-		// with enough room around to build the cc
+		// with enough room around to build the market
 		let i = this.territoryMap.getNonObstructedTile(j, radius, obstructions);
 		if (i < 0)
 			continue;

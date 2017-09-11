@@ -54,33 +54,6 @@ m.SharedScript.prototype.Deserialize = function(data)
 	this.isDeserialized = true;
 };
 
-/**
- * Components that will be disabled in foundation entity templates.
- * (This is a bit yucky and fragile since it's the inverse of
- * CCmpTemplateManager::CopyFoundationSubset and only includes components
- * that our Template class currently uses.)
- */
-m.g_FoundationForbiddenComponents = {
-	"ProductionQueue": 1,
-	"ResourceSupply": 1,
-	"ResourceDropsite": 1,
-	"GarrisonHolder": 1,
-	"Capturable": 1
-};
-
-/**
- * Components that will be disabled in resource entity templates.
- * Roughly the inverse of CCmpTemplateManager::CopyResourceSubset.
- */
-m.g_ResourceForbiddenComponents = {
-	"Cost": 1,
-	"Decay": 1,
-	"Health": 1,
-	"UnitAI": 1,
-	"UnitMotion": 1,
-	"Vision": 1
-};
-
 m.SharedScript.prototype.GetTemplate = function(name)
 {
 	if (this._templates[name])
@@ -89,44 +62,11 @@ m.SharedScript.prototype.GetTemplate = function(name)
 	if (this._derivedTemplates[name])
 		return this._derivedTemplates[name];
 
-	// If this is a foundation template, construct it automatically
-	if (name.indexOf("foundation|") !== -1)
+	let template = Engine.GetTemplate(name);
+	if (template)
 	{
-		let base = this.GetTemplate(name.substr(11));
-
-		let foundation = {};
-		for (let key in base)
-			if (!m.g_FoundationForbiddenComponents[key])
-				foundation[key] = base[key];
-
-		this._derivedTemplates[name] = foundation;
-		return foundation;
-	}
-	else if (name.indexOf("resource|") !== -1)
-	{
-		let base = this.GetTemplate(name.substr(9));
-
-		let resource = {};
-		for (let key in base)
-			if (!m.g_ResourceForbiddenComponents[key])
-				resource[key] = base[key];
-
-		this._derivedTemplates[name] = resource;
-		return resource;
-	}
-	else if (name.indexOf("ungarrisonable|") !== -1)
-	{
-		let base = this.GetTemplate(name.substr(15));
-
-		let ent = {};
-		for (let key in base)
-			if (key !== "Garrisonable")
-				ent[key] = base[key];
-			else
-				ent[key] = "false";
-
-		this._derivedTemplates[name] = ent;
-		return ent;
+		this._derivedTemplates[name] = template;
+		return template;
 	}
 
 	error("Tried to retrieve invalid template '"+name+"'");
