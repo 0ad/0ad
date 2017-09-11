@@ -52,12 +52,12 @@
 #include "ps/Profile.h"
 #include "ps/Pyrogenesis.h"
 #include "ps/Replay.h"
-#include "ps/SavedGame.h"
 #include "ps/UserReport.h"
 #include "ps/World.h"
 #include "ps/scripting/JSInterface_ConfigDB.h"
 #include "ps/scripting/JSInterface_Console.h"
 #include "ps/scripting/JSInterface_Mod.h"
+#include "ps/scripting/JSInterface_SavedGame.h"
 #include "ps/scripting/JSInterface_VFS.h"
 #include "ps/scripting/JSInterface_VisualReplay.h"
 #include "renderer/scripting/JSInterface_Renderer.h"
@@ -226,11 +226,6 @@ void SetViewedPlayer(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int id)
 		g_Game->SetViewedPlayerID(id);
 }
 
-JS::Value GetEngineInfo(ScriptInterface::CxPrivate* pCxPrivate)
-{
-	return SavedGames::GetEngineInfo(*(pCxPrivate->pScriptInterface));
-}
-
 JS::Value FindStunEndpoint(ScriptInterface::CxPrivate* pCxPrivate, int port)
 {
 	return StunClient::FindStunEndpointHost(*(pCxPrivate->pScriptInterface), port);
@@ -260,64 +255,6 @@ void StartGame(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue attribs, 
 
 	g_Game->SetPlayerID(playerID);
 	g_Game->StartGame(&gameAttribs, "");
-}
-
-JS::Value StartSavedGame(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name)
-{
-	// We need to be careful with different compartments and contexts.
-	// The GUI calls this function from the GUI context and expects the return value in the same context.
-	// The game we start from here creates another context and expects data in this context.
-
-	JSContext* cxGui = pCxPrivate->pScriptInterface->GetContext();
-	JSAutoRequest rq(cxGui);
-
-	ENSURE(!g_NetServer);
-	ENSURE(!g_NetClient);
-
-	ENSURE(!g_Game);
-
-	// Load the saved game data from disk
-	JS::RootedValue guiContextMetadata(cxGui);
-	std::string savedState;
-	Status err = SavedGames::Load(name, *(pCxPrivate->pScriptInterface), &guiContextMetadata, savedState);
-	if (err < 0)
-		return JS::UndefinedValue();
-
-	g_Game = new CGame();
-
-	{
-		CSimulation2* sim = g_Game->GetSimulation2();
-		JSContext* cxGame = sim->GetScriptInterface().GetContext();
-		JSAutoRequest rq(cxGame);
-
-		JS::RootedValue gameContextMetadata(cxGame,
-			sim->GetScriptInterface().CloneValueFromOtherContext(*(pCxPrivate->pScriptInterface), guiContextMetadata));
-		JS::RootedValue gameInitAttributes(cxGame);
-		sim->GetScriptInterface().GetProperty(gameContextMetadata, "initAttributes", &gameInitAttributes);
-
-		int playerID;
-		sim->GetScriptInterface().GetProperty(gameContextMetadata, "playerID", playerID);
-
-		// Start the game
-		g_Game->SetPlayerID(playerID);
-		g_Game->StartGame(&gameInitAttributes, savedState);
-	}
-
-	return guiContextMetadata;
-}
-
-void SaveGame(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filename, const std::wstring& description, JS::HandleValue GUIMetadata)
-{
-	shared_ptr<ScriptInterface::StructuredClone> GUIMetadataClone = pCxPrivate->pScriptInterface->WriteStructuredClone(GUIMetadata);
-	if (SavedGames::Save(filename, description, *g_Game->GetSimulation2(), GUIMetadataClone) < 0)
-		LOGERROR("Failed to save game");
-}
-
-void SaveGamePrefix(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& prefix, const std::wstring& description, JS::HandleValue GUIMetadata)
-{
-	shared_ptr<ScriptInterface::StructuredClone> GUIMetadataClone = pCxPrivate->pScriptInterface->WriteStructuredClone(GUIMetadata);
-	if (SavedGames::SavePrefix(prefix, description, *g_Game->GetSimulation2(), GUIMetadataClone) < 0)
-		LOGERROR("Failed to save game");
 }
 
 void SetNetworkGameAttributes(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue attribs1)
@@ -487,16 +424,6 @@ JS::Value GetAIs(ScriptInterface::CxPrivate* pCxPrivate)
 	return ICmpAIManager::GetAIs(*(pCxPrivate->pScriptInterface));
 }
 
-JS::Value GetSavedGames(ScriptInterface::CxPrivate* pCxPrivate)
-{
-	return SavedGames::GetSavedGames(*(pCxPrivate->pScriptInterface));
-}
-
-bool DeleteSavedGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& name)
-{
-	return SavedGames::DeleteSavedGame(name);
-}
-
 void OpenURL(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& url)
 {
 	sys_open_url(url);
@@ -653,16 +580,6 @@ void EnableTimeWarpRecording(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), uns
 void RewindTimeWarp(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	g_Game->GetTurnManager()->RewindTimeWarp();
-}
-
-void QuickSave(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-{
-	g_Game->GetTurnManager()->QuickSave();
-}
-
-void QuickLoad(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-{
-	g_Game->GetTurnManager()->QuickLoad();
 }
 
 void SetBoundingBoxDebugOverlay(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool enabled)
@@ -848,6 +765,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	JSI_Console::RegisterScriptFunctions(scriptInterface);
 	JSI_ConfigDB::RegisterScriptFunctions(scriptInterface);
 	JSI_Mod::RegisterScriptFunctions(scriptInterface);
+	JSI_SavedGame::RegisterScriptFunctions(scriptInterface);
 	JSI_Sound::RegisterScriptFunctions(scriptInterface);
 	JSI_L10n::RegisterScriptFunctions(scriptInterface);
 	JSI_Lobby::RegisterScriptFunctions(scriptInterface);
@@ -890,17 +808,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, std::wstring, &SendNetworkChat>("SendNetworkChat");
 	scriptInterface.RegisterFunction<void, int, &SendNetworkReady>("SendNetworkReady");
 	scriptInterface.RegisterFunction<JS::Value, &GetAIs>("GetAIs");
-	scriptInterface.RegisterFunction<JS::Value, &GetEngineInfo>("GetEngineInfo");
 	scriptInterface.RegisterFunction<JS::Value, int, &FindStunEndpoint>("FindStunEndpoint");
-
-	// Saved games
-	scriptInterface.RegisterFunction<JS::Value, std::wstring, &StartSavedGame>("StartSavedGame");
-	scriptInterface.RegisterFunction<JS::Value, &GetSavedGames>("GetSavedGames");
-	scriptInterface.RegisterFunction<bool, std::wstring, &DeleteSavedGame>("DeleteSavedGame");
-	scriptInterface.RegisterFunction<void, std::wstring, std::wstring, JS::HandleValue, &SaveGame>("SaveGame");
-	scriptInterface.RegisterFunction<void, std::wstring, std::wstring, JS::HandleValue, &SaveGamePrefix>("SaveGamePrefix");
-	scriptInterface.RegisterFunction<void, &QuickSave>("QuickSave");
-	scriptInterface.RegisterFunction<void, &QuickLoad>("QuickLoad");
 
 	// Misc functions
 	scriptInterface.RegisterFunction<std::wstring, std::wstring, &SetCursor>("SetCursor");
@@ -909,6 +817,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<int, &GetPlayerID>("GetPlayerID");
 	scriptInterface.RegisterFunction<void, int, &SetPlayerID>("SetPlayerID");
 	scriptInterface.RegisterFunction<void, int, &SetViewedPlayer>("SetViewedPlayer");
+
 	scriptInterface.RegisterFunction<void, std::string, &OpenURL>("OpenURL");
 	scriptInterface.RegisterFunction<std::wstring, &GetMatchID>("GetMatchID");
 	scriptInterface.RegisterFunction<void, &RestartInAtlas>("RestartInAtlas");
