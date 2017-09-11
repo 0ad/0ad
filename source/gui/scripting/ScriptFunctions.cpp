@@ -19,7 +19,6 @@
 
 #include "scriptinterface/ScriptInterface.h"
 
-#include "graphics/Camera.h"
 #include "graphics/FontMetrics.h"
 #include "graphics/GameView.h"
 #include "graphics/MapReader.h"
@@ -36,7 +35,6 @@
 #include "lib/utf8.h"
 #include "lobby/scripting/JSInterface_Lobby.h"
 #include "lobby/IXmppClient.h"
-#include "maths/FixedVector3D.h"
 #include "network/NetClient.h"
 #include "network/NetMessage.h"
 #include "network/NetServer.h"
@@ -181,12 +179,6 @@ std::vector<entity_id_t> PickNonGaiaEntitiesOnScreen(ScriptInterface::CxPrivate*
 std::vector<entity_id_t> PickSimilarPlayerEntities(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& templateName, bool includeOffScreen, bool matchRank, bool allowFoundations)
 {
 	return EntitySelection::PickSimilarEntities(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), templateName, g_Game->GetViewedPlayerID(), includeOffScreen, matchRank, false, allowFoundations);
-}
-
-CFixedVector3D GetTerrainAtScreenPoint(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int x, int y)
-{
-	CVector3D pos = g_Game->GetView()->GetCamera()->GetWorldCoordinates(x, y, true);
-	return CFixedVector3D(fixed::FromFloat(pos.X), fixed::FromFloat(pos.Y), fixed::FromFloat(pos.Z));
 }
 
 std::wstring SetCursor(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& name)
@@ -560,88 +552,6 @@ JS::Value GetInitAttributes(ScriptInterface::CxPrivate* pCxPrivate)
 		initAttribs);
 }
 
-/**
- * Get the current X coordinate of the camera.
- */
-float CameraGetX(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-{
-	if (g_Game && g_Game->GetView())
-		return g_Game->GetView()->GetCameraX();
-	return -1;
-}
-
-/**
- * Get the current Z coordinate of the camera.
- */
-float CameraGetZ(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-{
-	if (g_Game && g_Game->GetView())
-		return g_Game->GetView()->GetCameraZ();
-	return -1;
-}
-
-/**
- * Start / stop camera following mode
- * @param entityid unit id to follow. If zero, stop following mode
- */
-void CameraFollow(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), entity_id_t entityid)
-{
-	if (g_Game && g_Game->GetView())
-		g_Game->GetView()->CameraFollow(entityid, false);
-}
-
-/**
- * Start / stop first-person camera following mode
- * @param entityid unit id to follow. If zero, stop following mode
- */
-void CameraFollowFPS(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), entity_id_t entityid)
-{
-	if (g_Game && g_Game->GetView())
-		g_Game->GetView()->CameraFollow(entityid, true);
-}
-
-/**
- * Set the data (position, orientation and zoom) of the camera
- */
-void SetCameraData(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), entity_pos_t x, entity_pos_t y, entity_pos_t z, entity_pos_t rotx, entity_pos_t roty, entity_pos_t zoom)
-{
-	// called from JS; must not fail
-	if(!(g_Game && g_Game->GetWorld() && g_Game->GetView() && g_Game->GetWorld()->GetTerrain()))
-		return;
-
-	CVector3D Pos = CVector3D(x.ToFloat(), y.ToFloat(), z.ToFloat());
-	float RotX = rotx.ToFloat();
-	float RotY = roty.ToFloat();
-	float Zoom = zoom.ToFloat();
-
-	g_Game->GetView()->SetCamera(Pos, RotX, RotY, Zoom);
-}
-
-/// Move camera to a 2D location
-void CameraMoveTo(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), entity_pos_t x, entity_pos_t z)
-{
-	// called from JS; must not fail
-	if(!(g_Game && g_Game->GetWorld() && g_Game->GetView() && g_Game->GetWorld()->GetTerrain()))
-		return;
-
-	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
-
-	CVector3D target;
-	target.X = x.ToFloat();
-	target.Z = z.ToFloat();
-	target.Y = terrain->GetExactGroundLevel(target.X, target.Z);
-
-	g_Game->GetView()->MoveCameraTarget(target);
-}
-
-entity_id_t GetFollowedEntity(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-{
-	if (g_Game && g_Game->GetView())
-		return g_Game->GetView()->GetFollowedEntity();
-
-	return INVALID_ENTITY;
-}
-
 bool HotkeyIsPressed_(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& hotkeyName)
 {
 	return HotkeyIsPressed(hotkeyName);
@@ -693,12 +603,6 @@ void SetTurnLength(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int length)
 		g_NetServer->SetTurnLength(length);
 	else
 		LOGERROR("Only network host can change turn length");
-}
-
-// Focus the game camera on a given position.
-void SetCameraTarget(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float x, float y, float z)
-{
-	g_Game->GetView()->ResetCameraTarget(CVector3D(x, y, z));
 }
 
 // Deliberately cause the game to crash.
@@ -968,7 +872,6 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<std::vector<entity_id_t>, int, &PickPlayerEntitiesOnScreen>("PickPlayerEntitiesOnScreen");
 	scriptInterface.RegisterFunction<std::vector<entity_id_t>, &PickNonGaiaEntitiesOnScreen>("PickNonGaiaEntitiesOnScreen");
 	scriptInterface.RegisterFunction<std::vector<entity_id_t>, std::string, bool, bool, bool, &PickSimilarPlayerEntities>("PickSimilarPlayerEntities");
-	scriptInterface.RegisterFunction<CFixedVector3D, int, int, &GetTerrainAtScreenPoint>("GetTerrainAtScreenPoint");
 
 	// Network / game setup functions
 	scriptInterface.RegisterFunction<void, &StartNetworkGame>("StartNetworkGame");
@@ -1013,13 +916,6 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<bool, &IsAtlasRunning>("IsAtlasRunning");
 	scriptInterface.RegisterFunction<JS::Value, VfsPath, &LoadMapSettings>("LoadMapSettings");
 	scriptInterface.RegisterFunction<JS::Value, &GetInitAttributes>("GetInitAttributes");
-	scriptInterface.RegisterFunction<float, &CameraGetX>("CameraGetX");
-	scriptInterface.RegisterFunction<float, &CameraGetZ>("CameraGetZ");
-	scriptInterface.RegisterFunction<void, entity_id_t, &CameraFollow>("CameraFollow");
-	scriptInterface.RegisterFunction<void, entity_id_t, &CameraFollowFPS>("CameraFollowFPS");
-	scriptInterface.RegisterFunction<void, entity_pos_t, entity_pos_t, entity_pos_t, entity_pos_t, entity_pos_t, entity_pos_t, &SetCameraData>("SetCameraData");
-	scriptInterface.RegisterFunction<void, entity_pos_t, entity_pos_t, &CameraMoveTo>("CameraMoveTo");
-	scriptInterface.RegisterFunction<entity_id_t, &GetFollowedEntity>("GetFollowedEntity");
 	scriptInterface.RegisterFunction<bool, std::string, &HotkeyIsPressed_>("HotkeyIsPressed");
 	scriptInterface.RegisterFunction<void, std::wstring, &DisplayErrorDialog>("DisplayErrorDialog");
 	scriptInterface.RegisterFunction<JS::Value, &GetProfilerState>("GetProfilerState");
@@ -1043,7 +939,6 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, float, &SetSimRate>("SetSimRate");
 	scriptInterface.RegisterFunction<float, &GetSimRate>("GetSimRate");
 	scriptInterface.RegisterFunction<void, int, &SetTurnLength>("SetTurnLength");
-	scriptInterface.RegisterFunction<void, float, float, float, &SetCameraTarget>("SetCameraTarget");
 	scriptInterface.RegisterFunction<int, &Crash>("Crash");
 	scriptInterface.RegisterFunction<void, &DebugWarn>("DebugWarn");
 	scriptInterface.RegisterFunction<void, &ForceGC>("ForceGC");
