@@ -16,9 +16,6 @@ const MENU_BOTTOM = 0;
 // Menu starting position: top
 const MENU_TOP = MENU_BOTTOM - END_MENU_POSITION;
 
-// Menu starting position: overall
-const INITIAL_MENU_POSITION = "100%-164 " + MENU_TOP + " 100% " + MENU_BOTTOM;
-
 // Number of pixels per millisecond to move
 var MENU_SPEED = 1.2;
 
@@ -58,10 +55,17 @@ var g_IsObjectivesOpen = false;
 // Redefined every time someone makes a tribute (so we can save some data in a closure). Called in input.js handleInputBeforeGui.
 var g_FlushTributing = function() {};
 
-// Ignore size defined in XML and set the actual menu size here
+function initSessionMenuButtons()
+{
+	initMenuPosition();
+	initGameSpeedControl();
+	resizeDiplomacyDialog();
+	resizeTradeDialog();
+}
+
 function initMenuPosition()
 {
-	Engine.GetGUIObjectByName("menu").size = INITIAL_MENU_POSITION;
+	Engine.GetGUIObjectByName("menu").size = "100%-164 " + MENU_TOP + " 100% " + MENU_BOTTOM;
 }
 
 function updateMenuPosition(dt)
@@ -964,6 +968,24 @@ function toggleTrade()
 	if (!open)
 		openTrade();
 }
+
+function initGameSpeedControl()
+{
+	let gameSpeed = Engine.GetGUIObjectByName("gameSpeed");
+	gameSpeed.list = g_GameSpeeds.Title;
+	gameSpeed.list_data = g_GameSpeeds.Speed;
+
+	let simRate = Engine.GetSimRate();
+
+	let gameSpeedIdx = g_GameSpeeds.Speed.indexOf(+simRate.toFixed(2));
+	if (gameSpeedIdx == -1)
+		warn("Unknown gamespeed:" + simRate);
+
+	gameSpeed.selected = gameSpeedIdx != -1 ? gameSpeedIdx : g_GameSpeeds.Default;
+	gameSpeed.onSelectionChange = function() {
+		changeGameSpeed(+this.list_data[this.selected]);
+	};
+};
 
 function toggleGameSpeed()
 {
