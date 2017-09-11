@@ -904,31 +904,6 @@ std::wstring GetBuildTimestamp(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), i
 	return wstring_from_utf8(buf);
 }
 
-JS::Value ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filePath)
-{
-	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
-	JS::RootedValue out(cx);
-	pCxPrivate->pScriptInterface->ReadJSONFile(filePath, &out);
-	return out;
-}
-
-void WriteJSONFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filePath, JS::HandleValue val1)
-{
-	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
-
-	// TODO: This is a workaround because we need to pass a MutableHandle to StringifyJSON.
-	JS::RootedValue val(cx, val1);
-
-	std::string str(pCxPrivate->pScriptInterface->StringifyJSON(&val, false));
-
-	VfsPath path(filePath);
-	WriteBuffer buf;
-	buf.Append(str.c_str(), str.length());
-	g_VFS->CreateFile(path, buf.Data(), buf.Size());
-}
-
 bool TemplateExists(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& templateName)
 {
 	return g_GUI->TemplateExists(templateName);
@@ -1053,8 +1028,6 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, bool, bool, &SetPaused>("SetPaused");
 	scriptInterface.RegisterFunction<int, &GetFps>("GetFPS");
 	scriptInterface.RegisterFunction<std::wstring, int, &GetBuildTimestamp>("GetBuildTimestamp");
-	scriptInterface.RegisterFunction<JS::Value, std::wstring, &ReadJSONFile>("ReadJSONFile");
-	scriptInterface.RegisterFunction<void, std::wstring, JS::HandleValue, &WriteJSONFile>("WriteJSONFile");
 	scriptInterface.RegisterFunction<bool, std::string, &TemplateExists>("TemplateExists");
 	scriptInterface.RegisterFunction<CParamNode, std::string, &GetTemplate>("GetTemplate");
 	scriptInterface.RegisterFunction<int, CStr, CStrW, &GetTextWidth>("GetTextWidth");
