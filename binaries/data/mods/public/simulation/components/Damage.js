@@ -239,7 +239,7 @@ Damage.prototype.CauseSplashDamage = function(data)
  * @param {Object} data.strengths - data in the form of { 'hack': number, 'pierce': number, 'crush': number }.
  * @param {number} data.target - the entity id of the target.
  * @param {number} data.attacker - the entity id og the attacker.
- * @param {number} data.multiplier - the damage multiplier (between 0 and 1).
+ * @param {number} data.multiplier - the damage multiplier.
  * @param {string} data.type - the type of damage.
  * @param {number} data.attackerOwner - the player id of the attacker.
  */
@@ -249,7 +249,7 @@ Damage.prototype.CauseDamage = function(data)
 	if (!cmpDamageReceiver)
 		return;
 
-	let targetState = cmpDamageReceiver.TakeDamage(data.strengths.hack * data.multiplier, data.strengths.pierce * data.multiplier, data.strengths.crush * data.multiplier);
+	let targetState = cmpDamageReceiver.TakeDamage(data.strengths, data.multiplier);
 
 	let cmpPromotion = Engine.QueryInterface(data.attacker, IID_Promotion);
 	let cmpLoot = Engine.QueryInterface(data.target, IID_Loot);

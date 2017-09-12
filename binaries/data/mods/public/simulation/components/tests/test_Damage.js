@@ -76,7 +76,7 @@ function Test_Generic()
 	AddMock(target, IID_Health, {});
 
 	AddMock(target, IID_DamageReceiver, {
-		"TakeDamage": (hack, pierce, crush) => { damageTaken = true; return { "killed": false, "change": -crush }; },
+		"TakeDamage": (strengths, multiplier) => { damageTaken = true; return { "killed": false, "change": -multiplier * strengths.crush }; },
 	});
 
 	Engine.PostMessage = function(ent, iid, message)
@@ -175,26 +175,26 @@ function TestLinearSplashDamage()
 	});
 
 	AddMock(60, IID_DamageReceiver, {
-		"TakeDamage": (hack, pierce, crush) => {
+		"TakeDamage": (strengths, multiplier) => {
 			hitEnts.add(60);
-			TS_ASSERT_EQUALS(hack + pierce + crush, 100 * fallOff(2.2, -0.4));
-			return { "killed": false, "change": -(hack + pierce + crush) };
+			TS_ASSERT_EQUALS(multiplier * (strengths.hack + strengths.pierce + strengths.crush), 100 * fallOff(2.2, -0.4));
+			return { "killed": false, "change": -multiplier * (strengths.hack + strengths.pierce + strengths.crush) };
 		}
 	});
 
 	AddMock(61, IID_DamageReceiver, {
-		TakeDamage: (hack, pierce, crush) => {
+		"TakeDamage": (strengths, multiplier) => {
 			hitEnts.add(61);
-			TS_ASSERT_EQUALS(hack + pierce + crush, 100 * fallOff(0, 0));
-			return { "killed": false, "change": -(hack + pierce + crush) };
+			TS_ASSERT_EQUALS(multiplier * (strengths.hack + strengths.pierce + strengths.crush), 100 * fallOff(0, 0));
+			return { "killed": false, "change": -multiplier * (strengths.hack + strengths.pierce + strengths.crush) };
 		}
 	});
 
 	AddMock(62, IID_DamageReceiver, {
-		"TakeDamage": (hack, pierce, crush) => {
+		"TakeDamage": (strengths, multiplier) => {
 			hitEnts.add(62);
-			TS_ASSERT_EQUALS(hack + pierce + crush, 0);
-			return { "killed": false, "change": -(hack + pierce + crush) };
+			TS_ASSERT_EQUALS(multiplier * (strengths.hack + strengths.pierce + strengths.crush), 0);
+			return { "killed": false, "change": -multiplier * (strengths.hack + strengths.pierce + strengths.crush) };
 		}
 	});
 
@@ -207,10 +207,10 @@ function TestLinearSplashDamage()
 	data.direction = new Vector3D(0.6, 747, 0.8);
 
 	AddMock(60, IID_DamageReceiver, {
-		"TakeDamage": (hack, pierce, crush) => {
+		"TakeDamage": (strengths, multiplier) => {
 			hitEnts.add(60);
-			TS_ASSERT_EQUALS(hack + pierce + crush, 100 * fallOff(1, 2));
-			return { "killed": false, "change": -(hack + pierce + crush) };
+			TS_ASSERT_EQUALS(multiplier * (strengths.hack + strengths.pierce + strengths.crush), 100 * fallOff(1, 2));
+			return { "killed": false, "change": -multiplier * (strengths.hack + strengths.pierce + strengths.crush) };
 		}
 	});
 
@@ -263,36 +263,36 @@ function TestCircularSplashDamage()
 	});
 
 	AddMock(60, IID_DamageReceiver, {
-		"TakeDamage": (hack, pierce, crush) => {
-			TS_ASSERT_EQUALS(hack + pierce + crush, 100 * fallOff(0));
-			return { "killed": false, "change": -(hack + pierce + crush) };
+		"TakeDamage": (strengths, multiplier) => {
+			TS_ASSERT_EQUALS(multiplier * (strengths.hack + strengths.pierce + strengths.crush), 100 * fallOff(0));
+			return { "killed": false, "change": -multiplier * (strengths.hack + strengths.pierce + strengths.crush) };
 		}
 	});
 
 	AddMock(61, IID_DamageReceiver, {
-		"TakeDamage": (hack, pierce, crush) => {
-			TS_ASSERT_EQUALS(hack + pierce + crush, 100 * fallOff(5));
-			return { "killed": false, "change": -(hack + pierce + crush) };
+		"TakeDamage": (strengths, multiplier) => {
+			TS_ASSERT_EQUALS(multiplier * (strengths.hack + strengths.pierce + strengths.crush), 100 * fallOff(5));
+			return { "killed": false, "change": -multiplier * (strengths.hack + strengths.pierce + strengths.crush) };
 		}
 	});
 
 	AddMock(62, IID_DamageReceiver, {
-		"TakeDamage": (hack, pierce, crush) => {
-			TS_ASSERT_EQUALS(hack + pierce + crush, 100 * fallOff(1));
-			return { "killed": false, "change": -(hack + pierce + crush) };
+		"TakeDamage": (strengths, multiplier) => {
+			TS_ASSERT_EQUALS(multiplier * (strengths.hack + strengths.pierce + strengths.crush), 100 * fallOff(1));
+			return { "killed": false, "change": -multiplier * (strengths.hack + strengths.pierce + strengths.crush) };
 		}
 	});
 
 	AddMock(63, IID_DamageReceiver, {
-		"TakeDamage": (hack, pierce, crush) => {
+		"TakeDamage": (strengths, multiplier) => {
 			TS_ASSERT(false);
 		}
 	});
 
 	AddMock(64, IID_DamageReceiver, {
-		"TakeDamage": (hack, pierce, crush) => {
-			TS_ASSERT_EQUALS(hack + pierce + crush, 0);
-			return { "killed": false, "change": -(hack + pierce + crush) };
+		"TakeDamage": (strengths, multiplier) => {
+			TS_ASSERT_EQUALS(multiplier * (strengths.hack + strengths.pierce + strengths.crush), 0);
+			return { "killed": false, "change": -multiplier * (strengths.hack + strengths.pierce + strengths.crush) };
 		}
 	});
 
@@ -361,10 +361,10 @@ function Test_MissileHit()
 	AddMock(60, IID_Health, {});
 
 	AddMock(60, IID_DamageReceiver, {
-		"TakeDamage": (hack, pierce, crush) => {
-			TS_ASSERT_EQUALS(hack + pierce + crush, 100);
+		"TakeDamage": (strengths, multiplier) => {
 			hitEnts.add(60);
-			return { "killed": false, "change": -(hack + pierce + crush) };
+			TS_ASSERT_EQUALS(multiplier * (strengths.hack + strengths.pierce + strengths.crush), 100);
+			return { "killed": false, "change": -multiplier * (strengths.hack + strengths.pierce + strengths.crush) };
 		}
 	});
 
@@ -400,9 +400,9 @@ function Test_MissileHit()
 	});
 
 	AddMock(60, IID_DamageReceiver, {
-		"TakeDamage": (hack, pierce, crush) => {
+		"TakeDamage": (strengths, multiplier) => {
 			TS_ASSERT_EQUALS(false);
-			return { "killed": false, "change": -(hack + pierce + crush) };
+			return { "killed": false, "change": -multiplier * (strengths.hack + strengths.pierce + strengths.crush) };
 		}
 	});
 
@@ -420,10 +420,10 @@ function Test_MissileHit()
 	AddMock(61, IID_Health, {});
 
 	AddMock(61, IID_DamageReceiver, {
-		"TakeDamage": (hack, pierce, crush) => {
-			TS_ASSERT_EQUALS(hack + pierce + crush, 100);
+		"TakeDamage": (strengths, multiplier) => {
+			TS_ASSERT_EQUALS(multiplier * (strengths.hack + strengths.pierce + strengths.crush), 100);
 			hitEnts.add(61);
-			return { "killed": false, "change": -(hack + pierce + crush) };
+			return { "killed": false, "change": -multiplier * (strengths.hack + strengths.pierce + strengths.crush) };
 		}
 	});
 
@@ -449,10 +449,10 @@ function Test_MissileHit()
 
 	let dealtDamage = 0;
 	AddMock(61, IID_DamageReceiver, {
-		"TakeDamage": (hack, pierce, crush) => {
-			dealtDamage += hack + pierce + crush;
+		"TakeDamage": (strengths, multiplier) => {
+			dealtDamage += multiplier * (strengths.hack + strengths.pierce + strengths.crush);
 			hitEnts.add(61);
-			return { "killed": false, "change": -(hack + pierce + crush) };
+			return { "killed": false, "change": -multiplier * (strengths.hack + strengths.pierce + strengths.crush) };
 		}
 	});
 
@@ -466,10 +466,10 @@ function Test_MissileHit()
 	AddMock(62, IID_Health, {});
 
 	AddMock(62, IID_DamageReceiver, {
-		"TakeDamage": (hack, pierce, crush) => {
-			TS_ASSERT_EQUALS(hack + pierce + crush, 200 * 0.75);
+		"TakeDamage": (strengths, multiplier) => {
+			TS_ASSERT_EQUALS(multiplier * (strengths.hack + strengths.pierce + strengths.crush), 200 * 0.75);
 			hitEnts.add(62);
-			return { "killed": false, "change": -(hack + pierce + crush) };
+			return { "killed": false, "change": -multiplier * (strengths.hack + strengths.pierce + strengths.crush) };
 		}
 	});
 

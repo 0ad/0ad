@@ -44,22 +44,23 @@ Armour.prototype.SetInvulnerability = function(invulnerability)
 
 /**
  * Take damage according to the entity's armor.
- * Returns object of the form { "killed": false, "change": -12 }
+ * @param {Object} strengths - { "hack": number, "pierce": number, "crush": number } or something like that.
+ * @param {number} multiplier - the damage multiplier.
+ * Returns object of the form { "killed": false, "change": -12 }.
  */
-Armour.prototype.TakeDamage = function(hack, pierce, crush)
+Armour.prototype.TakeDamage = function(strengths, multiplier = 1)
 {
 	if (this.invulnerable)
 		return { "killed": false, "change": 0 };
 
 	// Adjust damage values based on armour; exponential armour: damage = attack * 0.9^armour
 	var armourStrengths = this.GetArmourStrengths();
-	var adjHack = hack * Math.pow(0.9, armourStrengths.hack);
-	var adjPierce = pierce * Math.pow(0.9, armourStrengths.pierce);
-	var adjCrush = crush * Math.pow(0.9, armourStrengths.crush);
 
 	// Total is sum of individual damages
 	// Don't bother rounding, since HP is no longer integral.
-	var total = adjHack + adjPierce + adjCrush;
+	var total = 0;
+	for (let type in strengths)
+		total += strengths[type] * multiplier * Math.pow(0.9, armourStrengths[type] || 0);
 
 	// Reduce health
 	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
