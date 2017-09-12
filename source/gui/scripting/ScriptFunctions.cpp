@@ -41,12 +41,10 @@
 #include "ps/GUID.h"
 #include "ps/Game.h"
 #include "ps/GameSetup/Atlas.h"
-#include "ps/GameSetup/Config.h"
 #include "ps/Globals.h"	// g_frequencyFilter
 #include "ps/Hotkey.h"
 #include "ps/ProfileViewer.h"
 #include "ps/Profile.h"
-#include "ps/Pyrogenesis.h"
 #include "ps/UserReport.h"
 #include "ps/scripting/JSInterface_ConfigDB.h"
 #include "ps/scripting/JSInterface_Console.h"
@@ -56,14 +54,7 @@
 #include "ps/scripting/JSInterface_VFS.h"
 #include "ps/scripting/JSInterface_VisualReplay.h"
 #include "renderer/scripting/JSInterface_Renderer.h"
-#include "simulation2/Simulation2.h"
-#include "simulation2/components/ICmpAIManager.h"
-#include "simulation2/components/ICmpCommandQueue.h"
-#include "simulation2/components/ICmpGuiInterface.h"
-#include "simulation2/components/ICmpRangeManager.h"
-#include "simulation2/components/ICmpSelectable.h"
-#include "simulation2/components/ICmpTemplateManager.h"
-#include "simulation2/helpers/Selection.h"
+#include "simulation2/scripting/JSInterface_Simulation.h"
 #include "soundmanager/scripting/JSInterface_Sound.h"
 #include "tools/atlas/GameInterface/GameLoop.h"
 
@@ -79,74 +70,6 @@ extern void EndGame();
 extern void kill_mainloop();
 
 namespace {
-
-JS::Value GuiInterfaceCall(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name, JS::HandleValue data)
-{
-	if (!g_Game)
-		return JS::UndefinedValue();
-	CSimulation2* sim = g_Game->GetSimulation2();
-	ENSURE(sim);
-
-	CmpPtr<ICmpGuiInterface> cmpGuiInterface(*sim, SYSTEM_ENTITY);
-	if (!cmpGuiInterface)
-		return JS::UndefinedValue();
-
-	JSContext* cxSim = sim->GetScriptInterface().GetContext();
-	JSAutoRequest rqSim(cxSim);
-	JS::RootedValue arg(cxSim, sim->GetScriptInterface().CloneValueFromOtherContext(*(pCxPrivate->pScriptInterface), data));
-	JS::RootedValue ret(cxSim);
-	cmpGuiInterface->ScriptCall(g_Game->GetViewedPlayerID(), name, arg, &ret);
-
-	return pCxPrivate->pScriptInterface->CloneValueFromOtherContext(sim->GetScriptInterface(), ret);
-}
-
-void PostNetworkCommand(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue cmd)
-{
-	if (!g_Game)
-		return;
-	CSimulation2* sim = g_Game->GetSimulation2();
-	ENSURE(sim);
-
-	CmpPtr<ICmpCommandQueue> cmpCommandQueue(*sim, SYSTEM_ENTITY);
-	if (!cmpCommandQueue)
-		return;
-
-	JSContext* cxSim = sim->GetScriptInterface().GetContext();
-	JSAutoRequest rqSim(cxSim);
-	JS::RootedValue cmd2(cxSim, sim->GetScriptInterface().CloneValueFromOtherContext(*(pCxPrivate->pScriptInterface), cmd));
-
-	cmpCommandQueue->PostNetworkCommand(cmd2);
-}
-
-entity_id_t PickEntityAtPoint(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int x, int y)
-{
-	return EntitySelection::PickEntityAtPoint(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), x, y, g_Game->GetViewedPlayerID(), false);
-}
-
-std::vector<entity_id_t> PickPlayerEntitiesInRect(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int x0, int y0, int x1, int y1, int player)
-{
-	return EntitySelection::PickEntitiesInRect(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), x0, y0, x1, y1, player, false);
-}
-
-std::vector<entity_id_t> PickPlayerEntitiesOnScreen(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int player)
-{
-	return EntitySelection::PickEntitiesInRect(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), 0, 0, g_xres, g_yres, player, false);
-}
-
-std::vector<entity_id_t> PickNonGaiaEntitiesOnScreen(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-{
-	return EntitySelection::PickNonGaiaEntitiesInRect(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), 0, 0, g_xres, g_yres, false);
-}
-
-std::vector<entity_id_t> PickSimilarPlayerEntities(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& templateName, bool includeOffScreen, bool matchRank, bool allowFoundations)
-{
-	return EntitySelection::PickSimilarEntities(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), templateName, g_Game->GetViewedPlayerID(), includeOffScreen, matchRank, false, allowFoundations);
-}
-
-JS::Value GetAIs(ScriptInterface::CxPrivate* pCxPrivate)
-{
-	return ICmpAIManager::GetAIs(*(pCxPrivate->pScriptInterface));
-}
 
 void OpenURL(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& url)
 {
@@ -186,21 +109,6 @@ JS::Value LoadMapSettings(ScriptInterface::CxPrivate* pCxPrivate, const VfsPath&
 	JS::RootedValue settings(cx);
 	reader.GetMapSettings(*(pCxPrivate->pScriptInterface), &settings);
 	return settings;
-}
-
-JS::Value GetInitAttributes(ScriptInterface::CxPrivate* pCxPrivate)
-{
-	if (!g_Game)
-		return JS::UndefinedValue();
-
-	JSContext* cx = g_Game->GetSimulation2()->GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
-
-	JS::RootedValue initAttribs(cx);
-	g_Game->GetSimulation2()->GetInitAttributes(&initAttribs);
-	return pCxPrivate->pScriptInterface->CloneValueFromOtherContext(
-		g_Game->GetSimulation2()->GetScriptInterface(),
-		initAttribs);
 }
 
 bool HotkeyIsPressed_(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& hotkeyName)
@@ -260,17 +168,6 @@ void ForceGC(ScriptInterface::CxPrivate* pCxPrivate)
 	JS_GC(pCxPrivate->pScriptInterface->GetJSRuntime());
 	time = timer_Time() - time;
 	g_Console->InsertMessage(fmt::sprintf("Garbage collection completed in: %f", time));
-}
-
-void DumpSimState(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-{
-	OsPath path = psLogDir()/"sim_dump.txt";
-	std::ofstream file (OsString(path).c_str(), std::ofstream::out | std::ofstream::trunc);
-	g_Game->GetSimulation2()->DumpDebugState(file);
-}
-void SetBoundingBoxDebugOverlay(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool enabled)
-{
-	ICmpSelectable::ms_EnableDebugOverlays = enabled;
 }
 
 void Script_EndGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
@@ -403,33 +300,19 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	JSI_Network::RegisterScriptFunctions(scriptInterface);
 	JSI_SavedGame::RegisterScriptFunctions(scriptInterface);
 	JSI_Sound::RegisterScriptFunctions(scriptInterface);
+	JSI_Simulation::RegisterScriptFunctions(scriptInterface);
 	JSI_L10n::RegisterScriptFunctions(scriptInterface);
 	JSI_Lobby::RegisterScriptFunctions(scriptInterface);
 	JSI_VFS::RegisterScriptFunctions(scriptInterface);
 	JSI_VisualReplay::RegisterScriptFunctions(scriptInterface);
 
-	// Simulation<->GUI interface functions:
-	scriptInterface.RegisterFunction<JS::Value, std::wstring, JS::HandleValue, &GuiInterfaceCall>("GuiInterfaceCall");
-	scriptInterface.RegisterFunction<void, JS::HandleValue, &PostNetworkCommand>("PostNetworkCommand");
-
-	// Entity picking
-	scriptInterface.RegisterFunction<entity_id_t, int, int, &PickEntityAtPoint>("PickEntityAtPoint");
-	scriptInterface.RegisterFunction<std::vector<entity_id_t>, int, int, int, int, int, &PickPlayerEntitiesInRect>("PickPlayerEntitiesInRect");
-	scriptInterface.RegisterFunction<std::vector<entity_id_t>, int, &PickPlayerEntitiesOnScreen>("PickPlayerEntitiesOnScreen");
-	scriptInterface.RegisterFunction<std::vector<entity_id_t>, &PickNonGaiaEntitiesOnScreen>("PickNonGaiaEntitiesOnScreen");
-	scriptInterface.RegisterFunction<std::vector<entity_id_t>, std::string, bool, bool, bool, &PickSimilarPlayerEntities>("PickSimilarPlayerEntities");
-
 	scriptInterface.RegisterFunction<void, &Script_EndGame>("EndGame");
-	scriptInterface.RegisterFunction<JS::Value, &GetAIs>("GetAIs");
-
-	// Misc functions
 	scriptInterface.RegisterFunction<void, std::string, &OpenURL>("OpenURL");
 	scriptInterface.RegisterFunction<std::wstring, &GetMatchID>("GetMatchID");
 	scriptInterface.RegisterFunction<void, &RestartInAtlas>("RestartInAtlas");
 	scriptInterface.RegisterFunction<bool, &AtlasIsAvailable>("AtlasIsAvailable");
 	scriptInterface.RegisterFunction<bool, &IsAtlasRunning>("IsAtlasRunning");
 	scriptInterface.RegisterFunction<JS::Value, VfsPath, &LoadMapSettings>("LoadMapSettings");
-	scriptInterface.RegisterFunction<JS::Value, &GetInitAttributes>("GetInitAttributes");
 	scriptInterface.RegisterFunction<bool, std::string, &HotkeyIsPressed_>("HotkeyIsPressed");
 	scriptInterface.RegisterFunction<void, std::wstring, &DisplayErrorDialog>("DisplayErrorDialog");
 	scriptInterface.RegisterFunction<JS::Value, &GetProfilerState>("GetProfilerState");
@@ -449,7 +332,5 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<int, &Crash>("Crash");
 	scriptInterface.RegisterFunction<void, &DebugWarn>("DebugWarn");
 	scriptInterface.RegisterFunction<void, &ForceGC>("ForceGC");
-	scriptInterface.RegisterFunction<void, &DumpSimState>("DumpSimState");
-	scriptInterface.RegisterFunction<void, bool, &SetBoundingBoxDebugOverlay>("SetBoundingBoxDebugOverlay");
 	scriptInterface.RegisterFunction<CStrW, &GetSystemUsername>("GetSystemUsername");
 }
