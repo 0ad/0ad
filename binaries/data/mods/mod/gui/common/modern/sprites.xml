@@ -193,6 +193,21 @@
 			size = "0 1 100% 100%-1"
 		/>
 	</sprite>
+	<sprite name="ModernDarkBoxWhiteInvalid">
+		<!-- borders -->
+		<image texture = "global/modern/white-separator.png"
+			real_texture_placement = "0 0 806 1"
+			size = "0 0 100% 1"
+		/>
+		<image texture = "global/modern/white-separator.png"
+			real_texture_placement = "0 0 806 1"
+			size = "0 100%-1 100% 100%"
+		/>
+		<!-- background -->
+		<image backcolor = "127 0 0 100"
+			size = "0 1 100% 100%-1"
+		/>
+	</sprite>
 	<sprite name = "ModernDarkBoxGoldNoBottom">
 		<image texture = "global/modern/gold-separator.png"
 			real_texture_placement = "0 0 806 1"
