@@ -23,6 +23,7 @@
 namespace JSI_Game
 {
 	void StartGame(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue attribs, int playerID);
+	void Script_EndGame(ScriptInterface::CxPrivate* pCxPrivate);
 	int GetPlayerID(ScriptInterface::CxPrivate* pCxPrivate);
 	void SetPlayerID(ScriptInterface::CxPrivate* pCxPrivate, int id);
 	void SetViewedPlayer(ScriptInterface::CxPrivate* pCxPrivate, int id);
