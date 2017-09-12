@@ -786,9 +786,10 @@ m.Entity = m.Class({
 	{
 		if (!this.get("Attack/Capture"))
 			return false;
-
 		if (!target)
 			return true;
+		if (!target.get("Capturable"))
+			return false;
 		let restrictedClasses = this.get("Attack/Capture/RestrictedClasses/_string");
 		return !restrictedClasses || !MatchesClassList(target.classes(), restrictedClasses);
 	},
@@ -797,7 +798,7 @@ m.Entity = m.Class({
 
 	"canGuard": function() { return this.get("UnitAI/CanGuard") === "true"; },
 
-	"canGarrison": function() { return this.get("Garrisonable") !== "false"; },
+	"canGarrison": function() { return "Garrisonable" in this._template; },
 
 	move: function(x, z, queued = false) {
 		Engine.PostCommand(PlayerID,{"type": "walk", "entities": [this.id()], "x": x, "z": z, "queued": queued });

@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2017-09-06 09:04+0200\n"
-"PO-Revision-Date: 2017-09-06 09:04+0200\n"
+"POT-Creation-Date: 2017-09-11 09:05+0200\n"
+"PO-Revision-Date: 2017-09-11 09:05+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -469,14 +469,14 @@ msgstr ""
 msgid "You can attack now!"
 msgstr ""
 
-#: simulation/components/EndGameManager.js:163
+#: simulation/components/EndGameManager.js:173
 #, javascript-format
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
 msgstr[0] ""
 msgstr[1] ""
 
-#: simulation/components/EndGameManager.js:171
+#: simulation/components/EndGameManager.js:181
 msgid "Last remaining player wins."
 msgstr ""
 
@@ -526,7 +526,7 @@ msgstr ""
 msgid "The production queue is full."
 msgstr ""
 
-#: simulation/components/ProductionQueue.js:780
+#: simulation/components/ProductionQueue.js:783
 msgid "Can't find free space to spawn trained units"
 msgstr ""
 
@@ -665,38 +665,6 @@ msgstr ""
 
 #: simulation/data/settings/game_speeds.json:Data[10].Title
 msgid "Fast Forward (20x)"
-msgstr ""
-
-#: simulation/data/settings/biomes.json:Data[0].Title
-msgid "Temperate"
-msgstr ""
-
-#: simulation/data/settings/biomes.json:Data[1].Title
-msgid "Snowy"
-msgstr ""
-
-#: simulation/data/settings/biomes.json:Data[2].Title
-msgid "Desert"
-msgstr ""
-
-#: simulation/data/settings/biomes.json:Data[3].Title
-msgid "Alpine"
-msgstr ""
-
-#: simulation/data/settings/biomes.json:Data[4].Title
-msgid "Mediterranean"
-msgstr ""
-
-#: simulation/data/settings/biomes.json:Data[5].Title
-msgid "Savanna"
-msgstr ""
-
-#: simulation/data/settings/biomes.json:Data[6].Title
-msgid "Tropic"
-msgstr ""
-
-#: simulation/data/settings/biomes.json:Data[7].Title
-msgid "Autumn"
 msgstr ""
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.json:Data.Description

@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-09-04 09:02+0200\n"
-"PO-Revision-Date: 2017-09-04 15:06+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-09-09 13:43+0000\n"
+"Last-Translator: pilino1234 <pilino1234@zoho.eu>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -73,7 +73,7 @@ msgstr "Tab"
 
 #: gui/common/functions_civinfo.js:31
 msgid "Gaia"
-msgstr ""
+msgstr "Gaia"
 
 #: gui/common/functions_global_object.js:57
 #, javascript-format
@@ -291,8 +291,8 @@ msgstr[1] "Under (%(min)s minuter)"
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
 msgid_plural "Capture the Relic (%(min)s minutes)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Erövra Reliken (%(min)s minut)"
+msgstr[1] "Erövra Reliken (%(min)s minuter)"
 
 #: gui/common/gamedescription.js:260
 msgid "Relic Count"
@@ -1112,19 +1112,19 @@ msgstr "OK"
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s, Max: %(max)s"
-msgstr ""
+msgstr "Min: %(min)s, Max: %(max)s"
 
 #: gui/options/options.js:92
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s"
-msgstr ""
+msgstr "Min: %(min)s"
 
 #: gui/options/options.js:94
 #, javascript-format
 msgctxt "option number"
 msgid "Max: %(max)s"
-msgstr ""
+msgstr "Max: %(max)s"
 
 #: gui/options/options.js:127
 #, javascript-format
@@ -1251,7 +1251,7 @@ msgstr "Manual"
 #: gui/reference/common/load.js:233
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
-msgstr ""
+msgstr "%(health_min)s till %(health_max)s"
 
 #: gui/replaymenu/replay_actions.js:92
 msgid "You don't have the same mods active as the replay does."
@@ -1675,7 +1675,7 @@ msgstr "Utgift"
 
 #: gui/summary/summary.js:101
 msgid "∞"
-msgstr ""
+msgstr "∞"
 
 #: gui/summary/summary.js:361
 msgid "Are you sure you want to quit the lobby?"
@@ -1854,7 +1854,7 @@ msgstr "Du kan automatiskt skicka anonym feedback som hjälper oss att fixa bugg
 
 #: gui/pregame/mainmenu.xml:533
 msgid "Alpha XXIII: Ken Wood"
-msgstr ""
+msgstr "Alpha XXIII: Ken Wood"
 
 #: gui/pregame/mainmenu.xml:535
 msgid ""
@@ -1930,7 +1930,7 @@ msgstr "Modifikationsval"
 
 #: gui/pregame/mainmenu.xml:(caption):450
 msgid "Learn to Play"
-msgstr ""
+msgstr "Lär dig spela"
 
 #: gui/pregame/mainmenu.xml:(caption):495
 msgid "Tools & Options"
@@ -1954,7 +1954,7 @@ msgstr "Rapportera en bugg"
 
 #: gui/pregame/mainmenu.xml:(caption):581
 msgid "Translate the Game"
-msgstr ""
+msgstr "Översätt Spelet"
 
 #: gui/pregame/mainmenu.xml:(caption):593
 msgid "Credits"
@@ -2650,7 +2650,7 @@ msgstr "Antal shadereffekter. KRÄVER OMSTART AV SPELET."
 
 #: gui/options/options.json[1].options[2].label
 msgid "Shader Effects"
-msgstr ""
+msgstr "Shader Effekter"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Enable shadows"
@@ -2662,33 +2662,33 @@ msgstr "Skuggor"
 
 #: gui/options/options.json[1].options[4].list[0].label
 msgid "Very Low"
-msgstr ""
+msgstr "Mycket låg"
 
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "Low"
-msgstr ""
+msgstr "Låg"
 
 #: gui/options/options.json[1].options[4].list[2].label
 msgid "Medium"
-msgstr ""
+msgstr "Mellan"
 
 #: gui/options/options.json[1].options[4].list[3].label
 msgid "High"
-msgstr ""
+msgstr "Hög"
 
 #: gui/options/options.json[1].options[4].list[4].label
 msgid "Very High"
-msgstr ""
+msgstr "Mycket hög"
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid ""
 "Shadow map resolution. High values can crash the game when using a graphics "
 "card with low memory!"
-msgstr ""
+msgstr "Skuggkartaupplösning. Höga värden kan krascha spelet när du använder ett grafikkort med lite minne!"
 
 #: gui/options/options.json[1].options[4].label
 msgid "Shadow Quality"
-msgstr ""
+msgstr "Skuggkvalitet"
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Smooth shadows"
@@ -2722,7 +2722,7 @@ msgstr "När AV, använd de lägsta möjliga inställningar för att rendera vat
 
 #: gui/options/options.json[1].options[8].label
 msgid "Water Effects"
-msgstr ""
+msgstr "Vatteneffekter\n"
 
 #: gui/options/options.json[1].options[9].tooltip
 msgid ""
@@ -2798,7 +2798,7 @@ msgstr "För att minska CPU-arbetsbelastningen, begräns renderfrekvensen i alla
 
 #: gui/options/options.json[1].options[17].label
 msgid "FPS Throttling in Menus"
-msgstr ""
+msgstr "FPS begränsning i menyer"
 
 #: gui/options/options.json[1].options[18].tooltip
 msgid ""
@@ -2808,15 +2808,15 @@ msgstr "För att minska CPU-arbetsbelastningen, begräns renderfrekvensen i påg
 
 #: gui/options/options.json[1].options[18].label
 msgid "FPS Throttling in Games"
-msgstr ""
+msgstr "FPS begränsning i spel"
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
-msgstr ""
+msgstr "Ställ in balansen mellan prestanda och visuellt utseende."
 
 #: gui/options/options.json[1].label
 msgid "Graphics"
-msgstr ""
+msgstr "Grafik"
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid "Master audio gain"
@@ -2886,11 +2886,11 @@ msgstr "Spelvärderingskolumn"
 
 #: gui/options/options.json[3].tooltip
 msgid "These settings only affect the multiplayer."
-msgstr ""
+msgstr "Dessa inställningar är bara för multiplayer"
 
 #: gui/options/options.json[3].label
 msgid "Lobby"
-msgstr ""
+msgstr "Lobby"
 
 #: gui/options/options.json[4].options[0].tooltip
 msgid "Show a chat notification if you are attacked by another player"
@@ -2942,11 +2942,11 @@ msgstr "Fas"
 
 #: gui/options/options.json[4].tooltip
 msgid "Regulate the verbosity of chat notifications."
-msgstr ""
+msgstr "Ändra verbositeten i chattmeddelanden."
 
 #: gui/options/options.json[4].label
 msgid "Chat Notifications"
-msgstr ""
+msgstr "Chattmeddelanden"
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."

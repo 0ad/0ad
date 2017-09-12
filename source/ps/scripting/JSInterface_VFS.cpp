@@ -178,6 +178,31 @@ JS::Value JSI_VFS::ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, const s
 	return JS::ObjectValue(*line_array);
 }
 
+JS::Value JSI_VFS::ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filePath)
+{
+	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
+	JS::RootedValue out(cx);
+	pCxPrivate->pScriptInterface->ReadJSONFile(filePath, &out);
+	return out;
+}
+
+void JSI_VFS::WriteJSONFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filePath, JS::HandleValue val1)
+{
+	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
+
+	// TODO: This is a workaround because we need to pass a MutableHandle to StringifyJSON.
+	JS::RootedValue val(cx, val1);
+
+	std::string str(pCxPrivate->pScriptInterface->StringifyJSON(&val, false));
+
+	VfsPath path(filePath);
+	WriteBuffer buf;
+	buf.Append(str.c_str(), str.length());
+	g_VFS->CreateFile(path, buf.Data(), buf.Size());
+}
+
 void JSI_VFS::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 {
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, std::wstring, bool, &JSI_VFS::BuildDirEntList>("BuildDirEntList");
@@ -186,4 +211,6 @@ void JSI_VFS::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<unsigned int, std::wstring, &JSI_VFS::GetFileSize>("GetFileSize");
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, &JSI_VFS::ReadFile>("ReadFile");
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, &JSI_VFS::ReadFileLines>("ReadFileLines");
+	scriptInterface.RegisterFunction<JS::Value, std::wstring, &ReadJSONFile>("ReadJSONFile");
+	scriptInterface.RegisterFunction<void, std::wstring, JS::HandleValue, &WriteJSONFile>("WriteJSONFile");
 }

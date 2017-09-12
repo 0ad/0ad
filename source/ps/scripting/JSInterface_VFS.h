@@ -55,6 +55,12 @@ namespace JSI_VFS
 	// Return file contents as an array of lines.
 	JS::Value ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filename);
 
+	// Return file contents parsed as a JS Object
+	JS::Value ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filePath);
+
+	// Save given JS Object to a JSON file
+	void WriteJSONFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filePath, JS::HandleValue val1);
+
 	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
 }
 

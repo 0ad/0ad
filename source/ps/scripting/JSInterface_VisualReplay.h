@@ -18,7 +18,6 @@
 #ifndef INCLUDED_JSI_VISUALREPLAY
 #define INCLUDED_JSI_VISUALREPLAY
 
-#include "ps/VisualReplay.h"
 #include "scriptinterface/ScriptInterface.h"
 
 namespace JSI_VisualReplay

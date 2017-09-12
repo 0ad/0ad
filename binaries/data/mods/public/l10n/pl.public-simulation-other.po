@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-09-06 09:04+0200\n"
-"PO-Revision-Date: 2017-09-06 15:48+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-09-10 22:05+0000\n"
+"Last-Translator: Daniel Whatever <Deynyel@protonmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -205,14 +205,14 @@ msgstr "Twoje prośby o pokój nic dla mnie więcej nie znaczą, %(_player_)s!"
 #, javascript-format
 msgid ""
 "My answer to your repeated peace proposal will remain war, %(_player_)s!"
-msgstr ""
+msgstr "Moja odpowiedzią na twe powatrzajace sie propozycje sojuszu pozostanie wojna, %(_player_)s!"
 
 #: simulation/ai/petra/chatHelper.js:76
 #, javascript-format
 msgid ""
 "I will accept your offer to become allies, %(_player_)s. We will both "
 "benefit from this partnership."
-msgstr ""
+msgstr "Zaakceptuję twoją ofertę sojuszu, %(_player_)s. Obaj skorzystamy z tego układu."
 
 #: simulation/ai/petra/chatHelper.js:77
 #, javascript-format
@@ -223,123 +223,123 @@ msgstr "Sojusz pomiędzy nami to dobry pomysł, %(_player_)s."
 #, javascript-format
 msgid ""
 "Let both of our people prosper from a peaceful association, %(_player_)s."
-msgstr ""
+msgstr "Niech nasze ludy prosperują wspólnie z pokojowej współpracy, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:79
 #, javascript-format
 msgid "We have found common ground, %(_player_)s. I accept the alliance."
-msgstr ""
+msgstr "Odnaleźlismy wspólny język, %(_player_)s. Akceptuję ten sojusz."
 
 #: simulation/ai/petra/chatHelper.js:80
 #, javascript-format
 msgid "%(_player_)s, consider us allies from now on."
-msgstr ""
+msgstr "%(_player_)s, uważaj nas teraz za swych sojuszników."
 
 #: simulation/ai/petra/chatHelper.js:83
 #, javascript-format
 msgid ""
 "I will ally with you, %(_player_)s, but only if you send me a tribute of "
 "%(_amount_)s %(_resource_)s."
-msgstr ""
+msgstr "Zostanę twym sojusznikiem, %(_player_)s, ale tylko wtedy gdy przyslesz mi %(_amount_)s %(_resource_)s."
 
 #: simulation/ai/petra/chatHelper.js:84
 #, javascript-format
 msgid ""
 "%(_player_)s, you must send me a tribute of %(_amount_)s %(_resource_)s "
 "before I accept an alliance with you."
-msgstr ""
+msgstr "%(_player_)s, prześlij mi daninę %(_amount_)s %(_resource_)s zanim zaakceptuję sojusz z Tobą."
 
 #: simulation/ai/petra/chatHelper.js:85
 #, javascript-format
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
 " %(_player_)s,"
-msgstr ""
+msgstr "Zanim przyślesz mi %(_amount_)s %(_resource_)s, sojusz nie zostanie utworzony, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:88
 #, javascript-format
 msgid ""
 "%(_player_)s, my offer still stands. I will ally with you only if you send "
 "me a tribute of %(_amount_)s %(_resource_)s."
-msgstr ""
+msgstr "%(_player_)s, moja oferta nadal jest aktualna. Utworzę sojusz z Tobą tylko wtedy, gdy prześlesz mi danine %(_amount_)s %(_resource_)s."
 
 #: simulation/ai/petra/chatHelper.js:89
 #, javascript-format
 msgid ""
 "I’m still waiting for %(_amount_)s %(_resource_)s before accepting your "
 "alliance, %(_player_)s."
-msgstr ""
+msgstr "Nadal czekam na %(_amount_)s %(_resource_)s, zanim zaakceptuję Twój sojusz, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:90 simulation/ai/petra/chatHelper.js:111
 #, javascript-format
 msgid ""
 "%(_player_)s, if you do not send me part of the %(_amount_)s %(_resource_)s "
 "tribute soon, I will break off our negotiations."
-msgstr ""
+msgstr "%(_player_)s, jeśli nie prześlesz mi częsć z daniny %(_amount_)s %(_resource_)s szybko, zarzucam nasze negocjacje."
 
 #: simulation/ai/petra/chatHelper.js:95
 #, javascript-format
 msgid "I will not become neutral with you, %(_player_)s."
-msgstr ""
+msgstr "Nie pozostanę neutralny z Tobą, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:96
 #, javascript-format
 msgid "%(_player_)s, I must decline your request for a neutrality pact."
-msgstr ""
+msgstr "%(_player_)s, muszę odrzucic pakt o neutralnosci z Tobą."
 
 #: simulation/ai/petra/chatHelper.js:99
 #, javascript-format
 msgid ""
 "Our previous neutrality agreement ended in failure, %(_player_)s; I will not"
 " consider another one."
-msgstr ""
+msgstr "Nasze poprzednie porozumienie o neutralności zakończyło się porazką, %(_player_)s; nie bedę rozwaał następnego."
 
 #: simulation/ai/petra/chatHelper.js:102
 #, javascript-format
 msgid ""
 "I welcome your request for peace between our civilizations, %(_player_)s. I "
 "will accept."
-msgstr ""
+msgstr "Z radoscią przyjmuję prośbę o pokój pomiędzy naszymi cywilizacjami, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:103
 #, javascript-format
 msgid ""
 "%(_player_)s, I will accept your neutrality request. May both our "
 "civilizations benefit."
-msgstr ""
+msgstr "%(_player_)s, Akceptuję twą prosbę o neutralność. Nie obie nasze cywilizację z tego korzystają."
 
 #: simulation/ai/petra/chatHelper.js:106
 #, javascript-format
 msgid ""
 "If you send me a tribute of %(_amount_)s %(_resource_)s, I will accept your "
 "neutrality request, %(_player_)s."
-msgstr ""
+msgstr "Jeśli prześlesz mi daninę %(_amount_)s %(_resource_)s, Zaakceptuję twą prosbe o neutralność, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:107
 #, javascript-format
 msgid ""
 "%(_player_)s, if you send me %(_amount_)s %(_resource_)s, I will accept a "
 "neutrality pact."
-msgstr ""
+msgstr "%(_player_)s, jeśli prześlesz mi %(_amount_)s %(_resource_)s, przyjmę pakt o neutralności."
 
 #: simulation/ai/petra/chatHelper.js:110
 #, javascript-format
 msgid ""
 "%(_player_)s, I will not accept your neutrality request unless you tribute "
 "me %(_amount_)s %(_resource_)s soon."
-msgstr ""
+msgstr "%(_player_)s, nie zaakceptuję twojej prośby o neutralności póki nie prześlesz mi daniny %(_amount_)s %(_resource_)s."
 
 #: simulation/ai/petra/chatHelper.js:119
 #, javascript-format
 msgid ""
 "%(_player_)s, it would help both of our civilizations if we formed an "
 "alliance. If you become allies with me, I will respond in kind."
-msgstr ""
+msgstr "%(_player_)s, pomogłop by to obu naszym cywilizacjom jesli utworzyliśmyby sojusz. Jeśli zostaniesz mym sojusznikiem, postąpię podobnie."
 
 #: simulation/ai/petra/chatHelper.js:122
 #, javascript-format
 msgid "%(_player_)s, my offer for an alliance has expired."
-msgstr ""
+msgstr "%(_player_)s, moja oferta sojuszu właśnie wygasła."
 
 #: simulation/ai/petra/chatHelper.js:123
 #, javascript-format

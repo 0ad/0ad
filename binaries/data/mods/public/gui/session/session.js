@@ -288,16 +288,7 @@ function init(initData, hotloadData)
 
 	initializeMusic(); // before changing the perspective
 
-	let gameSpeed = Engine.GetGUIObjectByName("gameSpeed");
-	gameSpeed.list = g_GameSpeeds.Title;
-	gameSpeed.list_data = g_GameSpeeds.Speed;
-	let gameSpeedIdx = g_GameSpeeds.Speed.indexOf(Engine.GetSimRate());
-	gameSpeed.selected = gameSpeedIdx != -1 ? gameSpeedIdx : g_GameSpeeds.Default;
-	gameSpeed.onSelectionChange = function() { changeGameSpeed(+this.list_data[this.selected]); };
-
-	initMenuPosition();
-	resizeDiplomacyDialog();
-	resizeTradeDialog();
+	initSessionMenuButtons();
 
 	for (let slot in Engine.GetGUIObjectByName("panelEntityPanel").children)
 		initPanelEntities(slot);
