@@ -18,6 +18,7 @@
 #ifndef INCLUDED_JSI_NETWORK
 #define INCLUDED_JSI_NETWORK
 
+#include "ps/CStr.h"
 #include "scriptinterface/ScriptInterface.h"
 
 namespace JSI_Network

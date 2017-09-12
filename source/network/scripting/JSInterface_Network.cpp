@@ -27,7 +27,6 @@
 #include "network/NetServer.h"
 #include "network/StunClient.h"
 #include "ps/CLogger.h"
-#include "ps/CStr.h"
 #include "ps/Game.h"
 
 u16 JSI_Network::GetDefaultPort(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
