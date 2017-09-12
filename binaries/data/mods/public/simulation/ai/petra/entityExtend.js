@@ -226,15 +226,8 @@ m.returnResources = function(gameState, ent)
 /** is supply full taking into account gatherers affected during this turn */
 m.IsSupplyFull = function(gameState, ent)
 {
-	if (ent.isFull() === true)
-	    return true;
-	let turnCache = gameState.ai.HQ.turnCache;
-	let count = ent.resourceSupplyNumGatherers();
-	if (turnCache.resourceGatherer && turnCache.resourceGatherer[ent.id()])
-		count += turnCache.resourceGatherer[ent.id()];
-	if (count >= ent.maxGatherers())
-		return true;
-	return false;
+	return ent.isFull() === true ||
+		ent.resourceSupplyNumGatherers() + gameState.ai.HQ.GetTCGatherer(ent.id()) >= ent.maxGatherers();
 };
 
 /**

@@ -823,26 +823,32 @@ m.Worker.prototype.startFishing = function(gameState)
 m.Worker.prototype.gatherNearestField = function(gameState, baseID)
 {
 	let ownFields = gameState.getOwnEntitiesByClass("Field", true).filter(API3.Filters.isBuilt()).filter(API3.Filters.byMetadata(PlayerID, "base", baseID));
-	let bestFarmEnt = false;
-	let bestFarmDist = 10000000;
+	let bestFarm;
 
 	for (let field of ownFields.values())
 	{
 		if (m.IsSupplyFull(gameState, field))
 			continue;
-		let dist = API3.SquareVectorDistance(field.position(), this.ent.position());
-		if (dist < bestFarmDist)
+		let rate = 1;
+		let diminishing = field.getDiminishingReturns();
+		if (diminishing < 1)
 		{
-			bestFarmEnt = field;
-			bestFarmDist = dist;
+			let num = field.resourceSupplyNumGatherers() + gameState.ai.HQ.GetTCGatherer(field.id());
+			if (num > 0)
+				rate = Math.pow(diminishing, num);
 		}
+		// Add a penalty distance depending on rate
+		let dist = API3.SquareVectorDistance(field.position(), this.ent.position()) + (1 - rate) * 160000;
+		if (!bestFarm || dist < bestFarm.dist)
+			bestFarm = { "ent": field, "dist": dist, "rate": rate };
 	}
-	if (bestFarmEnt)
-	{
-		gameState.ai.HQ.AddTCGatherer(bestFarmEnt.id());
-		this.ent.setMetadata(PlayerID, "supply", bestFarmEnt.id());
-	}
-	return bestFarmEnt;
+	// If other field foundations available, better build them when rate becomes too small
+	if (!bestFarm || bestFarm.rate < 0.75 &&
+	                 gameState.getOwnFoundations().filter(API3.Filters.byClass("Field")).filter(API3.Filters.byMetadata(PlayerID, "base", baseID)).hasEntities())
+		return false;
+	gameState.ai.HQ.AddTCGatherer(bestFarm.ent.id());
+	this.ent.setMetadata(PlayerID, "supply", bestFarm.ent.id());
+	return bestFarm.ent;
 };
 
 /**

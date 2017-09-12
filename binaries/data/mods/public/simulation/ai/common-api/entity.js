@@ -368,14 +368,14 @@ m.Template = m.Class({
 		return templates.split(/\s+/);
 	},
 
-	resourceSupplyType: function() {
+	"resourceSupplyType": function() {
 		if (!this.get("ResourceSupply"))
 			return undefined;
 		let [type, subtype] = this.get("ResourceSupply/Type").split('.');
 		return { "generic": type, "specific": subtype };
 	},
 	// will return either "food", "wood", "stone", "metal" and not treasure.
-	getResourceType: function() {
+	"getResourceType": function() {
 		if (!this.get("ResourceSupply"))
 			return undefined;
 		let [type, subtype] = this.get("ResourceSupply/Type").split('.');
@@ -384,11 +384,15 @@ m.Template = m.Class({
 		return type;
 	},
 
-	resourceSupplyMax: function() {
+	"getDiminishingReturns": function() {
+		return +(this.get("ResourceSupply/DiminishingReturns") || 1);
+	},
+
+	"resourceSupplyMax": function() {
 		return +this.get("ResourceSupply/Amount");
 	},
 
-	maxGatherers: function() {
+	"maxGatherers": function() {
 		return +(this.get("ResourceSupply/MaxGatherers") || 0);
 	},
 
