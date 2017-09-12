@@ -29,16 +29,13 @@
 #include "gui/scripting/JSInterface_GUITypes.h"
 #include "i18n/L10n.h"
 #include "i18n/scripting/JSInterface_L10n.h"
-#include "lib/external_libraries/enet.h"
 #include "lib/svn_revision.h"
 #include "lib/sysdep/sysdep.h"
 #include "lib/utf8.h"
 #include "lobby/scripting/JSInterface_Lobby.h"
-#include "lobby/IXmppClient.h"
 #include "network/NetClient.h"
-#include "network/NetMessage.h"
 #include "network/NetServer.h"
-#include "network/StunClient.h"
+#include "network/scripting/JSInterface_Network.h"
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
 #include "ps/Errors.h"
@@ -226,17 +223,6 @@ void SetViewedPlayer(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int id)
 		g_Game->SetViewedPlayerID(id);
 }
 
-JS::Value FindStunEndpoint(ScriptInterface::CxPrivate* pCxPrivate, int port)
-{
-	return StunClient::FindStunEndpointHost(*(pCxPrivate->pScriptInterface), port);
-}
-
-void StartNetworkGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-{
-	ENSURE(g_NetClient);
-	g_NetClient->SendStartGameMessage();
-}
-
 void StartGame(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue attribs, int playerID)
 {
 	ENSURE(!g_NetServer);
@@ -255,168 +241,6 @@ void StartGame(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue attribs, 
 
 	g_Game->SetPlayerID(playerID);
 	g_Game->StartGame(&gameAttribs, "");
-}
-
-void SetNetworkGameAttributes(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue attribs1)
-{
-	ENSURE(g_NetClient);
-
-	//TODO: This is a workaround because we need to pass a MutableHandle to a JSAPI functions somewhere
-	// (with no obvious reason).
-	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
-	JS::RootedValue attribs(cx, attribs1);
-
-	g_NetClient->SendGameSetupMessage(&attribs, *(pCxPrivate->pScriptInterface));
-}
-
-void StartNetworkHost(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& playerName, const u16 serverPort)
-{
-	ENSURE(!g_NetClient);
-	ENSURE(!g_NetServer);
-	ENSURE(!g_Game);
-
-	g_NetServer = new CNetServer();
-	if (!g_NetServer->SetupConnection(serverPort))
-	{
-		pCxPrivate->pScriptInterface->ReportError("Failed to start server");
-		SAFE_DELETE(g_NetServer);
-		return;
-	}
-
-	g_Game = new CGame();
-	g_NetClient = new CNetClient(g_Game, true);
-	g_NetClient->SetUserName(playerName);
-
-	if (!g_NetClient->SetupConnection("127.0.0.1", serverPort))
-	{
-		pCxPrivate->pScriptInterface->ReportError("Failed to connect to server");
-		SAFE_DELETE(g_NetClient);
-		SAFE_DELETE(g_Game);
-	}
-}
-
-void StartNetworkJoin(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& playerName, const CStr& serverAddress, u16 serverPort, bool useSTUN, const std::string& hostJID)
-{
-	ENSURE(!g_NetClient);
-	ENSURE(!g_NetServer);
-	ENSURE(!g_Game);
-
-	ENetHost* enetClient = nullptr;
-	if (g_XmppClient && useSTUN)
-	{
-		// Find an unused port
-		for (int i = 0; i < 5 && !enetClient; ++i)
-		{
-			// Ports below 1024 are privileged on unix
-			u16 port = 1024 + rand() % (UINT16_MAX - 1024);
-			ENetAddress hostAddr{ENET_HOST_ANY, port};
-			enetClient = enet_host_create(&hostAddr, 1, 1, 0, 0);
-			++hostAddr.port;
-		}
-
-		if (!enetClient)
-		{
-			pCxPrivate->pScriptInterface->ReportError("Could not find an unused port for the enet STUN client");
-			return;
-		}
-
-		StunClient::StunEndpoint* stunEndpoint = StunClient::FindStunEndpointJoin(enetClient);
-		if (!stunEndpoint)
-		{
-			pCxPrivate->pScriptInterface->ReportError("Could not find the STUN endpoint");
-			return;
-		}
-
-		g_XmppClient->SendStunEndpointToHost(stunEndpoint, hostJID);
-		delete stunEndpoint;
-
-		SDL_Delay(1000);
-	}
-
-	g_Game = new CGame();
-	g_NetClient = new CNetClient(g_Game, false);
-	g_NetClient->SetUserName(playerName);
-
-	if (g_XmppClient && useSTUN)
-		StunClient::SendHolePunchingMessages(enetClient, serverAddress.c_str(), serverPort);
-
-	if (!g_NetClient->SetupConnection(serverAddress, serverPort, enetClient))
-	{
-		pCxPrivate->pScriptInterface->ReportError("Failed to connect to server");
-		SAFE_DELETE(g_NetClient);
-		SAFE_DELETE(g_Game);
-	}
-}
-
-u16 GetDefaultPort(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-{
-	return PS_DEFAULT_PORT;
-}
-
-void DisconnectNetworkGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-{
-	// TODO: we ought to do async reliable disconnections
-
-	SAFE_DELETE(g_NetServer);
-	SAFE_DELETE(g_NetClient);
-	SAFE_DELETE(g_Game);
-}
-
-std::string GetPlayerGUID(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-{
-	if (!g_NetClient)
-		return "local";
-
-	return g_NetClient->GetGUID();
-}
-
-void KickPlayer(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const CStrW& playerName, bool ban)
-{
-	ENSURE(g_NetClient);
-
-	g_NetClient->SendKickPlayerMessage(playerName, ban);
-}
-
-JS::Value PollNetworkClient(ScriptInterface::CxPrivate* pCxPrivate)
-{
-	if (!g_NetClient)
-		return JS::UndefinedValue();
-
-	// Convert from net client context to GUI script context
-	JSContext* cxNet = g_NetClient->GetScriptInterface().GetContext();
-	JSAutoRequest rqNet(cxNet);
-	JS::RootedValue pollNet(cxNet);
-	g_NetClient->GuiPoll(&pollNet);
-	return pCxPrivate->pScriptInterface->CloneValueFromOtherContext(g_NetClient->GetScriptInterface(), pollNet);
-}
-
-void AssignNetworkPlayer(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int playerID, const std::string& guid)
-{
-	ENSURE(g_NetClient);
-
-	g_NetClient->SendAssignPlayerMessage(playerID, guid);
-}
-
-void ClearAllPlayerReady (ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-{
-	ENSURE(g_NetClient);
-
-	g_NetClient->SendClearAllReadyMessage();
-}
-
-void SendNetworkChat(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& message)
-{
-	ENSURE(g_NetClient);
-
-	g_NetClient->SendChatMessage(message);
-}
-
-void SendNetworkReady(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int message)
-{
-	ENSURE(g_NetClient);
-
-	g_NetClient->SendReadyMessage(message);
 }
 
 JS::Value GetAIs(ScriptInterface::CxPrivate* pCxPrivate)
@@ -522,14 +346,6 @@ void SetSimRate(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float rate)
 float GetSimRate(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	return g_Game->GetSimRate();
-}
-
-void SetTurnLength(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int length)
-{
-	if (g_NetServer)
-		g_NetServer->SetTurnLength(length);
-	else
-		LOGERROR("Only network host can change turn length");
 }
 
 // Deliberately cause the game to crash.
@@ -765,6 +581,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	JSI_Console::RegisterScriptFunctions(scriptInterface);
 	JSI_ConfigDB::RegisterScriptFunctions(scriptInterface);
 	JSI_Mod::RegisterScriptFunctions(scriptInterface);
+	JSI_Network::RegisterScriptFunctions(scriptInterface);
 	JSI_SavedGame::RegisterScriptFunctions(scriptInterface);
 	JSI_Sound::RegisterScriptFunctions(scriptInterface);
 	JSI_L10n::RegisterScriptFunctions(scriptInterface);
@@ -791,24 +608,9 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<std::vector<entity_id_t>, &PickNonGaiaEntitiesOnScreen>("PickNonGaiaEntitiesOnScreen");
 	scriptInterface.RegisterFunction<std::vector<entity_id_t>, std::string, bool, bool, bool, &PickSimilarPlayerEntities>("PickSimilarPlayerEntities");
 
-	// Network / game setup functions
-	scriptInterface.RegisterFunction<void, &StartNetworkGame>("StartNetworkGame");
 	scriptInterface.RegisterFunction<void, JS::HandleValue, int, &StartGame>("StartGame");
 	scriptInterface.RegisterFunction<void, &Script_EndGame>("EndGame");
-	scriptInterface.RegisterFunction<void, CStrW, u16, &StartNetworkHost>("StartNetworkHost");
-	scriptInterface.RegisterFunction<void, CStrW, CStr, u16, bool, std::string, &StartNetworkJoin>("StartNetworkJoin");
-	scriptInterface.RegisterFunction<u16, &GetDefaultPort>("GetDefaultPort");
-	scriptInterface.RegisterFunction<void, &DisconnectNetworkGame>("DisconnectNetworkGame");
-	scriptInterface.RegisterFunction<std::string, &GetPlayerGUID>("GetPlayerGUID");
-	scriptInterface.RegisterFunction<void, CStrW, bool, &KickPlayer>("KickPlayer");
-	scriptInterface.RegisterFunction<JS::Value, &PollNetworkClient>("PollNetworkClient");
-	scriptInterface.RegisterFunction<void, JS::HandleValue, &SetNetworkGameAttributes>("SetNetworkGameAttributes");
-	scriptInterface.RegisterFunction<void, int, std::string, &AssignNetworkPlayer>("AssignNetworkPlayer");
-	scriptInterface.RegisterFunction<void, &ClearAllPlayerReady>("ClearAllPlayerReady");
-	scriptInterface.RegisterFunction<void, std::wstring, &SendNetworkChat>("SendNetworkChat");
-	scriptInterface.RegisterFunction<void, int, &SendNetworkReady>("SendNetworkReady");
 	scriptInterface.RegisterFunction<JS::Value, &GetAIs>("GetAIs");
-	scriptInterface.RegisterFunction<JS::Value, int, &FindStunEndpoint>("FindStunEndpoint");
 
 	// Misc functions
 	scriptInterface.RegisterFunction<std::wstring, std::wstring, &SetCursor>("SetCursor");
@@ -847,7 +649,6 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<double, &GetMicroseconds>("GetMicroseconds");
 	scriptInterface.RegisterFunction<void, float, &SetSimRate>("SetSimRate");
 	scriptInterface.RegisterFunction<float, &GetSimRate>("GetSimRate");
-	scriptInterface.RegisterFunction<void, int, &SetTurnLength>("SetTurnLength");
 	scriptInterface.RegisterFunction<int, &Crash>("Crash");
 	scriptInterface.RegisterFunction<void, &DebugWarn>("DebugWarn");
 	scriptInterface.RegisterFunction<void, &ForceGC>("ForceGC");

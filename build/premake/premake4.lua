@@ -695,7 +695,7 @@ function setup_all_libs ()
 	source_dirs = {
 		"ps",
 		"ps/scripting",
-		"ps/Network",
+		"network/scripting",
 		"ps/GameSetup",
 		"ps/XML",
 		"soundmanager",
