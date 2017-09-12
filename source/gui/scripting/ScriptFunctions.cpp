@@ -47,11 +47,10 @@
 #include "ps/ProfileViewer.h"
 #include "ps/Profile.h"
 #include "ps/Pyrogenesis.h"
-#include "ps/Replay.h"
 #include "ps/UserReport.h"
-#include "ps/World.h"
 #include "ps/scripting/JSInterface_ConfigDB.h"
 #include "ps/scripting/JSInterface_Console.h"
+#include "ps/scripting/JSInterface_Game.h"
 #include "ps/scripting/JSInterface_Mod.h"
 #include "ps/scripting/JSInterface_SavedGame.h"
 #include "ps/scripting/JSInterface_VFS.h"
@@ -65,8 +64,6 @@
 #include "simulation2/components/ICmpSelectable.h"
 #include "simulation2/components/ICmpTemplateManager.h"
 #include "simulation2/helpers/Selection.h"
-#include "simulation2/system/TurnManager.h"
-#include "soundmanager/SoundManager.h"
 #include "soundmanager/scripting/JSInterface_Sound.h"
 #include "tools/atlas/GameInterface/GameLoop.h"
 
@@ -146,64 +143,6 @@ std::vector<entity_id_t> PickSimilarPlayerEntities(ScriptInterface::CxPrivate* U
 	return EntitySelection::PickSimilarEntities(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), templateName, g_Game->GetViewedPlayerID(), includeOffScreen, matchRank, false, allowFoundations);
 }
 
-bool IsVisualReplay(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-{
-	if (!g_Game)
-		return false;
-
-	return g_Game->IsVisualReplay();
-}
-
-std::wstring GetCurrentReplayDirectory(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-{
-	if (!g_Game)
-		return std::wstring();
-
-	if (g_Game->IsVisualReplay())
-		return g_Game->GetReplayPath().Parent().Filename().string();
-
-	return g_Game->GetReplayLogger().GetDirectory().Filename().string();
-}
-
-int GetPlayerID(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-{
-	if (g_Game)
-		return g_Game->GetPlayerID();
-	return -1;
-}
-
-void SetPlayerID(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int id)
-{
-	if (g_Game)
-		g_Game->SetPlayerID(id);
-}
-
-void SetViewedPlayer(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int id)
-{
-	if (g_Game)
-		g_Game->SetViewedPlayerID(id);
-}
-
-void StartGame(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue attribs, int playerID)
-{
-	ENSURE(!g_NetServer);
-	ENSURE(!g_NetClient);
-
-	ENSURE(!g_Game);
-	g_Game = new CGame();
-
-	// Convert from GUI script context to sim script context
-	CSimulation2* sim = g_Game->GetSimulation2();
-	JSContext* cxSim = sim->GetScriptInterface().GetContext();
-	JSAutoRequest rqSim(cxSim);
-
-	JS::RootedValue gameAttribs(cxSim,
-		sim->GetScriptInterface().CloneValueFromOtherContext(*(pCxPrivate->pScriptInterface), attribs));
-
-	g_Game->SetPlayerID(playerID);
-	g_Game->StartGame(&gameAttribs, "");
-}
-
 JS::Value GetAIs(ScriptInterface::CxPrivate* pCxPrivate)
 {
 	return ICmpAIManager::GetAIs(*(pCxPrivate->pScriptInterface));
@@ -231,7 +170,7 @@ bool AtlasIsAvailable(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 
 bool IsAtlasRunning(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
-	return (g_AtlasGameLoop && g_AtlasGameLoop->running);
+	return g_AtlasGameLoop && g_AtlasGameLoop->running;
 }
 
 JS::Value LoadMapSettings(ScriptInterface::CxPrivate* pCxPrivate, const VfsPath& pathname)
@@ -299,16 +238,6 @@ void SubmitUserReport(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std:
 	g_UserReporter.SubmitReport(type.c_str(), version, utf8_from_wstring(data));
 }
 
-void SetSimRate(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float rate)
-{
-	g_Game->SetSimRate(rate);
-}
-
-float GetSimRate(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-{
-	return g_Game->GetSimRate();
-}
-
 // Deliberately cause the game to crash.
 // Currently implemented via access violation (read of address 0).
 // Useful for testing the crashlog/stack trace code.
@@ -339,26 +268,6 @@ void DumpSimState(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 	std::ofstream file (OsString(path).c_str(), std::ofstream::out | std::ofstream::trunc);
 	g_Game->GetSimulation2()->DumpDebugState(file);
 }
-
-void DumpTerrainMipmap(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-{
-	VfsPath filename(L"screenshots/terrainmipmap.png");
-	g_Game->GetWorld()->GetTerrain()->GetHeightMipmap().DumpToDisk(filename);
-	OsPath realPath;
-	g_VFS->GetRealPath(filename, realPath);
-	LOGMESSAGERENDER("Terrain mipmap written to '%s'", realPath.string8());
-}
-
-void EnableTimeWarpRecording(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), unsigned int numTurns)
-{
-	g_Game->GetTurnManager()->EnableTimeWarpRecording(numTurns);
-}
-
-void RewindTimeWarp(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-{
-	g_Game->GetTurnManager()->RewindTimeWarp();
-}
-
 void SetBoundingBoxDebugOverlay(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool enabled)
 {
 	ICmpSelectable::ms_EnableDebugOverlays = enabled;
@@ -385,40 +294,6 @@ void ExitProgram(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 	kill_mainloop();
 }
 
-// Is the game paused?
-bool IsPaused(ScriptInterface::CxPrivate* pCxPrivate)
-{
-	if (!g_Game)
-	{
-		JS_ReportError(pCxPrivate->pScriptInterface->GetContext(), "Game is not started");
-		return false;
-	}
-
-	return g_Game->m_Paused;
-}
-
-// Pause/unpause the game
-void SetPaused(ScriptInterface::CxPrivate* pCxPrivate, bool pause, bool sendMessage)
-{
-	if (!g_Game)
-	{
-		JS_ReportError(pCxPrivate->pScriptInterface->GetContext(), "Game is not started");
-		return;
-	}
-	g_Game->m_Paused = pause;
-#if CONFIG2_AUDIO
-	if (g_SoundManager)
-		g_SoundManager->Pause(pause);
-#endif
-
-	if (g_NetClient && sendMessage)
-		g_NetClient->SendPausedMessage(pause);
-}
-
-// Return the global frames-per-second value.
-// params:
-// returns: FPS [int]
-// notes:
 // - This value is recalculated once a frame. We take special care to
 //   filter it, so it is both accurate and free of jitter.
 int GetFps(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
@@ -522,6 +397,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	JSI_Renderer::RegisterScriptFunctions(scriptInterface);
 	JSI_Console::RegisterScriptFunctions(scriptInterface);
 	JSI_ConfigDB::RegisterScriptFunctions(scriptInterface);
+	JSI_Game::RegisterScriptFunctions(scriptInterface);
 	JSI_GUIManager::RegisterScriptFunctions(scriptInterface);
 	JSI_Mod::RegisterScriptFunctions(scriptInterface);
 	JSI_Network::RegisterScriptFunctions(scriptInterface);
@@ -543,17 +419,10 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<std::vector<entity_id_t>, &PickNonGaiaEntitiesOnScreen>("PickNonGaiaEntitiesOnScreen");
 	scriptInterface.RegisterFunction<std::vector<entity_id_t>, std::string, bool, bool, bool, &PickSimilarPlayerEntities>("PickSimilarPlayerEntities");
 
-	scriptInterface.RegisterFunction<void, JS::HandleValue, int, &StartGame>("StartGame");
 	scriptInterface.RegisterFunction<void, &Script_EndGame>("EndGame");
 	scriptInterface.RegisterFunction<JS::Value, &GetAIs>("GetAIs");
 
 	// Misc functions
-	scriptInterface.RegisterFunction<bool, &IsVisualReplay>("IsVisualReplay");
-	scriptInterface.RegisterFunction<std::wstring, &GetCurrentReplayDirectory>("GetCurrentReplayDirectory");
-	scriptInterface.RegisterFunction<int, &GetPlayerID>("GetPlayerID");
-	scriptInterface.RegisterFunction<void, int, &SetPlayerID>("SetPlayerID");
-	scriptInterface.RegisterFunction<void, int, &SetViewedPlayer>("SetViewedPlayer");
-
 	scriptInterface.RegisterFunction<void, std::string, &OpenURL>("OpenURL");
 	scriptInterface.RegisterFunction<std::wstring, &GetMatchID>("GetMatchID");
 	scriptInterface.RegisterFunction<void, &RestartInAtlas>("RestartInAtlas");
@@ -565,8 +434,6 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, std::wstring, &DisplayErrorDialog>("DisplayErrorDialog");
 	scriptInterface.RegisterFunction<JS::Value, &GetProfilerState>("GetProfilerState");
 	scriptInterface.RegisterFunction<void, &ExitProgram>("Exit");
-	scriptInterface.RegisterFunction<bool, &IsPaused>("IsPaused");
-	scriptInterface.RegisterFunction<void, bool, bool, &SetPaused>("SetPaused");
 	scriptInterface.RegisterFunction<int, &GetFps>("GetFPS");
 	scriptInterface.RegisterFunction<std::wstring, int, &GetBuildTimestamp>("GetBuildTimestamp");
 	scriptInterface.RegisterFunction<int, CStr, CStrW, &GetTextWidth>("GetTextWidth");
@@ -579,15 +446,10 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 
 	// Development/debugging functions
 	scriptInterface.RegisterFunction<double, &GetMicroseconds>("GetMicroseconds");
-	scriptInterface.RegisterFunction<void, float, &SetSimRate>("SetSimRate");
-	scriptInterface.RegisterFunction<float, &GetSimRate>("GetSimRate");
 	scriptInterface.RegisterFunction<int, &Crash>("Crash");
 	scriptInterface.RegisterFunction<void, &DebugWarn>("DebugWarn");
 	scriptInterface.RegisterFunction<void, &ForceGC>("ForceGC");
 	scriptInterface.RegisterFunction<void, &DumpSimState>("DumpSimState");
-	scriptInterface.RegisterFunction<void, &DumpTerrainMipmap>("DumpTerrainMipmap");
-	scriptInterface.RegisterFunction<void, unsigned int, &EnableTimeWarpRecording>("EnableTimeWarpRecording");
-	scriptInterface.RegisterFunction<void, &RewindTimeWarp>("RewindTimeWarp");
 	scriptInterface.RegisterFunction<void, bool, &SetBoundingBoxDebugOverlay>("SetBoundingBoxDebugOverlay");
 	scriptInterface.RegisterFunction<CStrW, &GetSystemUsername>("GetSystemUsername");
 }
