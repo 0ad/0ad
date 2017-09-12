@@ -283,6 +283,11 @@ public:
 	template<typename T> static void ToJSVal(JSContext* cx, JS::MutableHandleValue ret, T const& val);
 
 	/**
+	 * Convert a named property of an object to a C++ type.
+	 */
+	template<typename T> static bool FromJSProperty(JSContext* cx, const JS::HandleValue val, const char* name, T& ret);
+
+	/**
 	 * MaybeGC tries to determine whether garbage collection in cx's runtime would free up enough memory to be worth the amount of time it would take.
 	 * This calls JS_MaybeGC directly, which does not do incremental GC. Usually you should prefer MaybeIncrementalRuntimeGC.
 	 */
