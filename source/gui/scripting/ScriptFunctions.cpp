@@ -23,9 +23,8 @@
 #include "graphics/GameView.h"
 #include "graphics/MapReader.h"
 #include "graphics/scripting/JSInterface_GameView.h"
-#include "gui/GUI.h"
-#include "gui/GUIManager.h"
 #include "gui/IGUIObject.h"
+#include "gui/scripting/JSInterface_GUIManager.h"
 #include "gui/scripting/JSInterface_GUITypes.h"
 #include "i18n/L10n.h"
 #include "i18n/scripting/JSInterface_L10n.h"
@@ -83,37 +82,6 @@ extern void EndGame();
 extern void kill_mainloop();
 
 namespace {
-
-// Note that the initData argument may only contain clonable data.
-// Functions aren't supported for example!
-// TODO: Use LOGERROR to print a friendly error message when the requirements aren't met instead of failing with debug_warn when cloning.
-void PushGuiPage(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name, JS::HandleValue initData)
-{
-	g_GUI->PushPage(name, pCxPrivate->pScriptInterface->WriteStructuredClone(initData));
-}
-
-void SwitchGuiPage(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name, JS::HandleValue initData)
-{
-	g_GUI->SwitchPage(name, pCxPrivate->pScriptInterface, initData);
-}
-
-void PopGuiPage(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-{
-	g_GUI->PopPage();
-}
-
-// Note that the args argument may only contain clonable data.
-// Functions aren't supported for example!
-// TODO: Use LOGERROR to print a friendly error message when the requirements aren't met instead of failing with debug_warn when cloning.
-void PopGuiPageCB(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue args)
-{
-	g_GUI->PopPageCB(pCxPrivate->pScriptInterface->WriteStructuredClone(args));
-}
-
-void ResetCursor(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-{
-	g_GUI->ResetCursor();
-}
 
 JS::Value GuiInterfaceCall(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name, JS::HandleValue data)
 {
@@ -176,13 +144,6 @@ std::vector<entity_id_t> PickNonGaiaEntitiesOnScreen(ScriptInterface::CxPrivate*
 std::vector<entity_id_t> PickSimilarPlayerEntities(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& templateName, bool includeOffScreen, bool matchRank, bool allowFoundations)
 {
 	return EntitySelection::PickSimilarEntities(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), templateName, g_Game->GetViewedPlayerID(), includeOffScreen, matchRank, false, allowFoundations);
-}
-
-std::wstring SetCursor(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& name)
-{
-	std::wstring old = g_CursorName;
-	g_CursorName = name;
-	return old;
 }
 
 bool IsVisualReplay(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
@@ -468,15 +429,6 @@ int GetFps(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 	return freq;
 }
 
-JS::Value GetGUIObjectByName(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const CStr& name)
-{
-	IGUIObject* guiObj = g_GUI->FindObjectByName(name);
-	if (guiObj)
-		return JS::ObjectValue(*guiObj->GetJSObject());
-	else
-		return JS::UndefinedValue();
-}
-
 // Return the date/time at which the current executable was compiled.
 // params: mode OR an integer specifying
 //   what to display: -1 for "date time (svn revision)", 0 for date, 1 for time, 2 for svn revision
@@ -541,16 +493,6 @@ std::wstring GetBuildTimestamp(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), i
 	return wstring_from_utf8(buf);
 }
 
-bool TemplateExists(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& templateName)
-{
-	return g_GUI->TemplateExists(templateName);
-}
-
-CParamNode GetTemplate(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& templateName)
-{
-	return g_GUI->GetTemplate(templateName);
-}
-
 int GetTextWidth(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const CStr& fontName, const CStrW& text)
 {
 	int width = 0;
@@ -580,6 +522,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	JSI_Renderer::RegisterScriptFunctions(scriptInterface);
 	JSI_Console::RegisterScriptFunctions(scriptInterface);
 	JSI_ConfigDB::RegisterScriptFunctions(scriptInterface);
+	JSI_GUIManager::RegisterScriptFunctions(scriptInterface);
 	JSI_Mod::RegisterScriptFunctions(scriptInterface);
 	JSI_Network::RegisterScriptFunctions(scriptInterface);
 	JSI_SavedGame::RegisterScriptFunctions(scriptInterface);
@@ -588,14 +531,6 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	JSI_Lobby::RegisterScriptFunctions(scriptInterface);
 	JSI_VFS::RegisterScriptFunctions(scriptInterface);
 	JSI_VisualReplay::RegisterScriptFunctions(scriptInterface);
-
-	// GUI manager functions:
-	scriptInterface.RegisterFunction<void, std::wstring, JS::HandleValue, &PushGuiPage>("PushGuiPage");
-	scriptInterface.RegisterFunction<void, std::wstring, JS::HandleValue, &SwitchGuiPage>("SwitchGuiPage");
-	scriptInterface.RegisterFunction<void, &PopGuiPage>("PopGuiPage");
-	scriptInterface.RegisterFunction<void, JS::HandleValue, &PopGuiPageCB>("PopGuiPageCB");
-	scriptInterface.RegisterFunction<JS::Value, CStr, &GetGUIObjectByName>("GetGUIObjectByName");
-	scriptInterface.RegisterFunction<void, &ResetCursor>("ResetCursor");
 
 	// Simulation<->GUI interface functions:
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, JS::HandleValue, &GuiInterfaceCall>("GuiInterfaceCall");
@@ -613,7 +548,6 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<JS::Value, &GetAIs>("GetAIs");
 
 	// Misc functions
-	scriptInterface.RegisterFunction<std::wstring, std::wstring, &SetCursor>("SetCursor");
 	scriptInterface.RegisterFunction<bool, &IsVisualReplay>("IsVisualReplay");
 	scriptInterface.RegisterFunction<std::wstring, &GetCurrentReplayDirectory>("GetCurrentReplayDirectory");
 	scriptInterface.RegisterFunction<int, &GetPlayerID>("GetPlayerID");
@@ -635,8 +569,6 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, bool, bool, &SetPaused>("SetPaused");
 	scriptInterface.RegisterFunction<int, &GetFps>("GetFPS");
 	scriptInterface.RegisterFunction<std::wstring, int, &GetBuildTimestamp>("GetBuildTimestamp");
-	scriptInterface.RegisterFunction<bool, std::string, &TemplateExists>("TemplateExists");
-	scriptInterface.RegisterFunction<CParamNode, std::string, &GetTemplate>("GetTemplate");
 	scriptInterface.RegisterFunction<int, CStr, CStrW, &GetTextWidth>("GetTextWidth");
 
 	// User report functions
