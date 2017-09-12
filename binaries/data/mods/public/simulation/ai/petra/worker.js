@@ -196,13 +196,32 @@ m.Worker.prototype.update = function(gameState, ent)
 	{
 		if (unitAIStateOrder === "REPAIR")
 		{
-			// update our target in case UnitAI sent us to a different foundation because of autocontinue
+			// Update our target in case UnitAI sent us to a different foundation because of autocontinue
+			// and abandon it if UnitAI has sent us to build a field (as we build them only when needed)
 			if (ent.unitAIOrderData()[0] && ent.unitAIOrderData()[0].target &&
 				ent.getMetadata(PlayerID, "target-foundation") !== ent.unitAIOrderData()[0].target)
-				ent.setMetadata(PlayerID, "target-foundation", ent.unitAIOrderData()[0].target);
-			// and check that the target still exists (useful in REPAIR.APPROACHING)
-			let target = ent.getMetadata(PlayerID, "target-foundation");
-			if (target && gameState.getEntityById(target))
+			{
+				let targetId = ent.unitAIOrderData()[0].target;
+				let target = gameState.getEntityById(targetId);
+				if (target && !target.hasClass("Field"))
+				{
+					ent.setMetadata(PlayerID, "target-foundation", targetId);
+					return;
+				}
+				ent.setMetadata(PlayerID, "target-foundation", undefined);
+				ent.setMetadata(PlayerID, "subrole", "idle");
+				ent.stopMoving();
+				if (this.baseID !== gameState.ai.HQ.baseManagers[0].ID)
+				{
+					// reassign it to something useful
+					this.base.reassignIdleWorkers(gameState, [ent]);
+					this.update(gameState, ent);
+					return;
+				}
+			}
+			// Otherwise check that the target still exists (useful in REPAIR.APPROACHING)
+			let targetId = ent.getMetadata(PlayerID, "target-foundation");
+			if (targetId && gameState.getEntityById(targetId))
 				return;
 			ent.stopMoving();
 		}
