@@ -30,6 +30,8 @@
 #include "simulation2/Simulation2.h"
 #include "soundmanager/SoundManager.h"
 
+extern void EndGame();
+
 void JSI_Game::StartGame(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue attribs, int playerID)
 {
 	ENSURE(!g_NetServer);
@@ -48,6 +50,11 @@ void JSI_Game::StartGame(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue
 
 	g_Game->SetPlayerID(playerID);
 	g_Game->StartGame(&gameAttribs, "");
+}
+
+void JSI_Game::Script_EndGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+{
+	EndGame();
 }
 
 int JSI_Game::GetPlayerID(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
@@ -155,6 +162,7 @@ void JSI_Game::DumpTerrainMipmap(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 void JSI_Game::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 {
 	scriptInterface.RegisterFunction<void, JS::HandleValue, int, &StartGame>("StartGame");
+	scriptInterface.RegisterFunction<void, &Script_EndGame>("EndGame");
 	scriptInterface.RegisterFunction<int, &GetPlayerID>("GetPlayerID");
 	scriptInterface.RegisterFunction<void, int, &SetPlayerID>("SetPlayerID");
 	scriptInterface.RegisterFunction<void, int, &SetViewedPlayer>("SetViewedPlayer");

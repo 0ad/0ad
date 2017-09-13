@@ -1,0 +1,50 @@
+--- python/psutil/psutil/_psutil_bsd.c
++++ python/psutil/psutil/_psutil_bsd.c
+@@ -957,11 +957,19 @@ psutil_sockaddr_matches(int family, int port, void *pc
+                    psutil_sockaddr_addrlen(family)) == 0);
+ }
+ 
++#if __FreeBSD_version >= 1200026
++static struct xtcpcb *
++psutil_search_tcplist(char *buf, struct kinfo_file *kif)
++{
++    struct xtcpcb *tp;
++    struct xinpcb *inp;
++#else
+ static struct tcpcb *
+ psutil_search_tcplist(char *buf, struct kinfo_file *kif)
+ {
+     struct tcpcb *tp;
+     struct inpcb *inp;
++#endif
+     struct xinpgen *xig, *oxig;
+     struct xsocket *so;
+ 
+@@ -969,9 +977,15 @@ psutil_search_tcplist(char *buf, struct kinfo_file *ki
+     for (xig = (struct xinpgen *)((char *)xig + xig->xig_len);
+             xig->xig_len > sizeof(struct xinpgen);
+             xig = (struct xinpgen *)((char *)xig + xig->xig_len)) {
++#if __FreeBSD_version >= 1200026
++        tp = (struct xtcpcb *)xig;
++        inp = &tp->xt_inp;
++        so = &inp->xi_socket;
++#else
+         tp = &((struct xtcpcb *)xig)->xt_tp;
+         inp = &((struct xtcpcb *)xig)->xt_inp;
+         so = &((struct xtcpcb *)xig)->xt_socket;
++#endif
+ 
+         if (so->so_type != kif->kf_sock_type ||
+                 so->xso_family != kif->kf_sock_domain ||
+@@ -1019,7 +1033,11 @@ psutil_proc_connections(PyObject *self, PyObject *args
+     struct kinfo_file *freep = NULL;
+     struct kinfo_file *kif;
+     char *tcplist = NULL;
++#if __FreeBSD_version >= 1200026
++    struct xtcpcb *tcp;
++#else
+     struct tcpcb *tcp;
++#endif
+ 
+     PyObject *retList = PyList_New(0);
+     PyObject *tuple = NULL;

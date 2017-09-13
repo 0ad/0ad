@@ -51,7 +51,7 @@ var g_DependentLabelIndentation = 25;
  * @property guiToValue - returns the value of the GUI control.
  * @property guiSetter - event name that should be considered a value change of the GUI control.
  * @property initGUI - sets properties of the GUI control that are independent of the current value.
- * @property sanitizeValue - ensures that a given value is in the defined value range.
+ * @property sanitizeValue - Displays a visual clue if the entered value is invalid and returns a sane value.
  * @property tooltip - appends a custom tooltip to the given option description depending on the current value.
  */
 var g_OptionType = {
@@ -75,15 +75,22 @@ var g_OptionType = {
 	},
 	"number":
 	{
-		"configToValue": value => +value,
+		"configToValue": value => value,
 		"valueToGui": (value, control) => {
 			control.caption = value;
 		},
-		"guiToValue": control => +control.caption,
+		"guiToValue": control => control.caption,
 		"guiSetter": "onTextEdit",
-		"sanitizeValue": (value, option) =>
-			Math.min(option.max || Infinity,
-			Math.max(option.min || -Infinity, value)),
+		"sanitizeValue": (value, control, option) => {
+			let sanitized =
+				Math.min(option.max !== undefined ? option.max : +Infinity,
+				Math.max(option.min !== undefined ? option.min : -Infinity,
+					isNaN(+value) ? 0 : value));
+
+			control.sprite = sanitized == value ? "ModernDarkBoxWhite" : "ModernDarkBoxWhiteInvalid";
+
+			return sanitized;
+		},
 		"tooltip": (value, option) =>
 			sprintf(
 				option.min !== undefined && option.max !== undefined ?
@@ -225,15 +232,15 @@ function displayOptions()
 
 		control[optionType.guiSetter] = function() {};
 		optionType.valueToGui(value, control);
+		if (optionType.sanitizeValue)
+			optionType.sanitizeValue(value, control, option);
 
 		control[optionType.guiSetter] = function() {
 
 			let value = optionType.guiToValue(control);
+
 			if (optionType.sanitizeValue)
-			{
-				value = optionType.sanitizeValue(value, option);
-				optionType.valueToGui(value, control);
-			}
+				optionType.sanitizeValue(value, control, option);
 
 			control.tooltip = option.tooltip + (optionType.tooltip ? "\n" + optionType.tooltip(value, option) : "");
 
@@ -318,6 +325,38 @@ function revertChanges()
 }
 
 function saveChanges()
+{
+	for (let category in g_Options)
+		for (let i = 0; i < g_Options[category].options.length; ++i)
+		{
+			let option = g_Options[category].options[i];
+			let optionType = g_OptionType[option.type];
+			if (!optionType.sanitizeValue)
+				continue;
+
+			let control = Engine.GetGUIObjectByName("option_control_" + option.type + "[" + i + "]");
+			let value = optionType.guiToValue(control);
+
+			if (value == optionType.sanitizeValue(value, control, option))
+				continue;
+
+			g_SelectedCategory = category;
+			displayOptions();
+
+			messageBox(
+				500, 200,
+				translate("Some setting values are invalid! Are you sure to save them?"),
+				translate("Warning"),
+				[translate("No"), translate("Yes")],
+				[null, reallySaveChanges]
+			);
+			return;
+		}
+
+	reallySaveChanges()
+}
+
+function reallySaveChanges()
 {
 	Engine.ConfigDB_WriteFile("user", "config/user.cfg");
 	Engine.ConfigDB_SetChanges("user", false);

@@ -1,14 +1,14 @@
 RMS.LoadLibrary("rmgen");
 
 // Spawn ships away from the shoreline, but patrol close to the shoreline
-const triggerPointShipSpawn = "special/trigger_point_A";
-const triggerPointShipPatrol = "special/trigger_point_B";
-const triggerPointShipUnloadLeft = "special/trigger_point_C";
-const triggerPointShipUnloadRight = "special/trigger_point_D";
-const triggerPointLandPatrolLeft = "special/trigger_point_E";
-const triggerPointLandPatrolRight = "special/trigger_point_F";
-const triggerPointCCAttackerPatrolLeft = "special/trigger_point_G";
-const triggerPointCCAttackerPatrolRight = "special/trigger_point_H";
+const triggerPointShipSpawn = "trigger/trigger_point_A";
+const triggerPointShipPatrol = "trigger/trigger_point_B";
+const triggerPointShipUnloadLeft = "trigger/trigger_point_C";
+const triggerPointShipUnloadRight = "trigger/trigger_point_D";
+const triggerPointLandPatrolLeft = "trigger/trigger_point_E";
+const triggerPointLandPatrolRight = "trigger/trigger_point_F";
+const triggerPointCCAttackerPatrolLeft = "trigger/trigger_point_G";
+const triggerPointCCAttackerPatrolRight = "trigger/trigger_point_H";
 
 // Terrain textures
 const tRoad = "steppe_river_rocks";
