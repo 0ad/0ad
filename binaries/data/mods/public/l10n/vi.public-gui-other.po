@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-09-04 09:02+0200\n"
-"PO-Revision-Date: 2017-09-04 15:06+0000\n"
+"POT-Creation-Date: 2017-09-11 09:03+0200\n"
+"PO-Revision-Date: 2017-09-11 15:57+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/wildfire-games/0ad/language/vi/)\n"
 "MIME-Version: 1.0\n"
@@ -379,46 +379,55 @@ msgstr ""
 msgid "Randomly selects a map from the list"
 msgstr ""
 
-#: gui/common/gamedescription.js:354
+#: gui/common/gamedescription.js:355
+msgid "Biome"
+msgstr ""
+
+#: gui/common/gamedescription.js:356
+msgctxt "biome"
+msgid "Random"
+msgstr ""
+
+#: gui/common/gamedescription.js:363
 msgid "Starting Resources"
 msgstr ""
 
-#: gui/common/gamedescription.js:355
+#: gui/common/gamedescription.js:364
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr ""
 
-#: gui/common/gamedescription.js:365
+#: gui/common/gamedescription.js:374
 msgid "Population Limit"
 msgstr ""
 
-#: gui/common/gamedescription.js:373
+#: gui/common/gamedescription.js:382
 msgid "Treasures"
 msgstr ""
 
-#: gui/common/gamedescription.js:375
+#: gui/common/gamedescription.js:384
 msgctxt "treasures"
 msgid "Disabled"
 msgstr ""
 
-#: gui/common/gamedescription.js:376
+#: gui/common/gamedescription.js:385
 msgctxt "treasures"
 msgid "As defined by the map."
 msgstr ""
 
-#: gui/common/gamedescription.js:380
+#: gui/common/gamedescription.js:389
 msgid "Revealed Map"
 msgstr ""
 
-#: gui/common/gamedescription.js:385
+#: gui/common/gamedescription.js:394
 msgid "Explored Map"
 msgstr ""
 
-#: gui/common/gamedescription.js:390
+#: gui/common/gamedescription.js:399
 msgid "Cheats"
 msgstr ""
 
-#: gui/common/gamedescription.js:395 gui/common/tooltips.js:130
+#: gui/common/gamedescription.js:404 gui/common/tooltips.js:130
 #: gui/common/tooltips.js:185 gui/common/tooltips.js:226
 #: gui/common/tooltips.js:451 gui/common/tooltips.js:472
 #: gui/common/tooltips.js:763
@@ -426,21 +435,21 @@ msgstr ""
 msgid "%(label)s %(details)s"
 msgstr ""
 
-#: gui/common/gamedescription.js:398
+#: gui/common/gamedescription.js:407
 msgctxt "gamesetup option"
 msgid "enabled"
 msgstr ""
 
-#: gui/common/gamedescription.js:399
+#: gui/common/gamedescription.js:408
 msgctxt "gamesetup option"
 msgid "disabled"
 msgstr ""
 
-#: gui/common/gamedescription.js:416
+#: gui/common/gamedescription.js:425
 msgid "Victorious"
 msgstr ""
 
-#: gui/common/gamedescription.js:421
+#: gui/common/gamedescription.js:430
 msgid "Defeated"
 msgstr ""
 
@@ -557,125 +566,125 @@ msgstr ""
 msgid ", "
 msgstr ", "
 
-#: gui/common/settings.js:108
+#: gui/common/settings.js:115
 msgctxt "aiDiff"
 msgid "Sandbox"
 msgstr ""
 
-#: gui/common/settings.js:112
+#: gui/common/settings.js:119
 msgctxt "aiDiff"
 msgid "Very Easy"
 msgstr ""
 
-#: gui/common/settings.js:116
+#: gui/common/settings.js:123
 msgctxt "aiDiff"
 msgid "Easy"
 msgstr ""
 
-#: gui/common/settings.js:120
+#: gui/common/settings.js:127
 msgctxt "aiDiff"
 msgid "Medium"
 msgstr ""
 
-#: gui/common/settings.js:125
+#: gui/common/settings.js:132
 msgctxt "aiDiff"
 msgid "Hard"
 msgstr ""
 
-#: gui/common/settings.js:129
+#: gui/common/settings.js:136
 msgctxt "aiDiff"
 msgid "Very Hard"
 msgstr ""
 
-#: gui/common/settings.js:151
+#: gui/common/settings.js:158
 #, javascript-format
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
 msgstr[0] ""
 
-#: gui/common/settings.js:173
+#: gui/common/settings.js:180
 msgctxt "ceasefire"
 msgid "No ceasefire"
 msgstr ""
 
-#: gui/common/settings.js:174
+#: gui/common/settings.js:181
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
 msgstr[0] ""
 
-#: gui/common/settings.js:188
+#: gui/common/settings.js:195
 msgctxt "map"
 msgid "Skirmish"
 msgstr ""
 
-#: gui/common/settings.js:189
+#: gui/common/settings.js:196
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other gamesettings."
 msgstr ""
 
-#: gui/common/settings.js:194
+#: gui/common/settings.js:201
 msgctxt "map"
 msgid "Random"
 msgstr ""
 
-#: gui/common/settings.js:195
+#: gui/common/settings.js:202
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
 msgstr ""
 
-#: gui/common/settings.js:199
+#: gui/common/settings.js:206
 msgctxt "map"
 msgid "Scenario"
 msgstr ""
 
-#: gui/common/settings.js:200
+#: gui/common/settings.js:207
 msgid "A map with a predefined landscape and matchsettings."
 msgstr ""
 
-#: gui/common/settings.js:231
+#: gui/common/settings.js:250
 msgctxt "victory condition"
 msgid "None"
 msgstr ""
 
-#: gui/common/settings.js:232
+#: gui/common/settings.js:251
 msgid "Endless game."
 msgstr ""
 
-#: gui/common/settings.js:273
+#: gui/common/settings.js:292
 msgid "Unlimited"
 msgstr ""
 
-#: gui/common/settings.js:321
+#: gui/common/settings.js:340
 msgctxt "AI name"
 msgid "Unknown"
 msgstr ""
 
-#: gui/common/settings.js:332
+#: gui/common/settings.js:351
 msgctxt "AI difficulty"
 msgid "Unknown"
 msgstr ""
 
-#: gui/common/settings.js:344
+#: gui/common/settings.js:363
 msgctxt "map type"
 msgid "Unknown"
 msgstr ""
 
-#: gui/common/settings.js:356
+#: gui/common/settings.js:375
 msgctxt "map size"
 msgid "Default"
 msgstr ""
 
-#: gui/common/settings.js:368
+#: gui/common/settings.js:387
 msgctxt "population capacity"
 msgid "Unknown"
 msgstr ""
 
-#: gui/common/settings.js:380
+#: gui/common/settings.js:399
 msgctxt "victory condition"
 msgid "Unknown"
 msgstr ""

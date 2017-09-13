@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-09-06 09:04+0200\n"
-"PO-Revision-Date: 2017-09-06 15:48+0000\n"
+"POT-Creation-Date: 2017-09-11 09:05+0200\n"
+"PO-Revision-Date: 2017-09-11 15:01+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -492,7 +492,7 @@ msgstr "Ви можете атакувати о %(time)s"
 msgid "You can attack now!"
 msgstr "Уже можете атакувати!"
 
-#: simulation/components/EndGameManager.js:163
+#: simulation/components/EndGameManager.js:173
 #, javascript-format
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
@@ -500,7 +500,7 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: simulation/components/EndGameManager.js:171
+#: simulation/components/EndGameManager.js:181
 msgid "Last remaining player wins."
 msgstr "Останній гравець, що залишився переможе."
 
@@ -550,7 +550,7 @@ msgstr "Не вистачає ресурсів - %(resourceAmount1)s %(resourceT
 msgid "The production queue is full."
 msgstr "Черга виробництва заповнена."
 
-#: simulation/components/ProductionQueue.js:780
+#: simulation/components/ProductionQueue.js:783
 msgid "Can't find free space to spawn trained units"
 msgstr "Немає вільного місця, щоб готувати натреновані підрозділи"
 
@@ -690,38 +690,6 @@ msgstr "Швидке перемотування (10x)"
 #: simulation/data/settings/game_speeds.jsonData[10].Title
 msgid "Fast Forward (20x)"
 msgstr "Швидке перемотування (20x)"
-
-#: simulation/data/settings/biomes.jsonData[0].Title
-msgid "Temperate"
-msgstr ""
-
-#: simulation/data/settings/biomes.jsonData[1].Title
-msgid "Snowy"
-msgstr ""
-
-#: simulation/data/settings/biomes.jsonData[2].Title
-msgid "Desert"
-msgstr ""
-
-#: simulation/data/settings/biomes.jsonData[3].Title
-msgid "Alpine"
-msgstr ""
-
-#: simulation/data/settings/biomes.jsonData[4].Title
-msgid "Mediterranean"
-msgstr ""
-
-#: simulation/data/settings/biomes.jsonData[5].Title
-msgid "Savanna"
-msgstr ""
-
-#: simulation/data/settings/biomes.jsonData[6].Title
-msgid "Tropic"
-msgstr ""
-
-#: simulation/data/settings/biomes.jsonData[7].Title
-msgid "Autumn"
-msgstr ""
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Description
 msgid ""
