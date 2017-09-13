@@ -296,7 +296,7 @@ RMS.SetProgress(85);
 
 // Create trigger points where wolves spawn
 createObjectGroupsDeprecated(
-	new SimpleGroup([new SimpleObject("special/trigger_point_A", 1, 1, 0, 0)], true, clWolf),
+	new SimpleGroup([new SimpleObject("trigger/trigger_point_A", 1, 1, 0, 0)], true, clWolf),
 	0,
 	avoidClasses(clWater, 2, clMetal, 4, clRock, 4, clPlayer, 15, clHill, 2, clWolf, 20),
 	1000,

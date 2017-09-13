@@ -34,11 +34,11 @@ const oTreasureSeeker = "skirmish/units/default_support_female_citizen";
 const oCivicCenter = "skirmish/structures/default_civil_centre";
 const oCitizenInfantry = "skirmish/units/default_infantry_melee_b";
 
-const triggerPointAttacker = "special/trigger_point_A";
+const triggerPointAttacker = "trigger/trigger_point_A";
 const triggerPointTreasures = [
-	"special/trigger_point_B",
-	"special/trigger_point_C",
-	"special/trigger_point_D"
+	"trigger/trigger_point_B",
+	"trigger/trigger_point_C",
+	"trigger/trigger_point_D"
 ];
 
 InitMap();
