@@ -48,3 +48,8 @@ patch -p1 < ../FixZLibMozBuild.diff
 #    Always make sure there are 3 free slots for events.
 # ===
 patch -p1  < ../FixTracelogger.diff
+
+# Patch embedded python psutil to work with FreeBSD 12 after revision 315662
+# Based on: https://svnweb.freebsd.org/ports/head/sysutils/py-psutil121/files/patch-_psutil_bsd.c?revision=436575&view=markup
+# Related: https://bugzilla.mozilla.org/show_bug.cgi?id=1238983
+patch -p0 < ../FixpsutilFreeBSD.diff
