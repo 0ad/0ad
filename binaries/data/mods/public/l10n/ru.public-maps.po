@@ -25,9 +25,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-09-01 09:03+0200\n"
-"PO-Revision-Date: 2017-09-04 10:23+0000\n"
-"Last-Translator: Dmitry Oshkalo <dmitry.oshkalo@gmail.com>\n"
+"POT-Creation-Date: 2017-09-11 09:05+0200\n"
+"PO-Revision-Date: 2017-09-11 14:17+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -530,6 +530,7 @@ msgid ""
 msgstr "Средиземное море, ставшее домом для финикийцев, греков, египтян, а позже и для римлян. Они взяли элементарные знания и принципы организации из Месопотамии и преобразовали их в нечто большее, тем самым перенеся культурный и научный центры на средиземноморское побережье, и заложив таким образом основы цивилизации, которую мы знаем сегодня. Средиземное море со всех сторон окружено землей: на севере это Трансальпийская Галлия, Италия, Греция и Анатолии, на востоке Сирия, на юге Ливия и Мавритания, а на западе Иберия. Европейское название Средиземного моря 'Mediterranean' имеет латинские корни, но сами римляне предпочитали термин 'Mare Internum', что означало 'Внутреннее Море', а иногда даже 'Mare Nostrum' - 'Наше Море'."
 
 #: maps/random/mediterranean.jsonsettings.Name
+#: maps/random/rmbiome/biomes/mediterranean.jsonDescription.Title
 msgid "Mediterranean"
 msgstr "Средиземноморье"
 
@@ -848,6 +849,195 @@ msgstr "Озеро, окружённое холмами."
 #: maps/random/wild_lake.jsonsettings.Name
 msgid "Wild Lake"
 msgstr "Дикое озеро"
+
+#: maps/random/rmbiome/biomes/alpine.jsonDescription.Description
+msgid ""
+"A region in the high snowy mountains. Biting winds sweep through the "
+"abundant conifer forests, making even the more resilient deer and mountain "
+"goats shiver."
+msgstr ""
+
+#: maps/random/rmbiome/biomes/alpine.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"A region in the high snowy mountains. Biting winds sweep through the "
+"abundant conifer forests, making even the more resilient deer and mountain "
+"goats shiver."
+msgstr ""
+
+#: maps/random/rmbiome/biomes/alpine.jsonDescription.Title
+msgid "Alpine"
+msgstr ""
+
+#: maps/random/rmbiome/biomes/alpine.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Alpine"
+msgstr ""
+
+#: maps/random/rmbiome/biomes/autumn.jsonDescription.Description
+msgid ""
+"Autumn at its peak. The landscape is a dazzling dash of colors irrevocably "
+"intertwined. The native beech and oak trees of this temperate zone display a"
+" multi-coloured foliage while the evergreen pines look on with indifference "
+"at the approaching winter."
+msgstr ""
+
+#: maps/random/rmbiome/biomes/autumn.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Autumn at its peak. The landscape is a dazzling dash of colors irrevocably "
+"intertwined. The native beech and oak trees of this temperate zone display a"
+" multi-coloured foliage while the evergreen pines look on with indifference "
+"at the approaching winter."
+msgstr ""
+
+#: maps/random/rmbiome/biomes/autumn.jsonDescription.Title
+msgid "Autumn"
+msgstr ""
+
+#: maps/random/rmbiome/biomes/autumn.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Autumn"
+msgstr ""
+
+#: maps/random/rmbiome/biomes/desert.jsonDescription.Description
+msgid ""
+"A semi-desert area that boasts numerous clumps of date palms and tamarix "
+"trees. Herds of camels roam the wild and the occasional gazelle jumps up in "
+"fright at being disturbed."
+msgstr ""
+
+#: maps/random/rmbiome/biomes/desert.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"A semi-desert area that boasts numerous clumps of date palms and tamarix "
+"trees. Herds of camels roam the wild and the occasional gazelle jumps up in "
+"fright at being disturbed."
+msgstr ""
+
+#: maps/random/rmbiome/biomes/desert.jsonDescription.Title
+msgid "Desert"
+msgstr ""
+
+#: maps/random/rmbiome/biomes/desert.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Desert"
+msgstr ""
+
+#: maps/random/rmbiome/biomes/mediterranean.jsonDescription.Description
+msgid ""
+"Start in a region blessed with the Mediterranean climate, a warm and "
+"inviting land. The cypresses are in a perpetual struggle with the dominant "
+"fan palms while deer graze in their shadows, blissfully unaware."
+msgstr ""
+
+#: maps/random/rmbiome/biomes/mediterranean.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Start in a region blessed with the Mediterranean climate, a warm and "
+"inviting land. The cypresses are in a perpetual struggle with the dominant "
+"fan palms while deer graze in their shadows, blissfully unaware."
+msgstr ""
+
+#: maps/random/rmbiome/biomes/savanna.jsonDescription.Description
+msgid ""
+"The savanna, a dry climate in which only the hardy Baobab trees thrive. "
+"Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
+" giraffes or elephants roam the wild in search of food."
+msgstr ""
+
+#: maps/random/rmbiome/biomes/savanna.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"The savanna, a dry climate in which only the hardy Baobab trees thrive. "
+"Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
+" giraffes or elephants roam the wild in search of food."
+msgstr ""
+
+#: maps/random/rmbiome/biomes/savanna.jsonDescription.Title
+msgid "Savanna"
+msgstr ""
+
+#: maps/random/rmbiome/biomes/savanna.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Savanna"
+msgstr ""
+
+#: maps/random/rmbiome/biomes/snowy.jsonDescription.Description
+msgid ""
+"Settle in the cold regions of the North, the native habitat of the wooly "
+"muskox. Here you can pine away to your content and also hunt the occasional "
+"walrus or two."
+msgstr ""
+
+#: maps/random/rmbiome/biomes/snowy.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Settle in the cold regions of the North, the native habitat of the wooly "
+"muskox. Here you can pine away to your content and also hunt the occasional "
+"walrus or two."
+msgstr ""
+
+#: maps/random/rmbiome/biomes/snowy.jsonDescription.Title
+msgid "Snowy"
+msgstr ""
+
+#: maps/random/rmbiome/biomes/snowy.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Snowy"
+msgstr ""
+
+#: maps/random/rmbiome/biomes/temperate.jsonDescription.Description
+msgid ""
+"Lush grasslands carpet the land, in places giving way to magnificent and "
+"diverse broadleaf forests. Poplars, pines, beeches and oaks all vie for "
+"supremacy but this root-war is a neverending struggle. Numerous apple trees "
+"dot the land, deer and sheep gorge themselves on this years fallen fruit."
+msgstr ""
+
+#: maps/random/rmbiome/biomes/temperate.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Lush grasslands carpet the land, in places giving way to magnificent and "
+"diverse broadleaf forests. Poplars, pines, beeches and oaks all vie for "
+"supremacy but this root-war is a neverending struggle. Numerous apple trees "
+"dot the land, deer and sheep gorge themselves on this years fallen fruit."
+msgstr ""
+
+#: maps/random/rmbiome/biomes/temperate.jsonDescription.Title
+msgid "Temperate"
+msgstr ""
+
+#: maps/random/rmbiome/biomes/temperate.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Temperate"
+msgstr ""
+
+#: maps/random/rmbiome/biomes/tropic.jsonDescription.Description
+msgid ""
+"Explore the mysterious tropics. An extremely green, but also extremely humid"
+" environment awaits. The tall Toona trees look on disapprovingly at this "
+"invasion of their privacy and ferocious tigers are determined to defend "
+"their territory at all costs."
+msgstr ""
+
+#: maps/random/rmbiome/biomes/tropic.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Explore the mysterious tropics. An extremely green, but also extremely humid"
+" environment awaits. The tall Toona trees look on disapprovingly at this "
+"invasion of their privacy and ferocious tigers are determined to defend "
+"their territory at all costs."
+msgstr ""
+
+#: maps/random/rmbiome/biomes/tropic.jsonDescription.Title
+msgid "Tropic"
+msgstr ""
+
+#: maps/random/rmbiome/biomes/tropic.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Tropic"
+msgstr ""
 
 #: maps/random/extinct_volcano_triggers.js:65
 msgid "It keeps on raining, we will have to evacuate soon!"
@@ -2539,3 +2729,8 @@ msgstr "Горы ограничивают родину персов, охват�
 #: maps/skirmishes/Zagros Mountains (2).xml:Name:39
 msgid "Zagros Mountains (2)"
 msgstr "Горы Загрос (2)"
+
+#: maps/random/rmbiome/biomes/mediterranean.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Mediterranean"
+msgstr ""

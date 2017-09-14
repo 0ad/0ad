@@ -21,15 +21,16 @@
 # niektb <niektb95@gmail.com>, 2015-2016
 # Reginas - <reginas@hotmail.nl>, 2016
 # Ruben De Smet <ruben.de.smet@telenet.be>, 2015
+# Sander Bol <k.ander@gmail.com>, 2017
 # Sander Deryckere, 2014-2016
 # Thomas den Hollander <denhollander.thomas@gmail.com>, 2015
 # Tim G <timgoossens4@hotmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-09-04 09:02+0200\n"
-"PO-Revision-Date: 2017-09-04 15:06+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-09-11 09:03+0200\n"
+"PO-Revision-Date: 2017-09-11 19:42+0000\n"
+"Last-Translator: Sander Bol <k.ander@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -85,18 +86,18 @@ msgstr "Tab"
 
 #: gui/common/functions_civinfo.js:31
 msgid "Gaia"
-msgstr ""
+msgstr "Gaia"
 
 #: gui/common/functions_global_object.js:57
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait..."
-msgstr "%(url)s\nAan het openen in de web browser. Gelieve te wachten..."
+msgstr "%(url)s\nWordt geopend in je standaard browser. Een moment geduld, alsjeblieft."
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
-msgstr "Pagina aan het openen"
+msgstr "Pagina wordt geopend"
 
 #. dennis-ignore: *
 #: gui/common/functions_global_object.js:70
@@ -106,7 +107,7 @@ msgstr "FPS: %(fps)4s"
 
 #: gui/common/functions_global_object.js:139
 msgid "Loading Aborted"
-msgstr "Laden beëindigd"
+msgstr "Laden afgebroken"
 
 #: gui/common/functions_utility.js:108
 msgctxt "map selection"
@@ -142,7 +143,7 @@ msgstr "\"%(label)s\""
 
 #: gui/common/functions_utility_loadsave.js:87
 msgid "Saved game will be permanently deleted, are you sure?"
-msgstr "Dit spel zal permanent verwijderd worden, ben je zeker?"
+msgstr "Dit spel zal permanent verwijderd worden, weet je het zeker?"
 
 #: gui/common/functions_utility_loadsave.js:88
 msgid "DELETE"
@@ -167,7 +168,7 @@ msgstr "Ja"
 #: gui/common/functions_utility_loadsave.js:106
 #, javascript-format
 msgid "Delete the selected entry using %(hotkey)s."
-msgstr "Verwijder de geselecteerde ingave met %(hotkey)s."
+msgstr "Verwijder de geselecteerde invoer met %(hotkey)s."
 
 #: gui/common/functions_utility_loadsave.js:111
 #, javascript-format
@@ -180,7 +181,7 @@ msgstr "Een willekeurig geselecteerde kaart."
 
 #: gui/common/gamedescription.js:55 gui/common/gamedescription.js:348
 msgid "Sorry, no description available."
-msgstr "Sorry, geen beschrijving verkrijgbaar."
+msgstr "Sorry, geen beschrijving beschikbaar."
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
@@ -303,8 +304,8 @@ msgstr[1] "Wonder (%(min)s minuten)"
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
 msgid_plural "Capture the Relic (%(min)s minutes)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Verover het relikwie (%(min)s minuut)"
+msgstr[1] "Verover het relikwie (%(min)s minuten)"
 
 #: gui/common/gamedescription.js:260
 msgid "Relic Count"
@@ -312,19 +313,19 @@ msgstr "Aantal Relikwieën"
 
 #: gui/common/gamedescription.js:267
 msgid "Hero Garrison"
-msgstr "Held Bemanning"
+msgstr "Helden Gestationeerd"
 
 #: gui/common/gamedescription.js:268
 msgid "Heroes can be garrisoned."
-msgstr ""
+msgstr "Helden kunnen worden gestationeerd"
 
 #: gui/common/gamedescription.js:272
 msgid "Exposed Heroes"
-msgstr ""
+msgstr "Onbeschutte Helden"
 
 #: gui/common/gamedescription.js:273
 msgid "Heroes cannot be garrisoned, and they are vulnerable to raids."
-msgstr ""
+msgstr "Helden kunnen niet gestationeerd worden, en zijn kwetsbaar voor overvallen."
 
 #: gui/common/gamedescription.js:280
 msgid "Rated game"
@@ -334,7 +335,7 @@ msgstr "Competitiespel"
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
-msgstr "Van zodra de winnaar van het spel gekend is, zal de score in de lobby worden aangepast."
+msgstr "Zodra de winnaar van het spel is bepaald wordt de score in de lobby aangepast."
 
 #: gui/common/gamedescription.js:286
 msgid "Locked Teams"
@@ -350,7 +351,7 @@ msgstr "Diplomatie"
 
 #: gui/common/gamedescription.js:292
 msgid "Players can make alliances and declare war on allies."
-msgstr "Spelers kunnen allianties maken en verbreken."
+msgstr "Spelers kunnen allianties aangaan en verbreken."
 
 #: gui/common/gamedescription.js:297
 msgid "Last Man Standing"
@@ -360,7 +361,7 @@ msgstr "Laatste Overlevende Wint"
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
-msgstr "Enkel één speler kan het spel winnen. Indien de overblijvende spelers geallieerd zijn, blijft het spel doorgaan tot er exact één overblijft."
+msgstr "Slechts één speler kan winnen. Wanneer de overblijvende spelers geallieerd zijn, blijft het spel doorgaan totdat er slechts één overblijft."
 
 #: gui/common/gamedescription.js:302
 msgid "Allied Victory"
@@ -383,8 +384,8 @@ msgstr "uitgeschakeld"
 #: gui/common/gamedescription.js:313
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Gedurende de eerste minuut blijven andere spelers neutraal."
+msgstr[1] "Gedurende de eerste %(min)s minuten blijven andere spelers neutraal."
 
 #: gui/common/gamedescription.js:321
 msgid "Map Name"
@@ -406,46 +407,55 @@ msgstr "Kaartomschrijving"
 msgid "Randomly selects a map from the list"
 msgstr "Selecteer een willekeurige kaart uit de lijst"
 
-#: gui/common/gamedescription.js:354
+#: gui/common/gamedescription.js:355
+msgid "Biome"
+msgstr ""
+
+#: gui/common/gamedescription.js:356
+msgctxt "biome"
+msgid "Random"
+msgstr "Willekeurig"
+
+#: gui/common/gamedescription.js:363
 msgid "Starting Resources"
 msgstr "Beginkapitaal"
 
-#: gui/common/gamedescription.js:355
+#: gui/common/gamedescription.js:364
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
-#: gui/common/gamedescription.js:365
+#: gui/common/gamedescription.js:374
 msgid "Population Limit"
 msgstr "Bevolkingslimiet"
 
-#: gui/common/gamedescription.js:373
+#: gui/common/gamedescription.js:382
 msgid "Treasures"
 msgstr "Schatten"
 
-#: gui/common/gamedescription.js:375
+#: gui/common/gamedescription.js:384
 msgctxt "treasures"
 msgid "Disabled"
 msgstr "Uitgeschakeld"
 
-#: gui/common/gamedescription.js:376
+#: gui/common/gamedescription.js:385
 msgctxt "treasures"
 msgid "As defined by the map."
-msgstr ""
+msgstr "Wordt bepaald door de kaart."
 
-#: gui/common/gamedescription.js:380
+#: gui/common/gamedescription.js:389
 msgid "Revealed Map"
 msgstr "Zichtbare Kaart"
 
-#: gui/common/gamedescription.js:385
+#: gui/common/gamedescription.js:394
 msgid "Explored Map"
 msgstr "Verkende Kaart"
 
-#: gui/common/gamedescription.js:390
+#: gui/common/gamedescription.js:399
 msgid "Cheats"
 msgstr "Cheats"
 
-#: gui/common/gamedescription.js:395 gui/common/tooltips.js:130
+#: gui/common/gamedescription.js:404 gui/common/tooltips.js:130
 #: gui/common/tooltips.js:185 gui/common/tooltips.js:226
 #: gui/common/tooltips.js:451 gui/common/tooltips.js:472
 #: gui/common/tooltips.js:763
@@ -453,21 +463,21 @@ msgstr "Cheats"
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:398
+#: gui/common/gamedescription.js:407
 msgctxt "gamesetup option"
 msgid "enabled"
 msgstr "ingeschakeld"
 
-#: gui/common/gamedescription.js:399
+#: gui/common/gamedescription.js:408
 msgctxt "gamesetup option"
 msgid "disabled"
 msgstr "uitgeschakeld"
 
-#: gui/common/gamedescription.js:416
+#: gui/common/gamedescription.js:425
 msgid "Victorious"
 msgstr "Winnaar"
 
-#: gui/common/gamedescription.js:421
+#: gui/common/gamedescription.js:430
 msgid "Defeated"
 msgstr "Verslagen"
 
@@ -494,13 +504,13 @@ msgstr "Slechte verbinding met %(player)s (%(milliseconds)sms)"
 #: gui/common/network.js:66
 msgctxt "network disconnect"
 msgid "Unknown reason"
-msgstr "Ongekende reden"
+msgstr "Onbekende reden"
 
 #: gui/common/network.js:67
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software"
-msgstr "Dit wordt vaak veroorzaakt door een antivirus programma, een firewall, of het ontbreken van een forward-rule voor UDP poort 20595 op de host computer."
+msgstr "Dit wordt vaak veroorzaakt door een antivirus-programma, een firewall, of het ontbreken van een forward-regel voor UDP poort 20595 op de host computer."
 
 #: gui/common/network.js:68
 msgid "The host has ended the game"
@@ -512,11 +522,11 @@ msgstr "Onjuiste versie van het netwerkprotocol"
 
 #: gui/common/network.js:70
 msgid "Game is loading, please try again later"
-msgstr "Spel is aan het laden, probeer het later nog eens"
+msgstr "Spel wordt geladen, probeer het later nog eens"
 
 #: gui/common/network.js:71
 msgid "Game has already started, no observers allowed"
-msgstr "Het spel is al begonnen, geen waarnemers toegestaan"
+msgstr "Het spel is al begonnen, waarnemers zijn niet toegestaan"
 
 #: gui/common/network.js:72
 msgid "You have been kicked"
@@ -528,7 +538,7 @@ msgstr "Je werd verbannen"
 
 #: gui/common/network.js:74
 msgid "Playername in use. If you were disconnected, retry in few seconds"
-msgstr "Deze naam wordt al gebruikt. Indien je een vroegere verbinding met het spel probeert te herstellen, probeer opnieuw binnen enkele seconden."
+msgstr "Naam al in gebruik. Als je terug in het spel probeert te komen, wacht dan even en probeer het over een paar seconden opnieuw."
 
 #: gui/common/network.js:75
 msgid "Server full"
@@ -537,7 +547,7 @@ msgstr "Server is vol"
 #: gui/common/network.js:76
 msgid ""
 "Player identifier in use. If you were disconnected, retry in few seconds"
-msgstr ""
+msgstr "Identificatie al in gebruik. Als je terug in het spel probeer te komen, wacht dan even en probeer het over een paar seconden opnieuw."
 
 #: gui/common/network.js:79
 #, javascript-format
@@ -564,7 +574,7 @@ msgstr "Verbinding verbroken"
 
 #: gui/common/network.js:107
 msgid "Only the host can kick clients!"
-msgstr ""
+msgstr "Alleen de host kan spelers uitsluiten!"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
@@ -584,50 +594,50 @@ msgstr "Gebruikers (%(num)s): %(users)s"
 msgid ", "
 msgstr ", "
 
-#: gui/common/settings.js:108
+#: gui/common/settings.js:115
 msgctxt "aiDiff"
 msgid "Sandbox"
 msgstr "Zandbak"
 
-#: gui/common/settings.js:112
+#: gui/common/settings.js:119
 msgctxt "aiDiff"
 msgid "Very Easy"
 msgstr "Heel Makkelijk "
 
-#: gui/common/settings.js:116
+#: gui/common/settings.js:123
 msgctxt "aiDiff"
 msgid "Easy"
 msgstr "Makkelijk"
 
-#: gui/common/settings.js:120
+#: gui/common/settings.js:127
 msgctxt "aiDiff"
 msgid "Medium"
 msgstr "Middelzwaar"
 
-#: gui/common/settings.js:125
+#: gui/common/settings.js:132
 msgctxt "aiDiff"
 msgid "Hard"
 msgstr "Moeilijk "
 
-#: gui/common/settings.js:129
+#: gui/common/settings.js:136
 msgctxt "aiDiff"
 msgid "Very Hard"
 msgstr "Heel Moeilijk"
 
-#: gui/common/settings.js:151
+#: gui/common/settings.js:158
 #, javascript-format
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(min)s minuut"
+msgstr[1] "%(min)s minuten"
 
-#: gui/common/settings.js:173
+#: gui/common/settings.js:180
 msgctxt "ceasefire"
 msgid "No ceasefire"
 msgstr "Geen Wapenstilstand"
 
-#: gui/common/settings.js:174
+#: gui/common/settings.js:181
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
@@ -635,76 +645,76 @@ msgid_plural "%(minutes)s minutes"
 msgstr[0] "%(minutes)s minuut"
 msgstr[1] "%(minutes)s minuten"
 
-#: gui/common/settings.js:188
+#: gui/common/settings.js:195
 msgctxt "map"
 msgid "Skirmish"
 msgstr "Schermutseling"
 
-#: gui/common/settings.js:189
+#: gui/common/settings.js:196
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other gamesettings."
-msgstr ""
+msgstr "Een kaart met een voorgedefinieerd landschap en spelersaantal. De overige instellingen mag je zelf instellen."
 
-#: gui/common/settings.js:194
+#: gui/common/settings.js:201
 msgctxt "map"
 msgid "Random"
 msgstr "Willekeurig"
 
-#: gui/common/settings.js:195
+#: gui/common/settings.js:202
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
 msgstr ""
 
-#: gui/common/settings.js:199
+#: gui/common/settings.js:206
 msgctxt "map"
 msgid "Scenario"
 msgstr "Scenario"
 
-#: gui/common/settings.js:200
+#: gui/common/settings.js:207
 msgid "A map with a predefined landscape and matchsettings."
 msgstr ""
 
-#: gui/common/settings.js:231
+#: gui/common/settings.js:250
 msgctxt "victory condition"
 msgid "None"
 msgstr "Geen"
 
-#: gui/common/settings.js:232
+#: gui/common/settings.js:251
 msgid "Endless game."
 msgstr "Eindeloos spel."
 
-#: gui/common/settings.js:273
+#: gui/common/settings.js:292
 msgid "Unlimited"
 msgstr "Onbeperkt"
 
-#: gui/common/settings.js:321
+#: gui/common/settings.js:340
 msgctxt "AI name"
 msgid "Unknown"
 msgstr "Onbekend"
 
-#: gui/common/settings.js:332
+#: gui/common/settings.js:351
 msgctxt "AI difficulty"
 msgid "Unknown"
 msgstr "Onbekend"
 
-#: gui/common/settings.js:344
+#: gui/common/settings.js:363
 msgctxt "map type"
 msgid "Unknown"
 msgstr "Onbekend"
 
-#: gui/common/settings.js:356
+#: gui/common/settings.js:375
 msgctxt "map size"
 msgid "Default"
 msgstr "Standaard"
 
-#: gui/common/settings.js:368
+#: gui/common/settings.js:387
 msgctxt "population capacity"
 msgid "Unknown"
 msgstr "Onbekend"
 
-#: gui/common/settings.js:380
+#: gui/common/settings.js:399
 msgctxt "victory condition"
 msgid "Unknown"
 msgstr "Onbekend"

@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-09-04 09:02+0200\n"
-"PO-Revision-Date: 2017-09-04 16:58+0000\n"
+"POT-Creation-Date: 2017-09-11 09:03+0200\n"
+"PO-Revision-Date: 2017-09-12 15:06+0000\n"
 "Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -388,46 +388,55 @@ msgstr "Mapa Deskripzioa"
 msgid "Randomly selects a map from the list"
 msgstr "Zerrendatik mapa bat ausaz aukeratzen du"
 
-#: gui/common/gamedescription.js:354
+#: gui/common/gamedescription.js:355
+msgid "Biome"
+msgstr "Bioma"
+
+#: gui/common/gamedescription.js:356
+msgctxt "biome"
+msgid "Random"
+msgstr "Ausazko"
+
+#: gui/common/gamedescription.js:363
 msgid "Starting Resources"
 msgstr "Hasierako baliabideak"
 
-#: gui/common/gamedescription.js:355
+#: gui/common/gamedescription.js:364
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
-#: gui/common/gamedescription.js:365
+#: gui/common/gamedescription.js:374
 msgid "Population Limit"
 msgstr "Biztanleria-muga"
 
-#: gui/common/gamedescription.js:373
+#: gui/common/gamedescription.js:382
 msgid "Treasures"
 msgstr "Altxorrak"
 
-#: gui/common/gamedescription.js:375
+#: gui/common/gamedescription.js:384
 msgctxt "treasures"
 msgid "Disabled"
 msgstr "Desgaituta"
 
-#: gui/common/gamedescription.js:376
+#: gui/common/gamedescription.js:385
 msgctxt "treasures"
 msgid "As defined by the map."
 msgstr "Mapak zehaztutakoa bezalakoa."
 
-#: gui/common/gamedescription.js:380
+#: gui/common/gamedescription.js:389
 msgid "Revealed Map"
 msgstr "Mapa Erakutsia"
 
-#: gui/common/gamedescription.js:385
+#: gui/common/gamedescription.js:394
 msgid "Explored Map"
 msgstr "Mapa Esploratua"
 
-#: gui/common/gamedescription.js:390
+#: gui/common/gamedescription.js:399
 msgid "Cheats"
 msgstr "Trikimailuak"
 
-#: gui/common/gamedescription.js:395 gui/common/tooltips.js:130
+#: gui/common/gamedescription.js:404 gui/common/tooltips.js:130
 #: gui/common/tooltips.js:185 gui/common/tooltips.js:226
 #: gui/common/tooltips.js:451 gui/common/tooltips.js:472
 #: gui/common/tooltips.js:763
@@ -435,21 +444,21 @@ msgstr "Trikimailuak"
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:398
+#: gui/common/gamedescription.js:407
 msgctxt "gamesetup option"
 msgid "enabled"
 msgstr "Gaiturik"
 
-#: gui/common/gamedescription.js:399
+#: gui/common/gamedescription.js:408
 msgctxt "gamesetup option"
 msgid "disabled"
 msgstr "desgaituta"
 
-#: gui/common/gamedescription.js:416
+#: gui/common/gamedescription.js:425
 msgid "Victorious"
 msgstr "Garaipena"
 
-#: gui/common/gamedescription.js:421
+#: gui/common/gamedescription.js:430
 msgid "Defeated"
 msgstr "Suntsitua"
 
@@ -566,37 +575,37 @@ msgstr "Erabiltzaileak (%(num)s): %(users)s"
 msgid ", "
 msgstr ", "
 
-#: gui/common/settings.js:108
+#: gui/common/settings.js:115
 msgctxt "aiDiff"
 msgid "Sandbox"
 msgstr "Froga"
 
-#: gui/common/settings.js:112
+#: gui/common/settings.js:119
 msgctxt "aiDiff"
 msgid "Very Easy"
 msgstr "Oso erraza"
 
-#: gui/common/settings.js:116
+#: gui/common/settings.js:123
 msgctxt "aiDiff"
 msgid "Easy"
 msgstr "Erraza"
 
-#: gui/common/settings.js:120
+#: gui/common/settings.js:127
 msgctxt "aiDiff"
 msgid "Medium"
 msgstr "Ertaina"
 
-#: gui/common/settings.js:125
+#: gui/common/settings.js:132
 msgctxt "aiDiff"
 msgid "Hard"
 msgstr "Zaila"
 
-#: gui/common/settings.js:129
+#: gui/common/settings.js:136
 msgctxt "aiDiff"
 msgid "Very Hard"
 msgstr "Oso zaila"
 
-#: gui/common/settings.js:151
+#: gui/common/settings.js:158
 #, javascript-format
 msgctxt "victory duration"
 msgid "%(min)s minute"
@@ -604,12 +613,12 @@ msgid_plural "%(min)s minutes"
 msgstr[0] "%(min)s minutu"
 msgstr[1] "%(min)s minutuak"
 
-#: gui/common/settings.js:173
+#: gui/common/settings.js:180
 msgctxt "ceasefire"
 msgid "No ceasefire"
 msgstr "Suetenik ez"
 
-#: gui/common/settings.js:174
+#: gui/common/settings.js:181
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
@@ -617,76 +626,76 @@ msgid_plural "%(minutes)s minutes"
 msgstr[0] "minutu %(minutes)s"
 msgstr[1] "%(minutes)s minutu"
 
-#: gui/common/settings.js:188
+#: gui/common/settings.js:195
 msgctxt "map"
 msgid "Skirmish"
 msgstr "Liskarra"
 
-#: gui/common/settings.js:189
+#: gui/common/settings.js:196
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other gamesettings."
 msgstr "Aurreikusitako paisaia eta jokalari kopurua duen mapa. Jokoen beste ezarpenak nahi bezala aukeratu."
 
-#: gui/common/settings.js:194
+#: gui/common/settings.js:201
 msgctxt "map"
 msgid "Random"
 msgstr "Ausazko"
 
-#: gui/common/settings.js:195
+#: gui/common/settings.js:202
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
 msgstr "Sortu mapa paregabea baliabide ezberdinak erabiliz aldi bakoitzean. Askatasunez aukeratu jokalari eta talde kopurua."
 
-#: gui/common/settings.js:199
+#: gui/common/settings.js:206
 msgctxt "map"
 msgid "Scenario"
 msgstr "Jokalekua"
 
-#: gui/common/settings.js:200
+#: gui/common/settings.js:207
 msgid "A map with a predefined landscape and matchsettings."
 msgstr "Aurreikusitako paisaia eta joko ezarpenak duen mapa."
 
-#: gui/common/settings.js:231
+#: gui/common/settings.js:250
 msgctxt "victory condition"
 msgid "None"
 msgstr "Ez dago"
 
-#: gui/common/settings.js:232
+#: gui/common/settings.js:251
 msgid "Endless game."
 msgstr "Partida mugagabea."
 
-#: gui/common/settings.js:273
+#: gui/common/settings.js:292
 msgid "Unlimited"
 msgstr "Mugagabea"
 
-#: gui/common/settings.js:321
+#: gui/common/settings.js:340
 msgctxt "AI name"
 msgid "Unknown"
 msgstr "Ezezaguna"
 
-#: gui/common/settings.js:332
+#: gui/common/settings.js:351
 msgctxt "AI difficulty"
 msgid "Unknown"
 msgstr "Ezezaguna"
 
-#: gui/common/settings.js:344
+#: gui/common/settings.js:363
 msgctxt "map type"
 msgid "Unknown"
 msgstr "Ezezaguna"
 
-#: gui/common/settings.js:356
+#: gui/common/settings.js:375
 msgctxt "map size"
 msgid "Default"
 msgstr "Lehenetsia"
 
-#: gui/common/settings.js:368
+#: gui/common/settings.js:387
 msgctxt "population capacity"
 msgid "Unknown"
 msgstr "Ezezaguna"
 
-#: gui/common/settings.js:380
+#: gui/common/settings.js:399
 msgctxt "victory condition"
 msgid "Unknown"
 msgstr "Ezezaguna"
