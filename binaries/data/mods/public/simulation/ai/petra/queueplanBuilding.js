@@ -333,16 +333,6 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	let x = (bestIdx % obstructions.width + 0.5) * obstructions.cellSize;
 	let z = (Math.floor(bestIdx / obstructions.width) + 0.5) * obstructions.cellSize;
 
-	if (template.hasClass("House") || template.hasClass("Field") || template.resourceDropsiteTypes() !== undefined)
-	{
-		let secondBest = obstructions.findNearestObstructed(bestIdx, radius);
-		if (secondBest >= 0)
-		{
-			x = (secondBest % obstructions.width + 0.5) * obstructions.cellSize;
-			z = (Math.floor(secondBest / obstructions.width) + 0.5) * obstructions.cellSize;
-		}
-	}
-
 	let territorypos = placement.gamePosToMapPos([x, z]);
 	let territoryIndex = territorypos[0] + territorypos[1]*placement.width;
 	// default angle = 3*Math.PI/4;

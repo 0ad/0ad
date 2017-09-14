@@ -371,7 +371,9 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 			this.garrisonManager.removeDecayingStructure(evt.entity);
 	}
 
-	// then deals with decaying structures
+	// Then deals with decaying structures: destroy them if being lost to enemy (except in easier difficulties)
+	if (this.Config.difficulty < 2)
+		return;
 	for (let entId of this.decayingStructures)
 	{
 		let ent = gameState.getEntityById(entId);
@@ -393,12 +395,12 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 			}
 			if (decayToGaia)
 				continue;
-			let ratioMax = 0.70;
+			let ratioMax = 0.70 + randFloat(0., 0.1);
 			for (let evt of events.Attacked)
 			{
 				if (ent.id() != evt.target)
 					continue;
-				ratioMax = 0.90;
+				ratioMax = 0.85 + randFloat(0., 0.1);
 				break;
 			}
 			if (captureRatio > ratioMax)
