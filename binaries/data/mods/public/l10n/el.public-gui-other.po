@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-09-11 09:03+0200\n"
-"PO-Revision-Date: 2017-09-11 15:57+0000\n"
+"POT-Creation-Date: 2017-09-13 09:03+0200\n"
+"PO-Revision-Date: 2017-09-13 14:49+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -140,18 +140,18 @@ msgid "DELETE"
 msgstr "ΔΙΑΓΡΑΦΗ"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:291
-#: gui/options/options.js:290 gui/options/options.js:338
-#: gui/pregame/mainmenu.js:254 gui/replaymenu/replay_actions.js:170
-#: gui/savedgames/load.js:188 gui/savedgames/save.js:66
-#: gui/summary/summary.js:363
+#: gui/options/options.js:297 gui/options/options.js:350
+#: gui/options/options.js:377 gui/pregame/mainmenu.js:254
+#: gui/replaymenu/replay_actions.js:170 gui/savedgames/load.js:188
+#: gui/savedgames/save.js:66 gui/summary/summary.js:363
 msgid "No"
 msgstr "Όχι"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:291
-#: gui/options/options.js:290 gui/options/options.js:338
-#: gui/pregame/mainmenu.js:254 gui/replaymenu/replay_actions.js:170
-#: gui/savedgames/load.js:188 gui/savedgames/save.js:66
-#: gui/summary/summary.js:363
+#: gui/options/options.js:297 gui/options/options.js:350
+#: gui/options/options.js:377 gui/pregame/mainmenu.js:254
+#: gui/replaymenu/replay_actions.js:170 gui/savedgames/load.js:188
+#: gui/savedgames/save.js:66 gui/summary/summary.js:363
 msgid "Yes"
 msgstr "Ναι"
 
@@ -1120,42 +1120,46 @@ msgstr "Μη έγκυρη μετάφραση"
 msgid "OK"
 msgstr "ΟΚ"
 
-#: gui/options/options.js:90
+#: gui/options/options.js:97
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s, Max: %(max)s"
 msgstr ""
 
-#: gui/options/options.js:92
+#: gui/options/options.js:99
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s"
 msgstr ""
 
-#: gui/options/options.js:94
+#: gui/options/options.js:101
 #, javascript-format
 msgctxt "option number"
 msgid "Max: %(max)s"
 msgstr ""
 
-#: gui/options/options.js:127
+#: gui/options/options.js:134
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "Τιμή: %(val)s (ελάχιστη: %(min)s, μέγιστη: %(max)s)"
 
-#: gui/options/options.js:288
+#: gui/options/options.js:295
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "Επαναφέροντας τις ρυθμίσεις θα διαγραφούν οι αποθηκευμένες ρυθμίσεις. Να συνεχιστεί;"
 
-#: gui/options/options.js:289 gui/options/options.js:337
-#: gui/savedgames/load.js:187
+#: gui/options/options.js:296 gui/options/options.js:349
+#: gui/options/options.js:376 gui/savedgames/load.js:187
 msgid "Warning"
 msgstr "Προειδοποίηση"
 
-#: gui/options/options.js:336
+#: gui/options/options.js:348
+msgid "Some setting values are invalid! Are you sure to save them?"
+msgstr ""
+
+#: gui/options/options.js:375
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Δεν έχετε αποθηκεύσει όλες τις αλλαγές, θέλετε να κλείσετε αυτό το παράθυρο;"
 
