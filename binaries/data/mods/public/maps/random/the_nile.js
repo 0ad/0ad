@@ -160,90 +160,71 @@ for (var i = 0; i < numPlayers; i++)
 
 RMS.SetProgress(30);
 
-const WATER_WIDTH = 0.1;
-
-log("Creating river");
-var theta = randFloat(0, 1);
-var seed = randFloat(2,3);
-var theta2 = randFloat(0, 1);
-var seed2 = randFloat(2,3);
-var rifp = 0;
-var rifp2 = 0;
-
-for (var ix = 0; ix < mapSize; ix++)
-	for (var iz = 0; iz < mapSize; iz++)
+const riverTextures = [
 	{
-		var x = ix / (mapSize + 1.0);
-		var z = iz / (mapSize + 1.0);
+		"left": 0,
+		"right": 0.04,
+		"tileClass": tLush
+	},
+	{
+		"left": 0.04,
+		"right": 0.06,
+		"tileClass": tSLush
+	},
+	{
+		"left": 0.06,
+		"right": 0.09,
+		"tileClass": tSDry
+	}
+];
 
-		var h = 0;
-		var distToWater = 0;
+const plantFrequency = 2;
 
-		h = 32 * (z - 0.5);
-		if ((x < 0.25)||(x > 0.75))
+var plantID = 0;
+
+paintRiver({
+	"horizontal": false,
+	"parallel": true,
+	"position": 0.5,
+	"width": 0.1,
+	"fadeDist": 0.025,
+	"deviation": 0.005,
+	"waterHeight": -3,
+	"landHeight": 2,
+	"meanderShort": 12,
+	"meanderLong": 50,
+	"waterFunc": (ix, iz, height) => {
+
+		addToClass(ix, iz, clWater);
+		placeTerrain(ix, iz, tShore);
+
+		// Place river bushes
+		if (height <= -0.2 || height >= 0.1)
+			return;
+
+		if (plantID % plantFrequency == 0)
+		{
+			plantID = 0;
+			placeObject(ix, iz, aPlants, 0, randFloat(0, TWO_PI));
+		}
+		++plantID;
+	},
+	"landFunc": (ix, iz, shoreDist1, shoreDist2) => {
+
+		let x = ix / (mapSize + 1.0);
+		if (x < 0.25 || x > 0.75)
 			addToClass(ix, iz, clDesert);
 
-		// add the rough shape of the water
-		var km = 12/scaleByMapSize(35, 160);
-		var cu = km*rndRiver(theta+z*0.5*(mapSize/64),seed)+(50/scaleByMapSize(35, 100))*rndRiver(theta2+z*0.5*(mapSize/128),seed2);
-		var zk = z*randFloat(0.995,1.005);
-		var xk = x*randFloat(0.995,1.005);
-
-		if (-3.0 >= getHeight(ix, iz))
-			continue;
-
-		if ((xk > cu+((1.0-WATER_WIDTH)/2))&&(xk < cu+((1.0+WATER_WIDTH)/2)))
-		{
-			if (xk < cu+((1.05-WATER_WIDTH)/2))
+		for (let riv of riverTextures)
+			if (-shoreDist1 > -riv.right && -shoreDist1 < -riv.left ||
+				-shoreDist2 > riv.left && -shoreDist2 < riv.right)
 			{
-				h = -3 + 200.0* abs(cu+((1.05-WATER_WIDTH)/2-xk));
-				if ((h < 0.1)&&(h>-0.2))
-				{
-					if (rifp%2 == 0)
-					{
-						rifp = 0;
-						placeObject(ix, iz, aPlants, 0, randFloat(0,TWO_PI));
-					}
-					++rifp;
-				}
+				placeTerrain(ix, iz, riv.tileClass);
+				addToClass(ix, iz, clShore);
 			}
-			else if (xk > (cu+(0.95+WATER_WIDTH)/2))
-			{
-				h = -3 + 200.0*(xk-(cu+((0.95+WATER_WIDTH)/2)));
-				if ((h < 0.1)&&(h>-0.2))
-				{
-					if (rifp2%2 == 0)
-					{
-						rifp2 = 0;
-						placeObject(ix, iz, aPlants, 0, randFloat(0,TWO_PI));
-					}
-					++rifp2;
-				}
-			}
-			else
-				h = -3.0;
-
-			setHeight(ix, iz, h);
-			addToClass(ix, iz, clWater);
-			placeTerrain(ix, iz, tShore);
-		}
-
-		if (((xk > cu+((1.0-WATER_WIDTH)/2)-0.04)&&(xk < cu+((1.0-WATER_WIDTH)/2)))||((xk > cu+((1.0+WATER_WIDTH)/2))&&(xk < cu+((1.0+WATER_WIDTH)/2) + 0.04)))
-		{
-			placeTerrain(ix, iz, tLush);
-			addToClass(ix, iz, clShore);
-		}
-		else if (((xk > cu+((1.0-WATER_WIDTH)/2)-0.06)&&(xk < cu+((1.0-WATER_WIDTH)/2)-0.04))||((xk > cu+((1.0+WATER_WIDTH)/2)+0.04)&&(xk < cu+((1.0+WATER_WIDTH)/2) + 0.06)))
-		{
-			placeTerrain(ix, iz, tSLush);
-			addToClass(ix, iz, clShore);
-		}
-		else if (((xk > cu+((1.0-WATER_WIDTH)/2)-0.09)&&(xk < cu+((1.0-WATER_WIDTH)/2)-0.06))||((xk > cu+((1.0+WATER_WIDTH)/2)+0.06)&&(xk < cu+((1.0+WATER_WIDTH)/2) + 0.09)))
-		{
-			placeTerrain(ix, iz, tSDry);
-			addToClass(ix, iz, clShore);
-		}
 	}
+});
+
 RMS.SetProgress(40);
 
 log("Creating bumps...");

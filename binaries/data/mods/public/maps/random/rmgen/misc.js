@@ -128,6 +128,85 @@ function rndRiver(f, seed)
 	return rndRa;
 }
 
+/**
+ * Creates a meandering river at the given location and width.
+ * Optionally calls a function on the affected tiles.
+ *
+ * @property horizontal - Whether the river is horizontal or vertical
+ * @property parallel - Whether the shorelines should be parallel or meander separately.
+ * @property position - Location of the river. Number between 0 and 1.
+ * @property width - Size between the two shorelines. Number between 0 and 1.
+ * @property fadeDist - Size of the shoreline.
+ * @property deviation - Fuzz effect on the shoreline if greater than 0.
+ * @property waterHeight - Ground height of the riverbed.
+ * @proeprty landHeight - Ground height of the end of the shoreline.
+ * @property meanderShort - Strength of frequent meanders.
+ * @property meanderLong - Strength of less frequent meanders.
+ * @property waterFunc - Optional function called on water tiles, providing ix, iz, height.
+ * @property landFunc - Optional function called on land tiles, providing ix, iz, shoreDist1, shoreDist2.
+ */
+function paintRiver(args)
+{
+	log("Creating the river");
+
+	let theta1 = randFloat(0, 1);
+	let theta2 = randFloat(0, 1);
+
+	let seed1 = randFloat(2, 3);
+	let seed2 = randFloat(2, 3);
+
+	let meanderShort = args.meanderShort / scaleByMapSize(35, 160);
+	let meanderLong = args.meanderLong / scaleByMapSize(35, 100);
+
+	let mapSize = g_Map.size;
+
+	for (let ix = 0; ix < mapSize; ++ix)
+		for (let iz = 0; iz < mapSize; ++iz)
+		{
+			if (args.constraint && !args.constraint.allows(ix, iz))
+				continue;
+
+			let x = ix / (mapSize + 1.0);
+			let z = iz / (mapSize + 1.0);
+
+			let coord1 = args.horizontal ? z : x;
+			let coord2 = args.horizontal ? x : z;
+
+			// River curve at this place
+			let cu1 = meanderShort * rndRiver(theta1 + coord2 * mapSize / 128, seed1);
+			let cu2 = meanderShort * rndRiver(theta2 + coord2 * mapSize / 128, seed2);
+
+			cu1 += meanderLong * rndRiver(theta2 + coord2 * mapSize / 256, seed2);
+			cu2 += meanderLong * rndRiver(theta2 + coord2 * mapSize / 256, seed2);
+			if (args.parallel)
+				cu2 = cu1;
+
+			// Fuzz the river border
+			let devCoord1 = coord1 * randFloat(1 - args.deviation, 1 + args.deviation);
+			let devCoord2 = coord2 * randFloat(1 - args.deviation, 1 + args.deviation);
+
+			let shoreDist1 = -devCoord1 + cu1 + args.position - args.width / 2;
+			let shoreDist2 = -devCoord1 + cu2 + args.position + args.width / 2;
+
+			if (shoreDist1 < 0 && shoreDist2 > 0)
+			{
+				let height = args.waterHeight;
+
+				if (shoreDist1 > -args.fadeDist)
+					height += (args.landHeight - args.waterHeight) * (1 + shoreDist1 / args.fadeDist);
+				else if (shoreDist2 < args.fadeDist)
+					height += (args.landHeight - args.waterHeight) * (1 - shoreDist2 / args.fadeDist);
+
+				setHeight(ix, iz, height);
+
+				if (args.waterFunc)
+					args.waterFunc(ix, iz, height);
+			}
+			else if (args.landFunc)
+				args.landFunc(ix, iz, shoreDist1, shoreDist2);
+		}
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////
 // createStartingPlayerEntities
 //

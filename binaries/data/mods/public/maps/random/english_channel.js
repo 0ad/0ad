@@ -43,8 +43,6 @@ const aLillies = "actor|props/flora/water_lillies.xml";
 const pForestD = [tGrassDForest + TERRAIN_SEPARATOR + oBeech, tGrassDForest];
 const pForestP = [tGrassPForest + TERRAIN_SEPARATOR + oOak, tGrassPForest];
 
-const WATER_WIDTH = 0.25;
-
 InitMap();
 
 const numPlayers = getNumPlayers();
@@ -157,49 +155,25 @@ for (var i = 0; i < numPlayers; i++)
 }
 RMS.SetProgress(10);
 
-log("Creating sea");
-
-var theta = randFloat(0, 1);
-var theta2 = randFloat(0, 1);
-
-var seed = randFloat(2,3);
-var seed2 = randFloat(2,3);
-
-for (var ix = 0; ix < mapSize; ix++)
-	for (var iz = 0; iz < mapSize; iz++)
-	{
-		var x = ix / (mapSize + 1.0);
-		var z = iz / (mapSize + 1.0);
-
-		// add the rough shape of the water
-		var km = 20/scaleByMapSize(35, 160);
-
-		var fadeDist = 0.02;
-
-		var cu = km*rndRiver(theta+x*0.5*(mapSize/64),seed);
-		var cu2 = km*rndRiver(theta2+x*0.5*(mapSize/64),seed2);
-
-		if (z > cu  + 0.5 - WATER_WIDTH/2 &&
-		    z < cu2 + 0.5 + WATER_WIDTH/2)
-		{
-			var h;
-			if (z < (cu + 0.5 + fadeDist - WATER_WIDTH/2))
-				h = 3 - 7 * (1 - ((cu + 0.5 + fadeDist - WATER_WIDTH/2) - z)/fadeDist);
-			else if (z > (cu2 + 0.5 - fadeDist + WATER_WIDTH/2))
-				h = 3 - 7 * (1 - (z - (cu2 + 0.5 - fadeDist + WATER_WIDTH/2))/fadeDist);
-			else
-				h = -4.0;
-
-			if (h < -1.5)
-				placeTerrain(ix, iz, tWater);
-			else
-				placeTerrain(ix, iz, tShore);
-
-			setHeight(ix, iz, h);
-		}
-		else
-			setHeight(ix, iz, 3.1);
+paintRiver({
+	"horizontal": true,
+	"parallel": false,
+	"position": 0.5,
+	"width": 0.25,
+	"fadeDist": 0.01,
+	"deviation": 0,
+	"waterHeight": -4,
+	"landHeight": 3,
+	"meanderShort": 20,
+	"meanderLong": 0,
+	"waterFunc": (ix, iz, height) => {
+		placeTerrain(ix, iz, height < -1.5 ? tWater : tShore);
+	},
+	"landFunc": (ix, iz, shoreDist1, shoreDist2) => {
+		setHeight(ix, iz, 3.1);
 	}
+});
+
 RMS.SetProgress(20);
 
 log("Creating rivers");

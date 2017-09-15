@@ -141,31 +141,28 @@ for (var i = 0; i < numPlayers; i++)
 
 RMS.SetProgress(15);
 
-// create western sea
-var fadedistance = 8;
+const waterPos = 0.31;
+const mountainPos = 0.69;
 
-for (var ix = 0; ix < mapSize; ix++)
-{
-	for (var iz = 0; iz < mapSize; iz++)
-	{
-		if (ix < 0.31 * mapSize)
-		{
-			if (ix > 0.31 * mapSize - fadedistance)
-			{
-				setHeight(ix, iz, 3 - 8 * (0.31 * mapSize - ix) / fadedistance);
-				if (ix, iz, 3 - 8 * (0.31 * mapSize - ix) / fadedistance < 0.5)
-					addToClass(ix, iz, clWater);
-			}
-			else
-			{
-				setHeight(ix, iz, -5);
-				addToClass(ix, iz, clWater);
-			}
-		}
-		else if (ix > 0.69 * mapSize)
-			addToClass(ix, iz, clMountains);
+paintRiver({
+	"horizontal": false,
+	"parallel": false,
+	"position": 0,
+	"width": 2 * waterPos,
+	"fadeDist": 0.025,
+	"deviation": 0,
+	"waterHeight": -5,
+	"landHeight": 3,
+	"meanderShort": 20,
+	"meanderLong": 0,
+	"waterFunc": (ix, iz, height) => {
+		addToClass(ix, iz, clWater);
+	},
+	"landFunc": (ix, iz, shoreDist1, shoreDist2) => {
+		if (ix > mountainPos * mapSize)
+			addToClass(ix, iz, clMountains)
 	}
-}
+});
 
 log("Creating shores...");
 for (var i = 0; i < scaleByMapSize(20,120); i++)

@@ -168,108 +168,27 @@ else if (md == 3) //central sea
 			playerX[i] = playerPos[i];
 		}
 
-	var WATER_WIDTH = randFloat(0.22,0.3)+scaleByMapSize(1,4)/20;
-	log("Creating sea");
-	var theta = randFloat(0, 1);
-	var theta2 = randFloat(0, 1);
-	var seed = randFloat(2,3);
-	var seed2 = randFloat(2,3);
-	for (var ix = 0; ix < mapSize; ix++)
-	{
-		for (var iz = 0; iz < mapSize; iz++)
-		{
-			var x = ix / (mapSize + 1.0);
-			var z = iz / (mapSize + 1.0);
-
-			// add the rough shape of the water
-			var km = 20/scaleByMapSize(35, 160);
-
-			var fadeDist = 0.05;
-
-			if (mdd1 == 1) //vertical
-			{
-				var cu = km*rndRiver(theta+z*0.5*(mapSize/64),seed);
-				var cu2 = km*rndRiver(theta2+z*0.5*(mapSize/64),seed2);
-
-				if ((x > cu + 0.5 - WATER_WIDTH/2) && (x < cu2 + 0.5 + WATER_WIDTH/2))
-				{
-					var h;
-					if (x < (cu + 0.5 + fadeDist - WATER_WIDTH/2))
-					{
-						h = 3 - 6 * (1 - ((cu + 0.5 + fadeDist - WATER_WIDTH/2) - x)/fadeDist);
-					}
-					else if (x > (cu2 + 0.5 - fadeDist + WATER_WIDTH/2))
-					{
-						h = 3 - 6 * (1 - (x - (cu2 + 0.5 - fadeDist + WATER_WIDTH/2))/fadeDist);
-					}
-					else
-					{
-						h = -3.0;
-					}
-
-					if (h < -1.5)
-					{
-						placeTerrain(ix, iz, tWater);
-					}
-					else
-					{
-						placeTerrain(ix, iz, tShore);
-					}
-
-					setHeight(ix, iz, h);
-					if (h < 0){
-						addToClass(ix, iz, clWater);
-					}
-				}
-				else
-				{
-					setHeight(ix, iz, 3.1);
-					addToClass(ix, iz, clLand);
-				}
-			}
-			else //horizontal
-			{
-				var cu = km*rndRiver(theta+x*0.5*(mapSize/64),seed);
-				var cu2 = km*rndRiver(theta2+x*0.5*(mapSize/64),seed2);
-
-				if ((z > cu + 0.5 - WATER_WIDTH/2) && (z < cu2 + 0.5 + WATER_WIDTH/2))
-				{
-					var h;
-					if (z < (cu + 0.5 + fadeDist - WATER_WIDTH/2))
-					{
-						h = 3 - 6 * (1 - ((cu + 0.5 + fadeDist - WATER_WIDTH/2) - z)/fadeDist);
-					}
-					else if (z > (cu2 + 0.5 - fadeDist + WATER_WIDTH/2))
-					{
-						h = 3 - 6 * (1 - (z - (cu2 + 0.5 - fadeDist + WATER_WIDTH/2))/fadeDist);
-					}
-					else
-					{
-						h = -3.0;
-					}
-
-					if (h < -1.5)
-					{
-						placeTerrain(ix, iz, tWater);
-					}
-					else
-					{
-						placeTerrain(ix, iz, tShore);
-					}
-
-					setHeight(ix, iz, h);
-					if (h < 0){
-						addToClass(ix, iz, clWater);
-					}
-				}
-				else
-				{
-					setHeight(ix, iz, 3.1);
-					addToClass(ix, iz, clLand);
-				}
-			}
+	paintRiver({
+		"horizontal": mdd1 != 1,
+		"parallel": false,
+		"position": 0.5,
+		"width": randFloat(0.22, 0.3) + scaleByMapSize(1, 4) / 20,
+		"fadeDist": 0.025,
+		"deviation": 0,
+		"waterHeight": -3,
+		"landHeight": 3,
+		"meanderShort": 20,
+		"meanderLong": 0,
+		"waterFunc": (ix, iz, height) => {
+			placeTerrain(ix, iz, height < -1.5 ? tWater : tShore);
+			if (height < 0)
+				addToClass(ix, iz, clWater);
+		},
+		"landFunc": (ix, iz, shoreDist1, shoreDist2) => {
+			setHeight(ix, iz, 3.1);
+			addToClass(ix, iz, clLand);
 		}
-	}
+	});
 
 	// linked
 	if (mdd1 == 1) //vertical
