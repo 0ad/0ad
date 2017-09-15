@@ -81,11 +81,8 @@ if (md == 2) //continent
 		var fz = fractionToTiles(playerZ[i]);
 		var ix = round(fx);
 		var iz = round(fz);
-		addToClass(ix, iz, clPlayer);
-		addToClass(ix+5, iz, clPlayer);
-		addToClass(ix, iz+5, clPlayer);
-		addToClass(ix-5, iz, clPlayer);
-		addToClass(ix, iz-5, clPlayer);
+
+		addCivicCenterAreaToClass(ix, iz, clPlayer);
 
 		var placer = new ChainPlacer(2, floor(scaleByMapSize(5, 9)), floor(scaleByMapSize(5, 20)), 1, ix, iz, 0, [floor(scaleByMapSize(23, 50))]);
 		var elevationPainter = new SmoothElevationPainter(
@@ -402,11 +399,8 @@ else if (md == 5) //rivers and lake
 		var fz = fractionToTiles(playerZ[i]);
 		var ix = round(fx);
 		var iz = round(fz);
-		addToClass(ix, iz, clPlayer);
-		addToClass(ix+5, iz, clPlayer);
-		addToClass(ix, iz+5, clPlayer);
-		addToClass(ix-5, iz, clPlayer);
-		addToClass(ix, iz-5, clPlayer);
+
+		addCivicCenterAreaToClass(ix, iz, clPlayer);
 	}
 
 	for (var ix = 0; ix < mapSize; ix++)
@@ -511,11 +505,8 @@ else if (md == 6) //edge seas
 		var fz = fractionToTiles(playerZ[i]);
 		var ix = round(fx);
 		var iz = round(fz);
-		addToClass(ix, iz, clPlayer);
-		addToClass(ix+5, iz, clPlayer);
-		addToClass(ix, iz+5, clPlayer);
-		addToClass(ix-5, iz, clPlayer);
-		addToClass(ix, iz-5, clPlayer);
+
+		addCivicCenterAreaToClass(ix, iz, clPlayer);
 	}
 
 	var mdd2 = randIntInclusive(1,3);

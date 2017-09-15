@@ -76,11 +76,7 @@ for (var i = 0; i < numPlayers; i++)
 	var fz = fractionToTiles((i + 1) / (numPlayers + 1));
 	var ix = floor(fx);
 	var iz = floor(fz);
-	addToClass(ix, iz, clPlayer);
-	addToClass(ix+5, iz, clPlayer);
-	addToClass(ix, iz+5, clPlayer);
-	addToClass(ix-5, iz, clPlayer);
-	addToClass(ix, iz-5, clPlayer);
+	addCivicCenterAreaToClass(ix, iz, clPlayer);
 
 	// create the city patch
 	var cityRadius = radius/3;

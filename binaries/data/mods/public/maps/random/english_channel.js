@@ -88,11 +88,7 @@ for (var i = 0; i < numPlayers; i++)
 	var ix = round(fx);
 	var iz = round(fz);
 	// Setting tile class
-	addToClass(ix, iz, clPlayer);
-	addToClass(ix+5, iz, clPlayer);
-	addToClass(ix, iz+5, clPlayer);
-	addToClass(ix-5, iz, clPlayer);
-	addToClass(ix, iz-5, clPlayer);
+	addCivicCenterAreaToClass(ix, iz, clPlayer);
 
 	// create the city patch
 	var cityRadius = radius/3;

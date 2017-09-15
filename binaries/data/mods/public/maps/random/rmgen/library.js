@@ -620,6 +620,17 @@ function getTerrainTexture(x, y)
 	return g_Map.getTexture(x, y);
 }
 
+function addCivicCenterAreaToClass(ix, iz, tileClass)
+{
+	addToClass(ix, iz, tileClass);
+
+	addToClass(ix, iz + 5, tileClass);
+	addToClass(ix, iz - 5, tileClass);
+
+	addToClass(ix + 5, iz, tileClass);
+	addToClass(ix - 5, iz, tileClass);
+}
+
 /**
  * Returns the order to go through the points for the shortest closed path (array of indices)
  * @param {array} [points] - Points to be sorted of the form { "x": x_value, "y": y_value }

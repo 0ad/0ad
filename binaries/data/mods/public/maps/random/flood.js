@@ -117,12 +117,7 @@ for (let i = 0; i < numPlayers; ++i)
 	);
 	createArea(placer, [terrainPainter, elevationPainter, paintClass(clHill)], null);
 
-	// Mark a small area around the player's starting coördinates with the clPlayer class
-	addToClass(ix, iz, clPlayer);
-	addToClass(ix + 5, iz, clPlayer);
-	addToClass(ix, iz + 5, clPlayer);
-	addToClass(ix - 5, iz, clPlayer);
-	addToClass(ix, iz - 5, clPlayer);
+	addCivicCenterAreaToClass(ix, iz, clPlayer);
 
 	placeCivDefaultEntities(fx, fz, id, { "iberWall": false });
 

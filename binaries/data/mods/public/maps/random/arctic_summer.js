@@ -69,11 +69,7 @@ for (let i = 0; i < numPlayers; i++)
 	let ix = Math.round(fx);
 	let iz = Math.round(fz);
 
-	addToClass(ix, iz, clPlayer);
-	addToClass(ix+5, iz, clPlayer);
-	addToClass(ix, iz+5, clPlayer);
-	addToClass(ix-5, iz, clPlayer);
-	addToClass(ix, iz-5, clPlayer);
+	addCivicCenterAreaToClass(ix, iz, clPlayer);
 
 	// Create the city patch
 	let cityRadius = radius / 3;

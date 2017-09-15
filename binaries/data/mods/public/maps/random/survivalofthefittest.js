@@ -101,11 +101,7 @@ for (let i = 0; i < numPlayers; ++i)
 	let ix = round(fx);
 	let iz = round(fz);
 
-	addToClass(ix, iz, clPlayer);
-	addToClass(ix+5, iz, clPlayer);
-	addToClass(ix, iz+5, clPlayer);
-	addToClass(ix-5, iz, clPlayer);
-	addToClass(ix, iz-5, clPlayer);
+	addCivicCenterAreaToClass(ix, iz, clPlayer);
 
 	// Place default civ starting entities
 	var uDist = 6;

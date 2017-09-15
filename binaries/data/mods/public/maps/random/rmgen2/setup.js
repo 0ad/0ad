@@ -172,12 +172,7 @@ function createBase(player, walls = true)
 	var ix = round(fx);
 	var iz = round(fz);
 
-	// Mark player position and a tile in each direction to avoid placing things inside the CC
-	addToClass(ix, iz, g_TileClasses.player);
-	addToClass(ix + 5, iz, g_TileClasses.player);
-	addToClass(ix, iz + 5, g_TileClasses.player);
-	addToClass(ix - 5, iz, g_TileClasses.player);
-	addToClass(ix, iz - 5, g_TileClasses.player);
+	addCivicCenterAreaToClass(ix, iz, g_TileClasses.player);
 
 	if (walls && g_MapInfo.mapSize > 192)
 		placeCivDefaultEntities(fx, fz, player.id);
