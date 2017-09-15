@@ -302,55 +302,6 @@ m.Map.prototype.isObstructedTile = function(kx, ky, radius)
 	return null;
 };
 
-/**
- * returns the nearest obstructed point
- * TODO check that the landpassmap index is the same
- */
-m.Map.prototype.findNearestObstructed = function(k, radius)
-{
-	let w = this.width;
-	let ix = k % w;
-	let iy = Math.floor(k / w);
-	let n = this.cellSize > 8 ? 1 : Math.floor(8 / this.cellSize);
-	for (let i = 1; i <= n; ++i)
-	{
-		let kx = ix - i;
-		let ky = iy + i;
-		for (let j = 1; j <= 8*i; ++j)
-		{
-			if (this.isObstructedTile(kx, ky, radius))
-			{
-				let akx = Math.abs(kx-ix);
-				let aky = Math.abs(ky-iy);
-				if (akx >= aky)
-				{
-					if (kx > ix)
-						--kx;
-					else
-						++kx;
-				}
-				if (aky >= akx)
-				{
-					if (ky > iy)
-						--ky;
-					else
-						++ky;
-				}
-				return kx + w*ky;
-			}
-			if (j < 2*i+1)
-				++kx;
-			else if (j < 4*i+1)
-				--ky;
-			else if (j < 6*i+1)
-				--kx;
-			else
-				++ky;
-		}
-	}
-	return -1;
-};
-
 m.Map.prototype.dumpIm = function(name = "default.png", threshold = this.maxVal)
 {
 	Engine.DumpImage(name, this.map, this.width, this.height, threshold);

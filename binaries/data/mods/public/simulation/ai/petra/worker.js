@@ -843,7 +843,7 @@ m.Worker.prototype.gatherNearestField = function(gameState, baseID)
 			bestFarm = { "ent": field, "dist": dist, "rate": rate };
 	}
 	// If other field foundations available, better build them when rate becomes too small
-	if (!bestFarm || bestFarm.rate < 0.75 &&
+	if (!bestFarm || bestFarm.rate < 0.70 &&
 	                 gameState.getOwnFoundations().filter(API3.Filters.byClass("Field")).filter(API3.Filters.byMetadata(PlayerID, "base", baseID)).hasEntities())
 		return false;
 	gameState.ai.HQ.AddTCGatherer(bestFarm.ent.id());
