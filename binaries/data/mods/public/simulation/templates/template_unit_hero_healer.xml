@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_hero">
+  <Armour>
+    <Hack>4.0</Hack>
+    <Pierce>8.0</Pierce>
+    <Crush>4.0</Crush>
+  </Armour>
+  <Attack disable=""/>
+  <Cost>
+    <Resources>
+      <food>200</food>
+      <wood>150</wood>
+      <metal>200</metal>
+    </Resources>
+  </Cost>
+  <Heal>
+    <Range>20</Range>
+    <HP>6</HP>
+    <Rate>2000</Rate>
+    <UnhealableClasses datatype="tokens"/>
+    <HealableClasses datatype="tokens">Human</HealableClasses>
+  </Heal>
+  <Health>
+    <Max>1000</Max>
+  </Health>
+  <Identity>
+    <VisibleClasses datatype="tokens">-Soldier Healer Support</VisibleClasses>
+  </Identity>
+  <UnitMotion>
+    <WalkSpeed>9</WalkSpeed>
+    <Run>
+      <Speed>12.0</Speed>
+      <Range>200.0</Range>
+      <RangeMin>0.0</RangeMin>
+    </Run>
+  </UnitMotion>
+  <Vision>
+    <Range>30</Range>
+  </Vision>
+</Entity>
