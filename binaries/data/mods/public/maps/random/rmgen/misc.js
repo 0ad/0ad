@@ -328,147 +328,39 @@ function placeDefaultDecoratives(playerX, playerZ, template, tileclass, radius, 
 	}
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////
-// paintTerrainBasedOnHeight
-//
-//	paints the tiles which have a height between minheight and maxheight with the given terrain
-//	minheight: minimum height of the tile
-//	maxheight: maximum height of the tile
-//	mode: accepts 4 values. 0 means the it will select tiles with height more than minheight and less than maxheight.
-//  1 means it selects tiles with height more than or equal to minheight and less than max height. 2 means more than
-//  minheight and less than or equal to maxheight. 3 means more than or equal to minheight and less than or equal to maxheight
-//	terrain: intended terrain texture
-//
-///////////////////////////////////////////////////////////////////////////////////////////
-
-function paintTerrainBasedOnHeight(minheight, maxheight, mode, terrain)
+function modifyTilesBasedOnHeight(minHeight, maxHeight, mode, func)
 {
-	var mSize = g_Map.size;
-	for (var qx = 0; qx < mSize; qx++)
-	{
-		for (var qz = 0; qz < mSize; qz++)
+	for (let qx = 0; qx < g_Map.size; ++qx)
+		for (let qz = 0; qz < g_Map.size; ++qz)
 		{
-			if (mode == 0)
-			{
-				if ((g_Map.getHeight(qx, qz) > minheight)&&(g_Map.getHeight(qx, qz) < maxheight))
-				{
-					placeTerrain(qx, qz, terrain);
-				}
-			}
-			else if (mode == 1)
-			{
-				if ((g_Map.getHeight(qx, qz) >= minheight)&&(g_Map.getHeight(qx, qz) < maxheight))
-				{
-					placeTerrain(qx, qz, terrain);
-				}
-			}
-			else if (mode == 2)
-			{
-				if ((g_Map.getHeight(qx, qz) > minheight)&&(g_Map.getHeight(qx, qz) <= maxheight))
-				{
-					placeTerrain(qx, qz, terrain);
-				}
-			}
-			else if (mode == 3)
-			{
-				if ((g_Map.getHeight(qx, qz) >= minheight)&&(g_Map.getHeight(qx, qz) <= maxheight))
-				{
-					placeTerrain(qx, qz, terrain);
-				}
-			}
+			let height = g_Map.getHeight(qx, qz);
+			if (mode == 0 && height >  minHeight && height < maxHeight ||
+			    mode == 1 && height >= minHeight && height < maxHeight ||
+			    mode == 2 && height >  minHeight && height <= maxHeight ||
+			    mode == 3 && height >= minHeight && height <= maxHeight)
+			func(qx, qz);
 		}
-	}
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////
-// paintTileClassBasedOnHeight and unPaintTileClassBasedOnHeight
-//
-//	paints or unpaints the tiles which have a height between minheight and maxheight with the given tile class
-//	minheight: minimum height of the tile
-//	maxheight: maximum height of the tile
-//	mode: accepts 4 values. 0 means the it will select tiles with height more than minheight and less than maxheight.
-//  1 means it selects tiles with height more than or equal to minheight and less than max height. 2 means more than
-//  minheight and less than or equal to maxheight. 3 means more than or equal to minheight and less than or equal to maxheight
-//	tileclass: intended tile class
-//
-///////////////////////////////////////////////////////////////////////////////////////////
-
-function paintTileClassBasedOnHeight(minheight, maxheight, mode, tileclass)
+function paintTerrainBasedOnHeight(minHeight, maxHeight, mode, terrain)
 {
-	var mSize = g_Map.size;
-	for (var qx = 0; qx < mSize; qx++)
-	{
-		for (var qz = 0; qz < mSize; qz++)
-		{
-			if (mode == 0)
-			{
-				if ((g_Map.getHeight(qx, qz) > minheight)&&(g_Map.getHeight(qx, qz) < maxheight))
-				{
-					addToClass(qx, qz, tileclass);
-				}
-			}
-			else if (mode == 1)
-			{
-				if ((g_Map.getHeight(qx, qz) >= minheight)&&(g_Map.getHeight(qx, qz) < maxheight))
-				{
-					addToClass(qx, qz, tileclass);
-				}
-			}
-			else if (mode == 2)
-			{
-				if ((g_Map.getHeight(qx, qz) > minheight)&&(g_Map.getHeight(qx, qz) <= maxheight))
-				{
-					addToClass(qx, qz, tileclass);
-				}
-			}
-			else if (mode == 3)
-			{
-				if ((g_Map.getHeight(qx, qz) >= minheight)&&(g_Map.getHeight(qx, qz) <= maxheight))
-				{
-					addToClass(qx, qz, tileclass);
-				}
-			}
-		}
-	}
+	modifyTilesBasedOnHeight(minHeight, maxHeight, mode, (qx, qz) => {
+		placeTerrain(qx, qz, terrain);
+	});
 }
 
-function unPaintTileClassBasedOnHeight(minheight, maxheight, mode, tileclass)
+function paintTileClassBasedOnHeight(minHeight, maxHeight, mode, tileclass)
 {
-	var mSize = g_Map.size;
-	for (var qx = 0; qx < mSize; qx++)
-	{
-		for (var qz = 0; qz < mSize; qz++)
-		{
-			if (mode == 0)
-			{
-				if ((g_Map.getHeight(qx, qz) > minheight)&&(g_Map.getHeight(qx, qz) < maxheight))
-				{
-					removeFromClass(qx, qz, tileclass);
-				}
-			}
-			else if (mode == 1)
-			{
-				if ((g_Map.getHeight(qx, qz) >= minheight)&&(g_Map.getHeight(qx, qz) < maxheight))
-				{
-					removeFromClass(qx, qz, tileclass);
-				}
-			}
-			else if (mode == 2)
-			{
-				if ((g_Map.getHeight(qx, qz) > minheight)&&(g_Map.getHeight(qx, qz) <= maxheight))
-				{
-					removeFromClass(qx, qz, tileclass);
-				}
-			}
-			else if (mode == 3)
-			{
-				if ((g_Map.getHeight(qx, qz) >= minheight)&&(g_Map.getHeight(qx, qz) <= maxheight))
-				{
-					removeFromClass(qx, qz, tileclass);
-				}
-			}
-		}
-	}
+	modifyTilesBasedOnHeight(minHeight, maxHeight, mode, (qx, qz) => {
+		addToClass(qx, qz, tileclass);
+	});
+}
+
+function unPaintTileClassBasedOnHeight(minHeight, maxHeight, mode, tileclass)
+{
+	modifyTilesBasedOnHeight(minHeight, maxHeight, mode, (qx, qz) => {
+		removeFromClass(qx, qz, tileclass);
+	});
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
