@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -63,7 +63,7 @@ CVertexBuffer::VBChunk* CVertexBufferManager::Allocate(size_t vertexSize, size_t
 	typedef std::list<CVertexBuffer*>::iterator Iter;
 
 #if DUMP_VB_STATS
-	debug_printf("\n============================\n# allocate vsize=%d nverts=%d\n\n", vertexSize, numVertices);
+	debug_printf("\n============================\n# allocate vsize=%zu nverts=%zu\n\n", vertexSize, numVertices);
 	for (Iter iter = m_Buffers.begin(); iter != m_Buffers.end(); ++iter) {
 		CVertexBuffer* buffer = *iter;
 		if (buffer->CompatibleVertexType(vertexSize, usage, target))
@@ -90,7 +90,7 @@ CVertexBuffer::VBChunk* CVertexBufferManager::Allocate(size_t vertexSize, size_t
 
 	if (!result)
 	{
-		LOGERROR("Failed to create VBOs (%lu*%lu)", (unsigned long)vertexSize, (unsigned long)numVertices);
+		LOGERROR("Failed to create VBOs (%zu*%zu)", vertexSize, numVertices);
 	}
 
 	return result;
@@ -102,7 +102,7 @@ void CVertexBufferManager::Release(CVertexBuffer::VBChunk* chunk)
 {
 	ENSURE(chunk);
 #if DUMP_VB_STATS
-	debug_printf("\n============================\n# release %p nverts=%d\n\n", chunk, chunk->m_Count);
+	debug_printf("\n============================\n# release %p nverts=%zu\n\n", chunk, chunk->m_Count);
 #endif
 	chunk->m_Owner->Release(chunk);
 }
