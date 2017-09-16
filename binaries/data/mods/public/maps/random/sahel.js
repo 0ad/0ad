@@ -60,11 +60,7 @@ for (var i = 0; i < numPlayers; i++)
 	var fz = fractionToTiles(playerZ[i]);
 	var ix = round(fx);
 	var iz = round(fz);
-	addToClass(ix, iz, clPlayer);
-	addToClass(ix+5, iz, clPlayer);
-	addToClass(ix, iz+5, clPlayer);
-	addToClass(ix-5, iz, clPlayer);
-	addToClass(ix, iz-5, clPlayer);
+	addCivicCenterAreaToClass(ix, iz, clPlayer);
 
 	placeCivDefaultEntities(fx, fz, id);
 

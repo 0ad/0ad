@@ -408,49 +408,36 @@ for (let i = 0; i < numPlayers; ++i)
 RMS.SetProgress(20);
 
 log("Creating the river");
-var theta = randFloat(0, 0.8);
-var theta2 = randFloat(0, 1.2);
-var seed = randFloat(3, 5);
-var seed2 = randFloat(2, 6);
-var fadeDist = 0.05;
+paintRiver({
+	"horizontal": false,
+	"parallel": true,
+	"position": 0.5,
+	"width": waterWidth,
+	"fadeDist": 0.025,
+	"deviation": 0,
+	"waterHeight": -3,
+	"landHeight": 2,
+	"meanderShort": 30,
+	"meanderLong": 0,
+	"waterFunc": (ix, iz, height) => {
 
-for (let ix = 0; ix < mapSize; ++ix)
-	for (let iz = 0; iz < mapSize; ++iz)
-	{
-		let x = ix / (mapSize + 1);
-		let z = iz / (mapSize + 1);
-
-		// Add the rough shape of the water
-		let km = 30 / scaleByMapSize(35, 100);
-		let cu = km * rndRiver(theta + z * mapSize / 128, seed);
-		let cu2 = km * rndRiver(theta2 + z * mapSize / 128, seed2);
-
-		if (x < cu + 0.5 - waterWidth / 2)
-		{
-			addToClass(ix, iz, clLand[0]);
-			continue;
-		}
-
-		if (x > cu2 + 0.5 + waterWidth / 2)
-		{
-			addToClass(ix, iz, clLand[1]);
-			continue;
-		}
-
-		let height = -3;
-		if (x < cu + 0.5 + fadeDist - waterWidth / 2)
-			height = 2 - 5 * (1 - ((cu + 0.5 + fadeDist - waterWidth / 2) - x) / fadeDist);
-		else if (x > (cu2 + 0.5 - fadeDist + waterWidth / 2))
-			height = 2 - 5 * (1 - (x - (cu2 + 0.5 - fadeDist + waterWidth / 2)) / fadeDist);
-
-		setHeight(ix, iz, height);
 		if (height < 0.7)
 			addToClass(ix, iz, clWater);
 
 		// Distinguish left and right shoreline
 		if (0 < height && height < 1 && iz > ShorelineDistance && iz < mapSize - ShorelineDistance)
 			addToClass(ix, iz, clShore[ix < mapSize / 2 ? 0 : 1]);
+	},
+	"landFunc": (ix, iz, shoreDist1, shoreDist2) => {
+
+		if (shoreDist1 > 0)
+			addToClass(ix, iz, clLand[0]);
+
+		if (shoreDist2 < 0)
+			addToClass(ix, iz, clLand[1]);
 	}
+});
+
 RMS.SetProgress(30);
 
 log("Creating shores...");

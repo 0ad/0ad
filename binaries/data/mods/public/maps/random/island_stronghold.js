@@ -138,12 +138,7 @@ for (let i = 0; i < teams.length; ++i)
 	{
 		let [playerAngle, fx, fz, ix, iz] = getPlayerTileCoordinates(p, i, fractionX, fractionZ);
 
-		// mark a small area around the player's starting coordinates with the clPlayer class
-		addToClass(ix, iz, clPlayer);
-		addToClass(ix+5, iz, clPlayer);
-		addToClass(ix, iz+5, clPlayer);
-		addToClass(ix-5, iz, clPlayer);
-		addToClass(ix, iz-5, clPlayer);
+		addCivicCenterAreaToClass(ix, iz, clPlayer);
 
 		// create an island
 		let placer = new ChainPlacer(2, floor(scaleByMapSize(5, 11)), floor(scaleByMapSize(60, 250)), 1, ix, iz, 0, [floor(mapSize * 0.01)]);

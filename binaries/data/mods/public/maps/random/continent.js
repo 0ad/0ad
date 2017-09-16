@@ -96,11 +96,7 @@ for (var i = 0; i < numPlayers; i++)
 	fz = fractionToTiles(playerZ[i]);
 	ix = round(fx);
 	iz = round(fz);
-	addToClass(ix, iz, clPlayer);
-	addToClass(ix+5, iz, clPlayer);
-	addToClass(ix, iz+5, clPlayer);
-	addToClass(ix-5, iz, clPlayer);
-	addToClass(ix, iz-5, clPlayer);
+	addCivicCenterAreaToClass(ix, iz, clPlayer);
 
 	var placer = new ChainPlacer(2, floor(scaleByMapSize(5, 9)), floor(scaleByMapSize(5, 20)), 1, ix, iz, 0, [floor(scaleByMapSize(23, 50))]);
 	var elevationPainter = new SmoothElevationPainter(
