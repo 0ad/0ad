@@ -50,6 +50,7 @@ class ComponentTestHelper
 	CParamNode m_Param;
 	IComponent* m_Cmp;
 	EComponentTypeId m_Cid;
+	bool m_isSystemEntityInit = false;
 
 public:
 	ComponentTestHelper(shared_ptr<ScriptRuntime> runtime) :
@@ -79,7 +80,11 @@ public:
 		CEntityHandle handle;
 		if (ent == SYSTEM_ENTITY)
 		{
-			m_ComponentManager.InitSystemEntity();
+			if (!m_isSystemEntityInit)
+			{
+				m_ComponentManager.InitSystemEntity();
+				m_isSystemEntityInit = true;
+			}
 			handle = m_ComponentManager.GetSystemEntity();
 			m_Context.SetSystemEntity(handle);
 		}
@@ -99,7 +104,11 @@ public:
 		CEntityHandle handle;
 		if (ent == SYSTEM_ENTITY)
 		{
-			m_ComponentManager.InitSystemEntity();
+			if (!m_isSystemEntityInit)
+			{
+				m_ComponentManager.InitSystemEntity();
+				m_isSystemEntityInit = true;
+			}
 			handle = m_ComponentManager.GetSystemEntity();
 			m_Context.SetSystemEntity(handle);
 		}
