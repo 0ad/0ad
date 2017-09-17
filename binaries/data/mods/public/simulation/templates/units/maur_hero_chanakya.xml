@@ -1,69 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit">
-  <Armour>
-    <Hack>4.0</Hack>
-    <Pierce>8.0</Pierce>
-    <Crush>4.0</Crush>
-  </Armour>
+<Entity parent="template_unit_hero_healer">
   <Auras datatype="tokens">
-    units/heroes/hero_garrison
     units/heroes/maur_hero_chanakya_1
     units/heroes/maur_hero_chanakya_2
   </Auras>
-  <Cost>
-    <Population>2</Population>
-    <BuildTime>40</BuildTime>
-    <Resources>
-      <food>200</food>
-      <wood>150</wood>
-      <metal>200</metal>
-    </Resources>
-  </Cost>
-  <Heal>
-    <Range>20</Range>
-    <HP>6</HP>
-    <Rate>2000</Rate>
-    <UnhealableClasses datatype="tokens"/>
-    <HealableClasses datatype="tokens">Human</HealableClasses>
-  </Heal>
-  <Health>
-    <Max>1000</Max>
-  </Health>
   <Identity>
     <Civ>maur</Civ>
-    <Classes datatype="tokens">Human Organic</Classes>
-    <VisibleClasses datatype="tokens">Healer Hero Support</VisibleClasses>
     <GenericName>Acharya Chanakya</GenericName>
     <SpecificName>Acharya Chāṇakya</SpecificName>
     <Icon>units/maur_hero_chanakya.png</Icon>
-    <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
-  <Minimap>
-    <Type>hero</Type>
-  </Minimap>
-  <Selectable>
-    <Overlay>
-      <AlwaysVisible/>
-      <Texture>
-        <MainTexture>star/256x256.png</MainTexture>
-        <MainTextureMask>star/256x256_mask.png</MainTextureMask>
-      </Texture>
-    </Overlay>
-  </Selectable>
-  <TrainingRestrictions>
-    <Category>Hero</Category>
-  </TrainingRestrictions>
-  <UnitMotion>
-    <WalkSpeed>9</WalkSpeed>
-    <Run>
-      <Speed>12.0</Speed>
-      <Range>200.0</Range>
-      <RangeMin>0.0</RangeMin>
-    </Run>
-  </UnitMotion>
-  <Vision>
-    <Range>30</Range>
-  </Vision>
   <VisualActor>
     <Actor>units/mauryans/hero_chanakya.xml</Actor>
   </VisualActor>
