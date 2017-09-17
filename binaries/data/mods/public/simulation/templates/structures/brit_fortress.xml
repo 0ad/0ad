@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_fortress">
-  <Attack>
-    <Ranged>
-      <MaxRange>80.0</MaxRange>
-      <MinRange>0.0</MinRange>
-    </Ranged>
-  </Attack>
   <Cost>
     <PopulationBonus>12</PopulationBonus>
   </Cost>
@@ -46,9 +40,6 @@
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
-  <Vision>
-    <Range>100</Range>
-  </Vision>
   <VisualActor>
     <Actor>structures/britons/fortress_briton.xml</Actor>
     <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
