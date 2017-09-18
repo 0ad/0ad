@@ -31,9 +31,7 @@ DeathDamage.prototype.Schema =
 	"<element name='Shape' a:help='Shape of the splash damage, can be circular'><text/></element>" +
 	"<element name='Range' a:help='Size of the area affected by the splash'><ref name='nonNegativeDecimal'/></element>" +
 	"<element name='FriendlyFire' a:help='Whether the splash damage can hurt non enemy units'><data type='boolean'/></element>" +
-	"<element name='Hack' a:help='Hack damage strength'><ref name='nonNegativeDecimal'/></element>" +
-	"<element name='Pierce' a:help='Pierce damage strength'><ref name='nonNegativeDecimal'/></element>" +
-	"<element name='Crush' a:help='Crush damage strength'><ref name='nonNegativeDecimal'/></element>" +
+	DamageTypes.BuildSchema("damage strength") +
 	DeathDamage.prototype.bonusesSchema;
 
 DeathDamage.prototype.Init = function()
@@ -48,11 +46,11 @@ DeathDamage.prototype.GetDeathDamageStrengths = function()
 	let applyMods = damageType =>
 		ApplyValueModificationsToEntity("DeathDamage/" + damageType, +(this.template[damageType] || 0), this.entity);
 
-	return {
-		"hack": applyMods("Hack"),
-		"pierce": applyMods("Pierce"),
-		"crush": applyMods("Crush")
-	};
+	let ret = {};
+	for (let damageType of DamageTypes.GetTypes())
+		ret[damageType] = applyMods(damageType);
+
+	return ret;
 };
 
 DeathDamage.prototype.GetBonusTemplate = function()

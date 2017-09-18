@@ -656,14 +656,14 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 	let aurasTemplate = {};
 
 	if (!template.Auras)
-		return GetTemplateDataHelper(template, player, aurasTemplate, Resources);
+		return GetTemplateDataHelper(template, player, aurasTemplate, Resources, DamageTypes);
 
 	// Add aura name and description loaded from JSON file
 	let auraNames = template.Auras._string.split(/\s+/);
 	let cmpDataTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_DataTemplateManager);
 	for (let name of auraNames)
 		aurasTemplate[name] = cmpDataTemplateManager.GetAuraTemplate(name);
-	return GetTemplateDataHelper(template, player, aurasTemplate, Resources);
+	return GetTemplateDataHelper(template, player, aurasTemplate, Resources, DamageTypes);
 };
 
 GuiInterface.prototype.GetTechnologyData = function(player, data)

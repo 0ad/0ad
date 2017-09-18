@@ -100,9 +100,7 @@ Attack.prototype.Schema =
 	"<optional>" +
 		"<element name='Melee'>" +
 			"<interleave>" +
-				"<element name='Hack' a:help='Hack damage strength'><ref name='nonNegativeDecimal'/></element>" +
-				"<element name='Pierce' a:help='Pierce damage strength'><ref name='nonNegativeDecimal'/></element>" +
-				"<element name='Crush' a:help='Crush damage strength'><ref name='nonNegativeDecimal'/></element>" +
+				DamageTypes.BuildSchema("damage strength") +
 				"<element name='MaxRange' a:help='Maximum attack range (in metres)'><ref name='nonNegativeDecimal'/></element>" +
 				"<element name='PrepareTime' a:help='Time from the start of the attack command until the attack actually occurs (in milliseconds). This value relative to RepeatTime should closely match the \"event\" point in the actor&apos;s attack animation'>" +
 					"<data type='nonNegativeInteger'/>" +
@@ -119,9 +117,7 @@ Attack.prototype.Schema =
 	"<optional>" +
 		"<element name='Ranged'>" +
 			"<interleave>" +
-				"<element name='Hack' a:help='Hack damage strength'><ref name='nonNegativeDecimal'/></element>" +
-				"<element name='Pierce' a:help='Pierce damage strength'><ref name='nonNegativeDecimal'/></element>" +
-				"<element name='Crush' a:help='Crush damage strength'><ref name='nonNegativeDecimal'/></element>" +
+				DamageTypes.BuildSchema("damage strength") +
 				"<element name='MaxRange' a:help='Maximum attack range (in metres)'><ref name='nonNegativeDecimal'/></element>" +
 				"<element name='MinRange' a:help='Minimum attack range (in metres)'><ref name='nonNegativeDecimal'/></element>" +
 				"<optional>"+
@@ -149,9 +145,7 @@ Attack.prototype.Schema =
 							"<element name='Shape' a:help='Shape of the splash damage, can be circular or linear'><text/></element>" +
 							"<element name='Range' a:help='Size of the area affected by the splash'><ref name='nonNegativeDecimal'/></element>" +
 							"<element name='FriendlyFire' a:help='Whether the splash damage can hurt non enemy units'><data type='boolean'/></element>" +
-							"<element name='Hack' a:help='Hack damage strength'><ref name='nonNegativeDecimal'/></element>" +
-							"<element name='Pierce' a:help='Pierce damage strength'><ref name='nonNegativeDecimal'/></element>" +
-							"<element name='Crush' a:help='Crush damage strength'><ref name='nonNegativeDecimal'/></element>" +
+							DamageTypes.BuildSchema("damage strength") +
 							Attack.prototype.bonusesSchema +
 						"</interleave>" +
 					"</element>" +
@@ -176,9 +170,7 @@ Attack.prototype.Schema =
 	"<optional>" +
 		"<element name='Slaughter' a:help='A special attack to kill domestic animals'>" +
 			"<interleave>" +
-				"<element name='Hack' a:help='Hack damage strength'><ref name='nonNegativeDecimal'/></element>" +
-				"<element name='Pierce' a:help='Pierce damage strength'><ref name='nonNegativeDecimal'/></element>" +
-				"<element name='Crush' a:help='Crush damage strength'><ref name='nonNegativeDecimal'/></element>" +
+				DamageTypes.BuildSchema("damage strength") +
 				"<element name='MaxRange'><ref name='nonNegativeDecimal'/></element>" + // TODO: how do these work?
 				Attack.prototype.bonusesSchema +
 				Attack.prototype.preferredClassesSchema +
@@ -403,11 +395,11 @@ Attack.prototype.GetAttackStrengths = function(type)
 	if (type == "Capture")
 		return { "value": applyMods("Value") };
 
-	return {
-		"hack": applyMods("Hack"),
-		"pierce": applyMods("Pierce"),
-		"crush": applyMods("Crush")
-	};
+	let ret = {};
+	for (let damageType of DamageTypes.GetTypes())
+		ret[damageType] = applyMods(damageType);
+
+	return ret;
 };
 
 Attack.prototype.GetSplashDamage = function(type)
@@ -502,7 +494,6 @@ Attack.prototype.PerformAttack = function(type, target)
 		let cmpProjectileManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ProjectileManager);
 		let id = cmpProjectileManager.LaunchProjectileAtPoint(this.entity, realTargetPosition, horizSpeed, gravity);
 
-		cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 		let data = {
 			"type": type,
 			"attacker": this.entity,

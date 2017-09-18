@@ -1,4 +1,5 @@
 Engine.LoadHelperScript("DamageBonus.js");
+Engine.LoadHelperScript("DamageTypes.js");
 Engine.LoadHelperScript("Player.js");
 Engine.LoadHelperScript("Sound.js");
 Engine.LoadHelperScript("ValueModification.js");

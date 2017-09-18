@@ -1,4 +1,5 @@
 Engine.LoadHelperScript("DamageBonus.js");
+Engine.LoadHelperScript("DamageTypes.js");
 Engine.LoadHelperScript("ValueModification.js");
 Engine.LoadComponentScript("interfaces/AuraManager.js");
 Engine.LoadComponentScript("interfaces/Damage.js");
@@ -26,9 +27,9 @@ let template = {
 };
 
 let modifiedDamage = {
-	"hack": 0.0,
-	"pierce": 215.0,
-	"crush": 35.0
+	"Hack": 0.0,
+	"Pierce": 215.0,
+	"Crush": 35.0
 };
 
 let cmpDeathDamage = ConstructComponent(deadEnt, "DeathDamage", template);

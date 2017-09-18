@@ -23,7 +23,7 @@ function getActualUpgradeData(upgradesInfo)
 	{
 		upgrade.entity = upgrade.entity.replace("{civ}", g_SelectedCiv);
 
-		let data = GetTemplateDataHelper(loadTemplate(upgrade.entity), null, g_AuraData, g_ResourceData);
+		let data = GetTemplateDataHelper(loadTemplate(upgrade.entity), null, g_AuraData, g_ResourceData, g_DamageTypes);
 		data.cost = upgrade.cost;
 		data.icon = upgrade.icon || data.icon;
 		data.tooltip = upgrade.tooltip || data.tooltip;
@@ -177,7 +177,7 @@ function unravelPhases(techs)
 function GetTemplateData(templateName)
 {
 	var template = loadTemplate(templateName);
-	return GetTemplateDataHelper(template, null, g_AuraData, g_ResourceData, g_CurrentModifiers);
+	return GetTemplateDataHelper(template, null, g_AuraData, g_ResourceData, g_DamageTypes, g_CurrentModifiers);
 }
 
 function isPairTech(technologyCode)
