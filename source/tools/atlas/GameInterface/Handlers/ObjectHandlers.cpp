@@ -535,7 +535,7 @@ MESSAGEHANDLER(ObjectPreview)
 		CmpPtr<ICmpPosition> cmpPosition(*g_Game->GetSimulation2(), g_PreviewEntityID);
 		if (cmpPosition)
 		{
-			CVector3D pos = GetUnitPos(msg->pos, cmpPosition->IsFloating());
+			CVector3D pos = GetUnitPos(msg->pos, cmpPosition->CanFloat());
 			cmpPosition->JumpTo(entity_pos_t::FromFloat(pos.X), entity_pos_t::FromFloat(pos.Z));
 
 			float angle;
@@ -730,7 +730,7 @@ BEGIN_COMMAND(MoveObjects)
 		CmpPtr<ICmpPosition> cmpPosition(*g_Game->GetSimulation2(), (entity_id_t)msg->pivot);
 		if (cmpPosition && cmpPosition->IsInWorld())
 		{
-			pivotFloating = cmpPosition->IsFloating();
+			pivotFloating = cmpPosition->CanFloat();
 			CFixedVector3D pivotFixed = cmpPosition->GetPosition();
 			pivotPos = CVector3D(pivotFixed.X.ToFloat(), pivotFixed.Y.ToFloat(), pivotFixed.Z.ToFloat());
 		}

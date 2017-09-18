@@ -149,7 +149,7 @@ public:
 		// Move into the world, the fixed height uses the water level minus the float depth as a base
 		cmp->JumpTo(entity_pos_t::FromInt(0), entity_pos_t::FromInt(0));
 		TS_ASSERT(cmp->IsInWorld());
-		TS_ASSERT(cmp->IsFloating());
+		TS_ASSERT(cmp->CanFloat());
 		TS_ASSERT_EQUALS(cmp->GetHeightOffset(), entity_pos_t::FromInt(23));
 		TS_ASSERT_EQUALS(cmp->GetHeightFixed(), entity_pos_t::FromInt(122));
 
@@ -173,7 +173,7 @@ public:
 
 		// The entity can't float anymore, the fixed height is computed from the terrain base
 		cmp->SetFloating(false);
-		TS_ASSERT(!cmp->IsFloating());
+		TS_ASSERT(!cmp->CanFloat());
 		TS_ASSERT_EQUALS(cmp->GetHeightFixed(), entity_pos_t::FromInt(73));
 		TS_ASSERT_EQUALS(cmp->GetHeightOffset(), entity_pos_t::FromInt(23));
 		TS_ASSERT_EQUALS(cmp->GetPosition(), fixedvec(100, 73, 200));
@@ -201,7 +201,7 @@ public:
 
 		// The entity can't float anymore and height is not relative, fixed height doesn't change
 		cmp->SetFloating(false);
-		TS_ASSERT(!cmp->IsFloating());
+		TS_ASSERT(!cmp->CanFloat());
 		TS_ASSERT_EQUALS(cmp->GetHeightFixed(), entity_pos_t::FromInt(122));
 		TS_ASSERT_EQUALS(cmp->GetHeightOffset(), entity_pos_t::FromInt(72));
 		TS_ASSERT_EQUALS(cmp->GetPosition(), fixedvec(100, 122, 200));

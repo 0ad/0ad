@@ -1771,7 +1771,7 @@ void CCmpUnitMotion::RenderPath(const WaypointPath& path, std::vector<SOverlayLi
 	bool floating = false;
 	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 	if (cmpPosition)
-		floating = cmpPosition->IsFloating();
+		floating = cmpPosition->CanFloat();
 
 	lines.clear();
 	std::vector<float> waypointCoords;

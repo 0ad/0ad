@@ -35,7 +35,7 @@ DEFINE_INTERFACE_METHOD_1("SetHeightFixed", void, ICmpPosition, SetHeightFixed, 
 DEFINE_INTERFACE_METHOD_CONST_0("GetHeightFixed", entity_pos_t, ICmpPosition, GetHeightFixed)
 DEFINE_INTERFACE_METHOD_CONST_0("IsHeightRelative", bool, ICmpPosition, IsHeightRelative)
 DEFINE_INTERFACE_METHOD_1("SetHeightRelative", void, ICmpPosition, SetHeightRelative, bool)
-DEFINE_INTERFACE_METHOD_CONST_0("IsFloating", bool, ICmpPosition, IsFloating)
+DEFINE_INTERFACE_METHOD_CONST_0("CanFloat", bool, ICmpPosition, CanFloat)
 DEFINE_INTERFACE_METHOD_1("SetFloating", void, ICmpPosition, SetFloating, bool)
 DEFINE_INTERFACE_METHOD_1("SetConstructionProgress", void, ICmpPosition, SetConstructionProgress, fixed)
 DEFINE_INTERFACE_METHOD_CONST_0("GetPosition", CFixedVector3D, ICmpPosition, GetPosition)

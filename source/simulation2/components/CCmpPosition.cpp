@@ -467,7 +467,7 @@ public:
 		AdvertiseInterpolatedPositionChanges();
 	}
 
-	virtual bool IsFloating() const
+	virtual bool CanFloat() const
 	{
 		return m_Floating;
 	}

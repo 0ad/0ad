@@ -137,9 +137,9 @@ public:
 	virtual void SetHeightRelative(bool flag) = 0;
 
 	/**
-	 * Returns whether the entity floats on water.
+	 * Returns whether the entity can float on water.
 	 */
-	virtual bool IsFloating() const = 0;
+	virtual bool CanFloat() const = 0;
 
 	/**
 	 * Set the entity to float on water
