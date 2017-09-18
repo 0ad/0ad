@@ -70,7 +70,5 @@ TS_ASSERT(cmpResourceSupply.IsAvailable(1, 70));
 
 TS_ASSERT_UNEVAL_EQUALS(cmpResourceSupply.TakeResources(800), { "amount": 700, "exhausted": true });
 TS_ASSERT_EQUALS(cmpResourceSupply.GetCurrentAmount(), 0);
-// The following assertion is not expected
-// The resource should not be available when exhausted
-// (even if the entity is in the destroy queue)
-TS_ASSERT(cmpResourceSupply.IsAvailable(1, 70));
+// The resource is not available when exhausted
+TS_ASSERT(!cmpResourceSupply.IsAvailable(1, 70));

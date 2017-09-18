@@ -5,6 +5,9 @@ ResourceSupply.prototype.Schema =
 	"<a:example>" +
 		"<Amount>1000</Amount>" +
 		"<Type>food.meat</Type>" +
+		"<KillBeforeGather>false</KillBeforeGather>" +
+		"<MaxGatherers>25</MaxGatherers>" +
+		"<DiminishingReturns>0.8</DiminishingReturns>" +
 	"</a:example>" +
 	"<element name='KillBeforeGather' a:help='Whether this entity must be killed (health reduced to 0) before its resources can be gathered'>" +
 		"<data type='boolean'/>" +
@@ -120,9 +123,7 @@ ResourceSupply.prototype.GetType = function()
 
 ResourceSupply.prototype.IsAvailable = function(player, gathererID)
 {
-	if (this.GetNumGatherers() < this.GetMaxGatherers() || this.gatherers[player].indexOf(gathererID) !== -1)
-		return true;
-	return false;
+	return this.amount > 0 && (this.GetNumGatherers() < this.GetMaxGatherers() || this.gatherers[player].indexOf(gathererID) !== -1);
 };
 
 ResourceSupply.prototype.AddGatherer = function(player, gathererID)
