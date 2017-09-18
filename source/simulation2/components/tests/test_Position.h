@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,6 +18,31 @@
 #include "simulation2/system/ComponentTest.h"
 
 #include "simulation2/components/ICmpPosition.h"
+#include "simulation2/components/ICmpWaterManager.h"
+
+class MockWater : public ICmpWaterManager
+{
+public:
+	DEFAULT_MOCK_COMPONENT()
+
+	virtual entity_pos_t GetWaterLevel(entity_pos_t UNUSED(x), entity_pos_t UNUSED(z)) const
+	{
+		return entity_pos_t::FromInt(100);
+	}
+
+	virtual float GetExactWaterLevel(float UNUSED(x), float UNUSED(z)) const
+	{
+		return 100.f;
+	}
+
+	virtual void RecomputeWaterData()
+	{
+	}
+
+	virtual void SetWaterLevel(entity_pos_t UNUSED(h))
+	{
+	}
+};
 
 class TestCmpPosition : public CxxTest::TestSuite
 {
@@ -107,6 +132,79 @@ public:
 		TS_ASSERT_EQUALS(cmp->GetInterpolatedTransform(1.0f).GetTranslation(), CVector3D(300, 60, 100));
 
 		// TODO: Test the rotation methods
+	}
+
+	void test_water()
+	{
+		ComponentTestHelper test(g_ScriptRuntime);
+
+		MockTerrain terrain;
+		test.AddMock(SYSTEM_ENTITY, IID_Terrain, terrain);
+
+		MockWater water;
+		test.AddMock(SYSTEM_ENTITY, IID_WaterManager, water);
+
+		ICmpPosition* cmp = test.Add<ICmpPosition>(CID_Position, "<Anchor>upright</Anchor><Altitude>23</Altitude><Floating>true</Floating><FloatDepth>1</FloatDepth>");
+
+		// Move into the world, the fixed height uses the water level minus the float depth as a base
+		cmp->JumpTo(entity_pos_t::FromInt(0), entity_pos_t::FromInt(0));
+		TS_ASSERT(cmp->IsInWorld());
+		TS_ASSERT(cmp->IsFloating());
+		TS_ASSERT_EQUALS(cmp->GetHeightOffset(), entity_pos_t::FromInt(23));
+		TS_ASSERT_EQUALS(cmp->GetHeightFixed(), entity_pos_t::FromInt(122));
+
+		// Change height offset, the fixed height changes too
+		cmp->SetHeightOffset(entity_pos_t::FromInt(11));
+		TS_ASSERT_EQUALS(cmp->GetHeightOffset(), entity_pos_t::FromInt(11));
+		TS_ASSERT_EQUALS(cmp->GetHeightFixed(), entity_pos_t::FromInt(110));
+		TS_ASSERT_EQUALS(cmp->GetPosition(), fixedvec(0, 110, 0));
+
+		// Move
+		cmp->MoveTo(entity_pos_t::FromInt(100), entity_pos_t::FromInt(200));
+		TS_ASSERT_EQUALS(cmp->GetInterpolatedTransform(0.0f).GetTranslation(), CVector3D(0, 122, 0));
+		TS_ASSERT_EQUALS(cmp->GetInterpolatedTransform(0.5f).GetTranslation(), CVector3D(50, 116, 100));
+		TS_ASSERT_EQUALS(cmp->GetInterpolatedTransform(1.0f).GetTranslation(), CVector3D(100, 110, 200));
+
+		// Change fixed height, the height offset changes too
+		cmp->SetHeightFixed(entity_pos_t::FromInt(122));
+		TS_ASSERT_EQUALS(cmp->GetHeightFixed(), entity_pos_t::FromInt(122));
+		TS_ASSERT_EQUALS(cmp->GetHeightOffset(), entity_pos_t::FromInt(23));
+		TS_ASSERT_EQUALS(cmp->GetPosition(), fixedvec(100, 122, 200));
+
+		// The entity can't float anymore, the fixed height is computed from the terrain base
+		cmp->SetFloating(false);
+		TS_ASSERT(!cmp->IsFloating());
+		TS_ASSERT_EQUALS(cmp->GetHeightFixed(), entity_pos_t::FromInt(73));
+		TS_ASSERT_EQUALS(cmp->GetHeightOffset(), entity_pos_t::FromInt(23));
+		TS_ASSERT_EQUALS(cmp->GetPosition(), fixedvec(100, 73, 200));
+
+		// The entity can float again
+		cmp->SetFloating(true);
+		TS_ASSERT_EQUALS(cmp->GetHeightFixed(), entity_pos_t::FromInt(122));
+		TS_ASSERT_EQUALS(cmp->GetHeightOffset(), entity_pos_t::FromInt(23));
+		TS_ASSERT_EQUALS(cmp->GetPosition(), fixedvec(100, 122, 200));
+
+		// Use non relative height, entity will not follow terrain/water height.
+		TS_ASSERT(cmp->IsHeightRelative());
+		cmp->SetHeightRelative(false);
+		TS_ASSERT(!cmp->IsHeightRelative());
+
+		cmp->SetHeightOffset(entity_pos_t::FromInt(11));
+		TS_ASSERT_EQUALS(cmp->GetHeightOffset(), entity_pos_t::FromInt(11));
+		TS_ASSERT_EQUALS(cmp->GetHeightFixed(), entity_pos_t::FromInt(110));
+		TS_ASSERT_EQUALS(cmp->GetPosition(), fixedvec(100, 110, 200));
+
+		cmp->SetHeightFixed(entity_pos_t::FromInt(122));
+		TS_ASSERT_EQUALS(cmp->GetHeightFixed(), entity_pos_t::FromInt(122));
+		TS_ASSERT_EQUALS(cmp->GetHeightOffset(), entity_pos_t::FromInt(23));
+		TS_ASSERT_EQUALS(cmp->GetPosition(), fixedvec(100, 122, 200));
+
+		// The entity can't float anymore and height is not relative, fixed height doesn't change
+		cmp->SetFloating(false);
+		TS_ASSERT(!cmp->IsFloating());
+		TS_ASSERT_EQUALS(cmp->GetHeightFixed(), entity_pos_t::FromInt(122));
+		TS_ASSERT_EQUALS(cmp->GetHeightOffset(), entity_pos_t::FromInt(72));
+		TS_ASSERT_EQUALS(cmp->GetPosition(), fixedvec(100, 122, 200));
 	}
 
 	void test_serialize()
