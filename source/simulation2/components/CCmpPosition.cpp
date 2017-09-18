@@ -68,6 +68,8 @@ public:
 	} m_AnchorType;
 
 	bool m_Floating;
+	entity_pos_t m_FloatDepth;
+
 	float m_RotYSpeed; // maximum radians per second, used by InterpolatedRotY to follow RotY
 
 	// Dynamic state:
@@ -107,6 +109,7 @@ public:
 				"<Anchor>upright</Anchor>"
 				"<Altitude>0.0</Altitude>"
 				"<Floating>false</Floating>"
+				"<FloatDepth>0.0</FloatDepth>"
 				"<TurnRate>6.0</TurnRate>"
 			"</a:example>"
 			"<element name='Anchor' a:help='Automatic rotation to follow the slope of terrain'>"
@@ -122,6 +125,9 @@ public:
 			"</element>"
 			"<element name='Floating' a:help='Whether the entity floats on water'>"
 				"<data type='boolean'/>"
+			"</element>"
+			"<element name='FloatDepth' a:help='The depth at which an entity floats on water (needs Floating to be true)'>"
+				"<ref name='nonNegativeDecimal'/>"
 			"</element>"
 			"<element name='TurnRate' a:help='Maximum graphical rotation speed around Y axis, in radians per second'>"
 				"<ref name='positiveDecimal'/>"
@@ -146,6 +152,7 @@ public:
 		m_Y = paramNode.GetChild("Altitude").ToFixed();
 		m_RelativeToGround = true;
 		m_Floating = paramNode.GetChild("Floating").ToBool();
+		m_FloatDepth = paramNode.GetChild("FloatDepth").ToFixed();
 
 		m_RotYSpeed = paramNode.GetChild("TurnRate").ToFixed().ToFloat();
 
@@ -185,6 +192,7 @@ public:
 		serialize.NumberFixed_Unbounded("altitude", m_Y);
 		serialize.Bool("relative", m_RelativeToGround);
 		serialize.Bool("floating", m_Floating);
+		serialize.NumberFixed_Unbounded("float depth", m_FloatDepth);
 		serialize.NumberFixed_Unbounded("constructionprogress", m_ConstructionProgress);
 
 		if (serialize.IsDebug())
@@ -241,6 +249,7 @@ public:
 		deserialize.NumberFixed_Unbounded("altitude", m_Y);
 		deserialize.Bool("relative", m_RelativeToGround);
 		deserialize.Bool("floating", m_Floating);
+		deserialize.NumberFixed_Unbounded("float depth", m_FloatDepth);
 		deserialize.NumberFixed_Unbounded("constructionprogress", m_ConstructionProgress);
 		// TODO: should there be range checks on all these values?
 
@@ -401,6 +410,7 @@ public:
 		if (m_RelativeToGround)
 			return m_Y;
 		// not relative to the ground, so the height offset is m_Y - ground height
+		// except when floating, when the height offset is m_Y - water level + float depth
 		entity_pos_t baseY;
 		CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
 		if (cmpTerrain)
@@ -410,7 +420,7 @@ public:
 		{
 			CmpPtr<ICmpWaterManager> cmpWaterManager(GetSystemEntity());
 			if (cmpWaterManager)
-				baseY = std::max(baseY, cmpWaterManager->GetWaterLevel(m_X, m_Z));
+				baseY = std::max(baseY, cmpWaterManager->GetWaterLevel(m_X, m_Z) - m_FloatDepth);
 		}
 		return m_Y - baseY;
 	}
@@ -428,6 +438,7 @@ public:
 		if (!m_RelativeToGround)
 			return m_Y;
 		// relative to the ground, so the fixed height = ground height + m_Y
+		// except when floating, when the fixed height = water level - float depth + m_Y
 		entity_pos_t baseY;
 		CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
 		if (cmpTerrain)
@@ -437,7 +448,7 @@ public:
 		{
 			CmpPtr<ICmpWaterManager> cmpWaterManager(GetSystemEntity());
 			if (cmpWaterManager)
-				baseY = std::max(baseY, cmpWaterManager->GetWaterLevel(m_X, m_Z));
+				baseY = std::max(baseY, cmpWaterManager->GetWaterLevel(m_X, m_Z) - m_FloatDepth);
 		}
 		return m_Y + baseY;
 	}
@@ -692,7 +703,7 @@ public:
 			{
 				CmpPtr<ICmpWaterManager> cmpWaterManager(GetSystemEntity());
 				if (cmpWaterManager)
-					baseY = std::max(baseY, cmpWaterManager->GetExactWaterLevel(x, z));
+					baseY = std::max(baseY, cmpWaterManager->GetExactWaterLevel(x, z) - m_FloatDepth.ToFloat());
 			}
 		}
 
@@ -737,8 +748,8 @@ public:
 				CmpPtr<ICmpWaterManager> cmpWaterManager(GetSimContext(), SYSTEM_ENTITY);
 				if (cmpWaterManager)
 				{
-					baseY0 = std::max(baseY0, cmpWaterManager->GetExactWaterLevel(x0, z0));
-					baseY1 = std::max(baseY1, cmpWaterManager->GetExactWaterLevel(x1, z1));
+					baseY0 = std::max(baseY0, cmpWaterManager->GetExactWaterLevel(x0, z0) - m_FloatDepth.ToFloat());
+					baseY1 = std::max(baseY1, cmpWaterManager->GetExactWaterLevel(x1, z1) - m_FloatDepth.ToFloat());
 				}
 			}
 		}
