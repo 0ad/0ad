@@ -74,6 +74,7 @@ Attack.prototype.Schema =
 			"<RepeatTime>1600</RepeatTime>" +
 			"<ProjectileSpeed>50.0</ProjectileSpeed>" +
 			"<Spread>2.5</Spread>" +
+			"<Delay>1000</Delay>" +
 			"<Bonuses>" +
 				"<Bonus1>" +
 					"<Classes>Cavalry</Classes>" +
@@ -136,6 +137,7 @@ Attack.prototype.Schema =
 					"<ref name='nonNegativeDecimal'/>" +
 				"</element>" +
 				"<element name='Spread' a:help='Standard deviation of the bivariate normal distribution of hits at 100 meters. A disk at 100 meters from the attacker with this radius (2x this radius, 3x this radius) is expected to include the landing points of 39.3% (86.5%, 98.9%) of the rounds.'><ref name='nonNegativeDecimal'/></element>" +
+				"<element name='Delay' a:help='Delay of the damage in milliseconds'><ref name='nonNegativeDecimal'/></element>" +
 				Attack.prototype.bonusesSchema +
 				Attack.prototype.preferredClassesSchema +
 				Attack.prototype.restrictedClassesSchema +
@@ -515,7 +517,7 @@ Attack.prototype.PerformAttack = function(type, target)
 			data.splashStrengths = this.GetAttackStrengths(type + ".Splash");
 			data.splashBonus = this.GetBonusTemplate(type + ".Splash");
 		}
-		cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_Damage, "MissileHit", timeToTarget * 1000, data);
+		cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_Damage, "MissileHit", timeToTarget * 1000 + +this.template.Ranged.Delay, data);
 	}
 	else if (type == "Capture")
 	{
