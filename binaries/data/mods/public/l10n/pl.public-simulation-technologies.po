@@ -16,6 +16,7 @@
 # Marcin S <dzidek1003@o2.pl>, 2016-2017
 # Marek Opłotny <oplotny.marek@gmail.com>, 2017
 # mhnxo <mhnxo123@gmail.com>, 2014
+# Michał Karol, 2017
 # Michał Karol, 2015
 # Michał Koźlarek <m.kozlarek@vp.pl>, 2015
 # miragae <miragae@gmail.com>, 2014-2015
@@ -30,8 +31,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-09-06 09:08+0000\n"
-"Last-Translator: Bartosz B <bartosz@bobin.eu>\n"
+"PO-Revision-Date: 2017-09-16 23:51+0000\n"
+"Last-Translator: Michał Karol\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,7 +46,7 @@ msgid ""
 "health, 1 extra armor level of every type, 20% extra attack for melee units,"
 " 4m extra range and 5% better precision for ranged units, faster movement "
 "speeds and extra heal speed and range for healers."
-msgstr ""
+msgstr "\n"
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
@@ -1634,7 +1635,7 @@ msgstr "Spraw by twoje jednostki były o 50% droższe przy próbie przekupstwa."
 
 #: simulation/data/technologies/spy_counter.jsongenericName
 msgid "Counterintelligence"
-msgstr ""
+msgstr "Kontrwywiad"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsondescription
 msgid "Improve the international trading profit."
@@ -1894,7 +1895,7 @@ msgstr "Zatrudnij profesjonalnych najemników by walczyli u twego boku"
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid ""
 "Mercenaries are promoted to advanced rank but require +20% training time."
-msgstr ""
+msgstr "Najemnicy zostają promowani do rangi zaawansowani, ale wymagają +20% więcej czasu na szkolenie."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsongenericName
 msgid "Expertise In War"
@@ -1949,13 +1950,13 @@ msgid ""
 "Carthaginians built their city walls in three concentric circuits. These "
 "walls were never breached. Even when the city was taken by the Romans, it "
 "was via the city's harbor, not by storming its walls."
-msgstr ""
+msgstr "Kartagińczycy budowali mury miejskie w trzech koncentrycznych obwodach. Mury te nigdy nie były przełamane. Nawet gdy miasto zajęli Rzymianie, zrobili to przez port, nie zaś przez szturmowanie murów."
 
 #: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsontooltip
 msgid ""
 "Carthaginian walls, gates, and wall towers have 3x the health of a standard "
 "wall, but also cost twice as much and take twice as long to build."
-msgstr ""
+msgstr "Kartagińskie mury, bramy i wieże na murach mają 3-krotną wytrzymałość zwykłych murów, ale za to kosztują dwa razy więcej i dwa razy dłużej powstają."
 
 #: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsongenericName
 msgid "Triple Walls"
@@ -2413,11 +2414,11 @@ msgstr "Tradycja łucznicza"
 msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
 "resource in India."
-msgstr ""
+msgstr "Maurjowie budowali mury miejskie z drewna, powszechnie dostępnego surowca w Indii."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsontooltip
 msgid "Mauryan city walls have -20% less health and -20% less build time."
-msgstr ""
+msgstr "Mury miasta Maurjorów mają zmniejszone zdrowie o -20% i  czas budowy o -20%."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"
@@ -2449,7 +2450,7 @@ msgstr "Jednostki piechoty bohaterów Nieśmiertelnych szkolą się dwa razy szy
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
 msgid "Anusiya Champion Infantry -50% train time, but also -10% health."
-msgstr ""
+msgstr "Jednostki Piechoty Bohaterów Nieśmiertelnych mają zmniejszony o -50% czas szkolenia, ale tracą -10% zdrowia."
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"

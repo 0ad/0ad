@@ -7,12 +7,13 @@
 # miragae <miragae@gmail.com>, 2017
 # Marek Balicki <m.s.balicki@gmail.com>, 2017
 # Bartosz B <bartosz@bobin.eu>, 2017
+# Michał Karol <michal.p.karol+transifex@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2017-09-01 09:05+0200\n"
 "PO-Revision-Date: 2017-09-01 09:05+0200\n"
-"Last-Translator: Bartosz B <bartosz@bobin.eu>, 2017\n"
+"Last-Translator: Michał Karol <michal.p.karol+transifex@gmail.com>, 2017\n"
 "Language-Team: Polish (https://www.transifex.com/wildfire-games/teams/17418/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -249,6 +250,9 @@ msgid ""
 "Now that you are in City Phase, build a fortress nearby (gather some stone "
 "first if needed) and then use it to build 2 Battering Rams."
 msgstr ""
+"Teraz, gdy jesteś już w fazie dużego miasta wybuduj w pobliżu fortecę "
+"(zgromadź wystarczająca ilość kamienia, jeśli potrzeba), a następnie użyj "
+"jej do budowy 2 taranów."
 
 #: maps/tutorials/Introductory_Tutorial.js:349
 msgid ""
@@ -256,14 +260,17 @@ msgid ""
 "find the enemy Civil Center on the map. Once The enemy's base has been "
 "spotted, send your siege weapons and all remaining soldiers to destroy it.\n"
 msgstr ""
+"Zatrzymaj wszystkich swoich żołnierzy zbierających zasoby i zleć małym "
+"grupkom poszukiwania centrum osady wroga. Kiedy baza wroga zostanie "
+"zauważona, wyślij maszyny oblężnicze i resztę żołnierzy aby ją zniszczyć."
 
 #: maps/tutorials/Introductory_Tutorial.js:350
 msgid "Female citizens should continue to gather resources."
-msgstr ""
+msgstr "Kobiety powinny kontynuować zbieranie zasobów."
 
 #: maps/tutorials/Introductory_Tutorial.js:361
 msgid "The enemy has been defeated. These tutorial tasks are now completed."
-msgstr ""
+msgstr "Wróg został pokonany. Zadania samouczka zostały ukończone. "
 
 #: maps/tutorials/starting_economy_walkthrough.js:4
 msgid ""
@@ -272,12 +279,18 @@ msgid ""
 " ultimately, your goal will be to develop and expand your empire, often by "
 "evolving to 'Town Phase' and 'City Phase' afterward.\n"
 msgstr ""
+"Ten samouczek wprowadzi Cię w podstawy rozwijania twojej ekonomii. Zazwyczaj"
+" rozczniesz grę ze zbudowanym Centrum Osady oraz kilkoma jednostkami w Fazie"
+" Wioski, a twoim celem będzie dbać o imperium i poszerzać jego granice, "
+"często poprzez rozwój do Fazy Miasta, a następnie do Fazy Dużego Miasta.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:5
 msgid ""
 "\n"
 "Before starting, you can toggle between fullscreen and windowed mode using Alt+Enter. You can also change the level of zoom using the mouse wheel and the camera view using any of your keyboard's arrow keys.\n"
 msgstr ""
+"\n"
+"Zanim zaczniesz, możesz przełączać tryb pełnoekranowy i okienkowy korzystając ze skrótu Alt+Enter. Możesz również zmienić poziom przybliżenia korzystając ze scrolla, a widok kamery wciskając dowolną strzałkę na klawiaturze.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:6
 msgid "Adjust the game window to your preferences.\n"
@@ -322,6 +335,13 @@ msgid ""
 "Citizen Soldiers can gather any land resources while Cavalry Citizen "
 "Soldiers can only gather meat from hunted animals.\n"
 msgstr ""
+"Masz do wyboru dwa główne rodzaje początkowych jednostek: Obywatelki oraz "
+"Milicjanci. Obywatelki są czysto ekonomicznymi jednostkami: mają niewiele "
+"PZ, brak pancerza i małą lub zerową ilość ataku. Milicjanci są domyślnie "
+"pracownikami, ale w momencie zagrożenia mogą użyć broni do walki. Są dwa "
+"rodzaje Milicji: Piesza i Konna. Obywatelki i Piesza Milicja mogą zbierać "
+"dowolne surowce lądowe, podczas gdy Konna Milicja może jedynie zbierać mięso"
+" z upolowanych zwierząt.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:27
 msgid ""
@@ -342,13 +362,15 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:33
 msgid "There are primarily three ways to select units:\n"
-msgstr ""
+msgstr "Istnieją trzy główne sposoby wybierania jednostek:\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:34
 msgid ""
 "1) Hold the left mouse button and drag a selection rectangle that encloses "
 "the units you want to select.\n"
 msgstr ""
+"1) Przytrzymaj lewy przycisk myszy i przeciągnij prostokąt zaznaczenia nad "
+"jednostkami które chcesz wybrać.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:35
 msgid ""
@@ -356,6 +378,9 @@ msgid ""
 "shift-clicking each additional unit (or also via the above selection "
 "rectangle).\n"
 msgstr ""
+"2) Kliknij na jedną z nich a następnie dodaj dodatkowe jednostki do "
+"zaznaczenia przez kliknięcie z przytrzymanym przyciskiem Shift na jednostkę "
+"(lub przez powyższe zaznaczenie prostokątem).\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:36
 msgid ""
@@ -363,6 +388,9 @@ msgid ""
 "the specified unit in your visible window. Triple-click will select all "
 "units of the same type on the entire map.\n"
 msgstr ""
+"3) Dwukrotnie kliknij na jednostkę. To spowoduje wybranie wszystkich "
+"jednostek tego samego typu w polu widzenia. Trzykrotne kliknięcie wybierze "
+"wszystkie jednostki danego typu na mapie."
 
 #: maps/tutorials/starting_economy_walkthrough.js:37
 msgid ""
@@ -387,11 +415,15 @@ msgid ""
 "Cavalry Citizen Soldiers are good for hunting. Select your cavalry and order"
 " him to hunt the chickens around your Civic Center in similar fashion."
 msgstr ""
+"Konna Milicja jest dobra w polowaniu. Wybierz swoją Kawalerię i rozkaż jej "
+"upolowanie kurczaków wokół twojego centrum osady w podobny sposób."
 
 #: maps/tutorials/starting_economy_walkthrough.js:70
 msgid ""
 "All your units are now gathering resources. We should train more units!\n"
 msgstr ""
+"Obecnie wszystkie twoje jednostki zbierają surowce. Powinniśmy wytrenować "
+"więcej jednostek!\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:71
 msgid ""
@@ -406,7 +438,7 @@ msgstr ""
 #: maps/tutorials/starting_economy_walkthrough.js:72
 msgid ""
 "Rally-Points are indicated by a small flag at the end of the blue line."
-msgstr ""
+msgstr "Punkty zborne są zaznaczone mała flagą na końcu niebieskiej linii"
 
 #: maps/tutorials/starting_economy_walkthrough.js:80
 msgid ""
@@ -434,7 +466,7 @@ msgstr ""
 #: maps/tutorials/starting_economy_walkthrough.js:110
 #: maps/tutorials/starting_economy_walkthrough.js:169
 msgid "Let's wait for the units to be trained.\n"
-msgstr ""
+msgstr "Poczekaj aż jednostki zostaną wyszkolone.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:111
 msgid ""
@@ -458,6 +490,8 @@ msgid ""
 "The newly trained units automatically go to the trees and start gathering "
 "Wood.\n"
 msgstr ""
+"Nowo wyszkolone jednostki automatycznie szukają drzewa i zaczynają zbieranie"
+" drewna.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:122
 msgid ""
@@ -508,7 +542,7 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:184
 msgid "The units should be ready soon.\n"
-msgstr ""
+msgstr "Jednostki powinny być dostępne wkrótce.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:185
 msgid ""
@@ -518,6 +552,10 @@ msgid ""
 "(including those being trained) and the current population limit, which is "
 "determined by your built structures."
 msgstr ""
+"W międzyczasie, skieruj swoją uwagę na liczbę ludności na szczycie panelu. "
+"Jest to piąta pozycja od lewej, po surowcach. Byłaby rozważna obserwacja "
+"jej. Wskazuje obecną liczbę ludności (wliczając szkolone jednostki) i obecny"
+" limit populacji, który jest ustalany przez posiadane budowle."
 
 #: maps/tutorials/starting_economy_walkthrough.js:198
 msgid ""
@@ -531,6 +569,8 @@ msgid ""
 "Now that the units are ready, let's see how to build several houses in a "
 "row."
 msgstr ""
+"Teraz, kiedy jednostki są dostępne, zobaczmy jak zbudować kilka domów z "
+"rzędu."
 
 #: maps/tutorials/starting_economy_walkthrough.js:204
 msgid ""
@@ -550,6 +590,9 @@ msgid ""
 "Reminder: to select only two Female Citizens, click on the first one and "
 "then shift-click on the second one to add her to the selection."
 msgstr ""
+"Pamiętaj: aby wybrać tylko dwie kobiety, kliknij na pierwszej z nich a "
+"następnie kliknij z przytrzymanym przyciskiem Shift na drugą aby dodać ją do"
+" zaznaczenia."
 
 #: maps/tutorials/starting_economy_walkthrough.js:238
 msgid ""
@@ -613,6 +656,8 @@ msgid ""
 "When the field is constructed, the builders will automatically start "
 "gathering it.\n"
 msgstr ""
+"Kiedy pole zostanie zbudowane, budowniczy automatycznie zaczną pracować na "
+"nim.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:295
 msgid ""
@@ -633,21 +678,25 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:314
 msgid "Select the Civic Center and right-click on the field."
-msgstr ""
+msgstr "Wybierz centrum osady i kliknij prawym przyciskiem myszy na pole."
 
 #: maps/tutorials/starting_economy_walkthrough.js:322
 msgid ""
 "Now click three times on the female icon in the bottom right panel to train "
 "three additional farmers."
 msgstr ""
+"Teraz kliknij trzy razy na ikonę kobiet w prawym dolnym rogu panelu aby "
+"wyszkolić trzy nowe rolniczki."
 
 #: maps/tutorials/starting_economy_walkthrough.js:336
 msgid "Do not shift-click to produce a single unit."
 msgstr ""
+"Nie klikaj przytrzymanym przyciskiem Shift aby wyszkolić pojedynczą "
+"jednostkę."
 
 #: maps/tutorials/starting_economy_walkthrough.js:337
 msgid "Click on the FEMALE CITIZEN icon."
-msgstr ""
+msgstr "Kliknij na ikonę OBYWATELKI."
 
 #: maps/tutorials/starting_economy_walkthrough.js:347
 msgid ""
@@ -700,6 +749,8 @@ msgid ""
 "You should now be able to research 'Town Phase'. Select the Civic Center and"
 " click on the technology icon.\n"
 msgstr ""
+"Powinieneś być w stanie opracować \"Fazę Miasta\". Wybierz centrum osady i "
+"kliknij na ikonę technologii.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:387
 msgid ""
