@@ -94,25 +94,25 @@
 			>
 				<action on="SelectionChange">showModDescription(this.name);</action>
 				<!-- List headers -->
-				<column id="name" color="100 100 200" width="10%">
+				<column id="name" color="255 255 255" width="10%">
 					<translatableAttribute id="heading">Name</translatableAttribute>
 				</column>
-				<column id="modVersion" color="128 128 128" width="7%">
+				<column id="modVersion" color="255 255 255" width="7%">
 					<translatableAttribute id="heading">Version</translatableAttribute>
 				</column>
-				<column id="modFolderName" color="100 100 200" width="13%">
+				<column id="modFolderName" color="255 255 255" width="13%">
 					<translatableAttribute id="heading">(Folder)</translatableAttribute>
 				</column>
-				<column id="modLabel" color="0 60 0" width="18%">
+				<column id="modLabel" color="255 255 255" width="18%">
 					<translatableAttribute id="heading">Mod Label</translatableAttribute>
 				</column>
-				<column id="modType" color="0 128 128" width="12%">
+				<column id="modType" color="255 255 255" width="12%">
 					<translatableAttribute id="heading">Mod Type</translatableAttribute>
 				</column>
-				<column id="modDependencies" color="128 128 128" width="20%">
+				<column id="modDependencies" color="255 255 255" width="20%">
 					<translatableAttribute id="heading">Dependencies</translatableAttribute>
 				</column>
-				<column id="modURL" color="128 128 128" width="24%">
+				<column id="modURL" color="255 255 255" width="24%">
 					<translatableAttribute id="heading">Website</translatableAttribute>
 				</column>
 			</object>
@@ -141,25 +141,25 @@
 			>
 				<action on="SelectionChange">showModDescription(this.name);</action>
 				<!-- List headers -->
-				<column id="name" color="100 100 200" width="10%">
+				<column id="name" color="255 255 255" width="10%">
 					<translatableAttribute id="heading">Name</translatableAttribute>
 				</column>
-				<column id="modVersion" color="128 128 128" width="7%">
+				<column id="modVersion" color="255 255 255" width="7%">
 					<translatableAttribute id="heading">Version</translatableAttribute>
 				</column>
-				<column id="modFolderName" color="100 100 200" width="13%">
+				<column id="modFolderName" color="255 255 255" width="13%">
 					<translatableAttribute id="heading">(Folder)</translatableAttribute>
 				</column>
-				<column id="modLabel" color="0 60 0" width="18%">
+				<column id="modLabel" color="255 255 255" width="18%">
 					<translatableAttribute id="heading">Mod Label</translatableAttribute>
 				</column>
-				<column id="modType" color="0 128 128" width="12%">
+				<column id="modType" color="255 255 255" width="12%">
 					<translatableAttribute id="heading">Mod Type</translatableAttribute>
 				</column>
-				<column id="modDependencies" color="128 128 128" width="20%">
+				<column id="modDependencies" color="255 255 255" width="20%">
 					<translatableAttribute id="heading">Dependencies</translatableAttribute>
 				</column>
-				<column id="modURL" color="128 128 128" width="20%">
+				<column id="modURL" color="255 255 255" width="24%">
 					<translatableAttribute id="heading">Website</translatableAttribute>
 				</column>
 			</object>

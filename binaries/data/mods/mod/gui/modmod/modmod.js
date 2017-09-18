@@ -182,7 +182,7 @@ function generateModsList(listObjectName, mods)
 
 		keys.push(foldername);
 		names.push(mod.name);
-		folders.push('[color="45 45 45"](' + foldername + ')[/color]');
+		folders.push('[color="255 255 255"](' + foldername + ')[/color]');
 
 		labels.push(mod.label || "");
 		types.push(mod.type || "");
@@ -377,11 +377,11 @@ function areDependenciesMet(mod)
 	{
 		if (isDependencyMet(dependency))
 			continue;
-		guiObject.caption = '[color="250 100 100"]' + translate(sprintf('Dependency not met: %(dep)s', { "dep": dependency })) +'[/color]';
+		guiObject.caption = '[color="255 100 100"]' + translate(sprintf('Dependency not met: %(dep)s', { "dep": dependency })) +'[/color]';
 		return false;
 	}
 
-	guiObject.caption =  '[color="100 250 100"]' + translate('All dependencies met') + '[/color]';
+	guiObject.caption =  '[color="100 255 100"]' + translate('All dependencies met') + '[/color]';
 
 	return true;
 }
@@ -507,7 +507,7 @@ function showModDescription(listObjectName)
 {
 	var listObject = Engine.GetGUIObjectByName(listObjectName);
 	if (listObject.selected == -1)
-		var desc = '[color="255 100 100"]' + translate("No mod has been selected.") + '[/color]';
+		var desc = '[color="255 255 100"]' + translate("No mod has been selected.") + '[/color]';
 	else
 	{
 		let key = listObject.list[listObject.selected];
