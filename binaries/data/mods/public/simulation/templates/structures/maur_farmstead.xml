@@ -2,7 +2,6 @@
 <Entity parent="template_structure_economic_farmstead">
   <Footprint>
     <Square width="12.0" depth="16.0"/>
-    <Height>8.0</Height>
   </Footprint>
   <Health>
     <SpawnEntityOnDeath>rubble/rubble_stone_3x3</SpawnEntityOnDeath>
@@ -12,7 +11,7 @@
     <SpecificName>Kantu</SpecificName>
   </Identity>
   <Obstruction>
-    <Static width="18.0" depth="18.0"/>
+    <Static width="10.0" depth="14.0"/>
   </Obstruction>
   <VisualActor>
     <Actor>structures/mauryans/farmstead.xml</Actor>

@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_economic_farmstead">
   <Footprint>
-    <Square width="18" depth="19"/>
-    <Height>6.0</Height>
+    <Square width="17.0" depth="19.0"/>
   </Footprint>
   <Identity>
     <Civ>cart</Civ>
     <SpecificName>Aḥuzāh</SpecificName>
   </Identity>
   <Obstruction>
-    <Static width="16.0" depth="17"/>
+    <Static width="15.0" depth="17.0"/>
   </Obstruction>
   <VisualActor>
     <FoundationActor>structures/carthaginians/fndn_farmstead.xml</FoundationActor>

@@ -3,11 +3,21 @@
   <Cost>
     <PopulationBonus>2</PopulationBonus>
   </Cost>
+  <Footprint>
+    <Square width="12.0" depth="12.0"/>
+  </Footprint>
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_stone_3x3</SpawnEntityOnDeath>
+  </Health>
   <Identity>
     <Civ>brit</Civ>
     <SpecificName>Ffermdy</SpecificName>
   </Identity>
+  <Obstruction>
+    <Static width="10.0" depth="10.0"/>
+  </Obstruction>
   <VisualActor>
     <Actor>structures/britons/farmstead.xml</Actor>
+    <FoundationActor>structures/fndn_3x3.xml</FoundationActor>
   </VisualActor>
 </Entity>
