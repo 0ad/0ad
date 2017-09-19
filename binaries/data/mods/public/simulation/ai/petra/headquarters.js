@@ -502,7 +502,7 @@ m.HQ.prototype.OnPhaseUp = function(gameState, phase)
 m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 {
 	// default template
-	let requirementsDef = [["cost", 1], ["costsResource", 1, "food"]];
+	let requirementsDef = [ ["costsResource", 1, "food"] ];
 	let classesDef = ["Support", "Worker"];
 	let templateDef = this.findBestTrainableUnit(gameState, classesDef, requirementsDef);
 
@@ -572,7 +572,7 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 	{
 		let requirements;
 		if (numberTotal < 45)
-			requirements = [ ["cost", 1], ["speed", 0.5], ["costsResource", 0.5, "stone"], ["costsResource", 0.5, "metal"]];
+			requirements = [ ["speed", 0.5], ["costsResource", 0.5, "stone"], ["costsResource", 0.5, "metal"] ];
 		else
 			requirements = [ ["strength", 1] ];
 
@@ -629,49 +629,47 @@ m.HQ.prototype.findBestTrainableUnit = function(gameState, classes, requirements
 	}
 
 	units.sort(function(a, b) {
-		let aDivParam = 0;
-		let bDivParam = 0;
-		let aTopParam = 0;
-		let bTopParam = 0;
+		let aCost = 1 + a[1].costSum();
+		let bCost = 1 + b[1].costSum();
+		let aValue = 0.1;
+		let bValue = 0.1;
 		for (let param of parameters)
 		{
-			if (param[0] == "base") {
-				aTopParam = param[1];
-				bTopParam = param[1];
+			if (param[0] == "strength")
+			{
+				aValue += m.getMaxStrength(a[1]) * param[1];
+				bValue += m.getMaxStrength(b[1]) * param[1];
 			}
-			if (param[0] == "strength") {
-				aTopParam += m.getMaxStrength(a[1]) * param[1];
-				bTopParam += m.getMaxStrength(b[1]) * param[1];
+			else if (param[0] == "siegeStrength")
+			{
+				aValue += m.getMaxStrength(a[1], "Structure") * param[1];
+				bValue += m.getMaxStrength(b[1], "Structure") * param[1];
 			}
-			if (param[0] == "siegeStrength") {
-				aTopParam += m.getMaxStrength(a[1], "Structure") * param[1];
-				bTopParam += m.getMaxStrength(b[1], "Structure") * param[1];
+			else if (param[0] == "speed")
+			{
+				aValue += a[1].walkSpeed() * param[1];
+				bValue += b[1].walkSpeed() * param[1];
 			}
-			if (param[0] == "speed") {
-				aTopParam += a[1].walkSpeed() * param[1];
-				bTopParam += b[1].walkSpeed() * param[1];
-			}
-
-			if (param[0] == "cost") {
-				aDivParam += a[1].costSum() * param[1];
-				bDivParam += b[1].costSum() * param[1];
-			}
-			// requires a third parameter which is the resource
-			if (param[0] == "costsResource") {
+			else if (param[0] == "costsResource")
+			{
+				// requires a third parameter which is the resource
 				if (a[1].cost()[param[2]])
-					aTopParam *= param[1];
+					aValue *= param[1];
 				if (b[1].cost()[param[2]])
-					bTopParam *= param[1];
+					bValue *= param[1];
 			}
-			if (param[0] == "canGather") {
+			else if (param[0] == "canGather")
+			{
 				// checking against wood, could be anything else really.
 				if (a[1].resourceGatherRates() && a[1].resourceGatherRates()["wood.tree"])
-					aTopParam *= param[1];
+					aValue *= param[1];
 				if (b[1].resourceGatherRates() && b[1].resourceGatherRates()["wood.tree"])
-					bTopParam *= param[1];
+					bValue *= param[1];
 			}
+			else
+				API3.warn(" trainMoreUnits avec non prevu " + uneval(param));
 		}
-		return -aTopParam/(aDivParam+1) + bTopParam/(bDivParam+1);
+		return -aValue/aCost + bValue/bCost;
 	});
 	return units[0][0];
 };
