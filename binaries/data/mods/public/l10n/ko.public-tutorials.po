@@ -3,14 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# jasonkimik <jasonkim@linux.com>, 2017
-# 신 희윤 <eustaph7725@gmail.com>, 2017
+# ks k <kmshts@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2017-09-01 09:05+0200\n"
 "PO-Revision-Date: 2017-09-01 09:05+0200\n"
-"Last-Translator: 신 희윤 <eustaph7725@gmail.com>, 2017\n"
+"Last-Translator: ks k <kmshts@gmail.com>, 2017\n"
 "Language-Team: Korean (https://www.transifex.com/wildfire-games/teams/17418/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -49,13 +48,13 @@ msgstr ""
 #: maps/tutorials/starting_economy_walkthrough.js:100
 #: maps/tutorials/starting_economy_walkthrough.js:159
 msgid "Do not forget to shift-click to produce several units."
-msgstr ""
+msgstr "Shift 키를 누른 채 클릭하여 여러 유닛을 생성하는 것을 기억하십시오."
 
 #: maps/tutorials/Introductory_Tutorial.js:33
 #: maps/tutorials/Introductory_Tutorial.js:152
 #: maps/tutorials/starting_economy_walkthrough.js:101
 msgid "Shift-click on the HOPLITE icon."
-msgstr ""
+msgstr "중갑 병사 아이콘을 Shift+클릭."
 
 #: maps/tutorials/Introductory_Tutorial.js:41
 msgid ""
@@ -229,18 +228,18 @@ msgid ""
 "Before starting, you can toggle between fullscreen and windowed mode using Alt+Enter. You can also change the level of zoom using the mouse wheel and the camera view using any of your keyboard's arrow keys.\n"
 msgstr ""
 "\n"
-"시작하기 전에 Alt + Enter를 사용하여 전체 화면 모드와 창 모드간에 전환 할 수 있습니다. 키보드의 화살표 키를 사용하여 마우스 휠과 카메라보기를 사용하여 확대 / 축소 수준을 변경할 수도 있습니다.\n"
+"시작하기 전에 Alt+Enter를 사용하여 전체 화면 모드와 창 모드간에 전환 할 수 있습니다. 키보드의 화살표 키를 사용하여 마우스 휠과 카메라보기를 사용하여 확대 / 축소 수준을 변경할 수도 있습니다.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:6
 msgid "Adjust the game window to your preferences.\n"
-msgstr "게임 창을 원하는대로 조정하십시오 \n"
+msgstr "게임 창을 원하는대로 조정하십시오.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:11
 msgid ""
 "To start off, select your building, the Civic Center, by clicking on it. A "
 "selection ring in the color of your civilization will be displayed after "
 "clicking."
-msgstr "시작하려면 시빅 센터를 클릭하여 건물을 선택하십시오. 클릭 후 문명의 색으로 된 선택 고리가 표시됩니다."
+msgstr "시작하려면 시민 회관을 클릭하여 건물을 선택하십시오. 클릭 후 문명의 색으로 된 선택 고리가 표시됩니다."
 
 #: maps/tutorials/starting_economy_walkthrough.js:16
 msgid ""
@@ -290,6 +289,7 @@ msgid ""
 "clicking with an entity selected represents an order (gather, build, fight, "
 "etc.).\n"
 msgstr ""
+"일반적인 조작법으로 마우스 왼쪽 클릭으로 선택하고 선택된 상태에서 대상을 마우스 오른쪽 클릭하여 명령한다 (수집, 건설, 공격 등).\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:32
 msgid ""
@@ -336,6 +336,8 @@ msgid ""
 " Infantry Citizen Soldiers and order them to gather Wood by right-clicking "
 "on the nearest tree."
 msgstr ""
+"그렇다면 시민 보병을 사용하여 목재를 모아 봅시다. 시민 보병을 선택하고 가장 가까운 나무를 마우스 오른쪽 단추로 나무를 수집하도록 "
+"명령합니다."
 
 #: maps/tutorials/starting_economy_walkthrough.js:59
 msgid ""
@@ -370,7 +372,7 @@ msgstr ""
 msgid ""
 "Select the Civic Center, then hover your mouse over a tree and right-click "
 "when you see the cursor change into a Wood icon."
-msgstr ""
+msgstr "도시의 중심을 선택하고 마우스를 나무 위에 올려 놓고 커서가 나무 아이콘으로 바뀌면 마우스 오른쪽 클릭합니다."
 
 #: maps/tutorials/starting_economy_walkthrough.js:89
 msgid ""
@@ -430,19 +432,19 @@ msgstr ""
 msgid ""
 "Invalid (obstructed) positions will show the building preview overlay in "
 "red."
-msgstr ""
+msgstr "잘못된 (방해받는) 위치는 건물 미리보기 오버레이가 빨간색으로 표시됩니다."
 
 #: maps/tutorials/starting_economy_walkthrough.js:133
 msgid ""
 "The selected workers will automatically start constructing the building once"
 " you place the foundation."
-msgstr ""
+msgstr "선택한 근로자는 기초를 설치 한 장소에 자동으로 건물의 건설을 시작합니다."
 
 #: maps/tutorials/starting_economy_walkthrough.js:144
 msgid ""
 "When construction finishes, the builders default to gathering Wood "
 "automatically.\n"
-msgstr ""
+msgstr "공사가 끝나면 건축가는 기본적으로 목재를 자동 채집합니다.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:145
 msgid ""
@@ -452,7 +454,7 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:160
 msgid "Shift-click on the FEMALE CITIZEN icon."
-msgstr ""
+msgstr "여성 시민 아이콘에 Shift+클릭을 한다."
 
 #: maps/tutorials/starting_economy_walkthrough.js:170
 msgid ""
@@ -461,10 +463,13 @@ msgid ""
 " For that purpose, right-click on the Civic Center when it is selected (and "
 "the flag icon indicating the rally-point is crossed out)."
 msgstr ""
+"그동안 우리는 목재를 모으는 데 충분한 인력이 있는 것 같습니다. 우리는 시민 모임 센터의 현재 집회를 피하여 목재를 모으는 일에서 "
+"벗어나야합니다. 이를 위해 시민회관이 선택되면 시민회관을 마우스 오른쪽 버튼으로 클릭하십시오. (그러면 랠리 포인트를 나타내는 깃발 "
+"아이콘이 겹쳐 집니다.)"
 
 #: maps/tutorials/starting_economy_walkthrough.js:184
 msgid "The units should be ready soon.\n"
-msgstr ""
+msgstr "유닛은 곧 준비될것입니다."
 
 #: maps/tutorials/starting_economy_walkthrough.js:185
 msgid ""
@@ -474,6 +479,8 @@ msgid ""
 "(including those being trained) and the current population limit, which is "
 "determined by your built structures."
 msgstr ""
+"한편, 상단 패널의 인구수에 관심을 집중 시키십시오. 자원 후 왼쪽에서 다섯 번째 항목입니다. 그것을 지켜 보는 것이 현명 할 것입니다."
+" 현재 인구 (훈련 된 사람들 포함)와 현재 인구 제한을 나타내며, 이는 건축물에 의해 결정됩니다."
 
 #: maps/tutorials/starting_economy_walkthrough.js:198
 msgid ""
@@ -544,18 +551,22 @@ msgid ""
 "the control key while clicking on its corresponding portrait in the "
 "selection panel on the bottom."
 msgstr ""
+"선택 직사각형으로 3명의 대기중인 여성 시민을 선택하려면, 한명 이상의 추가 채집자들이 선택 사각형에 포함될 확률이 높습니다. 이를 "
+"막으려면 붙잡는 동안 'i'키를 누르고 있습니다. 유닛이 대기중일때만 선택됩니다. 선택한 동안 유휴 상태 일 수있는 기병대를 선택하면, "
+"하단의 선택 패널에서 해당 초상화를 클릭하면서 컨트롤 키를 눌러 제거 할 수 있습니다."
 
 #: maps/tutorials/starting_economy_walkthrough.js:267
 msgid ""
 "When the farmstead construction is finished, its builders will automatically"
 " look for food, and in this case, they will go after the nearby goats.\n"
-msgstr ""
+msgstr "농장 건설이 끝나면 건축업자가 자동으로 음식을 찾으며,이 경우 근처의 염소를 따라갑니다.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:268
 msgid ""
 "But your house builders will only look for something else to build and, if "
 "nothing found, become idle. Let's wait for them to build the houses."
 msgstr ""
+"그러나 집을 짓는 사람들은 건축 할 무언가를 찾으며 아무것도 발견되지 않으면 가만히 대기하고있게됩니다. 집을 지을 때까지 기다려 봅시다."
 
 #: maps/tutorials/starting_economy_walkthrough.js:284
 msgid ""
@@ -563,12 +574,14 @@ msgid ""
 "to build a field as close as possible to the farmstead, which is a dropsite "
 "for all types of food."
 msgstr ""
+"두 집의 건축이 끝나면 여성 시민 2명을 선택하여 축사 최대한 가까이 논밭을 개간하도록 지시합니다. 축사는 모든 종류의 음식의 회수 "
+"장소입니다."
 
 #: maps/tutorials/starting_economy_walkthrough.js:294
 msgid ""
 "When the field is constructed, the builders will automatically start "
 "gathering it.\n"
-msgstr ""
+msgstr "밭이 지어지면 건축가는 자동으로 밭에서 수집을 시작합니다.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:295
 msgid ""
@@ -589,13 +602,13 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:314
 msgid "Select the Civic Center and right-click on the field."
-msgstr ""
+msgstr "도시의 중심을 선택하여 논밭에서 오른쪽 클릭하십시오."
 
 #: maps/tutorials/starting_economy_walkthrough.js:322
 msgid ""
 "Now click three times on the female icon in the bottom right panel to train "
 "three additional farmers."
-msgstr ""
+msgstr "오른쪽 하단 패널에있는 여성의 아이콘을 세 번 클릭하여 추가로 3명의 농민을 생산합니다."
 
 #: maps/tutorials/starting_economy_walkthrough.js:336
 msgid "Do not shift-click to produce a single unit."
@@ -603,7 +616,7 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:337
 msgid "Click on the FEMALE CITIZEN icon."
-msgstr ""
+msgstr "여성 시민 아이콘을 클릭합니다."
 
 #: maps/tutorials/starting_economy_walkthrough.js:347
 msgid ""
@@ -650,6 +663,9 @@ msgid ""
 " on it (you should see a hammer icon), and then produce two more builders by"
 " clicking on the hoplite icon twice."
 msgstr ""
+"병영이 건설되는 것을 기다립시다. 건설에는 시간이 걸리기 때문에 2 명의 군인을 추가하여 더 빨리 건설을 완료 시킵시다. 여기에는 시내를"
+" 선택하여 중장 보병 아이콘을 두 번 클릭하여 두 명의 건축가를 생산합니다. 병영의 기초를 오른쪽 클릭 (망치 아이콘이 나타납니다)하고 "
+"집합 지점을 설정합니다."
 
 #: maps/tutorials/starting_economy_walkthrough.js:386
 msgid ""
@@ -698,7 +714,7 @@ msgstr ""
 msgid ""
 "This is the end of the walkthrough. This should give you a good idea of the "
 "basics of setting up your economy."
-msgstr ""
+msgstr "이제, 이 연습은 종료입니다. 이제 기본적인 경제 기반을 설정하기위한 지식이 붙은 것입니다."
 
 #: maps/tutorials/Introductory_Tutorial.xml:Description:39
 msgid "This is a basic tutorial to get you started playing 0 A.D."
@@ -711,7 +727,7 @@ msgstr "플레이어 1"
 
 #: maps/tutorials/Introductory_Tutorial.xml:PlayerData[1].Name:39
 msgid "Player 2"
-msgstr ""
+msgstr "플레이어 2"
 
 #: maps/tutorials/Introductory_Tutorial.xml:Name:39
 msgid "Introductory Tutorial"
@@ -723,7 +739,9 @@ msgid ""
 "in the game the most important thing is to gather resources as fast as "
 "possible so you are able to build enough troops later."
 msgstr ""
+"이 맵은 게임을 효과적으로 시작하기위한 대략적인 가이드를 제공합니다.게임의 초기 단계에서 가장 중요한 것은 자원을 최대한 빨리 수집하고 "
+"나중에 충분한 군대를 구축 할 것입니다."
 
 #: maps/tutorials/starting_economy_walkthrough.xml:Name:39
 msgid "Starting Economy Walkthrough"
-msgstr ""
+msgstr "초반 경제의 리허설"

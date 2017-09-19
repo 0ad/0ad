@@ -54,7 +54,7 @@ public:
 	virtual entity_pos_t GetHeightFixed() const { return entity_pos_t::Zero(); }
 	virtual bool IsHeightRelative() const { return true; }
 	virtual void SetHeightRelative(bool UNUSED(relative)) { }
-	virtual bool IsFloating() const { return false; }
+	virtual bool CanFloat() const { return false; }
 	virtual void SetFloating(bool UNUSED(flag)) { }
 	virtual void SetActorFloating(bool UNUSED(flag)) { }
 	virtual void SetConstructionProgress(fixed UNUSED(progress)) { }

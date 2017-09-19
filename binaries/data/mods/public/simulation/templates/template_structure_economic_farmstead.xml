@@ -13,12 +13,11 @@
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="14.0" depth="14.0"/>
     <Height>8.0</Height>
   </Footprint>
   <Health>
     <Max>900</Max>
-    <SpawnEntityOnDeath>rubble/rubble_stone_3x3</SpawnEntityOnDeath>
+    <SpawnEntityOnDeath>rubble/rubble_stone_4x4</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <GenericName>Farmstead</GenericName>
@@ -30,9 +29,6 @@
   <Loot>
     <food>100</food>
   </Loot>
-  <Obstruction>
-    <Static width="12.0" depth="12.0"/>
-  </Obstruction>
   <ProductionQueue>
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Technologies datatype="tokens">
@@ -63,6 +59,6 @@
     <Range>20</Range>
   </Vision>
   <VisualActor>
-    <FoundationActor>structures/fndn_3x3.xml</FoundationActor>
+    <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
   </VisualActor>
 </Entity>

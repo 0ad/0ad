@@ -1,4 +1,5 @@
 Engine.LoadHelperScript("DamageBonus.js");
+Engine.LoadHelperScript("DamageTypes.js");
 Engine.LoadHelperScript("Player.js");
 Engine.LoadHelperScript("ValueModification.js");
 Engine.LoadComponentScript("interfaces/Auras.js");
@@ -139,15 +140,15 @@ attackComponentTest(undefined, true ,(attacker, cmpAttack, defender) => {
 	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackStrengths("Capture"), { "value": 8 });
 
 	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackStrengths("Ranged"), {
-		"hack": 0,
-		"pierce": 10,
-		"crush": 0
+		"Hack": 0,
+		"Pierce": 10,
+		"Crush": 0
 	});
 	
 	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackStrengths("Ranged.Splash"), {
-		"hack": 0.0,
-		"pierce": 15.0,
-		"crush": 35.0
+		"Hack": 0.0,
+		"Pierce": 15.0,
+		"Crush": 35.0
 	});
 
 	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetTimers("Ranged"), {
@@ -160,7 +161,13 @@ attackComponentTest(undefined, true ,(attacker, cmpAttack, defender) => {
 		"repeat": 1000
 	});
 
-	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetSplashDamage("Ranged"), { "hack": 0, "pierce": 15, "crush": 35, "friendlyFire": false, "shape": "Circular" });
+	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetSplashDamage("Ranged"), {
+		"Hack": 0,
+		"Pierce": 15,
+		"Crush": 35,
+		"friendlyFire": false,
+		"shape": "Circular"
+	});
 });
 
 for (let className of ["Infantry", "Cavalry"])

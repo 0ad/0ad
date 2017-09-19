@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_economic_farmstead">
   <Footprint>
-    <Square width="24.0" depth="20.0"/>
-    <Height>8.0</Height>
+    <Square width="22.0" depth="18.0"/>
   </Footprint>
-  <Health>
-    <SpawnEntityOnDeath>rubble/rubble_stone_4x4</SpawnEntityOnDeath>
-  </Health>
   <Identity>
     <Civ>rome</Civ>
     <SpecificName>Villa</SpecificName>
@@ -16,6 +12,5 @@
   </Obstruction>
   <VisualActor>
     <Actor>structures/romans/farmstead.xml</Actor>
-    <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
   </VisualActor>
 </Entity>

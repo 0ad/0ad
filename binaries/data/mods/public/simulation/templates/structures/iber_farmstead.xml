@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_economic_farmstead">
+  <Footprint>
+    <Square width="12.0" depth="13.0"/>
+  </Footprint>
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_stone_3x3</SpawnEntityOnDeath>
+  </Health>
   <Identity>
     <Civ>iber</Civ>
     <SpecificName>Baserri</SpecificName>
   </Identity>
+  <Obstruction>
+    <Static width="10.0" depth="11.0"/>
+  </Obstruction>
   <VisualActor>
     <Actor>structures/iberians/farmstead.xml</Actor>
+    <FoundationActor>structures/fndn_3x3.xml</FoundationActor>
   </VisualActor>
 </Entity>

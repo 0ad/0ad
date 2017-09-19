@@ -2,11 +2,7 @@
 <Entity parent="template_structure_economic_farmstead">
   <Footprint>
     <Square width="20.0" depth="20.0"/>
-    <Height>8.0</Height>
   </Footprint>
-  <Health>
-    <SpawnEntityOnDeath>rubble/rubble_stone_4x4</SpawnEntityOnDeath>
-  </Health>
   <Identity>
     <Civ>pers</Civ>
     <SpecificName>Kaštašta</SpecificName>
@@ -16,6 +12,5 @@
   </Obstruction>
   <VisualActor>
     <Actor>structures/persians/farmstead.xml</Actor>
-    <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
   </VisualActor>
 </Entity>

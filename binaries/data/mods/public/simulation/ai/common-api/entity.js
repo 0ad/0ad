@@ -214,14 +214,14 @@ m.Template = m.Class({
 		return +this.get("Cost/PopulationBonus");
 	},
 
-	armourStrengths: function() {
+	"armourStrengths": function() {
 		if (!this.get("Armour"))
 			return undefined;
 
 		return {
-			hack: +this.get("Armour/Hack"),
-			pierce: +this.get("Armour/Pierce"),
-			crush: +this.get("Armour/Crush")
+			"Hack": +this.get("Armour/Hack"),
+			"Pierce": +this.get("Armour/Pierce"),
+			"Crush": +this.get("Armour/Crush")
 		};
 	},
 
@@ -246,14 +246,14 @@ m.Template = m.Class({
 		};
 	},
 
-	attackStrengths: function(type) {
+	"attackStrengths": function(type) {
 		if (!this.get("Attack/" + type +""))
 			return undefined;
 
 		return {
-			hack: +(this.get("Attack/" + type + "/Hack") || 0),
-			pierce: +(this.get("Attack/" + type + "/Pierce") || 0),
-			crush: +(this.get("Attack/" + type + "/Crush") || 0)
+			"Hack": +(this.get("Attack/" + type + "/Hack") || 0),
+			"Pierce": +(this.get("Attack/" + type + "/Pierce") || 0),
+			"Crush": +(this.get("Attack/" + type + "/Crush") || 0)
 		};
 	},
 

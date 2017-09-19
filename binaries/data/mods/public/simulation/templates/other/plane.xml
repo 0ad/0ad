@@ -12,6 +12,7 @@
       <PrepareTime>0</PrepareTime>
       <RepeatTime>10000</RepeatTime>
       <Spread>1.0</Spread>
+      <Delay>0</Delay>
     </Ranged>
   </Attack>
   <BuildingAI>
@@ -48,6 +49,7 @@
   <Position>
     <TurnRate>1.0</TurnRate>
     <Floating>true</Floating>
+    <FloatDepth>0.0</FloatDepth>
   </Position>
   <Repairable>
     <RepairTimeRatio>3.0</RepairTimeRatio>

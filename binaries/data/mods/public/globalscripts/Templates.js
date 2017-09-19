@@ -117,11 +117,12 @@ function GetModifiedTemplateDataValue(template, value_path, mod_key, player, mod
  *                          of properties.
  * @param {object} auraTemplates - In the form of { key: { "auraName": "", "auraDescription": "" } }.
  * @param {object} resources - An instance of the Resources prototype.
+ * @param {object} damageTypes - An instance of the DamageTypes prototype.
  * @param {object} modifiers - Modifications from auto-researched techs, unit upgrades
  *                             etc. Optional as only used if there's no player
  *                             id provided.
  */
-function GetTemplateDataHelper(template, player, auraTemplates, resources, modifiers={})
+function GetTemplateDataHelper(template, player, auraTemplates, resources, damageTypes, modifiers={})
 {
 	// Return data either from template (in tech tree) or sim state (ingame).
 	// @param {string} value_path - Route to the value within the template.
@@ -133,11 +134,11 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources, modif
 	let ret = {};
 
 	if (template.Armour)
-		ret.armour = {
-			"hack": getEntityValue("Armour/Hack"),
-			"pierce": getEntityValue("Armour/Pierce"),
-			"crush": getEntityValue("Armour/Crush")
-		};
+	{
+		ret.armour = {};
+		for (let damageType of damageTypes.GetTypes())
+			ret.armour[damageType] = getEntityValue("Armour/" + damageType);
+	}
 
 	if (template.Attack)
 	{
@@ -155,38 +156,38 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources, modif
 			else
 			{
 				ret.attack[type] = {
-					"hack": getAttackStat("Hack"),
-					"pierce": getAttackStat("Pierce"),
-					"crush": getAttackStat("Crush"),
 					"minRange": getAttackStat("MinRange"),
 					"maxRange": getAttackStat("MaxRange"),
 					"elevationBonus": getAttackStat("ElevationBonus")
 				};
+				for (let damageType of damageTypes.GetTypes())
+					ret.attack[type][damageType] = getAttackStat(damageType);
+
 				ret.attack[type].elevationAdaptedRange = Math.sqrt(ret.attack[type].maxRange *
 					(2 * ret.attack[type].elevationBonus + ret.attack[type].maxRange));
 			}
 			ret.attack[type].repeatTime = getAttackStat("RepeatTime");
 
 			if (template.Attack[type].Splash)
+			{
 				ret.attack[type].splash = {
-					"hack": getAttackStat("Splash/Hack"),
-					"pierce": getAttackStat("Splash/Pierce"),
-					"crush": getAttackStat("Splash/Crush"),
 					// true if undefined
 					"friendlyFire": template.Attack[type].Splash.FriendlyFire != "false",
 					"shape": template.Attack[type].Splash.Shape
 				};
+				for (let damageType of damageTypes.GetTypes())
+					ret.attack[type].splash[damageType] = getAttackStat("Splash/" + damageType);
+			}
 		}
 	}
 
 	if (template.DeathDamage)
 	{
 		ret.deathDamage = {
-			"hack": getEntityValue("DeathDamage/Hack"),
-			"pierce": getEntityValue("DeathDamage/Pierce"),
-			"crush": getEntityValue("DeathDamage/Crush"),
 			"friendlyFire": template.DeathDamage.FriendlyFire != "false"
 		};
+		for (let damageType of damageTypes.GetTypes())
+			ret.deathDamage[damageType] = getEntityValue("DeathDamage/" + damageType);
 	}
 
 	if (template.Auras)

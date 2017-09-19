@@ -17,6 +17,7 @@ var g_CivData = loadCivData(true, false);
  */
 var g_ParsedData = {};
 var g_ResourceData = new Resources();
+var g_DamageTypes = new DamageTypes();
 
 // This must be defined after the g_TechnologyData cache object is declared.
 var g_AutoResearchTechList = findAllAutoResearchedTechs();
@@ -101,7 +102,7 @@ function loadUnit(templateName)
 		return null;
 
 	let template = loadTemplate(templateName);
-	let unit = GetTemplateDataHelper(template, null, g_AuraData, g_ResourceData, g_CurrentModifiers);
+	let unit = GetTemplateDataHelper(template, null, g_AuraData, g_ResourceData, g_DamageTypes, g_CurrentModifiers);
 
 	if (template.ProductionQueue)
 	{
@@ -157,7 +158,7 @@ function loadStructure(templateName)
 		return null;
 
 	let template = loadTemplate(templateName);
-	let structure = GetTemplateDataHelper(template, null, g_AuraData, g_ResourceData, g_CurrentModifiers);
+	let structure = GetTemplateDataHelper(template, null, g_AuraData, g_ResourceData, g_DamageTypes, g_CurrentModifiers);
 
 	structure.production = {
 		"technology": [],

@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-30 09:02+0200\n"
-"PO-Revision-Date: 2017-09-04 03:27+0000\n"
+"PO-Revision-Date: 2017-09-17 20:04+0000\n"
 "Last-Translator: ibrahim mahfod ghamdi <barho0om_55@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -66,7 +66,7 @@ msgstr "قُطع الاتّصال."
 #: gui/lobby/lobby.js:157
 #, javascript-format
 msgid "%(nick)s changed the lobby subject to %(subject)s"
-msgstr ""
+msgstr "%(nick)s غير عنوان الردهة الى %(subject)s"
 
 #: gui/lobby/lobby.js:168
 #, javascript-format
@@ -151,7 +151,7 @@ msgstr "أوامر الدّردشة:"
 #: gui/lobby/lobby.js:336
 #, javascript-format
 msgid "%(command)s - %(description)s"
-msgstr ""
+msgstr "%(command)s-%(description)s"
 
 #: gui/lobby/lobby.js:349
 msgid "Send a chat message about yourself. Example: /me goes swimming."
@@ -190,13 +190,13 @@ msgstr "أيّ خريطة"
 #, javascript-format
 msgctxt "gamelist filter"
 msgid "> %(rating)s"
-msgstr ""
+msgstr "%(rating)s"
 
 #: gui/lobby/lobby.js:456
 #, javascript-format
 msgctxt "gamelist filter"
 msgid "< %(rating)s"
-msgstr ""
+msgstr "%(rating)s"
 
 #: gui/lobby/lobby.js:529
 msgid "You have been banned from the lobby!"

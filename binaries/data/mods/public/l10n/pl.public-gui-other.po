@@ -17,7 +17,7 @@
 # Marcin Malinowski <szyszka45@gmail.com>, 2015
 # Marcin S <dzidek1003@o2.pl>, 2016-2017
 # Marek Opłotny <oplotny.marek@gmail.com>, 2017
-# Michał Karol, 2016
+# Michał Karol, 2016-2017
 # Michał Karol, 2015
 # miragae <miragae@gmail.com>, 2014-2015
 # Paweł Goca <siwers17@gmail.com>, 2015
@@ -33,8 +33,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-09-13 09:03+0200\n"
-"PO-Revision-Date: 2017-09-13 14:49+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-09-16 23:54+0000\n"
+"Last-Translator: Michał Karol\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -318,10 +318,10 @@ msgstr[3] "Cud (%(min)s minut)"
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
 msgid_plural "Capture the Relic (%(min)s minutes)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Zdobądź Relikt (%(min)s minuta)"
+msgstr[1] "Zdobądź Relikt (%(min)s minut)"
+msgstr[2] "Zdobądź Relikt (%(min)s minut)"
+msgstr[3] "Zdobądź Relikt (%(min)s minut)"
 
 #: gui/common/gamedescription.js:260
 msgid "Relic Count"
@@ -337,11 +337,11 @@ msgstr "Bohaterowie mogą zostać skoszarowani."
 
 #: gui/common/gamedescription.js:272
 msgid "Exposed Heroes"
-msgstr ""
+msgstr "Narażeni Bohaterzy"
 
 #: gui/common/gamedescription.js:273
 msgid "Heroes cannot be garrisoned, and they are vulnerable to raids."
-msgstr ""
+msgstr "Bohaterzy nie mogą zostać skoszarowani i są podatni na najazdy."
 
 #: gui/common/gamedescription.js:280
 msgid "Rated game"
@@ -432,7 +432,7 @@ msgstr ""
 #: gui/common/gamedescription.js:356
 msgctxt "biome"
 msgid "Random"
-msgstr ""
+msgstr "Losowe"
 
 #: gui/common/gamedescription.js:363
 msgid "Starting Resources"
@@ -565,7 +565,7 @@ msgstr "Serwer jest pełny"
 #: gui/common/network.js:76
 msgid ""
 "Player identifier in use. If you were disconnected, retry in few seconds"
-msgstr ""
+msgstr "Identyfikator gracza w użyciu. Jeśli zostały odłączone, spróbuj ponownie po kilku sekundach."
 
 #: gui/common/network.js:79
 #, javascript-format
@@ -676,7 +676,7 @@ msgstr "Potyczka"
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other gamesettings."
-msgstr ""
+msgstr "Mapa z przygotowanym krajobrazem i liczbą graczy. Dowolnie wybierz inne ustawienia gry."
 
 #: gui/common/settings.js:201
 msgctxt "map"
@@ -696,7 +696,7 @@ msgstr "Scenariusz"
 
 #: gui/common/settings.js:207
 msgid "A map with a predefined landscape and matchsettings."
-msgstr ""
+msgstr "Mapa z przygotowanym krajobrazem i ustawieniami partii."
 
 #: gui/common/settings.js:250
 msgctxt "victory condition"
@@ -1159,7 +1159,7 @@ msgstr "Żaden"
 
 #: gui/locale/locale_advanced.js:92
 msgid "invalid locale"
-msgstr ""
+msgstr "nieprawidłowe ustawienia lokalizacji"
 
 #: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:158
 #: gui/splashscreen/splashscreen.xml:(caption):28
@@ -1170,19 +1170,19 @@ msgstr "OK"
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s, Max: %(max)s"
-msgstr ""
+msgstr "Minimum: %(min)s, Maksimum: %(max)s"
 
 #: gui/options/options.js:99
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s"
-msgstr ""
+msgstr "Minimum: %(min)s"
 
 #: gui/options/options.js:101
 #, javascript-format
 msgctxt "option number"
 msgid "Max: %(max)s"
-msgstr ""
+msgstr "Maksimum: %(max)s"
 
 #: gui/options/options.js:134
 #, javascript-format
@@ -1203,7 +1203,7 @@ msgstr "Uwaga"
 
 #: gui/options/options.js:348
 msgid "Some setting values are invalid! Are you sure to save them?"
-msgstr ""
+msgstr "Niektóre wartości ustawień są nieprawidłowe! Jesteś pewien że chcesz je zapisać?"
 
 #: gui/options/options.js:375
 msgid "You have unsaved changes, do you want to close this window?"
@@ -1673,11 +1673,11 @@ msgstr "Odkrycie mapy"
 
 #: gui/summary/layout.js:186
 msgid "Map control (peak)"
-msgstr ""
+msgstr "Kontrola mapy (podgląd)"
 
 #: gui/summary/layout.js:187
 msgid "Map control (finish)"
-msgstr ""
+msgstr "Kontrola mapy (koniec)"
 
 #: gui/summary/layout.js:340
 msgid "Team total"
@@ -1701,11 +1701,11 @@ msgstr "Wysłano"
 
 #: gui/summary/summary.js:48
 msgid "Bought"
-msgstr ""
+msgstr "Kupiono"
 
 #: gui/summary/summary.js:53
 msgid "Income"
-msgstr ""
+msgstr "Przychód"
 
 #: gui/summary/summary.js:58
 msgid "Captured"
@@ -1737,7 +1737,7 @@ msgstr "Sprzedane"
 
 #: gui/summary/summary.js:93
 msgid "Outcome"
-msgstr ""
+msgstr "Rozchód"
 
 #: gui/summary/summary.js:101
 msgid "∞"
@@ -2102,7 +2102,7 @@ msgstr "Wybierz mod-y do użycia."
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations"
-msgstr ""
+msgstr "Naucz się jak grać, uruchom samouczek, poznaj drzewa technologiczne i historię poszczególnych cywilizacji."
 
 #: gui/pregame/mainmenu.xml:(tooltip):466
 msgid "Challenge the computer player to a single player match."
@@ -2233,7 +2233,7 @@ msgstr "Czas trwania"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):252
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
-msgstr ""
+msgstr "Przebuduj cache powtórki od zera. Potencjalnie wolne!"
 
 #: gui/savedgames/load.xml:(heading):41
 msgctxt "replay"
@@ -2647,7 +2647,7 @@ msgstr "Dołączył późny obserwator"
 
 #: gui/options/options.json[0].options[15].tooltip
 msgid "Prevent further observers from joining if the limit is reached"
-msgstr ""
+msgstr "Zapobiegaj dołączaniu się obserwatorów po osiągnięciu limitu."
 
 #: gui/options/options.json[0].options[15].label
 msgid "Observer Limit"
@@ -2674,11 +2674,11 @@ msgstr "Czas wiadomości"
 msgid ""
 "Display the range of auras of selected units and structures (can also be "
 "toggled in-game with the hotkey)."
-msgstr ""
+msgstr "Wyświetlaj zasięgi aur zaznaczonych jednostek lub struktur (może być zmienione w grze skrótem)"
 
 #: gui/options/options.json[0].options[18].label
 msgid "Aura Range Visualization"
-msgstr ""
+msgstr "Wizualizacja zasięgu aury"
 
 #: gui/options/options.json[0].options[19].tooltip
 msgid ""
@@ -2688,7 +2688,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[19].label
 msgid "Heal Range Visualization"
-msgstr ""
+msgstr "Wizualizacja zasięgu leczenia"
 
 #: gui/options/options.json[0].label
 msgid "General"
@@ -2712,11 +2712,11 @@ msgstr "Postprocessing"
 
 #: gui/options/options.json[1].options[2].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Liczba efektów shadera. WYMAGA PONOWNEGO URUCHOMIENIA GRY."
 
 #: gui/options/options.json[1].options[2].label
 msgid "Shader Effects"
-msgstr ""
+msgstr "Efekty shadera"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Enable shadows"
@@ -2754,7 +2754,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[4].label
 msgid "Shadow Quality"
-msgstr ""
+msgstr "Jakość cieni"
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Smooth shadows"
@@ -2860,11 +2860,11 @@ msgstr "Synchronizacja pionowa"
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
-msgstr ""
+msgstr "Aby oszczędzić pracy CPU, zdław częstotliwość renderowania we wszystkich menu. Ustaw maksimum aby wyłączyć dławienie."
 
 #: gui/options/options.json[1].options[17].label
 msgid "FPS Throttling in Menus"
-msgstr ""
+msgstr "Dławienie FPS w menu"
 
 #: gui/options/options.json[1].options[18].tooltip
 msgid ""
@@ -2874,11 +2874,11 @@ msgstr ""
 
 #: gui/options/options.json[1].options[18].label
 msgid "FPS Throttling in Games"
-msgstr ""
+msgstr "Dławienie FPS w grze"
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
-msgstr ""
+msgstr "Ustaw balans pomiędzy wydajnością a wyglądem."
 
 #: gui/options/options.json[1].label
 msgid "Graphics"
@@ -2906,7 +2906,7 @@ msgstr "Głośność otoczenia w trakcie gry"
 
 #: gui/options/options.json[2].options[2].label
 msgid "Ambient Volume"
-msgstr ""
+msgstr "Głośność tła"
 
 #: gui/options/options.json[2].options[3].tooltip
 msgid "In game unit action sound gain"
@@ -2922,7 +2922,7 @@ msgstr "Głośność interfejsu użytkownika"
 
 #: gui/options/options.json[2].options[4].label
 msgid "UI Volume"
-msgstr ""
+msgstr "Głośność UI"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "Receive audio notification when someone types your nick"
@@ -2952,7 +2952,7 @@ msgstr ""
 
 #: gui/options/options.json[3].tooltip
 msgid "These settings only affect the multiplayer."
-msgstr ""
+msgstr "Dane ustawienia wpływają tylko na rozgrywkę z wieloma graczami."
 
 #: gui/options/options.json[3].label
 msgid "Lobby"
@@ -2960,7 +2960,7 @@ msgstr "Poczekalnia"
 
 #: gui/options/options.json[4].options[0].tooltip
 msgid "Show a chat notification if you are attacked by another player"
-msgstr ""
+msgstr "Pokazuj powiadomienie na czacie gdy jesteś atakowany przez innego gracza."
 
 #: gui/options/options.json[4].options[0].label
 msgid "Attack"
@@ -2974,7 +2974,7 @@ msgstr ""
 
 #: gui/options/options.json[4].options[1].label
 msgid "Tribute"
-msgstr ""
+msgstr "Danina"
 
 #: gui/options/options.json[4].options[2].tooltip
 msgid "Show a chat notification to observers when a player bartered resources"
@@ -2994,7 +2994,7 @@ msgstr "Wykonano"
 
 #: gui/options/options.json[4].options[3].list[2].label
 msgid "All displayed"
-msgstr ""
+msgstr "Wszystko wyświetlone"
 
 #: gui/options/options.json[4].options[3].tooltip
 msgid ""
@@ -3016,19 +3016,19 @@ msgstr "Powiadomienia czatu"
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."
-msgstr ""
+msgstr "Zebrane ze zwierząt, krzewów jagód, ryb lub pól."
 
 #: simulation/data/resources/metal.jsondescription
 msgid "Mine from metal mines or quarries."
-msgstr ""
+msgstr "Wydobyte z kopalni metalu lub kamieniołomów."
 
 #: simulation/data/resources/stone.jsondescription
 msgid "Mine from rocks, stone quarries or ruins."
-msgstr ""
+msgstr "Wydobyte z kamieni, kamieniołomów lub ruin."
 
 #: simulation/data/resources/wood.jsondescription
 msgid "Cut down from trees or groves."
-msgstr ""
+msgstr "Zebrane z drzewa lub gaju."
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.

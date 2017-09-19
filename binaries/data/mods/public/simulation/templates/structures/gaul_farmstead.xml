@@ -4,18 +4,16 @@
     <PopulationBonus>2</PopulationBonus>
   </Cost>
   <Footprint>
-    <Square width="20" depth="20"/>
-    <Height>8.0</Height>
+    <Square width="19.0" depth="18.0"/>
   </Footprint>
   <Identity>
     <Civ>gaul</Civ>
     <SpecificName>Ffermdy</SpecificName>
   </Identity>
   <Obstruction>
-    <Static width="21" depth="20"/>
+    <Static width="17.0" depth="16.0"/>
   </Obstruction>
   <VisualActor>
-    <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
     <Actor>structures/gauls/farmstead.xml</Actor>
   </VisualActor>
 </Entity>

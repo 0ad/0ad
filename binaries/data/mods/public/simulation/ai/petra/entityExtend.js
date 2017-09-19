@@ -28,13 +28,13 @@ m.getMaxStrength = function(ent, againstClass)
 				val *= ent.getMultiplierAgainst(type, againstClass);
 			switch (str)
 			{
-			case "crush":
+			case "Crush":
 				strength += val * 0.085 / 3;
 				break;
-			case "hack":
+			case "Hack":
 				strength += val * 0.075 / 3;
 				break;
-			case "pierce":
+			case "Pierce":
 				strength += val * 0.065 / 3;
 				break;
 			default:
@@ -70,13 +70,13 @@ m.getMaxStrength = function(ent, againstClass)
 		let val = parseFloat(armourStrength[str]);
 		switch (str)
 		{
-		case "crush":
+		case "Crush":
 			strength += val * 0.085 / 3;
 			break;
-		case "hack":
+		case "Hack":
 			strength += val * 0.075 / 3;
 			break;
-		case "pierce":
+		case "Pierce":
 			strength += val * 0.065 / 3;
 			break;
 		default:

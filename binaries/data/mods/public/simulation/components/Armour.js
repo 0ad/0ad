@@ -7,27 +7,11 @@ Armour.prototype.Schema =
 		"<Pierce>0.0</Pierce>" +
 		"<Crush>5.0</Crush>" +
 	"</a:example>" +
-	"<element name='Hack' a:help='Hack damage protection'>" +
-		"<ref name='nonNegativeDecimal'/>" +
-	"</element>" +
-	"<element name='Pierce' a:help='Pierce damage protection'>" +
-		"<ref name='nonNegativeDecimal'/>" +
-	"</element>" +
-	"<element name='Crush' a:help='Crush damage protection'>" +
-		"<ref name='nonNegativeDecimal'/>" +
-	"</element>" +
+	DamageTypes.BuildSchema("damage protection") +
 	"<optional>" +
 		"<element name='Foundation' a:help='Armour given to building foundations'>" +
 			"<interleave>" +
-				"<element name='Hack' a:help='Hack damage protection'>" +
-					"<ref name='nonNegativeDecimal'/>" +
-				"</element>" +
-				"<element name='Pierce' a:help='Pierce damage protection'>" +
-					"<ref name='nonNegativeDecimal'/>" +
-				"</element>" +
-				"<element name='Crush' a:help='Crush damage protection'>" +
-					"<ref name='nonNegativeDecimal'/>" +
-				"</element>" +
+				DamageTypes.BuildSchema("damage protection") +
 			"</interleave>" +
 		"</element>" +
 	"</optional>";
@@ -85,11 +69,11 @@ Armour.prototype.GetArmourStrengths = function()
 
 	var foundation = Engine.QueryInterface(this.entity, IID_Foundation) && this.template.Foundation;
 
-	return {
-		"hack": applyMods("Hack", foundation),
-		"pierce": applyMods("Pierce", foundation),
-		"crush": applyMods("Crush", foundation)
-	};
+	let ret = {};
+	for (let damageType of DamageTypes.GetTypes())
+		ret[damageType] = applyMods(damageType, foundation);
+
+	return ret;
 };
 
 Engine.RegisterComponentType(IID_DamageReceiver, "Armour", Armour);

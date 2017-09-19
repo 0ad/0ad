@@ -31,7 +31,7 @@
 # mhnxo <mhnxo123@gmail.com>, 2014
 # Michał Czerwiński <michal.czerwinski@gmail.com>, 2015
 # Michał Garapich <michal@garapich.pl>, 2013
-# Michał Karol, 2016
+# Michał Karol, 2016-2017
 # Michał Karol, 2015
 # Lapinopl <michal.klaus@gmail.com>, 2015
 # Michał Koźlarek <m.kozlarek@vp.pl>, 2015
@@ -51,8 +51,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-09-08 09:04+0200\n"
-"PO-Revision-Date: 2017-09-08 15:52+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-09-17 00:04+0000\n"
+"Last-Translator: Michał Karol\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -244,7 +244,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:475
 msgid "Select the flora and fauna."
-msgstr ""
+msgstr "Wybierz florę i faunę."
 
 #: gui/gamesetup/gamesetup.js:490
 msgid "Number of Players"
@@ -315,15 +315,15 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:605
 msgid "Minutes until the player has achieved Relic Victory."
-msgstr ""
+msgstr "Minuty zanim gracz wygra poprzez utrzymanie Relikwii."
 
 #: gui/gamesetup/gamesetup.js:619
 msgid "Wonder Duration"
-msgstr ""
+msgstr "Czas do zbudowania Cudu"
 
 #: gui/gamesetup/gamesetup.js:620
 msgid "Minutes until the player has achieved Wonder Victory."
-msgstr ""
+msgstr "Minuty zanim gracz wygra poprzez wybudowanie Cudu."
 
 #: gui/gamesetup/gamesetup.js:634
 msgid "Game Speed"
@@ -453,12 +453,12 @@ msgstr "Losowe "
 
 #: gui/gamesetup/gamesetup.js:1488
 msgid "Pick any of the given maps at random."
-msgstr ""
+msgstr "Wybierz losowo jedną z dostępnych map."
 
 #: gui/gamesetup/gamesetup.js:1517
 msgctxt "biome"
 msgid "Random"
-msgstr ""
+msgstr "Losowe"
 
 #: gui/gamesetup/gamesetup.js:1518
 msgid "Pick a biome at random."
@@ -661,7 +661,7 @@ msgstr "\"Przywiodła ona \\[Helena] do Epiru swój posag, zniszczenie.\" - Ajsc
 msgid ""
 "\"In every tyrant's heart there springs in the end this poison, that he "
 "cannot trust a friend.\" - Aeschylus (\"Prometheus Bound\", 224-225)"
-msgstr ""
+msgstr "\"Serce każdego tyrana trawi ta trucizna, że nie może zaufać przyjaciołom.\" - Ajschylos, (\"Prometeusz w okowach\", 224-225)"
 
 #: gui/text/quotes.txt:4
 msgid ""
@@ -677,61 +677,61 @@ msgstr ""
 
 #: gui/text/quotes.txt:6
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus (fragment 383)"
-msgstr ""
+msgstr "\"Bogaty głupiec jest straszliwym brzemieniem.\" - Ajschylos (fragment 383)"
 
 #: gui/text/quotes.txt:7
 msgid ""
 "\"The gods help those that help themselves.\" - Aesop (\"Hercules and the "
 "Wagoner\")"
-msgstr ""
+msgstr "\"Bogowie pomagają tym, co sami sobie pomagają.\" - Ezop (\"Herkules i furman\")"
 
 #: gui/text/quotes.txt:8
 msgid ""
 "\"It is thrifty to prepare today for the wants of tomorrow.\" - Aesop (\"The"
 " Ant and the Grasshopper\")"
-msgstr ""
+msgstr "\"Oszczędnym jest przygotować się dziś na wymagania jutra.\" - Ezop (\"Mrówka i konik polny\")"
 
 #: gui/text/quotes.txt:9
 msgid "\"Union gives strength.\" - Aesop (\"The Bundle of Sticks\")"
-msgstr ""
+msgstr "\"Zjednoczenie przynosi siłę.\" - Ezop (\"Wiązka patyków\")"
 
 #: gui/text/quotes.txt:10
 msgid ""
 "\"Never trust advice from a man in the throes of his own difficulty.\" - "
 "Aesop (\"The Fox and the Goat\")"
-msgstr ""
+msgstr "\"Nie zasięgaj rady u człowieka pogrążonego we własnych problemach.\" - Ezop (\"Lis i koza\")"
 
 #: gui/text/quotes.txt:11
 msgid ""
 "\"Familiarity breeds contempt; acquaintance softens prejudices.\" - Aesop "
 "(\"The Fox and the Lion\")"
-msgstr ""
+msgstr "\"Zbytnia poufałość rodzi lekceważenie; zapoznanie się łagodzi uprzedzenia.\" - Ezop (\"Lis i lew\")"
 
 #: gui/text/quotes.txt:12
 msgid ""
 "\"Self-conceit may lead to self-destruction.\" - Aesop (\"The Frog and the "
 "Ox\")"
-msgstr ""
+msgstr "\"Zarozumiałość może prowadzić do samozniszczenia.\" - Ezop (\"Żaba i wół\")"
 
 #: gui/text/quotes.txt:13
 msgid "\"Slow and steady wins the race.\" - Aesop (\"The Hare and the Tortoise\")"
-msgstr ""
+msgstr "\"Powolny i wytrwały wygrywa wyścig.\" - Ezop (\"Żółw i zając\")"
 
 #: gui/text/quotes.txt:14
 msgid ""
 "\"Better be wise by the misfortunes of others than by your own.\" - Aesop "
 "(\"The Lion, the Ass, and the Fox Hunting\")"
-msgstr ""
+msgstr "\"Lepiej uczyć się na nieszczęściach innych, niż na własnych.\" - Ezop (\"Lew, osioł i lis polują\")"
 
 #: gui/text/quotes.txt:15
 msgid ""
 "\"Enemies' promises were made to be broken.\" - Aesop (\"The Nurse and the "
 "Wolf\")"
-msgstr ""
+msgstr "\"Obietnice nieprzyjaciół zostały dane, by je złamać.\" - Ezop (\"Opiekunka i wilk\")"
 
 #: gui/text/quotes.txt:16
 msgid "\"Any excuse will serve a tyrant.\" - Aesop (\"The Wolf and the Lamb\")"
-msgstr ""
+msgstr "\"Każda wymówka służy tyranowi.\" - Ezop (\"Wilk w owczej skórze\")"
 
 #: gui/text/quotes.txt:17
 msgid ""
@@ -751,13 +751,13 @@ msgid ""
 "\"Weep not for me, as I suffer unjustly, I am in a happier situation than my"
 " murderers.\" - Agis IV of Sparta upon seeing one of his executioners cry "
 "(Plutarch, \"Parallel Lives\", \"Agis\", sec. 20)"
-msgstr ""
+msgstr "\"Nie płaczcie nade mną, choć cierpię niesprawiedliwie, w lepszym jestem stanie niż moi mordercy.\" - Agis IV, 24. król Sparty z dynastii Eurypontydów gdy zobaczył że jeden z katów płacze (Plutarch, \"Żywoty równoległe\", \"Agis\", sekcja 20)"
 
 #: gui/text/quotes.txt:20
 msgid ""
 "\"Sex and sleep alone make me conscious that I am mortal.\" - Alexander the "
 "Great (Plutarch, \"Parallel Lives\", \"Alexander\", sec. 22)"
-msgstr ""
+msgstr "\"Same tylko seks i sen sprawiają, że jestem świadom swojej śmiertelności.\" - Aleksander Wielki (Plutarch, \"Żywoty równoległe\", \"Aleksander Wielki\", sekcja 22)"
 
 #: gui/text/quotes.txt:21
 msgid ""
@@ -917,7 +917,7 @@ msgid ""
 "\"Let every man remind their descendants that they also are soldiers who "
 "must not desert the ranks of their ancestors, or retreat out of cowardice.\""
 " - Aspasia (Plato, \"Menexenus\", 246b)"
-msgstr ""
+msgstr "\"Niech każdy człowiek przypomni ich potomków, że oni również są żołnierzami, którzy nie muszą być szeregowcami na pustyni swoich przodków, lub \nz tchórzostwa w tyle.\" - Aspazja (Platon, \"Meneksenos\", 246b)"
 
 #: gui/text/quotes.txt:43
 msgid ""
@@ -1002,14 +1002,14 @@ msgstr ""
 msgid ""
 "\"Wise men learn more from fools than fools from the wise.\" - Cato the "
 "Elder (Plutarch, \"Parallel Lives\", \"Cato the Elder\", sec. 9)"
-msgstr ""
+msgstr "\"Mędrcy uczą się więcej od głupców, niż głupcy od mędrców.\" - Kato Starszy (Plutarch, \"Żywoty równoległe\", \"Kato Starszy\", sekcja 9)"
 
 #: gui/text/quotes.txt:55
 msgid ""
 "\"Moreover, I consider that Carthage should be destroyed.\" - Cato the "
 "Elder, who ended all speeches in his later life with this statement "
 "(Plutarch, \"Parallel Lives\", \"Cato the Elder\", sec. 27)"
-msgstr ""
+msgstr "\"Poza tym uważam, że Kartaginę należy zniszczyć\" -  Kato Starszy kończył wszystkie swe mowy tym stwierdzeniem (Plutarch, \"Żywoty Równoległe\", \"Kato Starszy\", sekcja 27)"
 
 #: gui/text/quotes.txt:56
 msgid ""
@@ -1252,7 +1252,7 @@ msgstr ""
 msgid ""
 "\"Stop quoting laws, we carry weapons!\" - Gnaeus Pompeius Magnus (Plutarch,"
 " \"Parallel Lives\", \"Pompey\", sec. 10)"
-msgstr ""
+msgstr "\"Przestańce cytować prawa, niesiemy broń!\" - Gnejusz Pompejusz Magnus (Plutarch, \"Żywota Równoległe\",  \"Pompeje\", sekcja 10)"
 
 #: gui/text/quotes.txt:90
 msgid ""
@@ -1529,7 +1529,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:130
 msgid "\"I call a fig a fig, a spade a spade.\" - Menander (fragment 545 K)"
-msgstr ""
+msgstr "\"Nazywam figę figą, łopatę łopatą.\" - Menander (fragment 545 K)"
 
 #: gui/text/quotes.txt:131
 msgid ""
@@ -2073,4 +2073,4 @@ msgstr ""
 msgid ""
 "\"For a thinking man is where Wisdom is at home.\" - Zoroaster, founder of "
 "the Zoroastrian religion (\"Ahunuvaiti Gatha\", yasna 30.9)"
-msgstr ""
+msgstr "\"Albowiem to w myślącym mężu jest, gdzie Mądrość jest u siebie.\" - Zaratusztra (\"Ahunuvaiti Gatha\", yasna 30.9)"
