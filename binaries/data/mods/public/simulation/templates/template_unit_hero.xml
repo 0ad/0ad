@@ -54,7 +54,7 @@
   </Selectable>
   <Sound>
     <SoundGroups>
-      <death>actor/human/death/death.xml</death>
+      <death>actor/human/death/{gender}_death.xml</death>
     </SoundGroups>
   </Sound>
   <TrainingRestrictions>
