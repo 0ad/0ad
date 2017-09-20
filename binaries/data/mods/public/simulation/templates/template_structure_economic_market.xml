@@ -18,12 +18,12 @@
     <SpawnEntityOnDeath>rubble/rubble_stone_5x5</SpawnEntityOnDeath>
   </Health>
   <Identity>
+    <Classes datatype="tokens">BarterMarket</Classes>
     <GenericName>Market</GenericName>
-    <Tooltip>Create trade units to trade between other markets. Barter resources. Research trading and bartering improvements.</Tooltip>
-    <Classes datatype="tokens">BarterMarket -ConquestCritical</Classes>
-    <VisibleClasses datatype="tokens">Town Market</VisibleClasses>
     <Icon>structures/market.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
+    <Tooltip>Create trade units to trade between other markets. Barter resources. Research trading and bartering improvements.</Tooltip>
+    <VisibleClasses datatype="tokens">Town Market</VisibleClasses>
   </Identity>
   <Loot>
     <food>25</food>

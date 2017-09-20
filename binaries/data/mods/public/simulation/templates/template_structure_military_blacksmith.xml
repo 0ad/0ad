@@ -26,12 +26,12 @@
     <SpawnEntityOnDeath>rubble/rubble_stone_4x4</SpawnEntityOnDeath>
   </Health>
   <Identity>
-    <GenericName>Blacksmith</GenericName>
-    <Tooltip>Research weapons and armor improvements.</Tooltip>
     <Classes datatype="tokens">-ConquestCritical</Classes>
-    <VisibleClasses datatype="tokens">Town Blacksmith</VisibleClasses>
+    <GenericName>Blacksmith</GenericName>
     <Icon>structures/blacksmith.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
+    <Tooltip>Research weapons and armor improvements.</Tooltip>
+    <VisibleClasses datatype="tokens">Town Blacksmith</VisibleClasses>
   </Identity>
   <Loot>
     <wood>50</wood>

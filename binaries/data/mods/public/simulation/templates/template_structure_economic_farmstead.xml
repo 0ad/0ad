@@ -20,11 +20,11 @@
     <SpawnEntityOnDeath>rubble/rubble_stone_4x4</SpawnEntityOnDeath>
   </Health>
   <Identity>
+    <Classes datatype="tokens">DropsiteFood</Classes>
     <GenericName>Farmstead</GenericName>
-    <Tooltip>Dropsite for the food resource. Research food gathering improvements.</Tooltip>
-    <Classes datatype="tokens">-ConquestCritical DropsiteFood</Classes>
-    <VisibleClasses datatype="tokens">Village Farmstead</VisibleClasses>
     <Icon>structures/farmstead.png</Icon>
+    <Tooltip>Dropsite for the food resource. Research food gathering improvements.</Tooltip>
+    <VisibleClasses datatype="tokens">Village Farmstead</VisibleClasses>
   </Identity>
   <Loot>
     <food>100</food>
