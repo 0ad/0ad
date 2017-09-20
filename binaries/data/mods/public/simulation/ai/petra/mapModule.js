@@ -121,6 +121,7 @@ m.createTerritoryMap = function(gameState)
 	let ret = new API3.Map(gameState.sharedScript, "territory", map.data);
 	ret.getOwner = function(p) { return this.point(p) & m.TERRITORY_PLAYER_MASK; };
 	ret.getOwnerIndex = function(p) { return this.map[p] & m.TERRITORY_PLAYER_MASK; };
+	ret.isBlinking = function(p) { return (this.point(p) & m.TERRITORY_BLINKING_MASK) != 0; };
 	return ret;
 };
 

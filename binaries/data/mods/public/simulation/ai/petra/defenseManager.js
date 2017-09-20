@@ -157,10 +157,10 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 	let myBuildings = gameState.getOwnStructures();
 	for (let building of myBuildings.values())
 	{
-		if (building.foundationProgress() === 0)
+		if (building.foundationProgress() === 0 ||
+		    API3.SquareVectorDistance(building.position(), entity.position()) > dist2Min)
 			continue;
-		if (API3.SquareVectorDistance(building.position(), entity.position()) < dist2Min)
-			return true;
+		return !this.territoryMap.isBlinking(building.position()) || gameState.ai.HQ.isDefendable(building);
 	}
 
 	// Update the number of enemies attacking this ally
@@ -506,6 +506,19 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 
 		if (target.hasClass("Ship"))    // TODO integrate ships later   need to be sure it is accessible
 			continue;
+
+		// If a building on a blinking tile is attacked, check if it can be defended
+		if (target.hasClass("Structure") && this.territoryMap.isBlinking(target.position()) &&
+		    !gameState.ai.HQ.isDefendable(target))
+		{
+			let capture = target.capturePoints();
+			if (!capture)
+				continue;
+			let captureRatio = capture[PlayerID] / capture.reduce((a, b) => a + b);
+			if (captureRatio > 0.50 && captureRatio < 0.75)
+				target.destroy();
+			continue;
+		}
 
 		// If inside a started attack plan, let the plan deal with this unit
 		let plan = target.getMetadata(PlayerID, "plan");
