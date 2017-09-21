@@ -504,6 +504,19 @@ m.AttackManager.prototype.raidTargetEntity = function(gameState, ent)
 };
 
 /**
+ * Return the number of units from any of our attacking armies around this position
+ */
+m.AttackManager.prototype.numAttackingUnitsAround = function(pos, dist)
+{
+	let num = 0;
+	for (let attackType in this.startedAttacks)
+		for (let attack of this.startedAttacks[attackType])
+			if (API3.SquareVectorDistance(pos, attack.position) < dist*dist)
+				num += attack.unitCollection.length
+	return num;
+};
+
+/**
  * Switch defense armies into an attack one against the given target
  * data.range: transform all defense armies inside range of the target into a new attack
  * data.armyID: transform only the defense army ID into a new attack

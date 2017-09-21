@@ -30,10 +30,10 @@
     <Pickup>true</Pickup>
   </GarrisonHolder>
   <Identity>
+    <Classes datatype="tokens">FishingBoat -ConquestCritical</Classes>
+    <Formations disable=""/>
     <GenericName>Fishing Boat</GenericName>
     <Tooltip>Fish the waters for food.</Tooltip>
-    <Classes datatype="tokens">FishingBoat</Classes>
-    <Formations disable=""/>
   </Identity>
   <Loot>
     <xp>1</xp>

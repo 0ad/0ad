@@ -2312,6 +2312,18 @@ m.HQ.prototype.GetTCResGatherer = function(resource)
 };
 
 /**
+ * Check if a structure in blinking territory should/can be defended (currently if it has some attacking armies around)
+ */
+m.HQ.prototype.isDefendable = function(ent)
+{
+	if (!this.turnCache.numAround)
+		this.turnCache.numAround = {};
+	if (this.turnCache.numAround[ent.id()] === undefined)
+		this.turnCache.numAround[ent.id()] = this.attackManager.numAttackingUnitsAround(ent.position(), 130);
+	return +this.turnCache.numAround[ent.id()] > 8;
+};
+
+/**
  * Some functions are run every turn
  * Others once in a while
  */
