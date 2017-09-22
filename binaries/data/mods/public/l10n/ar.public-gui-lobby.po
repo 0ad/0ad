@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-30 09:02+0200\n"
-"PO-Revision-Date: 2017-09-17 20:04+0000\n"
-"Last-Translator: ibrahim mahfod ghamdi <barho0om_55@hotmail.com>\n"
+"PO-Revision-Date: 2017-09-21 15:30+0000\n"
+"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -66,7 +66,7 @@ msgstr "قُطع الاتّصال."
 #: gui/lobby/lobby.js:157
 #, javascript-format
 msgid "%(nick)s changed the lobby subject to %(subject)s"
-msgstr "%(nick)s غير عنوان الردهة الى %(subject)s"
+msgstr "غيّر %(nick)s موضوع الرّدهة إلى %(subject)s"
 
 #: gui/lobby/lobby.js:168
 #, javascript-format
@@ -190,13 +190,13 @@ msgstr "أيّ خريطة"
 #, javascript-format
 msgctxt "gamelist filter"
 msgid "> %(rating)s"
-msgstr "%(rating)s"
+msgstr ""
 
 #: gui/lobby/lobby.js:456
 #, javascript-format
 msgctxt "gamelist filter"
 msgid "< %(rating)s"
-msgstr "%(rating)s"
+msgstr ""
 
 #: gui/lobby/lobby.js:529
 msgid "You have been banned from the lobby!"
@@ -376,25 +376,25 @@ msgstr "رجاءً أدخل اسم المستخدم"
 
 #: gui/lobby/prelobby.js:100
 msgid "Invalid username"
-msgstr "اسم مستخدم غير صالح"
+msgstr "اسم المستخدم غير صالح"
 
 #: gui/lobby/prelobby.js:107
 msgctxt "login"
 msgid "Please enter your password"
-msgstr "الرجاء إدخال كلمة المرور"
+msgstr "رجاءً أدخل كلمة السّرّ"
 
 #: gui/lobby/prelobby.js:108
 msgctxt "register"
 msgid "Please enter your password"
-msgstr "الرجاء إدخال كلمة المرور"
+msgstr "رجاءً أدخل كلمة السّرّ"
 
 #: gui/lobby/prelobby.js:121
 msgid "Please enter your password again"
-msgstr "رجاءً أدخل كلمة المرور مجدّدًا"
+msgstr "رجاءً أعد إدخال كلمة السّر"
 
 #: gui/lobby/prelobby.js:127
 msgid "Passwords do not match"
-msgstr "كلمتا المرور لا تتطابقان"
+msgstr "كلمتا السّرّ لا تتطابقان"
 
 #: gui/lobby/prelobby.js:133
 msgid "Please read the Terms of Service"
