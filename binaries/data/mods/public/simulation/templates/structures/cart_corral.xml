@@ -2,7 +2,6 @@
 <Entity parent="template_structure_resource_corral">
   <Footprint>
     <Square width="18.0" depth="16.5"/>
-    <Height>5.0</Height>
   </Footprint>
   <Identity>
     <Civ>cart</Civ>
@@ -19,6 +18,5 @@
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/carthaginians/corral.xml</Actor>
-    <FoundationActor>structures/fndn_3x3.xml</FoundationActor>
   </VisualActor>
 </Entity>

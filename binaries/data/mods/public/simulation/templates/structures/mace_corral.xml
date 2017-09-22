@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_resource_corral">
-  <Footprint>
-    <Square width="17.0" depth="17.0"/>
-    <Height>8.0</Height>
-  </Footprint>
   <Identity>
     <Civ>mace</Civ>
     <SpecificName>Épaulos</SpecificName>
   </Identity>
-  <Obstruction>
-    <Static width="14.0" depth="14.0"/>
-  </Obstruction>
   <VisualActor>
     <Actor>structures/hellenes/corral.xml</Actor>
-    <FoundationActor>structures/fndn_3x3.xml</FoundationActor>
   </VisualActor>
 </Entity>

@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_resource_corral">
   <Footprint>
-    <Square width="14.0" depth="24.0"/>
-    <Height>5.0</Height>
+    <Square width="12.0" depth="21.0"/>
   </Footprint>
   <Identity>
     <Civ>brit</Civ>
     <SpecificName>Cavalidos</SpecificName>
   </Identity>
   <Obstruction>
-    <Static width="10.0" depth="20.0"/>
+    <Static width="10.0" depth="19.0"/>
   </Obstruction>
   <ProductionQueue>
     <Entities datatype="tokens">
@@ -19,5 +18,6 @@
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/britons/plot_corral.xml</Actor>
+    <FoundationActor>structures/fndn_2x4.xml</FoundationActor>
   </VisualActor>
 </Entity>

@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_resource_corral">
   <Footprint>
-    <Square width="14.5" depth="14.5"/>
-    <Height>5.0</Height>
+    <Square width="16.0" depth="17.0"/>
   </Footprint>
   <Identity>
     <Civ>maur</Civ>
     <SpecificName>Gotra</SpecificName>
   </Identity>
   <Obstruction>
-    <Static width="13.0" depth="13.0"/>
+    <Static width="14.0" depth="15.0"/>
   </Obstruction>
   <ProductionQueue>
     <Entities datatype="tokens">
@@ -19,6 +18,5 @@
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/mauryans/corral.xml</Actor>
-    <FoundationActor>structures/fndn_3x3.xml</FoundationActor>
   </VisualActor>
 </Entity>
