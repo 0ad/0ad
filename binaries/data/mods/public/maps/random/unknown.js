@@ -532,7 +532,7 @@ else if (md == 4) //central river
 //********************************************************************************************************
 else if (md == 5) //rivers and lake
 {
-	var [playerIDs, playerX, playerZ] = radialPlayerPlacement();
+	var [playerIDs, playerX, playerZ, playerAngle, startAngle] = radialPlayerPlacement();
 
 	for (var i = 0; i < numPlayers; i++)
 	{
@@ -1057,7 +1057,7 @@ else if (md == 8) //lakes
 //********************************************************************************************************
 else if (md == 9) //passes
 {
-	var [playerIDs, playerX, playerZ, playerAngle] = radialPlayerPlacement();
+	var [playerIDs, playerX, playerZ, playerAngle, startAngle] = radialPlayerPlacement();
 
 	for (var ix = 0; ix < mapSize; ix++)
 	{
@@ -1139,7 +1139,7 @@ else if (md == 9) //passes
 //********************************************************************************************************
 else if (md == 10) //lowlands
 {
-	var [playerIDs, playerX, playerZ, playerAngle] = radialPlayerPlacement();
+	var [playerIDs, playerX, playerZ, playerAngle, startAngle] = radialPlayerPlacement();
 
 	for (var ix = 0; ix < mapSize; ix++)
 	{
