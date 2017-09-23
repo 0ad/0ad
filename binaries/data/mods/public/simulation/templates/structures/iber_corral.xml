@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_resource_corral">
   <Footprint>
-    <Square width="16.0" depth="17.5"/>
-    <Height>5.0</Height>
+    <Square width="17.0" depth="19.0"/>
   </Footprint>
   <Identity>
     <Civ>iber</Civ>
     <SpecificName>Saroe</SpecificName>
   </Identity>
   <Obstruction>
-    <Static width="14.0" depth="14.0"/>
+    <Static width="15.0" depth="17.0"/>
   </Obstruction>
   <ProductionQueue>
     <Entities datatype="tokens">
@@ -19,6 +18,5 @@
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/iberians/corral.xml</Actor>
-    <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
   </VisualActor>
 </Entity>

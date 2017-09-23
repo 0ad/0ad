@@ -7,7 +7,7 @@
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="12.0" depth="22.0"/>
+    <Square width="18.0" depth="17.0"/>
     <Height>5.0</Height>
   </Footprint>
   <Health>
@@ -24,7 +24,7 @@
     <food>25</food>
   </Loot>
   <Obstruction>
-    <Static width="9.5" depth="19.75"/>
+    <Static width="16.0" depth="15.0"/>
   </Obstruction>
   <ProductionQueue>
     <BatchTimeModifier>0.7</BatchTimeModifier>
@@ -53,6 +53,6 @@
     <Range>20</Range>
   </Vision>
   <VisualActor>
-    <FoundationActor>structures/fndn_2x4.xml</FoundationActor>
+    <FoundationActor>structures/fndn_3x3.xml</FoundationActor>
   </VisualActor>
 </Entity>

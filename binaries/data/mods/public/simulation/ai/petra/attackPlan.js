@@ -14,6 +14,7 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	this.name = uniqueID;
 	this.type = type || "Attack";
 	this.state = "unexecuted";
+	this.forced = false;  // true when this attacked has been forced to help an ally
 
 	if (data && data.target)
 	{
@@ -308,6 +309,7 @@ m.AttackPlan.prototype.forceStart = function()
 		Unit.targetSize = 0;
 		Unit.minSize = 0;
 	}
+	this.forced = true;
 };
 
 /** Adds a build order. If resetQueue is true, this will reset the queue. */
@@ -799,7 +801,11 @@ m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand
 		if (this.type === "Raid")
 			targets = this.raidTargetFinder(gameState);
 		else if (this.type === "Rush" || this.type === "Attack")
+		{
 			targets = this.rushTargetFinder(gameState, this.targetPlayer);
+			if (!targets.hasEntities() && (this.hasSiegeUnits() || this.forced))
+				targets = this.defaultTargetFinder(gameState, this.targetPlayer);
+		}
 		else
 			targets = this.defaultTargetFinder(gameState, this.targetPlayer);
 	}
@@ -1877,14 +1883,37 @@ m.AttackPlan.prototype.Abort = function(gameState)
 	this.unitCollection.unregister();
 	if (this.unitCollection.hasEntities())
 	{
-		// If the attack was started, and we are on the same land as the rallyPoint, go back there
-		let rallyPoint = this.rallyPoint;
-		let withdrawal = this.isStarted() && !this.overseas;
+		// If the attack was started, look for a good rallyPoint to withdraw
+		let rallyPoint;
+		if (this.isStarted())
+		{
+			let access = gameState.ai.accessibility.getAccessValue(this.position);
+			let dist = Math.min();
+			if (this.rallyPoint && gameState.ai.accessibility.getAccessValue(this.rallyPoint) == access)
+			{
+				rallyPoint = this.rallyPoint;
+				dist = API3.SquareVectorDistance(this.position, rallyPoint);
+			}
+			// Then check if we have a nearer base (in case this attack has captured one)
+			for (let base of gameState.ai.HQ.baseManagers)
+			{
+				if (!base.anchor || !base.anchor.position())
+					continue;
+				if (gameState.ai.accessibility.getAccessValue(base.anchor.position()) != access)
+					continue;
+				let newdist = API3.SquareVectorDistance(this.position, base.anchor.position());
+				if (newdist > dist)
+					continue;
+				dist = newdist;
+				rallyPoint = base.anchor.position();
+			}
+		}
+
 		for (let ent of this.unitCollection.values())
 		{
 			if (ent.getMetadata(PlayerID, "role") === "attack")
 				ent.stopMoving();
-			if (withdrawal)
+			if (rallyPoint)
 				ent.moveToRange(rallyPoint[0], rallyPoint[1], 0, 15);
 			this.removeUnit(ent);
 		}
@@ -2003,6 +2032,7 @@ m.AttackPlan.prototype.Serialize = function()
 		"name": this.name,
 		"type": this.type,
 		"state": this.state,
+		"forced": this.forced,
 		"rallyPoint": this.rallyPoint,
 		"overseas": this.overseas,
 		"paused": this.paused,

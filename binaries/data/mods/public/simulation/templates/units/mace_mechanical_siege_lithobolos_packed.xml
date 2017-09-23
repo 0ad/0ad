@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="special_units/mace_mechanical_siege_lithobolos_common">
+<Entity parent="template_unit_mechanical_siege_onager">
   <Identity>
+    <Civ>mace</Civ>
+    <SpecificName>Lithobólos</SpecificName>
     <Icon>units/hele_mechanical_siege_lithobolos_packed.png</Icon>
   </Identity>
   <Pack>

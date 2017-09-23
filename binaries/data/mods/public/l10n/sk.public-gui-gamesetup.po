@@ -22,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-09-08 09:04+0200\n"
-"PO-Revision-Date: 2017-09-08 15:52+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-09-21 14:29+0000\n"
+"Last-Translator: Angen <slavomir.slovenkai@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -215,7 +215,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:475
 msgid "Select the flora and fauna."
-msgstr ""
+msgstr "Označ flóru a faunu."
 
 #: gui/gamesetup/gamesetup.js:490
 msgid "Number of Players"
@@ -238,7 +238,7 @@ msgstr "Vyber limit populácie"
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr ""
+msgstr "Varovanie: Môžu vzniknúť problémy s výkonom ak všetci %(players)s hráči dosiahnú %(popCap)s obyvateľov."
 
 #: gui/gamesetup/gamesetup.js:538
 msgid "Starting Resources"
@@ -247,7 +247,7 @@ msgstr "Začiatočné suroviny"
 #: gui/gamesetup/gamesetup.js:541
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
-msgstr ""
+msgstr "Začiatočné množstvo každej suroviny: %(resources)s."
 
 #: gui/gamesetup/gamesetup.js:544
 msgid "Select the game's starting resources."
@@ -393,7 +393,7 @@ msgstr "Prepnúť, či bude hra hodnotená a umiestnená v rebríčku."
 #: gui/gamesetup/gamesetup.js:881
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames or settings."
-msgstr ""
+msgstr "Stlačte %(hotkey)s pre automatické dolnenie hráčskych mien alebo nastavení."
 
 #: gui/gamesetup/gamesetup.js:889
 msgid "Return to the lobby."
@@ -405,7 +405,7 @@ msgstr "Návrat do hlavného menu."
 
 #: gui/gamesetup/gamesetup.js:894
 msgid "Start Game!"
-msgstr ""
+msgstr "Spustiť hru!"
 
 #: gui/gamesetup/gamesetup.js:900
 msgid "Start a new game with the current settings."
@@ -415,7 +415,7 @@ msgstr "Začať novú hru so súčasnými nastaveniami."
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)"
-msgstr ""
+msgstr "Začať novú hru s aktuálnymi nastaveniami (znemožnené kým nebudú všetci hráči pripravené)"
 
 #: gui/gamesetup/gamesetup.js:1486
 msgctxt "map selection"
@@ -424,12 +424,12 @@ msgstr "Náhodné"
 
 #: gui/gamesetup/gamesetup.js:1488
 msgid "Pick any of the given maps at random."
-msgstr ""
+msgstr "Vybrať náhodne akúkoľvek mapu."
 
 #: gui/gamesetup/gamesetup.js:1517
 msgctxt "biome"
 msgid "Random"
-msgstr ""
+msgstr "Náhodné"
 
 #: gui/gamesetup/gamesetup.js:1518
 msgid "Pick a biome at random."

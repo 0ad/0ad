@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_resource_corral">
   <Footprint>
-    <Square width="18.0" depth="12.0"/>
-    <Height>5.0</Height>
+    <Square width="20.0" depth="13.0"/>
   </Footprint>
   <Health>
     <SpawnEntityOnDeath>rubble/rubble_stone_4x2</SpawnEntityOnDeath>
@@ -12,7 +11,7 @@
     <SpecificName>Gaiāšta</SpecificName>
   </Identity>
   <Obstruction>
-    <Static width="17.0" depth="11.0"/>
+    <Static width="18.0" depth="11.0"/>
   </Obstruction>
   <VisualActor>
     <Actor>structures/persians/corral.xml</Actor>

@@ -21,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-28 09:03+0200\n"
-"PO-Revision-Date: 2017-09-18 14:33+0000\n"
-"Last-Translator: Omar Anwar <omaraglan91@yahoo.com>\n"
+"PO-Revision-Date: 2017-09-21 08:27+0000\n"
+"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,7 +34,7 @@ msgstr ""
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
-msgstr[0] "المدى الأساسيّ: لا أمتار"
+msgstr[0] "المدى الأساسيّ: أقلّ من متر"
 msgstr[1] "المدى الأساسيّ: متر واحد"
 msgstr[2] "المدى الأساسيّ: متران"
 msgstr[3] "المدى الأساسيّ: %(range)s أمتار"
@@ -45,12 +45,12 @@ msgstr[5] "المدى الأساسيّ: %(range)s متر"
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
-msgstr[0] "متوسط حد الزيادة: لا أمتار"
-msgstr[1] "متوسط نقاط الزيادة: متر"
-msgstr[2] "متوسط حد الزيادة: متران"
-msgstr[3] "متوسط حد الزيادة: %(range)s أمتار"
-msgstr[4] "متوسط حد الزيادة: %(range)s أمتار"
-msgstr[5] "متوسط حد الزيادة: %(range)s أمتار"
+msgstr[0] "مدى العلاوة الأساسيّ: أقلّ من متر"
+msgstr[1] "مدى العلاوة الأساسيّ: متر واحد"
+msgstr[2] "مدى العلاوة الأساسيّ: متران"
+msgstr[3] "مدى العلاوة الأساسيّ: %(range)s أمتار"
+msgstr[4] "مدى العلاوة الأساسيّ: %(range)s مترًا"
+msgstr[5] "مدى العلاوة الأساسيّ: %(range)s متر"
 
 #: gui/session/input.js:710
 msgid "Cannot build wall here!"
@@ -942,7 +942,7 @@ msgstr "ألغِ التّرقية"
 
 #: gui/session/selection_panels.js:1132
 msgid "Cannot upgrade when the entity is already upgrading."
-msgstr "لا يمكن التطوير حينما يكون الكيان طور مسبقا."
+msgstr "التّرقية غير ممكنة والكيان تجري ترقيته أصلًا."
 
 #: gui/session/selection_panels_helpers.js:53
 msgctxt "stance"
@@ -1238,7 +1238,7 @@ msgstr "ركز على نقطه التجمع."
 
 #: gui/session/unit_actions.js:1221
 msgid "Back to Work"
-msgstr "ارجع إلى العمل"
+msgstr "عُد إلى العمل"
 
 #: gui/session/unit_actions.js:1240
 msgid "Order the selected units to guard a building or unit."
