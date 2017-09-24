@@ -255,13 +255,17 @@ function resizeDiplomacyDialog()
 {
 	let dialog = Engine.GetGUIObjectByName("diplomacyDialogPanel");
 	let size = dialog.size;
-	let width = size.right - size.left;
 
 	let tribSize = Engine.GetGUIObjectByName("diplomacyPlayer[0]_tribute[0]").size;
-	width += g_ResourceData.GetCodes().length * (tribSize.right - tribSize.left);
+	let widthOffset = g_ResourceData.GetCodes().length * (tribSize.right - tribSize.left) / 2;
+	size.left -= widthOffset;
+	size.right += widthOffset;
 
-	size.left = -width / 2;
-	size.right = width / 2;
+	let firstRow = Engine.GetGUIObjectByName("diplomacyPlayer[0]").size;
+	let heightOffset = (g_Players.length - 1) * (firstRow.bottom - firstRow.top) / 2;
+	size.top -= heightOffset;
+	size.bottom += heightOffset;
+
 	dialog.size = size;
 }
 
