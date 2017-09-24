@@ -327,7 +327,7 @@ for (var ix = 0; ix < mapSize; ix++)
 
 		placeTerrain(ix, iz, t);
 	}
-}
+
 RMS.SetProgress(30);
 
 for (var i = 1; i <= numPlayers; i++)

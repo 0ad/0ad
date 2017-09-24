@@ -702,7 +702,7 @@ else if (md == 7) //gulf
 	var startAngle = -PI/6 + (mdd1-1)*PI/2;
 	for (var i = 0; i < numPlayers; i++)
 	{
-		playerAngle[i] = startAngle + i*TWO_PI/(numPlayers-1)*2/3;
+		playerAngle[i] = startAngle + Math.PI * 2/3 * (numPlayers == 1 ? 1 : 2 * i / (numPlayers - 1));
 		playerX[i] = 0.5 + 0.35*cos(playerAngle[i]);
 		playerZ[i] = 0.5 + 0.35*sin(playerAngle[i]);
 	}
@@ -855,7 +855,7 @@ else if (md == 8) //lakes
 //********************************************************************************************************
 else if (md == 9) //passes
 {
-	var [playerIDs, playerX, playerZ, playerAngle] = radialPlayerPlacement();
+	var [playerIDs, playerX, playerZ, playerAngle, startAngle] = radialPlayerPlacement();
 
 	for (var ix = 0; ix < mapSize; ix++)
 	{
@@ -937,7 +937,7 @@ else if (md == 9) //passes
 //********************************************************************************************************
 else if (md == 10) //lowlands
 {
-	var [playerIDs, playerX, playerZ, playerAngle] = radialPlayerPlacement();
+	var [playerIDs, playerX, playerZ, playerAngle, startAngle] = radialPlayerPlacement();
 
 	for (var ix = 0; ix < mapSize; ix++)
 	{
