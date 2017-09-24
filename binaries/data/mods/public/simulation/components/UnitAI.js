@@ -3230,10 +3230,10 @@ UnitAI.prototype.UnitFsmSpec = {
 			"enter": function() {
 				// Walk in a random direction
 				this.SelectAnimation("walk", false, this.GetWalkSpeed());
+				this.SetFacePointAfterMove(false);
 				this.MoveRandomly(+this.template.RoamDistance);
 				// Set a random timer to switch to feeding state
 				this.StartTimer(randIntInclusive(+this.template.RoamTimeMin, +this.template.RoamTimeMax));
-				this.SetFacePointAfterMove(false);
 			},
 
 			"leave": function() {
@@ -6012,33 +6012,40 @@ UnitAI.prototype.IsAttackingAsFormation = function()
 
 UnitAI.prototype.MoveRandomly = function(distance)
 {
-	// We want to walk in a random direction, but avoid getting stuck
-	// in obstacles or narrow spaces.
-	// So pick a circular range from approximately our current position,
-	// and move outwards to the nearest point on that circle, which will
-	// lead to us avoiding obstacles and moving towards free space.
+	// To minimize drift all across the map, animals describe circles
+	// approximated by polygons.
+	// And to avoid getting stuck in obstacles or narrow spaces, each side
+	// of the polygon is obtained by trying to go away from a point situated
+	// half a meter backwards of the current position, after rotation.
+	// We also add a fluctuation on the length of each side of the polygon (dist)
+	// which, in addition to making the move more random, helps escaping narrow spaces
+	// with bigger values of dist.
 
-	// TODO: we probably ought to have a 'home' point, and drift towards
-	// that, so we don't spread out all across the whole map
-
-	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-	if (!cmpPosition)
+	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	if (!cmpPosition || !cmpPosition.IsInWorld() || !cmpUnitMotion)
 		return;
 
-	if (!cmpPosition.IsInWorld())
-		return;
+	let pos = cmpPosition.GetPosition();
+	let ang = cmpPosition.GetRotation().y;
 
-	var pos = cmpPosition.GetPosition();
+	if (!this.roamAngle)
+	{
+		this.roamAngle = (randBool() ? 1 : -1) * Math.PI / 6;
+		ang -= this.roamAngle / 2;
+		this.startAngle = ang;
+	}
+	else if (Math.abs((ang - this.startAngle + Math.PI) % (2 * Math.PI) - Math.PI) < Math.abs(this.roamAngle / 2))
+		this.roamAngle *= randBool() ? 1 : -1;
 
-	var jitter = 0.5;
-
-	// Randomly adjust the range's center a bit, so we tend to prefer
-	// moving in random directions (if there's nothing in the way)
-	var tx = pos.x + randFloat(-1, 1) * jitter;
-	var tz = pos.z + randFloat(-1, 1) * jitter;
-
-	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	cmpMotion.MoveToPointRange(tx, tz, distance, distance);
+	let halfDelta = randFloat(this.roamAngle / 4, this.roamAngle * 3 / 4);
+	// First half rotation to decrease the impression of immediate rotation
+	ang += halfDelta;
+	cmpUnitMotion.FaceTowardsPoint(pos.x + 0.5 * Math.sin(ang), pos.z + 0.5 * Math.cos(ang));
+	// Then second half of the rotation
+	ang += halfDelta;
+	let dist = randFloat(0.5, 1.5) * distance;
+	cmpUnitMotion.MoveToPointRange(pos.x - 0.5 * Math.sin(ang), pos.z - 0.5 * Math.cos(ang), dist, dist);
 };
 
 UnitAI.prototype.SetFacePointAfterMove = function(val)
