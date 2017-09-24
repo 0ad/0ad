@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_economic_storehouse">
+  <Footprint>
+    <Square width="19.0" depth="18.0"/>
+  </Footprint>
   <Identity>
     <Civ>skirm</Civ>
   </Identity>
+  <Obstruction>
+    <Static width="17.0" depth="16.0"/>
+  </Obstruction>
   <SkirmishReplacer>
     <general>structures/{civ}_storehouse</general>
   </SkirmishReplacer>

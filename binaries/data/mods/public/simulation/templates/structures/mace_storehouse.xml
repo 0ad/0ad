@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_economic_storehouse">
+  <Footprint>
+    <Square width="15.0" depth="16.0"/>
+  </Footprint>
   <Identity>
     <Civ>mace</Civ>
     <SpecificName>Apothḗkē</SpecificName>
   </Identity>
+  <Obstruction>
+    <Static width="13.0" depth="14.0"/>
+  </Obstruction>
   <VisualActor>
     <Actor>structures/hellenes/storehouse.xml</Actor>
   </VisualActor>

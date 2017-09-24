@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_economic_storehouse">
+  <Footprint>
+    <Square width="16.0" depth="15.0"/>
+  </Footprint>
   <Identity>
     <Civ>rome</Civ>
     <SpecificName>Receptaculum</SpecificName>
   </Identity>
+  <Obstruction>
+    <Static width="14.0" depth="13.0"/>
+  </Obstruction>
   <VisualActor>
     <Actor>structures/romans/storehouse.xml</Actor>
   </VisualActor>

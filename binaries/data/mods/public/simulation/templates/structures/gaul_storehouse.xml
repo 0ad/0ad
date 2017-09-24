@@ -3,10 +3,16 @@
   <Cost>
     <PopulationBonus>2</PopulationBonus>
   </Cost>
+  <Footprint>
+    <Square width="15.0" depth="17.0"/>
+  </Footprint>
   <Identity>
     <Civ>gaul</Civ>
     <SpecificName>Ystordy</SpecificName>
   </Identity>
+  <Obstruction>
+    <Static width="13.0" depth="15.0"/>
+  </Obstruction>
   <VisualActor>
     <Actor>structures/gauls/storehouse.xml</Actor>
   </VisualActor>

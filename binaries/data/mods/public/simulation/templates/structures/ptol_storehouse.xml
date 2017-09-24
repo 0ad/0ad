@@ -7,20 +7,21 @@
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="18.0" depth="18.0"/>
-    <Height>8.0</Height>
+    <Square width="19.0" depth="18.0"/>
   </Footprint>
   <Health>
     <Max>400</Max>
+    <SpawnEntityOnDeath>rubble/rubble_stone_4x4</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <Civ>ptol</Civ>
     <SpecificName>h-n-ḫt.w</SpecificName>
   </Identity>
   <Obstruction>
-    <Static width="16.0" depth="16.0"/>
+    <Static width="17.0" depth="16.0"/>
   </Obstruction>
   <VisualActor>
     <Actor>structures/ptolemies/storehouse.xml</Actor>
+    <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
   </VisualActor>
 </Entity>
