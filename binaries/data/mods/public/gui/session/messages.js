@@ -1106,9 +1106,9 @@ function formatChatCommand(msg)
 		msg.text = escapeText(msg.text);
 
 		let userName = g_PlayerAssignments[Engine.GetPlayerGUID()].name;
-
-		if (userName != g_PlayerAssignments[msg.guid].name)
-			notifyUser(userName, msg.text);
+		if (userName != g_PlayerAssignments[msg.guid].name &&
+		    msg.text.toLowerCase().indexOf(splitRatingFromNick(userName)[0].toLowerCase()) != -1)
+			soundNotification("nick");
 	}
 
 	// GUID for players, playerID for AIs

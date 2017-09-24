@@ -1,7 +1,11 @@
 /**
- * Used by notifyUser() to limit the number of pings
+ * Used for acoustic GUI notifications.
+ * Define the soundfile paths and specific time thresholds (avoid spam).
+ * And store the timestamp of last interaction for each notification.
  */
-var g_LastNickNotification = -1;
+var g_SoundNotifications = {
+	"nick": { "soundfile": "audio/interface/ui/chat_alert.ogg", "threshold": 3000 }
+};
 
 // Get list of XML files in pathname with recursion, excepting those starting with _
 function getXMLFileList(pathname)
@@ -196,20 +200,22 @@ function clearChatMessages()
 }
 
 /**
- * Plays a sound if user's nick is mentioned in chat
+ * Manage acoustic GUI notifications.
+ *
+ * @param {string} type - Notification type.
  */
-function notifyUser(userName, msgText)
+function soundNotification(type)
 {
-	if (Engine.ConfigDB_GetValue("user", "sound.notify.nick") != "true" ||
-	    msgText.toLowerCase().indexOf(userName.toLowerCase()) == -1)
+	if (Engine.ConfigDB_GetValue("user", "sound.notify." + type) != "true")
 		return;
 
+	let notificationType = g_SoundNotifications[type];
 	let timeNow = Date.now();
 
-	if (!g_LastNickNotification || timeNow > g_LastNickNotification + 3000)
-		Engine.PlayUISound("audio/interface/ui/chat_alert.ogg", false);
+	if (!notificationType.lastInteractionTime || timeNow > notificationType.lastInteractionTime + notificationType.threshold)
+		Engine.PlayUISound(notificationType.soundfile, false);
 
-	g_LastNickNotification = timeNow;
+	notificationType.lastInteractionTime = timeNow;
 }
 
 /**

@@ -2235,9 +2235,9 @@ function addChatMessage(msg)
 	if (msg.type == "chat")
 	{
 		let userName = g_PlayerAssignments[Engine.GetPlayerGUID()].name;
-
-		if (userName != g_PlayerAssignments[msg.guid].name)
-			notifyUser(userName, msg.text);
+		if (userName != g_PlayerAssignments[msg.guid].name &&
+		    msg.text.toLowerCase().indexOf(splitRatingFromNick(userName)[0].toLowerCase()) != -1)
+			soundNotification("nick");
 	}
 
 	let user = colorizePlayernameByGUID(msg.guid || -1, msg.username || "");

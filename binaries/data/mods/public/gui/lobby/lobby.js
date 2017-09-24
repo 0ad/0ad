@@ -1278,8 +1278,8 @@ function addChatMessage(msg)
 		{
 			msg.text = msg.text.replace(g_Username, colorPlayerName(g_Username));
 
-			if (!msg.historic)
-				notifyUser(g_Username, msg.text);
+			if (!msg.historic && msg.text.toLowerCase().indexOf(g_Username.toLowerCase()) != -1)
+				soundNotification("nick");
 		}
 	}
 
