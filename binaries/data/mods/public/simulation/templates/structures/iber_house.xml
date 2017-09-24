@@ -1,25 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic_house">
-  <Footprint>
-    <Square width="12.0" depth="12.0"/>
-    <Height>5.0</Height>
-  </Footprint>
-  <Health>
-    <SpawnEntityOnDeath>rubble/rubble_stone_2x2</SpawnEntityOnDeath>
-  </Health>
   <Identity>
     <Civ>iber</Civ>
     <SpecificName>Etxe</SpecificName>
   </Identity>
-  <Obstruction>
-    <Static width="10.0" depth="10.0"/>
-  </Obstruction>
-  <TerritoryInfluence>
-    <Radius>16</Radius>
-    <Weight>65535</Weight>
-  </TerritoryInfluence>
   <VisualActor>
     <Actor>structures/iberians/house.xml</Actor>
-    <FoundationActor>structures/fndn_2x2.xml</FoundationActor>
   </VisualActor>
 </Entity>

@@ -15,7 +15,7 @@
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="18.0" depth="18.0"/>
+    <Square width="13.0" depth="13.0"/>
     <Height>5.0</Height>
   </Footprint>
   <GarrisonHolder>
@@ -28,7 +28,7 @@
   </GarrisonHolder>
   <Health>
     <Max>800</Max>
-    <SpawnEntityOnDeath>rubble/rubble_stone_3x3</SpawnEntityOnDeath>
+    <SpawnEntityOnDeath>rubble/rubble_stone_2x2</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <GenericName>House</GenericName>
@@ -38,7 +38,7 @@
     <Icon>structures/house.png</Icon>
   </Identity>
   <Obstruction>
-    <Static width="14.0" depth="14.0"/>
+    <Static width="11.0" depth="11.0"/>
   </Obstruction>
   <ProductionQueue>
     <BatchTimeModifier>1.0</BatchTimeModifier>
@@ -69,13 +69,13 @@
   </TerritoryDecay>
   <TerritoryInfluence>
     <Root>false</Root>
-    <Radius>20</Radius>
-    <Weight>40000</Weight>
+    <Radius>16</Radius>
+    <Weight>65535</Weight>
   </TerritoryInfluence>
   <Vision>
     <Range>20</Range>
   </Vision>
   <VisualActor>
-    <FoundationActor>structures/fndn_3x3.xml</FoundationActor>
+    <FoundationActor>structures/fndn_2x2.xml</FoundationActor>
   </VisualActor>
 </Entity>

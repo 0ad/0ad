@@ -7,8 +7,7 @@
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="16.0" depth="16.0"/>
-    <Height>5.0</Height>
+    <Square width="15.0" depth="14.0"/>
   </Footprint>
   <Health>
     <Max>500</Max>
@@ -19,8 +18,11 @@
     <SpecificName>ḥwt</SpecificName>
     <Tooltip>Increase the population limit. Since they are made of mud brick, Egyptian houses are free of cost, but are very weak.</Tooltip>
   </Identity>
+  <Loot>
+    <wood>0</wood>
+  </Loot>
   <Obstruction>
-    <Static width="14.0" depth="14.0"/>
+    <Static width="13.0" depth="12.0"/>
   </Obstruction>
   <VisualActor>
     <Actor>structures/ptolemies/house.xml</Actor>

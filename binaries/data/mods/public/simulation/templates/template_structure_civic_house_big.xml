@@ -7,13 +7,27 @@
       <wood>150</wood>
     </Resources>
   </Cost>
+  <Footprint>
+    <Square width="16.0" depth="16.0"/>
+  </Footprint>
   <GarrisonHolder>
     <Max>6</Max>
   </GarrisonHolder>
   <Health>
     <Max>1200</Max>
+    <SpawnEntityOnDeath>rubble/rubble_stone_3x3</SpawnEntityOnDeath>
   </Health>
   <Loot>
     <wood>20</wood>
   </Loot>
+  <Obstruction>
+    <Static width="14.0" depth="14.0"/>
+  </Obstruction>
+  <TerritoryInfluence>
+    <Radius>20</Radius>
+    <Weight>40000</Weight>
+  </TerritoryInfluence>
+  <VisualActor>
+    <FoundationActor>structures/fndn_3x3.xml</FoundationActor>
+  </VisualActor>
 </Entity>
