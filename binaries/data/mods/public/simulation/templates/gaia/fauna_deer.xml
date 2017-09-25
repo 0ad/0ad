@@ -13,11 +13,9 @@
     <Anchor>pitch</Anchor>
   </Position>
   <UnitMotion>
-    <WalkSpeed>2.0</WalkSpeed>
+    <WalkSpeed op="mul">0.3</WalkSpeed>
     <Run>
-      <Speed>10.0</Speed>
-      <Range>600.0</Range>
-      <RangeMin>5.0</RangeMin>
+      <Speed op="mul">0.3</Speed>
     </Run>
   </UnitMotion>
   <VisualActor>

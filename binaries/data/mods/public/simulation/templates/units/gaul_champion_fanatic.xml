@@ -22,11 +22,9 @@
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <UnitMotion>
-    <WalkSpeed op="add">5</WalkSpeed>
+    <WalkSpeed op="mul">1.4</WalkSpeed>
     <Run>
-      <Speed op="add">2</Speed>
-      <Range>600.0</Range>
-      <RangeMin>5.0</RangeMin>
+      <Speed op="mul">1.4</Speed>
     </Run>
   </UnitMotion>
   <VisualActor>

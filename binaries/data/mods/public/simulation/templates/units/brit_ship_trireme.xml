@@ -20,7 +20,10 @@
     <Icon>units/celt_ship_trireme.png</Icon>
   </Identity>
   <UnitMotion>
-    <WalkSpeed>14</WalkSpeed>
+    <WalkSpeed op="mul">0.9</WalkSpeed>
+    <Run>
+      <Speed op="mul">0.9</Speed>
+    </Run>
   </UnitMotion>
   <VisualActor>
     <Actor>structures/celts/warship.xml</Actor>

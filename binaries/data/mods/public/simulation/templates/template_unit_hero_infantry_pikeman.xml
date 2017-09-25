@@ -31,9 +31,9 @@
     </Formations>
   </Identity>
   <UnitMotion>
-    <WalkSpeed>8.5</WalkSpeed>
+    <WalkSpeed op="mul">0.95</WalkSpeed>
     <Run>
-      <Speed>17.5</Speed>
+      <Speed op="mul">0.95</Speed>
     </Run>
   </UnitMotion>
 </Entity>

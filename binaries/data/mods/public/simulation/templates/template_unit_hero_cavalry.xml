@@ -48,11 +48,9 @@
     <HeightOffset>6.5</HeightOffset>
   </StatusBars>
   <UnitMotion>
-    <WalkSpeed>16.5</WalkSpeed>
+    <WalkSpeed op="mul">1.85</WalkSpeed>
     <Run>
-      <Speed>26.0</Speed>
-      <Range>1000.0</Range>
-      <RangeMin>16.0</RangeMin>
+      <Speed op="mul">1.85</Speed>
     </Run>
   </UnitMotion>
   <Vision>

@@ -36,7 +36,10 @@
   </UnitAI>
   <UnitMotion>
     <FormationController>false</FormationController>
-    <WalkSpeed>8.0</WalkSpeed>
+    <WalkSpeed op="mul">1.2</WalkSpeed>
+    <Run>
+      <Speed op="mul">1.2</Speed>
+    </Run>
     <PassabilityClass>unrestricted</PassabilityClass>
     <CostClass>default</CostClass>
   </UnitMotion>

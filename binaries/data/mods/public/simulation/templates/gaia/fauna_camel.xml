@@ -31,11 +31,9 @@
     </SoundGroups>
   </Sound>
   <UnitMotion>
-    <WalkSpeed>3.0</WalkSpeed>
+    <WalkSpeed op="mul">0.45</WalkSpeed>
     <Run>
-      <Speed>9.0</Speed>
-      <Range>600.0</Range>
-      <RangeMin>5.0</RangeMin>
+      <Speed op="mul">0.45</Speed>
     </Run>
   </UnitMotion>
   <VisualActor>

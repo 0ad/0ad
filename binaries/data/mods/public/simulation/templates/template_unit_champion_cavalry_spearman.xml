@@ -28,9 +28,9 @@
     <GenericName>Champion Cavalry Spearman</GenericName>
   </Identity>
   <UnitMotion>
-    <WalkSpeed>25.0</WalkSpeed>
+    <WalkSpeed op="mul">1.2</WalkSpeed>
     <Run>
-      <Speed>40.0</Speed>
+      <Speed op="mul">1.2</Speed>
     </Run>
   </UnitMotion>
 </Entity>

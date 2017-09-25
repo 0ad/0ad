@@ -53,9 +53,9 @@
   </StatusBars>
   <UnitMotion>
     <PassabilityClass>ship-small</PassabilityClass>
-    <WalkSpeed>17.5</WalkSpeed>
+    <WalkSpeed op="mul">1.6</WalkSpeed>
     <Run>
-      <Speed>22.0</Speed>
+      <Speed op="mul">1.6</Speed>
     </Run>
   </UnitMotion>
   <Vision>

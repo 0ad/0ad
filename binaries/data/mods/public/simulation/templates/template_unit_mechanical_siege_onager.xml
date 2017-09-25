@@ -70,9 +70,9 @@
     <BarHeight>0.5</BarHeight>
   </StatusBars>
   <UnitMotion>
-    <WalkSpeed>7</WalkSpeed>
+    <WalkSpeed op="mul">0.8</WalkSpeed>
     <Run>
-      <Speed>10.0</Speed>
+      <Speed op="mul">0.8</Speed>
     </Run>
   </UnitMotion>
   <Vision>
