@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_economic_storehouse">
+  <Footprint>
+    <Square width="17.0" depth="15.0"/>
+  </Footprint>
   <Identity>
     <Civ>sele</Civ>
     <SpecificName>Apothḗkē</SpecificName>
@@ -7,4 +10,7 @@
   <VisualActor>
     <Actor>structures/seleucids/storehouse.xml</Actor>
   </VisualActor>
+  <Obstruction>
+    <Static width="15.0" depth="13.0"/>
+  </Obstruction>
 </Entity>

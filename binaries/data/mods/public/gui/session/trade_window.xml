@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <object name="tradeDialogPanel"
-	size="50%-80 50%-280 50%+80 50%+136"
+	size="50%-80 50%-270 50%+80 50%+130"
 	type="image"
 	hidden="true"
 	sprite="ModernDialog"
@@ -8,7 +8,6 @@
 	<object type="text" size="50%-96 -16 50%+96 16" style="TitleText">
 		<translatableAttribute id="caption">Barter &amp; Trade Goods</translatableAttribute>
 	</object>
-
 
 	<!-- Barter Goods -->
 	<object size="24 24 100%-24 33%">

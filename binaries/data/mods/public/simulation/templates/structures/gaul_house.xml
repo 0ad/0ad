@@ -1,22 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic_house">
-  <Footprint replace="">
-    <Square width="12.5" depth="12.5"/>
-    <Height>5.0</Height>
-  </Footprint>
   <Identity>
     <Civ>gaul</Civ>
     <SpecificName>Annedd</SpecificName>
   </Identity>
-  <Obstruction>
-    <Static width="12.0" depth="12.0"/>
-  </Obstruction>
-  <TerritoryInfluence>
-    <Radius>16</Radius>
-    <Weight>65535</Weight>
-  </TerritoryInfluence>
   <VisualActor>
     <Actor>structures/gauls/house.xml</Actor>
-    <FoundationActor>structures/fndn_2x2.xml</FoundationActor>
   </VisualActor>
 </Entity>

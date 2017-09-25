@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic_house_big">
   <Footprint>
-    <Square width="17.0" depth="17.0"/>
-    <Height>5.0</Height>
+    <Square width="15.0" depth="16.0"/>
   </Footprint>
   <Identity>
     <Civ>pers</Civ>
     <SpecificName>Huvādā</SpecificName>
   </Identity>
   <Obstruction>
-    <Static width="13.5" depth="13.5"/>
+    <Static width="13.0" depth="14.0"/>
   </Obstruction>
   <VisualActor>
     <Actor>structures/persians/house.xml</Actor>
