@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-28 09:03+0200\n"
-"PO-Revision-Date: 2017-09-21 08:27+0000\n"
+"PO-Revision-Date: 2017-09-23 11:09+0000\n"
 "Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -498,17 +498,17 @@ msgstr "أنت على الحياد مع %(player)s الآن."
 #: gui/session/messages.js:266
 #, javascript-format
 msgid "%(player)s is now allied with you."
-msgstr "%(player)s حليف معك الآن."
+msgstr "أصبح %(player)s حليف معك الآن."
 
 #: gui/session/messages.js:267
 #, javascript-format
 msgid "%(player)s is now at war with you."
-msgstr "%(player)s يخوض حربًا معك الآن."
+msgstr "يخوض %(player)s حربًا معك الآن."
 
 #: gui/session/messages.js:268
 #, javascript-format
 msgid "%(player)s is now neutral with you."
-msgstr "%(player)s على الحياد معك الآن."
+msgstr "أصبح %(player)s على الحياد معك الآن."
 
 #: gui/session/messages.js:271
 #, javascript-format
@@ -650,7 +650,7 @@ msgstr "لاعب مجهول"
 #. elements in an enumeration.
 #: gui/session/messages.js:970
 msgid ", "
-msgstr ","
+msgstr "، و"
 
 #: gui/session/messages.js:1002
 #, javascript-format
@@ -670,7 +670,7 @@ msgstr "أرسل %(player)s إلى %(player2)s ‏%(amounts)s."
 #: gui/session/messages.js:1029
 #, javascript-format
 msgid "%(player)s bartered %(amountsBought)s for %(amountsSold)s."
-msgstr "%(player)s قايض %(amountsBought)s بــ %(amountsSold)s."
+msgstr "بادل %(player)s %(amountsBought)s بِ‍ %(amountsSold)s."
 
 #: gui/session/messages.js:1042
 #, javascript-format
@@ -690,7 +690,7 @@ msgstr "يتقدّم %(player)s إلى %(phaseName)s."
 #: gui/session/messages.js:1062
 #, javascript-format
 msgid "The %(phaseName)s of %(player)s has been aborted."
-msgstr "الـ  %(phaseName)s من  %(player)s قد الغي."
+msgstr "أُجهض %(phaseName)s لِ‍ %(player)s."
 
 #: gui/session/messages.js:1065
 #, javascript-format
@@ -919,7 +919,7 @@ msgstr[5] "%(number)s كيان من الفئة %(class)s"
 #: gui/session/selection_panels.js:804
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
-msgstr "المتبقى: %(entityCounts)s"
+msgstr "بقي: %(entityCounts)s"
 
 #: gui/session/selection_panels.js:805
 msgctxt "Separator for a list of entity counts"
@@ -1242,7 +1242,7 @@ msgstr "عُد إلى العمل"
 
 #: gui/session/unit_actions.js:1240
 msgid "Order the selected units to guard a building or unit."
-msgstr "اعطى الوحده المحدده امر لحمايه المبنى او الوحده."
+msgstr "أعطِ الوحدات المحدّدة أمرًا بحماية مبنًى أو وحدة."
 
 #: gui/session/unit_actions.js:1258
 msgid "Remove guard"

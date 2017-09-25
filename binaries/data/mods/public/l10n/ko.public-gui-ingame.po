@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-28 09:03+0200\n"
-"PO-Revision-Date: 2017-09-17 05:46+0000\n"
+"PO-Revision-Date: 2017-09-23 04:09+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -265,11 +265,11 @@ msgstr "플레이어에 의해 일시중지 됨."
 #: gui/session/menu.js:1121 gui/session/messages.js:669
 msgctxt "Separator for a list of players"
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/session/menu.js:1134 gui/session/menu.xml:(caption):17
 msgid "Manual"
-msgstr "안내서"
+msgstr "매뉴얼"
 
 #: gui/session/menu.js:1149
 msgid "The Developer Overlay was closed."
@@ -490,7 +490,7 @@ msgstr ""
 #: gui/session/messages.js:658
 msgctxt "Separator for a list of client loading messages"
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/session/messages.js:664
 #, javascript-format
@@ -596,7 +596,7 @@ msgstr "모르는 플레이어"
 #. elements in an enumeration.
 #: gui/session/messages.js:970
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/session/messages.js:1002
 #, javascript-format
@@ -855,7 +855,7 @@ msgstr ""
 #: gui/session/selection_panels.js:805
 msgctxt "Separator for a list of entity counts"
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/session/selection_panels.js:1106
 #, javascript-format
@@ -1031,7 +1031,7 @@ msgstr "졌습니다!"
 
 #: gui/session/session.js:855
 msgid "OK"
-msgstr "확인"
+msgstr "OK"
 
 #: gui/session/session.js:922
 msgctxt "replayFinished"
@@ -1352,11 +1352,11 @@ msgstr "닫기"
 
 #: gui/session/menu.xml:(caption):28
 msgid "Chat"
-msgstr "대화"
+msgstr "채팅"
 
 #: gui/session/menu.xml:(caption):39
 msgid "Save"
-msgstr "저장"
+msgstr "저장하다"
 
 #: gui/session/menu.xml:(caption):52
 msgid "Summary"
@@ -1364,7 +1364,7 @@ msgstr "요약"
 
 #: gui/session/menu.xml:(caption):63
 msgid "Options"
-msgstr "옵션들"
+msgstr "옵션"
 
 #: gui/session/menu.xml:(caption):85
 msgid "Resign"

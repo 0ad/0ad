@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-05-27 14:48+0200\n"
-"PO-Revision-Date: 2017-09-17 05:46+0000\n"
+"PO-Revision-Date: 2017-09-23 04:10+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -40,11 +40,11 @@ msgstr "버전"
 
 #: gui/modmod/modmod.js:36
 msgid "Type: Any"
-msgstr "형태: 아무나"
+msgstr "종류: 아무것이나"
 
 #: gui/modmod/modmod.js:62 gui/modmod/modmod.js:321
 msgid "Filter"
-msgstr "필터"
+msgstr "엄선"
 
 #: gui/modmod/modmod.js:74
 msgid "Message: Mods Loaded."
@@ -52,7 +52,7 @@ msgstr "메시지: 모드가 불러오기 되었습니다."
 
 #: gui/modmod/modmod.js:384
 msgid "All dependencies met"
-msgstr ""
+msgstr "모든 의존성이 만족합니다."
 
 #: gui/modmod/modmod.js:510
 msgid "No mod has been selected."
@@ -60,19 +60,19 @@ msgstr "선택된 모드가 없습니다."
 
 #: gui/modmod/modmod.xml:120
 msgid "Description"
-msgstr "서령"
+msgstr "설명"
 
 #: gui/modmod/modmod.xml:(caption):9
 msgid "Modifications"
-msgstr ""
+msgstr "수정(MOD)"
 
 #: gui/modmod/modmod.xml:(caption):17
 msgid "Reset Filters"
-msgstr ""
+msgstr "엄선 해제"
 
 #: gui/modmod/modmod.xml:(caption):51
 msgid "Negate"
-msgstr ""
+msgstr "반전"
 
 #: gui/modmod/modmod.xml:(caption):58
 msgid "Sorting:"
@@ -80,7 +80,7 @@ msgstr "정렬:"
 
 #: gui/modmod/modmod.xml:(caption):70
 msgid "Descending."
-msgstr ""
+msgstr "내림차순."
 
 #: gui/modmod/modmod.xml:(caption):86
 msgid "Available Mods"
@@ -88,11 +88,11 @@ msgstr "사용가능한 모드"
 
 #: gui/modmod/modmod.xml:(caption):123
 msgid "Enable"
-msgstr ""
+msgstr "활성화"
 
 #: gui/modmod/modmod.xml:(caption):132
 msgid "Enabled Mods"
-msgstr ""
+msgstr "모드가 활성화됨"
 
 #: gui/modmod/modmod.xml:(caption):168
 msgid "Up"
@@ -132,11 +132,11 @@ msgstr "모드 수준"
 
 #: gui/modmod/modmod.xml:(heading):110 gui/modmod/modmod.xml:(heading):157
 msgid "Mod Type"
-msgstr "모드 형태"
+msgstr "모드 종류"
 
 #: gui/modmod/modmod.xml:(heading):113 gui/modmod/modmod.xml:(heading):160
 msgid "Dependencies"
-msgstr ""
+msgstr "의존성"
 
 #: gui/modmod/modmod.xml:(heading):116 gui/modmod/modmod.xml:(heading):163
 msgid "Website"
