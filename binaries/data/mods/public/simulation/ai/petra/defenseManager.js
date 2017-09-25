@@ -63,15 +63,16 @@ m.DefenseManager.prototype.update = function(gameState, events)
 	Engine.ProfileStop();
 };
 
-m.DefenseManager.prototype.makeIntoArmy = function(gameState, entityID)
+m.DefenseManager.prototype.makeIntoArmy = function(gameState, entityID, type)
 {
 	// Try to add it to an existing army.
 	for (let army of this.armies)
-		if (!army.isCapturing(gameState) && army.addFoe(gameState, entityID))
+		if (army.getType() == "default" && army.addFoe(gameState, entityID))
 			return;	// over
 
 	// Create a new army for it.
-	let army = new m.DefenseArmy(gameState, [], [entityID]);
+	let army = new m.DefenseArmy(gameState, [entityID], type);
+
 	this.armies.push(army);
 };
 
@@ -201,7 +202,7 @@ m.DefenseManager.prototype.checkEnemyUnits = function(gameState)
 						lost += capture[j];
 				if (lost < Math.ceil(0.25 * capture[i]))
 					continue;
-				this.makeIntoArmy(gameState, ent.id());
+				this.makeIntoArmy(gameState, ent.id(), "capturing");
 				break;
 			}
 		}
@@ -250,7 +251,7 @@ m.DefenseManager.prototype.checkEnemyUnits = function(gameState)
 			continue;
 		let owner = this.territoryMap.getOwner(ent.position());
 		if (owner === PlayerID)
-			this.makeIntoArmy(gameState, ent.id());
+			this.makeIntoArmy(gameState, ent.id(), "capturing");
 	}
 };
 
@@ -276,12 +277,12 @@ m.DefenseManager.prototype.checkEnemyArmies = function(gameState)
 	for (let i = 0; i < this.armies.length - 1; ++i)
 	{
 		let army = this.armies[i];
-		if (army.isCapturing(gameState))
+		if (army.getType() != "default")
 			continue;
 		for (let j = i+1; j < this.armies.length; ++j)
 		{
 			let otherArmy = this.armies[j];
-			if (otherArmy.isCapturing(gameState) ||
+			if (otherArmy.getType() != "default" ||
 				API3.SquareVectorDistance(army.foePosition, otherArmy.foePosition) > this.armyMergeSize)
 				continue;
 			// no need to clear here.
@@ -542,7 +543,7 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 		if (target.getMetadata(PlayerID, "PartOfArmy") !== undefined)
 		{
 			let army = this.getArmy(target.getMetadata(PlayerID, "PartOfArmy"));
-			if (army.isCapturing(gameState))
+			if (army.getType() == "capturing")
 			{
 				let abort = false;
 				// if one of the units trying to capture a structure is attacked,
@@ -856,7 +857,7 @@ m.DefenseManager.prototype.Deserialize = function(gameState, data)
 	this.armies = [];
 	for (let dataArmy of data.armies)
 	{
-		let army = new m.DefenseArmy(gameState, [], []);
+		let army = new m.DefenseArmy(gameState, []);
 		army.Deserialize(dataArmy);
 		this.armies.push(army);
 	}

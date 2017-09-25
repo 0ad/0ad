@@ -512,7 +512,7 @@ m.AttackManager.prototype.numAttackingUnitsAround = function(pos, dist)
 	for (let attackType in this.startedAttacks)
 		for (let attack of this.startedAttacks[attackType])
 			if (API3.SquareVectorDistance(pos, attack.position) < dist*dist)
-				num += attack.unitCollection.length
+				num += attack.unitCollection.length;
 	return num;
 };
 
