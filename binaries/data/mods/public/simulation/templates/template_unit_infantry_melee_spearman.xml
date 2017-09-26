@@ -30,9 +30,9 @@
     <wood>5</wood>
   </Loot>
   <UnitMotion>
-    <WalkSpeed>8.5</WalkSpeed>
+    <WalkSpeed op="mul">0.95</WalkSpeed>
     <Run>
-      <Speed>15.0</Speed>
+      <Speed op="mul">0.95</Speed>
     </Run>
   </UnitMotion>
 </Entity>

@@ -8,11 +8,17 @@ var PETRA = function(m)
  * and it would probably slow the rest of the system down too much.
  * All entities are therefore lists of ID
  * Inherited by the defense manager and several of the attack manager's attack plan.
+ *
+ * Types of armies:
+ * "default":   army to counter an invading army
+ * "capturing": army set to capture a gaia building or recover capture points to one of its own structures
+ *            It must contain only one foe (the building to capture) and never be merged
  */
 
-m.Army = function(gameState, ownEntities, foeEntities)
+m.Army = function(gameState, foeEntities, type)
 {
 	this.ID = gameState.ai.uniqueIDs.armies++;
+	this.type = type || "default";
 
 	this.Config = gameState.ai.Config;
 	this.defenseRatio = this.Config.Defense.defenseRatio;
@@ -39,12 +45,15 @@ m.Army = function(gameState, ownEntities, foeEntities)
 	// actually add units
 	for (let id of foeEntities)
 		this.addFoe(gameState, id, true);
-	for (let id of ownEntities)
-		this.addOwn(gameState, id);
 
 	this.recalculatePosition(gameState, true);
 
 	return true;
+};
+
+m.Army.prototype.getType = function()
+{
+	return this.type;
 };
 
 /** if not forced, will only recalculate if on a different turn. */
@@ -255,18 +264,6 @@ m.Army.prototype.removeOwn = function (gameState, id, Entity)
 };
 
 /**
- * Special army set to capture a gaia building.
- * It must only contain one foe (the building to capture) and never be merged
- */
-m.Army.prototype.isCapturing = function (gameState)
-{
-	if (this.foeEntities.length != 1)
-		return false;
-	let ent = gameState.getEntityById(this.foeEntities[0]);
-	return ent && ent.hasClass("Structure");
-};
-
-/**
  * this one is "undefined entity" proof because it's called at odd times.
  * Orders a unit to attack an enemy.
  * overridden by specific army classes.
@@ -467,18 +464,19 @@ m.Army.prototype.checkEvents = function (gameState, events)
 /** assumes cleaned army. */
 m.Army.prototype.onUpdate = function (gameState)
 {
-	if (this.isCapturing(gameState))
+	if (this.type == "capturing")
 	{
-		// Check if we have still some capturePoints to recover
-		// and if not, remove this foe from the list (capture army have only one foe)
-		let capture = gameState.getEntityById(this.foeEntities[0]).capturePoints();
-		if (capture !== undefined)
+		if (this.foeEntities.length && gameState.getEntityById(this.foeEntities[0]))
 		{
-			for (let j = 0; j < capture.length; ++j)
-				if (gameState.isPlayerEnemy(j) && capture[j] > 0)
-					return [];
+			// Check if we still still some capturePoints to recover
+			// and if not, remove this foe from the list (capture army have only one foe)
+			let capture = gameState.getEntityById(this.foeEntities[0]).capturePoints();
+			if (capture)
+				for (let j = 0; j < capture.length; ++j)
+					if (gameState.isPlayerEnemy(j) && capture[j] > 0)
+						return [];
+			this.removeFoe(gameState, this.foeEntities[0]);
 		}
-		this.removeFoe(gameState, this.foeEntities[0]);
 		return [];
 	}
 

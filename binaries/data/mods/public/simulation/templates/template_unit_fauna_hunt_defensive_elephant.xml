@@ -52,9 +52,9 @@
   </Sound>
   <UnitMotion>
     <PassabilityClass>large</PassabilityClass>
-    <WalkSpeed>3.0</WalkSpeed>
+    <WalkSpeed op="mul">0.5</WalkSpeed>
     <Run>
-      <Speed>10.0</Speed>
+      <Speed op="mul">0.5</Speed>
     </Run>
   </UnitMotion>
   <VisualActor>

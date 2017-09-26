@@ -50,11 +50,9 @@
   </Sound>
   <UnitMotion>
     <PassabilityClass>large</PassabilityClass>
-    <WalkSpeed>8.5</WalkSpeed>
+    <WalkSpeed op="mul">0.95</WalkSpeed>
     <Run>
-      <Speed>14.0</Speed>
-      <Range>1000.0</Range>
-      <RangeMin>10.0</RangeMin>
+      <Speed op="mul">0.95</Speed>
     </Run>
   </UnitMotion>
   <Vision>

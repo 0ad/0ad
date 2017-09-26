@@ -2,9 +2,9 @@ var PETRA = function(m)
 {
 
 /** Specialization of Armies used by the defense manager. */
-m.DefenseArmy = function(gameState, ownEntities, foeEntities)
+m.DefenseArmy = function(gameState, foeEntities, type)
 {
-	if (!m.Army.call(this, gameState, ownEntities, foeEntities))
+	if (!m.Army.call(this, gameState, foeEntities, type))
 		return false;
 
 	return true;
@@ -127,6 +127,7 @@ m.DefenseArmy.prototype.Serialize = function()
 {
 	return {
 		"ID": this.ID,
+		"type": this.type,
 		"foePosition": this.foePosition,
 		"positionLastUpdate": this.positionLastUpdate,
 		"assignedAgainst": this.assignedAgainst,
@@ -134,7 +135,7 @@ m.DefenseArmy.prototype.Serialize = function()
 		"foeEntities": this.foeEntities,
 		"foeStrength": this.foeStrength,
 		"ownEntities": this.ownEntities,
-		"ownStrength": this.ownStrength,
+		"ownStrength": this.ownStrength
 	};
 };
 

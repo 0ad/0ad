@@ -17,11 +17,9 @@
     <Type>food.meat</Type>
   </ResourceSupply>
   <UnitMotion>
-    <WalkSpeed>6.0</WalkSpeed>
+    <WalkSpeed op="mul">0.9</WalkSpeed>
     <Run>
-      <Speed>15.0</Speed>
-      <Range>600.0</Range>
-      <RangeMin>5.0</RangeMin>
+      <Speed op="mul">0.9</Speed>
     </Run>
   </UnitMotion>
   <VisualActor>

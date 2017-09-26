@@ -31,9 +31,9 @@
     <stone>5</stone>
   </Loot>
   <UnitMotion>
-    <WalkSpeed>11.0</WalkSpeed>
+    <WalkSpeed op="mul">1.2</WalkSpeed>
     <Run>
-      <Speed>24.0</Speed>
+      <Speed op="mul">1.2</Speed>
     </Run>
   </UnitMotion>
 </Entity>

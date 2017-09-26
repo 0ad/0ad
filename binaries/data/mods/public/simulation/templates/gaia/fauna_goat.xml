@@ -32,7 +32,10 @@
     </SoundGroups>
   </Sound>
   <UnitMotion>
-    <WalkSpeed>3.0</WalkSpeed>
+    <WalkSpeed op="mul">0.45</WalkSpeed>
+    <Run>
+      <Speed op="mul">0.45</Speed>
+    </Run>
   </UnitMotion>
   <VisualActor>
     <Actor>fauna/goat.xml</Actor>

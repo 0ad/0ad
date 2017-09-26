@@ -28,11 +28,9 @@
     <metal>5</metal>
   </Loot>
   <UnitMotion>
-    <WalkSpeed>20.0</WalkSpeed>
+    <WalkSpeed op="mul">1.15</WalkSpeed>
     <Run>
-      <Speed>28.75</Speed>
-      <Range>600.0</Range>
-      <RangeMin>5.0</RangeMin>
+      <Speed op="mul">1.15</Speed>
     </Run>
   </UnitMotion>
 </Entity>

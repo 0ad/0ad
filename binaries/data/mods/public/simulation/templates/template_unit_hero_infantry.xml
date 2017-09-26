@@ -39,4 +39,10 @@
       <death>actor/human/death/{gender}_death.xml</death>
     </SoundGroups>
   </Sound>
+  <UnitMotion>
+    <WalkSpeed op="mul">1.0</WalkSpeed>
+    <Run>
+      <Speed op="mul">1.0</Speed>
+    </Run>
+  </UnitMotion>
 </Entity>

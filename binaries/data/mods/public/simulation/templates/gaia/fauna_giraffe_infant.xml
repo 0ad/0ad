@@ -20,11 +20,9 @@
     <HeightOffset>7.0</HeightOffset>
   </StatusBars>
   <UnitMotion>
-    <WalkSpeed>4.0</WalkSpeed>
+    <WalkSpeed op="mul">0.6</WalkSpeed>
     <Run>
-      <Speed>10.0</Speed>
-      <Range>600.0</Range>
-      <RangeMin>5.0</RangeMin>
+      <Speed op="mul">0.6</Speed>
     </Run>
   </UnitMotion>
   <VisualActor>

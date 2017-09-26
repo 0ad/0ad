@@ -26,11 +26,9 @@
     <GenericName>Hero Swordsman</GenericName>
   </Identity>
   <UnitMotion>
-    <WalkSpeed>9.5</WalkSpeed>
+    <WalkSpeed op="mul">1.05</WalkSpeed>
     <Run>
-      <Speed>20.0</Speed>
-      <Range>600.0</Range>
-      <RangeMin>8.0</RangeMin>
+      <Speed op="mul">1.05</Speed>
     </Run>
   </UnitMotion>
   <Vision>

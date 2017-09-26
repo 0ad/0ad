@@ -29,9 +29,9 @@
     </SoundGroups>
   </Sound>
   <UnitMotion>
-    <WalkSpeed>3.0</WalkSpeed>
+    <WalkSpeed op="mul">0.45</WalkSpeed>
     <Run>
-      <Speed>15.0</Speed>
+      <Speed op="mul">0.45</Speed>
     </Run>
   </UnitMotion>
   <VisualActor>

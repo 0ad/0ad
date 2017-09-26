@@ -39,9 +39,9 @@
     <FeedTimeMax>40000</FeedTimeMax>
   </UnitAI>
   <UnitMotion>
-    <WalkSpeed>1.0</WalkSpeed>
+    <WalkSpeed op="mul">0.15</WalkSpeed>
     <Run>
-      <Speed>6.0</Speed>
+      <Speed op="mul">0.15</Speed>
     </Run>
   </UnitMotion>
   <VisualActor>

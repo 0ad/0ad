@@ -72,9 +72,9 @@
     <HeightOffset>12.0</HeightOffset>
   </StatusBars>
   <UnitMotion>
-    <WalkSpeed>6.5</WalkSpeed>
+    <WalkSpeed op="mul">0.7</WalkSpeed>
     <Run>
-      <Speed>10.0</Speed>
+      <Speed op="mul">0.7</Speed>
     </Run>
   </UnitMotion>
   <Vision>

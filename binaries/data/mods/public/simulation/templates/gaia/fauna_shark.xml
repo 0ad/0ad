@@ -45,9 +45,9 @@
   </UnitAI>
   <UnitMotion>
     <PassabilityClass>ship-small</PassabilityClass>
-    <WalkSpeed>4.0</WalkSpeed>
+    <WalkSpeed op="mul">0.6</WalkSpeed>
     <Run>
-      <Speed>35.0</Speed>
+      <Speed op="mul">0.6</Speed>
     </Run>
   </UnitMotion>
   <Visibility>

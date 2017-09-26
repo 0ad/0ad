@@ -31,11 +31,9 @@
     <VisibleClasses datatype="tokens">Javelin Ranged</VisibleClasses>
   </Identity>
   <UnitMotion>
-    <WalkSpeed>17.0</WalkSpeed>
+    <WalkSpeed op="mul">1.05</WalkSpeed>
     <Run>
-      <Speed>28.0</Speed>
-      <Range>1000.0</Range>
-      <RangeMin>16.0</RangeMin>
+      <Speed op="mul">1.05</Speed>
     </Run>
   </UnitMotion>
 </Entity>
