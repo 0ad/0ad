@@ -139,14 +139,12 @@ m.Config.prototype.setConfig = function(gameState)
 	// changing settings based on difficulty or personality
 	if (this.difficulty < 2)
 	{
-		this.Economy.cityPhase = 240000;
 		this.Economy.supportRatio = 0.5;
 		this.Economy.provisionFields = 1;
 		this.Military.numSentryTowers = this.personality.defensive > 0.66 ? 1 : 0;
 	}
 	else if (this.difficulty < 3)
 	{
-		this.Economy.cityPhase = 1800;
 		this.Economy.supportRatio = 0.4;
 		this.Economy.provisionFields = 1;
 		this.Military.numSentryTowers = this.personality.defensive > 0.66 ? 1 : 0;
@@ -205,6 +203,8 @@ m.Config.prototype.setConfig = function(gameState)
 	this.Economy.targetNumWorkers = Math.max(this.Economy.targetNumWorkers, this.Economy.popPhase2);
 	this.Economy.workPhase3 = Math.min(this.Economy.workPhase3, this.Economy.targetNumWorkers);
 	this.Economy.workPhase4 = Math.min(this.Economy.workPhase4, this.Economy.targetNumWorkers);
+	if (this.difficulty < 2)
+		this.Economy.workPhase3 = Infinity;	// prevent the phasing to city phase
 
 	if (this.debug < 2)
 		return;

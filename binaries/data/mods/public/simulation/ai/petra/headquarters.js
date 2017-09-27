@@ -786,8 +786,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 {
 	// This builds a map. The procedure is fairly simple. It adds the resource maps
 	//	(which are dynamically updated and are made so that they will facilitate DP placement)
-	// Then checks for a good spot in the territory. If none, and town/city phase, checks outside
-	// The AI will currently not build a CC if it wouldn't connect with an existing CC.
+	// Then look for a good spot.
 
 	Engine.ProfileStart("findEconomicCCLocation");
 

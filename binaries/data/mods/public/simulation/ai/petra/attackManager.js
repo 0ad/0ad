@@ -202,7 +202,7 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 			if (!attackPlan.failed)
 			{
 				if (this.Config.debug > 1)
-					API3.warn("Headquarters: Rushing plan " + this.totalNumber + " with maxRushes " + this.maxRushes);
+					API3.warn("Military Manager: Rushing plan " + this.totalNumber + " with maxRushes " + this.maxRushes);
 				this.totalNumber++;
 				attackPlan.init(gameState);
 				this.upcomingAttacks.Rush.push(attackPlan);
@@ -458,7 +458,7 @@ m.AttackManager.prototype.getEnemyPlayer = function(gameState, attack)
 		}
 		if (enemyCivCentre)
 			enemyCount += 500;
-		if (enemyCount < max)
+		if (!enemyCount || enemyCount < max)
 			continue;
 		max = enemyCount;
 		enemyPlayer = i;
@@ -495,7 +495,7 @@ m.AttackManager.prototype.raidTargetEntity = function(gameState, ent)
 	if (!attackPlan.failed)
 	{
 		if (this.Config.debug > 1)
-			API3.warn("Headquarters: Raiding plan " + this.totalNumber);
+			API3.warn("Military Manager: Raiding plan " + this.totalNumber);
 		this.totalNumber++;
 		attackPlan.init(gameState);
 		this.upcomingAttacks.Raid.push(attackPlan);
