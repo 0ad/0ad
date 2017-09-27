@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Edgar Carballo Domínguez <karvayoEdgar@gmail.com>, 2015
+# Edgar Carballo <karvayoEdgar@gmail.com>, 2015
 # Ivan <navicgamboa@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-06-04 15:25+0000\n"
+"POT-Creation-Date: 2017-09-25 09:03+0200\n"
+"PO-Revision-Date: 2017-09-25 14:30+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Spanish (Mexico) (http://www.transifex.com/wildfire-games/0ad/language/es_MX/)\n"
 "MIME-Version: 1.0\n"
@@ -382,11 +382,11 @@ msgstr "Leonesa"
 msgid "Muskox"
 msgstr "Buey almizclero"
 
-#: simulation/templates/gaia/fauna_peacock.xml:14
+#: simulation/templates/gaia/fauna_peacock.xml:8
 msgid "Peacock"
 msgstr "Pavo real"
 
-#: simulation/templates/gaia/fauna_peacock.xml:15
+#: simulation/templates/gaia/fauna_peacock.xml:9
 msgid "Pavo cristatus"
 msgstr ""
 
@@ -521,7 +521,7 @@ msgstr "Haya europea"
 msgid "Fig"
 msgstr "Higuera"
 
-#: simulation/templates/gaia/flora_tree_fig.xml:10
+#: simulation/templates/gaia/flora_tree_fig.xml:9
 msgid "Gather figs for Food."
 msgstr "Recoge higos para alimentarte."
 
@@ -688,7 +688,7 @@ msgstr "Tophet"
 msgid "Train physicians and Sacred Band Cavalrymen."
 msgstr "Recluta médicos y caballería del Batallón Sagrado."
 
-#: simulation/templates/other/celt_hut.xml:21
+#: simulation/templates/other/celt_hut.xml:22
 msgid "Hut"
 msgstr "Choza"
 
@@ -741,7 +741,7 @@ msgstr "Templo épico"
 msgid "Naos Parthenos"
 msgstr "Naos Parthenos"
 
-#: simulation/templates/other/hellenic_epic_temple.xml:32
+#: simulation/templates/other/hellenic_epic_temple.xml:31
 msgid "Garrison units to heal them at a quick rate."
 msgstr ""
 
@@ -773,11 +773,11 @@ msgstr "Obelisco"
 msgid "Egyptian Obelisk"
 msgstr "Obelisco egipcio"
 
-#: simulation/templates/other/palisades_angle_spike.xml:16
+#: simulation/templates/other/palisades_angle_spike.xml:15
 msgid "Palisade Angle Spike"
 msgstr "Pinchos inclinados de empalizada"
 
-#: simulation/templates/other/palisades_angle_spike.xml:17
+#: simulation/templates/other/palisades_angle_spike.xml:16
 msgid "Big Spike"
 msgstr "Pinchos grandes"
 
@@ -817,7 +817,7 @@ msgstr "Puerta de madera"
 #: simulation/templates/other/palisades_rocks_medium.xml:27
 #: simulation/templates/other/palisades_rocks_short.xml:26
 #: simulation/templates/other/palisades_rocks_straight.xml:15
-#: simulation/templates/other/palisades_rocks_tower.xml:26
+#: simulation/templates/other/palisades_rocks_tower.xml:25
 #: simulation/templates/other/wallset_palisade.xml:6
 msgid "Palisade"
 msgstr "Empalizada"
@@ -826,7 +826,7 @@ msgstr "Empalizada"
 #: simulation/templates/other/palisades_rocks_medium.xml:28
 #: simulation/templates/other/palisades_rocks_short.xml:27
 #: simulation/templates/other/palisades_rocks_straight.xml:16
-#: simulation/templates/other/palisades_rocks_tower.xml:27
+#: simulation/templates/other/palisades_rocks_tower.xml:26
 #: simulation/templates/other/wallset_palisade.xml:5
 msgid "Wooden Wall"
 msgstr "Muro de madera"
@@ -844,19 +844,19 @@ msgstr "Torre vigía de madera"
 msgid "Watchtower"
 msgstr "Torre vigía"
 
-#: simulation/templates/other/palisades_small_spikes.xml:16
+#: simulation/templates/other/palisades_small_spikes.xml:15
 msgid "Spikes Small"
 msgstr "Pequeños pinchos"
 
-#: simulation/templates/other/palisades_small_spikes.xml:17
+#: simulation/templates/other/palisades_small_spikes.xml:16
 msgid "Small Spikes"
 msgstr "Pinchos pequeños"
 
-#: simulation/templates/other/palisades_tall_spikes.xml:16
+#: simulation/templates/other/palisades_tall_spikes.xml:15
 msgid "Spikes Tall"
 msgstr "Altos pinchos"
 
-#: simulation/templates/other/palisades_tall_spikes.xml:17
+#: simulation/templates/other/palisades_tall_spikes.xml:16
 msgid "Tall Spikes"
 msgstr "Pinchos altos"
 
@@ -877,11 +877,11 @@ msgstr "Posada"
 msgid "Warehouse"
 msgstr "Almacén"
 
-#: simulation/templates/other/plane.xml:41
+#: simulation/templates/other/plane.xml:43
 msgid "P-51 Mustang"
 msgstr "Mustang P-51"
 
-#: simulation/templates/other/plane.xml:43
+#: simulation/templates/other/plane.xml:44
 msgid "A World War 2 American fighter plane."
 msgstr "Un avión de combate de la segunda guerra mundial."
 
@@ -977,7 +977,7 @@ msgstr "Mesa cuadrada"
 msgid "Unfinished Greek Temple"
 msgstr "Templo griego inacabado"
 
-#: simulation/templates/other/unfinished_greek_temple.xml:12
+#: simulation/templates/other/unfinished_greek_temple.xml:11
 msgid "This temple is unfinished and has fallen to ruin."
 msgstr "Este templo no se ha terminado y está en ruinas."
 
@@ -1042,7 +1042,7 @@ msgid ""
 "for other civs"
 msgstr "Se convierte en una casa de 10 de población para las civilizaciones que las tengan, desaparece para el resto de civilizaciones"
 
-#: simulation/templates/skirmish/structures/default_house_5.xml:9
+#: simulation/templates/skirmish/structures/default_house_5.xml:8
 msgid ""
 "Changes in a 5-pop house for civilisations with those houses, is deleted for"
 " other civs"
@@ -1055,30 +1055,3 @@ msgstr ""
 #: simulation/templates/special/spy.xml:17
 msgid "Spy"
 msgstr ""
-
-#: simulation/templates/special_units/athen_mechanical_siege_lithobolos_common.xml:5
-#: simulation/templates/special_units/mace_mechanical_siege_lithobolos_common.xml:5
-#: simulation/templates/special_units/ptol_mechanical_siege_lithobolos_common.xml:5
-#: simulation/templates/special_units/sele_mechanical_siege_lithobolos_common.xml:5
-msgid "Lithobólos"
-msgstr "Lithobólos"
-
-#: simulation/templates/special_units/athen_mechanical_siege_oxybeles_common.xml:5
-#: simulation/templates/special_units/cart_mechanical_siege_oxybeles_common.xml:5
-#: simulation/templates/special_units/mace_mechanical_siege_oxybeles_common.xml:5
-#: simulation/templates/special_units/spart_mechanical_siege_oxybeles_common.xml:5
-msgid "Oxybelḗs"
-msgstr "Oxybelḗs"
-
-#: simulation/templates/special_units/cart_mechanical_siege_ballista_common.xml:5
-#: simulation/templates/special_units/rome_mechanical_siege_ballista_common.xml:20
-msgid "Ballista"
-msgstr "Balista"
-
-#: simulation/templates/special_units/ptol_mechanical_siege_polybolos_common.xml:5
-msgid "Polybolos"
-msgstr "Polybolos"
-
-#: simulation/templates/special_units/rome_mechanical_siege_scorpio_common.xml:16
-msgid "Scorpio"
-msgstr "Escorpión"

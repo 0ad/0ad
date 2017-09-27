@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-06-04 15:25+0000\n"
+"POT-Creation-Date: 2017-09-25 09:03+0200\n"
+"PO-Revision-Date: 2017-09-25 14:30+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/wildfire-games/0ad/language/sr/)\n"
 "MIME-Version: 1.0\n"
@@ -383,11 +383,11 @@ msgstr "лавица"
 msgid "Muskox"
 msgstr "Мошусно говече"
 
-#: simulation/templates/gaia/fauna_peacock.xml:14
+#: simulation/templates/gaia/fauna_peacock.xml:8
 msgid "Peacock"
 msgstr "паун"
 
-#: simulation/templates/gaia/fauna_peacock.xml:15
+#: simulation/templates/gaia/fauna_peacock.xml:9
 msgid "Pavo cristatus"
 msgstr ""
 
@@ -522,7 +522,7 @@ msgstr "европска буква"
 msgid "Fig"
 msgstr "смоква"
 
-#: simulation/templates/gaia/flora_tree_fig.xml:10
+#: simulation/templates/gaia/flora_tree_fig.xml:9
 msgid "Gather figs for Food."
 msgstr "Сакупи смокве за храну."
 
@@ -689,7 +689,7 @@ msgstr "пакао"
 msgid "Train physicians and Sacred Band Cavalrymen."
 msgstr "Обучи лекаре и коњанике из Свете чете."
 
-#: simulation/templates/other/celt_hut.xml:21
+#: simulation/templates/other/celt_hut.xml:22
 msgid "Hut"
 msgstr "колиба"
 
@@ -742,7 +742,7 @@ msgstr "епски храм"
 msgid "Naos Parthenos"
 msgstr "Naos Parthenos"
 
-#: simulation/templates/other/hellenic_epic_temple.xml:32
+#: simulation/templates/other/hellenic_epic_temple.xml:31
 msgid "Garrison units to heal them at a quick rate."
 msgstr ""
 
@@ -774,11 +774,11 @@ msgstr "Обелиск"
 msgid "Egyptian Obelisk"
 msgstr "Египатски обелиск"
 
-#: simulation/templates/other/palisades_angle_spike.xml:16
+#: simulation/templates/other/palisades_angle_spike.xml:15
 msgid "Palisade Angle Spike"
 msgstr "палисадни угаони шиљак"
 
-#: simulation/templates/other/palisades_angle_spike.xml:17
+#: simulation/templates/other/palisades_angle_spike.xml:16
 msgid "Big Spike"
 msgstr "велики шиљак"
 
@@ -818,7 +818,7 @@ msgstr "дрвена капија"
 #: simulation/templates/other/palisades_rocks_medium.xml:27
 #: simulation/templates/other/palisades_rocks_short.xml:26
 #: simulation/templates/other/palisades_rocks_straight.xml:15
-#: simulation/templates/other/palisades_rocks_tower.xml:26
+#: simulation/templates/other/palisades_rocks_tower.xml:25
 #: simulation/templates/other/wallset_palisade.xml:6
 msgid "Palisade"
 msgstr "палисада"
@@ -827,7 +827,7 @@ msgstr "палисада"
 #: simulation/templates/other/palisades_rocks_medium.xml:28
 #: simulation/templates/other/palisades_rocks_short.xml:27
 #: simulation/templates/other/palisades_rocks_straight.xml:16
-#: simulation/templates/other/palisades_rocks_tower.xml:27
+#: simulation/templates/other/palisades_rocks_tower.xml:26
 #: simulation/templates/other/wallset_palisade.xml:5
 msgid "Wooden Wall"
 msgstr "дрвени зид"
@@ -845,19 +845,19 @@ msgstr "дрвена осматрачница"
 msgid "Watchtower"
 msgstr "осматрачница"
 
-#: simulation/templates/other/palisades_small_spikes.xml:16
+#: simulation/templates/other/palisades_small_spikes.xml:15
 msgid "Spikes Small"
 msgstr "шиљци мали"
 
-#: simulation/templates/other/palisades_small_spikes.xml:17
+#: simulation/templates/other/palisades_small_spikes.xml:16
 msgid "Small Spikes"
 msgstr "мали шиљци"
 
-#: simulation/templates/other/palisades_tall_spikes.xml:16
+#: simulation/templates/other/palisades_tall_spikes.xml:15
 msgid "Spikes Tall"
 msgstr "шиљци високи"
 
-#: simulation/templates/other/palisades_tall_spikes.xml:17
+#: simulation/templates/other/palisades_tall_spikes.xml:16
 msgid "Tall Spikes"
 msgstr "високи шиљци"
 
@@ -878,11 +878,11 @@ msgstr "крчма"
 msgid "Warehouse"
 msgstr "складиште"
 
-#: simulation/templates/other/plane.xml:41
+#: simulation/templates/other/plane.xml:43
 msgid "P-51 Mustang"
 msgstr "П-51 Мустанг"
 
-#: simulation/templates/other/plane.xml:43
+#: simulation/templates/other/plane.xml:44
 msgid "A World War 2 American fighter plane."
 msgstr "Амерички борбени авион из Другог светског рата."
 
@@ -978,7 +978,7 @@ msgstr "квадратни сто"
 msgid "Unfinished Greek Temple"
 msgstr "Недовршени грчки храм."
 
-#: simulation/templates/other/unfinished_greek_temple.xml:12
+#: simulation/templates/other/unfinished_greek_temple.xml:11
 msgid "This temple is unfinished and has fallen to ruin."
 msgstr "Храм није довршен, и урушио се."
 
@@ -1043,7 +1043,7 @@ msgid ""
 "for other civs"
 msgstr "Промене у кући за 10 становника за цивилизације са тим кућама су избрисане за друге цивилизације."
 
-#: simulation/templates/skirmish/structures/default_house_5.xml:9
+#: simulation/templates/skirmish/structures/default_house_5.xml:8
 msgid ""
 "Changes in a 5-pop house for civilisations with those houses, is deleted for"
 " other civs"
@@ -1056,30 +1056,3 @@ msgstr "Играч"
 #: simulation/templates/special/spy.xml:17
 msgid "Spy"
 msgstr "Шпијун"
-
-#: simulation/templates/special_units/athen_mechanical_siege_lithobolos_common.xml:5
-#: simulation/templates/special_units/mace_mechanical_siege_lithobolos_common.xml:5
-#: simulation/templates/special_units/ptol_mechanical_siege_lithobolos_common.xml:5
-#: simulation/templates/special_units/sele_mechanical_siege_lithobolos_common.xml:5
-msgid "Lithobólos"
-msgstr "Литоболос"
-
-#: simulation/templates/special_units/athen_mechanical_siege_oxybeles_common.xml:5
-#: simulation/templates/special_units/cart_mechanical_siege_oxybeles_common.xml:5
-#: simulation/templates/special_units/mace_mechanical_siege_oxybeles_common.xml:5
-#: simulation/templates/special_units/spart_mechanical_siege_oxybeles_common.xml:5
-msgid "Oxybelḗs"
-msgstr "Оксибелес"
-
-#: simulation/templates/special_units/cart_mechanical_siege_ballista_common.xml:5
-#: simulation/templates/special_units/rome_mechanical_siege_ballista_common.xml:20
-msgid "Ballista"
-msgstr "Балиста"
-
-#: simulation/templates/special_units/ptol_mechanical_siege_polybolos_common.xml:5
-msgid "Polybolos"
-msgstr "Полиболос"
-
-#: simulation/templates/special_units/rome_mechanical_siege_scorpio_common.xml:16
-msgid "Scorpio"
-msgstr "Шкорпион"
