@@ -66,6 +66,10 @@
   </Sound>
   <UnitMotion>
     <PassabilityClass>large</PassabilityClass>
+    <WalkSpeed op="mul">0.5</WalkSpeed>
+    <Run>
+      <Speed op="mul">0.5</Speed>
+    </Run>
   </UnitMotion>
   <VisualActor>
     <Actor>units/mauryans/elephant_archer_b.xml</Actor>
