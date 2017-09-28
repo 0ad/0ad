@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,6 +20,8 @@
 
 #include "simulation2/system/Interface.h"
 
+#include "maths/FixedVector3D.h"
+
 /**
  * Interface to the engine's sound system.
  */
@@ -32,6 +34,13 @@ public:
 	 * @param source entity emitting the sound (used for positioning)
 	 */
 	virtual void PlaySoundGroup(const std::wstring& name, entity_id_t source) = 0;
+
+	/**
+	 * Start playing audio defined by a sound group file.
+	 * @param name VFS path of sound group .xml, relative to audio/
+	 * @param sourcePos 3d position of the sound emitter
+	 */
+	virtual void PlaySoundGroupAtPosition(const std::wstring& name, const CFixedVector3D& sourcePos) = 0;
 
 	virtual void StopMusic() = 0;
 

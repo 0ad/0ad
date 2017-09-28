@@ -496,6 +496,11 @@ Attack.prototype.PerformAttack = function(type, target)
 		let cmpProjectileManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ProjectileManager);
 		let id = cmpProjectileManager.LaunchProjectileAtPoint(this.entity, realTargetPosition, horizSpeed, gravity);
 
+		let attackImpactSound = "";
+		let cmpSound = Engine.QueryInterface(this.entity, IID_Sound);
+		if (cmpSound)
+			attackImpactSound = cmpSound.GetSoundGroup("attack_impact");
+
 		let data = {
 			"type": type,
 			"attacker": this.entity,
@@ -506,7 +511,8 @@ Attack.prototype.PerformAttack = function(type, target)
 			"projectileId": id,
 			"bonus": this.GetBonusTemplate(type),
 			"isSplash": false,
-			"attackerOwner": attackerOwner
+			"attackerOwner": attackerOwner,
+			"attackImpactSound": attackImpactSound
 		};
 		if (this.template.Ranged.Splash)
 		{
