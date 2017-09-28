@@ -113,18 +113,21 @@ m.GarrisonManager.prototype.update = function(gameState, events)
 			let around = { "defenseStructure": false, "meleeSiege": false, "rangeSiege": false, "unit": false };
 			for (let ent of gameState.getEnemyEntities().values())
 			{
-				if (!ent.position())
+				if (ent.hasClass("Structure"))
+					if (!ent.attackRange("Ranged"))
+						continue;
+				else if (ent.hasClass("Unit"))
+					if (ent.owner() == 0 && (!ent.unitAIState() || ent.unitAIState().split(".")[1] != "COMBAT"))
+						continue;
+				else
 					continue;
-				if (ent.owner() === 0 && (!ent.unitAIState() || ent.unitAIState().split(".")[1] !== "COMBAT"))
+				if (!ent.position())
 					continue;
 				let dist = API3.SquareVectorDistance(ent.position(), holder.position());
 				if (dist > range*range)
 					continue;
 				if (ent.hasClass("Structure"))
-				{
-					if (ent.attackRange("Ranged"))	// TODO units on wall are not taken into account
-						around.defenseStructure = true;
-				}
+					around.defenseStructure = true;
 				else if (m.isSiegeUnit(ent))
 				{
 					if (ent.attackTypes().indexOf("Melee") !== -1)
@@ -261,6 +264,9 @@ m.GarrisonManager.prototype.keepGarrisoned = function(ent, holder, around)
 		return true;
 	case 'protection':	// hurt unit for healing or infantry for defense
 		if (holder.buffHeal() && ent.isHealable() && ent.healthLevel() < this.Config.garrisonHealthLevel.high)
+			return true;
+		let capture = ent.capturePoints();
+		if (capture && capture[PlayerID] / capture.reduce((a, b) => a + b) < 0.8)
 			return true;
 		if (MatchesClassList(ent.classes(), holder.getGarrisonArrowClasses()))
 		{

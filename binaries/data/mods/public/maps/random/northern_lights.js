@@ -119,30 +119,25 @@ for (var i = 0; i < numPlayers; i++)
 
 RMS.SetProgress(15);
 
-// create northern sea
-var fadedistance = 8;
-
-for (var ix = 0; ix < mapSize; ix++)
-{
-	for (var iz = 0; iz < mapSize; iz++)
-	{
-
-		if (iz > 0.69 * mapSize)
-		{
-			if (iz < 0.69 * mapSize + fadedistance)
-			{
-				setHeight(ix, iz, 3 - 8 * (iz - 0.69 * mapSize) / fadedistance);
-				if (ix, iz, 3 - 8 * (iz - 0.69 * mapSize) / fadedistance < 0.5)
-					addToClass(ix, iz, clWater);
-			}
-			else
-			{
-				setHeight(ix, iz, -5);
-				addToClass(ix, iz, clWater);
-			}
-		}
+paintRiver({
+	"horizontal": true,
+	"parallel": true,
+	"position": 1,
+	"width": 0.62,
+	"fadeDist": 8 / mapSize,
+	"deviation": 0,
+	"waterHeight": -5,
+	"landHeight": 3,
+	"meanderShort": 0,
+	"meanderLong": 0,
+	"waterFunc": (ix, iz, height) => {
+		addToClass(ix, iz, clWater);
+	},
+	"landFunc": (ix, iz, shoreDist1, shoreDist2) => {
+		if (getHeight(ix, iz) < 0.5)
+			addToClass(ix, iz, clWater);
 	}
-}
+});
 
 log("Creating shores...");
 for (var i = 0; i < scaleByMapSize(20,120); i++)
