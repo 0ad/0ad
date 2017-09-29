@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -83,6 +83,13 @@ public:
 			CVector3D sourcePos = CVector3D(cmpPosition->GetPosition());
 			g_SoundManager->PlayAsGroup(name, sourcePos, source, playerOwned);
 		}
+	}
+
+	virtual void PlaySoundGroupAtPosition(const std::wstring& name, const CFixedVector3D& sourcePos)
+	{
+		if (!g_SoundManager)
+			return;
+		g_SoundManager->PlayAsGroup(name, CVector3D(sourcePos), INVALID_ENTITY, false);
 	}
 
 	virtual void StopMusic()

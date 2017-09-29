@@ -99,6 +99,7 @@ Damage.prototype.GetPlayersToDamage = function(attackerOwner, friendlyFire)
  * @param {number}   data.projectileId - the id of the projectile.
  * @param {Vector3D} data.direction - the unit vector defining the direction.
  * @param {Object}   data.bonus - the attack bonus template from the attacker.
+ * @param {string}   data.attackImpactSound - the name of the sound emited on impact.
  * ***When splash damage***
  * @param {boolean}  data.friendlyFire - a flag indicating if allied entities are also damaged.
  * @param {number}   data.radius - the radius of the splash damage.
@@ -110,6 +111,10 @@ Damage.prototype.MissileHit = function(data, lateness)
 {
 	if (!data.position)
 		return;
+
+	let cmpSoundManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_SoundManager);
+	if (cmpSoundManager && data.attackImpactSound)
+		cmpSoundManager.PlaySoundGroupAtPosition(data.attackImpactSound, data.position);
 
 	// Do this first in case the direct hit kills the target
 	if (data.isSplash)
@@ -261,8 +266,6 @@ Damage.prototype.CauseDamage = function(data)
 		this.TargetKilled(data.attacker, data.target, data.attackerOwner);
 
 	Engine.PostMessage(data.target, MT_Attacked, { "attacker": data.attacker, "target": data.target, "type": data.type, "damage": -targetState.change, "attackerOwner": data.attackerOwner });
-
-	PlaySound("attack_impact", data.attacker);
 };
 
 /**
