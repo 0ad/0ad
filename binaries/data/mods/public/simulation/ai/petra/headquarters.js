@@ -563,9 +563,13 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 		return;
 
 	// Choose whether we want soldiers or support units.
-	let supportRatio = gameState.isTemplateAvailable(gameState.applyCiv("structures/{civ}_field")) ? this.supportRatio : Math.min(this.supportRatio, 0.1);
+	let supportRatio = this.supportRatio;
+	if (!gameState.isTemplateAvailable(gameState.applyCiv("structures/{civ}_field")))
+		supportRatio = Math.min(this.supportRatio, 0.1);
+	else if (this.attackManager.upcomingAttacks.Rush.length)
+		supportRatio = Math.min(this.supportRatio, 0.2);
 	let supportMax = supportRatio * this.targetNumWorkers;
-	let supportNum = supportMax * Math.atan(numberTotal/supportMax) / 1.570796;
+	let supportNum = supportMax * (1 - Math.exp(-numberTotal/supportMax));
 
 	let template;
 	if (numberOfSupports + numberOfQueuedSupports > supportNum)

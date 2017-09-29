@@ -22,7 +22,7 @@ m.Config = function(difficulty)
 		"numSentryTowers" : 1
 	};
 	this.Economy = {
-		"popPhase2" : 35,	// How many units we want before aging to phase2.
+		"popPhase2" : 38,	// How many units we want before aging to phase2.
 		"workPhase3" : 65,	// How many workers we want before aging to phase3.
 		"workPhase4" : 80,	// How many workers we want before aging to phase4 or higher.
 		"popForMarket" : 50,
@@ -49,7 +49,7 @@ m.Config = function(difficulty)
 		"advanced": {
 			"default": [],
 			"athen": [ "structures/{civ}_gymnasion", "structures/{civ}_prytaneion",
-				   "structures/{civ}_theatron" ],
+				   "structures/{civ}_theatron", "structures/{civ}_royal_stoa" ],
 			"brit": [ "structures/{civ}_rotarymill" ],
 			"cart": [ "structures/{civ}_embassy_celtic", "structures/{civ}_embassy_iberian",
 				  "structures/{civ}_embassy_italiote" ],
@@ -62,7 +62,8 @@ m.Config = function(difficulty)
 			"ptol": [ "structures/{civ}_library" ],
 			"rome": [ "structures/{civ}_army_camp" ],
 			"sele": [ "structures/{civ}_library" ],
-			"spart": [ "structures/{civ}_syssiton", "structures/{civ}_theatron" ]
+			"spart": [ "structures/{civ}_syssiton", "structures/{civ}_theatron",
+			           "structures/{civ}_royal_stoa" ]
 		}
 	};
 
