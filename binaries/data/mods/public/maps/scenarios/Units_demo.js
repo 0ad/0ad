@@ -31,7 +31,7 @@ let maxh = 0;
 let gap = 14;
 
 let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-for (let template of cmpTemplateManager.FindAllPlaceableTemplates(actors))
+for (let template of cmpTemplateManager.FindAllTemplates(actors))
 {
 	print(template + "...\n");
 

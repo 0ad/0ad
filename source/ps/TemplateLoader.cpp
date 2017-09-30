@@ -23,6 +23,7 @@
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/XML/Xeromyces.h"
+#include "scriptinterface/ScriptConversions.h"
 
 static const wchar_t TEMPLATE_ROOT[] = L"simulation/templates/";
 static const wchar_t ACTOR_ROOT[] = L"art/actors/";
@@ -130,6 +131,9 @@ static Status AddToTemplates(const VfsPath& pathname, const CFileInfo& UNUSED(fi
 	if (name.substr(0, 9) == L"template_")
 		return INFO::OK;
 
+	if (name.substr(0, 8) == L"special/")
+		return INFO::OK;
+
 	templates.push_back(std::string(name.begin(), name.end()));
 	return INFO::OK;
 }
@@ -150,89 +154,6 @@ bool CTemplateLoader::TemplateExists(const std::string& templateName) const
 	size_t pos = templateName.rfind('|');
 	std::string baseName(pos != std::string::npos ? templateName.substr(pos+1) : templateName);
 	return VfsFileExists(VfsPath(TEMPLATE_ROOT) / wstring_from_utf8(baseName + ".xml"));
-}
-
-std::vector<std::string> CTemplateLoader::FindPlaceableTemplates(const std::string& path, bool includeSubdirectories, ETemplatesType templatesType, ScriptInterface& scriptInterface) const
-{
-	if (templatesType != SIMULATION_TEMPLATES && templatesType != ACTOR_TEMPLATES && templatesType != ALL_TEMPLATES)
-	{
-		LOGERROR("Undefined template type (valid: all, simulation, actor)");
-		return std::vector<std::string>();
-	}
-
-	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
-
-	std::vector<std::string> templates;
-	Status ok;
-	VfsPath templatePath;
-
-	if (templatesType == SIMULATION_TEMPLATES || templatesType == ALL_TEMPLATES)
-	{
-		JS::RootedValue placeablesFilter(cx);
-		scriptInterface.ReadJSONFile("simulation/data/placeablesFilter.json", &placeablesFilter);
-
-		JS::RootedObject folders(cx);
-		if (scriptInterface.GetProperty(placeablesFilter, "templates", &folders))
-		{
-			if (!(JS_IsArrayObject(cx, folders)))
-			{
-				LOGERROR("FindPlaceableTemplates: Argument must be an array!");
-				return templates;
-			}
-
-			u32 length;
-			if (!JS_GetArrayLength(cx, folders, &length))
-			{
-				LOGERROR("FindPlaceableTemplates: Failed to get array length!");
-				return templates;
-			}
-
-			templatePath = VfsPath(TEMPLATE_ROOT) / path;
-			//I have every object inside, just run for each
-			for (u32 i=0; i<length; ++i)
-			{
-				JS::RootedValue val(cx);
-				if (!JS_GetElement(cx, folders, i, &val))
-				{
-					LOGERROR("FindPlaceableTemplates: Failed to read array element!");
-					return templates;
-				}
-
-				std::string directoryPath;
-				std::wstring fileFilter;
-				scriptInterface.GetProperty(val, "directory", directoryPath);
-				scriptInterface.GetProperty(val, "file", fileFilter);
-
-				VfsPaths filenames;
-				if (vfs::GetPathnames(g_VFS, templatePath / (directoryPath + "/"), fileFilter.c_str(), filenames) != INFO::OK)
-					continue;
-
-				for (const VfsPath& filename : filenames)
-				{
-					// Strip the .xml extension
-					VfsPath pathstem = filename.ChangeExtension(L"");
-					// Strip the root from the path
-					std::wstring name = pathstem.string().substr(ARRAY_SIZE(TEMPLATE_ROOT) - 1);
-
-					templates.emplace_back(name.begin(), name.end());
-				}
-
-			}
-		}
-	}
-
-	if (templatesType == ACTOR_TEMPLATES || templatesType == ALL_TEMPLATES)
-	{
-		templatePath = VfsPath(ACTOR_ROOT) / path;
-		if (includeSubdirectories)
-			ok = vfs::ForEachFile(g_VFS, templatePath, AddActorToTemplates, (uintptr_t)&templates, L"*.xml", vfs::DIR_RECURSIVE);
-		else
-			ok = vfs::ForEachFile(g_VFS, templatePath, AddActorToTemplates, (uintptr_t)&templates, L"*.xml");
-		WARN_IF_ERR(ok);
-	}
-
-	return templates;
 }
 
 std::vector<std::string> CTemplateLoader::FindTemplates(const std::string& path, bool includeSubdirectories, ETemplatesType templatesType) const
