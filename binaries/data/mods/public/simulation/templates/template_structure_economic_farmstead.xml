@@ -17,7 +17,7 @@
   </Footprint>
   <Health>
     <Max>900</Max>
-    <SpawnEntityOnDeath>rubble/rubble_stone_4x4</SpawnEntityOnDeath>
+    <SpawnEntityOnDeath>decay|rubble/rubble_stone_4x4</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <Classes datatype="tokens">DropsiteFood</Classes>
