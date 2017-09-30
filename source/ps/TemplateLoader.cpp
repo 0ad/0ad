@@ -23,7 +23,6 @@
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/XML/Xeromyces.h"
-#include "scriptinterface/ScriptConversions.h"
 
 static const wchar_t TEMPLATE_ROOT[] = L"simulation/templates/";
 static const wchar_t ACTOR_ROOT[] = L"art/actors/";
