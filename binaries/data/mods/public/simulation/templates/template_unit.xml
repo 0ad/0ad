@@ -41,14 +41,14 @@
     <GenericName>Unit</GenericName>
     <Classes datatype="tokens">Unit ConquestCritical</Classes>
     <Formations datatype="tokens">
-      formations/null
-      formations/box
-      formations/column_closed
-      formations/line_closed
-      formations/column_open
-      formations/line_open
-      formations/flank
-      formations/battle_line
+      special/formations/null
+      special/formations/box
+      special/formations/column_closed
+      special/formations/line_closed
+      special/formations/column_open
+      special/formations/line_open
+      special/formations/flank
+      special/formations/battle_line
     </Formations>
   </Identity>
   <Looter/>

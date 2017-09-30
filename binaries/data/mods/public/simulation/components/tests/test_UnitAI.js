@@ -49,7 +49,7 @@ function TestFormationExiting(mode)
 	});
 
 	AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
-		GetCurrentTemplateName: function(ent) { return "formations/line_closed"; },
+		GetCurrentTemplateName: function(ent) { return "special/formations/line_closed"; },
 	});
 
 	AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
@@ -196,7 +196,7 @@ function TestMoveIntoFormationWhileAttacking()
 	});
 
 	AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
-		GetCurrentTemplateName: function(ent) { return "formations/line_closed"; },
+		GetCurrentTemplateName: function(ent) { return "special/formations/line_closed"; },
 	});
 
 	AddMock(SYSTEM_ENTITY, IID_PlayerManager, {

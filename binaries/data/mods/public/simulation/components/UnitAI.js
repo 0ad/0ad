@@ -3324,7 +3324,7 @@ UnitAI.prototype.Init = function()
 	this.isGarrisoned = false;
 	this.isIdle = false;
 	// For A19, keep no formations as a default to help pathfinding.
-	this.lastFormationTemplate = "formations/null";
+	this.lastFormationTemplate = "special/formations/null";
 	this.finishedOrder = false; // used to find if all formation members finished the order
 
 	this.heldPosition = undefined;
