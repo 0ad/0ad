@@ -457,7 +457,7 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 
 	g_args = args;
 
-	if (args.Has("version") || args.Has("-version"))
+	if (args.Has("version"))
 	{
 		debug_printf("Pyrogenesis %s\n", engine_version);
 		return;
