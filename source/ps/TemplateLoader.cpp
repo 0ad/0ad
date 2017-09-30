@@ -62,7 +62,7 @@ bool CTemplateLoader::LoadTemplateFile(const std::string& templateName, int dept
 			return false;
 		}
 
-		VfsPath path = VfsPath(TEMPLATE_ROOT) / L"special_filter" / wstring_from_utf8(prefix + ".xml");
+		VfsPath path = VfsPath(TEMPLATE_ROOT) / L"special" / L"filter" / wstring_from_utf8(prefix + ".xml");
 		if (!VfsFileExists(path))
 		{
 			LOGERROR("Invalid subset '%s'", prefix.c_str());
