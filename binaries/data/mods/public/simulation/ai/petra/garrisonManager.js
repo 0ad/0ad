@@ -114,11 +114,15 @@ m.GarrisonManager.prototype.update = function(gameState, events)
 			for (let ent of gameState.getEnemyEntities().values())
 			{
 				if (ent.hasClass("Structure"))
+				{
 					if (!ent.attackRange("Ranged"))
 						continue;
+				}
 				else if (ent.hasClass("Unit"))
+				{
 					if (ent.owner() == 0 && (!ent.unitAIState() || ent.unitAIState().split(".")[1] != "COMBAT"))
 						continue;
+				}
 				else
 					continue;
 				if (!ent.position())
