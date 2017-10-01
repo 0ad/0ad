@@ -63,12 +63,15 @@ m.DefenseManager.prototype.update = function(gameState, events)
 	Engine.ProfileStop();
 };
 
-m.DefenseManager.prototype.makeIntoArmy = function(gameState, entityID, type)
+m.DefenseManager.prototype.makeIntoArmy = function(gameState, entityID, type = "default")
 {
-	// Try to add it to an existing army.
-	for (let army of this.armies)
-		if (army.getType() == "default" && army.addFoe(gameState, entityID))
-			return;	// over
+	if (type == "default")
+	{
+		// Try to add it to an existing army.
+		for (let army of this.armies)
+			if (army.getType() == type && army.addFoe(gameState, entityID))
+				return;	// over
+	}
 
 	// Create a new army for it.
 	let army = new m.DefenseArmy(gameState, [entityID], type);
@@ -267,9 +270,10 @@ m.DefenseManager.prototype.checkEnemyArmies = function(gameState)
 
 		if (army.getState() === 0)
 		{
-			this.switchToAttack(gameState, army);
+			if (army.getType() == "default")
+				this.switchToAttack(gameState, army);
 			army.clear(gameState);
-			this.armies.splice(i--,1);
+			this.armies.splice(i--, 1);
 			continue;
 		}
 	}
@@ -287,7 +291,7 @@ m.DefenseManager.prototype.checkEnemyArmies = function(gameState)
 				continue;
 			// no need to clear here.
 			army.merge(gameState, otherArmy);
-			this.armies.splice(j--,1);
+			this.armies.splice(j--, 1);
 		}
 	}
 
@@ -324,7 +328,7 @@ m.DefenseManager.prototype.checkEnemyArmies = function(gameState)
 		else if (owner !== 0)   // enemy army back in its territory
 		{
 			army.clear(gameState);
-			this.armies.splice(i--,1);
+			this.armies.splice(i--, 1);
 			continue;
 		}
 
@@ -349,15 +353,16 @@ m.DefenseManager.prototype.checkEnemyArmies = function(gameState)
 		if (stillDangerous)
 			continue;
 
-		this.switchToAttack(gameState, army);
+		if (army.getType() == "default")
+			this.switchToAttack(gameState, army);
 		army.clear(gameState);
-		this.armies.splice(i--,1);
+		this.armies.splice(i--, 1);
 	}
 };
 
 m.DefenseManager.prototype.assignDefenders = function(gameState)
 {
-	if (this.armies.length === 0)
+	if (!this.armies.length)
 		return;
 
 	let armiesNeeding = [];
@@ -373,7 +378,7 @@ m.DefenseManager.prototype.assignDefenders = function(gameState)
 		armiesNeeding.push( {"army": army, "need": needsDef} );
 	}
 
-	if (armiesNeeding.length === 0)
+	if (!armiesNeeding.length)
 		return;
 
 	// let's get our potential units
