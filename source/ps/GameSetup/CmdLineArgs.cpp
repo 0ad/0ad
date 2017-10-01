@@ -37,19 +37,19 @@ CmdLineArgs::CmdLineArgs(int argc, const char* argv[])
 		if (argv[i][0] != '-')
 			continue;
 
+		// Allow -arg and --arg
+		char offset = argv[i][1] == '-' ? 2 : 1;
 		CStr name, value;
 
 		// Check for "-arg=value"
 		const char* eq = strchr(argv[i], '=');
 		if (eq)
 		{
-			name = CStr(argv[i]+1, eq-argv[i]-1);
+			name = CStr(argv[i]+offset, eq-argv[i]-offset);
 			value = CStr(eq+1);
 		}
 		else
-		{
-			name = CStr(argv[i]+1);
-		}
+			name = CStr(argv[i]+offset);
 
 		m_Args.emplace_back(std::move(name), std::move(value));
 	}

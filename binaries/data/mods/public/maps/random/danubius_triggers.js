@@ -653,7 +653,7 @@ Trigger.prototype.CheckShipRange = function()
 			ProcessCommand(gaulPlayer, {
 				"type": "formation",
 				"entities": others,
-				"name": "formations/" + pickRandom(unitFormations)
+				"name": "special/formations/" + pickRandom(unitFormations)
 			});
 
 		this.AttackAndPatrol(siegeEngines, siegeTargetClass, this.shipTarget[ship].landPointRef, "Siege");

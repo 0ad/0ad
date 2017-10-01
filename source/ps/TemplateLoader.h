@@ -65,8 +65,6 @@ public:
 	 */
 	std::vector<std::string> FindTemplates(const std::string& path, bool includeSubdirectories, ETemplatesType templatesType) const;
 
-	std::vector<std::string> FindPlaceableTemplates(const std::string& path, bool includeSubdirectories, ETemplatesType templatesType, ScriptInterface& scriptInterface) const;
-
 private:
 	/**
 	 * (Re)loads the given template, regardless of whether it exists already,

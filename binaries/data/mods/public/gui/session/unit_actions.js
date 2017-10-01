@@ -329,47 +329,6 @@ var unitActions =
 		"specificness": 7,
 	},
 
-	"build":
-	{
-		"execute": function(target, action, selection, queued)
-		{
-			Engine.PostNetworkCommand({
-				"type": "repair",
-				"entities": selection,
-				"target": action.target,
-				"autocontinue": true,
-				"queued": queued
-			});
-
-			Engine.GuiInterfaceCall("PlaySound", {
-				"name": "order_repair",
-				"entity": selection[0]
-			});
-
-			return true;
-		},
-		"getActionInfo": function(entState, targetState)
-		{
-			if (!targetState.foundation || !entState.builder ||
-			    !playerCheck(entState, targetState, ["Player", "Ally"]))
-				return false;
-
-			return { "possible": true };
-		},
-		"actionCheck": function(target)
-		{
-			if (!getActionInfo("build", target).possible)
-				return false;
-
-			return {
-				"type": "build",
-				"cursor": "action-build",
-				"target": target
-			};
-		},
-		"specificness": 3,
-	},
-
 	"repair":
 	{
 		"execute": function(target, action, selection, queued)
@@ -423,7 +382,7 @@ var unitActions =
 				return false;
 
 			return {
-				"type": "build",
+				"type": "repair",
 				"cursor": "action-repair",
 				"target": target
 			};
@@ -434,7 +393,7 @@ var unitActions =
 				return false;
 
 			return {
-				"type": "build",
+				"type": "repair",
 				"cursor": "action-repair",
 				"target": target
 			};
@@ -936,13 +895,7 @@ var unitActions =
 						{ "gain": getTradingTooltip(gain) });
 				}
 			}
-			else if (targetState.foundation && playerCheck(entState, targetState, ["Ally"]))
-			{
-				data.command = "build";
-				data.target = targetState.id;
-				cursor = "action-build";
-			}
-			else if (targetState.needsRepair && playerCheck(entState, targetState, ["Ally"]))
+			else if ((targetState.needsRepair || targetState.foundation) && playerCheck(entState, targetState, ["Ally"]))
 			{
 				data.command = "repair";
 				data.target = targetState.id;

@@ -1433,7 +1433,7 @@ function GetFormationUnitAIs(ents, player, formationTemplate)
 			return [];
 
 		RemoveFromFormation(ents);
-		cmpUnitAI.SetLastFormationTemplate("formations/null");
+		cmpUnitAI.SetLastFormationTemplate("special/formations/null");
 
 		return [ cmpUnitAI ];
 	}
@@ -1453,15 +1453,15 @@ function GetFormationUnitAIs(ents, player, formationTemplate)
 		// TODO: We only check if the formation is usable by some units
 		// if we move them to it. We should check if we can use formations
 		// for the other cases.
-		var nullFormation = (formationTemplate || cmpUnitAI.GetLastFormationTemplate()) == "formations/null";
-		if (!nullFormation && cmpIdentity && cmpIdentity.CanUseFormation(formationTemplate || "formations/null"))
+		var nullFormation = (formationTemplate || cmpUnitAI.GetLastFormationTemplate()) == "special/formations/null";
+		if (!nullFormation && cmpIdentity && cmpIdentity.CanUseFormation(formationTemplate || "special/formations/null"))
 			formedEnts.push(ent);
 		else
 		{
 			if (nullFormation)
 			{
 				RemoveFromFormation([ent]);
-				cmpUnitAI.SetLastFormationTemplate("formations/null");
+				cmpUnitAI.SetLastFormationTemplate("special/formations/null");
 			}
 			nonformedUnitAIs.push(cmpUnitAI);
 		}
@@ -1536,7 +1536,7 @@ function GetFormationUnitAIs(ents, player, formationTemplate)
 				if (lastFormationTemplate && CanMoveEntsIntoFormation(cluster, lastFormationTemplate))
 					formationTemplate = lastFormationTemplate;
 				else
-					formationTemplate = "formations/null";
+					formationTemplate = "special/formations/null";
 			}
 
 			// Create the new controller
