@@ -13,6 +13,7 @@ m.AttackManager = function(Config)
 	this.raidNumber = 0;
 	this.upcomingAttacks = { "Rush": [], "Raid": [], "Attack": [], "HugeAttack": [] };
 	this.startedAttacks = { "Rush": [], "Raid": [], "Attack": [], "HugeAttack": [] };
+	this.bombingAttacks = new Map();// Temporary attacks for siege units while waiting their current attack to start
 	this.debugTime = 0;
 	this.maxRushes = 0;
 	this.rushSize = [];
@@ -102,6 +103,131 @@ m.AttackManager.prototype.checkEvents = function(gameState, events)
 	}
 	if (targetPlayer !== undefined)
 		m.chatAnswerRequestAttack(gameState, targetPlayer, answer, other);
+
+	for (let evt of events.EntityRenamed)	// take care of packing units in bombing attacks
+	{
+		for (let [targetId, unitIds] of this.bombingAttacks)
+		{
+			if (targetId == evt.entity)
+			{
+				this.bombingAttacks.set(evt.newentity, unitIds);
+				this.bombingAttacks.delete(evt.entity);
+			}
+			else if (unitIds.has(evt.entity))
+			{
+				unitIds.add(evt.newentity);
+				unitIds.delete(evt.entity);
+			}
+		}
+	}
+};
+
+/**
+ * Check for any structure in range from within our territory, and bomb it
+ */
+m.AttackManager.prototype.assignBombers = function(gameState)
+{
+	// First some cleaning of current bombing attacks
+	for (let [targetId, unitIds] of this.bombingAttacks)
+	{
+		let target = gameState.getEntityById(targetId);
+		if (!target || !gameState.isPlayerEnemy(target.owner()))
+			this.bombingAttacks.delete(targetId);
+		else
+		{
+			for (let entId of unitIds.values())
+			{
+				let ent = gameState.getEntityById(entId);
+				if (ent && ent.owner() == PlayerID)
+				{
+					let plan = ent.getMetadata(PlayerID, "plan");
+					let orders = ent.unitAIOrderData();
+					let lastOrder = orders && orders.length ? orders[orders.length-1] : null;
+					if (lastOrder && lastOrder.target && lastOrder.target == targetId && plan != -2 && plan != -3)
+						continue;
+				}
+				unitIds.delete(entId);
+			}
+			if (!unitIds.size)
+				this.bombingAttacks.delete(targetId);
+		}
+	}
+
+	let bombers = gameState.updatingCollection("bombers", API3.Filters.byClassesOr(["BoltShooter", "Catapult"]), gameState.getOwnUnits());
+	for (let ent of bombers.values())
+	{
+		if (!ent.position() || !ent.isIdle() || !ent.attackRange("Ranged"))
+			continue;
+		if (ent.getMetadata(PlayerID, "plan") == -2 || ent.getMetadata(PlayerID, "plan") == -3)
+			continue;
+		if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") != -1)
+		{
+			let subrole = ent.getMetadata(PlayerID, "subrole");
+			if (subrole && (subrole == "completing" || subrole == "walking" || subrole == "attacking"))
+				continue;
+		}
+		let alreadyBombing = false;
+		for (let [targetId, unitIds] of this.bombingAttacks)
+		{
+			if (!unitIds.has(ent.id()))
+				continue;
+			alreadyBombing = true;
+			break;
+		}
+		if (alreadyBombing)
+			break;
+
+		let range =  ent.attackRange("Ranged").max;
+		let entPos = ent.position();
+		let access = gameState.ai.accessibility.getAccessValue(entPos);
+		for (let struct of gameState.getEnemyStructures().values())
+		{
+			let structPos = struct.position();
+			let x;
+			let z;
+			if (struct.hasClass("Field"))
+			{
+				if (!struct.resourceSupplyNumGatherers() ||
+				    !gameState.isPlayerEnemy(gameState.ai.HQ.territoryMap.getOwner(structPos)))
+					continue;
+			}
+			let dist = API3.VectorDistance(entPos, structPos);
+			if (dist > range)
+			{
+				let safety = struct.footprintRadius() + 30;
+				x = structPos[0] + (entPos[0] - structPos[0]) * safety / dist;
+				z = structPos[1] + (entPos[1] - structPos[1]) * safety / dist;
+				let owner = gameState.ai.HQ.territoryMap.getOwner([x, z]);
+				if (owner != 0 && gameState.isPlayerEnemy(owner))
+					continue;
+				x = structPos[0] + (entPos[0] - structPos[0]) * range / dist;
+				z = structPos[1] + (entPos[1] - structPos[1]) * range / dist;
+				if (gameState.ai.HQ.territoryMap.getOwner([x, z]) != PlayerID ||
+				    gameState.ai.accessibility.getAccessValue([x, z]) != access)
+					continue;
+			}
+			let attackingUnits;
+			for (let [targetId, unitIds] of this.bombingAttacks)
+			{
+				if (targetId != struct.id())
+					continue;
+				attackingUnits = unitIds;
+				break;
+			}
+			if (attackingUnits && attackingUnits.size > 4)
+				continue;	// already enough units against that target
+			if (!attackingUnits)
+			{
+				attackingUnits = new Set();
+				this.bombingAttacks.set(struct.id(), attackingUnits);
+			}
+			attackingUnits.add(ent.id());
+			if (dist > range)
+				ent.move(x, z);
+			ent.attack(struct.id(), false, dist > range);
+			break;
+		}
+	}
 };
 
 /**
@@ -247,6 +373,10 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 		if (target) // prepare a raid against this target
 			this.raidTargetEntity(gameState, target);
 	}
+
+	// Check if we have some unused ranged siege unit which could do something useful while waiting
+	if (this.Config.difficulty > 1 && gameState.ai.playedTurn % 5 == 0)
+		this.assignBombers(gameState);
 };
 
 m.AttackManager.prototype.getPlan = function(planName)

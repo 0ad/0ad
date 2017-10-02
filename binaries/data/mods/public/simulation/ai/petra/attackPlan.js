@@ -468,6 +468,19 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 			Engine.PostCommand(PlayerID, {"type": "attack-request", "source": PlayerID, "player": this.targetPlayer});
 	}
 
+	// Remove those units which were in a temporary bombing attack
+	for (let unitIds of gameState.ai.HQ.attackManager.bombingAttacks.values())
+	{
+		for (let entId of unitIds.values())
+		{
+			let ent = gameState.getEntityById(entId);
+			if (!ent || ent.getMetadata(PlayerID, "plan") != this.name)
+				continue;
+			unitIds.delete(entId);
+			ent.stopMoving();
+		}
+	}
+
 	let rallyPoint = this.rallyPoint;
 	let rallyIndex = gameState.ai.accessibility.getAccessValue(rallyPoint);
 	for (let ent of this.unitCollection.values())
