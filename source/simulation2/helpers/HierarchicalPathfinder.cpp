@@ -224,7 +224,11 @@ bool HierarchicalPathfinder::Chunk::RegionNearestNavcellInGoal(u16 r, u16 i0, u1
 	{
 	case PathGoal::POINT:
 	{
-		if (m_Regions[gj-m_ChunkJ * CHUNK_SIZE][gi-m_ChunkI * CHUNK_SIZE] == r)
+		// i and j can be equal to CHUNK_SIZE on the top and right borders of the map,
+		// specially when mapSize is a multiple of CHUNK_SIZE
+		int i = std::min((int)CHUNK_SIZE - 1, gi - m_ChunkI * CHUNK_SIZE);
+		int j = std::min((int)CHUNK_SIZE - 1, gj - m_ChunkJ * CHUNK_SIZE);
+		if (m_Regions[j][i] == r)
 		{
 			iOut = gi;
 			jOut = gj;
