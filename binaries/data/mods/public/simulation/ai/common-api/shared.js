@@ -7,14 +7,14 @@ m.SharedScript = function(settings)
 	if (!settings)
 		return;
 
-	this._players = settings.players;
+	this._players = Object.keys(settings.players).map(key => settings.players[key]); // TODO SM55 Object.values(settings.players)
 	this._templates = settings.templates;
 	this._derivedTemplates = {};
 	this._techTemplates = settings.techTemplates;
 
 	this._entityMetadata = {};
-	for (let i in this._players)
-		this._entityMetadata[this._players[i]] = {};
+	for (let player of this._players)
+		this._entityMetadata[player] = {};
 
 	// array of entity collections
 	this._entityCollections = new Map();
@@ -86,7 +86,6 @@ m.SharedScript.prototype.init = function(state, deserialization)
 	this.ApplyTemplatesDelta(state);
 
 	this.passabilityClasses = state.passabilityClasses;
-	this.players = this._players;
 	this.playersData = state.players;
 	this.timeElapsed = state.timeElapsed;
 	this.circularMap = state.circularMap;
@@ -147,10 +146,10 @@ m.SharedScript.prototype.init = function(state, deserialization)
 	this.createResourceMaps();
 
 	this.gameState = {};
-	for (let i in this._players)
+	for (let player of this._players)
 	{
-		this.gameState[this._players[i]] = new m.GameState();
-		this.gameState[this._players[i]].init(this,state, this._players[i]);
+		this.gameState[player] = new m.GameState();
+		this.gameState[player].init(this,state, player);
 	}
 };
 
@@ -203,10 +202,8 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 	// by order of updating:
 	// we "Destroy" last because we want to be able to switch Metadata first.
 
-	let CreateEvents = state.events.Create;
-	for (let i = 0; i < CreateEvents.length; ++i)
+	for (let evt of state.events.Create)
 	{
-		let evt = CreateEvents[i];
 		if (!state.entities[evt.entity])
 			continue; // Sometimes there are things like foundations which get destroyed too fast
 
@@ -221,10 +218,10 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 
 	for (let evt of state.events.EntityRenamed)
 	{	// Switch the metadata: TODO entityCollections are updated only because of the owner change. Should be done properly
-		for (let p in this._players)
+		for (let player of this._players)
 		{
-			this._entityMetadata[this._players[p]][evt.newentity] = this._entityMetadata[this._players[p]][evt.entity];
-			this._entityMetadata[this._players[p]][evt.entity] = {};
+			this._entityMetadata[player][evt.newentity] = this._entityMetadata[player][evt.entity];
+			this._entityMetadata[player][evt.entity] = {};
 		}
 	}
 
@@ -237,15 +234,10 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 	}
 
 	for (let evt of state.events.ConstructionFinished)
-	{	// we'll move metadata.
-		if (!this._entities.has(evt.entity))
-			continue;
-		let ent = this._entities.get(evt.entity);
-		let newEnt = this._entities.get(evt.newentity);
-		if (this._entityMetadata[ent.owner()] && this._entityMetadata[ent.owner()][evt.entity] !== undefined)
-			for (let key in this._entityMetadata[ent.owner()][evt.entity])
-				this.setMetadata(ent.owner(), newEnt, key, this._entityMetadata[ent.owner()][evt.entity][key]);
-		foundationFinished[evt.entity] = true;
+	{
+		// metada are already moved by EntityRenamed if needed
+		if (evt.entity != evt.newentity)
+			foundationFinished[evt.entity] = true;
 	}
 
 	for (let evt of state.events.AIMetadata)
@@ -257,14 +249,8 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 			this.setMetadata(evt.owner, this._entities.get(evt.id), key, evt.metadata[key]);
 	}
 
-	let DestroyEvents = state.events.Destroy;
-	for (let i = 0; i < DestroyEvents.length; ++i)
+	for (let evt of state.events.Destroy)
 	{
-		let evt = DestroyEvents[i];
-		// A small warning: javascript "delete" does not actually delete, it only removes the reference in this object.
-		// the "deleted" object remains in memory, and any older reference to it will still reference it as if it were not "deleted".
-		// Worse, they might prevent it from being garbage collected, thus making it stay alive and consuming ram needlessly.
-		// So take care, and if you encounter a weird bug with deletion not appearing to work correctly, this is probably why.
 		if (!this._entities.has(evt.entity))
 			continue;// probably should remove the event.
 
@@ -275,8 +261,8 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 		// remember the entity and this AI's metadata concerning it
 		evt.metadata = {};
 		evt.entityObj = this._entities.get(evt.entity);
-		for (let j in this._players)
-			evt.metadata[this._players[j]] = this._entityMetadata[this._players[j]][evt.entity];
+		for (let player of this._players)
+			evt.metadata[player] = this._entityMetadata[player][evt.entity];
 
 		let entity = this._entities.get(evt.entity);
 		for (let entCol of this._entityCollections.values())
@@ -285,8 +271,8 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 
 		this._entities.delete(evt.entity);
 		this._entitiesModifications.delete(evt.entity);
-		for (let j in this._players)
-			delete this._entityMetadata[this._players[j]][evt.entity];
+		for (let player of this._players)
+			delete this._entityMetadata[player][evt.entity];
 	}
 
 	for (let id in state.entities)
