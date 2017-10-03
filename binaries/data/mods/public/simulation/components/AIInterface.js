@@ -220,8 +220,8 @@ AIInterface.prototype.OnTemplateModification = function(msg)
 		for (let templateName of cmpTemplateManager.FindAllTemplates(false))
 		{
 			// Remove templates that we obviously don't care about.
-			if (templateName.startsWith("rubble/") || templateName.startsWith("skirmish/") ||
-			    templateName.startsWith("special/filter/"))
+			if (templateName.startsWith("campaigns/") || templateName.startsWith("rubble/") ||
+			    templateName.startsWith("skirmish/"))
 				continue;
 			let template = cmpTemplateManager.GetTemplateWithoutValidation(templateName);
 			if (!template || !template.Identity || !template.Identity.Civ)

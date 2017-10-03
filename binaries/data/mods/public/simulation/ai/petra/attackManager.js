@@ -167,7 +167,7 @@ m.AttackManager.prototype.assignBombers = function(gameState)
 				continue;
 		}
 		let alreadyBombing = false;
-		for (let [targetId, unitIds] of this.bombingAttacks)
+		for (let unitIds of this.bombingAttacks.values())
 		{
 			if (!unitIds.has(ent.id()))
 				continue;
