@@ -4,7 +4,7 @@ var PETRA = function(m)
 /** returns true if this unit should be considered as a siege unit */
 m.isSiegeUnit = function(ent)
 {
-	return ent.hasClass("Siege") || ent.hasClass("Elephant") && ent.hasClass("Champion");
+	return ent.hasClass("Siege") || ent.hasClass("Elephant") && ent.hasClass("Melee") && ent.hasClass("Champion");
 };
 
 /** returns some sort of DPS * health factor. If you specify a class, it'll use the modifiers against that class too. */

@@ -195,6 +195,7 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	// each array is [ratio, [associated classes], associated EntityColl, associated unitStat, name ]
 	this.buildOrders = [];
 	this.canBuildUnits = gameState.ai.HQ.canBuildUnits;
+	this.siegeState = 0;	// 0 = not yet tested, 1 = not yet any siege trainer, 2 = siege added in build orders
 
 	// some variables used during the attack
 	this.position5TurnsAgo = [0,0];
@@ -334,18 +335,49 @@ m.AttackPlan.prototype.addBuildOrder = function(gameState, name, unitStats, rese
 
 m.AttackPlan.prototype.addSiegeUnits = function(gameState)
 {
-	if (this.unitStat.Siege || this.state !== "unexecuted")
+	if (this.siegeState == 2 || this.state !== "unexecuted")
 		return false;
+
+	let playerCiv = gameState.getPlayerCiv();
+	let classes = [[ "Siege", "Melee"], ["Siege", "Ranged"], ["Elephant", "Melee", "Champion"]];
+	let hasTrainer = [false, false, false];
+	for (let ent of gameState.getOwnTrainingFacilities().values())
+	{
+		let trainables = ent.trainableEntities(playerCiv);
+		if (!trainables)
+			continue;
+		for (let trainable of trainables)
+		{
+			if (gameState.isTemplateDisabled(trainable))
+				continue;
+			let template = gameState.getTemplate(trainable);
+			if (!template || !template.available(gameState))
+				continue;
+			for (let i = 0; i < classes.length; ++i)
+				if (classes[i].every(c => template.hasClass(c)))
+					hasTrainer[i] = true;
+		}
+	}
+	if (hasTrainer.every(e => !e))
+		return false;
+	let i = this.name % classes.length;
+	for (let k = 0; k < classes.length; ++k)
+	{
+		if (hasTrainer[i])
+			break;
+		i = ++i % classes.length;
+	}
+
+	this.siegeState = 2;
+	let targetSize = this.type == "HugeAttack" ? 6 : 4;
+	if (this.Config.difficulty < 3)
+		targetSize = this.Config.difficulty;
+	targetSize = Math.round(this.Config.popScaling * targetSize);
+	if (!targetSize)
+		return true;
 	// no minsize as we don't want the plan to fail at the last minute though.
-	let stat = { "priority": 1, "minSize": 0, "targetSize": 4, "batchSize": 2, "classes": ["Siege"],
-		"interests": [ ["siegeStrength", 3] ] };
-	if (gameState.getPlayerCiv() === "maur")
-		stat.classes = ["Elephant", "Champion"];
-	if (this.Config.difficulty < 2)
-		stat.targetSize = 1;
-	else if (this.Config.difficulty < 3)
-		stat.targetSize = 2;
-        stat.targetSize = Math.round(this.Config.popScaling * stat.targetSize);
+	let stat = { "priority": 1, "minSize": 0, "targetSize": targetSize, "batchSize": Math.min(targetSize, 2),
+		 "classes": classes[i], "interests": [ ["siegeStrength", 3] ] };
 	this.addBuildOrder(gameState, "Siege", stat, true);
 	return true;
 };
@@ -428,17 +460,8 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 		if (this.canBuildUnits)
 		{
 			// We still have time left to recruit units and do stuffs.
-			if (!this.unitStat.Siege)
-			{
-				let numSiegeBuilder = 0;
-				let playerCiv = gameState.getPlayerCiv();
-				if (playerCiv !== "mace" && playerCiv !== "maur")
-					numSiegeBuilder += gameState.getOwnEntitiesByClass("Fortress", true).filter(API3.Filters.isBuilt()).length;
-				if (playerCiv === "mace" || playerCiv === "maur" || playerCiv === "rome")
-					numSiegeBuilder += gameState.countEntitiesByType(gameState.ai.HQ.bAdvanced[0], true);
-				if (numSiegeBuilder > 0)
-					this.addSiegeUnits(gameState);
-			}
+			if (this.siegeState == 0 || this.siegeState == 1 && gameState.ai.playedTurn % 5 == 0)
+				this.addSiegeUnits(gameState);
 			this.trainMoreUnits(gameState);
 			// may happen if we have no more training facilities and build orders are canceled
 			if (!this.buildOrders.length)
@@ -558,13 +581,12 @@ m.AttackPlan.prototype.trainMoreUnits = function(gameState)
 	{
 		// find the actual queue we want
 		let queue = this.queue;
-		if (firstOrder[3].classes.indexOf("Siege") !== -1 ||
-			gameState.getPlayerCiv() == "maur" && firstOrder[3].classes.indexOf("Elephant") !== -1 &&
-			                                      firstOrder[3].classes.indexOf("Champion") !== -1)
+		if (firstOrder[3].classes.indexOf("Siege") != -1 || firstOrder[3].classes.indexOf("Elephant") != -1 &&
+		    firstOrder[3].classes.indexOf("Melee") != -1 && firstOrder[3].classes.indexOf("Champion") != -1)
 			queue = this.queueSiege;
-		else if (firstOrder[3].classes.indexOf("Hero") !== -1)
+		else if (firstOrder[3].classes.indexOf("Hero") != -1)
 			queue = this.queueSiege;
-		else if (firstOrder[3].classes.indexOf("Champion") !== -1)
+		else if (firstOrder[3].classes.indexOf("Champion") != -1)
 			queue = this.queueChamp;
 
 		if (queue.length() <= 5)
@@ -2052,6 +2074,7 @@ m.AttackPlan.prototype.Serialize = function()
 		"maxCompletingTime": this.maxCompletingTime,
 		"neededShips": this.neededShips,
 		"unitStat": this.unitStat,
+		"siegeState": this.siegeState,
 		"position5TurnsAgo": this.position5TurnsAgo,
 		"lastPosition": this.lastPosition,
 		"position": this.position,

@@ -336,8 +336,9 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 			this.rushNumber++;
 		}
 	}
-	else if (unexecutedAttacks.Attack === 0 && unexecutedAttacks.HugeAttack === 0 &&
-		this.startedAttacks.Attack.length + this.startedAttacks.HugeAttack.length < Math.min(2, 1 + Math.round(gameState.getPopulationMax()/100)))
+	else if (unexecutedAttacks.Attack == 0 && unexecutedAttacks.HugeAttack == 0 &&
+		this.startedAttacks.Attack.length + this.startedAttacks.HugeAttack.length < Math.min(2, 1 + Math.round(gameState.getPopulationMax()/100)) &&
+		(this.startedAttacks.Attack.length + this.startedAttacks.HugeAttack.length == 0 || gameState.getPopulationMax() - gameState.getPopulation() > 12))
 	{
 		if (barracksNb >= 1 && (gameState.currentPhase() > 1 || gameState.isResearching(gameState.getPhaseName(2))) ||
 			!gameState.ai.HQ.baseManagers[1])	// if we have no base ... nothing else to do than attack
