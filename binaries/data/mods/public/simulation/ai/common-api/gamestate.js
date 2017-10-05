@@ -701,7 +701,7 @@ m.GameState.prototype.findTrainableUnits = function(classes, anticlasses)
 {
 	let allTrainable = [];
 	let civ = this.playerData.civ;
-	this.getOwnStructures().forEach(function(ent) {
+	this.getOwnTrainingFacilities().forEach(function(ent) {
 		let trainable = ent.trainableEntities(civ);
 		if (!trainable)
 			return;
@@ -719,28 +719,10 @@ m.GameState.prototype.findTrainableUnits = function(classes, anticlasses)
 		let template = this.getTemplate(trainable);
 		if (!template || !template.available(this))
 			continue;
-
-		let okay = true;
-		for (let clas of classes)
-		{
-			if (template.hasClass(clas))
-				continue;
-			okay = false;
-			break;
-		}
-		if (!okay)
+		if (classes.some(c => !template.hasClass(c)))
 			continue;
-
-		for (let clas of anticlasses)
-		{
-			if (!template.hasClass(clas))
-				continue;
-			okay = false;
-			break;
-		}
-		if (!okay)
+		if (anticlasses.some(c => template.hasClass(c)))
 			continue;
-
 		let category = template.trainingCategory();
 		if (category && limits[category] && current[category] >= limits[category])
 			continue;
