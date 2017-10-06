@@ -70,12 +70,8 @@ Vector2D.prototype.normalize = function()
  */
 Vector2D.prototype.rotate = function(a)
 {
-	var sin = Math.sin(a);
-	var cos = Math.cos(a);
-	var x = this.x * cos + this.y * sin;
-	var y = this.y * cos - this.x * sin;
-	this.x = x;
-	this.y = y;
+	this.x = this.x * Math.cos(a) + this.y * Math.sin(a);
+	this.y = this.y * Math.cos(a) - this.x * Math.sin(a);
 	return this;
 };
 
@@ -113,17 +109,12 @@ Vector2D.prototype.length = function()
  */
 Vector2D.prototype.compareLength = function(v)
 {
-	var dDist = this.lengthSquared() - v.lengthSquared();
-	if (!dDist)
-		return dDist == 0 ? 0 : NaN;
-	return dDist < 0 ? -1 : 1;
+	return Math.sign(this.lengthSquared() - v.lengthSquared());
 };
 
 Vector2D.prototype.distanceToSquared = function(v)
 {
-	var dx = this.x - v.x;
-	var dy = this.y - v.y;
-	return dx * dx + dy * dy;
+	return Math.pow(this.x - v.x, 2) + Math.pow(this.y - v.y, 2);
 };
 
 Vector2D.prototype.distanceTo = function(v)
@@ -169,7 +160,7 @@ Vector2D.avg = function(vectorList)
 Vector2D.sum = function(vectorList)
 {
 	var sum = new Vector2D();
-	vectorList.forEach(function(v) {sum.add(v);});
+	vectorList.forEach(v => sum.add(v));
 	return sum;
 };
 
@@ -270,18 +261,12 @@ Vector3D.prototype.length = function()
  */
 Vector3D.prototype.compareLength = function(v)
 {
-	var dDist = this.lengthSquared() - v.lengthSquared();
-	if (!dDist)
-		return dDist == 0 ? 0 : NaN;
-	return dDist < 0 ? -1 : 1;
+	return Math.sign(this.lengthSquared() - v.lengthSquared());
 };
 
 Vector3D.prototype.distanceToSquared = function(v)
 {
-	var dx = this.x - v.x;
-	var dy = this.y - v.y;
-	var dz = this.z - v.z;
-	return dx * dx + dy * dy + dz * dz;
+	return Math.pow(this.x - v.x, 2) + Math.pow(this.y - v.y, 2) + Math.pow(this.z - v.z, 2);
 };
 
 Vector3D.prototype.distanceTo = function(v)
@@ -291,9 +276,7 @@ Vector3D.prototype.distanceTo = function(v)
 
 Vector3D.prototype.horizDistanceToSquared = function(v)
 {
-	var dx = this.x - v.x;
-	var dz = this.z - v.z;
-	return dx * dx + dz * dz;
+	return Math.pow(this.x - v.x, 2) + Math.pow(this.z - v.z, 2);
 };
 
 Vector3D.prototype.horizDistanceTo = function(v)
