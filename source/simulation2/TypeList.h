@@ -168,6 +168,9 @@ COMPONENT(DataTemplateManagerScripted)
 INTERFACE(Terrain)
 COMPONENT(Terrain)
 
+INTERFACE(TerritoryDecayManager)
+COMPONENT(TerritoryDecayManagerScripted)
+
 INTERFACE(TerritoryInfluence)
 COMPONENT(TerritoryInfluence)
 
