@@ -235,7 +235,7 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 
 	for (let evt of state.events.ConstructionFinished)
 	{
-		// metada are already moved by EntityRenamed if needed
+		// metada are already moved by EntityRenamed when needed (i.e. construction, not repair)
 		if (evt.entity != evt.newentity)
 			foundationFinished[evt.entity] = true;
 	}
