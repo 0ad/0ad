@@ -84,16 +84,6 @@ var painter = new LayeredPainter([tWater, tWater], [1]);
 var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -4, 4);
 createArea(placer, [painter, elevationPainter], avoidClasses(clPlayer, 8));
 
-for (var ix = 0; ix < mapSize; ix++)
-{
-	for (var iz = 0; iz < mapSize; iz++)
-	{
-		if ((ix + iz < scaleByMapSize(6,30) + mapSize)&&(ix + iz > - scaleByMapSize(6,30) + mapSize))
-			if ((ix - iz < mapSize / 2)||(ix - iz > mapSize / 2))
-				setHeight(ix, iz, -4);
-	}
-}
-
 var placer = new PathPlacer(fractionToTiles(0.5 + cos(5 * PI / 4)), fractionToTiles(0.5 + sin(5 * PI / 4)), fractionToTiles(0.5 + cos( PI / 4)), fractionToTiles(0.5 + sin( PI / 4)), scaleByMapSize(10,30), 0.5, 3*(scaleByMapSize(1,4)), 0.1, 0.01);
 var terrainPainter = new LayeredPainter(
 	[tShore, tGrass],		// terrains

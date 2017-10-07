@@ -57,10 +57,6 @@ var clBaseResource = createTileClass();
 var clGaia = createTileClass();
 var clStrip = [];
 
-log("Creating terrain...");
-for (let ix = 0; ix < mapSize; ++ix)
-	for (let iz = 0; iz < mapSize; ++iz)
-		setHeight(ix, iz, -8);
 var connectPlayers = randBool();
 
 // Map layout

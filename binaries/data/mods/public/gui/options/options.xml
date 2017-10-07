@@ -18,7 +18,7 @@
 		<!-- Category Tabs -->
 		<object name="tabButtons" type="image" sprite="ModernDarkBoxGold" size="15 16 210 100%-52">
 			<repeat count="15">
-				<object name="tabButton[n]" type="button" size="0 0 195 30" hidden="true">
+				<object name="tabButton[n]" type="button" style="ModernTabButtonVertical" size="0 0 195 30" hidden="true">
 					<object type="text" name="tabButtonText[n]" style="ModernLabelText" ghost="true"/>
 				</object>
 			</repeat>

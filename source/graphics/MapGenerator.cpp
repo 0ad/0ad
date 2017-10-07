@@ -119,6 +119,13 @@ bool CMapGeneratorWorker::Run()
 		return false;
 	}
 
+	// Prevent unintentional modifications to the settings object by random map scripts
+	if (!m_ScriptInterface->FreezeObject(settingsVal, true))
+	{
+		LOGERROR("CMapGeneratorWorker::Run: Failed to deepfreeze settings");
+		return false;
+	}
+
 	// Init RNG seed
 	u32 seed = 0;
 	if (!m_ScriptInterface->HasProperty(settingsVal, "Seed") ||
@@ -129,7 +136,7 @@ bool CMapGeneratorWorker::Run()
 
 	// Copy settings to global variable
 	JS::RootedValue global(cx, m_ScriptInterface->GetGlobalObject());
-	if (!m_ScriptInterface->SetProperty(global, "g_MapSettings", settingsVal))
+	if (!m_ScriptInterface->SetProperty(global, "g_MapSettings", settingsVal, true, true))
 	{
 		LOGERROR("CMapGeneratorWorker::Run: Failed to define g_MapSettings");
 		return false;
