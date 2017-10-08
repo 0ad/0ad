@@ -30,7 +30,7 @@ m.Config = function(difficulty)
 		"targetNumWorkers" : 40,// dummy, will be changed later
 		"targetNumTraders" : 5,	// Target number of traders
 		"targetNumFishers" : 1,	// Target number of fishers per sea
-		"supportRatio" : 0.3,	// fraction of support workers among the workforce
+		"supportRatio" : 0.35,	// fraction of support workers among the workforce
 		"provisionFields" : 2
 	};
 

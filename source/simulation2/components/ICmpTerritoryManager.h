@@ -28,6 +28,7 @@ class ICmpTerritoryManager : public IComponent
 {
 public:
 	virtual bool NeedUpdate(size_t* dirtyID) const = 0;
+	virtual bool NeedUpdate(size_t* dirtyID, size_t* dirtyBlinkingID) const = 0;
 
 	/**
 	 * Number of pathfinder navcells per territory tile.

@@ -36,6 +36,7 @@
 #include "simulation2/components/ICmpPlayer.h"
 #include "simulation2/components/ICmpPlayerManager.h"
 #include "simulation2/components/ICmpPosition.h"
+#include "simulation2/components/ICmpTerritoryDecayManager.h"
 #include "simulation2/components/ICmpTerritoryInfluence.h"
 #include "simulation2/helpers/Grid.h"
 #include "simulation2/helpers/Render.h"
@@ -83,8 +84,8 @@ public:
 	float m_BorderSeparation;
 
 	// Player ID   in bits 0-4 (TERRITORY_PLAYER_MASK)
-	// connected flag in bit 4 (TERRITORY_CONNECTED_MASK)
-	// blinking flag  in bit 5 (TERRITORY_BLINKING_MASK)
+	// connected flag in bit 5 (TERRITORY_CONNECTED_MASK)
+	// blinking flag  in bit 6 (TERRITORY_BLINKING_MASK)
 	// processed flag in bit 7 (TERRITORY_PROCESSED_MASK)
 	Grid<u8>* m_Territories;
 
@@ -125,6 +126,7 @@ public:
 		m_TriggerEvent = true;
 		m_EnableLineDebugOverlays = false;
 		m_DirtyID = 1;
+		m_DirtyBlinkingID = 1;
 		m_Visible = true;
 
 		m_AnimTime = 0.0;
@@ -251,8 +253,10 @@ public:
 	// To support lazy updates of territory render data,
 	// we maintain a DirtyID here and increment it whenever territories change;
 	// if a caller has a lower DirtyID then it needs to be updated.
+	// We also do the same thing for blinking updates using DirtyBlinkingID.
 
 	size_t m_DirtyID;
+	size_t m_DirtyBlinkingID;
 
 	void MakeDirty()
 	{
@@ -267,6 +271,17 @@ public:
 		if (*dirtyID != m_DirtyID)
 		{
 			*dirtyID = m_DirtyID;
+			return true;
+		}
+		return false;
+	}
+
+	virtual bool NeedUpdate(size_t* dirtyID, size_t* dirtyBlinkingID) const
+	{
+		if (*dirtyID != m_DirtyID || *dirtyBlinkingID != m_DirtyBlinkingID)
+		{
+			*dirtyID = m_DirtyID;
+			*dirtyBlinkingID = m_DirtyBlinkingID;
 			return true;
 		}
 		return false;
@@ -538,6 +553,15 @@ void CCmpTerritoryManager::CalculateTerritories()
 				++m_TerritoryCellCounts[owner];
 		);
 	}
+
+	// Then recomputes the blinking tiles
+       	CmpPtr<ICmpTerritoryDecayManager> cmpTerritoryDecayManager(GetSystemEntity());
+       	if (cmpTerritoryDecayManager)
+	{
+		size_t dirtyBlinkingID = m_DirtyBlinkingID;
+	       	cmpTerritoryDecayManager->SetBlinkingEntities();
+		m_DirtyBlinkingID = dirtyBlinkingID;
+	}
 }
 
 std::vector<STerritoryBoundary> CCmpTerritoryManager::ComputeBoundaries()
@@ -766,6 +790,7 @@ void CCmpTerritoryManager::SetTerritoryBlinking(entity_pos_t x, entity_pos_t z, 
 		else
 			continue;
 	);
+	++m_DirtyBlinkingID;
 	m_BoundaryLinesDirty = true;
 }
 
