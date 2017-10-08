@@ -16,6 +16,11 @@ function Vector2D(x, y)
 		this.set(0, 0);
 }
 
+Vector2D.prototype.clone = function()
+{
+	return new Vector2D(this.x, this.y);
+};
+
 // Mutating 2D functions
 //
 // These functions modify the current object,
@@ -70,8 +75,15 @@ Vector2D.prototype.normalize = function()
  */
 Vector2D.prototype.rotate = function(a)
 {
-	this.x = this.x * Math.cos(a) + this.y * Math.sin(a);
-	this.y = this.y * Math.cos(a) - this.x * Math.sin(a);
+	let sin = Math.sin(a);
+	let cos = Math.cos(a);
+
+	let x = this.x * cos + this.y * sin;
+	let y = this.y * cos - this.x * sin;
+
+	this.x = x;
+	this.y = y;
+
 	return this;
 };
 
@@ -178,6 +190,11 @@ function Vector3D(x, y, z)
 	else
 		this.set(0, 0, 0);
 }
+
+Vector3D.prototype.clone = function()
+{
+	return new Vector3D(this.x, this.y, this.z);
+};
 
 // Mutating 3D functions
 //
