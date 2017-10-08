@@ -320,7 +320,7 @@ function calculateMapPeakControl(playerState, index)
 	return { "percent": playerState.sequences.peakPercentMapControlled[index] };
 }
 
-function calculateMiscellaneousTeam(team, index, type)
+function calculateMiscellaneousTeam(team, index, type, counters, headings)
 {
 	if (type == "vegetarianRatio")
 		return calculatePercent(g_TeamHelperData[team].vegetarianFood[index], g_TeamHelperData[team].food[index]);
@@ -331,5 +331,16 @@ function calculateMiscellaneousTeam(team, index, type)
 	if (type == "killDeath")
 		return calculateRatio(g_TeamHelperData[team].enemyUnitsKilled[index], g_TeamHelperData[team].unitsLost[index]);
 
+	if (type == "bribes")
+		return summaryArraySum(getPlayerValuesPerTeam(team, index, type, counters, headings));
+
 	return { "percent": g_TeamHelperData[team][type][index] };
+}
+
+function calculateBribes(playerState, index, type)
+{
+	return {
+		"succeeded": playerState.sequences.successfulBribes[index],
+		"failed": playerState.sequences.failedBribes[index]
+	};
 }
