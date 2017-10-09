@@ -145,6 +145,8 @@ StatisticsTracker.prototype.Init = function()
 	this.lootCollected = 0;
 	this.peakPercentMapControlled = 0;
 	this.teamPeakPercentMapControlled = 0;
+	this.successfulBribes = 0;
+	this.failedBribes = 0;
 
 	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 	this.updateTimer = cmpTimer.SetInterval(
@@ -205,7 +207,9 @@ StatisticsTracker.prototype.GetStatistics = function()
 		"percentMapControlled": this.GetPercentMapControlled(),
 		"teamPercentMapControlled": this.GetTeamPercentMapControlled(),
 		"peakPercentMapControlled": this.peakPercentMapControlled,
-		"teamPeakPercentMapControlled": this.teamPeakPercentMapControlled
+		"teamPeakPercentMapControlled": this.teamPeakPercentMapControlled,
+		"successfulBribes": this.successfulBribes,
+		"failedBribes": this.failedBribes
 	};
 };
 
@@ -460,6 +464,16 @@ StatisticsTracker.prototype.IncreaseTributesReceivedCounter = function(amount)
 StatisticsTracker.prototype.IncreaseTradeIncomeCounter = function(amount)
 {
 	this.tradeIncome += amount;
+};
+
+StatisticsTracker.prototype.IncreaseSuccessfulBribesCounter = function()
+{
+	++this.successfulBribes;
+};
+
+StatisticsTracker.prototype.IncreaseFailedBribesCounter = function()
+{
+	++this.failedBribes;
 };
 
 StatisticsTracker.prototype.GetPercentMapExplored = function()

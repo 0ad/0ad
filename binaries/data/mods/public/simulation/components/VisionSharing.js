@@ -149,6 +149,11 @@ VisionSharing.prototype.AddSpy = function(player, timeLength)
 	this.Activate();
 	this.CheckVisionSharings();
 
+	// update statistics for successful bribes
+	let cmpBribesStatisticsTracker = QueryPlayerIDInterface(player, IID_StatisticsTracker);
+	if (cmpBribesStatisticsTracker)
+		cmpBribesStatisticsTracker.IncreaseSuccessfulBribesCounter();
+
 	return this.spyId;
 };
 

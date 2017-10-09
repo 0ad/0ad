@@ -58,6 +58,11 @@ var g_SummaryTypes = {
 		"caption": translate("Captured"),
 		"postfix": " / "
 	},
+	"succeeded": {
+		"color": g_TypeColors.green,
+		"caption": translate("Succeeded"),
+		"postfix": " / "
+	},
 	"destroyed": {
 		"color": g_TypeColors.blue,
 		"caption": translate("Destroyed"),
@@ -91,6 +96,11 @@ var g_SummaryTypes = {
 	"outcome": {
 		"color": g_TypeColors.red,
 		"caption": translate("Outcome"),
+		"postfix": "\n"
+	},
+	"failed": {
+		"color": g_TypeColors.red,
+		"caption": translate("Failed"),
 		"postfix": "\n"
 	}
 };

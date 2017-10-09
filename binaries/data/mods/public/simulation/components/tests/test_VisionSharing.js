@@ -6,6 +6,7 @@ Engine.LoadComponentScript("interfaces/TechnologyManager.js");
 Engine.LoadComponentScript("interfaces/AuraManager.js");
 Engine.LoadComponentScript("interfaces/Timer.js");
 Engine.LoadComponentScript("interfaces/VisionSharing.js");
+Engine.LoadComponentScript("interfaces/StatisticsTracker.js");
 Engine.LoadComponentScript("VisionSharing.js");
 
 const ent = 170;
@@ -131,6 +132,10 @@ AddMock(14, IID_TechnologyManager, {
 AddMock(14, IID_Player, {
 	"GetSpyCostMultiplier": () => 1,
 	"TrySubtractResources": costs => false
+});
+AddMock(4, IID_StatisticsTracker, {
+	"IncreaseSuccessfulBribesCounter": () => {},
+	"IncreaseFailedBribesCounter": () => {}
 });
 cmpVisionSharing.AddSpy(4, 25);
 TS_ASSERT_UNEVAL_EQUALS([...cmpVisionSharing.shared], [1, 2, 5]);

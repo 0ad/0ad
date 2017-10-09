@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_defense_tower">
   <Footprint>
     <Square width="10.0" depth="10.5"/>
@@ -17,6 +17,6 @@
     <HeightOffset>22.0</HeightOffset>
   </StatusBars>
   <VisualActor>
-    <Actor>structures/hellenes/scout_tower.xml</Actor>
+    <Actor>structures/spartans/defense_tower.xml</Actor>
   </VisualActor>
 </Entity>

@@ -795,6 +795,10 @@ var g_Commands = {
 		{
 			let template = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager).GetTemplate("special/spy");
 			IncurBribeCost(template, player, cmd.player, true);
+			// update statistics for failed bribes
+			let cmpBribesStatisticsTracker = QueryPlayerIDInterface(player, IID_StatisticsTracker);
+			if (cmpBribesStatisticsTracker)
+				cmpBribesStatisticsTracker.IncreaseFailedBribesCounter();
 			cmpGUIInterface.PushNotification({
 				"type": "text",
 				"players": [player],

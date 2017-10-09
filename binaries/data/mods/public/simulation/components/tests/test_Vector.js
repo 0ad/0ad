@@ -35,6 +35,43 @@ var brokenVector = {
 	TS_ASSERT_EQUALS(v4.x, -2);
 	TS_ASSERT_EQUALS(v4.y, 5);
 
+	// Result of rotating (1, 0)
+	let unitCircle = [
+		{
+			"angle": Math.PI / 2,
+			"x": 0,
+			"y": 1
+		},
+		{
+			"angle": Math.PI / 3,
+			"x": 1/2,
+			"y": Math.sqrt(3) / 2
+		},
+		{
+			"angle": Math.PI / 4,
+			"x": Math.sqrt(2) / 2,
+			"y": Math.sqrt(2) / 2
+		},
+		{
+			"angle": Math.PI / 6,
+			"x": Math.sqrt(3) / 2,
+			"y": 1/2
+		}
+	];
+
+	let epsilon = 0.00000001;
+
+	for (let expectedVector of unitCircle)
+	{
+		let computedVector = new Vector2D(1, 0).rotate(-expectedVector.angle);
+		for (let s of ["x", "y"])
+			if (Math.abs(expectedVector[s] - computedVector[s]) > epsilon)
+			{
+				TS_FAIL("Expected " + uneval(expectedVector) + " got " + uneval(computedVector));
+				break;
+			}
+	}
+
 	TS_ASSERT_EQUALS(new Vector2D(2, 3).dot(new Vector2D(4, 5)), 23);
 	TS_ASSERT_EQUALS(new Vector2D(3, 5).cross(new Vector2D(-4, -1/3)), 19);
 	TS_ASSERT_EQUALS(new Vector2D(20, 21).length(), 29);
@@ -44,6 +81,11 @@ var brokenVector = {
 	TS_ASSERT_EQUALS(v5.compareLength(new Vector2D(500, 800)), -1);
 	TS_ASSERT_EQUALS(v5.compareLength(new Vector2D(10, 20)), 0);
 	TS_ASSERT(isNaN(v5.compareLength(brokenVector)));
+
+	let v6 = v5.clone();
+	TS_ASSERT_EQUALS(v5.x, v6.x);
+	TS_ASSERT_EQUALS(v5.y, v6.y);
+	TS_ASSERT(Math.abs(v5.dot(v6.rotate(Math.PI / 2))) < epsilon);
 }
 
 // Test Vector3D
@@ -59,4 +101,9 @@ var brokenVector = {
 
 	TS_ASSERT_EQUALS(new Vector3D(1, 2, 3).dot(new Vector3D(4, 5, 6)), 32);
 
+	let v3 = new Vector3D(9, 10, 11);
+	let v4 = v3.clone();
+	TS_ASSERT_EQUALS(v3.x, v4.x);
+	TS_ASSERT_EQUALS(v3.y, v4.y);
+	TS_ASSERT_EQUALS(v3.z, v4.z);
 }

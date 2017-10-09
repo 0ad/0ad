@@ -182,6 +182,16 @@ var g_ScorePanelsData = {
 			{ "identifier": "vegetarianRatio", "caption": translate("Vegetarian ratio"), "yStart": 16, "width": 100 },
 			{ "identifier": "feminization", "caption": translate("Feminization"), "yStart": 16, "width": 100 },
 			{ "identifier": "killDeath", "caption": translate("Kill / Death ratio"), "yStart": 16, "width": 100 },
+			{
+				"identifier": "bribes",
+				"caption": sprintf(translate("Bribes\n(%(succeeded)s / %(failed)s)"),
+					{
+						"succeeded": getColoredTypeTranslation("succeeded"),
+						"failed": getColoredTypeTranslation("failed")
+					}),
+				"yStart": 16,
+				"width": 139
+			},
 			{ "identifier": "mapExploration", "caption": translate("Map exploration"), "yStart": 16, "width": 100 },
 			{ "identifier": "mapControlPeak", "caption": translate("Map control (peak)"), "yStart": 16, "width": 100 },
 			{ "identifier": "mapControl", "caption": translate("Map control (finish)"), "yStart": 16, "width": 100 }
@@ -191,6 +201,7 @@ var g_ScorePanelsData = {
 			{ "width": 100, "fn": calculateVegetarianRatio, "verticalOffset": 12 },
 			{ "width": 100, "fn": calculateFeminization, "verticalOffset": 12 },
 			{ "width": 100, "fn": calculateKillDeathRatio, "verticalOffset": 12 },
+			{ "width": 139, "fn": calculateBribes, "verticalOffset": 12 },
 			{ "width": 100, "fn": calculateMapExploration, "verticalOffset": 12 },
 			{ "width": 100, "fn": calculateMapPeakControl, "verticalOffset": 12 },
 			{ "width": 100, "fn": calculateMapFinalControl, "verticalOffset": 12 }
