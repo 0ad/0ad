@@ -5,18 +5,19 @@ RMS.LoadLibrary("rmbiome");
 InitMap();
 
 setSelectedBiome();
-initMapSettings();
+initForestFloor();
 initTileClasses();
 
-resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, 30);
+resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, getMapBaseHeight());
 RMS.SetProgress(20);
 
-addBases("stronghold", randFloat(0.2, 0.35), randFloat(0.05, 0.1));
+addBases("stronghold", randFloat(0.2, 0.35), randFloat(0.05, 0.1), randFloat(0, 2 * Math.PI));
 RMS.SetProgress(30);
 
 addElements(shuffleArray([
 	{
 		"func": addBluffs,
+		"baseHeight": getMapBaseHeight(),
 		"avoid": [
 			g_TileClasses.bluff, 20,
 			g_TileClasses.hill, 5,
@@ -75,6 +76,7 @@ addElements(shuffleArray([
 	},
 	{
 		"func": addValleys,
+		"baseHeight": getMapBaseHeight(),
 		"avoid": [
 			g_TileClasses.bluff, 5,
 			g_TileClasses.hill, 5,

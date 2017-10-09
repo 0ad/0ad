@@ -5,19 +5,20 @@ RMS.LoadLibrary("rmbiome");
 InitMap();
 
 setSelectedBiome();
-initMapSettings();
+initForestFloor();
 initTileClasses();
 
-resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, 2);
+resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, getMapBaseHeight());
 RMS.SetProgress(10);
 
-var pos = randomStartingPositionPattern();
-addBases(pos.setup, pos.distance, pos.separation);
+const pos = randomStartingPositionPattern(getTeamsArray());
+addBases(pos.setup, pos.distance, pos.separation, randFloat(0, 2 * Math.PI));
 RMS.SetProgress(20);
 
 addElements([
 	{
 		"func": addBluffs,
+		"baseHeight": getMapBaseHeight(),
 		"avoid": [
 			g_TileClasses.bluff, 12,
 			g_TileClasses.hill, 5,

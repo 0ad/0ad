@@ -9,7 +9,7 @@ InitMap();
 
 log("Initializing tile classes...");
 setBiome("mediterranean");
-initMapSettings();
+initForestFloor();
 initTileClasses(["decorative", "lava"]);
 
 log("Initializing environment...");
@@ -62,11 +62,11 @@ g_Decoratives.grass = "actor|props/flora/grass_field_parched_short.xml";
 g_Decoratives.grassShort = "actor|props/flora/grass_soft_dry_tuft_a.xml";
 g_Decoratives.bushMedium = "actor|props/special/eyecandy/barrels_buried.xml";
 g_Decoratives.bushSmall = "actor|props/special/eyecandy/handcart_1_broken.xml";
-initBiome();
+initForestFloor();
 RMS.SetProgress(5);
 
 log("Resetting terrain...");
-resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, 1);
+resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, getMapBaseHeight());
 RMS.SetProgress(10);
 
 log("Copying heightmap...");
@@ -91,14 +91,14 @@ var singleBases = [
 	[50,270]
 ];
 
-if (g_MapInfo.mapSize >= 320 || g_MapInfo.numPlayers > singleBases.length)
+if (getMapSize() >= 320 || getNumPlayers() > singleBases.length)
 	singleBases.push(
 		[50,200],
 		[125,190],
 		[180,140]
 	);
 
-randomPlayerPlacementAt(singleBases, [], scale, 0.06);
+randomPlayerPlacementAt(getTeamsArray(), singleBases, [], scale, 0.06);
 RMS.SetProgress(40);
 
 addElements([

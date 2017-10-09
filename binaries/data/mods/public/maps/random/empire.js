@@ -5,27 +5,27 @@ RMS.LoadLibrary("rmbiome");
 InitMap();
 
 setSelectedBiome();
-initMapSettings();
+initForestFloor();
 initTileClasses();
 
-resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, randIntInclusive(0, 4));
+resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, getMapBaseHeight());
 RMS.SetProgress(10);
 
-addBases("stronghold", 0.37, 0.04);
+const teamsArray = getTeamsArray();
+const startAngle = randFloat(0, 2 * Math.PI);
+addBases("stronghold", 0.37, 0.04, startAngle);
 RMS.SetProgress(20);
 
 // Change the starting angle and add the players again
 var rotation = PI;
 
-if (g_MapInfo.teams.length == 2)
+if (teamsArray.length == 2)
 	rotation = PI / 2;
 
-if (g_MapInfo.teams.length == 4)
+if (teamsArray.length == 4)
 	rotation = PI + PI / 4;
 
-g_MapInfo.startAngle = g_MapInfo.startAngle + rotation;
-
-addBases("stronghold", 0.15, 0.04);
+addBases("stronghold", 0.15, 0.04, startAngle + rotation);
 RMS.SetProgress(40);
 
 addElements(shuffleArray([

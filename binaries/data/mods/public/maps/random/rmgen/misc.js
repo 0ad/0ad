@@ -787,7 +787,7 @@ function createVolcano(fx, fz, tileClass, terrainTexture, lavaTextures, smoke, e
 	let ix = Math.round(fractionToTiles(fx));
 	let iz = Math.round(fractionToTiles(fz));
 
-	let baseSize = mapArea / scaleByMapSize(1, 8);
+	let baseSize = getMapArea() / scaleByMapSize(1, 8);
 
 	let coherence = 0.7;
 	let smoothness = 0.05;

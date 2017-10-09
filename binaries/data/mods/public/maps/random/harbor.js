@@ -5,21 +5,23 @@ RMS.LoadLibrary("rmbiome");
 InitMap();
 
 setSelectedBiome();
-initMapSettings();
+initForestFloor();
 initTileClasses();
 
 setFogFactor(0.04);
 
-resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, 2);
+resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, getMapBaseHeight());
 RMS.SetProgress(10);
 
-var players = addBases("radial", 0.38);
+const mapSize = getMapSize();
+const startAngle = randFloat(0, 2 * Math.PI);
+const players = addBases("radial", 0.38, 0.05, startAngle);
 RMS.SetProgress(20);
 
 addCenterLake();
 RMS.SetProgress(30);
 
-if (g_MapInfo.mapSize >= 192)
+if (mapSize >= 192)
 {
 	addHarbors(players);
 	RMS.SetProgress(40);
@@ -77,6 +79,7 @@ addElements(shuffleArray([
 	},
 	{
 		"func": addBluffs,
+		"baseHeight": getMapBaseHeight(),
 		"avoid": [
 			g_TileClasses.bluff, 20,
 			g_TileClasses.mountain, 25,
@@ -252,6 +255,7 @@ ExportMap();
 function addCenterLake()
 {
 	let lSize = sqrt(sqrt(sqrt(scaleByMapSize(1, 6))));
+	let center = Math.round(fractionToTiles(0.5));
 
 	createArea(
 		new ChainPlacer(
@@ -259,10 +263,10 @@ function addCenterLake()
 			Math.floor(scaleByMapSize(2, 12)),
 			Math.floor(scaleByMapSize(35, 160)),
 			1,
-			g_MapInfo.centerOfMap,
-			g_MapInfo.centerOfMap,
+			center,
+			center,
 			0,
-			[floor(g_MapInfo.mapSize * 0.17 * lSize)]
+			[Math.floor(mapSize * 0.17 * lSize)]
 		),
 		[
 			new LayeredPainter(
@@ -280,7 +284,7 @@ function addCenterLake()
 	);
 
 	let fDist = 50;
-	if (g_MapInfo.mapSize <= 192)
+	if (mapSize <= 192)
 		fDist = 20;
 
 	// create a bunch of fish
@@ -289,8 +293,8 @@ function addCenterLake()
 			[new SimpleObject(g_Gaia.fish, 20, 30, 0, fDist)],
 			true,
 			g_TileClasses.baseResource,
-			g_MapInfo.centerOfMap,
-			g_MapInfo.centerOfMap
+			center,
+			center
 		),
 		0,
 		[
@@ -302,14 +306,15 @@ function addCenterLake()
 
 function addHarbors(players)
 {
+	let center = Math.round(fractionToTiles(0.5));
+
 	for (let i = 0; i < players.length; ++i)
 	{
 		let ix = round(fractionToTiles(players[i].x));
 		let iz = round(fractionToTiles(players[i].z));
-		let playerDistX = g_MapInfo.centerOfMap - ix;
-		let playerDistZ = g_MapInfo.centerOfMap - iz;
-		let offsetX = round(playerDistX / 2.5);
-		let offsetZ = round(playerDistZ / 2.5);
+
+		let offsetX = Math.round((center - ix) / 2.5);
+		let offsetZ = Math.round((center - iz) / 2.5);
 
 		createArea(
 			new ClumpPlacer(scaleByMapSize(1200, 1200), 0.5, 0.5, 1, ix + offsetX, iz + offsetZ),
@@ -344,6 +349,7 @@ function addHarbors(players)
 
 function addSpines()
 {
+	let numPlayers = getNumPlayers();
 	let spineTile = g_Terrains.dirt;
 	let elevation = 35;
 
@@ -357,12 +363,12 @@ function addSpines()
 		spineTile = g_Terrains.tier4Terrain;
 
 	let split = 1;
-	if (g_MapInfo.numPlayers <= 3 || (g_MapInfo.mapSize >= 320 && g_MapInfo.numPlayers <= 4))
+	if (numPlayers <= 3 || mapSize >= 320 && numPlayers <= 4)
 		split = 2;
 
-	for (let i = 0; i < g_MapInfo.numPlayers * split; ++i)
+	for (let i = 0; i < numPlayers * split; ++i)
 	{
-		let tang = g_MapInfo.startAngle + (i + 0.5) * TWO_PI / (g_MapInfo.numPlayers * split);
+		let tang = startAngle + (i + 0.5) * 2 * Math.PI / (numPlayers * split);
 
 		let fx = fractionToTiles(0.5);
 		let fz = fractionToTiles(0.5);
@@ -377,7 +383,7 @@ function addSpines()
 		let mTaper = -1.4;
 
 		// make small mountain dividers if we're on a small map
-		if (g_MapInfo.mapSize <= 192)
+		if (mapSize <= 192)
 		{
 			mSize = 0.02;
 			mTaper = -0.1;

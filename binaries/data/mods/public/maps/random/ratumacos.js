@@ -9,7 +9,7 @@ InitMap();
 
 log("Initializing tile classes...");
 setBiome("alpine");
-initMapSettings();
+initForestFloor();
 initTileClasses(["shallowWater"]);
 
 log("Initializing environment...");
@@ -64,12 +64,11 @@ g_Decoratives.bushMedium = "actor|props/flora/bush_tempe_a.xml";
 g_Decoratives.bushSmall = "actor|props/flora/bush_tempe_b.xml";
 g_Decoratives.reeds = "actor|props/flora/reeds_pond_lush_a.xml";
 g_Decoratives.lillies = "actor|props/flora/water_lillies.xml";
-
-initBiome();
+initForestFloor();
 RMS.SetProgress(5);
 
 log("Resetting terrain...");
-resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, 1);
+resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, getMapBaseHeight());
 RMS.SetProgress(10);
 
 log("Copying heightmap...");
@@ -104,7 +103,7 @@ var strongholdBases = [
 	[260, 190],
 	[120, 270]
 ];
-randomPlayerPlacementAt(singleBases, strongholdBases, scale, 0.06);
+randomPlayerPlacementAt(getTeamsArray(), singleBases, strongholdBases, scale, 0.06);
 RMS.SetProgress(50);
 
 log("Render gaia...");

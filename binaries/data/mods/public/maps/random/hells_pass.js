@@ -5,13 +5,15 @@ RMS.LoadLibrary("rmbiome");
 InitMap();
 
 setSelectedBiome();
-initMapSettings();
+initForestFloor();
 initTileClasses();
 
-resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, 1);
+resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, getMapBaseHeight());
 RMS.SetProgress(10);
 
-addBases("line", 0.2, 0.08);
+const teamsArray = getTeamsArray();
+const startAngle = randFloat(0, 2 * Math.PI);
+addBases("line", 0.2, 0.08, startAngle);
 RMS.SetProgress(20);
 
 placeBarriers();
@@ -20,6 +22,7 @@ RMS.SetProgress(40);
 addElements(shuffleArray([
 	{
 		"func": addBluffs,
+		"baseHeight": getMapBaseHeight(),
 		"avoid": [
 			g_TileClasses.bluff, 20,
 			g_TileClasses.hill, 5,
@@ -222,7 +225,6 @@ RMS.SetProgress(90);
 
 ExportMap();
 
-// place the mountainous barriers between the teams
 function placeBarriers()
 {
 	var spineTerrain = g_Terrains.dirt;
@@ -236,11 +238,8 @@ function placeBarriers()
 	if (currentBiome() == "autumn")
 		spineTerrain = g_Terrains.tier4Terrain;
 
-	// create mountain ranges
-	for (var i = 0; i < g_MapInfo.teams.length; ++i)
+	for (let i = 0; i < teamsArray.length; ++i)
 	{
-		var tang = g_MapInfo.startAngle + (i + 0.5) * TWO_PI / g_MapInfo.teams.length;
-
 		var fx = fractionToTiles(0.5);
 		var fz = fractionToTiles(0.5);
 
@@ -251,14 +250,14 @@ function placeBarriers()
 		var mOffset = 0.5;
 		var mTaper = -1.5;
 
-		if (g_MapInfo.teams.length > 3 || g_MapInfo.mapSize <= 192)
+		if (teamsArray.length > 3 || getMapSize() <= 192)
 		{
 			mWaviness = 0.2;
 			mOffset = 0.2;
 			mTaper = -1;
 		}
 
-		if (g_MapInfo.teams.length >= 5)
+		if (teamsArray.length >= 5)
 		{
 			mSize = 4;
 			mWaviness = 0.2;
@@ -266,11 +265,24 @@ function placeBarriers()
 			mTaper = -0.7;
 		}
 
-		// place barrier
-		var placer = new PathPlacer(fractionToTiles(0.5 + mStartCo * cos(tang)), fractionToTiles(0.5 + mStartCo * sin(tang)), fractionToTiles(0.5 + mStopCo * cos(tang)), fractionToTiles(0.5 + mStopCo * sin(tang)), scaleByMapSize(14, mSize), mWaviness, 0.1, mOffset, mTaper);
-		var terrainPainter = new LayeredPainter([g_Terrains.cliff, spineTerrain], [2]);
-		var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 30, 2);
-		createArea(placer, [terrainPainter, elevationPainter, paintClass(g_TileClasses.spine)], avoidClasses(g_TileClasses.player, 5, g_TileClasses.baseResource, 5));
+		let angle = startAngle + (i + 0.5) * 2 * Math.PI / teamsArray.length;
+		createArea(
+			new PathPlacer(
+				fractionToTiles(0.5 + mStartCo * Math.cos(angle)),
+				fractionToTiles(0.5 + mStartCo * Math.sin(angle)),
+				fractionToTiles(0.5 + mStopCo * Math.cos(angle)),
+				fractionToTiles(0.5 + mStopCo * Math.sin(angle)),
+				scaleByMapSize(14, mSize),
+				mWaviness,
+				0.1,
+				mOffset,
+				mTaper),
+			[
+				new LayeredPainter([g_Terrains.cliff, spineTerrain], [2]),
+				new SmoothElevationPainter(ELEVATION_SET, 30, 2),
+				paintClass(g_TileClasses.spine)
+			],
+			avoidClasses(g_TileClasses.player, 5, g_TileClasses.baseResource, 5));
 	}
 
 	addElements([

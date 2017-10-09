@@ -9,7 +9,7 @@ InitMap();
 
 log("Initializing environment...");
 setBiome("temperate");
-initMapSettings();
+initForestFloor();
 initTileClasses(["autumn", "desert", "medit", "polar", "steppe", "temp"]);
 
 setSunColor(0.733, 0.746, 0.574);
@@ -37,7 +37,7 @@ setPPSaturation(0.42);
 setPPBloom(0.23);
 
 log("Resetting terrain...");
-resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, 1);
+resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, getMapBaseHeight());
 RMS.SetProgress(10);
 
 var biomes = {
@@ -251,7 +251,7 @@ var singleBases = [
 	[160,180]
 ];
 
-if (g_MapInfo.mapSize >= 320 || g_MapInfo.numPlayers > singleBases.length)
+if (getMapSize() >= 320 || getNumPlayers() > singleBases.length)
 	singleBases.push(
 		[140,60],
 		[170,250],
@@ -266,7 +266,7 @@ var strongholdBases = [
 	[260,55]
 ];
 
-randomPlayerPlacementAt(singleBases, strongholdBases, scale, 0.06, (tileX, tileY) => {
+randomPlayerPlacementAt(getTeamsArray(), singleBases, strongholdBases, scale, 0.06, (tileX, tileY) => {
 
 	for (let biome in biomes)
 		if (checkIfInClass(tileX, tileY, g_TileClasses[biome]))
@@ -302,7 +302,7 @@ function setLocalBiome(b)
 	g_Decoratives.rockMedium = b.rockMedium;
 	g_Decoratives.bushMedium = b.bushMedium;
 	g_Decoratives.bushSmall = b.bushSmall;
-	initBiome();
+	initForestFloor();
 }
 
 log("Placing fish...");

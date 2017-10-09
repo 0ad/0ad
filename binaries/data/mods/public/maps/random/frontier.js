@@ -5,9 +5,8 @@ RMS.LoadLibrary("rmbiome");
 InitMap();
 
 setSelectedBiome();
-initMapSettings();
+initForestFloor();
 initTileClasses();
-
 RMS.SetProgress(10);
 
 // Pick a random elevation with a bias towards lower elevations
@@ -18,13 +17,14 @@ if (randElevation < 25)
 resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, randElevation);
 RMS.SetProgress(20);
 
-var pos = randomStartingPositionPattern();
-addBases(pos.setup, pos.distance, pos.separation);
+const startPositions = randomStartingPositionPattern(getTeamsArray());
+addBases(startPositions.setup, startPositions.distance, startPositions.separation, randFloat(0, 2 * Math.PI));
 RMS.SetProgress(40);
 
 var features = [
 	{
 		"func": addBluffs,
+		"baseHeight": randElevation,
 		"avoid": [
 			g_TileClasses.bluff, 20,
 			g_TileClasses.hill, 10,
@@ -104,6 +104,7 @@ if (randElevation < 4)
 if (randElevation > 20)
 	features.push({
 		"func": addValleys,
+		"baseHeight": randElevation,
 		"avoid": [
 			g_TileClasses.bluff, 5,
 			g_TileClasses.hill, 5,
