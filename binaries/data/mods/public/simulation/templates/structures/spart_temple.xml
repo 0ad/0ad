@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic_temple">
   <Footprint>
-    <Square width="19.0" depth="31.5"/>
+    <Square width="19.0" depth="37.0"/>
     <Height>12.0</Height>
   </Footprint>
   <Identity>
@@ -9,7 +9,7 @@
     <SpecificName>Asklēpieîon</SpecificName>
   </Identity>
   <Obstruction>
-    <Static width="17.5" depth="30.0"/>
+    <Static width="17.5" depth="35.5"/>
   </Obstruction>
   <VisualActor>
     <Actor>structures/spartans/temple.xml</Actor>
