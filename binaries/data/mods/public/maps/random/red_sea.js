@@ -7,9 +7,8 @@ RMS.LoadLibrary("rmbiome");
 
 InitMap();
 
-log("Initializing biome...");
 setBiome("desert");
-initMapSettings();
+initForestFloor();
 initTileClasses();
 
 setSunColor(0.733, 0.746, 0.574);
@@ -35,6 +34,7 @@ setPPContrast(0.67);
 setPPSaturation(0.42);
 setPPBloom(0.23);
 
+log("Initializing biome...");
 g_Terrains.mainTerrain = "desert_dirt_rocks_2";
 g_Terrains.forestFloor1 = "desert_grass_a_sand";
 g_Terrains.forestFloor2 = "desert_grass_a_sand";
@@ -57,10 +57,10 @@ g_Decoratives.rockMedium = "actor|geology/stone_savanna_med.xml";
 g_Decoratives.bushMedium = "actor|props/flora/bush_desert_dry_a.xml";
 g_Decoratives.bushSmall = "actor|props/flora/bush_medit_sm_dry.xml";
 g_Decoratives.dust = "actor|particle/dust_storm_reddish.xml";
-initBiome();
+initForestFloor();
 
 log("Resetting terrain...");
-resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, 1);
+resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, getMapBaseHeight());
 RMS.SetProgress(10);
 
 log("Copying heightmap...");
@@ -93,7 +93,7 @@ var strongholdBases = [
 	[170, 260],
 	[260, 160]
 ];
-randomPlayerPlacementAt(singleBases, strongholdBases, scale, 0.04);
+randomPlayerPlacementAt(getTeamsArray(), singleBases, strongholdBases, scale, 0.04);
 RMS.SetProgress(50);
 
 log("Adding mines and forests...");

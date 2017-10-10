@@ -16,8 +16,9 @@ var g_DefaultDeviation = 0.1;
  * @param {number} size - size of the bluffs (1.2 would be 120% of normal)
  * @param {number} deviation - degree of deviation from the defined size (0.2 would be 20% plus/minus)
  * @param {number} fill - size of map to fill (1.5 would be 150% of normal)
+ * @param {number} baseHeight - elevation of the floor, making the bluff reachable
  */
-function addBluffs(constraint, size, deviation, fill)
+function addBluffs(constraint, size, deviation, fill, baseHeight)
 {
 	deviation = deviation || g_DefaultDeviation;
 	size = size || 1;
@@ -77,8 +78,8 @@ function addBluffs(constraint, size, deviation, fill)
 		var bluffCat = 2;
 		while (bluffCat != 0 && retries < 5)
 		{
-			baseLine = findClearLine(bb, corners, angle);
-			endLine = findClearLine(bb, corners, opAngle);
+			baseLine = findClearLine(bb, corners, angle, baseHeight);
+			endLine = findClearLine(bb, corners, opAngle, baseHeight);
 
 			bluffCat = unreachableBluff(bb, corners, baseLine, endLine);
 			++angle;
@@ -686,17 +687,12 @@ function addProps(constraint, size, deviation, fill)
 	createObjectGroupsDeprecated(new SimpleGroup([trees], true), 0, constraint, counts[0] * 5 * fill, 5);
 }
 
-/**
- * Create valleys.
- */
-function addValleys(constraint, size, deviation, fill)
+function addValleys(constraint, size, deviation, fill, baseHeight)
 {
-	if (g_MapInfo.mapHeight < 6)
+	if (baseHeight < 6)
 		return;
 
-	var minElevation = (-1 * g_MapInfo.mapHeight) / (size * (1 + deviation)) + 1;
-	if (minElevation < -1 * g_MapInfo.mapHeight)
-		minElevation = -1 * g_MapInfo.mapHeight;
+	let minElevation = Math.max(-baseHeight, 1 - baseHeight / (size * (deviation + 1)));
 
 	var valleySlope = g_Terrains.tier1Terrain;
 	var valleyFloor = g_Terrains.tier4Terrain;
@@ -932,7 +928,7 @@ function addStragglerTrees(constraint, size, deviation, fill)
 	var trees = [g_Gaia.tree1, g_Gaia.tree2, g_Gaia.tree3, g_Gaia.tree4];
 
 	var treesPerPlayer = 40;
-	var playerBonus = Math.max(1, (g_MapInfo.numPlayers - 3) / 2);
+	var playerBonus = Math.max(1, (getNumPlayers() - 3) / 2);
 
 	var offset = getRandomDeviation(size, deviation);
 	var treeCount = treesPerPlayer * playerBonus * fill;
@@ -1112,7 +1108,7 @@ function fadeToGround(bb, minX, minZ, elevation)
 /**
  * Find a 45 degree line in a bounding box that does not intersect any terrain feature.
  */
-function findClearLine(bb, corners, angle)
+function findClearLine(bb, corners, angle, baseHeight)
 {
 	// Angle - 0: northwest; 1: northeast; 2: southeast; 3: southwest
 	var z = corners.maxZ;
@@ -1170,7 +1166,7 @@ function findClearLine(bb, corners, angle)
 				"z2": lastZ,
 				"midX": midX,
 				"midZ": midZ,
-				"height": g_MapInfo.mapHeight
+				"height": baseHeight
 			};
 		}
 
@@ -1190,8 +1186,9 @@ function findClearLine(bb, corners, angle)
 function findCorners(points)
 {
 	// Find the bounding box of the terrain feature
-	var minX = g_MapInfo.mapSize + 1;
-	var minZ = g_MapInfo.mapSize + 1;
+	var mapSize = getMapSize();
+	var minX = mapSize + 1;
+	var minZ = mapSize + 1;
 	var maxX = -1;
 	var maxZ = -1;
 

@@ -7,13 +7,11 @@ RMS.LoadLibrary("rmbiome");
 
 InitMap();
 
-log("Initializing tile classes...");
 setBiome("snowy");
-initMapSettings();
+initForestFloor();
 initTileClasses(["island"]);
 
 log("Initializing environment...");
-
 setSunColor(0.733, 0.746, 0.574);
 setSkySet("stratus");
 
@@ -38,7 +36,6 @@ setPPSaturation(0.42);
 setPPBloom(0.23);
 
 log("Initializing biome...");
-
 g_Terrains.mainTerrain = "snow rough";
 g_Terrains.forestFloor1 = "snow grass 2";
 g_Terrains.forestFloor2 = "snow 50";
@@ -64,12 +61,11 @@ g_Decoratives.rockLarge = "actor|props/special/eyecandy/standing_stones.xml";
 g_Decoratives.rockMedium = "actor|geology/stone_granite_small.xml";
 g_Decoratives.bushMedium = "actor|props/flora/bush_medit_me_dry.xml";
 g_Decoratives.bushSmall = "actor|props/flora/bush_medit_sm_dry.xml";
-
-initBiome();
+initForestFloor();
 RMS.SetProgress(5);
 
 log("Resetting terrain...");
-resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, 1);
+resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, getMapBaseHeight());
 RMS.SetProgress(10);
 
 log("Copying heightmap...");
@@ -98,7 +94,7 @@ var strongholdBases = [
 	[90, 210],
 	[255, 120]
 ];
-randomPlayerPlacementAt(singleBases, strongholdBases, scale, 0.06);
+randomPlayerPlacementAt(getTeamsArray(), singleBases, strongholdBases, scale, 0.06);
 RMS.SetProgress(50);
 
 log("Render mainland...");

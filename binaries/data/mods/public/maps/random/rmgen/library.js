@@ -302,7 +302,7 @@ function isCircularMap()
 
 function getMapBaseHeight()
 {
-	return g_MapSettings.BaseHeight || 0;
+	return g_MapSettings.BaseHeight;
 }
 
 function createTileClass()

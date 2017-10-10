@@ -9,7 +9,7 @@ InitMap();
 
 log("Initializing tile classes...");
 setBiome("mediterranean");
-initMapSettings();
+initForestFloor();
 initTileClasses();
 
 log("Initializing environment...");
@@ -39,7 +39,6 @@ setPPSaturation(0.42);
 setPPBloom(0.23);
 
 log("Initializing biome...");
-
 g_Terrains.mainTerrain = "grass_mediterranean_dry_1024test";
 g_Terrains.forestFloor1 = "steppe_grass_dirt_66";
 g_Terrains.forestFloor2 = "steppe_dirt_a";
@@ -66,12 +65,11 @@ g_Decoratives.rockMedium = "actor|geology/stone_granite_small.xml";
 g_Decoratives.bushMedium = "actor|props/flora/bush_medit_me_dry.xml";
 g_Decoratives.bushSmall = "actor|props/flora/bush_medit_sm_dry.xml";
 g_Decoratives.reeds = "actor|props/flora/reeds_pond_lush_a.xml";
-
-initBiome();
+initForestFloor();
 RMS.SetProgress(5);
 
 log("Resetting terrain...");
-resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, 1);
+resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, getMapBaseHeight());
 RMS.SetProgress(10);
 
 log("Copying heightmap...");
@@ -95,7 +93,7 @@ var singleBases = [
 	[200, 50]
 ];
 
-if (g_MapInfo.mapSize >= 320 || g_MapInfo.numPlayers > singleBases.length)
+if (getMapSize() >= 320 || getNumPlayers() > singleBases.length)
 	singleBases.push(
 		[45, 70],
 		[280, 80],
@@ -107,7 +105,7 @@ var strongholdBases = [
 	[60, 220],
 	[105, 60]
 ];
-randomPlayerPlacementAt(singleBases, strongholdBases, scale, 0.06);
+randomPlayerPlacementAt(getTeamsArray(), singleBases, strongholdBases, scale, 0.06);
 RMS.SetProgress(50);
 
 addElements([

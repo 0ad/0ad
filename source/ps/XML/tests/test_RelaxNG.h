@@ -74,6 +74,14 @@ public:
 
 		TS_ASSERT(!v.Validate(L"doc", L"<test>x</test>"));
 		TS_ASSERT(!v.Validate(L"doc", L"<test>1.0</test>"));
+
+		RelaxNGValidator w;
+		TS_ASSERT(w.LoadGrammar("<element xmlns='http://relaxng.org/ns/structure/1.0' datatypeLibrary='http://www.w3.org/2001/XMLSchema-datatypes' name='test'><data type='integer'></data></element>"));
+
+		TS_ASSERT(w.Validate(L"doc", L"<test>2</test>"));
+
+		TS_ASSERT(!w.Validate(L"doc", L"<test>x</test>"));
+		TS_ASSERT(!w.Validate(L"doc", L"<test>2.0</test>"));
 	}
 
 	void test_broken_grammar()

@@ -127,6 +127,16 @@ TerritoryDecay.prototype.OnDiplomacyChanged = function(msg)
 
 TerritoryDecay.prototype.OnOwnershipChanged = function(msg)
 {
+	// Update the list of TerritoryDecay components in the manager
+	if (msg.from == -1 || msg.to == -1)
+	{
+		let cmpTerritoryDecayManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TerritoryDecayManager);
+		if (msg.from == -1)
+			cmpTerritoryDecayManager.Add(this.entity);
+		else
+			cmpTerritoryDecayManager.Remove(this.entity);
+	}
+
 	// if it influences the territory, wait until we get a TerritoriesChanged message
 	if (!this.territoryOwnership && !Engine.QueryInterface(this.entity, IID_TerritoryInfluence))
 		this.UpdateDecayState();

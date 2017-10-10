@@ -7,9 +7,8 @@ RMS.LoadLibrary("rmbiome");
 
 InitMap();
 
-log("Initializing tile classes...");
 setBiome("desert");
-initMapSettings();
+initForestFloor();
 initTileClasses(["island"]);
 
 log("Initializing environment...");
@@ -38,7 +37,6 @@ setPPSaturation(0.42);
 setPPBloom(0.23);
 
 log("Initializing biome...");
-
 g_Terrains.mainTerrain = "desert_dirt_rough_2";
 g_Terrains.forestFloor1 = "grass_dead";
 g_Terrains.forestFloor2 = "desert_dirt_persia_1";
@@ -63,12 +61,11 @@ g_Decoratives.rockLarge = "actor|geology/stone_savanna_med.xml";
 g_Decoratives.rockMedium = "actor|geology/stone_granite_greek_small.xml";
 g_Decoratives.bushMedium = "actor|props/flora/bush_desert_dry_a.xml";
 g_Decoratives.bushSmall = "actor|props/flora/bush_medit_la_dry";
-
-initBiome();
+initForestFloor();
 RMS.SetProgress(5);
 
 log("Resetting terrain...");
-resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, 1);
+resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, getMapBaseHeight());
 RMS.SetProgress(10);
 
 log("Copying heightmap...");
@@ -83,6 +80,9 @@ paintTileClassBasedOnHeight(-100, -1, 3, g_TileClasses.water);
 RMS.SetProgress(40);
 
 log("Placing players...");
+const numPlayers = getNumPlayers();
+const teamsArray = getTeamsArray();
+
 //Coordinate system of the heightmap
 var singleBases = [
 	[30, 220],
@@ -93,7 +93,7 @@ var singleBases = [
 	[240, 220]
 ];
 
-if (g_MapInfo.numPlayers > singleBases.length)
+if (numPlayers > singleBases.length)
 	singleBases.push(
 		[40, 55],
 		[280, 150]
@@ -104,13 +104,13 @@ var strongholdBases = [
 	[250, 55]
 ];
 
-if (g_MapInfo.teams.length > strongholdBases.length)
+if (teamsArray.length > strongholdBases.length)
 	strongholdBases.push(
 		[45, 180],
 		[260, 195]
 	);
 
-randomPlayerPlacementAt(singleBases, strongholdBases, scale, 0.06);
+randomPlayerPlacementAt(teamsArray, singleBases, strongholdBases, scale, 0.06);
 RMS.SetProgress(50);
 
 log("Render mainland...");
@@ -279,7 +279,7 @@ g_Terrains.tier1Terrain = "sand_scrub_25";
 g_Terrains.tier2Terrain = "sand_scrub_75";
 g_Terrains.tier3Terrain = "sand_scrub_50";
 g_Terrains.tier4Terrain = "sand";
-initBiome();
+initForestFloor();
 
 log("Render island...");
 addElements([
@@ -414,7 +414,7 @@ for (let treasure of ["wood", "food_bin"])
 			g_TileClasses.player, 25,
 			g_TileClasses.forest, 2
 		),
-		3 * g_MapInfo.numPlayers,
+		3 * numPlayers,
 		200
 	);
 }
@@ -428,7 +428,7 @@ createObjectGroupsDeprecated(
 	),
 	0,
 	stayClasses(g_TileClasses.water, 2),
-	g_MapInfo.numPlayers,
+	numPlayers,
 	200
 );
 RMS.SetProgress(95);

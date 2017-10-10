@@ -9,7 +9,7 @@ InitMap();
 
 log("Initializing tile classes...");
 setBiome("tropic");
-initMapSettings();
+initForestFloor();
 initTileClasses();
 
 log("Initializing environment...");
@@ -60,11 +60,11 @@ g_Decoratives.rockLarge = "actor|geology/stone_savanna_med.xml";
 g_Decoratives.rockMedium = "actor|geology/stone_savanna_med.xml";
 g_Decoratives.bushMedium = "actor|props/flora/bush_tropic_a.xml";
 g_Decoratives.bushSmall = "actor|props/flora/bush_tropic_b.xml";
-initBiome();
+initForestFloor();
 RMS.SetProgress(5);
 
 log("Resetting terrain...");
-resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, 1);
+resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, getMapBaseHeight());
 RMS.SetProgress(10);
 
 log("Copying heightmap...");
@@ -91,7 +91,7 @@ var strongholdBases = [
 	[80, 240],
 	[190, 60]
 ];
-randomPlayerPlacementAt(singleBases, strongholdBases, scale, 0.06);
+randomPlayerPlacementAt(getTeamsArray(), singleBases, strongholdBases, scale, 0.06);
 RMS.SetProgress(50);
 
 addElements([
