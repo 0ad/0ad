@@ -5,7 +5,6 @@ RMS.LoadLibrary("rmbiome");
 InitMap();
 
 setSelectedBiome();
-initForestFloor();
 initTileClasses();
 
 resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, getMapBaseHeight());

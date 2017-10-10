@@ -8,7 +8,6 @@ RMS.LoadLibrary("rmbiome");
 InitMap();
 
 setBiome("savanna");
-initForestFloor();
 initTileClasses(["eden", "highlands"]);
 
 log("Initializing environment...");
@@ -38,8 +37,6 @@ setPPBloom(0.23);
 
 log("Initializing biome...");
 g_Terrains.mainTerrain = "savanna_riparian_bank";
-g_Terrains.forestFloor1 = "savanna_dirt_rocks_b";
-g_Terrains.forestFloor2 = "savanna_dirt_rocks_c";
 g_Terrains.tier1Terrain = "savanna_dirt_rocks_a";
 g_Terrains.tier2Terrain = "savanna_grass_a";
 g_Terrains.tier3Terrain = "savanna_grass_b";
@@ -62,7 +59,6 @@ g_Decoratives.rockLarge = "actor|geology/stone_savanna_med.xml";
 g_Decoratives.rockMedium = "actor|geology/stone_savanna_med.xml";
 g_Decoratives.bushMedium = "actor|props/flora/bush_desert_dry_a.xml";
 g_Decoratives.bushSmall = "actor|props/flora/bush_dry_a.xml";
-initForestFloor();
 RMS.SetProgress(5);
 
 log("Resetting terrain...");
@@ -174,23 +170,6 @@ addElements(shuffleArray([
 		"sizes": ["normal"],
 		"mixes": ["same"],
 		"amounts": ["scarce"]
-	},
-	{
-		"func": addForests,
-		"avoid": [
-			g_TileClasses.berries, 5,
-			g_TileClasses.forest, 8,
-			g_TileClasses.metal, 3,
-			g_TileClasses.mountain, 6,
-			g_TileClasses.player, 20,
-			g_TileClasses.rock, 3,
-			g_TileClasses.water, 2,
-			g_TileClasses.eden, 2,
-			g_TileClasses.highlands, 2
-		],
-		"sizes": ["normal"],
-		"mixes": ["similar"],
-		"amounts": ["tons"]
 	}
 ]));
 
@@ -263,8 +242,6 @@ RMS.SetProgress(60);
 g_Gaia.mainHuntableAnimal = "gaia/fauna_lioness";
 g_Gaia.secondaryHuntableAnimal =  "gaia/fauna_lion";
 g_Terrains.mainTerrain = "savanna_grass_a_wetseason";
-g_Terrains.forestFloor1 = "savanna_grass_a";
-g_Terrains.forestFloor2 = "savanna_grass_b";
 g_Terrains.tier1Terrain = "savanna_grass_a_wetseason";
 g_Terrains.tier2Terrain = "savanna_grass_b_wetseason";
 g_Terrains.tier3Terrain = "savanna_shrubs_a_wetseason";
@@ -332,22 +309,6 @@ addElements(shuffleArray([
 		"sizes": ["normal"],
 		"mixes": ["same"],
 		"amounts": ["many"]
-	},
-	{
-		"func": addForests,
-		"avoid": [
-			g_TileClasses.berries, 5,
-			g_TileClasses.forest, 8,
-			g_TileClasses.metal, 3,
-			g_TileClasses.mountain, 3,
-			g_TileClasses.player, 20,
-			g_TileClasses.rock, 3,
-			g_TileClasses.water, 2
-		],
-		"stay": [g_TileClasses.highlands, 2],
-		"sizes": ["huge"],
-		"mixes": ["similar"],
-		"amounts": ["tons"]
 	}
 ]));
 
@@ -389,7 +350,6 @@ RMS.SetProgress(70);
 
 g_Gaia.mainHuntableAnimal = "gaia/fauna_rhino";
 g_Gaia.secondaryHuntableAnimal =  "gaia/fauna_elephant_african_bush";
-initForestFloor();
 
 log("Render eden...");
 addElements([
@@ -486,22 +446,6 @@ addElements(shuffleArray([
 		"sizes": ["normal"],
 		"mixes": ["same"],
 		"amounts": ["few"]
-	},
-	{
-		"func": addForests,
-		"avoid": [
-			g_TileClasses.berries, 5,
-			g_TileClasses.forest, 8,
-			g_TileClasses.metal, 3,
-			g_TileClasses.mountain, 8,
-			g_TileClasses.player, 20,
-			g_TileClasses.rock, 3,
-			g_TileClasses.water, 2
-		],
-		"stay": [g_TileClasses.eden, 2],
-		"sizes": ["huge"],
-		"mixes": ["similar"],
-		"amounts": ["scarce"]
 	}
 ]));
 

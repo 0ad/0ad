@@ -5,7 +5,6 @@ RMS.LoadLibrary("rmbiome");
 InitMap();
 
 setSelectedBiome();
-initForestFloor();
 initTileClasses();
 
 setFogFactor(0.04);

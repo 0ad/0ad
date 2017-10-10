@@ -818,33 +818,47 @@ function addForests(constraint, size, deviation, fill)
 	if (currentBiome() == "savanna")
 		return;
 
-	var types = [
+	let treeTypes = [
 		[
-			[g_Terrains.forestFloor2, g_Terrains.mainTerrain, g_Forests.forest1],
-			[g_Terrains.forestFloor2, g_Forests.forest1]
+			g_Terrains.forestFloor2 + TERRAIN_SEPARATOR + g_Gaia.tree1,
+			g_Terrains.forestFloor2 + TERRAIN_SEPARATOR + g_Gaia.tree2,
+			g_Terrains.forestFloor2
 		],
 		[
-			[g_Terrains.forestFloor2, g_Terrains.mainTerrain, g_Forests.forest2],
-			[g_Terrains.forestFloor1, g_Forests.forest2]],
-		[
-			[g_Terrains.forestFloor1, g_Terrains.mainTerrain, g_Forests.forest1],
-			[g_Terrains.forestFloor2, g_Forests.forest1]],
-		[
-			[g_Terrains.forestFloor1, g_Terrains.mainTerrain, g_Forests.forest2],
-			[g_Terrains.forestFloor1, g_Forests.forest2]
+			g_Terrains.forestFloor1 + TERRAIN_SEPARATOR + g_Gaia.tree4,
+			g_Terrains.forestFloor1 + TERRAIN_SEPARATOR + g_Gaia.tree5,
+			g_Terrains.forestFloor1
 		]
 	];
 
-	for (var i = 0; i < types.length; ++i)
-	{
-		var offset = getRandomDeviation(size, deviation);
-		var minSize = floor(scaleByMapSize(3, 5) * offset);
-		var maxSize = Math.floor(scaleByMapSize(50, 50) * offset);
-		var forestCount = scaleByMapSize(10, 10) * fill;
+	let forestTypes = [
+		[
+			[g_Terrains.forestFloor2, g_Terrains.mainTerrain, treeTypes[0]],
+			[g_Terrains.forestFloor2, treeTypes[0]]
+		],
+		[
+			[g_Terrains.forestFloor2, g_Terrains.mainTerrain, treeTypes[1]],
+			[g_Terrains.forestFloor1, treeTypes[1]]],
+		[
+			[g_Terrains.forestFloor1, g_Terrains.mainTerrain, treeTypes[0]],
+			[g_Terrains.forestFloor2, treeTypes[0]]],
+		[
+			[g_Terrains.forestFloor1, g_Terrains.mainTerrain, treeTypes[1]],
+			[g_Terrains.forestFloor1, treeTypes[1]]
+		]
+	];
 
-		var placer = new ChainPlacer(1, minSize, maxSize, 0.5);
-		var painter = new LayeredPainter(types[i], [2]);
-		createAreas(placer, [painter, paintClass(g_TileClasses.forest)], constraint, forestCount);
+	for (let forestType of forestTypes)
+	{
+		let offset = getRandomDeviation(size, deviation);
+		createAreas(
+			new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5) * offset), Math.floor(50 * offset), 0.5),
+			[
+				new LayeredPainter(forestType, [2]),
+				paintClass(g_TileClasses.forest)
+			],
+			constraint,
+			10 * fill);
 	}
 }
 

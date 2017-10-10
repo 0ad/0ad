@@ -8,7 +8,6 @@ RMS.LoadLibrary("rmbiome");
 InitMap();
 
 setBiome("snowy");
-initForestFloor();
 initTileClasses(["island"]);
 
 log("Initializing environment...");
@@ -61,7 +60,6 @@ g_Decoratives.rockLarge = "actor|props/special/eyecandy/standing_stones.xml";
 g_Decoratives.rockMedium = "actor|geology/stone_granite_small.xml";
 g_Decoratives.bushMedium = "actor|props/flora/bush_medit_me_dry.xml";
 g_Decoratives.bushSmall = "actor|props/flora/bush_medit_sm_dry.xml";
-initForestFloor();
 RMS.SetProgress(5);
 
 log("Resetting terrain...");

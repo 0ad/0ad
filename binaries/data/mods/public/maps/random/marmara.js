@@ -9,7 +9,6 @@ InitMap();
 
 log("Initializing tile classes...");
 setBiome("mediterranean");
-initForestFloor();
 initTileClasses();
 
 log("Initializing environment...");
@@ -65,7 +64,6 @@ g_Decoratives.rockMedium = "actor|geology/stone_granite_small.xml";
 g_Decoratives.bushMedium = "actor|props/flora/bush_medit_me_dry.xml";
 g_Decoratives.bushSmall = "actor|props/flora/bush_medit_sm_dry.xml";
 g_Decoratives.reeds = "actor|props/flora/reeds_pond_lush_a.xml";
-initForestFloor();
 RMS.SetProgress(5);
 
 log("Resetting terrain...");
