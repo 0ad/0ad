@@ -6,8 +6,6 @@ var g_Props = {
 	"skeleton": "actor|props/special/eyecandy/skeleton.xml",
 };
 
-var g_DefaultDeviation = 0.1;
-
 /**
  * Create bluffs, i.e. a slope hill reachable from ground level.
  * Fill it with wood, mines, animals and decoratives.
@@ -20,10 +18,6 @@ var g_DefaultDeviation = 0.1;
  */
 function addBluffs(constraint, size, deviation, fill, baseHeight)
 {
-	deviation = deviation || g_DefaultDeviation;
-	size = size || 1;
-	fill = fill || 1;
-
 	var constrastTerrain = g_Terrains.tier2Terrain;
 
 	if (currentBiome() == "tropic")
@@ -32,11 +26,11 @@ function addBluffs(constraint, size, deviation, fill, baseHeight)
 	if (currentBiome() == "autumn")
 		constrastTerrain = g_Terrains.tier3Terrain;
 
-	var count = fill * scaleByMapSize(15, 15);
-	var minSize = scaleByMapSize(5, 5);
-	var maxSize = scaleByMapSize(7, 7);
+	var count = fill * 15;
+	var minSize = 5;
+	var maxSize = 7;
 	var elevation = 30;
-	var spread = scaleByMapSize(100, 100);
+	var spread = 100;
 
 	for (var i = 0; i < count; ++i)
 	{
@@ -302,28 +296,24 @@ function addBluffs(constraint, size, deviation, fill, baseHeight)
  */
 function addDecoration(constraint, size, deviation, fill)
 {
-	deviation = deviation || g_DefaultDeviation;
-	size = size || 1;
-	fill = fill || 1;
-
 	var offset = getRandomDeviation(size, deviation);
 	var decorations = [
 		[
-			new SimpleObject(g_Decoratives.rockMedium, 1 * offset, 3 * offset, 0, 1 * offset)
+			new SimpleObject(g_Decoratives.rockMedium, offset, 3 * offset, 0, offset)
 		],
 		[
-			new SimpleObject(g_Decoratives.rockLarge, 1 * offset, 2 * offset, 0, 1 * offset),
-			new SimpleObject(g_Decoratives.rockMedium, 1 * offset, 3 * offset, 0, 2 * offset)
+			new SimpleObject(g_Decoratives.rockLarge, offset, 2 * offset, 0, offset),
+			new SimpleObject(g_Decoratives.rockMedium, offset, 3 * offset, 0, 2 * offset)
 		],
 		[
-			new SimpleObject(g_Decoratives.grassShort, 1 * offset, 2 * offset, 0, 1 * offset, -PI / 8, PI / 8)
+			new SimpleObject(g_Decoratives.grassShort, offset, 2 * offset, 0, offset)
 		],
 		[
-			new SimpleObject(g_Decoratives.grass, 2 * offset, 4 * offset, 0, 1.8 * offset, -PI / 8, PI / 8),
-			new SimpleObject(g_Decoratives.grassShort, 3 * offset, 6 * offset, 1.2 * offset, 2.5 * offset, -PI / 8, PI / 8)
+			new SimpleObject(g_Decoratives.grass, 2 * offset, 4 * offset, 0, 1.8 * offset),
+			new SimpleObject(g_Decoratives.grassShort, 3 * offset, 6 * offset, 1.2 * offset, 2.5 * offset)
 		],
 		[
-			new SimpleObject(g_Decoratives.bushMedium, 1 * offset, 2 * offset, 0, 2 * offset),
+			new SimpleObject(g_Decoratives.bushMedium, offset, 2 * offset, 0, 2 * offset),
 			new SimpleObject(g_Decoratives.bushSmall, 2 * offset, 4 * offset, 0, 2 * offset)
 		]
 	];
@@ -359,10 +349,10 @@ function addDecoration(constraint, size, deviation, fill)
  *	"size": 1,
  *	"deviation": 0.2,
  *	"fill": 1,
- *	"count": scaleByMapSize(8, 8),
- *	"minSize": Math.floor(scaleByMapSize(5, 5)),
- *	"maxSize": Math.floor(scaleByMapSize(8, 8)),
- *	"spread": Math.floor(scaleByMapSize(20, 20)),
+ *	"count": scaleByMapSize(4, 8),
+ *	"minSize": Math.floor(scaleByMapSize(3, 8)),
+ *	"maxSize": Math.floor(scaleByMapSize(5, 10)),
+ *	"spread": Math.floor(scaleByMapSize(10, 20)),
  *	"minElevation": 6,
  *	"maxElevation": 12,
  *	"steepness": 1.5
@@ -370,11 +360,7 @@ function addDecoration(constraint, size, deviation, fill)
 
 function addElevation(constraint, el)
 {
-	var deviation = el.deviation || g_DefaultDeviation;
-	var size = el.size || 1;
-	var fill = el.fill || 1;
-
-	var count = fill * el.count;
+	var count = el.fill * el.count;
 	var minSize = el.minSize;
 	var maxSize = el.maxSize;
 	var spread = el.spread;
@@ -394,7 +380,7 @@ function addElevation(constraint, el)
 		var elevation = randIntExclusive(el.minElevation, el.maxElevation);
 		var smooth = Math.floor(elevation / el.steepness);
 
-		var offset = getRandomDeviation(size, el.deviation);
+		var offset = getRandomDeviation(el.size, el.deviation);
 		var pMinSize = Math.floor(minSize * offset);
 		var pMaxSize = Math.floor(maxSize * offset);
 		var pSpread = Math.floor(spread * offset);
@@ -429,10 +415,10 @@ function addHills(constraint, size, deviation, fill)
 		"size": size,
 		"deviation": deviation,
 		"fill": fill,
-		"count": scaleByMapSize(8, 8),
-		"minSize": Math.floor(scaleByMapSize(5, 5)),
-		"maxSize": Math.floor(scaleByMapSize(8, 8)),
-		"spread": Math.floor(scaleByMapSize(20, 20)),
+		"count": 8,
+		"minSize": 5,
+		"maxSize": 8,
+		"spread": 20,
 		"minElevation": 6,
 		"maxElevation": 12,
 		"steepness": 1.5
@@ -461,10 +447,10 @@ function addLakes(constraint, size, deviation, fill)
 		"size": size,
 		"deviation": deviation,
 		"fill": fill,
-		"count": scaleByMapSize(6, 6),
-		"minSize": Math.floor(scaleByMapSize(7, 7)),
-		"maxSize": Math.floor(scaleByMapSize(9, 9)),
-		"spread": Math.floor(scaleByMapSize(70, 70)),
+		"count": 6,
+		"minSize": 7,
+		"maxSize": 9,
+		"spread": 70,
 		"minElevation": -15,
 		"maxElevation": -2,
 		"steepness": 1.5
@@ -498,10 +484,6 @@ function addLakes(constraint, size, deviation, fill)
  */
 function addLayeredPatches(constraint, size, deviation, fill)
 {
-	deviation = deviation || g_DefaultDeviation;
-	size = size || 1;
-	fill = fill || 1;
-
 	var minRadius = 1;
 	var maxRadius = Math.floor(scaleByMapSize(3, 5));
 	var count = fill * scaleByMapSize(15, 45);
@@ -548,10 +530,10 @@ function addMountains(constraint, size, deviation, fill)
 		"size": size,
 		"deviation": deviation,
 		"fill": fill,
-		"count": scaleByMapSize(8, 8),
-		"minSize": Math.floor(scaleByMapSize(2, 2)),
-		"maxSize": Math.floor(scaleByMapSize(4, 4)),
-		"spread": Math.floor(scaleByMapSize(100, 100)),
+		"count": 8,
+		"minSize": 2,
+		"maxSize": 4,
+		"spread": 100,
 		"minElevation": 100,
 		"maxElevation": 120,
 		"steepness": 4
@@ -580,10 +562,10 @@ function addPlateaus(constraint, size, deviation, fill)
 		"size": size,
 		"deviation": deviation,
 		"fill": fill,
-		"count": scaleByMapSize(15, 15),
-		"minSize": Math.floor(scaleByMapSize(2, 2)),
-		"maxSize": Math.floor(scaleByMapSize(4, 4)),
-		"spread": Math.floor(scaleByMapSize(200, 200)),
+		"count": 15,
+		"minSize": 2,
+		"maxSize": 4,
+		"spread": 200,
 		"minElevation": 20,
 		"maxElevation": 30,
 		"steepness": 8
@@ -646,20 +628,16 @@ function addPlateaus(constraint, size, deviation, fill)
  */
 function addProps(constraint, size, deviation, fill)
 {
-	deviation = deviation || g_DefaultDeviation;
-	size = size || 1;
-	fill = fill || 1;
-
 	var offset = getRandomDeviation(size, deviation);
 
 	var props = [
 		[
-			new SimpleObject(g_Props.skeleton, 1 * offset, 5 * offset, 0, 3 * offset + 2),
+			new SimpleObject(g_Props.skeleton, offset, 5 * offset, 0, 3 * offset + 2),
 		],
 		[
-			new SimpleObject(g_Props.barrels, 1 * offset, 2 * offset, 2, 3 * offset + 2),
-			new SimpleObject(g_Props.cart, 0, 1 * offset, 5, 2.5 * offset + 5),
-			new SimpleObject(g_Props.crate, 1 * offset, 2 * offset, 2, 2 * offset + 2),
+			new SimpleObject(g_Props.barrels, offset, 2 * offset, 2, 3 * offset + 2),
+			new SimpleObject(g_Props.cart, 0, offset, 5, 2.5 * offset + 5),
+			new SimpleObject(g_Props.crate, offset, 2 * offset, 2, 2 * offset + 2),
 			new SimpleObject(g_Props.well, 0, 1, 2, 2 * offset + 2)
 		]
 	];
@@ -724,10 +702,10 @@ function addValleys(constraint, size, deviation, fill, baseHeight)
 		"size": size,
 		"deviation": deviation,
 		"fill": fill,
-		"count": scaleByMapSize(8, 8),
-		"minSize": Math.floor(scaleByMapSize(5, 5)),
-		"maxSize": Math.floor(scaleByMapSize(8, 8)),
-		"spread": Math.floor(scaleByMapSize(30, 30)),
+		"count": 8,
+		"minSize": 5,
+		"maxSize": 8,
+		"spread": 30,
 		"minElevation": minElevation,
 		"maxElevation": -2,
 		"steepness": 4
@@ -739,10 +717,6 @@ function addValleys(constraint, size, deviation, fill, baseHeight)
  */
 function addAnimals(constraint, size, deviation, fill)
 {
-	deviation = deviation || g_DefaultDeviation;
-	size = size || 1;
-	fill = fill || 1;
-
 	var groupOffset = getRandomDeviation(size, deviation);
 
 	var animals = [
@@ -750,71 +724,47 @@ function addAnimals(constraint, size, deviation, fill)
 		[new SimpleObject(g_Gaia.secondaryHuntableAnimal, 2 * groupOffset, 3 * groupOffset, 0, 2 * groupOffset)]
 	];
 
-	var counts = [scaleByMapSize(30, 30) * fill, scaleByMapSize(30, 30) * fill];
-
-	for (var i = 0; i < animals.length; ++i)
-	{
-		var group = new SimpleGroup(animals[i], true, g_TileClasses.animals);
-		createObjectGroupsDeprecated(group, 0, constraint, Math.floor(counts[i]), 50);
-	}
+	for (let animal of animals)
+		createObjectGroupsDeprecated(
+			new SimpleGroup(animal, true, g_TileClasses.animals),
+			0,
+			constraint,
+			Math.floor(30 * fill),
+			50);
 }
 
-/**
- * Create fruits.
- */
 function addBerries(constraint, size, deviation, fill)
 {
-	deviation = deviation || g_DefaultDeviation;
-	size = size || 1;
-	fill = fill || 1;
+	let groupOffset = getRandomDeviation(size, deviation);
 
-	var groupOffset = getRandomDeviation(size, deviation);
-
-	var count = scaleByMapSize(50, 50) * fill;
-	var berries = [[new SimpleObject(g_Gaia.fruitBush, 5 * groupOffset, 5 * groupOffset, 0, 3 * groupOffset)]];
-
-	for (var i = 0; i < berries.length; ++i)
-	{
-		var group = new SimpleGroup(berries[i], true, g_TileClasses.berries);
-		createObjectGroupsDeprecated(group, 0, constraint, Math.floor(count), 40);
-	}
+	createObjectGroupsDeprecated(
+		new SimpleGroup([new SimpleObject(g_Gaia.fruitBush, 5 * groupOffset, 5 * groupOffset, 0, 3 * groupOffset)], true, g_TileClasses.berries),
+		0,
+		constraint,
+		Math.floor(50 * fill),
+		40);
 }
 
-/**
- * Create fish.
- */
 function addFish(constraint, size, deviation, fill)
 {
-	deviation = deviation || g_DefaultDeviation;
-	size = size || 1;
-	fill = fill || 1;
-
 	var groupOffset = getRandomDeviation(size, deviation);
 
-	var fish = [
-		[new SimpleObject(g_Gaia.fish, 1 * groupOffset, 2 * groupOffset, 0, 2 * groupOffset)],
+	var fishes = [
+		[new SimpleObject(g_Gaia.fish, groupOffset, 2 * groupOffset, 0, 2 * groupOffset)],
 		[new SimpleObject(g_Gaia.fish, 2 * groupOffset, 4 * groupOffset, 10 * groupOffset, 20 * groupOffset)]
 	];
 
-	var counts = [scaleByMapSize(40, 40) * fill, scaleByMapSize(40, 40) * fill];
-
-	for (var i = 0; i < fish.length; ++i)
-	{
-		var group = new SimpleGroup(fish[i], true, g_TileClasses.fish);
-		createObjectGroupsDeprecated(group, 0, constraint, floor(counts[i]), 50);
-	}
+	for (let fish of fishes)
+		createObjectGroupsDeprecated(
+			new SimpleGroup(fish, true, g_TileClasses.fish),
+			0,
+			constraint,
+			Math.floor(40 * fill),
+			50);
 }
 
-/**
- * Create dense forests.
- */
 function addForests(constraint, size, deviation, fill)
 {
-	deviation = deviation || g_DefaultDeviation;
-	size = size || 1;
-	fill = fill || 1;
-
-	// No forests for the african biome
 	if (currentBiome() == "savanna")
 		return;
 
@@ -862,37 +812,26 @@ function addForests(constraint, size, deviation, fill)
 	}
 }
 
-/**
- * Create metal mines.
- */
 function addMetal(constraint, size, deviation, fill)
 {
-	deviation = deviation || g_DefaultDeviation;
-	size = size || 1;
-	fill = fill || 1;
-
 	var offset = getRandomDeviation(size, deviation);
-	var count = 1 + scaleByMapSize(20, 20) * fill;
-	var mines = [[new SimpleObject(g_Gaia.metalLarge, 1 * offset, 1 * offset, 0, 4 * offset)]];
-
-	for (var i = 0; i < mines.length; ++i)
-	{
-		var group = new SimpleGroup(mines[i], true, g_TileClasses.metal);
-		createObjectGroupsDeprecated(group, 0, constraint, count, 100);
-	}
+	createObjectGroupsDeprecated(
+		new SimpleGroup([new SimpleObject(g_Gaia.metalLarge, offset, offset, 0, 4 * offset)], true, g_TileClasses.metal),
+		0,
+		constraint,
+		1 + 20 * fill,
+		100);
 }
 
 function addSmallMetal(constraint, size, mixes, amounts)
 {
-	let deviation = getRandomDeviation(size || 1, mixes || g_DefaultDeviation);
-	let count = 1 + scaleByMapSize(20, 20) * (amounts || 1);
-	let mines = [[new SimpleObject(g_Gaia.metalSmall, 2 * deviation, 5 * deviation, 1 * deviation, 3 * deviation)]];
-
-	for (let i = 0; i < mines.length; ++i)
-	{
-		let group = new SimpleGroup(mines[i], true, g_TileClasses.metal);
-		createObjectGroupsDeprecated(group, 0, constraint, count, 100);
-	}
+	let deviation = getRandomDeviation(size, mixes);
+	createObjectGroupsDeprecated(
+		new SimpleGroup([new SimpleObject(g_Gaia.metalSmall, 2 * deviation, 5 * deviation, deviation, 3 * deviation)], true, g_TileClasses.metal),
+		0,
+		constraint,
+		1 + 20 * amounts,
+		100);
 }
 
 /**
@@ -900,27 +839,25 @@ function addSmallMetal(constraint, size, mixes, amounts)
  */
 function addStone(constraint, size, deviation, fill)
 {
-	deviation = deviation || g_DefaultDeviation;
-	size = size || 1;
-	fill = fill || 1;
-
 	var offset = getRandomDeviation(size, deviation);
-	var count = 1 + scaleByMapSize(20, 20) * fill;
+
 	var mines = [
 		[
 			new SimpleObject(g_Gaia.stoneSmall, 0, 2 * offset, 0, 4 * offset),
-			new SimpleObject(g_Gaia.stoneLarge, 1 * offset, 1 * offset, 0, 4 * offset)
+			new SimpleObject(g_Gaia.stoneLarge, offset, offset, 0, 4 * offset)
 		],
 		[
-			new SimpleObject(g_Gaia.stoneSmall, 2 * offset, 5 * offset, 1 * offset, 3 * offset)
+			new SimpleObject(g_Gaia.stoneSmall, 2 * offset, 5 * offset, offset, 3 * offset)
 		]
 	];
 
-	for (var i = 0; i < mines.length; ++i)
-	{
-		var group = new SimpleGroup(mines[i], true, g_TileClasses.rock);
-		createObjectGroupsDeprecated(group, 0, constraint, count, 100);
-	}
+	for (let mine of mines)
+		createObjectGroupsDeprecated(
+			new SimpleGroup(mine, true, g_TileClasses.rock),
+			0,
+			constraint,
+			1 + 20 * fill,
+			100);
 }
 
 /**
@@ -928,10 +865,6 @@ function addStone(constraint, size, deviation, fill)
  */
 function addStragglerTrees(constraint, size, deviation, fill)
 {
-	deviation = deviation || g_DefaultDeviation;
-	size = size || 1;
-	fill = fill || 1;
-
 	// Ensure minimum distribution on african biome
 	if (currentBiome() == "savanna")
 	{
@@ -949,9 +882,9 @@ function addStragglerTrees(constraint, size, deviation, fill)
 	var totalTrees = scaleByMapSize(treeCount, treeCount);
 
 	var count = Math.floor(totalTrees / trees.length) * fill;
-	var min = 1 * offset;
+	var min = offset;
 	var max = 4 * offset;
-	var minDist = 1 * offset;
+	var minDist = offset;
 	var maxDist = 5 * offset;
 
 	// More trees for the african biome
@@ -1258,7 +1191,7 @@ function nextToFeature(bb, x, z)
 		{
 			var thisX = x + xOffset;
 			var thisZ = z + zOffset;
-			if (thisX < 0 || thisX >= bb.length || thisZ < 0 || thisZ >= bb[x].length || (thisX == 0 && thisZ == 0))
+			if (thisX < 0 || thisX >= bb.length || thisZ < 0 || thisZ >= bb[x].length || thisX == 0 && thisZ == 0)
 				continue;
 
 			if (bb[thisX][thisZ].isFeature)
