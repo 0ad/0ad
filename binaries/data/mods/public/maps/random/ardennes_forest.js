@@ -362,8 +362,8 @@ for (var ix = 0; ix < mapSize; ix++)
 			explorableArea.points.push(pt);
 		}
 
-		if (h > 35 && g_Map.validT(ix, iz) && randBool(0.1) ||
-		    h < 15 && g_Map.validT(ix, iz) && randBool(0.05) && hillDecoClass.countMembersInRadius(ix, iz, 1) == 0)
+		if (h > 35 && randBool(0.1) ||
+		    h < 15 && randBool(0.05) && hillDecoClass.countMembersInRadius(ix, iz, 1) == 0)
 			placeObject(ix + randFloat(0, 1), iz + randFloat(0, 1), pickRandom(aTrees), 0, randFloat(0, 2 * PI));
 	}
 }

@@ -875,7 +875,7 @@ function addStragglerTrees(constraint, size, deviation, fill)
 	var trees = [g_Gaia.tree1, g_Gaia.tree2, g_Gaia.tree3, g_Gaia.tree4];
 
 	var treesPerPlayer = 40;
-	var playerBonus = Math.max(1, (getNumPlayers() - 3) / 2);
+	var playerBonus = Math.max(1, (getNumPlayers() - MAP_BORDER_WIDTH) / 2);
 
 	var offset = getRandomDeviation(size, deviation);
 	var treeCount = treesPerPlayer * playerBonus * fill;
@@ -1170,7 +1170,7 @@ function smoothElevation(x, z)
 		{
 			var thisX = x + xOffset;
 			var thisZ = z + zOffset;
-			if (!g_Map.validT(thisX, thisZ))
+			if (!g_Map.validH(thisX, thisZ))
 				continue;
 
 			var height = g_Map.getHeight(thisX, thisZ);

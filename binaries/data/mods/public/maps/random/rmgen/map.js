@@ -86,6 +86,8 @@ Map.prototype.getEntityID = function()
 // Check bounds on tile map
 Map.prototype.validT = function(x, z, distance = 0)
 {
+	distance += MAP_BORDER_WIDTH;
+
 	if (g_MapSettings.CircularMap)
 	{
 		let halfSize = Math.floor(this.size / 2);
@@ -159,7 +161,7 @@ Map.prototype.getTerrainObjects = function(x, z)
 
 Map.prototype.setTerrainObject = function(x, z, object)
 {
-	if (!this.validT(x, z, 2))
+	if (!this.validT(x, z))
 		throw "setTerrainObject: invalid tile position (" + x + ", " + z + ")";
 
 	this.terrainObjects[x][z] = object;
