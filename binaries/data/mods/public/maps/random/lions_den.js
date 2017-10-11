@@ -5,7 +5,6 @@ RMS.LoadLibrary("rmbiome");
 InitMap();
 
 setSelectedBiome();
-initForestFloor();
 initTileClasses(["step"]);
 
 const topTerrain = g_Terrains.tier2Terrain;

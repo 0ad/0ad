@@ -53,7 +53,6 @@ var g_DefaultTileClasses = [
 ];
 
 var g_TileClasses;
-var g_Forests;
 
 /**
  * Adds an array of elements to the map.
@@ -618,23 +617,4 @@ function initTileClasses(newClasses)
 	g_TileClasses = {};
 	for (var className of classNames)
 		g_TileClasses[className] = createTileClass();
-}
-
-/**
- * Get biome-specific names of entities and terrain after randomization.
- */
-function initForestFloor()
-{
-	g_Forests = {
-		"forest1": [
-			g_Terrains.forestFloor2 + TERRAIN_SEPARATOR + g_Gaia.tree1,
-			g_Terrains.forestFloor2 + TERRAIN_SEPARATOR + g_Gaia.tree2,
-			g_Terrains.forestFloor2
-		],
-		"forest2": [
-			g_Terrains.forestFloor1 + TERRAIN_SEPARATOR + g_Gaia.tree4,
-			g_Terrains.forestFloor1 + TERRAIN_SEPARATOR + g_Gaia.tree5,
-			g_Terrains.forestFloor1
-		]
-	};
 }

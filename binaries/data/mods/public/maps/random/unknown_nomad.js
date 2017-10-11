@@ -1069,7 +1069,7 @@ for (var i = 0; i < numPlayers; i++)
 	{
 		for (var mz = 0; mz < mapSize; mz++)
 		{
-			if (!g_Map.validT(mx, mz, 6))
+			if (!g_Map.validT(mx, mz, 3))
 				continue;
 
 			var placable = true;
@@ -1090,7 +1090,7 @@ for (var i = 0; i < numPlayers; i++)
 		{
 			for (var mz = 0; mz < mapSize; mz++)
 			{
-				if (!g_Map.validT(mx, mz, 6))
+				if (!g_Map.validT(mx, mz, 3))
 					continue;
 
 				var placable = true;

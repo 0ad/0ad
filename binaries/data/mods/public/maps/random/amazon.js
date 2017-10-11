@@ -9,7 +9,6 @@ InitMap();
 
 log("Initializing tile classes...");
 setBiome("tropic");
-initForestFloor();
 initTileClasses();
 
 log("Initializing environment...");
@@ -60,7 +59,6 @@ g_Decoratives.rockLarge = "actor|geology/stone_savanna_med.xml";
 g_Decoratives.rockMedium = "actor|geology/stone_savanna_med.xml";
 g_Decoratives.bushMedium = "actor|props/flora/bush_tropic_a.xml";
 g_Decoratives.bushSmall = "actor|props/flora/bush_tropic_b.xml";
-initForestFloor();
 RMS.SetProgress(5);
 
 log("Resetting terrain...");

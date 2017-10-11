@@ -9,7 +9,6 @@ InitMap();
 
 log("Initializing environment...");
 setBiome("temperate");
-initForestFloor();
 initTileClasses(["autumn", "desert", "medit", "polar", "steppe", "temp"]);
 
 setSunColor(0.733, 0.746, 0.574);
@@ -302,7 +301,6 @@ function setLocalBiome(b)
 	g_Decoratives.rockMedium = b.rockMedium;
 	g_Decoratives.bushMedium = b.bushMedium;
 	g_Decoratives.bushSmall = b.bushSmall;
-	initForestFloor();
 }
 
 log("Placing fish...");

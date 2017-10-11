@@ -226,7 +226,7 @@ function createObjectGroups(placer, player, constraint, amount, retryFactor = 10
 		"placer": placer,
 		"player": player,
 		"constraint": constraint,
-		"halfMapSize": g_Map.size / 2 - 3
+		"halfMapSize": getMapSize() / 2 - MAP_BORDER_WIDTH
 	};
 
 	return retryPlacing(placeFunc, args, retryFactor, amount, false, behaveDeprecated);
@@ -280,7 +280,7 @@ function createSimpleTerrain(terrain)
 
 function placeObject(x, z, type, player, angle)
 {
-	if (g_Map.validT(x, z, MAP_BORDER_WIDTH))
+	if (g_Map.validT(x, z))
 		g_Map.addObject(new Entity(type, player, x, z, angle));
 }
 

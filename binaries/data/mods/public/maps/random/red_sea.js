@@ -8,7 +8,6 @@ RMS.LoadLibrary("rmbiome");
 InitMap();
 
 setBiome("desert");
-initForestFloor();
 initTileClasses();
 
 setSunColor(0.733, 0.746, 0.574);
@@ -57,7 +56,6 @@ g_Decoratives.rockMedium = "actor|geology/stone_savanna_med.xml";
 g_Decoratives.bushMedium = "actor|props/flora/bush_desert_dry_a.xml";
 g_Decoratives.bushSmall = "actor|props/flora/bush_medit_sm_dry.xml";
 g_Decoratives.dust = "actor|particle/dust_storm_reddish.xml";
-initForestFloor();
 
 log("Resetting terrain...");
 resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, getMapBaseHeight());

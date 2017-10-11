@@ -5,7 +5,6 @@ RMS.LoadLibrary("rmbiome");
 InitMap();
 
 setSelectedBiome();
-initForestFloor();
 initTileClasses();
 RMS.SetProgress(10);
 

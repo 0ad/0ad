@@ -9,7 +9,6 @@ InitMap();
 
 log("Initializing tile classes...");
 setBiome("mediterranean");
-initForestFloor();
 initTileClasses(["decorative", "lava"]);
 
 log("Initializing environment...");
@@ -62,7 +61,6 @@ g_Decoratives.grass = "actor|props/flora/grass_field_parched_short.xml";
 g_Decoratives.grassShort = "actor|props/flora/grass_soft_dry_tuft_a.xml";
 g_Decoratives.bushMedium = "actor|props/special/eyecandy/barrels_buried.xml";
 g_Decoratives.bushSmall = "actor|props/special/eyecandy/handcart_1_broken.xml";
-initForestFloor();
 RMS.SetProgress(5);
 
 log("Resetting terrain...");

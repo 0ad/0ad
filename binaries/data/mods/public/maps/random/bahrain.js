@@ -8,7 +8,6 @@ RMS.LoadLibrary("rmbiome");
 InitMap();
 
 setBiome("desert");
-initForestFloor();
 initTileClasses(["island"]);
 
 log("Initializing environment...");
@@ -61,7 +60,6 @@ g_Decoratives.rockLarge = "actor|geology/stone_savanna_med.xml";
 g_Decoratives.rockMedium = "actor|geology/stone_granite_greek_small.xml";
 g_Decoratives.bushMedium = "actor|props/flora/bush_desert_dry_a.xml";
 g_Decoratives.bushSmall = "actor|props/flora/bush_medit_la_dry";
-initForestFloor();
 RMS.SetProgress(5);
 
 log("Resetting terrain...");
@@ -279,7 +277,6 @@ g_Terrains.tier1Terrain = "sand_scrub_25";
 g_Terrains.tier2Terrain = "sand_scrub_75";
 g_Terrains.tier3Terrain = "sand_scrub_50";
 g_Terrains.tier4Terrain = "sand";
-initForestFloor();
 
 log("Render island...");
 addElements([

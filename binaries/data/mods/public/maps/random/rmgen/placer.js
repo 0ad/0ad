@@ -523,7 +523,7 @@ SimpleGroup.prototype.place = function(player, constraint)
 	// Add placed objects to map
 	for (let obj of resultObjs)
 	{
-		if (g_Map.validT(obj.position.x / CELL_SIZE, obj.position.z / CELL_SIZE, MAP_BORDER_WIDTH))
+		if (g_Map.validT(obj.position.x / CELL_SIZE, obj.position.z / CELL_SIZE))
 			g_Map.addObject(obj);
 
 		// Convert position to integer number of tiles

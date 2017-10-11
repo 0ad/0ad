@@ -9,7 +9,6 @@ InitMap();
 
 log("Initializing tile classes...");
 setBiome("alpine");
-initForestFloor();
 initTileClasses(["shallowWater"]);
 
 log("Initializing environment...");
@@ -64,7 +63,6 @@ g_Decoratives.bushMedium = "actor|props/flora/bush_tempe_a.xml";
 g_Decoratives.bushSmall = "actor|props/flora/bush_tempe_b.xml";
 g_Decoratives.reeds = "actor|props/flora/reeds_pond_lush_a.xml";
 g_Decoratives.lillies = "actor|props/flora/water_lillies.xml";
-initForestFloor();
 RMS.SetProgress(5);
 
 log("Resetting terrain...");
