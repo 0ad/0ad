@@ -1844,7 +1844,10 @@ UnitAI.prototype.UnitFsmSpec = {
 					{
 						// If the unit needs to unpack, do so
 						if (this.CanUnpack())
-							this.SetNextState("UNPACKING");
+						{
+							this.PushOrderFront("Unpack", { "force": true });
+							return;
+						}
 						else
 							this.SetNextState("ATTACKING");
 					}
@@ -1869,37 +1872,6 @@ UnitAI.prototype.UnitFsmSpec = {
 					{
 						this.RespondToTargetedEntities([msg.data.attacker]);
 					}
-				},
-			},
-
-			"UNPACKING": {
-				"enter": function() {
-					// If we're not in range yet (maybe we stopped moving), move to target again
-					if (!this.CheckTargetAttackRange(this.order.data.target, this.order.data.attackType))
-					{
-						if (this.MoveToTargetAttackRange(this.order.data.target, this.order.data.attackType))
-							this.SetNextState("APPROACHING");
-						else
-							// Give up
-							this.FinishOrder();
-						return true;
-					}
-
-					// In range, unpack
-					var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
-					cmpPack.Unpack();
-					return false;
-				},
-
-				"PackFinished": function(msg) {
-					this.SetNextState("ATTACKING");
-				},
-
-				"leave": function() {
-				},
-
-				"Attacked": function(msg) {
-					// Ignore further attacks while unpacking
 				},
 			},
 
@@ -3501,8 +3473,7 @@ UnitAI.prototype.OnOwnershipChanged = function(msg)
 	{
 		// Switch to a virgin state to let states execute their leave handlers.
 		// except if garrisoned or cheering or (un)packing, in which case we only clear the order queue
-		if (this.isGarrisoned || (this.orderQueue[0] && (this.orderQueue[0].type == "Cheering"
-			|| this.orderQueue[0].type == "Pack" || this.orderQueue[0].type == "Unpack")))
+		if (this.isGarrisoned || this.IsPacking() || this.orderQueue[0] && this.orderQueue[0].type == "Cheering")
 		{
 			this.orderQueue.length = Math.min(this.orderQueue.length, 1);
 			Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
