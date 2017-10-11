@@ -1206,9 +1206,7 @@ function nextToFeature(bb, x, z)
  */
 function getRandomDeviation(base, deviation)
 {
-	deviation = Math.min(base, deviation);
-	deviation = base + randIntExclusive(0, 20 * deviation) / 10 - deviation;
-	return deviation.toFixed(2);
+	return base + randFloat(-1, 1) * Math.min(base, deviation);
 }
 
 /**
