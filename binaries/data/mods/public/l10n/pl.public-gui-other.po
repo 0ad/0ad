@@ -32,8 +32,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-09-20 09:02+0200\n"
-"PO-Revision-Date: 2017-09-20 16:07+0000\n"
+"POT-Creation-Date: 2017-10-09 09:04+0200\n"
+"PO-Revision-Date: 2017-10-09 15:52+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -134,16 +134,16 @@ msgstr "FPS: %(fps)4s"
 msgid "Loading Aborted"
 msgstr "Wczytywanie przerwane"
 
-#: gui/common/functions_utility.js:108
+#: gui/common/functions_utility.js:112
 msgctxt "map selection"
 msgid "Random"
 msgstr "Losowe"
 
-#: gui/common/functions_utility.js:119
+#: gui/common/functions_utility.js:123
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:119
+#: gui/common/functions_utility.js:123
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -178,7 +178,7 @@ msgstr "USUŃ"
 #: gui/options/options.js:297 gui/options/options.js:350
 #: gui/options/options.js:377 gui/pregame/mainmenu.js:254
 #: gui/replaymenu/replay_actions.js:170 gui/savedgames/load.js:188
-#: gui/savedgames/save.js:66 gui/summary/summary.js:363
+#: gui/savedgames/save.js:66 gui/summary/summary.js:373
 msgid "No"
 msgstr "Nie"
 
@@ -186,7 +186,7 @@ msgstr "Nie"
 #: gui/options/options.js:297 gui/options/options.js:350
 #: gui/options/options.js:377 gui/pregame/mainmenu.js:254
 #: gui/replaymenu/replay_actions.js:170 gui/savedgames/load.js:188
-#: gui/savedgames/save.js:66 gui/summary/summary.js:363
+#: gui/savedgames/save.js:66 gui/summary/summary.js:373
 msgid "Yes"
 msgstr "Tak"
 
@@ -1286,7 +1286,7 @@ msgstr "Kompilacja: %(buildDate)s (%(revision)s)"
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Czy na pewno chcesz wyjść z 0 A.D.?"
 
-#: gui/pregame/mainmenu.js:253 gui/summary/summary.js:362
+#: gui/pregame/mainmenu.js:253 gui/summary/summary.js:372
 msgid "Confirmation"
 msgstr "Potwierdzenie"
 
@@ -1670,19 +1670,26 @@ msgstr "Populacja kobiet"
 msgid "Kill / Death ratio"
 msgstr "Zabitych / Utraconych"
 
-#: gui/summary/layout.js:185
+#: gui/summary/layout.js:187
+#, javascript-format
+msgid ""
+"Bribes\n"
+"(%(succeeded)s / %(failed)s)"
+msgstr ""
+
+#: gui/summary/layout.js:195
 msgid "Map exploration"
 msgstr "Odkrycie mapy"
 
-#: gui/summary/layout.js:186
+#: gui/summary/layout.js:196
 msgid "Map control (peak)"
 msgstr "Kontrola mapy (podgląd)"
 
-#: gui/summary/layout.js:187
+#: gui/summary/layout.js:197
 msgid "Map control (finish)"
 msgstr "Kontrola mapy (koniec)"
 
-#: gui/summary/layout.js:340
+#: gui/summary/layout.js:351
 msgid "Team total"
 msgstr "Łącznie drużynowo"
 
@@ -1715,75 +1722,83 @@ msgid "Captured"
 msgstr "Odkryto"
 
 #: gui/summary/summary.js:63
+msgid "Succeeded"
+msgstr ""
+
+#: gui/summary/summary.js:68
 msgid "Destroyed"
 msgstr "Zniszczono"
 
-#: gui/summary/summary.js:68
+#: gui/summary/summary.js:73
 msgid "Killed"
 msgstr "Zabity"
 
-#: gui/summary/summary.js:73
+#: gui/summary/summary.js:78
 msgid "Lost"
 msgstr "Stracono"
 
-#: gui/summary/summary.js:78
+#: gui/summary/summary.js:83
 msgid "Used"
 msgstr "Użyto"
 
-#: gui/summary/summary.js:83
+#: gui/summary/summary.js:88
 msgid "Received"
 msgstr "Przyjęto"
 
-#: gui/summary/summary.js:88
+#: gui/summary/summary.js:93
 msgid "Sold"
 msgstr "Sprzedane"
 
-#: gui/summary/summary.js:93
+#: gui/summary/summary.js:98
 msgid "Outcome"
 msgstr "Rozchód"
 
-#: gui/summary/summary.js:101
+#: gui/summary/summary.js:103
+msgid "Failed"
+msgstr ""
+
+#: gui/summary/summary.js:111
 msgid "∞"
 msgstr "∞"
 
-#: gui/summary/summary.js:361
+#: gui/summary/summary.js:371
 msgid "Are you sure you want to quit the lobby?"
 msgstr "Czy na pewno chcesz wyjść do lobby?"
 
-#: gui/summary/summary.js:417
+#: gui/summary/summary.js:427
 msgid "Current Scores"
 msgstr "Bieżąca Punktacja"
 
-#: gui/summary/summary.js:419
+#: gui/summary/summary.js:429
 msgid "Scores at the end of the game."
 msgstr "Wynik na końcu gry."
 
-#: gui/summary/summary.js:421
+#: gui/summary/summary.js:431
 msgid "You have been disconnected."
 msgstr "Nastąpiło rozłączenie."
 
-#: gui/summary/summary.js:423
+#: gui/summary/summary.js:433
 msgid "You have left the game."
 msgstr "Opuściłeś grę"
 
-#: gui/summary/summary.js:425
+#: gui/summary/summary.js:435
 msgid "You have won the battle!"
 msgstr "Zwycięstwo!"
 
-#: gui/summary/summary.js:427
+#: gui/summary/summary.js:437
 msgid "You have been defeated..."
 msgstr "Zostałeś pokonany..."
 
-#: gui/summary/summary.js:428
+#: gui/summary/summary.js:438
 msgid "You have abandoned the game."
 msgstr "Opuściłeś grę."
 
-#: gui/summary/summary.js:433
+#: gui/summary/summary.js:443
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Czas gry: %(time)s"
 
-#: gui/summary/summary.js:441
+#: gui/summary/summary.js:451
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"

@@ -18,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-09-20 09:02+0200\n"
-"PO-Revision-Date: 2017-09-25 14:52+0000\n"
-"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
+"POT-Creation-Date: 2017-10-09 09:04+0200\n"
+"PO-Revision-Date: 2017-10-09 15:52+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -114,16 +114,16 @@ msgstr "Képkocka másodpercenként: %(fps)4s"
 msgid "Loading Aborted"
 msgstr "Betöltés megszakítva"
 
-#: gui/common/functions_utility.js:108
+#: gui/common/functions_utility.js:112
 msgctxt "map selection"
 msgid "Random"
 msgstr "Véletlenszerű"
 
-#: gui/common/functions_utility.js:119
+#: gui/common/functions_utility.js:123
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:119
+#: gui/common/functions_utility.js:123
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -158,7 +158,7 @@ msgstr "TÖRLÉS"
 #: gui/options/options.js:297 gui/options/options.js:350
 #: gui/options/options.js:377 gui/pregame/mainmenu.js:254
 #: gui/replaymenu/replay_actions.js:170 gui/savedgames/load.js:188
-#: gui/savedgames/save.js:66 gui/summary/summary.js:363
+#: gui/savedgames/save.js:66 gui/summary/summary.js:373
 msgid "No"
 msgstr "Nem"
 
@@ -166,7 +166,7 @@ msgstr "Nem"
 #: gui/options/options.js:297 gui/options/options.js:350
 #: gui/options/options.js:377 gui/pregame/mainmenu.js:254
 #: gui/replaymenu/replay_actions.js:170 gui/savedgames/load.js:188
-#: gui/savedgames/save.js:66 gui/summary/summary.js:363
+#: gui/savedgames/save.js:66 gui/summary/summary.js:373
 msgid "Yes"
 msgstr "Igen"
 
@@ -1240,7 +1240,7 @@ msgstr "Verzió: %(buildDate)s (%(revision)s)"
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Biztosan kilépsz a 0 A.D. játékból?"
 
-#: gui/pregame/mainmenu.js:253 gui/summary/summary.js:362
+#: gui/pregame/mainmenu.js:253 gui/summary/summary.js:372
 msgid "Confirmation"
 msgstr "Megerősítés"
 
@@ -1620,19 +1620,26 @@ msgstr "Feminizáció"
 msgid "Kill / Death ratio"
 msgstr "Ölés / halálozás\narány"
 
-#: gui/summary/layout.js:185
+#: gui/summary/layout.js:187
+#, javascript-format
+msgid ""
+"Bribes\n"
+"(%(succeeded)s / %(failed)s)"
+msgstr ""
+
+#: gui/summary/layout.js:195
 msgid "Map exploration"
 msgstr "Térkép\nfelfedezése"
 
-#: gui/summary/layout.js:186
+#: gui/summary/layout.js:196
 msgid "Map control (peak)"
 msgstr "Térképbirtoklás (csúcsérték)"
 
-#: gui/summary/layout.js:187
+#: gui/summary/layout.js:197
 msgid "Map control (finish)"
 msgstr "Térképbirtoklás (végérték)"
 
-#: gui/summary/layout.js:340
+#: gui/summary/layout.js:351
 msgid "Team total"
 msgstr "Összes csapat"
 
@@ -1665,75 +1672,83 @@ msgid "Captured"
 msgstr "Elfoglalt"
 
 #: gui/summary/summary.js:63
+msgid "Succeeded"
+msgstr ""
+
+#: gui/summary/summary.js:68
 msgid "Destroyed"
 msgstr "Lerombolt"
 
-#: gui/summary/summary.js:68
+#: gui/summary/summary.js:73
 msgid "Killed"
 msgstr "Megölt"
 
-#: gui/summary/summary.js:73
+#: gui/summary/summary.js:78
 msgid "Lost"
 msgstr "Elvesztett"
 
-#: gui/summary/summary.js:78
+#: gui/summary/summary.js:83
 msgid "Used"
 msgstr "Felhasznált"
 
-#: gui/summary/summary.js:83
+#: gui/summary/summary.js:88
 msgid "Received"
 msgstr "Kapott"
 
-#: gui/summary/summary.js:88
+#: gui/summary/summary.js:93
 msgid "Sold"
 msgstr "Eladott"
 
-#: gui/summary/summary.js:93
+#: gui/summary/summary.js:98
 msgid "Outcome"
 msgstr "Kimenetel"
 
-#: gui/summary/summary.js:101
+#: gui/summary/summary.js:103
+msgid "Failed"
+msgstr ""
+
+#: gui/summary/summary.js:111
 msgid "∞"
 msgstr "∞"
 
-#: gui/summary/summary.js:361
+#: gui/summary/summary.js:371
 msgid "Are you sure you want to quit the lobby?"
 msgstr "Biztosan ki akarsz lépni a váróból?"
 
-#: gui/summary/summary.js:417
+#: gui/summary/summary.js:427
 msgid "Current Scores"
 msgstr "Jelenlegi pontok"
 
-#: gui/summary/summary.js:419
+#: gui/summary/summary.js:429
 msgid "Scores at the end of the game."
 msgstr "Pontok a játék végén."
 
-#: gui/summary/summary.js:421
+#: gui/summary/summary.js:431
 msgid "You have been disconnected."
 msgstr "Lekapcsolódtál."
 
-#: gui/summary/summary.js:423
+#: gui/summary/summary.js:433
 msgid "You have left the game."
 msgstr "Elhagytad a játékot."
 
-#: gui/summary/summary.js:425
+#: gui/summary/summary.js:435
 msgid "You have won the battle!"
 msgstr "Megnyerted a csatát!"
 
-#: gui/summary/summary.js:427
+#: gui/summary/summary.js:437
 msgid "You have been defeated..."
 msgstr "Legyőztek..."
 
-#: gui/summary/summary.js:428
+#: gui/summary/summary.js:438
 msgid "You have abandoned the game."
 msgstr "Otthagytad a játékot."
 
-#: gui/summary/summary.js:433
+#: gui/summary/summary.js:443
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Eltelt játékidő: %(time)s"
 
-#: gui/summary/summary.js:441
+#: gui/summary/summary.js:451
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
