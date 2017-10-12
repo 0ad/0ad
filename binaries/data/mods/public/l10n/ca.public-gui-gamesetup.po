@@ -13,7 +13,8 @@
 # Haommin <tfs.msimangu@gmail.com>, 2014
 # ignius <ividiella@hotmail.es>, 2014
 # Isaac Lleida <isakyllr@opmbx.org>, 2014
-# Josep <josep.a.95@gmail.com>, 2015
+# Josep A.P <josep.a.95@gmail.com>, 2015
+# marc kjahgrt ksrgha <marcmc421@gmail.com>, 2017
 # Peredelgrau, 2013
 # ribasvilanova <ribasvilanova@gmail.com>, 2014
 # Haommin <tfs.msimangu@gmail.com>, 2014-2016
@@ -22,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-09-08 09:04+0200\n"
-"PO-Revision-Date: 2017-09-12 09:02+0000\n"
-"Last-Translator: Arnau Barrabeig <arnaubrossa@hotmail.com>\n"
+"PO-Revision-Date: 2017-10-09 16:59+0000\n"
+"Last-Translator: marc kjahgrt ksrgha <marcmc421@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -78,7 +79,7 @@ msgstr "Estigues a punt"
 
 #: gui/gamesetup/gamesetup.js:118
 msgid "Stay ready even when the game settings change."
-msgstr ""
+msgstr "Estigues a punt encara que la configuració del joc canviï"
 
 #: gui/gamesetup/gamesetup.js:123
 msgid "I'm not ready!"
@@ -166,7 +167,7 @@ msgstr "Mapes de factors desencadenants"
 #: gui/gamesetup/gamesetup.js:189
 msgctxt "map filter"
 msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr ""
+msgstr "Mapes que contenen events i poden genererar unitats enemigues automàticament."
 
 #: gui/gamesetup/gamesetup.js:194
 msgid "All Maps"
@@ -271,22 +272,22 @@ msgstr "Seleccioneu les condicions de victòria."
 
 #: gui/gamesetup/gamesetup.js:589
 msgid "Relic Count"
-msgstr ""
+msgstr "Nombre de relíquies"
 
 #: gui/gamesetup/gamesetup.js:590
 msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
-msgstr ""
+msgstr "Nombre total de relíquies en el mapa. La victòria per relíquia és més realista amb només una o dues relíquies. Amb nombres més grans, les relíquies són importants de capturar per obtenir millores."
 
 #: gui/gamesetup/gamesetup.js:604
 msgid "Relic Duration"
-msgstr ""
+msgstr "Duració de la relíquia"
 
 #: gui/gamesetup/gamesetup.js:605
 msgid "Minutes until the player has achieved Relic Victory."
-msgstr ""
+msgstr "Minuts fins que el jugador ha obtingut la victòria per relíquia."
 
 #: gui/gamesetup/gamesetup.js:619
 msgid "Wonder Duration"
@@ -294,7 +295,7 @@ msgstr "Duració de la meravella"
 
 #: gui/gamesetup/gamesetup.js:620
 msgid "Minutes until the player has achieved Wonder Victory."
-msgstr ""
+msgstr "Minuts fins que el jugador ha obtingut la victòria per Meravella."
 
 #: gui/gamesetup/gamesetup.js:634
 msgid "Game Speed"
@@ -310,11 +311,11 @@ msgstr "Escull la civilització per aquest jugador"
 
 #: gui/gamesetup/gamesetup.js:739
 msgid "Hero Garrison"
-msgstr ""
+msgstr "Refugia l'heroi"
 
 #: gui/gamesetup/gamesetup.js:740
 msgid "Toggle whether heroes can be garrisoned."
-msgstr ""
+msgstr "Canvia si els herois poden refugiar-se"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
@@ -620,13 +621,13 @@ msgid ""
 "\"Zeus \\[...] established his law: wisdom comes through suffering. \\[...] "
 "So men against their will learn to practice moderation. \\[...] Such grace "
 "is harsh and violent.\" - Aeschylus (\"Oresteia\", I. 176-183)"
-msgstr ""
+msgstr "\"Zeus \\[...] ha establert la seva llei, la saviesa passa pel sofriment. \\[...] Així que els homes contra la seva voluntat aprendran a practicar la moderació. \\[...] Aquesta gràcia és dura i violenta.\" - Èsquil  (\"Oresteia\", I. 176-183)"
 
 #: gui/text/quotes.txt:2
 msgid ""
 "\"She \\[Helen] brought to Ilium her dowry, destruction.\" - Aeschylus "
 "(\"Oresteia\", I. 406)"
-msgstr ""
+msgstr "\"Ella\\[Helena] va portar a Ilium el seu dot, destrucció.\" - Èsquil (\"Oresteia\", I. 406)"
 
 #: gui/text/quotes.txt:3
 msgid ""
@@ -664,7 +665,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:9
 msgid "\"Union gives strength.\" - Aesop (\"The Bundle of Sticks\")"
-msgstr "\"La unió fa la força.\" - Isop "
+msgstr "\"La unió fa la força.\" - Isop (\"El feix de pals\")"
 
 #: gui/text/quotes.txt:10
 msgid ""
