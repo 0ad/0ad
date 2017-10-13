@@ -9,6 +9,7 @@
 # Wachsmuth <emilistrupkarlsmose@gmail.com>, 2015
 # Fijure <mathiasik@live.dk>, 2014
 # Jarl Gjessing <inactive+jarlgjessing@transifex.com>, 2014
+# Joe Hansen <joedalton2@yahoo.dk>, 2017
 # Mads Overgård Henningsen <mads.overgaard@live.dk>, 2014
 # Magnus Kahr Sejersen <magnus1996-2011@live.dk>, 2015
 # MrKahr <mdsandersen@gmail.com>, 2014
@@ -19,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-28 09:03+0200\n"
-"PO-Revision-Date: 2017-08-28 15:08+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-10-12 16:49+0000\n"
+"Last-Translator: Joe Hansen <joedalton2@yahoo.dk>\n"
 "Language-Team: Danish (http://www.transifex.com/wildfire-games/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,8 +33,8 @@ msgstr ""
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Basisrækkevidde: %(range)s meter"
+msgstr[1] "Basisrækkevidde: %(range)smeter"
 
 #: gui/session/input.js:148
 #, javascript-format
@@ -394,45 +395,45 @@ msgstr "Privat"
 #: gui/session/messages.js:208
 msgctxt "chat history filter"
 msgid "Chat and notifications"
-msgstr ""
+msgstr "Diskussion og påmindelser"
 
 #: gui/session/messages.js:213
 msgctxt "chat history filter"
 msgid "Chat messages"
-msgstr ""
+msgstr "Diskussionsbeskeder"
 
 #: gui/session/messages.js:218
 msgctxt "chat history filter"
 msgid "Players chat"
-msgstr ""
+msgstr "Spillerdiskussion"
 
 #: gui/session/messages.js:225
 msgctxt "chat history filter"
 msgid "Ally chat"
-msgstr ""
+msgstr "Allieret diskussion"
 
 #: gui/session/messages.js:232
 msgctxt "chat history filter"
 msgid "Enemy chat"
-msgstr ""
+msgstr "Fjendediskussion"
 
 #: gui/session/messages.js:239
 msgctxt "chat history filter"
 msgid "Observer chat"
-msgstr ""
+msgstr "Observatørdiskussion"
 
 #: gui/session/messages.js:246
 msgctxt "chat history filter"
 msgid "Private chat"
-msgstr ""
+msgstr "Privat diskussion"
 
 #: gui/session/messages.js:252
 msgid "You have won!"
-msgstr ""
+msgstr "Du har vundet!"
 
 #: gui/session/messages.js:253
 msgid "You have been defeated!"
-msgstr ""
+msgstr "Du er blevet besejret!"
 
 #: gui/session/messages.js:261
 #, javascript-format
@@ -485,7 +486,7 @@ msgstr ""
 
 #: gui/session/messages.js:559
 msgid "Quit"
-msgstr ""
+msgstr "Afslut"
 
 #: gui/session/messages.js:563
 msgid "Click when ready."
@@ -493,7 +494,7 @@ msgstr ""
 
 #: gui/session/messages.js:567
 msgid "Follow the instructions."
-msgstr ""
+msgstr "Følg instruktionerne"
 
 #: gui/session/messages.js:658
 msgctxt "Separator for a list of client loading messages"
