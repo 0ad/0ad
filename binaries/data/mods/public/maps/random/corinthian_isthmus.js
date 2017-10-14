@@ -39,7 +39,6 @@ const aBush3 = "actor|props/flora/bush_medit_la.xml";
 const aBush4 = "actor|props/flora/bush_medit_me.xml";
 const aDecorativeRock = "actor|geology/stone_granite_med.xml";
 
-// terrain + entity (for painting)
 const pForest = [tForestFloor, tForestFloor + TERRAIN_SEPARATOR + oCarob, tForestFloor + TERRAIN_SEPARATOR + oDatePalm, tForestFloor + TERRAIN_SEPARATOR + oSDatePalm, tForestFloor];
 
 InitMap();
@@ -58,40 +57,42 @@ var clBaseResource = createTileClass();
 var clGrass = createTileClass();
 var clHill = createTileClass();
 
+var landHeight = getMapBaseHeight();
+var waterHeight = -4;
+
+var riverWidth = scaleByMapSize(15, 70);
+var riverAngle = -Math.PI / 4;
+
+var riv1 = [0, 0.5];
+var riv2 = [1, 0.5];
+
 log("Creating the main river");
-var placer = new PathPlacer(fractionToTiles(0.5 + cos(3 * PI / 4)), fractionToTiles(0.5 + sin(3 * PI / 4)), fractionToTiles(0.5 + cos(- PI / 4)), fractionToTiles(0.5 + sin(- PI / 4)), scaleByMapSize(15,70), 0.2, 3*(scaleByMapSize(5,15)), 0.04, 0.01);
-var terrainPainter = new LayeredPainter(
-	[tShore, tWater, tWater],		// terrains
-	[1, 3]								// widths
-);
-var elevationPainter = new SmoothElevationPainter(
-	ELEVATION_SET,			// type
-	-4,				// elevation
-	4				// blend radius
-);
-createArea(placer, [terrainPainter, elevationPainter], avoidClasses(clPlayer, 4));
+var [riverX1, riverZ1] = rotateCoordinates(...riv1, riverAngle).map(f => fractionToTiles(f));
+var [riverX2, riverZ2] = rotateCoordinates(...riv2, riverAngle).map(f => fractionToTiles(f));
+createArea(
+	new PathPlacer(riverX1, riverZ1, riverX2, riverZ2, riverWidth, 0.2, 15 * scaleByMapSize(1, 3), 0.04, 0.01),
+	new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
+	null);
 
-placer = new ClumpPlacer(floor(PI*scaleByMapSize(15,70)*scaleByMapSize(15,70)/4), 0.95, 0.6, 10, fractionToTiles(0.5 + cos(3 * PI / 4))+3, fractionToTiles(0.5 + sin(3 * PI / 4))-3);
-var painter = new LayeredPainter([tWater, tWater], [1]);
-var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -4, 4);
-createArea(placer, [painter, elevationPainter], avoidClasses(clPlayer, 8));
+log("Creating small puddles at the map border to ensure players being separated...");
+for (let [x, z] of [[riverX1, riverZ1], [riverX2, riverZ2]])
+	createArea(
+		new ClumpPlacer(Math.floor(Math.PI * Math.pow(riverWidth / 2, 2)), 0.95, 0.6, 10, x, z),
+		new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
+		null);
 
-placer = new ClumpPlacer(floor(PI*scaleByMapSize(15,70)*scaleByMapSize(15,70)/4), 0.95, 0.6, 10, fractionToTiles(0.5 + cos(- PI / 4))-3, fractionToTiles(0.5 + sin(- PI / 4))+3);
-var painter = new LayeredPainter([tWater, tWater], [1]);
-var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -4, 4);
-createArea(placer, [painter, elevationPainter], avoidClasses(clPlayer, 8));
-
-var placer = new PathPlacer(fractionToTiles(0.5 + cos(5 * PI / 4)), fractionToTiles(0.5 + sin(5 * PI / 4)), fractionToTiles(0.5 + cos( PI / 4)), fractionToTiles(0.5 + sin( PI / 4)), scaleByMapSize(10,30), 0.5, 3*(scaleByMapSize(1,4)), 0.1, 0.01);
-var terrainPainter = new LayeredPainter(
-	[tShore, tGrass],		// terrains
-	[2]								// widths
-);
-var elevationPainter = new SmoothElevationPainter(
-	ELEVATION_SET,			// type
-	3,				// elevation
-	4				// blend radius
-);
-createArea(placer, [terrainPainter, elevationPainter], null);
+log("Creating passage connecting the two riversides...");
+createArea(
+	new PathPlacer(
+		...rotateCoordinates(...riv1, riverAngle + Math.PI / 2).map(f => fractionToTiles(f)),
+		...rotateCoordinates(...riv2, riverAngle + Math.PI / 2).map(f => fractionToTiles(f)),
+		scaleByMapSize(10, 30),
+		0.5,
+		3 * scaleByMapSize(1, 4),
+		0.1,
+		0.01),
+	new SmoothElevationPainter(ELEVATION_SET, landHeight, 4),
+	null);
 
 paintTerrainBasedOnHeight(-6, 1, 1, tWater);
 paintTerrainBasedOnHeight(1, 2, 1, tShore);
