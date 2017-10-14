@@ -1668,6 +1668,7 @@ m.HQ.prototype.buildDefenses = function(gameState, queues)
 			let numFortresses = gameState.getOwnEntitiesByClass("Fortress", true).length;
 			if ((!numFortresses || gameState.ai.elapsedTime > (1 + 0.10*numFortresses)*this.fortressLapseTime + this.fortressStartTime) &&
 				numFortresses < this.numActiveBase() + 1 + this.extraFortresses &&
+				numFortresses < Math.floor(gameState.getPopulation() / 25) &&
 				gameState.getOwnFoundationsByClass("Fortress").length < 2)
 			{
 				this.fortressStartTime = gameState.ai.elapsedTime;
@@ -1696,10 +1697,11 @@ m.HQ.prototype.buildDefenses = function(gameState, queues)
 	if (this.currentPhase < 2 || !this.canBuild(gameState, "structures/{civ}_defense_tower"))
 		return;
 
-	let numTowers = gameState.getOwnEntitiesByClass("DefenseTower", true).filter(API3.Filters.byClass("Town")).length;
+	let numTowers = gameState.getOwnEntitiesByClass("DefenseTower", true).filter(API3.Filters.not(API3.Filters.byClass("SentryTower"))).length;
 	let towerLapseTime = this.saveResource ? (1 + numTowers) * this.towerLapseTime : this.towerLapseTime;
 	if ((!numTowers || gameState.ai.elapsedTime > (1 + 0.1*numTowers)*towerLapseTime + this.towerStartTime) &&
 		numTowers < 2 * this.numActiveBase() + 3 + this.extraTowers &&
+		numTowers < Math.floor(gameState.getPopulation() / 8) &&
 		gameState.getOwnFoundationsByClass("DefenseTower").length < 3)
 	{
 		this.towerStartTime = gameState.ai.elapsedTime;

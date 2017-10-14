@@ -782,15 +782,14 @@ var g_Commands = {
 		}));
 
 		let cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+		cmpGUIInterface.PushNotification({
+			"type": "spy-response",
+			"players": [player],
+			"target": cmd.player,
+			"entity": ent
+		});
 		if (ent)
-		{
 			Engine.QueryInterface(ent, IID_VisionSharing).AddSpy(cmd.source);
-			cmpGUIInterface.PushNotification({
-				"type": "spy-response",
-				"players": [player],
-				"entity": ent
-			});
-		}
 		else
 		{
 			let template = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager).GetTemplate("special/spy");

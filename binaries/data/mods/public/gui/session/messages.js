@@ -359,8 +359,14 @@ var g_NotificationsTypes =
 	},
 	"spy-response": function(notification, player)
 	{
-		if (g_ViewedPlayer == player)
+		if (g_BribeButtonsWaiting[player])
+			g_BribeButtonsWaiting[player] = g_BribeButtonsWaiting[player].filter(p => p != notification.target);
+
+		if (notification.entity && g_ViewedPlayer == player)
+		{
+			closeDiplomacy();
 			setCameraFollow(notification.entity);
+		}
 	},
 	"attack": function(notification, player)
 	{

@@ -338,7 +338,7 @@ for (var i = 0; i < types.length; ++i)
 	createAreasInAreas(
 		placer,
 		[painter, paintClass(clForest)],
-		avoidClasses(clCity, 1, clWater, 3, clForest, 3, clHill, 1),
+		avoidClasses(clCity, 1, clWater, 3, clForest, 3, clHill, 1, clBaseResource, 4),
 		num, 20, areas
 	);
 }
@@ -377,7 +377,7 @@ for (var i = 0; i < sizes.length; i++)
 	createAreasInAreas(
 		placer,
 		[painter, paintClass(clDirt)],
-		avoidClasses(clWater, 3, clHill, 0, clDirt, 6, clCity, 0),
+		avoidClasses(clWater, 3, clHill, 0, clDirt, 6, clCity, 0, clBaseResource, 4),
 		scaleByMapSize(4, 16), 20, areas
 	);
 }
@@ -392,7 +392,7 @@ for (var i = 0; i < sizes.length; i++)
 	createAreasInAreas(
 		placer,
 		[painter, paintClass(clDirt)],
-		avoidClasses(clWater, 3, clHill, 0, clDirt, 6, clCity, 0),
+		avoidClasses(clWater, 3, clHill, 0, clDirt, 6, clCity, 0, clBaseResource, 4),
 		scaleByMapSize(4, 16), 20, areas
 	);
 }
@@ -403,7 +403,7 @@ for (let tree of [oCarob, oBeech, oLombardyPoplar, oLombardyPoplar, oPine])
 	createObjectGroupsByAreasDeprecated(
 		new SimpleGroup([new SimpleObject(tree, 1,1, 0,1)], true, clForest),
 		0,
-		avoidClasses(clWater, 2, clForest, 2, clCity, 3, clBaseResource, 1, clRock, 6, clMetal, 6, clPlayer, 1, clHill, 1),
+		avoidClasses(clWater, 2, clForest, 2, clCity, 3, clBaseResource, 4, clRock, 6, clMetal, 6, clPlayer, 1, clHill, 1),
 		scaleByMapSize(2, 38), 50, areas
 	);
 RMS.SetProgress(66);
@@ -414,7 +414,7 @@ group = new SimpleGroup(
 	true
 );
 createObjectGroupsByAreasDeprecated(group, 0,
-	avoidClasses(clWater, 2, clForest, 2, clCity, 3, clBaseResource, 1, clRock, 6, clMetal, 6, clPlayer, 1, clHill, 1),
+	avoidClasses(clWater, 2, clForest, 2, clCity, 3, clBaseResource, 4, clRock, 6, clMetal, 6, clPlayer, 1, clHill, 1),
 	scaleByMapSize(5, 75), 50, areas
 );
 RMS.SetProgress(70);
@@ -425,7 +425,7 @@ group = new SimpleGroup(
 	true
 );
 createObjectGroupsByAreasDeprecated(group, 0,
-	avoidClasses(clWater, 2, clForest, 1, clCity, 0, clBaseResource, 1, clRock, 6, clMetal, 6, clPlayer, 1, clHill, 1),
+	avoidClasses(clWater, 2, clForest, 1, clCity, 0, clBaseResource, 4, clRock, 6, clMetal, 6, clPlayer, 1, clHill, 1),
 	scaleByMapSize(5, 75), 50, areas
 );
 RMS.SetProgress(74);

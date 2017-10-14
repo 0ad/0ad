@@ -131,7 +131,7 @@ namespace
 {
 	void script_TS_FAIL(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& msg)
 	{
-		TS_FAIL(msg);
+		TS_FAIL(utf8_from_wstring(msg).c_str());
 	}
 }
 

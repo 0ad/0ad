@@ -52,6 +52,12 @@ var g_IsDiplomacyOpen = false;
 var g_IsTradeOpen = false;
 var g_IsObjectivesOpen = false;
 
+/**
+ * Used to disable a specific bribe button for the time we are waiting for the result of the bribe after it was clicked.
+ * It contains an array per viewedPlayer. This array is a list of the players that were bribed.
+ */
+var g_BribeButtonsWaiting = {};
+
 // Redefined every time someone makes a tribute (so we can save some data in a closure). Called in input.js handleInputBeforeGui.
 var g_FlushTributing = function() {};
 
@@ -533,7 +539,8 @@ function diplomacyFormatSpyRequestButton(i, hidden)
 	if (button.hidden)
 		return;
 
-	button.enabled = controlsPlayer(g_ViewedPlayer);
+	button.enabled = controlsPlayer(g_ViewedPlayer) &&
+	                 !(g_BribeButtonsWaiting[g_ViewedPlayer] && g_BribeButtonsWaiting[g_ViewedPlayer].indexOf(i) != -1);
 	let modifier = "";
 	let tooltips = [translate("Bribe a random unit from this player and share its vision during a limited period.")];
 	if (!button.enabled)
@@ -585,10 +592,15 @@ function diplomacyFormatSpyRequestButton(i, hidden)
 	let icon = Engine.GetGUIObjectByName("diplomacySpyRequestImage["+(i-1)+"]");
 	icon.sprite = modifier + "stretched:session/icons/bribes.png";
 	button.tooltip = tooltips.filter(tip => tip).join("\n");
-	button.onPress = (function(i) { return function() {
+	button.onPress = (function(i, button) { return function() {
 		Engine.PostNetworkCommand({ "type": "spy-request", "source": g_ViewedPlayer, "player": i });
-		closeDiplomacy();
-	}; })(i);
+		if (!g_BribeButtonsWaiting[g_ViewedPlayer])
+			g_BribeButtonsWaiting[g_ViewedPlayer] = [];
+		// Don't push i twice
+		if (g_BribeButtonsWaiting[g_ViewedPlayer].indexOf(i) == -1)
+			g_BribeButtonsWaiting[g_ViewedPlayer].push(i);
+		diplomacyFormatSpyRequestButton(i, false);
+	}; })(i, button);
 }
 
 function resizeTradeDialog()
