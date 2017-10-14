@@ -239,9 +239,6 @@ function placeBarriers()
 
 	for (let i = 0; i < teamsArray.length; ++i)
 	{
-		var fx = fractionToTiles(0.5);
-		var fz = fractionToTiles(0.5);
-
 		var mStartCo = 0.07;
 		var mStopCo = 0.42;
 		var mSize = 8;

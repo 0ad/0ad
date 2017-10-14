@@ -11,11 +11,9 @@ const tTier1Terrain = g_Terrains.tier1Terrain;
 const tTier2Terrain = g_Terrains.tier2Terrain;
 const tTier3Terrain = g_Terrains.tier3Terrain;
 const tHill = g_Terrains.hill;
-const tDirt = g_Terrains.dirt;
 const tRoad = g_Terrains.road;
 const tRoadWild = g_Terrains.roadWild;
 const tTier4Terrain = g_Terrains.tier4Terrain;
-const tShoreBlend = g_Terrains.shoreBlend;
 var tShore = g_Terrains.shore;
 var tWater = g_Terrains.water;
 if (currentBiome() == "tropic")
@@ -63,7 +61,6 @@ var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
-var clSettlement = createTileClass();
 var clShallow = createTileClass();
 
 initTerrain(tMainTerrain);

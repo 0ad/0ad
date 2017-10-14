@@ -10,7 +10,6 @@ const triggerPointLandPatrolRight = "trigger/trigger_point_F";
 const triggerPointCCAttackerPatrolLeft = "trigger/trigger_point_G";
 const triggerPointCCAttackerPatrolRight = "trigger/trigger_point_H";
 
-// Terrain textures
 const tRoad = "steppe_river_rocks";
 const tIsland = ["temp_grass_long_b_aut", "temp_grass_plants_aut", "temp_forestfloor_aut"];
 const tCliff = "temp_cliff_a";
@@ -22,7 +21,6 @@ const tShore = "temp_dirt_gravel_b";
 const tWater = "steppe_river_rocks_wet";
 const tSeaDepths = "medit_sea_depths";
 
-// Gaia entities
 const oBerryBush = "gaia/flora_bush_berry";
 const oDeer = "gaia/fauna_deer";
 const oFish = "gaia/fauna_fish";
@@ -71,7 +69,6 @@ const oHealer = "units/gaul_support_healer_b";
 const oSkirmisher = "units/gaul_infantry_javelinist_b";
 const oNakedFanatic = "units/gaul_champion_fanatic";
 
-// Decorative props
 const aBush1 = "actor|props/flora/bush_tempe_sm.xml";
 const aBush2 = "actor|props/flora/bush_tempe_me.xml";
 const aBush3 = "actor|props/flora/bush_tempe_la.xml";

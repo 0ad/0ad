@@ -23,17 +23,13 @@ setPPBloom(0.4);
 
 var clPlayer = createTileClass();
 var clPath = createTileClass();
-var clHill = createTileClass();
 var clForest = createTileClass();
 var clWater = createTileClass();
-var clRock = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clOpen = createTileClass();
 
-var templateStone = 'gaia/geology_stone_alpine_a';
 var templateStoneMine = 'gaia/geology_stonemine_alpine_quarry';
-var templateMetal = 'actor|geology/stone_granite_med.xml';
 var templateMetalMine = 'gaia/geology_metal_alpine_slabs';
 var startingResources = ['gaia/flora_tree_pine', 'gaia/flora_tree_pine','gaia/flora_tree_pine', templateStoneMine,
 	'gaia/flora_bush_grapes', 'gaia/flora_tree_aleppo_pine','gaia/flora_tree_aleppo_pine','gaia/flora_tree_aleppo_pine', 'gaia/flora_bush_berry', templateMetalMine];
@@ -78,19 +74,9 @@ var terrainBaseBorder = ['temp_plants_bog', 'temp_grass_plants', 'temp_grass_d',
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_d', 'temp_grass_plants',
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_plants'];
 
-var terrainBaseCenter = ['temp_dirt_gravel_b'];
-
 var baseTex = ['temp_road', 'temp_road_overgrown'];
 
 var terrainPath = ['temp_road', 'temp_road_overgrown'];
-
-var terrainHill = ['temp_highlands', 'temp_highlands', 'temp_highlands', 'temp_grass_plants_b', 'temp_cliff_a'];
-
-var terrainHillBorder = ['temp_highlands', 'temp_highlands', 'temp_highlands', 'temp_grass_plants_b', 'temp_grass_plants_plants',
-	'temp_highlands', 'temp_highlands', 'temp_highlands', 'temp_grass_plants_b', 'temp_grass_plants_plants',
-	'temp_highlands', 'temp_highlands', 'temp_highlands', 'temp_cliff_b', 'temp_grass_plants_plants',
-	'temp_highlands', 'temp_highlands', 'temp_highlands', 'temp_cliff_b', 'temp_grass_plants_plants',
-	'temp_highlands|gaia/fauna_goat'];
 
 var tWater = ['dirt_brown_d'];
 var tWaterBorder = ['dirt_brown_d'];
@@ -264,7 +250,6 @@ var doublePaths = true;
 if (numPlayers > 4)
 	doublePaths = false;
 
-var doublePathMayPlayers = 4;
 if (doublePaths === true)
 	var maxI = numPlayers+1;
 else

@@ -369,11 +369,6 @@ function addSpines()
 	{
 		let tang = startAngle + (i + 0.5) * 2 * Math.PI / (numPlayers * split);
 
-		let fx = fractionToTiles(0.5);
-		let fz = fractionToTiles(0.5);
-		let ix = round(fx);
-		let iz = round(fz);
-
 		let mStartCo = 0.12;
 		let mStopCo = 0.40;
 		let mSize = 0.5;

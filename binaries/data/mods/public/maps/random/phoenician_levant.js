@@ -35,7 +35,6 @@ const aBush1 = "actor|props/flora/bush_medit_sm.xml";
 const aBush2 = "actor|props/flora/bush_medit_me.xml";
 const aBush3 = "actor|props/flora/bush_medit_la.xml";
 const aBush4 = "actor|props/flora/bush_medit_me.xml";
-const aBushes = [aBush1, aBush2, aBush3, aBush4];
 const aDecorativeRock = "actor|geology/stone_granite_med.xml";
 
 // terrain + entity (for painting)
@@ -44,8 +43,6 @@ const pForest = [tForestFloor + TERRAIN_SEPARATOR + oDatePalm, tForestFloor + TE
 InitMap();
 
 const numPlayers = getNumPlayers();
-const mapSize = getMapSize();
-const mapArea = mapSize*mapSize;
 
 var clPlayer = createTileClass();
 var clForest = createTileClass();
@@ -55,7 +52,6 @@ var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
-var clSettlement = createTileClass();
 var clGrass = createTileClass();
 var clHill = createTileClass();
 var clIsland = createTileClass();

@@ -2,11 +2,7 @@ RMS.LoadLibrary("rmgen");
 
 const tCity = "desert_city_tile";
 const tCityPlaza = "desert_city_tile_plaza";
-const tMain = ["desert_dirt_rough", "desert_dirt_rough_2", "desert_sand_dunes_50", "desert_sand_smooth"];
-const tDunes = "desert_sand_dunes_100";
 const tFineSand = "desert_sand_smooth";
-const tCliff = ["desert_cliff_badlands", "desert_cliff_badlands_2"];
-const tForestFloor = "desert_forestfloor_palms";
 const tDirt1 = "desert_dirt_rough_2";
 const tSandDunes = "desert_sand_dunes_50";
 const tDirt2 = "desert_dirt_rough";
@@ -15,15 +11,11 @@ const tShore = "desert_shore_stones";
 const tWaterDeep = "desert_shore_stones_wet";
 const tLush = "desert_grass_a";
 const tSLush = "desert_grass_a_sand";
-const tSDry = "desert_plants_b";
 
 const oGrapeBush = "gaia/flora_bush_grapes";
 const oCamel = "gaia/fauna_camel";
-const oFish = "gaia/fauna_fish";
 const oGazelle = "gaia/fauna_gazelle";
-const oGiraffe = "gaia/fauna_giraffe";
 const oGoat = "gaia/fauna_goat";
-const oWildebeest = "gaia/fauna_wildebeest";
 const oStoneLarge = "gaia/geology_stonemine_desert_badlands_quarry";
 const oStoneSmall = "gaia/geology_stone_desert_small";
 const oMetalLarge = "gaia/geology_metal_desert_slabs";
@@ -36,10 +28,7 @@ const aBush1 = "actor|props/flora/bush_desert_a.xml";
 const aBush2 = "actor|props/flora/bush_desert_dry_a.xml";
 const aBush3 = "actor|props/flora/bush_medit_sm_dry.xml";
 const aBush4 = "actor|props/flora/plant_desert_a.xml";
-const aBushes = [aBush1, aBush2, aBush3, aBush4];
 const aDecorativeRock = "actor|geology/stone_desert_med.xml";
-const aReeds = "actor|props/flora/reeds_pond_lush_a.xml";
-const aLillies = "actor|props/flora/water_lillies.xml";
 
 // terrain + entity (for painting)
 const pForest = [tLush + TERRAIN_SEPARATOR + oDatePalm, tLush + TERRAIN_SEPARATOR + oSDatePalm, tLush];
@@ -48,7 +37,6 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
-const mapArea = mapSize*mapSize;
 
 var clPlayer = createTileClass();
 var clForest = createTileClass();
@@ -58,11 +46,8 @@ var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
-var clSettlement = createTileClass();
 var clGrass = createTileClass();
-var clDesert = createTileClass();
 var clPond = createTileClass();
-var clShore = createTileClass();
 var clTreasure = createTileClass();
 
 var [playerIDs, playerX, playerZ, playerAngle] = radialPlayerPlacement();
@@ -168,7 +153,7 @@ for (var i = 0; i < sizes.length; i++)
 	createAreas(
 		placer,
 		[painter, paintClass(clDirt)],
-		avoidClasses(clForest, 0, clGrass, 5, clPlayer, 0, clWater, 1, clDirt, 5, clShore, 1),
+		avoidClasses(clForest, 0, clGrass, 5, clPlayer, 0, clWater, 1, clDirt, 5),
 		scaleByMapSize(15, 45)
 	);
 }
@@ -187,11 +172,10 @@ for (var i = 0; i < sizes.length; i++)
 	createAreas(
 		placer,
 		[painter, paintClass(clDirt)],
-		avoidClasses(clForest, 0, clDirt, 5, clPlayer, 0, clWater, 1, clGrass, 5, clShore, 1),
+		avoidClasses(clForest, 0, clDirt, 5, clPlayer, 0, clWater, 1, clGrass, 5),
 		scaleByMapSize(15, 45)
 	);
 }
-
 RMS.SetProgress(60);
 
 log("Creating stone mines...");

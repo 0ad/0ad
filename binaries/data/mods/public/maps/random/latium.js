@@ -13,11 +13,9 @@ const tBeachCliff = "medit_dirt";
 const tCity = "medit_city_tile";
 const tGrassDry = ["medit_grass_field_brown", "medit_grass_field_dry", "medit_grass_field_b"];
 const tGrass = ["medit_grass_field_dry", "medit_grass_field_brown", "medit_grass_field_b"];
-const tGrassLush = ["grass_temperate_dry_tufts", "medit_grass_flowers"];
 const tGrassShrubs = ["medit_grass_shrubs", "medit_grass_flowers"];
 const tGrassRock = ["medit_rocks_grass"];
 const tDirt = "medit_dirt";
-const tDirtGrass = "medit_dirt_b";
 const tDirtCliff = "medit_cliff_italia";
 const tGrassCliff = "medit_cliff_italia_grass";
 const tCliff = ["medit_cliff_italia", "medit_cliff_italia", "medit_cliff_italia_grass"];
@@ -29,10 +27,8 @@ const oCarob = "gaia/flora_tree_carob";
 const oCypress1 = "gaia/flora_tree_cypress";
 const oCypress2 = "gaia/flora_tree_cypress";
 const oLombardyPoplar = "gaia/flora_tree_poplar_lombardy";
-const oOak = "gaia/flora_tree_oak";
 const oPalm = "gaia/flora_tree_medit_fan_palm";
 const oPine = "gaia/flora_tree_aleppo_pine";
-const oPoplar = "gaia/flora_tree_poplar";
 const oDeer = "gaia/fauna_deer";
 const oFish = "gaia/fauna_fish";
 const oSheep = "gaia/fauna_sheep";
@@ -40,8 +36,6 @@ const oStoneLarge = "gaia/geology_stonemine_medit_quarry";
 const oStoneSmall = "gaia/geology_stone_mediterranean";
 const oMetalLarge = "gaia/geology_metal_mediterranean_slabs";
 
-const aBushLargeDry = "actor|props/flora/bush_medit_la_dry.xml";
-const aBushLarge = "actor|props/flora/bush_medit_la.xml";
 const aBushMedDry = "actor|props/flora/bush_medit_me_dry.xml";
 const aBushMed = "actor|props/flora/bush_medit_me.xml";
 const aBushSmall = "actor|props/flora/bush_medit_sm.xml";
@@ -51,7 +45,6 @@ const aGrassDry = "actor|props/flora/grass_soft_dry_large_tall.xml";
 const aRockLarge = "actor|geology/stone_granite_large.xml";
 const aRockMed = "actor|geology/stone_granite_med.xml";
 const aRockSmall = "actor|geology/stone_granite_small.xml";
-const aWaterLog = "actor|props/flora/water_log.xml";
 
 // terrain + entity (for painting)
 const pPalmForest = [tForestFloor+TERRAIN_SEPARATOR+oPalm, tGrass];
@@ -63,7 +56,6 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
-const mapArea = mapSize*mapSize;
 
 // Create classes
 var clWater = createTileClass();
@@ -74,7 +66,6 @@ var clRock = createTileClass();
 var clFood = createTileClass();
 var clPlayer = createTileClass();
 var clBaseResource = createTileClass();
-var clSettlement = createTileClass();
 
 var playerIDs = sortAllPlayers();
 

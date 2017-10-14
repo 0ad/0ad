@@ -11,11 +11,9 @@ const tTier1Terrain = g_Terrains.tier1Terrain;
 const tTier2Terrain = g_Terrains.tier2Terrain;
 const tTier3Terrain = g_Terrains.tier3Terrain;
 const tHill = g_Terrains.hill;
-const tDirt = g_Terrains.dirt;
 const tRoad = g_Terrains.road;
 const tRoadWild = g_Terrains.roadWild;
 const tTier4Terrain = g_Terrains.tier4Terrain;
-const tShoreBlend = g_Terrains.shoreBlend;
 const tShore = g_Terrains.shore;
 const tWater = g_Terrains.water;
 
@@ -35,8 +33,6 @@ const oWood = "gaia/special_treasure_wood";
 
 const aGrass = g_Decoratives.grass;
 const aGrassShort = g_Decoratives.grassShort;
-const aReeds = g_Decoratives.reeds;
-const aLillies = g_Decoratives.lillies;
 const aRockLarge = g_Decoratives.rockLarge;
 const aRockMedium = g_Decoratives.rockMedium;
 const aBushMedium = g_Decoratives.bushMedium;
@@ -59,7 +55,6 @@ var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
-var clSettlement = createTileClass();
 var clLand = createTileClass();
 
 var playerIDs = sortAllPlayers();

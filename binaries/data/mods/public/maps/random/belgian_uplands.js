@@ -121,7 +121,6 @@ while (!goodStartPositionsFound)
 	setReliefmap(myReliefmap);
 
 	// Find good start position tiles
-	var startPositions = [];
 	var possibleStartPositions = [];
 	var neededDistance = 7;
 	var distToBorder = 2 * neededDistance; // Has to be greater than neededDistance! Otherwise the check if low/high ground is near will fail...

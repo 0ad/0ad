@@ -9,9 +9,6 @@ const tGrassD = "steppe_grass_a";
 const tDirt = ["steppe_dirt_a", "steppe_dirt_b"];
 const tRoad = "road_stones";
 const tRoadWild = "road_stones";
-const tShoreBlend = "desert_shore_stones";
-const tShore = "dirta";
-const tWater = "desert_sand_wet";
 
 const oPoplar = "gaia/flora_tree_poplar_lombardy";
 const oBush = "gaia/flora_bush_temperate";
@@ -34,8 +31,6 @@ const pForest = [tForestFloor + TERRAIN_SEPARATOR + oPoplar, tForestFloor];
 InitMap();
 
 var numPlayers = getNumPlayers();
-var mapSize = getMapSize();
-var mapArea = mapSize*mapSize;
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -45,7 +40,6 @@ var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
-var clSettlement = createTileClass();
 
 var [playerIDs, playerX, playerZ] = radialPlayerPlacement();
 

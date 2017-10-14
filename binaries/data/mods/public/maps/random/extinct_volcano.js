@@ -10,7 +10,6 @@ const tForestFloor1 = tHillMedium1;
 const tForestFloor2 = tHillMedium2;
 const tGrassA = "cliff volcanic light";
 const tGrassB = "ocean_rock_a";
-const tGrass3 = "temp_grass_plants";
 const tGrassPatchBlend = "temp_grass_long_b";
 const tGrassPatch = ["temp_grass_d", "temp_grass_clovers"];
 const tShoreBlend = "cliff volcanic light";
@@ -61,8 +60,6 @@ var numForest = totalTrees * P_FOREST;
 var numStragglers = totalTrees * (1.0 - P_FOREST);
 
 var numPlayers = getNumPlayers();
-var mapSize = getMapSize();
-var mapArea = mapSize * mapSize;
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();

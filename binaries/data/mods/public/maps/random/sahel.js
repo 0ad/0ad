@@ -1,6 +1,5 @@
 RMS.LoadLibrary("rmgen");
 
-const tGrass1 = "savanna_grass_a";
 const tGrass2 = "savanna_grass_b";
 const tGrass3 = "savanna_shrubs_a";
 const tDirt1 = "savanna_dirt_rocks_a";
@@ -31,18 +30,14 @@ InitMap();
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
-var mapArea = mapSize*mapSize;
 
 var clPlayer = createTileClass();
-var clHill = createTileClass();
 var clForest = createTileClass();
 var clWater = createTileClass();
-var clDirt = createTileClass();
 var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
-var clSettlement = createTileClass();
 
 var [playerIDs, playerX, playerZ] = radialPlayerPlacement();
 

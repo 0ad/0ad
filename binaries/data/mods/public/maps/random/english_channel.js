@@ -1,19 +1,16 @@
 RMS.LoadLibrary("rmgen");
 
 const tGrass = ["temp_grass", "temp_grass", "temp_grass_d"];
-const tGrassPForest = "temp_plants_bog";
 const tGrassDForest = "temp_plants_bog";
 const tGrassA = "temp_grass_plants";
 const tGrassB = "temp_plants_bog";
 const tGrassC = "temp_mud_a";
-const tDirt = ["temp_plants_bog", "temp_mud_a"];
 const tHill = ["temp_highlands", "temp_grass_long_b"];
 const tCliff = ["temp_cliff_a", "temp_cliff_b"];
 const tRoad = "temp_road";
 const tRoadWild = "temp_road_overgrown";
 const tGrassPatchBlend = "temp_grass_long_b";
 const tGrassPatch = ["temp_grass_d", "temp_grass_clovers"];
-const tShoreBlend = "temp_grass_plants";
 const tShore = "temp_dirt_gravel";
 const tWater = "temp_dirt_gravel_b";
 
@@ -41,13 +38,10 @@ const aLillies = "actor|props/flora/water_lillies.xml";
 
 // terrain + entity (for painting)
 const pForestD = [tGrassDForest + TERRAIN_SEPARATOR + oBeech, tGrassDForest];
-const pForestP = [tGrassPForest + TERRAIN_SEPARATOR + oOak, tGrassPForest];
 
 InitMap();
 
 const numPlayers = getNumPlayers();
-const mapSize = getMapSize();
-const mapArea = mapSize*mapSize;
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -58,7 +52,6 @@ var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
-var clSettlement = createTileClass();
 var clShallow = createTileClass();
 
 var playerIDs = primeSortAllPlayers();

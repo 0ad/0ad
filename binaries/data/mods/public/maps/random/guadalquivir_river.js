@@ -3,16 +3,12 @@ RMS.LoadLibrary("rmgen");
 const tGrass = ["medit_grass_field_a", "medit_grass_field_b"];
 const tForestFloorC = "medit_plants_dirt";
 const tForestFloorP = "medit_grass_shrubs";
-const tCliff = ["medit_cliff_grass", "medit_cliff_greek", "medit_cliff_greek_2", "medit_cliff_aegean", "medit_cliff_italia", "medit_cliff_italia_grass"];
 const tGrassA = "medit_grass_field_b";
 const tGrassB = "medit_grass_field_brown";
 const tGrassC = "medit_grass_field_dry";
-const tHill = ["medit_rocks_grass_shrubs", "medit_rocks_shrubs"];
-const tDirt = ["medit_dirt", "medit_dirt_b"];
 const tRoad = "medit_city_tile";
 const tRoadWild = "medit_city_tile";
 const tGrassPatch = "medit_grass_shrubs";
-const tShoreBlend = "medit_sand";
 const tShore = "sand_grass_25";
 const tWater = "medit_sand_wet";
 
@@ -43,7 +39,6 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
-const mapArea = mapSize*mapSize;
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -53,7 +48,6 @@ var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
-var clSettlement = createTileClass();
 var clLand = createTileClass();
 var clRiver = createTileClass();
 var clShallow = createTileClass();

@@ -25,8 +25,6 @@ var pForestP = [tGrassB + TERRAIN_SEPARATOR + oTree, tGrassB];
 InitMap();
 
 var numPlayers = getNumPlayers();
-var mapSize = getMapSize();
-var mapArea = mapSize*mapSize;
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();

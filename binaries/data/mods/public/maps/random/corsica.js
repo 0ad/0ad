@@ -1,24 +1,15 @@
 RMS.LoadLibrary("rmgen");
 
 var tGrass = ["medit_grass_field", "medit_grass_field_b", "temp_grass_c"];
-var tDune = ["medit_grass_field_brown"];
-var tBigDune = ["medit_grass_field_brown"];
-var tGrassPForest = "forestfloor_dirty";
-var tForestFloor = "medit_grass_shrubs";
-var tGrassA = ["desert_dirt_persia_1", "desert_dirt_persia_2"];
-var tGrassB = "dirta";
 var tLushGrass = ["medit_grass_field","medit_grass_field_a"];
 
 var tSteepCliffs = ["temp_cliff_b", "temp_cliff_a"];
 var tCliffs = ["temp_cliff_b", "medit_cliff_italia", "medit_cliff_italia_grass"];
 var tHill = ["medit_cliff_italia_grass","medit_cliff_italia_grass", "medit_grass_field", "medit_grass_field", "temp_grass"];
 var tMountain = ["medit_cliff_italia_grass","medit_cliff_italia"];
-var tMountainTop = ["medit_cliff_italia"];
 
-var tDirt = ["medit_dirt", "medit_dirt_b"];
 var tRoad = ["medit_city_tile","medit_rocks_grass","medit_grass_field_b"];
 var tRoadWild = ["medit_rocks_grass","medit_grass_field_b"];
-var tGrassPatch = "medit_dirt_b";
 
 var tShoreBlend = ["medit_sand_wet","medit_rocks_wet"];
 var tShore = ["medit_rocks","medit_sand","medit_sand"];
@@ -30,7 +21,6 @@ var tCreekWater = "medit_sea_coral_plants";
 var ePine = "gaia/flora_tree_aleppo_pine";
 var ePalmTall = "gaia/flora_tree_cretan_date_palm_tall";
 var eFanPalm = "gaia/flora_tree_medit_fan_palm";
-var eCypress = "gaia/flora_tree_cypress";
 var eApple = "gaia/flora_tree_apple";
 var eBush = "gaia/flora_bush_berry";
 var eFish = "gaia/fauna_fish";
@@ -38,10 +28,6 @@ var ePig = "gaia/fauna_pig";
 var eStoneMine = "gaia/geology_stonemine_medit_quarry";
 var eMetalMine = "gaia/geology_metal_mediterranean_slabs";
 
-var aFlower1 = "actor|props/flora/decals_flowers_daisies.xml";
-var aWaterFlower = "actor|props/flora/water_lillies.xml";
-var aReedsA = "actor|props/flora/reeds_pond_lush_a.xml";
-var aReedsB = "actor|props/flora/reeds_pond_lush_b.xml";
 var aRock = "actor|geology/stone_granite_med.xml";
 var aLargeRock = "actor|geology/stone_granite_large.xml";
 var aBushA = "actor|props/flora/bush_medit_sm_lush.xml";
@@ -49,44 +35,26 @@ var aBushB = "actor|props/flora/bush_medit_me_lush.xml";
 var aPlantA = "actor|props/flora/plant_medit_artichoke.xml";
 var aPlantB = "actor|props/flora/grass_tufts_a.xml";
 var aPlantC = "actor|props/flora/grass_soft_tuft_a.xml";
-var aShorePlantA = "actor|props/flora/reeds_beach.xml";
-var aShorePlantB = "actor|props/flora/grass_temp_field_brown.xml";
 
 var aStandingStone = "actor|props/special/eyecandy/standing_stones.xml";
-
-var tForestNicae = [tForestFloor + TERRAIN_SEPARATOR + ePine,tForestFloor + TERRAIN_SEPARATOR + ePine,tForestFloor + TERRAIN_SEPARATOR + ePine,tForestFloor + TERRAIN_SEPARATOR + ePine,tForestFloor + TERRAIN_SEPARATOR + eFanPalm, tForestFloor + TERRAIN_SEPARATOR + ePalmTall, tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor];
-var tForestNicaeLight = [tForestFloor + TERRAIN_SEPARATOR + ePine,tForestFloor + TERRAIN_SEPARATOR + ePine,tForestFloor + TERRAIN_SEPARATOR + eFanPalm, tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor];
-var tForestNicaeScarce = [tForestFloor + TERRAIN_SEPARATOR + ePine,tForestFloor + TERRAIN_SEPARATOR + ePine,tForestFloor + TERRAIN_SEPARATOR + eFanPalm, tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor,tForestFloor];
 
 InitMap();
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
-var mapArea = mapSize*mapSize;
 
 var clCorsica = createTileClass();
 var clSardinia = createTileClass();
 var clCreek = createTileClass();
-
 var clWater = createTileClass();
-
 var clCliffs = createTileClass();
 var clForest = createTileClass();
-var clPeak = createTileClass();
-
 var clShore = createTileClass();
-var clPathToShore = createTileClass();
 var clPlayer = createTileClass();
 var clBaseResource = createTileClass();
 var clPassage = createTileClass();
-var clHill = createTileClass();
 var clWater = createTileClass();
-var clDirt = createTileClass();
-var clRock = createTileClass();
-var clMetal = createTileClass();
-var clFood = createTileClass();
 var clSettlement = createTileClass();
-var clDune = createTileClass();
 
 initTerrain(tVeryDeepWater);
 
@@ -432,7 +400,6 @@ elevationPainter = new SmoothElevationPainter(ELEVATION_MODIFY, -5,6);
 createAreas( placer, [elevationPainter],  [avoidClasses(clPlayer,2,clPassage, 2,clCorsica,2,clSardinia,2)],scaleByMapSize(20,100), 5 );
 
 log("Repainting");
-var terrTop = createTerrain(tMountainTop);
 var terrMount = createTerrain(tMountain);
 var terrHill = createTerrain(tHill);
 var terrCliff = createTerrain(tCliffs);
@@ -441,7 +408,6 @@ var terrGrass = createTerrain(tGrass);
 
 var terrShallow = createTerrain(tCreekWater);
 var terrDeep = createTerrain(tDeepWater);
-var terrDark = createTerrain(tVeryDeepWater);
 var terrSand = createTerrain(tShore);
 var terrWetSand = createTerrain(tShoreBlend);
 var terrSandTransition = createTerrain(tSandTransition);
@@ -613,7 +579,6 @@ function straightPassageMaker(x1, z1, x2, z2, startWidth, centerWidth, smooth, t
 			var rx = po*direction[0];
 			var rz = po*direction[1];
 
-			var relativeWidth = abs(po / Math.floor(width/2));
 			var targetHeight = ((stepNB-step)*startHeight + finishHeight*step) / stepNB;
 			if (round(ix + rx) < mapSize && round(iz + rz) < mapSize && round(ix + rx) >= 0 && round(iz + rz) >= 0)
 			{
@@ -656,24 +621,4 @@ function getHeightDiff(x1, z1)
 	if (x1 - 1 >= 0 && z1 + 1 < mapSize)
 		diff += abs(getHeight(round(x1-1),round(z1+1)) - height);
 	return diff;
-}
-function hasTextureInRadius(x1, z1,radius, textureName)
-{
-	for (var xx = x1-radius;xx <= x1 + radius; xx++)
-		for (var zz = z1-radius;zz <= z1 + radius; zz++)
-			if (xx !== x1 || zz !== z1)
-				if (xx >= 0 && xx < mapSize)
-					if (zz >= 0 && zz < mapSize)
-					{
-						if (typeof(textureName) != "number")
-						{
-							for (var i in textureName)
-								if ( g_Map.getTexture(xx,zz) == textureName[i])
-									return true;
-						} else {
-							if ( g_Map.getTexture(xx,zz) == textureName)
-								return true;
-						}
-					}
-	return false;
 }

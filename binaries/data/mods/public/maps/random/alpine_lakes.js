@@ -87,7 +87,6 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
-const mapArea = mapSize*mapSize;
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -98,7 +97,6 @@ var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
-var clSettlement = createTileClass();
 
 initTerrain(tPrimary);
 

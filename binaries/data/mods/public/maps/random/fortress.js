@@ -5,13 +5,10 @@ const tForestFloor = "temp_grass_aut";
 const tGrassA = "temp_grass_plants_aut";
 const tGrassB = "temp_grass_b_aut";
 const tGrassC = "temp_grass_c_aut";
-const tDirt = ["temp_plants_bog_aut", "temp_mud_a"];
 const tHill = ["temp_highlands_aut", "temp_grass_long_b_aut"];
 const tCliff = ["temp_cliff_a", "temp_cliff_b"];
 const tRoad = "temp_road_aut";
-const tRoadWild = "temp_road_overgrown_aut";
 const tGrassPatch = "temp_grass_plants_aut";
-const tShoreBlend = "temp_grass_plants_aut";
 const tShore = "temp_plants_bog_aut";
 const tWater = "temp_mud_a";
 
@@ -47,7 +44,6 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
-const mapArea = mapSize*mapSize;
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -58,7 +54,6 @@ var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
-var clSettlement = createTileClass();
 
 var [playerIDs, playerX, playerZ] = radialPlayerPlacement();
 
