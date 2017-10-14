@@ -2,11 +2,7 @@ RMS.LoadLibrary("rmgen");
 
 InitMap();
 
-// General map setup
 var mapSize = getMapSize();
-var mapCenterX = mapSize/2;
-var mapCenterY = mapSize/2;
-const BUILDING_ANlE = -PI/4;
 
 ////////////////////////////////////////
 // Demonstration code for wall placement

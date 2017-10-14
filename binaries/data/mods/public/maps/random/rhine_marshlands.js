@@ -17,7 +17,6 @@ const oBerryBush = "gaia/flora_bush_berry";
 const oDeer = "gaia/fauna_deer";
 const oHorse = "gaia/fauna_horse";
 const oWolf = "gaia/fauna_wolf";
-const oFish = "gaia/fauna_fish";
 const oRabbit = "gaia/fauna_rabbit";
 const oStoneLarge = "gaia/geology_stonemine_temperate_quarry";
 const oStoneSmall = "gaia/geology_stone_temperate";
@@ -38,8 +37,6 @@ const pForestP = [tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor];
 InitMap();
 
 const numPlayers = getNumPlayers();
-const mapSize = getMapSize();
-const mapArea = mapSize*mapSize;
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -50,7 +47,6 @@ var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
-var clSettlement = createTileClass();
 
 var [playerIDs, playerX, playerZ] = radialPlayerPlacement();
 

@@ -18,7 +18,6 @@ if (random_terrain == 1)
 	var tSecondary = "alpine_grass_rocky";
 	var tHalfSnow = ["alpine_grass_snow_50", "alpine_dirt_snow"];
 	var tSnowLimited = ["alpine_snow_rocky"];
-	var tDirt = "alpine_dirt";
 	var tRoad = "new_alpine_citytile";
 	var tRoadWild = "new_alpine_citytile";
 	var tShore = "alpine_shore_rocks_grass_50";
@@ -55,7 +54,6 @@ else if (random_terrain == 2)
 	var tSecondary = "alpine_grass_snow_50";
 	var tHalfSnow = ["alpine_grass_snow_50", "alpine_dirt_snow"];
 	var tSnowLimited = ["alpine_snow_a", "alpine_snow_b"];
-	var tDirt = "alpine_dirt";
 	var tRoad = "new_alpine_citytile";
 	var tRoadWild = "new_alpine_citytile";
 	var tShore = "alpine_shore_rocks_icy";
@@ -92,7 +90,6 @@ else
 	var tSecondary = "polar_ice_snow";
 	var tHalfSnow = ["polar_ice_cracked"];
 	var tSnowLimited = ["alpine_snow_a", "alpine_snow_b"];
-	var tDirt = "alpine_dirt";
 	var tRoad = "new_alpine_citytile";
 	var tRoadWild = "new_alpine_citytile";
 	var tShore = "polar_ice_snow";
@@ -123,7 +120,6 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
-const mapArea = mapSize*mapSize;
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -134,7 +130,6 @@ var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
-var clSettlement = createTileClass();
 
 initTerrain(tPrimary);
 

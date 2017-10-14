@@ -52,7 +52,6 @@ var pForest = [
 		];
 
 var clPlayer = createTileClass();
-var clPath = createTileClass();
 var clHill = createTileClass();
 var clForest = createTileClass();
 var clForestJoin = createTileClass();
@@ -61,7 +60,6 @@ var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
-var clPlayable = createTileClass();
 var clHillDeco = createTileClass();
 
 // Create central dip

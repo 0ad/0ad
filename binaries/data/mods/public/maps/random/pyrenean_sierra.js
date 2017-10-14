@@ -185,7 +185,6 @@ const tHighRangeCliffs = ["alpine_mountainside","alpine_cliff_snow" ];
 const tPass = ["alpine_cliff_b", "alpine_cliff_c", "alpine_grass_rocky", "alpine_grass_rocky", "alpine_grass_rocky"];
 
 const tSand = ["beach_c", "beach_d"];
-const tWetSand = ["sand_wet_a", "sand_wet_b"];
 const tSandTransition = ["beach_scrub_50_"];
 const tWater = ["sand_wet_a","sand_wet_b","sand_wet_b","sand_wet_b"];
 
@@ -193,34 +192,23 @@ const tGrassLandForest = "alpine_forrestfloor";
 const tGrassLandForest2 = "alpine_grass_d";
 const tForestTransition = ["new_alpine_grass_d", "new_alpine_grass_b","alpine_grass_d"];
 
-const tGrassDForest = "alpine_forrestfloor_snow";
-const tCliff = ["alpine_cliff_a", "alpine_cliff_b"];
-const tGrassA = "alpine_grass_snow_50";
-const tGrassB = ["alpine_grass_snow_50", "alpine_dirt_snow"];
-const tGrassC = ["alpine_snow_rocky"];
-const tDirt = ["alpine_dirt_snow", "alpine_snow_a"];
 const tRoad = "new_alpine_citytile";
 const tRoadWild = "new_alpine_citytile";
-const tShore = "alpine_shore_rocks_icy";
 
 const oBeech = "gaia/flora_tree_euro_beech";
 const oPine = "gaia/flora_tree_aleppo_pine";
 const oBerryBush = "gaia/flora_bush_berry";
 const oDeer = "gaia/fauna_deer";
-const oGoat = "gaia/fauna_goat";
 const oFish = "gaia/fauna_fish";
 const oRabbit = "gaia/fauna_rabbit";
 const oStoneLarge = "gaia/geology_stonemine_alpine_quarry";
 const oStoneSmall = "gaia/geology_stone_alpine_a";
 const oMetalLarge = "gaia/geology_metal_alpine_slabs";
 
-const aRain = "actor|particle/rain_shower.xml";
 const aGrass = "actor|props/flora/grass_soft_small_tall.xml";
 const aGrassShort = "actor|props/flora/grass_soft_large.xml";
 const aRockLarge = "actor|geology/stone_granite_med.xml";
 const aRockMedium = "actor|geology/stone_granite_med.xml";
-const aReeds = "actor|props/flora/reeds_pond_lush_a.xml";
-const aLillies = "actor|props/flora/water_lillies.xml";
 const aBushMedium = "actor|props/flora/bush_medit_me.xml";
 const aBushSmall = "actor|props/flora/bush_medit_sm.xml";
 
@@ -241,7 +229,6 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
-const mapArea = mapSize*mapSize;
 
 var clDirt = createTileClass();
 var clLush = createTileClass();
@@ -249,7 +236,6 @@ var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
-var clSettlement = createTileClass();
 var clPass = createTileClass();
 var clPyrenneans = createTileClass();
 var clPass = createTileClass();
@@ -575,17 +561,9 @@ var terrainMidRangeCliff = createTerrain(tMidRangeCliffs);
 var terrainHighRangeCliff = createTerrain(tHighRangeCliffs);
 var terrainPass = createTerrain(tPass);
 var terrainSand = createTerrain(tSand);
-var terrainWetSand = createTerrain(tWetSand);
 var terrainSandTransition = createTerrain(tSandTransition);
 var terrainWater = createTerrain(tWater);
-/*
-// first pass: who's water?
-for (var sandx = 0; sandx < mapSize; sandx++)
-for (var sandz = 0; sandz < mapSize; sandz++)
-if (getHeight(sandx,sandz) < 0)
-addToClass(sandx,sandz,clWater);
-*/
-// second pass: who's not water
+
 for (var x = 0; x < mapSize; x++) {
 	for (var z = 0; z < mapSize; z++) {
 		var height = getHeight(x,z);
@@ -784,7 +762,6 @@ function PassMaker(x1, z1, x2, z2, startWidth, centerWidth, startElevation, cent
 			var rx = po*direction[0];
 			var rz = po*direction[1];
 
-			var relativeWidth = abs(po / Math.floor(width/2));
 			var targetHeight = (abs(step - stepNB/2.0) *startHeight + (stepNB/2 - abs(step - stepNB/2.0)) * finishHeight ) / (stepNB/2);
 			if (round(ix + rx) < mapSize && round(iz + rz) < mapSize && round(ix + rx) >= 0 && round(iz + rz) >= 0)
 			{

@@ -45,7 +45,6 @@ const aPalm = "actor|props/flora/shrub_fanpalm.xml";
 InitMap();
 
 const numPlayers = getNumPlayers();
-const mapSize = getMapSize();
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();

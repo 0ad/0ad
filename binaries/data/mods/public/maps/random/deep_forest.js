@@ -10,7 +10,6 @@ var clBaseResource = createTileClass();
 
 var templateStone = "gaia/geology_stone_temperate";
 var templateStoneMine = "gaia/geology_stonemine_temperate_quarry";
-var templateMetal = "gaia/geology_metal_temperate";
 var templateMetalMine = "gaia/geology_metal_temperate_slabs";
 var startingResourcees = ["gaia/flora_tree_oak_large", "gaia/flora_bush_temperate", templateStoneMine,
 	"gaia/flora_bush_grapes", "gaia/flora_tree_apple", "gaia/flora_bush_berry", templateMetalMine, "gaia/flora_bush_badlands"];
@@ -110,7 +109,6 @@ RMS.SetProgress(10);
 var doublePaths = true;
 if (numPlayers > 4)
 	doublePaths = false;
-var doublePathMayPlayers = 4;
 if (doublePaths == true)
 	var maxI = numPlayers+1;
 else

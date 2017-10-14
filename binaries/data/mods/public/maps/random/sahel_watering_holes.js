@@ -10,7 +10,6 @@ const tHill = "savanna_cliff_a";
 const tRoad = "savanna_tile_a_red";
 const tRoadWild = "savanna_tile_a_red";
 const tGrassPatch = "savanna_grass_b";
-const tShoreBlend = "savanna_riparian";
 const tShore = "savanna_riparian_bank";
 const tWater = "savanna_riparian_wet";
 
@@ -29,8 +28,6 @@ const oMetalLarge = "gaia/geology_metal_savanna_slabs";
 
 const aGrass = "actor|props/flora/grass_savanna.xml";
 const aGrassShort = "actor|props/flora/grass_medit_field.xml";
-const aReeds = "actor|props/flora/reeds_pond_lush_a.xml";
-const aLillies = "actor|props/flora/reeds_pond_lush_b.xml";
 const aRockLarge = "actor|geology/stone_savanna_med.xml";
 const aRockMedium = "actor|geology/stone_savanna_med.xml";
 const aBushMedium = "actor|props/flora/bush_desert_dry_a.xml";
@@ -41,8 +38,6 @@ const pForest = [tForestFloor + TERRAIN_SEPARATOR + oBaobab, tForestFloor + TERR
 InitMap();
 
 const numPlayers = getNumPlayers();
-const mapSize = getMapSize();
-const mapArea = mapSize*mapSize;
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -53,7 +48,6 @@ var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
-var clSettlement = createTileClass();
 var clShallows = createTileClass();
 
 var [playerIDs, playerX, playerZ, playerAngle, startAngle] = radialPlayerPlacement();

@@ -2,9 +2,7 @@ RMS.LoadLibrary("rmgen");
 
 const tSand = ["desert_sand_dunes_100", "desert_dirt_cracks","desert_sand_smooth", "desert_dirt_rough", "desert_dirt_rough_2", "desert_sand_smooth"];
 const tDune = ["desert_sand_dunes_50"];
-const tBigDune = ["desert_sand_dunes_50"];
 const tForestFloor = "desert_forestfloor_palms";
-const tHill = ["desert_dirt_rocks_1", "desert_dirt_rocks_2", "desert_dirt_rocks_3"];
 const tDirt = ["desert_dirt_rough","desert_dirt_rough","desert_dirt_rough", "desert_dirt_rough_2", "desert_dirt_rocks_2"];
 const tRoad = "desert_city_tile";;
 const tRoadWild = "desert_city_tile";;
@@ -20,7 +18,6 @@ const eGazelle = "gaia/fauna_gazelle";
 const eLion = "gaia/fauna_lion";
 const eLioness = "gaia/fauna_lioness";
 const eStoneMine = "gaia/geology_stonemine_desert_quarry";
-const eStoneMineSmall = "gaia/geology_stone_desert_small";
 const eMetalMine = "gaia/geology_metal_desert_slabs";
 
 const aFlower1 = "actor|props/flora/decals_flowers_daisies.xml";
@@ -40,7 +37,6 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
-const mapArea = mapSize*mapSize;
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -51,8 +47,6 @@ var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
-var clSettlement = createTileClass();
-var clDune = createTileClass();
 
 initTerrain(tSand);
 

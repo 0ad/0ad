@@ -2,10 +2,7 @@ RMS.LoadLibrary("rmgen");
 
 var tCity = "desert_city_tile";
 var tCityPlaza = "desert_city_tile_plaza";
-var tSand = ["desert_dirt_rough", "desert_dirt_rough_2", "desert_sand_dunes_50", "desert_sand_smooth"];
-var tDunes = "desert_sand_dunes_100";
 var tFineSand = "desert_sand_smooth";
-var tCliff = ["desert_cliff_badlands", "desert_cliff_badlands_2"];
 var tForestFloor = "desert_forestfloor_palms";
 var tGrass = "desert_dirt_rough_2";
 var tGrassSand50 = "desert_sand_dunes_50";
@@ -19,11 +16,8 @@ var tSDry = "desert_plants_b";
 
 var oBerryBush = "gaia/flora_bush_berry";
 var oCamel = "gaia/fauna_camel";
-var oFish = "gaia/fauna_fish";
 var oGazelle = "gaia/fauna_gazelle";
-var oGiraffe = "gaia/fauna_giraffe";
 var oGoat = "gaia/fauna_goat";
-var oWildebeest = "gaia/fauna_wildebeest";
 var oStoneLarge = "gaia/geology_stonemine_desert_badlands_quarry";
 var oStoneSmall = "gaia/geology_stone_desert_small";
 var oMetalLarge = "gaia/geology_metal_desert_slabs";
@@ -38,14 +32,11 @@ var aBush1 = "actor|props/flora/bush_desert_a.xml";
 var aBush2 = "actor|props/flora/bush_desert_dry_a.xml";
 var aBush3 = "actor|props/flora/bush_medit_sm_dry.xml";
 var aBush4 = "actor|props/flora/plant_desert_a.xml";
-var aBushes = [aBush1, aBush2, aBush3, aBush4];
 var aDecorativeRock = "actor|geology/stone_desert_med.xml";
 var aReeds = "actor|props/flora/reeds_pond_lush_a.xml";
 var aLillies = "actor|props/flora/water_lillies.xml";
 
-// terrain + entity (for painting)
 var pForest = [tForestFloor + TERRAIN_SEPARATOR + oDatePalm, tForestFloor + TERRAIN_SEPARATOR + oSDatePalm, tForestFloor];
-var pForestOasis = [tGrass + TERRAIN_SEPARATOR + oDatePalm, tGrass + TERRAIN_SEPARATOR + oSDatePalm, tGrass];
 
 InitMap();
 
@@ -55,7 +46,6 @@ var aPlants = mapSize < 256 ?
 	"actor|props/flora/grass_tropic_field_tall.xml";
 
 var numPlayers = getNumPlayers();
-var mapArea = mapSize*mapSize;
 
 var clPlayer = createTileClass();
 var clForest = createTileClass();
@@ -65,7 +55,6 @@ var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
-var clSettlement = createTileClass();
 var clGrass = createTileClass();
 var clDesert = createTileClass();
 var clPond = createTileClass();

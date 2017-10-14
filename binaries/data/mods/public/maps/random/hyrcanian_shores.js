@@ -8,11 +8,9 @@ const tGrassA = "temp_grass_d";
 const tGrassB = "temp_grass_c";
 const tGrassC = "temp_grass_clovers_2";
 const tHill = ["temp_highlands", "temp_grass_long_b"];
-const tDirt = ["temp_dirt_gravel", "temp_dirt_gravel_b"];
 const tRoad = "temp_road";
 const tRoadWild = "temp_road_overgrown";
 const tGrassPatch = "temp_grass_plants";
-const tShoreBlend = "temp_mud_plants";
 const tShore = "medit_sand_wet";
 const tWater = "medit_sand_wet";
 
@@ -43,8 +41,6 @@ const pForestP = [tGrassPForest + TERRAIN_SEPARATOR + oOak, tGrassPForest];
 InitMap();
 
 const numPlayers = getNumPlayers();
-const mapSize = getMapSize();
-const mapArea = mapSize*mapSize;
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -55,7 +51,6 @@ var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
-var clSettlement = createTileClass();
 var clSea = createTileClass();
 var clHighlands = createTileClass();
 var clFlatlands = createTileClass();

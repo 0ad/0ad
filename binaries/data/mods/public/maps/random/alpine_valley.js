@@ -14,10 +14,7 @@ if (randBool())
 	var tDirt = "alpine_dirt";
 	var tRoad = "new_alpine_citytile";
 	var tRoadWild = "new_alpine_citytile";
-	var tShore = "alpine_shore_rocks_grass_50";
-	var tWater = "alpine_shore_rocks";
 
-	// gaia entities
 	var oPine = "gaia/flora_tree_pine";
 	var oBerryBush = "gaia/flora_bush_berry";
 	var oDeer = "gaia/fauna_deer";
@@ -26,7 +23,6 @@ if (randBool())
 	var oStoneSmall = "gaia/geology_stone_alpine_a";
 	var oMetalLarge = "gaia/geology_metal_alpine_slabs";
 
-	// decorative props
 	var aGrass = "actor|props/flora/grass_soft_small_tall.xml";
 	var aGrassShort = "actor|props/flora/grass_soft_large.xml";
 	var aRockLarge = "actor|geology/stone_granite_med.xml";
@@ -46,10 +42,7 @@ else
 	var tDirt = "alpine_dirt";
 	var tRoad = "new_alpine_citytile";
 	var tRoadWild = "new_alpine_citytile";
-	var tShore = "alpine_shore_rocks_icy";
-	var tWater = "alpine_shore_rocks";
 
-	// gaia entities
 	var oPine = "gaia/flora_tree_pine_w";
 	var oBerryBush = "gaia/flora_bush_berry";
 	var oDeer = "gaia/fauna_deer";
@@ -58,7 +51,6 @@ else
 	var oStoneSmall = "gaia/geology_stone_alpine_a";
 	var oMetalLarge = "gaia/geology_metal_alpine_slabs";
 
-	// decorative props
 	var aGrass = "actor|props/flora/grass_soft_dry_small_tall.xml";
 	var aGrassShort = "actor|props/flora/grass_soft_dry_large.xml";
 	var aRockLarge = "actor|geology/stone_granite_med.xml";
@@ -83,7 +75,6 @@ var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
-var clSettlement = createTileClass();
 
 initTerrain(tPrimary);
 

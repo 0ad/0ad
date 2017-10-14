@@ -42,7 +42,6 @@ const pForest = [tForestFloor + TERRAIN_SEPARATOR + oBush, tForestFloor + TERRAI
 InitMap();
 
 const numPlayers = getNumPlayers();
-const mapSize = getMapSize();
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();

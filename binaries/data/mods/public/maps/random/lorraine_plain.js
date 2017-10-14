@@ -6,14 +6,10 @@ const tGrassDForest = "temp_plants_bog";
 const tGrassA = "temp_grass_plants";
 const tGrassB = "temp_plants_bog";
 const tGrassC = "temp_mud_a";
-const tDirt = ["temp_plants_bog", "temp_mud_a"];
-const tHill = ["temp_highlands", "temp_grass_long_b"];
-const tCliff = ["temp_cliff_a", "temp_cliff_b"];
 const tRoad = "temp_road";
 const tRoadWild = "temp_road_overgrown";
 const tGrassPatchBlend = "temp_grass_long_b";
 const tGrassPatch = ["temp_grass_d", "temp_grass_clovers"];
-const tShoreBlend = "temp_grass_plants";
 const tShore = "temp_plants_bog";
 const tWater = "temp_mud_a";
 
@@ -21,7 +17,6 @@ const oBeech = "gaia/flora_tree_euro_beech";
 const oOak = "gaia/flora_tree_oak";
 const oBerryBush = "gaia/flora_bush_berry";
 const oDeer = "gaia/fauna_deer";
-const oFish = "gaia/fauna_fish";
 const oRabbit = "gaia/fauna_rabbit";
 const oStoneLarge = "gaia/geology_stonemine_temperate_quarry";
 const oStoneSmall = "gaia/geology_stone_temperate";
@@ -43,8 +38,6 @@ const pForestR = [tGrassDForest + TERRAIN_SEPARATOR + oBeech, tGrassDForest, tGr
 InitMap();
 
 const numPlayers = getNumPlayers();
-const mapSize = getMapSize();
-const mapArea = mapSize*mapSize;
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -55,7 +48,6 @@ var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
-var clSettlement = createTileClass();
 var clShallow = createTileClass();
 
 var playerIDs = primeSortAllPlayers();

@@ -3,22 +3,17 @@ RMS.LoadLibrary("rmgen");
 const tGrass = ["medit_rocks_grass_shrubs", "medit_rocks_shrubs"];
 const tForestFloor = "medit_grass_field_dry";
 const tCliff = "medit_cliff_italia";
-const tHill = ["medit_rocks_grass", "medit_rocks_grass_shrubs", "medit_rocks_shrubs"];
 const tGrassDirt = "medit_rocks_grass";
 const tDirt = "medit_dirt";
 const tRoad = "medit_city_tile";
 const tRoadWild = "medit_city_tile";
 const tGrass2 = "medit_rocks_grass_shrubs";
 const tGrassPatch = "medit_grass_wild";
-const tShoreBlend = "medit_sand";
-const tShore = "medit_sand";
-const tWater = "medit_sand";
 
 const oCarob = "gaia/flora_tree_carob";
 const oAleppoPine = "gaia/flora_tree_aleppo_pine";
 const oBerryBush = "gaia/flora_bush_berry";
 const oDeer = "gaia/fauna_deer";
-const oFish = "gaia/fauna_fish";
 const oSheep = "gaia/fauna_sheep";
 const oStoneLarge = "gaia/geology_stonemine_medit_quarry";
 const oStoneSmall = "gaia/geology_stone_mediterranean";
@@ -42,8 +37,6 @@ const pForest2 = [tForestFloor + TERRAIN_SEPARATOR + oAleppoPine, tForestFloor];
 InitMap();
 
 const numPlayers = getNumPlayers();
-const mapSize = getMapSize();
-const mapArea = mapSize*mapSize;
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();

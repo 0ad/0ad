@@ -21,8 +21,6 @@ const oFish = "gaia/fauna_fish";
 const oWalrus = "gaia/fauna_walrus";
 const oWolf = "gaia/fauna_wolf_snow";
 
-const aRockLarge = "actor|geology/stone_granite_med.xml";
-const aRockMedium = "actor|geology/stone_granite_med.xml";
 const aIceberg = "actor|props/special/eyecandy/iceberg.xml";
 
 const pForestD = [tForestFloor + TERRAIN_SEPARATOR + oPine, tForestFloor, tForestFloor];
@@ -32,13 +30,9 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
-const mapArea = mapSize*mapSize;
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
-var clHill2 = createTileClass();
-var clHill3 = createTileClass();
-var clHill4 = createTileClass();
 var clForest = createTileClass();
 var clWater = createTileClass();
 var clDirt = createTileClass();
@@ -46,7 +40,6 @@ var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
-var clSettlement = createTileClass();
 
 var playerIDs = sortAllPlayers();
 

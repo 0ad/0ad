@@ -8,10 +8,8 @@ const tFineSand = "desert_sand_smooth";
 const tCliff = ["desert_cliff_badlands", "desert_cliff_badlands_2"];
 const tForestFloor = "desert_forestfloor_palms";
 const tGrass = "desert_grass_a";
-const tGrassSand50 = "desert_grass_a_sand";
 const tGrassSand25 = "desert_grass_a_stones";
 const tDirt = "desert_dirt_rough";
-const tDirtCracks = "desert_dirt_cracks";
 const tShore = "desert_shore_stones";
 const tWaterDeep = "desert_shore_stones_wet";
 
@@ -43,12 +41,9 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
-const mapArea = mapSize*mapSize;
 
 var clPlayer = createTileClass();
 var clHill1 = createTileClass();
-var clHill2 = createTileClass();
-var clHill3 = createTileClass();
 var clForest = createTileClass();
 var clPatch = createTileClass();
 var clRock = createTileClass();

@@ -6,7 +6,6 @@ const tGrassDForest = "temp_plants_bog";
 const tGrassA = "temp_grass_plants";
 const tGrassB = "temp_plants_bog";
 const tGrassC = "temp_mud_a";
-const tDirt = ["temp_plants_bog", "temp_mud_a"];
 const tHill = ["temp_highlands", "temp_grass_long_b"];
 const tCliff = ["temp_cliff_a", "temp_cliff_b"];
 const tRoad = "temp_road";
@@ -47,7 +46,6 @@ InitMap();
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
-var mapArea = mapSize*mapSize;
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -58,7 +56,6 @@ var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
-var clSettlement = createTileClass();
 
 var [playerIDs, playerX, playerZ, playerAngle] = radialPlayerPlacement();
 

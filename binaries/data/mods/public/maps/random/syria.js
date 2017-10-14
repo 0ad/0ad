@@ -20,20 +20,14 @@ const oBush = "gaia/flora_bush_grapes";
 const oCamel = "gaia/fauna_camel";
 const oGazelle = "gaia/fauna_gazelle";
 const oLion = "gaia/fauna_lion";
-const oLioness = "gaia/fauna_lioness";
 const oStoneLarge = "gaia/geology_stonemine_desert_quarry";
 const oStoneSmall = "gaia/geology_stone_desert_small";
 const oMetalLarge = "gaia/geology_metal_desert_slabs";
 
-const aFlower1 = "actor|props/flora/decals_flowers_daisies.xml";
-const aWaterFlower = "actor|props/flora/water_lillies.xml";
-const aReedsA = "actor|props/flora/reeds_pond_lush_a.xml";
-const aReedsB = "actor|props/flora/reeds_pond_lush_b.xml";
 const aRock = "actor|geology/stone_desert_med.xml";
 const aBushA = "actor|props/flora/bush_desert_dry_a.xml";
 const aBushB = "actor|props/flora/bush_desert_dry_a.xml";
 const aBushes = [aBushA, aBushB];
-const aSand = "actor|particle/blowing_sand.xml";
 
 const pForestP = [tForestFloor2 + TERRAIN_SEPARATOR + oPalm, tForestFloor2];
 const pForestT = [tForestFloor1 + TERRAIN_SEPARATOR + oTamarix,tForestFloor2];
@@ -41,18 +35,14 @@ const pForestT = [tForestFloor1 + TERRAIN_SEPARATOR + oTamarix,tForestFloor2];
 InitMap();
 
 const numPlayers = getNumPlayers();
-const mapSize = getMapSize();
-const mapArea = mapSize*mapSize;
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
 var clForest = createTileClass();
-var clDirt = createTileClass();
 var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
-var clSettlement = createTileClass();
 var clGrass = createTileClass();
 
 var [playerIDs, playerX, playerZ] = radialPlayerPlacement();

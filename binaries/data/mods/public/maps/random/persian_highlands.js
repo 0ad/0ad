@@ -7,40 +7,33 @@ if (randBool()) // summer
 	var tDirtMain = ["desert_dirt_persia_1", "desert_dirt_persia_2", "grass_field_dry"];
 	var tLakebed1 = ["desert_lakebed_dry_b", "desert_lakebed_dry"];
 	var tLakebed2 = ["desert_lakebed_dry_b", "desert_lakebed_dry", "desert_shore_stones", "desert_shore_stones"];
-	var tPebbles = "desert_pebbles_rough";
 	var tCliff = ["desert_cliff_persia_1", "desert_cliff_persia_crumbling"];
 	var tForestFloor = "medit_grass_field_dry";
 	var tRocky = "desert_dirt_persia_rocky";
 	var tRocks = "desert_dirt_persia_rocks";
 	var tGrass = "grass_field_dry";
-	var tHill = "desert_cliff_persia_base";
 }
 else //spring
 {
 	var tDirtMain = ["desert_grass_a", "desert_grass_a", "desert_grass_a", "desert_plants_a"];
 	var tLakebed1 = ["desert_lakebed_dry_b", "desert_lakebed_dry"];
 	var tLakebed2 = "desert_grass_a_sand";
-	var tPebbles = "desert_pebbles_rough";
 	var tCliff = ["desert_cliff_persia_1", "desert_cliff_persia_crumbling"];
 	var tForestFloor = "desert_plants_b_persia";
 	var tRocky = "desert_plants_b_persia";
 	var tRocks = "desert_plants_a";
 	var tGrass = "desert_dirt_persia_rocky";
-	var tHill = "desert_cliff_persia_base";
 
 	setTerrainAmbientColor(0.329412, 0.419608, 0.501961);
 }
 
 const oGrapesBush = "gaia/flora_bush_grapes";
 const oCamel = "gaia/fauna_camel";
-const oFish = "gaia/fauna_fish";
 const oSheep = "gaia/fauna_sheep";
 const oGoat = "gaia/fauna_goat";
-const oLion = "gaia/fauna_lioness";
 const oStoneLarge = "gaia/geology_stonemine_desert_badlands_quarry";
 const oStoneSmall = "gaia/geology_stone_desert_small";
 const oMetalLarge = "gaia/geology_metal_desert_slabs";
-const oTamarix = "gaia/flora_tree_tamarix";
 const oOak = "gaia/flora_tree_oak";
 
 const aBush1 = "actor|props/flora/bush_desert_a.xml";
@@ -57,7 +50,6 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
-const mapArea = mapSize*mapSize;
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();

@@ -69,8 +69,8 @@ function createMountains(terrain, constraint, tileclass, count, maxHeight, minRa
 			maxRadius,
 			numCircles,
 			constraint,
-			randIntExclusive(0, mapSize),
-			randIntExclusive(0, mapSize),
+			randIntExclusive(0, getMapSize()),
+			randIntExclusive(0, getMapSize()),
 			terrain,
 			tileclass,
 			14
