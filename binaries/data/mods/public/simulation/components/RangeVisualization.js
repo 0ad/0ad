@@ -100,7 +100,9 @@ RangeVisualization.prototype.OnValueModification = function(msg)
 	this.RegenerateRangeVisualizations(false);
 };
 
-/** RangeVisualization component is deserialized before the TechnologyManager, so need to update the ranges here */
+/** 
+ * RangeVisualization component is deserialized before the TechnologyManager, so need to update the ranges here
+ */
 RangeVisualization.prototype.OnDeserialized = function(msg)
 {
 	for (let type in this.enabledRangeTypes)

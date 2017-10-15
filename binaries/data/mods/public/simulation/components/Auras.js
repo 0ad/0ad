@@ -258,15 +258,19 @@ Auras.prototype.Clean = function()
 		}
 
 		needVisualizationUpdate = true;
-		this[name].rangeQuery = cmpRangeManager.CreateActiveQuery(
-		    this.entity,
-		    0,
-		    this.GetRange(name),
-		    affectedPlayers,
-		    IID_Identity,
-		    cmpRangeManager.GetEntityFlagMask("normal")
-		);
-		cmpRangeManager.EnableActiveQuery(this[name].rangeQuery);
+
+		if (this[name].isApplied)
+		{
+			this[name].rangeQuery = cmpRangeManager.CreateActiveQuery(
+			    this.entity,
+			    0,
+			    this.GetRange(name),
+			    affectedPlayers,
+			    IID_Identity,
+			    cmpRangeManager.GetEntityFlagMask("normal")
+			);
+			cmpRangeManager.EnableActiveQuery(this[name].rangeQuery);
+		}
 	}
 
 	if (needVisualizationUpdate)
