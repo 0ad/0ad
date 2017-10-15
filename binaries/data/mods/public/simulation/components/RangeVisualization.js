@@ -11,8 +11,6 @@ RangeVisualization.prototype.Init = function()
 	};
 
 	this.rangeVisualizations = new Map();
-	for (let type in this.enabledRangeTypes)
-		this["UpdateVisual" + type + "Ranges"]();
 };
 
 // The GUI enables visualizations
@@ -86,8 +84,11 @@ RangeVisualization.prototype.RegenerateRangeVisualizations = function(forceUpdat
 
 RangeVisualization.prototype.OnOwnershipChanged = function(msg)
 {
-	if (this.enabled && msg.to != -1)
-		this.RegenerateRangeVisualizations(false);
+	if (msg.to == -1)
+		return;
+	for (let type in this.enabledRangeTypes)
+		this["UpdateVisual" + type + "Ranges"]();
+	this.RegenerateRangeVisualizations(false);
 };
 
 RangeVisualization.prototype.OnValueModification = function(msg)
@@ -99,9 +100,11 @@ RangeVisualization.prototype.OnValueModification = function(msg)
 	this.RegenerateRangeVisualizations(false);
 };
 
+/** RangeVisualization component is deserialized before the TechnologyManager, so need to update the ranges here */
 RangeVisualization.prototype.OnDeserialized = function(msg)
 {
-	this.UpdateVisualHealRanges();
+	for (let type in this.enabledRangeTypes)
+		this["UpdateVisual" + type + "Ranges"]();
 };
 
 Engine.RegisterComponentType(IID_RangeVisualization, "RangeVisualization", RangeVisualization);

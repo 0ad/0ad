@@ -71,7 +71,7 @@ Auras.prototype.GetRange = function(name)
  */
 Auras.prototype.GetVisualAuraRangeNames = function()
 {
-	return this.GetAuraNames().filter(auraName => this.IsRangeAura(auraName));
+	return this.GetAuraNames().filter(auraName => this.IsRangeAura(auraName) && this[auraName].isApplied);
 };
 
 Auras.prototype.GetLineTexture = function(name)
@@ -197,12 +197,16 @@ Auras.prototype.Clean = function()
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var auraNames = this.GetAuraNames();
 	let targetUnitsClone = {};
+	let needVisualizationUpdate = false;
 	// remove all bonuses
 	for (let name of auraNames)
 	{
 		targetUnitsClone[name] = [];
 		if (!this[name])
 			continue;
+
+		if (this.IsRangeAura(name))
+			needVisualizationUpdate = true;
 
 		if (this[name].targetUnits)
 			targetUnitsClone[name] = this[name].targetUnits.slice();
@@ -253,6 +257,7 @@ Auras.prototype.Clean = function()
 			continue;
 		}
 
+		needVisualizationUpdate = true;
 		this[name].rangeQuery = cmpRangeManager.CreateActiveQuery(
 		    this.entity,
 		    0,
@@ -262,6 +267,16 @@ Auras.prototype.Clean = function()
 		    cmpRangeManager.GetEntityFlagMask("normal")
 		);
 		cmpRangeManager.EnableActiveQuery(this[name].rangeQuery);
+	}
+
+	if (needVisualizationUpdate)
+	{
+		let cmpRangeVisualization = Engine.QueryInterface(this.entity, IID_RangeVisualization);
+		if (cmpRangeVisualization)
+		{
+			cmpRangeVisualization.UpdateVisualAuraRanges();
+			cmpRangeVisualization.RegenerateRangeVisualizations(false);
+		}
 	}
 };
 
