@@ -221,11 +221,11 @@ var types = [
 ];
 var size = numForest / (scaleByMapSize(4, 12) * numPlayers);
 var num = Math.floor(size / types.length);
-for (let i = 0; i < types.length; ++i)
+for (let type of types)
 	createAreas(
 		new ClumpPlacer(numForest / num, 0.1, 0.1, 1),
 		[
-			new LayeredPainter(types[i], [2]),
+			new LayeredPainter(type, [2]),
 			paintClass(clForest)
 		],
 		avoidClasses(

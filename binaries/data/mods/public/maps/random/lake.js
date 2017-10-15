@@ -131,40 +131,33 @@ for (var i = 0; i < numPlayers; i++)
 
 RMS.SetProgress(20);
 
-//create the lake
-var fx = fractionToTiles(0.5);
-var fz = fractionToTiles(0.5);
-ix = round(fx);
-iz = round(fz);
-
-const lSize = sqrt(sqrt(sqrt(scaleByMapSize(1, 6))));
-
-var placer = new ChainPlacer(2, floor(scaleByMapSize(5, 16)), floor(scaleByMapSize(35, 200)), 1, ix, iz, 0, [floor(mapSize * 0.17 * lSize)]);
-var terrainPainter = new LayeredPainter(
-	[tShore, tWater, tWater, tWater],		// terrains
-	[1, 4, 2]		// widths
-);
-var elevationPainter = new SmoothElevationPainter(
-	ELEVATION_SET,			// type
-	-3,				// elevation
-	4				// blend radius
-);
-createArea(placer, [terrainPainter, elevationPainter, paintClass(clWater)], avoidClasses(clPlayer, 20));
+log("Creating the lake...")
+createArea(
+	new ChainPlacer(
+		2,
+		Math.floor(scaleByMapSize(5, 16)),
+		Math.floor(scaleByMapSize(35, 200)),
+		1,
+		Math.round(fractionToTiles(0.5)),
+		Math.round(fractionToTiles(0.5)),
+		0,
+		[Math.floor(mapSize * 0.17 * Math.pow(scaleByMapSize(1, 6), 1/8))]),
+	[
+		new SmoothElevationPainter(ELEVATION_SET, -3, 4),
+		paintClass(clWater)
+	],
+	avoidClasses(clPlayer, 20));
 
 log("Creating more shore jaggedness...");
-
-placer = new ChainPlacer(2, floor(scaleByMapSize(4, 6)), 3, 1);
-terrainPainter = new LayeredPainter(
-	[tCliff, tHill],		// terrains
-	[2]								// widths
-);
-elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 3, 4);
 createAreas(
-	placer,
-	[terrainPainter, elevationPainter, unPaintClass(clWater)],
+	new ChainPlacer(2, Math.floor(scaleByMapSize(4, 6)), 3, 1),
+	[
+		new LayeredPainter([tCliff, tHill], [2]),
+		unPaintClass(clWater)
+	],
 	borderClasses(clWater, 4, 7),
-	scaleByMapSize(12, 130) * 2, 150
-);
+	scaleByMapSize(12, 130) * 2,
+	150);
 
 paintTerrainBasedOnHeight(2.4, 3.4, 3, tMainTerrain);
 paintTerrainBasedOnHeight(1, 2.4, 0, tShore);
@@ -300,8 +293,10 @@ createFood
 
 RMS.SetProgress(85);
 
-var types = [oTree1, oTree2, oTree4, oTree3];	// some variation
-createStragglerTrees(types, avoidClasses(clWater, 5, clForest, 7, clHill, 1, clPlayer, 12, clMetal, 6, clRock, 6));
+createStragglerTrees(
+	[oTree1, oTree2, oTree4, oTree3],
+	avoidClasses(clWater, 5, clForest, 7, clHill, 1, clPlayer, 12, clMetal, 6, clRock, 6));
+
 setWaterWaviness(4.0);
 setWaterType("lake");
 

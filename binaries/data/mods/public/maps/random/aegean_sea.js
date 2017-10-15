@@ -210,25 +210,24 @@ createLayeredPatches(
 RMS.SetProgress(60);
 
 log("Creating undersea bumps...");
-placer = new ChainPlacer(1, floor(scaleByMapSize(4, 6)), floor(scaleByMapSize(16, 40)), 0.5);
-painter = new SmoothElevationPainter(ELEVATION_SET, -2.5, 3);
 createAreas(
-	placer,
-	[painter, paintClass(clCorals)],
+	new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(16, 40)), 0.5),
+	[
+		new SmoothElevationPainter(ELEVATION_SET, -2.5, 3),
+		paintClass(clCorals)
+	],
 	stayClasses(clWater, 6),
 	scaleByMapSize(10, 50)
 );
 
 log("Creating islands...");
-placer = new ChainPlacer(1, floor(scaleByMapSize(4, 6)), floor(scaleByMapSize(30, 80)), 0.5);
-var terrainPainter = new LayeredPainter(
-	[tWater, tShore, tHill],		// terrains
-	[2 ,1]								// widths
-);
-var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 6, 4);
 createAreas(
-	placer,
-	[terrainPainter, elevationPainter, paintClass(clIsland)],
+	new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(30, 80)), 0.5),
+	[
+		new LayeredPainter([tWater, tShore, tHill], [2 ,1]),
+		new SmoothElevationPainter(ELEVATION_SET, 6, 4),
+		paintClass(clIsland)
+	],
 	[avoidClasses(clPlayer, 8, clForest, 1, clIsland, 15), stayClasses (clWater, 6)],
 	scaleByMapSize(1, 4) * numPlayers
 );
@@ -328,8 +327,9 @@ createFood
 
 RMS.SetProgress(90);
 
-var types = [oDatePalm, oSDatePalm, oCarob, oFanPalm, oPoplar, oCypress];	// some variation
-createStragglerTrees(types, avoidClasses(clForest, 1, clWater, 2, clPlayer, 12, clMetal, 6, clHill, 1));
+createStragglerTrees(
+	[oDatePalm, oSDatePalm, oCarob, oFanPalm, oPoplar, oCypress],
+	avoidClasses(clForest, 1, clWater, 2, clPlayer, 12, clMetal, 6, clHill, 1));
 
 log("Creating straggler island trees...");
 g_numStragglerTrees *= 10;

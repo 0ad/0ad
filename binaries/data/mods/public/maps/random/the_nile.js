@@ -217,51 +217,42 @@ paintRiver({
 RMS.SetProgress(40);
 
 log("Creating bumps...");
-placer = new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1);
-painter = new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2);
 createAreas(
-	placer,
-	painter,
+	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
+	new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2),
 	avoidClasses(clWater, 2, clPlayer, 6),
-	scaleByMapSize(100, 200)
-);
+	scaleByMapSize(100, 200));
 
 log("Creating ponds...");
-var numLakes = round(scaleByMapSize(1,4) * numPlayers / 2);
-placer = new ClumpPlacer(scaleByMapSize(100,250), 0.8, 0.1, 10);
-var terrainPainter = new LayeredPainter(
-	[tShore, tShore, tShore],		// terrains
-	[1,1]							// widths
-);
-var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -7, 4);
+var numLakes = Math.round(scaleByMapSize(1, 4) * numPlayers / 2);
 var waterAreas = createAreas(
-	placer,
-	[terrainPainter, elevationPainter, paintClass(clPond)],
+	new ClumpPlacer(scaleByMapSize(2, 5) * 50, 0.8, 0.1, 10),
+	[
+		new LayeredPainter([tShore, tShore, tShore], [1, 1]),
+		new SmoothElevationPainter(ELEVATION_SET, -7, 4),
+		paintClass(clPond)
+	],
 	avoidClasses(clPlayer, 25, clWater, 20, clPond, 10),
 	numLakes
 );
 
 log("Creating reeds...");
-group = new SimpleGroup(
-	[new SimpleObject(aReeds, 1,3, 0,1)],
-	true
-);
-createObjectGroupsByAreasDeprecated(group, 0,
+createObjectGroupsByAreasDeprecated(
+	new SimpleGroup([new SimpleObject(aReeds, 1, 3, 0, 1)], true),
+	0,
 	stayClasses(clPond, 1),
-	numLakes, 100,
-	waterAreas
-);
+	numLakes,
+	100,
+	waterAreas);
 
 log("Creating lillies...");
-group = new SimpleGroup(
-	[new SimpleObject(aLillies, 1,3, 0,1)],
-	true
-);
-createObjectGroupsByAreasDeprecated(group, 0,
+createObjectGroupsByAreasDeprecated(
+	new SimpleGroup([new SimpleObject(aLillies, 1, 3, 0, 1)], true),
+	0,
 	stayClasses(clPond, 1),
-	numLakes, 100,
-	waterAreas
-);
+	numLakes,
+	100,
+	waterAreas);
 
 waterAreas = [];
 
@@ -276,54 +267,49 @@ var numStragglers = totalTrees * (1.0 - P_FOREST);
 
 log("Creating forests...");
 var num = scaleByMapSize(10,30);
-placer = new ClumpPlacer(numForest / num, 0.15, 0.1, 0.5);
-painter = new TerrainPainter([pForest, tForestFloor]);
-createAreas(placer, [painter, paintClass(clForest)],
+createAreas(
+	new ClumpPlacer(numForest / num, 0.15, 0.1, 0.5),
+	[
+		new TerrainPainter([pForest, tForestFloor]),
+		paintClass(clForest)
+	],
 	avoidClasses(clPlayer, 19, clForest, 4, clWater, 1, clDesert, 5, clPond, 2, clBaseResource, 3),
-	num, 50
-);
+	num,
+	50);
 
 RMS.SetProgress(50);
 
 log("Creating grass patches...");
-var sizes = [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)];
-for (var i = 0; i < sizes.length; i++)
-{
-	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
-	painter = new LayeredPainter(
-		[[tGrass,tGrassSand50],[tGrassSand50,tGrassSand25], [tGrassSand25,tGrass]], 		// terrains
-		[1,1]															// widths
-	);
+for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
 	createAreas(
-		placer,
-		[painter, paintClass(clDirt)],
+		new ClumpPlacer(size, 0.3, 0.06, 0.5),
+		[
+			new LayeredPainter(
+				[[tGrass, tGrassSand50], [tGrassSand50, tGrassSand25], [tGrassSand25, tGrass]],
+				[1, 1]),
+			paintClass(clDirt)
+		],
 		avoidClasses(clForest, 0, clGrass, 5, clPlayer, 10, clWater, 1, clDirt, 5, clShore, 1, clPond, 1),
-		scaleByMapSize(15, 45)
-	);
-}
+		scaleByMapSize(15, 45));
 RMS.SetProgress(55);
 
 log("Creating dirt patches...");
-var sizes = [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)];
-for (var i = 0; i < sizes.length; i++)
-{
-	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
-	painter = new LayeredPainter(
-		[[tDirt,tDirtCracks],[tDirt,tFineSand], [tDirtCracks,tFineSand]], 		// terrains
-		[1,1]															// widths
-	);
+for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
 	createAreas(
-		placer,
-		[painter, paintClass(clDirt)],
+		new ClumpPlacer(size, 0.3, 0.06, 0.5),
+		[
+			new LayeredPainter(
+				[[tDirt, tDirtCracks], [tDirt, tFineSand], [tDirtCracks, tFineSand]],
+				[1, 1]),
+			paintClass(clDirt)
+		],
 		avoidClasses(clForest, 0, clDirt, 5, clPlayer, 10, clWater, 1, clGrass, 5, clShore, 1, clPond, 1),
-		scaleByMapSize(15, 45)
-	);
-}
+		scaleByMapSize(15, 45));
 
 RMS.SetProgress(60);
 
 log("Creating stone mines...");
-group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clRock);
+var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4), new SimpleObject(oStoneLarge, 1, 1, 0, 4)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clForest, 1, clPlayer, 20, clRock, 10, clWater, 1, clPond, 1),
 	scaleByMapSize(4,16), 100
@@ -426,39 +412,33 @@ createObjectGroupsDeprecated(group, 0,
 RMS.SetProgress(90);
 
 log("Creating straggler trees...");
-var types = [oDatePalm, oSDatePalm];	// some variation
+var types = [oDatePalm, oSDatePalm];
 var num = floor(0.5 * numStragglers / types.length);
-for (var i = 0; i < types.length; ++i)
-{
-	group = new SimpleGroup([new SimpleObject(types[i], 1,1, 0,0)], true);
-	createObjectGroupsDeprecated(group, 0,
+for (let type of types)
+	createObjectGroupsDeprecated(
+		new SimpleGroup([new SimpleObject(type, 1, 1, 0, 0)], true),
+		0,
 		avoidClasses(clForest, 0, clWater, 1, clPlayer, 20, clMetal, 6, clDesert, 1, clTreasure, 2, clPond, 1),
-		num
-	);
-}
+		num);
 
-var types = [oDatePalm, oSDatePalm];	// some variation
+var types = [oDatePalm, oSDatePalm];
 var num = floor(0.1 * numStragglers / types.length);
-for (var i = 0; i < types.length; ++i)
-{
-	group = new SimpleGroup([new SimpleObject(types[i], 1,1, 0,0)], true);
-	createObjectGroupsDeprecated(group, 0,
+for (let type of types)
+	createObjectGroupsDeprecated(
+		new SimpleGroup([new SimpleObject(type, 1,1, 0,0)], true),
+		0,
 		avoidClasses(clForest, 0, clWater, 1, clPlayer, 20, clMetal, 6, clTreasure, 2),
-		num
-	);
-}
+		num);
 
 log("Creating straggler trees...");
-var types = [oDatePalm, oSDatePalm];	// some variation
+var types = [oDatePalm, oSDatePalm];
 var num = floor(numStragglers / types.length);
-for (var i = 0; i < types.length; ++i)
-{
-	group = new SimpleGroup([new SimpleObject(types[i], 1,1, 0,0)], true);
-	createObjectGroupsDeprecated(group, 0,
+for (let type of types)
+	createObjectGroupsDeprecated(
+		new SimpleGroup([new SimpleObject(type, 1, 1, 0, 0)], true),
+		0,
 		borderClasses(clPond, 1, 4),
-		num
-	);
-}
+		num);
 
 log("Creating obelisks");
 group = new SimpleGroup(

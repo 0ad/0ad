@@ -303,10 +303,9 @@ for (let type of types)
 RMS.SetProgress(60);
 
 log("Creating grass patches...");
-var sizes = [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)];
-for (let i = 0; i < sizes.length; ++i)
+for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
 	createAreas(
-		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), sizes[i], 0.5),
+		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
 		[
 			new LayeredPainter([tGrassC, tGrassA, tGrassB], [2, 1]),
 			paintClass(clDirt)
@@ -321,10 +320,9 @@ for (let i = 0; i < sizes.length; ++i)
 		scaleByMapSize(20, 80));
 
 log("Creating dirt patches...");
-var sizes = [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)];
-for (let i = 0; i < sizes.length; ++i)
+for (let size of [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)])
 	createAreas(
-		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), sizes[i], 0.5),
+		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
 		[
 			new LayeredPainter([tPlants, tPlants], [1]),
 			paintClass(clDirt)

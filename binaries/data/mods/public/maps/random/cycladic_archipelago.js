@@ -192,10 +192,8 @@ for (let i = 0; i < numPlayers; ++i)
 	);
 	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
 }
-RMS.SetProgress(15);
 
 log("Populating islands ...");
-//nPlayer is the player we are on i is the island we are on
 var nPlayer = 0;
 for (let i = 0; i < numIslands; ++i)
 	if (numPlayers >= 6 || i == startingPlaces[numPlayers-1][nPlayer])
@@ -221,62 +219,53 @@ for (let i = 0; i < numIslands; ++i)
 RMS.SetProgress(20);
 
 log("Creating bumps...");
-placer = new ClumpPlacer(scaleByMapSize(20, 60), 0.3, 0.06, 1);
-painter = new SmoothElevationPainter(ELEVATION_MODIFY, 2, 3);
 createAreasInAreas(
-	placer,
-	painter,
+	new ClumpPlacer(scaleByMapSize(20, 60), 0.3, 0.06, 1),
+	new SmoothElevationPainter(ELEVATION_MODIFY, 2, 3),
 	avoidClasses(clCity, 0),
 	scaleByMapSize(25, 75),15,
-	areas
-);
+	areas);
+
 RMS.SetProgress(34);
 
 log("Creating hills...");
-placer = new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1);
-var terrainPainter = new LayeredPainter(
-	[tCliff, tCliffShrubs],		// terrains
-	[2]								// widths
-);
-var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 12, 2);
 createAreasInAreas(
-	placer,
-	[terrainPainter, elevationPainter, paintClass(clHill)],
+	new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1),
+	[
+		new LayeredPainter([tCliff, tCliffShrubs], [2]),
+		new SmoothElevationPainter(ELEVATION_SET, 12, 2),
+		paintClass(clHill)
+	],
 	avoidClasses(clCity, 15, clHill, 15),
 	scaleByMapSize(5, 30), 15,
-	areas
-);
+	areas);
+
 RMS.SetProgress(38);
 
-// Find all water
 for (var ix = 0; ix < mapSize; ix++)
 	for (var iz = 0; iz < mapSize; iz++)
 		if (getHeight(ix,iz) < 0)
 			addToClass(ix,iz,clWater);
 
 log("Creating forests...");
-var types = [
+var forestTypes = [
 	[[tForestFloor, tGrass, pPalmForest], [tForestFloor, pPalmForest]],
 	[[tForestFloor, tGrass, pPineForest], [tForestFloor, pPineForest]],
 	[[tForestFloor, tGrass, pPoplarForest], [tForestFloor, pPoplarForest]],
 	[[tForestFloor, tGrass, pMainForest], [tForestFloor, pMainForest]]
-];	// some variation
-var size = 5; //size
-var num = scaleByMapSize(10, 64); //number
-for (var i = 0; i < types.length; ++i)
-{
-	placer = new ClumpPlacer(randIntInclusive(6, 17), 0.1, 0.1, 1);
-	painter = new LayeredPainter(
-		types[i],		// terrains
-		[2]											// widths
-		);
+];
+
+for (let type of forestTypes)
 	createAreasInAreas(
-		placer,
-		[painter, paintClass(clForest)],
+		new ClumpPlacer(randIntInclusive(6, 17), 0.1, 0.1, 1),
+		[
+			new LayeredPainter(type, [2]),
+			paintClass(clForest)
+		],
 		avoidClasses(clCity, 1, clWater, 3, clForest, 3, clHill, 1, clBaseResource, 4),
-		num, 20, areas
-	);
-}
+		scaleByMapSize(10, 64),
+		20,
+		areas);
 RMS.SetProgress(42);
 
 log("Creating stone mines...");
@@ -288,7 +277,7 @@ createObjectGroupsByAreasDeprecated(group, 0,
 RMS.SetProgress(46);
 
 log("Creating small stone mines...");
-group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3)], true, clRock);
+var group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3)], true, clRock);
 createObjectGroupsByAreasDeprecated(group, 0,
 	[avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 5, clRock, 2)],
 	scaleByMapSize(4,16), 200, areas
@@ -304,33 +293,31 @@ createObjectGroupsByAreasDeprecated(group, 0,
 RMS.SetProgress(54);
 
 log("Creating shrub patches...");
-var sizes = [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)];
-for (var i = 0; i < sizes.length; i++)
-{
-	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
-	painter = new LayeredPainter([tBeachBlend,tGrassShrubs],[1]);
+for (let size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)])
 	createAreasInAreas(
-		placer,
-		[painter, paintClass(clDirt)],
+		new ClumpPlacer(size, 0.3, 0.06, 0.5),
+		[
+			new LayeredPainter([tBeachBlend, tGrassShrubs], [1]),
+			paintClass(clDirt)
+		],
 		avoidClasses(clWater, 3, clHill, 0, clDirt, 6, clCity, 0, clBaseResource, 4),
-		scaleByMapSize(4, 16), 20, areas
-	);
-}
+		scaleByMapSize(4, 16),
+		20,
+		areas);
 RMS.SetProgress(58);
 
 log("Creating grass patches...");
-var sizes = [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)];
-for (var i = 0; i < sizes.length; i++)
-{
-	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
-	painter = new LayeredPainter([tGrassDry],[]);
+for (let size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)])
 	createAreasInAreas(
-		placer,
-		[painter, paintClass(clDirt)],
+		new ClumpPlacer(size, 0.3, 0.06, 0.5),
+		[
+			new LayeredPainter([tGrassDry], []),
+			paintClass(clDirt)
+		],
 		avoidClasses(clWater, 3, clHill, 0, clDirt, 6, clCity, 0, clBaseResource, 4),
-		scaleByMapSize(4, 16), 20, areas
-	);
-}
+		scaleByMapSize(4, 16),
+		20,
+		areas);
 RMS.SetProgress(62);
 
 log("Creating straggler trees...");

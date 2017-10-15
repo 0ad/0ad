@@ -119,49 +119,31 @@ RMS.SetProgress(20);
 log("Creating big patches...");
 var patches = [tGrass2, tGrass3];
 for (var i = 0; i < patches.length; i++)
-{
-	placer = new ChainPlacer(floor(scaleByMapSize(3, 6)), floor(scaleByMapSize(10, 20)), floor(scaleByMapSize(15, 60)), 1);
-	painter = new TerrainPainter(patches[i]);
 	createAreas(
-		placer,
-		painter,
+		new ChainPlacer(Math.floor(scaleByMapSize(3, 6)), Math.floor(scaleByMapSize(10, 20)), Math.floor(scaleByMapSize(15, 60)), 1),
+		new TerrainPainter(patches[i]),
 		avoidClasses(clPlayer, 10),
-		scaleByMapSize(5, 20)
-	);
-}
+		scaleByMapSize(5, 20));
 
 log("Creating small patches...");
-var patches = [tDirt1, tDirt2, tDirt3];
-var sizes = [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)];
-for (var i = 0; i < sizes.length; i++)
-{
-	for (var j = 0; j < patches.length; ++j)
-	{
-		placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), sizes[i], 1);
-		painter = new TerrainPainter(patches[j]);
+for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
+	for (let patch of [tDirt1, tDirt2, tDirt3])
 		createAreas(
-			placer,
-			painter,
+			new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 1),
+			new TerrainPainter(patch),
 			avoidClasses(clPlayer, 12),
-			scaleByMapSize(4, 15)
-		);
-	}
-}
+			scaleByMapSize(4, 15));
 
 log("Creating water holes...");
-placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), floor(scaleByMapSize(20, 60)), 1);
-var terrainPainter = new LayeredPainter(
-	[tShore, tWater],		// terrains
-	[1]							// widths
-);
-var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -5, 7);
 createAreas(
-	placer,
-	[terrainPainter, elevationPainter, paintClass(clWater)],
+	new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), Math.floor(scaleByMapSize(20, 60)), 1),
+	[
+		new LayeredPainter([tShore, tWater], [1]),
+		new SmoothElevationPainter(ELEVATION_SET, -5, 7),
+		paintClass(clWater)
+	],
 	avoidClasses(clPlayer, 24),
-	scaleByMapSize(1, 3)
-);
-
+	scaleByMapSize(1, 3));
 RMS.SetProgress(55);
 
 var playerConstraint = new AvoidTileClassConstraint(clPlayer, 30);
@@ -181,7 +163,7 @@ for (var i = 0; i < scaleByMapSize(12,30); ++i)
 }
 
 log("Creating metal mines...");
-group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,4)], true, clMetal);
+var group = new SimpleGroup([new SimpleObject(oMetalLarge, 1, 1, 0, 4)], true, clMetal);
 createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clPlayer, 20, clMetal, 10, clRock, 8, clWater, 4),
 	scaleByMapSize(2,8), 100

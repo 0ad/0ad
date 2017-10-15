@@ -131,55 +131,57 @@ for (var i = 0; i < numPlayers; i++)
 
 RMS.SetProgress(30);
 
-for (var i = 0; i < numPlayers; i++)
-{
-	log("Creating oases...");
-	var oRadius = scaleByMapSize(16, 60);
-	placer = new ClumpPlacer(PI*oRadius*oRadius*0.185, 0.6, 0.15, 0, mapSize*(0.5 + 0.18*cos(playerAngle[i]) + scaleByMapSize(1, 4)*cos(playerAngle[i])/100), mapSize*(0.5 + 0.18*sin(playerAngle[i]) + scaleByMapSize(1, 4)*sin(playerAngle[i])/100));
-	painter = new LayeredPainter([tSLush ,[tLush, pForest], [tLush, pForest], tShore, tShore, tWaterDeep], [2, 2, 1, 3, 1]);
-	var elevationPainter = new SmoothElevationPainter(ELEVATION_MODIFY, -3, 10);
-	createArea(placer, [painter, elevationPainter, paintClass(clWater)], null);
-}
+log("Creating oases...");
+for (let i = 0; i < numPlayers; ++i)
+	createArea(
+		new ClumpPlacer(Math.PI * Math.pow(scaleByMapSize(16, 60), 2) * 0.185,
+			0.6,
+			0.15,
+			0,
+			mapSize * (0.5 + 0.18 * Math.cos(playerAngle[i]) + scaleByMapSize(1, 4) * Math.cos(playerAngle[i]) / 100),
+			mapSize * (0.5 + 0.18 * Math.sin(playerAngle[i]) + scaleByMapSize(1, 4) * Math.sin(playerAngle[i]) / 100)),
+		[
+			new LayeredPainter(
+				[tSLush ,[tLush, pForest], [tLush, pForest], tShore, tShore, tWaterDeep],
+				[2, 2, 1, 3, 1]),
+			new SmoothElevationPainter(ELEVATION_MODIFY, -3, 10),
+			paintClass(clWater)
+		],
+		null);
+RMS.SetProgress(50);
 
 log("Creating grass patches...");
-var sizes = [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)];
-for (var i = 0; i < sizes.length; i++)
-{
-	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
-	painter = new LayeredPainter(
-		[[tDirt1,tSandDunes],[tSandDunes,tDirt2], [tDirt2,tDirt1]], 		// terrains
-		[1,1]															// widths
-	);
+for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
 	createAreas(
-		placer,
-		[painter, paintClass(clDirt)],
+		new ClumpPlacer(size, 0.3, 0.06, 0.5),
+		[
+			new LayeredPainter(
+				[[tDirt1, tSandDunes], [tSandDunes, tDirt2], [tDirt2, tDirt1]],
+				[1, 1]
+			),
+			paintClass(clDirt)
+		],
 		avoidClasses(clForest, 0, clGrass, 5, clPlayer, 0, clWater, 1, clDirt, 5),
-		scaleByMapSize(15, 45)
-	);
-}
-
+		scaleByMapSize(15, 45));
 RMS.SetProgress(55);
 
 log("Creating dirt patches...");
-var sizes = [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)];
-for (var i = 0; i < sizes.length; i++)
-{
-	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
-	painter = new LayeredPainter(
-		[[tDirt2,tDirtCracks],[tDirt2,tFineSand], [tDirtCracks,tFineSand]], 		// terrains
-		[1,1]															// widths
-	);
+for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
 	createAreas(
-		placer,
-		[painter, paintClass(clDirt)],
+		new ClumpPlacer(size, 0.3, 0.06, 0.5),
+		[
+			new LayeredPainter(
+				[[tDirt2, tDirtCracks], [tDirt2, tFineSand], [tDirtCracks, tFineSand]],
+				[1, 1]
+			),
+			paintClass(clDirt)
+		],
 		avoidClasses(clForest, 0, clDirt, 5, clPlayer, 0, clWater, 1, clGrass, 5),
-		scaleByMapSize(15, 45)
-	);
-}
+		scaleByMapSize(15, 45));
 RMS.SetProgress(60);
 
 log("Creating stone mines...");
-group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clRock);
+var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clForest, 1, clPlayer, 26, clRock, 10, clWater, 1),
 	2*scaleByMapSize(4,16), 100

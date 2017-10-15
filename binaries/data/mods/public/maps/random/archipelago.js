@@ -154,18 +154,21 @@ for (var i = 0; i < numPlayers; i++)
 }
 
 log("Creating islands...");
-placer = new ChainPlacer(floor(scaleByMapSize(4, 8)), floor(scaleByMapSize(8, 14)), floor(scaleByMapSize(25, 60)), 0.07, undefined, undefined, scaleByMapSize(30,70));
-terrainPainter = new LayeredPainter(
-	[tMainTerrain, tMainTerrain],		// terrains
-	[2]								// widths
-);
-elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 3, 4);
 createAreas(
-	placer,
-	[terrainPainter, elevationPainter, paintClass(clLand)],
+	new ChainPlacer(
+		Math.floor(scaleByMapSize(4, 8)),
+		Math.floor(scaleByMapSize(8, 14)),
+		Math.floor(scaleByMapSize(25, 60)),
+		0.07,
+		undefined,
+		undefined,
+		scaleByMapSize(30, 70)),
+	[
+		new SmoothElevationPainter(ELEVATION_SET, 3, 4),
+		paintClass(clLand)
+	],
 	null,
-	scaleByMapSize(1, 5) * randIntInclusive(5, 10)
-);
+	scaleByMapSize(1, 5) * randIntInclusive(5, 10));
 
 paintTerrainBasedOnHeight(2.4, 3.4, 3, tMainTerrain);
 paintTerrainBasedOnHeight(1, 3, 0, tShore);
@@ -299,8 +302,10 @@ createFood
 RMS.SetProgress(85);
 
 log("Creating straggler trees...");
-var types = [oTree1, oTree2, oTree4, oTree3];	// some variation
-createStragglerTrees(types, [avoidClasses(clForest, 7, clHill, 1, clPlayer, 3, clMetal, 6, clRock, 6), stayClasses(clLand, 7)]);
+createStragglerTrees(
+	[oTree1, oTree2, oTree4, oTree3],
+	[avoidClasses(clForest, 7, clHill, 1, clPlayer, 3, clMetal, 6, clRock, 6), stayClasses(clLand, 7)]);
+
 setWaterWaviness(4.0);
 setWaterType("ocean");
 

@@ -246,23 +246,19 @@ createObjectGroupsDeprecated(group, 0,
 
 RMS.SetProgress(80);
 
-var types = [oCarob, oAleppoPine];	// some variation
-createStragglerTrees(types, avoidClasses(clForest, 1, clHill, 1, clPlayer, 10, clMetal, 6, clRock, 6, clTreasure, 4));
+createStragglerTrees(
+	[oCarob, oAleppoPine],
+	avoidClasses(clForest, 1, clHill, 1, clPlayer, 10, clMetal, 6, clRock, 6, clTreasure, 4));
 
 log("Creating hill trees...");
-var types = [aCarob, aAleppoPine];	// some variation
+var types = [aCarob, aAleppoPine];
 var num = floor(0.2 * g_numStragglerTrees / types.length);
-for (var i = 0; i < types.length; ++i)
-{
-	group = new SimpleGroup(
-		[new SimpleObject(types[i], 1,1, 0,3)],
-		true, clForest
-	);
-	createObjectGroupsDeprecated(group, 0,
+for (let type of types)
+	createObjectGroupsDeprecated(
+		new SimpleGroup([new SimpleObject(type, 1, 1, 0, 3)], true, clForest),
+		0,
 		stayClasses(clHill, 2),
-		num
-	);
-}
+		num);
 
 setFogFactor(0.2);
 setFogThickness(0.14);

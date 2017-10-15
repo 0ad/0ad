@@ -139,15 +139,13 @@ for (var x = 0; x < mapSize; ++x)
 			lakeAreas.push([x, z]);
 
 log("Creating water holes...");
-placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), floor(scaleByMapSize(60, 100)), 5);
-var terrainPainter = new LayeredPainter(
-	[tShore, tWater],		// terrains
-	[1]							// widths
-);
-var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -5, 7);
 createAreas(
-	placer,
-	[terrainPainter, elevationPainter, paintClass(clWater)],
+	new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), Math.floor(scaleByMapSize(60, 100)), 5),
+	[
+		new LayeredPainter([tShore, tWater], [1]),
+		new SmoothElevationPainter(ELEVATION_SET, -5, 7),
+		paintClass(clWater)
+	],
 	avoidClasses(clPlayer, 22, clWater, 8, clHill, 2),
 	scaleByMapSize(2, 5)
 );
@@ -214,14 +212,14 @@ createDecoration(
 	],
 	[
 		scaleByMapSize(8, 131),
-		scaleByMapSize(8, 131),
+		scaleByMapSize(8, 131)
 	],
 	avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0)
 );
 RMS.SetProgress(75);
 
 log("Creating giraffes...");
-group = new SimpleGroup(
+var group = new SimpleGroup(
 	[new SimpleObject(oGiraffe, 2,4, 0,4), new SimpleObject(oGiraffe2, 0,2, 0,4)],
 	true, clFood
 );

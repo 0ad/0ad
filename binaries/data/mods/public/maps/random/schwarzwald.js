@@ -362,15 +362,14 @@ createFood
 RMS.SetProgress(85);
 
 log("Planting reeds...");
-var types = [aReeds];	// some variation
-for (var i = 0; i < types.length; ++i)
-{
-	var group = new SimpleGroup([new SimpleObject(types[i], 1,1, 0,0)], true);
-	createObjectGroupsDeprecated(group, 0,
+var types = [aReeds];
+for (let type of types)
+	createObjectGroupsDeprecated(
+		new SimpleGroup([new SimpleObject(type, 1, 1, 0, 0)], true),
+		0,
 		borderClasses(clWater, 0, 6),
-		scaleByMapSize(960, 2000), 1000
-	);
-}
+		scaleByMapSize(1, 2) * 1000,
+		1000);
 
 RMS.SetProgress(90);
 

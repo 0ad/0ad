@@ -233,7 +233,6 @@ createFood
 
 RMS.SetProgress(85);
 
-var types = [oTree1, oTree2, oTree4, oTree3];	// some variation
-createStragglerTrees(types);
+createStragglerTrees([oTree1, oTree2, oTree4, oTree3]);
 
 ExportMap();

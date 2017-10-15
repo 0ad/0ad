@@ -253,7 +253,6 @@ ExportMap();
 
 function addCenterLake()
 {
-	let lSize = sqrt(sqrt(sqrt(scaleByMapSize(1, 6))));
 	let center = Math.round(fractionToTiles(0.5));
 
 	createArea(
@@ -265,8 +264,7 @@ function addCenterLake()
 			center,
 			center,
 			0,
-			[Math.floor(mapSize * 0.17 * lSize)]
-		),
+			[Math.floor(mapSize * 0.17 * Math.pow(scaleByMapSize(1, 6), 1/8))]),
 		[
 			new LayeredPainter(
 				[

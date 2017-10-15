@@ -68,6 +68,7 @@ createArea(
 		paintClass(clLand)
 	],
 	null);
+RMS.SetProgress(10);
 
 var [playerIDs, playerX, playerZ, playerAngle, startAngle] = radialPlayerPlacement(0.3);
 
@@ -146,6 +147,7 @@ for (let i = 0; i < numPlayers; ++i)
 		addToClass(floor(femaleLocation[0]), floor(femaleLocation[1]), clWomen);
 	}
 }
+RMS.SetProgress(20);
 
 paintTerrainBasedOnHeight(3.12, 29, 1, tCliff);
 paintTileClassBasedOnHeight(3.12, 29, 1, clHill);
@@ -157,6 +159,7 @@ for (let triggerPointTreasure of triggerPointTreasures)
 		[avoidClasses(clForest, 5, clPlayer, 5, clHill, 5), stayClasses(clLand, 5)],
 		scaleByMapSize(40, 140), 100
 	);
+RMS.SetProgress(25);
 
 createBumps(stayClasses(clLand, 5));
 
@@ -166,6 +169,7 @@ createForests(
 	clForest,
 	1,
 	...rBiomeTreeCount(1));
+RMS.SetProgress(30);
 
 if (randBool())
 	createHills(
@@ -179,6 +183,7 @@ else
 		[avoidClasses(clPlayer, 20, clHill, 5, clBaseResource, 3, clWomen, 5), stayClasses(clLand, 5)],
 		clHill,
 		scaleByMapSize(10, 60) * numPlayers);
+RMS.SetProgress(40);
 
 createHills(
 	[tCliff, tCliff, tHill],
