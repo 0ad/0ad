@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="spartan theatron">
+    <variant frequency="0" name="spartan theatron">
       <mesh>structural/spart_theatron_struct.dae</mesh>
       <props>
         <prop actor="props/structures/spartans/theatron_marble.xml" attachpoint="root"/>
@@ -18,6 +18,46 @@
         <texture file="structural/hele_struct_spec.png" name="specTex"/>
         <texture file="structural/ao/spart_theatron.png" name="aoTex"/>
       </textures>
+    </variant>
+    <variant frequency="1" name="new">
+      <mesh>structural/spart_theater.dae</mesh>
+      <props>
+        <prop actor="props/structures/decals/dirt_6x6.xml" attachpoint="root"/>
+        <prop actor="geology/decal_stone_medit_b.xml" attachpoint="root"/>
+        <prop actor="props/flora/decals_flowers_daisies.xml" attachpoint="bush" minheight=""/>
+        <prop actor="props/flora/decals_flowers_daisies.xml" attachpoint="bush_1" minheight=""/>
+        <prop actor="props/flora/decals_flowers_daisies.xml" attachpoint="bush_2"/>
+        <prop actor="props/flora/decals_flowers_daisies.xml" attachpoint="bush_3" minheight=""/>
+        <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush" maxheight="" minheight=""/>
+        <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush_1" maxheight="" minheight=""/>
+        <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush_2" maxheight="" minheight=""/>
+        <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush_3" maxheight="" minheight=""/>
+      </props>
+      <textures>
+        <texture file="structural/sparta_struct.png" name="baseTex"/>
+        <texture file="structural/sparta_struct_norm.png" name="normTex"/>
+        <texture file="structural/sparta_struct_spec.png" name="specTex"/>
+        <texture file="structural/ao/spart_theater_AO.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="ungarrisoned"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_hele.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="alive"/>
+    <variant name="death">
+      <props>
+        <prop attachpoint="garrisoned"/>
+        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_large.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_large_gray.xml" attachpoint="root"/>
+      </props>
     </variant>
   </group>
   <material>player_trans_ao_parallax_spec.xml</material>

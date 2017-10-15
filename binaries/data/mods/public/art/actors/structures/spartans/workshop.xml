@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="new">
+      <mesh>structural/spart_workshop.dae</mesh>
+      <props>
+        <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/celt_barracks.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/iber_corral_mud.xml" attachpoint="root"/>
+        <prop attachpoint=""/>
+      </props>
+      <textures>
+        <texture file="structural/sparta_struct.png" name="baseTex"/>
+        <texture file="structural/sparta_struct_norm.png" name="normTex"/>
+        <texture file="structural/sparta_struct_spec.png" name="specTex"/>
+        <texture file="structural/ao/spart_workshop_AO.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="ungarrisoned"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_hele.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="alive"/>
+    <variant name="death">
+      <props>
+        <prop attachpoint="garrisoned"/>
+        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/spartans/barracks_struct_b.xml" attachpoint="root"/>
+        <prop actor="props/structures/spartans/barracks_props_a.xml" attachpoint="root"/>
+        <prop actor="props/structures/spartans/barracks_props_shields.xml" attachpoint="root"/>
+        <prop actor="props/structures/spartans/barracks_tile_c.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>
