@@ -327,8 +327,9 @@ createFood
 
 RMS.SetProgress(90);
 
+var types = [oDatePalm, oSDatePalm, oCarob, oFanPalm, oPoplar, oCypress];
 createStragglerTrees(
-	[oDatePalm, oSDatePalm, oCarob, oFanPalm, oPoplar, oCypress],
+	types,
 	avoidClasses(clForest, 1, clWater, 2, clPlayer, 12, clMetal, 6, clHill, 1));
 
 log("Creating straggler island trees...");

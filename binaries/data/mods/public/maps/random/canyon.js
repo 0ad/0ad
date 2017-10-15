@@ -74,10 +74,10 @@ for (var i = 0; i < numPlayers; i++)
 	var elevation = 20;
 	var hillSize = PI * radius * radius;
 	// get the x and z in tiles
-	fx = fractionToTiles(playerX[i]);
-	fz = fractionToTiles(playerZ[i]);
-	ix = round(fx);
-	iz = round(fz);
+	var fx = fractionToTiles(playerX[i]);
+	var fz = fractionToTiles(playerZ[i]);
+	var ix = round(fx);
+	var iz = round(fz);
 	// create the hill
 	var placer = new ClumpPlacer(hillSize, 0.65, 0.1, 10, ix, iz);
 	var terrainPainter = new LayeredPainter(
