@@ -323,7 +323,7 @@ MapSidebar::MapSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContaine
 		wxBoxSizer* seedSizer = new wxBoxSizer(wxHORIZONTAL);
 		seedSizer->Add(Tooltipped(new wxTextCtrl(scrolledWindow, ID_RandomSeed, _T("0"), wxDefaultPosition, wxDefaultSize, 0, wxTextValidator(wxFILTER_NUMERIC)),
 			_("Seed value for random map")), wxSizerFlags(1).Expand());
-		seedSizer->Add(Tooltipped(new wxButton(scrolledWindow, ID_RandomReseed, _("R"), wxDefaultPosition, wxSize(24, -1)),
+		seedSizer->Add(Tooltipped(new wxButton(scrolledWindow, ID_RandomReseed, _("R"), wxDefaultPosition, wxSize(40, -1)),
 			_("New random seed")));
 		gridSizer->Add(seedSizer, wxSizerFlags().Expand());
 

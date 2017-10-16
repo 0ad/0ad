@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,13 +23,13 @@
 
 // Some platform dependent sizes
 #if defined(__WXGTK__)
-	#define SIDEBAR_SIZE 250
+	#define SIDEBAR_SIZE 285
 	#define BOTTOMBAR_SIZE 200
 #elif defined(__WXOSX__) || defined(__WXMAC__)
-	#define SIDEBAR_SIZE 250
+	#define SIDEBAR_SIZE 285
 	#define BOTTOMBAR_SIZE 210
 #else	// __MSW__
-	#define SIDEBAR_SIZE 200
+	#define SIDEBAR_SIZE 235
 	#define BOTTOMBAR_SIZE 180
 #endif
 
