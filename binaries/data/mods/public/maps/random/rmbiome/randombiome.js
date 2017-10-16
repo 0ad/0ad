@@ -14,7 +14,7 @@ function currentBiome()
 
 function setSelectedBiome()
 {
-	setBiome(g_MapSettings.Biome);
+	setBiome(g_MapSettings.Biome || "alpine");
 }
 
 function setBiome(biomeID)

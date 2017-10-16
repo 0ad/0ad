@@ -148,49 +148,63 @@ for (var i = 0; i < numPlayers; i++)
 RMS.SetProgress(10);
 
 log("Creating rock patches...");
-placer = new ChainPlacer(1, floor(scaleByMapSize(3, 6)), floor(scaleByMapSize(20, 45)), 0);
-painter = new TerrainPainter(tRocky);
-createAreas(placer, [painter, paintClass(clPatch)],
+createAreas(
+	new ChainPlacer(1, Math.floor(scaleByMapSize(3, 6)), Math.floor(scaleByMapSize(20, 45)), 0),
+	[
+		new TerrainPainter(tRocky),
+		paintClass(clPatch)
+	],
 	avoidClasses(clPatch, 2, clPlayer, 0),
-	scaleByMapSize(5, 20)
-);
-
+	scaleByMapSize(5, 20));
 RMS.SetProgress(15);
 
-var placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), floor(scaleByMapSize(15, 40)), 0);
-var painter = new TerrainPainter([tRocky, tRocks]);
-createAreas(placer, [painter, paintClass(clPatch)],
+log("Creating secondary rock patches...");
+createAreas(
+	new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), Math.floor(scaleByMapSize(15, 40)), 0),
+	[
+		new TerrainPainter([tRocky, tRocks]),
+		paintClass(clPatch)
+	],
 	avoidClasses(clPatch, 2, clPlayer, 4),
-	scaleByMapSize(15, 50)
-);
-
+	scaleByMapSize(15, 50));
 RMS.SetProgress(20);
 
 log("Creating dirt patches...");
-placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), floor(scaleByMapSize(15, 40)), 0);
-painter = new TerrainPainter([tGrass]);
-createAreas(placer, [painter, paintClass(clPatch)],
+createAreas(
+	new ChainPlacer(
+		1,
+		Math.floor(scaleByMapSize(3, 5)),
+		Math.floor(scaleByMapSize(15, 40)),
+		0),
+	[
+		new TerrainPainter([tGrass]),
+		paintClass(clPatch)
+	],
 	avoidClasses(clPatch, 2, clPlayer, 4),
-	scaleByMapSize(15, 50)
-);
-
+	scaleByMapSize(15, 50));
 RMS.SetProgress(25);
 
 log("Creating centeral plateau...");
-var halfSize = mapSize / 2;
-var oRadius = scaleByMapSize(18, 68);
-placer = new ChainPlacer(2, floor(scaleByMapSize(5, 13)), floor(scaleByMapSize(35, 200)), 1, halfSize, halfSize, 0, [floor(oRadius)]);
-painter = new LayeredPainter([tLakebed2, tLakebed1], [6]);
-var elevationPainter = new SmoothElevationPainter(ELEVATION_MODIFY, -10, 8);
-createArea(placer, [painter, elevationPainter, paintClass(clCP)], avoidClasses(clPlayer, 18));
-
+createArea(
+	new ChainPlacer(
+		2,
+		Math.floor(scaleByMapSize(5, 13)),
+		Math.floor(scaleByMapSize(35, 200)),
+		1,
+		mapSize / 2,
+		mapSize / 2,
+		0,
+		[Math.floor(scaleByMapSize(18, 68))]),
+	[
+		new LayeredPainter([tLakebed2, tLakebed1], [6]),
+		new SmoothElevationPainter(ELEVATION_MODIFY, -10, 8),
+		paintClass(clCP)
+	],
+	avoidClasses(clPlayer, 18));
 RMS.SetProgress(30);
 
 log("Creating hills...");
-var numHills = scaleByMapSize(20, 80);
-for (var i = 0; i < numHills; ++i)
-{
-
+for (let i = 0; i < scaleByMapSize(20, 80); ++i)
 	createMountain(
 		floor(scaleByMapSize(40, 60)),
 		floor(scaleByMapSize(3, 4)),
@@ -201,10 +215,7 @@ for (var i = 0; i < numHills; ++i)
 		randIntExclusive(0, mapSize),
 		tCliff,
 		clHill,
-		14
-	);
-}
-
+		14);
 RMS.SetProgress(35);
 
 // calculate desired number of trees for map (based on size)
@@ -220,27 +231,30 @@ log("Creating forests...");
 var types = [
 	[[tDirtMain, tForestFloor, pForestO], [tForestFloor, pForestO]],
 	[[tDirtMain, tForestFloor, pForestO], [tForestFloor, pForestO]]
-];	// some variation
+];
 var size = numForest / (scaleByMapSize(3,6) * numPlayers);
 var num = floor(size / types.length);
-for (var i = 0; i < types.length; ++i)
-{
-	placer = new ChainPlacer(floor(scaleByMapSize(1, 2)), floor(scaleByMapSize(2, 5)), floor(size / floor(scaleByMapSize(8, 3))), 1);
-	painter = new LayeredPainter(
-		types[i],		// terrains
-		[2]											// widths
-		);
+for (let type of types)
 	createAreas(
-		placer,
-		[painter, paintClass(clForest)],
-		avoidClasses(clPlayer, 6, clForest, 10, clHill, 1, clCP, 1),
-		num
-	);
-}
+		new ChainPlacer(
+			Math.floor(scaleByMapSize(1, 2)),
+			Math.floor(scaleByMapSize(2, 5)),
+			Math.floor(size / Math.floor(scaleByMapSize(8, 3))),
+			1),
+		[
+			new LayeredPainter(type, [2]),
+			paintClass(clForest)
+		],
+		avoidClasses(
+			clPlayer, 6,
+			clForest, 10,
+			clHill, 1,
+			clCP, 1),
+		num);
 RMS.SetProgress(50);
 
 log("Creating stone mines...");
-group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4), new RandomObject(aBushes, 2,4, 0,2)], true, clRock);
+var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4), new SimpleObject(oStoneLarge, 1, 1, 0, 4), new RandomObject(aBushes, 2, 4, 0, 2)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clHill, 1, clCP, 1)],
 	scaleByMapSize(2,8), 100
@@ -352,19 +366,24 @@ createObjectGroupsDeprecated(group, 0,
 RMS.SetProgress(90);
 
 log("Creating straggler trees...");
-var types = [oOak];	// some variation
+var types = [oOak];
 var num = floor(numStragglers / types.length);
-for (var i = 0; i < types.length; ++i)
-{
-	group = new SimpleGroup(
-		[new SimpleObject(types[i], 1,1, 0,3)],
-		true, clForest
-	);
-	createObjectGroupsDeprecated(group, 0,
-		avoidClasses(clForest, 1, clHill, 1, clPlayer, 1, clMetal, 6, clRock, 6, clCP, 2),
-		num
-	);
-}
+for (let type of types)
+	createObjectGroupsDeprecated(
+		new SimpleGroup(
+			[new SimpleObject(type, 1, 1, 0, 3)],
+			true,
+			clForest),
+		0,
+		avoidClasses(
+			clForest, 1,
+			clHill, 1,
+			clPlayer, 1,
+			clBaseResource, 6,
+			clMetal, 6,
+			clRock, 6,
+			clCP, 2),
+		num);
 
 setSunColor(1.0, 0.796, 0.374);
 setSunElevation(PI / 6);

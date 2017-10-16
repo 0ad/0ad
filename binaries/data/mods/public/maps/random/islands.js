@@ -172,8 +172,7 @@ var chosenPoint;
 var landAreaLen;
 
 log("Creating big islands...");
-var numIslands = scaleByMapSize(4, 14);
-for (var i = 0; i < numIslands; ++i)
+for (let i = 0; i < scaleByMapSize(4, 14); ++i)
 {
 	landAreaLen = landAreas.length;
 	if (!landAreaLen)
@@ -181,26 +180,30 @@ for (var i = 0; i < numIslands; ++i)
 
 	chosenPoint = pickRandom(landAreas);
 
-	// create big islands
-	placer = new ChainPlacer(floor(scaleByMapSize(4, 8)), floor(scaleByMapSize(8, 14)), floor(scaleByMapSize(25, 60)), 0.07, chosenPoint[0], chosenPoint[1], scaleByMapSize(30,70));
-	//placer = new ClumpPlacer(floor(hillSize*randFloat(0.9,2.1)), 0.80, 0.1, 0.07, chosenPoint[0], chosenPoint[1]);
-	terrainPainter = new LayeredPainter(
-		[tMainTerrain, tMainTerrain],		// terrains
-		[2]								// widths
-	);
-	elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 3, 6);
 	var newIsland = createAreas(
-		placer,
-		[terrainPainter, elevationPainter, paintClass(clLand)],
+		new ChainPlacer(
+			Math.floor(scaleByMapSize(4, 8)),
+			Math.floor(scaleByMapSize(8, 14)),
+			Math.floor(scaleByMapSize(25, 60)),
+			0.07,
+			chosenPoint[0],
+			chosenPoint[1],
+			scaleByMapSize(30, 70)),
+		[
+			new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
+			new SmoothElevationPainter(ELEVATION_SET, 3, 6),
+			paintClass(clLand)
+		],
 		avoidClasses(clLand, 3, clPlayer, 3),
-		1, 1
-	);
+		1,
+		1);
+
 	if (newIsland && newIsland.length)
 	{
 		var n = 0;
-		for (var j = 0; j < landAreaLen; ++j)
+		for (var j = 0; j < landAreas.length; ++j)
 		{
-			var x = landAreas[j][0], z = landAreas[j][1];
+			let [x, z] = landAreas[j];
 			if (playerConstraint.allows(x, z) && landConstraint.allows(x, z))
 				landAreas[n++] = landAreas[j];
 		}
@@ -212,8 +215,7 @@ playerConstraint = new AvoidTileClassConstraint(clPlayer, floor(scaleByMapSize(9
 landConstraint = new AvoidTileClassConstraint(clLand, floor(scaleByMapSize(9,12)));
 
 log("Creating small islands...");
-numIslands = scaleByMapSize(6, 18) * scaleByMapSize(1,3);
-for (var i = 0; i < numIslands; ++i)
+for (let i = 0; i < 6 * Math.pow(scaleByMapSize(1, 3), 2); ++i)
 {
 	landAreaLen = landAreas.length;
 	if (!landAreaLen)
@@ -221,24 +223,30 @@ for (var i = 0; i < numIslands; ++i)
 
 	chosenPoint = pickRandom(landAreas);
 
-	placer = new ChainPlacer(floor(scaleByMapSize(4, 7)), floor(scaleByMapSize(7, 10)), floor(scaleByMapSize(16, 40)), 0.07, chosenPoint[0], chosenPoint[1], scaleByMapSize(22,40));
-	terrainPainter = new LayeredPainter(
-		[tMainTerrain, tMainTerrain],		// terrains
-		[2]								// widths
-	);
-	elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 3, 6);
 	createAreas(
-		placer,
-		[terrainPainter, elevationPainter, paintClass(clLand)],
+		new ChainPlacer(
+			Math.floor(scaleByMapSize(4, 7)),
+			Math.floor(scaleByMapSize(7, 10)),
+			Math.floor(scaleByMapSize(16, 40)),
+			0.07,
+			chosenPoint[0],
+			chosenPoint[1],
+			scaleByMapSize(22, 40)),
+		[
+			new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
+			new SmoothElevationPainter(ELEVATION_SET, 3, 6),
+			paintClass(clLand)
+		],
 		avoidClasses(clLand, 3, clPlayer, 3),
-		1, 1
-	);
+		1,
+		1);
+
 	if (newIsland !== undefined)
 	{
 		var temp = [];
 		for (var j = 0; j < landAreaLen; ++j)
 		{
-			var x = landAreas[j][0], z = landAreas[j][1];
+			let [x, z] = landAreas[j];
 			if (playerConstraint.allows(x, z) && landConstraint.allows(x, z))
 					temp.push([x, z]);
 		}
@@ -262,28 +270,22 @@ for (var i = 0; i < numPlayers; i++)
 }
 
 log("Creating bumps...");
-placer = new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1);
-painter = new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2);
 createAreas(
-	placer,
-	painter,
+	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
+	new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2),
 	[avoidClasses(clPlayer, 0), stayClasses(clLand, 3)],
-	scaleByMapSize(20, 100)
-);
+	scaleByMapSize(20, 100));
 
 log("Creating hills...");
-placer = new ChainPlacer(1, floor(scaleByMapSize(4, 6)), floor(scaleByMapSize(16, 40)), 0.5);
-terrainPainter = new LayeredPainter(
-	[tCliff, tHill],		// terrains
-	[2]								// widths
-);
-elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 18, 2);
 createAreas(
-	placer,
-	[terrainPainter, elevationPainter, paintClass(clHill)],
+	new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(16, 40)), 0.5),
+	[
+		new LayeredPainter([tCliff, tHill], [2]),
+		new SmoothElevationPainter(ELEVATION_SET, 18, 2),
+		paintClass(clHill)
+	],
 	[avoidClasses(clPlayer, 2, clHill, 15), stayClasses(clLand, 0)],
-	scaleByMapSize(4, 13)
-);
+	scaleByMapSize(4, 13));
 
 // calculate desired number of trees for map (based on size)
 if (currentBiome() == "savanna")
@@ -312,66 +314,48 @@ log("Creating forests...");
 var types = [
 	[[tForestFloor2, tMainTerrain, pForest1], [tForestFloor2, pForest1]],
 	[[tForestFloor1, tMainTerrain, pForest2], [tForestFloor1, pForest2]]
-];	// some variation
+];
 
 if (currentBiome() != "savanna")
 {
 	var size = numForest / (scaleByMapSize(3,6) * numPlayers);
 	var num = floor(size / types.length);
-	for (var i = 0; i < types.length; ++i)
-	{
-		placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), numForest / (num * floor(scaleByMapSize(2,5))), 0.5);
-		painter = new LayeredPainter(
-			types[i],		// terrains
-			[2]											// widths
-			);
+	for (let type of types)
 		createAreas(
-			placer,
-			[painter, paintClass(clForest)],
+			new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), numForest / (num * Math.floor(scaleByMapSize(2, 5))), 0.5),
+			[
+				new LayeredPainter(type, [2]),
+				paintClass(clForest)
+			],
 			[avoidClasses(clPlayer, 0, clForest, 10, clHill, 0), stayClasses(clLand, 6)],
-			num
-		);
-	}
+			num);
 }
 
 RMS.SetProgress(50);
 log("Creating dirt patches...");
-var sizes = [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)];
-var numb = 1;
-if (currentBiome() == "savanna")
-	numb = 3;
-for (var i = 0; i < sizes.length; i++)
-{
-	placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), sizes[i], 0.5);
-	painter = new LayeredPainter(
-		[[tMainTerrain,tTier1Terrain],[tTier1Terrain,tTier2Terrain], [tTier2Terrain,tTier3Terrain]], 		// terrains
-		[1,1]															// widths
-	);
+var numberOfPatches = scaleByMapSize(15, 45) * (currentBiome() == "savanna" ? 3 : 1);
+for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
 	createAreas(
-		placer,
-		[painter, paintClass(clDirt)],
+		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
+		[
+			new LayeredPainter([[tMainTerrain, tTier1Terrain], [tTier1Terrain, tTier2Terrain], [tTier2Terrain, tTier3Terrain]], [1, 1]),
+			paintClass(clDirt)
+		],
 		[avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 0), stayClasses(clLand, 6)],
-		numb*scaleByMapSize(15, 45)
-	);
-}
+		numberOfPatches);
 
 log("Creating grass patches...");
-var sizes = [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)];
-for (var i = 0; i < sizes.length; i++)
-{
-	placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), sizes[i], 0.5);
-	painter = new TerrainPainter(tTier4Terrain);
+for (let size of [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)])
 	createAreas(
-		placer,
-		painter,
+		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
+		new TerrainPainter(tTier4Terrain),
 		[avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 0), stayClasses(clLand, 6)],
-		numb*scaleByMapSize(15, 45)
-	);
-}
+		numberOfPatches);
+
 RMS.SetProgress(55);
 
 log("Creating stone mines...");
-group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clRock);
+var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4), new SimpleObject(oStoneLarge, 1, 1, 0, 4)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clForest, 1, clPlayer, 0, clRock, 10, clHill, 1), stayClasses(clLand, 5)],
 	scaleByMapSize(4,16), 100
@@ -462,19 +446,14 @@ createObjectGroupsDeprecated(group, 0,
 RMS.SetProgress(85);
 
 log("Creating straggler trees...");
-var types = [oTree1, oTree2, oTree4, oTree3];	// some variation
+var types = [oTree1, oTree2, oTree4, oTree3];
 var num = floor(numStragglers / types.length);
-for (var i = 0; i < types.length; ++i)
-{
-	group = new SimpleGroup(
-		[new SimpleObject(types[i], 1,1, 0,3)],
-		true, clForest
-	);
-	createObjectGroupsDeprecated(group, 0,
+for (let type of types)
+	createObjectGroupsDeprecated(
+		new SimpleGroup([new SimpleObject(type, 1, 1, 0, 3)], true, clForest),
+		0,
 		[avoidClasses(clForest, 1, clHill, 1, clPlayer, 0, clMetal, 6, clRock, 6), stayClasses(clLand, 6)],
-		num
-	);
-}
+		num);
 
 var planetm = 1;
 if (currentBiome() == "tropic")

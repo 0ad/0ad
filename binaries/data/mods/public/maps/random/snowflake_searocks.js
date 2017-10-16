@@ -1611,28 +1611,19 @@ log("Creating forests...");
 var types = [
 	[[tForestFloor2, tMainTerrain, pForest1], [tForestFloor2, pForest1]],
 	[[tForestFloor1, tMainTerrain, pForest2], [tForestFloor1, pForest2]]
-];	// some variation
+];
 
-if (currentBiome() == "savanna")
-	var size = numForest / (0.5 * scaleByMapSize(2,8) * numPlayers);
-else
-	var size = numForest / (scaleByMapSize(2,8) * numPlayers);
-
+var size = numForest / scaleByMapSize(2, 8) * numPlayers * (currentBiome() == "savanna" ? 2 : 1);
 var num = floor(size / types.length);
-for (var i = 0; i < types.length; ++i)
-{
-	placer = new ClumpPlacer(numForest / num, 0.1, 0.1, 1);
-	painter = new LayeredPainter(
-		types[i],		// terrains
-		[2]											// widths
-		);
+for (let type of types)
 	createAreas(
-		placer,
-		[painter, paintClass(clForest)],
+		new ClumpPlacer(numForest / num, 0.1, 0.1, 1),
+		[
+			new LayeredPainter(type, [2]),
+			paintClass(clForest)
+		],
 		[avoidClasses(clPlayer, 6, clForest, 10, clHill, 0), stayClasses(clLand, 4)],
-		num
-	);
-}
+		num);
 RMS.SetProgress(55);
 
 log("Creating stone mines...");
@@ -1658,35 +1649,23 @@ createObjectGroupsDeprecated(group, 0,
 
 RMS.SetProgress(65);
 log("Creating dirt patches...");
-var sizes = [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)];
-for (var i = 0; i < sizes.length; i++)
-{
-	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
-	painter = new LayeredPainter(
-		[[tMainTerrain,tTier1Terrain],[tTier1Terrain,tTier2Terrain], [tTier2Terrain,tTier3Terrain]], 		// terrains
-		[1,1]															// widths
-	);
+for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
 	createAreas(
-		placer,
-		[painter, paintClass(clDirt)],
+		new ClumpPlacer(size, 0.3, 0.06, 0.5),
+		[
+			new LayeredPainter([[tMainTerrain, tTier1Terrain],[tTier1Terrain, tTier2Terrain], [tTier2Terrain, tTier3Terrain]], [1, 1]),
+			paintClass(clDirt)
+		],
 		[avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12), stayClasses(clLand, 5)],
-		scaleByMapSize(15, 45)
-	);
-}
+		scaleByMapSize(15, 45));
 
 log("Creating grass patches...");
-var sizes = [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)];
-for (var i = 0; i < sizes.length; i++)
-{
-	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
-	painter = new TerrainPainter(tTier4Terrain);
+for (let size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)])
 	createAreas(
-		placer,
-		painter,
+		new ClumpPlacer(size, 0.3, 0.06, 0.5),
+		new TerrainPainter(tTier4Terrain),
 		[avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12), stayClasses(clLand, 5)],
-		scaleByMapSize(15, 45)
-	);
-}
+		scaleByMapSize(15, 45));
 
 log("Creating small decorative rocks...");
 group = new SimpleGroup(
@@ -1746,19 +1725,14 @@ createObjectGroupsDeprecated(group, 0,
 RMS.SetProgress(85);
 
 log("Creating straggler trees...");
-var types = [oTree1, oTree2, oTree4, oTree3];	// some variation
+var types = [oTree1, oTree2, oTree4, oTree3];
 var num = floor(numStragglers / types.length);
-for (var i = 0; i < types.length; ++i)
-{
-	group = new SimpleGroup(
-		[new SimpleObject(types[i], 1,1, 0,3)],
-		true, clForest
-	);
-	createObjectGroupsDeprecated(group, 0,
+for (let type of types)
+	createObjectGroupsDeprecated(
+		new SimpleGroup([new SimpleObject(type, 1, 1, 0, 3)], true, clForest),
+		0,
 		[avoidClasses(clForest, 1, clHill, 1, clPlayer, 9, clMetal, 6, clRock, 6), stayClasses(clLand, 4)],
-		num
-	);
-}
+		num);
 
 var planetm = 1;
 if (currentBiome() == "tropic")

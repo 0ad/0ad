@@ -207,15 +207,13 @@ for (var i = 0; i < numLakes; ++i)
 
 	let chosenPoint = pickRandom(lakeAreas);
 
-	placer = new ChainPlacer(1, floor(scaleByMapSize(4, 8)), floor(scaleByMapSize(40, 180)), 0.7, chosenPoint[0], chosenPoint[1]);
-	var terrainPainter = new LayeredPainter(
-		[tShore, tWater, tWater],		// terrains
-		[1, 3]								// widths
-	);
-	var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -5, 5);
-	var newLake = createAreas(
-		placer,
-		[terrainPainter, elevationPainter, paintClass(clWater)],
+	let newLake = createAreas(
+		new ChainPlacer(1, Math.floor(scaleByMapSize(4, 8)), Math.floor(scaleByMapSize(40, 180)), 0.7, chosenPoint[0], chosenPoint[1]),
+		[
+			new LayeredPainter([tShore, tWater, tWater], [1, 3]),
+			new SmoothElevationPainter(ELEVATION_SET, -5, 5),
+			paintClass(clWater)
+		],
 		avoidClasses(clPlayer, 20, clWater, 8),
 		1, 1
 	);

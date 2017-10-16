@@ -34,7 +34,6 @@ const aRockMedium = "actor|geology/stone_granite_med.xml";
 const aBushMedium = "actor|props/flora/bush_medit_me_lush.xml";
 const aBushSmall = "actor|props/flora/bush_medit_sm_lush.xml";
 
-// terrain + entity (for painting)
 const pForestD = [tGrassDForest + TERRAIN_SEPARATOR + oPoplar, tGrassDForest];
 const pForestP = [tGrassPForest + TERRAIN_SEPARATOR + oOak, tGrassPForest];
 
@@ -164,46 +163,34 @@ paintRiver({
 RMS.SetProgress(20);
 
 log("Creating fish...");
-
-num = scaleByMapSize(10, 20);
-for (var i=0; i < num; i++){
-group = new SimpleGroup(
-	[new SimpleObject(oFish, 2,3, 0,2)],
-	true, clFood
-);
-createObjectGroupsDeprecated(group, 0,
-	[stayClasses(clWater, 2), avoidClasses(clFood, 3)],
-	numPlayers, 50
-);
-}
-
+for (let i = 0; i < scaleByMapSize(10, 20); ++i)
+	createObjectGroupsDeprecated(
+		new SimpleGroup([new SimpleObject(oFish, 2, 3, 0, 2)], true, clFood),
+		0,
+		[stayClasses(clWater, 2), avoidClasses(clFood, 3)],
+		numPlayers,
+		50);
 RMS.SetProgress(25);
 
 log("Creating bumps...");
-placer = new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1);
-painter = new SmoothElevationPainter(ELEVATION_MODIFY, 4, 3);
 createAreas(
-	placer,
-	painter,
+	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
+	new SmoothElevationPainter(ELEVATION_MODIFY, 4, 3),
 	stayClasses(clHighlands, 1),
-	scaleByMapSize(300, 600)
-);
+	scaleByMapSize(300, 600));
 
 RMS.SetProgress(30);
 
 log("Creating hills...");
-placer = new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1);
-var terrainPainter = new LayeredPainter(
-	[tCliff, tHill],		// terrains
-	[2]								// widths
-);
-var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 15, 2);
 createAreas(
-	placer,
-	[terrainPainter, elevationPainter, paintClass(clHill)],
+	new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1),
+	[
+		new LayeredPainter([tCliff, tHill], [2]),
+		new SmoothElevationPainter(ELEVATION_SET, 15, 2),
+		paintClass(clHill)
+	],
 	avoidClasses(clSea, 5, clPlayer, 20, clWater, 5, clHill, 15, clHighlands, 5),
-	scaleByMapSize(1, 4) * numPlayers
-);
+	scaleByMapSize(1, 4) * numPlayers);
 
 RMS.SetProgress(35);
 
@@ -219,78 +206,56 @@ var numStragglers = totalTrees * (1.0 - P_FOREST);
 log("Creating mainland forests...");
 var types = [
 	[[tGrassDForest, tGrass, pForestD], [tGrassDForest, pForestD]]
-];	// some variation
-var size = numForest*1.3 / (scaleByMapSize(2,8) * numPlayers);
-var num = floor(0.7*size / types.length);
-for (var i = 0; i < types.length; ++i)
-{
-	placer = new ClumpPlacer(numForest / num, 0.1, 0.1, 1);
-	painter = new LayeredPainter(
-		types[i],		// terrains
-		[2]											// widths
-		);
+];
+var size = numForest * 1.3 / (scaleByMapSize(2,8) * numPlayers);
+var num = Math.floor(0.7 * size / types.length);
+for (let type of types)
 	createAreas(
-		placer,
-		[painter, paintClass(clForest)],
+		new ClumpPlacer(numForest / num, 0.1, 0.1, 1),
+		[
+			new LayeredPainter(type, [2]),
+			paintClass(clForest)
+		],
 		avoidClasses(clPlayer, 20, clWater, 3, clForest, 10, clHill, 0, clSea, 6, clBaseResource, 3),
-		num
-	);
-}
+		num);
 RMS.SetProgress(45);
 
 log("Creating highland forests...");
 var types = [
 	[[tGrassDForest, tGrass, pForestP], [tGrassDForest, pForestP]]
-];	// some variation
+];
 var size = numForest / (scaleByMapSize(2,8) * numPlayers);
 var num = floor(size / types.length);
-for (var i = 0; i < types.length; ++i)
-{
-	placer = new ClumpPlacer(numForest / num, 0.1, 0.1, 1);
-	painter = new LayeredPainter(
-		types[i],		// terrains
-		[2]											// widths
-		);
+for (let type of types)
 	createAreas(
-		placer,
-		[painter, paintClass(clForest)],
+		new ClumpPlacer(numForest / num, 0.1, 0.1, 1),
+		[
+			new LayeredPainter(type, [2]),
+			paintClass(clForest)
+		],
 		avoidClasses(clPlayer, 20, clWater, 3, clForest, 2, clHill, 0, clSea, 6, clFlatlands, 3),
-		num
-	);
-}
+		num);
 RMS.SetProgress(70);
 
 log("Creating dirt patches...");
-var sizes = [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)];
-for (var i = 0; i < sizes.length; i++)
-{
-	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
-	painter = new LayeredPainter(
-		[[tGrass,tGrassA],[tGrassA,tGrassB], [tGrassB,tGrassC]], 		// terrains
-		[1,1]															// widths
-	);
+for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
 	createAreas(
-		placer,
-		[painter, paintClass(clDirt)],
+		new ClumpPlacer(size, 0.3, 0.06, 0.5),
+		[
+			new LayeredPainter([[tGrass, tGrassA], [tGrassA, tGrassB], [tGrassB, tGrassC]], [1, 1]),
+			paintClass(clDirt)
+		],
 		avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 4, clSea, 0),
-		scaleByMapSize(15, 45)
-	);
-}
+		scaleByMapSize(15, 45));
 RMS.SetProgress(75);
 
 log("Creating grass patches...");
-var sizes = [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)];
-for (var i = 0; i < sizes.length; i++)
-{
-	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
-	painter = new LayeredPainter([tGrassC, tGrassPatch], [2]);
+for (let size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)])
 	createAreas(
-		placer,
-		painter,
-		avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 4, clSea, 0),
-		scaleByMapSize(15, 45)
-	);
-}
+		new ClumpPlacer(size, 0.3, 0.06, 0.5),
+		new LayeredPainter([tGrassC, tGrassPatch], [2]),
+		avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 6, clSea, 0, clBaseResource, 6),
+		scaleByMapSize(15, 45));
 
 RMS.SetProgress(80);
 
@@ -381,19 +346,14 @@ createObjectGroupsDeprecated(group, 0,
 );
 
 log("Creating straggler trees...");
-var types = [oPoplar, oPalm, oApple];	// some variation
+var types = [oPoplar, oPalm, oApple];
 var num = floor(numStragglers / types.length);
-for (var i = 0; i < types.length; ++i)
-{
-	group = new SimpleGroup(
-		[new SimpleObject(types[i], 1,1, 0,3)],
-		true, clForest
-	);
-	createObjectGroupsDeprecated(group, 0,
+for (let type of types)
+	createObjectGroupsDeprecated(
+		new SimpleGroup([new SimpleObject(type, 1, 1, 0, 3)], true, clForest),
+		0,
 		avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 10, clMetal, 6, clRock, 6, clSea, 1, clHighlands, 25),
-		num
-	);
-}
+		num);
 
 log("Creating small grass tufts...");
 group = new SimpleGroup(

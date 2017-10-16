@@ -165,15 +165,13 @@ RMS.SetProgress(10);
 
 log("Creating lakes...");
 var numLakes = round(scaleByMapSize(1,4) * numPlayers);
-placer = new ClumpPlacer(scaleByMapSize(100,250), 0.8, 0.1, 10);
-terrainPainter = new LayeredPainter(
-	[tShoreBlend, tShore, tWater],		// terrains
-	[1,1]							// widths
-);
-elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -7, 6);
 var waterAreas = createAreas(
-	placer,
-	[terrainPainter, elevationPainter, paintClass(clWater)],
+	new ClumpPlacer(scaleByMapSize(100, 250), 0.8, 0.1, 10),
+	[
+		new LayeredPainter([tShoreBlend, tShore, tWater], [1, 1]),
+		new SmoothElevationPainter(ELEVATION_SET, -7, 6),
+		paintClass(clWater)
+	],
 	avoidClasses(clPlayer, 2, clWater, 20),
 	numLakes
 );
@@ -301,14 +299,14 @@ createFood
 );
 RMS.SetProgress(85);
 
-log("Creating metal mines...");
-var types = [oOak, oOakLarge, oPine, oApple];	// some variation
-createStragglerTrees(types, avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 1, clMetal, 6, clRock, 6));
+createStragglerTrees(
+	[oOak, oOakLarge, oPine, oApple],
+	avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 1, clMetal, 6, clRock, 6));
 RMS.SetProgress(90);
 
 setSkySet("cirrus");
 setWaterColor(0.447, 0.412, 0.322);			// muddy brown
-setWaterTint(0.447, 0.412, 0.322);				// muddy brown
+setWaterTint(0.447, 0.412, 0.322);
 setWaterMurkiness(1.0);
 setWaterWaviness(3.0);
 setWaterType("lake");

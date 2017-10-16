@@ -123,17 +123,13 @@ for (var i = 0; i < numPlayers; i++)
 RMS.SetProgress(20);
 
 log("Creating bumps...");
-placer = new ChainPlacer(1, floor(scaleByMapSize(4, 6)), floor(scaleByMapSize(2, 5)), 0.5);
-painter = new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2);
 createAreas(
-	placer,
-	painter,
+	new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(2, 5)), 0.5),
+	new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2),
 	avoidClasses(clPlayer, 13),
-	scaleByMapSize(300, 800)
-);
+	scaleByMapSize(300, 800));
 
 // calculate desired number of trees for map (based on size)
-
 var MIN_TREES = 220;
 var MAX_TREES = 1000;
 var P_FOREST = 0.65;
@@ -143,26 +139,18 @@ var numForest = totalTrees * P_FOREST;
 var numStragglers = totalTrees * (1.0 - P_FOREST);
 
 log("Creating forests...");
-var types = [[[tForestFloor, tGrass, pForest], [tForestFloor, pForest]]];	// some variation
-
+var types = [[[tForestFloor, tGrass, pForest], [tForestFloor, pForest]]];
 var size = numForest / (scaleByMapSize(2,8) * numPlayers);
-
 var num = 4 * floor(size / types.length);
-for (var i = 0; i < types.length; ++i)
-{
-	placer = new ChainPlacer(1, floor(scaleByMapSize(2, 3)), 4, 1);
-	painter = new LayeredPainter(
-		types[i],		// terrains
-		[2]											// widths
-		);
+for (let type of types)
 	createAreas(
-		placer,
-		[painter, paintClass(clForest)],
+		new ChainPlacer(1, Math.floor(scaleByMapSize(2, 3)), 4, 1),
+		[
+			new LayeredPainter(type, [2]),
+			paintClass(clForest)
+		],
 		avoidClasses(clPlayer, 13, clForest, 20, clHill, 1),
-		num
-	);
-}
-
+		num);
 RMS.SetProgress(50);
 
 log("Creating grass patches...");
@@ -281,19 +269,14 @@ createObjectGroupsDeprecated(group, 0,
 RMS.SetProgress(85);
 
 log("Creating straggler trees...");
-var types = [oBush, oPoplar];	// some variation
+var types = [oBush, oPoplar];
 var num = floor(numStragglers / types.length);
-for (var i = 0; i < types.length; ++i)
-{
-	group = new SimpleGroup(
-		[new SimpleObject(types[i], 1,1, 0,3)],
-		true, clForest
-	);
-	createObjectGroupsDeprecated(group, 0,
+for (let type of types)
+	createObjectGroupsDeprecated(
+		new SimpleGroup([new SimpleObject(type, 1, 1, 0, 3)], true, clForest),
+		0,
 		avoidClasses(clForest, 1, clHill, 1, clPlayer, 13, clMetal, 6, clRock, 6),
-		num
-	);
-}
+		num);
 
 log("Creating large grass tufts...");
 group = new SimpleGroup(

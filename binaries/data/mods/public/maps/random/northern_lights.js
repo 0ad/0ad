@@ -134,37 +134,28 @@ paintRiver({
 
 log("Creating shores...");
 for (var i = 0; i < scaleByMapSize(20,120); i++)
-{
-	placer = new ChainPlacer(
-		1,
-		Math.floor(scaleByMapSize(4, 6)),
-		Math.floor(scaleByMapSize(16, 30)),
-		1,
-		randIntExclusive(0.1 * mapSize, 0.9 * mapSize),
-		randIntExclusive(0.67 * mapSize, 0.74 * mapSize));
-
-	var terrainPainter = new LayeredPainter(
-		[tSnowA, tSnowA],		// terrains
-		[2]								// widths
-	);
-	var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 3, 3);
 	createArea(
-		placer,
-		[terrainPainter, elevationPainter, unPaintClass(clWater)],
-		null
-	);
-}
+		new ChainPlacer(
+			1,
+			Math.floor(scaleByMapSize(4, 6)),
+			Math.floor(scaleByMapSize(16, 30)),
+			1,
+			randIntExclusive(0.1 * mapSize, 0.9 * mapSize),
+			randIntExclusive(0.67 * mapSize, 0.74 * mapSize)),
+		[
+			new LayeredPainter([tSnowA, tSnowA], [2]),
+			new SmoothElevationPainter(ELEVATION_SET, 3, 3), unPaintClass(clWater)
+		],
+		null);
 
 log("Creating islands...");
-placer = new ChainPlacer(1, floor(scaleByMapSize(4, 6)), floor(scaleByMapSize(16, 40)), 0.1);
-var terrainPainter = new LayeredPainter(
-	[tSnowA, tSnowA],		// terrains
-	[3]								// widths
-);
-var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 3, 3);
 createAreas(
-	placer,
-	[terrainPainter, elevationPainter, unPaintClass(clWater)],
+	new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(16, 40)), 0.1),
+	[
+		new LayeredPainter([tSnowA, tSnowA], [3]),
+		new SmoothElevationPainter(ELEVATION_SET, 3, 3),
+		unPaintClass(clWater)
+	],
 	stayClasses(clWater, 7),
 	scaleByMapSize(10, 80)
 );
@@ -172,19 +163,15 @@ createAreas(
 paintTerrainBasedOnHeight(-6, 1, 1, tWater);
 
 log("Creating lakes...");
-var numLakes = round(scaleByMapSize(1,4) * numPlayers);
-var placer = new ChainPlacer(1, floor(scaleByMapSize(5, 7)), floor(scaleByMapSize(20, 50)), 0.1);
-var terrainPainter = new LayeredPainter(
-	[tShoreBlend, tShore, tWater],		// terrains
-	[1,1]							// widths
-);
-var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -4, 3);
-var waterAreas = createAreas(
-	placer,
-	[terrainPainter, elevationPainter, paintClass(clWater)],
+createAreas(
+	new ChainPlacer(1, Math.floor(scaleByMapSize(5, 7)), Math.floor(scaleByMapSize(20, 50)), 0.1),
+	[
+		new LayeredPainter([tShoreBlend, tShore, tWater], [1, 1]),
+		new SmoothElevationPainter(ELEVATION_SET, -4, 3),
+		paintClass(clWater)
+	],
 	avoidClasses(clPlayer, 20, clWater, 20),
-	numLakes
-);
+	Math.round(scaleByMapSize(1, 4) * numPlayers));
 
 paintTerrainBasedOnHeight(1, 2.8, 1, tShoreBlend);
 paintTileClassBasedOnHeight(-6, 0.5, 1, clWater);
@@ -192,21 +179,18 @@ paintTileClassBasedOnHeight(-6, 0.5, 1, clWater);
 RMS.SetProgress(45);
 
 log("Creating hills...");
-placer = new ChainPlacer(1, floor(scaleByMapSize(4, 6)), floor(scaleByMapSize(16, 40)), 0.1);
-var terrainPainter = new LayeredPainter(
-	[tCliff, tSnowA],		// terrains
-	[3]								// widths
-);
-var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 25, 3);
 createAreas(
-	placer,
-	[terrainPainter, elevationPainter, paintClass(clHill)],
+	new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(16, 40)), 0.1),
+	[
+		new LayeredPainter([tCliff, tSnowA], [3]),
+		new SmoothElevationPainter(ELEVATION_SET, 25, 3),
+		paintClass(clHill)
+	],
 	avoidClasses(clPlayer, 20, clHill, 15, clWater, 2, clBaseResource, 2),
 	scaleByMapSize(1, 4) * numPlayers
 );
 
 // calculate desired number of trees for map (based on size)
-
 var MIN_TREES = 100;
 var MAX_TREES = 625;
 var P_FOREST = 0.7;
@@ -219,69 +203,63 @@ log("Creating forests...");
 var types = [
 	[[tSnowA, tSnowA, tSnowA, tSnowA, pForestD], [tSnowA, tSnowA, tSnowA, pForestD]],
 	[[tSnowA, tSnowA, tSnowA, tSnowA, pForestS], [tSnowA, tSnowA, tSnowA, pForestS]]
-];	// some variation
+];
 
 var size = numForest / (scaleByMapSize(3,6) * numPlayers);
 
 var num = floor(size / types.length);
-for (var i = 0; i < types.length; ++i)
-{
-	placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), numForest / (num * floor(scaleByMapSize(2,4))), 1);
-	painter = new LayeredPainter(
-		types[i],		// terrains
-		[2]											// widths
-		);
+for (let type of types)
 	createAreas(
-		placer,
-		[painter, paintClass(clForest)],
+		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), numForest / (num * Math.floor(scaleByMapSize(2, 4))), 1),
+		[
+			new LayeredPainter(type, [2]),
+			paintClass(clForest)
+		],
 		avoidClasses(clPlayer, 20, clForest, 20, clHill, 0, clWater, 8),
-		num
-	);
-}
+		num);
 
 log("Creating iceberg...");
-group = new SimpleGroup([new SimpleObject(aIceberg, 0,2, 0,4)], true, clRock);
-createObjectGroupsDeprecated(group, 0,
+createObjectGroupsDeprecated(
+	new SimpleGroup([new SimpleObject(aIceberg, 0, 2, 0, 4)], true, clRock),
+	0,
 	[avoidClasses(clRock, 6), stayClasses(clWater, 4)],
-	scaleByMapSize(4,16), 100
-);
-
+	scaleByMapSize(4, 16),
+	100);
 RMS.SetProgress(70);
 
 log("Creating dirt patches...");
-var sizes = [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)];
-for (var i = 0; i < sizes.length; i++)
-{
-	placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), sizes[i], 0.5);
-	painter = new LayeredPainter(
-		[tSnowD,tSnowB,tSnowC], 		// terrains
-		[2,1]															// widths
-	);
+for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
 	createAreas(
-		placer,
-		[painter, paintClass(clDirt)],
-		avoidClasses(clWater, 8, clForest, 0, clHill, 0, clPlayer, 20, clDirt, 16),
-		scaleByMapSize(20, 80)
-	);
-}
-var sizes = [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)];
-for (var i = 0; i < sizes.length; i++)
-{
-	placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), sizes[i], 0.5);
-	painter = new LayeredPainter(
-		[tSnowE,tSnowE], 		// terrains
-		[1]															// widths
-	);
+		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
+		[
+			new LayeredPainter([tSnowD, tSnowB, tSnowC], [2, 1]),
+			paintClass(clDirt)
+		],
+		avoidClasses(
+			clWater, 8,
+			clForest, 0,
+			clHill, 0,
+			clPlayer, 20,
+			clDirt, 16),
+		scaleByMapSize(20, 80));
+
+for (let size of [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)])
 	createAreas(
-		placer,
-		[painter, paintClass(clDirt)],
-		avoidClasses(clWater, 8, clForest, 0, clHill, 0, clPlayer, 20, clDirt, 16),
-		scaleByMapSize(20, 80)
-	);
-}
+		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
+		[
+			new LayeredPainter([tSnowE, tSnowE], [1]),
+			paintClass(clDirt)
+		],
+		avoidClasses(
+			clWater, 8,
+			clForest, 0,
+			clHill, 0,
+			clPlayer, 20,
+			clDirt, 16),
+		scaleByMapSize(20, 80));
 
 log("Creating stone mines...");
-group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clRock);
+var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4), new SimpleObject(oStoneLarge, 1, 1, 0, 4)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 3, clForest, 1, clPlayer, 20, clRock, 10, clHill, 1),
 	scaleByMapSize(8,32), 100
@@ -303,19 +281,14 @@ createObjectGroupsDeprecated(group, 0,
 RMS.SetProgress(95);
 
 log("Creating straggler trees...");
-var types = [oPine];	// some variation
+var types = [oPine];
 var num = floor(numStragglers / types.length);
-for (var i = 0; i < types.length; ++i)
-{
-	group = new SimpleGroup(
-		[new SimpleObject(types[i], 1,1, 0,3)],
-		true, clForest
-	);
-	createObjectGroupsDeprecated(group, 0,
+for (let type of types)
+	createObjectGroupsDeprecated(
+		new SimpleGroup([new SimpleObject(type, 1, 1, 0, 3)], true, clForest),
+		0,
 		avoidClasses(clWater, 5, clForest, 1, clHill, 1, clPlayer, 12, clMetal, 6, clRock, 6),
-		num
-	);
-}
+		num);
 
 log("Creating deer...");
 group = new SimpleGroup(

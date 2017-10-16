@@ -117,26 +117,22 @@ for (let i = 0; i < numPlayers; ++i)
 RMS.SetProgress(30);
 
 log("Creating central lake...");
-var placer = new ChainPlacer(
-	2,
-	Math.floor(scaleByMapSize(5, 16)),
-	Math.floor(scaleByMapSize(35, 200)),
-	1,
-	Math.round(fractionToTiles(0.5)),
-	Math.round(fractionToTiles(0.5)),
-	0,
-	[Math.floor(mapSize * 0.17)]);
-
-var terrainPainter = new LayeredPainter(
-	[tShore, tWater, tWater, tWater],		// terrains
-	[1, 4, 2]		// widths
-);
-var elevationPainter = new SmoothElevationPainter(
-	ELEVATION_SET,			// type
-	-4,				// elevation
-	4				// blend radius
-);
-createArea(placer, [terrainPainter, elevationPainter, paintClass(clWater)], avoidClasses(clPlayer, 20));
+createArea(
+	new ChainPlacer(
+		2,
+		Math.floor(scaleByMapSize(5, 16)),
+		Math.floor(scaleByMapSize(35, 200)),
+		1,
+		Math.round(fractionToTiles(0.5)),
+		Math.round(fractionToTiles(0.5)),
+		0,
+		[Math.floor(mapSize * 0.17)]),
+	[
+		new LayeredPainter([tShore, tWater, tWater, tWater], [1, 4, 2]),
+		new SmoothElevationPainter(ELEVATION_SET, -4, 4),
+		paintClass(clWater)
+	],
+	avoidClasses(clPlayer, 20));
 
 paintTerrainBasedOnHeight(3, Math.floor(scaleByMapSize(20, 40)), 0, tCliff);
 paintTerrainBasedOnHeight(Math.floor(scaleByMapSize(20, 40)), 100, 3, tSnowLimited);
@@ -158,25 +154,22 @@ for (let i = 0; i < numLakes ; ++i)
 	if (!chosenPoint)
 		break;
 
-	placer = new ChainPlacer(
-		1,
-		Math.floor(scaleByMapSize(2, 4)),
-		Math.floor(scaleByMapSize(20, 140)),
-		0.7,
-		chosenPoint[0],
-		chosenPoint[1]);
-
-	let terrainPainter = new LayeredPainter(
-		[tShore, tWater, tWater],		// terrains
-		[1, 3]								// widths
-	);
-	let elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -5, 5);
 	createAreas(
-		placer,
-		[terrainPainter, elevationPainter, paintClass(clWater)],
+		new ChainPlacer(
+			1,
+			Math.floor(scaleByMapSize(2, 4)),
+			Math.floor(scaleByMapSize(20, 140)),
+			0.7,
+			chosenPoint[0],
+			chosenPoint[1]),
+		[
+			new LayeredPainter([tShore, tWater, tWater], [1, 3]),
+			new SmoothElevationPainter(ELEVATION_SET, -5, 5),
+			paintClass(clWater)
+		],
 		avoidClasses(clPlayer, 20),
-		1, 1
-	);
+		1,
+		1);
 }
 RMS.SetProgress(50);
 
@@ -195,15 +188,13 @@ createLayeredPatches(
 	[scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
 	[[tDirt,tHalfSnow], [tHalfSnow,tSnowLimited]],
 	[2],
-	avoidClasses(clWater, 3, clDirt, 5, clPlayer, 12)
-);
+	avoidClasses(clWater, 3, clDirt, 5, clPlayer, 12));
 
 log("Creating glacier patches...");
 createPatches(
 	[scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
 	tSecondary,
-	avoidClasses(clWater, 3, clDirt, 5, clPlayer, 12)
-);
+	avoidClasses(clWater, 3, clDirt, 5, clPlayer, 12));
 RMS.SetProgress(70);
 
 log("Creating stone mines...");
@@ -221,8 +212,7 @@ createMines(
 		[new SimpleObject(oMetalLarge, 1,1, 0,4)]
 	],
 	avoidClasses(clWater, 3, clPlayer, 20, clMetal, 18, clRock, 5, clHill, 2),
-	clMetal
-);
+	clMetal);
 RMS.SetProgress(75);
 
 createDecoration(
@@ -237,8 +227,7 @@ createDecoration(
 		scaleByMapSize(16, 262),
 		scaleByMapSize(8, 131),
 	],
-	avoidClasses(clWater, 0, clPlayer, 0)
-);
+	avoidClasses(clWater, 0, clPlayer, 0));
 
 createDecoration(
 	[
@@ -247,8 +236,7 @@ createDecoration(
 	[
 		scaleByMapSize(8, 131)
 	],
-	[stayClasses(clWater, 4), avoidClasses(clHill, 2)]
-);
+	[stayClasses(clWater, 4), avoidClasses(clHill, 2)]);
 RMS.SetProgress(80);
 
 createFood(
@@ -296,8 +284,7 @@ createObjectGroupsDeprecated(
 	0,
 	avoidClasses(clWater, 2, clMetal, 4, clRock, 4, clPlayer, 15, clHill, 2, clWolf, 20),
 	1000,
-	100
-);
+	100);
 RMS.SetProgress(95);
 
 if (randBool(1/3))

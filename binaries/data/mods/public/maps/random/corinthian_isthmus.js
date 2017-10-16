@@ -300,8 +300,9 @@ createFood
 RMS.SetProgress(90);
 
 log("Creating straggler trees...");
-var types = [oDatePalm, oSDatePalm, oCarob, oFanPalm, oPoplar, oCypress];	// some variation
-createStragglerTrees(types, avoidClasses(clForest, 1, clWater, 2, clPlayer, 8, clMetal, 6, clHill, 1));
+createStragglerTrees(
+	[oDatePalm, oSDatePalm, oCarob, oFanPalm, oPoplar, oCypress],
+	avoidClasses(clForest, 1, clWater, 2, clPlayer, 8, clMetal, 6, clHill, 1));
 
 setSkySet("sunny");
 setSunColor(0.917, 0.828, 0.734);

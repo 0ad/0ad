@@ -135,25 +135,52 @@ log ("Creating rivers...");
 for (var m = 0; m < numPlayers; m++)
 {
 	var tang = startAngle + (m + 0.5) * TWO_PI / numPlayers;
-	placer = new ClumpPlacer(floor(PI*scaleByMapSize(10,50)*scaleByMapSize(10,50)/3), 0.95, 0.6, 10, fractionToTiles(0.5 + 0.15*cos(tang)), fractionToTiles(0.5 + 0.15*sin(tang)));
-	var painter = new LayeredPainter([tShore, tWater, tWater], [1, 3]);
-	var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -4, 4);
-	createArea(placer, [painter, elevationPainter, paintClass(clWater)], avoidClasses(clPlayer, 5));
-	var placer = new PathPlacer(fractionToTiles(0.5 + 0.15*cos(tang)), fractionToTiles(0.5 + 0.15*sin(tang)), fractionToTiles(0.5 + 0.49*cos(tang)), fractionToTiles(0.5 + 0.49*sin(tang)), scaleByMapSize(10,50), 0.2, 3*(scaleByMapSize(1,4)), 0.2, 0.05);
-	var terrainPainter = new LayeredPainter(
-		[tShore, tWater, tWater],		// terrains
-		[1, 3]								// widths
-	);
-	var elevationPainter = new SmoothElevationPainter(
-		ELEVATION_SET,			// type
-		-4,				// elevation
-		4				// blend radius
-	);
-	createArea(placer, [terrainPainter, elevationPainter, paintClass(clWater)], avoidClasses(clPlayer, 5));
-	placer = new ClumpPlacer(floor(PI*scaleByMapSize(10,50)*scaleByMapSize(10,50)/5), 0.95, 0.6, 10, fractionToTiles(0.5 + 0.49*cos(tang)), fractionToTiles(0.5 + 0.49*sin(tang)));
-	var painter = new LayeredPainter([tWater, tWater], [1]);
-	var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -4, 4);
-	createArea(placer, [painter, elevationPainter, paintClass(clWater)], avoidClasses(clPlayer, 5));
+
+	createArea(
+		new ClumpPlacer(
+			Math.floor(Math.PI * Math.pow(scaleByMapSize(10, 50), 2) / 3),
+			0.95,
+			0.6,
+			10,
+			fractionToTiles(0.5 + 0.15 * Math.cos(tang)),
+			fractionToTiles(0.5 + 0.15 * Math.sin(tang))),
+		[
+			new SmoothElevationPainter(ELEVATION_SET, -4, 4),
+			paintClass(clWater)
+		],
+		avoidClasses(clPlayer, 5));
+
+	createArea(
+		new PathPlacer(
+			fractionToTiles(0.5 + 0.15 * Math.cos(tang)),
+			fractionToTiles(0.5 + 0.15 * Math.sin(tang)),
+			fractionToTiles(0.5 + 0.49 * Math.cos(tang)),
+			fractionToTiles(0.5 + 0.49 * Math.sin(tang)),
+			scaleByMapSize(10, 50),
+			0.2,
+			3 * scaleByMapSize(1, 4),
+			0.2,
+			0.05),
+		[
+			new LayeredPainter([tShore, tWater, tWater], [1, 3]),
+			new SmoothElevationPainter(ELEVATION_SET, -4, 4),
+			paintClass(clWater)
+		],
+		avoidClasses(clPlayer, 5));
+
+	createArea(
+		new ClumpPlacer(
+			Math.floor(Math.PI * Math.pow(scaleByMapSize(10, 50), 2) / 5),
+			0.95,
+			0.6,
+			10,
+			fractionToTiles(0.5 + 0.49 * Math.cos(tang)),
+			fractionToTiles(0.5 + 0.49 * Math.sin(tang))),
+		[
+			new SmoothElevationPainter(ELEVATION_SET, -4, 4),
+			paintClass(clWater)
+		],
+		avoidClasses(clPlayer, 5));
 }
 
 for (var i = 0; i < numPlayers; i++)
@@ -179,7 +206,6 @@ for (var i = 0; i < numPlayers; i++)
 			true, clFood, round((fractionToTiles(playerX[i]) + fractionToTiles(playerX[0]))/2), round((fractionToTiles(playerZ[i]) + fractionToTiles(playerZ[0]))/2)
 		);
 		createObjectGroup(group, 0);
-
 	}
 	else
 	{
@@ -204,33 +230,26 @@ for (var i = 0; i < numPlayers; i++)
 		createObjectGroup(group, 0);
 
 	}
-
 }
 paintTerrainBasedOnHeight(-6, 2, 1, tWater);
 
 log("Creating bumps...");
-placer = new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1);
-painter = new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2);
 createAreas(
-	placer,
-	painter,
+	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1),
+	new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2),
 	avoidClasses(clWater, 2, clPlayer, 20),
-	scaleByMapSize(100, 200)
-);
+	scaleByMapSize(100, 200));
 
 log("Creating hills...");
-placer = new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1);
-terrainPainter = new LayeredPainter(
-	[tGrass, tCliff, tHill],		// terrains
-	[1, 2]								// widths
-);
-elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 35, 3);
 createAreas(
-	placer,
-	[terrainPainter, elevationPainter, paintClass(clHill)],
+	new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1),
+	[
+		new LayeredPainter([tGrass, tCliff, tHill], [1, 2]),
+		new SmoothElevationPainter(ELEVATION_SET, 35, 3),
+		paintClass(clHill)
+	],
 	avoidClasses(clPlayer, 20, clHill, 15, clWater, 3),
-	scaleByMapSize(1, 4) * numPlayers
-);
+	scaleByMapSize(1, 4) * numPlayers);
 
 // calculate desired number of trees for map (based on size)
 var MIN_TREES = 160;
@@ -244,61 +263,46 @@ var numStragglers = totalTrees * (1.0 - P_FOREST);
 log("Creating forests...");
 var types = [
 	[[tForestFloor, tGrass, pForest], [tForestFloor, pForest]]
-];	// some variation
+];
 
 var size = numForest / (0.5 * scaleByMapSize(2,8) * numPlayers);
 var num = floor(size / types.length);
-for (var i = 0; i < types.length; ++i)
-{
-	placer = new ClumpPlacer(numForest / num, 0.1, 0.1, 1);
-	painter = new LayeredPainter(
-		types[i],		// terrains
-		[2]											// widths
-		);
+for (let type of types)
 	createAreas(
-		placer,
-		[painter, paintClass(clForest)],
+		new ClumpPlacer(numForest / num, 0.1, 0.1, 1),
+		[
+			new LayeredPainter(type, [2]),
+			paintClass(clForest)
+		],
 		avoidClasses(clPlayer, 20, clForest, 10, clHill, 0, clWater, 2),
 		num
 	);
-}
-
 RMS.SetProgress(50);
 
 log("Creating dirt patches...");
-var sizes = [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)];
-for (var i = 0; i < sizes.length; i++)
-{
-	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
-	painter = new LayeredPainter(
-		[[tGrass,tDirtRocksA],[tDirtRocksA,tDirtRocksB], [tDirtRocksB,tDirtRocksC]], 		// terrains
-		[1,1]															// widths
-	);
+for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
 	createAreas(
-		placer,
-		[painter, paintClass(clDirt)],
+		new ClumpPlacer(size, 0.3, 0.06, 0.5),
+		[
+			new LayeredPainter(
+				[[tGrass, tDirtRocksA], [tDirtRocksA, tDirtRocksB], [tDirtRocksB, tDirtRocksC]],
+				[1, 1]),
+			paintClass(clDirt)
+		],
 		avoidClasses(clWater, 3, clForest, 0, clHill, 0, clPlayer, 20),
-		scaleByMapSize(15, 45)
-	);
-}
+		scaleByMapSize(15, 45));
 
 log("Creating grass patches...");
-var sizes = [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)];
-for (var i = 0; i < sizes.length; i++)
-{
-	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
-	painter = new TerrainPainter(tGrassPatch);
+for (let size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)])
 	createAreas(
-		placer,
-		painter,
+		new ClumpPlacer(size, 0.3, 0.06, 0.5),
+		new TerrainPainter(tGrassPatch),
 		avoidClasses(clWater, 3, clForest, 0, clHill, 0, clPlayer, 20),
-		scaleByMapSize(15, 45)
-	);
-}
+		scaleByMapSize(15, 45));
 RMS.SetProgress(55);
 
 log("Creating stone mines...");
-group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clRock);
+var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4), new SimpleObject(oStoneLarge, 1, 1, 0, 4)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 3, clForest, 1, clPlayer, 20, clRock, 10, clHill, 1),
 	scaleByMapSize(4,16), 100
@@ -419,19 +423,14 @@ createObjectGroupsDeprecated(group, 0,
 RMS.SetProgress(85);
 
 log("Creating straggler trees...");
-var types = [oBaobab, oBaobab, oBaobab, oFig];	// some variation
+var types = [oBaobab, oBaobab, oBaobab, oFig];
 var num = floor(numStragglers / types.length);
-for (var i = 0; i < types.length; ++i)
-{
-	group = new SimpleGroup(
-		[new SimpleObject(types[i], 1,1, 0,3)],
-		true, clForest
-	);
-	createObjectGroupsDeprecated(group, 0,
+for (let type of types)
+	createObjectGroupsDeprecated(
+		new SimpleGroup([new SimpleObject(type, 1,1, 0,3)], true, clForest),
+		0,
 		avoidClasses(clWater, 5, clForest, 1, clHill, 1, clPlayer, 12, clMetal, 6, clRock, 6),
-		num
-	);
-}
+		num);
 
 var planetm = 4;
 log("Creating small grass tufts...");

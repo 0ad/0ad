@@ -469,20 +469,24 @@ log ("creating Oceans");
 var OceanX = fractionToTiles(0.5) + cos(MoutainAngle + lololo)*fractionToTiles(0.48);
 var OceanZ = fractionToTiles(0.5) + sin(MoutainAngle + lololo)*fractionToTiles(0.48);
 
-var radius = fractionToTiles(0.18);
-var size = radius*radius*PI;
-var placer = new ClumpPlacer(size, 0.9, 0.05, 10, OceanX, OceanZ);
-var elevationPainter = new ElevationPainter(-22);
-createArea(placer, [paintClass(clWater),elevationPainter], null);
+createArea(
+	new ClumpPlacer(Math.PI * Math.pow(fractionToTiles(0.18), 2), 0.9, 0.05, 10, OceanX, OceanZ),
+	[
+		paintClass(clWater),
+		new ElevationPainter(-22)
+	],
+	null);
 
 OceanX = fractionToTiles(0.5) + cos(PI + MoutainAngle + lololo)*fractionToTiles(0.48);
 OceanZ = fractionToTiles(0.5) + sin(PI + MoutainAngle + lololo)*fractionToTiles(0.48);
 
-radius = fractionToTiles(0.18);
-size = radius*radius*PI;
-placer = new ClumpPlacer(size, 0.9, 0.05, 10, OceanX, OceanZ);
-elevationPainter = new ElevationPainter(-22);
-createArea(placer, [paintClass(clWater),elevationPainter], null);
+createArea(
+	new ClumpPlacer(Math.PI * Math.pow(fractionToTiles(0.18), 2), 0.9, 0.05, 10, OceanX, OceanZ),
+	[
+		new ElevationPainter(-22),
+		paintClass(clWater)
+	],
+	null);
 
 // Smoothing around the water, then going a bit random
 for (var ix = 1; ix < mapSize-1; ix++)
@@ -523,23 +527,29 @@ for (var ix = 1; ix < mapSize-1; ix++)
 }
 RMS.SetProgress(55);
 
-//create hills
 log ("Creating hills...");
-placer = new ClumpPlacer(scaleByMapSize(60, 120), 0.3, 0.06, 5);
-painter = new SemiRandomElevationPainter(7, 4,1);
-var terrainPainter = new TerrainPainter(tGrassSpecific);
-createAreas( placer, [painter,terrainPainter, paintClass(clHill)],  avoidClasses(clWater, 5, clPlayer, 20, clBaseResource, 6, clPyrenneans, 2), scaleByMapSize(5, 35) );
+createAreas(
+	new ClumpPlacer(scaleByMapSize(60, 120), 0.3, 0.06, 5),
+	[
+		new SemiRandomElevationPainter(7, 4, 1),
+		new TerrainPainter(tGrassSpecific),
+		paintClass(clHill)
+	],
+	avoidClasses(clWater, 5, clPlayer, 20, clBaseResource, 6, clPyrenneans, 2), scaleByMapSize(5, 35));
 
 log("Creating forests...");
-var types = [ [tForestTransition,pForestLandVeryLight, pForestLandLight, pForestLand]];
+var types = [[tForestTransition, pForestLandVeryLight, pForestLandLight, pForestLand]];
 var size = scaleByMapSize(40,115)*PI;
 var num = floor(scaleByMapSize(8,40) / types.length);
-for (var i = 0; i < types.length; ++i)
-{
-	placer = new ClumpPlacer(size, 0.2, 0.1, 1);
-	painter = new LayeredPainter( types[i], [scaleByMapSize(1,2),scaleByMapSize(3,6),scaleByMapSize(3,6)] );
-	createAreas( placer, [painter, paintClass(clForest)], avoidClasses(clPlayer, 20, clPyrenneans,0, clForest, 7, clWater, 2), num);
-}
+for (let type of types)
+	createAreas(
+		new ClumpPlacer(size, 0.2, 0.1, 1),
+		[
+			new LayeredPainter(type, [scaleByMapSize(1, 2), scaleByMapSize(3, 6), scaleByMapSize(3, 6)]),
+			paintClass(clForest)
+		],
+		avoidClasses(clPlayer, 20, clPyrenneans,0, clForest, 7, clWater, 2),
+		num);
 RMS.SetProgress(60);
 
 log("Creating lone trees...");
@@ -620,22 +630,26 @@ for (var x = 0; x < mapSize; x++) {
 	}
 }
 log("Creating dirt patches...");
-var sizes = [scaleByMapSize(3, 20), scaleByMapSize(5, 40), scaleByMapSize(8, 60)];
-for (var i = 0; i < sizes.length; i++)
-{
-	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
-	painter = new TerrainPainter(tDirtyGrass);
-	createAreas( placer, [painter, paintClass(clDirt)], avoidClasses(clWater, 3, clForest, 0, clPyrenneans,5, clHill, 0, clDirt, 5, clPlayer, 6), scaleByMapSize(15, 45) );
-}
+for (let size of [scaleByMapSize(3, 20), scaleByMapSize(5, 40), scaleByMapSize(8, 60)])
+	createAreas(
+		new ClumpPlacer(size, 0.3, 0.06, 0.5),
+		[
+			new TerrainPainter(tDirtyGrass),
+			paintClass(clDirt)
+		],
+		avoidClasses(clWater, 3, clForest, 0, clPyrenneans,5, clHill, 0, clDirt, 5, clPlayer, 6),
+		scaleByMapSize(15, 45));
 
 log("Creating grass patches...");
-var sizes = [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)];
-for (var i = 0; i < sizes.length; i++)
-{
-	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
-	painter = new TerrainPainter(tLushGrass);
-	createAreas( placer, [painter,paintClass(clLush)], avoidClasses(clWater, 3, clForest, 0, clPyrenneans,5, clHill, 0, clDirt, 5, clPlayer, 6), scaleByMapSize(15, 45) );
-}
+for (let size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)])
+	createAreas(
+		new ClumpPlacer(size, 0.3, 0.06, 0.5),
+		[
+			new TerrainPainter(tLushGrass),
+			paintClass(clLush)
+		],
+		avoidClasses(clWater, 3, clForest, 0, clPyrenneans,5, clHill, 0, clDirt, 5, clPlayer, 6),
+		scaleByMapSize(15, 45));
 
 RMS.SetProgress(70);
 
