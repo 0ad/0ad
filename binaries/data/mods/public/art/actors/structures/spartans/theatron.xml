@@ -24,14 +24,14 @@
       <props>
         <prop actor="props/structures/decals/dirt_6x6.xml" attachpoint="root"/>
         <prop actor="geology/decal_stone_medit_b.xml" attachpoint="root"/>
-        <prop actor="props/flora/decals_flowers_daisies.xml" attachpoint="bush" minheight=""/>
-        <prop actor="props/flora/decals_flowers_daisies.xml" attachpoint="bush_1" minheight=""/>
+        <prop actor="props/flora/decals_flowers_daisies.xml" attachpoint="bush"/>
+        <prop actor="props/flora/decals_flowers_daisies.xml" attachpoint="bush_1"/>
         <prop actor="props/flora/decals_flowers_daisies.xml" attachpoint="bush_2"/>
-        <prop actor="props/flora/decals_flowers_daisies.xml" attachpoint="bush_3" minheight=""/>
-        <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush" maxheight="" minheight=""/>
-        <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush_1" maxheight="" minheight=""/>
-        <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush_2" maxheight="" minheight=""/>
-        <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush_3" maxheight="" minheight=""/>
+        <prop actor="props/flora/decals_flowers_daisies.xml" attachpoint="bush_3"/>
+        <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush" maxheight="20" minheight="-20"/>
+        <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush_1" maxheight="20" minheight="-20"/>
+        <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush_2" maxheight="20" minheight="-20"/>
+        <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush_3" maxheight="20" minheight="-20"/>
       </props>
       <textures>
         <texture file="structural/sparta_struct.png" name="baseTex"/>

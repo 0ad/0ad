@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="base">
+      <props>
+        <prop actor="props/structures/decals/dirt_3x3.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/iber_corral_mud.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/sparta_struct.png" name="baseTex"/>
+        <texture file="structural/sparta_struct_spec.png" name="specTex"/>
+        <texture file="structural/sparta_struct_norm.png" name="normTex"/>
+        <texture file="structural/ao/spart_temple_AO.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="a">
+      <mesh>structural/spart_corral.dae</mesh>
+      <textures>
+        <texture file="structural/ao/spart_corral_AO.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="alive"/>
+    <variant name="death">
+      <props>
+        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>
