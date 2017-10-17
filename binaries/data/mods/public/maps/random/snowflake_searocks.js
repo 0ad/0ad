@@ -42,9 +42,6 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
-const mapArea = mapSize*mapSize;
-
-log(mapSize);
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -54,1408 +51,173 @@ var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
-var clSettlement = createTileClass();
 var clLand = createTileClass();
 
-initTerrain(tWater);
+const playerIslandRadius = scaleByMapSize(15, 30);
+const islandHeight = 20;
 
-const radius = scaleByMapSize(15,30);
-const cliffRadius = 2;
-const elevation = 20;
+const islandBetweenPlayerAndCenterDist = 0.16;
+const islandBetweenPlayerAndCenterRadius = 0.81;
+const centralIslandRadius = 0.36;
 
 var [playerIDs, playerX, playerZ, playerAngle, startAngle] = radialPlayerPlacement();
 
-// Creating other islands
 var numIslands = 0;
-//****************************
-//----------------------------
-//Tiny and Small Size
-//----------------------------
-//****************************
-if ((mapSize == 128)||(mapSize == 192)){
-		//2 PLAYERS
-		//-----------------
-		//-----------------
-	if (numPlayers == 2){
-		numIslands = 4*numPlayers+1;
-		var IslandX = new Array(numIslands);
-		var IslandZ = new Array(numIslands);
-		var isConnected = new Array(numIslands);
-		for (var q=0; q <numIslands; q++)
-		{
-			isConnected[q]=new Array(numIslands);
-		}
-		for (var m = 0; m < numIslands; m++){
-			for (var n = 0; n < numIslands; n++){
-				isConnected[m][n] = 0;
-			}
-		}
-		//connections
-		var sX = 0;
-		var sZ = 0;
-		for (var l = 0; l < numPlayers; l++)
-		{
-			isConnected[4*numPlayers][l+2*numPlayers] = 1;
-			sX = sX + playerX[l];
-			sZ = sZ + playerZ[l];
-		}
+var isConnected = [];
+var islandX = [];
+var islandZ = [];
 
-		var fx = fractionToTiles(sX/numPlayers);
-		var fz = fractionToTiles(sZ/numPlayers);
-		var ix = round(fx);
-		var iz = round(fz);
-		IslandX[4*numPlayers]=ix;
-		IslandZ[4*numPlayers]=iz;
-		// calculate size based on the radius
-		var hillSize = floor(PI * radius * radius * 0.36);
-
-		// create the hill
-		var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-		var terrainPainter = new LayeredPainter(
-			[tCliff, tHill],		// terrains
-			[cliffRadius]		// widths
-		);
-		var elevationPainter = new SmoothElevationPainter(
-			ELEVATION_SET,			// type
-			elevation,				// elevation
-			cliffRadius				// blend radius
-		);
-		createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
-		//centeral island id numPlayers
-
-		for (var e = 0; e <numPlayers; e++)
-		{
-		isConnected[e+2*numPlayers][e] = 1;
-		if (e+2*numPlayers+1<numIslands-numPlayers-1)
-		{
-			isConnected[e+2*numPlayers][e+2*numPlayers+1] = 1;
-		}
-		else
-		{
-			isConnected[2*numPlayers][e+2*numPlayers] = 1;
-		}
-
-		var fx = fractionToTiles(0.5 + 0.16*cos(startAngle + e*TWO_PI/numPlayers));
-		var fz = fractionToTiles(0.5 + 0.16*sin(startAngle + e*TWO_PI/numPlayers));
-		var ix = round(fx);
-		var iz = round(fz);
-		IslandX[e+2*numPlayers]=ix;
-		IslandZ[e+2*numPlayers]=iz;
-		// calculate size based on the radius
-		var hillSize = floor(PI * radius * radius * 0.81);
-
-		// create the hill
-		var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-		var terrainPainter = new LayeredPainter(
-			[tCliff, tHill],		// terrains
-			[cliffRadius]		// widths
-		);
-		var elevationPainter = new SmoothElevationPainter(
-			ELEVATION_SET,			// type
-			elevation,				// elevation
-			cliffRadius				// blend radius
-		);
-		createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
-
-		//Small Isles
-		isConnected[e+3*numPlayers][e+numPlayers] = 1;
-		var fx = fractionToTiles(0.5 + 0.27*cos(startAngle + e*TWO_PI/numPlayers + TWO_PI/(2*numPlayers)));
-		var fz = fractionToTiles(0.5 + 0.27*sin(startAngle + e*TWO_PI/numPlayers + TWO_PI/(2*numPlayers)));
-		var ix = round(fx);
-		var iz = round(fz);
-		IslandX[e+3*numPlayers]=ix;
-		IslandZ[e+3*numPlayers]=iz;
-		// calculate size based on the radius
-		var hillSize = floor(PI * radius * radius * 0.49);
-
-		// create the hill
-		var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-		var terrainPainter = new LayeredPainter(
-			[tCliff, tHill],		// terrains
-			[cliffRadius]		// widths
-		);
-		var elevationPainter = new SmoothElevationPainter(
-			ELEVATION_SET,			// type
-			elevation,				// elevation
-			cliffRadius				// blend radius
-		);
-		createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
-		}
-
-		for (var e = 0; e <numPlayers; e++)
-		{
-			isConnected[e][e+numPlayers] = 1;
-			if (e+1<numPlayers)
-			{
-				isConnected[e + 1][e+numPlayers] = 1;
-			}
-			else
-			{
-				isConnected[0][e+numPlayers] = 1;
-			}
-
-			//second island id 4
-			var fx = fractionToTiles(0.5 + 0.41*cos(startAngle + e*TWO_PI/numPlayers + TWO_PI/(2*numPlayers)));
-			var fz = fractionToTiles(0.5 + 0.41*sin(startAngle + e*TWO_PI/numPlayers + TWO_PI/(2*numPlayers)));
-			var ix = round(fx);
-			var iz = round(fz);
-			IslandX[e+numPlayers]=ix;
-			IslandZ[e+numPlayers]=iz;
-			// calculate size based on the radius
-			var hillSize = PI * radius * radius;
-
-			// create the hill
-			var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-			var terrainPainter = new LayeredPainter(
-				[tCliff, tHill],		// terrains
-				[cliffRadius]		// widths
-			);
-			var elevationPainter = new SmoothElevationPainter(
-				ELEVATION_SET,			// type
-				elevation,				// elevation
-				cliffRadius				// blend radius
-			);
-			createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
-		}
-	}
-		//3 PLAYERS
-		//-----------------
-		//-----------------
-		if (numPlayers == 3){
-		numIslands = 4*numPlayers+1;
-		var IslandX = new Array(numIslands);
-		var IslandZ = new Array(numIslands);
-		var isConnected = new Array(numIslands);
-		for (var q=0; q <numIslands; q++)
-		{
-			isConnected[q]=new Array(numIslands);
-		}
-		for (var m = 0; m < numIslands; m++){
-			for (var n = 0; n < numIslands; n++){
-				isConnected[m][n] = 0;
-			}
-		}
-		//connections
-		var sX = 0;
-		var sZ = 0;
-		for (var l = 0; l < numPlayers; l++)
-		{
-			isConnected[4*numPlayers][l+2*numPlayers] = 1;
-			sX = sX + playerX[l];
-			sZ = sZ + playerZ[l];
-		}
-
-		var fx = fractionToTiles(sX/numPlayers);
-		var fz = fractionToTiles(sZ/numPlayers);
-		var ix = round(fx);
-		var iz = round(fz);
-		IslandX[4*numPlayers]=ix;
-		IslandZ[4*numPlayers]=iz;
-		// calculate size based on the radius
-		var hillSize = floor(PI * radius * radius * 0.36);
-
-		// create the hill
-		var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-		var terrainPainter = new LayeredPainter(
-			[tCliff, tHill],		// terrains
-			[cliffRadius]		// widths
-		);
-		var elevationPainter = new SmoothElevationPainter(
-			ELEVATION_SET,			// type
-			elevation,				// elevation
-			cliffRadius				// blend radius
-		);
-		createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
-		//centeral island id numPlayers
-
-		for (var e = 0; e <numPlayers; e++)
-		{
-		isConnected[e+2*numPlayers][e] = 1;
-		if (e+2*numPlayers+1<numIslands-numPlayers-1)
-		{
-			isConnected[e+2*numPlayers][e+2*numPlayers+1] = 1;
-		}
-		else
-		{
-			isConnected[2*numPlayers][e+2*numPlayers] = 1;
-		}
-
-		var fx = fractionToTiles(0.5 + 0.16*cos(startAngle + e*TWO_PI/numPlayers));
-		var fz = fractionToTiles(0.5 + 0.16*sin(startAngle + e*TWO_PI/numPlayers));
-		var ix = round(fx);
-		var iz = round(fz);
-		IslandX[e+2*numPlayers]=ix;
-		IslandZ[e+2*numPlayers]=iz;
-		// calculate size based on the radius
-		var hillSize = floor(PI * radius * radius * 0.81);
-
-		// create the hill
-		var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-		var terrainPainter = new LayeredPainter(
-			[tCliff, tHill],		// terrains
-			[cliffRadius]		// widths
-		);
-		var elevationPainter = new SmoothElevationPainter(
-			ELEVATION_SET,			// type
-			elevation,				// elevation
-			cliffRadius				// blend radius
-		);
-		createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
-
-		//Small Isles
-		isConnected[e+3*numPlayers][e+numPlayers] = 1;
-		var fx = fractionToTiles(0.5 + 0.27*cos(startAngle + e*TWO_PI/numPlayers + TWO_PI/(2*numPlayers)));
-		var fz = fractionToTiles(0.5 + 0.27*sin(startAngle + e*TWO_PI/numPlayers + TWO_PI/(2*numPlayers)));
-		var ix = round(fx);
-		var iz = round(fz);
-		IslandX[e+3*numPlayers]=ix;
-		IslandZ[e+3*numPlayers]=iz;
-		// calculate size based on the radius
-		var hillSize = floor(PI * radius * radius * 0.49);
-
-		// create the hill
-		var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-		var terrainPainter = new LayeredPainter(
-			[tCliff, tHill],		// terrains
-			[cliffRadius]		// widths
-		);
-		var elevationPainter = new SmoothElevationPainter(
-			ELEVATION_SET,			// type
-			elevation,				// elevation
-			cliffRadius				// blend radius
-		);
-		createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
-		}
-
-		for (var e = 0; e <numPlayers; e++)
-		{
-			isConnected[e][e+numPlayers] = 1;
-			if (e+1<numPlayers)
-			{
-				isConnected[e + 1][e+numPlayers] = 1;
-			}
-			else
-			{
-				isConnected[0][e+numPlayers] = 1;
-			}
-
-			//second island id 4
-			var fx = fractionToTiles(0.5 + 0.41*cos(startAngle + e*TWO_PI/numPlayers + TWO_PI/(2*numPlayers)));
-			var fz = fractionToTiles(0.5 + 0.41*sin(startAngle + e*TWO_PI/numPlayers + TWO_PI/(2*numPlayers)));
-			var ix = round(fx);
-			var iz = round(fz);
-			IslandX[e+numPlayers]=ix;
-			IslandZ[e+numPlayers]=iz;
-			// calculate size based on the radius
-			var hillSize = PI * radius * radius;
-
-			// create the hill
-			var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-			var terrainPainter = new LayeredPainter(
-				[tCliff, tHill],		// terrains
-				[cliffRadius]		// widths
-			);
-			var elevationPainter = new SmoothElevationPainter(
-				ELEVATION_SET,			// type
-				elevation,				// elevation
-				cliffRadius				// blend radius
-			);
-			createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
-		}
-	}
-
-		//4 PLAYERS
-		//-----------------
-		//-----------------
-		if (numPlayers == 4){
-		numIslands = 4*numPlayers+1;
-		var IslandX = new Array(numIslands);
-		var IslandZ = new Array(numIslands);
-		var isConnected = new Array(numIslands);
-		for (var q=0; q <numIslands; q++)
-		{
-			isConnected[q]=new Array(numIslands);
-		}
-		for (var m = 0; m < numIslands; m++){
-			for (var n = 0; n < numIslands; n++){
-				isConnected[m][n] = 0;
-			}
-		}
-		//connections
-		var sX = 0;
-		var sZ = 0;
-		for (var l = 0; l < numPlayers; l++)
-		{
-			isConnected[4*numPlayers][l+2*numPlayers] = 1;
-			sX = sX + playerX[l];
-			sZ = sZ + playerZ[l];
-		}
-
-		var fx = fractionToTiles(sX/numPlayers);
-		var fz = fractionToTiles(sZ/numPlayers);
-		var ix = round(fx);
-		var iz = round(fz);
-		IslandX[4*numPlayers]=ix;
-		IslandZ[4*numPlayers]=iz;
-		// calculate size based on the radius
-		var hillSize = floor(PI * radius * radius * 0.36);
-
-		// create the hill
-		var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-		var terrainPainter = new LayeredPainter(
-			[tCliff, tHill],		// terrains
-			[cliffRadius]		// widths
-		);
-		var elevationPainter = new SmoothElevationPainter(
-			ELEVATION_SET,			// type
-			elevation,				// elevation
-			cliffRadius				// blend radius
-		);
-		createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
-		//centeral island id numPlayers
-
-		for (var e = 0; e <numPlayers; e++)
-		{
-		isConnected[e+2*numPlayers][e] = 1;
-		if (e+2*numPlayers+1<numIslands-numPlayers-1)
-		{
-			isConnected[e+2*numPlayers][e+2*numPlayers+1] = 1;
-		}
-		else
-		{
-			isConnected[2*numPlayers][e+2*numPlayers] = 1;
-		}
-
-		var fx = fractionToTiles(0.5 + 0.16*cos(startAngle + e*TWO_PI/numPlayers));
-		var fz = fractionToTiles(0.5 + 0.16*sin(startAngle + e*TWO_PI/numPlayers));
-		var ix = round(fx);
-		var iz = round(fz);
-		IslandX[e+2*numPlayers]=ix;
-		IslandZ[e+2*numPlayers]=iz;
-		// calculate size based on the radius
-		var hillSize = floor(PI * radius * radius * 0.81);
-
-		// create the hill
-		var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-		var terrainPainter = new LayeredPainter(
-			[tCliff, tHill],		// terrains
-			[cliffRadius]		// widths
-		);
-		var elevationPainter = new SmoothElevationPainter(
-			ELEVATION_SET,			// type
-			elevation,				// elevation
-			cliffRadius				// blend radius
-		);
-		createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
-
-		//Small Isles
-		isConnected[e+3*numPlayers][e+numPlayers] = 1;
-		var fx = fractionToTiles(0.5 + 0.41*cos(startAngle + e*TWO_PI/numPlayers + TWO_PI/(2*numPlayers)));
-		var fz = fractionToTiles(0.5 + 0.41*sin(startAngle + e*TWO_PI/numPlayers + TWO_PI/(2*numPlayers)));
-		var ix = round(fx);
-		var iz = round(fz);
-		IslandX[e+3*numPlayers]=ix;
-		IslandZ[e+3*numPlayers]=iz;
-		// calculate size based on the radius
-		var hillSize = floor(PI * radius * radius * 0.49);
-
-		// create the hill
-		var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-		var terrainPainter = new LayeredPainter(
-			[tCliff, tHill],		// terrains
-			[cliffRadius]		// widths
-		);
-		var elevationPainter = new SmoothElevationPainter(
-			ELEVATION_SET,			// type
-			elevation,				// elevation
-			cliffRadius				// blend radius
-		);
-		createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
-		}
-
-		for (var e = 0; e <numPlayers; e++)
-		{
-			isConnected[e][e+numPlayers] = 1;
-			if (e+1<numPlayers)
-			{
-				isConnected[e + 1][e+numPlayers] = 1;
-			}
-			else
-			{
-				isConnected[0][e+numPlayers] = 1;
-			}
-
-			//second island id 4
-			var fx = fractionToTiles(0.5 + 0.27*cos(startAngle + e*TWO_PI/numPlayers + TWO_PI/(2*numPlayers)));
-			var fz = fractionToTiles(0.5 + 0.27*sin(startAngle + e*TWO_PI/numPlayers + TWO_PI/(2*numPlayers)));
-			var ix = round(fx);
-			var iz = round(fz);
-			IslandX[e+numPlayers]=ix;
-			IslandZ[e+numPlayers]=iz;
-			// calculate size based on the radius
-			var hillSize = PI * radius * radius;
-
-			// create the hill
-			var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-			var terrainPainter = new LayeredPainter(
-				[tCliff, tHill],		// terrains
-				[cliffRadius]		// widths
-			);
-			var elevationPainter = new SmoothElevationPainter(
-				ELEVATION_SET,			// type
-				elevation,				// elevation
-				cliffRadius				// blend radius
-			);
-			createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
-		}
-	}
-
-			//More than 4 PLAYERS
-		//-----------------
-		//-----------------
-		if (numPlayers > 4){
-		numIslands = numPlayers + 1;
-		var IslandX = new Array(numIslands);
-		var IslandZ = new Array(numIslands);
-		var isConnected = new Array(numIslands);
-		for (var q=0; q <numIslands; q++)
-		{
-			isConnected[q]=new Array(numIslands);
-		}
-		for (var m = 0; m < numIslands; m++){
-			for (var n = 0; n < numIslands; n++){
-				isConnected[m][n] = 0;
-			}
-		}
-		//connections
-		var sX = 0;
-		var sZ = 0;
-		for (var l = 0; l < numPlayers; l++)
-		{
-			isConnected[l][numPlayers] = 1;
-			sX = sX + playerX[l];
-			sZ = sZ + playerZ[l];
-		}
-
-		//centeral island id numPlayers
-
-		var fx = fractionToTiles((sX)/numPlayers);
-		var fz = fractionToTiles((sZ)/numPlayers);
-		var ix = round(fx);
-		var iz = round(fz);
-		IslandX[numPlayers]=ix;
-		IslandZ[numPlayers]=iz;
-		// calculate size based on the radius
-		var hillSize = PI * radius * radius;
-
-		// create the hill
-		var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-		var terrainPainter = new LayeredPainter(
-			[tCliff, tHill],		// terrains
-			[cliffRadius]		// widths
-		);
-		var elevationPainter = new SmoothElevationPainter(
-			ELEVATION_SET,			// type
-			elevation,				// elevation
-			cliffRadius				// blend radius
-		);
-		createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
+function initIsConnected()
+{
+	for (let m = 0; m < numIslands; ++m)
+	{
+		isConnected[m] = [];
+		for (let n = 0; n < numIslands; ++n)
+			isConnected[m][n] = 0;
 	}
 }
 
-//****************************
-//----------------------------
-//Medium Size
-//----------------------------
-//****************************
-if (mapSize == 256){
-		//2,3,4 PLAYERS
-		//-----------------
-		//-----------------
-		if ((numPlayers == 2)||(numPlayers == 3)||(numPlayers == 4)){
-		numIslands = 4*numPlayers+1;
-		var IslandX = new Array(numIslands);
-		var IslandZ = new Array(numIslands);
-		var isConnected = new Array(numIslands);
-		for (var q=0; q <numIslands; q++)
-		{
-			isConnected[q]=new Array(numIslands);
-		}
-		for (var m = 0; m < numIslands; m++){
-			for (var n = 0; n < numIslands; n++){
-				isConnected[m][n] = 0;
-			}
-		}
-		//connections
-		var sX = 0;
-		var sZ = 0;
-		for (var l = 0; l < numPlayers; l++)
-		{
-			isConnected[4*numPlayers][l+2*numPlayers] = 1;
-			sX = sX + playerX[l];
-			sZ = sZ + playerZ[l];
-		}
+function createIsland(islandID, size, tileClass)
+{
+	let hillSize = Math.PI * Math.pow(playerIslandRadius, 2) * size;
+	createArea(
+		new ClumpPlacer(hillSize, 0.95, 0.6, 10, islandX[islandID], islandZ[islandID]),
+		[
+			new LayeredPainter([tCliff, tHill], [2]),
+			new SmoothElevationPainter(ELEVATION_SET, islandHeight, 2),
+			paintClass(tileClass)
+		],
+		null);
+	return hillSize;
+}
 
-		var fx = fractionToTiles(sX/numPlayers);
-		var fz = fractionToTiles(sZ/numPlayers);
-		var ix = round(fx);
-		var iz = round(fz);
-		IslandX[4*numPlayers]=ix;
-		IslandZ[4*numPlayers]=iz;
-		// calculate size based on the radius
-		var hillSize = floor(PI * radius * radius * 0.36);
+function createIslandAtRadialLocation(playerID, islandID, playerIDOffset, distFromCenter, islandRadius)
+{
+	let angle = startAngle + (playerID * 2 + playerIDOffset) * Math.PI / numPlayers;
+	islandX[islandID] = Math.round(fractionToTiles(0.5 + distFromCenter * Math.cos(angle)));
+	islandZ[islandID] = Math.round(fractionToTiles(0.5 + distFromCenter * Math.sin(angle)));
+	createIsland(islandID, islandRadius, clLand);
+}
 
-		// create the hill
-		var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-		var terrainPainter = new LayeredPainter(
-			[tCliff, tHill],		// terrains
-			[cliffRadius]		// widths
-		);
-		var elevationPainter = new SmoothElevationPainter(
-			ELEVATION_SET,			// type
-			elevation,				// elevation
-			cliffRadius				// blend radius
-		);
-		createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
-		//centeral island id numPlayers
+function createSnowflakeSearockWithCenter(sizeID)
+{
+	let [tertiaryIslandDist, tertiaryIslandRadius, islandBetweenPlayersDist, islandBetweenPlayersRadius] = islandSizes[sizeID];
 
-		for (var e = 0; e <numPlayers; e++)
-		{
-		isConnected[e+2*numPlayers][e] = 1;
-		if (e+2*numPlayers+1<numIslands-numPlayers-1)
-		{
-			isConnected[e+2*numPlayers][e+2*numPlayers+1] = 1;
-		}
-		else
-		{
-			isConnected[2*numPlayers][e+2*numPlayers] = 1;
-		}
+	let islandID_center = 4 * numPlayers;
+	numIslands = islandID_center + 1;
+	initIsConnected();
 
-		var fx = fractionToTiles(0.5 + 0.16*cos(startAngle + e*TWO_PI/numPlayers));
-		var fz = fractionToTiles(0.5 + 0.16*sin(startAngle + e*TWO_PI/numPlayers));
-		var ix = round(fx);
-		var iz = round(fz);
-		IslandX[e+2*numPlayers]=ix;
-		IslandZ[e+2*numPlayers]=iz;
-		// calculate size based on the radius
-		var hillSize = floor(PI * radius * radius * 0.81);
+	log("Creating central island...");
+	islandX[islandID_center] = fractionToTiles(0.5);
+	islandZ[islandID_center] = fractionToTiles(0.5);
+	createIsland(islandID_center, centralIslandRadius, clLand);
 
-		// create the hill
-		var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-		var terrainPainter = new LayeredPainter(
-			[tCliff, tHill],		// terrains
-			[cliffRadius]		// widths
-		);
-		var elevationPainter = new SmoothElevationPainter(
-			ELEVATION_SET,			// type
-			elevation,				// elevation
-			cliffRadius				// blend radius
-		);
-		createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
+	for (let playerID = 0; playerID < numPlayers; ++playerID)
+	{
+		let playerID_neighbor = playerID + 1 < numPlayers ? playerID + 1 : 0;
 
-		//Small Isles
-		isConnected[e+3*numPlayers][e+numPlayers] = 1;
-		var fx = fractionToTiles(0.5 + 0.41*cos(startAngle + e*TWO_PI/numPlayers + TWO_PI/(2*numPlayers)));
-		var fz = fractionToTiles(0.5 + 0.41*sin(startAngle + e*TWO_PI/numPlayers + TWO_PI/(2*numPlayers)));
-		var ix = round(fx);
-		var iz = round(fz);
-		IslandX[e+3*numPlayers]=ix;
-		IslandZ[e+3*numPlayers]=iz;
-		// calculate size based on the radius
-		var hillSize = floor(PI * radius * radius * 0.49);
+		let islandID_player = playerID;
+		let islandID_playerNeighbor = playerID_neighbor;
+		let islandID_betweenPlayers = playerID + numPlayers;
+		let islandID_betweenPlayerAndCenter = playerID + 2 * numPlayers;
+		let islandID_betweenPlayerAndCenterNeighbor = playerID_neighbor + 2 * numPlayers;
+		let islandID_tertiary = playerID + 3 * numPlayers;
 
-		// create the hill
-		var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-		var terrainPainter = new LayeredPainter(
-			[tCliff, tHill],		// terrains
-			[cliffRadius]		// widths
-		);
-		var elevationPainter = new SmoothElevationPainter(
-			ELEVATION_SET,			// type
-			elevation,				// elevation
-			cliffRadius				// blend radius
-		);
-		createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
-		}
+		log("Creating island between the player and their neighbor...");
+		isConnected[islandID_betweenPlayers][islandID_player] = 1;
+		isConnected[islandID_betweenPlayers][islandID_playerNeighbor] = 1;
+		createIslandAtRadialLocation(playerID, islandID_betweenPlayers, 1, islandBetweenPlayersDist, islandBetweenPlayersRadius);
 
-		for (var e = 0; e <numPlayers; e++)
-		{
-			isConnected[e][e+numPlayers] = 1;
-			if (e+1<numPlayers)
-			{
-				isConnected[e + 1][e+numPlayers] = 1;
-			}
-			else
-			{
-				isConnected[0][e+numPlayers] = 1;
-			}
+		log("Creating an island between the player and the center...");
+		isConnected[islandID_betweenPlayerAndCenter][islandID_player] = 1;
+		isConnected[islandID_betweenPlayerAndCenter][islandID_center] = 1;
+		isConnected[islandID_betweenPlayerAndCenter][islandID_betweenPlayerAndCenterNeighbor] = 1;
+		createIslandAtRadialLocation(playerID, islandID_betweenPlayerAndCenter, 0, islandBetweenPlayerAndCenterDist, islandBetweenPlayerAndCenterRadius);
 
-			//second island id 4
-			var fx = fractionToTiles(0.5 + 0.26*cos(startAngle + e*TWO_PI/numPlayers + TWO_PI/(2*numPlayers)));
-			var fz = fractionToTiles(0.5 + 0.26*sin(startAngle + e*TWO_PI/numPlayers + TWO_PI/(2*numPlayers)));
-			var ix = round(fx);
-			var iz = round(fz);
-			IslandX[e+numPlayers]=ix;
-			IslandZ[e+numPlayers]=iz;
-			// calculate size based on the radius
-			var hillSize = PI * radius * radius;
-
-			// create the hill
-			var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-			var terrainPainter = new LayeredPainter(
-				[tCliff, tHill],		// terrains
-				[cliffRadius]		// widths
-			);
-			var elevationPainter = new SmoothElevationPainter(
-				ELEVATION_SET,			// type
-				elevation,				// elevation
-				cliffRadius				// blend radius
-			);
-			createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
-		}
-	}
-
-			//More than 4 PLAYERS
-		//-----------------
-		//-----------------
-		if (numPlayers > 4){
-		numIslands = 2*numPlayers;
-		var IslandX = new Array(numIslands);
-		var IslandZ = new Array(numIslands);
-		var isConnected = new Array(numIslands);
-		for (var q=0; q <numIslands; q++)
-		{
-			isConnected[q]=new Array(numIslands);
-		}
-		for (var m = 0; m < numIslands; m++){
-			for (var n = 0; n < numIslands; n++){
-				isConnected[m][n] = 0;
-			}
-		}
-		//connections
-		var sX = 0;
-		var sZ = 0;
-
-		//centeral island id numPlayers
-		for (var e = 0; e <numPlayers; e++)
-		{
-		if (e+1<numPlayers)
-		{
-			isConnected[e][e+1] = 1;
-		}
-		else
-		{
-			isConnected[0][e] = 1;
-		}
-		isConnected[e+numPlayers][e] = 1;
-		if (e+numPlayers+1<numIslands)
-		{
-			isConnected[e+numPlayers][e+numPlayers+1] = 1;
-		}
-		else
-		{
-			isConnected[e+numPlayers][numPlayers] = 1;
-		}
-		var fx = fractionToTiles(0.5 + 0.16*cos(startAngle + e*TWO_PI/numPlayers));
-		var fz = fractionToTiles(0.5 + 0.16*sin(startAngle + e*TWO_PI/numPlayers));
-		var ix = round(fx);
-		var iz = round(fz);
-		IslandX[e+numPlayers]=ix;
-		IslandZ[e+numPlayers]=iz;
-		// calculate size based on the radius
-		var hillSize = floor(PI * radius * radius * 0.81);
-
-		// create the hill
-		var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-		var terrainPainter = new LayeredPainter(
-			[tCliff, tHill],		// terrains
-			[cliffRadius]		// widths
-		);
-		var elevationPainter = new SmoothElevationPainter(
-			ELEVATION_SET,			// type
-			elevation,				// elevation
-			cliffRadius				// blend radius
-		);
-		createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
-		}
-
+		log("Creating tertiary island, at the map border...");
+		isConnected[islandID_tertiary][islandID_betweenPlayers] = 1;
+		createIslandAtRadialLocation(playerID, islandID_tertiary, 1, tertiaryIslandDist, tertiaryIslandRadius);
 	}
 }
 
-//****************************
-//----------------------------
-//Normal Size
-//----------------------------
-//****************************
-if (mapSize == 320){
-		//2,3,4,5 PLAYERS
-		//-----------------
-		//-----------------
-		if ((numPlayers == 2)||(numPlayers == 3)||(numPlayers == 4)||(numPlayers == 5)){
-		numIslands = 4*numPlayers+1;
-		var IslandX = new Array(numIslands);
-		var IslandZ = new Array(numIslands);
-		var isConnected = new Array(numIslands);
-		for (var q=0; q <numIslands; q++)
-		{
-			isConnected[q]=new Array(numIslands);
-		}
-		for (var m = 0; m < numIslands; m++){
-			for (var n = 0; n < numIslands; n++){
-				isConnected[m][n] = 0;
-			}
-		}
-		//connections
-		var sX = 0;
-		var sZ = 0;
-		for (var l = 0; l < numPlayers; l++)
-		{
-			isConnected[4*numPlayers][l+2*numPlayers] = 1;
-			sX = sX + playerX[l];
-			sZ = sZ + playerZ[l];
-		}
+/**
+ * Creates one island in front of every player and connects it with the neighbors.
+ */
+function createSnowflakeSearockWithoutCenter()
+{
+	numIslands = 2 * numPlayers;
+	initIsConnected();
 
-		var fx = fractionToTiles(sX/numPlayers);
-		var fz = fractionToTiles(sZ/numPlayers);
-		var ix = round(fx);
-		var iz = round(fz);
-		IslandX[4*numPlayers]=ix;
-		IslandZ[4*numPlayers]=iz;
-		// calculate size based on the radius
-		var hillSize = floor(PI * radius * radius * 0.36);
+	for (let playerID = 0; playerID < numPlayers; ++playerID)
+	{
+		let playerID_neighbor = playerID + 1 < numPlayers ? playerID + 1 : 0;
 
-		// create the hill
-		var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-		var terrainPainter = new LayeredPainter(
-			[tCliff, tHill],		// terrains
-			[cliffRadius]		// widths
-		);
-		var elevationPainter = new SmoothElevationPainter(
-			ELEVATION_SET,			// type
-			elevation,				// elevation
-			cliffRadius				// blend radius
-		);
-		createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
-		//centeral island id numPlayers
+		let islandID_player = playerID;
+		let islandID_playerNeighbor = playerID_neighbor;
+		let islandID_inFrontOfPlayer = playerID + numPlayers;
+		let islandID_inFrontOfPlayerNeighbor = playerID_neighbor + numPlayers;
 
-		for (var e = 0; e <numPlayers; e++)
-		{
-		isConnected[e+2*numPlayers][e] = 1;
-		if (e+2*numPlayers+1<numIslands-numPlayers-1)
-		{
-			isConnected[e+2*numPlayers][e+2*numPlayers+1] = 1;
-		}
-		else
-		{
-			isConnected[2*numPlayers][e+2*numPlayers] = 1;
-		}
+		isConnected[islandID_player][islandID_playerNeighbor] = 1;
+		isConnected[islandID_player][islandID_inFrontOfPlayer] = 1;
+		isConnected[islandID_inFrontOfPlayer][islandID_inFrontOfPlayerNeighbor] = 1;
 
-		var fx = fractionToTiles(0.5 + 0.16*cos(startAngle + e*TWO_PI/numPlayers));
-		var fz = fractionToTiles(0.5 + 0.16*sin(startAngle + e*TWO_PI/numPlayers));
-		var ix = round(fx);
-		var iz = round(fz);
-		IslandX[e+2*numPlayers]=ix;
-		IslandZ[e+2*numPlayers]=iz;
-		// calculate size based on the radius
-		var hillSize = floor(PI * radius * radius * 0.81);
-
-		// create the hill
-		var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-		var terrainPainter = new LayeredPainter(
-			[tCliff, tHill],		// terrains
-			[cliffRadius]		// widths
-		);
-		var elevationPainter = new SmoothElevationPainter(
-			ELEVATION_SET,			// type
-			elevation,				// elevation
-			cliffRadius				// blend radius
-		);
-		createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
-
-		//Small Isles
-		isConnected[e+3*numPlayers][e+numPlayers] = 1;
-		var fx = fractionToTiles(0.5 + 0.41*cos(startAngle + e*TWO_PI/numPlayers + TWO_PI/(2*numPlayers)));
-		var fz = fractionToTiles(0.5 + 0.41*sin(startAngle + e*TWO_PI/numPlayers + TWO_PI/(2*numPlayers)));
-		var ix = round(fx);
-		var iz = round(fz);
-		IslandX[e+3*numPlayers]=ix;
-		IslandZ[e+3*numPlayers]=iz;
-		// calculate size based on the radius
-		var hillSize = floor(PI * radius * radius * 0.49);
-
-		// create the hill
-		var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-		var terrainPainter = new LayeredPainter(
-			[tCliff, tHill],		// terrains
-			[cliffRadius]		// widths
-		);
-		var elevationPainter = new SmoothElevationPainter(
-			ELEVATION_SET,			// type
-			elevation,				// elevation
-			cliffRadius				// blend radius
-		);
-		createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
-		}
-
-		for (var e = 0; e <numPlayers; e++)
-		{
-			isConnected[e][e+numPlayers] = 1;
-			if (e+1<numPlayers)
-			{
-				isConnected[e + 1][e+numPlayers] = 1;
-			}
-			else
-			{
-				isConnected[0][e+numPlayers] = 1;
-			}
-
-			//second island id 4
-			var fx = fractionToTiles(0.5 + 0.26*cos(startAngle + e*TWO_PI/numPlayers + TWO_PI/(2*numPlayers)));
-			var fz = fractionToTiles(0.5 + 0.26*sin(startAngle + e*TWO_PI/numPlayers + TWO_PI/(2*numPlayers)));
-			var ix = round(fx);
-			var iz = round(fz);
-			IslandX[e+numPlayers]=ix;
-			IslandZ[e+numPlayers]=iz;
-			// calculate size based on the radius
-			var hillSize = PI * radius * radius;
-
-			// create the hill
-			var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-			var terrainPainter = new LayeredPainter(
-				[tCliff, tHill],		// terrains
-				[cliffRadius]		// widths
-			);
-			var elevationPainter = new SmoothElevationPainter(
-				ELEVATION_SET,			// type
-				elevation,				// elevation
-				cliffRadius				// blend radius
-			);
-			createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
-		}
-	}
-
-		//6,7 PLAYERS
-		//-----------------
-		//-----------------
-		if ((numPlayers == 6)||(numPlayers == 7)){
-		numIslands = 4*numPlayers+1;
-		var IslandX = new Array(numIslands);
-		var IslandZ = new Array(numIslands);
-		var isConnected = new Array(numIslands);
-		for (var q=0; q <numIslands; q++)
-		{
-			isConnected[q]=new Array(numIslands);
-		}
-		for (var m = 0; m < numIslands; m++){
-			for (var n = 0; n < numIslands; n++){
-				isConnected[m][n] = 0;
-			}
-		}
-		//connections
-		var sX = 0;
-		var sZ = 0;
-		for (var l = 0; l < numPlayers; l++)
-		{
-			isConnected[4*numPlayers][l+2*numPlayers] = 1;
-			sX = sX + playerX[l];
-			sZ = sZ + playerZ[l];
-		}
-
-		var fx = fractionToTiles(sX/numPlayers);
-		var fz = fractionToTiles(sZ/numPlayers);
-		var ix = round(fx);
-		var iz = round(fz);
-		IslandX[4*numPlayers]=ix;
-		IslandZ[4*numPlayers]=iz;
-		// calculate size based on the radius
-		var hillSize = floor(PI * radius * radius * 0.36);
-
-		// create the hill
-		var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-		var terrainPainter = new LayeredPainter(
-			[tCliff, tHill],		// terrains
-			[cliffRadius]		// widths
-		);
-		var elevationPainter = new SmoothElevationPainter(
-			ELEVATION_SET,			// type
-			elevation,				// elevation
-			cliffRadius				// blend radius
-		);
-		createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
-		//centeral island id numPlayers
-
-		for (var e = 0; e <numPlayers; e++)
-		{
-		isConnected[e+2*numPlayers][e] = 1;
-		if (e+2*numPlayers+1<numIslands-numPlayers-1)
-		{
-			isConnected[e+2*numPlayers][e+2*numPlayers+1] = 1;
-		}
-		else
-		{
-			isConnected[2*numPlayers][e+2*numPlayers] = 1;
-		}
-
-		var fx = fractionToTiles(0.5 + 0.16*cos(startAngle + e*TWO_PI/numPlayers));
-		var fz = fractionToTiles(0.5 + 0.16*sin(startAngle + e*TWO_PI/numPlayers));
-		var ix = round(fx);
-		var iz = round(fz);
-		IslandX[e+2*numPlayers]=ix;
-		IslandZ[e+2*numPlayers]=iz;
-		// calculate size based on the radius
-		var hillSize = floor(PI * radius * radius * 0.81);
-
-		// create the hill
-		var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-		var terrainPainter = new LayeredPainter(
-			[tCliff, tHill],		// terrains
-			[cliffRadius]		// widths
-		);
-		var elevationPainter = new SmoothElevationPainter(
-			ELEVATION_SET,			// type
-			elevation,				// elevation
-			cliffRadius				// blend radius
-		);
-		createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
-
-		//Small Isles
-		isConnected[e+3*numPlayers][e+numPlayers] = 1;
-		var fx = fractionToTiles(0.5 + 0.41*cos(startAngle + e*TWO_PI/numPlayers + TWO_PI/(2*numPlayers)));
-		var fz = fractionToTiles(0.5 + 0.41*sin(startAngle + e*TWO_PI/numPlayers + TWO_PI/(2*numPlayers)));
-		var ix = round(fx);
-		var iz = round(fz);
-		IslandX[e+3*numPlayers]=ix;
-		IslandZ[e+3*numPlayers]=iz;
-		// calculate size based on the radius
-		var hillSize = floor(PI * radius * radius * 0.49);
-
-		// create the hill
-		var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-		var terrainPainter = new LayeredPainter(
-			[tCliff, tHill],		// terrains
-			[cliffRadius]		// widths
-		);
-		var elevationPainter = new SmoothElevationPainter(
-			ELEVATION_SET,			// type
-			elevation,				// elevation
-			cliffRadius				// blend radius
-		);
-		createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
-		}
-
-		for (var e = 0; e <numPlayers; e++)
-		{
-			isConnected[e][e+numPlayers] = 1;
-			if (e+1<numPlayers)
-			{
-				isConnected[e + 1][e+numPlayers] = 1;
-			}
-			else
-			{
-				isConnected[0][e+numPlayers] = 1;
-			}
-
-			//second island id 4
-			var fx = fractionToTiles(0.5 + 0.26*cos(startAngle + e*TWO_PI/numPlayers + TWO_PI/(2*numPlayers)));
-			var fz = fractionToTiles(0.5 + 0.26*sin(startAngle + e*TWO_PI/numPlayers + TWO_PI/(2*numPlayers)));
-			var ix = round(fx);
-			var iz = round(fz);
-			IslandX[e+numPlayers]=ix;
-			IslandZ[e+numPlayers]=iz;
-			// calculate size based on the radius
-			var hillSize = PI * radius * radius;
-
-			// create the hill
-			var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-			var terrainPainter = new LayeredPainter(
-				[tCliff, tHill],		// terrains
-				[cliffRadius]		// widths
-			);
-			var elevationPainter = new SmoothElevationPainter(
-				ELEVATION_SET,			// type
-				elevation,				// elevation
-				cliffRadius				// blend radius
-			);
-			createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
-		}
-	}
-		//8 PLAYERS
-		//-----------------
-		//-----------------
-		if (numPlayers == 8){
-		numIslands = 2*numPlayers;
-		var IslandX = new Array(numIslands);
-		var IslandZ = new Array(numIslands);
-		var isConnected = new Array(numIslands);
-		for (var q=0; q <numIslands; q++)
-		{
-			isConnected[q]=new Array(numIslands);
-		}
-		for (var m = 0; m < numIslands; m++){
-			for (var n = 0; n < numIslands; n++){
-				isConnected[m][n] = 0;
-			}
-		}
-		//connections
-		var sX = 0;
-		var sZ = 0;
-
-		//centeral island id numPlayers
-		for (var e = 0; e <numPlayers; e++)
-		{
-		if (e+1<numPlayers)
-		{
-			isConnected[e][e+1] = 1;
-		}
-		else
-		{
-			isConnected[0][e] = 1;
-		}
-		isConnected[e+numPlayers][e] = 1;
-		if (e+numPlayers+1<numIslands)
-		{
-			isConnected[e+numPlayers][e+numPlayers+1] = 1;
-		}
-		else
-		{
-			isConnected[e+numPlayers][numPlayers] = 1;
-		}
-		var fx = fractionToTiles(0.5 + 0.16*cos(startAngle + e*TWO_PI/numPlayers));
-		var fz = fractionToTiles(0.5 + 0.16*sin(startAngle + e*TWO_PI/numPlayers));
-		var ix = round(fx);
-		var iz = round(fz);
-		IslandX[e+numPlayers]=ix;
-		IslandZ[e+numPlayers]=iz;
-		// calculate size based on the radius
-		var hillSize = floor(PI * radius * radius * 0.81);
-
-		// create the hill
-		var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-		var terrainPainter = new LayeredPainter(
-			[tCliff, tHill],		// terrains
-			[cliffRadius]		// widths
-		);
-		var elevationPainter = new SmoothElevationPainter(
-			ELEVATION_SET,			// type
-			elevation,				// elevation
-			cliffRadius				// blend radius
-		);
-		createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
-		}
-
+		createIslandAtRadialLocation(playerID, islandID_inFrontOfPlayer, 0, islandBetweenPlayerAndCenterDist, islandBetweenPlayerAndCenterRadius);
 	}
 }
 
-//****************************
-//----------------------------
-//Large and larger Sizes
-//----------------------------
-//****************************
-if (mapSize > 383){
-		//2,3,4,5 PLAYERS
-		//-----------------
-		//-----------------
-		if ((numPlayers == 2)||(numPlayers == 3)||(numPlayers == 4)||(numPlayers == 5)){
-		numIslands = 4*numPlayers+1;
-		var IslandX = new Array(numIslands);
-		var IslandZ = new Array(numIslands);
-		var isConnected = new Array(numIslands);
-		for (var q=0; q <numIslands; q++)
-		{
-			isConnected[q]=new Array(numIslands);
-		}
-		for (var m = 0; m < numIslands; m++){
-			for (var n = 0; n < numIslands; n++){
-				isConnected[m][n] = 0;
-			}
-		}
-		//connections
-		var sX = 0;
-		var sZ = 0;
-		for (var l = 0; l < numPlayers; l++)
-		{
-			isConnected[4*numPlayers][l+2*numPlayers] = 1;
-			sX = sX + playerX[l];
-			sZ = sZ + playerZ[l];
-		}
+function createSnowflakeSearockTiny()
+{
+	numIslands = numPlayers + 1;
+	initIsConnected();
 
-		var fx = fractionToTiles(sX/numPlayers);
-		var fz = fractionToTiles(sZ/numPlayers);
-		var ix = round(fx);
-		var iz = round(fz);
-		IslandX[4*numPlayers]=ix;
-		IslandZ[4*numPlayers]=iz;
-		// calculate size based on the radius
-		var hillSize = floor(PI * radius * radius * 0.36);
+	let islandID_center = numPlayers;
 
-		// create the hill
-		var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-		var terrainPainter = new LayeredPainter(
-			[tCliff, tHill],		// terrains
-			[cliffRadius]		// widths
-		);
-		var elevationPainter = new SmoothElevationPainter(
-			ELEVATION_SET,			// type
-			elevation,				// elevation
-			cliffRadius				// blend radius
-		);
-		createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
-		//centeral island id numPlayers
+	log("Creating central island...");
+	islandX[islandID_center] = fractionToTiles(0.5);
+	islandZ[islandID_center] = fractionToTiles(0.5);
+	createIsland(numPlayers, 1, clLand);
 
-		for (var e = 0; e <numPlayers; e++)
-		{
-		isConnected[e+2*numPlayers][e] = 1;
-		if (e+2*numPlayers+1<numIslands-numPlayers-1)
-		{
-			isConnected[e+2*numPlayers][e+2*numPlayers+1] = 1;
-		}
-		else
-		{
-			isConnected[2*numPlayers][e+2*numPlayers] = 1;
-		}
-
-		var fx = fractionToTiles(0.5 + 0.16*cos(startAngle + e*TWO_PI/numPlayers));
-		var fz = fractionToTiles(0.5 + 0.16*sin(startAngle + e*TWO_PI/numPlayers));
-		var ix = round(fx);
-		var iz = round(fz);
-		IslandX[e+2*numPlayers]=ix;
-		IslandZ[e+2*numPlayers]=iz;
-		// calculate size based on the radius
-		var hillSize = floor(PI * radius * radius * 0.81);
-
-		// create the hill
-		var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-		var terrainPainter = new LayeredPainter(
-			[tCliff, tHill],		// terrains
-			[cliffRadius]		// widths
-		);
-		var elevationPainter = new SmoothElevationPainter(
-			ELEVATION_SET,			// type
-			elevation,				// elevation
-			cliffRadius				// blend radius
-		);
-		createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
-
-		//Small Isles
-		isConnected[e+3*numPlayers][e+numPlayers] = 1;
-		var fx = fractionToTiles(0.5 + 0.41*cos(startAngle + e*TWO_PI/numPlayers + TWO_PI/(2*numPlayers)));
-		var fz = fractionToTiles(0.5 + 0.41*sin(startAngle + e*TWO_PI/numPlayers + TWO_PI/(2*numPlayers)));
-		var ix = round(fx);
-		var iz = round(fz);
-		IslandX[e+3*numPlayers]=ix;
-		IslandZ[e+3*numPlayers]=iz;
-		// calculate size based on the radius
-		var hillSize = floor(PI * radius * radius * 0.49);
-
-		// create the hill
-		var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-		var terrainPainter = new LayeredPainter(
-			[tCliff, tHill],		// terrains
-			[cliffRadius]		// widths
-		);
-		var elevationPainter = new SmoothElevationPainter(
-			ELEVATION_SET,			// type
-			elevation,				// elevation
-			cliffRadius				// blend radius
-		);
-		createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
-		}
-
-		for (var e = 0; e <numPlayers; e++)
-		{
-			isConnected[e][e+numPlayers] = 1;
-			if (e+1<numPlayers)
-			{
-				isConnected[e + 1][e+numPlayers] = 1;
-			}
-			else
-			{
-				isConnected[0][e+numPlayers] = 1;
-			}
-
-			//second island id 4
-			var fx = fractionToTiles(0.5 + 0.24*cos(startAngle + e*TWO_PI/numPlayers + TWO_PI/(2*numPlayers)));
-			var fz = fractionToTiles(0.5 + 0.24*sin(startAngle + e*TWO_PI/numPlayers + TWO_PI/(2*numPlayers)));
-			var ix = round(fx);
-			var iz = round(fz);
-			IslandX[e+numPlayers]=ix;
-			IslandZ[e+numPlayers]=iz;
-			// calculate size based on the radius
-			var hillSize = PI * radius * radius;
-
-			// create the hill
-			var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-			var terrainPainter = new LayeredPainter(
-				[tCliff, tHill],		// terrains
-				[cliffRadius]		// widths
-			);
-			var elevationPainter = new SmoothElevationPainter(
-				ELEVATION_SET,			// type
-				elevation,				// elevation
-				cliffRadius				// blend radius
-			);
-			createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
-		}
-
-	}
-
-		//6,7,8 PLAYERS
-		//-----------------
-		//-----------------
-		if ((numPlayers == 6)||(numPlayers == 7)||(numPlayers == 8)){
-		numIslands = 4*numPlayers+1;
-		var IslandX = new Array(numIslands);
-		var IslandZ = new Array(numIslands);
-		var isConnected = new Array(numIslands);
-		for (var q=0; q <numIslands; q++)
-		{
-			isConnected[q]=new Array(numIslands);
-		}
-		for (var m = 0; m < numIslands; m++){
-			for (var n = 0; n < numIslands; n++){
-				isConnected[m][n] = 0;
-			}
-		}
-		//connections
-		var sX = 0;
-		var sZ = 0;
-		for (var l = 0; l < numPlayers; l++)
-		{
-			isConnected[4*numPlayers][l+2*numPlayers] = 1;
-			sX = sX + playerX[l];
-			sZ = sZ + playerZ[l];
-		}
-
-		var fx = fractionToTiles(sX/numPlayers);
-		var fz = fractionToTiles(sZ/numPlayers);
-		var ix = round(fx);
-		var iz = round(fz);
-		IslandX[4*numPlayers]=ix;
-		IslandZ[4*numPlayers]=iz;
-		// calculate size based on the radius
-		var hillSize = floor(PI * radius * radius * 0.36);
-
-		// create the hill
-		var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-		var terrainPainter = new LayeredPainter(
-			[tCliff, tHill],		// terrains
-			[cliffRadius]		// widths
-		);
-		var elevationPainter = new SmoothElevationPainter(
-			ELEVATION_SET,			// type
-			elevation,				// elevation
-			cliffRadius				// blend radius
-		);
-		createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
-
-		//centeral island id numPlayers
-		for (var e = 0; e <numPlayers; e++)
-		{
-		isConnected[e+2*numPlayers][e] = 1;
-		if (e+2*numPlayers+1<numIslands-numPlayers-1)
-		{
-			isConnected[e+2*numPlayers][e+2*numPlayers+1] = 1;
-		}
-		else
-		{
-			isConnected[2*numPlayers][e+2*numPlayers] = 1;
-		}
-
-		var fx = fractionToTiles(0.5 + 0.16*cos(startAngle + e*TWO_PI/numPlayers));
-		var fz = fractionToTiles(0.5 + 0.16*sin(startAngle + e*TWO_PI/numPlayers));
-		var ix = round(fx);
-		var iz = round(fz);
-		IslandX[e+2*numPlayers]=ix;
-		IslandZ[e+2*numPlayers]=iz;
-		// calculate size based on the radius
-		var hillSize = floor(PI * radius * radius * 0.81);
-
-		// create the hill
-		var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-		var terrainPainter = new LayeredPainter(
-			[tCliff, tHill],		// terrains
-			[cliffRadius]		// widths
-		);
-		var elevationPainter = new SmoothElevationPainter(
-			ELEVATION_SET,			// type
-			elevation,				// elevation
-			cliffRadius				// blend radius
-		);
-		createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
-
-		//Small Isles
-		isConnected[e+3*numPlayers][e+numPlayers] = 1;
-		var fx = fractionToTiles(0.5 + 0.41*cos(startAngle + e*TWO_PI/numPlayers + TWO_PI/(2*numPlayers)));
-		var fz = fractionToTiles(0.5 + 0.41*sin(startAngle + e*TWO_PI/numPlayers + TWO_PI/(2*numPlayers)));
-		var ix = round(fx);
-		var iz = round(fz);
-		IslandX[e+3*numPlayers]=ix;
-		IslandZ[e+3*numPlayers]=iz;
-		// calculate size based on the radius
-		var hillSize = floor(PI * radius * radius * 0.36);
-
-		// create the hill
-		var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-		var terrainPainter = new LayeredPainter(
-			[tCliff, tHill],		// terrains
-			[cliffRadius]		// widths
-		);
-		var elevationPainter = new SmoothElevationPainter(
-			ELEVATION_SET,			// type
-			elevation,				// elevation
-			cliffRadius				// blend radius
-		);
-		createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
-		}
-
-		for (var e = 0; e <numPlayers; e++)
-		{
-			isConnected[e][e+numPlayers] = 1;
-			if (e+1<numPlayers)
-			{
-				isConnected[e + 1][e+numPlayers] = 1;
-			}
-			else
-			{
-				isConnected[0][e+numPlayers] = 1;
-			}
-
-			//second island id 4
-			var fx = fractionToTiles(0.5 + 0.28*cos(startAngle + e*TWO_PI/numPlayers + TWO_PI/(2*numPlayers)));
-			var fz = fractionToTiles(0.5 + 0.28*sin(startAngle + e*TWO_PI/numPlayers + TWO_PI/(2*numPlayers)));
-			var ix = round(fx);
-			var iz = round(fz);
-			IslandX[e+numPlayers]=ix;
-			IslandZ[e+numPlayers]=iz;
-			// calculate size based on the radius
-			var hillSize = PI * radius * radius * 0.81;
-
-			// create the hill
-			var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-			var terrainPainter = new LayeredPainter(
-				[tCliff, tHill],		// terrains
-				[cliffRadius]		// widths
-			);
-			var elevationPainter = new SmoothElevationPainter(
-				ELEVATION_SET,			// type
-				elevation,				// elevation
-				cliffRadius				// blend radius
-			);
-			createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
-		}
-
+	for (let playerID = 0; playerID < numPlayers; ++playerID)
+	{
+		let islandID_player = playerID;
+		isConnected[islandID_player][islandID_center] = 1;
 	}
 }
 
-for (var m = 0; m < numIslands; m++){
-	for (var n = 0; n < numIslands; n++){
-		if(isConnected[m][n] == 1){
-			isConnected[n][m] = 1;
-		}
-	}
-}
+initTerrain(tWater);
 
-for (var i = 0; i < numPlayers; i++)
+const islandSizes = {
+	"medium":  [0.41, 0.49, 0.26, 1],
+	"large1":  [0.41, 0.49, 0.24, 1],
+	"large2":  [0.41, 0.36, 0.28, 0.81]
+};
+
+if (mapSize <= 128)
+{
+	createSnowflakeSearockTiny();
+}
+else if (mapSize <= 192)
+{
+	createSnowflakeSearockWithoutCenter();
+}
+else if (mapSize <= 256)
+{
+	if (numPlayers < 6)
+		createSnowflakeSearockWithCenter("medium");
+	else
+		createSnowflakeSearockWithoutCenter();
+}
+else if (mapSize <= 320)
+{
+	if (numPlayers < 8)
+		createSnowflakeSearockWithCenter("medium");
+	else
+		createSnowflakeSearockWithoutCenter();
+}
+else
+	createSnowflakeSearockWithCenter(numPlayers < 6 ? "large1" : "large2");
+
+for (var i = 0; i < numPlayers; ++i)
 {
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
@@ -1465,27 +227,15 @@ for (var i = 0; i < numPlayers; i++)
 	var fz = fractionToTiles(playerZ[i]);
 	var ix = round(fx);
 	var iz = round(fz);
-		IslandX[i]=ix;
-		IslandZ[i]=iz;
-	// calculate size based on the radius
-	var hillSize = PI * radius * radius;
 
-	// create the hill
-	var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-	var terrainPainter = new LayeredPainter(
-		[tCliff, tHill],		// terrains
-		[cliffRadius]		// widths
-	);
-	var elevationPainter = new SmoothElevationPainter(
-		ELEVATION_SET,			// type
-		elevation,				// elevation
-		cliffRadius				// blend radius
-	);
-	createArea(placer, [terrainPainter, elevationPainter, paintClass(clPlayer)], null);
+	islandX[i] = ix;
+	islandZ[i] = iz;
+
+	let hillSize = createIsland(i, 1, clPlayer);
 
 	// create the city patch
-	var cityRadius = radius/3;
-	placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, ix, iz);
+	var cityRadius = playerIslandRadius/3;
+	var placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, ix, iz);
 	var painter = new LayeredPainter([tRoadWild, tRoad], [1]);
 	createArea(placer, painter, null);
 
@@ -1509,7 +259,7 @@ for (var i = 0; i < numPlayers; i++)
 	while(abs(mAngle - bbAngle) < PI/3)
 		mAngle = randFloat(0, TWO_PI);
 
-	var mDist = radius - 4;
+	var mDist = playerIslandRadius - 4;
 	var mX = round(fx + mDist * cos(mAngle));
 	var mZ = round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
@@ -1540,51 +290,55 @@ for (var i = 0; i < numPlayers; i++)
 	);
 	createObjectGroup(group, 0, [avoidClasses(clBaseResource,2), stayClasses(clPlayer, 3)]);
 
-	placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, radius);
+	placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, playerIslandRadius);
 }
-
 RMS.SetProgress(30);
 
-//Create connectors
-for (var ix = 0; ix < mapSize; ix++)
-	for (var iz = 0; iz < mapSize; iz++)
-		for (var m = 0; m < numIslands; m++)
-			for (var n = 0; n < numIslands; n++)
-				if(isConnected[m][n] == 1)
-				{
-					var a = IslandZ[m]-IslandZ[n];
-					var b = IslandX[n]-IslandX[m];
-					var c = (IslandZ[m]*(IslandX[m]-IslandX[n]))-(IslandX[m]*(IslandZ[m]-IslandZ[n]));
-					var dis = abs(a*ix + b*iz + c)/sqrt(a*a + b*b);
-					var k = (a*ix + b*iz + c)/(a*a + b*b);
-					var y = iz-(b*k);
-					if((dis < 5)&&(y <= Math.max(IslandZ[m],IslandZ[n]))&&(y >= Math.min(IslandZ[m],IslandZ[n])))
-					{
-						if (dis < 3)
-						{
-							var h = 20;
-							if (dis < 2)
-								var t = tHill;
-							else
-								var t = tCliff;
-							addToClass(ix, iz, clLand);
-						}
-						else
-						{
-							var h = 50 - 10 * dis;
-							var t = tCliff;
-							addToClass(ix, iz, clLand);
-						}
+log("Creating connectors...");
+for (let ix = 0; ix < mapSize; ++ix)
+	for (let iz = 0; iz < mapSize; ++iz)
+		for (let m = 0; m < numIslands; ++m)
+			for (let n = 0; n < numIslands; ++n)
+			{
+				if (isConnected[m][n] != 1)
+					continue;
 
-						if (getHeight(ix, iz)<h)
-						{
-							placeTerrain(ix, iz, t);
-							setHeight(ix, iz, h);
-						}
-					}
+				let islandDistX = islandX[n] - islandX[m];
+				let islandDistZ = islandZ[m] - islandZ[n];
+
+				let d1 = islandDistX * (iz - islandZ[m]) + islandDistZ * (ix - islandX[m]);
+				let d2 = Math.pow(islandDistX, 2) + Math.pow(islandDistZ, 2);
+
+				let dis = Math.abs(d1) / Math.sqrt(d2);
+				let z = iz - islandDistX * d1 / d2;
+
+				if (dis >= 5 || z < Math.min(islandZ[m], islandZ[n]) || z > Math.max(islandZ[m], islandZ[n]))
+					continue;
+
+				addToClass(ix, iz, clLand);
+
+				let height;
+				let tileClass;
+
+				let f = 3 - dis;
+				if (f > 0)
+				{
+					height = islandHeight;
+					tileClass = dis < 2 ? tHill : tCliff;
+				}
+				else
+				{
+					height = islandHeight + 10 * f;
+					tileClass = tCliff;
 				}
 
-// calculate desired number of trees for map (based on size)
+				if (getHeight(ix, iz) < height)
+				{
+					placeTerrain(ix, iz, tileClass);
+					setHeight(ix, iz, height);
+				}
+			}
+
 if (currentBiome() == "savanna")
 {
 	var MIN_TREES = 200;
@@ -1603,6 +357,7 @@ else
 	var MAX_TREES = 3000;
 	var P_FOREST = 0.7;
 }
+
 var totalTrees = scaleByMapSize(MIN_TREES, MAX_TREES);
 var numForest = totalTrees * P_FOREST;
 var numStragglers = totalTrees * (1.0 - P_FOREST);
@@ -1613,7 +368,7 @@ var types = [
 	[[tForestFloor1, tMainTerrain, pForest2], [tForestFloor1, pForest2]]
 ];
 
-var size = numForest / scaleByMapSize(2, 8) * numPlayers * (currentBiome() == "savanna" ? 2 : 1);
+var size = numForest / (scaleByMapSize(2, 8) * numPlayers) * (currentBiome() == "savanna" ? 2 : 1);
 var num = floor(size / types.length);
 for (let type of types)
 	createAreas(
