@@ -5,6 +5,7 @@
 # Translators:
 # Christian Xia <wood_elf@126.com>, 2016
 # helinb <1696060289@qq.com>, 2015
+# Jason Chen <wonton.cc@gmail.com>, 2017
 # Kelvin Cooper <Zhu-Zhe-Yong@live.com>, 2016
 # liulitchi <xingzuo88@qq.com>, 2017
 # loms126 <loms126@126.com>, 2014
@@ -20,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-10-09 09:04+0200\n"
-"PO-Revision-Date: 2017-10-09 15:52+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-10-17 07:29+0000\n"
+"Last-Translator: Jason Chen <wonton.cc@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -96,7 +97,7 @@ msgstr ""
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait..."
-msgstr ""
+msgstr "正在使用默认浏览器打开%(url)s，请稍候…"
 
 #: gui/common/functions_global_object.js:60
 msgid "Opening page"
@@ -329,7 +330,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:280
 msgid "Rated game"
-msgstr ""
+msgstr "排位赛"
 
 #: gui/common/gamedescription.js:281
 msgid ""
@@ -413,7 +414,7 @@ msgstr ""
 #: gui/common/gamedescription.js:356
 msgctxt "biome"
 msgid "Random"
-msgstr ""
+msgstr "随机"
 
 #: gui/common/gamedescription.js:363
 msgid "Starting Resources"
@@ -430,7 +431,7 @@ msgstr "人偶限制"
 
 #: gui/common/gamedescription.js:382
 msgid "Treasures"
-msgstr ""
+msgstr "宝藏"
 
 #: gui/common/gamedescription.js:384
 msgctxt "treasures"
@@ -509,7 +510,7 @@ msgstr "未知原因"
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software"
-msgstr ""
+msgstr "这通常是因为防火墙或杀毒软件导致主机的UDP端口20595没有被转发引起的。"
 
 #: gui/common/network.js:68
 msgid "The host has ended the game"
@@ -546,7 +547,7 @@ msgstr "服务器已满"
 #: gui/common/network.js:76
 msgid ""
 "Player identifier in use. If you were disconnected, retry in few seconds"
-msgstr ""
+msgstr "玩家ID已被使用。如果您已断开连接，请过几秒后重试"
 
 #: gui/common/network.js:79
 #, javascript-format
@@ -651,7 +652,7 @@ msgstr "小规模战斗"
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other gamesettings."
-msgstr ""
+msgstr "预设地形和玩家数量的地图，其他游戏设置可选。"
 
 #: gui/common/settings.js:201
 msgctxt "map"
@@ -671,7 +672,7 @@ msgstr "场景"
 
 #: gui/common/settings.js:207
 msgid "A map with a predefined landscape and matchsettings."
-msgstr ""
+msgstr "预设地形和比赛设定的地图。"
 
 #: gui/common/settings.js:250
 msgctxt "victory condition"
@@ -1145,7 +1146,7 @@ msgstr "警告"
 
 #: gui/options/options.js:348
 msgid "Some setting values are invalid! Are you sure to save them?"
-msgstr ""
+msgstr "有无效设定值！你真的要保存设置吗？"
 
 #: gui/options/options.js:375
 msgid "You have unsaved changes, do you want to close this window?"
@@ -1380,7 +1381,7 @@ msgstr "非排位赛"
 
 #: gui/replaymenu/replay_menu.js:193
 msgid "Filter replays by typing one or more, partial or complete playernames."
-msgstr ""
+msgstr "键入一个、多个、部分或完整的玩家名称来筛选回放。"
 
 #: gui/replaymenu/replay_menu.js:272
 #, javascript-format
@@ -2184,7 +2185,7 @@ msgstr "时长"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):252
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
-msgstr ""
+msgstr "重建回放缓存，需较长时间，请耐心等待。"
 
 #: gui/savedgames/load.xml:(heading):41
 msgctxt "replay"
@@ -2206,7 +2207,7 @@ msgstr "加载"
 
 #: gui/savedgames/load.xml:(caption):80
 msgid "Filter compatible saved games"
-msgstr ""
+msgstr "筛选兼容版本的游戏存档"
 
 #: gui/savedgames/load.xml:(caption):90
 msgid "Players:"
@@ -2489,7 +2490,7 @@ msgstr "窗口失去焦点时暂停"
 msgid ""
 "If you disable it, the welcome screen will still appear once, each time a "
 "new version is available. You can always launch it from the main menu."
-msgstr ""
+msgstr "禁用此项时，欢迎界面仍然会在更新到新版本出现一次。除此外，你始终可用通过主菜单进入欢迎界面。"
 
 #: gui/options/options.json[0].options[4].label
 msgid "Enable Welcome Screen"
@@ -2590,7 +2591,7 @@ msgstr ""
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started"
-msgstr ""
+msgstr "游戏开始后只允许玩家以旁观者身份加入游戏"
 
 #: gui/options/options.json[0].options[14].label
 msgid "Late Observer Joins"
@@ -2598,7 +2599,7 @@ msgstr "最近加入的观察者"
 
 #: gui/options/options.json[0].options[15].tooltip
 msgid "Prevent further observers from joining if the limit is reached"
-msgstr ""
+msgstr "达到上限时，阻止其他旁观者加入游戏"
 
 #: gui/options/options.json[0].options[15].label
 msgid "Observer Limit"
@@ -2635,7 +2636,7 @@ msgstr ""
 msgid ""
 "Display the healing range of selected units (can also be toggled in-game "
 "with the hotkey)."
-msgstr ""
+msgstr "显示所选单位的治疗范围(也可以在游戏内通过热键显示)"
 
 #: gui/options/options.json[0].options[19].label
 msgid "Heal Range Visualization"
@@ -2811,21 +2812,21 @@ msgstr "垂直同步"
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
-msgstr ""
+msgstr "限制所有菜单的渲染频率来降低CPU使用率。设置为最大值时不作限制。"
 
 #: gui/options/options.json[1].options[17].label
 msgid "FPS Throttling in Menus"
-msgstr ""
+msgstr "菜单界面FPS上限"
 
 #: gui/options/options.json[1].options[18].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
-msgstr ""
+msgstr "限制进行中游戏的渲染频率来降低CPU使用率。设置为最大值则不作限制。"
 
 #: gui/options/options.json[1].options[18].label
 msgid "FPS Throttling in Games"
-msgstr ""
+msgstr "游戏内FPS上限"
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
@@ -2841,7 +2842,7 @@ msgstr "音频主控制"
 
 #: gui/options/options.json[2].options[0].label
 msgid "Master Volume"
-msgstr ""
+msgstr "主音量"
 
 #: gui/options/options.json[2].options[1].tooltip
 msgid "In game music gain"
@@ -2857,7 +2858,7 @@ msgstr "游戏环境音效控制"
 
 #: gui/options/options.json[2].options[2].label
 msgid "Ambient Volume"
-msgstr ""
+msgstr "环境音量"
 
 #: gui/options/options.json[2].options[3].tooltip
 msgid "In game unit action sound gain"
@@ -2865,7 +2866,7 @@ msgstr "游戏单位动作声音控制"
 
 #: gui/options/options.json[2].options[3].label
 msgid "Action Volume"
-msgstr ""
+msgstr "行动音量"
 
 #: gui/options/options.json[2].options[4].tooltip
 msgid "UI sound gain"
@@ -2873,7 +2874,7 @@ msgstr "UI声音控制"
 
 #: gui/options/options.json[2].options[4].label
 msgid "UI Volume"
-msgstr ""
+msgstr "界面音量"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "Receive audio notification when someone types your nick"
@@ -2903,15 +2904,15 @@ msgstr ""
 
 #: gui/options/options.json[3].tooltip
 msgid "These settings only affect the multiplayer."
-msgstr ""
+msgstr "这些设置只影响多人游戏。"
 
 #: gui/options/options.json[3].label
 msgid "Lobby"
-msgstr ""
+msgstr "游戏大厅"
 
 #: gui/options/options.json[4].options[0].tooltip
 msgid "Show a chat notification if you are attacked by another player"
-msgstr ""
+msgstr "当你被其他玩家攻击时弹出提醒"
 
 #: gui/options/options.json[4].options[0].label
 msgid "Attack"
@@ -3158,7 +3159,7 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr ""
+msgstr "默认AI级别虽然对于老玩家来说相对容易，但是对还没掌握游戏基本机制的新手玩家来说仍然十分具有挑战性。对于新手玩家，建议从较低的AI级别(“沙盒”或“非常容易”)开始。你可以用过在上面的面板上点击AI玩家旁边的齿轮图标来修改他们的AI级别。"
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
