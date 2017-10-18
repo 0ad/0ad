@@ -7,7 +7,10 @@
       <props>
         <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/hele_corral_mud.xml" attachpoint="root"/>
-        <prop attachpoint=""/>
+        <prop actor="props/structures/spartans/stable_nature.xml" attachpoint="root"/>
+        <prop actor="props/structures/persians/stable_horse_a.xml" attachpoint="horse" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/persians/stable_horse_b.xml" attachpoint="horse_1" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/persians/stable_horse_c.xml" attachpoint="horse_2" maxheight="20" minheight="-20"/>
       </props>
       <textures>
         <texture file="structural/sparta_struct.png" name="baseTex"/>

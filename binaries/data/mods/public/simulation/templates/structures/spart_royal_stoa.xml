@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic_hellenic_royal_stoa">
+  <Footprint>
+    <Square width="27.0" depth="24.5"/>
+    <Height>10.0</Height>
+  </Footprint>
   <Identity>
     <Civ>spart</Civ>
   </Identity>
+  <Obstruction>
+    <Static width="26.0" depth="23.5"/>
+  </Obstruction>
+  <VisualActor>
+    <Actor>structures/spartans/stoa.xml</Actor>
+  </VisualActor>
 </Entity>
