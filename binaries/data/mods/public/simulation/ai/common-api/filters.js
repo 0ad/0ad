@@ -2,21 +2,21 @@ var API3 = function(m)
 {
 
 m.Filters = {
-	byType: function(type){
+	"byType": function(type){
 		return {"func" : function(ent){
 			return ent.templateName() === type;
 		},
 		"dynamicProperties": []};
 	},
 
-	byClass: function(cls){
+	"byClass": function(cls){
 		return {"func" : function(ent){
 			return ent.hasClass(cls);
 		},
 		"dynamicProperties": []};
 	},
 
-	byClassesAnd: function(clsList){
+	"byClassesAnd": function(clsList){
 		return {"func" : function(ent){
 			let ret = true;
 			for (let cls of clsList)
@@ -26,7 +26,7 @@ m.Filters = {
 		"dynamicProperties": []};
 	},
 
-	byClassesOr: function(clsList){
+	"byClassesOr": function(clsList){
 		return {"func" : function(ent){
 			let ret = false;
 			for (let cls of clsList)
@@ -36,64 +36,56 @@ m.Filters = {
 		"dynamicProperties": []};
 	},
 
-	byMetadata: function(player, key, value){
+	"byMetadata": function(player, key, value){
 		return {"func" : function(ent){
 			return ent.getMetadata(player, key) == value;
 		},
 		"dynamicProperties": ['metadata.' + key]};
 	},
 
-	// can be used for stuffs which won't change once entities are created.
-	byStaticMetadata: function(player, key, value){
-		return {"func" : function(ent){
-			return ent.getMetadata(player, key) == value;
-		},
-		"dynamicProperties": []};
-	},
-
-	byHasMetadata: function(player, key){
+	"byHasMetadata": function(player, key){
 		return {"func" : function(ent){
 			return ent.getMetadata(player, key) !== undefined;
 		},
 		"dynamicProperties": ['metadata.' + key]};
 	},
 
-	and: function(filter1, filter2){
+	"and": function(filter1, filter2){
 		return {"func": function(ent){
 			return filter1.func(ent) && filter2.func(ent);
 		},
 		"dynamicProperties": filter1.dynamicProperties.concat(filter2.dynamicProperties)};
 	},
 
-	or: function(filter1, filter2){
+	"or": function(filter1, filter2){
 		return {"func" : function(ent){
 			return filter1.func(ent) || filter2.func(ent);
 		},
 		"dynamicProperties": filter1.dynamicProperties.concat(filter2.dynamicProperties)};
 	},
 
-	not: function(filter){
+	"not": function(filter){
 		return {"func": function(ent){
 			return !filter.func(ent);
 		},
 		"dynamicProperties": filter.dynamicProperties};
 	},
 
-	byOwner: function(owner){
+	"byOwner": function(owner){
 		return {"func" : function(ent){
 			return ent.owner() === owner;
 		},
 		"dynamicProperties": ['owner']};
 	},
 
-	byNotOwner: function(owner){
+	"byNotOwner": function(owner){
 		return {"func" : function(ent){
 			return ent.owner() !== owner;
 		},
 		"dynamicProperties": ['owner']};
 	},
 
-	byOwners: function(owners){
+	"byOwners": function(owners){
 		return {"func" : function(ent){
 			for (let owner of owners)
 				if (ent.owner() === owner)
@@ -103,29 +95,25 @@ m.Filters = {
 		"dynamicProperties": ['owner']};
 	},
 
-	byCanGarrison: function(){
+	"byCanGarrison": function(){
 		return {"func" : function(ent){
 			return ent.garrisonMax() > 0;
 		},
 		"dynamicProperties": []};
 	},
-	byTrainingQueue: function(){
+
+	"byTrainingQueue": function(){
 		return {"func" : function(ent){
 			return ent.trainingQueue();
 		},
 		"dynamicProperties": ['trainingQueue']};
 	},
-	byResearchAvailable: function(civ){
+
+	"byResearchAvailable": function(civ){
 		return {"func" : function(ent){
 			return ent.researchableTechs(civ) !== undefined;
 		},
 		"dynamicProperties": []};
-	},
-	byTargetedEntity: function(targetID){
-		return {"func": function(ent) {
-			return ent.unitAIOrderData().length && ent.unitAIOrderData()[0].target && ent.unitAIOrderData()[0].target == targetID;
-		},
-		"dynamicProperties": ['unitAIOrderData']};
 	},
 
 	"byCanAttackClass": function(aClass)
@@ -136,82 +124,49 @@ m.Filters = {
 		"dynamicProperties": []};
 	},
 
-	isGarrisoned: function(){
+	"isGarrisoned": function(){
 		return {"func" : function(ent){
 			return ent.position() === undefined;
 		},
 		"dynamicProperties": []};
 	},
 
-	isSoldier: function(){
-		return {"func" : function(ent){
-			return Filters.byClassesOr(["CitizenSoldier", "Super"])(ent);
-		},
-		"dynamicProperties": []};
-	},
-
-	isIdle: function(){
+	"isIdle": function(){
 		return {"func" : function(ent){
 			return ent.isIdle();
 		},
 		"dynamicProperties": ['idle']};
 	},
 
-	isFoundation: function(){
+	"isFoundation": function(){
 		return {"func": function(ent){
 			return ent.foundationProgress() !== undefined;
 		},
 		"dynamicProperties": []};
 	},
 
-	isBuilt: function(){
+	"isBuilt": function(){
 		return {"func": function(ent){
 			return ent.foundationProgress() === undefined;
 		},
 		"dynamicProperties": []};
 	},
 
-	hasDefensiveFire: function(){
+	"hasDefensiveFire": function(){
 		return {"func": function(ent){
 			return ent.hasDefensiveFire();
 		},
 		"dynamicProperties": []};
 	},
 
-	byDistance: function(startPoint, dist){
-		return {"func": function(ent){
-			if (!ent.position())
-				return false;
-			return m.SquareVectorDistance(startPoint, ent.position()) < dist*dist;
-		},
-		"dynamicProperties": ['position']};
-	},
-
-	// Distance filter with no auto updating, use with care
-	byStaticDistance: function(startPoint, dist){
-		return {"func": function(ent){
-			if (!ent.position())
-				return false;
-			return m.SquareVectorDistance(startPoint, ent.position()) < dist*dist;
-		},
-		"dynamicProperties": []};
-	},
-
-	byTerritory: function(Map, territoryIndex){
-		return {"func": function(ent){
-			return Map.point(ent.position()) == territoryIndex;
-		},
-		"dynamicProperties": ['position']};
-	},
-
-	isDropsite: function(resourceType){
+	"isDropsite": function(resourceType){
 		return {"func": function(ent){
 			return ent.resourceDropsiteTypes() && (resourceType === undefined || ent.resourceDropsiteTypes().indexOf(resourceType) !== -1);
 		},
 		"dynamicProperties": []};
 	},
 
-	byResource: function(resourceType){
+	"byResource": function(resourceType){
 		return {"func" : function(ent){
 			if (!ent.resourceSupplyMax())
 				return false;
@@ -237,7 +192,7 @@ m.Filters = {
 		"dynamicProperties": []};
 	},
 
-	isHuntable: function(){
+	"isHuntable": function(){
 		return {"func" : function(ent){
 			if (!ent.hasClass("Animal"))
 				return false;
@@ -254,7 +209,7 @@ m.Filters = {
 		"dynamicProperties": []};
 	},
 
-	isFishable: function(){
+	"isFishable": function(){
 		return {"func" : function(ent){
 			if (ent.get("UnitMotion"))   // temporarily do not fish moving fish (i.e. whales)
 				return false;
