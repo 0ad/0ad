@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military_barracks">
+  <Cost>
+    <BuildTime>175</BuildTime>
+    <Resources>
+      <wood>450</wood>
+    </Resources>
+  </Cost>
+  <GarrisonHolder>
+    <List datatype="tokens">Siege -Infantry -Cavalry</List>
+  </GarrisonHolder>
+  <Identity>
+    <GenericName>Siege Workshop</GenericName>
+    <Tooltip>Train siege weapons. Research training improvements.</Tooltip>
+    <Icon>structures/barracks.png</Icon>
+  </Identity>
+  <ProductionQueue>
+    <BatchTimeModifier>0.8</BatchTimeModifier>
+    <Entities datatype="tokens">
+      -units/{civ}_infantry_spearman_b
+      -units/{civ}_infantry_pikeman_b
+      -units/{civ}_infantry_swordsman_b
+      units/{civ}_mechanical_siege_ballista_packed
+      units/{civ}_mechanical_siege_scorpio_packed
+      units/{civ}_mechanical_siege_oxybeles_packed
+      units/{civ}_mechanical_siege_lithobolos_packed
+      units/{civ}_mechanical_siege_polybolos_packed
+      units/{civ}_mechanical_siege_ram
+      units/{civ}_mechanical_siege_tower
+    </Entities>
+  </ProductionQueue>
+</Entity>
