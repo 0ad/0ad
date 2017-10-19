@@ -26,7 +26,7 @@ var PETRA = function(m)
 m.DiplomacyManager = function(Config)
 {
 	this.Config = Config;
-	this.nextTributeUpdate = -1;
+	this.nextTributeUpdate = 90;
 	this.nextTributeRequest = new Map();
 	this.nextTributeRequest.set("all", 240);
 	this.betrayLapseTime = -1;

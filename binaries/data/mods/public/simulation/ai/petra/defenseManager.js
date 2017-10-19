@@ -657,11 +657,10 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 
 m.DefenseManager.prototype.garrisonUnitsInside = function(gameState, target, data)
 {
-	let minGarrison = data.min ? data.min : target.garrisonMax();
-	let typeGarrison = data.type ? data.type : "protection";
-	if (gameState.ai.HQ.garrisonManager.numberOfGarrisonedUnits(target) >= minGarrison)
-		return false;
 	if (target.hitpoints() < target.garrisonEjectHealth() * target.maxHitpoints())
+		return false;
+	let minGarrison = data.min || target.garrisonMax();
+	if (gameState.ai.HQ.garrisonManager.numberOfGarrisonedUnits(target) >= minGarrison)
 		return false;
 	if (data.attacker)
 	{
@@ -676,7 +675,7 @@ m.DefenseManager.prototype.garrisonUnitsInside = function(gameState, target, dat
 	let index = gameState.ai.accessibility.getAccessValue(target.position());
 	let garrisonManager = gameState.ai.HQ.garrisonManager;
 	let garrisonArrowClasses = target.getGarrisonArrowClasses();
-	let units = gameState.getOwnUnits().filter(ent => MatchesClassList(ent.classes(), garrisonArrowClasses)).filterNearest(target.position());
+	let typeGarrison = data.type || "protection";
 	let allowMelee = gameState.ai.HQ.garrisonManager.allowMelee(target);
 	if (allowMelee === undefined)
 	{
@@ -686,35 +685,42 @@ m.DefenseManager.prototype.garrisonUnitsInside = function(gameState, target, dat
 		else
 			allowMelee = true;
 	}
+	let units = gameState.getOwnUnits().filter(ent => {
+			if (!ent.position())
+				return false;
+			if (!MatchesClassList(ent.classes(), garrisonArrowClasses))
+				return false;
+			if (typeGarrison != "decay" && !allowMelee && ent.attackTypes().indexOf("Melee") != -1)
+				return false;
+			if (ent.getMetadata(PlayerID, "transport") !== undefined)
+				return false;
+			let army = ent.getMetadata(PlayerID, "PartOfArmy") ? this.getArmy(ent.getMetadata(PlayerID, "PartOfArmy")) : undefined;
+			if (!army && (ent.getMetadata(PlayerID, "plan") == -2 || ent.getMetadata(PlayerID, "plan") == -3))
+				return false;
+			if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") >= 0)
+			{
+				let subrole = ent.getMetadata(PlayerID, "subrole");
+				// when structure decaying (usually because we've just captured it in enemy territory), also allow units from an attack plan
+				if (typeGarrison != "decay" && subrole && (subrole == "completing" || subrole == "walking" || subrole == "attacking"))
+					return false;
+			}
+			if (gameState.ai.accessibility.getAccessValue(ent.position()) !== index)
+				return false;
+			return true;
+		}).filterNearest(target.position());
+
 	let ret = false;
 	for (let ent of units.values())
 	{
 		if (garrisonManager.numberOfGarrisonedUnits(target) >= minGarrison)
 			break;
-		if (!ent.position())
-			continue;
-		if (typeGarrison !== "decay" && !allowMelee && ent.attackTypes().indexOf("Melee") !== -1)
-			continue;
-		if (ent.getMetadata(PlayerID, "transport") !== undefined)
-			continue;
-		let army = ent.getMetadata(PlayerID, "PartOfArmy") ? this.getArmy(ent.getMetadata(PlayerID, "PartOfArmy")) : undefined;
-		if (!army && (ent.getMetadata(PlayerID, "plan") === -2 || ent.getMetadata(PlayerID, "plan") === -3))
-			continue;
-		if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") >= 0)
-		{
-			let subrole = ent.getMetadata(PlayerID, "subrole");
-			// when structure decaying (usually because we've just captured it in enemy territory), also allow units from an attack plan
-			if (typeGarrison !== "decay" && subrole && (subrole === "completing" || subrole === "walking" || subrole === "attacking"))
-				continue;
-		}
-		if (gameState.ai.accessibility.getAccessValue(ent.position()) !== index)
-			continue;
 		if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") >= 0)
 		{
 			let attackPlan = gameState.ai.HQ.attackManager.getPlan(ent.getMetadata(PlayerID, "plan"));
 			if (attackPlan)
 				attackPlan.removeUnit(ent, true);
 		}
+		let army = ent.getMetadata(PlayerID, "PartOfArmy") ? this.getArmy(ent.getMetadata(PlayerID, "PartOfArmy")) : undefined;
 		if (army)
 			army.removeOwn(gameState, ent.id());
 		garrisonManager.garrison(gameState, ent, target, typeGarrison);
@@ -730,21 +736,24 @@ m.DefenseManager.prototype.garrisonSiegeUnit = function(gameState, unit)
 	let nearest;
 	let unitAccess = gameState.ai.accessibility.getAccessValue(unit.position());
 	let garrisonManager = gameState.ai.HQ.garrisonManager;
-	gameState.getAllyStructures().forEach(function(ent) {
+	for (let ent of gameState.getAllyStructures().values())
+	{
+		if (!ent.isGarrisonHolder())
+			continue;
 		if (!MatchesClassList(unit.classes(), ent.garrisonableClasses()))
-			return;
+			continue;
 		if (garrisonManager.numberOfGarrisonedUnits(ent) >= ent.garrisonMax())
-			return;
+			continue;
 		if (ent.hitpoints() < ent.garrisonEjectHealth() * ent.maxHitpoints())
-			return;
-		if (m.getLandAccess(gameState, ent) !== unitAccess)
-			return;
+			continue;
+		if (m.getLandAccess(gameState, ent) != unitAccess)
+			continue;
 		let dist = API3.SquareVectorDistance(ent.position(), unit.position());
 		if (dist > distmin)
-			return;
+			continue;
 		distmin = dist;
 		nearest = ent;
-	});
+	}
 	if (nearest)
 		garrisonManager.garrison(gameState, unit, nearest, "protection");
 	return nearest !== undefined;
@@ -763,6 +772,8 @@ m.DefenseManager.prototype.garrisonAttackedUnit = function(gameState, unit, emer
 	let garrisonManager = gameState.ai.HQ.garrisonManager;
 	for (let ent of gameState.getAllyStructures().values())
 	{
+		if (!ent.isGarrisonHolder())
+			continue;
 		if (!emergency && !ent.buffHeal())
 			continue;
 		if (!MatchesClassList(unit.classes(), ent.garrisonableClasses()))
@@ -772,7 +783,7 @@ m.DefenseManager.prototype.garrisonAttackedUnit = function(gameState, unit, emer
 			continue;
 		if (ent.hitpoints() < ent.garrisonEjectHealth() * ent.maxHitpoints())
 			continue;
-		if (m.getLandAccess(gameState, ent) !== unitAccess)
+		if (m.getLandAccess(gameState, ent) != unitAccess)
 			continue;
 		let dist = API3.SquareVectorDistance(ent.position(), unit.position());
 		if (dist > distmin)

@@ -3,7 +3,19 @@
   <castshadow/>
   <float/>
   <group>
-    <variant frequency="100" name="idle">
+    <variant frequency="1" name="new">
+      <mesh>structural/spart_dock.dae</mesh>
+      <props>
+        <prop actor="props/structures/decals/dirt_4x6.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/sparta_struct.png" name="baseTex"/>
+        <texture file="structural/sparta_struct_norm.png" name="normTex"/>
+        <texture file="structural/sparta_struct_spec.png" name="specTex"/>
+        <texture file="structural/ao/spart_dock_AO.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant frequency="0" name="old">
       <mesh>structural/spart_dock_struct.dae</mesh>
       <props>
         <prop actor="props/structures/spartans/dock_struct_b.xml" attachpoint="root"/>
@@ -14,24 +26,9 @@
       </props>
       <textures>
         <texture file="structural/hele_struct.dds" name="baseTex"/>
-		<texture file="structural/hele_struct_norm.png" name="normTex"/>
-		<texture file="structural/hele_struct_spec.png" name="specTex"/>
-		<texture file="structural/ao/spart_dock.png" name="aoTex"/>
-      </textures>
-    </variant>
-	<variant frequency="100" name="scaffold">
-      <mesh>structural/spart_dock_struct.dae</mesh>
-      <props>
-        <prop actor="props/structures/spartans/dock_struct_b.xml" attachpoint="root"/>
-        <prop actor="props/structures/spartans/dock_warship.xml" attachpoint="root"/>
-        <prop actor="props/structures/spartans/dock_props.xml" attachpoint="root"/>
-        <prop actor="props/structures/spartans/dock_tiles.xml" attachpoint="root"/>
-      </props>
-      <textures>
-        <texture file="structural/hele_struct.dds" name="baseTex"/>
-		<texture file="structural/hele_struct_norm.png" name="normTex"/>
-		<texture file="structural/hele_struct_spec.png" name="specTex"/>
-		<texture file="structural/ao/spart_dock.png" name="aoTex"/>
+        <texture file="structural/hele_struct_norm.png" name="normTex"/>
+        <texture file="structural/hele_struct_spec.png" name="specTex"/>
+        <texture file="structural/ao/spart_dock.png" name="aoTex"/>
       </textures>
     </variant>
   </group>

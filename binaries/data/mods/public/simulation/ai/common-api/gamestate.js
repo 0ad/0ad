@@ -508,7 +508,7 @@ m.GameState.prototype.getExclusiveAllyEntities = function()
 
 m.GameState.prototype.getAllyStructures = function()
 {
-	return this.updatingCollection("diplo-ally-structures", m.Filters.byClass("Structure"), this.getAllyEntities());
+	return this.updatingCollection("diplo-ally-structures", m.Filters.byOwners(this.getAllies()), this.getStructures());
 };
 
 m.GameState.prototype.getNeutralStructures = function()
@@ -524,9 +524,9 @@ m.GameState.prototype.getEnemyEntities = function()
 m.GameState.prototype.getEnemyStructures = function(enemyID)
 {
 	if (enemyID === undefined)
-		return this.updatingCollection("diplo-enemy-structures", m.Filters.byClass("Structure"), this.getEnemyEntities());
+		return this.updatingCollection("diplo-enemy-structures", m.Filters.byOwners(this.getEnemies()), this.getStructures());
 
-	return this.updatingGlobalCollection("player-" + enemyID + "-structures", m.Filters.byClass("Structure"), this.getEntities(enemyID));
+	return this.updatingGlobalCollection("player-" + enemyID + "-structures", m.Filters.byOwner(enemyID), this.getStructures());
 };
 
 m.GameState.prototype.getEnemyUnits = function(enemyID)

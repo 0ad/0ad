@@ -4,6 +4,7 @@
 # 
 # Translators:
 # azayrahmad <azayrahmad@gmail.com>, 2014-2015
+# Dedi Wahyudi <dedi.dkv@gmail.com>, 2017
 # Fqn Kdgzd <inactive+D1sgaea@transifex.com>, 2014
 # Joshua Randiny <jrandiny2@gmail.com>, 2014-2015
 # Joshua Randiny <jrandiny2@gmail.com>, 2017
@@ -14,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-30 09:02+0200\n"
-"PO-Revision-Date: 2017-08-30 14:44+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-10-17 07:31+0000\n"
+"Last-Translator: Dedi Wahyudi <dedi.dkv@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -142,7 +143,7 @@ msgstr "Tunjukan bantuan ini."
 
 #: gui/lobby/lobby.js:332
 msgid "Chat commands:"
-msgstr ""
+msgstr "Kode Perintah Obrolan"
 
 #. Translation: Chat command help format
 #: gui/lobby/lobby.js:336
@@ -158,11 +159,11 @@ msgstr "Kirim pesan percakapan mengenai diri Anda sendiri. Example: /me pergi be
 msgid ""
 "Send text as a chat message (even if it starts with slash). Example: /say "
 "/help is a great command."
-msgstr ""
+msgstr "Kirim teks sebagai pesan (bahkan jika dimulai dengan slash)\nContoh : /say /help adalah kode perintah yang baik"
 
 #: gui/lobby/lobby.js:357
 msgid "Clear all chat scrollback."
-msgstr ""
+msgstr "Hapus Semua Pesan Obrolan"
 
 #: gui/lobby/lobby.js:364
 msgid "Return to the main menu."
@@ -284,12 +285,12 @@ msgstr "Alamat permainan ini '%(ip)s' sepertinya tidak sah."
 #: gui/lobby/lobby.js:1242
 #, javascript-format
 msgid "The command '%(cmd)s' is not supported."
-msgstr ""
+msgstr "Kode Perintah '1%(cmd)s' tidak didukung."
 
 #: gui/lobby/lobby.js:1254
 #, javascript-format
 msgid "The command '%(cmd)s' is restricted to moderators."
-msgstr ""
+msgstr "Kode Perintah '1%(cmd)s' hanya untuk moderator."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
 #: gui/lobby/lobby.js:1327
@@ -373,7 +374,7 @@ msgstr "Mohon masukkan username anda"
 
 #: gui/lobby/prelobby.js:100
 msgid "Invalid username"
-msgstr ""
+msgstr "Nama Pengguna Salah"
 
 #: gui/lobby/prelobby.js:107
 msgctxt "login"
