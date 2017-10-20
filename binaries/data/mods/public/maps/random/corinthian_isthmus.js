@@ -232,7 +232,7 @@ createMines(
   [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
   [new SimpleObject(oStoneSmall, 2,5, 1,3)]
  ],
- avoidClasses(clForest, 1, clPlayer, 20, clRock, 10, clWater, 1, clHill, 1)
+ avoidClasses(clForest, 4, clPlayer, 15, clRock, 10, clWater, 4, clHill, 4)
 );
 
 log("Creating metal mines...");
@@ -240,7 +240,7 @@ createMines(
  [
   [new SimpleObject(oMetalLarge, 1,1, 0,4)]
  ],
- avoidClasses(clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clWater, 1, clHill, 1),
+ avoidClasses(clForest, 4, clPlayer, 15, clMetal, 10, clRock, 5, clWater, 4, clHill, 4),
  clMetal
 );
 
@@ -255,7 +255,7 @@ createDecoration
   scaleByMapSize(16, 262),
   scaleByMapSize(40, 360)
  ],
- avoidClasses(clWater, 2, clForest, 0, clPlayer, 0, clHill, 1)
+ avoidClasses(clWater, 2, clForest, 0, clPlayer, 5, clBaseResource, 6, clHill, 1, clRock, 6, clMetal, 6)
 );
 
 RMS.SetProgress(70);
@@ -283,7 +283,7 @@ createFood
   scaleByMapSize(5,20),
   scaleByMapSize(5,20)
  ],
- avoidClasses(clForest, 0, clPlayer, 8, clWater, 1, clFood, 10, clHill, 1)
+ avoidClasses(clForest, 0, clPlayer, 10, clBaseResource, 6, clWater, 1, clFood, 10, clHill, 1, clRock, 6, clMetal, 6)
 );
 
 createFood
@@ -294,7 +294,7 @@ createFood
  [
   3 * numPlayers
  ],
- avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 10)
+ avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 10, clRock, 6, clMetal, 6)
 );
 
 RMS.SetProgress(90);
@@ -302,7 +302,7 @@ RMS.SetProgress(90);
 log("Creating straggler trees...");
 createStragglerTrees(
 	[oDatePalm, oSDatePalm, oCarob, oFanPalm, oPoplar, oCypress],
-	avoidClasses(clForest, 1, clWater, 2, clPlayer, 8, clMetal, 6, clHill, 1));
+	avoidClasses(clForest, 1, clWater, 2, clPlayer, 8, clBaseResource, 6, clMetal, 6, clRock, 6, clHill, 1));
 
 setSkySet("sunny");
 setSunColor(0.917, 0.828, 0.734);

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military_barracks">
+  <GarrisonHolder>
+    <List datatype="tokens">Cavalry -Infantry</List>
+  </GarrisonHolder>
+  <Identity>
+    <GenericName>Stables</GenericName>
+    <Tooltip>Train citizen-soldier cavalry. Research training improvements.</Tooltip>
+    <Icon>structures/barracks.png</Icon>
+  </Identity>
+  <ProductionQueue>
+    <BatchTimeModifier>0.8</BatchTimeModifier>
+    <Entities datatype="tokens">
+      -units/{civ}_infantry_spearman_b
+      -units/{civ}_infantry_pikeman_b
+      -units/{civ}_infantry_swordsman_b
+      units/{civ}_cavalry_swordsman_b
+      units/{civ}_cavalry_spearman_b
+      units/{civ}_cavalry_javelinist_b
+      units/{civ}_cavalry_archer_b
+    </Entities>
+  </ProductionQueue>
+</Entity>
