@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-09-11 09:05+0200\n"
-"PO-Revision-Date: 2017-09-11 15:01+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-10-18 23:40+0000\n"
+"Last-Translator: enolp <enolp@softastur.org>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -363,12 +363,12 @@ msgstr "%(name)s nun pue construyise pola mor d'un fallu desconocíu"
 #: simulation/components/BuildRestrictions.js:108
 #, javascript-format
 msgid "%(name)s cannot be built in unexplored area"
-msgstr ""
+msgstr "%(name)s nun pue construyise nun área non esplorada"
 
 #: simulation/components/BuildRestrictions.js:156
 #, javascript-format
 msgid "%(name)s cannot be built on another building or resource"
-msgstr ""
+msgstr "%(name)s nun pue construyise enriba d'un recursu o construcción"
 
 #: simulation/components/BuildRestrictions.js:160
 #, javascript-format
@@ -408,7 +408,7 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:202
 msgctxt "Territory type"
 msgid "neutral"
-msgstr ""
+msgstr "neutral"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
@@ -422,7 +422,7 @@ msgstr "enemigu"
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
-msgstr ""
+msgstr "%(name)s nun pue construyise en %(territoryType)s. Territorios válidos: %(validTerritories)s"
 
 #: simulation/components/BuildRestrictions.js:253
 #, javascript-format
@@ -461,14 +461,14 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:344
 msgctxt "Territory type list"
 msgid "ally"
-msgstr ""
+msgstr "aliáu"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:346
 msgctxt "Territory type list"
 msgid "neutral"
-msgstr ""
+msgstr "neutral"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
@@ -495,41 +495,41 @@ msgstr[1] ""
 
 #: simulation/components/EndGameManager.js:181
 msgid "Last remaining player wins."
-msgstr ""
+msgstr "El xugador caberu gana."
 
 #: simulation/components/EntityLimits.js:166
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
-msgstr ""
+msgstr "Algamóse la llende de construcción de %(limit)s de %(category)s"
 
 #: simulation/components/EntityLimits.js:168
 #, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
-msgstr ""
+msgstr "Algamóse la llende d'entrenamientu de %(limit)s de %(category)s"
 
 #: simulation/components/EntityLimits.js:172
 #, javascript-format
 msgid "%(category)s limit of %(limit)s reached"
-msgstr ""
+msgstr "Algamóse la llende de %(limit)s de %(category)s"
 
 #: simulation/components/Player.js:304
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
-msgstr ""
+msgstr "Recursos insuficientes - %(resourceAmount1)s %(resourceType1)s"
 
 #: simulation/components/Player.js:306
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
-msgstr ""
+msgstr "Recursos insuficientes - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
 #: simulation/components/Player.js:308
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
-msgstr ""
+msgstr "Recursos insuficientes - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
 #: simulation/components/Player.js:310
 #, javascript-format
@@ -537,7 +537,7 @@ msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s "
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
-msgstr ""
+msgstr "Recursos insuficientes - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
 #: simulation/components/ProductionQueue.js:401
 msgid "The production queue is full."
@@ -550,19 +550,19 @@ msgstr "Nun pue alcontrase un espaciu llibre p'aprucir unidaes entrenaes"
 #: simulation/helpers/Cheat.js:53
 #, javascript-format
 msgid "%(player)s has been defeated (cheat)."
-msgstr ""
+msgstr "Vencióse al xugador %(player)s (trampa)."
 
 #: simulation/helpers/Cheat.js:62
 msgid "You need to select a building that trains units."
-msgstr ""
+msgstr "Precises esbillar una construcción qu'entrene unidaes."
 
 #: simulation/helpers/Commands.js:133
 msgid "(Cheat - control all units)"
-msgstr ""
+msgstr "(Trampa - controlar toles unidaes)"
 
 #: simulation/helpers/Commands.js:148
 msgid "(Cheat - reveal map)"
-msgstr ""
+msgstr "(Trampa - revelar mapa)"
 
 #: simulation/helpers/Commands.js:453
 #, javascript-format
@@ -571,26 +571,26 @@ msgstr "%(player)s rindióse."
 
 #: simulation/helpers/Commands.js:595
 msgid "(Cheat - promoted units)"
-msgstr ""
+msgstr "(Trampa - unidaes ascendíes)"
 
 #: simulation/helpers/Commands.js:709
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
-msgstr ""
+msgstr "Nun pue anovase darréu que los requirimientos de distrancia nun se verificaron o'l tarrén ta obstruyíu."
 
 #: simulation/helpers/Commands.js:719
 msgid "Cannot upgrade a garrisoned entity."
-msgstr ""
+msgstr "Nun pue anovase una entidá guarnecida."
 
 #: simulation/helpers/Commands.js:765
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
-msgstr ""
+msgstr "Solicitóse l'ataque escontra %(_player_)s."
 
 #: simulation/helpers/Commands.js:801
 msgid "There are no bribable units"
-msgstr ""
+msgstr "Nun hai unidaes sobornables"
 
 #: simulation/helpers/Commands.js:847
 msgid "Unable to ungarrison unit(s)"
@@ -598,11 +598,11 @@ msgstr ""
 
 #: simulation/helpers/Commands.js:861
 msgid "Some unit(s) can't go back to work"
-msgstr ""
+msgstr "Delles unidaes nun puen volver al trabayu"
 
 #: simulation/helpers/Commands.js:1115
 msgid "The building's technology requirements are not met."
-msgstr ""
+msgstr "Nun se cumplen los requisitos de la teunoloxía de la construcción."
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
@@ -646,15 +646,15 @@ msgstr "Tortuga (0.1x)"
 
 #: simulation/data/settings/game_speeds.jsonData[1].Title
 msgid "Slow (0.25x)"
-msgstr ""
+msgstr "Lento (0.25x)"
 
 #: simulation/data/settings/game_speeds.jsonData[2].Title
 msgid "Leisurely (0.5x)"
-msgstr ""
+msgstr "Ensin priesa (0.5x)"
 
 #: simulation/data/settings/game_speeds.jsonData[3].Title
 msgid "Relaxed (0.75x)"
-msgstr ""
+msgstr "Sele (0.75x)"
 
 #: simulation/data/settings/game_speeds.jsonData[4].Title
 msgid "Normal (1x)"
@@ -662,11 +662,11 @@ msgstr "Normal (1x)"
 
 #: simulation/data/settings/game_speeds.jsonData[5].Title
 msgid "Fast (1.25x)"
-msgstr ""
+msgstr "Rápido (1.25x)"
 
 #: simulation/data/settings/game_speeds.jsonData[6].Title
 msgid "Very Fast (1.5x)"
-msgstr ""
+msgstr "Perrápido (1.5x)"
 
 #: simulation/data/settings/game_speeds.jsonData[7].Title
 msgid "Insane (2x)"
@@ -674,63 +674,63 @@ msgstr ""
 
 #: simulation/data/settings/game_speeds.jsonData[8].Title
 msgid "Fast Forward (5x)"
-msgstr ""
+msgstr "Avance rápidu (5x)"
 
 #: simulation/data/settings/game_speeds.jsonData[9].Title
 msgid "Fast Forward (10x)"
-msgstr ""
+msgstr "Avance rápidu (10x)"
 
 #: simulation/data/settings/game_speeds.jsonData[10].Title
 msgid "Fast Forward (20x)"
-msgstr ""
+msgstr "Avance rápidu (20x)"
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Description
 msgid ""
 "Capture all relics spread across the map and keep them for a certain time to"
 " win the game."
-msgstr ""
+msgstr "Captura toles reliquies espardies nel mapa y caltenles un tiempu determináu pa ganar la partida."
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
 msgid "Capture the Relic"
-msgstr ""
+msgstr "Capturar la reliquia"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid "Defeat all opponents to win."
-msgstr ""
+msgstr "Vienci a tolos oponentes pa ganar."
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
-msgstr ""
+msgstr "Conquista"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Destroy all enemy structures to win."
-msgstr ""
+msgstr "Destrúi toles estructures del enemigu pa ganar."
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
-msgstr ""
+msgstr "Conquista d'estructures"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
 msgid "Kill all enemy units to win."
-msgstr ""
+msgstr "Mata toles unidaes del enemigu pa ganar."
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
-msgstr ""
+msgstr "Conquista d'unidaes"
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Description
 msgid "Defeat opponents by killing their hero."
-msgstr ""
+msgstr "Vienci a los oponentes matando a los sos héroes."
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Title
 msgid "Regicide"
-msgstr ""
+msgstr "Rexicidiu"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid ""
 "Be the first to build or capture a wonder and keep it for a certain time to "
 "win the game."
-msgstr ""
+msgstr "Sé'l primeru en construyir o capturar una maraviya y caltenela un tiempu determináu pa ganar la partida."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
@@ -768,21 +768,21 @@ msgstr ""
 
 #: simulation/data/settings/map_sizes.jsonData[0].Name
 msgid "Tiny"
-msgstr ""
+msgstr "Nanu"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Tooltip
 msgid "This map size has barely any room for even the most basic resources."
-msgstr ""
+msgstr "El tamañu d'esti mapa cuasi nun tien espaciu nin pa los recursos más básicos."
 
 #: simulation/data/settings/map_sizes.jsonData[1].Name
 msgid "Small"
-msgstr ""
+msgstr "Pequeñu"
 
 #: simulation/data/settings/map_sizes.jsonData[1].Tooltip
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
 "quickly while still having some room to expand."
-msgstr ""
+msgstr "Los mapes pequeños son afayadizos p'alcuentros 1vs1 darréu que los xugadores puen llegar aína al enemigu mentanto entá tienen dalgo d'espaciu pa espardese."
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Medium"
@@ -792,50 +792,50 @@ msgstr "Medio"
 msgid ""
 "Medium-sized maps provide plenty of space for two players, but even eight "
 "players fit."
-msgstr ""
+msgstr "Los mapes de tamañu mediu fornen munchu espaciu pa dos xugadores pero non pa 8."
 
 #: simulation/data/settings/map_sizes.jsonData[3].Name
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #: simulation/data/settings/map_sizes.jsonData[3].Tooltip
 msgid ""
 "This is the ideal mapsize for 4 to 8 players, because there is plenty of "
 "space to expand while the neighbors are quickly reachable."
-msgstr ""
+msgstr "Esti tamañu de mapa ye ideal pa 4 ó 8 xugadores porque hai espaciu pa espardese mentanto se llega aína a los vecinos."
 
 #: simulation/data/settings/map_sizes.jsonData[4].Name
 msgid "Large"
-msgstr ""
+msgstr "Grande"
 
 #: simulation/data/settings/map_sizes.jsonData[4].Tooltip
 msgid ""
 "The large mapsize is recommended when great portions of the map are covered "
 "with water or inaccessible mountains."
-msgstr ""
+msgstr "El tamañu grande de mapa aconséyase cuando cachos grandes del mapa tán cubiertos con agua o montes inaccesibles."
 
 #: simulation/data/settings/map_sizes.jsonData[5].Name
 msgid "Very Large"
-msgstr ""
+msgstr "Pergrande"
 
 #: simulation/data/settings/map_sizes.jsonData[5].Tooltip
 #: simulation/data/settings/map_sizes.jsonData[6].Tooltip
 msgid ""
 "Very large maps are not recommended as it takes very long to reach the enemy"
 " and the game performance can be reduced."
-msgstr ""
+msgstr "Los mapes pergrandes nun s'aconseyen darréu que s'entarda muncho en llegar al enemigu y pue amenorgar el rindimientu'l xuegu."
 
 #: simulation/data/settings/map_sizes.jsonData[6].Name
 msgid "Giant"
-msgstr ""
+msgstr "Xigante"
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
-msgstr ""
+msgstr "Robó de Petra"
 
 #: simulation/ai/petra/data.jsondescription
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI has a bonus/penalty on resource stockpiling (either gathering rate or trade gain) varying from -50% for Sandbox to +60% for Very Hard (Medium 0%). In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "Petra ye'l robó por defeutu de la IA de 0 A.D. Informa de problemes a Wildfire Games (mira l'enllaz nel menú principal), por favor.\n\nLa IA tien una bonificación/penalización na acumulación de recursos (yá seya tasa de recoyida o ganancia n'intercambeos) que varía dende'l -50% pa Sandbox hasta'l +60% pa Perdificil (Medio 0%). Amás, el nivel Sandbox nun s'esparde nin ataca."

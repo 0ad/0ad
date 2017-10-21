@@ -162,33 +162,71 @@ m.Worker.prototype.update = function(gameState, ent)
 					{
 						let gatherType = ent.getMetadata(PlayerID, "gather-type");
 						let nearby = this.base.dropsiteSupplies[gatherType].nearby;
-						let isNearby = nearby.some(sup => sup.id === supplyId);
-						if (nearby.length === 0 || isNearby)
+						if (nearby.some(sup => sup.id == supplyId))
 							ent.setMetadata(PlayerID, "supply", supplyId);
-						else
+						else if (nearby.length)
 						{
 							gameState.ai.HQ.RemoveTCGatherer(supplyId);
 							this.startGathering(gameState);
+						}
+						else
+						{
+							let medium = this.base.dropsiteSupplies[gatherType].medium;
+							if (medium.length && !medium.some(sup => sup.id == supplyId))
+							{
+								gameState.ai.HQ.RemoveTCGatherer(supplyId);
+								this.startGathering(gameState);
+							}
+							else
+								ent.setMetadata(PlayerID, "supply", supplyId);
 						}
 					}
 				}
 			}
 		}
-		else if (unitAIState === "INDIVIDUAL.RETURNRESOURCE.APPROACHING" && gameState.ai.playedTurn % 10 === 0)
+		else if (unitAIState == "INDIVIDUAL.RETURNRESOURCE.APPROACHING")
 		{
-			// Check from time to time that UnitAI does not send us to an inaccessible dropsite
-			let dropsite = gameState.getEntityById(ent.unitAIOrderData()[0].target);
-			if (dropsite && dropsite.position())
+			if (gameState.ai.playedTurn % 10 == 0)
 			{
-				let access = gameState.ai.accessibility.getAccessValue(ent.position());
-				let goalAccess = dropsite.getMetadata(PlayerID, "access");
-				if (!goalAccess || dropsite.hasClass("Elephant"))
+				// Check from time to time that UnitAI does not send us to an inaccessible dropsite
+				let dropsite = gameState.getEntityById(ent.unitAIOrderData()[0].target);
+				if (dropsite && dropsite.position())
 				{
-					goalAccess = gameState.ai.accessibility.getAccessValue(dropsite.position());
-					dropsite.setMetadata(PlayerID, "access", goalAccess);
+					let access = gameState.ai.accessibility.getAccessValue(ent.position());
+					let goalAccess = dropsite.getMetadata(PlayerID, "access");
+					if (!goalAccess || dropsite.hasClass("Elephant"))
+					{
+						goalAccess = gameState.ai.accessibility.getAccessValue(dropsite.position());
+						dropsite.setMetadata(PlayerID, "access", goalAccess);
+					}
+					if (access != goalAccess)
+						m.returnResources(gameState, this.ent);
 				}
-				if (access !== goalAccess)
-					m.returnResources(gameState, this.ent);
+			}
+
+			// If gathering a sparse resource, we may have been sent to a faraway resource if the one nearby was full.
+			// Let's check if it is still the case. If so, we reset its metadata supplyId so that the unit will be
+			// reordered to gather after having returned the resources (when comparing its supplyId with the UnitAI one).
+			let gatherType = ent.getMetadata(PlayerID, "gather-type");
+			let influenceGroup = gameState.sharedScript.resourceInfo.aiInfluenceGroups[gatherType];
+			if (influenceGroup && influenceGroup == "sparse")
+			{
+				let supplyId = ent.getMetadata(PlayerID, "supply");
+				if (supplyId)
+				{
+					let nearby = this.base.dropsiteSupplies[gatherType].nearby;
+					if (!nearby.some(sup => sup.id == supplyId))
+					{
+						if (nearby.length)
+							ent.setMetadata(PlayerID, "supply", undefined);
+						else
+						{
+							let medium = this.base.dropsiteSupplies[gatherType].medium;
+							if (!medium.some(sup => sup.id == supplyId) && medium.length)
+								ent.setMetadata(PlayerID, "supply", undefined);
+						}
+					}
+				}
 			}
 		}
 	}
