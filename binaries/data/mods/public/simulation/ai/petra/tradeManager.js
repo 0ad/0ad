@@ -415,6 +415,7 @@ m.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 	let bestIndex = { "gain": 0 };
 	let bestLand  = { "gain": 0 };
 
+	let mapSize = gameState.sharedScript.mapSize;
 	let traderTemplatesGains = gameState.getTraderTemplatesGains();
 
 	for (let m1 of market1.values())
@@ -444,7 +445,7 @@ m.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 				gainMultiplier = traderTemplatesGains.navalGainMultiplier;
 			else
 				continue;
-			let gain = Math.round(gainMultiplier * NormalizedTradeGain(API3.SquareVectorDistance(m1.position(), m2.position())));
+			let gain = Math.round(gainMultiplier * TradeGain(API3.SquareVectorDistance(m1.position(), m2.position()), mapSize));
 			if (gain < this.minimalGain)
 				continue;
 			if (m1.foundationProgress() === undefined && m2.foundationProgress() === undefined)

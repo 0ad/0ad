@@ -1199,7 +1199,7 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 
 	if (bestVal === undefined)  // no constraints. For the time being, place it arbitrarily by the ConstructionPlan
 		return [-1, -1, -1, 0];
-	let expectedGain = Math.round(bestGainMult * NormalizedTradeGain(bestDistSq));
+	let expectedGain = Math.round(bestGainMult * TradeGain(bestDistSq, gameState.sharedScript.mapSize));
 	if (this.Config.debug > 1)
 		API3.warn("this would give a trading gain of " + expectedGain);
 	// do not keep it if gain is too small, except if this is our first BarterMarket

@@ -1,15 +1,15 @@
 /**
- * Normalize the trade gain as a function of mapSize, default=1024
+ * Normalize the trade gain as a function of mapSize for a default of: size=1024 and distance= 100m
  */
 function TradeGainNormalization(mapSize)
 {
-	return 1;
+	return 1 / TradeGain(10000, mapSize);
 }
 
 /**
- * Dependance of the gain with distance, normalized on a distance of 100m
+ * Part of the trade gain which depends on the distance, the full gain being TradeGainNormalization * TradeGain.
  */
-function NormalizedTradeGain(distanceSquared)
+function TradeGain(distanceSquared, mapSize)
 {
-	return distanceSquared / 10000;
+	return distanceSquared;
 }
