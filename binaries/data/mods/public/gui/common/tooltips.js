@@ -433,9 +433,9 @@ function getGatherTooltip(template)
 				types.push(resource.code + "." + subtype);
 
 		let [rate, count] = types.reduce((sum, t) => {
-				let r = template.resourceGatherRates[t];
-				return [sum[0] + (r > 0 ? r : 0), sum[1] + (r > 0 ? 1 : 0)];
-			}, [0, 0]);
+			let r = template.resourceGatherRates[t];
+			return [sum[0] + (r > 0 ? r : 0), sum[1] + (r > 0 ? 1 : 0)];
+		}, [0, 0]);
 
 		if (rate > 0)
 			rates[resource.code] = +(rate / count).toFixed(1);

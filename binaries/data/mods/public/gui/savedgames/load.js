@@ -22,16 +22,14 @@ function init()
 	let selectedGameId = gameSelection.list_data[gameSelection.selected];
 
 	// Save metadata for the detailed view
-	g_SavedGamesMetadata = savedGames.map(game =>
-	{
+	g_SavedGamesMetadata = savedGames.map(game => {
 		game.metadata.id = game.id;
 		return game.metadata;
 	});
 
 	let sortKey = gameSelection.selected_column;
 	let sortOrder = gameSelection.selected_column_order;
-	g_SavedGamesMetadata = g_SavedGamesMetadata.sort((a, b) =>
-	{
+	g_SavedGamesMetadata = g_SavedGamesMetadata.sort((a, b) => {
 		let cmpA, cmpB;
 		switch (sortKey)
 		{
@@ -149,7 +147,6 @@ function loadGame()
 	let message = translate("This saved game may not be compatible:");
 
 	if (!sameEngineVersion)
-	{
 		if (metadata.engine_version)
 			message += "\n" + sprintf(translate("It needs 0 A.D. version %(requiredVersion)s, while you are running version %(currentVersion)s."), {
 				"requiredVersion": metadata.engine_version,
@@ -157,7 +154,6 @@ function loadGame()
 			});
 		else
 			message += "\n" + translate("It needs an older version of 0 A.D.");
-	}
 
 	if (!sameSavegameVersion)
 		message += "\n" + sprintf(translate("It needs 0 A.D. savegame version %(requiredVersion)s, while you have savegame version %(currentVersion)s."), {
@@ -206,7 +202,7 @@ function reallyLoadGame(gameId)
 
 	Engine.SwitchGuiPage("page_loading.xml", {
 		"attribs": metadata.initAttributes,
-		"isNetworked" : false,
+		"isNetworked": false,
 		"playerAssignments": {
 			"local": {
 				"name": pData ? pData.Name : singleplayerName(),

@@ -47,14 +47,13 @@ function updateTimers()
 	// (We do this in two stages to avoid deleting from the timer list while
 	// we're in the middle of iterating through it)
 	var run = [];
-	for (var id in g_Timers)
-	{
+	for (let id in g_Timers)
 		if (g_Timers[id][0] <= g_Time)
 			run.push(id);
-	}
-	for (var id of run)
+
+	for (let id of run)
 	{
-		var t = g_Timers[id];
+		let t = g_Timers[id];
 		if (!t)
 			continue; // an earlier timer might have cancelled this one, so skip it
 
@@ -62,7 +61,7 @@ function updateTimers()
 			t[1]();
 		} catch (e) {
 			var stack = e.stack.trimRight().replace(/^/mg, '  '); // indent the stack trace
-			error(sprintf("Error in timer: %(error)s", { error: e })+"\n"+stack+"\n");
+			error(sprintf("Error in timer: %(error)s", { "error": e }) + "\n" + stack + "\n");
 		}
 		delete g_Timers[id];
 	}

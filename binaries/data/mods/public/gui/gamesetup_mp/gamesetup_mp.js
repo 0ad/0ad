@@ -160,7 +160,6 @@ function pollAndHandleNetworkClient()
 		// the game setup screen, so perform similar processing to gamesetup.js
 		// in this screen
 		if (g_IsRejoining)
-		{
 			switch (message.type)
 			{
 			case "netstatus":
@@ -186,7 +185,6 @@ function pollAndHandleNetworkClient()
 				break;
 
 			case "start":
-
 				// Copy playernames from initial player assignment to the settings
 				for (let guid in g_PlayerAssignments)
 				{
@@ -197,8 +195,8 @@ function pollAndHandleNetworkClient()
 
 				Engine.SwitchGuiPage("page_loading.xml", {
 					"attribs": g_GameAttributes,
-					"isNetworked" : true,
-					"isRejoining" : g_IsRejoining,
+					"isNetworked": true,
+					"isRejoining": g_IsRejoining,
 					"playerAssignments": g_PlayerAssignments
 				});
 				break;
@@ -212,9 +210,7 @@ function pollAndHandleNetworkClient()
 			default:
 				error("Unrecognised net message type: " + message.type);
 			}
-		}
 		else
-		{
 			// Not rejoining - just trying to connect to server
 
 			switch (message.type)
@@ -233,16 +229,13 @@ function pollAndHandleNetworkClient()
 						g_IsRejoining = true;
 						return; // we'll process the game setup messages in the next tick
 					}
-					else
-					{
-						Engine.SwitchGuiPage("page_gamesetup.xml", {
-							"type": g_GameType,
-							"serverName": g_ServerName,
-							"serverPort": g_ServerPort,
-							"stunEndpoint": g_StunEndpoint
-						});
-						return; // don't process any more messages - leave them for the game GUI loop
-					}
+					Engine.SwitchGuiPage("page_gamesetup.xml", {
+						"type": g_GameType,
+						"serverName": g_ServerName,
+						"serverPort": g_ServerPort,
+						"stunEndpoint": g_StunEndpoint
+					});
+					return; // don't process any more messages - leave them for the game GUI loop
 
 				case "disconnected":
 					cancelSetup();
@@ -262,14 +255,13 @@ function pollAndHandleNetworkClient()
 				error("Unrecognised net message type: " + message.type);
 				break;
 			}
-		}
 	}
 }
 
 function switchSetupPage(newPage)
 {
 	for (let page of Engine.GetGUIObjectByName("multiplayerPages").children)
-		if (page.name.substr(0,4) == "page")
+		if (page.name.substr(0, 4) == "page")
 			page.hidden = true;
 
 	Engine.GetGUIObjectByName(newPage).hidden = false;

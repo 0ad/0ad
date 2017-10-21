@@ -33,7 +33,7 @@ function init(initData, hotloadData)
 	g_BackgroundLayerset = pickRandom(g_BackgroundLayerData);
 	for (let i = 0; i < g_BackgroundLayerset.length; ++i)
 	{
-		let guiObj = Engine.GetGUIObjectByName("background["+i+"]");
+		let guiObj = Engine.GetGUIObjectByName("background[" + i + "]");
 		guiObj.hidden = false;
 		guiObj.sprite = g_BackgroundLayerset[i].sprite;
 		guiObj.z = i;
@@ -49,7 +49,7 @@ function scrollBackgrounds()
 {
 	for (let i = 0; i < g_BackgroundLayerset.length; ++i)
 	{
-		let guiObj = Engine.GetGUIObjectByName("background["+i+"]");
+		let guiObj = Engine.GetGUIObjectByName("background[" + i + "]");
 
 		let screen = guiObj.parent.getComputedSize();
 		let h = screen.bottom - screen.top;
@@ -96,8 +96,7 @@ function formatUserReportStatus(status)
 		let httpCode = d[1];
 		if (httpCode == 200)
 			return translate("upload succeeded");
-		else
-			return sprintf(translate("upload failed (%(errorCode)s)"), { "errorCode": httpCode });
+		return sprintf(translate("upload failed (%(errorCode)s)"), { "errorCode": httpCode });
 	}
 
 	if (d[0] == "failed")
@@ -131,7 +130,7 @@ function onTick()
 
 		if (Engine.ConfigDB_GetValue("user", "gui.splashscreen.enable") === "true" ||
 		    Engine.ConfigDB_GetValue("user", "gui.splashscreen.version") < Engine.GetFileMTime("gui/splashscreen/splashscreen.txt"))
-			Engine.PushGuiPage("page_splashscreen.xml", { "page": "splashscreen", callback : "SplashScreenClosedCallback" } );
+			Engine.PushGuiPage("page_splashscreen.xml", { "page": "splashscreen", "callback": "SplashScreenClosedCallback" });
 		else
 			ShowRenderPathMessage();
 	}

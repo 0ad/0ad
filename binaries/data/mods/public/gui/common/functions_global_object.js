@@ -151,7 +151,7 @@ function getReplayMetadata()
 {
 	let extendedSimState = Engine.GuiInterfaceCall("GetExtendedSimulationState");
 	return {
-		"timeElapsed" : extendedSimState.timeElapsed,
+		"timeElapsed": extendedSimState.timeElapsed,
 		"playerStates": extendedSimState.players,
 		"mapSettings": Engine.GetInitAttributes().settings
 	};

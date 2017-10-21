@@ -27,9 +27,9 @@ function init(data)
 	// Set button captions and visibility
 	let mbButton = [];
 	captions.forEach((caption, i) => {
-		mbButton[i] = Engine.GetGUIObjectByName("mbButton" + (i+1));
+		mbButton[i] = Engine.GetGUIObjectByName("mbButton" + (i + 1));
 
-		let action = function ()
+		let action = function()
 		{
 			if (data.callback)
 				Engine.PopGuiPageCB(i);

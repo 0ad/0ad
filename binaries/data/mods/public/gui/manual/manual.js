@@ -14,7 +14,7 @@ function init(data)
 		{
 			return function()
 				openURL(url);
-		}(data.url)
+		}(data.url);
 		urlButton.onPress = callback;
 		urlButton.hidden = false;
 	}

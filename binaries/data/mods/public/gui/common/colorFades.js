@@ -217,7 +217,7 @@ function smoothColorFadeRestart_attackUnit(data)
 	// check, if in blinking phase
 	if (data.tickCounter < g_FadeAttackUnit.blinkingTicks)
 	{
-		data.tickCounter = data.tickCounter % (g_FadeAttackUnit.blinkingChangeInterval * 2);
+		data.tickCounter %= g_FadeAttackUnit.blinkingChangeInterval * 2;
 		return true;
 	}
 	return false;

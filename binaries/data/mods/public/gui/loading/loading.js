@@ -21,15 +21,15 @@ function init(data)
 			let index = tipText.indexOf("\n");
 			let tipTextTitle = tipText.substring(0, index);
 			let tipTextMessage = tipText.substring(index);
-			Engine.GetGUIObjectByName("tipTitle").caption = tipTextTitle? tipTextTitle : "";
-			Engine.GetGUIObjectByName("tipText").caption = tipTextMessage? tipTextMessage : "";
+			Engine.GetGUIObjectByName("tipTitle").caption = tipTextTitle ? tipTextTitle : "";
+			Engine.GetGUIObjectByName("tipText").caption = tipTextMessage ? tipTextMessage : "";
 		}
 
 		// Set tip image
-		let fileName = tipTextFilePath.substring(tipTextFilePath.lastIndexOf("/")+1).replace(".txt", ".png");
+		let fileName = tipTextFilePath.substring(tipTextFilePath.lastIndexOf("/") + 1).replace(".txt", ".png");
 		let tipImageFilePath = "loading/tips/" + fileName;
 		let sprite = "stretched:" + tipImageFilePath;
-		Engine.GetGUIObjectByName("tipImage").sprite = sprite? sprite : "";
+		Engine.GetGUIObjectByName("tipImage").sprite = sprite ? sprite : "";
 	}
 	else
 		error("Failed to find any matching tips for the loading screen.");

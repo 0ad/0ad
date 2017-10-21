@@ -195,7 +195,7 @@ function openDeleteDialog(selection)
 {
 	closeOpenDialogs();
 
-	let deleteSelectedEntities = function (selectionArg)
+	let deleteSelectedEntities = function(selectionArg)
 	{
 		Engine.PostNetworkCommand({
 			"type": "delete-entities",
@@ -306,8 +306,8 @@ function resizeChatWindow()
 		let height = chatHistory.getComputedSize().bottom - chatHistory.getComputedSize().top;
 		let width = (1 + Math.sqrt(5)) / 2 * height;
 		let size = chatDialogPanel.size;
-		size.left = -width/2 - chatHistory.size.left;
-		size.right = width/2 + chatHistory.size.left;
+		size.left = -width / 2 - chatHistory.size.left;
+		size.right = width / 2 + chatHistory.size.left;
 		chatDialogPanel.size = size;
 	}
 	else
@@ -415,34 +415,35 @@ function updateDiplomacy(opening = false)
 function diplomacySetupTexts(i, rowsize)
 {
 	// Apply offset
-	let row = Engine.GetGUIObjectByName("diplomacyPlayer["+(i-1)+"]");
+	let row = Engine.GetGUIObjectByName("diplomacyPlayer[" + (i - 1) + "]");
 	let size = row.size;
-	size.top = rowsize * (i-1);
+	size.top = rowsize * (i - 1);
 	size.bottom = rowsize * i;
 	row.size = size;
 	row.hidden = false;
 
 	row.sprite = "color: " + rgbToGuiColor(g_Players[i].color) + " 32";
 
-	setOutcomeIcon(g_Players[i].state, "diplomacyPlayerOutcome["+(i-1)+"]");
+	setOutcomeIcon(g_Players[i].state, "diplomacyPlayerOutcome[" + (i - 1) + "]");
 
-	Engine.GetGUIObjectByName("diplomacyPlayerName["+(i-1)+"]").caption = colorizePlayernameByID(i);
-	Engine.GetGUIObjectByName("diplomacyPlayerCiv["+(i-1)+"]").caption = g_CivData[g_Players[i].civ].Name;
+	Engine.GetGUIObjectByName("diplomacyPlayerName[" + (i - 1) + "]").caption = colorizePlayernameByID(i);
+	Engine.GetGUIObjectByName("diplomacyPlayerCiv[" + (i - 1) + "]").caption = g_CivData[g_Players[i].civ].Name;
 
-	Engine.GetGUIObjectByName("diplomacyPlayerTeam["+(i-1)+"]").caption =
-		g_Players[i].team < 0 ? translateWithContext("team", "None") : g_Players[i].team+1;
+	Engine.GetGUIObjectByName("diplomacyPlayerTeam[" + (i - 1) + "]").caption =
+		g_Players[i].team < 0 ? translateWithContext("team", "None") : g_Players[i].team + 1;
 
-	Engine.GetGUIObjectByName("diplomacyPlayerTheirs["+(i-1)+"]").caption =
+	Engine.GetGUIObjectByName("diplomacyPlayerTheirs[" + (i - 1) + "]").caption =
 		i == g_ViewedPlayer ? "" :
-		g_Players[i].isAlly[g_ViewedPlayer] ? translate("Ally") :
-		g_Players[i].isNeutral[g_ViewedPlayer] ? translate("Neutral") : translate("Enemy");
+			g_Players[i].isAlly[g_ViewedPlayer] ?
+				translate("Ally") :
+				g_Players[i].isNeutral[g_ViewedPlayer] ? translate("Neutral") : translate("Enemy");
 }
 
 function diplomacyFormatStanceButtons(i, hidden)
 {
 	for (let stance of ["Ally", "Neutral", "Enemy"])
 	{
-		let button = Engine.GetGUIObjectByName("diplomacyPlayer"+stance+"["+(i-1)+"]");
+		let button = Engine.GetGUIObjectByName("diplomacyPlayer" + stance + "[" + (i - 1) + "]");
 		button.hidden = hidden;
 		if (hidden)
 			continue;
@@ -467,16 +468,16 @@ function diplomacyFormatTributeButtons(i, hidden)
 	let r = 0;
 	for (let resCode of resCodes)
 	{
-		let button = Engine.GetGUIObjectByName("diplomacyPlayer["+(i-1)+"]_tribute["+r+"]");
+		let button = Engine.GetGUIObjectByName("diplomacyPlayer[" + (i - 1) + "]_tribute[" + r + "]");
 		if (!button)
 		{
 			warn("Current GUI limits prevent displaying more than " + r + " tribute buttons!");
 			break;
 		}
 
-		Engine.GetGUIObjectByName("diplomacyPlayer["+(i-1)+"]_tribute["+r+"]_image").sprite = "stretched:session/icons/resources/"+resCode+".png";
+		Engine.GetGUIObjectByName("diplomacyPlayer[" + (i - 1) + "]_tribute[" + r + "]_image").sprite = "stretched:session/icons/resources/" + resCode + ".png";
 		button.hidden = hidden;
-		setPanelObjectPosition(button, r, r+1, 0);
+		setPanelObjectPosition(button, r, r + 1, 0);
 		++r;
 		if (hidden)
 			continue;
@@ -505,7 +506,7 @@ function diplomacyFormatTributeButtons(i, hidden)
 				// This is in a closure so that we have access to `player`, `amounts`, and `multiplier` without some
 				// evil global variable hackery.
 				g_FlushTributing = function() {
-					Engine.PostNetworkCommand({ "type": "tribute", "player": i, "amounts":  amounts });
+					Engine.PostNetworkCommand({ "type": "tribute", "player": i, "amounts": amounts });
 					multiplier = 1;
 					button.tooltip = formatTributeTooltip(i, resCode, 100);
 				};
@@ -519,7 +520,7 @@ function diplomacyFormatTributeButtons(i, hidden)
 
 function diplomacyFormatAttackRequestButton(i, hidden)
 {
-	let button = Engine.GetGUIObjectByName("diplomacyAttackRequest["+(i-1)+"]");
+	let button = Engine.GetGUIObjectByName("diplomacyAttackRequest[" + (i - 1) + "]");
 	button.hidden = hidden;
 	if (hidden)
 		return;
@@ -533,7 +534,7 @@ function diplomacyFormatAttackRequestButton(i, hidden)
 
 function diplomacyFormatSpyRequestButton(i, hidden)
 {
-	let button = Engine.GetGUIObjectByName("diplomacySpyRequest["+(i-1)+"]");
+	let button = Engine.GetGUIObjectByName("diplomacySpyRequest[" + (i - 1) + "]");
 	let template = GetTemplateData("special/spy");
 	button.hidden = hidden || !template || GetSimState().players[g_ViewedPlayer].disabledTemplates["special/spy"];
 	if (button.hidden)
@@ -583,13 +584,13 @@ function diplomacyFormatSpyRequestButton(i, hidden)
 			if (neededResources)
 			{
 				if (button.enabled)
-					modifier = resourcesToAlphaMask(neededResources) +":";
+					modifier = resourcesToAlphaMask(neededResources) + ":";
 				button.enabled = false;
 				tooltips.push(getNeededResourcesTooltip(neededResources));
 			}
 		}
 	}
-	let icon = Engine.GetGUIObjectByName("diplomacySpyRequestImage["+(i-1)+"]");
+	let icon = Engine.GetGUIObjectByName("diplomacySpyRequestImage[" + (i - 1) + "]");
 	icon.sprite = modifier + "stretched:session/icons/bribes.png";
 	button.tooltip = tooltips.filter(tip => tip).join("\n");
 	button.onPress = (function(i, button) { return function() {
@@ -659,34 +660,34 @@ function openTrade()
 
 		// Barter:
 		barterOpenCommon(resCode, i, "barter");
-		setPanelObjectPosition(barterResource, i, i+1);
+		setPanelObjectPosition(barterResource, i, i + 1);
 
 		// Trade:
-		let tradeResource = Engine.GetGUIObjectByName("tradeResource["+i+"]");
+		let tradeResource = Engine.GetGUIObjectByName("tradeResource[" + i + "]");
 		if (!tradeResource)
 		{
 			 warn("Current GUI limits prevent displaying more than " + i + " resources in the trading goods selection dialog!");
 			 break;
 		}
 
-		setPanelObjectPosition(tradeResource, i, i+1);
+		setPanelObjectPosition(tradeResource, i, i + 1);
 
-		let icon = Engine.GetGUIObjectByName("tradeResourceIcon["+i+"]");
+		let icon = Engine.GetGUIObjectByName("tradeResourceIcon[" + i + "]");
 		icon.sprite = "stretched:session/icons/resources/" + resCode + ".png";
 
-		let buttonUp = Engine.GetGUIObjectByName("tradeArrowUp["+i+"]");
-		let buttonDn = Engine.GetGUIObjectByName("tradeArrowDn["+i+"]");
+		let buttonUp = Engine.GetGUIObjectByName("tradeArrowUp[" + i + "]");
+		let buttonDn = Engine.GetGUIObjectByName("tradeArrowDn[" + i + "]");
 
 		button[resCode] = {
 			"up": buttonUp,
 			"dn": buttonDn,
-			"label": Engine.GetGUIObjectByName("tradeResourceText["+i+"]"),
-			"sel": Engine.GetGUIObjectByName("tradeResourceSelection["+i+"]")
+			"label": Engine.GetGUIObjectByName("tradeResourceText[" + i + "]"),
+			"sel": Engine.GetGUIObjectByName("tradeResourceSelection[" + i + "]")
 		};
 
 		proba[resCode] = proba[resCode] || 0;
 
-		let buttonResource = Engine.GetGUIObjectByName("tradeResourceButton["+i+"]");
+		let buttonResource = Engine.GetGUIObjectByName("tradeResourceButton[" + i + "]");
 		buttonResource.enabled = controlsPlayer(g_ViewedPlayer);
 		buttonResource.onPress = (resource => {
 			return () => {
@@ -695,7 +696,7 @@ function openTrade()
 					for (let res of resCodes)
 						proba[res] = 0;
 					proba[resource] = 100;
-					Engine.PostNetworkCommand({"type": "set-trading-goods", "tradingGoods": proba});
+					Engine.PostNetworkCommand({ "type": "set-trading-goods", "tradingGoods": proba });
 				}
 				currTradeSelection = resource;
 				updateTradeButtons();
@@ -707,7 +708,7 @@ function openTrade()
 			return () => {
 				proba[resource] += Math.min(STEP, proba[currTradeSelection]);
 				proba[currTradeSelection] -= Math.min(STEP, proba[currTradeSelection]);
-				Engine.PostNetworkCommand({"type": "set-trading-goods", "tradingGoods": proba});
+				Engine.PostNetworkCommand({ "type": "set-trading-goods", "tradingGoods": proba });
 				updateTradeButtons();
 			};
 		})(resCode);
@@ -717,7 +718,7 @@ function openTrade()
 			return () => {
 				proba[currTradeSelection] += Math.min(STEP, proba[resource]);
 				proba[resource] -= Math.min(STEP, proba[resource]);
-				Engine.PostNetworkCommand({"type": "set-trading-goods", "tradingGoods": proba});
+				Engine.PostNetworkCommand({ "type": "set-trading-goods", "tradingGoods": proba });
 				updateTradeButtons();
 			};
 		})(resCode);
@@ -857,11 +858,11 @@ function getIdleLandTradersText(traderNumber)
 		"active": {
 			"garrisoned": {
 				"no-inactive": translate("%(openingTradingString)s, and %(garrisonedString)s."),
-				"inactive":    translate("%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s.")
+				"inactive": translate("%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s.")
 			},
 			"no-garrisoned": {
 				"no-inactive": translate("%(openingTradingString)s."),
-				"inactive":    translate("%(openingTradingString)s, and %(inactiveString)s.")
+				"inactive": translate("%(openingTradingString)s, and %(inactiveString)s.")
 			}
 		},
 		"no-active": {
@@ -887,31 +888,33 @@ function getIdleLandTradersText(traderNumber)
 		{ "numberTrading": active }
 	);
 
-	let inactiveString = sprintf(active || garrisoned ?
-		translatePlural(
-			"%(numberOfLandTraders)s inactive",
-			"%(numberOfLandTraders)s inactive",
-			inactive
-		) :
-		translatePlural(
-			"%(numberOfLandTraders)s land trader inactive",
-			"%(numberOfLandTraders)s land traders inactive",
-			inactive
-		),
+	let inactiveString = sprintf(
+		active || garrisoned ?
+			translatePlural(
+				"%(numberOfLandTraders)s inactive",
+				"%(numberOfLandTraders)s inactive",
+				inactive
+			) :
+			translatePlural(
+				"%(numberOfLandTraders)s land trader inactive",
+				"%(numberOfLandTraders)s land traders inactive",
+				inactive
+			),
 		{ "numberOfLandTraders": inactive }
 	);
 
-	let garrisonedString = sprintf(active || inactive ?
-		translatePlural(
-			"%(numberGarrisoned)s garrisoned on a trading merchant ship",
-			"%(numberGarrisoned)s garrisoned on a trading merchant ship",
-			garrisoned
-		) :
-		translatePlural(
-			"There is %(numberGarrisoned)s land trader garrisoned on a trading merchant ship",
-			"There are %(numberGarrisoned)s land traders garrisoned on a trading merchant ship",
-			garrisoned
-		),
+	let garrisonedString = sprintf(
+		active || inactive ?
+			translatePlural(
+				"%(numberGarrisoned)s garrisoned on a trading merchant ship",
+				"%(numberGarrisoned)s garrisoned on a trading merchant ship",
+				garrisoned
+			) :
+			translatePlural(
+				"There is %(numberGarrisoned)s land trader garrisoned on a trading merchant ship",
+				"There are %(numberGarrisoned)s land traders garrisoned on a trading merchant ship",
+				garrisoned
+			),
 		{ "numberGarrisoned": garrisoned }
 	);
 
@@ -950,17 +953,18 @@ function getIdleShipTradersText(traderNumber)
 		{ "numberTrading": active }
 	);
 
-	let inactiveString = sprintf(active ?
-		translatePlural(
-			"%(numberOfShipTraders)s inactive",
-			"%(numberOfShipTraders)s inactive",
-			inactive
-		) :
-		translatePlural(
-			"%(numberOfShipTraders)s merchant ship inactive",
-			"%(numberOfShipTraders)s merchant ships inactive",
-			inactive
-		),
+	let inactiveString = sprintf(
+		active ?
+			translatePlural(
+				"%(numberOfShipTraders)s inactive",
+				"%(numberOfShipTraders)s inactive",
+				inactive
+			) :
+			translatePlural(
+				"%(numberOfShipTraders)s merchant ship inactive",
+				"%(numberOfShipTraders)s merchant ships inactive",
+				inactive
+			),
 		{ "numberOfShipTraders": inactive }
 	);
 
@@ -1001,7 +1005,7 @@ function initGameSpeedControl()
 	gameSpeed.onSelectionChange = function() {
 		changeGameSpeed(+this.list_data[this.selected]);
 	};
-};
+}
 
 function toggleGameSpeed()
 {
@@ -1060,10 +1064,10 @@ function openGameSummary()
 	Engine.PushGuiPage("page_summary.xml", {
 		"sim": {
 			"mapSettings": g_GameAttributes.settings,
-			"playerStates":extendedSimState.players.filter((state,player) =>
+			"playerStates": extendedSimState.players.filter((state, player) =>
 				g_IsObserver || player == 0 || player == g_ViewedPlayer ||
 				extendedSimState.players[g_ViewedPlayer].hasSharedLos && g_Players[player].isMutualAlly[g_ViewedPlayer]),
-			"timeElapsed" : extendedSimState.timeElapsed
+			"timeElapsed": extendedSimState.timeElapsed
 		},
 		"gui": {
 			"isInGame": true
@@ -1079,7 +1083,7 @@ function openStrucTree()
 
 	// TODO add info about researched techs and unlocked entities
 	Engine.PushGuiPage("page_structree.xml", {
-		"civ" : g_Players[g_ViewedPlayer].civ,
+		"civ": g_Players[g_ViewedPlayer].civ,
 		"callback": "resumeGame",
 	});
 }

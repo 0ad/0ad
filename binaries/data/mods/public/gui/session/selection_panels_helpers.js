@@ -136,17 +136,14 @@ function formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize
 	if (totalBatchTrainingCount < 2)
 		return "";
 
-	var fullBatchesString = "";
-	if (buildingsCountToTrainFullBatch > 0)
-	{
-		if (buildingsCountToTrainFullBatch > 1)
-			fullBatchesString = sprintf(translate("%(buildings)s*%(batchSize)s"), {
-				"buildings": buildingsCountToTrainFullBatch,
-				"batchSize": fullBatchSize
-			});
-		else
-			fullBatchesString = fullBatchSize;
-	}
+	let fullBatchesString = "";
+	if (buildingsCountToTrainFullBatch > 1)
+		fullBatchesString = sprintf(translate("%(buildings)s*%(batchSize)s"), {
+			"buildings": buildingsCountToTrainFullBatch,
+			"batchSize": fullBatchSize
+		});
+	else if (buildingsCountToTrainFullBatch == 1)
+		fullBatchesString = fullBatchSize;
 
 	// We need to display the batch details part if there is either more than
 	// one building with full batch or one building with the full batch and
@@ -154,12 +151,10 @@ function formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize
 	let batchString;
 	if (buildingsCountToTrainFullBatch > 1 ||
 	    buildingsCountToTrainFullBatch == 1 && remainderBatch > 0)
-	{
 		if (remainderBatch > 0)
 			batchString = translate("%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s).");
 		else
 			batchString = translate("%(action)s to train %(number)s (%(fullBatch)s).");
-	}
 	else
 		batchString = translate("%(action)s to train %(number)s.");
 

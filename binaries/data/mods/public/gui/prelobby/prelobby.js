@@ -210,9 +210,7 @@ function switchPage(page)
 {
 	// First hide everything.
 	if (!Engine.GetGUIObjectByName("pageWelcome").hidden)
-	{
 		Engine.GetGUIObjectByName("pageWelcome").hidden = true;
-	}
 	else if (!Engine.GetGUIObjectByName("pageRegister").hidden)
 	{
 		Engine.GetGUIObjectByName("pageRegister").hidden = true;

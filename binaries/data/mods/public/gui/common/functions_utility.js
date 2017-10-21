@@ -18,12 +18,12 @@ function getXMLFileList(pathname)
 	for (var i = 0; i < files.length; ++i)
 	{
 		var file = files[i];
-		file = file.substring(pathname.length, file.length-4);
+		file = file.substring(pathname.length, file.length - 4);
 
 		// Split path into directories so we can check for beginning _ character
 		var tokens = file.split("/");
 
-		if (tokens[tokens.length-1][0] != "_")
+		if (tokens[tokens.length - 1][0] != "_")
 			result.push(file);
 	}
 
@@ -34,21 +34,20 @@ function getJSONFileList(pathname)
 {
 	// Remove the path and extension from each name, since we just want the filename
 	return Engine.BuildDirEntList(pathname, "*.json", false).map(
-		filename => filename.substring(pathname.length, filename.length-5));
+		filename => filename.substring(pathname.length, filename.length - 5));
 }
 
 // A sorting function for arrays of objects with 'name' properties, ignoring case
 function sortNameIgnoreCase(x, y)
 {
-	var lowerX = x.name.toLowerCase();
-	var lowerY = y.name.toLowerCase();
+	let lowerX = x.name.toLowerCase();
+	let lowerY = y.name.toLowerCase();
 
 	if (lowerX < lowerY)
 		return -1;
-	else if (lowerX > lowerY)
+	if (lowerX > lowerY)
 		return 1;
-	else
-		return 0;
+	return 0;
 }
 
 /**
@@ -126,12 +125,10 @@ function timeToString(time)
 function removeDupes(array)
 {
 	// loop backwards to make splice operations cheaper
-	var i = array.length;
+	let i = array.length;
 	while (i--)
-	{
 		if (array.indexOf(array[i]) != i)
 			array.splice(i, 1);
-	}
 }
 
 function singleplayerName()
@@ -223,7 +220,7 @@ function soundNotification(type)
  *
  * @param margin The gap, in px, between the objects
  */
-function horizontallySpaceObjects(parentName, margin=0)
+function horizontallySpaceObjects(parentName, margin = 0)
 {
 	let objects = Engine.GetGUIObjectByName(parentName).children;
 	for (let i = 0; i < objects.length; ++i)

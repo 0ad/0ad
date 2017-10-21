@@ -67,7 +67,7 @@ function getMapDescriptionAndPreview(mapType, mapName)
 function setMapPreviewImage(guiObject, filename)
 {
 	Engine.GetGUIObjectByName(guiObject).sprite =
-		"cropped:" + 400/512 + "," + 300/512 + ":" +
+		"cropped:" + 400 / 512 + "," + 300 / 512 + ":" +
 		"session/icons/mappreview/" + filename;
 }
 
@@ -343,14 +343,14 @@ function getGameDescription(extended = false)
 		"value":
 			g_GameAttributes.map == "random" ?
 				translate("Randomly selects a map from the list") :
-			g_GameAttributes.settings.Description ?
-				translate(g_GameAttributes.settings.Description) :
-				translate("Sorry, no description available."),
+				g_GameAttributes.settings.Description ?
+					translate(g_GameAttributes.settings.Description) :
+					translate("Sorry, no description available.")
 	});
 
 	if (g_GameAttributes.settings.Biome)
 	{
-		let biome = g_Settings.Biomes.find(biome => biome.Id == g_GameAttributes.settings.Biome);
+		let biome = g_Settings.Biomes.find(b => b.Id == g_GameAttributes.settings.Biome);
 		titles.push({
 			"label": translate("Biome"),
 			"value": biome ? biome.Title : translateWithContext("biome", "Random")
@@ -405,8 +405,7 @@ function getGameDescription(extended = false)
 		"label": "[color=\"" + g_DescriptionHighlight + "\"]" + title.label + ":" + "[/color]",
 		"details":
 			title.value === true ? translateWithContext("gamesetup option", "enabled") :
-			!title.value ? translateWithContext("gamesetup option", "disabled") :
-			title.value
+				title.value || translateWithContext("gamesetup option", "disabled")
 	})).join("\n");
 }
 

@@ -21,7 +21,7 @@ function init(settings)
  */
 function bigFirstLetter(str, size)
 {
-	return '[font="sans-bold-'+(size+6)+'"]' + str[0] + '[/font]' + '[font="sans-bold-'+size+'"]' + str.substring(1) + '[/font]';
+	return '[font="sans-bold-' + (size + 6) + '"]' + str[0] + '[/font]' + '[font="sans-bold-' + size + '"]' + str.substring(1) + '[/font]';
 }
 
 /**
@@ -45,7 +45,7 @@ function heading(string, size)
 		if (word.length && word[0].toLowerCase() != word[0])
 			textArray[i] = bigFirstLetter(wordCaps, size);
 		else
-			textArray[i] = '[font="sans-bold-'+size+'"]' + wordCaps + '[/font]';	// TODO: Would not be necessary if we could do nested tags
+			textArray[i] = '[font="sans-bold-' + size + '"]' + wordCaps + '[/font]';	// TODO: Would not be necessary if we could do nested tags
 	}
 
 	return textArray.join(" ");

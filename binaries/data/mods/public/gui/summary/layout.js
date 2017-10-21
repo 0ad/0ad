@@ -219,7 +219,7 @@ function resetGeneralPanel()
 {
 	for (let h = 0; h < g_MaxHeadingTitle; ++h)
 	{
-		Engine.GetGUIObjectByName("titleHeading["+ h +"]").hidden = true;
+		Engine.GetGUIObjectByName("titleHeading[" + h + "]").hidden = true;
 		Engine.GetGUIObjectByName("Heading[" + h + "]").hidden = true;
 		for (let p = 0; p < g_MaxPlayers; ++p)
 		{
@@ -263,7 +263,7 @@ function updateGeneralPanelTitles(titleHeadings)
 		if (titleHeadings[th].xOffset)
 			left += titleHeadings[th].xOffset;
 
-		let headerGUI = Engine.GetGUIObjectByName("titleHeading["+ th +"]");
+		let headerGUI = Engine.GetGUIObjectByName("titleHeading[" + th + "]");
 		headerGUI.caption = titleHeadings[th].caption;
 		headerGUI.size = left + " " + titleHeadings[th].yStart + " " + (left + titleHeadings[th].width) + " 100%";
 		headerGUI.hidden = false;
@@ -343,9 +343,9 @@ function updateGeneralPanelTeams()
 
 		yStart += 30 + g_Teams[i].length * (g_PlayerBoxYSize + g_PlayerBoxGap) + 32;
 
-		Engine.GetGUIObjectByName("teamNameHeadingt["+i+"]").caption = "Team " + (+i + 1);
+		Engine.GetGUIObjectByName("teamNameHeadingt[" + i + "]").caption = "Team " + (+i + 1);
 
-		let teamHeading = Engine.GetGUIObjectByName("teamHeadingt["+i+"]");
+		let teamHeading = Engine.GetGUIObjectByName("teamHeadingt[" + i + "]");
 		let yStartTotal = 30 + g_Teams[i].length * (g_PlayerBoxYSize + g_PlayerBoxGap) + 10;
 		teamHeading.size = "50 " + yStartTotal + " 100% " + (yStartTotal + 20);
 		teamHeading.caption = translate("Team total");

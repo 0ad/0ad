@@ -54,8 +54,8 @@ function languageSelectionChanged()
 
 function openAdvancedMenu()
 {
-	var localeText = Engine.GetGUIObjectByName("localeText");
-	Engine.PushGuiPage("page_locale_advanced.xml", { "callback": "applyFromAdvancedMenu", "locale": localeText.caption } );
+	let localeText = Engine.GetGUIObjectByName("localeText");
+	Engine.PushGuiPage("page_locale_advanced.xml", { "callback": "applyFromAdvancedMenu", "locale": localeText.caption });
 }
 
 function applyFromAdvancedMenu(locale)

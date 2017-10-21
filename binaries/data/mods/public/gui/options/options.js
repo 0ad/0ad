@@ -84,8 +84,8 @@ var g_OptionType = {
 		"sanitizeValue": (value, control, option) => {
 			let sanitized =
 				Math.min(option.max !== undefined ? option.max : +Infinity,
-				Math.max(option.min !== undefined ? option.min : -Infinity,
-					isNaN(+value) ? 0 : value));
+					Math.max(option.min !== undefined ? option.min : -Infinity,
+						isNaN(+value) ? 0 : value));
 
 			control.sprite = sanitized == value ? "ModernDarkBoxWhite" : "ModernDarkBoxWhiteInvalid";
 
@@ -353,7 +353,7 @@ function saveChanges()
 			return;
 		}
 
-	reallySaveChanges()
+	reallySaveChanges();
 }
 
 function reallySaveChanges()
@@ -369,15 +369,12 @@ function reallySaveChanges()
 function closePage()
 {
 	if (Engine.ConfigDB_HasChanges("user"))
-	{
 		messageBox(
 			500, 200,
 			translate("You have unsaved changes, do you want to close this window?"),
 			translate("Warning"),
 			[translate("No"), translate("Yes")],
-			[null, closePageWithoutConfirmation]
-		);
-	}
+			[null, closePageWithoutConfirmation]);
 	else
 		closePageWithoutConfirmation();
 }

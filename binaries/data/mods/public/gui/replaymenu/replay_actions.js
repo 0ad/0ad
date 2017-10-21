@@ -67,7 +67,7 @@ function reallyStartVisualReplay(replayDirectory)
 		"attribs": Engine.GetReplayAttributes(replayDirectory),
 		"isNetworked": false,
 		"playerAssignments": {
-			"local":{
+			"local": {
 				"name": singleplayerName(),
 				"player": -1
 			}

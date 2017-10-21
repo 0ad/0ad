@@ -21,21 +21,21 @@ function Music()
 
 	this.RELATIVE_MUSIC_PATH = "audio/music/";
 	this.MUSIC = {
-		PEACE: "peace",
-		BATTLE: "battle",
-		VICTORY: "victory",
-		DEFEAT: "defeat"
+		"PEACE": "peace",
+		"BATTLE": "battle",
+		"VICTORY": "victory",
+		"DEFEAT": "defeat"
 	};
 
 	this.resetTracks();
 
 	this.states = {
-		OFF : 0,
-		MENU : 1,
-		PEACE : 2,
-		BATTLE : 3,
-		VICTORY : 4,
-		DEFEAT : 5
+		"OFF": 0,
+		"MENU": 1,
+		"PEACE": 2,
+		"BATTLE": 3,
+		"VICTORY": 4,
+		"DEFEAT": 5
 	};
 
 	this.musicGain = 0.3;
@@ -61,9 +61,9 @@ Music.prototype.resetTracks = function()
 			"Tavern_in_the_Mist.ogg",
 			"The_Road_Ahead.ogg"
 		],
-		BATTLE: ["Taiko_1.ogg", "Taiko_2.ogg"],
-		VICTORY : ["You_are_Victorious!.ogg"],
-		DEFEAT : ["Dried_Tears.ogg"]
+		"BATTLE": ["Taiko_1.ogg", "Taiko_2.ogg"],
+		"VICTORY": ["You_are_Victorious!.ogg"],
+		"DEFEAT": ["Dried_Tears.ogg"]
 	};
 };
 
@@ -107,7 +107,7 @@ Music.prototype.updateState = function()
 			break;
 
 		default:
-			warn(sprintf("%(functionName)s: Unknown music state: %(state)s", { functionName: "Music.updateState()", state: this.currentState }));
+			warn(sprintf("%(functionName)s: Unknown music state: %(state)s", { "functionName": "Music.updateState()", "state": this.currentState }));
 			break;
 		}
 	}
@@ -116,21 +116,19 @@ Music.prototype.updateState = function()
 Music.prototype.storeTracks = function(civMusic)
 {
 	this.resetTracks();
-	for (var music of civMusic)
+	for (let music of civMusic)
 	{
-		var type = undefined;
-		for (var i in this.MUSIC)
-		{
+		let type;
+		for (let i in this.MUSIC)
 			if (music.Type == this.MUSIC[i])
 			{
 				type = i;
 				break;
 			}
-		}
 
 		if (type === undefined)
 		{
-			warn(sprintf("%(functionName)s: Unrecognized music type: %(musicType)s", { functionName: "Music.storeTracks()", musicType: music.Type }));
+			warn(sprintf("%(functionName)s: Unrecognized music type: %(musicType)s", { "functionName": "Music.storeTracks()", "musicType": music.Type }));
 			continue;
 		}
 
@@ -141,10 +139,8 @@ Music.prototype.storeTracks = function(civMusic)
 Music.prototype.startPlayList = function(tracks, fadeInPeriod, isLooping)
 {
 	Engine.ClearPlaylist();
-	for (var i in tracks)
-	{
-		Engine.AddPlaylistItem( this.RELATIVE_MUSIC_PATH + tracks[i] );
-	}
+	for (let i in tracks)
+		Engine.AddPlaylistItem(this.RELATIVE_MUSIC_PATH + tracks[i]);
 
 	Engine.StartPlaylist(isLooping);
 };
