@@ -274,7 +274,7 @@ void XmppClient::SendIqGetBoardList()
 	// Send IQ
 	BoardListQuery* b = new BoardListQuery();
 	b->m_Command = "getleaderboard";
-	glooxwrapper::IQ iq(gloox::IQ::Get, xpartamuppJid);
+	glooxwrapper::IQ iq(gloox::IQ::Get, xpartamuppJid, m_client->getID());
 	iq.addExtension(b);
 	DbgXMPP("SendIqGetBoardList [" << tag_xml(iq) << "]");
 	m_client->send(iq);
@@ -290,7 +290,7 @@ void XmppClient::SendIqGetProfile(const std::string& player)
 	// Send IQ
 	ProfileQuery* b = new ProfileQuery();
 	b->m_Command = player;
-	glooxwrapper::IQ iq(gloox::IQ::Get, xpartamuppJid);
+	glooxwrapper::IQ iq(gloox::IQ::Get, xpartamuppJid, m_client->getID());
 	iq.addExtension(b);
 	DbgXMPP("SendIqGetProfile [" << tag_xml(iq) << "]");
 	m_client->send(iq);
@@ -323,7 +323,7 @@ void XmppClient::SendIqGameReport(const ScriptInterface& scriptInterface, JS::Ha
 	game->m_GameReport.emplace_back(report);
 
 	// Send IQ
-	glooxwrapper::IQ iq(gloox::IQ::Set, xpartamuppJid);
+	glooxwrapper::IQ iq(gloox::IQ::Set, xpartamuppJid, m_client->getID());
 	iq.addExtension(game);
 	DbgXMPP("SendGameReport [" << tag_xml(iq) << "]");
 	m_client->send(iq);
@@ -359,7 +359,7 @@ void XmppClient::SendIqRegisterGame(const ScriptInterface& scriptInterface, JS::
 	g->m_GameList.emplace_back(game);
 
 	// Send IQ
-	glooxwrapper::IQ iq(gloox::IQ::Set, xpartamuppJid);
+	glooxwrapper::IQ iq(gloox::IQ::Set, xpartamuppJid, m_client->getID());
 	iq.addExtension(g);
 	DbgXMPP("SendIqRegisterGame [" << tag_xml(iq) << "]");
 	m_client->send(iq);
@@ -377,7 +377,7 @@ void XmppClient::SendIqUnregisterGame()
 	g->m_Command = "unregister";
 	g->m_GameList.emplace_back(glooxwrapper::Tag::allocate("game"));
 
-	glooxwrapper::IQ iq( gloox::IQ::Set, xpartamuppJid );
+	glooxwrapper::IQ iq(gloox::IQ::Set, xpartamuppJid, m_client->getID());
 	iq.addExtension(g);
 	DbgXMPP("SendIqUnregisterGame [" << tag_xml(iq) << "]");
 	m_client->send(iq);
@@ -402,7 +402,7 @@ void XmppClient::SendIqChangeStateGame(const std::string& nbp, const std::string
 	game->addAttribute("players", players);
 	g->m_GameList.emplace_back(game);
 
-	glooxwrapper::IQ iq(gloox::IQ::Set, xpartamuppJid);
+	glooxwrapper::IQ iq(gloox::IQ::Set, xpartamuppJid, m_client->getID());
 	iq.addExtension(g);
 	DbgXMPP("SendIqChangeStateGame [" << tag_xml(iq) << "]");
 	m_client->send(iq);

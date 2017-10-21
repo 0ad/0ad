@@ -394,6 +394,7 @@ namespace glooxwrapper
 
 		bool connect(bool block = true);
 		gloox::ConnectionError recv(int timeout = -1);
+		std::string getID();
 		void send(const IQ& iq);
 
 		void setTls(gloox::TLSPolicy tls);
@@ -448,7 +449,7 @@ namespace glooxwrapper
 		const gloox::IQ& getWrapped() const { return *m_Wrapped; }
 		IQ(const gloox::IQ& iq) : m_Wrapped(const_cast<gloox::IQ*>(&iq)), m_Owned(false) { }
 
-		IQ(gloox::IQ::IqType type, const JID& to, const string& id = "");
+		IQ(gloox::IQ::IqType type, const JID& to, const string& id);
 		~IQ();
 
 		void addExtension(const StanzaExtension* se);
