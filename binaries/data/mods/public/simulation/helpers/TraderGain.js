@@ -18,19 +18,19 @@ function CalculateTraderGain(firstMarket, secondMarket, traderTemplate, trader)
 	let firstMarketPosition = cmpFirstMarketPosition.GetPosition2D();
 	let secondMarketPosition = cmpSecondMarketPosition.GetPosition2D();
 
-	let gainMultiplier;
+	let gainMultiplier = TradeGainNormalization(Engine.QueryInterface(SYSTEM_ENTITY, IID_Terrain).GetMapSize());
 	if (trader)
 	{
 		let cmpTrader = Engine.QueryInterface(trader, IID_Trader);
 		if (!cmpTrader)
 			return null;
-		gainMultiplier = cmpTrader.GetTraderGainMultiplier();
+		gainMultiplier *= cmpTrader.GetTraderGainMultiplier();
 	}
 	else	//called from the gui, modifications already applied
 	{
 		if (!traderTemplate || !traderTemplate.GainMultiplier)
 			return null;
-		gainMultiplier = traderTemplate.GainMultiplier;
+		gainMultiplier *= traderTemplate.GainMultiplier;
 	}
 
 	let gain = {};
@@ -40,7 +40,7 @@ function CalculateTraderGain(firstMarket, secondMarket, traderTemplate, trader)
 	let distanceSq = firstMarketPosition.distanceToSquared(secondMarketPosition);
 	// We calculate gain as square of distance to encourage trading between remote markets
 	// and gainMultiplier corresponds to the gain for a 100m distance
-	gain.traderGain = gainMultiplier * distanceSq / 10000;
+	gain.traderGain = gainMultiplier * NormalizedTradeGain(distanceSq);
 
 	gain.market1Owner = cmpMarket1Player.GetPlayerID();
 	gain.market2Owner = cmpMarket2Player.GetPlayerID();

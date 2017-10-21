@@ -936,10 +936,13 @@ m.GameState.prototype.getTraderTemplatesGains = function()
 	let supportTraderTemplateName = this.applyCiv("units/{civ}_support_trader");
 	let shipMerchantTemplate = !this.isTemplateDisabled(shipMechantTemplateName) && this.getTemplate(shipMechantTemplateName);
 	let supportTraderTemplate = !this.isTemplateDisabled(supportTraderTemplateName) && this.getTemplate(supportTraderTemplateName);
-	return {
-		"navalGainMultiplier": shipMerchantTemplate && shipMerchantTemplate.gainMultiplier(),
-		"landGainMultiplier": supportTraderTemplate && supportTraderTemplate.gainMultiplier()
-	};
+	let norm = TradeGainNormalization(this.sharedScript.mapSize);
+	let ret = {};
+	if (supportTraderTemplate)
+		ret.landGainMultiplier = norm * supportTraderTemplate.gainMultiplier();
+	if (shipMerchantTemplate)
+		ret.navalGainMultiplier = norm * shipMerchantTemplate.gainMultiplier();
+	return ret;
 };
 
 return m;

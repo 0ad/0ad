@@ -11,7 +11,7 @@ Trader.prototype.Schema =
 	"<a:example>" +
 		"<GainMultiplier>0.75</GainMultiplier>" +
 	"</a:example>" +
-	"<element name='GainMultiplier' a:help='Trader gain for a 100m distance'>" +
+	"<element name='GainMultiplier' a:help='Trader gain for a 100m distance and mapSize = 1024'>" +
 		"<ref name='positiveDecimal'/>" +
 	"</element>";
 

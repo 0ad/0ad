@@ -444,7 +444,7 @@ m.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 				gainMultiplier = traderTemplatesGains.navalGainMultiplier;
 			else
 				continue;
-			let gain = Math.round(API3.SquareVectorDistance(m1.position(), m2.position()) * gainMultiplier / 10000);
+			let gain = Math.round(gainMultiplier * NormalizedTradeGain(API3.SquareVectorDistance(m1.position(), m2.position())));
 			if (gain < this.minimalGain)
 				continue;
 			if (m1.foundationProgress() === undefined && m2.foundationProgress() === undefined)

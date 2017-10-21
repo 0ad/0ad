@@ -1104,8 +1104,9 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 /**
  * Returns the best position to build a new market: if the allies already have a market, build it as far as possible
  * from it, although not in our border to be able to defend it easily. If no allied market, our second market will
- * follow the same logic
- * TODO check that it is on same accessIndex
+ * follow the same logic.
+ * To do so, we suppose that the gain/distance is an increasing function of distance and look for the max distance
+ * for performance reasons.
  */
 m.HQ.prototype.findMarketLocation = function(gameState, template)
 {
@@ -1127,6 +1128,8 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 	let bestIdx;
 	let bestJdx;
 	let bestVal;
+	let bestDistSq;
+	let bestGainMult;
 	let radius = Math.ceil(template.obstructionRadius().max / obstructions.cellSize);
 	let isNavalMarket = template.hasClass("NavalMarket");
 
@@ -1152,6 +1155,8 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 		let pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
 		// checking distances to other markets
 		let maxVal = 0;
+		let maxDistSq;
+		let maxGainMult;
 		let gainMultiplier;
 		for (let market of markets)
 		{
@@ -1168,9 +1173,13 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 				continue;
 			if (!gainMultiplier)
 				continue;
-			let val = API3.SquareVectorDistance(market.position(), pos) * gainMultiplier;
-			if (val > maxVal)
-				maxVal = val;
+			let distSq = API3.SquareVectorDistance(market.position(), pos);
+			if (gainMultiplier * distSq > maxVal)
+			{
+				maxVal = gainMultiplier * distSq;
+				maxDistSq = distSq;
+				maxGainMult = gainMultiplier;
+			}
 		}
 		if (maxVal === 0)
 			continue;
@@ -1179,6 +1188,8 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 		if (this.isDangerousLocation(gameState, pos, halfSize))
 			continue;
 		bestVal = maxVal;
+		bestDistSq = maxDistSq;
+		bestGainMult = maxGainMult;
 		bestIdx = i;
 		bestJdx = j;
 	}
@@ -1188,7 +1199,7 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 
 	if (bestVal === undefined)  // no constraints. For the time being, place it arbitrarily by the ConstructionPlan
 		return [-1, -1, -1, 0];
-	let expectedGain = Math.round(bestVal / 10000);
+	let expectedGain = Math.round(bestGainMult * NormalizedTradeGain(bestDistSq));
 	if (this.Config.debug > 1)
 		API3.warn("this would give a trading gain of " + expectedGain);
 	// do not keep it if gain is too small, except if this is our first BarterMarket
