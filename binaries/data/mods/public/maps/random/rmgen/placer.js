@@ -278,7 +278,7 @@ function RectPlacer(x1, z1, x2, z2)
 	this.z2 = z2;
 
 	if (x1 > x2 || z1 > z2)
-		throw("RectPlacer: incorrect bounds on rect");
+		throw new Error("RectPlacer: incorrect bounds on rect");
 }
 
 RectPlacer.prototype.place = function(constraint)

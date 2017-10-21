@@ -122,7 +122,7 @@ Map.prototype.validClass = function(c)
 Map.prototype.getTexture = function(x, z)
 {
 	if (!this.validT(x, z))
-		throw "getTexture: invalid tile position (" + x + ", " + z + ")";
+		throw new Error("getTexture: invalid tile position (" + x + ", " + z + ")");
 
 	return this.IDToName[this.texture[x][z]];
 };
@@ -130,7 +130,7 @@ Map.prototype.getTexture = function(x, z)
 Map.prototype.setTexture = function(x, z, texture)
 {
 	if (!this.validT(x, z))
-		throw "setTexture: invalid tile position (" + x + ", " + z + ")";
+		throw new Error("setTexture: invalid tile position (" + x + ", " + z + ")");
 
 	this.texture[x][z] = this.getTextureID(texture);
 };
@@ -138,7 +138,7 @@ Map.prototype.setTexture = function(x, z, texture)
 Map.prototype.getHeight = function(x, z)
 {
 	if (!this.validH(x, z))
-		throw "getHeight: invalid vertex position (" + x + ", " + z + ")";
+		throw new Error("getHeight: invalid vertex position (" + x + ", " + z + ")");
 
 	return this.height[x][z];
 };
@@ -146,7 +146,7 @@ Map.prototype.getHeight = function(x, z)
 Map.prototype.setHeight = function(x, z, height)
 {
 	if (!this.validH(x, z))
-		throw "setHeight: invalid vertex position (" + x + ", " + z + ")";
+		throw new Error("setHeight: invalid vertex position (" + x + ", " + z + ")");
 
 	this.height[x][z] = height;
 };
@@ -154,7 +154,7 @@ Map.prototype.setHeight = function(x, z, height)
 Map.prototype.getTerrainObjects = function(x, z)
 {
 	if (!this.validT(x, z))
-		throw "getTerrainObjects: invalid tile position (" + x + ", " + z + ")";
+		throw new Error("getTerrainObjects: invalid tile position (" + x + ", " + z + ")");
 
 	return this.terrainObjects[x][z];
 };
@@ -162,7 +162,7 @@ Map.prototype.getTerrainObjects = function(x, z)
 Map.prototype.setTerrainObject = function(x, z, object)
 {
 	if (!this.validT(x, z))
-		throw "setTerrainObject: invalid tile position (" + x + ", " + z + ")";
+		throw new Error("setTerrainObject: invalid tile position (" + x + ", " + z + ")");
 
 	this.terrainObjects[x][z] = object;
 };

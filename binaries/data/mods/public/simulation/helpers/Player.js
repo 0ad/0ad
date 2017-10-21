@@ -16,7 +16,7 @@ function LoadPlayerSettings(settings, newPlayers)
 	// Get default player data
 	var rawData = Engine.ReadJSONFile("settings/player_defaults.json");
 	if (!(rawData && rawData.PlayerData))
-		throw("Player.js: Error reading player_defaults.json");
+		throw new Error("Player.js: Error reading player_defaults.json");
 
 	// Add gaia to simplify iteration
 	if (settings.PlayerData && settings.PlayerData[0])
@@ -47,7 +47,7 @@ function LoadPlayerSettings(settings, newPlayers)
 			var entID = Engine.AddEntity(template);
 			var cmpPlayer = Engine.QueryInterface(entID, IID_Player);
 			if (!cmpPlayer)
-				throw("Player.js: Error creating player entity " + numPlayers);
+				throw new Error("Player.js: Error creating player entity " + numPlayers);
 
 			cmpPlayerManager.AddPlayer(entID);
 			++numPlayers;
@@ -154,7 +154,7 @@ function LoadPlayerSettings(settings, newPlayers)
 		{
 			var rawFormations = Engine.ReadCivJSONFile(cmpPlayer.GetCiv()+".json");
 			if (!(rawFormations && rawFormations.Formations))
-				throw("Player.js: Error reading "+cmpPlayer.GetCiv()+".json");
+				throw new Error("Player.js: Error reading " + cmpPlayer.GetCiv() + ".json");
 
 			cmpPlayer.SetFormations(rawFormations.Formations);
 		}
