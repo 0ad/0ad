@@ -162,7 +162,6 @@ function getTemplateListsFromStructure(templateName)
 	}
 
 	if (template.WallSet)
-	{
 		for (let wSegm in template.WallSet.Templates)
 		{
 			let wEntities = getTemplateListsFromStructure(template.WallSet.Templates[wSegm]);
@@ -170,7 +169,6 @@ function getTemplateListsFromStructure(templateName)
 				if (templateLists.techs.indexOf(entity) === -1)
 					templateLists.techs.push(entity);
 		}
-	}
 
 	return templateLists;
 }

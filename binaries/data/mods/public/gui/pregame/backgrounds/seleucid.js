@@ -11,7 +11,7 @@ g_BackgroundLayerData.push(
 			"tiling": true,
 		},
 		{
-			"offset": (time, width) => 0.17 * width * Math.cos(0.05 * time) + width/8,
+			"offset": (time, width) => 0.17 * width * Math.cos(0.05 * time) + width / 8,
 			"sprite": "background-seleucid1_3",
 			"tiling": false,
 		},

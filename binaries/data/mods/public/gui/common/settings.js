@@ -371,7 +371,7 @@ function translateMapType(mapType)
  */
 function translateMapSize(tiles)
 {
-	let mapSize = g_Settings.MapSizes.find(mapSize => mapSize.Tiles == +tiles);
+	let mapSize = g_Settings.MapSizes.find(size => size.Tiles == +tiles);
 	return mapSize ? mapSize.Name : translateWithContext("map size", "Default");
 }
 
@@ -395,6 +395,6 @@ function translatePopulationCapacity(population)
  */
 function translateVictoryCondition(gameType)
 {
-	let vc = g_Settings.VictoryConditions.find(vc => vc.Name == gameType);
-	return vc ? vc.Title : translateWithContext("victory condition", "Unknown");
+	let victoryCondition = g_Settings.VictoryConditions.find(vc => vc.Name == gameType);
+	return victoryCondition ? victoryCondition.Title : translateWithContext("victory condition", "Unknown");
 }

@@ -896,7 +896,7 @@ var g_MiscControls = {
 			!g_IsController ?
 				g_ReadyData[g_IsReady].tooltip :
 				!g_IsNetworked || Object.keys(g_PlayerAssignments).every(guid =>
-						g_PlayerAssignments[guid].status || g_PlayerAssignments[guid].player == -1) ?
+					g_PlayerAssignments[guid].status || g_PlayerAssignments[guid].player == -1) ?
 					translate("Start a new game with the current settings.") :
 					translate("Start a new game with the current settings (disabled until all players are ready)"),
 		"enabled": () => !g_IsController ||
@@ -1118,7 +1118,7 @@ function getGUIObjectNameFromSetting(name)
 function initDropdown(name, playerIdx)
 {
 	let [guiName, guiType, guiIdx] = getGUIObjectNameFromSetting(name);
-	let idxName = playerIdx === undefined ? "": "[" + playerIdx + "]";
+	let idxName = playerIdx === undefined ? "" : "[" + playerIdx + "]";
 	let data = (playerIdx === undefined ? g_Dropdowns : g_PlayerDropdowns)[name];
 
 	let dropdown = Engine.GetGUIObjectByName(guiName + guiType + guiIdx + idxName);
@@ -1284,7 +1284,7 @@ function handleGamestartMessage(message)
 
 	Engine.SwitchGuiPage("page_loading.xml", {
 		"attribs": g_GameAttributes,
-		"isNetworked" : g_IsNetworked,
+		"isNetworked": g_IsNetworked,
 		"playerAssignments": g_PlayerAssignments,
 		"isController": g_IsController
 	});
@@ -1369,8 +1369,8 @@ function onClientJoin(newGUID, newAssignments)
 			return;
 	}
 
-	let freeSlot = g_GameAttributes.settings.PlayerData.findIndex((v,i) =>
-		Object.keys(g_PlayerAssignments).every(guid => g_PlayerAssignments[guid].player != i+1)
+	let freeSlot = g_GameAttributes.settings.PlayerData.findIndex((v, i) =>
+		Object.keys(g_PlayerAssignments).every(guid => g_PlayerAssignments[guid].player != i + 1)
 	);
 
 	// Client is not and cannot become assigned as player
@@ -1702,11 +1702,10 @@ function handleNetMessages()
 function unassignInvalidPlayers(maxPlayers)
 {
 	if (g_IsNetworked)
-	{
 		// Remove invalid playerIDs from the servers playerassignments copy
 		for (let playerID = +maxPlayers + 1; playerID <= g_MaxPlayers; ++playerID)
 			Engine.AssignNetworkPlayer(playerID, "");
-	}
+
 	else if (g_PlayerAssignments.local.player > maxPlayers)
 		g_PlayerAssignments.local.player = -1;
 }
@@ -1770,7 +1769,7 @@ function isControlArrayElementHidden(playerIdx)
 function updateGUIDropdown(name, playerIdx = undefined)
 {
 	let [guiName, guiType, guiIdx] = getGUIObjectNameFromSetting(name);
-	let idxName = playerIdx === undefined ? "": "[" + playerIdx + "]";
+	let idxName = playerIdx === undefined ? "" : "[" + playerIdx + "]";
 
 	let dropdown = Engine.GetGUIObjectByName(guiName + guiType + guiIdx + idxName);
 	let label = Engine.GetGUIObjectByName(guiName + "Text" + guiIdx + idxName);
@@ -1778,7 +1777,7 @@ function updateGUIDropdown(name, playerIdx = undefined)
 	let title = Engine.GetGUIObjectByName(guiName + "Title" + guiIdx + idxName);
 
 	if (guiType == "Dropdown")
-		Engine.GetGUIObjectByName(guiName + "Checkbox" + guiIdx).hidden = true;	
+		Engine.GetGUIObjectByName(guiName + "Checkbox" + guiIdx).hidden = true;
 
 	let indexHidden = isControlArrayElementHidden(playerIdx);
 	let obj = (playerIdx === undefined ? g_Dropdowns : g_PlayerDropdowns)[name];
@@ -1823,7 +1822,7 @@ function updateGUICheckbox(name)
 	let title = Engine.GetGUIObjectByName(guiName + "Title" + guiIdx);
 
 	if (guiType == "Checkbox")
-		Engine.GetGUIObjectByName(guiName + "Dropdown" + guiIdx).hidden = true;	
+		Engine.GetGUIObjectByName(guiName + "Dropdown" + guiIdx).hidden = true;
 
 	checkbox.checked = checked;
 	checkbox.enabled = enabled;
@@ -1842,7 +1841,7 @@ function updateGUICheckbox(name)
 
 function updateGUIMiscControl(name, playerIdx)
 {
-	let idxName = playerIdx === undefined ? "": "[" + playerIdx + "]";
+	let idxName = playerIdx === undefined ? "" : "[" + playerIdx + "]";
 	let obj = (playerIdx === undefined ? g_MiscControls : g_PlayerMiscElements)[name];
 
 	let control = Engine.GetGUIObjectByName(name + idxName);
@@ -1923,7 +1922,11 @@ function launchGame()
 		// Count how many players use the chosenName
 		let usedName = g_GameAttributes.settings.PlayerData.filter(pData => pData.Name && pData.Name.indexOf(chosenName) !== -1).length;
 
-		g_GameAttributes.settings.PlayerData[i].Name = !usedName ? chosenName : sprintf(translate("%(playerName)s %(romanNumber)s"), { "playerName": chosenName, "romanNumber": g_RomanNumbers[usedName+1] });
+		g_GameAttributes.settings.PlayerData[i].Name = !usedName ? chosenName :
+			sprintf(translate("%(playerName)s %(romanNumber)s"), {
+				"playerName": chosenName,
+				"romanNumber": g_RomanNumbers[usedName+1]
+			});
 	}
 
 	// Copy playernames for the purpose of replays
@@ -1952,9 +1955,9 @@ function launchGame()
 		let playerID = -1;
 		for (let i in g_GameAttributes.settings.PlayerData)
 		{
-			let assignBox = Engine.GetGUIObjectByName("playerAssignment["+i+"]");
+			let assignBox = Engine.GetGUIObjectByName("playerAssignment[" + i + "]");
 			if (assignBox.list_data[assignBox.selected] == "guid:local")
-				playerID = +i+1;
+				playerID = +i + 1;
 		}
 
 		Engine.StartGame(g_GameAttributes, playerID);
@@ -2123,7 +2126,7 @@ function updatePlayerAssignmentChoices()
 				"ai": translate(ai.data.name)
 			}),
 			"Color": g_PlayerAssignmentColors.AI
-	}));
+		}));
 
 	let unassignedSlot = [{
 		"Choice": "unassigned",
@@ -2224,7 +2227,7 @@ function colorizePlayernameByGUID(guid, username = "")
 		color = rgbToGuiColor({ "r": r, "g": g, "b": b });
 	}
 
-	return '[color="'+ color +'"]' + username + '[/color]';
+	return '[color="' + color + '"]' + username + '[/color]';
 }
 
 function addChatMessage(msg)

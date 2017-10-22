@@ -166,9 +166,10 @@ g_SelectionPanels.Command = {
 		// count on square buttons, so size.bottom is the width too
 		let spacer = size.bottom + 1;
 		// relative to the center ( = 50%)
-		size.rleft = size.rright = 50;
+		size.rleft = 50;
+		size.rright = 50;
 		// offset from the center calculation
-		size.left = (data.i - data.numberOfItems/2) * spacer;
+		size.left = (data.i - data.numberOfItems / 2) * spacer;
 		size.right = size.left + size.bottom;
 		data.button.size = size;
 		return true;
@@ -185,7 +186,6 @@ g_SelectionPanels.AllyCommand = {
 	{
 		let commands = [];
 		for (let command in g_AllyEntityCommands)
-		{
 			for (let state of unitEntStates)
 			{
 				let info = g_AllyEntityCommands[command].getInfo(state);
@@ -196,7 +196,6 @@ g_SelectionPanels.AllyCommand = {
 					break;
 				}
 			}
-		}
 		return commands;
 	},
 	"setupButton": function(data)
@@ -221,9 +220,10 @@ g_SelectionPanels.AllyCommand = {
 		// count on square buttons, so size.bottom is the width too
 		let spacer = size.bottom + 1;
 		// relative to the center ( = 50%)
-		size.rleft = size.rright = 50;
+		size.rleft = 50;
+		size.rright = 50;
 		// offset from the center calculation
-		size.left = (data.i - data.numberOfItems/2) * spacer;
+		size.left = (data.i - data.numberOfItems / 2) * spacer;
 		size.right = size.left + size.bottom;
 		data.button.size = size;
 
@@ -258,7 +258,7 @@ g_SelectionPanels.Construction = {
 				"player": data.player
 			});
 
-		data.button.onPress = function () { startBuildingPlacement(data.item, data.playerState); };
+		data.button.onPress = function() { startBuildingPlacement(data.item, data.playerState); };
 
 		let tooltips = [
 			getEntityNamesFormatted,
@@ -287,7 +287,7 @@ g_SelectionPanels.Construction = {
 		else if (neededResources)
 		{
 			data.button.enabled = false;
-			modifier += resourcesToAlphaMask(neededResources) +":";
+			modifier += resourcesToAlphaMask(neededResources) + ":";
 		}
 		else
 			data.button.enabled = controlsPlayer(data.player);
@@ -398,8 +398,7 @@ g_SelectionPanels.Garrison = {
 		data.button.enabled = canUngarrison && controlsPlayer(g_ViewedPlayer);
 
 		let tooltip = canUngarrison || g_IsObserver ?
-			sprintf(translate("Unload %(name)s"),
-			{ "name": getEntityNames(template) }) + "\n" +
+			sprintf(translate("Unload %(name)s"), { "name": getEntityNames(template) }) + "\n" +
 			translate("Single-click to unload 1. Shift-click to unload all of this type.") :
 			getEntityNames(template);
 
@@ -433,27 +432,23 @@ g_SelectionPanels.Gate = {
 	{
 		let gates = [];
 		for (let state of unitEntStates)
-		{
 			if (state.gate && !gates.length)
-			{
 				gates.push({
 					"gate": state.gate,
 					"tooltip": translate("Lock Gate"),
 					"locked": true,
-					"callback": function (item) { lockGate(item.locked); }
+					"callback": function(item) { lockGate(item.locked); }
 				},
 				{
 					"gate": state.gate,
 					"tooltip": translate("Unlock Gate"),
 					"locked": false,
-					"callback": function (item) { lockGate(item.locked); }
+					"callback": function(item) { lockGate(item.locked); }
 				});
-			}
 			// Show both 'locked' and 'unlocked' as active if the selected gates have both lock states.
 			else if (state.gate && state.gate.locked != gates[0].gate.locked)
 				for (let j = 0; j < gates.length; ++j)
 					delete gates[j].gate.locked;
-		}
 
 		return gates;
 	},
@@ -503,13 +498,10 @@ g_SelectionPanels.Pack = {
 				else
 					checks.packButton = true;
 			}
+			else if (state.pack.packed)
+				checks.unpackCancelButton = true;
 			else
-			{
-				if (state.pack.packed)
-					checks.unpackCancelButton = true;
-				else
-					checks.packCancelButton = true;
-			}
+				checks.packCancelButton = true;
 		}
 
 		let items = [];
@@ -605,7 +597,7 @@ g_SelectionPanels.Queue = {
 		let size = panel.size;
 		let buttonSize = Engine.GetGUIObjectByName("unitQueueButton[0]").size.bottom;
 		let margin = 4;
-		size.top = size.bottom - numRows*buttonSize - (numRows+2)*margin;
+		size.top = size.bottom - numRows * buttonSize - (numRows + 2) * margin;
 		panel.size = size;
 	},
 	"setupButton": function(data)
@@ -644,7 +636,7 @@ g_SelectionPanels.Queue = {
 			Engine.GetGUIObjectByName("queueTimeRemaining").caption =
 				Engine.FormatMillisecondsIntoDateStringGMT(queuedItem.timeRemaining, translateWithContext("countdown format", "m:ss"));
 
-		let guiObject = Engine.GetGUIObjectByName("unitQueueProgressSlider["+data.i+"]");
+		let guiObject = Engine.GetGUIObjectByName("unitQueueProgressSlider[" + data.i + "]");
 		let size = guiObject.size;
 
 		// Buttons are assumed to be square, so left/right offsets can be used for top/bottom.
@@ -692,7 +684,7 @@ g_SelectionPanels.Research = {
 							item.tech.top == tech.top) &&
 						Object.keys(item.techCostMultiplier).every(
 							k => item.techCostMultiplier[k] == state.production.techCostMultiplier[k])
-			));
+				));
 
 			if (filteredTechs.length + ret.length <= this.getMaxNumberOfItems() &&
 			    getNumberOfRightPanelButtons() <= this.getMaxNumberOfItems() * (filteredTechs.some(tech => !!tech.pair) ? 1 : 2))
@@ -810,7 +802,7 @@ g_SelectionPanels.Research = {
 			tooltips.push(getNeededResourcesTooltip(neededResources));
 			button.tooltip = tooltips.filter(tip => tip).join("\n");
 
-			button.onPress = function () {
+			button.onPress = function() {
 				addResearchToQueue(data.item.researchFacilityId, tech);
 			};
 
@@ -820,10 +812,10 @@ g_SelectionPanels.Research = {
 				let otherPosition = (position + data.rowLength) % (2 * data.rowLength);
 				let unchosenIcon = Engine.GetGUIObjectByName("unitResearchUnchosenIcon[" + otherPosition + "]");
 				button.onMouseEnter = function() {
-						unchosenIcon.hidden = false;
+					unchosenIcon.hidden = false;
 				};
 				button.onMouseLeave = function() {
-						unchosenIcon.hidden = true;
+					unchosenIcon.hidden = true;
 				};
 			}
 
@@ -1047,13 +1039,13 @@ g_SelectionPanels.Training = {
 		else if (neededResources)
 		{
 			data.button.enabled = false;
-			modifier = resourcesToAlphaMask(neededResources) +":";
+			modifier = resourcesToAlphaMask(neededResources) + ":";
 		}
 		else
 			data.button.enabled = controlsPlayer(data.player);
 
 		if (template.icon)
-		data.icon.sprite = modifier + "stretched:session/portraits/" + template.icon;
+			data.icon.sprite = modifier + "stretched:session/portraits/" + template.icon;
 
 		let index = data.i + getNumberOfRightPanelButtons();
 		setPanelObjectPosition(data.button, index, data.rowLength);
@@ -1075,7 +1067,7 @@ g_SelectionPanels.Upgrade = {
 
 		return unitEntStates[0].upgrade && unitEntStates[0].upgrade.upgrades;
 	},
-	"setupButton" : function(data)
+	"setupButton": function(data)
 	{
 		let template = GetTemplateData(data.item.entity);
 		if (!template)
@@ -1137,7 +1129,6 @@ g_SelectionPanels.Upgrade = {
 
 		let modifier = "";
 		if (!isUpgrading)
-		{
 			if (progress || !technologyEnabled || limits.canBeAddedCount == 0 &&
 				!hasSameRestrictionCategory(data.item.entity, data.unitEntStates[0].template))
 			{
@@ -1149,7 +1140,6 @@ g_SelectionPanels.Upgrade = {
 				data.button.enabled = false;
 				modifier = resourcesToAlphaMask(neededResources) + ":";
 			}
-		}
 
 		data.icon.sprite = modifier + "stretched:session/" +
 			(data.item.icon || "portraits/" + template.icon);

@@ -48,9 +48,7 @@ ElevationPainter.prototype.paint = function(area)
 function LayeredPainter(terrainArray, widths)
 {
 	if (!(terrainArray instanceof Array))
-	{
-		throw("LayeredPainter: terrains must be an array!");
-	}
+		throw new Error("LayeredPainter: terrains must be an array!");
 
 	this.terrains = [];
 	for (var i = 0; i < terrainArray.length; ++i)
@@ -190,9 +188,7 @@ function SmoothElevationPainter(type, elevation, blendRadius)
 	this.blendRadius = blendRadius;
 
 	if (type != ELEVATION_SET && type != ELEVATION_MODIFY)
-	{
-		throw("SmoothElevationPainter: invalid type '"+type+"'");
-	}
+		throw new Error("SmoothElevationPainter: invalid type '" + type + "'");
 }
 
 SmoothElevationPainter.prototype.checkInArea = function(areaID, x, z)

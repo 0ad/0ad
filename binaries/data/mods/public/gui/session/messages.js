@@ -435,9 +435,7 @@ var g_NotificationsTypes =
 				Engine.CameraMoveTo(targetState.position.x, targetState.position.z);
 		}
 		else if (cmd.type == "delete-entities" && notification.position)
-		{
 			Engine.CameraMoveTo(notification.position.x, notification.position.y);
-		}
 		// Focus commanded entities, but don't lose previous focus when training units
 		else if (cmd.type != "train" && cmd.type != "research" && entState)
 			setCameraFollow(cmd.entities[0]);
@@ -466,7 +464,7 @@ function getCheatsData()
 	let cheats = {};
 	for (let fileName of getJSONFileList("simulation/data/cheats/"))
 	{
-		let currentCheat = Engine.ReadJSONFile("simulation/data/cheats/"+fileName+".json");
+		let currentCheat = Engine.ReadJSONFile("simulation/data/cheats/" + fileName + ".json");
 		if (!currentCheat)
 			continue;
 		if (Object.keys(cheats).indexOf(currentCheat.Name) !== -1)
@@ -489,7 +487,7 @@ function executeCheat(text)
 		return false;
 
 	// Find the cheat code that is a prefix of the user input
-	let cheatCode = Object.keys(g_Cheats).find(cheatCode => text.indexOf(cheatCode) == 0);
+	let cheatCode = Object.keys(g_Cheats).find(code => text.indexOf(code) == 0);
 	if (!cheatCode)
 		return false;
 
@@ -555,7 +553,7 @@ function updateTutorial(notification)
 	let tutorialText = Engine.GetGUIObjectByName("tutorialText");
 	tutorialText.caption =
 		tutorialText.caption.replace('[color="yellow"]', '').replace('[/color]', '') +
-		(tutorialText.caption ? "\n" : "" ) +
+		(tutorialText.caption ? "\n" : "") +
 		'[color="yellow"]' +
 		notification.instructions.reduce((instructions, item) => instructions + translate(item), "") +
 		'[/color]';
@@ -584,7 +582,7 @@ function updateTutorial(notification)
  */
 function updateTimeNotifications()
 {
-	let notifications =  Engine.GuiInterfaceCall("GetTimeNotifications", g_ViewedPlayer);
+	let notifications = Engine.GuiInterfaceCall("GetTimeNotifications", g_ViewedPlayer);
 	let notificationText = "";
 	for (let n of notifications)
 	{
@@ -689,7 +687,6 @@ function onNetworkOutOfSync(msg)
 	if (msg.turn > 1 && g_GameAttributes.settings.PlayerData.some(pData => pData && pData.AI))
 		txt.push(translateWithContext("Out-Of-Sync", "Rejoining Multiplayer games with AIs is not supported yet!"));
 	else
-	{
 		txt.push(
 			translateWithContext("Out-Of-Sync", "Ensure all players use the same mods."),
 			translateWithContext("Out-Of-Sync", 'Click on "Report a Bug" in the main menu to help fix this.'),
@@ -700,7 +697,6 @@ function onNetworkOutOfSync(msg)
 				"filepath": escapeText(msg.path_oos_dump)
 			})
 		);
-	}
 
 	messageBox(
 		600, 280,
@@ -1016,7 +1012,7 @@ function formatTributeMessage(msg)
 	        (g_IsObserver || g_GameAttributes.settings.LockTeams &&
 	           g_Players[msg.sourcePlayer].isMutualAlly[Engine.GetPlayerID()] &&
 	           g_Players[msg.targetPlayer].isMutualAlly[Engine.GetPlayerID()]))
-			message = translate("%(player)s has sent %(player2)s %(amounts)s.");
+		message = translate("%(player)s has sent %(player2)s %(amounts)s.");
 
 	return sprintf(message, {
 		"player": colorizePlayernameByID(msg.sourcePlayer),
@@ -1049,8 +1045,8 @@ function formatAttackMessage(msg)
 		return "";
 
 	let message = msg.targetIsDomesticAnimal ?
-			translate("Your livestock has been attacked by %(attacker)s!") :
-			translate("You have been attacked by %(attacker)s!");
+		translate("Your livestock has been attacked by %(attacker)s!") :
+		translate("You have been attacked by %(attacker)s!");
 
 	return sprintf(message, {
 		"attacker": colorizePlayernameByID(msg.attacker)
@@ -1221,7 +1217,7 @@ function matchUsername(text)
  */
 function sendDialogAnswer(guiObject, dialogName)
 {
-	Engine.GetGUIObjectByName(dialogName+"-dialog").hidden = true;
+	Engine.GetGUIObjectByName(dialogName + "-dialog").hidden = true;
 
 	Engine.PostNetworkCommand({
 		"type": "dialog-answer",

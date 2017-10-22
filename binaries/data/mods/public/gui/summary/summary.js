@@ -12,7 +12,7 @@ var g_TypeColors = {
 	"green": "201 255 200",
 	"red": "255 213 213",
 	"yellow": "255 255 157"
-}
+};
 
 /**
  * Colors, captions and format used for units, buildings, etc. types
@@ -161,7 +161,9 @@ function initCharts()
 		);
 	}
 
-	[0, 1].forEach(i => Engine.GetGUIObjectByName("chart[" + i + "]").series_color = player_colors);
+	[0, 1].forEach(i => {
+		Engine.GetGUIObjectByName("chart[" + i + "]").series_color = player_colors;
+	});
 
 	let chartLegend = Engine.GetGUIObjectByName("chartLegend");
 	chartLegend.caption = g_GameData.sim.playerStates.slice(1).map(
@@ -200,7 +202,7 @@ function updateCategoryDropdown(number)
 			g_SelectedChart.value[number] = 0;
 			g_SelectedChart.type[number] = 0;
 		}
-		
+
 		resizeDropdown(this);
 		updateValueDropdown(number, this.list_data[this.selected]);
 	};
@@ -311,14 +313,14 @@ function updatePanelData(panelInfo)
 	let playerBoxesCounts = [];
 	for (let i = 0; i < g_PlayerCount; ++i)
 	{
-		let playerState = g_GameData.sim.playerStates[i+1];
+		let playerState = g_GameData.sim.playerStates[i + 1];
 
-		if (!playerBoxesCounts[playerState.team+1])
-			playerBoxesCounts[playerState.team+1] = 1;
+		if (!playerBoxesCounts[playerState.team + 1])
+			playerBoxesCounts[playerState.team + 1] = 1;
 		else
-			playerBoxesCounts[playerState.team+1] += 1;
+			playerBoxesCounts[playerState.team + 1] += 1;
 
-		let positionObject = playerBoxesCounts[playerState.team+1] - 1;
+		let positionObject = playerBoxesCounts[playerState.team + 1] - 1;
 		let rowPlayer = "playerBox[" + positionObject + "]";
 		let playerOutcome = "playerOutcome[" + positionObject + "]";
 		let playerNameColumn = "playerName[" + positionObject + "]";
@@ -349,7 +351,7 @@ function updatePanelData(panelInfo)
 
 		setOutcomeIcon(playerState.state, playerOutcome);
 
-		Engine.GetGUIObjectByName(playerNameColumn).caption = g_GameData.sim.playerStates[i+1].name;
+		Engine.GetGUIObjectByName(playerNameColumn).caption = g_GameData.sim.playerStates[i + 1].name;
 
 		let civIcon = Engine.GetGUIObjectByName(playerCivicBoxColumn);
 		civIcon.sprite = "stretched:" + g_CivData[playerState.civ].Emblem;
@@ -444,7 +446,7 @@ function init(data)
 			"time": timeToString(g_GameData.sim.timeElapsed)
 	});
 
-	let mapType = g_Settings.MapTypes.find(mapType => mapType.Name == g_GameData.sim.mapSettings.mapType);
+	let mapType = g_Settings.MapTypes.find(type => type.Name == g_GameData.sim.mapSettings.mapType);
 	let mapSize = g_Settings.MapSizes.find(size => size.Tiles == g_GameData.sim.mapSettings.Size || 0);
 
 	Engine.GetGUIObjectByName("mapName").caption = sprintf(
@@ -477,10 +479,8 @@ function init(data)
 
 	// Erase teams data if teams are not displayed
 	if (!g_Teams)
-	{
 		for (let p = 0; p < g_PlayerCount; ++p)
 			g_GameData.sim.playerStates[p+1].team = -1;
-	}
 
 	calculateTeamCounterDataHelper();
 

@@ -31,7 +31,7 @@ Terrain.prototype.placeNew = function() {};
 function SimpleTerrain(texture, treeType)
 {
 	if (texture === undefined)
-		throw("SimpleTerrain: texture not defined");
+		throw new Error("SimpleTerrain: texture not defined");
 
 	this.texture = texture;
 	this.treeType = treeType;
@@ -59,7 +59,7 @@ SimpleTerrain.prototype.placeNew = function(x, z)
 function RandomTerrain(terrains)
 {
 	if (!(terrains instanceof Array) || !terrains.length)
-		throw("RandomTerrain: Invalid terrains array");
+		throw new Error("RandomTerrain: Invalid terrains array");
 
 	this.terrains = terrains;
 }

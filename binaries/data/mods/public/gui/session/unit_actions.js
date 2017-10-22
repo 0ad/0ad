@@ -266,7 +266,7 @@ var unitActions =
 				"target": target
 			};
 		},
-		"preSelectedActionCheck" : function(target)
+		"preSelectedActionCheck": function(target)
 		{
 			if (preSelectedAction != ACTION_PATROL || !getActionInfo("patrol", target).possible)
 				return false;
@@ -357,7 +357,7 @@ var unitActions =
 
 			return { "possible": true };
 		},
-		"preSelectedActionCheck" : function(target)
+		"preSelectedActionCheck": function(target)
 		{
 			if (preSelectedAction != ACTION_REPAIR)
 				return false;
@@ -569,7 +569,7 @@ var unitActions =
 				break;
 
 			case "set second":
-				if (tradingDetails.gain.traderGain == 0)   // markets too close
+				if (tradingDetails.gain.traderGain == 0) // markets too close
 					return false;
 
 				tooltip = translate("Right-click to set as destination trade market.") + "\n" +
@@ -650,7 +650,7 @@ var unitActions =
 			if (preSelectedAction != ACTION_GARRISON)
 				return false;
 
-			let actionInfo =  getActionInfo("garrison", target);
+			let actionInfo = getActionInfo("garrison", target);
 			if (!actionInfo.possible)
 				return {
 					"type": "none",
@@ -710,7 +710,7 @@ var unitActions =
 
 			return { "possible": true };
 		},
-		"preSelectedActionCheck" : function(target)
+		"preSelectedActionCheck": function(target)
 		{
 			if (preSelectedAction != ACTION_GUARD)
 				return false;
@@ -890,9 +890,9 @@ var unitActions =
 					tooltip = translate("Right-click to establish a default route for new traders.") + "\n" +
 						sprintf(
 							trader ?
-							translate("Gain: %(gain)s") :
-							translate("Expected gain: %(gain)s"),
-						{ "gain": getTradingTooltip(gain) });
+								translate("Gain: %(gain)s") :
+								translate("Expected gain: %(gain)s"),
+							{ "gain": getTradingTooltip(gain) });
 				}
 			}
 			else if ((targetState.needsRepair || targetState.foundation) && playerCheck(entState, targetState, ["Ally"]))
@@ -913,11 +913,9 @@ var unitActions =
 			if (!Engine.HotkeyIsPressed("session.autorallypoint") ||
 			    !targetState.production ||
 			    !targetState.production.entities.length)
-			{
 				for (let ent in g_Selection.selected)
 					if (targetState.id == +ent)
 						return false;
-			}
 
 			return {
 				"possible": true,
@@ -1374,12 +1372,11 @@ function playerCheck(entState, targetState, validPlayers)
 {
 	let playerState = GetSimState().players[entState.player];
 	for (let player of validPlayers)
-	{
 		if (player == "Gaia" && targetState.player == 0 ||
 		    player == "Player" && targetState.player == entState.player ||
-		    playerState["is"+player] && playerState["is"+player][targetState.player])
+		    playerState["is" + player] && playerState["is" + player][targetState.player])
 			return true;
-	}
+
 	return false;
 }
 

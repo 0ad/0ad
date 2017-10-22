@@ -2,14 +2,14 @@
  * Allow to filter replays by duration in 15min / 30min intervals.
  */
 var g_DurationFilterIntervals = [
-	{ "min":  -1, "max":  -1 },
-	{ "min":  -1, "max":  15 },
-	{ "min":  15, "max":  30 },
-	{ "min":  30, "max":  45 },
-	{ "min":  45, "max":  60 },
-	{ "min":  60, "max":  90 },
-	{ "min":  90, "max": 120 },
-	{ "min": 120, "max":  -1 }
+	{ "min": -1, "max": -1 },
+	{ "min": -1, "max": 15 },
+	{ "min": 15, "max": 30 },
+	{ "min": 30, "max": 45 },
+	{ "min": 45, "max": 60 },
+	{ "min": 60, "max": 90 },
+	{ "min": 90, "max": 120 },
+	{ "min": 120, "max": -1 }
 ];
 
 /**
@@ -79,7 +79,7 @@ function initMapSizeFilter(mapSize)
 function initMapNameFilter(mapName)
 {
 	var mapNameFilter = Engine.GetGUIObjectByName("mapNameFilter");
-	mapNameFilter.list = [translateWithContext("map name", "Any")].concat(g_MapNames.map(mapName => translate(mapName)));
+	mapNameFilter.list = [translateWithContext("map name", "Any")].concat(g_MapNames.map(name => translate(name)));
 	mapNameFilter.list_data = [""].concat(g_MapNames);
 
 	if (mapName)
@@ -152,7 +152,7 @@ function initSingleplayerFilter(singleplayer)
 function initVictoryConditionFilter(victoryCondition)
 {
 	let victoryConditionFilter = Engine.GetGUIObjectByName("victoryConditionFilter");
-	victoryConditionFilter.list = [translateWithContext("victory condition", "Any gametype")].concat(g_VictoryConditions.map(victoryCondition => translateVictoryCondition(victoryCondition)));
+	victoryConditionFilter.list = [translateWithContext("victory condition", "Any gametype")].concat(g_VictoryConditions.map(vc => translateVictoryCondition(vc)));
 	victoryConditionFilter.list_data = [""].concat(g_VictoryConditions);
 
 	if (victoryCondition)
@@ -183,8 +183,7 @@ function filterReplays()
 	let sortKey = Engine.GetGUIObjectByName("replaySelection").selected_column;
 	let sortOrder = Engine.GetGUIObjectByName("replaySelection").selected_column_order;
 
-	g_ReplaysFiltered = g_Replays.filter(replay => filterReplay(replay)).sort((a, b) =>
-	{
+	g_ReplaysFiltered = g_Replays.filter(replay => filterReplay(replay)).sort((a, b) => {
 		let cmpA, cmpB;
 		switch (sortKey)
 		{

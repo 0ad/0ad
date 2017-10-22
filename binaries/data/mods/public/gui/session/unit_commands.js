@@ -12,7 +12,7 @@ var g_unitPanelButtons = {
 	"Command": 0,
 	"AllyCommand": 0,
 	"Stance": 0,
-	"Gate":0,
+	"Gate": 0,
 	"Pack": 0,
 	"Upgrade": 0
 };
@@ -106,7 +106,7 @@ function setupUnitPanel(guiName, unitEntStates, playerState)
 		if (g_SelectionPanels[guiName].hideItem)
 			g_SelectionPanels[guiName].hideItem(i, rowLength);
 		else
-			Engine.GetGUIObjectByName("unit"+guiName+"Button["+i+"]").hidden = true;
+			Engine.GetGUIObjectByName("unit" + guiName + "Button[" + i + "]").hidden = true;
 
 	g_unitPanelButtons[guiName] = numberOfItems;
 	g_SelectionPanels[guiName].used = true;
@@ -182,12 +182,12 @@ function hideUnitCommands()
 // Get all of the available entities which can be trained by the selected entities
 function getAllTrainableEntities(selection)
 {
-	var trainableEnts = [];
-	var state;
+	let trainableEnts = [];
 	// Get all buildable and trainable entities
 	for (let ent of selection)
 	{
-		if ((state = GetEntityState(ent)) && state.production && state.production.entities.length)
+		let state = GetEntityState(ent);
+		if (state && state.production && state.production.entities.length)
 			trainableEnts = trainableEnts.concat(state.production.entities);
 	}
 

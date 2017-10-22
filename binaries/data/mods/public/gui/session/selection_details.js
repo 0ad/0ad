@@ -46,7 +46,7 @@ function updateGarrisonHealthBar(entState, selection)
 	{
 		let healthBarGarrison = Engine.GetGUIObjectByName("healthBarGarrison");
 		let healthSize = healthBarGarrison.size;
-		healthSize.rtop = 100-100*Math.max(0, Math.min(1, totalGarrisonHealth / maxGarrisonHealth));
+		healthSize.rtop = 100 - 100 * Math.max(0, Math.min(1, totalGarrisonHealth / maxGarrisonHealth));
 		healthBarGarrison.size = healthSize;
 
 		healthGarrison.tooltip = getCurrentHealthTooltip({
@@ -109,7 +109,7 @@ function displaySingle(entState)
 	{
 		let unitHealthBar = Engine.GetGUIObjectByName("healthBar");
 		let healthSize = unitHealthBar.size;
-		healthSize.rright = 100*Math.max(0, Math.min(1, entState.hitpoints / entState.maxHitpoints));
+		healthSize.rright = 100 * Math.max(0, Math.min(1, entState.hitpoints / entState.maxHitpoints));
 		unitHealthBar.size = healthSize;
 
 		if (entState.foundation && entState.visibility == "visible" && entState.foundation.numBuilders !== 0 && entState.buildTime)
@@ -144,15 +144,15 @@ function displaySingle(entState)
 	if (entState.capturePoints)
 	{
 		let setCaptureBarPart = function(playerID, startSize) {
-			let unitCaptureBar = Engine.GetGUIObjectByName("captureBar["+playerID+"]");
+			let unitCaptureBar = Engine.GetGUIObjectByName("captureBar[" + playerID + "]");
 			let sizeObj = unitCaptureBar.size;
 			sizeObj.rleft = startSize;
 
-			let size = 100*Math.max(0, Math.min(1, entState.capturePoints[playerID] / entState.maxCapturePoints));
+			let size = 100 * Math.max(0, Math.min(1, entState.capturePoints[playerID] / entState.maxCapturePoints));
 			sizeObj.rright = startSize + size;
 			unitCaptureBar.size = sizeObj;
 			unitCaptureBar.sprite = "color: " + rgbToGuiColor(g_Players[playerID].color, 128);
-			unitCaptureBar.hidden=false;
+			unitCaptureBar.hidden = false;
 			return startSize + size;
 		};
 
@@ -169,7 +169,7 @@ function displaySingle(entState)
 		});
 
 		let showSmallCapture = showResource && showHealth;
-		Engine.GetGUIObjectByName("captureStats").caption = showSmallCapture ? "": captureText;
+		Engine.GetGUIObjectByName("captureStats").caption = showSmallCapture ? "" : captureText;
 		Engine.GetGUIObjectByName("capture").tooltip = showSmallCapture ? captureText : "";
 	}
 
@@ -209,7 +209,7 @@ function displaySingle(entState)
 		let resourceSize = unitResourceBar.size;
 
 		resourceSize.rright = entState.resourceSupply.isInfinite ? 100 :
-						100 * Math.max(0, Math.min(1, +entState.resourceSupply.amount / +entState.resourceSupply.max));
+			100 * Math.max(0, Math.min(1, +entState.resourceSupply.amount / +entState.resourceSupply.max));
 		unitResourceBar.size = resourceSize;
 
 		Engine.GetGUIObjectByName("resourceLabel").caption = sprintf(translate("%(resource)s:"), {
@@ -227,7 +227,7 @@ function displaySingle(entState)
 
 		Engine.GetGUIObjectByName("resourceCarryingIcon").hidden = false;
 		Engine.GetGUIObjectByName("resourceCarryingText").hidden = false;
-		Engine.GetGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/resources/"+carried.type+".png";
+		Engine.GetGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/resources/" + carried.type + ".png";
 		Engine.GetGUIObjectByName("resourceCarryingText").caption = sprintf(translate("%(amount)s / %(max)s"), { "amount": carried.amount, "max": carried.max });
 		Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = "";
 	}
@@ -236,7 +236,7 @@ function displaySingle(entState)
 	{
 		Engine.GetGUIObjectByName("resourceCarryingIcon").hidden = false;
 		Engine.GetGUIObjectByName("resourceCarryingText").hidden = false;
-		Engine.GetGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/resources/"+entState.trader.goods.type+".png";
+		Engine.GetGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/resources/" + entState.trader.goods.type + ".png";
 		let totalGain = entState.trader.goods.amount.traderGain;
 		if (entState.trader.goods.amount.market1Gain)
 			totalGain += entState.trader.goods.amount.market1Gain;
@@ -299,7 +299,7 @@ function displaySingle(entState)
 			"genericName": genericName
 		});
 
-	let isGaia = "gaia" == playerState.civ;
+	let isGaia = playerState.civ == "gaia";
 	Engine.GetGUIObjectByName("playerCivIcon").sprite = isGaia ? "" : "stretched:grayscale:" + civEmblem;
 	Engine.GetGUIObjectByName("player").tooltip = isGaia ? "" : civName;
 
@@ -383,7 +383,7 @@ function displayMultiple(entStates)
 	{
 		let unitHealthBar = Engine.GetGUIObjectByName("healthBarMultiple");
 		let healthSize = unitHealthBar.size;
-		healthSize.rtop = 100-100*Math.max(0, Math.min(1, averageHealth / maxHealth));
+		healthSize.rtop = 100 - 100 * Math.max(0, Math.min(1, averageHealth / maxHealth));
 		unitHealthBar.size = healthSize;
 
 		Engine.GetGUIObjectByName("healthMultiple").tooltip = getCurrentHealthTooltip({
@@ -395,16 +395,16 @@ function displayMultiple(entStates)
 	Engine.GetGUIObjectByName("captureMultiple").hidden = maxCapturePoints <= 0;
 	if (maxCapturePoints > 0)
 	{
-		let setCaptureBarPart = function(playerID, startSize)
+		let setCaptureBarPart = function(pID, startSize)
 		{
-			let unitCaptureBar = Engine.GetGUIObjectByName("captureBarMultiple["+playerID+"]");
+			let unitCaptureBar = Engine.GetGUIObjectByName("captureBarMultiple[" + pID + "]");
 			let sizeObj = unitCaptureBar.size;
 			sizeObj.rtop = startSize;
 
-			let size = 100*Math.max(0, Math.min(1, capturePoints[playerID] / maxCapturePoints));
+			let size = 100 * Math.max(0, Math.min(1, capturePoints[pID] / maxCapturePoints));
 			sizeObj.rbottom = startSize + size;
 			unitCaptureBar.size = sizeObj;
-			unitCaptureBar.sprite = "color: " + rgbToGuiColor(g_Players[playerID].color, 128);
+			unitCaptureBar.sprite = "color: " + rgbToGuiColor(g_Players[pID].color, 128);
 			unitCaptureBar.hidden = false;
 			return startSize + size;
 		};
@@ -417,7 +417,8 @@ function displayMultiple(entStates)
 		// last handle the owner's points, to keep those points on the bottom for clarity
 		setCaptureBarPart(playerID, size);
 
-		Engine.GetGUIObjectByName("captureMultiple").tooltip = getCurrentHealthTooltip({
+		Engine.GetGUIObjectByName("captureMultiple").tooltip = getCurrentHealthTooltip(
+			{
 				"hitpoints": capturePoints[playerID],
 				"maxHitpoints": maxCapturePoints
 			},

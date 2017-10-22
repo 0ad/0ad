@@ -3,7 +3,7 @@ function PlacementSupport()
 	this.Reset();
 }
 
-PlacementSupport.DEFAULT_ANGLE = Math.PI*3/4;
+PlacementSupport.DEFAULT_ANGLE = Math.PI * 3 / 4;
 
 /**
  * Resets the building placement support state. Use this to cancel construction of an entity.
@@ -25,8 +25,8 @@ PlacementSupport.prototype.Reset = function()
 
 	this.attack = null;
 
-	Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {"template": ""});
-	Engine.GuiInterfaceCall("SetWallPlacementPreview", {"wallSet": null});
+	Engine.GuiInterfaceCall("SetBuildingPlacementPreview", { "template": "" });
+	Engine.GuiInterfaceCall("SetWallPlacementPreview", { "wallSet": null });
 };
 
 PlacementSupport.prototype.SetDefaultAngle = function()

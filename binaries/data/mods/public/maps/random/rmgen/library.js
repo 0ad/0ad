@@ -267,7 +267,7 @@ function createTerrain(terrain)
 function createSimpleTerrain(terrain)
 {
 	if (typeof(terrain) != "string")
-		throw("createSimpleTerrain expects string as input, received "+terrain);
+		throw new Error("createSimpleTerrain expects string as input, received " + uneval(terrain));
 
 	// Split string by pipe | character, this allows specifying terrain + tree type in single string
 	let params = terrain.split(TERRAIN_SEPARATOR, 2);

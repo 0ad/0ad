@@ -206,7 +206,7 @@ function GetEntityState(entId)
 		if (g_EntityStates[entId])
 			for (let name of Object.getOwnPropertyNames(g_EntityStates[entId]))
 				if (typeof prop == 'object' && prop !== null)
-					deepfreeze(g_EntityStates[entId][name])
+					deepfreeze(g_EntityStates[entId][name]);
 	}
 
 	return g_EntityStates[entId];
@@ -276,11 +276,8 @@ function init(initData, hotloadData)
 
 		Engine.GetGUIObjectByName("gameSpeedButton").hidden = g_IsNetworked;
 	}
-	else // Needed for autostart loading option
-	{
-		if (g_IsReplay)
-			g_PlayerAssignments.local.player = -1;
-	}
+	else if (g_IsReplay)// Needed for autostart loading option
+		g_PlayerAssignments.local.player = -1;
 
 	updatePlayerData();
 
@@ -329,8 +326,8 @@ function init(initData, hotloadData)
 	//
 	// DISABLED: this information isn't currently useful for anything much,
 	// and it generates a massive amount of data to transmit and store
-	//setTimeout(function() { reportPerformance(5); }, 5000);
-	//setTimeout(function() { reportPerformance(60); }, 60000);
+	// setTimeout(function() { reportPerformance(5); }, 5000);
+	// setTimeout(function() { reportPerformance(60); }, 60000);
 }
 
 function updatePlayerData()
@@ -418,7 +415,7 @@ function initPanelEntities(slot)
 	let button = Engine.GetGUIObjectByName("panelEntityButton[" + slot + "]");
 
 	button.onPress = function() {
-		let panelEnt = g_PanelEntities.find(panelEnt => panelEnt.slot !== undefined && panelEnt.slot == slot);
+		let panelEnt = g_PanelEntities.find(ent => ent.slot !== undefined && ent.slot == slot);
 		if (!panelEnt)
 			return;
 
@@ -429,7 +426,7 @@ function initPanelEntities(slot)
 	};
 
 	button.onDoublePress = function() {
-		let panelEnt = g_PanelEntities.find(panelEnt => panelEnt.slot !== undefined && panelEnt.slot == slot);
+		let panelEnt = g_PanelEntities.find(ent => ent.slot !== undefined && ent.slot == slot);
 		if (panelEnt)
 			selectAndMoveTo(getEntityOrHolder(panelEnt.ent));
 	};
@@ -600,13 +597,13 @@ function updateTopPanel()
 	let r = 0;
 	for (let res of resCodes)
 	{
-		if (!Engine.GetGUIObjectByName("resource["+r+"]"))
+		if (!Engine.GetGUIObjectByName("resource[" + r + "]"))
 		{
 			warn("Current GUI limits prevent displaying more than " + r + " resources in the top panel!");
 			break;
 		}
-		Engine.GetGUIObjectByName("resource["+r+"]_icon").sprite = "stretched:session/icons/resources/" + res + ".png";
-		Engine.GetGUIObjectByName("resource["+r+"]").hidden = !isPlayer;
+		Engine.GetGUIObjectByName("resource[" + r + "]_icon").sprite = "stretched:session/icons/resources/" + res + ".png";
+		Engine.GetGUIObjectByName("resource[" + r + "]").hidden = !isPlayer;
 		++r;
 	}
 	horizontallySpaceObjects("resourceCounts", 5);
@@ -614,7 +611,7 @@ function updateTopPanel()
 
 	let resPop = Engine.GetGUIObjectByName("population");
 	let resPopSize = resPop.size;
-	resPopSize.left = Engine.GetGUIObjectByName("resource["+ (r-1) +"]").size.right;
+	resPopSize.left = Engine.GetGUIObjectByName("resource[" + (r - 1) + "]").size.right;
 	resPop.size = resPopSize;
 
 	Engine.GetGUIObjectByName("population").hidden = !isPlayer;
@@ -782,9 +779,9 @@ function changeGameSpeed(speed)
 function hasIdleWorker()
 {
 	return Engine.GuiInterfaceCall("HasIdleUnits", {
-			"viewedPlayer": g_ViewedPlayer,
-			"idleClasses": g_WorkerTypes,
-			"excludeUnits": []
+		"viewedPlayer": g_ViewedPlayer,
+		"idleClasses": g_WorkerTypes,
+		"excludeUnits": []
 	});
 }
 
@@ -944,7 +941,7 @@ function updateGUIStatusBar(nameOfBar, points, maxPoints, direction)
 		return;
 
 	let healthSize = statusBar.size;
-	let value = 100*Math.max(0, Math.min(1, points / maxPoints));
+	let value = 100 * Math.max(0, Math.min(1, points / maxPoints));
 
 	// inverse bar
 	if (direction == 2 || direction == 3)
@@ -976,7 +973,7 @@ function updatePanelEntities()
 		let panelEntState = GetExtendedEntityState(ent);
 		let template = GetTemplateData(panelEntState.template);
 
-		let panelEnt = g_PanelEntities.find(panelEnt => ent == panelEnt.ent);
+		let panelEnt = g_PanelEntities.find(pEnt => ent == pEnt.ent);
 
 		if (!panelEnt)
 		{
@@ -1023,7 +1020,7 @@ function displayPanelEntities()
 
 	buttons.forEach((button, slot) => {
 
-		if (button.hidden || g_PanelEntities.some(panelEnt => panelEnt.slot !== undefined && panelEnt.slot == slot))
+		if (button.hidden || g_PanelEntities.some(ent => ent.slot !== undefined && ent.slot == slot))
 			return;
 
 		button.hidden = true;
@@ -1069,8 +1066,7 @@ function updateGroups()
 	g_Groups.update();
 
 	// Determine the sum of the costs of a given template
-	let getCostSum = (ent) =>
-	{
+	let getCostSum = (ent) => {
 		let cost = GetTemplateData(GetEntityState(ent).template).cost;
 		return cost ? Object.keys(cost).map(key => cost[key]).reduce((sum, cur) => sum + cur) : 0;
 	};
@@ -1079,7 +1075,7 @@ function updateGroups()
 	{
 		Engine.GetGUIObjectByName("unitGroupLabel[" + i + "]").caption = i;
 
-		let button = Engine.GetGUIObjectByName("unitGroupButton["+i+"]");
+		let button = Engine.GetGUIObjectByName("unitGroupButton[" + i + "]");
 		button.hidden = g_Groups.groups[i].getTotalCount() == 0;
 		button.onpress = (function(i) { return function() { performGroup((Engine.HotkeyIsPressed("selection.add") ? "add" : "select"), i); }; })(i);
 		button.ondoublepress = (function(i) { return function() { performGroup("snap", i); }; })(i);
@@ -1127,7 +1123,7 @@ function updateDebug()
 			let template = GetTemplateData(entState.template);
 			text += "\n\nentity: {\n";
 			for (let k in entState)
-				text += "  "+k+":"+uneval(entState[k])+"\n";
+				text += "  " + k + ":" + uneval(entState[k]) + "\n";
 			text += "}\n\ntemplate: " + uneval(template);
 		}
 	}
@@ -1141,22 +1137,18 @@ function getAllyStatTooltip(resource)
 	let ret = "";
 
 	for (let player in playersState)
-	{
 		if (player != 0 &&
 		    player != g_ViewedPlayer &&
 		    g_Players[player].state != "defeated" &&
 		    (g_IsObserver ||
 		       playersState[g_ViewedPlayer].hasSharedLos &&
 		       g_Players[player].isMutualAlly[g_ViewedPlayer]))
-		{
-			ret += "\n" + sprintf(translate("%(playername)s: %(statValue)s"),{
+			ret += "\n" + sprintf(translate("%(playername)s: %(statValue)s"), {
 				"playername": colorizePlayernameHelper("■", player) + " " + g_Players[player].name,
 				"statValue": resource == "pop" ?
 					sprintf(translate("%(popCount)s/%(popLimit)s/%(popMax)s"), playersState[player]) :
 					Math.round(playersState[player].resourceCounts[resource])
 			});
-		}
-	}
 
 	return ret;
 }
@@ -1187,7 +1179,7 @@ function updatePlayerDisplay()
 
 		resourceObj.tooltip = tooltip;
 
-		Engine.GetGUIObjectByName("resource["+r+"]_count").caption = Math.floor(playerState.resourceCounts[res]);
+		Engine.GetGUIObjectByName("resource[" + r + "]_count").caption = Math.floor(playerState.resourceCounts[res]);
 	}
 
 	Engine.GetGUIObjectByName("resourcePop").caption = sprintf(translate("%(popCount)s/%(popLimit)s"), playerState);
@@ -1334,7 +1326,6 @@ function updateAdditionalHighlight()
 		highlighted.push(g_Selection.highlighted[ent]);
 
 	if (g_ShowGuarding)
-	{
 		// flag the guarding entities to add in this additional highlight
 		for (let sel in g_Selection.selected)
 		{
@@ -1346,10 +1337,8 @@ function updateAdditionalHighlight()
 				if (highlighted.indexOf(ent) == -1 && entsAdd.indexOf(ent) == -1)
 					entsAdd.push(ent);
 		}
-	}
 
 	if (g_ShowGuarded)
-	{
 		// flag the guarded entities to add in this additional highlight
 		for (let sel in g_Selection.selected)
 		{
@@ -1360,7 +1349,6 @@ function updateAdditionalHighlight()
 			if (highlighted.indexOf(ent) == -1 && entsAdd.indexOf(ent) == -1)
 				entsAdd.push(ent);
 		}
-	}
 
 	// flag the entities to remove (from the previously added) from this additional highlight
 	for (let ent of g_AdditionalHighlight)
@@ -1627,7 +1615,7 @@ function reportGame()
 
 		playerStatistics.economyScore += total + ",";
 		playerStatistics.militaryScore += Math.round((player.sequences.enemyUnitsKilledValue[maxIndex] +
-			player.sequences.enemyBuildingsDestroyedValue[maxIndex]) / 10)  + ",";
+			player.sequences.enemyBuildingsDestroyedValue[maxIndex]) / 10) + ",";
 		playerStatistics.totalScore += (total + Math.round((player.sequences.enemyUnitsKilledValue[maxIndex] +
 			player.sequences.enemyBuildingsDestroyedValue[maxIndex]) / 10)) + ",";
 
@@ -1651,24 +1639,23 @@ function reportGame()
 	reportObject.militaryScore = playerStatistics.militaryScore;
 	reportObject.totalScore = playerStatistics.totalScore;
 	for (let rct of resourcesCounterTypes)
-	{
 		for (let rt of resourcesTypes)
-			reportObject[rt+rct.substr(9)] = playerStatistics[rct][rt];
+			reportObject[rt + rct.substr(9)] = playerStatistics[rct][rt];
 			// eg. rt = food rct.substr = Gathered rct = resourcesGathered
-	}
+
 	reportObject.vegetarianFoodGathered = playerStatistics.resourcesGathered.vegetarianFood;
 	for (let type of unitsClasses)
 	{
 		// eg. type = Infantry (type.substr(0,1)).toLowerCase()+type.substr(1) = infantry
-		reportObject[(type.substr(0,1)).toLowerCase()+type.substr(1)+"UnitsTrained"] = playerStatistics.unitsTrained[type];
-		reportObject[(type.substr(0,1)).toLowerCase()+type.substr(1)+"UnitsLost"] = playerStatistics.unitsLost[type];
-		reportObject["enemy"+type+"UnitsKilled"] = playerStatistics.enemyUnitsKilled[type];
+		reportObject[(type.substr(0, 1)).toLowerCase() + type.substr(1) + "UnitsTrained"] = playerStatistics.unitsTrained[type];
+		reportObject[(type.substr(0, 1)).toLowerCase() + type.substr(1) + "UnitsLost"] = playerStatistics.unitsLost[type];
+		reportObject["enemy" + type + "UnitsKilled"] = playerStatistics.enemyUnitsKilled[type];
 	}
 	for (let type of buildingsClasses)
 	{
-		reportObject[(type.substr(0,1)).toLowerCase()+type.substr(1)+"BuildingsConstructed"] = playerStatistics.buildingsConstructed[type];
-		reportObject[(type.substr(0,1)).toLowerCase()+type.substr(1)+"BuildingsLost"] = playerStatistics.buildingsLost[type];
-		reportObject["enemy"+type+"BuildingsDestroyed"] = playerStatistics.enemyBuildingsDestroyed[type];
+		reportObject[(type.substr(0, 1)).toLowerCase() + type.substr(1) + "BuildingsConstructed"] = playerStatistics.buildingsConstructed[type];
+		reportObject[(type.substr(0, 1)).toLowerCase() + type.substr(1) + "BuildingsLost"] = playerStatistics.buildingsLost[type];
+		reportObject["enemy" + type + "BuildingsDestroyed"] = playerStatistics.enemyBuildingsDestroyed[type];
 	}
 	for (let type of misc)
 		reportObject[type] = playerStatistics[type];

@@ -48,7 +48,7 @@ var g_PlayerStatuses = {
 	"unknown":   { "color": "178 178 178", "status": translateWithContext("lobby presence", "Unknown") }
 };
 
- var g_RoleNames = {
+var g_RoleNames = {
 	"moderator": translate("Moderator"),
 	"participant": translate("Player"),
 	"visitor": translate("Muted Player")
@@ -421,8 +421,8 @@ function updateLobbyColumns()
 	// Keep filters right above the according column
 	let playersNumberFilter = Engine.GetGUIObjectByName("playersNumberFilter");
 	let size = playersNumberFilter.size;
-	size.rleft = gameRating ? 74: 90;
-	size.rright = gameRating ? 84: 100;
+	size.rleft = gameRating ? 74 : 90;
+	size.rright = gameRating ? 84 : 100;
 	playersNumberFilter.size = size;
 }
 
@@ -447,7 +447,7 @@ function initGameFilters()
 	mapTypeFilter.list = [translateWithContext("map", "Any")].concat(g_MapTypes.Title);
 	mapTypeFilter.list_data = [""].concat(g_MapTypes.Name);
 
-	let gameRatingOptions = ["<1000", "<1100","<1200",">1200",">1300",">1400",">1500"].reverse();
+	let gameRatingOptions = [">1500", ">1400", ">1300", ">1200", "<1200", "<1100", "<1000"];
 	gameRatingOptions = prepareForDropdown(gameRatingOptions.map(r => ({
 		"value": r,
 		"label": sprintf(
@@ -880,7 +880,7 @@ function updateLeaderboard()
 	{
 		list_name.push(boardList[i].name);
 		list_rating.push(boardList[i].rating);
-		list_rank.push(+i+1);
+		list_rank.push(+i + 1);
 		list.push(boardList[i].name);
 	}
 
@@ -1042,7 +1042,7 @@ function updateGameSelection()
 		sgGameStartTime.caption = sprintf(
 			// Translation: %(time)s is the hour and minute here.
 			translate("Game started at %(time)s"), {
-				"time": Engine.FormatMillisecondsIntoDateStringLocal(+game.startTime*1000, translate("HH:mm"))
+				"time": Engine.FormatMillisecondsIntoDateStringLocal(+game.startTime * 1000, translate("HH:mm"))
 			});
 
 	sgNbPlayers.caption = sprintf(
@@ -1299,7 +1299,7 @@ function ircSplit(string)
 	let idx = string.indexOf(' ');
 
 	if (idx != -1)
-		return [string.substr(1,idx-1), string.substr(idx+1)];
+		return [string.substr(1, idx - 1), string.substr(idx + 1)];
 
 	return [string.substr(1), ""];
 }
@@ -1415,7 +1415,7 @@ function ircFormat(msg)
 		"time": senderFont(timePrefixString),
 		"message": formattedMessage
 	});
- }
+}
 
 /**
  * Generate a (mostly) unique color for this player based on their name.
@@ -1453,8 +1453,8 @@ function colorPlayerName(playername, rating)
 			translate("%(nick)s (%(rating)s)"), {
 				"nick": playername,
 				"rating": rating
-			}) :
-		playername) + '[/color]';
+			}) : playername
+		) + '[/color]';
 }
 
 function senderFont(text)

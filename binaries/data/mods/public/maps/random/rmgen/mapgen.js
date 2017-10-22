@@ -15,12 +15,12 @@ function InitMap()
 {
 	// Should never get this far, failed settings would abort prior to loading scripts
 	if (g_MapSettings === undefined)
-		throw("InitMapGen: settings missing");
+		throw new Error("InitMapGen: settings missing");
 
 	// Get civ data as array of JSON strings
 	var data = RMS.GetCivData();
 	if (!data || !data.length)
-		throw("InitMapGen: error reading civ data");
+		throw new Error("InitMapGen: error reading civ data");
 
 	for (var i = 0; i < data.length; ++i)
 	{

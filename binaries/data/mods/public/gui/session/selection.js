@@ -9,24 +9,24 @@ var g_HighlightedAlpha = 0.75;
 function _setHighlight(ents, alpha, selected)
 {
 	if (ents.length)
-		Engine.GuiInterfaceCall("SetSelectionHighlight", { "entities":ents, "alpha":alpha, "selected":selected });
+		Engine.GuiInterfaceCall("SetSelectionHighlight", { "entities": ents, "alpha": alpha, "selected": selected });
 }
 
 function _setStatusBars(ents, enabled)
 {
 	if (ents.length)
-		Engine.GuiInterfaceCall("SetStatusBars", { "entities":ents, "enabled":enabled });
+		Engine.GuiInterfaceCall("SetStatusBars", { "entities": ents, "enabled": enabled });
 }
 
 function _setMotionOverlay(ents, enabled)
 {
 	if (ents.length)
-		Engine.GuiInterfaceCall("SetMotionDebugOverlay", { "entities":ents, "enabled":enabled });
+		Engine.GuiInterfaceCall("SetMotionDebugOverlay", { "entities": ents, "enabled": enabled });
 }
 
 function _playSound(ent)
 {
-	Engine.GuiInterfaceCall("PlaySound", { "name":"select", "entity":ent });
+	Engine.GuiInterfaceCall("PlaySound", { "name": "select", "entity": ent });
 }
 
 /**
@@ -114,8 +114,8 @@ EntityGroups.prototype.getTotalCount = function()
 
 EntityGroups.prototype.getKeys = function()
 {
-	//Preserve order even when shuffling units around
-	//Can be optimized by moving the sorting elsewhere
+	// Preserve order even when shuffling units around
+	// Can be optimized by moving the sorting elsewhere
 	return Object.keys(this.groups).sort();
 };
 
@@ -261,13 +261,11 @@ EntitySelection.prototype.checkRenamedEntities = function()
 
 		// Reconstruct the selection if at least one entity has been renamed.
 		for (let renamedEntity of renamedEntities)
-		{
 			if (this.selected[renamedEntity.entity])
 			{
 				this.rebuildSelection(renamedLookup);
-				break;
+				return;
 			}
-		}
 	}
 };
 
@@ -330,14 +328,12 @@ EntitySelection.prototype.removeList = function(ents)
 	var removed = [];
 
 	for (let ent of ents)
-	{
 		if (this.selected[ent])
 		{
 			this.groups.removeEnt(ent);
 			removed.push(ent);
 			delete this.selected[ent];
 		}
-	}
 
 	_setHighlight(removed, 0, false);
 	_setStatusBars(removed, false);
@@ -434,8 +430,8 @@ var g_Selection = new EntitySelection();
 g_Selection.isSelection = true;
 
 var g_canMoveIntoFormation = {};
-var g_allBuildableEntities = undefined;
-var g_allTrainableEntities = undefined;
+var g_allBuildableEntities;
+var g_allTrainableEntities;
 
 // Reset cached quantities
 function onSelectionChange()
@@ -444,7 +440,6 @@ function onSelectionChange()
 	g_allBuildableEntities = undefined;
 	g_allTrainableEntities = undefined;
 }
-
 
 /**
  * EntityGroupsContainer class for managing grouped entities
@@ -494,14 +489,12 @@ EntityGroupsContainer.prototype.checkRenamedEntities = function()
 
 		for (let group of this.groups)
 			for (let renamedEntity of renamedEntities)
-			{
 				// Reconstruct the group if at least one entity has been renamed.
 				if (renamedEntity.entity in group.ents)
 				{
 					group.rebuildGroup(renamedLookup);
 					break;
 				}
-			}
 	}
 };
 

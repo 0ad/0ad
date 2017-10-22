@@ -71,6 +71,7 @@ function parseHelper(list)
 				else if (element.name)
 					result += "[font=\"sans-14\"]" + element.name + "\n";
 			}
+
 			result += "\n";
 		}
 

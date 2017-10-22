@@ -22,7 +22,7 @@ function loadCivData(selectableOnly, gaia)
 
 		// Sanity check
 		for (let prop of ["Code", "Culture", "Name", "Emblem", "History", "Music", "Factions", "CivBonuses",
-		                  "TeamBonuses", "Structures", "StartEntities", "Formations", "AINames","SelectableInGameSetup"])
+		                  "TeamBonuses", "Structures", "StartEntities", "Formations", "AINames", "SelectableInGameSetup"])
 			if (data[prop] == undefined)
 				error(filename + " doesn't contain " + prop);
 	}

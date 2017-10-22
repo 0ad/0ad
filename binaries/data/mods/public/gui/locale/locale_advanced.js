@@ -1,17 +1,17 @@
 function init(initData)
 {
-	var languageList = Engine.GetGUIObjectByName("languageList");
-	var countryList = Engine.GetGUIObjectByName("countryList");
-	var resultingLocaleText = Engine.GetGUIObjectByName("resultingLocale");
-	var scriptInput = Engine.GetGUIObjectByName("scriptInput");
+	let languageList = Engine.GetGUIObjectByName("languageList");
+	let countryList = Engine.GetGUIObjectByName("countryList");
+	let resultingLocaleText = Engine.GetGUIObjectByName("resultingLocale");
+	let scriptInput = Engine.GetGUIObjectByName("scriptInput");
 
 	// get languageList data. Only list languages for which we have a dictionary.
-	var languageListData = [];
-	var languageListTmp = Engine.GetSupportedLocaleBaseNames();
-	var currentLocaleLanguage = Engine.GetLocaleLanguage(initData.locale);
-	for (var i=0; i<languageListTmp.length; ++i)
+	let languageListData = [];
+	let languageListTmp = Engine.GetSupportedLocaleBaseNames();
+	let currentLocaleLanguage = Engine.GetLocaleLanguage(initData.locale);
+	for (let i = 0; i < languageListTmp.length; ++i)
 	{
-		var lang = Engine.GetLocaleLanguage(languageListTmp[i]);
+		let lang = Engine.GetLocaleLanguage(languageListTmp[i]);
 		if (lang != "" && languageListData.indexOf(lang) == -1)
 			languageListData.push(lang);
 	}
@@ -22,9 +22,9 @@ function init(initData)
 	countryListData.push(translateWithContext("localeCountry", "None"));
 	var countryListTmp = Engine.GetAllLocales();
 	var currentLocaleCountry = Engine.GetLocaleCountry(initData.locale);
-	for (var i=0; i<countryListTmp.length; ++i)
+	for (let i = 0; i < countryListTmp.length; ++i)
 	{
-		var country = Engine.GetLocaleCountry(countryListTmp[i]);
+		let country = Engine.GetLocaleCountry(countryListTmp[i]);
 		if (country != "" && countryListData.indexOf(country) == -1)
 			countryListData.push(country);
 	}
@@ -67,7 +67,6 @@ function updateResultingLocale()
 	var scriptInput = Engine.GetGUIObjectByName("scriptInput");
 	var variantInput = Engine.GetGUIObjectByName("variantInput");
 	var dictionaryFile = Engine.GetGUIObjectByName("dictionaryFile");
-	var resultingLocaleTmp = "";
 
 	var resultingLocaleTmp = languageList.list_data[languageList.selected];
 
@@ -77,21 +76,20 @@ function updateResultingLocale()
 	if (countryList.selected != -1 && countryList.list_data[countryList.selected] != translateWithContext("localeCountry", "None"))
 		resultingLocaleTmp = resultingLocaleTmp + "_" + countryList.list_data[countryList.selected];
 
+	let acceptButton = Engine.GetGUIObjectByName("acceptButton");
 	if (Engine.ValidateLocale(resultingLocaleTmp))
 	{
 		resultingLocaleText.caption = resultingLocaleTmp;
-		var dictionaryFileList = Engine.GetDictionariesForLocale(Engine.GetDictionaryLocale(resultingLocaleTmp));
-		var dictionaryFileString = "";
-		dictionaryFileList.forEach( function (entry) { dictionaryFileString = dictionaryFileString + entry + "\n"; });
+		let dictionaryFileList = Engine.GetDictionariesForLocale(Engine.GetDictionaryLocale(resultingLocaleTmp));
+		let dictionaryFileString = "";
+		dictionaryFileList.forEach(entry => { dictionaryFileString = dictionaryFileString + entry + "\n"; });
 		dictionaryFile.caption = dictionaryFileString;
-		var acceptButton = Engine.GetGUIObjectByName("acceptButton");
 		acceptButton.enabled = true;
 	}
 	else
 	{
 		resultingLocaleText.caption = translate("invalid locale");
 		dictionaryFile.caption = "";
-		var acceptButton = Engine.GetGUIObjectByName("acceptButton");
 		acceptButton.enabled = false;
 	}
 }
@@ -109,7 +107,7 @@ function autoDetectLocale()
 	var locale = Engine.GetDictionaryLocale("");
 
 	languageList.selected = languageList.list_data.indexOf(Engine.GetLocaleLanguage(locale));
-	countryList.selected = countryList.selected = countryList.list_data.indexOf(Engine.GetLocaleCountry(locale));
+	countryList.selected = countryList.list_data.indexOf(Engine.GetLocaleCountry(locale));
 	scriptInput.caption = Engine.GetLocaleScript(locale);
 }
 
