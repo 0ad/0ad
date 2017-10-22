@@ -175,6 +175,14 @@ Math.pow = function(x, y)
 };
 
 /**
+ * Get the square of a number without repeating the value and without calling the slower Math.pow.
+ */
+Math.square = function(x)
+{
+	return x * x;
+};
+
+/**
  * Approximation of the exponential function, e raised to the power x
  */
 Math.exp = function(x)
@@ -315,3 +323,25 @@ Math.intPow = function(x, y)
 
 };
 
+Math.euclidDistance2DSquared = function(x1, y1, x2, y2)
+{
+	return Math.square(x2 - x1) + Math.square(y2 - y1);
+};
+
+/**
+ * Can be faster than Math.hypot.
+ */
+Math.euclidDistance2D = function(x1, y1, x2, y2)
+{
+	return Math.sqrt(Math.euclidDistance2DSquared(x1, y1, x2, y2));
+};
+
+Math.euclidDistance3DSquared = function(x1, y1, z1, x2, y2, z2)
+{
+	return Math.square(x2 - x1) + Math.square(y2 - y1) + Math.square(z2 - z1);
+};
+
+Math.euclidDistance3D = function(x1, y1, z1, x2, y2, z2)
+{
+	return Math.sqrt(Math.euclidDistance3DSquared(x1, y1, z1, x2, y2, z2));
+};

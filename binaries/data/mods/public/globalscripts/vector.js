@@ -126,12 +126,12 @@ Vector2D.prototype.compareLength = function(v)
 
 Vector2D.prototype.distanceToSquared = function(v)
 {
-	return Math.pow(this.x - v.x, 2) + Math.pow(this.y - v.y, 2);
+	return Math.euclidDistance2DSquared(this.x, this.y, v.x, v.y);
 };
 
 Vector2D.prototype.distanceTo = function(v)
 {
-	return Math.sqrt(this.distanceToSquared(v));
+	return Math.euclidDistance2D(this.x, this.y, v.x, v.y);
 };
 
 // Static 2D functions
@@ -283,17 +283,17 @@ Vector3D.prototype.compareLength = function(v)
 
 Vector3D.prototype.distanceToSquared = function(v)
 {
-	return Math.pow(this.x - v.x, 2) + Math.pow(this.y - v.y, 2) + Math.pow(this.z - v.z, 2);
+	return Math.euclidDistance3DSquared(this.x, this.y, this.z, v.x, v.y, v.z);
 };
 
 Vector3D.prototype.distanceTo = function(v)
 {
-	return Math.sqrt(this.distanceToSquared(v));
+	return Math.euclidDistance3D(this.x, this.y, this.z, v.x, v.y, v.z);
 };
 
 Vector3D.prototype.horizDistanceToSquared = function(v)
 {
-	return Math.pow(this.x - v.x, 2) + Math.pow(this.z - v.z, 2);
+	return Math.euclidDistance2DSquared(this.x, this.z, v.x, v.z);
 };
 
 Vector3D.prototype.horizDistanceTo = function(v)

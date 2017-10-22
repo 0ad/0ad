@@ -19,16 +19,12 @@ m.exit = function()
 
 m.VectorDistance = function(a, b)
 {
-	let dx = a[0] - b[0];
-	let dz = a[1] - b[1];
-	return Math.sqrt(dx*dx + dz*dz);
+	return Math.euclidDistance2D(...a, ...b);
 };
 
 m.SquareVectorDistance = function(a, b)
 {
-	let dx = a[0] - b[0];
-	let dz = a[1] - b[1];
-	return dx*dx + dz*dz;
+	return Math.euclidDistance2DSquared(...a, ...b);
 };
 
 /** Utility functions for conversions of maps of different sizes */
