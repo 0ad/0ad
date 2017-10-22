@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -95,7 +95,7 @@ MapDialog::MapDialog(wxWindow* parent, MapDialogType type, const wxIcon& icon)
 
 	wxSizer* filenameSizer = new wxBoxSizer(wxHORIZONTAL);
 	filenameSizer->AddSpacer(10);
-	filenameSizer->Add(new wxStaticText(this, wxID_ANY, _("Map name: ")), wxSizerFlags().Align(wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL));
+	filenameSizer->Add(new wxStaticText(this, wxID_ANY, _("Map name: ")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL));
 	wxTextCtrl* filename = new wxTextCtrl(this, ID_MapDialogFilename, wxEmptyString);
 	if (m_Type == MAPDIALOG_OPEN)
 		filename->Disable();
