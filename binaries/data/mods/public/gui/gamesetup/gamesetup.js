@@ -1986,6 +1986,7 @@ function updateGUIObjects()
 	g_IsInGuiUpdate = true;
 
 	reloadMapFilterList();
+	reloadBiomeList();
 	updatePlayerAssignmentChoices();
 
 	// Hide exceeding dropdowns and checkboxes
