@@ -307,7 +307,7 @@ for (let ix = 0; ix < mapSize; ++ix)
 				let islandDistZ = islandZ[m] - islandZ[n];
 
 				let d1 = islandDistX * (iz - islandZ[m]) + islandDistZ * (ix - islandX[m]);
-				let d2 = Math.pow(islandDistX, 2) + Math.pow(islandDistZ, 2);
+				let d2 = Math.square(islandDistX) + Math.square(islandDistZ);
 
 				let dis = Math.abs(d1) / Math.sqrt(d2);
 				let z = iz - islandDistX * d1 / d2;

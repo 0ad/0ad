@@ -212,7 +212,7 @@ log("Creating actual oasis...");
 var fx = fractionToTiles(0.5);
 var fz = fractionToTiles(0.5);
 createArea(
-	new ClumpPlacer(Math.pow(mapSize * 0.2, 2) * 1.1, 0.8, 0.2, 10, Math.round(fx), Math.round(fz)),
+	new ClumpPlacer(Math.square(mapSize * 0.2) * 1.1, 0.8, 0.2, 10, Math.round(fx), Math.round(fz)),
 	[
 		new LayeredPainter([pOasisForestLight,tShoreBlend, tWater, tWater, tWater], [scaleByMapSize(6, 20), 3, 5, 2]),
 		new SmoothElevationPainter(ELEVATION_SET, -3, 15),

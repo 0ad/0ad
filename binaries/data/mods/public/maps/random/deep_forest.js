@@ -169,7 +169,7 @@ for (var i = 0; i < maxI; i++)
 				x += round(cos(angle + randFloat(-pathAngleOff, pathAngleOff)));
 				z += round(sin(angle + randFloat(-pathAngleOff, pathAngleOff)));
 			}
-			if (getDistance(x, z, targetX, targetZ) < pathSucsessRadius)
+			if (Math.euclidDistance2D(x, z, targetX, targetZ) < pathSucsessRadius)
 				targetReached = true;
 			tries++;
 
@@ -210,10 +210,11 @@ for (var x = 0; x < mapSize; x++)
 {
 	for (var z = 0;z < mapSize;z++)
 	{
-		var radius = Math.pow(Math.pow(mapCenterX - x - 0.5, 2) + Math.pow(mapCenterZ - z - 0.5, 2), 1/2); // The 0.5 is a correction for the entities placed on the center of tiles
+		// The 0.5 is a correction for the entities placed on the center of tiles
+		var radius = Math.euclidDistance2D(x + 0.5, z + 0.5, mapCenterX, mapCenterZ);
 		var minDistToSL = mapSize;
 		for (var i=0; i < numPlayers; i++)
-			minDistToSL = min(minDistToSL, getDistance(playerStartLocX[i], playerStartLocZ[i], x, z));
+			minDistToSL = Math.min(minDistToSL, Math.euclidDistance2D(x, z, playerStartLocX[i], playerStartLocZ[i]));
 
 		// Woods tile based
 		var tDensFactSL = max(min((minDistToSL - baseRadius) / baseRadius, 1), 0);

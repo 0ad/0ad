@@ -577,7 +577,7 @@ function placeLinearWall(startX, startY, targetX, targetY, wallPart, style, play
 			warn("Bending is not supported by placeLinearWall but a bending wall element is used: " + wallPart[elementIndex] + " -> wallStyles[style][wallPart[elementIndex]].entity");
 	}
 	// Setup number of wall parts
-	var totalLength = getDistance(startX, startY, targetX, targetY);
+	var totalLength = Math.euclidDistance2D(startX, startY, targetX, targetY);
 	var wallPartLength = 0;
 	for (var elementIndex = 0; elementIndex < wallPart.length; elementIndex++)
 		wallPartLength += wallStyles[style][wallPart[elementIndex]].width;
@@ -897,7 +897,7 @@ function placeIrregularPolygonalWall(centerX, centerY, radius, cornerWallElement
 		var bestWallPart = []; // This is a simpel wall part not a wallPartsAssortment!
 		var bestWallLength = 99999999;
 		// NOTE: This is not exactly like the length the wall will be in the end. Has to be tweaked...
-		var wallLength = getDistance(corners[i][0], corners[i][1], corners[(i+1)%numCorners][0], corners[(i+1)%numCorners][1]);
+		var wallLength = Math.euclidDistance2D(corners[i][0], corners[i][1], corners[(i + 1) % numCorners][0], corners[(i + 1) % numCorners][1]);
 		var numWallParts = ceil(wallLength/maxWallPartLength);
 		for (var partIndex = 0; partIndex < wallPartsAssortment.length; partIndex++)
 		{
@@ -982,12 +982,12 @@ function placeGenericFortress(centerX, centerY, radius, playerId, style, irregul
 			actualOffY += pointDistance*sin(tmpAngle);
 			actualAngle = getAngle(0, 0, actualOffX, actualOffY);
 			pointDerivation.push([actualOffX, actualOffY]);
-			distanceToTarget = getDistance(actualOffX, actualOffY, pointDerivation[0][0], pointDerivation[0][1]);
+			distanceToTarget = Math.euclidDistance2D(actualOffX, actualOffY, ...pointDerivation[0]);
 			var numPoints = pointDerivation.length;
 			if (numPoints > 3 && distanceToTarget < pointDistance) // Could be done better...
 			{
 				targetReached = true;
-				overlap = pointDistance - getDistance(pointDerivation[numPoints - 1][0], pointDerivation[numPoints - 1][1], pointDerivation[0][0], pointDerivation[0][1]);
+				overlap = pointDistance - Math.euclidDistance2D(...pointDerivation[numPoints - 1], ...pointDerivation[0]);
 				if (overlap < minOverlap)
 				{
 					minOverlap = overlap;
@@ -1011,11 +1011,13 @@ function placeGenericFortress(centerX, centerY, radius, playerId, style, irregul
 			wallElement = "gate";
 		var entity = wallStyles[style][wallElement].entity;
 		if (entity)
-		{
-			placeObject(startX + (getDistance(startX, startY, targetX, targetY)/2)*cos(angle), // placeX
-				startY + (getDistance(startX, startY, targetX, targetY)/2)*sin(angle), // placeY
-				entity, playerId, angle - PI/2 + wallStyles[style][wallElement].angle);
-		}
+			placeObject(
+				startX + (Math.euclidDistance2D(startX, startY, targetX, targetY) / 2) * Math.cos(angle),
+				startY + (Math.euclidDistance2D(startX, startY, targetX, targetY) / 2) * Math.sin(angle),
+				entity,
+				playerId,
+				angle - Math.PI / 2 + wallStyles[style][wallElement].angle);
+
 		// Place tower
 		var startX = centerX + bestPointDerivation[(pointIndex + bestPointDerivation.length - 1) % bestPointDerivation.length][0];
 		var startY = centerY + bestPointDerivation[(pointIndex + bestPointDerivation.length - 1) % bestPointDerivation.length][1];

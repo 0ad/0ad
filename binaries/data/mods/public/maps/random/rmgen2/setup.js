@@ -399,7 +399,7 @@ function placeRandom(playerIDs)
 		var z = 0.5 + distance * sin(playerAngle);
 
 		// Minimum distance between initial bases must be a quarter of the map diameter
-		if (locations.some(loc => getDistance(x, z, loc.x, loc.z) < 0.25))
+		if (locations.some(loc => Math.euclidDistance2D(x, z, loc.x, loc.z) < 0.25))
 		{
 			--i;
 			++attempts;
@@ -460,7 +460,7 @@ function groupPlayersByLocations(playerIDs, locations)
 			++teamSize;
 
 			if (team1 != -1 && team1 == team2)
-				teamDist += getDistance(permutation[i - 1].x, permutation[i - 1].z, permutation[i].x, permutation[i].z);
+				teamDist += Math.euclidDistance2D(permutation[i - 1].x, permutation[i - 1].z, permutation[i].x, permutation[i].z);
 			else
 			{
 				dist += teamDist / teamSize;

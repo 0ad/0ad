@@ -160,16 +160,11 @@ while (!goodStartPositionsFound)
 	var maxDistToCenter = mapSize / 2;
 	for (var i = 0; i < possibleStartPositions.length; i++)
 	{
-		var deltaX = possibleStartPositions[i][0] - mapSize / 2;
-		var deltaY = possibleStartPositions[i][1] - mapSize / 2;
-		var distToCenter = Math.pow(Math.pow(deltaX, 2) + Math.pow(deltaY, 2), 1/2);
-
-		if (distToCenter < maxDistToCenter)
+		if (Math.euclidDistance2D(...possibleStartPositions[i], mapSize / 2, mapSize / 2) < maxDistToCenter)
 			possibleStartPositionsTemp.push(possibleStartPositions[i]);
 			// placeTerrain(possibleStartPositions[i][0], possibleStartPositions[i][1], "purple"); // Only works properly for 1 loop
 	}
 	possibleStartPositions = clone(possibleStartPositionsTemp);
-
 	// Reduce to tiles near low and high ground (Rectangular check since faster) to make sure each player has access to all resource types.
 	var possibleStartPositionsTemp = [];
 	var maxDistToResources = distToBorder; // Has to be <= distToBorder!
@@ -217,7 +212,7 @@ while (!goodStartPositionsFound)
 	if (enoughTiles)
 	{
 		// Get some random start location derivations. NOTE: Iterating over all possible derivations is just too much (valid points * numPlayers)
-		var maxTries = 100000; // floor(800000 / (Math.pow(numPlayers, 2) / 2));
+		var maxTries = 100000;
 		var possibleDerivations = [];
 		for (var i = 0; i < maxTries; i++)
 		{
@@ -238,11 +233,7 @@ while (!goodStartPositionsFound)
 				{
 					if (p1 != p2)
 					{
-						var StartPositionP1 = possibleStartPositions[possibleDerivations[d][p1]];
-						var StartPositionP2 = possibleStartPositions[possibleDerivations[d][p2]];
-						var actualDist = Math.pow(Math.pow(StartPositionP1[0] - StartPositionP2[0], 2) + Math.pow(StartPositionP1[1] - StartPositionP2[1], 2), 1/2);
-						if (actualDist < minDist)
-							minDist = actualDist;
+						minDist = Math.min(minDist, Math.euclidDistance2D(...possibleStartPositions[possibleDerivations[d][p1]], ...possibleStartPositions[possibleDerivations[d][p2]]));
 						if (minDist < maxMinDist)
 							break;
 					}

@@ -20,16 +20,16 @@ function placeRandomPathToHeight(
 		rectangularSmoothToHeight(position, width, width, targetHeight, strength, heightmap);
 		if (texture)
 		{
+			let painters = [new TerrainPainter(texture)];
 			if (tileClass !== undefined)
-				createArea(new ClumpPlacer(0.3 * width * width, 1, 1, 1, floor(position.x), floor(position.y)),
-					[new TerrainPainter(texture), paintClass(tileClass)]);
-			else
-				createArea(new ClumpPlacer(0.3 * width * width, 1, 1, 1, floor(position.x), floor(position.y)),
-					new TerrainPainter(texture));
+				painters.push(paintClass(tileClass));
+			createArea(
+				new ClumpPlacer(0.3 * Math.square(width), 1, 1, 1, Math.floor(position.x), Math.floor(position.y)),
+				painters);
 		}
 		pathPoints.push({ "x": position.x, "y": position.y, "dist": distance });
 		// Check for distance to target and setup for next loop if needed
-		if (getDistance(position.x, position.y, target.x, target.y) < distance / 2)
+		if (Math.euclidDistance2D(position.x, position.y, target.x, target.y) < distance / 2)
 			break;
 		let angleToTarget = getAngle(position.x, position.y, target.x, target.y);
 		let angleOff = randFloat(-PI/2, PI/2);
@@ -351,11 +351,11 @@ if (teams.length)
 				if (t2 != t1)
 					continue;
 
-				let l1 = startLocations[pi];
-				let l2 = startLocations[pj];
-				let dist = getDistance(l1.x, l1.y, l2.x, l2.y);
-				if (dist > maxTeamDist)
-					maxTeamDist = dist;
+				maxTeamDist = Math.max(
+					maxTeamDist,
+					Math.euclidDistance2D(
+						startLocations[pi].x, startLocations[pi].y,
+						startLocations[pj].x, startLocations[pj].y));
 			}
 		}
 

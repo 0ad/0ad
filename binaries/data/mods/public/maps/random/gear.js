@@ -236,7 +236,7 @@ createArea(
 
 log("Creating central island...");
 createArea(
-	new ClumpPlacer(Math.pow(mapSize - 50, 2) * 0.09, 1, 1, 10, center, center),
+	new ClumpPlacer(Math.square(mapSize - 50) * 0.09, 1, 1, 10, center, center),
 	new SmoothElevationPainter(ELEVATION_SET, 4, 3),
 	null);
 
