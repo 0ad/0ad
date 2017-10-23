@@ -4437,7 +4437,7 @@ UnitAI.prototype.MoveToTargetAttackRange = function(target, type)
 
 	// No negative roots please
 	if (h>-range.max/2)
-		var parabolicMaxRange = Math.sqrt(range.max*range.max+2*range.max*h);
+		var parabolicMaxRange = Math.sqrt(Math.square(range.max) + 2 * range.max * h);
 	else
 		// return false? Or hope you come close enough?
 		var parabolicMaxRange = 0;
@@ -4628,11 +4628,8 @@ UnitAI.prototype.CheckTargetDistanceFromHeldPosition = function(target, iid, typ
 	var heldPosition = this.heldPosition;
 	if (heldPosition === undefined)
 		heldPosition = {"x": pos.x, "z": pos.z};
-	var dx = heldPosition.x - pos.x;
-	var dz = heldPosition.z - pos.z;
-	var dist = Math.sqrt(dx*dx + dz*dz);
 
-	return dist < halfvision + range.max;
+	return Math.euclidDistance2D(pos.x, pos.z, heldPosition.x, heldPosition.z) < halfvision + range.max;
 };
 
 UnitAI.prototype.CheckTargetIsInVisionRange = function(target)

@@ -201,7 +201,7 @@ public:
 			wxChoice* teamCtrl = new wxChoice(this, wxID_ANY);
 			boxSizer->Add(new DefaultCheckbox(this, ID_DefaultTeam, teamCtrl), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL));
 			boxSizer->AddSpacer(5);
-			boxSizer->Add(new wxStaticText(this, wxID_ANY, _("Team")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
+			boxSizer->Add(new wxStaticText(this, wxID_ANY, _("Team")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL));
 			boxSizer->AddSpacer(5);
 			teamCtrl->Append(_("None"));
 			teamCtrl->Append(_T("1"));
@@ -560,7 +560,7 @@ PlayerSettingsControl::PlayerSettingsControl(wxWindow* parent, ScenarioEditor& s
 	SetSizer(sizer);
 
 	wxBoxSizer* boxSizer = new wxBoxSizer(wxHORIZONTAL);
-	boxSizer->Add(new wxStaticText(this, wxID_ANY, _("Num players")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
+	boxSizer->Add(new wxStaticText(this, wxID_ANY, _("Num players")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL));
 	wxSpinCtrl* numPlayersSpin = new wxSpinCtrl(this, ID_NumPlayers, wxEmptyString, wxDefaultPosition, wxSize(40, -1));
 	numPlayersSpin->SetValue(MAX_NUM_PLAYERS);
 	numPlayersSpin->SetRange(1, MAX_NUM_PLAYERS);

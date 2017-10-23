@@ -121,4 +121,24 @@ TS_ASSERT(isNegativeZero(Math.sqrt(-0)));
 TS_ASSERT_EQUALS(Math.sqrt(Infinity), Infinity);
 TS_ASSERT_EQUALS(Math.sqrt(1e-323), 3.1434555694052576e-162);
 
+// square
+TS_ASSERT_UNEVAL_EQUALS(Math.square(NaN), NaN);
+TS_ASSERT(isPositiveZero(Math.square(0)));
+TS_ASSERT(isPositiveZero(Math.square(-0)));
+TS_ASSERT_EQUALS(Math.square(Infinity), Infinity);
+TS_ASSERT_EQUALS(Math.square(1.772979291871526e-81),3.143455569405258e-162);
+TS_ASSERT_EQUALS(Math.square(1e+155), Infinity)
+TS_ASSERT_UNEVAL_EQUALS(Math.square(1), 1);
+TS_ASSERT_UNEVAL_EQUALS(Math.square(20), 400);
+TS_ASSERT_UNEVAL_EQUALS(Math.square(300), 90000);
+TS_ASSERT_UNEVAL_EQUALS(Math.square(4000), 16000000);
+TS_ASSERT_UNEVAL_EQUALS(Math.square(50000), 2500000000);
+TS_ASSERT_UNEVAL_EQUALS(Math.square(-3), 9);
+TS_ASSERT_UNEVAL_EQUALS(Math.square(-8), 64);
+TS_ASSERT_UNEVAL_EQUALS(Math.square(0.123), 0.015129);
 
+// euclid distance
+TS_ASSERT_UNEVAL_EQUALS(Math.euclidDistance2D(0, 0, 3, 4), 5);
+TS_ASSERT_UNEVAL_EQUALS(Math.euclidDistance2D(-4, -4, -5, -4), 1);
+TS_ASSERT_UNEVAL_EQUALS(Math.euclidDistance2D(1e+140, 1e+140, 0, 0), 1.414213562373095e+140);
+TS_ASSERT_UNEVAL_EQUALS(Math.euclidDistance3D(0, 0, 0, 20, 48, 165), 173);

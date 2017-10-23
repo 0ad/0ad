@@ -199,7 +199,7 @@ UnitMotionFlying.prototype.OnUpdate = function(msg)
 
 	// If we're in range of the target then tell people that we've reached it
 	// (TODO: quantisation breaks this)
-	var distFromTarget = Math.sqrt(Math.pow(this.targetX - pos.x, 2) + Math.pow(this.targetZ - pos.z, 2));
+	var distFromTarget = Math.euclidDistance2D(pos.x, pos.z, this.targetX, this.targetZ);
 	if (!this.reachedTarget && this.targetMinRange <= distFromTarget && distFromTarget <= this.targetMaxRange)
 	{
 		this.reachedTarget = true;
@@ -281,7 +281,7 @@ UnitMotionFlying.prototype.IsInPointRange = function(x, y, minRange, maxRange)
 	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	var pos = cmpPosition.GetPosition2D();
 
-	var distFromTarget = Math.sqrt(Math.pow(x - pos.x, 2) + Math.pow(y - pos.y, 2));
+	var distFromTarget = Math.euclidDistance2D(x, y, pos.x, pos.y);
 	if (minRange <= distFromTarget && distFromTarget <= maxRange)
 		return true;
 

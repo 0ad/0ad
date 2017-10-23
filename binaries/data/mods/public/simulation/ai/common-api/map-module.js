@@ -147,10 +147,10 @@ m.Map.prototype.multiplyInfluence = function(cx, cy, maxDist, strength, type = "
 		let str = strength / maxDist;
 		for (let y = y0; y < y1; ++y)
 		{
+			let dy = y - cy;
 			for (let x = x0; x < x1; ++x)
 			{
 				let dx = x - cx;
-				let dy = y - cy;
 				let r2 = dx*dx + dy*dy;
 				if (r2 >= maxDist2)
 					continue;
@@ -169,10 +169,10 @@ m.Map.prototype.multiplyInfluence = function(cx, cy, maxDist, strength, type = "
 		let str = strength / maxDist2;
 		for (let y = y0; y < y1; ++y)
 		{
+			let dy = y - cy;
 			for (let x = x0; x < x1; ++x)
 			{
 				let dx = x - cx;
-				let dy = y - cy;
 				let r2 = dx*dx + dy*dy;
 				if (r2 >= maxDist2)
 					continue;
@@ -190,10 +190,10 @@ m.Map.prototype.multiplyInfluence = function(cx, cy, maxDist, strength, type = "
 	{
 		for (let y = y0; y < y1; ++y)
 		{
+			let dy = y - cy;
 			for (let x = x0; x < x1; ++x)
 			{
 				let dx = x - cx;
-				let dy = y - cy;
 				let r2 = dx*dx + dy*dy;
 				if (r2 >= maxDist2)
 					continue;

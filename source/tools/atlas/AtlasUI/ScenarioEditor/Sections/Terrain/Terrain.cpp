@@ -119,7 +119,7 @@ public:
 			wxImage img(qry.preview->imageWidth, qry.preview->imageHeight, buf);
 
 			wxStaticBitmap* bitmap = new wxStaticBitmap(this, wxID_ANY, wxBitmap(img), wxDefaultPosition, wxSize(qry.preview->imageWidth, qry.preview->imageHeight), wxBORDER_SIMPLE);
-			m_Sizer->Add(bitmap, wxSizerFlags(1).Align(wxALIGN_CENTRE));
+			m_Sizer->Add(bitmap, wxSizerFlags(1).Align(wxALIGN_CENTER));
 			m_Sizer->Add(label, wxSizerFlags().Expand());
 
 			// We have to force the sidebar to layout manually
@@ -238,11 +238,11 @@ TerrainSidebar::TerrainSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebar
 		m_PassabilityChoice = new wxChoice(scrolledWindow, ID_Passability, wxDefaultPosition, wxDefaultSize, defaultChoices);
 		m_PassabilityChoice->SetSelection(0);
 
-		visSizer->Add(new wxStaticText(scrolledWindow, wxID_ANY, _("Passability")), wxSizerFlags().Align(wxALIGN_CENTER|wxALIGN_RIGHT));
+		visSizer->Add(new wxStaticText(scrolledWindow, wxID_ANY, _("Passability")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL|wxALIGN_RIGHT));
 		visSizer->Add(Tooltipped(m_PassabilityChoice,
 			_("View passability classes")), wxSizerFlags().Expand());
 
-		visSizer->Add(new wxStaticText(scrolledWindow, wxID_ANY, _("Priorities")), wxSizerFlags().Align(wxALIGN_CENTER|wxALIGN_RIGHT));
+		visSizer->Add(new wxStaticText(scrolledWindow, wxID_ANY, _("Priorities")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL|wxALIGN_RIGHT));
 		visSizer->Add(Tooltipped(new wxCheckBox(scrolledWindow, ID_ShowPriorities, _("")),
 			_("Show terrain texture priorities")));
 	}
@@ -396,7 +396,7 @@ public:
 			wxSizer* imageSizer = new wxBoxSizer(wxVERTICAL);
 			imageSizer->Add(button, wxSizerFlags().Center());
 			imageSizer->Add(label, wxSizerFlags().Proportion(1).Center());
-			m_ItemSizer->Add(imageSizer, wxSizerFlags().Expand().Center());
+			m_ItemSizer->Add(imageSizer, wxSizerFlags().Expand());
 		}
 
 		m_ScrolledPanel->Fit();

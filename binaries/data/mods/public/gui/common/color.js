@@ -45,7 +45,7 @@ function sameColor(color1, color2)
  */
 function colorDistance(color1, color2)
 {
-	return Math.sqrt(Math.pow(color2.r - color1.r, 2) + Math.pow(color2.g - color1.g, 2) + Math.pow(color2.b - color1.b, 2));
+	return Math.euclidDistance3D(color1.r, color1.g, color1.b, color2.r, color2.g, color2.b);
 }
 
 /**
