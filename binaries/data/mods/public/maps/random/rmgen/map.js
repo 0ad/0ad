@@ -24,7 +24,7 @@ function Map(size, baseHeight)
 		this.area[i] = new Uint16Array(size);
 
 		for (let j = 0; j < size; ++j)
-			this.terrainObjects[i][j] = [];
+			this.terrainObjects[i][j] = undefined;
 	}
 
 	// Create 2D array for heightmap
