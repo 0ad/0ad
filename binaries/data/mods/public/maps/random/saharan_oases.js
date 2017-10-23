@@ -134,7 +134,7 @@ RMS.SetProgress(30);
 log("Creating oases...");
 for (let i = 0; i < numPlayers; ++i)
 	createArea(
-		new ClumpPlacer(Math.PI * Math.pow(scaleByMapSize(16, 60), 2) * 0.185,
+		new ClumpPlacer(diskArea(scaleByMapSize(16, 60)) * 0.185,
 			0.6,
 			0.15,
 			0,

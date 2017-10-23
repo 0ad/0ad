@@ -65,7 +65,7 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
-const mapArea = mapSize*mapSize;
+const mapArea = getMapArea();
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -299,7 +299,7 @@ while (possibleEdges.length)
 
 	for (let [x, z] of [[ix, iz], [ix2, iz2]])
 		createArea(
-			new ClumpPlacer(Math.floor(Math.PI * Math.pow(scaleByMapSize(9, 15) / 2, 2)), 0.95, 0.6, 10, x, z),
+			new ClumpPlacer(Math.floor(diskArea(scaleByMapSize(4.5, 7.5))), 0.95, 0.6, 10, x, z),
 			[
 				new LayeredPainter([tCliff, tPrimary], [3]),
 				new SmoothElevationPainter(ELEVATION_SET, 30, 2),

@@ -77,7 +77,7 @@ createArea(
 log("Creating small puddles at the map border to ensure players being separated...");
 for (let [x, z] of [[riverX1, riverZ1], [riverX2, riverZ2]])
 	createArea(
-		new ClumpPlacer(Math.floor(Math.PI * Math.pow(riverWidth / 2, 2)), 0.95, 0.6, 10, x, z),
+		new ClumpPlacer(Math.floor(diskArea(riverWidth / 2)), 0.95, 0.6, 10, x, z),
 		new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
 		null);
 

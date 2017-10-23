@@ -46,7 +46,7 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
-const mapArea = mapSize*mapSize;
+const mapArea = getMapArea();
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -242,7 +242,7 @@ createArea(
 
 log("Creating hill on the central island...");
 createArea(
-	new ClumpPlacer(Math.pow(scaleByMapSize(6, 18), 2) * 22, 1, 1, 10, center, center),
+	new ClumpPlacer(diskArea(scaleByMapSize(6, 18)) * 7, 1, 1, 10, center, center),
 	new SmoothElevationPainter(ELEVATION_SET, 20, 8),
 	null);
 

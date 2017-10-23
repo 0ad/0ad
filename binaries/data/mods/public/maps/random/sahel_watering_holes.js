@@ -138,7 +138,7 @@ for (var m = 0; m < numPlayers; m++)
 
 	createArea(
 		new ClumpPlacer(
-			Math.floor(Math.PI * Math.pow(scaleByMapSize(10, 50), 2) / 3),
+			Math.floor(diskArea(scaleByMapSize(10, 50)) / 3),
 			0.95,
 			0.6,
 			10,
@@ -170,7 +170,7 @@ for (var m = 0; m < numPlayers; m++)
 
 	createArea(
 		new ClumpPlacer(
-			Math.floor(Math.PI * Math.pow(scaleByMapSize(10, 50), 2) / 5),
+			Math.floor(diskArea(scaleByMapSize(10, 50)) / 5),
 			0.95,
 			0.6,
 			10,

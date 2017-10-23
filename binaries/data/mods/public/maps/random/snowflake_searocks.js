@@ -79,7 +79,7 @@ function initIsConnected()
 
 function createIsland(islandID, size, tileClass)
 {
-	let hillSize = Math.PI * Math.pow(playerIslandRadius, 2) * size;
+	let hillSize = diskArea(playerIslandRadius) * size;
 	createArea(
 		new ClumpPlacer(hillSize, 0.95, 0.6, 10, islandX[islandID], islandZ[islandID]),
 		[
