@@ -24,7 +24,7 @@ function Map(size, baseHeight)
 		this.area[i] = new Uint16Array(size);
 
 		for (let j = 0; j < size; ++j)
-			this.terrainObjects[i][j] = [];
+			this.terrainObjects[i][j] = undefined;
 	}
 
 	// Create 2D array for heightmap
@@ -91,7 +91,7 @@ Map.prototype.validT = function(x, z, distance = 0)
 	if (g_MapSettings.CircularMap)
 	{
 		let halfSize = Math.floor(this.size / 2);
-		return Math.round(getDistance(x, z, halfSize, halfSize)) < halfSize - distance - 1;
+		return Math.round(Math.euclidDistance2D(x, z, halfSize, halfSize)) < halfSize - distance - 1;
 	}
 	else
 		return x >= distance && z >= distance && x < this.size - distance && z < this.size - distance;

@@ -1,3 +1,8 @@
+function diskArea(radius)
+{
+	return Math.PI * Math.square(radius);
+}
+
 function rotateCoordinates(x, z, angle, centerX = 0.5, centerZ = 0.5)
 {
 	let sin = Math.sin(angle);

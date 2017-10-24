@@ -215,7 +215,7 @@ playerConstraint = new AvoidTileClassConstraint(clPlayer, floor(scaleByMapSize(9
 landConstraint = new AvoidTileClassConstraint(clLand, floor(scaleByMapSize(9,12)));
 
 log("Creating small islands...");
-for (let i = 0; i < 6 * Math.pow(scaleByMapSize(1, 3), 2); ++i)
+for (let i = 0; i < 6 * Math.square(scaleByMapSize(1, 3)); ++i)
 {
 	landAreaLen = landAreas.length;
 	if (!landAreaLen)

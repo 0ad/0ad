@@ -277,8 +277,8 @@ createDecoration(
 		[new SimpleObject(g_Decoratives.lillies, 1,2, 0,1)]
 	],
 	[
-		200 * Math.pow(scaleByMapSize(3, 12), 2),
-		100 * Math.pow(scaleByMapSize(3, 12), 2)
+		200 * Math.square(scaleByMapSize(3, 12)),
+		100 * Math.square(scaleByMapSize(3, 12))
 	],
 	stayClasses(g_TileClasses.shallowWater, 0)
 );

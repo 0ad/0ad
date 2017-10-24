@@ -164,7 +164,7 @@ RMS.SetProgress(25);
 log("Creating oasis...");
 var oRadius = scaleByMapSize(14, 40);
 createArea(
-	new ClumpPlacer(Math.PI * Math.pow(oRadius, 2), 0.6, 0.15, 0, mapSize/2, mapSize/2),
+	new ClumpPlacer(diskArea(oRadius), 0.6, 0.15, 0, mapSize / 2, mapSize / 2),
 	[
 		new LayeredPainter([[tSand, pForest], [tGrassSand25, pForestOasis], tGrassSand25, tShore, tWaterDeep], [2, 3, 1, 1]),
 		new SmoothElevationPainter(ELEVATION_MODIFY, -11, 8),

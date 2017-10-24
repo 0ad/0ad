@@ -50,7 +50,7 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
-const mapArea = mapSize*mapSize;
+const mapArea = getMapArea();
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();

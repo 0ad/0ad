@@ -287,7 +287,7 @@ createObjectGroupsDeprecated(
 			g_TileClasses.water, 3
 		)
 	],
-	Math.pow(scaleByMapSize(5, 20), 2),
+	Math.square(scaleByMapSize(5, 20)),
 	500
 );
 RMS.SetProgress(90);

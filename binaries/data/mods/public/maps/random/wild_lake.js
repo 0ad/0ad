@@ -507,10 +507,11 @@ if (teams.length)
 				if (t2 != t1)
 					continue;
 
-				let l1 = startLocations[pi];
-				let l2 = startLocations[pj];
-				let dist = getDistance(l1.x, l1.y, l2.x, l2.y);
-				maxTeamDist = Math.max(dist, maxTeamDist);
+				maxTeamDist = Math.max(
+					maxTeamDist,
+					Math.euclidDistance2D(
+						startLocations[pi].x, startLocations[pi].y,
+						startLocations[pj].x, startLocations[pj].y));
 			}
 		}
 

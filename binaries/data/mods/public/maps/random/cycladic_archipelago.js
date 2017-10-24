@@ -81,7 +81,7 @@ function createCycladicArchipelagoIsland(ix, iz, tileClass, radius, coralRadius)
 {
 	log("Creating deep ocean rocks...");
 	createArea(
-		new ClumpPlacer(Math.PI * Math.pow(radius + coralRadius, 2), 0.7, 0.1, 10, ix, iz),
+		new ClumpPlacer(diskArea(radius + coralRadius), 0.7, 0.1, 10, ix, iz),
 		[
 			new LayeredPainter([tOceanRockDeep, tOceanCoral], [5]),
 			paintClass(clCoral)
@@ -91,7 +91,7 @@ function createCycladicArchipelagoIsland(ix, iz, tileClass, radius, coralRadius)
 	log("Creating island...");
 	areas.push(
 		createArea(
-			new ClumpPlacer(Math.PI * Math.pow(radius, 2), 0.7, 0.1, 10, ix, iz),
+			new ClumpPlacer(diskArea(radius), 0.7, 0.1, 10, ix, iz),
 			[
 				new LayeredPainter([tOceanCoral, tBeachWet, tBeachDry, tBeach, tBeachBlend, tGrass], [1, 3, 1, 1, 2]),
 				new SmoothElevationPainter(ELEVATION_SET, 3, 5),

@@ -68,7 +68,7 @@ function getStartLocationsByHeightmap(heightRange, maxTries = 1000, minDistToBor
 	for (let x = minDistToBorder; x < heightmap.length - minDistToBorder; ++x)
 		for (let y = minDistToBorder; y < heightmap[0].length - minDistToBorder; ++y)
 			if (heightmap[x][y] > heightRange.min && heightmap[x][y] < heightRange.max) // Is in height range
-				if (!isCircular || r - getDistance(x, y, r, r) >= minDistToBorder) // Is far enough away from map border
+				if (!isCircular || r - Math.euclidDistance2D(x, y, r, r) >= minDistToBorder) // Is far enough away from map border
 					validStartLoc.push({ "x": x, "y": y });
 
 	let maxMinDist = 0;
@@ -83,7 +83,7 @@ function getStartLocationsByHeightmap(heightRange, maxTries = 1000, minDistToBor
 		{
 			for (let p2 = p1 + 1; p2 < numberOfPlayers; ++p2)
 			{
-				let dist = getDistance(startLoc[p1].x, startLoc[p1].y, startLoc[p2].x, startLoc[p2].y);
+				let dist = Math.euclidDistance2D(startLoc[p1].x, startLoc[p1].y, startLoc[p2].x, startLoc[p2].y);
 				if (dist < minDist)
 					minDist = dist;
 			}
@@ -123,10 +123,10 @@ function distributeEntitiesByHeight(heightRange, avoidPoints, minDistance, entit
 			if (heightmap[x][y] < heightRange.min || heightmap[x][y] > heightRange.max)
 				continue; // Out of height range
 			let checkpoint = { "x" : x + 0.5, "y" : y + 0.5 };
-			if (isCircular && r - getDistance(checkpoint.x, checkpoint.y, r, r) < minDistance)
+			if (isCircular && r - Math.euclidDistance2D(checkpoint.x, checkpoint.y, r, r) < minDistance)
 				continue; // Too close to map border
 			// Avoid points by minDistance, else add to validPoints
-			if (avoidPoints.every(ap => getDistance(checkpoint.x, checkpoint.y, ap.x, ap.y) > minDistance))
+			if (avoidPoints.every(ap => Math.euclidDistance2D(checkpoint.x, checkpoint.y, ap.x, ap.y) > minDistance))
 				validPoints.push(checkpoint);
 		}
 	}
@@ -142,7 +142,7 @@ function distributeEntitiesByHeight(heightRange, avoidPoints, minDistance, entit
 	{
 		let checkPointIndex = randIntExclusive(0, validPoints.length);
 		let checkPoint = validPoints[checkPointIndex];
-		if (placements.every(p => getDistance(p.x, p.y, checkPoint.x, checkPoint.y) > minDistance))
+		if (placements.every(p => Math.euclidDistance2D(p.x, p.y, checkPoint.x, checkPoint.y) > minDistance))
 		{
 			placeObject(checkPoint.x, checkPoint.y, pickRandom(entityList), playerID, randFloat(0, 2*PI));
 			placements.push(checkPoint);
@@ -371,7 +371,7 @@ function getPointsByHeight(heightRange, avoidPoints = [], avoidClass = undefined
 				continue;
 
 			if (heightmap[x][y] > heightRange.min && heightmap[x][y] < heightRange.max && // Has correct height
-				(!isCircular || r - getDistance(x, y, r, r) >= minDistance)) // Enough distance to map border
+				(!isCircular || r - Math.euclidDistance2D(x, y, r, r) >= minDistance)) // Enough distance to the map border
 				validVertices.push({ "x": x, "y": y , "dist": minDistance});
 		}
 	}
@@ -379,7 +379,7 @@ function getPointsByHeight(heightRange, avoidPoints = [], avoidClass = undefined
 	for (let tries = 0; tries < maxTries; ++tries)
 	{
 		let point = pickRandom(validVertices);
-		if (placements.every(p => getDistance(p.x, p.y, point.x, point.y) > max(minDistance, p.dist)))
+		if (placements.every(p => Math.euclidDistance2D(p.x, p.y, point.x, point.y) > Math.max(minDistance, p.dist)))
 		{
 			points.push(point);
 			placements.push(point);
@@ -427,7 +427,7 @@ function getSlopeMap(inclineMap = getInclineMap(g_Map.height))
 		let max_y = inclineMap[x].length;
 		slopeMap[x] = new Float32Array(max_y);
 		for (let y = 0; y < max_y; ++y)
-			slopeMap[x][y] = Math.pow(inclineMap[x][y].x * inclineMap[x][y].x + inclineMap[x][y].y * inclineMap[x][y].y, 0.5);
+			slopeMap[x][y] = Math.euclidDistance2D(0, 0, inclineMap[x][y].x, inclineMap[x][y].y);
 	}
 	return slopeMap;
 }

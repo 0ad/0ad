@@ -470,7 +470,7 @@ var OceanX = fractionToTiles(0.5) + cos(MoutainAngle + lololo)*fractionToTiles(0
 var OceanZ = fractionToTiles(0.5) + sin(MoutainAngle + lololo)*fractionToTiles(0.48);
 
 createArea(
-	new ClumpPlacer(Math.PI * Math.pow(fractionToTiles(0.18), 2), 0.9, 0.05, 10, OceanX, OceanZ),
+	new ClumpPlacer(diskArea(fractionToTiles(0.18)), 0.9, 0.05, 10, OceanX, OceanZ),
 	[
 		paintClass(clWater),
 		new ElevationPainter(-22)
@@ -481,7 +481,7 @@ OceanX = fractionToTiles(0.5) + cos(PI + MoutainAngle + lololo)*fractionToTiles(
 OceanZ = fractionToTiles(0.5) + sin(PI + MoutainAngle + lololo)*fractionToTiles(0.48);
 
 createArea(
-	new ClumpPlacer(Math.PI * Math.pow(fractionToTiles(0.18), 2), 0.9, 0.05, 10, OceanX, OceanZ),
+	new ClumpPlacer(diskArea(fractionToTiles(0.18)), 0.9, 0.05, 10, OceanX, OceanZ),
 	[
 		new ElevationPainter(-22),
 		paintClass(clWater)

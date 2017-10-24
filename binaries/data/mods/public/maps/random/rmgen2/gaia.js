@@ -97,7 +97,7 @@ function addBluffs(constraint, size, deviation, fill, baseHeight)
 		// Create an entrance area by using a small margin
 		var margin = 0.08;
 		var ground = createTerrain(g_Terrains.mainTerrain);
-		var slopeLength = (1 - margin) * getDistance(baseLine.midX, baseLine.midZ, endLine.midX, endLine.midZ);
+		var slopeLength = (1 - margin) * Math.euclidDistance2D(baseLine.midX, baseLine.midZ, endLine.midX, endLine.midZ);
 
 		// Adjust the height of each point in the bluff
 		for (var p = 0; p < points.length; ++p)
