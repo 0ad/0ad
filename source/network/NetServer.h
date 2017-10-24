@@ -300,7 +300,6 @@ private:
 	NetServerState m_State;
 
 	CStrW m_ServerName;
-	CStrW m_WelcomeMessage;
 
 	std::vector<u32> m_BannedIPs;
 	std::vector<CStrW> m_BannedPlayers;

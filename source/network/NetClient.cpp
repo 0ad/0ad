@@ -31,7 +31,6 @@
 #include "ps/Compress.h"
 #include "ps/CStr.h"
 #include "ps/Game.h"
-#include "ps/GUID.h"
 #include "ps/Loader.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
@@ -70,7 +69,7 @@ private:
 CNetClient::CNetClient(CGame* game, bool isLocalClient) :
 	m_Session(NULL),
 	m_UserName(L"anonymous"),
-	m_GUID(ps_generate_guid()), m_HostID((u32)-1), m_ClientTurnManager(NULL), m_Game(game),
+	m_HostID((u32)-1), m_ClientTurnManager(NULL), m_Game(game),
 	m_GameAttributes(game->GetSimulation2()->GetScriptInterface().GetContext()),
 	m_IsLocalClient(isLocalClient),
 	m_LastConnectionCheck(0),
@@ -514,8 +513,10 @@ bool CNetClient::OnHandshakeResponse(void* context, CFsmEvent* event)
 
 	CNetClient* client = (CNetClient*)context;
 
+	CSrvHandshakeResponseMessage* message = (CSrvHandshakeResponseMessage*)event->GetParamRef();
+	client->m_GUID = message->m_GUID;
+
 	CAuthenticateMessage authenticate;
-	authenticate.m_GUID = client->m_GUID;
 	authenticate.m_Name = client->m_UserName;
 	authenticate.m_Password = L""; // TODO
 	authenticate.m_IsLocalClient = client->m_IsLocalClient;
