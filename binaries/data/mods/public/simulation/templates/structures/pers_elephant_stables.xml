@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_special">
+  <Cost>
+    <BuildTime>300</BuildTime>
+    <Resources>
+      <food>0</food>
+      <wood>0</wood>
+      <stone>200</stone>
+      <metal>200</metal>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="29.0" depth="27.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <GarrisonHolder>
+    <List datatype="tokens">Elephant</List>
+  </GarrisonHolder>
+  <Health>
+    <Max>3000</Max>
+  </Health>
+  <Identity>
+    <Civ>pers</Civ>
+    <GenericName>Elephant Stables</GenericName>
+    <SpecificName>?</SpecificName>
+    <RequiredTechnology>phase_city</RequiredTechnology>
+    <Icon>structures/elephant_stables.png</Icon>
+    <Tooltip>Train elephant units.</Tooltip>
+  </Identity>
+  <Loot>
+    <wood>0</wood>
+    <stone>50</stone>
+    <metal>50</metal>
+  </Loot>
+  <Obstruction>
+    <Static width="30.0" depth="29.0"/>
+  </Obstruction>
+  <ProductionQueue>
+    <BatchTimeModifier>0.7</BatchTimeModifier>
+    <Entities datatype="tokens">
+      units/{civ}_support_elephant
+      units/{civ}_elephant_archer_b
+      units/{civ}_champion_elephant
+    </Entities>
+  </ProductionQueue>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_elephant_stables.xml</select>
+      <constructed>interface/complete/building/complete_elephant_stables.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
+  <TerritoryInfluence>
+    <Radius>38</Radius>
+  </TerritoryInfluence>
+  <VisualActor>
+    <Actor>structures/persians/stables_elephant.xml</Actor>
+  </VisualActor>
+</Entity>

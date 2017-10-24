@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="barrel">
+      <mesh>structural/iber_siege_workshop_shields1.dae</mesh>
+      <textures>
+        <texture file="props/iber_prop_shields.dds" name="baseTex"/>
+        <texture file="structural/ao/iber_workshop_ao1.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao.xml</material>
+</actor>
