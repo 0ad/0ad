@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_gaia_flora_tree">
+<Entity parent="template_gaia_flora_tree_fruit">
   <Footprint>
     <Circle radius="4.0"/>
-    <Height>10.0</Height>
   </Footprint>
   <Identity>
     <SpecificName>Fig</SpecificName>
     <Tooltip>Gather figs for Food.</Tooltip>
-    <Icon>gaia/flora_bush_berry.png</Icon>
   </Identity>
   <Obstruction>
-    <Static width="4.0" depth="4.0"/>
+    <Static width="5.0" depth="5.0"/>
   </Obstruction>
   <ResourceSupply>
     <Amount>500</Amount>
-    <Type>food.fruit</Type>
   </ResourceSupply>
   <Selectable>
     <Overlay>
@@ -24,11 +21,6 @@
       </Texture>
     </Overlay>
   </Selectable>
-  <Sound>
-    <SoundGroups>
-      <select>interface/select/resource/sel_fruit.xml</select>
-    </SoundGroups>
-  </Sound>
   <VisualActor>
     <Actor>flora/trees/fig.xml</Actor>
   </VisualActor>

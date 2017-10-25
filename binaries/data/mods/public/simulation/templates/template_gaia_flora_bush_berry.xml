@@ -1,34 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_gaia_flora_bush">
-  <Footprint>
-    <Circle radius="3.0"/>
-    <Height>1.0</Height>
-  </Footprint>
-  <Identity>
-    <GenericName>Bush</GenericName>
-    <SpecificName>Berries</SpecificName>
-    <Tooltip>Gather the fruit from these bushes to accumulate Food.</Tooltip>
-    <Icon>gaia/flora_bush_berry.png</Icon>
-  </Identity>
   <Minimap>
     <Type>food</Type>
     <Color r="155" g="204" b="102"/>
   </Minimap>
+  <Obstruction>
+    <Static width="4.0" depth="4.0"/>
+    <BlockMovement>false</BlockMovement>
+    <BlockPathfinding>false</BlockPathfinding>
+  </Obstruction>
   <ResourceSupply>
-    <KillBeforeGather>false</KillBeforeGather>
     <Amount>200</Amount>
     <Type>food.fruit</Type>
-    <MaxGatherers>8</MaxGatherers>
   </ResourceSupply>
-  <Selectable>
-    <EditorOnly disable=""/>
-    <Overlay>
-      <Texture>
-        <MainTexture>circle/128x128.png</MainTexture>
-        <MainTextureMask>circle/128x128_mask.png</MainTextureMask>
-      </Texture>
-    </Overlay>
-  </Selectable>
   <Sound>
     <SoundGroups>
       <select>interface/select/resource/sel_fruit.xml</select>
