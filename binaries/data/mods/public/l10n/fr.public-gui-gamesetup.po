@@ -67,8 +67,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-09-08 09:04+0200\n"
-"PO-Revision-Date: 2017-10-08 22:42+0000\n"
-"Last-Translator: Jo Du <jojo337@live.fr>\n"
+"PO-Revision-Date: 2017-10-23 22:01+0000\n"
+"Last-Translator: Polakrity <sxk-fr@live.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -292,7 +292,7 @@ msgstr "Ressources de départ"
 #: gui/gamesetup/gamesetup.js:541
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
-msgstr "Quantité initiale de chaque ressource : %(resources)s."
+msgstr "Quantité initiale pour chaque ressource : %(resources)s."
 
 #: gui/gamesetup/gamesetup.js:544
 msgid "Select the game's starting resources."
@@ -323,11 +323,11 @@ msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
-msgstr "Nombre total de reliques qui apparaitront sur la carte. Une victoire de relique est plus réaliste avec seulement une ou deux reliques. Dans un plus grand nombre, les reliques sont des ressources importantes à capturer pour recevoir des bonus d'aura."
+msgstr "Nombre total de reliques qui apparaîtront sur la carte. Une victoire de relique est plus réaliste avec seulement une ou deux reliques. Avec de plus grands nombres, les reliques sont des ressources importantes à capturer pour recevoir des bonus d'aura."
 
 #: gui/gamesetup/gamesetup.js:604
 msgid "Relic Duration"
-msgstr "durée de la relique"
+msgstr "Durée de la relique"
 
 #: gui/gamesetup/gamesetup.js:605
 msgid "Minutes until the player has achieved Relic Victory."
@@ -335,7 +335,7 @@ msgstr "Minutes avant que le joueur achève la victoire par Reliques."
 
 #: gui/gamesetup/gamesetup.js:619
 msgid "Wonder Duration"
-msgstr "durée de la merveille"
+msgstr "Durée de la merveille"
 
 #: gui/gamesetup/gamesetup.js:620
 msgid "Minutes until the player has achieved Wonder Victory."
@@ -343,7 +343,7 @@ msgstr "Minutes avant que le joueur achève la victoire par Merveille."
 
 #: gui/gamesetup/gamesetup.js:634
 msgid "Game Speed"
-msgstr "Vitesse du jeu"
+msgstr "Vitesse de jeu"
 
 #: gui/gamesetup/gamesetup.js:635
 msgid "Select game speed."
@@ -359,7 +359,7 @@ msgstr "Garnison des héros"
 
 #: gui/gamesetup/gamesetup.js:740
 msgid "Toggle whether heroes can be garrisoned."
-msgstr "Définir si les héros peuvent être mis en garnison."
+msgstr "Définir si les héros peuvent être placés en garnison."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map options!
@@ -403,7 +403,7 @@ msgstr "Désactiver les espions durant la partie."
 
 #: gui/gamesetup/gamesetup.js:811
 msgid "Teams Locked"
-msgstr "Equipes verrouillées"
+msgstr "Équipes verrouillées"
 
 #: gui/gamesetup/gamesetup.js:812
 msgid "Toggle locked teams."
@@ -478,7 +478,7 @@ msgstr "Aléatoire"
 
 #: gui/gamesetup/gamesetup.js:1518
 msgid "Pick a biome at random."
-msgstr "Sélectionner un biome au harsard"
+msgstr "Sélectionner un biome aléatoirement."
 
 #: gui/gamesetup/gamesetup.js:1804 gui/gamesetup/gamesetup.js:1846
 #, javascript-format
