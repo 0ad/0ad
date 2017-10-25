@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="basic">
+      <textures>
+        <texture file="props/structs_nature.png" name="baseTex"/>
+        <texture file="props/structs_nature_norm.png" name="normTex"/>
+        <texture file="props/structs_nature_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="a">
+      <mesh>structural/iber_siege_workshop_nature.dae</mesh>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

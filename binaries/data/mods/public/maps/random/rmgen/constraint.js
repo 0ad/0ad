@@ -1,11 +1,10 @@
+/**
+ * A Constraint decides if a tile satisfies a condition defined by the class.
+ */
 
-///////////////////////////////////////////////////////////////////////////
-//	NullConstraint
-//
-//	Class representing null constraint - always valid
-//
-///////////////////////////////////////////////////////////////////////////
-
+/**
+ * The NullConstraint is always satisfied.
+ */
 function NullConstraint() {}
 
 NullConstraint.prototype.allows = function(x, z)
@@ -13,15 +12,9 @@ NullConstraint.prototype.allows = function(x, z)
 	return true;
 };
 
-///////////////////////////////////////////////////////////////////////////
-//	AndConstraint
-//
-//	Class representing a logical AND constraint
-//
-//	constraints: Array of contraint objects, all of which must be satisfied
-//
-///////////////////////////////////////////////////////////////////////////
-
+/**
+ * The AndConstraint is met if every given Constraint is satisfied by the tile.
+ */
 function AndConstraint(constraints)
 {
 	this.constraints = constraints;
@@ -29,23 +22,12 @@ function AndConstraint(constraints)
 
 AndConstraint.prototype.allows = function(x, z)
 {
-	for (var i=0; i < this.constraints.length; ++i)
-	{
-		if (!this.constraints[i].allows(x, z))
-			return false;
-	}
-
-	return true;
+	return this.constraints.every(constraint => constraint.allows(x, z));
 };
 
-///////////////////////////////////////////////////////////////////////////
-//	AvoidAreaConstraint
-//
-//	Class representing avoid area constraint
-//
-//	area: Area object, containing points to be avoided
-//
-///////////////////////////////////////////////////////////////////////////
+/**
+ * The AvoidAreaConstraint is met if the tile is not part of the given Area.
+ */
 function AvoidAreaConstraint(area)
 {
 	this.area = area;
@@ -56,14 +38,9 @@ AvoidAreaConstraint.prototype.allows = function(x, z)
 	return g_Map.area[x][z] != this.area.getID();
 };
 
-///////////////////////////////////////////////////////////////////////////
-//	AvoidTextureConstraint
-//
-//	Class representing avoid texture constraint
-//
-//	textureID: ID of the texture to be avoided
-//
-///////////////////////////////////////////////////////////////////////////
+/**
+ * The AvoidTextureConstraint is met if the terrain texture of the tile is different from the given texture.
+ */
 function AvoidTextureConstraint(textureID)
 {
 	this.textureID = textureID;
@@ -74,15 +51,9 @@ AvoidTextureConstraint.prototype.allows = function(x, z)
 	return g_Map.texture[x][z] != this.textureID;
 };
 
-///////////////////////////////////////////////////////////////////////////
-//	AvoidTileClassConstraint
-//
-//	Class representing avoid TileClass constraint
-//
-//	tileClassID: ID of the TileClass to avoid
-//	distance: distance by which it must be avoided
-//
-///////////////////////////////////////////////////////////////////////////
+/**
+ * The AvoidTileClassConstraint is met if there are no tiles marked with the given TileClass within the given radius of the tile.
+ */
 function AvoidTileClassConstraint(tileClassID, distance)
 {
 	this.tileClass = getTileClass(tileClassID);
@@ -94,15 +65,9 @@ AvoidTileClassConstraint.prototype.allows = function(x, z)
 	return this.tileClass.countMembersInRadius(x, z, this.distance) == 0;
 };
 
-///////////////////////////////////////////////////////////////////////////
-//	StayInTileClassConstraint
-//
-//	Class representing stay in TileClass constraint
-//
-//	tileClassID: ID of TileClass to stay within
-//	distance: distance from test point to find matching TileClass
-//
-///////////////////////////////////////////////////////////////////////////
+/**
+ * The StayInTileClassConstraint is met if every tile within the given radius of the tile is marked with the given TileClass.
+ */
 function StayInTileClassConstraint(tileClassID, distance)
 {
 	this.tileClass = getTileClass(tileClassID);
@@ -114,16 +79,11 @@ StayInTileClassConstraint.prototype.allows = function(x, z)
 	return this.tileClass.countNonMembersInRadius(x, z, this.distance) == 0;
 };
 
-///////////////////////////////////////////////////////////////////////////
-//	BorderTileClassConstraint
-//
-//	Class representing border TileClass constraint
-//
-//	tileClassID: ID of TileClass to border
-//	distanceInside: Distance from test point to find other TileClass
-//	distanceOutside: Distance from test point to find matching TileClass
-//
-///////////////////////////////////////////////////////////////////////////
+/**
+ * The BorderTileClassConstraint is met if there are
+ * no tiles marked with the given TileClass within distanceInside of the tile,
+ * but tiles marked with the given TileClass within distanceOutside of the tile.
+ */
 function BorderTileClassConstraint(tileClassID, distanceInside, distanceOutside)
 {
 	this.tileClass = getTileClass(tileClassID);
@@ -133,6 +93,6 @@ function BorderTileClassConstraint(tileClassID, distanceInside, distanceOutside)
 
 BorderTileClassConstraint.prototype.allows = function(x, z)
 {
-	return (this.tileClass.countMembersInRadius(x, z, this.distanceOutside) > 0
-		&& this.tileClass.countNonMembersInRadius(x, z, this.distanceInside) > 0);
+	return this.tileClass.countMembersInRadius(x, z, this.distanceOutside) > 0 &&
+	       this.tileClass.countNonMembersInRadius(x, z, this.distanceInside) > 0;
 };

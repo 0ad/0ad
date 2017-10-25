@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Seleucid Barracks">
+      <mesh>structural/sele_stable_elephant.dae</mesh>
+      <props>
+        <prop actor="props/structures/decals/dirt_6x6.xml" attachpoint="root"/>
+        <prop actor="geology/decal_stone_desert_b.xml" attachpoint="root"/>
+        <prop actor="fauna/elephant_asian.xml" attachpoint="horse" maxheight="20" minheight="-20"/>
+        <prop actor="fauna/elephant_asian.xml" attachpoint="horse_1" maxheight="20" minheight="-20"/>
+        <prop actor="fauna/elephant_asian.xml" attachpoint="horse_2" maxheight="20" minheight="-20"/>
+      </props>
+      <textures>
+        <texture file="structural/Sele_struct_2.png" name="baseTex"/>
+        <texture file="structural/Sele_struct_2_norm.png" name="normTex"/>
+        <texture file="structural/ao/sele_stable_elephant_AO.png" name="aoTex"/>
+        <texture file="structural/Sele_struct_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="ungarrisoned"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_seleucids.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="alive"/>
+    <variant name="death">
+      <props>
+        <prop attachpoint="garrisoned"/>
+        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/Sele_struct_2_damage_light.png" name="baseTex"/>
+        <texture file="structural/Sele_struct_2_damage_light_norm.png" name="normTex"/>
+        <texture file="structural/Sele_struct_2_spec.png" name="specTex"/>
+        <texture file="structural/ao/sele_stable_AO.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

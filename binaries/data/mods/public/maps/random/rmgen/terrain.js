@@ -1,61 +1,35 @@
-//////////////////////////////////////////////////////////////////////
-//	Terrain
-//
-//	Abstract class for terrain placers
-//
-//////////////////////////////////////////////////////////////////////
+/**
+ * A Terrain is a class that modifies an arbitrary property of a given tile.
+ */
 
-function Terrain() {}
-
-Terrain.prototype.place = function(x, z)
-{
-	// Clear old array
-	g_Map.terrainObjects[x][z] = undefined;
-
-	this.placeNew(x, z);
-};
-
-Terrain.prototype.placeNew = function() {};
-
-//////////////////////////////////////////////////////////////////////
-//	SimpleTerrain
-//
-//	Class for placing simple terrains
-//		(one texture and one tree per tile)
-//
-//	texture: Terrain texture name
-//	treeType: Optional template of the tree entity for this terrain
-//
-//////////////////////////////////////////////////////////////////////
-
-function SimpleTerrain(texture, treeType)
+/**
+ * SimpleTerrain paints the given texture on the terrain.
+ *
+ * Optionally it places an entity on the affected tiles and
+ * replaces prior entities added by SimpleTerrain on the same tile.
+ */
+function SimpleTerrain(texture, templateName = undefined)
 {
 	if (texture === undefined)
 		throw new Error("SimpleTerrain: texture not defined");
 
 	this.texture = texture;
-	this.treeType = treeType;
+	this.templateName = templateName;
 }
 
-SimpleTerrain.prototype = new Terrain();
-SimpleTerrain.prototype.constructor = SimpleTerrain;
-SimpleTerrain.prototype.placeNew = function(x, z)
+SimpleTerrain.prototype.place = function(x, z)
 {
-	if (this.treeType !== undefined && g_Map.validT(Math.round(x), Math.round(z)))
-		g_Map.terrainObjects[x][z] = new Entity(this.treeType, 0, x + 0.5, z + 0.5, randFloat(0, 2 * PI));
+	if (g_Map.validT(x, z))
+		g_Map.terrainObjects[x][z] = this.templateName ? new Entity(this.templateName, 0, x + 0.5, z + 0.5, randFloat(0, 2 * Math.PI)) : undefined;
 
 	g_Map.texture[x][z] = g_Map.getTextureID(this.texture);
 };
 
-//////////////////////////////////////////////////////////////////////
-//	RandomTerrain
-//
-//	Class for placing random SimpleTerrains
-//
-//	terrains: Array of SimpleTerrain objects
-//
-//////////////////////////////////////////////////////////////////////
-
+/**
+ * RandomTerrain places one of the given Terrains on the tile.
+ * It choses a random Terrain each tile.
+ * This is commonly used to create heterogeneous forests.
+ */
 function RandomTerrain(terrains)
 {
 	if (!(terrains instanceof Array) || !terrains.length)
@@ -64,9 +38,7 @@ function RandomTerrain(terrains)
 	this.terrains = terrains;
 }
 
-RandomTerrain.prototype = new Terrain();
-RandomTerrain.prototype.constructor = RandomTerrain;
-RandomTerrain.prototype.placeNew = function(x, z)
+RandomTerrain.prototype.place = function(x, z)
 {
-	pickRandom(this.terrains).placeNew(x, z);
+	pickRandom(this.terrains).place(x, z);
 };

@@ -29,6 +29,7 @@
 #include "network/StunClient.h"
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
+#include "ps/GUID.h"
 #include "ps/Profile.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptRuntime.h"
@@ -51,7 +52,6 @@
 #define MAX_CLIENTS 41
 
 #define	DEFAULT_SERVER_NAME			L"Unnamed Server"
-#define DEFAULT_WELCOME_MESSAGE		L"Welcome"
 
 static const int CHANNEL_COUNT = 1;
 
@@ -139,7 +139,6 @@ CNetServerWorker::CNetServerWorker(int autostartPlayers) :
 	m_ServerTurnManager = NULL;
 
 	m_ServerName = DEFAULT_SERVER_NAME;
-	m_WelcomeMessage = DEFAULT_WELCOME_MESSAGE;
 }
 
 CNetServerWorker::~CNetServerWorker()
@@ -871,9 +870,27 @@ bool CNetServerWorker::OnClientHandshake(void* context, CFsmEvent* event)
 		return false;
 	}
 
+	CStr guid = ps_generate_guid();
+	int count = 0;
+	// Ensure unique GUID
+	while(std::find_if(
+		server.m_Sessions.begin(), server.m_Sessions.end(),
+		[&guid] (const CNetServerSession* session)
+		{ return session->GetGUID() == guid; }) != server.m_Sessions.end())
+	{
+		if (++count > 100)
+		{
+			session->Disconnect(NDR_UNKNOWN);
+			return true;
+		}
+		guid = ps_generate_guid();
+	}
+
+	session->SetGUID(guid);
+
 	CSrvHandshakeResponseMessage handshakeResponse;
 	handshakeResponse.m_UseProtocolVersion = PS_PROTOCOL_VERSION;
-	handshakeResponse.m_Message = server.m_WelcomeMessage;
+	handshakeResponse.m_GUID = guid;
 	handshakeResponse.m_Flags = 0;
 	session->SendMessage(&handshakeResponse);
 
@@ -897,7 +914,6 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 
 	CAuthenticateMessage* message = (CAuthenticateMessage*)event->GetParamRef();
 	CStrW username = SanitisePlayerName(message->m_Name);
-	CStr guid = message->m_GUID;
 
 	// Either deduplicate or prohibit join if name is in use
 	bool duplicatePlayernames = false;
@@ -911,16 +927,6 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 		!= server.m_Sessions.end())
 	{
 		session->Disconnect(NDR_PLAYERNAME_IN_USE);
-		return true;
-	}
-
-	// Disconnect user if the provided GUID is already in use
-	if (std::find_if(
-		server.m_Sessions.begin(), server.m_Sessions.end(),
-		[&guid] (const CNetServerSession* session)
-		{ return session->GetGUID() == guid; }) != server.m_Sessions.end())
-	{
-		session->Disconnect(NDR_PLAYERGUID_IN_USE);
 		return true;
 	}
 
@@ -1018,7 +1024,6 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 	u32 newHostID = server.m_NextHostID++;
 
 	session->SetUserName(username);
-	session->SetGUID(message->m_GUID);
 	session->SetHostID(newHostID);
 	session->SetLocalClient(message->m_IsLocalClient);
 
