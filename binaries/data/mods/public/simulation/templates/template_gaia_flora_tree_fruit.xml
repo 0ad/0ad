@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_gaia_flora_tree">
+  <Footprint>
+    <Height>10.0</Height>
+  </Footprint>
+  <Identity>
+    <Tooltip disable=""/>
+    <Icon>gaia/flora_bush_berry.png</Icon>
+  </Identity>
+  <Minimap>
+    <Type>food</Type>
+    <Color r="155" g="204" b="102"/>
+  </Minimap>
+  <Obstruction>
+    <Static width="3.0" depth="3.0"/>
+  </Obstruction>
+  <ResourceSupply>
+    <Amount>400</Amount>
+    <Type>food.fruit</Type>
+  </ResourceSupply>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/resource/sel_fruit.xml</select>
+    </SoundGroups>
+  </Sound>
+</Entity>
