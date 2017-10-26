@@ -60,43 +60,6 @@ TerrainPainter.prototype.paint = function(area)
 		this.terrain.place(point.x, point.z);
 };
 
-// Constants for using SmoothElevationPainter
-const ELEVATION_SET = 0;
-const ELEVATION_MODIFY = 1;
-
-/////////////////////////////////////////////////////////////////////////////
-//	ElevationPainter
-//
-//	Class for painting elevation over an area
-//
-//	elevation: Target elevation/height to be painted
-//
-/////////////////////////////////////////////////////////////////////////////
-
-function ElevationPainter(elevation)
-{
-	this.elevation = elevation;
-	this.DX = [0, 1, 1, 0];
-	this.DZ = [0, 0, 1, 1];
-}
-
-ElevationPainter.prototype.paint = function(area)
-{
-	var length = area.points.length;
-	var elevation = this.elevation;
-
-	for (var i=0; i < length; i++)
-	{
-		var pt = area.points[i];
-
-		for (var j=0; j < 4; j++)
-		{
-			if (g_Map.inMapBounds(pt.x + this.DX[j],pt.z + this.DZ[j]))
-				g_Map.height[pt.x + this.DX[j]][pt.z + this.DZ[j]] = elevation;
-		}
-	}
-};
-
 /////////////////////////////////////////////////////////////////////////////
 //	LayeredPainter
 //
@@ -207,6 +170,37 @@ LayeredPainter.prototype.paint = function(area)
 		}
 	}
 };
+
+/**
+ * Sets the given height in the given Area.
+ */
+function ElevationPainter(elevation)
+{
+	this.elevation = elevation;
+}
+
+ElevationPainter.prototype.paint = function(area)
+{
+	for (let point of area.points)
+		for (let [dx, dz] of [[0, 0], [1, 0], [0, 1], [1, 1]])
+		{
+			let x = point.x + dx;
+			let z = point.z + dz;
+
+			if (g_Map.inMapBounds(x, z))
+				g_Map.height[x][z] = this.elevation;
+		}
+};
+
+/**
+ * Absolute height change.
+ */
+const ELEVATION_SET = 0;
+
+/**
+ * Relative height change.
+ */
+const ELEVATION_MODIFY = 1;
 
 /////////////////////////////////////////////////////////////////////////////
 //	SmoothElevationPainter
