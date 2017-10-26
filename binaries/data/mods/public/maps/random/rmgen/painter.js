@@ -60,115 +60,45 @@ TerrainPainter.prototype.paint = function(area)
 		this.terrain.place(point.x, point.z);
 };
 
-/////////////////////////////////////////////////////////////////////////////
-//	LayeredPainter
-//
-//	Class for painting multiple layered terrains over an area
-//
-// 	terrainArray: Array of terrain painter objects
-//	widths: Array of widths for each layer
-//
-/////////////////////////////////////////////////////////////////////////////
-
+/**
+ * The LayeredPainter sets different Terrains within the Area.
+ * It choses the Terrain depending on the distance to the border of the Area.
+ *
+ * The Terrains given in the first array are painted from the border of the area towards the center (outermost first).
+ * The widths array has one item less than the Terrains array.
+ * Each width specifies how many tiles the corresponding Terrain should be wide (distance to the prior Terrain border).
+ * The remaining area is filled with the last terrain.
+ */
 function LayeredPainter(terrainArray, widths)
 {
 	if (!(terrainArray instanceof Array))
 		throw new Error("LayeredPainter: terrains must be an array!");
 
-	this.terrains = [];
-	for (var i = 0; i < terrainArray.length; ++i)
-	{
-		this.terrains.push(createTerrain(terrainArray[i]));
-	}
-
+	this.terrains = terrainArray.map(terrain => createTerrain(terrain));
 	this.widths = widths;
 }
 
 LayeredPainter.prototype.paint = function(area)
 {
-	var size = getMapSize();
-	var saw = [];
-	var dist = [];
+	breadthFirstSearchPaint({
+		"area": area,
+		"brushSize": 1,
+		"gridSize": getMapSize(),
+		"withinArea": (areaID, x, z) => g_Map.area[x][z] == areaID,
+		"paintTile": (point, distance) => {
+			let width = 0;
+			let i = 0;
 
-	// init typed arrays
-	for (var i = 0; i < size; ++i)
-	{
-		saw[i] = new Uint8Array(size);		// bool / uint8
-		dist[i] = new Uint16Array(size);	// uint16
-	}
-
-	// Point queue (implemented with array)
-	var pointQ = [];
-
-	// push edge points
-	var pts = area.points;
-	var length = pts.length;
-	var areaID = area.getID();
-
-	for (var i=0; i < length; i++)
-	{
-		var x = pts[i].x;
-		var z = pts[i].z;
-
-		for (var dx=-1; dx <= 1; dx++)
-		{
-			var nx = x+dx;
-			for (var dz=-1; dz <= 1; dz++)
+			for (; i < this.widths.length; ++i)
 			{
-				var nz = z+dz;
-
-				if (g_Map.inMapBounds(nx, nz) && g_Map.area[nx][nz] != areaID && !saw[nx][nz])
-				{
-					saw[nx][nz] = 1;
-					dist[nx][nz] = 0;
-					pointQ.push(new PointXZ(nx, nz));
-				}
-			}
-		}
-	}
-
-	// do BFS inwards to find distances to edge
-	while (pointQ.length)
-	{
-		var pt = pointQ.shift();	// Pop queue
-		var px = pt.x;
-		var pz = pt.z;
-		var d = dist[px][pz];
-
-		// paint if in area
-		if (g_Map.area[px][pz] == areaID)
-		{
-			var w=0;
-			var i=0;
-
-			for (; i < this.widths.length; i++)
-			{
-				w += this.widths[i];
-				if (w >= d)
-				{
+				width += this.widths[i];
+				if (width >= distance)
 					break;
-				}
 			}
-			this.terrains[i].place(px, pz);
-		}
 
-		// enqueue neighbours
-		for (var dx=-1; dx<=1; dx++)
-		{
-			var nx = px+dx;
-			for (var dz=-1; dz<=1; dz++)
-			{
-				var nz = pz+dz;
-
-				if (g_Map.inMapBounds(nx, nz) && g_Map.area[nx][nz] == areaID && !saw[nx][nz])
-				{
-					saw[nx][nz] = 1;
-					dist[nx][nz] = d+1;
-					pointQ.push(new PointXZ(nx, nz));
-				}
-			}
+			this.terrains[i].place(point.x, point.z);
 		}
-	}
+	});
 };
 
 /**
@@ -202,19 +132,14 @@ const ELEVATION_SET = 0;
  */
 const ELEVATION_MODIFY = 1;
 
-/////////////////////////////////////////////////////////////////////////////
-//	SmoothElevationPainter
-//
-//	Class for painting elevation smoothly over an area
-//
-//	type: Type of elevation modification
-//			ELEVATION_MODIFY = relative
-//			ELEVATION_SET = absolute
-//	elevation: Target elevation/height of area
-//	blendRadius: How steep the elevation change is
-//
-/////////////////////////////////////////////////////////////////////////////
-
+/**
+ * Sets the elevation of the Area in dependence to the given blendRadius and
+ * interpolates it with the existing elevation.
+ *
+ * @param type - ELEVATION_MODIFY or ELEVATION_SET.
+ * @param elevation - target height.
+ * @param blendRadius - How steep the elevation change is.
+ */
 function SmoothElevationPainter(type, elevation, blendRadius)
 {
 	this.type = type;
@@ -225,171 +150,167 @@ function SmoothElevationPainter(type, elevation, blendRadius)
 		throw new Error("SmoothElevationPainter: invalid type '" + type + "'");
 }
 
-SmoothElevationPainter.prototype.checkInArea = function(areaID, x, z)
-{
-	// Check given tile and its neighbors
-	return (
-		(g_Map.inMapBounds(x, z) && g_Map.area[x][z] == areaID)
-		|| (g_Map.inMapBounds(x-1, z) && g_Map.area[x-1][z] == areaID)
-		|| (g_Map.inMapBounds(x, z-1) && g_Map.area[x][z-1] == areaID)
-		|| (g_Map.inMapBounds(x-1, z-1) && g_Map.area[x-1][z-1] == areaID)
-	);
-};
-
 SmoothElevationPainter.prototype.paint = function(area)
 {
-	var pointQ = [];
-	var pts = area.points;
-	var heightPts = [];
+	// The heightmap grid has one more vertex per side than the tile grid
+	let heightmapSize = g_Map.height.length;
 
-	var mapSize = getMapSize()+1;
-
-	var saw = [];
-	var dist = [];
-	var gotHeightPt = [];
-	var newHeight = [];
-
-	// init typed arrays
-	for (var i = 0; i < mapSize; ++i)
+	// Remember height inside the area before changing it
+	let gotHeightPt = [];
+	let newHeight = [];
+	for (let i = 0; i < heightmapSize; ++i)
 	{
-		saw[i] = new Uint8Array(mapSize);			// bool / uint8
-		dist[i] = new Uint16Array(mapSize);			// uint16
-		gotHeightPt[i] = new Uint8Array(mapSize);	// bool / uint8
-		newHeight[i] = new Float32Array(mapSize);	// float32
+		gotHeightPt[i] = new Uint8Array(heightmapSize);
+		newHeight[i] = new Float32Array(heightmapSize);
 	}
 
-	var length = pts.length;
-	var areaID = area.getID();
-
-	// get a list of all points
-	for (var i=0; i < length; i++)
-	{
-		var x = pts[i].x;
-		var z = pts[i].z;
-
-		for (var dx=-1; dx <= 2; dx++)
+	// Get heightmap grid vertices within or adjacent to the area
+	let brushSize = 2;
+	let heightPoints = [];
+	for (let point of area.points)
+		for (let dx = -1; dx < 1 + brushSize; ++dx)
 		{
-			var nx = x+dx;
-			for (var dz=-1; dz <= 2; dz++)
+			let nx = point.x + dx;
+			for (let dz = -1; dz < 1 + brushSize; ++dz)
 			{
-				var nz = z+dz;
+				let nz = point.z + dz;
 
 				if (g_Map.validH(nx, nz) && !gotHeightPt[nx][nz])
 				{
-					gotHeightPt[nx][nz] = 1;
-					heightPts.push(new PointXZ(nx, nz));
 					newHeight[nx][nz] = g_Map.height[nx][nz];
+					gotHeightPt[nx][nz] = 1;
+					heightPoints.push(new PointXZ(nx, nz));
 				}
 			}
 		}
-	}
 
-	// push edge points
-	for (var i=0; i < length; i++)
+	// Every vertex of a tile is considered within the area
+	let withinArea = (areaID, x, z) => {
+		for (let [dx, dz] of [[0, 0], [1, 0], [0, 1], [1, 1]])
+			if (g_Map.inMapBounds(x - dx, z - dz) && g_Map.area[x - dx][z - dz] == areaID)
+				return true;
+
+		return false;
+	};
+
+	// Change height inside the area depending on the distance to the border
+	breadthFirstSearchPaint({
+		"area": area,
+		"brushSize": brushSize,
+		"gridSize": heightmapSize,
+		"withinArea": withinArea,
+		"paintTile": (point, distance) => {
+			let a = 1;
+			if (distance <= this.blendRadius)
+				a = (distance - 1) / this.blendRadius;
+
+			if (this.type == ELEVATION_SET)
+				newHeight[point.x][point.z] = (1 - a) * g_Map.height[point.x][point.z];
+
+			newHeight[point.x][point.z] += a * this.elevation;
+		}
+	});
+
+	// Smooth everything out
+	let areaID = area.getID();
+	for (let point of heightPoints)
 	{
-		var x = pts[i].x;
-		var z = pts[i].z;
-		for (var dx=-1; dx <= 2; dx++)
+		if (!withinArea(areaID, point.x, point.z))
+			continue;
+
+		let count = 8;
+		let sum = 8 * newHeight[point.x][point.z];
+
+		for (let dx = -1; dx <= 1; ++dx)
 		{
-			var nx = x+dx;
-			for (var dz=-1; dz <= 2; dz++)
+			let nx = point.x + dx;
+
+			for (let dz = -1; dz <= 1; ++dz)
 			{
-				var nz = z+dz;
+				let nz = point.z + dz;
 
-				if (g_Map.validH(nx, nz) && !this.checkInArea(areaID, nx, nz) && !saw[nx][nz])
+				if (g_Map.validH(nx, nz))
 				{
-					saw[nx][nz]= 1;
-					dist[nx][nz] = 0;
-					pointQ.push(new PointXZ(nx, nz));
-				}
-			}
-		}
-	}
-
-	// do BFS inwards to find distances to edge
-	while(pointQ.length)
-	{
-		var pt = pointQ.shift();
-		var px = pt.x;
-		var pz = pt.z;
-		var d = dist[px][pz];
-
-		// paint if in area
-		if (g_Map.validH(px, pz) && this.checkInArea(areaID, px, pz))
-		{
-			if (d <= this.blendRadius)
-			{
-				var a = (d-1) / this.blendRadius;
-				if (this.type == ELEVATION_SET)
-				{
-					newHeight[px][pz] = a*this.elevation + (1-a)*g_Map.height[px][pz];
-				}
-				else
-				{	// type == MODIFY
-					newHeight[px][pz] += a*this.elevation;
-				}
-			}
-			else
-			{	// also happens when blendRadius == 0
-				if (this.type == ELEVATION_SET)
-				{
-					newHeight[px][pz] = this.elevation;
-				}
-				else
-				{	// type == MODIFY
-					newHeight[px][pz] += this.elevation;
+					sum += newHeight[nx][nz];
+					++count;
 				}
 			}
 		}
 
-		// enqueue neighbours
-		for (var dx=-1; dx <= 1; dx++)
-		{
-			var nx = px+dx;
-			for (var dz=-1; dz <= 1; dz++)
-			{
-				var nz = pz+dz;
-
-				if (g_Map.validH(nx, nz) && this.checkInArea(areaID, nx, nz) && !saw[nx][nz])
-				{
-					saw[nx][nz] = 1;
-					dist[nx][nz] = d+1;
-					pointQ.push(new PointXZ(nx, nz));
-				}
-			}
-		}
-	}
-
-	length = heightPts.length;
-
-	// smooth everything out
-	for (var i = 0; i < length; ++i)
-	{
-		var pt = heightPts[i];
-		var px = pt.x;
-		var pz = pt.z;
-
-		if (this.checkInArea(areaID, px, pz))
-		{
-			var sum = 8 * newHeight[px][pz];
-			var count = 8;
-
-			for (var dx=-1; dx <= 1; dx++)
-			{
-				var nx = px+dx;
-				for (var dz=-1; dz <= 1; dz++)
-				{
-					var nz = pz+dz;
-
-					if (g_Map.validH(nx, nz))
-					{
-						sum += newHeight[nx][nz];
-						count++;
-					}
-				}
-			}
-
-			g_Map.height[px][pz] = sum/count;
-		}
+		g_Map.height[point.x][point.z] = sum / count;
 	}
 };
+
+/**
+ * Calls the given paintTile function on all points within the given Area,
+ * providing the distance to the border of the area (1 for points on the border).
+ * This function can traverse any grid, for instance the tile grid or the larger heightmap grid.
+ *
+ * @property area - An Area storing the set of points on the tile grid.
+ * @property gridSize - The size of the grid to be traversed.
+ * @property brushSize - Number of points per axis on the grid that are considered a point on the tilemap.
+ * @property withinArea - Whether a point of the grid is considered part of the Area.
+ * @property paintTile - Called for each point of the Area of the tile grid.
+ */
+function breadthFirstSearchPaint(args)
+{
+	// These variables save which points were visited already and the shortest distance to the area
+	let saw = [];
+	let dist = [];
+	for (let i = 0; i < args.gridSize; ++i)
+	{
+		saw[i] = new Uint8Array(args.gridSize);
+		dist[i] = new Uint16Array(args.gridSize);
+	}
+
+	let withinGrid = (x, z) => Math.min(x, z) >= 0 && Math.max(x, z) < args.gridSize;
+
+	// Find all points outside of the area, mark them as seen and set zero distance
+	let pointQueue = [];
+	let areaID = args.area.getID();
+	for (let point of args.area.points)
+		// The brushSize is added because the entire brushSize is by definition part of the area
+		for (let dx = -1; dx < 1 + args.brushSize; ++dx)
+		{
+			let nx = point.x + dx;
+			for (let dz = -1; dz < 1 + args.brushSize; ++dz)
+			{
+				let nz = point.z + dz;
+
+				if (!withinGrid(nx, nz) || args.withinArea(areaID, nx, nz) || saw[nx][nz])
+					continue;
+
+				saw[nx][nz] = 1;
+				dist[nx][nz] = 0;
+				pointQueue.push(new PointXZ(nx, nz));
+			}
+		}
+
+	// Visit these points, then direct neighbors of them, then their neighbors recursively.
+	// Call the paintTile method for each point within the area, with distance == 1 for the border.
+	while (pointQueue.length)
+	{
+		let point = pointQueue.shift();
+		let distance = dist[point.x][point.z];
+
+		if (args.withinArea(areaID, point.x, point.z))
+			args.paintTile(point, distance);
+
+		// Enqueue neighboring points
+		for (let dx = -1; dx <= 1; ++dx)
+		{
+			let nx = point.x + dx;
+			for (let dz = -1; dz <= 1; ++dz)
+			{
+				let nz = point.z + dz;
+
+				if (!withinGrid(nx, nz) || !args.withinArea(areaID, nx, nz) || saw[nx][nz])
+					continue;
+
+				saw[nx][nz] = 1;
+				dist[nx][nz] = distance + 1;
+				pointQueue.push(new PointXZ(nx, nz));
+			}
+		}
+	}
+}
