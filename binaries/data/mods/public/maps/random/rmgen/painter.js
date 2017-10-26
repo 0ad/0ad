@@ -139,12 +139,14 @@ const ELEVATION_MODIFY = 1;
  * @param type - ELEVATION_MODIFY or ELEVATION_SET.
  * @param elevation - target height.
  * @param blendRadius - How steep the elevation change is.
+ * @param randomElevation - maximum random elevation difference added to each vertex.
  */
-function SmoothElevationPainter(type, elevation, blendRadius)
+function SmoothElevationPainter(type, elevation, blendRadius, randomElevation = 0)
 {
 	this.type = type;
 	this.elevation = elevation;
 	this.blendRadius = blendRadius;
+	this.randomElevation = randomElevation;
 
 	if (type != ELEVATION_SET && type != ELEVATION_MODIFY)
 		throw new Error("SmoothElevationPainter: invalid type '" + type + "'");
@@ -207,7 +209,7 @@ SmoothElevationPainter.prototype.paint = function(area)
 			if (this.type == ELEVATION_SET)
 				newHeight[point.x][point.z] = (1 - a) * g_Map.height[point.x][point.z];
 
-			newHeight[point.x][point.z] += a * this.elevation;
+			newHeight[point.x][point.z] += a * this.elevation + randFloat(-0.5, 0.5) * this.randomElevation;
 		}
 	});
 
