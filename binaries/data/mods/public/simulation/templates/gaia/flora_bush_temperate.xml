@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_gaia_flora_tree">
-  <Footprint>
-    <Circle radius="3.0"/>
-    <Height>3.0</Height>
-  </Footprint>
+<Entity parent="template_gaia_flora_bush">
   <Identity>
     <SpecificName>Deciduous Bush</SpecificName>
   </Identity>
   <ResourceSupply>
     <Amount>50</Amount>
-    <Type>wood.tree</Type>
   </ResourceSupply>
   <VisualActor>
     <Actor>props/flora/bush_tempe_a.xml</Actor>

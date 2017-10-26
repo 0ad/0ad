@@ -1,13 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_gaia">
-  <Footprint>
-    <Circle radius="2.5"/>
-    <Height>15.0</Height>
-  </Footprint>
   <Identity>
-    <GenericName>Generic Flora</GenericName>
+    <Classes datatype="tokens">ForestPlant</Classes>
+    <Icon>gaia/flora_tree_generic.png</Icon>
   </Identity>
+  <Minimap>
+    <Type>wood</Type>
+    <Color r="69" g="107" b="68"/>
+  </Minimap>
   <Obstruction>
-    <Static width="3.0" depth="3.0"/>
+    <Static width="1.6" depth="1.6"/>
   </Obstruction>
+  <ResourceSupply>
+    <KillBeforeGather>false</KillBeforeGather>
+    <Amount>200</Amount>
+    <Type>wood.tree</Type>
+    <MaxGatherers>8</MaxGatherers>
+  </ResourceSupply>
+  <Selectable>
+    <EditorOnly disable=""/>
+    <Overlay>
+      <Texture>
+        <MainTexture>circle/128x128.png</MainTexture>
+        <MainTextureMask>circle/128x128_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/resource/sel_tree.xml</select>
+    </SoundGroups>
+  </Sound>
+  <VisualActor>
+    <SelectionShape>
+      <Footprint/>
+    </SelectionShape>
+  </VisualActor>
 </Entity>

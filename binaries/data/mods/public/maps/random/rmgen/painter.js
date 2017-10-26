@@ -1,3 +1,65 @@
+/**
+ * A Painter modifies an arbitrary feature in a given Area, for instance terrain textures, elevation or calling other painters on that Area.
+ * Typically the area is determined by a Placer called from createArea or createAreas.
+ */
+
+/**
+ * Marks the affected area with the given tileclass.
+ */
+function TileClassPainter(tileClass)
+{
+	this.tileClass = tileClass;
+}
+
+TileClassPainter.prototype.paint = function(area)
+{
+	for (let point of area.points)
+		this.tileClass.add(point.x, point.z);
+};
+
+/**
+ * Removes the given tileclass from a given area.
+ */
+function TileClassUnPainter(tileClass)
+{
+	this.tileClass = tileClass;
+}
+
+TileClassUnPainter.prototype.paint = function(area)
+{
+	for (let point of area.points)
+		this.tileClass.remove(point.x, point.z);
+};
+
+/**
+ * The MultiPainter applies several painters to the given area.
+ */
+function MultiPainter(painters)
+{
+	this.painters = painters;
+}
+
+MultiPainter.prototype.paint = function(area)
+{
+	for (let painter of this.painters)
+		painter.paint(area);
+};
+
+/**
+ * The TerrainPainter draws a given terrain texture over the given area.
+ * When used with TERRAIN_SEPARATOR, an entity is placed on each tile.
+ */
+function TerrainPainter(terrain)
+{
+	this.terrain = createTerrain(terrain);
+}
+
+TerrainPainter.prototype.paint = function(area)
+{
+	for (let point of area.points)
+		this.terrain.place(point.x, point.z);
+};
+
 // Constants for using SmoothElevationPainter
 const ELEVATION_SET = 0;
 const ELEVATION_MODIFY = 1;
@@ -143,28 +205,6 @@ LayeredPainter.prototype.paint = function(area)
 				}
 			}
 		}
-	}
-};
-
-/////////////////////////////////////////////////////////////////////////////
-//	MultiPainter
-//
-//	Class for applying multiple painters over an area
-//
-//	painters: Array of painter objects
-//
-/////////////////////////////////////////////////////////////////////////////
-
-function MultiPainter(painters)
-{
-	this.painters = painters;
-}
-
-MultiPainter.prototype.paint = function(area)
-{
-	for (var i=0; i < this.painters.length; i++)
-	{
-		this.painters[i].paint(area);
 	}
 };
 
@@ -357,77 +397,5 @@ SmoothElevationPainter.prototype.paint = function(area)
 
 			g_Map.height[px][pz] = sum/count;
 		}
-	}
-};
-
-/////////////////////////////////////////////////////////////////////////////
-//	TerrainPainter
-//
-//	Class for painting a terrain over an area
-//
-//	terrain: Terrain placer object
-//
-/////////////////////////////////////////////////////////////////////////////
-
-function TerrainPainter(terrain)
-{
-	this.terrain = createTerrain(terrain);
-}
-
-TerrainPainter.prototype.paint = function(area)
-{
-	var length = area.points.length;
-	for (var i=0; i < length; i++)
-	{
-		var pt = area.points[i];
-		this.terrain.place(pt.x, pt.z);
-	}
-};
-
-/////////////////////////////////////////////////////////////////////////////
-//	TileClassPainter
-//
-//	Class for painting tileClasses over an area
-//
-//	tileClass: TileClass object
-//
-/////////////////////////////////////////////////////////////////////////////
-
-function TileClassPainter(tileClass)
-{
-	this.tileClass = tileClass;
-}
-
-TileClassPainter.prototype.paint = function(area)
-{
-	var length = area.points.length;
-	for (var i=0; i < length; i++)
-	{
-		var pt = area.points[i];
-		this.tileClass.add(pt.x, pt.z);
-	}
-};
-
-/////////////////////////////////////////////////////////////////////////////
-//	TileClassUnPainter
-//
-//	Class for unpainting tileClasses over an area
-//
-//	tileClass: TileClass object
-//
-/////////////////////////////////////////////////////////////////////////////
-
-function TileClassUnPainter(tileClass)
-{
-	this.tileClass = tileClass;
-}
-
-TileClassUnPainter.prototype.paint = function(area)
-{
-	var length = area.points.length;
-	for (var i=0; i < length; i++)
-	{
-		var pt = area.points[i];
-		this.tileClass.remove(pt.x, pt.z);
 	}
 };

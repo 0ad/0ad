@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_gaia_flora_bush_berry">
-  <Obstruction>
-    <Static width="4.0" depth="4.0"/>
-  </Obstruction>
+  <Identity>
+    <SpecificName>Berries</SpecificName>
+    <Tooltip>Gather the fruit from these bushes to accumulate Food.</Tooltip>
+    <Icon>gaia/flora_bush_berry.png</Icon>
+  </Identity>
   <VisualActor>
     <Actor>props/flora/berry_bush.xml</Actor>
   </VisualActor>
