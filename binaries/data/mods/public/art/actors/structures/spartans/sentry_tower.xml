@@ -23,11 +23,7 @@
   </group>
   <group>
     <variant frequency="1" name="ungarrisoned"/>
-    <variant name="garrisoned">
-      <props>
-        <prop actor="props/special/common/garrison_flag_hele.xml" attachpoint="garrisoned"/>
-      </props>
-    </variant>
+    <variant name="garrisoned"/>
   </group>
   <group>
     <variant frequency="1" name="alive"/>

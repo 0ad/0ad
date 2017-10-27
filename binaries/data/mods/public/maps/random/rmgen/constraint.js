@@ -81,8 +81,8 @@ StayInTileClassConstraint.prototype.allows = function(x, z)
 
 /**
  * The BorderTileClassConstraint is met if there are
- * no tiles marked with the given TileClass within distanceInside of the tile,
- * but tiles marked with the given TileClass within distanceOutside of the tile.
+ * tiles not marked with the given TileClass within distanceInside of the tile and
+ * tiles marked with the given TileClass within distanceOutside of the tile.
  */
 function BorderTileClassConstraint(tileClassID, distanceInside, distanceOutside)
 {
