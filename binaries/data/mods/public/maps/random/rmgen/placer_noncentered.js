@@ -1,3 +1,39 @@
+/**
+ * A Non-Centered Placer generates an shape (array of points) at a fixed location meeting a Constraint and
+ * is typically called by createArea.
+ * Since this type of Placer has no x and z property, its location cannot be randomized using createAreas.
+ */
+
+/**
+ * The RectPlacer provides the points between (x1, z1) and (x2, z2) if they meet the Constraint.
+ */
+function RectPlacer(x1, z1, x2, z2)
+{
+	this.x1 = x1;
+	this.z1 = z1;
+	this.x2 = x2;
+	this.z2 = z2;
+
+	if (x1 > x2 || z1 > z2)
+		throw new Error("RectPlacer: invalid bounds");
+}
+
+RectPlacer.prototype.place = function(constraint)
+{
+	if (!g_Map.inMapBounds(this.x1, this.z1) || !g_Map.inMapBounds(this.x2, this.z2))
+		return undefined;
+
+	let points = [];
+
+	for (let x = this.x1; x <= this.x2; ++x)
+		for (let z = this.z1; z <= this.z2; ++z)
+			if (constraint.allows(x, z))
+				points.push(new PointXZ(x, z));
+			else
+				return undefined;
+
+	return points;
+};
 
 /////////////////////////////////////////////////////////////////////////////////////////
 //	PathPlacer
