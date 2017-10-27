@@ -112,31 +112,6 @@ var maxTreeDensity = min(256 * (192 + 8 * numPlayers) / (mapSize * mapSize), 1);
 var bushChance = 1/3; // 1 means 50% chance in deepest wood, 0.5 means 25% chance in deepest wood
 
 ////////////////
-//
-//  Some general functions
-//
-////////////////
-
-function HeightPlacer(lowerBound, upperBound) {
-    this.lowerBound = lowerBound;
-    this.upperBound = upperBound;
-}
-
-HeightPlacer.prototype.place = function (constraint) {
-	constraint = (constraint || new NullConstraint());
-
-    var ret = [];
-    for (var x = 0; x < g_Map.size; x++) {
-        for (var y = 0; y < g_Map.size; y++) {
-            if (g_Map.height[x][y] >= this.lowerBound && g_Map.height[x][y] <= this.upperBound && constraint.allows(x, y)) {
-                ret.push(new PointXZ(x, y));
-            }
-        }
-    }
-    return ret;
-};
-
-////////////////
 // Set height limits and water level by map size
 ////////////////
 

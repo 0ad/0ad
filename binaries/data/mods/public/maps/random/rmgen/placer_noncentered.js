@@ -35,6 +35,29 @@ RectPlacer.prototype.place = function(constraint)
 	return points;
 };
 
+/**
+ * The HeightPlacer provides all points between the minimum and maximum elevation that meet the Constraint.
+ */
+function HeightPlacer(minElevation, maxElevation)
+{
+	this.minElevation = minElevation;
+	this.maxElevation = maxElevation;
+}
+
+HeightPlacer.prototype.place = function(constraint)
+{
+	let mapSize = getMapSize();
+	let points = [];
+	for (let x = 0; x < mapSize; ++x)
+		for (let z = 0; z < mapSize; ++z)
+			if (g_Map.height[x][z] >= this.minElevation &&
+			    g_Map.height[x][z] <= this.maxElevation &&
+			    constraint.allows(x, z))
+				points.push(new PointXZ(x, z));
+
+	return points;
+};
+
 /////////////////////////////////////////////////////////////////////////////////////////
 //	PathPlacer
 //
