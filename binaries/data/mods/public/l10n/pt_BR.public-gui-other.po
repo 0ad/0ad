@@ -26,15 +26,16 @@
 # PedroDognani <pedro_dognani_@hotmail.com>, 2015
 # Rafael Monteiro <rafaelimabsb2@hotmail.com>, 2016
 # Raphael Mendonça, 2014
+# Romoaldo Cordeiro <Romoaldo.Cordeiro@gmail.com>, 2017
 # Thiago Perrotta <inactive+thiagowfx@transifex.com>, 2015
 # Victor Gregório <vt_marv@hotmail.com>, 2017
 # Werther Ramalho <werther23@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-10-09 09:04+0200\n"
-"PO-Revision-Date: 2017-10-09 15:52+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-10-25 09:03+0200\n"
+"PO-Revision-Date: 2017-10-26 12:11+0000\n"
+"Last-Translator: Romoaldo Cordeiro <Romoaldo.Cordeiro@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,17 +46,17 @@ msgstr ""
 #: globalscripts/DamageTypes.js:6
 msgctxt "damage type"
 msgid "Hack"
-msgstr ""
+msgstr "Cortar"
 
 #: globalscripts/DamageTypes.js:7
 msgctxt "damage type"
 msgid "Pierce"
-msgstr ""
+msgstr "Perfurar"
 
 #: globalscripts/DamageTypes.js:8
 msgctxt "damage type"
 msgid "Crush"
-msgstr ""
+msgstr "Esmagar"
 
 #: gui/civinfo/civinfo.js:96
 #, javascript-format
@@ -93,12 +94,12 @@ msgstr "Heróis"
 msgid "History of the %(civilization)s"
 msgstr "História da %(civilization)s"
 
-#: gui/common/color.js:154
+#: gui/common/color.js:165
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames."
 msgstr "Pressione %(hotkey)s para completar o nome dos jogadores automaticamente."
 
-#: gui/common/color.js:157
+#: gui/common/color.js:168
 msgctxt "hotkey"
 msgid "Tab"
 msgstr "Tab"
@@ -128,16 +129,16 @@ msgstr "FPS: %(fps)4s"
 msgid "Loading Aborted"
 msgstr "Carregamento Abortado"
 
-#: gui/common/functions_utility.js:112
+#: gui/common/functions_utility.js:111
 msgctxt "map selection"
 msgid "Random"
 msgstr "Aleatório"
 
-#: gui/common/functions_utility.js:123
+#: gui/common/functions_utility.js:122
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:123
+#: gui/common/functions_utility.js:122
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -170,17 +171,17 @@ msgstr "DELETAR"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
 #: gui/options/options.js:297 gui/options/options.js:350
-#: gui/options/options.js:377 gui/pregame/mainmenu.js:254
-#: gui/replaymenu/replay_actions.js:170 gui/savedgames/load.js:188
-#: gui/savedgames/save.js:66 gui/summary/summary.js:373
+#: gui/options/options.js:376 gui/pregame/mainmenu.js:253
+#: gui/replaymenu/replay_actions.js:170 gui/savedgames/load.js:184
+#: gui/savedgames/save.js:66 gui/summary/summary.js:375
 msgid "No"
 msgstr "Não"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
 #: gui/options/options.js:297 gui/options/options.js:350
-#: gui/options/options.js:377 gui/pregame/mainmenu.js:254
-#: gui/replaymenu/replay_actions.js:170 gui/savedgames/load.js:188
-#: gui/savedgames/save.js:66 gui/summary/summary.js:373
+#: gui/options/options.js:376 gui/pregame/mainmenu.js:253
+#: gui/replaymenu/replay_actions.js:170 gui/savedgames/load.js:184
+#: gui/savedgames/save.js:66 gui/summary/summary.js:375
 msgid "Yes"
 msgstr "Sim"
 
@@ -492,11 +493,11 @@ msgctxt "gamesetup option"
 msgid "disabled"
 msgstr "desativado"
 
-#: gui/common/gamedescription.js:425
+#: gui/common/gamedescription.js:424
 msgid "Victorious"
 msgstr "Vitorioso"
 
-#: gui/common/gamedescription.js:430
+#: gui/common/gamedescription.js:429
 msgid "Defeated"
 msgstr "Derrota"
 
@@ -563,53 +564,48 @@ msgstr "Nome de jogador em uso. Se você foi desconectado, tente novamente em al
 msgid "Server full"
 msgstr "Servidor cheio"
 
-#: gui/common/network.js:76
-msgid ""
-"Player identifier in use. If you were disconnected, retry in few seconds"
-msgstr "Identificador do jogador em uso. Se você foi desconectado, tente novamente em alguns segundos."
-
-#: gui/common/network.js:79
+#: gui/common/network.js:78
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[Valor inválido %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:91
+#: gui/common/network.js:90
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Razão: %(reason)s."
 
-#: gui/common/network.js:96
+#: gui/common/network.js:95
 msgid "Lost connection to the server."
 msgstr "Conexão com servidor perdida."
 
-#: gui/common/network.js:97
+#: gui/common/network.js:96
 msgid "Failed to connect to the server."
 msgstr "Falha ao conectar ao servidor."
 
-#: gui/common/network.js:99
+#: gui/common/network.js:98
 msgid "Disconnected"
 msgstr "Desconectado"
 
-#: gui/common/network.js:107
+#: gui/common/network.js:106
 msgid "Only the host can kick clients!"
 msgstr "Somente o anfitrião pode expulsar clientes!"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
-#: gui/common/network.js:161
+#: gui/common/network.js:160
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
 msgstr "Usuários (%(num)s): %(users)s"
 
-#: gui/common/network.js:162 gui/common/tooltips.js:80
+#: gui/common/network.js:161 gui/common/tooltips.js:80
 #: gui/common/tooltips.js:194 gui/common/tooltips.js:208
 #: gui/common/tooltips.js:286 gui/common/tooltips.js:319
 #: gui/common/tooltips.js:352 gui/common/tooltips.js:624
 #: gui/common/tooltips.js:658 gui/common/tooltips.js:724
 #: gui/replaymenu/replay_actions.js:93 gui/replaymenu/replay_actions.js:94
-#: gui/savedgames/load.js:119 gui/savedgames/load.js:175
-#: gui/savedgames/load.js:178
+#: gui/savedgames/load.js:117 gui/savedgames/load.js:171
+#: gui/savedgames/load.js:174
 msgid ", "
 msgstr ","
 
@@ -1123,16 +1119,16 @@ msgstr "Saque:"
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
 
-#: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:77
+#: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
 msgid "None"
 msgstr "Nenhum"
 
-#: gui/locale/locale_advanced.js:92
+#: gui/locale/locale_advanced.js:91
 msgid "invalid locale"
 msgstr "Localidade Inválida"
 
-#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:158
+#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:157
 #: gui/splashscreen/splashscreen.xml:(caption):28
 msgid "OK"
 msgstr "OK"
@@ -1168,7 +1164,7 @@ msgid ""
 msgstr "Restaurar as opções irá apagar suas configurações salvas. Deseja continuar?"
 
 #: gui/options/options.js:296 gui/options/options.js:349
-#: gui/options/options.js:376 gui/savedgames/load.js:187
+#: gui/options/options.js:375 gui/savedgames/load.js:183
 msgid "Warning"
 msgstr "Aviso"
 
@@ -1176,7 +1172,7 @@ msgstr "Aviso"
 msgid "Some setting values are invalid! Are you sure to save them?"
 msgstr "Alguns valores das configurações são inválidos! Você tem certeza que deseja salvá-los?"
 
-#: gui/options/options.js:375
+#: gui/options/options.js:374
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Você possui modificações não salvas, deseja fechar esta janela?"
 
@@ -1193,34 +1189,34 @@ msgstr "Enviando (%f%%)"
 msgid "upload succeeded"
 msgstr "Enviado com sucesso!"
 
-#: gui/pregame/mainmenu.js:100
+#: gui/pregame/mainmenu.js:99
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
 msgstr "falha de envio (%(errorCode)s)"
 
-#: gui/pregame/mainmenu.js:104
+#: gui/pregame/mainmenu.js:103
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
 msgstr "falha de envio (%(errorMessage)s)"
 
-#: gui/pregame/mainmenu.js:106
+#: gui/pregame/mainmenu.js:105
 msgid "unknown"
 msgstr "desconhecido"
 
-#: gui/pregame/mainmenu.js:121
+#: gui/pregame/mainmenu.js:120
 msgid "Thank you for helping improve 0 A.D.!"
 msgstr "Obrigado por ajudar a melhorar o 0 A.D.!"
 
-#: gui/pregame/mainmenu.js:122
+#: gui/pregame/mainmenu.js:121
 msgid "Anonymous feedback is currently enabled."
 msgstr "O feedback anônimo está atualmente habilitado."
 
-#: gui/pregame/mainmenu.js:123
+#: gui/pregame/mainmenu.js:122
 #, javascript-format
 msgid "Status: %(status)s."
 msgstr "Status: %(status)s."
 
-#: gui/pregame/mainmenu.js:147
+#: gui/pregame/mainmenu.js:146
 #, javascript-format
 msgid ""
 "%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
@@ -1233,51 +1229,51 @@ msgstr "%(startWarning)sAviso:%(endWarning)s Você parece estar usando gráficos
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:156
+#: gui/pregame/mainmenu.js:155
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "Por favor, clique em \"Ler Mais\" para mais informações ou \"OK\" para continuar."
 
-#: gui/pregame/mainmenu.js:157
+#: gui/pregame/mainmenu.js:156
 msgid "WARNING!"
 msgstr "ATENÇÃO!"
 
-#: gui/pregame/mainmenu.js:158
+#: gui/pregame/mainmenu.js:157
 msgid "Read More"
 msgstr "Ler Mais"
 
-#: gui/pregame/mainmenu.js:240
+#: gui/pregame/mainmenu.js:239
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Build: %(buildDate)s (%(revision)s)"
 
-#: gui/pregame/mainmenu.js:252
+#: gui/pregame/mainmenu.js:251
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Você tem certeza que quer sair de 0 A.D.?"
 
-#: gui/pregame/mainmenu.js:253 gui/summary/summary.js:372
+#: gui/pregame/mainmenu.js:252 gui/summary/summary.js:374
 msgid "Confirmation"
 msgstr "Confirmação"
 
-#: gui/pregame/mainmenu.js:268
+#: gui/pregame/mainmenu.js:267
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "O editor de cenário não esta disponível ou falhou ao carregar. Veja o log do jogo para obter mais informações."
 
-#: gui/pregame/mainmenu.js:269 gui/replaymenu/replay_actions.js:120
+#: gui/pregame/mainmenu.js:268 gui/replaymenu/replay_actions.js:120
 msgid "Error"
 msgstr "Erro"
 
-#: gui/pregame/mainmenu.js:275
+#: gui/pregame/mainmenu.js:274
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "Iniciar o lobby multijogador. \\[DESATIVADO POR COMPILAÇÃO]"
 
-#: gui/pregame/mainmenu.js:280 gui/pregame/mainmenu.xml:(caption):69
+#: gui/pregame/mainmenu.js:279 gui/pregame/mainmenu.xml:(caption):69
 #: gui/pregame/mainmenu.xml:(caption):96
 msgid "Technical Details"
 msgstr "Detalhes Técnicos"
 
-#: gui/pregame/mainmenu.js:285 gui/pregame/mainmenu.xml:(caption):147
+#: gui/pregame/mainmenu.js:284 gui/pregame/mainmenu.xml:(caption):147
 msgid "Manual"
 msgstr "Manual"
 
@@ -1290,12 +1286,12 @@ msgstr "%(health_min)s para %(health_max)s"
 msgid "You don't have the same mods active as the replay does."
 msgstr "Você não tem os mesmos mods ativos que o replay tem."
 
-#: gui/replaymenu/replay_actions.js:93 gui/savedgames/load.js:174
+#: gui/replaymenu/replay_actions.js:93 gui/savedgames/load.js:170
 #, javascript-format
 msgid "Required: %(mods)s"
 msgstr "Necessário: %(mods)s"
 
-#: gui/replaymenu/replay_actions.js:94 gui/savedgames/load.js:177
+#: gui/replaymenu/replay_actions.js:94 gui/savedgames/load.js:173
 #, javascript-format
 msgid "Active: %(mods)s"
 msgstr "Ativo: %(mods)s"
@@ -1426,38 +1422,38 @@ msgstr "aaaa-MM-dd HH:mm"
 msgid "yyyy-MM"
 msgstr "aaaa-MM"
 
-#: gui/savedgames/load.js:119
+#: gui/savedgames/load.js:117
 #, javascript-format
 msgid "Mods: %(mods)s"
 msgstr "Mods: %(mods)s"
 
-#: gui/savedgames/load.js:149
+#: gui/savedgames/load.js:147
 msgid "This saved game may not be compatible:"
 msgstr "Este jogo salvo pode não ser compatível:"
 
-#: gui/savedgames/load.js:154
+#: gui/savedgames/load.js:151
 #, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
 msgstr "Precisa da versão %(requiredVersion)s do 0 A.D., enquanto você está executando a versão %(currentVersion)s."
 
-#: gui/savedgames/load.js:159
+#: gui/savedgames/load.js:156
 msgid "It needs an older version of 0 A.D."
 msgstr "É necessário uma versão mais antiga de 0 A.D."
 
-#: gui/savedgames/load.js:163
+#: gui/savedgames/load.js:159
 #, javascript-format
 msgid ""
 "It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
 "savegame version %(currentVersion)s."
 msgstr "Precisa da versão de salvar jogo %(requiredVersion)s do 0 A.D., enquanto você tem a versão de salvar jogo %(currentVersion)s."
 
-#: gui/savedgames/load.js:173
+#: gui/savedgames/load.js:169
 msgid "The savegame needs a different set of mods:"
 msgstr "O save necessita de um conjunto diferente de mods:"
 
-#: gui/savedgames/load.js:182
+#: gui/savedgames/load.js:178
 msgid "Do you still want to proceed?"
 msgstr "Ainda quer continuar?"
 
@@ -1639,7 +1635,7 @@ msgstr "Proporção Matar / Mortos"
 msgid ""
 "Bribes\n"
 "(%(succeeded)s / %(failed)s)"
-msgstr ""
+msgstr "Suborno\n(%(succeeded)s / %(failed)s)"
 
 #: gui/summary/layout.js:195
 msgid "Map exploration"
@@ -1687,7 +1683,7 @@ msgstr "Capturados"
 
 #: gui/summary/summary.js:63
 msgid "Succeeded"
-msgstr ""
+msgstr "Conseguiu"
 
 #: gui/summary/summary.js:68
 msgid "Destroyed"
@@ -1719,50 +1715,50 @@ msgstr "Resultado"
 
 #: gui/summary/summary.js:103
 msgid "Failed"
-msgstr ""
+msgstr "Falhou"
 
 #: gui/summary/summary.js:111
 msgid "∞"
 msgstr "∞"
 
-#: gui/summary/summary.js:371
+#: gui/summary/summary.js:373
 msgid "Are you sure you want to quit the lobby?"
 msgstr "Tem certeza que deseja sair do lobby?"
 
-#: gui/summary/summary.js:427
+#: gui/summary/summary.js:429
 msgid "Current Scores"
 msgstr "Pontuação Atual"
 
-#: gui/summary/summary.js:429
+#: gui/summary/summary.js:431
 msgid "Scores at the end of the game."
 msgstr "Resultados no final do jogo."
 
-#: gui/summary/summary.js:431
+#: gui/summary/summary.js:433
 msgid "You have been disconnected."
 msgstr "Você foi desconectado."
 
-#: gui/summary/summary.js:433
+#: gui/summary/summary.js:435
 msgid "You have left the game."
 msgstr "Você saiu do jogo."
 
-#: gui/summary/summary.js:435
+#: gui/summary/summary.js:437
 msgid "You have won the battle!"
 msgstr "Você venceu a batalha!"
 
-#: gui/summary/summary.js:437
+#: gui/summary/summary.js:439
 msgid "You have been defeated..."
 msgstr "Você foi derrotado..."
 
-#: gui/summary/summary.js:438
+#: gui/summary/summary.js:440
 msgid "You have abandoned the game."
 msgstr "Você abandonou o jogo."
 
-#: gui/summary/summary.js:443
+#: gui/summary/summary.js:445
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Tempo de jogo decorrido: %(time)s"
 
-#: gui/summary/summary.js:451
+#: gui/summary/summary.js:453
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s%(mapType)s"

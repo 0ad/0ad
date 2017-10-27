@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-10-09 09:04+0200\n"
-"PO-Revision-Date: 2017-10-09 15:52+0000\n"
+"POT-Creation-Date: 2017-10-25 09:03+0200\n"
+"PO-Revision-Date: 2017-10-25 14:52+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -85,12 +85,12 @@ msgstr "الأبطال"
 msgid "History of the %(civilization)s"
 msgstr "تاريخ %(civilization)s"
 
-#: gui/common/color.js:154
+#: gui/common/color.js:165
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames."
 msgstr "اضغط %(hotkey)s لإكمال أسماء اللاعبين آليًّا."
 
-#: gui/common/color.js:157
+#: gui/common/color.js:168
 msgctxt "hotkey"
 msgid "Tab"
 msgstr "Tab"
@@ -120,16 +120,16 @@ msgstr "إطار/ثا: %(fps)4s"
 msgid "Loading Aborted"
 msgstr "أُجهض التّحميل"
 
-#: gui/common/functions_utility.js:112
+#: gui/common/functions_utility.js:111
 msgctxt "map selection"
 msgid "Random"
 msgstr "عشوائيّة"
 
-#: gui/common/functions_utility.js:123
+#: gui/common/functions_utility.js:122
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:123
+#: gui/common/functions_utility.js:122
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -162,17 +162,17 @@ msgstr "احذف"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
 #: gui/options/options.js:297 gui/options/options.js:350
-#: gui/options/options.js:377 gui/pregame/mainmenu.js:254
-#: gui/replaymenu/replay_actions.js:170 gui/savedgames/load.js:188
-#: gui/savedgames/save.js:66 gui/summary/summary.js:373
+#: gui/options/options.js:376 gui/pregame/mainmenu.js:253
+#: gui/replaymenu/replay_actions.js:170 gui/savedgames/load.js:184
+#: gui/savedgames/save.js:66 gui/summary/summary.js:375
 msgid "No"
 msgstr "لا"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
 #: gui/options/options.js:297 gui/options/options.js:350
-#: gui/options/options.js:377 gui/pregame/mainmenu.js:254
-#: gui/replaymenu/replay_actions.js:170 gui/savedgames/load.js:188
-#: gui/savedgames/save.js:66 gui/summary/summary.js:373
+#: gui/options/options.js:376 gui/pregame/mainmenu.js:253
+#: gui/replaymenu/replay_actions.js:170 gui/savedgames/load.js:184
+#: gui/savedgames/save.js:66 gui/summary/summary.js:375
 msgid "Yes"
 msgstr "نعم"
 
@@ -500,11 +500,11 @@ msgctxt "gamesetup option"
 msgid "disabled"
 msgstr "مُفعل"
 
-#: gui/common/gamedescription.js:425
+#: gui/common/gamedescription.js:424
 msgid "Victorious"
 msgstr "الفائز"
 
-#: gui/common/gamedescription.js:430
+#: gui/common/gamedescription.js:429
 msgid "Defeated"
 msgstr "المهزوم"
 
@@ -571,53 +571,48 @@ msgstr "اسم اللاعب هذا يُستخدم. إن كان اتّصالك ق
 msgid "Server full"
 msgstr "الخادوم ممتلئ"
 
-#: gui/common/network.js:76
-msgid ""
-"Player identifier in use. If you were disconnected, retry in few seconds"
-msgstr ""
-
-#: gui/common/network.js:79
+#: gui/common/network.js:78
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[القيمة %(id)s غير صالحة]"
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:91
+#: gui/common/network.js:90
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "السّبب: %(reason)s."
 
-#: gui/common/network.js:96
+#: gui/common/network.js:95
 msgid "Lost connection to the server."
 msgstr "فُقد الاتّصال بالخادوم."
 
-#: gui/common/network.js:97
+#: gui/common/network.js:96
 msgid "Failed to connect to the server."
 msgstr "فشل الاتّصال مع الخادوم."
 
-#: gui/common/network.js:99
+#: gui/common/network.js:98
 msgid "Disconnected"
 msgstr "قُطع الاتّصال"
 
-#: gui/common/network.js:107
+#: gui/common/network.js:106
 msgid "Only the host can kick clients!"
 msgstr "يمكن للمضيف فقد طرد العملاء!"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
-#: gui/common/network.js:161
+#: gui/common/network.js:160
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
 msgstr "المستخدمون (%(num)s): %(users)s"
 
-#: gui/common/network.js:162 gui/common/tooltips.js:80
+#: gui/common/network.js:161 gui/common/tooltips.js:80
 #: gui/common/tooltips.js:194 gui/common/tooltips.js:208
 #: gui/common/tooltips.js:286 gui/common/tooltips.js:319
 #: gui/common/tooltips.js:352 gui/common/tooltips.js:624
 #: gui/common/tooltips.js:658 gui/common/tooltips.js:724
 #: gui/replaymenu/replay_actions.js:93 gui/replaymenu/replay_actions.js:94
-#: gui/savedgames/load.js:119 gui/savedgames/load.js:175
-#: gui/savedgames/load.js:178
+#: gui/savedgames/load.js:117 gui/savedgames/load.js:171
+#: gui/savedgames/load.js:174
 msgid ", "
 msgstr "، و "
 
@@ -1167,16 +1162,16 @@ msgstr "غنيمه:"
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
 
-#: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:77
+#: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
 msgid "None"
 msgstr "بلا"
 
-#: gui/locale/locale_advanced.js:92
+#: gui/locale/locale_advanced.js:91
 msgid "invalid locale"
 msgstr "محليّة غير صالحة"
 
-#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:158
+#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:157
 #: gui/splashscreen/splashscreen.xml:(caption):28
 msgid "OK"
 msgstr "حسنًا"
@@ -1212,7 +1207,7 @@ msgid ""
 msgstr "سيؤدّي تصفير الإعدادات إلى مسح تلك المحفوظة. أتريد المتابعة؟"
 
 #: gui/options/options.js:296 gui/options/options.js:349
-#: gui/options/options.js:376 gui/savedgames/load.js:187
+#: gui/options/options.js:375 gui/savedgames/load.js:183
 msgid "Warning"
 msgstr "تحذير"
 
@@ -1220,7 +1215,7 @@ msgstr "تحذير"
 msgid "Some setting values are invalid! Are you sure to save them?"
 msgstr ""
 
-#: gui/options/options.js:375
+#: gui/options/options.js:374
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "ثمّة تعديلات غير محفوظة، أتريد إغلاق هذه النّافذة؟"
 
@@ -1237,34 +1232,34 @@ msgstr "يرفع (%f%%)"
 msgid "upload succeeded"
 msgstr "نجح الرّفع"
 
-#: gui/pregame/mainmenu.js:100
+#: gui/pregame/mainmenu.js:99
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
 msgstr "فشل الرّفع (%(errorCode)s)"
 
-#: gui/pregame/mainmenu.js:104
+#: gui/pregame/mainmenu.js:103
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
 msgstr "فشل الرّفع (%(errorMessage)s)"
 
-#: gui/pregame/mainmenu.js:106
+#: gui/pregame/mainmenu.js:105
 msgid "unknown"
 msgstr "مجهولة"
 
-#: gui/pregame/mainmenu.js:121
+#: gui/pregame/mainmenu.js:120
 msgid "Thank you for helping improve 0 A.D.!"
 msgstr "شكرًا لمساعدتنا في تطوير «0م»!"
 
-#: gui/pregame/mainmenu.js:122
+#: gui/pregame/mainmenu.js:121
 msgid "Anonymous feedback is currently enabled."
 msgstr "التّغذية الاسترجاعيّة المجهولة الهويّة مفعّلة حاليًّا."
 
-#: gui/pregame/mainmenu.js:123
+#: gui/pregame/mainmenu.js:122
 #, javascript-format
 msgid "Status: %(status)s."
 msgstr "الحالة: %(status)s."
 
-#: gui/pregame/mainmenu.js:147
+#: gui/pregame/mainmenu.js:146
 #, javascript-format
 msgid ""
 "%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
@@ -1277,51 +1272,51 @@ msgstr ""
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:156
+#: gui/pregame/mainmenu.js:155
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "رجاءً انقر \"اطّلع على المزيد\" لمعلومات أكثر أو \"حسنًا\" للمتابعة."
 
-#: gui/pregame/mainmenu.js:157
+#: gui/pregame/mainmenu.js:156
 msgid "WARNING!"
 msgstr "تحذير!"
 
-#: gui/pregame/mainmenu.js:158
+#: gui/pregame/mainmenu.js:157
 msgid "Read More"
 msgstr "اطّلع على المزيد"
 
-#: gui/pregame/mainmenu.js:240
+#: gui/pregame/mainmenu.js:239
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "البناء: %(buildDate)s ‏(%(revision)s)"
 
-#: gui/pregame/mainmenu.js:252
+#: gui/pregame/mainmenu.js:251
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "أمتأكّد من إنهاء «0م»؟"
 
-#: gui/pregame/mainmenu.js:253 gui/summary/summary.js:372
+#: gui/pregame/mainmenu.js:252 gui/summary/summary.js:374
 msgid "Confirmation"
 msgstr "أكّد"
 
-#: gui/pregame/mainmenu.js:268
+#: gui/pregame/mainmenu.js:267
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "محرّر السيناريو غير متوفّر أو فشل تحميله. طالع سجلّات اللعبة لمعلومات أخرى."
 
-#: gui/pregame/mainmenu.js:269 gui/replaymenu/replay_actions.js:120
+#: gui/pregame/mainmenu.js:268 gui/replaymenu/replay_actions.js:120
 msgid "Error"
 msgstr "خطأ"
 
-#: gui/pregame/mainmenu.js:275
+#: gui/pregame/mainmenu.js:274
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "أطلق ردهة اللاعبين. \\[عُطّلت عند البناء]"
 
-#: gui/pregame/mainmenu.js:280 gui/pregame/mainmenu.xml:(caption):69
+#: gui/pregame/mainmenu.js:279 gui/pregame/mainmenu.xml:(caption):69
 #: gui/pregame/mainmenu.xml:(caption):96
 msgid "Technical Details"
 msgstr "التّفاصيل التّقنيّة"
 
-#: gui/pregame/mainmenu.js:285 gui/pregame/mainmenu.xml:(caption):147
+#: gui/pregame/mainmenu.js:284 gui/pregame/mainmenu.xml:(caption):147
 msgid "Manual"
 msgstr "الكتيّب"
 
@@ -1334,12 +1329,12 @@ msgstr ""
 msgid "You don't have the same mods active as the replay does."
 msgstr "ليست لديك ذات التّعديلات التي في هذه الإعادة."
 
-#: gui/replaymenu/replay_actions.js:93 gui/savedgames/load.js:174
+#: gui/replaymenu/replay_actions.js:93 gui/savedgames/load.js:170
 #, javascript-format
 msgid "Required: %(mods)s"
 msgstr "المطلوبة: %(mods)s"
 
-#: gui/replaymenu/replay_actions.js:94 gui/savedgames/load.js:177
+#: gui/replaymenu/replay_actions.js:94 gui/savedgames/load.js:173
 #, javascript-format
 msgid "Active: %(mods)s"
 msgstr "النّشطة: %(mods)s"
@@ -1478,38 +1473,38 @@ msgstr "dd/MM/yyyy HH:mm"
 msgid "yyyy-MM"
 msgstr "MM/yyyy"
 
-#: gui/savedgames/load.js:119
+#: gui/savedgames/load.js:117
 #, javascript-format
 msgid "Mods: %(mods)s"
 msgstr "التّعديلات: %(mods)s"
 
-#: gui/savedgames/load.js:149
+#: gui/savedgames/load.js:147
 msgid "This saved game may not be compatible:"
 msgstr "قد لا تكون هذه اللعبة المحفوظة متوافقة:"
 
-#: gui/savedgames/load.js:154
+#: gui/savedgames/load.js:151
 #, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
 msgstr "تتطلّب الإصدارة %(requiredVersion)s من «0م»، إلّا أنّك تشغّل الإصدارة %(currentVersion)s."
 
-#: gui/savedgames/load.js:159
+#: gui/savedgames/load.js:156
 msgid "It needs an older version of 0 A.D."
 msgstr "تتطلّب إصدارة قديمة من «0م»."
 
-#: gui/savedgames/load.js:163
+#: gui/savedgames/load.js:159
 #, javascript-format
 msgid ""
 "It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
 "savegame version %(currentVersion)s."
 msgstr ""
 
-#: gui/savedgames/load.js:173
+#: gui/savedgames/load.js:169
 msgid "The savegame needs a different set of mods:"
 msgstr "اللعبة المحفوظة تحتاج مجموعة مختلفة من التّعديلات:"
 
-#: gui/savedgames/load.js:182
+#: gui/savedgames/load.js:178
 msgid "Do you still want to proceed?"
 msgstr "أما زلت تريد المضيّ قدمًا؟"
 
@@ -1777,44 +1772,44 @@ msgstr ""
 msgid "∞"
 msgstr ""
 
-#: gui/summary/summary.js:371
+#: gui/summary/summary.js:373
 msgid "Are you sure you want to quit the lobby?"
 msgstr "أمتأكّد من الخروج من الرّدهة؟"
 
-#: gui/summary/summary.js:427
+#: gui/summary/summary.js:429
 msgid "Current Scores"
 msgstr "النّتائج الحاليّة"
 
-#: gui/summary/summary.js:429
+#: gui/summary/summary.js:431
 msgid "Scores at the end of the game."
 msgstr "النّتائج في نهاية اللعبة."
 
-#: gui/summary/summary.js:431
+#: gui/summary/summary.js:433
 msgid "You have been disconnected."
 msgstr "لقد قُطع اتّصالك."
 
-#: gui/summary/summary.js:433
+#: gui/summary/summary.js:435
 msgid "You have left the game."
 msgstr "لقد تركت اللعبة."
 
-#: gui/summary/summary.js:435
+#: gui/summary/summary.js:437
 msgid "You have won the battle!"
 msgstr "لقد ربحت المعركة!"
 
-#: gui/summary/summary.js:437
+#: gui/summary/summary.js:439
 msgid "You have been defeated..."
 msgstr "لقد هُزمت..."
 
-#: gui/summary/summary.js:438
+#: gui/summary/summary.js:440
 msgid "You have abandoned the game."
 msgstr ""
 
-#: gui/summary/summary.js:443
+#: gui/summary/summary.js:445
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr ""
 
-#: gui/summary/summary.js:451
+#: gui/summary/summary.js:453
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
