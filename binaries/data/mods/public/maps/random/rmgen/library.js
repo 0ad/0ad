@@ -4,8 +4,6 @@ const TERRAIN_SEPARATOR = "|";
 const SEA_LEVEL = 20.0;
 const CELL_SIZE = 4;
 const HEIGHT_UNITS_PER_METRE = 92;
-const MIN_MAP_SIZE = 128;
-const MAX_MAP_SIZE = 512;
 const MAP_BORDER_WIDTH = 3;
 const FALLBACK_CIV = "athen";
 /**
@@ -37,9 +35,9 @@ function sizeToFraction(s)
 	return s / getMapArea();
 }
 
-function scaleByMapSize(min, max)
+function scaleByMapSize(min, max, minMapSize = 128, maxMapSize = 512)
 {
-	return min + (max - min) * (g_Map.size - MIN_MAP_SIZE) / (MAX_MAP_SIZE - MIN_MAP_SIZE);
+	return min + (max - min) * (g_Map.size - minMapSize) / (maxMapSize - minMapSize);
 }
 
 function cos(x)
