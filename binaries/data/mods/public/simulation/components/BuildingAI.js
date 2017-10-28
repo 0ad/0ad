@@ -338,7 +338,7 @@ BuildingAI.prototype.FireArrows = function()
 		if (selectedTarget && this.CheckTargetVisible(selectedTarget))
 		{
 			cmpAttack.PerformAttack(attackType, selectedTarget);
-			PlaySound("attack", this.entity);
+			PlaySound("attack_" + attackType.toLowerCase(), this.entity);
 			continue;
 		}
 

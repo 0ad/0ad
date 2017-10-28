@@ -1924,7 +1924,7 @@ UnitAI.prototype.UnitFsmSpec = {
 						if (cmpFormation)
 							animationName = cmpFormation.GetFormationAnimation(this.entity, animationName);
 					}
-					this.SelectAnimation(animationName, false, 1.0, "attack");
+					this.SelectAnimation(animationName, false, 1.0, animationName);
 					this.SetAnimationSync(prepare, this.attackTimers.repeat);
 					this.StartTimer(prepare, this.attackTimers.repeat);
 					// TODO: we should probably only bother syncing projectile attacks, not melee

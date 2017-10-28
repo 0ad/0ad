@@ -85,7 +85,9 @@
       <order_garrison>voice/{lang}/civ/civ_{gender}_garrison.xml</order_garrison>
       <walk>actor/mounted/movement/walk.xml</walk>
       <run>actor/mounted/movement/walk.xml</run>
-      <attack>attack/weapon/sword.xml</attack>
+      <attack_impact_ranged>attack/impact/arrow_metal.xml</attack_impact_ranged>
+      <attack_melee>attack/weapon/sword.xml</attack_melee>
+      <attack_ranged>attack/weapon/arrowfly.xml</attack_ranged>
       <death>actor/fauna/death/death_horse.xml</death>
       <trained>interface/alarm/alarm_create_cav.xml</trained>
     </SoundGroups>
