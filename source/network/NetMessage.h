@@ -64,7 +64,7 @@ public:
 	 * @param pStart				Message start within the serialized buffer
 	 * @param pEnd					Message end within the serialized buffer
 	 * @return						The position in the buffer right after the
-	 *								message or NULL if an error occured
+	 *								message or NULL if an error occurred
 	 */
 	virtual const u8* Deserialize(const u8* pStart, const u8* pEnd);
 

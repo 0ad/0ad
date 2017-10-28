@@ -1004,7 +1004,7 @@ std::string XmppClient::StanzaErrorToString(gloox::StanzaError err) const
 	switch (err)
 	{
 	CASE(StanzaErrorUndefined, g_L10n.Translate("No error"));
-	DEBUG_CASE(StanzaErrorBadRequest, "Server recieved malformed XML");
+	DEBUG_CASE(StanzaErrorBadRequest, "Server received malformed XML");
 	CASE(StanzaErrorConflict, g_L10n.Translate("Player already logged in"));
 	DEBUG_CASE(StanzaErrorFeatureNotImplemented, "Server does not implement requested feature");
 	CASE(StanzaErrorForbidden, g_L10n.Translate("Forbidden"));
@@ -1054,8 +1054,8 @@ std::string XmppClient::ConnectionErrorToString(gloox::ConnectionError err) cons
 	DEBUG_CASE(ConnProxyAuthRequired, "The HTTP/SOCKS5 proxy requires authentication");
 	DEBUG_CASE(ConnProxyAuthFailed, "HTTP/SOCKS5 proxy authentication failed");
 	DEBUG_CASE(ConnProxyNoSupportedAuth, "The HTTP/SOCKS5 proxy requires an unsupported authentication mechanism");
-	CASE(ConnIoError, g_L10n.Translate("An I/O error occured"));
-	DEBUG_CASE(ConnParseError, "An XML parse error occured");
+	CASE(ConnIoError, g_L10n.Translate("An I/O error occurred"));
+	DEBUG_CASE(ConnParseError, "An XML parse error occurred");
 	CASE(ConnConnectionRefused, g_L10n.Translate("The connection was refused by the server"));
 	CASE(ConnDnsError, g_L10n.Translate("Resolving the server's hostname failed"));
 	CASE(ConnOutOfMemory, g_L10n.Translate("This system is out of memory"));
@@ -1090,7 +1090,7 @@ std::string XmppClient::RegistrationResultToString(gloox::RegistrationResult res
 	CASE(RegistrationNotAcceptable, g_L10n.Translate("Not all necessary information provided"));
 	CASE(RegistrationConflict, g_L10n.Translate("Username already exists"));
 	DEBUG_CASE(RegistrationNotAuthorized, "Account removal timeout or insufficiently secure channel for password change");
-	DEBUG_CASE(RegistrationBadRequest, "Server recieved incomplete request");
+	DEBUG_CASE(RegistrationBadRequest, "Server received an incomplete request");
 	DEBUG_CASE(RegistrationForbidden, "Registration forbidden");
 	DEBUG_CASE(RegistrationRequired, "Account cannot be removed as it does not exist");
 	DEBUG_CASE(RegistrationUnexpectedRequest, "This client is unregistered with the server");

@@ -216,7 +216,7 @@ public:
 	 * @param Width Width, 0 if no word-wrapping.
 	 * @param BufferZone space between text and edge, and space between text and images.
 	 * @param pObject Optional parameter for error output. Used *only* if error parsing fails,
-	 *		  and we need to be able to output which object the error occured in to aid the user.
+	 *		  and we need to be able to output which object the error occurred in to aid the user.
 	 */
 	SGUIText GenerateText(const CGUIString& Text, const CStrW& Font, const float& Width, const float& BufferZone, const IGUIObject* pObject = NULL);
 
