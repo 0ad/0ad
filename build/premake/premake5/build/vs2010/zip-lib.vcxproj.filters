@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{89AF369E-F58E-B539-FEA6-40106A051C9B}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\contrib\libzip\config.h" />
+    <ClInclude Include="..\..\contrib\libzip\include\zconf.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\contrib\libzip\include\zipconf.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\contrib\libzip\include\zlib.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\contrib\libzip\zconf.h" />
+    <ClInclude Include="..\..\contrib\libzip\zip.h" />
+    <ClInclude Include="..\..\contrib\libzip\zipconf.h" />
+    <ClInclude Include="..\..\contrib\libzip\zipint.h" />
+    <ClInclude Include="..\..\contrib\libzip\zlib.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\contrib\libzip\mkstemp.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_add.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_add_dir.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_add_entry.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_close.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_delete.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_dir_add.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_dirent.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_discard.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_entry.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_err_str.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_error.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_error_clear.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_error_get.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_error_get_sys_type.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_error_strerror.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_error_to_str.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_extra_field.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_extra_field_api.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_fclose.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_fdopen.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_file_add.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_file_error_clear.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_file_error_get.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_file_get_comment.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_file_get_external_attributes.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_file_get_offset.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_file_rename.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_file_replace.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_file_set_comment.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_file_set_external_attributes.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_file_strerror.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_filerange_crc.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_fopen.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_fopen_encrypted.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_fopen_index.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_fopen_index_encrypted.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_fread.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_get_archive_comment.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_get_archive_flag.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_get_compression_implementation.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_get_encryption_implementation.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_get_file_comment.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_get_name.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_get_num_entries.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_get_num_files.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_memdup.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_name_locate.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_new.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_open.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_rename.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_replace.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_set_archive_comment.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_set_archive_flag.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_set_default_password.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_set_file_comment.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_set_file_compression.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_set_name.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_source_buffer.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_source_close.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_source_crc.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_source_deflate.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_source_error.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_source_file.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_source_filep.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_source_free.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_source_function.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_source_layered.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_source_open.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_source_pkware.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_source_pop.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_source_read.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_source_stat.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_source_window.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_source_zip.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_source_zip_new.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_stat.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_stat_index.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_stat_init.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_strerror.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_string.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_unchange.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_unchange_all.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_unchange_archive.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_unchange_data.c" />
+    <ClCompile Include="..\..\contrib\libzip\zip_utf-8.c" />
+  </ItemGroup>
+</Project>

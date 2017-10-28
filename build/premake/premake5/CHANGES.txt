@@ -1,0 +1,344 @@
+--------------------
+  5.0 (in progress)
+--------------------
+
+See https://github.com/premake/premake-core/wiki/What's-New-in-5.0
+for the complete list of changes from the Premake 4.x series.
+
+Since 5.0-alpha11:
+
+* PR #617 fix switch/separator in rules_xml (@Blizzard)
+* PR #639 Add MSBuild target to Bootstrap.mak (@nta)
+* PR #644 Don't treat "dependson" libraries as "links" libraries in Xcode (@macsforme)
+* PR #659 Add C11 flag support for GCC (@resetnow)
+* PR #668 Fix sporadic failures when using make -j# (@UmbraSoftware)
+* PR #672 Fix issue with msc.getlinks and vstudio.getLinks returning different results when 'explicit' is true. (@Blizzard)
+* PR #673 Add additional tokens to fileconfig and vs2010+. (@Blizzard)
+* PR #675 update semver.lua (@Blizzard)
+* PR #678 Escape string literals passed to defines() for Xcode (@macsforme)
+* PR #679 Better detect debug build (@TurkeyMan)
+* PR #685 Detect native source files. (@TurkeyMan)
+* PR #686 Refactor language flags to go through the language API. (@Blizzard)
+* PR #687 Windows Registry (@tvandijck)
+* PR #690 make buffered_io available for c code too. (@Blizzard)
+* PR #707 Fix missing CA certs on Windows (@Jusonex)
+* PR #718 Adding support for NotSet characterset in VS2010+ (#79) (@Blizzard)
+* PR #721 Fix CodeLite linking issues (@Blizzard)
+* PR #728 Add support of UTF-8 for Windows (@DrLynix)
+* PR #732 Fix VS2013 and older always rebuilding when debug symbols explicitly … (@jstewart)
+* PR #733 Generated project files are now correctly located beside script (@LORgames)
+* PR #734 NuGet fixes (@aleksijuvani)
+* PR #735 Fixed issue with Clang not actually supporting floatingpoint 'strict' (@LORgames)
+* PR #736 Fixed issue where VS2010+ projects didn't support floatingpoint 'Default' (@LORgames)
+* PR #737 Add string.escapepattern function (@aleksijuvani)
+* PR #738 Update curl to 7.53.1 (@aleksijuvani)
+* PR #739 Refactor _OS, os.get() & os.is() (@Blizzard)
+* PR #740 Properly deprecate WinMain flag (@LORgames)
+* PR #742 Added BSD support (@LORgames)
+* PR #743 Clean up the deprecated APIs (@industriousone)
+* PR #745 Fixed issue with using startproject API in CodeLite (@LORgames)
+* PR #746 Fixed erroneous escape usages in VS2010+ (@LORgames)
+* PR #747 Bootstrap makefile now cleans up previous builds before building (@LORgames)
+* PR #748 os.translateCommands now supports multiple tokens (@LORgames)
+* PR #749 Updated packaging script (@LORgames)
+* PR #751 CompileAs element handles C++ now (@LORgames)
+* PR #752 Fixed various issues with compiling with VS2012 (@LORgames)
+* PR #753 Added proxy URL to http options (@LORgames)
+* PR #754 Fixed issue with the OBJDIR value not being escaped (@LORgames)
+* PR #755 Add 'supports_language' callback to action (@Blizzard)
+* PR #756 Fix a call to deprecated os.get() (@Blizzard)
+* PR #757 Increased consistency of p. usage (@LORgames)
+* PR #758 Cleaned up inconsistencies in whitespace (@LORgames)
+* PR #760 Adding ARM support for Visual Studio. (@Blizzard)
+* PR #761 Removed echo off in VS rules prop generator (@LORgames)
+* PR #763 [core] Print warnings in purple (@Blizzard)
+* PR #764 [core] get file/line information on deprecated API's. (@Blizzard)
+* PR #768 [core] Fix Visual Studio ExecutablePath settings. (@Blizzard)
+* PR #769 [core] new cmd path decorations with %[] syntax (@Blizzard)
+* PR #771 [core] Use 'compileAs' API (@Blizzard)
+* PR #772 [core] Don't set default entrypoint, rely on visual studio default. (@Blizzard)
+* PR #774 Assure a default toolset is always set. (@Blizzard)
+* PR #776 [core] Use 'cdialect' and 'cppdialect' instead of 'language'. (@Blizzard)
+* PR #778 Added support at the file level for the NoPCH flag in VS200x projects (@LORgames)
+* PR #779 add os.findheader() (@noresources)
+* PR #781 Allow filters to be written as tables: (@Blizzard)
+* PR #785 Unicode file functions for Windows (@DrLynix)
+* PR #786 Fix typo in embed.lua (@DrLynix)
+* PR #787 os.comparefiles function (@DrLynix)
+* PR #788 Provide a way to 'tag' systems, and filter on those tags. (@Blizzard)
+* PR #789 Add 'tags' filter api. (@Blizzard)
+* PR #790 [self-test] fix nil dereference crash in test.isequal (@Blizzard)
+* PR #798 create object directory before generating precompiled header (@noresources)
+* PR #801 Groups in XCode workspace working. (@ricka)
+* PR #802 Suppress mkdir warning on Windows if the folder already exists (@aleksijuvani)
+* PR #803 Gmake2 module (@Blizzard)
+* PR #804 Update to Lua 5.3.4 (@Blizzard)
+* PR #805 Add --insecure option for SSL curl requests. (@Blizzard)
+* PR #806 Add premake.isSemVer function (@Blizzard)
+* PR #807 Added visual studio support for dot net .tt files (@Blizzard)
+* PR #808 Added per file rtti generation for Visual Studio (@Blizzard)
+* PR #809 Added os touchfile and a workaround for vs2010 reloading (@Blizzard)
+* PR #810 Added masm handling of seh exception handling for VS2010 and above (@Blizzard)
+* PR #811 Add 'preferredtoolarchitecture' API (@Blizzard)
+* PR #812 Add support for cppdialect in VS2015 & VS2017 actions. (@Blizzard)
+* PR #813 Add json.encode_pretty wrapper. (@Blizzard)
+* PR #814 Add premake.info message function. (@Blizzard)
+* PR #815 Errors in red. (@Blizzard)
+* PR #816 Fixed C++17 flag to work with current versions of Clang. (@Blizzard)
+* PR #817 A few gmake2 fixes due to it moving into a module. (@premake)
+* PR #818 Make module of 'gmake' action. (@Blizzard)
+* PR #821 Attempt at colors on linux (@Blizzard)
+* PR #822 Move VStudio action into a module. (@Blizzard)
+* PR #824 Set default toolsets for vs2005 and vs2008. (@Blizzard)
+* PR #825 Use workspace everywhere (@Blizzard)
+* PR #826 Escape '&' -> '&amp;' (@Mikhael)
+* PR #827 Added option to create bundle and frameworks on macOS. (@Blizzard)
+* PR #828 Normalize path in 'getfileinfo' for local host. (@Blizzard)
+* PR #829 Reduced vs2010+ file sizes by removing redundant config settings (@Blizzard)
+* PR #830 Resource generator access (@Blizzard)
+* PR #831 Fix in oven, for options that are not strings. (@Blizzard)
+* PR #832 Fix a few compiler warnings (@Blizzard)
+* PR #833 Fix empty rules. (@Blizzard)
+* PR #834 Allow modules to register C code too. (@Blizzard)
+* PR #836 Hook setTextColor in tests, so on linux/mac we don't get random color… (@Blizzard)
+* PR #837 Removed "installer" kinds from vs2017. (@premake)
+* PR #838 Fix bug in 'action.isConfigurable' not checking for onWorkspace. (@Blizzard)
+* PR #839 Expand {...} macros in pre|post build commands for codelite (@Mikhael)
+* PR #840 Proof of concept for binary modules. (@tvandijck)
+* PR #842 Add bsd to the output of possible platforms (@ejb1123)
+* PR #843 fix bug in testing framework leaving tests in random working folders. (@tvandijck)
+* PR #844 fix unreferenced argument warning. (@tvandijck)
+* PR #849 Write out build log element for VS utility projects (@mendsley)
+* PR #851 Fix handling of unconventional NuGet .NET Framework folders (@aleksijuvani)
+* PR #854 [core] Add High as a new warning level (@Blizzard)
+* PR #855 Add filter for <Image> files (#135) (@Blizzard)
+* PR #856 Fix path_getrelative for Windows (@Blizzard)
+* PR #857 Fix action override targetos (@Blizzard)
+* PR #858 Fix Nuget package handling to support Unix-style paths (@tritao)
+* PR #859 Use NuGet package cache instead of the API if possible (@aleksijuvani)
+* PR #860 fix for build failure on macOS in debug. (@Blizzard)
+* PR #861 Allow embedding of binary resources. (@Blizzard)
+* PR #862 small optimization in oven. (@Blizzard)
+* PR #863 fix for duplicate 'allowed'. (@Blizzard)
+* PR #864 move tags into globally accessible table, so we don't have to overload… (@Blizzard)
+* PR #865 Remove "test.print" calls. (@Blizzard)
+* PR #866 fix os.istarget and os.ishost to use the systemTags table as well. (@Blizzard)
+* PR #867 Fix path translate (@Blizzard)
+* PR #868 Filters always have to use \ regardless of target platform. (@Blizzard)
+* PR #870 Fix prj.system bug in oven. (@Blizzard)
+* PR #872 Rework binmodule example to silence unit test console output (@starkos)
+* PR #874 Disable failing `os.findheader()` unit test on macOS (@starkos)
+
+
+Since 5.0-alpha10:
+
+* PR 523 New API symbols() replaces and extends "Symbols" flag
+* PR 524 New API symbolspath() specifies location of symbol database
+* PR 556 Add initialization hook for actions
+* PR 553 Enable "list of paths" for rule properties
+* PR 555 Allow multiple extensions for custom rules
+* PR 561 Add IA32 to vectorextensions()
+* PR 568 New API runpathdirs() adds rpath support
+* PR 525 Add support for Visual Studio Debug Fast Link setting
+* PR 401 Enable GCC link mode with ":static", ":shared"
+* PR 543 Remove architecture specific include paths on macOS
+* PR 554 Improve token expansion in rules
+* PR 570 Normalize paths to os.execute()
+* PR 546 Switch from openssl to mbedtls
+* PR 545 compilebuildoutputs() adds generated files to build
+* PR 575 New "raw" exporter
+* PR 581 Fix path.normalize() handling of ".." sequences
+* PR 587 Fix os.copyfile() handling of paths with spaces
+* PR 597 Enable edit-and-continue for VS 2015 64-bit builds
+* PR 583 Allow duplicate build commands
+* PR 605 Fix for objdir() forced path operator "!"
+* PR 603 Allow toolset-specific arguments to static linker
+* PR 608 Allow Visual Studio StaticLib projects to link dependencies
+* PR 610 Add defines and include paths to makefile projects
+* PR 611 Prevent force includes from breaking precompiled headers
+* PR 613 Fix os.match() detection of dot files
+* PR 607 Remove support for deprecated MonoDevelop project formats
+* PR 600 Fix VS support for symbolpath()
+* PR 521 Make Clang default toolset for macOS
+* PR 624 GCC support for C90 and C99
+* PR 628 New API linkbuildoutputs() disables automatic linking of *.obj files
+* PR 635 Improved parallelization of Makefile builds
+* PR 619 Per-file configuration support for C# projects
+* PR 649 Fix Visual Studio 2015 solution version identifier
+* PR 645 Add initial Visual Studio 2017 support
+
+Since 5.0-alpha9:
+
+* New: `symbols()`, replaces and extends flags {"Symbols"}
+* New: `symbolspath()` to specify location of symbol database
+* New: `table.shallowcopy()`
+* New: `vectorextensions` value "IA32"
+* Fix: --start-group/--end-group now only enclose project libraries
+
+Since 5.0-alpha8:
+
+* New: `buildcustomizations()` imports custom .props files for VS
+* New: `frameworksdir()` for Xcode and Make OS X projects
+* New: `nuget()` to specify NuGet packages for VS projects
+* New: `systemversion()` to specify VS target platform
+* New: `io.readfile()` and `io.writefile()`
+* New: Configurations may now be filtered by toolset
+* New: HTTP calls now support authentication
+* New: Support for XSD files in VS C# projects
+* New: MASM file categorization for VS
+* New: Integrated test framework for Premake module developers
+* Fix: VS filter ordering is now deterministic
+* Fix: VS projects and groups may now have the same name
+* Fix: May now use '.' within shell variable tokens
+* Fix: path.translate() now defaults to target system separator
+* Fix: getextension() now handles multiple dots
+* Fix: replaceextension() no longer adds leading dot
+* Fix: Improved configuration baking performance
+* Fix: Use -O0 for Clang debug optimization level
+* Fix: CodeLite now uses portable path separators
+* Fix: Improved ability to find precompiled headers in Makefiles
+* Fix: Properly escape defines in Makefile projects
+* Fix: Correct casing of UTF8 marker on Visual Studio rule files
+
+Since 5.0-alpha7:
+
+* New API: characterset()
+* New API: editorintegration()
+* New API: largeaddressaware()
+* New: Visual Studio projects now default to Unicode
+* New: Utility and Makefile project support for GMake exporter
+* New: Updated Curl to 7.45.0
+* Fix: Absolute path handling and error reporting in tokens
+* Fix: Limit use of TargetMachine to static resource library projects
+* Fix: Embed minified scripts by default, rather than bytecode
+* Fix: os.isfile() now detects Windows symbolic links
+* Fix: Correct handling of DOS environment variables in paths
+* Fix: Buffer overflow in buffered writes of large strings
+* Fix: Improved handling of absolute vs. relative path tokens
+* Fix: --cc command line option works again (stream009)
+* Fix: Use relative paths for PCH in Makefiles (stream009)
+
+Since 5.0-alpha6:
+
+* New API: additionalusingdirectories()
+* New API: largeaddressaware()
+* New: Embed bytecode to enable better debugging information
+* New: Display elapsed time at completion
+* New: Utility project support for Makefiles
+* New: Enabled SSL support in HTTP functions
+* Fix: Reduce memory usage during baking
+* Fix: Improve performance of wildcard processing
+* Fix: Preserve environment in recursive token expansion
+* Fix: Added missing defines in bootstrap script
+* Fix: Remove /usr/lib64 directories from Mac builds
+* Fix: Added newline after UTF-8 marker in Visual Studio projects
+* Fix: Duplicate escaping on include directories in Makefiles
+* Fix: os.isdir() now works with Windows symbolic links
+* Fix: Use correct path separators in C# response files
+
+Since 5.0-alpha5:
+
+* New API: ignoredefaultlibraries()
+* New: Support LLVM platform toolset in Visual Studio
+* New: Add framework folder path support
+* Fix: Improved path.normalize() handling of DOS drive letters (StiX)
+* Fix: os.match...() now supports more complex patterns
+* Fix: Only generate project files if changed
+* Fix: Improve handling of user platform names in Visual Studio
+* Fix: Duplicate ".lib" extensions in Visual Studio
+* Fix: Improve handling of mixed case command line options
+* Fix: Remove `/E` option from Windows copy operations
+* Fix: Multiple externalproject() calls to same project
+* Fix: Improved determinism of generated project elements
+* Fix: Set platform toolset for emtpty Visual Studio projects
+* Fix: Better ".." handling for path.join()
+
+Since 5.0-alpha4:
+
+* New: Rename solution() to workspace()
+* New API: customtoolnamespace() (tbasnoopy)
+* New API: debuggertype() (tbasnoopy)
+* New API: entrypoint() (Blizzard)
+* New API: exceptionhandling() and rtti() (Blizzard)
+* New API: http.get() and http.download() (Blizzard)
+* New API: inlining() (Blizzard)
+* New API: zip.extract() (Blizzard)
+* New: `require()` now accepts optional version ranges
+* New: Preloaded modules now return a "should load" test function
+* New: Added support for IDL files in VC 2010+ (rhuvendiek)
+* New: Added `file.directory` to token environment (Gabi Davar)
+* New: Solution configurations are now fully baked (Blizzard)
+* New: Enabled per-file configuration queries (Blizzard)
+* New: Added more table functions (Blizzard)
+* New: Added more values for floatingpoint()
+* Fix: Enabled link-time optimization for Clang and GCC
+* Fix: Module loader now reports script errors correctly (Tim Wharton)
+* Fix: Wrap makefile targets in quotes (leeonix)
+* Fix: Provide better default target directories (Blizzard)
+* Fix: Escape backslashes in tokens (Damien Courtois)
+* Fix: No longer generates containers marked as external
+* Fix: Re-enable validation of supported action features (Blizzard)
+* Fix: Match Visual C PDB output to target path (leeonix)
+* Fix: Remove "." and ".." when joining paths (multiple contributors)
+* Fix: Remove trailing newlines from os.outputof() (Tim Wharton)
+* Fix: Improve token handling (multiple contributors)
+
+Since 5.0-alpha2:
+
+* New: CodeLite support
+* New: D language support
+* New: MonoDevelop support
+* New API: buildlog()
+* New API: callingconvention() (Tim Wharton)
+* New API: os.writefile_ifnotequal()
+* New API: sysincludedirs()
+* New API: syslibdirs()
+* New: toolset() can now specify a version number
+* New: Default values and categories for command line options
+* New: Add bootstrapping script for Git repository (Tim Wharton)
+* Fix: Modules are now loaded correctly in all situations (Damien Courtois)
+* Fix: Make Visual Studio debug commands absolute (amc522)
+* Fix: Allow tokens in vpaths()
+* Fix: Silence xcopy output from {COPY} command token (StiX)
+* Fix: Remove ".." sequences in path.join()
+* Fix: Allow CC and CXX overrides from command line (Tim Wharton)
+* Fix: Enable solution level filtering on system values
+* Fix: Make configuration flag mapping order deterministic
+* Fix: Map "Win32" to x86 architecture for Visual Studio
+* Fix: Correct formatting for Visual Studio rule paths
+* Fix: Make project APIs consistently lowercase
+* Fix: Disable SSE/SSE2 flags for Visual Studio 64-bit builds
+* Fix: io.open() now creates directory append ("a") mode
+
+Since 5.0-alpha1:
+
+* Many new debugger APIs
+* New API: endian()
+* New API: fpu()
+* New API: gccprefix()
+* New API: pic()
+* New API: runtime() (Tom van Dijck)
+* New API: undefines()
+* New API: disablewarnings(), enablewarnings(), fatalwarnings()
+* Added Visual Studio 2015 support (Tom van Dijck)
+* filter() now accepts field value aliases in the conditions
+* Fixed _ACTION and _OPTIONS filter prefixes
+* Main application logic can now be extended by modules
+* Action arguments (_ARGS) are now keyed by both index and value
+* Configuration baking and validation now skipped for execute only actions
+* os.findlib() now accepts paths to search as argument
+* Visual Studio .user files are now only generated if not empty
+* Xcode4 exporter is now available
+* Modules may now be loaded on demand where feasible
+* os.outputof() now returns command exit code as second value
+* Added AVX2 to vectorextensions()
+* Checks to prevent self-linking (Mark Chandler)
+* Added path.replaceextension() (M Skibbe)
+* Made clean functions overridable
+* Migrated x32/x64 to x86/x86_64
+* Added new debugger selection APIs
+* Fixed handling of ../ sequences in path.normalize() (Tom van Dijck)
+* Added table.tostring() (Tom van Dijck)
+* Added .editorconfig file
+* Added string.sha1() (Tom van Dijck)
+* Added verbosef() and --verbose flag (Tom van Dijck)
