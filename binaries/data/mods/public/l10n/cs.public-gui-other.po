@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-10-09 09:04+0200\n"
-"PO-Revision-Date: 2017-10-11 21:33+0000\n"
-"Last-Translator: Vojtěch Valigura <Encounter@seznam.cz>\n"
+"POT-Creation-Date: 2017-10-25 09:03+0200\n"
+"PO-Revision-Date: 2017-10-25 14:52+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -81,12 +81,12 @@ msgstr "Hrdinové"
 msgid "History of the %(civilization)s"
 msgstr "Historie %(civilization)s"
 
-#: gui/common/color.js:154
+#: gui/common/color.js:165
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames."
 msgstr "Stiskněte %(hotkey)s k automatickému doplnění jmen hráčů."
 
-#: gui/common/color.js:157
+#: gui/common/color.js:168
 msgctxt "hotkey"
 msgid "Tab"
 msgstr "Tab"
@@ -116,16 +116,16 @@ msgstr "FPS: %(fps)4s"
 msgid "Loading Aborted"
 msgstr "Načítání přerušeno"
 
-#: gui/common/functions_utility.js:112
+#: gui/common/functions_utility.js:111
 msgctxt "map selection"
 msgid "Random"
 msgstr "Náhodná"
 
-#: gui/common/functions_utility.js:123
+#: gui/common/functions_utility.js:122
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:123
+#: gui/common/functions_utility.js:122
 msgid "HH:mm:ss"
 msgstr "hh:mm:ss"
 
@@ -158,17 +158,17 @@ msgstr "SMAZAT"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
 #: gui/options/options.js:297 gui/options/options.js:350
-#: gui/options/options.js:377 gui/pregame/mainmenu.js:254
-#: gui/replaymenu/replay_actions.js:170 gui/savedgames/load.js:188
-#: gui/savedgames/save.js:66 gui/summary/summary.js:373
+#: gui/options/options.js:376 gui/pregame/mainmenu.js:253
+#: gui/replaymenu/replay_actions.js:170 gui/savedgames/load.js:184
+#: gui/savedgames/save.js:66 gui/summary/summary.js:375
 msgid "No"
 msgstr "Ne"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
 #: gui/options/options.js:297 gui/options/options.js:350
-#: gui/options/options.js:377 gui/pregame/mainmenu.js:254
-#: gui/replaymenu/replay_actions.js:170 gui/savedgames/load.js:188
-#: gui/savedgames/save.js:66 gui/summary/summary.js:373
+#: gui/options/options.js:376 gui/pregame/mainmenu.js:253
+#: gui/replaymenu/replay_actions.js:170 gui/savedgames/load.js:184
+#: gui/savedgames/save.js:66 gui/summary/summary.js:375
 msgid "Yes"
 msgstr "Ano"
 
@@ -484,11 +484,11 @@ msgctxt "gamesetup option"
 msgid "disabled"
 msgstr "zakázáno"
 
-#: gui/common/gamedescription.js:425
+#: gui/common/gamedescription.js:424
 msgid "Victorious"
 msgstr "Vítězný"
 
-#: gui/common/gamedescription.js:430
+#: gui/common/gamedescription.js:429
 msgid "Defeated"
 msgstr "Poražen"
 
@@ -555,53 +555,48 @@ msgstr "Jméno hráče je již použito. V případě odpojení to zkuste za pá
 msgid "Server full"
 msgstr "Plný server"
 
-#: gui/common/network.js:76
-msgid ""
-"Player identifier in use. If you were disconnected, retry in few seconds"
-msgstr ""
-
-#: gui/common/network.js:79
+#: gui/common/network.js:78
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[Neplatná hodnota %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:91
+#: gui/common/network.js:90
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Důvod: %(reason)s."
 
-#: gui/common/network.js:96
+#: gui/common/network.js:95
 msgid "Lost connection to the server."
 msgstr "Spojení se serverem ztraceno."
 
-#: gui/common/network.js:97
+#: gui/common/network.js:96
 msgid "Failed to connect to the server."
 msgstr "Nepodařilo se připojit k serveru."
 
-#: gui/common/network.js:99
+#: gui/common/network.js:98
 msgid "Disconnected"
 msgstr "Odpojeno"
 
-#: gui/common/network.js:107
+#: gui/common/network.js:106
 msgid "Only the host can kick clients!"
 msgstr "Jenom pořadatel může vyhazovat klienty!"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
-#: gui/common/network.js:161
+#: gui/common/network.js:160
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
 msgstr "Uživatelé (%(num)s): %(users)s"
 
-#: gui/common/network.js:162 gui/common/tooltips.js:80
+#: gui/common/network.js:161 gui/common/tooltips.js:80
 #: gui/common/tooltips.js:194 gui/common/tooltips.js:208
 #: gui/common/tooltips.js:286 gui/common/tooltips.js:319
 #: gui/common/tooltips.js:352 gui/common/tooltips.js:624
 #: gui/common/tooltips.js:658 gui/common/tooltips.js:724
 #: gui/replaymenu/replay_actions.js:93 gui/replaymenu/replay_actions.js:94
-#: gui/savedgames/load.js:119 gui/savedgames/load.js:175
-#: gui/savedgames/load.js:178
+#: gui/savedgames/load.js:117 gui/savedgames/load.js:171
+#: gui/savedgames/load.js:174
 msgid ", "
 msgstr ", "
 
@@ -1124,16 +1119,16 @@ msgstr "Kořist:"
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
 
-#: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:77
+#: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
 msgid "None"
 msgstr "Žádný"
 
-#: gui/locale/locale_advanced.js:92
+#: gui/locale/locale_advanced.js:91
 msgid "invalid locale"
 msgstr ""
 
-#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:158
+#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:157
 #: gui/splashscreen/splashscreen.xml:(caption):28
 msgid "OK"
 msgstr "OK"
@@ -1169,7 +1164,7 @@ msgid ""
 msgstr "Jste si jisti, že chcete uvést nastavení do výchozího stavu ?"
 
 #: gui/options/options.js:296 gui/options/options.js:349
-#: gui/options/options.js:376 gui/savedgames/load.js:187
+#: gui/options/options.js:375 gui/savedgames/load.js:183
 msgid "Warning"
 msgstr "Varování"
 
@@ -1177,7 +1172,7 @@ msgstr "Varování"
 msgid "Some setting values are invalid! Are you sure to save them?"
 msgstr ""
 
-#: gui/options/options.js:375
+#: gui/options/options.js:374
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Máte neuložené změny. Chcete zavřít toto okno?"
 
@@ -1194,34 +1189,34 @@ msgstr "Odesílá se (%f%%)"
 msgid "upload succeeded"
 msgstr "Odesílání uspělo"
 
-#: gui/pregame/mainmenu.js:100
+#: gui/pregame/mainmenu.js:99
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
 msgstr "Nahrání se nezdařilo (%(errorCode)s)"
 
-#: gui/pregame/mainmenu.js:104
+#: gui/pregame/mainmenu.js:103
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
 msgstr "Nahrání se nezdařilo (%(errorMessage)s)"
 
-#: gui/pregame/mainmenu.js:106
+#: gui/pregame/mainmenu.js:105
 msgid "unknown"
 msgstr "Neznámý"
 
-#: gui/pregame/mainmenu.js:121
+#: gui/pregame/mainmenu.js:120
 msgid "Thank you for helping improve 0 A.D.!"
 msgstr "Děkujeme za pomoc při vylepšování 0 A.D.!"
 
-#: gui/pregame/mainmenu.js:122
+#: gui/pregame/mainmenu.js:121
 msgid "Anonymous feedback is currently enabled."
 msgstr "Anonymní zpětná vazba je nyní povolena."
 
-#: gui/pregame/mainmenu.js:123
+#: gui/pregame/mainmenu.js:122
 #, javascript-format
 msgid "Status: %(status)s."
 msgstr "Stav: %(status)s."
 
-#: gui/pregame/mainmenu.js:147
+#: gui/pregame/mainmenu.js:146
 #, javascript-format
 msgid ""
 "%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
@@ -1234,51 +1229,51 @@ msgstr "%(startWarning)sVarování:%(endWarning)sVypadá to, že používáte gr
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:156
+#: gui/pregame/mainmenu.js:155
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "Stiskněte, prosím, Číst více pro další informace nebo OK pro pokračování."
 
-#: gui/pregame/mainmenu.js:157
+#: gui/pregame/mainmenu.js:156
 msgid "WARNING!"
 msgstr "VAROVÁNÍ!"
 
-#: gui/pregame/mainmenu.js:158
+#: gui/pregame/mainmenu.js:157
 msgid "Read More"
 msgstr "Číst více"
 
-#: gui/pregame/mainmenu.js:240
+#: gui/pregame/mainmenu.js:239
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Sestaveno: %(buildDate)s (%(revision)s)"
 
-#: gui/pregame/mainmenu.js:252
+#: gui/pregame/mainmenu.js:251
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Opravdu chcete ukončit 0 A.D.?"
 
-#: gui/pregame/mainmenu.js:253 gui/summary/summary.js:372
+#: gui/pregame/mainmenu.js:252 gui/summary/summary.js:374
 msgid "Confirmation"
 msgstr "Potvrzení"
 
-#: gui/pregame/mainmenu.js:268
+#: gui/pregame/mainmenu.js:267
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "Editor scénářů je nedostupný, nebo se jej nepodařilo nahrát. Pro další informace se podívejte do herních záznamů."
 
-#: gui/pregame/mainmenu.js:269 gui/replaymenu/replay_actions.js:120
+#: gui/pregame/mainmenu.js:268 gui/replaymenu/replay_actions.js:120
 msgid "Error"
 msgstr "Chyba"
 
-#: gui/pregame/mainmenu.js:275
+#: gui/pregame/mainmenu.js:274
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "Nahrává se herní skupina pro hru více hráčů. \\[[DISABLED BY BUILD]"
 
-#: gui/pregame/mainmenu.js:280 gui/pregame/mainmenu.xml:(caption):69
+#: gui/pregame/mainmenu.js:279 gui/pregame/mainmenu.xml:(caption):69
 #: gui/pregame/mainmenu.xml:(caption):96
 msgid "Technical Details"
 msgstr "Technické podrobnosti"
 
-#: gui/pregame/mainmenu.js:285 gui/pregame/mainmenu.xml:(caption):147
+#: gui/pregame/mainmenu.js:284 gui/pregame/mainmenu.xml:(caption):147
 msgid "Manual"
 msgstr "Příručka"
 
@@ -1291,12 +1286,12 @@ msgstr ""
 msgid "You don't have the same mods active as the replay does."
 msgstr "Nemáte zapnuty stejné módy, jako má záznam. "
 
-#: gui/replaymenu/replay_actions.js:93 gui/savedgames/load.js:174
+#: gui/replaymenu/replay_actions.js:93 gui/savedgames/load.js:170
 #, javascript-format
 msgid "Required: %(mods)s"
 msgstr "Potřeba: %(mods)s"
 
-#: gui/replaymenu/replay_actions.js:94 gui/savedgames/load.js:177
+#: gui/replaymenu/replay_actions.js:94 gui/savedgames/load.js:173
 #, javascript-format
 msgid "Active: %(mods)s"
 msgstr "Zapnutý: %(mods)s"
@@ -1429,38 +1424,38 @@ msgstr "rrrr-MM-dd HH:mm"
 msgid "yyyy-MM"
 msgstr "rrrr-MM"
 
-#: gui/savedgames/load.js:119
+#: gui/savedgames/load.js:117
 #, javascript-format
 msgid "Mods: %(mods)s"
 msgstr "Mody: %(mods)s"
 
-#: gui/savedgames/load.js:149
+#: gui/savedgames/load.js:147
 msgid "This saved game may not be compatible:"
 msgstr "Tato uložená hra nemusí být kompatibilní:"
 
-#: gui/savedgames/load.js:154
+#: gui/savedgames/load.js:151
 #, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
 msgstr "Je vyžadována verze %(requiredVersion)s 0 A.D., toto je však verze %(currentVersion)s."
 
-#: gui/savedgames/load.js:159
+#: gui/savedgames/load.js:156
 msgid "It needs an older version of 0 A.D."
 msgstr "Je potřeba starší verze 0 A.D."
 
-#: gui/savedgames/load.js:163
+#: gui/savedgames/load.js:159
 #, javascript-format
 msgid ""
 "It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
 "savegame version %(currentVersion)s."
 msgstr "Je vyžadována uložená hra 0 A. D. ve verzi %(requiredVersion)s, toto je však verze %(currentVersion)s."
 
-#: gui/savedgames/load.js:173
+#: gui/savedgames/load.js:169
 msgid "The savegame needs a different set of mods:"
 msgstr "Uložená hra potřebuje odlišné módy:"
 
-#: gui/savedgames/load.js:182
+#: gui/savedgames/load.js:178
 msgid "Do you still want to proceed?"
 msgstr "Chcete pokračovat?"
 
@@ -1728,44 +1723,44 @@ msgstr ""
 msgid "∞"
 msgstr ""
 
-#: gui/summary/summary.js:371
+#: gui/summary/summary.js:373
 msgid "Are you sure you want to quit the lobby?"
 msgstr "Opravdu si přejete opustit herní skupinu?"
 
-#: gui/summary/summary.js:427
+#: gui/summary/summary.js:429
 msgid "Current Scores"
 msgstr "Nynější bodový stav"
 
-#: gui/summary/summary.js:429
+#: gui/summary/summary.js:431
 msgid "Scores at the end of the game."
 msgstr "Bodový stav na konci hry."
 
-#: gui/summary/summary.js:431
+#: gui/summary/summary.js:433
 msgid "You have been disconnected."
 msgstr "Byl jste odpojen."
 
-#: gui/summary/summary.js:433
+#: gui/summary/summary.js:435
 msgid "You have left the game."
 msgstr "Opustil jste hru."
 
-#: gui/summary/summary.js:435
+#: gui/summary/summary.js:437
 msgid "You have won the battle!"
 msgstr "Vyhrál jste bitvu!"
 
-#: gui/summary/summary.js:437
+#: gui/summary/summary.js:439
 msgid "You have been defeated..."
 msgstr "Byl jste poražen..."
 
-#: gui/summary/summary.js:438
+#: gui/summary/summary.js:440
 msgid "You have abandoned the game."
 msgstr "Opustil jste hru."
 
-#: gui/summary/summary.js:443
+#: gui/summary/summary.js:445
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Uplynulý herní čas: %(time)s"
 
-#: gui/summary/summary.js:451
+#: gui/summary/summary.js:453
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"

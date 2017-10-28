@@ -1,3 +1,8 @@
+/**
+ * A Centered Placer generates a shape (array of points) around a variable center location satisfying a Constraint.
+ * The center is determined by the x and z property which can be modified externally, typically by createAreas.
+ */
+
 /////////////////////////////////////////////////////////////////////////////////////////
 //	ClumpPlacer
 //
@@ -258,46 +263,4 @@ ChainPlacer.prototype.place = function(constraint)
 	}
 
 	return failed > count * this.failFraction ? undefined : retVec;
-};
-
-/////////////////////////////////////////////////////////////////////////////////////////
-//	RectPlacer
-//
-//	Class for generating a rectangular block of points
-//
-//	x1,z1: Top left corner of block
-//	x2,z2: Bottom right corner of block
-//
-/////////////////////////////////////////////////////////////////////////////////////////
-
-function RectPlacer(x1, z1, x2, z2)
-{
-	this.x1 = x1;
-	this.z1 = z1;
-	this.x2 = x2;
-	this.z2 = z2;
-
-	if (x1 > x2 || z1 > z2)
-		throw new Error("RectPlacer: incorrect bounds on rect");
-}
-
-RectPlacer.prototype.place = function(constraint)
-{
-	// Preliminary bounds check
-	if (!g_Map.inMapBounds(this.x1, this.z1) || !constraint.allows(this.x1, this.z1) ||
-		!g_Map.inMapBounds(this.x2, this.z2) || !constraint.allows(this.x2, this.z2))
-		return undefined;
-
-	var ret = [];
-	var x2 = this.x2;
-	var z2 = this.z2;
-
-	for (var x=this.x1; x < x2; x++)
-		for (var z=this.z1; z < z2; z++)
-			if (g_Map.inMapBounds(x, z) && constraint.allows(x, z))
-				ret.push(new PointXZ(x, z));
-			else
-				return undefined;
-
-	return ret;
 };

@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-10-09 09:04+0200\n"
-"PO-Revision-Date: 2017-10-09 15:52+0000\n"
+"POT-Creation-Date: 2017-10-25 09:03+0200\n"
+"PO-Revision-Date: 2017-10-25 14:52+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Latvian (http://www.transifex.com/wildfire-games/0ad/language/lv/)\n"
 "MIME-Version: 1.0\n"
@@ -72,12 +72,12 @@ msgstr "Varoņi"
 msgid "History of the %(civilization)s"
 msgstr "%(civilization)s Vēsture"
 
-#: gui/common/color.js:154
+#: gui/common/color.js:165
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames."
 msgstr "Nospiediet %(hotkey)s lai automātiski aizpildītu spēlētāju vārdus."
 
-#: gui/common/color.js:157
+#: gui/common/color.js:168
 msgctxt "hotkey"
 msgid "Tab"
 msgstr "Cilne"
@@ -107,16 +107,16 @@ msgstr "KS: %(fps)s"
 msgid "Loading Aborted"
 msgstr "Ielāde pārtraukta"
 
-#: gui/common/functions_utility.js:112
+#: gui/common/functions_utility.js:111
 msgctxt "map selection"
 msgid "Random"
 msgstr "Nejaušs"
 
-#: gui/common/functions_utility.js:123
+#: gui/common/functions_utility.js:122
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:123
+#: gui/common/functions_utility.js:122
 msgid "HH:mm:ss"
 msgstr "SS:mm:ss"
 
@@ -149,17 +149,17 @@ msgstr "DZĒST"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
 #: gui/options/options.js:297 gui/options/options.js:350
-#: gui/options/options.js:377 gui/pregame/mainmenu.js:254
-#: gui/replaymenu/replay_actions.js:170 gui/savedgames/load.js:188
-#: gui/savedgames/save.js:66 gui/summary/summary.js:373
+#: gui/options/options.js:376 gui/pregame/mainmenu.js:253
+#: gui/replaymenu/replay_actions.js:170 gui/savedgames/load.js:184
+#: gui/savedgames/save.js:66 gui/summary/summary.js:375
 msgid "No"
 msgstr "Nē"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
 #: gui/options/options.js:297 gui/options/options.js:350
-#: gui/options/options.js:377 gui/pregame/mainmenu.js:254
-#: gui/replaymenu/replay_actions.js:170 gui/savedgames/load.js:188
-#: gui/savedgames/save.js:66 gui/summary/summary.js:373
+#: gui/options/options.js:376 gui/pregame/mainmenu.js:253
+#: gui/replaymenu/replay_actions.js:170 gui/savedgames/load.js:184
+#: gui/savedgames/save.js:66 gui/summary/summary.js:375
 msgid "Yes"
 msgstr "Jā"
 
@@ -475,11 +475,11 @@ msgctxt "gamesetup option"
 msgid "disabled"
 msgstr "atslēgts"
 
-#: gui/common/gamedescription.js:425
+#: gui/common/gamedescription.js:424
 msgid "Victorious"
 msgstr ""
 
-#: gui/common/gamedescription.js:430
+#: gui/common/gamedescription.js:429
 msgid "Defeated"
 msgstr "Sakauts"
 
@@ -546,53 +546,48 @@ msgstr "Spēlētāja vārds ir aizņemts. Ja tikāt atslēgts, tad mēģiniet v�
 msgid "Server full"
 msgstr "Serveris pilns"
 
-#: gui/common/network.js:76
-msgid ""
-"Player identifier in use. If you were disconnected, retry in few seconds"
-msgstr ""
-
-#: gui/common/network.js:79
+#: gui/common/network.js:78
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[Nekorekta vērtība %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:91
+#: gui/common/network.js:90
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Iemesls: %(reason)s."
 
-#: gui/common/network.js:96
+#: gui/common/network.js:95
 msgid "Lost connection to the server."
 msgstr "Zaudēja savienojumu ar serveri."
 
-#: gui/common/network.js:97
+#: gui/common/network.js:96
 msgid "Failed to connect to the server."
 msgstr "Neizdevās savienoties ar serveri."
 
-#: gui/common/network.js:99
+#: gui/common/network.js:98
 msgid "Disconnected"
 msgstr "Atvienots"
 
-#: gui/common/network.js:107
+#: gui/common/network.js:106
 msgid "Only the host can kick clients!"
 msgstr "Tikai izmitinātājs var atslēgt spēlētājus!"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
-#: gui/common/network.js:161
+#: gui/common/network.js:160
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
 msgstr "Lietotāji ( %(num)s): %(users)s"
 
-#: gui/common/network.js:162 gui/common/tooltips.js:80
+#: gui/common/network.js:161 gui/common/tooltips.js:80
 #: gui/common/tooltips.js:194 gui/common/tooltips.js:208
 #: gui/common/tooltips.js:286 gui/common/tooltips.js:319
 #: gui/common/tooltips.js:352 gui/common/tooltips.js:624
 #: gui/common/tooltips.js:658 gui/common/tooltips.js:724
 #: gui/replaymenu/replay_actions.js:93 gui/replaymenu/replay_actions.js:94
-#: gui/savedgames/load.js:119 gui/savedgames/load.js:175
-#: gui/savedgames/load.js:178
+#: gui/savedgames/load.js:117 gui/savedgames/load.js:171
+#: gui/savedgames/load.js:174
 msgid ", "
 msgstr ","
 
@@ -1115,16 +1110,16 @@ msgstr "Krājumi:"
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
 
-#: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:77
+#: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
 msgid "None"
 msgstr "Nekāds"
 
-#: gui/locale/locale_advanced.js:92
+#: gui/locale/locale_advanced.js:91
 msgid "invalid locale"
 msgstr ""
 
-#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:158
+#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:157
 #: gui/splashscreen/splashscreen.xml:(caption):28
 msgid "OK"
 msgstr "Labi"
@@ -1160,7 +1155,7 @@ msgid ""
 msgstr "Atiestatot iestatījums dzēsīs jūsu saglabātos iestatījumus. Vai vēlaties turpināt?"
 
 #: gui/options/options.js:296 gui/options/options.js:349
-#: gui/options/options.js:376 gui/savedgames/load.js:187
+#: gui/options/options.js:375 gui/savedgames/load.js:183
 msgid "Warning"
 msgstr "Brīdinājums"
 
@@ -1168,7 +1163,7 @@ msgstr "Brīdinājums"
 msgid "Some setting values are invalid! Are you sure to save them?"
 msgstr ""
 
-#: gui/options/options.js:375
+#: gui/options/options.js:374
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Jums ir nesaglabātas izmaiņas, vai vēlaties aizvērt šo logu?"
 
@@ -1185,34 +1180,34 @@ msgstr "augšupielādēju (%f%%)"
 msgid "upload succeeded"
 msgstr "augšupielāde pabeigta"
 
-#: gui/pregame/mainmenu.js:100
+#: gui/pregame/mainmenu.js:99
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
 msgstr "augšupielāde neizdevās (%(errorCode)s)"
 
-#: gui/pregame/mainmenu.js:104
+#: gui/pregame/mainmenu.js:103
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
 msgstr "augšupielāde neizdevās (%(errorMessage)s)"
 
-#: gui/pregame/mainmenu.js:106
+#: gui/pregame/mainmenu.js:105
 msgid "unknown"
 msgstr "nezināms"
 
-#: gui/pregame/mainmenu.js:121
+#: gui/pregame/mainmenu.js:120
 msgid "Thank you for helping improve 0 A.D.!"
 msgstr "Paldies par palīdzību 0 A.D. uzlabošanā!"
 
-#: gui/pregame/mainmenu.js:122
+#: gui/pregame/mainmenu.js:121
 msgid "Anonymous feedback is currently enabled."
 msgstr "Šobrīd aktivizēta anonīmu atgriezēniskās saites atsauksmju sūtīšana."
 
-#: gui/pregame/mainmenu.js:123
+#: gui/pregame/mainmenu.js:122
 #, javascript-format
 msgid "Status: %(status)s."
 msgstr ""
 
-#: gui/pregame/mainmenu.js:147
+#: gui/pregame/mainmenu.js:146
 #, javascript-format
 msgid ""
 "%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
@@ -1225,51 +1220,51 @@ msgstr ""
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:156
+#: gui/pregame/mainmenu.js:155
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "Lūdzu nospiediet \"Lasīt vairāk\", lai iegūtu vairāk informācijas vai \"Labi\", lai turpinātu."
 
-#: gui/pregame/mainmenu.js:157
+#: gui/pregame/mainmenu.js:156
 msgid "WARNING!"
 msgstr "BRĪDINĀJUMS!"
 
-#: gui/pregame/mainmenu.js:158
+#: gui/pregame/mainmenu.js:157
 msgid "Read More"
 msgstr "Lasīt vairāk"
 
-#: gui/pregame/mainmenu.js:240
+#: gui/pregame/mainmenu.js:239
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Būvējums: %(buildDate)s (%(revision)s)"
 
-#: gui/pregame/mainmenu.js:252
+#: gui/pregame/mainmenu.js:251
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Vai esat pārliecināts, ka vēlaties pamest 0 A.D.?"
 
-#: gui/pregame/mainmenu.js:253 gui/summary/summary.js:372
+#: gui/pregame/mainmenu.js:252 gui/summary/summary.js:374
 msgid "Confirmation"
 msgstr "Apstiprinājums"
 
-#: gui/pregame/mainmenu.js:268
+#: gui/pregame/mainmenu.js:267
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "Scenāriju redaktors nav pieejams vai neveiksmīgi ielādējies. Skatiet spēles žurnālus papildus informācijai."
 
-#: gui/pregame/mainmenu.js:269 gui/replaymenu/replay_actions.js:120
+#: gui/pregame/mainmenu.js:268 gui/replaymenu/replay_actions.js:120
 msgid "Error"
 msgstr "Kļūda"
 
-#: gui/pregame/mainmenu.js:275
+#: gui/pregame/mainmenu.js:274
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "Ienākt vairāku spēlētāju priekšnamā. \\[Atslēgts ar būvējumu]"
 
-#: gui/pregame/mainmenu.js:280 gui/pregame/mainmenu.xml:(caption):69
+#: gui/pregame/mainmenu.js:279 gui/pregame/mainmenu.xml:(caption):69
 #: gui/pregame/mainmenu.xml:(caption):96
 msgid "Technical Details"
 msgstr "Tehniskās Detaļas"
 
-#: gui/pregame/mainmenu.js:285 gui/pregame/mainmenu.xml:(caption):147
+#: gui/pregame/mainmenu.js:284 gui/pregame/mainmenu.xml:(caption):147
 msgid "Manual"
 msgstr "Rokasgrāmata"
 
@@ -1282,12 +1277,12 @@ msgstr ""
 msgid "You don't have the same mods active as the replay does."
 msgstr "Jums nav aktīvi tie paši modi kā atkārtojumam."
 
-#: gui/replaymenu/replay_actions.js:93 gui/savedgames/load.js:174
+#: gui/replaymenu/replay_actions.js:93 gui/savedgames/load.js:170
 #, javascript-format
 msgid "Required: %(mods)s"
 msgstr "Nepieciešams: %(mods)s"
 
-#: gui/replaymenu/replay_actions.js:94 gui/savedgames/load.js:177
+#: gui/replaymenu/replay_actions.js:94 gui/savedgames/load.js:173
 #, javascript-format
 msgid "Active: %(mods)s"
 msgstr "Aktīvi: %(mods)s"
@@ -1420,38 +1415,38 @@ msgstr "dd.MM.yyyy HH:mm"
 msgid "yyyy-MM"
 msgstr "MM.yyyy"
 
-#: gui/savedgames/load.js:119
+#: gui/savedgames/load.js:117
 #, javascript-format
 msgid "Mods: %(mods)s"
 msgstr "Modi: %(mods)s"
 
-#: gui/savedgames/load.js:149
+#: gui/savedgames/load.js:147
 msgid "This saved game may not be compatible:"
 msgstr "Šī saglabātā spēle var nebūt savietojama:"
 
-#: gui/savedgames/load.js:154
+#: gui/savedgames/load.js:151
 #, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
 msgstr "Tam ir nepieciešama 0 A.D. versija %(requiredVersion)s, bet jums ir versija %(currentVersion)s."
 
-#: gui/savedgames/load.js:159
+#: gui/savedgames/load.js:156
 msgid "It needs an older version of 0 A.D."
 msgstr "Tam ir nepieciešama vecāka 0 A.D. versija."
 
-#: gui/savedgames/load.js:163
+#: gui/savedgames/load.js:159
 #, javascript-format
 msgid ""
 "It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
 "savegame version %(currentVersion)s."
 msgstr "0 A.D. saglabātai spēlei nepieciešama versija %(requiredVersion)s, kamēr jūsu saglabātas spēles versija ir %(currentVersion)s."
 
-#: gui/savedgames/load.js:173
+#: gui/savedgames/load.js:169
 msgid "The savegame needs a different set of mods:"
 msgstr "Saglabātai spēlei nepieciešama cita modu kopa:"
 
-#: gui/savedgames/load.js:182
+#: gui/savedgames/load.js:178
 msgid "Do you still want to proceed?"
 msgstr "Vai jūs vēl vēlaties turpināt?"
 
@@ -1719,44 +1714,44 @@ msgstr ""
 msgid "∞"
 msgstr ""
 
-#: gui/summary/summary.js:371
+#: gui/summary/summary.js:373
 msgid "Are you sure you want to quit the lobby?"
 msgstr "Vai tiešām iziet no priekšnama?"
 
-#: gui/summary/summary.js:427
+#: gui/summary/summary.js:429
 msgid "Current Scores"
 msgstr "Pašreizējie Rezultāti"
 
-#: gui/summary/summary.js:429
+#: gui/summary/summary.js:431
 msgid "Scores at the end of the game."
 msgstr "Rezultāti spēles beigās."
 
-#: gui/summary/summary.js:431
+#: gui/summary/summary.js:433
 msgid "You have been disconnected."
 msgstr "Jūs esat atvienots."
 
-#: gui/summary/summary.js:433
+#: gui/summary/summary.js:435
 msgid "You have left the game."
 msgstr "Jūs pametāt spēli."
 
-#: gui/summary/summary.js:435
+#: gui/summary/summary.js:437
 msgid "You have won the battle!"
 msgstr "Jūs uzvarējāt kaujā!"
 
-#: gui/summary/summary.js:437
+#: gui/summary/summary.js:439
 msgid "You have been defeated..."
 msgstr "Jūs tikāt sakauts..."
 
-#: gui/summary/summary.js:438
+#: gui/summary/summary.js:440
 msgid "You have abandoned the game."
 msgstr "Jūs pametāt spēli."
 
-#: gui/summary/summary.js:443
+#: gui/summary/summary.js:445
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Pagājis spēles laiks: %(time)s"
 
-#: gui/summary/summary.js:451
+#: gui/summary/summary.js:453
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"

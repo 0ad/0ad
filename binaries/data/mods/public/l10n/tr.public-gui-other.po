@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-10-09 09:04+0200\n"
-"PO-Revision-Date: 2017-10-09 15:52+0000\n"
+"POT-Creation-Date: 2017-10-25 09:03+0200\n"
+"PO-Revision-Date: 2017-10-25 14:52+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -79,12 +79,12 @@ msgstr "Kahramanlar"
 msgid "History of the %(civilization)s"
 msgstr " %(civilization)sin tarihi"
 
-#: gui/common/color.js:154
+#: gui/common/color.js:165
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames."
 msgstr "Oyuncu adlarını otomatik tamamlamak için %(hotkey)s e bas."
 
-#: gui/common/color.js:157
+#: gui/common/color.js:168
 msgctxt "hotkey"
 msgid "Tab"
 msgstr "Sekme"
@@ -114,16 +114,16 @@ msgstr "FPS: %(fps)4s"
 msgid "Loading Aborted"
 msgstr "Yükleme İptal edildi"
 
-#: gui/common/functions_utility.js:112
+#: gui/common/functions_utility.js:111
 msgctxt "map selection"
 msgid "Random"
 msgstr "Rastgele"
 
-#: gui/common/functions_utility.js:123
+#: gui/common/functions_utility.js:122
 msgid "mm:ss"
 msgstr "dd:ss"
 
-#: gui/common/functions_utility.js:123
+#: gui/common/functions_utility.js:122
 msgid "HH:mm:ss"
 msgstr "SS:dd:ss"
 
@@ -156,17 +156,17 @@ msgstr "SİL"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
 #: gui/options/options.js:297 gui/options/options.js:350
-#: gui/options/options.js:377 gui/pregame/mainmenu.js:254
-#: gui/replaymenu/replay_actions.js:170 gui/savedgames/load.js:188
-#: gui/savedgames/save.js:66 gui/summary/summary.js:373
+#: gui/options/options.js:376 gui/pregame/mainmenu.js:253
+#: gui/replaymenu/replay_actions.js:170 gui/savedgames/load.js:184
+#: gui/savedgames/save.js:66 gui/summary/summary.js:375
 msgid "No"
 msgstr "Hayır"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
 #: gui/options/options.js:297 gui/options/options.js:350
-#: gui/options/options.js:377 gui/pregame/mainmenu.js:254
-#: gui/replaymenu/replay_actions.js:170 gui/savedgames/load.js:188
-#: gui/savedgames/save.js:66 gui/summary/summary.js:373
+#: gui/options/options.js:376 gui/pregame/mainmenu.js:253
+#: gui/replaymenu/replay_actions.js:170 gui/savedgames/load.js:184
+#: gui/savedgames/save.js:66 gui/summary/summary.js:375
 msgid "Yes"
 msgstr "Evet"
 
@@ -478,11 +478,11 @@ msgctxt "gamesetup option"
 msgid "disabled"
 msgstr "Devre Dışı"
 
-#: gui/common/gamedescription.js:425
+#: gui/common/gamedescription.js:424
 msgid "Victorious"
 msgstr "Zafer"
 
-#: gui/common/gamedescription.js:430
+#: gui/common/gamedescription.js:429
 msgid "Defeated"
 msgstr "Yenilgi"
 
@@ -549,53 +549,48 @@ msgstr "Kullanıcı adı kullanılıyor. Eğer bağlantı kesildiyse, birkaç sa
 msgid "Server full"
 msgstr "Sunucu dolu"
 
-#: gui/common/network.js:76
-msgid ""
-"Player identifier in use. If you were disconnected, retry in few seconds"
-msgstr "Kullanılan oyuncu tanımlayıcı. Bağlantı kesildiyse, birkaç saniye içinde tekrar deneyin"
-
-#: gui/common/network.js:79
+#: gui/common/network.js:78
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
 msgstr "\\[Geçersiz değer %(id)s]"
 
 #. Translation: States the reason why the client disconnected from the server.
-#: gui/common/network.js:91
+#: gui/common/network.js:90
 #, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Sebep: %(reason)s."
 
-#: gui/common/network.js:96
+#: gui/common/network.js:95
 msgid "Lost connection to the server."
 msgstr "Sunucuya bağlantı kaybedildi."
 
-#: gui/common/network.js:97
+#: gui/common/network.js:96
 msgid "Failed to connect to the server."
 msgstr "Sunucuya bağlanırken Hata oluştu"
 
-#: gui/common/network.js:99
+#: gui/common/network.js:98
 msgid "Disconnected"
 msgstr "Bağlatı kesildi"
 
-#: gui/common/network.js:107
+#: gui/common/network.js:106
 msgid "Only the host can kick clients!"
 msgstr "Yanlız oyun kurucu diğer oyuncuları atabilir."
 
 #. Translation: Number of currently connected players/observers and their
 #. names
-#: gui/common/network.js:161
+#: gui/common/network.js:160
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
 msgstr "Kullanıcılar (%(num)s): %(users)s"
 
-#: gui/common/network.js:162 gui/common/tooltips.js:80
+#: gui/common/network.js:161 gui/common/tooltips.js:80
 #: gui/common/tooltips.js:194 gui/common/tooltips.js:208
 #: gui/common/tooltips.js:286 gui/common/tooltips.js:319
 #: gui/common/tooltips.js:352 gui/common/tooltips.js:624
 #: gui/common/tooltips.js:658 gui/common/tooltips.js:724
 #: gui/replaymenu/replay_actions.js:93 gui/replaymenu/replay_actions.js:94
-#: gui/savedgames/load.js:119 gui/savedgames/load.js:175
-#: gui/savedgames/load.js:178
+#: gui/savedgames/load.js:117 gui/savedgames/load.js:171
+#: gui/savedgames/load.js:174
 msgid ", "
 msgstr ","
 
@@ -1109,16 +1104,16 @@ msgstr "Yağma:"
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
 
-#: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:77
+#: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
 msgid "None"
 msgstr "Yok"
 
-#: gui/locale/locale_advanced.js:92
+#: gui/locale/locale_advanced.js:91
 msgid "invalid locale"
 msgstr "geçersiz konum"
 
-#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:158
+#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:157
 #: gui/splashscreen/splashscreen.xml:(caption):28
 msgid "OK"
 msgstr "Tamam"
@@ -1154,7 +1149,7 @@ msgid ""
 msgstr "Sıfırlama kaydedilmiş ayarları silecektir. Devam edilsin mi?"
 
 #: gui/options/options.js:296 gui/options/options.js:349
-#: gui/options/options.js:376 gui/savedgames/load.js:187
+#: gui/options/options.js:375 gui/savedgames/load.js:183
 msgid "Warning"
 msgstr "Uyarı"
 
@@ -1162,7 +1157,7 @@ msgstr "Uyarı"
 msgid "Some setting values are invalid! Are you sure to save them?"
 msgstr ""
 
-#: gui/options/options.js:375
+#: gui/options/options.js:374
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Kaydedilmemiş değişiklikler var, pencereyi kapatmak istiyor musun?"
 
@@ -1179,34 +1174,34 @@ msgstr "yükleniyor (%f%%)"
 msgid "upload succeeded"
 msgstr "yükleme başarılı"
 
-#: gui/pregame/mainmenu.js:100
+#: gui/pregame/mainmenu.js:99
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
 msgstr "yükleme başarısız (%(errorCode)s)"
 
-#: gui/pregame/mainmenu.js:104
+#: gui/pregame/mainmenu.js:103
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
 msgstr "yükleme başarısız (%(errorMessage)s)"
 
-#: gui/pregame/mainmenu.js:106
+#: gui/pregame/mainmenu.js:105
 msgid "unknown"
 msgstr "bilinmiyor"
 
-#: gui/pregame/mainmenu.js:121
+#: gui/pregame/mainmenu.js:120
 msgid "Thank you for helping improve 0 A.D.!"
 msgstr "0 A.D'nin gelişimine yardımcı olduğunuz için teşekkür ederiz!"
 
-#: gui/pregame/mainmenu.js:122
+#: gui/pregame/mainmenu.js:121
 msgid "Anonymous feedback is currently enabled."
 msgstr "Anonim geribildirimler şimdi açıldı."
 
-#: gui/pregame/mainmenu.js:123
+#: gui/pregame/mainmenu.js:122
 #, javascript-format
 msgid "Status: %(status)s."
 msgstr "Durum: %(status)s."
 
-#: gui/pregame/mainmenu.js:147
+#: gui/pregame/mainmenu.js:146
 #, javascript-format
 msgid ""
 "%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
@@ -1219,51 +1214,51 @@ msgstr "%(startWarning)sUyarı:%(endWarning)s Gölgesiz(sabit işlevli) grafik k
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:156
+#: gui/pregame/mainmenu.js:155
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "Lütfen daha fazla bilgi için \"Devamını Oku\"ya basın ya da devam etmek için \"Tamam\"a basın."
 
-#: gui/pregame/mainmenu.js:157
+#: gui/pregame/mainmenu.js:156
 msgid "WARNING!"
 msgstr "DİKKAT!"
 
-#: gui/pregame/mainmenu.js:158
+#: gui/pregame/mainmenu.js:157
 msgid "Read More"
 msgstr "Daha Fazlasını Oku"
 
-#: gui/pregame/mainmenu.js:240
+#: gui/pregame/mainmenu.js:239
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Yapı: %(buildDate)s (%(revision)s)"
 
-#: gui/pregame/mainmenu.js:252
+#: gui/pregame/mainmenu.js:251
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "0 A.D.'den çıkmak istediğinize emin misiniz?"
 
-#: gui/pregame/mainmenu.js:253 gui/summary/summary.js:372
+#: gui/pregame/mainmenu.js:252 gui/summary/summary.js:374
 msgid "Confirmation"
 msgstr "Onay"
 
-#: gui/pregame/mainmenu.js:268
+#: gui/pregame/mainmenu.js:267
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "Senaryo editörü mevcut değil ya da yüklenmesi başarısız. Daha fazla bilgi için oyun günlük dosyasına bakınız."
 
-#: gui/pregame/mainmenu.js:269 gui/replaymenu/replay_actions.js:120
+#: gui/pregame/mainmenu.js:268 gui/replaymenu/replay_actions.js:120
 msgid "Error"
 msgstr "Hata"
 
-#: gui/pregame/mainmenu.js:275
+#: gui/pregame/mainmenu.js:274
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "Çoklu oyuncu lobisi başlat. \\[DISABLED BY BUILD]"
 
-#: gui/pregame/mainmenu.js:280 gui/pregame/mainmenu.xml:(caption):69
+#: gui/pregame/mainmenu.js:279 gui/pregame/mainmenu.xml:(caption):69
 #: gui/pregame/mainmenu.xml:(caption):96
 msgid "Technical Details"
 msgstr "Teknik Detaylar"
 
-#: gui/pregame/mainmenu.js:285 gui/pregame/mainmenu.xml:(caption):147
+#: gui/pregame/mainmenu.js:284 gui/pregame/mainmenu.xml:(caption):147
 msgid "Manual"
 msgstr "Kılavuz"
 
@@ -1276,12 +1271,12 @@ msgstr "%(health_min)s e %(health_max)s"
 msgid "You don't have the same mods active as the replay does."
 msgstr "Oynatmanın yaptığı gibi aynı modlara sahip değilsiniz."
 
-#: gui/replaymenu/replay_actions.js:93 gui/savedgames/load.js:174
+#: gui/replaymenu/replay_actions.js:93 gui/savedgames/load.js:170
 #, javascript-format
 msgid "Required: %(mods)s"
 msgstr "Gerekli: %(mods)s"
 
-#: gui/replaymenu/replay_actions.js:94 gui/savedgames/load.js:177
+#: gui/replaymenu/replay_actions.js:94 gui/savedgames/load.js:173
 #, javascript-format
 msgid "Active: %(mods)s"
 msgstr "Aktif: %(mods)s"
@@ -1412,38 +1407,38 @@ msgstr "yyyy-AA-gg SS:dd"
 msgid "yyyy-MM"
 msgstr "yyyy-AA"
 
-#: gui/savedgames/load.js:119
+#: gui/savedgames/load.js:117
 #, javascript-format
 msgid "Mods: %(mods)s"
 msgstr "Modlar: %(mods)s"
 
-#: gui/savedgames/load.js:149
+#: gui/savedgames/load.js:147
 msgid "This saved game may not be compatible:"
 msgstr "Bu kayıtlı oyun uyumlu olmayabilir:"
 
-#: gui/savedgames/load.js:154
+#: gui/savedgames/load.js:151
 #, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
 msgstr "O 0 A.D. %(requiredVersion)s sürümüne ihtiyaç duyuyor, çalışan sürüm ise %(currentVersion)s dür."
 
-#: gui/savedgames/load.js:159
+#: gui/savedgames/load.js:156
 msgid "It needs an older version of 0 A.D."
 msgstr "O, 0 A.D.'nin eski sürümüne ihtiyaç duyuyor."
 
-#: gui/savedgames/load.js:163
+#: gui/savedgames/load.js:159
 #, javascript-format
 msgid ""
 "It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
 "savegame version %(currentVersion)s."
 msgstr "O 0 A.D. %(requiredVersion)s kayıtlı oyun sürümüne ihtiyaç duyuyor, çalışan kayıtlı oyun sürüm ise %(currentVersion)s dür."
 
-#: gui/savedgames/load.js:173
+#: gui/savedgames/load.js:169
 msgid "The savegame needs a different set of mods:"
 msgstr "Savegame'in farklı mod modlarına ihtiyacı var:"
 
-#: gui/savedgames/load.js:182
+#: gui/savedgames/load.js:178
 msgid "Do you still want to proceed?"
 msgstr "Hala devam etmek istiyor musunuz?"
 
@@ -1711,44 +1706,44 @@ msgstr ""
 msgid "∞"
 msgstr "∞"
 
-#: gui/summary/summary.js:371
+#: gui/summary/summary.js:373
 msgid "Are you sure you want to quit the lobby?"
 msgstr "Lobiden çıkmak  istediğinizden emin misiniz?"
 
-#: gui/summary/summary.js:427
+#: gui/summary/summary.js:429
 msgid "Current Scores"
 msgstr "Geçerli Skorlar"
 
-#: gui/summary/summary.js:429
+#: gui/summary/summary.js:431
 msgid "Scores at the end of the game."
 msgstr "Oyunun sonundaki puanlar."
 
-#: gui/summary/summary.js:431
+#: gui/summary/summary.js:433
 msgid "You have been disconnected."
 msgstr "Bağlantı kesildi."
 
-#: gui/summary/summary.js:433
+#: gui/summary/summary.js:435
 msgid "You have left the game."
 msgstr "Oyunu bıraktın."
 
-#: gui/summary/summary.js:435
+#: gui/summary/summary.js:437
 msgid "You have won the battle!"
 msgstr "Savaşı kazandın!"
 
-#: gui/summary/summary.js:437
+#: gui/summary/summary.js:439
 msgid "You have been defeated..."
 msgstr "Kaybettiniz..."
 
-#: gui/summary/summary.js:438
+#: gui/summary/summary.js:440
 msgid "You have abandoned the game."
 msgstr "Oyunu terk ettin."
 
-#: gui/summary/summary.js:443
+#: gui/summary/summary.js:445
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Oyun süresi: %(time)s"
 
-#: gui/summary/summary.js:451
+#: gui/summary/summary.js:453
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
