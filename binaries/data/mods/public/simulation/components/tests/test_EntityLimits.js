@@ -146,6 +146,52 @@ cmpEntityLimits.OnGlobalOwnershipChanged({ "entity": 92, "from": 1, "to": -1 });
 TS_ASSERT_UNEVAL_EQUALS(cmpEntityLimits.GetLimits(), { "Tower": 5, "Wonder": 1, "Hero": 2, "Champion": 1 });
 TS_ASSERT_UNEVAL_EQUALS(cmpEntityLimits.GetCounts(), { "Tower": 0, "Wonder": 0, "Hero": 0, "Champion": 0 });
 
+// Test AllowedToReplace
+AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
+	"GetTemplate": name => {
+		switch (name)
+		{
+		case "templateA":
+			return { "TrainingRestrictions": { "Category": "Champion" } };
+		case "templateB":
+			return { "TrainingRestrictions": { "Category": "Hero" } };
+		case "templateC":
+			return { "BuildRestrictions": { "Category": "Wonder" } };
+		case "templateD":
+			return { "BuildRestrictions": { "Category": "Tower" } };
+		default:
+			return null;
+		}
+	},
+	"GetCurrentTemplateName": id => {
+		switch (id)
+		{
+		case 100:
+			return "templateA";
+		case 101:
+			return "templateB";
+		case 102:
+			return "templateC";
+		case 103:
+			return "templateD";
+		default:
+			return null;
+		}
+	}
+});
+
+cmpEntityLimits.ChangeCount( "Champion", 1)
+TS_ASSERT(cmpEntityLimits.AllowedToReplace(100, "templateA"))
+TS_ASSERT(!cmpEntityLimits.AllowedToReplace(101, "templateA"))
+cmpEntityLimits.ChangeCount( "Champion", -1)
+
+cmpEntityLimits.ChangeCount( "Tower", 5)
+TS_ASSERT(!cmpEntityLimits.AllowedToReplace(102, "templateD"))
+TS_ASSERT(cmpEntityLimits.AllowedToReplace(103, "templateD"))
+cmpEntityLimits.ChangeCount( "Tower", -5)
+
+TS_ASSERT_UNEVAL_EQUALS(cmpEntityLimits.GetCounts(), { "Tower": 0, "Wonder": 0, "Hero": 0, "Champion": 0 });
+
 // Test limit removers by tech
 cmpEntityLimits.UpdateLimitsFromTech("TechB");
 TS_ASSERT_UNEVAL_EQUALS(cmpEntityLimits.GetLimits(), { "Tower": 5, "Wonder": 1, "Hero": 2, "Champion": 1 });
