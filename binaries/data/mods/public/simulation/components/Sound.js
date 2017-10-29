@@ -6,7 +6,7 @@ Sound.prototype.Schema =
 		"<SoundGroups>" +
 			"<walk>actor/human/movement/walk.xml</walk>" +
 			"<run>actor/human/movement/walk.xml</run>" +
-			"<attack>attack/weapon/sword.xml</attack>" +
+			"<attack_melee>attack/weapon/sword.xml</attack_melee>" +
 			"<death>actor/human/death/death.xml</death>" +
 		"</SoundGroups>" +
 	"</a:example>" +

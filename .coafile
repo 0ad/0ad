@@ -1,0 +1,10 @@
+[Source]
+bears = CPPCheckBear
+files = source/**.(cpp|h)
+ignore = source/third_party/**
+
+[JS]
+bears = ESLintBear, JSHintBear
+eslint_config = build/jenkins/lint-config/eslintrc.json
+jshint_config = build/jenkins/lint-config/jshintrc.json
+files = binaries/data/**.js

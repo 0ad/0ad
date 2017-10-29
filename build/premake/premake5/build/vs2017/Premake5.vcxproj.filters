@@ -1,0 +1,1205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="modules">
+      <UniqueIdentifier>{FEAC8BD4-6A8C-0A70-73A4-9546DF0271D1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\codelite">
+      <UniqueIdentifier>{56255C4E-421E-7BA0-6B50-602557A85AAC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\codelite\tests">
+      <UniqueIdentifier>{B8384320-A432-6C72-8D9F-02837938D2DE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\d">
+      <UniqueIdentifier>{F1EA2A26-5D55-DF9C-A693-9042123DBDF1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\d\actions">
+      <UniqueIdentifier>{B1B1DF92-1DC8-DD28-663F-694AD294AEB0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\d\tests">
+      <UniqueIdentifier>{9386D446-FF11-420B-0823-C5FF742D9E0B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\d\tools">
+      <UniqueIdentifier>{51F0D946-BD7B-470B-C68C-CAFF3297A30B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\gmake">
+      <UniqueIdentifier>{12B50CC7-7E75-88FD-47B0-D17AB32FCDD9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\gmake\tests">
+      <UniqueIdentifier>{74A5A7AC-E006-85BA-6974-CB6CD5D4BB79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\gmake\tests\cpp">
+      <UniqueIdentifier>{46B9405A-B2F0-88F1-BBFA-EC1427B1AFEA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\gmake\tests\cs">
+      <UniqueIdentifier>{19F6011A-05F0-2A6C-EE5C-C17CDAF590D8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\gmake\tests\workspace">
+      <UniqueIdentifier>{F29FF7B5-5EB8-DEDF-2765-6E79933C7379}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\gmake2">
+      <UniqueIdentifier>{8457A3A8-7025-97AE-59B9-07D545267313}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\gmake2\tests">
+      <UniqueIdentifier>{66D59E88-5264-2852-FB82-3C4DE7F038F8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\raw">
+      <UniqueIdentifier>{B7B3915C-2369-0A52-AC5D-042918120156}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\self-test">
+      <UniqueIdentifier>{E460CE8C-5077-CC22-99EE-574405449DAA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\vstudio">
+      <UniqueIdentifier>{BB1B144F-27A7-8113-30B8-04089CC2DD13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\vstudio\tests">
+      <UniqueIdentifier>{DDA65563-4913-115E-1207-A9BB7E3233C6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\vstudio\tests\cs2005">
+      <UniqueIdentifier>{69C9B067-5584-A013-FE3B-195EEAD5EAA3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\vstudio\tests\sln2005">
+      <UniqueIdentifier>{C07C5821-2C95-3F4B-F541-CFE46119D4E4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\vstudio\tests\vc200x">
+      <UniqueIdentifier>{8F45E192-7B00-D13E-24B8-498910521BCF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\vstudio\tests\vc2010">
+      <UniqueIdentifier>{6845E192-5400-D13E-FDB7-4989E9511BCF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\xcode">
+      <UniqueIdentifier>{80143BC8-ECD4-B6FE-B50F-007C218FFBDA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="modules\xcode\tests">
+      <UniqueIdentifier>{625F6748-CEC0-4456-572E-8B08C38E7B15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scripts">
+      <UniqueIdentifier>{6D076287-D9E6-E022-E2FE-6BF94E5D4784}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\actions">
+      <UniqueIdentifier>{EDED2727-59A3-A01C-E297-9AF34E4C9720}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\actions\clean">
+      <UniqueIdentifier>{9FCE2E0B-0BE5-2CA1-545C-B8C2C0B1FD28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\base">
+      <UniqueIdentifier>{F7972DCF-E364-88DA-0C7E-7682F8A9BD68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\host">
+      <UniqueIdentifier>{DA1D31CF-C6EA-8BDA-EF03-7A82DB2FC168}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\tools">
+      <UniqueIdentifier>{8DED2DB6-F957-E22C-4296-93D2AE3FC081}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tests">
+      <UniqueIdentifier>{78756B10-E489-93C1-AD0B-372119DF8FF2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tests\api">
+      <UniqueIdentifier>{C1E2B49B-2D4D-6912-768B-1AB8E2344767}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tests\base">
+      <UniqueIdentifier>{22895112-0E41-935F-7748-6CBB631F2E50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tests\config">
+      <UniqueIdentifier>{9D2D28F0-8990-B794-3216-F04A1E588317}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tests\folder">
+      <UniqueIdentifier>{C38526F7-AFE8-B59B-586E-EE5144B0811E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tests\oven">
+      <UniqueIdentifier>{9F015912-8BB9-9A5F-F4C0-73BBE0973550}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tests\project">
+      <UniqueIdentifier>{DEA9F6E4-4A6A-721B-13A5-BB987F24B7F7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tests\tools">
+      <UniqueIdentifier>{1804D05D-84B9-4853-0DAE-422A79623F57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tests\workspace">
+      <UniqueIdentifier>{F6443252-62D0-9F16-6BE1-220BD7EBFB16}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\host\buffered_io.h">
+      <Filter>src\host</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\host\curl_utils.h">
+      <Filter>src\host</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\host\lua_shimtable.h">
+      <Filter>src\host</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\host\premake.h">
+      <Filter>src\host</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\host\buffered_io.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\criteria_matches.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\curl_utils.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\debug_prompt.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\http_download.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\http_get.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\http_post.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\lua_auxlib.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\os_chdir.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\os_chmod.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\os_comparefiles.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\os_compile.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\os_copyfile.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\os_getWindowsRegistry.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\os_getcwd.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\os_getpass.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\os_getversion.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\os_host.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\os_is64bit.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\os_isdir.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\os_isfile.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\os_islink.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\os_locate.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\os_match.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\os_mkdir.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\os_pathsearch.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\os_realpath.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\os_remove.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\os_rename.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\os_rmdir.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\os_stat.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\os_touchfile.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\os_uuid.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\os_writefile_ifnotequal.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\path_getabsolute.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\path_getrelative.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\path_isabsolute.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\path_join.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\path_normalize.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\path_translate.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\path_wildcards.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\premake.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\premake_main.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\string_endswith.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\string_hash.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\string_sha1.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\string_startswith.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\term_textColor.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\host\zip_extract.c">
+      <Filter>src\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\scripts.c">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\BUILD.txt" />
+    <None Include="..\..\CHANGES.txt" />
+    <None Include="..\..\CONTRIBUTORS.txt" />
+    <None Include="..\..\LICENSE.txt" />
+    <None Include="..\..\modules\codelite\README.md">
+      <Filter>modules\codelite</Filter>
+    </None>
+    <None Include="..\..\modules\codelite\_manifest.lua">
+      <Filter>modules\codelite</Filter>
+    </None>
+    <None Include="..\..\modules\codelite\_preload.lua">
+      <Filter>modules\codelite</Filter>
+    </None>
+    <None Include="..\..\modules\codelite\codelite.lua">
+      <Filter>modules\codelite</Filter>
+    </None>
+    <None Include="..\..\modules\codelite\codelite_project.lua">
+      <Filter>modules\codelite</Filter>
+    </None>
+    <None Include="..\..\modules\codelite\codelite_workspace.lua">
+      <Filter>modules\codelite</Filter>
+    </None>
+    <None Include="..\..\modules\codelite\tests\_tests.lua">
+      <Filter>modules\codelite\tests</Filter>
+    </None>
+    <None Include="..\..\modules\codelite\tests\test_codelite_config.lua">
+      <Filter>modules\codelite\tests</Filter>
+    </None>
+    <None Include="..\..\modules\codelite\tests\test_codelite_project.lua">
+      <Filter>modules\codelite\tests</Filter>
+    </None>
+    <None Include="..\..\modules\codelite\tests\test_codelite_workspace.lua">
+      <Filter>modules\codelite\tests</Filter>
+    </None>
+    <None Include="..\..\modules\d\LICENSE.txt">
+      <Filter>modules\d</Filter>
+    </None>
+    <None Include="..\..\modules\d\README.md">
+      <Filter>modules\d</Filter>
+    </None>
+    <None Include="..\..\modules\d\_manifest.lua">
+      <Filter>modules\d</Filter>
+    </None>
+    <None Include="..\..\modules\d\_preload.lua">
+      <Filter>modules\d</Filter>
+    </None>
+    <None Include="..\..\modules\d\actions\gmake.lua">
+      <Filter>modules\d\actions</Filter>
+    </None>
+    <None Include="..\..\modules\d\actions\vstudio.lua">
+      <Filter>modules\d\actions</Filter>
+    </None>
+    <None Include="..\..\modules\d\d.lua">
+      <Filter>modules\d</Filter>
+    </None>
+    <None Include="..\..\modules\d\tests\_tests.lua">
+      <Filter>modules\d\tests</Filter>
+    </None>
+    <None Include="..\..\modules\d\tests\test_dmd.lua">
+      <Filter>modules\d\tests</Filter>
+    </None>
+    <None Include="..\..\modules\d\tests\test_gdc.lua">
+      <Filter>modules\d\tests</Filter>
+    </None>
+    <None Include="..\..\modules\d\tests\test_gmake.lua">
+      <Filter>modules\d\tests</Filter>
+    </None>
+    <None Include="..\..\modules\d\tests\test_ldc.lua">
+      <Filter>modules\d\tests</Filter>
+    </None>
+    <None Include="..\..\modules\d\tests\test_visualstudio.lua">
+      <Filter>modules\d\tests</Filter>
+    </None>
+    <None Include="..\..\modules\d\tools\dmd.lua">
+      <Filter>modules\d\tools</Filter>
+    </None>
+    <None Include="..\..\modules\d\tools\gdc.lua">
+      <Filter>modules\d\tools</Filter>
+    </None>
+    <None Include="..\..\modules\d\tools\ldc.lua">
+      <Filter>modules\d\tools</Filter>
+    </None>
+    <None Include="..\..\modules\gmake\_manifest.lua">
+      <Filter>modules\gmake</Filter>
+    </None>
+    <None Include="..\..\modules\gmake\_preload.lua">
+      <Filter>modules\gmake</Filter>
+    </None>
+    <None Include="..\..\modules\gmake\gmake.lua">
+      <Filter>modules\gmake</Filter>
+    </None>
+    <None Include="..\..\modules\gmake\gmake_cpp.lua">
+      <Filter>modules\gmake</Filter>
+    </None>
+    <None Include="..\..\modules\gmake\gmake_csharp.lua">
+      <Filter>modules\gmake</Filter>
+    </None>
+    <None Include="..\..\modules\gmake\gmake_makefile.lua">
+      <Filter>modules\gmake</Filter>
+    </None>
+    <None Include="..\..\modules\gmake\gmake_utility.lua">
+      <Filter>modules\gmake</Filter>
+    </None>
+    <None Include="..\..\modules\gmake\gmake_workspace.lua">
+      <Filter>modules\gmake</Filter>
+    </None>
+    <None Include="..\..\modules\gmake\tests\_tests.lua">
+      <Filter>modules\gmake\tests</Filter>
+    </None>
+    <None Include="..\..\modules\gmake\tests\cpp\test_clang.lua">
+      <Filter>modules\gmake\tests\cpp</Filter>
+    </None>
+    <None Include="..\..\modules\gmake\tests\cpp\test_file_rules.lua">
+      <Filter>modules\gmake\tests\cpp</Filter>
+    </None>
+    <None Include="..\..\modules\gmake\tests\cpp\test_flags.lua">
+      <Filter>modules\gmake\tests\cpp</Filter>
+    </None>
+    <None Include="..\..\modules\gmake\tests\cpp\test_ldflags.lua">
+      <Filter>modules\gmake\tests\cpp</Filter>
+    </None>
+    <None Include="..\..\modules\gmake\tests\cpp\test_make_linking.lua">
+      <Filter>modules\gmake\tests\cpp</Filter>
+    </None>
+    <None Include="..\..\modules\gmake\tests\cpp\test_make_pch.lua">
+      <Filter>modules\gmake\tests\cpp</Filter>
+    </None>
+    <None Include="..\..\modules\gmake\tests\cpp\test_objects.lua">
+      <Filter>modules\gmake\tests\cpp</Filter>
+    </None>
+    <None Include="..\..\modules\gmake\tests\cpp\test_target_rules.lua">
+      <Filter>modules\gmake\tests\cpp</Filter>
+    </None>
+    <None Include="..\..\modules\gmake\tests\cpp\test_tools.lua">
+      <Filter>modules\gmake\tests\cpp</Filter>
+    </None>
+    <None Include="..\..\modules\gmake\tests\cpp\test_wiidev.lua">
+      <Filter>modules\gmake\tests\cpp</Filter>
+    </None>
+    <None Include="..\..\modules\gmake\tests\cs\test_embed_files.lua">
+      <Filter>modules\gmake\tests\cs</Filter>
+    </None>
+    <None Include="..\..\modules\gmake\tests\cs\test_flags.lua">
+      <Filter>modules\gmake\tests\cs</Filter>
+    </None>
+    <None Include="..\..\modules\gmake\tests\cs\test_links.lua">
+      <Filter>modules\gmake\tests\cs</Filter>
+    </None>
+    <None Include="..\..\modules\gmake\tests\cs\test_response.lua">
+      <Filter>modules\gmake\tests\cs</Filter>
+    </None>
+    <None Include="..\..\modules\gmake\tests\cs\test_sources.lua">
+      <Filter>modules\gmake\tests\cs</Filter>
+    </None>
+    <None Include="..\..\modules\gmake\tests\test_make_escaping.lua">
+      <Filter>modules\gmake\tests</Filter>
+    </None>
+    <None Include="..\..\modules\gmake\tests\test_make_tovar.lua">
+      <Filter>modules\gmake\tests</Filter>
+    </None>
+    <None Include="..\..\modules\gmake\tests\workspace\test_config_maps.lua">
+      <Filter>modules\gmake\tests\workspace</Filter>
+    </None>
+    <None Include="..\..\modules\gmake\tests\workspace\test_default_config.lua">
+      <Filter>modules\gmake\tests\workspace</Filter>
+    </None>
+    <None Include="..\..\modules\gmake\tests\workspace\test_group_rule.lua">
+      <Filter>modules\gmake\tests\workspace</Filter>
+    </None>
+    <None Include="..\..\modules\gmake\tests\workspace\test_help_rule.lua">
+      <Filter>modules\gmake\tests\workspace</Filter>
+    </None>
+    <None Include="..\..\modules\gmake\tests\workspace\test_project_rule.lua">
+      <Filter>modules\gmake\tests\workspace</Filter>
+    </None>
+    <None Include="..\..\modules\gmake2\_manifest.lua">
+      <Filter>modules\gmake2</Filter>
+    </None>
+    <None Include="..\..\modules\gmake2\_preload.lua">
+      <Filter>modules\gmake2</Filter>
+    </None>
+    <None Include="..\..\modules\gmake2\gmake2.lua">
+      <Filter>modules\gmake2</Filter>
+    </None>
+    <None Include="..\..\modules\gmake2\gmake2_cpp.lua">
+      <Filter>modules\gmake2</Filter>
+    </None>
+    <None Include="..\..\modules\gmake2\gmake2_csharp.lua">
+      <Filter>modules\gmake2</Filter>
+    </None>
+    <None Include="..\..\modules\gmake2\gmake2_makefile.lua">
+      <Filter>modules\gmake2</Filter>
+    </None>
+    <None Include="..\..\modules\gmake2\gmake2_utility.lua">
+      <Filter>modules\gmake2</Filter>
+    </None>
+    <None Include="..\..\modules\gmake2\gmake2_workspace.lua">
+      <Filter>modules\gmake2</Filter>
+    </None>
+    <None Include="..\..\modules\gmake2\tests\_tests.lua">
+      <Filter>modules\gmake2\tests</Filter>
+    </None>
+    <None Include="..\..\modules\gmake2\tests\test_gmake2_clang.lua">
+      <Filter>modules\gmake2\tests</Filter>
+    </None>
+    <None Include="..\..\modules\gmake2\tests\test_gmake2_file_rules.lua">
+      <Filter>modules\gmake2\tests</Filter>
+    </None>
+    <None Include="..\..\modules\gmake2\tests\test_gmake2_flags.lua">
+      <Filter>modules\gmake2\tests</Filter>
+    </None>
+    <None Include="..\..\modules\gmake2\tests\test_gmake2_ldflags.lua">
+      <Filter>modules\gmake2\tests</Filter>
+    </None>
+    <None Include="..\..\modules\gmake2\tests\test_gmake2_linking.lua">
+      <Filter>modules\gmake2\tests</Filter>
+    </None>
+    <None Include="..\..\modules\gmake2\tests\test_gmake2_objects.lua">
+      <Filter>modules\gmake2\tests</Filter>
+    </None>
+    <None Include="..\..\modules\gmake2\tests\test_gmake2_pch.lua">
+      <Filter>modules\gmake2\tests</Filter>
+    </None>
+    <None Include="..\..\modules\gmake2\tests\test_gmake2_target_rules.lua">
+      <Filter>modules\gmake2\tests</Filter>
+    </None>
+    <None Include="..\..\modules\gmake2\tests\test_gmake2_tools.lua">
+      <Filter>modules\gmake2\tests</Filter>
+    </None>
+    <None Include="..\..\modules\raw\README.md">
+      <Filter>modules\raw</Filter>
+    </None>
+    <None Include="..\..\modules\raw\_manifest.lua">
+      <Filter>modules\raw</Filter>
+    </None>
+    <None Include="..\..\modules\raw\_preload.lua">
+      <Filter>modules\raw</Filter>
+    </None>
+    <None Include="..\..\modules\raw\raw.lua">
+      <Filter>modules\raw</Filter>
+    </None>
+    <None Include="..\..\modules\raw\raw_action.lua">
+      <Filter>modules\raw</Filter>
+    </None>
+    <None Include="..\..\modules\self-test\_manifest.lua">
+      <Filter>modules\self-test</Filter>
+    </None>
+    <None Include="..\..\modules\self-test\self-test.lua">
+      <Filter>modules\self-test</Filter>
+    </None>
+    <None Include="..\..\modules\self-test\test_assertions.lua">
+      <Filter>modules\self-test</Filter>
+    </None>
+    <None Include="..\..\modules\self-test\test_declare.lua">
+      <Filter>modules\self-test</Filter>
+    </None>
+    <None Include="..\..\modules\self-test\test_helpers.lua">
+      <Filter>modules\self-test</Filter>
+    </None>
+    <None Include="..\..\modules\self-test\test_runner.lua">
+      <Filter>modules\self-test</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\_manifest.lua">
+      <Filter>modules\vstudio</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\_preload.lua">
+      <Filter>modules\vstudio</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\_tests.lua">
+      <Filter>modules\vstudio\tests</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\cs2005\projectelement.lua">
+      <Filter>modules\vstudio\tests\cs2005</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\cs2005\projectsettings.lua">
+      <Filter>modules\vstudio\tests\cs2005</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_assembly_refs.lua">
+      <Filter>modules\vstudio\tests\cs2005</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_build_events.lua">
+      <Filter>modules\vstudio\tests\cs2005</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_common_props.lua">
+      <Filter>modules\vstudio\tests\cs2005</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_compiler_props.lua">
+      <Filter>modules\vstudio\tests\cs2005</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_debug_props.lua">
+      <Filter>modules\vstudio\tests\cs2005</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_files.lua">
+      <Filter>modules\vstudio\tests\cs2005</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_icon.lua">
+      <Filter>modules\vstudio\tests\cs2005</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_nuget_config.lua">
+      <Filter>modules\vstudio\tests\cs2005</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_nuget_framework_folders.lua">
+      <Filter>modules\vstudio\tests\cs2005</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_nuget_packages_config.lua">
+      <Filter>modules\vstudio\tests\cs2005</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_nuget_references.lua">
+      <Filter>modules\vstudio\tests\cs2005</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_output_props.lua">
+      <Filter>modules\vstudio\tests\cs2005</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_platform_groups.lua">
+      <Filter>modules\vstudio\tests\cs2005</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_project_refs.lua">
+      <Filter>modules\vstudio\tests\cs2005</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_targets.lua">
+      <Filter>modules\vstudio\tests\cs2005</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_user_file.lua">
+      <Filter>modules\vstudio\tests\cs2005</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\sln2005\test_dependencies.lua">
+      <Filter>modules\vstudio\tests\sln2005</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\sln2005\test_header.lua">
+      <Filter>modules\vstudio\tests\sln2005</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\sln2005\test_nested_projects.lua">
+      <Filter>modules\vstudio\tests\sln2005</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\sln2005\test_platforms.lua">
+      <Filter>modules\vstudio\tests\sln2005</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\sln2005\test_projects.lua">
+      <Filter>modules\vstudio\tests\sln2005</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\sln2005\test_sections.lua">
+      <Filter>modules\vstudio\tests\sln2005</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc200x\test_assembly_refs.lua">
+      <Filter>modules\vstudio\tests\vc200x</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc200x\test_build_steps.lua">
+      <Filter>modules\vstudio\tests\vc200x</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc200x\test_compiler_block.lua">
+      <Filter>modules\vstudio\tests\vc200x</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc200x\test_configuration.lua">
+      <Filter>modules\vstudio\tests\vc200x</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc200x\test_debug_settings.lua">
+      <Filter>modules\vstudio\tests\vc200x</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc200x\test_excluded_configs.lua">
+      <Filter>modules\vstudio\tests\vc200x</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc200x\test_files.lua">
+      <Filter>modules\vstudio\tests\vc200x</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc200x\test_linker_block.lua">
+      <Filter>modules\vstudio\tests\vc200x</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc200x\test_manifest_block.lua">
+      <Filter>modules\vstudio\tests\vc200x</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc200x\test_nmake_settings.lua">
+      <Filter>modules\vstudio\tests\vc200x</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc200x\test_platforms.lua">
+      <Filter>modules\vstudio\tests\vc200x</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc200x\test_project.lua">
+      <Filter>modules\vstudio\tests\vc200x</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc200x\test_project_refs.lua">
+      <Filter>modules\vstudio\tests\vc200x</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc200x\test_resource_compiler.lua">
+      <Filter>modules\vstudio\tests\vc200x</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc200x\test_user_file.lua">
+      <Filter>modules\vstudio\tests\vc200x</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_assembly_refs.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_build_events.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_build_log.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_character_set.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_compile_settings.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_config_props.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_debug_settings.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_ensure_nuget_imports.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_excluded_configs.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_extension_settings.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_extension_targets.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_files.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_filter_ids.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_filters.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_floatingpoint.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_globals.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_header.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_imagexex_settings.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_item_def_group.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_language_settings.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_language_targets.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_link.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_manifest.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_nmake_props.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_nuget_packages_config.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_output_props.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_platform_toolset.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_project_configs.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_project_refs.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_prop_sheet.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_resource_compile.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_rule_props.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_rule_targets.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_rule_vars.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_rule_xml.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_target_machine.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_user_file.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_vectorextensions.lua">
+      <Filter>modules\vstudio\tests\vc2010</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\vs2005.lua">
+      <Filter>modules\vstudio</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\vs2005_csproj.lua">
+      <Filter>modules\vstudio</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\vs2005_csproj_user.lua">
+      <Filter>modules\vstudio</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\vs2005_solution.lua">
+      <Filter>modules\vstudio</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\vs2008.lua">
+      <Filter>modules\vstudio</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\vs200x_vcproj.lua">
+      <Filter>modules\vstudio</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\vs200x_vcproj_user.lua">
+      <Filter>modules\vstudio</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\vs2010.lua">
+      <Filter>modules\vstudio</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\vs2010_nuget.lua">
+      <Filter>modules\vstudio</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\vs2010_rules_props.lua">
+      <Filter>modules\vstudio</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\vs2010_rules_targets.lua">
+      <Filter>modules\vstudio</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\vs2010_rules_xml.lua">
+      <Filter>modules\vstudio</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\vs2010_vcxproj.lua">
+      <Filter>modules\vstudio</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\vs2010_vcxproj_filters.lua">
+      <Filter>modules\vstudio</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\vs2010_vcxproj_user.lua">
+      <Filter>modules\vstudio</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\vs2012.lua">
+      <Filter>modules\vstudio</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\vs2013.lua">
+      <Filter>modules\vstudio</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\vs2015.lua">
+      <Filter>modules\vstudio</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\vs2017.lua">
+      <Filter>modules\vstudio</Filter>
+    </None>
+    <None Include="..\..\modules\vstudio\vstudio.lua">
+      <Filter>modules\vstudio</Filter>
+    </None>
+    <None Include="..\..\modules\xcode\LICENSE.TXT">
+      <Filter>modules\xcode</Filter>
+    </None>
+    <None Include="..\..\modules\xcode\_manifest.lua">
+      <Filter>modules\xcode</Filter>
+    </None>
+    <None Include="..\..\modules\xcode\_preload.lua">
+      <Filter>modules\xcode</Filter>
+    </None>
+    <None Include="..\..\modules\xcode\tests\_tests.lua">
+      <Filter>modules\xcode\tests</Filter>
+    </None>
+    <None Include="..\..\modules\xcode\tests\test_header_footer.lua">
+      <Filter>modules\xcode\tests</Filter>
+    </None>
+    <None Include="..\..\modules\xcode\tests\test_xcode4_project.lua">
+      <Filter>modules\xcode\tests</Filter>
+    </None>
+    <None Include="..\..\modules\xcode\tests\test_xcode4_workspace.lua">
+      <Filter>modules\xcode\tests</Filter>
+    </None>
+    <None Include="..\..\modules\xcode\tests\test_xcode_dependencies.lua">
+      <Filter>modules\xcode\tests</Filter>
+    </None>
+    <None Include="..\..\modules\xcode\tests\test_xcode_project.lua">
+      <Filter>modules\xcode\tests</Filter>
+    </None>
+    <None Include="..\..\modules\xcode\xcode.lua">
+      <Filter>modules\xcode</Filter>
+    </None>
+    <None Include="..\..\modules\xcode\xcode4_workspace.lua">
+      <Filter>modules\xcode</Filter>
+    </None>
+    <None Include="..\..\modules\xcode\xcode_common.lua">
+      <Filter>modules\xcode</Filter>
+    </None>
+    <None Include="..\..\modules\xcode\xcode_project.lua">
+      <Filter>modules\xcode</Filter>
+    </None>
+    <None Include="..\..\premake4.lua" />
+    <None Include="..\..\premake5.lua" />
+    <None Include="..\..\scripts\embed.lua">
+      <Filter>scripts</Filter>
+    </None>
+    <None Include="..\..\scripts\package.lua">
+      <Filter>scripts</Filter>
+    </None>
+    <None Include="..\..\src\_manifest.lua">
+      <Filter>src</Filter>
+    </None>
+    <None Include="..\..\src\_modules.lua">
+      <Filter>src</Filter>
+    </None>
+    <None Include="..\..\src\_premake_init.lua">
+      <Filter>src</Filter>
+    </None>
+    <None Include="..\..\src\_premake_main.lua">
+      <Filter>src</Filter>
+    </None>
+    <None Include="..\..\src\actions\clean\_clean.lua">
+      <Filter>src\actions\clean</Filter>
+    </None>
+    <None Include="..\..\src\base\_foundation.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\action.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\api.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\config.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\configset.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\container.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\context.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\criteria.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\detoken.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\field.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\fileconfig.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\global.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\globals.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\group.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\help.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\http.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\io.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\json.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\jsonwrapper.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\languages.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\moduledownloader.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\option.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\os.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\oven.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\path.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\premake.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\project.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\rule.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\semver.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\string.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\table.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\term.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\tools.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\tree.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\validation.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\base\workspace.lua">
+      <Filter>src\base</Filter>
+    </None>
+    <None Include="..\..\src\tools\clang.lua">
+      <Filter>src\tools</Filter>
+    </None>
+    <None Include="..\..\src\tools\dotnet.lua">
+      <Filter>src\tools</Filter>
+    </None>
+    <None Include="..\..\src\tools\gcc.lua">
+      <Filter>src\tools</Filter>
+    </None>
+    <None Include="..\..\src\tools\msc.lua">
+      <Filter>src\tools</Filter>
+    </None>
+    <None Include="..\..\src\tools\snc.lua">
+      <Filter>src\tools</Filter>
+    </None>
+    <None Include="..\..\tests\_tests.lua">
+      <Filter>tests</Filter>
+    </None>
+    <None Include="..\..\tests\api\test_boolean_kind.lua">
+      <Filter>tests\api</Filter>
+    </None>
+    <None Include="..\..\tests\api\test_containers.lua">
+      <Filter>tests\api</Filter>
+    </None>
+    <None Include="..\..\tests\api\test_deprecations.lua">
+      <Filter>tests\api</Filter>
+    </None>
+    <None Include="..\..\tests\api\test_directory_kind.lua">
+      <Filter>tests\api</Filter>
+    </None>
+    <None Include="..\..\tests\api\test_list_kind.lua">
+      <Filter>tests\api</Filter>
+    </None>
+    <None Include="..\..\tests\api\test_path_kind.lua">
+      <Filter>tests\api</Filter>
+    </None>
+    <None Include="..\..\tests\api\test_register.lua">
+      <Filter>tests\api</Filter>
+    </None>
+    <None Include="..\..\tests\api\test_string_kind.lua">
+      <Filter>tests\api</Filter>
+    </None>
+    <None Include="..\..\tests\api\test_table_kind.lua">
+      <Filter>tests\api</Filter>
+    </None>
+    <None Include="..\..\tests\base\test_aliasing.lua">
+      <Filter>tests\base</Filter>
+    </None>
+    <None Include="..\..\tests\base\test_binmodules.lua">
+      <Filter>tests\base</Filter>
+    </None>
+    <None Include="..\..\tests\base\test_configset.lua">
+      <Filter>tests\base</Filter>
+    </None>
+    <None Include="..\..\tests\base\test_context.lua">
+      <Filter>tests\base</Filter>
+    </None>
+    <None Include="..\..\tests\base\test_criteria.lua">
+      <Filter>tests\base</Filter>
+    </None>
+    <None Include="..\..\tests\base\test_detoken.lua">
+      <Filter>tests\base</Filter>
+    </None>
+    <None Include="..\..\tests\base\test_filename.lua">
+      <Filter>tests\base</Filter>
+    </None>
+    <None Include="..\..\tests\base\test_http.lua">
+      <Filter>tests\base</Filter>
+    </None>
+    <None Include="..\..\tests\base\test_include.lua">
+      <Filter>tests\base</Filter>
+    </None>
+    <None Include="..\..\tests\base\test_json.lua">
+      <Filter>tests\base</Filter>
+    </None>
+    <None Include="..\..\tests\base\test_module_loader.lua">
+      <Filter>tests\base</Filter>
+    </None>
+    <None Include="..\..\tests\base\test_option.lua">
+      <Filter>tests\base</Filter>
+    </None>
+    <None Include="..\..\tests\base\test_os.lua">
+      <Filter>tests\base</Filter>
+    </None>
+    <None Include="..\..\tests\base\test_override.lua">
+      <Filter>tests\base</Filter>
+    </None>
+    <None Include="..\..\tests\base\test_path.lua">
+      <Filter>tests\base</Filter>
+    </None>
+    <None Include="..\..\tests\base\test_premake_command.lua">
+      <Filter>tests\base</Filter>
+    </None>
+    <None Include="..\..\tests\base\test_table.lua">
+      <Filter>tests\base</Filter>
+    </None>
+    <None Include="..\..\tests\base\test_tree.lua">
+      <Filter>tests\base</Filter>
+    </None>
+    <None Include="..\..\tests\base\test_uuid.lua">
+      <Filter>tests\base</Filter>
+    </None>
+    <None Include="..\..\tests\base\test_validation.lua">
+      <Filter>tests\base</Filter>
+    </None>
+    <None Include="..\..\tests\base\test_versions.lua">
+      <Filter>tests\base</Filter>
+    </None>
+    <None Include="..\..\tests\config\test_linkinfo.lua">
+      <Filter>tests\config</Filter>
+    </None>
+    <None Include="..\..\tests\config\test_links.lua">
+      <Filter>tests\config</Filter>
+    </None>
+    <None Include="..\..\tests\config\test_targetinfo.lua">
+      <Filter>tests\config</Filter>
+    </None>
+    <None Include="..\..\tests\folder\ok.lua">
+      <Filter>tests\folder</Filter>
+    </None>
+    <None Include="..\..\tests\folder\premake5.lua">
+      <Filter>tests\folder</Filter>
+    </None>
+    <None Include="..\..\tests\oven\test_filtering.lua">
+      <Filter>tests\oven</Filter>
+    </None>
+    <None Include="..\..\tests\oven\test_objdirs.lua">
+      <Filter>tests\oven</Filter>
+    </None>
+    <None Include="..\..\tests\pepperfish_profiler.lua">
+      <Filter>tests</Filter>
+    </None>
+    <None Include="..\..\tests\project\test_config_maps.lua">
+      <Filter>tests\project</Filter>
+    </None>
+    <None Include="..\..\tests\project\test_eachconfig.lua">
+      <Filter>tests\project</Filter>
+    </None>
+    <None Include="..\..\tests\project\test_getconfig.lua">
+      <Filter>tests\project</Filter>
+    </None>
+    <None Include="..\..\tests\project\test_location.lua">
+      <Filter>tests\project</Filter>
+    </None>
+    <None Include="..\..\tests\project\test_sources.lua">
+      <Filter>tests\project</Filter>
+    </None>
+    <None Include="..\..\tests\project\test_vpaths.lua">
+      <Filter>tests\project</Filter>
+    </None>
+    <None Include="..\..\tests\test_premake.lua">
+      <Filter>tests</Filter>
+    </None>
+    <None Include="..\..\tests\test_stress.lua">
+      <Filter>tests</Filter>
+    </None>
+    <None Include="..\..\tests\test_string.lua">
+      <Filter>tests</Filter>
+    </None>
+    <None Include="..\..\tests\tools\test_dotnet.lua">
+      <Filter>tests\tools</Filter>
+    </None>
+    <None Include="..\..\tests\tools\test_gcc.lua">
+      <Filter>tests\tools</Filter>
+    </None>
+    <None Include="..\..\tests\tools\test_msc.lua">
+      <Filter>tests\tools</Filter>
+    </None>
+    <None Include="..\..\tests\tools\test_snc.lua">
+      <Filter>tests\tools</Filter>
+    </None>
+    <None Include="..\..\tests\workspace\test_eachconfig.lua">
+      <Filter>tests\workspace</Filter>
+    </None>
+    <None Include="..\..\tests\workspace\test_location.lua">
+      <Filter>tests\workspace</Filter>
+    </None>
+    <None Include="..\..\tests\workspace\test_objdirs.lua">
+      <Filter>tests\workspace</Filter>
+    </None>
+  </ItemGroup>
+</Project>

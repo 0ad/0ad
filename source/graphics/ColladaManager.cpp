@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -106,7 +106,7 @@ public:
 		CVFSFile skeletonFile;
 		if (skeletonFile.Load(m_VFS, path) != PSRETURN_OK)
 		{
-			LOGERROR("Failed to read skeleton defintions from '%s'", path.string8());
+			LOGERROR("Failed to read skeleton definitions from '%s'", path.string8());
 			return ERR::FAIL;
 		}
 
@@ -228,7 +228,7 @@ public:
 			CVFSFile skeletonFile;
 			if (skeletonFile.Load(m_VFS, path) != PSRETURN_OK)
 			{
-				LOGERROR("Failed to read skeleton defintions from '%s'", path.string8());
+				LOGERROR("Failed to read skeleton definitions from '%s'", path.string8());
 				continue;
 			}
 

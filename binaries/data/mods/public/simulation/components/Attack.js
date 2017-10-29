@@ -499,7 +499,7 @@ Attack.prototype.PerformAttack = function(type, target)
 		let attackImpactSound = "";
 		let cmpSound = Engine.QueryInterface(this.entity, IID_Sound);
 		if (cmpSound)
-			attackImpactSound = cmpSound.GetSoundGroup("attack_impact");
+			attackImpactSound = cmpSound.GetSoundGroup("attack_impact_" + type.toLowerCase());
 
 		let data = {
 			"type": type,

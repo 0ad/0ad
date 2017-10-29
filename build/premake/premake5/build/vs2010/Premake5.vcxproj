@@ -1,0 +1,482 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{DF59398B-CB26-9496-F43F-823EE06BC924}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Premake5</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v100</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v100</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\..\bin\release\</OutDir>
+    <IntDir>obj\Release\Premake5\</IntDir>
+    <TargetName>premake5</TargetName>
+    <TargetExt>.exe</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\..\bin\debug\</OutDir>
+    <IntDir>obj\Debug\Premake5\</IntDir>
+    <TargetName>premake5</TargetName>
+    <TargetExt>.exe</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <PreprocessorDefinitions>PREMAKE_COMPRESSION;CURL_STATICLIB;PREMAKE_CURL;NDEBUG;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\contrib\lua\src;..\..\contrib\luashim;..\..\contrib\zlib;..\..\contrib\libzip;..\..\contrib\curl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>ole32.lib;ws2_32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>PREMAKE_COMPRESSION;CURL_STATICLIB;PREMAKE_CURL;_DEBUG;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\contrib\lua\src;..\..\contrib\luashim;..\..\contrib\zlib;..\..\contrib\libzip;..\..\contrib\curl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>ole32.lib;ws2_32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\host\buffered_io.h" />
+    <ClInclude Include="..\..\src\host\curl_utils.h" />
+    <ClInclude Include="..\..\src\host\lua_shimtable.h" />
+    <ClInclude Include="..\..\src\host\premake.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\host\buffered_io.c" />
+    <ClCompile Include="..\..\src\host\criteria_matches.c" />
+    <ClCompile Include="..\..\src\host\curl_utils.c" />
+    <ClCompile Include="..\..\src\host\debug_prompt.c" />
+    <ClCompile Include="..\..\src\host\http_download.c" />
+    <ClCompile Include="..\..\src\host\http_get.c" />
+    <ClCompile Include="..\..\src\host\http_post.c" />
+    <ClCompile Include="..\..\src\host\lua_auxlib.c" />
+    <ClCompile Include="..\..\src\host\os_chdir.c" />
+    <ClCompile Include="..\..\src\host\os_chmod.c" />
+    <ClCompile Include="..\..\src\host\os_comparefiles.c" />
+    <ClCompile Include="..\..\src\host\os_compile.c" />
+    <ClCompile Include="..\..\src\host\os_copyfile.c" />
+    <ClCompile Include="..\..\src\host\os_getWindowsRegistry.c" />
+    <ClCompile Include="..\..\src\host\os_getcwd.c" />
+    <ClCompile Include="..\..\src\host\os_getpass.c" />
+    <ClCompile Include="..\..\src\host\os_getversion.c" />
+    <ClCompile Include="..\..\src\host\os_host.c" />
+    <ClCompile Include="..\..\src\host\os_is64bit.c" />
+    <ClCompile Include="..\..\src\host\os_isdir.c" />
+    <ClCompile Include="..\..\src\host\os_isfile.c" />
+    <ClCompile Include="..\..\src\host\os_islink.c" />
+    <ClCompile Include="..\..\src\host\os_locate.c" />
+    <ClCompile Include="..\..\src\host\os_match.c" />
+    <ClCompile Include="..\..\src\host\os_mkdir.c" />
+    <ClCompile Include="..\..\src\host\os_pathsearch.c" />
+    <ClCompile Include="..\..\src\host\os_realpath.c" />
+    <ClCompile Include="..\..\src\host\os_remove.c" />
+    <ClCompile Include="..\..\src\host\os_rename.c" />
+    <ClCompile Include="..\..\src\host\os_rmdir.c" />
+    <ClCompile Include="..\..\src\host\os_stat.c" />
+    <ClCompile Include="..\..\src\host\os_touchfile.c" />
+    <ClCompile Include="..\..\src\host\os_uuid.c" />
+    <ClCompile Include="..\..\src\host\os_writefile_ifnotequal.c" />
+    <ClCompile Include="..\..\src\host\path_getabsolute.c" />
+    <ClCompile Include="..\..\src\host\path_getrelative.c" />
+    <ClCompile Include="..\..\src\host\path_isabsolute.c" />
+    <ClCompile Include="..\..\src\host\path_join.c" />
+    <ClCompile Include="..\..\src\host\path_normalize.c" />
+    <ClCompile Include="..\..\src\host\path_translate.c" />
+    <ClCompile Include="..\..\src\host\path_wildcards.c" />
+    <ClCompile Include="..\..\src\host\premake.c" />
+    <ClCompile Include="..\..\src\host\premake_main.c" />
+    <ClCompile Include="..\..\src\host\string_endswith.c" />
+    <ClCompile Include="..\..\src\host\string_hash.c" />
+    <ClCompile Include="..\..\src\host\string_sha1.c" />
+    <ClCompile Include="..\..\src\host\string_startswith.c" />
+    <ClCompile Include="..\..\src\host\term_textColor.c" />
+    <ClCompile Include="..\..\src\host\zip_extract.c" />
+    <ClCompile Include="..\..\src\scripts.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\BUILD.txt" />
+    <None Include="..\..\CHANGES.txt" />
+    <None Include="..\..\CONTRIBUTORS.txt" />
+    <None Include="..\..\LICENSE.txt" />
+    <None Include="..\..\modules\codelite\README.md" />
+    <None Include="..\..\modules\codelite\_manifest.lua" />
+    <None Include="..\..\modules\codelite\_preload.lua" />
+    <None Include="..\..\modules\codelite\codelite.lua" />
+    <None Include="..\..\modules\codelite\codelite_project.lua" />
+    <None Include="..\..\modules\codelite\codelite_workspace.lua" />
+    <None Include="..\..\modules\codelite\tests\_tests.lua" />
+    <None Include="..\..\modules\codelite\tests\test_codelite_config.lua" />
+    <None Include="..\..\modules\codelite\tests\test_codelite_project.lua" />
+    <None Include="..\..\modules\codelite\tests\test_codelite_workspace.lua" />
+    <None Include="..\..\modules\d\LICENSE.txt" />
+    <None Include="..\..\modules\d\README.md" />
+    <None Include="..\..\modules\d\_manifest.lua" />
+    <None Include="..\..\modules\d\_preload.lua" />
+    <None Include="..\..\modules\d\actions\gmake.lua" />
+    <None Include="..\..\modules\d\actions\vstudio.lua" />
+    <None Include="..\..\modules\d\d.lua" />
+    <None Include="..\..\modules\d\tests\_tests.lua" />
+    <None Include="..\..\modules\d\tests\test_dmd.lua" />
+    <None Include="..\..\modules\d\tests\test_gdc.lua" />
+    <None Include="..\..\modules\d\tests\test_gmake.lua" />
+    <None Include="..\..\modules\d\tests\test_ldc.lua" />
+    <None Include="..\..\modules\d\tests\test_visualstudio.lua" />
+    <None Include="..\..\modules\d\tools\dmd.lua" />
+    <None Include="..\..\modules\d\tools\gdc.lua" />
+    <None Include="..\..\modules\d\tools\ldc.lua" />
+    <None Include="..\..\modules\gmake\_manifest.lua" />
+    <None Include="..\..\modules\gmake\_preload.lua" />
+    <None Include="..\..\modules\gmake\gmake.lua" />
+    <None Include="..\..\modules\gmake\gmake_cpp.lua" />
+    <None Include="..\..\modules\gmake\gmake_csharp.lua" />
+    <None Include="..\..\modules\gmake\gmake_makefile.lua" />
+    <None Include="..\..\modules\gmake\gmake_utility.lua" />
+    <None Include="..\..\modules\gmake\gmake_workspace.lua" />
+    <None Include="..\..\modules\gmake\tests\_tests.lua" />
+    <None Include="..\..\modules\gmake\tests\cpp\test_clang.lua" />
+    <None Include="..\..\modules\gmake\tests\cpp\test_file_rules.lua" />
+    <None Include="..\..\modules\gmake\tests\cpp\test_flags.lua" />
+    <None Include="..\..\modules\gmake\tests\cpp\test_ldflags.lua" />
+    <None Include="..\..\modules\gmake\tests\cpp\test_make_linking.lua" />
+    <None Include="..\..\modules\gmake\tests\cpp\test_make_pch.lua" />
+    <None Include="..\..\modules\gmake\tests\cpp\test_objects.lua" />
+    <None Include="..\..\modules\gmake\tests\cpp\test_target_rules.lua" />
+    <None Include="..\..\modules\gmake\tests\cpp\test_tools.lua" />
+    <None Include="..\..\modules\gmake\tests\cpp\test_wiidev.lua" />
+    <None Include="..\..\modules\gmake\tests\cs\test_embed_files.lua" />
+    <None Include="..\..\modules\gmake\tests\cs\test_flags.lua" />
+    <None Include="..\..\modules\gmake\tests\cs\test_links.lua" />
+    <None Include="..\..\modules\gmake\tests\cs\test_response.lua" />
+    <None Include="..\..\modules\gmake\tests\cs\test_sources.lua" />
+    <None Include="..\..\modules\gmake\tests\test_make_escaping.lua" />
+    <None Include="..\..\modules\gmake\tests\test_make_tovar.lua" />
+    <None Include="..\..\modules\gmake\tests\workspace\test_config_maps.lua" />
+    <None Include="..\..\modules\gmake\tests\workspace\test_default_config.lua" />
+    <None Include="..\..\modules\gmake\tests\workspace\test_group_rule.lua" />
+    <None Include="..\..\modules\gmake\tests\workspace\test_help_rule.lua" />
+    <None Include="..\..\modules\gmake\tests\workspace\test_project_rule.lua" />
+    <None Include="..\..\modules\gmake2\_manifest.lua" />
+    <None Include="..\..\modules\gmake2\_preload.lua" />
+    <None Include="..\..\modules\gmake2\gmake2.lua" />
+    <None Include="..\..\modules\gmake2\gmake2_cpp.lua" />
+    <None Include="..\..\modules\gmake2\gmake2_csharp.lua" />
+    <None Include="..\..\modules\gmake2\gmake2_makefile.lua" />
+    <None Include="..\..\modules\gmake2\gmake2_utility.lua" />
+    <None Include="..\..\modules\gmake2\gmake2_workspace.lua" />
+    <None Include="..\..\modules\gmake2\tests\_tests.lua" />
+    <None Include="..\..\modules\gmake2\tests\test_gmake2_clang.lua" />
+    <None Include="..\..\modules\gmake2\tests\test_gmake2_file_rules.lua" />
+    <None Include="..\..\modules\gmake2\tests\test_gmake2_flags.lua" />
+    <None Include="..\..\modules\gmake2\tests\test_gmake2_ldflags.lua" />
+    <None Include="..\..\modules\gmake2\tests\test_gmake2_linking.lua" />
+    <None Include="..\..\modules\gmake2\tests\test_gmake2_objects.lua" />
+    <None Include="..\..\modules\gmake2\tests\test_gmake2_pch.lua" />
+    <None Include="..\..\modules\gmake2\tests\test_gmake2_target_rules.lua" />
+    <None Include="..\..\modules\gmake2\tests\test_gmake2_tools.lua" />
+    <None Include="..\..\modules\raw\README.md" />
+    <None Include="..\..\modules\raw\_manifest.lua" />
+    <None Include="..\..\modules\raw\_preload.lua" />
+    <None Include="..\..\modules\raw\raw.lua" />
+    <None Include="..\..\modules\raw\raw_action.lua" />
+    <None Include="..\..\modules\self-test\_manifest.lua" />
+    <None Include="..\..\modules\self-test\self-test.lua" />
+    <None Include="..\..\modules\self-test\test_assertions.lua" />
+    <None Include="..\..\modules\self-test\test_declare.lua" />
+    <None Include="..\..\modules\self-test\test_helpers.lua" />
+    <None Include="..\..\modules\self-test\test_runner.lua" />
+    <None Include="..\..\modules\vstudio\_manifest.lua" />
+    <None Include="..\..\modules\vstudio\_preload.lua" />
+    <None Include="..\..\modules\vstudio\tests\_tests.lua" />
+    <None Include="..\..\modules\vstudio\tests\cs2005\projectelement.lua" />
+    <None Include="..\..\modules\vstudio\tests\cs2005\projectsettings.lua" />
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_assembly_refs.lua" />
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_build_events.lua" />
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_common_props.lua" />
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_compiler_props.lua" />
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_debug_props.lua" />
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_files.lua" />
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_icon.lua" />
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_nuget_config.lua" />
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_nuget_framework_folders.lua" />
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_nuget_packages_config.lua" />
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_nuget_references.lua" />
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_output_props.lua" />
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_platform_groups.lua" />
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_project_refs.lua" />
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_targets.lua" />
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_user_file.lua" />
+    <None Include="..\..\modules\vstudio\tests\sln2005\test_dependencies.lua" />
+    <None Include="..\..\modules\vstudio\tests\sln2005\test_header.lua" />
+    <None Include="..\..\modules\vstudio\tests\sln2005\test_nested_projects.lua" />
+    <None Include="..\..\modules\vstudio\tests\sln2005\test_platforms.lua" />
+    <None Include="..\..\modules\vstudio\tests\sln2005\test_projects.lua" />
+    <None Include="..\..\modules\vstudio\tests\sln2005\test_sections.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc200x\test_assembly_refs.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc200x\test_build_steps.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc200x\test_compiler_block.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc200x\test_configuration.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc200x\test_debug_settings.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc200x\test_excluded_configs.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc200x\test_files.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc200x\test_linker_block.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc200x\test_manifest_block.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc200x\test_nmake_settings.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc200x\test_platforms.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc200x\test_project.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc200x\test_project_refs.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc200x\test_resource_compiler.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc200x\test_user_file.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_assembly_refs.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_build_events.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_build_log.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_character_set.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_compile_settings.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_config_props.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_debug_settings.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_ensure_nuget_imports.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_excluded_configs.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_extension_settings.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_extension_targets.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_files.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_filter_ids.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_filters.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_floatingpoint.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_globals.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_header.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_imagexex_settings.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_item_def_group.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_language_settings.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_language_targets.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_link.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_manifest.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_nmake_props.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_nuget_packages_config.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_output_props.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_platform_toolset.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_project_configs.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_project_refs.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_prop_sheet.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_resource_compile.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_rule_props.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_rule_targets.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_rule_vars.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_rule_xml.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_target_machine.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_user_file.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_vectorextensions.lua" />
+    <None Include="..\..\modules\vstudio\vs2005.lua" />
+    <None Include="..\..\modules\vstudio\vs2005_csproj.lua" />
+    <None Include="..\..\modules\vstudio\vs2005_csproj_user.lua" />
+    <None Include="..\..\modules\vstudio\vs2005_solution.lua" />
+    <None Include="..\..\modules\vstudio\vs2008.lua" />
+    <None Include="..\..\modules\vstudio\vs200x_vcproj.lua" />
+    <None Include="..\..\modules\vstudio\vs200x_vcproj_user.lua" />
+    <None Include="..\..\modules\vstudio\vs2010.lua" />
+    <None Include="..\..\modules\vstudio\vs2010_nuget.lua" />
+    <None Include="..\..\modules\vstudio\vs2010_rules_props.lua" />
+    <None Include="..\..\modules\vstudio\vs2010_rules_targets.lua" />
+    <None Include="..\..\modules\vstudio\vs2010_rules_xml.lua" />
+    <None Include="..\..\modules\vstudio\vs2010_vcxproj.lua" />
+    <None Include="..\..\modules\vstudio\vs2010_vcxproj_filters.lua" />
+    <None Include="..\..\modules\vstudio\vs2010_vcxproj_user.lua" />
+    <None Include="..\..\modules\vstudio\vs2012.lua" />
+    <None Include="..\..\modules\vstudio\vs2013.lua" />
+    <None Include="..\..\modules\vstudio\vs2015.lua" />
+    <None Include="..\..\modules\vstudio\vs2017.lua" />
+    <None Include="..\..\modules\vstudio\vstudio.lua" />
+    <None Include="..\..\modules\xcode\LICENSE.TXT" />
+    <None Include="..\..\modules\xcode\_manifest.lua" />
+    <None Include="..\..\modules\xcode\_preload.lua" />
+    <None Include="..\..\modules\xcode\tests\_tests.lua" />
+    <None Include="..\..\modules\xcode\tests\test_header_footer.lua" />
+    <None Include="..\..\modules\xcode\tests\test_xcode4_project.lua" />
+    <None Include="..\..\modules\xcode\tests\test_xcode4_workspace.lua" />
+    <None Include="..\..\modules\xcode\tests\test_xcode_dependencies.lua" />
+    <None Include="..\..\modules\xcode\tests\test_xcode_project.lua" />
+    <None Include="..\..\modules\xcode\xcode.lua" />
+    <None Include="..\..\modules\xcode\xcode4_workspace.lua" />
+    <None Include="..\..\modules\xcode\xcode_common.lua" />
+    <None Include="..\..\modules\xcode\xcode_project.lua" />
+    <None Include="..\..\premake4.lua" />
+    <None Include="..\..\premake5.lua" />
+    <None Include="..\..\scripts\embed.lua" />
+    <None Include="..\..\scripts\package.lua" />
+    <None Include="..\..\src\_manifest.lua" />
+    <None Include="..\..\src\_modules.lua" />
+    <None Include="..\..\src\_premake_init.lua" />
+    <None Include="..\..\src\_premake_main.lua" />
+    <None Include="..\..\src\actions\clean\_clean.lua" />
+    <None Include="..\..\src\base\_foundation.lua" />
+    <None Include="..\..\src\base\action.lua" />
+    <None Include="..\..\src\base\api.lua" />
+    <None Include="..\..\src\base\config.lua" />
+    <None Include="..\..\src\base\configset.lua" />
+    <None Include="..\..\src\base\container.lua" />
+    <None Include="..\..\src\base\context.lua" />
+    <None Include="..\..\src\base\criteria.lua" />
+    <None Include="..\..\src\base\detoken.lua" />
+    <None Include="..\..\src\base\field.lua" />
+    <None Include="..\..\src\base\fileconfig.lua" />
+    <None Include="..\..\src\base\global.lua" />
+    <None Include="..\..\src\base\globals.lua" />
+    <None Include="..\..\src\base\group.lua" />
+    <None Include="..\..\src\base\help.lua" />
+    <None Include="..\..\src\base\http.lua" />
+    <None Include="..\..\src\base\io.lua" />
+    <None Include="..\..\src\base\json.lua" />
+    <None Include="..\..\src\base\jsonwrapper.lua" />
+    <None Include="..\..\src\base\languages.lua" />
+    <None Include="..\..\src\base\moduledownloader.lua" />
+    <None Include="..\..\src\base\option.lua" />
+    <None Include="..\..\src\base\os.lua" />
+    <None Include="..\..\src\base\oven.lua" />
+    <None Include="..\..\src\base\path.lua" />
+    <None Include="..\..\src\base\premake.lua" />
+    <None Include="..\..\src\base\project.lua" />
+    <None Include="..\..\src\base\rule.lua" />
+    <None Include="..\..\src\base\semver.lua" />
+    <None Include="..\..\src\base\string.lua" />
+    <None Include="..\..\src\base\table.lua" />
+    <None Include="..\..\src\base\term.lua" />
+    <None Include="..\..\src\base\tools.lua" />
+    <None Include="..\..\src\base\tree.lua" />
+    <None Include="..\..\src\base\validation.lua" />
+    <None Include="..\..\src\base\workspace.lua" />
+    <None Include="..\..\src\tools\clang.lua" />
+    <None Include="..\..\src\tools\dotnet.lua" />
+    <None Include="..\..\src\tools\gcc.lua" />
+    <None Include="..\..\src\tools\msc.lua" />
+    <None Include="..\..\src\tools\snc.lua" />
+    <None Include="..\..\tests\_tests.lua" />
+    <None Include="..\..\tests\api\test_boolean_kind.lua" />
+    <None Include="..\..\tests\api\test_containers.lua" />
+    <None Include="..\..\tests\api\test_deprecations.lua" />
+    <None Include="..\..\tests\api\test_directory_kind.lua" />
+    <None Include="..\..\tests\api\test_list_kind.lua" />
+    <None Include="..\..\tests\api\test_path_kind.lua" />
+    <None Include="..\..\tests\api\test_register.lua" />
+    <None Include="..\..\tests\api\test_string_kind.lua" />
+    <None Include="..\..\tests\api\test_table_kind.lua" />
+    <None Include="..\..\tests\base\test_aliasing.lua" />
+    <None Include="..\..\tests\base\test_binmodules.lua" />
+    <None Include="..\..\tests\base\test_configset.lua" />
+    <None Include="..\..\tests\base\test_context.lua" />
+    <None Include="..\..\tests\base\test_criteria.lua" />
+    <None Include="..\..\tests\base\test_detoken.lua" />
+    <None Include="..\..\tests\base\test_filename.lua" />
+    <None Include="..\..\tests\base\test_http.lua" />
+    <None Include="..\..\tests\base\test_include.lua" />
+    <None Include="..\..\tests\base\test_json.lua" />
+    <None Include="..\..\tests\base\test_module_loader.lua" />
+    <None Include="..\..\tests\base\test_option.lua" />
+    <None Include="..\..\tests\base\test_os.lua" />
+    <None Include="..\..\tests\base\test_override.lua" />
+    <None Include="..\..\tests\base\test_path.lua" />
+    <None Include="..\..\tests\base\test_premake_command.lua" />
+    <None Include="..\..\tests\base\test_table.lua" />
+    <None Include="..\..\tests\base\test_tree.lua" />
+    <None Include="..\..\tests\base\test_uuid.lua" />
+    <None Include="..\..\tests\base\test_validation.lua" />
+    <None Include="..\..\tests\base\test_versions.lua" />
+    <None Include="..\..\tests\config\test_linkinfo.lua" />
+    <None Include="..\..\tests\config\test_links.lua" />
+    <None Include="..\..\tests\config\test_targetinfo.lua" />
+    <None Include="..\..\tests\folder\ok.lua" />
+    <None Include="..\..\tests\folder\premake5.lua" />
+    <None Include="..\..\tests\oven\test_filtering.lua" />
+    <None Include="..\..\tests\oven\test_objdirs.lua" />
+    <None Include="..\..\tests\pepperfish_profiler.lua" />
+    <None Include="..\..\tests\project\test_config_maps.lua" />
+    <None Include="..\..\tests\project\test_eachconfig.lua" />
+    <None Include="..\..\tests\project\test_getconfig.lua" />
+    <None Include="..\..\tests\project\test_location.lua" />
+    <None Include="..\..\tests\project\test_sources.lua" />
+    <None Include="..\..\tests\project\test_vpaths.lua" />
+    <None Include="..\..\tests\test_premake.lua" />
+    <None Include="..\..\tests\test_stress.lua" />
+    <None Include="..\..\tests\test_string.lua" />
+    <None Include="..\..\tests\tools\test_dotnet.lua" />
+    <None Include="..\..\tests\tools\test_gcc.lua" />
+    <None Include="..\..\tests\tools\test_msc.lua" />
+    <None Include="..\..\tests\tools\test_snc.lua" />
+    <None Include="..\..\tests\workspace\test_eachconfig.lua" />
+    <None Include="..\..\tests\workspace\test_location.lua" />
+    <None Include="..\..\tests\workspace\test_objdirs.lua" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="lua-lib.vcxproj">
+      <Project>{AB9F3295-177F-B130-2097-3C078CF51792}</Project>
+    </ProjectReference>
+    <ProjectReference Include="zip-lib.vcxproj">
+      <Project>{3C7AF3AF-A859-724B-B171-FD211DD0D8AC}</Project>
+    </ProjectReference>
+    <ProjectReference Include="zlib-lib.vcxproj">
+      <Project>{7AF09988-66BD-F493-8FD6-E23B7B022A22}</Project>
+    </ProjectReference>
+    <ProjectReference Include="curl-lib.vcxproj">
+      <Project>{BF552F19-AB22-8A24-D43B-78CCC067BFB2}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

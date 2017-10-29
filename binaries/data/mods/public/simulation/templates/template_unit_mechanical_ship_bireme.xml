@@ -60,8 +60,8 @@
   <ResourceGatherer disable=""/>
   <Sound>
     <SoundGroups>
-      <attack>attack/weapon/arrowfly.xml</attack>
-      <attack_impact>attack/impact/arrow_metal.xml</attack_impact>
+      <attack_impact_ranged>attack/impact/arrow_metal.xml</attack_impact_ranged>
+      <attack_ranged>attack/weapon/arrowfly.xml</attack_ranged>
     </SoundGroups>
   </Sound>
   <StatusBars>

@@ -62,8 +62,8 @@
   </Selectable>
   <Sound>
     <SoundGroups>
-      <attack>attack/siege/ballist_attack.xml</attack>
-      <attack_impact>attack/impact/siegeprojectilehit.xml</attack_impact>
+      <attack_impact_ranged>attack/impact/siegeprojectilehit.xml</attack_impact_ranged>
+      <attack_ranged>attack/siege/ballist_attack.xml</attack_ranged>
     </SoundGroups>
   </Sound>
   <UnitMotion>

@@ -1,0 +1,103 @@
+PREMAKE BUILD INSTRUCTIONS
+
+ Premake is written in a mix of C and Lua. A small host executable,
+ written in C, launches the app and prepares the environment, at which
+ point control is handed off to a Lua script. Almost all of Premake is
+ written in Lua scripts, which allow it to be easily extended and
+ customized. The catch is that it is slightly more complicated to build
+ it than your typical C/C++ application.
+
+ If you find all of this very confusing and need some help, visit the
+ Premake website for help and community links. We will be glad to help!
+
+
+BUILDING FROM A SOURCE PACKAGE
+
+ If you downloaded a source code package (as opposed to pulling the sources
+ directory from the repository) you will find project files for all of the
+ officially supported toolsets in the build/ folder. Build the release
+ configuration and you will be ready to go. For makefiles:
+
+    $ cd build/gmake.unix
+    $ make config=release
+
+ The binaries will be placed in the ./bin/release directory.
+
+
+BUILDING FROM THE REPOSITORY
+
+ If you have pulled sources from the Premake source repository, you can
+ use `Bootstrap.mak` to generate your first premake executable:
+
+    $ git submodule init
+    $ git submodule update
+    $ make -f Bootstrap.mak PLATFORM
+
+ Where PLATFORM can be osx or linux.
+ On Windows with Visual Studio use nmake:
+
+    $ nmake -f Bootstrap.mak windows
+
+ Or on Windows with MinGW use mingw32-make:
+
+    $ CC=mingw32-gcc mingw32-make -f Bootstrap.mak mingw
+
+ If your toolset is not supported by the bootstrap Makefile, you will need
+ to embed the scripts into a C source file so they may be built into the
+ executable, and also generate the project files for your chosen toolset. In
+ order do either of these things, you will need a working Premake executable.
+
+ The easiest way to get an executable is to download one of the prebuilt
+ binaries from the project website. If that isn't possible, or if not binary
+ is provided for your platform, you can build from a source package as
+ described above, as they also include pre-generated project files.
+
+ Once you have a working Premake available, you can generate the project
+ files for your toolset by running a command like the following in the
+ top-level Premake directory:
+
+    $ premake5 gmake  # for makefiles
+    $ premake5 vs2012 # for a Visual Studio 2012 solution
+    $ premake --help  # to see a list of supported toolsets
+
+ If this is the first time you have built Premake, or if you have made
+ changes to the Lua scripts, you should prepare them to be embedded into the
+ Premake executable.
+
+    $ premake5 embed
+
+ This creates a C file (at src/host/scripts.c) which contains all of the
+ Lua scripts as static string buffers. These then get compiled into the
+ executable, which is how we get away with shipping a single file instead
+ of a whole bunch of scripts.
+
+ You should now have a solution/makefile/workspace in the top-level folder,
+ which you can go ahead and build.
+
+
+RUNNING THE TESTS
+
+ Once you have built an executable, you can verify it by running Premake's
+ unit test suites. From the top-level Premake folder, run:
+
+    $ bin/release/premake5 test
+
+
+RUNTIME SCRIPT LOADING
+
+ If you are modifying or extending Premake, you can skip the embedding
+ and compilation steps and run the scripts directly from the disk. This
+ removes the build from the change-build-test cycle and really speeds up
+ development.
+
+ If you are running Premake from the top of its own source tree (where its
+ premake5.lua is located) you will get this behavior automatically. If you
+ are running Premake from some other location, use the --scripts option to
+ provide the path to that top-level folder:
+
+    $ bin/release/premake5 --scripts=../path/to/premake test
+
+ If you find yourself doing this repeatedly, or if you want Premake to be
+ able to find other, custom scripts, you can also set a search path with the
+ PREMAKE_PATH environment variable. Set it just like you would set your
+ system PATH variable.

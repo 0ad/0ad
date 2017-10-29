@@ -1,0 +1,75 @@
+As the number of Premake contributors has grown, this list has become more
+difficult to manage in a meaningful way. I'm leaving it here as part of the
+historical records. If you find yourself in need of a list of contributors,
+consider running:
+
+     git shortlog -sn
+
+--------------------------------------------------------------------------
+
+This file contains a list of people who've made non-trivial contributions
+to Premake 5.  People who commit code to the project are encouraged to
+add their names here. And many thanks to those who contributed fixes and
+improvements to earlier versions of Premake (feel free to add your name
+in here too)!
+
+Original design and implementation:
+  Jason Perkins <starkos@industriousone.com>
+
+Main Contributors
+  Blizzard Entertainment (contact tvandijck@blizzard.com)
+  Manu Evans <https://github.com/TurkeyMan>
+  Sam Surtees <s.surtees@lorgames.com>
+
+Builds and Infrastructure:
+  Mihai Sebea <http://twitter.com/mihai_sebea>
+    * Nightly binary packages
+    * Nightly Jenkins builds and error reports
+
+Patch contributors:
+  Bastien Brunnenstein <bastien.brunnenstein@ubisoft.com>
+    * support wildcards in path tokens
+  Damien Courtois <https://github.com/dcourtois>
+    * module loading fixes
+    * bug fixes
+  David Ely <https://github.com/megaeels>
+    * symbols() API and flag deprecation
+  Gabi Davar <gabi.davar@discretix.com>
+    * added file.directory to token environment
+  João Matos (joao@tritao.eu)
+    * HTTP download support
+    * C# / C++/CLI language support improvements and bugfixes
+    * Visual Studio and Make improvements and bugfixes
+    * response files support for Make backend
+    * numerous bug fixes and smaller features
+  leeonix <real-like@yeah.net>
+    * bug fixes
+  Lusito <core@roughael.net>
+    * path.join() fixes
+  Mark Chandler <https://bitbucket.org/mchandler_blizzard>
+    * prevent self-linking
+  Matthew Endsley <https://github.com/mendsley>
+    * File matching improvements
+  Mark Sararu <mark.sararu@gmail.com>
+    * Makefile bug fixes
+  Mihai Sebea <http://twitter.com/mihai_sebea>
+    * Xcode exporter fixes and improvements
+  M Skibbe
+    * path.replaceextension()
+  Renaud Guillard <https://bitbucket.org/noresources>
+    * add library search paths argument to os.findlib()
+    * return command exit code from os.outputof()
+    * bug fixes and smaller improvements
+  rhuvendiek <rhuvendiek@schueco.com>
+    * Visual C 2010 IDL file support
+  Sami Kankaristo <sami@indiumgames.fi>
+    * Utility project support for Makefiles
+  tbasnoopy <tba-snoopy@gmx.de>
+    * customtoolnamespace()
+    * debuggertype()
+  Tim Wharton <https://github.com/moomalade>
+    * boostrapping scripts
+    * callingconvention()
+    * makefile environment overrides
+    * module loading improvements
+    * os.outputof() improvements
