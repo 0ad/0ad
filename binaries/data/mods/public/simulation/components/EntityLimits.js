@@ -145,7 +145,6 @@ EntityLimits.prototype.UpdateLimitRemoval = function()
 	}
 };
 
-
 EntityLimits.prototype.AllowedToCreate = function(limitType, category, count)
 {
 	// Allow unspecified categories and those with no limit
@@ -190,6 +189,32 @@ EntityLimits.prototype.AllowedToBuild = function(category)
 EntityLimits.prototype.AllowedToTrain = function(category, count)
 {
 	return this.AllowedToCreate(TRAINING, category, count);
+};
+
+/**
+ * @param {number} ent - id of the entity which would be replaced.
+ * @param {string} template - name of the new template.
+ * @return {boolean} - whether we can replace ent.
+ */
+EntityLimits.prototype.AllowedToReplace = function(ent, template)
+{
+	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+	let templateFrom = cmpTemplateManager.GetTemplate(cmpTemplateManager.GetCurrentTemplateName(ent));
+	let templateTo = cmpTemplateManager.GetTemplate(template);
+
+	if (templateTo.TrainingRestrictions)
+	{
+		let category = templateTo.TrainingRestrictions.Category;
+		return this.AllowedToCreate(TRAINING, category, templateFrom.TrainingRestrictions && templateFrom.TrainingRestrictions.Category == category ? 0 : 1);
+	}
+
+	if (templateTo.BuildRestrictions)
+	{
+		let category = templateTo.BuildRestrictions.Category;
+		return this.AllowedToCreate(BUILD, category, templateFrom.BuildRestrictions && templateFrom.BuildRestrictions.Category == category ? 0 : 1);
+	}
+
+	return true;
 };
 
 EntityLimits.prototype.OnGlobalOwnershipChanged = function(msg)
