@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -36,7 +36,7 @@ void CMatrix3D::SetIdentity ()
 }
 
 //Sets the zero matrix
-void CMatrix3D::SetZero ()
+void CMatrix3D::SetZero()
 {
 	_11=0.0f; _12=0.0f; _13=0.0f; _14=0.0f;
 	_21=0.0f; _22=0.0f; _23=0.0f; _24=0.0f;
@@ -44,15 +44,30 @@ void CMatrix3D::SetZero ()
 	_41=0.0f; _42=0.0f; _43=0.0f; _44=0.0f;
 }
 
-void CMatrix3D::SetOrtho (float l, float r, float b, float t, float n, float f)
+void CMatrix3D::SetOrtho(float left, float right, float bottom, float top, float near, float far)
 {
 	// Based on OpenGL spec
-	*this = CMatrix3D(
-		2/(r-l), 0, 0, -(r+l)/(r-l),
-		0, 2/(t-b), 0, -(t+b)/(t-b),
-		0, 0, -2/(f-n), -(f+n)/(f-n),
-		0, 0, 0, 1
-	);
+	SetZero();
+	_11 = 2 / (right - left);
+	_22 = 2 / (top - bottom);
+	_33 = -2 / (far - near);
+	_44 = 1;
+
+	_14 = -(right + left) / (right - left);
+	_24 = -(top + bottom) / (top - bottom);
+	_34 = -(far + near) / (far - near);
+}
+
+void CMatrix3D::SetPerspective(float fov, float aspect, float near, float far)
+{
+	const float f = 1.f / tanf(fov / 2.f);
+
+	SetZero();
+	_11 = f / aspect;
+	_22 = f;
+	_33 = -(far + near) / (near - far);
+	_34 = 2 * far * near / (near - far);
+	_43 = 1;
 }
 
 //The following clear the matrix and set the

@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -182,7 +182,9 @@ public:
 	// set this matrix to the zero matrix
 	void SetZero();
 	// set this matrix to the orthogonal projection matrix (as with glOrtho)
-	void SetOrtho(float l, float r, float b, float t, float n, float f);
+	void SetOrtho(float left, float right, float bottom, float top, float near, float far);
+	// set this matrix to the perspective projection matrix
+	void SetPerspective(float fov, float aspect, float near, float far);
 
 	// concatenate arbitrary matrix onto this matrix
 	void Concatenate(const CMatrix3D& m)
