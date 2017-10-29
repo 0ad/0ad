@@ -1,5 +1,5 @@
 /**
- * Class for holding map data and providing basic API to change it
+ * The Map stores the elevation grid, terrain textures and entities that are exported to the engine.
  *
  * @param {int} [size] - Size of the map in tiles
  * @param {float} [baseHeight] - Starting height of the map
@@ -18,11 +18,12 @@ function Map(size, baseHeight)
 	{
 		// Texture IDs
 		this.texture[i] = new Uint16Array(size);
-		// Entities
-		this.terrainObjects[i] = [];
+
 		// Area IDs
 		this.area[i] = new Uint16Array(size);
 
+		// Entities
+		this.terrainObjects[i] = [];
 		for (let j = 0; j < size; ++j)
 			this.terrainObjects[i][j] = undefined;
 	}
@@ -45,8 +46,9 @@ function Map(size, baseHeight)
 	this.nameToID = {};
 	this.IDToName = [];
 
-	// Array of objects (entitys/actors)
+	// Array of Entities
 	this.objects = [];
+
 	// Array of integers
 	this.tileClasses = [];
 
@@ -63,13 +65,15 @@ Map.prototype.initTerrain = function(baseTerrain)
 			baseTerrain.place(i, j);
 };
 
-// Return ID of texture (by name)
+/**
+ * Returns the ID of a texture name.
+ * Creates a new ID if there isn't one assigned yet.
+ */
 Map.prototype.getTextureID = function(texture)
 {
 	if (texture in this.nameToID)
 		return this.nameToID[texture];
 
-	// Add new texture
 	let id = this.IDToName.length;
 	this.nameToID[texture] = id;
 	this.IDToName[id] = texture;
@@ -77,13 +81,18 @@ Map.prototype.getTextureID = function(texture)
 	return id;
 };
 
-// Return next free entity ID
+/**
+ * Returns the next unused entityID.
+ */
 Map.prototype.getEntityID = function()
 {
 	return this.entityCount++;
 };
 
-// Check bounds on tile map
+/**
+ * Determines whether the given coordinates are within the given distance of the passable map area.
+ * Should be used to restrict entity placement and path creation.
+ */
 Map.prototype.validT = function(x, z, distance = 0)
 {
 	distance += MAP_BORDER_WIDTH;
@@ -97,13 +106,19 @@ Map.prototype.validT = function(x, z, distance = 0)
 		return x >= distance && z >= distance && x < this.size - distance && z < this.size - distance;
 };
 
-// Check bounds on tile map
+/**
+ * Determines whether the given coordinates are within the tile grid, passable or not.
+ * Should be used to restrict texture painting.
+ */
 Map.prototype.inMapBounds = function(x, z)
 {
 	return x >= 0 && z >= 0 && x < this.size && z < this.size;
 };
 
-// Check bounds on height map if TILE_CENTERED_HEIGHT_MAP==true then it's (size, size) otherwise (size + 1 by size + 1)
+/**
+ * Determines whether the given coordinates are within the heightmap grid.
+ * Should be used to restrict elevation changes.
+ */
 Map.prototype.validH = function(x, z)
 {
 	if (x < 0 || z < 0)
@@ -113,12 +128,17 @@ Map.prototype.validH = function(x, z)
 	return x <= this.size && z <= this.size;
 };
 
-// Check bounds on tile class
-Map.prototype.validClass = function(c)
+/**
+ * Tests if there is a tileclass with the given ID.
+ */
+Map.prototype.validClass = function(tileClassID)
 {
-	return c >= 0 && c < this.tileClasses.length;
+	return tileClassID >= 0 && tileClassID < this.tileClasses.length;
 };
 
+/**
+ * Returns the name of the texture of the given tile.
+ */
 Map.prototype.getTexture = function(x, z)
 {
 	if (!this.validT(x, z))
@@ -127,6 +147,9 @@ Map.prototype.getTexture = function(x, z)
 	return this.IDToName[this.texture[x][z]];
 };
 
+/**
+ * Paints the given texture on the given tile.
+ */
 Map.prototype.setTexture = function(x, z, texture)
 {
 	if (!this.validT(x, z))
@@ -151,14 +174,20 @@ Map.prototype.setHeight = function(x, z, height)
 	this.height[x][z] = height;
 };
 
-Map.prototype.getTerrainObjects = function(x, z)
+/**
+ * Returns the Entity that was painted by a Terrain class on the given tile or undefined otherwise.
+ */
+Map.prototype.getTerrainObject = function(x, z)
 {
 	if (!this.validT(x, z))
-		throw new Error("getTerrainObjects: invalid tile position (" + x + ", " + z + ")");
+		throw new Error("getTerrainObject: invalid tile position (" + x + ", " + z + ")");
 
 	return this.terrainObjects[x][z];
 };
 
+/**
+ * Places the Entity on the given tile and allows to later replace it if the terrain was painted over.
+ */
 Map.prototype.setTerrainObject = function(x, z, object)
 {
 	if (!this.validT(x, z))
@@ -172,11 +201,18 @@ Map.prototype.placeTerrain = function(x, z, terrain)
 	terrain.place(x, z);
 };
 
+/**
+ * Adds the given Entity to the map at the location it defines.
+ */
 Map.prototype.addObject = function(obj)
 {
 	this.objects.push(obj);
 };
 
+/**
+ * Constructs a new Area shaped by the Placer meeting the Constraint and calls the Painters there.
+ * Supports both Centered and Non-Centered Placers.
+ */
 Map.prototype.createArea = function(placer, painter, constraint)
 {
 	// Check for multiple painters
@@ -205,7 +241,6 @@ Map.prototype.createArea = function(placer, painter, constraint)
 
 Map.prototype.createObjectGroup = function(placer, player, constraint)
 {
-	// Check for null constraint
 	if (constraint === undefined || constraint === null)
 		constraint = new NullConstraint();
 	else if (constraint instanceof Array)
@@ -214,15 +249,19 @@ Map.prototype.createObjectGroup = function(placer, player, constraint)
 	return placer.place(player, constraint);
 };
 
+/**
+ * Returns an unused tileclass ID.
+ */
 Map.prototype.createTileClass = function()
 {
 	let newID = this.tileClasses.length;
 	this.tileClasses.push(new TileClass(this.size, newID));
-
 	return newID;
 };
 
-// Get height taking into account terrain curvature
+/**
+ * Retrieve interpolated height for arbitrary coordinates within the heightmap grid.
+ */
 Map.prototype.getExactHeight = function(x, z)
 {
 	let xi = Math.min(Math.floor(x), this.size);
