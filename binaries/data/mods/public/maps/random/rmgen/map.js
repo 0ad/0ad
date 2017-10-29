@@ -257,63 +257,53 @@ Map.prototype.cornerHeight = function(x, z)
 	return sumHeight / count;
 };
 
-Map.prototype.getFullEntityList = function(rotateForMapExport = false)
+/**
+ * Retrieve an array of all Entities placed on the map.
+ */
+Map.prototype.exportEntityList = function()
 {
 	// Change rotation from simple 2d to 3d befor giving to engine
-	if (rotateForMapExport)
-		for (let obj of this.objects)
-			obj.rotation.y = PI / 2 - obj.rotation.y;
-
-	// All non terrain objects
-	let entities = this.objects;
+	for (let obj of this.objects)
+		obj.rotation.y = Math.PI / 2 - obj.rotation.y;
 
 	// Terrain objects e.g. trees
-	let size = this.size;
-	for (let x = 0; x < size; ++x)
-		for (let z = 0; z < size; ++z)
-			if (this.terrainObjects[x][z] !== undefined)
-				entities.push(this.terrainObjects[x][z]);
+	for (let x = 0; x < this.size; ++x)
+		for (let z = 0; z < this.size; ++z)
+			if (this.terrainObjects[x][z])
+				this.objects.push(this.terrainObjects[x][z]);
 
-	return entities;
+	log("Number of entities: " + this.objects.length);
+	return this.objects;
 };
 
-Map.prototype.getMapData = function()
+/**
+ * Convert the elevation grid to a one-dimensional array.
+ */
+Map.prototype.exportHeightData = function()
 {
-	let data = {};
+	let heightmapSize = this.size + 1;
+	let heightmap = new Uint16Array(Math.square(heightmapSize));
 
-	// Convert 2D heightmap array to flat array
-	// Flat because it's easier to handle by the engine
-	let mapSize = this.size + 1;
-	let height = new Uint16Array(mapSize * mapSize);
-	for (let x = 0; x < mapSize; ++x)
-		for (let z = 0; z < mapSize; ++z)
+	for (let x = 0; x < heightmapSize; ++x)
+		for (let z = 0; z < heightmapSize; ++z)
 		{
-			let currentHeight;
-			if (TILE_CENTERED_HEIGHT_MAP)
-				currentHeight = this.cornerHeight(x, z);
-			else
-				currentHeight = this.height[x][z];
+			let currentHeight = TILE_CENTERED_HEIGHT_MAP ? this.cornerHeight(x, z) : this.height[x][z];
 
 			// Correct height by SEA_LEVEL and prevent under/overflow in terrain data
-			height[z * mapSize + x] = Math.max(0, Math.min(0xFFFF, Math.floor((currentHeight + SEA_LEVEL) * HEIGHT_UNITS_PER_METRE)));
+			heightmap[z * heightmapSize + x] = Math.max(0, Math.min(0xFFFF, Math.floor((currentHeight + SEA_LEVEL) * HEIGHT_UNITS_PER_METRE)));
 		}
 
-	data.height = height;
-	data.seaLevel = SEA_LEVEL;
+	return heightmap;
+};
 
-	// Terrain, map width in tiles
-	data.size = this.size;
+/**
+ * Assemble terrain textures in a one-dimensional array.
+ */
+Map.prototype.exportTerrainTextures = function()
+{
+	let tileIndex = new Uint16Array(Math.square(this.size));
+	let tilePriority = new Uint16Array(Math.square(this.size));
 
-	// Get array of textures used in this map
-	data.textureNames = this.IDToName;
-
-	// Entities
-	data.entities = this.getFullEntityList(true);
-	log("Number of entities: "+ data.entities.length);
-
-	//  Convert 2D tile data to flat array
-	let tileIndex = new Uint16Array(this.size * this.size);
-	let tilePriority = new Uint16Array(this.size * this.size);
 	for (let x = 0; x < this.size; ++x)
 		for (let z = 0; z < this.size; ++z)
 		{
@@ -322,7 +312,8 @@ Map.prototype.getMapData = function()
 			tilePriority[z * this.size + x] = this.texture[x][z];
 		}
 
-	data.tileData = { "index": tileIndex, "priority": tilePriority };
-
-	return data;
+	return {
+		"index": tileIndex,
+		"priority": tilePriority
+	};
 };
