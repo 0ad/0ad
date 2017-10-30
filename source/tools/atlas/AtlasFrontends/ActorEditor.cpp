@@ -20,7 +20,7 @@
 # define WIN32_LEAN_AND_MEAN
 # include <windows.h>
 
-/* Don't use pragmas here to set the manifests, instead do this in premake4.lua
+/* Don't use pragmas here to set the manifests, instead do this in premake.lua
  * since pragmas get ignored by the autobuilder
  * (see comments in lib\sysdep\os\win\manifest.cpp)
  */

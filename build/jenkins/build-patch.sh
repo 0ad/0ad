@@ -65,7 +65,7 @@ build()
 {
   {
     echo 'Updating workspaces...'
-    build/workspaces/update-workspaces.sh "${JOBS}" --with-system-nvtt --without-miniupnpc 2>&1 1>/dev/null
+    build/workspaces/update-workspaces.sh "${JOBS}" --premake4 --with-system-nvtt --without-miniupnpc 2>&1 1>/dev/null
     cd build/workspaces/gcc
     echo 'Build (release)...'
     make "${JOBS}" config=release 2>&1 1>/dev/null
