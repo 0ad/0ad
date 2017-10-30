@@ -67,18 +67,13 @@ ClumpPlacer.prototype.place = function(constraint)
 				looped = 1;
 		}
 
-		// Cubic interpolation of ctrlVals
-		var t = (i - ctrlCoords[c]) / ((looped ? perim : ctrlCoords[(c+1)%ctrlPts]) - ctrlCoords[c]);
-		var v0 = ctrlVals[(c+ctrlPts-1)%ctrlPts];
-		var v1 = ctrlVals[c];
-		var v2 = ctrlVals[(c+1)%ctrlPts];
-		var v3 = ctrlVals[(c+2)%ctrlPts];
-		var P = (v3 - v2) - (v0 - v1);
-		var Q = v0 - v1 - P;
-		var R = v2 - v0;
-		var S = v1;
-
-		noise[i] = P*t*t*t + Q*t*t + R*t + S;
+		noise[i] = cubicInterpolation(
+			1,
+			(i - ctrlCoords[c]) / ((looped ? perim : ctrlCoords[(c + 1) % ctrlPts]) - ctrlCoords[c]),
+			ctrlVals[(c + ctrlPts - 1) % ctrlPts],
+			ctrlVals[c],
+			ctrlVals[(c + 1) % ctrlPts],
+			ctrlVals[(c + 2) % ctrlPts]);
 	}
 
 	var failed = 0;

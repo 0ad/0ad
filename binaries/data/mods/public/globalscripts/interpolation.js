@@ -1,41 +1,42 @@
 /**
- * One dimensional interpolation within four uniformly spaced points using polynomials of 3rd degree.
- * A uniform Catmull–Rom spline implementation.
- * @param {float} xf - Float coordinate relative to p1 to interpolate the property for
- * @param {float} p0 - Value of the property to calculate at the origin of four point scale
- * @param {float} px - Value at the property of the corresponding point on the scale
- * @return {float} - Value at the given float position in the 4-point scale interpolated from it's property values
+ * Catmull-Rom spline.
+ * Interpolates the value of a point that is located between four known equidistant points with given values by
+ * constructing a polynomial of degree three that goes through all points.
+ *
+ * @param {Number} tension - determines the geometry of the curve, between 0 (tight curve) and 1 (smooth curve).
+ *  Depending on the tension, the spline is called uniform (0), centripetal (0.5) or chordal (1).
+ * @param {Number} x - Location of the point to interpolate, relative to p1
  */
-function cubicInterpolation(xf, p0, p1, p2, p3)
+function cubicInterpolation(tension, x, p0, p1, p2, p3)
 {
-	 return p1 +
-		(-0.5 * p0 + 0.5 * p2) * xf +
-		(p0 - 2.5 * p1 + 2.0 * p2 - 0.5 * p3) * xf * xf +
-		(-0.5 * p0 + 1.5 * p1 - 1.5 * p2 + 0.5 * p3) * xf * xf * xf;
+	let P = -tension * p0 + (2 - tension) * p1 + (tension - 2) * p2 + tension * p3;
+	let Q = 2 * tension * p0 + (tension - 3) * p1 + (3 - 2 * tension) * p2 - tension * p3;
+	let R = -tension * p0 + tension * p2;
+	let S = p1;
+
+	return ((P * x + Q) * x + R) * x + S;
 }
 
 /**
- * Two dimensional interpolation within a square grid using polynomials of 3rd degree.
- * @param {float} xf - X coordinate relative to p1y of the point to interpolate the value for
- * @param {float} yf - Y coordinate relative to px1 of the point to interpolate the value for
- * @param {float} p00 - Value of the property to calculate at the origin of the neighbor grid
- * @param {float} pxy - Value at neighbor grid coordinates x/y, x/y in {0, 1, 2, 3}
- * @return {float} - Value at the given float coordinates in the small grid interpolated from it's values
+ * Two dimensional interpolation within a square grid using a polynomial of degree three.
+ *
+ * @param {Number} x, y - Location of the point to interpolate, relative to p11
  */
 function bicubicInterpolation
 (
-	xf, yf,
+	x, y,
 	p00, p01, p02, p03,
 	p10, p11, p12, p13,
 	p20, p21, p22, p23,
 	p30, p31, p32, p33
 )
 {
+	let tension = 0.5;
 	return cubicInterpolation(
-		xf,
-		cubicInterpolation(yf, p00, p01, p02, p03),
-		cubicInterpolation(yf, p10, p11, p12, p13),
-		cubicInterpolation(yf, p20, p21, p22, p23),
-		cubicInterpolation(yf, p30, p31, p32, p33)
-	);
+		tension,
+		x,
+		cubicInterpolation(tension, y, p00, p01, p02, p03),
+		cubicInterpolation(tension, y, p10, p11, p12, p13),
+		cubicInterpolation(tension, y, p20, p21, p22, p23),
+		cubicInterpolation(tension, y, p30, p31, p32, p33));
 }
