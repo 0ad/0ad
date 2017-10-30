@@ -198,6 +198,7 @@ MESSAGEHANDLER(ResizeScreen)
 MESSAGEHANDLER(RenderStyle)
 {
 	g_Renderer.SetTerrainRenderMode(msg->wireframe ? EDGED_FACES : SOLID);
+	g_Renderer.SetWaterRenderMode(msg->wireframe ? EDGED_FACES : SOLID);
 	g_Renderer.SetModelRenderMode(msg->wireframe ? EDGED_FACES : SOLID);
 }
 

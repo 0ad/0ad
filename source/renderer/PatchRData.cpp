@@ -1466,6 +1466,11 @@ void CPatchRData::RenderWater(CShaderProgramPtr& shader, bool onlyShore, bool fi
 	if (g_Renderer.m_SkipSubmit || (!m_VBWater && !m_VBWaterShore))
 		return;
 
+#if !CONFIG2_GLES
+	if (g_Renderer.m_WaterRenderMode == WIREFRAME)
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+#endif
+
 	if (m_VBWater != 0x0 && !onlyShore)
 	{
 		SWaterVertex *base=(SWaterVertex *)m_VBWater->m_Owner->Bind();
@@ -1508,4 +1513,9 @@ void CPatchRData::RenderWater(CShaderProgramPtr& shader, bool onlyShore, bool fi
 	}
 
 	CVertexBuffer::Unbind();
+
+#if !CONFIG2_GLES
+	if (g_Renderer.m_WaterRenderMode == WIREFRAME)
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+#endif
 }

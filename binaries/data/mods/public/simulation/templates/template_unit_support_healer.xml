@@ -26,6 +26,14 @@
   <Promotion>
     <RequiredXp>200</RequiredXp>
   </Promotion>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>plus/128x128.png</MainTexture>
+        <MainTextureMask>plus/128x128_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
   <Sound>
     <SoundGroups>
       <trained>interface/alarm/alarm_create_infantry.xml</trained>

@@ -3,8 +3,11 @@ var WATER_LEVEL_CHANGED = false;
 
 var g_Map;
 
+/**
+ * Camera location in case there are no player entities.
+ */
 var g_Camera = {
-	"Position": { "x": 100, "y": 150, "z": -100 },
+	"Position": { "x": 256, "y": 150, "z": 256 },
 	"Rotation": 0,
 	"Declination": 0.523599
 };
@@ -13,10 +16,6 @@ var g_CivData = {};
 
 function InitMap()
 {
-	// Should never get this far, failed settings would abort prior to loading scripts
-	if (g_MapSettings === undefined)
-		throw new Error("InitMapGen: settings missing");
-
 	// Get civ data as array of JSON strings
 	var data = RMS.GetCivData();
 	if (!data || !data.length)
@@ -29,32 +28,25 @@ function InitMap()
 	}
 
 	log("Creating new map...");
-	var terrain = createTerrain(g_MapSettings.BaseTerrain);
-
 	g_Map = new Map(g_MapSettings.Size, g_MapSettings.BaseHeight);
-	g_Map.initTerrain(terrain);
+	g_Map.initTerrain(createTerrain(g_MapSettings.BaseTerrain));
 }
 
 function ExportMap()
 {
 	log("Saving map...");
 
-	var data = g_Map.getMapData();
-
-	// Add environment and camera settings
 	if (!WATER_LEVEL_CHANGED)
 		g_Environment.Water.WaterBody.Height = SEA_LEVEL - 0.1;
 
-	data.Environment = g_Environment;
-
-	// Adjust default cam to roughly center of the map - useful for Atlas
-	g_Camera.Position = {
-		"x":  g_MapSettings.Size * 2,
-		"y":  g_MapSettings.Size * 2,
-		"z": -g_MapSettings.Size * 2
-	};
-
-	data.Camera = g_Camera;
-
-	RMS.ExportMap(data);
+	RMS.ExportMap({
+		"entities": g_Map.exportEntityList(),
+		"height": g_Map.exportHeightData(),
+		"seaLevel": SEA_LEVEL,
+		"size": g_Map.size,
+		"textureNames": g_Map.IDToName,
+		"tileData": g_Map.exportTerrainTextures(),
+		"Camera": g_Camera,
+		"Environment": g_Environment
+	});
 }

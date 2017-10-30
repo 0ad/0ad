@@ -722,11 +722,8 @@ var g_Commands = {
 			}
 
 			// Check entity limits
-			var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-			var template = cmpTemplateManager.GetTemplate(cmd.template);
 			var cmpEntityLimits = QueryPlayerIDInterface(player, IID_EntityLimits);
-			if (template.TrainingRestrictions && !cmpEntityLimits.AllowedToTrain(template.TrainingRestrictions.Category, 1) ||
-				template.BuildRestrictions && !cmpEntityLimits.AllowedToBuild(template.BuildRestrictions.Category))
+			if (cmpEntityLimits && !cmpEntityLimits.AllowedToReplace(ent, cmd.template))
 			{
 				if (g_DebugCommands)
 					warn("Invalid command: build limits check failed for player " + player + ": " + uneval(cmd));
