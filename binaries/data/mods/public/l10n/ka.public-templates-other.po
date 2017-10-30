@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-09-25 09:03+0200\n"
-"PO-Revision-Date: 2017-09-25 14:30+0000\n"
+"POT-Creation-Date: 2017-10-27 09:03+0200\n"
+"PO-Revision-Date: 2017-10-27 15:39+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Georgian (http://www.transifex.com/wildfire-games/0ad/language/ka/)\n"
 "MIME-Version: 1.0\n"
@@ -21,28 +21,15 @@ msgstr ""
 msgid "Gaia"
 msgstr "ცხოველი"
 
-#: simulation/templates/template_gaia_flora.xml:8
-msgid "Generic Flora"
-msgstr "მცენარეულობა"
-
 #: simulation/templates/template_gaia_flora_bush.xml:8
-#: simulation/templates/template_gaia_flora_bush_berry.xml:8
 msgid "Bush"
 msgstr "ბუჩქი"
 
-#: simulation/templates/template_gaia_flora_bush_berry.xml:9
-msgid "Berries"
-msgstr "ცირცველი"
-
-#: simulation/templates/template_gaia_flora_bush_berry.xml:10
-msgid "Gather the fruit from these bushes to accumulate Food."
-msgstr "ამ ბუჩქებიდან შეაგროვე ხილი რომ საჭმელს დაამატო."
-
-#: simulation/templates/template_gaia_flora_tree.xml:5
+#: simulation/templates/template_gaia_flora_tree.xml:8
 msgid "Tree"
 msgstr "ხე"
 
-#: simulation/templates/template_gaia_flora_tree.xml:7
+#: simulation/templates/template_gaia_flora_tree.xml:9
 msgid "Chop down to accumulate Wood."
 msgstr "მოჩეხე, რომ ხე შეაგროვო."
 
@@ -186,90 +173,6 @@ msgstr "რელიგიური ტაძარი"
 #: simulation/templates/campaigns/campaign_religious_test.xml:13
 msgid "Greek Religious Sanctuary"
 msgstr "ბერძნული რელიგიური ტაძარი"
-
-#: simulation/templates/formations/battle_line.xml:5
-msgid "Battle Line"
-msgstr "ბრძოლის ხაზი"
-
-#: simulation/templates/formations/box.xml:6
-msgid "4 units required"
-msgstr "საჭიროებს 4 ერთეულს"
-
-#: simulation/templates/formations/box.xml:7
-msgid "Box"
-msgstr "ყუთი"
-
-#: simulation/templates/formations/column_closed.xml:5
-msgid "Forced March"
-msgstr ""
-
-#: simulation/templates/formations/column_open.xml:5
-msgid "Column Open"
-msgstr "სვეტი ღიაა"
-
-#: simulation/templates/formations/flank.xml:6
-msgid "8 units required"
-msgstr "საჭიროებს 8 ერთეულს"
-
-#: simulation/templates/formations/flank.xml:7
-msgid "Flank"
-msgstr "გვერდი"
-
-#: simulation/templates/formations/line_closed.xml:5
-msgid "Close Order"
-msgstr ""
-
-#: simulation/templates/formations/line_open.xml:5
-msgid "Open Order"
-msgstr ""
-
-#: simulation/templates/formations/null.xml:5
-msgid "None"
-msgstr "არცერთი"
-
-#: simulation/templates/formations/phalanx.xml:6
-msgid "10 hoplite infantry required"
-msgstr ""
-
-#: simulation/templates/formations/phalanx.xml:7
-msgid "Phalanx"
-msgstr "ფალანქსი"
-
-#: simulation/templates/formations/scatter.xml:5
-msgid "Scatter"
-msgstr "გაფანტვა"
-
-#: simulation/templates/formations/skirmish.xml:5
-msgid "Only ranged units allowed"
-msgstr "მხოლოდ მსროლელები დაიშვებიან"
-
-#: simulation/templates/formations/skirmish.xml:6
-msgid "Skirmish"
-msgstr "შეტაკება"
-
-#: simulation/templates/formations/syntagma.xml:6
-msgid "16 pike infantry units required"
-msgstr ""
-
-#: simulation/templates/formations/syntagma.xml:8
-msgid "Syntagma"
-msgstr "სინტაგმ"
-
-#: simulation/templates/formations/testudo.xml:6
-msgid "9 melee infantry units required"
-msgstr "საჭიროებს 9 შემტაკებელ ქვეითს"
-
-#: simulation/templates/formations/testudo.xml:7
-msgid "Testudo"
-msgstr "კუ"
-
-#: simulation/templates/formations/wedge.xml:6
-msgid "6 cavalry units required"
-msgstr ""
-
-#: simulation/templates/formations/wedge.xml:7
-msgid "Wedge"
-msgstr "სოლი"
 
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Bear"
@@ -453,23 +356,27 @@ msgstr "თეთრი მგელი"
 msgid "Zebra"
 msgstr "ზებრა"
 
-#: simulation/templates/gaia/flora_bush_badlands.xml:8
+#: simulation/templates/gaia/flora_bush_badlands.xml:4
 msgid "Hardy Bush"
 msgstr "ამტანი ბუჩქი"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:4
-msgid "Forage"
-msgstr "საკვები"
+#: simulation/templates/gaia/flora_bush_berry.xml:4
+msgid "Berries"
+msgstr "ცირცველი"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:5
+#: simulation/templates/gaia/flora_bush_berry.xml:5
+msgid "Gather the fruit from these bushes to accumulate Food."
+msgstr "ამ ბუჩქებიდან შეაგროვე ხილი რომ საჭმელს დაამატო."
+
+#: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Grapes"
 msgstr "ყურძენი"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:6
+#: simulation/templates/gaia/flora_bush_grapes.xml:5
 msgid "Gather grapes from these vines for Food."
 msgstr "საჭმლისთვის ვაზისგან მოაგროვე ყრძენი."
 
-#: simulation/templates/gaia/flora_bush_temperate.xml:8
+#: simulation/templates/gaia/flora_bush_temperate.xml:4
 msgid "Deciduous Bush"
 msgstr "ფოთლოვანი ბუჩქი"
 
@@ -481,7 +388,7 @@ msgstr ""
 msgid "Aleppo Pine Tree"
 msgstr "ალეპოს ფიჭვი"
 
-#: simulation/templates/gaia/flora_tree_apple.xml:8
+#: simulation/templates/gaia/flora_tree_apple.xml:4
 msgid "Apple Tree"
 msgstr "ვაშლის ხე"
 
@@ -516,11 +423,11 @@ msgstr "მოჭრილი ხე"
 msgid "European Beech Tree"
 msgstr "ევროპული წიფელი"
 
-#: simulation/templates/gaia/flora_tree_fig.xml:8
+#: simulation/templates/gaia/flora_tree_fig.xml:7
 msgid "Fig"
 msgstr "ლეღვი"
 
-#: simulation/templates/gaia/flora_tree_fig.xml:9
+#: simulation/templates/gaia/flora_tree_fig.xml:8
 msgid "Gather figs for Food."
 msgstr "მოაგროვე ლეღვი საჭმელად."
 
@@ -540,7 +447,7 @@ msgstr "მუხა"
 msgid "Large Oak Tree"
 msgstr "დიდი მუხა"
 
-#: simulation/templates/gaia/flora_tree_olive.xml:8
+#: simulation/templates/gaia/flora_tree_olive.xml:4
 msgid "Olive Tree"
 msgstr "ზეთის ხილი"
 
@@ -1054,3 +961,87 @@ msgstr ""
 #: simulation/templates/special/spy.xml:17
 msgid "Spy"
 msgstr ""
+
+#: simulation/templates/special/formations/battle_line.xml:5
+msgid "Battle Line"
+msgstr "ბრძოლის ხაზი"
+
+#: simulation/templates/special/formations/box.xml:6
+msgid "4 units required"
+msgstr "საჭიროებს 4 ერთეულს"
+
+#: simulation/templates/special/formations/box.xml:7
+msgid "Box"
+msgstr "ყუთი"
+
+#: simulation/templates/special/formations/column_closed.xml:5
+msgid "Forced March"
+msgstr ""
+
+#: simulation/templates/special/formations/column_open.xml:5
+msgid "Column Open"
+msgstr "სვეტი ღიაა"
+
+#: simulation/templates/special/formations/flank.xml:6
+msgid "8 units required"
+msgstr "საჭიროებს 8 ერთეულს"
+
+#: simulation/templates/special/formations/flank.xml:7
+msgid "Flank"
+msgstr "გვერდი"
+
+#: simulation/templates/special/formations/line_closed.xml:5
+msgid "Close Order"
+msgstr ""
+
+#: simulation/templates/special/formations/line_open.xml:5
+msgid "Open Order"
+msgstr ""
+
+#: simulation/templates/special/formations/null.xml:5
+msgid "None"
+msgstr "არცერთი"
+
+#: simulation/templates/special/formations/phalanx.xml:6
+msgid "10 hoplite infantry required"
+msgstr ""
+
+#: simulation/templates/special/formations/phalanx.xml:7
+msgid "Phalanx"
+msgstr "ფალანქსი"
+
+#: simulation/templates/special/formations/scatter.xml:5
+msgid "Scatter"
+msgstr "გაფანტვა"
+
+#: simulation/templates/special/formations/skirmish.xml:5
+msgid "Only ranged units allowed"
+msgstr "მხოლოდ მსროლელები დაიშვებიან"
+
+#: simulation/templates/special/formations/skirmish.xml:6
+msgid "Skirmish"
+msgstr "შეტაკება"
+
+#: simulation/templates/special/formations/syntagma.xml:6
+msgid "16 pike infantry units required"
+msgstr ""
+
+#: simulation/templates/special/formations/syntagma.xml:8
+msgid "Syntagma"
+msgstr "სინტაგმ"
+
+#: simulation/templates/special/formations/testudo.xml:6
+msgid "9 melee infantry units required"
+msgstr "საჭიროებს 9 შემტაკებელ ქვეითს"
+
+#: simulation/templates/special/formations/testudo.xml:7
+msgid "Testudo"
+msgstr "კუ"
+
+#: simulation/templates/special/formations/wedge.xml:6
+msgid "6 cavalry units required"
+msgstr ""
+
+#: simulation/templates/special/formations/wedge.xml:7
+msgid "Wedge"
+msgstr "სოლი"

@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-09-25 09:03+0200\n"
-"PO-Revision-Date: 2017-09-25 14:30+0000\n"
+"POT-Creation-Date: 2017-10-27 09:03+0200\n"
+"PO-Revision-Date: 2017-10-27 15:39+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Armenian (http://www.transifex.com/wildfire-games/0ad/language/hy/)\n"
 "MIME-Version: 1.0\n"
@@ -21,28 +21,15 @@ msgstr ""
 msgid "Gaia"
 msgstr "Գայա"
 
-#: simulation/templates/template_gaia_flora.xml:8
-msgid "Generic Flora"
-msgstr "Ընդհանուր բուսական աշխարհ"
-
 #: simulation/templates/template_gaia_flora_bush.xml:8
-#: simulation/templates/template_gaia_flora_bush_berry.xml:8
 msgid "Bush"
 msgstr "Թուփ"
 
-#: simulation/templates/template_gaia_flora_bush_berry.xml:9
-msgid "Berries"
-msgstr "Հատապտուղներ"
-
-#: simulation/templates/template_gaia_flora_bush_berry.xml:10
-msgid "Gather the fruit from these bushes to accumulate Food."
-msgstr "Հավաքել այս թփի պտուղները՝ սնունդ ստանալու նպատակով։"
-
-#: simulation/templates/template_gaia_flora_tree.xml:5
+#: simulation/templates/template_gaia_flora_tree.xml:8
 msgid "Tree"
 msgstr "Ծառ"
 
-#: simulation/templates/template_gaia_flora_tree.xml:7
+#: simulation/templates/template_gaia_flora_tree.xml:9
 msgid "Chop down to accumulate Wood."
 msgstr "Կտրել՝ փայտ ստանալու նպատակով։"
 
@@ -186,90 +173,6 @@ msgstr "Կրոնական սրբավայր"
 #: simulation/templates/campaigns/campaign_religious_test.xml:13
 msgid "Greek Religious Sanctuary"
 msgstr "Հունական կրոնական սրբավայր"
-
-#: simulation/templates/formations/battle_line.xml:5
-msgid "Battle Line"
-msgstr "Ուղղագիծ մարտական դասավորություն"
-
-#: simulation/templates/formations/box.xml:6
-msgid "4 units required"
-msgstr "Անհրաժեշտ է 4 միավոր"
-
-#: simulation/templates/formations/box.xml:7
-msgid "Box"
-msgstr "Արկղ"
-
-#: simulation/templates/formations/column_closed.xml:5
-msgid "Forced March"
-msgstr ""
-
-#: simulation/templates/formations/column_open.xml:5
-msgid "Column Open"
-msgstr "Բաց սյունաձև դասավորություն"
-
-#: simulation/templates/formations/flank.xml:6
-msgid "8 units required"
-msgstr "Անհրաժեշտ է 8 միավոր"
-
-#: simulation/templates/formations/flank.xml:7
-msgid "Flank"
-msgstr "Թև"
-
-#: simulation/templates/formations/line_closed.xml:5
-msgid "Close Order"
-msgstr ""
-
-#: simulation/templates/formations/line_open.xml:5
-msgid "Open Order"
-msgstr ""
-
-#: simulation/templates/formations/null.xml:5
-msgid "None"
-msgstr "Ոչ մեկը"
-
-#: simulation/templates/formations/phalanx.xml:6
-msgid "10 hoplite infantry required"
-msgstr ""
-
-#: simulation/templates/formations/phalanx.xml:7
-msgid "Phalanx"
-msgstr "Փաղանգ"
-
-#: simulation/templates/formations/scatter.xml:5
-msgid "Scatter"
-msgstr "Ցրված դասավորություն"
-
-#: simulation/templates/formations/skirmish.xml:5
-msgid "Only ranged units allowed"
-msgstr "Թույլատրվում են միայն հեռամարտ վարող միավորներ"
-
-#: simulation/templates/formations/skirmish.xml:6
-msgid "Skirmish"
-msgstr ""
-
-#: simulation/templates/formations/syntagma.xml:6
-msgid "16 pike infantry units required"
-msgstr ""
-
-#: simulation/templates/formations/syntagma.xml:8
-msgid "Syntagma"
-msgstr "Սինտագմա"
-
-#: simulation/templates/formations/testudo.xml:6
-msgid "9 melee infantry units required"
-msgstr "Անհրաշետ է 9 ձեռնամարտ վարող հետևակային միավոր"
-
-#: simulation/templates/formations/testudo.xml:7
-msgid "Testudo"
-msgstr "Կրիա"
-
-#: simulation/templates/formations/wedge.xml:6
-msgid "6 cavalry units required"
-msgstr ""
-
-#: simulation/templates/formations/wedge.xml:7
-msgid "Wedge"
-msgstr "Սեպ"
 
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Bear"
@@ -453,23 +356,27 @@ msgstr "Սպիտակ գայլ"
 msgid "Zebra"
 msgstr "Զեբր"
 
-#: simulation/templates/gaia/flora_bush_badlands.xml:8
+#: simulation/templates/gaia/flora_bush_badlands.xml:4
 msgid "Hardy Bush"
 msgstr "Դիմացկուն թուփ"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:4
-msgid "Forage"
-msgstr "Անասնակեր"
+#: simulation/templates/gaia/flora_bush_berry.xml:4
+msgid "Berries"
+msgstr "Հատապտուղներ"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:5
+#: simulation/templates/gaia/flora_bush_berry.xml:5
+msgid "Gather the fruit from these bushes to accumulate Food."
+msgstr "Հավաքել այս թփի պտուղները՝ սնունդ ստանալու նպատակով։"
+
+#: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Grapes"
 msgstr "Խաղող"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:6
+#: simulation/templates/gaia/flora_bush_grapes.xml:5
 msgid "Gather grapes from these vines for Food."
 msgstr "Հավաքել խաղող այս վազերից՝ սնունդ ստանալու նպատակով։"
 
-#: simulation/templates/gaia/flora_bush_temperate.xml:8
+#: simulation/templates/gaia/flora_bush_temperate.xml:4
 msgid "Deciduous Bush"
 msgstr "Տերևաթափվող թուփ"
 
@@ -481,7 +388,7 @@ msgstr "Ակացիա"
 msgid "Aleppo Pine Tree"
 msgstr "Հալեպյան սոճի"
 
-#: simulation/templates/gaia/flora_tree_apple.xml:8
+#: simulation/templates/gaia/flora_tree_apple.xml:4
 msgid "Apple Tree"
 msgstr "Խնձորենի"
 
@@ -516,11 +423,11 @@ msgstr "Մահացած ծառ"
 msgid "European Beech Tree"
 msgstr "Եվրոպական հաճարենի"
 
-#: simulation/templates/gaia/flora_tree_fig.xml:8
+#: simulation/templates/gaia/flora_tree_fig.xml:7
 msgid "Fig"
 msgstr "Թզենի"
 
-#: simulation/templates/gaia/flora_tree_fig.xml:9
+#: simulation/templates/gaia/flora_tree_fig.xml:8
 msgid "Gather figs for Food."
 msgstr "Հավաքել թուզ՝ սնունդ ստանալու նպատակով։"
 
@@ -540,7 +447,7 @@ msgstr "Կաղնի"
 msgid "Large Oak Tree"
 msgstr "Մեծ կաղնի"
 
-#: simulation/templates/gaia/flora_tree_olive.xml:8
+#: simulation/templates/gaia/flora_tree_olive.xml:4
 msgid "Olive Tree"
 msgstr "Ձիթենի"
 
@@ -1054,3 +961,87 @@ msgstr "Խաղացող"
 #: simulation/templates/special/spy.xml:17
 msgid "Spy"
 msgstr ""
+
+#: simulation/templates/special/formations/battle_line.xml:5
+msgid "Battle Line"
+msgstr "Ուղղագիծ մարտական դասավորություն"
+
+#: simulation/templates/special/formations/box.xml:6
+msgid "4 units required"
+msgstr "Անհրաժեշտ է 4 միավոր"
+
+#: simulation/templates/special/formations/box.xml:7
+msgid "Box"
+msgstr "Արկղ"
+
+#: simulation/templates/special/formations/column_closed.xml:5
+msgid "Forced March"
+msgstr ""
+
+#: simulation/templates/special/formations/column_open.xml:5
+msgid "Column Open"
+msgstr "Բաց սյունաձև դասավորություն"
+
+#: simulation/templates/special/formations/flank.xml:6
+msgid "8 units required"
+msgstr "Անհրաժեշտ է 8 միավոր"
+
+#: simulation/templates/special/formations/flank.xml:7
+msgid "Flank"
+msgstr "Թև"
+
+#: simulation/templates/special/formations/line_closed.xml:5
+msgid "Close Order"
+msgstr ""
+
+#: simulation/templates/special/formations/line_open.xml:5
+msgid "Open Order"
+msgstr ""
+
+#: simulation/templates/special/formations/null.xml:5
+msgid "None"
+msgstr "Ոչ մեկը"
+
+#: simulation/templates/special/formations/phalanx.xml:6
+msgid "10 hoplite infantry required"
+msgstr ""
+
+#: simulation/templates/special/formations/phalanx.xml:7
+msgid "Phalanx"
+msgstr "Փաղանգ"
+
+#: simulation/templates/special/formations/scatter.xml:5
+msgid "Scatter"
+msgstr "Ցրված դասավորություն"
+
+#: simulation/templates/special/formations/skirmish.xml:5
+msgid "Only ranged units allowed"
+msgstr "Թույլատրվում են միայն հեռամարտ վարող միավորներ"
+
+#: simulation/templates/special/formations/skirmish.xml:6
+msgid "Skirmish"
+msgstr ""
+
+#: simulation/templates/special/formations/syntagma.xml:6
+msgid "16 pike infantry units required"
+msgstr ""
+
+#: simulation/templates/special/formations/syntagma.xml:8
+msgid "Syntagma"
+msgstr "Սինտագմա"
+
+#: simulation/templates/special/formations/testudo.xml:6
+msgid "9 melee infantry units required"
+msgstr "Անհրաշետ է 9 ձեռնամարտ վարող հետևակային միավոր"
+
+#: simulation/templates/special/formations/testudo.xml:7
+msgid "Testudo"
+msgstr "Կրիա"
+
+#: simulation/templates/special/formations/wedge.xml:6
+msgid "6 cavalry units required"
+msgstr ""
+
+#: simulation/templates/special/formations/wedge.xml:7
+msgid "Wedge"
+msgstr "Սեպ"

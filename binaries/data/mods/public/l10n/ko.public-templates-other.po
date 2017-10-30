@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-09-25 09:03+0200\n"
-"PO-Revision-Date: 2017-09-25 14:30+0000\n"
+"POT-Creation-Date: 2017-10-27 09:03+0200\n"
+"PO-Revision-Date: 2017-10-27 15:39+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -25,28 +25,15 @@ msgstr ""
 msgid "Gaia"
 msgstr "가이아"
 
-#: simulation/templates/template_gaia_flora.xml:8
-msgid "Generic Flora"
-msgstr "일반적인 식물"
-
 #: simulation/templates/template_gaia_flora_bush.xml:8
-#: simulation/templates/template_gaia_flora_bush_berry.xml:8
 msgid "Bush"
 msgstr "덤불"
 
-#: simulation/templates/template_gaia_flora_bush_berry.xml:9
-msgid "Berries"
-msgstr "열매들"
-
-#: simulation/templates/template_gaia_flora_bush_berry.xml:10
-msgid "Gather the fruit from these bushes to accumulate Food."
-msgstr "숲에서 열매를 모으세요."
-
-#: simulation/templates/template_gaia_flora_tree.xml:5
+#: simulation/templates/template_gaia_flora_tree.xml:8
 msgid "Tree"
 msgstr "나무"
 
-#: simulation/templates/template_gaia_flora_tree.xml:7
+#: simulation/templates/template_gaia_flora_tree.xml:9
 msgid "Chop down to accumulate Wood."
 msgstr "저장된 나무를 자르세요."
 
@@ -190,90 +177,6 @@ msgstr "종교 성역"
 #: simulation/templates/campaigns/campaign_religious_test.xml:13
 msgid "Greek Religious Sanctuary"
 msgstr "그리스 종교 성역"
-
-#: simulation/templates/formations/battle_line.xml:5
-msgid "Battle Line"
-msgstr "전투 라인"
-
-#: simulation/templates/formations/box.xml:6
-msgid "4 units required"
-msgstr "4개의 유닛이 필요함"
-
-#: simulation/templates/formations/box.xml:7
-msgid "Box"
-msgstr "박스"
-
-#: simulation/templates/formations/column_closed.xml:5
-msgid "Forced March"
-msgstr ""
-
-#: simulation/templates/formations/column_open.xml:5
-msgid "Column Open"
-msgstr "기둥이 열렸습니다."
-
-#: simulation/templates/formations/flank.xml:6
-msgid "8 units required"
-msgstr "8개의 유닛이 필요함"
-
-#: simulation/templates/formations/flank.xml:7
-msgid "Flank"
-msgstr "측면"
-
-#: simulation/templates/formations/line_closed.xml:5
-msgid "Close Order"
-msgstr ""
-
-#: simulation/templates/formations/line_open.xml:5
-msgid "Open Order"
-msgstr ""
-
-#: simulation/templates/formations/null.xml:5
-msgid "None"
-msgstr "없음"
-
-#: simulation/templates/formations/phalanx.xml:6
-msgid "10 hoplite infantry required"
-msgstr ""
-
-#: simulation/templates/formations/phalanx.xml:7
-msgid "Phalanx"
-msgstr "방진"
-
-#: simulation/templates/formations/scatter.xml:5
-msgid "Scatter"
-msgstr "흩뜨림"
-
-#: simulation/templates/formations/skirmish.xml:5
-msgid "Only ranged units allowed"
-msgstr "원거리 유닛만 허용됩니다"
-
-#: simulation/templates/formations/skirmish.xml:6
-msgid "Skirmish"
-msgstr "접전지역"
-
-#: simulation/templates/formations/syntagma.xml:6
-msgid "16 pike infantry units required"
-msgstr ""
-
-#: simulation/templates/formations/syntagma.xml:8
-msgid "Syntagma"
-msgstr "구성"
-
-#: simulation/templates/formations/testudo.xml:6
-msgid "9 melee infantry units required"
-msgstr "9개의 근접 보병 유닛이 필요함"
-
-#: simulation/templates/formations/testudo.xml:7
-msgid "Testudo"
-msgstr "바다거북이"
-
-#: simulation/templates/formations/wedge.xml:6
-msgid "6 cavalry units required"
-msgstr ""
-
-#: simulation/templates/formations/wedge.xml:7
-msgid "Wedge"
-msgstr "쐐기"
 
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Bear"
@@ -457,23 +360,27 @@ msgstr "눈 늑대"
 msgid "Zebra"
 msgstr "얼룩말"
 
-#: simulation/templates/gaia/flora_bush_badlands.xml:8
+#: simulation/templates/gaia/flora_bush_badlands.xml:4
 msgid "Hardy Bush"
 msgstr "거센 초원"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:4
-msgid "Forage"
-msgstr "마초"
+#: simulation/templates/gaia/flora_bush_berry.xml:4
+msgid "Berries"
+msgstr "열매들"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:5
+#: simulation/templates/gaia/flora_bush_berry.xml:5
+msgid "Gather the fruit from these bushes to accumulate Food."
+msgstr "숲에서 열매를 모으세요."
+
+#: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Grapes"
 msgstr "포도들"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:6
+#: simulation/templates/gaia/flora_bush_grapes.xml:5
 msgid "Gather grapes from these vines for Food."
 msgstr "음식으로 쓰일 포도를 모으세요."
 
-#: simulation/templates/gaia/flora_bush_temperate.xml:8
+#: simulation/templates/gaia/flora_bush_temperate.xml:4
 msgid "Deciduous Bush"
 msgstr "낙엽 덤불"
 
@@ -485,7 +392,7 @@ msgstr "아카시아 나무"
 msgid "Aleppo Pine Tree"
 msgstr "알레포 지역의 소나무"
 
-#: simulation/templates/gaia/flora_tree_apple.xml:8
+#: simulation/templates/gaia/flora_tree_apple.xml:4
 msgid "Apple Tree"
 msgstr "사과나무"
 
@@ -520,11 +427,11 @@ msgstr "죽은 나무"
 msgid "European Beech Tree"
 msgstr "유럽 너도밤 나무"
 
-#: simulation/templates/gaia/flora_tree_fig.xml:8
+#: simulation/templates/gaia/flora_tree_fig.xml:7
 msgid "Fig"
 msgstr "무화과"
 
-#: simulation/templates/gaia/flora_tree_fig.xml:9
+#: simulation/templates/gaia/flora_tree_fig.xml:8
 msgid "Gather figs for Food."
 msgstr "음식으로 쓰일 무화과를 모으세요."
 
@@ -544,7 +451,7 @@ msgstr "참나무"
 msgid "Large Oak Tree"
 msgstr "큰 참나무"
 
-#: simulation/templates/gaia/flora_tree_olive.xml:8
+#: simulation/templates/gaia/flora_tree_olive.xml:4
 msgid "Olive Tree"
 msgstr "올리브나무"
 
@@ -1058,3 +965,87 @@ msgstr "선수"
 #: simulation/templates/special/spy.xml:17
 msgid "Spy"
 msgstr ""
+
+#: simulation/templates/special/formations/battle_line.xml:5
+msgid "Battle Line"
+msgstr "전투 라인"
+
+#: simulation/templates/special/formations/box.xml:6
+msgid "4 units required"
+msgstr "4개의 유닛이 필요함"
+
+#: simulation/templates/special/formations/box.xml:7
+msgid "Box"
+msgstr "박스"
+
+#: simulation/templates/special/formations/column_closed.xml:5
+msgid "Forced March"
+msgstr ""
+
+#: simulation/templates/special/formations/column_open.xml:5
+msgid "Column Open"
+msgstr "기둥이 열렸습니다."
+
+#: simulation/templates/special/formations/flank.xml:6
+msgid "8 units required"
+msgstr "8개의 유닛이 필요함"
+
+#: simulation/templates/special/formations/flank.xml:7
+msgid "Flank"
+msgstr "측면"
+
+#: simulation/templates/special/formations/line_closed.xml:5
+msgid "Close Order"
+msgstr ""
+
+#: simulation/templates/special/formations/line_open.xml:5
+msgid "Open Order"
+msgstr ""
+
+#: simulation/templates/special/formations/null.xml:5
+msgid "None"
+msgstr "없음"
+
+#: simulation/templates/special/formations/phalanx.xml:6
+msgid "10 hoplite infantry required"
+msgstr ""
+
+#: simulation/templates/special/formations/phalanx.xml:7
+msgid "Phalanx"
+msgstr "방진"
+
+#: simulation/templates/special/formations/scatter.xml:5
+msgid "Scatter"
+msgstr "흩뜨림"
+
+#: simulation/templates/special/formations/skirmish.xml:5
+msgid "Only ranged units allowed"
+msgstr "원거리 유닛만 허용됩니다"
+
+#: simulation/templates/special/formations/skirmish.xml:6
+msgid "Skirmish"
+msgstr "접전지역"
+
+#: simulation/templates/special/formations/syntagma.xml:6
+msgid "16 pike infantry units required"
+msgstr ""
+
+#: simulation/templates/special/formations/syntagma.xml:8
+msgid "Syntagma"
+msgstr "구성"
+
+#: simulation/templates/special/formations/testudo.xml:6
+msgid "9 melee infantry units required"
+msgstr "9개의 근접 보병 유닛이 필요함"
+
+#: simulation/templates/special/formations/testudo.xml:7
+msgid "Testudo"
+msgstr "바다거북이"
+
+#: simulation/templates/special/formations/wedge.xml:6
+msgid "6 cavalry units required"
+msgstr ""
+
+#: simulation/templates/special/formations/wedge.xml:7
+msgid "Wedge"
+msgstr "쐐기"

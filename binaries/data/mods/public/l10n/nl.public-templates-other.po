@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-09-25 09:03+0200\n"
-"PO-Revision-Date: 2017-09-25 14:30+0000\n"
+"POT-Creation-Date: 2017-10-27 09:03+0200\n"
+"PO-Revision-Date: 2017-10-27 15:39+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -26,28 +26,15 @@ msgstr ""
 msgid "Gaia"
 msgstr "Gaia"
 
-#: simulation/templates/template_gaia_flora.xml:8
-msgid "Generic Flora"
-msgstr "Generische flora"
-
 #: simulation/templates/template_gaia_flora_bush.xml:8
-#: simulation/templates/template_gaia_flora_bush_berry.xml:8
 msgid "Bush"
 msgstr "Struik"
 
-#: simulation/templates/template_gaia_flora_bush_berry.xml:9
-msgid "Berries"
-msgstr "Bessen"
-
-#: simulation/templates/template_gaia_flora_bush_berry.xml:10
-msgid "Gather the fruit from these bushes to accumulate Food."
-msgstr "Pluk het fruit van deze struiken voor voedsel."
-
-#: simulation/templates/template_gaia_flora_tree.xml:5
+#: simulation/templates/template_gaia_flora_tree.xml:8
 msgid "Tree"
 msgstr "Boom"
 
-#: simulation/templates/template_gaia_flora_tree.xml:7
+#: simulation/templates/template_gaia_flora_tree.xml:9
 msgid "Chop down to accumulate Wood."
 msgstr "Hak om voor hout."
 
@@ -191,90 +178,6 @@ msgstr "Religieus kerkhof"
 #: simulation/templates/campaigns/campaign_religious_test.xml:13
 msgid "Greek Religious Sanctuary"
 msgstr "Grieks religieus kerkhof"
-
-#: simulation/templates/formations/battle_line.xml:5
-msgid "Battle Line"
-msgstr "Aanvalslijn"
-
-#: simulation/templates/formations/box.xml:6
-msgid "4 units required"
-msgstr "4 eenheden vereist"
-
-#: simulation/templates/formations/box.xml:7
-msgid "Box"
-msgstr "Vierkant"
-
-#: simulation/templates/formations/column_closed.xml:5
-msgid "Forced March"
-msgstr "Geforceerde match"
-
-#: simulation/templates/formations/column_open.xml:5
-msgid "Column Open"
-msgstr "Open kolom"
-
-#: simulation/templates/formations/flank.xml:6
-msgid "8 units required"
-msgstr "8 eenheden vereist"
-
-#: simulation/templates/formations/flank.xml:7
-msgid "Flank"
-msgstr "Flank"
-
-#: simulation/templates/formations/line_closed.xml:5
-msgid "Close Order"
-msgstr "Gesloten Opstelling"
-
-#: simulation/templates/formations/line_open.xml:5
-msgid "Open Order"
-msgstr "Open Opstelling"
-
-#: simulation/templates/formations/null.xml:5
-msgid "None"
-msgstr "Geen"
-
-#: simulation/templates/formations/phalanx.xml:6
-msgid "10 hoplite infantry required"
-msgstr "16 hoplieten vereist."
-
-#: simulation/templates/formations/phalanx.xml:7
-msgid "Phalanx"
-msgstr "Falanx"
-
-#: simulation/templates/formations/scatter.xml:5
-msgid "Scatter"
-msgstr "Verspreiden"
-
-#: simulation/templates/formations/skirmish.xml:5
-msgid "Only ranged units allowed"
-msgstr "Enkel afstandseenheden toegestaan."
-
-#: simulation/templates/formations/skirmish.xml:6
-msgid "Skirmish"
-msgstr "Schermutselen"
-
-#: simulation/templates/formations/syntagma.xml:6
-msgid "16 pike infantry units required"
-msgstr "16 piekeniers vereist"
-
-#: simulation/templates/formations/syntagma.xml:8
-msgid "Syntagma"
-msgstr "Syntagma"
-
-#: simulation/templates/formations/testudo.xml:6
-msgid "9 melee infantry units required"
-msgstr "9 mêlee infanteriesoldaten vereist"
-
-#: simulation/templates/formations/testudo.xml:7
-msgid "Testudo"
-msgstr "Testudo"
-
-#: simulation/templates/formations/wedge.xml:6
-msgid "6 cavalry units required"
-msgstr "6 ruiters vereist"
-
-#: simulation/templates/formations/wedge.xml:7
-msgid "Wedge"
-msgstr "Hoek"
 
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Bear"
@@ -458,23 +361,27 @@ msgstr "Sneeuwwolf"
 msgid "Zebra"
 msgstr "Zebra"
 
-#: simulation/templates/gaia/flora_bush_badlands.xml:8
+#: simulation/templates/gaia/flora_bush_badlands.xml:4
 msgid "Hardy Bush"
 msgstr "Winterharde struik"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:4
-msgid "Forage"
-msgstr "Fruit"
+#: simulation/templates/gaia/flora_bush_berry.xml:4
+msgid "Berries"
+msgstr "Bessen"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:5
+#: simulation/templates/gaia/flora_bush_berry.xml:5
+msgid "Gather the fruit from these bushes to accumulate Food."
+msgstr "Pluk het fruit van deze struiken voor voedsel."
+
+#: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Grapes"
 msgstr "Druiven"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:6
+#: simulation/templates/gaia/flora_bush_grapes.xml:5
 msgid "Gather grapes from these vines for Food."
 msgstr "Verzamel druiven van deze wijnranken voor voedsel."
 
-#: simulation/templates/gaia/flora_bush_temperate.xml:8
+#: simulation/templates/gaia/flora_bush_temperate.xml:4
 msgid "Deciduous Bush"
 msgstr "Bladverliezende struik"
 
@@ -486,7 +393,7 @@ msgstr "Acaciaboom"
 msgid "Aleppo Pine Tree"
 msgstr "Aleppode"
 
-#: simulation/templates/gaia/flora_tree_apple.xml:8
+#: simulation/templates/gaia/flora_tree_apple.xml:4
 msgid "Apple Tree"
 msgstr "Appelboom"
 
@@ -521,11 +428,11 @@ msgstr "Dode boom"
 msgid "European Beech Tree"
 msgstr "Europese strandboom"
 
-#: simulation/templates/gaia/flora_tree_fig.xml:8
+#: simulation/templates/gaia/flora_tree_fig.xml:7
 msgid "Fig"
 msgstr "Vijg"
 
-#: simulation/templates/gaia/flora_tree_fig.xml:9
+#: simulation/templates/gaia/flora_tree_fig.xml:8
 msgid "Gather figs for Food."
 msgstr "Verzamel vijgen voor hun voedsel."
 
@@ -545,7 +452,7 @@ msgstr "Eik"
 msgid "Large Oak Tree"
 msgstr "Grote eik"
 
-#: simulation/templates/gaia/flora_tree_olive.xml:8
+#: simulation/templates/gaia/flora_tree_olive.xml:4
 msgid "Olive Tree"
 msgstr "Olijfboom"
 
@@ -1059,3 +966,87 @@ msgstr "Speler"
 #: simulation/templates/special/spy.xml:17
 msgid "Spy"
 msgstr "Spion"
+
+#: simulation/templates/special/formations/battle_line.xml:5
+msgid "Battle Line"
+msgstr "Aanvalslijn"
+
+#: simulation/templates/special/formations/box.xml:6
+msgid "4 units required"
+msgstr "4 eenheden vereist"
+
+#: simulation/templates/special/formations/box.xml:7
+msgid "Box"
+msgstr "Vierkant"
+
+#: simulation/templates/special/formations/column_closed.xml:5
+msgid "Forced March"
+msgstr "Geforceerde match"
+
+#: simulation/templates/special/formations/column_open.xml:5
+msgid "Column Open"
+msgstr "Open kolom"
+
+#: simulation/templates/special/formations/flank.xml:6
+msgid "8 units required"
+msgstr "8 eenheden vereist"
+
+#: simulation/templates/special/formations/flank.xml:7
+msgid "Flank"
+msgstr "Flank"
+
+#: simulation/templates/special/formations/line_closed.xml:5
+msgid "Close Order"
+msgstr "Gesloten Opstelling"
+
+#: simulation/templates/special/formations/line_open.xml:5
+msgid "Open Order"
+msgstr "Open Opstelling"
+
+#: simulation/templates/special/formations/null.xml:5
+msgid "None"
+msgstr "Geen"
+
+#: simulation/templates/special/formations/phalanx.xml:6
+msgid "10 hoplite infantry required"
+msgstr "16 hoplieten vereist."
+
+#: simulation/templates/special/formations/phalanx.xml:7
+msgid "Phalanx"
+msgstr "Falanx"
+
+#: simulation/templates/special/formations/scatter.xml:5
+msgid "Scatter"
+msgstr "Verspreiden"
+
+#: simulation/templates/special/formations/skirmish.xml:5
+msgid "Only ranged units allowed"
+msgstr "Enkel afstandseenheden toegestaan."
+
+#: simulation/templates/special/formations/skirmish.xml:6
+msgid "Skirmish"
+msgstr "Schermutselen"
+
+#: simulation/templates/special/formations/syntagma.xml:6
+msgid "16 pike infantry units required"
+msgstr "16 piekeniers vereist"
+
+#: simulation/templates/special/formations/syntagma.xml:8
+msgid "Syntagma"
+msgstr "Syntagma"
+
+#: simulation/templates/special/formations/testudo.xml:6
+msgid "9 melee infantry units required"
+msgstr "9 mêlee infanteriesoldaten vereist"
+
+#: simulation/templates/special/formations/testudo.xml:7
+msgid "Testudo"
+msgstr "Testudo"
+
+#: simulation/templates/special/formations/wedge.xml:6
+msgid "6 cavalry units required"
+msgstr "6 ruiters vereist"
+
+#: simulation/templates/special/formations/wedge.xml:7
+msgid "Wedge"
+msgstr "Hoek"
