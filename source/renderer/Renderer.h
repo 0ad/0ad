@@ -257,12 +257,17 @@ public:
 	}
 
 	// set the mode to render subsequent terrain patches
-	void SetTerrainRenderMode(ERenderMode mode) { m_TerrainRenderMode=mode; }
+	void SetTerrainRenderMode(ERenderMode mode) { m_TerrainRenderMode = mode; }
 	// get the mode to render subsequent terrain patches
 	ERenderMode GetTerrainRenderMode() const { return m_TerrainRenderMode; }
 
+	// set the mode to render subsequent water patches
+	void SetWaterRenderMode(ERenderMode mode) { m_WaterRenderMode = mode; }
+	// get the mode to render subsequent water patches
+	ERenderMode GetWaterRenderMode() const { return m_WaterRenderMode; }
+
 	// set the mode to render subsequent models
-	void SetModelRenderMode(ERenderMode mode) { m_ModelRenderMode=mode; }
+	void SetModelRenderMode(ERenderMode mode) { m_ModelRenderMode = mode; }
 	// get the mode to render subsequent models
 	ERenderMode GetModelRenderMode() const { return m_ModelRenderMode; }
 
@@ -412,6 +417,8 @@ protected:
 	int m_Height;
 	// current terrain rendering mode
 	ERenderMode m_TerrainRenderMode;
+	// current water rendering mode
+	ERenderMode m_WaterRenderMode;
 	// current model rendering mode
 	ERenderMode m_ModelRenderMode;
 
