@@ -288,9 +288,13 @@ function placeTerrain(x, z, terrain)
 	g_Map.placeTerrain(x, z, createTerrain(terrain));
 }
 
-function initTerrain(terrain)
+function initTerrain(terrainNames)
 {
-	g_Map.initTerrain(createTerrain(terrain));
+	let terrain = createTerrain(terrainNames);
+
+	for (let x = 0; x < getMapSize(); ++x)
+		for (let z = 0; z < getMapSize(); ++z)
+			terrain.place(x, z);
 }
 
 function isCircularMap()

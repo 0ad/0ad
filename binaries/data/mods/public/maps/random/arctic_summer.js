@@ -53,8 +53,6 @@ var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
-initTerrain(tPrimary);
-
 var [playerIDs, playerX, playerZ] = radialPlayerPlacement();
 
 for (let i = 0; i < numPlayers; i++)

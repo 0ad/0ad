@@ -58,13 +58,6 @@ function Map(size, baseHeight)
 	this.entityCount = 150;
 }
 
-Map.prototype.initTerrain = function(baseTerrain)
-{
-	for (let i = 0; i < this.size; ++i)
-		for (let j = 0; j < this.size; ++j)
-			baseTerrain.place(i, j);
-};
-
 /**
  * Returns the ID of a texture name.
  * Creates a new ID if there isn't one assigned yet.
