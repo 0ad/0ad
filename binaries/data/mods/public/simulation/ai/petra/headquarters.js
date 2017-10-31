@@ -1746,41 +1746,56 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 	if (this.saveResources && !this.canBarter || queues.militaryBuilding.hasQueuedUnits())
 		return;
 
-	if (this.canBuild(gameState, "structures/{civ}_barracks"))
-	{
-		let barrackNb = gameState.getOwnEntitiesByClass("Barracks", true).length;
-		if (this.saveResources && barrackNb > 0)
-			return;
+	let numBarracks = this.canBuild(gameState, "structures/{civ}_barracks") ? gameState.getOwnEntitiesByClass("Barracks", true).length : -1;
+	let numStables = this.canBuild(gameState, "structures/{civ}_stables") ? gameState.getOwnEntitiesByClass("Stables", true).length : -1;
+	if (this.saveResources && numBarracks != 0)
+		return;
 
-		// first barracks.
-		if (!barrackNb && (gameState.getPopulation() > this.Config.Military.popForBarracks1 ||
-		    this.phasing == 2 && gameState.getOwnStructures().filter(API3.Filters.byClass("Village")).length < 5))
+	if (gameState.getPopulation() > this.Config.Military.popForBarracks1 ||
+	    this.phasing == 2 && gameState.getOwnStructures().filter(API3.Filters.byClass("Village")).length < 5)
+	{
+		// first barracks and stables.
+		if (numBarracks == 0)
 		{
 			gameState.ai.queueManager.changePriority("militaryBuilding", 2*this.Config.priorities.militaryBuilding);
-			let preferredBase = this.findBestBaseForMilitary(gameState);
-			let plan = new m.ConstructionPlan(gameState, "structures/{civ}_barracks", { "preferredBase": preferredBase });
+			let metadata = { "preferredBase": this.findBestBaseForMilitary(gameState) };
+			let plan = new m.ConstructionPlan(gameState, "structures/{civ}_barracks", metadata);
 			plan.queueToReset = "militaryBuilding";
 			queues.militaryBuilding.addPlan(plan);
 			return;
 		}
-		// second barracks, then 3rd barrack, and optional 4th for some civs as they rely on barracks more.
-		if (barrackNb == 1 && gameState.getPopulation() > this.Config.Military.popForBarracks2)
+		if (numStables == 0)
 		{
-			let preferredBase = this.findBestBaseForMilitary(gameState);
-			queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_barracks", { "preferredBase": preferredBase }));
+			let metadata = { "preferredBase": this.findBestBaseForMilitary(gameState) };
+			queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_stables", metadata));
 			return;
 		}
-		if (barrackNb == 2 && gameState.getPopulation() > this.Config.Military.popForBarracks2 + 20)
+
+		// Second barracks and stables, then 3rd barrack, and optional 4th for some civs as they rely on barracks more.
+		if (numBarracks == 1 && gameState.getPopulation() > this.Config.Military.popForBarracks2)
 		{
-			let preferredBase = this.findBestBaseForMilitary(gameState);
-			queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_barracks", { "preferredBase": preferredBase }));
+			let metadata = { "preferredBase": this.findBestBaseForMilitary(gameState) };
+			queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_barracks", metadata));
 			return;
 		}
-		if (barrackNb == 3 && gameState.getPopulation() > this.Config.Military.popForBarracks2 + 50 &&
-			(gameState.getPlayerCiv() === "gaul" || gameState.getPlayerCiv() === "brit" || gameState.getPlayerCiv() === "iber"))
+		if (numStables == 1 && gameState.getPopulation() > this.Config.Military.popForBarracks2)
 		{
-			let preferredBase = this.findBestBaseForMilitary(gameState);
-			queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_barracks", { "preferredBase": preferredBase }));
+			let metadata = { "preferredBase": this.findBestBaseForMilitary(gameState) };
+			queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_stables", metadata));
+			return;
+		}
+
+		// Then 3rd barracks/stables if needed
+		if (numBarracks == 2 && numStables == -1 && gameState.getPopulation() > this.Config.Military.popForBarracks2 + 30)
+		{
+			let metadata = { "preferredBase": this.findBestBaseForMilitary(gameState) };
+			queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_barracks", metadata));
+			return;
+		}
+		if (numBarracks == -1 && numStables == 2 && gameState.getPopulation() > this.Config.Military.popForBarracks2 + 30)
+		{
+			let metadata = { "preferredBase": this.findBestBaseForMilitary(gameState) };
+			queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_stables", metadata));
 			return;
 		}
 	}
@@ -1788,7 +1803,18 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 	if (this.saveResources)
 		return;
 
-	if (this.currentPhase < 3 || gameState.getPopulation() < 80 || !this.bAdvanced.length)
+	if (this.currentPhase < 3)
+		return;
+
+	let numWorkshop = this.canBuild(gameState, "structures/{civ}_siege_workshop") ? gameState.getOwnEntitiesByClass("Workshop", true).length : -1;
+	if (numWorkshop == 0)
+	{
+		let metadata = { "preferredBase": this.findBestBaseForMilitary(gameState) };
+		queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_siege_workshop", metadata));
+		return;
+	}
+
+	if (gameState.getPopulation() < 80 || !this.bAdvanced.length)
 		return;
 
 	//build advanced military buildings
@@ -1807,8 +1833,8 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 				continue;
 			if (template.hasDefensiveFire() || template.trainableEntities())
 			{
-				let preferredBase = this.findBestBaseForMilitary(gameState);
-				queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, advanced, { "preferredBase": preferredBase }));
+				let metadata = { "preferredBase": this.findBestBaseForMilitary(gameState) };
+				queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, advanced, metadata));
 			}
 			else	// not a military building, but still use this queue
 				queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, advanced));
