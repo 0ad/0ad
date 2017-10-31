@@ -28,7 +28,7 @@ RectPlacer.prototype.place = function(constraint)
 	for (let x = this.x1; x <= this.x2; ++x)
 		for (let z = this.z1; z <= this.z2; ++z)
 			if (constraint.allows(x, z))
-				points.push(new PointXZ(x, z));
+				points.push({ "x": x, "z": z });
 			else
 				return undefined;
 
@@ -53,7 +53,7 @@ HeightPlacer.prototype.place = function(constraint)
 			if (g_Map.height[x][z] >= this.minElevation &&
 			    g_Map.height[x][z] <= this.maxElevation &&
 			    constraint.allows(x, z))
-				points.push(new PointXZ(x, z));
+				points.push({ "x": x, "z": z });
 
 	return points;
 };
@@ -168,10 +168,10 @@ PathPlacer.prototype.place = function(constraint)
 		// Find slope of offset path
 		var px = Math.round(nx - ndz * -taperedWidth);
 		var pz = Math.round(nz + ndx * -taperedWidth);
-		segments1.push(new PointXZ(px, pz));
+		segments1.push({ "x": px, "z": pz });
 		var px2 = Math.round(nx2 - ndz * taperedWidth);
 		var pz2 = Math.round(nz2 + ndx * taperedWidth);
-		segments2.push(new PointXZ(px2, pz2));
+		segments2.push({ "x": px2, "z": pz2 });
 
 	}
 
@@ -210,7 +210,7 @@ PathPlacer.prototype.place = function(constraint)
 					{
 						if (g_Map.inMapBounds(x, z) && !gotRet[x][z])
 						{
-							retVec.push(new PointXZ(x, z));
+							retVec.push({ "x": x, "z": z });
 							gotRet[x][z] = 1;
 						}
 					}
