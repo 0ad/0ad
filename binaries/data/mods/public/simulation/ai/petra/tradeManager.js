@@ -569,8 +569,8 @@ m.TradeManager.prototype.prospectForNewMarket = function(gameState, queues)
 		return;
 	if (!gameState.ai.HQ.canBuild(gameState, "structures/{civ}_market"))
 		return;
-	if (!gameState.updatingCollection("OwnMarkets", API3.Filters.byClass("Market"), gameState.getOwnStructures()).length &&
-		!gameState.updatingCollection("diplo-ExclusiveAllyMarkets", API3.Filters.byClass("Market"), gameState.getExclusiveAllyEntities()).length)
+	if (!gameState.updatingCollection("OwnMarkets", API3.Filters.byClass("Market"), gameState.getOwnStructures()).hasEntities() &&
+	    !gameState.updatingCollection("diplo-ExclusiveAllyMarkets", API3.Filters.byClass("Market"), gameState.getExclusiveAllyEntities()).hasEntities())
 		return;
 	let template = gameState.getTemplate(gameState.applyCiv("structures/{civ}_market"));
 	if (!template)
@@ -674,11 +674,13 @@ m.TradeManager.prototype.Serialize = function()
 
 m.TradeManager.prototype.Deserialize = function(gameState, data)
 {
-	this.tradeRoute = this.routeIdToEnt(gameState, data.tradeRoute);
-	this.potentialTradeRoute = this.routeIdToEnt(gameState, data.potentialTradeRoute);
-	this.routeProspection = data.routeProspection;
-	this.targetNumTraders = data.targetNumTraders;
-	this.warnedAllies = data.warnedAllies;
+	for (let key in data)
+	{
+		if (key == "tradeRoute" || key == "potentialTradeRoute")
+			this[key] = this.routeIdToEnt(gameState, data[key]);
+		else
+			this[key] = data[key];
+	}
 };
 
 return m;

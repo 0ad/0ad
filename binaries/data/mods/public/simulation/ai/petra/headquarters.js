@@ -1771,7 +1771,7 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 			return;
 		}
 
-		// Second barracks and stables, then 3rd barrack, and optional 4th for some civs as they rely on barracks more.
+		// Second barracks and stables
 		if (numBarracks == 1 && gameState.getPopulation() > this.Config.Military.popForBarracks2)
 		{
 			let metadata = { "preferredBase": this.findBestBaseForMilitary(gameState) };
