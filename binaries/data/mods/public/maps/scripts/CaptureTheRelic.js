@@ -2,7 +2,7 @@ Trigger.prototype.InitCaptureTheRelic = function()
 {
 	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	let catafalqueTemplates = shuffleArray(cmpTemplateManager.FindAllTemplates(false).filter(
-			name => name.startsWith("other/catafalque/")));
+		name => GetIdentityClasses(cmpTemplateManager.GetTemplate(name).Identity || {}).indexOf("Relic") != -1));
 
 	let potentialSpawnPoints = TriggerHelper.GetLandSpawnPoints();
 	if (!potentialSpawnPoints.length)
