@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-09-25 09:03+0200\n"
-"PO-Revision-Date: 2017-09-25 14:30+0000\n"
+"POT-Creation-Date: 2017-10-27 09:03+0200\n"
+"PO-Revision-Date: 2017-10-27 15:39+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -26,28 +26,15 @@ msgstr ""
 msgid "Gaia"
 msgstr "Toprak ana"
 
-#: simulation/templates/template_gaia_flora.xml:8
-msgid "Generic Flora"
-msgstr "Genel Bitki Örtüsü"
-
 #: simulation/templates/template_gaia_flora_bush.xml:8
-#: simulation/templates/template_gaia_flora_bush_berry.xml:8
 msgid "Bush"
 msgstr "Çalı"
 
-#: simulation/templates/template_gaia_flora_bush_berry.xml:9
-msgid "Berries"
-msgstr "Meyveler"
-
-#: simulation/templates/template_gaia_flora_bush_berry.xml:10
-msgid "Gather the fruit from these bushes to accumulate Food."
-msgstr "Besin biriktirmek için bu çalılıklardan meyve toplayın."
-
-#: simulation/templates/template_gaia_flora_tree.xml:5
+#: simulation/templates/template_gaia_flora_tree.xml:8
 msgid "Tree"
 msgstr "Ağaç"
 
-#: simulation/templates/template_gaia_flora_tree.xml:7
+#: simulation/templates/template_gaia_flora_tree.xml:9
 msgid "Chop down to accumulate Wood."
 msgstr "Odun elde etmek için kesin."
 
@@ -191,90 +178,6 @@ msgstr "Tapınak"
 #: simulation/templates/campaigns/campaign_religious_test.xml:13
 msgid "Greek Religious Sanctuary"
 msgstr "Yunan Tapınağı"
-
-#: simulation/templates/formations/battle_line.xml:5
-msgid "Battle Line"
-msgstr "Savaş Hattı"
-
-#: simulation/templates/formations/box.xml:6
-msgid "4 units required"
-msgstr "4 birim gerekli"
-
-#: simulation/templates/formations/box.xml:7
-msgid "Box"
-msgstr "Kutu"
-
-#: simulation/templates/formations/column_closed.xml:5
-msgid "Forced March"
-msgstr "Zorlu Mart"
-
-#: simulation/templates/formations/column_open.xml:5
-msgid "Column Open"
-msgstr "Sütun Açık"
-
-#: simulation/templates/formations/flank.xml:6
-msgid "8 units required"
-msgstr "8 birim gerekli"
-
-#: simulation/templates/formations/flank.xml:7
-msgid "Flank"
-msgstr "Böğür"
-
-#: simulation/templates/formations/line_closed.xml:5
-msgid "Close Order"
-msgstr "Emri Kapat"
-
-#: simulation/templates/formations/line_open.xml:5
-msgid "Open Order"
-msgstr "Emir Aç"
-
-#: simulation/templates/formations/null.xml:5
-msgid "None"
-msgstr "Yok"
-
-#: simulation/templates/formations/phalanx.xml:6
-msgid "10 hoplite infantry required"
-msgstr "10 mızraklı ağır piyade gerekli"
-
-#: simulation/templates/formations/phalanx.xml:7
-msgid "Phalanx"
-msgstr "Falanks"
-
-#: simulation/templates/formations/scatter.xml:5
-msgid "Scatter"
-msgstr "Saçılma"
-
-#: simulation/templates/formations/skirmish.xml:5
-msgid "Only ranged units allowed"
-msgstr "Sadece birimlerin izinleri değiştirildi"
-
-#: simulation/templates/formations/skirmish.xml:6
-msgid "Skirmish"
-msgstr "Çatışma"
-
-#: simulation/templates/formations/syntagma.xml:6
-msgid "16 pike infantry units required"
-msgstr "16 kargılı piyade birimi gerekli"
-
-#: simulation/templates/formations/syntagma.xml:8
-msgid "Syntagma"
-msgstr "Sintagma"
-
-#: simulation/templates/formations/testudo.xml:6
-msgid "9 melee infantry units required"
-msgstr "9 yakın dövüş piyade birimi gerekli "
-
-#: simulation/templates/formations/testudo.xml:7
-msgid "Testudo"
-msgstr "Kaplumbağa tipi"
-
-#: simulation/templates/formations/wedge.xml:6
-msgid "6 cavalry units required"
-msgstr "6 süvari birimi gerekli"
-
-#: simulation/templates/formations/wedge.xml:7
-msgid "Wedge"
-msgstr "Takoz"
 
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Bear"
@@ -458,23 +361,27 @@ msgstr "Kar Kurdu"
 msgid "Zebra"
 msgstr "Zebra"
 
-#: simulation/templates/gaia/flora_bush_badlands.xml:8
+#: simulation/templates/gaia/flora_bush_badlands.xml:4
 msgid "Hardy Bush"
 msgstr "Dayanıklı Çalı"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:4
-msgid "Forage"
-msgstr "Mera"
+#: simulation/templates/gaia/flora_bush_berry.xml:4
+msgid "Berries"
+msgstr "Meyveler"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:5
+#: simulation/templates/gaia/flora_bush_berry.xml:5
+msgid "Gather the fruit from these bushes to accumulate Food."
+msgstr "Besin biriktirmek için bu çalılıklardan meyve toplayın."
+
+#: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Grapes"
 msgstr "Üzüm"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:6
+#: simulation/templates/gaia/flora_bush_grapes.xml:5
 msgid "Gather grapes from these vines for Food."
 msgstr "Yiyecek için asmalardan üzüm toplayın."
 
-#: simulation/templates/gaia/flora_bush_temperate.xml:8
+#: simulation/templates/gaia/flora_bush_temperate.xml:4
 msgid "Deciduous Bush"
 msgstr "Geçici Çalı"
 
@@ -486,7 +393,7 @@ msgstr "Akasya Ağacı"
 msgid "Aleppo Pine Tree"
 msgstr "Halep Çamı Ağacı"
 
-#: simulation/templates/gaia/flora_tree_apple.xml:8
+#: simulation/templates/gaia/flora_tree_apple.xml:4
 msgid "Apple Tree"
 msgstr "Elma Ağacı"
 
@@ -521,11 +428,11 @@ msgstr "Ölü Ağaç"
 msgid "European Beech Tree"
 msgstr "Avrupa Kayın Ağacı"
 
-#: simulation/templates/gaia/flora_tree_fig.xml:8
+#: simulation/templates/gaia/flora_tree_fig.xml:7
 msgid "Fig"
 msgstr "İncir"
 
-#: simulation/templates/gaia/flora_tree_fig.xml:9
+#: simulation/templates/gaia/flora_tree_fig.xml:8
 msgid "Gather figs for Food."
 msgstr "Besing için incileri topla."
 
@@ -545,7 +452,7 @@ msgstr "Meşe Ağacı"
 msgid "Large Oak Tree"
 msgstr "Büyük Meşe Ağacı"
 
-#: simulation/templates/gaia/flora_tree_olive.xml:8
+#: simulation/templates/gaia/flora_tree_olive.xml:4
 msgid "Olive Tree"
 msgstr "Zeytin Ağacı"
 
@@ -1059,3 +966,87 @@ msgstr "Oyuncu"
 #: simulation/templates/special/spy.xml:17
 msgid "Spy"
 msgstr "Casus"
+
+#: simulation/templates/special/formations/battle_line.xml:5
+msgid "Battle Line"
+msgstr "Savaş Hattı"
+
+#: simulation/templates/special/formations/box.xml:6
+msgid "4 units required"
+msgstr "4 birim gerekli"
+
+#: simulation/templates/special/formations/box.xml:7
+msgid "Box"
+msgstr "Kutu"
+
+#: simulation/templates/special/formations/column_closed.xml:5
+msgid "Forced March"
+msgstr "Zorlu Mart"
+
+#: simulation/templates/special/formations/column_open.xml:5
+msgid "Column Open"
+msgstr "Sütun Açık"
+
+#: simulation/templates/special/formations/flank.xml:6
+msgid "8 units required"
+msgstr "8 birim gerekli"
+
+#: simulation/templates/special/formations/flank.xml:7
+msgid "Flank"
+msgstr "Böğür"
+
+#: simulation/templates/special/formations/line_closed.xml:5
+msgid "Close Order"
+msgstr "Emri Kapat"
+
+#: simulation/templates/special/formations/line_open.xml:5
+msgid "Open Order"
+msgstr "Emir Aç"
+
+#: simulation/templates/special/formations/null.xml:5
+msgid "None"
+msgstr "Yok"
+
+#: simulation/templates/special/formations/phalanx.xml:6
+msgid "10 hoplite infantry required"
+msgstr "10 mızraklı ağır piyade gerekli"
+
+#: simulation/templates/special/formations/phalanx.xml:7
+msgid "Phalanx"
+msgstr "Falanks"
+
+#: simulation/templates/special/formations/scatter.xml:5
+msgid "Scatter"
+msgstr "Saçılma"
+
+#: simulation/templates/special/formations/skirmish.xml:5
+msgid "Only ranged units allowed"
+msgstr "Sadece birimlerin izinleri değiştirildi"
+
+#: simulation/templates/special/formations/skirmish.xml:6
+msgid "Skirmish"
+msgstr "Çatışma"
+
+#: simulation/templates/special/formations/syntagma.xml:6
+msgid "16 pike infantry units required"
+msgstr "16 kargılı piyade birimi gerekli"
+
+#: simulation/templates/special/formations/syntagma.xml:8
+msgid "Syntagma"
+msgstr "Sintagma"
+
+#: simulation/templates/special/formations/testudo.xml:6
+msgid "9 melee infantry units required"
+msgstr "9 yakın dövüş piyade birimi gerekli "
+
+#: simulation/templates/special/formations/testudo.xml:7
+msgid "Testudo"
+msgstr "Kaplumbağa tipi"
+
+#: simulation/templates/special/formations/wedge.xml:6
+msgid "6 cavalry units required"
+msgstr "6 süvari birimi gerekli"
+
+#: simulation/templates/special/formations/wedge.xml:7
+msgid "Wedge"
+msgstr "Takoz"

@@ -125,22 +125,14 @@ PathPlacer.prototype.place = function(constraint)
 	// Interpolate for smoothed 1D noise
 	var noise = new Float32Array(totalSteps+1);		//float32
 	for (var j = 0; j < numSteps; ++j)
-	{
-		// Cubic interpolation
-		var v0 = ctrlVals[(j+numSteps-1)%numSteps];
-		var v1 = ctrlVals[j];
-		var v2 = ctrlVals[(j+1)%numSteps];
-		var v3 = ctrlVals[(j+2)%numSteps];
-		var P = (v3 - v2) - (v0 - v1);
-		var Q = (v0 - v1) - P;
-		var R = v2 - v0;
-		var S = v1;
-		for (var k = 0; k < numISteps; ++k)
-		{
-			var t = k/numISteps;
-			noise[j*numISteps + k] = P*t*t*t + Q*t*t + R*t + S;
-		}
-	}
+		for (let k = 0; k < numISteps; ++k)
+			noise[j * numISteps + k] = cubicInterpolation(
+				1,
+				k / numISteps,
+				ctrlVals[(j + numSteps - 1) % numSteps],
+				ctrlVals[j],
+				ctrlVals[(j + 1) % numSteps],
+				ctrlVals[(j + 2) % numSteps]);
 
 	var halfWidth = 0.5 * this.width;
 

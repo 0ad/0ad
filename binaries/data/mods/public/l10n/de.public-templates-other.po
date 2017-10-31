@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-09-25 09:03+0200\n"
-"PO-Revision-Date: 2017-09-25 14:30+0000\n"
+"POT-Creation-Date: 2017-10-27 09:03+0200\n"
+"PO-Revision-Date: 2017-10-27 15:39+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -28,28 +28,15 @@ msgstr ""
 msgid "Gaia"
 msgstr "Gaia"
 
-#: simulation/templates/template_gaia_flora.xml:8
-msgid "Generic Flora"
-msgstr "Generische Flora"
-
 #: simulation/templates/template_gaia_flora_bush.xml:8
-#: simulation/templates/template_gaia_flora_bush_berry.xml:8
 msgid "Bush"
 msgstr "Busch"
 
-#: simulation/templates/template_gaia_flora_bush_berry.xml:9
-msgid "Berries"
-msgstr "Beeren"
-
-#: simulation/templates/template_gaia_flora_bush_berry.xml:10
-msgid "Gather the fruit from these bushes to accumulate Food."
-msgstr "Sammle die Früchte von diesen Büschen, um Nahrung zu bekommen."
-
-#: simulation/templates/template_gaia_flora_tree.xml:5
+#: simulation/templates/template_gaia_flora_tree.xml:8
 msgid "Tree"
 msgstr "Baum"
 
-#: simulation/templates/template_gaia_flora_tree.xml:7
+#: simulation/templates/template_gaia_flora_tree.xml:9
 msgid "Chop down to accumulate Wood."
 msgstr "Fällen um Holz zu sammeln."
 
@@ -193,90 +180,6 @@ msgstr "Religiöses Heiligtum"
 #: simulation/templates/campaigns/campaign_religious_test.xml:13
 msgid "Greek Religious Sanctuary"
 msgstr "Griechisches religiöses Heiligtum"
-
-#: simulation/templates/formations/battle_line.xml:5
-msgid "Battle Line"
-msgstr "Gefechtslinie"
-
-#: simulation/templates/formations/box.xml:6
-msgid "4 units required"
-msgstr "4 Einheiten benötigt"
-
-#: simulation/templates/formations/box.xml:7
-msgid "Box"
-msgstr "Kasten"
-
-#: simulation/templates/formations/column_closed.xml:5
-msgid "Forced March"
-msgstr "Gewaltmarsch"
-
-#: simulation/templates/formations/column_open.xml:5
-msgid "Column Open"
-msgstr "Offene Kolonnenformation"
-
-#: simulation/templates/formations/flank.xml:6
-msgid "8 units required"
-msgstr "8 Einheiten benötigt"
-
-#: simulation/templates/formations/flank.xml:7
-msgid "Flank"
-msgstr "Flankenformation"
-
-#: simulation/templates/formations/line_closed.xml:5
-msgid "Close Order"
-msgstr "Geschlossene Schlachtordnung"
-
-#: simulation/templates/formations/line_open.xml:5
-msgid "Open Order"
-msgstr "Geöffnete Schlachtordnung"
-
-#: simulation/templates/formations/null.xml:5
-msgid "None"
-msgstr "Kein"
-
-#: simulation/templates/formations/phalanx.xml:6
-msgid "10 hoplite infantry required"
-msgstr "10 Hopliteninfanteristen benötigt"
-
-#: simulation/templates/formations/phalanx.xml:7
-msgid "Phalanx"
-msgstr "Phalanx"
-
-#: simulation/templates/formations/scatter.xml:5
-msgid "Scatter"
-msgstr "Lose Formation"
-
-#: simulation/templates/formations/skirmish.xml:5
-msgid "Only ranged units allowed"
-msgstr "Nur Fernkämpfer erlaubt"
-
-#: simulation/templates/formations/skirmish.xml:6
-msgid "Skirmish"
-msgstr "Lockere Formation"
-
-#: simulation/templates/formations/syntagma.xml:6
-msgid "16 pike infantry units required"
-msgstr "16 Pikeninfanterieeinheiten benötigt"
-
-#: simulation/templates/formations/syntagma.xml:8
-msgid "Syntagma"
-msgstr "Syntagma"
-
-#: simulation/templates/formations/testudo.xml:6
-msgid "9 melee infantry units required"
-msgstr "9 Nahkampfinfanteristen benötigt"
-
-#: simulation/templates/formations/testudo.xml:7
-msgid "Testudo"
-msgstr "Testudo"
-
-#: simulation/templates/formations/wedge.xml:6
-msgid "6 cavalry units required"
-msgstr "6 Kavallerieeinheiten benötigt"
-
-#: simulation/templates/formations/wedge.xml:7
-msgid "Wedge"
-msgstr "Keil"
 
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Bear"
@@ -460,23 +363,27 @@ msgstr "Schneewolf"
 msgid "Zebra"
 msgstr "Zebra"
 
-#: simulation/templates/gaia/flora_bush_badlands.xml:8
+#: simulation/templates/gaia/flora_bush_badlands.xml:4
 msgid "Hardy Bush"
 msgstr "Winterharter Busch"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:4
-msgid "Forage"
-msgstr "Futter"
+#: simulation/templates/gaia/flora_bush_berry.xml:4
+msgid "Berries"
+msgstr "Beeren"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:5
+#: simulation/templates/gaia/flora_bush_berry.xml:5
+msgid "Gather the fruit from these bushes to accumulate Food."
+msgstr "Sammle die Früchte von diesen Büschen, um Nahrung zu bekommen."
+
+#: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Grapes"
 msgstr "Trauben"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:6
+#: simulation/templates/gaia/flora_bush_grapes.xml:5
 msgid "Gather grapes from these vines for Food."
 msgstr "Sammle Trauben von diesen Reben als Nahrung."
 
-#: simulation/templates/gaia/flora_bush_temperate.xml:8
+#: simulation/templates/gaia/flora_bush_temperate.xml:4
 msgid "Deciduous Bush"
 msgstr "Laubbusch"
 
@@ -488,7 +395,7 @@ msgstr "Akazie"
 msgid "Aleppo Pine Tree"
 msgstr "Aleppo-Kiefer"
 
-#: simulation/templates/gaia/flora_tree_apple.xml:8
+#: simulation/templates/gaia/flora_tree_apple.xml:4
 msgid "Apple Tree"
 msgstr "Apfelbaum"
 
@@ -523,11 +430,11 @@ msgstr "Toter Baum"
 msgid "European Beech Tree"
 msgstr "Rotbuche"
 
-#: simulation/templates/gaia/flora_tree_fig.xml:8
+#: simulation/templates/gaia/flora_tree_fig.xml:7
 msgid "Fig"
 msgstr "Feige"
 
-#: simulation/templates/gaia/flora_tree_fig.xml:9
+#: simulation/templates/gaia/flora_tree_fig.xml:8
 msgid "Gather figs for Food."
 msgstr "Sammle Feigen als Nahrung."
 
@@ -547,7 +454,7 @@ msgstr "Eiche"
 msgid "Large Oak Tree"
 msgstr "Große Eiche"
 
-#: simulation/templates/gaia/flora_tree_olive.xml:8
+#: simulation/templates/gaia/flora_tree_olive.xml:4
 msgid "Olive Tree"
 msgstr "Olivenbaum"
 
@@ -1061,3 +968,87 @@ msgstr "Spieler"
 #: simulation/templates/special/spy.xml:17
 msgid "Spy"
 msgstr "Spion"
+
+#: simulation/templates/special/formations/battle_line.xml:5
+msgid "Battle Line"
+msgstr "Gefechtslinie"
+
+#: simulation/templates/special/formations/box.xml:6
+msgid "4 units required"
+msgstr "4 Einheiten benötigt"
+
+#: simulation/templates/special/formations/box.xml:7
+msgid "Box"
+msgstr "Kasten"
+
+#: simulation/templates/special/formations/column_closed.xml:5
+msgid "Forced March"
+msgstr "Gewaltmarsch"
+
+#: simulation/templates/special/formations/column_open.xml:5
+msgid "Column Open"
+msgstr "Offene Kolonnenformation"
+
+#: simulation/templates/special/formations/flank.xml:6
+msgid "8 units required"
+msgstr "8 Einheiten benötigt"
+
+#: simulation/templates/special/formations/flank.xml:7
+msgid "Flank"
+msgstr "Flankenformation"
+
+#: simulation/templates/special/formations/line_closed.xml:5
+msgid "Close Order"
+msgstr "Geschlossene Schlachtordnung"
+
+#: simulation/templates/special/formations/line_open.xml:5
+msgid "Open Order"
+msgstr "Geöffnete Schlachtordnung"
+
+#: simulation/templates/special/formations/null.xml:5
+msgid "None"
+msgstr "Kein"
+
+#: simulation/templates/special/formations/phalanx.xml:6
+msgid "10 hoplite infantry required"
+msgstr "10 Hopliteninfanteristen benötigt"
+
+#: simulation/templates/special/formations/phalanx.xml:7
+msgid "Phalanx"
+msgstr "Phalanx"
+
+#: simulation/templates/special/formations/scatter.xml:5
+msgid "Scatter"
+msgstr "Lose Formation"
+
+#: simulation/templates/special/formations/skirmish.xml:5
+msgid "Only ranged units allowed"
+msgstr "Nur Fernkämpfer erlaubt"
+
+#: simulation/templates/special/formations/skirmish.xml:6
+msgid "Skirmish"
+msgstr "Lockere Formation"
+
+#: simulation/templates/special/formations/syntagma.xml:6
+msgid "16 pike infantry units required"
+msgstr "16 Pikeninfanterieeinheiten benötigt"
+
+#: simulation/templates/special/formations/syntagma.xml:8
+msgid "Syntagma"
+msgstr "Syntagma"
+
+#: simulation/templates/special/formations/testudo.xml:6
+msgid "9 melee infantry units required"
+msgstr "9 Nahkampfinfanteristen benötigt"
+
+#: simulation/templates/special/formations/testudo.xml:7
+msgid "Testudo"
+msgstr "Testudo"
+
+#: simulation/templates/special/formations/wedge.xml:6
+msgid "6 cavalry units required"
+msgstr "6 Kavallerieeinheiten benötigt"
+
+#: simulation/templates/special/formations/wedge.xml:7
+msgid "Wedge"
+msgstr "Keil"

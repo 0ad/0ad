@@ -44,6 +44,9 @@ fi
 (cd ../premake/premake4/build/gmake.bsd && ${MAKE} clean)
 (cd ../premake/premake4/build/gmake.macosx && ${MAKE} clean)
 (cd ../premake/premake4/build/gmake.unix && ${MAKE} clean)
+(cd ../premake/premake5/build/gmake.bsd && ${MAKE} clean)
+(cd ../premake/premake5/build/gmake.macosx && ${MAKE} clean)
+(cd ../premake/premake5/build/gmake.unix && ${MAKE} clean)
 
 echo "Removing generated test files..."
 

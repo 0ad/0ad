@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-09-25 09:03+0200\n"
-"PO-Revision-Date: 2017-09-25 14:30+0000\n"
+"POT-Creation-Date: 2017-10-27 09:03+0200\n"
+"PO-Revision-Date: 2017-10-27 15:39+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -26,28 +26,15 @@ msgstr ""
 msgid "Gaia"
 msgstr "Гея"
 
-#: simulation/templates/template_gaia_flora.xml:8
-msgid "Generic Flora"
-msgstr "Обща флора"
-
 #: simulation/templates/template_gaia_flora_bush.xml:8
-#: simulation/templates/template_gaia_flora_bush_berry.xml:8
 msgid "Bush"
 msgstr "Храст"
 
-#: simulation/templates/template_gaia_flora_bush_berry.xml:9
-msgid "Berries"
-msgstr "Горски плодове"
-
-#: simulation/templates/template_gaia_flora_bush_berry.xml:10
-msgid "Gather the fruit from these bushes to accumulate Food."
-msgstr "Събирайте плодовете от тези храсти, за да си набавите храна."
-
-#: simulation/templates/template_gaia_flora_tree.xml:5
+#: simulation/templates/template_gaia_flora_tree.xml:8
 msgid "Tree"
 msgstr "Дърво"
 
-#: simulation/templates/template_gaia_flora_tree.xml:7
+#: simulation/templates/template_gaia_flora_tree.xml:9
 msgid "Chop down to accumulate Wood."
 msgstr "Отсечете, за да събирате дървесина."
 
@@ -191,90 +178,6 @@ msgstr "Религиозно убежище"
 #: simulation/templates/campaigns/campaign_religious_test.xml:13
 msgid "Greek Religious Sanctuary"
 msgstr "Гръцко религиозно убежище"
-
-#: simulation/templates/formations/battle_line.xml:5
-msgid "Battle Line"
-msgstr "Боева линия"
-
-#: simulation/templates/formations/box.xml:6
-msgid "4 units required"
-msgstr "Нужни са 4 единици"
-
-#: simulation/templates/formations/box.xml:7
-msgid "Box"
-msgstr "Кутия"
-
-#: simulation/templates/formations/column_closed.xml:5
-msgid "Forced March"
-msgstr "Пресилен марш"
-
-#: simulation/templates/formations/column_open.xml:5
-msgid "Column Open"
-msgstr "Отворена колона"
-
-#: simulation/templates/formations/flank.xml:6
-msgid "8 units required"
-msgstr "Нужни са 8 единици"
-
-#: simulation/templates/formations/flank.xml:7
-msgid "Flank"
-msgstr "Фланг"
-
-#: simulation/templates/formations/line_closed.xml:5
-msgid "Close Order"
-msgstr "Затворена подредба"
-
-#: simulation/templates/formations/line_open.xml:5
-msgid "Open Order"
-msgstr "Отворена подредба"
-
-#: simulation/templates/formations/null.xml:5
-msgid "None"
-msgstr "Без"
-
-#: simulation/templates/formations/phalanx.xml:6
-msgid "10 hoplite infantry required"
-msgstr "Нужни са 10 пехотни хоплити"
-
-#: simulation/templates/formations/phalanx.xml:7
-msgid "Phalanx"
-msgstr "Фаланга"
-
-#: simulation/templates/formations/scatter.xml:5
-msgid "Scatter"
-msgstr "Разпръсване"
-
-#: simulation/templates/formations/skirmish.xml:5
-msgid "Only ranged units allowed"
-msgstr "Позволени са само далекобойни единици"
-
-#: simulation/templates/formations/skirmish.xml:6
-msgid "Skirmish"
-msgstr "Стрелкова"
-
-#: simulation/templates/formations/syntagma.xml:6
-msgid "16 pike infantry units required"
-msgstr "Нужни са 16 пехотинци с копия"
-
-#: simulation/templates/formations/syntagma.xml:8
-msgid "Syntagma"
-msgstr "Синтагма"
-
-#: simulation/templates/formations/testudo.xml:6
-msgid "9 melee infantry units required"
-msgstr "Нужни са 9 близкобойни пехотни единици"
-
-#: simulation/templates/formations/testudo.xml:7
-msgid "Testudo"
-msgstr "Костенурка"
-
-#: simulation/templates/formations/wedge.xml:6
-msgid "6 cavalry units required"
-msgstr "Нужни са 6 конници"
-
-#: simulation/templates/formations/wedge.xml:7
-msgid "Wedge"
-msgstr "Клин"
 
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Bear"
@@ -458,23 +361,27 @@ msgstr "Снежен вълк"
 msgid "Zebra"
 msgstr "Зебра"
 
-#: simulation/templates/gaia/flora_bush_badlands.xml:8
+#: simulation/templates/gaia/flora_bush_badlands.xml:4
 msgid "Hardy Bush"
 msgstr "Жилав храст"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:4
-msgid "Forage"
-msgstr "Фураж"
+#: simulation/templates/gaia/flora_bush_berry.xml:4
+msgid "Berries"
+msgstr "Горски плодове"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:5
+#: simulation/templates/gaia/flora_bush_berry.xml:5
+msgid "Gather the fruit from these bushes to accumulate Food."
+msgstr "Събирайте плодовете от тези храсти, за да си набавите храна."
+
+#: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Grapes"
 msgstr "Грозде"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:6
+#: simulation/templates/gaia/flora_bush_grapes.xml:5
 msgid "Gather grapes from these vines for Food."
 msgstr "Събирайте грозде от тези лози за храна."
 
-#: simulation/templates/gaia/flora_bush_temperate.xml:8
+#: simulation/templates/gaia/flora_bush_temperate.xml:4
 msgid "Deciduous Bush"
 msgstr "Широколистен храст"
 
@@ -486,7 +393,7 @@ msgstr "Акация"
 msgid "Aleppo Pine Tree"
 msgstr "Алепски бор"
 
-#: simulation/templates/gaia/flora_tree_apple.xml:8
+#: simulation/templates/gaia/flora_tree_apple.xml:4
 msgid "Apple Tree"
 msgstr "Ябълково дърво"
 
@@ -521,11 +428,11 @@ msgstr "Мъртво дърво"
 msgid "European Beech Tree"
 msgstr "Европейски бук"
 
-#: simulation/templates/gaia/flora_tree_fig.xml:8
+#: simulation/templates/gaia/flora_tree_fig.xml:7
 msgid "Fig"
 msgstr "Смокиня"
 
-#: simulation/templates/gaia/flora_tree_fig.xml:9
+#: simulation/templates/gaia/flora_tree_fig.xml:8
 msgid "Gather figs for Food."
 msgstr "Събирайте смокини за храна."
 
@@ -545,7 +452,7 @@ msgstr "Дъб"
 msgid "Large Oak Tree"
 msgstr "Голям дъб"
 
-#: simulation/templates/gaia/flora_tree_olive.xml:8
+#: simulation/templates/gaia/flora_tree_olive.xml:4
 msgid "Olive Tree"
 msgstr "Маслинено дърво"
 
@@ -1059,3 +966,87 @@ msgstr "Играч"
 #: simulation/templates/special/spy.xml:17
 msgid "Spy"
 msgstr "Шпионин"
+
+#: simulation/templates/special/formations/battle_line.xml:5
+msgid "Battle Line"
+msgstr "Боева линия"
+
+#: simulation/templates/special/formations/box.xml:6
+msgid "4 units required"
+msgstr "Нужни са 4 единици"
+
+#: simulation/templates/special/formations/box.xml:7
+msgid "Box"
+msgstr "Кутия"
+
+#: simulation/templates/special/formations/column_closed.xml:5
+msgid "Forced March"
+msgstr "Пресилен марш"
+
+#: simulation/templates/special/formations/column_open.xml:5
+msgid "Column Open"
+msgstr "Отворена колона"
+
+#: simulation/templates/special/formations/flank.xml:6
+msgid "8 units required"
+msgstr "Нужни са 8 единици"
+
+#: simulation/templates/special/formations/flank.xml:7
+msgid "Flank"
+msgstr "Фланг"
+
+#: simulation/templates/special/formations/line_closed.xml:5
+msgid "Close Order"
+msgstr "Затворена подредба"
+
+#: simulation/templates/special/formations/line_open.xml:5
+msgid "Open Order"
+msgstr "Отворена подредба"
+
+#: simulation/templates/special/formations/null.xml:5
+msgid "None"
+msgstr "Без"
+
+#: simulation/templates/special/formations/phalanx.xml:6
+msgid "10 hoplite infantry required"
+msgstr "Нужни са 10 пехотни хоплити"
+
+#: simulation/templates/special/formations/phalanx.xml:7
+msgid "Phalanx"
+msgstr "Фаланга"
+
+#: simulation/templates/special/formations/scatter.xml:5
+msgid "Scatter"
+msgstr "Разпръсване"
+
+#: simulation/templates/special/formations/skirmish.xml:5
+msgid "Only ranged units allowed"
+msgstr "Позволени са само далекобойни единици"
+
+#: simulation/templates/special/formations/skirmish.xml:6
+msgid "Skirmish"
+msgstr "Стрелкова"
+
+#: simulation/templates/special/formations/syntagma.xml:6
+msgid "16 pike infantry units required"
+msgstr "Нужни са 16 пехотинци с копия"
+
+#: simulation/templates/special/formations/syntagma.xml:8
+msgid "Syntagma"
+msgstr "Синтагма"
+
+#: simulation/templates/special/formations/testudo.xml:6
+msgid "9 melee infantry units required"
+msgstr "Нужни са 9 близкобойни пехотни единици"
+
+#: simulation/templates/special/formations/testudo.xml:7
+msgid "Testudo"
+msgstr "Костенурка"
+
+#: simulation/templates/special/formations/wedge.xml:6
+msgid "6 cavalry units required"
+msgstr "Нужни са 6 конници"
+
+#: simulation/templates/special/formations/wedge.xml:7
+msgid "Wedge"
+msgstr "Клин"

@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-09-25 09:03+0200\n"
-"PO-Revision-Date: 2017-09-25 14:30+0000\n"
+"POT-Creation-Date: 2017-10-27 09:03+0200\n"
+"PO-Revision-Date: 2017-10-27 15:39+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -26,28 +26,15 @@ msgstr ""
 msgid "Gaia"
 msgstr "Gaia"
 
-#: simulation/templates/template_gaia_flora.xml:8
-msgid "Generic Flora"
-msgstr "Általános növényzet"
-
 #: simulation/templates/template_gaia_flora_bush.xml:8
-#: simulation/templates/template_gaia_flora_bush_berry.xml:8
 msgid "Bush"
 msgstr "Bokor"
 
-#: simulation/templates/template_gaia_flora_bush_berry.xml:9
-msgid "Berries"
-msgstr "Bogyók"
-
-#: simulation/templates/template_gaia_flora_bush_berry.xml:10
-msgid "Gather the fruit from these bushes to accumulate Food."
-msgstr "Gyümölcsök szedése ezekről a bokrokról élelem szerzéséhez."
-
-#: simulation/templates/template_gaia_flora_tree.xml:5
+#: simulation/templates/template_gaia_flora_tree.xml:8
 msgid "Tree"
 msgstr "Fa"
 
-#: simulation/templates/template_gaia_flora_tree.xml:7
+#: simulation/templates/template_gaia_flora_tree.xml:9
 msgid "Chop down to accumulate Wood."
 msgstr "Kivágásával fát gyűjthetsz."
 
@@ -191,90 +178,6 @@ msgstr "Vallási szentély"
 #: simulation/templates/campaigns/campaign_religious_test.xml:13
 msgid "Greek Religious Sanctuary"
 msgstr "Görög vallási szentély"
-
-#: simulation/templates/formations/battle_line.xml:5
-msgid "Battle Line"
-msgstr "Harcvonal"
-
-#: simulation/templates/formations/box.xml:6
-msgid "4 units required"
-msgstr "4 egység szükséges"
-
-#: simulation/templates/formations/box.xml:7
-msgid "Box"
-msgstr "Doboz"
-
-#: simulation/templates/formations/column_closed.xml:5
-msgid "Forced March"
-msgstr "Erőltetett menet"
-
-#: simulation/templates/formations/column_open.xml:5
-msgid "Column Open"
-msgstr "Nyílt oszlop"
-
-#: simulation/templates/formations/flank.xml:6
-msgid "8 units required"
-msgstr "8 egység szükséges"
-
-#: simulation/templates/formations/flank.xml:7
-msgid "Flank"
-msgstr "Szárny"
-
-#: simulation/templates/formations/line_closed.xml:5
-msgid "Close Order"
-msgstr "Összezárási parancs"
-
-#: simulation/templates/formations/line_open.xml:5
-msgid "Open Order"
-msgstr "Szétnyílási parancs"
-
-#: simulation/templates/formations/null.xml:5
-msgid "None"
-msgstr "Nincs"
-
-#: simulation/templates/formations/phalanx.xml:6
-msgid "10 hoplite infantry required"
-msgstr "10 hoplita gyalogos szükséges"
-
-#: simulation/templates/formations/phalanx.xml:7
-msgid "Phalanx"
-msgstr "Phalanx"
-
-#: simulation/templates/formations/scatter.xml:5
-msgid "Scatter"
-msgstr "Szétszóródás"
-
-#: simulation/templates/formations/skirmish.xml:5
-msgid "Only ranged units allowed"
-msgstr "Csak távolsági egységek engedélyezettek"
-
-#: simulation/templates/formations/skirmish.xml:6
-msgid "Skirmish"
-msgstr "Csatározás"
-
-#: simulation/templates/formations/syntagma.xml:6
-msgid "16 pike infantry units required"
-msgstr "16 lándzsás gyalogos egység szükséges"
-
-#: simulation/templates/formations/syntagma.xml:8
-msgid "Syntagma"
-msgstr "Szüntagma"
-
-#: simulation/templates/formations/testudo.xml:6
-msgid "9 melee infantry units required"
-msgstr "9 közelharci gyalogos egység szükséges"
-
-#: simulation/templates/formations/testudo.xml:7
-msgid "Testudo"
-msgstr "Teknős"
-
-#: simulation/templates/formations/wedge.xml:6
-msgid "6 cavalry units required"
-msgstr "6 lovassági egység szükséges"
-
-#: simulation/templates/formations/wedge.xml:7
-msgid "Wedge"
-msgstr "Ék"
 
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Bear"
@@ -458,23 +361,27 @@ msgstr "Hófarkas"
 msgid "Zebra"
 msgstr "Zebra"
 
-#: simulation/templates/gaia/flora_bush_badlands.xml:8
+#: simulation/templates/gaia/flora_bush_badlands.xml:4
 msgid "Hardy Bush"
 msgstr "Klímatűrő bokor"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:4
-msgid "Forage"
-msgstr "Takarmány"
+#: simulation/templates/gaia/flora_bush_berry.xml:4
+msgid "Berries"
+msgstr "Bogyók"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:5
+#: simulation/templates/gaia/flora_bush_berry.xml:5
+msgid "Gather the fruit from these bushes to accumulate Food."
+msgstr "Gyümölcsök szedése ezekről a bokrokról élelem szerzéséhez."
+
+#: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Grapes"
 msgstr "Szőlő"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:6
+#: simulation/templates/gaia/flora_bush_grapes.xml:5
 msgid "Gather grapes from these vines for Food."
 msgstr "Szőlő szüretelése ezekről a tőkékről élelemért."
 
-#: simulation/templates/gaia/flora_bush_temperate.xml:8
+#: simulation/templates/gaia/flora_bush_temperate.xml:4
 msgid "Deciduous Bush"
 msgstr "Lombhullató bokor"
 
@@ -486,7 +393,7 @@ msgstr "Akácia fa"
 msgid "Aleppo Pine Tree"
 msgstr "Aleppó-fenyő"
 
-#: simulation/templates/gaia/flora_tree_apple.xml:8
+#: simulation/templates/gaia/flora_tree_apple.xml:4
 msgid "Apple Tree"
 msgstr "Almafa"
 
@@ -521,11 +428,11 @@ msgstr "Korhadt fa"
 msgid "European Beech Tree"
 msgstr "Európai bükkfa"
 
-#: simulation/templates/gaia/flora_tree_fig.xml:8
+#: simulation/templates/gaia/flora_tree_fig.xml:7
 msgid "Fig"
 msgstr "Füge"
 
-#: simulation/templates/gaia/flora_tree_fig.xml:9
+#: simulation/templates/gaia/flora_tree_fig.xml:8
 msgid "Gather figs for Food."
 msgstr "Füge szüretelése élelemért."
 
@@ -545,7 +452,7 @@ msgstr "Tölgyfa"
 msgid "Large Oak Tree"
 msgstr "Nagy tölgyfa"
 
-#: simulation/templates/gaia/flora_tree_olive.xml:8
+#: simulation/templates/gaia/flora_tree_olive.xml:4
 msgid "Olive Tree"
 msgstr "Olajfa"
 
@@ -1059,3 +966,87 @@ msgstr "Játékos"
 #: simulation/templates/special/spy.xml:17
 msgid "Spy"
 msgstr "Kém"
+
+#: simulation/templates/special/formations/battle_line.xml:5
+msgid "Battle Line"
+msgstr "Harcvonal"
+
+#: simulation/templates/special/formations/box.xml:6
+msgid "4 units required"
+msgstr "4 egység szükséges"
+
+#: simulation/templates/special/formations/box.xml:7
+msgid "Box"
+msgstr "Doboz"
+
+#: simulation/templates/special/formations/column_closed.xml:5
+msgid "Forced March"
+msgstr "Erőltetett menet"
+
+#: simulation/templates/special/formations/column_open.xml:5
+msgid "Column Open"
+msgstr "Nyílt oszlop"
+
+#: simulation/templates/special/formations/flank.xml:6
+msgid "8 units required"
+msgstr "8 egység szükséges"
+
+#: simulation/templates/special/formations/flank.xml:7
+msgid "Flank"
+msgstr "Szárny"
+
+#: simulation/templates/special/formations/line_closed.xml:5
+msgid "Close Order"
+msgstr "Összezárási parancs"
+
+#: simulation/templates/special/formations/line_open.xml:5
+msgid "Open Order"
+msgstr "Szétnyílási parancs"
+
+#: simulation/templates/special/formations/null.xml:5
+msgid "None"
+msgstr "Nincs"
+
+#: simulation/templates/special/formations/phalanx.xml:6
+msgid "10 hoplite infantry required"
+msgstr "10 hoplita gyalogos szükséges"
+
+#: simulation/templates/special/formations/phalanx.xml:7
+msgid "Phalanx"
+msgstr "Phalanx"
+
+#: simulation/templates/special/formations/scatter.xml:5
+msgid "Scatter"
+msgstr "Szétszóródás"
+
+#: simulation/templates/special/formations/skirmish.xml:5
+msgid "Only ranged units allowed"
+msgstr "Csak távolsági egységek engedélyezettek"
+
+#: simulation/templates/special/formations/skirmish.xml:6
+msgid "Skirmish"
+msgstr "Csatározás"
+
+#: simulation/templates/special/formations/syntagma.xml:6
+msgid "16 pike infantry units required"
+msgstr "16 lándzsás gyalogos egység szükséges"
+
+#: simulation/templates/special/formations/syntagma.xml:8
+msgid "Syntagma"
+msgstr "Szüntagma"
+
+#: simulation/templates/special/formations/testudo.xml:6
+msgid "9 melee infantry units required"
+msgstr "9 közelharci gyalogos egység szükséges"
+
+#: simulation/templates/special/formations/testudo.xml:7
+msgid "Testudo"
+msgstr "Teknős"
+
+#: simulation/templates/special/formations/wedge.xml:6
+msgid "6 cavalry units required"
+msgstr "6 lovassági egység szükséges"
+
+#: simulation/templates/special/formations/wedge.xml:7
+msgid "Wedge"
+msgstr "Ék"

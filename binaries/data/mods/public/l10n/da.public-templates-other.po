@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-09-25 09:03+0200\n"
-"PO-Revision-Date: 2017-09-25 14:30+0000\n"
+"POT-Creation-Date: 2017-10-27 09:03+0200\n"
+"PO-Revision-Date: 2017-10-27 15:39+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/wildfire-games/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -23,28 +23,15 @@ msgstr ""
 msgid "Gaia"
 msgstr "Moder Natur"
 
-#: simulation/templates/template_gaia_flora.xml:8
-msgid "Generic Flora"
-msgstr "Generisk Flora"
-
 #: simulation/templates/template_gaia_flora_bush.xml:8
-#: simulation/templates/template_gaia_flora_bush_berry.xml:8
 msgid "Bush"
 msgstr "Busk"
 
-#: simulation/templates/template_gaia_flora_bush_berry.xml:9
-msgid "Berries"
-msgstr "Bær"
-
-#: simulation/templates/template_gaia_flora_bush_berry.xml:10
-msgid "Gather the fruit from these bushes to accumulate Food."
-msgstr "Saml bær fra buskene for at få Mad."
-
-#: simulation/templates/template_gaia_flora_tree.xml:5
+#: simulation/templates/template_gaia_flora_tree.xml:8
 msgid "Tree"
 msgstr "Træ"
 
-#: simulation/templates/template_gaia_flora_tree.xml:7
+#: simulation/templates/template_gaia_flora_tree.xml:9
 msgid "Chop down to accumulate Wood."
 msgstr "Fæld for at samle Træ."
 
@@ -188,90 +175,6 @@ msgstr "Religiøst Sanctuarium"
 #: simulation/templates/campaigns/campaign_religious_test.xml:13
 msgid "Greek Religious Sanctuary"
 msgstr "Græsk Religiøst Sanctuarium"
-
-#: simulation/templates/formations/battle_line.xml:5
-msgid "Battle Line"
-msgstr "Kamplinje"
-
-#: simulation/templates/formations/box.xml:6
-msgid "4 units required"
-msgstr "Kræver 4 enheder"
-
-#: simulation/templates/formations/box.xml:7
-msgid "Box"
-msgstr "Kasse"
-
-#: simulation/templates/formations/column_closed.xml:5
-msgid "Forced March"
-msgstr ""
-
-#: simulation/templates/formations/column_open.xml:5
-msgid "Column Open"
-msgstr "Kolonne Åben"
-
-#: simulation/templates/formations/flank.xml:6
-msgid "8 units required"
-msgstr "Kræver 8 enheder"
-
-#: simulation/templates/formations/flank.xml:7
-msgid "Flank"
-msgstr "Flanke"
-
-#: simulation/templates/formations/line_closed.xml:5
-msgid "Close Order"
-msgstr ""
-
-#: simulation/templates/formations/line_open.xml:5
-msgid "Open Order"
-msgstr ""
-
-#: simulation/templates/formations/null.xml:5
-msgid "None"
-msgstr "Ingen"
-
-#: simulation/templates/formations/phalanx.xml:6
-msgid "10 hoplite infantry required"
-msgstr ""
-
-#: simulation/templates/formations/phalanx.xml:7
-msgid "Phalanx"
-msgstr "Falanks"
-
-#: simulation/templates/formations/scatter.xml:5
-msgid "Scatter"
-msgstr "Spredning"
-
-#: simulation/templates/formations/skirmish.xml:5
-msgid "Only ranged units allowed"
-msgstr "Kun skytte enheder tilladt"
-
-#: simulation/templates/formations/skirmish.xml:6
-msgid "Skirmish"
-msgstr "Blænkning"
-
-#: simulation/templates/formations/syntagma.xml:6
-msgid "16 pike infantry units required"
-msgstr ""
-
-#: simulation/templates/formations/syntagma.xml:8
-msgid "Syntagma"
-msgstr "Syntagme"
-
-#: simulation/templates/formations/testudo.xml:6
-msgid "9 melee infantry units required"
-msgstr "Kræver 9 nærkampsinfanterienheder"
-
-#: simulation/templates/formations/testudo.xml:7
-msgid "Testudo"
-msgstr "Skjoldborg"
-
-#: simulation/templates/formations/wedge.xml:6
-msgid "6 cavalry units required"
-msgstr ""
-
-#: simulation/templates/formations/wedge.xml:7
-msgid "Wedge"
-msgstr "Kile"
 
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Bear"
@@ -455,23 +358,27 @@ msgstr "Polarulv"
 msgid "Zebra"
 msgstr "Zebra"
 
-#: simulation/templates/gaia/flora_bush_badlands.xml:8
+#: simulation/templates/gaia/flora_bush_badlands.xml:4
 msgid "Hardy Bush"
 msgstr "Hårdfør Busk"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:4
-msgid "Forage"
-msgstr "Samle"
+#: simulation/templates/gaia/flora_bush_berry.xml:4
+msgid "Berries"
+msgstr "Bær"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:5
+#: simulation/templates/gaia/flora_bush_berry.xml:5
+msgid "Gather the fruit from these bushes to accumulate Food."
+msgstr "Saml bær fra buskene for at få Mad."
+
+#: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Grapes"
 msgstr "Druer"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:6
+#: simulation/templates/gaia/flora_bush_grapes.xml:5
 msgid "Gather grapes from these vines for Food."
 msgstr "Saml druer fra disse rænker for at få Mad."
 
-#: simulation/templates/gaia/flora_bush_temperate.xml:8
+#: simulation/templates/gaia/flora_bush_temperate.xml:4
 msgid "Deciduous Bush"
 msgstr "Løvfældende Busk"
 
@@ -483,7 +390,7 @@ msgstr ""
 msgid "Aleppo Pine Tree"
 msgstr "Aleppofyr"
 
-#: simulation/templates/gaia/flora_tree_apple.xml:8
+#: simulation/templates/gaia/flora_tree_apple.xml:4
 msgid "Apple Tree"
 msgstr "Æbletræ"
 
@@ -518,11 +425,11 @@ msgstr "Dødt Træ"
 msgid "European Beech Tree"
 msgstr "Europæisk Bøgetræ"
 
-#: simulation/templates/gaia/flora_tree_fig.xml:8
+#: simulation/templates/gaia/flora_tree_fig.xml:7
 msgid "Fig"
 msgstr "Figen"
 
-#: simulation/templates/gaia/flora_tree_fig.xml:9
+#: simulation/templates/gaia/flora_tree_fig.xml:8
 msgid "Gather figs for Food."
 msgstr "Saml figner for at få Mad."
 
@@ -542,7 +449,7 @@ msgstr "Egetræ"
 msgid "Large Oak Tree"
 msgstr "Stort Egetræ"
 
-#: simulation/templates/gaia/flora_tree_olive.xml:8
+#: simulation/templates/gaia/flora_tree_olive.xml:4
 msgid "Olive Tree"
 msgstr "Oliventræ"
 
@@ -1056,3 +963,87 @@ msgstr ""
 #: simulation/templates/special/spy.xml:17
 msgid "Spy"
 msgstr ""
+
+#: simulation/templates/special/formations/battle_line.xml:5
+msgid "Battle Line"
+msgstr "Kamplinje"
+
+#: simulation/templates/special/formations/box.xml:6
+msgid "4 units required"
+msgstr "Kræver 4 enheder"
+
+#: simulation/templates/special/formations/box.xml:7
+msgid "Box"
+msgstr "Kasse"
+
+#: simulation/templates/special/formations/column_closed.xml:5
+msgid "Forced March"
+msgstr ""
+
+#: simulation/templates/special/formations/column_open.xml:5
+msgid "Column Open"
+msgstr "Kolonne Åben"
+
+#: simulation/templates/special/formations/flank.xml:6
+msgid "8 units required"
+msgstr "Kræver 8 enheder"
+
+#: simulation/templates/special/formations/flank.xml:7
+msgid "Flank"
+msgstr "Flanke"
+
+#: simulation/templates/special/formations/line_closed.xml:5
+msgid "Close Order"
+msgstr ""
+
+#: simulation/templates/special/formations/line_open.xml:5
+msgid "Open Order"
+msgstr ""
+
+#: simulation/templates/special/formations/null.xml:5
+msgid "None"
+msgstr "Ingen"
+
+#: simulation/templates/special/formations/phalanx.xml:6
+msgid "10 hoplite infantry required"
+msgstr ""
+
+#: simulation/templates/special/formations/phalanx.xml:7
+msgid "Phalanx"
+msgstr "Falanks"
+
+#: simulation/templates/special/formations/scatter.xml:5
+msgid "Scatter"
+msgstr "Spredning"
+
+#: simulation/templates/special/formations/skirmish.xml:5
+msgid "Only ranged units allowed"
+msgstr "Kun skytte enheder tilladt"
+
+#: simulation/templates/special/formations/skirmish.xml:6
+msgid "Skirmish"
+msgstr "Blænkning"
+
+#: simulation/templates/special/formations/syntagma.xml:6
+msgid "16 pike infantry units required"
+msgstr ""
+
+#: simulation/templates/special/formations/syntagma.xml:8
+msgid "Syntagma"
+msgstr "Syntagme"
+
+#: simulation/templates/special/formations/testudo.xml:6
+msgid "9 melee infantry units required"
+msgstr "Kræver 9 nærkampsinfanterienheder"
+
+#: simulation/templates/special/formations/testudo.xml:7
+msgid "Testudo"
+msgstr "Skjoldborg"
+
+#: simulation/templates/special/formations/wedge.xml:6
+msgid "6 cavalry units required"
+msgstr ""
+
+#: simulation/templates/special/formations/wedge.xml:7
+msgid "Wedge"
+msgstr "Kile"

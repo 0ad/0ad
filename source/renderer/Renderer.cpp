@@ -421,6 +421,7 @@ CRenderer::CRenderer()
 	m_Width = 0;
 	m_Height = 0;
 	m_TerrainRenderMode = SOLID;
+	m_WaterRenderMode = SOLID;
 	m_ModelRenderMode = SOLID;
 	m_ClearColor[0] = m_ClearColor[1] = m_ClearColor[2] = m_ClearColor[3] = 0;
 

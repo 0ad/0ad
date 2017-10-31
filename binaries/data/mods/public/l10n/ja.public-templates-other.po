@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-09-25 09:03+0200\n"
-"PO-Revision-Date: 2017-09-25 14:30+0000\n"
+"POT-Creation-Date: 2017-10-27 09:03+0200\n"
+"PO-Revision-Date: 2017-10-27 15:39+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -24,28 +24,15 @@ msgstr ""
 msgid "Gaia"
 msgstr "自然"
 
-#: simulation/templates/template_gaia_flora.xml:8
-msgid "Generic Flora"
-msgstr "一般植物"
-
 #: simulation/templates/template_gaia_flora_bush.xml:8
-#: simulation/templates/template_gaia_flora_bush_berry.xml:8
 msgid "Bush"
 msgstr "灌木"
 
-#: simulation/templates/template_gaia_flora_bush_berry.xml:9
-msgid "Berries"
-msgstr "木イチゴ"
-
-#: simulation/templates/template_gaia_flora_bush_berry.xml:10
-msgid "Gather the fruit from these bushes to accumulate Food."
-msgstr "この茂みから木の実を摘んで食料を採集することができます。"
-
-#: simulation/templates/template_gaia_flora_tree.xml:5
+#: simulation/templates/template_gaia_flora_tree.xml:8
 msgid "Tree"
 msgstr "木"
 
-#: simulation/templates/template_gaia_flora_tree.xml:7
+#: simulation/templates/template_gaia_flora_tree.xml:9
 msgid "Chop down to accumulate Wood."
 msgstr "木材を採集するために伐採します。"
 
@@ -189,90 +176,6 @@ msgstr "聖地"
 #: simulation/templates/campaigns/campaign_religious_test.xml:13
 msgid "Greek Religious Sanctuary"
 msgstr "ギリシアの宗教的聖地"
-
-#: simulation/templates/formations/battle_line.xml:5
-msgid "Battle Line"
-msgstr "戦線"
-
-#: simulation/templates/formations/box.xml:6
-msgid "4 units required"
-msgstr "4ユニット必要"
-
-#: simulation/templates/formations/box.xml:7
-msgid "Box"
-msgstr "方陣"
-
-#: simulation/templates/formations/column_closed.xml:5
-msgid "Forced March"
-msgstr "強行軍"
-
-#: simulation/templates/formations/column_open.xml:5
-msgid "Column Open"
-msgstr "散開縦隊"
-
-#: simulation/templates/formations/flank.xml:6
-msgid "8 units required"
-msgstr "8ユニット必要"
-
-#: simulation/templates/formations/flank.xml:7
-msgid "Flank"
-msgstr "翼形"
-
-#: simulation/templates/formations/line_closed.xml:5
-msgid "Close Order"
-msgstr "密集隊形"
-
-#: simulation/templates/formations/line_open.xml:5
-msgid "Open Order"
-msgstr "散開隊形"
-
-#: simulation/templates/formations/null.xml:5
-msgid "None"
-msgstr "なし"
-
-#: simulation/templates/formations/phalanx.xml:6
-msgid "10 hoplite infantry required"
-msgstr "重装歩兵が10必要"
-
-#: simulation/templates/formations/phalanx.xml:7
-msgid "Phalanx"
-msgstr "ファランクス"
-
-#: simulation/templates/formations/scatter.xml:5
-msgid "Scatter"
-msgstr "不規則"
-
-#: simulation/templates/formations/skirmish.xml:5
-msgid "Only ranged units allowed"
-msgstr "遠隔攻撃ユニットのみ"
-
-#: simulation/templates/formations/skirmish.xml:6
-msgid "Skirmish"
-msgstr "散兵列"
-
-#: simulation/templates/formations/syntagma.xml:6
-msgid "16 pike infantry units required"
-msgstr "長槍歩兵が16ユニット必要"
-
-#: simulation/templates/formations/syntagma.xml:8
-msgid "Syntagma"
-msgstr "シンタグマ"
-
-#: simulation/templates/formations/testudo.xml:6
-msgid "9 melee infantry units required"
-msgstr "近接攻撃歩兵が9ユニット必要"
-
-#: simulation/templates/formations/testudo.xml:7
-msgid "Testudo"
-msgstr "テストゥド"
-
-#: simulation/templates/formations/wedge.xml:6
-msgid "6 cavalry units required"
-msgstr " 騎兵が6ユニット必要"
-
-#: simulation/templates/formations/wedge.xml:7
-msgid "Wedge"
-msgstr "楔形"
 
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Bear"
@@ -456,23 +359,27 @@ msgstr "冬毛の狼"
 msgid "Zebra"
 msgstr "シマウマ"
 
-#: simulation/templates/gaia/flora_bush_badlands.xml:8
+#: simulation/templates/gaia/flora_bush_badlands.xml:4
 msgid "Hardy Bush"
 msgstr "丈夫な低木"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:4
-msgid "Forage"
-msgstr "まぐさ"
+#: simulation/templates/gaia/flora_bush_berry.xml:4
+msgid "Berries"
+msgstr "木イチゴ"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:5
+#: simulation/templates/gaia/flora_bush_berry.xml:5
+msgid "Gather the fruit from these bushes to accumulate Food."
+msgstr "この茂みから木の実を摘んで食料を採集することができます。"
+
+#: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Grapes"
 msgstr "葡萄"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:6
+#: simulation/templates/gaia/flora_bush_grapes.xml:5
 msgid "Gather grapes from these vines for Food."
 msgstr "この垣根から葡萄を採って食料にします。"
 
-#: simulation/templates/gaia/flora_bush_temperate.xml:8
+#: simulation/templates/gaia/flora_bush_temperate.xml:4
 msgid "Deciduous Bush"
 msgstr "落葉性の灌木"
 
@@ -484,7 +391,7 @@ msgstr "アカシアの木"
 msgid "Aleppo Pine Tree"
 msgstr "アレッポマツの木"
 
-#: simulation/templates/gaia/flora_tree_apple.xml:8
+#: simulation/templates/gaia/flora_tree_apple.xml:4
 msgid "Apple Tree"
 msgstr "リンゴの木"
 
@@ -519,11 +426,11 @@ msgstr "枯木"
 msgid "European Beech Tree"
 msgstr "ヨーロッパブナの木"
 
-#: simulation/templates/gaia/flora_tree_fig.xml:8
+#: simulation/templates/gaia/flora_tree_fig.xml:7
 msgid "Fig"
 msgstr "イチジクの木"
 
-#: simulation/templates/gaia/flora_tree_fig.xml:9
+#: simulation/templates/gaia/flora_tree_fig.xml:8
 msgid "Gather figs for Food."
 msgstr "イチジクを採って食料にします。"
 
@@ -543,7 +450,7 @@ msgstr "オークの木"
 msgid "Large Oak Tree"
 msgstr "オークの大木"
 
-#: simulation/templates/gaia/flora_tree_olive.xml:8
+#: simulation/templates/gaia/flora_tree_olive.xml:4
 msgid "Olive Tree"
 msgstr "オリーブの木"
 
@@ -1057,3 +964,87 @@ msgstr "プレイヤー"
 #: simulation/templates/special/spy.xml:17
 msgid "Spy"
 msgstr "スパイ"
+
+#: simulation/templates/special/formations/battle_line.xml:5
+msgid "Battle Line"
+msgstr "戦線"
+
+#: simulation/templates/special/formations/box.xml:6
+msgid "4 units required"
+msgstr "4ユニット必要"
+
+#: simulation/templates/special/formations/box.xml:7
+msgid "Box"
+msgstr "方陣"
+
+#: simulation/templates/special/formations/column_closed.xml:5
+msgid "Forced March"
+msgstr "強行軍"
+
+#: simulation/templates/special/formations/column_open.xml:5
+msgid "Column Open"
+msgstr "散開縦隊"
+
+#: simulation/templates/special/formations/flank.xml:6
+msgid "8 units required"
+msgstr "8ユニット必要"
+
+#: simulation/templates/special/formations/flank.xml:7
+msgid "Flank"
+msgstr "翼形"
+
+#: simulation/templates/special/formations/line_closed.xml:5
+msgid "Close Order"
+msgstr "密集隊形"
+
+#: simulation/templates/special/formations/line_open.xml:5
+msgid "Open Order"
+msgstr "散開隊形"
+
+#: simulation/templates/special/formations/null.xml:5
+msgid "None"
+msgstr "なし"
+
+#: simulation/templates/special/formations/phalanx.xml:6
+msgid "10 hoplite infantry required"
+msgstr "重装歩兵が10必要"
+
+#: simulation/templates/special/formations/phalanx.xml:7
+msgid "Phalanx"
+msgstr "ファランクス"
+
+#: simulation/templates/special/formations/scatter.xml:5
+msgid "Scatter"
+msgstr "不規則"
+
+#: simulation/templates/special/formations/skirmish.xml:5
+msgid "Only ranged units allowed"
+msgstr "遠隔攻撃ユニットのみ"
+
+#: simulation/templates/special/formations/skirmish.xml:6
+msgid "Skirmish"
+msgstr "散兵列"
+
+#: simulation/templates/special/formations/syntagma.xml:6
+msgid "16 pike infantry units required"
+msgstr "長槍歩兵が16ユニット必要"
+
+#: simulation/templates/special/formations/syntagma.xml:8
+msgid "Syntagma"
+msgstr "シンタグマ"
+
+#: simulation/templates/special/formations/testudo.xml:6
+msgid "9 melee infantry units required"
+msgstr "近接攻撃歩兵が9ユニット必要"
+
+#: simulation/templates/special/formations/testudo.xml:7
+msgid "Testudo"
+msgstr "テストゥド"
+
+#: simulation/templates/special/formations/wedge.xml:6
+msgid "6 cavalry units required"
+msgstr " 騎兵が6ユニット必要"
+
+#: simulation/templates/special/formations/wedge.xml:7
+msgid "Wedge"
+msgstr "楔形"

@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-09-25 09:03+0200\n"
-"PO-Revision-Date: 2017-09-25 14:30+0000\n"
+"POT-Creation-Date: 2017-10-27 09:03+0200\n"
+"PO-Revision-Date: 2017-10-27 15:39+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -34,28 +34,15 @@ msgstr ""
 msgid "Gaia"
 msgstr "Gaia"
 
-#: simulation/templates/template_gaia_flora.xml:8
-msgid "Generic Flora"
-msgstr "Flore générique"
-
 #: simulation/templates/template_gaia_flora_bush.xml:8
-#: simulation/templates/template_gaia_flora_bush_berry.xml:8
 msgid "Bush"
 msgstr "Buisson"
 
-#: simulation/templates/template_gaia_flora_bush_berry.xml:9
-msgid "Berries"
-msgstr "Baies"
-
-#: simulation/templates/template_gaia_flora_bush_berry.xml:10
-msgid "Gather the fruit from these bushes to accumulate Food."
-msgstr "Cueillir les fruits de ces buissons pour accumuler de la nourriture."
-
-#: simulation/templates/template_gaia_flora_tree.xml:5
+#: simulation/templates/template_gaia_flora_tree.xml:8
 msgid "Tree"
 msgstr "Arbre"
 
-#: simulation/templates/template_gaia_flora_tree.xml:7
+#: simulation/templates/template_gaia_flora_tree.xml:9
 msgid "Chop down to accumulate Wood."
 msgstr "Abattre pour accumuler du bois."
 
@@ -199,90 +186,6 @@ msgstr "Sanctuaire religieux"
 #: simulation/templates/campaigns/campaign_religious_test.xml:13
 msgid "Greek Religious Sanctuary"
 msgstr "Sanctuaire religieux grec"
-
-#: simulation/templates/formations/battle_line.xml:5
-msgid "Battle Line"
-msgstr "Ligne de bataille"
-
-#: simulation/templates/formations/box.xml:6
-msgid "4 units required"
-msgstr "4 unités nécessaires"
-
-#: simulation/templates/formations/box.xml:7
-msgid "Box"
-msgstr "Carré"
-
-#: simulation/templates/formations/column_closed.xml:5
-msgid "Forced March"
-msgstr "Marche forcée"
-
-#: simulation/templates/formations/column_open.xml:5
-msgid "Column Open"
-msgstr "Colonne ouverte"
-
-#: simulation/templates/formations/flank.xml:6
-msgid "8 units required"
-msgstr "8 unités nécessaires"
-
-#: simulation/templates/formations/flank.xml:7
-msgid "Flank"
-msgstr "Flanc"
-
-#: simulation/templates/formations/line_closed.xml:5
-msgid "Close Order"
-msgstr "Ordre fermé"
-
-#: simulation/templates/formations/line_open.xml:5
-msgid "Open Order"
-msgstr "Ordre ouvert"
-
-#: simulation/templates/formations/null.xml:5
-msgid "None"
-msgstr "Aucune"
-
-#: simulation/templates/formations/phalanx.xml:6
-msgid "10 hoplite infantry required"
-msgstr "10 infanteries hoplite nécessaires"
-
-#: simulation/templates/formations/phalanx.xml:7
-msgid "Phalanx"
-msgstr "Phalange"
-
-#: simulation/templates/formations/scatter.xml:5
-msgid "Scatter"
-msgstr "Dispersion"
-
-#: simulation/templates/formations/skirmish.xml:5
-msgid "Only ranged units allowed"
-msgstr "Seules les unités à distance sont autorisées"
-
-#: simulation/templates/formations/skirmish.xml:6
-msgid "Skirmish"
-msgstr "Escarmouche"
-
-#: simulation/templates/formations/syntagma.xml:6
-msgid "16 pike infantry units required"
-msgstr "16 piquiers nécessaires"
-
-#: simulation/templates/formations/syntagma.xml:8
-msgid "Syntagma"
-msgstr "Syntagma"
-
-#: simulation/templates/formations/testudo.xml:6
-msgid "9 melee infantry units required"
-msgstr "9 unités d'infanterie nécessaires"
-
-#: simulation/templates/formations/testudo.xml:7
-msgid "Testudo"
-msgstr "Tortue"
-
-#: simulation/templates/formations/wedge.xml:6
-msgid "6 cavalry units required"
-msgstr "6 unités de cavalerie nécessaires"
-
-#: simulation/templates/formations/wedge.xml:7
-msgid "Wedge"
-msgstr "Coin"
 
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Bear"
@@ -466,23 +369,27 @@ msgstr "Loup des neiges"
 msgid "Zebra"
 msgstr "Zèbre"
 
-#: simulation/templates/gaia/flora_bush_badlands.xml:8
+#: simulation/templates/gaia/flora_bush_badlands.xml:4
 msgid "Hardy Bush"
 msgstr "Arbuste robuste"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:4
-msgid "Forage"
-msgstr "Fourrage"
+#: simulation/templates/gaia/flora_bush_berry.xml:4
+msgid "Berries"
+msgstr "Baies"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:5
+#: simulation/templates/gaia/flora_bush_berry.xml:5
+msgid "Gather the fruit from these bushes to accumulate Food."
+msgstr "Cueillir les fruits de ces buissons pour accumuler de la nourriture."
+
+#: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Grapes"
 msgstr "Raisin"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:6
+#: simulation/templates/gaia/flora_bush_grapes.xml:5
 msgid "Gather grapes from these vines for Food."
 msgstr "Cueillir les raisins de ces vignes pour l'alimentation."
 
-#: simulation/templates/gaia/flora_bush_temperate.xml:8
+#: simulation/templates/gaia/flora_bush_temperate.xml:4
 msgid "Deciduous Bush"
 msgstr "Arbuste feuillu"
 
@@ -494,7 +401,7 @@ msgstr "Acacia"
 msgid "Aleppo Pine Tree"
 msgstr "Pin d'Alep"
 
-#: simulation/templates/gaia/flora_tree_apple.xml:8
+#: simulation/templates/gaia/flora_tree_apple.xml:4
 msgid "Apple Tree"
 msgstr "Pommier"
 
@@ -529,11 +436,11 @@ msgstr "Arbre mort"
 msgid "European Beech Tree"
 msgstr "Hêtre européen"
 
-#: simulation/templates/gaia/flora_tree_fig.xml:8
+#: simulation/templates/gaia/flora_tree_fig.xml:7
 msgid "Fig"
 msgstr "Figuier"
 
-#: simulation/templates/gaia/flora_tree_fig.xml:9
+#: simulation/templates/gaia/flora_tree_fig.xml:8
 msgid "Gather figs for Food."
 msgstr "Cueillir les figues pour l'alimentation."
 
@@ -553,7 +460,7 @@ msgstr "Chêne"
 msgid "Large Oak Tree"
 msgstr "Grand chêne"
 
-#: simulation/templates/gaia/flora_tree_olive.xml:8
+#: simulation/templates/gaia/flora_tree_olive.xml:4
 msgid "Olive Tree"
 msgstr "Olivier"
 
@@ -1067,3 +974,87 @@ msgstr "Joueur"
 #: simulation/templates/special/spy.xml:17
 msgid "Spy"
 msgstr "Espion"
+
+#: simulation/templates/special/formations/battle_line.xml:5
+msgid "Battle Line"
+msgstr "Ligne de bataille"
+
+#: simulation/templates/special/formations/box.xml:6
+msgid "4 units required"
+msgstr "4 unités nécessaires"
+
+#: simulation/templates/special/formations/box.xml:7
+msgid "Box"
+msgstr "Carré"
+
+#: simulation/templates/special/formations/column_closed.xml:5
+msgid "Forced March"
+msgstr "Marche forcée"
+
+#: simulation/templates/special/formations/column_open.xml:5
+msgid "Column Open"
+msgstr "Colonne ouverte"
+
+#: simulation/templates/special/formations/flank.xml:6
+msgid "8 units required"
+msgstr "8 unités nécessaires"
+
+#: simulation/templates/special/formations/flank.xml:7
+msgid "Flank"
+msgstr "Flanc"
+
+#: simulation/templates/special/formations/line_closed.xml:5
+msgid "Close Order"
+msgstr "Ordre fermé"
+
+#: simulation/templates/special/formations/line_open.xml:5
+msgid "Open Order"
+msgstr "Ordre ouvert"
+
+#: simulation/templates/special/formations/null.xml:5
+msgid "None"
+msgstr "Aucune"
+
+#: simulation/templates/special/formations/phalanx.xml:6
+msgid "10 hoplite infantry required"
+msgstr "10 infanteries hoplite nécessaires"
+
+#: simulation/templates/special/formations/phalanx.xml:7
+msgid "Phalanx"
+msgstr "Phalange"
+
+#: simulation/templates/special/formations/scatter.xml:5
+msgid "Scatter"
+msgstr "Dispersion"
+
+#: simulation/templates/special/formations/skirmish.xml:5
+msgid "Only ranged units allowed"
+msgstr "Seules les unités à distance sont autorisées"
+
+#: simulation/templates/special/formations/skirmish.xml:6
+msgid "Skirmish"
+msgstr "Escarmouche"
+
+#: simulation/templates/special/formations/syntagma.xml:6
+msgid "16 pike infantry units required"
+msgstr "16 piquiers nécessaires"
+
+#: simulation/templates/special/formations/syntagma.xml:8
+msgid "Syntagma"
+msgstr "Syntagma"
+
+#: simulation/templates/special/formations/testudo.xml:6
+msgid "9 melee infantry units required"
+msgstr "9 unités d'infanterie nécessaires"
+
+#: simulation/templates/special/formations/testudo.xml:7
+msgid "Testudo"
+msgstr "Tortue"
+
+#: simulation/templates/special/formations/wedge.xml:6
+msgid "6 cavalry units required"
+msgstr "6 unités de cavalerie nécessaires"
+
+#: simulation/templates/special/formations/wedge.xml:7
+msgid "Wedge"
+msgstr "Coin"
