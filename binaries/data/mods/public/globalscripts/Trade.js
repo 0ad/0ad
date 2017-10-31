@@ -3,7 +3,7 @@
  */
 function TradeGainNormalization(mapSize)
 {
-	return 1 / TradeGain(10000, mapSize);
+	return Math.sqrt(1024 / mapSize) / TradeGain(10000, mapSize);
 }
 
 /**
@@ -11,5 +11,5 @@ function TradeGainNormalization(mapSize)
  */
 function TradeGain(distanceSquared, mapSize)
 {
-	return distanceSquared;
+	return distanceSquared / (1 + 0.25 * Math.sqrt(distanceSquared) / mapSize);
 }

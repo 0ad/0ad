@@ -19,6 +19,7 @@
     <Tooltip>Build siege engines. Research siege technologies.</Tooltip>
     <Icon>structures/siege_workshop.png</Icon>
     <RequiredTechnology>phase_city</RequiredTechnology>
+    <VisibleClasses datatype="tokens">Workshop</VisibleClasses>
   </Identity>
   <Loot>
     <wood>75</wood>

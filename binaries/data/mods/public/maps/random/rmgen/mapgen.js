@@ -29,7 +29,7 @@ function InitMap()
 
 	log("Creating new map...");
 	g_Map = new Map(g_MapSettings.Size, g_MapSettings.BaseHeight);
-	g_Map.initTerrain(createTerrain(g_MapSettings.BaseTerrain));
+	initTerrain(g_MapSettings.BaseTerrain);
 }
 
 function ExportMap()

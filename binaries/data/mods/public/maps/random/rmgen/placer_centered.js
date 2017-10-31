@@ -96,7 +96,7 @@ ClumpPlacer.prototype.place = function(constraint)
 				{
 					// Only include each point once
 					gotRet[i][j] = 1;
-					retVec.push(new PointXZ(i, j));
+					retVec.push({ "x": i, "z": j });
 				}
 			}
 			else
@@ -188,7 +188,7 @@ ChainPlacer.prototype.place = function(constraint)
 						var state = gotRet[ix][iz];
 						if (state == -1)
 						{
-							retVec.push(new PointXZ(ix, iz));
+							retVec.push({ "x": ix, "z": iz });
 							gotRet[ix][iz] = -2;
 						}
 						else if (state >= 0)

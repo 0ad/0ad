@@ -45,8 +45,6 @@ var clWolf = createTileClass();
 // Expected by rmgen1
 var clForest = createTileClass();
 
-initTerrain(tPrimary);
-
 var [playerIDs, playerX, playerZ] = radialPlayerPlacement();
 
 RMS.SetProgress(20);
