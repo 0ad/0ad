@@ -1,8 +1,8 @@
 /**
  * The Map stores the elevation grid, terrain textures and entities that are exported to the engine.
  *
- * @param {int} [size] - Size of the map in tiles
- * @param {float} [baseHeight] - Starting height of the map
+ * @param {Number} size - Radius or side length of the map in tiles
+ * @param {Number} baseHeight - Initial elevation of the map
  */
 function Map(size, baseHeight)
 {
@@ -189,11 +189,6 @@ Map.prototype.setTerrainObject = function(x, z, object)
 	this.terrainObjects[x][z] = object;
 };
 
-Map.prototype.placeTerrain = function(x, z, terrain)
-{
-	terrain.place(x, z);
-};
-
 /**
  * Adds the given Entity to the map at the location it defines.
  */
@@ -203,43 +198,14 @@ Map.prototype.addObject = function(obj)
 };
 
 /**
- * Constructs a new Area shaped by the Placer meeting the Constraint and calls the Painters there.
- * Supports both Centered and Non-Centered Placers.
+ * Constructs a new Area object and informs the Map which points correspond to this area.
  */
-Map.prototype.createArea = function(placer, painter, constraint)
+Map.prototype.createArea = function(points)
 {
-	// Check for multiple painters
-	if (painter instanceof Array)
-		painter = new MultiPainter(painter);
-
-	if (constraint === undefined || constraint === null)
-		constraint = new NullConstraint();
-	else if (constraint instanceof Array)
-		// Check for multiple constraints
-		constraint = new AndConstraint(constraint);
-
-	let points = placer.place(constraint);
-	if (!points)
-		return undefined;
-
-	let newID = ++this.areaID;
-	let area = new Area(points, newID);
+	let areaID = ++this.areaID;
 	for (let p of points)
-		this.area[p.x][p.z] = newID;
-
-	painter.paint(area);
-
-	return area;
-};
-
-Map.prototype.createObjectGroup = function(placer, player, constraint)
-{
-	if (constraint === undefined || constraint === null)
-		constraint = new NullConstraint();
-	else if (constraint instanceof Array)
-		constraint = new AndConstraint(constraint);
-
-	return placer.place(player, constraint);
+		this.area[p.x][p.z] = areaID;
+	return new Area(points, areaID);
 };
 
 /**

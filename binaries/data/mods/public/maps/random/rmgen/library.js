@@ -171,7 +171,7 @@ function createAreas(centeredPlacer, painter, constraint, amount, retryFactor = 
 {
 	let placeFunc = function (args) {
 		randomizePlacerCoordinates(args.placer, args.halfMapSize);
-		return g_Map.createArea(args.placer, args.painter, args.constraint);
+		return createArea(args.placer, args.painter, args.constraint);
 	};
 
 	let args = {
@@ -195,7 +195,7 @@ function createAreasInAreas(centeredPlacer, painter, constraint, amount, retryFa
 
 	let placeFunc = function (args) {
 		randomizePlacerCoordinatesFromAreas(args.placer, args.areas);
-		return g_Map.createArea(args.placer, args.painter, args.constraint);
+		return createArea(args.placer, args.painter, args.constraint);
 	};
 
 	let args = {
@@ -282,10 +282,9 @@ function placeObject(x, z, type, player, angle)
 		g_Map.addObject(new Entity(type, player, x, z, angle));
 }
 
-function placeTerrain(x, z, terrain)
+function placeTerrain(x, z, terrainNames)
 {
-	// convert terrain param into terrain object
-	g_Map.placeTerrain(x, z, createTerrain(terrain));
+	createTerrain(terrainNames).place(x, z);
 }
 
 function initTerrain(terrainNames)
@@ -320,14 +319,43 @@ function getTileClass(id)
 	return g_Map.tileClasses[id];
 }
 
+/**
+ * Constructs a new Area shaped by the Placer meeting the Constraint and calls the Painters there.
+ * Supports both Centered and Non-Centered Placers.
+ */
 function createArea(placer, painter, constraint)
 {
-	return g_Map.createArea(placer, painter, constraint);
+	if (!constraint)
+		constraint = new NullConstraint();
+	else if (constraint instanceof Array)
+		constraint = new AndConstraint(constraint);
+
+	let points = placer.place(constraint);
+	if (!points)
+		return undefined;
+
+	let area = g_Map.createArea(points);
+
+	if (painter instanceof Array)
+		painter = new MultiPainter(painter);
+
+	painter.paint(area);
+
+	return area;
 }
 
-function createObjectGroup(placer, player, constraint)
+/**
+ * Places the Entities of the given Group if they meet the Constraint
+ * and sets the given player as the owner.
+ */
+function createObjectGroup(group, player, constraint)
 {
-	return g_Map.createObjectGroup(placer, player, constraint);
+	if (!constraint)
+		constraint = new NullConstraint();
+	else if (constraint instanceof Array)
+		constraint = new AndConstraint(constraint);
+
+	return group.place(player, constraint);
 }
 
 function getMapSize()
