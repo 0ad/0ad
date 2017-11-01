@@ -2,7 +2,6 @@ const PI = Math.PI;
 const TWO_PI = 2 * Math.PI;
 const TERRAIN_SEPARATOR = "|";
 const SEA_LEVEL = 20.0;
-const CELL_SIZE = 4;
 const HEIGHT_UNITS_PER_METRE = 92;
 const MAP_BORDER_WIDTH = 3;
 const FALLBACK_CIV = "athen";

@@ -46,14 +46,11 @@ SimpleGroup.prototype.place = function(player, constraint)
 	// Add all objects to the map
 	for (let obj of resultObjs)
 	{
-		let x = obj.position.x / CELL_SIZE;
-		let z = obj.position.z / CELL_SIZE;
-
-		if (g_Map.validT(x, z))
+		if (g_Map.validT(obj.position.x, obj.position.z))
 			g_Map.addObject(obj);
 
 		if (this.tileClass !== undefined)
-			getTileClass(this.tileClass).add(Math.floor(x), Math.floor(z));
+			getTileClass(this.tileClass).add(Math.floor(obj.position.x), Math.floor(obj.position.z));
 	}
 
 	return resultObjs;

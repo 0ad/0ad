@@ -1,6 +1,6 @@
 /**
  * The Entity class stores the given template name, owner and location of an entity and assigns an entityID.
- * Instances of this class are passed as such to the engine.
+ * Instances of this class (with the position using the tile coordinate system) are passed as such to the engine.
  *
  * @param orientation - rotation of this entity about the y-axis (up).
  */
@@ -12,9 +12,9 @@ function Entity(templateName, playerID, x, z, orientation = 0)
 	this.player = playerID;
 
 	this.position = {
-		"x": x * CELL_SIZE,
+		"x": x,
 		"y": 0,
-		"z": z * CELL_SIZE
+		"z": z
 	};
 
 	this.rotation = {

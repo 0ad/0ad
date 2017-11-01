@@ -1383,7 +1383,7 @@ int CMapReader::ParseEntities()
 			CmpPtr<ICmpPosition> cmpPosition(sim, ent);
 			if (cmpPosition)
 			{
-				cmpPosition->JumpTo(currEnt.position.X, currEnt.position.Z);
+				cmpPosition->JumpTo(currEnt.position.X * (int)TERRAIN_TILE_SIZE, currEnt.position.Z * (int)TERRAIN_TILE_SIZE);
 				cmpPosition->SetYRotation(currEnt.rotation.Y);
 				// TODO: other parts of the position
 			}
