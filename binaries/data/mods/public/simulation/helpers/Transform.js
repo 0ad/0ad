@@ -97,6 +97,8 @@ function ChangeEntityTemplate(oldEnt, newTemplate)
 
 	Engine.PostMessage(oldEnt, MT_EntityRenamed, { "entity": oldEnt, "newentity": newEnt });
 
+	if (cmpPosition && cmpPosition.IsInWorld())
+		cmpPosition.MoveOutOfWorld();
 	Engine.DestroyEntity(oldEnt);
 
 	return newEnt;

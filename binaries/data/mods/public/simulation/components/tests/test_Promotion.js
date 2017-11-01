@@ -24,6 +24,7 @@ AddMock(60, IID_Position, {
 	"GetRotation": () => new Vector3D(3, 4, 5),
 	"GetHeightOffset": () => {},
 	"IsInWorld": () => true,
+	"MoveOutOfWorld": () => {}
 });
 
 AddMock(60, IID_Ownership, {
