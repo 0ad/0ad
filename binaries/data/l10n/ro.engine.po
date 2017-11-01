@@ -6,14 +6,14 @@
 # Adrian-Ciprian Tînjală <adrian.tinjala@gmail.com>, 2015
 # Dumitru Ursu <dima@ceata.org>, 2014
 # Nicolae Crefelean, 2014
-# Raz Taz <raztaz.ubuntu@gmail.com>, 2016
+# Raz Taz <qvovadis@yahoo.com>, 2016
 # zsofiaforro, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-19 09:25+0100\n"
-"PO-Revision-Date: 2016-09-18 17:08+0000\n"
-"Last-Translator: Raz Taz <raztaz.ubuntu@gmail.com>\n"
+"POT-Creation-Date: 2017-10-30 09:03+0100\n"
+"PO-Revision-Date: 2017-10-30 13:50+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,137 +21,118 @@ msgstr ""
 "Language: ro\n"
 "Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
 
-#. Translation: First item is a date and time, item between parenthesis is the
-#. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:823
-#, c-format
-msgid "%s (custom build)"
-msgstr "%s (compilare personalizată)"
-
-#. Translation: First item is a date and time, item between parenthesis is the
-#. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:828
-#, c-format
-msgid "%s (%ls)"
-msgstr "%s (%ls)"
-
-#: gui/scripting/ScriptFunctions.cpp:849
-msgid "custom build"
-msgstr "compilare personalizată"
-
-#: i18n/L10n.cpp:252
+#: i18n/L10n.cpp:251
 msgid "Long strings"
 msgstr "Șiruri lungi de caractere"
 
-#: lobby/XmppClient.cpp:750
+#: lobby/XmppClient.cpp:739
 msgid "unknown subtype (see logs)"
 msgstr "subtip necunoscut (vezi jurnal)"
 
-#: lobby/XmppClient.cpp:1001 lobby/XmppClient.cpp:1045
-#: lobby/XmppClient.cpp:1084
+#: lobby/XmppClient.cpp:1003 lobby/XmppClient.cpp:1047
+#: lobby/XmppClient.cpp:1086
 msgid "Error"
 msgstr "Eroare"
 
-#: lobby/XmppClient.cpp:1004 lobby/XmppClient.cpp:1048
+#: lobby/XmppClient.cpp:1006 lobby/XmppClient.cpp:1050
 msgid "No error"
 msgstr "Nicio eroare"
 
-#: lobby/XmppClient.cpp:1006
+#: lobby/XmppClient.cpp:1008
 msgid "Player already logged in"
 msgstr "Jucător deja autentificat"
 
-#: lobby/XmppClient.cpp:1008
+#: lobby/XmppClient.cpp:1010
 msgid "Forbidden"
 msgstr "Interzis"
 
-#: lobby/XmppClient.cpp:1010
+#: lobby/XmppClient.cpp:1012
 msgid "Internal server error"
 msgstr "Eroare internă server"
 
-#: lobby/XmppClient.cpp:1014
+#: lobby/XmppClient.cpp:1016
 msgid "Not allowed"
 msgstr "Nepermis"
 
-#: lobby/XmppClient.cpp:1015
+#: lobby/XmppClient.cpp:1017
 msgid "Not authorized"
 msgstr "Neautorizat"
 
-#: lobby/XmppClient.cpp:1018
+#: lobby/XmppClient.cpp:1020
 msgid "Recipient temporarily unavailable"
 msgstr "Destinatarul este indisponibil temporar"
 
-#: lobby/XmppClient.cpp:1020
+#: lobby/XmppClient.cpp:1022
 msgid "Registration required"
 msgstr "Înregistrare necesară"
 
-#: lobby/XmppClient.cpp:1024
+#: lobby/XmppClient.cpp:1026
 msgid "Service unavailable"
 msgstr "Serviciu indisponibil"
 
-#: lobby/XmppClient.cpp:1029 lobby/XmppClient.cpp:1068
-#: lobby/XmppClient.cpp:1097
+#: lobby/XmppClient.cpp:1031 lobby/XmppClient.cpp:1070
 msgid "Unknown error"
 msgstr "Eroare necunoscută"
 
-#: lobby/XmppClient.cpp:1049
+#: lobby/XmppClient.cpp:1051
 msgid "Stream error"
 msgstr "Eroare de flux."
 
-#: lobby/XmppClient.cpp:1050
+#: lobby/XmppClient.cpp:1052
 msgid "The incoming stream version is unsupported"
 msgstr "Versiunea fluxului de intrare nu este suportată"
 
-#: lobby/XmppClient.cpp:1051
+#: lobby/XmppClient.cpp:1053
 msgid "The stream has been closed by the server"
 msgstr "Fluxul a fost închis de către server"
 
-#: lobby/XmppClient.cpp:1055
-msgid "An I/O error occured"
-msgstr "S-a produs o eroare I/O"
-
 #: lobby/XmppClient.cpp:1057
+msgid "An I/O error occurred"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1059
 msgid "The connection was refused by the server"
 msgstr "Conexiune refuzată de server"
 
-#: lobby/XmppClient.cpp:1058
+#: lobby/XmppClient.cpp:1060
 msgid "Resolving the server's hostname failed"
 msgstr "Nu s-a reușit rezolvarea numelui gazdă al serverului"
 
-#: lobby/XmppClient.cpp:1059
+#: lobby/XmppClient.cpp:1061
 msgid "This system is out of memory"
 msgstr "Sistemul nu mai are memorie"
 
-#: lobby/XmppClient.cpp:1061
+#: lobby/XmppClient.cpp:1063
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
 msgstr "Nu a putut fi verificat certificatul serverului sau negocierea TSL nu s-a încheiat cu succes."
 
-#: lobby/XmppClient.cpp:1062
+#: lobby/XmppClient.cpp:1064
 msgid "The server did not offer required TLS encryption"
 msgstr "Serverul nu a oferit criptarea TLS necesară."
 
-#: lobby/XmppClient.cpp:1064
+#: lobby/XmppClient.cpp:1066
 msgid "Authentication failed. Incorrect password or account does not exist"
 msgstr "Autentificarea a eșuat. Parolă incorectă sau cont inexistent"
 
-#: lobby/XmppClient.cpp:1065
+#: lobby/XmppClient.cpp:1067
 msgid "The user or system requested a disconnect"
 msgstr "Utilizatorul sau sistemul a solicitat deconectarea"
 
-#: lobby/XmppClient.cpp:1066
+#: lobby/XmppClient.cpp:1068
 msgid "There is no active connection"
 msgstr "Nu există nicio conexiune activă."
 
-#: lobby/XmppClient.cpp:1087
+#: lobby/XmppClient.cpp:1089
 msgid "Success"
 msgstr "Succes"
 
-#: lobby/XmppClient.cpp:1088
+#: lobby/XmppClient.cpp:1090
 msgid "Not all necessary information provided"
 msgstr "Nu toate informațiile necesare au fost furnizate"
 
-#: lobby/XmppClient.cpp:1089
+#: lobby/XmppClient.cpp:1091
 msgid "Username already exists"
 msgstr "Numele de utilizator există deja"
 
@@ -160,7 +141,26 @@ msgstr "Numele de utilizator există deja"
 msgid "Saved game to '%s'"
 msgstr "Jocul s-a salvat în '%s'"
 
-#: ps/Util.cpp:275 ps/Util.cpp:408
+#: ps/Util.cpp:279 ps/Util.cpp:282 ps/Util.cpp:417 ps/Util.cpp:420
 #, c-format
 msgid "Screenshot written to '%s'"
 msgstr "Captură de ecran salvată în '%s'"
+
+#. Translation: First item is a date and time, item between parenthesis is the
+#. Subversion revision number of the current build.
+#: ps/scripting/JSInterface_Debug.cpp:88
+#, c-format
+msgid "%s (custom build)"
+msgstr "%s (compilare personalizată)"
+
+#. Translation: First item is a date and time, item between parenthesis is the
+#. Subversion revision number of the current build.
+#. dennis-ignore: *
+#: ps/scripting/JSInterface_Debug.cpp:94
+#, c-format
+msgid "%s (%ls)"
+msgstr "%s (%ls)"
+
+#: ps/scripting/JSInterface_Debug.cpp:115
+msgid "custom build"
+msgstr "compilare personalizată"

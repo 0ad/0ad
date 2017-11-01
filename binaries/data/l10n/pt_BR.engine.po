@@ -7,7 +7,7 @@
 # Canal do Kilof <kilofchannel@gmail.com>, 2016
 # Elisa Silva Ramos <inactive+elisasr@transifex.com>, 2014
 # Enrico Nicoletto <enrico.BR@gmx.co.uk>, 2013
-# gsoster <guilhermesosters@gmail.com>, 2016
+# Guilherme Soster <guilhermesosters@gmail.com>, 2016
 # Gustavo Moitinho <gustavo.moitinho@outlook.com>, 2016
 # Iago Leandro de Abreu <iago.abr@outlook.com>, 2015
 # Mateus Felipe Cordeiro Caetano Pinto <uuflor@gmail.com>, 2013
@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-27 14:48+0200\n"
-"PO-Revision-Date: 2017-06-10 16:34+0000\n"
-"Last-Translator: borg 2k <estevanborg@gmail.com>\n"
+"POT-Creation-Date: 2017-10-30 09:03+0100\n"
+"PO-Revision-Date: 2017-10-30 13:50+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,137 +27,118 @@ msgstr ""
 "Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#. Translation: First item is a date and time, item between parenthesis is the
-#. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:826
-#, c-format
-msgid "%s (custom build)"
-msgstr "%s (custom build)"
-
-#. Translation: First item is a date and time, item between parenthesis is the
-#. Subversion revision number of the current build.
-#. dennis-ignore: *
-#: gui/scripting/ScriptFunctions.cpp:832
-#, c-format
-msgid "%s (%ls)"
-msgstr "%s (%ls)"
-
-#: gui/scripting/ScriptFunctions.cpp:853
-msgid "custom build"
-msgstr "custom build"
-
 #: i18n/L10n.cpp:251
 msgid "Long strings"
 msgstr "Textos longos"
 
-#: lobby/XmppClient.cpp:720
+#: lobby/XmppClient.cpp:739
 msgid "unknown subtype (see logs)"
 msgstr "Subtipo desconhecido (ver registros)"
 
-#: lobby/XmppClient.cpp:986 lobby/XmppClient.cpp:1030
-#: lobby/XmppClient.cpp:1069
+#: lobby/XmppClient.cpp:1003 lobby/XmppClient.cpp:1047
+#: lobby/XmppClient.cpp:1086
 msgid "Error"
 msgstr "Erro"
 
-#: lobby/XmppClient.cpp:989 lobby/XmppClient.cpp:1033
+#: lobby/XmppClient.cpp:1006 lobby/XmppClient.cpp:1050
 msgid "No error"
 msgstr "Sem erros"
 
-#: lobby/XmppClient.cpp:991
+#: lobby/XmppClient.cpp:1008
 msgid "Player already logged in"
 msgstr "Jogador já logado"
 
-#: lobby/XmppClient.cpp:993
+#: lobby/XmppClient.cpp:1010
 msgid "Forbidden"
 msgstr "Proibido"
 
-#: lobby/XmppClient.cpp:995
+#: lobby/XmppClient.cpp:1012
 msgid "Internal server error"
 msgstr "Erro interno de servidor"
 
-#: lobby/XmppClient.cpp:999
+#: lobby/XmppClient.cpp:1016
 msgid "Not allowed"
 msgstr "Não permitido"
 
-#: lobby/XmppClient.cpp:1000
+#: lobby/XmppClient.cpp:1017
 msgid "Not authorized"
 msgstr "Não autorizado"
 
-#: lobby/XmppClient.cpp:1003
+#: lobby/XmppClient.cpp:1020
 msgid "Recipient temporarily unavailable"
 msgstr "Destinatário temporariamente indisponível"
 
-#: lobby/XmppClient.cpp:1005
+#: lobby/XmppClient.cpp:1022
 msgid "Registration required"
 msgstr "Registro obrigatório"
 
-#: lobby/XmppClient.cpp:1009
+#: lobby/XmppClient.cpp:1026
 msgid "Service unavailable"
 msgstr "Serviço indisponível"
 
-#: lobby/XmppClient.cpp:1014 lobby/XmppClient.cpp:1053
+#: lobby/XmppClient.cpp:1031 lobby/XmppClient.cpp:1070
 msgid "Unknown error"
 msgstr "Erro desconhecido"
 
-#: lobby/XmppClient.cpp:1034
+#: lobby/XmppClient.cpp:1051
 msgid "Stream error"
 msgstr "Erro de transferência"
 
-#: lobby/XmppClient.cpp:1035
+#: lobby/XmppClient.cpp:1052
 msgid "The incoming stream version is unsupported"
 msgstr "O motor de fluxo de entrada não é suportado"
 
-#: lobby/XmppClient.cpp:1036
+#: lobby/XmppClient.cpp:1053
 msgid "The stream has been closed by the server"
 msgstr "O motor foi fechado pelo servidor"
 
-#: lobby/XmppClient.cpp:1040
-msgid "An I/O error occured"
-msgstr "Um erro de Entrada/Saída aconteceu"
+#: lobby/XmppClient.cpp:1057
+msgid "An I/O error occurred"
+msgstr ""
 
-#: lobby/XmppClient.cpp:1042
+#: lobby/XmppClient.cpp:1059
 msgid "The connection was refused by the server"
 msgstr "A conexão foi recusada pelo servidor"
 
-#: lobby/XmppClient.cpp:1043
+#: lobby/XmppClient.cpp:1060
 msgid "Resolving the server's hostname failed"
 msgstr "Erro ao resolver o nome do Host"
 
-#: lobby/XmppClient.cpp:1044
+#: lobby/XmppClient.cpp:1061
 msgid "This system is out of memory"
 msgstr "O sistema está sem memória"
 
-#: lobby/XmppClient.cpp:1046
+#: lobby/XmppClient.cpp:1063
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
 msgstr "O certificado do servidor não pôde ser verificado, ou o TLS não completou a comunicação com sucesso"
 
-#: lobby/XmppClient.cpp:1047
+#: lobby/XmppClient.cpp:1064
 msgid "The server did not offer required TLS encryption"
 msgstr "O server não exige encriptação TLS"
 
-#: lobby/XmppClient.cpp:1049
+#: lobby/XmppClient.cpp:1066
 msgid "Authentication failed. Incorrect password or account does not exist"
 msgstr "Falha na autenticação. A senha e/ou conta estão incorretos/não existem"
 
-#: lobby/XmppClient.cpp:1050
+#: lobby/XmppClient.cpp:1067
 msgid "The user or system requested a disconnect"
 msgstr "O usuário, ou o sistema requisitou uma desconexão"
 
-#: lobby/XmppClient.cpp:1051
+#: lobby/XmppClient.cpp:1068
 msgid "There is no active connection"
 msgstr "Não existem conexões ativas"
 
-#: lobby/XmppClient.cpp:1072
+#: lobby/XmppClient.cpp:1089
 msgid "Success"
 msgstr "Sucesso"
 
-#: lobby/XmppClient.cpp:1073
+#: lobby/XmppClient.cpp:1090
 msgid "Not all necessary information provided"
 msgstr "Nem toda informação necessária foi informada"
 
-#: lobby/XmppClient.cpp:1074
+#: lobby/XmppClient.cpp:1091
 msgid "Username already exists"
 msgstr "Nome de usuário já existe"
 
@@ -170,3 +151,22 @@ msgstr "Jogo salvo em '%s'"
 #, c-format
 msgid "Screenshot written to '%s'"
 msgstr "Captura de tela salva em '%s'"
+
+#. Translation: First item is a date and time, item between parenthesis is the
+#. Subversion revision number of the current build.
+#: ps/scripting/JSInterface_Debug.cpp:88
+#, c-format
+msgid "%s (custom build)"
+msgstr "%s (custom build)"
+
+#. Translation: First item is a date and time, item between parenthesis is the
+#. Subversion revision number of the current build.
+#. dennis-ignore: *
+#: ps/scripting/JSInterface_Debug.cpp:94
+#, c-format
+msgid "%s (%ls)"
+msgstr "%s (%ls)"
+
+#: ps/scripting/JSInterface_Debug.cpp:115
+msgid "custom build"
+msgstr "custom build"
