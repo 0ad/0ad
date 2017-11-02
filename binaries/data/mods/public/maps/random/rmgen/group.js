@@ -1,5 +1,5 @@
 /**
- * A Group tests if a set of entities specified in the constructor can be placed and
+ * @file A Group tests if a set of entities specified in the constructor can be placed and
  * potentially places some of them (typically all or none).
  *
  * The location is defined by the x and z property of the Group instance and can be modified externally.

@@ -1758,44 +1758,38 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 		if (numBarracks == 0)
 		{
 			gameState.ai.queueManager.changePriority("militaryBuilding", 2*this.Config.priorities.militaryBuilding);
-			let metadata = { "preferredBase": this.findBestBaseForMilitary(gameState) };
-			let plan = new m.ConstructionPlan(gameState, "structures/{civ}_barracks", metadata);
+			let plan = new m.ConstructionPlan(gameState, "structures/{civ}_barracks", { "militaryBase": true });
 			plan.queueToReset = "militaryBuilding";
 			queues.militaryBuilding.addPlan(plan);
 			return;
 		}
 		if (numStables == 0)
 		{
-			let metadata = { "preferredBase": this.findBestBaseForMilitary(gameState) };
-			queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_stables", metadata));
+			queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_stables", { "militaryBase": true }));
 			return;
 		}
 
 		// Second barracks and stables
 		if (numBarracks == 1 && gameState.getPopulation() > this.Config.Military.popForBarracks2)
 		{
-			let metadata = { "preferredBase": this.findBestBaseForMilitary(gameState) };
-			queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_barracks", metadata));
+			queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_barracks", { "militaryBase": true }));
 			return;
 		}
 		if (numStables == 1 && gameState.getPopulation() > this.Config.Military.popForBarracks2)
 		{
-			let metadata = { "preferredBase": this.findBestBaseForMilitary(gameState) };
-			queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_stables", metadata));
+			queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_stables", { "militaryBase": true }));
 			return;
 		}
 
 		// Then 3rd barracks/stables if needed
 		if (numBarracks == 2 && numStables == -1 && gameState.getPopulation() > this.Config.Military.popForBarracks2 + 30)
 		{
-			let metadata = { "preferredBase": this.findBestBaseForMilitary(gameState) };
-			queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_barracks", metadata));
+			queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_barracks", { "militaryBase": true }));
 			return;
 		}
 		if (numBarracks == -1 && numStables == 2 && gameState.getPopulation() > this.Config.Military.popForBarracks2 + 30)
 		{
-			let metadata = { "preferredBase": this.findBestBaseForMilitary(gameState) };
-			queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_stables", metadata));
+			queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_stables", { "militaryBase": true }));
 			return;
 		}
 	}
@@ -1806,11 +1800,15 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 	if (this.currentPhase < 3)
 		return;
 
-	let numWorkshop = this.canBuild(gameState, "structures/{civ}_siege_workshop") ? gameState.getOwnEntitiesByClass("Workshop", true).length : -1;
-	if (numWorkshop == 0)
+	if (this.canBuild(gameState, "structures/{civ}_elephant_stables") && !gameState.getOwnEntitiesByClass("ElephantStables", true).hasEntities())
 	{
-		let metadata = { "preferredBase": this.findBestBaseForMilitary(gameState) };
-		queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_siege_workshop", metadata));
+		queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_elephant_stables", { "militaryBase": true }));
+		return;
+	}
+
+	if (this.canBuild(gameState, "structures/{civ}_siege_workshop") && !gameState.getOwnEntitiesByClass("Workshop", true).hasEntities())
+	{
+		queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_siege_workshop", { "militaryBase": true }));
 		return;
 	}
 
@@ -1832,10 +1830,7 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 			if (!template)
 				continue;
 			if (template.hasDefensiveFire() || template.trainableEntities())
-			{
-				let metadata = { "preferredBase": this.findBestBaseForMilitary(gameState) };
-				queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, advanced, metadata));
-			}
+				queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, advanced, { "militaryBase": true }));
 			else	// not a military building, but still use this queue
 				queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, advanced));
 			return;
@@ -1844,23 +1839,32 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 };
 
 /**
- *  Construct military building in bases nearest to the ennemies  TODO revisit as the nearest one may not be accessible
+ *  Find base nearest to ennemies for military buildings.
  */
 m.HQ.prototype.findBestBaseForMilitary = function(gameState)
 {
 	let ccEnts = gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre")).toEntityArray();
-	let bestBase = 1;
+	let bestBase;
+	let enemyFound = false;
 	let distMin = Math.min();
 	for (let cce of ccEnts)
 	{
 		if (gameState.isPlayerAlly(cce.owner()))
 			continue;
+		if (enemyFound && !gameState.isPlayerEnemy(cce.owner()))
+			continue;
+		let access = m.getLandAccess(gameState, cce);
+		let isEnemy = gameState.isPlayerEnemy(cce.owner());
 		for (let cc of ccEnts)
 		{
 			if (cc.owner() != PlayerID)
 				continue;
+			if (m.getLandAccess(gameState, cc) != access)
+				continue;
 			let dist = API3.SquareVectorDistance(cc.position(), cce.position());
-			if (dist > distMin)
+			if (!enemyFound && isEnemy)
+				enemyFound = true;
+			else if (dist > distMin)
 				continue;
 			bestBase = cc.getMetadata(PlayerID, "base");
 			distMin = dist;
@@ -2449,7 +2453,8 @@ m.HQ.prototype.update = function(gameState, queues, events)
 	this.garrisonManager.update(gameState, events);
 	this.defenseManager.update(gameState, events);
 
-	this.constructTrainingBuildings(gameState, queues);
+	if (gameState.ai.playedTurn % 3 == 0)
+		this.constructTrainingBuildings(gameState, queues);
 
 	if (this.Config.difficulty > 0)
 		this.buildDefenses(gameState, queues);

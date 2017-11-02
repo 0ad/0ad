@@ -56,7 +56,7 @@ m.Config = function(difficulty)
 			"gaul": [ "structures/{civ}_rotarymill", "structures/{civ}_tavern" ],
 			"iber": [ "structures/{civ}_monument" ],
 			"mace": [ "structures/{civ}_library", "structures/{civ}_theatron" ],
-			"maur": [ "structures/{civ}_elephant_stables", "structures/{civ}_pillar_ashoka" ],
+			"maur": [ "structures/{civ}_pillar_ashoka" ],
 			"pers": [ "structures/{civ}_apadana", "structures/{civ}_hall"],
 			"ptol": [ "structures/{civ}_library" ],
 			"rome": [ "structures/{civ}_army_camp" ],

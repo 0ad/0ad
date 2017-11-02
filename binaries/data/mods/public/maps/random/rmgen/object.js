@@ -1,5 +1,5 @@
 /**
- * An Object tries to find locations around a location and returns an array of Entity items holding the template names, owners and locations on success.
+ * @file An Object tries to find locations around a location and returns an array of Entity items holding the template names, owners and locations on success.
  */
 
 /**

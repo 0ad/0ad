@@ -1,5 +1,5 @@
 /**
- * A Terrain is a class that modifies an arbitrary property of a given tile.
+ * @file A Terrain is a class that modifies an arbitrary property of a given tile.
  */
 
 /**

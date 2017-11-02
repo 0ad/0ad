@@ -1,5 +1,5 @@
 /**
- * The Map stores the elevation grid, terrain textures and entities that are exported to the engine.
+ * @file The Map stores the elevation grid, terrain textures and entities that are exported to the engine.
  *
  * @param {Number} size - Radius or side length of the map in tiles
  * @param {Number} baseHeight - Initial elevation of the map

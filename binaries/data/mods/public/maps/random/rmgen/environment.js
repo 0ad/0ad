@@ -1,3 +1,7 @@
+/**
+ * @file The environment settings govern the appearance of the Sky, Fog, Water and Post-Processing effects.
+ */
+
 var g_Environment = {
 	"SkySet": "default", // textures for the skybox, subdirectory name of art/textures/skies
 	"SunColor": { "r": 0.749020, "g": 0.749020, "b": 0.749020, "a": 0 }, // all rgb from 0 to 1
