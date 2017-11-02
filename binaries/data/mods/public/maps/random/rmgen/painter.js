@@ -1,5 +1,5 @@
 /**
- * A Painter modifies an arbitrary feature in a given Area, for instance terrain textures, elevation or calling other painters on that Area.
+ * @file A Painter modifies an arbitrary feature in a given Area, for instance terrain textures, elevation or calling other painters on that Area.
  * Typically the area is determined by a Placer called from createArea or createAreas.
  */
 

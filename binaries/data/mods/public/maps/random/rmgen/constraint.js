@@ -1,5 +1,5 @@
 /**
- * A Constraint decides if a tile satisfies a condition defined by the class.
+ * @file A Constraint decides if a tile satisfies a condition defined by the class.
  */
 
 /**

@@ -1,15 +1,10 @@
-///////////////////////////////////////////////////////////////////////////
-//	Area
-//
-//	Object representing a group of points/tiles
-//
-//	points: Array of Point objects
-//
-///////////////////////////////////////////////////////////////////////////
+/**
+ * @file An Area is a set of points identified by an ID that was registered with the Map.
+ */
 
 function Area(points, id)
 {
-	this.points = (points !== undefined ? points : []);
+	this.points = points;
 	this.id = id;
 }
 

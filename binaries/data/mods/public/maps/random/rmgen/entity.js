@@ -1,5 +1,5 @@
 /**
- * The Entity class stores the given template name, owner and location of an entity and assigns an entityID.
+ * @file The Entity class stores the given template name, owner and location of an entity and assigns an entityID.
  * Instances of this class (with the position using the tile coordinate system) are passed as such to the engine.
  *
  * @param orientation - rotation of this entity about the y-axis (up).
