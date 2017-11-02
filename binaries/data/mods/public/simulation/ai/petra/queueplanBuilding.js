@@ -109,10 +109,11 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	if (template.buildPlacementType() === "shore")
 		return this.findDockPosition(gameState);
 
+	let HQ = gameState.ai.HQ;
 	if (template.hasClass("Storehouse") && this.metadata.base)
 	{
 		// recompute the best dropsite location in case some conditions have changed
-		let base = gameState.ai.HQ.getBaseByID(this.metadata.base);
+		let base = HQ.getBaseByID(this.metadata.base);
 		let type = this.metadata.type ? this.metadata.type : "wood";
 		let newpos = base.findBestDropsiteLocation(gameState, type);
 		if (newpos && newpos.quality > 0)
@@ -130,10 +131,10 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 			if (this.metadata && this.metadata.resource)
 			{
 				let proximity = this.metadata.proximity ? this.metadata.proximity : undefined;
-				pos = gameState.ai.HQ.findEconomicCCLocation(gameState, template, this.metadata.resource, proximity);
+				pos = HQ.findEconomicCCLocation(gameState, template, this.metadata.resource, proximity);
 			}
 			else
-				pos = gameState.ai.HQ.findStrategicCCLocation(gameState, template);
+				pos = HQ.findStrategicCCLocation(gameState, template);
 
 			if (pos)
 				return { "x": pos[0], "z": pos[1], "angle": 3*Math.PI/4, "base": 0 };
@@ -141,7 +142,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 		}
 		else if (template.hasClass("DefenseTower") || template.hasClass("Fortress") || template.hasClass("ArmyCamp"))
 		{
-			let pos = gameState.ai.HQ.findDefensiveLocation(gameState, template);
+			let pos = HQ.findDefensiveLocation(gameState, template);
 			if (pos)
 				return { "x": pos[0], "z": pos[1], "angle": 3*Math.PI/4, "base": pos[2] };
 			// if this fortress is our first one, just try the standard placement
@@ -150,7 +151,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 		}
 		else if (template.hasClass("Market"))	// Docks (i.e. NavalMarket) are done before
 		{
-			let pos = gameState.ai.HQ.findMarketLocation(gameState, template);
+			let pos = HQ.findMarketLocation(gameState, template);
 			if (pos && pos[2] > 0)
 			{
 				if (!this.metadata)
@@ -184,17 +185,17 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 		{
 			let base = this.metadata.base;
 			for (let j = 0; j < placement.map.length; ++j)
-				if (gameState.ai.HQ.basesMap.map[j] == base)
+				if (HQ.basesMap.map[j] == base)
 					placement.map[j] = 45;
 		}
 		else
 		{
 			for (let j = 0; j < placement.map.length; ++j)
-				if (gameState.ai.HQ.basesMap.map[j] !== 0)
+				if (HQ.basesMap.map[j] != 0)
 					placement.map[j] = 45;
 		}
 
-		if (!gameState.ai.HQ.requireHouses || !template.hasClass("House"))
+		if (!HQ.requireHouses || !template.hasClass("House"))
 		{
 			gameState.getOwnStructures().forEach(function(ent) {
 				let pos = ent.position();
@@ -236,7 +237,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 			{
 				let value = placement.map[j] - gameState.sharedScript.resourceMaps.wood.map[j]/3;
 				placement.map[j] = value >= 0 ? value : 0;
-				if (gameState.ai.HQ.borderMap.map[j] & m.fullBorder_Mask)
+				if (HQ.borderMap.map[j] & m.fullBorder_Mask)
 					placement.map[j] /= 2;	// we need space around farmstead, so disfavor map border
 			}
 		}
@@ -246,24 +247,24 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	// and if our first market, put it on border if possible to maximize distance with next market
 	let favorBorder = template.hasClass("BarterMarket");
 	let disfavorBorder = gameState.currentPhase() > 1 && !template.hasDefensiveFire();
-	let preferredBase = this.metadata && this.metadata.preferredBase;
+	let militaryBase = this.metadata && this.metadata.militaryBase ? HQ.findBestBaseForMilitary(gameState) : undefined;
 	if (this.metadata && this.metadata.base !== undefined)
 	{
 		let base = this.metadata.base;
 		for (let j = 0; j < placement.map.length; ++j)
 		{
-			if (gameState.ai.HQ.basesMap.map[j] != base)
+			if (HQ.basesMap.map[j] != base)
 				placement.map[j] = 0;
-			else if (favorBorder && gameState.ai.HQ.borderMap.map[j] & m.border_Mask)
-				placement.map[j] += 50;
-			else if (disfavorBorder && !(gameState.ai.HQ.borderMap.map[j] & m.fullBorder_Mask) && placement.map[j] > 0)
-				placement.map[j] += 10;
-
-			if (placement.map[j] > 0)
+			else if (placement.map[j] > 0)
 			{
+				if (favorBorder && HQ.borderMap.map[j] & m.border_Mask)
+					placement.map[j] += 50;
+				else if (disfavorBorder && !(HQ.borderMap.map[j] & m.fullBorder_Mask))
+					placement.map[j] += 10;
+
 				let x = (j % placement.width + 0.5) * cellSize;
 				let z = (Math.floor(j / placement.width) + 0.5) * cellSize;
-				if (gameState.ai.HQ.isNearInvadingArmy([x, z]))
+				if (HQ.isNearInvadingArmy([x, z]))
 					placement.map[j] = 0;
 			}
 		}
@@ -272,22 +273,21 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	{
 		for (let j = 0; j < placement.map.length; ++j)
 		{
-			if (gameState.ai.HQ.basesMap.map[j] === 0)
+			if (HQ.basesMap.map[j] == 0)
 				placement.map[j] = 0;
-			else if (favorBorder && gameState.ai.HQ.borderMap.map[j] & m.border_Mask)
-				placement.map[j] += 50;
-			else if (disfavorBorder && !(gameState.ai.HQ.borderMap.map[j] & m.fullBorder_Mask) && placement.map[j] > 0)
-				placement.map[j] += 10;
-
-			if (preferredBase && gameState.ai.HQ.basesMap.map[j] == this.metadata.preferredBase)
-				placement.map[j] += 200;
-
-			if (placement.map[j] > 0)
+			else if (placement.map[j] > 0)
 			{
+				if (favorBorder && HQ.borderMap.map[j] & m.border_Mask)
+					placement.map[j] += 50;
+				else if (disfavorBorder && !(HQ.borderMap.map[j] & m.fullBorder_Mask))
+					placement.map[j] += 10;
+
 				let x = (j % placement.width + 0.5) * cellSize;
 				let z = (Math.floor(j / placement.width) + 0.5) * cellSize;
-				if (gameState.ai.HQ.isNearInvadingArmy([x, z]))
+				if (HQ.isNearInvadingArmy([x, z]))
 					placement.map[j] = 0;
+				else if (militaryBase && HQ.basesMap.map[j] == militaryBase)
+					placement.map[j] += 200;
 			}
 		}
 	}
@@ -333,7 +333,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	let territorypos = placement.gamePosToMapPos([x, z]);
 	let territoryIndex = territorypos[0] + territorypos[1]*placement.width;
 	// default angle = 3*Math.PI/4;
-	return { "x": x, "z": z, "angle": 3*Math.PI/4, "base": gameState.ai.HQ.basesMap.map[territoryIndex] };
+	return { "x": x, "z": z, "angle": 3*Math.PI/4, "base": HQ.basesMap.map[territoryIndex] };
 };
 
 /**
