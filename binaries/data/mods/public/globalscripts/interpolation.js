@@ -1,10 +1,9 @@
 /**
- * Catmull-Rom spline.
  * Interpolates the value of a point that is located between four known equidistant points with given values by
  * constructing a polynomial of degree three that goes through all points.
+ * Computes a cardinal or Catmull-Rom spline.
  *
- * @param {Number} tension - determines the geometry of the curve, between 0 (tight curve) and 1 (smooth curve).
- *  Depending on the tension, the spline is called uniform (0), centripetal (0.5) or chordal (1).
+ * @param {Number} tension - determines how sharply the curve bends at the given points.
  * @param {Number} x - Location of the point to interpolate, relative to p1
  */
 function cubicInterpolation(tension, x, p0, p1, p2, p3)

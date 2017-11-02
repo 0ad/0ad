@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2017-10-23 09:06+0200\n"
-"PO-Revision-Date: 2017-10-23 09:06+0200\n"
+"POT-Creation-Date: 2017-11-01 09:03+0100\n"
+"PO-Revision-Date: 2017-11-01 09:03+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -785,6 +785,20 @@ msgstr ""
 msgid "Low Wall"
 msgstr ""
 
+#: simulation/templates/structures/cart_stable.xml:12
+#: simulation/templates/structures/iber_range.xml:12
+#: simulation/templates/structures/iber_stable.xml:12
+#: simulation/templates/structures/iber_workshop.xml:12
+#: simulation/templates/structures/pers_elephant_stables.xml:25
+#: simulation/templates/structures/pers_range.xml:12
+#: simulation/templates/structures/pers_workshop.xml:12
+#: simulation/templates/structures/sele_elephant_stables.xml:25
+#: simulation/templates/structures/sele_range.xml:12
+#: simulation/templates/structures/sele_stable.xml:12
+#: simulation/templates/structures/sele_workshop.xml:12
+msgid "?"
+msgstr ""
+
 #: simulation/templates/structures/cart_storehouse.xml:8
 msgid "Maḥṣabah"
 msgstr ""
@@ -928,10 +942,6 @@ msgstr ""
 msgid "Iberian Outpost"
 msgstr ""
 
-#: simulation/templates/structures/iber_range.xml:12
-msgid "?"
-msgstr ""
-
 #: simulation/templates/structures/iber_storehouse.xml:5
 msgid "Ola"
 msgstr ""
@@ -980,6 +990,10 @@ msgstr ""
 msgid "Build siege engines. Research siege technologies."
 msgstr ""
 
+#: simulation/templates/structures/mace_siege_workshop.xml:22
+msgid "Workshop"
+msgstr ""
+
 #: simulation/templates/structures/mace_temple.xml:9
 #: simulation/templates/structures/spart_temple.xml:9
 msgid "Asklēpieîon"
@@ -1010,6 +1024,8 @@ msgid "Naukasthanaka"
 msgstr ""
 
 #: simulation/templates/structures/maur_elephant_stables.xml:24
+#: simulation/templates/structures/pers_elephant_stables.xml:24
+#: simulation/templates/structures/sele_elephant_stables.xml:24
 msgid "Elephant Stables"
 msgstr ""
 
@@ -1018,6 +1034,8 @@ msgid "Vāraṇaśālā"
 msgstr ""
 
 #: simulation/templates/structures/maur_elephant_stables.xml:28
+#: simulation/templates/structures/pers_elephant_stables.xml:28
+#: simulation/templates/structures/sele_elephant_stables.xml:28
 msgid "Train elephant units."
 msgstr ""
 

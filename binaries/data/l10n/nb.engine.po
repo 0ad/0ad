@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-19 09:25+0100\n"
-"PO-Revision-Date: 2017-03-18 21:46+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"POT-Creation-Date: 2017-10-30 09:03+0100\n"
+"PO-Revision-Date: 2017-10-30 13:50+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,137 +22,118 @@ msgstr ""
 "Language: nb\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. Translation: First item is a date and time, item between parenthesis is the
-#. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:823
-#, c-format
-msgid "%s (custom build)"
-msgstr "%s (tilpasset utgave)"
-
-#. Translation: First item is a date and time, item between parenthesis is the
-#. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:828
-#, c-format
-msgid "%s (%ls)"
-msgstr "%s (%ls)"
-
-#: gui/scripting/ScriptFunctions.cpp:849
-msgid "custom build"
-msgstr "tilpasset"
-
-#: i18n/L10n.cpp:252
+#: i18n/L10n.cpp:251
 msgid "Long strings"
 msgstr "Lang streng"
 
-#: lobby/XmppClient.cpp:750
+#: lobby/XmppClient.cpp:739
 msgid "unknown subtype (see logs)"
 msgstr "Ukjent undertype (se loggføring)"
 
-#: lobby/XmppClient.cpp:1001 lobby/XmppClient.cpp:1045
-#: lobby/XmppClient.cpp:1084
+#: lobby/XmppClient.cpp:1003 lobby/XmppClient.cpp:1047
+#: lobby/XmppClient.cpp:1086
 msgid "Error"
 msgstr "Feil"
 
-#: lobby/XmppClient.cpp:1004 lobby/XmppClient.cpp:1048
+#: lobby/XmppClient.cpp:1006 lobby/XmppClient.cpp:1050
 msgid "No error"
 msgstr "Ingen feil"
 
-#: lobby/XmppClient.cpp:1006
+#: lobby/XmppClient.cpp:1008
 msgid "Player already logged in"
 msgstr "Spiller allerede innlogget"
 
-#: lobby/XmppClient.cpp:1008
+#: lobby/XmppClient.cpp:1010
 msgid "Forbidden"
 msgstr "Forbudt"
 
-#: lobby/XmppClient.cpp:1010
+#: lobby/XmppClient.cpp:1012
 msgid "Internal server error"
 msgstr "Intern tjener-feil"
 
-#: lobby/XmppClient.cpp:1014
+#: lobby/XmppClient.cpp:1016
 msgid "Not allowed"
 msgstr "Ikke tillatt"
 
-#: lobby/XmppClient.cpp:1015
+#: lobby/XmppClient.cpp:1017
 msgid "Not authorized"
 msgstr "Ikke godkjent"
 
-#: lobby/XmppClient.cpp:1018
+#: lobby/XmppClient.cpp:1020
 msgid "Recipient temporarily unavailable"
 msgstr "Mottaker midlertidig utilgjengelig"
 
-#: lobby/XmppClient.cpp:1020
+#: lobby/XmppClient.cpp:1022
 msgid "Registration required"
 msgstr "Registrering påkrevet"
 
-#: lobby/XmppClient.cpp:1024
+#: lobby/XmppClient.cpp:1026
 msgid "Service unavailable"
 msgstr "Tjeneste utilgjengelig"
 
-#: lobby/XmppClient.cpp:1029 lobby/XmppClient.cpp:1068
-#: lobby/XmppClient.cpp:1097
+#: lobby/XmppClient.cpp:1031 lobby/XmppClient.cpp:1070
 msgid "Unknown error"
 msgstr "Ukjent feil"
 
-#: lobby/XmppClient.cpp:1049
+#: lobby/XmppClient.cpp:1051
 msgid "Stream error"
 msgstr "Dataflytfeil"
 
-#: lobby/XmppClient.cpp:1050
+#: lobby/XmppClient.cpp:1052
 msgid "The incoming stream version is unsupported"
 msgstr "Innkommende videostrøms-versjon ustøttet"
 
-#: lobby/XmppClient.cpp:1051
+#: lobby/XmppClient.cpp:1053
 msgid "The stream has been closed by the server"
 msgstr "Videostrømmen har blitt stengt av tjeneren"
 
-#: lobby/XmppClient.cpp:1055
-msgid "An I/O error occured"
-msgstr "En I/O-feil inntraff"
-
 #: lobby/XmppClient.cpp:1057
+msgid "An I/O error occurred"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1059
 msgid "The connection was refused by the server"
 msgstr "Tilkobling nektet av tjeneren"
 
-#: lobby/XmppClient.cpp:1058
+#: lobby/XmppClient.cpp:1060
 msgid "Resolving the server's hostname failed"
 msgstr "Kunne ikke slå opp tjenerens vertsnavn"
 
-#: lobby/XmppClient.cpp:1059
+#: lobby/XmppClient.cpp:1061
 msgid "This system is out of memory"
 msgstr "Systemet har sluppet opp for minne"
 
-#: lobby/XmppClient.cpp:1061
+#: lobby/XmppClient.cpp:1063
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
 msgstr "Tjenerens sertifikat kunne ikke bekreftes, eller TLS-håndtrykket kunne ikke fullføres"
 
-#: lobby/XmppClient.cpp:1062
+#: lobby/XmppClient.cpp:1064
 msgid "The server did not offer required TLS encryption"
 msgstr "Tjeneren tilbød ikke påkrevd TLS-kryptering"
 
-#: lobby/XmppClient.cpp:1064
+#: lobby/XmppClient.cpp:1066
 msgid "Authentication failed. Incorrect password or account does not exist"
 msgstr "Identitetsbekreftelse mislyktes. Feilaktig passord eller ikke-eksisterende konto."
 
-#: lobby/XmppClient.cpp:1065
+#: lobby/XmppClient.cpp:1067
 msgid "The user or system requested a disconnect"
 msgstr "Brukeren eller systemet forespurte frakobling"
 
-#: lobby/XmppClient.cpp:1066
+#: lobby/XmppClient.cpp:1068
 msgid "There is no active connection"
 msgstr "Det finnes ingen aktiv tilkobling"
 
-#: lobby/XmppClient.cpp:1087
+#: lobby/XmppClient.cpp:1089
 msgid "Success"
 msgstr "Vellykket registrering"
 
-#: lobby/XmppClient.cpp:1088
+#: lobby/XmppClient.cpp:1090
 msgid "Not all necessary information provided"
 msgstr "Ikke all nødvendig informasjon ble oppgitt"
 
-#: lobby/XmppClient.cpp:1089
+#: lobby/XmppClient.cpp:1091
 msgid "Username already exists"
 msgstr "Brukernavnet finnes allerede"
 
@@ -161,7 +142,26 @@ msgstr "Brukernavnet finnes allerede"
 msgid "Saved game to '%s'"
 msgstr "Spill lagret til '%s'"
 
-#: ps/Util.cpp:275 ps/Util.cpp:408
+#: ps/Util.cpp:279 ps/Util.cpp:282 ps/Util.cpp:417 ps/Util.cpp:420
 #, c-format
 msgid "Screenshot written to '%s'"
 msgstr "Skjermbilde lagret til '%s'"
+
+#. Translation: First item is a date and time, item between parenthesis is the
+#. Subversion revision number of the current build.
+#: ps/scripting/JSInterface_Debug.cpp:88
+#, c-format
+msgid "%s (custom build)"
+msgstr "%s (tilpasset utgave)"
+
+#. Translation: First item is a date and time, item between parenthesis is the
+#. Subversion revision number of the current build.
+#. dennis-ignore: *
+#: ps/scripting/JSInterface_Debug.cpp:94
+#, c-format
+msgid "%s (%ls)"
+msgstr "%s (%ls)"
+
+#: ps/scripting/JSInterface_Debug.cpp:115
+msgid "custom build"
+msgstr "tilpasset"

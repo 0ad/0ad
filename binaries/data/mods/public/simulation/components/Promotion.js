@@ -76,9 +76,9 @@ Promotion.prototype.Promote = function(promotedTemplateName)
 
 	var cmpCurrentUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
 	var cmpPromotedUnitAI = Engine.QueryInterface(promotedUnitEntity, IID_UnitAI);
-	var pos = cmpCurrentUnitAI.GetHeldPosition();
-	if (pos)
-		cmpPromotedUnitAI.SetHeldPosition(pos.x, pos.z);
+	var heldPos = cmpCurrentUnitAI.GetHeldPosition();
+	if (heldPos)
+		cmpPromotedUnitAI.SetHeldPosition(heldPos.x, heldPos.z);
 	if (cmpCurrentUnitAI.GetStanceName())
 		cmpPromotedUnitAI.SwitchToStance(cmpCurrentUnitAI.GetStanceName());
 
@@ -123,6 +123,8 @@ Promotion.prototype.Promote = function(promotedTemplateName)
 	Engine.PostMessage(this.entity, MT_EntityRenamed, { "entity": this.entity, "newentity": promotedUnitEntity });
 
 	// Destroy current entity
+	if (cmpCurrentUnitPosition && cmpCurrentUnitPosition.IsInWorld())
+		cmpCurrentUnitPosition.MoveOutOfWorld();
 	Engine.DestroyEntity(this.entity);
 	// save the entity id
 	this.promotedUnitEntity = promotedUnitEntity;

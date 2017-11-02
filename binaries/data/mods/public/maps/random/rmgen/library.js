@@ -2,7 +2,6 @@ const PI = Math.PI;
 const TWO_PI = 2 * Math.PI;
 const TERRAIN_SEPARATOR = "|";
 const SEA_LEVEL = 20.0;
-const CELL_SIZE = 4;
 const HEIGHT_UNITS_PER_METRE = 92;
 const MAP_BORDER_WIDTH = 3;
 const FALLBACK_CIV = "athen";
@@ -615,26 +614,6 @@ function checkIfInClass(x, z, id)
 		return 0;
 
 	return members;
-}
-
-/**
- * Returns the angle of the vector between point 1 and point 2.
- * The angle is counterclockwise from the positive x axis.
- */
-function getAngle(x1, z1, x2, z2)
-{
-	return Math.atan2(z2 - z1, x2 - x1);
-}
-
-/**
- * Returns the gradient of the line between point 1 and 2 in the form dz/dx
- */
-function getGradient(x1, z1, x2, z2)
-{
-	if (x1 == x2 && z1 == z2)
-		return 0;
-
-	return (z1-z2)/(x1-x2);
 }
 
 function getTerrainTexture(x, y)
