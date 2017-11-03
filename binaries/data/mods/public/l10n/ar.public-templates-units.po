@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-09-25 09:03+0200\n"
-"PO-Revision-Date: 2017-09-25 14:45+0000\n"
+"POT-Creation-Date: 2017-11-01 09:02+0100\n"
+"PO-Revision-Date: 2017-11-01 14:53+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -25,6 +25,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ar\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: simulation/templates/template_unit_catafalque.xml:20
+msgid "Catafalque"
+msgstr ""
+
+#: simulation/templates/template_unit_catafalque.xml:23
+msgid "A catafalque that holds the remains of a great leader."
+msgstr ""
+
+#: simulation/templates/template_unit_catafalque.xml:24
+msgid "Relic"
+msgstr ""
 
 #: simulation/templates/template_unit_cavalry.xml:38
 #: simulation/templates/template_unit_cavalry.xml:39
@@ -139,7 +151,7 @@ msgstr "خيّال مسافيّ القتال"
 msgid "Ranged"
 msgstr "مسافيّ"
 
-#: simulation/templates/template_unit_cavalry_ranged_archer.xml:23
+#: simulation/templates/template_unit_cavalry_ranged_archer.xml:22
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:25
 #: simulation/templates/template_unit_champion_infantry_archer.xml:28
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:20
@@ -149,11 +161,11 @@ msgstr "مسافيّ"
 msgid "Archer"
 msgstr "رامٍ"
 
-#: simulation/templates/template_unit_cavalry_ranged_archer.xml:24
+#: simulation/templates/template_unit_cavalry_ranged_archer.xml:23
 msgid "Cavalry Archer"
 msgstr "رامٍ خيّال"
 
-#: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:23
+#: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:22
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:25
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:28
 #: simulation/templates/template_unit_hero_cavalry_javelinist.xml:31
@@ -162,7 +174,7 @@ msgstr "رامٍ خيّال"
 msgid "Javelin"
 msgstr "رمح خفيف"
 
-#: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:24
+#: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:23
 msgid "Cavalry Skirmisher"
 msgstr "مناوش خيّال"
 
@@ -509,6 +521,10 @@ msgstr "جامعٌ مع مدى حياة محدود. إضافةٌ في التعد
 #: simulation/templates/template_unit_support_trader.xml:17
 msgid "Trade resources between your own markets and those of your allies."
 msgstr "تاجر بالموارد بين أسواقك أنت وأسواق حلفائك."
+
+#: simulation/templates/units/athen_catafalque.xml:9
+msgid "Solon"
+msgstr ""
 
 #: simulation/templates/units/athen_cavalry_javelinist_a.xml:4
 #: simulation/templates/units/athen_cavalry_swordsman_a.xml:4
@@ -902,6 +918,10 @@ msgstr "دولوس"
 msgid "Émporos"
 msgstr "تاجر"
 
+#: simulation/templates/units/brit_catafalque.xml:9
+msgid "Cassivellaunus"
+msgstr ""
+
 #: simulation/templates/units/brit_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/gaul_cavalry_javelinist_b.xml:6
 msgid "Gaisaredos"
@@ -1041,6 +1061,10 @@ msgstr "متاجر"
 #: simulation/templates/units/brit_war_dog_b.xml:6
 msgid "Coun"
 msgstr "كلب الحرب"
+
+#: simulation/templates/units/cart_catafalque.xml:8
+msgid "Hasdrubal (Quartermaster)"
+msgstr ""
 
 #: simulation/templates/units/cart_cavalry_javelinist_b.xml:6
 msgid "Numidian Cavalry"
@@ -1243,6 +1267,10 @@ msgstr ""
 msgid "Mekir"
 msgstr ""
 
+#: simulation/templates/units/gaul_catafalque.xml:9
+msgid "Ambiorix"
+msgstr ""
+
 #: simulation/templates/units/gaul_champion_cavalry.xml:5
 msgid "Gallic Noble Cavalry"
 msgstr "خيّال نبيل غاليّ"
@@ -1282,6 +1310,10 @@ msgstr ""
 #: simulation/templates/units/gaul_ship_fishing.xml:5
 msgid "Lembus"
 msgstr "لامبوس"
+
+#: simulation/templates/units/iber_catafalque.xml:9
+msgid "Mandonius"
+msgstr ""
 
 #: simulation/templates/units/iber_cavalry_javelinist_b.xml:6
 msgid "Kantabriako Zaldun"
@@ -1369,6 +1401,17 @@ msgstr ""
 
 #: simulation/templates/units/iber_support_trader.xml:5
 msgid "Merkatari"
+msgstr ""
+
+#: simulation/templates/units/mace_catafalque.xml:8
+msgid "Philip V"
+msgstr ""
+
+#: simulation/templates/units/mace_catafalque.xml:9
+msgid ""
+"Financial Reorganization: Allied with Rome, Philip reorganized the country's"
+" internal affairs and finances, leaving as a legacy reopened mines and a new"
+" currency. Gain a slow trickle of metal."
 msgstr ""
 
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:13
@@ -1509,6 +1552,10 @@ msgstr "امرأة مقدونيّة"
 #: simulation/templates/units/mace_support_healer_b.xml:7
 #: simulation/templates/units/sele_support_healer_b.xml:7
 msgid "Hiereús"
+msgstr ""
+
+#: simulation/templates/units/maur_catafalque.xml:9
+msgid "Bindusara"
 msgstr ""
 
 #: simulation/templates/units/maur_cavalry_javelinist_b.xml:6
@@ -1717,6 +1764,10 @@ msgstr "حمال تفاح فارسيّ"
 msgid "Arštibara"
 msgstr ""
 
+#: simulation/templates/units/pers_catafalque.xml:8
+msgid "Artaxerxes II"
+msgstr ""
+
 #: simulation/templates/units/pers_cavalry_archer_b.xml:11
 msgid "Babylonian Scythed Chariot"
 msgstr "عربة بابليّة مزوّدة بمنجل"
@@ -1914,6 +1965,10 @@ msgid ""
 "have a +25% land trading bonus."
 msgstr "تاجر بالموارد بين أسواقك أنت وأسواق حلفائك. الفرس لهم زيادة +25% في التجارة الأرضية."
 
+#: simulation/templates/units/ptol_catafalque.xml:8
+msgid "Ptolemy III Euergetes (Benefactor)"
+msgstr ""
+
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:5
 msgid "Camel"
 msgstr "جمل"
@@ -2074,6 +2129,10 @@ msgstr "كاهن مصريّ"
 #: simulation/templates/units/ptol_support_healer_b.xml:7
 msgid "Hiereús Aigýptios"
 msgstr "هيريس أيجبتيوش"
+
+#: simulation/templates/units/rome_catafalque.xml:9
+msgid "Lucius Junius Brutus"
+msgstr ""
 
 #: simulation/templates/units/rome_cavalry_javelinist_b.xml:7
 msgid "Italian Allied Cavalry"
@@ -2237,6 +2296,10 @@ msgstr "مناوش سامنيّ"
 msgid "Samnite Spearman"
 msgstr "رمّاح سامنيّ"
 
+#: simulation/templates/units/sele_catafalque.xml:10
+msgid "Antiochus I Soter (Savior)"
+msgstr ""
+
 #: simulation/templates/units/sele_cavalry_archer_b.xml:7
 msgid "Dahae Horse Archer"
 msgstr "رامٍ على حصان داهانيّ"
@@ -2380,6 +2443,10 @@ msgstr ""
 #: simulation/templates/units/sele_support_female_citizen.xml:7
 msgid "Syrian Woman"
 msgstr "امرأة سوريّة"
+
+#: simulation/templates/units/spart_catafalque.xml:10
+msgid "Lycurgus"
+msgstr ""
 
 #: simulation/templates/units/spart_cavalry_javelinist_b.xml:7
 msgid "Perioikoi Cavalryman"
