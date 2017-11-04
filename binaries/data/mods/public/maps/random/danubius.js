@@ -477,8 +477,7 @@ createLayeredPatches(
 	[1, 1],
 	avoidClasses(clForest, 0, clPlayer, 10, clWater, 2, clDirt, 2, clHill, 1, clGauls, 5, clPath, 1),
 	scaleByMapSize(15, 45),
-	clDirt
-);
+	clDirt);
 RMS.SetProgress(55);
 
 log("Creating islands...");

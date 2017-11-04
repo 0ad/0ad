@@ -108,7 +108,7 @@ for (var i = 0; i < numPlayers; ++i)
 	mAngle += randFloat(PI/8, PI/4);
 	mX = round(fx + mDist * cos(mAngle));
 	mZ = round(fz + mDist * sin(mAngle));
-	createStoneMineFormation(mX, mZ, tDirt4);
+	createStoneMineFormation(mX, mZ, oStoneSmall, tDirt4);
 	addToClass(mX, mZ, clPlayer);
 
 	// create starting trees
@@ -166,22 +166,25 @@ createLayeredPatches(
 	[scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
 	[[tDirt,tDirt3], [tDirt2,tDirt4]],
 	[2],
-	avoidClasses(clWater, 3, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12)
-);
+	avoidClasses(clWater, 3, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12),
+	scaleByMapSize(15, 45),
+	clDirt);
 
 log("Creating shrubs...");
 createPatches(
 	[scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
 	tGrassShrubs,
-	avoidClasses(clWater, 3, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12)
-);
+	avoidClasses(clWater, 3, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12),
+	scaleByMapSize(15, 45),
+	clDirt);
 
 log("Creating grass patches...");
 createPatches(
 	[scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
 	tSecondary,
-	avoidClasses(clWater, 3, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12)
-);
+	avoidClasses(clWater, 3, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12),
+	scaleByMapSize(15, 45),
+	clDirt);
 RMS.SetProgress(60);
 
 log("Creating stone mines...");
@@ -190,8 +193,8 @@ createMines(
 		[new SimpleObject(oStoneSmall, 0,2, 0,4)],
 		[new SimpleObject(oStoneSmall, 2,5, 1,3)]
 	],
-	avoidClasses(clWater, 4, clForest, 4, clPlayer, 20, clRock, 10, clHill, 4)
-);
+	avoidClasses(clWater, 4, clForest, 4, clPlayer, 20, clRock, 10, clHill, 4),
+	clRock);
 
 log("Creating metal mines...");
 createMines(
@@ -261,8 +264,8 @@ createFood(
 		3 * numPlayers,
 		3 * numPlayers,
 	],
-	avoidClasses(clFood, 20, clWater, 5, clHill, 2, clPlayer, 16)
-);
+	avoidClasses(clFood, 20, clWater, 5, clHill, 2, clPlayer, 16),
+	clFood);
 
 createFood(
 	[
@@ -271,8 +274,8 @@ createFood(
 	[
 		3 * numPlayers,
 	],
-	stayClasses(clWater, 6)
-);
+	stayClasses(clWater, 6),
+	clFood);
 
 createFood(
 	[
@@ -281,8 +284,8 @@ createFood(
 	[
 		randIntInclusive(1, 4) * numPlayers + 2
 	],
-	avoidClasses(clWater, 3, clForest, 2, clPlayer, 20, clHill, 3, clFood, 10)
-);
+	avoidClasses(clWater, 3, clForest, 2, clPlayer, 20, clHill, 3, clFood, 10),
+	clFood);
 
 createFood(
 	[

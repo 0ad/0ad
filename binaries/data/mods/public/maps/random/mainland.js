@@ -132,7 +132,7 @@ for (var i = 0; i < numPlayers; i++)
 }
 RMS.SetProgress(20);
 
-createBumps();
+createBumps(avoidClasses(clPlayer, 20));
 
 if (randBool())
 	createHills([tCliff, tCliff, tHill], avoidClasses(clPlayer, 20, clHill, 15), clHill, scaleByMapSize(3, 15));
@@ -152,15 +152,18 @@ log("Creating dirt patches...");
 createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
  [[tMainTerrain,tTier1Terrain],[tTier1Terrain,tTier2Terrain], [tTier2Terrain,tTier3Terrain]],
- [1,1]
-);
+ [1, 1],
+ avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12),
+ scaleByMapSize(15, 45),
+ clDirt);
 
 log("Creating grass patches...");
 createPatches(
  [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
- tTier4Terrain
-);
-
+ tTier4Terrain,
+ avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12),
+ scaleByMapSize(15, 45),
+ clDirt);
 RMS.SetProgress(55);
 
 log("Creating stone mines...");
@@ -168,8 +171,9 @@ createMines(
  [
   [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
   [new SimpleObject(oStoneSmall, 2,5, 1,3)]
- ]
-);
+ ],
+ avoidClasses(clForest, 1, clPlayer, 20, clRock, 10, clHill, 1),
+ clRock);
 
 log("Creating metal mines...");
 createMines(

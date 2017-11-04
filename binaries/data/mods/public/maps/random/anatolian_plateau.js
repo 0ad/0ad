@@ -160,8 +160,7 @@ createLayeredPatches(
  [1,1],
  avoidClasses(clForest, 0, clHill, 0, clDirt, 2, clPlayer, 10),
  scaleByMapSize(50, 70),
- clDirt
-);
+ clDirt);
 
 log("Creating dirt patches...");
 createLayeredPatches(
@@ -170,8 +169,7 @@ createLayeredPatches(
  [1],
  avoidClasses(clForest, 0, clHill, 0, clDirt, 2, clPlayer, 10),
  scaleByMapSize(50, 90),
- clDirt
-);
+ clDirt);
 
 RMS.SetProgress(55);
 
@@ -182,8 +180,7 @@ createLayeredPatches(
  [1],
  avoidClasses(clHill, 0, clPlayer, 8),
  scaleByMapSize(30, 90),
- clDirt
-);
+ clDirt);
 
 RMS.SetProgress(55);
 

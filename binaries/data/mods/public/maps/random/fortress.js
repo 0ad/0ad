@@ -234,16 +234,18 @@ createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
  [[tGrass,tGrassA],[tGrassA,tGrassB], [tGrassB,tGrassC]],
  [1,1],
- avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 1)
-);
+ avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 1),
+ scaleByMapSize(15, 45),
+ clDirt);
 RMS.SetProgress(55);
 
 log("Creating grass patches...");
 createPatches(
  [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
  tGrassPatch,
- avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 1)
-);
+ avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 1),
+ scaleByMapSize(15, 45),
+ clDirt);
 RMS.SetProgress(60);
 
 log("Creating stone mines...");
@@ -252,8 +254,8 @@ createMines(
   [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
   [new SimpleObject(oStoneSmall, 2,5, 1,3)]
  ],
- avoidClasses(clWater, 0, clForest, 1, clPlayer, 5, clRock, 10, clHill, 1)
-);
+ avoidClasses(clWater, 0, clForest, 1, clPlayer, 5, clRock, 10, clHill, 1),
+ clRock);
 RMS.SetProgress(65);
 
 log("Creating metal mines...");

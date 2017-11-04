@@ -208,15 +208,17 @@ createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
  [[tMainTerrain,tTier1Terrain],[tTier1Terrain,tTier2Terrain], [tTier2Terrain,tTier3Terrain]],
  [1,1],
- [avoidClasses(clForest, 0, clHill, 0, clDirt, 3, clPlayer, 12), stayClasses(clLand, 7)]
-);
+ [avoidClasses(clForest, 0, clHill, 0, clDirt, 3, clPlayer, 12), stayClasses(clLand, 7)],
+ scaleByMapSize(15, 45),
+ clDirt);
 
 log("Creating grass patches...");
 createPatches(
  [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
  tTier4Terrain,
- [avoidClasses(clForest, 0, clHill, 0, clDirt, 3, clPlayer, 12), stayClasses(clLand, 7)]
-);
+ [avoidClasses(clForest, 0, clHill, 0, clDirt, 3, clPlayer, 12), stayClasses(clLand, 7)],
+ scaleByMapSize(15, 45),
+ clDirt);
 RMS.SetProgress(55);
 
 log("Creating stone mines...");
@@ -225,7 +227,8 @@ createMines(
   [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
   [new SimpleObject(oStoneSmall, 2,5, 1,3)]
  ],
- [avoidClasses(clForest, 1, clPlayer, 7, clRock, 10, clHill, 1), stayClasses(clLand, 6)]
+ [avoidClasses(clForest, 1, clPlayer, 7, clRock, 10, clHill, 1), stayClasses(clLand, 6)],
+ clRock
 );
 
 log("Creating metal mines...");
@@ -238,7 +241,6 @@ createMines(
 );
 RMS.SetProgress(65);
 
-log("Creating decoration...");
 var planetm = currentBiome() == "tropic" ? 8 : 1;
 createDecoration
 (
@@ -259,7 +261,6 @@ createDecoration
 );
 RMS.SetProgress(70);
 
-log("Creating animals...");
 createFood
 (
  [
@@ -274,7 +275,6 @@ createFood
 );
 RMS.SetProgress(75);
 
-log("Creating fruits...");
 createFood
 (
  [
@@ -287,7 +287,6 @@ createFood
 );
 RMS.SetProgress(80);
 
-log("Creating fish...");
 createFood
 (
  [

@@ -91,7 +91,7 @@ for (var i = 0; i < numPlayers; i++)
 	mAngle += randFloat(PI/8, PI/4);
 	mX = round(fx + mDist * cos(mAngle));
 	mZ = round(fz + mDist * sin(mAngle));
-	createStoneMineFormation(mX, mZ, tDirt4);
+	createStoneMineFormation(mX, mZ, oStoneSmall, tDirt4);
 	addToClass(mX, mZ, clPlayer);
 	// create the city patch
 	var cityRadius = radius/3;
@@ -157,7 +157,7 @@ for (var i = 0; i < scaleByMapSize(12,30); ++i)
 	var mZ = randIntExclusive(0, mapSize);
 	if (playerConstraint.allows(mX, mZ) && minesConstraint.allows(mX, mZ) && waterConstraint.allows(mX, mZ))
 	{
-		createStoneMineFormation(mX, mZ, tDirt4);
+		createStoneMineFormation(mX, mZ, oStoneSmall, tDirt4);
 		addToClass(mX, mZ, clRock);
 	}
 }

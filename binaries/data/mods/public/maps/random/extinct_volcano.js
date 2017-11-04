@@ -266,6 +266,7 @@ createLayeredPatches(
 		clGrass, 5,
 		clBumps, 0,
 		clPlayer, 0),
+	scaleByMapSize(3, 8),
 	clDirt);
 RMS.SetProgress(50);
 

@@ -318,7 +318,7 @@ paintTileClassBasedOnHeight(0, 5, 3, clLand);
 
 RMS.SetProgress(85);
 
-createBumps();
+createBumps(avoidClasses(clPlayer, 20));
 
 createMines(
 [
@@ -370,16 +370,16 @@ createFood(
 		[new SimpleObject(oSecondaryHuntableAnimal, 2, 3, 0, 2)]
 	],
 	[3 * numPlayers, 3 * numPlayers],
-	[avoidClasses(clForest, 0, clPlayer, 20, clHill, 1, clRock, 6, clMetal, 6), stayClasses(clLand, 2)]
-);
+	[avoidClasses(clForest, 0, clPlayer, 20, clHill, 1, clRock, 6, clMetal, 6), stayClasses(clLand, 2)],
+	clFood);
 
 createFood(
 	[
 		[new SimpleObject(oFruitBush, 5, 7, 0, 4)]
 	],
 	[3 * numPlayers],
-	[avoidClasses(clForest, 0, clPlayer, 15, clHill, 1, clFood, 4, clRock, 6, clMetal, 6), stayClasses(clLand, 2)]
-);
+	[avoidClasses(clForest, 0, clPlayer, 15, clHill, 1, clFood, 4, clRock, 6, clMetal, 6), stayClasses(clLand, 2)],
+	clFood);
 
 if (currentBiome() == "desert")
 {
