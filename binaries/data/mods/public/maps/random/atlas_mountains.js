@@ -135,11 +135,12 @@ createMountains(tCliff, avoidClasses(clPlayer, 20, clHill, 8), clHill, scaleByMa
 
 RMS.SetProgress(25);
 
+var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
 createForests(
  [tGrass, tForestFloor, tForestFloor, pForest1, pForest2],
  avoidClasses(clPlayer, 20, clForest, 14, clHill, 1),
  clForest,
- 0.6);
+ forestTrees);
 
 RMS.SetProgress(40);
 
@@ -148,16 +149,18 @@ createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
  [tGrassDirt,tDirt],
  [2],
- avoidClasses(clForest, 0, clHill, 0, clDirt, 3, clPlayer, 10)
-);
+ avoidClasses(clForest, 0, clHill, 0, clDirt, 3, clPlayer, 10),
+ scaleByMapSize(15, 45),
+ clDirt);
 
 log("Creating grass patches...");
 createLayeredPatches(
  [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
  [tGrass2,tGrassPatch],
  [1],
- avoidClasses(clForest, 0, clHill, 0, clDirt, 3, clPlayer, 10, clGrass, 15)
-);
+ avoidClasses(clForest, 0, clHill, 0, clDirt, 3, clPlayer, 10, clGrass, 15),
+ scaleByMapSize(15, 45),
+ clDirt);
 
 RMS.SetProgress(50);
 
@@ -167,8 +170,8 @@ createMines(
   [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
   [new SimpleObject(oStoneSmall, 2,5, 1,3)]
  ],
- avoidClasses(clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clHill, 2)
-);
+ avoidClasses(clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clHill, 2),
+ clRock);
 
 log("Creating metal mines...");
 createMines(
@@ -248,17 +251,15 @@ RMS.SetProgress(80);
 
 createStragglerTrees(
 	[oCarob, oAleppoPine],
-	avoidClasses(clForest, 1, clHill, 1, clPlayer, 10, clMetal, 6, clRock, 6, clTreasure, 4));
+	avoidClasses(clForest, 1, clHill, 1, clPlayer, 10, clMetal, 6, clRock, 6, clTreasure, 4),
+	clForest,
+	stragglerTrees);
 
-log("Creating hill trees...");
-var types = [aCarob, aAleppoPine];
-var num = floor(0.2 * g_numStragglerTrees / types.length);
-for (let type of types)
-	createObjectGroupsDeprecated(
-		new SimpleGroup([new SimpleObject(type, 1, 1, 0, 3)], true, clForest),
-		0,
-		stayClasses(clHill, 2),
-		num);
+createStragglerTrees(
+	[aCarob, aAleppoPine],
+	stayClasses(clHill, 2),
+	clForest,
+	stragglerTrees / 5);
 
 setFogFactor(0.2);
 setFogThickness(0.14);

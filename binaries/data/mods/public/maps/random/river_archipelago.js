@@ -252,24 +252,20 @@ createBumps(avoidClasses(clPlayer, 8, clWater, 2), scaleByMapSize(20, 150), 2, 8
 RMS.SetProgress(50);
 
 log("Creating forests...");
-var P_FOREST = 0.7;
-var totalTrees = scaleByMapSize(1000, 4000);
-var numForest = totalTrees * P_FOREST;
-var numStragglers = totalTrees * (1.0 - P_FOREST);
-
+var [forestTrees, stragglerTrees] = getTreeCounts(1000, 4000, 0.7);
 var types = [
 	[[tGrass, tGrass, tGrass, tGrass, pForestD], [tGrass, tGrass, tGrass, pForestD]],
 	[[tGrass, tGrass, tGrass, tGrass, pForestP1], [tGrass, tGrass, tGrass, pForestP1]],
 	[[tGrass, tGrass, tGrass, tGrass, pForestP2], [tGrass, tGrass, tGrass, pForestP2]]
 ];
-var size = numForest / (scaleByMapSize(3, 6) * numPlayers);
+var size = forestTrees / (scaleByMapSize(3, 6) * numPlayers);
 var num = Math.floor(size / types.length);
 for (let type of types)
 	createAreas(
 		new ChainPlacer(
 			1,
 			Math.floor(scaleByMapSize(3, 5)),
-			numForest / (num * Math.floor(scaleByMapSize(2, 4))),
+			forestTrees / (num * Math.floor(scaleByMapSize(2, 4))),
 			0.5),
 		[
 			new LayeredPainter(type, [2]),
@@ -283,23 +279,20 @@ for (let type of types)
 			clWater, 2),
 		num);
 
-log("Creating straggler trees...");
-var types = [oTree, oPalm1, oPalm2];
-var num = Math.floor(numStragglers / types.length);
-for (let type of types)
-	createObjectGroupsDeprecated(
-		new SimpleGroup([new SimpleObject(type, 1, 1, 0, 3)], true, clForest),
-		0,
-		avoidClasses(
-			clWater, 5,
-			clForest, 1,
-			clHill, 1,
-			clPlayer, 8,
-			clBaseResource, 4,
-			clGaia, 1,
-			clMetal, 4,
-			clRock, 4),
-		num);
+createStragglerTrees(
+	[oTree, oPalm1, oPalm2],
+	avoidClasses(
+		clWater, 5,
+		clForest, 1,
+		clHill, 1,
+		clPlayer, 8,
+		clBaseResource, 4,
+		clGaia, 1,
+		clMetal, 4,
+		clRock, 4),
+	clForest,
+	stragglerTrees);
+
 RMS.SetProgress(60);
 
 log("Creating grass patches...");

@@ -176,11 +176,12 @@ paintTerrainBasedOnHeight(1, 2, 0, tShore);
 RMS.SetProgress(40);
 createBumps(avoidClasses(clWater, 2, clPlayer, 20));
 
+var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
 createForests(
  [tForestFloor, tForestFloor, tForestFloor, pForest, pForest],
  avoidClasses(clPlayer, 20, clForest, 17, clWater, 2, clBaseResource, 3),
- clForest
-);
+ clForest,
+ forestTrees);
 
 RMS.SetProgress(50);
 
@@ -194,8 +195,9 @@ createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
  [[tGrass,tGrassSand50],[tGrassSand50,tGrassSand25], [tGrassSand25,tGrass]],
  [1,1],
- avoidClasses(clForest, 0, clGrass, 2, clPlayer, 10, clWater, 2, clDirt, 2, clHill, 1)
-);
+ avoidClasses(clForest, 0, clGrass, 2, clPlayer, 10, clWater, 2, clDirt, 2, clHill, 1),
+ scaleByMapSize(15, 45),
+ clDirt);
 
 RMS.SetProgress(55);
 
@@ -204,8 +206,9 @@ createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
  [tDirt3, tDirt2,[tDirt,tMainDirt], [tDirtCracks,tMainDirt]],
  [1,1,1],
- avoidClasses(clForest, 0, clDirt, 2, clPlayer, 10, clWater, 2, clGrass, 2, clHill, 1)
-);
+ avoidClasses(clForest, 0, clDirt, 2, clPlayer, 10, clWater, 2, clGrass, 2, clHill, 1),
+ scaleByMapSize(15, 45),
+ clDirt);
 
 RMS.SetProgress(60);
 
@@ -242,8 +245,8 @@ createMines(
   [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
   [new SimpleObject(oStoneSmall, 2,5, 1,3)]
  ],
- stayClasses(clIsland, 4)
-);
+ stayClasses(clIsland, 4),
+ clRock);
 
 log("Creating island metal mines...");
 createMines(
@@ -260,8 +263,8 @@ createMines(
   [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
   [new SimpleObject(oStoneSmall, 2,5, 1,3)]
  ],
- avoidClasses(clForest, 1, clPlayer, 20, clRock, 10, clWater, 1, clHill, 1)
-);
+ avoidClasses(clForest, 1, clPlayer, 20, clRock, 10, clWater, 1, clHill, 1),
+ clRock);
 
 log("Creating metal mines...");
 createMines(
@@ -330,11 +333,15 @@ RMS.SetProgress(90);
 var types = [oDatePalm, oSDatePalm, oCarob, oFanPalm, oPoplar, oCypress];
 createStragglerTrees(
 	types,
-	avoidClasses(clForest, 1, clWater, 2, clPlayer, 12, clMetal, 6, clHill, 1));
+	avoidClasses(clForest, 1, clWater, 2, clPlayer, 12, clMetal, 6, clHill, 1),
+	clForest,
+	stragglerTrees);
 
-log("Creating straggler island trees...");
-g_numStragglerTrees *= 10;
-createStragglerTrees(types, stayClasses(clIsland, 4));
+createStragglerTrees(
+	types,
+	stayClasses(clIsland, 4),
+	clForest,
+	stragglerTrees * 10);
 
 setSkySet("cumulus");
 setSunColor(0.866667, 0.776471, 0.486275);

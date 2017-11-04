@@ -193,11 +193,12 @@ RMS.SetProgress(40);
 
 createBumps(avoidClasses(clWater, 2, clPlayer, 20));
 
+var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
 createForests(
  [tForestFloor, tForestFloor, tForestFloor, pForest, pForest],
  avoidClasses(clPlayer, 20, clForest, 17, clWater, 2, clBaseResource, 3),
- clForest
-);
+ clForest,
+ forestTrees);
 
 RMS.SetProgress(50);
 
@@ -211,8 +212,9 @@ createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
  [[tGrass,tGrassSand50],[tGrassSand50,tGrassSand25], [tGrassSand25,tGrass]],
  [1,1],
- avoidClasses(clForest, 0, clGrass, 2, clPlayer, 10, clWater, 2, clDirt, 2, clHill, 1)
-);
+ avoidClasses(clForest, 0, clGrass, 2, clPlayer, 10, clWater, 2, clDirt, 2, clHill, 1),
+ scaleByMapSize(15, 45),
+ clDirt);
 
 RMS.SetProgress(55);
 
@@ -221,8 +223,9 @@ createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
  [tDirt3, tDirt2,[tDirt,tMainDirt], [tDirtCracks,tMainDirt]],
  [1,1,1],
- avoidClasses(clForest, 0, clDirt, 2, clPlayer, 10, clWater, 2, clGrass, 2, clHill, 1)
-);
+ avoidClasses(clForest, 0, clDirt, 2, clPlayer, 10, clWater, 2, clGrass, 2, clHill, 1),
+ scaleByMapSize(15, 45),
+ clDirt);
 
 RMS.SetProgress(60);
 
@@ -232,8 +235,8 @@ createMines(
   [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
   [new SimpleObject(oStoneSmall, 2,5, 1,3)]
  ],
- avoidClasses(clForest, 4, clPlayer, 15, clRock, 10, clWater, 4, clHill, 4)
-);
+ avoidClasses(clForest, 4, clPlayer, 15, clRock, 10, clWater, 4, clHill, 4),
+ clRock);
 
 log("Creating metal mines...");
 createMines(
@@ -299,10 +302,11 @@ createFood
 
 RMS.SetProgress(90);
 
-log("Creating straggler trees...");
 createStragglerTrees(
 	[oDatePalm, oSDatePalm, oCarob, oFanPalm, oPoplar, oCypress],
-	avoidClasses(clForest, 1, clWater, 2, clPlayer, 8, clBaseResource, 6, clMetal, 6, clRock, 6, clHill, 1));
+	avoidClasses(clForest, 1, clWater, 2, clPlayer, 8, clBaseResource, 6, clMetal, 6, clRock, 6, clHill, 1),
+	clForest,
+	stragglerTrees);
 
 setSkySet("sunny");
 setSunColor(0.917, 0.828, 0.734);

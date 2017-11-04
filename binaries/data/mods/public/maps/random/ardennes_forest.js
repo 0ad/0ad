@@ -328,36 +328,31 @@ for (var ix = 0; ix < mapSize; ix++)
 
 RMS.SetProgress(60);
 
-// Calculate desired number of trees for map (based on size)
-const MIN_TREES = 400;
-const MAX_TREES = 6000;
-const P_FOREST = 0.8;
-const P_FOREST_JOIN = 0.25;
-
-var totalTrees = scaleByMapSize(MIN_TREES, MAX_TREES);
-var numForest = totalTrees * P_FOREST * (1.0 - P_FOREST_JOIN);
-var numForestJoin = totalTrees * P_FOREST * P_FOREST_JOIN;
-var numStragglers = totalTrees * (1.0 - P_FOREST);
-
 log("Creating forests...");
-var num = numForest / (scaleByMapSize(6,16) * numPlayers);
-placer = new ClumpPlacer(numForest / num, 0.1, 0.1, 1);
-painter = new TerrainPainter(pForest);
+var [forestTrees, stragglerTrees] = getTreeCounts(400, 6000, 0.8);
+var [forestTreesJoin, forestTrees] = getTreeCounts(forestTrees, forestTrees, 0.25);
+
+var num = forestTrees / (scaleByMapSize(6, 16) * numPlayers);
 createAreasInAreas(
-	placer,
-	[painter, paintClass(clForest)],
+	new ClumpPlacer(forestTrees / num, 0.1, 0.1, 1),
+	[
+		new TerrainPainter(pForest),
+		paintClass(clForest)
+	],
 	avoidClasses(clPlayer, 5, clBaseResource, 4, clForest, 6, clHill, 4),
 	num,
 	100,
 	[explorableArea]
 );
 
-var num = numForestJoin / (scaleByMapSize(4,6) * numPlayers);
-placer = new ClumpPlacer(numForestJoin / num, 0.1, 0.1, 1);
-painter = new TerrainPainter(pForest);
+var num = forestTreesJoin / (scaleByMapSize(4,6) * numPlayers);
 createAreasInAreas(
-	placer,
-	[painter, paintClass(clForest), paintClass(clForestJoin)],
+	new ClumpPlacer(forestTreesJoin / num, 0.1, 0.1, 1),
+	[
+		new TerrainPainter(pForest),
+		paintClass(clForest),
+		paintClass(clForestJoin)
+	],
 	[avoidClasses(clPlayer, 5, clBaseResource, 4, clForestJoin, 5, clHill, 4), borderClasses(clForest, 1, 4)],
 	num,
 	100,
@@ -475,7 +470,7 @@ RMS.SetProgress(90);
 
 log("Creating straggler trees...");
 var types = [oOak, oOakLarge, oPine, oAleppoPine];
-var num = floor(numStragglers / types.length);
+var num = Math.floor(stragglerTrees / types.length);
 for (let type of types)
 	createObjectGroupsByAreasDeprecated(
 		new SimpleGroup([new SimpleObject(type, 1, 1, 0, 3)], true, clForest),

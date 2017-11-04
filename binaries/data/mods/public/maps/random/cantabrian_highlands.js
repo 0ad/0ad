@@ -209,11 +209,12 @@ log("Creating hills...");
 createHills([tCliff, tCliff, tHill], avoidClasses(clPlayer, 2, clWater, 5, clHill, 15), clHill, scaleByMapSize(1, 4) * numPlayers);
 RMS.SetProgress(35);
 
+var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
 createForests(
  [tGrass, tGrassDForest, tGrassPForest, pForestP, pForestD],
  avoidClasses(clPlayer, 1, clWater, 3, clForest, 17, clHill, 1),
- clForest
-);
+ clForest,
+ forestTrees);
 RMS.SetProgress(40);
 
 log("Creating dirt patches...");
@@ -221,8 +222,9 @@ createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
  [[tGrass,tGrassA],[tGrassA,tGrassB], [tGrassB,tGrassC]],
  [1,1],
- avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 0)
-);
+ avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 0),
+ scaleByMapSize(15, 45),
+ clDirt);
 RMS.SetProgress(45);
 
 log("Creating grass patches...");
@@ -230,8 +232,9 @@ createLayeredPatches(
  [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
  [tGrassPatchBlend, tGrassPatch],
  [1],
- avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 0)
-);
+ avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 0),
+ scaleByMapSize(15, 45),
+ clDirt);
 RMS.SetProgress(50);
 
 log("Creating stone mines...");
@@ -240,8 +243,8 @@ createMines(
   [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
   [new SimpleObject(oStoneSmall, 2,5, 1,3)]
  ],
- avoidClasses(clWater, 0, clForest, 1, clPlayer, 5, clRock, 10, clHill, 1)
-);
+ avoidClasses(clWater, 0, clForest, 1, clPlayer, 5, clRock, 10, clHill, 1),
+ clRock);
 RMS.SetProgress(55);
 
 log("Creating metal mines...");
@@ -301,7 +304,9 @@ RMS.SetProgress(85);
 
 createStragglerTrees(
 	[oOak, oOakLarge, oPine, oApple],
-	avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 1, clMetal, 6, clRock, 6));
+	avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 1, clMetal, 6, clRock, 6),
+	clForest,
+	stragglerTrees);
 RMS.SetProgress(90);
 
 setSkySet("cirrus");

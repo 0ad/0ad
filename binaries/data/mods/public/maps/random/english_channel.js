@@ -242,12 +242,12 @@ RMS.SetProgress(30);
 createHills([tCliff, tCliff, tHill], avoidClasses(clPlayer, 20, clHill, 15, clWater, 5), clHill, scaleByMapSize(1, 4) * numPlayers);
 RMS.SetProgress(50);
 
+var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
 createForests(
  [tGrass, tGrassDForest, tGrassDForest, pForestD, pForestD],
  avoidClasses(clPlayer, 20, clForest, 17, clHill, 0, clWater, 6),
  clForest,
- 1.0
-);
+ forestTrees);
 RMS.SetProgress(70);
 
 log("Creating dirt patches...");
@@ -255,16 +255,18 @@ createLayeredPatches(
  [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
  [[tGrass,tGrassA], tGrassB, [tGrassB,tGrassC]],
  [1,1],
- avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 6)
-);
+ avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 6),
+ scaleByMapSize(15, 45),
+ clDirt);
 
 log("Creating grass patches...");
 createPatches(
  [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
  [tGrassPatchBlend, tGrassPatch],
  [1],
- avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 6)
-);
+ avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 6),
+ scaleByMapSize(15, 45),
+ clDirt);
 RMS.SetProgress(80);
 
 log("Creating stone mines...");
@@ -273,8 +275,8 @@ createMines(
   [new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)],
   [new SimpleObject(oStoneSmall, 2,5, 1,3)]
  ],
- avoidClasses(clWater, 2, clForest, 1, clPlayer, 20, clRock, 10, clHill, 2)
-);
+ avoidClasses(clWater, 2, clForest, 1, clPlayer, 20, clRock, 10, clHill, 2),
+ clRock);
 
 log("Creating metal mines...");
 createMines(
@@ -352,10 +354,11 @@ createFood
  [avoidClasses(clFood, 6), stayClasses(clWater, 4)]
 );
 
-log("Creating straggler trees...");
 createStragglerTrees(
 	[oBeech, oPoplar, oApple],
-	avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 8, clMetal, 6, clRock, 6));
+	avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 8, clMetal, 6, clRock, 6),
+	clForest,
+	stragglerTrees);
 
 setSkySet("cirrus");
 setWaterColor(0.114, 0.192, 0.463);

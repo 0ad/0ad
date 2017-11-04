@@ -287,30 +287,8 @@ createAreas(
 	[avoidClasses(clPlayer, 2, clHill, 15), stayClasses(clLand, 0)],
 	scaleByMapSize(4, 13));
 
-// calculate desired number of trees for map (based on size)
-if (currentBiome() == "savanna")
-{
-	var MIN_TREES = 200;
-	var MAX_TREES = 1250;
-	var P_FOREST = 0;
-}
-else if (currentBiome() == "tropic")
-{
-	var MIN_TREES = 1000;
-	var MAX_TREES = 6000;
-	var P_FOREST = 0.52;
-}
-else
-{
-	var MIN_TREES = 500;
-	var MAX_TREES = 3000;
-	var P_FOREST = 0.7;
-}
-var totalTrees = scaleByMapSize(MIN_TREES, MAX_TREES);
-var numForest = totalTrees * P_FOREST;
-var numStragglers = totalTrees * (1.0 - P_FOREST);
-
 log("Creating forests...");
+var [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
 var types = [
 	[[tForestFloor2, tMainTerrain, pForest1], [tForestFloor2, pForest1]],
 	[[tForestFloor1, tMainTerrain, pForest2], [tForestFloor1, pForest2]]
@@ -318,11 +296,11 @@ var types = [
 
 if (currentBiome() != "savanna")
 {
-	var size = numForest / (scaleByMapSize(3,6) * numPlayers);
+	var size = forestTrees / (scaleByMapSize(3,6) * numPlayers);
 	var num = floor(size / types.length);
 	for (let type of types)
 		createAreas(
-			new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), numForest / (num * Math.floor(scaleByMapSize(2, 5))), 0.5),
+			new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), forestTrees / (num * Math.floor(scaleByMapSize(2, 5))), 0.5),
 			[
 				new LayeredPainter(type, [2]),
 				paintClass(clForest)
@@ -445,15 +423,11 @@ createObjectGroupsDeprecated(group, 0,
 
 RMS.SetProgress(85);
 
-log("Creating straggler trees...");
-var types = [oTree1, oTree2, oTree4, oTree3];
-var num = floor(numStragglers / types.length);
-for (let type of types)
-	createObjectGroupsDeprecated(
-		new SimpleGroup([new SimpleObject(type, 1, 1, 0, 3)], true, clForest),
-		0,
-		[avoidClasses(clForest, 1, clHill, 1, clPlayer, 0, clMetal, 6, clRock, 6), stayClasses(clLand, 6)],
-		num);
+createStragglerTrees(
+	[oTree1, oTree2, oTree4, oTree3],
+	[avoidClasses(clForest, 1, clHill, 1, clPlayer, 0, clMetal, 6, clRock, 6), stayClasses(clLand, 6)],
+	clForest,
+	stragglerTrees);
 
 var planetm = 1;
 if (currentBiome() == "tropic")

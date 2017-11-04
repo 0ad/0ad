@@ -440,15 +440,12 @@ createObjectGroups(group, 0,
 );
 RMS.SetProgress(60);
 
-log("Creating straggler trees...");
-for (let tree of [oCarob, oBeech, oLombardyPoplar, oLombardyPoplar, oPine])
-{
-	group = new SimpleGroup([new SimpleObject(tree, 1,1, 0,1)], true, clForest);
-	createObjectGroupsDeprecated(group, 0,
-		avoidClasses(clWater, 5, clCliff, 4, clForest, 2, clPlayer, 15, clMetal, 6, clRock, 6),
-		scaleByMapSize(2, 38), 50
-	);
-}
+createStragglerTrees(
+	[oCarob, oBeech, oLombardyPoplar, oLombardyPoplar, oPine],
+	avoidClasses(clWater, 5, clCliff, 4, clForest, 2, clPlayer, 15, clMetal, 6, clRock, 6),
+	clForest,
+	scaleByMapSize(10, 190));
+
 RMS.SetProgress(70);
 
 log("Creating straggler cypresses...");

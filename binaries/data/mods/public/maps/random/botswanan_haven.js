@@ -375,17 +375,11 @@ createObjectGroupsDeprecated(
 	50);
 RMS.SetProgress(80);
 
-log("Creating straggler trees...");
-let treeTypes = [oToona, oBaobab, oBush, oBush];
-for (let treeType of treeTypes)
-	createObjectGroupsDeprecated(
-		new SimpleGroup(
-			[new SimpleObject(treeType, 1, 3, 0, 3)],
-			true,
-			clForest),
-		0,
-		avoidClasses(clForest, 1, clWater, 1, clHill, 1, clPlayer, 13, clMetal, 1, clRock, 1),
-		Math.floor(scaleByMapSize(60, 500) / treeTypes.length));
+createStragglerTrees(
+	[oToona, oBaobab, oBush, oBush],
+	avoidClasses(clForest, 1, clWater, 1, clHill, 1, clPlayer, 13, clMetal, 1, clRock, 1),
+	clForest,
+	scaleByMapSize(60, 500));
 RMS.SetProgress(85);
 
 log("Creating small grass tufts...");

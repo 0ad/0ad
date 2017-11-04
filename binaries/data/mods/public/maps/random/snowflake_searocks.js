@@ -339,40 +339,18 @@ for (let ix = 0; ix < mapSize; ++ix)
 				}
 			}
 
-if (currentBiome() == "savanna")
-{
-	var MIN_TREES = 200;
-	var MAX_TREES = 1250;
-	var P_FOREST = 0.02;
-}
-else if (currentBiome() == "tropic")
-{
-	var MIN_TREES = 1000;
-	var MAX_TREES = 6000;
-	var P_FOREST = 0.6;
-}
-else
-{
-	var MIN_TREES = 500;
-	var MAX_TREES = 3000;
-	var P_FOREST = 0.7;
-}
-
-var totalTrees = scaleByMapSize(MIN_TREES, MAX_TREES);
-var numForest = totalTrees * P_FOREST;
-var numStragglers = totalTrees * (1.0 - P_FOREST);
-
 log("Creating forests...");
+var [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
 var types = [
 	[[tForestFloor2, tMainTerrain, pForest1], [tForestFloor2, pForest1]],
 	[[tForestFloor1, tMainTerrain, pForest2], [tForestFloor1, pForest2]]
 ];
 
-var size = numForest / (scaleByMapSize(2, 8) * numPlayers) * (currentBiome() == "savanna" ? 2 : 1);
+var size = forestTrees / (scaleByMapSize(2, 8) * numPlayers) * (currentBiome() == "savanna" ? 2 : 1);
 var num = floor(size / types.length);
 for (let type of types)
 	createAreas(
-		new ClumpPlacer(numForest / num, 0.1, 0.1, 1),
+		new ClumpPlacer(forestTrees / num, 0.1, 0.1, 1),
 		[
 			new LayeredPainter(type, [2]),
 			paintClass(clForest)
@@ -479,15 +457,11 @@ createObjectGroupsDeprecated(group, 0,
 );
 RMS.SetProgress(85);
 
-log("Creating straggler trees...");
-var types = [oTree1, oTree2, oTree4, oTree3];
-var num = floor(numStragglers / types.length);
-for (let type of types)
-	createObjectGroupsDeprecated(
-		new SimpleGroup([new SimpleObject(type, 1, 1, 0, 3)], true, clForest),
-		0,
-		[avoidClasses(clForest, 1, clHill, 1, clPlayer, 9, clMetal, 6, clRock, 6), stayClasses(clLand, 4)],
-		num);
+createStragglerTrees(
+	[oTree1, oTree2, oTree4, oTree3],
+	[avoidClasses(clForest, 1, clHill, 1, clPlayer, 9, clMetal, 6, clRock, 6), stayClasses(clLand, 4)],
+	clForest,
+	stragglerTrees);
 
 var planetm = 1;
 if (currentBiome() == "tropic")

@@ -258,35 +258,12 @@ createAreas(
 );
 RMS.SetProgress(55);
 
-// calculate desired number of trees for map (based on size)
-const MIN_TREES = 500;
-const MAX_TREES = 2500;
-const P_FOREST = 0.7;
-
-var totalTrees = scaleByMapSize(MIN_TREES, MAX_TREES);
-var numForest = totalTrees * P_FOREST;
-var numStragglers = totalTrees * (1.0 - P_FOREST);
-
-log("Creating forests...");
-var types = [
-	[[tGrassDForest, tGrass, pForestB], [tGrassDForest, pForestB]],
-	[[tGrassPForest, tGrass, pForestO], [tGrassPForest, pForestO]]
-];
-var size = numForest / (scaleByMapSize(3, 6) * numPlayers);
-var num = Math.floor(size / types.length);
-for (let type of types)
-	createAreas(
-		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), numForest / num, 0.5),
-		[
-			new LayeredPainter(type, [2]),
-			paintClass(clForest)
-		],
-		avoidClasses(
-			clPlayer, 15,
-			clWater, 3,
-			clForest, 16,
-			clHill, 1),
-		num);
+var [forestTrees, stragglerTrees] = getTreeCounts(500, 2500, 0.7);
+createForests(
+	[tGrass, tGrassDForest, tGrassPForest, pForestB, pForestO],
+	avoidClasses(clPlayer, 15, clWater, 3, clForest, 16, clHill, 1),
+	clForest,
+	forestTrees);
 RMS.SetProgress(70);
 
 log("Creating dirt patches...");
@@ -386,15 +363,11 @@ createObjectGroupsDeprecated(group, 0,
 	randIntInclusive(1, 4) * numPlayers + 2, 50
 );
 
-log("Creating straggler trees...");
-var types = [oOak, oBeech];
-var num = floor(numStragglers / types.length);
-for (let type of types)
-	createObjectGroupsDeprecated(
-		new SimpleGroup([new SimpleObject(type, 1, 1, 0, 3)], true, clForest),
-		0,
-		avoidClasses(clWater, 1, clForest, 7, clHill, 1, clPlayer, 5, clMetal, 6, clRock, 6),
-		num);
+createStragglerTrees(
+	[oOak, oBeech],
+	avoidClasses(clWater, 1, clForest, 7, clHill, 1, clPlayer, 5, clMetal, 6, clRock, 6),
+	clForest,
+	stragglerTrees);
 
 log("Creating small grass tufts...");
 group = new SimpleGroup(

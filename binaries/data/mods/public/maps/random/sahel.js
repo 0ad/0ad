@@ -91,7 +91,7 @@ for (var i = 0; i < numPlayers; i++)
 	mAngle += randFloat(PI/8, PI/4);
 	mX = round(fx + mDist * cos(mAngle));
 	mZ = round(fz + mDist * sin(mAngle));
-	createStoneMineFormation(mX, mZ, tDirt4);
+	createStoneMineFormation(mX, mZ, oStoneSmall, tDirt4);
 	addToClass(mX, mZ, clPlayer);
 	// create the city patch
 	var cityRadius = radius/3;
@@ -157,7 +157,7 @@ for (var i = 0; i < scaleByMapSize(12,30); ++i)
 	var mZ = randIntExclusive(0, mapSize);
 	if (playerConstraint.allows(mX, mZ) && minesConstraint.allows(mX, mZ) && waterConstraint.allows(mX, mZ))
 	{
-		createStoneMineFormation(mX, mZ, tDirt4);
+		createStoneMineFormation(mX, mZ, oStoneSmall, tDirt4);
 		addToClass(mX, mZ, clRock);
 	}
 }
@@ -246,16 +246,11 @@ createObjectGroupsDeprecated(group, 0,
 
 RMS.SetProgress(85);
 
-log("Creating straggler trees...");
-var num = scaleByMapSize(70, 500);
-group = new SimpleGroup(
-	[new SimpleObject(oBaobab, 1,1, 0,3)],
-	true, clForest
-);
-createObjectGroupsDeprecated(group, 0,
+createStragglerTrees(
+	[oBaobab],
 	avoidClasses(clForest, 1, clPlayer, 20, clMetal, 6, clRock, 7, clWater, 1),
-	num
-);
+	clForest,
+	scaleByMapSize(70, 500));
 
 log("Creating large grass tufts...");
 group = new SimpleGroup(

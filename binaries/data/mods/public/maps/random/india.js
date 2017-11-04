@@ -90,7 +90,7 @@ for (let i = 0; i < numPlayers; ++i)
 	mAngle += randFloat(PI/8, PI/4);
 	mX = Math.round(fx + mDist * Math.cos(mAngle));
 	mZ = Math.round(fz + mDist * Math.sin(mAngle));
-	createStoneMineFormation(mX, mZ, tDirt4);
+	createStoneMineFormation(mX, mZ, oStoneSmall, tDirt4);
 	addToClass(mX, mZ, clPlayer);
 
 	// Create starting trees
@@ -162,7 +162,7 @@ for (let i = 0; i < scaleByMapSize(12, 30); ++i)
 	let mZ = randIntInclusive(1, mapSize - 1);
 	if (playerConstraint.allows(mX, mZ) && minesConstraint.allows(mX, mZ) && waterConstraint.allows(mX, mZ))
 	{
-		createStoneMineFormation(mX, mZ, tDirt4);
+		createStoneMineFormation(mX, mZ, oStoneSmall, tDirt4);
 		addToClass(mX, mZ, clRock);
 	}
 }
@@ -252,8 +252,8 @@ createFood(
 	[
 		25 * numPlayers
 	],
-	[avoidClasses(clFood, 20), stayClasses(clWater, 2)]
-);
+	[avoidClasses(clFood, 20), stayClasses(clWater, 2)],
+	clFood);
 
 log("Creating berry bush...");
 createObjectGroupsDeprecated(
