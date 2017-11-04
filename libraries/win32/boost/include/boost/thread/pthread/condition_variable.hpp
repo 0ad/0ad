@@ -45,9 +45,17 @@ namespace boost
                 m_.unlock();
                 m=&m_;
             }
-            ~lock_on_exit()
+            void deactivate()
             {
-                if(m)
+                if (m)
+                {
+                    m->lock();
+                }
+                m = 0;
+            }
+            ~lock_on_exit() BOOST_NOEXCEPT_IF(false)
+            {
+                if (m)
                 {
                     m->lock();
                 }
@@ -70,17 +78,18 @@ namespace boost
             detail::interruption_checker check_for_interruption(&internal_mutex,&cond);
             pthread_mutex_t* the_mutex = &internal_mutex;
             guard.activate(m);
+            res = pthread_cond_wait(&cond,the_mutex);
+            check_for_interruption.check();
+            guard.deactivate();
 #else
             pthread_mutex_t* the_mutex = m.mutex()->native_handle();
+            res = pthread_cond_wait(&cond,the_mutex);
 #endif
-            do {
-              res = pthread_cond_wait(&cond,the_mutex);
-            } while (res == EINTR);
         }
 #if defined BOOST_THREAD_PROVIDES_INTERRUPTIONS
         this_thread::interruption_point();
 #endif
-        if(res)
+        if(res && res != EINTR)
         {
             boost::throw_exception(condition_error(res, "boost::condition_variable::wait failed in pthread_cond_wait"));
         }
@@ -103,10 +112,13 @@ namespace boost
             detail::interruption_checker check_for_interruption(&internal_mutex,&cond);
             pthread_mutex_t* the_mutex = &internal_mutex;
             guard.activate(m);
+            cond_res=pthread_cond_timedwait(&cond,the_mutex,&timeout);
+            check_for_interruption.check();
+            guard.deactivate();
 #else
             pthread_mutex_t* the_mutex = m.mutex()->native_handle();
-#endif
             cond_res=pthread_cond_timedwait(&cond,the_mutex,&timeout);
+#endif
         }
 #if defined BOOST_THREAD_PROVIDES_INTERRUPTIONS
         this_thread::interruption_point();
@@ -178,6 +190,8 @@ namespace boost
 #endif
                 guard.activate(m);
                 res=pthread_cond_wait(&cond,&internal_mutex);
+                check_for_interruption.check();
+                guard.deactivate();
             }
 #if defined BOOST_THREAD_PROVIDES_INTERRUPTIONS
             this_thread::interruption_point();
@@ -336,14 +350,15 @@ namespace boost
                                                    cv_status::timeout;
         }
 
+        template <class lock_type>
         inline cv_status wait_until(
-            unique_lock<mutex>& lk,
+            lock_type& lock,
             chrono::time_point<chrono::steady_clock, chrono::nanoseconds> tp)
         {
             using namespace chrono;
             nanoseconds d = tp.time_since_epoch();
             timespec ts = boost::detail::to_timespec(d);
-            if (do_wait_until(lk, ts)) return cv_status::no_timeout;
+            if (do_wait_until(lock, ts)) return cv_status::no_timeout;
             else return cv_status::timeout;
         }
 
@@ -391,7 +406,7 @@ namespace boost
     private: // used by boost::thread::try_join_until
 
         template <class lock_type>
-        inline bool do_wait_until(
+        bool do_wait_until(
           lock_type& m,
           struct timespec const &timeout)
         {
@@ -405,6 +420,8 @@ namespace boost
 #endif
               guard.activate(m);
               res=pthread_cond_timedwait(&cond,&internal_mutex,&timeout);
+              check_for_interruption.check();
+              guard.deactivate();
           }
 #if defined BOOST_THREAD_PROVIDES_INTERRUPTIONS
           this_thread::interruption_point();

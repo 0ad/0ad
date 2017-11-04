@@ -43,7 +43,7 @@
 
 #define BOOST_ATOMIC_DETAIL_PLATFORM gcc_atomic
 
-#elif defined(__GNUC__) && (defined(__i386__) || defined(__x86_64__))
+#elif (defined(__GNUC__) || defined(__SUNPRO_CC)) && (defined(__i386__) || defined(__x86_64__))
 
 #define BOOST_ATOMIC_DETAIL_PLATFORM gcc_x86
 
@@ -60,12 +60,13 @@
         defined(__ARM_ARCH_6ZK__) ||\
         defined(__ARM_ARCH_7__) || defined(__ARM_ARCH_7A__) ||\
         defined(__ARM_ARCH_7R__) || defined(__ARM_ARCH_7M__) ||\
-        defined(__ARM_ARCH_7EM__) || defined(__ARM_ARCH_7S__)\
+        defined(__ARM_ARCH_7EM__) || defined(__ARM_ARCH_7S__) ||\
+        defined(__ARM_ARCH_8A__)\
     )
 
 #define BOOST_ATOMIC_DETAIL_PLATFORM gcc_arm
 
-#elif defined(__GNUC__) && defined(__sparc_v9__)
+#elif (defined(__GNUC__) || defined(__SUNPRO_CC)) && (defined(__sparcv8plus) || defined(__sparc_v9__))
 
 #define BOOST_ATOMIC_DETAIL_PLATFORM gcc_sparc
 
@@ -88,7 +89,7 @@
 
 #define BOOST_ATOMIC_DETAIL_PLATFORM msvc_x86
 
-#elif defined(_MSC_VER) && _MSC_VER >= 1700 && defined(_M_ARM)
+#elif defined(_MSC_VER) && _MSC_VER >= 1700 && (defined(_M_ARM) || defined(_M_ARM64))
 
 #define BOOST_ATOMIC_DETAIL_PLATFORM msvc_arm
 

@@ -31,7 +31,7 @@
 #if (defined(__CYGWIN__) || defined(__FreeBSD__) || defined(__NetBSD__) \
    || (defined(__hppa) && !defined(__OpenBSD__)) || (defined(__NO_LONG_DOUBLE_MATH) && (DBL_MANT_DIG != LDBL_MANT_DIG))) \
    && !defined(BOOST_MATH_NO_LONG_DOUBLE_MATH_FUNCTIONS)
-#  define BOOST_MATH_NO_LONG_DOUBLE_MATH_FUNCTIONS
+//#  define BOOST_MATH_NO_LONG_DOUBLE_MATH_FUNCTIONS
 #endif
 #if BOOST_WORKAROUND(__BORLANDC__, BOOST_TESTED_AT(0x582))
 //
@@ -265,18 +265,6 @@
 #  define BOOST_MATH_INT_VALUE_SUFFIX(RV, SUF) RV##SUF
 #endif
 //
-// Test whether to support __float128, if we don't have quadmath.h then this can't currently work:
-//
-#ifndef BOOST_MATH_USE_FLOAT128
-#ifdef __has_include
-#if ! __has_include("quadmath.h")
-#define BOOST_MATH_DISABLE_FLOAT128
-#endif
-#elif !defined(BOOST_ARCH_X86)
-#define BOOST_MATH_DISABLE_FLOAT128
-#endif
-#endif
-//
 // And then the actual configuration:
 //
 #if defined(_GLIBCXX_USE_FLOAT128) && defined(BOOST_GCC) && !defined(__STRICT_ANSI__) \
@@ -454,8 +442,16 @@ namespace boost{ namespace math{
 
 #endif
 
-#endif // BOOST_MATH_TOOLS_CONFIG_HPP
+//
+// Thread local storage:
+//
+#if !defined(BOOST_NO_CXX11_THREAD_LOCAL) && !defined(BOOST_INTEL)
+#  define BOOST_MATH_THREAD_LOCAL thread_local
+#else
+#  define BOOST_MATH_THREAD_LOCAL
+#endif
 
+#endif // BOOST_MATH_TOOLS_CONFIG_HPP
 
 
 

@@ -15,19 +15,25 @@
 
 #include <exception>
 
-#include "boost/config.hpp"
-#include "boost/detail/workaround.hpp"
-#include "boost/static_assert.hpp"
-#include "boost/throw_exception.hpp"
-#include "boost/utility/addressof.hpp"
-#include "boost/variant/variant_fwd.hpp"
-#include "boost/variant/detail/element_index.hpp"
+#include <boost/config.hpp>
+#include <boost/detail/workaround.hpp>
+#include <boost/static_assert.hpp>
+#include <boost/throw_exception.hpp>
+#include <boost/utility/addressof.hpp>
+#include <boost/variant/variant_fwd.hpp>
+#include <boost/variant/detail/element_index.hpp>
+#include <boost/variant/detail/move.hpp>
 
-#include "boost/type_traits/add_reference.hpp"
-#include "boost/type_traits/add_pointer.hpp"
+#include <boost/type_traits/add_reference.hpp>
+#include <boost/type_traits/add_pointer.hpp>
+#include <boost/type_traits/is_lvalue_reference.hpp>
 
 namespace boost {
 
+#if defined(BOOST_CLANG)
+#   pragma clang diagnostic push
+#   pragma clang diagnostic ignored "-Wweak-vtables"
+#endif
 //////////////////////////////////////////////////////////////////////////
 // class bad_get
 //
@@ -45,6 +51,10 @@ public: // std::exception implementation
     }
 
 };
+#if defined(BOOST_CLANG)
+#   pragma clang diagnostic pop
+#endif
+
 
 //////////////////////////////////////////////////////////////////////////
 // function template get<T>
@@ -139,7 +149,7 @@ relaxed_get(
     )
 {
     typedef typename add_pointer<U>::type U_ptr;
-    U_ptr result = relaxed_get<U>(&operand);
+    U_ptr result = relaxed_get<U>(boost::addressof(operand));
 
     if (!result)
         boost::throw_exception(bad_get());
@@ -155,14 +165,30 @@ relaxed_get(
     )
 {
     typedef typename add_pointer<const U>::type U_ptr;
-    U_ptr result = relaxed_get<const U>(&operand);
+    U_ptr result = relaxed_get<const U>(boost::addressof(operand));
 
     if (!result)
         boost::throw_exception(bad_get());
     return *result;
 }
 
+#ifndef BOOST_NO_CXX11_RVALUE_REFERENCES
+template <typename U, BOOST_VARIANT_ENUM_PARAMS(typename T) >
+inline
+    U&&
+relaxed_get(
+      boost::variant< BOOST_VARIANT_ENUM_PARAMS(T) >&& operand
+      BOOST_VARIANT_AUX_GET_EXPLICIT_TEMPLATE_TYPE(U)
+    )
+{
+    typedef typename add_pointer<U>::type U_ptr;
+    U_ptr result = relaxed_get<U>(boost::addressof(operand));
 
+    if (!result)
+        boost::throw_exception(bad_get());
+    return static_cast<U&&>(*result);
+}
+#endif
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // strict_get<U>(variant) methods
@@ -235,6 +261,30 @@ strict_get(
     return relaxed_get<U>(operand);
 }
 
+#ifndef BOOST_NO_CXX11_RVALUE_REFERENCES
+template <typename U, BOOST_VARIANT_ENUM_PARAMS(typename T) >
+inline
+    U&&
+strict_get(
+      boost::variant< BOOST_VARIANT_ENUM_PARAMS(T) >&& operand
+      BOOST_VARIANT_AUX_GET_EXPLICIT_TEMPLATE_TYPE(U)
+    )
+{
+    BOOST_STATIC_ASSERT_MSG(
+        (!boost::is_lvalue_reference<U>::value),
+        "remove ampersand '&' from template type U in boost::get<U>(boost::variant<T...>&&) "
+    );
+
+    BOOST_STATIC_ASSERT_MSG(
+        (boost::detail::variant::holds_element<boost::variant< BOOST_VARIANT_ENUM_PARAMS(T) >, U >::value),
+        "boost::variant does not contain specified type U, "
+        "call to boost::get<U>(const boost::variant<T...>&) will always throw boost::bad_get exception"
+    );
+
+    return relaxed_get<U>(detail::variant::move(operand));
+}
+#endif
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // get<U>(variant) methods
 //
@@ -299,6 +349,23 @@ get(
     return strict_get<U>(operand);
 #endif
 }
+
+#ifndef BOOST_NO_CXX11_RVALUE_REFERENCES
+template <typename U, BOOST_VARIANT_ENUM_PARAMS(typename T) >
+inline
+    U&&
+get(
+      boost::variant< BOOST_VARIANT_ENUM_PARAMS(T) >&& operand
+      BOOST_VARIANT_AUX_GET_EXPLICIT_TEMPLATE_TYPE(U)
+    )
+{
+#ifdef BOOST_VARIANT_USE_RELAXED_GET_BY_DEFAULT
+    return relaxed_get<U>(detail::variant::move(operand));
+#else
+    return strict_get<U>(detail::variant::move(operand));
+#endif
+}
+#endif
 
 } // namespace boost
 
