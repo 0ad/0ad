@@ -163,12 +163,12 @@ RMS.SetProgress(25);
 
 createBumps(stayClasses(clLand, 5));
 
+var [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
 createForests(
 	[tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
 	[avoidClasses(clPlayer, 20, clForest, 5, clHill, 0, clBaseResource,2, clWomen, 5), stayClasses(clLand, 4)],
 	clForest,
-	1,
-	...rBiomeTreeCount(1));
+	forestTrees);
 RMS.SetProgress(30);
 
 if (randBool())
@@ -237,9 +237,10 @@ createDecoration(
 	[avoidClasses(clForest, 0, clPlayer, 0, clHill, 0), stayClasses(clLand, 5)]
 );
 
-log("Creating straggler trees...");
 createStragglerTrees(
 	[oTree1, oTree2, oTree4, oTree3],
-	[avoidClasses(clForest, 7, clHill, 1, clPlayer, 9), stayClasses(clLand, 7)]);
+	[avoidClasses(clForest, 7, clHill, 1, clPlayer, 9), stayClasses(clLand, 7)],
+	clForest,
+	stragglerTrees);
 
 ExportMap();

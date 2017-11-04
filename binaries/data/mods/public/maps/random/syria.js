@@ -155,28 +155,20 @@ createAreas(
 
 RMS.SetProgress(25);
 
-// calculate desired number of trees for map (based on size)
-const MIN_TREES = 400;
-const MAX_TREES = 2000;
-const P_FOREST = 0.7;
-
-var totalTrees = scaleByMapSize(MIN_TREES, MAX_TREES);
-var numForest = totalTrees * P_FOREST;
-var numStragglers = totalTrees * (1.0 - P_FOREST);
-
 log("Creating forests...");
+var [forestTrees, stragglerTrees] = getTreeCounts(400, 2000, 0.7);
 var types = [
 	[[tMainDirt, tForestFloor2, pForestP], [tForestFloor2, pForestP]],
 	[[tMainDirt, tForestFloor1, pForestT], [tForestFloor1, pForestT]]
 ];
-var size = numForest / (scaleByMapSize(3,6) * numPlayers);
+var size = forestTrees / (scaleByMapSize(3,6) * numPlayers);
 var num = floor(size / types.length);
 for (let type of types)
 	createAreas(
 		new ChainPlacer(
 			1,
 			Math.floor(scaleByMapSize(3, 5)),
-			numForest / (num * Math.floor(scaleByMapSize(2, 4))),
+			forestTrees / (num * Math.floor(scaleByMapSize(2, 4))),
 			0.5),
 		[
 			new LayeredPainter(type, [2]),
@@ -280,25 +272,17 @@ createObjectGroupsDeprecated(group, 0,
 );
 RMS.SetProgress(85);
 
-log("Creating straggler trees...");
-var types = [oPalm, oTamarix, oPine];
-var num = floor(numStragglers / types.length);
-for (let type of types)
-	createObjectGroupsDeprecated(
-		new SimpleGroup([new SimpleObject(type, 1, 1, 0, 3)], true, clForest),
-		0,
-		avoidClasses(clForest, 1, clHill, 1, clPlayer, 1, clMetal, 6, clRock, 6),
-		num);
+createStragglerTrees(
+	[oPalm, oTamarix, oPine],
+	avoidClasses(clForest, 1, clHill, 1, clPlayer, 1, clMetal, 6, clRock, 6),
+	clForest,
+	stragglerTrees);
 
-log("Creating straggler trees...");
-var types = [oPalm, oTamarix, oPine];
-var num = floor(numStragglers / types.length);
-for (let type of types)
-	createObjectGroupsDeprecated(
-		new SimpleGroup([new SimpleObject(type, 1,1, 0,3)], true, clForest),
-		0,
-		[avoidClasses(clForest, 1, clHill, 1, clPlayer, 1, clMetal, 6, clRock, 6), stayClasses(clGrass, 3)],
-		num);
+createStragglerTrees(
+	[oPalm, oTamarix, oPine],
+	[avoidClasses(clForest, 1, clHill, 1, clPlayer, 1, clMetal, 6, clRock, 6), stayClasses(clGrass, 3)],
+	clForest,
+	stragglerTrees);
 
 setSkySet("sunny");
 setSunElevation(PI / 8);

@@ -129,18 +129,10 @@ createAreas(
 	avoidClasses(clPlayer, 13),
 	scaleByMapSize(300, 800));
 
-// calculate desired number of trees for map (based on size)
-var MIN_TREES = 220;
-var MAX_TREES = 1000;
-var P_FOREST = 0.65;
-
-var totalTrees = scaleByMapSize(MIN_TREES, MAX_TREES);
-var numForest = totalTrees * P_FOREST;
-var numStragglers = totalTrees * (1.0 - P_FOREST);
-
 log("Creating forests...");
+var [forestTrees, stragglerTrees] = getTreeCounts(220, 1000, 0.65);
 var types = [[[tForestFloor, tGrass, pForest], [tForestFloor, pForest]]];
-var size = numForest / (scaleByMapSize(2,8) * numPlayers);
+var size = forestTrees / (scaleByMapSize(2,8) * numPlayers);
 var num = 4 * floor(size / types.length);
 for (let type of types)
 	createAreas(
@@ -265,15 +257,11 @@ createObjectGroupsDeprecated(group, 0,
 
 RMS.SetProgress(85);
 
-log("Creating straggler trees...");
-var types = [oBush, oPoplar];
-var num = floor(numStragglers / types.length);
-for (let type of types)
-	createObjectGroupsDeprecated(
-		new SimpleGroup([new SimpleObject(type, 1, 1, 0, 3)], true, clForest),
-		0,
-		avoidClasses(clForest, 1, clHill, 1, clPlayer, 13, clMetal, 6, clRock, 6),
-		num);
+createStragglerTrees(
+	[oBush, oPoplar],
+	avoidClasses(clForest, 1, clHill, 1, clPlayer, 13, clMetal, 6, clRock, 6),
+	clForest,
+	stragglerTrees);
 
 log("Creating large grass tufts...");
 group = new SimpleGroup(

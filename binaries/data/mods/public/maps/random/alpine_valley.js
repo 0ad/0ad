@@ -378,26 +378,18 @@ createAreas(
 );
 RMS.SetProgress(50);
 
-// calculate desired number of trees for map (based on size)
-var MIN_TREES = 500;
-var MAX_TREES = 3000;
-var P_FOREST = 0.7;
-
-var totalTrees = scaleByMapSize(MIN_TREES, MAX_TREES);
-var numForest = totalTrees * P_FOREST;
-var numStragglers = totalTrees * (1.0 - P_FOREST);
-
 log("Creating forests...");
+var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
 var types = [
 	[[tForestFloor, tPrimary, pForest], [tForestFloor, pForest]]
 ];
 
-var size = numForest / (scaleByMapSize(2,8) * numPlayers);
+var size = forestTrees / (scaleByMapSize(2,8) * numPlayers);
 
 var num = Math.floor(size / types.length);
 for (let type of types)
 	createAreas(
-		new ClumpPlacer(numForest / num, 0.1, 0.1, 1),
+		new ClumpPlacer(forestTrees / num, 0.1, 0.1, 1),
 		[
 			new LayeredPainter(type, [2]),
 			paintClass(clForest)
@@ -503,15 +495,11 @@ createObjectGroupsDeprecated(group, 0,
 );
 RMS.SetProgress(85);
 
-log("Creating straggler trees...");
-var types = [oPine, oPine];
-var num = floor(numStragglers / types.length);
-for (let type of types)
-	createObjectGroupsDeprecated(
-		new SimpleGroup([new SimpleObject(type, 1,1, 0,3)], true, clForest),
-		0,
-		avoidClasses(clForest, 1, clHill, 1, clPlayer, 12, clMetal, 6, clRock, 6),
-		num);
+createStragglerTrees(
+	[oPine],
+	avoidClasses(clForest, 1, clHill, 1, clPlayer, 12, clMetal, 6, clRock, 6),
+	clForest,
+	stragglerTrees);
 
 log("Creating small grass tufts...");
 var planetm = 1;

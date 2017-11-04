@@ -176,11 +176,12 @@ paintTerrainBasedOnHeight(1, 2, 0, tShore);
 RMS.SetProgress(40);
 createBumps(avoidClasses(clWater, 2, clPlayer, 20));
 
+var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
 createForests(
  [tForestFloor, tForestFloor, tForestFloor, pForest, pForest],
  avoidClasses(clPlayer, 20, clForest, 17, clWater, 2, clBaseResource, 3),
- clForest
-);
+ clForest,
+ forestTrees);
 
 RMS.SetProgress(50);
 
@@ -332,11 +333,15 @@ RMS.SetProgress(90);
 var types = [oDatePalm, oSDatePalm, oCarob, oFanPalm, oPoplar, oCypress];
 createStragglerTrees(
 	types,
-	avoidClasses(clForest, 1, clWater, 2, clPlayer, 12, clMetal, 6, clHill, 1));
+	avoidClasses(clForest, 1, clWater, 2, clPlayer, 12, clMetal, 6, clHill, 1),
+	clForest,
+	stragglerTrees);
 
-log("Creating straggler island trees...");
-g_numStragglerTrees *= 10;
-createStragglerTrees(types, stayClasses(clIsland, 4));
+createStragglerTrees(
+	types,
+	stayClasses(clIsland, 4),
+	clForest,
+	stragglerTrees * 10);
 
 setSkySet("cumulus");
 setSunColor(0.866667, 0.776471, 0.486275);

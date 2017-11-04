@@ -462,12 +462,12 @@ else
 
 RMS.SetProgress(45);
 
-log("Creating forests...");
+var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
 createForests(
 	[tForestFloor, tForestFloor, tForestFloor, pForest1, pForest2],
 	avoidClasses(clPlayer, 16, clForest, 17, clWater, 5, clHill, 2, clGauls, 5, clPath, 1),
-	clForest
-);
+	clForest,
+	forestTrees);
 RMS.SetProgress(50);
 
 log("Creating grass patches...");
@@ -657,14 +657,17 @@ createFood(
 );
 RMS.SetProgress(90);
 
-log("Creating straggler trees...");
 createStragglerTrees(
 	treeTypes,
-	avoidClasses(clForest, 2, clWater, 8, clPlayer, 16, clMetal, 4, clRock, 4, clFood, 1, clHill, 2, clGauls, 5, clPath, 5), clForest);
+	avoidClasses(clForest, 2, clWater, 8, clPlayer, 16, clMetal, 4, clRock, 4, clFood, 1, clHill, 2, clGauls, 5, clPath, 5),
+	clForest,
+	stragglerTrees);
 
-log("Creating island straggler trees...");
-g_numStragglerTrees *= 7;
-createStragglerTrees(treeTypes, [stayClasses(clIsland, 4), avoidClasses(clMetal, 4, clRock, 4, clTower, 4, clOutpost, 4)], clForest);
+createStragglerTrees(
+	treeTypes,
+	[stayClasses(clIsland, 4), avoidClasses(clMetal, 4, clRock, 4, clTower, 4, clOutpost, 4)],
+	clForest,
+	stragglerTrees * 7);
 RMS.SetProgress(95);
 
 log("Creating animals on islands...");

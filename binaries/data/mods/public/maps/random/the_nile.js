@@ -256,19 +256,11 @@ createObjectGroupsByAreasDeprecated(
 
 waterAreas = [];
 
-// calculate desired number of trees for map (based on size)
-const MIN_TREES = 700;
-const MAX_TREES = 3500;
-const P_FOREST = 0.5;
-
-var totalTrees = scaleByMapSize(MIN_TREES, MAX_TREES);
-var numForest = totalTrees * P_FOREST;
-var numStragglers = totalTrees * (1.0 - P_FOREST);
-
 log("Creating forests...");
+var [forestTrees, stragglerTrees] = getTreeCounts(700, 3500, 0.5);
 var num = scaleByMapSize(10,30);
 createAreas(
-	new ClumpPlacer(numForest / num, 0.15, 0.1, 0.5),
+	new ClumpPlacer(forestTrees / num, 0.15, 0.1, 0.5),
 	[
 		new TerrainPainter([pForest, tForestFloor]),
 		paintClass(clForest)
@@ -411,34 +403,23 @@ createObjectGroupsDeprecated(group, 0,
 
 RMS.SetProgress(90);
 
-log("Creating straggler trees...");
-var types = [oDatePalm, oSDatePalm];
-var num = floor(0.5 * numStragglers / types.length);
-for (let type of types)
-	createObjectGroupsDeprecated(
-		new SimpleGroup([new SimpleObject(type, 1, 1, 0, 0)], true),
-		0,
-		avoidClasses(clForest, 0, clWater, 1, clPlayer, 20, clMetal, 6, clDesert, 1, clTreasure, 2, clPond, 1),
-		num);
+createStragglerTrees(
+	[oDatePalm, oSDatePalm],
+	avoidClasses(clForest, 0, clWater, 1, clPlayer, 20, clMetal, 6, clDesert, 1, clTreasure, 2, clPond, 1),
+	clForest,
+	stragglerTrees / 2);
 
-var types = [oDatePalm, oSDatePalm];
-var num = floor(0.1 * numStragglers / types.length);
-for (let type of types)
-	createObjectGroupsDeprecated(
-		new SimpleGroup([new SimpleObject(type, 1,1, 0,0)], true),
-		0,
-		avoidClasses(clForest, 0, clWater, 1, clPlayer, 20, clMetal, 6, clTreasure, 2),
-		num);
+createStragglerTrees(
+	[oDatePalm, oSDatePalm],
+	avoidClasses(clForest, 0, clWater, 1, clPlayer, 20, clMetal, 6, clTreasure, 2),
+	clForest,
+	stragglerTrees / 10);
 
-log("Creating straggler trees...");
-var types = [oDatePalm, oSDatePalm];
-var num = floor(numStragglers / types.length);
-for (let type of types)
-	createObjectGroupsDeprecated(
-		new SimpleGroup([new SimpleObject(type, 1, 1, 0, 0)], true),
-		0,
-		borderClasses(clPond, 1, 4),
-		num);
+createStragglerTrees(
+	[oDatePalm, oSDatePalm],
+	borderClasses(clPond, 1, 4),
+	clForest,
+	stragglerTrees);
 
 log("Creating obelisks");
 group = new SimpleGroup(

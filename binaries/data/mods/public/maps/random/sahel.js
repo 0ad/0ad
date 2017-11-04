@@ -246,16 +246,11 @@ createObjectGroupsDeprecated(group, 0,
 
 RMS.SetProgress(85);
 
-log("Creating straggler trees...");
-var num = scaleByMapSize(70, 500);
-group = new SimpleGroup(
-	[new SimpleObject(oBaobab, 1,1, 0,3)],
-	true, clForest
-);
-createObjectGroupsDeprecated(group, 0,
+createStragglerTrees(
+	[oBaobab],
 	avoidClasses(clForest, 1, clPlayer, 20, clMetal, 6, clRock, 7, clWater, 1),
-	num
-);
+	clForest,
+	scaleByMapSize(70, 500));
 
 log("Creating large grass tufts...");
 group = new SimpleGroup(

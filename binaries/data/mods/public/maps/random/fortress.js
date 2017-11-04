@@ -201,26 +201,18 @@ log("Creating hills...");
 createHills([tCliff, tCliff, tHill], avoidClasses(clPlayer, 5, clWater, 5, clHill, 15), clHill, scaleByMapSize(1, 4) * numPlayers);
 RMS.SetProgress(40);
 
-// calculate desired number of trees for map (based on size)
-const MIN_TREES = 500;
-const MAX_TREES = 2500;
-const P_FOREST = 0.7;
-
-var totalTrees = scaleByMapSize(MIN_TREES, MAX_TREES);
-var numForest = totalTrees * P_FOREST;
-g_numStragglerTrees = totalTrees * (1.0 - P_FOREST);
-
 log("Creating forests...");
+var [forestTrees, stragglerTrees] = getTreeCounts(500, 2500, 0.7);
 var types = [
 	[[tForestFloor, tGrass, pForestD], [tForestFloor, pForestD]],
 	[[tForestFloor, tGrass, pForestO], [tForestFloor, pForestO]],
 	[[tForestFloor, tGrass, pForestP], [tForestFloor, pForestP]]
 ];
-var size = numForest / (scaleByMapSize(3,6) * numPlayers);
+var size = forestTrees / (scaleByMapSize(3,6) * numPlayers);
 var num = floor(size / types.length);
 for (let type of types)
 	createAreas(
-		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), numForest / num, 0.5),
+		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), forestTrees / num, 0.5),
 		[
 			new LayeredPainter(type, [2]),
 			paintClass(clForest)
@@ -314,10 +306,11 @@ createFood
 
 RMS.SetProgress(90);
 
-log("Creating straggler trees...");
 createStragglerTrees(
 	[oOak, oBeech, oPine],
-	avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 1, clMetal, 6, clRock, 6));
+	avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 1, clMetal, 6, clRock, 6),
+	clForest,
+	stragglerTrees);
 RMS.SetProgress(95);
 
 setSkySet("sunny");

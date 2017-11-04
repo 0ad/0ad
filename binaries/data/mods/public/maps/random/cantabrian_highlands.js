@@ -209,11 +209,12 @@ log("Creating hills...");
 createHills([tCliff, tCliff, tHill], avoidClasses(clPlayer, 2, clWater, 5, clHill, 15), clHill, scaleByMapSize(1, 4) * numPlayers);
 RMS.SetProgress(35);
 
+var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
 createForests(
  [tGrass, tGrassDForest, tGrassPForest, pForestP, pForestD],
  avoidClasses(clPlayer, 1, clWater, 3, clForest, 17, clHill, 1),
- clForest
-);
+ clForest,
+ forestTrees);
 RMS.SetProgress(40);
 
 log("Creating dirt patches...");
@@ -303,7 +304,9 @@ RMS.SetProgress(85);
 
 createStragglerTrees(
 	[oOak, oOakLarge, oPine, oApple],
-	avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 1, clMetal, 6, clRock, 6));
+	avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 1, clMetal, 6, clRock, 6),
+	clForest,
+	stragglerTrees);
 RMS.SetProgress(90);
 
 setSkySet("cirrus");

@@ -218,21 +218,13 @@ for (let i = 0; i < scaleByMapSize(20, 80); ++i)
 		14);
 RMS.SetProgress(35);
 
-// calculate desired number of trees for map (based on size)
-const MIN_TREES = 500;
-const MAX_TREES = 2500;
-const P_FOREST = 0.7;
-
-var totalTrees = scaleByMapSize(MIN_TREES, MAX_TREES);
-var numForest = totalTrees * P_FOREST;
-var numStragglers = totalTrees * (1.0 - P_FOREST);
-
 log("Creating forests...");
+var [forestTrees, stragglerTrees] = getTreeCounts(500, 2500, 0.7);
 var types = [
 	[[tDirtMain, tForestFloor, pForestO], [tForestFloor, pForestO]],
 	[[tDirtMain, tForestFloor, pForestO], [tForestFloor, pForestO]]
 ];
-var size = numForest / (scaleByMapSize(3,6) * numPlayers);
+var size = forestTrees / (scaleByMapSize(3,6) * numPlayers);
 var num = floor(size / types.length);
 for (let type of types)
 	createAreas(
@@ -365,25 +357,11 @@ createObjectGroupsDeprecated(group, 0,
 
 RMS.SetProgress(90);
 
-log("Creating straggler trees...");
-var types = [oOak];
-var num = floor(numStragglers / types.length);
-for (let type of types)
-	createObjectGroupsDeprecated(
-		new SimpleGroup(
-			[new SimpleObject(type, 1, 1, 0, 3)],
-			true,
-			clForest),
-		0,
-		avoidClasses(
-			clForest, 1,
-			clHill, 1,
-			clPlayer, 1,
-			clBaseResource, 6,
-			clMetal, 6,
-			clRock, 6,
-			clCP, 2),
-		num);
+createStragglerTrees(
+	[oOak],
+	avoidClasses(clForest, 1, clHill, 1, clPlayer, 1, clBaseResource, 6, clMetal, 6, clRock, 6, clCP, 2),
+	clForest,
+	stragglerTrees);
 
 setSunColor(1.0, 0.796, 0.374);
 setSunElevation(PI / 6);

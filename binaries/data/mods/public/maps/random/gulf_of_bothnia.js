@@ -266,11 +266,12 @@ if (randBool())
 else
 	createMountains(tCliff, avoidClasses(clPlayer, 20, clHill, 15, clWater, 0), clHill, scaleByMapSize(1, 4) * numPlayers);
 
+var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
 createForests(
  [tPrimary, tForestFloor, tForestFloor, pForest, pForest],
  avoidClasses(clPlayer, 20, clForest, 16, clHill, 0, clWater, 2),
  clForest,
- 1);
+ forestTrees);
 
 RMS.SetProgress(60);
 
@@ -358,9 +359,11 @@ if (random_terrain != 3)
 
 RMS.SetProgress(85);
 
-log("Creating straggler trees...");
-var types = [oPine];
-createStragglerTrees(types, avoidClasses(clWater, 3, clForest, 1, clHill, 1, clPlayer, 12, clMetal, 6, clRock, 6));
+createStragglerTrees(
+	[oPine],
+	avoidClasses(clWater, 3, clForest, 1, clHill, 1, clPlayer, 12, clMetal, 6, clRock, 6),
+	clForest,
+	stragglerTrees);
 
 setSkySet("stormy");
 setSunRotation(randFloat(0, TWO_PI));

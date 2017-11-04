@@ -183,6 +183,7 @@ createBumps(avoidClasses(clPlayer, 6, clWater, 2), scaleByMapSize(30, 300), 1, 8
 paintTerrainBasedOnHeight(4, 15, 0, tCliff);
 paintTerrainBasedOnHeight(15, 100, 3, tSnowLimited);
 
+var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
 createForests(
 	[tSecondary, tForestFloor, tForestFloor, pForest, pForest],
 	avoidClasses(
@@ -191,7 +192,7 @@ createForests(
 		clHill, 20,
 		clWater, 2),
 	clForest,
-	1);
+	forestTrees);
 RMS.SetProgress(60);
 
 log("Creating dirt patches...");
@@ -357,7 +358,9 @@ createStragglerTrees(
 		clHill, 1,
 		clPlayer, 12,
 		clMetal, 4,
-		clRock, 4));
+		clRock, 4),
+	clForest,
+	stragglerTrees);
 
 setSkySet("sunset 1");
 setSunRotation(randFloat(0, 2 * PI));

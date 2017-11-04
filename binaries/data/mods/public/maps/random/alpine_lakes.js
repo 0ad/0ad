@@ -236,12 +236,12 @@ paintTerrainBasedOnHeight(floor(scaleByMapSize(20, 40)), 100, 3, tSnowLimited);
 
 createBumps(avoidClasses(clWater, 2, clPlayer, 20));
 
+var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
 createForests(
  [tPrimary, tForestFloor, tForestFloor, pForest, pForest],
  avoidClasses(clPlayer, 20, clForest, 17, clHill, 0, clWater, 2),
  clForest,
- 1.0
-);
+ forestTrees);
 
 RMS.SetProgress(60);
 
@@ -340,8 +340,11 @@ createFood
 
 RMS.SetProgress(85);
 
-var types = [oPine];
-createStragglerTrees(types, avoidClasses(clWater, 5, clForest, 3, clHill, 1, clPlayer, 12, clMetal, 6, clRock, 6));
+createStragglerTrees(
+	[oPine],
+	avoidClasses(clWater, 5, clForest, 3, clHill, 1, clPlayer, 12, clMetal, 6, clRock, 6),
+	clForest,
+	stragglerTrees);
 
 setSkySet(pickRandom(["cirrus", "cumulus", "sunny"]));
 setSunRotation(randFloat(0, TWO_PI));

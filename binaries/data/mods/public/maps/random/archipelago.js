@@ -195,12 +195,12 @@ if (randBool())
 else
 	createMountains(tCliff, [avoidClasses(clPlayer, 2, clHill, 15), stayClasses(clLand, 0)], clHill, scaleByMapSize(1, 4) * numPlayers);
 
+var [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
 createForests(
  [tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
  [avoidClasses(clPlayer, 20, clForest, 17, clHill, 0), stayClasses(clLand, 4)],
  clForest,
- 1,
- ...rBiomeTreeCount(1));
+ forestTrees);
 RMS.SetProgress(50);
 
 log("Creating dirt patches...");
@@ -300,10 +300,11 @@ createFood
 
 RMS.SetProgress(85);
 
-log("Creating straggler trees...");
 createStragglerTrees(
 	[oTree1, oTree2, oTree4, oTree3],
-	[avoidClasses(clForest, 7, clHill, 1, clPlayer, 3, clMetal, 6, clRock, 6), stayClasses(clLand, 7)]);
+	[avoidClasses(clForest, 7, clHill, 1, clPlayer, 3, clMetal, 6, clRock, 6), stayClasses(clLand, 7)],
+	clForest,
+	stragglerTrees);
 
 setWaterWaviness(4.0);
 setWaterType("ocean");

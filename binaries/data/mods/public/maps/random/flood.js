@@ -279,17 +279,19 @@ createObjectGroupsDeprecated(
 	10 * numPlayers,
 	60);
 
+var [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(0.7));
 createForests(
 	[tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
 	[avoidClasses(clPlayer, 25, clForest, 10, clBaseResource, 3, clMetal, 6, clRock, 3, clMountain, 2), stayClasses(clHill, 6)],
 	clForest,
-	0.7,
-	...rBiomeTreeCount(0.7));
+	forestTrees);
 
-log("Creating straggeler trees...");
 let types = [oTree1, oTree2, oTree4, oTree3];
-createStragglerTrees(types, [avoidClasses(clBaseResource, 2, clMetal, 6, clRock, 3, clMountain, 2, clPlayer, 25), stayClasses(clHill, 6)]);
-
+createStragglerTrees(
+	types,
+	[avoidClasses(clBaseResource, 2, clMetal, 6, clRock, 3, clMountain, 2, clPlayer, 25), stayClasses(clHill, 6)],
+	clForest,
+	stragglerTrees);
 RMS.SetProgress(65);
 
 log("Creating dirt patches...");
@@ -338,8 +340,11 @@ createFood(
 
 RMS.SetProgress(85);
 
-log("Creating more straggeler trees...");
-createStragglerTrees(types, avoidClasses(clWater, 5, clForest, 7, clMountain, 1, clPlayer, 30, clMetal, 6, clRock, 3));
+createStragglerTrees(
+	types,
+	avoidClasses(clWater, 5, clForest, 7, clMountain, 1, clPlayer, 30, clMetal, 6, clRock, 3),
+	clForest,
+	stragglerTrees);
 
 log("Creating decoration...");
 var planetm = currentBiome() == "tropic" ? 8 : 1;
@@ -361,12 +366,12 @@ createDecoration(
 	avoidClasses(clForest, 2, clPlayer, 20, clMountain, 5, clFood, 1, clBaseResource, 2));
 
 log("Creating water forests...");
+var [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(0.1));
 createForests(
 	[tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
 	avoidClasses(clPlayer, 30, clHill, 10, clFood, 5),
 	clForest,
-	0.1,
-	...rBiomeTreeCount(0.1));
+	forestTrees);
 
 log("Creating small grass tufts...");
 createObjectGroupsDeprecated(

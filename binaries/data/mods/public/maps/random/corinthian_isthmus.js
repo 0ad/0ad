@@ -193,11 +193,12 @@ RMS.SetProgress(40);
 
 createBumps(avoidClasses(clWater, 2, clPlayer, 20));
 
+var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
 createForests(
  [tForestFloor, tForestFloor, tForestFloor, pForest, pForest],
  avoidClasses(clPlayer, 20, clForest, 17, clWater, 2, clBaseResource, 3),
- clForest
-);
+ clForest,
+ forestTrees);
 
 RMS.SetProgress(50);
 
@@ -301,10 +302,11 @@ createFood
 
 RMS.SetProgress(90);
 
-log("Creating straggler trees...");
 createStragglerTrees(
 	[oDatePalm, oSDatePalm, oCarob, oFanPalm, oPoplar, oCypress],
-	avoidClasses(clForest, 1, clWater, 2, clPlayer, 8, clBaseResource, 6, clMetal, 6, clRock, 6, clHill, 1));
+	avoidClasses(clForest, 1, clWater, 2, clPlayer, 8, clBaseResource, 6, clMetal, 6, clRock, 6, clHill, 1),
+	clForest,
+	stragglerTrees);
 
 setSkySet("sunny");
 setSunColor(0.917, 0.828, 0.734);

@@ -139,12 +139,12 @@ if (randBool())
 else
 	createMountains(tCliff, avoidClasses(clPlayer, 20, clHill, 15), clHill, scaleByMapSize(3, 15));
 
+var [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
 createForests(
  [tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
  avoidClasses(clPlayer, 20, clForest, 18, clHill, 0),
  clForest,
- 1,
- ...rBiomeTreeCount(1));
+ forestTrees);
 
 RMS.SetProgress(50);
 
@@ -237,6 +237,10 @@ createFood
 
 RMS.SetProgress(85);
 
-createStragglerTrees([oTree1, oTree2, oTree4, oTree3]);
+createStragglerTrees(
+	[oTree1, oTree2, oTree4, oTree3],
+	avoidClasses(clForest, 8, clHill, 1, clPlayer, 12, clMetal, 6, clRock, 6),
+	clForest,
+	stragglerTrees);
 
 ExportMap();

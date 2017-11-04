@@ -199,11 +199,12 @@ paintTerrainBasedOnHeight(-8, 1, 2, tWater);
 
 createBumps([avoidClasses(clPlayer, 20, clRiver, 1), stayClasses(clLand, 3)]);
 
+var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
 createForests(
  [tGrass, tForestFloorP, tForestFloorC, pForestC, pForestP],
  [avoidClasses(clPlayer, 20, clForest, 17, clHill, 0, clRiver, 1), stayClasses(clLand, 7)],
  clForest,
- 1.0);
+ forestTrees);
 
 RMS.SetProgress(50);
 
@@ -314,10 +315,11 @@ createFood
 
 RMS.SetProgress(85);
 
-log("Creating straggler trees...");
 createStragglerTrees(
 	[oPoplar, oCarob, oApple],
-	[avoidClasses(clForest, 1, clHill, 1, clPlayer, 9, clMetal, 6, clRock, 6, clRiver, 1), stayClasses(clLand, 7)]);
+	[avoidClasses(clForest, 1, clHill, 1, clPlayer, 9, clMetal, 6, clRock, 6, clRiver, 1), stayClasses(clLand, 7)],
+	clForest,
+	stragglerTrees);
 
 setSkySet("cumulus");
 setWaterColor(0.2,0.312,0.522);

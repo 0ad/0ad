@@ -154,12 +154,12 @@ paintTerrainBasedOnHeight(floor(scaleByMapSize(20, 40)), 100, 3, tGrass);
 
 createBumps(avoidClasses(clWater, 2, clPlayer, 20));
 
+var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
 createForests(
 	[tPrimary, tForestFloor, tForestFloor, pForest, pForest],
 	avoidClasses(clPlayer, 20, clForest, 20, clHill, 0, clWater, 2),
 	clForest,
-	1.0
-);
+	forestTrees);
 
 log("Creating dirt patches...");
 createLayeredPatches(
@@ -294,14 +294,15 @@ createFood(
 	[
 		15 * numPlayers
 	],
-	[avoidClasses(clFood, 20), stayClasses(clWater, 6)]
-);
+	[avoidClasses(clFood, 20), stayClasses(clWater, 6)],
+	clFood);
 RMS.SetProgress(85);
 
 createStragglerTrees(
 	[oBaobab],
-	avoidClasses(clWater, 5, clForest, 2, clHill, 3, clPlayer, 12, clMetal, 4, clRock, 4)
-);
+	avoidClasses(clWater, 5, clForest, 2, clHill, 3, clPlayer, 12, clMetal, 4, clRock, 4),
+	clForest,
+	stragglerTrees);
 
 setPPEffect("hdr");
 setPPSaturation(0.48);

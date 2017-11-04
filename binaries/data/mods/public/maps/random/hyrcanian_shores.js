@@ -194,24 +194,16 @@ createAreas(
 
 RMS.SetProgress(35);
 
-// calculate desired number of trees for map (based on size)
-const MIN_TREES = 500;
-const MAX_TREES = 2500;
-const P_FOREST = 0.7;
-
-var totalTrees = scaleByMapSize(MIN_TREES, MAX_TREES);
-var numForest = totalTrees * P_FOREST;
-var numStragglers = totalTrees * (1.0 - P_FOREST);
-
 log("Creating mainland forests...");
+var [forestTrees, stragglerTrees] = getTreeCounts(500, 2500, 0.7);
 var types = [
 	[[tGrassDForest, tGrass, pForestD], [tGrassDForest, pForestD]]
 ];
-var size = numForest * 1.3 / (scaleByMapSize(2,8) * numPlayers);
+var size = forestTrees * 1.3 / (scaleByMapSize(2,8) * numPlayers);
 var num = Math.floor(0.7 * size / types.length);
 for (let type of types)
 	createAreas(
-		new ClumpPlacer(numForest / num, 0.1, 0.1, 1),
+		new ClumpPlacer(forestTrees / num, 0.1, 0.1, 1),
 		[
 			new LayeredPainter(type, [2]),
 			paintClass(clForest)
@@ -224,11 +216,11 @@ log("Creating highland forests...");
 var types = [
 	[[tGrassDForest, tGrass, pForestP], [tGrassDForest, pForestP]]
 ];
-var size = numForest / (scaleByMapSize(2,8) * numPlayers);
+var size = forestTrees / (scaleByMapSize(2,8) * numPlayers);
 var num = floor(size / types.length);
 for (let type of types)
 	createAreas(
-		new ClumpPlacer(numForest / num, 0.1, 0.1, 1),
+		new ClumpPlacer(forestTrees / num, 0.1, 0.1, 1),
 		[
 			new LayeredPainter(type, [2]),
 			paintClass(clForest)
@@ -345,15 +337,11 @@ createObjectGroupsDeprecated(group, 0,
 	2 * numPlayers, 50
 );
 
-log("Creating straggler trees...");
-var types = [oPoplar, oPalm, oApple];
-var num = floor(numStragglers / types.length);
-for (let type of types)
-	createObjectGroupsDeprecated(
-		new SimpleGroup([new SimpleObject(type, 1, 1, 0, 3)], true, clForest),
-		0,
-		avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 10, clMetal, 6, clRock, 6, clSea, 1, clHighlands, 25),
-		num);
+createStragglerTrees(
+	[oPoplar, oPalm, oApple],
+	avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 10, clMetal, 6, clRock, 6, clSea, 1, clHighlands, 25),
+	clForest,
+	stragglerTrees);
 
 log("Creating small grass tufts...");
 group = new SimpleGroup(

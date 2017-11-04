@@ -54,11 +54,6 @@ const pForestP = [
 
 InitMap();
 
-var P_FOREST = 0.7;
-var totalTrees = scaleByMapSize(1200, 3000);
-var numForest = totalTrees * P_FOREST;
-var numStragglers = totalTrees * (1.0 - P_FOREST);
-
 var numPlayers = getNumPlayers();
 
 var clPlayer = createTileClass();
@@ -215,15 +210,16 @@ createAreas(
 RMS.SetProgress(35);
 
 log("Creating forests...");
+var [forestTrees, stragglerTrees] = getTreeCounts(1200, 3000, 0.7);
 var types = [
 	[[tGrassB, tGrassA, pForestD], [tGrassB, pForestD]],
 	[[tGrassB, tGrassA, pForestP], [tGrassB, pForestP]]
 ];
-var size = numForest / (scaleByMapSize(4, 12) * numPlayers);
+var size = forestTrees / (scaleByMapSize(4, 12) * numPlayers);
 var num = Math.floor(size / types.length);
 for (let type of types)
 	createAreas(
-		new ClumpPlacer(numForest / num, 0.1, 0.1, 1),
+		new ClumpPlacer(forestTrees / num, 0.1, 0.1, 1),
 		[
 			new LayeredPainter(type, [2]),
 			paintClass(clForest)
@@ -446,27 +442,21 @@ createFood(
 	clFood);
 RMS.SetProgress(85);
 
-log("Creating straggler trees and bushes...");
-var types = [oTree, oTree2, oTree3, oTree4, oBush];
-var num = Math.floor(numStragglers / types.length);
-for (let type of types)
-	createObjectGroupsDeprecated(
-		new SimpleGroup(
-			[new SimpleObject(type, 1, 1, 0, 3)],
-			true,
-			clForest),
-		0,
-		[
-			stayClasses(clGrass, 1),
-			avoidClasses(
-				clWater, 5,
-				clForest, 1,
-				clHill, 1,
-				clPlayer, 0,
-				clMetal, 1,
-				clRock, 1)
-		],
-		num);
+createStragglerTrees(
+	[oTree, oTree2, oTree3, oTree4, oBush],
+	[
+		stayClasses(clGrass, 1),
+		avoidClasses(
+			clWater, 5,
+			clForest, 1,
+			clHill, 1,
+			clPlayer, 0,
+			clMetal, 1,
+			clRock, 1)
+	],
+	clForest,
+	stragglerTrees);
+
 RMS.SetProgress(90);
 
 log("Creating straggler bushes...");
@@ -486,7 +476,7 @@ createObjectGroupsDeprecated(
 			clMetal, 1,
 			clRock, 1)
 	],
-	numStragglers);
+	stragglerTrees);
 RMS.SetProgress(95);
 
 log("Creating rain drops...");

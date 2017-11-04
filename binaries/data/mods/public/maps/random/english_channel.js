@@ -242,12 +242,12 @@ RMS.SetProgress(30);
 createHills([tCliff, tCliff, tHill], avoidClasses(clPlayer, 20, clHill, 15, clWater, 5), clHill, scaleByMapSize(1, 4) * numPlayers);
 RMS.SetProgress(50);
 
+var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
 createForests(
  [tGrass, tGrassDForest, tGrassDForest, pForestD, pForestD],
  avoidClasses(clPlayer, 20, clForest, 17, clHill, 0, clWater, 6),
  clForest,
- 1.0
-);
+ forestTrees);
 RMS.SetProgress(70);
 
 log("Creating dirt patches...");
@@ -354,10 +354,11 @@ createFood
  [avoidClasses(clFood, 6), stayClasses(clWater, 4)]
 );
 
-log("Creating straggler trees...");
 createStragglerTrees(
 	[oBeech, oPoplar, oApple],
-	avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 8, clMetal, 6, clRock, 6));
+	avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 8, clMetal, 6, clRock, 6),
+	clForest,
+	stragglerTrees);
 
 setSkySet("cirrus");
 setWaterColor(0.114, 0.192, 0.463);

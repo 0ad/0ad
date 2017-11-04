@@ -135,11 +135,12 @@ createMountains(tCliff, avoidClasses(clPlayer, 20, clHill, 8), clHill, scaleByMa
 
 RMS.SetProgress(25);
 
+var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
 createForests(
  [tGrass, tForestFloor, tForestFloor, pForest1, pForest2],
  avoidClasses(clPlayer, 20, clForest, 14, clHill, 1),
  clForest,
- 0.6);
+ forestTrees);
 
 RMS.SetProgress(40);
 
@@ -250,17 +251,15 @@ RMS.SetProgress(80);
 
 createStragglerTrees(
 	[oCarob, oAleppoPine],
-	avoidClasses(clForest, 1, clHill, 1, clPlayer, 10, clMetal, 6, clRock, 6, clTreasure, 4));
+	avoidClasses(clForest, 1, clHill, 1, clPlayer, 10, clMetal, 6, clRock, 6, clTreasure, 4),
+	clForest,
+	stragglerTrees);
 
-log("Creating hill trees...");
-var types = [aCarob, aAleppoPine];
-var num = floor(0.2 * g_numStragglerTrees / types.length);
-for (let type of types)
-	createObjectGroupsDeprecated(
-		new SimpleGroup([new SimpleObject(type, 1, 1, 0, 3)], true, clForest),
-		0,
-		stayClasses(clHill, 2),
-		num);
+createStragglerTrees(
+	[aCarob, aAleppoPine],
+	stayClasses(clHill, 2),
+	clForest,
+	stragglerTrees / 5);
 
 setFogFactor(0.2);
 setFogThickness(0.14);

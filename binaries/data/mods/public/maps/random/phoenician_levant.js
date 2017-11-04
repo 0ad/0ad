@@ -180,19 +180,11 @@ createAreas(
 	avoidClasses(clPlayer, 20, clForest, 1, clHill, 15, clWater, 0),
 	scaleByMapSize(1, 4) * numPlayers * 3);
 
-// calculate desired number of trees for map (based on size)
-const MIN_TREES = 500;
-const MAX_TREES = 2500;
-const P_FOREST = 0.5;
-
-var totalTrees = scaleByMapSize(MIN_TREES, MAX_TREES);
-var numForest = totalTrees * P_FOREST;
-var numStragglers = totalTrees * (1.0 - P_FOREST);
-
 log("Creating forests...");
+var [forestTrees, stragglerTrees] = getTreeCounts(500, 2500, 0.5);
 var num = scaleByMapSize(10,42);
 createAreas(
-	new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), numForest / (num * Math.floor(scaleByMapSize(2, 5))), 0.5),
+	new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), forestTrees / (num * Math.floor(scaleByMapSize(2, 5))), 0.5),
 	[
 		new TerrainPainter([tForestFloor, pForest]),
 		paintClass(clForest)
@@ -347,18 +339,16 @@ createObjectGroupsDeprecated(group, 0,
 );
 RMS.SetProgress(90);
 
-log("Creating straggler trees...");
-var types = [oDatePalm, oSDatePalm, oCarob, oFanPalm, oPoplar, oCypress];
 var stragglerTrees = [
 	[1, avoidClasses(clForest, 0, clWater, 1, clPlayer, 8, clMetal, 6, clHill, 1)],
 	[3, stayClasses(clIsland, 9)]
 ];
 for (let [amount, constraint] of stragglerTrees)
-{
-	let num = amount * Math.floor(numStragglers / types.length);
-	for (let type of types)
-		createObjectGroupsDeprecated(new SimpleGroup([new SimpleObject(type, 1, 1, 0, 0)], true), 0, constraint, num);
-}
+	createStragglerTrees(
+		[oDatePalm, oSDatePalm, oCarob, oFanPalm, oPoplar, oCypress],
+		constraint,
+		clForest,
+		amount * stragglerTrees);
 
 setSkySet("sunny");
 setSunColor(0.917, 0.828, 0.734);

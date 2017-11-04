@@ -336,12 +336,12 @@ createMines(
 clRock
 );
 
+var [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
 createForests(
  [tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
  [avoidClasses(clPlayer, 10, clForest, 20, clHill, 10, clBaseResource, 5, clRock, 6, clMetal, 6), stayClasses(clLand, 3)],
  clForest,
- 1,
- ...rBiomeTreeCount(1));
+ forestTrees);
 
 log("Creating hills...");
 createAreas(
@@ -359,10 +359,13 @@ for (let i = 0; i < 3; ++i)
 	globalSmoothHeightmap();
 
 createStragglerTrees(
-		[oTree1, oTree2, oTree4, oTree3],
-		[avoidClasses(clForest, 10, clPlayer, 20, clMetal, 6, clRock, 6, clHill, 1),
-		 stayClasses(clLand, 4)]
-);
+	[oTree1, oTree2, oTree4, oTree3],
+	[
+		avoidClasses(clForest, 10, clPlayer, 20, clMetal, 6, clRock, 6, clHill, 1),
+		stayClasses(clLand, 4)
+	],
+	clForest,
+	stragglerTrees);
 
 createFood(
 	[
