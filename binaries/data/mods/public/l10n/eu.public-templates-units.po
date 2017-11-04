@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-09-25 09:03+0200\n"
-"PO-Revision-Date: 2017-09-25 16:14+0000\n"
+"POT-Creation-Date: 2017-11-01 09:02+0100\n"
+"PO-Revision-Date: 2017-11-01 17:35+0000\n"
 "Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -20,6 +20,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: eu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: simulation/templates/template_unit_catafalque.xml:20
+msgid "Catafalque"
+msgstr "Kataflako"
+
+#: simulation/templates/template_unit_catafalque.xml:23
+msgid "A catafalque that holds the remains of a great leader."
+msgstr "Lider handi baten gorpuzkiak dituen katafalko bat ."
+
+#: simulation/templates/template_unit_catafalque.xml:24
+msgid "Relic"
+msgstr "Erlikia"
 
 #: simulation/templates/template_unit_cavalry.xml:38
 #: simulation/templates/template_unit_cavalry.xml:39
@@ -134,7 +146,7 @@ msgstr "Zalditeri Nagusia"
 msgid "Ranged"
 msgstr "Nagusia"
 
-#: simulation/templates/template_unit_cavalry_ranged_archer.xml:23
+#: simulation/templates/template_unit_cavalry_ranged_archer.xml:22
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:25
 #: simulation/templates/template_unit_champion_infantry_archer.xml:28
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:20
@@ -144,11 +156,11 @@ msgstr "Nagusia"
 msgid "Archer"
 msgstr "Gezilaria"
 
-#: simulation/templates/template_unit_cavalry_ranged_archer.xml:24
+#: simulation/templates/template_unit_cavalry_ranged_archer.xml:23
 msgid "Cavalry Archer"
 msgstr "Gezilari Zalditeria"
 
-#: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:23
+#: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:22
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:25
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:28
 #: simulation/templates/template_unit_hero_cavalry_javelinist.xml:31
@@ -157,7 +169,7 @@ msgstr "Gezilari Zalditeria"
 msgid "Javelin"
 msgstr "Xabalin"
 
-#: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:24
+#: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:23
 msgid "Cavalry Skirmisher"
 msgstr "Jazarle Zalduna"
 
@@ -504,6 +516,10 @@ msgstr "Bizitza mugatuko biltzaileak. Hobaria meatzaritzan eta egur moztean."
 #: simulation/templates/template_unit_support_trader.xml:17
 msgid "Trade resources between your own markets and those of your allies."
 msgstr "Zure eta zure aliatuen arteko merkatuen artean baliabideak trukatu."
+
+#: simulation/templates/units/athen_catafalque.xml:9
+msgid "Solon"
+msgstr "Solon"
 
 #: simulation/templates/units/athen_cavalry_javelinist_a.xml:4
 #: simulation/templates/units/athen_cavalry_swordsman_a.xml:4
@@ -897,6 +913,10 @@ msgstr "Doûlos"
 msgid "Émporos"
 msgstr "Émporos"
 
+#: simulation/templates/units/brit_catafalque.xml:9
+msgid "Cassivellaunus"
+msgstr "Cassivellaunus"
+
 #: simulation/templates/units/brit_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/gaul_cavalry_javelinist_b.xml:6
 msgid "Gaisaredos"
@@ -1036,6 +1056,10 @@ msgstr "Cyfnewidiwr"
 #: simulation/templates/units/brit_war_dog_b.xml:6
 msgid "Coun"
 msgstr "Coun"
+
+#: simulation/templates/units/cart_catafalque.xml:8
+msgid "Hasdrubal (Quartermaster)"
+msgstr "Hasdrubal (Intendente)"
 
 #: simulation/templates/units/cart_cavalry_javelinist_b.xml:6
 msgid "Numidian Cavalry"
@@ -1238,6 +1262,10 @@ msgstr "Kehinit"
 msgid "Mekir"
 msgstr "Mekir"
 
+#: simulation/templates/units/gaul_catafalque.xml:9
+msgid "Ambiorix"
+msgstr "Ambiorix"
+
 #: simulation/templates/units/gaul_champion_cavalry.xml:5
 msgid "Gallic Noble Cavalry"
 msgstr "Noblezia Galiarraren Zalditeria"
@@ -1277,6 +1305,10 @@ msgstr "Britomartus"
 #: simulation/templates/units/gaul_ship_fishing.xml:5
 msgid "Lembus"
 msgstr "Lembus"
+
+#: simulation/templates/units/iber_catafalque.xml:9
+msgid "Mandonius"
+msgstr "Mandonius"
 
 #: simulation/templates/units/iber_cavalry_javelinist_b.xml:6
 msgid "Kantabriako Zaldun"
@@ -1365,6 +1397,17 @@ msgstr "Ataekinako Emakumezko Apaiza"
 #: simulation/templates/units/iber_support_trader.xml:5
 msgid "Merkatari"
 msgstr "Merkatari"
+
+#: simulation/templates/units/mace_catafalque.xml:8
+msgid "Philip V"
+msgstr "Filipo V "
+
+#: simulation/templates/units/mace_catafalque.xml:9
+msgid ""
+"Financial Reorganization: Allied with Rome, Philip reorganized the country's"
+" internal affairs and finances, leaving as a legacy reopened mines and a new"
+" currency. Gain a slow trickle of metal."
+msgstr "Finantza berrantolaketa: Erromarekin aliatzean Filipok herrialdearen arazo eda finantzak astindu zituen eta berak utzitako ondarea berriz ireki ziren mehatzeak eta moneta berria izan ziren. Metala tantaka motelean ematen du."
 
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:13
 msgid "Odrysian Skirmish Cavalry"
@@ -1505,6 +1548,10 @@ msgstr "Mazedoniar Emakumea"
 #: simulation/templates/units/sele_support_healer_b.xml:7
 msgid "Hiereús"
 msgstr "Hiereús"
+
+#: simulation/templates/units/maur_catafalque.xml:9
+msgid "Bindusara"
+msgstr "Bindusara"
 
 #: simulation/templates/units/maur_cavalry_javelinist_b.xml:6
 msgid "Indian Light Cavalry"
@@ -1712,6 +1759,10 @@ msgstr "Pertsiar Lantzaren Eroalea"
 msgid "Arštibara"
 msgstr "Arštibara"
 
+#: simulation/templates/units/pers_catafalque.xml:8
+msgid "Artaxerxes II"
+msgstr "Artaxerxes II"
+
 #: simulation/templates/units/pers_cavalry_archer_b.xml:11
 msgid "Babylonian Scythed Chariot"
 msgstr "Igitai itxurako Gurdi Babiloniarra"
@@ -1909,6 +1960,10 @@ msgid ""
 "have a +25% land trading bonus."
 msgstr "Zure eta zure aliatuen arteko merkatari baliabideak trukatzen ditu. Pertsiarrek %25+ lortzen dute lurreko merkataritzan."
 
+#: simulation/templates/units/ptol_catafalque.xml:8
+msgid "Ptolemy III Euergetes (Benefactor)"
+msgstr "Ptolemy III Euergetes (Ongilea)"
+
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:5
 msgid "Camel"
 msgstr "Gamelua"
@@ -2069,6 +2124,10 @@ msgstr "Apaiz Egiptoarra"
 #: simulation/templates/units/ptol_support_healer_b.xml:7
 msgid "Hiereús Aigýptios"
 msgstr "Hiereús Aigýptios"
+
+#: simulation/templates/units/rome_catafalque.xml:9
+msgid "Lucius Junius Brutus"
+msgstr "Lucius Junius Brutus"
 
 #: simulation/templates/units/rome_cavalry_javelinist_b.xml:7
 msgid "Italian Allied Cavalry"
@@ -2232,6 +2291,10 @@ msgstr "Samnitar Jazarlea"
 msgid "Samnite Spearman"
 msgstr "Samnitar lantzaria"
 
+#: simulation/templates/units/sele_catafalque.xml:10
+msgid "Antiochus I Soter (Savior)"
+msgstr "Antiochus I Soter (Salbatzailea)"
+
 #: simulation/templates/units/sele_cavalry_archer_b.xml:7
 msgid "Dahae Horse Archer"
 msgstr "Dahae Arkularia Zaldian"
@@ -2375,6 +2438,10 @@ msgstr "Syrías Gýnē"
 #: simulation/templates/units/sele_support_female_citizen.xml:7
 msgid "Syrian Woman"
 msgstr "Siriar Emakumea"
+
+#: simulation/templates/units/spart_catafalque.xml:10
+msgid "Lycurgus"
+msgstr "Lycurgus"
 
 #: simulation/templates/units/spart_cavalry_javelinist_b.xml:7
 msgid "Perioikoi Cavalryman"

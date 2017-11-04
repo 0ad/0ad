@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-09-25 09:03+0200\n"
-"PO-Revision-Date: 2017-09-26 05:38+0000\n"
+"POT-Creation-Date: 2017-11-01 09:02+0100\n"
+"PO-Revision-Date: 2017-11-01 18:53+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -23,6 +23,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: bg\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: simulation/templates/template_unit_catafalque.xml:20
+msgid "Catafalque"
+msgstr "Катафалка"
+
+#: simulation/templates/template_unit_catafalque.xml:23
+msgid "A catafalque that holds the remains of a great leader."
+msgstr "Катафалка, превозваща останките на велик водач."
+
+#: simulation/templates/template_unit_catafalque.xml:24
+msgid "Relic"
+msgstr "Реликва"
 
 #: simulation/templates/template_unit_cavalry.xml:38
 #: simulation/templates/template_unit_cavalry.xml:39
@@ -137,7 +149,7 @@ msgstr "Далекобоен конник"
 msgid "Ranged"
 msgstr "Далекобоен"
 
-#: simulation/templates/template_unit_cavalry_ranged_archer.xml:23
+#: simulation/templates/template_unit_cavalry_ranged_archer.xml:22
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:25
 #: simulation/templates/template_unit_champion_infantry_archer.xml:28
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:20
@@ -147,11 +159,11 @@ msgstr "Далекобоен"
 msgid "Archer"
 msgstr "Стрелец"
 
-#: simulation/templates/template_unit_cavalry_ranged_archer.xml:24
+#: simulation/templates/template_unit_cavalry_ranged_archer.xml:23
 msgid "Cavalry Archer"
 msgstr "Конен стрелец"
 
-#: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:23
+#: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:22
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:25
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:28
 #: simulation/templates/template_unit_hero_cavalry_javelinist.xml:31
@@ -160,7 +172,7 @@ msgstr "Конен стрелец"
 msgid "Javelin"
 msgstr "Метателно копие"
 
-#: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:24
+#: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:23
 msgid "Cavalry Skirmisher"
 msgstr "Конен копиехвъргач"
 
@@ -507,6 +519,10 @@ msgstr "Събирач с ограничено време на живот. По-
 #: simulation/templates/template_unit_support_trader.xml:17
 msgid "Trade resources between your own markets and those of your allies."
 msgstr "Търгувайте ресурси между своите пазари и тези на съюзниците Ви."
+
+#: simulation/templates/units/athen_catafalque.xml:9
+msgid "Solon"
+msgstr "Солон"
 
 #: simulation/templates/units/athen_cavalry_javelinist_a.xml:4
 #: simulation/templates/units/athen_cavalry_swordsman_a.xml:4
@@ -900,6 +916,10 @@ msgstr "Доулос"
 msgid "Émporos"
 msgstr "Ѐмпорос"
 
+#: simulation/templates/units/brit_catafalque.xml:9
+msgid "Cassivellaunus"
+msgstr "Касивелаун"
+
 #: simulation/templates/units/brit_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/gaul_cavalry_javelinist_b.xml:6
 msgid "Gaisaredos"
@@ -1039,6 +1059,10 @@ msgstr "Къфнеуидилр"
 #: simulation/templates/units/brit_war_dog_b.xml:6
 msgid "Coun"
 msgstr "Коун"
+
+#: simulation/templates/units/cart_catafalque.xml:8
+msgid "Hasdrubal (Quartermaster)"
+msgstr "Хасдрубал (интендант)"
 
 #: simulation/templates/units/cart_cavalry_javelinist_b.xml:6
 msgid "Numidian Cavalry"
@@ -1241,6 +1265,10 @@ msgstr "Кехинит"
 msgid "Mekir"
 msgstr "Мекир"
 
+#: simulation/templates/units/gaul_catafalque.xml:9
+msgid "Ambiorix"
+msgstr "Амбиорикс"
+
 #: simulation/templates/units/gaul_champion_cavalry.xml:5
 msgid "Gallic Noble Cavalry"
 msgstr "Галска знатен конник"
@@ -1280,6 +1308,10 @@ msgstr "Бритомарт"
 #: simulation/templates/units/gaul_ship_fishing.xml:5
 msgid "Lembus"
 msgstr "Лембо"
+
+#: simulation/templates/units/iber_catafalque.xml:9
+msgid "Mandonius"
+msgstr "Мандоний"
 
 #: simulation/templates/units/iber_cavalry_javelinist_b.xml:6
 msgid "Kantabriako Zaldun"
@@ -1368,6 +1400,17 @@ msgstr "Емакумезко апаиз де Атаекина"
 #: simulation/templates/units/iber_support_trader.xml:5
 msgid "Merkatari"
 msgstr "Меркатари"
+
+#: simulation/templates/units/mace_catafalque.xml:8
+msgid "Philip V"
+msgstr "Филип V"
+
+#: simulation/templates/units/mace_catafalque.xml:9
+msgid ""
+"Financial Reorganization: Allied with Rome, Philip reorganized the country's"
+" internal affairs and finances, leaving as a legacy reopened mines and a new"
+" currency. Gain a slow trickle of metal."
+msgstr "Финансов реформатор: В съюз с Рим, Филип променил вътрешното устройство и финансите на страната си, като оставил след себе си повторно отворени мини и нова валута. Получавате малко метал."
 
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:13
 msgid "Odrysian Skirmish Cavalry"
@@ -1508,6 +1551,10 @@ msgstr "Македонска жена"
 #: simulation/templates/units/sele_support_healer_b.xml:7
 msgid "Hiereús"
 msgstr "Йереу̀с"
+
+#: simulation/templates/units/maur_catafalque.xml:9
+msgid "Bindusara"
+msgstr "Биндусара"
 
 #: simulation/templates/units/maur_cavalry_javelinist_b.xml:6
 msgid "Indian Light Cavalry"
@@ -1715,6 +1762,10 @@ msgstr "Персийски носач на ябълки"
 msgid "Arštibara"
 msgstr "Арштибара"
 
+#: simulation/templates/units/pers_catafalque.xml:8
+msgid "Artaxerxes II"
+msgstr "Артаксеркс II"
+
 #: simulation/templates/units/pers_cavalry_archer_b.xml:11
 msgid "Babylonian Scythed Chariot"
 msgstr "Вавилонска колесница с коси"
@@ -1912,6 +1963,10 @@ msgid ""
 "have a +25% land trading bonus."
 msgstr "Търгувайте ресурси между своите пазари и тези на съюзниците Ви. Персийците имат +25% по-добра търговия по суша."
 
+#: simulation/templates/units/ptol_catafalque.xml:8
+msgid "Ptolemy III Euergetes (Benefactor)"
+msgstr "Птолемей III Евригет (благодетел)"
+
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:5
 msgid "Camel"
 msgstr "Камила"
@@ -2072,6 +2127,10 @@ msgstr "Египетски свещеник"
 #: simulation/templates/units/ptol_support_healer_b.xml:7
 msgid "Hiereús Aigýptios"
 msgstr "Хиереу̀с айгѝптиос"
+
+#: simulation/templates/units/rome_catafalque.xml:9
+msgid "Lucius Junius Brutus"
+msgstr "Луций Юний Брут"
 
 #: simulation/templates/units/rome_cavalry_javelinist_b.xml:7
 msgid "Italian Allied Cavalry"
@@ -2235,6 +2294,10 @@ msgstr "Самнитски копиехвъргач"
 msgid "Samnite Spearman"
 msgstr "Самнитски копиеносец"
 
+#: simulation/templates/units/sele_catafalque.xml:10
+msgid "Antiochus I Soter (Savior)"
+msgstr "Антиох I Сотер (спасител)"
+
 #: simulation/templates/units/sele_cavalry_archer_b.xml:7
 msgid "Dahae Horse Archer"
 msgstr "Дахийски конен стрелец"
@@ -2378,6 +2441,10 @@ msgstr "Сирѝас гѝни"
 #: simulation/templates/units/sele_support_female_citizen.xml:7
 msgid "Syrian Woman"
 msgstr "Сирийска жена"
+
+#: simulation/templates/units/spart_catafalque.xml:10
+msgid "Lycurgus"
+msgstr "Ликург"
 
 #: simulation/templates/units/spart_cavalry_javelinist_b.xml:7
 msgid "Perioikoi Cavalryman"

@@ -8,15 +8,27 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-09-25 09:03+0200\n"
-"PO-Revision-Date: 2017-09-28 17:55+0000\n"
-"Last-Translator: abuyop <abuyop@gmail.com>\n"
+"POT-Creation-Date: 2017-11-01 09:02+0100\n"
+"PO-Revision-Date: 2017-11-01 14:53+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Malay (http://www.transifex.com/wildfire-games/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ms\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: simulation/templates/template_unit_catafalque.xml:20
+msgid "Catafalque"
+msgstr ""
+
+#: simulation/templates/template_unit_catafalque.xml:23
+msgid "A catafalque that holds the remains of a great leader."
+msgstr ""
+
+#: simulation/templates/template_unit_catafalque.xml:24
+msgid "Relic"
+msgstr ""
 
 #: simulation/templates/template_unit_cavalry.xml:38
 #: simulation/templates/template_unit_cavalry.xml:39
@@ -131,7 +143,7 @@ msgstr "Askar Berkuda Serangan Jauh"
 msgid "Ranged"
 msgstr "Serangan Jauh"
 
-#: simulation/templates/template_unit_cavalry_ranged_archer.xml:23
+#: simulation/templates/template_unit_cavalry_ranged_archer.xml:22
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:25
 #: simulation/templates/template_unit_champion_infantry_archer.xml:28
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:20
@@ -141,11 +153,11 @@ msgstr "Serangan Jauh"
 msgid "Archer"
 msgstr "Pemanah"
 
-#: simulation/templates/template_unit_cavalry_ranged_archer.xml:24
+#: simulation/templates/template_unit_cavalry_ranged_archer.xml:23
 msgid "Cavalry Archer"
 msgstr "Askar Berkuda Memanah"
 
-#: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:23
+#: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:22
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:25
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:28
 #: simulation/templates/template_unit_hero_cavalry_javelinist.xml:31
@@ -154,7 +166,7 @@ msgstr "Askar Berkuda Memanah"
 msgid "Javelin"
 msgstr "Lembing"
 
-#: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:24
+#: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:23
 msgid "Cavalry Skirmisher"
 msgstr "Askar Peninjau Berkuda"
 
@@ -501,6 +513,10 @@ msgstr "Pengumpul dengan jangka hayat tertentu. Bonus pada perlombongan dan pemb
 #: simulation/templates/template_unit_support_trader.xml:17
 msgid "Trade resources between your own markets and those of your allies."
 msgstr "Sumber dagangan diantara pasaran anda dengan pihak sekutu anda."
+
+#: simulation/templates/units/athen_catafalque.xml:9
+msgid "Solon"
+msgstr ""
 
 #: simulation/templates/units/athen_cavalry_javelinist_a.xml:4
 #: simulation/templates/units/athen_cavalry_swordsman_a.xml:4
@@ -894,6 +910,10 @@ msgstr "Doûlos"
 msgid "Émporos"
 msgstr "Émporos"
 
+#: simulation/templates/units/brit_catafalque.xml:9
+msgid "Cassivellaunus"
+msgstr ""
+
 #: simulation/templates/units/brit_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/gaul_cavalry_javelinist_b.xml:6
 msgid "Gaisaredos"
@@ -1033,6 +1053,10 @@ msgstr "Cyfnewidiwr"
 #: simulation/templates/units/brit_war_dog_b.xml:6
 msgid "Coun"
 msgstr "Coun"
+
+#: simulation/templates/units/cart_catafalque.xml:8
+msgid "Hasdrubal (Quartermaster)"
+msgstr ""
 
 #: simulation/templates/units/cart_cavalry_javelinist_b.xml:6
 msgid "Numidian Cavalry"
@@ -1235,6 +1259,10 @@ msgstr "Kehinit"
 msgid "Mekir"
 msgstr "Mekir"
 
+#: simulation/templates/units/gaul_catafalque.xml:9
+msgid "Ambiorix"
+msgstr ""
+
 #: simulation/templates/units/gaul_champion_cavalry.xml:5
 msgid "Gallic Noble Cavalry"
 msgstr "Bangsawan Berkuda Gaul"
@@ -1274,6 +1302,10 @@ msgstr "Britomartus"
 #: simulation/templates/units/gaul_ship_fishing.xml:5
 msgid "Lembus"
 msgstr "Lembus"
+
+#: simulation/templates/units/iber_catafalque.xml:9
+msgid "Mandonius"
+msgstr ""
 
 #: simulation/templates/units/iber_cavalry_javelinist_b.xml:6
 msgid "Kantabriako Zaldun"
@@ -1362,6 +1394,17 @@ msgstr "Emakumezko Apaiz de Ataekina"
 #: simulation/templates/units/iber_support_trader.xml:5
 msgid "Merkatari"
 msgstr "Merkatari"
+
+#: simulation/templates/units/mace_catafalque.xml:8
+msgid "Philip V"
+msgstr ""
+
+#: simulation/templates/units/mace_catafalque.xml:9
+msgid ""
+"Financial Reorganization: Allied with Rome, Philip reorganized the country's"
+" internal affairs and finances, leaving as a legacy reopened mines and a new"
+" currency. Gain a slow trickle of metal."
+msgstr ""
 
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:13
 msgid "Odrysian Skirmish Cavalry"
@@ -1502,6 +1545,10 @@ msgstr "Wanita Macedonia"
 #: simulation/templates/units/sele_support_healer_b.xml:7
 msgid "Hiereús"
 msgstr "Hiereús"
+
+#: simulation/templates/units/maur_catafalque.xml:9
+msgid "Bindusara"
+msgstr ""
 
 #: simulation/templates/units/maur_cavalry_javelinist_b.xml:6
 msgid "Indian Light Cavalry"
@@ -1709,6 +1756,10 @@ msgstr "Pembawa Epal Parsi"
 msgid "Arštibara"
 msgstr "Arštibara"
 
+#: simulation/templates/units/pers_catafalque.xml:8
+msgid "Artaxerxes II"
+msgstr ""
+
 #: simulation/templates/units/pers_cavalry_archer_b.xml:11
 msgid "Babylonian Scythed Chariot"
 msgstr "Kereta Kuda Bersabit Babylon"
@@ -1906,6 +1957,10 @@ msgid ""
 "have a +25% land trading bonus."
 msgstr "Dagangkan sumber diantara pasaran anda sendiri dengan sekutu anda. Orang Parsi memiliki +25% bonus perdagangan darat."
 
+#: simulation/templates/units/ptol_catafalque.xml:8
+msgid "Ptolemy III Euergetes (Benefactor)"
+msgstr ""
+
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:5
 msgid "Camel"
 msgstr "Unta"
@@ -2066,6 +2121,10 @@ msgstr "Paderi Mesir"
 #: simulation/templates/units/ptol_support_healer_b.xml:7
 msgid "Hiereús Aigýptios"
 msgstr "Hiereús Aigýptios"
+
+#: simulation/templates/units/rome_catafalque.xml:9
+msgid "Lucius Junius Brutus"
+msgstr ""
 
 #: simulation/templates/units/rome_cavalry_javelinist_b.xml:7
 msgid "Italian Allied Cavalry"
@@ -2229,6 +2288,10 @@ msgstr "Askar Peninjau Samnium"
 msgid "Samnite Spearman"
 msgstr "Askar Bertombak Samnite"
 
+#: simulation/templates/units/sele_catafalque.xml:10
+msgid "Antiochus I Soter (Savior)"
+msgstr ""
+
 #: simulation/templates/units/sele_cavalry_archer_b.xml:7
 msgid "Dahae Horse Archer"
 msgstr "Pemanah Berkuda Dahae"
@@ -2372,6 +2435,10 @@ msgstr "Syrías Gýnē"
 #: simulation/templates/units/sele_support_female_citizen.xml:7
 msgid "Syrian Woman"
 msgstr "Wanita Syria"
+
+#: simulation/templates/units/spart_catafalque.xml:10
+msgid "Lycurgus"
+msgstr ""
 
 #: simulation/templates/units/spart_cavalry_javelinist_b.xml:7
 msgid "Perioikoi Cavalryman"
