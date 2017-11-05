@@ -361,57 +361,16 @@ else if (md == 4) //central river
 	}
 
 	if (randBool())
-	{
-		log("Creating tributaries");
-
-		for (var i = 0; i <= randIntInclusive(8, (scaleByMapSize(12,20))); i++)
-		{
-			var cLocation = randFloat(0.05,0.95);
-			var tang = randFloat(PI*0.2, PI*0.8)*((randIntInclusive(0, 1)-0.5)*2);
-			if (tang > 0)
-			{
-				var cDistance = 0.05;
-			}
-			else
-			{
-				var cDistance = -0.05;
-			}
-			if (mdd1 == 1)
-				var point = getTIPIADBON([fractionToTiles(cLocation), fractionToTiles(0.5 + cDistance)], [fractionToTiles(cLocation), fractionToTiles(0.5 - cDistance)], [-6, -1.5], 0.5, 4, 0.01);
-			else
-				var point = getTIPIADBON([fractionToTiles(0.5 + cDistance), fractionToTiles(cLocation)], [fractionToTiles(0.5 - cDistance), fractionToTiles(cLocation)], [-6, -1.5], 0.5, 4, 0.01);
-
-			if (point !== undefined)
-			{
-				if (mdd1 == 1)
-					var placer = new PathPlacer(floor(point[0]), floor(point[1]), floor(fractionToTiles(0.5 + 0.49*cos(tang))), floor(fractionToTiles(0.5 + 0.49*sin(tang))), scaleByMapSize(10,20), 0.4, 3*(scaleByMapSize(1,4)), 0.1, 0.05);
-				else
-					var placer = new PathPlacer(floor(point[0]), floor(point[1]), floor(fractionToTiles(0.5 + 0.49*sin(tang))), floor(fractionToTiles(0.5 + 0.49*cos(tang))), scaleByMapSize(10,20), 0.4, 3*(scaleByMapSize(1,4)), 0.1, 0.05);
-
-				var terrainPainter = new LayeredPainter(
-					[tShore, tWater, tWater],		// terrains
-					[1, 3]								// widths
-				);
-				var elevationPainter = new SmoothElevationPainter(
-					ELEVATION_SET,			// type
-					-4,				// elevation
-					4				// blend radius
-				);
-				var success = createArea(placer, [terrainPainter, elevationPainter, paintClass(clWater)], avoidClasses(clPlayer, 2, clWater, 3, clShallow, 2));
-				if (success !== undefined)
-				{
-					if (mdd1 == 1)
-						placer = new ClumpPlacer(floor(PI*scaleByMapSize(10,20)*scaleByMapSize(10,20)/4), 0.95, 0.6, 10, fractionToTiles(0.5 + 0.49*cos(tang)), fractionToTiles(0.5 + 0.49*sin(tang)));
-					else
-						placer = new ClumpPlacer(0.95, floor(PI*scaleByMapSize(10,20)*scaleByMapSize(10,20)/4), 0.6, 10, fractionToTiles(0.5 + 0.49*cos(tang)), fractionToTiles(0.5 + 0.49*sin(tang)));
-
-					var painter = new LayeredPainter([tWater, tWater], [1]);
-					var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -4, 2);
-					createArea(placer, [painter, elevationPainter], avoidClasses(clPlayer, 15));
-				}
-			}
-		}
-	}
+		createTributaryRivers(
+			mdd1 == 1,
+			randIntInclusive(8, scaleByMapSize(12, 16)),
+			scaleByMapSize(10, 20),
+			-4,
+			[-6, -1.5],
+			0.2 * Math.PI,
+			clWater,
+			clShallow,
+			avoidClasses(clPlayer, 3));
 }
 //********************************************************************************************************
 else if (md == 5) //rivers and lake

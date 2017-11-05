@@ -423,6 +423,88 @@ function rndRiver(f, seed)
 }
 
 /**
+ * Add small rivers with shallows starting at a central river ending at the map border, if the given Constraint is met.
+ */
+function createTributaryRivers(horizontal, riverCount, riverWidth, waterHeight, heightRange, maxAngle, tributaryRiverTileClass, shallowTileClass, constraint)
+{
+	log("Creating tributary rivers...");
+	let waviness = 0.4;
+	let smoothness = scaleByMapSize(3, 12);
+	let offset = 0.1;
+	let tapering = 0.05;
+
+	let riverConstraint = avoidClasses(tributaryRiverTileClass, 3);
+	if (shallowTileClass)
+		riverConstraint = new AndConstraint([riverConstraint, avoidClasses(shallowTileClass, 2)]);
+
+	for (let i = 0; i < riverCount; ++i)
+	{
+		// Determining tributary start point
+		let location = randFloat(tapering, 1 - tapering);
+		let sign = randBool() ? 1 : -1;
+		let angle = sign * randFloat(maxAngle, 2 * Math.PI - maxAngle);
+		let distance = sign * tapering;
+
+		let searchStart = [fractionToTiles(location), fractionToTiles(0.5 + distance)];
+		let searchEnd = [fractionToTiles(location), fractionToTiles(0.5 - distance)];
+
+		if (!horizontal)
+		{
+			searchStart.reverse();
+			searchEnd.reverse();
+		}
+
+		let start = getTIPIADBON(searchStart, searchEnd, heightRange, 0.5, 4);
+		if (!start)
+			continue;
+
+		let endX = fractionToTiles(0.5 + 0.5 * Math.cos(angle));
+		let endZ = fractionToTiles(0.5 + 0.5 * Math.sin(angle));
+
+		// Create river
+		if (!createArea(
+			new PathPlacer(
+				Math.floor(start[0]),
+				Math.floor(start[1]),
+				Math.floor(endX),
+				Math.floor(endZ),
+				riverWidth,
+				waviness,
+				smoothness,
+				offset,
+				tapering),
+			[
+				new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
+				paintClass(tributaryRiverTileClass)
+			],
+			new AndConstraint([constraint, riverConstraint])))
+			continue;
+
+		// Create small puddles at the map border to ensure players being separated
+		createArea(
+			new ClumpPlacer(Math.floor(diskArea(riverWidth / 2)), 0.95, 0.6, 10, endX, endZ),
+			new SmoothElevationPainter(ELEVATION_SET, waterHeight, 3),
+			constraint);
+	}
+
+	// Create shallows
+	if (shallowTileClass)
+		for (let z of [0.25, 0.75])
+		{
+			let m1 = [Math.round(fractionToTiles(0.2)), Math.round(fractionToTiles(z))];
+			let m2 = [Math.round(fractionToTiles(0.8)), Math.round(fractionToTiles(z))];
+
+			if (!horizontal)
+			{
+				m1.reverse();
+				m2.reverse();
+			}
+
+			createShallowsPassage(...m1, ...m2, scaleByMapSize(4, 8), -2, -2, 2, shallowTileClass, undefined, waterHeight);
+		}
+}
+
+/**
  * Create shallow water between (x1, z1) and (x2, z2) of tiles below maxHeight.
  */
 function createShallowsPassage(x1, z1, x2, z2, width, maxHeight, shallowHeight, smooth, tileClass, terrain, riverHeight)

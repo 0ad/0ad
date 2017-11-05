@@ -176,72 +176,16 @@ for (let i = 0; i <= randIntInclusive(3, scaleByMapSize(4, 6)); ++i)
 		waterHeight);
 }
 
-log("Creating tributaries...");
-var riverWidth = scaleByMapSize(10, 20);
-for (let i = 0; i <= randIntInclusive(8, scaleByMapSize(12, 20)); ++i)
-{
-	log("Determining tributary destination...");
-	let cLocation = randFloat(0.05, 0.95);
-	let sign = randBool() ? 1 : -1;
-	let tang = sign * PI * randFloat(0.2, 0.8);
-	let cDistance = sign * 0.05;
-
-	let point = getTIPIADBON(
-		[fractionToTiles(cLocation), fractionToTiles(0.5 + cDistance)],
-		[fractionToTiles(cLocation), fractionToTiles(0.5 - cDistance)],
-		[-6, -1.5],
-		0.5,
-		5,
-		0.01);
-
-	if (point === undefined)
-		continue;
-
-	let fx = fractionToTiles(0.5 + 0.49 * Math.cos(tang));
-	let fz = fractionToTiles(0.5 + 0.49 * Math.sin(tang));
-
-	log("Creating tributary river...");
-	let success = createArea(
-		new PathPlacer(
-			Math.floor(point[0]),
-			Math.floor(point[1]),
-			Math.floor(fx),
-			Math.floor(fz),
-			riverWidth,
-			0.4,
-			3 * scaleByMapSize(1, 4),
-			0.1,
-			0.05),
-		[
-			new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
-			paintClass(clWater)
-		],
-		avoidClasses(clPlayer, 3, clWater, 3, clShallow, 2));
-
-	if (success === undefined)
-		continue;
-
-	log("Creating small puddles at the map border to ensure players being separated...");
-	createArea(
-		new ClumpPlacer(Math.floor(Math.PI * Math.pow(riverWidth, 2) / 4), 0.95, 0.6, 10, fx, fz),
-		new SmoothElevationPainter(ELEVATION_SET, waterHeight, 2),
-		avoidClasses(clPlayer, 3));
-}
-
-log("Creating shallows to make tributaries passable...");
-for (let coord of [0.25, 0.75])
-	createShallowsPassage(
-		Math.floor(fractionToTiles(0.2)),
-		Math.floor(fractionToTiles(coord)),
-		Math.floor(fractionToTiles(0.8)),
-		Math.floor(fractionToTiles(coord)),
-		scaleByMapSize(4, 8),
-		-2,
-		-2,
-		2,
-		clShallow,
-		undefined,
-		waterHeight);
+createTributaryRivers(
+	true,
+	randIntInclusive(9, scaleByMapSize(13, 21)),
+	scaleByMapSize(10, 20),
+	waterHeight,
+	[-6, -1.5],
+	Math.PI / 5,
+	clWater,
+	clShallow,
+	avoidClasses(clPlayer, 3, clBaseResource, 4));
 
 paintTerrainBasedOnHeight(-5, 1, 1, tWater);
 paintTerrainBasedOnHeight(1, 2, 1, pForestR);
