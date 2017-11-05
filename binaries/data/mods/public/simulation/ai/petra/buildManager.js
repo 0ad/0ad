@@ -33,7 +33,7 @@ m.BuildManager.prototype.incrementBuilderCounters = function(civ, ent, increment
 			let count = this.builderCounters.get(buildable) + increment;
 			if (count < 0)
 			{
-				API3.warning(" Petra error in incrementBuilderCounters for " + buildable + " with count < 0");
+				API3.warn(" Petra error in incrementBuilderCounters for " + buildable + " with count < 0");
 				continue;
 			}
 			this.builderCounters.set(buildable, count);
@@ -41,7 +41,7 @@ m.BuildManager.prototype.incrementBuilderCounters = function(civ, ent, increment
 		else if (increment > 0)
 			this.builderCounters.set(buildable, increment);
 		else
-			API3.warning(" Petra error in incrementBuilderCounters for " + buildable + " not yet set");
+			API3.warn(" Petra error in incrementBuilderCounters for " + buildable + " not yet set");
 	}
 };
 

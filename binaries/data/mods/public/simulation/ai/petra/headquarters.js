@@ -2548,7 +2548,7 @@ m.HQ.prototype.Deserialize = function(gameState, data)
 	this.attackManager.Deserialize(gameState, data.attackManager);
 
 	this.buildManager = new m.BuildManager();
-	this.buildManager.Deserialize(gameState, data.buildManager);
+	this.buildManager.Deserialize(data.buildManager);
 
 	this.defenseManager = new m.DefenseManager(this.Config);
 	this.defenseManager.Deserialize(gameState, data.defenseManager);
