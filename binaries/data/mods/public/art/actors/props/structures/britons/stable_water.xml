@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant name="Brittonic stable water">
+      <mesh>props/brit_stable_water.dae</mesh>
+      <textures>
+        <texture file="props/gardens_turf.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_water.xml</material>
+</actor>
