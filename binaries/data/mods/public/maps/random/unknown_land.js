@@ -318,9 +318,9 @@ else if (md == 4) //central river
 	{
 		var cLocation = randFloat(0.15,0.85);
 		if (mdd1 == 1)
-			passageMaker(floor(fractionToTiles(cLocation)), floor(fractionToTiles(0.35)), floor(fractionToTiles(cLocation)), floor(fractionToTiles(0.65)), scaleByMapSize(4,8), -2, -2, 2, clShallow, undefined, -4);
+			createShallowsPassage(floor(fractionToTiles(cLocation)), floor(fractionToTiles(0.35)), floor(fractionToTiles(cLocation)), floor(fractionToTiles(0.65)), scaleByMapSize(4,8), -2, -2, 2, clShallow, undefined, -4);
 		else
-			passageMaker(floor(fractionToTiles(0.35)), floor(fractionToTiles(cLocation)), floor(fractionToTiles(0.65)), floor(fractionToTiles(cLocation)), scaleByMapSize(4,8), -2, -2, 2, clShallow, undefined, -4);
+			createShallowsPassage(floor(fractionToTiles(0.35)), floor(fractionToTiles(cLocation)), floor(fractionToTiles(0.65)), floor(fractionToTiles(cLocation)), scaleByMapSize(4,8), -2, -2, 2, clShallow, undefined, -4);
 	}
 
 	if (randBool())

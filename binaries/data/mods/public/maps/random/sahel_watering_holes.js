@@ -187,7 +187,7 @@ for (var i = 0; i < numPlayers; i++)
 {
 	if (i+1 == numPlayers)
 	{
-		passageMaker(
+		createShallowsPassage(
 			round(fractionToTiles(playerX[i])),
 			round(fractionToTiles(playerZ[i])),
 			round(fractionToTiles(playerX[0])),
@@ -209,7 +209,7 @@ for (var i = 0; i < numPlayers; i++)
 	}
 	else
 	{
-		passageMaker(
+		createShallowsPassage(
 			fractionToTiles(playerX[i]),
 			fractionToTiles(playerZ[i]),
 			fractionToTiles(playerX[i+1]),

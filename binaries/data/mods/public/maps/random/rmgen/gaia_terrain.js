@@ -63,6 +63,226 @@ function createMountains(terrain, constraint, tileClass, count, maxHeight, minRa
 }
 
 /**
+ * Create a mountain using a technique very similar to ChainPlacer.
+ */
+function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraint, x, z, terrain, tileClass, fcc = 0, q = [])
+{
+	if (constraint instanceof Array)
+		constraint = new AndConstraint(constraint);
+
+	if (!g_Map.inMapBounds(x, z) || !constraint.allows(x, z))
+		return;
+
+	let mapSize = getMapSize();
+	let queueEmpty = !q.length;
+
+	let gotRet = [];
+	for (let i = 0; i < mapSize; ++i)
+	{
+		gotRet[i] = [];
+		for (let j = 0; j < mapSize; ++j)
+			gotRet[i][j] = -1;
+	}
+
+	--mapSize;
+
+	minRadius = Math.max(1, Math.min(minRadius, maxRadius));
+
+	let edges = [[x, z]];
+	let circles = [];
+
+	for (let i = 0; i < numCircles; ++i)
+	{
+		let badPoint = false;
+		let [cx, cz] = pickRandom(edges);
+
+		let radius;
+		if (queueEmpty)
+			radius = randIntInclusive(minRadius, maxRadius);
+		else
+		{
+			radius = q.pop();
+			queueEmpty = !q.length;
+		}
+
+		let sx = Math.max(0, cx - radius);
+		let sz = Math.max(0, cz - radius);
+		let lx = Math.min(cx + radius, mapSize);
+		let lz = Math.min(cz + radius, mapSize);
+
+		let radius2 = Math.square(radius);
+
+		for (let ix = sx; ix <= lx; ++ix)
+		{
+			for (let iz = sz; iz <= lz; ++iz)
+			{
+				if (Math.euclidDistance2D(ix, iz, cx, cz) > radius2 || !g_Map.inMapBounds(ix, iz))
+					continue;
+
+				if (!constraint.allows(ix, iz))
+				{
+					badPoint = true;
+					break;
+				}
+
+				let state = gotRet[ix][iz];
+				if (state == -1)
+				{
+					gotRet[ix][iz] = -2;
+				}
+				else if (state >= 0)
+				{
+					let s = edges.splice(state, 1);
+					gotRet[ix][iz] = -2;
+
+					let edgesLength = edges.length;
+					for (let k = state; k < edges.length; ++k)
+						--gotRet[edges[k][0]][edges[k][1]];
+				}
+			}
+
+			if (badPoint)
+				break;
+		}
+
+		if (badPoint)
+			continue;
+
+		circles.push([cx, cz, radius]);
+
+		for (let ix = sx; ix <= lx; ++ix)
+			for (let iz = sz; iz <= lz; ++iz)
+			{
+				if (gotRet[ix][iz] != -2 ||
+				    fcc && (x - ix > fcc || ix - x > fcc || z - iz > fcc || iz - z > fcc) ||
+				    ix > 0 && gotRet[ix-1][iz] == -1 ||
+				    iz > 0 && gotRet[ix][iz-1] == -1 ||
+				    ix < mapSize && gotRet[ix+1][iz] == -1 ||
+				    iz < mapSize && gotRet[ix][iz+1] == -1)
+					continue;
+
+				edges.push([ix, iz]);
+				gotRet[ix][iz] = edges.length - 1;
+			}
+	}
+
+	for (let [cx, cz, radius] of circles)
+	{
+		let sx = Math.max(0, cx - radius);
+		let sz = Math.max(0, cz - radius);
+		let lx = Math.min(cx + radius, mapSize);
+		let lz = Math.min(cz + radius, mapSize);
+
+		let clumpHeight = radius / maxRadius * maxHeight * randFloat(0.8, 1.2);
+
+		for (let ix = sx; ix <= lx; ++ix)
+			for (let iz = sz; iz <= lz; ++iz)
+			{
+				let distance = Math.euclidDistance2D(ix, iz, cx, cz);
+
+				let newHeight =
+					randIntInclusive(0, 2) +
+					Math.round(2/3 * clumpHeight * (Math.sin(Math.PI * 2/3 * (3/4 - distance / radius)) + 0.5));
+
+				if (distance > radius)
+					continue;
+
+				if (getHeight(ix, iz) < newHeight)
+					setHeight(ix, iz, newHeight);
+				else if (getHeight(ix, iz) >= newHeight && getHeight(ix, iz) < newHeight + 4)
+					setHeight(ix, iz, newHeight + 4);
+
+				if (terrain !== undefined)
+					placeTerrain(ix, iz, terrain);
+
+				if (tileClass !== undefined)
+					addToClass(ix, iz, tileClass);
+			}
+	}
+}
+
+/**
+ * Generates a volcano mountain. Smoke and lava are optional.
+ *
+ * @param {number} fx - Horizontal coordinate of the center.
+ * @param {number} fz - Horizontal coordinate of the center.
+ * @param {number} tileClass - Painted onto every tile that is occupied by the volcano.
+ * @param {string} terrainTexture - The texture painted onto the volcano hill.
+ * @param {array} lavaTextures - Three different textures for the interior, from the outside to the inside.
+ * @param {boolean} smoke - Whether to place smoke particles.
+ * @param {number} elevationType - Elevation painter type, ELEVATION_SET = absolute or ELEVATION_MODIFY = relative.
+ */
+function createVolcano(fx, fz, tileClass, terrainTexture, lavaTextures, smoke, elevationType)
+{
+	log("Creating volcano");
+
+	let ix = Math.round(fractionToTiles(fx));
+	let iz = Math.round(fractionToTiles(fz));
+
+	let baseSize = getMapArea() / scaleByMapSize(1, 8);
+	let coherence = 0.7;
+	let smoothness = 0.05;
+	let failFraction = 100;
+	let steepness = 3;
+
+	let clLava = createTileClass();
+
+	let layers = [
+		{
+			"clumps": 0.067,
+			"elevation": 15,
+			"tileClass": tileClass
+		},
+		{
+			"clumps": 0.05,
+			"elevation": 25,
+			"tileClass": createTileClass()
+		},
+		{
+			"clumps": 0.02,
+			"elevation": 45,
+			"tileClass": createTileClass()
+		},
+		{
+			"clumps": 0.011,
+			"elevation": 62,
+			"tileClass": createTileClass()
+		},
+		{
+			"clumps": 0.003,
+			"elevation": 42,
+			"tileClass": clLava,
+			"painter": lavaTextures && new LayeredPainter([terrainTexture, ...lavaTextures], [1, 1, 1]),
+			"steepness": 1
+		}
+	];
+
+	for (let i = 0; i < layers.length; ++i)
+		createArea(
+			new ClumpPlacer(baseSize * layers[i].clumps, coherence, smoothness, failFraction, ix, iz),
+			[
+				layers[i].painter || new LayeredPainter([terrainTexture, terrainTexture], [3]),
+				new SmoothElevationPainter(elevationType, layers[i].elevation, layers[i].steepness || steepness),
+				paintClass(layers[i].tileClass)
+			],
+			i == 0 ? null : stayClasses(layers[i - 1].tileClass, 1));
+
+	if (smoke)
+	{
+		let num = Math.floor(baseSize * 0.002);
+		createObjectGroup(
+			new SimpleGroup(
+				[new SimpleObject("actor|particle/smoke.xml", num, num, 0, 7)],
+				false,
+				clLava,
+				ix,
+				iz),
+			0,
+		stayClasses(tileClass, 1));
+	}
+}
+
+/**
  * Paint the given terrain texture in the given sizes at random places of the map to diversify monotone land texturing.
  */
 function createPatches(sizes, terrain, constraint, count,  tileClass, failFraction =  0.5)
@@ -92,4 +312,272 @@ function createLayeredPatches(sizes, terrains, terrainWidths, constraint, count,
 			],
 			constraint,
 			count);
+}
+
+/**
+ * Creates a meandering river at the given location and width.
+ * Optionally calls a function on the affected tiles.
+ *
+ * @property horizontal - Whether the river is horizontal or vertical
+ * @property parallel - Whether the shorelines should be parallel or meander separately.
+ * @property position - Location of the river. Number between 0 and 1.
+ * @property width - Size between the two shorelines. Number between 0 and 1.
+ * @property fadeDist - Size of the shoreline.
+ * @property deviation - Fuzz effect on the shoreline if greater than 0.
+ * @property waterHeight - Ground height of the riverbed.
+ * @proeprty landHeight - Ground height of the end of the shoreline.
+ * @property meanderShort - Strength of frequent meanders.
+ * @property meanderLong - Strength of less frequent meanders.
+ * @property waterFunc - Optional function called on water tiles, providing ix, iz, height.
+ * @property landFunc - Optional function called on land tiles, providing ix, iz, shoreDist1, shoreDist2.
+ */
+function paintRiver(args)
+{
+	log("Creating the river");
+
+	let theta1 = randFloat(0, 1);
+	let theta2 = randFloat(0, 1);
+
+	let seed1 = randFloat(2, 3);
+	let seed2 = randFloat(2, 3);
+
+	let meanderShort = args.meanderShort / scaleByMapSize(35, 160);
+	let meanderLong = args.meanderLong / scaleByMapSize(35, 100);
+
+	let mapSize = getMapSize();
+
+	for (let ix = 0; ix < mapSize; ++ix)
+		for (let iz = 0; iz < mapSize; ++iz)
+		{
+			if (args.constraint && !args.constraint.allows(ix, iz))
+				continue;
+
+			let x = ix / (mapSize + 1);
+			let z = iz / (mapSize + 1);
+
+			let coord1 = args.horizontal ? z : x;
+			let coord2 = args.horizontal ? x : z;
+
+			// River curve at this place
+			let curve1 =
+				meanderShort * rndRiver(theta1 + coord2 * mapSize / 128, seed1) +
+				meanderLong * rndRiver(theta2 + coord2 * mapSize / 256, seed2);
+
+			let curve2 = args.parallel ? curve1 :
+				meanderShort * rndRiver(theta2 + coord2 * mapSize / 128, seed2) +
+				meanderLong * rndRiver(theta2 + coord2 * mapSize / 256, seed2);
+
+			// Fuzz the river border
+			let devCoord1 = coord1 * randFloat(1 - args.deviation, 1 + args.deviation);
+			let devCoord2 = coord2 * randFloat(1 - args.deviation, 1 + args.deviation);
+
+			let shoreDist1 = -devCoord1 + curve1 + args.position - args.width / 2;
+			let shoreDist2 = -devCoord1 + curve2 + args.position + args.width / 2;
+
+			if (shoreDist1 < 0 && shoreDist2 > 0)
+			{
+				let height = args.waterHeight;
+
+				if (shoreDist1 > -args.fadeDist)
+					height += (args.landHeight - args.waterHeight) * (1 + shoreDist1 / args.fadeDist);
+				else if (shoreDist2 < args.fadeDist)
+					height += (args.landHeight - args.waterHeight) * (1 - shoreDist2 / args.fadeDist);
+
+				setHeight(ix, iz, height);
+
+				if (args.waterFunc)
+					args.waterFunc(ix, iz, height);
+			}
+			else if (args.landFunc)
+				args.landFunc(ix, iz, shoreDist1, shoreDist2);
+		}
+}
+
+/**
+ * Helper function to create a meandering river.
+ * It works the same as sin or cos function with the difference that it's period is 1 instead of 2 pi.
+ */
+function rndRiver(f, seed)
+{
+	let rndRw = seed;
+
+	for (let i = 0; i <= f; ++i)
+		rndRw = 10 * (rndRw % 1);
+
+	let rndRr = f % 1;
+	let retVal = (i % 2 ? 1 : -1) * rndRr * (rndRr - 1);
+
+	let rndRe = Math.floor(rndRw) % 5;
+	if (rndRe == 0)
+		retVal *= 2.3 * (rndRr - 0.5) * (rndRr - 0.5);
+	else if (rndRe == 1)
+		retVal *= 2.6 * (rndRr - 0.3) * (rndRr - 0.7);
+	else if (rndRe == 2)
+		retVal *= 22 * (rndRr - 0.2) * (rndRr - 0.3) * (rndRr - 0.3) * (rndRr - 0.8);
+	else if (rndRe == 3)
+		retVal *= 180 * (rndRr - 0.2) * (rndRr - 0.2) * (rndRr - 0.4) * (rndRr - 0.6) * (rndRr - 0.6) * (rndRr - 0.8);
+	else if (rndRe == 4)
+		retVal *= 2.6 * (rndRr - 0.5) * (rndRr - 0.7);
+
+	return retVal;
+}
+
+/**
+ * Create shallow water between (x1, z1) and (x2, z2) of tiles below maxHeight.
+ */
+function createShallowsPassage(x1, z1, x2, z2, width, maxHeight, shallowHeight, smooth, tileClass, terrain, riverHeight)
+{
+	let a = z1 - z2;
+	let b = x2 - x1;
+
+	let distance = Math.euclidDistance2D(x1, z1, x2, z2);
+	let mapSize = getMapSize();
+
+	for (let ix = 0; ix < mapSize; ++ix)
+		for (let iz = 0; iz < mapSize; ++iz)
+		{
+			let c = a * (ix - x1) + b * (iz - z1);
+			let my = iz - b * c / Math.square(distance);
+			let inline = 0;
+
+			let dis;
+			if (b == 0)
+			{
+				dis = Math.abs(ix - x1);
+				if (iz >= Math.min(z1, z2) && iz <= Math.max(z1, z2))
+					inline = 1;
+			}
+			else if (my >= Math.min(z1, z2) && my <= Math.max(z1, z2))
+			{
+				dis = Math.abs(c) / distance;
+				inline = 1;
+			}
+
+			if (dis > width || !inline || getHeight(ix, iz) > maxHeight)
+				continue;
+
+			if (dis > width - smooth)
+				setHeight(ix, iz, ((width - dis) * shallowHeight + riverHeight * (smooth - width + dis)) / smooth);
+			else if (dis <= width - smooth)
+				setHeight(ix, iz, shallowHeight);
+
+			if (tileClass !== undefined)
+				addToClass(ix, iz, tileClass);
+
+			if (terrain !== undefined)
+				placeTerrain(ix, iz, terrain);
+		}
+}
+
+/**
+ * Creates a ramp from (x1, y1) to (x2, y2).
+ */
+function createRamp(x1, y1, x2, y2, minHeight, maxHeight, width, smoothLevel, mainTerrain, edgeTerrain, tileClass)
+{
+	let halfWidth = width / 2;
+
+	let x3;
+	let y3;
+
+	if (y1 == y2)
+	{
+		x3 = x2;
+		y3 = y2 + halfWidth;
+	}
+	else
+	{
+		x3 = x2 + halfWidth;
+		y3 = (x1 - x2) / (y1 - y2) * (x2 - x3) + y2;
+	}
+
+	let minBoundX = Math.max(Math.min(x1, x2) - halfWidth, 0);
+	let minBoundY = Math.max(Math.min(y1, y2) - halfWidth, 0);
+	let maxBoundX = Math.min(Math.max(x1, x2) + halfWidth, getMapSize());
+	let maxBoundY = Math.min(Math.max(y1, y2) + halfWidth, getMapSize());
+
+	for (let x = minBoundX; x < maxBoundX; ++x)
+		for (let y = minBoundY; y < maxBoundY; ++y)
+		{
+			let lDist = distanceOfPointFromLine(x3, y3, x2, y2, x, y);
+			let sDist = distanceOfPointFromLine(x1, y1, x2, y2, x, y);
+			let rampLength = Math.euclidDistance2D(x1, y1, x2, y2);
+
+			if (lDist > rampLength || sDist > halfWidth)
+				continue;
+
+			let height = ((rampLength - lDist) * maxHeight + lDist * minHeight) / rampLength;
+
+			if (sDist >= halfWidth - smoothLevel)
+			{
+				height = (height - minHeight) * (halfWidth - sDist) / smoothLevel + minHeight;
+
+				if (edgeTerrain)
+					placeTerrain(x, y, edgeTerrain);
+			}
+			else if (mainTerrain)
+				placeTerrain(x, y, mainTerrain);
+
+			if (tileClass !== undefined)
+				addToClass(x, y, tileClass);
+
+			if (getHeight(Math.floor(x), Math.floor(y)) < height && height <= maxHeight)
+				setHeight(x, y, height);
+		}
+}
+
+/**
+ * Get The Intended Point In A Direction Based On Height.
+ * Retrieves the N'th point with a specific height in a line and returns it as a [x, y] array.
+ *
+ * @param startPoint - [x, y] array defining the start point
+ * @param endPoint - [x, y] array defining the ending point
+ * @param heightRange - [min, max] array defining the range which the height of the intended point can be. includes both "min" and "max"
+ * @param step - how much tile units per turn should the search go. more value means faster but less accurate
+ * @param n - how many points to skip before ending the search. skips """n-1 points""".
+ */
+function getTIPIADBON(startPoint, endPoint, heightRange, step, n)
+{
+	let X = endPoint[0] - startPoint[0];
+	let Y = endPoint[1] - startPoint[1];
+
+	if (!X && !Y)
+	{
+		error("getTIPIADBON startPoint and endPoint are identical! " + new Error().stack);
+		return undefined;
+	}
+
+	let M = Math.sqrt(Math.square(X) + step * Math.square(Y));
+	let stepX = step * X / M;
+	let stepY = step * Y / M;
+
+	let y = startPoint[1];
+	let checked = 0;
+
+	let mapSize = getMapSize();
+
+	for (let x = startPoint[0]; true; x += stepX)
+	{
+		let ix = Math.floor(x);
+		let iy = Math.floor(y);
+
+		if (ix < mapSize || iy < mapSize)
+		{
+			if (getHeight(ix, iy) <= heightRange[1] &&
+			    getHeight(ix, iy) >= heightRange[0])
+				++checked;
+
+			if (checked >= n)
+				return [x, y];
+		}
+
+		y += stepY;
+
+		if (y > endPoint[1] && stepY > 0 ||
+		    y < endPoint[1] && stepY < 0 ||
+		    x > endPoint[1] && stepX > 0 ||
+		    x < endPoint[1] && stepX < 0)
+			return undefined;
+	}
+
+	return undefined;
 }

@@ -218,7 +218,7 @@ for (let i = 0; i <= randIntInclusive(8, scaleByMapSize(12, 20)); ++i)
 
 log("Creating shallows in tributaries...");
 for (let z of [0.25, 0.75])
-	passageMaker(
+	createShallowsPassage(
 		Math.round(fractionToTiles(0.2)),
 		Math.round(fractionToTiles(z)),
 		Math.round(fractionToTiles(0.8)),
