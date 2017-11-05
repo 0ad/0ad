@@ -183,7 +183,7 @@ for (var i = 0; i < numPlayers; i++)
 		dockLocation[0],
 		dockLocation[1],
 		"structures/" + getCivCode(playerIDs[i] - 1) + "_dock",
-		playerIDs[i] - 1,
+		playerIDs[i],
 		playerAngle[i] + Math.PI);
 }
 RMS.SetProgress(15);
