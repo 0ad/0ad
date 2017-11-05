@@ -31,7 +31,7 @@ m.ConstructionPlan.prototype.canStart = function(gameState)
 	if (this.template.requiredTech() && !gameState.isResearched(this.template.requiredTech()))
 		return false;
 
-	return gameState.findBuilder(this.type) !== undefined;
+	return gameState.ai.HQ.buildManager.hasBuilder(this.type);
 };
 
 m.ConstructionPlan.prototype.start = function(gameState)
@@ -46,7 +46,7 @@ m.ConstructionPlan.prototype.start = function(gameState)
 	let pos = this.findGoodPosition(gameState);
 	if (!pos)
 	{
-		gameState.ai.HQ.stopBuild(gameState, this.type);
+		gameState.ai.HQ.buildManager.setUnbuildable(gameState, this.type);
 		Engine.ProfileStop();
 		return;
 	}

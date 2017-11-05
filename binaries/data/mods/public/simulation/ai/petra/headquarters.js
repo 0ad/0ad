@@ -31,8 +31,6 @@ m.HQ = function(Config)
 	this.targetNumWorkers = this.Config.Economy.targetNumWorkers;
 	this.supportRatio = this.Config.Economy.supportRatio;
 
-	this.stopBuilding = new Map(); // list of buildings to stop (temporarily) production because no room
-
 	this.fortStartTime = 180;	// sentry defense towers, will start at fortStartTime + towerLapseTime
 	this.towerStartTime = 0;	// stone defense towers, will start as soon as available
 	this.towerLapseTime = this.Config.Military.towerLapseTime;
@@ -43,6 +41,7 @@ m.HQ = function(Config)
 
 	this.baseManagers = [];
 	this.attackManager = new m.AttackManager(this.Config);
+	this.buildManager = new m.BuildManager();
 	this.defenseManager = new m.DefenseManager(this.Config);
 	this.tradeManager = new m.TradeManager(this.Config);
 	this.navalManager = new m.NavalManager(this.Config);
@@ -134,6 +133,8 @@ m.HQ.prototype.getSeaBetweenIndices = function (gameState, index1, index2)
 
 m.HQ.prototype.checkEvents = function (gameState, events, queues)
 {
+	this.buildManager.checkEvents(gameState, events);
+
 	if (events.TerritoriesChanged.length || events.DiplomacyChanged.length)
 		this.updateTerritories(gameState);
 
@@ -469,7 +470,7 @@ m.HQ.prototype.checkPhaseRequirements = function(gameState, queues)
 			queue = entityReq.class === "Wonder" ? "wonder" : "economicBuilding";
 			if (!queues[queue].hasQueuedUnits())
 			{
-				let structure = gameState.findStructureWithClass([entityReq.class]);
+				let structure = this.buildManager.findStructureWithClass(gameState, [entityReq.class]);
 				if (structure && this.canBuild(gameState, structure))
 					plan = new m.ConstructionPlan(gameState, structure);
 			}
@@ -1533,11 +1534,11 @@ m.HQ.prototype.buildMoreHouses = function(gameState, queues)
 				continue;
 
 			let count = gameState.getOwnStructures().filter(API3.Filters.byClass(entityReq.class)).length;
-			if (count < entityReq.count && this.stopBuilding.has(houseTemplateName))
+			if (count < entityReq.count && this.buildManager.isUnbuildable(gameState, houseTemplateName))
 			{
 				if (this.Config.debug > 1)
 					API3.warn("no room to place a house ... try to be less restrictive");
-				this.stopBuilding.delete(houseTemplateName);
+				this.buildManager.setBuildable(houseTemplateName);
 				this.requireHouses = true;
 			}
 			needed = Math.max(needed, entityReq.count - count);
@@ -1572,25 +1573,18 @@ m.HQ.prototype.buildMoreHouses = function(gameState, queues)
 	let priority;
 	if (freeSlots < 5)
 	{
-		if (this.stopBuilding.has(house))
+		if (this.buildManager.isUnbuildable(gameState, house))
 		{
-			if (this.stopBuilding.get(house) > gameState.ai.elapsedTime)
-			{
-				if (this.Config.debug > 1)
-					API3.warn("no room to place a house ... try to improve with technology");
-				this.researchManager.researchPopulationBonus(gameState, queues);
-			}
-			else
-			{
-				this.stopBuilding.delete(house);
-				priority = 2*this.Config.priorities.house;
-			}
+			if (this.Config.debug > 1)
+				API3.warn("no room to place a house ... try to improve with technology");
+			this.researchManager.researchPopulationBonus(gameState, queues);
 		}
 		else
 			priority = 2*this.Config.priorities.house;
 	}
 	else
 		priority = this.Config.priorities.house;
+
 	if (priority && priority != gameState.ai.queueManager.getPriority("house"))
 		gameState.ai.queueManager.changePriority("house", priority);
 };
@@ -1608,13 +1602,10 @@ m.HQ.prototype.checkBaseExpansion = function(gameState, queues)
 		return;
 	}
 	// Then expand if we have not enough room available for buildings
-	let nstopped = 0;
-	for (let stopTime of this.stopBuilding.values())
+	if (this.buildManager.numberMissingRoom(gameState) > 1)
 	{
-		if (stopTime === Infinity || stopTime < gameState.ai.elapsedTime || ++nstopped < 2)
-			continue;
 		if (this.Config.debug > 2)
-			API3.warn("try to build a new base because not enough room to build " + uneval(this.stopBuilding));
+			API3.warn("try to build a new base because not enough room to build ");
 		this.buildNewBase(gameState, queues);
 		return;
 	}
@@ -1985,29 +1976,31 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 m.HQ.prototype.canBuild = function(gameState, structure, debug = false)
 {
 	let type = gameState.applyCiv(structure);
-	// available room to build it
-	if (this.stopBuilding.has(type))
-	{
-		if (this.stopBuilding.get(type) > gameState.ai.elapsedTime)
-			return false;
-		this.stopBuilding.delete(type);
-	}
+	if (this.buildManager.isUnbuildable(gameState, type))
+		return false;
 
 	if (gameState.isTemplateDisabled(type))
 	{
-		this.stopBuilding.set(type, Infinity);
+		this.buildManager.setUnbuildable(gameState, type, Infinity, "disabled");
 		return false;
 	}
 
 	let template = gameState.getTemplate(type);
 	if (!template)
-		this.stopBuilding.set(type, Infinity);
-	if (!template || !template.available(gameState))
-		return false;
-
-	if (!gameState.findBuilder(type))
 	{
-		this.stopBuilding.set(type, gameState.ai.elapsedTime + 120);
+		this.buildManager.setUnbuildable(gameState, type, Infinity, "notemplate");
+		return false;
+	}
+
+	if (!template.available(gameState))
+	{
+		this.buildManager.setUnbuildable(gameState, type, 30, "tech");
+		return false;
+	}
+
+	if (!this.buildManager.hasBuilder(type))
+	{
+		this.buildManager.setUnbuildable(gameState, type, 120, "nobuilder");
 		return false;
 	}
 
@@ -2017,7 +2010,7 @@ m.HQ.prototype.canBuild = function(gameState, structure, debug = false)
 		let buildTerritories = template.buildTerritories();
 		if (buildTerritories && (!buildTerritories.length || buildTerritories.length === 1 && buildTerritories[0] === "own"))
 		{
-			this.stopBuilding.set(type, gameState.ai.elapsedTime + 180);
+			this.buildManager.setUnbuildable(gameState, type, 180, "room");
 			return false;
 		}
 	}
@@ -2027,27 +2020,11 @@ m.HQ.prototype.canBuild = function(gameState, structure, debug = false)
 	let category = template.buildCategory();
 	if (category && limits[category] !== undefined && gameState.getEntityCounts()[category] >= limits[category])
 	{
-		this.stopBuilding.set(type, gameState.ai.elapsedTime + 60);
+		this.buildManager.setUnbuildable(gameState, type, 90, "limit");
 		return false;
 	}
 
 	return true;
-};
-
-m.HQ.prototype.stopBuild = function(gameState, structure, time=180)
-{
-	let type = gameState.applyCiv(structure);
-	if (this.stopBuilding.has(type))
-		this.stopBuilding.set(type, Math.max(this.stopBuilding.get(type), gameState.ai.elapsedTime + time));
-	else
-		this.stopBuilding.set(type, gameState.ai.elapsedTime + time);
-};
-
-m.HQ.prototype.restartBuild = function(gameState, structure)
-{
-	let type = gameState.applyCiv(structure);
-	if (this.stopBuilding.has(type))
-		this.stopBuilding.delete(type);
 };
 
 m.HQ.prototype.updateTerritories = function(gameState)
@@ -2162,9 +2139,7 @@ m.HQ.prototype.updateTerritories = function(gameState)
 	if (!expansion)
 		return;
 	// We've increased our territory, so we may have some new room to build
-	for (let [type, stopTime] of this.stopBuilding)
-		if (stopTime !== Infinity)
-			this.stopBuilding.delete(type);
+	this.buildManager.resetMissingRoom(gameState);
 	// And if sufficient expansion, check if building a new market would improve our present trade routes
 	let cellArea = this.territoryMap.cellSize * this.territoryMap.cellSize;
 	if (expansion * cellArea > 960)
@@ -2492,7 +2467,6 @@ m.HQ.prototype.Serialize = function()
 		"lastFailedGather": this.lastFailedGather,
 		"supportRatio": this.supportRatio,
 		"targetNumWorkers": this.targetNumWorkers,
-		"stopBuilding": this.stopBuilding,
 		"fortStartTime": this.fortStartTime,
 		"towerStartTime": this.towerStartTime,
 		"fortressStartTime": this.fortressStartTime,
@@ -2522,6 +2496,7 @@ m.HQ.prototype.Serialize = function()
 		API3.warn(" properties " + uneval(properties));
 		API3.warn(" baseManagers " + uneval(baseManagers));
 		API3.warn(" attackManager " + uneval(this.attackManager.Serialize()));
+		API3.warn(" buildManager " + uneval(this.buildManager.Serialize()));
 		API3.warn(" defenseManager " + uneval(this.defenseManager.Serialize()));
 		API3.warn(" tradeManager " + uneval(this.tradeManager.Serialize()));
 		API3.warn(" navalManager " + uneval(this.navalManager.Serialize()));
@@ -2536,6 +2511,7 @@ m.HQ.prototype.Serialize = function()
 
 		"baseManagers": baseManagers,
 		"attackManager": this.attackManager.Serialize(),
+		"buildManager": this.buildManager.Serialize(),
 		"defenseManager": this.defenseManager.Serialize(),
 		"tradeManager": this.tradeManager.Serialize(),
 		"navalManager": this.navalManager.Serialize(),
@@ -2570,6 +2546,9 @@ m.HQ.prototype.Deserialize = function(gameState, data)
 	this.attackManager.Deserialize(gameState, data.attackManager);
 	this.attackManager.init(gameState);
 	this.attackManager.Deserialize(gameState, data.attackManager);
+
+	this.buildManager = new m.BuildManager();
+	this.buildManager.Deserialize(gameState, data.buildManager);
 
 	this.defenseManager = new m.DefenseManager(this.Config);
 	this.defenseManager.Deserialize(gameState, data.defenseManager);

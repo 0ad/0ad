@@ -342,11 +342,10 @@ m.Template = m.Class({
 		return 1;
 	},
 
-	"buildableEntities": function() {
+	"buildableEntities": function(civ = this.civ()) {
 		let templates = this.get("Builder/Entities/_string");
 		if (!templates)
 			return [];
-		let civ = this.civ();
 		return templates.replace(/\{civ\}/g, civ).split(/\s+/);
 	},
 
