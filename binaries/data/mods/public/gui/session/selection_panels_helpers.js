@@ -1,5 +1,3 @@
-const GATE_ACTIONS = ["lock", "unlock"];
-
 const UPGRADING_NOT_STARTED = -2;
 const UPGRADING_CHOSEN_OTHER = -1;
 
