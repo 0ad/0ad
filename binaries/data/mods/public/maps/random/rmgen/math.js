@@ -12,6 +12,9 @@ function getAngle(x1, z1, x2, z2)
 	return Math.atan2(z2 - z1, x2 - x1);
 }
 
+/**
+ * Revolve the given point around the given rotation center.
+ */
 function rotateCoordinates(x, z, angle, centerX = 0.5, centerZ = 0.5)
 {
 	let sin = Math.sin(angle);
@@ -22,6 +25,26 @@ function rotateCoordinates(x, z, angle, centerX = 0.5, centerZ = 0.5)
 		sin * (x - centerX) + cos * (z - centerZ) + centerZ
 	];
 }
+
+/**
+ * Get pointCount points equidistantly located on a circle.
+ */
+function distributePointsOnCircle(pointCount, startAngle, radius, centerX, centerZ)
+{
+	let x = [];
+	let z = [];
+	let angle = [];
+
+	for (let i = 0; i < pointCount; ++i)
+	{
+		angle[i] = startAngle + 2 * Math.PI * i / pointCount;
+		x[i] = centerX + radius * Math.cos(angle[i]);
+		z[i] = centerZ + radius * Math.sin(angle[i]);
+	}
+
+	return [x, z, angle];
+}
+
 /**
  * Returns the distance of a point from a line.
  */

@@ -400,106 +400,6 @@ function getPlayerTeam(player)
 	return g_MapSettings.PlayerData[player+1].Team;
 }
 
-/**
- * Sorts an array of player IDs by team index. Players without teams come first.
- * Randomize order for players of the same team.
- */
-function sortPlayers(playerIndices)
-{
-	return shuffleArray(playerIndices).sort((p1, p2) => getPlayerTeam(p1 - 1) - getPlayerTeam(p2 - 1));
-}
-
-/**
- * Mix player indices but sort by team.
- *
- * @returns {Array} - every item is an array of player indices
- */
-function sortAllPlayers()
-{
-	let playerIDs = [];
-	for (let i = 0; i < getNumPlayers(); ++i)
-		playerIDs.push(i+1);
-
-	return sortPlayers(playerIDs);
-}
-
-function primeSortPlayers(playerIndices)
-{
-	if (!playerIndices.length)
-		return [];
-
-	let prime = [];
-	for (let i = 0; i < Math.ceil(playerIndices.length / 2); ++i)
-	{
-		prime.push(playerIndices[i]);
-		prime.push(playerIndices[playerIndices.length - 1 - i]);
-	}
-
-	return prime;
-}
-
-function primeSortAllPlayers()
-{
-	return primeSortPlayers(sortAllPlayers());
-}
-
-function radialPlayerPlacement(percentRadius = 0.35)
-{
-	let playerIDs = sortAllPlayers();
-
-	let playerX = [];
-	let playerZ = [];
-	let playerAngle = [];
-
-	let startAngle = randFloat(0, TWO_PI);
-
-	for (let i = 0; i < getNumPlayers(); ++i)
-	{
-		playerAngle[i] = startAngle + i * TWO_PI / getNumPlayers();
-		playerX[i] = 0.5 + percentRadius * Math.cos(playerAngle[i]);
-		playerZ[i] = 0.5 + percentRadius * Math.sin(playerAngle[i]);
-	}
-
-	return [playerIDs, playerX, playerZ, playerAngle, startAngle];
-}
-
-/**
- * Returns an array of percent numbers indicating the player location on river maps.
- * For example [0.2, 0.2, 0.4, 0.4, 0.6, 0.6, 0.8, 0.8] for a 4v4 or
- * [0.25, 0.33, 0.5, 0.67, 0.75] for a 2v3.
- */
-function placePlayersRiver()
-{
-	let playerPos = [];
-	let numPlayers = getNumPlayers();
-	let numPlayersEven = numPlayers % 2 == 0;
-
-	for (let i = 0; i < numPlayers; ++i)
-	{
-		let currentPlayerEven = i % 2 == 0;
-
-		let offsetDivident = numPlayersEven || currentPlayerEven ? (i + 1) % 2 : 0;
-		let offsetDivisor = numPlayersEven ? 0 : currentPlayerEven ? +1 : -1;
-
-		playerPos[i] = ((i - 1 + offsetDivident) / 2 + 1) / ((numPlayers + offsetDivisor) / 2 + 1);
-	}
-
-	return playerPos;
-}
-
-function getStartingEntities(player)
-{
-	let civ = getCivCode(player);
-
-	if (!g_CivData[civ] || !g_CivData[civ].StartEntities || !g_CivData[civ].StartEntities.length)
-	{
-		warn("Invalid or unimplemented civ '"+civ+"' specified, falling back to '" + FALLBACK_CIV + "'");
-		civ = FALLBACK_CIV;
-	}
-
-	return g_CivData[civ].StartEntities;
-}
-
 function getHeight(x, z)
 {
 	return g_Map.getHeight(x, z);
@@ -619,17 +519,6 @@ function checkIfInClass(x, z, id)
 function getTerrainTexture(x, y)
 {
 	return g_Map.getTexture(x, y);
-}
-
-function addCivicCenterAreaToClass(ix, iz, tileClass)
-{
-	addToClass(ix, iz, tileClass);
-
-	addToClass(ix, iz + 5, tileClass);
-	addToClass(ix, iz - 5, tileClass);
-
-	addToClass(ix + 5, iz, tileClass);
-	addToClass(ix - 5, iz, tileClass);
 }
 
 /**
