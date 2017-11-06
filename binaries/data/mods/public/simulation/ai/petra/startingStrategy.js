@@ -11,6 +11,7 @@ m.HQ.prototype.gameAnalysis = function(gameState)
 		return;
 
 	this.attackManager.init(gameState);
+	this.buildManager.init(gameState);
 	this.navalManager.init(gameState);
 	this.tradeManager.init(gameState);
 	this.diplomacyManager.init(gameState);

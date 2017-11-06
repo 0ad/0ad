@@ -872,33 +872,6 @@ m.GameState.prototype.findResearchers = function(templateName, noRequirementChec
 	});
 };
 
-/**
- * Get any buildable structure with a given class
- * TODO when several available, choose the best one
- */
-m.GameState.prototype.findStructureWithClass = function(classes)
-{
-	let entTemplates = new Set();
-	for (let ent of this.getOwnUnits().values())
-	{
-		if (entTemplates.has(ent.templateName()))
-			continue;
-		let buildables = ent.buildableEntities();
-		for (let buildable of buildables)
-		{
-			if (this.isTemplateDisabled(buildable))
-				continue;
-			let template = this.getTemplate(buildable);
-			if (!template || !template.available(this))
-				continue;
-			if (MatchesClassList(template.classes(), classes))
-				return buildable;
-		}
-		entTemplates.add(ent.templateName());
-	}
-	return undefined;
-};
-
 m.GameState.prototype.getEntityLimits = function()
 {
 	return this.playerData.entityLimits;

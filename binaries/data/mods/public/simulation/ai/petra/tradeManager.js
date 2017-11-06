@@ -347,9 +347,7 @@ m.TradeManager.prototype.checkEvents = function(gameState, events)
 		let ent = evt.entityObj;
 		if (!ent || !ent.hasClass("Market") || !gameState.isPlayerAlly(ent.owner()))
 			continue;
-		this.routeProspection = true;
-		gameState.ai.HQ.restartBuild(gameState, "structures/{civ}_market");
-		gameState.ai.HQ.restartBuild(gameState, "structures/{civ}_dock");
+		this.activateProspection(gameState);
 		return true;
 	}
 
@@ -359,9 +357,7 @@ m.TradeManager.prototype.checkEvents = function(gameState, events)
 		let ent = gameState.getEntityById(evt.entity);
 		if (!ent || ent.foundationProgress() !== undefined || !ent.hasClass("Market") || !gameState.isPlayerAlly(ent.owner()))
 			continue;
-		this.routeProspection = true;
-		gameState.ai.HQ.restartBuild(gameState, "structures/{civ}_market");
-		gameState.ai.HQ.restartBuild(gameState, "structures/{civ}_dock");
+		this.activateProspection(gameState);
 		return true;
 	}
 
@@ -374,22 +370,25 @@ m.TradeManager.prototype.checkEvents = function(gameState, events)
 		let ent = gameState.getEntityById(evt.entity);
 		if (!ent || ent.foundationProgress() !== undefined || !ent.hasClass("Market"))
 			continue;
-		this.routeProspection = true;
-		gameState.ai.HQ.restartBuild(gameState, "structures/{civ}_market");
-		gameState.ai.HQ.restartBuild(gameState, "structures/{civ}_dock");
+		this.activateProspection(gameState);
 		return true;
 	}
 
 	// or if diplomacy changed
 	if (events.DiplomacyChanged.length)
 	{
-		this.routeProspection = true;
-		gameState.ai.HQ.restartBuild(gameState, "structures/{civ}_market");
-		gameState.ai.HQ.restartBuild(gameState, "structures/{civ}_dock");
+		this.activateProspection(gameState);
 		return true;
 	}
 
 	return false;
+};
+
+m.TradeManager.prototype.activateProspection = function(gameState)
+{
+	this.routeProspection = true;
+	gameState.ai.HQ.buildManager.setBuildable(gameState.applyCiv("structures/{civ}_market"));
+	gameState.ai.HQ.buildManager.setBuildable(gameState.applyCiv("structures/{civ}_dock"));
 };
 
 /**
@@ -579,7 +578,7 @@ m.TradeManager.prototype.prospectForNewMarket = function(gameState, queues)
 	let marketPos = gameState.ai.HQ.findMarketLocation(gameState, template);
 	if (!marketPos || marketPos[3] === 0)   // marketPos[3] is the expected gain
 	{	// no position found
-		gameState.ai.HQ.stopBuild(gameState, "structures/{civ}_market");
+		gameState.ai.HQ.buildManager.setUnbuildable(gameState, gameState.applyCiv("structures/{civ}_market"));
 		return;
 	}
 	this.routeProspection = false;

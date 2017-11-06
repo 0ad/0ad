@@ -430,47 +430,34 @@ g_SelectionPanels.Gate = {
 	},
 	"getItems": function(unitEntStates)
 	{
-		let gates = [];
-		for (let state of unitEntStates)
-			if (state.gate && !gates.length)
-				gates.push({
-					"gate": state.gate,
-					"tooltip": translate("Lock Gate"),
-					"locked": true,
-					"callback": function(item) { lockGate(item.locked); }
-				},
-				{
-					"gate": state.gate,
-					"tooltip": translate("Unlock Gate"),
-					"locked": false,
-					"callback": function(item) { lockGate(item.locked); }
-				});
-			// Show both 'locked' and 'unlocked' as active if the selected gates have both lock states.
-			else if (state.gate && state.gate.locked != gates[0].gate.locked)
-				for (let j = 0; j < gates.length; ++j)
-					delete gates[j].gate.locked;
+		let hideLocked = unitEntStates.every(state => !state.gate || !state.gate.locked);
+		let hideUnlocked = unitEntStates.every(state => !state.gate || state.gate.locked);
 
-		return gates;
+		if (hideLocked && hideUnlocked)
+			return [];
+
+		return [
+			{
+				"hidden": hideLocked,
+				"tooltip": translate("Lock Gate"),
+				"icon": "session/icons/lock_locked.png",
+				"locked": true
+			},
+			{
+				"hidden": hideUnlocked,
+				"tooltip": translate("Unlock Gate"),
+				"icon": "session/icons/lock_unlocked.png",
+				"locked": false
+			}
+		];
 	},
 	"setupButton": function(data)
 	{
-		data.button.onPress = function() {data.item.callback(data.item); };
-
+		data.button.onPress = function() { lockGate(data.item.locked); };
 		data.button.tooltip = data.item.tooltip;
-
 		data.button.enabled = controlsPlayer(data.player);
-		let gateIcon;
-		if (data.item.gate)
-		{
-			// show locking actions
-			gateIcon = "icons/lock_" + GATE_ACTIONS[data.item.locked ? 0 : 1] + "ed.png";
-			if (data.item.gate.locked === undefined)
-				data.guiSelection.hidden = false;
-			else
-				data.guiSelection.hidden = data.item.gate.locked != data.item.locked;
-		}
-
-		data.icon.sprite = (data.neededResources ? resourcesToAlphaMask(data.neededResources) + ":" : "") + "stretched:session/" + gateIcon;
+		data.guiSelection.hidden = data.item.hidden;
+		data.icon.sprite = "stretched:" + data.item.icon;
 
 		let index = data.i + getNumberOfRightPanelButtons();
 		setPanelObjectPosition(data.button, index, data.rowLength);
