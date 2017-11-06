@@ -680,7 +680,7 @@ for (let i = 0; i < resourceSpots.length; ++i)
 	{
 		if (mercenaryCamps)
 		{
-			createStartingPlayerEntities(resourceSpots[i].x, resourceSpots[i].y, 0, mercenaryCampGuards[currentBiome()]);
+			placeStartingEntities(resourceSpots[i].x, resourceSpots[i].y, 0, mercenaryCampGuards[currentBiome()]);
 			rectangularSmoothToHeight(resourceSpots[i], 15, 15, g_Map.height[resourceSpots[i].x][resourceSpots[i].y], 0.5);
 			--mercenaryCamps;
 		}
