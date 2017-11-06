@@ -460,75 +460,7 @@ let playerHeight = (playerHeightRange.min + playerHeightRange.max) / 2; // Avera
 
 log("Terrain shape generation and biome presets after " + ((Date.now() - genStartTime) / 1000) + "s");
 
-/**
- * Get start locations
- */
-let startLocations = getStartLocationsByHeightmap(playerHeightRange, 1000, 30);
-
-// Sort start locations to form a "ring"
-let startLocationOrder = getOrderOfPointsForShortestClosePath(startLocations);
-let newStartLocations = [];
-for (let i = 0; i < startLocations.length; ++i)
-	newStartLocations.push(startLocations[startLocationOrder[i]]);
-startLocations = newStartLocations;
-
-// Sort players by team
-let playerIDs = [];
-let teams = [];
-for (let i = 0; i < g_MapSettings.PlayerData.length - 1; ++i)
-{
-	playerIDs.push(i+1);
-	let t = g_MapSettings.PlayerData[i + 1].Team;
-	if (teams.indexOf(t) == -1 && t !== undefined)
-		teams.push(t);
-}
-playerIDs = sortPlayers(playerIDs);
-
-// Minimize maximum distance between players within a team
-if (teams.length)
-{
-	let minDistance = Infinity;
-	let bestShift;
-	for (let s = 0; s < playerIDs.length; ++s)
-	{
-		let maxTeamDist = 0;
-		for (let pi = 0; pi < playerIDs.length - 1; ++pi)
-		{
-			let p1 = playerIDs[(pi + s) % playerIDs.length] - 1;
-			let t1 = getPlayerTeam(p1);
-
-			if (teams.indexOf(t1) === -1)
-				continue;
-
-			for (let pj = pi + 1; pj < playerIDs.length; ++pj)
-			{
-				let p2 = playerIDs[(pj + s) % playerIDs.length] - 1;
-				let t2 = getPlayerTeam(p2);
-				if (t2 != t1)
-					continue;
-
-				maxTeamDist = Math.max(
-					maxTeamDist,
-					Math.euclidDistance2D(
-						startLocations[pi].x, startLocations[pi].y,
-						startLocations[pj].x, startLocations[pj].y));
-			}
-		}
-
-		if (maxTeamDist < minDistance)
-		{
-			minDistance = maxTeamDist;
-			bestShift = s;
-		}
-	}
-	if (bestShift)
-	{
-		let newPlayerIDs = [];
-		for (let i = 0; i < playerIDs.length; ++i)
-			newPlayerIDs.push(playerIDs[(i + bestShift) % playerIDs.length]);
-		playerIDs = newPlayerIDs;
-	}
-}
+let [playerIDs, startLocations] = sortPlayersByLocation(getStartLocationsByHeightmap(playerHeightRange, 1000, 30));
 
 log("Start location chosen after " + ((Date.now() - genStartTime) / 1000) + "s");
 RMS.SetProgress(30);

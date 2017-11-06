@@ -112,3 +112,63 @@ function checkIfIntersect(line1_x1, line1_y1, line1_x2, line1_y2, line2_x1, line
 
 	return false;
 }
+
+/**
+ * Sorts the given (x, y) points so that the distance between neighboring points becomes minimal (similar to the traveling salesman problem).
+ */
+function sortPointsShortestCycle(points)
+{
+	let order = [];
+	let distances = [];
+	if (points.length <= 3)
+	{
+		for (let i = 0; i < points.length; ++i)
+			order.push(i);
+
+		return order;
+	}
+
+	// Just add the first 3 points
+	let pointsToAdd = clone(points);
+	for (let i = 0; i < 3; ++i)
+	{
+		order.push(i);
+		pointsToAdd.shift(i);
+		if (i)
+			distances.push(Math.euclidDistance2D(points[order[i]].x, points[order[i]].y, points[order[i - 1]].x, points[order[i - 1]].y));
+	}
+
+	distances.push(Math.euclidDistance2D(
+		points[order[0]].x,
+		points[order[0]].y,
+		points[order[order.length - 1]].x,
+		points[order[order.length - 1]].y));
+
+	// Add remaining points so the path lengthens the least
+	let numPointsToAdd = pointsToAdd.length;
+	for (let i = 0; i < numPointsToAdd; ++i)
+	{
+		let indexToAddTo;
+		let minEnlengthen = Infinity;
+		let minDist1 = 0;
+		let minDist2 = 0;
+		for (let k = 0; k < order.length; ++k)
+		{
+			let dist1 = Math.euclidDistance2D(pointsToAdd[0].x, pointsToAdd[0].y, points[order[k]].x, points[order[k]].y);
+			let dist2 = Math.euclidDistance2D(pointsToAdd[0].x, pointsToAdd[0].y, points[order[(k + 1) % order.length]].x, points[order[(k + 1) % order.length]].y);
+			let enlengthen = dist1 + dist2 - distances[k];
+			if (enlengthen < minEnlengthen)
+			{
+				indexToAddTo = k;
+				minEnlengthen = enlengthen;
+				minDist1 = dist1;
+				minDist2 = dist2;
+			}
+		}
+		order.splice(indexToAddTo + 1, 0, i + 3);
+		distances.splice(indexToAddTo, 1, minDist1, minDist2);
+		pointsToAdd.shift();
+	}
+
+	return order;
+}
