@@ -59,24 +59,18 @@ var [playerIDs, playerX, playerZ] = radialPlayerPlacement();
 
 for (var i=0; i < numPlayers; i++)
 {
+	log("Creating base for player " + playerIDs[i] + "...");
 	playerX[i] *= mapSize;
 	playerZ[i] *= mapSize;
 
-	var startEntities = getStartingEntities(i);
-	// Place starting entities
-	createStartingPlayerEntities(playerX[i], playerZ[i], i+1, startEntities);
-	var uDist = 8;
-	var uSpace = 2;
-	for (var j = 1; j < startEntities.length - 1; ++j)
+	for (let dist of [6, 8])
 	{
-		var uAngle = BUILDING_ORIENTATION - PI * (2-j) / 2;
-		var count = (startEntities[j].Count !== undefined ? startEntities[j].Count : 1);
-		for (var numberofentities = 0; numberofentities < count; numberofentities++)
-		{
-			var ux = playerX[i] + uDist * cos(uAngle) + numberofentities * uSpace * cos(uAngle + PI/2) - (0.75 * uSpace * floor(count / 2) * cos(uAngle + PI/2));
-			var uz = playerZ[i] + uDist * sin(uAngle) + numberofentities * uSpace * sin(uAngle + PI/2) - (0.75 * uSpace * floor(count / 2) * sin(uAngle + PI/2));
-			placeObject(ux, uz, startEntities[j].Template, i+1, uAngle);
-		}
+		let ents = getStartingEntities(i);
+
+		if (dist == 8)
+			ents = ents.filter(ent => ent.Template.indexOf("female") != -1 || ent.Template.indexOf("infantry") != -1);
+
+		placeStartingEntities(playerX[i], playerZ[i], i + 1, ents, dist);
 	}
 
 	// Create treasure
