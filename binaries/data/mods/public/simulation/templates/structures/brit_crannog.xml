@@ -34,6 +34,10 @@
       units/{civ}_ship_bireme
       units/{civ}_ship_trireme
     </Entities>
+    <Technologies datatype="tokens">
+      -phase_town
+      -phase_town_athen
+    </Technologies>
   </ProductionQueue>
   <RallyPointRenderer>
     <LinePassabilityClass>ship</LinePassabilityClass>
