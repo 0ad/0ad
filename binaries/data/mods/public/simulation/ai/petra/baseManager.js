@@ -33,6 +33,8 @@ m.BaseManager = function(gameState, Config)
 
 	// vector for iterating, to check one use the HQ map.
 	this.territoryIndices = [];
+
+	this.timeNextIdleCheck = 0;
 };
 
 m.BaseManager.prototype.init = function(gameState, state)
@@ -580,6 +582,7 @@ m.BaseManager.prototype.assignRolelessUnits = function(gameState, roleless)
  */
 m.BaseManager.prototype.setWorkersIdleByPriority = function(gameState)
 {
+	this.timeNextIdleCheck = gameState.ai.elapsedTime + 8;
 	// change resource only towards one which is more needed, and if changing will not change this order
 	let nb = 1;    // no more than 1 change per turn (otherwise we should update the rates)
 	let mostNeeded = gameState.ai.HQ.pickMostNeededResources(gameState);
@@ -610,10 +613,9 @@ m.BaseManager.prototype.setWorkersIdleByPriority = function(gameState)
 				let only;
 				// in average, females are less efficient for stone and metal, and citizenSoldiers for food
 				let gatherers = this.gatherersByType(gameState, lessNeed.type);
-				if (lessNeed.type === "food" && gatherers.filter(API3.Filters.byClass("CitizenSoldier")).hasEntities())
+				if (lessNeed.type == "food" && gatherers.filter(API3.Filters.byClass("CitizenSoldier")).hasEntities())
 					only = "CitizenSoldier";
-				else if ((lessNeed.type === "stone" || lessNeed.type === "metal") && moreNeed.type !== "stone" && moreNeed.type !== "metal" &&
-					gatherers.filter(API3.Filters.byClass("FemaleCitizen")).hasEntities())
+				else if (moreNeed.type == "food" && gatherers.filter(API3.Filters.byClass("FemaleCitizen")).hasEntities())
 					only = "FemaleCitizen";
 
 				gatherers.forEach( function (ent) {
@@ -973,7 +975,7 @@ m.BaseManager.prototype.update = function(gameState, queues, events)
 		else if (gameState.ai.HQ.canBuildUnits)
 		{
 			this.assignToFoundations(gameState);
-			if (gameState.ai.playedTurn % 4 === 0)
+			if (gameState.ai.elapsedTime > this.timeNextIdleCheck)
 				this.setWorkersIdleByPriority(gameState);
 			this.assignRolelessUnits(gameState);
 			this.reassignIdleWorkers(gameState);
@@ -1028,7 +1030,8 @@ m.BaseManager.prototype.update = function(gameState, queues, events)
 	else if (this.neededDefenders && gameState.ai.HQ.trainEmergencyUnits(gameState, [this.anchor.position()]))
 		--this.neededDefenders;
 
-	if (gameState.ai.playedTurn % 2 === 0 && gameState.currentPhase() > 1)
+	if (gameState.ai.elapsedTime > this.timeNextIdleCheck &&
+	   (gameState.currentPhase() > 1 || gameState.ai.HQ.phasing == 2))
 		this.setWorkersIdleByPriority(gameState);
 
 	this.assignRolelessUnits(gameState);
@@ -1050,7 +1053,8 @@ m.BaseManager.prototype.Serialize = function()
 		"constructing": this.constructing,
 		"gatherers": this.gatherers,
 		"neededDefenders": this.neededDefenders,
-		"territoryIndices": this.territoryIndices
+		"territoryIndices": this.territoryIndices,
+		"timeNextIdleCheck": this.timeNextIdleCheck
 	};
 };
 

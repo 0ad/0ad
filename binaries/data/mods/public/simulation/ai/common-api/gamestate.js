@@ -22,6 +22,7 @@ m.GameState.prototype.init = function(SharedScript, state, player) {
 	this.gameType = SharedScript.gameType;
 	this.alliedVictory = SharedScript.alliedVictory;
 	this.ceasefireActive = SharedScript.ceasefireActive;
+	this.ceasefireTimeRemaining = SharedScript.ceasefireTimeRemaining;
 
 	// get the list of possible phases for this civ:
 	// we assume all of them are researchable from the civil centre
@@ -77,6 +78,7 @@ m.GameState.prototype.update = function(SharedScript)
 	this.timeElapsed = SharedScript.timeElapsed;
 	this.playerData = SharedScript.playersData[this.player];
 	this.ceasefireActive = SharedScript.ceasefireActive;
+	this.ceasefireTimeRemaining = SharedScript.ceasefireTimeRemaining;
 };
 
 m.GameState.prototype.updatingCollection = function(id, filter, parentCollection)
