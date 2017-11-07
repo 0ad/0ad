@@ -405,7 +405,7 @@ function rndRiver(f, seed)
 		rndRw = 10 * (rndRw % 1);
 
 	let rndRr = f % 1;
-	let retVal = (i % 2 ? 1 : -1) * rndRr * (rndRr - 1);
+	let retVal = (Math.floor(f) % 2 ? -1 : 1) * rndRr * (rndRr - 1);
 
 	let rndRe = Math.floor(rndRw) % 5;
 	if (rndRe == 0)
