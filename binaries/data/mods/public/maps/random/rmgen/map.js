@@ -59,6 +59,16 @@ function Map(size, baseHeight)
 }
 
 /**
+ * Sets the elevation of the entire heightmap grid to the given value.
+ */
+Map.prototype.initHeight = function(height)
+{
+	for (let i = 0; i < this.size; ++i)
+		for (let j = 0; j < this.size; ++j)
+			this.height[i][j] = height;
+};
+
+/**
  * Returns the ID of a texture name.
  * Creates a new ID if there isn't one assigned yet.
  */

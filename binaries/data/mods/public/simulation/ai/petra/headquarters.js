@@ -563,14 +563,22 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 	if (numberQueued > 50 || (numberOfQueuedSupports > 20 && numberOfQueuedSoldiers > 20) || numberInTraining > 15)
 		return;
 
-	// Choose whether we want soldiers or support units.
+	// Choose whether we want soldiers or support units: when full pop, we aim at targetNumWorkers workers
+	// with supportRatio fraction of support units. But we want to have more support (less cost) at startup.
+	// So we take: supportRatio*targetNumWorkers*(1 - exp(-alfa*currentWorkers/supportRatio/targetNumWorkers))
+	// This gives back supportRatio*targetNumWorkers when currentWorkers >> supportRatio*targetNumWorkers
+	// and gives a ratio alfa at startup.
+
 	let supportRatio = this.supportRatio;
+	let alpha = 0.85;
 	if (!gameState.isTemplateAvailable(gameState.applyCiv("structures/{civ}_field")))
 		supportRatio = Math.min(this.supportRatio, 0.1);
-	else if (this.attackManager.upcomingAttacks.Rush.length)
-		supportRatio = Math.min(this.supportRatio, 0.2);
+	if (this.attackManager.rushNumber < this.attackManager.maxRushes || this.attackManager.upcomingAttacks.Rush.length)
+		alpha = 0.7;
+	if (gameState.isCeasefireActive())
+		alpha += (1 - alpha) * Math.min(Math.max(gameState.ceasefireTimeRemaining - 120, 0), 180) / 180;
 	let supportMax = supportRatio * this.targetNumWorkers;
-	let supportNum = supportMax * (1 - Math.exp(-numberTotal/supportMax));
+	let supportNum = supportMax * (1 - Math.exp(-alpha*numberTotal/supportMax));
 
 	let template;
 	if (numberOfSupports + numberOfQueuedSupports > supportNum)

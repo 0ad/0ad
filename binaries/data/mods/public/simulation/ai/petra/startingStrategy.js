@@ -504,6 +504,14 @@ m.HQ.prototype.configFirstBase = function(gameState)
 	if (startingWood > 8500 && this.canBuildUnits)
 	{
 		let allowed = Math.ceil((startingWood - 8500) / 3000);
+		// Not useful to prepare rushing if too long ceasefire
+		if (gameState.isCeasefireActive())
+		{
+			if (gameState.ceasefireTimeRemaining > 900)
+				allowed = 0;
+			else if (gameState.ceasefireTimeRemaining > 600 && allowed > 1)
+				allowed = 1;
+		}
 		this.attackManager.setRushes(allowed);
 	}
 
