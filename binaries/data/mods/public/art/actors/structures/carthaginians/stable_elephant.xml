@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Carthage_Barracks">
+      <mesh>structural/kart_stable_elephant.dae</mesh>
+      <props>
+        <prop actor="props/structures/decals/dirt_6x6.xml" attachpoint="root"/>
+        <prop actor="geology/decal_stone_medit_b.xml" attachpoint="root" minheight=""/>
+        <prop actor="fauna/elephant_african_forest.xml" attachpoint="horse" maxheight="20" minheight="-20"/>
+        <prop actor="fauna/elephant_african_forest.xml" attachpoint="horse_1" maxheight="20" minheight="-20"/>
+        <prop actor="fauna/elephant_african_forest.xml" attachpoint="horse_2" maxheight="20" minheight="-20"/>
+      </props>
+      <textures>
+        <texture file="structural/kart_struct.dds" name="baseTex"/>
+        <texture file="structural/kart_struct_spec.png" name="specTex"/>
+        <texture file="structural/kart_struct_norm.png" name="normTex"/>
+        <texture file="structural/ao/kart_stable_elephant_AO.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="ungarrisoned"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_kart.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="alive"/>
+    <variant name="lightdamage">
+      <textures>
+        <texture file="structural/kart_struct_damaged.png" name="baseTex"/>
+        <texture file="structural/kart_struct_damaged_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+    <variant name="mediumdamage">
+      <textures>
+        <texture file="structural/kart_struct_damaged_med.png" name="baseTex"/>
+        <texture file="structural/kart_struct_damaged_med_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+    <variant name="heavydamage">
+      <textures>
+        <texture file="structural/kart_struct_damaged_heavy.png" name="baseTex"/>
+        <texture file="structural/kart_struct_damaged_heavy_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+    <variant name="death">
+      <props>
+        <prop attachpoint="garrisoned"/>
+        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/carthaginians/barracks.xml" attachpoint="root"/>
+        <prop actor="props/structures/carthaginians/barracks_weap.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/kart_struct_damaged_heavy.png" name="baseTex"/>
+        <texture file="structural/kart_struct_damaged_heavy_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

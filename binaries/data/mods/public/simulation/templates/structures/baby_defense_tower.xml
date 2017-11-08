@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_defense_defense_tower">
+  <Identity>
+    <Civ>pers</Civ>
+    <SpecificName>Pāyaud</SpecificName>
+  </Identity>
+  <StatusBars>
+    <BarWidth>6.0</BarWidth>
+    <BarHeight>0.6</BarHeight>
+    <HeightOffset>19.0</HeightOffset>
+  </StatusBars>
+  <VisualActor>
+    <Actor>structures/persians/babylonian_tower.xml</Actor>
+  </VisualActor>
+</Entity>
