@@ -3,10 +3,18 @@
   <Cost>
     <PopulationBonus>2</PopulationBonus>
   </Cost>
+  <Footprint>
+    <Square width="18.0" depth="18.0"/>
+    <Height>8.0</Height>
+  </Footprint>
   <Identity>
     <Civ>brit</Civ>
     <SpecificName>Ystordy</SpecificName>
+    <History>In southern parts of the country, most of the wildwood had been cleared and given way to farming or coppice management. In northern parts, or where the ground was particularly unsuitable for agriculture, wildwood remained, but under constant threat. Land around the farmsteads was usually enclosed by hazel fencing or hedging.</History>
   </Identity>
+  <Obstruction>
+    <Static width="16.0" depth="16.0"/>
+  </Obstruction>
   <VisualActor>
     <Actor>structures/britons/storehouse.xml</Actor>
   </VisualActor>
