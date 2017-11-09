@@ -3,10 +3,16 @@
   <Cost>
     <PopulationBonus>2</PopulationBonus>
   </Cost>
+  <Footprint>
+    <Square width="18.0" depth="18.0"/>
+  </Footprint>
   <Identity>
     <Civ>brit</Civ>
     <SpecificName>Ystordy</SpecificName>
   </Identity>
+  <Obstruction>
+    <Static width="16.0" depth="16.0"/>
+  </Obstruction>
   <VisualActor>
     <Actor>structures/britons/storehouse.xml</Actor>
   </VisualActor>
