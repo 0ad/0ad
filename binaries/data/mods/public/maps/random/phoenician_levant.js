@@ -138,9 +138,11 @@ for (var i = 0; i < numPlayers; i++)
 RMS.SetProgress(30);
 
 paintRiver({
-	"horizontal": false,
 	"parallel": true,
-	"position": 0,
+	"startX": 0,
+	"startZ": 0,
+	"endX": 0,
+	"endZ": 1,
 	"width": 1,
 	"fadeDist": 0.05,
 	"deviation": 0,
@@ -148,7 +150,7 @@ paintRiver({
 	"landHeight": 1,
 	"meanderShort": 20,
 	"meanderLong": 0,
-	"waterFunc": (ix, iz, height) => {
+	"waterFunc": (ix, iz, height, riverFraction) => {
 
 		if (height < 0)
 			addToClass(ix, iz, clWater);

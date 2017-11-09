@@ -317,34 +317,61 @@ function createLayeredPatches(sizes, terrains, terrainWidths, constraint, count,
 /**
  * Creates a meandering river at the given location and width.
  * Optionally calls a function on the affected tiles.
+ * Horizontal locations and widths (including fadeDist, meandering) are fractions of the mapsize.
  *
  * @property horizontal - Whether the river is horizontal or vertical
  * @property parallel - Whether the shorelines should be parallel or meander separately.
- * @property position - Location of the river. Number between 0 and 1.
- * @property width - Size between the two shorelines. Number between 0 and 1.
+ * @property position - Location of the river.
+ * @property width - Size between the two shorelines.
  * @property fadeDist - Size of the shoreline.
  * @property deviation - Fuzz effect on the shoreline if greater than 0.
  * @property waterHeight - Ground height of the riverbed.
  * @proeprty landHeight - Ground height of the end of the shoreline.
  * @property meanderShort - Strength of frequent meanders.
  * @property meanderLong - Strength of less frequent meanders.
- * @property waterFunc - Optional function called on water tiles, providing ix, iz, height.
- * @property landFunc - Optional function called on land tiles, providing ix, iz, shoreDist1, shoreDist2.
+ * @property [constraint] - If given, ignores any tiles that don't satisfy the given Constraint.
+ * @property [waterFunc] - Optional function called on tiles within the river.
+ *                         Provides location on the tilegrid, new elevation and
+ *                         the location on the axis parallel to the river as a fraction of the river length.
+ * @property [landFunc] - Optional function called on land tiles, providing ix, iz, shoreDist1, shoreDist2.
+ * @property [minHeight] - If given, only changes the elevation below this height while still calling the given functions.
  */
 function paintRiver(args)
 {
 	log("Creating the river");
 
-	let theta1 = randFloat(0, 1);
-	let theta2 = randFloat(0, 1);
+	// Model the river meandering as the sum of two sine curves.
+	let meanderShort = fractionToTiles(args.meanderShort / scaleByMapSize(35, 160));
+	let meanderLong = fractionToTiles(args.meanderLong / scaleByMapSize(35, 100));
 
+	// Unless the river is parallel, each riverside will receive an own random seed and starting angle.
 	let seed1 = randFloat(2, 3);
 	let seed2 = randFloat(2, 3);
 
-	let meanderShort = args.meanderShort / scaleByMapSize(35, 160);
-	let meanderLong = args.meanderLong / scaleByMapSize(35, 100);
+	let startingAngle1 = randFloat(0, 1);
+	let startingAngle2 = randFloat(0, 1);
 
+	// Computes the deflection of the river at a given point.
+	let riverCurve = (riverFraction, startAngle, seed) =>
+		meanderShort * rndRiver(startAngle + fractionToTiles(riverFraction) / 128, seed) +
+		meanderLong * rndRiver(startAngle + fractionToTiles(riverFraction) / 256, seed);
+
+	// Describe river width and length of the shoreline.
+	let halfWidth = fractionToTiles(args.width / 2);
+	let fadeDist = fractionToTiles(args.fadeDist);
+
+	// Describe river location in vectors.
 	let mapSize = getMapSize();
+	let vecStart = new Vector2D(args.startX, args.startZ).mult(mapSize);
+	let vecEnd = new Vector2D(args.endX, args.endZ).mult(mapSize);
+	let vecRiver = Vector2D.sub(vecStart, vecEnd);
+	let riverLength = vecRiver.length();
+
+	// Describe river boundaries.
+	let riverMinX = Math.min(vecStart.x, vecEnd.x);
+	let riverMinZ = Math.min(vecStart.y, vecEnd.y);
+	let riverMaxX = Math.max(vecStart.x, vecEnd.x);
+	let riverMaxZ = Math.max(vecStart.y, vecEnd.y);
 
 	for (let ix = 0; ix < mapSize; ++ix)
 		for (let iz = 0; iz < mapSize; ++iz)
@@ -352,41 +379,49 @@ function paintRiver(args)
 			if (args.constraint && !args.constraint.allows(ix, iz))
 				continue;
 
-			let x = ix / (mapSize + 1);
-			let z = iz / (mapSize + 1);
+			let vecPoint = new Vector2D(ix, iz);
 
-			let coord1 = args.horizontal ? z : x;
-			let coord2 = args.horizontal ? x : z;
+			// Compute the shortest distance to the river.
+			let distanceToRiver = vecRiver.cross(Vector2D.sub(vecPoint, vecEnd)) / riverLength;
 
-			// River curve at this place
-			let curve1 =
-				meanderShort * rndRiver(theta1 + coord2 * mapSize / 128, seed1) +
-				meanderLong * rndRiver(theta2 + coord2 * mapSize / 256, seed2);
+			// Closest point on the river (i.e the foot of the perpendicular).
+			let river = Vector2D.sub(vecPoint, vecRiver.perpendicular().mult(distanceToRiver / riverLength));
 
-			let curve2 = args.parallel ? curve1 :
-				meanderShort * rndRiver(theta2 + coord2 * mapSize / 128, seed2) +
-				meanderLong * rndRiver(theta2 + coord2 * mapSize / 256, seed2);
+			// Only process points that actually are perpendicular with the river.
+			if (river.x < riverMinX || river.x > riverMaxX ||
+			    river.y < riverMinZ || river.y > riverMaxZ)
+				continue;
 
-			// Fuzz the river border
-			let devCoord1 = coord1 * randFloat(1 - args.deviation, 1 + args.deviation);
-			let devCoord2 = coord2 * randFloat(1 - args.deviation, 1 + args.deviation);
+			// Coordinate between 0 and 1 on the axis parallel to the river.
+			let riverFraction = river.distanceTo(vecStart) / riverLength;
 
-			let shoreDist1 = -devCoord1 + curve1 + args.position - args.width / 2;
-			let shoreDist2 = -devCoord1 + curve2 + args.position + args.width / 2;
+			// Amplitude of the river at this location.
+			let riverCurve1 = riverCurve(riverFraction, startingAngle1, seed1);
+			let riverCurve2 = args.parallel ? riverCurve1 : riverCurve(riverFraction, startingAngle2, seed2);
 
+			// Add noise.
+			let deviation = fractionToTiles(args.deviation) * randFloat(-1, 1);
+
+			// Compute the distance to the shoreline.
+			let sign = Math.sign(distanceToRiver || 1);
+			let shoreDist1 = sign * riverCurve1 + Math.abs(distanceToRiver) - deviation - halfWidth;
+			let shoreDist2 = sign * riverCurve2 + Math.abs(distanceToRiver) - deviation + halfWidth;
+
+			// Create the elevation for the water and the slopy shoreline and call the user functions.
 			if (shoreDist1 < 0 && shoreDist2 > 0)
 			{
 				let height = args.waterHeight;
 
-				if (shoreDist1 > -args.fadeDist)
-					height += (args.landHeight - args.waterHeight) * (1 + shoreDist1 / args.fadeDist);
-				else if (shoreDist2 < args.fadeDist)
-					height += (args.landHeight - args.waterHeight) * (1 - shoreDist2 / args.fadeDist);
+				if (shoreDist1 > -fadeDist)
+					height += (args.landHeight - args.waterHeight) * (1 + shoreDist1 / fadeDist);
+				else if (shoreDist2 < fadeDist)
+					height += (args.landHeight - args.waterHeight) * (1 - shoreDist2 / fadeDist);
 
-				setHeight(ix, iz, height);
+				if (args.minHeight === undefined || height < args.minHeight)
+					setHeight(ix, iz, height);
 
 				if (args.waterFunc)
-					args.waterFunc(ix, iz, height);
+					args.waterFunc(ix, iz, height, riverFraction);
 			}
 			else if (args.landFunc)
 				args.landFunc(ix, iz, shoreDist1, shoreDist2);

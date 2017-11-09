@@ -168,21 +168,22 @@ const riverTextures = [
 ];
 
 const plantFrequency = 2;
-
 var plantID = 0;
 
 paintRiver({
-	"horizontal": false,
 	"parallel": true,
-	"position": 0.5,
+	"startX": 0.5,
+	"startZ": 0,
+	"endX": 0.5,
+	"endZ": 1,
 	"width": 0.1,
 	"fadeDist": 0.025,
-	"deviation": 0.005,
+	"deviation": 0.0025,
 	"waterHeight": -3,
 	"landHeight": 2,
 	"meanderShort": 12,
 	"meanderLong": 50,
-	"waterFunc": (ix, iz, height) => {
+	"waterFunc": (ix, iz, height, riverFraction) => {
 
 		addToClass(ix, iz, clWater);
 		placeTerrain(ix, iz, tShore);
