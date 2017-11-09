@@ -91,12 +91,29 @@ Vector2D.prototype.rotate = function(a)
 //
 // These methods serve to get numeric info on the vector, they don't modify the vector
 
+/**
+ * Return the vector that forms a right angle with this one.
+ */
+Vector2D.prototype.perpendicular = function()
+{
+	return new Vector2D(-this.y, this.x);
+};
+
+/**
+ * Computes the scalar product of the two vectors.
+ * Geometrically, this is the product of the length of the two vectors and the cosine of the angle between them.
+ * If the vectors are orthogonal, the product is zero.
+ */
 Vector2D.prototype.dot = function(v)
 {
 	return this.x * v.x + this.y * v.y;
 };
 
-// get the non-zero coordinate of the vector cross
+/**
+ * Computes the non-zero coordinate of the cross product of the two vectors.
+ * Geometrically, the cross of the vectors is the 3D vector perpendicular to the two 2D vectors.
+ * This returned length of that vector equals the area of the parallelogram that the vectors span.
+ */
 Vector2D.prototype.cross = function(v)
 {
 	return this.x * v.y - this.y * v.x;
@@ -257,6 +274,18 @@ Vector3D.prototype.normalize = function()
 Vector3D.prototype.dot = function(v)
 {
 	return this.x * v.x + this.y * v.y + this.z * v.z;
+};
+
+/**
+ * Returns a vector perpendicular to the two given vectors.
+ * The length of the returned vector corresponds to the area of the parallelogram with the vectors for sides.
+ */
+Vector3D.prototype.cross = function(v)
+{
+	return new Vector3D(
+		this.y * v.z - this.z * v.y,
+		this.z * v.x - this.x * v.z,
+		this.x * v.y - this.y * v.x);
 };
 
 Vector3D.prototype.lengthSquared = function()

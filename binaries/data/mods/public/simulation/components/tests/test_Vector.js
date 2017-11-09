@@ -86,6 +86,14 @@ var brokenVector = {
 	TS_ASSERT_EQUALS(v5.x, v6.x);
 	TS_ASSERT_EQUALS(v5.y, v6.y);
 	TS_ASSERT(Math.abs(v5.dot(v6.rotate(Math.PI / 2))) < epsilon);
+
+	let v7 = new Vector2D(4, 5).perpendicular();
+	TS_ASSERT_EQUALS(v7.x, -5);
+	TS_ASSERT_EQUALS(v7.y, 4);
+
+	let v8 = new Vector2D(0, 0).perpendicular();
+	TS_ASSERT_EQUALS(v8.x, 0);
+	TS_ASSERT_EQUALS(v8.y, 0);
 }
 
 // Test Vector3D
@@ -106,4 +114,9 @@ var brokenVector = {
 	TS_ASSERT_EQUALS(v3.x, v4.x);
 	TS_ASSERT_EQUALS(v3.y, v4.y);
 	TS_ASSERT_EQUALS(v3.z, v4.z);
+
+	let v5 = new Vector3D(1, 2, 3).cross(new Vector3D(4, 5, 6));
+	TS_ASSERT_EQUALS(v5.x, -3);
+	TS_ASSERT_EQUALS(v5.y, 6);
+	TS_ASSERT_EQUALS(v5.z, -3);
 }
