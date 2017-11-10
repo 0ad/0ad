@@ -341,11 +341,11 @@ createObjectGroupsDeprecated(group, 0,
 );
 RMS.SetProgress(90);
 
-var stragglerTrees = [
+var stragglerTreeConfig = [
 	[1, avoidClasses(clForest, 0, clWater, 1, clPlayer, 8, clMetal, 6, clHill, 1)],
 	[3, stayClasses(clIsland, 9)]
 ];
-for (let [amount, constraint] of stragglerTrees)
+for (let [amount, constraint] of stragglerTreeConfig)
 	createStragglerTrees(
 		[oDatePalm, oSDatePalm, oCarob, oFanPalm, oPoplar, oCypress],
 		constraint,

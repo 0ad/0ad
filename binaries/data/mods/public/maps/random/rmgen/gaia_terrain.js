@@ -132,10 +132,9 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraint,
 				}
 				else if (state >= 0)
 				{
-					let s = edges.splice(state, 1);
+					edges.splice(state, 1);
 					gotRet[ix][iz] = -2;
 
-					let edgesLength = edges.length;
 					for (let k = state; k < edges.length; ++k)
 						--gotRet[edges[k][0]][edges[k][1]];
 				}

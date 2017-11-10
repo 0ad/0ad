@@ -1,5 +1,5 @@
 /**
- * @file A Non-Centered Placer generates an shape (array of points) at a fixed location meeting a Constraint and
+ * @file A Non-Centered Placer generates a shape (array of points) at a fixed location meeting a Constraint and
  * is typically called by createArea.
  * Since this type of Placer has no x and z property, its location cannot be randomized using createAreas.
  */
