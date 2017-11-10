@@ -654,7 +654,8 @@ function unknownPasses()
 		createArea(
 			new PathPlacer(mid, mid, mountainX[i], mountainZ[i], scaleByMapSize(14, 24), 0.4, 3 * scaleByMapSize(1, 3), 0.2, 0.05),
 			[
-				new SmoothElevationPainter(ELEVATION_SET, mountainHeight, 3),
+				// More smoothing than this often results in the mountainrange becoming passable to one player.
+				new SmoothElevationPainter(ELEVATION_SET, mountainHeight, 1),
 				paintClass(clWater)
 			],
 			avoidClasses(clPlayer, 5));
@@ -683,7 +684,7 @@ function unknownPasses()
 
 	if (randBool(2/5))
 	{
-		log("Creating small mountain at the center to ensure the mountain ranges to be connected...");
+		log("Create central lake...");
 		createArea(
 			new ClumpPlacer(mapArea * 0.03 * lSize, 0.7, 0.1, 10, mid, mid),
 			[
