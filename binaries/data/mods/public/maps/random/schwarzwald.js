@@ -207,14 +207,18 @@ RMS.SetProgress(50);
 
 //place water & open terrain textures and assign TileClasses
 log("Painting textures...");
-var placer = new HeightPlacer(heighLimits[2], (heighLimits[3]+heighLimits[2])/2);
-var painter = new LayeredPainter([terrainBase, terrainBaseBorder], [5]);
-createArea(placer, painter);
-paintTileClassBasedOnHeight(heighLimits[2], (heighLimits[3]+heighLimits[2])/2, 1, clOpen);
 
-var placer = new HeightPlacer(heightRange.min, heighLimits[2]);
-var painter = new LayeredPainter([tWaterBorder, tWater], [2]);
-createArea(placer, painter);
+var betweenShallowAndShore = (heighLimits[3] + heighLimits[2]) / 2;
+createArea(
+	new HeightPlacer(Elevation_IncludeMin_IncludeMax, heighLimits[2], betweenShallowAndShore),
+	new LayeredPainter([terrainBase, terrainBaseBorder], [5]));
+
+paintTileClassBasedOnHeight(heighLimits[2], betweenShallowAndShore, 1, clOpen);
+
+createArea(
+	new HeightPlacer(Elevation_IncludeMin_IncludeMax, heightRange.min, heighLimits[2]),
+	new LayeredPainter([tWaterBorder, tWater], [2]));
+
 paintTileClassBasedOnHeight(heightRange.min,  heighLimits[2], 1, clWater);
 
 RMS.SetProgress(60);

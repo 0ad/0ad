@@ -36,23 +36,38 @@ RectPlacer.prototype.place = function(constraint)
 };
 
 /**
- * The HeightPlacer provides all points between the minimum and maximum elevation that meet the Constraint.
+ * HeightPlacer constants determining whether the extrema should be included by the placer too.
  */
-function HeightPlacer(minElevation, maxElevation)
+const Elevation_ExcludeMin_ExcludeMax = 0;
+const Elevation_IncludeMin_ExcludeMax = 1;
+const Elevation_ExcludeMin_IncludeMax = 2;
+const Elevation_IncludeMin_IncludeMax = 3;
+
+/**
+ * The HeightPlacer provides all points between the minimum and maximum elevation that meet the Constraint,
+ * even if they are far from the passable area of the map.
+ */
+function HeightPlacer(mode, minElevation, maxElevation)
 {
-	this.minElevation = minElevation;
-	this.maxElevation = maxElevation;
+	this.withinHeightRange =
+		mode == Elevation_ExcludeMin_ExcludeMax ? (x, z) => g_Map.height[x][z] >  minElevation && g_Map.height[x][z] < maxElevation :
+		mode == Elevation_IncludeMin_ExcludeMax ? (x, z) => g_Map.height[x][z] >= minElevation && g_Map.height[x][z] < maxElevation :
+		mode == Elevation_ExcludeMin_IncludeMax ? (x, z) => g_Map.height[x][z] >  minElevation && g_Map.height[x][z] <= maxElevation :
+		mode == Elevation_IncludeMin_IncludeMax ? (x, z) => g_Map.height[x][z] >= minElevation && g_Map.height[x][z] <= maxElevation :
+		undefined;
+
+	if (!this.withinHeightRange)
+		throw new Error("Invalid HeightPlacer mode: " + mode);
 }
 
 HeightPlacer.prototype.place = function(constraint)
 {
 	let mapSize = getMapSize();
 	let points = [];
+
 	for (let x = 0; x < mapSize; ++x)
 		for (let z = 0; z < mapSize; ++z)
-			if (g_Map.height[x][z] >= this.minElevation &&
-			    g_Map.height[x][z] <= this.maxElevation &&
-			    constraint.allows(x, z))
+			if (this.withinHeightRange(x, z) && constraint.allows(x, z))
 				points.push({ "x": x, "z": z });
 
 	return points;

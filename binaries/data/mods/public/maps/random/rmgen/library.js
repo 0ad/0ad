@@ -344,6 +344,30 @@ function createArea(placer, painter, constraint)
 }
 
 /**
+ * @param mode is one of the HeightPlacer constants determining whether to exclude the min/max elevation.
+ */
+function paintTerrainBasedOnHeight(minHeight, maxHeight, mode, terrain)
+{
+	createArea(
+		new HeightPlacer(mode, minHeight, maxHeight),
+		new TerrainPainter(terrain));
+}
+
+function paintTileClassBasedOnHeight(minHeight, maxHeight, mode, tileClass)
+{
+	createArea(
+		new HeightPlacer(mode, minHeight, maxHeight),
+		new TileClassPainter(getTileClass(tileClass)));
+}
+
+function unPaintTileClassBasedOnHeight(minHeight, maxHeight, mode, tileClass)
+{
+	createArea(
+		new HeightPlacer(mode, minHeight, maxHeight),
+		new TileClassUnPainter(getTileClass(tileClass)));
+}
+
+/**
  * Places the Entities of the given Group if they meet the Constraint
  * and sets the given player as the owner.
  */
