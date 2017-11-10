@@ -363,8 +363,8 @@ function paintRiver(args)
 	let mapSize = getMapSize();
 	let vecStart = new Vector2D(args.startX, args.startZ).mult(mapSize);
 	let vecEnd = new Vector2D(args.endX, args.endZ).mult(mapSize);
-	let vecRiver = Vector2D.sub(vecStart, vecEnd);
-	let riverLength = vecRiver.length();
+	let riverLength = vecStart.distanceTo(vecEnd);
+	let unitVecRiver = Vector2D.sub(vecStart, vecEnd).normalize();
 
 	// Describe river boundaries.
 	let riverMinX = Math.min(vecStart.x, vecEnd.x);
@@ -381,10 +381,10 @@ function paintRiver(args)
 			let vecPoint = new Vector2D(ix, iz);
 
 			// Compute the shortest distance to the river.
-			let distanceToRiver = vecRiver.cross(Vector2D.sub(vecPoint, vecEnd)) / riverLength;
+			let distanceToRiver = unitVecRiver.cross(Vector2D.sub(vecPoint, vecEnd));
 
 			// Closest point on the river (i.e the foot of the perpendicular).
-			let river = Vector2D.sub(vecPoint, vecRiver.perpendicular().mult(distanceToRiver / riverLength));
+			let river = Vector2D.sub(vecPoint, unitVecRiver.perpendicular().mult(distanceToRiver));
 
 			// Only process points that actually are perpendicular with the river.
 			if (river.x < riverMinX || river.x > riverMaxX ||
