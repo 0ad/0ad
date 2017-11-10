@@ -41,7 +41,7 @@ Trigger.prototype.tutorialGoals = [
 		"instructions": markForTranslation("Select the two idle female citizens and build a house nearby by selecting the house icon. Place the house by left-clicking on a piece of land."),
 		"OnPlayerCommand": function(msg)
 		{
-			if (msg.cmd.type == "repair" && TriggerHelper.EntityHasClass(msg.cmd.target, "House"))
+			if (msg.cmd.type == "repair" && TriggerHelper.EntityMatchesClassList(msg.cmd.target, "House"))
 				this.NextGoal();
 		}
 	},
@@ -49,7 +49,7 @@ Trigger.prototype.tutorialGoals = [
 		"instructions": markForTranslation("When they are ready, select the newly trained Hoplites and assign them to build a storehouse beside some nearby trees. They will begin to gather wood when it's constructed."),
 		"OnPlayerCommand": function(msg)
 		{
-			if (msg.cmd.type == "repair" && TriggerHelper.EntityHasClass(msg.cmd.target, "Storehouse"))
+			if (msg.cmd.type == "repair" && TriggerHelper.EntityMatchesClassList(msg.cmd.target, "Storehouse"))
 				this.NextGoal();
 		}
 	},
@@ -78,7 +78,7 @@ Trigger.prototype.tutorialGoals = [
 		"instructions": markForTranslation("Build a farmstead in an open space beside the Civil Center using any idle builders."),
 		"OnPlayerCommand": function(msg)
 		{
-			if (msg.cmd.type == "repair" && TriggerHelper.EntityHasClass(msg.cmd.target, "Farmstead"))
+			if (msg.cmd.type == "repair" && TriggerHelper.EntityMatchesClassList(msg.cmd.target, "Farmstead"))
 				this.NextGoal();
 		},
 		"OnTrainingFinished": function(msg)
@@ -94,7 +94,7 @@ Trigger.prototype.tutorialGoals = [
 		},
 		"OnStructureBuilt": function(msg)
 		{
-			if (TriggerHelper.EntityHasClass(msg.building, "Farmstead"))
+			if (TriggerHelper.EntityMatchesClassList(msg.building, "Farmstead"))
 				this.NextGoal();
 		}
 	},
@@ -110,7 +110,7 @@ Trigger.prototype.tutorialGoals = [
 		},
 		"OnPlayerCommand": function(msg)
 		{
-			if (msg.cmd.type == "repair" && TriggerHelper.EntityHasClass(msg.cmd.target, "Field"))
+			if (msg.cmd.type == "repair" && TriggerHelper.EntityMatchesClassList(msg.cmd.target, "Field"))
 				this.farmStarted = true;
 			if (this.IsDone())
 				this.NextGoal();
@@ -126,7 +126,7 @@ Trigger.prototype.tutorialGoals = [
 		"instructions": markForTranslation("The field's builders will now automatically begin collecting food from the field. Using the newly created group of skirmishers, get them to build another house nearby."),
 		"OnPlayerCommand": function(msg)
 		{
-			if (msg.cmd.type == "repair" && TriggerHelper.EntityHasClass(msg.cmd.target, "House"))
+			if (msg.cmd.type == "repair" && TriggerHelper.EntityMatchesClassList(msg.cmd.target, "House"))
 				this.NextGoal();
 		}
 	},
@@ -175,7 +175,7 @@ Trigger.prototype.tutorialGoals = [
 		"instructions": markForTranslation("Order the idle Skirmishers to build an outpost to the north east at the edge of your territory.  This will be the fifth Village Phase structure that you have built, allowing you to advance to the Town Phase."),
 		"OnPlayerCommand": function(msg)
 		{
-			if (msg.cmd.type == "repair" && TriggerHelper.EntityHasClass(msg.cmd.target, "Outpost"))
+			if (msg.cmd.type == "repair" && TriggerHelper.EntityMatchesClassList(msg.cmd.target, "Outpost"))
 				this.NextGoal();
 		}
 	},
@@ -187,7 +187,7 @@ Trigger.prototype.tutorialGoals = [
 		},
 		"OnResearchQueued": function(msg)
 		{
-			if (msg.technologyTemplate && TriggerHelper.EntityHasClass(msg.researcherEntity, "CivilCentre"))
+			if (msg.technologyTemplate && TriggerHelper.EntityMatchesClassList(msg.researcherEntity, "CivilCentre"))
 				this.NextGoal();
 		}
 	},
@@ -248,7 +248,7 @@ Trigger.prototype.tutorialGoals = [
 		"instructions": markForTranslation("Build a Barracks nearby. Whenever your population limit is reached, build an extra house using any available builder units."),
 		"OnPlayerCommand": function(msg)
 		{
-			if (msg.cmd.type == "repair" && TriggerHelper.EntityHasClass(msg.cmd.target, "Barracks"))
+			if (msg.cmd.type == "repair" && TriggerHelper.EntityMatchesClassList(msg.cmd.target, "Barracks"))
 				this.NextGoal();
 		}
 	},
@@ -256,7 +256,7 @@ Trigger.prototype.tutorialGoals = [
 		"instructions": markForTranslation("Prepare for an attack by an enemy player. Build more soldiers using the Barracks, and get idle soldiers to build a Defense Tower near your Outpost."),
 		"OnPlayerCommand": function(msg)
 		{
-			if (msg.cmd.type == "repair" && TriggerHelper.EntityHasClass(msg.cmd.target, "DefenseTower"))
+			if (msg.cmd.type == "repair" && TriggerHelper.EntityMatchesClassList(msg.cmd.target, "DefenseTower"))
 				this.NextGoal();
 		}
 	},
@@ -264,7 +264,7 @@ Trigger.prototype.tutorialGoals = [
 		"instructions": markForTranslation("Build a Blacksmith and research the Infantry Training technology (sword icon) to improve infantry hack attack."),
 		"OnResearchQueued": function(msg)
 		{
-			if (msg.technologyTemplate && TriggerHelper.EntityHasClass(msg.researcherEntity, "Blacksmith"))
+			if (msg.technologyTemplate && TriggerHelper.EntityMatchesClassList(msg.researcherEntity, "Blacksmith"))
 				this.NextGoal();
 		}
 	},
@@ -301,8 +301,8 @@ Trigger.prototype.tutorialGoals = [
 		{
 			if (msg.cmd.type != "repair")
 				return;
-			this.marketStarted = this.marketStarted || TriggerHelper.EntityHasClass(msg.cmd.target, "Market");
-			this.templeStarted = this.templeStarted || TriggerHelper.EntityHasClass(msg.cmd.target, "Temple");
+			this.marketStarted = this.marketStarted || TriggerHelper.EntityMatchesClassList(msg.cmd.target, "Market");
+			this.templeStarted = this.templeStarted || TriggerHelper.EntityMatchesClassList(msg.cmd.target, "Temple");
 			if (this.IsDone())
 				this.NextGoal();
 		}
@@ -311,7 +311,7 @@ Trigger.prototype.tutorialGoals = [
 		"instructions": markForTranslation("When that City Phase requirements have been reached, select your Civil Center and advance to City Phase."),
 		"OnResearchQueued": function(msg)
 		{
-			if (msg.technologyTemplate && TriggerHelper.EntityHasClass(msg.researcherEntity, "CivilCentre"))
+			if (msg.technologyTemplate && TriggerHelper.EntityMatchesClassList(msg.researcherEntity, "CivilCentre"))
 				this.NextGoal();
 		}
 	},
@@ -353,7 +353,7 @@ Trigger.prototype.tutorialGoals = [
 		{
 			if (msg.from != this.enemyID)
 				return;
-			if (TriggerHelper.EntityHasClass(msg.entity, "CivilCentre"))
+			if (TriggerHelper.EntityMatchesClassList(msg.entity, "CivilCentre"))
 				this.NextGoal();
 		}
 	},

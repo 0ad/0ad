@@ -224,7 +224,7 @@ Trigger.prototype.tutorialGoals = [
 			}
 			else if (msg.from == -1 && msg.to == this.playerID &&
 			         Engine.QueryInterface(+msg.entity, IID_Foundation) &&
-			         TriggerHelper.EntityHasClass(+msg.entity, "House"))
+			         TriggerHelper.EntityMatchesClassList(+msg.entity, "House"))
 			{
 				this.houseGoal.add(+msg.entity);
 				++this.houseCount;
@@ -308,7 +308,7 @@ Trigger.prototype.tutorialGoals = [
 		"OnPlayerCommand": function(msg)
 		{
 			if (msg.cmd.type != "set-rallypoint" || !msg.cmd.data || !msg.cmd.data.command ||
-			   (msg.cmd.data.command != "build" || !msg.cmd.data.target || !TriggerHelper.EntityHasClass(msg.cmd.data.target, "Field")) &&
+			   (msg.cmd.data.command != "build" || !msg.cmd.data.target || !TriggerHelper.EntityMatchesClassList(msg.cmd.data.target, "Field")) &&
 			   (msg.cmd.data.command != "gather" || !msg.cmd.data.resourceType || msg.cmd.data.resourceType.specific != "grain"))
 			{
 				this.WarningMessage(markForTranslation("Select the Civic Center and right-click on the field."));
@@ -354,7 +354,7 @@ Trigger.prototype.tutorialGoals = [
 		},
 		"OnResearchQueued": function(msg)
 		{
-			if (msg.technologyTemplate && TriggerHelper.EntityHasClass(msg.researcherEntity, "Farmstead"))
+			if (msg.technologyTemplate && TriggerHelper.EntityMatchesClassList(msg.researcherEntity, "Farmstead"))
 				this.NextGoal();
 		}
 	},
@@ -377,7 +377,7 @@ Trigger.prototype.tutorialGoals = [
 		],
 		"OnStructureBuilt": function(msg)
 		{
-			if (TriggerHelper.EntityHasClass(msg.building, "Barracks"))
+			if (TriggerHelper.EntityMatchesClassList(msg.building, "Barracks"))
 				this.NextGoal();
 		},
 	},
@@ -392,7 +392,7 @@ Trigger.prototype.tutorialGoals = [
 		},
 		"OnResearchQueued": function(msg)
 		{
-			if (msg.technologyTemplate && TriggerHelper.EntityHasClass(msg.researcherEntity, "CivilCentre"))
+			if (msg.technologyTemplate && TriggerHelper.EntityMatchesClassList(msg.researcherEntity, "CivilCentre"))
 				this.NextGoal();
 		}
 	},

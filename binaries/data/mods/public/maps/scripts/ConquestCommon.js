@@ -3,7 +3,7 @@ Trigger.prototype.ConquestHandlerOwnerShipChanged = function(msg)
 	if (!this.conquestDataInit || !this.conquestClassFilter)
 		return;
 
-	if (!TriggerHelper.EntityHasClass(msg.entity, this.conquestClassFilter))
+	if (!TriggerHelper.EntityMatchesClassList(msg.entity, this.conquestClassFilter))
 		return;
 
 	if (msg.from == -1)
@@ -36,7 +36,7 @@ Trigger.prototype.ConquestHandlerOwnerShipChanged = function(msg)
 
 Trigger.prototype.ConquestAddStructure = function(msg)
 {
-	if (!this.conquestClassFilter || !TriggerHelper.EntityHasClass(msg.building, this.conquestClassFilter))
+	if (!this.conquestClassFilter || !TriggerHelper.EntityMatchesClassList(msg.building, this.conquestClassFilter))
 		return;
 
 	let cmpOwnership = Engine.QueryInterface(msg.building, IID_Ownership);
@@ -62,7 +62,7 @@ Trigger.prototype.ConquestAddStructure = function(msg)
 
 Trigger.prototype.ConquestTrainingFinished = function(msg)
 {
-	if (msg.owner == 0 || !this.conquestClassFilter || !msg.entities.length || !msg.entities.every(elem => TriggerHelper.EntityHasClass(elem, this.conquestClassFilter)))
+	if (msg.owner == 0 || !this.conquestClassFilter || !msg.entities.length || !msg.entities.every(elem => TriggerHelper.EntityMatchesClassList(elem, this.conquestClassFilter)))
 		return;
 
 	let player = msg.owner;
@@ -87,7 +87,7 @@ Trigger.prototype.ConquestStartGameCount = function()
 	let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
 	for (let i = 1; i < numPlayers; ++i)
 	{
-		let filterEntity = ent => TriggerHelper.EntityHasClass(ent, this.conquestClassFilter)
+		let filterEntity = ent => TriggerHelper.EntityMatchesClassList(ent, this.conquestClassFilter)
 			&& !Engine.QueryInterface(ent, IID_Foundation);
 		this.conquestEntitiesByPlayer[i] = [...cmpRangeManager.GetEntitiesByPlayer(i).filter(filterEntity)];
 	}

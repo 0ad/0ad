@@ -156,18 +156,16 @@ TriggerHelper.GetNumberOfPlayers = function()
 };
 
 /**
- * A function to determine if an entity has a specific class
- * @param entity ID of the entity that we want to check for classes
- * @param classname The name of the class we are checking if the entity has
+ * A function to determine if an entity matches specific classes.
+ * See globalscripts/Templates.js for details of MatchesClassList.
+ *
+ * @param entity - ID of the entity that we want to check for classes.
+ * @param classlist - List of the classes we are checking if the entity matches.
  */
-TriggerHelper.EntityHasClass = function(entity, classname)
+TriggerHelper.EntityMatchesClassList = function(entity, classlist)
 {
 	let cmpIdentity = Engine.QueryInterface(entity, IID_Identity);
-	if (!cmpIdentity)
-		return false;
-
-	let classes = cmpIdentity.GetClassesList();
-	return classes && classes.indexOf(classname) != -1;
+	return cmpIdentity && MatchesClassList(cmpIdentity.GetClassesList(), classlist);
 };
 
 /**

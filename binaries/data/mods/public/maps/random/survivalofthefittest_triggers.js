@@ -170,9 +170,9 @@ Trigger.prototype.InitStartingUnits = function()
 
 		for (let entity of playerEntities)
 		{
-			if (TriggerHelper.EntityHasClass(entity, "CivilCentre"))
+			if (TriggerHelper.EntityMatchesClassList(entity, "CivilCentre"))
 				this.playerCivicCenter[i] = entity;
-			else if (TriggerHelper.EntityHasClass(entity, "FemaleCitizen"))
+			else if (TriggerHelper.EntityMatchesClassList(entity, "FemaleCitizen"))
 			{
 				this.treasureFemale[i] = entity;
 

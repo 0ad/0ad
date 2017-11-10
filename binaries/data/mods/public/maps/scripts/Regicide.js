@@ -64,7 +64,7 @@ Trigger.prototype.InitRegicideGame = function(msg)
 			getSpawnPreference(entity2) - getSpawnPreference(entity1));
 
 		// Spawn the hero on land as close as possible
-		if (!regicideGarrison && TriggerHelper.EntityHasClass(spawnPoints[0], "Ship"))
+		if (!regicideGarrison && TriggerHelper.EntityMatchesClassList(spawnPoints[0], "Ship"))
 		{
 			let shipPosition = Engine.QueryInterface(spawnPoints[0], IID_Position).GetPosition2D();
 			let distanceToShip = entity =>
@@ -93,7 +93,7 @@ Trigger.prototype.SpawnRegicideHero = function(playerID, heroTemplates, spawnPoi
 				continue;
 
 			// Consider nomad maps where units start on a ship
-			let isShip = TriggerHelper.EntityHasClass(spawnPoint, "Ship");
+			let isShip = TriggerHelper.EntityMatchesClassList(spawnPoint, "Ship");
 			if (isShip)
 			{
 				let cmpGarrisonHolder = Engine.QueryInterface(spawnPoint, IID_GarrisonHolder);
