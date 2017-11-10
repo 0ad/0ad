@@ -63,11 +63,11 @@ Vector2D.prototype.div = function(f)
 
 Vector2D.prototype.normalize = function()
 {
-	var mag = this.length();
-	if (!mag)
+	let magnitude = this.length();
+	if (!magnitude)
 		return this;
 
-	return this.div(mag);
+	return this.div(magnitude);
 };
 
 /**
@@ -260,11 +260,11 @@ Vector3D.prototype.div = function(f)
 
 Vector3D.prototype.normalize = function()
 {
-	var mag = this.length();
-	if (!mag)
+	let magnitude = this.length();
+	if (!magnitude)
 		return this;
 
-	return this.div(mag);
+	return this.div(magnitude);
 };
 
 // Numeric 3D info functions (non-mutating)

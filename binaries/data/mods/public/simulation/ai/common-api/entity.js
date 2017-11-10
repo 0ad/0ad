@@ -450,32 +450,26 @@ m.Template = m.Class({
 
 	/**
 	 * Returns whether this is an animal that is too difficult to hunt.
-	 * (Any non domestic currently.)
 	 */
-	isHuntable: function() {
+	"isHuntable": function() {
 		if(!this.get("ResourceSupply/KillBeforeGather"))
-			return false;
-
-		// special case: rabbits too difficult to hunt for such a small food amount
-		let specificName = this.get("Identity/SpecificName");
-		if (specificName && specificName === "Rabbit")
 			return false;
 
 		// do not hunt retaliating animals (animals without UnitAI are dead animals)
 		let behaviour = this.get("UnitAI/NaturalBehaviour");
-		return !this.get("UnitAI") ||
-		       !(behaviour === "violent" || behaviour === "aggressive" || behaviour === "defensive");
+		return !behaviour ||
+		       (behaviour != "violent" && behaviour != "aggressive" && behaviour != "defensive");
 	},
 
-	walkSpeed: function() {
+	"walkSpeed": function() {
 		return +this.get("UnitMotion/WalkSpeed");
 	},
 
-	trainingCategory: function() {
+	"trainingCategory": function() {
 		return this.get("TrainingRestrictions/Category");
 	},
 
-	buildCategory: function() {
+	"buildCategory": function() {
 		return this.get("BuildRestrictions/Category");
 	},
 
