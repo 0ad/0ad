@@ -52,6 +52,11 @@ var clLand = createTileClass();
 var clRiver = createTileClass();
 var clShallow = createTileClass();
 
+var landHeight = 3;
+var shoreHeight = 2;
+var shallowHeight = -1.5;
+var waterHeight = -3;
+
 log("Create the continent body");
 createArea(
 	new ChainPlacer(
@@ -65,7 +70,7 @@ createArea(
 		[Math.floor(mapSize * 0.49)]),
 	[
 		new LayeredPainter([tGrass, tGrass, tGrass], [4, 2]),
-		new SmoothElevationPainter(ELEVATION_SET, 3, 4),
+		new SmoothElevationPainter(ELEVATION_SET, landHeight, 4),
 		paintClass(clLand)
 	],
 	null);
@@ -161,27 +166,25 @@ for (var i = 0; i < numPlayers; i++)
 
 	placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, radius);
 }
-
 RMS.SetProgress(20);
 
-var shallowHeight = -1.5;
 paintRiver({
-	"horizontal": false,
 	"parallel": true,
 	"constraint": stayClasses(clLand, 0),
-	"position": 0.5,
+	"startX": 0.5,
+	"startZ": 0,
+	"endX": 0.5,
+	"endZ": 1,
 	"width": 0.07,
 	"fadeDist": 0.025,
-	"deviation": 0.005,
-	"waterHeight": -3,
-	"landHeight": 2,
+	"deviation": 0.0025,
+	"waterHeight": waterHeight,
+	"landHeight": shoreHeight,
 	"meanderShort": 12,
 	"meanderLong": 0,
-	"waterFunc": (ix, iz, height) => {
+	"waterFunc": (ix, iz, height, z) => {
 		addToClass(ix, iz, clRiver);
 		placeTerrain(ix, iz, tWater);
-
-		let z = iz / (mapSize + 1.0);
 
 		if (height < shallowHeight && (
 				z > 0.3 && z < 0.4 ||

@@ -113,17 +113,19 @@ for (var i = 0; i < numPlayers; i++)
 RMS.SetProgress(15);
 
 paintRiver({
-	"horizontal": true,
 	"parallel": true,
-	"position": 1,
+	"startX": 0,
+	"startZ": 1,
+	"endX": 1,
+	"endZ": 1,
 	"width": 0.62,
-	"fadeDist": 8 / mapSize,
+	"fadeDist": tilesToFraction(8),
 	"deviation": 0,
 	"waterHeight": -5,
 	"landHeight": 3,
 	"meanderShort": 0,
 	"meanderLong": 0,
-	"waterFunc": (ix, iz, height) => {
+	"waterFunc": (ix, iz, height, riverFraction) => {
 		addToClass(ix, iz, clWater);
 	},
 	"landFunc": (ix, iz, shoreDist1, shoreDist2) => {

@@ -289,13 +289,15 @@ function unknownContinent()
 function unknownCentralSea()
 {
 	let waterHeight = -3;
-
 	let horizontal = randBool();
 
+	let [start, end] = centralRiverCoordinates(horizontal);
 	paintRiver({
-		"horizontal": horizontal,
 		"parallel": false,
-		"position": 0.5,
+		"startX": tilesToFraction(start[0]),
+		"startZ": tilesToFraction(start[1]),
+		"endX": tilesToFraction(end[0]),
+		"endZ": tilesToFraction(end[1]),
 		"width": randFloat(0.22, 0.3) + scaleByMapSize(0.05, 0.2),
 		"fadeDist": 0.025,
 		"deviation": 0,
@@ -303,7 +305,7 @@ function unknownCentralSea()
 		"landHeight": landHeight,
 		"meanderShort": 20,
 		"meanderLong": 0,
-		"waterFunc": (ix, iz, height) => {
+		"waterFunc": (ix, iz, height, riverFraction) => {
 			if (height < 0)
 				addToClass(ix, iz, clWater);
 		},
@@ -531,10 +533,20 @@ function unknownEdgeSeas()
 	}
 
 	for (let location of pickRandom([["first"], ["second"], ["first", "second"]]))
+	{
+		let margin = randFloat(0, scaleByMapSize(0, 0.1));
+		let positionX = location == "first" ? [0, margin] : [1 - margin, 1];
+		let positionZ = [0, 1];
+
+		if (!horizontal)
+			[positionX, positionZ] = [positionZ, positionX];
+
 		paintRiver({
-			"horizontal": horizontal,
 			"parallel": false,
-			"position": (location == "first" ? 0 : 1) + (location == "first" ? -1 : 1) * randFloat(0, scaleByMapSize(0, 0.1)),
+			"startX": positionX[0],
+			"startZ": positionZ[0],
+			"endX": positionX[1],
+			"endX": positionZ[1],
 			"width": 0.62,
 			"fadeDist": 0.015,
 			"deviation": 0,
@@ -543,6 +555,7 @@ function unknownEdgeSeas()
 			"meanderShort": 20,
 			"meanderLong": 0
 		});
+	}
 
 	createExtensionsOrIslands();
 	paintTileClassBasedOnHeight(0, cliffHeight, 1, clLand);

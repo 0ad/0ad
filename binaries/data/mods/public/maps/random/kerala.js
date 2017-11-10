@@ -136,9 +136,11 @@ const waterPos = 0.31;
 const mountainPos = 0.69;
 
 paintRiver({
-	"horizontal": false,
 	"parallel": false,
-	"position": 0,
+	"startX": 0,
+	"startZ": 0,
+	"endX": 0,
+	"endZ": 1,
 	"width": 2 * waterPos,
 	"fadeDist": 0.025,
 	"deviation": 0,
@@ -146,11 +148,11 @@ paintRiver({
 	"landHeight": 3,
 	"meanderShort": 20,
 	"meanderLong": 0,
-	"waterFunc": (ix, iz, height) => {
+	"waterFunc": (ix, iz, height, riverFraction) => {
 		addToClass(ix, iz, clWater);
 	},
 	"landFunc": (ix, iz, shoreDist1, shoreDist2) => {
-		if (ix > mountainPos * mapSize)
+		if (ix > fractionToTiles(mountainPos))
 			addToClass(ix, iz, clMountains)
 	}
 });
