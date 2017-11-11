@@ -91,11 +91,8 @@ function min(a, b)
 /**
  * Retries the given function with those arguments as often as specified.
  */
-function retryPlacing(placeFunc, placeArgs, retryFactor, amount, getResult, behaveDeprecated = false)
+function retryPlacing(placeFunc, retryFactor, amount, getResult, behaveDeprecated = false)
 {
-	if (behaveDeprecated && !(placeArgs.placer instanceof SimpleGroup || placeArgs.placer instanceof RandomGroup))
-		warn("Deprecated version of createFoo should only be used for SimpleGroup and RandomGroup placers!");
-
 	let maxFail = amount * retryFactor;
 
 	let results = [];
@@ -104,7 +101,7 @@ function retryPlacing(placeFunc, placeArgs, retryFactor, amount, getResult, beha
 
 	while (good < amount && bad <= maxFail)
 	{
-		let result = placeFunc(placeArgs);
+		let result = placeFunc();
 
 		if (result !== undefined || behaveDeprecated)
 		{
@@ -119,138 +116,106 @@ function retryPlacing(placeFunc, placeArgs, retryFactor, amount, getResult, beha
 }
 
 /**
- * Helper function for randomly placing areas and groups on the map.
+ * Sets the x and z property of the given object (typically a Placer or Group) to a random point on the map.
+ * @param passableOnly - Should be true for entity placement and false for terrain or elevation operations.
  */
-function randomizePlacerCoordinates(placer, halfMapSize)
+function randomizeCoordinates(obj, passableOnly)
 {
-	if (!!g_MapSettings.CircularMap)
+	let border = passableOnly ? MAP_BORDER_WIDTH : 0;
+	if (g_MapSettings.CircularMap)
 	{
 		// Polar coordinates
 		// Uniformly distributed on the disk
+		let halfMapSize = g_Map.size / 2 - border;
 		let r = halfMapSize * Math.sqrt(randFloat(0, 1));
-		let theta = randFloat(0, 2 * PI);
-		placer.x = Math.floor(r * Math.cos(theta)) + halfMapSize;
-		placer.z = Math.floor(r * Math.sin(theta)) + halfMapSize;
+		let theta = randFloat(0, 2 * Math.PI);
+		obj.x = Math.floor(r * Math.cos(theta)) + halfMapSize;
+		obj.z = Math.floor(r * Math.sin(theta)) + halfMapSize;
 	}
 	else
 	{
 		// Rectangular coordinates
-		placer.x = randIntExclusive(0, g_Map.size);
-		placer.z = randIntExclusive(0, g_Map.size);
+		obj.x = randIntExclusive(border, g_Map.size - border);
+		obj.z = randIntExclusive(border, g_Map.size - border);
 	}
 }
 
 /**
- * Helper function for randomly placing areas and groups in the given areas.
+ * Sets the x and z property of the given JS object (typically a Placer or Group) to a random point of the area.
  */
-function randomizePlacerCoordinatesFromAreas(placer, areas)
+function randomizeCoordinatesFromAreas(obj, areas)
 {
 	let pt = pickRandom(pickRandom(areas).points);
-	placer.x = pt.x;
-	placer.z = pt.z;
+	obj.x = pt.x;
+	obj.z = pt.z;
 }
 
 // TODO this is a hack to simulate the old behaviour of those functions
 // until all old maps are changed to use the correct version of these functions
-function createObjectGroupsDeprecated(placer, player, constraint, amount, retryFactor = 10)
+function createObjectGroupsDeprecated(group, player, constraint, amount, retryFactor = 10)
 {
-	return createObjectGroups(placer, player, constraint, amount, retryFactor, true);
+	return createObjectGroups(group, player, constraint, amount, retryFactor, true);
 }
 
-function createObjectGroupsByAreasDeprecated(placer, player, constraint, amount, retryFactor, areas)
+function createObjectGroupsByAreasDeprecated(group, player, constraint, amount, retryFactor, areas)
 {
-	return createObjectGroupsByAreas(placer, player, constraint, amount, retryFactor, areas, true);
+	return createObjectGroupsByAreas(group, player, constraint, amount, retryFactor, areas, true);
 }
 
 /**
  * Attempts to place the given number of areas in random places of the map.
  * Returns actually placed areas.
  */
-function createAreas(centeredPlacer, painter, constraint, amount, retryFactor = 10, behaveDeprecated = false)
+function createAreas(centeredPlacer, painter, constraint, amount, retryFactor = 10)
 {
-	let placeFunc = function (args) {
-		randomizePlacerCoordinates(args.placer, args.halfMapSize);
-		return createArea(args.placer, args.painter, args.constraint);
+	let placeFunc = function() {
+		randomizeCoordinates(centeredPlacer, false);
+		return createArea(centeredPlacer, painter, constraint);
 	};
 
-	let args = {
-		"placer": centeredPlacer,
-		"painter": painter,
-		"constraint": constraint,
-		"halfMapSize": g_Map.size / 2
-	};
-
-	return retryPlacing(placeFunc, args, retryFactor, amount, true, behaveDeprecated);
+	return retryPlacing(placeFunc, retryFactor, amount, true, false);
 }
 
 /**
  * Attempts to place the given number of areas in random places of the given areas.
  * Returns actually placed areas.
  */
-function createAreasInAreas(centeredPlacer, painter, constraint, amount, retryFactor, areas, behaveDeprecated = false)
+function createAreasInAreas(centeredPlacer, painter, constraint, amount, retryFactor, areas)
 {
-	if (!areas.length)
-		return [];
-
-	let placeFunc = function (args) {
-		randomizePlacerCoordinatesFromAreas(args.placer, args.areas);
-		return createArea(args.placer, args.painter, args.constraint);
+	let placeFunc = function() {
+		randomizeCoordinatesFromAreas(centeredPlacer, areas);
+		return createArea(centeredPlacer, painter, constraint);
 	};
 
-	let args = {
-		"placer": centeredPlacer,
-		"painter": painter,
-		"constraint": constraint,
-		"areas": areas,
-		"halfMapSize": g_Map.size / 2
-	};
-
-	return retryPlacing(placeFunc, args, retryFactor, amount, true, behaveDeprecated);
+	return retryPlacing(placeFunc, retryFactor, amount, true, false);
 }
 
 /**
  * Attempts to place the given number of groups in random places of the map.
  * Returns the number of actually placed groups.
  */
-function createObjectGroups(placer, player, constraint, amount, retryFactor = 10, behaveDeprecated = false)
+function createObjectGroups(group, player, constraint, amount, retryFactor = 10, behaveDeprecated = false)
 {
-	let placeFunc = function (args) {
-		randomizePlacerCoordinates(args.placer, args.halfMapSize);
-		return createObjectGroup(args.placer, args.player, args.constraint);
+	let placeFunc = function() {
+		randomizeCoordinates(group, true);
+		return createObjectGroup(group, player, constraint);
 	};
 
-	let args = {
-		"placer": placer,
-		"player": player,
-		"constraint": constraint,
-		"halfMapSize": getMapSize() / 2 - MAP_BORDER_WIDTH
-	};
-
-	return retryPlacing(placeFunc, args, retryFactor, amount, false, behaveDeprecated);
+	return retryPlacing(placeFunc, retryFactor, amount, false, behaveDeprecated);
 }
 
 /**
  * Attempts to place the given number of groups in random places of the given areas.
  * Returns the number of actually placed groups.
  */
-function createObjectGroupsByAreas(placer, player, constraint, amount, retryFactor, areas, behaveDeprecated = false)
+function createObjectGroupsByAreas(group, player, constraint, amount, retryFactor, areas, behaveDeprecated = false)
 {
-	if (!areas.length)
-		return 0;
-
-	let placeFunc = function (args) {
-		randomizePlacerCoordinatesFromAreas(args.placer, args.areas);
-		return createObjectGroup(args.placer, args.player, args.constraint);
+	let placeFunc = function() {
+		randomizeCoordinatesFromAreas(group, areas);
+		return createObjectGroup(group, player, constraint);
 	};
 
-	let args = {
-		"placer": placer,
-		"player": player,
-		"constraint": constraint,
-		"areas": areas
-	};
-
-	return retryPlacing(placeFunc, args, retryFactor, amount, false, behaveDeprecated);
+	return retryPlacing(placeFunc, retryFactor, amount, false, behaveDeprecated);
 }
 
 function createTerrain(terrain)
