@@ -68,7 +68,7 @@ var unitActions =
 		},
 		"actionCheck": function(target, selection)
 		{
-			if (!someUnitAI(selection) || !getActionInfo("move", target).possible)
+			if (!someUnitAI(selection) || !getActionInfo("move", target, selection).possible)
 				return false;
 
 			return { "type": "move" };
@@ -112,7 +112,7 @@ var unitActions =
 		{
 			if (!someUnitAI(selection) ||
 			    !Engine.HotkeyIsPressed("session.attackmove") ||
-			    !getActionInfo("attack-move", target).possible)
+			    !getActionInfo("attack-move", target, selection).possible)
 				return false;
 
 			return {
@@ -155,9 +155,9 @@ var unitActions =
 				})
 			};
 		},
-		"actionCheck": function(target)
+		"actionCheck": function(target, selection)
 		{
-			if (!getActionInfo("capture", target).possible)
+			if (!getActionInfo("capture", target, selection).possible)
 				return false;
 
 			return {
@@ -201,10 +201,10 @@ var unitActions =
 				})
 			};
 		},
-		"hotkeyActionCheck": function(target)
+		"hotkeyActionCheck": function(target, selection)
 		{
 			if (!Engine.HotkeyIsPressed("session.attack") ||
-			    !getActionInfo("attack", target).possible)
+			    !getActionInfo("attack", target, selection).possible)
 				return false;
 
 			return {
@@ -213,9 +213,9 @@ var unitActions =
 				"target": target
 			};
 		},
-		"actionCheck": function(target)
+		"actionCheck": function(target, selection)
 		{
-			if (!getActionInfo("attack", target).possible)
+			if (!getActionInfo("attack", target, selection).possible)
 				return false;
 
 			return {
@@ -258,7 +258,7 @@ var unitActions =
 		{
 			if (!someCanPatrol(selection) ||
 			    !Engine.HotkeyIsPressed("session.patrol") ||
-			    !getActionInfo("patrol", target).possible)
+			    !getActionInfo("patrol", target, selection).possible)
 				return false;
 			return {
 				"type": "patrol",
@@ -266,9 +266,9 @@ var unitActions =
 				"target": target
 			};
 		},
-		"preSelectedActionCheck": function(target)
+		"preSelectedActionCheck": function(target, selection)
 		{
-			if (preSelectedAction != ACTION_PATROL || !getActionInfo("patrol", target).possible)
+			if (preSelectedAction != ACTION_PATROL || !getActionInfo("patrol", target, selection).possible)
 				return false;
 			return {
 				"type": "patrol",
@@ -315,9 +315,9 @@ var unitActions =
 
 			return { "possible": true };
 		},
-		"actionCheck": function(target)
+		"actionCheck": function(target, selection)
 		{
-			if (!getActionInfo("heal", target).possible)
+			if (!getActionInfo("heal", target, selection).possible)
 				return false;
 
 			return {
@@ -357,12 +357,12 @@ var unitActions =
 
 			return { "possible": true };
 		},
-		"preSelectedActionCheck": function(target)
+		"preSelectedActionCheck": function(target, selection)
 		{
 			if (preSelectedAction != ACTION_REPAIR)
 				return false;
 
-			if (getActionInfo("repair", target).possible)
+			if (getActionInfo("repair", target, selection).possible)
 				return {
 					"type": "repair",
 					"cursor": "action-repair",
@@ -375,10 +375,10 @@ var unitActions =
 				"target": null
 			};
 		},
-		"hotkeyActionCheck": function(target)
+		"hotkeyActionCheck": function(target, selection)
 		{
 			if (!Engine.HotkeyIsPressed("session.repair") ||
-			    !getActionInfo("repair", target).possible)
+			    !getActionInfo("repair", target, selection).possible)
 				return false;
 
 			return {
@@ -387,9 +387,9 @@ var unitActions =
 				"target": target
 			};
 		},
-		"actionCheck": function(target)
+		"actionCheck": function(target, selection)
 		{
-			if (!getActionInfo("repair", target).possible)
+			if (!getActionInfo("repair", target, selection).possible)
 				return false;
 
 			return {
@@ -433,9 +433,9 @@ var unitActions =
 				"cursor": "action-gather-" + resource
 			};
 		},
-		"actionCheck": function(target)
+		"actionCheck": function(target, selection)
 		{
-			let actionInfo = getActionInfo("gather", target);
+			let actionInfo = getActionInfo("gather", target, selection);
 
 			if (!actionInfo.possible)
 				return false;
@@ -493,9 +493,9 @@ var unitActions =
 				"cursor": "action-return-" + carriedType
 			};
 		},
-		"actionCheck": function(target)
+		"actionCheck": function(target, selection)
 		{
-			let actionInfo = getActionInfo("returnresource", target);
+			let actionInfo = getActionInfo("returnresource", target, selection);
 			if (!actionInfo.possible)
 				return false;
 
@@ -585,9 +585,9 @@ var unitActions =
 				"tooltip": tooltip
 			};
 		},
-		"actionCheck": function(target)
+		"actionCheck": function(target, selection)
 		{
-			let actionInfo = getActionInfo("setup-trade-route", target);
+			let actionInfo = getActionInfo("setup-trade-route", target, selection);
 			if (!actionInfo.possible)
 				return false;
 
@@ -645,12 +645,12 @@ var unitActions =
 				"tooltip": tooltip
 			};
 		},
-		"preSelectedActionCheck": function(target)
+		"preSelectedActionCheck": function(target, selection)
 		{
 			if (preSelectedAction != ACTION_GARRISON)
 				return false;
 
-			let actionInfo = getActionInfo("garrison", target);
+			let actionInfo = getActionInfo("garrison", target, selection);
 			if (!actionInfo.possible)
 				return {
 					"type": "none",
@@ -665,9 +665,9 @@ var unitActions =
 				"target": target
 			};
 		},
-		"hotkeyActionCheck": function(target)
+		"hotkeyActionCheck": function(target, selection)
 		{
-			let actionInfo = getActionInfo("garrison", target);
+			let actionInfo = getActionInfo("garrison", target, selection);
 
 			if (!Engine.HotkeyIsPressed("session.garrison") || !actionInfo.possible)
 				return false;
@@ -710,12 +710,12 @@ var unitActions =
 
 			return { "possible": true };
 		},
-		"preSelectedActionCheck": function(target)
+		"preSelectedActionCheck": function(target, selection)
 		{
 			if (preSelectedAction != ACTION_GUARD)
 				return false;
 
-			if (getActionInfo("guard", target).possible)
+			if (getActionInfo("guard", target, selection).possible)
 				return {
 					"type": "guard",
 					"cursor": "action-guard",
@@ -728,10 +728,10 @@ var unitActions =
 				"target": null
 			};
 		},
-		"hotkeyActionCheck": function(target)
+		"hotkeyActionCheck": function(target, selection)
 		{
 			if (!Engine.HotkeyIsPressed("session.guard") ||
-			    !getActionInfo("guard", target).possible)
+			    !getActionInfo("guard", target, selection).possible)
 				return false;
 
 			return {
@@ -764,7 +764,7 @@ var unitActions =
 		"hotkeyActionCheck": function(target, selection)
 		{
 			if (!Engine.HotkeyIsPressed("session.guard") ||
-			    !getActionInfo("remove-guard", target).possible ||
+			    !getActionInfo("remove-guard", target, selection).possible ||
 			    !someGuarding(selection))
 				return false;
 
@@ -931,7 +931,7 @@ var unitActions =
 			if (someUnitAI(selection) || !someRallyPoints(selection))
 				return false;
 
-			let actionInfo = getActionInfo("set-rallypoint", target);
+			let actionInfo = getActionInfo("set-rallypoint", target, selection);
 			if (!actionInfo.possible)
 				return false;
 
@@ -973,7 +973,7 @@ var unitActions =
 		"actionCheck": function(target, selection)
 		{
 			if (someUnitAI(selection) || !someRallyPoints(selection) ||
-			    !getActionInfo("unset-rallypoint", target).possible)
+			    !getActionInfo("unset-rallypoint", target, selection).possible)
 				return false;
 
 			return {

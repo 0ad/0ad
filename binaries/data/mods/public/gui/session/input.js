@@ -185,10 +185,9 @@ function findGatherType(gatherer, supply)
 	return undefined;
 }
 
-function getActionInfo(action, target)
+function getActionInfo(action, target, selection)
 {
 	var simState = GetSimState();
-	var selection = g_Selection.toList();
 
 	// If the selection doesn't exist, no action
 	var entState = GetEntityState(selection[0]);
@@ -1136,15 +1135,31 @@ function doAction(action, ev)
 	if (!controlsPlayer(g_ViewedPlayer))
 		return false;
 
-	var selection = g_Selection.toList();
-
 	// If shift is down, add the order to the unit's order queue instead
 	// of running it immediately
+	var orderone = Engine.HotkeyIsPressed("session.orderone");
 	var queued = Engine.HotkeyIsPressed("session.queue");
 	var target = Engine.GetTerrainAtScreenPoint(ev.x, ev.y);
 
 	if (unitActions[action.type] && unitActions[action.type].execute)
+	{
+		let selection = g_Selection.toList();
+		if (orderone)
+		{
+			// pick the first unit that can do this order.
+			let unit = selection.find(entity =>
+				["preSelectedActionCheck", "hotkeyActionCheck", "actionCheck"].some(method =>
+					unitActions[action.type][method] &&
+					unitActions[action.type][method](action.target || undefined, [entity])
+				));
+			if (unit)
+			{
+				selection = [unit];
+				g_Selection.removeList(selection);
+			}
+		}
 		return unitActions[action.type].execute(target, action, selection, queued);
+	}
 
 	error("Invalid action.type " + action.type);
 	return false;
