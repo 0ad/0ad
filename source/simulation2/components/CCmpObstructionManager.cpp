@@ -671,9 +671,9 @@ bool CCmpObstructionManager::TestLine(const IObstructionTestFilter& filter, enti
 
 	std::vector<entity_id_t> unitShapes;
 	m_UnitSubdivision.GetInRange(unitShapes, posMin, posMax);
-	for (size_t i = 0; i < unitShapes.size(); ++i)
+	for (const entity_id_t& shape : unitShapes)
 	{
-		std::map<u32, UnitShape>::const_iterator it = m_UnitShapes.find(unitShapes[i]);
+		std::map<u32, UnitShape>::const_iterator it = m_UnitShapes.find(shape);
 		ENSURE(it != m_UnitShapes.end());
 
 		if (!filter.TestShape(UNIT_INDEX_TO_TAG(it->first), it->second.flags, it->second.group, INVALID_ENTITY))
@@ -687,9 +687,9 @@ bool CCmpObstructionManager::TestLine(const IObstructionTestFilter& filter, enti
 
 	std::vector<entity_id_t> staticShapes;
 	m_StaticSubdivision.GetInRange(staticShapes, posMin, posMax);
-	for (size_t i = 0; i < staticShapes.size(); ++i)
+	for (const entity_id_t& shape : staticShapes)
 	{
-		std::map<u32, StaticShape>::const_iterator it = m_StaticShapes.find(staticShapes[i]);
+		std::map<u32, StaticShape>::const_iterator it = m_StaticShapes.find(shape);
 		ENSURE(it != m_StaticShapes.end());
 
 		if (!filter.TestShape(STATIC_INDEX_TO_TAG(it->first), it->second.flags, it->second.group, it->second.group2))
@@ -710,8 +710,6 @@ bool CCmpObstructionManager::TestStaticShape(const IObstructionTestFilter& filte
 {
 	PROFILE("TestStaticShape");
 
-	// TODO: should use the subdivision stuff here, if performance is non-negligible
-
 	if (out)
 		out->clear();
 
@@ -721,12 +719,12 @@ bool CCmpObstructionManager::TestStaticShape(const IObstructionTestFilter& filte
 	CFixedVector2D v(s, c);
 	CFixedVector2D center(x, z);
 	CFixedVector2D halfSize(w/2, h/2);
+	CFixedVector2D corner1 = u.Multiply(halfSize.X) + v.Multiply(halfSize.Y);
+	CFixedVector2D corner2 = u.Multiply(halfSize.X) - v.Multiply(halfSize.Y);
 
 	// Check that all corners are within the world (which means the whole shape must be)
-	if (!IsInWorld(center + u.Multiply(halfSize.X) + v.Multiply(halfSize.Y)) ||
-		!IsInWorld(center + u.Multiply(halfSize.X) - v.Multiply(halfSize.Y)) ||
-		!IsInWorld(center - u.Multiply(halfSize.X) + v.Multiply(halfSize.Y)) ||
-		!IsInWorld(center - u.Multiply(halfSize.X) - v.Multiply(halfSize.Y)))
+	if (!IsInWorld(center + corner1) || !IsInWorld(center + corner2) ||
+	    !IsInWorld(center - corner1) || !IsInWorld(center - corner2))
 	{
 		if (out)
 			out->push_back(INVALID_ENTITY); // no entity ID, so just push an arbitrary marker
@@ -734,8 +732,18 @@ bool CCmpObstructionManager::TestStaticShape(const IObstructionTestFilter& filte
 			return true;
 	}
 
-	for (std::map<u32, UnitShape>::const_iterator it = m_UnitShapes.begin(); it != m_UnitShapes.end(); ++it)
+	fixed bbHalfWidth = std::max(corner1.X.Absolute(), corner2.X.Absolute());
+	fixed bbHalfHeight = std::max(corner1.Y.Absolute(), corner2.Y.Absolute());
+	CFixedVector2D posMin(x - bbHalfWidth, z - bbHalfHeight);
+	CFixedVector2D posMax(x + bbHalfWidth, z + bbHalfHeight);
+
+	std::vector<entity_id_t> unitShapes;
+	m_UnitSubdivision.GetInRange(unitShapes, posMin, posMax);
+	for (entity_id_t& shape : unitShapes)
 	{
+		std::map<u32, UnitShape>::const_iterator it = m_UnitShapes.find(shape);
+		ENSURE(it != m_UnitShapes.end());
+
 		if (!filter.TestShape(UNIT_INDEX_TO_TAG(it->first), it->second.flags, it->second.group, INVALID_ENTITY))
 			continue;
 
@@ -750,8 +758,13 @@ bool CCmpObstructionManager::TestStaticShape(const IObstructionTestFilter& filte
 		}
 	}
 
-	for (std::map<u32, StaticShape>::const_iterator it = m_StaticShapes.begin(); it != m_StaticShapes.end(); ++it)
+	std::vector<entity_id_t> staticShapes;
+	m_StaticSubdivision.GetInRange(staticShapes, posMin, posMax);
+	for (entity_id_t& shape : staticShapes)
 	{
+		std::map<u32, StaticShape>::const_iterator it = m_StaticShapes.find(shape);
+		ENSURE(it != m_StaticShapes.end());
+
 		if (!filter.TestShape(STATIC_INDEX_TO_TAG(it->first), it->second.flags, it->second.group, it->second.group2))
 			continue;
 
@@ -778,8 +791,6 @@ bool CCmpObstructionManager::TestUnitShape(const IObstructionTestFilter& filter,
 {
 	PROFILE("TestUnitShape");
 
-	// TODO: should use the subdivision stuff here, if performance is non-negligible
-
 	// Check that the shape is within the world
 	if (!IsInWorld(x, z, clearance))
 	{
@@ -790,9 +801,16 @@ bool CCmpObstructionManager::TestUnitShape(const IObstructionTestFilter& filter,
 	}
 
 	CFixedVector2D center(x, z);
+	CFixedVector2D posMin(x - clearance, z - clearance);
+	CFixedVector2D posMax(x + clearance, z + clearance);
 
-	for (std::map<u32, UnitShape>::const_iterator it = m_UnitShapes.begin(); it != m_UnitShapes.end(); ++it)
+	std::vector<entity_id_t> unitShapes;
+	m_UnitSubdivision.GetInRange(unitShapes, posMin, posMax);
+	for (const entity_id_t& shape : unitShapes)
 	{
+		std::map<u32, UnitShape>::const_iterator it = m_UnitShapes.find(shape);
+		ENSURE(it != m_UnitShapes.end());
+
 		if (!filter.TestShape(UNIT_INDEX_TO_TAG(it->first), it->second.flags, it->second.group, INVALID_ENTITY))
 			continue;
 
@@ -811,8 +829,13 @@ bool CCmpObstructionManager::TestUnitShape(const IObstructionTestFilter& filter,
 		}
 	}
 
-	for (std::map<u32, StaticShape>::const_iterator it = m_StaticShapes.begin(); it != m_StaticShapes.end(); ++it)
+	std::vector<entity_id_t> staticShapes;
+	m_StaticSubdivision.GetInRange(staticShapes, posMin, posMax);
+	for (const entity_id_t& shape : staticShapes)
 	{
+		std::map<u32, StaticShape>::const_iterator it = m_StaticShapes.find(shape);
+		ENSURE(it != m_StaticShapes.end());
+
 		if (!filter.TestShape(STATIC_INDEX_TO_TAG(it->first), it->second.flags, it->second.group, it->second.group2))
 			continue;
 
