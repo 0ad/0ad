@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Stanislas Daniel Claude Dolcini</author>
+      <authoring_tool>Blender 2.79.0 commit date:2017-09-11, commit time:10:43, hash:5bd8ac9</authoring_tool>
+    </contributor>
+    <created>2017-11-10T13:48:41</created>
+    <modified>2017-11-10T13:48:41</modified>
+    <unit name="inch" meter="0.0254"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_effects>
+    <effect id="BRIT_PROPS-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.5 0.5 0.5 1</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">50</float>
+            </shininess>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="CHARIOT_GOLD-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <blinn>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">9 9 9 1</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">50</float>
+            </shininess>
+            <transparent opaque="A_ONE">
+              <color>1 1 1 0</color>
+            </transparent>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </blinn>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="BRIT_SHIELDS-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.5 0.5 0.5 1</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">50</float>
+            </shininess>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="BRIT_RAM-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.25 0.25 0.25 1</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">50</float>
+            </shininess>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="CHARIOT_STANDARD-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <blinn>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">9 9 9 1</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">50</float>
+            </shininess>
+            <transparent opaque="A_ONE">
+              <color>1 1 1 0</color>
+            </transparent>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </blinn>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="BRIT_PROPS-material" name="BRIT_PROPS">
+      <instance_effect url="#BRIT_PROPS-effect"/>
+    </material>
+    <material id="CHARIOT_GOLD-material" name="CHARIOT_GOLD">
+      <instance_effect url="#CHARIOT_GOLD-effect"/>
+    </material>
+    <material id="BRIT_SHIELDS-material" name="BRIT_SHIELDS">
+      <instance_effect url="#BRIT_SHIELDS-effect"/>
+    </material>
+    <material id="BRIT_RAM-material" name="BRIT_RAM">
+      <instance_effect url="#BRIT_RAM-effect"/>
+    </material>
+    <material id="CHARIOT_STANDARD-material" name="CHARIOT_STANDARD">
+      <instance_effect url="#CHARIOT_STANDARD-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="Cube_009-mesh" name="Cube.009">
+      <mesh>
+        <source id="Cube_009-mesh-positions">
+          <float_array id="Cube_009-mesh-positions-array" count="48">-0.09644889 0.09858655 0.7491647 -0.2677574 1.587145 0.7491645 1.220749 1.758328 0.749164 1.392055 0.2697721 0.749164 -0.09645271 0.0985856 -0.7491638 1.392053 0.2697721 -0.7491647 -0.2677546 1.587145 -0.7491642 1.220749 1.758328 -0.7491647 -1.220746 -1.758328 0.7491645 -1.392054 -0.2697702 0.7491645 0.09645175 -0.09858703 0.749164 0.2677593 -1.587143 0.749164 -1.22075 -1.758328 -0.7491642 0.2677565 -1.587143 -0.7491647 -1.392052 -0.2697702 -0.7491642 0.09645175 -0.09858655 -0.7491647</float_array>
+          <technique_common>
+            <accessor source="#Cube_009-mesh-positions-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_009-mesh-normals">
+          <float_array id="Cube_009-mesh-normals-array" count="60">3.05317e-7 1.9446e-7 1 5.30988e-7 0 1 0.1142519 -0.9934518 3.45154e-7 0.1142525 -0.9934518 -2.09697e-7 -0.993443 -0.1143289 -1.87171e-6 -0.9934436 -0.1143244 2.61193e-6 -0.1142499 0.9934521 4.24805e-7 -0.1142507 0.993452 -6.27493e-7 0.9934431 0.1143279 -1.88499e-6 0.9934433 0.1143259 0 3.05317e-7 0 1 3.18593e-7 0 1 0.1142519 -0.9934518 -2.12402e-7 0.1142518 -0.9934519 -2.02692e-7 -0.993443 -0.1143283 -1.26108e-6 -0.9934436 -0.1143245 2.5372e-6 -0.1142503 0.993452 3.18604e-7 -0.1142507 0.993452 -1.39795e-7 0.993443 0.1143284 -1.89827e-6 0.9934433 0.1143265 0</float_array>
+          <technique_common>
+            <accessor source="#Cube_009-mesh-normals-array" count="20" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_009-mesh-map-0">
+          <float_array id="Cube_009-mesh-map-0-array" count="120">0.999453 0.3140181 0.8764368 0.4352893 0.999453 0.4352893 0.999453 0.3140181 0.8764368 0.3140181 0.8764368 0.4352893 0.999453 0.3140181 0.8764368 0.4352893 0.999453 0.4352893 0.999453 0.3140181 0.8764368 0.3140181 0.8764368 0.4352893 0.999453 0.3140181 0.8764368 0.4352893 0.999453 0.4352893 0.999453 0.3140181 0.8764368 0.3140181 0.8764368 0.4352893 0.999453 0.3140181 0.8764368 0.4352893 0.999453 0.4352893 0.999453 0.3140181 0.8764368 0.3140181 0.8764368 0.4352893 0.999453 0.3140181 0.8764368 0.4352893 0.999453 0.4352893 0.999453 0.3140181 0.8764368 0.3140181 0.8764368 0.4352893 0.999453 0.3140181 0.8764368 0.4352893 0.999453 0.4352893 0.999453 0.3140181 0.8764368 0.3140181 0.8764368 0.4352893 0.999453 0.3140181 0.8764368 0.4352893 0.999453 0.4352893 0.999453 0.3140181 0.8764368 0.3140181 0.8764368 0.4352893 0.999453 0.3140181 0.8764368 0.4352893 0.999453 0.4352893 0.999453 0.3140181 0.8764368 0.3140181 0.8764368 0.4352893 0.999453 0.3140181 0.8764368 0.4352893 0.999453 0.4352893 0.999453 0.3140181 0.8764368 0.3140181 0.8764368 0.4352893 0.999453 0.3140181 0.8764368 0.4352893 0.999453 0.4352893 0.999453 0.3140181 0.8764368 0.3140181 0.8764368 0.4352893</float_array>
+          <technique_common>
+            <accessor source="#Cube_009-mesh-map-0-array" count="60" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_009-mesh-map-1">
+          <float_array id="Cube_009-mesh-map-1-array" count="120">0.9084641 0.39498 0.9227432 0.4092586 0.9084641 0.4092597 0.9084641 0.39498 0.9227432 0.3949789 0.9227432 0.4092586 0.9107643 0.1508825 0.9250435 0.1651616 0.9107645 0.1651617 0.9107643 0.1508825 0.9250434 0.1508824 0.9250435 0.1651616 0.9234768 0.3498237 0.9091979 0.3641036 0.9091976 0.3498238 0.9234768 0.3498237 0.923477 0.3641034 0.9091979 0.3641036 0.9241628 0.2390972 0.9098838 0.2533766 0.9098836 0.2390975 0.9241628 0.2390972 0.924163 0.2533763 0.9098838 0.2533766 0.909436 0.5368772 0.9237156 0.5511565 0.9094359 0.5511564 0.909436 0.5368772 0.9237157 0.5368773 0.9237156 0.5511565 0.9084641 0.4321375 0.9227432 0.446416 0.9084641 0.4464172 0.9084641 0.4321375 0.9227432 0.4321364 0.9227432 0.446416 0.9107644 0.1694597 0.9250434 0.183739 0.9107643 0.1837388 0.9107644 0.1694597 0.9250434 0.1694597 0.9250434 0.183739 0.9098836 0.2162222 0.9241628 0.2019425 0.9241628 0.2162222 0.9098836 0.2162222 0.9098836 0.2019425 0.9241628 0.2019425 0.9274945 0.05473601 0.9132153 0.06901508 0.9132153 0.05473601 0.9274945 0.05473601 0.9274945 0.06901508 0.9132153 0.06901508 0.909436 0.5183 0.9237156 0.5325793 0.9094359 0.5325792 0.909436 0.5183 0.9237157 0.5183001 0.9237156 0.5325793</float_array>
+          <technique_common>
+            <accessor source="#Cube_009-mesh-map-1-array" count="60" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_009-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_009-mesh-positions"/>
+        </vertices>
+        <triangles material="BRIT_PROPS-material" count="20">
+          <input semantic="VERTEX" source="#Cube_009-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_009-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Cube_009-mesh-map-0" offset="2" set="0"/>
+          <input semantic="TEXCOORD" source="#Cube_009-mesh-map-1" offset="2" set="1"/>
+          <p>0 0 0 2 0 1 1 0 2 0 1 3 3 1 4 2 1 5 4 2 6 3 2 7 0 2 8 4 3 9 5 3 10 3 3 11 6 4 12 0 4 13 1 4 14 6 5 15 4 5 16 0 5 17 7 6 18 1 6 19 2 6 20 7 7 21 6 7 22 1 7 23 5 8 24 2 8 25 3 8 26 5 9 27 7 9 28 2 9 29 8 10 30 10 10 31 9 10 32 8 11 33 11 11 34 10 11 35 12 12 36 11 12 37 8 12 38 12 13 39 13 13 40 11 13 41 14 14 42 8 14 43 9 14 44 14 15 45 12 15 46 8 15 47 15 16 48 9 16 49 10 16 50 15 17 51 14 17 52 9 17 53 13 18 54 10 18 55 11 18 56 13 19 57 15 19 58 10 19 59</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="brit_range_struct_002" name="brit_range_struct_002" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0.7428833 0 0 0 1</matrix>
+        <instance_geometry url="#Cube_009-mesh" name="brit_range_struct_002">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="BRIT_PROPS-material" target="#BRIT_PROPS-material"/>
+              <instance_material symbol="CHARIOT_GOLD-material" target="#CHARIOT_GOLD-material"/>
+              <instance_material symbol="BRIT_SHIELDS-material" target="#BRIT_SHIELDS-material"/>
+              <instance_material symbol="BRIT_RAM-material" target="#BRIT_RAM-material"/>
+              <instance_material symbol="CHARIOT_STANDARD-material" target="#CHARIOT_STANDARD-material"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>
