@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-10-25 09:03+0200\n"
-"PO-Revision-Date: 2017-10-25 14:52+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-11-12 18:25+0000\n"
+"Last-Translator: pilino1234 <pilino1234@zoho.eu>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,17 +28,17 @@ msgstr ""
 #: globalscripts/DamageTypes.js:6
 msgctxt "damage type"
 msgid "Hack"
-msgstr ""
+msgstr "Hack"
 
 #: globalscripts/DamageTypes.js:7
 msgctxt "damage type"
 msgid "Pierce"
-msgstr ""
+msgstr "Sticka"
 
 #: globalscripts/DamageTypes.js:8
 msgctxt "damage type"
 msgid "Crush"
-msgstr ""
+msgstr "Krossa"
 
 #: gui/civinfo/civinfo.js:96
 #, javascript-format
@@ -386,8 +386,8 @@ msgstr "inaktiverad"
 #: gui/common/gamedescription.js:313
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] "För de första %(min)s minuterna kommer andra spelare vara neutrala."
-msgstr[1] "För de första %(min)s minuterna kommer andra spelare vara neutrala."
+msgstr[0] "Under den första minuten kommer andra spelare vara neutrala."
+msgstr[1] "Under de första %(min)s minuterna kommer andra spelare vara neutrala."
 
 #: gui/common/gamedescription.js:321
 msgid "Map Name"
@@ -411,12 +411,12 @@ msgstr "Väljer slumpmässigt en karta från listan"
 
 #: gui/common/gamedescription.js:355
 msgid "Biome"
-msgstr ""
+msgstr "Biom"
 
 #: gui/common/gamedescription.js:356
 msgctxt "biome"
 msgid "Random"
-msgstr ""
+msgstr "Slumpmässig"
 
 #: gui/common/gamedescription.js:363
 msgid "Starting Resources"
@@ -1152,7 +1152,7 @@ msgstr "Varning"
 
 #: gui/options/options.js:348
 msgid "Some setting values are invalid! Are you sure to save them?"
-msgstr ""
+msgstr "Vissa inställningar har ogiltiga värden! Är du säker att du vill spara dem?"
 
 #: gui/options/options.js:374
 msgid "You have unsaved changes, do you want to close this window?"
@@ -1617,7 +1617,7 @@ msgstr "Dödade / Förlorade kvot"
 msgid ""
 "Bribes\n"
 "(%(succeeded)s / %(failed)s)"
-msgstr ""
+msgstr "Mutor\n(%(succeeded)s / %(failed)s)"
 
 #: gui/summary/layout.js:195
 msgid "Map exploration"
@@ -1665,7 +1665,7 @@ msgstr "Övertagna"
 
 #: gui/summary/summary.js:63
 msgid "Succeeded"
-msgstr ""
+msgstr "Lyckade"
 
 #: gui/summary/summary.js:68
 msgid "Destroyed"
@@ -1697,7 +1697,7 @@ msgstr "Utgift"
 
 #: gui/summary/summary.js:103
 msgid "Failed"
-msgstr ""
+msgstr "Misslyckade"
 
 #: gui/summary/summary.js:111
 msgid "∞"
@@ -2890,7 +2890,7 @@ msgstr "Få ljudmeddelande när någon skriver ditt användarnamn"
 
 #: gui/options/options.json[2].options[5].label
 msgid "Nick Notification"
-msgstr "Namn Meddelande"
+msgstr "Omnämningsnotifiering"
 
 #: gui/options/options.json[3].options[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby"
@@ -2980,7 +2980,7 @@ msgstr "Samla från djur, bärbuskar, fisk eller åkrar."
 
 #: simulation/data/resources/metal.jsondescription
 msgid "Mine from metal mines or quarries."
-msgstr "Bryt från metallgruvor eller brott."
+msgstr "Bryt från metallgruvor eller stenbrott."
 
 #: simulation/data/resources/stone.jsondescription
 msgid "Mine from rocks, stone quarries or ruins."

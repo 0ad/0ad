@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-10-25 09:03+0200\n"
-"PO-Revision-Date: 2017-10-25 14:52+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-11-12 18:17+0000\n"
+"Last-Translator: pilino1234 <pilino1234@zoho.eu>\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,17 +28,17 @@ msgstr ""
 #: globalscripts/DamageTypes.js:6
 msgctxt "damage type"
 msgid "Hack"
-msgstr ""
+msgstr "Hack"
 
 #: globalscripts/DamageTypes.js:7
 msgctxt "damage type"
 msgid "Pierce"
-msgstr ""
+msgstr "Pierce"
 
 #: globalscripts/DamageTypes.js:8
 msgctxt "damage type"
 msgid "Crush"
-msgstr ""
+msgstr "Crush"
 
 #: gui/civinfo/civinfo.js:96
 #, javascript-format
@@ -88,7 +88,7 @@ msgstr "Tab"
 
 #: gui/common/functions_civinfo.js:31
 msgid "Gaia"
-msgstr ""
+msgstr "Gaia"
 
 #: gui/common/functions_global_object.js:57
 #, javascript-format
@@ -306,8 +306,8 @@ msgstr[1] "Wonder (%(min)s minutes)"
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
 msgid_plural "Capture the Relic (%(min)s minutes)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Capture the Relic (%(min)s minute)"
+msgstr[1] "Capture the Relic (%(min)s minutes)"
 
 #: gui/common/gamedescription.js:260
 msgid "Relic Count"
@@ -411,12 +411,12 @@ msgstr "Randomly selects a map from the list"
 
 #: gui/common/gamedescription.js:355
 msgid "Biome"
-msgstr ""
+msgstr "Biome"
 
 #: gui/common/gamedescription.js:356
 msgctxt "biome"
 msgid "Random"
-msgstr ""
+msgstr "Random"
 
 #: gui/common/gamedescription.js:363
 msgid "Starting Resources"
@@ -1119,19 +1119,19 @@ msgstr "OK"
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s, Max: %(max)s"
-msgstr ""
+msgstr "Min: %(min)s, Max: %(max)s"
 
 #: gui/options/options.js:99
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s"
-msgstr ""
+msgstr "Min: %(min)s"
 
 #: gui/options/options.js:101
 #, javascript-format
 msgctxt "option number"
 msgid "Max: %(max)s"
-msgstr ""
+msgstr "Max: %(max)s"
 
 #: gui/options/options.js:134
 #, javascript-format
@@ -1152,7 +1152,7 @@ msgstr "Warning"
 
 #: gui/options/options.js:348
 msgid "Some setting values are invalid! Are you sure to save them?"
-msgstr ""
+msgstr "Some setting values are invalid! Are you sure to save them?"
 
 #: gui/options/options.js:374
 msgid "You have unsaved changes, do you want to close this window?"
@@ -1262,7 +1262,7 @@ msgstr "Manual"
 #: gui/reference/common/load.js:234
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
-msgstr ""
+msgstr "%(health_min)s to %(health_max)s"
 
 #: gui/replaymenu/replay_actions.js:92
 msgid "You don't have the same mods active as the replay does."
@@ -1617,7 +1617,7 @@ msgstr "Kill / Death ratio"
 msgid ""
 "Bribes\n"
 "(%(succeeded)s / %(failed)s)"
-msgstr ""
+msgstr "Bribes\n(%(succeeded)s / %(failed)s)"
 
 #: gui/summary/layout.js:195
 msgid "Map exploration"
@@ -1665,7 +1665,7 @@ msgstr "Captured"
 
 #: gui/summary/summary.js:63
 msgid "Succeeded"
-msgstr ""
+msgstr "Succeeded"
 
 #: gui/summary/summary.js:68
 msgid "Destroyed"
@@ -1697,11 +1697,11 @@ msgstr "Outcome"
 
 #: gui/summary/summary.js:103
 msgid "Failed"
-msgstr ""
+msgstr "Failed"
 
 #: gui/summary/summary.js:111
 msgid "∞"
-msgstr ""
+msgstr "∞"
 
 #: gui/summary/summary.js:373
 msgid "Are you sure you want to quit the lobby?"
@@ -1956,7 +1956,7 @@ msgstr "Mod Selection"
 
 #: gui/pregame/mainmenu.xml:(caption):450
 msgid "Learn to Play"
-msgstr ""
+msgstr "Learn to Play"
 
 #: gui/pregame/mainmenu.xml:(caption):495
 msgid "Tools & Options"
@@ -1980,7 +1980,7 @@ msgstr "Report a Bug"
 
 #: gui/pregame/mainmenu.xml:(caption):581
 msgid "Translate the Game"
-msgstr ""
+msgstr "Translate the Game"
 
 #: gui/pregame/mainmenu.xml:(caption):593
 msgid "Credits"
@@ -2676,7 +2676,7 @@ msgstr "Number of shader effects. REQUIRES GAME RESTART"
 
 #: gui/options/options.json[1].options[2].label
 msgid "Shader Effects"
-msgstr ""
+msgstr "Shader Effects"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Enable shadows"
@@ -2688,33 +2688,33 @@ msgstr "Shadows"
 
 #: gui/options/options.json[1].options[4].list[0].label
 msgid "Very Low"
-msgstr ""
+msgstr "Very Low"
 
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "Low"
-msgstr ""
+msgstr "Low"
 
 #: gui/options/options.json[1].options[4].list[2].label
 msgid "Medium"
-msgstr ""
+msgstr "Medium"
 
 #: gui/options/options.json[1].options[4].list[3].label
 msgid "High"
-msgstr ""
+msgstr "High"
 
 #: gui/options/options.json[1].options[4].list[4].label
 msgid "Very High"
-msgstr ""
+msgstr "Very High"
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid ""
 "Shadow map resolution. High values can crash the game when using a graphics "
 "card with low memory!"
-msgstr ""
+msgstr "Shadow map resolution. High values can crash the game when using a graphics card with low memory!"
 
 #: gui/options/options.json[1].options[4].label
 msgid "Shadow Quality"
-msgstr ""
+msgstr "Shadow Quality"
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Smooth shadows"
@@ -2748,7 +2748,7 @@ msgstr "When OFF, use the lowest settings possible to render water. This makes o
 
 #: gui/options/options.json[1].options[8].label
 msgid "Water Effects"
-msgstr ""
+msgstr "Water Effects"
 
 #: gui/options/options.json[1].options[9].tooltip
 msgid ""
@@ -2824,7 +2824,7 @@ msgstr "To save CPU workload, throttle render frequency in all menus. Set to max
 
 #: gui/options/options.json[1].options[17].label
 msgid "FPS Throttling in Menus"
-msgstr ""
+msgstr "FPS Throttling in Menus"
 
 #: gui/options/options.json[1].options[18].tooltip
 msgid ""
@@ -2834,15 +2834,15 @@ msgstr "To save CPU workload, throttle render frequency in running games. Set to
 
 #: gui/options/options.json[1].options[18].label
 msgid "FPS Throttling in Games"
-msgstr ""
+msgstr "FPS Throttling in Games"
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
-msgstr ""
+msgstr "Set the balance between performance and visual appearance."
 
 #: gui/options/options.json[1].label
 msgid "Graphics"
-msgstr ""
+msgstr "Graphics"
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid "Master audio gain"
@@ -2912,11 +2912,11 @@ msgstr "Game Rating Column"
 
 #: gui/options/options.json[3].tooltip
 msgid "These settings only affect the multiplayer."
-msgstr ""
+msgstr "These settings only affect the multiplayer."
 
 #: gui/options/options.json[3].label
 msgid "Lobby"
-msgstr ""
+msgstr "Lobby"
 
 #: gui/options/options.json[4].options[0].tooltip
 msgid "Show a chat notification if you are attacked by another player"
@@ -2968,11 +2968,11 @@ msgstr "Phase"
 
 #: gui/options/options.json[4].tooltip
 msgid "Regulate the verbosity of chat notifications."
-msgstr ""
+msgstr "Regulate the verbosity of chat notifications."
 
 #: gui/options/options.json[4].label
 msgid "Chat Notifications"
-msgstr ""
+msgstr "Chat Notifications"
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."
