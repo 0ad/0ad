@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Brittonic ram planks">
+      <mesh>props/brit_workshop_planks.dae</mesh>
+      <textures>
+        <texture file="structural/celt_siege_ram.dds" name="baseTex"/>
+        <texture file="structural/ao/brit_workshop.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao.xml</material>
+</actor>

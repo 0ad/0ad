@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Brittonic chariot props">
+      <mesh>props/brit_workshop_chariot_props_02.dae</mesh>
+      <textures>
+        <texture file="structural/celt_chariot_b.dds" name="baseTex"/>
+        <texture file="structural/ao/brit_workshop.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao.xml</material>
+</actor>
