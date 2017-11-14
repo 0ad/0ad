@@ -1449,3 +1449,78 @@ function DrawTargetMarker(target)
 		"z": target.z
 	});
 }
+
+function findGatherType(gatherer, supply)
+{
+	if (!gatherer.resourceGatherRates || !supply)
+		return undefined;
+
+	if (gatherer.resourceGatherRates[supply.type.generic + "." + supply.type.specific])
+		return supply.type.specific;
+
+	if (gatherer.resourceGatherRates[supply.type.generic])
+		return supply.type.generic;
+
+	return undefined;
+}
+
+function getActionInfo(action, target, selection)
+{
+	let simState = GetSimState();
+
+	// If the selection doesn't exist, no action
+	if (!GetEntityState(selection[0]))
+		return { "possible": false };
+
+	if (!target) // TODO move these non-target actions to an object like unit_actions.js
+	{
+		if (action == "set-rallypoint")
+		{
+			let cursor = "";
+			let data = { "command": "walk" };
+			if (Engine.HotkeyIsPressed("session.attackmove"))
+			{
+				data.command = "attack-walk";
+				data.targetClasses = Engine.HotkeyIsPressed("session.attackmoveUnit") ?
+					{ "attack": ["Unit"] } : { "attack": ["Unit", "Structure"] };
+				cursor = "action-attack-move";
+			}
+			else if (Engine.HotkeyIsPressed("session.patrol"))
+			{
+				data.command = "patrol";
+				data.targetClasses = { "attack": g_PatrolTargets };
+				cursor = "action-patrol";
+			}
+			return {
+				"possible": true,
+				"data": data,
+				"cursor": cursor
+			};
+		}
+
+		return {
+			"possible": ["move", "attack-move", "remove-guard", "patrol"].indexOf(action) != -1
+		};
+	}
+
+	// Look at the first targeted entity
+	// (TODO: maybe we eventually want to look at more, and be more context-sensitive?
+	// e.g. prefer to attack an enemy unit, even if some friendly units are closer to the mouse)
+	let targetState = GetExtendedEntityState(target);
+
+	// Check if any entities in the selection can do some of the available actions with target
+	for (let entityID of selection)
+	{
+		let entState = GetExtendedEntityState(entityID);
+		if (!entState)
+			continue;
+
+		if (unitActions[action] && unitActions[action].getActionInfo)
+		{
+			let r = unitActions[action].getActionInfo(entState, targetState, simState);
+			if (r && r.possible) // return true if it's possible for one of the entities
+				return r;
+		}
+	}
+	return { "possible": false };
+}
