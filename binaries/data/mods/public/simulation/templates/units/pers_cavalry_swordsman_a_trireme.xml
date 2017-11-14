@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="units/pers_cavalry_swordsman_b_trireme">
+<Entity parent="units/pers_cavalry_swordsman_a">
   <Identity>
-    <Rank>Advanced</Rank>
+    <RequiredTechnology>persians/special_equine_transports</RequiredTechnology>
   </Identity>
   <Promotion>
     <Entity>units/pers_cavalry_swordsman_e_trireme</Entity>
   </Promotion>
-  <VisualActor>
-    <Actor>units/persians/cavalry_swordsman_a.xml</Actor>
-  </VisualActor>
 </Entity>
