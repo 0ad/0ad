@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Mauryan Siege Ram">
+      <animations>
+        <animation file="mechanical/maur_siege_ram_idle.dae" name="Idle" speed="100"/>
+        <animation file="mechanical/maur_siege_ram_move.dae" name="Walk" speed="15"/>
+        <animation file="mechanical/maur_siege_ram_death.dae" name="Death" speed="50"/>
+        <animation file="mechanical/maur_siege_ram_move.dae" name="Run" speed="30"/>
+        <animation event="0.3" file="mechanical/maur_siege_ram_attack.dae" name="attack_melee" speed="100"/>
+      </animations>
+      <props>
+        <prop actor="props/units/shields/maur_tall_curved_a.xml" attachpoint="shield_left_front"/>
+        <prop actor="props/units/shields/maur_straight_a.xml" attachpoint="shield_left_back"/>
+        <prop actor="props/units/shields/maur_small_b.xml" attachpoint="shield_mid"/>
+        <prop actor="props/units/shields/maur_small_b.xml" attachpoint="shield_left_mid"/>
+        <prop actor="props/units/shields/maur_straight_a.xml" attachpoint="shield_right_back"/>
+        <prop actor="props/units/shields/maur_tall_curved_a.xml" attachpoint="shield_right_front"/>
+        <prop actor="props/units/shields/maur_small_b.xml" attachpoint="shield_right_mid"/>
+        <prop actor="props/units/shields/maur_small_b.xml" attachpoint="shield_left"/>
+        <prop actor="props/units/shields/maur_straight_a.xml" attachpoint="shield_right"/>
+      </props>
+      <mesh>structural/maur_siege_ram.dae</mesh>
+      <textures>
+        <texture file="structural/maur_struct_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="death">
+      <props>
+        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+</actor>
