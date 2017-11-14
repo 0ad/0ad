@@ -20,6 +20,7 @@
 # Michał Karol, 2016-2017
 # Michał Koźlarek <m.kozlarek@vp.pl>, 2015
 # miragae <miragae@gmail.com>, 2014-2015
+# Piotr Lehmann <lejmus@o2.pl>, 2017
 # Robert Lubojanski <pclubo@gmx.net>, 2016
 # Robert Wolniak <robert.wolniak@gmail.com>, 2014
 # Pitong, 2017
@@ -27,8 +28,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-09-11 09:05+0200\n"
-"PO-Revision-Date: 2017-09-17 00:07+0000\n"
-"Last-Translator: Michał Karol\n"
+"PO-Revision-Date: 2017-11-11 12:09+0000\n"
+"Last-Translator: Piotr Lehmann <lejmus@o2.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -345,33 +346,33 @@ msgstr "%(_player_)s, moja oferta sojuszu właśnie wygasła."
 #, javascript-format
 msgid ""
 "%(_player_)s, I have rescinded my previous offer for an alliance between us."
-msgstr ""
+msgstr "%(_player_)s, Odrzuciłem poprzednią ofertę dotyczącą sojuszu między nami."
 
 #: simulation/ai/petra/chatHelper.js:128
 #, javascript-format
 msgid ""
 "%(_player_)s, I would like to request a neutrality pact between our "
 "civilizations. If you become neutral with me, I will respond in kind."
-msgstr ""
+msgstr "%(_player_)s, Chciałbym prosić o pakt o neutralności między naszymi cywilizacjami. Jeśli będziesz neutralny w stosunku do mnie to zostaniesz obdarowany."
 
 #: simulation/ai/petra/chatHelper.js:129
 #, javascript-format
 msgid ""
 "%(_player_)s, it would be both to our benefit if we negotiated a neutrality "
 "pact. I will become neutral with you if you do the same."
-msgstr ""
+msgstr "%(_player_)s, byłoby to dla nas korzystne, gdybyśmy wynegocjowali pakt o neutralności. Będę z tobą neutralny, jeśli zrobisz to samo."
 
 #: simulation/ai/petra/chatHelper.js:132
 #, javascript-format
 msgid "%(_player_)s, I have decided to revoke my offer for a neutrality pact."
-msgstr ""
+msgstr "%(_player_)s, zdecydowałem się odwołać moją ofertę dotyczącą paktu neutralności."
 
 #: simulation/ai/petra/chatHelper.js:133
 #, javascript-format
 msgid ""
 "%(_player_)s, as you have failed to respond to my request for peace between "
 "us, I have abrogated my offer."
-msgstr ""
+msgstr "%(_player_)s, ponieważ nie odpowiedzieliście na moją prośbę o pokój między nami, unieważniłem moją ofertę."
 
 #: simulation/components/BuildRestrictions.js:87
 #, javascript-format
@@ -806,7 +807,7 @@ msgstr "Mała"
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
 "quickly while still having some room to expand."
-msgstr ""
+msgstr "Małe mapy są odpowiednie dla pojedynków 1 na 1, ponieważ gracze mogą szybko dotrzeć do wroga, wciąż mając trochę miejsca na rozwinięcie."
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Medium"
@@ -816,7 +817,7 @@ msgstr "Średni"
 msgid ""
 "Medium-sized maps provide plenty of space for two players, but even eight "
 "players fit."
-msgstr ""
+msgstr "Średniej wielkości mapy zapewniają mnóstwo miejsca dla dwóch, a nawet dla ośmiu graczy."
 
 #: simulation/data/settings/map_sizes.jsonData[3].Name
 msgid "Normal"
@@ -826,7 +827,7 @@ msgstr "Normalna"
 msgid ""
 "This is the ideal mapsize for 4 to 8 players, because there is plenty of "
 "space to expand while the neighbors are quickly reachable."
-msgstr ""
+msgstr "Jest to idealny rozmiar mapy dla 4 do 8 graczy, ponieważ jest dużo miejsca do powiększenia, a sąsiedzi są szybko osiągalni."
 
 #: simulation/data/settings/map_sizes.jsonData[4].Name
 msgid "Large"
@@ -836,7 +837,7 @@ msgstr "Duża"
 msgid ""
 "The large mapsize is recommended when great portions of the map are covered "
 "with water or inaccessible mountains."
-msgstr ""
+msgstr "Duża mapa jest zalecana, gdy wielkie fragmenty mapy są pokryte wodą lub niedostępnymi górami."
 
 #: simulation/data/settings/map_sizes.jsonData[5].Name
 msgid "Very Large"
@@ -847,7 +848,7 @@ msgstr "Bardzo duża "
 msgid ""
 "Very large maps are not recommended as it takes very long to reach the enemy"
 " and the game performance can be reduced."
-msgstr ""
+msgstr "Bardzo duże mapy nie są zalecane, ponieważ dotarcie do wroga trwa bardzo długo, a wydajność gry może zostać zmniejszona."
 
 #: simulation/data/settings/map_sizes.jsonData[6].Name
 msgid "Giant"
