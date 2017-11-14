@@ -39,7 +39,7 @@ var g_PatrolTargets = ["Unit"];
  * The lower the number, the more specific an action is, and the bigger
  * the chance of selecting that action when multiple actions are possible
  */
-var unitActions =
+var g_UnitActions =
 {
 	"move":
 	{
@@ -1515,9 +1515,9 @@ function getActionInfo(action, target, selection)
 		if (!entState)
 			continue;
 
-		if (unitActions[action] && unitActions[action].getActionInfo)
+		if (g_UnitActions[action] && g_UnitActions[action].getActionInfo)
 		{
-			let r = unitActions[action].getActionInfo(entState, targetState, simState);
+			let r = g_UnitActions[action].getActionInfo(entState, targetState, simState);
 			if (r && r.possible) // return true if it's possible for one of the entities
 				return r;
 		}

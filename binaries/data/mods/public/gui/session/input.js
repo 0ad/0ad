@@ -213,16 +213,16 @@ function determineAction(x, y, fromMinimap)
 	// decide between the following ordered actions
 	// if two actions are possible, the first one is taken
 	// so the most specific should appear first
-	var actions = Object.keys(unitActions).slice();
-	actions.sort((a, b) => unitActions[a].specificness - unitActions[b].specificness);
+	var actions = Object.keys(g_UnitActions).slice();
+	actions.sort((a, b) => g_UnitActions[a].specificness - g_UnitActions[b].specificness);
 
 	var actionInfo = undefined;
 	if (preSelectedAction != ACTION_NONE)
 	{
 		for (var action of actions)
-			if (unitActions[action].preSelectedActionCheck)
+			if (g_UnitActions[action].preSelectedActionCheck)
 			{
-				var r = unitActions[action].preSelectedActionCheck(target, selection);
+				var r = g_UnitActions[action].preSelectedActionCheck(target, selection);
 				if (r)
 					return r;
 			}
@@ -231,17 +231,17 @@ function determineAction(x, y, fromMinimap)
 	}
 
 	for (var action of actions)
-		if (unitActions[action].hotkeyActionCheck)
+		if (g_UnitActions[action].hotkeyActionCheck)
 		{
-			var r = unitActions[action].hotkeyActionCheck(target, selection);
+			var r = g_UnitActions[action].hotkeyActionCheck(target, selection);
 			if (r)
 				return r;
 		}
 
 	for (var action of actions)
-		if (unitActions[action].actionCheck)
+		if (g_UnitActions[action].actionCheck)
 		{
-			var r = unitActions[action].actionCheck(target, selection);
+			var r = g_UnitActions[action].actionCheck(target, selection);
 			if (r)
 				return r;
 		}
@@ -1073,7 +1073,7 @@ function doAction(action, ev)
 	var queued = Engine.HotkeyIsPressed("session.queue");
 	var target = Engine.GetTerrainAtScreenPoint(ev.x, ev.y);
 
-	if (unitActions[action.type] && unitActions[action.type].execute)
+	if (g_UnitActions[action.type] && g_UnitActions[action.type].execute)
 	{
 		let selection = g_Selection.toList();
 		if (orderone)
@@ -1081,8 +1081,8 @@ function doAction(action, ev)
 			// pick the first unit that can do this order.
 			let unit = selection.find(entity =>
 				["preSelectedActionCheck", "hotkeyActionCheck", "actionCheck"].some(method =>
-					unitActions[action.type][method] &&
-					unitActions[action.type][method](action.target || undefined, [entity])
+					g_UnitActions[action.type][method] &&
+					g_UnitActions[action.type][method](action.target || undefined, [entity])
 				));
 			if (unit)
 			{
@@ -1090,7 +1090,7 @@ function doAction(action, ev)
 				g_Selection.removeList(selection);
 			}
 		}
-		return unitActions[action.type].execute(target, action, selection, queued);
+		return g_UnitActions[action.type].execute(target, action, selection, queued);
 	}
 
 	error("Invalid action.type " + action.type);
@@ -1113,8 +1113,8 @@ function handleMinimapEvent(target)
 	var selection = g_Selection.toList();
 
 	var queued = Engine.HotkeyIsPressed("session.queue");
-	if (unitActions[action.type] && unitActions[action.type].execute)
-		return unitActions[action.type].execute(target, action, selection, queued);
+	if (g_UnitActions[action.type] && g_UnitActions[action.type].execute)
+		return g_UnitActions[action.type].execute(target, action, selection, queued);
 	error("Invalid action.type " + action.type);
 	return false;
 }
