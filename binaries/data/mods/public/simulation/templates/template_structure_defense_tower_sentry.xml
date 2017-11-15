@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_defense_defense_tower">
+<Entity parent="template_structure_defense_tower">
   <Armour>
-    <Hack op="add">-5.0</Hack>
-    <Pierce op="add">-5.0</Pierce>
-    <Crush op="add">-2.0</Crush>
+    <Hack op="add">-5</Hack>
+    <Pierce op="add">-5</Pierce>
+    <Crush op="add">-2</Crush>
   </Armour>
   <Attack>
     <Ranged>
-      <Hack>0.0</Hack>
-      <Pierce>9.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>70.0</MaxRange>
-      <MinRange>0.0</MinRange>
-      <ElevationBonus>9.0</ElevationBonus>
+      <Pierce>9</Pierce>
+      <MaxRange>70</MaxRange>
+      <MinRange>0</MinRange>
+      <ElevationBonus>9</ElevationBonus>
     </Ranged>
   </Attack>
   <Capturable>
@@ -22,7 +20,6 @@
     <BuildTime>40</BuildTime>
     <Resources>
       <wood>100</wood>
-      <stone>0</stone>
     </Resources>
   </Cost>
   <Footprint>
@@ -36,32 +33,27 @@
     <Max>250</Max>
   </Health>
   <Identity>
-    <SpecificName>Sentry Tower</SpecificName>
     <GenericName>Sentry Tower</GenericName>
     <Icon>structures/sentry_tower.png</Icon>
-    <VisibleClasses datatype="tokens">Village -Town SentryTower</VisibleClasses>
-    <RequiredTechnology>phase_village</RequiredTechnology>
+    <Classes datatype="tokens">GarrisonTower</Classes>
+    <VisibleClasses datatype="tokens">Village DefenseTower SentryTower</VisibleClasses>
+    <Tooltip>Shoots arrows. Garrison to provide extra defence. Needs the murder holes tech to protect its foot. Upgradeable to stone tower.</Tooltip>
   </Identity>
   <Loot>
     <wood>20</wood>
-    <stone>0</stone>
   </Loot>
   <Obstruction>
     <Static width="9.0" depth="7.5"/>
   </Obstruction>
   <ProductionQueue>
     <Technologies datatype="tokens">
-      -attack_tower_crenellations
-      -attack_tower_range
-      -attack_tower_murderholes
-      -attack_tower_defense
+      tower_watch
     </Technologies>
   </ProductionQueue>
-  <StatusBars>
-    <HeightOffset>18.0</HeightOffset>
-  </StatusBars>
   <TerritoryInfluence>
-    <Radius op="mul">0.5</Radius>
+    <Root>false</Root>
+    <Radius>16</Radius>
+    <Weight>30000</Weight>
   </TerritoryInfluence>
   <Upgrade>
     <Tower>

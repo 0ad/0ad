@@ -1,0 +1,17 @@
+{
+  "genericName": "Sturdy Foundations",
+  "description": "Reinforce the foundations in preparation of an attack.",
+  "cost": { "food": 0, "wood": 500, "stone": 500, "metal": 500 },
+  "requirements": { "tech": "phase_city" },
+  "requirementsTooltip": "Unlocked in City Phase.",
+  "icon": "architecture.png",
+  "researchTime": 40,
+  "tooltip": "Increases armor of defensive towers by 2 levels.",
+  "modifications": [
+    { "value": "Armour/Hack", "add": 2 },
+    { "value": "Armour/Pierce", "add": 2 },
+    { "value": "Armour/Crush", "add": 2 }
+  ],
+  "affects": ["DefenseTower"],
+  "soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

@@ -1,0 +1,23 @@
+{
+  "genericName": "Sentries",
+  "specificName": {
+    "mace": "Nyktophýlakes",
+    "spart": "Nyktophýlakes",
+    "athen": "Nyktophýlakes",
+    "ptol": "Nyktophýlakes",
+    "sele": "Nyktophýlakes",
+    "rome": "Vigiles"
+  },
+  "description": "A night's watch increases vigilance.",
+  "cost": { "food": 500, "wood": 0, "stone": 0, "metal": 0 },
+  "requirements": { "tech": "phase_village" },
+  "requirementsTooltip": "Unlocked in Village Phase.",
+  "icon": "helmet_corinthian_bronze.png",
+  "researchTime": 40,
+  "tooltip": "Post sentries to add one arrow to defensive towers.",
+  "modifications": [
+    { "value": "BuildingAI/DefaultArrowCount", "add": 1 }
+  ],
+  "affects": ["DefenseTower"],
+  "soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

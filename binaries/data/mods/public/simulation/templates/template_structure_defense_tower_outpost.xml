@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_defense">
+<Entity parent="template_structure_defense_tower">
   <Armour>
     <Hack>5</Hack>
     <Pierce>20</Pierce>
@@ -12,22 +12,14 @@
   </Armour>
   <Attack>
     <Ranged>
-      <Hack>0.0</Hack>
-      <Pierce>16.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>55.0</MaxRange>
-      <MinRange>13.0</MinRange>
-      <ProjectileSpeed>75.0</ProjectileSpeed>
-      <Gravity>9.81</Gravity>
-      <PrepareTime>1200</PrepareTime>
-      <RepeatTime>2000</RepeatTime>
-      <Spread>1.5</Spread>
-      <Delay>0</Delay>
-      <PreferredClasses datatype="tokens">Human</PreferredClasses>
+      <Pierce>16</Pierce>
+      <MaxRange>55</MaxRange>
+      <MinRange>13</MinRange>
+      <ElevationBonus>0</ElevationBonus>
     </Ranged>
   </Attack>
   <BuildingAI>
-    <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
+    <DefaultArrowCount>0</DefaultArrowCount>
   </BuildingAI>
   <BuildRestrictions>
     <Category>Outpost</Category>
@@ -41,7 +33,6 @@
     <BuildTime>40</BuildTime>
     <Resources>
       <wood>80</wood>
-      <stone>0</stone>
     </Resources>
   </Cost>
   <Footprint>
@@ -50,20 +41,13 @@
   </Footprint>
   <GarrisonHolder>
     <Max>1</Max>
-    <EjectHealth>0.1</EjectHealth>
-    <EjectClassesOnDestroy datatype="tokens">Unit</EjectClassesOnDestroy>
-    <List datatype="tokens">Support Infantry</List>
-    <BuffHeal>0</BuffHeal>
-    <LoadingRange>2</LoadingRange>
   </GarrisonHolder>
   <Health>
     <Max>800</Max>
-    <SpawnEntityOnDeath>decay|rubble/rubble_stone_2x2</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <GenericName>Outpost</GenericName>
     <Tooltip>Build in neutral and own territories to scout areas of the map. Slowly converts to Gaia while in neutral territory.</Tooltip>
-    <Classes datatype="tokens">-ConquestCritical</Classes>
     <VisibleClasses datatype="tokens">Village Outpost</VisibleClasses>
     <Icon>structures/outpost.png</Icon>
   </Identity>
@@ -74,32 +58,15 @@
     <Static width="6.5" depth="6.5"/>
   </Obstruction>
   <ProductionQueue>
-    <BatchTimeModifier>0.7</BatchTimeModifier>
     <Technologies datatype="tokens">
-      vision_outpost
-      decay_outpost
+      tower_vision
+      tower_decay
     </Technologies>
   </ProductionQueue>
-  <Sound>
-    <SoundGroups>
-      <select>interface/select/building/sel_tower.xml</select>
-      <constructed>interface/complete/building/complete_tower.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
-    </SoundGroups>
-  </Sound>
-  <StatusBars>
-    <BarWidth>6.0</BarWidth>
-    <BarHeight>0.6</BarHeight>
-    <HeightOffset>18.0</HeightOffset>
-  </StatusBars>
   <TerritoryDecay>
     <DecayRate>2</DecayRate>
   </TerritoryDecay>
-  <Vision>
-    <Range>80</Range>
-  </Vision>
   <VisualActor>
     <Actor>props/special/palisade_rocks_outpost.xml</Actor>
-    <FoundationActor>structures/fndn_2x2.xml</FoundationActor>
   </VisualActor>
 </Entity>

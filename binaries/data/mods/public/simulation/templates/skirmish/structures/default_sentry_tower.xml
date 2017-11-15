@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_tower_sentry">
   <Identity>
-    <Civ>mace</Civ>
+    <Civ>skirm</Civ>
   </Identity>
+  <SkirmishReplacer>
+    <general>structures/{civ}_sentry_tower</general>
+  </SkirmishReplacer>
   <VisualActor>
     <Actor>structures/hellenes/wooden_tower.xml</Actor>
   </VisualActor>

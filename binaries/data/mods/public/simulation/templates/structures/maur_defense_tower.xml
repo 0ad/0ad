@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_defense_defense_tower">
+<Entity parent="template_structure_defense_tower_stone">
   <Identity>
     <Civ>maur</Civ>
     <SpecificName>Udarka</SpecificName>
   </Identity>
   <StatusBars>
-    <BarWidth>6.0</BarWidth>
-    <BarHeight>0.6</BarHeight>
     <HeightOffset>19.0</HeightOffset>
   </StatusBars>
   <VisualActor>

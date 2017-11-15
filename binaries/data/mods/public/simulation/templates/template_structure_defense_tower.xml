@@ -2,12 +2,9 @@
 <Entity parent="template_structure_defense">
   <Attack>
     <Ranged>
-      <Hack>0.0</Hack>
-      <Pierce>12.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>76.0</MaxRange>
-      <MinRange>10.0</MinRange>
-      <ElevationBonus>15</ElevationBonus>
+      <Hack>0</Hack>
+      <Pierce>0</Pierce>
+      <Crush>0</Crush>
       <ProjectileSpeed>75.0</ProjectileSpeed>
       <Gravity>9.81</Gravity>
       <PrepareTime>1200</PrepareTime>
@@ -29,19 +26,7 @@
       <MinDistance>60</MinDistance>
     </Distance>
   </BuildRestrictions>
-  <Cost>
-    <BuildTime>150</BuildTime>
-    <Resources>
-      <wood>100</wood>
-      <stone>100</stone>
-    </Resources>
-  </Cost>
-  <Footprint>
-    <Square width="10.0" depth="10.0"/>
-    <Height>15.0</Height>
-  </Footprint>
   <GarrisonHolder>
-    <Max>5</Max>
     <EjectHealth>0.1</EjectHealth>
     <EjectClassesOnDestroy datatype="tokens">Unit</EjectClassesOnDestroy>
     <List datatype="tokens">Support Infantry</List>
@@ -53,47 +38,23 @@
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_2x2</SpawnEntityOnDeath>
   </Health>
   <Identity>
-    <GenericName>Defense Tower</GenericName>
-    <Tooltip>Shoots arrows. Garrison to provide extra defense. Needs the murder holes tech to protect its foot.</Tooltip>
-    <Classes datatype="tokens">Tower GarrisonTower -ConquestCritical</Classes>
-    <VisibleClasses datatype="tokens">Town DefenseTower</VisibleClasses>
-    <Icon>structures/defense_tower.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Classes datatype="tokens">Tower -ConquestCritical</Classes>
   </Identity>
-  <Loot>
-    <wood>0</wood>
-    <stone>20</stone>
-  </Loot>
-  <Obstruction>
-    <Static width="7.0" depth="7.0"/>
-  </Obstruction>
   <ProductionQueue>
     <BatchTimeModifier>0.7</BatchTimeModifier>
-    <Technologies datatype="tokens">
-      attack_tower_watch
-      attack_tower_crenellations
-      attack_tower_range
-      attack_tower_murderholes
-      attack_tower_defense
-    </Technologies>
   </ProductionQueue>
   <Sound>
     <SoundGroups>
-      <select>interface/select/building/sel_tower.xml</select>
       <constructed>interface/complete/building/complete_tower.xml</constructed>
       <death>attack/destruction/building_collapse_large.xml</death>
+      <select>interface/select/building/sel_tower.xml</select>
     </SoundGroups>
   </Sound>
   <StatusBars>
     <BarWidth>6.0</BarWidth>
     <BarHeight>0.6</BarHeight>
-    <HeightOffset>21.0</HeightOffset>
+    <HeightOffset>18.0</HeightOffset>
   </StatusBars>
-  <TerritoryInfluence>
-    <Root>false</Root>
-    <Radius>32</Radius>
-    <Weight>30000</Weight>
-  </TerritoryInfluence>
   <Vision>
     <Range>80</Range>
   </Vision>
