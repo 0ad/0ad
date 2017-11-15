@@ -1707,7 +1707,7 @@ m.HQ.prototype.buildDefenses = function(gameState, queues)
 	if (this.currentPhase < 2 || !this.canBuild(gameState, "structures/{civ}_defense_tower"))
 		return;
 
-	let numTowers = gameState.getOwnEntitiesByClass("DefenseTower", true).filter(API3.Filters.not(API3.Filters.byClass("SentryTower"))).length;
+	let numTowers = gameState.getOwnEntitiesByClass("StoneTower", true).length;
 	let towerLapseTime = this.saveResource ? (1 + numTowers) * this.towerLapseTime : this.towerLapseTime;
 	if ((!numTowers || gameState.ai.elapsedTime > (1 + 0.1*numTowers)*towerLapseTime + this.towerStartTime) &&
 		numTowers < 2 * this.numActiveBase() + 3 + this.extraTowers &&
