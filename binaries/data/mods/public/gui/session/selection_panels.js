@@ -966,7 +966,7 @@ g_SelectionPanels.Training = {
 		});
 
 		let [buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch] =
-			getTrainingStatus(data.playerState, data.item, data.unitEntStates.map(status => status.id));
+			getTrainingStatus(data.unitEntStates.map(status => status.id), data.item, data.playerState);
 
 		let trainNum = buildingsCountToTrainFullBatch * fullBatchSize + remainderBatch;
 
