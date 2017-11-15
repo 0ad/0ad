@@ -2,9 +2,15 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="mesh">
-      <mesh>props/bow_long_indian_a.dae</mesh>
-      <textures><texture file="props/prop_weap.dds" name="baseTex"/></textures>
+    <variant frequency="100" name="Bamboo Longbow">
+      <mesh>props/weap_maur_long_bow.dae</mesh>
+      <textures>
+        <texture file="props/spart_sail_a.png" name="baseTex"/>
+      </textures>
+      <animations>
+        <animation event="0.50" file="mechanical/weap_maur_bow_attack.dae" load="0" name="attack_ranged" speed="200"/>
+      </animations>
     </variant>
   </group>
+  <material>player_trans.xml</material>
 </actor>

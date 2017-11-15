@@ -4,6 +4,9 @@
   <group>
     <variant name="quiver hip">
       <mesh>props/quiver_back.dae</mesh>
+            <props>
+        <prop actor="props/units/weapons/quiver_arrows.xml" attachpoint="root"/>
+      </props>
     </variant>
   </group>
   <group>

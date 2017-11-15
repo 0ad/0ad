@@ -3,10 +3,14 @@
   <castshadow/>
   <group>
     <variant frequency="100" name="Bamboo Longbow">
-      <mesh>props/maur_bamboo_bow_large.dae</mesh>
+      <mesh>props/weap_maur_bow.dae</mesh>
       <textures>
         <texture file="props/maur_props_1.png" name="baseTex"/>
       </textures>
+      <animations>
+        <animation event="0.50" file="mechanical/weap_maur_bow_attack.dae" load="0" name="attack_ranged" speed="200"/>
+      </animations>
     </variant>
   </group>
+  <material>player_trans.xml</material>
 </actor>

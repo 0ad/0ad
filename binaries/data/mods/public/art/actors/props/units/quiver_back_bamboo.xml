@@ -4,6 +4,9 @@
   <group>
     <variant frequency="1" name="Bamboo quiver 1">
       <mesh>props/quiver_bamboo_1.dae</mesh>
+      <props>
+        <prop actor="props/units/weapons/quiver_bamboo_arrows.xml" attachpoint="root"/>
+      </props>
       <textures>
         <texture file="props/maur_props_1.png" name="baseTex"/>
       </textures>

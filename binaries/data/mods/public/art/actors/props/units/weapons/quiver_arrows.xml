@@ -1,13 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant frequency="100" name="Base">
-      <mesh>props/weap_arrow_front.dae</mesh>
-      <props>
-        <prop actor="particle/flame_jav.xml" attachpoint="root"/>
-        <prop actor="particle/smoke_jav.xml" attachpoint="root"/>
-      </props>
+      <mesh>temp/quiver_arrows.dae</mesh>
       <textures>
         <texture file="structural/kart_struct.dds" name="baseTex"/>
         <texture file="structural/kart_struct_norm.png" name="normTex"/>
