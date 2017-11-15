@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Aca G. <martel.gilgames@gmail.com>, 2016-2017
+# acac97 <aleksandar.cvetic97@gmail.com>, 2017
 # MIlosSD <pirisd@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-10-25 09:03+0200\n"
-"PO-Revision-Date: 2017-10-25 14:52+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-11-13 11:40+0000\n"
+"Last-Translator: acac97 <aleksandar.cvetic97@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/wildfire-games/0ad/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -411,12 +412,12 @@ msgstr "Насумично изабира мапу са листе"
 
 #: gui/common/gamedescription.js:355
 msgid "Biome"
-msgstr ""
+msgstr "Биом"
 
 #: gui/common/gamedescription.js:356
 msgctxt "biome"
 msgid "Random"
-msgstr ""
+msgstr "Насумично"
 
 #: gui/common/gamedescription.js:363
 msgid "Starting Resources"
@@ -438,7 +439,7 @@ msgstr ""
 #: gui/common/gamedescription.js:384
 msgctxt "treasures"
 msgid "Disabled"
-msgstr ""
+msgstr "Онемогућено"
 
 #: gui/common/gamedescription.js:385
 msgctxt "treasures"
@@ -1076,7 +1077,7 @@ msgstr "%(auraname)s:"
 #: gui/common/tooltips.js:679
 msgctxt "aura"
 msgid "Range:"
-msgstr ""
+msgstr "Домет:"
 
 #: gui/common/tooltips.js:696
 #, javascript-format
@@ -1128,25 +1129,25 @@ msgstr "ОК"
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s, Max: %(max)s"
-msgstr ""
+msgstr "Минимум: %(min)s, Максимум: %(max)s"
 
 #: gui/options/options.js:99
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s"
-msgstr ""
+msgstr "Минимум: %(min)s"
 
 #: gui/options/options.js:101
 #, javascript-format
 msgctxt "option number"
 msgid "Max: %(max)s"
-msgstr ""
+msgstr "Максимум: %(max)s"
 
 #: gui/options/options.js:134
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
-msgstr ""
+msgstr "Вредност: %(val)s (минимум: %(min)s, максимум: %(max)s)"
 
 #: gui/options/options.js:295
 msgid ""
@@ -1205,7 +1206,7 @@ msgstr "Анонимни утисци и предлози су тренутно 
 #: gui/pregame/mainmenu.js:122
 #, javascript-format
 msgid "Status: %(status)s."
-msgstr ""
+msgstr "Стање: %(status)s."
 
 #: gui/pregame/mainmenu.js:146
 #, javascript-format
@@ -1522,7 +1523,7 @@ msgstr "Грађанских центара"
 
 #: gui/summary/layout.js:31
 msgid "Wonders"
-msgstr ""
+msgstr "Чуда"
 
 #: gui/summary/layout.js:35
 #, javascript-format
@@ -1549,7 +1550,7 @@ msgstr "шампион"
 
 #: gui/summary/layout.js:68
 msgid "Siege"
-msgstr ""
+msgstr "Опсада"
 
 #: gui/summary/layout.js:69
 msgid "Navy"
@@ -1621,7 +1622,7 @@ msgstr "Феминизација"
 
 #: gui/summary/layout.js:184
 msgid "Kill / Death ratio"
-msgstr ""
+msgstr "Однос убистава и смрти"
 
 #: gui/summary/layout.js:187
 #, javascript-format
@@ -1664,11 +1665,11 @@ msgstr "Послато"
 
 #: gui/summary/summary.js:48
 msgid "Bought"
-msgstr ""
+msgstr "Купио"
 
 #: gui/summary/summary.js:53
 msgid "Income"
-msgstr ""
+msgstr "Приход"
 
 #: gui/summary/summary.js:58
 msgid "Captured"
@@ -1696,15 +1697,15 @@ msgstr "Искоришћено"
 
 #: gui/summary/summary.js:88
 msgid "Received"
-msgstr ""
+msgstr "Примио"
 
 #: gui/summary/summary.js:93
 msgid "Sold"
-msgstr ""
+msgstr "Продато"
 
 #: gui/summary/summary.js:98
 msgid "Outcome"
-msgstr ""
+msgstr "Исход"
 
 #: gui/summary/summary.js:103
 msgid "Failed"
@@ -1720,11 +1721,11 @@ msgstr ""
 
 #: gui/summary/summary.js:429
 msgid "Current Scores"
-msgstr ""
+msgstr "Тренутни Резултати"
 
 #: gui/summary/summary.js:431
 msgid "Scores at the end of the game."
-msgstr ""
+msgstr "Резултати на крају игре."
 
 #: gui/summary/summary.js:433
 msgid "You have been disconnected."
@@ -1873,7 +1874,7 @@ msgstr ""
 
 #: gui/options/options.xml:(tooltip):55
 msgid "Saves changes"
-msgstr ""
+msgstr "Сачувај промене"
 
 #: gui/options/options.xml:(tooltip):61
 msgid "Unsaved changes affect this session only"
@@ -1914,7 +1915,7 @@ msgstr ""
 #: gui/pregame/mainmenu.xml:(caption):180
 #: gui/reference/structree/structree.xml:(caption):16
 msgid "Structure Tree"
-msgstr ""
+msgstr "Структурно Стабло"
 
 #: gui/pregame/mainmenu.xml:(caption):195
 msgid "History"
@@ -1959,15 +1960,15 @@ msgstr "Едитор сценарија"
 
 #: gui/pregame/mainmenu.xml:(caption):380
 msgid "Welcome Screen"
-msgstr ""
+msgstr "Екран добродошлице"
 
 #: gui/pregame/mainmenu.xml:(caption):396
 msgid "Mod Selection"
-msgstr ""
+msgstr "Одабир мода"
 
 #: gui/pregame/mainmenu.xml:(caption):450
 msgid "Learn to Play"
-msgstr ""
+msgstr "Наичи да играш"
 
 #: gui/pregame/mainmenu.xml:(caption):495
 msgid "Tools & Options"
@@ -1991,7 +1992,7 @@ msgstr "Пријави грешку у игри"
 
 #: gui/pregame/mainmenu.xml:(caption):581
 msgid "Translate the Game"
-msgstr ""
+msgstr "Преведи игру"
 
 #: gui/pregame/mainmenu.xml:(caption):593
 msgid "Credits"
@@ -2045,11 +2046,11 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):326
 msgid "Adjust game settings."
-msgstr ""
+msgstr "Промени подешавања игре."
 
 #: gui/pregame/mainmenu.xml:(tooltip):340
 msgid "Choose the language of the game."
-msgstr ""
+msgstr "Одабери језик игре."
 
 #: gui/pregame/mainmenu.xml:(tooltip):354
 msgid "Playback previous games."
@@ -2089,7 +2090,7 @@ msgstr "Опције игре и алати за дизајн сценарија
 
 #: gui/pregame/mainmenu.xml:(tooltip):511
 msgid "Exits the game."
-msgstr ""
+msgstr "Изађи из игре."
 
 #: gui/pregame/mainmenu.xml:(tooltip):546
 msgid "Click to open play0ad.com in your web browser."
@@ -2164,7 +2165,7 @@ msgstr ""
 #: gui/replaymenu/replay_menu.xml:(caption):258
 #: gui/summary/summary.xml:(caption):24
 msgid "Summary"
-msgstr ""
+msgstr "Сажетак"
 
 #: gui/replaymenu/replay_menu.xml:(caption):264
 msgid "Start Replay"
@@ -2174,7 +2175,7 @@ msgstr ""
 #: gui/savedgames/load.xml:(heading):37
 msgctxt "replay"
 msgid "Date / Time"
-msgstr ""
+msgstr "Датум / Време"
 
 #: gui/replaymenu/replay_menu.xml:(heading):87
 msgctxt "replay"
@@ -2214,7 +2215,7 @@ msgstr "Тип Мапе"
 #: gui/savedgames/load.xml:(heading):49
 msgctxt "replay"
 msgid "Description"
-msgstr ""
+msgstr "Опис"
 
 #: gui/savedgames/load.xml:(caption):54
 msgid "No saved games found."
@@ -2254,26 +2255,26 @@ msgstr "Прикажи ову поруку и убудуће"
 
 #: gui/splashscreen/splashscreen.xml:(caption):22
 msgid "Known Issues (web)"
-msgstr ""
+msgstr "Познати Проблеми (веб)"
 
 #: gui/summary/summary.xml:(caption):106
 msgid "Charts"
-msgstr ""
+msgstr "Статистике"
 
 #: gui/summary/summary.xml:(caption):163
 msgctxt "summary chart"
 msgid "Category:"
-msgstr ""
+msgstr "Категорија:"
 
 #: gui/summary/summary.xml:(caption):173
 msgctxt "summary chart"
 msgid "Value:"
-msgstr ""
+msgstr "Вредност:"
 
 #: gui/summary/summary.xml:(caption):183
 msgctxt "summary chart"
 msgid "Type:"
-msgstr ""
+msgstr "Тип:"
 
 #: gui/summary/summary.xml:(caption):202
 msgid "Replay"
@@ -2286,17 +2287,17 @@ msgstr "настави"
 #: gui/summary/summary.xml:(tooltip):169
 msgctxt "summary chart"
 msgid "Category"
-msgstr ""
+msgstr "Категорија"
 
 #: gui/summary/summary.xml:(tooltip):179
 msgctxt "summary chart"
 msgid "Value"
-msgstr ""
+msgstr "Вредност"
 
 #: gui/summary/summary.xml:(tooltip):190
 msgctxt "summary chart"
 msgid "Type"
-msgstr ""
+msgstr "Тип"
 
 #: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
 msgid "Art lead"
@@ -2308,7 +2309,7 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[0].Content[2].Subtitle
 msgid "Composer"
-msgstr ""
+msgstr "Композитор"
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Artistic managers"
@@ -2316,7 +2317,7 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[1].Title
 msgid "Map Making"
-msgstr ""
+msgstr "Прављење Мапа"
 
 #: gui/credits/texts/art.jsonContent[2].Title
 msgid "Random Map Scripts"
@@ -2324,11 +2325,11 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[3].Title
 msgid "2D Art"
-msgstr ""
+msgstr "2D Уметност"
 
 #: gui/credits/texts/art.jsonContent[4].Title
 msgid "3D Art"
-msgstr ""
+msgstr "3D Уметност"
 
 #: gui/credits/texts/art.jsonContent[5].Content[1].Subtitle
 msgid "Additional music, percussion, djembe, sampling"
@@ -2336,7 +2337,7 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[5].Content[2].Subtitle
 msgid "Additional music"
-msgstr ""
+msgstr "Додатна музика"
 
 #: gui/credits/texts/art.jsonContent[5].Content[3].Subtitle
 msgid "Flute"
@@ -2372,12 +2373,12 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[5].Title
 msgid "Music"
-msgstr ""
+msgstr "Музика"
 
 #: gui/credits/texts/art.jsonContent[6].Title
 #: gui/options/options.json[2].label
 msgid "Sound"
-msgstr ""
+msgstr "Звук"
 
 #: gui/credits/texts/art.jsonContent[7].Content[0].Subtitle
 msgid "Greek"
@@ -2389,11 +2390,11 @@ msgstr ""
 
 #: gui/credits/texts/art.jsonContent[7].Title
 msgid "Voices"
-msgstr ""
+msgstr "Гласови"
 
 #: gui/credits/texts/art.jsonTitle
 msgid "Art"
-msgstr ""
+msgstr "Уметност"
 
 #: gui/credits/texts/donators.jsonContent[0].Title
 msgid "Pledgie Drive 1"
@@ -2435,7 +2436,7 @@ msgstr ""
 
 #: gui/credits/texts/programming.jsonTitle
 msgid "Programming"
-msgstr ""
+msgstr "Програмирање"
 
 #: gui/credits/texts/special.jsonContent[0].Title
 msgid "In Memoriam"
@@ -2471,7 +2472,7 @@ msgstr ""
 
 #: gui/credits/texts/translators.jsonTitle
 msgid "Translators"
-msgstr ""
+msgstr "Преводиоци"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in Single Player matches."
@@ -2513,7 +2514,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[4].label
 msgid "Enable Welcome Screen"
-msgstr ""
+msgstr "Омогући Екран Добродошлице"
 
 #: gui/options/options.json[0].options[5].tooltip
 msgid "Show tips when setting up a game."
@@ -2584,7 +2585,7 @@ msgstr ""
 #: gui/options/options.json[0].options[13].list[0].label
 #: gui/options/options.json[0].options[14].list[0].label
 msgid "Everyone"
-msgstr ""
+msgstr "Сви"
 
 #: gui/options/options.json[0].options[13].list[1].label
 #: gui/options/options.json[0].options[14].list[1].label
@@ -2594,7 +2595,7 @@ msgstr ""
 #: gui/options/options.json[0].options[13].list[2].label
 #: gui/options/options.json[0].options[14].list[2].label
 msgid "Disabled"
-msgstr ""
+msgstr "Онемогућено"
 
 #: gui/options/options.json[0].options[13].tooltip
 msgid ""
@@ -2695,27 +2696,27 @@ msgstr ""
 
 #: gui/options/options.json[1].options[3].label
 msgid "Shadows"
-msgstr ""
+msgstr "Сенке"
 
 #: gui/options/options.json[1].options[4].list[0].label
 msgid "Very Low"
-msgstr ""
+msgstr "Веома Ниско"
 
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "Low"
-msgstr ""
+msgstr "Ниско"
 
 #: gui/options/options.json[1].options[4].list[2].label
 msgid "Medium"
-msgstr ""
+msgstr "Средње"
 
 #: gui/options/options.json[1].options[4].list[3].label
 msgid "High"
-msgstr ""
+msgstr "Високо"
 
 #: gui/options/options.json[1].options[4].list[4].label
 msgid "Very High"
-msgstr ""
+msgstr "Веома Високо"
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid ""
@@ -2725,15 +2726,15 @@ msgstr ""
 
 #: gui/options/options.json[1].options[4].label
 msgid "Shadow Quality"
-msgstr ""
+msgstr "Квалитет Сенки"
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Smooth shadows"
-msgstr ""
+msgstr "Глатке сенке"
 
 #: gui/options/options.json[1].options[5].label
 msgid "Shadow Filtering"
-msgstr ""
+msgstr "Филтрирање Сенки"
 
 #: gui/options/options.json[1].options[6].tooltip
 msgid "Show outlines of units behind buildings"
@@ -2749,7 +2750,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[7].label
 msgid "Particles"
-msgstr ""
+msgstr "Честице"
 
 #: gui/options/options.json[1].options[8].tooltip
 msgid ""
@@ -2777,7 +2778,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[10].label
 msgid "Real Water Depth"
-msgstr ""
+msgstr "Стварна Дубина Воде"
 
 #: gui/options/options.json[1].options[11].tooltip
 msgid "Allow water to reflect a mirror image"
@@ -2817,7 +2818,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[15].label
 msgid "Show Sky"
-msgstr ""
+msgstr "Прикажи Небо"
 
 #: gui/options/options.json[1].options[16].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
@@ -2825,7 +2826,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[16].label
 msgid "VSync"
-msgstr ""
+msgstr "VSync"
 
 #: gui/options/options.json[1].options[17].tooltip
 msgid ""
@@ -2935,7 +2936,7 @@ msgstr ""
 
 #: gui/options/options.json[4].options[0].label
 msgid "Attack"
-msgstr ""
+msgstr "Напад"
 
 #: gui/options/options.json[4].options[1].tooltip
 msgid ""
@@ -2961,7 +2962,7 @@ msgstr ""
 
 #: gui/options/options.json[4].options[3].list[1].label
 msgid "Completed"
-msgstr ""
+msgstr "Довршено"
 
 #: gui/options/options.json[4].options[3].list[2].label
 msgid "All displayed"
@@ -2975,7 +2976,7 @@ msgstr ""
 
 #: gui/options/options.json[4].options[3].label
 msgid "Phase"
-msgstr ""
+msgstr "Фаза"
 
 #: gui/options/options.json[4].tooltip
 msgid "Regulate the verbosity of chat notifications."
@@ -3234,7 +3235,7 @@ msgstr ""
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
-msgstr ""
+msgstr "КАСАРНА"
 
 #: gui/text/tips/barracks.txt:2
 msgid ""
@@ -3356,7 +3357,7 @@ msgstr ""
 
 #: gui/text/tips/civic_centres.txt:6
 msgid "- Can be built in friendly and neutral territory."
-msgstr ""
+msgstr "- Може бити изграђено у пријатељској и неутралној територији."
 
 #: gui/text/tips/civic_centres.txt:8
 msgid "- Train Female Citizens and basic Citizen-Soldiers."
@@ -3422,7 +3423,7 @@ msgstr ""
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"
-msgstr ""
+msgstr "ПРИКУПЉАЊЕ РЕСУРАСА"
 
 #: gui/text/tips/gathering.txt:2
 msgid "- Use Citizen-Soldiers and Female Citizens to gather resources."
@@ -3547,7 +3548,7 @@ msgstr ""
 
 #: gui/text/tips/pikemen.txt:2
 msgid "- Heavily armored and slow. Low attack."
-msgstr ""
+msgstr "- Тешко оклопљен и спор. Слаб напад."
 
 #: gui/text/tips/pikemen.txt:4
 msgid ""
@@ -3560,7 +3561,7 @@ msgstr ""
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "HEAVY WARSHIP"
-msgstr ""
+msgstr "ТЕШКИ РАТНИ БРОД"
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
@@ -3570,7 +3571,7 @@ msgstr ""
 
 #: gui/text/tips/quinquereme.txt:4
 msgid "- Transports up to 50 units."
-msgstr ""
+msgstr "- Превози до 50 јединица."
 
 #: gui/text/tips/quinquereme.txt:6
 msgid "- Increases firepower with garrisoned catapults."
@@ -3582,7 +3583,7 @@ msgstr ""
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
-msgstr ""
+msgstr "САВАНА"
 
 #: gui/text/tips/savanna_biome.txt:2
 msgid "- Generally flat, with a few watering holes and rocky outcrops."
@@ -3602,7 +3603,7 @@ msgstr ""
 
 #: gui/text/tips/scout_towers.txt:1
 msgid "DEFENSE TOWERS"
-msgstr ""
+msgstr "ОДБРАНДБЕНЕ КУЛЕ"
 
 #: gui/text/tips/scout_towers.txt:2
 msgid "- Free-standing towers good for defending large areas of countryside."
@@ -3642,7 +3643,7 @@ msgstr ""
 
 #: gui/text/tips/spearmen.txt:1
 msgid "SPEARMEN"
-msgstr ""
+msgstr "КОПЉОНОША"
 
 #: gui/text/tips/spearmen.txt:2
 msgid "- The basic melee infantry for every faction in the game."
@@ -3650,7 +3651,7 @@ msgstr ""
 
 #: gui/text/tips/spearmen.txt:4
 msgid "- Used against cavalry for an attack bonus."
-msgstr ""
+msgstr "- Користи се против коњице за нападачки бонус."
 
 #: gui/text/tips/spearmen.txt:6
 msgid "- Decent hack attack make them good front line troops."
@@ -3710,7 +3711,7 @@ msgstr ""
 
 #: gui/text/tips/syntagma.txt:8
 msgid "- Vulnerable to attacks from the rear."
-msgstr ""
+msgstr "- Рањиво на нападе одпозади."
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
@@ -3777,7 +3778,7 @@ msgstr ""
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
-msgstr ""
+msgstr "ТРИРЕМА"
 
 #: gui/text/tips/triremes.txt:2
 msgid "- The Medium Warship."
@@ -3790,7 +3791,7 @@ msgstr ""
 
 #: gui/text/tips/triremes.txt:6
 msgid "- Good for transporting or fighting."
-msgstr ""
+msgstr "- Добра за превоз или битке."
 
 #: gui/text/tips/triremes.txt:8
 msgid "- Garrison troops aboard to increase fire power."
@@ -3834,7 +3835,7 @@ msgstr ""
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
-msgstr ""
+msgstr "РАТНИ СЛОНОВИ"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "- Huge beasts from Africa and India, trained for war."
