@@ -1805,9 +1805,9 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 		return;
 	}
 
-	if (this.canBuild(gameState, "structures/{civ}_siege_workshop") && !gameState.getOwnEntitiesByClass("Workshop", true).hasEntities())
+	if (this.canBuild(gameState, "structures/{civ}_workshop") && !gameState.getOwnEntitiesByClass("Workshop", true).hasEntities())
 	{
-		queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_siege_workshop", { "militaryBase": true }));
+		queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, "structures/{civ}_workshop", { "militaryBase": true }));
 		return;
 	}
 

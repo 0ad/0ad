@@ -302,7 +302,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	//obstructions.dumpIm(template.buildPlacementType() + "_obstructions.png");
 
 	let radius = 0;
-	if (template.hasClass("Fortress") || this.type === gameState.applyCiv("structures/{civ}_siege_workshop") ||
+	if (template.hasClass("Fortress") || this.type === gameState.applyCiv("structures/{civ}_workshop") ||
 		this.type === gameState.applyCiv("structures/{civ}_elephant_stables"))
 		radius = Math.floor((template.obstructionRadius().max + 12) / obstructions.cellSize);
 	else if (template.resourceDropsiteTypes() === undefined && !template.hasClass("House") && !template.hasClass("Field"))
