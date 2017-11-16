@@ -353,7 +353,12 @@ function getMapSize()
 
 function getMapArea()
 {
-	return g_Map.size * g_Map.size;
+	return Math.square(g_Map.size);
+}
+
+function getMapCenter()
+{
+	return new Vector2D(g_Map.size / 2, g_Map.size / 2);
 }
 
 function getNumPlayers()
