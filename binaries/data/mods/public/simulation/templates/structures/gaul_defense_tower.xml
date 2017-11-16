@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_defense_defense_tower">
+<Entity parent="template_structure_defense_tower_stone">
   <Footprint>
     <Square width="10.0" depth="10.0"/>
     <Height>15.0</Height>
@@ -11,6 +11,9 @@
   <Obstruction>
     <Static width="7.5" depth="7.5"/>
   </Obstruction>
+  <StatusBars>
+    <HeightOffset>21.0</HeightOffset>
+  </StatusBars>
   <VisualActor>
     <Actor>structures/gauls/scout_tower.xml</Actor>
   </VisualActor>

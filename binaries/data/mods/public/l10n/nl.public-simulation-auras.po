@@ -9,12 +9,13 @@
 # niektb <niektb95@gmail.com>, 2016
 # Reinout De Geest <rlgdegeest@gmail.com>, 2017
 # Sander Deryckere, 2016
+# Spijker <woartel@hotmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-09-03 16:57+0000\n"
-"Last-Translator: Reinout De Geest <rlgdegeest@gmail.com>\n"
+"PO-Revision-Date: 2017-11-13 12:49+0000\n"
+"Last-Translator: Spijker <woartel@hotmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,7 +37,7 @@ msgstr "Zegening van de Goden"
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraDescription
 msgid "Heals units at 3 HP per second."
-msgstr "Geneest eenheden met 3 leven per seconde."
+msgstr "Geneest eenheden met 3 HP per seconde."
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
@@ -314,7 +315,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraName
 msgid "Saver of Lives"
-msgstr ""
+msgstr "Levensredder"
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraDescription
 msgid ""
@@ -324,7 +325,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
 msgid "Sacker of Cities"
-msgstr ""
+msgstr "Stedenplunderaar"
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraDescription
 msgid ""
@@ -354,7 +355,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/pers_catafalque.jsonauraName
 msgid "Great Builder"
-msgstr ""
+msgstr "Grote Bouwer"
 
 #: simulation/data/auras/units/catafalques/pers_catafalque.jsonauraDescription
 msgid ""
@@ -548,7 +549,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraName
 msgid "Sacker of Rome"
-msgstr ""
+msgstr "Plunderaar van Rome"
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraDescription
 msgid "+15 Metal loot for every enemy unit killed."
@@ -556,7 +557,7 @@ msgstr "+15 metaalplundering voor ieder gedode eenheid."
 
 #: simulation/data/auras/units/heroes/gaul_hero_britomartus.jsonauraName
 msgid "Preparation for War"
-msgstr ""
+msgstr "Voorbereiding voor Oorlog"
 
 #: simulation/data/auras/units/heroes/gaul_hero_britomartus.jsonauraDescription
 msgid "Gathering rates increased with +15% during his lifetime."
@@ -572,7 +573,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraName
 msgid "Inspired Defense"
-msgstr ""
+msgstr "Geïnspireerde Defensie"
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraDescription
 msgid ""
@@ -582,7 +583,7 @@ msgstr "+2 punten veroveringsweerstand voor het gebouw of belegeringswapen waari
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraName
 msgid "Valiant Defender"
-msgstr ""
+msgstr "Moedige Verdediger"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraDescription
 msgid ""
@@ -630,7 +631,7 @@ msgstr "Gebouwen krijgen 10% extra territorium tijdens zijn leven."
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_2.jsonauraName
 msgid "Conqueror"
-msgstr ""
+msgstr "Overwinnaar"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_2.jsonauraDescription
 msgid "-50% garrisoned regeneration rate for enemy civic centers."

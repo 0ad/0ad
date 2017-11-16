@@ -1,24 +1,16 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
-    <variant frequency="1" name="Mesh">
-      <textures><texture file="props/prop_weap.dds" name="baseTex"/></textures>
+    <variant frequency="100" name="Base">
+      <mesh>props/weap_pers_bow.dae</mesh>
+      <textures>
+        <texture file="props/spart_sail_a.png" name="baseTex"/>
+      </textures>
+      <animations>
+        <animation event="0.50" file="mechanical/weap_pers_bow_attack.dae" load="0" name="attack_ranged" speed="200"/>
+      </animations>
     </variant>
   </group>
-
-  <group>
-    <variant frequency="1" name="recurved bow-med">
-      <mesh>props/weap_bow_g.dae</mesh>
-    </variant>
-    <variant frequency="1" name="recurved bow-light">
-      <mesh>props/weap_bow_h.dae</mesh>
-    </variant>
-    <variant frequency="1" name="recurved bow-dark">
-      <mesh>props/weap_bow_i.dae</mesh>
-    </variant>
-  </group>
-
+  <material>player_trans.xml</material>
 </actor>

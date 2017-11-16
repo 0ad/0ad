@@ -5,7 +5,7 @@
 # Translators:
 # acac97 <aleksandar.cvetic97@gmail.com>, 2014
 # Aca G. <martel.gilgames@gmail.com>, 2016-2017
-# acac97 <aleksandar.cvetic97@gmail.com>, 2014
+# acac97 <aleksandar.cvetic97@gmail.com>, 2014,2017
 # Janko Bosnjakovic <jankoeve@gmail.com>, 2016
 # Matija Kokotovic <matijakokotovic@gmail.com>, 2016
 # MIlosSD <pirisd@gmail.com>, 2015
@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-30 09:02+0200\n"
-"PO-Revision-Date: 2017-08-30 14:44+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-11-13 12:02+0000\n"
+"Last-Translator: acac97 <aleksandar.cvetic97@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/wildfire-games/0ad/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +25,7 @@ msgstr ""
 
 #: gui/lobby/lobby.js:44
 msgid "Online"
-msgstr "Онлајн"
+msgstr "На мрежи"
 
 #: gui/lobby/lobby.js:45
 msgid "Away"
@@ -37,7 +37,7 @@ msgstr "Заузет"
 
 #: gui/lobby/lobby.js:47
 msgid "Offline"
-msgstr "Офлајн"
+msgstr "Одсутан"
 
 #: gui/lobby/lobby.js:48
 msgctxt "lobby presence"
@@ -54,7 +54,7 @@ msgstr "Играч"
 
 #: gui/lobby/lobby.js:54
 msgid "Muted Player"
-msgstr ""
+msgstr "Утишан Играч"
 
 #: gui/lobby/lobby.js:138
 msgid "Disconnected."
@@ -86,7 +86,7 @@ msgstr ""
 
 #: gui/lobby/lobby.js:203
 msgid "You are now a moderator."
-msgstr ""
+msgstr "Сада сте модератор."
 
 #: gui/lobby/lobby.js:204
 #, javascript-format
@@ -104,7 +104,7 @@ msgstr ""
 
 #: gui/lobby/lobby.js:210
 msgid "You are not a moderator anymore."
-msgstr ""
+msgstr "Више нисте модератор."
 
 #: gui/lobby/lobby.js:211
 #, javascript-format
@@ -118,7 +118,7 @@ msgstr "%(oldnick)s је сада познат као %(newnick)s."
 
 #: gui/lobby/lobby.js:258
 msgid "Notice"
-msgstr ""
+msgstr "Примети"
 
 #: gui/lobby/lobby.js:299
 msgid "Set your state to 'Away'."
@@ -138,7 +138,7 @@ msgstr ""
 
 #: gui/lobby/lobby.js:329
 msgid "Show this help."
-msgstr ""
+msgstr "Прикажи ову помоћ."
 
 #: gui/lobby/lobby.js:332
 msgid "Chat commands:"
@@ -378,12 +378,12 @@ msgstr ""
 #: gui/lobby/prelobby.js:107
 msgctxt "login"
 msgid "Please enter your password"
-msgstr ""
+msgstr "Унесите своју лозинку"
 
 #: gui/lobby/prelobby.js:108
 msgctxt "register"
 msgid "Please enter your password"
-msgstr ""
+msgstr "Унесите своју лозинку"
 
 #: gui/lobby/prelobby.js:121
 msgid "Please enter your password again"
@@ -490,7 +490,7 @@ msgstr "Главни мени"
 
 #: gui/lobby/lobby.xml:(caption):259
 msgid "Show only open games"
-msgstr ""
+msgstr "Прикажи само отворене игре"
 
 #: gui/lobby/lobby.xml:(caption):310 gui/lobby/lobby.xml:(caption):372
 msgid "Back"
@@ -510,7 +510,7 @@ msgstr "Прикажи профил"
 
 #: gui/lobby/lobby.xml:(caption):367
 msgid "Please enter a player name."
-msgstr ""
+msgstr "Молимо унесите име играча."
 
 #: gui/lobby/lobby.xml:(heading):38
 msgid "Status"

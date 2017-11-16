@@ -9,7 +9,7 @@
 # Diego Bruschetti <d.bruschetti@hotmail.com>, 2014
 # ninovolador <ignacio.rodriguez.mo@gmail.com>, 2015
 # Javier Rojas <hekeine@gmail.com>, 2017
-# juanda097 <juanda097@openmailbox.org>, 2014
+# juanda097 <juanda097@protonmail.ch>, 2014
 # Luis Torrecilla <l_torrecilla@yahoo.es>, 2016
 # Mihai Pantazi <malexandru_70@hotmail.com>, 2017
 # soloooy0 fg <juanjo.fg@hotmail.com>, 2017
@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:05+0200\n"
-"PO-Revision-Date: 2017-08-05 18:18+0000\n"
-"Last-Translator: Swyter <Swyterzone@gmail.com>\n"
+"POT-Creation-Date: 2017-11-13 09:02+0100\n"
+"PO-Revision-Date: 2017-11-13 14:40+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -421,204 +421,211 @@ msgstr "Mayús + Clic izquierdo: Poner en cola una orden de mover/construir/reco
 
 #: gui/manual/intro.txt:93
 msgid ""
+"Alt + Right Click: Order one unit from the current selection to "
+"move/build/gather/etc and unselect it. Used to quickly dispatch units with "
+"specific tasks."
+msgstr ""
+
+#: gui/manual/intro.txt:94
+msgid ""
 "Shift + Left Click when training units: Add units in batches (the batch size"
 " is 5 by default and can be changed in the options)"
 msgstr "Shift + Clic izquierdo Cuando estén entrenando unidades: Añade unidades en grupos (el grupo por defecto es 5 y puede ser cambiado en las opciones)."
 
-#: gui/manual/intro.txt:94
+#: gui/manual/intro.txt:95
 msgid ""
 "Shift + Left Click or Left Drag over unit on map: Add unit to selection"
 msgstr "Mayús + Clic izquierdo o mediante selección rectangular arrastrando con el clic izquierdo: Añadir unidad a la selección"
 
-#: gui/manual/intro.txt:95
+#: gui/manual/intro.txt:96
 msgid ""
 "Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
 msgstr "Ctrl + Clic izquierdo o arrastrar con selección rectangular: Deselecciona la unidad"
 
-#: gui/manual/intro.txt:96
+#: gui/manual/intro.txt:97
 msgid "Alt + Left Drag over units on map: Only select military units"
 msgstr "Alt + Selección rectangular sobre unidades en el mapa: Selecciona únicamente las unidades militares"
 
-#: gui/manual/intro.txt:97
+#: gui/manual/intro.txt:98
 msgid "I + Left Drag over units on map: Only select idle units"
 msgstr "I + Selección rectangular sobre unidades en el mapa: Selecciona únicamente las unidades inactivas"
 
-#: gui/manual/intro.txt:98
+#: gui/manual/intro.txt:99
 msgid ""
 "Ctrl + Left Click on unit/group icon with multiple units selected: Deselect"
 msgstr "Ctrl + Clic izquierdo sobre un icono de unidad/grupo con múltiples unidades seleccionadas: Deselecciona"
 
-#: gui/manual/intro.txt:99
+#: gui/manual/intro.txt:100
 msgid ""
 "Right Click with a building/buildings selected: sets a rally point for units"
 " created/ungarrisoned from that building."
 msgstr "Clic derecho con un edificio ya seleccionado: establece un punto de encuentro para las unidades creadas o sin guarnecer del edificio"
 
-#: gui/manual/intro.txt:100
+#: gui/manual/intro.txt:101
 msgid "Ctrl + Right Click with units selected:"
 msgstr "Ctrl + Clic derecho con unidades seleccionadas:"
 
-#: gui/manual/intro.txt:101
+#: gui/manual/intro.txt:102
 msgid "    - If the cursor is over an allied structure: Garrison"
 msgstr "- Si el puntero se encuentra sobre una estructura aliada: Guarnecer"
 
-#: gui/manual/intro.txt:102
+#: gui/manual/intro.txt:103
 msgid ""
 "    - If the cursor is over a non-allied unit or building: Attack (instead "
 "of capture or gather)"
 msgstr "- Si el puntero se encuentra sobre una estructura o unidad no-aliada: Atacar (en vez de capturar o recolectar)"
 
-#: gui/manual/intro.txt:103
+#: gui/manual/intro.txt:104
 msgid ""
 "    - Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
 "units). "
 msgstr "- Sino: Atacar moviendo (por defecto atacarán a todas las unidades y estructuras enemigas que se crucen en su camino, presiona Ctrl + Q + clic derecho para atacar únicamente a unidades)."
 
-#: gui/manual/intro.txt:105
+#: gui/manual/intro.txt:106
 msgid "[font=\"sans-bold-14\"]Overlays"
 msgstr "[font=\"sans-bold-14\"]Superposiciones"
 
-#: gui/manual/intro.txt:106
+#: gui/manual/intro.txt:107
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
 msgstr "[font=\"sans-14\"]Alt + G: Muestra/oculta la interfaz"
 
-#: gui/manual/intro.txt:107
+#: gui/manual/intro.txt:108
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
 msgstr "Alt + D: Muestra u oculta el panel de desarrollo (con opciones técnicas)"
 
-#: gui/manual/intro.txt:108
+#: gui/manual/intro.txt:109
 msgid ""
 "Alt + W: Toggle wireframe mode (press once to get wireframes overlaid over "
 "the textured models, twice to get just the wireframes colored by the "
 "textures, thrice to get back to normal textured mode)"
 msgstr "Alt + W: Activa el modo wireframe (presiona una vez para superponer wireframes sobre los modelos texturizados, dos veces para verlos con el color del modelo, tres veces para volver al modo de textura normal)"
 
-#: gui/manual/intro.txt:109
+#: gui/manual/intro.txt:110
 msgid ""
 "Alt + S: Toggle unit silhouettes (might give a small performance boost)"
 msgstr "Alt + S: Activa o desactiva las siluetas de unidades (desactivarlas puede mejorar ligeramente el rendimiento)"
 
-#: gui/manual/intro.txt:110
+#: gui/manual/intro.txt:111
 msgid "Alt + Z: Toggle sky"
 msgstr "Alt + Z: Mostar u ocultar el cielo"
 
-#: gui/manual/intro.txt:111
+#: gui/manual/intro.txt:112
 msgid ""
 "Alt + V: Toggle aura range visualizations of selected units and structures"
 msgstr "Alt + V: Muestra/oculta el área de aura de las unidades y edificios seleccionados."
 
-#: gui/manual/intro.txt:112
+#: gui/manual/intro.txt:113
 msgid "Alt + B: Toggle heal range visualizations of selected units"
 msgstr "Alt + B: Muestra/oculta el área de curación de las unidades seleccionadas"
 
-#: gui/manual/intro.txt:114
+#: gui/manual/intro.txt:115
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
 msgstr "[font=\"sans-bold-14\"]Uso de la cámara"
 
-#: gui/manual/intro.txt:115
+#: gui/manual/intro.txt:116
 msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
 msgstr "[font=\"sans-14\"]W o \\[arriba]: Desplazar la cámara hacia arriba"
 
-#: gui/manual/intro.txt:116
+#: gui/manual/intro.txt:117
 msgid "S or \\[down]: Pan screen down"
 msgstr "S o \\[abajo]: Desplaza la cámara hacia abajo"
 
-#: gui/manual/intro.txt:117
+#: gui/manual/intro.txt:118
 msgid "A or \\[left]: Pan screen left"
 msgstr "A o \\[izquierda]: Desplaza la cámara a la izquierda"
 
-#: gui/manual/intro.txt:118
+#: gui/manual/intro.txt:119
 msgid "D or \\[right]: Pan screen right"
 msgstr "D o \\[derecha]: Desplaza la cámara hacia la derecha"
 
-#: gui/manual/intro.txt:119
+#: gui/manual/intro.txt:120
 msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
 msgstr "Ctrl + W o \\[arriba]: Rota la cámara para mirar hacía arriba"
 
-#: gui/manual/intro.txt:120
+#: gui/manual/intro.txt:121
 msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
 msgstr "Ctrl + S o \\[abajo]: Rota la cámara para mirar hacia abajo"
 
-#: gui/manual/intro.txt:121
+#: gui/manual/intro.txt:122
 msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
 msgstr "Ctrl + A o \\[izquierda]: Rota la cámara en la dirección de las agujas del reloj alrededor del terreno"
 
-#: gui/manual/intro.txt:122
+#: gui/manual/intro.txt:123
 msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
 msgstr "Ctrl + A o \\[izquierda]: Rota la cámara en la dirección contraria de las agujas del reloj alrededor del terreno"
 
-#: gui/manual/intro.txt:123
+#: gui/manual/intro.txt:124
 msgid "Q: Rotate camera clockwise around terrain"
 msgstr "Q: Rotar la cámara en la dirección de las agujas del reloj"
 
-#: gui/manual/intro.txt:124
+#: gui/manual/intro.txt:125
 msgid "E: Rotate camera anticlockwise around terrain"
 msgstr "E: Rotar la cámara en la dirección opuesta a las agujas del reloj"
 
-#: gui/manual/intro.txt:125
+#: gui/manual/intro.txt:126
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
 msgstr "Mayús + Rueda del ratón hacía arriba: Rota la cámara en la dirección de las agujas del reloj alrededor del terreno"
 
-#: gui/manual/intro.txt:126
+#: gui/manual/intro.txt:127
 msgid ""
 "Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
 msgstr "Mayús + Rueda del ratón hacía abajo: Rota la cámara en la dirección contraria de las agujas del reloj alrededor del terreno"
 
-#: gui/manual/intro.txt:127
+#: gui/manual/intro.txt:128
 msgid ""
 "F: Follow the selected unit (move the camera to stop it from following the "
 "unit)"
 msgstr "F: Sigue la unidad seleccionada (mueve la cámara para dejar de seguirla)"
 
-#: gui/manual/intro.txt:128
+#: gui/manual/intro.txt:129
 msgid "R: Reset camera zoom/orientation"
 msgstr "R: Restaurar la posición y orientación de la cámara a los valores iniciales"
 
-#: gui/manual/intro.txt:129
+#: gui/manual/intro.txt:130
 msgid "+: Zoom in (keep pressed for continuous zoom)"
 msgstr "+: Acercar la cámara al terreno (Sigue presionando para hacerlo más suave)"
 
-#: gui/manual/intro.txt:130
+#: gui/manual/intro.txt:131
 msgid "-: Zoom out (keep pressed for continuous zoom)"
 msgstr "+: Alejar la cámara del terreno (Sigue presionando para hacerlo más suave)"
 
-#: gui/manual/intro.txt:131
+#: gui/manual/intro.txt:132
 msgid "Alt + W: Toggle through wireframe modes"
 msgstr "Alt + W: Itinerar entre los modos de «wireframe»."
 
-#: gui/manual/intro.txt:132
+#: gui/manual/intro.txt:133
 msgid "Middle Mouse Button: Keep pressed and move the mouse to pan"
 msgstr "Botón central del ratón: Mantenlo presionado mientras mueves el ratón para desplazar la cámara en esa dirección."
 
-#: gui/manual/intro.txt:134
+#: gui/manual/intro.txt:135
 msgid "[font=\"sans-bold-14\"]During Building Placement"
 msgstr "[font=\"sans-bold-14\"]Durante el emplazamiento del edificio"
 
-#: gui/manual/intro.txt:135
+#: gui/manual/intro.txt:136
 msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
 msgstr "[font=\"sans-14\"]\\[: Rota el edificio 15 grados en el sentido contrario de las agujas del reloj"
 
-#: gui/manual/intro.txt:136
+#: gui/manual/intro.txt:137
 msgid "]: Rotate building 15 degrees clockwise"
 msgstr "]: Gira el edificio 15 grados en el sentido de las agujas del reloj"
 
-#: gui/manual/intro.txt:137
+#: gui/manual/intro.txt:138
 msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
 msgstr "Arrastrar con el botón izquierdo: Gira un edificio usando el ratón (los cimientos se emplazarán una vez se suelte el botón)"
 
-#: gui/manual/intro.txt:139
+#: gui/manual/intro.txt:140
 msgid "[font=\"sans-bold-14\"]When loading a saved game"
 msgstr "[font=\"sans-bold-14\"]Cuando se carga un juego guardado"
 
-#: gui/manual/intro.txt:140
+#: gui/manual/intro.txt:141
 msgid ""
 "[font=\"sans-14\"]Delete: delete the selected saved game asking confirmation"
 msgstr "[font=\"sans-14\"]Borrar: borra la partida guardada pidiendo confirmación"
 
-#: gui/manual/intro.txt:141
+#: gui/manual/intro.txt:142
 msgid "Shift: do not ask confirmation when deleting a saved game"
 msgstr "Mayús: no pedir confirmación cuando se borra una partida guardada"
 

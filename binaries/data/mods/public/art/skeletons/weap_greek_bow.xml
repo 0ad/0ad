@@ -1,0 +1,25 @@
+<skeletons>
+	<standard_skeleton title="HeleBow" id="helebow">
+		<bone name="string"></bone>
+		<bone name="base"></bone>
+		<bone name="topBranch"></bone>
+		<bone name="botBranch"></bone>
+	</standard_skeleton>
+	<skeleton title="HeleBow" target="helebow">
+		<identifier>
+			<root>HeleBow</root>
+		</identifier>
+		<bone name="string">
+			<target>string</target>
+		</bone>
+		<bone name="base">
+			<target>base</target>
+		</bone>
+		<bone name="topBranch">
+			<target>topBranch</target>
+		</bone>
+		<bone name="botBranch">
+			<target>botBranch</target>
+		</bone>
+	</skeleton>
+</skeletons>

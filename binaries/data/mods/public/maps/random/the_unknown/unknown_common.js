@@ -546,7 +546,7 @@ function unknownEdgeSeas()
 			"startX": positionX[0],
 			"startZ": positionZ[0],
 			"endX": positionX[1],
-			"endX": positionZ[1],
+			"endZ": positionZ[1],
 			"width": 0.62,
 			"fadeDist": 0.015,
 			"deviation": 0,

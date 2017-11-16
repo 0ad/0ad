@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
       <mesh>props/weap_arrow_back.dae</mesh>
-      <textures><texture file="props/prop_weap.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/kart_struct.dds" name="baseTex"/>
+        <texture file="structural/kart_struct_norm.png" name="normTex"/>
+        <texture file="structural/kart_struct_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
-
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

@@ -256,19 +256,46 @@ m.HQ.prototype.buildFirstBase = function(gameState)
 		return;
 	let total = gameState.getResources();
 	let goal = "civil_centre";
-	if (!total.canAfford(new API3.Resources(template.cost())) &&
-	    !this.navalManager.docks.filter(API3.Filters.byClass("Dock")).hasEntities())
+	if (!total.canAfford(new API3.Resources(template.cost())))
 	{
+		let totalExpected = gameState.getResources();
+		// Check for treasures around available in some maps at startup
+		for (let ent of gameState.getOwnUnits().values())
+		{
+			if (!ent.position())
+				continue;
+			// If we can get a treasure around, just do it
+			if (ent.isIdle())
+				m.gatherTreasure(gameState, ent);
+			// Then count the resources from the treasures being collected
+			let supplyId = ent.getMetadata(PlayerID, "supply");
+			if (!supplyId)
+				continue;
+			let supply = gameState.getEntityById(supplyId);
+			if (!supply || supply.resourceSupplyType().generic != "treasure")
+				continue;
+			let type = supply.resourceSupplyType().specific;
+			if (!(type in totalExpected))
+				continue;
+			totalExpected[type] += supply.resourceSupplyMax();
+			// If we can collect enough resources from these treasures, wait for them
+			if (totalExpected.canAfford(new API3.Resources(template.cost())))
+				return;
+		}
+
 		// not enough resource to build a cc, try with a dock to accumulate resources if none yet
-		if (gameState.ai.queues.dock.hasQueuedUnits())
-			return;
-		templateName = gameState.applyCiv("structures/{civ}_dock");
-		if (gameState.isTemplateDisabled(templateName))
-			return;
-		template = gameState.getTemplate(templateName);
-		if (!template || !total.canAfford(new API3.Resources(template.cost())))
-			return;
-		goal = "dock";
+		if (!this.navalManager.docks.filter(API3.Filters.byClass("Dock")).hasEntities())
+		{
+			if (gameState.ai.queues.dock.hasQueuedUnits())
+				return;
+			templateName = gameState.applyCiv("structures/{civ}_dock");
+			if (gameState.isTemplateDisabled(templateName))
+				return;
+			template = gameState.getTemplate(templateName);
+			if (!template || !total.canAfford(new API3.Resources(template.cost())))
+				return;
+			goal = "dock";
+		}
 	}
 	if (!this.canBuild(gameState, templateName))
 		return;

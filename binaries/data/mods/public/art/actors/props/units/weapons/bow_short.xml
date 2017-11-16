@@ -2,19 +2,15 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
-      <textures><texture file="props/prop_weap.dds" name="baseTex"/></textures>
+    <variant frequency="100" name="Base">
+      <mesh>props/weap_greek_bow.dae</mesh>
+      <textures>
+        <texture file="props/spart_sail_a.png" name="baseTex"/>
+      </textures>
+      <animations>
+        <animation event="0.50" file="mechanical/weap_greek_bow_attack.dae" load="0" name="attack_ranged" speed="200"/>
+      </animations>
     </variant>
   </group>
-  <group>
-    <variant frequency="1" name="bow-med">
-      <mesh>props/weap_bow_a.dae</mesh>
-    </variant>
-    <variant frequency="1" name="bow-b">
-      <mesh>props/weap_bow_b.dae</mesh>
-    </variant>
-    <variant frequency="1" name="bow-c">
-      <mesh>props/weap_bow_c.dae</mesh>
-    </variant>
-  </group>
+  <material>player_trans.xml</material>
 </actor>
