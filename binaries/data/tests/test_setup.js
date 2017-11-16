@@ -32,6 +32,12 @@ global.TS_ASSERT_EQUALS = function TS_ASSERT_EQUALS(x, y)
 		fail("Expected equal, got "+uneval(x)+" !== "+uneval(y));
 }
 
+global.TS_ASSERT_EQUALS_APPROX = function TS_ASSERT_EQUALS_APPROX(x, y, maxDifference)
+{
+	if (Math.abs(x - y) > maxDifference)
+		fail("Expected almost equal, got " + uneval(x) + " !== " + uneval(y));
+}
+
 global.TS_ASSERT_UNEVAL_EQUALS = function TS_ASSERT_UNEVAL_EQUALS(x, y)
 {
 	if (!(uneval(x) === uneval(y)))

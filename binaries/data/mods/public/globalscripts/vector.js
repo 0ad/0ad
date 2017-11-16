@@ -73,18 +73,14 @@ Vector2D.prototype.normalize = function()
 /**
  * Rotate a radians anti-clockwise
  */
-Vector2D.prototype.rotate = function(a)
+Vector2D.prototype.rotate = function(angle)
 {
-	let sin = Math.sin(a);
-	let cos = Math.cos(a);
+	let sin = Math.sin(angle);
+	let cos = Math.cos(angle);
 
-	let x = this.x * cos + this.y * sin;
-	let y = this.y * cos - this.x * sin;
-
-	this.x = x;
-	this.y = y;
-
-	return this;
+	return this.set(
+		this.x * cos + this.y * sin,
+		this.y * cos - this.x * sin);
 };
 
 // Numeric 2D info functions (non-mutating)

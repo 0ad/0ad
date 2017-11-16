@@ -69,12 +69,8 @@ var brokenVector = {
 	for (let expectedVector of unitCircle)
 	{
 		let computedVector = new Vector2D(1, 0).rotate(-expectedVector.angle);
-		for (let s of ["x", "y"])
-			if (Math.abs(expectedVector[s] - computedVector[s]) > epsilon)
-			{
-				TS_FAIL("Expected " + uneval(expectedVector) + " got " + uneval(computedVector));
-				break;
-			}
+		TS_ASSERT_EQUALS_APPROX(computedVector.x, expectedVector.x, epsilon);
+		TS_ASSERT_EQUALS_APPROX(computedVector.y, expectedVector.y, epsilon);
 	}
 }
 
