@@ -64,16 +64,14 @@ var stripWidthsLeft = connectPlayers ?
 	[[0.03, 0.09], [0.14, 0.25], [0.36, 0.46]] : 
 	[[0, 0.06], [0.12, 0.23], [0.33, 0.43]];
 
-var playerPosLeft = (stripWidthsLeft[2][0] + stripWidthsLeft[2][1]) / 2;
-
 // Mirror
 var stripWidthsRight = clone(stripWidthsLeft);
 stripWidthsRight.reverse();
 stripWidthsRight = stripWidthsRight.map(strip => [1 - strip[1], 1 - strip[0]]);
 
 var stripWidths = stripWidthsLeft.concat(stripWidthsRight);
-var playerPos = [playerPosLeft, 1 - playerPosLeft];
 
+log("Creating strips...");
 for (let i = 0; i < stripWidths.length; ++i)
 {
 	clStrip[i] = createTileClass();
@@ -97,33 +95,18 @@ for (let i = 0; i < stripWidths.length; ++i)
 }
 RMS.SetProgress(20);
 
-var playerIDs = sortAllPlayers();
+var [playerIDs, playerX, playerZ] = playerPlacementLine(false, 0.5, 1 - stripWidthsLeft[2][0] - stripWidthsLeft[2][1]);
 
 // Either left vs right or top vs bottom
-var leftVSRight = randBool();
+playerIDs = randBool() ? sortAllPlayers() : primeSortAllPlayers();
 
 for (let i = 0; i < numPlayers; ++i)
 {
-	let playerX;
-	let playerZ;
-
-	if (leftVSRight)
-	{
-		let left = i < numPlayers / 2;
-		playerX = playerPos[left ? 0 : 1];
-		playerZ = 2 * (left ? i + 1 : numPlayers - i - 0.5) / (numPlayers + 1 + numPlayers % 2);
-	}
-	else
-	{
-		playerX = playerPos[i % 2];
-		playerZ = (i + 1) / (numPlayers + 1);
-	}
-
 	log("Creating base for player " + playerIDs[i] + "...");
 	let radius = scaleByMapSize(12, 20);
 
-	let fx = fractionToTiles(playerX);
-	let fz = fractionToTiles(playerZ);
+	let fx = fractionToTiles(playerX[i]);
+	let fz = fractionToTiles(playerZ[i]);
 	let ix = Math.round(fx);
 	let iz = Math.round(fz);
 

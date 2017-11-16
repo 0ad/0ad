@@ -162,6 +162,29 @@ function placePlayersRiver()
 	return playerPos;
 }
 
+/***
+ * Returns starting positions located on two parallel lines.
+ * The locations on the first line are shifted in comparison to the other line.
+ * The players are grouped per team and hence they can be found on both lines.
+ */
+function playerPlacementLine(horizontal, center, width)
+{
+	let playerX = [];
+	let playerZ = [];
+	let numPlayers = getNumPlayers();
+
+	for (let i = 0; i < numPlayers; ++i)
+	{
+		playerX[i] = (i + 1) / (numPlayers + 1);
+		playerZ[i] = center + width * (i % 2 - 1/2);
+
+		if (!horizontal)
+			[playerX[i], playerZ[i]] = [playerZ[i], playerX[i]];
+	}
+
+	return [sortAllPlayers(), playerX, playerZ];
+}
+
 /**
  * Sorts the playerIDs so that team members are as close as possible.
  */

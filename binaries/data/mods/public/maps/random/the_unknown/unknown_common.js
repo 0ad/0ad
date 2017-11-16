@@ -520,14 +520,7 @@ function unknownEdgeSeas()
 	let horizontal = randBool();
 	if (g_PlayerBases)
 	{
-		for (let i = 0; i < numPlayers; i++)
-		{
-			let playerPos1 = (i + 1) / (numPlayers + 1);
-			let playerPos2 = 0.4 + 0.2 * (i % 2);
-
-			playerX[i] = horizontal ? playerPos1 : playerPos2;
-			playerZ[i] = horizontal ? playerPos2 : playerPos1;
-		}
+		[playerIDs, playerX, playerZ] = playerPlacementLine(horizontal, 0.5, 0.2);
 		// Don't place the shoreline inside the CC, but possibly into the players territory
 		markPlayerArea("small");
 	}

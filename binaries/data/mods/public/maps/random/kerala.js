@@ -48,7 +48,7 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clMountains = createTileClass();
 
-var playerIDs = sortAllPlayers();
+var [playerIDs, playerX, playerZ] = playerPlacementLine(false, 0.55, 0.2);
 
 for (var i = 0; i < numPlayers; i++)
 {
@@ -60,8 +60,8 @@ for (var i = 0; i < numPlayers; i++)
 	var elevation = 20;
 
 	// get the x and z in tiles
-	var fx = fractionToTiles(0.45 + 0.2 * (i % 2));
-	var fz = fractionToTiles((i + 1) / (numPlayers + 1));
+	var fx = fractionToTiles(playerX[i]);
+	var fz = fractionToTiles(playerZ[i]);
 	var ix = round(fx);
 	var iz = round(fz);
 	addCivicCenterAreaToClass(ix, iz, clPlayer);

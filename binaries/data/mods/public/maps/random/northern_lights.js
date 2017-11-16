@@ -41,7 +41,7 @@ var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
-var playerIDs = sortAllPlayers();
+var [playerIDs, playerX, playerZ] = playerPlacementLine(true, 0.45, 0.2);
 
 for (var i = 0; i < numPlayers; i++)
 {
@@ -53,8 +53,8 @@ for (var i = 0; i < numPlayers; i++)
 	var elevation = 20;
 
 	// get the x and z in tiles
-	var fx = fractionToTiles((i + 1) / (numPlayers + 1));
-	var fz = fractionToTiles(0.35 + 0.2 * (i % 2));
+	var fx = fractionToTiles(playerX[i]);
+	var fz = fractionToTiles(playerZ[i]);
 	var ix = round(fx);
 	var iz = round(fz);
 	addCivicCenterAreaToClass(ix, iz, clPlayer);

@@ -67,29 +67,14 @@ var clFood = createTileClass();
 var clPlayer = createTileClass();
 var clBaseResource = createTileClass();
 
-var playerIDs = sortAllPlayers();
-
 log("Creating players...");
 
-var playerX = [];
-var playerZ = [];
-
-var numLeftPlayers = ceil(numPlayers/2);
-for (var i = 1; i <= numLeftPlayers; i++)
-{
-	playerX[i] = randFloat(0.27, 0.29);
-	playerZ[i] = (0.5+i-1)/numLeftPlayers + randFloat(-0.01, 0.01);
-}
-for (var i = numLeftPlayers+1; i <= numPlayers; i++)
-{
-	playerX[i] = randFloat(0.71, 0.73);
-	playerZ[i] = (0.5+i-numLeftPlayers-1)/numLeftPlayers + randFloat(-0.01, 0.01);
-}
+var [playerIDs, playerX, playerZ] = playerPlacementLine(false, 0.5, randFloat(0.42, 0.46));
 
 function distanceToPlayers(x, z)
 {
 	var r = 10000;
-	for (var i = 1; i <= numPlayers; i++)
+	for (let i = 0; i < numPlayers; ++i)
 	{
 		var dx = x - playerX[i];
 		var dz = z - playerZ[i];
@@ -321,9 +306,9 @@ for (var ix = 0; ix < mapSize; ix++)
 
 RMS.SetProgress(30);
 
-for (var i = 1; i <= numPlayers; i++)
+for (var i = 0; i < numPlayers; ++i)
 {
-	var id = playerIDs[i-1];
+	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
 
 	// get fractional locations in tiles
