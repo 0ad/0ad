@@ -534,20 +534,19 @@ function unknownEdgeSeas()
 
 	for (let location of pickRandom([["first"], ["second"], ["first", "second"]]))
 	{
-		let margin = randFloat(0, scaleByMapSize(0, 0.1));
-		let positionX = location == "first" ? [0, margin] : [1 - margin, 1];
+		let positionX = location == "first" ? [0, 0] : [1, 1];
 		let positionZ = [0, 1];
 
-		if (!horizontal)
+		if (horizontal)
 			[positionX, positionZ] = [positionZ, positionX];
 
 		paintRiver({
-			"parallel": false,
+			"parallel": true,
 			"startX": positionX[0],
 			"startZ": positionZ[0],
 			"endX": positionX[1],
 			"endZ": positionZ[1],
-			"width": 0.62,
+			"width": 0.62 - randFloat(0, scaleByMapSize(0, 0.1)),
 			"fadeDist": 0.015,
 			"deviation": 0,
 			"waterHeight": waterHeight,
@@ -1162,6 +1161,6 @@ function createUnknownPlayerBases()
 		var cityRadius = radius/3;
 		var placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, ix, iz);
 		var painter = new LayeredPainter([tRoadWild, tRoad], [1]);
-		createArea(placer, [painter], null);
+		createArea(placer, [painter, paintClass(clPlayer)], null);
 	}
 }

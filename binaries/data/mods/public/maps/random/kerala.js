@@ -136,7 +136,7 @@ const waterPos = 0.31;
 const mountainPos = 0.69;
 
 paintRiver({
-	"parallel": false,
+	"parallel": true,
 	"startX": 0,
 	"startZ": 0,
 	"endX": 0,
