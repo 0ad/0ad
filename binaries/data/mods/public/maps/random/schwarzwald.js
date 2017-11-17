@@ -83,7 +83,6 @@ var tWaterBorder = ['dirt_brown_d'];
 
 var mapSize = getMapSize();
 var mapRadius = mapSize/2;
-var playableMapRadius = mapRadius - 5;
 var mapCenterX = mapRadius;
 var mapCenterZ = mapRadius;
 
@@ -357,6 +356,9 @@ for (var x = 0; x < mapSize; x++)
 {
 	for (var z = 0;z < mapSize;z++)
 	{
+		if (!g_Map.validT(x, z))
+			continue;
+
 		// The 0.5 is a correction for the entities placed on the center of tiles
 		var radius = Math.euclidDistance2D(x + 0.5, z + 0.5, mapCenterX, mapCenterZ);
 		var minDistToSL = mapSize;
@@ -368,20 +370,19 @@ for (var x = 0; x < mapSize; x++)
 		var tDensFactRad = abs((resourceRadius - radius) / resourceRadius);
 		var tDensActual = (maxTreeDensity * tDensFactSL * tDensFactRad)*0.75;
 
-		if (randBool(tDensActual) && radius < playableMapRadius)
-		{
-			if (tDensActual < randFloat(0, bushChance * maxTreeDensity))
-			{
-				var placer = new ClumpPlacer(1, 1.0, 1.0, 1, x, z);
-				var painter = [new TerrainPainter(terrainWoodBorder), paintClass(clForest)];
-				createArea(placer, painter, avoidClasses(clPath, 1, clOpen, 2, clWater,3));
-			}
-			else
-			{
-				var placer = new ClumpPlacer(1, 1.0, 1.0, 1, x, z);
-				var painter = [new TerrainPainter(terrainWood), paintClass(clForest)];
-				createArea(placer, painter, avoidClasses(clPath, 2, clOpen, 3, clWater, 4));}
-		}
+		if (!randBool(tDensActual))
+			continue;
+
+		let border = tDensActual < randFloat(0, bushChance * maxTreeDensity);
+		createArea(
+			new ClumpPlacer(1, 1, 1, 1, x, z),
+			[
+				new TerrainPainter(border ? terrainWoodBorder : terrainWood),
+				paintClass(clForest)
+			],
+			border ?
+				avoidClasses(clPath, 1, clOpen, 2, clWater, 3) :
+				avoidClasses(clPath, 2, clOpen, 3, clWater, 4));
 	}
 }
 
