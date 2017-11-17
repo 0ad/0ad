@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-06-04 09:07+0200\n"
+"POT-Creation-Date: 2017-11-17 09:04+0100\n"
+"PO-Revision-Date: 2017-11-17 09:04+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,7 +17,7 @@ msgid "Dockyard Repairs"
 msgstr ""
 
 #: simulation/data/auras/structures/cart_super_dock_repair.json:auraDescription
-msgid "Heals garrisoned ship at 10 HP per second."
+msgid "Repairs garrisoned ship at 10 HP per second."
 msgstr ""
 
 #: simulation/data/auras/structures/epic_temple_heal.json:auraName
@@ -109,6 +109,14 @@ msgstr ""
 msgid ""
 "Further increase the population limit by 40 per wonder owned (requires "
 "\"Glorious Expansion\" tech)."
+msgstr ""
+
+#: simulation/data/auras/structures/workshop_repair.json:auraName
+msgid "Workshop Repairs"
+msgstr ""
+
+#: simulation/data/auras/structures/workshop_repair.json:auraDescription
+msgid "Repairs garrisoned siege units at 3 HP per second."
 msgstr ""
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.json:auraName
@@ -573,20 +581,20 @@ msgstr ""
 msgid "+15 Metal loot for every enemy unit killed."
 msgstr ""
 
-#: simulation/data/auras/units/heroes/gaul_hero_britomartus.json:auraName
-msgid "Preparation for War"
-msgstr ""
-
-#: simulation/data/auras/units/heroes/gaul_hero_britomartus.json:auraDescription
-msgid "Gathering rates increased with +15% during his lifetime."
-msgstr ""
-
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.json:auraName
 msgid "Celtic Warlord"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.json:auraDescription
 msgid "+20% attack and +1 capture for soldiers and siege engines."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/gaul_hero_viridomarus.json:auraName
+msgid "Preparation for War"
+msgstr ""
+
+#: simulation/data/auras/units/heroes/gaul_hero_viridomarus.json:auraDescription
+msgid "Gathering rates increased with +15% during his lifetime."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/hero_garrison.json:auraName

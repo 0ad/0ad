@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-09-11 09:05+0200\n"
-"PO-Revision-Date: 2017-09-11 15:01+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-11-15 23:08+0000\n"
+"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -499,8 +499,8 @@ msgstr "Μπορείτε να επιτεθείτε τώρα!"
 #, javascript-format
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ο %(lastPlayer)sέχει νικήσει (τελευταίος ζωντανός παίχτης). "
+msgstr[1] "ο %(players)s και ο %(lastPlayer)s έχουν νικήσει (τελευταίοι ζωντανοί παίχτες)."
 
 #: simulation/components/EndGameManager.js:181
 msgid "Last remaining player wins."
@@ -559,7 +559,7 @@ msgstr "Δεν μπορεί να βρεθεί ελεύθερος χώρος γι
 #: simulation/helpers/Cheat.js:53
 #, javascript-format
 msgid "%(player)s has been defeated (cheat)."
-msgstr ""
+msgstr "ο%(player)s ηττήθηκε (κλέψιμο)."
 
 #: simulation/helpers/Cheat.js:62
 msgid "You need to select a building that trains units."
@@ -576,7 +576,7 @@ msgstr "(Απάτη -  αποκάλυψης χάρτη)"
 #: simulation/helpers/Commands.js:453
 #, javascript-format
 msgid "%(player)s has resigned."
-msgstr ""
+msgstr "ο %(player)s παραιτήθηκε."
 
 #: simulation/helpers/Commands.js:595
 msgid "(Cheat - promoted units)"
@@ -701,7 +701,7 @@ msgstr "Κατέλαβε όλα τα ιερά κειμήλια που είναι
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
 msgid "Capture the Relic"
-msgstr ""
+msgstr "Αρπαγή Ιερού Λειψάνου"
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Description
 msgid "Defeat all opponents to win."
@@ -748,27 +748,27 @@ msgstr "Θαύμα"
 #: simulation/data/settings/starting_resources.jsonData[0].Title
 msgctxt "startingResources"
 msgid "Very Low"
-msgstr "Πολύ χαμηλό"
+msgstr "Πολλοί Λίγοι"
 
 #: simulation/data/settings/starting_resources.jsonData[1].Title
 msgctxt "startingResources"
 msgid "Low"
-msgstr "Χαμηλό"
+msgstr "Λίγοι"
 
 #: simulation/data/settings/starting_resources.jsonData[2].Title
 msgctxt "startingResources"
 msgid "Medium"
-msgstr "Μεσαίο"
+msgstr "Μέτριοι"
 
 #: simulation/data/settings/starting_resources.jsonData[3].Title
 msgctxt "startingResources"
 msgid "High"
-msgstr "Υψηλό"
+msgstr "Αρκετοί"
 
 #: simulation/data/settings/starting_resources.jsonData[4].Title
 msgctxt "startingResources"
 msgid "Very High"
-msgstr "Πολύ υψηλό"
+msgstr "Παρά Πολλοι"
 
 #: simulation/data/settings/starting_resources.jsonData[5].Title
 msgctxt "startingResources"
@@ -777,7 +777,7 @@ msgstr "Αγώνας Θανάτου"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Name
 msgid "Tiny"
-msgstr "Μικροσκοπικό"
+msgstr "Μικροσκοπικός"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Tooltip
 msgid "This map size has barely any room for even the most basic resources."
@@ -785,7 +785,7 @@ msgstr "Αυτό το μέγεθος χάρτη έχει ελάχιστα περ
 
 #: simulation/data/settings/map_sizes.jsonData[1].Name
 msgid "Small"
-msgstr "Μικρό"
+msgstr "Μικρός"
 
 #: simulation/data/settings/map_sizes.jsonData[1].Tooltip
 msgid ""
@@ -795,7 +795,7 @@ msgstr "Οι μικροί χάρτες είναι κατάλληλοι για α
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Medium"
-msgstr "Μέσης δυσκολίας"
+msgstr "Μεσαίος"
 
 #: simulation/data/settings/map_sizes.jsonData[2].Tooltip
 msgid ""
@@ -805,7 +805,7 @@ msgstr "Οι μεσαίου μεγέθους χάρτες παρέχουν αρ�
 
 #: simulation/data/settings/map_sizes.jsonData[3].Name
 msgid "Normal"
-msgstr "Κανονικό"
+msgstr "Κανονικός"
 
 #: simulation/data/settings/map_sizes.jsonData[3].Tooltip
 msgid ""
@@ -815,7 +815,7 @@ msgstr "Αυτός είναι το ιδανικό μέγεθος χάρτη γι
 
 #: simulation/data/settings/map_sizes.jsonData[4].Name
 msgid "Large"
-msgstr "Μεγάλο"
+msgstr "Μεγάλος"
 
 #: simulation/data/settings/map_sizes.jsonData[4].Tooltip
 msgid ""
@@ -825,7 +825,7 @@ msgstr "Το μεγάλο μέγεθος του χάρτη συνιστάται 
 
 #: simulation/data/settings/map_sizes.jsonData[5].Name
 msgid "Very Large"
-msgstr "Πολύ Μεγάλο"
+msgstr "Πολύ Μεγάλος"
 
 #: simulation/data/settings/map_sizes.jsonData[5].Tooltip
 #: simulation/data/settings/map_sizes.jsonData[6].Tooltip
@@ -836,7 +836,7 @@ msgstr "Πολύ μεγάλοι χάρτες δεν συνιστώνται κα�
 
 #: simulation/data/settings/map_sizes.jsonData[6].Name
 msgid "Giant"
-msgstr "Τεράστιο"
+msgstr "Τεράστιος"
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
