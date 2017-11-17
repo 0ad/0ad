@@ -242,7 +242,7 @@ m.DefenseManager.prototype.checkEnemyUnits = function(gameState)
 			this.makeIntoArmy(gameState, ent.id());
 	}
 
-	if (i !== 0 || this.armies.length > 1 || gameState.ai.HQ.numActiveBase() === 0)
+	if (i != 0 || this.armies.length > 1 || gameState.ai.HQ.numActiveBases() == 0)
 		return;
 	// look for possible gaia buildings inside our territory (may happen when enemy resign or after structure decay)
 	// and attack it only if useful (and capturable) or dangereous

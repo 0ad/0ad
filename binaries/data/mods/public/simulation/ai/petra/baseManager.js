@@ -87,7 +87,7 @@ m.BaseManager.prototype.setAnchor = function(gameState, anchorEntity)
 	this.anchor.setMetadata(PlayerID, "baseAnchor", true);
 	this.buildings.updateEnt(this.anchor);
 	this.accessIndex = gameState.ai.accessibility.getAccessValue(this.anchor.position());
-	gameState.ai.HQ.resetActiveBase();
+	gameState.ai.HQ.resetBaseCache();
 	// in case some of our other bases were destroyed, reaffect these destroyed bases to this base
 	for (let base of gameState.ai.HQ.baseManagers)
 	{
@@ -98,7 +98,7 @@ m.BaseManager.prototype.setAnchor = function(gameState, anchorEntity)
 	return true;
 };
 
-m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
+m.BaseManager.prototype.checkEvents = function (gameState, events)
 {
 	for (let evt of events.Destroy)
 	{
@@ -158,7 +158,7 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 			continue;
 		this.anchorId = evt.newentity;
 		this.anchor = gameState.getEntityById(evt.newentity);
-		gameState.ai.HQ.resetActiveBase();
+		gameState.ai.HQ.resetBaseCache();
 	}
 };
 
@@ -174,7 +174,7 @@ m.BaseManager.prototype.anchorLost = function (gameState, ent)
 		bestbase.assignEntity(gameState, entity);
 	for (let entity of this.buildings.values())
 		bestbase.assignEntity(gameState, entity);
-	gameState.ai.HQ.resetActiveBase();
+	gameState.ai.HQ.resetBaseCache();
 };
 
 /**
@@ -825,7 +825,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 			maxTotalBuilders = Math.max(maxTotalBuilders, 15);
 		}
 		// if no base yet, everybody should build
-		if (gameState.ai.HQ.numActiveBase() === 0)
+		if (gameState.ai.HQ.numActiveBases() == 0)
 		{
 			targetNB = workers.length;
 			maxTotalBuilders = targetNB;
@@ -961,7 +961,7 @@ m.BaseManager.prototype.update = function(gameState, queues, events)
 	{
 		// if some active base, reassigns the workers/buildings
 		// otherwise look for anything useful to do, i.e. treasures to gather
-		if (gameState.ai.HQ.numActiveBase() > 0)
+		if (gameState.ai.HQ.numActiveBases() > 0)
 		{
 			for (let ent of this.units.values())
 				m.getBestBase(gameState, ent).assignEntity(gameState, ent);
@@ -1022,7 +1022,7 @@ m.BaseManager.prototype.update = function(gameState, queues, events)
 				if (API3.SquareVectorDistance(cc.position(), this.anchor.position()) > 8000)
 					continue;
 				this.anchor.destroy();
-				gameState.ai.HQ.resetActiveBase();
+				gameState.ai.HQ.resetBaseCache();
 				break;
 			}
 		}

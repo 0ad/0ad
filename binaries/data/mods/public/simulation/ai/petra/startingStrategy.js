@@ -443,6 +443,8 @@ m.HQ.prototype.configFirstBase = function(gameState)
 	if (this.baseManagers.length < 2)
 		return;
 
+	this.firstBaseConfig = true;
+
 	let startingSize = 0;
 	let startingLand = [];
 	for (let region in this.landRegions)
