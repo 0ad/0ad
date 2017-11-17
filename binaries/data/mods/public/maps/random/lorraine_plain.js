@@ -50,18 +50,9 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clShallow = createTileClass();
 
-var playerIDs = primeSortAllPlayers();
-var playerPos = placePlayersRiver();
 var waterHeight = -4;
 
-var playerX = [];
-var playerZ = [];
-
-for (var i = 0; i < numPlayers; i++)
-{
-	playerZ[i] = 0.25 + 0.5*(i%2);
-	playerX[i] = playerPos[i];
-}
+var [playerIDs, playerX, playerZ] = playerPlacementRiver(Math.PI / 2, 0.5);
 
 for (var i = 0; i < numPlayers; i++)
 {

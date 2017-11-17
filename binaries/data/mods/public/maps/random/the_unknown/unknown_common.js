@@ -317,17 +317,7 @@ function unknownCentralSea()
 
 	if (g_PlayerBases)
 	{
-		playerIDs = primeSortAllPlayers();
-		let playerPos = placePlayersRiver();
-
-		for (let i = 0; i < numPlayers; ++i)
-		{
-			playerX[i] = playerPos[i];
-			playerZ[i] = 0.2 + 0.6 * (i % 2);
-		}
-
-		if (!horizontal)
-			[playerX, playerZ] = [playerZ, playerX];
+		[playerIDs, playerX, playerZ] = playerPlacementRiver(horizontal ? Math.PI / 2 : 0, 0.6);
 		markPlayerArea("small");
 	}
 
@@ -370,18 +360,7 @@ function unknownCentralRiver()
 
 	if (g_PlayerBases)
 	{
-		playerIDs = primeSortAllPlayers();
-		let playerPos = placePlayersRiver();
-
-		for (let i = 0; i < numPlayers; ++i)
-		{
-			playerX[i] = playerPos[i];
-			playerZ[i] = 0.25 + 0.5*(i%2);
-		}
-
-		if (!horizontal)
-			[playerX, playerZ] = [playerZ, playerX];
-
+		[playerIDs, playerX, playerZ] = playerPlacementRiver(horizontal ? Math.PI / 2 : 0, 0.5);
 		markPlayerArea("large");
 	}
 

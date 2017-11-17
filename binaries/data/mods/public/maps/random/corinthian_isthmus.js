@@ -62,8 +62,8 @@ var landHeight = getMapBaseHeight();
 var waterHeight = -4;
 
 log("Creating the main river");
+var riverAngle = randFloat(0, Math.PI);
 var riverWidth = scaleByMapSize(15, 70);
-var riverAngle = -Math.PI / 4;
 var riverStart = new Vector2D(mapCenter.x, 0).rotateAround(riverAngle, mapCenter);
 var riverEnd = new Vector2D(mapCenter.x, mapSize).rotateAround(riverAngle, mapCenter);
 
@@ -102,17 +102,7 @@ paintTerrainBasedOnHeight(2, 5, 1, tGrass);
 
 paintTileClassBasedOnHeight(-6, 0.5, 1, clWater);
 
-var playerIDs = primeSortAllPlayers();
-var playerPos = placePlayersRiver();
-
-var playerX = [];
-var playerZ = [];
-
-for (var i = 0; i < numPlayers; i++)
-{
-	playerZ[i] = Math.sqrt(0.5)*(0.6*(i%2) - 0.8 + playerPos[i]) + 0.5;
-	playerX[i] = Math.sqrt(0.5)*(0.6*(i%2) + 0.2 - playerPos[i]) + 0.5;
-}
+var [playerIDs, playerX, playerZ] = playerPlacementRiver(riverAngle + Math.PI / 2, 0.6);
 
 for (var i = 0; i < numPlayers; i++)
 {

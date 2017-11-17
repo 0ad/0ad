@@ -311,17 +311,7 @@ if (gallicCC)
 }
 RMS.SetProgress(10);
 
-var playerIDs = primeSortAllPlayers();
-var playerPos = placePlayersRiver();
-
-var playerX = [];
-var playerZ = [];
-
-for (let i = 0; i < numPlayers; ++i)
-{
-	playerZ[i] = playerPos[i];
-	playerX[i] = 0.2 + 0.6 * (i % 2);
-}
+var [playerIDs, playerX, playerZ] = playerPlacementRiver(0, 0.6);
 
 for (let i = 0; i < numPlayers; ++i)
 {
