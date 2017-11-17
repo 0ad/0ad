@@ -1,4 +1,4 @@
-Trigger.prototype.ConquestHandlerOwnerShipChanged = function(msg)
+Trigger.prototype.ConquestOwnershipChanged = function(msg)
 {
 	if (!this.conquestDataInit || !this.conquestClassFilter)
 		return;
@@ -6,25 +6,16 @@ Trigger.prototype.ConquestHandlerOwnerShipChanged = function(msg)
 	if (!TriggerHelper.EntityMatchesClassList(msg.entity, this.conquestClassFilter))
 		return;
 
-	if (msg.from == -1)
-		return;
-
-	if (msg.to > 0 && this.conquestEntitiesByPlayer[msg.to])
+	if (msg.to > 0)
 		this.conquestEntitiesByPlayer[msg.to].push(msg.entity);
 
-	if (!this.conquestEntitiesByPlayer[msg.from])
+	if (msg.from > 0)
 	{
-		if (msg.from)
-			warn("ConquestHandlerOwnerShipChanged: Unknow player " + msg.from);
-		return;
-	}
+		let entities = this.conquestEntitiesByPlayer[msg.from];
+		let index = entities.indexOf(msg.entity);
+		if (index != -1)
+			entities.splice(index, 1);
 
-	let entities = this.conquestEntitiesByPlayer[msg.from];
-	let index = entities.indexOf(msg.entity);
-
-	if (index >= 0)
-	{
-		entities.splice(index, 1);
 		if (!entities.length)
 		{
 			let cmpPlayer = QueryPlayerIDInterface(msg.from);
@@ -32,46 +23,6 @@ Trigger.prototype.ConquestHandlerOwnerShipChanged = function(msg)
 				cmpPlayer.SetState("defeated", this.conquestDefeatReason);
 		}
 	}
-};
-
-Trigger.prototype.ConquestAddStructure = function(msg)
-{
-	if (!this.conquestClassFilter || !TriggerHelper.EntityMatchesClassList(msg.building, this.conquestClassFilter))
-		return;
-
-	let cmpOwnership = Engine.QueryInterface(msg.building, IID_Ownership);
-	if (!cmpOwnership)
-	{
-		warn("ConquestAddStructure: Structure without Owner");
-		return;
-	}
-
-	let player = cmpOwnership.GetOwner();
-	if (!this.conquestEntitiesByPlayer[player])
-	{
-		if (player != 0)
-			warn("ConquestAddStructure: Unknown player " + player);
-		return;
-	}
-
-	if (this.conquestEntitiesByPlayer[player].indexOf(msg.building) >= 0)
-		return;
-
-	this.conquestEntitiesByPlayer[player].push(msg.building);
-};
-
-Trigger.prototype.ConquestTrainingFinished = function(msg)
-{
-	if (msg.owner == 0 || !this.conquestClassFilter || !msg.entities.length || !msg.entities.every(elem => TriggerHelper.EntityMatchesClassList(elem, this.conquestClassFilter)))
-		return;
-
-	let player = msg.owner;
-	if (!this.conquestEntitiesByPlayer[player])
-	{
-		warn("ConquestTrainingFinished: Unknown player " + player);
-		return;
-	}
-	this.conquestEntitiesByPlayer[player].push(...msg.entities);
 };
 
 Trigger.prototype.ConquestStartGameCount = function()
@@ -87,8 +38,7 @@ Trigger.prototype.ConquestStartGameCount = function()
 	let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
 	for (let i = 1; i < numPlayers; ++i)
 	{
-		let filterEntity = ent => TriggerHelper.EntityMatchesClassList(ent, this.conquestClassFilter)
-			&& !Engine.QueryInterface(ent, IID_Foundation);
+		let filterEntity = ent => TriggerHelper.EntityMatchesClassList(ent, this.conquestClassFilter);
 		this.conquestEntitiesByPlayer[i] = [...cmpRangeManager.GetEntitiesByPlayer(i).filter(filterEntity)];
 	}
 
@@ -100,4 +50,6 @@ Trigger.prototype.ConquestStartGameCount = function()
 	cmpTrigger.conquestEntitiesByPlayer = {};
 	cmpTrigger.conquestDataInit = false;
 	cmpTrigger.conquestClassFilter = "";
+	cmpTrigger.RegisterTrigger("OnOwnershipChanged", "ConquestOwnershipChanged", { "enabled": true });
+	cmpTrigger.DoAfterDelay(0, "ConquestStartGameCount", null);
 }
