@@ -520,34 +520,26 @@ function unknownEdgeSeas()
 	let horizontal = randBool();
 	if (g_PlayerBases)
 	{
-		for (let i = 0; i < numPlayers; i++)
-		{
-			let playerPos1 = (i + 1) / (numPlayers + 1);
-			let playerPos2 = 0.4 + 0.2 * (i % 2);
-
-			playerX[i] = horizontal ? playerPos1 : playerPos2;
-			playerZ[i] = horizontal ? playerPos2 : playerPos1;
-		}
+		[playerIDs, playerX, playerZ] = playerPlacementLine(horizontal, 0.5, 0.2);
 		// Don't place the shoreline inside the CC, but possibly into the players territory
 		markPlayerArea("small");
 	}
 
 	for (let location of pickRandom([["first"], ["second"], ["first", "second"]]))
 	{
-		let margin = randFloat(0, scaleByMapSize(0, 0.1));
-		let positionX = location == "first" ? [0, margin] : [1 - margin, 1];
+		let positionX = location == "first" ? [0, 0] : [1, 1];
 		let positionZ = [0, 1];
 
-		if (!horizontal)
+		if (horizontal)
 			[positionX, positionZ] = [positionZ, positionX];
 
 		paintRiver({
-			"parallel": false,
+			"parallel": true,
 			"startX": positionX[0],
 			"startZ": positionZ[0],
 			"endX": positionX[1],
 			"endZ": positionZ[1],
-			"width": 0.62,
+			"width": 0.62 - randFloat(0, scaleByMapSize(0, 0.1)),
 			"fadeDist": 0.015,
 			"deviation": 0,
 			"waterHeight": waterHeight,
@@ -1162,6 +1154,6 @@ function createUnknownPlayerBases()
 		var cityRadius = radius/3;
 		var placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, ix, iz);
 		var painter = new LayeredPainter([tRoadWild, tRoad], [1]);
-		createArea(placer, [painter], null);
+		createArea(placer, [painter, paintClass(clPlayer)], null);
 	}
 }

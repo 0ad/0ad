@@ -31,8 +31,6 @@ const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TE
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
 const oTreasureSeeker = "skirmish/units/default_support_female_citizen";
-const oCivicCenter = "skirmish/structures/default_civil_centre";
-const oCitizenInfantry = "skirmish/units/default_infantry_melee_b";
 
 const triggerPointAttacker = "trigger/trigger_point_A";
 const triggerPointTreasures = [
@@ -45,6 +43,8 @@ InitMap();
 
 var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
+var mapArea = getMapArea();
+var mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -56,96 +56,53 @@ var clWomen = createTileClass();
 
 initTerrain(tMainTerrain);
 
-var ix = Math.round(fractionToTiles(0.5));
-var iz = Math.round(fractionToTiles(0.5));
-
 // Create the main treasure area in the middle of the map
 createArea(
-	new ClumpPlacer(mapSize * mapSize * scaleByMapSize(0.065, 0.09), 0.7, 0.1, 10, ix, iz),
+	new ClumpPlacer(mapArea * scaleByMapSize(0.065, 0.09), 0.7, 0.1, 10, mapCenter.x, mapCenter.y),
 	[
 		new LayeredPainter([tMainTerrain, tMainTerrain], [3]),
 		new SmoothElevationPainter(ELEVATION_SET, 3, 3),
 		paintClass(clLand)
-	],
-	null);
+	]);
 RMS.SetProgress(10);
 
 var [playerIDs, playerX, playerZ, playerAngle, startAngle] = radialPlayerPlacement(0.3);
+var [halfwayX, halfwayZ] = distributePointsOnCircle(numPlayers, startAngle, fractionToTiles(0.375), mapCenter.x, mapCenter.y);
+var [attackerX, attackerZ] = distributePointsOnCircle(numPlayers, startAngle, fractionToTiles(0.45), mapCenter.x, mapCenter.y);
+var [passageX, passageZ] = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.5), mapCenter.x, mapCenter.y);
 
-var attackerX = [];
-var attackerZ = [];
-
+log("Creating player bases and attacker points...");
 for (let  i = 0; i < numPlayers; ++i)
 {
-	attackerX[i] = 0.5 + 0.45*cos(playerAngle[i]);
-	attackerZ[i] = 0.5 + 0.45*sin(playerAngle[i]);
-}
-
-for (let i = 0; i < numPlayers; ++i)
-{
-	var id = playerIDs[i];
-	log("Creating base for player " + id + "...");
-
-	var radius = scaleByMapSize(15, 25);
-
-	// place the attacker spawning trigger point
-	var ax = round(fractionToTiles(attackerX[i]));
-	var az = round(fractionToTiles(attackerZ[i]));
-	placeObject(ax, az, triggerPointAttacker, id, PI);
-	placeObject(ax, az, aWaypointFlag, 0, PI/2);
-	addToClass(ax, az, clPlayer);
-	addToClass(round(fractionToTiles((attackerX[i] + playerX[i]) / 2)), round(fractionToTiles((attackerZ[i] + playerZ[i]) / 2)), clPlayer);
-
-	// get the x and z in tiles
 	let fx = fractionToTiles(playerX[i]);
 	let fz = fractionToTiles(playerZ[i]);
-	let ix = round(fx);
-	let iz = round(fz);
 
-	addCivicCenterAreaToClass(ix, iz, clPlayer);
+	placeStartingEntities(fx, fz, playerIDs[i], getStartingEntities(playerIDs[i] - 1).filter(ent =>
+		ent.Template.indexOf("civil_centre") != -1 || ent.Template.indexOf("infantry") != -1));
 
-	// Place default civ starting entities
-	var uDist = 6;
-	var uSpace = 2;
-	placeObject(fx, fz, oCivicCenter, id, BUILDING_ORIENTATION);
-	var uAngle = BUILDING_ORIENTATION - PI / 2;
-	var count = 4;
-	for (let numberofentities = 0; numberofentities < count; ++numberofentities)
-	{
-		var ux = fx + uDist * cos(uAngle) + numberofentities * uSpace * cos(uAngle + PI/2) - (0.75 * uSpace * floor(count / 2) * cos(uAngle + PI/2));
-		var uz = fz + uDist * sin(uAngle) + numberofentities * uSpace * sin(uAngle + PI/2) - (0.75 * uSpace * floor(count / 2) * sin(uAngle + PI/2));
-		placeObject(ux, uz, oCitizenInfantry, id, uAngle);
-	}
+	placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, scaleByMapSize(15, 25));
 
-	placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, radius);
-
-	var tang = startAngle + (i + 0.5) * 2 * PI / numPlayers;
-
-	var placer = new PathPlacer(
-		fractionToTiles(0.5),
-		fractionToTiles(0.5),
-		fractionToTiles(0.5 + 0.5 * Math.cos(tang)),
-		fractionToTiles(0.5 + 0.5 * Math.sin(tang)),
-		scaleByMapSize(14, 24),
-		0.4,
-		3 * scaleByMapSize(1, 3),
-		0.2,
-		0.05);
-
+	log("Creating passage separating players...");
 	createArea(
-		placer,
+		new PathPlacer(mapCenter.x, mapCenter.y, passageX[i], passageZ[i], scaleByMapSize(14, 24), 0.4, scaleByMapSize(3, 9), 0.2, 0.05),
 		[
 			new LayeredPainter([tMainTerrain, tMainTerrain], [1]),
 			new SmoothElevationPainter(ELEVATION_SET, 3, 4)
-		],
-		null);
+		]);
 
-	var femaleLocation = getTIPIADBON([ix, iz], [mapSize / 2, mapSize / 2], [-3 , 3.5], 1, 3);
-	if (femaleLocation !== undefined)
-	{
-		placeObject(femaleLocation[0], femaleLocation[1], oTreasureSeeker, id, playerAngle[i] + PI);
-		addToClass(floor(femaleLocation[0]), floor(femaleLocation[1]), clWomen);
-	}
+	log("Placing treasure seeker woman...");
+	let femaleLocation = getTIPIADBON([fx, fz], [mapCenter.x, mapCenter.y], [-3 , 3.5], 1, 3);
+	placeObject(femaleLocation[0], femaleLocation[1], oTreasureSeeker, playerIDs[i], playerAngle[i] + Math.PI);
+	addToClass(Math.floor(femaleLocation[0]), Math.floor(femaleLocation[1]), clWomen);
+
+	log("Placing attacker spawn point....");
+	placeObject(attackerX[i], attackerZ[i], aWaypointFlag, 0, Math.PI / 2);
+	placeObject(attackerX[i], attackerZ[i], triggerPointAttacker, playerIDs[i], Math.PI / 2);
+
+	log("Preventing mountains in the area between player and attackers...");
+	addCivicCenterAreaToClass(Math.round(fx), Math.round(fz), clPlayer);
+	addToClass(Math.round(attackerX[i]), Math.round(attackerZ[i]), clPlayer);
+	addToClass(Math.round(halfwayX[i]), Math.round(halfwayZ[i]), clPlayer);
 }
 RMS.SetProgress(20);
 
