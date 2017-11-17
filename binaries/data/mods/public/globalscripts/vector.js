@@ -83,6 +83,14 @@ Vector2D.prototype.rotate = function(angle)
 		this.y * cos - this.x * sin);
 };
 
+/**
+ * Rotate radians anti-clockwise around the specified rotation center.
+ */
+Vector2D.prototype.rotateAround = function(angle, center)
+{
+	return this.sub(center).rotate(angle).add(center);
+};
+
 // Numeric 2D info functions (non-mutating)
 //
 // These methods serve to get numeric info on the vector, they don't modify the vector

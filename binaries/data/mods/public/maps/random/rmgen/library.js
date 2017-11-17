@@ -358,7 +358,7 @@ function getMapArea()
 
 function getMapCenter()
 {
-	return new Vector2D(g_Map.size / 2, g_Map.size / 2);
+	return deepfreeze(new Vector2D(g_Map.size / 2, g_Map.size / 2));
 }
 
 function getNumPlayers()

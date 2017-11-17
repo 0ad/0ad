@@ -74,6 +74,14 @@ var brokenVector = {
 	}
 }
 
+// Test Vector2D rotation around a center
+{
+	let epsilon = 0.00000001;
+	let v1 = new Vector2D(-4, 8).rotateAround(Math.PI / 3, new Vector2D(-1, -3));
+	TS_ASSERT_EQUALS_APPROX(v1.x, 7.02627944, epsilon);
+	TS_ASSERT_EQUALS_APPROX(v1.y, 5.09807617, epsilon);
+}
+
 // Test Vector2D dot product
 {
 	TS_ASSERT_EQUALS(new Vector2D(2, 3).dot(new Vector2D(4, 5)), 23);
