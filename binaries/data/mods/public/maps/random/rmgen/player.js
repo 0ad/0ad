@@ -139,15 +139,18 @@ function radialPlayerPlacement(radius = 0.35, startingAngle = undefined, centerX
 }
 
 /**
- * Returns an array of percent numbers indicating the player location on river maps.
- * For example [0.2, 0.2, 0.4, 0.4, 0.6, 0.6, 0.8, 0.8] for a 4v4 or
- * [0.25, 0.33, 0.5, 0.67, 0.75] for a 2v3.
+ * Returns player starting positions located on two parallel lines, typically used by central river maps.
+ * If there are two teams with an equal number of players, each team will occupy exactly one line.
+ * Angle 0 means the players are placed in north to south direction, i.e. along the Z axis.
  */
-function placePlayersRiver()
+function playerPlacementRiver(angle, width)
 {
-	let playerPos = [];
+	let positions = [];
+
 	let numPlayers = getNumPlayers();
 	let numPlayersEven = numPlayers % 2 == 0;
+
+	let mapCenter = new Vector2D(0.5, 0.5);
 
 	for (let i = 0; i < numPlayers; ++i)
 	{
@@ -156,10 +159,12 @@ function placePlayersRiver()
 		let offsetDivident = numPlayersEven || currentPlayerEven ? (i + 1) % 2 : 0;
 		let offsetDivisor = numPlayersEven ? 0 : currentPlayerEven ? +1 : -1;
 
-		playerPos[i] = ((i - 1 + offsetDivident) / 2 + 1) / ((numPlayers + offsetDivisor) / 2 + 1);
+		positions[i] = new Vector2D(
+			width * (i % 2) + (1 - width) / 2,
+			((i - 1 + offsetDivident) / 2 + 1) / ((numPlayers + offsetDivisor) / 2 + 1)).rotateAround(angle, mapCenter);
 	}
 
-	return playerPos;
+	return [primeSortAllPlayers(), positions.map(p => p.x), positions.map(p => p.y)];
 }
 
 /***

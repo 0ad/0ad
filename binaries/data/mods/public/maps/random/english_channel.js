@@ -56,18 +56,7 @@ var clShallow = createTileClass();
 var landHeight = 3;
 var waterHeight = -4;
 
-var playerIDs = primeSortAllPlayers();
-var playerPos = placePlayersRiver();
-
-var playerX = [];
-var playerZ = [];
-
-for (var i = 0; i < numPlayers; i++)
-{
-	playerZ[i] = 0.2 + 0.6*(i%2);
-	playerX[i] = playerPos[i];
-}
-
+var [playerIDs, playerX, playerZ] = playerPlacementRiver(Math.PI / 2, 0.6);
 for (var i = 0; i < numPlayers; i++)
 {
 	var id = playerIDs[i];
