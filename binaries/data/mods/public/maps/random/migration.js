@@ -29,7 +29,7 @@ const oSecondaryHuntableAnimal = g_Gaia.secondaryHuntableAnimal;
 const oStoneLarge = g_Gaia.stoneLarge;
 const oStoneSmall = g_Gaia.stoneSmall;
 const oMetalLarge = g_Gaia.metalLarge;
-const oWood = "gaia/special_treasure_wood";
+const oWoodTreasure = "gaia/special_treasure_wood";
 const oDock = "skirmish/structures/default_dock";
 
 const aGrass = g_Decoratives.grass;
@@ -149,7 +149,7 @@ for (var i = 0; i < numPlayers; i++)
 	var bbX = round(fx + bbDist * cos(bbAngle));
 	var bbZ = round(fz + bbDist * sin(bbAngle));
 	group = new SimpleGroup(
-		[new SimpleObject(oWood, 14,14, 0,3)],
+		[new SimpleObject(oWoodTreasure, 14,14, 0,3)],
 		true, clBaseResource, bbX, bbZ
 	);
 	createObjectGroup(group, 0);

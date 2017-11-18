@@ -18,8 +18,8 @@ const oSheep = "gaia/fauna_sheep";
 const oStoneLarge = "gaia/geology_stonemine_medit_quarry";
 const oStoneSmall = "gaia/geology_stone_mediterranean";
 const oMetalLarge = "gaia/geology_metal_mediterranean_slabs";
-const oWood = "gaia/special_treasure_wood";
-const oFood = "gaia/special_treasure_food_bin";
+const oWoodTreasure = "gaia/special_treasure_wood";
+const oFoodTreasure = "gaia/special_treasure_food_bin";
 
 const aGrass = "actor|props/flora/grass_soft_large_tall.xml";
 const aGrassShort = "actor|props/flora/grass_soft_large.xml";
@@ -229,7 +229,7 @@ createFood
 
 log("Creating food treasures...");
 var group = new SimpleGroup(
-	[new SimpleObject(oFood, 2,3, 0,2)],
+	[new SimpleObject(oFoodTreasure, 2,3, 0,2)],
 	true, clTreasure
 );
 createObjectGroupsDeprecated(group, 0,
@@ -239,7 +239,7 @@ createObjectGroupsDeprecated(group, 0,
 
 log("Creating food treasures...");
 group = new SimpleGroup(
-	[new SimpleObject(oWood, 2,3, 0,2)],
+	[new SimpleObject(oWoodTreasure, 2,3, 0,2)],
 	true, clTreasure
 );
 createObjectGroupsDeprecated(group, 0,

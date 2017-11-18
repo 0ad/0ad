@@ -21,8 +21,8 @@ const oStoneSmall = "gaia/geology_stone_desert_small";
 const oMetalLarge = "gaia/geology_metal_desert_slabs";
 const oDatePalm = "gaia/flora_tree_date_palm";
 const oSDatePalm = "gaia/flora_tree_cretan_date_palm_short";
-const oWood = "gaia/special_treasure_wood";
-const oFood = "gaia/special_treasure_food_bin";
+const oWoodTreasure = "gaia/special_treasure_wood";
+const oFoodTreasure = "gaia/special_treasure_food_bin";
 
 const aBush1 = "actor|props/flora/bush_desert_a.xml";
 const aBush2 = "actor|props/flora/bush_desert_dry_a.xml";
@@ -259,13 +259,13 @@ createObjectGroupsDeprecated(group, 0,
 );
 
 log("Creating treasures...");
-group = new SimpleGroup([new SimpleObject(oFood, 1,1, 0,2)], true, clTreasure);
+group = new SimpleGroup([new SimpleObject(oFoodTreasure, 1,1, 0,2)], true, clTreasure);
 createObjectGroupsDeprecated(group, 0,
 	borderClasses(clWater, 8, 5),
 	3*scaleByMapSize(5,20), 50
 );
 
-group = new SimpleGroup([new SimpleObject(oWood, 1,1, 0,2)], true, clTreasure);
+group = new SimpleGroup([new SimpleObject(oWoodTreasure, 1,1, 0,2)], true, clTreasure);
 createObjectGroupsDeprecated(group, 0,
 	borderClasses(clWater, 8, 5),
 	3*scaleByMapSize(5,20), 50

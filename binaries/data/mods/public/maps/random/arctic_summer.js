@@ -32,7 +32,7 @@ var oFish = "gaia/fauna_fish";
 var oStoneLarge = "gaia/geology_stonemine_alpine_quarry";
 var oStoneSmall = "gaia/geology_stone_alpine_a";
 var oMetalLarge = "gaia/geology_metal_alpine_slabs";
-var oWood = "gaia/special_treasure_wood";
+var oWoodTreasure = "gaia/special_treasure_wood";
 
 var aRockLarge = "actor|geology/stone_granite_med.xml";
 var aRockMedium = "actor|geology/stone_granite_med.xml";
@@ -118,7 +118,7 @@ for (let i = 0; i < numPlayers; i++)
 	mAngle += randFloat(PI/4, PI/6);
 	createObjectGroup(
 		new SimpleGroup(
-			[new SimpleObject(oWood, 10, 10, 0, 3)],
+			[new SimpleObject(oWoodTreasure, 10, 10, 0, 3)],
 			true,
 			clBaseResource,
 			Math.round(fx + bbDist * Math.cos(mAngle)),

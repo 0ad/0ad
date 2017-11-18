@@ -26,8 +26,8 @@ const oSecondaryHuntableAnimal = g_Gaia.secondaryHuntableAnimal;
 const oStoneLarge = g_Gaia.stoneLarge;
 const oStoneSmall = g_Gaia.stoneSmall;
 const oMetalLarge = g_Gaia.metalLarge;
-const oWood = "gaia/special_treasure_wood";
-const oFood = "gaia/special_treasure_food_bin";
+const oWoodTreasure = "gaia/special_treasure_wood";
+const oFoodTreasure = "gaia/special_treasure_food_bin";
 
 const aGrass = g_Decoratives.grass;
 const aGrassShort = g_Decoratives.grassShort;
@@ -413,7 +413,7 @@ createStragglerTrees(
 
 log("Creating treasures...");
 for (let i = 0; i < randIntInclusive(3, 8); ++i)
-	for (let template of [oFood, oWood])
+	for (let template of [oFoodTreasure, oWoodTreasure])
 		placeObject(center + randFloat(-7, 7), center + randFloat(-7, 7), template, 0, randFloat(0, 2 * Math.PI));
 
 ExportMap();

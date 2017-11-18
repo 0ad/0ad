@@ -21,7 +21,7 @@ var oFish = "gaia/fauna_fish";
 var oStoneLarge = "gaia/geology_stonemine_medit_quarry";
 var oStoneSmall = "gaia/geology_stone_alpine_a";
 var oMetalLarge = "gaia/geology_metal_desert_badlands_slabs";
-var oWood = "gaia/special_treasure_wood";
+var oWoodTreasure = "gaia/special_treasure_wood";
 var oMarket = "skirmish/structures/default_market";
 
 var aRockLarge = "actor|geology/stone_granite_med.xml";
@@ -94,7 +94,7 @@ for (let i = 0; i < numPlayers; ++i)
 	let bbZ = Math.round(fz + mDist * Math.sin(mAngle));
 	createObjectGroup(
 		new SimpleGroup(
-			[new SimpleObject(oWood, 14,14, 0,3)],
+			[new SimpleObject(oWoodTreasure, 14,14, 0,3)],
 			true, clBaseResource, bbX, bbZ,
 			avoidClasses(clBaseResource, 4)
 		), 0);
