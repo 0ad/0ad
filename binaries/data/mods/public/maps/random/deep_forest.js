@@ -37,7 +37,6 @@ var terrainHillBorder = ["temp_highlands", "temp_highlands", "temp_highlands", "
 
 var mapSize = getMapSize();
 var mapRadius = mapSize/2;
-var playableMapRadius = mapRadius - 5;
 var mapCenterX = mapRadius;
 var mapCenterZ = mapRadius;
 
@@ -222,20 +221,17 @@ for (var x = 0; x < mapSize; x++)
 		var tDensFactEC = max(min((radius - radiusEC) / radiusEC, 1), 0);
 		var tDensActual = maxTreeDensity * tDensFactSL * tDensFactRad * tDensFactEC;
 
-		if (randBool(tDensActual) && radius < playableMapRadius)
+		if (randBool(tDensActual) && g_Map.validT(x, z))
 		{
-			if (tDensActual < randFloat(0, bushChance * maxTreeDensity))
-			{
-				var placer = new ClumpPlacer(1, 1.0, 1.0, 1, x, z);
-				var painter = [new TerrainPainter(terrainWoodBorder), new ElevationPainter(randFloat(0, 1)), paintClass(clForest)];
-				createArea(placer, painter, avoidClasses(clPath, 1, clHill, 0));
-			}
-			else
-			{
-				var placer = new ClumpPlacer(1, 1.0, 1.0, 1, x, z);
-				var painter = [new TerrainPainter(terrainWood), new ElevationPainter(randFloat(0, 1)), paintClass(clForest)];
-				createArea(placer, painter, avoidClasses(clPath, 2, clHill, 1));
-			}
+			let border = tDensActual < randFloat(0, bushChance * maxTreeDensity);
+			createArea(
+				new ClumpPlacer(1, 1, 1, 1, x, z),
+				[
+					new TerrainPainter(border ? terrainWoodBorder : terrainWood),
+					new ElevationPainter(randFloat(0, 1)),
+					paintClass(clForest)
+				],
+				avoidClasses(clPath, 1, clHill, border ? 0 : 1));
 		}
 
 		// General hight map

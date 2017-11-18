@@ -420,30 +420,30 @@ m.QueueManager.prototype.checkPausedQueues = function(gameState)
 	for (let q in this.queues)
 	{
 		let toBePaused = false;
-		if (gameState.ai.HQ.numActiveBase() === 0)
-			toBePaused = q !== "dock" && q !== "civilCentre";
+		if (gameState.ai.HQ.numPotentialBases() == 0)
+			toBePaused = q != "dock" && q != "civilCentre";
 		else if (numWorkers < workersMin / 3)
-			toBePaused = q !== "citizenSoldier" && q !== "villager" && q !== "emergency";
+			toBePaused = q != "citizenSoldier" && q != "villager" && q != "emergency";
 		else if (numWorkers < workersMin * 2 / 3)
-			toBePaused = q === "civilCentre" || q === "economicBuilding" ||
-				q === "militaryBuilding" || q === "defenseBuilding" || q === "healer" ||
-				q === "majorTech" || q === "minorTech" || q.indexOf("plan_") !== -1;
+			toBePaused = q == "civilCentre" || q == "economicBuilding" ||
+				q == "militaryBuilding" || q == "defenseBuilding" || q == "healer" ||
+				q == "majorTech" || q == "minorTech" || q.indexOf("plan_") != -1;
 		else if (numWorkers < workersMin)
-			toBePaused = q === "civilCentre" || q === "defenseBuilding" ||
+			toBePaused = q == "civilCentre" || q == "defenseBuilding" ||
 				q == "majorTech" || q.indexOf("_siege") != -1 || q.indexOf("_champ") != -1;
 
 		if (toBePaused)
 		{
-			if (q === "field" && gameState.ai.HQ.needFarm &&
+			if (q == "field" && gameState.ai.HQ.needFarm &&
 				!gameState.getOwnStructures().filter(API3.Filters.byClass("Field")).hasEntities())
 				toBePaused = false;
-			if (q === "corral" && gameState.ai.HQ.needCorral &&
+			if (q == "corral" && gameState.ai.HQ.needCorral &&
 				!gameState.getOwnStructures().filter(API3.Filters.byClass("Field")).hasEntities())
 				toBePaused = false;
-			if (q === "dock" && gameState.ai.HQ.needFish &&
+			if (q == "dock" && gameState.ai.HQ.needFish &&
 				!gameState.getOwnStructures().filter(API3.Filters.byClass("Dock")).hasEntities())
 				toBePaused = false;
-			if (q === "ships" && gameState.ai.HQ.needFish &&
+			if (q == "ships" && gameState.ai.HQ.needFish &&
 				!gameState.ai.HQ.navalManager.ships.filter(API3.Filters.byClass("FishingBoat")).hasEntities())
 				toBePaused = false;
 		}

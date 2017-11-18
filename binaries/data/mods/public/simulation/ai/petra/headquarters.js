@@ -20,14 +20,16 @@ m.HQ = function(Config)
 	this.Config = Config;
 	this.phasing = 0;	// existing values: 0 means no, i > 0 means phasing towards phase i
 
-	// Cache the rates.
+	// Cache various quantities.
 	this.turnCache = {};
 	// Some resources objects (will be filled in init)
 	this.wantedRates = {};
 	this.currentRates = {};
 	this.lastFailedGather = {};
 
-	// workers configuration
+	this.firstBaseConfig = false;
+
+	// Workers configuration
 	this.targetNumWorkers = this.Config.Economy.targetNumWorkers;
 	this.supportRatio = this.Config.Economy.supportRatio;
 
@@ -131,10 +133,8 @@ m.HQ.prototype.getSeaBetweenIndices = function (gameState, index1, index2)
 	return undefined;
 };
 
-m.HQ.prototype.checkEvents = function (gameState, events, queues)
+m.HQ.prototype.checkEvents = function (gameState, events)
 {
-	this.buildManager.checkEvents(gameState, events);
-
 	if (events.TerritoriesChanged.length || events.DiplomacyChanged.length)
 		this.updateTerritories(gameState);
 
@@ -195,14 +195,14 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 				base.anchor = ent;
 				base.anchorId = evt.newentity;
 				base.buildings.updateEnt(ent);
-				if (base.ID === this.baseManagers[1].ID)
+				if (!this.firstBaseConfig)
 				{
-					// this is our first base, let us configure our starting resources
+					// This is our first base, let us configure our starting resources
 					this.configFirstBase(gameState);
 				}
 				else
 				{
-					// let us hope this new base will fix our possible resource shortage
+					// Let us hope this new base will fix our possible resource shortage
 					this.saveResources = undefined;
 					this.saveSpace = undefined;
 				}
@@ -1603,8 +1603,7 @@ m.HQ.prototype.checkBaseExpansion = function(gameState, queues)
 	if (queues.civilCentre.hasQueuedUnits())
 		return;
 	// First build one cc if all have been destroyed
-	let activeBases = this.numActiveBase();
-	if (activeBases === 0)
+	if (this.numPotentialBases() == 0)
 	{
 		this.buildFirstBase(gameState);
 		return;
@@ -1621,6 +1620,7 @@ m.HQ.prototype.checkBaseExpansion = function(gameState, queues)
 	if (this.phasing)
 		return;
 	// Finally expand if we have lots of units (threshold depending on the aggressivity value)
+	let activeBases = this.numActiveBases();
 	let numUnits = gameState.getOwnUnits().length;
 	let numvar = 10 * (1 - this.Config.personality.aggressive);
 	if (numUnits > activeBases * (65 + numvar + (10 + numvar)*(activeBases-1)) || this.saveResources && numUnits > 50)
@@ -1633,7 +1633,7 @@ m.HQ.prototype.checkBaseExpansion = function(gameState, queues)
 
 m.HQ.prototype.buildNewBase = function(gameState, queues, resource)
 {
-	if (this.numActiveBase() > 0 && this.currentPhase == 1 && !gameState.isResearching(gameState.getPhaseName(2)))
+	if (this.numPotentialBases() > 0 && this.currentPhase == 1 && !gameState.isResearching(gameState.getPhaseName(2)))
 		return false;
 	if (gameState.getOwnFoundations().filter(API3.Filters.byClass("CivCentre")).hasEntities() || queues.civilCentre.hasQueuedUnits())
 		return false;
@@ -1677,7 +1677,7 @@ m.HQ.prototype.buildDefenses = function(gameState, queues)
 		{
 			let numFortresses = gameState.getOwnEntitiesByClass("Fortress", true).length;
 			if ((!numFortresses || gameState.ai.elapsedTime > (1 + 0.10*numFortresses)*this.fortressLapseTime + this.fortressStartTime) &&
-				numFortresses < this.numActiveBase() + 1 + this.extraFortresses &&
+				numFortresses < this.numActiveBases() + 1 + this.extraFortresses &&
 				numFortresses < Math.floor(gameState.getPopulation() / 25) &&
 				gameState.getOwnFoundationsByClass("Fortress").length < 2)
 			{
@@ -1710,12 +1710,12 @@ m.HQ.prototype.buildDefenses = function(gameState, queues)
 	let numTowers = gameState.getOwnEntitiesByClass("StoneTower", true).length;
 	let towerLapseTime = this.saveResource ? (1 + numTowers) * this.towerLapseTime : this.towerLapseTime;
 	if ((!numTowers || gameState.ai.elapsedTime > (1 + 0.1*numTowers)*towerLapseTime + this.towerStartTime) &&
-		numTowers < 2 * this.numActiveBase() + 3 + this.extraTowers &&
+		numTowers < 2 * this.numActiveBases() + 3 + this.extraTowers &&
 		numTowers < Math.floor(gameState.getPopulation() / 8) &&
 		gameState.getOwnFoundationsByClass("DefenseTower").length < 3)
 	{
 		this.towerStartTime = gameState.ai.elapsedTime;
-		if (numTowers > 2 * this.numActiveBase() + 3)
+		if (numTowers > 2 * this.numActiveBases() + 3)
 			gameState.ai.queueManager.changePriority("defenseBuilding", Math.round(0.7*this.Config.priorities.defenseBuilding));
 		let plan = new m.ConstructionPlan(gameState, "structures/{civ}_defense_tower");
 		plan.queueToReset = "defenseBuilding";
@@ -2012,7 +2012,7 @@ m.HQ.prototype.canBuild = function(gameState, structure, debug = false)
 		return false;
 	}
 
-	if (this.numActiveBase() < 1)
+	if (this.numActiveBases() < 1)
 	{
 		// if no base, check that we can build outside our territory
 		let buildTerritories = template.buildTerritories();
@@ -2168,24 +2168,40 @@ m.HQ.prototype.getBaseByID = function(baseID)
 };
 
 /**
- * returns the number of active (i.e. with one cc) bases
+ * returns the number of bases with a cc
+ * ActiveBases includes only those with a built cc
+ * PotentialBases includes also those with a cc in construction
  */
-m.HQ.prototype.numActiveBase = function()
+m.HQ.prototype.numActiveBases = function()
 {
-	if (!this.turnCache.activeBase)
-	{
-		let num = 0;
-		for (let base of this.baseManagers)
-			if (base.anchor)
-				++num;
-		this.turnCache.activeBase = num;
-	}
-	return this.turnCache.activeBase;
+	if (!this.turnCache.base)
+		this.updateBaseCache();
+	return this.turnCache.base.active;
 };
 
-m.HQ.prototype.resetActiveBase = function()
+m.HQ.prototype.numPotentialBases = function()
 {
-	this.turnCache.activeBase = undefined;
+	if (!this.turnCache.base)
+		this.updateBaseCache();
+	return this.turnCache.base.potential;
+};
+
+m.HQ.prototype.updateBaseCache = function()
+{
+		this.turnCache.base = { "active": 0, "potential": 0 };
+		for (let base of this.baseManagers)
+		{
+			if (!base.anchor)
+				continue;
+			++this.turnCache.base.potential;
+			if (base.anchor.foundationProgress() === undefined)
+				++this.turnCache.base.active;
+		}
+};
+
+m.HQ.prototype.resetBaseCache = function()
+{
+	this.turnCache.base = undefined;
 };
 
 /**
@@ -2386,14 +2402,17 @@ m.HQ.prototype.update = function(gameState, queues, events)
 		});
 	} */
 
-	this.checkEvents(gameState, events, queues);
+	this.buildManager.checkEvents(gameState, events);
+	for (let base of this.baseManagers)
+		base.checkEvents(gameState, events);
+	this.checkEvents(gameState, events);
 
 	if (this.phasing)
 		this.checkPhaseRequirements(gameState, queues);
 	else
 		this.researchManager.checkPhase(gameState, queues);
 
-	if (this.numActiveBase() > 0)
+	if (this.numActiveBases() > 0)
 	{
 		if (gameState.ai.playedTurn % 4 == 0)
 			this.trainMoreWorkers(gameState, queues);
@@ -2411,7 +2430,7 @@ m.HQ.prototype.update = function(gameState, queues, events)
 			this.researchManager.update(gameState, queues);
 	}
 
-	if (this.numActiveBase() < 1 ||
+	if (this.numPotentialBases() < 1 ||
 	    this.canExpand && gameState.ai.playedTurn % 10 == 7 && this.currentPhase > 1)
 		this.checkBaseExpansion(gameState, queues);
 
@@ -2444,15 +2463,12 @@ m.HQ.prototype.update = function(gameState, queues, events)
 
 	this.assignGatherers();
 	for (let i = 0; i < this.baseManagers.length; ++i)
-	{
-		this.baseManagers[i].checkEvents(gameState, events, queues);
-		if ((i + gameState.ai.playedTurn)%this.baseManagers.length === 0)
+		if ((i + gameState.ai.playedTurn)%this.baseManagers.length == 0)
 			this.baseManagers[i].update(gameState, queues, events);
-	}
 
 	this.navalManager.update(gameState, queues, events);
 
-	if (this.Config.difficulty > 0 && (this.numActiveBase() > 0 || !this.canBuildUnits))
+	if (this.Config.difficulty > 0 && (this.numActiveBases() > 0 || !this.canBuildUnits))
 		this.attackManager.update(gameState, queues, events);
 
 	this.diplomacyManager.update(gameState, events);
@@ -2473,6 +2489,7 @@ m.HQ.prototype.Serialize = function()
 		"wantedRates": this.wantedRates,
 		"currentRates": this.currentRates,
 		"lastFailedGather": this.lastFailedGather,
+		"firstBaseConfig": this.firstBaseConfig,
 		"supportRatio": this.supportRatio,
 		"targetNumWorkers": this.targetNumWorkers,
 		"fortStartTime": this.fortStartTime,

@@ -476,7 +476,7 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 		}
 		if (!baseIndex)
 		{
-			if (gameState.ai.HQ.numActiveBase() > 0)
+			if (gameState.ai.HQ.numActiveBases() > 0)
 				API3.warn("Petra: dock constructed without base index " + baseIndex);
 			else
 				baseIndex = gameState.ai.HQ.baseManagers[0].ID;

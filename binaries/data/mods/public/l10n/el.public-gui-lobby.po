@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-30 09:02+0200\n"
-"PO-Revision-Date: 2017-11-13 10:55+0000\n"
+"PO-Revision-Date: 2017-11-16 10:22+0000\n"
 "Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -72,12 +72,12 @@ msgstr "Αποσυνδεθήκατε."
 #: gui/lobby/lobby.js:157
 #, javascript-format
 msgid "%(nick)s changed the lobby subject to %(subject)s"
-msgstr ""
+msgstr "ο %(nick)sάλλαξε το αντικείμενο του λόμπι σε%(subject)s"
 
 #: gui/lobby/lobby.js:168
 #, javascript-format
 msgid "%(nick)s has joined."
-msgstr "Ο/H  %(nick)sσυνδέθηκε στο παιχνίδι."
+msgstr "Ο %(nick)s συνδέθηκε."
 
 #: gui/lobby/lobby.js:178
 #, javascript-format
@@ -262,7 +262,7 @@ msgstr "Το παιχνίδι άρχισε στις %(time)s"
 
 #: gui/lobby/lobby.js:1045 gui/lobby/lobby.js:1406
 msgid "HH:mm"
-msgstr "ΩΩ:λλ"
+msgstr "HH:mm"
 
 #: gui/lobby/lobby.js:1049
 #, javascript-format
@@ -387,12 +387,12 @@ msgstr "Λανθασμένο όνομα χρήστη"
 #: gui/lobby/prelobby.js:107
 msgctxt "login"
 msgid "Please enter your password"
-msgstr ""
+msgstr "Παρακαλώ, πληκτρολόγησε το συνθηματικό σου"
 
 #: gui/lobby/prelobby.js:108
 msgctxt "register"
 msgid "Please enter your password"
-msgstr ""
+msgstr "Παρακαλώ, πληκτρολόγησε το συνθηματικό σου"
 
 #: gui/lobby/prelobby.js:121
 msgid "Please enter your password again"

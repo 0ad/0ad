@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-10-25 09:03+0200\n"
-"PO-Revision-Date: 2017-11-13 11:16+0000\n"
+"PO-Revision-Date: 2017-11-15 23:07+0000\n"
 "Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -309,8 +309,8 @@ msgstr[1] "Θαύμα (%(min)s λεπτά)"
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
 msgid_plural "Capture the Relic (%(min)s minutes)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Αρπαγή του Ιερού Λειψάνου (%(min)s λεπτό)"
+msgstr[1] "Αρπαγή του Ιερού Λειψάνου (%(min)s λεπτά)"
 
 #: gui/common/gamedescription.js:260
 msgid "Relic Count"
@@ -419,7 +419,7 @@ msgstr "Οικοσύστημα"
 #: gui/common/gamedescription.js:356
 msgctxt "biome"
 msgid "Random"
-msgstr ""
+msgstr "Τυχαίο"
 
 #: gui/common/gamedescription.js:363
 msgid "Starting Resources"
@@ -1122,19 +1122,19 @@ msgstr "ΟΚ"
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s, Max: %(max)s"
-msgstr ""
+msgstr "Ελάχιστο: %(min)s, Μέγιστο: %(max)s"
 
 #: gui/options/options.js:99
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s"
-msgstr ""
+msgstr "Ελάχιστο: %(min)s"
 
 #: gui/options/options.js:101
 #, javascript-format
 msgctxt "option number"
 msgid "Max: %(max)s"
-msgstr ""
+msgstr "Μέγιστο: %(max)s"
 
 #: gui/options/options.js:134
 #, javascript-format
@@ -1155,7 +1155,7 @@ msgstr "Προειδοποίηση"
 
 #: gui/options/options.js:348
 msgid "Some setting values are invalid! Are you sure to save them?"
-msgstr ""
+msgstr "Μερικές τιμές των ρυθμίσεων είναι εσφαλμένες. Σίγουρα θέλεις να κάνεις αποθήκευση;"
 
 #: gui/options/options.js:374
 msgid "You have unsaved changes, do you want to close this window?"
@@ -1265,7 +1265,7 @@ msgstr "Εγχειρίδιο χρήσης"
 #: gui/reference/common/load.js:234
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
-msgstr ""
+msgstr "%(health_min)s σε %(health_max)s"
 
 #: gui/replaymenu/replay_actions.js:92
 msgid "You don't have the same mods active as the replay does."
@@ -1620,7 +1620,7 @@ msgstr "Αναλογία Σκοτωμών / Θανάτων"
 msgid ""
 "Bribes\n"
 "(%(succeeded)s / %(failed)s)"
-msgstr ""
+msgstr "Δωροδοκίες\n(%(succeeded)s / %(failed)s)"
 
 #: gui/summary/layout.js:195
 msgid "Map exploration"
@@ -1668,7 +1668,7 @@ msgstr "Καταλήφθηκαν"
 
 #: gui/summary/summary.js:63
 msgid "Succeeded"
-msgstr ""
+msgstr "Επιτυχημένες"
 
 #: gui/summary/summary.js:68
 msgid "Destroyed"
@@ -1700,7 +1700,7 @@ msgstr "Εξαγωγές"
 
 #: gui/summary/summary.js:103
 msgid "Failed"
-msgstr ""
+msgstr "Αποτυχημένες"
 
 #: gui/summary/summary.js:111
 msgid "∞"
@@ -2679,7 +2679,7 @@ msgstr "Αριθμός επίδρασης ανταυγαστήρων. ΑΠΑΙΤ
 
 #: gui/options/options.json[1].options[2].label
 msgid "Shader Effects"
-msgstr ""
+msgstr "Εφέ Σκίασης"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Enable shadows"
@@ -2691,29 +2691,29 @@ msgstr "Σκιές"
 
 #: gui/options/options.json[1].options[4].list[0].label
 msgid "Very Low"
-msgstr ""
+msgstr "Πολύ Χαμηλό"
 
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "Low"
-msgstr ""
+msgstr "Χαμηλό"
 
 #: gui/options/options.json[1].options[4].list[2].label
 msgid "Medium"
-msgstr ""
+msgstr "Μεσαίο"
 
 #: gui/options/options.json[1].options[4].list[3].label
 msgid "High"
-msgstr ""
+msgstr "Υψηλό"
 
 #: gui/options/options.json[1].options[4].list[4].label
 msgid "Very High"
-msgstr ""
+msgstr "Πολύ Υψηλό"
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid ""
 "Shadow map resolution. High values can crash the game when using a graphics "
 "card with low memory!"
-msgstr ""
+msgstr "Ανάλυση στις σκιές του χάρτη. Υψηλές τιμές μπορεί να καταρρεύσουν το παιχνίδι αν η κάρτα γραφικών έχει μικρή μνήμη!"
 
 #: gui/options/options.json[1].options[4].label
 msgid "Shadow Quality"
@@ -2827,7 +2827,7 @@ msgstr "Για να περιορίσεις το φόρτο εργασίας το
 
 #: gui/options/options.json[1].options[17].label
 msgid "FPS Throttling in Menus"
-msgstr ""
+msgstr "Επιτάχυνση Ρυθμού Ανανέωσης Γραφικών (FPS) στα Μενού"
 
 #: gui/options/options.json[1].options[18].tooltip
 msgid ""
@@ -2837,11 +2837,11 @@ msgstr "Για να περιορίσεις το φόρτο εργασίας το
 
 #: gui/options/options.json[1].options[18].label
 msgid "FPS Throttling in Games"
-msgstr ""
+msgstr "Επιτάχυνση Ρυθμού Ανανέωσης Γραφικών (FPS) στα Παιχνίδια"
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
-msgstr ""
+msgstr "Όρισε την ισορροπία μεταξύ απόδοσης και οπτικής εμφάνισης."
 
 #: gui/options/options.json[1].label
 msgid "Graphics"
@@ -2915,7 +2915,7 @@ msgstr "Στήλη Βαθμολογίας Παιχνιδιού"
 
 #: gui/options/options.json[3].tooltip
 msgid "These settings only affect the multiplayer."
-msgstr ""
+msgstr "Αυτές οι ρυθμίσεις επηρεάσουν μόνο το παιχνίδι πολλών παιχτών."
 
 #: gui/options/options.json[3].label
 msgid "Lobby"
@@ -2971,7 +2971,7 @@ msgstr "Φάση"
 
 #: gui/options/options.json[4].tooltip
 msgid "Regulate the verbosity of chat notifications."
-msgstr ""
+msgstr "Ρυθμίστε την πολυλογία στις ειδοποιήσεις της συνομιλίας."
 
 #: gui/options/options.json[4].label
 msgid "Chat Notifications"
