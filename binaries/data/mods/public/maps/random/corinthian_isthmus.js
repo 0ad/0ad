@@ -102,7 +102,7 @@ paintTerrainBasedOnHeight(2, 5, 1, tGrass);
 
 paintTileClassBasedOnHeight(-6, 0.5, 1, clWater);
 
-var [playerIDs, playerX, playerZ] = playerPlacementRiver(riverAngle + Math.PI / 2, 0.6);
+var [playerIDs, playerX, playerZ] = playerPlacementRiver(riverAngle, 0.6);
 
 for (var i = 0; i < numPlayers; i++)
 {
