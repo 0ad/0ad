@@ -57,7 +57,44 @@ var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
+var playerHillElevation = 20;
+
+var rampDist = scaleByMapSize(15, 25);
+var rampLength = 15;
+var rampWidth = 12;
+var rampOffset = 3;
+
 var [playerIDs, playerX, playerZ, playerAngle] = radialPlayerPlacement();
+
+log("Creating player hills and ramps...");
+for (let i = 0; i < numPlayers; ++i)
+{
+	let fx = fractionToTiles(playerX[i]);
+	let fz = fractionToTiles(playerZ[i]);
+
+	createArea(
+		new ClumpPlacer(diskArea(scaleByMapSize(15, 25)), 0.95, 0.6, 10, Math.round(fx), Math.round(fz)),
+		[
+			new LayeredPainter([tCliff, tHill], [2]),
+			new SmoothElevationPainter(ELEVATION_SET, playerHillElevation, 2),
+			paintClass(clPlayer)
+		],
+		null);
+
+	let rampAngle = playerAngle[i] + Math.PI * (1 + randFloat(-1, 1) / 8);
+	createRamp(
+		Math.round(fx + (rampDist + rampLength) * Math.cos(rampAngle)),
+		Math.round(fz + (rampDist + rampLength) * Math.sin(rampAngle)),
+		Math.round(fx + (rampDist - rampOffset) * Math.cos(rampAngle)),
+		Math.round(fz + (rampDist - rampOffset) * Math.sin(rampAngle)),
+		3,
+		playerHillElevation,
+		rampWidth,
+		2,
+		tHill,
+		tCliff,
+		clPlayer);
+}
 
 for (var i = 0; i < numPlayers; i++)
 {
@@ -65,8 +102,6 @@ for (var i = 0; i < numPlayers; i++)
 	log("Creating base for player " + id + "...");
 
 	var radius = scaleByMapSize(15,25);
-	var cliffRadius = 2;
-	var elevation = 20;
 
 	// get the x and z in tiles
 	var fx = fractionToTiles(playerX[i]);
@@ -74,37 +109,9 @@ for (var i = 0; i < numPlayers; i++)
 	var ix = round(fx);
 	var iz = round(fz);
 
-	// calculate size based on the radius
-	var hillSize = PI * radius * radius;
-
-	// create the hill
-	var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
-	var terrainPainter = new LayeredPainter(
-		[tCliff, tHill],		// terrains
-		[cliffRadius]		// widths
-	);
-	var elevationPainter = new SmoothElevationPainter(
-		ELEVATION_SET,			// type
-		elevation,				// elevation
-		cliffRadius				// blend radius
-	);
-	createArea(placer, [terrainPainter, elevationPainter, paintClass(clPlayer)], null);
-
-	// create the ramp
-	var rampAngle = playerAngle[i] + PI + randFloat(-PI/8, PI/8);
-	var rampDist = radius;
-	var rampLength = 15;
-	var rampWidth = 12;
-	var rampX1 = round(fx + (rampDist + rampLength) * cos(rampAngle));
-	var rampZ1 = round(fz + (rampDist + rampLength) * sin(rampAngle));
-	var rampX2 = round(fx + (rampDist - 3) * cos(rampAngle));
-	var rampZ2 = round(fz + (rampDist - 3) * sin(rampAngle));
-
-	createRamp (rampX1, rampZ1, rampX2, rampZ2, 3, 20, rampWidth, 2, tHill, tCliff, clPlayer);
-
 	// create the city patch
 	var cityRadius = radius/3;
-	placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, ix, iz);
+	var placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, ix, iz);
 	var painter = new LayeredPainter([tRoadWild, tRoad], [1]);
 	createArea(placer, painter, null);
 
@@ -178,7 +185,7 @@ var waterAreas = createAreas(
 RMS.SetProgress(15);
 
 log("Creating reeds...");
-group = new SimpleGroup(
+var group = new SimpleGroup(
 	[new SimpleObject(aReeds, 5,10, 0,4), new SimpleObject(aLillies, 0,1, 0,4)], true
 );
 createObjectGroupsByAreasDeprecated(group, 0,

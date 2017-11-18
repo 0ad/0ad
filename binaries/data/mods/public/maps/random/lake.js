@@ -59,6 +59,13 @@ initTerrain(tMainTerrain);
 
 var [playerIDs, playerX, playerZ] = radialPlayerPlacement();
 
+log("Preventing water in player territory...");
+for (let i = 0; i < numPlayers; ++i)
+	addCivicCenterAreaToClass(
+		Math.round(fractionToTiles(playerX[i])),
+		Math.round(fractionToTiles(playerZ[i])),
+		clPlayer);
+
 for (var i = 0; i < numPlayers; i++)
 {
 	var id = playerIDs[i];
@@ -73,7 +80,6 @@ for (var i = 0; i < numPlayers; i++)
 	var fz = fractionToTiles(playerZ[i]);
 	var ix = round(fx);
 	var iz = round(fz);
-	addCivicCenterAreaToClass(ix, iz, clPlayer);
 
 	placeCivDefaultEntities(fx, fz, id);
 
@@ -128,8 +134,6 @@ for (var i = 0; i < numPlayers; i++)
 
 	placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, radius);
 }
-
-RMS.SetProgress(20);
 
 log("Creating the lake...")
 createArea(

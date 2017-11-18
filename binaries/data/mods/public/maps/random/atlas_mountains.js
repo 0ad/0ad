@@ -228,7 +228,7 @@ createFood
 );
 
 log("Creating food treasures...");
-group = new SimpleGroup(
+var group = new SimpleGroup(
 	[new SimpleObject(oFood, 2,3, 0,2)],
 	true, clTreasure
 );

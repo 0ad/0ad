@@ -134,9 +134,6 @@ for (var i=0; i < numPlayers; i++)
 
 	var citySize = 250;
 
-	var placer = new ClumpPlacer(citySize, 0.95, 0.3, 0.1, ix, iz);
-	createArea(placer, [paintClass(clPlayer)], null);
-
 	// Create the city patch
 	var placer = new ClumpPlacer(citySize * 0.4, 0.6, 0.05, 10, ix, iz);
 	var painter = new TerrainPainter([tCity]);
@@ -194,6 +191,12 @@ for (var i=0; i < numPlayers; i++)
 	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
 
 }
+
+log("Marking player territory larger than the city patch...");
+for (let i = 0; i < numPlayers; ++i)
+	createArea(
+		new ClumpPlacer(250, 0.95, 0.3, 0.1, Math.floor(playerX[i]), Math.floor(playerZ[i])),
+		paintClass(clPlayer));
 
 RMS.SetProgress(30);
 

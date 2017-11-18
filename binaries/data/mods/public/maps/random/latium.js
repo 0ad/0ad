@@ -383,7 +383,7 @@ for (var i = 0; i < numPlayers; ++i)
 RMS.SetProgress(40);
 
 log("Creating bushes...");
-group = new SimpleGroup(
+var group = new SimpleGroup(
 	[new SimpleObject(aBushSmall, 0,2, 0,2), new SimpleObject(aBushSmallDry, 0,2, 0,2),
 	new SimpleObject(aBushMed, 0,1, 0,2), new SimpleObject(aBushMedDry, 0,1, 0,2)]
 );

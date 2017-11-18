@@ -22,6 +22,7 @@ var oStoneLarge = "gaia/geology_stonemine_medit_quarry";
 var oStoneSmall = "gaia/geology_stone_alpine_a";
 var oMetalLarge = "gaia/geology_metal_desert_badlands_slabs";
 var oWood = "gaia/special_treasure_wood";
+var oMarket = "skirmish/structures/default_market";
 
 var aRockLarge = "actor|geology/stone_granite_med.xml";
 var aRockMedium = "actor|geology/stone_granite_med.xml";
@@ -42,12 +43,7 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clWolf = createTileClass();
 
-// Expected by rmgen1
-var clForest = createTileClass();
-
 var [playerIDs, playerX, playerZ] = radialPlayerPlacement();
-
-RMS.SetProgress(20);
 
 for (let i = 0; i < numPlayers; ++i)
 {
@@ -108,7 +104,7 @@ for (let i = 0; i < numPlayers; ++i)
 	placeObject(
 		Math.round(fx + mDist * Math.cos(mAngle)),
 		Math.round(fz + mDist * Math.sin(mAngle)),
-		"structures/" + getCivCode(id-1) + "_market",
+		oMarket,
 		id,
 		BUILDING_ORIENTATION);
 }

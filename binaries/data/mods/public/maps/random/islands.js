@@ -32,6 +32,7 @@ const oStoneLarge = g_Gaia.stoneLarge;
 const oStoneSmall = g_Gaia.stoneSmall;
 const oMetalLarge = g_Gaia.metalLarge;
 const oWood = "gaia/special_treasure_wood";
+const oDock = "skirmish/structures/default_dock";
 
 const aGrass = g_Decoratives.grass;
 const aGrassShort = g_Decoratives.grassShort;
@@ -47,6 +48,7 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
+const mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -58,35 +60,38 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clLand = createTileClass();
 
+var playerIslandRadius = scaleByMapSize(20, 29);
+
 var [playerIDs, playerX, playerZ, playerAngle] = radialPlayerPlacement();
+
+log("Creating player islands and docks...");
+for (let i = 0; i < numPlayers; i++)
+{
+	let playerPos = new Vector2D(playerX[i], playerZ[i]).mult(mapSize);
+	createArea(
+		new ClumpPlacer(diskArea(playerIslandRadius), 0.8, 0.1, 10, playerPos.x, playerPos.y),
+		[
+			new LayeredPainter([tMainTerrain , tMainTerrain, tMainTerrain], [1, 6]),
+			new SmoothElevationPainter(ELEVATION_SET, 3, 6),
+			paintClass(clPlayer)
+		]);
+
+	let dockLocation = getTIPIADBON([playerPos.x, playerPos.y], [mapCenter.x, mapCenter.y], [-3 , 2.6], 0.5, 3);
+	placeObject(dockLocation[0], dockLocation[1], oDock, playerIDs[i], playerAngle[i] + Math.PI);
+}
 
 for (var i = 0; i < numPlayers; i++)
 {
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
 
-	var radius = scaleByMapSize(20,29);
-	var shoreRadius = 6;
-	var elevation = 3;
+	let radius = playerIslandRadius;
 
-	var hillSize = PI * radius * radius;
 	// get the x and z in tiles
 	var fx = fractionToTiles(playerX[i]);
 	var fz = fractionToTiles(playerZ[i]);
 	var ix = round(fx);
 	var iz = round(fz);
-	// create the hill
-	var placer = new ClumpPlacer(hillSize, 0.80, 0.1, 10, ix, iz);
-	var terrainPainter = new LayeredPainter(
-		[tMainTerrain , tMainTerrain, tMainTerrain],		// terrains
-		[1, shoreRadius]		// widths
-	);
-	var elevationPainter = new SmoothElevationPainter(
-		ELEVATION_SET,			// type
-		elevation,				// elevation
-		shoreRadius				// blend radius
-	);
-	createArea(placer, [terrainPainter, elevationPainter, paintClass(clPlayer)], null);
 
 	placeCivDefaultEntities(fx, fz, id, { 'iberWall': 'towers' });
 
@@ -152,11 +157,6 @@ for (var i = 0; i < numPlayers; i++)
 	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
 
 	placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, radius);
-
-	//create docks
-	var dockLocation = getTIPIADBON([ix, iz], [mapSize / 2, mapSize / 2], [-3 , 2.6], 0.5, 3);
-	if (dockLocation !== undefined)
-		placeObject(dockLocation[0], dockLocation[1], "structures/" + getCivCode(id-1) + "_dock", id, playerAngle[i] + PI);
 }
 
 var landAreas = [];
@@ -263,8 +263,7 @@ for (var i = 0; i < numPlayers; i++)
 	var ix = round(fx);
 	var iz = round(fz);
 	// create the city patch
-	var cityRadius = radius/3;
-	placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, ix, iz);
+	var placer = new ClumpPlacer(diskArea(playerIslandRadius / 3), 0.6, 0.3, 10, ix, iz);
 	var painter = new LayeredPainter([tRoadWild, tRoad], [1]);
 	createArea(placer, painter, null);
 }

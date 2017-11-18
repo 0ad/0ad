@@ -100,6 +100,17 @@ var [playerIDs, playerX, playerZ] = playerPlacementLine(false, 0.5, 1 - stripWid
 // Either left vs right or top vs bottom
 playerIDs = randBool() ? sortAllPlayers() : primeSortAllPlayers();
 
+log("Ensuring player territory...");
+var playerRadius = scaleByMapSize(12, 20);
+for (let i = 0; i < numPlayers; ++i)
+	createArea(
+		new ChainPlacer(1, 6, 40, 1, Math.round(fractionToTiles(playerX[i])), Math.round(fractionToTiles(playerZ[i])), 0, [Math.floor(playerRadius)]),
+		[
+			new LayeredPainter([tGrass, tGrass, tGrass], [1, 4]),
+			new SmoothElevationPainter(ELEVATION_SET, 3, 4),
+			paintClass(clPlayerTerritory)
+		]);
+
 for (let i = 0; i < numPlayers; ++i)
 {
 	log("Creating base for player " + playerIDs[i] + "...");
@@ -111,15 +122,6 @@ for (let i = 0; i < numPlayers; ++i)
 	let iz = Math.round(fz);
 
 	addCivicCenterAreaToClass(ix, iz, clPlayer);
-
-	// Create the main island
-	createArea(
-		new ChainPlacer(1, 6, 40, 1, ix, iz, 0, [Math.floor(radius)]),
-		[
-			new LayeredPainter([tGrass, tGrass, tGrass], [1, 4]),
-			new SmoothElevationPainter(ELEVATION_SET, 3, 4),
-			paintClass(clPlayerTerritory)
-		], null);
 
 	// Create the city patch
 	let cityRadius = radius / 3;

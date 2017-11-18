@@ -57,16 +57,54 @@ var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clLand = createTileClass();
 
+var landHeight = 3;
+var shoreHeight = 1;
+
+var islandRadius = scaleByMapSize(22, 31);
+
 var [playerIDs, playerX, playerZ] = radialPlayerPlacement();
+
+log("Creating player islands...");
+for (let i = 0; i < numPlayers; ++i)
+	createArea(
+		new ChainPlacer(
+			2,
+			Math.floor(scaleByMapSize(5, 10)),
+			Math.floor(scaleByMapSize(25, 60)),
+			1,
+			Math.floor(fractionToTiles(playerX[i])),
+			Math.floor(fractionToTiles(playerZ[i])),
+			0,
+			[Math.floor(islandRadius)]),
+		new SmoothElevationPainter(ELEVATION_SET, landHeight, 4));
+
+log("Creating random islands...");
+createAreas(
+	new ChainPlacer(
+		Math.floor(scaleByMapSize(4, 8)),
+		Math.floor(scaleByMapSize(8, 14)),
+		Math.floor(scaleByMapSize(25, 60)),
+		0.07,
+		undefined,
+		undefined,
+		scaleByMapSize(30, 70)),
+	[
+		new SmoothElevationPainter(ELEVATION_SET, landHeight, 4),
+		paintClass(clLand)
+	],
+	null,
+	scaleByMapSize(1, 5) * randIntInclusive(5, 10));
+
+paintTerrainBasedOnHeight(landHeight - 0.6, landHeight + 0.4, 3, tMainTerrain);
+paintTerrainBasedOnHeight(shoreHeight, landHeight, 0, tShore);
+paintTerrainBasedOnHeight(getMapBaseHeight(), shoreHeight, 2, tWater);
 
 for (var i = 0; i < numPlayers; i++)
 {
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
 
-	var radius = scaleByMapSize(22,31);
-	var shoreRadius = 4;
-	var elevation = 3;
+	var radius = islandRadius;
 
 	var hillSize = PI * radius * radius;
 	// get the x and z in tiles
@@ -74,19 +112,6 @@ for (var i = 0; i < numPlayers; i++)
 	var fz = fractionToTiles(playerZ[i]);
 	var ix = round(fx);
 	var iz = round(fz);
-
-	// create the main island
-	var placer = new ChainPlacer(2, floor(scaleByMapSize(5, 10)), floor(scaleByMapSize(25, 60)), 1, ix, iz, 0, [floor(radius)]);
-	var terrainPainter = new LayeredPainter(
-		[tMainTerrain , tMainTerrain, tMainTerrain],		// terrains
-		[1, shoreRadius]		// widths
-	);
-	var elevationPainter = new SmoothElevationPainter(
-		ELEVATION_SET,			// type
-		elevation,				// elevation
-		shoreRadius				// blend radius
-	);
-	createArea(placer, [terrainPainter, elevationPainter, paintClass(clPlayer)], null);
 
 	placeCivDefaultEntities(fx, fz, id, { 'iberWall': 'towers' });
 
@@ -151,41 +176,12 @@ for (var i = 0; i < numPlayers; i++)
 	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
 
 	placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, radius);
-}
 
-log("Creating islands...");
-createAreas(
-	new ChainPlacer(
-		Math.floor(scaleByMapSize(4, 8)),
-		Math.floor(scaleByMapSize(8, 14)),
-		Math.floor(scaleByMapSize(25, 60)),
-		0.07,
-		undefined,
-		undefined,
-		scaleByMapSize(30, 70)),
-	[
-		new SmoothElevationPainter(ELEVATION_SET, 3, 4),
-		paintClass(clLand)
-	],
-	null,
-	scaleByMapSize(1, 5) * randIntInclusive(5, 10));
-
-paintTerrainBasedOnHeight(2.4, 3.4, 3, tMainTerrain);
-paintTerrainBasedOnHeight(1, 3, 0, tShore);
-paintTerrainBasedOnHeight(-8, 1, 2, tWater);
-
-//creating the city patches for the players
-for (var i = 0; i < numPlayers; i++)
-{
-	var fx = fractionToTiles(playerX[i]);
-	var fz = fractionToTiles(playerZ[i]);
-	var ix = round(fx);
-	var iz = round(fz);
 	// create the city patch
 	var cityRadius = radius/3;
-	placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, ix, iz);
+	var placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, ix, iz);
 	var painter = new LayeredPainter([tRoadWild, tRoad], [1]);
-	createArea(placer, painter, null);
+	createArea(placer, [painter, paintClass(clPlayer)]);
 }
 
 createBumps([avoidClasses(clPlayer, 10), stayClasses(clLand, 5)]);

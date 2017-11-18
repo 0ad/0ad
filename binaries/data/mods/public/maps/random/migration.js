@@ -30,6 +30,7 @@ const oStoneLarge = g_Gaia.stoneLarge;
 const oStoneSmall = g_Gaia.stoneSmall;
 const oMetalLarge = g_Gaia.metalLarge;
 const oWood = "gaia/special_treasure_wood";
+const oDock = "skirmish/structures/default_dock";
 
 const aGrass = g_Decoratives.grass;
 const aGrassShort = g_Decoratives.grassShort;
@@ -46,6 +47,7 @@ InitMap();
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
 const mapArea = getMapArea();
+const mapCenter = getMapCenter();
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -61,18 +63,36 @@ var landHeight = 3;
 
 var playerIDs = sortAllPlayers();
 
-// place players
 var playerX = [];
 var playerZ = [];
 var playerAngle = [];
 
-var startAngle = PI/2 + PI/14;
-for (var i = 0; i < numPlayers; i++)
+var startAngle = 4/7 * Math.PI;
+for (let i = 0; i < numPlayers; ++i)
 {
 	playerAngle[i] = startAngle - (i+1)*(PI+ PI/7)/(numPlayers+1);
 	playerX[i] = 0.5 + 0.35*cos(playerAngle[i]);
 	playerZ[i] = 0.5 + 0.35*sin(playerAngle[i]);
 }
+
+log("Creating player islands and docks...");
+for (let i = 0; i < numPlayers; ++i)
+{
+	let ix = Math.round(fractionToTiles(playerX[i]));
+	let iz = Math.round(fractionToTiles(playerZ[i]));
+
+	createArea(
+		new ClumpPlacer(diskArea(scaleByMapSize(15, 25)), 0.8, 0.1, 10, ix, iz),
+		[
+			new LayeredPainter([tWater, tShore, tMainTerrain], [1, 4]),
+			new SmoothElevationPainter(ELEVATION_SET, landHeight, 4),
+			paintClass(clPlayer)
+		]);
+
+	let dockLocation = getTIPIADBON([ix, iz], [mapCenter.x, mapCenter.y], [-3 , 2.6], 0.5, 3);
+	placeObject(dockLocation[0], dockLocation[1], oDock, playerIDs[i], playerAngle[i] + Math.PI);
+}
+RMS.SetProgress(10);
 
 for (var i = 0; i < numPlayers; i++)
 {
@@ -171,20 +191,6 @@ for (var i = 0; i < numPlayers; i++)
 	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
 
 	placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, radius);
-
-	let dockLocation = getTIPIADBON([ix, iz], [mapSize / 2, mapSize / 2], [-3 , 2.6], 0.5, 3);
-	if (dockLocation === undefined)
-	{
-		warn("Could not place dock for player " + playerIDs[i])
-		continue;
-	}
-
-	placeObject(
-		dockLocation[0],
-		dockLocation[1],
-		"structures/" + getCivCode(playerIDs[i] - 1) + "_dock",
-		playerIDs[i],
-		playerAngle[i] + Math.PI);
 }
 RMS.SetProgress(15);
 

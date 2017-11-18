@@ -60,36 +60,40 @@ var clLand = createTileClass();
 var landHeight = 3;
 var hillHeight = 30;
 
+var playerCanyonRadius = scaleByMapSize(18, 32);
+
 initTerrain(tMainTerrain);
 
 var [playerIDs, playerX, playerZ] = radialPlayerPlacement();
 
+log("Reserving space for the players, their initial forests and some less space therein without trees...");
+for (let i = 0; i < numPlayers; ++i)
+	for (let j = 1; j <= 2; ++j)
+	createArea(
+		new ClumpPlacer(
+			diskArea(playerCanyonRadius / j),
+			0.65,
+			0.1,
+			10,
+			Math.round(fractionToTiles(playerX[i])),
+			Math.round(fractionToTiles(playerZ[i]))),
+		[
+			new LayeredPainter([tMainTerrain, tMainTerrain], [2]),
+			new SmoothElevationPainter(ELEVATION_SET, landHeight, 2),
+			paintClass(j == 1 ? clLand : clPlayer)
+		],
+		null);
+
+var radius = playerCanyonRadius;
 for (var i = 0; i < numPlayers; i++)
 {
 	var id = playerIDs[i];
 	log("Creating base for player " + id + "...");
 
-	var radius = scaleByMapSize(18,32);
-	var cliffRadius = 2;
-	var elevation = 20;
-	var hillSize = PI * radius * radius;
-	// get the x and z in tiles
 	var fx = fractionToTiles(playerX[i]);
 	var fz = fractionToTiles(playerZ[i]);
 	var ix = round(fx);
 	var iz = round(fz);
-	// create the hill
-	var placer = new ClumpPlacer(hillSize, 0.65, 0.1, 10, ix, iz);
-	var terrainPainter = new LayeredPainter(
-		[tMainTerrain, tMainTerrain],		// terrains
-		[cliffRadius]		// widths
-	);
-	var elevationPainter = new SmoothElevationPainter(
-		ELEVATION_SET,			// type
-		3,				// elevation
-		cliffRadius				// blend radius
-	);
-	createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
 
 	placeCivDefaultEntities(fx, fz, id);
 
@@ -144,13 +148,6 @@ for (var i = 0; i < numPlayers; i++)
 	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
 
 	placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, radius);
-
-	// create the city patch
-	var cityRadius = radius/2;
-	placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, fractionToTiles(playerX[i]), fractionToTiles(playerZ[i]));
-	var painter = new LayeredPainter([tMainTerrain, tMainTerrain], [1]);
-	createArea(placer, [painter, paintClass(clPlayer)], null);
-
 }
 
 log("Creating center area...");
@@ -256,7 +253,7 @@ for (let i = 0; i < numPlayers; ++i)
 {
 	// create the city patch
 	var cityRadius = radius/3;
-	placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, fractionToTiles(playerX[i]), fractionToTiles(playerZ[i]));
+	var placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, fractionToTiles(playerX[i]), fractionToTiles(playerZ[i]));
 	var painter = new LayeredPainter([tRoad, tRoad], [1]);
 	createArea(placer, [painter, paintClass(clPlayer)], null);
 
@@ -370,7 +367,7 @@ createDecoration
 );
 
 log("Creating actor trees...");
-group = new SimpleGroup(
+var group = new SimpleGroup(
 	[new SimpleObject(aTree, 1,1, 0,1)],
 	true
 );
