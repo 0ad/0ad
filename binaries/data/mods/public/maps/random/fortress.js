@@ -22,10 +22,10 @@ const oBerryBush = "gaia/flora_bush_berry";
 const oStoneLarge = "gaia/geology_stonemine_temperate_quarry";
 const oStoneSmall = "gaia/geology_stone_temperate";
 const oMetalLarge = "gaia/geology_metal_temperate_slabs";
-const oWood = "gaia/special_treasure_wood";
-const oFood = "gaia/special_treasure_food_bin";
-const oMetal = "gaia/special_treasure_metal";
-const oStone = "gaia/special_treasure_stone";
+const oFoodTreasure = "gaia/special_treasure_food_bin";
+const oWoodTreasure = "gaia/special_treasure_wood";
+const oStoneTreasure = "gaia/special_treasure_stone";
+const oMetalTreasure = "gaia/special_treasure_metal";
 
 const aGrass = "actor|props/flora/grass_soft_dry_small_tall.xml";
 const aGrassShort = "actor|props/flora/grass_soft_dry_large.xml";
@@ -79,7 +79,7 @@ for (var i=0; i < numPlayers; i++)
 	var bbX = round(playerX[i] + bbDist * cos(bbAngle));
 	var bbZ = round(playerZ[i] + bbDist * sin(bbAngle));
 	var group = new SimpleGroup(
-		[new SimpleObject(oFood, 5,5, 0,2)],
+		[new SimpleObject(oFoodTreasure, 5,5, 0,2)],
 		true, clBaseResource, bbX, bbZ
 	);
 	createObjectGroup(group, 0);
@@ -88,7 +88,7 @@ for (var i=0; i < numPlayers; i++)
 	var bbX = round(playerX[i] + bbDist * cos(bbAngle));
 	var bbZ = round(playerZ[i] + bbDist * sin(bbAngle));
 	group = new SimpleGroup(
-		[new SimpleObject(oWood, 5,5, 0,2)],
+		[new SimpleObject(oWoodTreasure, 5,5, 0,2)],
 		true, clBaseResource, bbX, bbZ
 	);
 	createObjectGroup(group, 0);
@@ -97,7 +97,7 @@ for (var i=0; i < numPlayers; i++)
 	var bbX = round(playerX[i] + bbDist * cos(bbAngle));
 	var bbZ = round(playerZ[i] + bbDist * sin(bbAngle));
 	group = new SimpleGroup(
-		[new SimpleObject(oMetal, 3,3, 0,2)],
+		[new SimpleObject(oMetalTreasure, 3,3, 0,2)],
 		true, clBaseResource, bbX, bbZ
 	);
 	createObjectGroup(group, 0);
@@ -106,7 +106,7 @@ for (var i=0; i < numPlayers; i++)
 	var bbX = round(playerX[i] + bbDist * cos(bbAngle));
 	var bbZ = round(playerZ[i] + bbDist * sin(bbAngle));
 	group = new SimpleGroup(
-		[new SimpleObject(oStone, 2,2, 0,2)],
+		[new SimpleObject(oStoneTreasure, 2,2, 0,2)],
 		true, clBaseResource, bbX, bbZ
 	);
 	createObjectGroup(group, 0);

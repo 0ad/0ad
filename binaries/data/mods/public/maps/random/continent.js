@@ -74,6 +74,23 @@ createArea(
 
 var [playerIDs, playerX, playerZ] = radialPlayerPlacement(0.25);
 
+log("Ensuring initial player land...");
+for (let i = 0; i < numPlayers; ++i)
+	createArea(
+		new ChainPlacer(
+			2,
+			Math.floor(scaleByMapSize(5, 9)),
+			Math.floor(scaleByMapSize(5, 20)),
+			1,
+			Math.round(fractionToTiles(playerX[i])),
+			Math.round(fractionToTiles(playerZ[i])),
+			0,
+			[Math.floor(scaleByMapSize(23, 50))]),
+		[
+			new SmoothElevationPainter(ELEVATION_SET, 3, 4),
+			paintClass(clLand)
+		]);
+
 for (var i = 0; i < numPlayers; i++)
 {
 	var id = playerIDs[i];
@@ -89,14 +106,6 @@ for (var i = 0; i < numPlayers; i++)
 	ix = round(fx);
 	iz = round(fz);
 	addCivicCenterAreaToClass(ix, iz, clPlayer);
-
-	var placer = new ChainPlacer(2, floor(scaleByMapSize(5, 9)), floor(scaleByMapSize(5, 20)), 1, ix, iz, 0, [floor(scaleByMapSize(23, 50))]);
-	var elevationPainter = new SmoothElevationPainter(
-		ELEVATION_SET,			// type
-		3,				// elevation
-		4				// blend radius
-	);
-	createArea(placer, [elevationPainter, paintClass(clLand)], null);
 
 	placeCivDefaultEntities(fx, fz, id);
 

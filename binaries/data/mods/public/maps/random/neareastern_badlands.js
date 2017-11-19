@@ -53,6 +53,17 @@ var clBaseResource = createTileClass();
 
 var [playerIDs, playerX, playerZ] = radialPlayerPlacement();
 
+for (let i = 0; i < numPlayers; ++i)
+	createArea(
+		new ClumpPlacer(
+			diskArea(scaleByMapSize(15, 25)),
+			0.9,
+			0.5,
+			10,
+			Math.round(fractionToTiles(playerX[i])),
+			Math.round(fractionToTiles(playerZ[i]))),
+		paintClass(clPlayer));
+
 for (var i = 0; i < numPlayers; i++)
 {
 	var id = playerIDs[i];
@@ -66,13 +77,6 @@ for (var i = 0; i < numPlayers; i++)
 	var fz = fractionToTiles(playerZ[i]);
 	var ix = round(fx);
 	var iz = round(fz);
-
-	// calculate size based on the radius
-	var size = PI * radius * radius;
-
-	// create the player area
-	var placer = new ClumpPlacer(size, 0.9, 0.5, 10, ix, iz);
-	createArea(placer, paintClass(clPlayer), null);
 
 	// create the city patch
 	var cityRadius = 10;

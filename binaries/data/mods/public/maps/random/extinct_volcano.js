@@ -71,19 +71,15 @@ var clTower = createTileClass();
 var clRain = createTileClass();
 
 var ccMountainHeight = 25;
+var ccMountainSize = scaleByMapSize(15, 25);
 
 var [playerIDs, playerX, playerZ] = radialPlayerPlacement();
 
+log("Creating CC mountains...");
 for (let i = 0; i < numPlayers; ++i)
 {
-	let id = playerIDs[i];
-	log("Creating base for player " + id + "...");
-	let radius = scaleByMapSize(15, 25);
-
-	let fx = fractionToTiles(playerX[i]);
-	let fz = fractionToTiles(playerZ[i]);
-	let ix = Math.round(fx);
-	let iz = Math.round(fz);
+	let ix = Math.round(fractionToTiles(playerX[i]));
+	let iz = Math.round(fractionToTiles(playerZ[i]));
 
 	// This one consists of many bumps, creating an omnidirectional ramp
 	createMountain(
@@ -99,20 +95,27 @@ for (let i = 0; i < numPlayers; ++i)
 		14);
 
 	// Flatten the initial CC area
-	let hillSize = PI * radius * radius;
 	createArea(
-		new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz),
+		new ClumpPlacer(diskArea(scaleByMapSize(15, 25)), 0.95, 0.6, 10, ix, iz),
 		[
-			new LayeredPainter([tHillVeryDark, tHillMedium1], [radius]),
-			new SmoothElevationPainter(ELEVATION_SET, ccMountainHeight, radius),
+			new LayeredPainter([tHillVeryDark, tHillMedium1], [ccMountainSize]),
+			new SmoothElevationPainter(ELEVATION_SET, ccMountainHeight, ccMountainSize),
 			paintClass(clPlayer)
 		],
 		null);
+}
+
+for (let i = 0; i < numPlayers; ++i)
+{
+	let id = playerIDs[i];
+	log("Creating base for player " + id + "...");
+
+	let fx = fractionToTiles(playerX[i]);
+	let fz = fractionToTiles(playerZ[i]);
 
 	// Create the city patch
-	let cityRadius = radius / 3;
 	createArea(
-		new ClumpPlacer(PI * cityRadius * cityRadius, 0.6, 0.3, 10, ix, iz),
+		new ClumpPlacer(diskArea(ccMountainSize / 3), 0.6, 0.3, 10, Math.round(fx), Math.round(fz)),
 		new LayeredPainter([tRoadWild, tRoad], [1]),
 		null);
 
@@ -156,7 +159,7 @@ for (let i = 0; i < numPlayers; ++i)
 		0);
 
 	// Create starting trees
-	let num = Math.floor(hillSize / 60);
+	let num = Math.floor(diskArea(ccMountainSize) / 60);
 	let tries = 20;
 	for (let x = 0; x < tries; ++x)
 	{

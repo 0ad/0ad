@@ -79,16 +79,13 @@ function initIsConnected()
 
 function createIsland(islandID, size, tileClass)
 {
-	let hillSize = diskArea(playerIslandRadius) * size;
 	createArea(
-		new ClumpPlacer(hillSize, 0.95, 0.6, 10, islandX[islandID], islandZ[islandID]),
+		new ClumpPlacer(size * diskArea(playerIslandRadius), 0.95, 0.6, 10, islandX[islandID], islandZ[islandID]),
 		[
 			new LayeredPainter([tCliff, tHill], [2]),
 			new SmoothElevationPainter(ELEVATION_SET, islandHeight, 2),
 			paintClass(tileClass)
-		],
-		null);
-	return hillSize;
+		]);
 }
 
 function createIslandAtRadialLocation(playerID, islandID, playerIDOffset, distFromCenter, islandRadius)
@@ -217,6 +214,14 @@ else if (mapSize <= 320)
 else
 	createSnowflakeSearockWithCenter(numPlayers < 6 ? "large1" : "large2");
 
+log("Creating player islands...");
+for (let i = 0; i < numPlayers; ++i)
+{
+	islandX[i] = Math.round(fractionToTiles(playerX[i]));
+	islandZ[i] = Math.round(fractionToTiles(playerZ[i]));
+	createIsland(i, 1, clPlayer);
+}
+
 for (var i = 0; i < numPlayers; ++i)
 {
 	var id = playerIDs[i];
@@ -227,11 +232,6 @@ for (var i = 0; i < numPlayers; ++i)
 	var fz = fractionToTiles(playerZ[i]);
 	var ix = round(fx);
 	var iz = round(fz);
-
-	islandX[i] = ix;
-	islandZ[i] = iz;
-
-	let hillSize = createIsland(i, 1, clPlayer);
 
 	// create the city patch
 	var cityRadius = playerIslandRadius/3;
@@ -279,7 +279,7 @@ for (var i = 0; i < numPlayers; ++i)
 	createObjectGroup(group, 0);
 
 	// create starting trees
-	var num = floor(hillSize / 60);
+	var num = floor(scaleByMapSize(10, 50));
 	var tAngle = randFloat(-PI/3, 4*PI/3);
 	var tDist = 11;
 	var tX = round(fx + tDist * cos(tAngle));
@@ -360,7 +360,7 @@ for (let type of types)
 RMS.SetProgress(55);
 
 log("Creating stone mines...");
-group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clRock);
+var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clHill, 1), stayClasses(clLand, 5)],
 	5*scaleByMapSize(4,16), 100

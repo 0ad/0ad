@@ -47,6 +47,26 @@ var clGrass = createTileClass();
 
 var [playerIDs, playerX, playerZ] = radialPlayerPlacement();
 
+for (let i = 0; i < numPlayers; ++i)
+{
+	let ix = Math.round(fractionToTiles(playerX[i]));
+	let iz = Math.round(fractionToTiles(playerZ[i]));
+
+	log("Marking player territory larger than the city patch...");
+	createArea(
+		new ClumpPlacer(diskArea(scaleByMapSize(15, 25)), 0.9, 0.5, 10, ix, iz),
+		paintClass(clPlayer));
+
+	log("Creating big grass patches surrounding the city patches...");
+	createArea(
+		new ChainPlacer(2, Math.floor(scaleByMapSize(5, 12)), Math.floor(scaleByMapSize(25, 60)), 1, ix, iz, 0, [Math.floor(scaleByMapSize(16, 30))]),
+		[
+			new LayeredPainter([tGrassSands, tGrass], [3]),
+			paintClass(clGrass)
+		]);
+}
+RMS.SetProgress(10);
+
 for (var i = 0; i < numPlayers; i++)
 {
 	var id = playerIDs[i];
@@ -61,22 +81,8 @@ for (var i = 0; i < numPlayers; i++)
 	var ix = round(fx);
 	var iz = round(fz);
 
-	// calculate size based on the radius
-	var size = PI * radius * radius;
-
-	// create the player area
-	var placer = new ClumpPlacer(size, 0.9, 0.5, 10, ix, iz);
-	createArea(placer, paintClass(clPlayer), null);
-
-	// create the grass patches
-	var grassRadius = floor(scaleByMapSize(16 ,30));
-	placer = new ChainPlacer(2, floor(scaleByMapSize(5, 12)), floor(scaleByMapSize(25, 60)), 1, ix, iz, 0, [grassRadius]);
-	var painter = new LayeredPainter([tGrassSands, tGrass], [3]);
-	createArea(placer, [painter, paintClass(clGrass)], null);
-
 	// create the city patch
-	var cityRadius = 10;
-	placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, ix, iz);
+	var placer = new ClumpPlacer(diskArea(10), 0.6, 0.3, 10, ix, iz);
 	var painter = new LayeredPainter([tRoadWild, tRoad], [3]);
 	createArea(placer, painter, null);
 
@@ -133,7 +139,7 @@ for (var i = 0; i < numPlayers; i++)
 	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
 }
 
-RMS.SetProgress(10);
+RMS.SetProgress(20);
 
 log("Creating bumps...");
 createAreas(

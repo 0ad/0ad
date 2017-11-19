@@ -129,12 +129,19 @@ for (var i = 0; i < numPlayers; i++)
 							true, clBaseResource, mX, mZ
 							);
 	createObjectGroup(group, 0);
+}
+
+log("Creating small oasis near the players...")
+var forestDist = scaleByMapSize(15, 25) * 1.2;
+for (let i = 0; i < numPlayers; ++i)
+{
+	let fx = fractionToTiles(playerX[i]);
+	let fz = fractionToTiles(playerZ[i]);
 
 	// Create starting batches of wood
 	let forestX = 0;
 	let forestY = 0;
 	let forestAngle = 0
-	let forestDist = radius * 1.2;
 
 	do {
 		forestAngle = Math.PI / 3 * randFloat(1, 2);

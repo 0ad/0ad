@@ -25,8 +25,8 @@ var oDatePalm = "gaia/flora_tree_date_palm";
 var oSDatePalm = "gaia/flora_tree_cretan_date_palm_short";
 var eObelisk = "other/obelisk";
 var ePyramid = "other/pyramid_minor";
-var oWood = "gaia/special_treasure_wood";
-var oFood = "gaia/special_treasure_food_bin";
+var oWoodTreasure = "gaia/special_treasure_wood";
+var oFoodTreasure = "gaia/special_treasure_food_bin";
 
 var aBush1 = "actor|props/flora/bush_desert_a.xml";
 var aBush2 = "actor|props/flora/bush_desert_dry_a.xml";
@@ -374,13 +374,13 @@ createObjectGroupsDeprecated(group, 0,
 );
 
 log("Creating treasures...");
-group = new SimpleGroup([new SimpleObject(oFood, 1,1, 0,2)], true, clTreasure);
+group = new SimpleGroup([new SimpleObject(oFoodTreasure, 1,1, 0,2)], true, clTreasure);
 createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clForest, 0, clPlayer, 20, clWater, 1, clFood, 2, clDesert, 5, clTreasure, 6, clPond, 1),
 	3*scaleByMapSize(5,20), 50
 );
 
-group = new SimpleGroup([new SimpleObject(oWood, 1,1, 0,2)], true, clTreasure);
+group = new SimpleGroup([new SimpleObject(oWoodTreasure, 1,1, 0,2)], true, clTreasure);
 createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clForest, 0, clPlayer, 20, clWater, 1, clFood, 2, clDesert, 5, clTreasure, 6, clPond, 1),
 	3*scaleByMapSize(5,20), 50
