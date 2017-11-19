@@ -135,16 +135,49 @@ m.HQ.prototype.getSeaBetweenIndices = function (gameState, index1, index2)
 
 m.HQ.prototype.checkEvents = function (gameState, events)
 {
+	let addBase = false;
+
+	this.buildManager.checkEvents(gameState, events);
+
 	if (events.TerritoriesChanged.length || events.DiplomacyChanged.length)
 		this.updateTerritories(gameState);
 
 	for (let evt of events.DiplomacyChanged)
 	{
-		if (evt.player !== PlayerID && evt.otherPlayer !== PlayerID)
+		if (evt.player != PlayerID && evt.otherPlayer != PlayerID)
 			continue;
 		// Reset the entities collections which depend on diplomacy
 		gameState.resetOnDiplomacyChanged();
 		break;
+	}
+
+	for (let evt of events.Destroy)
+	{
+		// Let's check we haven't lost an important building here.
+		if (evt && !evt.SuccessfulFoundation && evt.entityObj && evt.metadata && evt.metadata[PlayerID] &&
+			evt.metadata[PlayerID].base)
+		{
+			let ent = evt.entityObj;
+			if (ent.owner() != PlayerID)
+				continue;
+			let base = this.getBaseByID(evt.metadata[PlayerID].base);
+			if (ent.resourceDropsiteTypes() && !ent.hasClass("Elephant"))
+				base.removeDropsite(gameState, ent);
+			if (evt.metadata[PlayerID].baseAnchor && evt.metadata[PlayerID].baseAnchor === true)
+				base.anchorLost(gameState, ent);
+		}
+	}
+
+	for (let evt of events.EntityRenamed)
+	{
+		let ent = gameState.getEntityById(evt.newentity);
+		if (!ent || ent.owner() != PlayerID || ent.getMetadata(PlayerID, "base") === undefined)
+			continue;
+		let base = this.getBaseByID(ent.getMetadata(PlayerID, "base"));
+		if (!base.anchorId || base.anchorId != evt.entity)
+			continue;
+		base.anchorId = evt.newentity;
+		base.anchor = ent;
 	}
 
 	for (let evt of events.Create)
@@ -152,7 +185,7 @@ m.HQ.prototype.checkEvents = function (gameState, events)
 		// Let's check if we have a valuable foundation needing builders quickly
 		// (normal foundations are taken care in baseManager.assignToFoundations)
 		let ent = gameState.getEntityById(evt.entity);
-		if (!ent || !ent.isOwn(PlayerID) || ent.foundationProgress() === undefined)
+		if (!ent || ent.owner() != PlayerID || ent.foundationProgress() === undefined)
 			continue;
 
 		if (ent.getMetadata(PlayerID, "base") == -1)
@@ -177,42 +210,39 @@ m.HQ.prototype.checkEvents = function (gameState, events)
 
 	for (let evt of events.ConstructionFinished)
 	{
-		// Let's check if we have a building set to create a new base.
-		// TODO: move to the base manager.
-		if (evt.newentity)
-		{
-			if (evt.newentity === evt.entity)  // repaired building
-				continue;
-			let ent = gameState.getEntityById(evt.newentity);
-			if (!ent || !ent.isOwn(PlayerID))
-				continue;
+		if (evt.newentity == evt.entity)  // repaired building
+			continue;
+		let ent = gameState.getEntityById(evt.newentity);
+		if (!ent || ent.owner() != PlayerID || ent.getMetadata(PlayerID, "base") === undefined)
+			continue;
+		let base = this.getBaseByID(ent.getMetadata(PlayerID, "base"));
+		base.buildings.updateEnt(ent);
+		if (ent.resourceDropsiteTypes())
+			base.assignResourceToDropsite(gameState, ent);
 
-			if (ent.getMetadata(PlayerID, "baseAnchor") === true)
-			{
-				let base = this.getBaseByID(ent.getMetadata(PlayerID, "base"));
-				if (base.constructing)
-					base.constructing = false;
-				base.anchor = ent;
-				base.anchorId = evt.newentity;
-				base.buildings.updateEnt(ent);
-				if (!this.firstBaseConfig)
-				{
-					// This is our first base, let us configure our starting resources
-					this.configFirstBase(gameState);
-				}
-				else
-				{
-					// Let us hope this new base will fix our possible resource shortage
-					this.saveResources = undefined;
-					this.saveSpace = undefined;
-				}
-			}
+		if (ent.getMetadata(PlayerID, "baseAnchor") === true)
+		{
+			if (base.constructing)
+				base.constructing = false;
+			addBase = true;
 		}
 	}
 
 	for (let evt of events.OwnershipChanged)   // capture events
 	{
-		if (evt.to !== PlayerID)
+		if (evt.from == PlayerID)
+		{
+			let ent = gameState.getEntityById(evt.entity);
+			if (!ent || ent.getMetadata(PlayerID, "base") === undefined)
+				continue;
+			let base = this.getBaseByID(ent.getMetadata(PlayerID, "base"));
+			if (ent.resourceDropsiteTypes() && !ent.hasClass("Elephant"))
+				base.removeDropsite(gameState, ent);
+			if (ent.getMetadata(PlayerID, "baseAnchor") === true)
+				base.anchorLost(gameState, ent);
+		}
+
+		if (evt.to != PlayerID)
 			continue;
 		let ent = gameState.getEntityById(evt.entity);
 		if (!ent)
@@ -248,7 +278,10 @@ m.HQ.prototype.checkEvents = function (gameState, events)
 			if (ent.foundationProgress() !== undefined)
 				newbase.init(gameState, "unconstructed");
 			else
+			{
 				newbase.init(gameState, "captured");
+				addBase = true;
+			}
 			newbase.setAnchor(gameState, ent);
 			this.baseManagers.push(newbase);
 			newbase.assignEntity(gameState, ent);
@@ -370,6 +403,21 @@ m.HQ.prototype.checkEvents = function (gameState, events)
 		}
 		else if (ent.isGarrisonHolder())
 			this.garrisonManager.removeDecayingStructure(evt.entity);
+	}
+
+	if (addBase)
+	{
+		if (!this.firstBaseConfig)
+		{
+			// This is our first base, let us configure our starting resources
+			this.configFirstBase(gameState);
+		}
+		else
+		{
+			// Let us hope this new base will fix our possible resource shortage
+			this.saveResources = undefined;
+			this.saveSpace = undefined;
+		}
 	}
 
 	// Then deals with decaying structures: destroy them if being lost to enemy (except in easier difficulties)
@@ -2402,9 +2450,6 @@ m.HQ.prototype.update = function(gameState, queues, events)
 		});
 	} */
 
-	this.buildManager.checkEvents(gameState, events);
-	for (let base of this.baseManagers)
-		base.checkEvents(gameState, events);
 	this.checkEvents(gameState, events);
 
 	if (this.phasing)
