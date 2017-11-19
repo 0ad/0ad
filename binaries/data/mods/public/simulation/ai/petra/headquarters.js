@@ -1058,6 +1058,7 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 	let cellSize = this.territoryMap.cellSize;
 	let currentVal, delta;
 	let distcc0, distcc1, distcc2;
+	let favoredDistance = template.hasClass("Colony") ? 220 : 280;
 
 	for (let j = 0; j < this.territoryMap.length; ++j)
 	{
@@ -1112,13 +1113,13 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 		if (minDist < 1 || minDist > 170000 && !this.navalMap)
 			continue;
 
-		delta = Math.sqrt(distcc0) - 300;  // favor a distance of 300
+		delta = Math.sqrt(distcc0) - favoredDistance;
 		currentVal = delta*delta;
-		delta = Math.sqrt(distcc1) - 300;
+		delta = Math.sqrt(distcc1) - favoredDistance;
 		currentVal += delta*delta;
 		if (distcc2)
 		{
-			delta = Math.sqrt(distcc2) - 300;
+			delta = Math.sqrt(distcc2) - favoredDistance;
 			currentVal += delta*delta;
 		}
 		// disfavor border of the map

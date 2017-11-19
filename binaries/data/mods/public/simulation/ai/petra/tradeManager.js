@@ -619,9 +619,6 @@ m.TradeManager.prototype.update = function(gameState, events, queues)
 	if (this.Config.difficulty <= 1)
 		return;
 
-	if (this.routeProspection)
-		this.prospectForNewMarket(gameState, queues);
-
 	if (this.checkEvents(gameState, events))  // true if one market was built or destroyed
 	{
 		this.traders.forEach(ent => { this.checkTrader(gameState, ent); });
@@ -631,33 +628,55 @@ m.TradeManager.prototype.update = function(gameState, events, queues)
 	if (this.tradeRoute)
 	{
 		this.traders.forEach(ent => { this.updateTrader(gameState, ent); });
-		if (gameState.ai.playedTurn % 5 === 0)
+		if (gameState.ai.playedTurn % 5 == 0)
 			this.trainMoreTraders(gameState, queues);
-		if (gameState.ai.playedTurn % 20 === 0 && this.traders.length >= 2)
+		if (gameState.ai.playedTurn % 20 == 0 && this.traders.length >= 2)
 			gameState.ai.HQ.researchManager.researchTradeBonus(gameState, queues);
-		if (gameState.ai.playedTurn % 60 === 0)
+		if (gameState.ai.playedTurn % 60 == 0)
 			this.setTradingGoods(gameState);
 	}
+
+	if (this.routeProspection)
+		this.prospectForNewMarket(gameState, queues);
 };
 
 m.TradeManager.prototype.routeEntToId = function(route)
 {
 	if (!route)
-		return route;
+		return undefined;
+
 	let ret = {};
 	for (let key in route)
-		ret[key] = key == "source" || key == "target" ? route[key].id() : route[key];
+	{
+		if (key == "source" || key == "target")
+		{
+			if (!route[key])
+				return undefined;
+			ret[key] = route[key].id();
+		}
+		else
+			ret[key] = route[key];
+	}
 	return ret;
 };
 
 m.TradeManager.prototype.routeIdToEnt = function(gameState, route)
 {
 	if (!route)
-		return route;
+		return undefined;
+
 	let ret = {};
 	for (let key in route)
-		ret[key] = key == "source" || key == "target" ? gameState.getEntityById(route[key]) : route[key];
-	return ret;
+	{
+		if (key == "source" || key == "target")
+		{
+			ret[key] = gameState.getEntityById(route[key]);
+			if (!ret[key])
+				return undefined;
+		}
+		else
+			ret[key] = route[key];
+	}
 };
 
 m.TradeManager.prototype.Serialize = function()
