@@ -153,10 +153,10 @@ m.GameState.prototype.getTemplate = function(type)
 	if (this.techTemplates[type] !== undefined)
 		return new m.Technology(this.techTemplates, type);
 
-	if (!this.templates[type])
-		return null;
+	if (this.templates[type] === undefined)
+		this.sharedScript.GetTemplate(type);
 
-	return new m.Template(this.sharedScript, type, this.templates[type]);
+	return this.templates[type] ? new m.Template(this.sharedScript, type, this.templates[type]) : null;
 };
 
 /** Return the template of the structure built from this foundation */
@@ -886,6 +886,8 @@ m.GameState.prototype.getEntityCounts = function()
 
 m.GameState.prototype.isTemplateAvailable = function(templateName)
 {
+	if (this.templates[templateName] === undefined)
+		this.sharedScript.GetTemplate(templateName);
 	return this.templates[templateName] && !this.isTemplateDisabled(templateName);
 };
 

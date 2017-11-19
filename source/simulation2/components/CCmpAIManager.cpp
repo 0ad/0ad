@@ -337,6 +337,8 @@ public:
 
 	CParamNode GetTemplate(const std::string& name)
 	{
+		if (!m_TemplateLoader.TemplateExists(name))
+			return NULL;
 		return m_TemplateLoader.GetTemplateFileData(name).GetChild("Entity");
 	}
 
@@ -641,10 +643,6 @@ public:
 			templates[i].second->ToJSVal(cx, false, &val);
 			m_ScriptInterface->SetProperty(m_EntityTemplates, templates[i].first.c_str(), val, true);
 		}
-
-		// Since the template data is shared between AI players, freeze it
-		// to stop any of them changing it and confusing the other players
-		m_ScriptInterface->FreezeObject(m_EntityTemplates, true);
 	}
 
 	void Serialize(std::ostream& stream, bool isDebug)

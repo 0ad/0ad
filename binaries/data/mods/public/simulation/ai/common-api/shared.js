@@ -9,7 +9,6 @@ m.SharedScript = function(settings)
 
 	this._players = Object.keys(settings.players).map(key => settings.players[key]); // TODO SM55 Object.values(settings.players)
 	this._templates = settings.templates;
-	this._derivedTemplates = {};
 	this._techTemplates = settings.techTemplates;
 
 	this._entityMetadata = {};
@@ -49,28 +48,16 @@ m.SharedScript.prototype.Deserialize = function(data)
 	this._templatesModifications = data.templatesModifications;
 	this._entitiesModifications = data.entitiesModifications;
 	this._entityMetadata = data.metadata;
-	this._derivedTemplates = {};
 
 	this.isDeserialized = true;
 };
 
 m.SharedScript.prototype.GetTemplate = function(name)
 {
-	if (this._templates[name])
-		return this._templates[name];
+	if (this._templates[name] === undefined)
+		this._templates[name] = Engine.GetTemplate(name) || null
 
-	if (this._derivedTemplates[name])
-		return this._derivedTemplates[name];
-
-	let template = Engine.GetTemplate(name);
-	if (template)
-	{
-		this._derivedTemplates[name] = template;
-		return template;
-	}
-
-	error("Tried to retrieve invalid template '"+name+"'");
-	return null;
+	return this._templates[name];
 };
 
 /**
