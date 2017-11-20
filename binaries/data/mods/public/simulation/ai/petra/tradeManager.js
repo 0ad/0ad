@@ -677,6 +677,7 @@ m.TradeManager.prototype.routeIdToEnt = function(gameState, route)
 		else
 			ret[key] = route[key];
 	}
+	return ret;
 };
 
 m.TradeManager.prototype.Serialize = function()
