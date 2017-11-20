@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
       <mesh>skeletal/celt_trader.dae</mesh>
       <props>
-        <prop actor="props/units/rome_scorpio_packed_r.xml" attachpoint="trader"/>
+        <prop actor="units/romans/scorpio_operator.xml" attachpoint="trader"/>
         <prop actor="props/units/rome_scorpio_packed_h.xml" attachpoint="donkey"/>
       </props>
-      <textures><texture file="null_white.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="null_white.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-
-  <material>player_trans.xml</material>
-
+  <material>basic_trans.xml</material>
 </actor>

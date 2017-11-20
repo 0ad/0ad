@@ -1,0 +1,1503 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.78.0 commit date:2016-10-24, commit time:12:20, hash:e8299c8</authoring_tool>
+    </contributor>
+    <created>2017-10-24T11:03:12</created>
+    <modified>2017-10-24T11:03:12</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_effects/>
+  <library_geometries>
+    <geometry id="Plano_001-mesh" name="Plano.001">
+      <mesh>
+        <source id="Plano_001-mesh-positions">
+          <float_array id="Plano_001-mesh-positions-array" count="9">-0.6218021 -0.6218021 -1.763886 0.6218021 -0.6218021 -1.763886 0.6218021 0.6218021 -1.763886</float_array>
+          <technique_common>
+            <accessor source="#Plano_001-mesh-positions-array" count="3" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plano_001-mesh-normals">
+          <float_array id="Plano_001-mesh-normals-array" count="3">0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Plano_001-mesh-normals-array" count="1" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plano_001-mesh-map-0">
+          <float_array id="Plano_001-mesh-map-0-array" count="6">7.07007e-5 0.5 0.5 7.07007e-5 0.9999293 0.5</float_array>
+          <technique_common>
+            <accessor source="#Plano_001-mesh-map-0-array" count="3" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Plano_001-mesh-vertices">
+          <input semantic="POSITION" source="#Plano_001-mesh-positions"/>
+        </vertices>
+        <polylist count="1">
+          <input semantic="VERTEX" source="#Plano_001-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Plano_001-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Plano_001-mesh-map-0" offset="2" set="0"/>
+          <vcount>3 </vcount>
+          <p>0 0 0 1 0 1 2 0 2</p>
+        </polylist>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_animations>
+    <animation id="prop-engineer_a_location_X">
+      <source id="prop-engineer_a_location_X-input">
+        <float_array id="prop-engineer_a_location_X-input-array" count="2">0 1.875</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_location_X-input-array" count="2" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_location_X-output">
+        <float_array id="prop-engineer_a_location_X-output-array" count="2">1.942248 15.74609</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_location_X-output-array" count="2" stride="1">
+            <param name="X" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_location_X-interpolation">
+        <Name_array id="prop-engineer_a_location_X-interpolation-array" count="2">BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_location_X-interpolation-array" count="2" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_location_X-intangent">
+        <float_array id="prop-engineer_a_location_X-intangent-array" count="4">-0.04166656 1.942248 1.142978 15.74609</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_location_X-intangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_location_X-outtangent">
+        <float_array id="prop-engineer_a_location_X-outtangent-array" count="4">0.04166656 1.942248 2.607022 15.74609</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_location_X-outtangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="prop-engineer_a_location_X-sampler">
+        <input semantic="INPUT" source="#prop-engineer_a_location_X-input"/>
+        <input semantic="OUTPUT" source="#prop-engineer_a_location_X-output"/>
+        <input semantic="INTERPOLATION" source="#prop-engineer_a_location_X-interpolation"/>
+        <input semantic="IN_TANGENT" source="#prop-engineer_a_location_X-intangent"/>
+        <input semantic="OUT_TANGENT" source="#prop-engineer_a_location_X-outtangent"/>
+      </sampler>
+      <channel source="#prop-engineer_a_location_X-sampler" target="prop-engineer_a/location.X"/>
+    </animation>
+    <animation id="prop-engineer_a_location_Y">
+      <source id="prop-engineer_a_location_Y-input">
+        <float_array id="prop-engineer_a_location_Y-input-array" count="2">0 1.875</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_location_Y-input-array" count="2" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_location_Y-output">
+        <float_array id="prop-engineer_a_location_Y-output-array" count="2">-4.327613 -15.75197</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_location_Y-output-array" count="2" stride="1">
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_location_Y-interpolation">
+        <Name_array id="prop-engineer_a_location_Y-interpolation-array" count="2">BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_location_Y-interpolation-array" count="2" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_location_Y-intangent">
+        <float_array id="prop-engineer_a_location_Y-intangent-array" count="4">-0.04166656 -4.327613 1.142978 -15.75197</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_location_Y-intangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_location_Y-outtangent">
+        <float_array id="prop-engineer_a_location_Y-outtangent-array" count="4">0.04166656 -4.327613 2.607022 -15.75197</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_location_Y-outtangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="prop-engineer_a_location_Y-sampler">
+        <input semantic="INPUT" source="#prop-engineer_a_location_Y-input"/>
+        <input semantic="OUTPUT" source="#prop-engineer_a_location_Y-output"/>
+        <input semantic="INTERPOLATION" source="#prop-engineer_a_location_Y-interpolation"/>
+        <input semantic="IN_TANGENT" source="#prop-engineer_a_location_Y-intangent"/>
+        <input semantic="OUT_TANGENT" source="#prop-engineer_a_location_Y-outtangent"/>
+      </sampler>
+      <channel source="#prop-engineer_a_location_Y-sampler" target="prop-engineer_a/location.Y"/>
+    </animation>
+    <animation id="prop-engineer_a_location_Z">
+      <source id="prop-engineer_a_location_Z-input">
+        <float_array id="prop-engineer_a_location_Z-input-array" count="2">0 1.875</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_location_Z-input-array" count="2" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_location_Z-output">
+        <float_array id="prop-engineer_a_location_Z-output-array" count="2">0 5.02254e-7</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_location_Z-output-array" count="2" stride="1">
+            <param name="Z" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_location_Z-interpolation">
+        <Name_array id="prop-engineer_a_location_Z-interpolation-array" count="2">BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_location_Z-interpolation-array" count="2" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_location_Z-intangent">
+        <float_array id="prop-engineer_a_location_Z-intangent-array" count="4">-0.04166656 0 1.142978 5.02254e-7</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_location_Z-intangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_location_Z-outtangent">
+        <float_array id="prop-engineer_a_location_Z-outtangent-array" count="4">0.04166656 0 2.607022 5.02254e-7</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_location_Z-outtangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="prop-engineer_a_location_Z-sampler">
+        <input semantic="INPUT" source="#prop-engineer_a_location_Z-input"/>
+        <input semantic="OUTPUT" source="#prop-engineer_a_location_Z-output"/>
+        <input semantic="INTERPOLATION" source="#prop-engineer_a_location_Z-interpolation"/>
+        <input semantic="IN_TANGENT" source="#prop-engineer_a_location_Z-intangent"/>
+        <input semantic="OUT_TANGENT" source="#prop-engineer_a_location_Z-outtangent"/>
+      </sampler>
+      <channel source="#prop-engineer_a_location_Z-sampler" target="prop-engineer_a/location.Z"/>
+    </animation>
+    <animation id="prop-engineer_a_rotation_euler_Z">
+      <source id="prop-engineer_a_rotation_euler_Z-input">
+        <float_array id="prop-engineer_a_rotation_euler_Z-input-array" count="2">0 1.875</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_rotation_euler_Z-input-array" count="2" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_rotation_euler_Z-output">
+        <float_array id="prop-engineer_a_rotation_euler_Z-output-array" count="2">0 0</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_rotation_euler_Z-output-array" count="2" stride="1">
+            <param name="ANGLE" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_rotation_euler_Z-interpolation">
+        <Name_array id="prop-engineer_a_rotation_euler_Z-interpolation-array" count="2">BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_rotation_euler_Z-interpolation-array" count="2" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_rotation_euler_Z-intangent">
+        <float_array id="prop-engineer_a_rotation_euler_Z-intangent-array" count="4">-0.04166656 0 1.142978 0</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_rotation_euler_Z-intangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_rotation_euler_Z-outtangent">
+        <float_array id="prop-engineer_a_rotation_euler_Z-outtangent-array" count="4">0.04166656 0 2.607022 0</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_rotation_euler_Z-outtangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="prop-engineer_a_rotation_euler_Z-sampler">
+        <input semantic="INPUT" source="#prop-engineer_a_rotation_euler_Z-input"/>
+        <input semantic="OUTPUT" source="#prop-engineer_a_rotation_euler_Z-output"/>
+        <input semantic="INTERPOLATION" source="#prop-engineer_a_rotation_euler_Z-interpolation"/>
+        <input semantic="IN_TANGENT" source="#prop-engineer_a_rotation_euler_Z-intangent"/>
+        <input semantic="OUT_TANGENT" source="#prop-engineer_a_rotation_euler_Z-outtangent"/>
+      </sampler>
+      <channel source="#prop-engineer_a_rotation_euler_Z-sampler" target="prop-engineer_a/rotationZ.ANGLE"/>
+    </animation>
+    <animation id="prop-engineer_a_rotation_euler_Y">
+      <source id="prop-engineer_a_rotation_euler_Y-input">
+        <float_array id="prop-engineer_a_rotation_euler_Y-input-array" count="2">0 1.875</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_rotation_euler_Y-input-array" count="2" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_rotation_euler_Y-output">
+        <float_array id="prop-engineer_a_rotation_euler_Y-output-array" count="2">0 0</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_rotation_euler_Y-output-array" count="2" stride="1">
+            <param name="ANGLE" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_rotation_euler_Y-interpolation">
+        <Name_array id="prop-engineer_a_rotation_euler_Y-interpolation-array" count="2">BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_rotation_euler_Y-interpolation-array" count="2" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_rotation_euler_Y-intangent">
+        <float_array id="prop-engineer_a_rotation_euler_Y-intangent-array" count="4">-0.04166656 0 1.142978 0</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_rotation_euler_Y-intangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_rotation_euler_Y-outtangent">
+        <float_array id="prop-engineer_a_rotation_euler_Y-outtangent-array" count="4">0.04166656 0 2.607022 0</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_rotation_euler_Y-outtangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="prop-engineer_a_rotation_euler_Y-sampler">
+        <input semantic="INPUT" source="#prop-engineer_a_rotation_euler_Y-input"/>
+        <input semantic="OUTPUT" source="#prop-engineer_a_rotation_euler_Y-output"/>
+        <input semantic="INTERPOLATION" source="#prop-engineer_a_rotation_euler_Y-interpolation"/>
+        <input semantic="IN_TANGENT" source="#prop-engineer_a_rotation_euler_Y-intangent"/>
+        <input semantic="OUT_TANGENT" source="#prop-engineer_a_rotation_euler_Y-outtangent"/>
+      </sampler>
+      <channel source="#prop-engineer_a_rotation_euler_Y-sampler" target="prop-engineer_a/rotationY.ANGLE"/>
+    </animation>
+    <animation id="prop-engineer_a_rotation_euler_X">
+      <source id="prop-engineer_a_rotation_euler_X-input">
+        <float_array id="prop-engineer_a_rotation_euler_X-input-array" count="2">0 1.875</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_rotation_euler_X-input-array" count="2" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_rotation_euler_X-output">
+        <float_array id="prop-engineer_a_rotation_euler_X-output-array" count="2">0 0</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_rotation_euler_X-output-array" count="2" stride="1">
+            <param name="ANGLE" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_rotation_euler_X-interpolation">
+        <Name_array id="prop-engineer_a_rotation_euler_X-interpolation-array" count="2">BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_rotation_euler_X-interpolation-array" count="2" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_rotation_euler_X-intangent">
+        <float_array id="prop-engineer_a_rotation_euler_X-intangent-array" count="4">-0.04166656 0 1.142978 0</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_rotation_euler_X-intangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_rotation_euler_X-outtangent">
+        <float_array id="prop-engineer_a_rotation_euler_X-outtangent-array" count="4">0.04166656 0 2.607022 0</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_rotation_euler_X-outtangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="prop-engineer_a_rotation_euler_X-sampler">
+        <input semantic="INPUT" source="#prop-engineer_a_rotation_euler_X-input"/>
+        <input semantic="OUTPUT" source="#prop-engineer_a_rotation_euler_X-output"/>
+        <input semantic="INTERPOLATION" source="#prop-engineer_a_rotation_euler_X-interpolation"/>
+        <input semantic="IN_TANGENT" source="#prop-engineer_a_rotation_euler_X-intangent"/>
+        <input semantic="OUT_TANGENT" source="#prop-engineer_a_rotation_euler_X-outtangent"/>
+      </sampler>
+      <channel source="#prop-engineer_a_rotation_euler_X-sampler" target="prop-engineer_a/rotationX.ANGLE"/>
+    </animation>
+    <animation id="prop-engineer_a_scale_X">
+      <source id="prop-engineer_a_scale_X-input">
+        <float_array id="prop-engineer_a_scale_X-input-array" count="2">0 1.875</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_scale_X-input-array" count="2" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_scale_X-output">
+        <float_array id="prop-engineer_a_scale_X-output-array" count="2">0.153483 0.686004</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_scale_X-output-array" count="2" stride="1">
+            <param name="X" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_scale_X-interpolation">
+        <Name_array id="prop-engineer_a_scale_X-interpolation-array" count="2">BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_scale_X-interpolation-array" count="2" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_scale_X-intangent">
+        <float_array id="prop-engineer_a_scale_X-intangent-array" count="4">-0.04166656 0.153483 1.142978 0.686004</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_scale_X-intangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_scale_X-outtangent">
+        <float_array id="prop-engineer_a_scale_X-outtangent-array" count="4">0.04166656 0.153483 2.607022 0.686004</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_scale_X-outtangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="prop-engineer_a_scale_X-sampler">
+        <input semantic="INPUT" source="#prop-engineer_a_scale_X-input"/>
+        <input semantic="OUTPUT" source="#prop-engineer_a_scale_X-output"/>
+        <input semantic="INTERPOLATION" source="#prop-engineer_a_scale_X-interpolation"/>
+        <input semantic="IN_TANGENT" source="#prop-engineer_a_scale_X-intangent"/>
+        <input semantic="OUT_TANGENT" source="#prop-engineer_a_scale_X-outtangent"/>
+      </sampler>
+      <channel source="#prop-engineer_a_scale_X-sampler" target="prop-engineer_a/scale.X"/>
+    </animation>
+    <animation id="prop-engineer_a_scale_Y">
+      <source id="prop-engineer_a_scale_Y-input">
+        <float_array id="prop-engineer_a_scale_Y-input-array" count="2">0 1.875</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_scale_Y-input-array" count="2" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_scale_Y-output">
+        <float_array id="prop-engineer_a_scale_Y-output-array" count="2">0.153483 0.686004</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_scale_Y-output-array" count="2" stride="1">
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_scale_Y-interpolation">
+        <Name_array id="prop-engineer_a_scale_Y-interpolation-array" count="2">BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_scale_Y-interpolation-array" count="2" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_scale_Y-intangent">
+        <float_array id="prop-engineer_a_scale_Y-intangent-array" count="4">-0.04166656 0.153483 1.142978 0.686004</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_scale_Y-intangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_scale_Y-outtangent">
+        <float_array id="prop-engineer_a_scale_Y-outtangent-array" count="4">0.04166656 0.153483 2.607022 0.686004</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_scale_Y-outtangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="prop-engineer_a_scale_Y-sampler">
+        <input semantic="INPUT" source="#prop-engineer_a_scale_Y-input"/>
+        <input semantic="OUTPUT" source="#prop-engineer_a_scale_Y-output"/>
+        <input semantic="INTERPOLATION" source="#prop-engineer_a_scale_Y-interpolation"/>
+        <input semantic="IN_TANGENT" source="#prop-engineer_a_scale_Y-intangent"/>
+        <input semantic="OUT_TANGENT" source="#prop-engineer_a_scale_Y-outtangent"/>
+      </sampler>
+      <channel source="#prop-engineer_a_scale_Y-sampler" target="prop-engineer_a/scale.Y"/>
+    </animation>
+    <animation id="prop-engineer_a_scale_Z">
+      <source id="prop-engineer_a_scale_Z-input">
+        <float_array id="prop-engineer_a_scale_Z-input-array" count="2">0 1.875</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_scale_Z-input-array" count="2" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_scale_Z-output">
+        <float_array id="prop-engineer_a_scale_Z-output-array" count="2">0.153483 0.686004</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_scale_Z-output-array" count="2" stride="1">
+            <param name="Z" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_scale_Z-interpolation">
+        <Name_array id="prop-engineer_a_scale_Z-interpolation-array" count="2">BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_scale_Z-interpolation-array" count="2" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_scale_Z-intangent">
+        <float_array id="prop-engineer_a_scale_Z-intangent-array" count="4">-0.04166656 0.153483 1.142978 0.686004</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_scale_Z-intangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_a_scale_Z-outtangent">
+        <float_array id="prop-engineer_a_scale_Z-outtangent-array" count="4">0.04166656 0.153483 2.607022 0.686004</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_a_scale_Z-outtangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="prop-engineer_a_scale_Z-sampler">
+        <input semantic="INPUT" source="#prop-engineer_a_scale_Z-input"/>
+        <input semantic="OUTPUT" source="#prop-engineer_a_scale_Z-output"/>
+        <input semantic="INTERPOLATION" source="#prop-engineer_a_scale_Z-interpolation"/>
+        <input semantic="IN_TANGENT" source="#prop-engineer_a_scale_Z-intangent"/>
+        <input semantic="OUT_TANGENT" source="#prop-engineer_a_scale_Z-outtangent"/>
+      </sampler>
+      <channel source="#prop-engineer_a_scale_Z-sampler" target="prop-engineer_a/scale.Z"/>
+    </animation>
+    <animation id="prop-engineer_b_location_X">
+      <source id="prop-engineer_b_location_X-input">
+        <float_array id="prop-engineer_b_location_X-input-array" count="2">0 1.875</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_location_X-input-array" count="2" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_location_X-output">
+        <float_array id="prop-engineer_b_location_X-output-array" count="2">3.111026 16.48175</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_location_X-output-array" count="2" stride="1">
+            <param name="X" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_location_X-interpolation">
+        <Name_array id="prop-engineer_b_location_X-interpolation-array" count="2">BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_location_X-interpolation-array" count="2" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_location_X-intangent">
+        <float_array id="prop-engineer_b_location_X-intangent-array" count="4">-0.3090758 3.111026 1.142978 16.48175</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_location_X-intangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_location_X-outtangent">
+        <float_array id="prop-engineer_b_location_X-outtangent-array" count="4">0.3090758 3.111026 2.607022 16.48175</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_location_X-outtangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="prop-engineer_b_location_X-sampler">
+        <input semantic="INPUT" source="#prop-engineer_b_location_X-input"/>
+        <input semantic="OUTPUT" source="#prop-engineer_b_location_X-output"/>
+        <input semantic="INTERPOLATION" source="#prop-engineer_b_location_X-interpolation"/>
+        <input semantic="IN_TANGENT" source="#prop-engineer_b_location_X-intangent"/>
+        <input semantic="OUT_TANGENT" source="#prop-engineer_b_location_X-outtangent"/>
+      </sampler>
+      <channel source="#prop-engineer_b_location_X-sampler" target="prop-engineer_b/location.X"/>
+    </animation>
+    <animation id="prop-engineer_b_location_Y">
+      <source id="prop-engineer_b_location_Y-input">
+        <float_array id="prop-engineer_b_location_Y-input-array" count="2">0 1.875</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_location_Y-input-array" count="2" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_location_Y-output">
+        <float_array id="prop-engineer_b_location_Y-output-array" count="2">-1.656337 -7.403124</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_location_Y-output-array" count="2" stride="1">
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_location_Y-interpolation">
+        <Name_array id="prop-engineer_b_location_Y-interpolation-array" count="2">BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_location_Y-interpolation-array" count="2" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_location_Y-intangent">
+        <float_array id="prop-engineer_b_location_Y-intangent-array" count="4">-0.3090758 -1.656337 1.142978 -7.403124</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_location_Y-intangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_location_Y-outtangent">
+        <float_array id="prop-engineer_b_location_Y-outtangent-array" count="4">0.3090758 -1.656337 2.607022 -7.403124</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_location_Y-outtangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="prop-engineer_b_location_Y-sampler">
+        <input semantic="INPUT" source="#prop-engineer_b_location_Y-input"/>
+        <input semantic="OUTPUT" source="#prop-engineer_b_location_Y-output"/>
+        <input semantic="INTERPOLATION" source="#prop-engineer_b_location_Y-interpolation"/>
+        <input semantic="IN_TANGENT" source="#prop-engineer_b_location_Y-intangent"/>
+        <input semantic="OUT_TANGENT" source="#prop-engineer_b_location_Y-outtangent"/>
+      </sampler>
+      <channel source="#prop-engineer_b_location_Y-sampler" target="prop-engineer_b/location.Y"/>
+    </animation>
+    <animation id="prop-engineer_b_location_Z">
+      <source id="prop-engineer_b_location_Z-input">
+        <float_array id="prop-engineer_b_location_Z-input-array" count="2">0 1.875</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_location_Z-input-array" count="2" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_location_Z-output">
+        <float_array id="prop-engineer_b_location_Z-output-array" count="2">3.00033e-7 1.34102e-6</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_location_Z-output-array" count="2" stride="1">
+            <param name="Z" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_location_Z-interpolation">
+        <Name_array id="prop-engineer_b_location_Z-interpolation-array" count="2">BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_location_Z-interpolation-array" count="2" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_location_Z-intangent">
+        <float_array id="prop-engineer_b_location_Z-intangent-array" count="4">-0.3090758 3.00033e-7 1.142978 1.34102e-6</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_location_Z-intangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_location_Z-outtangent">
+        <float_array id="prop-engineer_b_location_Z-outtangent-array" count="4">0.3090758 3.00033e-7 2.607022 1.34102e-6</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_location_Z-outtangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="prop-engineer_b_location_Z-sampler">
+        <input semantic="INPUT" source="#prop-engineer_b_location_Z-input"/>
+        <input semantic="OUTPUT" source="#prop-engineer_b_location_Z-output"/>
+        <input semantic="INTERPOLATION" source="#prop-engineer_b_location_Z-interpolation"/>
+        <input semantic="IN_TANGENT" source="#prop-engineer_b_location_Z-intangent"/>
+        <input semantic="OUT_TANGENT" source="#prop-engineer_b_location_Z-outtangent"/>
+      </sampler>
+      <channel source="#prop-engineer_b_location_Z-sampler" target="prop-engineer_b/location.Z"/>
+    </animation>
+    <animation id="prop-engineer_b_rotation_euler_Z">
+      <source id="prop-engineer_b_rotation_euler_Z-input">
+        <float_array id="prop-engineer_b_rotation_euler_Z-input-array" count="2">0 1.875</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_rotation_euler_Z-input-array" count="2" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_rotation_euler_Z-output">
+        <float_array id="prop-engineer_b_rotation_euler_Z-output-array" count="2">0 0</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_rotation_euler_Z-output-array" count="2" stride="1">
+            <param name="ANGLE" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_rotation_euler_Z-interpolation">
+        <Name_array id="prop-engineer_b_rotation_euler_Z-interpolation-array" count="2">BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_rotation_euler_Z-interpolation-array" count="2" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_rotation_euler_Z-intangent">
+        <float_array id="prop-engineer_b_rotation_euler_Z-intangent-array" count="4">-0.3090758 0 1.142978 0</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_rotation_euler_Z-intangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_rotation_euler_Z-outtangent">
+        <float_array id="prop-engineer_b_rotation_euler_Z-outtangent-array" count="4">0.3090758 0 2.607022 0</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_rotation_euler_Z-outtangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="prop-engineer_b_rotation_euler_Z-sampler">
+        <input semantic="INPUT" source="#prop-engineer_b_rotation_euler_Z-input"/>
+        <input semantic="OUTPUT" source="#prop-engineer_b_rotation_euler_Z-output"/>
+        <input semantic="INTERPOLATION" source="#prop-engineer_b_rotation_euler_Z-interpolation"/>
+        <input semantic="IN_TANGENT" source="#prop-engineer_b_rotation_euler_Z-intangent"/>
+        <input semantic="OUT_TANGENT" source="#prop-engineer_b_rotation_euler_Z-outtangent"/>
+      </sampler>
+      <channel source="#prop-engineer_b_rotation_euler_Z-sampler" target="prop-engineer_b/rotationZ.ANGLE"/>
+    </animation>
+    <animation id="prop-engineer_b_rotation_euler_Y">
+      <source id="prop-engineer_b_rotation_euler_Y-input">
+        <float_array id="prop-engineer_b_rotation_euler_Y-input-array" count="2">0 1.875</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_rotation_euler_Y-input-array" count="2" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_rotation_euler_Y-output">
+        <float_array id="prop-engineer_b_rotation_euler_Y-output-array" count="2">0 0</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_rotation_euler_Y-output-array" count="2" stride="1">
+            <param name="ANGLE" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_rotation_euler_Y-interpolation">
+        <Name_array id="prop-engineer_b_rotation_euler_Y-interpolation-array" count="2">BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_rotation_euler_Y-interpolation-array" count="2" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_rotation_euler_Y-intangent">
+        <float_array id="prop-engineer_b_rotation_euler_Y-intangent-array" count="4">-0.3090758 0 1.142978 0</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_rotation_euler_Y-intangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_rotation_euler_Y-outtangent">
+        <float_array id="prop-engineer_b_rotation_euler_Y-outtangent-array" count="4">0.3090758 0 2.607022 0</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_rotation_euler_Y-outtangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="prop-engineer_b_rotation_euler_Y-sampler">
+        <input semantic="INPUT" source="#prop-engineer_b_rotation_euler_Y-input"/>
+        <input semantic="OUTPUT" source="#prop-engineer_b_rotation_euler_Y-output"/>
+        <input semantic="INTERPOLATION" source="#prop-engineer_b_rotation_euler_Y-interpolation"/>
+        <input semantic="IN_TANGENT" source="#prop-engineer_b_rotation_euler_Y-intangent"/>
+        <input semantic="OUT_TANGENT" source="#prop-engineer_b_rotation_euler_Y-outtangent"/>
+      </sampler>
+      <channel source="#prop-engineer_b_rotation_euler_Y-sampler" target="prop-engineer_b/rotationY.ANGLE"/>
+    </animation>
+    <animation id="prop-engineer_b_rotation_euler_X">
+      <source id="prop-engineer_b_rotation_euler_X-input">
+        <float_array id="prop-engineer_b_rotation_euler_X-input-array" count="2">0 1.875</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_rotation_euler_X-input-array" count="2" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_rotation_euler_X-output">
+        <float_array id="prop-engineer_b_rotation_euler_X-output-array" count="2">0 0</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_rotation_euler_X-output-array" count="2" stride="1">
+            <param name="ANGLE" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_rotation_euler_X-interpolation">
+        <Name_array id="prop-engineer_b_rotation_euler_X-interpolation-array" count="2">BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_rotation_euler_X-interpolation-array" count="2" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_rotation_euler_X-intangent">
+        <float_array id="prop-engineer_b_rotation_euler_X-intangent-array" count="4">-0.3090758 0 1.142978 0</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_rotation_euler_X-intangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_rotation_euler_X-outtangent">
+        <float_array id="prop-engineer_b_rotation_euler_X-outtangent-array" count="4">0.3090758 0 2.607022 0</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_rotation_euler_X-outtangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="prop-engineer_b_rotation_euler_X-sampler">
+        <input semantic="INPUT" source="#prop-engineer_b_rotation_euler_X-input"/>
+        <input semantic="OUTPUT" source="#prop-engineer_b_rotation_euler_X-output"/>
+        <input semantic="INTERPOLATION" source="#prop-engineer_b_rotation_euler_X-interpolation"/>
+        <input semantic="IN_TANGENT" source="#prop-engineer_b_rotation_euler_X-intangent"/>
+        <input semantic="OUT_TANGENT" source="#prop-engineer_b_rotation_euler_X-outtangent"/>
+      </sampler>
+      <channel source="#prop-engineer_b_rotation_euler_X-sampler" target="prop-engineer_b/rotationX.ANGLE"/>
+    </animation>
+    <animation id="prop-engineer_b_scale_X">
+      <source id="prop-engineer_b_scale_X-input">
+        <float_array id="prop-engineer_b_scale_X-input-array" count="2">0 1.875</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_scale_X-input-array" count="2" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_scale_X-output">
+        <float_array id="prop-engineer_b_scale_X-output-array" count="2">0.153483 0.686004</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_scale_X-output-array" count="2" stride="1">
+            <param name="X" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_scale_X-interpolation">
+        <Name_array id="prop-engineer_b_scale_X-interpolation-array" count="2">BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_scale_X-interpolation-array" count="2" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_scale_X-intangent">
+        <float_array id="prop-engineer_b_scale_X-intangent-array" count="4">-0.3090758 0.153483 1.142978 0.686004</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_scale_X-intangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_scale_X-outtangent">
+        <float_array id="prop-engineer_b_scale_X-outtangent-array" count="4">0.3090758 0.153483 2.607022 0.686004</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_scale_X-outtangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="prop-engineer_b_scale_X-sampler">
+        <input semantic="INPUT" source="#prop-engineer_b_scale_X-input"/>
+        <input semantic="OUTPUT" source="#prop-engineer_b_scale_X-output"/>
+        <input semantic="INTERPOLATION" source="#prop-engineer_b_scale_X-interpolation"/>
+        <input semantic="IN_TANGENT" source="#prop-engineer_b_scale_X-intangent"/>
+        <input semantic="OUT_TANGENT" source="#prop-engineer_b_scale_X-outtangent"/>
+      </sampler>
+      <channel source="#prop-engineer_b_scale_X-sampler" target="prop-engineer_b/scale.X"/>
+    </animation>
+    <animation id="prop-engineer_b_scale_Y">
+      <source id="prop-engineer_b_scale_Y-input">
+        <float_array id="prop-engineer_b_scale_Y-input-array" count="2">0 1.875</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_scale_Y-input-array" count="2" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_scale_Y-output">
+        <float_array id="prop-engineer_b_scale_Y-output-array" count="2">0.153483 0.686004</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_scale_Y-output-array" count="2" stride="1">
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_scale_Y-interpolation">
+        <Name_array id="prop-engineer_b_scale_Y-interpolation-array" count="2">BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_scale_Y-interpolation-array" count="2" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_scale_Y-intangent">
+        <float_array id="prop-engineer_b_scale_Y-intangent-array" count="4">-0.3090758 0.153483 1.142978 0.686004</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_scale_Y-intangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_scale_Y-outtangent">
+        <float_array id="prop-engineer_b_scale_Y-outtangent-array" count="4">0.3090758 0.153483 2.607022 0.686004</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_scale_Y-outtangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="prop-engineer_b_scale_Y-sampler">
+        <input semantic="INPUT" source="#prop-engineer_b_scale_Y-input"/>
+        <input semantic="OUTPUT" source="#prop-engineer_b_scale_Y-output"/>
+        <input semantic="INTERPOLATION" source="#prop-engineer_b_scale_Y-interpolation"/>
+        <input semantic="IN_TANGENT" source="#prop-engineer_b_scale_Y-intangent"/>
+        <input semantic="OUT_TANGENT" source="#prop-engineer_b_scale_Y-outtangent"/>
+      </sampler>
+      <channel source="#prop-engineer_b_scale_Y-sampler" target="prop-engineer_b/scale.Y"/>
+    </animation>
+    <animation id="prop-engineer_b_scale_Z">
+      <source id="prop-engineer_b_scale_Z-input">
+        <float_array id="prop-engineer_b_scale_Z-input-array" count="2">0 1.875</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_scale_Z-input-array" count="2" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_scale_Z-output">
+        <float_array id="prop-engineer_b_scale_Z-output-array" count="2">0.153483 0.686004</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_scale_Z-output-array" count="2" stride="1">
+            <param name="Z" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_scale_Z-interpolation">
+        <Name_array id="prop-engineer_b_scale_Z-interpolation-array" count="2">BEZIER BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_scale_Z-interpolation-array" count="2" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_scale_Z-intangent">
+        <float_array id="prop-engineer_b_scale_Z-intangent-array" count="4">-0.3090758 0.153483 1.142978 0.686004</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_scale_Z-intangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="prop-engineer_b_scale_Z-outtangent">
+        <float_array id="prop-engineer_b_scale_Z-outtangent-array" count="4">0.3090758 0.153483 2.607022 0.686004</float_array>
+        <technique_common>
+          <accessor source="#prop-engineer_b_scale_Z-outtangent-array" count="2" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="prop-engineer_b_scale_Z-sampler">
+        <input semantic="INPUT" source="#prop-engineer_b_scale_Z-input"/>
+        <input semantic="OUTPUT" source="#prop-engineer_b_scale_Z-output"/>
+        <input semantic="INTERPOLATION" source="#prop-engineer_b_scale_Z-interpolation"/>
+        <input semantic="IN_TANGENT" source="#prop-engineer_b_scale_Z-intangent"/>
+        <input semantic="OUT_TANGENT" source="#prop-engineer_b_scale_Z-outtangent"/>
+      </sampler>
+      <channel source="#prop-engineer_b_scale_Z-sampler" target="prop-engineer_b/scale.Z"/>
+    </animation>
+    <animation id="Plano_001_location_X">
+      <source id="Plano_001_location_X-input">
+        <float_array id="Plano_001_location_X-input-array" count="1">0</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_location_X-input-array" count="1" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_location_X-output">
+        <float_array id="Plano_001_location_X-output-array" count="1">0</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_location_X-output-array" count="1" stride="1">
+            <param name="X" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_location_X-interpolation">
+        <Name_array id="Plano_001_location_X-interpolation-array" count="1">BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Plano_001_location_X-interpolation-array" count="1" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_location_X-intangent">
+        <float_array id="Plano_001_location_X-intangent-array" count="2">-0.04166656 0</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_location_X-intangent-array" count="1" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_location_X-outtangent">
+        <float_array id="Plano_001_location_X-outtangent-array" count="2">0.04166656 0</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_location_X-outtangent-array" count="1" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Plano_001_location_X-sampler">
+        <input semantic="INPUT" source="#Plano_001_location_X-input"/>
+        <input semantic="OUTPUT" source="#Plano_001_location_X-output"/>
+        <input semantic="INTERPOLATION" source="#Plano_001_location_X-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Plano_001_location_X-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Plano_001_location_X-outtangent"/>
+      </sampler>
+      <channel source="#Plano_001_location_X-sampler" target="Plano_001/location.X"/>
+    </animation>
+    <animation id="Plano_001_location_Y">
+      <source id="Plano_001_location_Y-input">
+        <float_array id="Plano_001_location_Y-input-array" count="1">0</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_location_Y-input-array" count="1" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_location_Y-output">
+        <float_array id="Plano_001_location_Y-output-array" count="1">0</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_location_Y-output-array" count="1" stride="1">
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_location_Y-interpolation">
+        <Name_array id="Plano_001_location_Y-interpolation-array" count="1">BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Plano_001_location_Y-interpolation-array" count="1" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_location_Y-intangent">
+        <float_array id="Plano_001_location_Y-intangent-array" count="2">-0.04166656 0</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_location_Y-intangent-array" count="1" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_location_Y-outtangent">
+        <float_array id="Plano_001_location_Y-outtangent-array" count="2">0.04166656 0</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_location_Y-outtangent-array" count="1" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Plano_001_location_Y-sampler">
+        <input semantic="INPUT" source="#Plano_001_location_Y-input"/>
+        <input semantic="OUTPUT" source="#Plano_001_location_Y-output"/>
+        <input semantic="INTERPOLATION" source="#Plano_001_location_Y-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Plano_001_location_Y-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Plano_001_location_Y-outtangent"/>
+      </sampler>
+      <channel source="#Plano_001_location_Y-sampler" target="Plano_001/location.Y"/>
+    </animation>
+    <animation id="Plano_001_location_Z">
+      <source id="Plano_001_location_Z-input">
+        <float_array id="Plano_001_location_Z-input-array" count="1">0</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_location_Z-input-array" count="1" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_location_Z-output">
+        <float_array id="Plano_001_location_Z-output-array" count="1">0</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_location_Z-output-array" count="1" stride="1">
+            <param name="Z" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_location_Z-interpolation">
+        <Name_array id="Plano_001_location_Z-interpolation-array" count="1">BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Plano_001_location_Z-interpolation-array" count="1" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_location_Z-intangent">
+        <float_array id="Plano_001_location_Z-intangent-array" count="2">-0.04166656 0</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_location_Z-intangent-array" count="1" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_location_Z-outtangent">
+        <float_array id="Plano_001_location_Z-outtangent-array" count="2">0.04166656 0</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_location_Z-outtangent-array" count="1" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Plano_001_location_Z-sampler">
+        <input semantic="INPUT" source="#Plano_001_location_Z-input"/>
+        <input semantic="OUTPUT" source="#Plano_001_location_Z-output"/>
+        <input semantic="INTERPOLATION" source="#Plano_001_location_Z-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Plano_001_location_Z-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Plano_001_location_Z-outtangent"/>
+      </sampler>
+      <channel source="#Plano_001_location_Z-sampler" target="Plano_001/location.Z"/>
+    </animation>
+    <animation id="Plano_001_rotation_euler_Z">
+      <source id="Plano_001_rotation_euler_Z-input">
+        <float_array id="Plano_001_rotation_euler_Z-input-array" count="1">0</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_rotation_euler_Z-input-array" count="1" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_rotation_euler_Z-output">
+        <float_array id="Plano_001_rotation_euler_Z-output-array" count="1">0</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_rotation_euler_Z-output-array" count="1" stride="1">
+            <param name="ANGLE" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_rotation_euler_Z-interpolation">
+        <Name_array id="Plano_001_rotation_euler_Z-interpolation-array" count="1">BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Plano_001_rotation_euler_Z-interpolation-array" count="1" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_rotation_euler_Z-intangent">
+        <float_array id="Plano_001_rotation_euler_Z-intangent-array" count="2">-0.04166656 0</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_rotation_euler_Z-intangent-array" count="1" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_rotation_euler_Z-outtangent">
+        <float_array id="Plano_001_rotation_euler_Z-outtangent-array" count="2">0.04166656 0</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_rotation_euler_Z-outtangent-array" count="1" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Plano_001_rotation_euler_Z-sampler">
+        <input semantic="INPUT" source="#Plano_001_rotation_euler_Z-input"/>
+        <input semantic="OUTPUT" source="#Plano_001_rotation_euler_Z-output"/>
+        <input semantic="INTERPOLATION" source="#Plano_001_rotation_euler_Z-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Plano_001_rotation_euler_Z-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Plano_001_rotation_euler_Z-outtangent"/>
+      </sampler>
+      <channel source="#Plano_001_rotation_euler_Z-sampler" target="Plano_001/rotationZ.ANGLE"/>
+    </animation>
+    <animation id="Plano_001_rotation_euler_Y">
+      <source id="Plano_001_rotation_euler_Y-input">
+        <float_array id="Plano_001_rotation_euler_Y-input-array" count="1">0</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_rotation_euler_Y-input-array" count="1" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_rotation_euler_Y-output">
+        <float_array id="Plano_001_rotation_euler_Y-output-array" count="1">0</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_rotation_euler_Y-output-array" count="1" stride="1">
+            <param name="ANGLE" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_rotation_euler_Y-interpolation">
+        <Name_array id="Plano_001_rotation_euler_Y-interpolation-array" count="1">BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Plano_001_rotation_euler_Y-interpolation-array" count="1" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_rotation_euler_Y-intangent">
+        <float_array id="Plano_001_rotation_euler_Y-intangent-array" count="2">-0.04166656 0</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_rotation_euler_Y-intangent-array" count="1" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_rotation_euler_Y-outtangent">
+        <float_array id="Plano_001_rotation_euler_Y-outtangent-array" count="2">0.04166656 0</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_rotation_euler_Y-outtangent-array" count="1" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Plano_001_rotation_euler_Y-sampler">
+        <input semantic="INPUT" source="#Plano_001_rotation_euler_Y-input"/>
+        <input semantic="OUTPUT" source="#Plano_001_rotation_euler_Y-output"/>
+        <input semantic="INTERPOLATION" source="#Plano_001_rotation_euler_Y-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Plano_001_rotation_euler_Y-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Plano_001_rotation_euler_Y-outtangent"/>
+      </sampler>
+      <channel source="#Plano_001_rotation_euler_Y-sampler" target="Plano_001/rotationY.ANGLE"/>
+    </animation>
+    <animation id="Plano_001_rotation_euler_X">
+      <source id="Plano_001_rotation_euler_X-input">
+        <float_array id="Plano_001_rotation_euler_X-input-array" count="1">0</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_rotation_euler_X-input-array" count="1" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_rotation_euler_X-output">
+        <float_array id="Plano_001_rotation_euler_X-output-array" count="1">0</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_rotation_euler_X-output-array" count="1" stride="1">
+            <param name="ANGLE" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_rotation_euler_X-interpolation">
+        <Name_array id="Plano_001_rotation_euler_X-interpolation-array" count="1">BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Plano_001_rotation_euler_X-interpolation-array" count="1" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_rotation_euler_X-intangent">
+        <float_array id="Plano_001_rotation_euler_X-intangent-array" count="2">-0.04166656 0</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_rotation_euler_X-intangent-array" count="1" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_rotation_euler_X-outtangent">
+        <float_array id="Plano_001_rotation_euler_X-outtangent-array" count="2">0.04166656 0</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_rotation_euler_X-outtangent-array" count="1" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Plano_001_rotation_euler_X-sampler">
+        <input semantic="INPUT" source="#Plano_001_rotation_euler_X-input"/>
+        <input semantic="OUTPUT" source="#Plano_001_rotation_euler_X-output"/>
+        <input semantic="INTERPOLATION" source="#Plano_001_rotation_euler_X-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Plano_001_rotation_euler_X-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Plano_001_rotation_euler_X-outtangent"/>
+      </sampler>
+      <channel source="#Plano_001_rotation_euler_X-sampler" target="Plano_001/rotationX.ANGLE"/>
+    </animation>
+    <animation id="Plano_001_scale_X">
+      <source id="Plano_001_scale_X-input">
+        <float_array id="Plano_001_scale_X-input-array" count="1">0</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_scale_X-input-array" count="1" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_scale_X-output">
+        <float_array id="Plano_001_scale_X-output-array" count="1">0.2237347</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_scale_X-output-array" count="1" stride="1">
+            <param name="X" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_scale_X-interpolation">
+        <Name_array id="Plano_001_scale_X-interpolation-array" count="1">BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Plano_001_scale_X-interpolation-array" count="1" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_scale_X-intangent">
+        <float_array id="Plano_001_scale_X-intangent-array" count="2">-0.04166656 0.2237347</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_scale_X-intangent-array" count="1" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_scale_X-outtangent">
+        <float_array id="Plano_001_scale_X-outtangent-array" count="2">0.04166656 0.2237347</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_scale_X-outtangent-array" count="1" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Plano_001_scale_X-sampler">
+        <input semantic="INPUT" source="#Plano_001_scale_X-input"/>
+        <input semantic="OUTPUT" source="#Plano_001_scale_X-output"/>
+        <input semantic="INTERPOLATION" source="#Plano_001_scale_X-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Plano_001_scale_X-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Plano_001_scale_X-outtangent"/>
+      </sampler>
+      <channel source="#Plano_001_scale_X-sampler" target="Plano_001/scale.X"/>
+    </animation>
+    <animation id="Plano_001_scale_Y">
+      <source id="Plano_001_scale_Y-input">
+        <float_array id="Plano_001_scale_Y-input-array" count="1">0</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_scale_Y-input-array" count="1" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_scale_Y-output">
+        <float_array id="Plano_001_scale_Y-output-array" count="1">0.2237347</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_scale_Y-output-array" count="1" stride="1">
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_scale_Y-interpolation">
+        <Name_array id="Plano_001_scale_Y-interpolation-array" count="1">BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Plano_001_scale_Y-interpolation-array" count="1" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_scale_Y-intangent">
+        <float_array id="Plano_001_scale_Y-intangent-array" count="2">-0.04166656 0.2237347</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_scale_Y-intangent-array" count="1" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_scale_Y-outtangent">
+        <float_array id="Plano_001_scale_Y-outtangent-array" count="2">0.04166656 0.2237347</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_scale_Y-outtangent-array" count="1" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Plano_001_scale_Y-sampler">
+        <input semantic="INPUT" source="#Plano_001_scale_Y-input"/>
+        <input semantic="OUTPUT" source="#Plano_001_scale_Y-output"/>
+        <input semantic="INTERPOLATION" source="#Plano_001_scale_Y-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Plano_001_scale_Y-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Plano_001_scale_Y-outtangent"/>
+      </sampler>
+      <channel source="#Plano_001_scale_Y-sampler" target="Plano_001/scale.Y"/>
+    </animation>
+    <animation id="Plano_001_scale_Z">
+      <source id="Plano_001_scale_Z-input">
+        <float_array id="Plano_001_scale_Z-input-array" count="1">0</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_scale_Z-input-array" count="1" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_scale_Z-output">
+        <float_array id="Plano_001_scale_Z-output-array" count="1">0.2237347</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_scale_Z-output-array" count="1" stride="1">
+            <param name="Z" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_scale_Z-interpolation">
+        <Name_array id="Plano_001_scale_Z-interpolation-array" count="1">BEZIER</Name_array>
+        <technique_common>
+          <accessor source="#Plano_001_scale_Z-interpolation-array" count="1" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_scale_Z-intangent">
+        <float_array id="Plano_001_scale_Z-intangent-array" count="2">-0.04166656 0.2237347</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_scale_Z-intangent-array" count="1" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="Plano_001_scale_Z-outtangent">
+        <float_array id="Plano_001_scale_Z-outtangent-array" count="2">0.04166656 0.2237347</float_array>
+        <technique_common>
+          <accessor source="#Plano_001_scale_Z-outtangent-array" count="1" stride="2">
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="Plano_001_scale_Z-sampler">
+        <input semantic="INPUT" source="#Plano_001_scale_Z-input"/>
+        <input semantic="OUTPUT" source="#Plano_001_scale_Z-output"/>
+        <input semantic="INTERPOLATION" source="#Plano_001_scale_Z-interpolation"/>
+        <input semantic="IN_TANGENT" source="#Plano_001_scale_Z-intangent"/>
+        <input semantic="OUT_TANGENT" source="#Plano_001_scale_Z-outtangent"/>
+      </sampler>
+      <channel source="#Plano_001_scale_Z-sampler" target="Plano_001/scale.Z"/>
+    </animation>
+  </library_animations>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Plano_001" name="Plano_001" type="NODE">
+        <translate sid="location">0 0 0</translate>
+        <rotate sid="rotationZ">0 0 1 0</rotate>
+        <rotate sid="rotationY">0 1 0 0</rotate>
+        <rotate sid="rotationX">1 0 0 0</rotate>
+        <scale sid="scale">0.2237349 0.2237349 0.2237349</scale>
+        <instance_geometry url="#Plano_001-mesh" name="Plano_001"/>
+        <node id="prop-engineer_a" name="prop-engineer_a" type="NODE">
+          <translate sid="location">15.74609 -15.75197 5.02254e-7</translate>
+          <rotate sid="rotationZ">0 0 1 0</rotate>
+          <rotate sid="rotationY">0 1 0 0</rotate>
+          <rotate sid="rotationX">1 0 0 0</rotate>
+          <scale sid="scale">0.686004 0.686004 0.686004</scale>
+        </node>
+        <node id="prop-engineer_b" name="prop-engineer_b" type="NODE">
+          <translate sid="location">16.48174 -7.403124 1.34102e-6</translate>
+          <rotate sid="rotationZ">0 0 1 0</rotate>
+          <rotate sid="rotationY">0 1 0 0</rotate>
+          <rotate sid="rotationX">1 0 0 0</rotate>
+          <scale sid="scale">0.686004 0.686004 0.686004</scale>
+        </node>
+        <node id="prop_whagon" name="prop_whagon" type="NODE">
+          <translate sid="location">0 0 0</translate>
+          <rotate sid="rotationZ">0 0 1 0</rotate>
+          <rotate sid="rotationY">0 1 0 0</rotate>
+          <rotate sid="rotationX">1 0 0 0</rotate>
+          <scale sid="scale">0.8209787 0.8209787 0.8209787</scale>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

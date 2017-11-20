@@ -10,7 +10,7 @@
   </Pack>
   <Sound>
     <SoundGroups>
-      <attack_ranged>attack/siege/ballist_rome_attack.xml</attack_ranged>
+      <attack>attack/siege/ballist_rome_attack.xml</attack>
     </SoundGroups>
   </Sound>
   <UnitMotion>
@@ -20,6 +20,6 @@
     </Run>
   </UnitMotion>
   <VisualActor>
-    <Actor>units/romans/siege_rock.xml</Actor>
+    <Actor>units/romans/siege_rock_pivot.xml</Actor>
   </VisualActor>
 </Entity>

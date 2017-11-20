@@ -1,0 +1,9 @@
+<variant name="attack_ranged">
+  <animations>
+    <animation event="0.66" file="biped/new/oxybeles_attack_b.dae" load="0.32" name="attack_ranged" speed="250"/>
+  </animations>
+  <props>
+    <prop actor="" attachpoint="weapon_R"/>
+    <prop actor="props/units/weapons/bolt.xml" attachpoint="loaded-weapon_R"/>
+  </props>
+</variant>

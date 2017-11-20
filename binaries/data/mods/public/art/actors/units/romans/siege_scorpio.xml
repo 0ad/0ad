@@ -3,11 +3,10 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Scorpio">
-      <mesh>structural/rome_siege_scorpio.dae</mesh>
+      <mesh>structural/scorpio_pivot.dae</mesh>
       <props>
-        <prop actor="props/units/rome_scorpio_operator.xml" attachpoint="operator"/>
-        <prop actor="props/units/rome_scorpio_weapon.xml" attachpoint="scorpio"/>
-        <prop actor="props/units/weapons/jav_projectile.xml" attachpoint="projectile"/>
+        <prop actor="units/romans/scorpio_operator.xml" attachpoint="operator"/>
+        <prop actor="props/units/rome_scorpio_weapon.xml" attachpoint="weapon"/>
       </props>
       <textures>
         <texture file="structural/hele_siege.dds" name="baseTex"/>
