@@ -2,19 +2,18 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="boeotian fireraiser">
-      <animations>
-        <animation event="0.5" file="mechanical/celt_siege_ram_attack.dae" load="0.0" name="attack_ranged" speed="100"/>
-      </animations>
+    <variant frequency="100" name="Boeotian fireraiser">
       <mesh>structural/fireraiser.dae</mesh>
       <props>
         <prop actor="particle/smoke.xml" attachpoint="smoke"/>
         <prop actor="particle/flame.xml" attachpoint="smoke"/>
         <prop actor="particle/flame_large.xml" attachpoint="projectile"/>
-        <prop actor="units/hellenes/trader_r.xml" attachpoint="operator2"/>
-        <prop actor="" attachpoint="operator1"/>
+        <prop actor="units/athenians/ballista_infantry_a.xml" attachpoint="operator1"/>
+        <prop actor="units/athenians/ballista_infantry_b.xml" attachpoint="operator2"/>
       </props>
-      <textures><texture file="structural/fireraiser.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/fireraiser.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <material>player_trans.xml</material>
