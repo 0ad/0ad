@@ -1,0 +1,128 @@
+<skeletons>
+    <standard_skeleton id="Goat" title="Goat Skeleton">
+        <bone name="Base">
+            <bone name="spine">
+                <bone name="neck">
+                    <bone name="head"></bone>
+                </bone>
+                <bone name="shoulder_front_r">
+                    <bone name="thigh_front_r">
+                        <bone name="calf_front_r">
+                            <bone name="foot_front_r">
+                                <bone name="foot_front_tip_r"></bone>
+                            </bone>
+                        </bone>
+                    </bone>
+                </bone>
+                <bone name="shoulder_front_l">
+                    <bone name="thigh_front_l">
+                        <bone name="calf_front_l">
+                            <bone name="foot_front_l">
+                                <bone name="foot_front_tip_l"></bone>
+                            </bone>
+                        </bone>
+                    </bone>
+                </bone>
+            </bone>
+            <bone name="spine_back">
+                <bone name="back">
+                    <bone name="thigh_back_r">
+                        <bone name="calf_back_r">
+                            <bone name="foot_back_r">
+                                <bone name="foot_back_tip_r"></bone>
+                            </bone>
+                        </bone>
+                    </bone>
+                    <bone name="thigh_back_l">
+                        <bone name="calf_back_l">
+                            <bone name="foot_back_l">
+                                <bone name="foot_back_tip_l"></bone>
+                            </bone>
+                        </bone>
+                    </bone>
+                    <bone name="tail"></bone>
+                </bone>
+            </bone>
+        </bone>
+    </standard_skeleton>
+    <skeleton target="Goat" title="Goat Skeleton">
+        <identifier>
+            <root>Base</root>
+        </identifier>
+        <bone name="Base">
+            <target>Base</target>
+            <bone name="spine">
+                <target>spine</target>
+                <bone name="neck">
+                    <target>neck</target>
+                    <bone name="head">
+                        <target>head</target>
+                    </bone>
+                </bone>
+                <bone name="shoulder_front_r">
+                    <target>shoulder_front_r</target>
+                    <bone name="thigh_front_r">
+                        <target>thigh_front_r</target>
+                        <bone name="calf_front_r">
+                            <target>calf_front_r</target>
+                            <bone name="foot_front_r">
+                                <target>foot_front_r</target>
+                                <bone name="foot_front_tip_r">
+                                    <target>foot_front_tip_r</target>
+                                </bone>
+                            </bone>
+                        </bone>
+                    </bone>
+                </bone>
+                <bone name="shoulder_front_l">
+                    <target>shoulder_front_l</target>
+                    <bone name="thigh_front_l">
+                        <target>thigh_front_l</target>
+                        <bone name="calf_front_l">
+                            <target>calf_front_l</target>
+                            <bone name="foot_front_l">
+                                <target>foot_front_l</target>
+                                <bone name="foot_front_tip_l">
+                                    <target>foot_front_tip_l</target>
+                                </bone>
+                            </bone>
+                        </bone>
+                    </bone>
+                </bone>
+            </bone>
+            <bone name="spine_back">
+                <target>spine_back</target>
+                <bone name="back">
+                    <target>back</target>
+                    <bone name="thigh_back_r">
+                        <target>thigh_back_r</target>
+                        <bone name="calf_back_r">
+                            <target>calf_back_r</target>
+                            <bone name="foot_back_r">
+                                <target>foot_back_r</target>
+                                <bone name="foot_back_tip_r">
+                                    <target>foot_back_tip_r</target>
+                                </bone>
+                            </bone>
+                        </bone>
+                    </bone>
+                    <bone name="thigh_back_l">
+                        <target>thigh_back_l</target>
+                        <bone name="calf_back_l">
+                            <target>calf_back_l</target>
+                            <bone name="foot_back_l">
+                                <target>foot_back_l</target>
+                                <bone name="foot_back_tip_l">
+                                    <target>foot_back_tip_l</target>
+                                </bone>
+                            </bone>
+                        </bone>
+                    </bone>
+                    <bone name="tail">
+                        <target>tail</target>
+                    </bone>
+                </bone>
+            </bone>
+        </bone>
+    </skeleton>
+</skeletons>
