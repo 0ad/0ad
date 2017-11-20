@@ -1272,14 +1272,20 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		}
 
 		let time = gameState.ai.elapsedTime;
+		let attackedByStructure = {};
 		for (let evt of events.Attacked)
 		{
 			if (!this.unitCollection.hasEntId(evt.target))
 				continue;
 			let attacker = gameState.getEntityById(evt.attacker);
 			let ourUnit = gameState.getEntityById(evt.target);
-			if (!ourUnit || !attacker || !attacker.position() || !attacker.hasClass("Unit"))
+			if (!ourUnit || !attacker || !attacker.position())
 				continue;
+			if (!attacker.hasClass("Unit"))
+			{
+				attackedByStructure[evt.target] = true;
+				continue;
+			}
 			if (m.isSiegeUnit(ourUnit))
 			{	// if our siege units are attacked, we'll send some units to deal with enemies.
 				let collec = this.unitCollection.filter(API3.Filters.not(API3.Filters.byClass("Siege"))).filterNearest(ourUnit.position(), 5);
@@ -1421,6 +1427,9 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			let ent = gameState.getEntityById(this.unitCollUpdateArray[check]);
 			if (!ent || !ent.position())
 				continue;
+			// Do not reaffect units which have reacted to an attack in that same turn
+			if (ent.getMetadata(PlayerID, "lastAttackPlanUpdateTime") == time)
+				continue;
 
 			let targetId;
 			let orderData = ent.unitAIOrderData();
@@ -1457,6 +1466,8 @@ m.AttackPlan.prototype.update = function(gameState, events)
 					--unitTargets[targetId];
 				}
 				else if (target.hasClass("Ship") && !ent.hasClass("Ship"))
+					maybeUpdate = true;
+				else if (attackedByStructure[ent.id()] && target.hasClass("Field"))
 					maybeUpdate = true;
 				else if (!ent.hasClass("Cavalry") && !ent.hasClass("Ranged") &&
 					 target.hasClass("FemaleCitizen") && target.unitAIState().split(".")[1] == "FLEEING")
