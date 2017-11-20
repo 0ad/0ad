@@ -338,7 +338,7 @@ public:
 	CParamNode GetTemplate(const std::string& name)
 	{
 		if (!m_TemplateLoader.TemplateExists(name))
-			return NULL;
+			return CParamNode(false);
 		return m_TemplateLoader.GetTemplateFileData(name).GetChild("Entity");
 	}
 
