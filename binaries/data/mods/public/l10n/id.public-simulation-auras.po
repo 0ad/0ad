@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-06-15 16:42+0000\n"
-"Last-Translator: Samuel <srandiny@gmail.com>\n"
+"POT-Creation-Date: 2017-11-17 09:04+0100\n"
+"PO-Revision-Date: 2017-11-17 08:26+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,8 +25,8 @@ msgid "Dockyard Repairs"
 msgstr "Perbaikan dari Galangan"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
-msgid "Heals garrisoned ship at 10 HP per second."
-msgstr "Menyembuhkan 10 Nyawa per detik untuk kapal berpenumpang."
+msgid "Repairs garrisoned ship at 10 HP per second."
+msgstr ""
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
@@ -118,6 +118,14 @@ msgid ""
 "Further increase the population limit by 40 per wonder owned (requires "
 "\"Glorious Expansion\" tech)."
 msgstr "Menambahkan batas populasi sebesar 40 per keajaiban yang dimiliki (membutuhkan teknologi \"Ekspansi Megah\")."
+
+#: simulation/data/auras/structures/workshop_repair.jsonauraName
+msgid "Workshop Repairs"
+msgstr ""
+
+#: simulation/data/auras/structures/workshop_repair.jsonauraDescription
+msgid "Repairs garrisoned siege units at 3 HP per second."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -552,14 +560,6 @@ msgstr "Penjarah Roma"
 msgid "+15 Metal loot for every enemy unit killed."
 msgstr "+15 jarahan Logam untuk setiap unit musuh dibunuh."
 
-#: simulation/data/auras/units/heroes/gaul_hero_britomartus.jsonauraName
-msgid "Preparation for War"
-msgstr "Persiapan Perang"
-
-#: simulation/data/auras/units/heroes/gaul_hero_britomartus.jsonauraDescription
-msgid "Gathering rates increased with +15% during his lifetime."
-msgstr "Tingkat pengumpulan sumber daya meningkat sebanyak +15% selama dia hidup."
-
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraName
 msgid "Celtic Warlord"
 msgstr "Panglima Kelt"
@@ -567,6 +567,14 @@ msgstr "Panglima Kelt"
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraDescription
 msgid "+20% attack and +1 capture for soldiers and siege engines."
 msgstr "+20% serangan dan +1 ambil alih untuk prajurit dan senjata kepung."
+
+#: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraName
+msgid "Preparation for War"
+msgstr "Persiapan Perang"
+
+#: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
+msgid "Gathering rates increased with +15% during his lifetime."
+msgstr "Tingkat pengumpulan sumber daya meningkat sebanyak +15% selama dia hidup."
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraName
 msgid "Inspired Defense"

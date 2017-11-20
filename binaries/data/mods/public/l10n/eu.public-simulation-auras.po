@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-06-04 20:39+0000\n"
+"POT-Creation-Date: 2017-11-17 09:04+0100\n"
+"PO-Revision-Date: 2017-11-17 16:32+0000\n"
 "Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -24,8 +24,8 @@ msgid "Dockyard Repairs"
 msgstr "Konponketak Ontzioletan"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
-msgid "Heals garrisoned ship at 10 HP per second."
-msgstr "Sendatu babestutako itsasontziak segundoko 10 PV kin"
+msgid "Repairs garrisoned ship at 10 HP per second."
+msgstr "Konpondu babestutako itsasontziak segundoko 10 PV kin"
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
@@ -117,6 +117,14 @@ msgid ""
 "Further increase the population limit by 40 per wonder owned (requires "
 "\"Glorious Expansion\" tech)."
 msgstr "Populazioaren +40 gehitzen du eraikitako miragarri bakoitzeko. («Zabalketa Loriatsua» behar du)."
+
+#: simulation/data/auras/structures/workshop_repair.jsonauraName
+msgid "Workshop Repairs"
+msgstr "Konponketak Tailerrean"
+
+#: simulation/data/auras/structures/workshop_repair.jsonauraDescription
+msgid "Repairs garrisoned siege units at 3 HP per second."
+msgstr "Konpondu eraso unitateak segundoko 3 PV kin"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -551,14 +559,6 @@ msgstr "Erromako Lapurra"
 msgid "+15 Metal loot for every enemy unit killed."
 msgstr "+15 eko metal harrapakina hildako etsai bakoitzeko."
 
-#: simulation/data/auras/units/heroes/gaul_hero_britomartus.jsonauraName
-msgid "Preparation for War"
-msgstr "Gerraren Prestakuntzak"
-
-#: simulation/data/auras/units/heroes/gaul_hero_britomartus.jsonauraDescription
-msgid "Gathering rates increased with +15% during his lifetime."
-msgstr "Baliabideen biltze abiadura %15+ igoko da bere bizitzan zehar."
-
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraName
 msgid "Celtic Warlord"
 msgstr "Guda Jauntxo Zelta"
@@ -566,6 +566,14 @@ msgstr "Guda Jauntxo Zelta"
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraDescription
 msgid "+20% attack and +1 capture for soldiers and siege engines."
 msgstr "%20+ erasoan eta +1 atzematean gudari eta setio makinentzat."
+
+#: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraName
+msgid "Preparation for War"
+msgstr "Gerraren Prestakuntzak"
+
+#: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
+msgid "Gathering rates increased with +15% during his lifetime."
+msgstr "Baliabideen biltze abiadura %15+ igoko da bere bizitzan zehar."
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraName
 msgid "Inspired Defense"

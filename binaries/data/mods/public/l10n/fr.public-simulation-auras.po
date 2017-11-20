@@ -16,6 +16,7 @@
 # jy jrts <lucashavard35@hotmail.fr>, 2017
 # Loki <tontonloul@hotmail.fr>, 2016
 # Louis Parramon <taonasb@live.fr>, 2016
+# Lucas Bertram <lucasjbertram@gmail.com>, 2017
 # Luc <luc.absil2@gmail.com>, 2017
 # Inperpetuammemoriam, 2016
 # Micky Jault <micky037@hotmail.fr>, 2016
@@ -29,9 +30,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-10-08 23:02+0000\n"
-"Last-Translator: Jo Du <jojo337@live.fr>\n"
+"POT-Creation-Date: 2017-11-17 09:04+0100\n"
+"PO-Revision-Date: 2017-11-18 18:56+0000\n"
+"Last-Translator: Lucas Bertram <lucasjbertram@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -44,8 +45,8 @@ msgid "Dockyard Repairs"
 msgstr "Réparations navales"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
-msgid "Heals garrisoned ship at 10 HP per second."
-msgstr "Répare les bateaux stationnés de 10 PV par seconde."
+msgid "Repairs garrisoned ship at 10 HP per second."
+msgstr "Répare les navires mise en garnison de 10 PV par seconde."
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
@@ -137,6 +138,14 @@ msgid ""
 "Further increase the population limit by 40 per wonder owned (requires "
 "\"Glorious Expansion\" tech)."
 msgstr "Augmente d'avantage la limite de population de 40 par merveille possédée (requiert la technologie \"Expansion Glorieuse\")."
+
+#: simulation/data/auras/structures/workshop_repair.jsonauraName
+msgid "Workshop Repairs"
+msgstr "Réparations à l'atelier"
+
+#: simulation/data/auras/structures/workshop_repair.jsonauraDescription
+msgid "Repairs garrisoned siege units at 3 HP per second."
+msgstr "Répare les unités de siège de 3 PV par seconde."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -571,14 +580,6 @@ msgstr "Saccageur de Rome"
 msgid "+15 Metal loot for every enemy unit killed."
 msgstr "+15 de butin en métal pour chaque unité ennemie tuée."
 
-#: simulation/data/auras/units/heroes/gaul_hero_britomartus.jsonauraName
-msgid "Preparation for War"
-msgstr "Préparation à la guerre"
-
-#: simulation/data/auras/units/heroes/gaul_hero_britomartus.jsonauraDescription
-msgid "Gathering rates increased with +15% during his lifetime."
-msgstr "Les taux de collecte augmente de +15% pendant sa durée de vie."
-
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraName
 msgid "Celtic Warlord"
 msgstr "Seigneur de guerre celtique"
@@ -586,6 +587,14 @@ msgstr "Seigneur de guerre celtique"
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraDescription
 msgid "+20% attack and +1 capture for soldiers and siege engines."
 msgstr "+20% d'attaque et +1 point de capture pour les soldats et engins de siège."
+
+#: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraName
+msgid "Preparation for War"
+msgstr "Préparation à la guerre"
+
+#: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
+msgid "Gathering rates increased with +15% during his lifetime."
+msgstr "Les taux de collecte augmente de +15% pendant sa durée de vie."
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraName
 msgid "Inspired Defense"
