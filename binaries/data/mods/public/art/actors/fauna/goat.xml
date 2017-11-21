@@ -2,16 +2,45 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Mesh">
+    <variant frequency="100" name="Female">
+      <animations>
+        <animation file="quadraped/goat_walk.dae" name="Walk" speed="75"/>
+        <animation file="quadraped/goat_idle_01.dae" name="Idle" speed="100"/>
+        <animation file="quadraped/goat_idle_02.dae" name="Idle" speed="100"/>
+        <animation file="quadraped/goat_death.dae" name="Death" speed="100"/>
+      </animations>
       <mesh>skeletal/goat.dae</mesh>
+    </variant>
+    <variant frequency="100" name="Male">
+      <animations>
+        <animation file="quadraped/goat_walk.dae" name="Walk" speed="75"/>
+        <animation file="quadraped/goat_idle_01.dae" name="Idle" speed="100"/>
+        <animation file="quadraped/goat_idle_02.dae" name="Idle" speed="100"/>
+        <animation file="quadraped/goat_death.dae" name="Death" speed="100"/>
+      </animations>
+      <mesh>skeletal/goat_male.dae</mesh>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Hair-dark">
-      <textures><texture file="skeletal/animal_goat.dds" name="baseTex"/></textures>
+    <variant frequency="1" name="Gray">
+      <textures>
+        <texture file="skeletal/animal_goat_grey.png" name="baseTex"/>
+      </textures>
     </variant>
-    <variant frequency="1" name="Hair-light">
-      <textures><texture file="skeletal/animal_goat2.dds" name="baseTex"/></textures>
+    <variant frequency="1" name="Brown">
+      <textures>
+        <texture file="skeletal/animal_goat.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Black">
+      <textures>
+        <texture file="skeletal/animal_goat_black.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="White">
+      <textures>
+        <texture file="skeletal/animal_goat_white.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>

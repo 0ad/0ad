@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-06-23 19:40+0000\n"
-"Last-Translator: fri\n"
+"POT-Creation-Date: 2017-11-17 09:04+0100\n"
+"PO-Revision-Date: 2017-11-17 15:09+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -65,10 +65,7 @@ msgstr "Brnění chránící koňskou hlavu"
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_infantry_melee_01.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_tower_crenellations.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_tower_range.jsonrequirementsTooltip
 #: simulation/data/technologies/buildtime_walls_rubble.jsonrequirementsTooltip
-#: simulation/data/technologies/decay_outpost.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_training.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsonrequirementsTooltip
@@ -83,6 +80,9 @@ msgstr "Brnění chránící koňskou hlavu"
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
 #: simulation/data/technologies/ranged_inf_irregulars.jsonrequirementsTooltip
 #: simulation/data/technologies/speed_cavalry_01.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_decay.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_range.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_convoys_speed.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
@@ -139,8 +139,6 @@ msgstr "Kovové brnění pro trup koně"
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_soldiers_will.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_steel_working.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_tower_defense.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_tower_murderholes.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_carts.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_fertilizer.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsonrequirementsTooltip
@@ -162,6 +160,8 @@ msgstr "Kovové brnění pro trup koně"
 #: simulation/data/technologies/siege_cost_wood.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_packing.jsonrequirementsTooltip
 #: simulation/data/technologies/speed_cavalry_02.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_armour.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_murderholes.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_convoys_armor.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_02.jsonrequirementsTooltip
 #: simulation/data/technologies/training_conscription.jsonrequirementsTooltip
@@ -463,12 +463,12 @@ msgid "Reinforced hull"
 msgstr "Zesílený trup"
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_tower_watch.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/special_archery_tradition.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
@@ -718,82 +718,6 @@ msgstr "Wootzská ocel"
 msgid "Toledo Steel"
 msgstr "Toledská ocel"
 
-#: simulation/data/technologies/attack_tower_crenellations.jsondescription
-msgid ""
-"Crenellations on the battlements allow soldiers wider range of fire in "
-"defending a keep."
-msgstr "Cimbuří dovoluje vojákům větší dosah při obraně pevnosti."
-
-#: simulation/data/technologies/attack_tower_crenellations.jsontooltip
-msgid ""
-"Install crenellations and murder holes to have 40% more arrows fired per "
-"garrisoned soldier."
-msgstr "Postavit cimbuří a střílny pro zvýšení počtu šípů vystřelených vojákem posádky o 40%."
-
-#: simulation/data/technologies/attack_tower_crenellations.jsongenericName
-msgid "Crenellations"
-msgstr "Cimbuří"
-
-#: simulation/data/technologies/attack_tower_defense.jsondescription
-msgid "Reinforce the foundations in preparation of an attack."
-msgstr "Posílit základy v přípravě na útok."
-
-#: simulation/data/technologies/attack_tower_defense.jsontooltip
-msgid "Increases armor level of the defense tower by 2 levels."
-msgstr "Zvyšuje stupeň ochrany obranné věže o 2 úrovně."
-
-#: simulation/data/technologies/attack_tower_defense.jsongenericName
-msgid "Sturdy Foundations"
-msgstr "Bytelné základy"
-
-#: simulation/data/technologies/attack_tower_murderholes.jsondescription
-msgid "Murder holes allow hitting enemies at the foot of the tower."
-msgstr "Díry ve stropě umožňují zasáhnout nepřátele pod věží."
-
-#: simulation/data/technologies/attack_tower_murderholes.jsontooltip
-msgid "Removes defense tower minimum range."
-msgstr "Umožní obranným věžím střílet i na nepřátele bližší, než je jejich nejmenší vzdálenost k nepříteli, ve které pořád mohou pálit."
-
-#: simulation/data/technologies/attack_tower_murderholes.jsongenericName
-msgid "Murder Holes"
-msgstr "Díry ve stropě"
-
-#: simulation/data/technologies/attack_tower_range.jsondescription
-msgid "Arrow shooters increase the maximum range of the fire arrows."
-msgstr "Střelci šípů zvýší největší dosah zapálených šípů."
-
-#: simulation/data/technologies/attack_tower_range.jsontooltip
-msgid "Increases defense tower maximum range by 8 meters."
-msgstr "Zvyšuje největší dosah obranné věže o 8 metrů."
-
-#: simulation/data/technologies/attack_tower_range.jsongenericName
-msgid "Arrow Shooters"
-msgstr "Střelci šípů"
-
-#: simulation/data/technologies/attack_tower_watch.jsondescription
-msgid "A night's watch increases vigilance."
-msgstr "Noční hlídka zvyšuje bdělost."
-
-#: simulation/data/technologies/attack_tower_watch.jsontooltip
-msgid "Post sentries to add one arrow to towers."
-msgstr "Pošlete stráže na stanoviště, aby přidaly jeden šíp věžím."
-
-#: simulation/data/technologies/attack_tower_watch.jsongenericName
-msgid "Sentries"
-msgstr "Stráže"
-
-#: simulation/data/technologies/attack_tower_watch.jsonspecificName.ptol
-#: simulation/data/technologies/attack_tower_watch.jsonspecificName.spart
-#: simulation/data/technologies/attack_tower_watch.jsonspecificName.sele
-#: simulation/data/technologies/attack_tower_watch.jsonspecificName.athen
-#: simulation/data/technologies/attack_tower_watch.jsonspecificName.mace
-msgid "Nyktophýlakes"
-msgstr "Nyktophýlakes"
-
-#: simulation/data/technologies/attack_tower_watch.jsonspecificName.rome
-msgid "Vigiles"
-msgstr "Vigiles"
-
 #: simulation/data/technologies/buildtime_walls_rubble.jsondescription
 msgid "Using rubble materials reduces the costs and build times of walls."
 msgstr "Používání lomového kamene snižuje náklady a zmenšuje dobu potřebnou na postavení zdí."
@@ -805,18 +729,6 @@ msgstr "Městské hradby, -20% doby potřebné na jejich postavení, ale -1 bod 
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
 msgstr "Nalámaný kámen"
-
-#: simulation/data/technologies/decay_outpost.jsondescription
-msgid "Outposts survive twice as long in neutral territory."
-msgstr "Předsunuté základny přežijí v neutrálním území dvakrát tak dlouho."
-
-#: simulation/data/technologies/decay_outpost.jsontooltip
-msgid "Territory decay rate -50% for outposts."
-msgstr "-50 % na poškození mimo území pro předsunuté základny."
-
-#: simulation/data/technologies/decay_outpost.jsongenericName
-msgid "Stone Foundations"
-msgstr "Kamenné základy"
 
 #: simulation/data/technologies/elite_unit_bonus.jsontooltip
 msgid ""
@@ -1623,6 +1535,106 @@ msgstr "Udělejte své jednotky o 50% dražší při uplácení."
 msgid "Counterintelligence"
 msgstr "Kontrarozvědka"
 
+#: simulation/data/technologies/tower_armour.jsondescription
+msgid "Reinforce the foundations in preparation of an attack."
+msgstr "Posílit základy v přípravě na útok."
+
+#: simulation/data/technologies/tower_armour.jsontooltip
+msgid "Increases armor of defensive towers by 2 levels."
+msgstr ""
+
+#: simulation/data/technologies/tower_armour.jsongenericName
+msgid "Sturdy Foundations"
+msgstr "Bytelné základy"
+
+#: simulation/data/technologies/tower_crenellations.jsondescription
+msgid ""
+"Crenellations on the battlements allow soldiers wider range of fire in "
+"defending a keep."
+msgstr "Cimbuří dovoluje vojákům větší dosah při obraně pevnosti."
+
+#: simulation/data/technologies/tower_crenellations.jsontooltip
+msgid ""
+"Install crenellations and murder holes to have 40% more arrows fired per "
+"garrisoned soldier."
+msgstr "Postavit cimbuří a střílny pro zvýšení počtu šípů vystřelených vojákem posádky o 40%."
+
+#: simulation/data/technologies/tower_crenellations.jsongenericName
+msgid "Crenellations"
+msgstr "Cimbuří"
+
+#: simulation/data/technologies/tower_decay.jsondescription
+msgid "Outposts survive twice as long in neutral territory."
+msgstr "Předsunuté základny přežijí v neutrálním území dvakrát tak dlouho."
+
+#: simulation/data/technologies/tower_decay.jsontooltip
+msgid "Outposts -50% territory decay rate."
+msgstr ""
+
+#: simulation/data/technologies/tower_decay.jsongenericName
+msgid "Stone Foundations"
+msgstr "Kamenné základy"
+
+#: simulation/data/technologies/tower_murderholes.jsondescription
+msgid "Murder holes allow hitting enemies at the foot of the tower."
+msgstr "Díry ve stropě umožňují zasáhnout nepřátele pod věží."
+
+#: simulation/data/technologies/tower_murderholes.jsontooltip
+msgid "Removes defensive towers' minimum range."
+msgstr ""
+
+#: simulation/data/technologies/tower_murderholes.jsongenericName
+msgid "Murder Holes"
+msgstr "Díry ve stropě"
+
+#: simulation/data/technologies/tower_range.jsondescription
+msgid "Arrow shooters increase the maximum range of the fire arrows."
+msgstr "Střelci šípů zvýší největší dosah zapálených šípů."
+
+#: simulation/data/technologies/tower_range.jsontooltip
+msgid "Increases defensive towers' maximum range by 8 meters."
+msgstr ""
+
+#: simulation/data/technologies/tower_range.jsongenericName
+msgid "Arrow Shooters"
+msgstr "Střelci šípů"
+
+#: simulation/data/technologies/tower_vision.jsondescription
+msgid "Outposts gain longer vision for scouting."
+msgstr "Rozhledny dohlédnou dál."
+
+#: simulation/data/technologies/tower_vision.jsontooltip
+msgid "Outposts +50% vision range."
+msgstr ""
+
+#: simulation/data/technologies/tower_vision.jsongenericName
+msgid "Carrier Pigeons"
+msgstr "Poštovní holubi"
+
+#: simulation/data/technologies/tower_watch.jsondescription
+msgid "A night's watch increases vigilance."
+msgstr "Noční hlídka zvyšuje bdělost."
+
+#: simulation/data/technologies/tower_watch.jsontooltip
+msgid "Post sentries to add one arrow to defensive towers."
+msgstr ""
+
+#: simulation/data/technologies/tower_watch.jsongenericName
+msgid "Sentries"
+msgstr "Stráže"
+
+#: simulation/data/technologies/tower_watch.jsonspecificName.ptol
+#: simulation/data/technologies/tower_watch.jsonspecificName.spart
+#: simulation/data/technologies/tower_watch.jsonspecificName.sele
+#: simulation/data/technologies/tower_watch.jsonspecificName.athen
+#: simulation/data/technologies/tower_watch.jsonspecificName.mace
+msgid "Nyktophýlakes"
+msgstr "Nyktophýlakes"
+
+#: simulation/data/technologies/tower_watch.jsonspecificName.rome
+msgid "Vigiles"
+msgstr "Vigiles"
+
 #: simulation/data/technologies/trade_commercial_treaty.jsondescription
 msgid "Improve the international trading profit."
 msgstr "Vylepšit mezinárodní obchodní zisk."
@@ -1918,18 +1930,6 @@ msgstr "Elitní občanská pěchota"
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.athen
 msgid "Pentakosiomédimnoi"
 msgstr "Pentakosiomédimnoi"
-
-#: simulation/data/technologies/vision_outpost.jsondescription
-msgid "Outposts gain longer vision for scouting."
-msgstr "Rozhledny dohlédnou dál."
-
-#: simulation/data/technologies/vision_outpost.jsontooltip
-msgid "Vision Range +50% for Outposts."
-msgstr "Dohled rozhleden +50%."
-
-#: simulation/data/technologies/vision_outpost.jsongenericName
-msgid "Carrier Pigeons"
-msgstr "Poštovní holubi"
 
 #: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsondescription
 msgid ""

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="rock">
+      <mesh>props/rock_pile.dae</mesh>
+      <textures>
+        <texture file="gaia/stone_temperate_granite.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>

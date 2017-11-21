@@ -1,0 +1,10 @@
+<variant name="attack_ranged">
+  <animations>
+    <animation event=".6" file="biped/new/polybolos_attack_b.dae" load=".0" name="attack_ranged" speed="250"/>
+  </animations>
+  <props>
+    <prop actor="" attachpoint="weapon_R"/>
+    <prop actor="props/units/weapons/jav_projectile.xml" attachpoint="projectile"/>
+    <prop actor="props/units/weapons/jav.xml" attachpoint="loaded-weapon_R"/>
+  </props>
+</variant>

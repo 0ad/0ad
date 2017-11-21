@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Saibamen <saibamenppl@gmail.com>, 2015
+# Adam Stachowicz <saibamenppl@gmail.com>, 2015
 # Adrian Budasz <adrianbudasz@gmail.com>, 2014-2015
 # Andrzej Preibisz <andrzejjpreibisz@gmail.com>, 2016
 # Bartosz B <bartosz@bobin.eu>, 2017
@@ -31,9 +31,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-11-11 12:51+0000\n"
-"Last-Translator: Piotr Lehmann <lejmus@o2.pl>\n"
+"POT-Creation-Date: 2017-11-17 09:04+0100\n"
+"PO-Revision-Date: 2017-11-17 15:09+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -80,10 +80,7 @@ msgstr "Zbroja końska"
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_infantry_melee_01.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_tower_crenellations.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_tower_range.jsonrequirementsTooltip
 #: simulation/data/technologies/buildtime_walls_rubble.jsonrequirementsTooltip
-#: simulation/data/technologies/decay_outpost.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_training.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsonrequirementsTooltip
@@ -98,6 +95,9 @@ msgstr "Zbroja końska"
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
 #: simulation/data/technologies/ranged_inf_irregulars.jsonrequirementsTooltip
 #: simulation/data/technologies/speed_cavalry_01.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_decay.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_range.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_convoys_speed.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
@@ -154,8 +154,6 @@ msgstr "Metalowa zbroja dla konia."
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_soldiers_will.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_steel_working.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_tower_defense.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_tower_murderholes.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_carts.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_fertilizer.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsonrequirementsTooltip
@@ -177,6 +175,8 @@ msgstr "Metalowa zbroja dla konia."
 #: simulation/data/technologies/siege_cost_wood.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_packing.jsonrequirementsTooltip
 #: simulation/data/technologies/speed_cavalry_02.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_armour.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_murderholes.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_convoys_armor.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_02.jsonrequirementsTooltip
 #: simulation/data/technologies/training_conscription.jsonrequirementsTooltip
@@ -478,12 +478,12 @@ msgid "Reinforced hull"
 msgstr "Wzmocniony kadłub."
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_tower_watch.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/special_archery_tradition.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
@@ -733,82 +733,6 @@ msgstr "Bułat - stal wootz"
 msgid "Toledo Steel"
 msgstr "Stal toledańska"
 
-#: simulation/data/technologies/attack_tower_crenellations.jsondescription
-msgid ""
-"Crenellations on the battlements allow soldiers wider range of fire in "
-"defending a keep."
-msgstr "Blanki na murach zapewniają żołnierzom broniącym twierdzy szerszy zasięg strzału."
-
-#: simulation/data/technologies/attack_tower_crenellations.jsontooltip
-msgid ""
-"Install crenellations and murder holes to have 40% more arrows fired per "
-"garrisoned soldier."
-msgstr "Zainstaluj blanki i mordownie, aby zwiększyć o 40% ilość strzał wystrzeliwanych na każdego żołnierza w garnizonie."
-
-#: simulation/data/technologies/attack_tower_crenellations.jsongenericName
-msgid "Crenellations"
-msgstr "Blanki"
-
-#: simulation/data/technologies/attack_tower_defense.jsondescription
-msgid "Reinforce the foundations in preparation of an attack."
-msgstr "Wzmocnij fundamenty w przygotowaniu ataku."
-
-#: simulation/data/technologies/attack_tower_defense.jsontooltip
-msgid "Increases armor level of the defense tower by 2 levels."
-msgstr "Podnosi obronność wieży o +2"
-
-#: simulation/data/technologies/attack_tower_defense.jsongenericName
-msgid "Sturdy Foundations"
-msgstr "Wytrzymałe fundamenty"
-
-#: simulation/data/technologies/attack_tower_murderholes.jsondescription
-msgid "Murder holes allow hitting enemies at the foot of the tower."
-msgstr "Machikuły pozwalają zwalczać przeciwników u podnóża wieży."
-
-#: simulation/data/technologies/attack_tower_murderholes.jsontooltip
-msgid "Removes defense tower minimum range."
-msgstr "Usuwa minimalny zasięg wież obronnych."
-
-#: simulation/data/technologies/attack_tower_murderholes.jsongenericName
-msgid "Murder Holes"
-msgstr "Machikuły"
-
-#: simulation/data/technologies/attack_tower_range.jsondescription
-msgid "Arrow shooters increase the maximum range of the fire arrows."
-msgstr "Łucznicy zwiększają maksymalny zasięg wystrzeliwanych strzał."
-
-#: simulation/data/technologies/attack_tower_range.jsontooltip
-msgid "Increases defense tower maximum range by 8 meters."
-msgstr "Zwiększa maksymalny zasięg wież obronnych o 8 metrów."
-
-#: simulation/data/technologies/attack_tower_range.jsongenericName
-msgid "Arrow Shooters"
-msgstr "Łucznicy"
-
-#: simulation/data/technologies/attack_tower_watch.jsondescription
-msgid "A night's watch increases vigilance."
-msgstr "Straż nocna zwiększa czujność."
-
-#: simulation/data/technologies/attack_tower_watch.jsontooltip
-msgid "Post sentries to add one arrow to towers."
-msgstr "Wystaw strażników, aby dodać strzałę do wieży."
-
-#: simulation/data/technologies/attack_tower_watch.jsongenericName
-msgid "Sentries"
-msgstr "Straże"
-
-#: simulation/data/technologies/attack_tower_watch.jsonspecificName.ptol
-#: simulation/data/technologies/attack_tower_watch.jsonspecificName.spart
-#: simulation/data/technologies/attack_tower_watch.jsonspecificName.sele
-#: simulation/data/technologies/attack_tower_watch.jsonspecificName.athen
-#: simulation/data/technologies/attack_tower_watch.jsonspecificName.mace
-msgid "Nyktophýlakes"
-msgstr "Nyktophýlakes"
-
-#: simulation/data/technologies/attack_tower_watch.jsonspecificName.rome
-msgid "Vigiles"
-msgstr "Posterunki"
-
 #: simulation/data/technologies/buildtime_walls_rubble.jsondescription
 msgid "Using rubble materials reduces the costs and build times of walls."
 msgstr "Użycie gruzu zmniejsza koszt oraz czas budowy murów."
@@ -820,18 +744,6 @@ msgstr "Zmniejsza czas budowania Murów miejskich o -20%, ale zmniejsza też ich
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
 msgstr "Gruz"
-
-#: simulation/data/technologies/decay_outpost.jsondescription
-msgid "Outposts survive twice as long in neutral territory."
-msgstr "Posterunki wytrzymują dwa razy dłużej na neutralnym terytorium."
-
-#: simulation/data/technologies/decay_outpost.jsontooltip
-msgid "Territory decay rate -50% for outposts."
-msgstr "Zmniejsza szybkość niszczenia Posterunków na utraconym terytorium o -50%."
-
-#: simulation/data/technologies/decay_outpost.jsongenericName
-msgid "Stone Foundations"
-msgstr "Kamienne fundamenty"
 
 #: simulation/data/technologies/elite_unit_bonus.jsontooltip
 msgid ""
@@ -1638,6 +1550,106 @@ msgstr "Spraw by twoje jednostki były o 50% droższe przy próbie przekupstwa."
 msgid "Counterintelligence"
 msgstr "Kontrwywiad"
 
+#: simulation/data/technologies/tower_armour.jsondescription
+msgid "Reinforce the foundations in preparation of an attack."
+msgstr "Wzmocnij fundamenty w przygotowaniu ataku."
+
+#: simulation/data/technologies/tower_armour.jsontooltip
+msgid "Increases armor of defensive towers by 2 levels."
+msgstr ""
+
+#: simulation/data/technologies/tower_armour.jsongenericName
+msgid "Sturdy Foundations"
+msgstr "Wytrzymałe fundamenty"
+
+#: simulation/data/technologies/tower_crenellations.jsondescription
+msgid ""
+"Crenellations on the battlements allow soldiers wider range of fire in "
+"defending a keep."
+msgstr "Blanki na murach zapewniają żołnierzom broniącym twierdzy szerszy zasięg strzału."
+
+#: simulation/data/technologies/tower_crenellations.jsontooltip
+msgid ""
+"Install crenellations and murder holes to have 40% more arrows fired per "
+"garrisoned soldier."
+msgstr "Zainstaluj blanki i mordownie, aby zwiększyć o 40% ilość strzał wystrzeliwanych na każdego żołnierza w garnizonie."
+
+#: simulation/data/technologies/tower_crenellations.jsongenericName
+msgid "Crenellations"
+msgstr "Blanki"
+
+#: simulation/data/technologies/tower_decay.jsondescription
+msgid "Outposts survive twice as long in neutral territory."
+msgstr "Posterunki wytrzymują dwa razy dłużej na neutralnym terytorium."
+
+#: simulation/data/technologies/tower_decay.jsontooltip
+msgid "Outposts -50% territory decay rate."
+msgstr ""
+
+#: simulation/data/technologies/tower_decay.jsongenericName
+msgid "Stone Foundations"
+msgstr "Kamienne fundamenty"
+
+#: simulation/data/technologies/tower_murderholes.jsondescription
+msgid "Murder holes allow hitting enemies at the foot of the tower."
+msgstr "Machikuły pozwalają zwalczać przeciwników u podnóża wieży."
+
+#: simulation/data/technologies/tower_murderholes.jsontooltip
+msgid "Removes defensive towers' minimum range."
+msgstr ""
+
+#: simulation/data/technologies/tower_murderholes.jsongenericName
+msgid "Murder Holes"
+msgstr "Machikuły"
+
+#: simulation/data/technologies/tower_range.jsondescription
+msgid "Arrow shooters increase the maximum range of the fire arrows."
+msgstr "Łucznicy zwiększają maksymalny zasięg wystrzeliwanych strzał."
+
+#: simulation/data/technologies/tower_range.jsontooltip
+msgid "Increases defensive towers' maximum range by 8 meters."
+msgstr ""
+
+#: simulation/data/technologies/tower_range.jsongenericName
+msgid "Arrow Shooters"
+msgstr "Łucznicy"
+
+#: simulation/data/technologies/tower_vision.jsondescription
+msgid "Outposts gain longer vision for scouting."
+msgstr "Posterunki otrzymują większy zasięg widzenia."
+
+#: simulation/data/technologies/tower_vision.jsontooltip
+msgid "Outposts +50% vision range."
+msgstr ""
+
+#: simulation/data/technologies/tower_vision.jsongenericName
+msgid "Carrier Pigeons"
+msgstr "Gołębie pocztowe"
+
+#: simulation/data/technologies/tower_watch.jsondescription
+msgid "A night's watch increases vigilance."
+msgstr "Straż nocna zwiększa czujność."
+
+#: simulation/data/technologies/tower_watch.jsontooltip
+msgid "Post sentries to add one arrow to defensive towers."
+msgstr ""
+
+#: simulation/data/technologies/tower_watch.jsongenericName
+msgid "Sentries"
+msgstr "Straże"
+
+#: simulation/data/technologies/tower_watch.jsonspecificName.ptol
+#: simulation/data/technologies/tower_watch.jsonspecificName.spart
+#: simulation/data/technologies/tower_watch.jsonspecificName.sele
+#: simulation/data/technologies/tower_watch.jsonspecificName.athen
+#: simulation/data/technologies/tower_watch.jsonspecificName.mace
+msgid "Nyktophýlakes"
+msgstr "Nyktophýlakes"
+
+#: simulation/data/technologies/tower_watch.jsonspecificName.rome
+msgid "Vigiles"
+msgstr "Posterunki"
+
 #: simulation/data/technologies/trade_commercial_treaty.jsondescription
 msgid "Improve the international trading profit."
 msgstr "Popraw międzynarodowe zyski."
@@ -1933,18 +1945,6 @@ msgstr "Elitarna piechota miejska."
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.athen
 msgid "Pentakosiomédimnoi"
 msgstr "Pentakosiomédimnoi"
-
-#: simulation/data/technologies/vision_outpost.jsondescription
-msgid "Outposts gain longer vision for scouting."
-msgstr "Posterunki otrzymują większy zasięg widzenia."
-
-#: simulation/data/technologies/vision_outpost.jsontooltip
-msgid "Vision Range +50% for Outposts."
-msgstr "+50% zasięgu widzenia dla posterunków."
-
-#: simulation/data/technologies/vision_outpost.jsongenericName
-msgid "Carrier Pigeons"
-msgstr "Gołębie pocztowe"
 
 #: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsondescription
 msgid ""

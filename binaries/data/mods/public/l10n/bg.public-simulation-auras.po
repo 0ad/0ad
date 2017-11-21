@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-06-05 07:32+0000\n"
+"POT-Creation-Date: 2017-11-17 09:04+0100\n"
+"PO-Revision-Date: 2017-11-17 11:11+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -22,8 +22,8 @@ msgid "Dockyard Repairs"
 msgstr "Пристанищни поправки"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
-msgid "Heals garrisoned ship at 10 HP per second."
-msgstr "Лекува кораба на гарнизон с 10 ЖТ в секунда."
+msgid "Repairs garrisoned ship at 10 HP per second."
+msgstr "Поправя кораба на гарнизон с 10 ЖТ в секунда."
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
@@ -115,6 +115,14 @@ msgid ""
 "Further increase the population limit by 40 per wonder owned (requires "
 "\"Glorious Expansion\" tech)."
 msgstr "Максималното население се увеличава с още 40 за всяко притежавано чудо (изисква технологията „Славно разрастване“)."
+
+#: simulation/data/auras/structures/workshop_repair.jsonauraName
+msgid "Workshop Repairs"
+msgstr "Поправки в работилницата"
+
+#: simulation/data/auras/structures/workshop_repair.jsonauraDescription
+msgid "Repairs garrisoned siege units at 3 HP per second."
+msgstr "Поправя обсадните единици на гарнизон с по 10 ЖТ в секунда."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -549,14 +557,6 @@ msgstr "Грабител на Рим"
 msgid "+15 Metal loot for every enemy unit killed."
 msgstr "+15 плячкосан метал за всяка убита вражеска единица."
 
-#: simulation/data/auras/units/heroes/gaul_hero_britomartus.jsonauraName
-msgid "Preparation for War"
-msgstr "Подготовка за война"
-
-#: simulation/data/auras/units/heroes/gaul_hero_britomartus.jsonauraDescription
-msgid "Gathering rates increased with +15% during his lifetime."
-msgstr "+15% бързина на събиране на ресурси, докато е жив."
-
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraName
 msgid "Celtic Warlord"
 msgstr "Келтски военачалник"
@@ -564,6 +564,14 @@ msgstr "Келтски военачалник"
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraDescription
 msgid "+20% attack and +1 capture for soldiers and siege engines."
 msgstr "+20 атака и +1 пленяване за всички во̀ини и обсадни машини."
+
+#: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraName
+msgid "Preparation for War"
+msgstr "Подготовка за война"
+
+#: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
+msgid "Gathering rates increased with +15% during his lifetime."
+msgstr "+15% бързина на събиране на ресурси, докато е жив."
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraName
 msgid "Inspired Defense"

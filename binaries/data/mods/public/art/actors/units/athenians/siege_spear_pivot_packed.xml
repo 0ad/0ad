@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant frequency="1" name="Athen polybolos pivot">
+      <mesh>structural/polybolos_packed_pivot.dae</mesh>
+      <props>
+        <prop actor="units/athenians/oxybeles_infantry_b.xml" attachpoint="engineer_b" maxheight="20" minheight="-20"/>
+        <prop actor="units/athenians/oxybeles_infantry_a.xml" attachpoint="engineer_a" maxheight="20" minheight="-20"/>
+        <prop actor="units/carthaginians/siege_spear_packed.xml" attachpoint="whagon"/>
+      </props>
+      <textures>
+        <texture file="structural/hele_siege.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant frequency="1" name="Athen Ballista pivot">
+      <mesh>structural/oxybeles_pivot.dae</mesh>
+      <props>
+        <prop actor="units/carthaginians/oxybeles_infantry_b.xml" attachpoint="engineer_b"/>
+        <prop actor="units/carthaginians/oxybeles_infantry_a.xml" attachpoint="engineer_a"/>
+        <prop actor="units/carthaginians/siege_spear.xml" attachpoint="weapon"/>
+        <prop actor="props/units/bolt_pile.xml" attachpoint="ammo" maxheight="20" minheight="-20"/>
+      </props>
+      <textures>
+        <texture file="structural/hele_siege.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>

@@ -1,0 +1,10 @@
+<variant name="attack_ranged">
+  <animations>
+    <animation event="0.58" file="biped/new/kart_ballista_attack_b.dae" load="0.26" name="attack_ranged" speed="100"/>
+  </animations>
+  <props>
+    <prop actor="" attachpoint="weapon_R"/>
+    <prop actor="props/units/weapons/rock.xml" attachpoint="projectile"/>
+    <prop actor="props/units/weapons/rock.xml" attachpoint="loaded-projectile"/>
+  </props>
+</variant>

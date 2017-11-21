@@ -10,12 +10,13 @@
 # Steven Gikas <stevengk123@gmail.com>, 2016-2017
 # Vasilis Drosos <basilisd@gmail.com>, 2016-2017
 # Κωνσταντίνος Σπάρταλης <consta.spartalis@gmail.com>, 2016
+# ΧΡΗΣΤΟΣ ΣΚΙΑΔΑΣ <chrisskas@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-06-06 11:45+0000\n"
-"Last-Translator: Aristomahos Nikiforakis <barbounism@gmail.com>\n"
+"POT-Creation-Date: 2017-11-17 09:04+0100\n"
+"PO-Revision-Date: 2017-11-19 11:39+0000\n"
+"Last-Translator: ΧΡΗΣΤΟΣ ΣΚΙΑΔΑΣ <chrisskas@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,8 +29,8 @@ msgid "Dockyard Repairs"
 msgstr "Επισκευές στο Ναυπηγείο"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
-msgid "Heals garrisoned ship at 10 HP per second."
-msgstr "Θεραπεύει το επιβιβαζμένο πλοίο ανά 10 HP το δευτερόλεπτο."
+msgid "Repairs garrisoned ship at 10 HP per second."
+msgstr ""
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
@@ -70,7 +71,7 @@ msgstr "Διάταγμα του Ασόκα"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraDescription
 msgid "+20% movement speed for traders."
-msgstr "+20% ταχύτητα κίνησης για τους εμπόρους."
+msgstr "οι έμποροι κινούνται +20% ταχύτερα"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraName
 msgid "Farming bonus"
@@ -121,6 +122,14 @@ msgid ""
 "Further increase the population limit by 40 per wonder owned (requires "
 "\"Glorious Expansion\" tech)."
 msgstr "Περαιτέρω αύξηση στο όριο του πληθυσμού κατά 40 ανά θαύμα που κατέχεις (απαιτείται η τεχνολογία \"Ένδοξη Επέκταση\")."
+
+#: simulation/data/auras/structures/workshop_repair.jsonauraName
+msgid "Workshop Repairs"
+msgstr ""
+
+#: simulation/data/auras/structures/workshop_repair.jsonauraDescription
+msgid "Repairs garrisoned siege units at 3 HP per second."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -555,14 +564,6 @@ msgstr "Συλητής της Ρώμης"
 msgid "+15 Metal loot for every enemy unit killed."
 msgstr "+15 Μέταλλο για κάθε εξόντωση μονάδας."
 
-#: simulation/data/auras/units/heroes/gaul_hero_britomartus.jsonauraName
-msgid "Preparation for War"
-msgstr "Προετοιμασία για Πόλεμο"
-
-#: simulation/data/auras/units/heroes/gaul_hero_britomartus.jsonauraDescription
-msgid "Gathering rates increased with +15% during his lifetime."
-msgstr "Τα ποσοστά συγκέντρωσης αυξάνονται κατά 15% για τη διάρκεια ζωής του."
-
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraName
 msgid "Celtic Warlord"
 msgstr "Κέλτης Πολέμαρχος"
@@ -570,6 +571,14 @@ msgstr "Κέλτης Πολέμαρχος"
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraDescription
 msgid "+20% attack and +1 capture for soldiers and siege engines."
 msgstr "+20% επίθεση και +1 κατάληψη για τους στρατιώτες και τις πολιορκητικές μηχανές."
+
+#: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraName
+msgid "Preparation for War"
+msgstr "Προετοιμασία για Πόλεμο"
+
+#: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
+msgid "Gathering rates increased with +15% during his lifetime."
+msgstr "Τα ποσοστά συγκέντρωσης αυξάνονται κατά 15% για τη διάρκεια ζωής του."
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraName
 msgid "Inspired Defense"

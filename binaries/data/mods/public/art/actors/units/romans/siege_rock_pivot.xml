@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant frequency="1" name="Rome ballista pivot">
+      <mesh>structural/rome_ballista_pivot.dae</mesh>
+      <props>
+        <prop actor="units/romans/ballista_infantry_b.xml" attachpoint="engineer_b"/>
+        <prop actor="units/romans/ballista_infantry_a.xml" attachpoint="engineer_a"/>
+        <prop actor="units/romans/siege_rock.xml" attachpoint="weapon"/>
+        <prop actor="props/units/rock_pile.xml" attachpoint="rock_ammo" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/crate_a.xml" attachpoint="crate"/>
+      </props>
+      <textures>
+        <texture file="structural/hele_siege.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>

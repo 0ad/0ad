@@ -6,15 +6,17 @@
 # Catalanoic <catalanoic@gmail.com>, 2016
 # Francesc Saló <whitrix@hotmail.es>, 2017
 # Guillem Poy <guplem@gmail.com>, 2015
+# Guillem Poy <guplem@gmail.com>, 2015
 # Marc Miró <mmirosanchez@gmail.com>, 2017
+# Peredelgrau, 2014
 # Peredelgrau, 2014
 # Haommin <tfs.msimangu@gmail.com>, 2014-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-30 09:02+0200\n"
-"PO-Revision-Date: 2017-09-16 09:23+0000\n"
-"Last-Translator: Marc Miró <mmirosanchez@gmail.com>\n"
+"PO-Revision-Date: 2017-11-19 21:21+0000\n"
+"Last-Translator: Maria Acero-Allo <maria.acero@e-campus.uab.cat>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -53,7 +55,7 @@ msgstr "Jugador"
 
 #: gui/lobby/lobby.js:54
 msgid "Muted Player"
-msgstr ""
+msgstr "Jugador silenciat"
 
 #: gui/lobby/lobby.js:138
 msgid "Disconnected."
@@ -62,12 +64,12 @@ msgstr "Desconnectat."
 #: gui/lobby/lobby.js:157
 #, javascript-format
 msgid "%(nick)s changed the lobby subject to %(subject)s"
-msgstr ""
+msgstr "%(nick)s ha canviat el tema de la sala per %(subject)s"
 
 #: gui/lobby/lobby.js:168
 #, javascript-format
 msgid "%(nick)s has joined."
-msgstr "%(nick)s ha arribat."
+msgstr "%(nick)s s'ha afegit."
 
 #: gui/lobby/lobby.js:178
 #, javascript-format
@@ -76,39 +78,39 @@ msgstr "%(nick)s ha marxat."
 
 #: gui/lobby/lobby.js:199
 msgid "You have been muted."
-msgstr ""
+msgstr "Us han silenciat."
 
 #: gui/lobby/lobby.js:200
 #, javascript-format
 msgid "%(nick)s has been muted."
-msgstr ""
+msgstr "%(nick)s estan en silenci."
 
 #: gui/lobby/lobby.js:203
 msgid "You are now a moderator."
-msgstr ""
+msgstr "Ara sou moderador."
 
 #: gui/lobby/lobby.js:204
 #, javascript-format
 msgid "%(nick)s is now a moderator."
-msgstr ""
+msgstr "%(nick)s ara és moderador."
 
 #: gui/lobby/lobby.js:207
 msgid "You have been unmuted."
-msgstr ""
+msgstr "Us han dessilenciat."
 
 #: gui/lobby/lobby.js:208
 #, javascript-format
 msgid "%(nick)s has been unmuted."
-msgstr ""
+msgstr "%(nick)s estan dessilenciats."
 
 #: gui/lobby/lobby.js:210
 msgid "You are not a moderator anymore."
-msgstr "Ja no ets moderador."
+msgstr "Ja no sou moderador."
 
 #: gui/lobby/lobby.js:211
 #, javascript-format
 msgid "%(nick)s is not a moderator anymore."
-msgstr ""
+msgstr "%(nick)s ja no és moderador."
 
 #: gui/lobby/lobby.js:226
 #, javascript-format
@@ -117,31 +119,31 @@ msgstr "%(oldnick)s ara es diu %(newnick)s."
 
 #: gui/lobby/lobby.js:258
 msgid "Notice"
-msgstr ""
+msgstr "Atenció"
 
 #: gui/lobby/lobby.js:299
 msgid "Set your state to 'Away'."
-msgstr ""
+msgstr "Establiu l'estat com a 'Absent'."
 
 #: gui/lobby/lobby.js:306
 msgid "Set your state to 'Online'."
-msgstr ""
+msgstr "Establiu l'estat com a 'En línia'."
 
 #: gui/lobby/lobby.js:313
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
-msgstr ""
+msgstr "Feu fora un usuari de la sala. Ús: /fer fora nick raó"
 
 #: gui/lobby/lobby.js:321
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
-msgstr ""
+msgstr "Prohibiu un usuari d'entrar a la sala. Ús: /prohibir nick raó"
 
 #: gui/lobby/lobby.js:329
 msgid "Show this help."
-msgstr ""
+msgstr "Mostra l'ajuda."
 
 #: gui/lobby/lobby.js:332
 msgid "Chat commands:"
-msgstr ""
+msgstr "Controls del xat:"
 
 #. Translation: Chat command help format
 #: gui/lobby/lobby.js:336
@@ -151,21 +153,21 @@ msgstr "%(command)s - %(description)s"
 
 #: gui/lobby/lobby.js:349
 msgid "Send a chat message about yourself. Example: /me goes swimming."
-msgstr ""
+msgstr "Envieu un missatge sobre vosaltres. Exemple: /jo anar nedar."
 
 #: gui/lobby/lobby.js:353
 msgid ""
 "Send text as a chat message (even if it starts with slash). Example: /say "
 "/help is a great command."
-msgstr ""
+msgstr "Envieu text com a missatge de xat (encara que comenci amb una barra). Exemple: /dieu /ajuda és un gran control."
 
 #: gui/lobby/lobby.js:357
 msgid "Clear all chat scrollback."
-msgstr ""
+msgstr "Esborra l'historial dels xats."
 
 #: gui/lobby/lobby.js:364
 msgid "Return to the main menu."
-msgstr ""
+msgstr "Torneu al menú principal."
 
 #: gui/lobby/lobby.js:438
 msgctxt "map size"
@@ -196,43 +198,43 @@ msgstr ""
 
 #: gui/lobby/lobby.js:529
 msgid "You have been banned from the lobby!"
-msgstr ""
+msgstr "Us han prohibit l'entrada a la sala!"
 
 #: gui/lobby/lobby.js:530
 msgid "You have been kicked from the lobby!"
-msgstr ""
+msgstr "Us han fet fora de la sala!"
 
 #: gui/lobby/lobby.js:532
 #, javascript-format
 msgid "%(nick)s has been banned from the lobby."
-msgstr ""
+msgstr "%(nick)s ha estat prohibit a la sala."
 
 #: gui/lobby/lobby.js:533
 #, javascript-format
 msgid "%(nick)s has been kicked from the lobby."
-msgstr ""
+msgstr "%(nick)s estan fora de la sala."
 
 #: gui/lobby/lobby.js:536
 #, javascript-format
 msgctxt "lobby kick"
 msgid "Reason: %(reason)s"
-msgstr ""
+msgstr "Raó: %(reason)s"
 
 #: gui/lobby/lobby.js:564
 msgid "BANNED"
-msgstr ""
+msgstr "PROHIBIR"
 
 #: gui/lobby/lobby.js:564
 msgid "KICKED"
-msgstr ""
+msgstr "FER FORA"
 
 #: gui/lobby/lobby.js:595
 msgid "Unmark as Buddy"
-msgstr ""
+msgstr "Desmarcar com a company"
 
 #: gui/lobby/lobby.js:595
 msgid "Mark as Buddy"
-msgstr ""
+msgstr "Marcar com a company"
 
 #: gui/lobby/lobby.js:795 gui/lobby/lobby.js:796 gui/lobby/lobby.js:797
 #: gui/lobby/lobby.js:798 gui/lobby/lobby.js:799 gui/lobby/lobby.js:800
@@ -242,7 +244,7 @@ msgstr "No disponible"
 #: gui/lobby/lobby.js:828
 #, javascript-format
 msgid "Player \"%(nick)s\" not found."
-msgstr ""
+msgstr "Jugador \"%(nick)s\" no disponible."
 
 #. Translation: %(time)s is the hour and minute here.
 #: gui/lobby/lobby.js:1044
@@ -261,7 +263,7 @@ msgstr "Jugadors: %(current)s/%(total)s"
 
 #: gui/lobby/lobby.js:1092
 msgid "The game has already started. Do you want to join as observer?"
-msgstr "La partida ja ha començat. Vols unir-te com a observador?"
+msgstr "la partida ja ha començat. Voleu afegivos-hi com a observador?"
 
 #: gui/lobby/lobby.js:1093
 msgid "Confirmation"
@@ -278,7 +280,7 @@ msgstr "Sí"
 #: gui/lobby/lobby.js:1126
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
-msgstr "L'adreça d'aquesta partida '%(ip)s' no sembla ser vàlida."
+msgstr "L'adreça d'aquesta partida '%(ip)s'  no és vàlida."
 
 #: gui/lobby/lobby.js:1242
 #, javascript-format
@@ -372,17 +374,17 @@ msgstr "Escriviu el nom d'usuari"
 
 #: gui/lobby/prelobby.js:100
 msgid "Invalid username"
-msgstr ""
+msgstr "Nom d'usuari no vàlid"
 
 #: gui/lobby/prelobby.js:107
 msgctxt "login"
 msgid "Please enter your password"
-msgstr "Si us plau, escriu la teva contrasenya"
+msgstr "Contrasenya"
 
 #: gui/lobby/prelobby.js:108
 msgctxt "register"
 msgid "Please enter your password"
-msgstr "Si us plau, escriu la teva contrasenya"
+msgstr "Contrasenya"
 
 #: gui/lobby/prelobby.js:121
 msgid "Please enter your password again"
@@ -394,21 +396,21 @@ msgstr "Les contrasenyes no coincideixen"
 
 #: gui/lobby/prelobby.js:133
 msgid "Please read the Terms of Service"
-msgstr "Llegiu els termes del servei"
+msgstr "Llegiu les condicions del servei"
 
 #: gui/lobby/prelobby.js:139
 msgid "Please read the Terms of Use"
-msgstr "Llegiu els termes d'ús"
+msgstr "Llegiu els termes i condicions d'ús"
 
 #: gui/lobby/prelobby.js:145
 msgid "Please agree to the Terms of Service and Terms of Use"
-msgstr "Accepteu els termes del servei i els termes d'ús"
+msgstr "Accepteu les condicions del servei i els termes d'ús"
 
 #: gui/lobby/prelobby.js:177
 msgid ""
 "Unknown error. This usually occurs because the same IP address is not "
 "allowed to register more than one account within one hour."
-msgstr ""
+msgstr "Error desconegut. Normalment aixó succeeix perquè no es pot registrar més d'un compte en una hora amb la meteixa direcció IP."
 
 #: gui/lobby/prelobby.js:183
 msgid "Registered"
@@ -489,7 +491,7 @@ msgstr "Menú principal"
 
 #: gui/lobby/lobby.xml:(caption):259
 msgid "Show only open games"
-msgstr ""
+msgstr "Mostra només les partides obertes"
 
 #: gui/lobby/lobby.xml:(caption):310 gui/lobby/lobby.xml:(caption):372
 msgid "Back"
@@ -509,7 +511,7 @@ msgstr "Mostra el perfil"
 
 #: gui/lobby/lobby.xml:(caption):367
 msgid "Please enter a player name."
-msgstr "Si us plau, introdueixi un nom de jugador."
+msgstr "Introduïu un nom de jugador."
 
 #: gui/lobby/lobby.xml:(heading):38
 msgid "Status"
@@ -545,19 +547,19 @@ msgstr "Jugadors"
 
 #: gui/lobby/lobby.xml:(heading):297
 msgid "Rank"
-msgstr "Rang"
+msgstr "Nivell"
 
 #: gui/lobby/prelobby.xml:(caption):23
 msgid "Create a new account"
-msgstr "Crea un compte nou"
+msgstr "Creeu un compte nou"
 
 #: gui/lobby/prelobby.xml:(caption):27
 msgid "Login to an existing account"
-msgstr "Entra en un compte existent"
+msgstr "Entreu en un compte existent"
 
 #: gui/lobby/prelobby.xml:(caption):33
 msgid "Connect to the game lobby"
-msgstr "Connecta a la sala multijugador"
+msgstr "Connecteu-vos a la sala multijugador"
 
 #: gui/lobby/prelobby.xml:(caption):36 gui/lobby/prelobby.xml:(caption):63
 msgid "Login:"
@@ -577,7 +579,7 @@ msgstr "Repetiu la contrasenya:"
 
 #: gui/lobby/prelobby.xml:(caption):88
 msgid "I have read and agree to the Terms of Service and Terms of Use:"
-msgstr "He llegit els termes de servei i els termes d'ús i hi estic d'acord:"
+msgstr "He llegit les condicions de servei i els termes d'ús i els accepto:"
 
 #: gui/lobby/prelobby.xml:(caption):97
 msgid "Cancel"
@@ -595,25 +597,25 @@ msgstr "Definicions:"
 msgid ""
 " * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby "
 "provided by Wildfire Games (WFG)."
-msgstr "* El \"servei\" és la sala multijugador del 0 A.D. Empires Ascendant mantinguda per Wildfire Games (WFG)."
+msgstr " * El \"servei\" és 0 A.D. Empires Ascendant Multiplayer Lobby provided by Wildfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Service.txt:4 gui/lobby/Terms_of_Use.txt:4
 msgid " * \"You\" are the user of the service."
-msgstr "* \"Vosaltres\" sou els usuaris del servei."
+msgstr " * \"Vosaltres\" sou els usuaris del servei."
 
 #: gui/lobby/Terms_of_Service.txt:5
 msgid " * \"We\" are the collective of all Wildfire Games (WFG) team members."
-msgstr "* \"Nosaltres\" som el col·lectiu de tots els membres de l'equip de Wildfire Games (WFG)."
+msgstr " * \"Nosaltres\" som el col·lectiu de tots els membres de l'equip de Wildfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Service.txt:6
 msgid ""
 " * \"Rating\" refers to the process of analyzing various user statistics for"
 " the purpose of generating a single comprehensive score."
-msgstr "* \"Puntuar\" es refereix al procés d'analitzar diverses estadístiques dels usuaris per tal de generar una única puntuació que ho inclogui tot."
+msgstr " * \"Puntuar\" es refereix al procés d'analitzar diverses estadístiques dels usuaris per tal de generar una única puntuació que ho inclogui tot."
 
 #: gui/lobby/Terms_of_Service.txt:7
 msgid " * \"Moderate\" refers to the process of enforcing usage policies."
-msgstr "* \"Moderar\" es refereix al procés d'assegurar el compliment de les polítiques d'ús."
+msgstr " * \"Moderar\" es refereix al procés d'assegurar el compliment de les polítiques d'ús."
 
 #: gui/lobby/Terms_of_Service.txt:8
 msgid "By using the service you agree to:"
@@ -621,13 +623,13 @@ msgstr "Fent ús d'aquest servei us comprometeu a:"
 
 #: gui/lobby/Terms_of_Service.txt:9
 msgid " 1. Follow all usage policies."
-msgstr "1. Seguir totes les polítiques d'ús."
+msgstr " 1. Respectar les polítiques d'ús."
 
 #: gui/lobby/Terms_of_Service.txt:10
 msgid ""
 " 2. Allow user identifiable statistics to be gathered for the purposes of "
 "rating, user profiles, and community statistics."
-msgstr "2. Permetre que es recullin estadístiques de l'usuari per tal d'elaborar puntuacions, perfils d'usuari i estadístiques de la comunitat."
+msgstr " 2. Permetre que les estadístiques identificables de l'usuari es recopilin per obtenir puntuacions, perfils d'usuaris i estadístiques comunitàries."
 
 #: gui/lobby/Terms_of_Service.txt:11 gui/lobby/Terms_of_Use.txt:18
 msgid "We also reserve the right to:"
@@ -635,43 +637,43 @@ msgstr "També ens reservem el dret de:"
 
 #: gui/lobby/Terms_of_Service.txt:12
 msgid " 1. Moderate the service."
-msgstr "1. Moderar el servei."
+msgstr " 1. Moderar el servei."
 
 #: gui/lobby/Terms_of_Service.txt:13
 msgid " 2. Appoint others to moderate the service."
-msgstr "2. Assignar altres persones a moderar el servei."
+msgstr " 2. Designar a d'altres per a moderar el servei."
 
 #: gui/lobby/Terms_of_Service.txt:14
 msgid ""
 " 3. Discontinue or interrupt service at any time with or without prior "
 "announcement."
-msgstr "3. Interrompre el servei en qualsevol moment amb o sense avís previ."
+msgstr " 3. Interrompre el servei en qualsevol moment amb o sense avís previ."
 
 #: gui/lobby/Terms_of_Service.txt:15
 msgid " 4. Change the service at any time with or without announcement."
-msgstr "4. Modificar el servei en qualsevol moment amb o sense avís."
+msgstr " 4. Canviar el servei en qualsevol moment amb o sense avís previ."
 
 #: gui/lobby/Terms_of_Service.txt:16
 msgid ""
 " 5. Delete any and all service data at any time with or without "
 "announcement."
-msgstr "5. Esborrar dades del servei en qualsevol moment amb o sense avís."
+msgstr " 5. Eliminar qualsevol o tota la informació del servei en qualsevol moment amb o sense avís previ."
 
 #: gui/lobby/Terms_of_Service.txt:17
 msgid ""
 " 6. Collect any or all user identifiable statistics at any time without "
 "consent for:"
-msgstr "6. Recollir estadístiques de l'usuari en qualsevol moment sense demanar permís amb les finalitats següents:"
+msgstr " 6. Recuperar qualsevol o totes les estadístiques recuperables de l'usuari en qualsevol moment amb o sense avís previ."
 
 #: gui/lobby/Terms_of_Service.txt:18
 msgid ""
 "  a. Private analysis by Wildfire Games (WFG) team members and their "
 "affiliates."
-msgstr "a. Anàlisi privada pels membres de l'equip de Wildfire Games (WFG) i els seus afiliats."
+msgstr "  a. Anàlisi privada de Wildfire Games (WFG) team members i els seus afiliats."
 
 #: gui/lobby/Terms_of_Service.txt:19
 msgid "  b. Anonymized public release by Wildfire Games (WFG) team members."
-msgstr "b. Publicació anònima pels membres de l'equip de Wildfire Games (WFG)."
+msgstr "  b. Divulgació pública de Wildfire Games (WFG) team members."
 
 #: gui/lobby/Terms_of_Service.txt:20
 msgid ""
@@ -679,33 +681,33 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr "7. Canviar aquest document en qualsevol sentit; en qualsevol moment; amb la condició que l'usuari sigui informat adequadament dels canvis (la definició d'informar adequadament la determinaran llavors un equip de membres de Wildfire Games (WFG))."
+msgstr " 7. Podeu canviar aquest document en qualsevol aspecte i en qualsevol moment a condició que l'usuari del servei rebi un avís amb antelació dels canvis (la definició d'avís amb antelació es determinarà en un futur per l'equip de Wildfire Games (WFG))."
 
 #: gui/lobby/Terms_of_Use.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use"
-msgstr "Termes d'ús de la sala multijugador del 0 A.D. Empires Ascendant"
+msgstr "0 A.D. Termes i condicions d'ús de Empires Ascendant Multiplayer Lobby"
 
 #: gui/lobby/Terms_of_Use.txt:5
 msgid ""
 " * \"Impersonate\" refers to the action in which you attempt to exploit "
 "another's identity for your own purposes."
-msgstr "* \"Suplantar\" es refereix a l'acció d'intentar explotar la identitat d'una altra persona per a fins propis."
+msgstr " * \"Suplantar\" es refereix a l'acció d'intentar explotar la identitat d'una altra persona per a fins propis."
 
 #: gui/lobby/Terms_of_Use.txt:6
 msgid ""
 " * \"Spam\" refers to irrelevant or inappropriate messages sent to a large "
 "number of recipients."
-msgstr "* \"Spam\" es refereix al fet d'enviar missatges irrellevants o inadequats a un gran nombre de destinataris."
+msgstr " * \"Spam\" es refereix al fet d'enviar missatges irrellevants o inadequats a un gran nombre de destinataris."
 
 #: gui/lobby/Terms_of_Use.txt:7
 msgid " * \"Rating\" refers to the per-user comprehensive score."
-msgstr "* \"Puntuació\" es refereix a la puntuació total de cada usuari."
+msgstr " * \"Puntuació\" es refereix a la puntuació total de cada usuari."
 
 #: gui/lobby/Terms_of_Use.txt:8
 msgid ""
 " * \"Ranked games\" refers to games in which rating changing statistics are "
 "tracked."
-msgstr "* \"Partides amb classificació\" es refereix a les partides on es fa un seguiment dels canvis de les estadístiques de puntuació."
+msgstr " * \"Partides amb classificació\" es refereix a les partides on es fa un seguiment dels canvis de les estadístiques de puntuació."
 
 #: gui/lobby/Terms_of_Use.txt:9
 msgid "You agree to:"
@@ -715,30 +717,30 @@ msgstr "Us comprometeu a:"
 msgid ""
 " 1. Only create one account per unique user on the service unless authorized"
 " by a Wildfire Games (WFG) team member."
-msgstr "1. Només crear un compte per cada usuari únic del servei, llevat que tingueu autorització d'un membre de l'equip de Wildfire Games (WFG)."
+msgstr " 1. Crear només un compte per usuari en el servei a menys que us autoritzi l'equip de Wildfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Use.txt:11
 msgid ""
 " 2. Not post profane statements, rude humor, pornographic content, or "
 "discriminatory comments on the service."
-msgstr "2. No publicar paraules malsonants, humor groller, contingut pornogràfic ni comentaris discriminatoris al servei."
+msgstr " 2. No publicar afirmacions irreverents, humor inapropiat, contingut pornigràfic o comentaris discriminatoris en el servei."
 
 #: gui/lobby/Terms_of_Use.txt:12
 msgid " 3. Not purposefully demean the worth of others using the service."
-msgstr "3. No menysprear intencionadament el valor dels altres fent ús del servei."
+msgstr " 3. No atemptar deliberadament contra la dignitat d'altres usuaris del servei."
 
 #: gui/lobby/Terms_of_Use.txt:13
 msgid ""
 " 4. Not use the service to promote specific goods, services, or products."
-msgstr "4. No utilitzar el servei per promocionar béns, serveis ni productes."
+msgstr " 4. No utilitzar el servei per a promocionar béns específics, serveis o productes."
 
 #: gui/lobby/Terms_of_Use.txt:14
 msgid " 5. Not impersonate other users of the service."
-msgstr "5. No suplantar altres usuaris del servei."
+msgstr " 5. No suplantar altres usuaris del servei."
 
 #: gui/lobby/Terms_of_Use.txt:15
 msgid " 6. Not spam the service."
-msgstr "6. No fer spam."
+msgstr " 6. No enviar spam al servei."
 
 #: gui/lobby/Terms_of_Use.txt:16
 msgid ""
@@ -746,13 +748,13 @@ msgid ""
 "any of the statistics which impact it. (Examples of this are, but are not "
 "limited to: cheating in ranked games, reverse engineering the service, and "
 "taking advantage of other users of the service.)"
-msgstr "7. No intentar canviar artificialment la puntuació de cap usuari ni les estadístiques que l'afecten. (Alguns exemples d'això, entre d'altres, són: fer trampa en partides classificades, fer enginyeria inversa del servei, o aprofitar-se d'altres usuaris del servei.)"
+msgstr " 7. No intentar manipular cap puntuació o estadística que pugui afectar cap usuari del servei. (Exemp`les d'això són, però no només: fer trampa en les classificacions, utilitzar enginyeria inversa i aprofotar-se d'altres usuaris del servei.)"
 
 #: gui/lobby/Terms_of_Use.txt:17
 msgid ""
 " 8. Allow yourself to be removed from the service if at any time a moderator"
 " determines your behavior is not consistent with these rules."
-msgstr "8. Permetre que us elimini del servei si en qualsevol moment un moderador decideix que el vostre comportament no és consistent amb aquestes normes."
+msgstr " 8. Permetre que els moderador us faci fora del servei si en qualsevol moment determina que el vostre comportament no s'adequa a aquestes regles."
 
 #: gui/lobby/Terms_of_Use.txt:19
 msgid ""
@@ -760,4 +762,4 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr "1. Canviar aquest document en qualsevol sentit; en qualsevol moment; amb la condició que l'usuari sigui informat adequadament dels canvis (la definició d'informar adequadament la determinaran llavors un equip de membres de Wildfire Games (WFG))."
+msgstr " 1. Podeu canviar aquest document en qualsevol aspecte i en qualsevol moment a condició que l'usuari del servei rebi un avís amb antelació dels canvis (la definició d'avís amb antelació es determinarà en un futur per l'equip de Wildfire Games (WFG))."

@@ -10,7 +10,7 @@
 # Nergal Sham <sham-nergal@mail.ru>, 2016
 # Prince Moth <princemoth@rambler.ru>, 2016
 # Roman M. Yagodin <roman.yagodin@gmail.com>, 2017
-# Valeriy Stepanov <valera1111@yandex.ru>, 2017
+# Валерий Дмиртиевич Степанов <valera1111@yandex.ru>, 2017
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2016
 # Woratiklis, 2016
 # Дмитрий <polsha_d@mail.ru>, 2016
@@ -19,9 +19,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-08-07 05:38+0000\n"
-"Last-Translator: Valeriy Stepanov <valera1111@yandex.ru>\n"
+"POT-Creation-Date: 2017-11-17 09:04+0100\n"
+"PO-Revision-Date: 2017-11-17 08:26+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,8 +34,8 @@ msgid "Dockyard Repairs"
 msgstr "Ремонт на Верфи"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
-msgid "Heals garrisoned ship at 10 HP per second."
-msgstr "Восстанавливает пришвартованное судно на 10 HP каждую секунду."
+msgid "Repairs garrisoned ship at 10 HP per second."
+msgstr ""
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
@@ -127,6 +127,14 @@ msgid ""
 "Further increase the population limit by 40 per wonder owned (requires "
 "\"Glorious Expansion\" tech)."
 msgstr "Дальнейшее увеличение лимита населения на 40 за каждое принадлежащее Вам чудо (необходима технология \"Славное расширение\")."
+
+#: simulation/data/auras/structures/workshop_repair.jsonauraName
+msgid "Workshop Repairs"
+msgstr ""
+
+#: simulation/data/auras/structures/workshop_repair.jsonauraDescription
+msgid "Repairs garrisoned siege units at 3 HP per second."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -561,14 +569,6 @@ msgstr "Римский Мародёр"
 msgid "+15 Metal loot for every enemy unit killed."
 msgstr "+15 металла за каждого убитого врага."
 
-#: simulation/data/auras/units/heroes/gaul_hero_britomartus.jsonauraName
-msgid "Preparation for War"
-msgstr "Подготовка к войне"
-
-#: simulation/data/auras/units/heroes/gaul_hero_britomartus.jsonauraDescription
-msgid "Gathering rates increased with +15% during his lifetime."
-msgstr "Скорость сбора ресурсов увеличивается на +15%."
-
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraName
 msgid "Celtic Warlord"
 msgstr "Кельтский Военачальник"
@@ -576,6 +576,14 @@ msgstr "Кельтский Военачальник"
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraDescription
 msgid "+20% attack and +1 capture for soldiers and siege engines."
 msgstr "+20% к атаке и +1 к захвату для солдатов и осадных орудий."
+
+#: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraName
+msgid "Preparation for War"
+msgstr "Подготовка к войне"
+
+#: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
+msgid "Gathering rates increased with +15% during his lifetime."
+msgstr "Скорость сбора ресурсов увеличивается на +15%."
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraName
 msgid "Inspired Defense"

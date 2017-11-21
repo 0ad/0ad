@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
-
   <castshadow/>
-  
   <group>
     <variant frequency="100" name="wagon hele rock">
       <animations>
@@ -12,12 +10,14 @@
       </animations>
       <mesh>props/special/wagon_four_wheel_empty.dae</mesh>
       <props>
-        <prop actor="props/units/hele_rock_packed.xml" attachpoint="cargo"/>
+        <prop actor="props/units/rome_rock_packed.xml" attachpoint="cargo"/>
         <prop actor="units/hellenes/trader_h.xml" attachpoint="horse_l"/>
         <prop actor="units/hellenes/trader_h.xml" attachpoint="horse_r"/>
       </props>
-      <textures><texture file="props/wooden_wagon.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/wooden_wagon.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-
+  <material>basic_trans.xml</material>
 </actor>

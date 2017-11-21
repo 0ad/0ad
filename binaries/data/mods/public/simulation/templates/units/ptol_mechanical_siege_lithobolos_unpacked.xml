@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="units/mace_mechanical_siege_lithobolos_packed">
+<Entity parent="units/ptol_mechanical_siege_lithobolos_packed">
   <Identity>
     <Icon>units/hele_mechanical_siege_lithobolos.png</Icon>
   </Identity>
   <Pack>
-    <Entity>units/ptol_mechanical_siege_lithobolos_packed</Entity>
+    <Entity>units/mace_mechanical_siege_lithobolos_packed</Entity>
     <Time>10000</Time>
     <State>unpacked</State>
   </Pack>
@@ -15,6 +15,6 @@
     </Run>
   </UnitMotion>
   <VisualActor>
-    <Actor>units/hellenes/siege_rock.xml</Actor>
+    <Actor>units/ptolemies/siege_rock_pivot.xml</Actor>
   </VisualActor>
 </Entity>

@@ -15,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:07+0200\n"
-"PO-Revision-Date: 2017-11-09 01:54+0000\n"
-"Last-Translator: Silvio George <georgesilvio2004@gmail.com>\n"
+"POT-Creation-Date: 2017-11-17 09:04+0100\n"
+"PO-Revision-Date: 2017-11-17 08:26+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,8 +30,8 @@ msgid "Dockyard Repairs"
 msgstr "Reparări navale"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
-msgid "Heals garrisoned ship at 10 HP per second."
-msgstr "Repară vasul din garnizoană cu 10 HP pe secundă."
+msgid "Repairs garrisoned ship at 10 HP per second."
+msgstr ""
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
@@ -123,6 +123,14 @@ msgid ""
 "Further increase the population limit by 40 per wonder owned (requires "
 "\"Glorious Expansion\" tech)."
 msgstr "Creşte limita populației cu inca 40 pentru fiecare minune deținută (necesită tehnologia \"Expansiune glorioasă\")."
+
+#: simulation/data/auras/structures/workshop_repair.jsonauraName
+msgid "Workshop Repairs"
+msgstr ""
+
+#: simulation/data/auras/structures/workshop_repair.jsonauraDescription
+msgid "Repairs garrisoned siege units at 3 HP per second."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -557,14 +565,6 @@ msgstr "Prăduitorul Romei"
 msgid "+15 Metal loot for every enemy unit killed."
 msgstr "+15 Metale prada pentru fiecare unitate inamica ucisă."
 
-#: simulation/data/auras/units/heroes/gaul_hero_britomartus.jsonauraName
-msgid "Preparation for War"
-msgstr "Pregatirile de război"
-
-#: simulation/data/auras/units/heroes/gaul_hero_britomartus.jsonauraDescription
-msgid "Gathering rates increased with +15% during his lifetime."
-msgstr "În timpul vieții lui viteza de colectare crește cu 15%."
-
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraName
 msgid "Celtic Warlord"
 msgstr "Războinic Celt"
@@ -572,6 +572,14 @@ msgstr "Războinic Celt"
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraDescription
 msgid "+20% attack and +1 capture for soldiers and siege engines."
 msgstr "+20% atack şi +1 capturare pentru soldaţi şi maşinari de război."
+
+#: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraName
+msgid "Preparation for War"
+msgstr "Pregatirile de război"
+
+#: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
+msgid "Gathering rates increased with +15% during his lifetime."
+msgstr "În timpul vieții lui viteza de colectare crește cu 15%."
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraName
 msgid "Inspired Defense"
