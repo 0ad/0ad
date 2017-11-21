@@ -666,8 +666,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 			if (Math.abs(dragDeltaX) >= maxDragDelta || Math.abs(dragDeltaY) >= maxDragDelta)
 			{
 				// Rotate in the direction of the mouse
-				var target = Engine.GetTerrainAtScreenPoint(ev.x, ev.y);
-				placementSupport.angle = Math.atan2(target.x - placementSupport.position.x, target.z - placementSupport.position.z);
+				placementSupport.angle = placementSupport.position.horizAngleTo(Engine.GetTerrainAtScreenPoint(ev.x, ev.y));
 			}
 			else
 			{
