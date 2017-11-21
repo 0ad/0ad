@@ -24,13 +24,13 @@
     </Resources>
   </Cost>
   <Footprint replace="">
-    <Square width="10.0" depth="10.0"/>
+    <Square width="9.0" depth="15.0"/>
     <Height>5.0</Height>
   </Footprint>
   <Identity>
     <Civ>rome</Civ>
-    <SpecificName>Ballista</SpecificName>
-    <Icon>units/rome_mechanical_siege_ballista.png</Icon>
+    <SpecificName>Onager</SpecificName>
+    <Icon>units/rome_siege_onager.png</Icon>
   </Identity>
   <UnitMotion>
     <WalkSpeed>0.001</WalkSpeed>
