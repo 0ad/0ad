@@ -393,7 +393,7 @@ void CDropDown::SetupListRect()
 	GUI<float>::GetSetting(this, "dropdown_size", size);
 	GUI<float>::GetSetting(this, "dropdown_buffer", buffer);
 
-	if (m_ItemsYPositions.empty() || m_ItemsYPositions.back() >= size)
+	if (m_ItemsYPositions.empty() || m_ItemsYPositions.back() > size)
 	{
 		m_CachedListRect = CRect(m_CachedActualSize.left, m_CachedActualSize.bottom+buffer,
 								 m_CachedActualSize.right, m_CachedActualSize.bottom+buffer + size);
