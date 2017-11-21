@@ -325,7 +325,10 @@ GarrisonHolder.prototype.Eject = function(entity, forced)
 
 	cmpNewPosition.JumpTo(pos.x, pos.z);
 	cmpNewPosition.SetHeightOffset(0);
-	// TODO: what direction should they face in?
+
+	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	if (cmpPosition)
+		cmpNewPosition.SetYRotation(cmpPosition.GetPosition().horizAngleTo(pos));
 
 	Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, { "added": [], "removed": [entity] });
 
