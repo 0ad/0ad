@@ -124,6 +124,16 @@ var brokenVector = {
 	TS_ASSERT_EQUALS(v8.y, 0);
 }
 
+// Test Vector2D angleTo
+{
+	let v1 = new Vector2D(1, 1);
+	let v2 = new Vector2D(1, 3);
+	let v3 = new Vector2D(3, 1);
+	TS_ASSERT_EQUALS(v1.angleTo(v2), 0);
+	TS_ASSERT_EQUALS(v1.angleTo(v3), Math.PI / 2);
+	TS_ASSERT_EQUALS(v3.angleTo(v2), -Math.PI / 4);
+}
+
 // Test Vector3D distance and compareLength
 {
 	let v1 = new Vector3D(2, 5, 14);
@@ -159,4 +169,14 @@ var brokenVector = {
 	TS_ASSERT_EQUALS(v5.x, -3);
 	TS_ASSERT_EQUALS(v5.y, 6);
 	TS_ASSERT_EQUALS(v5.z, -3);
+}
+
+// Test Vector3D horizAngleTo
+{
+	let v1 = new Vector3D(1, 1, 1);
+	let v2 = new Vector3D(1, 2, 3);
+	let v3 = new Vector3D(3, 10, 1);
+	TS_ASSERT_EQUALS(v1.horizAngleTo(v2), 0);
+	TS_ASSERT_EQUALS(v1.horizAngleTo(v3), Math.PI / 2);
+	TS_ASSERT_EQUALS(v3.horizAngleTo(v2), -Math.PI / 4);
 }

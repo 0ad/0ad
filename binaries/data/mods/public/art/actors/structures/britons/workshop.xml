@@ -14,18 +14,18 @@
         <prop actor="props/structures/britons/workshop_chariot_props_02.xml" attachpoint="root"/>
         <prop actor="props/structures/britons/workshop_planks.xml" attachpoint="root"/>
         <prop actor="props/structures/britons/workshop_pelts.xml" attachpoint="root"/>
-        <prop actor="props/structures/britons/workshop_barrels_01.xml" attachpoint="barrels_01"/>
-        <prop actor="props/structures/britons/workshop_barrels_02.xml" attachpoint="barrels_02"/>
-        <prop actor="props/structures/britons/workshop_box_pile_01.xml" attachpoint="box_pile_01"/>
-        <prop actor="props/structures/britons/workshop_chariot_01.xml" attachpoint="chariot_01"/>
-        <prop actor="props/structures/britons/workshop_chariot_02.xml" attachpoint="chariot_02"/>
-        <prop actor="props/structures/britons/workshop_ram_trunks.xml" attachpoint="trunks"/>
-        <prop actor="props/structures/britons/workshop_boxes.xml" attachpoint="boxes"/>
-        <prop actor="props/structures/britons/workshop_empty_barrel.xml" attachpoint="empty_barrel"/>
-        <prop actor="props/structures/britons/workshop_anvil.xml" attachpoint="anvil"/>
-        <prop actor="props/structures/britons/workshop_ram.xml" attachpoint="ram"/>
-        <prop actor="props/structures/britons/workshop_chariot_prop_wheel.xml" attachpoint="chariot_prop_wheel"/>
-        <prop actor="props/structures/britons/workshop_ram_wheels.xml" attachpoint="ram_wheels"/>
+        <prop actor="props/structures/britons/workshop_barrels_01.xml" attachpoint="barrels_01" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/britons/workshop_barrels_02.xml" attachpoint="barrels_02" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/britons/workshop_box_pile_01.xml" attachpoint="box_pile_01" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/britons/workshop_chariot_01.xml" attachpoint="chariot_01" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/britons/workshop_chariot_02.xml" attachpoint="chariot_02" maxheight="20" minheight="0"/>
+        <prop actor="props/structures/britons/workshop_ram_trunks.xml" attachpoint="trunks" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/britons/workshop_boxes.xml" attachpoint="boxes" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/britons/workshop_empty_barrel.xml" attachpoint="empty_barrel" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/britons/workshop_anvil.xml" attachpoint="anvil" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/britons/workshop_ram.xml" attachpoint="ram" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/britons/workshop_chariot_prop_wheel.xml" attachpoint="chariot_prop_wheel" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/britons/workshop_ram_wheels.xml" attachpoint="ram_wheels" maxheight="20" minheight="-20"/>
       </props>
       <textures>
         <texture file="structural/brit_struct.png" name="baseTex"/>

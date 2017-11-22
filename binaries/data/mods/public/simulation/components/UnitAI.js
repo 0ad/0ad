@@ -4597,16 +4597,15 @@ UnitAI.prototype.FaceTowardsTarget = function(target)
 	var cmpTargetPosition = Engine.QueryInterface(target, IID_Position);
 	if (!cmpTargetPosition || !cmpTargetPosition.IsInWorld())
 		return;
-	var pos = cmpPosition.GetPosition();
-	var targetpos = cmpTargetPosition.GetPosition();
-	var angle = Math.atan2(targetpos.x - pos.x, targetpos.z - pos.z);
+	var targetpos = cmpTargetPosition.GetPosition2D();
+	var angle = cmpPosition.GetPosition2D().angleTo(targetpos);
 	var rot = cmpPosition.GetRotation();
 	var delta = (rot.y - angle + Math.PI) % (2 * Math.PI) - Math.PI;
 	if (Math.abs(delta) > 0.2)
 	{
 		var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 		if (cmpUnitMotion)
-			cmpUnitMotion.FaceTowardsPoint(targetpos.x, targetpos.z);
+			cmpUnitMotion.FaceTowardsPoint(targetpos.x, targetpos.y);
 	}
 };
 

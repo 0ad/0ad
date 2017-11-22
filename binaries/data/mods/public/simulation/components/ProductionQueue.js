@@ -609,7 +609,7 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 		let ent = this.entityCache[0];
 		let cmpNewOwnership = Engine.QueryInterface(ent, IID_Ownership);
 		let garrisoned = false;
-		
+
 		if (cmpAutoGarrison)
 		{
 			// Temporary owner affectation needed for GarrisonHolder checks
@@ -631,8 +631,12 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 				break;
 
 			let cmpNewPosition = Engine.QueryInterface(ent, IID_Position);
-			// TODO: what direction should they face in?
 			cmpNewPosition.JumpTo(pos.x, pos.z);
+
+			let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+			if (cmpPosition)
+				cmpNewPosition.SetYRotation(cmpPosition.GetPosition().horizAngleTo(pos));
+
 			spawnedEnts.push(ent);
 		}
 

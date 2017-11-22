@@ -155,6 +155,15 @@ Vector2D.prototype.distanceTo = function(v)
 	return Math.euclidDistance2D(this.x, this.y, v.x, v.y);
 };
 
+/**
+ * Returns the angle going from this position to v.
+ * Angles are between -PI and PI. E.g., north is 0, east is PI/2.
+ */
+Vector2D.prototype.angleTo = function(v)
+{
+	return Math.atan2(v.x - this.x, v.y - this.y);
+};
+
 // Static 2D functions
 //
 // Static functions that return a new vector object.
@@ -332,6 +341,14 @@ Vector3D.prototype.horizDistanceToSquared = function(v)
 Vector3D.prototype.horizDistanceTo = function(v)
 {
 	return Math.sqrt(this.horizDistanceToSquared(v));
+};
+
+/**
+ * Returns the angle going from this position to v.
+ */
+Vector3D.prototype.horizAngleTo = function(v)
+{
+	return Math.atan2(v.x - this.x, v.z - this.z);
 };
 
 // Static 3D functions

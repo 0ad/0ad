@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -207,12 +207,12 @@ public:
 	/**
 	 * Get the value of m_Pos that corresponds to the bottom of the scrollable region
 	 */
-	float GetMaxPos() const { return std::max(1.f, m_ScrollRange - m_ScrollSpace); }
+	float GetMaxPos() const { return std::max(0.f, m_ScrollRange - m_ScrollSpace); }
 
 	/**
-	 * Get the value of m_Pos that corresponds to the bottom of the scrollable region
+	 * Scrollbars without height shouldn't be visible
 	 */
-	float IsVisible() const { return GetMaxPos() != 1.f; }
+	bool IsVisible() const { return GetMaxPos() != 0.f; }
 
 	/**
 	 * Increase scroll one step
