@@ -10,6 +10,13 @@ const FALLBACK_CIV = "athen";
  */
 const MAX_HEIGHT_RANGE = 0xFFFF / HEIGHT_UNITS_PER_METRE; // Engine limit, Roughly 700 meters
 const MIN_HEIGHT = - SEA_LEVEL;
+
+/**
+ * Length of one tile of the terrain grid in metres.
+ * Useful to transform footprint sizes of templates to the coordinate system used by getMapSize.
+ */
+const TERRAIN_TILE_SIZE = RMS.GetTerrainTileSize();
+
 const MAX_HEIGHT = MAX_HEIGHT_RANGE - SEA_LEVEL;
 // Default angle for buildings
 const BUILDING_ORIENTATION = - PI / 4;

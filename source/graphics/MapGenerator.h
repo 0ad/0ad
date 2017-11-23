@@ -132,6 +132,7 @@ private:
 	static bool TemplateExists(ScriptInterface::CxPrivate* pCxPrivate, const std::string& templateName);
 	static std::vector<std::string> FindTemplates(ScriptInterface::CxPrivate* pCxPrivate, const std::string& path, bool includeSubdirectories);
 	static std::vector<std::string> FindActorTemplates(ScriptInterface::CxPrivate* pCxPrivate, const std::string& path, bool includeSubdirectories);
+	static int GetTerrainTileSize(ScriptInterface::CxPrivate* pCxPrivate);
 
 	std::set<std::wstring> m_LoadedLibraries;
 	shared_ptr<ScriptInterface::StructuredClone> m_MapData;
