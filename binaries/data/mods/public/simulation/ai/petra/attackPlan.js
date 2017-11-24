@@ -166,7 +166,7 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	if (this.Config.difficulty < 2)
 	{
 		priority *= 0.6;
-		variation *= 0.6;
+		variation *= 0.5;
 	}
 	else if (this.Config.difficulty < 3)
 	{
@@ -369,10 +369,12 @@ m.AttackPlan.prototype.addSiegeUnits = function(gameState)
 	}
 
 	this.siegeState = 2;
-	let targetSize = this.type == "HugeAttack" ? 6 : 4;
+	let targetSize;
 	if (this.Config.difficulty < 3)
-		targetSize = this.Config.difficulty;
-	targetSize = Math.round(this.Config.popScaling * targetSize);
+		targetSize = this.type == "HugeAttack" ? Math.max(this.Config.difficulty, 1) : Math.max(this.Config.difficulty - 1, 0);
+	else
+		targetSize = this.type == "HugeAttack" ? this.Config.difficulty + 1 : this.Config.difficulty - 1;
+	targetSize = Math.max(Math.round(this.Config.popScaling * targetSize), this.type == "HugeAttack" ? 1 : 0);
 	if (!targetSize)
 		return true;
 	// no minsize as we don't want the plan to fail at the last minute though.
