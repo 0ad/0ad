@@ -147,8 +147,11 @@ private:
 			m_ScriptInterface->Eval(L"({})", &settings);
 			m_ScriptInterface->SetProperty(settings, "player", m_Player, false);
 			m_ScriptInterface->SetProperty(settings, "difficulty", m_Difficulty, false);
-			ENSURE(m_Worker.m_HasLoadedEntityTemplates);
-			m_ScriptInterface->SetProperty(settings, "templates", m_Worker.m_EntityTemplates, false);
+			if (!m_UseSharedComponent)
+			{
+				ENSURE(m_Worker.m_HasLoadedEntityTemplates);
+				m_ScriptInterface->SetProperty(settings, "templates", m_Worker.m_EntityTemplates, false);
+			}
 
 			JS::AutoValueVector argv(cx);
 			argv.append(settings.get());
@@ -238,6 +241,8 @@ public:
 	{
 		JS_RemoveExtraGCRootsTracer(m_ScriptInterface->GetJSRuntime(), Trace, this);
 	}
+
+	bool HasLoadedEntityTemplates() const { return m_HasLoadedEntityTemplates; }
 
 	bool LoadScripts(const std::wstring& moduleName)
 	{
@@ -950,9 +955,8 @@ private:
 class CCmpAIManager : public ICmpAIManager
 {
 public:
-	static void ClassInit(CComponentManager& componentManager)
+	static void ClassInit(CComponentManager& UNUSED(componentManager))
 	{
-		componentManager.SubscribeToMessageType(MT_ProgressiveLoad);
 	}
 
 	DEFAULT_COMPONENT_ALLOCATOR(AIManager)
@@ -967,8 +971,6 @@ public:
 		m_TerritoriesDirtyID = 0;
 		m_TerritoriesDirtyBlinkingID = 0;
 		m_JustDeserialized = false;
-
-		StartLoadEntityTemplates();
 	}
 
 	virtual void Deinit()
@@ -994,38 +996,17 @@ public:
 		u32 numAis;
 		deserialize.NumberU32_Unbounded("num ais", numAis);
 		if (numAis > 0)
-			ForceLoadEntityTemplates();
+			LoadUsedEntityTemplates();
 
 		m_Worker.Deserialize(deserialize.GetStream(), numAis);
 
 		m_JustDeserialized = true;
 	}
 
-	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
-	{
-		switch (msg.GetType())
-		{
-		case MT_ProgressiveLoad:
-		{
-			const CMessageProgressiveLoad& msgData = static_cast<const CMessageProgressiveLoad&> (msg);
-
-			*msgData.total += (int)m_TemplateNames.size();
-
-			if (*msgData.progressed)
-				break;
-
-			if (ContinueLoadEntityTemplates())
-				*msgData.progressed = true;
-
-			*msgData.progress += (int)m_TemplateLoadedIdx;
-
-			break;
-		}
-		}
-	}
-
 	virtual void AddPlayer(const std::wstring& id, player_id_t player, u8 difficulty)
 	{
+		LoadUsedEntityTemplates();
+
 		m_Worker.AddPlayer(id, player, difficulty);
 
 		// AI players can cheat and see through FoW/SoD, since that greatly simplifies
@@ -1051,11 +1032,10 @@ public:
 		CmpPtr<ICmpDataTemplateManager> cmpDataTemplateManager(GetSystemEntity());
 		ENSURE(cmpDataTemplateManager);
 
-		// Get the game state from AIInterface
 		JS::RootedValue techTemplates(cx);
 		cmpDataTemplateManager->GetAllTechs(&techTemplates);
-
 		m_Worker.RegisterTechTemplates(scriptInterface.WriteStructuredClone(techTemplates));
+
 		m_Worker.TryLoadSharedComponent(true);
 	}
 
@@ -1099,8 +1079,6 @@ public:
 	virtual void StartComputation()
 	{
 		PROFILE("AI setup");
-
-		ForceLoadEntityTemplates();
 
 		ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
 		JSContext* cx = scriptInterface.GetContext();
@@ -1183,51 +1161,34 @@ public:
 	}
 
 private:
-	std::vector<std::string> m_TemplateNames;
-	size_t m_TemplateLoadedIdx;
-	std::vector<std::pair<std::string, const CParamNode*> > m_Templates;
 	size_t m_TerritoriesDirtyID;
 	size_t m_TerritoriesDirtyBlinkingID;
 
 	bool m_JustDeserialized;
 
-	void StartLoadEntityTemplates()
+	/**
+	 * Load the templates of all entities on the map (called when adding a new AI player for a new game
+	 * or when deserializing)
+	 */
+	void LoadUsedEntityTemplates()
 	{
-		CmpPtr<ICmpTemplateManager> cmpTemplateManager(GetSystemEntity());
-		ENSURE(cmpTemplateManager);
-
-		m_TemplateNames = cmpTemplateManager->FindAllTemplates(false);
-		m_TemplateLoadedIdx = 0;
-		m_Templates.reserve(m_TemplateNames.size());
-	}
-
-	// Tries to load the next entity template. Returns true if we did some work.
-	bool ContinueLoadEntityTemplates()
-	{
-		if (m_TemplateLoadedIdx >= m_TemplateNames.size())
-			return false;
+		if (m_Worker.HasLoadedEntityTemplates())
+			return;
 
 		CmpPtr<ICmpTemplateManager> cmpTemplateManager(GetSystemEntity());
 		ENSURE(cmpTemplateManager);
 
-		const CParamNode* node = cmpTemplateManager->GetTemplateWithoutValidation(m_TemplateNames[m_TemplateLoadedIdx]);
-		if (node)
-			m_Templates.emplace_back(m_TemplateNames[m_TemplateLoadedIdx], node);
-
-		m_TemplateLoadedIdx++;
-
-		// If this was the last template, send the data to the worker
-		if (m_TemplateLoadedIdx == m_TemplateNames.size())
-			m_Worker.LoadEntityTemplates(m_Templates);
-
-		return true;
-	}
-
-	void ForceLoadEntityTemplates()
-	{
-		while (ContinueLoadEntityTemplates())
+		std::vector<std::string> templateNames = cmpTemplateManager->FindUsedTemplates();
+		std::vector<std::pair<std::string, const CParamNode*> > usedTemplates;
+		usedTemplates.reserve(templateNames.size());
+		for (const std::string& name : templateNames)
 		{
+			const CParamNode* node = cmpTemplateManager->GetTemplateWithoutValidation(name);
+			if (node)
+				usedTemplates.emplace_back(name, node);
 		}
+		// Send the data to the worker
+		m_Worker.LoadEntityTemplates(usedTemplates);
 	}
 
 	void LoadPathfinderClasses(JS::HandleValue state)

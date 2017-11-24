@@ -104,6 +104,12 @@ public:
 	virtual std::vector<std::string> FindAllTemplates(bool includeActors) const = 0;
 
 	/**
+	 * Returns a list of strings that could be validly passed as @c templateName to LoadTemplate.
+	 * Intended for use by the AI manager.
+	 */
+	virtual std::vector<std::string> FindUsedTemplates() const = 0;
+
+	/**
 	 * Permanently disable XML validation (intended solely for test cases).
 	 */
 	virtual void DisableValidation() = 0;

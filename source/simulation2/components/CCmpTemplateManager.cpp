@@ -114,6 +114,8 @@ public:
 
 	virtual std::vector<std::string> FindAllTemplates(bool includeActors) const;
 
+	virtual std::vector<std::string> FindUsedTemplates() const;
+
 	virtual std::vector<entity_id_t> GetEntitiesUsingTemplate(const std::string& templateName) const;
 
 private:
@@ -212,6 +214,15 @@ std::vector<std::string> CCmpTemplateManager::FindAllTemplates(bool includeActor
 {
 	ETemplatesType templatesType = includeActors ? ALL_TEMPLATES : SIMULATION_TEMPLATES;
 	return m_templateLoader.FindTemplates("", true, templatesType);
+}
+
+std::vector<std::string> CCmpTemplateManager::FindUsedTemplates() const
+{
+	std::vector<std::string> usedTemplates;
+	for (const std::pair<entity_id_t, std::string>& p : m_LatestTemplates)
+		if (std::find(usedTemplates.begin(), usedTemplates.end(), p.second) == usedTemplates.end())
+			usedTemplates.push_back(p.second);
+	return usedTemplates;
 }
 
 /**
