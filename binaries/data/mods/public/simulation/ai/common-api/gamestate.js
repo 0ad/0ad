@@ -508,9 +508,12 @@ m.GameState.prototype.getExclusiveAllyEntities = function()
 	return this.entities.filter(m.Filters.byOwners(this.getExclusiveAllies()));
 };
 
-m.GameState.prototype.getAllyStructures = function()
+m.GameState.prototype.getAllyStructures = function(allyID)
 {
-	return this.updatingCollection("diplo-ally-structures", m.Filters.byOwners(this.getAllies()), this.getStructures());
+	if (allyID == undefined)
+		return this.updatingCollection("diplo-ally-structures", m.Filters.byOwners(this.getAllies()), this.getStructures());
+
+	return this.updatingGlobalCollection("player-" + allyID + "-structures", m.Filters.byOwner(allyID), this.getStructures());
 };
 
 m.GameState.prototype.getNeutralStructures = function()

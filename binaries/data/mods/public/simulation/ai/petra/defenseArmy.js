@@ -15,7 +15,6 @@ m.DefenseArmy = function(gameState, foeEntities, type)
 	this.type = type || "default";
 
 	this.Config = gameState.ai.Config;
-	this.defenseRatio = this.Config.Defense.defenseRatio;
 	this.compactSize = this.Config.Defense.armyCompactSize;
 	this.breakawaySize = this.Config.Defense.armyBreakawaySize;
 
@@ -401,13 +400,29 @@ m.DefenseArmy.prototype.merge = function(gameState, otherArmy)
 
 m.DefenseArmy.prototype.needsDefenders = function(gameState)
 {
+	let defenseRatio;
+	let territoryOwner = gameState.ai.HQ.territoryMap.getOwner(this.foePosition);
+	if (territoryOwner == PlayerID)
+		defenseRatio = this.Config.Defense.defenseRatio.own;
+	else if (gameState.isPlayerAlly(territoryOwner))
+	{
+		defenseRatio = this.Config.Defense.defenseRatio.ally;
+		let numExclusiveAllies = 0;
+		for (let p = 1; p < gameState.sharedScript.playersData.length; ++p)
+			if (p != territoryOwner && gameState.sharedScript.playersData[p].isAlly[territoryOwner])
+				++numExclusiveAllies;
+		defenseRatio /= (1 + 0.5*Math.max(0, numExclusiveAllies-1));
+	}
+	else
+		defenseRatio = this.Config.Defense.defenseRatio.neutral;
+
 	// some preliminary checks because we don't update for tech so entStrength removed can be > entStrength added
 	if (this.foeStrength <= 0 || this.ownStrength <= 0)
 		this.recalculateStrengths(gameState);
 
-	if (this.foeStrength * this.defenseRatio <= this.ownStrength)
+	if (this.foeStrength * defenseRatio <= this.ownStrength)
 		return false;
-	return this.foeStrength * this.defenseRatio - this.ownStrength;
+	return this.foeStrength * defenseRatio - this.ownStrength;
 };
 
 

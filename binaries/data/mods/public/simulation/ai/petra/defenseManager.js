@@ -7,7 +7,11 @@ m.DefenseManager = function(Config)
 	this.Config = Config;
 	this.targetList = [];
 	this.armyMergeSize = this.Config.Defense.armyMergeSize;
-	this.attackingArmies = {};	// stats on how many enemies are currently attacking our allies
+	// stats on how many enemies are currently attacking our allies
+	// this.attackingArmies[enemy][ally] = number of enemy armies inside allied territory
+	// this.attackingUnits[enemy][ally] = number of enemy units not in armies inside allied territory
+	// this.attackedAllies[ally] = number of enemies attacking the ally
+	this.attackingArmies = {};
 	this.attackingUnits = {};
 	this.attackedAllies = {};
 };
@@ -149,7 +153,7 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 	{
 		if (!gameState.isEntityExclusiveAlly(cc) || cc.foundationProgress() === 0)
 			continue;
-		let cooperation = this.GetCooperationLevel(cc);
+		let cooperation = this.GetCooperationLevel(cc.owner());
 		if (cooperation < 0.6 && cc.foundationProgress() !== undefined)
 			continue;
 		if (cooperation < 0.3)
@@ -158,18 +162,33 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 			return true;
 	}
 
-	let myBuildings = gameState.getOwnStructures();
-	for (let building of myBuildings.values())
+	for (let building of gameState.getOwnStructures().values())
 	{
 		if (building.foundationProgress() === 0 ||
 		    API3.SquareVectorDistance(building.position(), entity.position()) > dist2Min)
 			continue;
-		return !this.territoryMap.isBlinking(building.position()) || gameState.ai.HQ.isDefendable(building);
+		if (!this.territoryMap.isBlinking(building.position()) || gameState.ai.HQ.isDefendable(building))
+			return true;
 	}
 
-	// Update the number of enemies attacking this ally
 	if (gameState.isPlayerMutualAlly(territoryOwner))
 	{
+		// If ally attacked by more than 2 enemies, help him not only for cc but also for structures
+		if (territoryOwner != PlayerID && this.attackedAllies[territoryOwner] &&
+		                                  this.attackedAllies[territoryOwner] > 1 &&
+		                                  this.GetCooperationLevel(territoryOwner) > 0.7)
+		{
+			for (let building of gameState.getAllyStructures(territoryOwner).values())
+			{
+				if (building.foundationProgress() == 0 ||
+				    API3.SquareVectorDistance(building.position(), entity.position()) > dist2Min)
+					continue;
+				if (!this.territoryMap.isBlinking(building.position()))
+					return true;
+			}
+		}
+
+		// Update the number of enemies attacking this ally
 		let enemy = entity.owner();
 		if (this.attackingUnits[enemy] === undefined)
 			this.attackingUnits[enemy] = {};
@@ -340,7 +359,7 @@ m.DefenseManager.prototype.checkEnemyArmies = function(gameState)
 		{
 			if (!gameState.isEntityAlly(base))
 				continue;
-			let cooperation = this.GetCooperationLevel(base);
+			let cooperation = this.GetCooperationLevel(base.owner());
 			if (cooperation < 0.3 && !gameState.isEntityOwn(base))
 				continue;
 			if (API3.SquareVectorDistance(base.position(), army.foePosition) > 40000)
@@ -809,9 +828,8 @@ m.DefenseManager.prototype.garrisonAttackedUnit = function(gameState, unit, emer
 /**
  * Be more inclined to help an ally attacked by several enemies
  */
-m.DefenseManager.prototype.GetCooperationLevel = function(ent)
+m.DefenseManager.prototype.GetCooperationLevel = function(ally)
 {
-	let ally = ent.owner();
 	let cooperation = this.Config.personality.cooperative;
 	if (this.attackedAllies[ally] && this.attackedAllies[ally] > 1)
 		cooperation += 0.2 * (this.attackedAllies[ally] - 1);

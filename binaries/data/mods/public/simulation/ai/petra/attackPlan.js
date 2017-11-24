@@ -295,10 +295,8 @@ m.AttackPlan.prototype.mustStart = function()
 	if (MaxReachedEverywhere)
 		return true;
 	if (MinReachedEverywhere)
-	{
-		if (this.type === "Raid" && this.target && this.target.foundationProgress() && this.target.foundationProgress() > 60)
-			return true;
-	}
+		return this.type == "Raid" && this.target && this.target.foundationProgress() && 
+		                                             this.target.foundationProgress() > 50;
 	return false;
 };
 
@@ -480,11 +478,11 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 	if (!this.overseas)
 		this.getPathToTarget(gameState);
 
-	if (this.type === "Raid")
+	if (this.type == "Raid")
 		this.maxCompletingTime = gameState.ai.elapsedTime + 20;
 	else
 	{
-		if (this.type === "Rush")
+		if (this.type == "Rush" || this.forced)
 			this.maxCompletingTime = gameState.ai.elapsedTime + 40;
 		else
 			this.maxCompletingTime = gameState.ai.elapsedTime + 60;
