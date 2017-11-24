@@ -19,6 +19,7 @@
 
 #include "MapGenerator.h"
 
+#include "graphics/Terrain.h"
 #include "lib/timer.h"
 #include "ps/CLogger.h"
 #include "ps/Profile.h"
@@ -110,6 +111,7 @@ bool CMapGeneratorWorker::Run()
 	m_ScriptInterface->RegisterFunction<bool, std::string, CMapGeneratorWorker::TemplateExists>("TemplateExists");
 	m_ScriptInterface->RegisterFunction<std::vector<std::string>, std::string, bool, CMapGeneratorWorker::FindTemplates>("FindTemplates");
 	m_ScriptInterface->RegisterFunction<std::vector<std::string>, std::string, bool, CMapGeneratorWorker::FindActorTemplates>("FindActorTemplates");
+	m_ScriptInterface->RegisterFunction<int, CMapGeneratorWorker::GetTerrainTileSize>("GetTerrainTileSize");
 
 	// Parse settings
 	JS::RootedValue settingsVal(cx);
@@ -270,6 +272,12 @@ std::vector<std::string> CMapGeneratorWorker::FindActorTemplates(ScriptInterface
 	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
 	return self->m_TemplateLoader.FindTemplates(path, includeSubdirectories, ACTOR_TEMPLATES);
 }
+
+int CMapGeneratorWorker::GetTerrainTileSize(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
+{
+	return TERRAIN_TILE_SIZE;
+}
+
 
 bool CMapGeneratorWorker::LoadScripts(const std::wstring& libraryName)
 {

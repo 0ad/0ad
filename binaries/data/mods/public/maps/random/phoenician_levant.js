@@ -226,35 +226,31 @@ RMS.SetProgress(60);
 
 log("Creating cyprus...");
 createAreas(
-	new ClumpPlacer(4.5 * scaleByMapSize(60, 540), 0.2, 0.1, 0.01),
+	new ClumpPlacer(diskArea(getMapSize() / 13), 0.2, 0.1, 0.01),
 	[
 		new LayeredPainter([tShore, tHill], [12]),
 		new SmoothElevationPainter(ELEVATION_SET, 6, 8),
 		paintClass(clIsland)
 	],
-	[stayClasses (clWater, 5)],
-	1);
+	[stayClasses (clWater, 8)],
+	1,
+	100);
 
-log("Creating cyprus stone mines...");
-var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4), new SimpleObject(oStoneLarge, 1, 1, 0, 4)], true, clRock);
-createObjectGroupsDeprecated(group, 0,
-	stayClasses(clIsland, 9),
-	14 * scaleByMapSize(4,16), 100
-);
-
-log("Creating cyprus small stone mines...");
-group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3)], true, clRock);
-createObjectGroupsDeprecated(group, 0,
-	stayClasses(clIsland, 9),
-	14 * scaleByMapSize(4,16), 100
-);
-
-log("Creating cyprus metal mines...");
-group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,4)], true, clMetal);
-createObjectGroupsDeprecated(group, 0,
-	stayClasses(clIsland, 9),
-	14 * scaleByMapSize(4,16), 100
-);
+log("Creating cyprus mines...");
+var mines = [
+	new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4), new SimpleObject(oStoneLarge, 1, 1, 0, 4)], true, clRock),
+	new SimpleGroup([new SimpleObject(oMetalLarge, 1, 1, 0, 4)], true, clMetal),
+	new SimpleGroup([new SimpleObject(oStoneSmall, 2, 5, 1, 3)], true, clRock)
+];
+for (let mine of mines)
+	createObjectGroups(
+		mine,
+		0,
+		[
+			stayClasses(clIsland, 9),
+			avoidClasses(clForest, 1, clRock, 8, clMetal, 8)
+		],
+		scaleByMapSize(4, 16));
 
 log("Creating stone mines...");
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clRock);
@@ -343,7 +339,7 @@ RMS.SetProgress(90);
 
 var stragglerTreeConfig = [
 	[1, avoidClasses(clForest, 0, clWater, 1, clPlayer, 8, clMetal, 6, clHill, 1)],
-	[3, stayClasses(clIsland, 9)]
+	[3, [stayClasses(clIsland, 9), avoidClasses(clRock, 4, clMetal, 4)]]
 ];
 for (let [amount, constraint] of stragglerTreeConfig)
 	createStragglerTrees(
