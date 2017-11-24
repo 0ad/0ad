@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Gaullic Stable">
+      <animations>
+        <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
+      </animations>
+      <mesh>structural/gaul_stable.dae</mesh>
+      <props>
+        <prop actor="props/structures/gauls/stable_nature.xml" attachpoint="root"/>
+        <prop actor="props/structures/gauls/stable_barrel_01.xml" attachpoint="barrel_01" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/gauls/stable_barrel_02.xml" attachpoint="barrel_02" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/gauls/stable_barrel_03.xml" attachpoint="barrel_03" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/gauls/stable_hay_stack.xml" attachpoint="hay_stack"/>
+        <prop actor="props/structures/gauls/stable_ladder.xml" attachpoint="ladder"/>
+        <prop actor="props/structures/gauls/stable_shields.xml" attachpoint="root"/>
+        <prop actor="props/structures/gauls/stable_water.xml" attachpoint="root"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/structures/persians/stable_horse_a.xml" attachpoint="horse" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/persians/stable_horse_b.xml" attachpoint="horse_1" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/persians/stable_horse_c.xml" attachpoint="horse_2" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/celt_struct.dds" name="baseTex"/>
+        <texture file="structural/celt_struct_norm.png" name="normTex"/>
+        <texture file="structural/celt_struct_spec.png" name="specTex"/>
+        <texture file="structural/ao/gaul_stable.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="ungarrisoned"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_celt.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant name="alive" frequency="1"/>
+    <variant name="death">
+      <props>
+        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>
