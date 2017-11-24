@@ -75,7 +75,7 @@ for (var i = 0; i < numPlayers; ++i)
 	playerX[i] = tilesToFraction(playerX[i]);
 	playerZ[i] = tilesToFraction(playerZ[i]);
 
-	var civEntities = getStartingEntities(id-1);
+	var civEntities = getStartingEntities(playerIDs[i]);
 	var angle = randFloat(0, TWO_PI);
 	for (var j = 0; j < civEntities.length; ++j)
 	{

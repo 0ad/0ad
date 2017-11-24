@@ -375,7 +375,7 @@ function getNumPlayers()
 
 function getCivCode(playerID)
 {
-	return g_MapSettings.PlayerData[playerID + 1].Civ;
+	return g_MapSettings.PlayerData[playerID].Civ;
 }
 
 function areAllies(player1, player2)

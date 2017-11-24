@@ -48,9 +48,9 @@ function placeStartingEntities(fx, fz, playerID, civEntities, dist = 6, orientat
  */
 function placeCivDefaultEntities(fx, fz, playerID, kwargs, dist = 6, orientation = BUILDING_ORIENTATION)
 {
-	placeStartingEntities(fx, fz, playerID, getStartingEntities(playerID - 1), dist, orientation);
+	placeStartingEntities(fx, fz, playerID, getStartingEntities(playerID), dist, orientation);
 
-	let civ = getCivCode(playerID - 1);
+	let civ = getCivCode(playerID);
 	if (civ == 'iber' && getMapSize() > 128)
 	{
 		if (kwargs && kwargs.iberWall == 'towers')
