@@ -7,15 +7,7 @@
  */
 function getStartingEntities(playerID)
 {
-	let civ = getCivCode(playerID);
-
-	if (!g_CivData[civ] || !g_CivData[civ].StartEntities || !g_CivData[civ].StartEntities.length)
-	{
-		warn("Invalid or unimplemented civ '" + civ + "' specified, falling back to '" + FALLBACK_CIV + "'");
-		civ = FALLBACK_CIV;
-	}
-
-	return g_CivData[civ].StartEntities;
+	return g_CivData[getCivCode(playerID)].StartEntities;
 }
 
 /**

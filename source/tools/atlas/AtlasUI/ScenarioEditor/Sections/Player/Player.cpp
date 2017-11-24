@@ -629,7 +629,6 @@ void PlayerSettingsControl::CreateWidgets()
 			aiChoice->Append(ais[j]->GetName(), new wxStringClientData(ais[j]->GetID()));
 		aiChoice->SetSelection(0);
 
-		// Only increment AtIters if they are defined
 		if (playerDefs.defined())
 			++playerDefs;
 	}
@@ -826,9 +825,9 @@ void PlayerSettingsControl::ReadFromEngine()
 		else
 			controls.page->SetCamera(sCameraInfo(), false);
 
-		// Only increment AtIters if they are defined
 		if (player.defined())
 			++player;
+
 		if (playerDefs.defined())
 			++playerDefs;
 	}
@@ -846,6 +845,10 @@ AtObj PlayerSettingsControl::UpdateSettingsObject()
 	players.set("@array", L"");
 
 	wxASSERT(m_NumPlayers <= MAX_NUM_PLAYERS);
+
+	AtIter playerDefs = m_PlayerDefaults["item"];
+	if (playerDefs.defined())
+		++playerDefs;	// Skip gaia
 
 	for (size_t i = 0; i < m_NumPlayers; ++i)
 	{
@@ -865,6 +868,8 @@ AtObj PlayerSettingsControl::UpdateSettingsObject()
 			wxStringClientData* str = dynamic_cast<wxStringClientData*>(choice->GetClientObject(choice->GetSelection()));
 			player.set("Civ", str->GetData());
 		}
+		else
+			player.set("Civ", playerDefs["Civ"]);
 
 		// color
 		if (controls.color->IsEnabled())
@@ -933,6 +938,9 @@ AtObj PlayerSettingsControl::UpdateSettingsObject()
 		player.set("StartingCamera", camObj);
 
 		players.add("item", player);
+
+		if (playerDefs.defined())
+			++playerDefs;
 	}
 
 	m_MapSettings.set("PlayerData", players);

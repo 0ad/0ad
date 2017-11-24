@@ -4,7 +4,7 @@ const TERRAIN_SEPARATOR = "|";
 const SEA_LEVEL = 20.0;
 const HEIGHT_UNITS_PER_METRE = 92;
 const MAP_BORDER_WIDTH = 3;
-const FALLBACK_CIV = "athen";
+
 /**
  * Constants needed for heightmap_manipulation.js
  */
@@ -373,13 +373,9 @@ function getNumPlayers()
 	return g_MapSettings.PlayerData.length - 1;
 }
 
-function getCivCode(player)
+function getCivCode(playerID)
 {
-	if (g_MapSettings.PlayerData[player+1].Civ)
-		return g_MapSettings.PlayerData[player+1].Civ;
-
-	warn("undefined civ specified for player " + (player + 1) + ", falling back to '" + FALLBACK_CIV + "'");
-	return FALLBACK_CIV;
+	return g_MapSettings.PlayerData[playerID + 1].Civ;
 }
 
 function areAllies(player1, player2)
