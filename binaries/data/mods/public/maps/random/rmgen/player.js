@@ -7,15 +7,7 @@
  */
 function getStartingEntities(playerID)
 {
-	let civ = getCivCode(playerID);
-
-	if (!g_CivData[civ] || !g_CivData[civ].StartEntities || !g_CivData[civ].StartEntities.length)
-	{
-		warn("Invalid or unimplemented civ '" + civ + "' specified, falling back to '" + FALLBACK_CIV + "'");
-		civ = FALLBACK_CIV;
-	}
-
-	return g_CivData[civ].StartEntities;
+	return g_CivData[getCivCode(playerID)].StartEntities;
 }
 
 /**
@@ -56,9 +48,9 @@ function placeStartingEntities(fx, fz, playerID, civEntities, dist = 6, orientat
  */
 function placeCivDefaultEntities(fx, fz, playerID, kwargs, dist = 6, orientation = BUILDING_ORIENTATION)
 {
-	placeStartingEntities(fx, fz, playerID, getStartingEntities(playerID - 1), dist, orientation);
+	placeStartingEntities(fx, fz, playerID, getStartingEntities(playerID), dist, orientation);
 
-	let civ = getCivCode(playerID - 1);
+	let civ = getCivCode(playerID);
 	if (civ == 'iber' && getMapSize() > 128)
 	{
 		if (kwargs && kwargs.iberWall == 'towers')
@@ -89,7 +81,7 @@ function addCivicCenterAreaToClass(ix, iz, tileClass)
  */
 function sortPlayers(playerIDs)
 {
-	return shuffleArray(playerIDs).sort((p1, p2) => getPlayerTeam(p1 - 1) - getPlayerTeam(p2 - 1));
+	return shuffleArray(playerIDs).sort((playerID1, playerID2) => getPlayerTeam(playerID1) - getPlayerTeam(playerID2));
 }
 
 /**
@@ -228,16 +220,14 @@ function sortPlayersByLocation(startLocations)
 		let maxTeamDist = 0;
 		for (let pi = 0; pi < playerIDs.length - 1; ++pi)
 		{
-			let p1 = playerIDs[(pi + s) % playerIDs.length] - 1;
-			let t1 = getPlayerTeam(p1);
+			let t1 = getPlayerTeam(playerIDs[(pi + s) % playerIDs.length]);
 
 			if (teams.indexOf(t1) === -1)
 				continue;
 
 			for (let pj = pi + 1; pj < playerIDs.length; ++pj)
 			{
-				let p2 = playerIDs[(pj + s) % playerIDs.length] - 1;
-				if (t1 != getPlayerTeam(p2))
+				if (t1 != getPlayerTeam(playerIDs[(pj + s) % playerIDs.length]))
 					continue;
 
 				maxTeamDist = Math.max(

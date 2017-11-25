@@ -470,7 +470,7 @@ function placeWall(startX, startY, wall, style, playerId, orientation)
 		if (playerId == 0)
 			style = style || "palisades";
 		else
-			style = getCivCode(playerId-1);
+			style = getCivCode(playerId);
 	}
 	orientation = orientation || 0;
 
@@ -505,7 +505,7 @@ function placeCustomFortress(centerX, centerY, fortress, style, playerId = 0, or
 		if (playerId == 0)
 			style = style || "palisades";
 		else
-			style = getCivCode(playerId-1);
+			style = getCivCode(playerId);
 	}
 
 	// Calculate center if fortress.centerToFirstElement is undefined (default)
@@ -533,7 +533,7 @@ function placeFortress(centerX, centerY, type, style, playerId, orientation)
 		if (playerId == 0)
 			style = style || "palisades";
 		else
-			style = getCivCode(playerId-1);
+			style = getCivCode(playerId);
 	}
 	orientation = orientation || 0;
 
@@ -565,7 +565,7 @@ function placeLinearWall(startX, startY, targetX, targetY, wallPart, style, play
 		if (playerId == 0)
 			style = style || "palisades";
 		else
-			style = getCivCode(playerId-1);
+			style = getCivCode(playerId);
 	}
 	endWithFirst = typeof endWithFirst == "undefined" ? true : endWithFirst;
 
@@ -659,7 +659,7 @@ function placeCircularWall(centerX, centerY, radius, wallPart, style, playerId, 
 		if (playerId == 0)
 			style = style || "palisades";
 		else
-			style = getCivCode(playerId-1);
+			style = getCivCode(playerId);
 	}
 	orientation = orientation || 0;
 	maxAngle = maxAngle || 2*PI;
@@ -769,7 +769,7 @@ function placePolygonalWall(centerX, centerY, radius, wallPart, cornerWallElemen
 		if (playerId == 0)
 			style = style || "palisades";
 		else
-			style = getCivCode(playerId-1);
+			style = getCivCode(playerId);
 	}
 	orientation = orientation || 0;
 	numCorners = numCorners || 8;
@@ -828,7 +828,7 @@ function placeIrregularPolygonalWall(centerX, centerY, radius, cornerWallElement
 		if (playerId == 0)
 			style = style || "palisades";
 		else
-			style = getCivCode(playerId-1);
+			style = getCivCode(playerId);
 	}
 
 	// Generating a generic wall part assortment with each wall part including 1 gate lengthened by walls and towers
@@ -950,7 +950,7 @@ function placeGenericFortress(centerX, centerY, radius, playerId, style, irregul
 		if (playerId == 0)
 			style = style || "palisades";
 		else
-			style = getCivCode(playerId - 1);
+			style = getCivCode(playerId);
 	}
 	irregularity = irregularity || 1/2;
 	gateOccurence = gateOccurence || 3;

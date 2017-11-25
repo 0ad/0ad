@@ -61,7 +61,8 @@ namespace JSI_VFS
 	// Save given JS Object to a JSON file
 	void WriteJSONFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filePath, JS::HandleValue val1);
 
-	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
+	void RegisterReadOnlyScriptFunctions(const ScriptInterface& scriptInterface);
+	void RegisterWriteScriptFunctions(const ScriptInterface& scriptInterface);
 }
 
 #endif

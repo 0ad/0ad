@@ -203,7 +203,7 @@ void JSI_VFS::WriteJSONFile(ScriptInterface::CxPrivate* pCxPrivate, const std::w
 	g_VFS->CreateFile(path, buf.Data(), buf.Size());
 }
 
-void JSI_VFS::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
+void JSI_VFS::RegisterReadOnlyScriptFunctions(const ScriptInterface& scriptInterface)
 {
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, std::wstring, bool, &JSI_VFS::BuildDirEntList>("BuildDirEntList");
 	scriptInterface.RegisterFunction<bool, CStrW, JSI_VFS::FileExists>("FileExists");
@@ -212,5 +212,9 @@ void JSI_VFS::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, &JSI_VFS::ReadFile>("ReadFile");
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, &JSI_VFS::ReadFileLines>("ReadFileLines");
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, &ReadJSONFile>("ReadJSONFile");
+}
+
+void JSI_VFS::RegisterWriteScriptFunctions(const ScriptInterface& scriptInterface)
+{
 	scriptInterface.RegisterFunction<void, std::wstring, JS::HandleValue, &WriteJSONFile>("WriteJSONFile");
 }

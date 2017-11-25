@@ -23,7 +23,7 @@
 #include "lib/timer.h"
 #include "ps/CLogger.h"
 #include "ps/Profile.h"
-
+#include "ps/scripting/JSInterface_VFS.h"
 
 // TODO: what's a good default? perhaps based on map size
 #define RMS_RUNTIME_SIZE 96 * 1024 * 1024
@@ -100,12 +100,11 @@ bool CMapGeneratorWorker::Run()
 	m_ScriptInterface->LoadGlobalScripts();
 
 	// Functions for RMS
+	JSI_VFS::RegisterReadOnlyScriptFunctions(*m_ScriptInterface);
 	m_ScriptInterface->RegisterFunction<bool, std::wstring, CMapGeneratorWorker::LoadLibrary>("LoadLibrary");
 	m_ScriptInterface->RegisterFunction<void, JS::HandleValue, CMapGeneratorWorker::ExportMap>("ExportMap");
 	m_ScriptInterface->RegisterFunction<void, int, CMapGeneratorWorker::SetProgress>("SetProgress");
 	m_ScriptInterface->RegisterFunction<void, CMapGeneratorWorker::MaybeGC>("MaybeGC");
-	m_ScriptInterface->RegisterFunction<bool, std::wstring, CMapGeneratorWorker::FileExists>("FileExists");
-	m_ScriptInterface->RegisterFunction<JS::Value, std::wstring, CMapGeneratorWorker::ReadJSONFile> ("ReadJSONFile");
 	m_ScriptInterface->RegisterFunction<std::vector<std::string>, CMapGeneratorWorker::GetCivData>("GetCivData");
 	m_ScriptInterface->RegisterFunction<CParamNode, std::string, CMapGeneratorWorker::GetTemplate>("GetTemplate");
 	m_ScriptInterface->RegisterFunction<bool, std::string, CMapGeneratorWorker::TemplateExists>("TemplateExists");
@@ -196,20 +195,6 @@ void CMapGeneratorWorker::MaybeGC(ScriptInterface::CxPrivate* pCxPrivate)
 {
 	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
 	self->m_ScriptInterface->MaybeGC();
-}
-
-bool CMapGeneratorWorker::FileExists(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& filePath)
-{
-	return g_VFS->GetFileInfo(filePath, 0) == INFO::OK;
-}
-
-JS::Value CMapGeneratorWorker::ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filePath)
-{
-	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
-	JS::RootedValue out(cx);
-	pCxPrivate->pScriptInterface->ReadJSONFile(filePath, &out);
-	return out;
 }
 
 std::vector<std::string> CMapGeneratorWorker::GetCivData(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))

@@ -38,7 +38,7 @@ m.Config = function(difficulty)
 	// defense
 	this.Defense =
 	{
-		"defenseRatio" : 2,	// ratio of defenders/attackers.
+		"defenseRatio" : { "ally": 1.4, "neutral": 1.8, "own": 2 },	// ratio of defenders/attackers.
 		"armyCompactSize" : 2000,	// squared. Half-diameter of an army.
 		"armyBreakawaySize" : 3500,	// squared.
 		"armyMergeSize" : 1400	// squared.
@@ -133,7 +133,9 @@ m.Config.prototype.setConfig = function(gameState)
 		this.personality.aggressive = 0.1;
 		this.personality.cooperative = 0.9;
 	}
-	if (gameState.getAlliedVictory())
+	if (gameState.playerData.teamsLocked)
+		this.personality.cooperative = Math.min(1, this.personality.cooperative + 0.30);
+	else if (gameState.getAlliedVictory())
 		this.personality.cooperative = Math.min(1, this.personality.cooperative + 0.15);
 
 	// changing settings based on difficulty or personality

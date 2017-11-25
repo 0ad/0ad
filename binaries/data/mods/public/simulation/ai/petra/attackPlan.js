@@ -166,7 +166,7 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	if (this.Config.difficulty < 2)
 	{
 		priority *= 0.6;
-		variation *= 0.6;
+		variation *= 0.5;
 	}
 	else if (this.Config.difficulty < 3)
 	{
@@ -295,10 +295,8 @@ m.AttackPlan.prototype.mustStart = function()
 	if (MaxReachedEverywhere)
 		return true;
 	if (MinReachedEverywhere)
-	{
-		if (this.type === "Raid" && this.target && this.target.foundationProgress() && this.target.foundationProgress() > 60)
-			return true;
-	}
+		return this.type == "Raid" && this.target && this.target.foundationProgress() && 
+		                                             this.target.foundationProgress() > 50;
 	return false;
 };
 
@@ -369,10 +367,12 @@ m.AttackPlan.prototype.addSiegeUnits = function(gameState)
 	}
 
 	this.siegeState = 2;
-	let targetSize = this.type == "HugeAttack" ? 6 : 4;
+	let targetSize;
 	if (this.Config.difficulty < 3)
-		targetSize = this.Config.difficulty;
-	targetSize = Math.round(this.Config.popScaling * targetSize);
+		targetSize = this.type == "HugeAttack" ? Math.max(this.Config.difficulty, 1) : Math.max(this.Config.difficulty - 1, 0);
+	else
+		targetSize = this.type == "HugeAttack" ? this.Config.difficulty + 1 : this.Config.difficulty - 1;
+	targetSize = Math.max(Math.round(this.Config.popScaling * targetSize), this.type == "HugeAttack" ? 1 : 0);
 	if (!targetSize)
 		return true;
 	// no minsize as we don't want the plan to fail at the last minute though.
@@ -478,11 +478,11 @@ m.AttackPlan.prototype.updatePreparation = function(gameState)
 	if (!this.overseas)
 		this.getPathToTarget(gameState);
 
-	if (this.type === "Raid")
+	if (this.type == "Raid")
 		this.maxCompletingTime = gameState.ai.elapsedTime + 20;
 	else
 	{
-		if (this.type === "Rush")
+		if (this.type == "Rush" || this.forced)
 			this.maxCompletingTime = gameState.ai.elapsedTime + 40;
 		else
 			this.maxCompletingTime = gameState.ai.elapsedTime + 60;

@@ -65,12 +65,12 @@ for (var i=0; i < numPlayers; i++)
 
 	for (let dist of [6, 8])
 	{
-		let ents = getStartingEntities(i);
+		let ents = getStartingEntities(playerIDs[i]);
 
 		if (dist == 8)
 			ents = ents.filter(ent => ent.Template.indexOf("female") != -1 || ent.Template.indexOf("infantry") != -1);
 
-		placeStartingEntities(playerX[i], playerZ[i], i + 1, ents, dist);
+		placeStartingEntities(playerX[i], playerZ[i], playerIDs[i], ents, dist);
 	}
 
 	// Create treasure
@@ -112,7 +112,7 @@ for (var i=0; i < numPlayers; i++)
 	createObjectGroup(group, 0);
 
 	// Base texture
-	var civ = getCivCode(i);
+	var civ = getCivCode(playerIDs[i]);
 	var tilesSize = civ == "cart" ? 27 : 22;
 
 	const minBoundX = (playerX[i] > tilesSize ? playerX[i] - tilesSize : 0);
@@ -148,7 +148,7 @@ for (var i=0; i < numPlayers; i++)
 			"cornerIn", "wallLong", "house", "tower", "wallLong", "tower", "wallLong",
 			"cornerIn", "wallLong", "house", "tower"];
 	}
-	placeCustomFortress(playerX[i], playerZ[i], new Fortress("Spahbod", wall), civ, i+1);
+	placeCustomFortress(playerX[i], playerZ[i], new Fortress("Spahbod", wall), civ, playerIDs[i]);
 }
 
 log("Creating lakes...");

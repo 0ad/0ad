@@ -77,7 +77,7 @@ for (let  i = 0; i < numPlayers; ++i)
 	let fx = fractionToTiles(playerX[i]);
 	let fz = fractionToTiles(playerZ[i]);
 
-	placeStartingEntities(fx, fz, playerIDs[i], getStartingEntities(playerIDs[i] - 1).filter(ent =>
+	placeStartingEntities(fx, fz, playerIDs[i], getStartingEntities(playerIDs[i]).filter(ent =>
 		ent.Template.indexOf("civil_centre") != -1 || ent.Template.indexOf("infantry") != -1));
 
 	placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, scaleByMapSize(15, 25));

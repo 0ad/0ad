@@ -168,7 +168,7 @@ log("Creating rivers between opponents...");
 var [riverX, riverZ] = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, 0.5, ...centralLake);
 for (let i = 0; i < numPlayers; ++i)
 {
-	if (areAllies(playerIDs[i] - 1, playerIDs[(i + 1) % numPlayers] - 1))
+	if (areAllies(playerIDs[i], playerIDs[(i + 1) % numPlayers]))
 		continue;
 
 	let shallowLocation = randFloat(0.2, 0.7);

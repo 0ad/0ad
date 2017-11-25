@@ -12,6 +12,7 @@ function getPlayerTileCoordinates(playerIdx, teamIdx, fractionX, fractionZ)
 }
 
 RMS.LoadLibrary("rmgen");
+RMS.LoadLibrary("rmgen2");
 RMS.LoadLibrary("rmbiome");
 RMS.LoadLibrary("heightmap");
 
@@ -80,36 +81,7 @@ initTerrain(tWater);
 
 var startAngle = randFloat(0, 2 * Math.PI);
 
-// Group players by team
-var teams = [];
-for (let i = 0; i < numPlayers; ++i)
-{
-	let team = getPlayerTeam(i);
-	if (team == -1)
-		continue;
-
-	if (!teams[team])
-		teams[team] = [];
-
-	teams[team].push(i+1);
-}
-
-// Players without a team get a custom index
-for (let i = 0; i < numPlayers; ++i)
-{
-	let team = getPlayerTeam(i);
-	if (team != -1)
-		continue;
-
-	let unusedIndex = teams.findIndex(team => !team);
-
-	if (unusedIndex != -1)
-		teams[unusedIndex] = [i+1];
-	else
-		teams.push([i+1]);
-}
-
-// Get number of used team IDs
+var teams = getTeamsArray();
 var numTeams = teams.filter(team => team).length;
 
 var teamNo = 0;

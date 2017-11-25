@@ -234,61 +234,23 @@ for (let island = 0; island < 2; ++island)
 }
 RMS.SetProgress(30);
 
-log("Determining players per island...");
-var island = 0;
-var formerTeam = getPlayerTeam(0);
-var onIsland = [[], []];
-
-for (let o = 0; o < numPlayers; ++o)
-{
-	if (getPlayerTeam(o) === formerTeam && formerTeam !== -1)
-	{
-		// same island
-		if (island === 0)
-			onIsland[1].push(o);
-		else
-			onIsland[0].push(o);
-	}
-	else if (getPlayerTeam(o) !== -1)
-	{
-		if (island === 0)
-		{
-			island = 1;
-			onIsland[0].push(o);
-		}
-		else
-		{
-			island = 0;
-			onIsland[1].push(o);
-		}
-	}
-	else
-	{
-		// Now the less crowded:
-		if (onIsland[1].length > onIsland[0].length)
-			onIsland[0].push(o);
-		else
-			onIsland[1].push(o);
-	}
-	formerTeam = getPlayerTeam(o);
-}
-
 log("Determining player locations...");
 var playerIDs = sortAllPlayers();
 var playerX = [];
 var playerZ = [];
 var playerAngle = [];
+var p = 0;
 for (let island = 0; island < 2; ++island)
 {
-	let pi = onIsland[island];
+	let playersPerIsland = island == 0 ? Math.ceil(numPlayers / 2) : Math.floor(numPlayers / 2);
 
-	for (let i = 0; i < pi.length; ++i)
+	for (let i = 0; i < playersPerIsland; ++i)
 	{
-		let angle = Math.PI * (i / (2 * pi.length) + 1 / (4 * pi.length) + island) + swapAngle;
-		let p = pi[i];
+		let angle = Math.PI * ((i + 0.5) / (2 * playersPerIsland) + island) + swapAngle;
 		playerAngle[p] = angle;
 		playerX[p] = islandX[island] + 0.36 * Math.cos(angle);
 		playerZ[p] = island + 0.36 * Math.sin(angle);
+		++p;
 	}
 }
 
