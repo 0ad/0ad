@@ -38,10 +38,16 @@ m.ConstructionPlan.prototype.start = function(gameState)
 {
 	Engine.ProfileStart("Building construction start");
 
-	// We don't care which builder we assign, since they won't actually
-	// do the building themselves - all we care about is that there is
-	// at least one unit that can start the foundation
+	// We don't care which builder we assign, since they won't actually do
+	// the building themselves - all we care about is that there is at least
+	// one unit that can start the foundation (should always be the case here).
 	let builder = gameState.findBuilder(this.type);
+	if (!builder)
+	{
+			API3.warn("petra error: builder not found when starting construction.");
+			Engine.ProfileStop();
+			return;
+	}
 
 	let pos = this.findGoodPosition(gameState);
 	if (!pos)
