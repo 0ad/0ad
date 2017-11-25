@@ -59,7 +59,7 @@ public:
 		m_ComponentManager.LoadComponentTypes();
 	}
 
-	ScriptInterface& GetScriptInterface()
+	const ScriptInterface& GetScriptInterface()
 	{
 		return m_ComponentManager.GetScriptInterface();
 	}

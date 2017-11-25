@@ -359,7 +359,7 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 	const bool serializationTestHash = true; // set true to save and compare hash of state
 
 	SerializationTestState primaryStateBefore;
-	ScriptInterface& scriptInterface = m_ComponentManager.GetScriptInterface();
+	const ScriptInterface& scriptInterface = m_ComponentManager.GetScriptInterface();
 
 	const bool startRejoinTest = (int64_t) m_RejoinTestTurn == m_TurnNumber;
 	if (startRejoinTest)
@@ -949,7 +949,7 @@ std::string CSimulation2::GetMapSizes()
 
 std::string CSimulation2::GetAIData()
 {
-	ScriptInterface& scriptInterface = GetScriptInterface();
+	const ScriptInterface& scriptInterface = GetScriptInterface();
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 	JS::RootedValue aiData(cx, ICmpAIManager::GetAIs(scriptInterface));

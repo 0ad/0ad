@@ -845,7 +845,7 @@ void CNetServerWorker::SendPlayerAssignments()
 	Broadcast(&message, { NSS_PREGAME, NSS_JOIN_SYNCING, NSS_INGAME });
 }
 
-ScriptInterface& CNetServerWorker::GetScriptInterface()
+const ScriptInterface& CNetServerWorker::GetScriptInterface()
 {
 	return *m_ScriptInterface;
 }
@@ -1068,7 +1068,7 @@ bool CNetServerWorker::OnInGame(void* context, CFsmEvent* event)
 		// Ignore messages sent by one player on behalf of another player
 		// unless cheating is enabled
 		bool cheatsEnabled = false;
-		ScriptInterface& scriptInterface = server.GetScriptInterface();
+		const ScriptInterface& scriptInterface = server.GetScriptInterface();
 		JSContext* cx = scriptInterface.GetContext();
 		JSAutoRequest rq(cx);
 		JS::RootedValue settings(cx);
@@ -1502,7 +1502,7 @@ void CNetServer::StartGame()
 	m_Worker->m_StartGameQueue.push_back(true);
 }
 
-void CNetServer::UpdateGameAttributes(JS::MutableHandleValue attrs, ScriptInterface& scriptInterface)
+void CNetServer::UpdateGameAttributes(JS::MutableHandleValue attrs, const ScriptInterface& scriptInterface)
 {
 	// Pass the attributes as JSON, since that's the easiest safe
 	// cross-thread way of passing script data

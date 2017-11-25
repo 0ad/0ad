@@ -135,7 +135,7 @@ void CNetClientTurnManager::OnSyncError(u32 turn, const CStr& expectedHash, cons
 
 	LOGERROR("Out-Of-Sync on turn %d\nPlayers: %s\nDumping state to %s", turn, playerNamesString.str().c_str(), oosdumpPath.string8());
 
-	ScriptInterface& scriptInterface = m_NetClient.GetScriptInterface();
+	const ScriptInterface& scriptInterface = m_NetClient.GetScriptInterface();
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 

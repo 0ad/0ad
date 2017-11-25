@@ -269,7 +269,7 @@ std::string CNetClient::TestReadGuiMessages()
 	return r;
 }
 
-ScriptInterface& CNetClient::GetScriptInterface()
+const ScriptInterface& CNetClient::GetScriptInterface()
 {
 	return m_Game->GetSimulation2()->GetScriptInterface();
 }
@@ -328,7 +328,7 @@ void CNetClient::HandleDisconnect(u32 reason)
 	SetCurrState(NCS_UNCONNECTED);
 }
 
-void CNetClient::SendGameSetupMessage(JS::MutableHandleValue attrs, ScriptInterface& scriptInterface)
+void CNetClient::SendGameSetupMessage(JS::MutableHandleValue attrs, const ScriptInterface& scriptInterface)
 {
 	CGameSetupMessage gameSetup(scriptInterface);
 	gameSetup.m_Data = attrs;

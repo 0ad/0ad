@@ -159,7 +159,7 @@ public:
 	 * Get the script interface associated with this network client,
 	 * which is equivalent to the one used by the CGame in the constructor.
 	 */
-	ScriptInterface& GetScriptInterface();
+	const ScriptInterface& GetScriptInterface();
 
 	/**
 	 * Send a message to the server.
@@ -189,7 +189,7 @@ public:
 	 */
 	void LoadFinished();
 
-	void SendGameSetupMessage(JS::MutableHandleValue attrs, ScriptInterface& scriptInterface);
+	void SendGameSetupMessage(JS::MutableHandleValue attrs, const ScriptInterface& scriptInterface);
 
 	void SendAssignPlayerMessage(const int playerID, const CStr& guid);
 
