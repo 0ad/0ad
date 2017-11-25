@@ -263,26 +263,27 @@ function createBase(player, walls = true)
  */
 function getTeamsArray()
 {
+	var playerIDs = sortAllPlayers();
 	var numPlayers = getNumPlayers();
 
 	// Group players by team
 	var teams = [];
 	for (let i = 0; i < numPlayers; ++i)
 	{
-		let team = getPlayerTeam(i);
+		let team = getPlayerTeam(playerIDs[i]);
 		if (team == -1)
 			continue;
 
 		if (!teams[team])
 			teams[team] = [];
 
-		teams[team].push(i+1);
+		teams[team].push(playerIDs[i]);
 	}
 
 	// Players without a team get a custom index
 	for (let i = 0; i < numPlayers; ++i)
-		if (getPlayerTeam(i) == -1)
-			teams.push([i+1]);
+		if (getPlayerTeam(playerIDs[i]) == -1)
+			teams.push([playerIDs[i]]);
 
 	// Remove unused indices
 	return teams.filter(team => true);

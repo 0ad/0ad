@@ -81,7 +81,7 @@ function addCivicCenterAreaToClass(ix, iz, tileClass)
  */
 function sortPlayers(playerIDs)
 {
-	return shuffleArray(playerIDs).sort((p1, p2) => getPlayerTeam(p1 - 1) - getPlayerTeam(p2 - 1));
+	return shuffleArray(playerIDs).sort((playerID1, playerID2) => getPlayerTeam(playerID1) - getPlayerTeam(playerID2));
 }
 
 /**
@@ -220,16 +220,14 @@ function sortPlayersByLocation(startLocations)
 		let maxTeamDist = 0;
 		for (let pi = 0; pi < playerIDs.length - 1; ++pi)
 		{
-			let p1 = playerIDs[(pi + s) % playerIDs.length] - 1;
-			let t1 = getPlayerTeam(p1);
+			let t1 = getPlayerTeam(playerIDs[(pi + s) % playerIDs.length]);
 
 			if (teams.indexOf(t1) === -1)
 				continue;
 
 			for (let pj = pi + 1; pj < playerIDs.length; ++pj)
 			{
-				let p2 = playerIDs[(pj + s) % playerIDs.length] - 1;
-				if (t1 != getPlayerTeam(p2))
+				if (t1 != getPlayerTeam(playerIDs[(pj + s) % playerIDs.length]))
 					continue;
 
 				maxTeamDist = Math.max(

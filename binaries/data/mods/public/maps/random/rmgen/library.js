@@ -378,23 +378,22 @@ function getCivCode(playerID)
 	return g_MapSettings.PlayerData[playerID].Civ;
 }
 
-function areAllies(player1, player2)
+function areAllies(playerID1, playerID2)
 {
-	if (g_MapSettings.PlayerData[player1+1].Team === undefined ||
-		g_MapSettings.PlayerData[player2+1].Team === undefined ||
-		g_MapSettings.PlayerData[player2+1].Team == -1 ||
-		g_MapSettings.PlayerData[player1+1].Team == -1)
-		return false;
-
-	return g_MapSettings.PlayerData[player1+1].Team === g_MapSettings.PlayerData[player2+1].Team;
+	return (
+		g_MapSettings.PlayerData[playerID1].Team !== undefined &&
+		g_MapSettings.PlayerData[playerID2].Team !== undefined &&
+		g_MapSettings.PlayerData[playerID1].Team != -1 &&
+		g_MapSettings.PlayerData[playerID2].Team != -1 &&
+		g_MapSettings.PlayerData[playerID1].Team === g_MapSettings.PlayerData[playerID2].Team);
 }
 
-function getPlayerTeam(player)
+function getPlayerTeam(playerID)
 {
-	if (g_MapSettings.PlayerData[player+1].Team === undefined)
+	if (g_MapSettings.PlayerData[playerID].Team === undefined)
 		return -1;
 
-	return g_MapSettings.PlayerData[player+1].Team;
+	return g_MapSettings.PlayerData[playerID].Team;
 }
 
 function getHeight(x, z)
