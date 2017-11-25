@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 const tSnowA = ["polar_snow_b"];
 const tSnowB = "polar_ice_snow";
@@ -110,7 +110,7 @@ for (var i = 0; i < numPlayers; i++)
 
 }
 
-RMS.SetProgress(15);
+Engine.SetProgress(15);
 
 paintRiver({
 	"parallel": true,
@@ -178,7 +178,7 @@ createAreas(
 paintTerrainBasedOnHeight(1, 2.8, 1, tShoreBlend);
 paintTileClassBasedOnHeight(-6, 0.5, 1, clWater);
 
-RMS.SetProgress(45);
+Engine.SetProgress(45);
 
 log("Creating hills...");
 createAreas(
@@ -219,7 +219,7 @@ createObjectGroupsDeprecated(
 	[avoidClasses(clRock, 6), stayClasses(clWater, 4)],
 	scaleByMapSize(4, 16),
 	100);
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 log("Creating dirt patches...");
 for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
@@ -272,7 +272,7 @@ createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 3, clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clHill, 1),
 	scaleByMapSize(8,32), 100
 );
-RMS.SetProgress(95);
+Engine.SetProgress(95);
 
 createStragglerTrees(
 	[oPine],
@@ -290,7 +290,7 @@ createObjectGroupsDeprecated(group, 0,
 	3 * numPlayers, 50
 );
 
-RMS.SetProgress(75);
+Engine.SetProgress(75);
 
 log("Creating sheep...");
 group = new SimpleGroup(

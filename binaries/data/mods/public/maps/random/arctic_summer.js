@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 setFogThickness(0.46);
 setFogFactor(0.5);
@@ -145,7 +145,7 @@ for (let i = 0; i < numPlayers; i++)
 		}
 	}
 }
-RMS.SetProgress(20);
+Engine.SetProgress(20);
 
 log("Creating hills...");
 createHills(
@@ -158,7 +158,7 @@ createHills(
 	clHill,
 	scaleByMapSize(1, 240));
 
-RMS.SetProgress(30);
+Engine.SetProgress(30);
 
 log("Creating lakes...");
 createAreas(
@@ -175,7 +175,7 @@ createAreas(
 	avoidClasses(clPlayer, 15),
 	scaleByMapSize(1, 20));
 
-RMS.SetProgress(45);
+Engine.SetProgress(45);
 
 log("Creating bumps...");
 createBumps(avoidClasses(clPlayer, 6, clWater, 2), scaleByMapSize(30, 300), 1, 8, 4, 0, 3);
@@ -193,7 +193,7 @@ createForests(
 		clWater, 2),
 	clForest,
 	forestTrees);
-RMS.SetProgress(60);
+Engine.SetProgress(60);
 
 log("Creating dirt patches...");
 createLayeredPatches(
@@ -234,7 +234,7 @@ createPatches(
 		clPlayer, 12),
 	scaleByMapSize(15, 45),
 	clDirt);
-RMS.SetProgress(65);
+Engine.SetProgress(65);
 
 log("Creating stone mines...");
 createMines(
@@ -263,7 +263,7 @@ createMines(
 		clRock, 5,
 		clHill, 1),
 	clMetal);
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 createDecoration(
 	[
@@ -284,7 +284,7 @@ createDecoration(
 		clForest, 0,
 		clPlayer, 0,
 		clHill, 0));
-RMS.SetProgress(75);
+Engine.SetProgress(75);
 
 createFood(
 	[
@@ -348,7 +348,7 @@ createFood(
 	],
 	clFood);
 
-RMS.SetProgress(85);
+Engine.SetProgress(85);
 
 createStragglerTrees(
 	[oBush, oBush2],

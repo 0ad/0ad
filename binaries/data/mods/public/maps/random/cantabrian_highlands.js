@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 const tGrass = ["temp_grass", "temp_grass", "temp_grass_d"];
 const tGrassPForest = "temp_plants_bog";
@@ -168,7 +168,7 @@ for (var i = 0; i < numPlayers; i++)
 
 	placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, radius);
 }
-RMS.SetProgress(10);
+Engine.SetProgress(10);
 
 log("Creating lakes...");
 var numLakes = round(scaleByMapSize(1,4) * numPlayers);
@@ -182,7 +182,7 @@ var waterAreas = createAreas(
 	avoidClasses(clPlayer, 2, clWater, 20),
 	numLakes
 );
-RMS.SetProgress(15);
+Engine.SetProgress(15);
 
 log("Creating reeds...");
 var group = new SimpleGroup(
@@ -193,7 +193,7 @@ createObjectGroupsByAreasDeprecated(group, 0,
 	numLakes, 100,
 	waterAreas
 );
-RMS.SetProgress(20);
+Engine.SetProgress(20);
 
 log("Creating fish...");
 createObjectGroupsByAreasDeprecated(
@@ -207,14 +207,14 @@ createObjectGroupsByAreasDeprecated(
 	50,
 	waterAreas
 );
-RMS.SetProgress(25);
+Engine.SetProgress(25);
 
 createBumps(avoidClasses(clWater, 2, clPlayer, 0));
-RMS.SetProgress(30);
+Engine.SetProgress(30);
 
 log("Creating hills...");
 createHills([tCliff, tCliff, tHill], avoidClasses(clPlayer, 2, clWater, 5, clHill, 15), clHill, scaleByMapSize(1, 4) * numPlayers);
-RMS.SetProgress(35);
+Engine.SetProgress(35);
 
 var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
 createForests(
@@ -222,7 +222,7 @@ createForests(
  avoidClasses(clPlayer, 1, clWater, 3, clForest, 17, clHill, 1),
  clForest,
  forestTrees);
-RMS.SetProgress(40);
+Engine.SetProgress(40);
 
 log("Creating dirt patches...");
 createLayeredPatches(
@@ -232,7 +232,7 @@ createLayeredPatches(
  avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 0),
  scaleByMapSize(15, 45),
  clDirt);
-RMS.SetProgress(45);
+Engine.SetProgress(45);
 
 log("Creating grass patches...");
 createLayeredPatches(
@@ -242,7 +242,7 @@ createLayeredPatches(
  avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 0),
  scaleByMapSize(15, 45),
  clDirt);
-RMS.SetProgress(50);
+Engine.SetProgress(50);
 
 log("Creating stone mines...");
 createMines(
@@ -252,7 +252,7 @@ createMines(
  ],
  avoidClasses(clWater, 0, clForest, 1, clPlayer, 5, clRock, 10, clHill, 1),
  clRock);
-RMS.SetProgress(55);
+Engine.SetProgress(55);
 
 log("Creating metal mines...");
 createMines(
@@ -262,7 +262,7 @@ createMines(
  avoidClasses(clWater, 0, clForest, 1, clPlayer, 5, clMetal, 10, clRock, 5, clHill, 1),
  clMetal
 );
-RMS.SetProgress(60);
+Engine.SetProgress(60);
 
 createDecoration
 (
@@ -281,7 +281,7 @@ createDecoration
  ],
  avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0)
 );
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 createFood
 (
@@ -295,7 +295,7 @@ createFood
  ],
  avoidClasses(clWater, 0, clForest, 0, clPlayer, 1, clHill, 1, clFood, 20)
 );
-RMS.SetProgress(80);
+Engine.SetProgress(80);
 
 createFood
 (
@@ -307,14 +307,14 @@ createFood
  ],
  avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 10)
 );
-RMS.SetProgress(85);
+Engine.SetProgress(85);
 
 createStragglerTrees(
 	[oOak, oOakLarge, oPine, oApple],
 	avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 1, clMetal, 6, clRock, 6),
 	clForest,
 	stragglerTrees);
-RMS.SetProgress(90);
+Engine.SetProgress(90);
 
 setSkySet("cirrus");
 setWaterColor(0.447, 0.412, 0.322);			// muddy brown

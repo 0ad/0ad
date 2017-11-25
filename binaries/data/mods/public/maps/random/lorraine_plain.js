@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 const tGrass = ["temp_grass", "temp_grass", "temp_grass_d"];
 const tGrassPForest = "temp_plants_bog";
@@ -182,7 +182,7 @@ paintTerrainBasedOnHeight(-5, 1, 1, tWater);
 paintTerrainBasedOnHeight(1, 2, 1, pForestR);
 paintTileClassBasedOnHeight(-6, 0.5, 1, clWater);
 
-RMS.SetProgress(50);
+Engine.SetProgress(50);
 
 log("Creating bumps...");
 createAreas(
@@ -191,7 +191,7 @@ createAreas(
 	avoidClasses(clWater, 2, clPlayer, 15),
 	scaleByMapSize(100, 200)
 );
-RMS.SetProgress(55);
+Engine.SetProgress(55);
 
 var [forestTrees, stragglerTrees] = getTreeCounts(500, 2500, 0.7);
 createForests(
@@ -199,7 +199,7 @@ createForests(
 	avoidClasses(clPlayer, 15, clWater, 3, clForest, 16, clHill, 1),
 	clForest,
 	forestTrees);
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 log("Creating dirt patches...");
 for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
@@ -221,7 +221,7 @@ for (let size of [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 
 		avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 6),
 		scaleByMapSize(15, 45)
 	);
-RMS.SetProgress(80);
+Engine.SetProgress(80);
 
 log("Creating stone mines...");
 var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4), new SimpleObject(oStoneLarge, 1, 1, 0, 4)], true, clRock);
@@ -244,7 +244,7 @@ createObjectGroupsDeprecated(group, 0,
 	scaleByMapSize(4,16), 100
 );
 
-RMS.SetProgress(86);
+Engine.SetProgress(86);
 
 log("Creating small decorative rocks...");
 group = new SimpleGroup(

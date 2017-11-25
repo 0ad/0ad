@@ -1,5 +1,5 @@
-RMS.LoadLibrary("rmgen");
-RMS.LoadLibrary("rmbiome");
+Engine.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmbiome");
 
 setSelectedBiome();
 
@@ -178,7 +178,7 @@ for (let i = 0; i < numPlayers; ++i)
 	placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, radius);
 }
 
-RMS.SetProgress(40);
+Engine.SetProgress(40);
 
 log("Creating central island...");
 createArea(
@@ -292,7 +292,7 @@ createStragglerTrees(
 	[avoidClasses(clBaseResource, 2, clMetal, 6, clRock, 3, clMountain, 2, clPlayer, 25), stayClasses(clHill, 6)],
 	clForest,
 	stragglerTrees);
-RMS.SetProgress(65);
+Engine.SetProgress(65);
 
 log("Creating dirt patches...");
 var numb = currentBiome() == "savanna" ? 3 : 1;
@@ -328,7 +328,7 @@ createFood(
 	[avoidClasses(clForest, 0, clPlayer, 20, clMountain, 1, clFood, 4, clRock, 6, clMetal, 6), stayClasses(clHill, 2)],
 	clFood);
 
-RMS.SetProgress(75);
+Engine.SetProgress(75);
 
 createFood(
 	[
@@ -338,7 +338,7 @@ createFood(
 	[avoidClasses(clForest, 0, clPlayer, 15, clMountain, 1, clFood, 4, clRock, 6, clMetal, 6), stayClasses(clHill, 2)],
 	clFood);
 
-RMS.SetProgress(85);
+Engine.SetProgress(85);
 
 createStragglerTrees(
 	types,

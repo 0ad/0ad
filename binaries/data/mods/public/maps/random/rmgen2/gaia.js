@@ -1217,7 +1217,7 @@ function paintHeightmap(mapName, func = undefined)
 	 * @property tilemap - The IDs of the palletmap to be painted for each heightmap tile.
 	 * @property pallet - The tile texture names used by the tilemap.
 	 */
-	let mapData = RMS.ReadJSONFile("maps/random/" + mapName + ".hmap");
+	let mapData = Engine.ReadJSONFile("maps/random/" + mapName + ".hmap");
 
 	let mapSize = getMapSize(); // Width of the map in terrain tiles
 	let hmSize = Math.sqrt(mapData.heightmap.length);

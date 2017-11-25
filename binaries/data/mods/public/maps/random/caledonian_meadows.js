@@ -1,6 +1,6 @@
-RMS.LoadLibrary("rmgen");
-RMS.LoadLibrary("rmbiome");
-RMS.LoadLibrary("heightmap");
+Engine.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmbiome");
+Engine.LoadLibrary("heightmap");
 
 InitMap();
 
@@ -225,7 +225,7 @@ for (let i = 0; i < 5; ++i)
 // Final rescale
 rescaleHeightmap(heightRange.min, heightRange.max);
 
-RMS.SetProgress(25);
+Engine.SetProgress(25);
 
 /**
  * Prepare terrain texture placement
@@ -307,7 +307,7 @@ log("Terrain shape generation and texture presets after " + ((Date.now() - genSt
 let [playerIDs, startLocations] = sortPlayersByLocation(getStartLocationsByHeightmap({ "min": heighLimits[4], "max": heighLimits[5] }, 1000, 30));
 
 log("Start location chosen after " + ((Date.now() - genStartTime) / 1000) + "s");
-RMS.SetProgress(30);
+Engine.SetProgress(30);
 
 /**
  * Smooth Start Locations before height region calculation
@@ -329,7 +329,7 @@ for (let i = 0; i < startLocations.length; ++i)
 }
 
 log("Paths placed after " + ((Date.now() - genStartTime) / 1000) + "s");
-RMS.SetProgress(45);
+Engine.SetProgress(45);
 
 /**
  * Get resource spots after players start locations calculation
@@ -340,7 +340,7 @@ for (let i = 0; i < avoidPoints.length; ++i)
 let resourceSpots = getPointsByHeight({ "min": (heighLimits[3] + heighLimits[4]) / 2, "max": (heighLimits[5] + heighLimits[6]) / 2 }, avoidPoints, clPath);
 
 log("Resource spots chosen after " + ((Date.now() - genStartTime) / 1000) + "s");
-RMS.SetProgress(55);
+Engine.SetProgress(55);
 
 /**
  * Divide tiles in areas by height and avoid paths
@@ -426,7 +426,7 @@ for (let h = 0; h < heighLimits.length; ++h)
 }
 
 log("Terrain texture placement finished after " + ((Date.now() - genStartTime) / 1000) + "s");
-RMS.SetProgress(80);
+Engine.SetProgress(80);
 
 /**
  * Add start locations and resource spots after terrain texture and path painting

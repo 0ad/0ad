@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 TILE_CENTERED_HEIGHT_MAP = true;
 
@@ -181,7 +181,7 @@ for (var i = 0; i < numPlayers; i++)
 	placeDefaultDecoratives(fx, fz, aBush1, clBaseResource, radius);
 }
 
-RMS.SetProgress(40);
+Engine.SetProgress(40);
 
 createBumps(avoidClasses(clWater, 2, clPlayer, 20));
 
@@ -192,7 +192,7 @@ createForests(
  clForest,
  forestTrees);
 
-RMS.SetProgress(50);
+Engine.SetProgress(50);
 
 if (randBool())
 	createHills([tGrass, tCliff, tHill], avoidClasses(clPlayer, 20, clForest, 1, clHill, 15, clWater, 3), clHill, scaleByMapSize(3, 15));
@@ -208,7 +208,7 @@ createLayeredPatches(
  scaleByMapSize(15, 45),
  clDirt);
 
-RMS.SetProgress(55);
+Engine.SetProgress(55);
 
 log("Creating dirt patches...");
 createLayeredPatches(
@@ -219,7 +219,7 @@ createLayeredPatches(
  scaleByMapSize(15, 45),
  clDirt);
 
-RMS.SetProgress(60);
+Engine.SetProgress(60);
 
 log("Creating stone mines...");
 createMines(
@@ -239,7 +239,7 @@ createMines(
  clMetal
 );
 
-RMS.SetProgress(65);
+Engine.SetProgress(65);
 
 createDecoration
 (
@@ -253,7 +253,7 @@ createDecoration
  avoidClasses(clWater, 2, clForest, 0, clPlayer, 5, clBaseResource, 6, clHill, 1, clRock, 6, clMetal, 6)
 );
 
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 createFood
 (
@@ -292,7 +292,7 @@ createFood
  avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 10, clRock, 6, clMetal, 6)
 );
 
-RMS.SetProgress(90);
+Engine.SetProgress(90);
 
 createStragglerTrees(
 	[oDatePalm, oSDatePalm, oCarob, oFanPalm, oPoplar, oCypress],

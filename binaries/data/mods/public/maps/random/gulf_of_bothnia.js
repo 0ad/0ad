@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 TILE_CENTERED_HEIGHT_MAP = true;
 var random_terrain = randIntInclusive(1, 3);
@@ -218,7 +218,7 @@ for (var i = 0; i < numPlayers; i++)
 	placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, radius);
 }
 
-RMS.SetProgress(20);
+Engine.SetProgress(20);
 
 log("Creating the gulf...");
 var seaHeight = random_terrain == 3 ? 0 : -3;
@@ -273,7 +273,7 @@ createForests(
  clForest,
  forestTrees);
 
-RMS.SetProgress(60);
+Engine.SetProgress(60);
 
 log("Creating dirt patches...");
 createLayeredPatches(
@@ -291,7 +291,7 @@ createPatches(
  avoidClasses(clWater, 6, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12),
  scaleByMapSize(15, 45),
  clDirt);
-RMS.SetProgress(65);
+Engine.SetProgress(65);
 
 log("Creating stone mines...");
 createMines(
@@ -311,7 +311,7 @@ createMines(
  clMetal
 );
 
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 var multiplier = random_terrain == 3 ? 0 : 1;
 createDecoration(
@@ -330,7 +330,7 @@ createDecoration(
 		multiplier * scaleByMapSize(13, 200)
 	 ],
 	 avoidClasses(clWater, 0, clForest, 0, clPlayer, 5, clHill, 0, clBaseResource, 5));
-RMS.SetProgress(75);
+Engine.SetProgress(75);
 
 createFood(
 	[
@@ -357,7 +357,7 @@ if (random_terrain != 3)
 		[avoidClasses(clFood, 20), stayClasses(clWater, 6)],
 		clFood);
 
-RMS.SetProgress(85);
+Engine.SetProgress(85);
 
 createStragglerTrees(
 	[oPine],

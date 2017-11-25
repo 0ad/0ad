@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 const tCity = "desert_city_tile";
 const tCityPlaza = "desert_city_tile_plaza";
@@ -129,7 +129,7 @@ for (var i = 0; i < numPlayers; i++)
 	placeDefaultDecoratives(fx, fz, aBush1, clBaseResource, radius);
 }
 
-RMS.SetProgress(30);
+Engine.SetProgress(30);
 
 log("Creating oases...");
 for (let i = 0; i < numPlayers; ++i)
@@ -148,7 +148,7 @@ for (let i = 0; i < numPlayers; ++i)
 			paintClass(clWater)
 		],
 		null);
-RMS.SetProgress(50);
+Engine.SetProgress(50);
 
 log("Creating grass patches...");
 for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
@@ -163,7 +163,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 		],
 		avoidClasses(clForest, 0, clGrass, 5, clPlayer, 0, clWater, 1, clDirt, 5),
 		scaleByMapSize(15, 45));
-RMS.SetProgress(55);
+Engine.SetProgress(55);
 
 log("Creating dirt patches...");
 for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
@@ -178,7 +178,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 		],
 		avoidClasses(clForest, 0, clDirt, 5, clPlayer, 0, clWater, 1, clGrass, 5),
 		scaleByMapSize(15, 45));
-RMS.SetProgress(60);
+Engine.SetProgress(60);
 
 log("Creating stone mines...");
 var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clRock);

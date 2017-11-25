@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 var tGrass = ["medit_grass_field", "medit_grass_field_b", "temp_grass_c"];
 var tLushGrass = ["medit_grass_field","medit_grass_field_a"];
@@ -232,7 +232,7 @@ for (let island = 0; island < 2; ++island)
 		}
 	}
 }
-RMS.SetProgress(30);
+Engine.SetProgress(30);
 
 log("Determining player locations...");
 var playerIDs = sortAllPlayers();
@@ -312,7 +312,7 @@ for (var i = 0; i < numPlayers; i++)
 	createObjectGroupsDeprecated(group, 0, [avoidClasses(clBaseResource,3, clSettlement,0), stayClasses(clPlayer,1)], 150, 1000);
 }
 
-RMS.SetProgress(40);
+Engine.SetProgress(40);
 
 log("Creating bumps");
 createAreas(
@@ -408,7 +408,7 @@ function getCosricaSardiniaTerrain(mapX, mapZ)
 	return undefined;
 }
 
-RMS.SetProgress(65);
+Engine.SetProgress(65);
 
 log("Creating mines...");
 for (let mine of [eMetalMine, eStoneMine])
@@ -471,7 +471,7 @@ createObjectGroupsDeprecated(
 	scaleByMapSize(350, 2500),
 	100);
 
-RMS.SetProgress(75);
+Engine.SetProgress(75);
 
 log("Creating small decorative rocks...");
 createObjectGroupsDeprecated(
@@ -545,7 +545,7 @@ for (let group of plantGroups)
 		scaleByMapSize(100, 600),
 		50);
 
-RMS.SetProgress(80);
+Engine.SetProgress(80);
 
 log("Creating animals...");
 createObjectGroupsDeprecated(
@@ -569,7 +569,7 @@ createObjectGroupsDeprecated(
 	scaleByMapSize(50, 150),
 	100);
 
-RMS.SetProgress(95);
+Engine.SetProgress(95);
 
 setSkySet(pickRandom(["cumulus", "sunny"]));
 

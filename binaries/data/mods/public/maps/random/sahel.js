@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 const tGrass2 = "savanna_grass_b";
 const tGrass3 = "savanna_shrubs_a";
@@ -114,7 +114,7 @@ for (var i = 0; i < numPlayers; i++)
 
 }
 
-RMS.SetProgress(20);
+Engine.SetProgress(20);
 
 log("Creating big patches...");
 var patches = [tGrass2, tGrass3];
@@ -144,7 +144,7 @@ createAreas(
 	],
 	avoidClasses(clPlayer, 24),
 	scaleByMapSize(1, 3));
-RMS.SetProgress(55);
+Engine.SetProgress(55);
 
 var playerConstraint = new AvoidTileClassConstraint(clPlayer, 30);
 var minesConstraint = new AvoidTileClassConstraint(clRock, 25);
@@ -169,7 +169,7 @@ createObjectGroupsDeprecated(group, 0,
 	scaleByMapSize(2,8), 100
 );
 
-RMS.SetProgress(65);
+Engine.SetProgress(65);
 
 log("Creating small decorative rocks...");
 group = new SimpleGroup(
@@ -182,7 +182,7 @@ createObjectGroupsDeprecated(
 	scaleByMapSize(200, 1200), 1
 );
 
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 log("Creating gazelle...");
 group = new SimpleGroup(
@@ -244,7 +244,7 @@ createObjectGroupsDeprecated(group, 0,
 	randIntInclusive(1, 4) * numPlayers + 2, 50
 );
 
-RMS.SetProgress(85);
+Engine.SetProgress(85);
 
 createStragglerTrees(
 	[oBaobab],

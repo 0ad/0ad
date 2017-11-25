@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 const tGrass1 = "savanna_grass_a";
 const tDirt1 = "savanna_dirt_a";
@@ -107,7 +107,7 @@ for (let i = 0; i < numPlayers; ++i)
 		0,
 		avoidClasses(clBaseResource,2));
 }
-RMS.SetProgress(20);
+Engine.SetProgress(20);
 
 log("Creating bumps...");
 createAreas(
@@ -149,7 +149,7 @@ paintTerrainBasedOnHeight(2.4, 3.4, 3, tGrass1);
 paintTerrainBasedOnHeight(1, 2.4, 0, tShore);
 paintTerrainBasedOnHeight(-8, 1, 2, tWater);
 paintTileClassBasedOnHeight(-6, 0, 1, clWater);
-RMS.SetProgress(55);
+Engine.SetProgress(55);
 
 var playerConstraint = new AvoidTileClassConstraint(clPlayer, 30);
 var minesConstraint = new AvoidTileClassConstraint(clRock, 25);
@@ -174,7 +174,7 @@ createObjectGroupsDeprecated(
 	avoidClasses(clPlayer, 20, clMetal, 10, clRock, 8, clWater, 4),
 	scaleByMapSize(2, 12), 100
 );
-RMS.SetProgress(65);
+Engine.SetProgress(65);
 
 log("Creating small decorative rocks...");
 createObjectGroupsDeprecated(
@@ -186,7 +186,7 @@ createObjectGroupsDeprecated(
 	avoidClasses(clPlayer, 7, clWater, 1),
 	scaleByMapSize(200, 1200), 1
 );
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 log("Creating boar...");
 createObjectGroupsDeprecated(
@@ -265,7 +265,7 @@ createObjectGroupsDeprecated(
 	avoidClasses(clWater, 3, clPlayer, 20, clFood, 12, clRock, 7, clMetal, 2),
 	randIntInclusive(1, 4) * numPlayers + 2, 50
 );
-RMS.SetProgress(85);
+Engine.SetProgress(85);
 
 log("Creating trees...");
 createObjectGroupsDeprecated(

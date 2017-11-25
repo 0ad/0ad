@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmbiome/biomes");
+Engine.LoadLibrary("rmbiome/biomes");
 
 var g_BiomeID;
 
@@ -38,13 +38,13 @@ function loadBiomeFile(file)
 {
 	let path = "maps/random/rmbiome/" + file + ".json";
 
-	if (!RMS.FileExists(path))
+	if (!Engine.FileExists(path))
 	{
 		error("Could not load biome file '" + file + "'");
 		return;
 	}
 
-	let biome = RMS.ReadJSONFile(path)
+	let biome = Engine.ReadJSONFile(path)
 
 	let copyProperties = (from, to) => {
 		for (let prop in from)

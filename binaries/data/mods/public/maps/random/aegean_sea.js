@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 TILE_CENTERED_HEIGHT_MAP = true;
 
@@ -140,7 +140,7 @@ for (var i = 0; i < numPlayers; i++)
 
 	placeDefaultDecoratives(fx, fz, aBush1, clBaseResource, radius);
 }
-RMS.SetProgress(30);
+Engine.SetProgress(30);
 
 paintRiver({
 	"parallel": false,
@@ -165,7 +165,7 @@ paintRiver({
 paintTerrainBasedOnHeight(-20, 1, 0, tWater);
 paintTerrainBasedOnHeight(1, 2, 0, tShore);
 
-RMS.SetProgress(40);
+Engine.SetProgress(40);
 createBumps(avoidClasses(clWater, 2, clPlayer, 20));
 
 var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
@@ -175,7 +175,7 @@ createForests(
  clForest,
  forestTrees);
 
-RMS.SetProgress(50);
+Engine.SetProgress(50);
 
 if (randBool())
 	createHills([tGrass, tCliff, tHill], avoidClasses(clPlayer, 20, clForest, 1, clHill, 15, clWater, 3), clHill, scaleByMapSize(3, 15));
@@ -191,7 +191,7 @@ createLayeredPatches(
  scaleByMapSize(15, 45),
  clDirt);
 
-RMS.SetProgress(55);
+Engine.SetProgress(55);
 
 log("Creating dirt patches...");
 createLayeredPatches(
@@ -202,7 +202,7 @@ createLayeredPatches(
  scaleByMapSize(15, 45),
  clDirt);
 
-RMS.SetProgress(60);
+Engine.SetProgress(60);
 
 log("Creating undersea bumps...");
 createAreas(
@@ -267,7 +267,7 @@ createMines(
  clMetal
 );
 
-RMS.SetProgress(65);
+Engine.SetProgress(65);
 
 createDecoration
 (
@@ -281,7 +281,7 @@ createDecoration
  avoidClasses(clWater, 2, clForest, 0, clPlayer, 0, clHill, 1)
 );
 
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 createFood
 (
@@ -320,7 +320,7 @@ createFood
  avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 10)
 );
 
-RMS.SetProgress(90);
+Engine.SetProgress(90);
 
 var types = [oDatePalm, oSDatePalm, oCarob, oFanPalm, oPoplar, oCypress];
 createStragglerTrees(

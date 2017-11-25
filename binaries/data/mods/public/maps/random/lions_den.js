@@ -1,6 +1,6 @@
-RMS.LoadLibrary("rmgen");
-RMS.LoadLibrary("rmgen2");
-RMS.LoadLibrary("rmbiome");
+Engine.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen2");
+Engine.LoadLibrary("rmbiome");
 
 InitMap();
 
@@ -19,13 +19,13 @@ const numPlayers = getNumPlayers();
 const startAngle = randFloat(0, 2 * Math.PI);
 
 resetTerrain(topTerrain, g_TileClasses.land, hillHeight);
-RMS.SetProgress(10);
+Engine.SetProgress(10);
 
 addBases("radial", 0.4, randFloat(0.05, 0.1), startAngle);
-RMS.SetProgress(20);
+Engine.SetProgress(20);
 
 createSunkenTerrain();
-RMS.SetProgress(30);
+Engine.SetProgress(30);
 
 addElements([
 	{
@@ -121,7 +121,7 @@ addElements([
 		"amounts": ["scarce"]
 	}
 ]);
-RMS.SetProgress(40);
+Engine.SetProgress(40);
 
 addElements(shuffleArray([
 	{
@@ -221,7 +221,7 @@ addElements(shuffleArray([
 		"amounts": ["tons"]
 	}
 ]));
-RMS.SetProgress(60);
+Engine.SetProgress(60);
 
 addElements(shuffleArray([
 	{
@@ -335,7 +335,7 @@ addElements(shuffleArray([
 		"amounts": ["tons"]
 	}
 ]));
-RMS.SetProgress(75);
+Engine.SetProgress(75);
 
 addElements([
 	{
@@ -353,7 +353,7 @@ addElements([
 		"amounts": ["tons"]
 	}
 ]);
-RMS.SetProgress(80);
+Engine.SetProgress(80);
 
 addElements([
 	{
@@ -371,7 +371,7 @@ addElements([
 		"amounts": ["scarce"]
 	}
 ]);
-RMS.SetProgress(85);
+Engine.SetProgress(85);
 
 addElements([
 	{
@@ -388,7 +388,7 @@ addElements([
 		"amounts": ["tons"]
 	}
 ]);
-RMS.SetProgress(90);
+Engine.SetProgress(90);
 
 addElements([
 	{
@@ -405,7 +405,7 @@ addElements([
 		"amounts": ["scarce"]
 	}
 ]);
-RMS.SetProgress(95);
+Engine.SetProgress(95);
 
 ExportMap();
 

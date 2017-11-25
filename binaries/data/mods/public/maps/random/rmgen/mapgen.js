@@ -17,7 +17,7 @@ var g_CivData = {};
 function InitMap()
 {
 	// Get civ data as array of JSON strings
-	var data = RMS.GetCivData();
+	var data = Engine.GetCivData();
 	if (!data || !data.length)
 		throw new Error("InitMapGen: error reading civ data");
 
@@ -39,7 +39,7 @@ function ExportMap()
 	if (!WATER_LEVEL_CHANGED)
 		g_Environment.Water.WaterBody.Height = SEA_LEVEL - 0.1;
 
-	RMS.ExportMap({
+	Engine.ExportMap({
 		"entities": g_Map.exportEntityList(),
 		"height": g_Map.exportHeightData(),
 		"seaLevel": SEA_LEVEL,

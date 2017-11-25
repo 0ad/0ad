@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 TILE_CENTERED_HEIGHT_MAP = true;
 
@@ -155,7 +155,7 @@ for (var i = 0; i < numPlayers; i++)
 
 	placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, radius);
 }
-RMS.SetProgress(20);
+Engine.SetProgress(20);
 
 //place the mountains
 var points = [];
@@ -363,7 +363,7 @@ createAreas(
 	new SmoothElevationPainter(ELEVATION_MODIFY, 2, 2),
 	avoidClasses(clPlayer, 10),
 	scaleByMapSize(100, 200));
-RMS.SetProgress(40);
+Engine.SetProgress(40);
 
 log("Creating hills...");
 createAreas(
@@ -376,7 +376,7 @@ createAreas(
 	avoidClasses(clPlayer, 20, clHill, 14),
 	scaleByMapSize(10, 80) * numPlayers
 );
-RMS.SetProgress(50);
+Engine.SetProgress(50);
 
 log("Creating forests...");
 var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
@@ -396,7 +396,7 @@ for (let type of types)
 		],
 		avoidClasses(clPlayer, 12, clForest, 10, clHill, 0),
 		num);
-RMS.SetProgress(60);
+Engine.SetProgress(60);
 
 log("Creating dirt patches...");
 for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
@@ -417,7 +417,7 @@ for (let size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5
 		avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12),
 		scaleByMapSize(15, 45));
 
-RMS.SetProgress(65);
+Engine.SetProgress(65);
 
 log("Creating stone mines...");
 var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clRock);
@@ -439,7 +439,7 @@ createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clHill, 1),
 	scaleByMapSize(4,16), 100
 );
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 log("Creating small decorative rocks...");
 group = new SimpleGroup(
@@ -462,7 +462,7 @@ createObjectGroupsDeprecated(
 	avoidClasses(clForest, 0, clPlayer, 0, clHill, 0),
 	scaleByMapSize(8, 131), 50
 );
-RMS.SetProgress(75);
+Engine.SetProgress(75);
 
 log("Creating deer...");
 group = new SimpleGroup(
@@ -493,7 +493,7 @@ createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clForest, 0, clPlayer, 10, clHill, 1, clFood, 20),
 	3 * numPlayers, 50
 );
-RMS.SetProgress(85);
+Engine.SetProgress(85);
 
 createStragglerTrees(
 	[oPine],
@@ -511,7 +511,7 @@ createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clHill, 2, clPlayer, 2, clDirt, 0),
 	planetm * scaleByMapSize(13, 200)
 );
-RMS.SetProgress(90);
+Engine.SetProgress(90);
 
 log("Creating large grass tufts...");
 group = new SimpleGroup(
@@ -521,7 +521,7 @@ createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clHill, 2, clPlayer, 2, clDirt, 1, clForest, 0),
 	planetm * scaleByMapSize(13, 200)
 );
-RMS.SetProgress(95);
+Engine.SetProgress(95);
 
 log("Creating bushes...");
 group = new SimpleGroup(

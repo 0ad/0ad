@@ -872,7 +872,7 @@ function createUnknownObjects()
 		[avoidClasses(clPlayer, 15, clHill, randIntInclusive(6, 18)), stayClasses(clLand, 0)],
 		randIntInclusive(0, scaleByMapSize(4, 8))*randIntInclusive(1, scaleByMapSize(4, 9))
 	);
-	RMS.SetProgress(50);
+	Engine.SetProgress(50);
 
 	log("Creating forests...");
 	let [numForest, numStragglers] = getTreeCounts(...rBiomeTreeCount(1));
@@ -893,7 +893,7 @@ function createUnknownObjects()
 			],
 			[avoidClasses(clPlayer, 20, clForest, randIntInclusive(5, 15), clHill, 0), stayClasses(clLand, 4)],
 			num);
-	RMS.SetProgress(50);
+	Engine.SetProgress(50);
 
 	log("Creating dirt patches...");
 	let patchCount = (currentBiome() == "savanna" ? 3 : 1) * scaleByMapSize(15, 45);
@@ -915,7 +915,7 @@ function createUnknownObjects()
 			[avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 7), stayClasses(clLand, 4)],
 			patchCount);
 
-	RMS.SetProgress(55);
+	Engine.SetProgress(55);
 
 	log("Creating stone mines...");
 	createObjectGroupsDeprecated(
@@ -940,7 +940,7 @@ function createUnknownObjects()
 		[avoidClasses(clForest, 1, clPlayer, 10, clMetal, 10, clRock, 5, clHill, 1), stayClasses(clLand, 3)],
 		randIntInclusive(scaleByMapSize(2, 9), scaleByMapSize(9, 40)),
 		100);
-	RMS.SetProgress(65);
+	Engine.SetProgress(65);
 
 	log("Creating small decorative rocks...");
 	createObjectGroupsDeprecated(
@@ -957,7 +957,7 @@ function createUnknownObjects()
 		[avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0), stayClasses(clLand, 3)],
 		scaleByMapSize(8, 131),
 		50);
-	RMS.SetProgress(70);
+	Engine.SetProgress(70);
 
 	log("Creating deer...");
 	createObjectGroupsDeprecated(
@@ -974,7 +974,7 @@ function createUnknownObjects()
 		[avoidClasses(clWater, 0, clForest, 0, clPlayer, 8, clHill, 1, clFood, 20), stayClasses(clLand, 2)],
 		randIntInclusive(1, 4) * numPlayers + 2,
 		50);
-	RMS.SetProgress(75);
+	Engine.SetProgress(75);
 
 	log("Creating sheep...");
 	createObjectGroupsDeprecated(
@@ -991,7 +991,7 @@ function createUnknownObjects()
 		avoidClasses(clLand, 4, clForest, 0, clPlayer, 0, clHill, 0, clFood, 20),
 		randIntInclusive(15, 40) * numPlayers,
 		60);
-	RMS.SetProgress(85);
+	Engine.SetProgress(85);
 
 	log("Creating straggler trees...");
 	types = [g_Gaia.tree1, g_Gaia.tree2, g_Gaia.tree3, g_Gaia.tree4];
@@ -1012,7 +1012,7 @@ function createUnknownObjects()
 		0,
 		[avoidClasses(clWater, 2, clHill, 2, clPlayer, 2, clDirt, 0), stayClasses(clLand, 3)],
 		planetm * scaleByMapSize(13, 200));
-	RMS.SetProgress(90);
+	Engine.SetProgress(90);
 
 	log("Creating large grass tufts...");
 	createObjectGroupsDeprecated(
@@ -1020,7 +1020,7 @@ function createUnknownObjects()
 		0,
 		[avoidClasses(clWater, 3, clHill, 2, clPlayer, 2, clDirt, 1, clForest, 0), stayClasses(clLand, 3)],
 		planetm * scaleByMapSize(13, 200));
-	RMS.SetProgress(95);
+	Engine.SetProgress(95);
 
 	log("Creating shallow flora...");
 	createObjectGroupsDeprecated(

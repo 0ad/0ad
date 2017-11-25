@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 const tGrass = ["temp_grass", "temp_grass", "temp_grass_d"];
 const tForestFloor = "temp_plants_bog";
@@ -127,7 +127,7 @@ for (var i = 0; i < numPlayers; i++)
 	placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, radius);
 }
 
-RMS.SetProgress(15);
+Engine.SetProgress(15);
 
 log("Creating bumps...");
 createAreas(
@@ -154,7 +154,7 @@ createObjectGroupsDeprecated(
 	0,
 	stayClasses(clWater, 1),
 	scaleByMapSize(400,2000), 100);
-RMS.SetProgress(40);
+Engine.SetProgress(40);
 
 log("Creating bumps...");
 createAreas(
@@ -180,7 +180,7 @@ for (let type of types)
 		],
 		avoidClasses(clPlayer, 20, clWater, 0, clForest, 10, clHill, 1),
 		num);
-RMS.SetProgress(50);
+Engine.SetProgress(50);
 
 log("Creating mud patches...");
 for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
@@ -214,7 +214,7 @@ createObjectGroupsDeprecated(group, 0,
 	scaleByMapSize(4,16), 100
 );
 
-RMS.SetProgress(60);
+Engine.SetProgress(60);
 
 log("Creating small decorative rocks...");
 group = new SimpleGroup(
@@ -227,7 +227,7 @@ createObjectGroupsDeprecated(
 	scaleByMapSize(16, 262), 50
 );
 
-RMS.SetProgress(65);
+Engine.SetProgress(65);
 
 log("Creating large decorative rocks...");
 group = new SimpleGroup(
@@ -240,7 +240,7 @@ createObjectGroupsDeprecated(
 	scaleByMapSize(8, 131), 50
 );
 
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 log("Creating deer...");
 group = new SimpleGroup(
@@ -262,7 +262,7 @@ createObjectGroupsDeprecated(group, 0,
 	3 * numPlayers, 50
 );
 
-RMS.SetProgress(75);
+Engine.SetProgress(75);
 
 log("Creating rabbit...");
 group = new SimpleGroup(
@@ -294,7 +294,7 @@ createObjectGroupsDeprecated(group, 0,
 	randIntInclusive(1, 4) * numPlayers + 2, 50
 );
 
-RMS.SetProgress(80);
+Engine.SetProgress(80);
 
 createStragglerTrees(
 	[oOak, oBeech],
@@ -302,7 +302,7 @@ createStragglerTrees(
 	clForest,
 	stragglerTrees);
 
-RMS.SetProgress(85);
+Engine.SetProgress(85);
 
 log("Creating small grass tufts...");
 createObjectGroupsDeprecated(
@@ -311,7 +311,7 @@ createObjectGroupsDeprecated(
 	avoidClasses(clWater, 2, clHill, 2, clPlayer, 13, clDirt, 0),
 	scaleByMapSize(13, 200));
 
-RMS.SetProgress(90);
+Engine.SetProgress(90);
 
 log("Creating large grass tufts...");
 createObjectGroupsDeprecated(
@@ -324,7 +324,7 @@ createObjectGroupsDeprecated(
 	avoidClasses(clWater, 3, clHill, 2, clPlayer, 13, clDirt, 1, clForest, 0),
 	scaleByMapSize(13, 200));
 
-RMS.SetProgress(95);
+Engine.SetProgress(95);
 
 log("Creating bushes...");
 createObjectGroupsDeprecated(

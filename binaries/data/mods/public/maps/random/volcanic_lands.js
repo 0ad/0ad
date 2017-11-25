@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 var tGrass = ["cliff volcanic light", "ocean_rock_a", "ocean_rock_b"];
 var tGrassA = "cliff volcanic light";
@@ -102,10 +102,10 @@ for (var i = 0; i < numPlayers; i++)
 			break;
 	}
 }
-RMS.SetProgress(15);
+Engine.SetProgress(15);
 
 createVolcano(0.5, 0.5, clHill, tCliff, [tLava1, tLava2, tLava3], true, ELEVATION_SET);
-RMS.SetProgress(45);
+Engine.SetProgress(45);
 
 log("Creating hills...");
 createAreas(
@@ -137,7 +137,7 @@ for (let type of types)
 		avoidClasses(clPlayer, 12, clForest, 10, clHill, 0, clBaseResource, 6),
 		num);
 
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 log("Creating dirt patches...");
 for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
@@ -192,7 +192,7 @@ createObjectGroupsDeprecated(group, 0,
 	scaleByMapSize(4,16), 100
 );
 
-RMS.SetProgress(90);
+Engine.SetProgress(90);
 
 log("Creating small decorative rocks...");
 group = new SimpleGroup(
@@ -216,7 +216,7 @@ createObjectGroupsDeprecated(
 	scaleByMapSize(8, 131), 50
 );
 
-RMS.SetProgress(95);
+Engine.SetProgress(95);
 
 createStragglerTrees(
 	[oTree],

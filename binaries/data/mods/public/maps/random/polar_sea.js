@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 var tPrimary = ["polar_snow_a"];
 var tCliff = ["polar_cliff_a", "polar_cliff_b", "polar_cliff_snow"];
@@ -108,7 +108,7 @@ for (let i = 0; i < numPlayers; ++i)
 		id,
 		BUILDING_ORIENTATION);
 }
-RMS.SetProgress(30);
+Engine.SetProgress(30);
 
 log("Creating central lake...");
 createArea(
@@ -130,7 +130,7 @@ createArea(
 
 paintTerrainBasedOnHeight(3, Math.floor(scaleByMapSize(20, 40)), 0, tCliff);
 paintTerrainBasedOnHeight(Math.floor(scaleByMapSize(20, 40)), 100, 3, tSnowLimited);
-RMS.SetProgress(40);
+Engine.SetProgress(40);
 
 log("Creating small lakes...");
 var lakeAreas = [];
@@ -165,17 +165,17 @@ for (let i = 0; i < numLakes ; ++i)
 		1,
 		1);
 }
-RMS.SetProgress(50);
+Engine.SetProgress(50);
 
 createBumps(avoidClasses(clWater, 2, clPlayer, 20));
-RMS.SetProgress(60);
+Engine.SetProgress(60);
 
 log("Creating hills...");
 createHills(
 	[tPrimary, tPrimary, tSecondary],
 	avoidClasses(clPlayer, 20, clHill, 35),
 	clHill, scaleByMapSize(20, 240));
-RMS.SetProgress(65);
+Engine.SetProgress(65);
 
 log("Creating dirt patches...");
 createLayeredPatches(
@@ -193,7 +193,7 @@ createPatches(
 	avoidClasses(clWater, 3, clDirt, 5, clPlayer, 12),
 	scaleByMapSize(15, 45),
 	clDirt);
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 log("Creating stone mines...");
 	createMines(
@@ -211,7 +211,7 @@ createMines(
 	],
 	avoidClasses(clWater, 3, clPlayer, 20, clMetal, 18, clRock, 5, clHill, 2),
 	clMetal);
-RMS.SetProgress(75);
+Engine.SetProgress(75);
 
 createDecoration(
 	[
@@ -235,7 +235,7 @@ createDecoration(
 		scaleByMapSize(8, 131)
 	],
 	[stayClasses(clWater, 4), avoidClasses(clHill, 2)]);
-RMS.SetProgress(80);
+Engine.SetProgress(80);
 
 createFood(
 	[
@@ -274,7 +274,7 @@ createFood(
 	],
 	[avoidClasses(clFood, 12, clHill, 5), stayClasses(clWater, 6)],
 	clFood);
-RMS.SetProgress(85);
+Engine.SetProgress(85);
 
 // Create trigger points where wolves spawn
 createObjectGroupsDeprecated(
@@ -283,7 +283,7 @@ createObjectGroupsDeprecated(
 	avoidClasses(clWater, 2, clMetal, 4, clRock, 4, clPlayer, 15, clHill, 2, clWolf, 20),
 	1000,
 	100);
-RMS.SetProgress(95);
+Engine.SetProgress(95);
 
 if (randBool(1/3))
 {

@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 const tGrass = ["temp_grass_clovers"];
 const tGrassPForest = "temp_plants_bog";
@@ -133,7 +133,7 @@ for (var i = 0; i < numPlayers; i++)
 
 	placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, radius);
 }
-RMS.SetProgress(10);
+Engine.SetProgress(10);
 
 paintRiver({
 	"parallel": true,
@@ -163,7 +163,7 @@ paintRiver({
 	}
 });
 
-RMS.SetProgress(20);
+Engine.SetProgress(20);
 
 log("Creating fish...");
 for (let i = 0; i < scaleByMapSize(10, 20); ++i)
@@ -173,7 +173,7 @@ for (let i = 0; i < scaleByMapSize(10, 20); ++i)
 		[stayClasses(clWater, 2), avoidClasses(clFood, 3)],
 		numPlayers,
 		50);
-RMS.SetProgress(25);
+Engine.SetProgress(25);
 
 log("Creating bumps...");
 createAreas(
@@ -182,7 +182,7 @@ createAreas(
 	stayClasses(clHighlands, 1),
 	scaleByMapSize(300, 600));
 
-RMS.SetProgress(30);
+Engine.SetProgress(30);
 
 log("Creating hills...");
 createAreas(
@@ -195,7 +195,7 @@ createAreas(
 	avoidClasses(clSea, 5, clPlayer, 20, clWater, 5, clHill, 15, clHighlands, 5),
 	scaleByMapSize(1, 4) * numPlayers);
 
-RMS.SetProgress(35);
+Engine.SetProgress(35);
 
 log("Creating mainland forests...");
 var [forestTrees, stragglerTrees] = getTreeCounts(500, 2500, 0.7);
@@ -213,7 +213,7 @@ for (let type of types)
 		],
 		avoidClasses(clPlayer, 20, clWater, 3, clForest, 10, clHill, 0, clSea, 6, clBaseResource, 3),
 		num);
-RMS.SetProgress(45);
+Engine.SetProgress(45);
 
 log("Creating highland forests...");
 var types = [
@@ -230,7 +230,7 @@ for (let type of types)
 		],
 		avoidClasses(clPlayer, 20, clWater, 3, clForest, 2, clHill, 0, clSea, 6, clFlatlands, 3),
 		num);
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 log("Creating dirt patches...");
 for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
@@ -242,7 +242,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 		],
 		avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 4, clSea, 0),
 		scaleByMapSize(15, 45));
-RMS.SetProgress(75);
+Engine.SetProgress(75);
 
 log("Creating grass patches...");
 for (let size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)])
@@ -252,7 +252,7 @@ for (let size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5
 		avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 6, clSea, 0, clBaseResource, 6),
 		scaleByMapSize(15, 45));
 
-RMS.SetProgress(80);
+Engine.SetProgress(80);
 
 log("Creating stone mines...");
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clRock);
@@ -275,7 +275,7 @@ createObjectGroupsDeprecated(group, 0,
 	scaleByMapSize(4,16), 100
 );
 
-RMS.SetProgress(85);
+Engine.SetProgress(85);
 
 log("Creating small decorative rocks...");
 group = new SimpleGroup(
@@ -287,7 +287,7 @@ createObjectGroupsDeprecated(
 	avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0, clSea, 0),
 	scaleByMapSize(16, 262), 50
 );
-RMS.SetProgress(90);
+Engine.SetProgress(90);
 
 log("Creating large decorative rocks...");
 group = new SimpleGroup(
@@ -363,7 +363,7 @@ createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 3, clHill, 2, clPlayer, 2, clDirt, 1, clForest, 0, clSea, 1),
 	scaleByMapSize(13, 200)
 );
-RMS.SetProgress(95);
+Engine.SetProgress(95);
 
 log("Creating bushes...");
 group = new SimpleGroup(

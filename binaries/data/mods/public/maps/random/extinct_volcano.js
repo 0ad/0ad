@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 const tHillDark = "cliff volcanic light";
 const tHillMedium1 = "ocean_rock_a";
@@ -179,10 +179,10 @@ for (let i = 0; i < numPlayers; ++i)
 		}
 	}
 }
-RMS.SetProgress(15);
+Engine.SetProgress(15);
 
 createVolcano(0.5, 0.5, clHill, tHillVeryDark, undefined, false, ELEVATION_SET);
-RMS.SetProgress(20);
+Engine.SetProgress(20);
 
 log("Creating lakes...");
 createAreas(
@@ -194,11 +194,11 @@ createAreas(
 	],
 	avoidClasses(clPlayer, 0, clHill, 2, clWater, 12),
 	Math.round(scaleByMapSize(6, 12)));
-RMS.SetProgress(25);
+Engine.SetProgress(25);
 
 createBumps(avoidClasses(clPlayer, 0, clHill, 0), scaleByMapSize(50, 300), 1, 10, 3, 0, scaleByMapSize(4, 10));
 paintTileClassBasedOnHeight(10, 100, 0, clBumps);
-RMS.SetProgress(30);
+Engine.SetProgress(30);
 
 log("Creating hills...");
 createAreas(
@@ -210,7 +210,7 @@ createAreas(
 	],
 	avoidClasses(clPlayer, 0, clHill, 15, clWater, 2, clBaseResource, 2),
 	scaleByMapSize(2, 8) * numPlayers);
-RMS.SetProgress(35);
+Engine.SetProgress(35);
 
 log("Creating forests...");
 var [forestTrees, stragglerTrees] = getTreeCounts(1200, 3000, 0.7);
@@ -233,7 +233,7 @@ for (let type of types)
 			clHill, 0,
 			clWater, 2),
 		num);
-RMS.SetProgress(40);
+Engine.SetProgress(40);
 
 log("Creating hill patches...");
 for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
@@ -251,7 +251,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 				clBumps, 0,
 				clPlayer, 0),
 			scaleByMapSize(20, 80));
-RMS.SetProgress(45);
+Engine.SetProgress(45);
 
 log("Creating grass patches...");
 createLayeredPatches(
@@ -267,7 +267,7 @@ createLayeredPatches(
 		clPlayer, 0),
 	scaleByMapSize(3, 8),
 	clDirt);
-RMS.SetProgress(50);
+Engine.SetProgress(50);
 
 log("Creating stone mines...");
 createObjectGroupsDeprecated(
@@ -290,7 +290,7 @@ createObjectGroupsDeprecated(
 	],
 	100,
 	100);
-RMS.SetProgress(55);
+Engine.SetProgress(55);
 
 log("Creating small stone quarries...");
 createObjectGroupsDeprecated(
@@ -307,7 +307,7 @@ createObjectGroupsDeprecated(
 	],
 	100,
 	100);
-RMS.SetProgress(60);
+Engine.SetProgress(60);
 
 log("Creating metal mines...");
 createObjectGroupsDeprecated(
@@ -325,7 +325,7 @@ createObjectGroupsDeprecated(
 	],
 	100,
 	100);
-RMS.SetProgress(65);
+Engine.SetProgress(65);
 
 log("Creating towers...");
 createObjectGroupsDeprecated(
@@ -343,7 +343,7 @@ createObjectGroupsDeprecated(
 	],
 	500,
 	1);
-RMS.SetProgress(67);
+Engine.SetProgress(67);
 
 createDecoration(
 		[
@@ -370,7 +370,7 @@ createDecoration(
 				clPlayer, 0,
 				clHill, 0)
 		]);
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 createDecoration(
 		[
@@ -392,7 +392,7 @@ createDecoration(
 			clPlayer, 0,
 			clHill, 0
 		));
-RMS.SetProgress(75);
+Engine.SetProgress(75);
 
 createFood(
 	[
@@ -412,7 +412,7 @@ createFood(
 			clFood, 20)
 	],
 	clFood);
-RMS.SetProgress(78);
+Engine.SetProgress(78);
 
 createFood(
 	[
@@ -432,7 +432,7 @@ createFood(
 		stayClasses(clForest, 2)
 	],
 	clFood);
-RMS.SetProgress(81);
+Engine.SetProgress(81);
 
 createFood(
 	[
@@ -443,7 +443,7 @@ createFood(
 	],
 	[stayClasses(clGrass, 1), avoidClasses(clWater, 1, clForest, 0, clPlayer, 0, clHill, 1, clFood, 10)],
 	clFood);
-RMS.SetProgress(85);
+Engine.SetProgress(85);
 
 createStragglerTrees(
 	[oTree, oTree2, oTree3, oTree4, oBush],
@@ -460,7 +460,7 @@ createStragglerTrees(
 	clForest,
 	stragglerTrees);
 
-RMS.SetProgress(90);
+Engine.SetProgress(90);
 
 log("Creating straggler bushes...");
 createObjectGroupsDeprecated(
@@ -480,7 +480,7 @@ createObjectGroupsDeprecated(
 			clRock, 1)
 	],
 	stragglerTrees);
-RMS.SetProgress(95);
+Engine.SetProgress(95);
 
 log("Creating rain drops...");
 createObjectGroupsDeprecated(
@@ -491,7 +491,7 @@ createObjectGroupsDeprecated(
 	0,
 	avoidClasses(clRain, 5),
 	scaleByMapSize(80, 250));
-RMS.SetProgress(95);
+Engine.SetProgress(95);
 
 setSkySet("rain");
 setWaterType("lake");

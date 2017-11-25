@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 const tGrass = ["medit_rocks_grass_shrubs", "medit_rocks_shrubs"];
 const tForestFloor = "medit_grass_field_dry";
@@ -127,13 +127,13 @@ for (var i = 0; i < numPlayers; i++)
 	placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, radius);
 }
 
-RMS.SetProgress(10);
+Engine.SetProgress(10);
 
 createBumps(avoidClasses(clPlayer, 9));
 
 createMountains(tCliff, avoidClasses(clPlayer, 20, clHill, 8), clHill, scaleByMapSize(20, 120));
 
-RMS.SetProgress(25);
+Engine.SetProgress(25);
 
 var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
 createForests(
@@ -142,7 +142,7 @@ createForests(
  clForest,
  forestTrees);
 
-RMS.SetProgress(40);
+Engine.SetProgress(40);
 
 log("Creating dirt patches...");
 createLayeredPatches(
@@ -162,7 +162,7 @@ createLayeredPatches(
  scaleByMapSize(15, 45),
  clDirt);
 
-RMS.SetProgress(50);
+Engine.SetProgress(50);
 
 log("Creating stone mines...");
 createMines(
@@ -182,7 +182,7 @@ createMines(
  clMetal
 );
 
-RMS.SetProgress(60);
+Engine.SetProgress(60);
 
 createDecoration
 (
@@ -202,7 +202,7 @@ createDecoration
  avoidClasses(clForest, 0, clPlayer, 0, clHill, 0)
 );
 
-RMS.SetProgress(75);
+Engine.SetProgress(75);
 
 createFood
 (
@@ -247,7 +247,7 @@ createObjectGroupsDeprecated(group, 0,
 	3 * numPlayers, 50
 );
 
-RMS.SetProgress(80);
+Engine.SetProgress(80);
 
 createStragglerTrees(
 	[oCarob, oAleppoPine],

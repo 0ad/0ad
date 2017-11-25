@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 const tGrass = ["temp_grass", "temp_grass", "temp_grass_d"];
 const tGrassDForest = "temp_plants_bog";
@@ -133,7 +133,7 @@ for (var i = 0; i < numPlayers; i++)
 
 	placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, radius);
 }
-RMS.SetProgress(10);
+Engine.SetProgress(10);
 
 paintRiver({
 	"parallel": false,
@@ -156,7 +156,7 @@ paintRiver({
 	}
 });
 
-RMS.SetProgress(20);
+Engine.SetProgress(20);
 
 createTributaryRivers(
 	true,
@@ -172,13 +172,13 @@ createTributaryRivers(
 paintTerrainBasedOnHeight(-5, 1, 1, tWater);
 paintTerrainBasedOnHeight(1, landHeight, 1, tShore);
 paintTileClassBasedOnHeight(-6, 0.5, 1, clWater);
-RMS.SetProgress(25);
+Engine.SetProgress(25);
 
 createBumps(avoidClasses(clWater, 5, clPlayer, 20));
-RMS.SetProgress(30);
+Engine.SetProgress(30);
 
 createHills([tCliff, tCliff, tHill], avoidClasses(clPlayer, 20, clHill, 15, clWater, 5), clHill, scaleByMapSize(1, 4) * numPlayers);
-RMS.SetProgress(50);
+Engine.SetProgress(50);
 
 var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
 createForests(
@@ -186,7 +186,7 @@ createForests(
  avoidClasses(clPlayer, 20, clForest, 17, clHill, 0, clWater, 6),
  clForest,
  forestTrees);
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 log("Creating dirt patches...");
 createLayeredPatches(
@@ -205,7 +205,7 @@ createPatches(
  avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 6),
  scaleByMapSize(15, 45),
  clDirt);
-RMS.SetProgress(80);
+Engine.SetProgress(80);
 
 log("Creating stone mines...");
 createMines(
@@ -224,7 +224,7 @@ createMines(
  avoidClasses(clWater, 2, clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clHill, 2),
  clMetal
 );
-RMS.SetProgress(85);
+Engine.SetProgress(85);
 
 createDecoration
 (

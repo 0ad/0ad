@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 const tGrass = ["tropic_grass_c", "tropic_grass_c", "tropic_grass_c", "tropic_grass_c", "tropic_grass_plants", "tropic_plants", "tropic_plants_b"];
 const tGrassA = "tropic_plants_c";
@@ -93,7 +93,7 @@ for (let i = 0; i < stripWidths.length; ++i)
 			],
 			null);
 }
-RMS.SetProgress(20);
+Engine.SetProgress(20);
 
 var [playerIDs, playerX, playerZ] = playerPlacementLine(false, 0.5, 1 - stripWidthsLeft[2][0] - stripWidthsLeft[2][1]);
 
@@ -182,7 +182,7 @@ for (let i = 0; i < numPlayers; ++i)
 		0,
 		avoidClasses(clBaseResource, 2));
 }
-RMS.SetProgress(35);
+Engine.SetProgress(35);
 
 log("Creating gaia...");
 for (let i = 0; i < 2; ++i)
@@ -213,7 +213,7 @@ paintTerrainBasedOnHeight(-10, 0, 1, tWater);
 paintTileClassBasedOnHeight(-10, 0, 1, clWater);
 paintTerrainBasedOnHeight(1, 2.8, 1, tShoreBlend);
 paintTerrainBasedOnHeight(0, 1, 1, tShore);
-RMS.SetProgress(40);
+Engine.SetProgress(40);
 
 log("Creating hills...");
 createAreas(
@@ -234,7 +234,7 @@ createAreas(
 
 log("Creating bumps...");
 createBumps(avoidClasses(clPlayer, 8, clWater, 2), scaleByMapSize(20, 150), 2, 8, 4, 1, 4);
-RMS.SetProgress(50);
+Engine.SetProgress(50);
 
 log("Creating forests...");
 var [forestTrees, stragglerTrees] = getTreeCounts(1000, 4000, 0.7);
@@ -278,7 +278,7 @@ createStragglerTrees(
 	clForest,
 	stragglerTrees);
 
-RMS.SetProgress(60);
+Engine.SetProgress(60);
 
 log("Creating grass patches...");
 for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
@@ -407,7 +407,7 @@ createObjectGroupsDeprecated(
 		clBaseResource, 4,
 		clDirt, 0),
 	8 * scaleByMapSize(13, 200));
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 log("Creating large grass tufts...");
 	createObjectGroupsDeprecated(
@@ -425,7 +425,7 @@ log("Creating large grass tufts...");
 			clDirt, 1,
 			clForest, 0),
 		8 * scaleByMapSize(13, 200));
-RMS.SetProgress(85);
+Engine.SetProgress(85);
 
 log("Creating bushes...");
 	createObjectGroupsDeprecated(
@@ -482,7 +482,7 @@ createObjectGroupsDeprecated(
 		clFood, 20),
 	3 * numPlayers,
 	50);
-RMS.SetProgress(95);
+Engine.SetProgress(95);
 
 log("Creating berry bush...");
 createObjectGroupsDeprecated(

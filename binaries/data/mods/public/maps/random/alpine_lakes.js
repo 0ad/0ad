@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 // late spring
 if (randBool())
@@ -178,12 +178,12 @@ for (var i = 0; i < numPlayers; i++)
 	placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, radius);
 }
 
-RMS.SetProgress(20);
+Engine.SetProgress(20);
 
 log("Creating hills...");
 createMountains(tCliff, avoidClasses(clPlayer, 20, clHill, 8), clHill, scaleByMapSize(10, 40) * numPlayers, floor(scaleByMapSize(40, 60)), floor(scaleByMapSize(4, 5)), floor(scaleByMapSize(7, 15)), floor(scaleByMapSize(5, 15)));
 
-RMS.SetProgress(30);
+Engine.SetProgress(30);
 
 var lakeAreas = [];
 var playerConstraint = new AvoidTileClassConstraint(clPlayer, 20);
@@ -243,7 +243,7 @@ createForests(
  clForest,
  forestTrees);
 
-RMS.SetProgress(60);
+Engine.SetProgress(60);
 
 log("Creating dirt patches...");
 createLayeredPatches(
@@ -261,7 +261,7 @@ createPatches(
  avoidClasses(clWater, 3, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12),
  scaleByMapSize(15, 45),
  clDirt);
-RMS.SetProgress(65);
+Engine.SetProgress(65);
 
 log("Creating stone mines...");
 createMines(
@@ -281,7 +281,7 @@ createMines(
  clMetal
 );
 
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 createDecoration
 (
@@ -301,7 +301,7 @@ createDecoration
  avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0)
 );
 
-RMS.SetProgress(75);
+Engine.SetProgress(75);
 
 createFood
 (
@@ -338,7 +338,7 @@ createFood
  [avoidClasses(clFood, 20), stayClasses(clWater, 6)]
 );
 
-RMS.SetProgress(85);
+Engine.SetProgress(85);
 
 createStragglerTrees(
 	[oPine],

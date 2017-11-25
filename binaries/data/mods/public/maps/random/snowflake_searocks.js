@@ -1,5 +1,5 @@
-RMS.LoadLibrary("rmgen");
-RMS.LoadLibrary("rmbiome");
+Engine.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmbiome");
 
 setSelectedBiome();
 
@@ -292,7 +292,7 @@ for (var i = 0; i < numPlayers; ++i)
 
 	placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, playerIslandRadius);
 }
-RMS.SetProgress(30);
+Engine.SetProgress(30);
 
 log("Creating connectors...");
 for (let ix = 0; ix < mapSize; ++ix)
@@ -357,7 +357,7 @@ for (let type of types)
 		],
 		[avoidClasses(clPlayer, 6, clForest, 10, clHill, 0), stayClasses(clLand, 4)],
 		num);
-RMS.SetProgress(55);
+Engine.SetProgress(55);
 
 log("Creating stone mines...");
 var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clRock);
@@ -380,7 +380,7 @@ createObjectGroupsDeprecated(group, 0,
 	5*scaleByMapSize(4,16), 100
 );
 
-RMS.SetProgress(65);
+Engine.SetProgress(65);
 log("Creating dirt patches...");
 for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
 	createAreas(
@@ -422,7 +422,7 @@ createObjectGroupsDeprecated(
 	scaleByMapSize(8, 131), 50
 );
 
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 log("Creating deer...");
 group = new SimpleGroup(
@@ -434,7 +434,7 @@ createObjectGroupsDeprecated(group, 0,
 	3 * numPlayers, 50
 );
 
-RMS.SetProgress(75);
+Engine.SetProgress(75);
 
 log("Creating sheep...");
 group = new SimpleGroup(
@@ -455,7 +455,7 @@ createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clForest, 0, clPlayer, 10, clHill, 1, clFood, 20), stayClasses(clLand, 4)],
 	3 * numPlayers, 50
 );
-RMS.SetProgress(85);
+Engine.SetProgress(85);
 
 createStragglerTrees(
 	[oTree1, oTree2, oTree4, oTree3],
@@ -476,7 +476,7 @@ createObjectGroupsDeprecated(group, 0,
 	planetm * scaleByMapSize(13, 200)
 );
 
-RMS.SetProgress(90);
+Engine.SetProgress(90);
 
 log("Creating large grass tufts...");
 group = new SimpleGroup(
@@ -486,7 +486,7 @@ createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clHill, 2, clPlayer, 2, clDirt, 1, clForest, 0), stayClasses(clLand, 4)],
 	planetm * scaleByMapSize(13, 200)
 );
-RMS.SetProgress(95);
+Engine.SetProgress(95);
 
 log("Creating bushes...");
 group = new SimpleGroup(

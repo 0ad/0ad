@@ -62,7 +62,7 @@ void* CMapGeneratorWorker::RunThread(void *data)
 
 	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(data);
 
-	self->m_ScriptInterface = new ScriptInterface("RMS", "MapGenerator", ScriptInterface::CreateRuntime(g_ScriptRuntime, RMS_RUNTIME_SIZE));
+	self->m_ScriptInterface = new ScriptInterface("Engine", "MapGenerator", ScriptInterface::CreateRuntime(g_ScriptRuntime, RMS_RUNTIME_SIZE));
 
 	// Run map generation scripts
 	if (!self->Run() || self->m_Progress > 0)

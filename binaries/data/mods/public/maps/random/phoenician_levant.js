@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 //TILE_CENTERED_HEIGHT_MAP = true;
 
@@ -135,7 +135,7 @@ for (var i = 0; i < numPlayers; i++)
 	placeDefaultDecoratives(fx, fz, aBush1, clBaseResource, radius);
 }
 
-RMS.SetProgress(30);
+Engine.SetProgress(30);
 
 paintRiver({
 	"parallel": true,
@@ -162,7 +162,7 @@ paintRiver({
 	}
 });
 
-RMS.SetProgress(40);
+Engine.SetProgress(40);
 
 log("Creating bumps...");
 createAreas(
@@ -194,7 +194,7 @@ createAreas(
 	avoidClasses(clPlayer, 20, clForest, 10, clWater, 1, clHill, 1, clBaseResource, 3),
 	num,
 	50);
-RMS.SetProgress(50);
+Engine.SetProgress(50);
 
 log("Creating grass patches...");
 for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
@@ -208,7 +208,7 @@ for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8,
 		],
 		avoidClasses(clForest, 0, clGrass, 5, clPlayer, 10, clWater, 4, clDirt, 5, clHill, 1),
 		scaleByMapSize(15, 45));
-RMS.SetProgress(55);
+Engine.SetProgress(55);
 
 log("Creating dirt patches...");
 for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
@@ -222,7 +222,7 @@ for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8,
 		],
 		avoidClasses(clForest, 0, clDirt, 5, clPlayer, 10, clWater, 4, clGrass, 5, clHill, 1),
 		scaleByMapSize(15, 45));
-RMS.SetProgress(60);
+Engine.SetProgress(60);
 
 log("Creating cyprus...");
 createAreas(
@@ -273,7 +273,7 @@ createObjectGroupsDeprecated(group, 0,
 	scaleByMapSize(4,16), 100
 );
 
-RMS.SetProgress(65);
+Engine.SetProgress(65);
 
 log("Creating small decorative rocks...");
 group = new SimpleGroup(
@@ -296,7 +296,7 @@ createObjectGroupsDeprecated(
 	avoidClasses(clWater, 3, clPlayer, 0, clHill, 1),
 	scaleByMapSize(40, 360), 50
 );
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 log("Creating fish...");
 group = new SimpleGroup([new SimpleObject(oFish, 1,3, 2,6)], true, clFood);
@@ -335,7 +335,7 @@ createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 3, clForest, 0, clPlayer, 15, clHill, 1, clFood, 7),
 	randIntInclusive(1, 4) * numPlayers + 2, 50
 );
-RMS.SetProgress(90);
+Engine.SetProgress(90);
 
 var stragglerTreeConfig = [
 	[1, avoidClasses(clForest, 0, clWater, 1, clPlayer, 8, clMetal, 6, clHill, 1)],

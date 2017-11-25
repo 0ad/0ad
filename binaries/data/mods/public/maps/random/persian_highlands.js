@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 const tCity = "desert_city_tile_pers_dirt";
 
@@ -145,7 +145,7 @@ for (var i = 0; i < numPlayers; i++)
 	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
 }
 
-RMS.SetProgress(10);
+Engine.SetProgress(10);
 
 log("Creating rock patches...");
 createAreas(
@@ -156,7 +156,7 @@ createAreas(
 	],
 	avoidClasses(clPatch, 2, clPlayer, 0),
 	scaleByMapSize(5, 20));
-RMS.SetProgress(15);
+Engine.SetProgress(15);
 
 log("Creating secondary rock patches...");
 createAreas(
@@ -167,7 +167,7 @@ createAreas(
 	],
 	avoidClasses(clPatch, 2, clPlayer, 4),
 	scaleByMapSize(15, 50));
-RMS.SetProgress(20);
+Engine.SetProgress(20);
 
 log("Creating dirt patches...");
 createAreas(
@@ -182,7 +182,7 @@ createAreas(
 	],
 	avoidClasses(clPatch, 2, clPlayer, 4),
 	scaleByMapSize(15, 50));
-RMS.SetProgress(25);
+Engine.SetProgress(25);
 
 log("Creating centeral plateau...");
 createArea(
@@ -201,7 +201,7 @@ createArea(
 		paintClass(clCP)
 	],
 	avoidClasses(clPlayer, 18));
-RMS.SetProgress(30);
+Engine.SetProgress(30);
 
 log("Creating hills...");
 for (let i = 0; i < scaleByMapSize(20, 80); ++i)
@@ -216,7 +216,7 @@ for (let i = 0; i < scaleByMapSize(20, 80); ++i)
 		tCliff,
 		clHill,
 		14);
-RMS.SetProgress(35);
+Engine.SetProgress(35);
 
 log("Creating forests...");
 var [forestTrees, stragglerTrees] = getTreeCounts(500, 2500, 0.7);
@@ -243,7 +243,7 @@ for (let type of types)
 			clHill, 1,
 			clCP, 1),
 		num);
-RMS.SetProgress(50);
+Engine.SetProgress(50);
 
 log("Creating stone mines...");
 var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4), new SimpleObject(oStoneLarge, 1, 1, 0, 4), new RandomObject(aBushes, 2, 4, 0, 2)], true, clRock);
@@ -287,7 +287,7 @@ createObjectGroupsDeprecated(group, 0,
 	5*scaleByMapSize(5,30), 50
 );
 
-RMS.SetProgress(60);
+Engine.SetProgress(60);
 
 log("Creating small decorative rocks...");
 group = new SimpleGroup(
@@ -300,7 +300,7 @@ createObjectGroupsDeprecated(
 	scaleByMapSize(16, 262), 50
 );
 
-RMS.SetProgress(65);
+Engine.SetProgress(65);
 
 log("Creating bushes...");
 group = new SimpleGroup(
@@ -313,7 +313,7 @@ createObjectGroupsDeprecated(
 	scaleByMapSize(8, 131), 50
 );
 
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 log("Creating goat...");
 group = new SimpleGroup(
@@ -355,7 +355,7 @@ createObjectGroupsDeprecated(group, 0,
 	3 * numPlayers, 50
 );
 
-RMS.SetProgress(90);
+Engine.SetProgress(90);
 
 createStragglerTrees(
 	[oOak],

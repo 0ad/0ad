@@ -3,8 +3,8 @@ var timeArray = [];
 timeArray.push(Date.now());
 
 // Importing rmgen libraries
-RMS.LoadLibrary("rmgen");
-RMS.LoadLibrary("heightmap");
+Engine.LoadLibrary("rmgen");
+Engine.LoadLibrary("heightmap");
 
 InitMap();
 
@@ -94,7 +94,7 @@ var minTerrainDistToBorder = 3;
 
 // Time check 1
 timeArray.push(Date.now());
-RMS.SetProgress(5);
+Engine.SetProgress(5);
 
 // START THE GIANT WHILE LOOP:
 // - Generate Heightmap
@@ -259,7 +259,7 @@ while (!goodStartPositionsFound)
 
 // Time check 2
 timeArray.push(Date.now());
-RMS.SetProgress(60);
+Engine.SetProgress(60);
 
 ////////
 // Paint terrain by height and add props
@@ -387,7 +387,7 @@ for(var x = minTerrainDistToBorder; x < mapSize - minTerrainDistToBorder; x++)
 
 // Time check 3
 timeArray.push(Date.now());
-RMS.SetProgress(90);
+Engine.SetProgress(90);
 
 ////////
 // Place players and start resources

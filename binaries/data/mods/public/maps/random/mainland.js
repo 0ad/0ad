@@ -1,5 +1,5 @@
-RMS.LoadLibrary("rmgen");
-RMS.LoadLibrary("rmbiome");
+Engine.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmbiome");
 
 setSelectedBiome();
 
@@ -130,7 +130,7 @@ for (var i = 0; i < numPlayers; i++)
 
 	placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, radius);
 }
-RMS.SetProgress(20);
+Engine.SetProgress(20);
 
 createBumps(avoidClasses(clPlayer, 20));
 
@@ -146,7 +146,7 @@ createForests(
  clForest,
  forestTrees);
 
-RMS.SetProgress(50);
+Engine.SetProgress(50);
 
 log("Creating dirt patches...");
 createLayeredPatches(
@@ -164,7 +164,7 @@ createPatches(
  avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12),
  scaleByMapSize(15, 45),
  clDirt);
-RMS.SetProgress(55);
+Engine.SetProgress(55);
 
 log("Creating stone mines...");
 createMines(
@@ -184,7 +184,7 @@ createMines(
  clMetal
 );
 
-RMS.SetProgress(65);
+Engine.SetProgress(65);
 
 var planetm = 1;
 
@@ -208,7 +208,7 @@ createDecoration
  ]
 );
 
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 createFood
 (
@@ -222,7 +222,7 @@ createFood
  ]
 );
 
-RMS.SetProgress(75);
+Engine.SetProgress(75);
 
 createFood
 (
@@ -235,7 +235,7 @@ createFood
  avoidClasses(clForest, 0, clPlayer, 20, clHill, 1, clFood, 10)
 );
 
-RMS.SetProgress(85);
+Engine.SetProgress(85);
 
 createStragglerTrees(
 	[oTree1, oTree2, oTree4, oTree3],
