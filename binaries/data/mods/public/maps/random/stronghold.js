@@ -1,6 +1,6 @@
-RMS.LoadLibrary("rmgen");
-RMS.LoadLibrary("rmgen2");
-RMS.LoadLibrary("rmbiome");
+Engine.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen2");
+Engine.LoadLibrary("rmbiome");
 
 InitMap();
 
@@ -8,10 +8,10 @@ setSelectedBiome();
 initTileClasses();
 
 resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, getMapBaseHeight());
-RMS.SetProgress(20);
+Engine.SetProgress(20);
 
 addBases("stronghold", randFloat(0.2, 0.35), randFloat(0.05, 0.1), randFloat(0, 2 * Math.PI));
-RMS.SetProgress(30);
+Engine.SetProgress(30);
 
 addElements(shuffleArray([
 	{
@@ -90,7 +90,7 @@ addElements(shuffleArray([
 		"amounts": g_AllAmounts
 	}
 ]));
-RMS.SetProgress(60);
+Engine.SetProgress(60);
 
 addElements([
 	{
@@ -124,7 +124,7 @@ addElements([
 		"amounts": ["normal"]
 	}
 ]);
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 addElements(shuffleArray([
 	{
@@ -179,7 +179,7 @@ addElements(shuffleArray([
 		"amounts": ["few", "normal", "many", "tons"]
 	}
 ]));
-RMS.SetProgress(80);
+Engine.SetProgress(80);
 
 addElements(shuffleArray([
 	{
@@ -237,6 +237,6 @@ addElements(shuffleArray([
 		"amounts": g_AllAmounts
 	}
 ]));
-RMS.SetProgress(90);
+Engine.SetProgress(90);
 
 ExportMap();

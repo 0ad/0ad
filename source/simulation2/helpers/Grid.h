@@ -46,9 +46,8 @@ public:
 		reset();
 	}
 
-	Grid(const Grid& g)
+	Grid(const Grid& g) : m_W(0), m_H(0), m_Data(NULL), m_DirtyID(0)
 	{
-		m_Data = NULL;
 		*this = g;
 	}
 

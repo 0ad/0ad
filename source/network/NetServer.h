@@ -126,7 +126,7 @@ public:
 	 * The changes will be asynchronously propagated to all clients.
 	 * @param attrs game attributes, in the script context of scriptInterface
 	 */
-	void UpdateGameAttributes(JS::MutableHandleValue attrs, ScriptInterface& scriptInterface);
+	void UpdateGameAttributes(JS::MutableHandleValue attrs, const ScriptInterface& scriptInterface);
 
 	/**
 	 * Set the turn length to a fixed value.
@@ -221,7 +221,7 @@ private:
 	/**
 	 * Get the script context used for game attributes.
 	 */
-	ScriptInterface& GetScriptInterface();
+	const ScriptInterface& GetScriptInterface();
 
 	/**
 	 * Set the turn length to a fixed value.

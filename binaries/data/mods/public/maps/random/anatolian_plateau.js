@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 const tGrass = ["steppe_grass_a", "steppe_grass_b", "steppe_grass_c", "steppe_grass_d"];
 const tForestFloor = "steppe_grass_c";
@@ -120,7 +120,7 @@ for (var i = 0; i < numPlayers; i++)
 	placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, radius);
 }
 
-RMS.SetProgress(20);
+Engine.SetProgress(20);
 
 log("Creating bumps...");
 createAreas(
@@ -143,7 +143,7 @@ for (let type of types)
 		],
 		avoidClasses(clPlayer, 13, clForest, 20, clHill, 1),
 		num);
-RMS.SetProgress(50);
+Engine.SetProgress(50);
 
 log("Creating grass patches...");
 createLayeredPatches(
@@ -163,7 +163,7 @@ createLayeredPatches(
  scaleByMapSize(50, 90),
  clDirt);
 
-RMS.SetProgress(55);
+Engine.SetProgress(55);
 
 log("Creating big patches...");
 createLayeredPatches(
@@ -174,7 +174,7 @@ createLayeredPatches(
  scaleByMapSize(30, 90),
  clDirt);
 
-RMS.SetProgress(55);
+Engine.SetProgress(55);
 
 log("Creating stone mines...");
 var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clRock);
@@ -197,7 +197,7 @@ createObjectGroupsDeprecated(group, 0,
 	scaleByMapSize(2,8), 100
 );
 
-RMS.SetProgress(65);
+Engine.SetProgress(65);
 
 log("Creating small decorative rocks...");
 group = new SimpleGroup(
@@ -221,7 +221,7 @@ createObjectGroupsDeprecated(
 	scaleByMapSize(8, 131), 50
 );
 
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 log("Creating rabbits...");
 group = new SimpleGroup(
@@ -243,7 +243,7 @@ createObjectGroupsDeprecated(group, 0,
 	randIntInclusive(1, 4) * numPlayers + 2, 50
 );
 
-RMS.SetProgress(75);
+Engine.SetProgress(75);
 
 log("Creating sheep...");
 group = new SimpleGroup(
@@ -255,7 +255,7 @@ createObjectGroupsDeprecated(group, 0,
 	3 * numPlayers, 50
 );
 
-RMS.SetProgress(85);
+Engine.SetProgress(85);
 
 createStragglerTrees(
 	[oBush, oPoplar],
@@ -272,7 +272,7 @@ createObjectGroupsDeprecated(group, 0,
 	scaleByMapSize(13, 200)
 );
 
-RMS.SetProgress(95);
+Engine.SetProgress(95);
 
 log("Creating bushes...");
 group = new SimpleGroup(

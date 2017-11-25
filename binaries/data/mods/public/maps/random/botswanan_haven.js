@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 const tGrassA = "savanna_shrubs_a_wetseason";
 const tGrassB = "savanna_shrubs_a";
@@ -152,7 +152,7 @@ for (let i = 0; i < numPlayers; ++i)
 			0);
 	}
 }
-RMS.SetProgress(15);
+Engine.SetProgress(15);
 
 log("Creating bumps...");
 createAreas(
@@ -197,7 +197,7 @@ createObjectGroupsDeprecated(
 	stayClasses(clWater, 1),
 	scaleByMapSize(400, 1000),
 	100);
-RMS.SetProgress(40);
+Engine.SetProgress(40);
 
 log("Creating bumps...");
 createAreas(
@@ -216,7 +216,7 @@ for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8,
 		],
 		avoidClasses(clWater, 1, clHill, 0, clDirt, 5, clPlayer, 8),
 		scaleByMapSize(15, 45));
-RMS.SetProgress(50);
+Engine.SetProgress(50);
 
 log("Creating stone mines...");
 createObjectGroupsDeprecated(
@@ -246,7 +246,7 @@ createObjectGroupsDeprecated(
 	[avoidClasses(clWater, 0, clPlayer, 20, clMetal, 10, clRock, 5, clHill, 1)],
 	scaleByMapSize(4, 16),
 	100);
-RMS.SetProgress(60);
+Engine.SetProgress(60);
 
 log("Creating small decorative rocks...");
 createObjectGroupsDeprecated(
@@ -255,7 +255,7 @@ createObjectGroupsDeprecated(
 	avoidClasses(clPlayer, 1),
 	scaleByMapSize(16, 262),
 	50);
-RMS.SetProgress(65);
+Engine.SetProgress(65);
 
 log("Creating large decorative rocks...");
 createObjectGroupsDeprecated(
@@ -269,7 +269,7 @@ createObjectGroupsDeprecated(
 	avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0),
 	scaleByMapSize(8, 131),
 	50);
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 log("Creating lions...");
 createObjectGroupsDeprecated(
@@ -328,7 +328,7 @@ createObjectGroupsDeprecated(
 	avoidClasses(clWater, 0, clForest, 0, clPlayer, 20, clHill, 1, clFood, 13),
 	3 * numPlayers,
 	50);
-RMS.SetProgress(75);
+Engine.SetProgress(75);
 
 log("Creating rabbits...");
 createObjectGroupsDeprecated(
@@ -373,14 +373,14 @@ createObjectGroupsDeprecated(
 	avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 10),
 	randIntInclusive(1, 4) * numPlayers + 2,
 	50);
-RMS.SetProgress(80);
+Engine.SetProgress(80);
 
 createStragglerTrees(
 	[oToona, oBaobab, oBush, oBush],
 	avoidClasses(clForest, 1, clWater, 1, clHill, 1, clPlayer, 13, clMetal, 1, clRock, 1),
 	clForest,
 	scaleByMapSize(60, 500));
-RMS.SetProgress(85);
+Engine.SetProgress(85);
 
 log("Creating small grass tufts...");
 createObjectGroupsDeprecated(
@@ -388,7 +388,7 @@ createObjectGroupsDeprecated(
 	0,
 	avoidClasses(clWater, 2, clPlayer, 13, clDirt, 0),
 	scaleByMapSize(13, 200));
-RMS.SetProgress(90);
+Engine.SetProgress(90);
 
 log("Creating large grass tufts...");
 createObjectGroupsDeprecated(
@@ -399,7 +399,7 @@ createObjectGroupsDeprecated(
 	0,
 	avoidClasses(clWater, 3, clPlayer, 13, clDirt, 1, clForest, 0),
 	scaleByMapSize(13, 200));
-RMS.SetProgress(95);
+Engine.SetProgress(95);
 
 log("Creating bushes...");
 createObjectGroupsDeprecated(

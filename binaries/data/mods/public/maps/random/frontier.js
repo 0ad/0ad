@@ -1,12 +1,12 @@
-RMS.LoadLibrary("rmgen");
-RMS.LoadLibrary("rmgen2");
-RMS.LoadLibrary("rmbiome");
+Engine.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen2");
+Engine.LoadLibrary("rmbiome");
 
 InitMap();
 
 setSelectedBiome();
 initTileClasses();
-RMS.SetProgress(10);
+Engine.SetProgress(10);
 
 // Pick a random elevation with a bias towards lower elevations
 var randElevation = randIntInclusive(0, 29);
@@ -14,11 +14,11 @@ if (randElevation < 25)
 	randElevation = randIntInclusive(1, 4);
 
 resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, randElevation);
-RMS.SetProgress(20);
+Engine.SetProgress(20);
 
 const startPositions = randomStartingPositionPattern(getTeamsArray());
 addBases(startPositions.setup, startPositions.distance, startPositions.separation, randFloat(0, 2 * Math.PI));
-RMS.SetProgress(40);
+Engine.SetProgress(40);
 
 var features = [
 	{
@@ -119,7 +119,7 @@ if (randElevation > 20)
 	});
 
 addElements(shuffleArray(features));
-RMS.SetProgress(50);
+Engine.SetProgress(50);
 
 addElements([
 	{
@@ -152,7 +152,7 @@ addElements([
 		"amounts": ["normal"]
 	}
 ]);
-RMS.SetProgress(60);
+Engine.SetProgress(60);
 
 addElements(shuffleArray([
 	{
@@ -207,7 +207,7 @@ addElements(shuffleArray([
 		"amounts": ["few", "normal", "many", "tons"]
 	}
 ]));
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 addElements(shuffleArray([
 	{
@@ -262,6 +262,6 @@ addElements(shuffleArray([
 		"amounts": g_AllAmounts
 	}
 ]));
-RMS.SetProgress(90);
+Engine.SetProgress(90);
 
 ExportMap();

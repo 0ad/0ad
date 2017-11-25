@@ -1,6 +1,6 @@
-RMS.LoadLibrary("rmgen");
-RMS.LoadLibrary("rmgen2");
-RMS.LoadLibrary("rmbiome");
+Engine.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen2");
+Engine.LoadLibrary("rmbiome");
 
 InitMap();
 
@@ -8,12 +8,12 @@ setSelectedBiome();
 initTileClasses();
 
 resetTerrain(g_Terrains.mainTerrain, g_TileClasses.land, getMapBaseHeight());
-RMS.SetProgress(10);
+Engine.SetProgress(10);
 
 const teamsArray = getTeamsArray();
 const startAngle = randFloat(0, 2 * Math.PI);
 addBases("stronghold", 0.37, 0.04, startAngle);
-RMS.SetProgress(20);
+Engine.SetProgress(20);
 
 // Change the starting angle and add the players again
 var rotation = PI;
@@ -25,7 +25,7 @@ if (teamsArray.length == 4)
 	rotation = PI + PI / 4;
 
 addBases("stronghold", 0.15, 0.04, startAngle + rotation);
-RMS.SetProgress(40);
+Engine.SetProgress(40);
 
 addElements(shuffleArray([
 	{
@@ -72,7 +72,7 @@ addElements(shuffleArray([
 		"amounts": ["tons"]
 	}
 ]));
-RMS.SetProgress(50);
+Engine.SetProgress(50);
 
 addElements([
 	{
@@ -105,7 +105,7 @@ addElements([
 		"amounts": ["normal"]
 	}
 ]);
-RMS.SetProgress(60);
+Engine.SetProgress(60);
 
 addElements(shuffleArray([
 	{
@@ -159,7 +159,7 @@ addElements(shuffleArray([
 		"amounts": ["few", "normal", "many", "tons"]
 	}
 ]));
-RMS.SetProgress(80);
+Engine.SetProgress(80);
 
 addElements(shuffleArray([
 	{
@@ -214,6 +214,6 @@ addElements(shuffleArray([
 		"amounts": g_AllAmounts
 	}
 ]));
-RMS.SetProgress(90);
+Engine.SetProgress(90);
 
 ExportMap();

@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 TILE_CENTERED_HEIGHT_MAP = true;
 
 const tGrassSpecific = ["new_alpine_grass_d","new_alpine_grass_d", "new_alpine_grass_e"];
@@ -198,7 +198,7 @@ for (var i = 0; i < numPlayers; i++)
 
 	placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, radius);
 }
-RMS.SetProgress(30);
+Engine.SetProgress(30);
 
 log ("Creating the pyreneans...");
 
@@ -215,7 +215,7 @@ var randomNess = randFloat(-scaleByMapSize(1,12),scaleByMapSize(1,12));
 
 for (var i = 0; i < NumOfIterations; i++)
 {
-	RMS.SetProgress(45 * i/NumOfIterations + 30 * (1-i/NumOfIterations));
+	Engine.SetProgress(45 * i/NumOfIterations + 30 * (1-i/NumOfIterations));
 
 	var position = i/NumOfIterations;
 	var width = scaleByMapSize(15,55);
@@ -262,7 +262,7 @@ for (var ix = 1; ix < mapSize-1; ix++)
 		}
 	}
 }
-RMS.SetProgress(48);
+Engine.SetProgress(48);
 
 // Okay so the mountains are pretty much here.
 // Making the passes
@@ -280,7 +280,7 @@ S2x = round((MountainStartX * (0.65) + MountainEndX*0.35) + cos(MoutainAngle-PI/
 S2z = round((MountainStartZ * (0.65) + MountainEndZ*0.35) + sin(MoutainAngle-PI/2)*passWidth);
 PassMaker(S1x, S1z, S2x, S2z, 4, 7, (getHeight(S1x,S1z) + getHeight(S2x,S2z))/2.0, MountainHeight-25, 2, clPass);
 
-RMS.SetProgress(50);
+Engine.SetProgress(50);
 
 // Smoothing the mountains
 for (var ix = 1; ix < mapSize-1; ix++)
@@ -358,7 +358,7 @@ for (var ix = 1; ix < mapSize-1; ix++)
 			setHeight(ix,iz, getHeight(ix,iz) + randFloat(-1,1));
 	}
 }
-RMS.SetProgress(55);
+Engine.SetProgress(55);
 
 log ("Creating hills...");
 createAreas(
@@ -383,7 +383,7 @@ for (let type of types)
 		],
 		avoidClasses(clPlayer, 20, clPyrenneans,0, clForest, 7, clWater, 2),
 		num);
-RMS.SetProgress(60);
+Engine.SetProgress(60);
 
 log("Creating lone trees...");
 var num = scaleByMapSize(80,400);
@@ -484,7 +484,7 @@ for (let size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5
 		avoidClasses(clWater, 3, clForest, 0, clPyrenneans,5, clHill, 0, clDirt, 5, clPlayer, 6),
 		scaleByMapSize(15, 45));
 
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 // making more in dirt areas so as to appear different
 log("Creating small grass tufts...");
@@ -496,13 +496,13 @@ log("Creating large grass tufts...");
 group = new SimpleGroup( [new SimpleObject(aGrass, 2,4, 0,1.8, -PI/8,PI/8), new SimpleObject(aGrassShort, 3,6, 1.2,2.5, -PI/8,PI/8)] );
 createObjectGroupsDeprecated(group, 0, avoidClasses(clWater, 3, clHill, 2, clPlayer, 5, clDirt, 1, clForest, 0, clPyrenneans,2), scaleByMapSize(13, 200) );
 createObjectGroupsDeprecated(group, 0, stayClasses(clDirt,1), scaleByMapSize(13, 200),10);
-RMS.SetProgress(75);
+Engine.SetProgress(75);
 
 log("Creating bushes...");
 group = new SimpleGroup( [new SimpleObject(aBushMedium, 1,2, 0,2), new SimpleObject(aBushSmall, 2,4, 0,2)] );
 createObjectGroupsDeprecated(group, 0, avoidClasses(clWater, 2, clPlayer, 1, clPyrenneans, 1), scaleByMapSize(13, 200), 50 );
 
-RMS.SetProgress(80);
+Engine.SetProgress(80);
 
 log("Creating stone mines...");
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clRock);
@@ -516,7 +516,7 @@ log("Creating metal mines...");
 group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,4)], true, clMetal);
 createObjectGroupsDeprecated(group, 0, avoidClasses(clWater, 3, clForest, 1, clPlayer, 20, clMetal, 8, clRock, 5, clPyrenneans, 1), scaleByMapSize(4,16), 100  );
 
-RMS.SetProgress(85);
+Engine.SetProgress(85);
 
 log("Creating small decorative rocks...");
 group = new SimpleGroup( [new SimpleObject(aRockMedium, 1,3, 0,1)], true );
@@ -526,7 +526,7 @@ log("Creating large decorative rocks...");
 group = new SimpleGroup( [new SimpleObject(aRockLarge, 1,2, 0,1), new SimpleObject(aRockMedium, 1,3, 0,2)], true );
 createObjectGroupsDeprecated( group, 0,  avoidClasses(clWater, 0, clForest, 0, clPlayer, 0), scaleByMapSize(8, 131), 50 );
 
-RMS.SetProgress(90);
+Engine.SetProgress(90);
 
 log("Creating deer...");
 group = new SimpleGroup( [new SimpleObject(oDeer, 5,7, 0,4)], true, clFood );

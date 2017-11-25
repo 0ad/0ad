@@ -1,5 +1,5 @@
-RMS.LoadLibrary("rmgen");
-RMS.LoadLibrary("rmbiome");
+Engine.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmbiome");
 
 TILE_CENTERED_HEIGHT_MAP = true;
 
@@ -308,7 +308,7 @@ if (currentBiome() != "savanna")
 			num);
 }
 
-RMS.SetProgress(50);
+Engine.SetProgress(50);
 log("Creating dirt patches...");
 var numberOfPatches = scaleByMapSize(15, 45) * (currentBiome() == "savanna" ? 3 : 1);
 for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
@@ -329,7 +329,7 @@ for (let size of [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 
 		[avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 0), stayClasses(clLand, 6)],
 		numberOfPatches);
 
-RMS.SetProgress(55);
+Engine.SetProgress(55);
 
 log("Creating stone mines...");
 var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4), new SimpleObject(oStoneLarge, 1, 1, 0, 4)], true, clRock);
@@ -352,7 +352,7 @@ createObjectGroupsDeprecated(group, 0,
 	scaleByMapSize(4,16), 100
 );
 
-RMS.SetProgress(65);
+Engine.SetProgress(65);
 
 log("Creating small decorative rocks...");
 group = new SimpleGroup(
@@ -376,7 +376,7 @@ createObjectGroupsDeprecated(
 	scaleByMapSize(8, 131), 50
 );
 
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 log("Creating deer...");
 group = new SimpleGroup(
@@ -388,7 +388,7 @@ createObjectGroupsDeprecated(group, 0,
 	3 * numPlayers, 50
 );
 
-RMS.SetProgress(75);
+Engine.SetProgress(75);
 
 log("Creating sheep...");
 group = new SimpleGroup(
@@ -420,7 +420,7 @@ createObjectGroupsDeprecated(group, 0,
 	25 * numPlayers, 60
 );
 
-RMS.SetProgress(85);
+Engine.SetProgress(85);
 
 createStragglerTrees(
 	[oTree1, oTree2, oTree4, oTree3],
@@ -441,7 +441,7 @@ createObjectGroupsDeprecated(group, 0,
 	planetm * scaleByMapSize(13, 200)
 );
 
-RMS.SetProgress(90);
+Engine.SetProgress(90);
 
 log("Creating large grass tufts...");
 group = new SimpleGroup(
@@ -452,7 +452,7 @@ createObjectGroupsDeprecated(group, 0,
 	planetm * scaleByMapSize(13, 200)
 );
 
-RMS.SetProgress(95);
+Engine.SetProgress(95);
 
 log("Creating bushes...");
 group = new SimpleGroup(

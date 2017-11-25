@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 var tCity = "desert_city_tile";
 var tCityPlaza = "desert_city_tile_plaza";
@@ -138,7 +138,7 @@ for (var i = 0; i < numPlayers; i++)
 	placeDefaultDecoratives(fx, fz, aBush1, clBaseResource, radius);
 }
 
-RMS.SetProgress(30);
+Engine.SetProgress(30);
 
 const riverTextures = [
 	{
@@ -206,7 +206,7 @@ paintRiver({
 	}
 });
 
-RMS.SetProgress(40);
+Engine.SetProgress(40);
 
 log("Creating bumps...");
 createAreas(
@@ -261,7 +261,7 @@ createAreas(
 	num,
 	50);
 
-RMS.SetProgress(50);
+Engine.SetProgress(50);
 
 log("Creating grass patches...");
 for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
@@ -275,7 +275,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 		],
 		avoidClasses(clForest, 0, clGrass, 5, clPlayer, 10, clWater, 1, clDirt, 5, clShore, 1, clPond, 1),
 		scaleByMapSize(15, 45));
-RMS.SetProgress(55);
+Engine.SetProgress(55);
 
 log("Creating dirt patches...");
 for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
@@ -290,7 +290,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 		avoidClasses(clForest, 0, clDirt, 5, clPlayer, 10, clWater, 1, clGrass, 5, clShore, 1, clPond, 1),
 		scaleByMapSize(15, 45));
 
-RMS.SetProgress(60);
+Engine.SetProgress(60);
 
 log("Creating stone mines...");
 var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4), new SimpleObject(oStoneLarge, 1, 1, 0, 4)], true, clRock);
@@ -334,7 +334,7 @@ createObjectGroupsDeprecated(group, 0,
 	scaleByMapSize(6,20), 100
 );
 
-RMS.SetProgress(65);
+Engine.SetProgress(65);
 
 log("Creating small decorative rocks...");
 group = new SimpleGroup(
@@ -357,7 +357,7 @@ createObjectGroupsDeprecated(
 	avoidClasses(clWater, 1, clPlayer, 0, clPond, 1),
 	scaleByMapSize(20, 180), 50
 );
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 log("Creating gazelles...");
 group = new SimpleGroup([new SimpleObject(oGazelle, 5,7, 0,4)], true, clFood);
@@ -393,7 +393,7 @@ createObjectGroupsDeprecated(group, 0,
 	3*scaleByMapSize(5,20), 50
 );
 
-RMS.SetProgress(90);
+Engine.SetProgress(90);
 
 createStragglerTrees(
 	[oDatePalm, oSDatePalm],

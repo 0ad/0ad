@@ -14,7 +14,7 @@
 		</action>
 	</object>
 
-	<object size="100%-390 40 100%-230 65" name="gameSpeed" type="dropdown" style="ModernDropDown" hidden="true" tooltip_style="sessionToolTip">
+	<object size="100%-390 40 100%-230 65" name="gameSpeed" type="dropdown" style="ModernDropDown" hidden="true" tooltip_style="sessionToolTip" dropdown_size="300">
 		<translatableAttribute id="tooltip">Choose game speed</translatableAttribute>
 	</object>
 </object>

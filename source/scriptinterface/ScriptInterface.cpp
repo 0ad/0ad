@@ -596,15 +596,10 @@ bool ScriptInterface::CallFunction_(JS::HandleValue val, const char* name, JS::H
 	return ok;
 }
 
-JS::Value ScriptInterface::GetGlobalObject()
+JS::Value ScriptInterface::GetGlobalObject() const
 {
 	JSAutoRequest rq(m->m_cx);
 	return JS::ObjectValue(*JS::CurrentGlobalOrNull(m->m_cx));
-}
-
-JSClass* ScriptInterface::GetGlobalClass()
-{
-	return &global_class;
 }
 
 bool ScriptInterface::SetGlobal_(const char* name, JS::HandleValue value, bool replace)

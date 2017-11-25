@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 const tGrass = ["tropic_grass_c", "tropic_grass_c", "tropic_grass_c", "tropic_grass_c", "tropic_grass_plants", "tropic_plants", "tropic_plants_b"];
 const tGrassA = "tropic_plants_c";
@@ -130,7 +130,7 @@ for (var i = 0; i < numPlayers; i++)
 
 }
 
-RMS.SetProgress(15);
+Engine.SetProgress(15);
 
 const waterPos = 0.31;
 const mountainPos = 0.69;
@@ -179,7 +179,7 @@ paintTerrainBasedOnHeight(1, 2.8, 1, tShoreBlend);
 paintTerrainBasedOnHeight(0, 1, 1, tShore);
 paintTileClassBasedOnHeight(-6, 0.5, 1, clWater);
 
-RMS.SetProgress(45);
+Engine.SetProgress(45);
 
 log("Creating hills...");
 createAreas(
@@ -214,7 +214,7 @@ for (let type of types)
 		avoidClasses(clPlayer, 20, clForest, 10, clHill, 0, clWater, 8),
 		num);
 
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 log("Creating grass patches...");
 for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
@@ -289,7 +289,7 @@ createObjectGroupsDeprecated(group, 0,
 	8 * scaleByMapSize(13, 200)
 );
 
-RMS.SetProgress(90);
+Engine.SetProgress(90);
 
 log("Creating large grass tufts...");
 group = new SimpleGroup(
@@ -300,7 +300,7 @@ createObjectGroupsDeprecated(group, 0,
 	8 * scaleByMapSize(13, 200)
 );
 
-RMS.SetProgress(95);
+Engine.SetProgress(95);
 
 log("Creating bushes...");
 group = new SimpleGroup(
@@ -311,7 +311,7 @@ createObjectGroupsDeprecated(group, 0,
 	8 * scaleByMapSize(13, 200), 50
 );
 
-RMS.SetProgress(95);
+Engine.SetProgress(95);
 
 createStragglerTrees(
 	[oTree, oPalm],
@@ -329,7 +329,7 @@ createObjectGroupsDeprecated(group, 0,
 	3 * numPlayers, 50
 );
 
-RMS.SetProgress(75);
+Engine.SetProgress(75);
 
 log("Creating berry bush...");
 group = new SimpleGroup(

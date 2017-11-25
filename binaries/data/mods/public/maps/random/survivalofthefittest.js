@@ -1,5 +1,5 @@
-RMS.LoadLibrary("rmgen");
-RMS.LoadLibrary("rmbiome");
+Engine.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmbiome");
 
 setSelectedBiome();
 
@@ -64,7 +64,7 @@ createArea(
 		new SmoothElevationPainter(ELEVATION_SET, 3, 3),
 		paintClass(clLand)
 	]);
-RMS.SetProgress(10);
+Engine.SetProgress(10);
 
 var [playerIDs, playerX, playerZ, playerAngle, startAngle] = radialPlayerPlacement(0.3);
 var [halfwayX, halfwayZ] = distributePointsOnCircle(numPlayers, startAngle, fractionToTiles(0.375), mapCenter.x, mapCenter.y);
@@ -104,7 +104,7 @@ for (let  i = 0; i < numPlayers; ++i)
 	addToClass(Math.round(attackerX[i]), Math.round(attackerZ[i]), clPlayer);
 	addToClass(Math.round(halfwayX[i]), Math.round(halfwayZ[i]), clPlayer);
 }
-RMS.SetProgress(20);
+Engine.SetProgress(20);
 
 paintTerrainBasedOnHeight(3.12, 29, 1, tCliff);
 paintTileClassBasedOnHeight(3.12, 29, 1, clHill);
@@ -116,7 +116,7 @@ for (let triggerPointTreasure of triggerPointTreasures)
 		[avoidClasses(clForest, 5, clPlayer, 5, clHill, 5), stayClasses(clLand, 5)],
 		scaleByMapSize(40, 140), 100
 	);
-RMS.SetProgress(25);
+Engine.SetProgress(25);
 
 createBumps(stayClasses(clLand, 5));
 
@@ -126,7 +126,7 @@ createForests(
 	[avoidClasses(clPlayer, 20, clForest, 5, clHill, 0, clBaseResource,2, clWomen, 5), stayClasses(clLand, 4)],
 	clForest,
 	forestTrees);
-RMS.SetProgress(30);
+Engine.SetProgress(30);
 
 if (randBool())
 	createHills(
@@ -140,7 +140,7 @@ else
 		[avoidClasses(clPlayer, 20, clHill, 5, clBaseResource, 3, clWomen, 5), stayClasses(clLand, 5)],
 		clHill,
 		scaleByMapSize(10, 60) * numPlayers);
-RMS.SetProgress(40);
+Engine.SetProgress(40);
 
 createHills(
 	[tCliff, tCliff, tHill],
@@ -153,7 +153,7 @@ createHills(
 	undefined,
 	55);
 
-RMS.SetProgress(50);
+Engine.SetProgress(50);
 
 log("Creating dirt patches...");
 createLayeredPatches(

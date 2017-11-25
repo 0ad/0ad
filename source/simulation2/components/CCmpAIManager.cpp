@@ -1024,7 +1024,7 @@ public:
 
 	virtual void TryLoadSharedComponent()
 	{
-		ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
+		const ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
 		JSContext* cx = scriptInterface.GetContext();
 		JSAutoRequest rq(cx);
 
@@ -1041,7 +1041,7 @@ public:
 
 	virtual void RunGamestateInit()
 	{
-		ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
+		const ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
 		JSContext* cx = scriptInterface.GetContext();
 		JSAutoRequest rq(cx);
 
@@ -1080,7 +1080,7 @@ public:
 	{
 		PROFILE("AI setup");
 
-		ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
+		const ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
 		JSContext* cx = scriptInterface.GetContext();
 		JSAutoRequest rq(cx);
 
@@ -1145,7 +1145,7 @@ public:
 		if (!cmpCommandQueue)
 			return;
 
-		ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
+		const ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
 		JSContext* cx = scriptInterface.GetContext();
 		JSAutoRequest rq(cx);
 		JS::RootedValue clonedCommandVal(cx);
@@ -1197,7 +1197,7 @@ private:
 		if (!cmpPathfinder)
 			return;
 
-		ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
+		const ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
 		JSContext* cx = scriptInterface.GetContext();
 		JSAutoRequest rq(cx);
 

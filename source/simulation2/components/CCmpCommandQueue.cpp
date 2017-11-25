@@ -105,7 +105,7 @@ public:
 
 	virtual void FlushTurn(const std::vector<SimulationCommand>& commands)
 	{
-		ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
+		const ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
 		JSContext* cx = scriptInterface.GetContext();
 		JSAutoRequest rq(cx);
 

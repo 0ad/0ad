@@ -1,5 +1,5 @@
-RMS.LoadLibrary("rmgen");
-RMS.LoadLibrary("rmbiome");
+Engine.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmbiome");
 
 setSelectedBiome();
 
@@ -285,7 +285,7 @@ createArea(
 	new LayeredPainter([tRoad, tRoad], [1]),
 	null);
 
-RMS.SetProgress(20);
+Engine.SetProgress(20);
 
 paintTerrainBasedOnHeight(3.1, 29, 0, tCliff);
 paintTileClassBasedOnHeight(3.1, 32, 0, clHill2);
@@ -304,7 +304,7 @@ createForests(
  clForest,
  forestTrees);
 
-RMS.SetProgress(50);
+Engine.SetProgress(50);
 
 log("Creating dirt patches...");
 createLayeredPatches(
@@ -341,7 +341,7 @@ createMines(
  clMetal
 );
 
-RMS.SetProgress(65);
+Engine.SetProgress(65);
 
 var planetm = 1;
 
@@ -377,7 +377,7 @@ createObjectGroupsDeprecated(
 	scaleByMapSize(200, 800), 50
 );
 
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 createFood
 (
@@ -403,7 +403,7 @@ createFood
  [avoidClasses(clForest, 0, clPlayer, 4, clHill, 1, clFood, 10, clHill2, 1), stayClasses(clLand, 3)]
 );
 
-RMS.SetProgress(85);
+Engine.SetProgress(85);
 
 createStragglerTrees(
 	[oTree1, oTree2, oTree4, oTree3],

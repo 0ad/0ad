@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 // Spawn ships away from the shoreline, but patrol close to the shoreline
 const triggerPointShipSpawn = "trigger/trigger_point_A";
@@ -309,7 +309,7 @@ if (gallicCC)
 				randFloat(0, 2 * PI));
 	}
 }
-RMS.SetProgress(10);
+Engine.SetProgress(10);
 
 var [playerIDs, playerX, playerZ] = playerPlacementRiver(0, 0.6);
 
@@ -392,7 +392,7 @@ for (let i = 0; i < numPlayers; ++i)
 
 	placeDefaultDecoratives(fx, fz, aBush1, clBaseResource, radius);
 }
-RMS.SetProgress(20);
+Engine.SetProgress(20);
 
 paintRiver({
 	"parallel": true,
@@ -426,16 +426,16 @@ paintRiver({
 	}
 });
 
-RMS.SetProgress(30);
+Engine.SetProgress(30);
 
 log("Creating shores...");
 paintTerrainBasedOnHeight(-20, 1, 0, tWater);
 paintTerrainBasedOnHeight(1, 2, 0, tShore);
-RMS.SetProgress(35);
+Engine.SetProgress(35);
 
 log("Creating bumps...");
 createBumps(avoidClasses(clPlayer, 6, clWater, 2, clPath, 1), scaleByMapSize(30, 300), 1, 8, 4, 0, 3);
-RMS.SetProgress(40);
+Engine.SetProgress(40);
 
 log("Creating hills...");
 if (randBool())
@@ -451,7 +451,7 @@ else
 		clHill,
 		scaleByMapSize(3, 15));
 
-RMS.SetProgress(45);
+Engine.SetProgress(45);
 
 var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
 createForests(
@@ -459,7 +459,7 @@ createForests(
 	avoidClasses(clPlayer, 16, clForest, 17, clWater, 5, clHill, 2, clGauls, 5, clPath, 1),
 	clForest,
 	forestTrees);
-RMS.SetProgress(50);
+Engine.SetProgress(50);
 
 log("Creating grass patches...");
 createLayeredPatches(
@@ -469,7 +469,7 @@ createLayeredPatches(
 	avoidClasses(clForest, 0, clPlayer, 10, clWater, 2, clDirt, 2, clHill, 1, clGauls, 5, clPath, 1),
 	scaleByMapSize(15, 45),
 	clDirt);
-RMS.SetProgress(55);
+Engine.SetProgress(55);
 
 log("Creating islands...");
 createAreas(
@@ -482,7 +482,7 @@ createAreas(
 	[avoidClasses(clIsland, 30), stayClasses (clWater, 10)],
 	scaleByMapSize(1, 4) * numPlayers
 );
-RMS.SetProgress(60);
+Engine.SetProgress(60);
 
 log("Creating island bumps...");
 createBumps(stayClasses(clIsland, 2), scaleByMapSize(50, 400), 1, 8, 4, 0, 3);
@@ -505,7 +505,7 @@ createObjectGroupsDeprecated(
 	[avoidClasses(clMetal, 10, clRock, 50), stayClasses(clIsland, 5)],
 	500, 1
 );
-RMS.SetProgress(65);
+Engine.SetProgress(65);
 
 log("Creating island towers...");
 createObjectGroupsDeprecated(
@@ -546,7 +546,7 @@ createObjectGroupsDeprecated(
 		[avoidClasses(clForest, 2, clPlayer, 12, clMetal, 6, clRock, 25, clWater, 4, clHill, 4, clGauls, 5, clPath, 1)],
 		500, 1
 	);
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 log("Creating decoratives...");
 for (let i = 0; i < 2; ++i)
@@ -581,7 +581,7 @@ for (let i = 0; i < 2; ++i)
 			avoidClasses(clWater, 4, clForest, 1, clPlayer, 16, clRock, 4, clMetal, 4, clHill, 4, clGauls, 5, clPath, 1) :
 			[stayClasses(clIsland, 4) , avoidClasses(clForest, 1, clRock, 4, clMetal, 4)]
 	);
-RMS.SetProgress(75);
+Engine.SetProgress(75);
 
 log("Creating fish...");
 createFood(
@@ -594,7 +594,7 @@ createFood(
 	[avoidClasses(clIsland, 2, clFood, 10, clPath, 1), stayClasses(clWater, 5)],
 	clFood
 );
-RMS.SetProgress(80);
+Engine.SetProgress(80);
 
 log("Creating huntable animals...");
 createFood(
@@ -631,7 +631,7 @@ createFood(
 	avoidClasses(clIsland, 2, clFood, 10, clWater, 5, clPlayer, 24, clHill, 2, clGauls, 5, clPath, 1),
 	clFood
 );
-RMS.SetProgress(85);
+Engine.SetProgress(85);
 
 log("Creating fruits...");
 createFood(
@@ -646,7 +646,7 @@ createFood(
 	avoidClasses(clWater, 5, clForest, 2, clPlayer, 16, clHill, 4, clFood, 10, clMetal, 4, clRock, 4, clGauls, 5, clPath, 1),
 	clFood
 );
-RMS.SetProgress(90);
+Engine.SetProgress(90);
 
 createStragglerTrees(
 	treeTypes,
@@ -659,7 +659,7 @@ createStragglerTrees(
 	[stayClasses(clIsland, 4), avoidClasses(clMetal, 4, clRock, 4, clTower, 4, clOutpost, 4)],
 	clForest,
 	stragglerTrees * 7);
-RMS.SetProgress(95);
+Engine.SetProgress(95);
 
 log("Creating animals on islands...");
 createFood(
@@ -676,7 +676,7 @@ createFood(
 	[avoidClasses(clRock, 4, clMetal, 4, clFood, 3, clForest, 1, clOutpost, 2, clTower, 2), stayClasses(clIsland, 4)],
 	clFood
 );
-RMS.SetProgress(98);
+Engine.SetProgress(98);
 
 log("Creating treasures...");
 for (let i = 0; i < randomTreasureCount; ++i)

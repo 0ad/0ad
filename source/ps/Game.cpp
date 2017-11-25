@@ -173,7 +173,6 @@ bool CGame::StartVisualReplay(const OsPath& replayPath)
 	debug_printf("Starting to replay %s\n", replayPath.string8().c_str());
 
 	m_IsVisualReplay = true;
-	ScriptInterface& scriptInterface = m_Simulation2->GetScriptInterface();
 
 	SetTurnManager(new CReplayTurnManager(*m_Simulation2, GetReplayLogger()));
 
@@ -186,6 +185,7 @@ bool CGame::StartVisualReplay(const OsPath& replayPath)
 	std::string line;
 	std::getline(*m_ReplayStream, line);
 
+	const ScriptInterface& scriptInterface = m_Simulation2->GetScriptInterface();
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 
@@ -203,7 +203,7 @@ bool CGame::StartVisualReplay(const OsPath& replayPath)
  **/
 void CGame::RegisterInit(const JS::HandleValue attribs, const std::string& savedState)
 {
-	ScriptInterface& scriptInterface = m_Simulation2->GetScriptInterface();
+	const ScriptInterface& scriptInterface = m_Simulation2->GetScriptInterface();
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 

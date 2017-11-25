@@ -11,10 +11,10 @@ function getPlayerTileCoordinates(playerIdx, teamIdx, fractionX, fractionZ)
 	return [playerAngle, fx, fz, round(fx), round(fz)];
 }
 
-RMS.LoadLibrary("rmgen");
-RMS.LoadLibrary("rmgen2");
-RMS.LoadLibrary("rmbiome");
-RMS.LoadLibrary("heightmap");
+Engine.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen2");
+Engine.LoadLibrary("rmbiome");
+Engine.LoadLibrary("heightmap");
 
 const g_InitialMines = 1;
 const g_InitialMineDistance = 14;
@@ -192,7 +192,7 @@ for (let i = 0; i < teams.length; ++i)
 	}
 }
 
-RMS.SetProgress(40);
+Engine.SetProgress(40);
 
 log("Creating expansion islands...");
 var landAreas = [];
@@ -278,7 +278,7 @@ for (let i = 0; i < numIslands; ++i)
 	landAreas = temp;
 }
 
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 log("Smoothing heightmap...");
 for (let i = 0; i < 5; ++i)
@@ -288,7 +288,7 @@ for (let i = 0; i < 5; ++i)
 unPaintTileClassBasedOnHeight(-10, 10, 3, clLand);
 paintTileClassBasedOnHeight(0, 5, 3, clLand);
 
-RMS.SetProgress(85);
+Engine.SetProgress(85);
 
 createBumps(avoidClasses(clPlayer, 20));
 
@@ -462,7 +462,7 @@ createObjectGroupsDeprecated(group, 0,
 	planetm * scaleByMapSize(13, 200)
 );
 
-RMS.SetProgress(95);
+Engine.SetProgress(95);
 
 log("Creating large grass tufts...");
 group = new SimpleGroup(
@@ -481,6 +481,6 @@ setSunRotation(randFloat(0, TWO_PI));
 setSunElevation(randFloat(PI/5, PI/3));
 setWaterWaviness(2);
 
-RMS.SetProgress(100);
+Engine.SetProgress(100);
 
 ExportMap();

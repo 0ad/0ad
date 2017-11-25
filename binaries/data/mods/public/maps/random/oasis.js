@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 const tSand = ["desert_sand_dunes_100", "desert_dirt_cracks","desert_sand_smooth", "desert_dirt_rough", "desert_dirt_rough_2", "desert_sand_smooth"];
 const tDune = ["desert_sand_dunes_50"];
@@ -189,7 +189,7 @@ for (let i = 0; i < numPlayers; ++i)
 			],
 			avoidClasses(clBaseResource, 0)));
 }
-RMS.SetProgress(20);
+Engine.SetProgress(20);
 
 log("Creating bumps...");
 createAreas(
@@ -226,7 +226,7 @@ createArea(
 		paintClass(clWater)
 	],
 	null);
-RMS.SetProgress(50);
+Engine.SetProgress(50);
 
 if (mapSize > 150 && randBool())
 {
@@ -264,13 +264,13 @@ createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 10, clForest, 1, clPlayer, 30, clMetal, 10,clBaseResource, 2, clRock, 10, clHill, 1),
 	scaleByMapSize(6,25), 100
 );
-RMS.SetProgress(65);
+Engine.SetProgress(65);
 
 log("Creating small decorative rocks...");
 group = new SimpleGroup( [new SimpleObject(aRock, 2,4, 0,2)], true, undefined );
 createObjectGroupsDeprecated(group, 0, avoidClasses(clWater, 3, clForest, 0, clPlayer, 10, clHill, 1, clFood, 20), 30, scaleByMapSize(10,50) );
 
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 log("Creating Camels...");
 group = new SimpleGroup(
@@ -281,7 +281,7 @@ createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 3, clForest, 0, clPlayer, 10, clHill, 1, clFood, 20),
 	1 * numPlayers, 50
 );
-RMS.SetProgress(75);
+Engine.SetProgress(75);
 
 log("Creating Gazelles...");
 group = new SimpleGroup(
@@ -292,7 +292,7 @@ createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 3, clForest, 0, clPlayer, 10, clHill, 1, clFood, 20),
 	1 * numPlayers, 50
 );
-RMS.SetProgress(85);
+Engine.SetProgress(85);
 
 log("Creating Oasis Animals...");
 for (var p = 0; p < scaleByMapSize(5,30); p++)
@@ -305,7 +305,7 @@ for (var p = 0; p < scaleByMapSize(5,30); p++)
 		[new SimpleObject(eLion, 1,2, 0,4),new SimpleObject(eLioness, 1,2, 2,4),new SimpleObject(eGazelle, 4,6, 1,5),new SimpleObject(eCamel, 1,2, 1,5)], true, clFood, animX,animY);
 	createObjectGroup(group, 0);
 }
-RMS.SetProgress(90);
+Engine.SetProgress(90);
 
 log("Creating bushes...");
 group = new SimpleGroup(

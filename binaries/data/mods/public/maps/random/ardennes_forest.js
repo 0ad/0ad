@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 InitMap();
 
@@ -71,7 +71,7 @@ createArea(
 	],
 	null);
 
-RMS.SetProgress(5);
+Engine.SetProgress(5);
 
 // Find all hills
 var noise0 = new Noise2D(20);
@@ -117,7 +117,7 @@ function playerNearness(x, z)
 	return 1;
 }
 
-RMS.SetProgress(10);
+Engine.SetProgress(10);
 
 for (var i=0; i < numPlayers; i++)
 {
@@ -198,7 +198,7 @@ for (let i = 0; i < numPlayers; ++i)
 		new ClumpPlacer(250, 0.95, 0.3, 0.1, Math.floor(playerX[i]), Math.floor(playerZ[i])),
 		paintClass(clPlayer));
 
-RMS.SetProgress(30);
+Engine.SetProgress(30);
 
 log("Creating hills...");
 for (let size of [scaleByMapSize(50, 800), scaleByMapSize(50, 400), scaleByMapSize(10, 30), scaleByMapSize(10, 30)])
@@ -284,7 +284,7 @@ for (let size of [scaleByMapSize(50, 800), scaleByMapSize(50, 400), scaleByMapSi
 	}
 }
 
-RMS.SetProgress(50);
+Engine.SetProgress(50);
 
 var explorableArea = {};
 explorableArea.points = [];
@@ -313,7 +313,7 @@ for (var ix = 0; ix < mapSize; ix++)
 	}
 }
 
-RMS.SetProgress(55);
+Engine.SetProgress(55);
 
 // Add some general noise - after placing height dependant trees
 for (var ix = 0; ix < mapSize; ix++)
@@ -329,7 +329,7 @@ for (var ix = 0; ix < mapSize; ix++)
 	}
 }
 
-RMS.SetProgress(60);
+Engine.SetProgress(60);
 
 log("Creating forests...");
 var [forestTrees, stragglerTrees] = getTreeCounts(400, 6000, 0.8);
@@ -362,7 +362,7 @@ createAreasInAreas(
 	[explorableArea]
 );
 
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 log("Creating grass patches...");
 for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
@@ -380,7 +380,7 @@ for (let size of [scaleByMapSize(20, 120)])
 		avoidClasses(clForest, 1, clHill, 2, clPlayer, 5),
 		scaleByMapSize(4, 12));
 
-RMS.SetProgress(75);
+Engine.SetProgress(75);
 
 log("Creating stone mines...");
 var group = new SimpleGroup([new SimpleObject(oStoneSmall, 1,2, 0,4), new SimpleObject(oStoneLarge, 0,1, 0,4)], true, clRock);
@@ -406,7 +406,7 @@ createObjectGroupsByAreasDeprecated(group, 0,
 	[explorableArea]
 );
 
-RMS.SetProgress(80);
+Engine.SetProgress(80);
 
 log("Creating wildlife...");
 group = new SimpleGroup(
@@ -439,7 +439,7 @@ createObjectGroupsByAreasDeprecated(group, 0,
 	[explorableArea]
 );
 
-RMS.SetProgress(85);
+Engine.SetProgress(85);
 
 log("Creating berry bush...");
 group = new SimpleGroup(
@@ -469,7 +469,7 @@ createObjectGroupsByAreasDeprecated(
 	[explorableArea]
 );
 
-RMS.SetProgress(90);
+Engine.SetProgress(90);
 
 log("Creating straggler trees...");
 var types = [oOak, oOakLarge, oPine, oAleppoPine];
@@ -482,7 +482,7 @@ for (let type of types)
 		num, 20,
 		[explorableArea]);
 
-RMS.SetProgress(95);
+Engine.SetProgress(95);
 
 log("Creating grass tufts...");
 group = new SimpleGroup(

@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -89,7 +89,7 @@ QUERYHANDLER(GenerateMap)
 		InitGame();
 
 		// Random map
-		ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
+		const ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
 		JSContext* cx = scriptInterface.GetContext();
 		JSAutoRequest rq(cx);
 
@@ -116,7 +116,7 @@ QUERYHANDLER(GenerateMap)
 
 		InitGame();
 
-		ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
+		const ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
 		JSContext* cx = scriptInterface.GetContext();
 		JSAutoRequest rq(cx);
 
@@ -149,7 +149,7 @@ MESSAGEHANDLER(LoadMap)
 {
 	InitGame();
 
-	ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
+	const ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 

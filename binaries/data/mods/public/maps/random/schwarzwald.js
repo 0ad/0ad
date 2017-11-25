@@ -1,5 +1,5 @@
-RMS.LoadLibrary('rmgen');
-RMS.LoadLibrary("heightmap");
+Engine.LoadLibrary('rmgen');
+Engine.LoadLibrary("heightmap");
 
 log('Initializing map...');
 
@@ -136,7 +136,7 @@ for (var i = 0; i < 5; i++)
 	globalSmoothHeightmap();
 rescaleHeightmap(heightRange.min, heightRange.max);
 
-RMS.SetProgress(50);
+Engine.SetProgress(50);
 
 //////////
 // Setup height limit
@@ -202,7 +202,7 @@ for (var i=0; i < numPlayers; i++)
 distributeEntitiesByHeight({ 'min': heighLimits[3], 'max': ((heighLimits[4] + heighLimits[3]) / 2) }, startLocations, 40, [templateStoneMine, templateMetalMine]);
 distributeEntitiesByHeight({ 'min': ((heighLimits[5] + heighLimits[6]) / 2), 'max': heighLimits[7] }, startLocations, 40, [templateStoneMine, templateMetalMine]);
 
-RMS.SetProgress(50);
+Engine.SetProgress(50);
 
 //place water & open terrain textures and assign TileClasses
 log("Painting textures...");
@@ -220,7 +220,7 @@ createArea(
 
 paintTileClassBasedOnHeight(heightRange.min,  heighLimits[2], 1, clWater);
 
-RMS.SetProgress(60);
+Engine.SetProgress(60);
 
 log("Placing paths...");
 
@@ -302,7 +302,7 @@ for (var i = 0; i < maxI; i++)
 	}
 }
 
-RMS.SetProgress(75);
+Engine.SetProgress(75);
 
 log("Creating decoration...");
 createDecoration
@@ -323,7 +323,7 @@ createDecoration
  avoidClasses(clForest, 1, clPlayer, 0, clPath, 3, clWater, 3)
 );
 
-RMS.SetProgress(80);
+Engine.SetProgress(80);
 
 log("Growing fish...");
 createFood
@@ -337,7 +337,7 @@ createFood
  [avoidClasses(clFood, 5), stayClasses(clWater, 4)]
 );
 
-RMS.SetProgress(85);
+Engine.SetProgress(85);
 
 log("Planting reeds...");
 var types = [aReeds];
@@ -349,7 +349,7 @@ for (let type of types)
 		scaleByMapSize(1, 2) * 1000,
 		1000);
 
-RMS.SetProgress(90);
+Engine.SetProgress(90);
 
 log("Planting trees...");
 for (var x = 0; x < mapSize; x++)
@@ -386,6 +386,6 @@ for (var x = 0; x < mapSize; x++)
 	}
 }
 
-RMS.SetProgress(100);
+Engine.SetProgress(100);
 
 ExportMap();

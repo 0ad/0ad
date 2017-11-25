@@ -810,9 +810,10 @@ m.GameState.prototype.findTrainers = function(template)
  */
 m.GameState.prototype.findBuilder = function(template)
 {
+	let civ = this.getPlayerCiv();
 	for (let ent of this.getOwnUnits().values())
 	{
-		let buildable = ent.buildableEntities();
+		let buildable = ent.buildableEntities(civ);
 		if (buildable && buildable.indexOf(template) !== -1)
 			return ent;
 	}

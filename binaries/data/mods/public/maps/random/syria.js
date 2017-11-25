@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 //terrain textures
 const tMainDirt = ["desert_dirt_rocks_1", "desert_dirt_cracks"];
@@ -65,7 +65,7 @@ for (let i = 0; i < numPlayers; ++i)
 			paintClass(clGrass)
 		]);
 }
-RMS.SetProgress(10);
+Engine.SetProgress(10);
 
 for (var i = 0; i < numPlayers; i++)
 {
@@ -139,7 +139,7 @@ for (var i = 0; i < numPlayers; i++)
 	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
 }
 
-RMS.SetProgress(20);
+Engine.SetProgress(20);
 
 log("Creating bumps...");
 createAreas(
@@ -159,7 +159,7 @@ createAreas(
 	avoidClasses(clPlayer, 3, clGrass, 1, clHill, 10),
 	scaleByMapSize(1, 3) * numPlayers * 3);
 
-RMS.SetProgress(25);
+Engine.SetProgress(25);
 
 log("Creating forests...");
 var [forestTrees, stragglerTrees] = getTreeCounts(400, 2000, 0.7);
@@ -183,7 +183,7 @@ for (let type of types)
 		avoidClasses(clPlayer, 1, clGrass, 1, clForest, 10, clHill, 1),
 		num);
 
-RMS.SetProgress(40);
+Engine.SetProgress(40);
 
 log("Creating dirt patches...");
 for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
@@ -192,7 +192,7 @@ for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8,
 		new LayeredPainter([tSecondaryDirt, tDirt], [1]),
 		avoidClasses(clHill, 0, clForest, 0, clPlayer, 8, clGrass, 1),
 		scaleByMapSize(50, 90));
-RMS.SetProgress(60);
+Engine.SetProgress(60);
 
 log("Creating big patches...");
 for (let size of [scaleByMapSize(6, 30), scaleByMapSize(10, 50), scaleByMapSize(16, 70)])
@@ -201,7 +201,7 @@ for (let size of [scaleByMapSize(6, 30), scaleByMapSize(10, 50), scaleByMapSize(
 		new LayeredPainter([tSecondaryDirt, tDirt], [1]),
 		avoidClasses(clHill, 0, clForest, 0, clPlayer, 8, clGrass, 1),
 		scaleByMapSize(30, 90));
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 log("Creating stone mines...");
 var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4), new SimpleObject(oStoneLarge, 1, 1, 0,4), new RandomObject(aBushes, 2, 4, 0, 2)], true, clRock);
@@ -245,7 +245,7 @@ createObjectGroupsDeprecated(
 	avoidClasses(clForest, 0, clPlayer, 0, clHill, 0),
 	scaleByMapSize(50, 500), 50
 );
-RMS.SetProgress(80);
+Engine.SetProgress(80);
 
 log("Creating gazelle...");
 group = new SimpleGroup(
@@ -276,7 +276,7 @@ createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clForest, 0, clPlayer, 1, clHill, 1, clFood, 20, clGrass, 2),
 	3 * numPlayers, 50
 );
-RMS.SetProgress(85);
+Engine.SetProgress(85);
 
 createStragglerTrees(
 	[oPalm, oTamarix, oPine],

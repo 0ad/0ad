@@ -27,19 +27,14 @@ Builder.prototype.Serialize = null; // we have no dynamic state to save
 Builder.prototype.GetEntitiesList = function()
 {
 	let string = this.template.Entities._string;
-
 	if (!string)
 		return [];
 
-	let cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
-	if (cmpIdentity)
-		string = string.replace(/\{civ\}/g, cmpIdentity.GetCiv());
-
-	let entities = string.split(/\s+/);
-
 	let cmpPlayer = QueryOwnerInterface(this.entity);
 	if (!cmpPlayer)
-		return entities;
+		return [];
+
+	let entities = string.replace(/\{civ\}/g, cmpPlayer.GetCiv()).split(/\s+/);
 
 	let disabledTemplates = cmpPlayer.GetDisabledTemplates();
 

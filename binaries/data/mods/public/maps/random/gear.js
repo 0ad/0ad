@@ -1,5 +1,5 @@
-RMS.LoadLibrary("rmgen");
-RMS.LoadLibrary("rmbiome");
+Engine.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmbiome");
 
 TILE_CENTERED_HEIGHT_MAP = true;
 
@@ -138,7 +138,7 @@ for (var i = 0; i < numPlayers; i++)
 	placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, radius);
 }
 
-RMS.SetProgress(20);
+Engine.SetProgress(20);
 
 var split = 1;
 if (mapSize == 128 && numPlayers <= 2)
@@ -278,7 +278,7 @@ createForests(
  clForest,
  forestTrees);
 
-RMS.SetProgress(50);
+Engine.SetProgress(50);
 
 log("Creating dirt patches...");
 createLayeredPatches(
@@ -296,7 +296,7 @@ createPatches(
  avoidClasses(clWater, 3, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12),
  scaleByMapSize(15, 45),
  clDirt);
-RMS.SetProgress(55);
+Engine.SetProgress(55);
 
 log("Creating stone mines...");
 createMines(
@@ -324,7 +324,7 @@ createObjectGroupsDeprecated(
 	scaleByMapSize(400, 2000),
 	100);
 
-RMS.SetProgress(65);
+Engine.SetProgress(65);
 
 var planetm = 1;
 
@@ -349,7 +349,7 @@ createDecoration
  avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0)
 );
 
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 createFood
 (

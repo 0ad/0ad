@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 const tOceanRockDeep = "medit_sea_coral_deep";
 const tOceanCoral = "medit_sea_coral_plants";
@@ -216,7 +216,7 @@ for (let i = 0; i < numIslands; ++i)
 
 		++nPlayer;
 	}
-RMS.SetProgress(20);
+Engine.SetProgress(20);
 
 log("Creating bumps...");
 createAreasInAreas(
@@ -226,7 +226,7 @@ createAreasInAreas(
 	scaleByMapSize(25, 75),15,
 	areas);
 
-RMS.SetProgress(34);
+Engine.SetProgress(34);
 
 log("Creating hills...");
 createAreasInAreas(
@@ -240,7 +240,7 @@ createAreasInAreas(
 	scaleByMapSize(5, 30), 15,
 	areas);
 
-RMS.SetProgress(38);
+Engine.SetProgress(38);
 
 for (var ix = 0; ix < mapSize; ix++)
 	for (var iz = 0; iz < mapSize; iz++)
@@ -266,7 +266,7 @@ for (let type of forestTypes)
 		scaleByMapSize(10, 64),
 		20,
 		areas);
-RMS.SetProgress(42);
+Engine.SetProgress(42);
 
 log("Creating stone mines...");
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clRock);
@@ -274,7 +274,7 @@ createObjectGroupsByAreasDeprecated(group, 0,
 	[avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 5, clRock, 6)],
 	scaleByMapSize(4,16), 200, areas
 );
-RMS.SetProgress(46);
+Engine.SetProgress(46);
 
 log("Creating small stone mines...");
 var group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3)], true, clRock);
@@ -282,7 +282,7 @@ createObjectGroupsByAreasDeprecated(group, 0,
 	[avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 5, clRock, 2)],
 	scaleByMapSize(4,16), 200, areas
 );
-RMS.SetProgress(50);
+Engine.SetProgress(50);
 
 log("Creating metal mines...");
 group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,4)], true, clMetal);
@@ -290,7 +290,7 @@ createObjectGroupsByAreasDeprecated(group, 0,
 	[avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 5, clMetal, 6, clRock, 6)],
 	scaleByMapSize(4,16), 200, areas
 );
-RMS.SetProgress(54);
+Engine.SetProgress(54);
 
 log("Creating shrub patches...");
 for (let size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)])
@@ -304,7 +304,7 @@ for (let size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5
 		scaleByMapSize(4, 16),
 		20,
 		areas);
-RMS.SetProgress(58);
+Engine.SetProgress(58);
 
 log("Creating grass patches...");
 for (let size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)])
@@ -318,7 +318,7 @@ for (let size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5
 		scaleByMapSize(4, 16),
 		20,
 		areas);
-RMS.SetProgress(62);
+Engine.SetProgress(62);
 
 log("Creating straggler trees...");
 for (let tree of [oCarob, oBeech, oLombardyPoplar, oLombardyPoplar, oPine])
@@ -328,7 +328,7 @@ for (let tree of [oCarob, oBeech, oLombardyPoplar, oLombardyPoplar, oPine])
 		avoidClasses(clWater, 2, clForest, 2, clCity, 3, clBaseResource, 4, clRock, 6, clMetal, 6, clPlayer, 1, clHill, 1),
 		scaleByMapSize(2, 38), 50, areas
 	);
-RMS.SetProgress(66);
+Engine.SetProgress(66);
 
 log("Create straggler cypresses...");
 group = new SimpleGroup(
@@ -339,7 +339,7 @@ createObjectGroupsByAreasDeprecated(group, 0,
 	avoidClasses(clWater, 2, clForest, 2, clCity, 3, clBaseResource, 4, clRock, 6, clMetal, 6, clPlayer, 1, clHill, 1),
 	scaleByMapSize(5, 75), 50, areas
 );
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 log("Create straggler date palms...");
 group = new SimpleGroup(
@@ -350,7 +350,7 @@ createObjectGroupsByAreasDeprecated(group, 0,
 	avoidClasses(clWater, 2, clForest, 1, clCity, 0, clBaseResource, 4, clRock, 6, clMetal, 6, clPlayer, 1, clHill, 1),
 	scaleByMapSize(5, 75), 50, areas
 );
-RMS.SetProgress(74);
+Engine.SetProgress(74);
 
 log("Creating rocks...");
 group = new SimpleGroup(
@@ -361,7 +361,7 @@ createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 0, clCity, 0),
 	scaleByMapSize(30, 180), 50
 );
-RMS.SetProgress(78);
+Engine.SetProgress(78);
 
 log("Creating deer...");
 group = new SimpleGroup(
@@ -372,7 +372,7 @@ createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 5, clForest, 1, clHill, 1, clCity, 10, clMetal, 6, clRock, 2, clFood, 8),
 	3 * numPlayers, 50
 );
-RMS.SetProgress(82);
+Engine.SetProgress(82);
 
 log("Creating berry bushes...");
 group = new SimpleGroup([new SimpleObject(oBerryBush, 5,7, 0,3)], true, clFood);
@@ -380,7 +380,7 @@ createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 2, clForest, 1, clHill, 1, clCity, 10, clMetal, 6, clRock, 2, clFood, 8),
 	1.5 * numPlayers, 100
 );
-RMS.SetProgress(86);
+Engine.SetProgress(86);
 
 log("Creating Fish...");
 group = new SimpleGroup([new SimpleObject(oFish, 1,1, 0,3)], true, clFood);
@@ -388,7 +388,7 @@ createObjectGroupsDeprecated(group, 0,
 	[stayClasses(clWater,1),avoidClasses(clFood, 8)],
 	scaleByMapSize(40,200), 100
 );
-RMS.SetProgress(90);
+Engine.SetProgress(90);
 
 log("Creating Whales...");
 group = new SimpleGroup([new SimpleObject(oWhale, 1,1, 0,3)], true, clFood);
@@ -396,7 +396,7 @@ createObjectGroupsDeprecated(group, 0,
 	[stayClasses(clWater,1),avoidClasses(clFood, 8, clPlayer,4,clIsland,4)],
 	scaleByMapSize(10,40), 100
 );
-RMS.SetProgress(94);
+Engine.SetProgress(94);
 
 log("Creating shipwrecks...");
 group = new SimpleGroup([new SimpleObject(oShipwreck, 1,1, 0,3)], true, clFood);
@@ -404,7 +404,7 @@ createObjectGroupsDeprecated(group, 0,
 	[stayClasses(clWater,1),avoidClasses(clFood, 8)],
 	scaleByMapSize(6,16), 100
 );
-RMS.SetProgress(98);
+Engine.SetProgress(98);
 
 log("Creating shipwreck debris...");
 group = new SimpleGroup([new SimpleObject(oShipDebris, 1,2, 0,4)], true, clFood);
@@ -412,7 +412,7 @@ createObjectGroupsDeprecated(group, 0,
 	[stayClasses(clWater,1),avoidClasses(clFood, 8)],
 	scaleByMapSize(10,20), 100
 );
-RMS.SetProgress(99);
+Engine.SetProgress(99);
 
 setSkySet("sunny");
 setWaterColor(0.2,0.294,0.49);

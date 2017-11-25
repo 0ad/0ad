@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 const tGrass = "savanna_grass_a";
 const tForestFloor = "savanna_forestfloor_a";
@@ -129,7 +129,7 @@ for (var i = 0; i < numPlayers; i++)
 	placeDefaultDecoratives(fx, fz, aGrassShort, clBaseResource, radius);
 }
 
-RMS.SetProgress(20);
+Engine.SetProgress(20);
 
 log ("Creating rivers...");
 for (var m = 0; m < numPlayers; m++)
@@ -269,7 +269,7 @@ for (let type of types)
 		avoidClasses(clPlayer, 20, clForest, 10, clHill, 0, clWater, 2),
 		num
 	);
-RMS.SetProgress(50);
+Engine.SetProgress(50);
 
 log("Creating dirt patches...");
 for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
@@ -291,7 +291,7 @@ for (let size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5
 		new TerrainPainter(tGrassPatch),
 		avoidClasses(clWater, 3, clForest, 0, clHill, 0, clPlayer, 20),
 		scaleByMapSize(15, 45));
-RMS.SetProgress(55);
+Engine.SetProgress(55);
 
 log("Creating stone mines...");
 var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4), new SimpleObject(oStoneLarge, 1, 1, 0, 4)], true, clRock);
@@ -314,7 +314,7 @@ createObjectGroupsDeprecated(group, 0,
 	scaleByMapSize(4,16), 100
 );
 
-RMS.SetProgress(65);
+Engine.SetProgress(65);
 
 log("Creating small decorative rocks...");
 group = new SimpleGroup(
@@ -338,7 +338,7 @@ createObjectGroupsDeprecated(
 	scaleByMapSize(8, 131), 50
 );
 
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 log("Creating wildebeest...");
 group = new SimpleGroup(
@@ -350,7 +350,7 @@ createObjectGroupsDeprecated(group, 0,
 	3 * numPlayers, 50
 );
 
-RMS.SetProgress(75);
+Engine.SetProgress(75);
 
 log("Creating gazelle...");
 group = new SimpleGroup(
@@ -412,7 +412,7 @@ createObjectGroupsDeprecated(group, 0,
 	randIntInclusive(1, 4) * numPlayers + 2, 50
 );
 
-RMS.SetProgress(85);
+Engine.SetProgress(85);
 
 createStragglerTrees(
 	[oBaobab, oBaobab, oBaobab, oFig],
@@ -430,7 +430,7 @@ createObjectGroupsDeprecated(group, 0,
 	planetm * scaleByMapSize(13, 200)
 );
 
-RMS.SetProgress(90);
+Engine.SetProgress(90);
 
 log("Creating large grass tufts...");
 group = new SimpleGroup(
@@ -441,7 +441,7 @@ createObjectGroupsDeprecated(group, 0,
 	planetm * scaleByMapSize(13, 200)
 );
 
-RMS.SetProgress(95);
+Engine.SetProgress(95);
 
 log("Creating bushes...");
 group = new SimpleGroup(

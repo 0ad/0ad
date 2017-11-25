@@ -19,7 +19,6 @@
 #define INCLUDED_TEMPLATELOADER
 
 #include "simulation2/system/ParamNode.h"
-#include "scriptinterface/ScriptInterface.h"
 
 enum ETemplatesType
 {

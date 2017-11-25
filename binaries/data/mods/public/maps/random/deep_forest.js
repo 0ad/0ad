@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 InitMap();
 
@@ -70,7 +70,7 @@ var resourcePerPlayer = [templateStone, templateMetalMine];
 var maxTreeDensity = min(256 * (192 + 8 * numPlayers) / (mapSize * mapSize), 1); // Has to be tweeked but works ok
 var bushChance = 1/3; // 1 means 50% chance in deepest wood, 0.5 means 25% chance in deepest wood
 
-RMS.SetProgress(2);
+Engine.SetProgress(2);
 
 // Place bases
 for (var i=0; i < numPlayers; i++)
@@ -102,7 +102,7 @@ for (var i=0; i < numPlayers; i++)
 	}
 }
 
-RMS.SetProgress(10);
+Engine.SetProgress(10);
 
 // Place paths
 var doublePaths = true;
@@ -176,7 +176,7 @@ for (var i = 0; i < maxI; i++)
 	}
 }
 
-RMS.SetProgress(50);
+Engine.SetProgress(50);
 
 // Place expansion resources
 for (var i=0; i < numPlayers; i++)
@@ -196,7 +196,7 @@ for (var i=0; i < numPlayers; i++)
 	}
 }
 
-RMS.SetProgress(60);
+Engine.SetProgress(60);
 
 // Place eyecandy
 placeObject(mapCenterX, mapCenterZ, templateEC, 0, randFloat(0, 2*PI));
@@ -240,6 +240,6 @@ for (var x = 0; x < mapSize; x++)
 		setHeight(x, z, getHeight(x, z) + hVarMiddleHill + hVarHills + 1);
 	}
 }
-RMS.SetProgress(95);
+Engine.SetProgress(95);
 
 ExportMap();

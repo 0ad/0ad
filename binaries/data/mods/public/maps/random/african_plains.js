@@ -1,4 +1,4 @@
-RMS.LoadLibrary("rmgen");
+Engine.LoadLibrary("rmgen");
 
 var tPrimary = ["savanna_grass_a"];
 var tForestFloor = "savanna_forestfloor_a";
@@ -42,7 +42,7 @@ InitMap();
 
 const numPlayers = getNumPlayers();
 const mapSize = getMapSize();
-RMS.SetProgress(20);
+Engine.SetProgress(20);
 
 var clPlayer = createTileClass();
 var clHill = createTileClass();
@@ -122,10 +122,10 @@ for (var i = 0; i < numPlayers; ++i)
 	);
 	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
 }
-RMS.SetProgress(20);
+Engine.SetProgress(20);
 
 createHills([tDirt2, tCliff, tGrassShrubs], avoidClasses(clPlayer, 35, clForest, 20, clHill, 20, clWater, 2), clHill, scaleByMapSize(5, 8));
-RMS.SetProgress(30);
+Engine.SetProgress(30);
 
 var lakeAreas = [];
 var playerConstraint = new AvoidTileClassConstraint(clPlayer, 20);
@@ -147,7 +147,7 @@ createAreas(
 	avoidClasses(clPlayer, 22, clWater, 8, clHill, 2),
 	scaleByMapSize(2, 5)
 );
-RMS.SetProgress(45);
+Engine.SetProgress(45);
 
 paintTerrainBasedOnHeight(3, floor(scaleByMapSize(20, 40)), 0, tCliff);
 paintTerrainBasedOnHeight(floor(scaleByMapSize(20, 40)), 100, 3, tGrass);
@@ -185,7 +185,7 @@ createPatches(
 	avoidClasses(clWater, 3, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12),
 	scaleByMapSize(15, 45),
 	clDirt);
-RMS.SetProgress(60);
+Engine.SetProgress(60);
 
 log("Creating stone mines...");
 createMines(
@@ -204,7 +204,7 @@ createMines(
 	avoidClasses(clWater, 4, clForest, 4, clPlayer, 20, clMetal, 18, clRock, 5, clHill, 4),
 	clMetal
 );
-RMS.SetProgress(70);
+Engine.SetProgress(70);
 
 createDecoration(
 	[
@@ -217,7 +217,7 @@ createDecoration(
 	],
 	avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0)
 );
-RMS.SetProgress(75);
+Engine.SetProgress(75);
 
 log("Creating giraffes...");
 var group = new SimpleGroup(
@@ -296,7 +296,7 @@ createFood(
 	],
 	[avoidClasses(clFood, 20), stayClasses(clWater, 6)],
 	clFood);
-RMS.SetProgress(85);
+Engine.SetProgress(85);
 
 createStragglerTrees(
 	[oBaobab],

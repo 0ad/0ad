@@ -13,17 +13,25 @@ function m.add_includes(lib, alternative_cmd)
 		result = os_capture(alternative_cmd)
 	end
 
+	-- Small trick: delete the space after -include so that we can detect
+	-- which files have to be force-included without difficulty.
+	result = result:gsub("%-include +(%g+)", "-include%1")
+
 	local dirs = {}
+	local files = {}
 	local options = {}
 	for w in string.gmatch(result, "[^' ']+") do
 		if string.sub(w,1,2) == "-I" then
 			table.insert(dirs, string.sub(w,3))
+		elseif string.sub(w,1,8) == "-include" then
+			table.insert(files, string.sub(w,9))
 		else
 			table.insert(options, w)
 		end
 	end
 
 	sysincludedirs(dirs)
+	forceincludes(files)
 	buildoptions(options)
 end
 
