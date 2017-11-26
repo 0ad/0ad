@@ -955,6 +955,10 @@ var g_PlayerMiscElements = {
 		"onPress": (playerIdx) => function() {
 			openAIConfig(playerIdx);
 		},
+		"tooltip": (playerIdx) => sprintf(translate("Configure AI: %(name)s - %(difficulty)s."), {
+			"name": translateAIName(g_GameAttributes.settings.PlayerData[playerIdx].AI),
+			"difficulty": translateAIDifficulty(g_GameAttributes.settings.PlayerData[playerIdx].AIDiff)
+		}),
 	},
 };
 
