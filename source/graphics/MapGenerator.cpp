@@ -105,7 +105,6 @@ bool CMapGeneratorWorker::Run()
 	m_ScriptInterface->RegisterFunction<void, JS::HandleValue, CMapGeneratorWorker::ExportMap>("ExportMap");
 	m_ScriptInterface->RegisterFunction<void, int, CMapGeneratorWorker::SetProgress>("SetProgress");
 	m_ScriptInterface->RegisterFunction<void, CMapGeneratorWorker::MaybeGC>("MaybeGC");
-	m_ScriptInterface->RegisterFunction<std::vector<std::string>, CMapGeneratorWorker::GetCivData>("GetCivData");
 	m_ScriptInterface->RegisterFunction<CParamNode, std::string, CMapGeneratorWorker::GetTemplate>("GetTemplate");
 	m_ScriptInterface->RegisterFunction<bool, std::string, CMapGeneratorWorker::TemplateExists>("TemplateExists");
 	m_ScriptInterface->RegisterFunction<std::vector<std::string>, std::string, bool, CMapGeneratorWorker::FindTemplates>("FindTemplates");
@@ -195,39 +194,6 @@ void CMapGeneratorWorker::MaybeGC(ScriptInterface::CxPrivate* pCxPrivate)
 {
 	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
 	self->m_ScriptInterface->MaybeGC();
-}
-
-std::vector<std::string> CMapGeneratorWorker::GetCivData(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
-{
-	VfsPath path(L"simulation/data/civs/");
-	VfsPaths pathnames;
-
-	std::vector<std::string> data;
-
-	// Load all JSON files in civs directory
-	Status ret = vfs::GetPathnames(g_VFS, path, L"*.json", pathnames);
-	if (ret == INFO::OK)
-	{
-		for (const VfsPath& p : pathnames)
-		{
-			// Load JSON file
-			CVFSFile file;
-			PSRETURN ret = file.Load(g_VFS, p);
-			if (ret != PSRETURN_OK)
-				LOGERROR("CMapGeneratorWorker::GetCivData: Failed to load file '%s': %s", p.string8(), GetErrorString(ret));
-			else
-				data.push_back(file.DecodeUTF8()); // assume it's UTF-8
-		}
-	}
-	else
-	{
-		// Some error reading directory
-		wchar_t error[200];
-		LOGERROR("CMapGeneratorWorker::GetCivData: Error reading directory '%s': %s", path.string8(), utf8_from_wstring(StatusDescription(ret, error, ARRAY_SIZE(error))));
-	}
-
-	return data;
-
 }
 
 CParamNode CMapGeneratorWorker::GetTemplate(ScriptInterface::CxPrivate* pCxPrivate, const std::string& templateName)

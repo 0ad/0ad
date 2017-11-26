@@ -37,6 +37,21 @@ function getJSONFileList(pathname)
 		filename => filename.substring(pathname.length, filename.length - 5));
 }
 
+/**
+ * Returns translated history and gameplay data of all civs, optionally including a mock gaia civ.
+ */
+function loadCivData(selectableOnly, gaia)
+{
+	let civData = loadCivFiles(selectableOnly);
+
+	translateObjectKeys(civData, ["Name", "Description", "History", "Special"]);
+
+	if (gaia)
+		civData.gaia = { "Code": "gaia", "Name": translate("Gaia") };
+
+	return deepfreeze(civData);
+}
+
 // A sorting function for arrays of objects with 'name' properties, ignoring case
 function sortNameIgnoreCase(x, y)
 {

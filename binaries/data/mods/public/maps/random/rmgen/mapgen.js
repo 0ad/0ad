@@ -12,21 +12,8 @@ var g_Camera = {
 	"Declination": 0.523599
 };
 
-var g_CivData = {};
-
 function InitMap()
 {
-	// Get civ data as array of JSON strings
-	var data = Engine.GetCivData();
-	if (!data || !data.length)
-		throw new Error("InitMapGen: error reading civ data");
-
-	for (var i = 0; i < data.length; ++i)
-	{
-		var civData = JSON.parse(data[i]);
-		g_CivData[civData.Code] = civData;
-	}
-
 	log("Creating new map...");
 	g_Map = new Map(g_MapSettings.Size, g_MapSettings.BaseHeight);
 	initTerrain(g_MapSettings.BaseTerrain);

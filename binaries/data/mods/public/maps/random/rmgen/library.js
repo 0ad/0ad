@@ -21,6 +21,8 @@ const MAX_HEIGHT = MAX_HEIGHT_RANGE - SEA_LEVEL;
 // Default angle for buildings
 const BUILDING_ORIENTATION = - PI / 4;
 
+const g_CivData = deepfreeze(loadCivFiles(false));
+
 function fractionToTiles(f)
 {
 	return g_Map.size * f;
