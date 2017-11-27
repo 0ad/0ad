@@ -248,73 +248,68 @@ createMines(
 );
 Engine.SetProgress(65);
 
-createDecoration
-(
- [[new SimpleObject(aRockMedium, 1,3, 0,1)],
-  [new SimpleObject(aRockLarge, 1,2, 0,1), new SimpleObject(aRockMedium, 1,3, 0,2)],
-  [new SimpleObject(aGrassShort, 1,2, 0,1, -PI/8,PI/8)],
-  [new SimpleObject(aGrass, 2,4, 0,1.8, -PI/8,PI/8), new SimpleObject(aGrassShort, 3,6, 1.2,2.5, -PI/8,PI/8)],
-  [new SimpleObject(aBushMedium, 1,2, 0,2), new SimpleObject(aBushSmall, 2,4, 0,2)]
- ],
- [
-  scaleByMapSize(16, 262),
-  scaleByMapSize(8, 131),
-  scaleByMapSize(13, 200),
-  scaleByMapSize(13, 200),
-  scaleByMapSize(13, 200)
- ],
- [avoidClasses(clHill, 1, clPlayer, 1, clDirt, 1, clRiver, 1), stayClasses(clLand, 6)]
-);
+createDecoration(
+	[
+		[new SimpleObject(aRockMedium, 1, 3, 0, 1)],
+		[new SimpleObject(aRockLarge, 1, 2, 0, 1), new SimpleObject(aRockMedium, 1, 3, 0, 2)],
+		[new SimpleObject(aGrassShort, 1, 2, 0, 1)],
+		[new SimpleObject(aGrass, 2, 4, 0, 1.8), new SimpleObject(aGrassShort, 3, 6, 1.2, 2.5)],
+		[new SimpleObject(aBushMedium, 1, 2, 0, 2), new SimpleObject(aBushSmall, 2, 4, 0, 2)]
+	],
+	[
+		scaleByMapSize(16, 262),
+		scaleByMapSize(8, 131),
+		scaleByMapSize(13, 200),
+		scaleByMapSize(13, 200),
+		scaleByMapSize(13, 200)
+	],
+	[avoidClasses(clHill, 1, clPlayer, 1, clDirt, 1, clRiver, 1), stayClasses(clLand, 6)]);
 
 log("Create water decoration in the shallow parts");
-createDecoration
-(
- [[new SimpleObject(aReeds, 1,3, 0,1)],
-  [new SimpleObject(aLillies, 1,2, 0,1)]
- ],
- [
-  scaleByMapSize(800, 12800),
-  scaleByMapSize(800, 12800)
- ],
- stayClasses(clShallow, 0)
-);
+createDecoration(
+	[
+		[new SimpleObject(aReeds, 1, 3, 0, 1)],
+		[new SimpleObject(aLillies, 1, 2, 0, 1)]
+	],
+	[
+		scaleByMapSize(800, 12800),
+		scaleByMapSize(800, 12800)
+	],
+	stayClasses(clShallow, 0));
 
 Engine.SetProgress(70);
 
-createFood
-(
- [
-  [new SimpleObject(oDeer, 5,7, 0,4)],
-  [new SimpleObject(oSheep, 2,3, 0,2)]
- ],
- [
-  3 * numPlayers,
-  3 * numPlayers
- ],
- [avoidClasses(clForest, 0, clPlayer, 20, clHill, 1, clFood, 20, clRiver, 1), stayClasses(clLand, 3)]
-);
+createFood(
+	[
+		[new SimpleObject(oDeer, 5, 7, 0, 4)],
+		[new SimpleObject(oSheep, 2, 3, 0, 2)]
+	],
+	[
+		3 * numPlayers,
+		3 * numPlayers
+	],
+	[avoidClasses(clForest, 0, clPlayer, 20, clHill, 1, clFood, 20, clRiver, 1), stayClasses(clLand, 3)],
+	clFood);
 
-createFood
-(
- [
-  [new SimpleObject(oBerryBush, 5,7, 0,4)]
- ],
- [
-  randIntInclusive(1, 4) * numPlayers + 2
- ],
- [avoidClasses(clForest, 0, clPlayer, 20, clHill, 1, clFood, 10, clRiver, 1), stayClasses(clLand, 3)]
-);
+createFood(
+	[
+		[new SimpleObject(oBerryBush, 5, 7, 0, 4)]
+	],
+	[
+		randIntInclusive(1, 4) * numPlayers + 2
+	],
+	[avoidClasses(clForest, 0, clPlayer, 20, clHill, 1, clFood, 10, clRiver, 1), stayClasses(clLand, 3)],
+	clFood);
 
-createFood
-(
- [
-  [new SimpleObject(oFish, 2,3, 0,2)]
- ],
- [
-  25 * numPlayers
- ],
- avoidClasses(clLand, 2, clRiver, 1)
-);
+createFood(
+	[
+		[new SimpleObject(oFish, 2, 3, 0, 2)]
+	],
+	[
+		25 * numPlayers
+	],
+	avoidClasses(clLand, 2, clRiver, 1),
+	clFood);
 
 Engine.SetProgress(85);
 

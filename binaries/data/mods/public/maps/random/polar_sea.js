@@ -215,10 +215,12 @@ Engine.SetProgress(75);
 
 createDecoration(
 	[
-		[new SimpleObject(aRockMedium, 1,3, 0,1)],
 		[
-			new SimpleObject(aRockLarge, 1,2, 0,1),
-			new SimpleObject(aRockMedium, 1,3, 0,2)
+			new SimpleObject(aRockMedium, 1, 3, 0, 1)
+		],
+		[
+			new SimpleObject(aRockLarge, 1, 2, 0, 1),
+			new SimpleObject(aRockMedium, 1, 3, 0, 2)
 		]
 	],
 	[
@@ -239,10 +241,10 @@ Engine.SetProgress(80);
 
 createFood(
 	[
-		[new SimpleObject(oArcticFox, 1,2, 0,3)],
-		[new SimpleObject(oWolf, 4,6, 0,4)],
-		[new SimpleObject(oWalrus, 2,3, 0,2)],
-		[new SimpleObject(oMuskox, 2,3, 0,2)]
+		[new SimpleObject(oArcticFox, 1, 2, 0, 3)],
+		[new SimpleObject(oWolf, 4, 6, 0, 4)],
+		[new SimpleObject(oWalrus, 2, 3, 0, 2)],
+		[new SimpleObject(oMuskox, 2, 3, 0, 2)]
 	],
 	[
 		3 * numPlayers,
@@ -255,8 +257,8 @@ createFood(
 
 createFood(
 	[
-		[new SimpleObject(oWhaleFin, 1,2, 0,2)],
-		[new SimpleObject(oWhaleHumpback, 1,2, 0,2)]
+		[new SimpleObject(oWhaleFin, 1, 2, 0, 2)],
+		[new SimpleObject(oWhaleHumpback, 1, 2, 0, 2)]
 	],
 	[
 		scaleByMapSize(1, 6) * 3,
@@ -267,7 +269,7 @@ createFood(
 
 createFood(
 	[
-		[new SimpleObject(oFish, 2,3, 0,2)]
+		[new SimpleObject(oFish, 2, 3, 0, 2)]
 	],
 	[
 		100

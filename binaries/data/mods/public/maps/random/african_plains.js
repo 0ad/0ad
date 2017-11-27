@@ -215,8 +215,7 @@ createDecoration(
 		scaleByMapSize(8, 131),
 		scaleByMapSize(8, 131)
 	],
-	avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0)
-);
+	avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0));
 Engine.SetProgress(75);
 
 log("Creating giraffes...");
@@ -251,11 +250,11 @@ createObjectGroupsDeprecated(group, 0,
 
 createFood(
 	[
-		[new SimpleObject(oHawk, 1,1, 0,3)],
-		[new SimpleObject(oGazelle, 3,5, 0,3)],
-		[new SimpleObject(oZebra, 3,5, 0,3)],
-		[new SimpleObject(oWildebeest, 4,6, 0,3)],
-		[new SimpleObject(oRhino, 1,1, 0,3)]
+		[new SimpleObject(oHawk, 1, 1, 0, 3)],
+		[new SimpleObject(oGazelle, 3, 5, 0, 3)],
+		[new SimpleObject(oZebra, 3, 5, 0, 3)],
+		[new SimpleObject(oWildebeest, 4, 6, 0, 3)],
+		[new SimpleObject(oRhino, 1, 1, 0, 3)]
 	],
 	[
 		3 * numPlayers,
@@ -269,7 +268,7 @@ createFood(
 
 createFood(
 	[
-		[new SimpleObject(oCrocodile, 2,3, 0,3)]
+		[new SimpleObject(oCrocodile, 2, 3, 0, 3)]
 	],
 	[
 		3 * numPlayers,
@@ -279,7 +278,7 @@ createFood(
 
 createFood(
 	[
-		[new SimpleObject(oBerryBush, 5,7, 0,4)]
+		[new SimpleObject(oBerryBush, 5, 7, 0, 4)]
 	],
 	[
 		randIntInclusive(1, 4) * numPlayers + 2
@@ -289,7 +288,7 @@ createFood(
 
 createFood(
 	[
-		[new SimpleObject(oFish, 2,3, 0,2)]
+		[new SimpleObject(oFish, 2, 3, 0, 2)]
 	],
 	[
 		15 * numPlayers

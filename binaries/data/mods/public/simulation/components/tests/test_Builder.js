@@ -5,6 +5,7 @@ Engine.LoadComponentScript("Builder.js");
 
 const builderId = 6;
 const playerId = 1;
+const playerEntityID = 2;
 
 AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
 	"TemplateExists": () => true
@@ -15,23 +16,14 @@ let cmpBuilder = ConstructComponent(builderId, "Builder", {
 	"Entities": { "_string": "structures/{civ}_barracks structures/{civ}_civil_centre" }
 });
 
-TS_ASSERT_UNEVAL_EQUALS(cmpBuilder.GetEntitiesList(), ["structures/{civ}_barracks", "structures/{civ}_civil_centre"]);
-
-AddMock(builderId, IID_Identity, {
-	"GetCiv": () => "iber"
-});
-
-AddMock(builderId, IID_Player, {
-	"GetPlayerID": () => playerId
-});
-
-TS_ASSERT_UNEVAL_EQUALS(cmpBuilder.GetEntitiesList(), ["structures/iber_barracks", "structures/iber_civil_centre"]);
+TS_ASSERT_UNEVAL_EQUALS(cmpBuilder.GetEntitiesList(), []);
 
 AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
-	"GetPlayerByID": (id) => playerId
+	"GetPlayerByID": id => playerEntityID
 });
 
-AddMock(1, IID_Player, {
+AddMock(playerEntityID, IID_Player, {
+	"GetCiv": () => "iber",
 	"GetDisabledTemplates": () => ({}),
 	"GetPlayerID": () => playerId
 });
@@ -52,14 +44,16 @@ AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
 	"TemplateExists": () => true
 });
 
-AddMock(1, IID_Player, {
+AddMock(playerEntityID, IID_Player, {
+	"GetCiv": () => "iber",
 	"GetDisabledTemplates": () => ({ "structures/athen_barracks": true }),
 	"GetPlayerID": () => playerId
 });
 
 TS_ASSERT_UNEVAL_EQUALS(cmpBuilder.GetEntitiesList(), ["structures/iber_barracks", "structures/iber_civil_centre"]);
 
-AddMock(1, IID_Player, {
+AddMock(playerEntityID, IID_Player, {
+	"GetCiv": () => "iber",
 	"GetDisabledTemplates": () => ({ "structures/iber_barracks": true }),
 	"GetPlayerID": () => playerId
 });

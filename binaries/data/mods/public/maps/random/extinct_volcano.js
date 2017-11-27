@@ -347,7 +347,9 @@ Engine.SetProgress(67);
 
 createDecoration(
 		[
-			[new SimpleObject(aGrassShort, 1, 2, 0, 1)],
+			[
+				new SimpleObject(aGrassShort, 1, 2, 0, 1)
+			],
 			[
 				new SimpleObject(aGrass, 2, 4, 0, 1.8),
 				new SimpleObject(aGrassShort, 3, 6, 1.2, 2.5)

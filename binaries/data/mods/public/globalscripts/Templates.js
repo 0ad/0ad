@@ -1,4 +1,34 @@
 /**
+ * Loads history and gameplay data of all civs.
+ * Can be used from GUI and rmgen (because the simulation functions differ currently).
+ *
+ * @param selectableOnly {boolean} - Only load civs that can be selected
+ *        in the gamesetup. Scenario maps might set non-selectable civs.
+ */
+function loadCivFiles(selectableOnly)
+{
+	let propertyNames = [
+		"Code", "Culture", "Name", "Emblem", "History", "Music", "Factions", "CivBonuses", "TeamBonuses",
+		"Structures", "StartEntities", "Formations", "AINames", "SkirmishReplacements", "SelectableInGameSetup"];
+
+	let civData = {};
+
+	for (let filename of Engine.BuildDirEntList("simulation/data/civs/", "*.json", false))
+	{
+		let data = Engine.ReadJSONFile(filename);
+
+		for (let prop of propertyNames)
+			if (data[prop] === undefined)
+				throw new Error(filename + " doesn't contain " + prop);
+
+		if (!selectableOnly || data.SelectableInGameSetup)
+			civData[data.Code] = data;
+	}
+
+	return civData;
+}
+
+/**
  * Gets an array of all classes for this identity template
  */
 function GetIdentityClasses(template)

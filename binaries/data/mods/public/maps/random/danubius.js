@@ -613,8 +613,7 @@ createFood(
 		scaleByMapSize(5, 10)
 	],
 	avoidClasses(clIsland, 2, clFood, 10, clWater, 5, clPlayer, 16, clHill, 2, clGauls, 5, clPath, 1),
-	clFood
-);
+	clFood);
 
 log("Creating violent animals...");
 createFood(
@@ -629,8 +628,8 @@ createFood(
 		scaleByMapSize(5, 20)
 	],
 	avoidClasses(clIsland, 2, clFood, 10, clWater, 5, clPlayer, 24, clHill, 2, clGauls, 5, clPath, 1),
-	clFood
-);
+	clFood);
+
 Engine.SetProgress(85);
 
 log("Creating fruits...");
@@ -644,8 +643,8 @@ createFood(
 		scaleByMapSize(5, 20)
 	],
 	avoidClasses(clWater, 5, clForest, 2, clPlayer, 16, clHill, 4, clFood, 10, clMetal, 4, clRock, 4, clGauls, 5, clPath, 1),
-	clFood
-);
+	clFood);
+
 Engine.SetProgress(90);
 
 createStragglerTrees(

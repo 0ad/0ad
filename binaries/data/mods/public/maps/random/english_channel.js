@@ -226,71 +226,65 @@ createMines(
 );
 Engine.SetProgress(85);
 
-createDecoration
-(
- [[new SimpleObject(aRockMedium, 1,3, 0,1)],
-  [new SimpleObject(aRockLarge, 1,2, 0,1), new SimpleObject(aRockMedium, 1,3, 0,2)],
-  [new SimpleObject(aGrassShort, 1,2, 0,1, -PI/8,PI/8)],
-  [new SimpleObject(aGrass, 2,4, 0,1.8, -PI/8,PI/8), new SimpleObject(aGrassShort, 3,6, 1.2,2.5, -PI/8,PI/8)],
-  [new SimpleObject(aBushMedium, 1,2, 0,2), new SimpleObject(aBushSmall, 2,4, 0,2)]
- ],
- [
-  scaleByMapSize(16, 262),
-  scaleByMapSize(8, 131),
-  scaleByMapSize(13, 200),
-  scaleByMapSize(13, 200),
-  scaleByMapSize(13, 200)
- ],
- avoidClasses(clWater, 1, clForest, 0, clPlayer, 0, clHill, 0)
-);
+createDecoration(
+	[
+		[new SimpleObject(aRockMedium, 1, 3, 0, 1)],
+		[new SimpleObject(aRockLarge, 1, 2, 0, 1), new SimpleObject(aRockMedium, 1, 3, 0, 2)],
+		[new SimpleObject(aGrassShort, 1, 2, 0, 1)],
+		[new SimpleObject(aGrass, 2, 4, 0, 1.8), new SimpleObject(aGrassShort, 3, 6, 1.2, 2.5)],
+		[new SimpleObject(aBushMedium, 1, 2, 0, 2), new SimpleObject(aBushSmall, 2, 4, 0, 2)]
+	],
+	[
+		scaleByMapSize(16, 262),
+		scaleByMapSize(8, 131),
+		scaleByMapSize(13, 200),
+		scaleByMapSize(13, 200),
+		scaleByMapSize(13, 200)
+	],
+	avoidClasses(clWater, 1, clForest, 0, clPlayer, 0, clHill, 0));
 
-// create water decoration in the shallow parts
-createDecoration
-(
- [[new SimpleObject(aReeds, 1,3, 0,1)],
-  [new SimpleObject(aLillies, 1,2, 0,1)]
- ],
- [
-  scaleByMapSize(800, 12800),
-  scaleByMapSize(800, 12800)
- ],
- stayClasses(clShallow, 0)
-);
+createDecoration(
+	[
+		[new SimpleObject(aReeds, 1, 3, 0, 1)],
+		[new SimpleObject(aLillies, 1, 2, 0, 1)]
+	],
+	[
+		scaleByMapSize(800, 12800),
+		scaleByMapSize(800, 12800)
+	],
+	stayClasses(clShallow, 0));
 
-createFood
-(
- [
-  [new SimpleObject(oDeer, 5,7, 0,4)],
-  [new SimpleObject(oGoat, 2,3, 0,2)],
-  [new SimpleObject(oBoar, 2,3, 0,2)]
- ],
- [
-  3 * numPlayers,
-  3 * numPlayers,
-  3 * numPlayers
- ],
- avoidClasses(clWater, 1, clForest, 0, clPlayer, 20, clHill, 0, clFood, 15)
-);
+createFood(
+	[
+		[new SimpleObject(oDeer, 5, 7, 0, 4)],
+		[new SimpleObject(oGoat, 2, 3, 0, 2)],
+		[new SimpleObject(oBoar, 2, 3, 0, 2)]
+	],
+	[
+		3 * numPlayers,
+		3 * numPlayers,
+		3 * numPlayers
+	],
+	avoidClasses(clWater, 1, clForest, 0, clPlayer, 20, clHill, 0, clFood, 15),
+	clFood);
 
-createFood
-(
- [
-  [new SimpleObject(oBerryBush, 5,7, 0,4)]
- ],
- [
-  randIntInclusive(1, 4) * numPlayers + 2
- ],
- avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 10)
-);
+createFood(
+	[
+		[new SimpleObject(oBerryBush, 5, 7, 0, 4)]
+	],
+	[
+		randIntInclusive(1, 4) * numPlayers + 2
+	],
+	avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 10),
+	clFood);
 
-createFood
-(
- [
-  [new SimpleObject(oFish, 2,3, 0,2)]
- ],
- [scaleByMapSize(3, 25) * numPlayers],
- [avoidClasses(clFood, 6), stayClasses(clWater, 4)]
-);
+createFood(
+	[
+		[new SimpleObject(oFish, 2, 3, 0, 2)]
+	],
+	[scaleByMapSize(3, 25) * numPlayers],
+	[avoidClasses(clFood, 6), stayClasses(clWater, 4)],
+	clFood);
 
 createStragglerTrees(
 	[oBeech, oPoplar, oApple],
