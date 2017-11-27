@@ -3,7 +3,7 @@
 <objects>
 
 	<script directory="gui/common/"/>
-	<script file="gui/locale/locale.js"/>
+	<script directory="gui/locale/"/>
 
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" z="0" sprite="ModernFade"/>
