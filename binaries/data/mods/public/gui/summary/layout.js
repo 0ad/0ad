@@ -116,8 +116,9 @@ var getScorePanelsData = () => ({
 				"yStart": 16,
 				"width": 121
 			},
-			{ "identifier": "treasuresCollected", "caption": translate("Treasures collected"), "yStart": 16, "width": 100 },
-			{ "identifier": "loot", "caption": translate("Loot"), "yStart": 16, "width": 100 }
+			{ "identifier": "treasuresCollected", "caption": translate("Treasures collected"), "yStart": 16, "width": 85 },
+			{ "identifier": "loot", "caption": translate("Loot"), "yStart": 16, "width": 85 },
+			{ "identifier": "livestock", "caption": translate("Livestock bred"), "yStart": 16, "width": 85 }
 		],
 		"titleHeadings": [
 			{
@@ -138,8 +139,9 @@ var getScorePanelsData = () => ({
 				"width": 100
 			})),
 			{ "width": 121, "fn": calculateTributeSent, "verticalOffset": 12 },
-			{ "width": 100, "fn": calculateTreasureCollected, "verticalOffset": 12 },
-			{ "width": 100, "fn": calculateLootCollected, "verticalOffset": 12 }
+			{ "width": 85, "fn": calculateTreasureCollected, "verticalOffset": 12 },
+			{ "width": 85, "fn": calculateLootCollected, "verticalOffset": 12 },
+			{ "width": 85, "fn": calculateLivestockTrained, "verticalOffset": 12 }
 		],
 		"teamCounterFn": calculateResourcesTeam
 	},
