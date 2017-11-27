@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <objects>
-	<script file="gui/common/functions_global_object.js"/>
-	<script file="gui/common/functions_utility.js"/>
-	<script file="gui/common/gamedescription.js"/>
-	<script file="gui/common/settings.js"/>
-	<script file="gui/common/tooltips.js"/>
 
-	<!-- After settings.js, which defines g_Settings and g_MaxPlayers. -->
+	<script directory="gui/common/"/>
+
 	<script file="gui/summary/counters.js"/>
 	<script file="gui/summary/summary.js"/>
 

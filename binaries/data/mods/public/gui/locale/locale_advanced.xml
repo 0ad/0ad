@@ -2,8 +2,8 @@
 
 <objects>
 
-	<script file="gui/common/functions_global_object.js"/>
-	<script file="gui/locale/locale_advanced.js"/>
+	<script directory="gui/common/"/>
+	<script directory="gui/locale/"/>
 
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" z="0" sprite="ModernFade"/>

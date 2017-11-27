@@ -2,13 +2,8 @@
 
 <objects>
 
-	<script file="gui/common/color.js" />
-	<script file="gui/common/functions_global_object.js" />
-	<script file="gui/common/functions_utility.js" />
-	<script file="gui/common/functions_utility_loadsave.js" />
-	<script file="gui/common/gamedescription.js"/>
-	<script file="gui/common/settings.js" />
-	<script file="gui/savedgames/load.js" />
+	<script directory="gui/common/"/>
+	<script file="gui/savedgames/load.js"/>
 
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" z="0" sprite="BackgroundTranslucent"/>

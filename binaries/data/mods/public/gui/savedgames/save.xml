@@ -2,10 +2,8 @@
 
 <objects>
 
-	<script file="gui/common/color.js"/>
-	<script file="gui/common/functions_global_object.js" />
-	<script file="gui/common/functions_utility_loadsave.js" />
-	<script file="gui/savedgames/save.js" />
+	<script directory="gui/common/"/>
+	<script directory="gui/savedgames/"/>
 
 	<!-- Add a translucent black background to fade out the page -->
 	<object type="image" z="0" sprite="ModernFade"/>
