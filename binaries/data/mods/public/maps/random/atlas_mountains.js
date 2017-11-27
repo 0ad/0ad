@@ -204,28 +204,27 @@ createDecoration
 
 Engine.SetProgress(75);
 
-createFood
-(
- [
-  [new SimpleObject(oSheep, 5,7, 0,4)],
-  [new SimpleObject(oDeer, 2,3, 0,2)]
- ],
- [
-  3 * numPlayers,
-  3 * numPlayers
- ]
-);
+createFood(
+	[
+		[new SimpleObject(oSheep, 5, 7, 0, 4)],
+		[new SimpleObject(oDeer, 2, 3, 0, 2)]
+	],
+	[
+		3 * numPlayers,
+		3 * numPlayers
+	],
+	avoidClasses(clForest, 0, clPlayer, 20, clHill, 1, clFood, 20),
+	clFood);
 
-createFood
-(
- [
-  [new SimpleObject(oBerryBush, 5,7, 0,4)]
- ],
- [
-  randIntInclusive(3, 12) * numPlayers + 2
- ],
- avoidClasses(clForest, 0, clPlayer, 20, clHill, 1, clFood, 10)
-);
+createFood(
+	[
+		[new SimpleObject(oBerryBush, 5, 7, 0, 4)]
+	],
+	[
+		randIntInclusive(3, 12) * numPlayers + 2
+	],
+	avoidClasses(clForest, 0, clPlayer, 20, clHill, 1, clFood, 10),
+	clFood);
 
 log("Creating food treasures...");
 var group = new SimpleGroup(

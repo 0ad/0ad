@@ -257,40 +257,37 @@ createDecoration
  stayClasses(clShallow, 0)
 );
 
-createFood
-(
- [
-  [new SimpleObject(oDeer, 5,7, 0,4)],
-  [new SimpleObject(oGoat, 2,3, 0,2)],
-  [new SimpleObject(oBoar, 2,3, 0,2)]
- ],
- [
-  3 * numPlayers,
-  3 * numPlayers,
-  3 * numPlayers
- ],
- avoidClasses(clWater, 1, clForest, 0, clPlayer, 20, clHill, 0, clFood, 15)
-);
+createFood(
+	[
+		[new SimpleObject(oDeer, 5, 7, 0, 4)],
+		[new SimpleObject(oGoat, 2, 3, 0, 2)],
+		[new SimpleObject(oBoar, 2, 3, 0, 2)]
+	],
+	[
+		3 * numPlayers,
+		3 * numPlayers,
+		3 * numPlayers
+	],
+	avoidClasses(clWater, 1, clForest, 0, clPlayer, 20, clHill, 0, clFood, 15),
+	clFood);
 
-createFood
-(
- [
-  [new SimpleObject(oBerryBush, 5,7, 0,4)]
- ],
- [
-  randIntInclusive(1, 4) * numPlayers + 2
- ],
- avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 10)
-);
+createFood(
+	[
+		[new SimpleObject(oBerryBush, 5, 7, 0, 4)]
+	],
+	[
+		randIntInclusive(1, 4) * numPlayers + 2
+	],
+	avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 10),
+	clFood);
 
-createFood
-(
- [
-  [new SimpleObject(oFish, 2,3, 0,2)]
- ],
- [scaleByMapSize(3, 25) * numPlayers],
- [avoidClasses(clFood, 6), stayClasses(clWater, 4)]
-);
+createFood(
+	[
+		[new SimpleObject(oFish, 2, 3, 0, 2)]
+	],
+	[scaleByMapSize(3, 25) * numPlayers],
+	[avoidClasses(clFood, 6), stayClasses(clWater, 4)],
+	clFood);
 
 createStragglerTrees(
 	[oBeech, oPoplar, oApple],

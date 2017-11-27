@@ -326,16 +326,15 @@ createDecoration
 Engine.SetProgress(80);
 
 log("Growing fish...");
-createFood
-(
- [
-  [new SimpleObject(oFish, 2,3, 0,2)]
- ],
- [
-  100 * numPlayers
- ],
- [avoidClasses(clFood, 5), stayClasses(clWater, 4)]
-);
+createFood(
+	[
+		[new SimpleObject(oFish, 2, 3, 0, 2)]
+	],
+	[
+		100 * numPlayers
+	],
+	[avoidClasses(clFood, 5), stayClasses(clWater, 4)],
+	clFood);
 
 Engine.SetProgress(85);
 

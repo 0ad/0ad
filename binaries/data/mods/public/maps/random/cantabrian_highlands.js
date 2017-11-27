@@ -283,30 +283,28 @@ createDecoration
 );
 Engine.SetProgress(70);
 
-createFood
-(
- [
-  [new SimpleObject(oSheep, 2,3, 0,2)],
-  [new SimpleObject(oDeer, 5,7, 0,4)]
- ],
- [
-  3 * numPlayers,
-  3 * numPlayers
- ],
- avoidClasses(clWater, 0, clForest, 0, clPlayer, 1, clHill, 1, clFood, 20)
-);
+createFood(
+	[
+		[new SimpleObject(oSheep, 2, 3, 0, 2)],
+		[new SimpleObject(oDeer, 5, 7, 0, 4)]
+	],
+	[
+		3 * numPlayers,
+		3 * numPlayers
+	],
+	avoidClasses(clWater, 0, clForest, 0, clPlayer, 1, clHill, 1, clFood, 20),
+	clFood);
 Engine.SetProgress(80);
 
-createFood
-(
- [
-  [new SimpleObject(oBerryBush, 5,7, 0,4)]
- ],
- [
-  randIntInclusive(1, 4) * numPlayers + 2
- ],
- avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 10)
-);
+createFood(
+	[
+		[new SimpleObject(oBerryBush, 5, 7, 0, 4)]
+	],
+	[
+		randIntInclusive(1, 4) * numPlayers + 2
+	],
+	avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 10),
+	clFood);
 Engine.SetProgress(85);
 
 createStragglerTrees(

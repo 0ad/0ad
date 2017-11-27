@@ -255,42 +255,39 @@ createDecoration
 
 Engine.SetProgress(70);
 
-createFood
-(
- [
-  [new SimpleObject(oFish, 2,3, 0,2)]
- ],
- [
-  3*scaleByMapSize(5,20)
- ],
- [avoidClasses(clFood, 10), stayClasses(clWater, 5)]
-);
+createFood(
+	[
+		[new SimpleObject(oFish, 2, 3, 0, 2)]
+	],
+	[
+		3 * scaleByMapSize(5, 20)
+	],
+	[avoidClasses(clFood, 10), stayClasses(clWater, 5)],
+	clFood);
 
-createFood
-(
- [
-  [new SimpleObject(oSheep, 5,7, 0,4)],
-  [new SimpleObject(oGoat, 2,4, 0,3)],
-  [new SimpleObject(oDeer, 2,4, 0,2)]
- ],
- [
-  scaleByMapSize(5,20),
-  scaleByMapSize(5,20),
-  scaleByMapSize(5,20)
- ],
- avoidClasses(clForest, 0, clPlayer, 10, clBaseResource, 6, clWater, 1, clFood, 10, clHill, 1, clRock, 6, clMetal, 6)
-);
+createFood(
+	[
+		[new SimpleObject(oSheep, 5, 7, 0, 4)],
+		[new SimpleObject(oGoat, 2, 4, 0, 3)],
+		[new SimpleObject(oDeer, 2, 4, 0, 2)]
+	],
+	[
+		scaleByMapSize(5,20),
+		scaleByMapSize(5,20),
+		scaleByMapSize(5,20)
+	],
+	avoidClasses(clForest, 0, clPlayer, 10, clBaseResource, 6, clWater, 1, clFood, 10, clHill, 1, clRock, 6, clMetal, 6),
+	clFood);
 
-createFood
-(
- [
-  [new SimpleObject(oBerryBush, 5,7, 0,4)]
- ],
- [
-  3 * numPlayers
- ],
- avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 10, clRock, 6, clMetal, 6)
-);
+createFood(
+	[
+		[new SimpleObject(oBerryBush, 5, 7, 0, 4)]
+	],
+	[
+		3 * numPlayers
+	],
+	avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 10, clRock, 6, clMetal, 6),
+	clFood);
 
 Engine.SetProgress(90);
 
