@@ -121,7 +121,7 @@ void CChart::Draw()
 		std::vector<float> vertices;
 		for (const CVector2D& point : data.m_Points)
 		{
-			if (fabs(point.Y) != std::numeric_limits<float>::infinity() && fabs(point.Y) != std::numeric_limits<float>::infinity())
+			if (fabs(point.X) != std::numeric_limits<float>::infinity() && fabs(point.Y) != std::numeric_limits<float>::infinity())
 			{
 				vertices.push_back(rect.left + (point.X - leftBottom.X) * scale.X);
 				vertices.push_back(rect.bottom - (point.Y - leftBottom.Y) * scale.Y);
