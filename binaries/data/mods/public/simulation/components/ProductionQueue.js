@@ -15,7 +15,7 @@ ProductionQueue.prototype.Schema =
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
 	"<optional>" +
-		"<element name='Entities' a:help='Space-separated list of entity template names that this building can train. The special string \"{civ}\" will be automatically replaced by the building&apos;s four-character civ code'>" +
+		"<element name='Entities' a:help='Space-separated list of entity template names that this entity can train. The special string \"{civ}\" will be automatically replaced by the civ code of the entity&apos;s owner.'>" +
 			"<attribute name='datatype'>" +
 				"<value>tokens</value>" +
 			"</attribute>" +
