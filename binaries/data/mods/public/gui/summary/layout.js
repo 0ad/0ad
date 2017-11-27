@@ -1,4 +1,4 @@
-var g_ScorePanelsData = {
+var getScorePanelsData = () => ({
 	"score": {
 		"caption": translate("Score"),
 		"headings": [
@@ -208,7 +208,7 @@ var g_ScorePanelsData = {
 		],
 		"teamCounterFn": calculateMiscellaneousTeam
 	}
-};
+});
 
 function getColoredTypeTranslation(type)
 {

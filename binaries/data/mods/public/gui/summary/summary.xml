@@ -3,12 +3,7 @@
 <objects>
 
 	<script directory="gui/common/"/>
-
-	<script file="gui/summary/counters.js"/>
-	<script file="gui/summary/summary.js"/>
-
-	<!-- Needs the colors from summary.js -->
-	<script file="gui/summary/layout.js"/>
+	<script directory="gui/summary/"/>
 
 	<object name="summaryWindow"
 		type="image"

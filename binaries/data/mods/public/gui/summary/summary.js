@@ -1,10 +1,12 @@
 const g_CivData = loadCivData(false, false);
 
+var g_ScorePanelsData;
+
 var g_MaxHeadingTitle = 9;
 var g_LongHeadingWidth = 250;
 var g_PlayerBoxYSize = 40;
 var g_PlayerBoxGap = 2;
-var g_PlayerBoxAlpha = " 50";
+var g_PlayerBoxAlpha = 50;
 var g_TeamsBoxYStart = 40;
 
 var g_TypeColors = {
@@ -125,6 +127,21 @@ var g_SelectedChart = {
 	"type": [0, 0]
 };
 
+function init(data)
+{
+	// Fill globals
+	g_GameData = data;
+	g_ScorePanelsData = getScorePanelsData();
+	initTeamData();
+	calculateTeamCounterDataHelper();
+
+	// Output globals
+	initPlayerBoxPositions();
+	initGUICharts();
+	initGUILabelsAndButtons();
+	selectPanel(Engine.GetGUIObjectByName("scorePanelButton"));
+}
+
 function selectPanel(panel)
 {
 	// TODO: move panel buttons to a custom parent object
@@ -148,7 +165,7 @@ function selectPanel(panel)
 		[0, 1].forEach(updateCategoryDropdown);
 }
 
-function initCharts()
+function initGUICharts()
 {
 	let player_colors = [];
 	for (let i = 1; i <= g_PlayerCount; ++i)
@@ -161,9 +178,8 @@ function initCharts()
 		);
 	}
 
-	[0, 1].forEach(i => {
+	for (let i = 0; i < 2; ++i)
 		Engine.GetGUIObjectByName("chart[" + i + "]").series_color = player_colors;
-	});
 
 	let chartLegend = Engine.GetGUIObjectByName("chartLegend");
 	chartLegend.caption = g_GameData.sim.playerStates.slice(1).map(
@@ -343,7 +359,7 @@ function updatePanelData(panelInfo)
 
 		let rowPlayerObject = Engine.GetGUIObjectByName(rowPlayer);
 		rowPlayerObject.hidden = false;
-		rowPlayerObject.sprite = colorString + g_PlayerBoxAlpha;
+		rowPlayerObject.sprite = colorString + " " + g_PlayerBoxAlpha;
 
 		let boxSize = rowPlayerObject.size;
 		boxSize.right = rowPlayerObjectWidth;
@@ -419,9 +435,8 @@ function startReplay()
 	});
 }
 
-function init(data)
+function initGUILabelsAndButtons()
 {
-	g_GameData = data;
 	let assignedState = g_GameData.sim.playerStates[g_GameData.gui.assignedPlayer || -1];
 
 	Engine.GetGUIObjectByName("summaryText").caption =
@@ -439,8 +454,6 @@ function init(data)
 			translate("You have been defeated...") :
 			translate("You have abandoned the game.");
 
-	initPlayerBoxPositions();
-
 	Engine.GetGUIObjectByName("timeElapsed").caption = sprintf(
 		translate("Game time elapsed: %(time)s"), {
 			"time": timeToString(g_GameData.sim.timeElapsed)
@@ -456,7 +469,10 @@ function init(data)
 		});
 
 	Engine.GetGUIObjectByName("replayButton").hidden = g_GameData.gui.isInGame || !g_GameData.gui.replayDirectory;
+}
 
+function initTeamData()
+{
 	// Panels
 	g_PlayerCount = g_GameData.sim.playerStates.length - 1;
 
@@ -481,9 +497,4 @@ function init(data)
 	if (!g_Teams)
 		for (let p = 0; p < g_PlayerCount; ++p)
 			g_GameData.sim.playerStates[p+1].team = -1;
-
-	calculateTeamCounterDataHelper();
-
-	initCharts();
-	selectPanel(Engine.GetGUIObjectByName("scorePanelButton"));
 }
