@@ -6,7 +6,8 @@
       <MinRange>26.0</MinRange>
       <ProjectileSpeed>37.5</ProjectileSpeed>
       <Gravity>9.81</Gravity>
-      <RepeatTime>6000</RepeatTime>
+      <PrepareTime>3700</PrepareTime>
+      <RepeatTime>5000</RepeatTime>
       <Splash>
         <Shape>Circular</Shape>
         <Range>10</Range>
@@ -42,6 +43,6 @@
     <Range>88</Range>
   </Vision>
   <VisualActor>
-    <Actor>units/romans/siege_onager.xml</Actor>
+    <Actor>units/romans/siege_onager_pivot.xml</Actor>
   </VisualActor>
 </Entity>

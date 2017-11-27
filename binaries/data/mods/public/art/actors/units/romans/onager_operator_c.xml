@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Onager operator">
+      <animations>
+        <animation file="biped/new/onager_idle_c.dae" name="Idle" speed="100"/>
+        <animation event="0.145" load="0.05" file="biped/new/onager_attack_c.dae" name="attack_ranged" speed="100"/>
+      </animations>
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/rome_monte_e.xml" attachpoint="helmet"/>
+      </props>
+            <textures>
+        <texture file="skeletal/rome_isw_a.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+
+  <group>
+    <variant file="biped/death_infantry.xml"/>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

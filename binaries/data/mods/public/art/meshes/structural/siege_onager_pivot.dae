@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.79.0 commit date:2017-09-11, commit time:10:43, hash:5bd8ac9</authoring_tool>
+    </contributor>
+    <created>2017-11-25T12:30:58</created>
+    <modified>2017-11-25T12:30:58</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_effects/>
+  <library_geometries>
+    <geometry id="Plano-mesh" name="Plano">
+      <mesh>
+        <source id="Plano-mesh-positions">
+          <float_array id="Plano-mesh-positions-array" count="9">-0.6218021 -0.6218021 -1.763886 0.6218021 -0.6218021 -1.763886 0.6218021 0.6218021 -1.763886</float_array>
+          <technique_common>
+            <accessor source="#Plano-mesh-positions-array" count="3" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plano-mesh-normals">
+          <float_array id="Plano-mesh-normals-array" count="3">0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Plano-mesh-normals-array" count="1" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plano-mesh-map-0">
+          <float_array id="Plano-mesh-map-0-array" count="6">7.07007e-5 0.5 0.5 7.07007e-5 0.9999293 0.5</float_array>
+          <technique_common>
+            <accessor source="#Plano-mesh-map-0-array" count="3" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Plano-mesh-vertices">
+          <input semantic="POSITION" source="#Plano-mesh-positions"/>
+        </vertices>
+        <triangles count="1">
+          <input semantic="VERTEX" source="#Plano-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Plano-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Plano-mesh-map-0" offset="2" set="0"/>
+          <p>0 0 0 1 0 1 2 0 2</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Plano" name="Plano" type="NODE">
+        <matrix sid="transform">0.2237349 0 0 0 0 0.2237349 0 0 0 0 0.2237349 0 0 0 0 1</matrix>
+        <instance_geometry url="#Plano-mesh" name="Plano"/>
+        <node id="prop-engineer_a" name="prop-engineer_a" type="NODE">
+          <matrix sid="transform">0.686004 0 0 -20.43188 0 0.686004 0 19.0627 0 0 0.686004 4.01787e-7 0 0 0 1</matrix>
+        </node>
+        <node id="prop-engineer_b" name="prop-engineer_b" type="NODE">
+          <matrix sid="transform">0.6534411 0.2088453 5.13963e-8 0.05412761 -0.2088453 0.6534411 2.65e-8 33.49035 -4.0889e-8 -4.0889e-8 0.686004 0 0 0 0 1</matrix>
+        </node>
+        <node id="prop_weapon" name="prop_weapon" type="NODE">
+          <matrix sid="transform">0.8209787 0 0 0 0 0.8209787 0 0 0 0 0.8209787 0 0 0 0 1</matrix>
+        </node>
+        <node id="prop-rock_ammo" name="prop-rock_ammo" type="NODE">
+          <matrix sid="transform">0.4654342 -0.5039569 -2.29613e-9 -6.14539 0.5039569 0.4654342 5.77802e-8 37.10777 -4.0889e-8 -4.0889e-8 0.686004 1.411112 0 0 0 1</matrix>
+        </node>
+        <node id="prop-engineer_c" name="prop-engineer_c" type="NODE">
+          <matrix sid="transform">0.686004 0 0 17.25603 0 0.686004 0 19.0627 0 0 0.686004 4.17231e-7 0 0 0 1</matrix>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>
