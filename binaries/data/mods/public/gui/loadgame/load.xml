@@ -3,7 +3,7 @@
 <objects>
 
 	<script directory="gui/common/"/>
-	<script file="gui/savedgames/load.js"/>
+	<script directory="gui/loadgame/"/>
 
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" z="0" sprite="BackgroundTranslucent"/>
