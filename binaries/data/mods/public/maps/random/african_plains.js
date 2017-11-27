@@ -215,8 +215,7 @@ createDecoration(
 		scaleByMapSize(8, 131),
 		scaleByMapSize(8, 131)
 	],
-	avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0)
-);
+	avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0));
 Engine.SetProgress(75);
 
 log("Creating giraffes...");

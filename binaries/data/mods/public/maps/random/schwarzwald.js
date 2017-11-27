@@ -305,23 +305,22 @@ for (var i = 0; i < maxI; i++)
 Engine.SetProgress(75);
 
 log("Creating decoration...");
-createDecoration
-(
- [[new SimpleObject(aRockMedium, 1,3, 0,1)],
-  [new SimpleObject(aRockLarge, 1,2, 0,1), new SimpleObject(aRockMedium, 1,3, 0,2)],
-  [new SimpleObject(aGrassShort, 1,2, 0,1, -PI/8,PI/8)],
-  [new SimpleObject(aGrass, 2,4, 0,1.8, -PI/8,PI/8), new SimpleObject(aGrassShort, 3,6, 1.2,2.5, -PI/8,PI/8)],
-  [new SimpleObject(aBushMedium, 1,2, 0,2), new SimpleObject(aBushSmall, 2,4, 0,2)]
- ],
- [
-  scaleByMapSize(16, 262),
-  scaleByMapSize(8, 131),
-  scaleByMapSize(13, 200),
-  scaleByMapSize(13, 200),
-  scaleByMapSize(13, 200)
- ],
- avoidClasses(clForest, 1, clPlayer, 0, clPath, 3, clWater, 3)
-);
+createDecoration(
+	[
+		[new SimpleObject(aRockMedium, 1, 3, 0, 1)],
+		[new SimpleObject(aRockLarge, 1, 2, 0, 1), new SimpleObject(aRockMedium, 1, 3, 0, 2)],
+		[new SimpleObject(aGrassShort, 1, 2, 0, 1)],
+		[new SimpleObject(aGrass, 2, 4, 0, 1.8), new SimpleObject(aGrassShort, 3, 6, 1.2, 2.5)],
+		[new SimpleObject(aBushMedium, 1, 2, 0, 2), new SimpleObject(aBushSmall, 2, 4, 0, 2)]
+	],
+	[
+		scaleByMapSize(16, 262),
+		scaleByMapSize(8, 131),
+		scaleByMapSize(13, 200),
+		scaleByMapSize(13, 200),
+		scaleByMapSize(13, 200)
+	],
+	avoidClasses(clForest, 1, clPlayer, 0, clPath, 3, clWater, 3));
 
 Engine.SetProgress(80);
 

@@ -269,17 +269,23 @@ createMines(
 
 Engine.SetProgress(65);
 
-createDecoration
-(
- [[new SimpleObject(aDecorativeRock, 1,3, 0,1)],
-  [new SimpleObject(aBush2, 1,2, 0,1), new SimpleObject(aBush1, 1,3, 0,2), new SimpleObject(aBush4, 1,2, 0,1), new SimpleObject(aBush3, 1,3, 0,2)]
- ],
- [
-  scaleByMapSize(16, 262),
-  scaleByMapSize(40, 360)
- ],
- avoidClasses(clWater, 2, clForest, 0, clPlayer, 0, clHill, 1)
-);
+createDecoration(
+	[
+		[
+			new SimpleObject(aDecorativeRock, 1, 3, 0, 1)
+		],
+		[
+			new SimpleObject(aBush2, 1, 2, 0, 1),
+			new SimpleObject(aBush1, 1, 3, 0, 2),
+			new SimpleObject(aBush4, 1, 2, 0, 1),
+			new SimpleObject(aBush3, 1, 3, 0, 2)
+		]
+	],
+	[
+		scaleByMapSize(16, 262),
+		scaleByMapSize(40, 360)
+	],
+	avoidClasses(clWater, 2, clForest, 0, clPlayer, 0, clHill, 1));
 
 Engine.SetProgress(70);
 

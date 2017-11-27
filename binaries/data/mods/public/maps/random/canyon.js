@@ -348,23 +348,22 @@ var planetm = 1;
 if (currentBiome() == "tropic")
 	planetm = 8;
 
-createDecoration
-(
- [[new SimpleObject(aRockMedium, 1,3, 0,1)],
-  [new SimpleObject(aRockLarge, 1,2, 0,1), new SimpleObject(aRockMedium, 1,3, 0,2)],
-  [new SimpleObject(aGrassShort, 1,2, 0,1, -PI/8,PI/8)],
-  [new SimpleObject(aGrass, 2,4, 0,1.8, -PI/8,PI/8), new SimpleObject(aGrassShort, 3,6, 1.2,2.5, -PI/8,PI/8)],
-  [new SimpleObject(aBushMedium, 1,2, 0,2), new SimpleObject(aBushSmall, 2,4, 0,2)]
- ],
- [
-  3*scaleByMapSize(16, 262),
-  3*scaleByMapSize(8, 131),
-  planetm * scaleByMapSize(13, 200),
-  planetm * scaleByMapSize(13, 200),
-  planetm * scaleByMapSize(13, 200)
- ],
- avoidClasses(clForest, 0, clPlayer, 0, clHill, 0)
-);
+createDecoration(
+	[
+		[new SimpleObject(aRockMedium, 1, 3, 0, 1)],
+		[new SimpleObject(aRockLarge, 1, 2, 0, 1), new SimpleObject(aRockMedium, 1, 3, 0, 2)],
+		[new SimpleObject(aGrassShort, 1, 2, 0, 1)],
+		[new SimpleObject(aGrass, 2, 4, 0, 1.8), new SimpleObject(aGrassShort, 3, 6, 1.2, 2.5)],
+		[new SimpleObject(aBushMedium, 1, 2, 0, 2), new SimpleObject(aBushSmall, 2, 4, 0, 2)]
+	],
+	[
+		3 * scaleByMapSize(16, 262),
+		3 * scaleByMapSize(8, 131),
+		planetm * scaleByMapSize(13, 200),
+		planetm * scaleByMapSize(13, 200),
+		planetm * scaleByMapSize(13, 200)
+	],
+	avoidClasses(clForest, 0, clPlayer, 0, clHill, 0));
 
 log("Creating actor trees...");
 var group = new SimpleGroup(
