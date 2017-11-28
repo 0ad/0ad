@@ -1019,9 +1019,9 @@ function placeGenericFortress(centerX, centerY, radius, playerId, style, irregul
 				angle - Math.PI / 2 + wallStyles[style][wallElement].angle);
 
 		// Place tower
-		let startX = centerX + bestPointDerivation[(pointIndex + bestPointDerivation.length - 1) % bestPointDerivation.length][0];
-		let startY = centerY + bestPointDerivation[(pointIndex + bestPointDerivation.length - 1) % bestPointDerivation.length][1];
-		let angle = getAngle(startX, startY, targetX, targetY);
+		startX = centerX + bestPointDerivation[(pointIndex + bestPointDerivation.length - 1) % bestPointDerivation.length][0];
+		startY = centerY + bestPointDerivation[(pointIndex + bestPointDerivation.length - 1) % bestPointDerivation.length][1];
+		angle = getAngle(startX, startY, targetX, targetY);
 		placeObject(
 			centerX + bestPointDerivation[pointIndex][0],
 			centerY + bestPointDerivation[pointIndex][1],
