@@ -122,9 +122,9 @@ var wallScaleByType = {
 	"rome_siege": 1.5
 };
 
-for (var style in wallScaleByType)
+for (let style in wallScaleByType)
 {
-	var civ = style;
+	let civ = style;
 	if (style == "rome_siege")
 		civ = "rome";
 
@@ -292,11 +292,11 @@ var fortressTypes = {};
 // Setup some better looking semi default fortresses for "palisades" style
 for (let type in fortressTypes)
 {
-	var newKey = type + "Palisades";
-	var oldWall = fortressTypes[type].wall;
+	let newKey = type + "Palisades";
+	let oldWall = fortressTypes[type].wall;
 	fortressTypes[newKey] = new Fortress(newKey);
-	var fillTowersBetween = ["wallShort", "wall", "wallLong", "endLeft", "endRight", "cornerIn", "cornerOut"];
-	for (var j = 0; j < oldWall.length; j++)
+	let fillTowersBetween = ["wallShort", "wall", "wallLong", "endLeft", "endRight", "cornerIn", "cornerOut"];
+	for (let j = 0; j < oldWall.length; ++j)
 	{
 		fortressTypes[newKey].wall.push(oldWall[j]); // Only works if the first element is not in fillTowersBetween (e.g. entry or gate like it should be)
 		if (j+1 < oldWall.length)
@@ -350,18 +350,18 @@ function getWallAlignment(startX, startY, wall, style, orientation)
 	}
 	orientation = orientation || 0;
 
-	var alignment = [];
-	var wallX = startX;
-	var wallY = startY;
-	for (var i = 0; i < wall.length; i++)
+	let alignment = [];
+	let wallX = startX;
+	let wallY = startY;
+	for (let i = 0; i < wall.length; ++i)
 	{
-		var element = wallStyles[style][wall[i]];
+		let element = wallStyles[style][wall[i]];
 		if (element === undefined && i == 0)
 			warn("No valid wall element: " + wall[i]);
 
 		// Indentation
-		var placeX = wallX - element.indent * cos(orientation);
-		var placeY = wallY - element.indent * sin(orientation);
+		let placeX = wallX - element.indent * cos(orientation);
+		let placeY = wallY - element.indent * sin(orientation);
 
 		// Add wall elements entity placement arguments to the alignment
 		alignment.push({
@@ -375,13 +375,13 @@ function getWallAlignment(startX, startY, wall, style, orientation)
 		if (i+1 < wall.length)
 		{
 			orientation += element.bending;
-			var nextElement = wallStyles[style][wall[i+1]];
+			let nextElement = wallStyles[style][wall[i+1]];
 			if (nextElement === undefined)
 				warn("No valid wall element: " + wall[i+1]);
-			var distance = (element.width + nextElement.width)/2;
+			let distance = (element.width + nextElement.width)/2;
 			// Corrections for elements with indent AND bending
-			var indent = element.indent;
-			var bending = element.bending;
+			let indent = element.indent;
+			let bending = element.bending;
 			if (bending !== 0 && indent !== 0)
 			{
 				// Indent correction to adjust distance
@@ -408,8 +408,8 @@ function getWallAlignment(startX, startY, wall, style, orientation)
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function getCenterToFirstElement(alignment)
 {
-	var centerToFirstElement = {"x": 0, "y": 0};
-	for (var i = 0; i < alignment.length; i++)
+	let centerToFirstElement = { "x": 0, "y": 0 };
+	for (let i = 0; i < alignment.length; ++i)
 	{
 		centerToFirstElement.x -= alignment[i].x/alignment.length;
 		centerToFirstElement.y -= alignment[i].y/alignment.length;
@@ -434,8 +434,8 @@ function getWallLength(wall, style)
 		style = "athen";
 	}
 
-	var length = 0;
-	for (var i = 0; i < wall.length; i++)
+	let length = 0;
+	for (let i = 0; i < wall.length; ++i)
 		length += wallStyles[style][wall[i]].width;
 
 	return length;
@@ -475,11 +475,11 @@ function placeWall(startX, startY, wall, style, playerId, orientation)
 	orientation = orientation || 0;
 
 	// Get wall alignment
-	var AM = getWallAlignment(startX, startY, wall, style, orientation);
+	let AM = getWallAlignment(startX, startY, wall, style, orientation);
 	// Place the wall
-	for (var iWall = 0; iWall < wall.length; iWall++)
+	for (let iWall = 0; iWall < wall.length; ++iWall)
 	{
-		var entity = AM[iWall].entity;
+		let entity = AM[iWall].entity;
 		if (entity !== undefined)
 			placeObject(AM[iWall].x, AM[iWall].y, entity, playerId, AM[iWall].angle);
 	}
@@ -509,12 +509,12 @@ function placeCustomFortress(centerX, centerY, fortress, style, playerId = 0, or
 	}
 
 	// Calculate center if fortress.centerToFirstElement is undefined (default)
-	var centerToFirstElement = fortress.centerToFirstElement;
+	let centerToFirstElement = fortress.centerToFirstElement;
 	if (centerToFirstElement === undefined)
 		centerToFirstElement = getCenterToFirstElement(getWallAlignment(0, 0, fortress.wall, style));
 	// Placing the fortress wall
-	var startX = centerX + centerToFirstElement.x * cos(orientation) - centerToFirstElement.y * sin(orientation);
-	var startY = centerY + centerToFirstElement.y * cos(orientation) + centerToFirstElement.x * sin(orientation);
+	let startX = centerX + centerToFirstElement.x * cos(orientation) - centerToFirstElement.y * sin(orientation);
+	let startY = centerY + centerToFirstElement.y * cos(orientation) + centerToFirstElement.x * sin(orientation);
 	placeWall(startX, startY, fortress.wall, style, playerId, orientation);
 }
 
@@ -570,47 +570,47 @@ function placeLinearWall(startX, startY, targetX, targetY, wallPart, style, play
 	endWithFirst = typeof endWithFirst == "undefined" ? true : endWithFirst;
 
 	// Check arguments
-	for (var elementIndex = 0; elementIndex < wallPart.length; elementIndex++)
+	for (let elementIndex = 0; elementIndex < wallPart.length; ++elementIndex)
 	{
-		var bending = wallStyles[style][wallPart[elementIndex]].bending;
+		let bending = wallStyles[style][wallPart[elementIndex]].bending;
 		if (bending != 0)
 			warn("Bending is not supported by placeLinearWall but a bending wall element is used: " + wallPart[elementIndex] + " -> wallStyles[style][wallPart[elementIndex]].entity");
 	}
 	// Setup number of wall parts
-	var totalLength = Math.euclidDistance2D(startX, startY, targetX, targetY);
-	var wallPartLength = 0;
-	for (var elementIndex = 0; elementIndex < wallPart.length; elementIndex++)
+	let totalLength = Math.euclidDistance2D(startX, startY, targetX, targetY);
+	let wallPartLength = 0;
+	for (let elementIndex = 0; elementIndex < wallPart.length; ++elementIndex)
 		wallPartLength += wallStyles[style][wallPart[elementIndex]].width;
-	var numParts = 0;
+	let numParts = 0;
 	if (endWithFirst)
 		numParts = ceil((totalLength - wallStyles[style][wallPart[0]].width) / wallPartLength);
 	else
 		numParts = ceil(totalLength / wallPartLength);
 	// Setup scale factor
-	var scaleFactor = 1;
+	let scaleFactor = 1;
 	if (endWithFirst)
 		scaleFactor = totalLength / (numParts * wallPartLength + wallStyles[style][wallPart[0]].width);
 	else
 		scaleFactor = totalLength / (numParts * wallPartLength);
 	// Setup angle
-	var wallAngle = getAngle(startX, startY, targetX, targetY); // NOTE: function "getAngle()" is about to be changed...
-	var placeAngle = wallAngle - PI/2;
+	let wallAngle = getAngle(startX, startY, targetX, targetY); // NOTE: function "getAngle()" is about to be changed...
+	let placeAngle = wallAngle - PI/2;
 	// Place wall entities
-	var x = startX;
-	var y = startY;
-	for (var partIndex = 0; partIndex < numParts; partIndex++)
+	let x = startX;
+	let y = startY;
+	for (let partIndex = 0; partIndex < numParts; ++partIndex)
 	{
-		for (var elementIndex = 0; elementIndex < wallPart.length; elementIndex++)
+		for (let elementIndex = 0; elementIndex < wallPart.length; ++elementIndex)
 		{
-			var wallEle = wallStyles[style][wallPart[elementIndex]];
+			let wallEle = wallStyles[style][wallPart[elementIndex]];
 			// Width correction
 			x += scaleFactor * wallEle.width/2 * cos(wallAngle);
 			y += scaleFactor * wallEle.width/2 * sin(wallAngle);
 			// Indent correction
-			var placeX = x - wallEle.indent * sin(wallAngle);
-			var placeY = y + wallEle.indent * cos(wallAngle);
+			let placeX = x - wallEle.indent * sin(wallAngle);
+			let placeY = y + wallEle.indent * cos(wallAngle);
 			// Placement
-			var entity = wallEle.entity;
+			let entity = wallEle.entity;
 			if (entity !== undefined)
 				placeObject(placeX, placeY, entity, playerId, placeAngle + wallEle.angle);
 			x += scaleFactor * wallEle.width/2 * cos(wallAngle);
@@ -619,10 +619,10 @@ function placeLinearWall(startX, startY, targetX, targetY, wallPart, style, play
 	}
 	if (endWithFirst)
 	{
-		var wallEle = wallStyles[style][wallPart[0]];
+		let wallEle = wallStyles[style][wallPart[0]];
 		x += scaleFactor * wallEle.width/2 * cos(wallAngle);
 		y += scaleFactor * wallEle.width/2 * sin(wallAngle);
-		var entity = wallEle.entity;
+		let entity = wallEle.entity;
 		if (entity !== undefined)
 			placeObject(x, y, entity, playerId, placeAngle + wallEle.angle);
 	}
@@ -672,50 +672,50 @@ function placeCircularWall(centerX, centerY, radius, wallPart, style, playerId, 
 	// Check arguments
 	if (maxBendOff > PI/2 || maxBendOff < 0)
 		warn("placeCircularWall maxBendOff sould satisfy 0 < maxBendOff < PI/2 (~1.5) but it is: " + maxBendOff);
-	for (var elementIndex = 0; elementIndex < wallPart.length; elementIndex++)
+	for (let elementIndex = 0; elementIndex < wallPart.length; ++elementIndex)
 	{
-		var bending = wallStyles[style][wallPart[elementIndex]].bending;
+		let bending = wallStyles[style][wallPart[elementIndex]].bending;
 		if (bending != 0)
 			warn("Bending is not supported by placeCircularWall but a bending wall element is used: " + wallPart[elementIndex]);
 	}
 	// Setup number of wall parts
-	var totalLength = maxAngle * radius;
-	var wallPartLength = 0;
-	for (var elementIndex = 0; elementIndex < wallPart.length; elementIndex++)
+	let totalLength = maxAngle * radius;
+	let wallPartLength = 0;
+	for (let elementIndex = 0; elementIndex < wallPart.length; ++elementIndex)
 		wallPartLength += wallStyles[style][wallPart[elementIndex]].width;
-	var numParts = 0;
+	let numParts = 0;
 	if (endWithFirst)
 		numParts = ceil((totalLength - wallStyles[style][wallPart[0]].width) / wallPartLength);
 	else
 		numParts = ceil(totalLength / wallPartLength);
 
 	// Setup scale factor
-	var scaleFactor = 1;
+	let scaleFactor = 1;
 	if (endWithFirst)
 		scaleFactor = totalLength / (numParts * wallPartLength + wallStyles[style][wallPart[0]].width);
 	else
 		scaleFactor = totalLength / (numParts * wallPartLength);
 
 	// Place wall entities
-	var actualAngle = orientation + (2*PI - maxAngle) / 2;
-	var x = centerX + radius*cos(actualAngle);
-	var y = centerY + radius*sin(actualAngle);
-	for (var partIndex = 0; partIndex < numParts; partIndex++)
-		for (var elementIndex = 0; elementIndex < wallPart.length; elementIndex++)
+	let actualAngle = orientation + (2*PI - maxAngle) / 2;
+	let x = centerX + radius*cos(actualAngle);
+	let y = centerY + radius*sin(actualAngle);
+	for (let partIndex = 0; partIndex < numParts; ++partIndex)
+		for (let elementIndex = 0; elementIndex < wallPart.length; ++elementIndex)
 		{
-			var wallEle = wallStyles[style][wallPart[elementIndex]];
+			let wallEle = wallStyles[style][wallPart[elementIndex]];
 			// Width correction
-			var addAngle = scaleFactor * wallEle.width / radius;
-			var targetX = centerX + radius * cos(actualAngle + addAngle);
-			var targetY = centerY + radius * sin(actualAngle + addAngle);
-			var placeX = x + (targetX - x)/2;
-			var placeY = y + (targetY - y)/2;
-			var placeAngle = actualAngle + addAngle/2;
+			let addAngle = scaleFactor * wallEle.width / radius;
+			let targetX = centerX + radius * cos(actualAngle + addAngle);
+			let targetY = centerY + radius * sin(actualAngle + addAngle);
+			let placeX = x + (targetX - x)/2;
+			let placeY = y + (targetY - y)/2;
+			let placeAngle = actualAngle + addAngle/2;
 			// Indent correction
 			placeX -= wallEle.indent * cos(placeAngle);
 			placeY -= wallEle.indent * sin(placeAngle);
 			// Placement
-			var entity = wallEle.entity;
+			let entity = wallEle.entity;
 			if (entity !== undefined)
 				placeObject(placeX, placeY, entity, playerId, placeAngle + wallEle.angle);
 			// Prepare for the next wall element
@@ -726,13 +726,13 @@ function placeCircularWall(centerX, centerY, radius, wallPart, style, playerId, 
 
 	if (endWithFirst)
 	{
-		var wallEle = wallStyles[style][wallPart[0]];
-		var addAngle = scaleFactor * wallEle.width / radius;
-		var targetX = centerX + radius * cos(actualAngle + addAngle);
-		var targetY = centerY + radius * sin(actualAngle + addAngle);
-		var placeX = x + (targetX - x)/2;
-		var placeY = y + (targetY - y)/2;
-		var placeAngle = actualAngle + addAngle/2;
+		let wallEle = wallStyles[style][wallPart[0]];
+		let addAngle = scaleFactor * wallEle.width / radius;
+		let targetX = centerX + radius * cos(actualAngle + addAngle);
+		let targetY = centerY + radius * sin(actualAngle + addAngle);
+		let placeX = x + (targetX - x)/2;
+		let placeY = y + (targetY - y)/2;
+		let placeAngle = actualAngle + addAngle/2;
 		placeObject(placeX, placeY, wallEle.entity, playerId, placeAngle + wallEle.angle);
 	}
 }
@@ -775,16 +775,16 @@ function placePolygonalWall(centerX, centerY, radius, wallPart, cornerWallElemen
 	numCorners = numCorners || 8;
 
 	// Setup angles
-	var angleAdd = 2*PI/numCorners;
-	var angleStart = orientation - angleAdd/2;
+	let angleAdd = 2*PI/numCorners;
+	let angleStart = orientation - angleAdd/2;
 	// Setup corners
-	var corners = [];
-	for (var i = 0; i < numCorners; i++)
+	let corners = [];
+	for (let i = 0; i < numCorners; ++i)
 		corners.push([centerX + radius*cos(angleStart + i*angleAdd), centerY + radius*sin(angleStart + i*angleAdd)]);
 	// Place Corners and walls
-	for (var i = 0; i < numCorners; i++)
+	for (let i = 0; i < numCorners; ++i)
 	{
-		var angleToCorner = getAngle(corners[i][0], corners[i][1], centerX, centerY);
+		let angleToCorner = getAngle(corners[i][0], corners[i][1], centerX, centerY);
 		placeObject(corners[i][0], corners[i][1], wallStyles[style][cornerWallElement].entity, playerId, angleToCorner);
 		if (!skipFirstWall || i != 0)
 			placeLinearWall(
@@ -833,14 +833,14 @@ function placeIrregularPolygonalWall(centerX, centerY, radius, cornerWallElement
 
 	// Generating a generic wall part assortment with each wall part including 1 gate lengthened by walls and towers
 	// NOTE: It might be a good idea to write an own function for that...
-	var defaultWallPartsAssortment = [["wallShort"], ["wall"], ["wallLong"], ["gate", "tower", "wallShort"]];
-	var centeredWallPart = ["gate"];
-	var extandingWallPartAssortment = [["tower", "wallLong"], ["tower", "wall"]];
+	let defaultWallPartsAssortment = [["wallShort"], ["wall"], ["wallLong"], ["gate", "tower", "wallShort"]];
+	let centeredWallPart = ["gate"];
+	let extandingWallPartAssortment = [["tower", "wallLong"], ["tower", "wall"]];
 	defaultWallPartsAssortment.push(centeredWallPart);
-	for (var i = 0; i < extandingWallPartAssortment.length; i++)
+	for (let i = 0; i < extandingWallPartAssortment.length; ++i)
 	{
-		var wallPart = centeredWallPart;
-		for (var j = 0; j < radius; j++)
+		let wallPart = centeredWallPart;
+		for (let j = 0; j < radius; ++j)
 		{
 			if (j%2 == 0)
 				wallPart = wallPart.concat(extandingWallPartAssortment[i]);
@@ -864,44 +864,44 @@ function placeIrregularPolygonalWall(centerX, centerY, radius, cornerWallElement
 	skipFirstWall = skipFirstWall || false;
 
 	// Setup angles
-	var angleToCover = 2*PI;
-	var angleAddList = [];
-	for (var i = 0; i < numCorners; i++)
+	let angleToCover = 2*PI;
+	let angleAddList = [];
+	for (let i = 0; i < numCorners; ++i)
 	{
 		// Randomize covered angles. Variety scales down with raising angle though...
 		angleAddList.push(angleToCover/(numCorners-i) * (1 + randFloat(-irregularity, irregularity)));
 		angleToCover -= angleAddList[angleAddList.length - 1];
 	}
 	// Setup corners
-	var corners = [];
-	var angleActual = orientation - angleAddList[0]/2;
-	for (var i = 0; i < numCorners; i++)
+	let corners = [];
+	let angleActual = orientation - angleAddList[0]/2;
+	for (let i = 0; i < numCorners; ++i)
 	{
 		corners.push([centerX + radius*cos(angleActual), centerY + radius*sin(angleActual)]);
 		if (i < numCorners - 1)
 			angleActual += angleAddList[i+1];
 	}
 	// Setup best wall parts for the different walls (a bit confusing naming...)
-	var wallPartLengths = [];
-	var maxWallPartLength = 0;
-	for (var partIndex = 0; partIndex < wallPartsAssortment.length; partIndex++)
+	let wallPartLengths = [];
+	let maxWallPartLength = 0;
+	for (let partIndex = 0; partIndex < wallPartsAssortment.length; ++partIndex)
 	{
-		var length = wallPartLengths[partIndex];
+		let length = wallPartLengths[partIndex];
 		wallPartLengths.push(getWallLength(wallPartsAssortment[partIndex], style));
 		if (length > maxWallPartLength)
 			maxWallPartLength = length;
 	}
-	var wallPartList = []; // This is the list of the wall parts to use for the walls between the corners, not to confuse with wallPartsAssortment!
-	for (var i = 0; i < numCorners; i++)
+	let wallPartList = []; // This is the list of the wall parts to use for the walls between the corners, not to confuse with wallPartsAssortment!
+	for (let i = 0; i < numCorners; ++i)
 	{
-		var bestWallPart = []; // This is a simpel wall part not a wallPartsAssortment!
-		var bestWallLength = 99999999;
+		let bestWallPart = []; // This is a simpel wall part not a wallPartsAssortment!
+		let bestWallLength = 99999999;
 		// NOTE: This is not exactly like the length the wall will be in the end. Has to be tweaked...
-		var wallLength = Math.euclidDistance2D(corners[i][0], corners[i][1], corners[(i + 1) % numCorners][0], corners[(i + 1) % numCorners][1]);
-		var numWallParts = ceil(wallLength/maxWallPartLength);
-		for (var partIndex = 0; partIndex < wallPartsAssortment.length; partIndex++)
+		let wallLength = Math.euclidDistance2D(corners[i][0], corners[i][1], corners[(i + 1) % numCorners][0], corners[(i + 1) % numCorners][1]);
+		let numWallParts = ceil(wallLength/maxWallPartLength);
+		for (let partIndex = 0; partIndex < wallPartsAssortment.length; ++partIndex)
 		{
-			var linearWallLength = numWallParts*wallPartLengths[partIndex];
+			let linearWallLength = numWallParts*wallPartLengths[partIndex];
 			if (linearWallLength < bestWallLength && linearWallLength > wallLength)
 			{
 				bestWallPart = wallPartsAssortment[partIndex];
@@ -911,9 +911,9 @@ function placeIrregularPolygonalWall(centerX, centerY, radius, cornerWallElement
 		wallPartList.push(bestWallPart);
 	}
 	// Place Corners and walls
-	for (var i = 0; i < numCorners; i++)
+	for (let i = 0; i < numCorners; ++i)
 	{
-		var angleToCorner = getAngle(corners[i][0], corners[i][1], centerX, centerY);
+		let angleToCorner = getAngle(corners[i][0], corners[i][1], centerX, centerY);
 		placeObject(corners[i][0], corners[i][1], wallStyles[style][cornerWallElement].entity, playerId, angleToCorner);
 		if (!skipFirstWall || i != 0)
 			placeLinearWall(
@@ -957,25 +957,25 @@ function placeGenericFortress(centerX, centerY, radius, playerId, style, irregul
 	maxTrys = maxTrys || 100;
 
 	// Setup some vars
-	var startAngle = randFloat(0, 2*PI);
-	var actualOffX = radius*cos(startAngle);
-	var actualOffY = radius*sin(startAngle);
-	var actualAngle = startAngle;
-	var pointDistance = wallStyles[style].wallLong.width + wallStyles[style].tower.width;
+	let startAngle = randFloat(0, 2*PI);
+	let actualOffX = radius*cos(startAngle);
+	let actualOffY = radius*sin(startAngle);
+	let actualAngle = startAngle;
+	let pointDistance = wallStyles[style].wallLong.width + wallStyles[style].tower.width;
 	// Searching for a well fitting point derivation
-	var tries = 0;
-	var bestPointDerivation = undefined;
-	var minOverlap = 1000;
-	var overlap = undefined;
+	let tries = 0;
+	let bestPointDerivation = undefined;
+	let minOverlap = 1000;
+	let overlap = undefined;
 	while (tries < maxTrys && minOverlap > wallStyles[style].tower.width / 10)
 	{
-		var pointDerivation = [];
-		var distanceToTarget = 1000;
-		var targetReached = false;
+		let pointDerivation = [];
+		let distanceToTarget = 1000;
+		let targetReached = false;
 		while (!targetReached)
 		{
-			var indent = randFloat(-irregularity*pointDistance, irregularity*pointDistance);
-			var tmpAngle = getAngle(actualOffX, actualOffY,
+			let indent = randFloat(-irregularity*pointDistance, irregularity*pointDistance);
+			let tmpAngle = getAngle(actualOffX, actualOffY,
 				(radius + indent)*cos(actualAngle + (pointDistance / radius)),
 				(radius + indent)*sin(actualAngle + (pointDistance / radius)));
 			actualOffX += pointDistance*cos(tmpAngle);
@@ -983,7 +983,7 @@ function placeGenericFortress(centerX, centerY, radius, playerId, style, irregul
 			actualAngle = getAngle(0, 0, actualOffX, actualOffY);
 			pointDerivation.push([actualOffX, actualOffY]);
 			distanceToTarget = Math.euclidDistance2D(actualOffX, actualOffY, ...pointDerivation[0]);
-			var numPoints = pointDerivation.length;
+			let numPoints = pointDerivation.length;
 			if (numPoints > 3 && distanceToTarget < pointDistance) // Could be done better...
 			{
 				targetReached = true;
@@ -995,21 +995,21 @@ function placeGenericFortress(centerX, centerY, radius, playerId, style, irregul
 				}
 			}
 		}
-		tries++;
+		+tries;
 	}
 	log("placeGenericFortress: Reduced overlap to " + minOverlap + " after " + tries + " tries");
 	// Place wall
-	for (var pointIndex = 0; pointIndex < bestPointDerivation.length; pointIndex++)
+	for (let pointIndex = 0; pointIndex < bestPointDerivation.length; ++pointIndex)
 	{
-		var startX = centerX + bestPointDerivation[pointIndex][0];
-		var startY = centerY + bestPointDerivation[pointIndex][1];
-		var targetX = centerX + bestPointDerivation[(pointIndex + 1) % bestPointDerivation.length][0];
-		var targetY = centerY + bestPointDerivation[(pointIndex + 1) % bestPointDerivation.length][1];
-		var angle = getAngle(startX, startY, targetX, targetY);
-		var wallElement = "wallLong";
+		let startX = centerX + bestPointDerivation[pointIndex][0];
+		let startY = centerY + bestPointDerivation[pointIndex][1];
+		let targetX = centerX + bestPointDerivation[(pointIndex + 1) % bestPointDerivation.length][0];
+		let targetY = centerY + bestPointDerivation[(pointIndex + 1) % bestPointDerivation.length][1];
+		let angle = getAngle(startX, startY, targetX, targetY);
+		let wallElement = "wallLong";
 		if ((pointIndex + 1) % gateOccurence == 0)
 			wallElement = "gate";
-		var entity = wallStyles[style][wallElement].entity;
+		let entity = wallStyles[style][wallElement].entity;
 		if (entity)
 			placeObject(
 				startX + (Math.euclidDistance2D(startX, startY, targetX, targetY) / 2) * Math.cos(angle),
@@ -1019,9 +1019,9 @@ function placeGenericFortress(centerX, centerY, radius, playerId, style, irregul
 				angle - Math.PI / 2 + wallStyles[style][wallElement].angle);
 
 		// Place tower
-		var startX = centerX + bestPointDerivation[(pointIndex + bestPointDerivation.length - 1) % bestPointDerivation.length][0];
-		var startY = centerY + bestPointDerivation[(pointIndex + bestPointDerivation.length - 1) % bestPointDerivation.length][1];
-		var angle = getAngle(startX, startY, targetX, targetY);
+		let startX = centerX + bestPointDerivation[(pointIndex + bestPointDerivation.length - 1) % bestPointDerivation.length][0];
+		let startY = centerY + bestPointDerivation[(pointIndex + bestPointDerivation.length - 1) % bestPointDerivation.length][1];
+		let angle = getAngle(startX, startY, targetX, targetY);
 		placeObject(
 			centerX + bestPointDerivation[pointIndex][0],
 			centerY + bestPointDerivation[pointIndex][1],
