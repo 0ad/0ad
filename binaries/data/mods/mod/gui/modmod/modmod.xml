@@ -5,7 +5,8 @@
 	<script directory="gui/common/"/>
 	<script directory="gui/modmod/"/>
 
-	<object name="modmod" type="image" style="ModernWindow" size="0 0 100% 100%">
+	<object type="image" style="ModernWindow" size="0 0 100% 100%">
+
 		<!-- Page Title -->
 		<object style="ModernLabelText" type="text" size="50%-128 4 50%+128 36">
 			<translatableAttribute id="caption">Modifications</translatableAttribute>
@@ -14,14 +15,14 @@
 		<!-- Message -->
 		<object name="message" type="text" size="15 40 100%-15 88" text_align="left" textcolor="white"/>
 
-		<!-- reset filters -->
-		<object name="resetFilters" size="15 72 184 100" type="button" style="ModernButtonRed">
+		<!-- Reset filters -->
+		<object size="15 72 184 100" type="button" style="ModernButtonRed">
 			<translatableAttribute id="caption">Reset Filters</translatableAttribute>
 			<action on="Press">resetFilters();</action>
 		</object>
 
 		<!-- Filter Panel -->
-		<object name="filterPanel" size="184 64 50% 98">
+		<object size="184 64 50% 98">
 			<object name="modGenericFilter"
 				type="input"
 				style="ModernInput"
@@ -56,10 +57,12 @@
 		</object>
 
 		<!-- Sort by -->
-		<object name="sortingWrapper" size="100%-400 74 100% 98">
+		<object size="100%-400 74 100% 98">
+
 			<object type="text" size="0 0 75 100%" text_align="left" textcolor="white">
 				<translatableAttribute id="caption">Sorting:</translatableAttribute>
 			</object>
+
 			<object name="sortBy"
 				type="dropdown"
 				style="ModernDropDown"
@@ -68,10 +71,12 @@
 			>
 				<action on="SelectionChange">applyFilters();</action>
 			</object>
+
 			<!-- Checkboxes -->
 			<object type="text" size="75% 100%-24 100% 100%" text_align="left" textcolor="white">
 				<translatableAttribute id="caption">Descending.</translatableAttribute>
 			</object>
+
 			<object name="isOrderDescending"
 				type="checkbox"
 				checked="false"
@@ -81,15 +86,17 @@
 			>
 				<action on="Press">applyFilters();</action>
 			</object>
+
 		</object>
 
 		<!-- Available Mods Wrapper -->
-		<object name="modsAvailable" size="16 100 100%-15 75%-4" style="ModmodScrollbar">
+		<object size="16 100 100%-15 75%-4" style="ModmodScrollbar">
+
 			<object style="ModernLabelText" type="text" size="0 5 100% 25">
 				<translatableAttribute id="caption">Available Mods</translatableAttribute>
 			</object>
 
-			<object name="modsAvailableList"
+			<object name="modsDisabledList"
 				style="ModernList"
 				type="olist"
 				size="0 25 100%-2 100%"
@@ -121,8 +128,8 @@
 					<translatableAttribute id="heading">Website</translatableAttribute>
 				</column>
 			</object>
-			<object name="globalModDescription" type="text" style="ModmodScrollbar" size="0 100%-28 100%-16 100%">
-				<attribute id="caption"><keep>[color="100 100 100"]</keep><translate>Description</translate><keep>[/color]</keep></attribute>
+			<object name="globalModDescription" type="text" style="ModmodScrollbar" size="0 100%-28 100%-16 100%" textcolor="100 100 100">
+				<translatableAttribute id="caption">Description</translatableAttribute>
 			</object>
 			<object type="button" style="ModernButtonRed" size="100%-184 100%-28 100% 100%">
 				<translatableAttribute id="caption">Enable</translatableAttribute>
@@ -130,9 +137,9 @@
 			</object>
 		</object>
 
-
 		<!-- Enabled Mods Wrapper -->
-		<object name="modsEnabled" size="16 75% 100%-15 100%-50">
+		<object size="16 75% 100%-15 100%-50">
+
 			<object style="ModernLabelText" type="text" size="0 5 100% 25">
 				<translatableAttribute id="caption">Enabled Mods</translatableAttribute>
 			</object>
@@ -173,7 +180,7 @@
 
 			<object type="button" style="ModernButtonRed" size="96% 23 100% 40%+12">
 				<translatableAttribute id="caption">Up</translatableAttribute>
-				<action on="Press">moveCurrItem(this.parent.name + "List", true);</action>
+				<action on="Press">moveCurrItem("modsEnabledList", true);</action>
 			</object>
 			<object type="button" style="ModernButtonRed" size="96% 40%+12 100% 60%+10">
 				<translatableAttribute id="caption">X</translatableAttribute>
@@ -181,7 +188,7 @@
 			</object>
 			<object type="button" style="ModernButtonRed" size="96% 60%+10 100% 100%">
 				<translatableAttribute id="caption">Down</translatableAttribute>
-				<action on="Press">moveCurrItem(this.parent.name + "List", false);</action>
+				<action on="Press">moveCurrItem("modsEnabledList", false);</action>
 			</object>
 		</object>
 
