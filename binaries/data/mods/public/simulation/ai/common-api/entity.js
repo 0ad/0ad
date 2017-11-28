@@ -338,13 +338,21 @@ m.Template = m.Class({
 		return templates.split(/\s+/);
 	},
 
-	"researchableTechs": function(civ) {
+	"researchableTechs": function(gameState, civ) {
 		let templates = this.get("ProductionQueue/Technologies/_string");
 		if (!templates)
 			return undefined;
-		if (civ)
-			templates = templates.replace(/\{civ\}/g, civ);
-		return templates.split(/\s+/);
+		let techs = templates.split(/\s+/);
+		for (let i = 0; i < techs.length; ++i)
+		{
+			let tech = techs[i];
+			if (tech.indexOf("{civ}") == -1)
+				continue;
+			let civTech = tech.replace("{civ}", civ);
+			techs[i] = gameState.techTemplates[civTech] ?
+			           civTech : tech.replace("{civ}", "generic");
+		}
+		return techs;
 	},
 
 	"resourceSupplyType": function() {

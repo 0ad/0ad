@@ -23,7 +23,7 @@ ProductionQueue.prototype.Schema =
 		"</element>" +
 	"</optional>" +
 	"<optional>" +
-		"<element name='Technologies' a:help='Space-separated list of technology names that this building can research.'>" +
+		"<element name='Technologies' a:help='Space-separated list of technology names that this building can research. When present, the special string \"{civ}\" will be automatically replaced either by the civ code of the building&apos;s owner if such a tech exists, or by \"generic\".'>" +
 			"<attribute name='datatype'>" +
 				"<value>tokens</value>" +
 			"</attribute>" +
@@ -159,6 +159,18 @@ ProductionQueue.prototype.GetTechnologiesList = function()
 		return [];
 
 	var techs = string.split(/\s+/);
+
+	// Replace the civ specific technologies
+	let cmpDataTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_DataTemplateManager);
+	for (let i = 0; i < techs.length; ++i)
+	{
+		let tech = techs[i];
+		if (tech.indexOf("{civ}") == -1)
+			continue;
+		let civTech = tech.replace("{civ}", cmpPlayer.GetCiv());
+		techs[i] = cmpDataTemplateManager.TechFileExists(civTech) ?
+		           civTech : tech.replace("{civ}", "generic");
+	}
 
 	// Remove any technologies that can't be researched by this civ
 	techs = techs.filter(tech => {

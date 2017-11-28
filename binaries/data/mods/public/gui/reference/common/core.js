@@ -121,8 +121,16 @@ function getTemplateListsFromUnit(templateName)
 
 		if (template.ProductionQueue.Technologies)
 			for (let research of template.ProductionQueue.Technologies._string.split(" "))
+			{
+				if (research.indexOf("{civ}") != -1)
+				{
+					let civResearch = research.replace("{civ}", g_SelectedCiv);
+					research = techDataExists(civResearch) ?
+					           civResearch : research.replace("{civ}", "generic");
+				}
 				if (templateLists.techs.indexOf(research) === -1)
 					templateLists.techs.push(research);
+			}
 	}
 
 	return templateLists;
@@ -157,8 +165,16 @@ function getTemplateListsFromStructure(templateName)
 
 		if (template.ProductionQueue.Technologies && template.ProductionQueue.Technologies._string)
 			for (let research of template.ProductionQueue.Technologies._string.split(" "))
+			{
+				if (research.indexOf("{civ}") != -1)
+				{
+					let civResearch = research.replace("{civ}", g_SelectedCiv);
+					research = techDataExists(civResearch) ?
+					           civResearch : research.replace("{civ}", "generic");
+				}
 				if (templateLists.techs.indexOf(research) === -1)
 					templateLists.techs.push(research);
+			}
 	}
 
 	if (template.WallSet)

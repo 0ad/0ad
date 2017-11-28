@@ -1,21 +1,5 @@
 {
 	"genericName": "Town Phase",
-	"specificName": {
-		"mace": "Kōmópolis",
-		"spart": "Kōmópolis"
-	},
-	"description": "Advances from a small village to a bustling town, ready to expand rapidly.",
-	"cost": { "food": 500, "wood": 500, "stone": 0, "metal": 0 },
-	"requirements": { "all": [{ "entity": { "class": "Village", "number": 5 } }, { "notciv": "athen" }] },
-	"requirementsTooltip": "Requires 5 Village Phase structures (except Palisades and Farm Fields).",
-	"supersedes": "phase_village",
-	"icon": "town_phase.png",
-	"researchTime": 30,
-	"tooltip": "Advance to Town Phase, which unlocks more structures and units. Territory radius for Civic Centers increased by +30%. Citizen soldiers max health increased by +20%. All structures +7 garrisoned regeneration rate.",
-	"modifications": [
-		{ "value": "TerritoryInfluence/Radius", "multiply": 1.30, "affects": "CivCentre" },
-		{ "value": "Health/Max", "multiply": 1.2, "affects": "CitizenSoldier" },
-		{ "value": "Capturable/GarrisonRegenRate", "add": 7.0, "affects": "Structure" }
-	],
-	"soundComplete": "interface/alarm/alarm_phase.xml"
+	"description": "Dummy technology for use in templates requirements, replaced by phase_town_generic or phase_town_{civ}.",
+	"icon": "town_phase.png"
 }
