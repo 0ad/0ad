@@ -2,10 +2,8 @@
 
 <objects>
 
-	<script file="gui/common/settings.js"/>
-
-	<!-- After settings.js, which defines g_Settings -->
-	<script file="gui/aiconfig/aiconfig.js"/>
+	<script directory="gui/common/"/>
+	<script directory="gui/aiconfig/"/>
 
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" sprite="ModernFade"/>

@@ -126,9 +126,6 @@ function calculateEconomyScore(playerState, index)
 	for (let type of g_ResourceData.GetCodes())
 		total += playerState.sequences.resourcesGathered[type][index];
 
-	// Subtract costs for sheep/goats/pigs to get the net food gain for corralling
-	total -= playerState.sequences.domesticUnitsTrainedValue[index];
-
 	total += playerState.sequences.tradeIncome[index];
 	return Math.round(total / 10);
 }
@@ -242,6 +239,11 @@ function calculateTributeSent(playerState, index)
 		"sent": playerState.sequences.tributesSent[index],
 		"received": playerState.sequences.tributesReceived[index]
 	};
+}
+
+function calculateLivestockTrained(playerState, index)
+{
+	return playerState.sequences.unitsTrained.Domestic[index];
 }
 
 function calculateResourcesTeam(team, index, type, counters, headings)

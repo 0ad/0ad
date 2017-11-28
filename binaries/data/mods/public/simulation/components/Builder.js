@@ -11,7 +11,7 @@ Builder.prototype.Schema =
 	"<element name='Rate' a:help='Construction speed multiplier (1.0 is normal speed, higher values are faster).'>" +
 		"<ref name='positiveDecimal'/>" +
 	"</element>" +
-	"<element name='Entities' a:help='Space-separated list of entity template names that this unit can build. The special string \"{civ}\" will be automatically replaced by the unit&apos;s four-character civ code. This element can also be empty, in which case no new foundations may be placed by the unit, but they can still repair existing buildings.'>" +
+	"<element name='Entities' a:help='Space-separated list of entity template names that this unit can build. The special string \"{civ}\" will be automatically replaced by the civ code of the unit&apos;s owner. This element can also be empty, in which case no new foundations may be placed by the unit, but they can still repair existing buildings.'>" +
 		"<attribute name='datatype'>" +
 			"<value>tokens</value>" +
 		"</attribute>" +

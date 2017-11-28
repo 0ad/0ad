@@ -16,6 +16,7 @@ StatisticsTracker.prototype.Init = function()
 		"Hero",
 		"Siege",
 		"Ship",
+		"Domestic",
 		"Trader"
 	];
 	this.unitsTrained = {
@@ -28,9 +29,9 @@ StatisticsTracker.prototype.Init = function()
 		"Siege": 0,
 		"Ship": 0,
 		"Trader": 0,
+		"Domestic": 0,
 		"total": 0
 	};
-	this.domesticUnitsTrainedValue = 0;
 	this.unitsLost = {
 		"Infantry": 0,
 		"Worker": 0,
@@ -179,7 +180,6 @@ StatisticsTracker.prototype.GetStatistics = function()
 {
 	return {
 		"unitsTrained": this.unitsTrained,
-		"domesticUnitsTrainedValue": this.domesticUnitsTrainedValue,
 		"unitsLost": this.unitsLost,
 		"unitsLostValue": this.unitsLostValue,
 		"enemyUnitsKilled": this.enemyUnitsKilled,
@@ -273,11 +273,15 @@ StatisticsTracker.prototype.IncreaseTrainedUnitsCounter = function(trainedUnit)
 	for (let type of this.unitsClasses)
 		this.CounterIncrement(cmpUnitEntityIdentity, "unitsTrained", type);
 
-	++this.unitsTrained.total;
+	if (!cmpUnitEntityIdentity.HasClass("Domestic"))
+		++this.unitsTrained.total;
 
 	if (cmpUnitEntityIdentity.HasClass("Domestic") && costs)
-		for (let type in costs)
-			this.domesticUnitsTrainedValue += costs[type];
+	{
+		// Subtract costs for sheep/goats/pigs to get the net food gain/use for corralling
+		this.resourcesUsed.food -= costs.food;
+		this.resourcesGathered.food -= costs.food;
+	}
 
 };
 

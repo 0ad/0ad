@@ -7,6 +7,7 @@
 # Andersson Yang <calvinyang2002@icloud.com>, 2017
 # Christian Xia <wood_elf@126.com>, 2016
 # Kelvin Cooper <Zhu-Zhe-Yong@live.com>, 2016
+# Sediment AC <gnusediment+transifex@gmail.com>, 2017
 # TonyChyi <tonychee1989@gmail.com>, 2016
 # TonyChyi <tonychee1989@gmail.com>, 2016
 # Zou Yi <zouyi100@outlook.com>, 2017
@@ -15,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-11-17 09:04+0100\n"
-"PO-Revision-Date: 2017-11-17 08:26+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-11-25 18:55+0000\n"
+"Last-Translator: Sediment AC <gnusediment+transifex@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,7 +31,7 @@ msgstr "造船厂修复"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Repairs garrisoned ship at 10 HP per second."
-msgstr ""
+msgstr "进驻的船只每秒恢复10点生命值。"
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
@@ -125,11 +126,11 @@ msgstr "每拥有一个奇观，人口上限额外+40(需解锁“光荣扩张�
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraName
 msgid "Workshop Repairs"
-msgstr ""
+msgstr "车间修复"
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraDescription
 msgid "Repairs garrisoned siege units at 3 HP per second."
-msgstr ""
+msgstr "进驻的攻城器械每秒恢复3点生命值。"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"

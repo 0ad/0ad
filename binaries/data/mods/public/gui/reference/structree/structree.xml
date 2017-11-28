@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <objects>
-	<script file="gui/common/functions_global_object.js"/>
-	<script file="gui/common/functions_utility.js"/>
-	<script file="gui/common/tooltips.js"/>
+
+	<script directory="gui/common/"/>
 	<script directory="gui/reference/common/"/>
-	<script file="gui/reference/structree/structree.js"/>
-	<script file="gui/reference/structree/draw.js"/>
+	<script directory="gui/reference/structree/"/>
 
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" z="0" sprite="BackgroundTranslucent"/>

@@ -60,14 +60,14 @@ const wallStyleList = ["athen", "brit", "cart", "gaul", "iber", "mace", "maur", 
 // Custom wall placement (element based)
 ////////////////////////////////////////
 var wall = ['endLeft', 'wallLong', 'tower', 'wall', 'outpost', 'wall', 'cornerOut', 'wall', 'cornerIn', 'wall', 'house', 'endRight', 'entryTower', 'endLeft', 'wallShort', 'barracks', 'gate', 'tower', 'wall', 'wallFort', 'wall', 'endRight'];
-for (var styleIndex = 0; styleIndex < wallStyleList.length; styleIndex++)
+for (let styleIndex = 0; styleIndex < wallStyleList.length; ++styleIndex)
 {
-	var startX = actualX + styleIndex * buildableMapSize/wallStyleList.length; // X coordinate of the first wall element
-	var startY = actualY; // Y coordinate of the first wall element
-	var style = wallStyleList[styleIndex]; // // The wall's style like 'cart', 'iber', 'pers', 'rome', 'romeSiege' or 'palisades'
-	var orientation = styleIndex * PI/64; // Orientation of the first wall element. 0 means 'outside' or 'front' is right (positive X, like object placement)
+	let startX = actualX + styleIndex * buildableMapSize/wallStyleList.length; // X coordinate of the first wall element
+	let startY = actualY; // Y coordinate of the first wall element
+	let style = wallStyleList[styleIndex]; // // The wall's style like 'cart', 'iber', 'pers', 'rome', 'romeSiege' or 'palisades'
+	let orientation = styleIndex * PI/64; // Orientation of the first wall element. 0 means 'outside' or 'front' is right (positive X, like object placement)
 	// That means the wall will be build towards top (positive Y) if no corners are used
-	var playerId = 0; // Owner of the wall (like in placeObject). 0 is Gaia, 1 is Player 1 (default color blue), ...
+	let playerId = 0; // Owner of the wall (like in placeObject). 0 is Gaia, 1 is Player 1 (default color blue), ...
 	placeWall(startX, startY, wall, style, playerId, orientation); // Actually placing the wall
 }
 actualX = distToMapBorder; // Reset actualX
@@ -77,14 +77,14 @@ actualY += 80 + distToOtherWalls; // Increase actualY for next wall placement me
 // Default fortress placement (chosen by fortress type string)
 //////////////////////////////////////////////////////////////
 var fortressRadius = 15; // The space the fortresses take in average. Just for design of this map
-for (var styleIndex = 0; styleIndex < wallStyleList.length; styleIndex++)
+for (let styleIndex = 0; styleIndex < wallStyleList.length; ++styleIndex)
 {
-	var centerX = actualX + fortressRadius + styleIndex * buildableMapSize/wallStyleList.length; // X coordinate of the center of the fortress
-	var centerY = actualY + fortressRadius; // Y coordinate of the center of the fortress
-	var type = 'tiny'; // Default fortress types are like map sizes: 'tiny', 'small', 'medium', 'large', 'veryLarge', 'giant'
-	var style = wallStyleList[styleIndex]; // The wall's style like 'cart', 'iber', 'pers', 'rome', 'romeSiege' or 'palisades'
-	var playerId = 0; // Owner of the wall. 0 is Gaia, 1 is Player 1 (default color blue), ...
-	var orientation = styleIndex * PI/32; // Where the 'main entrance' of the fortress should face (like in placeObject). All fortresses walls should start with an entrance
+	let centerX = actualX + fortressRadius + styleIndex * buildableMapSize/wallStyleList.length; // X coordinate of the center of the fortress
+	let centerY = actualY + fortressRadius; // Y coordinate of the center of the fortress
+	let type = 'tiny'; // Default fortress types are like map sizes: 'tiny', 'small', 'medium', 'large', 'veryLarge', 'giant'
+	let style = wallStyleList[styleIndex]; // The wall's style like 'cart', 'iber', 'pers', 'rome', 'romeSiege' or 'palisades'
+	let playerId = 0; // Owner of the wall. 0 is Gaia, 1 is Player 1 (default color blue), ...
+	let orientation = styleIndex * PI/32; // Where the 'main entrance' of the fortress should face (like in placeObject). All fortresses walls should start with an entrance
 	placeFortress(centerX, centerY, type, style, playerId, orientation); // Actually placing the fortress
 	placeObject(centerX, centerY, 'other/obelisk', 0, 0*PI); // Place visual marker to see the center of the fortress
 }
@@ -98,13 +98,13 @@ actualY += 2 * fortressRadius + 2 * distToOtherWalls; // Increase actualY for ne
 var radius = min((mapSize - actualY - distToOtherWalls) / 3, (buildableMapSize / wallStyleList.length - distToOtherWalls) / 2); // The radius of wall circle
 var centerY = actualY + radius; // Y coordinate of the center of the wall circle
 var orientation = 0; // Where the wall circle will be open if maxAngle < 2*PI, see below. Otherwise where the first wall element will be placed
-for (var styleIndex = 0; styleIndex < wallStyleList.length; styleIndex++)
+for (let styleIndex = 0; styleIndex < wallStyleList.length; ++styleIndex)
 {
-	var centerX = actualX + radius + styleIndex * buildableMapSize/wallStyleList.length; // X coordinate of the center of the wall circle
-	var playerId = 0; // Player ID of the player owning the wall, 0 is Gaia, 1 is the first player (default blue), ...
-	var wallPart = ['tower', 'wall', 'house']; // List of wall elements the wall will be build of. Optional, default id ['wall']
-	var style = wallStyleList[styleIndex]; // The wall's style like 'cart', 'iber', 'pers', 'rome', 'romeSiege' or 'palisades'
-	var maxAngle = PI/2 * (styleIndex%3 + 2); // How far the wall should circumvent the center
+	let centerX = actualX + radius + styleIndex * buildableMapSize/wallStyleList.length; // X coordinate of the center of the wall circle
+	let playerId = 0; // Player ID of the player owning the wall, 0 is Gaia, 1 is the first player (default blue), ...
+	let wallPart = ['tower', 'wall', 'house']; // List of wall elements the wall will be build of. Optional, default id ['wall']
+	let style = wallStyleList[styleIndex]; // The wall's style like 'cart', 'iber', 'pers', 'rome', 'romeSiege' or 'palisades'
+	let maxAngle = PI/2 * (styleIndex%3 + 2); // How far the wall should circumvent the center
 	placeCircularWall(centerX, centerY, radius, wallPart, style, playerId, orientation, maxAngle); // Actually placing the wall
 	placeObject(centerX, centerY, 'other/obelisk', 0, 0*PI); // Place visual marker to see the center of the wall circle
 	orientation += PI/16; // Increasing orientation to see how rotation works (like for object placement)
@@ -119,15 +119,15 @@ actualY += 2 * radius + distToOtherWalls; // Increase actualY for next wall plac
 var radius = min((mapSize - actualY - distToOtherWalls) / 2, (buildableMapSize / wallStyleList.length - distToOtherWalls) / 2); // The radius of wall polygons
 var centerY = actualY + radius; // Y coordinate of the center of the wall polygon
 var orientation = 0; // Where the wall circle will be open if ???, see below. Otherwise where the first wall will be placed
-for (var styleIndex = 0; styleIndex < wallStyleList.length; styleIndex++)
+for (let styleIndex = 0; styleIndex < wallStyleList.length; ++styleIndex)
 {
-	var centerX = actualX + radius + styleIndex * buildableMapSize/wallStyleList.length; // X coordinate of the center of the wall circle
-	var playerId = 0; // Player ID of the player owning the wall, 0 is Gaia, 1 is the first player (default blue), ...
-	var cornerWallElement = 'tower'; // With wall element type will be uset for the corners of the polygon
-	var wallPart = ['wall', 'tower']; // List of wall elements the wall will be build of. Optional, default id ['wall']
-	var style = wallStyleList[styleIndex]; // The wall's style like 'cart', 'iber', 'pers', 'rome', 'romeSiege' or 'palisades'
-	var numCorners = (styleIndex)%6 + 3; // How many corners the plogon will have
-	var skipFirstWall = true; // If the wall should be open towards orientation
+	let centerX = actualX + radius + styleIndex * buildableMapSize/wallStyleList.length; // X coordinate of the center of the wall circle
+	let playerId = 0; // Player ID of the player owning the wall, 0 is Gaia, 1 is the first player (default blue), ...
+	let cornerWallElement = 'tower'; // With wall element type will be uset for the corners of the polygon
+	let wallPart = ['wall', 'tower']; // List of wall elements the wall will be build of. Optional, default id ['wall']
+	let style = wallStyleList[styleIndex]; // The wall's style like 'cart', 'iber', 'pers', 'rome', 'romeSiege' or 'palisades'
+	let numCorners = (styleIndex)%6 + 3; // How many corners the plogon will have
+	let skipFirstWall = true; // If the wall should be open towards orientation
 	placePolygonalWall(centerX, centerY, radius, wallPart, cornerWallElement, style, playerId, orientation, numCorners, skipFirstWall);
 	placeObject(centerX, centerY, 'other/obelisk', 0, 0*PI); // Place visual marker to see the center of the wall circle
 	orientation += PI/16; // Increasing orientation to see how rotation works (like for object placement)
@@ -141,16 +141,16 @@ actualY += 2 * radius + distToOtherWalls; // Increase actualY for next wall plac
 // NOTE: Don't use bending wall elements like corners here!
 var maxWallLength = (mapSize - actualY - distToMapBorder - distToOtherWalls); // Just for this maps design. How long the longest wall will be
 var numWallsPerStyle = floor(buildableMapSize / distToOtherWalls / wallStyleList.length); // Just for this maps design. How many walls of the same style will be placed
-for (var styleIndex = 0; styleIndex < wallStyleList.length; styleIndex++)
-	for (var wallIndex = 0; wallIndex < numWallsPerStyle; wallIndex++)
+for (let styleIndex = 0; styleIndex < wallStyleList.length; ++styleIndex)
+	for (let wallIndex = 0; wallIndex < numWallsPerStyle; ++wallIndex)
 	{
-		var startX = actualX + (styleIndex * numWallsPerStyle + wallIndex) * distToOtherWalls; // X coordinate the wall will start from
-		var startY = actualY; // Y coordinate the wall will start from
-		var endX = startX; // X coordinate the wall will end
-		var endY = actualY + (wallIndex + 1) * maxWallLength/numWallsPerStyle; // Y coordinate the wall will end
-		var playerId = 0; // Player ID of the player owning the wall, 0 is Gaia, 1 is the first player (default blue), ...
-		var wallPart = ['tower', 'wall']; // List of wall elements the wall will be build of
-		var style = wallStyleList[styleIndex]; // The wall's style like 'cart', 'iber', 'pers', 'rome', 'romeSiege' or 'palisades'
+		let startX = actualX + (styleIndex * numWallsPerStyle + wallIndex) * distToOtherWalls; // X coordinate the wall will start from
+		let startY = actualY; // Y coordinate the wall will start from
+		let endX = startX; // X coordinate the wall will end
+		let endY = actualY + (wallIndex + 1) * maxWallLength/numWallsPerStyle; // Y coordinate the wall will end
+		let playerId = 0; // Player ID of the player owning the wall, 0 is Gaia, 1 is the first player (default blue), ...
+		let wallPart = ['tower', 'wall']; // List of wall elements the wall will be build of
+		let style = wallStyleList[styleIndex]; // The wall's style like 'cart', 'iber', 'pers', 'rome', 'romeSiege' or 'palisades'
 		placeLinearWall(startX, startY, endX, endY, wallPart, style, playerId); // Actually placing the wall
 		// placeObject(startX, startY, 'other/obelisk', 0, 0*PI); // Place visual marker to see where exsactly the wall begins
 		// placeObject(endX, endY, 'other/obelisk', 0, 0*PI); // Place visual marker to see where exsactly the wall ends

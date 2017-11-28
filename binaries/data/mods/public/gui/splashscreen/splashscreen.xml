@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <objects>
-	<script file="gui/common/functions_global_object.js"/>
-	<script file="gui/splashscreen/splashscreen.js"/>
+
+	<script directory="gui/common/"/>
+	<script directory="gui/splashscreen/"/>
 
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" z="0" sprite="ModernFade"/>

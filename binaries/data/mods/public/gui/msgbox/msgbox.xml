@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <objects>
-	<script file="gui/msgbox/msgbox.js"/>
-	<script file="gui/common/functions_global_object.js"/>
+
+	<script directory="gui/common/"/>
+	<script directory="gui/msgbox/"/>
 
 	<!-- Fade out the background because it's non-interactable -->
 	<object sprite="ModernFade" type="image" z="0"/>

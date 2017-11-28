@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant frequency="100" name="Rome Onager">
+      <mesh>structural/siege_onager_pivot.dae</mesh>
+      <props>
+        <prop actor="units/romans/siege_onager.xml" attachpoint="weapon"/>
+        <prop actor="units/romans/onager_operator_c.xml" attachpoint="engineer_c"/>
+        <prop actor="units/romans/onager_operator_b.xml" attachpoint="engineer_b" maxheight="20" minheight="-20"/>
+        <prop actor="units/romans/onager_operator_a.xml" attachpoint="engineer_a" />
+        <prop actor="props/units/rock_pile.xml" attachpoint="rock_ammo" maxheight="20" minheight="-20"/>
+      </props>
+      <textures>
+        <texture file="structural/hele_siege.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>

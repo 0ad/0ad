@@ -2,22 +2,8 @@
 
 <objects>
 
-	<!-- Used to display game info. -->
-	<script file="gui/common/color.js" />
-	<script file="gui/common/functions_utility.js" />
-	<script file="gui/common/gamedescription.js"/>
-	<script file="gui/common/settings.js" />
-
-	<!-- Used to display message boxes. -->
-	<script file="gui/common/functions_global_object.js" />
-
-	<!-- Used for engine + mod version checks and deleteTooltip. -->
-	<script file="gui/common/functions_utility_loadsave.js" />
-
-	<!-- Actual replay scripts after settings.js, as it initializes g_Settings. -->
-	<script file="gui/replaymenu/replay_menu.js" />
-	<script file="gui/replaymenu/replay_actions.js" />
-	<script file="gui/replaymenu/replay_filters.js" />
+	<script directory="gui/common/"/>
+	<script directory="gui/replaymenu/" />
 
 	<!-- Everything displayed in the replay menu. -->
 	<object type="image" style="ModernWindow" size="0 0 100% 100%" name="replayWindow">

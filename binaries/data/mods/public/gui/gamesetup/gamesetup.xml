@@ -2,16 +2,8 @@
 
 <objects>
 
-	<script file="gui/common/color.js"/>
-	<script file="gui/common/functions_global_object.js"/>
-	<script file="gui/common/functions_utility.js"/>
-	<script file="gui/common/gamedescription.js"/>
-	<script file="gui/common/network.js"/>
-	<script file="gui/common/settings.js"/>
-	<script file="gui/common/timer.js"/>
-
-	<!-- After settings.js, which defines g_Settings -->
-	<script file="gui/gamesetup/gamesetup.js"/>
+	<script directory="gui/common/"/>
+	<script directory="gui/gamesetup/"/>
 
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" style="ModernWindow" size="0 0 100% 100%">
