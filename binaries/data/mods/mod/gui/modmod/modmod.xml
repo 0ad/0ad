@@ -28,6 +28,7 @@
 				size="10 100%-24 170 100%"
 			>
 				<action on="Press">applyFilters();</action>
+				<action on="TextEdit">applyFilters();</action>
 			</object>
 
 			<object name="modTypeFilter"
@@ -95,6 +96,8 @@
 				font="sans-stroke-13"
 			>
 				<action on="SelectionChange">showModDescription(this.name);</action>
+				<action on="MouseLeftDoubleClickItem">enableMod();</action>
+
 				<!-- List headers -->
 				<column id="name" color="255 255 255" width="10%">
 					<translatableAttribute id="heading">Name</translatableAttribute>
@@ -142,6 +145,8 @@
 				tooltip_style="pgToolTip"
 			>
 				<action on="SelectionChange">showModDescription(this.name);</action>
+				<action on="MouseLeftDoubleClickItem">disableMod();</action>
+
 				<!-- List headers -->
 				<column id="name" color="255 255 255" width="10%">
 					<translatableAttribute id="heading">Name</translatableAttribute>
