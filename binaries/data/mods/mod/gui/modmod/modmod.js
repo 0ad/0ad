@@ -43,33 +43,6 @@ var g_ColorNoModSelected = "255 255 100";
 var g_ColorDependenciesMet = "100 255 100";
 var g_ColorDependenciesNotMet = "255 100 100";
 
-/**
- * Dropdown choices to sort the available mods.
- */
-var g_SortOptions = [
-	{
-		"id": "name",
-		"title": translate("Name"),
-		"value": folder => g_Mods[folder].name.toLowerCase(),
-		"default": true
-	},
-	{
-		"id": "folder",
-		"title": translate("Folder"),
-		"value": folder => folder.toLowerCase()
-	},
-	{
-		"id": "label",
-		"title": translate("Label"),
-		"value": folder => g_Mods[folder].label.toLowerCase()
-	},
-	{
-		"id": "version",
-		"title": translate("Version"),
-		"value": folder => g_Mods[folder].version
-	}
-];
-
 function init()
 {
 	loadMods();
@@ -98,12 +71,6 @@ function initGUIFilters()
 	Engine.GetGUIObjectByName("modGenericFilter").caption = translate("Filter");
 	Engine.GetGUIObjectByName("modTypeFilter").selected = 0;
 
-	let sortBy = Engine.GetGUIObjectByName("sortBy");
-	sortBy.list = g_SortOptions.map(option => option.title);
-	sortBy.selected = g_SortOptions.findIndex(option => option.default);
-
-	Engine.GetGUIObjectByName("isOrderDescending").checked = false;
-
 	displayModLists();
 }
 
@@ -131,24 +98,25 @@ function displayModList(listObjectName, folders)
 {
 	updateModTypes();
 
-	let sortOption = g_SortOptions[Engine.GetGUIObjectByName("sortBy").selected];
-	if (sortOption && listObjectName == "modsDisabledList")
+	let listObject = Engine.GetGUIObjectByName(listObjectName);
+
+	if (listObjectName == "modsDisabledList")
 	{
-		folders.sort((version1, version2) => sortOption.value(version1).localeCompare(sortOption.value(version2)));
-		if (Engine.GetGUIObjectByName("isOrderDescending").checked)
-			folders.reverse();
+		let sortFolder = folder => String(g_Mods[folder][listObject.selected_column] || folder);
+		folders.sort((folder1, folder2) =>
+			listObject.selected_column_order *
+			sortFolder(folder1).localeCompare(sortFolder(folder2)));
 	}
 
 	folders = folders.filter(filterMod);
 
-	let listObject = Engine.GetGUIObjectByName(listObjectName);
 	listObject.list_name = folders.map(folder => g_Mods[folder].name);
-	listObject.list_modFolderName = folders;
-	listObject.list_modLabel = folders.map(folder => g_Mods[folder].label);
-	listObject.list_modType = folders.map(folder => g_Mods[folder].type || "");
-	listObject.list_modURL = folders.map(folder => g_Mods[folder].url || "");
-	listObject.list_modVersion = folders.map(folder => g_Mods[folder].version);
-	listObject.list_modDependencies = folders.map(folder => g_Mods[folder].dependencies.join(" "));
+	listObject.list_folder = folders;
+	listObject.list_label = folders.map(folder => g_Mods[folder].label);
+	listObject.list_type = folders.map(folder => g_Mods[folder].type || "");
+	listObject.list_url = folders.map(folder => g_Mods[folder].url || "");
+	listObject.list_version = folders.map(folder => g_Mods[folder].version);
+	listObject.list_dependencies = folders.map(folder => g_Mods[folder].dependencies.join(" "));
 	listObject.list = folders;
 }
 
@@ -222,8 +190,9 @@ function applyFilters()
 	// Save selected rows
 	let modsDisabledList = Engine.GetGUIObjectByName("modsDisabledList");
 	let modsEnabledList = Engine.GetGUIObjectByName("modsEnabledList");
-	let selectedModAvailableFolder = modsDisabledList.list_modFolderName[modsDisabledList.selected];
-	let selectedModEnabledFolder = modsEnabledList.list_modFolderName[modsEnabledList.selected];
+
+	let selectedDisabledFolder = modsDisabledList.list_folder[modsDisabledList.selected];
+	let selectedEnabledFolder = modsEnabledList.list_folder[modsEnabledList.selected];
 
 	// Remove selected rows to prevent a link to a non existing item
 	modsDisabledList.selected = -1;
@@ -232,8 +201,8 @@ function applyFilters()
 	displayModLists();
 
 	// Restore previously selected rows
-	modsDisabledList.selected = modsDisabledList.list_modFolderName.indexOf(selectedModAvailableFolder);
-	modsEnabledList.selected = modsEnabledList.list_modFolderName.indexOf(selectedModEnabledFolder);
+	modsDisabledList.selected = modsDisabledList.list_folder.indexOf(selectedDisabledFolder);
+	modsEnabledList.selected = modsEnabledList.list_folder.indexOf(selectedEnabledFolder);
 
 	Engine.GetGUIObjectByName("globalModDescription").caption = "";
 }
