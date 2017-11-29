@@ -390,7 +390,6 @@ function project_create(project_name, target_type)
 	kind(target_type)
 
 	filter "action:vs2013"
-		characterset "MBCS"
 		toolset "v120_xp"
 	filter {}
 
@@ -1054,7 +1053,6 @@ function setup_atlas_project(project_name, target_type, rel_source_dirs, rel_inc
 
 	-- Platform Specifics
 	if os.istarget("windows") then
-		defines { "_UNICODE" }
 		-- Link to required libraries
 		links { "winmm", "comctl32", "rpcrt4", "delayimp", "ws2_32" }
 
@@ -1187,8 +1185,6 @@ function setup_atlas_frontend_project (project_name)
 
 	-- Platform Specifics
 	if os.istarget("windows") then
-		defines { "_UNICODE" }
-
 		-- see manifest.cpp
 		project_add_manifest()
 
@@ -1219,7 +1215,9 @@ function setup_collada_project(project_name, target_type, rel_source_dirs, rel_i
 	project_add_x11_dirs()
 
 	-- Platform Specifics
-	if os.istarget("linux") then
+	if os.istarget("windows") then
+		characterset "MBCS"
+	elseif os.istarget("linux") then
 		defines { "LINUX" }
 
 		links {

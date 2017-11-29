@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,7 +27,9 @@
 #undef CStr
 
 // First, set up the environment for the Unicode version
+#ifndef _UNICODE
 #define _UNICODE
+#endif
 #define CStr CStrW
 #define tstring wstring
 #define tchar wchar_t
