@@ -160,6 +160,9 @@ m.HQ.prototype.checkEvents = function (gameState, events)
 			let ent = evt.entityObj;
 			if (ent.owner() != PlayerID)
 				continue;
+			// A new base foundation was created and destroyed on the same (AI) turn
+			if (evt.metadata[PlayerID].base == -1)
+				continue;
 			let base = this.getBaseByID(evt.metadata[PlayerID].base);
 			if (ent.resourceDropsiteTypes() && !ent.hasClass("Elephant"))
 				base.removeDropsite(gameState, ent);
