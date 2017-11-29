@@ -21,6 +21,7 @@
 # Hedaja <christian.pietzsch@gmail.com>, 2014
 # hunzel <nurmaguggen@hotmail.com>, 2014
 # Jakob Gahde <j5lx@fmail.co.uk>, 2014
+# ... ... <jon12@gmx.de>, 2017
 # jonnius <jonatan_zeidler@gmx.de>, 2014
 # leper <leper@wildfiregames.com>, 2014-2016
 # Mansent, 2013
@@ -60,9 +61,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-09-08 09:04+0200\n"
-"PO-Revision-Date: 2017-10-29 00:18+0000\n"
-"Last-Translator: Nico Laus <omaoma75@web.de>\n"
+"POT-Creation-Date: 2017-11-27 09:04+0100\n"
+"PO-Revision-Date: 2017-11-28 22:12+0000\n"
+"Last-Translator: ... ... <jon12@gmx.de>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -456,76 +457,81 @@ msgid ""
 "ready)"
 msgstr "Ein neues Spiel mit den aktuellen Einstellungen starten (deaktiviert, bis alle Spieler bereit sind)"
 
-#: gui/gamesetup/gamesetup.js:1486
+#: gui/gamesetup/gamesetup.js:958
+#, javascript-format
+msgid "Configure AI: %(name)s - %(difficulty)s."
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:1490
 msgctxt "map selection"
 msgid "Random"
 msgstr "Zufällig"
 
-#: gui/gamesetup/gamesetup.js:1488
+#: gui/gamesetup/gamesetup.js:1492
 msgid "Pick any of the given maps at random."
 msgstr "Wählen eine zufällige Karte aus."
 
-#: gui/gamesetup/gamesetup.js:1517
+#: gui/gamesetup/gamesetup.js:1515
 msgctxt "biome"
 msgid "Random"
 msgstr "Zufällig"
 
-#: gui/gamesetup/gamesetup.js:1518
+#: gui/gamesetup/gamesetup.js:1516
 msgid "Pick a biome at random."
 msgstr "Wähle ein Biom zufällig."
 
-#: gui/gamesetup/gamesetup.js:1804 gui/gamesetup/gamesetup.js:1846
+#: gui/gamesetup/gamesetup.js:1801 gui/gamesetup/gamesetup.js:1843
 #, javascript-format
 msgid "%(option)s:"
 msgstr "%(option)s:"
 
-#: gui/gamesetup/gamesetup.js:1809
+#: gui/gamesetup/gamesetup.js:1806
 msgctxt "option value"
 msgid "Unknown"
 msgstr "Unbekannt"
 
-#: gui/gamesetup/gamesetup.js:1839
+#: gui/gamesetup/gamesetup.js:1836
 msgid "Yes"
 msgstr "Ja"
 
-#: gui/gamesetup/gamesetup.js:1839
+#: gui/gamesetup/gamesetup.js:1836
 msgid "No"
 msgstr "Nein"
 
-#: gui/gamesetup/gamesetup.js:1932
+#: gui/gamesetup/gamesetup.js:1930
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s."
 
-#: gui/gamesetup/gamesetup.js:2128
+#: gui/gamesetup/gamesetup.js:2130
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "KI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:2136
+#: gui/gamesetup/gamesetup.js:2138
 msgid "Unassigned"
 msgstr "Nicht zugewiesen"
 
-#: gui/gamesetup/gamesetup.js:2211
+#: gui/gamesetup/gamesetup.js:2213
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2218
+#: gui/gamesetup/gamesetup.js:2220
 msgid "Unknown Player"
 msgstr "Unbekannter Spieler"
 
-#: gui/gamesetup/gamesetup.js:2257
+#: gui/gamesetup/gamesetup.js:2259
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2258
+#: gui/gamesetup/gamesetup.js:2260
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2259
+#: gui/gamesetup/gamesetup.js:2261
 msgid "HH:mm"
 msgstr "HH:mm"
 
@@ -556,101 +562,101 @@ msgid "Cancel"
 msgstr "Abbrechen"
 
 #: gui/aiconfig/aiconfig.xml:(caption):46
-#: gui/gamesetup/gamesetup.xml:(caption):322
+#: gui/gamesetup/gamesetup.xml:(caption):321
 msgid "OK"
 msgstr "OK"
 
-#: gui/gamesetup/gamesetup.xml:(caption):21
+#: gui/gamesetup/gamesetup.xml:(caption):20
 msgid "Match Setup"
 msgstr "Spieleinstellungen"
 
-#: gui/gamesetup/gamesetup.xml:(caption):27
+#: gui/gamesetup/gamesetup.xml:(caption):26
 msgid "Loading"
 msgstr "Wird geladen"
 
-#: gui/gamesetup/gamesetup.xml:(caption):31
+#: gui/gamesetup/gamesetup.xml:(caption):30
 msgid "Loading map data. Please wait..."
 msgstr "Lade Karte. Bitte warten ..."
 
-#: gui/gamesetup/gamesetup.xml:(caption):47
+#: gui/gamesetup/gamesetup.xml:(caption):46
 msgid "Player Name"
 msgstr "Spielername"
 
-#: gui/gamesetup/gamesetup.xml:(caption):51
+#: gui/gamesetup/gamesetup.xml:(caption):50
 msgid "Color"
 msgstr "Farbe"
 
-#: gui/gamesetup/gamesetup.xml:(caption):55
+#: gui/gamesetup/gamesetup.xml:(caption):54
 msgid "Player Placement"
 msgstr "Startposition"
 
-#: gui/gamesetup/gamesetup.xml:(caption):59
+#: gui/gamesetup/gamesetup.xml:(caption):58
 msgid "Civilization"
 msgstr "Zivilisation"
 
-#: gui/gamesetup/gamesetup.xml:(caption):87
+#: gui/gamesetup/gamesetup.xml:(caption):86
 msgid "Team"
 msgstr "Team"
 
-#: gui/gamesetup/gamesetup.xml:(caption):141
+#: gui/gamesetup/gamesetup.xml:(caption):140
 msgid "Show this message in the future"
 msgstr "Zeige in Zukunft diese Nachricht"
 
-#: gui/gamesetup/gamesetup.xml:(caption):208
+#: gui/gamesetup/gamesetup.xml:(caption):207
 msgid "Send"
 msgstr "Senden"
 
-#: gui/gamesetup/gamesetup.xml:(caption):225
+#: gui/gamesetup/gamesetup.xml:(caption):224
 msgid "Cheats enabled."
 msgstr "Cheats aktiviert."
 
-#: gui/gamesetup/gamesetup.xml:(caption):253
+#: gui/gamesetup/gamesetup.xml:(caption):252
 msgid "Back"
 msgstr "Zurück"
 
-#: gui/gamesetup/gamesetup.xml:(caption):267
-#: gui/gamesetup/gamesetup.xml:(caption):279
+#: gui/gamesetup/gamesetup.xml:(caption):266
+#: gui/gamesetup/gamesetup.xml:(caption):278
 msgid "More Options"
 msgstr "Mehr Optionen"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):69
+#: gui/gamesetup/gamesetup.xml:(tooltip):68
 msgid "View civilization info"
 msgstr "Zivilisationsinfo anzeigen"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):82
+#: gui/gamesetup/gamesetup.xml:(tooltip):81
 msgid ""
 "Reset any civilizations that have been selected to the default (random)"
 msgstr "Alle Zivilisationen zurücksetzen, die auf den Standard ausgewählt wurden (random)"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):97
+#: gui/gamesetup/gamesetup.xml:(tooltip):96
 msgid "Reset all teams to the default."
 msgstr "Alle Teams zur Standardeinstellung zurücksetzen."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):108
+#: gui/gamesetup/gamesetup.xml:(tooltip):107
 msgid "Pick a color."
 msgstr "Wähle eine Farbe."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):111
+#: gui/gamesetup/gamesetup.xml:(tooltip):110
 msgid "Select player."
 msgstr "Spieler wählen."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):121
+#: gui/gamesetup/gamesetup.xml:(tooltip):120
 msgid "Configure AI settings."
 msgstr "KI-Einstellungen ändern."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):124
+#: gui/gamesetup/gamesetup.xml:(tooltip):123
 msgid "Select player's civilization."
 msgstr "Zivilisation des Spielers wählen."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):128
+#: gui/gamesetup/gamesetup.xml:(tooltip):127
 msgid "Select player's team."
 msgstr "Team des Spielers wählen."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):268
+#: gui/gamesetup/gamesetup.xml:(tooltip):267
 msgid "See more game options"
 msgstr "Weitere Spieloptionen"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):323
+#: gui/gamesetup/gamesetup.xml:(tooltip):322
 msgid "Close more game options window"
 msgstr "Schließe das „Weitere Spieloptionen”-Fenster"
 
@@ -1407,7 +1413,7 @@ msgstr "„Es ist gut und recht, für sein Land zu sterben.“ – Horaz („Ode
 
 #: gui/text/quotes.txt:110
 msgid "\"I am Cyrus, king of the world...\" - Inscription (Cyrus Cylinder)"
-msgstr "„Ich bin Kyros – der König des Weltreichs [...]“ – Auszug der Inschrift des Kyros-Zylinder"
+msgstr "„Ich bin Kyros – der König des Weltreichs ...“ – Auszug der Inschrift des Kyros-Zylinder"
 
 #: gui/text/quotes.txt:111
 msgid ""

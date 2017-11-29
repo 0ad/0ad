@@ -572,9 +572,18 @@ extern_lib_defs = {
 					add_default_lib_paths("nspr")
 					links { "nspr4", "plc4", "plds4" }
 				end
-				filter "Debug"
+
+				filter { "Debug", "action:vs2013" }
+					links { "mozjs38-ps-debug-vc120" }
+				filter { "Release", "action:vs2013" }
+					links { "mozjs38-ps-release-vc120" }
+				filter { "Debug", "action:vs2015" }
+					links { "mozjs38-ps-debug-vc140" }
+				filter { "Release", "action:vs2015" }
+					links { "mozjs38-ps-release-vc140" }
+				filter { "Debug", "action:not vs*" }
 					links { "mozjs38-ps-debug" }
-				filter "Release"
+				filter { "Release", "action:not vs*" }
 					links { "mozjs38-ps-release" }
 				filter { }
 				add_source_lib_paths("spidermonkey")

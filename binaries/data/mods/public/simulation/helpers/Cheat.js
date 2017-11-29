@@ -92,6 +92,8 @@ function Cheat(input)
 		var cmpDataTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_DataTemplateManager);
 		if (cmpDataTemplateManager.ListAllTechs().indexOf(parameter + "_" + cmpPlayer.civ) > -1)
 			parameter += "_" + cmpPlayer.civ;
+		else
+			parameter += "_generic";
 
 		Cheat({ "player": input.player, "action": "researchTechnology", "parameter": parameter, "selected": input.selected });
 		return;

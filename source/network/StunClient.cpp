@@ -147,7 +147,11 @@ bool CreateStunRequest(ENetHost* transactionHost)
 	int status = getaddrinfo(server_name.c_str(), nullptr, &hints, &res);
 	if (status != 0)
 	{
+#ifdef UNICODE
+		LOGERROR("GetPublicAddress: Error in getaddrinfo: %s", utf8_from_wstring(gai_strerror(status)));
+#else
 		LOGERROR("GetPublicAddress: Error in getaddrinfo: %s", gai_strerror(status));
+#endif
 		return false;
 	}
 

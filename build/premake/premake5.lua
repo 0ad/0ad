@@ -390,8 +390,9 @@ function project_create(project_name, target_type)
 	kind(target_type)
 
 	filter "action:vs2013"
-		characterset "MBCS"
 		toolset "v120_xp"
+	filter "action:vs2015"
+		toolset "v140_xp"
 	filter {}
 
 	project_set_target(project_name)
@@ -596,7 +597,7 @@ function setup_all_libs ()
 	setup_third_party_static_lib_project("tinygettext", source_dirs, extern_libs, { } )
 
 	-- it's an external library and we don't want to modify its source to fix warnings, so we just disable them to avoid noise in the compile output
-	if _ACTION == "vs2013" then
+	filter "action:vs*"
 		buildoptions {
 			"/wd4127",
 			"/wd4309",
@@ -606,7 +607,7 @@ function setup_all_libs ()
 			"/wd4099",
 			"/wd4503"
 		}
-	end
+	filter {}
 
 
 	if not _OPTIONS["without-lobby"] then
@@ -851,11 +852,11 @@ function setup_all_libs ()
 	end
 
 	-- runtime-library-specific
-	if _ACTION == "vs2013" then
+	filter "action:vs*"
 		table.insert(source_dirs, "lib/sysdep/rtl/msc");
-	else
+	filter "action:not vs*"
 		table.insert(source_dirs, "lib/sysdep/rtl/gcc");
-	end
+	filter {}
 
 	setup_static_lib_project("lowlevel", source_dirs, extern_libs, extra_params)
 
@@ -1054,7 +1055,6 @@ function setup_atlas_project(project_name, target_type, rel_source_dirs, rel_inc
 
 	-- Platform Specifics
 	if os.istarget("windows") then
-		defines { "_UNICODE" }
 		-- Link to required libraries
 		links { "winmm", "comctl32", "rpcrt4", "delayimp", "ws2_32" }
 
@@ -1187,8 +1187,6 @@ function setup_atlas_frontend_project (project_name)
 
 	-- Platform Specifics
 	if os.istarget("windows") then
-		defines { "_UNICODE" }
-
 		-- see manifest.cpp
 		project_add_manifest()
 
@@ -1219,7 +1217,9 @@ function setup_collada_project(project_name, target_type, rel_source_dirs, rel_i
 	project_add_x11_dirs()
 
 	-- Platform Specifics
-	if os.istarget("linux") then
+	if os.istarget("windows") then
+		characterset "MBCS"
+	elseif os.istarget("linux") then
 		defines { "LINUX" }
 
 		links {

@@ -56,39 +56,6 @@
 			</object>
 		</object>
 
-		<!-- Sort by -->
-		<object size="100%-400 74 100% 98">
-
-			<object type="text" size="0 0 75 100%" text_align="left" textcolor="white">
-				<translatableAttribute id="caption">Sorting:</translatableAttribute>
-			</object>
-
-			<object name="sortBy"
-				type="dropdown"
-				style="ModernDropDown"
-				size="75 100%-24 75%-25 100%"
-				font="sans-bold-13"
-			>
-				<action on="SelectionChange">applyFilters();</action>
-			</object>
-
-			<!-- Checkboxes -->
-			<object type="text" size="75% 100%-24 100% 100%" text_align="left" textcolor="white">
-				<translatableAttribute id="caption">Descending.</translatableAttribute>
-			</object>
-
-			<object name="isOrderDescending"
-				type="checkbox"
-				checked="false"
-				style="ModernTickBox"
-				size="75%-20 100%-24 75% 100%"
-				font="serif-bold-13"
-			>
-				<action on="Press">applyFilters();</action>
-			</object>
-
-		</object>
-
 		<!-- Available Mods Wrapper -->
 		<object size="16 100 100%-15 75%-4" style="ModmodScrollbar">
 
@@ -97,34 +64,38 @@
 			</object>
 
 			<object name="modsDisabledList"
-				style="ModernList"
 				type="olist"
+				style="ModernSortedList"
+				sortable="true"
+				selected_column="name"
+				selected_column_order="1"
 				size="0 25 100%-2 100%"
 				font="sans-stroke-13"
 			>
 				<action on="SelectionChange">showModDescription(this.name);</action>
+				<action on="SelectionColumnChange">applyFilters();</action>
 				<action on="MouseLeftDoubleClickItem">enableMod();</action>
 
 				<!-- List headers -->
 				<column id="name" color="255 255 255" width="10%">
 					<translatableAttribute id="heading">Name</translatableAttribute>
 				</column>
-				<column id="modVersion" color="255 255 255" width="7%">
+				<column id="version" color="255 255 255" width="7%">
 					<translatableAttribute id="heading">Version</translatableAttribute>
 				</column>
-				<column id="modFolderName" color="255 255 255" width="13%">
+				<column id="folder" color="255 255 255" width="13%">
 					<translatableAttribute id="heading">(Folder)</translatableAttribute>
 				</column>
-				<column id="modLabel" color="255 255 255" width="18%">
+				<column id="label" color="255 255 255" width="18%">
 					<translatableAttribute id="heading">Mod Label</translatableAttribute>
 				</column>
-				<column id="modType" color="255 255 255" width="12%">
+				<column id="type" color="255 255 255" width="12%">
 					<translatableAttribute id="heading">Mod Type</translatableAttribute>
 				</column>
-				<column id="modDependencies" color="255 255 255" width="20%">
+				<column id="dependencies" color="255 255 255" width="20%">
 					<translatableAttribute id="heading">Dependencies</translatableAttribute>
 				</column>
-				<column id="modURL" color="255 255 255" width="24%">
+				<column id="url" color="255 255 255" width="24%">
 					<translatableAttribute id="heading">Website</translatableAttribute>
 				</column>
 			</object>
@@ -158,22 +129,22 @@
 				<column id="name" color="255 255 255" width="10%">
 					<translatableAttribute id="heading">Name</translatableAttribute>
 				</column>
-				<column id="modVersion" color="255 255 255" width="7%">
+				<column id="version" color="255 255 255" width="7%">
 					<translatableAttribute id="heading">Version</translatableAttribute>
 				</column>
-				<column id="modFolderName" color="255 255 255" width="13%">
+				<column id="folder" color="255 255 255" width="13%">
 					<translatableAttribute id="heading">(Folder)</translatableAttribute>
 				</column>
-				<column id="modLabel" color="255 255 255" width="18%">
+				<column id="label" color="255 255 255" width="18%">
 					<translatableAttribute id="heading">Mod Label</translatableAttribute>
 				</column>
-				<column id="modType" color="255 255 255" width="12%">
+				<column id="type" color="255 255 255" width="12%">
 					<translatableAttribute id="heading">Mod Type</translatableAttribute>
 				</column>
-				<column id="modDependencies" color="255 255 255" width="20%">
+				<column id="dependencies" color="255 255 255" width="20%">
 					<translatableAttribute id="heading">Dependencies</translatableAttribute>
 				</column>
-				<column id="modURL" color="255 255 255" width="24%">
+				<column id="url" color="255 255 255" width="24%">
 					<translatableAttribute id="heading">Website</translatableAttribute>
 				</column>
 			</object>

@@ -1371,6 +1371,8 @@ function ircFormat(msg)
 			}
 			break;
 		}
+		default:
+			return "";
 		}
 	}
 	else
