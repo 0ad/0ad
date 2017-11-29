@@ -28,16 +28,12 @@ function m.configure_project(rootfile, hdrfiles, rootoptions, testoptions)
 		files { hdrfile }
 	end
 
+	-- Generate the root file
+	prebuildmessage 'Generating test root file'
+	prebuildcommands { abspath.." --root "..rootoptions.." -o "..rootpath }
+
 	-- Generate the source files from headers
 
-	-- This first one is a hack, precompiled has nothing to do with the test runner,
-	-- but we need to make the file compilation depend on its generation (which
-	-- buildoutputs does).
-	-- Ideally premake should have an API to specify pre-build commands per file.
-	filter { "files:**precompiled.h" }
-		buildmessage 'Generating root file'
-		buildcommands { abspath.." --root "..rootoptions.." -o "..rootpath }
-		buildoutputs { rootpath }
 	filter { "files:**.h", "files:not **precompiled.h" }
 		buildmessage 'Generating %{file.basename}.cpp'
 		buildcommands { abspath.." --part "..testoptions.." -o %{file.directory}/%{file.basename}.cpp %{file.relpath}" }
