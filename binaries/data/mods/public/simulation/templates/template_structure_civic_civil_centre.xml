@@ -94,10 +94,8 @@
       units/{civ}_support_female_citizen
     </Entities>
     <Technologies datatype="tokens">
-      phase_town
-      phase_town_athen
-      phase_city
-      phase_city_athen
+      phase_town_{civ}
+      phase_city_{civ}
       unlock_spies
       spy_counter
     </Technologies>

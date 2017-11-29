@@ -69,6 +69,11 @@ function loadTechData(templateName)
 	return g_TechnologyData[templateName];
 }
 
+function techDataExists(templateName)
+{
+	return Engine.FileExists("simulation/data/technologies/" + templateName + ".json");
+}
+
 /**
  * Loads raw aura template.
  *
@@ -121,11 +126,19 @@ function loadUnit(templateName)
 		{
 			unit.production.techs = [];
 			for (let research of template.ProductionQueue.Technologies._string.split(" "))
+			{
+				if (research.indexOf("{civ}") != -1)
+				{
+					let civResearch = research.replace("{civ}", g_SelectedCiv);
+					research = techDataExists(civResearch) ?
+					           civResearch : research.replace("{civ}", "generic");
+				}
 				if (isPairTech(research))
 					for (let tech of loadTechnologyPair(research).techs)
 						unit.production.techs.push(tech);
 				else
 					unit.production.techs.push(research);
+			}
 		}
 	}
 
@@ -177,11 +190,19 @@ function loadStructure(templateName)
 
 		if (template.ProductionQueue.Technologies && template.ProductionQueue.Technologies._string)
 			for (let research of template.ProductionQueue.Technologies._string.split(" "))
+			{
+				if (research.indexOf("{civ}") != -1)
+				{
+					let civResearch = research.replace("{civ}", g_SelectedCiv);
+					research = techDataExists(civResearch) ?
+					           civResearch : research.replace("{civ}", "generic");
+				}
 				if (isPairTech(research))
 					for (let tech of loadTechnologyPair(research).techs)
 						structure.production.technology.push(tech);
 				else
 					structure.production.technology.push(research);
+			}
 	}
 
 	if (structure.upgrades)

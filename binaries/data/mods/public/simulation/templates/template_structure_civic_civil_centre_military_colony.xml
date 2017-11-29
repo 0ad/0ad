@@ -41,10 +41,8 @@
   </Obstruction>
   <ProductionQueue>
     <Technologies datatype="tokens">
-      -phase_town
-      -phase_town_athen
-      -phase_city
-      -phase_city_athen
+      -phase_town_{civ}
+      -phase_city_{civ}
       upgrade_rank_advanced_mercenary
     </Technologies>
   </ProductionQueue>

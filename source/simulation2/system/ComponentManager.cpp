@@ -83,6 +83,7 @@ CComponentManager::CComponentManager(CSimContext& context, shared_ptr<ScriptRunt
 		m_ScriptInterface.RegisterFunction<int, std::string, CComponentManager::Script_AddLocalEntity> ("AddLocalEntity");
 		m_ScriptInterface.RegisterFunction<void, int, CComponentManager::Script_DestroyEntity> ("DestroyEntity");
 		m_ScriptInterface.RegisterFunction<void, CComponentManager::Script_FlushDestroyedEntities> ("FlushDestroyedEntities");
+		m_ScriptInterface.RegisterFunction<bool, std::wstring, CComponentManager::Script_DataFileExists> ("DataFileExists");
 		m_ScriptInterface.RegisterFunction<JS::Value, std::wstring, CComponentManager::Script_ReadJSONFile> ("ReadJSONFile");
 		m_ScriptInterface.RegisterFunction<JS::Value, std::wstring, CComponentManager::Script_ReadCivJSONFile> ("ReadCivJSONFile");
 		m_ScriptInterface.RegisterFunction<std::vector<std::string>, std::wstring, bool, CComponentManager::Script_FindJSONFiles> ("FindJSONFiles");
@@ -1183,6 +1184,12 @@ std::string CComponentManager::GenerateSchema() const
 	schema += "</grammar>";
 
 	return schema;
+}
+
+bool CComponentManager::Script_DataFileExists(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& fileName)
+{
+	VfsPath path = VfsPath(L"simulation/data") / fileName;
+	return VfsFileExists(path);
 }
 
 JS::Value CComponentManager::Script_ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& fileName)

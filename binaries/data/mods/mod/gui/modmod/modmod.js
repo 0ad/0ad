@@ -1,270 +1,211 @@
-/*
-Example contents of g_mods:
-{
-	"foldername1": { // this is the content of the json file in a specific mod
-		name: "unique_shortname", // eg "0ad", "rote"
-		version: "0.0.16",
-		label: "Nice Mod Name", // eg "0 A.D. - Empires Ascendant"
-		type: "content|functionality|mixed/mod-pack",
-		url: "http://wildfregames.com/",
-		description: "",
-		dependencies: [] // (name({<,<=,==,>=,>}version)?)+
-	},
-	"foldername2": {
-		name: "mod2",
-		label: "Mod 2",
-		version: "1.1",
-		type: "content|functionality|mixed/mod-pack", // optional
-		url: "http://play0ad.wfg.com/",	//optional
-		description: "",
-		dependencies: []
-	}
-}
-*/
-
-
-var g_mods = {}; // Contains all JSONs as explained in the structure above
-var g_modsEnabled = []; // folder names
-var g_modsAvailable = []; // folder names
-
-const g_sortByOptions = [translate("Name"), translate("Folder"), translate("Label"), translate("Version")];
-const SORT_BY_NAME = 0;
-const SORT_BY_FOLDER = 1;
-const SORT_BY_LABEL = 2;
-const SORT_BY_VERSION = 3;
-
-var g_modTypes = [translate("Type: Any")];
+/**
+ * Contains JS objects defined by the mod JSON files available.
+ * @example
+ *{
+ *	"public":
+ *	{
+ *		"name": "0ad",
+ *		"version": "0.0.16",
+ *		"label": "0 A.D. - Empires Ascendant",
+ *		"type": "content|functionality|mixed/mod-pack",
+ *		"url": "http://wildfregames.com/",
+ *		"description": "A free, open-source, historical RTS game.",
+ *		"dependencies": []
+ *	},
+ *	"foldername2": {
+ *		"name": "mod2",
+ *		"label": "Mod 2",
+ *		"version": "1.1",
+ *		"description": "",
+ *		"dependencies": ["0ad<=0.0.16", "rote"]
+ *	}
+ *}
+ */
+var g_Mods = {};
 
 /**
- * Fetches the mod lists in JSON from the Engine.
- * Initiates a first creation of the GUI lists.
- * Enabled mods are read from the Configuration and checked if still available.
+ * Every mod needs to define these properties.
  */
+var g_RequiredProperties = ["name", "label", "description", "dependencies", "version"];
+
+/**
+ * Version checks in mod dependencies can use these operators.
+ */
+var g_CompareVersion = /(<=|>=|<|>|=)/;
+
+/**
+ * Folder names of all mods that are or can be launched.
+ */
+var g_ModsEnabled = [];
+var g_ModsDisabled = [];
+
+var g_ColorNoModSelected = "255 255 100";
+var g_ColorDependenciesMet = "100 255 100";
+var g_ColorDependenciesNotMet = "255 100 100";
+
+/**
+ * Dropdown choices to sort the available mods.
+ */
+var g_SortOptions = [
+	{
+		"id": "name",
+		"title": translate("Name"),
+		"value": folder => g_Mods[folder].name.toLowerCase(),
+		"default": true
+	},
+	{
+		"id": "folder",
+		"title": translate("Folder"),
+		"value": folder => folder.toLowerCase()
+	},
+	{
+		"id": "label",
+		"title": translate("Label"),
+		"value": folder => g_Mods[folder].label.toLowerCase()
+	},
+	{
+		"id": "version",
+		"title": translate("Version"),
+		"value": folder => g_Mods[folder].version
+	}
+];
+
 function init()
 {
+	loadMods();
+	initGUIFilters();
+}
+
+function loadMods()
+{
 	let mods = Engine.GetAvailableMods();
-	let keys = ["name", "label", "description", "dependencies", "version"];
-	Object.keys(mods).forEach(function(k) {
-		for (let i = 0; i < keys.length; ++i)
-			if (!keys[i] in mods[k])
-			{
-				log("Skipping mod '"+k+"'. Missing property '"+keys[i]+"'.");
-				return;
-			}
 
-		g_mods[k] = mods[k];
-	});
+	for (let folder in mods)
+		if (g_RequiredProperties.every(prop => mods[folder][prop] !== undefined))
+			g_Mods[folder] = mods[folder];
+		else
+			warn("Skipping mod '" + mod + "' which does not define '" + property + "'.");
 
-	g_modsEnabled = getExistingModsFromConfig();
-	g_modsAvailable = Object.keys(g_mods).filter(function(i) { return g_modsEnabled.indexOf(i) === -1; });
+	deepfreeze(g_Mods);
 
+	g_ModsEnabled = Engine.ConfigDB_GetValue("user", "mod.enabledmods").split(/\s+/).filter(folder => !!g_Mods[folder]);
+	g_ModsDisabled = Object.keys(g_Mods).filter(folder => g_ModsEnabled.indexOf(folder) == -1);
+}
+
+function initGUIFilters()
+{
 	Engine.GetGUIObjectByName("negateFilter").checked = false;
 	Engine.GetGUIObjectByName("modGenericFilter").caption = translate("Filter");
 	Engine.GetGUIObjectByName("modTypeFilter").selected = 0;
 
-	var sortBy = Engine.GetGUIObjectByName("sortBy");
-	sortBy.list = g_sortByOptions;
-	sortBy.selected = SORT_BY_NAME;
+	let sortBy = Engine.GetGUIObjectByName("sortBy");
+	sortBy.list = g_SortOptions.map(option => option.title);
+	sortBy.selected = g_SortOptions.findIndex(option => option.default);
 
-	// sort ascending by default
 	Engine.GetGUIObjectByName("isOrderDescending").checked = false;
 
-	generateModsLists();
-
-	Engine.GetGUIObjectByName("message").caption = translate("Message: Mods Loaded.");
-}
-
-/**
- * Recreating both the available and enabled mods lists.
- */
-function generateModsLists()
-{
-	generateModsList('modsAvailableList', g_modsAvailable);
-	generateModsList('modsEnabledList', g_modsEnabled);
+	displayModLists();
 }
 
 function saveMods()
 {
-	// always sort mods before saving
-	sortMods();
-	Engine.ConfigDB_CreateValue("user", "mod.enabledmods", ["mod"].concat(g_modsEnabled).join(" "));
+	sortEnabledMods();
+	Engine.ConfigDB_CreateValue("user", "mod.enabledmods", ["mod"].concat(g_ModsEnabled).join(" "));
 	Engine.ConfigDB_WriteFile("user", "config/user.cfg");
 }
 
 function startMods()
 {
-	// always sort mods before starting
-	sortMods();
-	Engine.SetMods(["mod"].concat(g_modsEnabled));
+	sortEnabledMods();
+	Engine.SetMods(["mod"].concat(g_ModsEnabled));
 	Engine.RestartEngine();
 }
 
-function getExistingModsFromConfig()
+function displayModLists()
 {
-	var existingMods = [];
-
-	var mods = [];
-	var cfgMods = Engine.ConfigDB_GetValue("user", "mod.enabledmods");
-	if (cfgMods.length > 0)
-		mods = cfgMods.split(/\s+/);
-
-	mods.forEach(function(mod) {
-		if (mod in g_mods)
-			existingMods.push(mod);
-	});
-
-	return existingMods;
+	displayModList("modsEnabledList", g_ModsEnabled);
+	displayModList("modsDisabledList", g_ModsDisabled);
 }
 
-/**
- * (Re-)Generate List of all mods.
- * @param listObjectName The GUI object's name (e.g. "modsEnabledList", "modsAvailableList")
- */
-function generateModsList(listObjectName, mods)
+function displayModList(listObjectName, folders)
 {
-	var sortBy = Engine.GetGUIObjectByName("sortBy");
-	var orderDescending = Engine.GetGUIObjectByName("isOrderDescending");
-	var isDescending = orderDescending && orderDescending.checked;
+	updateModTypes();
 
-	// TODO: Sorting mods by dependencies would be nice
-	if (listObjectName != "modsEnabledList")
+	let sortOption = g_SortOptions[Engine.GetGUIObjectByName("sortBy").selected];
+	if (sortOption && listObjectName == "modsDisabledList")
 	{
-		var idx = -1;
-		if (sortBy)
-			idx = sortBy.selected;
-
-		switch (idx)
-		{
-		default:
-			warn("generateModsList: invalid index '"+idx+"'"); // fall through
-		// sort by unique name alphanumerically by default:
-		case -1:
-		case SORT_BY_NAME:
-			mods.sort(function(a, b)
-			{
-				var ret = compare(g_mods[a].name.toLowerCase(), g_mods[b].name.toLowerCase());
-				return ret * (isDescending ? -1 : 1);
-			});
-			break;
-		case SORT_BY_FOLDER:
-			mods.sort(function(a, b)
-			{
-				return compare(a.toLowerCase(), b.toLowerCase()) * (isDescending ? -1 : 1);
-			});
-			break;
-		case SORT_BY_LABEL:
-			mods.sort(function(a, b)
-			{
-				var ret = compare(g_mods[a].label.toLowerCase(), g_mods[b].label.toLowerCase());
-				return ret * (isDescending ? -1 : 1);
-			});
-			break;
-		case SORT_BY_VERSION:
-			mods.sort(function(a, b)
-			{
-				// TODO reuse actual logic
-				var ret = compare(g_mods[a].version, g_mods[b].version);
-				return ret * (isDescending ? -1 : 1);
-			});
-			break;
-		}
+		folders.sort((version1, version2) => sortOption.value(version1).localeCompare(sortOption.value(version2)));
+		if (Engine.GetGUIObjectByName("isOrderDescending").checked)
+			folders.reverse();
 	}
 
-	var [keys, names, folders, labels, types, urls, versions, dependencies] = [[],[],[],[],[],[],[],[]];
-	mods.forEach(function(foldername)
-	{
-		var mod = g_mods[foldername];
-		if (mod.type && g_modTypes.indexOf(mod.type) == -1)
-			g_modTypes.push(mod.type);
+	folders = folders.filter(filterMod);
 
-		if (filterMod(foldername))
-			return;
-
-		keys.push(foldername);
-		names.push(mod.name);
-		folders.push('[color="255 255 255"](' + foldername + ')[/color]');
-
-		labels.push(mod.label || "");
-		types.push(mod.type || "");
-		urls.push(mod.url || "");
-		versions.push(mod.version || "");
-		dependencies.push((mod.dependencies || []).join(" "));
-	});
-
-	// Update the list
-	var obj = Engine.GetGUIObjectByName(listObjectName);
-	obj.list_name = names;
-	obj.list_modFolderName = folders;
-	obj.list_modLabel = labels;
-	obj.list_modType = types;
-	obj.list_modURL = urls;
-	obj.list_modVersion = versions;
-	obj.list_modDependencies = dependencies;
-
-	obj.list = keys;
-
-	var modTypeFilter = Engine.GetGUIObjectByName("modTypeFilter");
-	modTypeFilter.list = g_modTypes;
+	let listObject = Engine.GetGUIObjectByName(listObjectName);
+	listObject.list_name = folders.map(folder => g_Mods[folder].name);
+	listObject.list_modFolderName = folders;
+	listObject.list_modLabel = folders.map(folder => g_Mods[folder].label);
+	listObject.list_modType = folders.map(folder => g_Mods[folder].type || "");
+	listObject.list_modURL = folders.map(folder => g_Mods[folder].url || "");
+	listObject.list_modVersion = folders.map(folder => g_Mods[folder].version);
+	listObject.list_modDependencies = folders.map(folder => g_Mods[folder].dependencies.join(" "));
+	listObject.list = folders;
 }
 
-function compare(a, b)
+function updateModTypes()
 {
-	return ( (a > b) ? 1 : (b > a) ? -1 : 0 );
+	let types = [translate("Type: Any")];
+	for (let folder in g_Mods)
+	{
+		if (g_Mods[folder].type && types.indexOf(g_Mods[folder].type) == -1)
+			types.push(g_Mods[folder].type);
+	}
+	Engine.GetGUIObjectByName("modTypeFilter").list = types;
 }
 
 function enableMod()
 {
-	var obj = Engine.GetGUIObjectByName("modsAvailableList");
-	var pos = obj.selected;
-	if (pos === -1)
+	let modsDisabledList = Engine.GetGUIObjectByName("modsDisabledList");
+	let pos = modsDisabledList.selected;
+
+	if (pos == -1 || !areDependenciesMet(g_ModsDisabled[pos]))
 		return;
 
-	var mod = g_modsAvailable[pos];
+	g_ModsEnabled.push(g_ModsDisabled.splice(pos, 1)[0]);
 
-	// Move it to the other table
-	// check dependencies, warn about not satisfied dependencies and abort if so:
-	if (!areDependenciesMet(mod))
-		return;
+	if (pos >= g_ModsDisabled.length)
+		--pos;
 
-	g_modsEnabled.push(g_modsAvailable.splice(pos, 1)[0]);
+	modsDisabledList.selected = pos;
 
-	if (pos >= g_modsAvailable.length)
-		pos--;
-	obj.selected = pos;
-
-	generateModsLists();
+	displayModLists();
 }
 
 function disableMod()
 {
-	var obj = Engine.GetGUIObjectByName("modsEnabledList");
-	var pos = obj.selected;
-	if (pos === -1)
+	let modsEnabledList = Engine.GetGUIObjectByName("modsEnabledList");
+	let pos = modsEnabledList.selected;
+	if (pos == -1)
 		return;
 
-	var mod = g_modsEnabled[pos];
-
-	g_modsAvailable.push(g_modsEnabled.splice(pos, 1)[0]);
+	g_ModsDisabled.push(g_ModsEnabled.splice(pos, 1)[0]);
 
 	// Remove mods that required the removed mod and cascade
 	// Sort them, so we know which ones can depend on the removed mod
 	// TODO: Find position where the removed mod would have fit (for now assume idx 0)
-	sortMods();
-	for (var i = 0; i < g_modsEnabled.length; ++i)
-	{
-		if (!areDependenciesMet(g_modsEnabled[i]))
+
+	sortEnabledMods();
+
+	for (let i = 0; i < g_ModsEnabled.length; ++i)
+		if (!areDependenciesMet(g_ModsEnabled[i]))
 		{
-			g_modsAvailable.push(g_modsEnabled.splice(i, 1)[0]);
+			g_ModsDisabled.push(g_ModsEnabled.splice(i, 1)[0]);
 			--i;
 		}
-	}
 
-	// select the last element even if more than 1 mod has been removed:
-	if (pos > g_modsEnabled.length - 1)
-		pos = g_modsEnabled.length - 1;
-	obj.selected = pos;
+	modsEnabledList.selected = Math.min(pos, g_ModsEnabled.length - 1);
 
-	generateModsLists();
+	displayModLists();
 }
 
 function resetFilters()
@@ -272,69 +213,55 @@ function resetFilters()
 	Engine.GetGUIObjectByName("modGenericFilter").caption = "";
 	Engine.GetGUIObjectByName("negateFilter").checked = false;
 
-	// NOTE: Calling generateModsLists() is not needed as the selection changes and that calls applyFilters()
+	// Calling displayModLists is not needed as the selection changes and that calls applyFilters
 	Engine.GetGUIObjectByName("modTypeFilter").selected = 0;
 }
 
 function applyFilters()
 {
 	// Save selected rows
-	let modsAvailableList = Engine.GetGUIObjectByName("modsAvailableList");
+	let modsDisabledList = Engine.GetGUIObjectByName("modsDisabledList");
 	let modsEnabledList = Engine.GetGUIObjectByName("modsEnabledList");
-	let selectedModAvailableFolder = modsAvailableList.list_modFolderName[modsAvailableList.selected];
+	let selectedModAvailableFolder = modsDisabledList.list_modFolderName[modsDisabledList.selected];
 	let selectedModEnabledFolder = modsEnabledList.list_modFolderName[modsEnabledList.selected];
 
 	// Remove selected rows to prevent a link to a non existing item
-	modsAvailableList.selected = -1;
+	modsDisabledList.selected = -1;
 	modsEnabledList.selected = -1;
 
-	generateModsLists();
+	displayModLists();
 
 	// Restore previously selected rows
-	modsAvailableList.selected = modsAvailableList.list_modFolderName.indexOf(selectedModAvailableFolder);
+	modsDisabledList.selected = modsDisabledList.list_modFolderName.indexOf(selectedModAvailableFolder);
 	modsEnabledList.selected = modsEnabledList.list_modFolderName.indexOf(selectedModEnabledFolder);
 
 	Engine.GetGUIObjectByName("globalModDescription").caption = "";
 }
 
-/**
- * Filter a mod based on the status of the filters.
- *
- * @param modFolder Mod to be tested.
- * @return True if mod should not be displayed.
- */
-function filterMod(modFolder)
+function filterMod(folder)
 {
-	var mod = g_mods[modFolder];
+	let mod = g_Mods[folder];
 
-	var modTypeFilter = Engine.GetGUIObjectByName("modTypeFilter");
-	var genericFilter = Engine.GetGUIObjectByName("modGenericFilter");
-	var negateFilter = Engine.GetGUIObjectByName("negateFilter");
+	let modTypeFilter = Engine.GetGUIObjectByName("modTypeFilter");
+	let negateFilter = Engine.GetGUIObjectByName("negateFilter").checked;
 
-	// TODO: and result of filters together (type && generic)
+	if (modTypeFilter.selected > 0 && (mod.type || "") != modTypeFilter.list[modTypeFilter.selected])
+		return negateFilter;
 
-	// We assume index 0 means display all for any given filter.
-	if (modTypeFilter.selected > 0
-	    && (mod.type || "") != modTypeFilter.list[modTypeFilter.selected])
-		return !negateFilter.checked;
+	let searchText = Engine.GetGUIObjectByName("modGenericFilter").caption;
+	if (searchText &&
+	    searchText != translate("Filter") &&
+	    folder.indexOf(searchText) == -1 &&
+	    mod.name.indexOf(searchText) == -1 &&
+	    mod.label.indexOf(searchText) == -1 &&
+	    (mod.type || "").indexOf(searchText) == -1 &&
+	    (mod.url || "").indexOf(searchText) == -1 &&
+	    mod.version.indexOf(searchText) == -1 &&
+	    mod.description.indexOf(searchText) == -1 &&
+	    mod.dependencies.indexOf(searchText) == -1)
+		return negateFilter;
 
-	if (genericFilter && genericFilter.caption && genericFilter.caption != "" && genericFilter.caption != translate("Filter"))
-	{
-		var t = genericFilter.caption;
-		if (modFolder.indexOf(t) === -1
-		    && mod.name.indexOf(t) === -1
-		    && mod.label.indexOf(t) === -1
-		    && (mod.type || "").indexOf(t) === -1
-		    && (mod.url || "").indexOf(t) === -1
-		    && mod.version.indexOf(t) === -1
-		    && mod.description.indexOf(t) === -1
-		    && mod.dependencies.indexOf(t) === -1)
-		{
-			return !negateFilter.checked;
-		}
-	}
-
-	return negateFilter.checked;
+	return !negateFilter;
 }
 
 function closePage()
@@ -343,176 +270,126 @@ function closePage()
 }
 
 /**
- * Moves an item in the list @p objectName up or down depending on the value of @p up.
+ * Moves an item in the list up or down.
  */
 function moveCurrItem(objectName, up)
 {
-	var obj = Engine.GetGUIObjectByName(objectName);
-	if (!obj)
+	let obj = Engine.GetGUIObjectByName(objectName);
+	let idx = obj.selected;
+	if (idx == -1)
 		return;
 
-	var idx = obj.selected;
-	if (idx === -1)
-		return;
-
-	var num = obj.list.length;
-	var idx2 = idx + (up ? -1 : 1);
+	let num = obj.list.length;
+	let idx2 = idx + (up ? -1 : 1);
 	if (idx2 < 0 || idx2 >= num)
 		return;
 
-	var tmp = g_modsEnabled[idx];
-	g_modsEnabled[idx] = g_modsEnabled[idx2];
-	g_modsEnabled[idx2] = tmp;
+	let tmp = g_ModsEnabled[idx];
+	g_ModsEnabled[idx] = g_ModsEnabled[idx2];
+	g_ModsEnabled[idx2] = tmp;
 
-	// Selected object reached the new position.
-	obj.list = g_modsEnabled;
+	obj.list = g_ModsEnabled;
 	obj.selected = idx2;
-	generateModsList('modsEnabledList', g_modsEnabled);
+
+	displayModList("modsEnabledList", g_ModsEnabled);
 }
 
-function areDependenciesMet(mod)
+function areDependenciesMet(folder)
 {
-	var guiObject = Engine.GetGUIObjectByName("message");
-	for (var dependency of g_mods[mod].dependencies)
+	let guiObject = Engine.GetGUIObjectByName("message");
+
+	for (let dependency of g_Mods[folder].dependencies)
 	{
 		if (isDependencyMet(dependency))
 			continue;
-		guiObject.caption = '[color="255 100 100"]' + translate(sprintf('Dependency not met: %(dep)s', { "dep": dependency })) +'[/color]';
+
+		guiObject.caption =
+			'[color="' + g_ColorDependenciesNotMet + '"]' +
+			sprintf(translate('Dependency not met: %(dep)s'), { "dep": dependency }) +
+			'[/color]';
+
 		return false;
 	}
 
-	guiObject.caption =  '[color="100 255 100"]' + translate('All dependencies met') + '[/color]';
+	guiObject.caption =
+		'[color="' + g_ColorDependenciesMet + '"]' +
+		translate('All dependencies met') +
+		'[/color]';
 
 	return true;
 }
 
 /**
- * @param dependency: Either id (unique modJson.name) and version or only the unique mod name.
- *                    Concatenated by either "=", ">", "<", ">=", "<=".
+ * @param dependency is a mod name or a mod version comparison.
  */
-function isDependencyMet(dependency_idAndVersion, modsEnabled = null)
+function isDependencyMet(dependency)
 {
-	if (!modsEnabled)
-		modsEnabled = g_modsEnabled;
+	let operator = dependency.match(g_CompareVersion);
+	let [name, version] = operator ? dependency.split(operator[0]) : [dependency, undefined];
 
-	// Split on {=,<,<=,>,>=} and use the second part as the version number
-	// and whatever we split on as a way to handle that version.
-	var op = dependency_idAndVersion.match(/(<=|>=|<|>|=)/);
-	// Did the dependency contain a version number?
-	if (op)
-	{
-		op = op[0];
-		var dependency_parts = dependency_idAndVersion.split(op);
-		var dependency_version = dependency_parts[1];
-		var dependency_id = dependency_parts[0];
-	}
-	else
-		var dependency_id = dependency_idAndVersion;
-
-	// modsEnabled_key currently is the mod folder name.
-	for (var modsEnabled_key of modsEnabled)
-	{
-		var modJson = g_mods[modsEnabled_key];
-		if (modJson.name != dependency_id)
-			continue;
-
-		// There could be another mod with a satisfying version
-		if (!op || versionSatisfied(modJson.version, op, dependency_version))
-			return true;
-	}
-	return false;
+	return g_ModsEnabled.some(folder =>
+		g_Mods[folder].name == name &&
+		(!operator || versionSatisfied(g_Mods[folder].version, operator, version)));
 }
 
 /**
- * Returns true if @p version satisfies @p op (<,<=,=,>=,>) @p requirement.
- * @note @p version and @p requirement are split on '.' and everything after
+ * Compares the given versions using the given operator.
  *       '-' or '_' is ignored. Only numbers are supported.
  * @note "5.3" < "5.3.0"
  */
-function versionSatisfied(version, op, requirement)
+function versionSatisfied(version1, operator, version2)
 {
-	var reqList = requirement.split(/[-_]/)[0].split(/\./g);
-	var avList = version.split(/[-_]/)[0].split(/\./g);
+	let versionList1 = version1.split(/[-_]/)[0].split(/\./g);
+	let versionList2 = version2.split(/[-_]/)[0].split(/\./g);
 
-	var eq = op.indexOf("=") !== -1;
-	var lt = op.indexOf("<") !== -1;
-	var gt = op.indexOf(">") !== -1;
-	if (!(eq || lt || gt))
+	let eq = operator.indexOf("=") != -1;
+	let lt = operator.indexOf("<") != -1;
+	let gt = operator.indexOf(">") != -1;
+
+	for (let i = 0; i < Math.min(versionList1.length, versionList2.length); ++i)
 	{
-		warn("No valid compare op");
-		return false;
-	}
+		let diff = +versionList1[i] - +versionList2[i];
+		if (isNaN(diff))
+			continue;
 
-	var l = Math.min(reqList.length, avList.length);
-	for (var i = 0; i < l; ++i)
-	{
-		// TODO: Handle NaN
-		var diff = +avList[i] - +reqList[i];
-
-		// Early success
-		if (gt && diff > 0)
-			return true;
-		if (lt && diff < 0)
+		if (gt && diff > 0 || lt && diff < 0)
 			return true;
 
-		// Early failure
-		if (gt && diff < 0)
-			return false;
-		if (lt && diff > 0)
-			return false;
-		if (eq && diff !== 0)
+		if (gt && diff < 0 || lt && diff > 0 || eq && diff)
 			return false;
 	}
+
 	// common prefix matches
-	var ldiff = avList.length - reqList.length;
-	if (ldiff === 0)
+	let ldiff = versionList1.length - versionList2.length;
+	if (!ldiff)
 		return eq;
+
 	// NB: 2.3 != 2.3.0
 	if (ldiff < 0)
 		return lt;
-	if (ldiff > 0)
-		return gt;
 
-	// Can't be reached
-	error("version checking code broken");
-	return false;
+	return gt;
 }
 
-function sortMods()
+function sortEnabledMods()
 {
-	// store the list of dependencies per mod, but strip the version numbers
-	var deps = {};
-	for (var mod of g_modsEnabled)
-	{
-		deps[mod] = [];
-		if (!g_mods[mod].dependencies)
-			continue;
-		deps[mod] = g_mods[mod].dependencies.map(function(d) { return d.split(/(<=|>=|<|>|=)/)[0]; });
-	}
-	var sortFunction = function(mod1, mod2)
-	{
-		var name1 = g_mods[mod1].name;
-		var name2 = g_mods[mod2].name;
-		if (deps[mod1].indexOf(name2) != -1)
-			return 1;
-		if (deps[mod2].indexOf(name1) != -1)
-			return -1;
-		return 0;
-	}
-	g_modsEnabled.sort(sortFunction);
-	generateModsList("modsEnabledList", g_modsEnabled);
+	let dependencies = {};
+	for (let folder of g_ModsEnabled)
+		dependencies[folder] = g_Mods[folder].dependencies.map(d => d.split()[0]);
+
+	g_ModsEnabled.sort((folder1, folder2) =>
+		dependencies[folder1].indexOf(g_Mods[folder2].name) != -1 ? 1 :
+		dependencies[folder2].indexOf(g_Mods[folder1].name) != -1 ? -1 : 0);
+
+	displayModList("modsEnabledList", g_ModsEnabled);
 }
 
 function showModDescription(listObjectName)
 {
-	var listObject = Engine.GetGUIObjectByName(listObjectName);
-	if (listObject.selected == -1)
-		var desc = '[color="255 255 100"]' + translate("No mod has been selected.") + '[/color]';
-	else
-	{
-		let key = listObject.list[listObject.selected];
-		var desc = g_mods[key].description;
-	}
+	let listObject = Engine.GetGUIObjectByName(listObjectName);
 
-	Engine.GetGUIObjectByName("globalModDescription").caption = desc;
+	Engine.GetGUIObjectByName("globalModDescription").caption =
+		listObject.list[listObject.selected] ?
+			g_Mods[listObject.list[listObject.selected]].description :
+			'[color="' + g_ColorNoModSelected + '"]' + translate("No mod has been selected.") + '[/color]';
 }

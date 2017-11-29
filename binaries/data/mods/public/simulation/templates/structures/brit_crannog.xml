@@ -35,8 +35,7 @@
       units/{civ}_ship_trireme
     </Entities>
     <Technologies datatype="tokens">
-      -phase_town
-      -phase_town_athen
+      -phase_town_{civ}
     </Technologies>
   </ProductionQueue>
   <RallyPointRenderer>

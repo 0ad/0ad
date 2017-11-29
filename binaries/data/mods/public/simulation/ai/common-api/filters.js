@@ -109,9 +109,9 @@ m.Filters = {
 		"dynamicProperties": ['trainingQueue']};
 	},
 
-	"byResearchAvailable": function(civ){
+	"byResearchAvailable": function(gameState, civ){
 		return {"func" : function(ent){
-			return ent.researchableTechs(civ) !== undefined;
+			return ent.researchableTechs(gameState, civ) !== undefined;
 		},
 		"dynamicProperties": []};
 	},

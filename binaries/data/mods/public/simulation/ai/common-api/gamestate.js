@@ -31,7 +31,7 @@ m.GameState.prototype.init = function(SharedScript, state, player) {
 	if (!cctemplate)
 		return;
 	let civ = this.getPlayerCiv();
-	let techs = cctemplate.researchableTechs(civ);
+	let techs = cctemplate.researchableTechs(this, civ);
 	for (let phase of this.phases)
 	{
 		phase.requirements = [];
@@ -586,7 +586,7 @@ m.GameState.prototype.getOwnTrainingFacilities = function()
 
 m.GameState.prototype.getOwnResearchFacilities = function()
 {
-	return this.updatingGlobalCollection("player-" + this.player + "-research-facilities", m.Filters.byResearchAvailable(this.playerData.civ), this.getOwnEntities());
+	return this.updatingGlobalCollection("player-" + this.player + "-research-facilities", m.Filters.byResearchAvailable(this, this.playerData.civ), this.getOwnEntities());
 };
 
 
@@ -748,7 +748,7 @@ m.GameState.prototype.findAvailableTech = function()
 	let civ = this.playerData.civ;
 	for (let ent of this.getOwnEntities().values())
 	{
-		let searchable = ent.researchableTechs(civ);
+		let searchable = ent.researchableTechs(this, civ);
 		if (!searchable)
 			continue;
 		for (let tech of searchable)
@@ -831,7 +831,7 @@ m.GameState.prototype.hasResearchers = function(templateName, noRequirementCheck
 
 	for (let ent of this.getOwnResearchFacilities().values())
 	{
-		let techs = ent.researchableTechs(civ);
+		let techs = ent.researchableTechs(this, civ);
 		for (let tech of techs)
 		{
 			let temp = this.getTemplate(tech);
@@ -860,7 +860,7 @@ m.GameState.prototype.findResearchers = function(templateName, noRequirementChec
 	let civ = this.playerData.civ;
 
 	return this.getOwnResearchFacilities().filter(function(ent) {
-		let techs = ent.researchableTechs(civ);
+		let techs = ent.researchableTechs(self, civ);
 		for (let tech of techs)
 		{
 			let thisTemp = self.getTemplate(tech);
