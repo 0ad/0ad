@@ -42,9 +42,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-09-08 09:04+0200\n"
-"PO-Revision-Date: 2017-09-26 08:04+0000\n"
-"Last-Translator: Berk Koçak <tolga.berk.kocak@hotmail.com>\n"
+"POT-Creation-Date: 2017-11-27 09:04+0100\n"
+"PO-Revision-Date: 2017-11-27 14:47+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -438,76 +438,81 @@ msgid ""
 "ready)"
 msgstr "Geçerli ayarlarla yeni bir oyun başlatın (tüm oyuncular hazır oluncaya dek devre dışı bırakın)"
 
-#: gui/gamesetup/gamesetup.js:1486
+#: gui/gamesetup/gamesetup.js:958
+#, javascript-format
+msgid "Configure AI: %(name)s - %(difficulty)s."
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:1490
 msgctxt "map selection"
 msgid "Random"
 msgstr "Rastgele"
 
-#: gui/gamesetup/gamesetup.js:1488
+#: gui/gamesetup/gamesetup.js:1492
 msgid "Pick any of the given maps at random."
 msgstr "Verilen haritalardan birini rastgele seç."
 
-#: gui/gamesetup/gamesetup.js:1517
+#: gui/gamesetup/gamesetup.js:1515
 msgctxt "biome"
 msgid "Random"
 msgstr "Rastgele"
 
-#: gui/gamesetup/gamesetup.js:1518
+#: gui/gamesetup/gamesetup.js:1516
 msgid "Pick a biome at random."
 msgstr "Rastgele bir biyom seç."
 
-#: gui/gamesetup/gamesetup.js:1804 gui/gamesetup/gamesetup.js:1846
+#: gui/gamesetup/gamesetup.js:1801 gui/gamesetup/gamesetup.js:1843
 #, javascript-format
 msgid "%(option)s:"
 msgstr "%(option)s:"
 
-#: gui/gamesetup/gamesetup.js:1809
+#: gui/gamesetup/gamesetup.js:1806
 msgctxt "option value"
 msgid "Unknown"
 msgstr "Bilinmiyor"
 
-#: gui/gamesetup/gamesetup.js:1839
+#: gui/gamesetup/gamesetup.js:1836
 msgid "Yes"
 msgstr "Evet"
 
-#: gui/gamesetup/gamesetup.js:1839
+#: gui/gamesetup/gamesetup.js:1836
 msgid "No"
 msgstr "Hayır"
 
-#: gui/gamesetup/gamesetup.js:1932
+#: gui/gamesetup/gamesetup.js:1930
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:2128
+#: gui/gamesetup/gamesetup.js:2130
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "YZ: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:2136
+#: gui/gamesetup/gamesetup.js:2138
 msgid "Unassigned"
 msgstr "Atanmamış"
 
-#: gui/gamesetup/gamesetup.js:2211
+#: gui/gamesetup/gamesetup.js:2213
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2218
+#: gui/gamesetup/gamesetup.js:2220
 msgid "Unknown Player"
 msgstr "Bilinmeyen Oyuncu"
 
-#: gui/gamesetup/gamesetup.js:2257
+#: gui/gamesetup/gamesetup.js:2259
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2258
+#: gui/gamesetup/gamesetup.js:2260
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2259
+#: gui/gamesetup/gamesetup.js:2261
 msgid "HH:mm"
 msgstr "SS:dd"
 
@@ -538,101 +543,101 @@ msgid "Cancel"
 msgstr "İptal"
 
 #: gui/aiconfig/aiconfig.xml:(caption):46
-#: gui/gamesetup/gamesetup.xml:(caption):322
+#: gui/gamesetup/gamesetup.xml:(caption):321
 msgid "OK"
 msgstr "Tamam"
 
-#: gui/gamesetup/gamesetup.xml:(caption):21
+#: gui/gamesetup/gamesetup.xml:(caption):20
 msgid "Match Setup"
 msgstr "Karşılaşma ayarla"
 
-#: gui/gamesetup/gamesetup.xml:(caption):27
+#: gui/gamesetup/gamesetup.xml:(caption):26
 msgid "Loading"
 msgstr "Yükleniyor"
 
-#: gui/gamesetup/gamesetup.xml:(caption):31
+#: gui/gamesetup/gamesetup.xml:(caption):30
 msgid "Loading map data. Please wait..."
 msgstr "Harita bilgisi yükleniyor. Lütfen bekleyin..."
 
-#: gui/gamesetup/gamesetup.xml:(caption):47
+#: gui/gamesetup/gamesetup.xml:(caption):46
 msgid "Player Name"
 msgstr "Oyuncu İsmi"
 
-#: gui/gamesetup/gamesetup.xml:(caption):51
+#: gui/gamesetup/gamesetup.xml:(caption):50
 msgid "Color"
 msgstr "Renk"
 
-#: gui/gamesetup/gamesetup.xml:(caption):55
+#: gui/gamesetup/gamesetup.xml:(caption):54
 msgid "Player Placement"
 msgstr "Oyuncu Sıralaması"
 
-#: gui/gamesetup/gamesetup.xml:(caption):59
+#: gui/gamesetup/gamesetup.xml:(caption):58
 msgid "Civilization"
 msgstr "Medeniyet"
 
-#: gui/gamesetup/gamesetup.xml:(caption):87
+#: gui/gamesetup/gamesetup.xml:(caption):86
 msgid "Team"
 msgstr "Takım"
 
-#: gui/gamesetup/gamesetup.xml:(caption):141
+#: gui/gamesetup/gamesetup.xml:(caption):140
 msgid "Show this message in the future"
 msgstr "Gelecekte bu mesajı göster"
 
-#: gui/gamesetup/gamesetup.xml:(caption):208
+#: gui/gamesetup/gamesetup.xml:(caption):207
 msgid "Send"
 msgstr "Gönder"
 
-#: gui/gamesetup/gamesetup.xml:(caption):225
+#: gui/gamesetup/gamesetup.xml:(caption):224
 msgid "Cheats enabled."
 msgstr "Hileler aktif."
 
-#: gui/gamesetup/gamesetup.xml:(caption):253
+#: gui/gamesetup/gamesetup.xml:(caption):252
 msgid "Back"
 msgstr "Geri"
 
-#: gui/gamesetup/gamesetup.xml:(caption):267
-#: gui/gamesetup/gamesetup.xml:(caption):279
+#: gui/gamesetup/gamesetup.xml:(caption):266
+#: gui/gamesetup/gamesetup.xml:(caption):278
 msgid "More Options"
 msgstr "İlave seçenekler"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):69
+#: gui/gamesetup/gamesetup.xml:(tooltip):68
 msgid "View civilization info"
 msgstr "Medeniyet bilgisini göster"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):82
+#: gui/gamesetup/gamesetup.xml:(tooltip):81
 msgid ""
 "Reset any civilizations that have been selected to the default (random)"
 msgstr "Seçili uygarlıkları varsayılana (rasgele) sıfırlayın"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):97
+#: gui/gamesetup/gamesetup.xml:(tooltip):96
 msgid "Reset all teams to the default."
 msgstr "Tüm takımları varsayılana sıfırlayın."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):108
+#: gui/gamesetup/gamesetup.xml:(tooltip):107
 msgid "Pick a color."
 msgstr "Bir renk seçin."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):111
+#: gui/gamesetup/gamesetup.xml:(tooltip):110
 msgid "Select player."
 msgstr "Oyuncu seç."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):121
+#: gui/gamesetup/gamesetup.xml:(tooltip):120
 msgid "Configure AI settings."
 msgstr "Yapay Zeka ayarlarını yapılandır."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):124
+#: gui/gamesetup/gamesetup.xml:(tooltip):123
 msgid "Select player's civilization."
 msgstr "Oyuncunun medeniyetini seç."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):128
+#: gui/gamesetup/gamesetup.xml:(tooltip):127
 msgid "Select player's team."
 msgstr "Oyuncunun takımını seç."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):268
+#: gui/gamesetup/gamesetup.xml:(tooltip):267
 msgid "See more game options"
 msgstr "Daha fazla oyun seçeneği görün"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):323
+#: gui/gamesetup/gamesetup.xml:(tooltip):322
 msgid "Close more game options window"
 msgstr "Daha fazla oyun seçeneği penceresini kapat"
 

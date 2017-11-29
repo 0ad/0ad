@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-09-08 09:04+0200\n"
-"PO-Revision-Date: 2017-09-08 18:25+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"POT-Creation-Date: 2017-11-27 09:04+0100\n"
+"PO-Revision-Date: 2017-11-27 14:47+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -413,76 +413,81 @@ msgid ""
 "ready)"
 msgstr "Start et nytt spill med gjeldende innstillinger (avskrudd til alle spillerne er klare)"
 
-#: gui/gamesetup/gamesetup.js:1486
+#: gui/gamesetup/gamesetup.js:958
+#, javascript-format
+msgid "Configure AI: %(name)s - %(difficulty)s."
+msgstr ""
+
+#: gui/gamesetup/gamesetup.js:1490
 msgctxt "map selection"
 msgid "Random"
 msgstr "Tilfeldig"
 
-#: gui/gamesetup/gamesetup.js:1488
+#: gui/gamesetup/gamesetup.js:1492
 msgid "Pick any of the given maps at random."
 msgstr "Velg et av de angitte kartene tilfeldig."
 
-#: gui/gamesetup/gamesetup.js:1517
+#: gui/gamesetup/gamesetup.js:1515
 msgctxt "biome"
 msgid "Random"
 msgstr "Tilfeldig"
 
-#: gui/gamesetup/gamesetup.js:1518
+#: gui/gamesetup/gamesetup.js:1516
 msgid "Pick a biome at random."
 msgstr "Velg en biom tilfeldig."
 
-#: gui/gamesetup/gamesetup.js:1804 gui/gamesetup/gamesetup.js:1846
+#: gui/gamesetup/gamesetup.js:1801 gui/gamesetup/gamesetup.js:1843
 #, javascript-format
 msgid "%(option)s:"
 msgstr "%(option)s:"
 
-#: gui/gamesetup/gamesetup.js:1809
+#: gui/gamesetup/gamesetup.js:1806
 msgctxt "option value"
 msgid "Unknown"
 msgstr "Ukjent"
 
-#: gui/gamesetup/gamesetup.js:1839
+#: gui/gamesetup/gamesetup.js:1836
 msgid "Yes"
 msgstr "Ja"
 
-#: gui/gamesetup/gamesetup.js:1839
+#: gui/gamesetup/gamesetup.js:1836
 msgid "No"
 msgstr "Nei"
 
-#: gui/gamesetup/gamesetup.js:1932
+#: gui/gamesetup/gamesetup.js:1930
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:2128
+#: gui/gamesetup/gamesetup.js:2130
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "Maskin: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:2136
+#: gui/gamesetup/gamesetup.js:2138
 msgid "Unassigned"
 msgstr "Utilordnet"
 
-#: gui/gamesetup/gamesetup.js:2211
+#: gui/gamesetup/gamesetup.js:2213
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2218
+#: gui/gamesetup/gamesetup.js:2220
 msgid "Unknown Player"
 msgstr "Ukjent spiller"
 
-#: gui/gamesetup/gamesetup.js:2257
+#: gui/gamesetup/gamesetup.js:2259
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:2258
+#: gui/gamesetup/gamesetup.js:2260
 #, javascript-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
 
-#: gui/gamesetup/gamesetup.js:2259
+#: gui/gamesetup/gamesetup.js:2261
 msgid "HH:mm"
 msgstr "HH:mm"
 
@@ -513,101 +518,101 @@ msgid "Cancel"
 msgstr "Avbryt"
 
 #: gui/aiconfig/aiconfig.xml:(caption):46
-#: gui/gamesetup/gamesetup.xml:(caption):322
+#: gui/gamesetup/gamesetup.xml:(caption):321
 msgid "OK"
 msgstr "OK"
 
-#: gui/gamesetup/gamesetup.xml:(caption):21
+#: gui/gamesetup/gamesetup.xml:(caption):20
 msgid "Match Setup"
 msgstr "Kamp-oppsett"
 
-#: gui/gamesetup/gamesetup.xml:(caption):27
+#: gui/gamesetup/gamesetup.xml:(caption):26
 msgid "Loading"
 msgstr "Laster"
 
-#: gui/gamesetup/gamesetup.xml:(caption):31
+#: gui/gamesetup/gamesetup.xml:(caption):30
 msgid "Loading map data. Please wait..."
 msgstr "Laster kart-data. Vent…"
 
-#: gui/gamesetup/gamesetup.xml:(caption):47
+#: gui/gamesetup/gamesetup.xml:(caption):46
 msgid "Player Name"
 msgstr "Spillernavn"
 
-#: gui/gamesetup/gamesetup.xml:(caption):51
+#: gui/gamesetup/gamesetup.xml:(caption):50
 msgid "Color"
 msgstr "Farge"
 
-#: gui/gamesetup/gamesetup.xml:(caption):55
+#: gui/gamesetup/gamesetup.xml:(caption):54
 msgid "Player Placement"
 msgstr "Spillerplassering"
 
-#: gui/gamesetup/gamesetup.xml:(caption):59
+#: gui/gamesetup/gamesetup.xml:(caption):58
 msgid "Civilization"
 msgstr "Sivilisasjon"
 
-#: gui/gamesetup/gamesetup.xml:(caption):87
+#: gui/gamesetup/gamesetup.xml:(caption):86
 msgid "Team"
 msgstr "Lag"
 
-#: gui/gamesetup/gamesetup.xml:(caption):141
+#: gui/gamesetup/gamesetup.xml:(caption):140
 msgid "Show this message in the future"
 msgstr "Vis denne meldingen igjen"
 
-#: gui/gamesetup/gamesetup.xml:(caption):208
+#: gui/gamesetup/gamesetup.xml:(caption):207
 msgid "Send"
 msgstr "Send"
 
-#: gui/gamesetup/gamesetup.xml:(caption):225
+#: gui/gamesetup/gamesetup.xml:(caption):224
 msgid "Cheats enabled."
 msgstr "Juksekoder påslått."
 
-#: gui/gamesetup/gamesetup.xml:(caption):253
+#: gui/gamesetup/gamesetup.xml:(caption):252
 msgid "Back"
 msgstr "Tilbake"
 
-#: gui/gamesetup/gamesetup.xml:(caption):267
-#: gui/gamesetup/gamesetup.xml:(caption):279
+#: gui/gamesetup/gamesetup.xml:(caption):266
+#: gui/gamesetup/gamesetup.xml:(caption):278
 msgid "More Options"
 msgstr "Flere valg"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):69
+#: gui/gamesetup/gamesetup.xml:(tooltip):68
 msgid "View civilization info"
 msgstr "Vis sivilisasjonsinfo"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):82
+#: gui/gamesetup/gamesetup.xml:(tooltip):81
 msgid ""
 "Reset any civilizations that have been selected to the default (random)"
 msgstr "Tilbakestill alle sivilisasjonsvalg til forvalg (tilfeldig)"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):97
+#: gui/gamesetup/gamesetup.xml:(tooltip):96
 msgid "Reset all teams to the default."
 msgstr "Tilbakestill alle lag til forvalg."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):108
+#: gui/gamesetup/gamesetup.xml:(tooltip):107
 msgid "Pick a color."
 msgstr "Velg en farge."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):111
+#: gui/gamesetup/gamesetup.xml:(tooltip):110
 msgid "Select player."
 msgstr "Velg spiller."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):121
+#: gui/gamesetup/gamesetup.xml:(tooltip):120
 msgid "Configure AI settings."
 msgstr "Konfigurer AI innstillinger"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):124
+#: gui/gamesetup/gamesetup.xml:(tooltip):123
 msgid "Select player's civilization."
 msgstr "Velg spillerens sivilisasjon"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):128
+#: gui/gamesetup/gamesetup.xml:(tooltip):127
 msgid "Select player's team."
 msgstr "Velg spillers lag."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):268
+#: gui/gamesetup/gamesetup.xml:(tooltip):267
 msgid "See more game options"
 msgstr "Se flere spillvalg"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):323
+#: gui/gamesetup/gamesetup.xml:(tooltip):322
 msgid "Close more game options window"
 msgstr "Lukk vindu for flere spillvalg"
 
