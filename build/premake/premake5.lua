@@ -852,11 +852,11 @@ function setup_all_libs ()
 	end
 
 	-- runtime-library-specific
-	filter "action:vs*"
+	if _ACTION == "vs2013" or _ACTION == "vs2015" then
 		table.insert(source_dirs, "lib/sysdep/rtl/msc");
-	filter "action:not vs*"
+	else
 		table.insert(source_dirs, "lib/sysdep/rtl/gcc");
-	filter {}
+	end
 
 	setup_static_lib_project("lowlevel", source_dirs, extern_libs, extra_params)
 
