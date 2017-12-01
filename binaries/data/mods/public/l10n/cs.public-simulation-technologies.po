@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-11-17 09:04+0100\n"
-"PO-Revision-Date: 2017-11-17 15:09+0000\n"
+"POT-Creation-Date: 2017-11-29 09:05+0100\n"
+"PO-Revision-Date: 2017-11-29 15:16+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -1208,34 +1208,17 @@ msgstr "Noční hlídka proti cimbuřím"
 msgid "Walls build time vs. Health"
 msgstr "Čas na postavení zdí proti zdraví"
 
-#: simulation/data/technologies/phase_city.jsondescription
-msgid ""
-"Advances from a bustling town to a veritable metropolis, full of the wonders"
-" of modern technology."
-msgstr "Postupte z rušného města ke skutečné metropoli, plné zázraků přinášených novými výrobními postupy."
-
-#: simulation/data/technologies/phase_city.jsontooltip
-msgid ""
-"Advance to City Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by another +50%. Citizen soldiers max "
-"health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "Postoupit do městské fáze, která zpřístupní více staveb a jednotek. Územní dosah se pro občanská střediska zvýší o +50%. Občanským vojákům se zvýší zdraví o +10% a všechny budovy získají +9 na rychlosti obnovy zdraví jejich posádky."
-
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
+#: simulation/data/technologies/phase_city_generic.jsongenericName
 msgid "City Phase"
 msgstr "Velkoměstská fáze"
 
-#: simulation/data/technologies/phase_city.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
-msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "Vyžaduje 4 nové budovy z městské fáze (vyjma hradeb a správních středisek)"
-
-#: simulation/data/technologies/phase_city.jsonspecificName.mace
-#: simulation/data/technologies/phase_city.jsonspecificName.spart
-#: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
-msgid "Megalópolis"
-msgstr "Megalópolis"
+#: simulation/data/technologies/phase_city.jsondescription
+msgid ""
+"Dummy technology for use in templates requirements, replaced by "
+"phase_city_generic or phase_city_{civ}."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
@@ -1252,34 +1235,41 @@ msgid ""
 "health increased by +10%. All structures +9 garrisoned regeneration rate."
 msgstr "Postoupit do městské fáze, která zpřístupní více staveb a jednotek. Územní dosah se pro občanská střediska zvýší o +50%. Civilizační přídavek Stříbrné sovy poskytne všem dělníkům dalších +10% na rychlosti sbírání kovu. Občanským vojákům se zvýší zdraví o +10% a všechny budovy získají +9 na rychlosti obnovy zdraví jejich posádky."
 
-#: simulation/data/technologies/phase_town.jsondescription
-msgid ""
-"Advances from a small village to a bustling town, ready to expand rapidly."
-msgstr "Postupte z malé vesnice do rušného města, připraveného se rychle rozšířit."
+#: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
+msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
+msgstr "Vyžaduje 4 nové budovy z městské fáze (vyjma hradeb a správních středisek)"
 
-#: simulation/data/technologies/phase_town.jsontooltip
+#: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
+#: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
+#: simulation/data/technologies/phase_city_generic.jsonspecificName.spart
+msgid "Megalópolis"
+msgstr "Megalópolis"
+
+#: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
-"Advance to Town Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by +30%. Citizen soldiers max health "
-"increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "Postupuje do městské fáze, která odemkne více staveb a jednotek. Územní dosah se pro občanská střediska zvýší o +30%.  Občanským vojákům se zvýší zdraví o +20%. Všechny budovy získají +7 k regeneraci jejich posádky."
+"Advances from a bustling town to a veritable metropolis, full of the wonders"
+" of modern technology."
+msgstr "Postupte z rušného města ke skutečné metropoli, plné zázraků přinášených novými výrobními postupy."
+
+#: simulation/data/technologies/phase_city_generic.jsontooltip
+msgid ""
+"Advance to City Phase, which unlocks more structures and units. Territory "
+"radius for Civic Centers increased by another +50%. Citizen soldiers max "
+"health increased by +10%. All structures +9 garrisoned regeneration rate."
+msgstr "Postoupit do městské fáze, která zpřístupní více staveb a jednotek. Územní dosah se pro občanská střediska zvýší o +50%. Občanským vojákům se zvýší zdraví o +10% a všechny budovy získají +9 na rychlosti obnovy zdraví jejich posádky."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
+#: simulation/data/technologies/phase_town_generic.jsongenericName
 msgid "Town Phase"
 msgstr "Vesnická fáze"
 
-#: simulation/data/technologies/phase_town.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_town.jsondescription
 msgid ""
-"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "Vyžaduje 5 staveb vesnické fáze (kromě palisád a polí)."
-
-#: simulation/data/technologies/phase_town.jsonspecificName.mace
-#: simulation/data/technologies/phase_town.jsonspecificName.spart
-#: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
-msgid "Kōmópolis"
-msgstr "Kōmópolis"
+"Dummy technology for use in templates requirements, replaced by "
+"phase_town_generic or phase_town_{civ}."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
@@ -1295,6 +1285,30 @@ msgid ""
 "an extra +10% metal gather rate to all workers. Citizen soldiers max health "
 "increased by +20%. All structures +7 garrisoned regeneration rate."
 msgstr "Postupuje do městské fáze, která odemkne více staveb a jednotek. Územní dosah se pro občanská střediska zvýší o +30%. Civilizační přídavek Stříbrné sovy poskytuje všem dělníkům dalších +10% na rychlosti sbírání kovu. Občanským vojákům se zvýší zdraví o +20%. Všechny budovy získají +7 k regeneraci jejich posádky."
+
+#: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
+msgid ""
+"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
+msgstr "Vyžaduje 5 staveb vesnické fáze (kromě palisád a polí)."
+
+#: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
+#: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
+#: simulation/data/technologies/phase_town_generic.jsonspecificName.spart
+msgid "Kōmópolis"
+msgstr "Kōmópolis"
+
+#: simulation/data/technologies/phase_town_generic.jsondescription
+msgid ""
+"Advances from a small village to a bustling town, ready to expand rapidly."
+msgstr "Postupte z malé vesnice do rušného města, připraveného se rychle rozšířit."
+
+#: simulation/data/technologies/phase_town_generic.jsontooltip
+msgid ""
+"Advance to Town Phase, which unlocks more structures and units. Territory "
+"radius for Civic Centers increased by +30%. Citizen soldiers max health "
+"increased by +20%. All structures +7 garrisoned regeneration rate."
+msgstr "Postupuje do městské fáze, která odemkne více staveb a jednotek. Územní dosah se pro občanská střediska zvýší o +30%.  Občanským vojákům se zvýší zdraví o +20%. Všechny budovy získají +7 k regeneraci jejich posádky."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"

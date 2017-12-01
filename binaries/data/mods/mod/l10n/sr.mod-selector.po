@@ -7,9 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-12 18:54+0100\n"
-"PO-Revision-Date: 2016-03-12 22:50+0000\n"
-"Last-Translator: Aca G. <martel.gilgames@gmail.com>\n"
+"POT-Creation-Date: 2017-11-29 09:05+0100\n"
+"PO-Revision-Date: 2017-11-29 15:09+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/wildfire-games/0ad/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,124 +17,125 @@ msgstr ""
 "Language: sr\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:(heading):93
-#: gui/modmod/modmod.xml:(heading):134
+#: gui/modmod/modmod.js:52 gui/modmod/modmod.xml:(heading):110
+#: gui/modmod/modmod.xml:(heading):159
 msgid "Name"
 msgstr "Име"
 
-#: gui/modmod/modmod.js:30
+#: gui/modmod/modmod.js:58
 msgid "Folder"
 msgstr "Фолдер"
 
-#: gui/modmod/modmod.js:30
+#: gui/modmod/modmod.js:63
 msgid "Label"
 msgstr "Ознака"
 
-#: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:(heading):96
-#: gui/modmod/modmod.xml:(heading):137
+#: gui/modmod/modmod.js:68 gui/modmod/modmod.xml:(heading):113
+#: gui/modmod/modmod.xml:(heading):162
 msgid "Version"
 msgstr "Верзија"
 
-#: gui/modmod/modmod.js:36
-msgid "Type: Any"
-msgstr "Тип: Било који"
-
-#: gui/modmod/modmod.js:62 gui/modmod/modmod.js:308
+#: gui/modmod/modmod.js:98 gui/modmod/modmod.js:253
 msgid "Filter"
 msgstr "Филтер"
 
-#: gui/modmod/modmod.js:74
-msgid "Message: Mods Loaded."
-msgstr "Порука: Модови су учитани."
+#: gui/modmod/modmod.js:157
+msgid "Type: Any"
+msgstr "Тип: Било који"
 
-#: gui/modmod/modmod.js:371
+#: gui/modmod/modmod.js:308
+#, javascript-format
+msgid "Dependency not met: %(dep)s"
+msgstr ""
+
+#: gui/modmod/modmod.js:316
 msgid "All dependencies met"
 msgstr "Сви захтеви су задовољени."
 
-#: gui/modmod/modmod.js:497
+#: gui/modmod/modmod.js:394
 msgid "No mod has been selected."
 msgstr "Ниједан мод није изабран."
 
-#: gui/modmod/modmod.xml:115
-msgid "Description"
-msgstr "Опис"
-
-#: gui/modmod/modmod.xml:(caption):9
+#: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"
 msgstr "Промене"
 
-#: gui/modmod/modmod.xml:(caption):17
+#: gui/modmod/modmod.xml:(caption):20
 msgid "Reset Filters"
 msgstr "Ресетуј филтере"
 
-#: gui/modmod/modmod.xml:(caption):51
+#: gui/modmod/modmod.xml:(caption):55
 msgid "Negate"
 msgstr "Поништи"
 
-#: gui/modmod/modmod.xml:(caption):58
+#: gui/modmod/modmod.xml:(caption):63
 msgid "Sorting:"
 msgstr "Сортирање:"
 
-#: gui/modmod/modmod.xml:(caption):70
+#: gui/modmod/modmod.xml:(caption):77
 msgid "Descending."
 msgstr "Опадајући:"
 
-#: gui/modmod/modmod.xml:(caption):86
+#: gui/modmod/modmod.xml:(caption):96
 msgid "Available Mods"
 msgstr "Доступни модови:"
 
-#: gui/modmod/modmod.xml:(caption):118
+#: gui/modmod/modmod.xml:(caption):132
+msgid "Description"
+msgstr "Опис"
+
+#: gui/modmod/modmod.xml:(caption):135
 msgid "Enable"
 msgstr "Омогући"
 
-#: gui/modmod/modmod.xml:(caption):127
+#: gui/modmod/modmod.xml:(caption):144
 msgid "Enabled Mods"
 msgstr "Омогућени модови"
 
-#: gui/modmod/modmod.xml:(caption):157
+#: gui/modmod/modmod.xml:(caption):182
 msgid "Up"
 msgstr "Горе"
 
-#: gui/modmod/modmod.xml:(caption):161
+#: gui/modmod/modmod.xml:(caption):186
 msgid "X"
 msgstr "X"
 
-#: gui/modmod/modmod.xml:(caption):165
+#: gui/modmod/modmod.xml:(caption):190
 msgid "Down"
 msgstr "Доле"
 
-#: gui/modmod/modmod.xml:(caption):173
+#: gui/modmod/modmod.xml:(caption):198
 msgid "Quit"
 msgstr "Изађи"
 
-#: gui/modmod/modmod.xml:(caption):178
+#: gui/modmod/modmod.xml:(caption):203
 msgid "Cancel"
 msgstr "Обустави"
 
-#: gui/modmod/modmod.xml:(caption):183
+#: gui/modmod/modmod.xml:(caption):208
 msgid "Save Configuration"
 msgstr "Сачувај конфигурацију"
 
-#: gui/modmod/modmod.xml:(caption):188
+#: gui/modmod/modmod.xml:(caption):213
 msgid "Start Mods"
 msgstr "Покрени модове"
 
-#: gui/modmod/modmod.xml:(heading):99 gui/modmod/modmod.xml:(heading):140
+#: gui/modmod/modmod.xml:(heading):116 gui/modmod/modmod.xml:(heading):165
 msgid "(Folder)"
 msgstr "(Фолдер)"
 
-#: gui/modmod/modmod.xml:(heading):102 gui/modmod/modmod.xml:(heading):143
+#: gui/modmod/modmod.xml:(heading):119 gui/modmod/modmod.xml:(heading):168
 msgid "Mod Label"
 msgstr "Ознака мода"
 
-#: gui/modmod/modmod.xml:(heading):105 gui/modmod/modmod.xml:(heading):146
+#: gui/modmod/modmod.xml:(heading):122 gui/modmod/modmod.xml:(heading):171
 msgid "Mod Type"
 msgstr "Тип мода"
 
-#: gui/modmod/modmod.xml:(heading):108 gui/modmod/modmod.xml:(heading):149
+#: gui/modmod/modmod.xml:(heading):125 gui/modmod/modmod.xml:(heading):174
 msgid "Dependencies"
 msgstr "Захтеви"
 
-#: gui/modmod/modmod.xml:(heading):111 gui/modmod/modmod.xml:(heading):152
+#: gui/modmod/modmod.xml:(heading):128 gui/modmod/modmod.xml:(heading):177
 msgid "Website"
 msgstr "Веб-страница"

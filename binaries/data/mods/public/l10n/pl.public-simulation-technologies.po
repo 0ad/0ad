@@ -32,9 +32,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-11-17 09:04+0100\n"
-"PO-Revision-Date: 2017-11-26 21:07+0000\n"
-"Last-Translator: Daniel Whatever <Deynyel@protonmail.com>\n"
+"POT-Creation-Date: 2017-11-29 09:05+0100\n"
+"PO-Revision-Date: 2017-11-29 15:16+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1224,34 +1224,17 @@ msgstr "Straż nocna kontra Blanki"
 msgid "Walls build time vs. Health"
 msgstr "Szybkość budowania murów kontra Wytrzymałość"
 
-#: simulation/data/technologies/phase_city.jsondescription
-msgid ""
-"Advances from a bustling town to a veritable metropolis, full of the wonders"
-" of modern technology."
-msgstr "Awansuje z tętniącego życiem miasteczka w prawdziwą metropolię, pełną cudów nowoczesnej technologii."
-
-#: simulation/data/technologies/phase_city.jsontooltip
-msgid ""
-"Advance to City Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by another +50%. Citizen soldiers max "
-"health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "Awansuj do Fazy Dużego Miasta, która odblokowuje więcej budowli i jednostek. Promień terytorium przy Centrum Osady wzrasta o kolejne +50%. Mieszkańcom-żołnierzom życie zwiększa się o +10%. Wszystkie budynki +9 do szybkości uzdrawiania. "
-
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
+#: simulation/data/technologies/phase_city_generic.jsongenericName
 msgid "City Phase"
 msgstr "Faza dużego miasta"
 
-#: simulation/data/technologies/phase_city.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
-msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "Wymaga 4 nowych budynków fazy miasta (poza murami i centrami osady)."
-
-#: simulation/data/technologies/phase_city.jsonspecificName.mace
-#: simulation/data/technologies/phase_city.jsonspecificName.spart
-#: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
-msgid "Megalópolis"
-msgstr "Megalópolis"
+#: simulation/data/technologies/phase_city.jsondescription
+msgid ""
+"Dummy technology for use in templates requirements, replaced by "
+"phase_city_generic or phase_city_{civ}."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
@@ -1268,34 +1251,41 @@ msgid ""
 "health increased by +10%. All structures +9 garrisoned regeneration rate."
 msgstr "Awansuj do Fazy Dużego Miasta, która odblokowuje więcej budowli i jednostek. Promień terytorium przy Centrum Osady wzrasta o kolejne +50%. Mieszkańcom-żołnierzom życie zwiększa się o +10%. Wszystkie budynki +9 do szybkości uzdrawiania. "
 
-#: simulation/data/technologies/phase_town.jsondescription
-msgid ""
-"Advances from a small village to a bustling town, ready to expand rapidly."
-msgstr "Awansuje z małej wioski do tętniącego życiem miasteczka, gotowego do szybkiej ekspansji."
+#: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
+msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
+msgstr "Wymaga 4 nowych budynków fazy miasta (poza murami i centrami osady)."
 
-#: simulation/data/technologies/phase_town.jsontooltip
+#: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
+#: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
+#: simulation/data/technologies/phase_city_generic.jsonspecificName.spart
+msgid "Megalópolis"
+msgstr "Megalópolis"
+
+#: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
-"Advance to Town Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by +30%. Citizen soldiers max health "
-"increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "Awansuj do fazy miasta,  która odblokowuje więcej budowli i jednostek. Promień terytorium przy centrum osady wzrasta o kolejne +30%. Każdemu mieszkańcowi życie zwiększa się o +20%. Wszystkie budynki +7 do szybkości uzdrawiania."
+"Advances from a bustling town to a veritable metropolis, full of the wonders"
+" of modern technology."
+msgstr "Awansuje z tętniącego życiem miasteczka w prawdziwą metropolię, pełną cudów nowoczesnej technologii."
+
+#: simulation/data/technologies/phase_city_generic.jsontooltip
+msgid ""
+"Advance to City Phase, which unlocks more structures and units. Territory "
+"radius for Civic Centers increased by another +50%. Citizen soldiers max "
+"health increased by +10%. All structures +9 garrisoned regeneration rate."
+msgstr "Awansuj do Fazy Dużego Miasta, która odblokowuje więcej budowli i jednostek. Promień terytorium przy Centrum Osady wzrasta o kolejne +50%. Mieszkańcom-żołnierzom życie zwiększa się o +10%. Wszystkie budynki +9 do szybkości uzdrawiania. "
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
+#: simulation/data/technologies/phase_town_generic.jsongenericName
 msgid "Town Phase"
 msgstr "Faza miasta"
 
-#: simulation/data/technologies/phase_town.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_town.jsondescription
 msgid ""
-"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "Wymaga 5 budynków fazy wioski (poza palisadami i farmami)."
-
-#: simulation/data/technologies/phase_town.jsonspecificName.mace
-#: simulation/data/technologies/phase_town.jsonspecificName.spart
-#: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
-msgid "Kōmópolis"
-msgstr "Kōmópolis"
+"Dummy technology for use in templates requirements, replaced by "
+"phase_town_generic or phase_town_{civ}."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
@@ -1311,6 +1301,30 @@ msgid ""
 "an extra +10% metal gather rate to all workers. Citizen soldiers max health "
 "increased by +20%. All structures +7 garrisoned regeneration rate."
 msgstr "Awansuj do fazy dużego miasta, która odblokowuje więcej budynków i jednostek. Promień terytorium przy centrum osady wzrasta o kolejne +30%. Bonus \"Srebrna Sowa\" daje dodatkowe +10% szybkości zdobywania metalu przez każdego pracownika. Każdemu mieszkańcowi życie zwiększa się o +20%. Wszystkie budynki +7 do szybkości uzdrawiania."
+
+#: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
+msgid ""
+"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
+msgstr "Wymaga 5 budynków fazy wioski (poza palisadami i farmami)."
+
+#: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
+#: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
+#: simulation/data/technologies/phase_town_generic.jsonspecificName.spart
+msgid "Kōmópolis"
+msgstr "Kōmópolis"
+
+#: simulation/data/technologies/phase_town_generic.jsondescription
+msgid ""
+"Advances from a small village to a bustling town, ready to expand rapidly."
+msgstr "Awansuje z małej wioski do tętniącego życiem miasteczka, gotowego do szybkiej ekspansji."
+
+#: simulation/data/technologies/phase_town_generic.jsontooltip
+msgid ""
+"Advance to Town Phase, which unlocks more structures and units. Territory "
+"radius for Civic Centers increased by +30%. Citizen soldiers max health "
+"increased by +20%. All structures +7 garrisoned regeneration rate."
+msgstr "Awansuj do fazy miasta,  która odblokowuje więcej budowli i jednostek. Promień terytorium przy centrum osady wzrasta o kolejne +30%. Każdemu mieszkańcowi życie zwiększa się o +20%. Wszystkie budynki +7 do szybkości uzdrawiania."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"

@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-19 09:27+0100\n"
-"PO-Revision-Date: 2016-05-08 08:44+0000\n"
-"Last-Translator: Paulius Damaška <pauldam000@gmail.com>\n"
+"POT-Creation-Date: 2017-11-29 09:05+0100\n"
+"PO-Revision-Date: 2017-11-29 15:09+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/wildfire-games/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,124 +19,125 @@ msgstr ""
 "Language: lt\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:(heading):93
-#: gui/modmod/modmod.xml:(heading):134
+#: gui/modmod/modmod.js:52 gui/modmod/modmod.xml:(heading):110
+#: gui/modmod/modmod.xml:(heading):159
 msgid "Name"
 msgstr "Vardas"
 
-#: gui/modmod/modmod.js:30
+#: gui/modmod/modmod.js:58
 msgid "Folder"
 msgstr "Aplankas"
 
-#: gui/modmod/modmod.js:30
+#: gui/modmod/modmod.js:63
 msgid "Label"
 msgstr "Etiketė"
 
-#: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:(heading):96
-#: gui/modmod/modmod.xml:(heading):137
+#: gui/modmod/modmod.js:68 gui/modmod/modmod.xml:(heading):113
+#: gui/modmod/modmod.xml:(heading):162
 msgid "Version"
 msgstr "Versija"
 
-#: gui/modmod/modmod.js:36
-msgid "Type: Any"
-msgstr "Tipas: Betkoks"
-
-#: gui/modmod/modmod.js:62 gui/modmod/modmod.js:308
+#: gui/modmod/modmod.js:98 gui/modmod/modmod.js:253
 msgid "Filter"
 msgstr "Filtras"
 
-#: gui/modmod/modmod.js:74
-msgid "Message: Mods Loaded."
-msgstr "Pranešimas: Modifikacijos Paruoštos."
+#: gui/modmod/modmod.js:157
+msgid "Type: Any"
+msgstr "Tipas: Betkoks"
 
-#: gui/modmod/modmod.js:371
+#: gui/modmod/modmod.js:308
+#, javascript-format
+msgid "Dependency not met: %(dep)s"
+msgstr ""
+
+#: gui/modmod/modmod.js:316
 msgid "All dependencies met"
 msgstr "Visi reikalavimai įvykdyti"
 
-#: gui/modmod/modmod.js:497
+#: gui/modmod/modmod.js:394
 msgid "No mod has been selected."
 msgstr "Nepasirinkta jokia modifikacija."
 
-#: gui/modmod/modmod.xml:115
-msgid "Description"
-msgstr "Aprašymas"
-
-#: gui/modmod/modmod.xml:(caption):9
+#: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"
 msgstr "Modifikacijos"
 
-#: gui/modmod/modmod.xml:(caption):17
+#: gui/modmod/modmod.xml:(caption):20
 msgid "Reset Filters"
 msgstr "Atstatyti filtrus"
 
-#: gui/modmod/modmod.xml:(caption):51
+#: gui/modmod/modmod.xml:(caption):55
 msgid "Negate"
 msgstr "Negalimas"
 
-#: gui/modmod/modmod.xml:(caption):58
+#: gui/modmod/modmod.xml:(caption):63
 msgid "Sorting:"
 msgstr "Rūšiavimas:"
 
-#: gui/modmod/modmod.xml:(caption):70
+#: gui/modmod/modmod.xml:(caption):77
 msgid "Descending."
 msgstr "Mažėjančiai."
 
-#: gui/modmod/modmod.xml:(caption):86
+#: gui/modmod/modmod.xml:(caption):96
 msgid "Available Mods"
 msgstr "Galimos modifikacijos"
 
-#: gui/modmod/modmod.xml:(caption):118
+#: gui/modmod/modmod.xml:(caption):132
+msgid "Description"
+msgstr "Aprašymas"
+
+#: gui/modmod/modmod.xml:(caption):135
 msgid "Enable"
 msgstr "Įgalinti"
 
-#: gui/modmod/modmod.xml:(caption):127
+#: gui/modmod/modmod.xml:(caption):144
 msgid "Enabled Mods"
 msgstr "Įgalintos modifikacijos"
 
-#: gui/modmod/modmod.xml:(caption):157
+#: gui/modmod/modmod.xml:(caption):182
 msgid "Up"
 msgstr "Viršun"
 
-#: gui/modmod/modmod.xml:(caption):161
+#: gui/modmod/modmod.xml:(caption):186
 msgid "X"
 msgstr "X"
 
-#: gui/modmod/modmod.xml:(caption):165
+#: gui/modmod/modmod.xml:(caption):190
 msgid "Down"
 msgstr "Apačion"
 
-#: gui/modmod/modmod.xml:(caption):173
+#: gui/modmod/modmod.xml:(caption):198
 msgid "Quit"
 msgstr "Baigti"
 
-#: gui/modmod/modmod.xml:(caption):178
+#: gui/modmod/modmod.xml:(caption):203
 msgid "Cancel"
 msgstr "Atšaukti"
 
-#: gui/modmod/modmod.xml:(caption):183
+#: gui/modmod/modmod.xml:(caption):208
 msgid "Save Configuration"
 msgstr "Išsaugoti konfigūraciją"
 
-#: gui/modmod/modmod.xml:(caption):188
+#: gui/modmod/modmod.xml:(caption):213
 msgid "Start Mods"
 msgstr "Paleisti Modifikacijas"
 
-#: gui/modmod/modmod.xml:(heading):99 gui/modmod/modmod.xml:(heading):140
+#: gui/modmod/modmod.xml:(heading):116 gui/modmod/modmod.xml:(heading):165
 msgid "(Folder)"
 msgstr "(aplankas)"
 
-#: gui/modmod/modmod.xml:(heading):102 gui/modmod/modmod.xml:(heading):143
+#: gui/modmod/modmod.xml:(heading):119 gui/modmod/modmod.xml:(heading):168
 msgid "Mod Label"
 msgstr "Modifikacijos etiketė"
 
-#: gui/modmod/modmod.xml:(heading):105 gui/modmod/modmod.xml:(heading):146
+#: gui/modmod/modmod.xml:(heading):122 gui/modmod/modmod.xml:(heading):171
 msgid "Mod Type"
 msgstr "Modifikacijos tipas"
 
-#: gui/modmod/modmod.xml:(heading):108 gui/modmod/modmod.xml:(heading):149
+#: gui/modmod/modmod.xml:(heading):125 gui/modmod/modmod.xml:(heading):174
 msgid "Dependencies"
 msgstr "Reikalavimai"
 
-#: gui/modmod/modmod.xml:(heading):111 gui/modmod/modmod.xml:(heading):152
+#: gui/modmod/modmod.xml:(heading):128 gui/modmod/modmod.xml:(heading):177
 msgid "Website"
 msgstr "Interneto svetainė"

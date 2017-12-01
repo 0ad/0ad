@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-05-27 14:48+0200\n"
-"PO-Revision-Date: 2017-09-21 21:03+0000\n"
-"Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
+"POT-Creation-Date: 2017-11-29 09:05+0100\n"
+"PO-Revision-Date: 2017-11-29 15:09+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,124 +19,125 @@ msgstr ""
 "Language: br\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:(heading):98
-#: gui/modmod/modmod.xml:(heading):145
+#: gui/modmod/modmod.js:52 gui/modmod/modmod.xml:(heading):110
+#: gui/modmod/modmod.xml:(heading):159
 msgid "Name"
 msgstr "Anv"
 
-#: gui/modmod/modmod.js:30
+#: gui/modmod/modmod.js:58
 msgid "Folder"
 msgstr "Teul"
 
-#: gui/modmod/modmod.js:30
+#: gui/modmod/modmod.js:63
 msgid "Label"
 msgstr "Liketenn"
 
-#: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:(heading):101
-#: gui/modmod/modmod.xml:(heading):148
+#: gui/modmod/modmod.js:68 gui/modmod/modmod.xml:(heading):113
+#: gui/modmod/modmod.xml:(heading):162
 msgid "Version"
 msgstr "Stumm"
 
-#: gui/modmod/modmod.js:36
-msgid "Type: Any"
-msgstr "Doare : Hini ebet"
-
-#: gui/modmod/modmod.js:62 gui/modmod/modmod.js:321
+#: gui/modmod/modmod.js:98 gui/modmod/modmod.js:253
 msgid "Filter"
 msgstr "Sil"
 
-#: gui/modmod/modmod.js:74
-msgid "Message: Mods Loaded."
-msgstr "Kemennadenn: Modoù Karget."
+#: gui/modmod/modmod.js:157
+msgid "Type: Any"
+msgstr "Doare : Hini ebet"
 
-#: gui/modmod/modmod.js:384
+#: gui/modmod/modmod.js:308
+#, javascript-format
+msgid "Dependency not met: %(dep)s"
+msgstr ""
+
+#: gui/modmod/modmod.js:316
 msgid "All dependencies met"
 msgstr "An holl dalc'hiadigezh bet kejet outo"
 
-#: gui/modmod/modmod.js:510
+#: gui/modmod/modmod.js:394
 msgid "No mod has been selected."
 msgstr "N'eus bet diuzet mod ebet."
 
-#: gui/modmod/modmod.xml:120
-msgid "Description"
-msgstr "Diskrivadur"
-
-#: gui/modmod/modmod.xml:(caption):9
+#: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"
 msgstr "Cheñchamantoù"
 
-#: gui/modmod/modmod.xml:(caption):17
+#: gui/modmod/modmod.xml:(caption):20
 msgid "Reset Filters"
 msgstr "Addereouekaat ar Siloù"
 
-#: gui/modmod/modmod.xml:(caption):51
+#: gui/modmod/modmod.xml:(caption):55
 msgid "Negate"
 msgstr "Nac'hañ"
 
-#: gui/modmod/modmod.xml:(caption):58
+#: gui/modmod/modmod.xml:(caption):63
 msgid "Sorting:"
 msgstr "Rummañ:"
 
-#: gui/modmod/modmod.xml:(caption):70
+#: gui/modmod/modmod.xml:(caption):77
 msgid "Descending."
 msgstr "O tiskenn."
 
-#: gui/modmod/modmod.xml:(caption):86
+#: gui/modmod/modmod.xml:(caption):96
 msgid "Available Mods"
 msgstr "Modoù hegerzus"
 
-#: gui/modmod/modmod.xml:(caption):123
+#: gui/modmod/modmod.xml:(caption):132
+msgid "Description"
+msgstr "Diskrivadur"
+
+#: gui/modmod/modmod.xml:(caption):135
 msgid "Enable"
 msgstr "Gweredekaat"
 
-#: gui/modmod/modmod.xml:(caption):132
+#: gui/modmod/modmod.xml:(caption):144
 msgid "Enabled Mods"
 msgstr "Modoù gweredekaet"
 
-#: gui/modmod/modmod.xml:(caption):168
+#: gui/modmod/modmod.xml:(caption):182
 msgid "Up"
 msgstr "Uhel"
 
-#: gui/modmod/modmod.xml:(caption):172
+#: gui/modmod/modmod.xml:(caption):186
 msgid "X"
 msgstr "X"
 
-#: gui/modmod/modmod.xml:(caption):176
+#: gui/modmod/modmod.xml:(caption):190
 msgid "Down"
 msgstr "Izel"
 
-#: gui/modmod/modmod.xml:(caption):184
+#: gui/modmod/modmod.xml:(caption):198
 msgid "Quit"
 msgstr "Kuitaat"
 
-#: gui/modmod/modmod.xml:(caption):189
+#: gui/modmod/modmod.xml:(caption):203
 msgid "Cancel"
 msgstr "Nullañ"
 
-#: gui/modmod/modmod.xml:(caption):194
+#: gui/modmod/modmod.xml:(caption):208
 msgid "Save Configuration"
 msgstr "Enrollañ ar C'hefluniadur"
 
-#: gui/modmod/modmod.xml:(caption):199
+#: gui/modmod/modmod.xml:(caption):213
 msgid "Start Mods"
 msgstr "Stadegoù ar Modoù"
 
-#: gui/modmod/modmod.xml:(heading):104 gui/modmod/modmod.xml:(heading):151
+#: gui/modmod/modmod.xml:(heading):116 gui/modmod/modmod.xml:(heading):165
 msgid "(Folder)"
 msgstr "(Teuliad)"
 
-#: gui/modmod/modmod.xml:(heading):107 gui/modmod/modmod.xml:(heading):154
+#: gui/modmod/modmod.xml:(heading):119 gui/modmod/modmod.xml:(heading):168
 msgid "Mod Label"
 msgstr "Liketenn ar Mod"
 
-#: gui/modmod/modmod.xml:(heading):110 gui/modmod/modmod.xml:(heading):157
+#: gui/modmod/modmod.xml:(heading):122 gui/modmod/modmod.xml:(heading):171
 msgid "Mod Type"
 msgstr "Doare ar Mod"
 
-#: gui/modmod/modmod.xml:(heading):113 gui/modmod/modmod.xml:(heading):160
+#: gui/modmod/modmod.xml:(heading):125 gui/modmod/modmod.xml:(heading):174
 msgid "Dependencies"
 msgstr "Dalc'hiadigezh"
 
-#: gui/modmod/modmod.xml:(heading):116 gui/modmod/modmod.xml:(heading):163
+#: gui/modmod/modmod.xml:(heading):128 gui/modmod/modmod.xml:(heading):177
 msgid "Website"
 msgstr "Lec'hienn web"

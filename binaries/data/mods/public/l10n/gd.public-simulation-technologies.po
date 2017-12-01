@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-11-17 09:04+0100\n"
-"PO-Revision-Date: 2017-11-17 15:09+0000\n"
+"POT-Creation-Date: 2017-11-29 09:05+0100\n"
+"PO-Revision-Date: 2017-11-29 15:16+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -1201,34 +1201,17 @@ msgstr "Faire na h-oidhche no creanailean"
 msgid "Walls build time vs. Health"
 msgstr "Luaths togail no seasmhachd nam ballachan"
 
-#: simulation/data/technologies/phase_city.jsondescription
-msgid ""
-"Advances from a bustling town to a veritable metropolis, full of the wonders"
-" of modern technology."
-msgstr "Adhartaich o bhaile iomairteach gu mòr-bhaile, làn chulaidhean-iongantais an teicneolais ùir."
-
-#: simulation/data/technologies/phase_city.jsontooltip
-msgid ""
-"Advance to City Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by another +50%. Citizen soldiers max "
-"health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "Adhartaich gu linn nam mòr-bhailtean a bheir barrachd thogalaichean is aonadan dhut. Bidh leudachadh de +50% a bharrachd aig ranntair nan ionadan sìobhalta. Gheibh saighdearan-dùthcha buannachd dhe +10% air an t-slàinte as motha aca. Gheibh a h-uile togalach buannachd dhe +9 air ath-ghintinn gearastain."
-
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
+#: simulation/data/technologies/phase_city_generic.jsongenericName
 msgid "City Phase"
 msgstr "Linn nam mòr-bhailtean"
 
-#: simulation/data/technologies/phase_city.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
-msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "Feumaidh seo 4 togalaichean ùra (ach ballachan is ionadan sìobhalta) o linn nam bailtean."
-
-#: simulation/data/technologies/phase_city.jsonspecificName.mace
-#: simulation/data/technologies/phase_city.jsonspecificName.spart
-#: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
-msgid "Megalópolis"
-msgstr "Megalópolis"
+#: simulation/data/technologies/phase_city.jsondescription
+msgid ""
+"Dummy technology for use in templates requirements, replaced by "
+"phase_city_generic or phase_city_{civ}."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
@@ -1245,34 +1228,41 @@ msgid ""
 "health increased by +10%. All structures +9 garrisoned regeneration rate."
 msgstr "Adhartaich gu linn nam mòr-bhailtean a bheir barrachd thogalaichean is aonadan dhut. Bidh leudachadh de +50% a bharrachd aig ranntair nan ionadan sìobhalta. Cruinnichidh gach obraiche meatailt +10% nas luaithe le buannachd an t-sìobhaltais “Cailleachan-oidhche airgid.” Gheibh saighdearan-dùthcha buannachd dhe +10% air an t-slàinte as motha aca. Gheibh a h-uile togalach buannachd dhe +9 air ath-ghintinn gearastain."
 
-#: simulation/data/technologies/phase_town.jsondescription
-msgid ""
-"Advances from a small village to a bustling town, ready to expand rapidly."
-msgstr "Adhartaich o chlachan bheag gu baile iomairteach, ullamh airson leudachadh luath."
+#: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
+msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
+msgstr "Feumaidh seo 4 togalaichean ùra (ach ballachan is ionadan sìobhalta) o linn nam bailtean."
 
-#: simulation/data/technologies/phase_town.jsontooltip
+#: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
+#: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
+#: simulation/data/technologies/phase_city_generic.jsonspecificName.spart
+msgid "Megalópolis"
+msgstr "Megalópolis"
+
+#: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
-"Advance to Town Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by +30%. Citizen soldiers max health "
-"increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "Adhartaich gu linn nam bailtean a bheir barrachd thogalaichean is aonadan dhut. Bidh leudachadh de +30% aig ranntair nan ionadan sìobhalta. Gheibh saighdearan-dùthcha buannachd dhe +20% air an t-slàinte as motha aca. Gheibh a h-uile togalach buannachd dhe +7 air ath-ghintinn gearastain."
+"Advances from a bustling town to a veritable metropolis, full of the wonders"
+" of modern technology."
+msgstr "Adhartaich o bhaile iomairteach gu mòr-bhaile, làn chulaidhean-iongantais an teicneolais ùir."
+
+#: simulation/data/technologies/phase_city_generic.jsontooltip
+msgid ""
+"Advance to City Phase, which unlocks more structures and units. Territory "
+"radius for Civic Centers increased by another +50%. Citizen soldiers max "
+"health increased by +10%. All structures +9 garrisoned regeneration rate."
+msgstr "Adhartaich gu linn nam mòr-bhailtean a bheir barrachd thogalaichean is aonadan dhut. Bidh leudachadh de +50% a bharrachd aig ranntair nan ionadan sìobhalta. Gheibh saighdearan-dùthcha buannachd dhe +10% air an t-slàinte as motha aca. Gheibh a h-uile togalach buannachd dhe +9 air ath-ghintinn gearastain."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
+#: simulation/data/technologies/phase_town_generic.jsongenericName
 msgid "Town Phase"
 msgstr "Linn nam bailtean"
 
-#: simulation/data/technologies/phase_town.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_town.jsondescription
 msgid ""
-"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "Feumaidh seo 5 togalaichean ùra (ach sonnaich is achaidhean tuathanais) o linn nan clachan."
-
-#: simulation/data/technologies/phase_town.jsonspecificName.mace
-#: simulation/data/technologies/phase_town.jsonspecificName.spart
-#: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
-msgid "Kōmópolis"
-msgstr "Kōmópolis"
+"Dummy technology for use in templates requirements, replaced by "
+"phase_town_generic or phase_town_{civ}."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
@@ -1288,6 +1278,30 @@ msgid ""
 "an extra +10% metal gather rate to all workers. Citizen soldiers max health "
 "increased by +20%. All structures +7 garrisoned regeneration rate."
 msgstr "Adhartaich gu linn bailtean a bheir barrachd thogalaichean is aonadan dhut. Bidh leudachadh de +30% aig ranntair nan ionadan sìobhalta. Cruinnichidh gach obraiche meatailt +10% nas luaithe le buannachd an t-sìobhaltais “Cailleachan-oidhche airgid.” Gheibh saighdearan-dùthcha buannachd dhe +20% air an t-slàinte as motha aca. Gheibh a h-uile togalach buannachd dhe +7 air ath-ghintinn gearastain."
+
+#: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
+msgid ""
+"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
+msgstr "Feumaidh seo 5 togalaichean ùra (ach sonnaich is achaidhean tuathanais) o linn nan clachan."
+
+#: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
+#: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
+#: simulation/data/technologies/phase_town_generic.jsonspecificName.spart
+msgid "Kōmópolis"
+msgstr "Kōmópolis"
+
+#: simulation/data/technologies/phase_town_generic.jsondescription
+msgid ""
+"Advances from a small village to a bustling town, ready to expand rapidly."
+msgstr "Adhartaich o chlachan bheag gu baile iomairteach, ullamh airson leudachadh luath."
+
+#: simulation/data/technologies/phase_town_generic.jsontooltip
+msgid ""
+"Advance to Town Phase, which unlocks more structures and units. Territory "
+"radius for Civic Centers increased by +30%. Citizen soldiers max health "
+"increased by +20%. All structures +7 garrisoned regeneration rate."
+msgstr "Adhartaich gu linn nam bailtean a bheir barrachd thogalaichean is aonadan dhut. Bidh leudachadh de +30% aig ranntair nan ionadan sìobhalta. Gheibh saighdearan-dùthcha buannachd dhe +20% air an t-slàinte as motha aca. Gheibh a h-uile togalach buannachd dhe +7 air ath-ghintinn gearastain."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"

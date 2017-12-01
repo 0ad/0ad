@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-11-17 09:04+0100\n"
-"PO-Revision-Date: 2017-11-18 13:38+0000\n"
+"POT-Creation-Date: 2017-11-29 09:05+0100\n"
+"PO-Revision-Date: 2017-11-29 17:27+0000\n"
 "Last-Translator: Любомир Василев\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -1204,34 +1204,17 @@ msgstr "Нощна стража срещу зъбери"
 msgid "Walls build time vs. Health"
 msgstr "Бързина на строеж на стените срещу здраве"
 
-#: simulation/data/technologies/phase_city.jsondescription
-msgid ""
-"Advances from a bustling town to a veritable metropolis, full of the wonders"
-" of modern technology."
-msgstr "Превръща оживения град в истинска метрополия, изпълнена с чудесата на модерните технологии."
-
-#: simulation/data/technologies/phase_city.jsontooltip
-msgid ""
-"Advance to City Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by another +50%. Citizen soldiers max "
-"health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "Преминава към Мегаполисната фаза, която отключва още сгради и единици. Териториалният радиус за селищните центрове се увеличава с още +50%. Максималното здраве на во̀ините се увеличава с +10%. Скоростта на лекуване на единиците на гарнизон във всички сгради се увеличава с +9."
-
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
+#: simulation/data/technologies/phase_city_generic.jsongenericName
 msgid "City Phase"
 msgstr "Мегаполисна фаза"
 
-#: simulation/data/technologies/phase_city.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
-msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "Изисква 4 нови сгради от Градската фаза (стените и селищните центрове не се броят)."
-
-#: simulation/data/technologies/phase_city.jsonspecificName.mace
-#: simulation/data/technologies/phase_city.jsonspecificName.spart
-#: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
-msgid "Megalópolis"
-msgstr "Мегало̀полис"
+#: simulation/data/technologies/phase_city.jsondescription
+msgid ""
+"Dummy technology for use in templates requirements, replaced by "
+"phase_city_generic or phase_city_{civ}."
+msgstr "Празна технология за ползване в изискванията на шаблоните, заменя се от „phase_city_generic“ или „phase_city_{civ}“."
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
@@ -1248,34 +1231,41 @@ msgid ""
 "health increased by +10%. All structures +9 garrisoned regeneration rate."
 msgstr "Преминава към Мегаполисната фаза, която отключва още сгради и единици. Териториалният радиус за селищните центрове се увеличава с още +50%. Предимството „Сребърни сови“ увеличава скоростта на събирането на метал да всички работници с +10%. Максималното здраве на во̀ините се увеличава с +10%. Скоростта на лекуване на единиците на гарнизон във всички сгради се увеличава с +9."
 
-#: simulation/data/technologies/phase_town.jsondescription
-msgid ""
-"Advances from a small village to a bustling town, ready to expand rapidly."
-msgstr "Преминава от малко селце в оживен град, готов да се разшири светкавично."
+#: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
+msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
+msgstr "Изисква 4 нови сгради от Градската фаза (стените и селищните центрове не се броят)."
 
-#: simulation/data/technologies/phase_town.jsontooltip
+#: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
+#: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
+#: simulation/data/technologies/phase_city_generic.jsonspecificName.spart
+msgid "Megalópolis"
+msgstr "Мегало̀полис"
+
+#: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
-"Advance to Town Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by +30%. Citizen soldiers max health "
-"increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "Преминава към Градската фаза, която отключва още сгради и единици. Териториалният радиус за селищните центрове се увеличава с +30%. Максималното здраве на во̀ините се увеличава с +20%. Скоростта на лекуване на единиците на гарнизон във всички сгради се увеличава с +7."
+"Advances from a bustling town to a veritable metropolis, full of the wonders"
+" of modern technology."
+msgstr "Превръща оживения град в истинска метрополия, изпълнена с чудесата на модерните технологии."
+
+#: simulation/data/technologies/phase_city_generic.jsontooltip
+msgid ""
+"Advance to City Phase, which unlocks more structures and units. Territory "
+"radius for Civic Centers increased by another +50%. Citizen soldiers max "
+"health increased by +10%. All structures +9 garrisoned regeneration rate."
+msgstr "Преминава към Мегаполисната фаза, която отключва още сгради и единици. Териториалният радиус за селищните центрове се увеличава с още +50%. Максималното здраве на во̀ините се увеличава с +10%. Скоростта на лекуване на единиците на гарнизон във всички сгради се увеличава с +9."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
+#: simulation/data/technologies/phase_town_generic.jsongenericName
 msgid "Town Phase"
 msgstr "Градска фаза"
 
-#: simulation/data/technologies/phase_town.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_town.jsondescription
 msgid ""
-"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "Изисква 5 сгради от Селската фаза (палисадите и земеделските полета не се броят)."
-
-#: simulation/data/technologies/phase_town.jsonspecificName.mace
-#: simulation/data/technologies/phase_town.jsonspecificName.spart
-#: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
-msgid "Kōmópolis"
-msgstr "Комо̀полис"
+"Dummy technology for use in templates requirements, replaced by "
+"phase_town_generic or phase_town_{civ}."
+msgstr "Празна технология за ползване в изискванията на шаблоните, заменя се от „phase_town_generic“ или „phase_town_{civ}“."
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
@@ -1291,6 +1281,30 @@ msgid ""
 "an extra +10% metal gather rate to all workers. Citizen soldiers max health "
 "increased by +20%. All structures +7 garrisoned regeneration rate."
 msgstr "Преминава към Градската фаза, която отключва още сгради и единици. Териториалният радиус за селищните центрове се увеличава с +30%. Предимството „Сребърни сови“ увеличава скоростта на събирането на метал да всички работници с +10%. Максималното здраве на во̀ините се увеличава с +20%. Скоростта на лекуване на единиците на гарнизон във всички сгради се увеличава с +7."
+
+#: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
+msgid ""
+"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
+msgstr "Изисква 5 сгради от Селската фаза (палисадите и земеделските полета не се броят)."
+
+#: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
+#: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
+#: simulation/data/technologies/phase_town_generic.jsonspecificName.spart
+msgid "Kōmópolis"
+msgstr "Комо̀полис"
+
+#: simulation/data/technologies/phase_town_generic.jsondescription
+msgid ""
+"Advances from a small village to a bustling town, ready to expand rapidly."
+msgstr "Преминава от малко селце в оживен град, готов да се разшири светкавично."
+
+#: simulation/data/technologies/phase_town_generic.jsontooltip
+msgid ""
+"Advance to Town Phase, which unlocks more structures and units. Territory "
+"radius for Civic Centers increased by +30%. Citizen soldiers max health "
+"increased by +20%. All structures +7 garrisoned regeneration rate."
+msgstr "Преминава към Градската фаза, която отключва още сгради и единици. Териториалният радиус за селищните центрове се увеличава с +30%. Максималното здраве на во̀ините се увеличава с +20%. Скоростта на лекуване на единиците на гарнизон във всички сгради се увеличава с +7."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"

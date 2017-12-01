@@ -5,6 +5,7 @@
 # Translators:
 # Wuzzy <almikes@aol.com>, 2015-2017
 # Dominik <incredipede@outlook.com>, 2014
+# ... ... <jon12@gmx.de>, 2017
 # leper <leper@wildfiregames.com>, 2014-2016
 # Inperpetuammemoriam, 2016
 # pilino1234 <pilino1234@zoho.eu>, 2016
@@ -19,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-30 09:02+0200\n"
-"PO-Revision-Date: 2017-09-03 08:45+0000\n"
-"Last-Translator: Raymond Vetter\n"
+"PO-Revision-Date: 2017-11-29 14:58+0000\n"
+"Last-Translator: ... ... <jon12@gmx.de>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -100,7 +101,7 @@ msgstr "%(nick)s ist nun ein Moderator."
 
 #: gui/lobby/lobby.js:207
 msgid "You have been unmuted."
-msgstr "Du wurdest stumm geschaltet."
+msgstr "Du bist nicht mehr stumm geschaltet."
 
 #: gui/lobby/lobby.js:208
 #, javascript-format
@@ -167,7 +168,7 @@ msgstr "Text als Chatnachricht senden (selbst, wenn er mit einem Schrägstrich b
 
 #: gui/lobby/lobby.js:357
 msgid "Clear all chat scrollback."
-msgstr "Das ganze scrollbare Chatprotokoll leeren."
+msgstr "Leere das ganze Chatprotokoll."
 
 #: gui/lobby/lobby.js:364
 msgid "Return to the main menu."
@@ -202,7 +203,7 @@ msgstr "< %(rating)s"
 
 #: gui/lobby/lobby.js:529
 msgid "You have been banned from the lobby!"
-msgstr "Du wurdest von der Lobby gebannt!"
+msgstr "Du wurdest aus der Lobby verbannt!"
 
 #: gui/lobby/lobby.js:530
 msgid "You have been kicked from the lobby!"

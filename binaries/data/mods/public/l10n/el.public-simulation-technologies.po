@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-11-17 09:04+0100\n"
-"PO-Revision-Date: 2017-11-21 18:03+0000\n"
-"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
+"POT-Creation-Date: 2017-11-29 09:05+0100\n"
+"PO-Revision-Date: 2017-11-29 15:16+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1209,34 +1209,17 @@ msgstr "Νυχτοφύλακας εναντίον Πολεμίστρας"
 msgid "Walls build time vs. Health"
 msgstr "Χρόνος Οικοδόμησης Τειχών εναντίον Υγείας"
 
-#: simulation/data/technologies/phase_city.jsondescription
-msgid ""
-"Advances from a bustling town to a veritable metropolis, full of the wonders"
-" of modern technology."
-msgstr "Εξελίσσετε από μια πολυσύχναστη πόλη σε μια πραγματική μητρόπολη, γεμάτη από τα θαύματα της σύγχρονης τεχνολογίας."
-
-#: simulation/data/technologies/phase_city.jsontooltip
-msgid ""
-"Advance to City Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by another +50%. Citizen soldiers max "
-"health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "Προχωρήσετε στην Φάση Πόλη, η οποία ξεκλειδώνει περισσότερα κτίρια και μονάδες. H ακτίνα περιοχής στα Αστικά Κέντρα αυξάνεται και άλλο +50%. Στους Πολίτες οπλίτες οι μέγιστη υγεία αυξάνει κατά +10%.  Σε όλα τα κτίρια +9 στο ρυθμό αναγέννησης της φρουράς."
-
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
+#: simulation/data/technologies/phase_city_generic.jsongenericName
 msgid "City Phase"
 msgstr "Φάση Πόλη"
 
-#: simulation/data/technologies/phase_city.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
-msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "Απαιτούνται 4 νέες δομές Φάσης Κωμόπολης (εκτός από Τείχη και Αστικά κέντρα)."
-
-#: simulation/data/technologies/phase_city.jsonspecificName.mace
-#: simulation/data/technologies/phase_city.jsonspecificName.spart
-#: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
-msgid "Megalópolis"
-msgstr "Μεγαλόπολη"
+#: simulation/data/technologies/phase_city.jsondescription
+msgid ""
+"Dummy technology for use in templates requirements, replaced by "
+"phase_city_generic or phase_city_{civ}."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
@@ -1253,34 +1236,41 @@ msgid ""
 "health increased by +10%. All structures +9 garrisoned regeneration rate."
 msgstr "Προχωρήσετε στην Φάση Πόλη, η οποία ξεκλειδώνει περισσότερα κτίρια και μονάδες. H ακτίνα περιοχής στα Αστικά Κέντρα αυξάνεται και άλλο +50%. Οι Ασημένιες Κουκουβάγιες δίνουν επιπλέον +10% στο ρυθμό συλλογής μετάλλου για όλους τους εργάτες. Στους Πολίτες οπλίτες οι μέγιστη υγεία αυξάνει κατά +10%.  Σε όλα τα κτίρια +9 στο ρυθμό αναγέννησης της φρουράς."
 
-#: simulation/data/technologies/phase_town.jsondescription
-msgid ""
-"Advances from a small village to a bustling town, ready to expand rapidly."
-msgstr "Εξελίσσεται από ένα μικρό χωριό σε μια πολυσύχναστη πόλη, έτοιμη να επεκταθεί με ταχείς ρυθμούς."
+#: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
+msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
+msgstr "Απαιτούνται 4 νέες δομές Φάσης Κωμόπολης (εκτός από Τείχη και Αστικά κέντρα)."
 
-#: simulation/data/technologies/phase_town.jsontooltip
+#: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
+#: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
+#: simulation/data/technologies/phase_city_generic.jsonspecificName.spart
+msgid "Megalópolis"
+msgstr "Μεγαλόπολη"
+
+#: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
-"Advance to Town Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by +30%. Citizen soldiers max health "
-"increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "Προχωρήσετε στην Φάση Πόλη, η οποία ξεκλειδώνει περισσότερα κτίρια και μονάδες. H ακτίνα περιοχής στα Αστικά Κέντρα αυξάνεται κατά +30%. Στους Πολίτες οπλίτες οι μέγιστη υγεία αυξάνει κατά +20%.  Σε όλα τα κτίρια +7 στο ρυθμό αναγέννησης της φρουράς."
+"Advances from a bustling town to a veritable metropolis, full of the wonders"
+" of modern technology."
+msgstr "Εξελίσσετε από μια πολυσύχναστη πόλη σε μια πραγματική μητρόπολη, γεμάτη από τα θαύματα της σύγχρονης τεχνολογίας."
+
+#: simulation/data/technologies/phase_city_generic.jsontooltip
+msgid ""
+"Advance to City Phase, which unlocks more structures and units. Territory "
+"radius for Civic Centers increased by another +50%. Citizen soldiers max "
+"health increased by +10%. All structures +9 garrisoned regeneration rate."
+msgstr "Προχωρήσετε στην Φάση Πόλη, η οποία ξεκλειδώνει περισσότερα κτίρια και μονάδες. H ακτίνα περιοχής στα Αστικά Κέντρα αυξάνεται και άλλο +50%. Στους Πολίτες οπλίτες οι μέγιστη υγεία αυξάνει κατά +10%.  Σε όλα τα κτίρια +9 στο ρυθμό αναγέννησης της φρουράς."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
+#: simulation/data/technologies/phase_town_generic.jsongenericName
 msgid "Town Phase"
 msgstr "Φάση Κωμόπολη"
 
-#: simulation/data/technologies/phase_town.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_town.jsondescription
 msgid ""
-"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "Απαιτούνται 5 Κτίρια Φάσης Χωριού (εκτός από Περιφράγματα και Αγροκτήματα)."
-
-#: simulation/data/technologies/phase_town.jsonspecificName.mace
-#: simulation/data/technologies/phase_town.jsonspecificName.spart
-#: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
-msgid "Kōmópolis"
-msgstr "Κωμόπολη "
+"Dummy technology for use in templates requirements, replaced by "
+"phase_town_generic or phase_town_{civ}."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
@@ -1296,6 +1286,30 @@ msgid ""
 "an extra +10% metal gather rate to all workers. Citizen soldiers max health "
 "increased by +20%. All structures +7 garrisoned regeneration rate."
 msgstr "Προχωρήσετε στην Φάση Κωμόπολη, η οποία ξεκλειδώνει περισσότερα κτήρια και μονάδες. H ακτίνα περιοχής στα Αστικά Κέντρα αυξάνεται και άλλο +30%. Οι \"Ασημένιες Κουκουβάγιες\" δίνουν επιπλέον +10% στο ρυθμό συλλογής μετάλλου για όλους τους εργάτες. Στους Πολίτες οπλίτες οι μέγιστη υγεία αυξάνει κατά +20%.  Σε όλα τα κτίρια +7 στο ρυθμό αναγέννησης της φρουράς."
+
+#: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
+msgid ""
+"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
+msgstr "Απαιτούνται 5 Κτίρια Φάσης Χωριού (εκτός από Περιφράγματα και Αγροκτήματα)."
+
+#: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
+#: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
+#: simulation/data/technologies/phase_town_generic.jsonspecificName.spart
+msgid "Kōmópolis"
+msgstr "Κωμόπολη "
+
+#: simulation/data/technologies/phase_town_generic.jsondescription
+msgid ""
+"Advances from a small village to a bustling town, ready to expand rapidly."
+msgstr "Εξελίσσεται από ένα μικρό χωριό σε μια πολυσύχναστη πόλη, έτοιμη να επεκταθεί με ταχείς ρυθμούς."
+
+#: simulation/data/technologies/phase_town_generic.jsontooltip
+msgid ""
+"Advance to Town Phase, which unlocks more structures and units. Territory "
+"radius for Civic Centers increased by +30%. Citizen soldiers max health "
+"increased by +20%. All structures +7 garrisoned regeneration rate."
+msgstr "Προχωρήσετε στην Φάση Πόλη, η οποία ξεκλειδώνει περισσότερα κτίρια και μονάδες. H ακτίνα περιοχής στα Αστικά Κέντρα αυξάνεται κατά +30%. Στους Πολίτες οπλίτες οι μέγιστη υγεία αυξάνει κατά +20%.  Σε όλα τα κτίρια +7 στο ρυθμό αναγέννησης της φρουράς."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
