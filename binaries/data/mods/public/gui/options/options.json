@@ -35,12 +35,6 @@
 			},
 			{
 				"type": "boolean",
-				"label": "Enable Game Setting Tips",
-				"tooltip": "Show tips when setting up a game.",
-				"config": "gui.gamesetup.enabletips"
-			},
-			{
-				"type": "boolean",
 				"label": "Detailed Tooltips",
 				"tooltip": "Show detailed tooltips for trainable units in unit-producing buildings.",
 				"config": "showdetailedtooltips"
@@ -74,23 +68,6 @@
 				"label": "Ceasefire Time Overlay",
 				"tooltip": "Always show the remaining ceasefire time.",
 				"config": "gui.session.ceasefirecounter"
-			},
-			{
-				"type": "boolean",
-				"label": "Persist Match Settings",
-				"tooltip": "Save and restore match settings for quick reuse when hosting another game",
-				"config": "persistmatchsettings"
-			},
-			{
-				"type": "dropdown",
-				"label": "Assign Players",
-				"tooltip": "Automatically assign joining clients to free player slots during the match setup.",
-				"config": "gui.gamesetup.assignplayers",
-				"list": [
-					{ "value": "everyone", "label": "Everyone" },
-					{ "value": "buddies", "label": "Buddies" },
-					{ "value": "disabled", "label": "Disabled" }
-				]
 			},
 			{
 				"type": "dropdown",
@@ -349,6 +326,49 @@
 				"label": "Nick Notification",
 				"tooltip": "Receive audio notification when someone types your nick",
 				"config": "sound.notify.nick"
+			}
+		]
+	},
+	{
+		"label": "Game Setup",
+		"options":
+		[
+			{
+				"type": "boolean",
+				"label": "Enable Game Setting Tips",
+				"tooltip": "Show tips when setting up a game.",
+				"config": "gui.gamesetup.enabletips"
+			},
+			{
+				"type": "boolean",
+				"label": "Persist Match Settings",
+				"tooltip": "Save and restore match settings for quick reuse when hosting another game",
+				"config": "persistmatchsettings"
+			},
+			{
+				"type": "dropdown",
+				"label": "Default AI difficulty",
+				"tooltip": "Default difficulty of the AI.",
+				"config": "gui.gamesetup.aidifficulty",
+				"list": [
+					{ "value": 0, "label": "Sandbox" },
+					{ "value": 1, "label": "Very Easy" },
+					{ "value": 2, "label": "Easy" },
+					{ "value": 3, "label": "Medium" },
+					{ "value": 4, "label": "Hard" },
+					{ "value": 5, "label": "Very Hard" }
+				]
+			},
+			{
+				"type": "dropdown",
+				"label": "Assign Players",
+				"tooltip": "Automatically assign joining clients to free player slots during the match setup.",
+				"config": "gui.gamesetup.assignplayers",
+				"list": [
+					{ "value": "everyone", "label": "Everyone" },
+					{ "value": "buddies", "label": "Buddies" },
+					{ "value": "disabled", "label": "Disabled" }
+				]
 			}
 		]
 	},

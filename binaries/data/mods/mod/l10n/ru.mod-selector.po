@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector project.
 # 
 # Translators:
-# dr&mx <dronmax@gmail.com>, 2014
+# Максим Дронь <dronmax@gmail.com>, 2014
 # Woratiklis, 2015
 # Yegor <revolver45@inbox.ru>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-12 18:54+0100\n"
-"PO-Revision-Date: 2016-01-28 14:25+0000\n"
-"Last-Translator: Vladislav Belov <vladislavbelovdev@gmail.com>\n"
+"POT-Creation-Date: 2017-11-29 09:05+0100\n"
+"PO-Revision-Date: 2017-11-29 15:09+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,124 +19,125 @@ msgstr ""
 "Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:(heading):93
-#: gui/modmod/modmod.xml:(heading):134
+#: gui/modmod/modmod.js:52 gui/modmod/modmod.xml:(heading):110
+#: gui/modmod/modmod.xml:(heading):159
 msgid "Name"
 msgstr "Имя"
 
-#: gui/modmod/modmod.js:30
+#: gui/modmod/modmod.js:58
 msgid "Folder"
 msgstr "Папка"
 
-#: gui/modmod/modmod.js:30
+#: gui/modmod/modmod.js:63
 msgid "Label"
 msgstr "Пометка"
 
-#: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:(heading):96
-#: gui/modmod/modmod.xml:(heading):137
+#: gui/modmod/modmod.js:68 gui/modmod/modmod.xml:(heading):113
+#: gui/modmod/modmod.xml:(heading):162
 msgid "Version"
 msgstr "Версия"
 
-#: gui/modmod/modmod.js:36
-msgid "Type: Any"
-msgstr "Тип: Любое"
-
-#: gui/modmod/modmod.js:62 gui/modmod/modmod.js:308
+#: gui/modmod/modmod.js:98 gui/modmod/modmod.js:253
 msgid "Filter"
 msgstr "Фильтр"
 
-#: gui/modmod/modmod.js:74
-msgid "Message: Mods Loaded."
-msgstr "Сообщение: Моды загружены."
+#: gui/modmod/modmod.js:157
+msgid "Type: Any"
+msgstr "Тип: Любое"
 
-#: gui/modmod/modmod.js:371
+#: gui/modmod/modmod.js:308
+#, javascript-format
+msgid "Dependency not met: %(dep)s"
+msgstr ""
+
+#: gui/modmod/modmod.js:316
 msgid "All dependencies met"
 msgstr "Все зависимости соблюдены"
 
-#: gui/modmod/modmod.js:497
+#: gui/modmod/modmod.js:394
 msgid "No mod has been selected."
 msgstr "Ни один мод не выбран."
 
-#: gui/modmod/modmod.xml:115
-msgid "Description"
-msgstr "Описание"
-
-#: gui/modmod/modmod.xml:(caption):9
+#: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"
 msgstr "Модификации"
 
-#: gui/modmod/modmod.xml:(caption):17
+#: gui/modmod/modmod.xml:(caption):20
 msgid "Reset Filters"
 msgstr "Сбросить фильтры"
 
-#: gui/modmod/modmod.xml:(caption):51
+#: gui/modmod/modmod.xml:(caption):55
 msgid "Negate"
 msgstr "Недействительно"
 
-#: gui/modmod/modmod.xml:(caption):58
+#: gui/modmod/modmod.xml:(caption):63
 msgid "Sorting:"
 msgstr "Сортировка:"
 
-#: gui/modmod/modmod.xml:(caption):70
+#: gui/modmod/modmod.xml:(caption):77
 msgid "Descending."
 msgstr "По убыванию."
 
-#: gui/modmod/modmod.xml:(caption):86
+#: gui/modmod/modmod.xml:(caption):96
 msgid "Available Mods"
 msgstr "Доступные моды"
 
-#: gui/modmod/modmod.xml:(caption):118
+#: gui/modmod/modmod.xml:(caption):132
+msgid "Description"
+msgstr "Описание"
+
+#: gui/modmod/modmod.xml:(caption):135
 msgid "Enable"
 msgstr "Включить"
 
-#: gui/modmod/modmod.xml:(caption):127
+#: gui/modmod/modmod.xml:(caption):144
 msgid "Enabled Mods"
 msgstr "Включенные моды"
 
-#: gui/modmod/modmod.xml:(caption):157
+#: gui/modmod/modmod.xml:(caption):182
 msgid "Up"
 msgstr "Вверх"
 
-#: gui/modmod/modmod.xml:(caption):161
+#: gui/modmod/modmod.xml:(caption):186
 msgid "X"
 msgstr "X"
 
-#: gui/modmod/modmod.xml:(caption):165
+#: gui/modmod/modmod.xml:(caption):190
 msgid "Down"
 msgstr "Вниз"
 
-#: gui/modmod/modmod.xml:(caption):173
+#: gui/modmod/modmod.xml:(caption):198
 msgid "Quit"
 msgstr "Выйти"
 
-#: gui/modmod/modmod.xml:(caption):178
+#: gui/modmod/modmod.xml:(caption):203
 msgid "Cancel"
 msgstr "Отмена"
 
-#: gui/modmod/modmod.xml:(caption):183
+#: gui/modmod/modmod.xml:(caption):208
 msgid "Save Configuration"
 msgstr "Сохранить"
 
-#: gui/modmod/modmod.xml:(caption):188
+#: gui/modmod/modmod.xml:(caption):213
 msgid "Start Mods"
 msgstr "Запустить моды"
 
-#: gui/modmod/modmod.xml:(heading):99 gui/modmod/modmod.xml:(heading):140
+#: gui/modmod/modmod.xml:(heading):116 gui/modmod/modmod.xml:(heading):165
 msgid "(Folder)"
 msgstr "(Папка)"
 
-#: gui/modmod/modmod.xml:(heading):102 gui/modmod/modmod.xml:(heading):143
+#: gui/modmod/modmod.xml:(heading):119 gui/modmod/modmod.xml:(heading):168
 msgid "Mod Label"
 msgstr "Метка мода"
 
-#: gui/modmod/modmod.xml:(heading):105 gui/modmod/modmod.xml:(heading):146
+#: gui/modmod/modmod.xml:(heading):122 gui/modmod/modmod.xml:(heading):171
 msgid "Mod Type"
 msgstr "Тип мода"
 
-#: gui/modmod/modmod.xml:(heading):108 gui/modmod/modmod.xml:(heading):149
+#: gui/modmod/modmod.xml:(heading):125 gui/modmod/modmod.xml:(heading):174
 msgid "Dependencies"
 msgstr "Зависимости"
 
-#: gui/modmod/modmod.xml:(heading):111 gui/modmod/modmod.xml:(heading):152
+#: gui/modmod/modmod.xml:(heading):128 gui/modmod/modmod.xml:(heading):177
 msgid "Website"
 msgstr "Вебсайт"

@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-11-17 09:04+0100\n"
-"PO-Revision-Date: 2017-11-17 15:09+0000\n"
+"POT-Creation-Date: 2017-11-29 09:05+0100\n"
+"PO-Revision-Date: 2017-11-29 15:16+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -1204,34 +1204,17 @@ msgstr "Нічна варта та зубці"
 msgid "Walls build time vs. Health"
 msgstr "Швидкість зведення та здоров'я"
 
-#: simulation/data/technologies/phase_city.jsondescription
-msgid ""
-"Advances from a bustling town to a veritable metropolis, full of the wonders"
-" of modern technology."
-msgstr "Перехід від містечка до метрополії повній чудес та сучасних технологій."
-
-#: simulation/data/technologies/phase_city.jsontooltip
-msgid ""
-"Advance to City Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by another +50%. Citizen soldiers max "
-"health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "Перехід на рівень великого міста відкриває нові будівлі та юнітів. Радіус території громадських центрів збільшується на +50%. Максимальне здоров'я городян-солдат збільшується на +10%. Усі структури з розміщеними юнітами на +9 збільшують швидкість одужання."
-
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
+#: simulation/data/technologies/phase_city_generic.jsongenericName
 msgid "City Phase"
 msgstr "Фаза Міста"
 
-#: simulation/data/technologies/phase_city.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
-msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "Вимагається 4 нових будівлі з фази містечка (за виключенням стін та громадських центрів)."
-
-#: simulation/data/technologies/phase_city.jsonspecificName.mace
-#: simulation/data/technologies/phase_city.jsonspecificName.spart
-#: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
-msgid "Megalópolis"
-msgstr "Мегалополіс"
+#: simulation/data/technologies/phase_city.jsondescription
+msgid ""
+"Dummy technology for use in templates requirements, replaced by "
+"phase_city_generic or phase_city_{civ}."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
@@ -1248,34 +1231,41 @@ msgid ""
 "health increased by +10%. All structures +9 garrisoned regeneration rate."
 msgstr "Перехід на рівень великого міста відкриває нові будівлі та юнітів. Радіус території громадських центрів збільшується на +50%. Срібні сови до видобування металу +10% для усіх працівників. Здоров'я городян-солдат збільшується на +10%. Усі розміщені гарнізони отримують +9 до одужання."
 
-#: simulation/data/technologies/phase_town.jsondescription
-msgid ""
-"Advances from a small village to a bustling town, ready to expand rapidly."
-msgstr "Розширення селища у містечко, яке в подальшому також буде збільшуватись."
+#: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
+msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
+msgstr "Вимагається 4 нових будівлі з фази містечка (за виключенням стін та громадських центрів)."
 
-#: simulation/data/technologies/phase_town.jsontooltip
+#: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
+#: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
+#: simulation/data/technologies/phase_city_generic.jsonspecificName.spart
+msgid "Megalópolis"
+msgstr "Мегалополіс"
+
+#: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
-"Advance to Town Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by +30%. Citizen soldiers max health "
-"increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "Перехід на рівень містечка, відкриває нові будівлі та юнітів. Радіус території громадських центрів збільшується на +30%. Максимальне здоров'я городян-солдат збільшується на +20%. Усі розміщені гарнізони отримують +7 до одужання."
+"Advances from a bustling town to a veritable metropolis, full of the wonders"
+" of modern technology."
+msgstr "Перехід від містечка до метрополії повній чудес та сучасних технологій."
+
+#: simulation/data/technologies/phase_city_generic.jsontooltip
+msgid ""
+"Advance to City Phase, which unlocks more structures and units. Territory "
+"radius for Civic Centers increased by another +50%. Citizen soldiers max "
+"health increased by +10%. All structures +9 garrisoned regeneration rate."
+msgstr "Перехід на рівень великого міста відкриває нові будівлі та юнітів. Радіус території громадських центрів збільшується на +50%. Максимальне здоров'я городян-солдат збільшується на +10%. Усі структури з розміщеними юнітами на +9 збільшують швидкість одужання."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
+#: simulation/data/technologies/phase_town_generic.jsongenericName
 msgid "Town Phase"
 msgstr "Фаза Містечка"
 
-#: simulation/data/technologies/phase_town.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_town.jsondescription
 msgid ""
-"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "Вимагається 5 будівель з фази селища (за винятком частоколів та ферм)."
-
-#: simulation/data/technologies/phase_town.jsonspecificName.mace
-#: simulation/data/technologies/phase_town.jsonspecificName.spart
-#: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
-msgid "Kōmópolis"
-msgstr "Комополіс"
+"Dummy technology for use in templates requirements, replaced by "
+"phase_town_generic or phase_town_{civ}."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
@@ -1291,6 +1281,30 @@ msgid ""
 "an extra +10% metal gather rate to all workers. Citizen soldiers max health "
 "increased by +20%. All structures +7 garrisoned regeneration rate."
 msgstr "Перехід на рівень містечка відкриває нові будівлі та юнітів. Радіус території громадських центрів збільшується на +30%. Срібні сови до видобування металу +10% для усіх працівників. Здоров'я городян-солдат збільшується на +20%. Усі розміщені гарнізони отримують +7 до одужання."
+
+#: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
+msgid ""
+"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
+msgstr "Вимагається 5 будівель з фази селища (за винятком частоколів та ферм)."
+
+#: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
+#: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
+#: simulation/data/technologies/phase_town_generic.jsonspecificName.spart
+msgid "Kōmópolis"
+msgstr "Комополіс"
+
+#: simulation/data/technologies/phase_town_generic.jsondescription
+msgid ""
+"Advances from a small village to a bustling town, ready to expand rapidly."
+msgstr "Розширення селища у містечко, яке в подальшому також буде збільшуватись."
+
+#: simulation/data/technologies/phase_town_generic.jsontooltip
+msgid ""
+"Advance to Town Phase, which unlocks more structures and units. Territory "
+"radius for Civic Centers increased by +30%. Citizen soldiers max health "
+"increased by +20%. All structures +7 garrisoned regeneration rate."
+msgstr "Перехід на рівень містечка, відкриває нові будівлі та юнітів. Радіус території громадських центрів збільшується на +30%. Максимальне здоров'я городян-солдат збільшується на +20%. Усі розміщені гарнізони отримують +7 до одужання."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"

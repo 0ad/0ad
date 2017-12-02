@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2016-03-19 09:27+0100\n"
-"PO-Revision-Date: 2017-05-19 20:55+0000\n"
-"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
+"POT-Creation-Date: 2017-11-29 09:05+0100\n"
+"PO-Revision-Date: 2017-11-29 15:09+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,124 +20,125 @@ msgstr ""
 "Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:(heading):93
-#: gui/modmod/modmod.xml:(heading):134
+#: gui/modmod/modmod.js:52 gui/modmod/modmod.xml:(heading):110
+#: gui/modmod/modmod.xml:(heading):159
 msgid "Name"
 msgstr "Όνομα"
 
-#: gui/modmod/modmod.js:30
+#: gui/modmod/modmod.js:58
 msgid "Folder"
 msgstr "Φάκελος"
 
-#: gui/modmod/modmod.js:30
+#: gui/modmod/modmod.js:63
 msgid "Label"
 msgstr "Eτικέτα"
 
-#: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:(heading):96
-#: gui/modmod/modmod.xml:(heading):137
+#: gui/modmod/modmod.js:68 gui/modmod/modmod.xml:(heading):113
+#: gui/modmod/modmod.xml:(heading):162
 msgid "Version"
 msgstr "Έκδοση"
 
-#: gui/modmod/modmod.js:36
-msgid "Type: Any"
-msgstr "Τύπος: Οποιοσδήποτε"
-
-#: gui/modmod/modmod.js:62 gui/modmod/modmod.js:308
+#: gui/modmod/modmod.js:98 gui/modmod/modmod.js:253
 msgid "Filter"
 msgstr "Φίλτρο"
 
-#: gui/modmod/modmod.js:74
-msgid "Message: Mods Loaded."
-msgstr "Μήνυμα: Τα Mods Φορτώθηκαν."
+#: gui/modmod/modmod.js:157
+msgid "Type: Any"
+msgstr "Τύπος: Οποιοσδήποτε"
 
-#: gui/modmod/modmod.js:371
+#: gui/modmod/modmod.js:308
+#, javascript-format
+msgid "Dependency not met: %(dep)s"
+msgstr ""
+
+#: gui/modmod/modmod.js:316
 msgid "All dependencies met"
 msgstr "Όλες οι εξαρτήσεις ικανοποιούνται"
 
-#: gui/modmod/modmod.js:497
+#: gui/modmod/modmod.js:394
 msgid "No mod has been selected."
 msgstr "Δεν έχει επιλεχθεί κάποιο mod."
 
-#: gui/modmod/modmod.xml:115
-msgid "Description"
-msgstr "Περιγραφή"
-
-#: gui/modmod/modmod.xml:(caption):9
+#: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"
 msgstr "Τροποποίησεις"
 
-#: gui/modmod/modmod.xml:(caption):17
+#: gui/modmod/modmod.xml:(caption):20
 msgid "Reset Filters"
 msgstr "Επαναφορά φίλτρων"
 
-#: gui/modmod/modmod.xml:(caption):51
+#: gui/modmod/modmod.xml:(caption):55
 msgid "Negate"
 msgstr "Ακυρώση"
 
-#: gui/modmod/modmod.xml:(caption):58
+#: gui/modmod/modmod.xml:(caption):63
 msgid "Sorting:"
 msgstr "Ταξινόμηση:"
 
-#: gui/modmod/modmod.xml:(caption):70
+#: gui/modmod/modmod.xml:(caption):77
 msgid "Descending."
 msgstr "Φθίνουσα Σειρά"
 
-#: gui/modmod/modmod.xml:(caption):86
+#: gui/modmod/modmod.xml:(caption):96
 msgid "Available Mods"
 msgstr "Διαθέσιμα Mods"
 
-#: gui/modmod/modmod.xml:(caption):118
+#: gui/modmod/modmod.xml:(caption):132
+msgid "Description"
+msgstr "Περιγραφή"
+
+#: gui/modmod/modmod.xml:(caption):135
 msgid "Enable"
 msgstr "Ενεργοποίηση"
 
-#: gui/modmod/modmod.xml:(caption):127
+#: gui/modmod/modmod.xml:(caption):144
 msgid "Enabled Mods"
 msgstr "Ενεργοποιημένα Mods"
 
-#: gui/modmod/modmod.xml:(caption):157
+#: gui/modmod/modmod.xml:(caption):182
 msgid "Up"
 msgstr "Πάνω"
 
-#: gui/modmod/modmod.xml:(caption):161
+#: gui/modmod/modmod.xml:(caption):186
 msgid "X"
 msgstr "Χ"
 
-#: gui/modmod/modmod.xml:(caption):165
+#: gui/modmod/modmod.xml:(caption):190
 msgid "Down"
 msgstr "Κάτω"
 
-#: gui/modmod/modmod.xml:(caption):173
+#: gui/modmod/modmod.xml:(caption):198
 msgid "Quit"
 msgstr "Έξοδος"
 
-#: gui/modmod/modmod.xml:(caption):178
+#: gui/modmod/modmod.xml:(caption):203
 msgid "Cancel"
 msgstr "Ακύρωση"
 
-#: gui/modmod/modmod.xml:(caption):183
+#: gui/modmod/modmod.xml:(caption):208
 msgid "Save Configuration"
 msgstr "Αποθήκευση Ρυθμίσεων"
 
-#: gui/modmod/modmod.xml:(caption):188
+#: gui/modmod/modmod.xml:(caption):213
 msgid "Start Mods"
 msgstr "Έναρξη Mods"
 
-#: gui/modmod/modmod.xml:(heading):99 gui/modmod/modmod.xml:(heading):140
+#: gui/modmod/modmod.xml:(heading):116 gui/modmod/modmod.xml:(heading):165
 msgid "(Folder)"
 msgstr "(Φάκελος)"
 
-#: gui/modmod/modmod.xml:(heading):102 gui/modmod/modmod.xml:(heading):143
+#: gui/modmod/modmod.xml:(heading):119 gui/modmod/modmod.xml:(heading):168
 msgid "Mod Label"
 msgstr "Ετικέτα Mod"
 
-#: gui/modmod/modmod.xml:(heading):105 gui/modmod/modmod.xml:(heading):146
+#: gui/modmod/modmod.xml:(heading):122 gui/modmod/modmod.xml:(heading):171
 msgid "Mod Type"
 msgstr "Τύπος Mod"
 
-#: gui/modmod/modmod.xml:(heading):108 gui/modmod/modmod.xml:(heading):149
+#: gui/modmod/modmod.xml:(heading):125 gui/modmod/modmod.xml:(heading):174
 msgid "Dependencies"
 msgstr "Εξαρτήσεις"
 
-#: gui/modmod/modmod.xml:(heading):111 gui/modmod/modmod.xml:(heading):152
+#: gui/modmod/modmod.xml:(heading):128 gui/modmod/modmod.xml:(heading):177
 msgid "Website"
 msgstr "Ιστοσελίδα"

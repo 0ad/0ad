@@ -8,17 +8,20 @@
 # Cesc Miralles <xesc87@gmail.com>, 2017
 # Gerard Trias <gtriasg@gmail.com>, 2015
 # Guillem Poy <guplem@gmail.com>, 2015
+# Guillem Poy <guplem@gmail.com>, 2015
+# Juanjo, 2016
 # Juanjo, 2016
 # Miguel Molina <miguigana12@hotmail.com>, 2015
 # Pau Soliva <psoliva@naralabs.com>, 2017
+# Peredelgrau, 2014,2016
 # Peredelgrau, 2014,2016
 # Haommin <tfs.msimangu@gmail.com>, 2014-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-11-22 09:04+0100\n"
-"PO-Revision-Date: 2017-11-22 14:41+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-11-30 22:28+0000\n"
+"Last-Translator: Maria Acero-Allo <maria.acero@e-campus.uab.cat>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,15 +31,15 @@ msgstr ""
 
 #: simulation/templates/template_unit_catafalque.xml:20
 msgid "Catafalque"
-msgstr ""
+msgstr "Cadafal"
 
 #: simulation/templates/template_unit_catafalque.xml:23
 msgid "A catafalque that holds the remains of a great leader."
-msgstr ""
+msgstr "Un cadafal que sosté les despulles d'un gran líder."
 
 #: simulation/templates/template_unit_catafalque.xml:24
 msgid "Relic"
-msgstr ""
+msgstr "Relíquia"
 
 #: simulation/templates/template_unit_cavalry.xml:38
 #: simulation/templates/template_unit_cavalry.xml:39
@@ -433,7 +436,7 @@ msgstr "Barca de pesca"
 
 #: simulation/templates/template_unit_mechanical_ship_fishing.xml:36
 msgid "Fish the waters for food."
-msgstr "Es pot pescar a l'aigua per aconseguir menjar."
+msgstr "Pesqueu per a aconseguir menjar."
 
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:29
 msgid "Merchantman"
@@ -475,7 +478,7 @@ msgstr "Tirador de projectils"
 
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:47
 msgid "BoltShooter"
-msgstr "Pern tirador"
+msgstr "Tirador llampec"
 
 #: simulation/templates/template_unit_mechanical_siege_onager.xml:45
 msgid "Siege Catapult"
@@ -491,7 +494,7 @@ msgstr "Ariet"
 
 #: simulation/templates/template_unit_mechanical_siege_ram.xml:35
 msgid "Ram"
-msgstr "Moltó"
+msgstr "Ariet"
 
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:49
 msgid "Siege Tower"
@@ -507,7 +510,7 @@ msgstr "Ciutadana"
 
 #: simulation/templates/template_unit_support_healer.xml:23
 msgid "Heal units."
-msgstr "Cura les unitats ferides."
+msgstr "Guariu les unitats."
 
 #: simulation/templates/template_unit_support_slave.xml:39
 #: simulation/templates/template_unit_support_slave.xml:40
@@ -516,11 +519,11 @@ msgstr "Esclau"
 
 #: simulation/templates/template_unit_support_slave.xml:42
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
-msgstr "Recol·lectors amb una vida útil finita. Bonificacions per la mineria i l'explotació forestal."
+msgstr "Recol·lector amb vida finita. Bonificació per la mineria i la fusta."
 
 #: simulation/templates/template_unit_support_trader.xml:17
 msgid "Trade resources between your own markets and those of your allies."
-msgstr "Intercanvia recursos entre els teus propis mercats i amb els dels teus aliats."
+msgstr "Intercanvieu recursos entre els propis mercats i els dels vostres aliats."
 
 #: simulation/templates/units/athen_catafalque.xml:9
 msgid "Solon"
@@ -916,7 +919,7 @@ msgstr "Émporos"
 
 #: simulation/templates/units/brit_catafalque.xml:9
 msgid "Cassivellaunus"
-msgstr ""
+msgstr "Cassivelaune"
 
 #: simulation/templates/units/brit_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/gaul_cavalry_javelinist_b.xml:6
@@ -1032,7 +1035,7 @@ msgstr "Venetic Ponti"
 #: simulation/templates/units/gaul_ship_trireme.xml:19
 #: simulation/templates/units/iber_ship_trireme.xml:19
 msgid "Transport many soldiers across the sea."
-msgstr "Transporta soldats a través del mar."
+msgstr "Transporteu soldats pel mar."
 
 #: simulation/templates/units/brit_support_female_citizen.xml:11
 #: simulation/templates/units/gaul_support_female_citizen.xml:10
@@ -1060,7 +1063,7 @@ msgstr "Coun"
 
 #: simulation/templates/units/cart_catafalque.xml:8
 msgid "Hasdrubal (Quartermaster)"
-msgstr ""
+msgstr "Àsdrubal (Contramestre)"
 
 #: simulation/templates/units/cart_cavalry_javelinist_b.xml:6
 msgid "Numidian Cavalry"
@@ -1264,7 +1267,7 @@ msgstr "Mekir"
 
 #: simulation/templates/units/gaul_catafalque.xml:9
 msgid "Ambiorix"
-msgstr ""
+msgstr "Ambíorix"
 
 #: simulation/templates/units/gaul_champion_cavalry.xml:5
 msgid "Gallic Noble Cavalry"
@@ -1308,7 +1311,7 @@ msgstr "Lembus"
 
 #: simulation/templates/units/iber_catafalque.xml:9
 msgid "Mandonius"
-msgstr ""
+msgstr "Mandoni"
 
 #: simulation/templates/units/iber_cavalry_javelinist_b.xml:6
 msgid "Kantabriako Zaldun"
@@ -1324,7 +1327,7 @@ msgstr "Leial Zalduneria"
 
 #: simulation/templates/units/iber_champion_cavalry.xml:14
 msgid "Special: Flaming javelins. Good vs. Buildings."
-msgstr "Especial: Javelines en flames. Bo contra edificis."
+msgstr "Especial: javelines ardents. Béns contra Edificis."
 
 #: simulation/templates/units/iber_champion_infantry.xml:5
 msgid "Leial Ezpatari"
@@ -1400,14 +1403,14 @@ msgstr "Merkatari"
 
 #: simulation/templates/units/mace_catafalque.xml:8
 msgid "Philip V"
-msgstr ""
+msgstr "Felip V"
 
 #: simulation/templates/units/mace_catafalque.xml:9
 msgid ""
 "Financial Reorganization: Allied with Rome, Philip reorganized the country's"
 " internal affairs and finances, leaving as a legacy reopened mines and a new"
 " currency. Gain a slow trickle of metal."
-msgstr ""
+msgstr "Reorganització financera: Aliats amb Roma, Felip va reorganitzar les finances i afers interiors, i el seu llegat van ser les mines reobertes i una nova moneda. Guanyeu un lent augment de metall."
 
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:13
 msgid "Odrysian Skirmish Cavalry"
@@ -1579,7 +1582,7 @@ msgstr "Rath"
 
 #: simulation/templates/units/maur_champion_chariot.xml:14
 msgid "Deals Trample Damage."
-msgstr "Causa dany per atropellament."
+msgstr "Causa danys per atropellament."
 
 #: simulation/templates/units/maur_champion_elephant.xml:5
 #: simulation/templates/units/pers_champion_elephant.xml:5
@@ -1966,7 +1969,7 @@ msgstr "Un caça americà de la Segona Guerra Mundial."
 
 #: simulation/templates/units/ptol_catafalque.xml:8
 msgid "Ptolemy III Euergetes (Benefactor)"
-msgstr ""
+msgstr "Ptolemeu III Evèrgetes (Benefactor)"
 
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:5
 msgid "Camel"
@@ -2014,7 +2017,7 @@ msgstr "Polémou Eléphantos"
 
 #: simulation/templates/units/ptol_champion_infantry_pikeman.xml:6
 msgid "Royal Guard Infantry"
-msgstr "Infanteria Reial de la Guàrdia"
+msgstr "Infanteria de la Guàrdia Reial"
 
 #: simulation/templates/units/ptol_champion_infantry_pikeman.xml:7
 msgid "Phalangitès Agema"
@@ -2131,7 +2134,7 @@ msgstr "Hiereús Aigýptios"
 
 #: simulation/templates/units/rome_catafalque.xml:9
 msgid "Lucius Junius Brutus"
-msgstr ""
+msgstr "Luci Juni Brut"
 
 #: simulation/templates/units/rome_cavalry_javelinist_b.xml:7
 msgid "Italian Allied Cavalry"
@@ -2227,7 +2230,7 @@ msgstr "Marian Legionarius"
 
 #: simulation/templates/units/rome_mechanical_siege_onager_unpacked.xml:32
 msgid "Onager"
-msgstr ""
+msgstr "Hemió"
 
 #: simulation/templates/units/rome_mechanical_siege_ram.xml:14
 msgid "Aries"
@@ -2301,7 +2304,7 @@ msgstr "Llancer samnita"
 
 #: simulation/templates/units/sele_catafalque.xml:10
 msgid "Antiochus I Soter (Savior)"
-msgstr ""
+msgstr "Antíoc I Sòter (Salvador)"
 
 #: simulation/templates/units/sele_cavalry_archer_b.xml:7
 msgid "Dahae Horse Archer"
@@ -2449,7 +2452,7 @@ msgstr "Dona síria"
 
 #: simulation/templates/units/spart_catafalque.xml:10
 msgid "Lycurgus"
-msgstr ""
+msgstr "Licurg"
 
 #: simulation/templates/units/spart_cavalry_javelinist_b.xml:7
 msgid "Perioikoi Cavalryman"
@@ -2461,7 +2464,7 @@ msgstr "Pródromos Perioïkós"
 
 #: simulation/templates/units/spart_cavalry_spearman_b.xml:7
 msgid "Greek Allied Cavalry"
-msgstr "Cavalleria grega aliada "
+msgstr "Cavalleria grega aliada"
 
 #: simulation/templates/units/spart_cavalry_spearman_b.xml:8
 msgid "Hippeús Symmakhikós"

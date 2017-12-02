@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-11-17 09:04+0100\n"
-"PO-Revision-Date: 2017-11-17 15:09+0000\n"
+"POT-Creation-Date: 2017-11-29 09:05+0100\n"
+"PO-Revision-Date: 2017-11-29 15:16+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -1203,34 +1203,17 @@ msgstr "夜間守望 vs. 垛口"
 msgid "Walls build time vs. Health"
 msgstr "城牆建造時間 vs. 生命值"
 
-#: simulation/data/technologies/phase_city.jsondescription
-msgid ""
-"Advances from a bustling town to a veritable metropolis, full of the wonders"
-" of modern technology."
-msgstr "從繁華的大城市進展為一個名副其實的大都市，充滿著奇蹟與現代科技。"
-
-#: simulation/data/technologies/phase_city.jsontooltip
-msgid ""
-"Advance to City Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by another +50%. Citizen soldiers max "
-"health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "進階到城市階段，解鎖更多建築物及單位。城鎮中心的領土範圍再度增加 +50%。民兵的血量上限 +10%。所有建築物 +9 駐守回復率。"
-
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
+#: simulation/data/technologies/phase_city_generic.jsongenericName
 msgid "City Phase"
 msgstr "城市階段"
 
-#: simulation/data/technologies/phase_city.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
-msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "需要 4 棟新的鄉鎮階段建築物(城牆及城鎮中心除外)。"
-
-#: simulation/data/technologies/phase_city.jsonspecificName.mace
-#: simulation/data/technologies/phase_city.jsonspecificName.spart
-#: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
-msgid "Megalópolis"
-msgstr "Megalópolis"
+#: simulation/data/technologies/phase_city.jsondescription
+msgid ""
+"Dummy technology for use in templates requirements, replaced by "
+"phase_city_generic or phase_city_{civ}."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
@@ -1247,34 +1230,41 @@ msgid ""
 "health increased by +10%. All structures +9 garrisoned regeneration rate."
 msgstr "進階到城市階段，解鎖了更多建築物及單位。城鎮中心的領土範圍也再度增加了 +50%。銀鴞的文明獎勵讓所有的工人都有額外 +10% 的金屬採集速率。民兵的血量上限 +10%。所有建築物 +9 駐守回復率。"
 
-#: simulation/data/technologies/phase_town.jsondescription
-msgid ""
-"Advances from a small village to a bustling town, ready to expand rapidly."
-msgstr "從小村莊進展到繁華的城鎮，準備好迅速擴張。"
+#: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
+msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
+msgstr "需要 4 棟新的鄉鎮階段建築物(城牆及城鎮中心除外)。"
 
-#: simulation/data/technologies/phase_town.jsontooltip
+#: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
+#: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
+#: simulation/data/technologies/phase_city_generic.jsonspecificName.spart
+msgid "Megalópolis"
+msgstr "Megalópolis"
+
+#: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
-"Advance to Town Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by +30%. Citizen soldiers max health "
-"increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "進展到鄉鎮階段，解鎖更多建築物及單位。城鎮中心的領土範圍增加 +30%。民兵的血量上限 +20%。所有建築物 +7 駐守回復率。"
+"Advances from a bustling town to a veritable metropolis, full of the wonders"
+" of modern technology."
+msgstr "從繁華的大城市進展為一個名副其實的大都市，充滿著奇蹟與現代科技。"
+
+#: simulation/data/technologies/phase_city_generic.jsontooltip
+msgid ""
+"Advance to City Phase, which unlocks more structures and units. Territory "
+"radius for Civic Centers increased by another +50%. Citizen soldiers max "
+"health increased by +10%. All structures +9 garrisoned regeneration rate."
+msgstr "進階到城市階段，解鎖更多建築物及單位。城鎮中心的領土範圍再度增加 +50%。民兵的血量上限 +10%。所有建築物 +9 駐守回復率。"
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
+#: simulation/data/technologies/phase_town_generic.jsongenericName
 msgid "Town Phase"
 msgstr "鄉鎮階段"
 
-#: simulation/data/technologies/phase_town.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_town.jsondescription
 msgid ""
-"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "需要 5 棟村莊階段的建築物(柵欄及農田除外)。"
-
-#: simulation/data/technologies/phase_town.jsonspecificName.mace
-#: simulation/data/technologies/phase_town.jsonspecificName.spart
-#: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
-msgid "Kōmópolis"
-msgstr "Kōmópolis"
+"Dummy technology for use in templates requirements, replaced by "
+"phase_town_generic or phase_town_{civ}."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
@@ -1290,6 +1280,30 @@ msgid ""
 "an extra +10% metal gather rate to all workers. Citizen soldiers max health "
 "increased by +20%. All structures +7 garrisoned regeneration rate."
 msgstr "進階到鄉鎮階段，解鎖更多建築物及單位。城鎮中心的領土範圍增加 +30%。「銀鴞」的文明獎勵讓所有的工人都有額外 +10% 的金屬採集速率。民兵的血量上限 +20%。所有建築物 +7 駐守回復率。"
+
+#: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
+msgid ""
+"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
+msgstr "需要 5 棟村莊階段的建築物(柵欄及農田除外)。"
+
+#: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
+#: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
+#: simulation/data/technologies/phase_town_generic.jsonspecificName.spart
+msgid "Kōmópolis"
+msgstr "Kōmópolis"
+
+#: simulation/data/technologies/phase_town_generic.jsondescription
+msgid ""
+"Advances from a small village to a bustling town, ready to expand rapidly."
+msgstr "從小村莊進展到繁華的城鎮，準備好迅速擴張。"
+
+#: simulation/data/technologies/phase_town_generic.jsontooltip
+msgid ""
+"Advance to Town Phase, which unlocks more structures and units. Territory "
+"radius for Civic Centers increased by +30%. Citizen soldiers max health "
+"increased by +20%. All structures +7 garrisoned regeneration rate."
+msgstr "進展到鄉鎮階段，解鎖更多建築物及單位。城鎮中心的領土範圍增加 +30%。民兵的血量上限 +20%。所有建築物 +7 駐守回復率。"
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"

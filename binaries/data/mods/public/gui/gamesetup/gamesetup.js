@@ -1015,11 +1015,14 @@ function initDefaults()
 	// Remove gaia from both arrays
 	g_DefaultPlayerData = clone(g_Settings.PlayerDefaults.slice(1));
 
+	let aiDifficulty = Engine.ConfigDB_GetValue("user", "gui.gamesetup.aidifficulty");
+
 	// Don't change the underlying defaults file, as Atlas uses that file too
 	for (let i in g_DefaultPlayerData)
 	{
 		g_DefaultPlayerData[i].Civ = "random";
 		g_DefaultPlayerData[i].Team = -1;
+		g_DefaultPlayerData[i].AIDiff = aiDifficulty;
 	}
 
 	deepfreeze(g_DefaultPlayerData);

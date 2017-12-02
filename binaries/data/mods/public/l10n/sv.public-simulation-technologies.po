@@ -19,9 +19,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-11-17 09:04+0100\n"
-"PO-Revision-Date: 2017-11-17 15:09+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-11-29 09:05+0100\n"
+"PO-Revision-Date: 2017-11-29 15:51+0000\n"
+"Last-Translator: pilino1234 <pilino1234@zoho.eu>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1211,34 +1211,17 @@ msgstr "Nattvakt vs. Kreneleringar"
 msgid "Walls build time vs. Health"
 msgstr "Murar byggtid vs. Hälsa"
 
-#: simulation/data/technologies/phase_city.jsondescription
-msgid ""
-"Advances from a bustling town to a veritable metropolis, full of the wonders"
-" of modern technology."
-msgstr "Avancera från en livlig stad till en veritabel metropol, full av moderna teknologiska under."
-
-#: simulation/data/technologies/phase_city.jsontooltip
-msgid ""
-"Advance to City Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by another +50%. Citizen soldiers max "
-"health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "Avancera till Storstadsfasen, som låser upp fler strukturer och enheter. Territorieradien för samhällscentrum ökar med ytterligare +50%. Max hälsa för medborgarsoldater ökad med +10%. Alla strukturer +9 garnisonerad regenereringstakt."
-
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
+#: simulation/data/technologies/phase_city_generic.jsongenericName
 msgid "City Phase"
 msgstr "Storstadsfasen"
 
-#: simulation/data/technologies/phase_city.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
-msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "Kräver 4 nya Stadsfas strukturer (förutom murar eller samhällscentrum)."
-
-#: simulation/data/technologies/phase_city.jsonspecificName.mace
-#: simulation/data/technologies/phase_city.jsonspecificName.spart
-#: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
-msgid "Megalópolis"
-msgstr "Megalópolis"
+#: simulation/data/technologies/phase_city.jsondescription
+msgid ""
+"Dummy technology for use in templates requirements, replaced by "
+"phase_city_generic or phase_city_{civ}."
+msgstr "Dummy teknologi för användning i mallars krav, ersatt av phase_city_generic eller phase_city_{civ}."
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
@@ -1255,34 +1238,41 @@ msgid ""
 "health increased by +10%. All structures +9 garrisoned regeneration rate."
 msgstr "Avancera till Storstadsfasen, som låser upp fler strukturer och enheter. Territorieradien för samhällscenter ökar med ytterligare +50%. 'Silverugglor' civilisationsbonusen ger +10% metall samlingstakt för alla arbetare. Max hälsa för medborgarsoldater ökad med +10%. Alla strukturer +9 garnisonerad regenerationstakt."
 
-#: simulation/data/technologies/phase_town.jsondescription
-msgid ""
-"Advances from a small village to a bustling town, ready to expand rapidly."
-msgstr "Avancerar från en liten by till en livlig stad, redo att expandera fort."
+#: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
+msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
+msgstr "Kräver 4 nya Stadsfas strukturer (förutom murar eller samhällscentrum)."
 
-#: simulation/data/technologies/phase_town.jsontooltip
+#: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
+#: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
+#: simulation/data/technologies/phase_city_generic.jsonspecificName.spart
+msgid "Megalópolis"
+msgstr "Megalópolis"
+
+#: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
-"Advance to Town Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by +30%. Citizen soldiers max health "
-"increased by +20%. All structures +7 garrisoned regeneration rate."
-msgstr "Avancera till Stadsfasen, som låser upp fler strukturer och enheter. Territorieradien för samhällscentrum ökar med +30%. Max hälsa för medborgarsoldater ökad med +20%. Alla strukturer +7 garnisonerad regenerationstakt."
+"Advances from a bustling town to a veritable metropolis, full of the wonders"
+" of modern technology."
+msgstr "Avancera från en livlig stad till en veritabel metropol, full av moderna teknologiska under."
+
+#: simulation/data/technologies/phase_city_generic.jsontooltip
+msgid ""
+"Advance to City Phase, which unlocks more structures and units. Territory "
+"radius for Civic Centers increased by another +50%. Citizen soldiers max "
+"health increased by +10%. All structures +9 garrisoned regeneration rate."
+msgstr "Avancera till Storstadsfasen, som låser upp fler strukturer och enheter. Territorieradien för samhällscentrum ökar med ytterligare +50%. Max hälsa för medborgarsoldater ökad med +10%. Alla strukturer +9 garnisonerad regenereringstakt."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
+#: simulation/data/technologies/phase_town_generic.jsongenericName
 msgid "Town Phase"
 msgstr "Stadsfasen"
 
-#: simulation/data/technologies/phase_town.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_town.jsondescription
 msgid ""
-"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "Kräver 5 nya Byfas strukturer (förutom palissader eller åkrar)."
-
-#: simulation/data/technologies/phase_town.jsonspecificName.mace
-#: simulation/data/technologies/phase_town.jsonspecificName.spart
-#: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
-msgid "Kōmópolis"
-msgstr "Kōmópolis"
+"Dummy technology for use in templates requirements, replaced by "
+"phase_town_generic or phase_town_{civ}."
+msgstr "Dummy teknologi för användning i mallars krav, ersatt av phase_town_generic eller phase_town_{civ}."
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
@@ -1298,6 +1288,30 @@ msgid ""
 "an extra +10% metal gather rate to all workers. Citizen soldiers max health "
 "increased by +20%. All structures +7 garrisoned regeneration rate."
 msgstr "Avancera till Stadsfasen, som låser upp fler strukturer och enheter. Territorieradien för samhällscentrum ökar med +30%. 'Silverugglor' civilisationsbonusen ger ytterligare +10% metall samlingstakt för alla arbetare. Max hälsa för medborgarsoldater ökad med +20%. Alla strukturer +7 garnisonerad regenerationstakt."
+
+#: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
+msgid ""
+"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
+msgstr "Kräver 5 nya Byfas strukturer (förutom palissader eller åkrar)."
+
+#: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
+#: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
+#: simulation/data/technologies/phase_town_generic.jsonspecificName.spart
+msgid "Kōmópolis"
+msgstr "Kōmópolis"
+
+#: simulation/data/technologies/phase_town_generic.jsondescription
+msgid ""
+"Advances from a small village to a bustling town, ready to expand rapidly."
+msgstr "Avancerar från en liten by till en livlig stad, redo att expandera fort."
+
+#: simulation/data/technologies/phase_town_generic.jsontooltip
+msgid ""
+"Advance to Town Phase, which unlocks more structures and units. Territory "
+"radius for Civic Centers increased by +30%. Citizen soldiers max health "
+"increased by +20%. All structures +7 garrisoned regeneration rate."
+msgstr "Avancera till Stadsfasen, som låser upp fler strukturer och enheter. Territorieradien för samhällscentrum ökar med +30%. Max hälsa för medborgarsoldater ökad med +20%. Alla strukturer +7 garnisonerad regenerationstakt."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1544,7 +1558,7 @@ msgstr "Förstärk fundamenten i förberedelse för en attack."
 
 #: simulation/data/technologies/tower_armour.jsontooltip
 msgid "Increases armor of defensive towers by 2 levels."
-msgstr ""
+msgstr "Förbättrar rustningen av försvarstorn med 2 nivåer."
 
 #: simulation/data/technologies/tower_armour.jsongenericName
 msgid "Sturdy Foundations"
@@ -1572,7 +1586,7 @@ msgstr "Utpostar överlever dubbelt så länge i neutralt territorium."
 
 #: simulation/data/technologies/tower_decay.jsontooltip
 msgid "Outposts -50% territory decay rate."
-msgstr ""
+msgstr "Utposter -50% territorieförfallhastighet."
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
@@ -1584,7 +1598,7 @@ msgstr "Lönnhål tillåter att angripa motståndare vid tornets bas."
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
 msgid "Removes defensive towers' minimum range."
-msgstr ""
+msgstr "Tar bort minimala räckvidden för försvarstorn."
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
@@ -1596,7 +1610,7 @@ msgstr "Pilskyttar ökar den maximala räckvidden av brandpilar."
 
 #: simulation/data/technologies/tower_range.jsontooltip
 msgid "Increases defensive towers' maximum range by 8 meters."
-msgstr ""
+msgstr "Utökar försvarstornets maximala räckvidd med 8 meter."
 
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
@@ -1608,7 +1622,7 @@ msgstr "Utposter får längre utsikt för scouting."
 
 #: simulation/data/technologies/tower_vision.jsontooltip
 msgid "Outposts +50% vision range."
-msgstr ""
+msgstr "Utposter +50% synhåll."
 
 #: simulation/data/technologies/tower_vision.jsongenericName
 msgid "Carrier Pigeons"
@@ -1620,7 +1634,7 @@ msgstr "En nattvakt ökar vaksamhet."
 
 #: simulation/data/technologies/tower_watch.jsontooltip
 msgid "Post sentries to add one arrow to defensive towers."
-msgstr ""
+msgstr "Postera vaktposter för att tillägga en pil till försvarstorn."
 
 #: simulation/data/technologies/tower_watch.jsongenericName
 msgid "Sentries"

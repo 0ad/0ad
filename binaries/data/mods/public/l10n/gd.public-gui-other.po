@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-10-25 09:03+0200\n"
-"PO-Revision-Date: 2017-11-04 10:47+0000\n"
-"Last-Translator: GunChleoc\n"
+"POT-Creation-Date: 2017-11-29 09:04+0100\n"
+"PO-Revision-Date: 2017-11-29 15:59+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -86,10 +86,6 @@ msgctxt "hotkey"
 msgid "Tab"
 msgstr "Taba"
 
-#: gui/common/functions_civinfo.js:31
-msgid "Gaia"
-msgstr "Gaìa"
-
 #: gui/common/functions_global_object.js:57
 #, javascript-format
 msgid ""
@@ -111,16 +107,20 @@ msgstr "FPS: %(fps)4s"
 msgid "Loading Aborted"
 msgstr "Chaidh sgur dhen luchdadh"
 
-#: gui/common/functions_utility.js:111
+#: gui/common/functions_utility.js:50
+msgid "Gaia"
+msgstr "Gaìa"
+
+#: gui/common/functions_utility.js:126
 msgctxt "map selection"
 msgid "Random"
 msgstr "Tuaireamach"
 
-#: gui/common/functions_utility.js:122
+#: gui/common/functions_utility.js:137
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:122
+#: gui/common/functions_utility.js:137
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -138,7 +138,7 @@ msgstr "%(dateString)s %(map)s – %(description)s"
 msgid "%(dateString)s %(map)s"
 msgstr "%(dateString)s %(map)s"
 
-#: gui/common/functions_utility_loadsave.js:85 gui/savedgames/save.js:63
+#: gui/common/functions_utility_loadsave.js:85
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "“%(label)s”"
@@ -154,16 +154,14 @@ msgstr "SGUAB ÀS"
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
 #: gui/options/options.js:297 gui/options/options.js:350
 #: gui/options/options.js:376 gui/pregame/mainmenu.js:253
-#: gui/replaymenu/replay_actions.js:170 gui/savedgames/load.js:184
-#: gui/savedgames/save.js:66 gui/summary/summary.js:375
+#: gui/replaymenu/replay_actions.js:170 gui/summary/summary.js:391
 msgid "No"
 msgstr "Chan eil"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
 #: gui/options/options.js:297 gui/options/options.js:350
 #: gui/options/options.js:376 gui/pregame/mainmenu.js:253
-#: gui/replaymenu/replay_actions.js:170 gui/savedgames/load.js:184
-#: gui/savedgames/save.js:66 gui/summary/summary.js:375
+#: gui/replaymenu/replay_actions.js:170 gui/summary/summary.js:391
 msgid "Yes"
 msgstr "Tha"
 
@@ -594,8 +592,6 @@ msgstr "Cleachdaichean (%(num)s): %(users)s"
 #: gui/common/tooltips.js:352 gui/common/tooltips.js:624
 #: gui/common/tooltips.js:658 gui/common/tooltips.js:724
 #: gui/replaymenu/replay_actions.js:93 gui/replaymenu/replay_actions.js:94
-#: gui/savedgames/load.js:117 gui/savedgames/load.js:171
-#: gui/savedgames/load.js:174
 msgid ", "
 msgstr ", "
 
@@ -1127,17 +1123,8 @@ msgstr "Spùinn:"
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s – %(name)s"
 
-#: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
-msgctxt "localeCountry"
-msgid "None"
-msgstr "—"
-
-#: gui/locale/locale_advanced.js:91
-msgid "invalid locale"
-msgstr "sgeama ionadail mì-dhligheach"
-
 #: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:157
-#: gui/splashscreen/splashscreen.xml:(caption):28
+#: gui/splashscreen/splashscreen.xml:(caption):29
 msgid "OK"
 msgstr "Ceart ma-thà"
 
@@ -1172,7 +1159,7 @@ msgid ""
 msgstr "Ma dh’ath-shuidhicheas tu na roghainnean, thèid na roghainnean air an sàbhaladh agad atharrachadh. A bheil thu airson leantainn air adhart?"
 
 #: gui/options/options.js:296 gui/options/options.js:349
-#: gui/options/options.js:375 gui/savedgames/load.js:183
+#: gui/options/options.js:375
 msgid "Warning"
 msgstr "Rabhadh"
 
@@ -1258,7 +1245,7 @@ msgstr "Togail: %(buildDate)s (%(revision)s)"
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "A bheil thu cinnteach gu bheil thu airson 0 A.D. fhàgail?"
 
-#: gui/pregame/mainmenu.js:252 gui/summary/summary.js:374
+#: gui/pregame/mainmenu.js:252 gui/summary/summary.js:390
 msgid "Confirmation"
 msgstr "Dearbhadh"
 
@@ -1276,16 +1263,16 @@ msgstr "Mearachd"
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "Tòisich an lobaidh ioma-chluicheadair. \\[À COMAS LEIS AN TOGAIL]"
 
-#: gui/pregame/mainmenu.js:279 gui/pregame/mainmenu.xml:(caption):69
-#: gui/pregame/mainmenu.xml:(caption):96
+#: gui/pregame/mainmenu.js:279 gui/pregame/mainmenu.xml:(caption):68
+#: gui/pregame/mainmenu.xml:(caption):95
 msgid "Technical Details"
 msgstr "Fiosrachadh teicnigeach"
 
-#: gui/pregame/mainmenu.js:284 gui/pregame/mainmenu.xml:(caption):147
+#: gui/pregame/mainmenu.js:284 gui/pregame/mainmenu.xml:(caption):146
 msgid "Manual"
 msgstr "Leabhar-mìneachaidh"
 
-#: gui/reference/common/load.js:234
+#: gui/reference/common/load.js:255
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
 msgstr "%(health_min)s gu %(health_max)s"
@@ -1294,12 +1281,12 @@ msgstr "%(health_min)s gu %(health_max)s"
 msgid "You don't have the same mods active as the replay does."
 msgstr "Chan eil na h-aon tuilleadain gnìomhach agad ’s a tha aig an ath-chluiche."
 
-#: gui/replaymenu/replay_actions.js:93 gui/savedgames/load.js:170
+#: gui/replaymenu/replay_actions.js:93
 #, javascript-format
 msgid "Required: %(mods)s"
 msgstr "Feum air: %(mods)s"
 
-#: gui/replaymenu/replay_actions.js:94 gui/savedgames/load.js:173
+#: gui/replaymenu/replay_actions.js:94
 #, javascript-format
 msgid "Active: %(mods)s"
 msgstr "Gnìomhach: %(mods)s"
@@ -1392,11 +1379,11 @@ msgstr "%(min)s - %(max)s mion"
 msgid "Single- and multiplayer"
 msgstr "Aon is ioma-chluicheadair"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):465
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):464
 msgid "Single Player"
 msgstr "Aon chluicheadair"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):480
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):479
 msgid "Multiplayer"
 msgstr "Ioma-chluicheadair"
 
@@ -1434,60 +1421,13 @@ msgstr "yyyy-MM-dd HH:mm"
 msgid "yyyy-MM"
 msgstr "yyyy-MM"
 
-#: gui/savedgames/load.js:117
-#, javascript-format
-msgid "Mods: %(mods)s"
-msgstr "Tuilleadain: %(mods)s"
-
-#: gui/savedgames/load.js:147
-msgid "This saved game may not be compatible:"
-msgstr "Dh’fhaoidte nach eil an geama air a shàbhaladh seo co-chòrdail:"
-
-#: gui/savedgames/load.js:151
-#, javascript-format
-msgid ""
-"It needs 0 A.D. version %(requiredVersion)s, while you are running version "
-"%(currentVersion)s."
-msgstr "Feumaidh e 0 A.D. tionndadh %(requiredVersion)s fhad ’s a tha thu a’ ruith an tionndadh %(currentVersion)s."
-
-#: gui/savedgames/load.js:156
-msgid "It needs an older version of 0 A.D."
-msgstr "Tha e feumach air seann-tionndadh de 0 A.D."
-
-#: gui/savedgames/load.js:159
-#, javascript-format
-msgid ""
-"It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
-"savegame version %(currentVersion)s."
-msgstr "Tha e feumach air faidhle sàbhalaidh 0 A.D. tionndadh %(requiredVersion)s fhad ’s a tha tionndadh %(currentVersion)s agadsa."
-
-#: gui/savedgames/load.js:169
-msgid "The savegame needs a different set of mods:"
-msgstr "Tha an geama air a shàbhaladh feumach air seata dhe thuilleadain eile:"
-
-#: gui/savedgames/load.js:178
-msgid "Do you still want to proceed?"
-msgstr "A bheil thu airson leantainn air adhart co-dhiù?"
-
-#: gui/savedgames/save.js:30
-msgid "No saved games found"
-msgstr "Cha deach geama air a shàbhaladh a lorg"
-
-#: gui/savedgames/save.js:64
-msgid "Saved game will be permanently overwritten, are you sure?"
-msgstr "Thèid sgrìobhadh thairis air geama air a shàbhaladh gu buan, a bheil thu cinnteach?"
-
-#: gui/savedgames/save.js:65
-msgid "OVERWRITE SAVE"
-msgstr "SGRÌOBH THAIRIS AIR AN T‑SÀBHALADH"
-
-#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):64
+#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):54
 msgid "Score"
 msgstr "Sgòr"
 
 #: gui/summary/layout.js:5 gui/summary/layout.js:23 gui/summary/layout.js:61
-#: gui/summary/layout.js:101 gui/summary/layout.js:149
-#: gui/summary/layout.js:181 gui/summary/summary.xml:(caption):113
+#: gui/summary/layout.js:101 gui/summary/layout.js:151
+#: gui/summary/layout.js:183 gui/summary/summary.xml:(caption):103
 msgid "Player name"
 msgstr "Ainm a’ chluicheadair"
 
@@ -1507,7 +1447,7 @@ msgstr "Rùrachadh"
 msgid "Total score"
 msgstr "Iomlan"
 
-#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):71
+#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):61
 msgid "Buildings"
 msgstr "Togalaichean"
 
@@ -1550,7 +1490,7 @@ msgid ""
 "%(lost)s)"
 msgstr "Stadastaireachd nan togalach (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):78
+#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):68
 msgid "Units"
 msgstr "Aonadan"
 
@@ -1583,7 +1523,7 @@ msgstr "Fir-mhalairt"
 msgid "Units Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 msgstr "Stadastaireachd nan aonadan (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):85
+#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):75
 msgid "Resources"
 msgstr "Stòrasan"
 
@@ -1602,205 +1542,206 @@ msgstr "Ulaidhean air an togail"
 msgid "Loot"
 msgstr "Spùinn"
 
-#: gui/summary/layout.js:124
+#: gui/summary/layout.js:121
+msgid "Livestock bred"
+msgstr ""
+
+#: gui/summary/layout.js:125
 #, javascript-format
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
 msgstr "Stadastaireachd nan stòras (%(gathered)s / %(used)s)"
 
-#: gui/summary/layout.js:147 gui/summary/summary.xml:(caption):92
+#: gui/summary/layout.js:149 gui/summary/summary.xml:(caption):82
 msgid "Market"
 msgstr "Margaid"
 
 #. Translation: use %(resourceWithinSentence)s if needed
-#: gui/summary/layout.js:155
+#: gui/summary/layout.js:157
 #, javascript-format
 msgid "%(resourceFirstWord)s exchanged"
 msgstr "Chaidh %(resourceFirstWord)s a mhalart"
 
-#: gui/summary/layout.js:163
+#: gui/summary/layout.js:165
 msgid "Barter efficiency"
 msgstr "Èifeachdachd"
 
-#: gui/summary/layout.js:164
+#: gui/summary/layout.js:166
 msgid "Trade income"
 msgstr "Teachd a-steach"
 
-#: gui/summary/layout.js:179 gui/summary/summary.xml:(caption):99
+#: gui/summary/layout.js:181 gui/summary/summary.xml:(caption):89
 #: gui/credits/texts/misc.jsonTitle
 msgid "Miscellaneous"
 msgstr "Eile"
 
-#: gui/summary/layout.js:182
+#: gui/summary/layout.js:184
 msgid "Vegetarian ratio"
 msgstr "Co-mheas nan glasraichear"
 
-#: gui/summary/layout.js:183
+#: gui/summary/layout.js:185
 msgid "Feminization"
 msgstr "Boireannaich"
 
-#: gui/summary/layout.js:184
+#: gui/summary/layout.js:186
 msgid "Kill / Death ratio"
 msgstr "Marbhadh / bàs"
 
-#: gui/summary/layout.js:187
+#: gui/summary/layout.js:189
 #, javascript-format
 msgid ""
 "Bribes\n"
 "(%(succeeded)s / %(failed)s)"
 msgstr ""
 
-#: gui/summary/layout.js:195
+#: gui/summary/layout.js:197
 msgid "Map exploration"
 msgstr "Rùrachadh a’ mhapa"
 
-#: gui/summary/layout.js:196
+#: gui/summary/layout.js:198
 msgid "Map control (peak)"
 msgstr "Smachd air a’  (as motha)"
 
-#: gui/summary/layout.js:197
+#: gui/summary/layout.js:199
 msgid "Map control (finish)"
 msgstr "Smachd air a’ mhapa (deireannach)"
 
-#: gui/summary/layout.js:351
+#: gui/summary/layout.js:353
 msgid "Team total"
 msgstr "Iomlan an sgioba"
 
-#: gui/summary/summary.js:28
+#: gui/summary/summary.js:30
 msgid "Trained"
 msgstr "Trèanadh"
 
-#: gui/summary/summary.js:33
+#: gui/summary/summary.js:35
 msgid "Constructed"
 msgstr "Togail"
 
-#: gui/summary/summary.js:38
+#: gui/summary/summary.js:40
 msgid "Gathered"
 msgstr "Cruinneachadh"
 
-#: gui/summary/summary.js:43
+#: gui/summary/summary.js:45
 msgid "Sent"
 msgstr "Cur"
 
-#: gui/summary/summary.js:48
+#: gui/summary/summary.js:50
 msgid "Bought"
 msgstr "Ceannachd"
 
-#: gui/summary/summary.js:53
+#: gui/summary/summary.js:55
 msgid "Income"
 msgstr "Teachd a-steach"
 
-#: gui/summary/summary.js:58
+#: gui/summary/summary.js:60
 msgid "Captured"
 msgstr "Glacadh"
 
-#: gui/summary/summary.js:63
+#: gui/summary/summary.js:65
 msgid "Succeeded"
 msgstr ""
 
-#: gui/summary/summary.js:68
+#: gui/summary/summary.js:70
 msgid "Destroyed"
 msgstr "Milleadh"
 
-#: gui/summary/summary.js:73
+#: gui/summary/summary.js:75
 msgid "Killed"
 msgstr "Marbhadh"
 
-#: gui/summary/summary.js:78
+#: gui/summary/summary.js:80
 msgid "Lost"
 msgstr "Call"
 
-#: gui/summary/summary.js:83
+#: gui/summary/summary.js:85
 msgid "Used"
 msgstr "Cleachdadh"
 
-#: gui/summary/summary.js:88
+#: gui/summary/summary.js:90
 msgid "Received"
 msgstr "Faighinn"
 
-#: gui/summary/summary.js:93
+#: gui/summary/summary.js:95
 msgid "Sold"
 msgstr "Reic"
 
-#: gui/summary/summary.js:98
+#: gui/summary/summary.js:100
 msgid "Outcome"
 msgstr "Toradh"
 
-#: gui/summary/summary.js:103
+#: gui/summary/summary.js:105
 msgid "Failed"
 msgstr ""
 
-#: gui/summary/summary.js:111
+#: gui/summary/summary.js:113
 msgid "∞"
 msgstr "∞"
 
-#: gui/summary/summary.js:373
+#: gui/summary/summary.js:389
 msgid "Are you sure you want to quit the lobby?"
 msgstr "A bheil thu cinnteach gu bheil thu airson an lobaidh fhàgail?"
 
-#: gui/summary/summary.js:429
+#: gui/summary/summary.js:444
 msgid "Current Scores"
 msgstr "Na sgòran an-dràsta"
 
-#: gui/summary/summary.js:431
+#: gui/summary/summary.js:446
 msgid "Scores at the end of the game."
 msgstr "Sgòran air deireadh a’ gheama."
 
-#: gui/summary/summary.js:433
+#: gui/summary/summary.js:448
 msgid "You have been disconnected."
 msgstr "Chaidh do cheangal a bhriseadh."
 
-#: gui/summary/summary.js:435
+#: gui/summary/summary.js:450
 msgid "You have left the game."
 msgstr "Dh’fhàg thu an geama."
 
-#: gui/summary/summary.js:437
+#: gui/summary/summary.js:452
 msgid "You have won the battle!"
 msgstr "Thug thu buaidh air càch!"
 
-#: gui/summary/summary.js:439
+#: gui/summary/summary.js:454
 msgid "You have been defeated..."
 msgstr "Chaidh ruaig a chur ort…"
 
-#: gui/summary/summary.js:440
+#: gui/summary/summary.js:455
 msgid "You have abandoned the game."
 msgstr "Thrèig thu an geama."
 
-#: gui/summary/summary.js:445
+#: gui/summary/summary.js:458
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "An ùine a dh’fhalbh sa gheama: %(time)s"
 
-#: gui/summary/summary.js:453
+#: gui/summary/summary.js:466
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s – %(mapType)s"
 
-#: gui/civinfo/civinfo.xml:(caption):16
+#: gui/civinfo/civinfo.xml:(caption):14
 msgid "Civilizations"
 msgstr "Sìobhaltasan"
 
-#: gui/civinfo/civinfo.xml:(caption):28
+#: gui/civinfo/civinfo.xml:(caption):26
 msgid "Civilization Selection"
 msgstr "Tagh sìobhaltasan"
 
-#: gui/civinfo/civinfo.xml:(caption):119 gui/credits/credits.xml:(caption):36
+#: gui/civinfo/civinfo.xml:(caption):117 gui/credits/credits.xml:(caption):37
 #: gui/options/options.xml:(caption):60
-#: gui/reference/structree/structree.xml:(caption):122
+#: gui/reference/structree/structree.xml:(caption):119
 msgid "Close"
 msgstr "Dùin"
 
-#: gui/credits/credits.xml:(caption):18
+#: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
 msgstr "Urram 0 A.D."
 
-#: gui/locale/locale.xml:(caption):14
-#: gui/locale/locale_advanced.xml:(caption):14
-#: gui/pregame/mainmenu.xml:(caption):339
+#: gui/locale/locale.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):338
 msgid "Language"
 msgstr "Cànan"
 
 #: gui/locale/locale.xml:(caption):17
-#: gui/locale/locale_advanced.xml:(caption):17
 msgid "Language:"
 msgstr "Cànan:"
 
@@ -1813,8 +1754,6 @@ msgid "Locale:"
 msgstr "Sgeama ionadail:"
 
 #: gui/locale/locale.xml:(caption):36
-#: gui/locale/locale_advanced.xml:(caption):65
-#: gui/savedgames/load.xml:(caption):58 gui/savedgames/save.xml:(caption):38
 msgid "Cancel"
 msgstr "Sguir dheth"
 
@@ -1823,48 +1762,8 @@ msgid "Advanced"
 msgstr "Adhartach"
 
 #: gui/locale/locale.xml:(caption):46
-#: gui/locale/locale_advanced.xml:(caption):75
 msgid "Accept"
 msgstr "Gabh ris"
-
-#: gui/locale/locale_advanced.xml:(caption):25
-msgid "Country:"
-msgstr "Dùthaich:"
-
-#: gui/locale/locale_advanced.xml:(caption):34
-msgid "Script:"
-msgstr "Sgriobt:"
-
-#: gui/locale/locale_advanced.xml:(caption):41
-msgid "Variant (unused):"
-msgstr "Eug-samhail (cha dèan seo dad):"
-
-#: gui/locale/locale_advanced.xml:(caption):48
-msgid "Keywords (unused):"
-msgstr "Faclan-luirg (cha dèan seo dad):"
-
-#: gui/locale/locale_advanced.xml:(caption):55
-msgid "Resulting locale:"
-msgstr "An sgeama ionadail:"
-
-#: gui/locale/locale_advanced.xml:(caption):60
-msgid "Dictionary files used:"
-msgstr "Na faidhlichean cànain aige:"
-
-#: gui/locale/locale_advanced.xml:(caption):70
-msgid "Auto detect"
-msgstr "Fèin-mhothaich"
-
-#: gui/locale/locale_advanced.xml:(tooltip):37
-msgid ""
-"Optional four-letter script code part following the language code (as listed"
-" in ISO 15924)"
-msgstr "Còd roghainneil de 4 litrichean airson an sgriobt a leanas air còd a’ chànain (a-rèir ISO 15924)"
-
-#: gui/locale/locale_advanced.xml:(tooltip):44
-#: gui/locale/locale_advanced.xml:(tooltip):51
-msgid "Not implemented yet."
-msgstr "Gun a chur an sàs fhathast."
 
 #: gui/options/options.xml:(caption):15
 msgid "Game Options"
@@ -1878,7 +1777,7 @@ msgstr "Ath-shuidhich"
 msgid "Revert"
 msgstr "Till"
 
-#: gui/options/options.xml:(caption):54 gui/savedgames/save.xml:(caption):48
+#: gui/options/options.xml:(caption):54
 msgid "Save"
 msgstr "Sàbhail"
 
@@ -1898,421 +1797,377 @@ msgstr "Sàbhailidh seo na dh’atharraich thu"
 msgid "Unsaved changes affect this session only"
 msgstr "Cha buaidh aig na dh’atharraich thu gun a shàbhaladh air an t-seisean seo a-mhàin"
 
-#: gui/pregame/mainmenu.xml:59
+#: gui/pregame/mainmenu.xml:58
 msgid "Help improve 0 A.D.!"
 msgstr "Cuidich sinn le piseach a thoirt air 0 A.D!"
 
-#: gui/pregame/mainmenu.xml:61
+#: gui/pregame/mainmenu.xml:60
 msgid ""
 "You can automatically send us anonymous feedback that will help us fix bugs,"
 " and improve performance and compatibility."
 msgstr "’S urrainn dhut fiosrachadh gun ainm a chur thugainn gu fèin-obrachail a chuidicheas ach an càraich sinn bugaichean is an doir sinn piseach air an dèanadas is co-chòrdalachd."
 
-#: gui/pregame/mainmenu.xml:533
+#: gui/pregame/mainmenu.xml:532
 msgid "Alpha XXIII: Ken Wood"
 msgstr "Alpha XXIII: Ken Wood"
 
-#: gui/pregame/mainmenu.xml:535
+#: gui/pregame/mainmenu.xml:534
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
 msgstr "RABHADH: Seo tionndadh leasachaidh tràth dhen gheama. Tha iomadh gleus ri thighinn nach deach a chur ris fhathast."
 
-#: gui/pregame/mainmenu.xml:(caption):65
+#: gui/pregame/mainmenu.xml:(caption):64
 msgid "Enable Feedback"
 msgstr "Cuir fiosrachadh"
 
-#: gui/pregame/mainmenu.xml:(caption):92
+#: gui/pregame/mainmenu.xml:(caption):91
 msgid "Disable Feedback"
 msgstr "Na cuir fiosrachadh"
 
-#: gui/pregame/mainmenu.xml:(caption):166
+#: gui/pregame/mainmenu.xml:(caption):165
 msgid "Tutorial"
 msgstr "Oideachadh"
 
-#: gui/pregame/mainmenu.xml:(caption):180
-#: gui/reference/structree/structree.xml:(caption):16
+#: gui/pregame/mainmenu.xml:(caption):179
+#: gui/reference/structree/structree.xml:(caption):13
 msgid "Structure Tree"
 msgstr "Craobh nan sìobhaltas"
 
-#: gui/pregame/mainmenu.xml:(caption):195
+#: gui/pregame/mainmenu.xml:(caption):194
 msgid "History"
 msgstr "Eachdraidh"
 
-#: gui/pregame/mainmenu.xml:(caption):218
+#: gui/pregame/mainmenu.xml:(caption):217
 msgid "Matches"
 msgstr "Maidsichean"
 
-#: gui/pregame/mainmenu.xml:(caption):232
+#: gui/pregame/mainmenu.xml:(caption):231
 msgid "Campaigns"
 msgstr "Iomairtean"
 
-#: gui/pregame/mainmenu.xml:(caption):245 gui/savedgames/load.xml:(caption):20
+#: gui/pregame/mainmenu.xml:(caption):244
 msgid "Load Game"
 msgstr "Luchdaich geama"
 
 #. Join a game by specifying the host's IP address.
-#: gui/pregame/mainmenu.xml:(caption):268
+#: gui/pregame/mainmenu.xml:(caption):267
 msgid "Join Game"
 msgstr "Gabh pàirt ann an geama"
 
-#: gui/pregame/mainmenu.xml:(caption):282
+#: gui/pregame/mainmenu.xml:(caption):281
 msgid "Host Game"
 msgstr "Òstaich geama"
 
-#: gui/pregame/mainmenu.xml:(caption):296
+#: gui/pregame/mainmenu.xml:(caption):295
 msgid "Game Lobby"
 msgstr "Lobaidh nan geama"
 
-#: gui/pregame/mainmenu.xml:(caption):325
+#: gui/pregame/mainmenu.xml:(caption):324
 msgid "Options"
 msgstr "Roghainnean"
 
-#: gui/pregame/mainmenu.xml:(caption):353
+#: gui/pregame/mainmenu.xml:(caption):352
 msgid "Replays"
 msgstr "Ath-chluichean"
 
-#: gui/pregame/mainmenu.xml:(caption):367
+#: gui/pregame/mainmenu.xml:(caption):366
 msgid "Scenario Editor"
 msgstr "Deasaiche chnàmh-sgeulan"
 
-#: gui/pregame/mainmenu.xml:(caption):380
+#: gui/pregame/mainmenu.xml:(caption):379
 msgid "Welcome Screen"
 msgstr "Sgrìn fàilteachaidh"
 
-#: gui/pregame/mainmenu.xml:(caption):396
+#: gui/pregame/mainmenu.xml:(caption):395
 msgid "Mod Selection"
 msgstr "Taghadh nan tuilleadan"
 
-#: gui/pregame/mainmenu.xml:(caption):450
+#: gui/pregame/mainmenu.xml:(caption):449
 msgid "Learn to Play"
 msgstr "Cobhair"
 
-#: gui/pregame/mainmenu.xml:(caption):495
+#: gui/pregame/mainmenu.xml:(caption):494
 msgid "Tools & Options"
 msgstr "Innealan ⁊ roghainnean"
 
-#: gui/pregame/mainmenu.xml:(caption):510
+#: gui/pregame/mainmenu.xml:(caption):509
 msgid "Exit"
 msgstr "Fàg an-seo"
 
-#: gui/pregame/mainmenu.xml:(caption):545
+#: gui/pregame/mainmenu.xml:(caption):544
 msgid "Website"
 msgstr "Làrach-lìn"
 
-#: gui/pregame/mainmenu.xml:(caption):557
+#: gui/pregame/mainmenu.xml:(caption):556
 msgid "Chat"
 msgstr "Cabadaich"
 
-#: gui/pregame/mainmenu.xml:(caption):569
+#: gui/pregame/mainmenu.xml:(caption):568
 msgid "Report a Bug"
 msgstr "Dèan aithris air buga"
 
-#: gui/pregame/mainmenu.xml:(caption):581
+#: gui/pregame/mainmenu.xml:(caption):580
 msgid "Translate the Game"
 msgstr "Eadar-theangaich an geama"
 
-#: gui/pregame/mainmenu.xml:(caption):593
+#: gui/pregame/mainmenu.xml:(caption):592
 msgid "Credits"
 msgstr "Urram"
 
-#: gui/pregame/mainmenu.xml:(caption):622
+#: gui/pregame/mainmenu.xml:(caption):621
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
-#: gui/pregame/mainmenu.xml:(tooltip):148
+#: gui/pregame/mainmenu.xml:(tooltip):147
 msgid "Open the 0 A.D. Game Manual."
 msgstr "Fosgail an leabhar-mìneachaidh aig 0 A.D."
 
-#: gui/pregame/mainmenu.xml:(tooltip):167
+#: gui/pregame/mainmenu.xml:(tooltip):166
 msgid "Start the economic tutorial."
 msgstr "Tòisich air oideachadh na h-eaconamaidh."
 
-#: gui/pregame/mainmenu.xml:(tooltip):181
+#: gui/pregame/mainmenu.xml:(tooltip):180
 msgid "View the structure tree of civilizations featured in 0 A.D."
 msgstr "Seall craobh dhe na sìobhaltasan aig 0 A.D."
 
-#: gui/pregame/mainmenu.xml:(tooltip):196
+#: gui/pregame/mainmenu.xml:(tooltip):195
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "Fiosrachadh mu na sìobhaltasan ann an 0 A.D."
 
-#: gui/pregame/mainmenu.xml:(tooltip):219
+#: gui/pregame/mainmenu.xml:(tooltip):218
 msgid "Click here to start a new single player game."
 msgstr "Briog an-seo gus geama aon chluicheadair ùr a thòiseachadh"
 
-#: gui/pregame/mainmenu.xml:(tooltip):233
+#: gui/pregame/mainmenu.xml:(tooltip):232
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
 msgstr "Atharrais an eachdraidh le iomairtean an airm eachdraidheil. \\[CHAN EIL SEO RI FHAIGHINN FHATHAST]"
 
-#: gui/pregame/mainmenu.xml:(tooltip):246
+#: gui/pregame/mainmenu.xml:(tooltip):245
 msgid "Click here to load a saved game."
 msgstr "Briog an-seo gus geama air a shàbhaladh a luchdadh."
 
-#: gui/pregame/mainmenu.xml:(tooltip):269
+#: gui/pregame/mainmenu.xml:(tooltip):268
 msgid "Joining an existing multiplayer game."
 msgstr "Gabh pàirt ann an geama ioma-chluicheadair a tha ann mar-thà."
 
-#: gui/pregame/mainmenu.xml:(tooltip):283
+#: gui/pregame/mainmenu.xml:(tooltip):282
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr "Òstaich geama ioma-chluicheadair.\\n\\nFeumaidh am port UDP 20595 a bhith fosgailte."
 
-#: gui/pregame/mainmenu.xml:(tooltip):297
+#: gui/pregame/mainmenu.xml:(tooltip):296
 msgid "Launch the multiplayer lobby."
 msgstr "Tòisich an lobaidh ioma-chluicheadair."
 
-#: gui/pregame/mainmenu.xml:(tooltip):326
+#: gui/pregame/mainmenu.xml:(tooltip):325
 msgid "Adjust game settings."
 msgstr "Cuir gleus air roghainnean a’ gheama."
 
-#: gui/pregame/mainmenu.xml:(tooltip):340
+#: gui/pregame/mainmenu.xml:(tooltip):339
 msgid "Choose the language of the game."
 msgstr "Tagh cànan a’ gheama."
 
-#: gui/pregame/mainmenu.xml:(tooltip):354
+#: gui/pregame/mainmenu.xml:(tooltip):353
 msgid "Playback previous games."
 msgstr "Coimhead air geamannan roimhe."
 
-#: gui/pregame/mainmenu.xml:(tooltip):368
+#: gui/pregame/mainmenu.xml:(tooltip):367
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Fosgail an deasaiche chnàmh-sgeulan Atlas ann an uinneag ùr. ’S urrainn dhut a ruith ann an dòigh nas earbsaiche ’s tu a’ tòiseachadh a’ gheama leis an argamaid “-editor” ait an loidhne-àithne."
 
-#: gui/pregame/mainmenu.xml:(tooltip):381
+#: gui/pregame/mainmenu.xml:(tooltip):380
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "Seall an sgrìn fàilteachaidh. Tha seo feumail ma dh’fhalaich thu le mearachd i."
 
-#: gui/pregame/mainmenu.xml:(tooltip):397
+#: gui/pregame/mainmenu.xml:(tooltip):396
 msgid "Select mods to use."
 msgstr "Tagh na tuilleadain a bu toil leat cleachdadh."
 
-#: gui/pregame/mainmenu.xml:(tooltip):451
+#: gui/pregame/mainmenu.xml:(tooltip):450
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations"
 msgstr "Ionnsaich mar a chluicheas tu, tòisich an t-oideachadh agus faigh a-mach mu chraobhan teicneolais agus eachdraidh nan sìobhaltasan."
 
-#: gui/pregame/mainmenu.xml:(tooltip):466
+#: gui/pregame/mainmenu.xml:(tooltip):465
 msgid "Challenge the computer player to a single player match."
 msgstr "Thoir dùbhlan dhan choimpiutair airson maids aon chluicheadair."
 
-#: gui/pregame/mainmenu.xml:(tooltip):481
+#: gui/pregame/mainmenu.xml:(tooltip):480
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Dèan sabaid an aghaidh cluicheadair daonna no dhà ann an geama ioma-chluicheadair"
 
-#: gui/pregame/mainmenu.xml:(tooltip):496
+#: gui/pregame/mainmenu.xml:(tooltip):495
 msgid "Game options and scenario design tools."
 msgstr "Roghainnean a’ gheama is innealan gus cnàmh-sgeulan a dhealbhachadh."
 
-#: gui/pregame/mainmenu.xml:(tooltip):511
+#: gui/pregame/mainmenu.xml:(tooltip):510
 msgid "Exits the game."
 msgstr "Fàgaidh tu an geama."
 
-#: gui/pregame/mainmenu.xml:(tooltip):546
+#: gui/pregame/mainmenu.xml:(tooltip):545
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Briog gus play0ad.com fhosgladh sa bhrabhsair-lìn agad."
 
-#: gui/pregame/mainmenu.xml:(tooltip):558
+#: gui/pregame/mainmenu.xml:(tooltip):557
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "Briog gus a’ chabadaich IRC aig 0 A.D. fhosgladh sa bhrabhsair-lìn agad. (#0ad air webchat.quakenet.org)"
 
-#: gui/pregame/mainmenu.xml:(tooltip):570
+#: gui/pregame/mainmenu.xml:(tooltip):569
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "Briog gus tadhal air 0 A.D. Trac ach an dèan thu aithris air buga, tuisleadh no mearachd."
 
-#: gui/pregame/mainmenu.xml:(tooltip):582
+#: gui/pregame/mainmenu.xml:(tooltip):581
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "Briog gus duilleag an eadar-theangachaidh aig 0 A.D. fhosgladh sa bhrabhsair agad."
 
-#: gui/pregame/mainmenu.xml:(tooltip):594
+#: gui/pregame/mainmenu.xml:(tooltip):593
 msgid "Click to see the 0 A.D. credits."
 msgstr "Briog gus urram 0 A.D. a shealltainn."
 
-#: gui/reference/structree/structree.xml:(caption):28
+#: gui/reference/structree/structree.xml:(caption):25
 msgid "Civilization:"
 msgstr "Sìobhaltas:"
 
-#: gui/reference/structree/structree.xml:(caption):95
+#: gui/reference/structree/structree.xml:(caption):92
 msgid "Trainer Units"
 msgstr "Aonadan trèanaidh"
 
-#: gui/replaymenu/replay_menu.xml:(caption):28
+#: gui/replaymenu/replay_menu.xml:(caption):13
 msgid "Replay Games"
 msgstr "Ath-chluiche gheamannan"
 
-#: gui/replaymenu/replay_menu.xml:(caption):123
+#: gui/replaymenu/replay_menu.xml:(caption):108
 msgid "Filter compatible replays"
 msgstr "Feadhainn cho-chòrdail a-mhàin"
 
-#: gui/replaymenu/replay_menu.xml:(caption):164
-#: gui/savedgames/load.xml:(caption):98
+#: gui/replaymenu/replay_menu.xml:(caption):149
 msgid "Map Type:"
 msgstr "Seòrsa a’ mhapa:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):179
-#: gui/savedgames/load.xml:(caption):102
+#: gui/replaymenu/replay_menu.xml:(caption):164
 msgid "Map Size:"
 msgstr "Meud a’ mhapa:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):194
-#: gui/savedgames/load.xml:(caption):106
+#: gui/replaymenu/replay_menu.xml:(caption):179
 msgid "Victory:"
 msgstr "Buaidh:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):227
+#: gui/replaymenu/replay_menu.xml:(caption):212
 msgid "Spoiler"
 msgstr "Spoiler"
 
-#: gui/replaymenu/replay_menu.xml:(caption):239
+#: gui/replaymenu/replay_menu.xml:(caption):224
 msgid "Main Menu"
 msgstr "A’ phrìomh chlàr-taice"
 
-#: gui/replaymenu/replay_menu.xml:(caption):245
-#: gui/savedgames/load.xml:(caption):63 gui/savedgames/save.xml:(caption):43
+#: gui/replaymenu/replay_menu.xml:(caption):230
 msgid "Delete"
 msgstr "Sguab às"
 
-#: gui/replaymenu/replay_menu.xml:(caption):251
+#: gui/replaymenu/replay_menu.xml:(caption):236
 msgid "Reload Cache"
 msgstr "Ath-luchdaich an tasgadan"
 
-#: gui/replaymenu/replay_menu.xml:(caption):258
-#: gui/summary/summary.xml:(caption):24
+#: gui/replaymenu/replay_menu.xml:(caption):243
+#: gui/summary/summary.xml:(caption):14
 msgid "Summary"
 msgstr "Gearr-chunntas"
 
-#: gui/replaymenu/replay_menu.xml:(caption):264
+#: gui/replaymenu/replay_menu.xml:(caption):249
 msgid "Start Replay"
 msgstr "Tòisich air ath-chluiche"
 
-#: gui/replaymenu/replay_menu.xml:(heading):83
-#: gui/savedgames/load.xml:(heading):37
+#: gui/replaymenu/replay_menu.xml:(heading):68
 msgctxt "replay"
 msgid "Date / Time"
 msgstr "Ceann-là ’s àm"
 
-#: gui/replaymenu/replay_menu.xml:(heading):87
+#: gui/replaymenu/replay_menu.xml:(heading):72
 msgctxt "replay"
 msgid "Players"
 msgstr "Cluicheadairean"
 
-#: gui/replaymenu/replay_menu.xml:(heading):91
-#: gui/savedgames/load.xml:(heading):45
+#: gui/replaymenu/replay_menu.xml:(heading):76
 msgctxt "replay"
 msgid "Map Name"
 msgstr "Ainm a’ mhapa"
 
-#: gui/replaymenu/replay_menu.xml:(heading):95
+#: gui/replaymenu/replay_menu.xml:(heading):80
 msgctxt "replay"
 msgid "Size"
 msgstr "Meud"
 
-#: gui/replaymenu/replay_menu.xml:(heading):99
+#: gui/replaymenu/replay_menu.xml:(heading):84
 msgctxt "replay"
 msgid "Population"
 msgstr "Sluagh"
 
-#: gui/replaymenu/replay_menu.xml:(heading):103
+#: gui/replaymenu/replay_menu.xml:(heading):88
 msgctxt "replay"
 msgid "Duration"
 msgstr "Faide"
 
-#: gui/replaymenu/replay_menu.xml:(tooltip):252
+#: gui/replaymenu/replay_menu.xml:(tooltip):237
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
 msgstr "Ath-luchdaich tasgadan na h-ath-chluiche às ùr. Dh’fhaoidte gun doir seo ùine mhòr!"
 
-#: gui/savedgames/load.xml:(heading):41
-msgctxt "replay"
-msgid "Map Type"
-msgstr "Seòrsa a’ mhapa"
-
-#: gui/savedgames/load.xml:(heading):49
-msgctxt "replay"
-msgid "Description"
-msgstr "Tuairisgeul"
-
-#: gui/savedgames/load.xml:(caption):54
-msgid "No saved games found."
-msgstr "Cha deach geama air a shàbhaladh a lorg."
-
-#: gui/savedgames/load.xml:(caption):68
-msgid "Load"
-msgstr "Luchdaich"
-
-#: gui/savedgames/load.xml:(caption):80
-msgid "Filter compatible saved games"
-msgstr "Criathraich geamannan air an sàbhaladh co-chòrdail"
-
-#: gui/savedgames/load.xml:(caption):90
-msgid "Players:"
-msgstr "Cluicheadairean:"
-
-#: gui/savedgames/load.xml:(caption):94
-msgid "Played time:"
-msgstr "An ùine a chaidh a chluich:"
-
-#: gui/savedgames/save.xml:(caption):16
-msgid "Save Game"
-msgstr "Sàbhail an geama"
-
-#: gui/savedgames/save.xml:(caption):30
-msgid "Description:"
-msgstr "Tuairisgeul:"
-
-#: gui/splashscreen/splashscreen.xml:(caption):12
+#: gui/splashscreen/splashscreen.xml:(caption):13
 msgid "Welcome!"
 msgstr "Fàilte ort!"
 
-#: gui/splashscreen/splashscreen.xml:(caption):17
+#: gui/splashscreen/splashscreen.xml:(caption):18
 msgid "Show this message in the future"
 msgstr "Seall an teachdaireachd seo a-rithist"
 
-#: gui/splashscreen/splashscreen.xml:(caption):22
+#: gui/splashscreen/splashscreen.xml:(caption):23
 msgid "Known Issues (web)"
 msgstr "Duilgheadasan as aithne dhuinn (lìon)"
 
-#: gui/summary/summary.xml:(caption):106
+#: gui/summary/summary.xml:(caption):96
 msgid "Charts"
 msgstr "Cairtean"
 
-#: gui/summary/summary.xml:(caption):163
+#: gui/summary/summary.xml:(caption):153
 msgctxt "summary chart"
 msgid "Category:"
 msgstr "Roinn-seòrsa:"
 
-#: gui/summary/summary.xml:(caption):173
+#: gui/summary/summary.xml:(caption):163
 msgctxt "summary chart"
 msgid "Value:"
 msgstr "Luach:"
 
-#: gui/summary/summary.xml:(caption):183
+#: gui/summary/summary.xml:(caption):173
 msgctxt "summary chart"
 msgid "Type:"
 msgstr "Seòrsa:"
 
-#: gui/summary/summary.xml:(caption):202
+#: gui/summary/summary.xml:(caption):192
 msgid "Replay"
 msgstr "Ath-chluiche"
 
-#: gui/summary/summary.xml:(caption):207
+#: gui/summary/summary.xml:(caption):197
 msgid "Continue"
 msgstr "Lean air adhart"
 
-#: gui/summary/summary.xml:(tooltip):169
+#: gui/summary/summary.xml:(tooltip):159
 msgctxt "summary chart"
 msgid "Category"
 msgstr "Roinn-seòrsa"
 
-#: gui/summary/summary.xml:(tooltip):179
+#: gui/summary/summary.xml:(tooltip):169
 msgctxt "summary chart"
 msgid "Value"
 msgstr "Luach"
 
-#: gui/summary/summary.xml:(tooltip):190
+#: gui/summary/summary.xml:(tooltip):180
 msgctxt "summary chart"
 msgid "Type"
 msgstr "Seòrsa"

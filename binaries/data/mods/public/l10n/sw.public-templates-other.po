@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:07+0200\n"
+"POT-Creation-Date: 2017-11-20 09:04+0100\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Language-Team: Swahili (http://www.transifex.com/wildfire-games/0ad/language/sw/)\n"
 "MIME-Version: 1.0\n"
@@ -19,28 +19,15 @@ msgstr ""
 msgid "Gaia"
 msgstr ""
 
-#: simulation/templates/template_gaia_flora.xml:8
-msgid "Generic Flora"
-msgstr ""
-
 #: simulation/templates/template_gaia_flora_bush.xml:8
-#: simulation/templates/template_gaia_flora_bush_berry.xml:8
 msgid "Bush"
 msgstr ""
 
-#: simulation/templates/template_gaia_flora_bush_berry.xml:9
-msgid "Berries"
-msgstr ""
-
-#: simulation/templates/template_gaia_flora_bush_berry.xml:10
-msgid "Gather the fruit from these bushes to accumulate Food."
-msgstr ""
-
-#: simulation/templates/template_gaia_flora_tree.xml:5
+#: simulation/templates/template_gaia_flora_tree.xml:8
 msgid "Tree"
 msgstr ""
 
-#: simulation/templates/template_gaia_flora_tree.xml:7
+#: simulation/templates/template_gaia_flora_tree.xml:9
 msgid "Chop down to accumulate Wood."
 msgstr ""
 
@@ -185,90 +172,6 @@ msgstr ""
 msgid "Greek Religious Sanctuary"
 msgstr ""
 
-#: simulation/templates/formations/battle_line.xml:5
-msgid "Battle Line"
-msgstr ""
-
-#: simulation/templates/formations/box.xml:6
-msgid "4 units required"
-msgstr ""
-
-#: simulation/templates/formations/box.xml:7
-msgid "Box"
-msgstr ""
-
-#: simulation/templates/formations/column_closed.xml:5
-msgid "Forced March"
-msgstr ""
-
-#: simulation/templates/formations/column_open.xml:5
-msgid "Column Open"
-msgstr ""
-
-#: simulation/templates/formations/flank.xml:6
-msgid "8 units required"
-msgstr ""
-
-#: simulation/templates/formations/flank.xml:7
-msgid "Flank"
-msgstr ""
-
-#: simulation/templates/formations/line_closed.xml:5
-msgid "Close Order"
-msgstr ""
-
-#: simulation/templates/formations/line_open.xml:5
-msgid "Open Order"
-msgstr ""
-
-#: simulation/templates/formations/null.xml:5
-msgid "None"
-msgstr ""
-
-#: simulation/templates/formations/phalanx.xml:6
-msgid "10 hoplite infantry required"
-msgstr ""
-
-#: simulation/templates/formations/phalanx.xml:7
-msgid "Phalanx"
-msgstr ""
-
-#: simulation/templates/formations/scatter.xml:5
-msgid "Scatter"
-msgstr ""
-
-#: simulation/templates/formations/skirmish.xml:5
-msgid "Only ranged units allowed"
-msgstr ""
-
-#: simulation/templates/formations/skirmish.xml:6
-msgid "Skirmish"
-msgstr ""
-
-#: simulation/templates/formations/syntagma.xml:6
-msgid "16 pike infantry units required"
-msgstr ""
-
-#: simulation/templates/formations/syntagma.xml:8
-msgid "Syntagma"
-msgstr ""
-
-#: simulation/templates/formations/testudo.xml:6
-msgid "9 melee infantry units required"
-msgstr ""
-
-#: simulation/templates/formations/testudo.xml:7
-msgid "Testudo"
-msgstr ""
-
-#: simulation/templates/formations/wedge.xml:6
-msgid "6 cavalry units required"
-msgstr ""
-
-#: simulation/templates/formations/wedge.xml:7
-msgid "Wedge"
-msgstr ""
-
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Bear"
 msgstr ""
@@ -379,11 +282,11 @@ msgstr ""
 msgid "Muskox"
 msgstr ""
 
-#: simulation/templates/gaia/fauna_peacock.xml:14
+#: simulation/templates/gaia/fauna_peacock.xml:8
 msgid "Peacock"
 msgstr ""
 
-#: simulation/templates/gaia/fauna_peacock.xml:15
+#: simulation/templates/gaia/fauna_peacock.xml:9
 msgid "Pavo cristatus"
 msgstr ""
 
@@ -451,23 +354,27 @@ msgstr ""
 msgid "Zebra"
 msgstr ""
 
-#: simulation/templates/gaia/flora_bush_badlands.xml:8
+#: simulation/templates/gaia/flora_bush_badlands.xml:4
 msgid "Hardy Bush"
 msgstr ""
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:4
-msgid "Forage"
+#: simulation/templates/gaia/flora_bush_berry.xml:4
+msgid "Berries"
 msgstr ""
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:5
+#: simulation/templates/gaia/flora_bush_berry.xml:5
+msgid "Gather the fruit from these bushes to accumulate Food."
+msgstr ""
+
+#: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Grapes"
 msgstr ""
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:6
+#: simulation/templates/gaia/flora_bush_grapes.xml:5
 msgid "Gather grapes from these vines for Food."
 msgstr ""
 
-#: simulation/templates/gaia/flora_bush_temperate.xml:8
+#: simulation/templates/gaia/flora_bush_temperate.xml:4
 msgid "Deciduous Bush"
 msgstr ""
 
@@ -479,7 +386,7 @@ msgstr ""
 msgid "Aleppo Pine Tree"
 msgstr ""
 
-#: simulation/templates/gaia/flora_tree_apple.xml:8
+#: simulation/templates/gaia/flora_tree_apple.xml:4
 msgid "Apple Tree"
 msgstr ""
 
@@ -514,11 +421,11 @@ msgstr ""
 msgid "European Beech Tree"
 msgstr ""
 
-#: simulation/templates/gaia/flora_tree_fig.xml:8
+#: simulation/templates/gaia/flora_tree_fig.xml:7
 msgid "Fig"
 msgstr ""
 
-#: simulation/templates/gaia/flora_tree_fig.xml:10
+#: simulation/templates/gaia/flora_tree_fig.xml:8
 msgid "Gather figs for Food."
 msgstr ""
 
@@ -538,7 +445,7 @@ msgstr ""
 msgid "Large Oak Tree"
 msgstr ""
 
-#: simulation/templates/gaia/flora_tree_olive.xml:8
+#: simulation/templates/gaia/flora_tree_olive.xml:4
 msgid "Olive Tree"
 msgstr ""
 
@@ -673,19 +580,7 @@ msgstr ""
 msgid "Wooden Bridge"
 msgstr ""
 
-#: simulation/templates/other/cart_tophet.xml:22
-msgid "Sacrificial Temple"
-msgstr ""
-
-#: simulation/templates/other/cart_tophet.xml:23
-msgid "Tophet"
-msgstr ""
-
-#: simulation/templates/other/cart_tophet.xml:24
-msgid "Train physicians and Sacred Band Cavalrymen."
-msgstr ""
-
-#: simulation/templates/other/celt_hut.xml:21
+#: simulation/templates/other/celt_hut.xml:22
 msgid "Hut"
 msgstr ""
 
@@ -738,7 +633,7 @@ msgstr ""
 msgid "Naos Parthenos"
 msgstr ""
 
-#: simulation/templates/other/hellenic_epic_temple.xml:32
+#: simulation/templates/other/hellenic_epic_temple.xml:31
 msgid "Garrison units to heal them at a quick rate."
 msgstr ""
 
@@ -758,10 +653,6 @@ msgstr ""
 msgid "Hellenic Stoa"
 msgstr ""
 
-#: simulation/templates/other/maur_palace.xml:12
-msgid "Harmya"
-msgstr ""
-
 #: simulation/templates/other/obelisk.xml:20
 msgid "Obelisk"
 msgstr ""
@@ -770,11 +661,11 @@ msgstr ""
 msgid "Egyptian Obelisk"
 msgstr ""
 
-#: simulation/templates/other/palisades_angle_spike.xml:16
+#: simulation/templates/other/palisades_angle_spike.xml:15
 msgid "Palisade Angle Spike"
 msgstr ""
 
-#: simulation/templates/other/palisades_angle_spike.xml:17
+#: simulation/templates/other/palisades_angle_spike.xml:16
 msgid "Big Spike"
 msgstr ""
 
@@ -814,7 +705,7 @@ msgstr ""
 #: simulation/templates/other/palisades_rocks_medium.xml:27
 #: simulation/templates/other/palisades_rocks_short.xml:26
 #: simulation/templates/other/palisades_rocks_straight.xml:15
-#: simulation/templates/other/palisades_rocks_tower.xml:26
+#: simulation/templates/other/palisades_rocks_tower.xml:25
 #: simulation/templates/other/wallset_palisade.xml:6
 msgid "Palisade"
 msgstr ""
@@ -823,7 +714,7 @@ msgstr ""
 #: simulation/templates/other/palisades_rocks_medium.xml:28
 #: simulation/templates/other/palisades_rocks_short.xml:27
 #: simulation/templates/other/palisades_rocks_straight.xml:16
-#: simulation/templates/other/palisades_rocks_tower.xml:27
+#: simulation/templates/other/palisades_rocks_tower.xml:26
 #: simulation/templates/other/wallset_palisade.xml:5
 msgid "Wooden Wall"
 msgstr ""
@@ -841,45 +732,20 @@ msgstr ""
 msgid "Watchtower"
 msgstr ""
 
-#: simulation/templates/other/palisades_small_spikes.xml:16
+#: simulation/templates/other/palisades_small_spikes.xml:15
 msgid "Spikes Small"
 msgstr ""
 
-#: simulation/templates/other/palisades_small_spikes.xml:17
+#: simulation/templates/other/palisades_small_spikes.xml:16
 msgid "Small Spikes"
 msgstr ""
 
-#: simulation/templates/other/palisades_tall_spikes.xml:16
+#: simulation/templates/other/palisades_tall_spikes.xml:15
 msgid "Spikes Tall"
 msgstr ""
 
-#: simulation/templates/other/palisades_tall_spikes.xml:17
+#: simulation/templates/other/palisades_tall_spikes.xml:16
 msgid "Tall Spikes"
-msgstr ""
-
-#: simulation/templates/other/pers_apartment_block.xml:15
-msgid "Apartment Block"
-msgstr ""
-
-#: simulation/templates/other/pers_house_a.xml:12
-msgid "House"
-msgstr ""
-
-#: simulation/templates/other/pers_house_b.xml:15
-#: simulation/templates/other/pers_inn.xml:15
-msgid "Inn"
-msgstr ""
-
-#: simulation/templates/other/pers_warehouse.xml:12
-msgid "Warehouse"
-msgstr ""
-
-#: simulation/templates/other/plane.xml:41
-msgid "P-51 Mustang"
-msgstr ""
-
-#: simulation/templates/other/plane.xml:43
-msgid "A World War 2 American fighter plane."
 msgstr ""
 
 #: simulation/templates/other/pyramid_great.xml:9
@@ -901,18 +767,6 @@ msgstr ""
 
 #: simulation/templates/other/sele_colonnade.xml:21
 msgid "Corinthian Colonnade"
-msgstr ""
-
-#: simulation/templates/other/special_catafalque.xml:20
-msgid "Catafalque"
-msgstr ""
-
-#: simulation/templates/other/special_catafalque.xml:23
-msgid "A catafalque that holds the remains of a great leader."
-msgstr ""
-
-#: simulation/templates/other/special_catafalque.xml:24
-msgid "Relic"
 msgstr ""
 
 #: simulation/templates/other/special_treasure_shipwreck.xml:10
@@ -974,63 +828,8 @@ msgstr ""
 msgid "Unfinished Greek Temple"
 msgstr ""
 
-#: simulation/templates/other/unfinished_greek_temple.xml:12
+#: simulation/templates/other/unfinished_greek_temple.xml:11
 msgid "This temple is unfinished and has fallen to ruin."
-msgstr ""
-
-#: simulation/templates/other/catafalque/athen_catafalque.xml:9
-msgid "Solon"
-msgstr ""
-
-#: simulation/templates/other/catafalque/brit_catafalque.xml:9
-msgid "Cassivellaunus"
-msgstr ""
-
-#: simulation/templates/other/catafalque/cart_catafalque.xml:8
-msgid "Hasdrubal (Quartermaster)"
-msgstr ""
-
-#: simulation/templates/other/catafalque/gaul_catafalque.xml:9
-msgid "Ambiorix"
-msgstr ""
-
-#: simulation/templates/other/catafalque/iber_catafalque.xml:9
-msgid "Mandonius"
-msgstr ""
-
-#: simulation/templates/other/catafalque/mace_catafalque.xml:8
-msgid "Philip V"
-msgstr ""
-
-#: simulation/templates/other/catafalque/mace_catafalque.xml:9
-msgid ""
-"Financial Reorganization: Allied with Rome, Philip reorganized the country's"
-" internal affairs and finances, leaving as a legacy reopened mines and a new"
-" currency. Gain a slow trickle of metal."
-msgstr ""
-
-#: simulation/templates/other/catafalque/maur_catafalque.xml:9
-msgid "Bindusara"
-msgstr ""
-
-#: simulation/templates/other/catafalque/pers_catafalque.xml:8
-msgid "Artaxerxes II"
-msgstr ""
-
-#: simulation/templates/other/catafalque/ptol_catafalque.xml:8
-msgid "Ptolemy III Euergetes (Benefactor)"
-msgstr ""
-
-#: simulation/templates/other/catafalque/rome_catafalque.xml:9
-msgid "Lucius Junius Brutus"
-msgstr ""
-
-#: simulation/templates/other/catafalque/sele_catafalque.xml:10
-msgid "Antiochus I Soter (Savior)"
-msgstr ""
-
-#: simulation/templates/other/catafalque/spart_catafalque.xml:10
-msgid "Lycurgus"
 msgstr ""
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
@@ -1039,7 +838,7 @@ msgid ""
 "for other civs"
 msgstr ""
 
-#: simulation/templates/skirmish/structures/default_house_5.xml:9
+#: simulation/templates/skirmish/structures/default_house_5.xml:8
 msgid ""
 "Changes in a 5-pop house for civilisations with those houses, is deleted for"
 " other civs"
@@ -1053,29 +852,86 @@ msgstr ""
 msgid "Spy"
 msgstr ""
 
-#: simulation/templates/special_units/athen_mechanical_siege_lithobolos_common.xml:5
-#: simulation/templates/special_units/mace_mechanical_siege_lithobolos_common.xml:5
-#: simulation/templates/special_units/ptol_mechanical_siege_lithobolos_common.xml:5
-#: simulation/templates/special_units/sele_mechanical_siege_lithobolos_common.xml:5
-msgid "Lithobólos"
+#: simulation/templates/special/formations/battle_line.xml:5
+msgid "Battle Line"
 msgstr ""
 
-#: simulation/templates/special_units/athen_mechanical_siege_oxybeles_common.xml:5
-#: simulation/templates/special_units/cart_mechanical_siege_oxybeles_common.xml:5
-#: simulation/templates/special_units/mace_mechanical_siege_oxybeles_common.xml:5
-#: simulation/templates/special_units/spart_mechanical_siege_oxybeles_common.xml:5
-msgid "Oxybelḗs"
+#: simulation/templates/special/formations/box.xml:6
+msgid "4 units required"
 msgstr ""
 
-#: simulation/templates/special_units/cart_mechanical_siege_ballista_common.xml:5
-#: simulation/templates/special_units/rome_mechanical_siege_ballista_common.xml:20
-msgid "Ballista"
+#: simulation/templates/special/formations/box.xml:7
+msgid "Box"
 msgstr ""
 
-#: simulation/templates/special_units/ptol_mechanical_siege_polybolos_common.xml:5
-msgid "Polybolos"
+#: simulation/templates/special/formations/column_closed.xml:5
+msgid "Forced March"
 msgstr ""
 
-#: simulation/templates/special_units/rome_mechanical_siege_scorpio_common.xml:16
-msgid "Scorpio"
+#: simulation/templates/special/formations/column_open.xml:5
+msgid "Column Open"
+msgstr ""
+
+#: simulation/templates/special/formations/flank.xml:6
+msgid "8 units required"
+msgstr ""
+
+#: simulation/templates/special/formations/flank.xml:7
+msgid "Flank"
+msgstr ""
+
+#: simulation/templates/special/formations/line_closed.xml:5
+msgid "Close Order"
+msgstr ""
+
+#: simulation/templates/special/formations/line_open.xml:5
+msgid "Open Order"
+msgstr ""
+
+#: simulation/templates/special/formations/null.xml:5
+msgid "None"
+msgstr ""
+
+#: simulation/templates/special/formations/phalanx.xml:6
+msgid "10 hoplite infantry required"
+msgstr ""
+
+#: simulation/templates/special/formations/phalanx.xml:7
+msgid "Phalanx"
+msgstr ""
+
+#: simulation/templates/special/formations/scatter.xml:5
+msgid "Scatter"
+msgstr ""
+
+#: simulation/templates/special/formations/skirmish.xml:5
+msgid "Only ranged units allowed"
+msgstr ""
+
+#: simulation/templates/special/formations/skirmish.xml:6
+msgid "Skirmish"
+msgstr ""
+
+#: simulation/templates/special/formations/syntagma.xml:6
+msgid "16 pike infantry units required"
+msgstr ""
+
+#: simulation/templates/special/formations/syntagma.xml:8
+msgid "Syntagma"
+msgstr ""
+
+#: simulation/templates/special/formations/testudo.xml:6
+msgid "9 melee infantry units required"
+msgstr ""
+
+#: simulation/templates/special/formations/testudo.xml:7
+msgid "Testudo"
+msgstr ""
+
+#: simulation/templates/special/formations/wedge.xml:6
+msgid "6 cavalry units required"
+msgstr ""
+
+#: simulation/templates/special/formations/wedge.xml:7
+msgid "Wedge"
 msgstr ""

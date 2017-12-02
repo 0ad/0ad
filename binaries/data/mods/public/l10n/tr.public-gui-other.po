@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-10-25 09:03+0200\n"
-"PO-Revision-Date: 2017-10-25 14:52+0000\n"
+"POT-Creation-Date: 2017-11-29 09:04+0100\n"
+"PO-Revision-Date: 2017-11-29 15:59+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -89,10 +89,6 @@ msgctxt "hotkey"
 msgid "Tab"
 msgstr "Sekme"
 
-#: gui/common/functions_civinfo.js:31
-msgid "Gaia"
-msgstr "Doğa"
-
 #: gui/common/functions_global_object.js:57
 #, javascript-format
 msgid ""
@@ -114,16 +110,20 @@ msgstr "FPS: %(fps)4s"
 msgid "Loading Aborted"
 msgstr "Yükleme İptal edildi"
 
-#: gui/common/functions_utility.js:111
+#: gui/common/functions_utility.js:50
+msgid "Gaia"
+msgstr "Doğa"
+
+#: gui/common/functions_utility.js:126
 msgctxt "map selection"
 msgid "Random"
 msgstr "Rastgele"
 
-#: gui/common/functions_utility.js:122
+#: gui/common/functions_utility.js:137
 msgid "mm:ss"
 msgstr "dd:ss"
 
-#: gui/common/functions_utility.js:122
+#: gui/common/functions_utility.js:137
 msgid "HH:mm:ss"
 msgstr "SS:dd:ss"
 
@@ -141,7 +141,7 @@ msgstr "%(dateString)s %(map)s - %(description)s"
 msgid "%(dateString)s %(map)s"
 msgstr "%(dateString)s %(map)s"
 
-#: gui/common/functions_utility_loadsave.js:85 gui/savedgames/save.js:63
+#: gui/common/functions_utility_loadsave.js:85
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
@@ -157,16 +157,14 @@ msgstr "SİL"
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
 #: gui/options/options.js:297 gui/options/options.js:350
 #: gui/options/options.js:376 gui/pregame/mainmenu.js:253
-#: gui/replaymenu/replay_actions.js:170 gui/savedgames/load.js:184
-#: gui/savedgames/save.js:66 gui/summary/summary.js:375
+#: gui/replaymenu/replay_actions.js:170 gui/summary/summary.js:391
 msgid "No"
 msgstr "Hayır"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
 #: gui/options/options.js:297 gui/options/options.js:350
 #: gui/options/options.js:376 gui/pregame/mainmenu.js:253
-#: gui/replaymenu/replay_actions.js:170 gui/savedgames/load.js:184
-#: gui/savedgames/save.js:66 gui/summary/summary.js:375
+#: gui/replaymenu/replay_actions.js:170 gui/summary/summary.js:391
 msgid "Yes"
 msgstr "Evet"
 
@@ -589,8 +587,6 @@ msgstr "Kullanıcılar (%(num)s): %(users)s"
 #: gui/common/tooltips.js:352 gui/common/tooltips.js:624
 #: gui/common/tooltips.js:658 gui/common/tooltips.js:724
 #: gui/replaymenu/replay_actions.js:93 gui/replaymenu/replay_actions.js:94
-#: gui/savedgames/load.js:117 gui/savedgames/load.js:171
-#: gui/savedgames/load.js:174
 msgid ", "
 msgstr ","
 
@@ -1104,17 +1100,8 @@ msgstr "Yağma:"
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
 
-#: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
-msgctxt "localeCountry"
-msgid "None"
-msgstr "Yok"
-
-#: gui/locale/locale_advanced.js:91
-msgid "invalid locale"
-msgstr "geçersiz konum"
-
 #: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:157
-#: gui/splashscreen/splashscreen.xml:(caption):28
+#: gui/splashscreen/splashscreen.xml:(caption):29
 msgid "OK"
 msgstr "Tamam"
 
@@ -1149,7 +1136,7 @@ msgid ""
 msgstr "Sıfırlama kaydedilmiş ayarları silecektir. Devam edilsin mi?"
 
 #: gui/options/options.js:296 gui/options/options.js:349
-#: gui/options/options.js:375 gui/savedgames/load.js:183
+#: gui/options/options.js:375
 msgid "Warning"
 msgstr "Uyarı"
 
@@ -1235,7 +1222,7 @@ msgstr "Yapı: %(buildDate)s (%(revision)s)"
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "0 A.D.'den çıkmak istediğinize emin misiniz?"
 
-#: gui/pregame/mainmenu.js:252 gui/summary/summary.js:374
+#: gui/pregame/mainmenu.js:252 gui/summary/summary.js:390
 msgid "Confirmation"
 msgstr "Onay"
 
@@ -1253,16 +1240,16 @@ msgstr "Hata"
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "Çoklu oyuncu lobisi başlat. \\[DISABLED BY BUILD]"
 
-#: gui/pregame/mainmenu.js:279 gui/pregame/mainmenu.xml:(caption):69
-#: gui/pregame/mainmenu.xml:(caption):96
+#: gui/pregame/mainmenu.js:279 gui/pregame/mainmenu.xml:(caption):68
+#: gui/pregame/mainmenu.xml:(caption):95
 msgid "Technical Details"
 msgstr "Teknik Detaylar"
 
-#: gui/pregame/mainmenu.js:284 gui/pregame/mainmenu.xml:(caption):147
+#: gui/pregame/mainmenu.js:284 gui/pregame/mainmenu.xml:(caption):146
 msgid "Manual"
 msgstr "Kılavuz"
 
-#: gui/reference/common/load.js:234
+#: gui/reference/common/load.js:255
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
 msgstr "%(health_min)s e %(health_max)s"
@@ -1271,12 +1258,12 @@ msgstr "%(health_min)s e %(health_max)s"
 msgid "You don't have the same mods active as the replay does."
 msgstr "Oynatmanın yaptığı gibi aynı modlara sahip değilsiniz."
 
-#: gui/replaymenu/replay_actions.js:93 gui/savedgames/load.js:170
+#: gui/replaymenu/replay_actions.js:93
 #, javascript-format
 msgid "Required: %(mods)s"
 msgstr "Gerekli: %(mods)s"
 
-#: gui/replaymenu/replay_actions.js:94 gui/savedgames/load.js:173
+#: gui/replaymenu/replay_actions.js:94
 #, javascript-format
 msgid "Active: %(mods)s"
 msgstr "Aktif: %(mods)s"
@@ -1365,11 +1352,11 @@ msgstr "%(min)s - %(max)s dk"
 msgid "Single- and multiplayer"
 msgstr "Tek -ve çoklu oyuncu"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):465
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):464
 msgid "Single Player"
 msgstr "Tek Oyunculu"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):480
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):479
 msgid "Multiplayer"
 msgstr "Çok Oyunculu"
 
@@ -1407,60 +1394,13 @@ msgstr "yyyy-AA-gg SS:dd"
 msgid "yyyy-MM"
 msgstr "yyyy-AA"
 
-#: gui/savedgames/load.js:117
-#, javascript-format
-msgid "Mods: %(mods)s"
-msgstr "Modlar: %(mods)s"
-
-#: gui/savedgames/load.js:147
-msgid "This saved game may not be compatible:"
-msgstr "Bu kayıtlı oyun uyumlu olmayabilir:"
-
-#: gui/savedgames/load.js:151
-#, javascript-format
-msgid ""
-"It needs 0 A.D. version %(requiredVersion)s, while you are running version "
-"%(currentVersion)s."
-msgstr "O 0 A.D. %(requiredVersion)s sürümüne ihtiyaç duyuyor, çalışan sürüm ise %(currentVersion)s dür."
-
-#: gui/savedgames/load.js:156
-msgid "It needs an older version of 0 A.D."
-msgstr "O, 0 A.D.'nin eski sürümüne ihtiyaç duyuyor."
-
-#: gui/savedgames/load.js:159
-#, javascript-format
-msgid ""
-"It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
-"savegame version %(currentVersion)s."
-msgstr "O 0 A.D. %(requiredVersion)s kayıtlı oyun sürümüne ihtiyaç duyuyor, çalışan kayıtlı oyun sürüm ise %(currentVersion)s dür."
-
-#: gui/savedgames/load.js:169
-msgid "The savegame needs a different set of mods:"
-msgstr "Savegame'in farklı mod modlarına ihtiyacı var:"
-
-#: gui/savedgames/load.js:178
-msgid "Do you still want to proceed?"
-msgstr "Hala devam etmek istiyor musunuz?"
-
-#: gui/savedgames/save.js:30
-msgid "No saved games found"
-msgstr "Kaydedilmiş oyun yok"
-
-#: gui/savedgames/save.js:64
-msgid "Saved game will be permanently overwritten, are you sure?"
-msgstr "Kayıtlı oyunun üzerine yazılacak, emin misiniz?"
-
-#: gui/savedgames/save.js:65
-msgid "OVERWRITE SAVE"
-msgstr "ÜZERİNE YAZ KAYDET"
-
-#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):64
+#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):54
 msgid "Score"
 msgstr "Puan"
 
 #: gui/summary/layout.js:5 gui/summary/layout.js:23 gui/summary/layout.js:61
-#: gui/summary/layout.js:101 gui/summary/layout.js:149
-#: gui/summary/layout.js:181 gui/summary/summary.xml:(caption):113
+#: gui/summary/layout.js:101 gui/summary/layout.js:151
+#: gui/summary/layout.js:183 gui/summary/summary.xml:(caption):103
 msgid "Player name"
 msgstr "Oyuncu adı:"
 
@@ -1480,7 +1420,7 @@ msgstr "Keşik skor"
 msgid "Total score"
 msgstr "Toplam skor"
 
-#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):71
+#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):61
 msgid "Buildings"
 msgstr "Yapılar"
 
@@ -1523,7 +1463,7 @@ msgid ""
 "%(lost)s)"
 msgstr "İnşa İstatistikleri (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):78
+#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):68
 msgid "Units"
 msgstr "Birimler"
 
@@ -1556,7 +1496,7 @@ msgstr "Tüccarlar"
 msgid "Units Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 msgstr "Birim İstatistikleri (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):85
+#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):75
 msgid "Resources"
 msgstr "Kaynaklar"
 
@@ -1575,205 +1515,206 @@ msgstr "Toplanan hazineler"
 msgid "Loot"
 msgstr "Yağma"
 
-#: gui/summary/layout.js:124
+#: gui/summary/layout.js:121
+msgid "Livestock bred"
+msgstr ""
+
+#: gui/summary/layout.js:125
 #, javascript-format
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
 msgstr "Kaynak İstatislikleri (%(gathered)s / %(used)s)"
 
-#: gui/summary/layout.js:147 gui/summary/summary.xml:(caption):92
+#: gui/summary/layout.js:149 gui/summary/summary.xml:(caption):82
 msgid "Market"
 msgstr "Pazar"
 
 #. Translation: use %(resourceWithinSentence)s if needed
-#: gui/summary/layout.js:155
+#: gui/summary/layout.js:157
 #, javascript-format
 msgid "%(resourceFirstWord)s exchanged"
 msgstr "%(resourceFirstWord)s alışverişi yapıldı"
 
-#: gui/summary/layout.js:163
+#: gui/summary/layout.js:165
 msgid "Barter efficiency"
 msgstr "Takas verimi"
 
-#: gui/summary/layout.js:164
+#: gui/summary/layout.js:166
 msgid "Trade income"
 msgstr "Ticari kazanç"
 
-#: gui/summary/layout.js:179 gui/summary/summary.xml:(caption):99
+#: gui/summary/layout.js:181 gui/summary/summary.xml:(caption):89
 #: gui/credits/texts/misc.jsonTitle
 msgid "Miscellaneous"
 msgstr "Çeşitli"
 
-#: gui/summary/layout.js:182
+#: gui/summary/layout.js:184
 msgid "Vegetarian ratio"
 msgstr "Vejetaryen oranı"
 
-#: gui/summary/layout.js:183
+#: gui/summary/layout.js:185
 msgid "Feminization"
 msgstr "Kadınlaşma"
 
-#: gui/summary/layout.js:184
+#: gui/summary/layout.js:186
 msgid "Kill / Death ratio"
 msgstr "Öldürülme / Vefa oranı"
 
-#: gui/summary/layout.js:187
+#: gui/summary/layout.js:189
 #, javascript-format
 msgid ""
 "Bribes\n"
 "(%(succeeded)s / %(failed)s)"
 msgstr ""
 
-#: gui/summary/layout.js:195
+#: gui/summary/layout.js:197
 msgid "Map exploration"
 msgstr "Harita açığa çıkması"
 
-#: gui/summary/layout.js:196
+#: gui/summary/layout.js:198
 msgid "Map control (peak)"
 msgstr "Harita kontrol (tepe)"
 
-#: gui/summary/layout.js:197
+#: gui/summary/layout.js:199
 msgid "Map control (finish)"
 msgstr "Harita kontrol (bitiş)"
 
-#: gui/summary/layout.js:351
+#: gui/summary/layout.js:353
 msgid "Team total"
 msgstr "Takım bütünü"
 
-#: gui/summary/summary.js:28
+#: gui/summary/summary.js:30
 msgid "Trained"
 msgstr "Eğitildi"
 
-#: gui/summary/summary.js:33
+#: gui/summary/summary.js:35
 msgid "Constructed"
 msgstr "İnşa edildi"
 
-#: gui/summary/summary.js:38
+#: gui/summary/summary.js:40
 msgid "Gathered"
 msgstr "Toplandı"
 
-#: gui/summary/summary.js:43
+#: gui/summary/summary.js:45
 msgid "Sent"
 msgstr "Gönderildi"
 
-#: gui/summary/summary.js:48
+#: gui/summary/summary.js:50
 msgid "Bought"
 msgstr "Satın"
 
-#: gui/summary/summary.js:53
+#: gui/summary/summary.js:55
 msgid "Income"
 msgstr "Gelir"
 
-#: gui/summary/summary.js:58
+#: gui/summary/summary.js:60
 msgid "Captured"
 msgstr "Saldırıldı"
 
-#: gui/summary/summary.js:63
+#: gui/summary/summary.js:65
 msgid "Succeeded"
 msgstr ""
 
-#: gui/summary/summary.js:68
+#: gui/summary/summary.js:70
 msgid "Destroyed"
 msgstr "İmha edildi"
 
-#: gui/summary/summary.js:73
+#: gui/summary/summary.js:75
 msgid "Killed"
 msgstr "Öldü"
 
-#: gui/summary/summary.js:78
+#: gui/summary/summary.js:80
 msgid "Lost"
 msgstr "Kaybedildi"
 
-#: gui/summary/summary.js:83
+#: gui/summary/summary.js:85
 msgid "Used"
 msgstr "Kullanıldı"
 
-#: gui/summary/summary.js:88
+#: gui/summary/summary.js:90
 msgid "Received"
 msgstr "Alındı"
 
-#: gui/summary/summary.js:93
+#: gui/summary/summary.js:95
 msgid "Sold"
 msgstr "Satıldı"
 
-#: gui/summary/summary.js:98
+#: gui/summary/summary.js:100
 msgid "Outcome"
 msgstr "Sonuç"
 
-#: gui/summary/summary.js:103
+#: gui/summary/summary.js:105
 msgid "Failed"
 msgstr ""
 
-#: gui/summary/summary.js:111
+#: gui/summary/summary.js:113
 msgid "∞"
 msgstr "∞"
 
-#: gui/summary/summary.js:373
+#: gui/summary/summary.js:389
 msgid "Are you sure you want to quit the lobby?"
 msgstr "Lobiden çıkmak  istediğinizden emin misiniz?"
 
-#: gui/summary/summary.js:429
+#: gui/summary/summary.js:444
 msgid "Current Scores"
 msgstr "Geçerli Skorlar"
 
-#: gui/summary/summary.js:431
+#: gui/summary/summary.js:446
 msgid "Scores at the end of the game."
 msgstr "Oyunun sonundaki puanlar."
 
-#: gui/summary/summary.js:433
+#: gui/summary/summary.js:448
 msgid "You have been disconnected."
 msgstr "Bağlantı kesildi."
 
-#: gui/summary/summary.js:435
+#: gui/summary/summary.js:450
 msgid "You have left the game."
 msgstr "Oyunu bıraktın."
 
-#: gui/summary/summary.js:437
+#: gui/summary/summary.js:452
 msgid "You have won the battle!"
 msgstr "Savaşı kazandın!"
 
-#: gui/summary/summary.js:439
+#: gui/summary/summary.js:454
 msgid "You have been defeated..."
 msgstr "Kaybettiniz..."
 
-#: gui/summary/summary.js:440
+#: gui/summary/summary.js:455
 msgid "You have abandoned the game."
 msgstr "Oyunu terk ettin."
 
-#: gui/summary/summary.js:445
+#: gui/summary/summary.js:458
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Oyun süresi: %(time)s"
 
-#: gui/summary/summary.js:453
+#: gui/summary/summary.js:466
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
 
-#: gui/civinfo/civinfo.xml:(caption):16
+#: gui/civinfo/civinfo.xml:(caption):14
 msgid "Civilizations"
 msgstr "Medeniyetler"
 
-#: gui/civinfo/civinfo.xml:(caption):28
+#: gui/civinfo/civinfo.xml:(caption):26
 msgid "Civilization Selection"
 msgstr "Medeniyet Seçimi"
 
-#: gui/civinfo/civinfo.xml:(caption):119 gui/credits/credits.xml:(caption):36
+#: gui/civinfo/civinfo.xml:(caption):117 gui/credits/credits.xml:(caption):37
 #: gui/options/options.xml:(caption):60
-#: gui/reference/structree/structree.xml:(caption):122
+#: gui/reference/structree/structree.xml:(caption):119
 msgid "Close"
 msgstr "Kapat"
 
-#: gui/credits/credits.xml:(caption):18
+#: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
 msgstr "0 A.D. Katkıcıları"
 
-#: gui/locale/locale.xml:(caption):14
-#: gui/locale/locale_advanced.xml:(caption):14
-#: gui/pregame/mainmenu.xml:(caption):339
+#: gui/locale/locale.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):338
 msgid "Language"
 msgstr "Dil"
 
 #: gui/locale/locale.xml:(caption):17
-#: gui/locale/locale_advanced.xml:(caption):17
 msgid "Language:"
 msgstr "Dil:"
 
@@ -1786,8 +1727,6 @@ msgid "Locale:"
 msgstr "Konum:"
 
 #: gui/locale/locale.xml:(caption):36
-#: gui/locale/locale_advanced.xml:(caption):65
-#: gui/savedgames/load.xml:(caption):58 gui/savedgames/save.xml:(caption):38
 msgid "Cancel"
 msgstr "İptal"
 
@@ -1796,48 +1735,8 @@ msgid "Advanced"
 msgstr "İleri"
 
 #: gui/locale/locale.xml:(caption):46
-#: gui/locale/locale_advanced.xml:(caption):75
 msgid "Accept"
 msgstr "Kabul et"
-
-#: gui/locale/locale_advanced.xml:(caption):25
-msgid "Country:"
-msgstr "Ülke:"
-
-#: gui/locale/locale_advanced.xml:(caption):34
-msgid "Script:"
-msgstr "Komut dosyası:"
-
-#: gui/locale/locale_advanced.xml:(caption):41
-msgid "Variant (unused):"
-msgstr "Başka biçim (kullanılmayan):"
-
-#: gui/locale/locale_advanced.xml:(caption):48
-msgid "Keywords (unused):"
-msgstr "Anahtar kelimeler (kullanılmayan):"
-
-#: gui/locale/locale_advanced.xml:(caption):55
-msgid "Resulting locale:"
-msgstr "Ortaya çıkan yer:"
-
-#: gui/locale/locale_advanced.xml:(caption):60
-msgid "Dictionary files used:"
-msgstr "Kullanılan sözlük dosyaları:"
-
-#: gui/locale/locale_advanced.xml:(caption):70
-msgid "Auto detect"
-msgstr "Otomatik tespit"
-
-#: gui/locale/locale_advanced.xml:(tooltip):37
-msgid ""
-"Optional four-letter script code part following the language code (as listed"
-" in ISO 15924)"
-msgstr "Aşağıdaki isteğe bağlı opsiyonel dört-harf script kodu (ISO 15924 listelendiği gibi)"
-
-#: gui/locale/locale_advanced.xml:(tooltip):44
-#: gui/locale/locale_advanced.xml:(tooltip):51
-msgid "Not implemented yet."
-msgstr "Henüz uygulanmaktadır."
 
 #: gui/options/options.xml:(caption):15
 msgid "Game Options"
@@ -1851,7 +1750,7 @@ msgstr "Sıfırla"
 msgid "Revert"
 msgstr "Geri al"
 
-#: gui/options/options.xml:(caption):54 gui/savedgames/save.xml:(caption):48
+#: gui/options/options.xml:(caption):54
 msgid "Save"
 msgstr "Kaydet"
 
@@ -1871,421 +1770,377 @@ msgstr "Değişiklikleri kaydet"
 msgid "Unsaved changes affect this session only"
 msgstr "Kaydedilmemiş değişiklikler sadece bu oturumu etkiler"
 
-#: gui/pregame/mainmenu.xml:59
+#: gui/pregame/mainmenu.xml:58
 msgid "Help improve 0 A.D.!"
 msgstr "0 A.D'nin gelişmesine yardım edin!"
 
-#: gui/pregame/mainmenu.xml:61
+#: gui/pregame/mainmenu.xml:60
 msgid ""
 "You can automatically send us anonymous feedback that will help us fix bugs,"
 " and improve performance and compatibility."
 msgstr "Hataları onarmakta bize yardımcı olmak için otomatik olarak anonim geribildirimler gönderebilir ve performans ile uyumluluk gelişimine yardım edebilirsiniz. "
 
-#: gui/pregame/mainmenu.xml:533
+#: gui/pregame/mainmenu.xml:532
 msgid "Alpha XXIII: Ken Wood"
 msgstr "Alfa XXIII: Ken Wood"
 
-#: gui/pregame/mainmenu.xml:535
+#: gui/pregame/mainmenu.xml:534
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
 msgstr "UYARI: Bu oyunun ilk gelişim sürümüdür. Birçok özellik henüz eklenmemiştir."
 
-#: gui/pregame/mainmenu.xml:(caption):65
+#: gui/pregame/mainmenu.xml:(caption):64
 msgid "Enable Feedback"
 msgstr "Geribildirimi aç"
 
-#: gui/pregame/mainmenu.xml:(caption):92
+#: gui/pregame/mainmenu.xml:(caption):91
 msgid "Disable Feedback"
 msgstr "Geribildirimi devredışı bırak"
 
-#: gui/pregame/mainmenu.xml:(caption):166
+#: gui/pregame/mainmenu.xml:(caption):165
 msgid "Tutorial"
 msgstr "Öğretici"
 
-#: gui/pregame/mainmenu.xml:(caption):180
-#: gui/reference/structree/structree.xml:(caption):16
+#: gui/pregame/mainmenu.xml:(caption):179
+#: gui/reference/structree/structree.xml:(caption):13
 msgid "Structure Tree"
 msgstr "Yapı Ağacı"
 
-#: gui/pregame/mainmenu.xml:(caption):195
+#: gui/pregame/mainmenu.xml:(caption):194
 msgid "History"
 msgstr "Tarih"
 
-#: gui/pregame/mainmenu.xml:(caption):218
+#: gui/pregame/mainmenu.xml:(caption):217
 msgid "Matches"
 msgstr "Müsabakalar"
 
-#: gui/pregame/mainmenu.xml:(caption):232
+#: gui/pregame/mainmenu.xml:(caption):231
 msgid "Campaigns"
 msgstr "Mücadeleler "
 
-#: gui/pregame/mainmenu.xml:(caption):245 gui/savedgames/load.xml:(caption):20
+#: gui/pregame/mainmenu.xml:(caption):244
 msgid "Load Game"
 msgstr "Oyunu Yükle"
 
 #. Join a game by specifying the host's IP address.
-#: gui/pregame/mainmenu.xml:(caption):268
+#: gui/pregame/mainmenu.xml:(caption):267
 msgid "Join Game"
 msgstr "Oyuna Katıl"
 
-#: gui/pregame/mainmenu.xml:(caption):282
+#: gui/pregame/mainmenu.xml:(caption):281
 msgid "Host Game"
 msgstr "Oyunu Kur"
 
-#: gui/pregame/mainmenu.xml:(caption):296
+#: gui/pregame/mainmenu.xml:(caption):295
 msgid "Game Lobby"
 msgstr "Oyun Lobisi"
 
-#: gui/pregame/mainmenu.xml:(caption):325
+#: gui/pregame/mainmenu.xml:(caption):324
 msgid "Options"
 msgstr "Ayarlar"
 
-#: gui/pregame/mainmenu.xml:(caption):353
+#: gui/pregame/mainmenu.xml:(caption):352
 msgid "Replays"
 msgstr "Yeniden oynatma"
 
-#: gui/pregame/mainmenu.xml:(caption):367
+#: gui/pregame/mainmenu.xml:(caption):366
 msgid "Scenario Editor"
 msgstr "Senaryo Düzenleyicisi"
 
-#: gui/pregame/mainmenu.xml:(caption):380
+#: gui/pregame/mainmenu.xml:(caption):379
 msgid "Welcome Screen"
 msgstr "Karşılama Ekranı"
 
-#: gui/pregame/mainmenu.xml:(caption):396
+#: gui/pregame/mainmenu.xml:(caption):395
 msgid "Mod Selection"
 msgstr "Mod Seçimi"
 
-#: gui/pregame/mainmenu.xml:(caption):450
+#: gui/pregame/mainmenu.xml:(caption):449
 msgid "Learn to Play"
 msgstr "Oynamasını Öğren"
 
-#: gui/pregame/mainmenu.xml:(caption):495
+#: gui/pregame/mainmenu.xml:(caption):494
 msgid "Tools & Options"
 msgstr "Araçlar & Ayarlar"
 
-#: gui/pregame/mainmenu.xml:(caption):510
+#: gui/pregame/mainmenu.xml:(caption):509
 msgid "Exit"
 msgstr "Çıkış"
 
-#: gui/pregame/mainmenu.xml:(caption):545
+#: gui/pregame/mainmenu.xml:(caption):544
 msgid "Website"
 msgstr "Websitesi"
 
-#: gui/pregame/mainmenu.xml:(caption):557
+#: gui/pregame/mainmenu.xml:(caption):556
 msgid "Chat"
 msgstr "Sohbet"
 
-#: gui/pregame/mainmenu.xml:(caption):569
+#: gui/pregame/mainmenu.xml:(caption):568
 msgid "Report a Bug"
 msgstr "Hatayı Bildirin"
 
-#: gui/pregame/mainmenu.xml:(caption):581
+#: gui/pregame/mainmenu.xml:(caption):580
 msgid "Translate the Game"
 msgstr "Bu oyunu çevir "
 
-#: gui/pregame/mainmenu.xml:(caption):593
+#: gui/pregame/mainmenu.xml:(caption):592
 msgid "Credits"
 msgstr "Katkıcılar"
 
-#: gui/pregame/mainmenu.xml:(caption):622
+#: gui/pregame/mainmenu.xml:(caption):621
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
-#: gui/pregame/mainmenu.xml:(tooltip):148
+#: gui/pregame/mainmenu.xml:(tooltip):147
 msgid "Open the 0 A.D. Game Manual."
 msgstr "0 A.D. Oyun Rehberini aç."
 
-#: gui/pregame/mainmenu.xml:(tooltip):167
+#: gui/pregame/mainmenu.xml:(tooltip):166
 msgid "Start the economic tutorial."
 msgstr "Ekonomi öğreticisini başlat."
 
-#: gui/pregame/mainmenu.xml:(tooltip):181
+#: gui/pregame/mainmenu.xml:(tooltip):180
 msgid "View the structure tree of civilizations featured in 0 A.D."
 msgstr "0 A.D. içerisinde öne çıkan medeniyetlerin yapı ağacına bak."
 
-#: gui/pregame/mainmenu.xml:(tooltip):196
+#: gui/pregame/mainmenu.xml:(tooltip):195
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "0 A.D'de yer alan medeniyetlere dair bilgi alın"
 
-#: gui/pregame/mainmenu.xml:(tooltip):219
+#: gui/pregame/mainmenu.xml:(tooltip):218
 msgid "Click here to start a new single player game."
 msgstr "Yeni bir tek kişilik oyun başlatmak için buraya tıklayın"
 
-#: gui/pregame/mainmenu.xml:(tooltip):233
+#: gui/pregame/mainmenu.xml:(tooltip):232
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
 msgstr "Eski tarihi savaş kampanyaları. \\[NOT YET IMPLEMENTED]"
 
-#: gui/pregame/mainmenu.xml:(tooltip):246
+#: gui/pregame/mainmenu.xml:(tooltip):245
 msgid "Click here to load a saved game."
 msgstr "Kayıtlı oyunu yüklemek için buraya tıklayın."
 
-#: gui/pregame/mainmenu.xml:(tooltip):269
+#: gui/pregame/mainmenu.xml:(tooltip):268
 msgid "Joining an existing multiplayer game."
 msgstr "Varolan bir çoklu oyuna katıl."
 
-#: gui/pregame/mainmenu.xml:(tooltip):283
+#: gui/pregame/mainmenu.xml:(tooltip):282
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr "Çok oyunculu oyun sunucusu barındır.\\n\\nUDP bağlantı noktası 20595'in açılması gerekli."
 
-#: gui/pregame/mainmenu.xml:(tooltip):297
+#: gui/pregame/mainmenu.xml:(tooltip):296
 msgid "Launch the multiplayer lobby."
 msgstr "Çoklu oyuncu lobisini başlat."
 
-#: gui/pregame/mainmenu.xml:(tooltip):326
+#: gui/pregame/mainmenu.xml:(tooltip):325
 msgid "Adjust game settings."
 msgstr "Oyun ayarlarını ayarla."
 
-#: gui/pregame/mainmenu.xml:(tooltip):340
+#: gui/pregame/mainmenu.xml:(tooltip):339
 msgid "Choose the language of the game."
 msgstr "Oyun lisanı seç."
 
-#: gui/pregame/mainmenu.xml:(tooltip):354
+#: gui/pregame/mainmenu.xml:(tooltip):353
 msgid "Playback previous games."
 msgstr "Önceki oyunları oynatın."
 
-#: gui/pregame/mainmenu.xml:(tooltip):368
+#: gui/pregame/mainmenu.xml:(tooltip):367
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Atlas Senaryo Düzenleyicisi'ni yeni bir pencerede açın.  Oyunu komut-satırı argümanından \"-editor\" ile başlatarak, çok daha hatasızca çalıştırabilirsiniz."
 
-#: gui/pregame/mainmenu.xml:(tooltip):381
+#: gui/pregame/mainmenu.xml:(tooltip):380
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "Karşılama Ekranını göster. Yanlışlıkla gizlemişseniz, çok kullanışlıdır."
 
-#: gui/pregame/mainmenu.xml:(tooltip):397
+#: gui/pregame/mainmenu.xml:(tooltip):396
 msgid "Select mods to use."
 msgstr "Kullanılacak modları seç."
 
-#: gui/pregame/mainmenu.xml:(tooltip):451
+#: gui/pregame/mainmenu.xml:(tooltip):450
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations"
 msgstr "Oyun oynamayı, öğreticiyi başlatmayı, teknoloji ağaçlarını keşfetmeyi ve uygarlıkların arkasındaki tarihi öğrenin."
 
-#: gui/pregame/mainmenu.xml:(tooltip):466
+#: gui/pregame/mainmenu.xml:(tooltip):465
 msgid "Challenge the computer player to a single player match."
 msgstr "Bilgisayar'a karşı Tek kişilik oyuncu olarak mücadele edin."
 
-#: gui/pregame/mainmenu.xml:(tooltip):481
+#: gui/pregame/mainmenu.xml:(tooltip):480
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Çoklu oyunda bir ya da daha fazla gerçek oyuncuya karşı savaşın"
 
-#: gui/pregame/mainmenu.xml:(tooltip):496
+#: gui/pregame/mainmenu.xml:(tooltip):495
 msgid "Game options and scenario design tools."
 msgstr "Oyun seçenekleri ve senaryo tasarım araçları"
 
-#: gui/pregame/mainmenu.xml:(tooltip):511
+#: gui/pregame/mainmenu.xml:(tooltip):510
 msgid "Exits the game."
 msgstr "Oyundan çık."
 
-#: gui/pregame/mainmenu.xml:(tooltip):546
+#: gui/pregame/mainmenu.xml:(tooltip):545
 msgid "Click to open play0ad.com in your web browser."
 msgstr "play0ad.com sitesini tarayıcınızda açmak için tıklayın."
 
-#: gui/pregame/mainmenu.xml:(tooltip):558
+#: gui/pregame/mainmenu.xml:(tooltip):557
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "0 A.D IRC konuşmasını web tarayıcınızda açmak için tıklayın. (webchat.quakenet.org üzerinde #0ad kanalındadır)"
 
-#: gui/pregame/mainmenu.xml:(tooltip):570
+#: gui/pregame/mainmenu.xml:(tooltip):569
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "0 A.D. hata ve çökme rapor etmek için tıklayın."
 
-#: gui/pregame/mainmenu.xml:(tooltip):582
+#: gui/pregame/mainmenu.xml:(tooltip):581
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "0 A.D. tercüme sayfasini tarayıcınızın üzerinden açmak için tıklayın."
 
-#: gui/pregame/mainmenu.xml:(tooltip):594
+#: gui/pregame/mainmenu.xml:(tooltip):593
 msgid "Click to see the 0 A.D. credits."
 msgstr "0 A.D. katkıcılarını görmek için tıklayın."
 
-#: gui/reference/structree/structree.xml:(caption):28
+#: gui/reference/structree/structree.xml:(caption):25
 msgid "Civilization:"
 msgstr "Medeniyet:"
 
-#: gui/reference/structree/structree.xml:(caption):95
+#: gui/reference/structree/structree.xml:(caption):92
 msgid "Trainer Units"
 msgstr "Eğitici Birimler"
 
-#: gui/replaymenu/replay_menu.xml:(caption):28
+#: gui/replaymenu/replay_menu.xml:(caption):13
 msgid "Replay Games"
 msgstr "Yeniden oynatma Oyunlar"
 
-#: gui/replaymenu/replay_menu.xml:(caption):123
+#: gui/replaymenu/replay_menu.xml:(caption):108
 msgid "Filter compatible replays"
 msgstr "Tekrar oynatmaları uyuma filtrele"
 
-#: gui/replaymenu/replay_menu.xml:(caption):164
-#: gui/savedgames/load.xml:(caption):98
+#: gui/replaymenu/replay_menu.xml:(caption):149
 msgid "Map Type:"
 msgstr "Harita Tipi:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):179
-#: gui/savedgames/load.xml:(caption):102
+#: gui/replaymenu/replay_menu.xml:(caption):164
 msgid "Map Size:"
 msgstr "Harita Boyutu:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):194
-#: gui/savedgames/load.xml:(caption):106
+#: gui/replaymenu/replay_menu.xml:(caption):179
 msgid "Victory:"
 msgstr "Zafer:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):227
+#: gui/replaymenu/replay_menu.xml:(caption):212
 msgid "Spoiler"
 msgstr "Özet"
 
-#: gui/replaymenu/replay_menu.xml:(caption):239
+#: gui/replaymenu/replay_menu.xml:(caption):224
 msgid "Main Menu"
 msgstr "Ana Menü"
 
-#: gui/replaymenu/replay_menu.xml:(caption):245
-#: gui/savedgames/load.xml:(caption):63 gui/savedgames/save.xml:(caption):43
+#: gui/replaymenu/replay_menu.xml:(caption):230
 msgid "Delete"
 msgstr "Sil"
 
-#: gui/replaymenu/replay_menu.xml:(caption):251
+#: gui/replaymenu/replay_menu.xml:(caption):236
 msgid "Reload Cache"
 msgstr "Önbelleği Yeniden Yükle"
 
-#: gui/replaymenu/replay_menu.xml:(caption):258
-#: gui/summary/summary.xml:(caption):24
+#: gui/replaymenu/replay_menu.xml:(caption):243
+#: gui/summary/summary.xml:(caption):14
 msgid "Summary"
 msgstr "Özet"
 
-#: gui/replaymenu/replay_menu.xml:(caption):264
+#: gui/replaymenu/replay_menu.xml:(caption):249
 msgid "Start Replay"
 msgstr "Yeniden oynatmayı başlat"
 
-#: gui/replaymenu/replay_menu.xml:(heading):83
-#: gui/savedgames/load.xml:(heading):37
+#: gui/replaymenu/replay_menu.xml:(heading):68
 msgctxt "replay"
 msgid "Date / Time"
 msgstr "Tarih / Zaman"
 
-#: gui/replaymenu/replay_menu.xml:(heading):87
+#: gui/replaymenu/replay_menu.xml:(heading):72
 msgctxt "replay"
 msgid "Players"
 msgstr "Oyuncular"
 
-#: gui/replaymenu/replay_menu.xml:(heading):91
-#: gui/savedgames/load.xml:(heading):45
+#: gui/replaymenu/replay_menu.xml:(heading):76
 msgctxt "replay"
 msgid "Map Name"
 msgstr "Harita İsmi"
 
-#: gui/replaymenu/replay_menu.xml:(heading):95
+#: gui/replaymenu/replay_menu.xml:(heading):80
 msgctxt "replay"
 msgid "Size"
 msgstr "Boyut"
 
-#: gui/replaymenu/replay_menu.xml:(heading):99
+#: gui/replaymenu/replay_menu.xml:(heading):84
 msgctxt "replay"
 msgid "Population"
 msgstr "Nüfus"
 
-#: gui/replaymenu/replay_menu.xml:(heading):103
+#: gui/replaymenu/replay_menu.xml:(heading):88
 msgctxt "replay"
 msgid "Duration"
 msgstr "Süre"
 
-#: gui/replaymenu/replay_menu.xml:(tooltip):252
+#: gui/replaymenu/replay_menu.xml:(tooltip):237
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
 msgstr "Sıfırdan oynatma önbelleğini kurun. Potansiyel olarak yavaş!"
 
-#: gui/savedgames/load.xml:(heading):41
-msgctxt "replay"
-msgid "Map Type"
-msgstr "Harita Tipi"
-
-#: gui/savedgames/load.xml:(heading):49
-msgctxt "replay"
-msgid "Description"
-msgstr "Açıklama"
-
-#: gui/savedgames/load.xml:(caption):54
-msgid "No saved games found."
-msgstr "Kayıtlı oyun bulunamadı."
-
-#: gui/savedgames/load.xml:(caption):68
-msgid "Load"
-msgstr "Yükle"
-
-#: gui/savedgames/load.xml:(caption):80
-msgid "Filter compatible saved games"
-msgstr "Uyumlu kaydedilmiş oyunları filtreleyin"
-
-#: gui/savedgames/load.xml:(caption):90
-msgid "Players:"
-msgstr "Oyuncular:"
-
-#: gui/savedgames/load.xml:(caption):94
-msgid "Played time:"
-msgstr "Oynama süresi:"
-
-#: gui/savedgames/save.xml:(caption):16
-msgid "Save Game"
-msgstr "Oyunu Kaydet"
-
-#: gui/savedgames/save.xml:(caption):30
-msgid "Description:"
-msgstr "Açıklama:"
-
-#: gui/splashscreen/splashscreen.xml:(caption):12
+#: gui/splashscreen/splashscreen.xml:(caption):13
 msgid "Welcome!"
 msgstr "Hoş Geldiniz!"
 
-#: gui/splashscreen/splashscreen.xml:(caption):17
+#: gui/splashscreen/splashscreen.xml:(caption):18
 msgid "Show this message in the future"
 msgstr "Gelecekte bu mesajı göster"
 
-#: gui/splashscreen/splashscreen.xml:(caption):22
+#: gui/splashscreen/splashscreen.xml:(caption):23
 msgid "Known Issues (web)"
 msgstr "Bilinen Sorunlar (web)"
 
-#: gui/summary/summary.xml:(caption):106
+#: gui/summary/summary.xml:(caption):96
 msgid "Charts"
 msgstr "Grafikler"
 
-#: gui/summary/summary.xml:(caption):163
+#: gui/summary/summary.xml:(caption):153
 msgctxt "summary chart"
 msgid "Category:"
 msgstr "Kategori:"
 
-#: gui/summary/summary.xml:(caption):173
+#: gui/summary/summary.xml:(caption):163
 msgctxt "summary chart"
 msgid "Value:"
 msgstr "Değer:"
 
-#: gui/summary/summary.xml:(caption):183
+#: gui/summary/summary.xml:(caption):173
 msgctxt "summary chart"
 msgid "Type:"
 msgstr "Tip:"
 
-#: gui/summary/summary.xml:(caption):202
+#: gui/summary/summary.xml:(caption):192
 msgid "Replay"
 msgstr "Yeniden oynatma"
 
-#: gui/summary/summary.xml:(caption):207
+#: gui/summary/summary.xml:(caption):197
 msgid "Continue"
 msgstr "Devam et"
 
-#: gui/summary/summary.xml:(tooltip):169
+#: gui/summary/summary.xml:(tooltip):159
 msgctxt "summary chart"
 msgid "Category"
 msgstr "Kategori"
 
-#: gui/summary/summary.xml:(tooltip):179
+#: gui/summary/summary.xml:(tooltip):169
 msgctxt "summary chart"
 msgid "Value"
 msgstr "Değer"
 
-#: gui/summary/summary.xml:(tooltip):190
+#: gui/summary/summary.xml:(tooltip):180
 msgctxt "summary chart"
 msgid "Type"
 msgstr "Tip"

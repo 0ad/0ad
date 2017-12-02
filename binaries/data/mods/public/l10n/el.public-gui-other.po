@@ -18,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-10-25 09:03+0200\n"
-"PO-Revision-Date: 2017-11-15 23:07+0000\n"
-"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
+"POT-Creation-Date: 2017-11-29 09:04+0100\n"
+"PO-Revision-Date: 2017-11-29 15:59+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -89,10 +89,6 @@ msgctxt "hotkey"
 msgid "Tab"
 msgstr "Tab"
 
-#: gui/common/functions_civinfo.js:31
-msgid "Gaia"
-msgstr "Γαία"
-
 #: gui/common/functions_global_object.js:57
 #, javascript-format
 msgid ""
@@ -114,16 +110,20 @@ msgstr "FPS: %(fps)4s"
 msgid "Loading Aborted"
 msgstr "Φόρτωση Εγκαταλείφθηκε"
 
-#: gui/common/functions_utility.js:111
+#: gui/common/functions_utility.js:50
+msgid "Gaia"
+msgstr "Γαία"
+
+#: gui/common/functions_utility.js:126
 msgctxt "map selection"
 msgid "Random"
 msgstr "Τυχαίος"
 
-#: gui/common/functions_utility.js:122
+#: gui/common/functions_utility.js:137
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:122
+#: gui/common/functions_utility.js:137
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -141,7 +141,7 @@ msgstr "%(dateString)s %(map)s - %(description)s"
 msgid "%(dateString)s %(map)s"
 msgstr "%(dateString)s %(map)s"
 
-#: gui/common/functions_utility_loadsave.js:85 gui/savedgames/save.js:63
+#: gui/common/functions_utility_loadsave.js:85
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
@@ -157,16 +157,14 @@ msgstr "ΔΙΑΓΡΑΦΗ"
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
 #: gui/options/options.js:297 gui/options/options.js:350
 #: gui/options/options.js:376 gui/pregame/mainmenu.js:253
-#: gui/replaymenu/replay_actions.js:170 gui/savedgames/load.js:184
-#: gui/savedgames/save.js:66 gui/summary/summary.js:375
+#: gui/replaymenu/replay_actions.js:170 gui/summary/summary.js:391
 msgid "No"
 msgstr "Όχι"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
 #: gui/options/options.js:297 gui/options/options.js:350
 #: gui/options/options.js:376 gui/pregame/mainmenu.js:253
-#: gui/replaymenu/replay_actions.js:170 gui/savedgames/load.js:184
-#: gui/savedgames/save.js:66 gui/summary/summary.js:375
+#: gui/replaymenu/replay_actions.js:170 gui/summary/summary.js:391
 msgid "Yes"
 msgstr "Ναι"
 
@@ -589,8 +587,6 @@ msgstr "Χρήστες (%(num)s): %(users)s"
 #: gui/common/tooltips.js:352 gui/common/tooltips.js:624
 #: gui/common/tooltips.js:658 gui/common/tooltips.js:724
 #: gui/replaymenu/replay_actions.js:93 gui/replaymenu/replay_actions.js:94
-#: gui/savedgames/load.js:117 gui/savedgames/load.js:171
-#: gui/savedgames/load.js:174
 msgid ", "
 msgstr ", "
 
@@ -1104,17 +1100,8 @@ msgstr "Λάφυρα:"
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
 
-#: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
-msgctxt "localeCountry"
-msgid "None"
-msgstr "Καμία"
-
-#: gui/locale/locale_advanced.js:91
-msgid "invalid locale"
-msgstr "Μη έγκυρη μετάφραση"
-
 #: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:157
-#: gui/splashscreen/splashscreen.xml:(caption):28
+#: gui/splashscreen/splashscreen.xml:(caption):29
 msgid "OK"
 msgstr "ΟΚ"
 
@@ -1149,7 +1136,7 @@ msgid ""
 msgstr "Επαναφέροντας τις ρυθμίσεις θα διαγραφούν οι αποθηκευμένες ρυθμίσεις. Να συνεχιστεί;"
 
 #: gui/options/options.js:296 gui/options/options.js:349
-#: gui/options/options.js:375 gui/savedgames/load.js:183
+#: gui/options/options.js:375
 msgid "Warning"
 msgstr "Προειδοποίηση"
 
@@ -1235,7 +1222,7 @@ msgstr "Έκδοση: %(buildDate)s (%(revision)s)"
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Θέλετε σίγουρα να αποχωρήσετε από το 0 A.D.;"
 
-#: gui/pregame/mainmenu.js:252 gui/summary/summary.js:374
+#: gui/pregame/mainmenu.js:252 gui/summary/summary.js:390
 msgid "Confirmation"
 msgstr "Επιβεβαίωση"
 
@@ -1253,16 +1240,16 @@ msgstr "Σφάλμα"
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "Εκκίνηση του λόμπι πολλαπλών παικτών. \\[DISABLED BY BUILD]"
 
-#: gui/pregame/mainmenu.js:279 gui/pregame/mainmenu.xml:(caption):69
-#: gui/pregame/mainmenu.xml:(caption):96
+#: gui/pregame/mainmenu.js:279 gui/pregame/mainmenu.xml:(caption):68
+#: gui/pregame/mainmenu.xml:(caption):95
 msgid "Technical Details"
 msgstr "Τεχνικές λεπτομέριες"
 
-#: gui/pregame/mainmenu.js:284 gui/pregame/mainmenu.xml:(caption):147
+#: gui/pregame/mainmenu.js:284 gui/pregame/mainmenu.xml:(caption):146
 msgid "Manual"
 msgstr "Εγχειρίδιο χρήσης"
 
-#: gui/reference/common/load.js:234
+#: gui/reference/common/load.js:255
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
 msgstr "%(health_min)s σε %(health_max)s"
@@ -1271,12 +1258,12 @@ msgstr "%(health_min)s σε %(health_max)s"
 msgid "You don't have the same mods active as the replay does."
 msgstr "Δεν είναι ενεργά τα ίδια mod με αυτά της επανάληψης."
 
-#: gui/replaymenu/replay_actions.js:93 gui/savedgames/load.js:170
+#: gui/replaymenu/replay_actions.js:93
 #, javascript-format
 msgid "Required: %(mods)s"
 msgstr "Απαιτείται: %(mods)s"
 
-#: gui/replaymenu/replay_actions.js:94 gui/savedgames/load.js:173
+#: gui/replaymenu/replay_actions.js:94
 #, javascript-format
 msgid "Active: %(mods)s"
 msgstr "Ενεργοποίηση: %(mods)s"
@@ -1365,11 +1352,11 @@ msgstr "%(min)s - %(max)s λεπτά"
 msgid "Single- and multiplayer"
 msgstr "Παιχνίδι ενός και πολλών παιχτών"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):465
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):464
 msgid "Single Player"
 msgstr "Παιχνίδι για έναν παίκτη"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):480
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):479
 msgid "Multiplayer"
 msgstr "Παιχνίδι για πολλούς παίκτες"
 
@@ -1407,60 +1394,13 @@ msgstr "yyyy-MM-dd HH:mm"
 msgid "yyyy-MM"
 msgstr "yyyy-MM"
 
-#: gui/savedgames/load.js:117
-#, javascript-format
-msgid "Mods: %(mods)s"
-msgstr "Mods: %(mods)s"
-
-#: gui/savedgames/load.js:147
-msgid "This saved game may not be compatible:"
-msgstr "Αυτό το αποθηκευμένο παιχνίδι ίσως να μήν είναι συμβατό:"
-
-#: gui/savedgames/load.js:151
-#, javascript-format
-msgid ""
-"It needs 0 A.D. version %(requiredVersion)s, while you are running version "
-"%(currentVersion)s."
-msgstr "Χρειάζεται η έκδοση %(requiredVersion)s του 0 A.D., ενώ τρέχει η έκδοση %(currentVersion)s."
-
-#: gui/savedgames/load.js:156
-msgid "It needs an older version of 0 A.D."
-msgstr "Χρειάζεται μία παλαιότερη έκδοση του 0 A.D."
-
-#: gui/savedgames/load.js:159
-#, javascript-format
-msgid ""
-"It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
-"savegame version %(currentVersion)s."
-msgstr "Χρειάζεται η έκδοση για το σωσμένο παιχνίδι %(requiredVersion)s του 0 A.D., ενώ έχει σωθεί στην έκδοση %(currentVersion)s."
-
-#: gui/savedgames/load.js:169
-msgid "The savegame needs a different set of mods:"
-msgstr "Το σωσμένο παιχνίδι χρειάζεται ένα διαφορετικό σύνολο από mods:"
-
-#: gui/savedgames/load.js:178
-msgid "Do you still want to proceed?"
-msgstr "Θέλετε ακόμα να συνεχίσετε?"
-
-#: gui/savedgames/save.js:30
-msgid "No saved games found"
-msgstr "Δεν βρέθηκαν αποθηκευμένα παιχνίδια"
-
-#: gui/savedgames/save.js:64
-msgid "Saved game will be permanently overwritten, are you sure?"
-msgstr "Το σωσμένο παιχνίδι θα αντικατασταθεί μόνιμα, είστε σίγουρος;"
-
-#: gui/savedgames/save.js:65
-msgid "OVERWRITE SAVE"
-msgstr "ΑΝΤΙΚΑΤΑΣΤΑΣΗ ΣΩΣΜΕΝΟΥ ΠΑΙΧΝΙΔΙΟΥ"
-
-#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):64
+#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):54
 msgid "Score"
 msgstr "Βαθμολογία"
 
 #: gui/summary/layout.js:5 gui/summary/layout.js:23 gui/summary/layout.js:61
-#: gui/summary/layout.js:101 gui/summary/layout.js:149
-#: gui/summary/layout.js:181 gui/summary/summary.xml:(caption):113
+#: gui/summary/layout.js:101 gui/summary/layout.js:151
+#: gui/summary/layout.js:183 gui/summary/summary.xml:(caption):103
 msgid "Player name"
 msgstr "Όνομα παίκτη"
 
@@ -1480,7 +1420,7 @@ msgstr "Βαθμολογία εξερεύνησης"
 msgid "Total score"
 msgstr "Συνολική Βαθμολογία"
 
-#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):71
+#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):61
 msgid "Buildings"
 msgstr "Κτίρια"
 
@@ -1523,7 +1463,7 @@ msgid ""
 "%(lost)s)"
 msgstr "Στατιστικά Κτιρίων (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):78
+#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):68
 msgid "Units"
 msgstr "Μονάδες"
 
@@ -1556,7 +1496,7 @@ msgstr "Εμπόροι"
 msgid "Units Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 msgstr "Στατιστικά Μονάδων (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):85
+#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):75
 msgid "Resources"
 msgstr "Πόροι"
 
@@ -1575,205 +1515,206 @@ msgstr "Θησαυροί που έχουν συλλεχθεί"
 msgid "Loot"
 msgstr "Λεηλασία"
 
-#: gui/summary/layout.js:124
+#: gui/summary/layout.js:121
+msgid "Livestock bred"
+msgstr ""
+
+#: gui/summary/layout.js:125
 #, javascript-format
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
 msgstr "Στατιστικά Πώρων (%(gathered)s / %(used)s)"
 
-#: gui/summary/layout.js:147 gui/summary/summary.xml:(caption):92
+#: gui/summary/layout.js:149 gui/summary/summary.xml:(caption):82
 msgid "Market"
 msgstr "Αγορά"
 
 #. Translation: use %(resourceWithinSentence)s if needed
-#: gui/summary/layout.js:155
+#: gui/summary/layout.js:157
 #, javascript-format
 msgid "%(resourceFirstWord)s exchanged"
 msgstr "%(resourceFirstWord)s ανταλλάχθηκαν"
 
-#: gui/summary/layout.js:163
+#: gui/summary/layout.js:165
 msgid "Barter efficiency"
 msgstr "Αποτελεσματικότητα ανταλλαγών"
 
-#: gui/summary/layout.js:164
+#: gui/summary/layout.js:166
 msgid "Trade income"
 msgstr "Εμπορικό κέρδος"
 
-#: gui/summary/layout.js:179 gui/summary/summary.xml:(caption):99
+#: gui/summary/layout.js:181 gui/summary/summary.xml:(caption):89
 #: gui/credits/texts/misc.jsonTitle
 msgid "Miscellaneous"
 msgstr "Διάφορα"
 
-#: gui/summary/layout.js:182
+#: gui/summary/layout.js:184
 msgid "Vegetarian ratio"
 msgstr "Ποσοστό χορτοφαγίας"
 
-#: gui/summary/layout.js:183
+#: gui/summary/layout.js:185
 msgid "Feminization"
 msgstr "Θηλυκοποίηση"
 
-#: gui/summary/layout.js:184
+#: gui/summary/layout.js:186
 msgid "Kill / Death ratio"
 msgstr "Αναλογία Σκοτωμών / Θανάτων"
 
-#: gui/summary/layout.js:187
+#: gui/summary/layout.js:189
 #, javascript-format
 msgid ""
 "Bribes\n"
 "(%(succeeded)s / %(failed)s)"
 msgstr "Δωροδοκίες\n(%(succeeded)s / %(failed)s)"
 
-#: gui/summary/layout.js:195
+#: gui/summary/layout.js:197
 msgid "Map exploration"
 msgstr "Εξερεύνηση χάρτη"
 
-#: gui/summary/layout.js:196
+#: gui/summary/layout.js:198
 msgid "Map control (peak)"
 msgstr "Έλεγχος χάρτη (αιχμή)"
 
-#: gui/summary/layout.js:197
+#: gui/summary/layout.js:199
 msgid "Map control (finish)"
 msgstr "Έλεγχος χάρτη (τέλος)"
 
-#: gui/summary/layout.js:351
+#: gui/summary/layout.js:353
 msgid "Team total"
 msgstr "Σύνολο ομάδας"
 
-#: gui/summary/summary.js:28
+#: gui/summary/summary.js:30
 msgid "Trained"
 msgstr "Εκπαιδεύτηκαν"
 
-#: gui/summary/summary.js:33
+#: gui/summary/summary.js:35
 msgid "Constructed"
 msgstr "Κατασκευάστηκαν"
 
-#: gui/summary/summary.js:38
+#: gui/summary/summary.js:40
 msgid "Gathered"
 msgstr "Συγκομιδή"
 
-#: gui/summary/summary.js:43
+#: gui/summary/summary.js:45
 msgid "Sent"
 msgstr "Στάλθηκαν"
 
-#: gui/summary/summary.js:48
+#: gui/summary/summary.js:50
 msgid "Bought"
 msgstr "Αγορασμένα"
 
-#: gui/summary/summary.js:53
+#: gui/summary/summary.js:55
 msgid "Income"
 msgstr "Έσοδα"
 
-#: gui/summary/summary.js:58
+#: gui/summary/summary.js:60
 msgid "Captured"
 msgstr "Καταλήφθηκαν"
 
-#: gui/summary/summary.js:63
+#: gui/summary/summary.js:65
 msgid "Succeeded"
 msgstr "Επιτυχημένες"
 
-#: gui/summary/summary.js:68
+#: gui/summary/summary.js:70
 msgid "Destroyed"
 msgstr "Καταστράφηκαν"
 
-#: gui/summary/summary.js:73
+#: gui/summary/summary.js:75
 msgid "Killed"
 msgstr "Φονεύθηκαν"
 
-#: gui/summary/summary.js:78
+#: gui/summary/summary.js:80
 msgid "Lost"
 msgstr "Χάθηκαν"
 
-#: gui/summary/summary.js:83
+#: gui/summary/summary.js:85
 msgid "Used"
 msgstr "Χρησιμοποιήθηκαν"
 
-#: gui/summary/summary.js:88
+#: gui/summary/summary.js:90
 msgid "Received"
 msgstr "Ελήφθησαν"
 
-#: gui/summary/summary.js:93
+#: gui/summary/summary.js:95
 msgid "Sold"
 msgstr "Πωλήθηκαν"
 
-#: gui/summary/summary.js:98
+#: gui/summary/summary.js:100
 msgid "Outcome"
 msgstr "Εξαγωγές"
 
-#: gui/summary/summary.js:103
+#: gui/summary/summary.js:105
 msgid "Failed"
 msgstr "Αποτυχημένες"
 
-#: gui/summary/summary.js:111
+#: gui/summary/summary.js:113
 msgid "∞"
 msgstr "∞"
 
-#: gui/summary/summary.js:373
+#: gui/summary/summary.js:389
 msgid "Are you sure you want to quit the lobby?"
 msgstr "Θέλετε σίγουρα να βγείτε από το λόμπι;"
 
-#: gui/summary/summary.js:429
+#: gui/summary/summary.js:444
 msgid "Current Scores"
 msgstr "Τρέχων Βαθμολογία"
 
-#: gui/summary/summary.js:431
+#: gui/summary/summary.js:446
 msgid "Scores at the end of the game."
 msgstr "Βαθμολογίες με τη λήξη του παιχνιδιού."
 
-#: gui/summary/summary.js:433
+#: gui/summary/summary.js:448
 msgid "You have been disconnected."
 msgstr "Αποσυνδεθήκατε."
 
-#: gui/summary/summary.js:435
+#: gui/summary/summary.js:450
 msgid "You have left the game."
 msgstr "Αποχώρησες από το παιχνίδι."
 
-#: gui/summary/summary.js:437
+#: gui/summary/summary.js:452
 msgid "You have won the battle!"
 msgstr "Κερδίσατε τη μάχη!"
 
-#: gui/summary/summary.js:439
+#: gui/summary/summary.js:454
 msgid "You have been defeated..."
 msgstr "Ηττηθήκατε..."
 
-#: gui/summary/summary.js:440
+#: gui/summary/summary.js:455
 msgid "You have abandoned the game."
 msgstr "Εγκαταλείψατε το παιχνίδι."
 
-#: gui/summary/summary.js:445
+#: gui/summary/summary.js:458
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Χρόνος παιχνιδιού που έχει παρέλθει: %(time)s"
 
-#: gui/summary/summary.js:453
+#: gui/summary/summary.js:466
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
 
-#: gui/civinfo/civinfo.xml:(caption):16
+#: gui/civinfo/civinfo.xml:(caption):14
 msgid "Civilizations"
 msgstr "Πολιτισμοί"
 
-#: gui/civinfo/civinfo.xml:(caption):28
+#: gui/civinfo/civinfo.xml:(caption):26
 msgid "Civilization Selection"
 msgstr "Επιλογή Πολιτισμού"
 
-#: gui/civinfo/civinfo.xml:(caption):119 gui/credits/credits.xml:(caption):36
+#: gui/civinfo/civinfo.xml:(caption):117 gui/credits/credits.xml:(caption):37
 #: gui/options/options.xml:(caption):60
-#: gui/reference/structree/structree.xml:(caption):122
+#: gui/reference/structree/structree.xml:(caption):119
 msgid "Close"
 msgstr "Κλείσιμο"
 
-#: gui/credits/credits.xml:(caption):18
+#: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
 msgstr "Συντελεστές του 0 A.D."
 
-#: gui/locale/locale.xml:(caption):14
-#: gui/locale/locale_advanced.xml:(caption):14
-#: gui/pregame/mainmenu.xml:(caption):339
+#: gui/locale/locale.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):338
 msgid "Language"
 msgstr "Γλώσσα"
 
 #: gui/locale/locale.xml:(caption):17
-#: gui/locale/locale_advanced.xml:(caption):17
 msgid "Language:"
 msgstr "Γλώσσα:"
 
@@ -1786,8 +1727,6 @@ msgid "Locale:"
 msgstr "Περιοχή:"
 
 #: gui/locale/locale.xml:(caption):36
-#: gui/locale/locale_advanced.xml:(caption):65
-#: gui/savedgames/load.xml:(caption):58 gui/savedgames/save.xml:(caption):38
 msgid "Cancel"
 msgstr "Ακύρωση"
 
@@ -1796,48 +1735,8 @@ msgid "Advanced"
 msgstr "Προηγμένο"
 
 #: gui/locale/locale.xml:(caption):46
-#: gui/locale/locale_advanced.xml:(caption):75
 msgid "Accept"
 msgstr "Αποδοχή"
-
-#: gui/locale/locale_advanced.xml:(caption):25
-msgid "Country:"
-msgstr "Χώρα:"
-
-#: gui/locale/locale_advanced.xml:(caption):34
-msgid "Script:"
-msgstr "Σενάριο:"
-
-#: gui/locale/locale_advanced.xml:(caption):41
-msgid "Variant (unused):"
-msgstr "Παραλλαγές (αχρησιμοποίητες):"
-
-#: gui/locale/locale_advanced.xml:(caption):48
-msgid "Keywords (unused):"
-msgstr "Λέξεις-κλειδιά (αχρησιμοποίητες):"
-
-#: gui/locale/locale_advanced.xml:(caption):55
-msgid "Resulting locale:"
-msgstr "Αποτελέσματα μετάφρασης:"
-
-#: gui/locale/locale_advanced.xml:(caption):60
-msgid "Dictionary files used:"
-msgstr "Αρχεία λεξικού που χρησιμοποιήθηκαν:"
-
-#: gui/locale/locale_advanced.xml:(caption):70
-msgid "Auto detect"
-msgstr "Αυτόματος εντοπισμός"
-
-#: gui/locale/locale_advanced.xml:(tooltip):37
-msgid ""
-"Optional four-letter script code part following the language code (as listed"
-" in ISO 15924)"
-msgstr "Προαιρετικά ο τετραψήφιος κώδικας σεναρίου ακολουθεί τον κώδικα γλώσσας (όπως αναφέρεται στο πρότυπο ISO 15924)"
-
-#: gui/locale/locale_advanced.xml:(tooltip):44
-#: gui/locale/locale_advanced.xml:(tooltip):51
-msgid "Not implemented yet."
-msgstr "Δέν έχει ενσωματωθεί ακόμα."
 
 #: gui/options/options.xml:(caption):15
 msgid "Game Options"
@@ -1851,7 +1750,7 @@ msgstr "Επαναφορά"
 msgid "Revert"
 msgstr "Επαναφορά"
 
-#: gui/options/options.xml:(caption):54 gui/savedgames/save.xml:(caption):48
+#: gui/options/options.xml:(caption):54
 msgid "Save"
 msgstr "Αποθήκευση"
 
@@ -1871,421 +1770,377 @@ msgstr "Αποθήκευση αλλαγών"
 msgid "Unsaved changes affect this session only"
 msgstr "Οι μη αποθηκευμένες αλλαγές επηρεάζουν αυτή τη συνεδρία μόνο"
 
-#: gui/pregame/mainmenu.xml:59
+#: gui/pregame/mainmenu.xml:58
 msgid "Help improve 0 A.D.!"
 msgstr "Βοηθήστε στη βελτίωση του 0 A.D.! "
 
-#: gui/pregame/mainmenu.xml:61
+#: gui/pregame/mainmenu.xml:60
 msgid ""
 "You can automatically send us anonymous feedback that will help us fix bugs,"
 " and improve performance and compatibility."
 msgstr "Μπορείτε να μας στέλνετε αυτόματα ανώνυμες πληροφορίες που θα μας βοηθήσουν στη διόρθωση των σφαλμάτων κώδικα, καθώς και στη βελτίωση της απόδοσης και της συμβατότητας του παιχνιδιού."
 
-#: gui/pregame/mainmenu.xml:533
+#: gui/pregame/mainmenu.xml:532
 msgid "Alpha XXIII: Ken Wood"
 msgstr "Άλφα ΚΓ': Κεν Γουντ"
 
-#: gui/pregame/mainmenu.xml:535
+#: gui/pregame/mainmenu.xml:534
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
 msgstr "ΠΡΟΕΙΔΟΠΟΙΗΣΗ: Το παιχνίδι βρίσκεται ακόμα σε φάση ανάπτυξης και αυτή η έκδοσή του είναι πρώιμη. Πολλές δυνατότητες και λειτουργίες δεν έχουν προστεθεί ακόμα."
 
-#: gui/pregame/mainmenu.xml:(caption):65
+#: gui/pregame/mainmenu.xml:(caption):64
 msgid "Enable Feedback"
 msgstr "Ενεργοποίηση Ανάδρασης"
 
-#: gui/pregame/mainmenu.xml:(caption):92
+#: gui/pregame/mainmenu.xml:(caption):91
 msgid "Disable Feedback"
 msgstr "Απενεργοποίηση αποστολής πληροφοριών"
 
-#: gui/pregame/mainmenu.xml:(caption):166
+#: gui/pregame/mainmenu.xml:(caption):165
 msgid "Tutorial"
 msgstr " Οδηγός Εκμάθησης"
 
-#: gui/pregame/mainmenu.xml:(caption):180
-#: gui/reference/structree/structree.xml:(caption):16
+#: gui/pregame/mainmenu.xml:(caption):179
+#: gui/reference/structree/structree.xml:(caption):13
 msgid "Structure Tree"
 msgstr "Δέντρο κατασκευής"
 
-#: gui/pregame/mainmenu.xml:(caption):195
+#: gui/pregame/mainmenu.xml:(caption):194
 msgid "History"
 msgstr "Ιστορία"
 
-#: gui/pregame/mainmenu.xml:(caption):218
+#: gui/pregame/mainmenu.xml:(caption):217
 msgid "Matches"
 msgstr "Αναμετρήσεις"
 
-#: gui/pregame/mainmenu.xml:(caption):232
+#: gui/pregame/mainmenu.xml:(caption):231
 msgid "Campaigns"
 msgstr "Εκστρατείες"
 
-#: gui/pregame/mainmenu.xml:(caption):245 gui/savedgames/load.xml:(caption):20
+#: gui/pregame/mainmenu.xml:(caption):244
 msgid "Load Game"
 msgstr "Φόρτωση παιχνιδιού"
 
 #. Join a game by specifying the host's IP address.
-#: gui/pregame/mainmenu.xml:(caption):268
+#: gui/pregame/mainmenu.xml:(caption):267
 msgid "Join Game"
 msgstr "Συμμετοχή στο παιχνίδι"
 
-#: gui/pregame/mainmenu.xml:(caption):282
+#: gui/pregame/mainmenu.xml:(caption):281
 msgid "Host Game"
 msgstr "Φιλοξενία παιχνιδιού"
 
-#: gui/pregame/mainmenu.xml:(caption):296
+#: gui/pregame/mainmenu.xml:(caption):295
 msgid "Game Lobby"
 msgstr "Λόμπι Παιχνιδιού"
 
-#: gui/pregame/mainmenu.xml:(caption):325
+#: gui/pregame/mainmenu.xml:(caption):324
 msgid "Options"
 msgstr "Επιλογές"
 
-#: gui/pregame/mainmenu.xml:(caption):353
+#: gui/pregame/mainmenu.xml:(caption):352
 msgid "Replays"
 msgstr "Επαναλήψεις"
 
-#: gui/pregame/mainmenu.xml:(caption):367
+#: gui/pregame/mainmenu.xml:(caption):366
 msgid "Scenario Editor"
 msgstr "Επεξεργαστής Σεναρίων"
 
-#: gui/pregame/mainmenu.xml:(caption):380
+#: gui/pregame/mainmenu.xml:(caption):379
 msgid "Welcome Screen"
 msgstr "Οθόνη Καλωσορίσματος"
 
-#: gui/pregame/mainmenu.xml:(caption):396
+#: gui/pregame/mainmenu.xml:(caption):395
 msgid "Mod Selection"
 msgstr "Επιλογή Mod"
 
-#: gui/pregame/mainmenu.xml:(caption):450
+#: gui/pregame/mainmenu.xml:(caption):449
 msgid "Learn to Play"
 msgstr "Μάθε να Παίζεις"
 
-#: gui/pregame/mainmenu.xml:(caption):495
+#: gui/pregame/mainmenu.xml:(caption):494
 msgid "Tools & Options"
 msgstr "Εργαλεία & Επιλογές"
 
-#: gui/pregame/mainmenu.xml:(caption):510
+#: gui/pregame/mainmenu.xml:(caption):509
 msgid "Exit"
 msgstr "Έξοδος"
 
-#: gui/pregame/mainmenu.xml:(caption):545
+#: gui/pregame/mainmenu.xml:(caption):544
 msgid "Website"
 msgstr "Ιστοσελίδα"
 
-#: gui/pregame/mainmenu.xml:(caption):557
+#: gui/pregame/mainmenu.xml:(caption):556
 msgid "Chat"
 msgstr "Συνομιλία"
 
-#: gui/pregame/mainmenu.xml:(caption):569
+#: gui/pregame/mainmenu.xml:(caption):568
 msgid "Report a Bug"
 msgstr "Αναφορά ενός Σφάλματος"
 
-#: gui/pregame/mainmenu.xml:(caption):581
+#: gui/pregame/mainmenu.xml:(caption):580
 msgid "Translate the Game"
 msgstr "Μετάφραση Παιχνιδιού"
 
-#: gui/pregame/mainmenu.xml:(caption):593
+#: gui/pregame/mainmenu.xml:(caption):592
 msgid "Credits"
 msgstr "Συντελεστές"
 
-#: gui/pregame/mainmenu.xml:(caption):622
+#: gui/pregame/mainmenu.xml:(caption):621
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
-#: gui/pregame/mainmenu.xml:(tooltip):148
+#: gui/pregame/mainmenu.xml:(tooltip):147
 msgid "Open the 0 A.D. Game Manual."
 msgstr "Ανοόξτε το εγχειρίδιο χρήσης του 0 A.D."
 
-#: gui/pregame/mainmenu.xml:(tooltip):167
+#: gui/pregame/mainmenu.xml:(tooltip):166
 msgid "Start the economic tutorial."
 msgstr "Ξεκίνα τον οδηγό εκμάθησης της οικονομίας"
 
-#: gui/pregame/mainmenu.xml:(tooltip):181
+#: gui/pregame/mainmenu.xml:(tooltip):180
 msgid "View the structure tree of civilizations featured in 0 A.D."
 msgstr "Εμφανίζει την δενδροδομή τον πολιτισμών που εμπεριέχονται στο 0 A.D."
 
-#: gui/pregame/mainmenu.xml:(tooltip):196
+#: gui/pregame/mainmenu.xml:(tooltip):195
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "Μάθετε για τους διάφορους πολιτισμούς που εμφανίζονται στο 0 A.D."
 
-#: gui/pregame/mainmenu.xml:(tooltip):219
+#: gui/pregame/mainmenu.xml:(tooltip):218
 msgid "Click here to start a new single player game."
 msgstr "Κλικ εδώ για να αρχίσετε ένα νέο παιχνίδι για έναν παίκτη."
 
-#: gui/pregame/mainmenu.xml:(tooltip):233
+#: gui/pregame/mainmenu.xml:(tooltip):232
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
 msgstr "Αναβιώστε την Ιστορία μέσω ιστορικών πολεμικών εκστρατειών. \\[ΔΕΝ ΕΧΕΙ ΥΛΟΠΟΙΗΘΕΙ ΑΚΟΜΑ]"
 
-#: gui/pregame/mainmenu.xml:(tooltip):246
+#: gui/pregame/mainmenu.xml:(tooltip):245
 msgid "Click here to load a saved game."
 msgstr "Κλικ εδώ για φόρτωση ενός αποθηκευμένου παιχνιδιού."
 
-#: gui/pregame/mainmenu.xml:(tooltip):269
+#: gui/pregame/mainmenu.xml:(tooltip):268
 msgid "Joining an existing multiplayer game."
 msgstr "Συμμετοχή σε υπάρχον παιχνίδι για πολλούς παίκτες."
 
-#: gui/pregame/mainmenu.xml:(tooltip):283
+#: gui/pregame/mainmenu.xml:(tooltip):282
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr "Φιλοξενήστε ένα παιχνίδι για πολλούς παίκτες (multiplayer).\\n\\nΑπαιτείται να είναι ανοιχτή η θύρα UDP 20595."
 
-#: gui/pregame/mainmenu.xml:(tooltip):297
+#: gui/pregame/mainmenu.xml:(tooltip):296
 msgid "Launch the multiplayer lobby."
 msgstr "Εκκίνηση του λόμπι πολλαπλών παικτών."
 
-#: gui/pregame/mainmenu.xml:(tooltip):326
+#: gui/pregame/mainmenu.xml:(tooltip):325
 msgid "Adjust game settings."
 msgstr "Προσαρμόστε τις ρυθμίσεις του παιχνιδιού."
 
-#: gui/pregame/mainmenu.xml:(tooltip):340
+#: gui/pregame/mainmenu.xml:(tooltip):339
 msgid "Choose the language of the game."
 msgstr "Επιλογή της γλώσσας του παιχνιδιού."
 
-#: gui/pregame/mainmenu.xml:(tooltip):354
+#: gui/pregame/mainmenu.xml:(tooltip):353
 msgid "Playback previous games."
 msgstr "Αναπαραγωγή προηγούμενων παιχνιδιών."
 
-#: gui/pregame/mainmenu.xml:(tooltip):368
+#: gui/pregame/mainmenu.xml:(tooltip):367
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Ανοίξτε τον επεξεργαστή σεναρίων \"Atlas Scenario Editor\" σε νέο παράθυρο. Για πιο αξιόπιστη λειτουργία του, εκκινήστε το παιχνίδι από γραμμή εντολών, με το όρισμα \"-editor\"."
 
-#: gui/pregame/mainmenu.xml:(tooltip):381
+#: gui/pregame/mainmenu.xml:(tooltip):380
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "Εμφάνιση της Οθόνης Υποδοχής. Χρήσιμο αν αποκρύφθηκε κατά λάθος."
 
-#: gui/pregame/mainmenu.xml:(tooltip):397
+#: gui/pregame/mainmenu.xml:(tooltip):396
 msgid "Select mods to use."
 msgstr "Επιλογή mods προς χρήση."
 
-#: gui/pregame/mainmenu.xml:(tooltip):451
+#: gui/pregame/mainmenu.xml:(tooltip):450
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations"
 msgstr "Μάθετε πως να παίζεται, ξεκινήστε τον οδηγό εκπαίδευσης, ανακαλύψτε τις δομές της τεχνολογίας και την ιστορία πίσω από τους πολιτισμούς"
 
-#: gui/pregame/mainmenu.xml:(tooltip):466
+#: gui/pregame/mainmenu.xml:(tooltip):465
 msgid "Challenge the computer player to a single player match."
 msgstr "Προκαλέστε τον υπολογιστή σε μια αναμέτρηση για έναν παίκτη (single player)."
 
-#: gui/pregame/mainmenu.xml:(tooltip):481
+#: gui/pregame/mainmenu.xml:(tooltip):480
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Πολεμήστε εναντίον ενός ή περισσότερων παικτών, σε ένα παιχνίδι για πολλούς παίκτες (multiplayer)."
 
-#: gui/pregame/mainmenu.xml:(tooltip):496
+#: gui/pregame/mainmenu.xml:(tooltip):495
 msgid "Game options and scenario design tools."
 msgstr "Επιλογές παιχνιδιού και εργαλεία σχεδίασης σεναρίων."
 
-#: gui/pregame/mainmenu.xml:(tooltip):511
+#: gui/pregame/mainmenu.xml:(tooltip):510
 msgid "Exits the game."
 msgstr "Βγαίνει από το παιχνίδι"
 
-#: gui/pregame/mainmenu.xml:(tooltip):546
+#: gui/pregame/mainmenu.xml:(tooltip):545
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Κάντε κλικ για άνοιγμα του play0ad.com στο πρόγραμμα περιήγησης web που χρησιμοποιείτε."
 
-#: gui/pregame/mainmenu.xml:(tooltip):558
+#: gui/pregame/mainmenu.xml:(tooltip):557
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "Κάντε κλικ για να ανοίξετε τη συνομιλία μέσω IRC του 0 A.D., μέσα από το πρόγραμμα περιήγησης που χρησιμοποιείτε. (#0ad στο διακομιστή webchat.quakenet.org)"
 
-#: gui/pregame/mainmenu.xml:(tooltip):570
+#: gui/pregame/mainmenu.xml:(tooltip):569
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "Κάντε κλικ για να επισκεφτείτε το σύστημα Καταγραφής του 0 A.D. για αναφορά κάποιου σφάλματος στον κώδικα (bug), κάποιου αιφνίδιου τερματισμού λειτουργίας ή κάποιου άλλου σφάλματος. "
 
-#: gui/pregame/mainmenu.xml:(tooltip):582
+#: gui/pregame/mainmenu.xml:(tooltip):581
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "Κλικάρετε για να ανοίξετε την σελίδα μετάφρασης του  0 A.D. στον εξυπηρετητή σας."
 
-#: gui/pregame/mainmenu.xml:(tooltip):594
+#: gui/pregame/mainmenu.xml:(tooltip):593
 msgid "Click to see the 0 A.D. credits."
 msgstr "Κάνε κλικ για να δεις τους συντελεστές του 0 A.D."
 
-#: gui/reference/structree/structree.xml:(caption):28
+#: gui/reference/structree/structree.xml:(caption):25
 msgid "Civilization:"
 msgstr "Πολιτισμός:"
 
-#: gui/reference/structree/structree.xml:(caption):95
+#: gui/reference/structree/structree.xml:(caption):92
 msgid "Trainer Units"
 msgstr "Εκπαιδευτής Μονάδων"
 
-#: gui/replaymenu/replay_menu.xml:(caption):28
+#: gui/replaymenu/replay_menu.xml:(caption):13
 msgid "Replay Games"
 msgstr "Επανάληψη Παιχνιδιού"
 
-#: gui/replaymenu/replay_menu.xml:(caption):123
+#: gui/replaymenu/replay_menu.xml:(caption):108
 msgid "Filter compatible replays"
 msgstr "Φίλτρο συμβατών επαναλήψεων"
 
-#: gui/replaymenu/replay_menu.xml:(caption):164
-#: gui/savedgames/load.xml:(caption):98
+#: gui/replaymenu/replay_menu.xml:(caption):149
 msgid "Map Type:"
 msgstr "Τύπος Χάρτη:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):179
-#: gui/savedgames/load.xml:(caption):102
+#: gui/replaymenu/replay_menu.xml:(caption):164
 msgid "Map Size:"
 msgstr "Μέγεθος Χάρτη:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):194
-#: gui/savedgames/load.xml:(caption):106
+#: gui/replaymenu/replay_menu.xml:(caption):179
 msgid "Victory:"
 msgstr "Νίκη:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):227
+#: gui/replaymenu/replay_menu.xml:(caption):212
 msgid "Spoiler"
 msgstr "Σπόιλερ"
 
-#: gui/replaymenu/replay_menu.xml:(caption):239
+#: gui/replaymenu/replay_menu.xml:(caption):224
 msgid "Main Menu"
 msgstr "Κεντρικό Μενού"
 
-#: gui/replaymenu/replay_menu.xml:(caption):245
-#: gui/savedgames/load.xml:(caption):63 gui/savedgames/save.xml:(caption):43
+#: gui/replaymenu/replay_menu.xml:(caption):230
 msgid "Delete"
 msgstr "Διαγραφή"
 
-#: gui/replaymenu/replay_menu.xml:(caption):251
+#: gui/replaymenu/replay_menu.xml:(caption):236
 msgid "Reload Cache"
 msgstr "Επαναφόρτωση Προσωρινής Μνήμης"
 
-#: gui/replaymenu/replay_menu.xml:(caption):258
-#: gui/summary/summary.xml:(caption):24
+#: gui/replaymenu/replay_menu.xml:(caption):243
+#: gui/summary/summary.xml:(caption):14
 msgid "Summary"
 msgstr "Σύνοψη"
 
-#: gui/replaymenu/replay_menu.xml:(caption):264
+#: gui/replaymenu/replay_menu.xml:(caption):249
 msgid "Start Replay"
 msgstr "Εκκίνηση Επανάληψης"
 
-#: gui/replaymenu/replay_menu.xml:(heading):83
-#: gui/savedgames/load.xml:(heading):37
+#: gui/replaymenu/replay_menu.xml:(heading):68
 msgctxt "replay"
 msgid "Date / Time"
 msgstr "Ημέρα / Ώρα"
 
-#: gui/replaymenu/replay_menu.xml:(heading):87
+#: gui/replaymenu/replay_menu.xml:(heading):72
 msgctxt "replay"
 msgid "Players"
 msgstr "Παίκτες"
 
-#: gui/replaymenu/replay_menu.xml:(heading):91
-#: gui/savedgames/load.xml:(heading):45
+#: gui/replaymenu/replay_menu.xml:(heading):76
 msgctxt "replay"
 msgid "Map Name"
 msgstr "Όνομα Χάρτη"
 
-#: gui/replaymenu/replay_menu.xml:(heading):95
+#: gui/replaymenu/replay_menu.xml:(heading):80
 msgctxt "replay"
 msgid "Size"
 msgstr "Μέγεθος"
 
-#: gui/replaymenu/replay_menu.xml:(heading):99
+#: gui/replaymenu/replay_menu.xml:(heading):84
 msgctxt "replay"
 msgid "Population"
 msgstr "Πληθυσμός"
 
-#: gui/replaymenu/replay_menu.xml:(heading):103
+#: gui/replaymenu/replay_menu.xml:(heading):88
 msgctxt "replay"
 msgid "Duration"
 msgstr "Διάρκεια"
 
-#: gui/replaymenu/replay_menu.xml:(tooltip):252
+#: gui/replaymenu/replay_menu.xml:(tooltip):237
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
 msgstr "Επαναδημιουργήστε ξανά την προσωρινή μνήμη επαναλήψεως. Δυνητικά αργό!"
 
-#: gui/savedgames/load.xml:(heading):41
-msgctxt "replay"
-msgid "Map Type"
-msgstr "Τύπος Χάρτη"
-
-#: gui/savedgames/load.xml:(heading):49
-msgctxt "replay"
-msgid "Description"
-msgstr "Περιγραφή"
-
-#: gui/savedgames/load.xml:(caption):54
-msgid "No saved games found."
-msgstr "Δεν βρέθηκαν αποθηκευμένα παιχνίδια."
-
-#: gui/savedgames/load.xml:(caption):68
-msgid "Load"
-msgstr "Φόρτωση"
-
-#: gui/savedgames/load.xml:(caption):80
-msgid "Filter compatible saved games"
-msgstr "Φίλτρο συμβατών αποθηκευμένων παιχνιδιών"
-
-#: gui/savedgames/load.xml:(caption):90
-msgid "Players:"
-msgstr "Παίκτες:"
-
-#: gui/savedgames/load.xml:(caption):94
-msgid "Played time:"
-msgstr "Διάρκεια παιχνιδιού:"
-
-#: gui/savedgames/save.xml:(caption):16
-msgid "Save Game"
-msgstr "Αποθήκευση Παιχνιδιού"
-
-#: gui/savedgames/save.xml:(caption):30
-msgid "Description:"
-msgstr "Περιγραφή:"
-
-#: gui/splashscreen/splashscreen.xml:(caption):12
+#: gui/splashscreen/splashscreen.xml:(caption):13
 msgid "Welcome!"
 msgstr "Καλώς ήρθατε"
 
-#: gui/splashscreen/splashscreen.xml:(caption):17
+#: gui/splashscreen/splashscreen.xml:(caption):18
 msgid "Show this message in the future"
 msgstr "Δείξε αυτό το μήνυμα στο μέλλον"
 
-#: gui/splashscreen/splashscreen.xml:(caption):22
+#: gui/splashscreen/splashscreen.xml:(caption):23
 msgid "Known Issues (web)"
 msgstr "Γνωστά ζητήματα (ιστός)"
 
-#: gui/summary/summary.xml:(caption):106
+#: gui/summary/summary.xml:(caption):96
 msgid "Charts"
 msgstr "Διαγράμματα"
 
-#: gui/summary/summary.xml:(caption):163
+#: gui/summary/summary.xml:(caption):153
 msgctxt "summary chart"
 msgid "Category:"
 msgstr "Κατηγορία:"
 
-#: gui/summary/summary.xml:(caption):173
+#: gui/summary/summary.xml:(caption):163
 msgctxt "summary chart"
 msgid "Value:"
 msgstr "Τιμή:"
 
-#: gui/summary/summary.xml:(caption):183
+#: gui/summary/summary.xml:(caption):173
 msgctxt "summary chart"
 msgid "Type:"
 msgstr "Τύπος:"
 
-#: gui/summary/summary.xml:(caption):202
+#: gui/summary/summary.xml:(caption):192
 msgid "Replay"
 msgstr "Επανάληψη"
 
-#: gui/summary/summary.xml:(caption):207
+#: gui/summary/summary.xml:(caption):197
 msgid "Continue"
 msgstr "Συνέχεια"
 
-#: gui/summary/summary.xml:(tooltip):169
+#: gui/summary/summary.xml:(tooltip):159
 msgctxt "summary chart"
 msgid "Category"
 msgstr "Κατηγορία"
 
-#: gui/summary/summary.xml:(tooltip):179
+#: gui/summary/summary.xml:(tooltip):169
 msgctxt "summary chart"
 msgid "Value"
 msgstr "Τιμή"
 
-#: gui/summary/summary.xml:(tooltip):190
+#: gui/summary/summary.xml:(tooltip):180
 msgctxt "summary chart"
 msgid "Type"
 msgstr "Τύπος"

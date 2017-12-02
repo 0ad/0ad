@@ -7,9 +7,9 @@
 # Balázs Meskó <meskobalazs@gmail.com>, 2015-2017
 # Balázs Úr <urbalazs@gmail.com>, 2015-2017
 # Boross Péter <borosspet@web.de>, 2016
-# Gyuris Gellért <gellert.gyuris@gmail.com>, 2015-2016
-# Gyuris Gellért <gellert.gyuris@gmail.com>, 2017
-# MaoHUN <peter.norbert.istvan@gmail.com>, 2015
+# Gyuris Gellért <gellert.gyuris@protonmail.com>, 2015-2016
+# Gyuris Gellért <gellert.gyuris@protonmail.com>, 2017
+# István Norbert Péter <peter.norbert.istvan@gmail.com>, 2015
 # Mátyás Demeter <mathias.demeter@gmail.com>, 2015
 # Mikola Péter <mikopet@gmail.com>, 2015
 # Stew Den <stewden55@hotmail.com>, 2014
@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-10-25 09:03+0200\n"
-"PO-Revision-Date: 2017-10-25 14:52+0000\n"
+"POT-Creation-Date: 2017-11-29 09:04+0100\n"
+"PO-Revision-Date: 2017-11-29 15:59+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -89,10 +89,6 @@ msgctxt "hotkey"
 msgid "Tab"
 msgstr "Tab"
 
-#: gui/common/functions_civinfo.js:31
-msgid "Gaia"
-msgstr "Gaia"
-
 #: gui/common/functions_global_object.js:57
 #, javascript-format
 msgid ""
@@ -114,16 +110,20 @@ msgstr "Képkocka másodpercenként: %(fps)4s"
 msgid "Loading Aborted"
 msgstr "Betöltés megszakítva"
 
-#: gui/common/functions_utility.js:111
+#: gui/common/functions_utility.js:50
+msgid "Gaia"
+msgstr "Gaia"
+
+#: gui/common/functions_utility.js:126
 msgctxt "map selection"
 msgid "Random"
 msgstr "Véletlenszerű"
 
-#: gui/common/functions_utility.js:122
+#: gui/common/functions_utility.js:137
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:122
+#: gui/common/functions_utility.js:137
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -141,7 +141,7 @@ msgstr "%(dateString)s %(map)s - %(description)s"
 msgid "%(dateString)s %(map)s"
 msgstr "%(dateString)s %(map)s"
 
-#: gui/common/functions_utility_loadsave.js:85 gui/savedgames/save.js:63
+#: gui/common/functions_utility_loadsave.js:85
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
@@ -157,16 +157,14 @@ msgstr "TÖRLÉS"
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
 #: gui/options/options.js:297 gui/options/options.js:350
 #: gui/options/options.js:376 gui/pregame/mainmenu.js:253
-#: gui/replaymenu/replay_actions.js:170 gui/savedgames/load.js:184
-#: gui/savedgames/save.js:66 gui/summary/summary.js:375
+#: gui/replaymenu/replay_actions.js:170 gui/summary/summary.js:391
 msgid "No"
 msgstr "Nem"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
 #: gui/options/options.js:297 gui/options/options.js:350
 #: gui/options/options.js:376 gui/pregame/mainmenu.js:253
-#: gui/replaymenu/replay_actions.js:170 gui/savedgames/load.js:184
-#: gui/savedgames/save.js:66 gui/summary/summary.js:375
+#: gui/replaymenu/replay_actions.js:170 gui/summary/summary.js:391
 msgid "Yes"
 msgstr "Igen"
 
@@ -589,8 +587,6 @@ msgstr "Felhasználók (%(num)s): %(users)s"
 #: gui/common/tooltips.js:352 gui/common/tooltips.js:624
 #: gui/common/tooltips.js:658 gui/common/tooltips.js:724
 #: gui/replaymenu/replay_actions.js:93 gui/replaymenu/replay_actions.js:94
-#: gui/savedgames/load.js:117 gui/savedgames/load.js:171
-#: gui/savedgames/load.js:174
 msgid ", "
 msgstr ", "
 
@@ -1104,17 +1100,8 @@ msgstr "Zsákmány:"
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
 
-#: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
-msgctxt "localeCountry"
-msgid "None"
-msgstr "Nincs"
-
-#: gui/locale/locale_advanced.js:91
-msgid "invalid locale"
-msgstr "érvénytelen területi beállítás"
-
 #: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:157
-#: gui/splashscreen/splashscreen.xml:(caption):28
+#: gui/splashscreen/splashscreen.xml:(caption):29
 msgid "OK"
 msgstr "OK"
 
@@ -1149,7 +1136,7 @@ msgid ""
 msgstr "A beállítások helyreállítása törli a mentett beállításaid. Folytatni szeretnéd?"
 
 #: gui/options/options.js:296 gui/options/options.js:349
-#: gui/options/options.js:375 gui/savedgames/load.js:183
+#: gui/options/options.js:375
 msgid "Warning"
 msgstr "Figyelmeztetés"
 
@@ -1235,7 +1222,7 @@ msgstr "Verzió: %(buildDate)s (%(revision)s)"
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Biztosan kilépsz a 0 A.D. játékból?"
 
-#: gui/pregame/mainmenu.js:252 gui/summary/summary.js:374
+#: gui/pregame/mainmenu.js:252 gui/summary/summary.js:390
 msgid "Confirmation"
 msgstr "Megerősítés"
 
@@ -1253,16 +1240,16 @@ msgstr "Hiba"
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "Többjátékos váró indítása. \\[BUILD ÁLTAL LETILTVA]"
 
-#: gui/pregame/mainmenu.js:279 gui/pregame/mainmenu.xml:(caption):69
-#: gui/pregame/mainmenu.xml:(caption):96
+#: gui/pregame/mainmenu.js:279 gui/pregame/mainmenu.xml:(caption):68
+#: gui/pregame/mainmenu.xml:(caption):95
 msgid "Technical Details"
 msgstr "Technikai részletek"
 
-#: gui/pregame/mainmenu.js:284 gui/pregame/mainmenu.xml:(caption):147
+#: gui/pregame/mainmenu.js:284 gui/pregame/mainmenu.xml:(caption):146
 msgid "Manual"
 msgstr "Kézikönyv"
 
-#: gui/reference/common/load.js:234
+#: gui/reference/common/load.js:255
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
 msgstr "%(health_min)s – %(health_max)s"
@@ -1271,12 +1258,12 @@ msgstr "%(health_min)s – %(health_max)s"
 msgid "You don't have the same mods active as the replay does."
 msgstr "Nincsenek aktiválva azok a modok, amelyek a visszajátszásban szerepelnek."
 
-#: gui/replaymenu/replay_actions.js:93 gui/savedgames/load.js:170
+#: gui/replaymenu/replay_actions.js:93
 #, javascript-format
 msgid "Required: %(mods)s"
 msgstr "Szükséges: %(mods)s"
 
-#: gui/replaymenu/replay_actions.js:94 gui/savedgames/load.js:173
+#: gui/replaymenu/replay_actions.js:94
 #, javascript-format
 msgid "Active: %(mods)s"
 msgstr "Aktív: %(mods)s"
@@ -1365,11 +1352,11 @@ msgstr "%(min)s - %(max)s min."
 msgid "Single- and multiplayer"
 msgstr "Egy- és többjátékos mód"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):465
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):464
 msgid "Single Player"
 msgstr "Egyjátékos mód"
 
-#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):480
+#: gui/replaymenu/replay_filters.js:142 gui/pregame/mainmenu.xml:(caption):479
 msgid "Multiplayer"
 msgstr "Többjátékos mód"
 
@@ -1407,60 +1394,13 @@ msgstr "éééé-HH-nn ÓÓ:pp"
 msgid "yyyy-MM"
 msgstr "éééé-HH"
 
-#: gui/savedgames/load.js:117
-#, javascript-format
-msgid "Mods: %(mods)s"
-msgstr "Modok: %(mods)s"
-
-#: gui/savedgames/load.js:147
-msgid "This saved game may not be compatible:"
-msgstr "Ezzel a játékmentéssel kompatibilitási problémák lehetnek:"
-
-#: gui/savedgames/load.js:151
-#, javascript-format
-msgid ""
-"It needs 0 A.D. version %(requiredVersion)s, while you are running version "
-"%(currentVersion)s."
-msgstr "Ehhez a 0 A.D. következő verziója szükséges: %(requiredVersion)s, te jelenleg a következő verziót használod: %(currentVersion)s"
-
-#: gui/savedgames/load.js:156
-msgid "It needs an older version of 0 A.D."
-msgstr "Ehhez egy régebbi 0 A.D. verzió szükséges."
-
-#: gui/savedgames/load.js:159
-#, javascript-format
-msgid ""
-"It needs 0 A.D. savegame version %(requiredVersion)s, while you have "
-"savegame version %(currentVersion)s."
-msgstr "Ehhez a 0 A.D. következő játékmentési verziója szükséges: %(requiredVersion)s, te jelenleg a következő játékmentési verziót használod: %(currentVersion)s"
-
-#: gui/savedgames/load.js:169
-msgid "The savegame needs a different set of mods:"
-msgstr "A játékmentés más mod-csomagot igényel:"
-
-#: gui/savedgames/load.js:178
-msgid "Do you still want to proceed?"
-msgstr "Biztosan folytatni akarod?"
-
-#: gui/savedgames/save.js:30
-msgid "No saved games found"
-msgstr "Nincsenek mentett játékok"
-
-#: gui/savedgames/save.js:64
-msgid "Saved game will be permanently overwritten, are you sure?"
-msgstr "A mentett játék véglegesen felülíródik. Biztos vagy benne?"
-
-#: gui/savedgames/save.js:65
-msgid "OVERWRITE SAVE"
-msgstr "MENTÉS FELÜLÍRÁSA"
-
-#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):64
+#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):54
 msgid "Score"
 msgstr "Pont"
 
 #: gui/summary/layout.js:5 gui/summary/layout.js:23 gui/summary/layout.js:61
-#: gui/summary/layout.js:101 gui/summary/layout.js:149
-#: gui/summary/layout.js:181 gui/summary/summary.xml:(caption):113
+#: gui/summary/layout.js:101 gui/summary/layout.js:151
+#: gui/summary/layout.js:183 gui/summary/summary.xml:(caption):103
 msgid "Player name"
 msgstr "Játékosnév"
 
@@ -1480,7 +1420,7 @@ msgstr "Felfedezési pontok"
 msgid "Total score"
 msgstr "Összes pont"
 
-#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):71
+#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):61
 msgid "Buildings"
 msgstr "Épületek"
 
@@ -1523,7 +1463,7 @@ msgid ""
 "%(lost)s)"
 msgstr "Épület statisztikák (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):78
+#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):68
 msgid "Units"
 msgstr "Egységek"
 
@@ -1556,7 +1496,7 @@ msgstr "Kereskedők"
 msgid "Units Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 msgstr "Egység statisztikák (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):85
+#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):75
 msgid "Resources"
 msgstr "Nyersanyagok"
 
@@ -1575,205 +1515,206 @@ msgstr "Összegyűjtött kincsek"
 msgid "Loot"
 msgstr "Zsákmány"
 
-#: gui/summary/layout.js:124
+#: gui/summary/layout.js:121
+msgid "Livestock bred"
+msgstr ""
+
+#: gui/summary/layout.js:125
 #, javascript-format
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
 msgstr "Nyersanyag statisztikák (%(gathered)s / %(used)s)"
 
-#: gui/summary/layout.js:147 gui/summary/summary.xml:(caption):92
+#: gui/summary/layout.js:149 gui/summary/summary.xml:(caption):82
 msgid "Market"
 msgstr "Piac"
 
 #. Translation: use %(resourceWithinSentence)s if needed
-#: gui/summary/layout.js:155
+#: gui/summary/layout.js:157
 #, javascript-format
 msgid "%(resourceFirstWord)s exchanged"
 msgstr "%(resourceFirstWord)s cserélve"
 
-#: gui/summary/layout.js:163
+#: gui/summary/layout.js:165
 msgid "Barter efficiency"
 msgstr "Csere hatékonysága"
 
-#: gui/summary/layout.js:164
+#: gui/summary/layout.js:166
 msgid "Trade income"
 msgstr "Kereskedelmi bevétel"
 
-#: gui/summary/layout.js:179 gui/summary/summary.xml:(caption):99
+#: gui/summary/layout.js:181 gui/summary/summary.xml:(caption):89
 #: gui/credits/texts/misc.jsonTitle
 msgid "Miscellaneous"
 msgstr "Egyéb"
 
-#: gui/summary/layout.js:182
+#: gui/summary/layout.js:184
 msgid "Vegetarian ratio"
 msgstr "Vegetáriánus\narány"
 
-#: gui/summary/layout.js:183
+#: gui/summary/layout.js:185
 msgid "Feminization"
 msgstr "Feminizáció"
 
-#: gui/summary/layout.js:184
+#: gui/summary/layout.js:186
 msgid "Kill / Death ratio"
 msgstr "Ölés / halálozás\narány"
 
-#: gui/summary/layout.js:187
+#: gui/summary/layout.js:189
 #, javascript-format
 msgid ""
 "Bribes\n"
 "(%(succeeded)s / %(failed)s)"
 msgstr "Megvesztegetések\n(%(succeeded)s / %(failed)s)"
 
-#: gui/summary/layout.js:195
+#: gui/summary/layout.js:197
 msgid "Map exploration"
 msgstr "Térkép\nfelfedezése"
 
-#: gui/summary/layout.js:196
+#: gui/summary/layout.js:198
 msgid "Map control (peak)"
 msgstr "Térképbirtoklás (csúcsérték)"
 
-#: gui/summary/layout.js:197
+#: gui/summary/layout.js:199
 msgid "Map control (finish)"
 msgstr "Térképbirtoklás (végérték)"
 
-#: gui/summary/layout.js:351
+#: gui/summary/layout.js:353
 msgid "Team total"
 msgstr "Összes csapat"
 
-#: gui/summary/summary.js:28
+#: gui/summary/summary.js:30
 msgid "Trained"
 msgstr "Kiképzett"
 
-#: gui/summary/summary.js:33
+#: gui/summary/summary.js:35
 msgid "Constructed"
 msgstr "Épített"
 
-#: gui/summary/summary.js:38
+#: gui/summary/summary.js:40
 msgid "Gathered"
 msgstr "Begyűjtött"
 
-#: gui/summary/summary.js:43
+#: gui/summary/summary.js:45
 msgid "Sent"
 msgstr "Adott"
 
-#: gui/summary/summary.js:48
+#: gui/summary/summary.js:50
 msgid "Bought"
 msgstr "Vásárlás"
 
-#: gui/summary/summary.js:53
+#: gui/summary/summary.js:55
 msgid "Income"
 msgstr "Bejövetel"
 
-#: gui/summary/summary.js:58
+#: gui/summary/summary.js:60
 msgid "Captured"
 msgstr "Elfoglalt"
 
-#: gui/summary/summary.js:63
+#: gui/summary/summary.js:65
 msgid "Succeeded"
 msgstr "Sikeres"
 
-#: gui/summary/summary.js:68
+#: gui/summary/summary.js:70
 msgid "Destroyed"
 msgstr "Lerombolt"
 
-#: gui/summary/summary.js:73
+#: gui/summary/summary.js:75
 msgid "Killed"
 msgstr "Megölt"
 
-#: gui/summary/summary.js:78
+#: gui/summary/summary.js:80
 msgid "Lost"
 msgstr "Elvesztett"
 
-#: gui/summary/summary.js:83
+#: gui/summary/summary.js:85
 msgid "Used"
 msgstr "Felhasznált"
 
-#: gui/summary/summary.js:88
+#: gui/summary/summary.js:90
 msgid "Received"
 msgstr "Kapott"
 
-#: gui/summary/summary.js:93
+#: gui/summary/summary.js:95
 msgid "Sold"
 msgstr "Eladott"
 
-#: gui/summary/summary.js:98
+#: gui/summary/summary.js:100
 msgid "Outcome"
 msgstr "Kimenetel"
 
-#: gui/summary/summary.js:103
+#: gui/summary/summary.js:105
 msgid "Failed"
 msgstr "Meghiúsult"
 
-#: gui/summary/summary.js:111
+#: gui/summary/summary.js:113
 msgid "∞"
 msgstr "∞"
 
-#: gui/summary/summary.js:373
+#: gui/summary/summary.js:389
 msgid "Are you sure you want to quit the lobby?"
 msgstr "Biztosan ki akarsz lépni a váróból?"
 
-#: gui/summary/summary.js:429
+#: gui/summary/summary.js:444
 msgid "Current Scores"
 msgstr "Jelenlegi pontok"
 
-#: gui/summary/summary.js:431
+#: gui/summary/summary.js:446
 msgid "Scores at the end of the game."
 msgstr "Pontok a játék végén."
 
-#: gui/summary/summary.js:433
+#: gui/summary/summary.js:448
 msgid "You have been disconnected."
 msgstr "Lekapcsolódtál."
 
-#: gui/summary/summary.js:435
+#: gui/summary/summary.js:450
 msgid "You have left the game."
 msgstr "Elhagytad a játékot."
 
-#: gui/summary/summary.js:437
+#: gui/summary/summary.js:452
 msgid "You have won the battle!"
 msgstr "Megnyerted a csatát!"
 
-#: gui/summary/summary.js:439
+#: gui/summary/summary.js:454
 msgid "You have been defeated..."
 msgstr "Legyőztek..."
 
-#: gui/summary/summary.js:440
+#: gui/summary/summary.js:455
 msgid "You have abandoned the game."
 msgstr "Otthagytad a játékot."
 
-#: gui/summary/summary.js:445
+#: gui/summary/summary.js:458
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Eltelt játékidő: %(time)s"
 
-#: gui/summary/summary.js:453
+#: gui/summary/summary.js:466
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
 
-#: gui/civinfo/civinfo.xml:(caption):16
+#: gui/civinfo/civinfo.xml:(caption):14
 msgid "Civilizations"
 msgstr "Civilizációk"
 
-#: gui/civinfo/civinfo.xml:(caption):28
+#: gui/civinfo/civinfo.xml:(caption):26
 msgid "Civilization Selection"
 msgstr "Civilizáció választása"
 
-#: gui/civinfo/civinfo.xml:(caption):119 gui/credits/credits.xml:(caption):36
+#: gui/civinfo/civinfo.xml:(caption):117 gui/credits/credits.xml:(caption):37
 #: gui/options/options.xml:(caption):60
-#: gui/reference/structree/structree.xml:(caption):122
+#: gui/reference/structree/structree.xml:(caption):119
 msgid "Close"
 msgstr "Bezárás"
 
-#: gui/credits/credits.xml:(caption):18
+#: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
 msgstr "0 A.D. stáblista"
 
-#: gui/locale/locale.xml:(caption):14
-#: gui/locale/locale_advanced.xml:(caption):14
-#: gui/pregame/mainmenu.xml:(caption):339
+#: gui/locale/locale.xml:(caption):14 gui/pregame/mainmenu.xml:(caption):338
 msgid "Language"
 msgstr "Nyelv"
 
 #: gui/locale/locale.xml:(caption):17
-#: gui/locale/locale_advanced.xml:(caption):17
 msgid "Language:"
 msgstr "Nyelv:"
 
@@ -1786,8 +1727,6 @@ msgid "Locale:"
 msgstr "Területi beállítás:"
 
 #: gui/locale/locale.xml:(caption):36
-#: gui/locale/locale_advanced.xml:(caption):65
-#: gui/savedgames/load.xml:(caption):58 gui/savedgames/save.xml:(caption):38
 msgid "Cancel"
 msgstr "Mégse"
 
@@ -1796,48 +1735,8 @@ msgid "Advanced"
 msgstr "Speciális"
 
 #: gui/locale/locale.xml:(caption):46
-#: gui/locale/locale_advanced.xml:(caption):75
 msgid "Accept"
 msgstr "Elfogadás"
-
-#: gui/locale/locale_advanced.xml:(caption):25
-msgid "Country:"
-msgstr "Ország:"
-
-#: gui/locale/locale_advanced.xml:(caption):34
-msgid "Script:"
-msgstr "Írásrendszer:"
-
-#: gui/locale/locale_advanced.xml:(caption):41
-msgid "Variant (unused):"
-msgstr "Változat (nem használt):"
-
-#: gui/locale/locale_advanced.xml:(caption):48
-msgid "Keywords (unused):"
-msgstr "Kulcsszavak (nem használt):"
-
-#: gui/locale/locale_advanced.xml:(caption):55
-msgid "Resulting locale:"
-msgstr "Eredményezett területi beállítás:"
-
-#: gui/locale/locale_advanced.xml:(caption):60
-msgid "Dictionary files used:"
-msgstr "Felhasznált szótárfájlok:"
-
-#: gui/locale/locale_advanced.xml:(caption):70
-msgid "Auto detect"
-msgstr "Felismerés"
-
-#: gui/locale/locale_advanced.xml:(tooltip):37
-msgid ""
-"Optional four-letter script code part following the language code (as listed"
-" in ISO 15924)"
-msgstr "Lehetséges négykarakterű írásrendszerkód a nyelvi kód alapján (ISO 15924 szerint)"
-
-#: gui/locale/locale_advanced.xml:(tooltip):44
-#: gui/locale/locale_advanced.xml:(tooltip):51
-msgid "Not implemented yet."
-msgstr "Még nincs megvalósítva."
 
 #: gui/options/options.xml:(caption):15
 msgid "Game Options"
@@ -1851,7 +1750,7 @@ msgstr "Helyreállítás"
 msgid "Revert"
 msgstr "Visszaállítás"
 
-#: gui/options/options.xml:(caption):54 gui/savedgames/save.xml:(caption):48
+#: gui/options/options.xml:(caption):54
 msgid "Save"
 msgstr "Mentés"
 
@@ -1871,421 +1770,377 @@ msgstr "Menti a változtatásokat"
 msgid "Unsaved changes affect this session only"
 msgstr "A mentetlen változtatások csak ezt a munkamenetet érintik"
 
-#: gui/pregame/mainmenu.xml:59
+#: gui/pregame/mainmenu.xml:58
 msgid "Help improve 0 A.D.!"
 msgstr "Segíts a 0 A.D. tökéletesítésében!"
 
-#: gui/pregame/mainmenu.xml:61
+#: gui/pregame/mainmenu.xml:60
 msgid ""
 "You can automatically send us anonymous feedback that will help us fix bugs,"
 " and improve performance and compatibility."
 msgstr "Küldhetsz nekünk névtelen visszajelzést, ami segít a hibák kijavításában, és a játék teljesítményének, kompatibilitásának javításában."
 
-#: gui/pregame/mainmenu.xml:533
+#: gui/pregame/mainmenu.xml:532
 msgid "Alpha XXIII: Ken Wood"
 msgstr "Alpha XXIII : Ken Wood"
 
-#: gui/pregame/mainmenu.xml:535
+#: gui/pregame/mainmenu.xml:534
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
 msgstr "FIGYELMEZTETÉS: Ez egy korai fejlesztői változata a játéknak. Sok funkció még nem készült el."
 
-#: gui/pregame/mainmenu.xml:(caption):65
+#: gui/pregame/mainmenu.xml:(caption):64
 msgid "Enable Feedback"
 msgstr "Visszajelzés engedélyezése"
 
-#: gui/pregame/mainmenu.xml:(caption):92
+#: gui/pregame/mainmenu.xml:(caption):91
 msgid "Disable Feedback"
 msgstr "Visszajelzés tiltása"
 
-#: gui/pregame/mainmenu.xml:(caption):166
+#: gui/pregame/mainmenu.xml:(caption):165
 msgid "Tutorial"
 msgstr "Oktatójáték "
 
-#: gui/pregame/mainmenu.xml:(caption):180
-#: gui/reference/structree/structree.xml:(caption):16
+#: gui/pregame/mainmenu.xml:(caption):179
+#: gui/reference/structree/structree.xml:(caption):13
 msgid "Structure Tree"
 msgstr "Struktúrafa"
 
-#: gui/pregame/mainmenu.xml:(caption):195
+#: gui/pregame/mainmenu.xml:(caption):194
 msgid "History"
 msgstr "Történelem"
 
-#: gui/pregame/mainmenu.xml:(caption):218
+#: gui/pregame/mainmenu.xml:(caption):217
 msgid "Matches"
 msgstr "Játszmák"
 
-#: gui/pregame/mainmenu.xml:(caption):232
+#: gui/pregame/mainmenu.xml:(caption):231
 msgid "Campaigns"
 msgstr "Hadjáratok"
 
-#: gui/pregame/mainmenu.xml:(caption):245 gui/savedgames/load.xml:(caption):20
+#: gui/pregame/mainmenu.xml:(caption):244
 msgid "Load Game"
 msgstr "Játék betöltése"
 
 #. Join a game by specifying the host's IP address.
-#: gui/pregame/mainmenu.xml:(caption):268
+#: gui/pregame/mainmenu.xml:(caption):267
 msgid "Join Game"
 msgstr "Csatlakozás játékhoz"
 
-#: gui/pregame/mainmenu.xml:(caption):282
+#: gui/pregame/mainmenu.xml:(caption):281
 msgid "Host Game"
 msgstr "Játék létrehozása"
 
-#: gui/pregame/mainmenu.xml:(caption):296
+#: gui/pregame/mainmenu.xml:(caption):295
 msgid "Game Lobby"
 msgstr "Játékváró"
 
-#: gui/pregame/mainmenu.xml:(caption):325
+#: gui/pregame/mainmenu.xml:(caption):324
 msgid "Options"
 msgstr "Beállítások"
 
-#: gui/pregame/mainmenu.xml:(caption):353
+#: gui/pregame/mainmenu.xml:(caption):352
 msgid "Replays"
 msgstr "Visszajátszások"
 
-#: gui/pregame/mainmenu.xml:(caption):367
+#: gui/pregame/mainmenu.xml:(caption):366
 msgid "Scenario Editor"
 msgstr "Küldetésszerkesztő"
 
-#: gui/pregame/mainmenu.xml:(caption):380
+#: gui/pregame/mainmenu.xml:(caption):379
 msgid "Welcome Screen"
 msgstr "Üdvözlőképernyő"
 
-#: gui/pregame/mainmenu.xml:(caption):396
+#: gui/pregame/mainmenu.xml:(caption):395
 msgid "Mod Selection"
 msgstr "Modok választása"
 
-#: gui/pregame/mainmenu.xml:(caption):450
+#: gui/pregame/mainmenu.xml:(caption):449
 msgid "Learn to Play"
 msgstr "Hogyan kell játszani?"
 
-#: gui/pregame/mainmenu.xml:(caption):495
+#: gui/pregame/mainmenu.xml:(caption):494
 msgid "Tools & Options"
 msgstr "Eszközök és beállítások"
 
-#: gui/pregame/mainmenu.xml:(caption):510
+#: gui/pregame/mainmenu.xml:(caption):509
 msgid "Exit"
 msgstr "Kilépés"
 
-#: gui/pregame/mainmenu.xml:(caption):545
+#: gui/pregame/mainmenu.xml:(caption):544
 msgid "Website"
 msgstr "Weboldal"
 
-#: gui/pregame/mainmenu.xml:(caption):557
+#: gui/pregame/mainmenu.xml:(caption):556
 msgid "Chat"
 msgstr "Csevegés"
 
-#: gui/pregame/mainmenu.xml:(caption):569
+#: gui/pregame/mainmenu.xml:(caption):568
 msgid "Report a Bug"
 msgstr "Hiba bejelentése"
 
-#: gui/pregame/mainmenu.xml:(caption):581
+#: gui/pregame/mainmenu.xml:(caption):580
 msgid "Translate the Game"
 msgstr "A játék fordítása"
 
-#: gui/pregame/mainmenu.xml:(caption):593
+#: gui/pregame/mainmenu.xml:(caption):592
 msgid "Credits"
 msgstr "Stáblista"
 
-#: gui/pregame/mainmenu.xml:(caption):622
+#: gui/pregame/mainmenu.xml:(caption):621
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
-#: gui/pregame/mainmenu.xml:(tooltip):148
+#: gui/pregame/mainmenu.xml:(tooltip):147
 msgid "Open the 0 A.D. Game Manual."
 msgstr "A 0 A.D. kézikönyv megnyitása."
 
-#: gui/pregame/mainmenu.xml:(tooltip):167
+#: gui/pregame/mainmenu.xml:(tooltip):166
 msgid "Start the economic tutorial."
 msgstr "A gazdasági oktatójáték elkezdése."
 
-#: gui/pregame/mainmenu.xml:(tooltip):181
+#: gui/pregame/mainmenu.xml:(tooltip):180
 msgid "View the structure tree of civilizations featured in 0 A.D."
 msgstr "A játékban előforduló civilizációk struktúrafáinak megtekintése"
 
-#: gui/pregame/mainmenu.xml:(tooltip):196
+#: gui/pregame/mainmenu.xml:(tooltip):195
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "Ismerkedj meg a 0 A.D. játékban szereplő számos néppel!"
 
-#: gui/pregame/mainmenu.xml:(tooltip):219
+#: gui/pregame/mainmenu.xml:(tooltip):218
 msgid "Click here to start a new single player game."
 msgstr "Kattints ide új egyjátékos módú játék indításához."
 
-#: gui/pregame/mainmenu.xml:(tooltip):233
+#: gui/pregame/mainmenu.xml:(tooltip):232
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
 msgstr "Éld újra a történelmet történelmi hadjáratok újrajátszásával! \\[MÉG NEM ELÉRHETŐ]"
 
-#: gui/pregame/mainmenu.xml:(tooltip):246
+#: gui/pregame/mainmenu.xml:(tooltip):245
 msgid "Click here to load a saved game."
 msgstr "Kattints ide egy korábbi játékmentés betöltséhez"
 
-#: gui/pregame/mainmenu.xml:(tooltip):269
+#: gui/pregame/mainmenu.xml:(tooltip):268
 msgid "Joining an existing multiplayer game."
 msgstr "Csatlakozás meglévő többjátékos módú játékhoz"
 
-#: gui/pregame/mainmenu.xml:(tooltip):283
+#: gui/pregame/mainmenu.xml:(tooltip):282
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr "Többjátékos módú játék létrehozása.\\n\\nA 20595-ös UDP portnak nyitva kell lennie."
 
-#: gui/pregame/mainmenu.xml:(tooltip):297
+#: gui/pregame/mainmenu.xml:(tooltip):296
 msgid "Launch the multiplayer lobby."
 msgstr "Többjátékos váró indítása."
 
-#: gui/pregame/mainmenu.xml:(tooltip):326
+#: gui/pregame/mainmenu.xml:(tooltip):325
 msgid "Adjust game settings."
 msgstr "Játékbeállítások módosítása"
 
-#: gui/pregame/mainmenu.xml:(tooltip):340
+#: gui/pregame/mainmenu.xml:(tooltip):339
 msgid "Choose the language of the game."
 msgstr "Válaszd ki a játék nyelvét!"
 
-#: gui/pregame/mainmenu.xml:(tooltip):354
+#: gui/pregame/mainmenu.xml:(tooltip):353
 msgid "Playback previous games."
 msgstr "Korábbi játékok visszajátszása."
 
-#: gui/pregame/mainmenu.xml:(tooltip):368
+#: gui/pregame/mainmenu.xml:(tooltip):367
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Új ablakban nyisd meg az Atlasz küldetésszerkesztőt! Megbízhatóbban futtathatod, ha a játékot a „-editor” parancssori kapcsolóval indítod."
 
-#: gui/pregame/mainmenu.xml:(tooltip):381
+#: gui/pregame/mainmenu.xml:(tooltip):380
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "Megmutatja az üdvözlőképernyőt. Hasznos, ha csak véletlenül rejtetted el."
 
-#: gui/pregame/mainmenu.xml:(tooltip):397
+#: gui/pregame/mainmenu.xml:(tooltip):396
 msgid "Select mods to use."
 msgstr "Válaszd ki a használni kívánt módot."
 
-#: gui/pregame/mainmenu.xml:(tooltip):451
+#: gui/pregame/mainmenu.xml:(tooltip):450
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations"
 msgstr "Tanulj meg játszani, indítsd el az oktatójátékot, fedezd fel a technológiafákat és a civilizációk történelmét"
 
-#: gui/pregame/mainmenu.xml:(tooltip):466
+#: gui/pregame/mainmenu.xml:(tooltip):465
 msgid "Challenge the computer player to a single player match."
 msgstr "Egyjátékos kihívás a számítógép ellen"
 
-#: gui/pregame/mainmenu.xml:(tooltip):481
+#: gui/pregame/mainmenu.xml:(tooltip):480
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Játék egy vagy több emberi ellenféllel."
 
-#: gui/pregame/mainmenu.xml:(tooltip):496
+#: gui/pregame/mainmenu.xml:(tooltip):495
 msgid "Game options and scenario design tools."
 msgstr "Játékbeállítások és küldetéstervező eszközök."
 
-#: gui/pregame/mainmenu.xml:(tooltip):511
+#: gui/pregame/mainmenu.xml:(tooltip):510
 msgid "Exits the game."
 msgstr "Kilép a játékból."
 
-#: gui/pregame/mainmenu.xml:(tooltip):546
+#: gui/pregame/mainmenu.xml:(tooltip):545
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Kattints a play0ad.com weboldal böngészőben való megnyitásához"
 
-#: gui/pregame/mainmenu.xml:(tooltip):558
+#: gui/pregame/mainmenu.xml:(tooltip):557
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "Kattints a 0 A.D. IRC csevegés böngészőben való megnyitásához. (#0ad csatorna a webchat.quakenet.org címen)"
 
-#: gui/pregame/mainmenu.xml:(tooltip):570
+#: gui/pregame/mainmenu.xml:(tooltip):569
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "Kattints a 0 A.D. Trac oldalának meglátogatásához, ahol bejelentheted az előforduló hibákat."
 
-#: gui/pregame/mainmenu.xml:(tooltip):582
+#: gui/pregame/mainmenu.xml:(tooltip):581
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "Kattints a 0 A.D. fordítási oldal böngészőben való megnyitásához."
 
-#: gui/pregame/mainmenu.xml:(tooltip):594
+#: gui/pregame/mainmenu.xml:(tooltip):593
 msgid "Click to see the 0 A.D. credits."
 msgstr "Kattints a 0 A.D. stáblistájának megtekintéséhez."
 
-#: gui/reference/structree/structree.xml:(caption):28
+#: gui/reference/structree/structree.xml:(caption):25
 msgid "Civilization:"
 msgstr "Civilizáció:"
 
-#: gui/reference/structree/structree.xml:(caption):95
+#: gui/reference/structree/structree.xml:(caption):92
 msgid "Trainer Units"
 msgstr "Kiképző egységek"
 
-#: gui/replaymenu/replay_menu.xml:(caption):28
+#: gui/replaymenu/replay_menu.xml:(caption):13
 msgid "Replay Games"
 msgstr "Játékok visszajátszása"
 
-#: gui/replaymenu/replay_menu.xml:(caption):123
+#: gui/replaymenu/replay_menu.xml:(caption):108
 msgid "Filter compatible replays"
 msgstr "Kompatibilis visszajátszások szűrése"
 
-#: gui/replaymenu/replay_menu.xml:(caption):164
-#: gui/savedgames/load.xml:(caption):98
+#: gui/replaymenu/replay_menu.xml:(caption):149
 msgid "Map Type:"
 msgstr "Térkép típusa:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):179
-#: gui/savedgames/load.xml:(caption):102
+#: gui/replaymenu/replay_menu.xml:(caption):164
 msgid "Map Size:"
 msgstr "Térkép mérete:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):194
-#: gui/savedgames/load.xml:(caption):106
+#: gui/replaymenu/replay_menu.xml:(caption):179
 msgid "Victory:"
 msgstr "Győzelem:"
 
-#: gui/replaymenu/replay_menu.xml:(caption):227
+#: gui/replaymenu/replay_menu.xml:(caption):212
 msgid "Spoiler"
 msgstr "Végkifejlet"
 
-#: gui/replaymenu/replay_menu.xml:(caption):239
+#: gui/replaymenu/replay_menu.xml:(caption):224
 msgid "Main Menu"
 msgstr "Főmenü"
 
-#: gui/replaymenu/replay_menu.xml:(caption):245
-#: gui/savedgames/load.xml:(caption):63 gui/savedgames/save.xml:(caption):43
+#: gui/replaymenu/replay_menu.xml:(caption):230
 msgid "Delete"
 msgstr "Törlés"
 
-#: gui/replaymenu/replay_menu.xml:(caption):251
+#: gui/replaymenu/replay_menu.xml:(caption):236
 msgid "Reload Cache"
 msgstr "Gyorsítótár újratöltése"
 
-#: gui/replaymenu/replay_menu.xml:(caption):258
-#: gui/summary/summary.xml:(caption):24
+#: gui/replaymenu/replay_menu.xml:(caption):243
+#: gui/summary/summary.xml:(caption):14
 msgid "Summary"
 msgstr "Összefoglaló"
 
-#: gui/replaymenu/replay_menu.xml:(caption):264
+#: gui/replaymenu/replay_menu.xml:(caption):249
 msgid "Start Replay"
 msgstr "Visszajátszás kezdése"
 
-#: gui/replaymenu/replay_menu.xml:(heading):83
-#: gui/savedgames/load.xml:(heading):37
+#: gui/replaymenu/replay_menu.xml:(heading):68
 msgctxt "replay"
 msgid "Date / Time"
 msgstr "Dátum / idő"
 
-#: gui/replaymenu/replay_menu.xml:(heading):87
+#: gui/replaymenu/replay_menu.xml:(heading):72
 msgctxt "replay"
 msgid "Players"
 msgstr "Játékosok"
 
-#: gui/replaymenu/replay_menu.xml:(heading):91
-#: gui/savedgames/load.xml:(heading):45
+#: gui/replaymenu/replay_menu.xml:(heading):76
 msgctxt "replay"
 msgid "Map Name"
 msgstr "Térkép neve"
 
-#: gui/replaymenu/replay_menu.xml:(heading):95
+#: gui/replaymenu/replay_menu.xml:(heading):80
 msgctxt "replay"
 msgid "Size"
 msgstr "Méret"
 
-#: gui/replaymenu/replay_menu.xml:(heading):99
+#: gui/replaymenu/replay_menu.xml:(heading):84
 msgctxt "replay"
 msgid "Population"
 msgstr "Lakosság"
 
-#: gui/replaymenu/replay_menu.xml:(heading):103
+#: gui/replaymenu/replay_menu.xml:(heading):88
 msgctxt "replay"
 msgid "Duration"
 msgstr "Időtartam"
 
-#: gui/replaymenu/replay_menu.xml:(tooltip):252
+#: gui/replaymenu/replay_menu.xml:(tooltip):237
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
 msgstr "A visszajátszási gyorsítótár újraépítése. Lehet, hogy lassú!"
 
-#: gui/savedgames/load.xml:(heading):41
-msgctxt "replay"
-msgid "Map Type"
-msgstr "Térkép típusa"
-
-#: gui/savedgames/load.xml:(heading):49
-msgctxt "replay"
-msgid "Description"
-msgstr "Leírás"
-
-#: gui/savedgames/load.xml:(caption):54
-msgid "No saved games found."
-msgstr "Nincsenek mentett játékok."
-
-#: gui/savedgames/load.xml:(caption):68
-msgid "Load"
-msgstr "Betöltés"
-
-#: gui/savedgames/load.xml:(caption):80
-msgid "Filter compatible saved games"
-msgstr "Kompatibilis mentett játék szűrése"
-
-#: gui/savedgames/load.xml:(caption):90
-msgid "Players:"
-msgstr "Játékosok:"
-
-#: gui/savedgames/load.xml:(caption):94
-msgid "Played time:"
-msgstr "Játékidő:"
-
-#: gui/savedgames/save.xml:(caption):16
-msgid "Save Game"
-msgstr "Játék mentése"
-
-#: gui/savedgames/save.xml:(caption):30
-msgid "Description:"
-msgstr "Leírás:"
-
-#: gui/splashscreen/splashscreen.xml:(caption):12
+#: gui/splashscreen/splashscreen.xml:(caption):13
 msgid "Welcome!"
 msgstr "Üdvözlet!"
 
-#: gui/splashscreen/splashscreen.xml:(caption):17
+#: gui/splashscreen/splashscreen.xml:(caption):18
 msgid "Show this message in the future"
 msgstr "Jelenítse meg ezt az üzenetet a jövőben"
 
-#: gui/splashscreen/splashscreen.xml:(caption):22
+#: gui/splashscreen/splashscreen.xml:(caption):23
 msgid "Known Issues (web)"
 msgstr "Ismert problémák (web)"
 
-#: gui/summary/summary.xml:(caption):106
+#: gui/summary/summary.xml:(caption):96
 msgid "Charts"
 msgstr "Diagrammok"
 
-#: gui/summary/summary.xml:(caption):163
+#: gui/summary/summary.xml:(caption):153
 msgctxt "summary chart"
 msgid "Category:"
 msgstr "Kategória:"
 
-#: gui/summary/summary.xml:(caption):173
+#: gui/summary/summary.xml:(caption):163
 msgctxt "summary chart"
 msgid "Value:"
 msgstr "Érték:"
 
-#: gui/summary/summary.xml:(caption):183
+#: gui/summary/summary.xml:(caption):173
 msgctxt "summary chart"
 msgid "Type:"
 msgstr "Típus:"
 
-#: gui/summary/summary.xml:(caption):202
+#: gui/summary/summary.xml:(caption):192
 msgid "Replay"
 msgstr "Visszajátszás"
 
-#: gui/summary/summary.xml:(caption):207
+#: gui/summary/summary.xml:(caption):197
 msgid "Continue"
 msgstr "Tovább"
 
-#: gui/summary/summary.xml:(tooltip):169
+#: gui/summary/summary.xml:(tooltip):159
 msgctxt "summary chart"
 msgid "Category"
 msgstr "Kategória"
 
-#: gui/summary/summary.xml:(tooltip):179
+#: gui/summary/summary.xml:(tooltip):169
 msgctxt "summary chart"
 msgid "Value"
 msgstr "Érték"
 
-#: gui/summary/summary.xml:(tooltip):190
+#: gui/summary/summary.xml:(tooltip):180
 msgctxt "summary chart"
 msgid "Type"
 msgstr "Típus"

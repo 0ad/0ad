@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-06-04 09:07+0200\n"
+"POT-Creation-Date: 2017-11-29 09:05+0100\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Language-Team: Swahili (http://www.transifex.com/wildfire-games/0ad/language/sw/)\n"
 "MIME-Version: 1.0\n"
@@ -54,10 +54,7 @@ msgstr ""
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_infantry_melee_01.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_tower_crenellations.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_tower_range.jsonrequirementsTooltip
 #: simulation/data/technologies/buildtime_walls_rubble.jsonrequirementsTooltip
-#: simulation/data/technologies/decay_outpost.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_training.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsonrequirementsTooltip
@@ -72,6 +69,9 @@ msgstr ""
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
 #: simulation/data/technologies/ranged_inf_irregulars.jsonrequirementsTooltip
 #: simulation/data/technologies/speed_cavalry_01.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_decay.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_range.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_convoys_speed.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
@@ -128,8 +128,6 @@ msgstr ""
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_soldiers_will.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_steel_working.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_tower_defense.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_tower_murderholes.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_carts.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_fertilizer.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsonrequirementsTooltip
@@ -151,6 +149,8 @@ msgstr ""
 #: simulation/data/technologies/siege_cost_wood.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_packing.jsonrequirementsTooltip
 #: simulation/data/technologies/speed_cavalry_02.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_armour.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_murderholes.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_convoys_armor.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_02.jsonrequirementsTooltip
 #: simulation/data/technologies/training_conscription.jsonrequirementsTooltip
@@ -452,12 +452,12 @@ msgid "Reinforced hull"
 msgstr ""
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_tower_watch.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/special_archery_tradition.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
@@ -707,82 +707,6 @@ msgstr ""
 msgid "Toledo Steel"
 msgstr ""
 
-#: simulation/data/technologies/attack_tower_crenellations.jsondescription
-msgid ""
-"Crenellations on the battlements allow soldiers wider range of fire in "
-"defending a keep."
-msgstr ""
-
-#: simulation/data/technologies/attack_tower_crenellations.jsontooltip
-msgid ""
-"Install crenellations and murder holes to have 40% more arrows fired per "
-"garrisoned soldier."
-msgstr ""
-
-#: simulation/data/technologies/attack_tower_crenellations.jsongenericName
-msgid "Crenellations"
-msgstr ""
-
-#: simulation/data/technologies/attack_tower_defense.jsondescription
-msgid "Reinforce the foundations in preparation of an attack."
-msgstr ""
-
-#: simulation/data/technologies/attack_tower_defense.jsontooltip
-msgid "Increases armor level of the defense tower by 2 levels."
-msgstr ""
-
-#: simulation/data/technologies/attack_tower_defense.jsongenericName
-msgid "Sturdy Foundations"
-msgstr ""
-
-#: simulation/data/technologies/attack_tower_murderholes.jsondescription
-msgid "Murder holes allow hitting enemies at the foot of the tower."
-msgstr ""
-
-#: simulation/data/technologies/attack_tower_murderholes.jsontooltip
-msgid "Removes defense tower minimum range."
-msgstr ""
-
-#: simulation/data/technologies/attack_tower_murderholes.jsongenericName
-msgid "Murder Holes"
-msgstr ""
-
-#: simulation/data/technologies/attack_tower_range.jsondescription
-msgid "Arrow shooters increase the maximum range of the fire arrows."
-msgstr ""
-
-#: simulation/data/technologies/attack_tower_range.jsontooltip
-msgid "Increases defense tower maximum range by 8 meters."
-msgstr ""
-
-#: simulation/data/technologies/attack_tower_range.jsongenericName
-msgid "Arrow Shooters"
-msgstr ""
-
-#: simulation/data/technologies/attack_tower_watch.jsondescription
-msgid "A night's watch increases vigilance."
-msgstr ""
-
-#: simulation/data/technologies/attack_tower_watch.jsontooltip
-msgid "Post sentries to add one arrow to towers."
-msgstr ""
-
-#: simulation/data/technologies/attack_tower_watch.jsongenericName
-msgid "Sentries"
-msgstr ""
-
-#: simulation/data/technologies/attack_tower_watch.jsonspecificName.ptol
-#: simulation/data/technologies/attack_tower_watch.jsonspecificName.spart
-#: simulation/data/technologies/attack_tower_watch.jsonspecificName.sele
-#: simulation/data/technologies/attack_tower_watch.jsonspecificName.athen
-#: simulation/data/technologies/attack_tower_watch.jsonspecificName.mace
-msgid "Nyktophýlakes"
-msgstr ""
-
-#: simulation/data/technologies/attack_tower_watch.jsonspecificName.rome
-msgid "Vigiles"
-msgstr ""
-
 #: simulation/data/technologies/buildtime_walls_rubble.jsondescription
 msgid "Using rubble materials reduces the costs and build times of walls."
 msgstr ""
@@ -793,18 +717,6 @@ msgstr ""
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
-msgstr ""
-
-#: simulation/data/technologies/decay_outpost.jsondescription
-msgid "Outposts survive twice as long in neutral territory."
-msgstr ""
-
-#: simulation/data/technologies/decay_outpost.jsontooltip
-msgid "Territory decay rate -50% for outposts."
-msgstr ""
-
-#: simulation/data/technologies/decay_outpost.jsongenericName
-msgid "Stone Foundations"
 msgstr ""
 
 #: simulation/data/technologies/elite_unit_bonus.jsontooltip
@@ -1285,33 +1197,16 @@ msgstr ""
 msgid "Walls build time vs. Health"
 msgstr ""
 
-#: simulation/data/technologies/phase_city.jsondescription
-msgid ""
-"Advances from a bustling town to a veritable metropolis, full of the wonders"
-" of modern technology."
-msgstr ""
-
-#: simulation/data/technologies/phase_city.jsontooltip
-msgid ""
-"Advance to City Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by another +50%. Citizen soldiers max "
-"health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr ""
-
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
+#: simulation/data/technologies/phase_city_generic.jsongenericName
 msgid "City Phase"
 msgstr ""
 
-#: simulation/data/technologies/phase_city.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
-msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr ""
-
-#: simulation/data/technologies/phase_city.jsonspecificName.mace
-#: simulation/data/technologies/phase_city.jsonspecificName.spart
-#: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
-msgid "Megalópolis"
+#: simulation/data/technologies/phase_city.jsondescription
+msgid ""
+"Dummy technology for use in templates requirements, replaced by "
+"phase_city_generic or phase_city_{civ}."
 msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
@@ -1329,33 +1224,40 @@ msgid ""
 "health increased by +10%. All structures +9 garrisoned regeneration rate."
 msgstr ""
 
-#: simulation/data/technologies/phase_town.jsondescription
-msgid ""
-"Advances from a small village to a bustling town, ready to expand rapidly."
+#: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
+msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
 msgstr ""
 
-#: simulation/data/technologies/phase_town.jsontooltip
+#: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
+#: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
+#: simulation/data/technologies/phase_city_generic.jsonspecificName.spart
+msgid "Megalópolis"
+msgstr ""
+
+#: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
-"Advance to Town Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by +30%. Citizen soldiers max health "
-"increased by +20%. All structures +7 garrisoned regeneration rate."
+"Advances from a bustling town to a veritable metropolis, full of the wonders"
+" of modern technology."
+msgstr ""
+
+#: simulation/data/technologies/phase_city_generic.jsontooltip
+msgid ""
+"Advance to City Phase, which unlocks more structures and units. Territory "
+"radius for Civic Centers increased by another +50%. Citizen soldiers max "
+"health increased by +10%. All structures +9 garrisoned regeneration rate."
 msgstr ""
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
+#: simulation/data/technologies/phase_town_generic.jsongenericName
 msgid "Town Phase"
 msgstr ""
 
-#: simulation/data/technologies/phase_town.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_town.jsondescription
 msgid ""
-"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr ""
-
-#: simulation/data/technologies/phase_town.jsonspecificName.mace
-#: simulation/data/technologies/phase_town.jsonspecificName.spart
-#: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
-msgid "Kōmópolis"
+"Dummy technology for use in templates requirements, replaced by "
+"phase_town_generic or phase_town_{civ}."
 msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
@@ -1370,6 +1272,30 @@ msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers. Citizen soldiers max health "
+"increased by +20%. All structures +7 garrisoned regeneration rate."
+msgstr ""
+
+#: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
+msgid ""
+"Requires 5 Village Phase structures (except Palisades and Farm Fields)."
+msgstr ""
+
+#: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
+#: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
+#: simulation/data/technologies/phase_town_generic.jsonspecificName.spart
+msgid "Kōmópolis"
+msgstr ""
+
+#: simulation/data/technologies/phase_town_generic.jsondescription
+msgid ""
+"Advances from a small village to a bustling town, ready to expand rapidly."
+msgstr ""
+
+#: simulation/data/technologies/phase_town_generic.jsontooltip
+msgid ""
+"Advance to Town Phase, which unlocks more structures and units. Territory "
+"radius for Civic Centers increased by +30%. Citizen soldiers max health "
 "increased by +20%. All structures +7 garrisoned regeneration rate."
 msgstr ""
 
@@ -1610,6 +1536,106 @@ msgstr ""
 
 #: simulation/data/technologies/spy_counter.jsongenericName
 msgid "Counterintelligence"
+msgstr ""
+
+#: simulation/data/technologies/tower_armour.jsondescription
+msgid "Reinforce the foundations in preparation of an attack."
+msgstr ""
+
+#: simulation/data/technologies/tower_armour.jsontooltip
+msgid "Increases armor of defensive towers by 2 levels."
+msgstr ""
+
+#: simulation/data/technologies/tower_armour.jsongenericName
+msgid "Sturdy Foundations"
+msgstr ""
+
+#: simulation/data/technologies/tower_crenellations.jsondescription
+msgid ""
+"Crenellations on the battlements allow soldiers wider range of fire in "
+"defending a keep."
+msgstr ""
+
+#: simulation/data/technologies/tower_crenellations.jsontooltip
+msgid ""
+"Install crenellations and murder holes to have 40% more arrows fired per "
+"garrisoned soldier."
+msgstr ""
+
+#: simulation/data/technologies/tower_crenellations.jsongenericName
+msgid "Crenellations"
+msgstr ""
+
+#: simulation/data/technologies/tower_decay.jsondescription
+msgid "Outposts survive twice as long in neutral territory."
+msgstr ""
+
+#: simulation/data/technologies/tower_decay.jsontooltip
+msgid "Outposts -50% territory decay rate."
+msgstr ""
+
+#: simulation/data/technologies/tower_decay.jsongenericName
+msgid "Stone Foundations"
+msgstr ""
+
+#: simulation/data/technologies/tower_murderholes.jsondescription
+msgid "Murder holes allow hitting enemies at the foot of the tower."
+msgstr ""
+
+#: simulation/data/technologies/tower_murderholes.jsontooltip
+msgid "Removes defensive towers' minimum range."
+msgstr ""
+
+#: simulation/data/technologies/tower_murderholes.jsongenericName
+msgid "Murder Holes"
+msgstr ""
+
+#: simulation/data/technologies/tower_range.jsondescription
+msgid "Arrow shooters increase the maximum range of the fire arrows."
+msgstr ""
+
+#: simulation/data/technologies/tower_range.jsontooltip
+msgid "Increases defensive towers' maximum range by 8 meters."
+msgstr ""
+
+#: simulation/data/technologies/tower_range.jsongenericName
+msgid "Arrow Shooters"
+msgstr ""
+
+#: simulation/data/technologies/tower_vision.jsondescription
+msgid "Outposts gain longer vision for scouting."
+msgstr ""
+
+#: simulation/data/technologies/tower_vision.jsontooltip
+msgid "Outposts +50% vision range."
+msgstr ""
+
+#: simulation/data/technologies/tower_vision.jsongenericName
+msgid "Carrier Pigeons"
+msgstr ""
+
+#: simulation/data/technologies/tower_watch.jsondescription
+msgid "A night's watch increases vigilance."
+msgstr ""
+
+#: simulation/data/technologies/tower_watch.jsontooltip
+msgid "Post sentries to add one arrow to defensive towers."
+msgstr ""
+
+#: simulation/data/technologies/tower_watch.jsongenericName
+msgid "Sentries"
+msgstr ""
+
+#: simulation/data/technologies/tower_watch.jsonspecificName.ptol
+#: simulation/data/technologies/tower_watch.jsonspecificName.spart
+#: simulation/data/technologies/tower_watch.jsonspecificName.sele
+#: simulation/data/technologies/tower_watch.jsonspecificName.athen
+#: simulation/data/technologies/tower_watch.jsonspecificName.mace
+msgid "Nyktophýlakes"
+msgstr ""
+
+#: simulation/data/technologies/tower_watch.jsonspecificName.rome
+msgid "Vigiles"
 msgstr ""
 
 #: simulation/data/technologies/trade_commercial_treaty.jsondescription
@@ -1906,18 +1932,6 @@ msgstr ""
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.spart
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.athen
 msgid "Pentakosiomédimnoi"
-msgstr ""
-
-#: simulation/data/technologies/vision_outpost.jsondescription
-msgid "Outposts gain longer vision for scouting."
-msgstr ""
-
-#: simulation/data/technologies/vision_outpost.jsontooltip
-msgid "Vision Range +50% for Outposts."
-msgstr ""
-
-#: simulation/data/technologies/vision_outpost.jsongenericName
-msgid "Carrier Pigeons"
 msgstr ""
 
 #: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsondescription
