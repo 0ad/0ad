@@ -1397,10 +1397,13 @@ void CRenderer::RenderSilhouettes(const CShaderDefines& context)
 	}
 
 	{
-		PROFILE("render casters");
+		PROFILE("render model casters");
 		m->CallModelRenderers(contextDisplay, CULL_SILHOUETTE_CASTER, 0);
-		// (This won't render transparent objects with SILHOUETTE_CASTER - will
-		// we have any units that need that?)
+	}
+
+	{
+		PROFILE("render transparent casters");
+		m->CallTranspModelRenderers(contextDisplay, CULL_SILHOUETTE_CASTER, 0);
 	}
 
 	// Restore state
