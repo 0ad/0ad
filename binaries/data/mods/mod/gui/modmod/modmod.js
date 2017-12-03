@@ -298,7 +298,7 @@ function isDependencyMet(dependency)
 
 	return g_ModsEnabled.some(folder =>
 		g_Mods[folder].name == name &&
-		(!operator || versionSatisfied(g_Mods[folder].version, operator, version)));
+		(!operator || versionSatisfied(g_Mods[folder].version, operator[0], version)));
 }
 
 /**
@@ -344,7 +344,7 @@ function sortEnabledMods()
 {
 	let dependencies = {};
 	for (let folder of g_ModsEnabled)
-		dependencies[folder] = g_Mods[folder].dependencies.map(d => d.split()[0]);
+		dependencies[folder] = g_Mods[folder].dependencies.map(d => d.split(g_CompareVersion)[0]);
 
 	g_ModsEnabled.sort((folder1, folder2) =>
 		dependencies[folder1].indexOf(g_Mods[folder2].name) != -1 ? 1 :
