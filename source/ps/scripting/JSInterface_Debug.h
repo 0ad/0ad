@@ -32,7 +32,6 @@ namespace JSI_Debug
 	void SubmitUserReport(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::string& type, int version, const std::wstring& data);
 	std::wstring GetBuildTimestamp(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int mode);
 	double GetMicroseconds(ScriptInterface::CxPrivate* UNUSED(pCxPrivate));
-	void ForceGC(ScriptInterface::CxPrivate* pCxPrivate);
 
 	void RegisterScriptFunctions(const ScriptInterface& ScriptInterface);
 }

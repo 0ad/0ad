@@ -104,7 +104,6 @@ bool CMapGeneratorWorker::Run()
 	m_ScriptInterface->RegisterFunction<bool, std::wstring, CMapGeneratorWorker::LoadLibrary>("LoadLibrary");
 	m_ScriptInterface->RegisterFunction<void, JS::HandleValue, CMapGeneratorWorker::ExportMap>("ExportMap");
 	m_ScriptInterface->RegisterFunction<void, int, CMapGeneratorWorker::SetProgress>("SetProgress");
-	m_ScriptInterface->RegisterFunction<void, CMapGeneratorWorker::MaybeGC>("MaybeGC");
 	m_ScriptInterface->RegisterFunction<CParamNode, std::string, CMapGeneratorWorker::GetTemplate>("GetTemplate");
 	m_ScriptInterface->RegisterFunction<bool, std::string, CMapGeneratorWorker::TemplateExists>("TemplateExists");
 	m_ScriptInterface->RegisterFunction<std::vector<std::string>, std::string, bool, CMapGeneratorWorker::FindTemplates>("FindTemplates");
@@ -188,12 +187,6 @@ void CMapGeneratorWorker::SetProgress(ScriptInterface::CxPrivate* pCxPrivate, in
 	// Copy data
 	CScopeLock lock(self->m_WorkerMutex);
 	self->m_Progress = progress;
-}
-
-void CMapGeneratorWorker::MaybeGC(ScriptInterface::CxPrivate* pCxPrivate)
-{
-	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
-	self->m_ScriptInterface->MaybeGC();
 }
 
 CParamNode CMapGeneratorWorker::GetTemplate(ScriptInterface::CxPrivate* pCxPrivate, const std::string& templateName)

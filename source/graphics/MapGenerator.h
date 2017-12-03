@@ -124,7 +124,6 @@ private:
 	static bool LoadLibrary(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& name);
 	static void ExportMap(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue data);
 	static void SetProgress(ScriptInterface::CxPrivate* pCxPrivate, int progress);
-	static void MaybeGC(ScriptInterface::CxPrivate* pCxPrivate);
 	static CParamNode GetTemplate(ScriptInterface::CxPrivate* pCxPrivate, const std::string& templateName);
 	static bool TemplateExists(ScriptInterface::CxPrivate* pCxPrivate, const std::string& templateName);
 	static std::vector<std::string> FindTemplates(ScriptInterface::CxPrivate* pCxPrivate, const std::string& path, bool includeSubdirectories);
