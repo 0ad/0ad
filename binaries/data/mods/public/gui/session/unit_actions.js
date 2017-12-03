@@ -857,9 +857,14 @@ var g_UnitActions =
 				else
 					cursor = "action-gather-" + resourceType.specific;
 
-				data.command = "gather";
+				data.command = "gather-near-position";
 				data.resourceType = resourceType;
 				data.resourceTemplate = targetState.template;
+				if (!targetState.speed)
+				{
+					data.command = "gather";
+					data.target = targetState.id;
+				}
 			}
 			else if (entState.market && targetState.market &&
 			         entState.id != targetState.id &&
