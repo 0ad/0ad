@@ -7,7 +7,6 @@
  *		"name": "0ad",
  *		"version": "0.0.16",
  *		"label": "0 A.D. - Empires Ascendant",
- *		"type": "content|functionality|mixed/mod-pack",
  *		"url": "http://wildfregames.com/",
  *		"description": "A free, open-source, historical RTS game.",
  *		"dependencies": []
@@ -69,7 +68,6 @@ function initGUIFilters()
 {
 	Engine.GetGUIObjectByName("negateFilter").checked = false;
 	Engine.GetGUIObjectByName("modGenericFilter").caption = translate("Filter");
-	Engine.GetGUIObjectByName("modTypeFilter").selected = 0;
 
 	displayModLists();
 }
@@ -96,8 +94,6 @@ function displayModLists()
 
 function displayModList(listObjectName, folders)
 {
-	updateModTypes();
-
 	let listObject = Engine.GetGUIObjectByName(listObjectName);
 
 	if (listObjectName == "modsDisabledList")
@@ -113,22 +109,10 @@ function displayModList(listObjectName, folders)
 	listObject.list_name = folders.map(folder => g_Mods[folder].name);
 	listObject.list_folder = folders;
 	listObject.list_label = folders.map(folder => g_Mods[folder].label);
-	listObject.list_type = folders.map(folder => g_Mods[folder].type || "");
 	listObject.list_url = folders.map(folder => g_Mods[folder].url || "");
 	listObject.list_version = folders.map(folder => g_Mods[folder].version);
 	listObject.list_dependencies = folders.map(folder => g_Mods[folder].dependencies.join(" "));
 	listObject.list = folders;
-}
-
-function updateModTypes()
-{
-	let types = [translate("Type: Any")];
-	for (let folder in g_Mods)
-	{
-		if (g_Mods[folder].type && types.indexOf(g_Mods[folder].type) == -1)
-			types.push(g_Mods[folder].type);
-	}
-	Engine.GetGUIObjectByName("modTypeFilter").list = types;
 }
 
 function enableMod()
@@ -180,9 +164,7 @@ function resetFilters()
 {
 	Engine.GetGUIObjectByName("modGenericFilter").caption = "";
 	Engine.GetGUIObjectByName("negateFilter").checked = false;
-
-	// Calling displayModLists is not needed as the selection changes and that calls applyFilters
-	Engine.GetGUIObjectByName("modTypeFilter").selected = 0;
+	displayModLists();
 }
 
 function applyFilters()
@@ -211,19 +193,14 @@ function filterMod(folder)
 {
 	let mod = g_Mods[folder];
 
-	let modTypeFilter = Engine.GetGUIObjectByName("modTypeFilter");
 	let negateFilter = Engine.GetGUIObjectByName("negateFilter").checked;
-
-	if (modTypeFilter.selected > 0 && (mod.type || "") != modTypeFilter.list[modTypeFilter.selected])
-		return negateFilter;
-
 	let searchText = Engine.GetGUIObjectByName("modGenericFilter").caption;
+
 	if (searchText &&
 	    searchText != translate("Filter") &&
 	    folder.indexOf(searchText) == -1 &&
 	    mod.name.indexOf(searchText) == -1 &&
 	    mod.label.indexOf(searchText) == -1 &&
-	    (mod.type || "").indexOf(searchText) == -1 &&
 	    (mod.url || "").indexOf(searchText) == -1 &&
 	    mod.version.indexOf(searchText) == -1 &&
 	    mod.description.indexOf(searchText) == -1 &&
