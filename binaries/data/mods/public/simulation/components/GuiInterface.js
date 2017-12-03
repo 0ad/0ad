@@ -277,7 +277,8 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"rank": cmpIdentity.GetRank(),
 			"classes": cmpIdentity.GetClassesList(),
 			"visibleClasses": cmpIdentity.GetVisibleClassesList(),
-			"selectionGroupName": cmpIdentity.GetSelectionGroupName()
+			"selectionGroupName": cmpIdentity.GetSelectionGroupName(),
+			"canDelete": !cmpIdentity.IsUndeletable()
 		};
 
 	let cmpPosition = Engine.QueryInterface(ent, IID_Position);
@@ -294,7 +295,6 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		ret.maxHitpoints = cmpHealth.GetMaxHitpoints();
 		ret.needsRepair = cmpHealth.IsRepairable() && cmpHealth.GetHitpoints() < cmpHealth.GetMaxHitpoints();
 		ret.needsHeal = !cmpHealth.IsUnhealable();
-		ret.canDelete = !cmpHealth.IsUndeletable();
 	}
 
 	let cmpCapturable = QueryMiragedInterface(ent, IID_Capturable);

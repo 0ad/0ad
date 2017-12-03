@@ -40,6 +40,15 @@ SkirmishReplacer.prototype.ReplaceEntities = function()
 	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	var templateName = cmpTemplateManager.GetCurrentTemplateName(this.entity);
 
+	let specialFilter = "";
+	let specialFilterPos = templateName.lastIndexOf("|");
+
+	if (specialFilterPos != -1)
+	{
+		specialFilter = templateName.substr(0, specialFilterPos + 1);
+		templateName = templateName.substr(specialFilterPos);
+	}
+
 	if (templateName in replacementEntities)
 		templateName = replacementEntities[templateName];
 	else if (this.template && "general" in this.template)
@@ -53,7 +62,7 @@ SkirmishReplacer.prototype.ReplaceEntities = function()
 		return;
 	}
 
-	templateName = templateName.replace(/\{civ\}/g, civ);
+	templateName = specialFilter + templateName.replace(/\{civ\}/g, civ);
 
 	var cmpCurPosition = Engine.QueryInterface(this.entity, IID_Position);
 	var replacement = Engine.AddEntity(templateName);

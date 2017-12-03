@@ -86,8 +86,10 @@ Identity.prototype.Schema =
 		"<element name='RequiredTechnology' a:help='Optional name of a technology which must be researched before the entity can be produced.'>" +
 			"<text/>" +
 		"</element>" +
-	"</optional>";
-
+	"</optional>" +
+	"<element name='Undeletable' a:help='Prevent players from deleting this entity.'>" +
+		"<data type='boolean'/>" +
+	"</element>";
 
 Identity.prototype.Init = function()
 {
@@ -157,6 +159,11 @@ Identity.prototype.GetSelectionGroupName = function()
 Identity.prototype.GetGenericName = function()
 {
 	return this.template.GenericName;
+};
+
+Identity.prototype.IsUndeletable = function()
+{
+	return this.template.Undeletable == "true";
 };
 
 Engine.RegisterComponentType(IID_Identity, "Identity", Identity);

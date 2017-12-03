@@ -566,8 +566,7 @@ AddMock(10, IID_Health, {
 	GetHitpoints: function() { return 50; },
 	GetMaxHitpoints: function() { return 60; },
 	IsRepairable: function() { return false; },
-	IsUnhealable: function() { return false; },
-	IsUndeletable: function() { return false; }
+	IsUnhealable: function() { return false; }
 });
 
 AddMock(10, IID_Identity, {
@@ -575,7 +574,8 @@ AddMock(10, IID_Identity, {
 	GetVisibleClassesList: function() { return ["class3", "class4"]; },
 	GetRank: function() { return "foo"; },
 	GetSelectionGroupName: function() { return "Selection Group Name"; },
-	HasClass: function() { return true; }
+	HasClass: function() { return true; },
+	IsUndeletable: function() { return false; }
 });
 
 AddMock(10, IID_Position, {
@@ -614,7 +614,8 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetEntityState(-1, 10), {
 		rank: "foo",
 		classes: ["class1", "class2"],
 		visibleClasses: ["class3", "class4"],
-		selectionGroupName: "Selection Group Name"
+		selectionGroupName: "Selection Group Name",
+		canDelete: true
 	},
 	fogging: null,
 	foundation: null,
@@ -637,8 +638,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetEntityState(-1, 10), {
 	hitpoints: 50,
 	maxHitpoints: 60,
 	needsRepair: false,
-	needsHeal: true,
-	canDelete: true
+	needsHeal: true
 });
 
 TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedEntityState(-1, 10), {

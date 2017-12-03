@@ -30,7 +30,7 @@ const aWaypointFlag = "actor|props/special/common/waypoint_flag.xml";
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
-const oTreasureSeeker = "skirmish/units/default_support_female_citizen";
+const oTreasureSeeker = "undeletable|skirmish/units/default_support_female_citizen";
 
 const triggerPointAttacker = "trigger/trigger_point_A";
 const triggerPointTreasures = [

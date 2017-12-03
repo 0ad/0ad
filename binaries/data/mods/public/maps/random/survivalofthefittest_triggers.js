@@ -178,9 +178,6 @@ Trigger.prototype.InitStartingUnits = function()
 
 				let cmpDamageReceiver = Engine.QueryInterface(entity, IID_DamageReceiver);
 				cmpDamageReceiver.SetInvulnerability(true);
-
-				let cmpHealth = Engine.QueryInterface(entity, IID_Health);
-				cmpHealth.SetUndeletable(true);
 			}
 		}
 	}

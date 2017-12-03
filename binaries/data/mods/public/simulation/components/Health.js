@@ -47,9 +47,6 @@ Health.prototype.Schema =
 			"<text/>" +
 		"</element>" +
 	"</optional>" +
-	"<element name='Undeletable' a:help='Prevent players from deleting this entity.'>" +
-		"<data type='boolean'/>" +
-	"</element>" +
 	"<element name='Unhealable' a:help='Indicates that the entity can not be healed by healer units'>" +
 		"<data type='boolean'/>" +
 	"</element>";
@@ -63,7 +60,6 @@ Health.prototype.Init = function()
 	this.hitpoints = +(this.template.Initial || this.GetMaxHitpoints());
 	this.regenRate = ApplyValueModificationsToEntity("Health/RegenRate", +this.template.RegenRate, this.entity);
 	this.idleRegenRate = ApplyValueModificationsToEntity("Health/IdleRegenRate", +this.template.IdleRegenRate, this.entity);
-	this.undeletable = this.template.Undeletable == "true";
 	this.CheckRegenTimer();
 	this.UpdateActor();
 };
@@ -120,16 +116,6 @@ Health.prototype.IsUnhealable = function()
 	return (this.template.Unhealable == "true"
 		|| this.GetHitpoints() <= 0
 		|| this.GetHitpoints() >= this.GetMaxHitpoints());
-};
-
-Health.prototype.IsUndeletable = function()
-{
-	return this.undeletable;
-};
-
-Health.prototype.SetUndeletable = function(undeletable)
-{
-	this.undeletable = undeletable;
 };
 
 Health.prototype.GetIdleRegenRate = function()
