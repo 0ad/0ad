@@ -15,14 +15,9 @@ SkirmishReplacer.prototype.Init = function()
 
 SkirmishReplacer.prototype.Serialize = null; // We have no dynamic state to save
 
-//this function gets the replacement entities from the {civ}.json file
 function getReplacementEntities(civ)
 {
-	var rawCivData = Engine.ReadCivJSONFile(civ+".json");
-	if (rawCivData && rawCivData.SkirmishReplacements)
-		return rawCivData.SkirmishReplacements;
-	warn("SkirmishReplacer.js: no replacements found in '"+civ+".json'");
-	return {};
+	return Engine.ReadJSONFile("simulation/data/civs/" + civ + ".json").SkirmishReplacements;
 }
 
 SkirmishReplacer.prototype.OnOwnershipChanged = function(msg)

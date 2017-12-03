@@ -30,6 +30,7 @@
 #include "lib/utf8.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
+#include "ps/scripting/JSInterface_VFS.h"
 
 /**
  * Used for script-only message types.
@@ -68,6 +69,7 @@ CComponentManager::CComponentManager(CSimContext& context, shared_ptr<ScriptRunt
 	// these functions, so we skip registering them here in those cases
 	if (!skipScriptFunctions)
 	{
+		JSI_VFS::RegisterScriptFunctions_Simulation(m_ScriptInterface);
 		m_ScriptInterface.RegisterFunction<void, int, std::string, JS::HandleValue, CComponentManager::Script_RegisterComponentType> ("RegisterComponentType");
 		m_ScriptInterface.RegisterFunction<void, int, std::string, JS::HandleValue, CComponentManager::Script_RegisterSystemComponentType> ("RegisterSystemComponentType");
 		m_ScriptInterface.RegisterFunction<void, int, std::string, JS::HandleValue, CComponentManager::Script_ReRegisterComponentType> ("ReRegisterComponentType");
@@ -84,8 +86,6 @@ CComponentManager::CComponentManager(CSimContext& context, shared_ptr<ScriptRunt
 		m_ScriptInterface.RegisterFunction<void, int, CComponentManager::Script_DestroyEntity> ("DestroyEntity");
 		m_ScriptInterface.RegisterFunction<void, CComponentManager::Script_FlushDestroyedEntities> ("FlushDestroyedEntities");
 		m_ScriptInterface.RegisterFunction<bool, std::wstring, CComponentManager::Script_DataFileExists> ("DataFileExists");
-		m_ScriptInterface.RegisterFunction<JS::Value, std::wstring, CComponentManager::Script_ReadJSONFile> ("ReadJSONFile");
-		m_ScriptInterface.RegisterFunction<JS::Value, std::wstring, CComponentManager::Script_ReadCivJSONFile> ("ReadCivJSONFile");
 		m_ScriptInterface.RegisterFunction<std::vector<std::string>, std::wstring, bool, CComponentManager::Script_FindJSONFiles> ("FindJSONFiles");
 	}
 
@@ -1190,28 +1190,6 @@ bool CComponentManager::Script_DataFileExists(ScriptInterface::CxPrivate* UNUSED
 {
 	VfsPath path = VfsPath(L"simulation/data") / fileName;
 	return VfsFileExists(path);
-}
-
-JS::Value CComponentManager::Script_ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& fileName)
-{
-	return ReadJSONFile(pCxPrivate, L"simulation/data", fileName);
-}
-
-JS::Value CComponentManager::Script_ReadCivJSONFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& fileName)
-{
-	return ReadJSONFile(pCxPrivate, L"simulation/data/civs", fileName);
-}
-
-JS::Value CComponentManager::ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filePath, const std::wstring& fileName)
-{
-	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
-	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
-
-	VfsPath path = VfsPath(filePath) / fileName;
-	JS::RootedValue out(cx);
-	componentManager->GetScriptInterface().ReadJSONFile(path, &out);
-	return out;
 }
 
 Status CComponentManager::FindJSONFilesCallback(const VfsPath& pathname, const CFileInfo& UNUSED(fileInfo), const uintptr_t cbData)

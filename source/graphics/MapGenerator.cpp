@@ -100,7 +100,7 @@ bool CMapGeneratorWorker::Run()
 	m_ScriptInterface->LoadGlobalScripts();
 
 	// Functions for RMS
-	JSI_VFS::RegisterReadOnlyScriptFunctions(*m_ScriptInterface);
+	JSI_VFS::RegisterScriptFunctions_Maps(*m_ScriptInterface);
 	m_ScriptInterface->RegisterFunction<bool, std::wstring, CMapGeneratorWorker::LoadLibrary>("LoadLibrary");
 	m_ScriptInterface->RegisterFunction<void, JS::HandleValue, CMapGeneratorWorker::ExportMap>("ExportMap");
 	m_ScriptInterface->RegisterFunction<void, int, CMapGeneratorWorker::SetProgress>("SetProgress");

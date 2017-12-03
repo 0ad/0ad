@@ -9,20 +9,16 @@
  */
 function LoadPlayerSettings(settings, newPlayers)
 {
+	var playerDefaults = Engine.ReadJSONFile("simulation/data/settings/player_defaults.json").PlayerData;
+
 	// Default settings
 	if (!settings)
 		settings = {};
-
-	// Get default player data
-	var rawData = Engine.ReadJSONFile("settings/player_defaults.json");
-	if (!(rawData && rawData.PlayerData))
-		throw new Error("Player.js: Error reading player_defaults.json");
 
 	// Add gaia to simplify iteration
 	if (settings.PlayerData && settings.PlayerData[0])
 		settings.PlayerData.unshift(null);
 
-	var playerDefaults = rawData.PlayerData;
 	var playerData = settings.PlayerData;
 
 	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
@@ -146,18 +142,9 @@ function LoadPlayerSettings(settings, newPlayers)
 			cmpPlayer.SetTeam(myTeam === undefined ? -1 : myTeam);
 		}
 
-		// If formations explicitly defined, use that; otherwise use civ defaults
-		var formations = getSetting(playerData, playerDefaults, i, "Formations");
-		if (formations !== undefined)
-			cmpPlayer.SetFormations(formations);
-		else
-		{
-			var rawFormations = Engine.ReadCivJSONFile(cmpPlayer.GetCiv()+".json");
-			if (!(rawFormations && rawFormations.Formations))
-				throw new Error("Player.js: Error reading " + cmpPlayer.GetCiv() + ".json");
-
-			cmpPlayer.SetFormations(rawFormations.Formations);
-		}
+		cmpPlayer.SetFormations(
+			getSetting(playerData, playerDefaults, i, "Formations") ||
+			Engine.ReadJSONFile("simulation/data/civs/" + cmpPlayer.GetCiv() + ".json").Formations);
 
 		var startCam = getSetting(playerData, playerDefaults, i, "StartingCamera");
 		if (startCam !== undefined)
