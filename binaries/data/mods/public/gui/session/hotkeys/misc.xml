@@ -89,6 +89,10 @@
 		<action on="Press">findIdleUnit(g_MilitaryTypes);</action>
 	</object>
 
+	<object hotkey="selection.idleunit">
+		<action on="Press">findIdleUnit(["!Domestic"]);</action>
+	</object>
+
 	<object hotkey="selection.cancel">
 		<action on="Press">clearSelection();</action>
 	</object>
