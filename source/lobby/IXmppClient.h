@@ -22,7 +22,7 @@
 
 class ScriptInterface;
 namespace StunClient {
-class StunEndpoint;
+	struct StunEndpoint;
 }
 
 class IXmppClient
