@@ -63,9 +63,9 @@ DataTemplateManager.prototype.GetAllTechs = function()
 	return this.allTechs;
 };
 
-DataTemplateManager.prototype.TechFileExists = function(template)
+DataTemplateManager.prototype.TechnologyExists = function(template)
 {
-	return Engine.DataFileExists("technologies/" + template + ".json");
+	return !!this.allTechs[template];
 };
 
 Engine.RegisterSystemComponentType(IID_DataTemplateManager, "DataTemplateManager", DataTemplateManager);

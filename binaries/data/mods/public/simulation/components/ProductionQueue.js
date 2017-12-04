@@ -168,7 +168,7 @@ ProductionQueue.prototype.GetTechnologiesList = function()
 		if (tech.indexOf("{civ}") == -1)
 			continue;
 		let civTech = tech.replace("{civ}", cmpPlayer.GetCiv());
-		techs[i] = cmpDataTemplateManager.TechFileExists(civTech) ?
+		techs[i] = cmpDataTemplateManager.TechnologyExists(civTech) ?
 		           civTech : tech.replace("{civ}", "generic");
 	}
 
