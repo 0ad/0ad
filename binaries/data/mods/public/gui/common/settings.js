@@ -211,7 +211,7 @@ function loadMapTypes()
 
 function loadBiomes()
 {
-	return Engine.BuildDirEntList(g_BiomesDirectory, "*.json", false).map(file => {
+	return Engine.ListDirectoryFiles(g_BiomesDirectory, "*.json", false).map(file => {
 		let description = Engine.ReadJSONFile(file).Description;
 		return {
 			"Id": file.substr(g_BiomesDirectory.length).slice(0, -".json".length),
@@ -230,7 +230,7 @@ function loadVictoryConditions()
 {
 	let subdir = "victory_conditions/";
 
-	let files = Engine.BuildDirEntList(g_SettingsDirectory + subdir, "*.json", false).map(
+	let files = Engine.ListDirectoryFiles(g_SettingsDirectory + subdir, "*.json", false).map(
 		file => file.substr(g_SettingsDirectory.length));
 
 	let victoryConditions = files.map(file => {

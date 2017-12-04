@@ -86,7 +86,6 @@ CComponentManager::CComponentManager(CSimContext& context, shared_ptr<ScriptRunt
 		m_ScriptInterface.RegisterFunction<void, int, CComponentManager::Script_DestroyEntity> ("DestroyEntity");
 		m_ScriptInterface.RegisterFunction<void, CComponentManager::Script_FlushDestroyedEntities> ("FlushDestroyedEntities");
 		m_ScriptInterface.RegisterFunction<bool, std::wstring, CComponentManager::Script_DataFileExists> ("DataFileExists");
-		m_ScriptInterface.RegisterFunction<std::vector<std::string>, std::wstring, bool, CComponentManager::Script_FindJSONFiles> ("FindJSONFiles");
 	}
 
 	// Define MT_*, IID_* as script globals, and store their names
@@ -1190,39 +1189,4 @@ bool CComponentManager::Script_DataFileExists(ScriptInterface::CxPrivate* UNUSED
 {
 	VfsPath path = VfsPath(L"simulation/data") / fileName;
 	return VfsFileExists(path);
-}
-
-Status CComponentManager::FindJSONFilesCallback(const VfsPath& pathname, const CFileInfo& UNUSED(fileInfo), const uintptr_t cbData)
-{
-	FindJSONFilesCallbackData* data = (FindJSONFilesCallbackData*)cbData;
-
-	VfsPath pathstem = pathname.ChangeExtension(L"");
-	// Strip the root from the path
-	std::wstring name = pathstem.string().substr(data->path.string().length());
-
-	data->templates.push_back(std::string(name.begin(), name.end()));
-
-	return INFO::OK;
-}
-
-std::vector<std::string> CComponentManager::Script_FindJSONFiles(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& subPath, bool recursive)
-{
-	FindJSONFilesCallbackData cbData;
-	cbData.path = VfsPath(L"simulation/data/" + subPath + L"/");
-
-	int dir_flags = 0;
-	if (recursive) {
-		dir_flags = vfs::DIR_RECURSIVE;
-	}
-
-	// Find all simulation/data/{subPath}/*.json recursively
-	Status ret = vfs::ForEachFile(g_VFS, cbData.path, FindJSONFilesCallback, (uintptr_t)&cbData, L"*.json", dir_flags);
-	if (ret != INFO::OK)
-	{
-		// Some error reading directory
-		wchar_t error[200];
-		LOGERROR("Error reading directory '%s': %s", cbData.path.string8(), utf8_from_wstring(StatusDescription(ret, error, ARRAY_SIZE(error))));
-	}
-
-	return cbData.templates;
 }

@@ -8,6 +8,9 @@ DataTemplateManager.prototype.Schema =
 
 DataTemplateManager.prototype.Init = function()
 {
+	this.technologiesPath = "simulation/data/technologies/";
+	this.aurasPath = "simulation/data/auras/";
+
 	this.allTechs = {};
 	this.allAuras = {};
 
@@ -25,7 +28,7 @@ DataTemplateManager.prototype.GetTechnologyTemplate = function(template)
 {
 	if (!this.allTechs[template])
 	{
-		this.allTechs[template] = Engine.ReadJSONFile("simulation/data/technologies/" + template + ".json");
+		this.allTechs[template] = Engine.ReadJSONFile(this.technologiesPath + template + ".json");
 		if (!this.allTechs[template])
 			error("Failed to load technology \"" + template + "\"");
 	}
@@ -37,7 +40,7 @@ DataTemplateManager.prototype.GetAuraTemplate = function(template)
 {
 	if (!this.allAuras[template])
 	{
-		this.allAuras[template] = Engine.ReadJSONFile("simulation/data/auras/" + template + ".json");
+		this.allAuras[template] = Engine.ReadJSONFile(this.aurasPath + template + ".json");
 		if (!this.allAuras[template])
 			error("Failed to load aura \"" + template + "\"");
 	}
@@ -47,12 +50,12 @@ DataTemplateManager.prototype.GetAuraTemplate = function(template)
 
 DataTemplateManager.prototype.ListAllTechs = function()
 {
-	return Engine.FindJSONFiles("technologies", true);
+	return Engine.ListDirectoryFiles(this.technologiesPath, "*.json", true).map(file => file.slice(this.technologiesPath.length, -".json".length));
 };
 
 DataTemplateManager.prototype.ListAllAuras = function()
 {
-	return Engine.FindJSONFiles("auras", true);
+	return Engine.ListDirectoryFiles(this.aurasPath, "*.json", true).map(file => file.slice(this.aurasPath.length, -".json".length));
 };
 
 DataTemplateManager.prototype.GetAllTechs = function()

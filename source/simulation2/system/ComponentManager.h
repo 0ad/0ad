@@ -115,12 +115,6 @@ private:
 		}
 	};
 
-	struct FindJSONFilesCallbackData
-	{
-		VfsPath path;
-		std::vector<std::string> templates;
-	};
-
 public:
 	CComponentManager(CSimContext&, shared_ptr<ScriptRuntime> rt, bool skipScriptFunctions = false);
 	~CComponentManager();
@@ -333,10 +327,6 @@ private:
 	static void Script_DestroyEntity(ScriptInterface::CxPrivate* pCxPrivate, int ent);
 	static void Script_FlushDestroyedEntities(ScriptInterface::CxPrivate* pCxPrivate);
 	static bool Script_DataFileExists(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& fileName);
-	static std::vector<std::string> Script_FindJSONFiles(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& subPath, bool recursive);
-
-	// callback function to handle recursively finding files in a directory
-	static Status FindJSONFilesCallback(const VfsPath&, const CFileInfo&, const uintptr_t);
 
 	CMessage* ConstructMessage(int mtid, JS::HandleValue data);
 	void SendGlobalMessage(entity_id_t ent, const CMessage& msg);

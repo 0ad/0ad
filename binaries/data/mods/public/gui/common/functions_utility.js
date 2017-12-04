@@ -10,7 +10,7 @@ var g_SoundNotifications = {
 // Get list of XML files in pathname with recursion, excepting those starting with _
 function getXMLFileList(pathname)
 {
-	var files = Engine.BuildDirEntList(pathname, "*.xml", true);
+	var files = Engine.ListDirectoryFiles(pathname, "*.xml", true);
 
 	var result = [];
 
@@ -33,7 +33,7 @@ function getXMLFileList(pathname)
 function getJSONFileList(pathname)
 {
 	// Remove the path and extension from each name, since we just want the filename
-	return Engine.BuildDirEntList(pathname, "*.json", false).map(
+	return Engine.ListDirectoryFiles(pathname, "*.json", false).map(
 		filename => filename.substring(pathname.length, filename.length - 5));
 }
 

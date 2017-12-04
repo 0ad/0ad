@@ -291,7 +291,7 @@ function findAllAutoResearchedTechs()
 {
 	let techList = [];
 
-	for (let filename of Engine.BuildDirEntList(g_TechnologyPath, "*.json", true))
+	for (let filename of Engine.ListDirectoryFiles(g_TechnologyPath, "*.json", true))
 	{
 		// -5 to strip off the file extension
 		let templateName = filename.slice(g_TechnologyPath.length, -5);
