@@ -329,6 +329,11 @@ function prepareForDropdown(settingValues)
 	return deepfreeze(settings);
 }
 
+function getGameSpeedChoices(allowFastForward)
+{
+	return prepareForDropdown(g_Settings.GameSpeeds.filter(speed => !speed.FastForward || allowFastForward));
+}
+
 /**
  * Returns title or placeholder.
  *

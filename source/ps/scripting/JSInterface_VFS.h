@@ -56,13 +56,17 @@ namespace JSI_VFS
 	JS::Value ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filename);
 
 	// Return file contents parsed as a JS Object
-	JS::Value ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filePath);
+	JS::Value ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, const std::vector<CStrW>& validPaths, const CStrW& filePath);
 
 	// Save given JS Object to a JSON file
 	void WriteJSONFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filePath, JS::HandleValue val1);
 
-	void RegisterReadOnlyScriptFunctions(const ScriptInterface& scriptInterface);
-	void RegisterWriteScriptFunctions(const ScriptInterface& scriptInterface);
+	// Tests whether the current script context is allowed to read from the given directory
+	bool PathRestrictionMet(ScriptInterface::CxPrivate* pCxPrivate, const std::vector<CStrW>& validPaths, const CStrW& filePath);
+
+	void RegisterScriptFunctions_GUI(const ScriptInterface& scriptInterface);
+	void RegisterScriptFunctions_Simulation(const ScriptInterface& scriptInterface);
+	void RegisterScriptFunctions_Maps(const ScriptInterface& scriptInterface);
 }
 
 #endif

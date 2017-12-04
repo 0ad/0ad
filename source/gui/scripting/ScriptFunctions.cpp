@@ -65,7 +65,6 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	JSI_SavedGame::RegisterScriptFunctions(scriptInterface);
 	JSI_Simulation::RegisterScriptFunctions(scriptInterface);
 	JSI_Sound::RegisterScriptFunctions(scriptInterface);
-	JSI_VFS::RegisterReadOnlyScriptFunctions(scriptInterface);
-	JSI_VFS::RegisterWriteScriptFunctions(scriptInterface);
+	JSI_VFS::RegisterScriptFunctions_GUI(scriptInterface);
 	JSI_VisualReplay::RegisterScriptFunctions(scriptInterface);
 }

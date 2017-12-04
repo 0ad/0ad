@@ -27,6 +27,11 @@
 #include "ps/scripting/JSInterface_VFS.h"
 #include "lib/file/vfs/vfs_util.h"
 
+// Only allow engine compartments to read files they may be concerned about.
+#define PathRestriction_GUI {L""}
+#define PathRestriction_Simulation {L"simulation/"}
+#define PathRestriction_Maps {L"simulation/", L"maps/"}
+
 // shared error handling code
 #define JS_CHECK_FILE_ERR(err)\
 	/* this is liable to happen often, so don't complain */\
@@ -178,8 +183,11 @@ JS::Value JSI_VFS::ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, const s
 	return JS::ObjectValue(*line_array);
 }
 
-JS::Value JSI_VFS::ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filePath)
+JS::Value JSI_VFS::ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, const std::vector<CStrW>& validPaths, const CStrW& filePath)
 {
+	if (!PathRestrictionMet(pCxPrivate, validPaths, filePath))
+		return JS::NullValue();
+
 	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
 	JSAutoRequest rq(cx);
 	JS::RootedValue out(cx);
@@ -203,7 +211,42 @@ void JSI_VFS::WriteJSONFile(ScriptInterface::CxPrivate* pCxPrivate, const std::w
 	g_VFS->CreateFile(path, buf.Data(), buf.Size());
 }
 
-void JSI_VFS::RegisterReadOnlyScriptFunctions(const ScriptInterface& scriptInterface)
+bool JSI_VFS::PathRestrictionMet(ScriptInterface::CxPrivate* pCxPrivate, const std::vector<CStrW>& validPaths, const CStrW& filePath)
+{
+	for (const CStrW& validPath : validPaths)
+		if (filePath.find(validPath) == 0)
+			return true;
+
+	CStrW allowedPaths;
+	for (std::size_t i = 0; i < validPaths.size(); ++i)
+	{
+		if (i != 0)
+			allowedPaths += L", ";
+
+		allowedPaths += L"\"" + validPaths[i] + L"\"";
+	}
+
+	JS_ReportError(
+		pCxPrivate->pScriptInterface->GetContext(),
+		"This part of the engine may only read from %s!",
+		utf8_from_wstring(allowedPaths).c_str());
+
+	return false;
+}
+
+#define VFS_ScriptFunctions(context)\
+JS::Value Script_ReadJSONFile_##context(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filePath)\
+{\
+	return JSI_VFS::ReadJSONFile(pCxPrivate, PathRestriction_##context, filePath);\
+}
+
+VFS_ScriptFunctions(GUI);
+VFS_ScriptFunctions(Simulation);
+VFS_ScriptFunctions(Maps);
+
+#undef VFS_ScriptFunctions
+
+void JSI_VFS::RegisterScriptFunctions_GUI(const ScriptInterface& scriptInterface)
 {
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, std::wstring, bool, &JSI_VFS::BuildDirEntList>("BuildDirEntList");
 	scriptInterface.RegisterFunction<bool, CStrW, JSI_VFS::FileExists>("FileExists");
@@ -211,10 +254,18 @@ void JSI_VFS::RegisterReadOnlyScriptFunctions(const ScriptInterface& scriptInter
 	scriptInterface.RegisterFunction<unsigned int, std::wstring, &JSI_VFS::GetFileSize>("GetFileSize");
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, &JSI_VFS::ReadFile>("ReadFile");
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, &JSI_VFS::ReadFileLines>("ReadFileLines");
-	scriptInterface.RegisterFunction<JS::Value, std::wstring, &ReadJSONFile>("ReadJSONFile");
+	scriptInterface.RegisterFunction<JS::Value, std::wstring, &Script_ReadJSONFile_GUI>("ReadJSONFile");
+	scriptInterface.RegisterFunction<void, std::wstring, JS::HandleValue, &WriteJSONFile>("WriteJSONFile");
 }
 
-void JSI_VFS::RegisterWriteScriptFunctions(const ScriptInterface& scriptInterface)
+void JSI_VFS::RegisterScriptFunctions_Simulation(const ScriptInterface& scriptInterface)
 {
-	scriptInterface.RegisterFunction<void, std::wstring, JS::HandleValue, &WriteJSONFile>("WriteJSONFile");
+	scriptInterface.RegisterFunction<JS::Value, std::wstring, &Script_ReadJSONFile_Simulation>("ReadJSONFile");
+}
+
+void JSI_VFS::RegisterScriptFunctions_Maps(const ScriptInterface& scriptInterface)
+{
+	scriptInterface.RegisterFunction<JS::Value, std::wstring, std::wstring, bool, &JSI_VFS::BuildDirEntList>("BuildDirEntList");
+	scriptInterface.RegisterFunction<bool, CStrW, JSI_VFS::FileExists>("FileExists");
+	scriptInterface.RegisterFunction<JS::Value, std::wstring, &Script_ReadJSONFile_Maps>("ReadJSONFile");
 }

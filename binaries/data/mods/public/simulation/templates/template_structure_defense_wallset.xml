@@ -10,6 +10,7 @@
     <GenericName>City Wall</GenericName>
     <Tooltip>Wall off your town for a stout defense.</Tooltip>
     <RequiredTechnology>phase_town</RequiredTechnology>
+    <Undeletable>true</Undeletable>
   </Identity>
   <WallSet>
     <MaxTowerOverlap>0.85</MaxTowerOverlap>

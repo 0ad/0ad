@@ -121,16 +121,6 @@ std::wstring JSI_Debug::GetBuildTimestamp(ScriptInterface::CxPrivate* UNUSED(pCx
 	return wstring_from_utf8(buf);
 }
 
-// Force a JS garbage collection cycle to take place immediately.
-// Writes an indication of how long this took to the console.
-void JSI_Debug::ForceGC(ScriptInterface::CxPrivate* pCxPrivate)
-{
-	double time = timer_Time();
-	JS_GC(pCxPrivate->pScriptInterface->GetJSRuntime());
-	time = timer_Time() - time;
-	g_Console->InsertMessage(fmt::sprintf("Garbage collection completed in: %f", time));
-}
-
 bool JSI_Debug::IsUserReportEnabled(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
 	return g_UserReporter.IsReportingEnabled();
@@ -159,7 +149,6 @@ void JSI_Debug::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, std::wstring, &DisplayErrorDialog>("DisplayErrorDialog");
 	scriptInterface.RegisterFunction<JS::Value, &GetProfilerState>("GetProfilerState");
 	scriptInterface.RegisterFunction<std::wstring, int, &GetBuildTimestamp>("GetBuildTimestamp");
-	scriptInterface.RegisterFunction<void, &ForceGC>("ForceGC");
 
 	// User report functions
 	scriptInterface.RegisterFunction<bool, &IsUserReportEnabled>("IsUserReportEnabled");

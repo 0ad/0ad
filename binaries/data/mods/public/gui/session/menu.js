@@ -64,7 +64,7 @@ var g_FlushTributing = function() {};
 function initSessionMenuButtons()
 {
 	initMenuPosition();
-	initGameSpeedControl();
+	updateGameSpeedControl();
 	resizeDiplomacyDialog();
 	resizeTradeDialog();
 }
@@ -989,8 +989,11 @@ function toggleTrade()
 		openTrade();
 }
 
-function initGameSpeedControl()
+function updateGameSpeedControl()
 {
+	let player = g_Players[Engine.GetPlayerID()];
+	g_GameSpeeds = getGameSpeedChoices(!player || player.state != "active");
+
 	let gameSpeed = Engine.GetGUIObjectByName("gameSpeed");
 	gameSpeed.list = g_GameSpeeds.Title;
 	gameSpeed.list_data = g_GameSpeeds.Speed;

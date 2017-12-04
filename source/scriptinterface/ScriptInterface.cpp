@@ -1103,17 +1103,6 @@ void* ScriptInterface::GetPrivate(JS::HandleObject obj)
 	return JS_GetPrivate(obj);
 }
 
-void ScriptInterface::MaybeGC()
-{
-	JS_MaybeGC(m->m_cx);
-}
-
-void ScriptInterface::ForceGC()
-{
-	PROFILE2("JS_GC");
-	JS_GC(this->GetJSRuntime());
-}
-
 JS::Value ScriptInterface::CloneValueFromOtherContext(const ScriptInterface& otherContext, JS::HandleValue val) const
 {
 	PROFILE("CloneValueFromOtherContext");

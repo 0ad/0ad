@@ -2,13 +2,13 @@ const g_MatchSettings_SP = "config/matchsettings.json";
 const g_MatchSettings_MP = "config/matchsettings.mp.json";
 
 const g_Ceasefire = prepareForDropdown(g_Settings && g_Settings.Ceasefire);
-const g_GameSpeeds = prepareForDropdown(g_Settings && g_Settings.GameSpeeds.filter(speed => !speed.ReplayOnly));
 const g_MapSizes = prepareForDropdown(g_Settings && g_Settings.MapSizes);
 const g_MapTypes = prepareForDropdown(g_Settings && g_Settings.MapTypes);
 const g_PopulationCapacities = prepareForDropdown(g_Settings && g_Settings.PopulationCapacities);
 const g_StartingResources = prepareForDropdown(g_Settings && g_Settings.StartingResources);
 const g_VictoryConditions = prepareForDropdown(g_Settings && g_Settings.VictoryConditions);
 const g_VictoryDurations = prepareForDropdown(g_Settings && g_Settings.VictoryDurations);
+var g_GameSpeeds = getGameSpeedChoices(false);
 
 /**
  * Offer users to select playable civs only.
@@ -636,7 +636,9 @@ var g_Dropdowns = {
 		"labels": () => g_GameSpeeds.Title,
 		"ids": () => g_GameSpeeds.Speed,
 		"default": () => g_GameSpeeds.Default,
-		"defined": () => g_GameAttributes.gameSpeed !== undefined,
+		"defined": () =>
+			g_GameAttributes.gameSpeed !== undefined &&
+			g_GameSpeeds.Speed.indexOf(g_GameAttributes.gameSpeed) != -1,
 		"get": () => g_GameAttributes.gameSpeed,
 		"select": (itemIdx) => {
 			g_GameAttributes.gameSpeed = g_GameSpeeds.Speed[itemIdx];
@@ -1528,6 +1530,13 @@ function reloadBiomeList()
 	initDropdown("biome");
 }
 
+function reloadGameSpeedChoices()
+{
+	g_GameSpeeds = getGameSpeedChoices(Object.keys(g_PlayerAssignments).every(guid => g_PlayerAssignments[guid].player == -1));
+	initDropdown("gameSpeed");
+	supplementDefaults();
+}
+
 function loadMapData(name)
 {
 	if (!name || !g_MapPath[g_GameAttributes.mapType])
@@ -1994,7 +2003,8 @@ function updateGUIObjects()
 
 	reloadMapFilterList();
 	reloadBiomeList();
-	updatePlayerAssignmentChoices();
+	reloadGameSpeedChoices();
+	reloadPlayerAssignmentChoices();
 
 	// Hide exceeding dropdowns and checkboxes
 	for (let panel in g_OptionOrderGUI)
@@ -2117,7 +2127,7 @@ function AIConfigCallback(ai)
 	updateGameAttributes();
 }
 
-function updatePlayerAssignmentChoices()
+function reloadPlayerAssignmentChoices()
 {
 	let playerChoices = sortGUIDsByPlayerID().map(guid => ({
 		"Choice": "guid:" + guid,

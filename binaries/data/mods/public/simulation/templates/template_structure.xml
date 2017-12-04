@@ -53,12 +53,12 @@
     <DeathType>corpse</DeathType>
     <RegenRate>0</RegenRate>
     <IdleRegenRate>0</IdleRegenRate>
-    <Undeletable>false</Undeletable>
     <Unhealable>true</Unhealable>
   </Health>
   <Identity>
     <GenericName>Structure</GenericName>
     <Classes datatype="tokens">Structure ConquestCritical</Classes>
+    <Undeletable>false</Undeletable>
   </Identity>
   <Loot>
     <xp>0</xp>

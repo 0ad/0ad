@@ -2,30 +2,34 @@
 // This assumes that the rally point has a valid position.
 function GetRallyPointCommands(cmpRallyPoint, spawnedEnts)
 {
-	var data = cmpRallyPoint.GetData();
-	var rallyPos = cmpRallyPoint.GetPositions();
-	var ret = [];
-	for(var i = 0; i < rallyPos.length; ++i)
+	let data = cmpRallyPoint.GetData();
+	let rallyPos = cmpRallyPoint.GetPositions();
+	let ret = [];
+	for (let i = 0; i < rallyPos.length; ++i)
 	{
 		// Look and see if there is a command in the rally point data, otherwise just walk there.
-		var command = undefined;
-		if (data[i] && data[i].command)
-			command = data[i].command;
-		else
-			command = "walk";
+		let command = data[i] && data[i].command ? data[i].command : "walk";
 
 		// If a target was set and the target no longer exists, or no longer
 		// has a valid position, then just walk to the rally point.
 		if (data[i] && data[i].target)
 		{
-			var cmpPosition = Engine.QueryInterface(data[i].target, IID_Position);
+			let cmpPosition = Engine.QueryInterface(data[i].target, IID_Position);
 			if (!cmpPosition || !cmpPosition.IsInWorld())
-				command = "walk";
+				command = command == "gather" ? "gather-near-position" : "walk";
 		}
 
 		switch (command)
 		{
 		case "gather":
+			ret.push({
+				"type": "gather",
+				"entities": spawnedEnts,
+				"target": data[i].target,
+				"queued": true
+			});
+			break;
+		case "gather-near-position":
 			ret.push({
 				"type": "gather-near-position",
 				"entities": spawnedEnts,
@@ -109,10 +113,10 @@ function GetRallyPointCommands(cmpRallyPoint, spawnedEnts)
 	// (we do not modify the RallyPoint before, as we want it to be displayed with all way-points)
 	if (ret.length > 1 && ret[ret.length-1].type == "setup-trade-route")
 	{
-		var route = [];
-		var waypoints = ret.length - 1;
+		let route = [];
+		let waypoints = ret.length - 1;
 
-		for (var i = 0; i < waypoints; ++i)
+		for (let i = 0; i < waypoints; ++i)
 		{
 			if (ret[i].type != "walk")
 			{

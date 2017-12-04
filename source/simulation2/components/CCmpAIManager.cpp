@@ -228,7 +228,6 @@ public:
 
 		m_ScriptInterface->RegisterFunction<void, int, JS::HandleValue, CAIWorker::PostCommand>("PostCommand");
 		m_ScriptInterface->RegisterFunction<void, std::wstring, CAIWorker::IncludeModule>("IncludeModule");
-		m_ScriptInterface->RegisterFunction<void, CAIWorker::ForceGC>("ForceGC");
 		m_ScriptInterface->RegisterFunction<void, CAIWorker::ExitProgram>("Exit");
 
 		m_ScriptInterface->RegisterFunction<JS::Value, JS::HandleValue, JS::HandleValue, pass_class_t, CAIWorker::ComputePath>("ComputePath");
@@ -345,12 +344,6 @@ public:
 		if (!m_TemplateLoader.TemplateExists(name))
 			return CParamNode(false);
 		return m_TemplateLoader.GetTemplateFileData(name).GetChild("Entity");
-	}
-
-	static void ForceGC(ScriptInterface::CxPrivate* pCxPrivate)
-	{
-		PROFILE3("AI compute GC");
-		JS_GC(pCxPrivate->pScriptInterface->GetJSRuntime());
 	}
 
 	static void ExitProgram(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))

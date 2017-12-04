@@ -10,7 +10,7 @@ function Resources()
 	{
 		jsonFiles = Engine.FindJSONFiles("resources", false);
 		for (let file in jsonFiles)
-			jsonFiles[file] = "resources/" + jsonFiles[file] + ".json";
+			jsonFiles[file] = "simulation/data/resources/" + jsonFiles[file] + ".json";
 	}
 	// GUI context
 	else if (Engine.BuildDirEntList)

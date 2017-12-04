@@ -386,10 +386,10 @@ var g_Commands = {
 	{
 		for (let ent of data.entities)
 		{
-			let cmpHealth = QueryMiragedInterface(ent, IID_Health);
 			if (!data.controlAllUnits)
 			{
-				if (cmpHealth && cmpHealth.IsUndeletable())
+				let cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
+				if (cmpIdentity && cmpIdentity.IsUndeletable())
 					continue;
 
 				let cmpCapturable = QueryMiragedInterface(ent, IID_Capturable);
@@ -412,8 +412,11 @@ var g_Commands = {
 					Engine.DestroyEntity(cmpMirage.parent);
 
 				Engine.DestroyEntity(ent);
+				continue;
 			}
-			else if (cmpHealth)
+
+			let cmpHealth = Engine.QueryInterface(ent, IID_Health);
+			if (cmpHealth)
 				cmpHealth.Kill();
 			else
 				Engine.DestroyEntity(ent);

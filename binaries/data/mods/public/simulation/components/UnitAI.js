@@ -62,8 +62,6 @@ UnitAI.prototype.Schema =
 //   targetVisibleEnemies: anything in vision range is a viable target
 //   targetAttackersAlways: anything that hurts us is a viable target,
 //     possibly overriding user orders!
-//   targetAttackersPassive: anything that hurts us is a viable target,
-//     if we're on a passive/unforced order (e.g. gathering/building)
 // There are some response options, triggered when targets are detected:
 //   respondFlee: run away
 //   respondChase: start chasing after the enemy
@@ -77,7 +75,6 @@ var g_Stances = {
 	"violent": {
 		targetVisibleEnemies: true,
 		targetAttackersAlways: true,
-		targetAttackersPassive: true,
 		respondFlee: false,
 		respondChase: true,
 		respondChaseBeyondVision: true,
@@ -87,7 +84,6 @@ var g_Stances = {
 	"aggressive": {
 		targetVisibleEnemies: true,
 		targetAttackersAlways: false,
-		targetAttackersPassive: true,
 		respondFlee: false,
 		respondChase: true,
 		respondChaseBeyondVision: false,
@@ -97,7 +93,6 @@ var g_Stances = {
 	"defensive": {
 		targetVisibleEnemies: true,
 		targetAttackersAlways: false,
-		targetAttackersPassive: true,
 		respondFlee: false,
 		respondChase: false,
 		respondChaseBeyondVision: false,
@@ -107,7 +102,6 @@ var g_Stances = {
 	"passive": {
 		targetVisibleEnemies: false,
 		targetAttackersAlways: false,
-		targetAttackersPassive: true,
 		respondFlee: true,
 		respondChase: false,
 		respondChaseBeyondVision: false,
@@ -117,7 +111,6 @@ var g_Stances = {
 	"standground": {
 		targetVisibleEnemies: true,
 		targetAttackersAlways: false,
-		targetAttackersPassive: true,
 		respondFlee: false,
 		respondChase: false,
 		respondChaseBeyondVision: false,
@@ -1446,12 +1439,9 @@ UnitAI.prototype.UnitFsmSpec = {
 		},
 
 		"Attacked": function(msg) {
-			// Respond to attack if we always target attackers, or if we target attackers
-			//	during passive orders (e.g. gathering/repairing are never forced)
-			if (this.GetStance().targetAttackersAlways || (this.GetStance().targetAttackersPassive && (!this.order || !this.order.data || !this.order.data.force)))
-			{
+			// Respond to attack if we always target attackers or during unforced orders
+			if (this.GetStance().targetAttackersAlways || !this.order || !this.order.data || !this.order.data.force)
 				this.RespondToTargetedEntities([msg.data.attacker]);
-			}
 		},
 
 		"GuardedAttacked": function(msg) {
@@ -1806,8 +1796,10 @@ UnitAI.prototype.UnitFsmSpec = {
 			},
 
 			"Attacked": function(msg) {
-				// If we're already in combat mode, ignore anyone else
-				// who's attacking us
+				// If we're already in combat mode, ignore anyone else who's attacking us
+				// unless it's a melee attack since they may be blocking our way to the target
+				if (msg.data.type == "Melee" && (this.GetStance().targetAttackersAlways || !this.order.data.force))
+					this.RespondToTargetedEntities([msg.data.attacker]);
 			},
 
 			"APPROACHING": {
@@ -1862,15 +1854,6 @@ UnitAI.prototype.UnitFsmSpec = {
 							// Give up
 							this.FinishOrder();
 						}
-					}
-				},
-
-				"Attacked": function(msg) {
-					// If we're attacked by a close enemy, we should try to defend ourself
-					//  but only if we're not forced to target something else
-					if (msg.data.type == "Melee" && (this.GetStance().targetAttackersAlways || (this.GetStance().targetAttackersPassive && !this.order.data.force)))
-					{
-						this.RespondToTargetedEntities([msg.data.attacker]);
 					}
 				},
 			},
@@ -2050,20 +2033,10 @@ UnitAI.prototype.UnitFsmSpec = {
 				// until the next Timer event
 
 				"Attacked": function(msg) {
-					if (this.order.data.target != msg.data.attacker)
-					{
-						// If we're attacked by a close enemy, stronger than our current target,
-						//  we choose to attack it, but only if we're not forced to target something else
-						if (msg.data.type == "Melee" && (this.GetStance().targetAttackersAlways || (this.GetStance().targetAttackersPassive && !this.order.data.force)))
-						{
-							var ents = [this.order.data.target, msg.data.attacker];
-							SortEntitiesByPriority(ents);
-							if (ents[0] != this.order.data.target)
-							{
-								this.RespondToTargetedEntities(ents);
-							}
-						}
-					}
+					// If we are capturing and are attacked by something that we would not capture, attack that entity instead
+					if (this.order.data.attackType == "Capture" && (this.GetStance().targetAttackersAlways || !this.order.data.force)
+						&& this.order.data.target != msg.data.attacker && this.GetBestAttackAgainst(msg.data.attacker, true) != "Capture")
+						this.RespondToTargetedEntities([msg.data.attacker]);
 				},
 			},
 

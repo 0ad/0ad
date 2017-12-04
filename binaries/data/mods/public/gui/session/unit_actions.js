@@ -857,9 +857,14 @@ var g_UnitActions =
 				else
 					cursor = "action-gather-" + resourceType.specific;
 
-				data.command = "gather";
+				data.command = "gather-near-position";
 				data.resourceType = resourceType;
 				data.resourceTemplate = targetState.template;
+				if (!targetState.speed)
+				{
+					data.command = "gather";
+					data.target = targetState.id;
+				}
 			}
 			else if (entState.market && targetState.market &&
 			         entState.id != targetState.id &&
@@ -1435,7 +1440,7 @@ function isUndeletable(entState)
 	if (entState.capturePoints && entState.capturePoints[entState.player] < entState.maxCapturePoints / 2)
 		return translate("You cannot destroy this entity as you own less than half the capture points");
 
-	if (!entState.canDelete)
+	if (!entState.identity.canDelete)
 		return translate("This entity is undeletable");
 
 	return false;

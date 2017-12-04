@@ -25,7 +25,7 @@ DataTemplateManager.prototype.GetTechnologyTemplate = function(template)
 {
 	if (!this.allTechs[template])
 	{
-		this.allTechs[template] = Engine.ReadJSONFile("technologies/" + template + ".json");
+		this.allTechs[template] = Engine.ReadJSONFile("simulation/data/technologies/" + template + ".json");
 		if (!this.allTechs[template])
 			error("Failed to load technology \"" + template + "\"");
 	}
@@ -37,7 +37,7 @@ DataTemplateManager.prototype.GetAuraTemplate = function(template)
 {
 	if (!this.allAuras[template])
 	{
-		this.allAuras[template] = Engine.ReadJSONFile("auras/" + template + ".json");
+		this.allAuras[template] = Engine.ReadJSONFile("simulation/data/auras/" + template + ".json");
 		if (!this.allAuras[template])
 			error("Failed to load aura \"" + template + "\"");
 	}

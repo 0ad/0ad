@@ -32,26 +32,17 @@
 				<action on="TextEdit">applyFilters();</action>
 			</object>
 
-			<object name="modTypeFilter"
-				type="dropdown"
-				style="ModernDropDown"
-				size="180 100%-24 350 100%"
-				font="sans-bold-13"
-			>
-				<action on="SelectionChange">applyFilters();</action>
-			</object>
-
 			<!-- Checkboxes -->
 			<object name="negateFilter"
 				type="checkbox"
 				checked="false"
 				style="ModernTickBox"
-				size="355 100%-24 375 100%"
+				size="180 100%-24 200 100%"
 				font="serif-bold-13"
 			>
 				<action on="Press">applyFilters();</action>
 			</object>
-			<object type="text" size="377 100%-24 460 100%" text_align="left" textcolor="white">
+			<object type="text" size="202 100%-24 306 100%" text_align="left" textcolor="white">
 				<translatableAttribute id="caption">Negate</translatableAttribute>
 			</object>
 		</object>
@@ -86,11 +77,8 @@
 				<column id="folder" color="255 255 255" width="13%">
 					<translatableAttribute id="heading">(Folder)</translatableAttribute>
 				</column>
-				<column id="label" color="255 255 255" width="18%">
+				<column id="label" color="255 255 255" width="26%">
 					<translatableAttribute id="heading">Mod Label</translatableAttribute>
-				</column>
-				<column id="type" color="255 255 255" width="12%">
-					<translatableAttribute id="heading">Mod Type</translatableAttribute>
 				</column>
 				<column id="dependencies" color="255 255 255" width="20%">
 					<translatableAttribute id="heading">Dependencies</translatableAttribute>
@@ -135,11 +123,8 @@
 				<column id="folder" color="255 255 255" width="13%">
 					<translatableAttribute id="heading">(Folder)</translatableAttribute>
 				</column>
-				<column id="label" color="255 255 255" width="18%">
+				<column id="label" color="255 255 255" width="26%">
 					<translatableAttribute id="heading">Mod Label</translatableAttribute>
-				</column>
-				<column id="type" color="255 255 255" width="12%">
-					<translatableAttribute id="heading">Mod Type</translatableAttribute>
 				</column>
 				<column id="dependencies" color="255 255 255" width="20%">
 					<translatableAttribute id="heading">Dependencies</translatableAttribute>
@@ -162,7 +147,6 @@
 				<action on="Press">moveCurrItem("modsEnabledList", false);</action>
 			</object>
 		</object>
-
 
 		<!-- BUTTONS -->
 		<object type="button" style="ModernButtonRed" size="16 100%-44 200 100%-16">
