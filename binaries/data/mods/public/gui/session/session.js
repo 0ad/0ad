@@ -3,13 +3,13 @@ const g_IsReplay = Engine.IsVisualReplay();
 const g_CivData = loadCivData(false, true);
 
 const g_Ceasefire = prepareForDropdown(g_Settings && g_Settings.Ceasefire);
-const g_GameSpeeds = prepareForDropdown(g_Settings && g_Settings.GameSpeeds.filter(speed => !speed.ReplayOnly || g_IsReplay));
 const g_MapSizes = prepareForDropdown(g_Settings && g_Settings.MapSizes);
 const g_MapTypes = prepareForDropdown(g_Settings && g_Settings.MapTypes);
 const g_PopulationCapacities = prepareForDropdown(g_Settings && g_Settings.PopulationCapacities);
 const g_StartingResources = prepareForDropdown(g_Settings && g_Settings.StartingResources);
 const g_VictoryConditions = prepareForDropdown(g_Settings && g_Settings.VictoryConditions);
 const g_VictoryDurations = prepareForDropdown(g_Settings && g_Settings.VictoryDurations);
+var g_GameSpeeds;
 
 /**
  * Colors to flash when pop limit reached.
@@ -491,6 +491,7 @@ function selectViewPlayer(playerID)
 	updateTopPanel();
 	updateChatAddressees();
 	updateHotkeyTooltips();
+	updateGameSpeedControl();
 
 	// Update GUI and clear player-dependent cache
 	onSimulationUpdate();
@@ -547,6 +548,7 @@ function playersFinished(players, victoryString, won)
 
 	updatePlayerData();
 	updateChatAddressees();
+	updateGameSpeedControl();
 
 	if (players.indexOf(g_ViewedPlayer) == -1)
 		return;
