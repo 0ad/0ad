@@ -22,5 +22,9 @@ vec3 get_fog(vec3 color)
 
 void main()
 {
-	gl_FragColor = vec4(get_fog(playerColor.rgb),playerColor.a);
+	#if USE_FOG
+		gl_FragColor = vec4(get_fog(playerColor.rgb), playerColor.a);
+	#else
+		gl_FragColor = vec4(playerColor.rgb, playerColor.a);
+	#endif
 }

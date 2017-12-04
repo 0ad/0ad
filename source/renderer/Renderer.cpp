@@ -443,6 +443,7 @@ CRenderer::CRenderer()
 	m_Options.m_Particles = false;
 	m_Options.m_Silhouettes = false;
 	m_Options.m_PreferGLSL = false;
+	m_Options.m_Fog = false;
 	m_Options.m_ForceAlphaTest = false;
 	m_Options.m_GPUSkinning = false;
 	m_Options.m_SmoothLOS = false;
@@ -581,6 +582,9 @@ void CRenderer::ReloadShaders()
 
 	if (m_LightEnv)
 		m->globalContext.Add(CStrIntern("LIGHTING_MODEL_" + m_LightEnv->GetLightingModel()), str_1);
+
+	if (m_Options.m_PreferGLSL && m_Options.m_Fog)
+		m->globalContext.Add(str_USE_FOG, str_1);
 
 	m->Model.ModShader = LitRenderModifierPtr(new ShaderRenderModifier());
 
@@ -722,6 +726,10 @@ void CRenderer::SetOptionBool(enum Option opt,bool value)
 			MakeShadersDirty();
 			RecomputeSystemShaderDefines();
 			break;
+		case OPT_FOG:
+			m_Options.m_Fog = value;
+			MakeShadersDirty();
+			break;
 		case OPT_SILHOUETTES:
 			m_Options.m_Silhouettes = value;
 			break;
@@ -770,6 +778,8 @@ bool CRenderer::GetOptionBool(enum Option opt) const
 			return m_Options.m_Particles;
 		case OPT_PREFERGLSL:
 			return m_Options.m_PreferGLSL;
+		case OPT_FOG:
+			return m_Options.m_Fog;
 		case OPT_SILHOUETTES:
 			return m_Options.m_Silhouettes;
 		case OPT_SHOWSKY:

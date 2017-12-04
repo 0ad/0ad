@@ -50,6 +50,7 @@ bool g_WaterReflection = false;
 bool g_WaterShadows = false;
 
 bool g_Particles = false;
+bool g_Fog = true;
 bool g_Silhouettes = false;
 bool g_ShowSky = false;
 
@@ -105,6 +106,7 @@ static void LoadGlobals()
 
 	CFG_GET_VAL("renderpath", g_RenderPath);
 	CFG_GET_VAL("particles", g_Particles);
+	CFG_GET_VAL("fog", g_Fog);
 	CFG_GET_VAL("silhouettes", g_Silhouettes);
 	CFG_GET_VAL("showsky", g_ShowSky);
 	CFG_GET_VAL("preferglsl", g_PreferGLSL);

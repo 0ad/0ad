@@ -85,6 +85,7 @@ public:
 		OPT_SHADOWPCF,
 		OPT_PARTICLES,
 		OPT_PREFERGLSL,
+		OPT_FOG,
 		OPT_SILHOUETTES,
 		OPT_SHOWSKY,
 		OPT_SMOOTHLOS,
@@ -154,6 +155,7 @@ public:
 		bool m_PreferGLSL;
 		bool m_ForceAlphaTest;
 		bool m_GPUSkinning;
+		bool m_Fog;
 		bool m_Silhouettes;
 		bool m_SmoothLOS;
 		bool m_ShowSky;

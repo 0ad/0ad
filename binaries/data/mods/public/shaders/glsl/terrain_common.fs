@@ -236,7 +236,9 @@ void main()
     color = mix(texdiffuse, color, specular.a);
   #endif
 
-  color = get_fog(color);
+  #if USE_FOG
+    color = get_fog(color);
+  #endif
 
   float los = texture2D(losTex, v_los).a;
   los = los < 0.03 ? 0.0 : los;
