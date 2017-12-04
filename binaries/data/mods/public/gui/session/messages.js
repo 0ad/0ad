@@ -546,7 +546,7 @@ function updateTutorial(notification)
 
 	if (notification.warning)
 	{
-		Engine.GetGUIObjectByName("tutorialWarning").caption = '[color="orange"]' + translate(notification.warning) + '[/color]';
+		Engine.GetGUIObjectByName("tutorialWarning").caption = coloredText(translate(notification.warning), "orange");
 		return;
 	}
 
@@ -554,9 +554,7 @@ function updateTutorial(notification)
 	tutorialText.caption =
 		tutorialText.caption.replace('[color="yellow"]', '').replace('[/color]', '') +
 		(tutorialText.caption ? "\n" : "") +
-		'[color="yellow"]' +
-		notification.instructions.reduce((instructions, item) => instructions + translate(item), "") +
-		'[/color]';
+		coloredText(notification.instructions.reduce((instructions, item) => instructions + translate(item), ""), "yellow");
 
 	if (notification.readyButton)
 	{
@@ -948,7 +946,7 @@ function colorizePlayernameByGUID(guid)
 function colorizePlayernameHelper(username, playerID)
 {
 	let playerColor = playerID > -1 ? rgbToGuiColor(g_Players[playerID].color) : "white";
-	return '[color="' + playerColor + '"]' + (username || translate("Unknown Player")) + "[/color]";
+	return coloredText(username || translate("Unknown Player"), playerColor);
 }
 
 /**

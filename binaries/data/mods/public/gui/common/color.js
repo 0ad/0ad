@@ -149,10 +149,7 @@ function colorizeHotkey(text, hotkey)
 		return "";
 
 	return sprintf(text, {
-		"hotkey":
-			"[color=\"" + g_HotkeyColor + "\"]" +
-			"\\[" + key + "]" +
-			"[/color]"
+		"hotkey": coloredText("\\[" + key + "]", g_HotkeyColor)
 	});
 }
 
@@ -164,9 +161,7 @@ function colorizeAutocompleteHotkey(string)
 {
 	return sprintf(string || translate("Press %(hotkey)s to autocomplete playernames."), {
 		"hotkey":
-			"[color=\"" + g_HotkeyColor + "\"]" +
-			"\\[" + translateWithContext("hotkey", "Tab") + "]" +
-			"[/color]"
+			coloredText("\\[" + translateWithContext("hotkey", "Tab") + "]", g_HotkeyColor)
 	});
 }
 
@@ -175,5 +170,5 @@ function colorizeAutocompleteHotkey(string)
  */
 function compatibilityColor(text, isCompatible)
 {
-	return isCompatible ? text : '[color="96 96 96"]' + text + '[/color]';
+	return isCompatible ? text : coloredText(text, "96 96 96");
 }

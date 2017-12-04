@@ -71,13 +71,12 @@ function subHeading(obj)
 {
 	if (!obj.Name)
 		return "";
-	let string = '[color="white"][font="sans-bold-14"]' + obj.Name + '[/font] ';
+	let string = '[font="sans-bold-14"]' + obj.Name + '[/font] ';
 	if (obj.History)
 		string += '[icon="iconInfo" tooltip="' + escapeQuotation(obj.History) + '" tooltip_style="civInfoTooltip"]';
 	if (obj.Description)
 		string += '\n     ' + obj.Description;
-	string += '\n[/color]';
-	return string;
+	return coloredText(string + "\n", "white");
 }
 
 /**

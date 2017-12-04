@@ -635,7 +635,7 @@ var g_UnitActions =
 				extraCount += entState.garrisonHolder.garrisonedEntitiesCount;
 
 			if (targetState.garrisonHolder.garrisonedEntitiesCount + extraCount >= targetState.garrisonHolder.capacity)
-				tooltip = "[color=\"orange\"]" + tooltip + "[/color]";
+				tooltip = coloredtext(tooltip, "orange");
 
 			if (!MatchesClassList(entState.identity.classes, targetState.garrisonHolder.allowedClasses))
 				return false;
@@ -847,7 +847,7 @@ var g_UnitActions =
 
 				if (targetState.garrisonHolder.garrisonedEntitiesCount >=
 				    targetState.garrisonHolder.capacity)
-					tooltip = "[color=\"orange\"]" + tooltip + "[/color]";
+					tooltip = coloredText(tooltip, "orange");
 			}
 			else if (targetState.resourceSupply)
 			{

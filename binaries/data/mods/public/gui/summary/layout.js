@@ -214,7 +214,9 @@ var getScorePanelsData = () => ({
 
 function getColoredTypeTranslation(type)
 {
-	return g_SummaryTypes[type].color ? '[color="' + g_SummaryTypes[type].color + '"]' + g_SummaryTypes[type].caption + '[/color]' : g_SummaryTypes[type].caption;
+	return g_SummaryTypes[type].color ?
+		coloredText(g_SummaryTypes[type].caption, g_SummaryTypes[type].color) :
+		g_SummaryTypes[type].caption;
 }
 
 function resetGeneralPanel()

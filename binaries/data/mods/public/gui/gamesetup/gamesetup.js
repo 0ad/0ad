@@ -517,11 +517,12 @@ var g_Dropdowns = {
 			if (hoverIdx == -1 || popCap * players <= g_PopulationCapacityRecommendation)
 				return translate("Select population limit.");
 
-			return '[color="orange"]' +
+			return coloredText(
 				sprintf(translate("Warning: There might be performance issues if all %(players)s players reach %(popCap)s population."), {
 					"players": players,
 					"popCap": popCap
-				}) + '[/color]';
+				}),
+				"orange");
 		},
 		"labels": () => g_PopulationCapacities.Title,
 		"ids": () => g_PopulationCapacities.Population,
@@ -941,10 +942,7 @@ var g_PlayerMiscElements = {
 			let name = translate(pData.Name || g_DefaultPlayerData[playerIdx].Name);
 
 			if (g_IsNetworked)
-				name =
-					'[color="' +
-					g_ReadyData[assignedGUID ? g_PlayerAssignments[assignedGUID].status : 2].color +
-					'"]' + name + '[/color]';
+				name = coloredText(name, g_ReadyData[assignedGUID ? g_PlayerAssignments[assignedGUID].status : 2].color);
 
 			return name;
 		},
@@ -1134,7 +1132,7 @@ function initDropdown(name, playerIdx)
 
 	dropdown.list = data.labels(playerIdx).map((label, id) =>
 		data.colors && data.colors(playerIdx) ?
-			'[color="' + data.colors(playerIdx)[id] + '"]' + label + "[/color]" :
+			coloredText(label, data.colors(playerIdx)[id]) :
 			label);
 
 	dropdown.list_data = data.ids(playerIdx);
@@ -2245,7 +2243,7 @@ function colorizePlayernameByGUID(guid, username = "")
 		color = rgbToGuiColor({ "r": r, "g": g, "b": b });
 	}
 
-	return '[color="' + color + '"]' + username + '[/color]';
+	return coloredText(username, color);
 }
 
 function addChatMessage(msg)

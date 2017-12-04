@@ -922,7 +922,7 @@ function getIdleLandTradersText(traderNumber)
 		"openingTradingString": activeString,
 		"openingGarrisonedString": garrisonedString,
 		"garrisonedString": garrisonedString,
-		"inactiveString": "[color=\"" + g_IdleTraderTextColor + "\"]" + inactiveString + "[/color]"
+		"inactiveString": coloredText(inactiveString, g_IdleTraderTextColor)
 	});
 }
 
@@ -970,7 +970,7 @@ function getIdleShipTradersText(traderNumber)
 
 	return sprintf(message, {
 		"openingTradingString": activeString,
-		"inactiveString": "[color=\"" + g_IdleTraderTextColor + "\"]" + inactiveString + "[/color]"
+		"inactiveString": coloredText(inactiveString, g_IdleTraderTextColor)
 	});
 }
 

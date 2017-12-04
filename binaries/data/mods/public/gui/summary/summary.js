@@ -183,7 +183,7 @@ function initGUICharts()
 
 	let chartLegend = Engine.GetGUIObjectByName("chartLegend");
 	chartLegend.caption = g_GameData.sim.playerStates.slice(1).map(
-		(state, index) => '[color="' + player_colors[index] + '"]■[/color] ' + state.name
+		(state, index) => coloredText("■", player_colors[index]) + state.name
 	).join("  ");
 
 	let chart1Part = Engine.GetGUIObjectByName("chart[1]Part");

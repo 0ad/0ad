@@ -334,7 +334,7 @@ var g_ChatCommands = {
 				if (!g_ChatCommands[command].moderatorOnly || isModerator)
 					// Translation: Chat command help format
 					text += "\n" + sprintf(translate("%(command)s - %(description)s"), {
-						"command": '[color="' + g_ChatCommandColor + '"]' + command + '[/color]',
+						"command": coloredText(command, g_ChatCommandColor),
 						"description": g_ChatCommands[command].description
 					});
 
@@ -657,14 +657,10 @@ function updatePlayerList()
 			warn("Unknown presence:" + player.presence);
 
 		let statusColor = g_PlayerStatuses[presence].color;
-		let coloredName = colorPlayerName((player.role == "moderator" ? g_ModeratorPrefix : "") + player.name);
-		let coloredPresence = '[color="' + statusColor + '"]' + g_PlayerStatuses[presence].status + "[/color]";
-		let coloredRating = '[color="' + statusColor + '"]' + rating + "[/color]";
-
-		buddyStatusList.push(player.isBuddy ? '[color="' + statusColor + '"]' + g_BuddySymbol + '[/color]' : "");
-		playerList.push(coloredName);
-		presenceList.push(coloredPresence);
-		ratingList.push(coloredRating);
+		buddyStatusList.push(player.isBuddy ? coloredText(g_BuddySymbol, statusColor) : "");
+		playerList.push(colorPlayerName((player.role == "moderator" ? g_ModeratorPrefix : "") + player.name));
+		presenceList.push(coloredText(g_PlayerStatuses[presence].status, statusColor));
+		ratingList.push(coloredText(rating, statusColor));
 		nickList.push(player.name);
 	}
 
@@ -985,8 +981,8 @@ function updateGameList()
 		if (game.ip == g_SelectedGameIP && game.port == g_SelectedGamePort)
 			selectedGameIndex = +i;
 
-		list_buddy.push(game.hasBuddies ? '[color="' + g_GameColors[game.state] + '"]' + g_BuddySymbol + '[/color]' : "");
-		list_name.push('[color="' + g_GameColors[game.state] + '"]' + gameName);
+		list_buddy.push(game.hasBuddies ? coloredText(g_BuddySymbol, g_GameColors[game.state]) : "");
+		list_name.push(coloredText(gameName, g_GameColors[game.state]));
 		list_mapName.push(translateMapTitle(game.niceMapName));
 		list_mapSize.push(translateMapSize(game.mapSize));
 		list_mapType.push(g_MapTypes.Title[mapTypeIdx] || "");
@@ -1240,7 +1236,7 @@ function handleChatCommand(text)
 			"from": "system",
 			"text": sprintf(
 				translate("The command '%(cmd)s' is not supported."), {
-					"cmd": '[color="' + g_ChatCommandColor + '"]' + cmd + '[/color]'
+					"cmd": coloredText(cmd, g_ChatCommandColor)
 				})
 		});
 		return false;
@@ -1252,7 +1248,7 @@ function handleChatCommand(text)
 			"from": "system",
 			"text": sprintf(
 				translate("The command '%(cmd)s' is restricted to moderators."), {
-					"cmd": '[color="' + g_ChatCommandColor + '"]' + cmd + '[/color]'
+					"cmd": coloredText(cmd, g_ChatCommandColor)
 				})
 		});
 		return false;
@@ -1382,8 +1378,7 @@ function ircFormat(msg)
 		// Translation: IRC message prefix.
 		if (msg.private)
 			senderString = sprintf(translateWithContext("lobby private message", "(%(private)s) <%(sender)s>"), {
-				"private": '[color="' + g_PrivateMessageColor + '"]' +
-							translate("Private") + '[/color]',
+				"private": coloredText(translate("Private"), g_PrivateMessageColor),
 				"sender": coloredFrom
 			});
 		else
@@ -1450,13 +1445,14 @@ function getPlayerColor(playername)
  */
 function colorPlayerName(playername, rating)
 {
-	return '[color="' + getPlayerColor(playername.replace(g_ModeratorPrefix, "")) + '"]' +
+	return coloredText(
 		(rating ? sprintf(
 			translate("%(nick)s (%(rating)s)"), {
 				"nick": playername,
 				"rating": rating
 			}) : playername
-		) + '[/color]';
+		),
+		getPlayerColor(playername.replace(g_ModeratorPrefix, "")));
 }
 
 function senderFont(text)
