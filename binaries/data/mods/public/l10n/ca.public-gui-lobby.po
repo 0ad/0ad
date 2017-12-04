@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-08-30 09:02+0200\n"
-"PO-Revision-Date: 2017-11-19 21:21+0000\n"
+"PO-Revision-Date: 2017-12-01 19:32+0000\n"
 "Last-Translator: Maria Acero-Allo <maria.acero@e-campus.uab.cat>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -188,13 +188,13 @@ msgstr "Qualsevol"
 #, javascript-format
 msgctxt "gamelist filter"
 msgid "> %(rating)s"
-msgstr ""
+msgstr "> %(rating)s"
 
 #: gui/lobby/lobby.js:456
 #, javascript-format
 msgctxt "gamelist filter"
 msgid "< %(rating)s"
-msgstr ""
+msgstr "< %(rating)s"
 
 #: gui/lobby/lobby.js:529
 msgid "You have been banned from the lobby!"
@@ -353,7 +353,7 @@ msgstr "%(nick)s (%(rating)s)"
 #: gui/lobby/lobby.js:1468
 msgctxt "Used for an undefined winning rate"
 msgid "-"
-msgstr "-"
+msgstr "-Project-Id-Version: A.D.\nPOT-Creation-Date: -- :+\nPO-Revision-Date: -- :+\nLast-Translator: Marc Miró <mmirosanchez@gmail.com>\nLanguage-Team: Catalan (http://www.transifex.com/wildfire-games/ad/language/ca/)\nMIME-Version: \nContent-Type: text/plain; charset=UTF-\nContent-Transfer-Encoding: bit\nLanguage: ca\nPlural-Forms: nplurals=; plural=(n != );\n-"
 
 #: gui/lobby/lobby.js:1470
 #, javascript-format
@@ -410,7 +410,7 @@ msgstr "Accepteu les condicions del servei i els termes d'ús"
 msgid ""
 "Unknown error. This usually occurs because the same IP address is not "
 "allowed to register more than one account within one hour."
-msgstr "Error desconegut. Normalment aixó succeeix perquè no es pot registrar més d'un compte en una hora amb la meteixa direcció IP."
+msgstr "Error desconegut. Normalment aix[o succeeix perquè no es pot registrar més d'un compte en una hora amb la mateixa direcció IP."
 
 #: gui/lobby/prelobby.js:183
 msgid "Registered"
@@ -587,7 +587,7 @@ msgstr "Cancel·la"
 
 #: gui/lobby/Terms_of_Service.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Service"
-msgstr "Termes de servei de la sala multijugador del 0 A.D. Empires Ascendant"
+msgstr "Termes i condicions de servei de Sala de 0 A.D. Empires Ascendant"
 
 #: gui/lobby/Terms_of_Service.txt:2 gui/lobby/Terms_of_Use.txt:2
 msgid "Definitions:"
@@ -723,7 +723,7 @@ msgstr " 1. Crear només un compte per usuari en el servei a menys que us autori
 msgid ""
 " 2. Not post profane statements, rude humor, pornographic content, or "
 "discriminatory comments on the service."
-msgstr " 2. No publicar afirmacions irreverents, humor inapropiat, contingut pornigràfic o comentaris discriminatoris en el servei."
+msgstr " 2. No publicar afirmacions irreverents, humor inapropiat, contingut pornogràfic o comentaris discriminatoris en el servei."
 
 #: gui/lobby/Terms_of_Use.txt:12
 msgid " 3. Not purposefully demean the worth of others using the service."
@@ -748,7 +748,7 @@ msgid ""
 "any of the statistics which impact it. (Examples of this are, but are not "
 "limited to: cheating in ranked games, reverse engineering the service, and "
 "taking advantage of other users of the service.)"
-msgstr " 7. No intentar manipular cap puntuació o estadística que pugui afectar cap usuari del servei. (Exemp`les d'això són, però no només: fer trampa en les classificacions, utilitzar enginyeria inversa i aprofotar-se d'altres usuaris del servei.)"
+msgstr " 7. No intentar manipular cap puntuació o estadística que pugui afectar cap usuari del servei. (Exemples d'això són, però no només: fer trampa en les classificacions, utilitzar enginyeria inversa i aprofitar-se d'altres usuaris del servei.)"
 
 #: gui/lobby/Terms_of_Use.txt:17
 msgid ""

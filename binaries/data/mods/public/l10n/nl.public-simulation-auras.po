@@ -7,6 +7,7 @@
 # Christof Verhoeven <christof.verhoeven@gmail.com>, 2016-2017
 # Ismail Sahin <ismailsahin1994@hotmail.com>, 2017
 # niektb <niektb95@gmail.com>, 2016
+# Otto Kieft <otto.kieft@live.nl>, 2017
 # Reinout De Geest <rlgdegeest@gmail.com>, 2017
 # Sander Deryckere, 2016
 # Spijker <woartel@hotmail.com>, 2017
@@ -14,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-11-17 09:04+0100\n"
-"PO-Revision-Date: 2017-11-17 08:26+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-12-02 13:35+0000\n"
+"Last-Translator: Otto Kieft <otto.kieft@live.nl>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,7 +30,7 @@ msgstr "Scheepswerf Reparaties"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Repairs garrisoned ship at 10 HP per second."
-msgstr ""
+msgstr "Repareert het aangemeerde schip met 10 HP per seconde."
 
 #: simulation/data/auras/structures/epic_temple_heal.jsonauraName
 msgid "Blessing of the Gods"
@@ -45,7 +46,7 @@ msgstr "Religieuze IJver"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "+20% attack damage for soldiers."
-msgstr "+20% aanval voor soldaten."
+msgstr "+20% aanvalsschade voor soldaten."
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Power of Knowledge"
@@ -54,11 +55,11 @@ msgstr "Kracht van Kennis"
 #: simulation/data/auras/structures/library.jsonauraDescription
 msgid ""
 "Reduce the cost and research time of technologies by 10% per library owned."
-msgstr "Reduceert de kost en onderzoekstijd van technologieën met 10% per bibliotheek."
+msgstr "Vermindert de kosten en de onderzoekstijd van technologieën met 10% per bibliotheek."
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraName
 msgid "Loyalty"
-msgstr "Trouwheid"
+msgstr "Loyaliteit"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "+50% garrisoned loyalty regeneration rate for structures."
@@ -124,11 +125,11 @@ msgstr "Verhoog de bevolkingslimiet met 40 extra bewoners per wonder. (\"Glorieu
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraName
 msgid "Workshop Repairs"
-msgstr ""
+msgstr "Werkplaats Reparaties"
 
 #: simulation/data/auras/structures/workshop_repair.jsonauraDescription
 msgid "Repairs garrisoned siege units at 3 HP per second."
-msgstr ""
+msgstr "Repareert gestationeerde belegeringseenheden met 3 HP per seconde "
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -313,13 +314,13 @@ msgstr "Wanneer het Romeinse leger tekort kwam aan voedsel werden de Gallische s
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_1.jsonauraName
 msgid "Mercenary Commander"
-msgstr ""
+msgstr "Huurlingen kapitein"
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_1.jsonauraDescription
 msgid ""
 "Along with his brother Indibil, Mandonius commanded the Iberian recruits and mercenaries that took part in the Punic Wars.\n"
 "-25% metal cost for all allied citizen-soldier mercenaries."
-msgstr ""
+msgstr "Samen met zijn broer indibil had Mondonlus de leiding over de Iberische rekruten en huurlingen. Ze deden mee aan de oorlog tussen de Romeinse republiek en Carthago, de Punische oorlog\n-25% metaal benodigd voor alle bevriende burger-soldaten huurlingen."
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraName
 msgid "Saver of Lives"
@@ -329,7 +330,7 @@ msgstr "Levensredder"
 msgid ""
 "Following the fall of Indibil in battle, Mandonius led the survivors to safety.\n"
 "+10% health for all soldiers."
-msgstr ""
+msgstr "Nadat Indibil sneuvelde in het gevecht, leidde Mandonlus de overlevenden naar een veilige plaats.\n+10% gezondheid voor alle soldaten"
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
 msgid "Sacker of Cities"
@@ -339,17 +340,17 @@ msgstr "Stedenplunderaar"
 msgid ""
 "During the First Macedonian War, Philip and his troops sacked Thermum, the religious and political centre of Aetolia.\n"
 "+5 food and wood for every enemy unit killed or structure destroyed."
-msgstr ""
+msgstr "Tijdens de Eerste Macedonische Oorlog, vernietigde Philp en zijn troepen Thermum, het religieuze en politieke hart van Aetolla.\n+5 voedsel en hout voor elke vijandelijke eenheid vermoord of gebouw vernietigd. "
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_1.jsonauraName
 msgid "Consolidator of the Empire"
-msgstr ""
+msgstr "Vereniger van het Keizerrijk"
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_1.jsonauraDescription
 msgid ""
 "Son of Chandragupta Maurya, Bindusara consolidated the empire, creating a stable state for his son Ashoka to inherit.\n"
 "+20% territory influence."
-msgstr ""
+msgstr "Bindusara, de zoon van Chandragupta Maurya, verenigde het rijk en creërde een stabiele staat voor zijn zoon Ashoka om te beërven \n+20% terrein invloed"
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_2.jsonauraName
 msgid "Vamba Moriyar"

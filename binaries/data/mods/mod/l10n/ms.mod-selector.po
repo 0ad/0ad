@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-11-29 09:05+0100\n"
-"PO-Revision-Date: 2017-11-29 15:09+0000\n"
+"POT-Creation-Date: 2017-12-01 09:06+0100\n"
+"PO-Revision-Date: 2017-12-01 15:40+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Malay (http://www.transifex.com/wildfire-games/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
@@ -17,42 +17,24 @@ msgstr ""
 "Language: ms\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: gui/modmod/modmod.js:52 gui/modmod/modmod.xml:(heading):110
-#: gui/modmod/modmod.xml:(heading):159
-msgid "Name"
-msgstr "Nama"
-
-#: gui/modmod/modmod.js:58
-msgid "Folder"
-msgstr "Folder"
-
-#: gui/modmod/modmod.js:63
-msgid "Label"
-msgstr "Label"
-
-#: gui/modmod/modmod.js:68 gui/modmod/modmod.xml:(heading):113
-#: gui/modmod/modmod.xml:(heading):162
-msgid "Version"
-msgstr "Versi"
-
-#: gui/modmod/modmod.js:98 gui/modmod/modmod.js:253
+#: gui/modmod/modmod.js:71 gui/modmod/modmod.js:222
 msgid "Filter"
 msgstr "Penapis"
 
-#: gui/modmod/modmod.js:157
+#: gui/modmod/modmod.js:125
 msgid "Type: Any"
 msgstr "Jenis: Apa Saja"
 
-#: gui/modmod/modmod.js:308
+#: gui/modmod/modmod.js:277
 #, javascript-format
 msgid "Dependency not met: %(dep)s"
 msgstr ""
 
-#: gui/modmod/modmod.js:316
+#: gui/modmod/modmod.js:285
 msgid "All dependencies met"
 msgstr "Semua dependensi dipenuhi"
 
-#: gui/modmod/modmod.js:394
+#: gui/modmod/modmod.js:363
 msgid "No mod has been selected."
 msgstr "Tiada mod dipilih."
 
@@ -69,73 +51,73 @@ msgid "Negate"
 msgstr "Nafi"
 
 #: gui/modmod/modmod.xml:(caption):63
-msgid "Sorting:"
-msgstr "Pengisihan:"
-
-#: gui/modmod/modmod.xml:(caption):77
-msgid "Descending."
-msgstr "Menurun."
-
-#: gui/modmod/modmod.xml:(caption):96
 msgid "Available Mods"
 msgstr "Mod Tersedia"
 
-#: gui/modmod/modmod.xml:(caption):132
+#: gui/modmod/modmod.xml:(caption):103
 msgid "Description"
 msgstr "Keterangan"
 
-#: gui/modmod/modmod.xml:(caption):135
+#: gui/modmod/modmod.xml:(caption):106
 msgid "Enable"
 msgstr "Benarkan"
 
-#: gui/modmod/modmod.xml:(caption):144
+#: gui/modmod/modmod.xml:(caption):115
 msgid "Enabled Mods"
 msgstr "Mod Dibenarkan"
 
-#: gui/modmod/modmod.xml:(caption):182
+#: gui/modmod/modmod.xml:(caption):153
 msgid "Up"
 msgstr "Atas"
 
-#: gui/modmod/modmod.xml:(caption):186
+#: gui/modmod/modmod.xml:(caption):157
 msgid "X"
 msgstr "X"
 
-#: gui/modmod/modmod.xml:(caption):190
+#: gui/modmod/modmod.xml:(caption):161
 msgid "Down"
 msgstr "Bawah"
 
-#: gui/modmod/modmod.xml:(caption):198
+#: gui/modmod/modmod.xml:(caption):169
 msgid "Quit"
 msgstr "Keluar"
 
-#: gui/modmod/modmod.xml:(caption):203
+#: gui/modmod/modmod.xml:(caption):174
 msgid "Cancel"
 msgstr "Batal"
 
-#: gui/modmod/modmod.xml:(caption):208
+#: gui/modmod/modmod.xml:(caption):179
 msgid "Save Configuration"
 msgstr "Simpan Konfigurasi"
 
-#: gui/modmod/modmod.xml:(caption):213
+#: gui/modmod/modmod.xml:(caption):184
 msgid "Start Mods"
 msgstr "Mulakan Mod"
 
-#: gui/modmod/modmod.xml:(heading):116 gui/modmod/modmod.xml:(heading):165
+#: gui/modmod/modmod.xml:(heading):81 gui/modmod/modmod.xml:(heading):130
+msgid "Name"
+msgstr "Nama"
+
+#: gui/modmod/modmod.xml:(heading):84 gui/modmod/modmod.xml:(heading):133
+msgid "Version"
+msgstr "Versi"
+
+#: gui/modmod/modmod.xml:(heading):87 gui/modmod/modmod.xml:(heading):136
 msgid "(Folder)"
 msgstr "(Folder)"
 
-#: gui/modmod/modmod.xml:(heading):119 gui/modmod/modmod.xml:(heading):168
+#: gui/modmod/modmod.xml:(heading):90 gui/modmod/modmod.xml:(heading):139
 msgid "Mod Label"
 msgstr "Label Mod"
 
-#: gui/modmod/modmod.xml:(heading):122 gui/modmod/modmod.xml:(heading):171
+#: gui/modmod/modmod.xml:(heading):93 gui/modmod/modmod.xml:(heading):142
 msgid "Mod Type"
 msgstr "Jenis Mod"
 
-#: gui/modmod/modmod.xml:(heading):125 gui/modmod/modmod.xml:(heading):174
+#: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):145
 msgid "Dependencies"
 msgstr "Dependensi"
 
-#: gui/modmod/modmod.xml:(heading):128 gui/modmod/modmod.xml:(heading):177
+#: gui/modmod/modmod.xml:(heading):99 gui/modmod/modmod.xml:(heading):148
 msgid "Website"
 msgstr "Laman Sesawang"

@@ -8,6 +8,7 @@
 # Arnaud Rochés <roches.arn@gmail.com>, 2017
 # Arnaud Rochés <roches.arn@gmail.com>, 2017
 # BAHIDJ Ryadh <haryadh@live.fr>, 2014
+# Barth Frey <frey.barthelemy@gmail.com>, 2017
 # Bruno T <brtur2@gmail.com>, 2016
 # François Poirotte <clicky@erebot.net>, 2016
 # gorius <gorius05@gmail.com>, 2014
@@ -25,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-11-29 09:05+0100\n"
-"PO-Revision-Date: 2017-11-29 15:16+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-12-02 03:46+0000\n"
+"Last-Translator: Barth Frey <frey.barthelemy@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1226,7 +1227,7 @@ msgstr "Phase des Cités"
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_city_generic or phase_city_{civ}."
-msgstr ""
+msgstr "Technologie factice à l'usage des condition de modèle, remplacée par phase_city_generic ou phase_city_{civ}"
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
@@ -1277,7 +1278,7 @@ msgstr "Phase des Villes"
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_town_generic or phase_town_{civ}."
-msgstr ""
+msgstr "Technologie factice à l'usage des condition de modèle, remplacée par phase_town_generic ou phase_town_{civ}"
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
@@ -1563,7 +1564,7 @@ msgstr "Renforcer les fondations en préparation d'une attaque."
 
 #: simulation/data/technologies/tower_armour.jsontooltip
 msgid "Increases armor of defensive towers by 2 levels."
-msgstr ""
+msgstr "Augmente l'armure des tours défensives de 2 niveaux."
 
 #: simulation/data/technologies/tower_armour.jsongenericName
 msgid "Sturdy Foundations"
@@ -1591,7 +1592,7 @@ msgstr "Les avants-postes survivent deux fois plus longtemps en territoire neutr
 
 #: simulation/data/technologies/tower_decay.jsontooltip
 msgid "Outposts -50% territory decay rate."
-msgstr ""
+msgstr "Les avant-postes réduisent le taux de changement d’allégeance du territoire de -50%."
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
@@ -1603,7 +1604,7 @@ msgstr "Les meurtrières permettent d'atteindre les ennemis à la base de la tou
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
 msgid "Removes defensive towers' minimum range."
-msgstr ""
+msgstr "Supprime la portée minimale des tours de défense."
 
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
@@ -1615,7 +1616,7 @@ msgstr "Les tireurs de flèches augmente la portée maximale des flèches de feu
 
 #: simulation/data/technologies/tower_range.jsontooltip
 msgid "Increases defensive towers' maximum range by 8 meters."
-msgstr ""
+msgstr "Augmente la portée maximale des tours de défense de 8 mètres."
 
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
@@ -1627,7 +1628,7 @@ msgstr "Les avant-postes ont un plus grand champ de vision pour la reconnaissanc
 
 #: simulation/data/technologies/tower_vision.jsontooltip
 msgid "Outposts +50% vision range."
-msgstr ""
+msgstr "Les avant-postes ont un champs de vision étendu de +50%."
 
 #: simulation/data/technologies/tower_vision.jsongenericName
 msgid "Carrier Pigeons"
@@ -1639,7 +1640,7 @@ msgstr "Une ronde de nuit augmente la vigilance."
 
 #: simulation/data/technologies/tower_watch.jsontooltip
 msgid "Post sentries to add one arrow to defensive towers."
-msgstr ""
+msgstr "Poster des sentinelles pour ajouter une flèche aux tours défensives."
 
 #: simulation/data/technologies/tower_watch.jsongenericName
 msgid "Sentries"
