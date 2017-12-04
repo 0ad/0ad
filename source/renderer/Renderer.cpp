@@ -2088,6 +2088,7 @@ Status CRenderer::ReloadChangedFileCB(void* param, const VfsPath& path)
 void CRenderer::MakeShadersDirty()
 {
 	m->ShadersDirty = true;
+	m_WaterManager->m_NeedsReloading = true;
 }
 
 CTextureManager& CRenderer::GetTextureManager()
