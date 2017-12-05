@@ -342,7 +342,7 @@ g_SelectionPanels.Formation = {
 
 		let tooltip = translate(formationInfo.name);
 		if (!formationOk && formationInfo.tooltip)
-			tooltip += "\n" + "[color=\"red\"]" + translate(formationInfo.tooltip) + "[/color]";
+			tooltip += "\n" + coloredText(translate(formationInfo.tooltip), "red");
 		data.button.tooltip = tooltip;
 
 		data.button.enabled = formationOk && controlsPlayer(data.player);
@@ -608,8 +608,8 @@ g_SelectionPanels.Queue = {
 		let tooltip = getEntityNames(template);
 		if (queuedItem.neededSlots)
 		{
-			tooltip += "\n[color=\"red\"]" + translate("Insufficient population capacity:") + "\n[/color]";
-			tooltip += sprintf(translate("%(population)s %(neededSlots)s"), {
+			tooltip += "\n" + coloredText(translate("Insufficient population capacity:"), "red");
+			tooltip += "\n" + sprintf(translate("%(population)s %(neededSlots)s"), {
 				"population": resourceIcon("population"),
 				"neededSlots": queuedItem.neededSlots
 			});
@@ -1009,9 +1009,7 @@ g_SelectionPanels.Training = {
 			].map(func => func(template)));
 
 		tooltips.push(
-			"[color=\"" + g_HotkeyColor + "\"]" +
-			formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch) +
-			"[/color]",
+			formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch),
 			getRequiredTechnologyTooltip(technologyEnabled, template.requiredTechnology, GetSimState().players[data.player].civ),
 			getNeededResourcesTooltip(neededResources));
 

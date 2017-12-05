@@ -4,29 +4,12 @@
  */
 function Resources()
 {
-	let jsonFiles = [];
-	// Simulation context
-	if (Engine.FindJSONFiles)
-	{
-		jsonFiles = Engine.FindJSONFiles("resources", false);
-		for (let file in jsonFiles)
-			jsonFiles[file] = "simulation/data/resources/" + jsonFiles[file] + ".json";
-	}
-	// GUI context
-	else if (Engine.BuildDirEntList)
-		jsonFiles = Engine.BuildDirEntList("simulation/data/resources/", "*.json", false);
-	else
-	{
-		error("Resources: JSON functions are not available");
-		return;
-	}
-
 	this.resourceData = [];
 	this.resourceDataObj = {};
 	this.resourceCodes = [];
 	this.resourceNames = {};
 
-	for (let filename of jsonFiles)
+	for (let filename of Engine.ListDirectoryFiles("simulation/data/resources/", "*.json", false))
 	{
 		let data = Engine.ReadJSONFile(filename);
 		if (!data)

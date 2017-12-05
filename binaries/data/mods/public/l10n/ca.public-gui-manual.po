@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-11-13 09:02+0100\n"
-"PO-Revision-Date: 2017-11-13 22:07+0000\n"
-"Last-Translator: Ambar Gorretas-Aymerich <ambar.gorretas@e-campus.uab.cat>\n"
+"PO-Revision-Date: 2017-12-01 19:32+0000\n"
+"Last-Translator: Maria Acero-Allo <maria.acero@e-campus.uab.cat>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -58,7 +58,7 @@ msgid ""
 "pressing Alt + Enter. In windowed mode, you can resize the window. If the "
 "game runs too slowly, you can change some settings in the options window: "
 "try disabling the \"HQ Water Effects\" and \"Shadows\" options."
-msgstr "[font=\"sans-14\"]Pots combinar entre pantalla completa i vista de finestra mitjançant Alt + Enter. En el mode de vista de finestra, pots ajustar-ne la mida. Si el joc va molt lent, pots canviar-ne la configuració en la finestra d' \"opcions\": intenta desactivar els \"efectes d'aigua d'alta qualitat\" i l'opció \"ombres\"."
+msgstr "[font=\"sans-14\"]Podeu combinar entre pantalla completa i vista de finestra mitjançant Alt + Enter. En el mode de vista de finestra, podeu ajustar la mida. Si el joc va molt lent, podeu canviar-ne la configuració a la finestra d'opcions: intenteu desactivar els \"efectes d'aigua d'alta qualitat\" i l'opció \"ombres\"."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
@@ -70,7 +70,7 @@ msgid ""
 " traditional RTS games. There are currently a lot of missing features and "
 "poorly-balanced stats – you will probably have to wait until a beta release "
 "for it to work well."
-msgstr "[font=\"sans-14\"]Els controls i el joc haurien de ser familiars per als usuaris tradicionals dels jocs d'estratègia. Encara falten moltes característiques i hi ha estadístiques poc equilibrades, així que potser has d'esperar a la publicació de la versió beta perquè funcioni correctament. "
+msgstr "[font=\"sans-14\"]Els controls i el joc haurien de ser familiars per als usuaris tradicionals dels jocs d'estratègia. Encara falten molts continguts i hi ha estadístiques poc equilibrades, així que potser us heu d'esperar a la publicació de la versió beta perquè funcioni correctament. "
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
@@ -78,15 +78,15 @@ msgstr "Controls bàsics:"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click to select units."
-msgstr "• Feu clic esquerre per seleccionar unitats."
+msgstr "• Clic amb el botó esquerre per seleccionar unitats."
 
 #: gui/manual/intro.txt:13
 msgid "• Left-click-and-drag to select groups of units."
-msgstr "• Feu clic esquerre i arrossegueu per seleccionar grups d'unitats."
+msgstr "• Clic amb el botó esquerre i arrossegueu per seleccionar grups d'unitats."
 
 #: gui/manual/intro.txt:14
 msgid "• Right-click to order units to the target."
-msgstr "• Feu clic dret per enviar unitats a un objectiu."
+msgstr "• Clic amb el botó dret per enviar unitats a un objectiu."
 
 #: gui/manual/intro.txt:15
 msgid "• Arrow keys or WASD keys to move the camera."
@@ -115,7 +115,7 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr " — jugar a món obert o contra un o més adversaris de IA. Els adversaris de IA s'estan desenvolupant i potser no tenen les últimes característiques actualitzades, però pots provar amb contra un adversari existent si no pots jugar amb un humà."
+msgstr "[font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] — jugar a Proves o contra un o més adversaris de IA. Els adversaris de IA s'estan desenvolupant i potser no tenen les últimes característiques actualitzades, però podeu provar contra un adversari existent si no jugueu amb un humà."
 
 #: gui/manual/intro.txt:24
 msgid ""
@@ -129,7 +129,7 @@ msgid ""
 "option. The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
 "and enter the host's IP address."
-msgstr "Per configurar el mode multijugador, selecciona l'opció \"Mode amfitrió\".  Aquest joc utilitza un port UDP 20595 i per activar-lo, l'amfitrió ha de configurar la seva connexió NAT, el tallafoc, etc.  La resta de jugadors poden seleccionar l'opció \"Unir-se al joc\" i introduir l'adreça IP de l'amfitrió."
+msgstr "Per a configurar el mode multijugador, seleccioneu l'opció \"Mode amfitrió\".  Aquest joc utilitza un port UDP 20595 i per activar-lo, l'amfitrió ha de configurar la seva connexió NAT, el tallafoc, etc.  La resta de jugadors poden seleccionar l'opció \"Uniu-vos al joc\" i introduir l'adreça IP de l'amfitrió."
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
@@ -170,7 +170,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The \"All Maps\" filter shows all maps together in one "
 "list."
-msgstr "Es poden afegir més filtres als mapes. Es poden jugar als mapes per defecte. Als mapes navals, no es pot arribar per terra fins on són tots els adversaris i els mapes en versió demo s'utilitzen per fer proves (normalmente no serveixen per jugar-hi).  El filtre de \"Tots els mapes\" motra tots els mapes en una mateixa llista."
+msgstr "Es poden afegir més filtres als mapes. Es poden jugar als mapes per defecte. Als mapes navals, no es pot arribar per terra fins on són tots els adversaris i els mapes en versió demo s'utilitzen per fer proves (normalment no serveixen per jugar-hi).  El filtre de \"Tots els mapes\" mostra tots els mapes en una mateixa llista."
 
 #: gui/manual/intro.txt:38
 msgid ""
@@ -179,11 +179,11 @@ msgid ""
 "controls which player (decides where you start on the map etc). The options "
 "are either a human player, an AI or no player at all (the opponent will just"
 " be idle)."
-msgstr "Canvia la configuració. Per a mapes aleatoris s'inclou el nombre de jugadors, la mida del mapa, etc. Als escenaris només pots seleccinonar qui controla cada jugador (es decideix per quin punt del mapa es comença, etc.). Les opcions són o bé un jugador humà, un de IA o cap jugador (l'adversari no mostrarà cap activitat)."
+msgstr "Finalment, canvieu la configuració. Per a mapes aleatoris s'inclou el nombre de jugadors, la mida del mapa, etc. Als escenaris només podeu seleccionar qui controla cada jugador (es decideix per quin punt del mapa es comença, etc.). Les opcions són o bé un jugador humà, un de IA o cap jugador (l'adversari no mostrarà cap activitat)."
 
 #: gui/manual/intro.txt:40
 msgid "When you are ready to start, click the \"Start game\" button."
-msgstr "Quan estigueu llest per començar, feu clic al botó \"Comença el joc\""
+msgstr "Quan estigueu llest per començar, feu clic al botó \"Comenceu la partida\""
 
 #: gui/manual/intro.txt:42
 msgid "[font=\"sans-bold-16\"]Hotkeys:"
@@ -195,11 +195,11 @@ msgstr "[font=\"sans-bold-14\"]En el programa"
 
 #: gui/manual/intro.txt:44
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
-msgstr "[font=\"sans-14\"]Alt + F4: Tanca el joc sense confirmació"
+msgstr "[font=\"sans-14\"]Alt + F4: Tanqueu la partida sense confirmació"
 
 #: gui/manual/intro.txt:45
 msgid "Alt + Enter: Toggle between fullscreen and windowed"
-msgstr "Alt + Retorn: Canvia entre pantalla completa i finestra"
+msgstr "Alt + Retorn: Canvieu entre pantalla completa i finestra"
 
 #: gui/manual/intro.txt:46
 msgid "~ or F9: Show/hide console"
@@ -217,21 +217,21 @@ msgstr "F11: Activa/desactiva l'anàlisi de rendiment en temps real (alterna ent
 
 #: gui/manual/intro.txt:49
 msgid "Shift + F11: Save current profiler data to \"logs/profile.txt\""
-msgstr "Maj + F11: Desa les dades del perfil actual a \"logs/profile.txt\""
+msgstr "Maj + F11: Deseu les dades del perfil actual a \"logs/profile.txt\""
 
 #: gui/manual/intro.txt:50
 msgid ""
 "F2: Take screenshot (in .png format, location is displayed in the top left "
 "of the GUI after the file has been saved, and can also be seen in the "
 "console/logs if you miss it there)"
-msgstr "F2: Fes una captura de la pantalla (en format .png, la ubicació de la qual es mostra a la part superior esquerra de la pantalla després d'haver-se desat, i també es pot veure a l'historial de la consola)."
+msgstr "F2: Feu una captura de la pantalla (en format .png, la ubicació de la qual es mostra a la part superior esquerra de la pantalla després d'haver-se desat, i també es pot veure a l'historial de la consola)."
 
 #: gui/manual/intro.txt:51
 msgid ""
 "Shift + F2: Take huge screenshot (6400px*4800px, in .bmp format, location is"
 " displayed in the top left of the GUI after the file has been saved, and can"
 " also be seen in the console/logs if you miss it there)"
-msgstr "Maj + F2: Fes una captura de pantalla d'alta qualitat (6400px*4800px, en format .bmp, la ubicació de la qual es mostra a la part superior esquerra de la pantalla després d'haver-se guardat, i també es pot veure a l'historial de la consola)."
+msgstr "Maj + F2: Feu una captura de pantalla d'alta qualitat (6400px*4800px, en format .bmp, la ubicació de la qual es mostra a la part superior esquerra de la pantalla després d'haver-se guardat, i també es pot veure a l'historial de la consola)."
 
 #: gui/manual/intro.txt:53
 msgid "[font=\"sans-bold-14\"]In Game"
@@ -241,19 +241,19 @@ msgstr "[font=\"sans-bold-14\"]En el joc"
 msgid ""
 "[font=\"sans-14\"]Double Left Click \\[on unit]: Select all of your units of"
 " the same kind on the screen (even if they're different ranks)"
-msgstr "[font=\"sans-14\"]Doble clic esquerre \\[sobre una unitat]: Selecciona totes les unitats pròpies del mateix tipus que hi ha a la pantalla (encara que tinguin diferent rang)"
+msgstr "[font=\"sans-14\"]Doble clic esquerre \\[sobre una unitat]: Seleccioneu totes les unitats pròpies del mateix tipus que hi ha a la pantalla (encara que tinguin diferent rang)"
 
 #: gui/manual/intro.txt:55
 msgid ""
 "Triple Left Click \\[on unit]: Select all of your units of the same kind and"
 " the same rank on the screen"
-msgstr "Triple clic esquerre \\[sobre una unitat]: Selecciona totes les unitats pròpies del mateix tipus i del mateix rang que hi ha a la pantalla."
+msgstr "Triple clic esquerre \\[sobre una unitat]: Seleccioneu totes les unitats pròpies del mateix tipus i del mateix rang que hi ha a la pantalla."
 
 #: gui/manual/intro.txt:56
 msgid ""
 "Alt + Double Left Click \\[on unit]: Select all your units of the same kind "
 "on the entire map (even if they have different ranks)"
-msgstr "Alt + Doble clic esquerre \\[sobre una unitat]: Selecciona totes les unitats pròpies del mateix tipus que hi ha a tot el mapa (encara que tinguin diferent rang)"
+msgstr "Alt + Doble clic esquerre \\[sobre una unitat]: Seleccioneu totes les unitats pròpies del mateix tipus que hi ha a tot el mapa (encara que tinguin diferent rang)"
 
 #: gui/manual/intro.txt:57
 msgid ""
@@ -291,11 +291,11 @@ msgstr "T: Envia un xat a l'equip"
 
 #: gui/manual/intro.txt:65
 msgid "L: Chat with the previously selected private chat partner"
-msgstr "L: Xateja amb el soci de xat privat seleccionat anteriorment"
+msgstr "L: Xategeu amb el company de xat privat seleccionat anteriorment"
 
 #: gui/manual/intro.txt:66
 msgid "Pause: Pause/resume the game"
-msgstr "Pausa: Pausa/continua el joc"
+msgstr "Pausa: Atura/continua el joc"
 
 #: gui/manual/intro.txt:67
 msgid "Delete: Delete currently selected units/buildings"
@@ -309,27 +309,27 @@ msgstr "Maj + Supr: Suprimeix les unitats o edificis seleccionats sense confirma
 
 #: gui/manual/intro.txt:69
 msgid "/ (ForwardSlash): Select idle fighter"
-msgstr "/ (Barra): Selecciona un lluitador inactiu"
+msgstr "/ (Barra): Seleccioneu un lluitador inactiu"
 
 #: gui/manual/intro.txt:70
 msgid "Shift + /: add idle fighter to selection"
-msgstr "Maj + /: afegeix un lluitador inactiu a la selecció"
+msgstr "Maj + /: afegiu un lluitador desocupat a la selecció"
 
 #: gui/manual/intro.txt:71
 msgid "Alt + /: Select all idle fighters"
-msgstr "Alt + /: Selecciona tots els lluitadors inactius"
+msgstr "Alt + /: Seleccioneu tots els lluitadors desocupats"
 
 #: gui/manual/intro.txt:72
 msgid ". (Period): Select idle worker (including citizen soldiers)"
-msgstr ".  (Període): Seleccionar treballador inactiu (inclosos els soldats ciutadans)"
+msgstr ".  (Punt): Seleccioneu treballador desocupats (inclosos els soldats ciutadà)"
 
 #: gui/manual/intro.txt:73
 msgid "Shift + .: add idle worker to selection (including citizen soldiers)"
-msgstr "Maj + .: afegeix un treballador inactiu a la selecció (inclosos els soldats ciutadans)"
+msgstr "Maj + .: afegiu un treballador desocupat a la selecció (inclosos els soldats ciutadà)"
 
 #: gui/manual/intro.txt:74
 msgid "Alt + .: Select all idle workers (including citizen soldiers)"
-msgstr "Alt + .: Selecciona tots els treballadors inactius (inclosos soldats ciutadans)"
+msgstr "Alt + .: Seleccioneu tots els treballadors desocupats (inclosos soldats ciutadà)"
 
 #: gui/manual/intro.txt:75
 msgid "H: Stop (halt) the currently selected units."
@@ -352,18 +352,18 @@ msgstr "Ctrl + 1 (i així successivament fins a Ctrl + 0): Crea el grup control 
 #: gui/manual/intro.txt:79
 msgid ""
 "1 (and so on up to 0): Select the units/buildings in control group 1 (to 0)"
-msgstr "1 (i així successivament fins a 0): Selecciona les unitats/edificis al grup control 1 (fins a 0)"
+msgstr "1 (i així successivament fins a 0): Seleccioneu les unitats/edificis al grup control 1 (fins a 0)"
 
 #: gui/manual/intro.txt:80
 msgid ""
 "Shift + 1 (to 0): Add control group 1 (to 0) to the selected units/buildings"
-msgstr "Maj + 1 (fins a 0): Afegeix el grup control 1 (fins a 0) a les unitats/edificis seleccionats"
+msgstr "Maj + 1 (fins a 0): Afegiu el grup control 1 (fins a 0) a les unitats/edificis seleccionats"
 
 #: gui/manual/intro.txt:81
 msgid ""
 "Ctrl + F5 (and so on up to F8): Mark the current camera position, for "
 "jumping back to later."
-msgstr "Ctrl + F5 (i així successivament fins a F8): Marca la posició actual de la càmera per tornar-hi més tard."
+msgstr "Ctrl + F5 (i així successivament fins a F8): Marqueu la posició actual de la càmera per tornar-hi més tard."
 
 #: gui/manual/intro.txt:82
 msgid ""
@@ -375,23 +375,23 @@ msgstr "F5, F6, F7, and F8: mouen la càmera a la posició marcada. Torna a l'ú
 msgid ""
 "Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, ..."
 " unit shown to the training queue for all the selected buildings."
-msgstr "Z, X, C, V, B, N, M: amb edificis d'entrenament seleccionats.  Afegir a la cua d'entrenament per als edificis seleccionats les unitats 1a, 2a, etc. "
+msgstr "Z, X, C, V, B, N, M: amb edificis d'entrenament seleccionats. Afegiu a la cua de formació per als edificis seleccionats les unitats 1a, 2a, etc. "
 
 #: gui/manual/intro.txt:84
 msgid ""
 "PageUp with units selected: Highlights the units/buildings guarded by the "
 "selection."
-msgstr "\"PageUp\" amb unitats seleccionats: remarca les unitats/edificis escoltats per la selecció."
+msgstr "\"PageUp\" amb unitats seleccionats: remarqueu les unitats/edificis escoltats per la selecció."
 
 #: gui/manual/intro.txt:85
 msgid ""
 "PageDown with units/buildings selected: Highlights the units guarding the "
 "selection."
-msgstr "\"PageDown\" amb unitats/edificis seleccionats: remarca les unitats escoltant la selecció."
+msgstr "\"PageDown\" amb unitats/edificis seleccionats: remarqueu les unitats escoltant la selecció."
 
 #: gui/manual/intro.txt:86
 msgid "Tab: See all status bars (which would also show the building progress)"
-msgstr "Tab: Veure totes les barres d'estat (que també mostrarà el progrés de la construcció)"
+msgstr "Tab: Vegeu totes les barres d'estat (que també mostrarà el progrés de la construcció)"
 
 #: gui/manual/intro.txt:88
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
@@ -399,7 +399,7 @@ msgstr "[font=\"sans-bold-14\"]Modifica l'acció del ratolí"
 
 #: gui/manual/intro.txt:89
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
-msgstr "[font=\"sans-14\"]Ctrl + Clic dret sobre un edifici: Refugia"
+msgstr "[font=\"sans-14\"]Ctrl + Clic dret sobre un edifici: Refugi"
 
 #: gui/manual/intro.txt:90
 msgid "J + Right Click on building: Repair"
@@ -411,49 +411,49 @@ msgstr "P + clic dret: Patrulla"
 
 #: gui/manual/intro.txt:92
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
-msgstr "Maj + Clic dret: Posa l'ordre de moure's/construir/collir/etc a la cua"
+msgstr "Maj + Clic dret: Establiu l'ordre de moure's/construir/collir/etc a la cua"
 
 #: gui/manual/intro.txt:93
 msgid ""
 "Alt + Right Click: Order one unit from the current selection to "
 "move/build/gather/etc and unselect it. Used to quickly dispatch units with "
 "specific tasks."
-msgstr "Alt + Clic dret: Ordenar que una unitat de la selecció actual es mogui/es formi/s'uneixi i deseleccionar-la. S'utilitza per enviar unitats amb tasques específiques."
+msgstr "Alt + Clic dret: Feu que una unitat de la selecció actual es mogui/es formi/s'uneixi i deseleccioneu-la. S'utilitza per enviar unitats amb tasques específiques."
 
 #: gui/manual/intro.txt:94
 msgid ""
 "Shift + Left Click when training units: Add units in batches (the batch size"
 " is 5 by default and can be changed in the options)"
-msgstr "Shift + Clic esquerre Quan estiguin entrenant unitats: Afegeix unitats en grups (el grup per defecte és 5 i pot ser canviat en les opcions)."
+msgstr "Shift + Clic esquerre quan estiguin formant unitats: Afegiu unitats en grups (el grup per defecte és 5 i es pot canviar a les opcions)."
 
 #: gui/manual/intro.txt:95
 msgid ""
 "Shift + Left Click or Left Drag over unit on map: Add unit to selection"
-msgstr "Maj + Clic esquerre o Arrossegar amb el botó esquerre sobre una unitat al mapa: Afegeix la unitat a la selecció"
+msgstr "Maj + Clic esquerre o arrossegueu amb el botó esquerre una unitat pel mapa: Afegiu la unitat a la selecció"
 
 #: gui/manual/intro.txt:96
 msgid ""
 "Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
-msgstr "Ctrl + Clic esquerre o Arrossegar amb el botó esquerre sobre una unitat al mapa: Elimina la unitat de la selecció"
+msgstr "Ctrl + Clic esquerre o arrossegueu amb el botó esquerre una unitat pel mapa: Elimineu la unitat de la selecció"
 
 #: gui/manual/intro.txt:97
 msgid "Alt + Left Drag over units on map: Only select military units"
-msgstr "Alt + Arrossegar amb el botó esquerre sobre unitats al mapa: Selecciona només les unitats militars"
+msgstr "Alt + esquerre Arrossegueu amb el botó esquerre unitats pel mapa: Seleccioneu només les unitats militars"
 
 #: gui/manual/intro.txt:98
 msgid "I + Left Drag over units on map: Only select idle units"
-msgstr "I + Arrossegar amb el botó esquerre sobre unitats al mapa: Selecciona només les unitats inactives"
+msgstr "I + esquerre Arrossegueu amb el botó esquerre unitats pel mapa: Selecciona només les unitats inactives"
 
 #: gui/manual/intro.txt:99
 msgid ""
 "Ctrl + Left Click on unit/group icon with multiple units selected: Deselect"
-msgstr "Ctrl + Clic esquerre sobre la icona d'una unitat o d'un grup amb unitats seleccionades: Desselecciona"
+msgstr "Ctrl + Clic esquerre sobre la icona d'una unitat o d'un grup amb unitats seleccionades: Desseleccioneu"
 
 #: gui/manual/intro.txt:100
 msgid ""
 "Right Click with a building/buildings selected: sets a rally point for units"
 " created/ungarrisoned from that building."
-msgstr "Clic dret amb edificis seleccionats: situa un punt de reunió per a les unitats que es creïn o surtin del refugi d'aquests edificis."
+msgstr "Clic dret amb edificis seleccionats: situeu un punt de trobada per a les unitats que es creïn o surtin del refugi en aquests edificis."
 
 #: gui/manual/intro.txt:101
 msgid "Ctrl + Right Click with units selected:"
@@ -461,20 +461,20 @@ msgstr "Ctrl + Clic dret amb unitats seleccionades:"
 
 #: gui/manual/intro.txt:102
 msgid "    - If the cursor is over an allied structure: Garrison"
-msgstr "    - Si el cursor està damunt d'una estructura aliada: Refugia"
+msgstr "    - Si el cursor està damunt d'una estructura aliada: Refugi"
 
 #: gui/manual/intro.txt:103
 msgid ""
 "    - If the cursor is over a non-allied unit or building: Attack (instead "
 "of capture or gather)"
-msgstr "    - Si el cursor està damunt d'una estructura o edifici no aliat: Ataca (en lloc de captura o recull)"
+msgstr "    - Si el cursor està damunt d'una estructura o edifici no aliat: Atac (en lloc de captura o recol·lecció)"
 
 #: gui/manual/intro.txt:104
 msgid ""
 "    - Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
 "units). "
-msgstr "    - Si no: Ataca (per defecte s'atacaran totes les estructures i unitats enemigues del camí, feu Ctrl + Q + clic dret per atacar només les unitats). "
+msgstr "    - Si no: Atac (per defecte s'atacaran totes les estructures i unitats enemigues del camí, feu Ctrl + Q + clic dret per atacar només les unitats). "
 
 #: gui/manual/intro.txt:106
 msgid "[font=\"sans-bold-14\"]Overlays"
@@ -608,7 +608,7 @@ msgstr "]: Gira l'edifici 15 graus en sentit horari"
 msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
-msgstr "Arrossegar amb el botó esquerre: Gira l'edifici amb el ratolí (es col·locaran els fonaments en deixar anar el ratolí)"
+msgstr "Arrossegueu amb el botó esquerre: Gira l'edifici amb el ratolí (es col·locaran els fonaments en deixar anar el ratolí)"
 
 #: gui/manual/intro.txt:140
 msgid "[font=\"sans-bold-14\"]When loading a saved game"
@@ -617,7 +617,7 @@ msgstr "[font=\"sans-bold-14\"]En carregar una partida desada"
 #: gui/manual/intro.txt:141
 msgid ""
 "[font=\"sans-14\"]Delete: delete the selected saved game asking confirmation"
-msgstr "[font=\"sans-14\"]Esborra: esborra la partida seleccionada demanant confirmació"
+msgstr "[font=\"sans-14\"]Esborrar: esborreu la partida seleccionada demanant confirmació"
 
 #: gui/manual/intro.txt:142
 msgid "Shift: do not ask confirmation when deleting a saved game"
@@ -674,4 +674,4 @@ msgid ""
 "questions. We will store the IP address that submitted the data, to help "
 "detect abuse of the service, but will not publish it. The published data can"
 " be seen at http://feedback.wildfiregames.com/"
-msgstr "Emmagatzenem la data enviada al nostre servidor i és possible que publiquem estadístiques o detalls anònims per ajudar els desenvolupadors del joc amb preguntes similars. Guardarem l'adreça IP des d'on s'envien les dades, per ajudar-nos a detectar un possible abús del servei, però no es publicarà en cap cas. La data que publiquem es pot consultar a http://feedback.wildfiregames.com/."
+msgstr "Emmagatzemarem les dades enviades al nostre servidor i és possible que publiquem estadístiques o detalls anònims per ajudar els desenvolupadors del joc amb preguntes similars. Guardarem l'adreça IP des d'on s'envien les dades, per ajudar-nos a detectar un possible abús del servei, però no es publicarà en cap cas. La data que publiquem es pot consultar a http://feedback.wildfiregames.com/."

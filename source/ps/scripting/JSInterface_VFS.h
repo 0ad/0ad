@@ -30,18 +30,10 @@ namespace JSI_VFS
 {
 	// Return an array of pathname strings, one for each matching entry in the
 	// specified directory.
-	//
-	// pathnames = buildDirEntList(start_path [, filter_string [, recursive ] ]);
-	//   directory: VFS path
-	//   filter_string: see match_wildcard; "" matches everything.
-	//   recurse: should subdirectories be included in the search? default false.
-	//
-	// note: full pathnames of each file/subdirectory are returned,
-	// ready for use as a "filename" for the other functions.
-	JS::Value BuildDirEntList(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& path, const std::wstring& filterStr, bool recurse);
+	JS::Value BuildDirEntList(ScriptInterface::CxPrivate* pCxPrivate, const std::vector<CStrW>& validPaths, const std::wstring& path, const std::wstring& filterStr, bool recurse);
 
 	// Return true iff the file exists
-	bool FileExists(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& filename);
+	bool FileExists(ScriptInterface::CxPrivate* pCxPrivate, const std::vector<CStrW>& validPaths, const CStrW& filename);
 
 	// Return time [seconds since 1970] of the last modification to the specified file.
 	double GetFileMTime(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filename);

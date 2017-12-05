@@ -632,6 +632,8 @@ static void InitRenderer()
 	g_ConfigDB.SetValueBool(CFG_SYSTEM, "shadowpcf", g_ShadowPCF);
 	g_Renderer.SetOptionBool(CRenderer::OPT_PARTICLES, g_Particles);
 	g_ConfigDB.SetValueBool(CFG_SYSTEM, "particles", g_Particles);
+	g_Renderer.SetOptionBool(CRenderer::OPT_FOG, g_Fog);
+	g_ConfigDB.SetValueBool(CFG_SYSTEM, "fog", g_Fog);
 	g_Renderer.SetOptionBool(CRenderer::OPT_SILHOUETTES, g_Silhouettes);
 	g_ConfigDB.SetValueBool(CFG_SYSTEM, "silhouettes", g_Silhouettes);
 	g_Renderer.SetOptionBool(CRenderer::OPT_SHOWSKY, g_ShowSky);

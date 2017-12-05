@@ -1,6 +1,5 @@
 /**
  * Loads history and gameplay data of all civs.
- * Can be used from GUI and rmgen (because the simulation functions differ currently).
  *
  * @param selectableOnly {boolean} - Only load civs that can be selected
  *        in the gamesetup. Scenario maps might set non-selectable civs.
@@ -13,7 +12,7 @@ function loadCivFiles(selectableOnly)
 
 	let civData = {};
 
-	for (let filename of Engine.BuildDirEntList("simulation/data/civs/", "*.json", false))
+	for (let filename of Engine.ListDirectoryFiles("simulation/data/civs/", "*.json", false))
 	{
 		let data = Engine.ReadJSONFile(filename);
 

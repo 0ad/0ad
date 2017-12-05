@@ -35,5 +35,9 @@ void main()
     los = los < 0.03 ? 0.0 : los;
     color.rgb *= los;
 
-	gl_FragColor = get_fog(color);
+	#if USE_FOG
+		gl_FragColor = get_fog(color);
+	#else
+		gl_FragColor = color;
+	#endif
 }

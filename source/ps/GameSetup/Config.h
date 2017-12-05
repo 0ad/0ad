@@ -67,6 +67,8 @@ extern bool g_WaterShadows;
 extern bool g_ShadowPCF;
 // flag to switch on particles rendering
 extern bool g_Particles;
+// flag to switch on fog
+extern bool g_Fog;
 // flag to switch on unit silhouettes
 extern bool g_Silhouettes;
 // flag to switch on sky rendering

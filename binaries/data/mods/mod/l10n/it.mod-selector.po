@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-11-29 09:05+0100\n"
-"PO-Revision-Date: 2017-11-29 15:09+0000\n"
+"POT-Creation-Date: 2017-12-01 09:06+0100\n"
+"PO-Revision-Date: 2017-12-01 15:40+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -21,42 +21,24 @@ msgstr ""
 "Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/modmod/modmod.js:52 gui/modmod/modmod.xml:(heading):110
-#: gui/modmod/modmod.xml:(heading):159
-msgid "Name"
-msgstr "Nome"
-
-#: gui/modmod/modmod.js:58
-msgid "Folder"
-msgstr "Cartella"
-
-#: gui/modmod/modmod.js:63
-msgid "Label"
-msgstr "Etichetta"
-
-#: gui/modmod/modmod.js:68 gui/modmod/modmod.xml:(heading):113
-#: gui/modmod/modmod.xml:(heading):162
-msgid "Version"
-msgstr "Versione"
-
-#: gui/modmod/modmod.js:98 gui/modmod/modmod.js:253
+#: gui/modmod/modmod.js:71 gui/modmod/modmod.js:222
 msgid "Filter"
 msgstr "Filtro"
 
-#: gui/modmod/modmod.js:157
+#: gui/modmod/modmod.js:125
 msgid "Type: Any"
 msgstr "Tipo: Qualsiasi"
 
-#: gui/modmod/modmod.js:308
+#: gui/modmod/modmod.js:277
 #, javascript-format
 msgid "Dependency not met: %(dep)s"
 msgstr ""
 
-#: gui/modmod/modmod.js:316
+#: gui/modmod/modmod.js:285
 msgid "All dependencies met"
 msgstr "Tutte le dipendenze sono soddisfatte"
 
-#: gui/modmod/modmod.js:394
+#: gui/modmod/modmod.js:363
 msgid "No mod has been selected."
 msgstr "Non è stata selezionata alcuna mod."
 
@@ -73,73 +55,73 @@ msgid "Negate"
 msgstr "Annullare"
 
 #: gui/modmod/modmod.xml:(caption):63
-msgid "Sorting:"
-msgstr "Ordinamento :"
-
-#: gui/modmod/modmod.xml:(caption):77
-msgid "Descending."
-msgstr "Discendente"
-
-#: gui/modmod/modmod.xml:(caption):96
 msgid "Available Mods"
 msgstr "Mod disponibili"
 
-#: gui/modmod/modmod.xml:(caption):132
+#: gui/modmod/modmod.xml:(caption):103
 msgid "Description"
 msgstr "Descrizione"
 
-#: gui/modmod/modmod.xml:(caption):135
+#: gui/modmod/modmod.xml:(caption):106
 msgid "Enable"
 msgstr "Abilita"
 
-#: gui/modmod/modmod.xml:(caption):144
+#: gui/modmod/modmod.xml:(caption):115
 msgid "Enabled Mods"
 msgstr "Abilita Mod"
 
-#: gui/modmod/modmod.xml:(caption):182
+#: gui/modmod/modmod.xml:(caption):153
 msgid "Up"
 msgstr "Su"
 
-#: gui/modmod/modmod.xml:(caption):186
+#: gui/modmod/modmod.xml:(caption):157
 msgid "X"
 msgstr "X"
 
-#: gui/modmod/modmod.xml:(caption):190
+#: gui/modmod/modmod.xml:(caption):161
 msgid "Down"
 msgstr "Giù"
 
-#: gui/modmod/modmod.xml:(caption):198
+#: gui/modmod/modmod.xml:(caption):169
 msgid "Quit"
 msgstr "Chiudi"
 
-#: gui/modmod/modmod.xml:(caption):203
+#: gui/modmod/modmod.xml:(caption):174
 msgid "Cancel"
 msgstr "Annulla"
 
-#: gui/modmod/modmod.xml:(caption):208
+#: gui/modmod/modmod.xml:(caption):179
 msgid "Save Configuration"
 msgstr "Salva la configurazione"
 
-#: gui/modmod/modmod.xml:(caption):213
+#: gui/modmod/modmod.xml:(caption):184
 msgid "Start Mods"
 msgstr "Avvia Mod"
 
-#: gui/modmod/modmod.xml:(heading):116 gui/modmod/modmod.xml:(heading):165
+#: gui/modmod/modmod.xml:(heading):81 gui/modmod/modmod.xml:(heading):130
+msgid "Name"
+msgstr "Nome"
+
+#: gui/modmod/modmod.xml:(heading):84 gui/modmod/modmod.xml:(heading):133
+msgid "Version"
+msgstr "Versione"
+
+#: gui/modmod/modmod.xml:(heading):87 gui/modmod/modmod.xml:(heading):136
 msgid "(Folder)"
 msgstr "(Cartella)"
 
-#: gui/modmod/modmod.xml:(heading):119 gui/modmod/modmod.xml:(heading):168
+#: gui/modmod/modmod.xml:(heading):90 gui/modmod/modmod.xml:(heading):139
 msgid "Mod Label"
 msgstr "Etichetta Mod"
 
-#: gui/modmod/modmod.xml:(heading):122 gui/modmod/modmod.xml:(heading):171
+#: gui/modmod/modmod.xml:(heading):93 gui/modmod/modmod.xml:(heading):142
 msgid "Mod Type"
 msgstr "Tipo Mod"
 
-#: gui/modmod/modmod.xml:(heading):125 gui/modmod/modmod.xml:(heading):174
+#: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):145
 msgid "Dependencies"
 msgstr "Dipendenze"
 
-#: gui/modmod/modmod.xml:(heading):128 gui/modmod/modmod.xml:(heading):177
+#: gui/modmod/modmod.xml:(heading):99 gui/modmod/modmod.xml:(heading):148
 msgid "Website"
 msgstr "Sito web"

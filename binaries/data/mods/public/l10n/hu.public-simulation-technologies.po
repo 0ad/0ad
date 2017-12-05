@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-11-29 09:05+0100\n"
-"PO-Revision-Date: 2017-11-29 15:16+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-12-01 19:02+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1221,7 +1221,7 @@ msgstr "Nagyvárosi szakasz"
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_city_generic or phase_city_{civ}."
-msgstr ""
+msgstr "Helykitöltő technológia sablon követelményekhez történő használathoz, a phase_city_generic vagy phase_city_{civ} váltja."
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
@@ -1272,7 +1272,7 @@ msgstr "Városi szakasz"
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_town_generic or phase_town_{civ}."
-msgstr ""
+msgstr "Helykitöltő technológia sablon követelményekhez történő használathoz, a phase_town_generic vagy phase_town_{civ} váltja."
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
@@ -1558,7 +1558,7 @@ msgstr "Az alapok megerősítése egy támadás előkészítésben."
 
 #: simulation/data/technologies/tower_armour.jsontooltip
 msgid "Increases armor of defensive towers by 2 levels."
-msgstr ""
+msgstr "2 szinttel növeli a védőtornyok páncélját."
 
 #: simulation/data/technologies/tower_armour.jsongenericName
 msgid "Sturdy Foundations"
@@ -1586,7 +1586,7 @@ msgstr "Az előőrsök kétszer tovább élnek túl a semleges terülten."
 
 #: simulation/data/technologies/tower_decay.jsontooltip
 msgid "Outposts -50% territory decay rate."
-msgstr ""
+msgstr "-50% az előőrsök területi hanyatlási sebességéből."
 
 #: simulation/data/technologies/tower_decay.jsongenericName
 msgid "Stone Foundations"
@@ -1622,7 +1622,7 @@ msgstr "Az előörsök látóhatára megnő."
 
 #: simulation/data/technologies/tower_vision.jsontooltip
 msgid "Outposts +50% vision range."
-msgstr ""
+msgstr "+50% az előőrsök látóhatárához."
 
 #: simulation/data/technologies/tower_vision.jsongenericName
 msgid "Carrier Pigeons"

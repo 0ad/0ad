@@ -8,7 +8,7 @@ function init(data)
 	Engine.SetCursor("cursor-wait");
 
 	// Get tip image and corresponding tip text
-	let tipTextLoadingArray = Engine.BuildDirEntList("gui/text/tips/", "*.txt", false);
+	let tipTextLoadingArray = Engine.ListDirectoryFiles("gui/text/tips/", "*.txt", false);
 
 	if (tipTextLoadingArray.length > 0)
 	{

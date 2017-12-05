@@ -249,19 +249,14 @@ function areDependenciesMet(folder)
 		if (isDependencyMet(dependency))
 			continue;
 
-		guiObject.caption =
-			'[color="' + g_ColorDependenciesNotMet + '"]' +
-			sprintf(translate('Dependency not met: %(dep)s'), { "dep": dependency }) +
-			'[/color]';
+		guiObject.caption = coloredText(
+			sprintf(translate('Dependency not met: %(dep)s'), { "dep": dependency }),
+			g_ColorDependenciesNotMet);
 
 		return false;
 	}
 
-	guiObject.caption =
-		'[color="' + g_ColorDependenciesMet + '"]' +
-		translate('All dependencies met') +
-		'[/color]';
-
+	guiObject.caption = coloredText(translate('All dependencies met'), g_ColorDependenciesMet);
 	return true;
 }
 

@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-11-29 09:05+0100\n"
-"PO-Revision-Date: 2017-12-01 02:31+0000\n"
+"PO-Revision-Date: 2017-12-01 19:30+0000\n"
 "Last-Translator: Maria Acero-Allo <maria.acero@e-campus.uab.cat>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -46,7 +46,7 @@ msgstr "Armadura de metall per a la cara dels cavalls."
 msgid ""
 "Equip your cavalry mounts with armor. All Cavalry +1 Hack and Pierce armor "
 "level."
-msgstr "Equipeu les montures de la cavalleria. Tota la cavalleria +1 de nivell d'armadura en Tall i Perforació."
+msgstr "Equipeu les muntures de la cavalleria. Tota la cavalleria +1 de nivell d'armadura en Tall i Perforació."
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -202,7 +202,7 @@ msgstr "Es desbloqueja a la Fase Ciutat."
 
 #: simulation/data/technologies/armor_cav_chamfron.jsontooltip
 msgid "Equip your cavalry mounts with armor. All Cavalry +1 Hack armor level."
-msgstr "Equipeu les montures de la cavalleria. Tota la infanteria +1 de nivell d'armadura en Tall."
+msgstr "Equipeu les muntures de la cavalleria. Tota la infanteria +1 de nivell d'armadura en Tall."
 
 #: simulation/data/technologies/armor_hero_01.jsondescription
 msgid ""
@@ -328,7 +328,7 @@ msgstr "Armadura completament de bronze. Només els millors soldats s'equipaven 
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsontooltip
 msgid "Champions +2 Hack Armor Levels, but also +10 Metal Cost."
-msgstr "Els vencedors guanyen +2  de nivell d'armadura en Tall, però també +10 en el cost del metall."
+msgstr "Els campions guanyen +2  de nivell d'armadura en Tall, però també +10 en el cost del metall."
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsongenericName
 msgid "Bronze Cuirass Body Armor"
@@ -760,7 +760,7 @@ msgstr "Augmenta la capacitat de transport de tots els recursos."
 
 #: simulation/data/technologies/gather_capacity_basket.jsontooltip
 msgid "Workers use baskets. +5 shuttle capacity for all resources."
-msgstr "Els treballadors utilitzen cabassos. +5 de capacitat de transport per a tots els recursos."
+msgstr "Els treballadors utilitzen cabassos. +5 en capacitat de transport per a tots els recursos."
 
 #: simulation/data/technologies/gather_capacity_basket.jsongenericName
 msgid "Baskets"
@@ -768,7 +768,7 @@ msgstr "Cabassos"
 
 #: simulation/data/technologies/gather_capacity_carts.jsontooltip
 msgid "Workers use horse-drawn carts. +10 shuttle capacity for all resources."
-msgstr "Els treballadors utilitzen carros tirats per cavalls. +10 de capacitat de transport per a tots els recursos."
+msgstr "Els treballadors utilitzen carros tirats per cavalls. +10 en capacitat de transport per a tots els recursos."
 
 #: simulation/data/technologies/gather_capacity_carts.jsongenericName
 msgid "Horse-drawn Carts"
@@ -780,7 +780,7 @@ msgstr "Salar el peix fa que es conservi més temps."
 
 #: simulation/data/technologies/gather_capacity_fishing.jsontooltip
 msgid "Fishing Boats +20 food capacity."
-msgstr "+20 de capacitat de menjar a les barques de pesca."
+msgstr "+20 en capacitat de menjar a les barques de pesca."
 
 #: simulation/data/technologies/gather_capacity_fishing.jsongenericName
 msgid "Salting Fish"
@@ -816,7 +816,7 @@ msgstr "Un instrument tirat per cavalls per a llaurar la terra."
 
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 msgid "Equip your workers with iron plows. +15% farming rate."
-msgstr "Equipeu els treballadors amb arades. +15% de l'índex de agricultura."
+msgstr "Equipeu els treballadors amb arades. +15% en l'índex de agricultura."
 
 #: simulation/data/technologies/gather_farming_plows.jsongenericName
 msgid "Iron Plow"
@@ -828,7 +828,7 @@ msgstr "Formeu els treballadors perquè augmentin la velocitat de recol·lecció
 
 #: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +15% farming rate."
-msgstr "+15% de l'índex d'agricultura per als treballadors."
+msgstr "+15% en l'índex d'agricultura per als treballadors."
 
 #: simulation/data/technologies/gather_farming_training.jsongenericName
 msgid "Gather Training"
@@ -883,7 +883,7 @@ msgstr "Augmenta la velocitat de recollida de pedra."
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 msgid ""
 "Compel serfs to help your workers mine stone. +15% stone gathering rate."
-msgstr "Obligueu els serfs a ajudar als treballadors a les mines de pedra. +15% de l'índex de recol·lecció de pedra."
+msgstr "Obligueu els serfs a ajudar als treballadors a les mines de pedra. +15% en l'índex de recol·lecció de pedra."
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
 msgid "Serfs"
@@ -897,7 +897,7 @@ msgstr "Heílōtes"
 
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 msgid "Hire servants to help mine stone. +15% stone gathering rate."
-msgstr "Contracteu servents perquè ajudin a la mina de pedra. +15% de l'índex de recol·lecció de pedra."
+msgstr "Contracteu servents perquè ajudin a la mina de pedra. +15% en l'índex de recol·lecció de pedra."
 
 #: simulation/data/technologies/gather_mining_servants.jsongenericName
 msgid "Servants"
@@ -917,7 +917,7 @@ msgstr "Augmenta la velocitat de recollida de metall."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsontooltip
 msgid "Develop shaft mining. +15% metal gathering rate."
-msgstr "Desenvolupeu pous miners. +15% de l'índex de recol·lecció de metall."
+msgstr "Desenvolupeu pous miners. +15% en l'índex de recol·lecció de metall."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
 msgid "Shaft Mining"
@@ -925,7 +925,7 @@ msgstr "Pous miners"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 msgid "Strike a vein of precious silver. +50% metal gathering rate."
-msgstr "Exploteu una vena de preciosa plata. +50% de l'índex de recol·lecció de metall."
+msgstr "Exploteu una vena de preciosa plata. +50% en l'índex de recol·lecció de metall."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsongenericName
 msgid "Silver Mining"
@@ -942,7 +942,7 @@ msgstr "Mines de Laureion"
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid ""
 "Buy slaves to help your workers mine for stone. +50% stone gathering rate."
-msgstr "Compreu esclaus perquè ajudin als treballadors a excavar la pedra. +50% de l'índex de recol·lecció de pedra."
+msgstr "Compreu esclaus perquè ajudin als treballadors a excavar la pedra. +50% en l'índex de recol·lecció de pedra."
 
 #: simulation/data/technologies/gather_mining_slaves.jsongenericName
 msgid "Slaves"
@@ -956,7 +956,7 @@ msgstr "Andrápoda"
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "Equip your workers with helpful tools. +15% metal gathering rate."
-msgstr "Equipeu els treballadors amb eines útils. +15% de l'índex de recol·lecció de metall."
+msgstr "Equipeu els treballadors amb eines útils. +15% en l'índex de recol·lecció de metall."
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
@@ -980,7 +980,7 @@ msgstr "Les unitats refugiades en una caserna es guareixen amb el temps."
 
 #: simulation/data/technologies/heal_barracks.jsontooltip
 msgid "Units gain health over time while garrisoned in barracks."
-msgstr "Les unitats recuperen vida quan estan refugiades en una caserna."
+msgstr "Les unitats recuperen salut quan estan refugiades en una caserna."
 
 #: simulation/data/technologies/heal_barracks.jsongenericName
 msgid "Living Conditions"
@@ -1076,7 +1076,7 @@ msgstr "El teler va permetre la creació de peces més fines per als colons. Les
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "Female Citizens +50% Health."
-msgstr "+50% de salut per a les ciutadanes."
+msgstr "+50% en salut per a les ciutadanes."
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
@@ -1084,7 +1084,7 @@ msgstr "El teler"
 
 #: simulation/data/technologies/health_regen_units.jsondescription
 msgid "Unlock health regeneration for your units."
-msgstr "Desbloca la regeneració de vida de les unitats."
+msgstr "Desbloqueu la regeneració de salut de les unitats."
 
 #: simulation/data/technologies/health_regen_units.jsontooltip
 msgid "Organic units will slowly regenerate health over time when idle."
@@ -1235,7 +1235,7 @@ msgid ""
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers. Citizen soldiers max "
 "health increased by +10%. All structures +9 garrisoned regeneration rate."
-msgstr "Avanceu cap a la Fase Ciutat, la qual desbloca més estructures i unitats. El radi de territori dels Centres Cívics augmenta en un +50%. La binificació de les Òlibes de plata concedeix +10% en l'índex de recol·lecció de metall per a tots els treballadors. Augmenta un +10% la capacitat màxima de salut dels soldats ciutadà. +9 en l'índex de regeneració d'estructures protegides."
+msgstr "Avanceu cap a la Fase Ciutat, la qual desbloca més estructures i unitats. El radi de territori dels Centres Cívics augmenta en un +50%. La bonificació de les Òlibes de plata concedeix +10% en l'índex de recol·lecció de metall per a tots els treballadors. Augmenta un +10% la capacitat màxima de salut dels soldats ciutadà. +9 en l'índex de regeneració d'estructures protegides."
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
@@ -1278,7 +1278,7 @@ msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly. "
 "This is the Athenian town phase, where metal gathering rates are boosted "
 "because of the 'Silver Owls' bonus."
-msgstr "Avança d'un petit poblat a una vila bulliciosa, preparada per a créixer ràpidament. Aquesta és la fase de la ciutat atenenca, on els índexs de recol·lecció del metall s'han disparat a cause de la bonificació \"Òlibes de plata\"."
+msgstr "Avanceu d'un petit poblat a una vila bulliciosa, preparada per a créixer ràpidament. Aquesta és la fase de la ciutat atenenca, on els índexs de recol·lecció del metall s'han disparat a cause de la bonificació \"Òlibes de plata\"."
 
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
@@ -1303,7 +1303,7 @@ msgstr "Kōmópolis"
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly."
-msgstr "Avança d'un petit poblat a una vila bulliciosa, preparada per a créixer ràpidament."
+msgstr "Avanceu d'un petit poblat a una vila bulliciosa, preparada per a créixer ràpidament."
 
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
@@ -1407,7 +1407,7 @@ msgstr "Insulae"
 
 #: simulation/data/technologies/pop_wonder.jsondescription
 msgid "The wonder attracts many more people to your civilization."
-msgstr "La meravella atreu molta gent a la vostra civilització."
+msgstr "Les meravelles atrauen molta gent a la vostra civilització."
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
 msgid ""
@@ -1669,7 +1669,7 @@ msgstr "Augmenta la capacitat defensiva dels comerciants."
 
 #: simulation/data/technologies/trade_convoys_armor.jsontooltip
 msgid "Traders +2 Hack and Pierce armor levels."
-msgstr "Els comenrciants guanyen +2 en nivell d'Armadura de tall i perforació."
+msgstr "Els comerciants guanyen +2 en nivell d'Armadura de tall i perforació."
 
 #: simulation/data/technologies/trade_convoys_armor.jsongenericName
 #: simulation/data/technologies/trade_convoys_speed.jsongenericName
@@ -1683,7 +1683,7 @@ msgstr "Augmenta la velocitat dels comerciants, que al seu torn eleva els ingres
 
 #: simulation/data/technologies/trade_convoys_speed.jsontooltip
 msgid "Traders +25% Walk Speed, which quickly increases trade income."
-msgstr "Els mercaders caminen un 25% més ràpid, cosa que eleva els ingressos del comerç."
+msgstr "Els comerciants caminen un 25% més ràpid, cosa que eleva els ingressos del comerç."
 
 #: simulation/data/technologies/trade_gain_01.jsondescription
 #: simulation/data/technologies/trade_gain_02.jsondescription
@@ -1732,7 +1732,7 @@ msgstr "Reclutar lleves de cavalleria en temps de guerra ajuda a reforçar les f
 #: simulation/data/technologies/training_levy_cavalry.jsontooltip
 msgid ""
 "All cavalry -20% train time, but also -10 health. Unlocks Conscription."
-msgstr "-20% en temps de formació per a la cavalleria, però també -10 de salut. Desbloca el reclutament."
+msgstr "-20% en temps de formació per a la cavalleria, però també -10 de salut. Desbloqueu el reclutament."
 
 #: simulation/data/technologies/training_levy_cavalry.jsongenericName
 #: simulation/data/technologies/persians/training_levy_cavalry.jsongenericName
@@ -1749,7 +1749,7 @@ msgstr "Reclutar lleves d'infanteria en temps de guerra ajuda a reforçar les fi
 #: simulation/data/technologies/training_levy_infantry.jsontooltip
 msgid ""
 "All infantry -10% train time, but also -5 health. Unlocks Conscription."
-msgstr "-10% en temps de formació per a la cavalleria, però també -5 de salut. Desbloca el reclutament."
+msgstr "-10% en temps de formació per a la cavalleria, però també -5 de salut. Desbloqueu el reclutament."
 
 #: simulation/data/technologies/training_levy_infantry.jsongenericName
 #: simulation/data/technologies/persians/training_levy_infantry.jsongenericName
@@ -1758,7 +1758,7 @@ msgstr "Infanteria de lleva"
 
 #: simulation/data/technologies/training_naval_architects.jsondescription
 msgid "Significantly increase build speed of batches of ships at the Dock."
-msgstr "Augmenta substancialment la velocitat de construcció dels grups de vaixells al port."
+msgstr "Augmenteu substancialment la velocitat de construcció dels grups de vaixells al port."
 
 #: simulation/data/technologies/training_naval_architects.jsontooltip
 msgid "Docks increased batch construction speed bonus."
@@ -1838,7 +1838,7 @@ msgid ""
 "By means of trading and travelling people explored beyond the boundaries of "
 "their lands and drew maps of it in order to share and memorize their "
 "discoveries."
-msgstr "Els viatgers i mercaders van explorar noves terres més enllà de les pròpies fronteres, i van dibuixar mapes per a compartir i recordar els seus descobriments."
+msgstr "Els viatgers i comerciants van explorar noves terres més enllà de les pròpies fronteres, i van dibuixar mapes per a compartir i recordar els seus descobriments."
 
 #: simulation/data/technologies/unlock_shared_los.jsontooltip
 msgid ""
@@ -1928,14 +1928,14 @@ msgstr "Cavalleria ciutadana d'elit"
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsondescription
 msgid "Upgrade all of your citizen-soldier infantrymen to Elite rank."
-msgstr "Ascendeix tots els soldats ciutadans d'infanteria al rang d'elit."
+msgstr "Ascendiu tots els soldats ciutadans d'infanteria al rang d'elit."
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsontooltip
 msgid ""
 "Upgrade all of your citizen-soldier infantrymen to Elite rank. This "
 "increases their military prowess, but decreases their resource gathering "
 "rates another -25%."
-msgstr "Ascendeix tots els soldats ciutadans d'infanteria al rang d'elit. Això augmenta la seva destresa militar, però disminueix els índexs de recol·lecció de recursos un -25%."
+msgstr "Ascendiu tots els soldats ciutadans d'infanteria al rang d'elit. Això augmenta la seva destresa militar, però disminueix els índexs de recol·lecció de recursos un -25%."
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsongenericName
 msgid "Elite Citizen-Infantry"
@@ -2073,7 +2073,7 @@ msgstr "Els cartaginesos van establir molts centres de comerç com a colònies i
 msgid ""
 "Carthaginians were colonizers. Civic Centers, Temples, and Houses -25% build"
 " time."
-msgstr "Els cartaginesos eren colonitzadors.  -25% en temps de construcció per a Centres Cívics, Temples i Cases."
+msgstr "Els cartaginesos eren colonitzadors. -25% en temps de construcció per a Centres Cívics, Temples i Cases."
 
 #: simulation/data/technologies/carthaginians/special_colonisation.jsongenericName
 msgid "Colonization"
@@ -2318,7 +2318,7 @@ msgid ""
 "the best army in the world for their time. What they didn't have in "
 "quantity, they made up with quality. It was said that Sparta did not need "
 "strong city walls, for its men were its walls."
-msgstr "Els espartans no tenien l'exèrcit més gran del món però sí el millor del seu temps. La falta de quantita la compensaven amb la qualitat. Es deia que Esparta no necessitava muralles perquè per això ja tenia els seus homes."
+msgstr "Els espartans no tenien l'exèrcit més gran del món però sí el millor del seu temps. La falta de quantitat la compensaven amb la qualitat. Es deia que Esparta no necessitava muralles perquè per això ja tenia els seus homes."
 
 #: simulation/data/technologies/hellenes/civpenalty_spart_popcap.jsontooltip
 msgid "Spartans have 10% less maximum population."
@@ -2346,11 +2346,11 @@ msgstr "L'Agogé"
 msgid ""
 "Athenian triremes can train Marines (Epibates Athenaikos) and Cretan "
 "Mercenary Archers (Toxotes Kretikos)."
-msgstr "Els trirems atenencs poden formar infanteria de marina (Epibates Athenaikos) i arquers mercenaris cretencs (Toxotes Kretikos)."
+msgstr "Els trirrems atenencs poden formar infanteria de marina (Epibates Athenaikos) i arquers mercenaris cretencs (Toxotes Kretikos)."
 
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsontooltip
 msgid "Athenian triremes can train Marines and Cretan Mercenary Archers."
-msgstr "Els trirems atenencs poden formar infanteria de marina i arquers mercenaris cretencs."
+msgstr "Els trirrems atenencs poden formar infanteria de marina i arquers mercenaris cretencs."
 
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsongenericName
 msgid "Iphicratean Reforms"
@@ -2380,7 +2380,7 @@ msgid ""
 "commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
 "chariots, and 30,000 cavalry, making it arguably the largest army of its "
 "time."
-msgstr "L'imperi Màuria abarcava dotzenes de regnes independentments anteriors sobre una superfície de 5 milions de quilòmetres quadrats, amb una població propera als 60 milions de persones. Els seus regents van ocupar el títol d'Emperador d'emperadors i van comandar un exèrcit permanent de 600.000 homes d'infanteria, 9000 elefants, 8000 carros i 30.000 cavallers, el que és possiblement l'exèrcit més gran del seu temps."
+msgstr "L'imperi Màuria abastava dotzenes de regnes independents anteriors sobre una superfície de 5 milions de quilòmetres quadrats, amb una població propera als 60 milions de persones. Els seus regents van ocupar el títol d'Emperador d'emperadors i van comandar un exèrcit permanent de 600.000 homes d'infanteria, 9000 elefants, 8000 carros i 30.000 cavallers, el que és possiblement l'exèrcit més gran del seu temps."
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsontooltip
 msgid "Mauryans have a 10% higher maximum population limit."
@@ -2434,7 +2434,7 @@ msgid ""
 "great tenacity. However while this was true the infantry were poor hand-to-"
 "hand, close combat fighters. Also, with the exception of the elite "
 "regiments, the Persian infantry was not a standing professional force."
-msgstr "Els perses van imposar una gran quantitat d'infanteria durant temps de guerra a causa de la grandària de l'Imperi aqueménida i la forma en què va ser creat. En general, la infanteria persa estava ben formada i va lluitar amb gran tenacitat. Tanmateix, si bé això era cert, la infanteria era pobra en el combat cos a cos. A més, a excepció dels regiments d'elit, la infanteria persa no era una força professional permanent."
+msgstr "Els perses van imposar una gran quantitat d'infanteria durant temps de guerra a causa de la grandària de l'Imperi aquemènida i la forma en què va ser creat. En general, la infanteria persa estava ben formada i va lluitar amb gran tenacitat. Tanmateix, si bé això era cert, la infanteria era pobra en el combat cos a cos. A més, a excepció dels regiments d'elit, la infanteria persa no era una força professional permanent."
 
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsontooltip
 msgid "Persians have a 10% higher maximum population limit."
@@ -2470,7 +2470,7 @@ msgstr "Els perses van construir la meravellosa ruta reial que anava de Sardis a
 msgid ""
 "All Persian structures +25% health and capture points, but also +20% build "
 "time."
-msgstr "Totes les estructures perses guanyen un 25% de salut i de punts de captura, però també es construeixen un 20% més lentament."
+msgstr "Totes les estructures perses guanyen un 25% en salut i de punts de captura, però també es construeixen un 20% més lentament."
 
 #: simulation/data/technologies/persians/persian_architecture.jsongenericName
 msgid "Persian Architecture"
@@ -2491,7 +2491,7 @@ msgid ""
 "example, a canal was built in Egypt and a Persian navy was sent exploring "
 "the Indus river. According to Herodotus, some 300 ships in the Persian navy "
 "were retrofitted to carry horses and their riders."
-msgstr "ELs primers governants de l'imperi aquemènida van fer possible que Pèrsia fos el primer gran imperi asiàtic que dominava els mars. El Gran Rei es va comportar favorablement cap als diversos pobles pesquers per assegurar els seus serveis, però també va dur a terme diverses iniciatives marines. Durant el regnat de Darios el Gran, per exemple, es va construir un canal a Egipte i es va enviar una flota persa a explorar l'Indus. D'acord amb Heròdot, uns 300 vaixells de l'armada persa es van adaptar per a transportar cavalls i els seus genets."
+msgstr "Els primers governants de l'imperi aquemènida van fer possible que Pèrsia fos el primer gran imperi asiàtic que dominava els mars. El Gran Rei es va comportar favorablement cap als diversos pobles pesquers per assegurar els seus serveis, però també va dur a terme diverses iniciatives marines. Durant el regnat de Darios el Gran, per exemple, es va construir un canal a Egipte i es va enviar una flota persa a explorar l'Indus. D'acord amb Heròdot, uns 300 vaixells de l'armada persa es van adaptar per a transportar cavalls i els seus genets."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsontooltip
 msgid "Phoenician Triremes gain the ability to train cavalry units."
@@ -2601,7 +2601,7 @@ msgid ""
 "The now-extinct Nisian breed of horse was one of the largest and robust "
 "horses of ancient times. They were highly sought after by the Seleucids and "
 "Persians as both rider and mount gained heavier armor as time progressed."
-msgstr "L'ara extinta raça nisiana de cavall va ser un dels cavalls més grans i robustos de l'antiguitat. Van ser molt buscats pels seleucids i els perses, ja que tant el genet com la muntura guanyaven armadura més pesada a mesura que avançava el temps."
+msgstr "L'ara extinta raça nisiana de cavall va ser un dels cavalls més grans i robustos de l'antiguitat. Van ser molt buscats pels selèucides i els perses, ja que tant el genet com la muntura guanyaven armadura més pesada a mesura que avançava el temps."
 
 #: simulation/data/technologies/successors/special_war_horses.jsontooltip
 msgid "All cavalry +20% health."

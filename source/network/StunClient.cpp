@@ -115,7 +115,10 @@ bool GetFromBuffer(const std::vector<u8>& buffer, u32& offset, T& result)
 	offset += n;
 	while (a--)
 	{
-		result <<= 8;
+		// Prevent shift count overflow if the type is u8
+		if (n > 1)
+			result <<= 8;
+
 		result += buffer[offset - 1 - a];
 	}
 	return true;

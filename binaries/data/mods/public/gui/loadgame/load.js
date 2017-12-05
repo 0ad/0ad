@@ -116,7 +116,7 @@ function selectionChanged()
 
 	let caption = sprintf(translate("Mods: %(mods)s"), { "mods": metadata.mods.join(translate(", ")) });
 	if (!hasSameMods(metadata, Engine.GetEngineInfo()))
-		caption = "[color=\"orange\"]" + caption + "[/color]";
+		caption = coloredText(caption, "orange");
 	Engine.GetGUIObjectByName("savedMods").caption = caption;
 
 	Engine.GetGUIObjectByName("savedPlayersNames").caption = formatPlayerInfo(

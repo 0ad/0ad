@@ -18,7 +18,7 @@ function formatSummaryValue(values)
 	let ret = "";
 	for (let type in values)
 		ret += (g_SummaryTypes[type].color ?
-			'[color="' + g_SummaryTypes[type].color + '"]' + values[type] + '[/color]' :
+			coloredText(values[type], g_SummaryTypes[type].color) :
 			values[type]) + g_SummaryTypes[type].postfix;
 	return ret;
 }

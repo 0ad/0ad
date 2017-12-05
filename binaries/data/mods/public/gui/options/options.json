@@ -130,6 +130,14 @@
 			},
 			{
 				"type": "boolean",
+				"label": "Fog",
+				"tooltip": "Enable Fog",
+				"dependencies": ["preferglsl"],
+				"config": "fog",
+				"function": "Renderer_SetFogEnabled"
+			},
+			{
+				"type": "boolean",
 				"label": "Post Processing",
 				"tooltip": "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)",
 				"config": "postproc",

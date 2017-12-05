@@ -154,14 +154,12 @@ function formatPlayerInfo(playerDataArray, playerStates)
 
 		playerDescriptions[teamIdx].push(sprintf(playerDescription, {
 			"playerName":
-				'[color="' +
+			coloredText(
+				(g_Buddies.indexOf(splitRatingFromNick(playerData.Name)[0]) != -1 ? g_BuddySymbol + " " : "") +
+				escapeText(playerData.Name),
 				(typeof getPlayerColor == 'function' ?
 					(isAI ? "white" : getPlayerColor(playerData.Name)) :
-					rgbToGuiColor(playerData.Color || g_Settings.PlayerDefaults[playerIdx].Color)) +
-				'"]' +
-				(g_Buddies.indexOf(splitRatingFromNick(playerData.Name)[0]) != -1 ? g_BuddySymbol + " " : "") +
-				escapeText(playerData.Name) +
-				"[/color]",
+					rgbToGuiColor(playerData.Color || g_Settings.PlayerDefaults[playerIdx].Color))),
 
 			"civ":
 				!playerData.Civ ?
@@ -402,7 +400,7 @@ function getGameDescription(extended = false)
 	}
 
 	return titles.map(title => sprintf(translate("%(label)s %(details)s"), {
-		"label": "[color=\"" + g_DescriptionHighlight + "\"]" + title.label + ":" + "[/color]",
+		"label": coloredText(title.label, g_DescriptionHighlight),
 		"details":
 			title.value === true ? translateWithContext("gamesetup option", "enabled") :
 				title.value || translateWithContext("gamesetup option", "disabled")

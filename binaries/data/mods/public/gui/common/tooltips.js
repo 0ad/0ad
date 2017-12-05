@@ -596,10 +596,9 @@ function getNeededResourcesTooltip(resources)
 			"component": '[font="sans-12"]' + resourceIcon(resource) + '[/font]',
 			"cost": resources[resource]
 		}));
-
-	return '[font="sans-bold-13"][color="red"]' +
-		translate("Insufficient resources:") +
-		'[/color][/font]' + " " +
+	return coloredText(
+		'[font="sans-bold-13"]' + translate("Insufficient resources:") + '[/font]',
+		"red") + " " +
 		formatted.join("  ");
 }
 

@@ -101,7 +101,7 @@ function formatLimitString(trainEntLimit, trainEntCount, trainEntLimitChangers)
 	});
 
 	if (trainEntCount >= trainEntLimit)
-		text = "[color=\"red\"]" + text + "[/color]";
+		text = coloredText(text, "red");
 
 	for (var c in trainEntLimitChangers)
 	{
@@ -161,12 +161,16 @@ function formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize
 	else
 		batchString = translate("%(action)s to train %(number)s.");
 
-	return "[font=\"sans-13\"]" + sprintf(batchString, {
-		"action": "[font=\"sans-bold-13\"]" + translate("Shift-click") + "[/font]",
-		"number": totalBatchTrainingCount,
-		"fullBatch": fullBatchesString,
-		"remainderBatch": remainderBatch
-	}) + "[/font]";
+	return "[font=\"sans-13\"]" +
+		coloredText(
+			sprintf(batchString, {
+				"action": "[font=\"sans-bold-13\"]" + translate("Shift-click") + "[/font]",
+				"number": totalBatchTrainingCount,
+				"fullBatch": fullBatchesString,
+				"remainderBatch": remainderBatch
+			}),
+			g_HotkeyColor) +
+		"[/font]";
 }
 
 /**
