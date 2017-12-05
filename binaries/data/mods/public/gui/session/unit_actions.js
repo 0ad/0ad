@@ -66,6 +66,15 @@ var g_UnitActions =
 		{
 			return { "possible": true };
 		},
+		"hotkeyActionCheck": function(target, selection)
+		{
+			if (!someUnitAI(selection) ||
+			    !Engine.HotkeyIsPressed("session.move") ||
+			    !getActionInfo("move", target, selection).possible)
+				return false;
+
+			return { "type": "move" };
+		},
 		"actionCheck": function(target, selection)
 		{
 			if (!someUnitAI(selection) || !getActionInfo("move", target, selection).possible)
