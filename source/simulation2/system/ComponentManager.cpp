@@ -85,7 +85,6 @@ CComponentManager::CComponentManager(CSimContext& context, shared_ptr<ScriptRunt
 		m_ScriptInterface.RegisterFunction<int, std::string, CComponentManager::Script_AddLocalEntity> ("AddLocalEntity");
 		m_ScriptInterface.RegisterFunction<void, int, CComponentManager::Script_DestroyEntity> ("DestroyEntity");
 		m_ScriptInterface.RegisterFunction<void, CComponentManager::Script_FlushDestroyedEntities> ("FlushDestroyedEntities");
-		m_ScriptInterface.RegisterFunction<bool, std::wstring, CComponentManager::Script_DataFileExists> ("DataFileExists");
 	}
 
 	// Define MT_*, IID_* as script globals, and store their names
@@ -1183,10 +1182,4 @@ std::string CComponentManager::GenerateSchema() const
 	schema += "</grammar>";
 
 	return schema;
-}
-
-bool CComponentManager::Script_DataFileExists(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const std::wstring& fileName)
-{
-	VfsPath path = VfsPath(L"simulation/data") / fileName;
-	return VfsFileExists(path);
 }

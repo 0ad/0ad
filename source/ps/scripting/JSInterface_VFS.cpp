@@ -102,9 +102,9 @@ JS::Value JSI_VFS::BuildDirEntList(ScriptInterface::CxPrivate* pCxPrivate, const
 }
 
 // Return true iff the file exits
-bool JSI_VFS::FileExists(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), const CStrW& filename)
+bool JSI_VFS::FileExists(ScriptInterface::CxPrivate* pCxPrivate, const std::vector<CStrW>& validPaths, const CStrW& filename)
 {
-	return (g_VFS->GetFileInfo(filename, 0) == INFO::OK);
+	return PathRestrictionMet(pCxPrivate, validPaths, filename) && g_VFS->GetFileInfo(filename, 0) == INFO::OK;
 }
 
 // Return time [seconds since 1970] of the last modification to the specified file.
@@ -240,6 +240,10 @@ JS::Value Script_ListDirectoryFiles_##context(ScriptInterface::CxPrivate* pCxPri
 {\
 	return JSI_VFS::BuildDirEntList(pCxPrivate, PathRestriction_##context, path, filterStr, recurse);\
 }\
+bool Script_FileExists_##context(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filePath)\
+{\
+	return JSI_VFS::FileExists(pCxPrivate, PathRestriction_##context, filePath);\
+}\
 
 VFS_ScriptFunctions(GUI);
 VFS_ScriptFunctions(Simulation);
@@ -249,7 +253,7 @@ VFS_ScriptFunctions(Maps);
 void JSI_VFS::RegisterScriptFunctions_GUI(const ScriptInterface& scriptInterface)
 {
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, std::wstring, bool, &Script_ListDirectoryFiles_GUI>("ListDirectoryFiles");
-	scriptInterface.RegisterFunction<bool, CStrW, JSI_VFS::FileExists>("FileExists");
+	scriptInterface.RegisterFunction<bool, std::wstring, Script_FileExists_GUI>("FileExists");
 	scriptInterface.RegisterFunction<double, std::wstring, &JSI_VFS::GetFileMTime>("GetFileMTime");
 	scriptInterface.RegisterFunction<unsigned int, std::wstring, &JSI_VFS::GetFileSize>("GetFileSize");
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, &JSI_VFS::ReadFile>("ReadFile");
@@ -261,12 +265,13 @@ void JSI_VFS::RegisterScriptFunctions_GUI(const ScriptInterface& scriptInterface
 void JSI_VFS::RegisterScriptFunctions_Simulation(const ScriptInterface& scriptInterface)
 {
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, std::wstring, bool, &Script_ListDirectoryFiles_Simulation>("ListDirectoryFiles");
+	scriptInterface.RegisterFunction<bool, std::wstring, Script_FileExists_Simulation>("FileExists");
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, &Script_ReadJSONFile_Simulation>("ReadJSONFile");
 }
 
 void JSI_VFS::RegisterScriptFunctions_Maps(const ScriptInterface& scriptInterface)
 {
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, std::wstring, bool, &Script_ListDirectoryFiles_Maps>("ListDirectoryFiles");
-	scriptInterface.RegisterFunction<bool, CStrW, JSI_VFS::FileExists>("FileExists");
+	scriptInterface.RegisterFunction<bool, std::wstring, Script_FileExists_Maps>("FileExists");
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, &Script_ReadJSONFile_Maps>("ReadJSONFile");
 }

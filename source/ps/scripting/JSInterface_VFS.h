@@ -33,7 +33,7 @@ namespace JSI_VFS
 	JS::Value BuildDirEntList(ScriptInterface::CxPrivate* pCxPrivate, const std::vector<CStrW>& validPaths, const std::wstring& path, const std::wstring& filterStr, bool recurse);
 
 	// Return true iff the file exists
-	bool FileExists(ScriptInterface::CxPrivate* pCxPrivate, const CStrW& filename);
+	bool FileExists(ScriptInterface::CxPrivate* pCxPrivate, const std::vector<CStrW>& validPaths, const CStrW& filename);
 
 	// Return time [seconds since 1970] of the last modification to the specified file.
 	double GetFileMTime(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& filename);

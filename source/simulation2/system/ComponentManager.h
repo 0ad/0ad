@@ -326,7 +326,6 @@ private:
 	static int Script_AddLocalEntity(ScriptInterface::CxPrivate* pCxPrivate, const std::string& templateName);
 	static void Script_DestroyEntity(ScriptInterface::CxPrivate* pCxPrivate, int ent);
 	static void Script_FlushDestroyedEntities(ScriptInterface::CxPrivate* pCxPrivate);
-	static bool Script_DataFileExists(ScriptInterface::CxPrivate* pCxPrivate, const std::wstring& fileName);
 
 	CMessage* ConstructMessage(int mtid, JS::HandleValue data);
 	void SendGlobalMessage(entity_id_t ent, const CMessage& msg);
