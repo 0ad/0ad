@@ -158,7 +158,7 @@ function formatPlayerInfo(playerDataArray, playerStates)
 				(g_Buddies.indexOf(splitRatingFromNick(playerData.Name)[0]) != -1 ? g_BuddySymbol + " " : "") +
 				escapeText(playerData.Name),
 				(typeof getPlayerColor == 'function' ?
-					(isAI ? "white" : getPlayerColor(playerData.Name)) :
+					(isAI ? "white" : getPlayerColor(splitRatingFromNick(playerData.Name)[0])) :
 					rgbToGuiColor(playerData.Color || g_Settings.PlayerDefaults[playerIdx].Color))),
 
 			"civ":
