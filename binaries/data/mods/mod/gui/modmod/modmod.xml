@@ -90,6 +90,10 @@
 			<object name="globalModDescription" type="text" style="ModmodScrollbar" size="0 100%-28 100%-16 100%" textcolor="100 100 100">
 				<translatableAttribute id="caption">Description</translatableAttribute>
 			</object>
+			<object type="button" style="ModernButtonRed" size="100%-184-184-4 100%-28 100%-184-4 100%">
+				<translatableAttribute id="caption">Visit Website</translatableAttribute>
+				<action on="Press">visitModWebsite("modsDisabledList");</action>
+			</object>
 			<object type="button" style="ModernButtonRed" size="100%-184 100%-28 100% 100%">
 				<translatableAttribute id="caption">Enable</translatableAttribute>
 				<action on="Press">enableMod();</action>
@@ -152,6 +156,11 @@
 		<object type="button" style="ModernButtonRed" size="16 100%-44 200 100%-16">
 			<translatableAttribute id="caption">Quit</translatableAttribute>
 			<action on="Press">Engine.Exit();</action>
+		</object>
+
+		<object type="button" style="ModernButtonRed" size="100%-576-4-184 100%-44 100%-576-4 100%-16">
+			<translatableAttribute id="caption">Visit Website</translatableAttribute>
+			<action on="Press">visitModWebsite("modsEnabledList");</action>
 		</object>
 
 		<object type="button" style="ModernButtonRed" size="100%-576 100%-44 100%-392 100%-16" hotkey="cancel">
