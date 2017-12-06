@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-11-29 09:04+0100\n"
-"PO-Revision-Date: 2017-11-29 15:59+0000\n"
+"POT-Creation-Date: 2017-12-04 09:04+0100\n"
+"PO-Revision-Date: 2017-12-04 14:37+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -678,32 +678,32 @@ msgstr "未完成的游戏"
 msgid "Unlimited"
 msgstr "无限制"
 
-#: gui/common/settings.js:340
+#: gui/common/settings.js:345
 msgctxt "AI name"
 msgid "Unknown"
 msgstr "未知"
 
-#: gui/common/settings.js:351
+#: gui/common/settings.js:356
 msgctxt "AI difficulty"
 msgid "Unknown"
 msgstr "未知"
 
-#: gui/common/settings.js:363
+#: gui/common/settings.js:368
 msgctxt "map type"
 msgid "Unknown"
 msgstr "未知"
 
-#: gui/common/settings.js:375
+#: gui/common/settings.js:380
 msgctxt "map size"
 msgid "Default"
 msgstr "默认"
 
-#: gui/common/settings.js:387
+#: gui/common/settings.js:392
 msgctxt "population capacity"
 msgid "Unknown"
 msgstr "未知"
 
-#: gui/common/settings.js:399
+#: gui/common/settings.js:404
 msgctxt "victory condition"
 msgid "Unknown"
 msgstr "未知"
@@ -2347,148 +2347,121 @@ msgid "Enable Welcome Screen"
 msgstr "激活欢迎界面"
 
 #: gui/options/options.json[0].options[5].tooltip
-msgid "Show tips when setting up a game."
-msgstr "设定游戏时显示提示。"
-
-#: gui/options/options.json[0].options[5].label
-msgid "Enable Game Setting Tips"
-msgstr "执行设置提示"
-
-#: gui/options/options.json[0].options[6].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
 msgstr "在可生产单位的建筑物中显示详细的单位提示信息。"
 
-#: gui/options/options.json[0].options[6].label
+#: gui/options/options.json[0].options[5].label
 msgid "Detailed Tooltips"
 msgstr "详细工具提示"
 
-#: gui/options/options.json[0].options[7].tooltip
+#: gui/options/options.json[0].options[6].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
 msgstr "显示多人游戏连接不稳定的玩家。"
 
-#: gui/options/options.json[0].options[7].label
+#: gui/options/options.json[0].options[6].label
 msgid "Network Warnings"
 msgstr "网络警告"
 
-#: gui/options/options.json[0].options[8].tooltip
+#: gui/options/options.json[0].options[7].tooltip
 msgid "Show frames per second in top right corner."
 msgstr "在右上角显示帧率。"
 
-#: gui/options/options.json[0].options[8].label
+#: gui/options/options.json[0].options[7].label
 msgid "FPS Overlay"
 msgstr "每秒帧数覆盖层"
 
-#: gui/options/options.json[0].options[9].tooltip
+#: gui/options/options.json[0].options[8].tooltip
 msgid "Show current system time in top right corner."
 msgstr "在右上角显示目前的系统时间。"
 
-#: gui/options/options.json[0].options[9].label
+#: gui/options/options.json[0].options[8].label
 msgid "Realtime Overlay"
 msgstr "实际时间覆盖层"
 
-#: gui/options/options.json[0].options[10].tooltip
+#: gui/options/options.json[0].options[9].tooltip
 msgid "Show current simulation time in top right corner."
 msgstr "在右上角显示目前的模拟时间。"
 
-#: gui/options/options.json[0].options[10].label
+#: gui/options/options.json[0].options[9].label
 msgid "Gametime Overlay"
 msgstr "游戏时间覆盖层"
 
-#: gui/options/options.json[0].options[11].tooltip
+#: gui/options/options.json[0].options[10].tooltip
 msgid "Always show the remaining ceasefire time."
 msgstr "总是显示剩余的停火时间。"
 
-#: gui/options/options.json[0].options[11].label
+#: gui/options/options.json[0].options[10].label
 msgid "Ceasefire Time Overlay"
 msgstr "停火时间覆盖层"
 
-#: gui/options/options.json[0].options[12].tooltip
-msgid ""
-"Save and restore match settings for quick reuse when hosting another game"
-msgstr "储存及复原遭遇战设定以供另一场游戏快速利用"
-
-#: gui/options/options.json[0].options[12].label
-msgid "Persist Match Settings"
-msgstr "保持遭遇战设定"
-
-#: gui/options/options.json[0].options[13].list[0].label
-#: gui/options/options.json[0].options[14].list[0].label
+#: gui/options/options.json[0].options[11].list[0].label
+#: gui/options/options.json[3].options[3].list[0].label
 msgid "Everyone"
 msgstr "所有人"
 
-#: gui/options/options.json[0].options[13].list[1].label
-#: gui/options/options.json[0].options[14].list[1].label
+#: gui/options/options.json[0].options[11].list[1].label
+#: gui/options/options.json[3].options[3].list[1].label
 msgid "Buddies"
 msgstr "伙伴"
 
-#: gui/options/options.json[0].options[13].list[2].label
-#: gui/options/options.json[0].options[14].list[2].label
+#: gui/options/options.json[0].options[11].list[2].label
+#: gui/options/options.json[3].options[3].list[2].label
 msgid "Disabled"
 msgstr ""
 
-#: gui/options/options.json[0].options[13].tooltip
-msgid ""
-"Automatically assign joining clients to free player slots during the match "
-"setup."
-msgstr ""
-
-#: gui/options/options.json[0].options[13].label
-msgid "Assign Players"
-msgstr ""
-
-#: gui/options/options.json[0].options[14].tooltip
+#: gui/options/options.json[0].options[11].tooltip
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started"
 msgstr "游戏开始后只允许玩家以旁观者身份加入游戏"
 
-#: gui/options/options.json[0].options[14].label
+#: gui/options/options.json[0].options[11].label
 msgid "Late Observer Joins"
 msgstr "最近加入的观察者"
 
-#: gui/options/options.json[0].options[15].tooltip
+#: gui/options/options.json[0].options[12].tooltip
 msgid "Prevent further observers from joining if the limit is reached"
 msgstr "达到上限时，阻止其他旁观者加入游戏"
 
-#: gui/options/options.json[0].options[15].label
+#: gui/options/options.json[0].options[12].label
 msgid "Observer Limit"
 msgstr "观察者上限"
 
-#: gui/options/options.json[0].options[16].tooltip
+#: gui/options/options.json[0].options[13].tooltip
 msgid "Number of units trained per batch"
 msgstr "每批的单位训练数"
 
-#: gui/options/options.json[0].options[16].label
+#: gui/options/options.json[0].options[13].label
 msgid "Batch Training Size"
 msgstr "每批训练规模"
 
-#: gui/options/options.json[0].options[17].tooltip
+#: gui/options/options.json[0].options[14].tooltip
 msgid ""
 "Show time that messages are posted in the lobby, gamesetup and ingame chat."
 msgstr "在游戏大厅显示设置及聊天的时间信息。"
 
-#: gui/options/options.json[0].options[17].label
+#: gui/options/options.json[0].options[14].label
 msgid "Chat Timestamp"
 msgstr "聊天时间戳"
 
-#: gui/options/options.json[0].options[18].tooltip
+#: gui/options/options.json[0].options[15].tooltip
 msgid ""
 "Display the range of auras of selected units and structures (can also be "
 "toggled in-game with the hotkey)."
 msgstr ""
 
-#: gui/options/options.json[0].options[18].label
+#: gui/options/options.json[0].options[15].label
 msgid "Aura Range Visualization"
 msgstr ""
 
-#: gui/options/options.json[0].options[19].tooltip
+#: gui/options/options.json[0].options[16].tooltip
 msgid ""
 "Display the healing range of selected units (can also be toggled in-game "
 "with the hotkey)."
 msgstr "显示所选单位的治疗范围(也可以在游戏内通过热键显示)"
 
-#: gui/options/options.json[0].options[19].label
+#: gui/options/options.json[0].options[16].label
 msgid "Heal Range Visualization"
 msgstr ""
 
@@ -2537,6 +2510,7 @@ msgid "Low"
 msgstr "低"
 
 #: gui/options/options.json[1].options[4].list[2].label
+#: gui/options/options.json[3].options[2].list[3].label
 msgid "Medium"
 msgstr "中等"
 
@@ -2735,84 +2709,143 @@ msgid "Nick Notification"
 msgstr "昵称通知"
 
 #: gui/options/options.json[3].options[0].tooltip
+msgid "Show tips when setting up a game."
+msgstr "设定游戏时显示提示。"
+
+#: gui/options/options.json[3].options[0].label
+msgid "Enable Game Setting Tips"
+msgstr "执行设置提示"
+
+#: gui/options/options.json[3].options[1].tooltip
+msgid ""
+"Save and restore match settings for quick reuse when hosting another game"
+msgstr "储存及复原遭遇战设定以供另一场游戏快速利用"
+
+#: gui/options/options.json[3].options[1].label
+msgid "Persist Match Settings"
+msgstr "保持遭遇战设定"
+
+#: gui/options/options.json[3].options[2].list[0].label
+msgid "Sandbox"
+msgstr "测试区"
+
+#: gui/options/options.json[3].options[2].list[1].label
+msgid "Very Easy"
+msgstr "非常简单"
+
+#: gui/options/options.json[3].options[2].list[2].label
+msgid "Easy"
+msgstr "简单"
+
+#: gui/options/options.json[3].options[2].list[4].label
+msgid "Hard"
+msgstr "困难"
+
+#: gui/options/options.json[3].options[2].list[5].label
+msgid "Very Hard"
+msgstr "非常困难"
+
+#: gui/options/options.json[3].options[2].tooltip
+msgid "Default difficulty of the AI."
+msgstr ""
+
+#: gui/options/options.json[3].options[2].label
+msgid "Default AI difficulty"
+msgstr ""
+
+#: gui/options/options.json[3].options[3].tooltip
+msgid ""
+"Automatically assign joining clients to free player slots during the match "
+"setup."
+msgstr ""
+
+#: gui/options/options.json[3].options[3].label
+msgid "Assign Players"
+msgstr ""
+
+#: gui/options/options.json[3].label
+msgid "Game Setup"
+msgstr ""
+
+#: gui/options/options.json[4].options[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "加入大厅时，要载入的聊天记录数。"
 
-#: gui/options/options.json[3].options[0].label
+#: gui/options/options.json[4].options[0].label
 msgid "Chat Backlog"
 msgstr "聊天记录"
 
-#: gui/options/options.json[3].options[1].tooltip
+#: gui/options/options.json[4].options[1].tooltip
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
 msgstr ""
 
-#: gui/options/options.json[3].options[1].label
+#: gui/options/options.json[4].options[1].label
 msgid "Game Rating Column"
 msgstr ""
 
-#: gui/options/options.json[3].tooltip
+#: gui/options/options.json[4].tooltip
 msgid "These settings only affect the multiplayer."
 msgstr "这些设置只影响多人游戏。"
 
-#: gui/options/options.json[3].label
+#: gui/options/options.json[4].label
 msgid "Lobby"
 msgstr "游戏大厅"
 
-#: gui/options/options.json[4].options[0].tooltip
+#: gui/options/options.json[5].options[0].tooltip
 msgid "Show a chat notification if you are attacked by another player"
 msgstr "当你被其他玩家攻击时弹出提醒"
 
-#: gui/options/options.json[4].options[0].label
+#: gui/options/options.json[5].options[0].label
 msgid "Attack"
 msgstr "攻击"
 
-#: gui/options/options.json[4].options[1].tooltip
+#: gui/options/options.json[5].options[1].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode"
 msgstr ""
 
-#: gui/options/options.json[4].options[1].label
+#: gui/options/options.json[5].options[1].label
 msgid "Tribute"
 msgstr "贡品"
 
-#: gui/options/options.json[4].options[2].tooltip
+#: gui/options/options.json[5].options[2].tooltip
 msgid "Show a chat notification to observers when a player bartered resources"
 msgstr ""
 
-#: gui/options/options.json[4].options[2].label
+#: gui/options/options.json[5].options[2].label
 msgid "Barter"
 msgstr "以物易物"
 
-#: gui/options/options.json[4].options[3].list[0].label
+#: gui/options/options.json[5].options[3].list[0].label
 msgid "Disable"
 msgstr ""
 
-#: gui/options/options.json[4].options[3].list[1].label
+#: gui/options/options.json[5].options[3].list[1].label
 msgid "Completed"
 msgstr "完成"
 
-#: gui/options/options.json[4].options[3].list[2].label
+#: gui/options/options.json[5].options[3].list[2].label
 msgid "All displayed"
 msgstr "所有展示"
 
-#: gui/options/options.json[4].options[3].tooltip
+#: gui/options/options.json[5].options[3].tooltip
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode"
 msgstr ""
 
-#: gui/options/options.json[4].options[3].label
+#: gui/options/options.json[5].options[3].label
 msgid "Phase"
 msgstr "阶段"
 
-#: gui/options/options.json[4].tooltip
+#: gui/options/options.json[5].tooltip
 msgid "Regulate the verbosity of chat notifications."
 msgstr ""
 
-#: gui/options/options.json[4].label
+#: gui/options/options.json[5].label
 msgid "Chat Notifications"
 msgstr ""
 

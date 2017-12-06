@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-11-29 09:04+0100\n"
-"PO-Revision-Date: 2017-11-29 15:59+0000\n"
+"POT-Creation-Date: 2017-12-04 09:04+0100\n"
+"PO-Revision-Date: 2017-12-04 14:37+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -679,32 +679,32 @@ msgstr "Endeløst spill"
 msgid "Unlimited"
 msgstr "Ubegrenset"
 
-#: gui/common/settings.js:340
+#: gui/common/settings.js:345
 msgctxt "AI name"
 msgid "Unknown"
 msgstr "Ukjent"
 
-#: gui/common/settings.js:351
+#: gui/common/settings.js:356
 msgctxt "AI difficulty"
 msgid "Unknown"
 msgstr "Ukjent"
 
-#: gui/common/settings.js:363
+#: gui/common/settings.js:368
 msgctxt "map type"
 msgid "Unknown"
 msgstr "Ukjent"
 
-#: gui/common/settings.js:375
+#: gui/common/settings.js:380
 msgctxt "map size"
 msgid "Default"
 msgstr "Standard"
 
-#: gui/common/settings.js:387
+#: gui/common/settings.js:392
 msgctxt "population capacity"
 msgid "Unknown"
 msgstr "Ukjent"
 
-#: gui/common/settings.js:399
+#: gui/common/settings.js:404
 msgctxt "victory condition"
 msgid "Unknown"
 msgstr "Ukjent"
@@ -2357,148 +2357,121 @@ msgid "Enable Welcome Screen"
 msgstr "Skru på velkomstskjerm"
 
 #: gui/options/options.json[0].options[5].tooltip
-msgid "Show tips when setting up a game."
-msgstr "Vis tips når du setter opp et spill."
-
-#: gui/options/options.json[0].options[5].label
-msgid "Enable Game Setting Tips"
-msgstr "Skru på spillinnstillings-tips"
-
-#: gui/options/options.json[0].options[6].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
 msgstr "Vis detaljerte pekertips for enheter som kan trenes i trenings-bygninger."
 
-#: gui/options/options.json[0].options[6].label
+#: gui/options/options.json[0].options[5].label
 msgid "Detailed Tooltips"
 msgstr "Detaljerte pekertips"
 
-#: gui/options/options.json[0].options[7].tooltip
+#: gui/options/options.json[0].options[6].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
 msgstr "Vis hvilken spiller som har dårlig tilkobling i flerspillermodus."
 
-#: gui/options/options.json[0].options[7].label
+#: gui/options/options.json[0].options[6].label
 msgid "Network Warnings"
 msgstr "Nettverksadvarsler"
 
-#: gui/options/options.json[0].options[8].tooltip
+#: gui/options/options.json[0].options[7].tooltip
 msgid "Show frames per second in top right corner."
 msgstr "Vis bilder per sekund øverst i høyre hjørne."
 
-#: gui/options/options.json[0].options[8].label
+#: gui/options/options.json[0].options[7].label
 msgid "FPS Overlay"
 msgstr "Vis bilder per sekund"
 
-#: gui/options/options.json[0].options[9].tooltip
+#: gui/options/options.json[0].options[8].tooltip
 msgid "Show current system time in top right corner."
 msgstr "Vis nåværende systemtid i øvre høyre hjørne."
 
-#: gui/options/options.json[0].options[9].label
+#: gui/options/options.json[0].options[8].label
 msgid "Realtime Overlay"
 msgstr "Vis systemtid"
 
-#: gui/options/options.json[0].options[10].tooltip
+#: gui/options/options.json[0].options[9].tooltip
 msgid "Show current simulation time in top right corner."
 msgstr "Vis nåværende simulasjonstid i øvre høyre hjørne."
 
-#: gui/options/options.json[0].options[10].label
+#: gui/options/options.json[0].options[9].label
 msgid "Gametime Overlay"
 msgstr "Vis spilltid"
 
-#: gui/options/options.json[0].options[11].tooltip
+#: gui/options/options.json[0].options[10].tooltip
 msgid "Always show the remaining ceasefire time."
 msgstr "Alltid vis gjenstående våpenstillstandtid."
 
-#: gui/options/options.json[0].options[11].label
+#: gui/options/options.json[0].options[10].label
 msgid "Ceasefire Time Overlay"
 msgstr "Vis våpenhviletid"
 
-#: gui/options/options.json[0].options[12].tooltip
-msgid ""
-"Save and restore match settings for quick reuse when hosting another game"
-msgstr "Lagre og gjenopprett kamp-innstillinger for hurtig å kunne bruke de samme innstillingene igjen senere"
-
-#: gui/options/options.json[0].options[12].label
-msgid "Persist Match Settings"
-msgstr "Hold fast ved kampinnstillinger"
-
-#: gui/options/options.json[0].options[13].list[0].label
-#: gui/options/options.json[0].options[14].list[0].label
+#: gui/options/options.json[0].options[11].list[0].label
+#: gui/options/options.json[3].options[3].list[0].label
 msgid "Everyone"
 msgstr "Alle"
 
-#: gui/options/options.json[0].options[13].list[1].label
-#: gui/options/options.json[0].options[14].list[1].label
+#: gui/options/options.json[0].options[11].list[1].label
+#: gui/options/options.json[3].options[3].list[1].label
 msgid "Buddies"
 msgstr "Venner"
 
-#: gui/options/options.json[0].options[13].list[2].label
-#: gui/options/options.json[0].options[14].list[2].label
+#: gui/options/options.json[0].options[11].list[2].label
+#: gui/options/options.json[3].options[3].list[2].label
 msgid "Disabled"
 msgstr "Avskrudd"
 
-#: gui/options/options.json[0].options[13].tooltip
-msgid ""
-"Automatically assign joining clients to free player slots during the match "
-"setup."
-msgstr "Tildel tilkoblende klienter spillerposisjoner automatisk i løpet av spilloppsettet."
-
-#: gui/options/options.json[0].options[13].label
-msgid "Assign Players"
-msgstr "Tildel spillere"
-
-#: gui/options/options.json[0].options[14].tooltip
+#: gui/options/options.json[0].options[11].tooltip
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started"
 msgstr "Tillat enten alle eller venner å ta del i spillet som observatører etter at det er startet."
 
-#: gui/options/options.json[0].options[14].label
+#: gui/options/options.json[0].options[11].label
 msgid "Late Observer Joins"
 msgstr "Sen observatør finner seg til rette"
 
-#: gui/options/options.json[0].options[15].tooltip
+#: gui/options/options.json[0].options[12].tooltip
 msgid "Prevent further observers from joining if the limit is reached"
 msgstr "Forhindre ytterligere observatører fra å ta del i spillet når grensen er nådd"
 
-#: gui/options/options.json[0].options[15].label
+#: gui/options/options.json[0].options[12].label
 msgid "Observer Limit"
 msgstr "Observatørgrense"
 
-#: gui/options/options.json[0].options[16].tooltip
+#: gui/options/options.json[0].options[13].tooltip
 msgid "Number of units trained per batch"
 msgstr "Antall trente enheter i hver gruppe"
 
-#: gui/options/options.json[0].options[16].label
+#: gui/options/options.json[0].options[13].label
 msgid "Batch Training Size"
 msgstr "Treningsmonn per gruppe"
 
-#: gui/options/options.json[0].options[17].tooltip
+#: gui/options/options.json[0].options[14].tooltip
 msgid ""
 "Show time that messages are posted in the lobby, gamesetup and ingame chat."
 msgstr "Tidsstemple lobby og spilloppsettsmeldinger, samt dem i spillet."
 
-#: gui/options/options.json[0].options[17].label
+#: gui/options/options.json[0].options[14].label
 msgid "Chat Timestamp"
 msgstr "Tidsstempel for melding"
 
-#: gui/options/options.json[0].options[18].tooltip
+#: gui/options/options.json[0].options[15].tooltip
 msgid ""
 "Display the range of auras of selected units and structures (can also be "
 "toggled in-game with the hotkey)."
 msgstr "Vis aurarekkevidden til valgte enheter og bygninger (kan også veksles inne i spillet med hurtigtasten)."
 
-#: gui/options/options.json[0].options[18].label
+#: gui/options/options.json[0].options[15].label
 msgid "Aura Range Visualization"
 msgstr "Aurarekkeviddevisning"
 
-#: gui/options/options.json[0].options[19].tooltip
+#: gui/options/options.json[0].options[16].tooltip
 msgid ""
 "Display the healing range of selected units (can also be toggled in-game "
 "with the hotkey)."
 msgstr "Vil helbredelsesrekkevidden til valgte enheter (kan også veksles inne i spillet med hurtigtasten)."
 
-#: gui/options/options.json[0].options[19].label
+#: gui/options/options.json[0].options[16].label
 msgid "Heal Range Visualization"
 msgstr "Helbredelsesrekkeviddevisning"
 
@@ -2547,6 +2520,7 @@ msgid "Low"
 msgstr "Lav"
 
 #: gui/options/options.json[1].options[4].list[2].label
+#: gui/options/options.json[3].options[2].list[3].label
 msgid "Medium"
 msgstr "Middels"
 
@@ -2745,84 +2719,143 @@ msgid "Nick Notification"
 msgstr "Kallenavnsmerknad"
 
 #: gui/options/options.json[3].options[0].tooltip
+msgid "Show tips when setting up a game."
+msgstr "Vis tips når du setter opp et spill."
+
+#: gui/options/options.json[3].options[0].label
+msgid "Enable Game Setting Tips"
+msgstr "Skru på spillinnstillings-tips"
+
+#: gui/options/options.json[3].options[1].tooltip
+msgid ""
+"Save and restore match settings for quick reuse when hosting another game"
+msgstr "Lagre og gjenopprett kamp-innstillinger for hurtig å kunne bruke de samme innstillingene igjen senere"
+
+#: gui/options/options.json[3].options[1].label
+msgid "Persist Match Settings"
+msgstr "Hold fast ved kampinnstillinger"
+
+#: gui/options/options.json[3].options[2].list[0].label
+msgid "Sandbox"
+msgstr "Sandkasse"
+
+#: gui/options/options.json[3].options[2].list[1].label
+msgid "Very Easy"
+msgstr "Veldig lett"
+
+#: gui/options/options.json[3].options[2].list[2].label
+msgid "Easy"
+msgstr "Lett"
+
+#: gui/options/options.json[3].options[2].list[4].label
+msgid "Hard"
+msgstr "Vanskelig"
+
+#: gui/options/options.json[3].options[2].list[5].label
+msgid "Very Hard"
+msgstr "Veldig vanskelig"
+
+#: gui/options/options.json[3].options[2].tooltip
+msgid "Default difficulty of the AI."
+msgstr ""
+
+#: gui/options/options.json[3].options[2].label
+msgid "Default AI difficulty"
+msgstr ""
+
+#: gui/options/options.json[3].options[3].tooltip
+msgid ""
+"Automatically assign joining clients to free player slots during the match "
+"setup."
+msgstr "Tildel tilkoblende klienter spillerposisjoner automatisk i løpet av spilloppsettet."
+
+#: gui/options/options.json[3].options[3].label
+msgid "Assign Players"
+msgstr "Tildel spillere"
+
+#: gui/options/options.json[3].label
+msgid "Game Setup"
+msgstr ""
+
+#: gui/options/options.json[4].options[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "Antall meldinger som skal lastes inn i loggen når man kobler til lobbyen"
 
-#: gui/options/options.json[3].options[0].label
+#: gui/options/options.json[4].options[0].label
 msgid "Chat Backlog"
 msgstr "Meldingslogg"
 
-#: gui/options/options.json[3].options[1].tooltip
+#: gui/options/options.json[4].options[1].tooltip
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
 msgstr "Vis gjennomsnittlig rating for deltagende spillere i en søyle på spillisten."
 
-#: gui/options/options.json[3].options[1].label
+#: gui/options/options.json[4].options[1].label
 msgid "Game Rating Column"
 msgstr "Spillistesøyle"
 
-#: gui/options/options.json[3].tooltip
+#: gui/options/options.json[4].tooltip
 msgid "These settings only affect the multiplayer."
 msgstr "Disse innstillingene vil hare ha innvirkning på flerspillermodus."
 
-#: gui/options/options.json[3].label
+#: gui/options/options.json[4].label
 msgid "Lobby"
 msgstr "Lobby"
 
-#: gui/options/options.json[4].options[0].tooltip
+#: gui/options/options.json[5].options[0].tooltip
 msgid "Show a chat notification if you are attacked by another player"
 msgstr "Vis en sludremerknad hvis du blir angrepet av en annen spiller"
 
-#: gui/options/options.json[4].options[0].label
+#: gui/options/options.json[5].options[0].label
 msgid "Attack"
 msgstr "Angrep"
 
-#: gui/options/options.json[4].options[1].tooltip
+#: gui/options/options.json[5].options[1].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode"
 msgstr "Vis en sludremerknad hvis en alliert bidrar med ressurser til et annet lagmedlem hvis lagene er låst, og alle bidrag i observatørmodus"
 
-#: gui/options/options.json[4].options[1].label
+#: gui/options/options.json[5].options[1].label
 msgid "Tribute"
 msgstr "Bidrag"
 
-#: gui/options/options.json[4].options[2].tooltip
+#: gui/options/options.json[5].options[2].tooltip
 msgid "Show a chat notification to observers when a player bartered resources"
 msgstr "Vis en sludremerknad til observatører når en spiller byttehandlet ressurser"
 
-#: gui/options/options.json[4].options[2].label
+#: gui/options/options.json[5].options[2].label
 msgid "Barter"
 msgstr "Byttehandel"
 
-#: gui/options/options.json[4].options[3].list[0].label
+#: gui/options/options.json[5].options[3].list[0].label
 msgid "Disable"
 msgstr "Skru av"
 
-#: gui/options/options.json[4].options[3].list[1].label
+#: gui/options/options.json[5].options[3].list[1].label
 msgid "Completed"
 msgstr "Fullført"
 
-#: gui/options/options.json[4].options[3].list[2].label
+#: gui/options/options.json[5].options[3].list[2].label
 msgid "All displayed"
 msgstr "Alle viste"
 
-#: gui/options/options.json[4].options[3].tooltip
+#: gui/options/options.json[5].options[3].tooltip
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode"
 msgstr "Vis en sludremerknad hvis du eller en alliert har startet, avbrutt eller fullført en ny fase, og alle spilleres faser i observatørmodus"
 
-#: gui/options/options.json[4].options[3].label
+#: gui/options/options.json[5].options[3].label
 msgid "Phase"
 msgstr "Fase"
 
-#: gui/options/options.json[4].tooltip
+#: gui/options/options.json[5].tooltip
 msgid "Regulate the verbosity of chat notifications."
 msgstr "Reguler ordknappheten for sludremerknader."
 
-#: gui/options/options.json[4].label
+#: gui/options/options.json[5].label
 msgid "Chat Notifications"
 msgstr "Sludremerknader"
 

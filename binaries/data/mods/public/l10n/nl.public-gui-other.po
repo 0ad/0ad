@@ -29,8 +29,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-11-29 09:04+0100\n"
-"PO-Revision-Date: 2017-11-29 15:59+0000\n"
+"POT-Creation-Date: 2017-12-04 09:04+0100\n"
+"PO-Revision-Date: 2017-12-04 14:37+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -696,32 +696,32 @@ msgstr "Eindeloos spel."
 msgid "Unlimited"
 msgstr "Onbeperkt"
 
-#: gui/common/settings.js:340
+#: gui/common/settings.js:345
 msgctxt "AI name"
 msgid "Unknown"
 msgstr "Onbekend"
 
-#: gui/common/settings.js:351
+#: gui/common/settings.js:356
 msgctxt "AI difficulty"
 msgid "Unknown"
 msgstr "Onbekend"
 
-#: gui/common/settings.js:363
+#: gui/common/settings.js:368
 msgctxt "map type"
 msgid "Unknown"
 msgstr "Onbekend"
 
-#: gui/common/settings.js:375
+#: gui/common/settings.js:380
 msgctxt "map size"
 msgid "Default"
 msgstr "Standaard"
 
-#: gui/common/settings.js:387
+#: gui/common/settings.js:392
 msgctxt "population capacity"
 msgid "Unknown"
 msgstr "Onbekend"
 
-#: gui/common/settings.js:399
+#: gui/common/settings.js:404
 msgctxt "victory condition"
 msgid "Unknown"
 msgstr "Onbekend"
@@ -2374,148 +2374,121 @@ msgid "Enable Welcome Screen"
 msgstr "Schakel het welkomstscherm in"
 
 #: gui/options/options.json[0].options[5].tooltip
-msgid "Show tips when setting up a game."
-msgstr "Laat tips zien bij het instellen van een spel"
-
-#: gui/options/options.json[0].options[5].label
-msgid "Enable Game Setting Tips"
-msgstr ""
-
-#: gui/options/options.json[0].options[6].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
 msgstr "Laat gedetailleerde tips voor train-bare manschappen in manschap producerende gebouwen zien"
 
-#: gui/options/options.json[0].options[6].label
+#: gui/options/options.json[0].options[5].label
 msgid "Detailed Tooltips"
 msgstr "Gedetailleerd hulpmiddelen tips"
 
-#: gui/options/options.json[0].options[7].tooltip
+#: gui/options/options.json[0].options[6].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
 msgstr "Toon welke speler een slechte verbinding heeft in multiplayer spellen."
 
-#: gui/options/options.json[0].options[7].label
+#: gui/options/options.json[0].options[6].label
 msgid "Network Warnings"
 msgstr "Netwerkwaarschuwingen"
 
-#: gui/options/options.json[0].options[8].tooltip
+#: gui/options/options.json[0].options[7].tooltip
 msgid "Show frames per second in top right corner."
 msgstr "Toon de frames per seconde teller in de rechter bovenhoek"
 
-#: gui/options/options.json[0].options[8].label
+#: gui/options/options.json[0].options[7].label
 msgid "FPS Overlay"
 msgstr "FPS overlay"
 
-#: gui/options/options.json[0].options[9].tooltip
+#: gui/options/options.json[0].options[8].tooltip
 msgid "Show current system time in top right corner."
 msgstr "Geef de huidige systeemtijd weer in de rechter bovenhoek."
 
-#: gui/options/options.json[0].options[9].label
+#: gui/options/options.json[0].options[8].label
 msgid "Realtime Overlay"
 msgstr "Echte tijd overlay"
 
-#: gui/options/options.json[0].options[10].tooltip
+#: gui/options/options.json[0].options[9].tooltip
 msgid "Show current simulation time in top right corner."
 msgstr "Geef de huidige simulatietijd weer in de rechter bovenhoek."
 
-#: gui/options/options.json[0].options[10].label
+#: gui/options/options.json[0].options[9].label
 msgid "Gametime Overlay"
 msgstr "Speltijd overlay"
 
-#: gui/options/options.json[0].options[11].tooltip
+#: gui/options/options.json[0].options[10].tooltip
 msgid "Always show the remaining ceasefire time."
 msgstr "Laat de overgebleven tijd van de wapenstilstand altijd zien."
 
-#: gui/options/options.json[0].options[11].label
+#: gui/options/options.json[0].options[10].label
 msgid "Ceasefire Time Overlay"
 msgstr "Wapenstilstand tijd overlay"
 
-#: gui/options/options.json[0].options[12].tooltip
-msgid ""
-"Save and restore match settings for quick reuse when hosting another game"
-msgstr "Wedstrijdinstellingen opslaan en opvragen voor snel hergebruik bij het hosten van een ander spel"
-
-#: gui/options/options.json[0].options[12].label
-msgid "Persist Match Settings"
-msgstr "Ronde-instellingen behouden"
-
-#: gui/options/options.json[0].options[13].list[0].label
-#: gui/options/options.json[0].options[14].list[0].label
+#: gui/options/options.json[0].options[11].list[0].label
+#: gui/options/options.json[3].options[3].list[0].label
 msgid "Everyone"
 msgstr "Iedereen"
 
-#: gui/options/options.json[0].options[13].list[1].label
-#: gui/options/options.json[0].options[14].list[1].label
+#: gui/options/options.json[0].options[11].list[1].label
+#: gui/options/options.json[3].options[3].list[1].label
 msgid "Buddies"
 msgstr ""
 
-#: gui/options/options.json[0].options[13].list[2].label
-#: gui/options/options.json[0].options[14].list[2].label
+#: gui/options/options.json[0].options[11].list[2].label
+#: gui/options/options.json[3].options[3].list[2].label
 msgid "Disabled"
 msgstr "Uitgeschakeld"
 
-#: gui/options/options.json[0].options[13].tooltip
-msgid ""
-"Automatically assign joining clients to free player slots during the match "
-"setup."
-msgstr ""
-
-#: gui/options/options.json[0].options[13].label
-msgid "Assign Players"
-msgstr ""
-
-#: gui/options/options.json[0].options[14].tooltip
+#: gui/options/options.json[0].options[11].tooltip
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started"
 msgstr ""
 
-#: gui/options/options.json[0].options[14].label
+#: gui/options/options.json[0].options[11].label
 msgid "Late Observer Joins"
 msgstr "Late toetreding waarnemers:"
 
-#: gui/options/options.json[0].options[15].tooltip
+#: gui/options/options.json[0].options[12].tooltip
 msgid "Prevent further observers from joining if the limit is reached"
 msgstr ""
 
-#: gui/options/options.json[0].options[15].label
+#: gui/options/options.json[0].options[12].label
 msgid "Observer Limit"
 msgstr "Waarnemerlimiet"
 
-#: gui/options/options.json[0].options[16].tooltip
+#: gui/options/options.json[0].options[13].tooltip
 msgid "Number of units trained per batch"
 msgstr "Aantal opgeleide eenheden per groep"
 
-#: gui/options/options.json[0].options[16].label
+#: gui/options/options.json[0].options[13].label
 msgid "Batch Training Size"
 msgstr "Groepsomvang Rekrutering"
 
-#: gui/options/options.json[0].options[17].tooltip
+#: gui/options/options.json[0].options[14].tooltip
 msgid ""
 "Show time that messages are posted in the lobby, gamesetup and ingame chat."
 msgstr "Toon de tijd waarop chatberichten verstuurd zijn in de lobby, gamesetup en ingame chat."
 
-#: gui/options/options.json[0].options[17].label
+#: gui/options/options.json[0].options[14].label
 msgid "Chat Timestamp"
 msgstr "Chat tijdsweergave"
 
-#: gui/options/options.json[0].options[18].tooltip
+#: gui/options/options.json[0].options[15].tooltip
 msgid ""
 "Display the range of auras of selected units and structures (can also be "
 "toggled in-game with the hotkey)."
 msgstr ""
 
-#: gui/options/options.json[0].options[18].label
+#: gui/options/options.json[0].options[15].label
 msgid "Aura Range Visualization"
 msgstr ""
 
-#: gui/options/options.json[0].options[19].tooltip
+#: gui/options/options.json[0].options[16].tooltip
 msgid ""
 "Display the healing range of selected units (can also be toggled in-game "
 "with the hotkey)."
 msgstr ""
 
-#: gui/options/options.json[0].options[19].label
+#: gui/options/options.json[0].options[16].label
 msgid "Heal Range Visualization"
 msgstr ""
 
@@ -2564,6 +2537,7 @@ msgid "Low"
 msgstr ""
 
 #: gui/options/options.json[1].options[4].list[2].label
+#: gui/options/options.json[3].options[2].list[3].label
 msgid "Medium"
 msgstr ""
 
@@ -2762,84 +2736,143 @@ msgid "Nick Notification"
 msgstr "Alias Aankondiging"
 
 #: gui/options/options.json[3].options[0].tooltip
+msgid "Show tips when setting up a game."
+msgstr "Laat tips zien bij het instellen van een spel"
+
+#: gui/options/options.json[3].options[0].label
+msgid "Enable Game Setting Tips"
+msgstr ""
+
+#: gui/options/options.json[3].options[1].tooltip
+msgid ""
+"Save and restore match settings for quick reuse when hosting another game"
+msgstr "Wedstrijdinstellingen opslaan en opvragen voor snel hergebruik bij het hosten van een ander spel"
+
+#: gui/options/options.json[3].options[1].label
+msgid "Persist Match Settings"
+msgstr "Ronde-instellingen behouden"
+
+#: gui/options/options.json[3].options[2].list[0].label
+msgid "Sandbox"
+msgstr "Zandbak"
+
+#: gui/options/options.json[3].options[2].list[1].label
+msgid "Very Easy"
+msgstr "Heel Makkelijk "
+
+#: gui/options/options.json[3].options[2].list[2].label
+msgid "Easy"
+msgstr "Makkelijk"
+
+#: gui/options/options.json[3].options[2].list[4].label
+msgid "Hard"
+msgstr "Moeilijk "
+
+#: gui/options/options.json[3].options[2].list[5].label
+msgid "Very Hard"
+msgstr "Heel Moeilijk"
+
+#: gui/options/options.json[3].options[2].tooltip
+msgid "Default difficulty of the AI."
+msgstr ""
+
+#: gui/options/options.json[3].options[2].label
+msgid "Default AI difficulty"
+msgstr ""
+
+#: gui/options/options.json[3].options[3].tooltip
+msgid ""
+"Automatically assign joining clients to free player slots during the match "
+"setup."
+msgstr ""
+
+#: gui/options/options.json[3].options[3].label
+msgid "Assign Players"
+msgstr ""
+
+#: gui/options/options.json[3].label
+msgid "Game Setup"
+msgstr ""
+
+#: gui/options/options.json[4].options[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "Aantal berichten die geladen worden wanneer je in de lobby binnen komt."
 
-#: gui/options/options.json[3].options[0].label
+#: gui/options/options.json[4].options[0].label
 msgid "Chat Backlog"
 msgstr "Chat log"
 
-#: gui/options/options.json[3].options[1].tooltip
+#: gui/options/options.json[4].options[1].tooltip
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
 msgstr ""
 
-#: gui/options/options.json[3].options[1].label
+#: gui/options/options.json[4].options[1].label
 msgid "Game Rating Column"
 msgstr ""
 
-#: gui/options/options.json[3].tooltip
+#: gui/options/options.json[4].tooltip
 msgid "These settings only affect the multiplayer."
 msgstr ""
 
-#: gui/options/options.json[3].label
+#: gui/options/options.json[4].label
 msgid "Lobby"
 msgstr ""
 
-#: gui/options/options.json[4].options[0].tooltip
+#: gui/options/options.json[5].options[0].tooltip
 msgid "Show a chat notification if you are attacked by another player"
 msgstr "Laat een chatnotificatie zien wanneer je wordt aangevallen door een andere speler"
 
-#: gui/options/options.json[4].options[0].label
+#: gui/options/options.json[5].options[0].label
 msgid "Attack"
 msgstr "Aanval"
 
-#: gui/options/options.json[4].options[1].tooltip
+#: gui/options/options.json[5].options[1].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode"
 msgstr ""
 
-#: gui/options/options.json[4].options[1].label
+#: gui/options/options.json[5].options[1].label
 msgid "Tribute"
 msgstr "Doneer"
 
-#: gui/options/options.json[4].options[2].tooltip
+#: gui/options/options.json[5].options[2].tooltip
 msgid "Show a chat notification to observers when a player bartered resources"
 msgstr ""
 
-#: gui/options/options.json[4].options[2].label
+#: gui/options/options.json[5].options[2].label
 msgid "Barter"
 msgstr "Ruilhandel"
 
-#: gui/options/options.json[4].options[3].list[0].label
+#: gui/options/options.json[5].options[3].list[0].label
 msgid "Disable"
 msgstr "Schakel uit"
 
-#: gui/options/options.json[4].options[3].list[1].label
+#: gui/options/options.json[5].options[3].list[1].label
 msgid "Completed"
 msgstr "Voltooid"
 
-#: gui/options/options.json[4].options[3].list[2].label
+#: gui/options/options.json[5].options[3].list[2].label
 msgid "All displayed"
 msgstr "Alles weergegeven"
 
-#: gui/options/options.json[4].options[3].tooltip
+#: gui/options/options.json[5].options[3].tooltip
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode"
 msgstr ""
 
-#: gui/options/options.json[4].options[3].label
+#: gui/options/options.json[5].options[3].label
 msgid "Phase"
 msgstr ""
 
-#: gui/options/options.json[4].tooltip
+#: gui/options/options.json[5].tooltip
 msgid "Regulate the verbosity of chat notifications."
 msgstr ""
 
-#: gui/options/options.json[4].label
+#: gui/options/options.json[5].label
 msgid "Chat Notifications"
 msgstr ""
 
