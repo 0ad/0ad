@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,8 +20,13 @@
 
 #include "ps/CStr.h"
 #include "ps/GameSetup/CmdLineArgs.h"
+#include "scriptinterface/ScriptInterface.h"
 
 extern std::vector<CStr> g_modsLoaded;
 extern CmdLineArgs g_args;
 
+namespace Mod
+{
+	JS::Value GetAvailableMods(const ScriptInterface& scriptInterface);
+}
 #endif // INCLUDED_MOD

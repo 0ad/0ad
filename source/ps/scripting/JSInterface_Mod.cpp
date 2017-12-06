@@ -17,20 +17,9 @@
 
 #include "precompiled.h"
 
-#include "scriptinterface/ScriptInterface.h"
-#include "scriptinterface/ScriptVal.h"
-
-#include "lib/file/file_system.h"
-#include "lib/file/vfs/vfs.h"
-#include "lib/utf8.h"
-#include "ps/Filesystem.h"
-#include "ps/GameSetup/GameSetup.h"
-#include "ps/GameSetup/Paths.h"
-#include "ps/Mod.h"
-#include "ps/Profile.h"
 #include "ps/scripting/JSInterface_Mod.h"
 
-#include <algorithm>
+#include "ps/Mod.h"
 
 extern void restart_engine();
 
@@ -46,71 +35,7 @@ extern void restart_engine();
  */
 JS::Value JSI_Mod::GetAvailableMods(ScriptInterface::CxPrivate* pCxPrivate)
 {
-	ScriptInterface* scriptInterface = pCxPrivate->pScriptInterface;
-	JSContext* cx = scriptInterface->GetContext();
-	JSAutoRequest rq(cx);
-	JS::RootedObject obj(cx, JS_NewPlainObject(cx));
-
-	const Paths paths(g_args);
-
-	// loop over all possible paths
-	OsPath modPath = paths.RData()/"mods";
-	OsPath modUserPath = paths.UserData()/"mods";
-
-	DirectoryNames modDirs;
-	DirectoryNames modDirsUser;
-
-	GetDirectoryEntries(modPath, NULL, &modDirs);
-	// Sort modDirs so that we can do a fast lookup below
-	std::sort(modDirs.begin(), modDirs.end());
-
-	PIVFS vfs = CreateVfs(1); // No cache needed; TODO but 0 crashes
-
-	for (DirectoryNames::iterator iter = modDirs.begin(); iter != modDirs.end(); ++iter)
-	{
-		vfs->Clear();
-		if (vfs->Mount(L"", modPath / *iter, VFS_MOUNT_MUST_EXIST) < 0)
-			continue;
-
-		CVFSFile modinfo;
-		if (modinfo.Load(vfs, L"mod.json", false) != PSRETURN_OK)
-			continue;
-
-		JS::RootedValue json(cx);
-		if (!scriptInterface->ParseJSON(modinfo.GetAsString(), &json))
-			continue;
-
-		// Valid mod, add it to our structure
-		JS_SetProperty(cx, obj, utf8_from_wstring(iter->string()).c_str(), json);
-	}
-
-	GetDirectoryEntries(modUserPath, NULL, &modDirsUser);
-	bool dev = InDevelopmentCopy();
-
-	for (DirectoryNames::iterator iter = modDirsUser.begin(); iter != modDirsUser.end(); ++iter)
-	{
-		// If we are in a dev copy we do not mount mods in the user mod folder that
-		// are already present in the mod folder, thus we skip those here.
-		if (dev && std::binary_search(modDirs.begin(), modDirs.end(), *iter))
-			continue;
-
-		vfs->Clear();
-		if (vfs->Mount(L"", modUserPath / *iter, VFS_MOUNT_MUST_EXIST) < 0)
-			continue;
-
-		CVFSFile modinfo;
-		if (modinfo.Load(vfs, L"mod.json", false) != PSRETURN_OK)
-			continue;
-
-		JS::RootedValue json(cx);
-		if (!scriptInterface->ParseJSON(modinfo.GetAsString(), &json))
-			continue;
-
-		// Valid mod, add it to our structure
-		JS_SetProperty(cx, obj, utf8_from_wstring(iter->string()).c_str(), json);
-	}
-
-	return JS::ObjectValue(*obj);
+	return Mod::GetAvailableMods(*(pCxPrivate->pScriptInterface));
 }
 
 void JSI_Mod::RestartEngine(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))

@@ -183,7 +183,7 @@ Trigger.prototype.tutorialGoals = [
 		"instructions": markForTranslation("Select the Civil Center again and advance to Town Phase by clicking on the 'II' icon (you have to wait for the outpost to be built first). This will allow Town Phase buildings to be constructed."),
 		"IsDone": function()
 		{
-			return TriggerHelper.HasDealtWithTech(this.playerID, "phase_town");
+			return TriggerHelper.HasDealtWithTech(this.playerID, "phase_town_generic");
 		},
 		"OnResearchQueued": function(msg)
 		{
@@ -198,11 +198,11 @@ Trigger.prototype.tutorialGoals = [
 			let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 			let playerEnt = cmpPlayerManager.GetPlayerByID(this.playerID);
 			let cmpTechnologyManager = Engine.QueryInterface(playerEnt, IID_TechnologyManager);
-			return cmpTechnologyManager && cmpTechnologyManager.IsTechnologyResearched("phase_town");
+			return cmpTechnologyManager && cmpTechnologyManager.IsTechnologyResearched("phase_town_generic");
 		},
 		"OnResearchFinished": function(msg)
 		{
-			if (msg.tech == "phase_town")
+			if (msg.tech == "phase_town_generic")
 				this.NextGoal();
 		}
 	},
@@ -319,7 +319,7 @@ Trigger.prototype.tutorialGoals = [
 		"instructions": markForTranslation("While waiting for the phase change, you may build more soldiers at the barracks."),
 		"OnResearchFinished": function(msg)
 		{
-			if (msg.tech == "phase_city")
+			if (msg.tech == "phase_city_generic")
 				this.NextGoal();
 		}
 	},

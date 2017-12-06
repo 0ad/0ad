@@ -18,6 +18,8 @@
 #ifndef INCLUDED_JSI_MOD
 #define INCLUDED_JSI_MOD
 
+#include "scriptinterface/ScriptInterface.h"
+
 class ScriptInterface;
 
 namespace JSI_Mod
