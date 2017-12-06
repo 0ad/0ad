@@ -647,7 +647,7 @@ var g_Commands = {
 	"barter": function(player, cmd, data)
 	{
 		var cmpBarter = Engine.QueryInterface(SYSTEM_ENTITY, IID_Barter);
-		cmpBarter.ExchangeResources(data.playerEnt, cmd.sell, cmd.buy, cmd.amount);
+		cmpBarter.ExchangeResources(player, cmd.sell, cmd.buy, cmd.amount);
 	},
 
 	"set-shading-color": function(player, cmd, data)
