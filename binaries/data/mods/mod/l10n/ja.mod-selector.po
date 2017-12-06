@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-01 09:06+0100\n"
-"PO-Revision-Date: 2017-12-01 15:40+0000\n"
+"POT-Creation-Date: 2017-12-04 09:06+0100\n"
+"PO-Revision-Date: 2017-12-04 16:12+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -18,24 +18,20 @@ msgstr ""
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: gui/modmod/modmod.js:71 gui/modmod/modmod.js:222
+#: gui/modmod/modmod.js:70 gui/modmod/modmod.js:200
 msgid "Filter"
 msgstr "絞込み"
 
-#: gui/modmod/modmod.js:125
-msgid "Type: Any"
-msgstr "種類：不問"
-
-#: gui/modmod/modmod.js:277
+#: gui/modmod/modmod.js:254
 #, javascript-format
 msgid "Dependency not met: %(dep)s"
 msgstr ""
 
-#: gui/modmod/modmod.js:285
+#: gui/modmod/modmod.js:262
 msgid "All dependencies met"
 msgstr "依存性をすべて解決しました。"
 
-#: gui/modmod/modmod.js:363
+#: gui/modmod/modmod.js:340
 msgid "No mod has been selected."
 msgstr "MODが選択されていません。"
 
@@ -47,78 +43,74 @@ msgstr "MOD"
 msgid "Reset Filters"
 msgstr "絞込みの解除"
 
-#: gui/modmod/modmod.xml:(caption):55
+#: gui/modmod/modmod.xml:(caption):46
 msgid "Negate"
 msgstr "反転"
 
-#: gui/modmod/modmod.xml:(caption):63
+#: gui/modmod/modmod.xml:(caption):54
 msgid "Available Mods"
 msgstr "利用可能なMOD"
 
-#: gui/modmod/modmod.xml:(caption):103
+#: gui/modmod/modmod.xml:(caption):91
 msgid "Description"
 msgstr "説明"
 
-#: gui/modmod/modmod.xml:(caption):106
+#: gui/modmod/modmod.xml:(caption):94
 msgid "Enable"
 msgstr "有効化"
 
-#: gui/modmod/modmod.xml:(caption):115
+#: gui/modmod/modmod.xml:(caption):103
 msgid "Enabled Mods"
 msgstr "有効なMOD"
 
-#: gui/modmod/modmod.xml:(caption):153
+#: gui/modmod/modmod.xml:(caption):138
 msgid "Up"
 msgstr "上"
 
-#: gui/modmod/modmod.xml:(caption):157
+#: gui/modmod/modmod.xml:(caption):142
 msgid "X"
 msgstr "X"
 
-#: gui/modmod/modmod.xml:(caption):161
+#: gui/modmod/modmod.xml:(caption):146
 msgid "Down"
 msgstr "下"
 
-#: gui/modmod/modmod.xml:(caption):169
+#: gui/modmod/modmod.xml:(caption):153
 msgid "Quit"
 msgstr "中止"
 
-#: gui/modmod/modmod.xml:(caption):174
+#: gui/modmod/modmod.xml:(caption):158
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: gui/modmod/modmod.xml:(caption):179
+#: gui/modmod/modmod.xml:(caption):163
 msgid "Save Configuration"
 msgstr "設定の保存"
 
-#: gui/modmod/modmod.xml:(caption):184
+#: gui/modmod/modmod.xml:(caption):168
 msgid "Start Mods"
 msgstr "MODの開始"
 
-#: gui/modmod/modmod.xml:(heading):81 gui/modmod/modmod.xml:(heading):130
+#: gui/modmod/modmod.xml:(heading):72 gui/modmod/modmod.xml:(heading):118
 msgid "Name"
 msgstr "名前"
 
-#: gui/modmod/modmod.xml:(heading):84 gui/modmod/modmod.xml:(heading):133
+#: gui/modmod/modmod.xml:(heading):75 gui/modmod/modmod.xml:(heading):121
 msgid "Version"
 msgstr "バージョン"
 
-#: gui/modmod/modmod.xml:(heading):87 gui/modmod/modmod.xml:(heading):136
+#: gui/modmod/modmod.xml:(heading):78 gui/modmod/modmod.xml:(heading):124
 msgid "(Folder)"
 msgstr "（フォルダー）"
 
-#: gui/modmod/modmod.xml:(heading):90 gui/modmod/modmod.xml:(heading):139
+#: gui/modmod/modmod.xml:(heading):81 gui/modmod/modmod.xml:(heading):127
 msgid "Mod Label"
 msgstr "MODラベル"
 
-#: gui/modmod/modmod.xml:(heading):93 gui/modmod/modmod.xml:(heading):142
-msgid "Mod Type"
-msgstr "MODの種類"
-
-#: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):145
+#: gui/modmod/modmod.xml:(heading):84 gui/modmod/modmod.xml:(heading):130
 msgid "Dependencies"
 msgstr "依存性"
 
-#: gui/modmod/modmod.xml:(heading):99 gui/modmod/modmod.xml:(heading):148
+#: gui/modmod/modmod.xml:(heading):87 gui/modmod/modmod.xml:(heading):133
 msgid "Website"
 msgstr "ウェブサイト"

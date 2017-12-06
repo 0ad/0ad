@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-11-29 09:04+0100\n"
-"PO-Revision-Date: 2017-11-29 15:59+0000\n"
+"POT-Creation-Date: 2017-12-04 09:04+0100\n"
+"PO-Revision-Date: 2017-12-04 14:37+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -691,32 +691,32 @@ msgstr "Безкінечна гра"
 msgid "Unlimited"
 msgstr "Необмежено"
 
-#: gui/common/settings.js:340
+#: gui/common/settings.js:345
 msgctxt "AI name"
 msgid "Unknown"
 msgstr "Невідомий"
 
-#: gui/common/settings.js:351
+#: gui/common/settings.js:356
 msgctxt "AI difficulty"
 msgid "Unknown"
 msgstr "Невідомий"
 
-#: gui/common/settings.js:363
+#: gui/common/settings.js:368
 msgctxt "map type"
 msgid "Unknown"
 msgstr "Невідомий"
 
-#: gui/common/settings.js:375
+#: gui/common/settings.js:380
 msgctxt "map size"
 msgid "Default"
 msgstr "За замовчуванням"
 
-#: gui/common/settings.js:387
+#: gui/common/settings.js:392
 msgctxt "population capacity"
 msgid "Unknown"
 msgstr "Невідомий"
 
-#: gui/common/settings.js:399
+#: gui/common/settings.js:404
 msgctxt "victory condition"
 msgid "Unknown"
 msgstr "Невідомий"
@@ -2378,148 +2378,121 @@ msgid "Enable Welcome Screen"
 msgstr "Увімкнути екран привітання"
 
 #: gui/options/options.json[0].options[5].tooltip
-msgid "Show tips when setting up a game."
-msgstr "Показувати підказки під час створення гри."
-
-#: gui/options/options.json[0].options[5].label
-msgid "Enable Game Setting Tips"
-msgstr "Увімкнути підказки ігрових налаштувань"
-
-#: gui/options/options.json[0].options[6].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
 msgstr "Показувати детальні підказки для тренувальних юнітів в будівлях що їх тренують"
 
-#: gui/options/options.json[0].options[6].label
+#: gui/options/options.json[0].options[5].label
 msgid "Detailed Tooltips"
 msgstr "Детальні підказки"
 
-#: gui/options/options.json[0].options[7].tooltip
+#: gui/options/options.json[0].options[6].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
 msgstr "Показати, коли гравець має погане з'єднання в багатокористувацьких іграх."
 
-#: gui/options/options.json[0].options[7].label
+#: gui/options/options.json[0].options[6].label
 msgid "Network Warnings"
 msgstr "Мережеві попередження"
 
-#: gui/options/options.json[0].options[8].tooltip
+#: gui/options/options.json[0].options[7].tooltip
 msgid "Show frames per second in top right corner."
 msgstr "Показувати фрейми в секунду в правому верхньому куті."
 
-#: gui/options/options.json[0].options[8].label
+#: gui/options/options.json[0].options[7].label
 msgid "FPS Overlay"
 msgstr "Частота кадрів"
 
-#: gui/options/options.json[0].options[9].tooltip
+#: gui/options/options.json[0].options[8].tooltip
 msgid "Show current system time in top right corner."
 msgstr "Показати поточний системний час у правому верхньому кутку."
 
-#: gui/options/options.json[0].options[9].label
+#: gui/options/options.json[0].options[8].label
 msgid "Realtime Overlay"
 msgstr "Час"
 
-#: gui/options/options.json[0].options[10].tooltip
+#: gui/options/options.json[0].options[9].tooltip
 msgid "Show current simulation time in top right corner."
 msgstr "Показати тривалість гри у правому верхньому кутку."
 
-#: gui/options/options.json[0].options[10].label
+#: gui/options/options.json[0].options[9].label
 msgid "Gametime Overlay"
 msgstr "Тривалість гри"
 
-#: gui/options/options.json[0].options[11].tooltip
+#: gui/options/options.json[0].options[10].tooltip
 msgid "Always show the remaining ceasefire time."
 msgstr "Завжди показувати час, що залишився до початку бойових дій."
 
-#: gui/options/options.json[0].options[11].label
+#: gui/options/options.json[0].options[10].label
 msgid "Ceasefire Time Overlay"
 msgstr "Тривалість перемир'я"
 
-#: gui/options/options.json[0].options[12].tooltip
-msgid ""
-"Save and restore match settings for quick reuse when hosting another game"
-msgstr "Зберігати та відновлювати налаштування матчу для швидкого повторного використання або створення іншої гри."
-
-#: gui/options/options.json[0].options[12].label
-msgid "Persist Match Settings"
-msgstr "Зберігати налаштування битви"
-
-#: gui/options/options.json[0].options[13].list[0].label
-#: gui/options/options.json[0].options[14].list[0].label
+#: gui/options/options.json[0].options[11].list[0].label
+#: gui/options/options.json[3].options[3].list[0].label
 msgid "Everyone"
 msgstr "Усім"
 
-#: gui/options/options.json[0].options[13].list[1].label
-#: gui/options/options.json[0].options[14].list[1].label
+#: gui/options/options.json[0].options[11].list[1].label
+#: gui/options/options.json[3].options[3].list[1].label
 msgid "Buddies"
 msgstr "Друзям"
 
-#: gui/options/options.json[0].options[13].list[2].label
-#: gui/options/options.json[0].options[14].list[2].label
+#: gui/options/options.json[0].options[11].list[2].label
+#: gui/options/options.json[3].options[3].list[2].label
 msgid "Disabled"
 msgstr "Відключено"
 
-#: gui/options/options.json[0].options[13].tooltip
-msgid ""
-"Automatically assign joining clients to free player slots during the match "
-"setup."
-msgstr "Автоматично показувати приєднання клієнтів до вільних слотів під час налаштування матчу."
-
-#: gui/options/options.json[0].options[13].label
-msgid "Assign Players"
-msgstr "Призначити гравців"
-
-#: gui/options/options.json[0].options[14].tooltip
+#: gui/options/options.json[0].options[11].tooltip
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started"
 msgstr "Дозволити всім або лише друзям приєднатись до гри як спостерігачі, після початку гри."
 
-#: gui/options/options.json[0].options[14].label
+#: gui/options/options.json[0].options[11].label
 msgid "Late Observer Joins"
 msgstr "Спостерігач приєднується"
 
-#: gui/options/options.json[0].options[15].tooltip
+#: gui/options/options.json[0].options[12].tooltip
 msgid "Prevent further observers from joining if the limit is reached"
 msgstr "Запобігти приєднанню додаткових спостерігачів після досягнення допустимої кількості."
 
-#: gui/options/options.json[0].options[15].label
+#: gui/options/options.json[0].options[12].label
 msgid "Observer Limit"
 msgstr "Допустима кількість спостерігачів"
 
-#: gui/options/options.json[0].options[16].tooltip
+#: gui/options/options.json[0].options[13].tooltip
 msgid "Number of units trained per batch"
 msgstr "Кількість юнітів, які тренуються, при додаванні групи в чергу"
 
-#: gui/options/options.json[0].options[16].label
+#: gui/options/options.json[0].options[13].label
 msgid "Batch Training Size"
 msgstr "Розмір групи для тренування"
 
-#: gui/options/options.json[0].options[17].tooltip
+#: gui/options/options.json[0].options[14].tooltip
 msgid ""
 "Show time that messages are posted in the lobby, gamesetup and ingame chat."
 msgstr "Показувати час повідомлень в чатах"
 
-#: gui/options/options.json[0].options[17].label
+#: gui/options/options.json[0].options[14].label
 msgid "Chat Timestamp"
 msgstr "Час повідомлення у чаті"
 
-#: gui/options/options.json[0].options[18].tooltip
+#: gui/options/options.json[0].options[15].tooltip
 msgid ""
 "Display the range of auras of selected units and structures (can also be "
 "toggled in-game with the hotkey)."
 msgstr "Відобразити радіус аури вибраних юнітів та структур (також може бути переключено в грі гарячою клавішею)."
 
-#: gui/options/options.json[0].options[18].label
+#: gui/options/options.json[0].options[15].label
 msgid "Aura Range Visualization"
 msgstr "Візуалізація радіусу аури"
 
-#: gui/options/options.json[0].options[19].tooltip
+#: gui/options/options.json[0].options[16].tooltip
 msgid ""
 "Display the healing range of selected units (can also be toggled in-game "
 "with the hotkey)."
 msgstr "Відобразити радіус зцілення вибраних юнітів (також може бути переключено в грі гарячою клавішею)."
 
-#: gui/options/options.json[0].options[19].label
+#: gui/options/options.json[0].options[16].label
 msgid "Heal Range Visualization"
 msgstr "Візуалізація радіусу зцілення"
 
@@ -2568,6 +2541,7 @@ msgid "Low"
 msgstr ""
 
 #: gui/options/options.json[1].options[4].list[2].label
+#: gui/options/options.json[3].options[2].list[3].label
 msgid "Medium"
 msgstr ""
 
@@ -2766,84 +2740,143 @@ msgid "Nick Notification"
 msgstr "Іменне сповіщення"
 
 #: gui/options/options.json[3].options[0].tooltip
+msgid "Show tips when setting up a game."
+msgstr "Показувати підказки під час створення гри."
+
+#: gui/options/options.json[3].options[0].label
+msgid "Enable Game Setting Tips"
+msgstr "Увімкнути підказки ігрових налаштувань"
+
+#: gui/options/options.json[3].options[1].tooltip
+msgid ""
+"Save and restore match settings for quick reuse when hosting another game"
+msgstr "Зберігати та відновлювати налаштування матчу для швидкого повторного використання або створення іншої гри."
+
+#: gui/options/options.json[3].options[1].label
+msgid "Persist Match Settings"
+msgstr "Зберігати налаштування битви"
+
+#: gui/options/options.json[3].options[2].list[0].label
+msgid "Sandbox"
+msgstr "Пісочниця"
+
+#: gui/options/options.json[3].options[2].list[1].label
+msgid "Very Easy"
+msgstr "Дуже Просто"
+
+#: gui/options/options.json[3].options[2].list[2].label
+msgid "Easy"
+msgstr "Просто"
+
+#: gui/options/options.json[3].options[2].list[4].label
+msgid "Hard"
+msgstr "Важко"
+
+#: gui/options/options.json[3].options[2].list[5].label
+msgid "Very Hard"
+msgstr "Дуже Важко"
+
+#: gui/options/options.json[3].options[2].tooltip
+msgid "Default difficulty of the AI."
+msgstr ""
+
+#: gui/options/options.json[3].options[2].label
+msgid "Default AI difficulty"
+msgstr ""
+
+#: gui/options/options.json[3].options[3].tooltip
+msgid ""
+"Automatically assign joining clients to free player slots during the match "
+"setup."
+msgstr "Автоматично показувати приєднання клієнтів до вільних слотів під час налаштування матчу."
+
+#: gui/options/options.json[3].options[3].label
+msgid "Assign Players"
+msgstr "Призначити гравців"
+
+#: gui/options/options.json[3].label
+msgid "Game Setup"
+msgstr ""
+
+#: gui/options/options.json[4].options[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "Кількість збережених повідомлень, які завантажуються в загальний чат"
 
-#: gui/options/options.json[3].options[0].label
+#: gui/options/options.json[4].options[0].label
 msgid "Chat Backlog"
 msgstr "Історія чату"
 
-#: gui/options/options.json[3].options[1].tooltip
+#: gui/options/options.json[4].options[1].tooltip
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
 msgstr "Показує середній рейтинг гравців-учасників у стовпці списку ігор."
 
-#: gui/options/options.json[3].options[1].label
+#: gui/options/options.json[4].options[1].label
 msgid "Game Rating Column"
 msgstr "Колонка рейтингу ігор"
 
-#: gui/options/options.json[3].tooltip
+#: gui/options/options.json[4].tooltip
 msgid "These settings only affect the multiplayer."
 msgstr ""
 
-#: gui/options/options.json[3].label
+#: gui/options/options.json[4].label
 msgid "Lobby"
 msgstr ""
 
-#: gui/options/options.json[4].options[0].tooltip
+#: gui/options/options.json[5].options[0].tooltip
 msgid "Show a chat notification if you are attacked by another player"
 msgstr "Показувати сповіщення в чаті, якщо Ви атаковані іншим гравцем"
 
-#: gui/options/options.json[4].options[0].label
+#: gui/options/options.json[5].options[0].label
 msgid "Attack"
 msgstr "Атакований"
 
-#: gui/options/options.json[4].options[1].tooltip
+#: gui/options/options.json[5].options[1].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode"
 msgstr "Показувати сповіщення в чаті, якщо союзник віддає ресурси іншому члену команди, якщо команди заблоковані, і всі давачі в режимі спостереження"
 
-#: gui/options/options.json[4].options[1].label
+#: gui/options/options.json[5].options[1].label
 msgid "Tribute"
 msgstr "Данина"
 
-#: gui/options/options.json[4].options[2].tooltip
+#: gui/options/options.json[5].options[2].tooltip
 msgid "Show a chat notification to observers when a player bartered resources"
 msgstr "Показувати сповіщення спостерігачам, коли гравець обмінюється ресурсами"
 
-#: gui/options/options.json[4].options[2].label
+#: gui/options/options.json[5].options[2].label
 msgid "Barter"
 msgstr "Обмін"
 
-#: gui/options/options.json[4].options[3].list[0].label
+#: gui/options/options.json[5].options[3].list[0].label
 msgid "Disable"
 msgstr "Відключити"
 
-#: gui/options/options.json[4].options[3].list[1].label
+#: gui/options/options.json[5].options[3].list[1].label
 msgid "Completed"
 msgstr "Завершений"
 
-#: gui/options/options.json[4].options[3].list[2].label
+#: gui/options/options.json[5].options[3].list[2].label
 msgid "All displayed"
 msgstr "Відобразити усе"
 
-#: gui/options/options.json[4].options[3].tooltip
+#: gui/options/options.json[5].options[3].tooltip
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode"
 msgstr "Показати сповіщення у чаті, якщо Ви чи союзник починає, скасовує чи завершує новий етап та етапи усіх гравців у режимі спостерігача."
 
-#: gui/options/options.json[4].options[3].label
+#: gui/options/options.json[5].options[3].label
 msgid "Phase"
 msgstr "Етап"
 
-#: gui/options/options.json[4].tooltip
+#: gui/options/options.json[5].tooltip
 msgid "Regulate the verbosity of chat notifications."
 msgstr ""
 
-#: gui/options/options.json[4].label
+#: gui/options/options.json[5].label
 msgid "Chat Notifications"
 msgstr ""
 

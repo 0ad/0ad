@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-01 09:06+0100\n"
-"PO-Revision-Date: 2017-12-01 19:39+0000\n"
-"Last-Translator: xtother90\n"
+"POT-Creation-Date: 2017-12-04 09:06+0100\n"
+"PO-Revision-Date: 2017-12-04 16:12+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,24 +20,20 @@ msgstr ""
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/modmod/modmod.js:71 gui/modmod/modmod.js:222
+#: gui/modmod/modmod.js:70 gui/modmod/modmod.js:200
 msgid "Filter"
 msgstr "Filter"
 
-#: gui/modmod/modmod.js:125
-msgid "Type: Any"
-msgstr "Typ: Alle"
-
-#: gui/modmod/modmod.js:277
+#: gui/modmod/modmod.js:254
 #, javascript-format
 msgid "Dependency not met: %(dep)s"
 msgstr "Voraussetzung nicht erfüllt: %(dep)s"
 
-#: gui/modmod/modmod.js:285
+#: gui/modmod/modmod.js:262
 msgid "All dependencies met"
 msgstr "Alle Abhängigkeiten erfüllt"
 
-#: gui/modmod/modmod.js:363
+#: gui/modmod/modmod.js:340
 msgid "No mod has been selected."
 msgstr "Kein Mod ausgewählt."
 
@@ -49,78 +45,74 @@ msgstr "Modifikationen"
 msgid "Reset Filters"
 msgstr "Filter zurücksetzen"
 
-#: gui/modmod/modmod.xml:(caption):55
+#: gui/modmod/modmod.xml:(caption):46
 msgid "Negate"
 msgstr "Invertieren"
 
-#: gui/modmod/modmod.xml:(caption):63
+#: gui/modmod/modmod.xml:(caption):54
 msgid "Available Mods"
 msgstr "Verfügbare Mods"
 
-#: gui/modmod/modmod.xml:(caption):103
+#: gui/modmod/modmod.xml:(caption):91
 msgid "Description"
 msgstr "Beschreibung"
 
-#: gui/modmod/modmod.xml:(caption):106
+#: gui/modmod/modmod.xml:(caption):94
 msgid "Enable"
 msgstr "Aktivieren"
 
-#: gui/modmod/modmod.xml:(caption):115
+#: gui/modmod/modmod.xml:(caption):103
 msgid "Enabled Mods"
 msgstr "Aktivierte Mods"
 
-#: gui/modmod/modmod.xml:(caption):153
+#: gui/modmod/modmod.xml:(caption):138
 msgid "Up"
 msgstr "Hoch"
 
-#: gui/modmod/modmod.xml:(caption):157
+#: gui/modmod/modmod.xml:(caption):142
 msgid "X"
 msgstr "X"
 
-#: gui/modmod/modmod.xml:(caption):161
+#: gui/modmod/modmod.xml:(caption):146
 msgid "Down"
 msgstr "Runter"
 
-#: gui/modmod/modmod.xml:(caption):169
+#: gui/modmod/modmod.xml:(caption):153
 msgid "Quit"
 msgstr "Beenden"
 
-#: gui/modmod/modmod.xml:(caption):174
+#: gui/modmod/modmod.xml:(caption):158
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: gui/modmod/modmod.xml:(caption):179
+#: gui/modmod/modmod.xml:(caption):163
 msgid "Save Configuration"
 msgstr "Konfiguration speichern"
 
-#: gui/modmod/modmod.xml:(caption):184
+#: gui/modmod/modmod.xml:(caption):168
 msgid "Start Mods"
 msgstr "Mods starten"
 
-#: gui/modmod/modmod.xml:(heading):81 gui/modmod/modmod.xml:(heading):130
+#: gui/modmod/modmod.xml:(heading):72 gui/modmod/modmod.xml:(heading):118
 msgid "Name"
 msgstr "Name"
 
-#: gui/modmod/modmod.xml:(heading):84 gui/modmod/modmod.xml:(heading):133
+#: gui/modmod/modmod.xml:(heading):75 gui/modmod/modmod.xml:(heading):121
 msgid "Version"
 msgstr "Version"
 
-#: gui/modmod/modmod.xml:(heading):87 gui/modmod/modmod.xml:(heading):136
+#: gui/modmod/modmod.xml:(heading):78 gui/modmod/modmod.xml:(heading):124
 msgid "(Folder)"
 msgstr "(Ordner)"
 
-#: gui/modmod/modmod.xml:(heading):90 gui/modmod/modmod.xml:(heading):139
+#: gui/modmod/modmod.xml:(heading):81 gui/modmod/modmod.xml:(heading):127
 msgid "Mod Label"
 msgstr "Mod Label"
 
-#: gui/modmod/modmod.xml:(heading):93 gui/modmod/modmod.xml:(heading):142
-msgid "Mod Type"
-msgstr "Modart"
-
-#: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):145
+#: gui/modmod/modmod.xml:(heading):84 gui/modmod/modmod.xml:(heading):130
 msgid "Dependencies"
 msgstr "Abhängigkeiten"
 
-#: gui/modmod/modmod.xml:(heading):99 gui/modmod/modmod.xml:(heading):148
+#: gui/modmod/modmod.xml:(heading):87 gui/modmod/modmod.xml:(heading):133
 msgid "Website"
 msgstr "Webseite"

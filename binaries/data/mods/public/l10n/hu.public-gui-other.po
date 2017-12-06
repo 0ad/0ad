@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-11-29 09:04+0100\n"
-"PO-Revision-Date: 2017-12-01 18:58+0000\n"
+"POT-Creation-Date: 2017-12-04 09:04+0100\n"
+"PO-Revision-Date: 2017-12-04 15:39+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -685,32 +685,32 @@ msgstr "Végtelen játék."
 msgid "Unlimited"
 msgstr "Korlátlan"
 
-#: gui/common/settings.js:340
+#: gui/common/settings.js:345
 msgctxt "AI name"
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#: gui/common/settings.js:351
+#: gui/common/settings.js:356
 msgctxt "AI difficulty"
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#: gui/common/settings.js:363
+#: gui/common/settings.js:368
 msgctxt "map type"
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#: gui/common/settings.js:375
+#: gui/common/settings.js:380
 msgctxt "map size"
 msgid "Default"
 msgstr "Alapértelmezett"
 
-#: gui/common/settings.js:387
+#: gui/common/settings.js:392
 msgctxt "population capacity"
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#: gui/common/settings.js:399
+#: gui/common/settings.js:404
 msgctxt "victory condition"
 msgid "Unknown"
 msgstr "Ismeretlen"
@@ -2363,148 +2363,121 @@ msgid "Enable Welcome Screen"
 msgstr "Üdvözlőképernyő engedélyezése"
 
 #: gui/options/options.json[0].options[5].tooltip
-msgid "Show tips when setting up a game."
-msgstr "Tippek megjelenítése a játék beállításakor."
-
-#: gui/options/options.json[0].options[5].label
-msgid "Enable Game Setting Tips"
-msgstr "Játékbeállítási tippek engedélyezése"
-
-#: gui/options/options.json[0].options[6].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
 msgstr "Részletes eszköztippek megjelenítése a képezhető egységekhez az egységtermelő épületekben."
 
-#: gui/options/options.json[0].options[6].label
+#: gui/options/options.json[0].options[5].label
 msgid "Detailed Tooltips"
 msgstr "Részletes eszköztippek"
 
-#: gui/options/options.json[0].options[7].tooltip
+#: gui/options/options.json[0].options[6].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
 msgstr "Jelenítse meg melyik játékosnak van rossz kapcsolata a többjátékos játékokban."
 
-#: gui/options/options.json[0].options[7].label
+#: gui/options/options.json[0].options[6].label
 msgid "Network Warnings"
 msgstr "Hálózati figyelmeztetések"
 
-#: gui/options/options.json[0].options[8].tooltip
+#: gui/options/options.json[0].options[7].tooltip
 msgid "Show frames per second in top right corner."
 msgstr "Képkocka per másodperc (FPS) megjelenítése a jobb felső sarokban."
 
-#: gui/options/options.json[0].options[8].label
+#: gui/options/options.json[0].options[7].label
 msgid "FPS Overlay"
 msgstr "FPS felület"
 
-#: gui/options/options.json[0].options[9].tooltip
+#: gui/options/options.json[0].options[8].tooltip
 msgid "Show current system time in top right corner."
 msgstr "Tényleges rendszeridő megjelenítése a jobb felső sarokban."
 
-#: gui/options/options.json[0].options[9].label
+#: gui/options/options.json[0].options[8].label
 msgid "Realtime Overlay"
 msgstr "Tényleges idő felület"
 
-#: gui/options/options.json[0].options[10].tooltip
+#: gui/options/options.json[0].options[9].tooltip
 msgid "Show current simulation time in top right corner."
 msgstr "Jelelegi szimulációs idő megjelenítése a jobb felső sarokban."
 
-#: gui/options/options.json[0].options[10].label
+#: gui/options/options.json[0].options[9].label
 msgid "Gametime Overlay"
 msgstr "Játékidő felület"
 
-#: gui/options/options.json[0].options[11].tooltip
+#: gui/options/options.json[0].options[10].tooltip
 msgid "Always show the remaining ceasefire time."
 msgstr "Mindig mutassa a tűzszünet hátralévő idejét."
 
-#: gui/options/options.json[0].options[11].label
+#: gui/options/options.json[0].options[10].label
 msgid "Ceasefire Time Overlay"
 msgstr "Tűzszünet idő felület"
 
-#: gui/options/options.json[0].options[12].tooltip
-msgid ""
-"Save and restore match settings for quick reuse when hosting another game"
-msgstr "A mérkőzés beállításainak mentése és visszaállítása a gyors újrafelhasználáshoz egy másik hálózati játék indításakor"
-
-#: gui/options/options.json[0].options[12].label
-msgid "Persist Match Settings"
-msgstr "Állandó játszma beállítások"
-
-#: gui/options/options.json[0].options[13].list[0].label
-#: gui/options/options.json[0].options[14].list[0].label
+#: gui/options/options.json[0].options[11].list[0].label
+#: gui/options/options.json[3].options[3].list[0].label
 msgid "Everyone"
 msgstr "Mindenk"
 
-#: gui/options/options.json[0].options[13].list[1].label
-#: gui/options/options.json[0].options[14].list[1].label
+#: gui/options/options.json[0].options[11].list[1].label
+#: gui/options/options.json[3].options[3].list[1].label
 msgid "Buddies"
 msgstr "Barátok"
 
-#: gui/options/options.json[0].options[13].list[2].label
-#: gui/options/options.json[0].options[14].list[2].label
+#: gui/options/options.json[0].options[11].list[2].label
+#: gui/options/options.json[3].options[3].list[2].label
 msgid "Disabled"
 msgstr "Letiltva"
 
-#: gui/options/options.json[0].options[13].tooltip
-msgid ""
-"Automatically assign joining clients to free player slots during the match "
-"setup."
-msgstr "Ossza-e be automatikusan a csatlakozó ügyfeleket a szabad játékoshelyekre."
-
-#: gui/options/options.json[0].options[13].label
-msgid "Assign Players"
-msgstr "Játékosok beosztása"
-
-#: gui/options/options.json[0].options[14].tooltip
+#: gui/options/options.json[0].options[11].tooltip
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started"
 msgstr "Bárki, vagy csak a barátok, csatlakozásának engedélyezése megfigyelőként a játék megkezdése után."
 
-#: gui/options/options.json[0].options[14].label
+#: gui/options/options.json[0].options[11].label
 msgid "Late Observer Joins"
 msgstr "Késő megfigyelő csatlakozások"
 
-#: gui/options/options.json[0].options[15].tooltip
+#: gui/options/options.json[0].options[12].tooltip
 msgid "Prevent further observers from joining if the limit is reached"
 msgstr "További megfigyelők csatlakozásának megelőzése a limit elérésekor"
 
-#: gui/options/options.json[0].options[15].label
+#: gui/options/options.json[0].options[12].label
 msgid "Observer Limit"
 msgstr "Megfigyelő korlát"
 
-#: gui/options/options.json[0].options[16].tooltip
+#: gui/options/options.json[0].options[13].tooltip
 msgid "Number of units trained per batch"
 msgstr "Csoportonként kiképzett egységek száma"
 
-#: gui/options/options.json[0].options[16].label
+#: gui/options/options.json[0].options[13].label
 msgid "Batch Training Size"
 msgstr "Csoportos kiképzés nagysága"
 
-#: gui/options/options.json[0].options[17].tooltip
+#: gui/options/options.json[0].options[14].tooltip
 msgid ""
 "Show time that messages are posted in the lobby, gamesetup and ingame chat."
 msgstr "Üzenetküldések időpontjának megjelenítése a váróban, a játékbeállításokban és a játékon belüli csevegőben"
 
-#: gui/options/options.json[0].options[17].label
+#: gui/options/options.json[0].options[14].label
 msgid "Chat Timestamp"
 msgstr "Csevegés időbélyeg"
 
-#: gui/options/options.json[0].options[18].tooltip
+#: gui/options/options.json[0].options[15].tooltip
 msgid ""
 "Display the range of auras of selected units and structures (can also be "
 "toggled in-game with the hotkey)."
 msgstr "A kiválasztott egységek és épületek aurájának hatótávolságának megjelenítése (a játékon belül is kapcsolható gyorsbillentyűvel)."
 
-#: gui/options/options.json[0].options[18].label
+#: gui/options/options.json[0].options[15].label
 msgid "Aura Range Visualization"
 msgstr "Aura hatótávolság megjelenítése"
 
-#: gui/options/options.json[0].options[19].tooltip
+#: gui/options/options.json[0].options[16].tooltip
 msgid ""
 "Display the healing range of selected units (can also be toggled in-game "
 "with the hotkey)."
 msgstr "A kiválasztott egységek gyógyítási hatótávolságának megjelenítése (a játékon belül is kapcsolható gyorsbillentyűvel)."
 
-#: gui/options/options.json[0].options[19].label
+#: gui/options/options.json[0].options[16].label
 msgid "Heal Range Visualization"
 msgstr "Gyógyítási hatótávolság megjelenítése"
 
@@ -2553,6 +2526,7 @@ msgid "Low"
 msgstr "Alacsony"
 
 #: gui/options/options.json[1].options[4].list[2].label
+#: gui/options/options.json[3].options[2].list[3].label
 msgid "Medium"
 msgstr "Közepes"
 
@@ -2751,84 +2725,143 @@ msgid "Nick Notification"
 msgstr "Becenév értesítés"
 
 #: gui/options/options.json[3].options[0].tooltip
+msgid "Show tips when setting up a game."
+msgstr "Tippek megjelenítése a játék beállításakor."
+
+#: gui/options/options.json[3].options[0].label
+msgid "Enable Game Setting Tips"
+msgstr "Játékbeállítási tippek engedélyezése"
+
+#: gui/options/options.json[3].options[1].tooltip
+msgid ""
+"Save and restore match settings for quick reuse when hosting another game"
+msgstr "A mérkőzés beállításainak mentése és visszaállítása a gyors újrafelhasználáshoz egy másik hálózati játék indításakor"
+
+#: gui/options/options.json[3].options[1].label
+msgid "Persist Match Settings"
+msgstr "Állandó játszma beállítások"
+
+#: gui/options/options.json[3].options[2].list[0].label
+msgid "Sandbox"
+msgstr "Homokozó"
+
+#: gui/options/options.json[3].options[2].list[1].label
+msgid "Very Easy"
+msgstr "Nagyon könnyű"
+
+#: gui/options/options.json[3].options[2].list[2].label
+msgid "Easy"
+msgstr "Könnyű"
+
+#: gui/options/options.json[3].options[2].list[4].label
+msgid "Hard"
+msgstr "Nehéz"
+
+#: gui/options/options.json[3].options[2].list[5].label
+msgid "Very Hard"
+msgstr "Nagyon nehéz"
+
+#: gui/options/options.json[3].options[2].tooltip
+msgid "Default difficulty of the AI."
+msgstr "Az MI alapértelmezett nehézségi szintje."
+
+#: gui/options/options.json[3].options[2].label
+msgid "Default AI difficulty"
+msgstr "Alapértelmezett MI nehézség"
+
+#: gui/options/options.json[3].options[3].tooltip
+msgid ""
+"Automatically assign joining clients to free player slots during the match "
+"setup."
+msgstr "Ossza-e be automatikusan a csatlakozó ügyfeleket a szabad játékoshelyekre."
+
+#: gui/options/options.json[3].options[3].label
+msgid "Assign Players"
+msgstr "Játékosok beosztása"
+
+#: gui/options/options.json[3].label
+msgid "Game Setup"
+msgstr "Játékbeállítások"
+
+#: gui/options/options.json[4].options[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "Betöltendő naplózott üzenetek száma a váróhoz csatlakozáskor"
 
-#: gui/options/options.json[3].options[0].label
+#: gui/options/options.json[4].options[0].label
 msgid "Chat Backlog"
 msgstr "Csevegésnapló"
 
-#: gui/options/options.json[3].options[1].tooltip
+#: gui/options/options.json[4].options[1].tooltip
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
 msgstr "A résztvevő játékosok átlagos értékelésének megjelenítése külön oszlopban a játéklistában."
 
-#: gui/options/options.json[3].options[1].label
+#: gui/options/options.json[4].options[1].label
 msgid "Game Rating Column"
 msgstr "Játék értékelési oszlop"
 
-#: gui/options/options.json[3].tooltip
+#: gui/options/options.json[4].tooltip
 msgid "These settings only affect the multiplayer."
 msgstr "Ezek a beállítások csak a többjátékos módot érintik."
 
-#: gui/options/options.json[3].label
+#: gui/options/options.json[4].label
 msgid "Lobby"
 msgstr "Váró"
 
-#: gui/options/options.json[4].options[0].tooltip
+#: gui/options/options.json[5].options[0].tooltip
 msgid "Show a chat notification if you are attacked by another player"
 msgstr "Chat értesítés megjelenítése, ha egy másik játékos megtámadt"
 
-#: gui/options/options.json[4].options[0].label
+#: gui/options/options.json[5].options[0].label
 msgid "Attack"
 msgstr "Támadás"
 
-#: gui/options/options.json[4].options[1].tooltip
+#: gui/options/options.json[5].options[1].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode"
 msgstr "Chat értesítés megjelenítése, ha egy szövetséges nyersanyag sarcot fizet egy másik csapattagnak és a csapatok rögzítve vannak, illetve minden sarcfizetést megfigyelő módban"
 
-#: gui/options/options.json[4].options[1].label
+#: gui/options/options.json[5].options[1].label
 msgid "Tribute"
 msgstr "Sarc"
 
-#: gui/options/options.json[4].options[2].tooltip
+#: gui/options/options.json[5].options[2].tooltip
 msgid "Show a chat notification to observers when a player bartered resources"
 msgstr "Chat értesítés megjelenítése, ha egy játékos nyersanyagokkal csereüzletel"
 
-#: gui/options/options.json[4].options[2].label
+#: gui/options/options.json[5].options[2].label
 msgid "Barter"
 msgstr "Cserekereskedelem"
 
-#: gui/options/options.json[4].options[3].list[0].label
+#: gui/options/options.json[5].options[3].list[0].label
 msgid "Disable"
 msgstr "Letiltás"
 
-#: gui/options/options.json[4].options[3].list[1].label
+#: gui/options/options.json[5].options[3].list[1].label
 msgid "Completed"
 msgstr "Befejezve"
 
-#: gui/options/options.json[4].options[3].list[2].label
+#: gui/options/options.json[5].options[3].list[2].label
 msgid "All displayed"
 msgstr "Összes megjelenítve"
 
-#: gui/options/options.json[4].options[3].tooltip
+#: gui/options/options.json[5].options[3].tooltip
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode"
 msgstr "Chat értesítés megjelenítése, ha te vagy egy szövetséges elkezdett, félbeszakított vagy befejezett egy fázist és az összes játékos fázisát megfigyelő módban"
 
-#: gui/options/options.json[4].options[3].label
+#: gui/options/options.json[5].options[3].label
 msgid "Phase"
 msgstr "Szakasz"
 
-#: gui/options/options.json[4].tooltip
+#: gui/options/options.json[5].tooltip
 msgid "Regulate the verbosity of chat notifications."
 msgstr "A csevegési üzenetek részletességének szabályozása."
 
-#: gui/options/options.json[4].label
+#: gui/options/options.json[5].label
 msgid "Chat Notifications"
 msgstr "Csevegési értesítések"
 

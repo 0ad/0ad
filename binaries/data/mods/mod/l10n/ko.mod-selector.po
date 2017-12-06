@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-01 09:06+0100\n"
-"PO-Revision-Date: 2017-12-01 15:40+0000\n"
+"POT-Creation-Date: 2017-12-04 09:06+0100\n"
+"PO-Revision-Date: 2017-12-04 16:12+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -20,24 +20,20 @@ msgstr ""
 "Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: gui/modmod/modmod.js:71 gui/modmod/modmod.js:222
+#: gui/modmod/modmod.js:70 gui/modmod/modmod.js:200
 msgid "Filter"
 msgstr "엄선"
 
-#: gui/modmod/modmod.js:125
-msgid "Type: Any"
-msgstr "종류: 아무것이나"
-
-#: gui/modmod/modmod.js:277
+#: gui/modmod/modmod.js:254
 #, javascript-format
 msgid "Dependency not met: %(dep)s"
 msgstr ""
 
-#: gui/modmod/modmod.js:285
+#: gui/modmod/modmod.js:262
 msgid "All dependencies met"
 msgstr "모든 의존성이 만족합니다."
 
-#: gui/modmod/modmod.js:363
+#: gui/modmod/modmod.js:340
 msgid "No mod has been selected."
 msgstr "선택된 모드가 없습니다."
 
@@ -49,78 +45,74 @@ msgstr "수정(MOD)"
 msgid "Reset Filters"
 msgstr "엄선 해제"
 
-#: gui/modmod/modmod.xml:(caption):55
+#: gui/modmod/modmod.xml:(caption):46
 msgid "Negate"
 msgstr "반전"
 
-#: gui/modmod/modmod.xml:(caption):63
+#: gui/modmod/modmod.xml:(caption):54
 msgid "Available Mods"
 msgstr "사용가능한 모드"
 
-#: gui/modmod/modmod.xml:(caption):103
+#: gui/modmod/modmod.xml:(caption):91
 msgid "Description"
 msgstr "설명"
 
-#: gui/modmod/modmod.xml:(caption):106
+#: gui/modmod/modmod.xml:(caption):94
 msgid "Enable"
 msgstr "활성화"
 
-#: gui/modmod/modmod.xml:(caption):115
+#: gui/modmod/modmod.xml:(caption):103
 msgid "Enabled Mods"
 msgstr "모드가 활성화됨"
 
-#: gui/modmod/modmod.xml:(caption):153
+#: gui/modmod/modmod.xml:(caption):138
 msgid "Up"
 msgstr "위로"
 
-#: gui/modmod/modmod.xml:(caption):157
+#: gui/modmod/modmod.xml:(caption):142
 msgid "X"
 msgstr "X"
 
-#: gui/modmod/modmod.xml:(caption):161
+#: gui/modmod/modmod.xml:(caption):146
 msgid "Down"
 msgstr "아래로"
 
-#: gui/modmod/modmod.xml:(caption):169
+#: gui/modmod/modmod.xml:(caption):153
 msgid "Quit"
 msgstr "종료"
 
-#: gui/modmod/modmod.xml:(caption):174
+#: gui/modmod/modmod.xml:(caption):158
 msgid "Cancel"
 msgstr "취소"
 
-#: gui/modmod/modmod.xml:(caption):179
+#: gui/modmod/modmod.xml:(caption):163
 msgid "Save Configuration"
 msgstr "구성 저장"
 
-#: gui/modmod/modmod.xml:(caption):184
+#: gui/modmod/modmod.xml:(caption):168
 msgid "Start Mods"
 msgstr "모드 시작"
 
-#: gui/modmod/modmod.xml:(heading):81 gui/modmod/modmod.xml:(heading):130
+#: gui/modmod/modmod.xml:(heading):72 gui/modmod/modmod.xml:(heading):118
 msgid "Name"
 msgstr "이름"
 
-#: gui/modmod/modmod.xml:(heading):84 gui/modmod/modmod.xml:(heading):133
+#: gui/modmod/modmod.xml:(heading):75 gui/modmod/modmod.xml:(heading):121
 msgid "Version"
 msgstr "버전"
 
-#: gui/modmod/modmod.xml:(heading):87 gui/modmod/modmod.xml:(heading):136
+#: gui/modmod/modmod.xml:(heading):78 gui/modmod/modmod.xml:(heading):124
 msgid "(Folder)"
 msgstr "(폴더)"
 
-#: gui/modmod/modmod.xml:(heading):90 gui/modmod/modmod.xml:(heading):139
+#: gui/modmod/modmod.xml:(heading):81 gui/modmod/modmod.xml:(heading):127
 msgid "Mod Label"
 msgstr "모드 수준"
 
-#: gui/modmod/modmod.xml:(heading):93 gui/modmod/modmod.xml:(heading):142
-msgid "Mod Type"
-msgstr "모드 종류"
-
-#: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):145
+#: gui/modmod/modmod.xml:(heading):84 gui/modmod/modmod.xml:(heading):130
 msgid "Dependencies"
 msgstr "의존성"
 
-#: gui/modmod/modmod.xml:(heading):99 gui/modmod/modmod.xml:(heading):148
+#: gui/modmod/modmod.xml:(heading):87 gui/modmod/modmod.xml:(heading):133
 msgid "Website"
 msgstr "웹사이트"
