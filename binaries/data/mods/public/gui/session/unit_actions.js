@@ -644,7 +644,7 @@ var g_UnitActions =
 				extraCount += entState.garrisonHolder.garrisonedEntitiesCount;
 
 			if (targetState.garrisonHolder.garrisonedEntitiesCount + extraCount >= targetState.garrisonHolder.capacity)
-				tooltip = coloredtext(tooltip, "orange");
+				tooltip = coloredText(tooltip, "orange");
 
 			if (!MatchesClassList(entState.identity.classes, targetState.garrisonHolder.allowedClasses))
 				return false;
