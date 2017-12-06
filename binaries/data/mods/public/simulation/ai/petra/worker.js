@@ -208,7 +208,7 @@ m.Worker.prototype.update = function(gameState, ent)
 			// Let's check if it is still the case. If so, we reset its metadata supplyId so that the unit will be
 			// reordered to gather after having returned the resources (when comparing its supplyId with the UnitAI one).
 			let gatherType = ent.getMetadata(PlayerID, "gather-type");
-			let influenceGroup = gameState.sharedScript.resourceInfo.aiInfluenceGroups[gatherType];
+			let influenceGroup = Resources.GetResource(gatherType).aiAnalysisInfluenceGroup;
 			if (influenceGroup && influenceGroup == "sparse")
 			{
 				let supplyId = ent.getMetadata(PlayerID, "supply");

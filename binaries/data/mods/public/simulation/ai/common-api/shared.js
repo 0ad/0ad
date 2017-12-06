@@ -118,9 +118,6 @@ m.SharedScript.prototype.init = function(state, deserialization)
 	this.accessibility = new m.Accessibility();
 	this.accessibility.init(state, this.terrainAnalyzer);
 
-	// Setup resources
-	this.resourceInfo = state.resources;
-	m.Resources.prototype.types = state.resources.codes;
 	// Resource types: ignore = not used for resource maps
 	//                 abundant = abundant resource with small amount each
 	//                 sparse = sparse resource, but huge amount each

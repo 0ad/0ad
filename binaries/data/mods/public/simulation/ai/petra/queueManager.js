@@ -70,7 +70,7 @@ m.QueueManager.prototype.currentNeeds = function(gameState)
 	}
 	// get out current resources, not removing accounts.
 	let current = gameState.getResources();
-	for (let res of needed.types)
+	for (let res of Resources.GetCodes())
 		needed[res] = Math.max(0, needed[res] - current[res]);
 
 	return needed;
@@ -84,7 +84,7 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState)
 	if (gameState.ai.playedTurn === 0)
 	{
 		let ret = {};
-		for (let res of gameState.sharedScript.resourceInfo.codes)
+		for (let res of Resources.GetCodes())
 			ret[res] = this.Config.queues.firstTurn[res] || this.Config.queues.firstTurn.default;
 		return ret;
 	}
@@ -97,7 +97,7 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState)
 	let totalShort = {};
 	let totalMedium = {};
 	let totalLong = {};
-	for (let res of gameState.sharedScript.resourceInfo.codes)
+	for (let res of Resources.GetCodes())
 	{
 		totalShort[res] = this.Config.queues.short[res] || this.Config.queues.short.default;
 		totalMedium[res] = this.Config.queues.medium[res] || this.Config.queues.medium.default;
@@ -133,7 +133,7 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState)
 	// global rates
 	let rates = {};
 	let diff;
-	for (let res of gameState.sharedScript.resourceInfo.codes)
+	for (let res of Resources.GetCodes())
 	{
 		if (current[res] > 0)
 		{
@@ -203,7 +203,7 @@ m.QueueManager.prototype.clear = function()
 m.QueueManager.prototype.setAccounts = function(gameState, cost, i)
 {
 	let available = this.getAvailableResources(gameState);
-	for (let res of this.accounts[i].types)
+	for (let res of Resources.GetCodes())
 	{
 		if (this.accounts[i][res] >= cost[res])
 			continue;
@@ -216,7 +216,7 @@ m.QueueManager.prototype.setAccounts = function(gameState, cost, i)
  */
 m.QueueManager.prototype.transferAccounts = function(cost, i, j)
 {
-	for (let res of this.accounts[i].types)
+	for (let res of Resources.GetCodes())
 	{
 		if (this.accounts[j][res] >= cost[res])
 			continue;
@@ -232,7 +232,7 @@ m.QueueManager.prototype.transferAccounts = function(cost, i, j)
 m.QueueManager.prototype.distributeResources = function(gameState)
 {
 	let availableRes = this.getAvailableResources(gameState);
-	for (let res of availableRes.types)
+	for (let res of Resources.GetCodes())
 	{
 		if (availableRes[res] < 0)    // rescale the accounts if we've spent resources already accounted (e.g. by bartering)
 		{

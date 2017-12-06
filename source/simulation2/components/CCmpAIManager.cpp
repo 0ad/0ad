@@ -29,6 +29,7 @@
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/Profile.h"
+#include "ps/scripting/JSInterface_VFS.h"
 #include "ps/TemplateLoader.h"
 #include "ps/Util.h"
 #include "simulation2/components/ICmpAIInterface.h"
@@ -234,6 +235,8 @@ public:
 
 		m_ScriptInterface->RegisterFunction<void, std::wstring, std::vector<u32>, u32, u32, u32, CAIWorker::DumpImage>("DumpImage");
 		m_ScriptInterface->RegisterFunction<CParamNode, std::string, CAIWorker::GetTemplate>("GetTemplate");
+
+		JSI_VFS::RegisterScriptFunctions_Simulation(*(m_ScriptInterface.get()));
 	}
 
 	~CAIWorker()

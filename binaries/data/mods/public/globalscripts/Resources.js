@@ -1,6 +1,5 @@
 /**
- * Since the AI context can't access JSON functions, it gets passed an object
- * containing the information from `GuiInterface.js::GetSimulationState()`.
+ * This class provides a cache to all resource names and properties defined by the JSON files.
  */
 function Resources()
 {
