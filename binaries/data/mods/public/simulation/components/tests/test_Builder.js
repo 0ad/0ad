@@ -13,7 +13,7 @@ AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
 
 let cmpBuilder = ConstructComponent(builderId, "Builder", {
 	"Rate": 1.0,
-	"Entities": { "_string": "structures/{civ}_barracks structures/{civ}_civil_centre" }
+	"Entities": { "_string": "structures/{civ}_barracks structures/{civ}_civil_centre structures/{native}_house" }
 });
 
 TS_ASSERT_UNEVAL_EQUALS(cmpBuilder.GetEntitiesList(), []);
@@ -32,7 +32,11 @@ AddMock(builderId, IID_Ownership, {
 	"GetOwner": () => playerId
 });
 
-TS_ASSERT_UNEVAL_EQUALS(cmpBuilder.GetEntitiesList(), ["structures/iber_barracks", "structures/iber_civil_centre"]);
+AddMock(builderId, IID_Identity, {
+	"GetCiv": () => "iber"
+});
+
+TS_ASSERT_UNEVAL_EQUALS(cmpBuilder.GetEntitiesList(), ["structures/iber_barracks", "structures/iber_civil_centre", "structures/iber_house"]);
 
 AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
 	"TemplateExists": name => name == "structures/iber_civil_centre"
@@ -50,7 +54,7 @@ AddMock(playerEntityID, IID_Player, {
 	"GetPlayerID": () => playerId
 });
 
-TS_ASSERT_UNEVAL_EQUALS(cmpBuilder.GetEntitiesList(), ["structures/iber_barracks", "structures/iber_civil_centre"]);
+TS_ASSERT_UNEVAL_EQUALS(cmpBuilder.GetEntitiesList(), ["structures/iber_barracks", "structures/iber_civil_centre", "structures/iber_house"]);
 
 AddMock(playerEntityID, IID_Player, {
 	"GetCiv": () => "iber",
@@ -58,7 +62,15 @@ AddMock(playerEntityID, IID_Player, {
 	"GetPlayerID": () => playerId
 });
 
-TS_ASSERT_UNEVAL_EQUALS(cmpBuilder.GetEntitiesList(), ["structures/iber_civil_centre"]);
+TS_ASSERT_UNEVAL_EQUALS(cmpBuilder.GetEntitiesList(), ["structures/iber_civil_centre", "structures/iber_house"]);
+
+AddMock(playerEntityID, IID_Player, {
+	"GetCiv": () => "athen",
+	"GetDisabledTemplates": () => ({ "structures/athen_barracks": true }),
+	"GetPlayerID": () => playerId
+});
+
+TS_ASSERT_UNEVAL_EQUALS(cmpBuilder.GetEntitiesList(), ["structures/athen_civil_centre", "structures/iber_house"]);
 
 TS_ASSERT_UNEVAL_EQUALS(cmpBuilder.GetRange(), { "max": 2, "min": 0 });
 

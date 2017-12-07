@@ -8,14 +8,14 @@ ProductionQueue.prototype.Schema =
 	"<a:example>" +
 		"<BatchTimeModifier>0.7</BatchTimeModifier>" +
 		"<Entities datatype='tokens'>" +
-			"\n    units/{civ}_support_female_citizen\n    units/{civ}_support_trader\n    units/athen_infantry_spearman_b\n  " +
+			"\n    units/{civ}_support_female_citizen\n    units/{native}_support_trader\n    units/athen_infantry_spearman_b\n  " +
 		"</Entities>" +
 	"</a:example>" +
 	"<element name='BatchTimeModifier' a:help='Modifier that influences the time benefit for batch training'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
 	"<optional>" +
-		"<element name='Entities' a:help='Space-separated list of entity template names that this entity can train. The special string \"{civ}\" will be automatically replaced by the civ code of the entity&apos;s owner.'>" +
+		"<element name='Entities' a:help='Space-separated list of entity template names that this entity can train. The special string \"{civ}\" will be automatically replaced by the civ code of the entity&apos;s owner, while the string \"{native}\" will be automatically replaced by the entity&apos;s civ code.'>" +
 			"<attribute name='datatype'>" +
 				"<value>tokens</value>" +
 			"</attribute>" +
@@ -96,31 +96,33 @@ ProductionQueue.prototype.CalculateEntitiesList = function()
 	if (!this.template.Entities)
 		return;
 
-	var string = this.template.Entities._string;
+	let string = this.template.Entities._string;
 	if (!string)
 		return;
 
-	// Replace the "{civ}" codes with this entity's civ ID
-	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-	var cmpPlayer = QueryOwnerInterface(this.entity);
+	// Replace the "{civ}" and "{native}" codes with the owner's civ ID and entity's civ ID.
+	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+	let cmpPlayer = QueryOwnerInterface(this.entity);
 	if (!cmpPlayer)
 		return;
 
-	var entitiesList = string.replace(/\{civ\}/g, cmpPlayer.GetCiv()).split(/\s+/);
+	let cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
+	if (cmpIdentity)
+		string = string.replace(/\{native\}/g, cmpIdentity.GetCiv());
+
+	let entitiesList = string.replace(/\{civ\}/g, cmpPlayer.GetCiv()).split(/\s+/);
 
 	// filter out disabled and invalid entities
-	var disabledEntities = cmpPlayer.GetDisabledTemplates();
-	entitiesList = entitiesList.filter(
-		function(v) { return !disabledEntities[v] && cmpTemplateManager.TemplateExists(v); }
-	);
+	let disabledEntities = cmpPlayer.GetDisabledTemplates();
+	entitiesList = entitiesList.filter(ent => !disabledEntities[ent] && cmpTemplateManager.TemplateExists(ent));
 
 	// check if some templates need to show their advanced or elite version
-	var upgradeTemplate = function(templateName)
+	let upgradeTemplate = function(templateName)
 	{
-		var template = cmpTemplateManager.GetTemplate(templateName);
+		let template = cmpTemplateManager.GetTemplate(templateName);
 		while (template && template.Promotion !== undefined)
 		{
-			var requiredXp = ApplyValueModificationsToTemplate("Promotion/RequiredXp", +template.Promotion.RequiredXp, cmpPlayer.GetPlayerID(), template);
+			let requiredXp = ApplyValueModificationsToTemplate("Promotion/RequiredXp", +template.Promotion.RequiredXp, cmpPlayer.GetPlayerID(), template);
 			if (requiredXp > 0)
 				break;
 			templateName = template.Promotion.Entity;

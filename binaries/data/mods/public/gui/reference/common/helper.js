@@ -21,7 +21,7 @@ function getActualUpgradeData(upgradesInfo)
 	let newUpgrades = [];
 	for (let upgrade of upgradesInfo)
 	{
-		upgrade.entity = upgrade.entity.replace("{civ}", g_SelectedCiv);
+		upgrade.entity = upgrade.entity.replace(/\{(civ|native)\}/g, g_SelectedCiv);
 
 		let data = GetTemplateDataHelper(loadTemplate(upgrade.entity), null, g_AuraData, g_ResourceData, g_DamageTypes);
 		data.cost = upgrade.cost;
