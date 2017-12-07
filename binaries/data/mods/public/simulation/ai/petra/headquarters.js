@@ -71,7 +71,7 @@ m.HQ.prototype.init = function(gameState, queues)
 	this.navalMap = false;
 	this.navalRegions = {};
 
-	for (let res of gameState.sharedScript.resourceInfo.codes)
+	for (let res of Resources.GetCodes())
 	{
 		this.wantedRates[res] = 0;
 		this.currentRates[res] = 0;
@@ -776,7 +776,7 @@ m.HQ.prototype.bulkPickWorkers = function(gameState, baseRef, number)
 m.HQ.prototype.getTotalResourceLevel = function(gameState)
 {
 	let total = {};
-	for (let res of gameState.sharedScript.resourceInfo.codes)
+	for (let res of Resources.GetCodes())
 		total[res] = 0;
 	for (let base of this.baseManagers)
 		for (let res in total)

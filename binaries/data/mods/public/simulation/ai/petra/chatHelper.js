@@ -175,7 +175,7 @@ m.chatRequestTribute = function(gameState, resource)
 		"message": "/allies " + pickRandom(this.requestTributeMessages),
 		"translateMessage": true,
 		"translateParameters": { "resource": "withinSentence" },
-		"parameters": { "resource": gameState.sharedScript.resourceInfo.names[resource] }
+		"parameters": { "resource": Resources.GetNames()[resource] }
 	});
 };
 

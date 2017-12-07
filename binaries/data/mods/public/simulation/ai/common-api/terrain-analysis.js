@@ -383,9 +383,9 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 /** creates a map of resource density */
 m.SharedScript.prototype.createResourceMaps = function()
 {
-	for (let resource of this.resourceInfo.codes)
+	for (let resource of Resources.GetCodes())
 	{
-		if (!(this.resourceInfo.aiInfluenceGroups[resource] in this.normalizationFactor))
+		if (!(Resources.GetResource(resource).aiAnalysisInfluenceGroup in this.normalizationFactor))
 			continue;
 		// if there is no resourceMap create one with an influence for everything with that resource
 		if (this.resourceMaps[resource])
@@ -405,7 +405,7 @@ m.SharedScript.prototype.createResourceMaps = function()
 		let cellSize = this.resourceMaps[resource].cellSize;
 		let x = Math.floor(ent.position()[0] / cellSize);
 		let z = Math.floor(ent.position()[1] / cellSize);
-		let grp = this.resourceInfo.aiInfluenceGroups[resource];
+		let grp = Resources.GetResource(resource).aiAnalysisInfluenceGroup;
 		let strength = Math.floor(ent.resourceSupplyMax() / this.normalizationFactor[grp]);
 		this.resourceMaps[resource].addInfluence(x, z, this.influenceRadius[grp] / cellSize, strength/2, "constant");
 		this.resourceMaps[resource].addInfluence(x, z, this.influenceRadius[grp] / cellSize, strength/2);
@@ -420,9 +420,9 @@ m.SharedScript.prototype.createResourceMaps = function()
  */
 m.SharedScript.prototype.updateResourceMaps = function(events)
 {
-	for (let resource of this.resourceInfo.codes)
+	for (let resource of Resources.GetCodes())
 	{
-		if (!(this.resourceInfo.aiInfluenceGroups[resource] in this.normalizationFactor))
+		if (!(Resources.GetResource(resource).aiAnalysisInfluenceGroup in this.normalizationFactor))
 			continue;
 		// if there is no resourceMap create one with an influence for everything with that resource
 		if (this.resourceMaps[resource])
@@ -447,7 +447,7 @@ m.SharedScript.prototype.updateResourceMaps = function(events)
 		let cellSize = this.resourceMaps[resource].cellSize;
 		let x = Math.floor(ent.position()[0] / cellSize);
 		let z = Math.floor(ent.position()[1] / cellSize);
-		let grp = this.resourceInfo.aiInfluenceGroups[resource];
+		let grp = Resources.GetResource(resource).aiAnalysisInfluenceGroup;
 		let strength = -Math.floor(ent.resourceSupplyMax() / this.normalizationFactor[grp]);
 		this.resourceMaps[resource].addInfluence(x, z, this.influenceRadius[grp] / cellSize, strength/2, "constant");
 		this.resourceMaps[resource].addInfluence(x, z, this.influenceRadius[grp] / cellSize, strength/2);
@@ -466,7 +466,7 @@ m.SharedScript.prototype.updateResourceMaps = function(events)
 		let cellSize = this.resourceMaps[resource].cellSize;
 		let x = Math.floor(ent.position()[0] / cellSize);
 		let z = Math.floor(ent.position()[1] / cellSize);
-		let grp = this.resourceInfo.aiInfluenceGroups[resource];
+		let grp = Resources.GetResource(resource).aiAnalysisInfluenceGroup;
 		let strength = Math.floor(ent.resourceSupplyMax() / this.normalizationFactor[grp]);
 		this.resourceMaps[resource].addInfluence(x, z, this.influenceRadius[grp] / cellSize, strength/2, "constant");
 		this.resourceMaps[resource].addInfluence(x, z, this.influenceRadius[grp] / cellSize, strength/2);

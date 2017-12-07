@@ -57,7 +57,7 @@ m.BaseManager.prototype.init = function(gameState, state)
 	this.dropsites = {};
 	this.dropsiteSupplies = {};
 	this.gatherers = {};
-	for (let res of gameState.sharedScript.resourceInfo.codes)
+	for (let res of Resources.GetCodes())
 	{
 		this.dropsiteSupplies[res] = { "nearby": [], "medium": [], "faraway": [] };
 		this.gatherers[res] = { "nextCheck": 0, "used": 0, "lost": 0 };
@@ -367,7 +367,7 @@ m.BaseManager.prototype.getResourceLevel = function (gameState, type, nearbyOnly
 /** check our resource levels and react accordingly */
 m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 {
-	for (let type of gameState.sharedScript.resourceInfo.codes)
+	for (let type of Resources.GetCodes())
 	{
 		if (type === "food")
 		{

@@ -334,3 +334,18 @@ function showModDescription(listObjectName)
 			g_Mods[listObject.list[listObject.selected]].description :
 			'[color="' + g_ColorNoModSelected + '"]' + translate("No mod has been selected.") + '[/color]';
 }
+
+function visitModWebsite(listName)
+{
+	let list = Engine.GetGUIObjectByName(listName);
+	let folder = list.list_folder[list.selected];
+	let url = folder && g_Mods[folder] && g_Mods[folder].url;
+
+	if (!url)
+		return;
+
+	if (!url.startsWith("http://") && !url.startsWith("https://"))
+		url = "http://" + url;
+
+	Engine.OpenURL(url);
+}

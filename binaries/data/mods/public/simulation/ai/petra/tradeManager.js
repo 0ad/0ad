@@ -229,7 +229,7 @@ m.TradeManager.prototype.performBarter = function(gameState)
 	let getBarterRate = (prices, buy, sell) => Math.round(100 * prices.sell[sell] / prices.buy[buy]);
 
 	// loop through each missing resource checking if we could barter and help finishing a queue quickly.
-	for (let buy of needs.types)
+	for (let buy of Resources.GetCodes())
 	{
 		if (needs[buy] === 0 || needs[buy] < rates[buy]*30) // check if our rate allows to gather it fast enough
 			continue;
@@ -237,7 +237,7 @@ m.TradeManager.prototype.performBarter = function(gameState)
 		// pick the best resource to barter.
 		let bestToSell;
 		let bestRate = 0;
-		for (let sell of needs.types)
+		for (let sell of Resources.GetCodes())
 		{
 			if (sell === buy)
 				continue;
@@ -287,7 +287,7 @@ m.TradeManager.prototype.performBarter = function(gameState)
 		return false;
 	let bestToBuy;
 	let bestChoice = 0;
-	for (let buy of needs.types)
+	for (let buy of Resources.GetCodes())
 	{
 		if (buy === "food")
 			continue;

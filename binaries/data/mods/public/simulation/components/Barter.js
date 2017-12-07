@@ -34,11 +34,10 @@ Barter.prototype.Init = function()
 	this.restoreTimer = undefined;
 };
 
-Barter.prototype.GetPrices = function(playerEntity)
+Barter.prototype.GetPrices = function(playerID)
 {
 	var prices = { "buy": {}, "sell": {} };
-	let cmpPlayer = Engine.QueryInterface(playerEntity, IID_Player);
-	let multiplier = cmpPlayer.GetBarterMultiplier();
+	let multiplier = QueryPlayerIDInterface(playerID).GetBarterMultiplier();
 	for (let resource of Resources.GetCodes())
 	{
 		let truePrice = Resources.GetResource(resource).truePrice;
@@ -48,11 +47,10 @@ Barter.prototype.GetPrices = function(playerEntity)
 	return prices;
 };
 
-Barter.prototype.PlayerHasMarket = function(playerEntity)
+Barter.prototype.PlayerHasMarket = function(playerID)
 {
-	var cmpPlayer = Engine.QueryInterface(playerEntity, IID_Player);
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var entities = cmpRangeManager.GetEntitiesByPlayer(cmpPlayer.GetPlayerID());
+	var entities = cmpRangeManager.GetEntitiesByPlayer(playerID);
 	for (var entity of entities)
 	{
 		var cmpFoundation = Engine.QueryInterface(entity, IID_Foundation);
@@ -63,7 +61,7 @@ Barter.prototype.PlayerHasMarket = function(playerEntity)
 	return false;
 };
 
-Barter.prototype.ExchangeResources = function(playerEntity, resourceToSell, resourceToBuy, amount)
+Barter.prototype.ExchangeResources = function(playerID, resourceToSell, resourceToBuy, amount)
 {
 	// Data verification
 	if (amount <= 0)
@@ -82,7 +80,7 @@ Barter.prototype.ExchangeResources = function(playerEntity, resourceToSell, reso
 		warn("ExchangeResources: incorrect resource to buy: " + uneval(resourceToBuy));
 		return;
 	}
-	if (!this.PlayerHasMarket(playerEntity))
+	if (!this.PlayerHasMarket(playerID))
 	{
 		warn("ExchangeResources: player has no markets");
 		return;
@@ -90,8 +88,8 @@ Barter.prototype.ExchangeResources = function(playerEntity, resourceToSell, reso
 	if (amount != 100 && amount != 500)
 		return;
 
-	var cmpPlayer = Engine.QueryInterface(playerEntity, IID_Player);
-	var prices = this.GetPrices(playerEntity);
+	var cmpPlayer = QueryPlayerIDInterface(playerID);
+	var prices = this.GetPrices(playerID);
 	var amountsToSubtract = {};
 	amountsToSubtract[resourceToSell] = amount;
 	if (cmpPlayer.TrySubtractResources(amountsToSubtract))
@@ -104,14 +102,14 @@ Barter.prototype.ExchangeResources = function(playerEntity, resourceToSell, reso
 		if (cmpGUIInterface)
 			cmpGUIInterface.PushNotification({
 				"type": "barter",
-				"players": [cmpPlayer.GetPlayerID()],
+				"players": [playerID],
 				"amountsSold": amount,
 				"amountsBought": amountToAdd,
 				"resourceSold": resourceToSell,
 				"resourceBought": resourceToBuy
 			});
 
-		var cmpStatisticsTracker = Engine.QueryInterface(playerEntity, IID_StatisticsTracker);
+		var cmpStatisticsTracker = QueryPlayerIDInterface(playerID, IID_StatisticsTracker);
 		if (cmpStatisticsTracker)
 		{
 			cmpStatisticsTracker.IncreaseResourcesSoldCounter(resourceToSell, amount);
@@ -157,4 +155,3 @@ Barter.prototype.ProgressTimeout = function(data)
 };
 
 Engine.RegisterSystemComponentType(IID_Barter, "Barter", Barter);
-

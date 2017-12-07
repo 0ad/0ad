@@ -183,10 +183,6 @@ var g_WorkerTypes = ["FemaleCitizen", "Trader", "FishingBoat", "CitizenSoldier"]
  * Unit classes to be checked for the military-only-selection modifier and for the idle-warrior-hotkey.
  */
 var g_MilitaryTypes = ["Melee", "Ranged"];
-/**
- * Cache the idle worker status.
- */
-var g_HasIdleWorker = false;
 
 function GetSimState()
 {
@@ -778,27 +774,15 @@ function changeGameSpeed(speed)
 		Engine.SetSimRate(speed);
 }
 
-function hasIdleWorker()
+function updateIdleWorkerButton()
 {
-	return Engine.GuiInterfaceCall("HasIdleUnits", {
+	Engine.GetGUIObjectByName("idleWorkerButton").enabled = Engine.GuiInterfaceCall("HasIdleUnits", {
 		"viewedPlayer": g_ViewedPlayer,
 		"idleClasses": g_WorkerTypes,
 		"excludeUnits": []
 	});
 }
 
-function updateIdleWorkerButton()
-{
-	g_HasIdleWorker = hasIdleWorker();
-
-	let idleWorkerButton = Engine.GetGUIObjectByName("idleOverlay");
-	let prefix = "stretched:session/";
-
-	if (!g_HasIdleWorker)
-		idleWorkerButton.sprite = prefix + "minimap-idle-disabled.png";
-	else if (idleWorkerButton.sprite != prefix + "minimap-idle-highlight.png")
-		idleWorkerButton.sprite = prefix + "minimap-idle.png";
-}
 function onSimulationUpdate()
 {
 	// Templates change depending on technologies and auras, so they have to be reloaded every turn.

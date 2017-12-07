@@ -369,22 +369,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 	circularMap: false,
 	timeElapsed: 0,
 	gameType: "conquest",
-	alliedVictory: false,
-	"resources": {
-		"codes": ["food", "metal", "stone", "wood"],
-		"names": {
-			"food": "Food",
-			"metal": "Metal",
-			"stone": "Stone",
-			"wood": "Wood"
-		},
-		"aiInfluenceGroups": {
-			"food": "ignore",
-			"metal": "sparse",
-			"stone": "sparse",
-			"wood": "abundant"
-		}
-	}
+	alliedVictory: false
 });
 
 TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
@@ -537,22 +522,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 	"circularMap": false,
 	"timeElapsed": 0,
 	"gameType": "conquest",
-	"alliedVictory": false,
-	"resources": {
-		"codes": ["food", "metal", "stone", "wood"],
-		"names": {
-			"food": "Food",
-			"metal": "Metal",
-			"stone": "Stone",
-			"wood": "Wood"
-		},
-		"aiInfluenceGroups": {
-			"food": "ignore",
-			"metal": "sparse",
-			"stone": "sparse",
-			"wood": "abundant"
-		}
-	}
+	"alliedVictory": false
 });
 
 
