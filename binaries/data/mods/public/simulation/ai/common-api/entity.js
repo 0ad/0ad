@@ -322,20 +322,18 @@ m.Template = m.Class({
 		return 1;
 	},
 
-	"buildableEntities": function(civ = this.civ()) {
+	"buildableEntities": function(civ) {
 		let templates = this.get("Builder/Entities/_string");
 		if (!templates)
 			return [];
-		return templates.replace(/\{civ\}/g, civ).split(/\s+/);
+		return templates.replace(/\{native\}/g, this.civ()).replace(/\{civ\}/g, civ).split(/\s+/);
 	},
 
 	"trainableEntities": function(civ) {
 		let templates = this.get("ProductionQueue/Entities/_string");
 		if (!templates)
 			return undefined;
-		if (civ)
-			templates = templates.replace(/\{civ\}/g, civ);
-		return templates.split(/\s+/);
+		return templates.replace(/\{native\}/g, this.civ()).replace(/\{civ\}/g, civ).split(/\s+/);
 	},
 
 	"researchableTechs": function(gameState, civ) {
