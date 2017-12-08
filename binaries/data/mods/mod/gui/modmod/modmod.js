@@ -58,6 +58,8 @@ function loadMods()
 		else
 			warn("Skipping mod '" + mod + "' which does not define '" + property + "'.");
 
+	translateObjectKeys(g_Mods, ["label", "description"]);
+
 	deepfreeze(g_Mods);
 
 	g_ModsEnabled = Engine.ConfigDB_GetValue("user", "mod.enabledmods").split(/\s+/).filter(folder => !!g_Mods[folder]);
