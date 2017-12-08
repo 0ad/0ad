@@ -34,9 +34,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-04 09:04+0100\n"
-"PO-Revision-Date: 2017-12-05 19:21+0000\n"
-"Last-Translator: Daniel Whatever <Deynyel@protonmail.com>\n"
+"POT-Creation-Date: 2017-12-06 09:04+0100\n"
+"PO-Revision-Date: 2017-12-06 15:07+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -59,12 +59,12 @@ msgctxt "damage type"
 msgid "Crush"
 msgstr "Obuchowe"
 
-#: gui/civinfo/civinfo.js:96
+#: gui/civinfo/civinfo.js:95
 #, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr "Rozgrywka %(civilization)s"
 
-#: gui/civinfo/civinfo.js:99
+#: gui/civinfo/civinfo.js:98
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Premia cywilizacyjna"
@@ -72,7 +72,7 @@ msgstr[1] "Premie cywilizacyjne"
 msgstr[2] "Premie cywilizacyjne"
 msgstr[3] "Premie cywilizacyjne"
 
-#: gui/civinfo/civinfo.js:104
+#: gui/civinfo/civinfo.js:103
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "Premia drużynowa"
@@ -80,11 +80,11 @@ msgstr[1] "Premie drużynowe"
 msgstr[2] "Premie drużynowe"
 msgstr[3] "Premie drużynowe"
 
-#: gui/civinfo/civinfo.js:111
+#: gui/civinfo/civinfo.js:110
 msgid "Special Technologies"
 msgstr "Technologie specjalne"
 
-#: gui/civinfo/civinfo.js:117
+#: gui/civinfo/civinfo.js:116
 msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] "Budynek specjalny"
@@ -92,21 +92,21 @@ msgstr[1] "Budynki specjalne"
 msgstr[2] "Budynki specjalne"
 msgstr[3] "Budynki specjalne"
 
-#: gui/civinfo/civinfo.js:124 gui/summary/layout.js:67
+#: gui/civinfo/civinfo.js:123 gui/summary/layout.js:67
 msgid "Heroes"
 msgstr "Bohaterowie"
 
-#: gui/civinfo/civinfo.js:134
+#: gui/civinfo/civinfo.js:133
 #, javascript-format
 msgid "History of the %(civilization)s"
 msgstr "Historia %(civilization)s"
 
-#: gui/common/color.js:165
+#: gui/common/color.js:162
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete playernames."
 msgstr "Wciśnij %(hotkey)s aby auto uzupełnić nazwy graczy."
 
-#: gui/common/color.js:168
+#: gui/common/color.js:164
 msgctxt "hotkey"
 msgid "Tab"
 msgstr "Tab"
@@ -178,14 +178,14 @@ msgstr "USUŃ"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
 #: gui/options/options.js:297 gui/options/options.js:350
-#: gui/options/options.js:376 gui/pregame/mainmenu.js:253
+#: gui/options/options.js:376 gui/pregame/mainmenu.js:252
 #: gui/replaymenu/replay_actions.js:170 gui/summary/summary.js:391
 msgid "No"
 msgstr "Nie"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
 #: gui/options/options.js:297 gui/options/options.js:350
-#: gui/options/options.js:376 gui/pregame/mainmenu.js:253
+#: gui/options/options.js:376 gui/pregame/mainmenu.js:252
 #: gui/replaymenu/replay_actions.js:170 gui/summary/summary.js:391
 msgid "Yes"
 msgstr "Tak"
@@ -204,7 +204,7 @@ msgstr "Przytrzymaj %(hotkey)s by skasować bez potwierdzenia."
 msgid "A randomly selected map."
 msgstr "Losowo wybrana mapa."
 
-#: gui/common/gamedescription.js:55 gui/common/gamedescription.js:348
+#: gui/common/gamedescription.js:55 gui/common/gamedescription.js:346
 msgid "Sorry, no description available."
 msgstr "Przepraszamy, opis niedostępny."
 
@@ -278,39 +278,39 @@ msgstr "%(playerName)s"
 msgid "%(playerName)s (%(state)s)"
 msgstr "%(playerName)s (%(state)s)"
 
-#: gui/common/gamedescription.js:168
+#: gui/common/gamedescription.js:166
 msgid "Unknown Civilization"
 msgstr "Nieznana cywilizcja"
 
-#: gui/common/gamedescription.js:175
+#: gui/common/gamedescription.js:173
 msgctxt "playerstate"
 msgid "defeated"
 msgstr "Porażka"
 
-#: gui/common/gamedescription.js:176
+#: gui/common/gamedescription.js:174
 msgctxt "playerstate"
 msgid "won"
 msgstr "Zwycięstwo"
 
-#: gui/common/gamedescription.js:198
+#: gui/common/gamedescription.js:196
 msgid "No Team"
 msgstr "Bez drużyny"
 
-#: gui/common/gamedescription.js:199
+#: gui/common/gamedescription.js:197
 #, javascript-format
 msgid "Team %(team)s"
 msgstr "Drużyna %(team)s"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or savegame menu or lobby
-#: gui/common/gamedescription.js:202 gui/common/gamedescription.js:209
+#: gui/common/gamedescription.js:200 gui/common/gamedescription.js:207
 #, javascript-format
 msgid ""
 "%(team)s:\n"
 "%(playerDescriptions)s"
 msgstr "%(team)s:\n%(playerDescriptions)s"
 
-#: gui/common/gamedescription.js:210
+#: gui/common/gamedescription.js:208
 msgid "Observer"
 msgid_plural "Observers"
 msgstr[0] "Obserwator"
@@ -318,7 +318,7 @@ msgstr[1] "Obserwatorzy"
 msgstr[2] "Obserwatorzy    "
 msgstr[3] "Obserwatorzy    "
 
-#: gui/common/gamedescription.js:232
+#: gui/common/gamedescription.js:230
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
@@ -328,7 +328,7 @@ msgstr[1] "Cud (%(min)s minut)"
 msgstr[2] "Cud (%(min)s minut)"
 msgstr[3] "Cud (%(min)s minut)"
 
-#: gui/common/gamedescription.js:244
+#: gui/common/gamedescription.js:242
 #, javascript-format
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
@@ -338,81 +338,81 @@ msgstr[1] "Zdobądź Relikt (%(min)s minut)"
 msgstr[2] "Zdobądź Relikt (%(min)s minut)"
 msgstr[3] "Zdobądź Relikt (%(min)s minut)"
 
-#: gui/common/gamedescription.js:260
+#: gui/common/gamedescription.js:258
 msgid "Relic Count"
 msgstr "Liczba Reliktów"
 
-#: gui/common/gamedescription.js:267
+#: gui/common/gamedescription.js:265
 msgid "Hero Garrison"
 msgstr "Garnizon Bohatera"
 
-#: gui/common/gamedescription.js:268
+#: gui/common/gamedescription.js:266
 msgid "Heroes can be garrisoned."
 msgstr "Bohaterowie mogą zostać skoszarowani."
 
-#: gui/common/gamedescription.js:272
+#: gui/common/gamedescription.js:270
 msgid "Exposed Heroes"
 msgstr "Narażeni Bohaterzy"
 
-#: gui/common/gamedescription.js:273
+#: gui/common/gamedescription.js:271
 msgid "Heroes cannot be garrisoned, and they are vulnerable to raids."
 msgstr "Bohaterzy nie mogą zostać skoszarowani i są podatni na najazdy."
 
-#: gui/common/gamedescription.js:280
+#: gui/common/gamedescription.js:278
 msgid "Rated game"
 msgstr "Ocenione gry"
 
-#: gui/common/gamedescription.js:281
+#: gui/common/gamedescription.js:279
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr "Kiedy wyłoni się zwycięzca tej rozgrywki, punktacja w lobby będzie dostosowana."
 
-#: gui/common/gamedescription.js:286
+#: gui/common/gamedescription.js:284
 msgid "Locked Teams"
 msgstr "Sztywne drużyny."
 
-#: gui/common/gamedescription.js:287
+#: gui/common/gamedescription.js:285
 msgid "Players can't change the initial teams."
 msgstr "Gracze nie mogą zmieniać początkowych zespołów."
 
-#: gui/common/gamedescription.js:291
+#: gui/common/gamedescription.js:289
 msgid "Diplomacy"
 msgstr "Dyplomacja"
 
-#: gui/common/gamedescription.js:292
+#: gui/common/gamedescription.js:290
 msgid "Players can make alliances and declare war on allies."
 msgstr "Gracze mogą tworzyć sojusze i wypowiadać wojnę sojusznikom."
 
-#: gui/common/gamedescription.js:297
+#: gui/common/gamedescription.js:295
 msgid "Last Man Standing"
 msgstr "Ostatni Stojący Mężczyzna:"
 
-#: gui/common/gamedescription.js:298
+#: gui/common/gamedescription.js:296
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
 msgstr "Tylko jeden gracz może wygrać grę. Jeśli pozostali gracze są sojusznikami, gra trwa dopóki nie zostanie tylko jeden."
 
-#: gui/common/gamedescription.js:302
+#: gui/common/gamedescription.js:300
 msgid "Allied Victory"
 msgstr "Zwycięstwo sojuszników"
 
-#: gui/common/gamedescription.js:303
+#: gui/common/gamedescription.js:301
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
 msgstr "Jeśli jeden gracz wygra, jego lub jej sojusznicy też wygrywają. Jeśli pozostanie jedna grupa sojuszników, oni wygrywają."
 
-#: gui/common/gamedescription.js:309
+#: gui/common/gamedescription.js:307
 msgid "Ceasefire"
 msgstr "Zawieszenie broni"
 
-#: gui/common/gamedescription.js:312 gui/pregame/mainmenu.js:86
+#: gui/common/gamedescription.js:310 gui/pregame/mainmenu.js:86
 msgid "disabled"
 msgstr "zablokowane"
 
-#: gui/common/gamedescription.js:313
+#: gui/common/gamedescription.js:311
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
 msgstr[0] "Przez pierwszą minutę, przeciwnicy będą neutralni."
@@ -420,97 +420,97 @@ msgstr[1] "Przez pierwszych %(min)s minut, przeciwnicy będą neutralni."
 msgstr[2] "Przez pierwszych %(min)s minut, przeciwnicy będą neutralni."
 msgstr[3] "Przez pierwszych %(min)s minut, przeciwnicy będą neutralni."
 
-#: gui/common/gamedescription.js:321
+#: gui/common/gamedescription.js:319
 msgid "Map Name"
 msgstr "Nazwa mapy"
 
-#: gui/common/gamedescription.js:326
+#: gui/common/gamedescription.js:324
 msgid "Map Type"
 msgstr "Typ mapy"
 
-#: gui/common/gamedescription.js:335
+#: gui/common/gamedescription.js:333
 msgid "Map Size"
 msgstr "Rozmiar mapy"
 
-#: gui/common/gamedescription.js:342
+#: gui/common/gamedescription.js:340
 msgid "Map Description"
 msgstr "Opis mapy"
 
-#: gui/common/gamedescription.js:345
+#: gui/common/gamedescription.js:343
 msgid "Randomly selects a map from the list"
 msgstr "Wybiera losową mapę z listy"
 
-#: gui/common/gamedescription.js:355
+#: gui/common/gamedescription.js:353
 msgid "Biome"
 msgstr "Fauna i flora"
 
-#: gui/common/gamedescription.js:356
+#: gui/common/gamedescription.js:354
 msgctxt "biome"
 msgid "Random"
 msgstr "Losowe"
 
-#: gui/common/gamedescription.js:363
+#: gui/common/gamedescription.js:361
 msgid "Starting Resources"
 msgstr "Początkowe zasoby"
 
-#: gui/common/gamedescription.js:364
+#: gui/common/gamedescription.js:362
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
-#: gui/common/gamedescription.js:374
+#: gui/common/gamedescription.js:372
 msgid "Population Limit"
 msgstr "Limit populacji"
 
-#: gui/common/gamedescription.js:382
+#: gui/common/gamedescription.js:380
 msgid "Treasures"
 msgstr "Skarby"
 
-#: gui/common/gamedescription.js:384
+#: gui/common/gamedescription.js:382
 msgctxt "treasures"
 msgid "Disabled"
 msgstr "Wyłączone"
 
-#: gui/common/gamedescription.js:385
+#: gui/common/gamedescription.js:383
 msgctxt "treasures"
 msgid "As defined by the map."
 msgstr "Zdefiniowany przez mapę."
 
-#: gui/common/gamedescription.js:389
+#: gui/common/gamedescription.js:387
 msgid "Revealed Map"
 msgstr "Odsłonięta mapa"
 
-#: gui/common/gamedescription.js:394
+#: gui/common/gamedescription.js:392
 msgid "Explored Map"
 msgstr "Odkryta mapa"
 
-#: gui/common/gamedescription.js:399
+#: gui/common/gamedescription.js:397
 msgid "Cheats"
 msgstr "Kody"
 
-#: gui/common/gamedescription.js:404 gui/common/tooltips.js:126
+#: gui/common/gamedescription.js:402 gui/common/tooltips.js:126
 #: gui/common/tooltips.js:181 gui/common/tooltips.js:222
 #: gui/common/tooltips.js:447 gui/common/tooltips.js:468
-#: gui/common/tooltips.js:759
+#: gui/common/tooltips.js:758
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:407
+#: gui/common/gamedescription.js:405
 msgctxt "gamesetup option"
 msgid "enabled"
 msgstr "Włączone"
 
-#: gui/common/gamedescription.js:408
+#: gui/common/gamedescription.js:406
 msgctxt "gamesetup option"
 msgid "disabled"
 msgstr "Wyłączone"
 
-#: gui/common/gamedescription.js:424
+#: gui/common/gamedescription.js:422
 msgid "Victorious"
 msgstr "Zwycięski"
 
-#: gui/common/gamedescription.js:429
+#: gui/common/gamedescription.js:427
 msgid "Defeated"
 msgstr "Porażka"
 
@@ -614,8 +614,8 @@ msgstr "Użytkownicy (%(num)s): %(users)s"
 #: gui/common/network.js:161 gui/common/tooltips.js:80
 #: gui/common/tooltips.js:194 gui/common/tooltips.js:208
 #: gui/common/tooltips.js:286 gui/common/tooltips.js:319
-#: gui/common/tooltips.js:352 gui/common/tooltips.js:624
-#: gui/common/tooltips.js:658 gui/common/tooltips.js:724
+#: gui/common/tooltips.js:352 gui/common/tooltips.js:623
+#: gui/common/tooltips.js:657 gui/common/tooltips.js:723
 #: gui/replaymenu/replay_actions.js:93 gui/replaymenu/replay_actions.js:94
 msgid ", "
 msgstr ", "
@@ -826,7 +826,7 @@ msgstr[3] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:109 gui/common/tooltips.js:315
 #: gui/common/tooltips.js:364 gui/common/tooltips.js:378
-#: gui/common/tooltips.js:656
+#: gui/common/tooltips.js:655
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "sekunda"
@@ -897,7 +897,7 @@ msgstr "%(damage)s %(damageType)s"
 msgid "Interval:"
 msgstr "Okres:"
 
-#: gui/common/tooltips.js:227 gui/common/tooltips.js:654
+#: gui/common/tooltips.js:227 gui/common/tooltips.js:653
 msgid "Rate:"
 msgstr "Szybkość:"
 
@@ -906,7 +906,7 @@ msgstr "Szybkość:"
 msgid "%(attackLabel)s %(details)s, %(rate)s"
 msgstr "%(attackLabel)s %(details)s, %(rate)s"
 
-#: gui/common/tooltips.js:253 gui/common/tooltips.js:649
+#: gui/common/tooltips.js:253 gui/common/tooltips.js:648
 msgid "Range:"
 msgstr "Zasięg:"
 
@@ -921,8 +921,8 @@ msgstr "+%(number)s"
 msgid "meters"
 msgstr "metrów"
 
-#: gui/common/tooltips.js:261 gui/common/tooltips.js:651
-#: gui/common/tooltips.js:681
+#: gui/common/tooltips.js:261 gui/common/tooltips.js:650
+#: gui/common/tooltips.js:680
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] "metr"
@@ -955,7 +955,7 @@ msgstr "Limit garnizonu"
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
-#: gui/common/tooltips.js:312 gui/common/tooltips.js:643
+#: gui/common/tooltips.js:312 gui/common/tooltips.js:642
 msgid "Heal:"
 msgstr "Ulecz:"
 
@@ -1055,34 +1055,34 @@ msgstr "%(label)s %(populationBonus)s"
 msgid "Population Bonus:"
 msgstr "Bonus populacyjny:"
 
-#: gui/common/tooltips.js:601
+#: gui/common/tooltips.js:600
 msgid "Insufficient resources:"
 msgstr "Niewystarczająca ilość zasobów:"
 
-#: gui/common/tooltips.js:617
+#: gui/common/tooltips.js:616
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:618
+#: gui/common/tooltips.js:617
 msgid "Speed:"
 msgstr "Szybkość:"
 
-#: gui/common/tooltips.js:620 gui/common/tooltips.js:625
+#: gui/common/tooltips.js:619 gui/common/tooltips.js:624
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:622
+#: gui/common/tooltips.js:621
 msgid "Walk"
 msgstr "Chód"
 
-#: gui/common/tooltips.js:627
+#: gui/common/tooltips.js:626
 msgid "Run"
 msgstr "Bieg"
 
-#: gui/common/tooltips.js:642 gui/common/tooltips.js:648
-#: gui/common/tooltips.js:653 gui/common/tooltips.js:678
+#: gui/common/tooltips.js:641 gui/common/tooltips.js:647
+#: gui/common/tooltips.js:652 gui/common/tooltips.js:677
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
@@ -1093,7 +1093,7 @@ msgstr[3] "%(label)s %(val)s %(unit)s"
 
 #. Translation: Short for hit points (or health points) that are healed in one
 #. healing action
-#: gui/common/tooltips.js:646
+#: gui/common/tooltips.js:645
 msgid "HP"
 msgid_plural "HP"
 msgstr[0] "PZ"
@@ -1101,45 +1101,45 @@ msgstr[1] "PZ"
 msgstr[2] "PZ"
 msgstr[3] "PZ"
 
-#: gui/common/tooltips.js:670
+#: gui/common/tooltips.js:669
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:671
+#: gui/common/tooltips.js:670
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s:"
 
-#: gui/common/tooltips.js:679
+#: gui/common/tooltips.js:678
 msgctxt "aura"
 msgid "Range:"
 msgstr "Zasięg:"
 
-#: gui/common/tooltips.js:696
+#: gui/common/tooltips.js:695
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
 #. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian
 #. Marine)[/font]"
-#: gui/common/tooltips.js:708
+#: gui/common/tooltips.js:707
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
-#: gui/common/tooltips.js:723
+#: gui/common/tooltips.js:722
 msgid "Classes:"
 msgstr "Klasy:"
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the value.
-#: gui/common/tooltips.js:750
+#: gui/common/tooltips.js:749
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr "%(component)s %(loot)s"
 
-#: gui/common/tooltips.js:760
+#: gui/common/tooltips.js:759
 msgid "Loot:"
 msgstr "Łup:"
 
@@ -1148,7 +1148,7 @@ msgstr "Łup:"
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s "
 
-#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:157
+#: gui/msgbox/msgbox.js:25 gui/pregame/mainmenu.js:156
 #: gui/splashscreen/splashscreen.xml:(caption):29
 msgid "OK"
 msgstr "OK"
@@ -1239,61 +1239,61 @@ msgstr "Status: %(status)s."
 #: gui/pregame/mainmenu.js:146
 #, javascript-format
 msgid ""
-"%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
-"(fixed function) graphics. This option will be removed in a future 0 A.D. "
-"release, to allow for more advanced graphics features. We advise upgrading "
-"your graphics card to a more recent, shader-compatible model."
-msgstr "%(startWarning)sOstrzeżenie:%(endWarning)s Zdaje się że używasz grafiki bez shaderów (fixed function). Ta opcja zostanie usunięta w przyszłej wersji 0 A.D., dając możliwość używania bardziej zaawansowanych funkcjonalności. Polecamy wymianę Twojej karty graficznej na nowszy model, wspierający programy cieniujące."
+"%(warning)s You appear to be using non-shader (fixed function) graphics. "
+"This option will be removed in a future 0 A.D. release, to allow for more "
+"advanced graphics features. We advise upgrading your graphics card to a more"
+" recent, shader-compatible model."
+msgstr ""
 
 #. Translation: This is the second paragraph of a warning. The
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:155
+#: gui/pregame/mainmenu.js:154
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "Kliknij \"Czytaj więcej\" aby uzyskać więcej informacji lub \"OK\" aby kontynuować."
 
-#: gui/pregame/mainmenu.js:156
+#: gui/pregame/mainmenu.js:155
 msgid "WARNING!"
 msgstr "UWAGA!"
 
-#: gui/pregame/mainmenu.js:157
+#: gui/pregame/mainmenu.js:156
 msgid "Read More"
 msgstr "Czytaj więcej"
 
-#: gui/pregame/mainmenu.js:239
+#: gui/pregame/mainmenu.js:238
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Kompilacja: %(buildDate)s (%(revision)s)"
 
-#: gui/pregame/mainmenu.js:251
+#: gui/pregame/mainmenu.js:250
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Czy na pewno chcesz wyjść z 0 A.D.?"
 
-#: gui/pregame/mainmenu.js:252 gui/summary/summary.js:390
+#: gui/pregame/mainmenu.js:251 gui/summary/summary.js:390
 msgid "Confirmation"
 msgstr "Potwierdzenie"
 
-#: gui/pregame/mainmenu.js:267
+#: gui/pregame/mainmenu.js:266
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "Edytor scenariusza jest niedostępny lub nie mógł zostać załadowany. Sprawdź logi gry aby znaleźć dodatkowe informacje."
 
-#: gui/pregame/mainmenu.js:268 gui/replaymenu/replay_actions.js:120
+#: gui/pregame/mainmenu.js:267 gui/replaymenu/replay_actions.js:120
 msgid "Error"
 msgstr "Błąd"
 
-#: gui/pregame/mainmenu.js:274
+#: gui/pregame/mainmenu.js:273
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "Uruchom poczekalnię trybu wieloosobowego. [WYŁĄCZONE W DANEJ WERSJI]"
 
-#: gui/pregame/mainmenu.js:279 gui/pregame/mainmenu.xml:(caption):68
+#: gui/pregame/mainmenu.js:278 gui/pregame/mainmenu.xml:(caption):68
 #: gui/pregame/mainmenu.xml:(caption):95
 msgid "Technical Details"
 msgstr "Szczegóły techniczne"
 
-#: gui/pregame/mainmenu.js:284 gui/pregame/mainmenu.xml:(caption):146
+#: gui/pregame/mainmenu.js:283 gui/pregame/mainmenu.xml:(caption):146
 msgid "Manual"
 msgstr "Poradnik"
 
@@ -1630,7 +1630,7 @@ msgstr "Kontrola mapy (podgląd)"
 msgid "Map control (finish)"
 msgstr "Kontrola mapy (koniec)"
 
-#: gui/summary/layout.js:353
+#: gui/summary/layout.js:355
 msgid "Team total"
 msgstr "Łącznie drużynowo"
 
@@ -2546,177 +2546,185 @@ msgid "Prefer GLSL"
 msgstr "Wybierz GLSL"
 
 #: gui/options/options.json[1].options[1].tooltip
+msgid "Enable Fog"
+msgstr ""
+
+#: gui/options/options.json[1].options[1].label
+msgid "Fog"
+msgstr ""
+
+#: gui/options/options.json[1].options[2].tooltip
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
 msgstr "Używaj filtrów postprocessingu (HDR, rozmycie, głębia ostrości, itd.)"
 
-#: gui/options/options.json[1].options[1].label
+#: gui/options/options.json[1].options[2].label
 msgid "Post Processing"
 msgstr "Postprocessing"
 
-#: gui/options/options.json[1].options[2].tooltip
+#: gui/options/options.json[1].options[3].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
 msgstr "Liczba efektów shadera. WYMAGA PONOWNEGO URUCHOMIENIA GRY."
 
-#: gui/options/options.json[1].options[2].label
+#: gui/options/options.json[1].options[3].label
 msgid "Shader Effects"
 msgstr "Efekty shadera"
 
-#: gui/options/options.json[1].options[3].tooltip
+#: gui/options/options.json[1].options[4].tooltip
 msgid "Enable shadows"
 msgstr "Włącz cienie"
 
-#: gui/options/options.json[1].options[3].label
+#: gui/options/options.json[1].options[4].label
 msgid "Shadows"
 msgstr "Cienie"
 
-#: gui/options/options.json[1].options[4].list[0].label
+#: gui/options/options.json[1].options[5].list[0].label
 msgid "Very Low"
 msgstr "Bardzo niskie"
 
-#: gui/options/options.json[1].options[4].list[1].label
+#: gui/options/options.json[1].options[5].list[1].label
 msgid "Low"
 msgstr "Niskie"
 
-#: gui/options/options.json[1].options[4].list[2].label
+#: gui/options/options.json[1].options[5].list[2].label
 #: gui/options/options.json[3].options[2].list[3].label
 msgid "Medium"
 msgstr "Średni"
 
-#: gui/options/options.json[1].options[4].list[3].label
+#: gui/options/options.json[1].options[5].list[3].label
 msgid "High"
 msgstr "Wysokie"
 
-#: gui/options/options.json[1].options[4].list[4].label
+#: gui/options/options.json[1].options[5].list[4].label
 msgid "Very High"
 msgstr "Bardzo wysokie"
 
-#: gui/options/options.json[1].options[4].tooltip
+#: gui/options/options.json[1].options[5].tooltip
 msgid ""
 "Shadow map resolution. High values can crash the game when using a graphics "
 "card with low memory!"
 msgstr "Rozdzielczość cieni na mapie.  Wysokie wartości mogą spowodować awarię gry, gdy używana jest karta graficzna z małą ilością pamięci!"
 
-#: gui/options/options.json[1].options[4].label
+#: gui/options/options.json[1].options[5].label
 msgid "Shadow Quality"
 msgstr "Jakość cieni"
 
-#: gui/options/options.json[1].options[5].tooltip
+#: gui/options/options.json[1].options[6].tooltip
 msgid "Smooth shadows"
 msgstr "Wygładzone cienie"
 
-#: gui/options/options.json[1].options[5].label
+#: gui/options/options.json[1].options[6].label
 msgid "Shadow Filtering"
 msgstr "Filtrowanie cieni"
 
-#: gui/options/options.json[1].options[6].tooltip
+#: gui/options/options.json[1].options[7].tooltip
 msgid "Show outlines of units behind buildings"
 msgstr "Pokazuj zarys jednostek znajdujących się za budynkami"
 
-#: gui/options/options.json[1].options[6].label
+#: gui/options/options.json[1].options[7].label
 msgid "Unit Silhouettes"
 msgstr "Zarys jednostek"
 
-#: gui/options/options.json[1].options[7].tooltip
+#: gui/options/options.json[1].options[8].tooltip
 msgid "Enable particles"
 msgstr "Włącz efekty cząsteczkowe"
 
-#: gui/options/options.json[1].options[7].label
+#: gui/options/options.json[1].options[8].label
 msgid "Particles"
 msgstr "Efekty cząsteczkowe"
 
-#: gui/options/options.json[1].options[8].tooltip
+#: gui/options/options.json[1].options[9].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
 msgstr "Kiedy wskaźnik jest na OFF, użyj najniżych możliwych opcji renderowania wody. Włączenie tej opcji zmniejsza istotność pozostałych opcji."
 
-#: gui/options/options.json[1].options[8].label
+#: gui/options/options.json[1].options[9].label
 msgid "Water Effects"
 msgstr "Efekty wody"
 
-#: gui/options/options.json[1].options[9].tooltip
+#: gui/options/options.json[1].options[10].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "Włącz efekty wody wyższej jakości z falami na brzegach, zburzoną wodą oraz śladami płynięcia okrętów."
 
-#: gui/options/options.json[1].options[9].label
+#: gui/options/options.json[1].options[10].label
 msgid "HQ Water Effects"
 msgstr "Woda wysokiej jakości"
 
-#: gui/options/options.json[1].options[10].tooltip
+#: gui/options/options.json[1].options[11].tooltip
 msgid "Use actual water depth in rendering calculations"
 msgstr "Użyj rzeczywistej głębokości wody w obliczeniach podczas renderowania."
 
-#: gui/options/options.json[1].options[10].label
+#: gui/options/options.json[1].options[11].label
 msgid "Real Water Depth"
 msgstr "Realistyczna głębokość wody"
 
-#: gui/options/options.json[1].options[11].tooltip
+#: gui/options/options.json[1].options[12].tooltip
 msgid "Allow water to reflect a mirror image"
 msgstr "Zezwalaj na lustrzane odbicia na powierzchni wody"
 
-#: gui/options/options.json[1].options[11].label
+#: gui/options/options.json[1].options[12].label
 msgid "Water Reflections"
 msgstr "Odbicia na wodzie"
 
-#: gui/options/options.json[1].options[12].tooltip
+#: gui/options/options.json[1].options[13].tooltip
 msgid "Use a real water refraction map and not transparency"
 msgstr "Użyj rzeczywistego modelu refrakcji wody zamiast przezroczystości."
 
-#: gui/options/options.json[1].options[12].label
+#: gui/options/options.json[1].options[13].label
 msgid "Water Refraction"
 msgstr "Załamania na wodzie"
 
-#: gui/options/options.json[1].options[13].tooltip
+#: gui/options/options.json[1].options[14].tooltip
 msgid "Cast shadows on water"
 msgstr "Rzucaj cienie na wodzie"
 
-#: gui/options/options.json[1].options[13].label
+#: gui/options/options.json[1].options[14].label
 msgid "Shadows on Water"
 msgstr "Cienie na wodzie"
 
-#: gui/options/options.json[1].options[14].tooltip
+#: gui/options/options.json[1].options[15].tooltip
 msgid "Lift darkness and fog-of-war smoothly"
 msgstr "Płynnie odkrywaj ciemność i mgłę wojny"
 
-#: gui/options/options.json[1].options[14].label
+#: gui/options/options.json[1].options[15].label
 msgid "Smooth LOS"
 msgstr "Płynna krawędź obszaru zasięgu widzenia"
 
-#: gui/options/options.json[1].options[15].tooltip
+#: gui/options/options.json[1].options[16].tooltip
 msgid "Render Sky"
 msgstr "Renderuj niebo"
 
-#: gui/options/options.json[1].options[15].label
+#: gui/options/options.json[1].options[16].label
 msgid "Show Sky"
 msgstr "Pokazuj niebo"
 
-#: gui/options/options.json[1].options[16].tooltip
+#: gui/options/options.json[1].options[17].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "Włącz synchronizację pionową, aby naprawić załamania ekranu. WYMAGA PONOWNEGO URUCHOMIENIA"
 
-#: gui/options/options.json[1].options[16].label
+#: gui/options/options.json[1].options[17].label
 msgid "VSync"
 msgstr "Synchronizacja pionowa"
 
-#: gui/options/options.json[1].options[17].tooltip
+#: gui/options/options.json[1].options[18].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr "Aby oszczędzić pracy CPU, zdław częstotliwość renderowania we wszystkich menu. Ustaw maksimum aby wyłączyć dławienie."
 
-#: gui/options/options.json[1].options[17].label
+#: gui/options/options.json[1].options[18].label
 msgid "FPS Throttling in Menus"
 msgstr "Dławienie FPS w menu"
 
-#: gui/options/options.json[1].options[18].tooltip
+#: gui/options/options.json[1].options[19].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
 msgstr "Aby zmniejszyć obciążenie procesora, zmniejsz częstotliwość renderowania we wszystkich uruchomionych grach. Ustaw na maksimum, aby wyłączyć dławienie."
 
-#: gui/options/options.json[1].options[18].label
+#: gui/options/options.json[1].options[19].label
 msgid "FPS Throttling in Games"
 msgstr "Dławienie FPS w grze"
 
