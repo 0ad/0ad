@@ -129,8 +129,7 @@ AddMock(100, IID_TechnologyManager, {
 	"GetStartedTechs": () => new Set(),
 	"GetResearchedTechs": () => new Set(),
 	"GetClassCounts": () => ({}),
-	"GetTypeCountsByClass": () => ({}),
-	"GetTechModifications": () => ({})
+	"GetTypeCountsByClass": () => ({})
 });
 
 AddMock(100, IID_StatisticsTracker, {
@@ -215,8 +214,7 @@ AddMock(101, IID_TechnologyManager, {
 	"GetStartedTechs": () => new Set(),
 	"GetResearchedTechs": () => new Set(),
 	"GetClassCounts": () => ({}),
-	"GetTypeCountsByClass": () => ({}),
-	"GetTechModifications": () => ({})
+	"GetTypeCountsByClass": () => ({})
 });
 
 AddMock(101, IID_StatisticsTracker, {

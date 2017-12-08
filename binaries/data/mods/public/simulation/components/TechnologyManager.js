@@ -465,12 +465,6 @@ TechnologyManager.prototype.GetResearcher = function(tech)
 	return this.researchQueued.get(tech)
 };
 
-// Get helper data for tech modifications
-TechnologyManager.prototype.GetTechModifications = function()
-{
-	return this.modifications;
-};
-
 /**
  * Called by GUIInterface for PlayerData. AI use.
  */
