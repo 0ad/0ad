@@ -20,7 +20,9 @@ TechnologyManager.prototype.Serialize = function()
 
 TechnologyManager.prototype.Init = function()
 {
-	this.researchedTechs = {}; // technologies which have been researched
+	// Holds names of technologies which have been researched
+	this.researchedTechs = new Set();
+
 	this.researchQueued = {};  // technologies which are queued for research
 	this.researchStarted = {}; // technologies which are being researched currently (non-queued)
 
@@ -94,7 +96,7 @@ TechnologyManager.prototype.IsTechnologyQueued = function(tech)
 
 TechnologyManager.prototype.IsTechnologyResearched = function(tech)
 {
-	return this.researchedTechs[tech] !== undefined;
+	return this.researchedTechs.has(tech);
 };
 
 TechnologyManager.prototype.IsTechnologyStarted = function(tech)
@@ -274,7 +276,7 @@ TechnologyManager.prototype.ResearchTechnology = function(tech)
 	}
 
 	var modifiedComponents = {};
-	this.researchedTechs[tech] = template;
+	this.researchedTechs.add(tech);
 	// store the modifications in an easy to access structure
 	if (template.modifications)
 	{
@@ -300,8 +302,7 @@ TechnologyManager.prototype.ResearchTechnology = function(tech)
 			if (!i || this.IsTechnologyResearched(i))
 				continue;
 
-			var template = this.GetTechnologyTemplate(i);
-			this.researchedTechs[i] = template;
+			this.researchedTechs.add(i);
 
 			// Change the EntityLimit if any
 			let cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
@@ -467,10 +468,15 @@ TechnologyManager.prototype.GetQueuedResearch = function()
 {
 	return this.researchQueued;
 };
+
+/**
+ * Returns the names of technologies that have already been researched.
+ */
 TechnologyManager.prototype.GetResearchedTechs = function()
 {
 	return this.researchedTechs;
 };
+
 TechnologyManager.prototype.GetClassCounts = function()
 {
 	return this.classCounts;

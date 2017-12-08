@@ -219,7 +219,7 @@ m.GameState.prototype.getPhaseEntityRequirements = function(i)
 
 m.GameState.prototype.isResearched = function(template)
 {
-	return this.playerData.researchedTechs[template] !== undefined;
+	return this.playerData.researchedTechs.has(template);
 };
 
 /** true if started or queued */
@@ -242,7 +242,7 @@ m.GameState.prototype.canResearch = function(techTemplateName, noRequirementChec
 	// researching or already researched: NOO.
 	if (this.playerData.researchQueued[techTemplateName] ||
 	    this.playerData.researchStarted[techTemplateName] ||
-	    this.playerData.researchedTechs[techTemplateName])
+	    this.playerData.researchedTechs.has(techTemplateName))
 		return false;
 
 	if (noRequirementCheck)
@@ -254,7 +254,7 @@ m.GameState.prototype.canResearch = function(techTemplateName, noRequirementChec
 		let other = template.pairedWith();
 		if (this.playerData.researchQueued[other] ||
 		    this.playerData.researchStarted[other] ||
-		    this.playerData.researchedTechs[other])
+		    this.playerData.researchedTechs.has(other))
 			return false;
 	}
 
@@ -296,7 +296,7 @@ m.GameState.prototype.checkTechRequirements = function(reqs)
 			switch (type)
 			{
 			case "techs":
-				return req[type].every(tech => !!this.playerData.researchedTechs[tech]);
+				return req[type].every(tech => this.playerData.researchedTechs.has(tech));
 
 			case "entities":
 				return req[type].every(doesEntitySpecPass, this);
