@@ -124,6 +124,15 @@ Attack.prototype.Schema =
 				"<optional>"+
 					"<element name='ElevationBonus' a:help='give an elevation advantage (in meters)'><ref name='nonNegativeDecimal'/></element>" +
 				"</optional>" +
+				"<optional>" +
+					"<element name='RangeOverlay'>" +
+						"<interleave>" +
+							"<element name='LineTexture'><text/></element>" +
+							"<element name='LineTextureMask'><text/></element>" +
+							"<element name='LineThickness'><ref name='nonNegativeDecimal'/></element>" +
+						"</interleave>" +
+					"</element>" +
+				"</optional>" +
 				"<element name='PrepareTime' a:help='Time from the start of the attack command until the attack actually occurs (in milliseconds). This value relative to RepeatTime should closely match the \"event\" point in the actor&apos;s attack animation'>" +
 					"<data type='nonNegativeInteger'/>" +
 				"</element>" +
@@ -606,6 +615,24 @@ Attack.prototype.OnValueModification = function(msg)
 	if (this.GetAttackTypes().some(type =>
 	      msg.valueNames.indexOf("Attack/" + type + "/MaxRange") != -1))
 		cmpUnitAI.UpdateRangeQueries();
+};
+
+Attack.prototype.GetRangeOverlays = function()
+{
+	if (!this.template.Ranged || !this.template.Ranged.RangeOverlay)
+		return [];
+
+	let range = this.GetRange("Ranged");
+	let rangeOverlays = [];
+	for (let i in range)
+		if ((i == "min" || i == "max") && range[i])
+			rangeOverlays.push({
+				"radius": range[i],
+				"texture": this.template.Ranged.RangeOverlay.LineTexture,
+				"textureMask": this.template.Ranged.RangeOverlay.LineTextureMask,
+				"thickness": +this.template.Ranged.RangeOverlay.LineThickness,
+			});
+	return rangeOverlays;
 };
 
 Engine.RegisterComponentType(IID_Attack, "Attack", Attack);

@@ -97,6 +97,10 @@
 		<action on="Press">clearSelection();</action>
 	</object>
 
+	<object hotkey="session.toggleattackrange">
+		<action on="Press">toggleRangeOverlay("Attack");</action>
+	</object>
+
 	<object hotkey="session.toggleaurarange">
 		<action on="Press">toggleRangeOverlay("Aura");</action>
 	</object>
@@ -111,5 +115,4 @@
 			recalculateStatusBarDisplay();
 		</action>
 	</object>
-
 </object>

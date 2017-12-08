@@ -6,6 +6,7 @@ RangeVisualization.prototype.Init = function()
 {
 	this.enabled = false;
 	this.enabledRangeTypes = {
+		"Attack": false,
 		"Aura": false,
 		"Heal": false
 	};
@@ -19,6 +20,13 @@ RangeVisualization.prototype.Serialize = null;
 RangeVisualization.prototype.Deserialize = function(data)
 {
 	this.Init();
+};
+
+RangeVisualization.prototype.UpdateVisualAttackRanges = function()
+{
+	let cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+	if (cmpAttack)
+		this.rangeVisualizations.set("Attack", cmpAttack.GetRangeOverlays());
 };
 
 RangeVisualization.prototype.UpdateVisualAuraRanges = function()
@@ -93,7 +101,9 @@ RangeVisualization.prototype.OnOwnershipChanged = function(msg)
 
 RangeVisualization.prototype.OnValueModification = function(msg)
 {
-	if (msg.valueNames.indexOf("Heal/Range") == -1)
+	if (msg.valueNames.indexOf("Heal/Range") == -1 &&
+	    msg.valueNames.indexOf("Attack/Ranged/MinRange") == -1 &&
+	    msg.valueNames.indexOf("Attack/Ranged/MaxRange") == -1)
 		return;
 
 	this["UpdateVisual" + msg.component + "Ranges"]();

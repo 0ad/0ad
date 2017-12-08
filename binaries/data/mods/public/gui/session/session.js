@@ -798,7 +798,7 @@ function onSimulationUpdate()
 	handleNotifications();
 	updateGUIObjects();
 
-	for (let type of ["Aura", "Heal"])
+	for (let type of ["Attack", "Aura", "Heal"])
 		Engine.GuiInterfaceCall("EnableVisualRangeOverlayType", {
 			"type": type,
 			"enabled": Engine.ConfigDB_GetValue("user", "gui.session." + type.toLowerCase() + "range") == "true"
