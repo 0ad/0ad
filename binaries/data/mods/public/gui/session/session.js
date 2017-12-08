@@ -286,21 +286,11 @@ function init(initData, hotloadData)
 	for (let slot in Engine.GetGUIObjectByName("panelEntityPanel").children)
 		initPanelEntities(slot);
 
-	// Populate player selection dropdown
-	let playerNames = [translate("Observer")];
-	let playerIDs = [-1];
-	for (let player in g_Players)
-	{
-		playerIDs.push(player);
-		playerNames.push(colorizePlayernameHelper("■", player) + " " + g_Players[player].name);
-	}
+	updateViewedPlayerDropdown();
 
-	// Select "observer" item when rejoining as a defeated player
-	let viewedPlayer = g_Players[Engine.GetPlayerID()];
-	let viewPlayerDropdown = Engine.GetGUIObjectByName("viewPlayer");
-	viewPlayerDropdown.list = playerNames;
-	viewPlayerDropdown.list_data = playerIDs;
-	viewPlayerDropdown.selected = viewedPlayer && viewedPlayer.state == "defeated" ? 0 : Engine.GetPlayerID() + 1;
+	// Select "observer" in the view player dropdown when rejoining as a defeated player
+	let player = g_Players[Engine.GetPlayerID()];
+	Engine.GetGUIObjectByName("viewPlayer").selected = player && player.state == "defeated" ? 0 : Engine.GetPlayerID() + 1;
 
 	// If in Atlas editor, disable the exit button
 	if (Engine.IsAtlasRunning())
@@ -448,6 +438,15 @@ function initializeMusic()
 		global.music.storeTracks(g_CivData[g_Players[g_ViewedPlayer].civ].Music);
 	global.music.setState(global.music.states.PEACE);
 	playAmbient();
+}
+
+function updateViewedPlayerDropdown()
+{
+	let viewPlayer = Engine.GetGUIObjectByName("viewPlayer");
+	viewPlayer.list_data = [-1].concat(g_Players.map((player, i) => i));
+	viewPlayer.list = [translate("Observer")].concat(g_Players.map(
+		(player, i) => colorizePlayernameHelper("■", i) + " " + player.name
+	));
 }
 
 function toggleChangePerspective(enabled)
