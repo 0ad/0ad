@@ -24,7 +24,9 @@ TechnologyManager.prototype.Init = function()
 	this.researchedTechs = new Set();
 
 	this.researchQueued = {};  // technologies which are queued for research
-	this.researchStarted = {}; // technologies which are being researched currently (non-queued)
+
+	// technologies which are being researched currently (non-queued)
+	this.researchStarted = new Set();
 
 	// This stores the modifications to unit stats from researched technologies
 	// Example data: {"ResourceGatherer/Rates/food.grain": [
@@ -101,7 +103,7 @@ TechnologyManager.prototype.IsTechnologyResearched = function(tech)
 
 TechnologyManager.prototype.IsTechnologyStarted = function(tech)
 {
-	return this.researchStarted[tech] !== undefined;
+	return this.researchStarted.has(tech);
 };
 
 // Checks the requirements for a technology to see if it can be researched at the current time
@@ -400,7 +402,7 @@ TechnologyManager.prototype.QueuedResearch = function(tech, researcher)
 // Marks a technology as actively being researched
 TechnologyManager.prototype.StartedResearch = function(tech, notification)
 {
-	this.researchStarted[tech] = true;
+	this.researchStarted.add(tech);
 
 	if (notification && tech.startsWith("phase"))
 	{
@@ -418,7 +420,7 @@ TechnologyManager.prototype.StartedResearch = function(tech, notification)
 // Marks a technology as not being currently researched
 TechnologyManager.prototype.StoppedResearch = function(tech, notification)
 {
-	if (notification && tech.startsWith("phase") && this.researchStarted[tech])
+	if (notification && tech.startsWith("phase") && this.researchStarted.has(tech))
 	{
 		let cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
 		let cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
@@ -431,7 +433,7 @@ TechnologyManager.prototype.StoppedResearch = function(tech, notification)
 	}
 
 	delete this.researchQueued[tech];
-	delete this.researchStarted[tech];
+	this.researchStarted.delete(tech);
 };
 
 // Checks whether a technology is set to be researched
@@ -443,7 +445,9 @@ TechnologyManager.prototype.IsInProgress = function(tech)
 		return false;
 };
 
-// Get all techs that are currently being researched
+/**
+ * Returns the names of technologies that are currently being researched (non-queued).
+ */
 TechnologyManager.prototype.GetStartedTechs = function()
 {
 	return this.researchStarted;

@@ -704,7 +704,7 @@ GuiInterface.prototype.GetStartedResearch = function(player)
 		return {};
 
 	let ret = {};
-	for (let tech in cmpTechnologyManager.GetStartedTechs())
+	for (let tech of cmpTechnologyManager.GetStartedTechs())
 	{
 		ret[tech] = { "researcher": cmpTechnologyManager.GetResearcher(tech) };
 		let cmpProductionQueue = Engine.QueryInterface(ret[tech].researcher, IID_ProductionQueue);

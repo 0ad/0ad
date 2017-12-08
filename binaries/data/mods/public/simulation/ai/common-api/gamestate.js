@@ -225,7 +225,7 @@ m.GameState.prototype.isResearched = function(template)
 /** true if started or queued */
 m.GameState.prototype.isResearching = function(template)
 {
-	return this.playerData.researchStarted[template] !== undefined ||
+	return this.playerData.researchStarted.has(template) ||
 	       this.playerData.researchQueued[template] !== undefined;
 };
 
@@ -241,7 +241,7 @@ m.GameState.prototype.canResearch = function(techTemplateName, noRequirementChec
 
 	// researching or already researched: NOO.
 	if (this.playerData.researchQueued[techTemplateName] ||
-	    this.playerData.researchStarted[techTemplateName] ||
+	    this.playerData.researchStarted.has(techTemplateName) ||
 	    this.playerData.researchedTechs.has(techTemplateName))
 		return false;
 
@@ -253,7 +253,7 @@ m.GameState.prototype.canResearch = function(techTemplateName, noRequirementChec
 	{
 		let other = template.pairedWith();
 		if (this.playerData.researchQueued[other] ||
-		    this.playerData.researchStarted[other] ||
+		    this.playerData.researchStarted.has(other) ||
 		    this.playerData.researchedTechs.has(other))
 			return false;
 	}
