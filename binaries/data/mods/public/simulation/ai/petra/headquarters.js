@@ -1540,11 +1540,12 @@ m.HQ.prototype.manageCorral = function(gameState, queues)
 	}
 
 	// And train some animals
+	let civ = gameState.getPlayerCiv();
 	for (let corral of gameState.getOwnEntitiesByClass("Corral", true).values())
 	{
 		if (corral.foundationProgress() !== undefined)
 			continue;
-		let trainables = corral.trainableEntities();
+		let trainables = corral.trainableEntities(civ);
 		for (let trainable of trainables)
 		{
 			if (gameState.isTemplateDisabled(trainable))
@@ -1880,7 +1881,8 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 			let template = gameState.getTemplate(advanced);
 			if (!template)
 				continue;
-			if (template.hasDefensiveFire() || template.trainableEntities())
+			let civ = gameState.getPlayerCiv();
+			if (template.hasDefensiveFire() || template.trainableEntities(civ))
 				queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, advanced, { "militaryBase": true }));
 			else	// not a military building, but still use this queue
 				queues.militaryBuilding.addPlan(new m.ConstructionPlan(gameState, advanced));

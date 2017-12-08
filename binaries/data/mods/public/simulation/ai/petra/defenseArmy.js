@@ -411,7 +411,7 @@ m.DefenseArmy.prototype.needsDefenders = function(gameState)
 		for (let p = 1; p < gameState.sharedScript.playersData.length; ++p)
 			if (p != territoryOwner && gameState.sharedScript.playersData[p].isAlly[territoryOwner])
 				++numExclusiveAllies;
-		defenseRatio /= (1 + 0.5*Math.max(0, numExclusiveAllies-1));
+		defenseRatio /= 1 + 0.5*Math.max(0, numExclusiveAllies-1);
 	}
 	else
 		defenseRatio = this.Config.Defense.defenseRatio.neutral;

@@ -5,13 +5,13 @@ Builder.prototype.Schema =
 	"<a:example>" +
 		"<Rate>1.0</Rate>" +
 		"<Entities datatype='tokens'>" +
-			"\n    structures/{civ}_barracks\n    structures/{civ}_civil_centre\n    structures/pers_apadana\n  " +
+			"\n    structures/{civ}_barracks\n    structures/{native}_civil_centre\n    structures/pers_apadana\n  " +
 		"</Entities>" +
 	"</a:example>" +
 	"<element name='Rate' a:help='Construction speed multiplier (1.0 is normal speed, higher values are faster).'>" +
 		"<ref name='positiveDecimal'/>" +
 	"</element>" +
-	"<element name='Entities' a:help='Space-separated list of entity template names that this unit can build. The special string \"{civ}\" will be automatically replaced by the civ code of the unit&apos;s owner. This element can also be empty, in which case no new foundations may be placed by the unit, but they can still repair existing buildings.'>" +
+	"<element name='Entities' a:help='Space-separated list of entity template names that this unit can build. The special string \"{civ}\" will be automatically replaced by the civ code of the unit&apos;s owner, while the string \"{native}\" will be automatically replaced by the unit&apos;s civ code. This element can also be empty, in which case no new foundations may be placed by the unit, but they can still repair existing buildings.'>" +
 		"<attribute name='datatype'>" +
 			"<value>tokens</value>" +
 		"</attribute>" +
@@ -33,6 +33,10 @@ Builder.prototype.GetEntitiesList = function()
 	let cmpPlayer = QueryOwnerInterface(this.entity);
 	if (!cmpPlayer)
 		return [];
+
+	let cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
+	if (cmpIdentity)
+		string = string.replace(/\{native\}/g, cmpIdentity.GetCiv());
 
 	let entities = string.replace(/\{civ\}/g, cmpPlayer.GetCiv()).split(/\s+/);
 

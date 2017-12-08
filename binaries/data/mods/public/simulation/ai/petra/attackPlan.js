@@ -295,7 +295,7 @@ m.AttackPlan.prototype.mustStart = function()
 	if (MaxReachedEverywhere)
 		return true;
 	if (MinReachedEverywhere)
-		return this.type == "Raid" && this.target && this.target.foundationProgress() && 
+		return this.type == "Raid" && this.target && this.target.foundationProgress() &&
 		                                             this.target.foundationProgress() > 50;
 	return false;
 };
@@ -336,12 +336,12 @@ m.AttackPlan.prototype.addSiegeUnits = function(gameState)
 	if (this.siegeState == 2 || this.state !== "unexecuted")
 		return false;
 
-	let playerCiv = gameState.getPlayerCiv();
+	let civ = gameState.getPlayerCiv();
 	let classes = [[ "Siege", "Melee"], ["Siege", "Ranged"], ["Elephant", "Melee", "Champion"]];
 	let hasTrainer = [false, false, false];
 	for (let ent of gameState.getOwnTrainingFacilities().values())
 	{
-		let trainables = ent.trainableEntities(playerCiv);
+		let trainables = ent.trainableEntities(civ);
 		if (!trainables)
 			continue;
 		for (let trainable of trainables)

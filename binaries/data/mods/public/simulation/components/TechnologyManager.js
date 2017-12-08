@@ -40,13 +40,11 @@ TechnologyManager.prototype.Init = function()
 
 	// Some technologies are automatically researched when their conditions are met.  They have no cost and are
 	// researched instantly.  This allows civ bonuses and more complicated technologies.
-	this.autoResearchTech = {};
+	this.unresearchedAutoResearchTechs = new Set();
 	var allTechs = Engine.QueryInterface(SYSTEM_ENTITY, IID_DataTemplateManager).GetAllTechs();
 	for (var key in allTechs)
-	{
 		if (allTechs[key].autoResearch || allTechs[key].top)
-			this.autoResearchTech[key] = allTechs[key];
-	}
+			this.unresearchedAutoResearchTechs.add(key);
 };
 
 TechnologyManager.prototype.OnUpdate = function()
@@ -59,13 +57,13 @@ TechnologyManager.prototype.OnUpdate = function()
 TechnologyManager.prototype.UpdateAutoResearch = function()
 {
 	var cmpDataTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_DataTemplateManager);
-	for (var key in this.autoResearchTech)
+	for (let key of this.unresearchedAutoResearchTechs)
 	{
 		var tech = cmpDataTempMan.GetTechnologyTemplate(key);
 		if ((tech.autoResearch && this.CanResearch(key))
 			|| (tech.top && (this.IsTechnologyResearched(tech.top) || this.IsTechnologyResearched(tech.bottom))))
 		{
-			delete this.autoResearchTech[key];
+			this.unresearchedAutoResearchTechs.delete(key);
 			this.ResearchTechnology(key);
 			return; // We will have recursively handled any knock-on effects so can just return
 		}

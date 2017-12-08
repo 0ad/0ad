@@ -117,7 +117,7 @@ function loadUnit(templateName)
 			unit.production.units = [];
 			for (let build of template.ProductionQueue.Entities._string.split(" "))
 			{
-				build = build.replace("{civ}", g_SelectedCiv);
+				build = build.replace(/\{(civ|native)\}/g, g_SelectedCiv);
 				if (Engine.TemplateExists(build))
 					unit.production.units.push(build);
 			}
@@ -147,7 +147,7 @@ function loadUnit(templateName)
 		unit.builder = [];
 		for (let build of template.Builder.Entities._string.split(" "))
 		{
-			build = build.replace("{civ}", g_SelectedCiv);
+			build = build.replace(/\{(civ|native)\}/g, g_SelectedCiv);
 			if (Engine.TemplateExists(build))
 				unit.builder.push(build);
 		}
@@ -183,7 +183,7 @@ function loadStructure(templateName)
 		if (template.ProductionQueue.Entities && template.ProductionQueue.Entities._string)
 			for (let build of template.ProductionQueue.Entities._string.split(" "))
 			{
-				build = build.replace("{civ}", g_SelectedCiv);
+				build = build.replace(/\{(civ|native)\}/g, g_SelectedCiv);
 				if (Engine.TemplateExists(build))
 					structure.production.units.push(build);
 			}
