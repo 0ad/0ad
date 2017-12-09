@@ -124,13 +124,12 @@ AddMock(100, IID_EntityLimits, {
 });
 
 AddMock(100, IID_TechnologyManager, {
-	IsTechnologyResearched: function(tech) { if (tech == "phase_village") return true; else return false; },
-	GetQueuedResearch: function() { return {}; },
-	GetStartedTechs: function() { return {}; },
-	GetResearchedTechs: function() { return {}; },
-	GetClassCounts: function() { return {}; },
-	GetTypeCountsByClass: function() { return {}; },
-	GetTechModifications: function() { return {}; }
+	"IsTechnologyResearched": tech => tech == "phase_village",
+	"GetQueuedResearch": () => new Map(),
+	"GetStartedTechs": () => new Set(),
+	"GetResearchedTechs": () => new Set(),
+	"GetClassCounts": () => ({}),
+	"GetTypeCountsByClass": () => ({})
 });
 
 AddMock(100, IID_StatisticsTracker, {
@@ -210,13 +209,12 @@ AddMock(101, IID_EntityLimits, {
 });
 
 AddMock(101, IID_TechnologyManager, {
-		IsTechnologyResearched: function(tech) { if (tech == "phase_village") return true; else return false; },
-		GetQueuedResearch: function() { return {}; },
-		GetStartedTechs: function() { return {}; },
-		GetResearchedTechs: function() { return {}; },
-		GetClassCounts: function() { return {}; },
-		GetTypeCountsByClass: function() { return {}; },
-		GetTechModifications: function() { return {}; }
+	"IsTechnologyResearched": tech => tech == "phase_village",
+	"GetQueuedResearch": () => new Map(),
+	"GetStartedTechs": () => new Set(),
+	"GetResearchedTechs": () => new Set(),
+	"GetClassCounts": () => ({}),
+	"GetTypeCountsByClass": () => ({})
 });
 
 AddMock(101, IID_StatisticsTracker, {
@@ -295,9 +293,9 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			entityLimits: {"Foo": 10},
 			entityCounts: {"Foo": 5},
 			entityLimitChangers: {"Foo": {}},
-			researchQueued: {},
-			researchStarted: {},
-			researchedTechs: {},
+			researchQueued: new Map(),
+			researchStarted: new Set(),
+			researchedTechs: new Set(),
 			classCounts: {},
 			typeCountsByClass: {},
 			canBarter: false,
@@ -344,9 +342,9 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			entityLimits: {"Bar": 20},
 			entityCounts: {"Bar": 0},
 			entityLimitChangers: {"Bar": {}},
-			researchQueued: {},
-			researchStarted: {},
-			researchedTechs: {},
+			researchQueued: new Map(),
+			researchStarted: new Set(),
+			researchedTechs: new Set(),
 			classCounts: {},
 			typeCountsByClass: {},
 			canBarter: false,
@@ -402,9 +400,9 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 			"entityLimits": {"Foo": 10},
 			"entityCounts": {"Foo": 5},
 			"entityLimitChangers": {"Foo": {}},
-			"researchQueued": {},
-			"researchStarted": {},
-			"researchedTechs": {},
+			"researchQueued": new Map(),
+			"researchStarted": new Set(),
+			"researchedTechs": new Set(),
 			"classCounts": {},
 			"typeCountsByClass": {},
 			"canBarter": false,
@@ -474,9 +472,9 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 			"entityLimits": {"Bar": 20},
 			"entityCounts": {"Bar": 0},
 			"entityLimitChangers": {"Bar": {}},
-			"researchQueued": {},
-			"researchStarted": {},
-			"researchedTechs": {},
+			"researchQueued": new Map(),
+			"researchStarted": new Set(),
+			"researchedTechs": new Set(),
 			"classCounts": {},
 			"typeCountsByClass": {},
 			"canBarter": false,

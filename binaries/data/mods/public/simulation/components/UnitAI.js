@@ -4108,10 +4108,7 @@ UnitAI.prototype.FindNearbyResource = function(filter, target)
 	var owner = cmpOwnership.GetOwner();
 
 	// We accept resources owned by Gaia or any player
-	var players = [0];
-	var numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
-	for (var i = 1; i < numPlayers; ++i)
-		players.push(i);
+	var players = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetAllPlayers();
 
 	var range = 64; // TODO: what's a sensible number?
 

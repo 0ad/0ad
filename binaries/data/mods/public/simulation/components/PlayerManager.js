@@ -86,6 +86,17 @@ PlayerManager.prototype.GetNumPlayers = function()
 	return this.playerEntities.length;
 };
 
+/**
+ * Returns IDs of all players including gaia.
+ */
+PlayerManager.prototype.GetAllPlayers = function()
+{
+	let players = [];
+	for (let i = 0; i < this.playerEntities.length; ++i)
+		players.push(i);
+	return players;
+};
+
 PlayerManager.prototype.RemoveAllPlayers = function()
 {
 	// Destroy existing player entities

@@ -704,7 +704,7 @@ GuiInterface.prototype.GetStartedResearch = function(player)
 		return {};
 
 	let ret = {};
-	for (let tech in cmpTechnologyManager.GetStartedTechs())
+	for (let tech of cmpTechnologyManager.GetStartedTechs())
 	{
 		ret[tech] = { "researcher": cmpTechnologyManager.GetResearcher(tech) };
 		let cmpProductionQueue = Engine.QueryInterface(ret[tech].researcher, IID_ProductionQueue);
@@ -752,14 +752,12 @@ GuiInterface.prototype.AddTimeNotification = function(notification, duration = 1
 	notification.id = ++this.timeNotificationID;
 
 	// Let all players and observers receive the notification by default
-	if (notification.players == undefined)
+	if (!notification.players)
 	{
-		let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-		let numPlayers = cmpPlayerManager.GetNumPlayers();
-		notification.players = [-1];
-		for (let i = 1; i < numPlayers; ++i)
-			notification.players.push(i);
+		notification.players = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetAllPlayers();
+		notification.players[0] = -1;
 	}
+
 	this.timeNotifications.push(notification);
 	this.timeNotifications.sort((n1, n2) => n2.endTime - n1.endTime);
 

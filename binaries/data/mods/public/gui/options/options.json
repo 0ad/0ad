@@ -104,6 +104,12 @@
 			},
 			{
 				"type": "boolean",
+				"label": "Attack Range Visualization",
+				"tooltip": "Display the attack range of selected defensive structures (can also be toggled in-game with the hotkey).",
+				"config": "gui.session.attackrange"
+			},
+			{
+				"type": "boolean",
 				"label": "Aura Range Visualization",
 				"tooltip": "Display the range of auras of selected units and structures (can also be toggled in-game with the hotkey).",
 				"config": "gui.session.aurarange"

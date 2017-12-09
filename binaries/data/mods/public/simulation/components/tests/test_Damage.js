@@ -59,7 +59,7 @@ function Test_Generic()
 
 	AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
 		"GetPlayerByID": id => atkPlayerEntity,
-		"GetNumPlayers": () => 5
+		"GetAllPlayers": () => [0, 1, 2, 3, 4]
 	});
 
 	AddMock(SYSTEM_ENTITY, IID_ProjectileManager, {
@@ -344,7 +344,7 @@ function Test_MissileHit()
 
 	AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
 		"GetPlayerByID": id => id == 1 ? 10 : 11,
-		"GetNumPlayers": () => 2
+		"GetAllPlayers": () => [0, 1]
 	});
 
 	AddMock(SYSTEM_ENTITY, IID_ProjectileManager, {

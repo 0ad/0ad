@@ -72,17 +72,10 @@ Damage.prototype.TestCollision = function(ent, point, lateness)
  */
 Damage.prototype.GetPlayersToDamage = function(attackerOwner, friendlyFire)
 {
-	let cmpPlayer = QueryPlayerIDInterface(attackerOwner);
-
 	if (!friendlyFire)
-		return cmpPlayer.GetEnemies();
+		return QueryPlayerIDInterface(attackerOwner).GetEnemies();
 
-	let playersToDamage = [];
-	let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
-	for (let i = 0; i < numPlayers; ++i)
-		playersToDamage.push(i);
-
-	return playersToDamage;
+	return Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetAllPlayers();
 };
 
 /**

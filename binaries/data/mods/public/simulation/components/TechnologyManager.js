@@ -20,9 +20,14 @@ TechnologyManager.prototype.Serialize = function()
 
 TechnologyManager.prototype.Init = function()
 {
-	this.researchedTechs = {}; // technologies which have been researched
-	this.researchQueued = {};  // technologies which are queued for research
-	this.researchStarted = {}; // technologies which are being researched currently (non-queued)
+	// Holds names of technologies that have been researched.
+	this.researchedTechs = new Set();
+
+	// Maps from technolgy name to the entityID of the researcher.
+	this.researchQueued = new Map();
+
+	// Holds technologies which are being researched currently (non-queued).
+	this.researchStarted = new Set();
 
 	// This stores the modifications to unit stats from researched technologies
 	// Example data: {"ResourceGatherer/Rates/food.grain": [
@@ -89,17 +94,17 @@ TechnologyManager.prototype.CanProduce = function (templateName)
 
 TechnologyManager.prototype.IsTechnologyQueued = function(tech)
 {
-	return this.researchQueued[tech] !== undefined;
+	return this.researchQueued.has(tech);
 };
 
 TechnologyManager.prototype.IsTechnologyResearched = function(tech)
 {
-	return this.researchedTechs[tech] !== undefined;
+	return this.researchedTechs.has(tech);
 };
 
 TechnologyManager.prototype.IsTechnologyStarted = function(tech)
 {
-	return this.researchStarted[tech] !== undefined;
+	return this.researchStarted.has(tech);
 };
 
 // Checks the requirements for a technology to see if it can be researched at the current time
@@ -274,7 +279,7 @@ TechnologyManager.prototype.ResearchTechnology = function(tech)
 	}
 
 	var modifiedComponents = {};
-	this.researchedTechs[tech] = template;
+	this.researchedTechs.add(tech);
 	// store the modifications in an easy to access structure
 	if (template.modifications)
 	{
@@ -300,8 +305,7 @@ TechnologyManager.prototype.ResearchTechnology = function(tech)
 			if (!i || this.IsTechnologyResearched(i))
 				continue;
 
-			var template = this.GetTechnologyTemplate(i);
-			this.researchedTechs[i] = template;
+			this.researchedTechs.add(i);
 
 			// Change the EntityLimit if any
 			let cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
@@ -390,16 +394,18 @@ TechnologyManager.prototype.ApplyModificationsTemplate = function(valueName, cur
 	return GetTechModifiedProperty(this.modifications, GetIdentityClasses(template.Identity), valueName, curValue);
 };
 
-// Marks a technology as being queued for research
+/**
+ * Marks a technology as being queued for research at the given entityID.
+ */
 TechnologyManager.prototype.QueuedResearch = function(tech, researcher)
 {
-	this.researchQueued[tech] = researcher;
+	this.researchQueued.set(tech, researcher);
 };
 
 // Marks a technology as actively being researched
 TechnologyManager.prototype.StartedResearch = function(tech, notification)
 {
-	this.researchStarted[tech] = true;
+	this.researchStarted.add(tech);
 
 	if (notification && tech.startsWith("phase"))
 	{
@@ -414,10 +420,12 @@ TechnologyManager.prototype.StartedResearch = function(tech, notification)
 	}
 };
 
-// Marks a technology as not being currently researched
+/**
+ *  Marks a technology as not being currently researched and optionally sends a GUI notification.
+ */
 TechnologyManager.prototype.StoppedResearch = function(tech, notification)
 {
-	if (notification && tech.startsWith("phase") && this.researchStarted[tech])
+	if (notification && tech.startsWith("phase") && this.researchStarted.has(tech))
 	{
 		let cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
 		let cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
@@ -429,52 +437,55 @@ TechnologyManager.prototype.StoppedResearch = function(tech, notification)
 		});
 	}
 
-	delete this.researchQueued[tech];
-	delete this.researchStarted[tech];
+	this.researchQueued.delete(tech);
+	this.researchStarted.delete(tech);
 };
 
-// Checks whether a technology is set to be researched
+/**
+ * Checks whether a technology is set to be researched.
+ */
 TechnologyManager.prototype.IsInProgress = function(tech)
 {
-	if (this.researchQueued[tech])
-		return true;
-	else
-		return false;
+	return this.researchQueued.has(tech);
 };
 
-// Get all techs that are currently being researched
+/**
+ * Returns the names of technologies that are currently being researched (non-queued).
+ */
 TechnologyManager.prototype.GetStartedTechs = function()
 {
 	return this.researchStarted;
 };
 
-// Gets the entity currently researching a technology
+/**
+ *  Gets the entity currently researching the technology.
+ */
 TechnologyManager.prototype.GetResearcher = function(tech)
 {
-	if (this.researchQueued[tech])
-		return this.researchQueued[tech];
-	return undefined;
+	return this.researchQueued.get(tech)
 };
 
-// Get helper data for tech modifications
-TechnologyManager.prototype.GetTechModifications = function()
-{
-	return this.modifications;
-};
-
-// called by GUIInterface for PlayerData. AI use.
+/**
+ * Called by GUIInterface for PlayerData. AI use.
+ */
 TechnologyManager.prototype.GetQueuedResearch = function()
 {
 	return this.researchQueued;
 };
+
+/**
+ * Returns the names of technologies that have already been researched.
+ */
 TechnologyManager.prototype.GetResearchedTechs = function()
 {
 	return this.researchedTechs;
 };
+
 TechnologyManager.prototype.GetClassCounts = function()
 {
 	return this.classCounts;
 };
+
 TechnologyManager.prototype.GetTypeCountsByClass = function()
 {
 	return this.typeCountsByClass;

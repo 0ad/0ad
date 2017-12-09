@@ -219,14 +219,14 @@ m.GameState.prototype.getPhaseEntityRequirements = function(i)
 
 m.GameState.prototype.isResearched = function(template)
 {
-	return this.playerData.researchedTechs[template] !== undefined;
+	return this.playerData.researchedTechs.has(template);
 };
 
 /** true if started or queued */
 m.GameState.prototype.isResearching = function(template)
 {
-	return this.playerData.researchStarted[template] !== undefined ||
-	       this.playerData.researchQueued[template] !== undefined;
+	return this.playerData.researchStarted.has(template) ||
+	       this.playerData.researchQueued.has(template);
 };
 
 /** this is an "in-absolute" check that doesn't check if we have a building to research from. */
@@ -240,9 +240,9 @@ m.GameState.prototype.canResearch = function(techTemplateName, noRequirementChec
 		return false;
 
 	// researching or already researched: NOO.
-	if (this.playerData.researchQueued[techTemplateName] ||
-	    this.playerData.researchStarted[techTemplateName] ||
-	    this.playerData.researchedTechs[techTemplateName])
+	if (this.playerData.researchQueued.has(techTemplateName) ||
+	    this.playerData.researchStarted.has(techTemplateName) ||
+	    this.playerData.researchedTechs.has(techTemplateName))
 		return false;
 
 	if (noRequirementCheck)
@@ -252,9 +252,9 @@ m.GameState.prototype.canResearch = function(techTemplateName, noRequirementChec
 	if (template.pair())
 	{
 		let other = template.pairedWith();
-		if (this.playerData.researchQueued[other] ||
-		    this.playerData.researchStarted[other] ||
-		    this.playerData.researchedTechs[other])
+		if (this.playerData.researchQueued.has(other) ||
+		    this.playerData.researchStarted.has(other) ||
+		    this.playerData.researchedTechs.has(other))
 			return false;
 	}
 
@@ -296,7 +296,7 @@ m.GameState.prototype.checkTechRequirements = function(reqs)
 			switch (type)
 			{
 			case "techs":
-				return req[type].every(tech => !!this.playerData.researchedTechs[tech]);
+				return req[type].every(tech => this.playerData.researchedTechs.has(tech));
 
 			case "entities":
 				return req[type].every(doesEntitySpecPass, this);

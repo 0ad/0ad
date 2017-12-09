@@ -296,6 +296,18 @@
             {
                 "extractor": "json",
                 "filemasks": [
+                    "mod.json"
+                ],
+                "options": {
+                    "keywords": [
+                        "label",
+                        "description"
+                    ]
+                }
+            },
+            {
+                "extractor": "json",
+                "filemasks": [
                     "gui/credits/texts/**.json"
                 ],
                 "options": {
