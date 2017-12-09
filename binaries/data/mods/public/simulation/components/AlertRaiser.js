@@ -7,13 +7,9 @@ AlertRaiser.prototype.Schema =
 AlertRaiser.prototype.Init = function()
 {
 	this.level = 0;
-
-	// Remember the units ordered to garrison
 	this.garrisonedUnits = [];
-	this.walkingUnits = [];
-
-	// Remember production buildings under alert
 	this.prodBuildings = [];
+	this.walkingUnits = [];
 };
 
 AlertRaiser.prototype.GetLevel = function()
@@ -33,8 +29,7 @@ AlertRaiser.prototype.CanIncreaseLevel = function()
 
 AlertRaiser.prototype.SoundAlert = function()
 {
-	var alertString = "alert" + this.level;
-	PlaySound(alertString, this.entity);
+	PlaySound("alert" + this.level, this.entity);
 };
 
 /**
@@ -43,13 +38,13 @@ AlertRaiser.prototype.SoundAlert = function()
  */
 AlertRaiser.prototype.UpdateUnits = function(units)
 {
-	var level = this.GetLevel();
-	for (var unit of units)
+	for (let unit of units)
 	{
-		var cmpUnitAI = Engine.QueryInterface(unit, IID_UnitAI);
-		if (!cmpUnitAI || !cmpUnitAI.ReactsToAlert(level))
+		let cmpUnitAI = Engine.QueryInterface(unit, IID_UnitAI);
+		if (!cmpUnitAI || !cmpUnitAI.ReactsToAlert(this.level))
 			continue;
-		cmpUnitAI.ReplaceOrder("Alert", {"raiser": this.entity, "force": true});
+
+		cmpUnitAI.ReplaceOrder("Alert", { "raiser": this.entity, "force": true });
 		this.walkingUnits.push(unit);
 	}
 };
@@ -59,40 +54,38 @@ AlertRaiser.prototype.IncreaseAlertLevel = function()
 	if (!this.CanIncreaseLevel())
 		return false;
 
-	this.level++;
+	++this.level;
 	this.SoundAlert();
 
 	// Find buildings/units owned by this unit's player
-	var players = [];
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	let players = [];
+	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	if (cmpOwnership)
 		players = [cmpOwnership.GetOwner()];
 
 	// Select production buildings to put "under alert", including the raiser itself if possible
-	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var level = this.GetLevel();
-	var buildings = cmpRangeManager.ExecuteQuery(this.entity, 0, this.template.Range, players, IID_ProductionQueue);
+	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	let buildings = cmpRangeManager.ExecuteQuery(this.entity, 0, this.template.Range, players, IID_ProductionQueue);
 	if (Engine.QueryInterface(this.entity, IID_ProductionQueue))
 		buildings.push(this.entity);
 
-	for (var building of buildings)
+	for (let building of buildings)
 	{
-		var cmpProductionQueue = Engine.QueryInterface(building, IID_ProductionQueue);
+		let cmpProductionQueue = Engine.QueryInterface(building, IID_ProductionQueue);
 		cmpProductionQueue.PutUnderAlert(this.entity);
 		this.prodBuildings.push(building);
 	}
 
 	// Select units to put under alert, according to their reaction to this level
-	var level = this.GetLevel();
-	var units = cmpRangeManager.ExecuteQuery(this.entity, 0, this.template.Range, players, IID_UnitAI).filter(ent => {
-		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-		return !cmpUnitAI.IsUnderAlert() && cmpUnitAI.ReactsToAlert(level);
+	let units = cmpRangeManager.ExecuteQuery(this.entity, 0, this.template.Range, players, IID_UnitAI).filter(ent => {
+		let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+		return !cmpUnitAI.IsUnderAlert() && cmpUnitAI.ReactsToAlert(this.level);
 	});
 
-	for (var unit of units)
+	for (let unit of units)
 	{
-		var cmpUnitAI = Engine.QueryInterface(unit, IID_UnitAI);
-		cmpUnitAI.ReplaceOrder("Alert", {"raiser": this.entity, "force": true});
+		let cmpUnitAI = Engine.QueryInterface(unit, IID_UnitAI);
+		cmpUnitAI.ReplaceOrder("Alert", { "raiser": this.entity, "force": true });
 		this.walkingUnits.push(unit);
 	}
 
@@ -101,9 +94,9 @@ AlertRaiser.prototype.IncreaseAlertLevel = function()
 
 AlertRaiser.prototype.OnUnitGarrisonedAfterAlert = function(msg)
 {
-	this.garrisonedUnits.push({"holder": msg.holder, "unit": msg.unit});
+	this.garrisonedUnits.push({ "holder": msg.holder, "unit": msg.unit });
 
-	var index = this.walkingUnits.indexOf(msg.unit);
+	let index = this.walkingUnits.indexOf(msg.unit);
 	if (index != -1)
 		this.walkingUnits.splice(index, 1);
 };
@@ -114,9 +107,9 @@ AlertRaiser.prototype.EndOfAlert = function()
 	this.SoundAlert();
 
 	// First, handle units not yet garrisoned
-	for (var unit of this.walkingUnits)
+	for (let unit of this.walkingUnits)
 	{
-		var cmpUnitAI = Engine.QueryInterface(unit, IID_UnitAI);
+		let cmpUnitAI = Engine.QueryInterface(unit, IID_UnitAI);
 		if (!cmpUnitAI)
 			continue;
 
@@ -130,10 +123,10 @@ AlertRaiser.prototype.EndOfAlert = function()
 	this.walkingUnits = [];
 
 	// Then, eject garrisoned units
-	for (var slot of this.garrisonedUnits)
+	for (let slot of this.garrisonedUnits)
 	{
-		var cmpGarrisonHolder = Engine.QueryInterface(slot.holder, IID_GarrisonHolder);
-		var cmpUnitAI = Engine.QueryInterface(slot.unit, IID_UnitAI);
+		let cmpGarrisonHolder = Engine.QueryInterface(slot.holder, IID_GarrisonHolder);
+		let cmpUnitAI = Engine.QueryInterface(slot.unit, IID_UnitAI);
 		if (!cmpUnitAI)
 			continue;
 
@@ -148,9 +141,9 @@ AlertRaiser.prototype.EndOfAlert = function()
 	this.garrisonedUnits = [];
 
 	// Finally, reset production buildings state
-	for (var building of this.prodBuildings)
+	for (let building of this.prodBuildings)
 	{
-		var cmpProductionQueue = Engine.QueryInterface(building, IID_ProductionQueue);
+		let cmpProductionQueue = Engine.QueryInterface(building, IID_ProductionQueue);
 		if (cmpProductionQueue)
 			cmpProductionQueue.ResetAlert();
 	}
