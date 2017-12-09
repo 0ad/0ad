@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 #include "maths/Vector2D.h"
 #include "maths/Vector3D.h"
 #include "maths/FixedVector3D.h"
+#include "ps/CStrIntern.h"
 #include "ps/Shapes.h"
 
 class CTerrain;
@@ -161,6 +162,27 @@ struct SOverlaySphere
 	CVector3D m_Center;
 	float m_Radius;
 	CColor m_Color;
+};
+
+enum EOverlayType
+{
+	/// A single textured quad overlay, intended for entities that move around much, like units (e.g. foot soldiers, etc).
+	DYNAMIC_QUAD,
+	/// A more complex textured line overlay, composed of several textured line segments.
+	STATIC_OUTLINE,
+};
+
+struct SOverlayDescriptor
+{
+	EOverlayType m_Type;
+	CStrIntern m_QuadTexture;
+	CStrIntern m_QuadTextureMask;
+	CStrIntern m_LineTexture;
+	CStrIntern m_LineTextureMask;
+	float m_LineThickness;
+	int m_Radius;
+
+	SOverlayDescriptor() : m_LineThickness(0) { }
 };
 
 // TODO: OverlayText

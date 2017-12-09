@@ -134,14 +134,14 @@ public:
 		if (textureNode.IsOk())
 		{
 			// textured quad mode (dynamic, for units)
-			m_OverlayDescriptor.m_Type = ICmpSelectable::DYNAMIC_QUAD;
+			m_OverlayDescriptor.m_Type = DYNAMIC_QUAD;
 			m_OverlayDescriptor.m_QuadTexture = CStrIntern(TEXTUREBASEPATH + textureNode.GetChild("MainTexture").ToUTF8());
 			m_OverlayDescriptor.m_QuadTextureMask = CStrIntern(TEXTUREBASEPATH + textureNode.GetChild("MainTextureMask").ToUTF8());
 		}
 		else if (outlineNode.IsOk())
 		{
 			// textured outline mode (static, for buildings)
-			m_OverlayDescriptor.m_Type = ICmpSelectable::STATIC_OUTLINE;
+			m_OverlayDescriptor.m_Type = STATIC_OUTLINE;
 			m_OverlayDescriptor.m_LineTexture = CStrIntern(TEXTUREBASEPATH + outlineNode.GetChild("LineTexture").ToUTF8());
 			m_OverlayDescriptor.m_LineTextureMask = CStrIntern(TEXTUREBASEPATH + outlineNode.GetChild("LineTextureMask").ToUTF8());
 			m_OverlayDescriptor.m_LineThickness = outlineNode.GetChild("LineThickness").ToFloat();
