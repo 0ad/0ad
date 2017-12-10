@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -33,7 +33,6 @@
 #include "lib/file/vfs/vfs_tree.h"
 #include "lib/file/vfs/vfs_lookup.h"
 #include "lib/file/vfs/vfs_populate.h"
-#include "lib/file/vfs/file_cache.h"
 
 static const StatusDefinition vfsStatusDefinitions[] = {
 	{ ERR::VFS_DIR_NOT_FOUND, L"VFS directory not found" },
@@ -54,9 +53,7 @@ struct ScopedLock
 class VFS : public IVFS
 {
 public:
-	VFS(size_t cacheSize)
-		: m_cacheSize(cacheSize), m_fileCache(m_cacheSize)
-		, m_trace(CreateDummyTrace(8*MiB))
+	VFS() : m_trace(CreateDummyTrace(8*MiB))
 	{
 	}
 
@@ -82,7 +79,9 @@ public:
 	virtual Status GetFileInfo(const VfsPath& pathname, CFileInfo* pfileInfo) const
 	{
 		ScopedLock s;
-		VfsDirectory* directory; VfsFile* file;
+		VfsDirectory* directory;
+		VfsFile* file;
+
 		Status ret = vfs_Lookup(pathname, &m_rootDirectory, directory, &file);
 		if(!pfileInfo)	// just indicate if the file exists without raising warnings.
 			return ret;
@@ -145,10 +144,6 @@ public:
 		const OsPath name = pathname.Filename();
 		RETURN_STATUS_IF_ERR(realDirectory->Store(name, fileContents, size));
 
-		// wipe out any cached blocks. this is necessary to cover the (rare) case
-		// of file cache contents predating the file write.
-		m_fileCache.Remove(pathname);
-
 		const VfsFile file(name, size, time(0), realDirectory->Priority(), realDirectory);
 		directory->AddFile(file);
 
@@ -176,9 +171,6 @@ public:
 		RealDirectory realDirectory(file->Loader()->Path(), file->Priority(), directory->AssociatedDirectory()->Flags());
 		RETURN_STATUS_IF_ERR(realDirectory.Store(pathname.Filename(), fileContents, size));
 
-		// See comment in CreateFile
-		m_fileCache.Remove(pathname);
-
 		directory->AddFile(*file);
 
 		m_trace->NotifyStore(pathname, size);
@@ -188,36 +180,20 @@ public:
 	virtual Status LoadFile(const VfsPath& pathname, shared_ptr<u8>& fileContents, size_t& size)
 	{
 		ScopedLock s;
-		const bool isCacheHit = m_fileCache.Retrieve(pathname, fileContents, size);
-		if(!isCacheHit)
-		{
-			VfsDirectory* directory; VfsFile* file;
-			// per 2010-05-01 meeting, this shouldn't raise 'scary error
-			// dialogs', which might fail to display the culprit pathname
-			// instead, callers should log the error, including pathname.
-			RETURN_STATUS_IF_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, &file));
 
-			fileContents = DummySharedPtr((u8*)0);
-			size = file->Size();
-			if(size != 0)	// (the file cache can't handle zero-length allocations)
-			{
-				if(size < m_cacheSize/2)	// (avoid evicting lots of previous data)
-					fileContents = m_fileCache.Reserve(size);
-				if(fileContents)
-				{
-					RETURN_STATUS_IF_ERR(file->Loader()->Load(file->Name(), fileContents, file->Size()));
-					m_fileCache.Add(pathname, fileContents, size);
-				}
-				else
-				{
-					RETURN_STATUS_IF_ERR(AllocateAligned(fileContents, size, maxSectorSize));
-					RETURN_STATUS_IF_ERR(file->Loader()->Load(file->Name(), fileContents, file->Size()));
-				}
-			}
-		}
+		VfsDirectory* directory; VfsFile* file;
+		// per 2010-05-01 meeting, this shouldn't raise 'scary error
+		// dialogs', which might fail to display the culprit pathname
+		// instead, callers should log the error, including pathname.
+		RETURN_STATUS_IF_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, &file));
+
+		fileContents = DummySharedPtr((u8*)0);
+		size = file->Size();
+
+		RETURN_STATUS_IF_ERR(AllocateAligned(fileContents, size, maxSectorSize));
+		RETURN_STATUS_IF_ERR(file->Loader()->Load(file->Name(), fileContents, file->Size()));
 
 		stats_io_user_request(size);
-		stats_cache(isCacheHit? CR_HIT : CR_MISS, size);
 		m_trace->NotifyLoad(pathname, size);
 
 		return INFO::OK;
@@ -263,7 +239,6 @@ public:
 	virtual Status RemoveFile(const VfsPath& pathname)
 	{
 		ScopedLock s;
-		m_fileCache.Remove(pathname);
 
 		VfsDirectory* directory; VfsFile* file;
 		RETURN_STATUS_IF_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, &file));
@@ -312,15 +287,13 @@ private:
 		return ERR::PATH_NOT_FOUND;	// NOWARN
 	}
 
-	size_t m_cacheSize;
-	FileCache m_fileCache;
 	PITrace m_trace;
 	mutable VfsDirectory m_rootDirectory;
 };
 
 //-----------------------------------------------------------------------------
 
-PIVFS CreateVfs(size_t cacheSize)
+PIVFS CreateVfs()
 {
-	return PIVFS(new VFS(cacheSize));
+	return PIVFS(new VFS());
 }

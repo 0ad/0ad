@@ -34,7 +34,7 @@ class TestCmpPathfinder : public CxxTest::TestSuite
 public:
 	void setUp()
 	{
-		g_VFS = CreateVfs(20 * MiB);
+		g_VFS = CreateVfs();
 		g_VFS->Mount(L"", DataDir()/"mods"/"mod", VFS_MOUNT_MUST_EXIST);
 		g_VFS->Mount(L"", DataDir()/"mods"/"public", VFS_MOUNT_MUST_EXIST, 1); // ignore directory-not-found errors
 		TS_ASSERT_OK(g_VFS->Mount(L"cache", DataDir()/"_testcache"));

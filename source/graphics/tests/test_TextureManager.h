@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,7 +18,6 @@
 #include "lib/self_test.h"
 
 #include "graphics/TextureManager.h"
-#include "lib/alignment.h"
 #include "lib/external_libraries/libsdl.h"
 #include "lib/file/vfs/vfs.h"
 #include "lib/res/h_mgr.h"
@@ -36,7 +35,7 @@ public:
 	{
 		DeleteDirectory(DataDir()/"_testcache"); // clean up in case the last test run failed
 
-		m_VFS = CreateVfs(20*MiB);
+		m_VFS = CreateVfs();
 		TS_ASSERT_OK(m_VFS->Mount(L"", DataDir()/"mods"/"_test.tex", VFS_MOUNT_MUST_EXIST));
 		TS_ASSERT_OK(m_VFS->Mount(L"cache/", DataDir()/"_testcache"));
 

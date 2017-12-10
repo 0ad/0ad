@@ -78,7 +78,6 @@ extern void stats_cb_start();
 extern void stats_cb_finish();
 
 // file_cache
-extern void stats_cache(CacheRet cr, size_t size);
 extern void stats_block_cache(CacheRet cr);
 
 // archive builder
@@ -108,7 +107,6 @@ public:
 };
 #define stats_cb_start()
 #define stats_cb_finish()
-#define stats_cache(cr, size)
 #define stats_block_cache(cr)
 #define stats_ab_connection(already_exists)
 #define file_stats_dump()

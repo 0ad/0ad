@@ -51,7 +51,7 @@ JS::Value Mod::GetAvailableMods(const ScriptInterface& scriptInterface)
 	// Sort modDirs so that we can do a fast lookup below
 	std::sort(modDirs.begin(), modDirs.end());
 
-	PIVFS vfs = CreateVfs(1); // No cache needed; TODO but 0 crashes
+	PIVFS vfs = CreateVfs();
 
 	for (DirectoryNames::iterator iter = modDirs.begin(); iter != modDirs.end(); ++iter)
 	{

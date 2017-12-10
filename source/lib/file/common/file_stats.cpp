@@ -210,30 +210,6 @@ void stats_cb_finish()
 }
 
 
-//
-// file_cache
-//
-
-void stats_cache(CacheRet cr, size_t size)
-{
-	ENSURE(cr == CR_HIT || cr == CR_MISS);
-
-#if 0
-	if(cr == CR_MISS)
-	{
-		PairIB ret = ever_cached_files.insert(atom_fn);
-		if(!ret.second)	// was already cached once
-		{
-			conflict_miss_size_total += size;
-			conflict_misses++;
-		}
-	}
-#endif
-
-	cache_count[cr]++;
-	cache_size_total[cr] += size;
-}
-
 void stats_block_cache(CacheRet cr)
 {
 	ENSURE(cr == CR_HIT || cr == CR_MISS);
