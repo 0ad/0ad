@@ -101,8 +101,8 @@
 		<action on="Press">toggleRangeOverlay("Attack");</action>
 	</object>
 
-	<object hotkey="session.toggleaurarange">
-		<action on="Press">toggleRangeOverlay("Aura");</action>
+	<object hotkey="session.toggleaurasrange">
+		<action on="Press">toggleRangeOverlay("Auras");</action>
 	</object>
 
 	<object hotkey="session.togglehealrange">

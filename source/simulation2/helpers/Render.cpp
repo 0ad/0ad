@@ -600,3 +600,41 @@ void SimRender::SubdividePoints(std::vector<CVector2D>& points, float maxSegment
 
 	points.swap(newPoints);
 }
+
+void SimRender::ConstructTexturedLineBox(SOverlayTexturedLine& overlay, const CVector2D& origin,
+		const CFixedVector3D& rotation, const float sizeX, const float sizeZ)
+{
+	float s = sinf(-rotation.Y.ToFloat());
+	float c = cosf(-rotation.Y.ToFloat());
+
+	CVector2D unitX(c, s);
+	CVector2D unitZ(-s, c);
+
+	// Add half the line thickness to the radius so that we get an 'outside' stroke of the footprint shape
+	const float halfSizeX = sizeX / 2.f + overlay.m_Thickness / 2.f;
+	const float halfSizeZ = sizeZ / 2.f + overlay.m_Thickness / 2.f;
+
+	std::vector<CVector2D> points;
+	points.push_back(CVector2D(origin + unitX * halfSizeX + unitZ * (-halfSizeZ)));
+	points.push_back(CVector2D(origin + unitX * (-halfSizeX) + unitZ * (-halfSizeZ)));
+	points.push_back(CVector2D(origin + unitX * (-halfSizeX) + unitZ * halfSizeZ));
+	points.push_back(CVector2D(origin + unitX * halfSizeX + unitZ * halfSizeZ));
+
+	SimRender::SubdividePoints(points, TERRAIN_TILE_SIZE / 3.f, overlay.m_Closed);
+	overlay.PushCoords(points);
+}
+
+void SimRender::ConstructTexturedLineCircle(SOverlayTexturedLine& overlay, const CVector2D& origin, const float overlay_radius)
+{
+	const float radius = overlay_radius + overlay.m_Thickness / 3.f;
+
+	size_t numSteps = ceilf(float(2 * M_PI) * radius / (TERRAIN_TILE_SIZE / 3.f));
+	for (size_t i = 0; i < numSteps; ++i)
+	{
+		float angle = i * float(2 * M_PI) / numSteps;
+		float px = origin.X + radius * sinf(angle);
+		float pz = origin.Y + radius * cosf(angle);
+
+		overlay.PushCoords(px, pz);
+	}
+}

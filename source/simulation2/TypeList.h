@@ -150,6 +150,9 @@ COMPONENT(RallyPointRenderer)
 INTERFACE(RangeManager)
 COMPONENT(RangeManager)
 
+INTERFACE(RangeOverlayRenderer)
+COMPONENT(RangeOverlayRenderer)
+
 INTERFACE(Selectable)
 COMPONENT(Selectable)
 

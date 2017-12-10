@@ -271,24 +271,46 @@ var farmEntities = {
 	"autumn": { "building": "structures/gaul_farmstead", "animal": "gaia/fauna_horse" }
 };
 
-wallStyles.other.sheepIn = new WallElement("sheepIn", farmEntities[currentBiome()].animal, PI / 4, -1.5, 0.75, PI/2);
-wallStyles.other.foodBin = new WallElement("foodBin", "gaia/special_treasure_food_bin", PI/2, 1.5);
-wallStyles.other.sheep = new WallElement("sheep", farmEntities[currentBiome()].animal, 0, 0, 0.75);
-wallStyles.other.farm = new WallElement("farm", farmEntities[currentBiome()].building, PI, 0, -3);
+g_WallStyles.other = {
+	"overlap": 0,
+	"fence": readyWallElement("other/fence_long", "gaia"),
+	"fence_short": readyWallElement("other/fence_short", "gaia"),
+	"bench":     { "angle": Math.PI / 2, "length": 1.5,  "indent": 0,    "bend": 0, "templateName": "other/bench" },
+	"foodBin":   { "angle": Math.PI / 2, "length": 1.5,  "indent": 0,    "bend": 0, "templateName": "gaia/special_treasure_food_bin" },
+	"animal":    { "angle": 0,           "length": 0,    "indent": 0.75, "bend": 0, "templateName": farmEntities[currentBiome()].animal },
+	"farmstead": { "angle": Math.PI,     "length": 0,    "indent": -3,   "bend": 0, "templateName": farmEntities[currentBiome()].building }
+};
+
 let fences = [
-	new Fortress("fence", ["foodBin", "farm", "bench", "sheepIn", "fence", "sheepIn", "fence", "sheepIn", "fence"]),
-	new Fortress("fence", ["foodBin", "farm", "fence", "sheepIn", "fence", "sheepIn", "bench", "sheep", "fence", "sheepIn", "fence"]),
 	new Fortress("fence", [
-		"foodBin", "farm", "cornerIn", "bench", "cornerOut", "fence_short", "sheepIn", "fence", "sheepIn",
-		"fence", "sheepIn", "fence_short", "sheep", "fence"
+		"foodBin", "farmstead", "bench",
+		"turn_0.25", "animal", "turn_0.25", "fence",
+		"turn_0.25", "animal", "turn_0.25", "fence",
+		"turn_0.25", "animal", "turn_0.25", "fence"
 	]),
 	new Fortress("fence", [
-		"foodBin", "farm", "cornerIn", "fence_short", "cornerOut", "bench", "sheepIn", "fence", "sheepIn",
-		"fence", "sheepIn", "fence_short", "sheep", "fence"
+		"foodBin", "farmstead", "fence",
+		"turn_0.25", "animal", "turn_0.25", "fence",
+		"turn_0.25", "animal", "turn_0.25", "bench", "animal", "fence",
+		"turn_0.25", "animal", "turn_0.25", "fence"
 	]),
 	new Fortress("fence", [
-		"foodBin", "farm", "fence", "sheepIn", "bench", "sheep", "fence", "sheepIn",
-		"fence_short", "sheep", "fence", "sheepIn", "fence_short", "sheep", "fence"
+		"foodBin", "farmstead", "turn_0.5", "bench", "turn_-0.5", "fence_short",
+		"turn_0.25", "animal", "turn_0.25", "fence",
+		"turn_0.25", "animal", "turn_0.25", "fence",
+		"turn_0.25", "animal", "turn_0.25", "fence_short", "animal", "fence"
+	]),
+	new Fortress("fence", [
+		"foodBin", "farmstead", "turn_0.5", "fence_short", "turn_-0.5", "bench",
+		"turn_0.25", "animal", "turn_0.25", "fence",
+		"turn_0.25", "animal", "turn_0.25", "fence",
+		"turn_0.25", "animal", "turn_0.25", "fence_short", "animal", "fence"
+	]),
+	new Fortress("fence", [
+		"foodBin", "farmstead", "fence",
+		"turn_0.25", "animal", "turn_0.25", "bench", "animal", "fence",
+		"turn_0.25", "animal", "turn_0.25", "fence_short", "animal", "fence",
+		"turn_0.25", "animal", "turn_0.25", "fence_short", "animal", "fence"
 	])
 ];
 let num = fences.length;

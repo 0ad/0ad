@@ -134,19 +134,19 @@ for (var i=0; i < numPlayers; i++)
 	// Place custom fortress
 	if (civ == "brit" || civ == "gaul" || civ == "iber")
 	{
-		var wall = ["gate", "tower", "wallLong",
-			"cornerIn", "wallLong", "barracks", "tower", "wallLong", "tower", "house", "wallLong",
-			"cornerIn", "wallLong", "house", "tower", "gate", "tower", "house", "wallLong",
-			"cornerIn", "wallLong", "house", "tower", "wallLong", "tower", "house", "wallLong",
-			"cornerIn", "wallLong", "house", "tower"];
+		var wall = ["gate", "tower", "long",
+			"cornerIn", "long", "barracks", "tower", "long", "tower", "house", "long",
+			"cornerIn", "long", "house", "tower", "gate", "tower", "house", "long",
+			"cornerIn", "long", "house", "tower", "long", "tower", "house", "long",
+			"cornerIn", "long", "house", "tower"];
 	}
 	else
 	{
-		var wall = ["gate", "tower", "wallLong",
-			"cornerIn", "wallLong", "barracks", "tower", "wallLong", "tower", "wallLong",
-			"cornerIn", "wallLong", "house", "tower", "gate", "tower", "wallLong",
-			"cornerIn", "wallLong", "house", "tower", "wallLong", "tower", "wallLong",
-			"cornerIn", "wallLong", "house", "tower"];
+		var wall = ["gate", "tower", "long",
+			"cornerIn", "long", "barracks", "tower", "long", "tower", "long",
+			"cornerIn", "long", "house", "tower", "gate", "tower", "long",
+			"cornerIn", "long", "house", "tower", "long", "tower", "long",
+			"cornerIn", "long", "house", "tower"];
 	}
 	placeCustomFortress(playerX[i], playerZ[i], new Fortress("Spahbod", wall), civ, playerIDs[i]);
 }

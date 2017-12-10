@@ -21,6 +21,21 @@ WallSet.prototype.Schema =
 			"<element name='WallShort' a:help='Template name of the short wall segment'>" +
 				"<text/>" +
 			"</element>" +
+			"<optional>" +
+				"<element name='WallCurves' a:help='Space-separated list of template names of curving wall segments.'>" +
+					"<text/>" +
+				"</element>" +
+			"</optional>" +
+			"<optional>" +
+				"<element name='WallEnd'>" +
+					"<text/>" +
+				"</element>" +
+			"</optional>" +
+			"<optional>" +
+				"<element name='Fort'>" +
+					"<text/>" +
+				"</element>" +
+			"</optional>" +
 		"</interleave>" +
 	"</element>" +
 	"<element name='MinTowerOverlap' a:help='Maximum fraction that wall segments are allowed to overlap towers, where 0 signifies no overlap and 1 full overlap'>" +

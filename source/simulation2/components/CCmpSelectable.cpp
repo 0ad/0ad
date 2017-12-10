@@ -65,7 +65,7 @@ public:
 
 	CCmpSelectable()
 		: m_DebugBoundingBoxOverlay(NULL), m_DebugSelectionBoxOverlay(NULL),
-		  m_BuildingOverlay(NULL), m_UnitOverlay(NULL), m_RangeOverlayData(),
+		  m_BuildingOverlay(NULL), m_UnitOverlay(NULL),
 		  m_FadeBaselineAlpha(0.f), m_FadeDeltaAlpha(0.f), m_FadeProgress(0.f),
 		  m_Selected(false), m_Cached(false), m_Visible(false)
 	{
@@ -78,8 +78,6 @@ public:
 		delete m_DebugSelectionBoxOverlay;
 		delete m_BuildingOverlay;
 		delete m_UnitOverlay;
-		for (RangeOverlayData& rangeOverlay : m_RangeOverlayData)
-			delete rangeOverlay.second;
 	}
 
 	static std::string GetSchema()
@@ -134,14 +132,14 @@ public:
 		if (textureNode.IsOk())
 		{
 			// textured quad mode (dynamic, for units)
-			m_OverlayDescriptor.m_Type = ICmpSelectable::DYNAMIC_QUAD;
+			m_OverlayDescriptor.m_Type = DYNAMIC_QUAD;
 			m_OverlayDescriptor.m_QuadTexture = CStrIntern(TEXTUREBASEPATH + textureNode.GetChild("MainTexture").ToUTF8());
 			m_OverlayDescriptor.m_QuadTextureMask = CStrIntern(TEXTUREBASEPATH + textureNode.GetChild("MainTextureMask").ToUTF8());
 		}
 		else if (outlineNode.IsOk())
 		{
 			// textured outline mode (static, for buildings)
-			m_OverlayDescriptor.m_Type = ICmpSelectable::STATIC_OUTLINE;
+			m_OverlayDescriptor.m_Type = STATIC_OUTLINE;
 			m_OverlayDescriptor.m_LineTexture = CStrIntern(TEXTUREBASEPATH + outlineNode.GetChild("LineTexture").ToUTF8());
 			m_OverlayDescriptor.m_LineTextureMask = CStrIntern(TEXTUREBASEPATH + outlineNode.GetChild("LineTextureMask").ToUTF8());
 			m_OverlayDescriptor.m_LineThickness = outlineNode.GetChild("LineThickness").ToFloat();
@@ -194,22 +192,6 @@ public:
 		SetSelectionHighlightAlpha(color.a);
 	}
 
-	virtual void AddRangeOverlay(float radius, const std::string& texture, const std::string& textureMask, float thickness)
-	{
-		if (!CRenderer::IsInitialised())
-			return;
-
-		SOverlayDescriptor rangeOverlayDescriptor;
-		SOverlayTexturedLine* rangeOverlay = nullptr;
-
-		rangeOverlayDescriptor.m_Radius = radius;
-		rangeOverlayDescriptor.m_LineTexture = CStrIntern(TEXTUREBASEPATH + texture);
-		rangeOverlayDescriptor.m_LineTextureMask = CStrIntern(TEXTUREBASEPATH + textureMask);
-		rangeOverlayDescriptor.m_LineThickness = thickness;
-
-		m_RangeOverlayData.push_back({rangeOverlayDescriptor, rangeOverlay});
-	}
-
 	virtual void SetSelectionHighlightAlpha(float alpha)
 	{
 		alpha = std::max(m_AlphaMin, alpha);
@@ -238,7 +220,7 @@ public:
 	/**
 	 * Draw a textured line overlay. The selection overlays for structures are based solely on footprint shape.
 	 */
-	void UpdateTexturedLineOverlay(const SOverlayDescriptor* overlayDescriptor, SOverlayTexturedLine& overlay, float frameOffset, bool buildingOverlay);
+	void UpdateTexturedLineOverlay(const SOverlayDescriptor* overlayDescriptor, SOverlayTexturedLine& overlay, float frameOffset);
 
 	/**
 	 * Called from the interpolation handler; responsible for ensuring the dynamic overlay (provided we're
@@ -260,11 +242,6 @@ public:
 	void UpdateMessageSubscriptions();
 
 	/**
-	 * Delete all range overlays.
-	 */
-	void ResetRangeOverlays();
-
-	/**
 	 * Set the color of the current owner.
 	 */
 	void UpdatePlayerColor();
@@ -273,10 +250,6 @@ private:
 	SOverlayDescriptor m_OverlayDescriptor;
 	SOverlayTexturedLine* m_BuildingOverlay;
 	SOverlayQuad* m_UnitOverlay;
-
-	// Holds the data for all range overlays
-	typedef std::pair<SOverlayDescriptor, SOverlayTexturedLine*> RangeOverlayData;
-	std::vector<RangeOverlayData> m_RangeOverlayData;
 
 	SOverlayLine* m_DebugBoundingBoxOverlay;
 	SOverlayLine* m_DebugSelectionBoxOverlay;
@@ -345,16 +318,7 @@ void CCmpSelectable::HandleMessage(const CMessage& msg, bool UNUSED(global))
 
 		// update dynamic overlay only when visible
 		if (m_Color.a > 0)
-		{
 			UpdateDynamicOverlay(msgData.offset);
-
-			for (RangeOverlayData& rangeOverlay : m_RangeOverlayData)
-			{
-				delete rangeOverlay.second;
-				rangeOverlay.second = new SOverlayTexturedLine;
-				UpdateTexturedLineOverlay(&rangeOverlay.first, *rangeOverlay.second, msgData.offset, false);
-			}
-		}
 
 		UpdateMessageSubscriptions();
 
@@ -439,15 +403,6 @@ void CCmpSelectable::UpdatePlayerColor()
 	SetSelectionHighlight(color, m_Selected);
 }
 
-void CCmpSelectable::ResetRangeOverlays()
-{
-	for (RangeOverlayData& rangeOverlay : m_RangeOverlayData)
-		delete rangeOverlay.second;
-	m_RangeOverlayData.clear();
-
-	UpdateMessageSubscriptions();
-}
-
 void CCmpSelectable::UpdateMessageSubscriptions()
 {
 	bool needInterpolate = false;
@@ -477,7 +432,7 @@ void CCmpSelectable::InvalidateStaticOverlay()
 	SAFE_DELETE(m_BuildingOverlay);
 }
 
-void CCmpSelectable::UpdateTexturedLineOverlay(const SOverlayDescriptor* overlayDescriptor, SOverlayTexturedLine& overlay, float frameOffset, bool buildingOverlay)
+void CCmpSelectable::UpdateTexturedLineOverlay(const SOverlayDescriptor* overlayDescriptor, SOverlayTexturedLine& overlay, float frameOffset)
 {
 	if (!CRenderer::IsInitialised())
 		return;
@@ -494,60 +449,15 @@ void CCmpSelectable::UpdateTexturedLineOverlay(const SOverlayDescriptor* overlay
 	float rotY;
 	CVector2D origin;
 	cmpPosition->GetInterpolatedPosition2D(frameOffset, origin.X, origin.Y, rotY);
-	CFixedVector3D rotation = cmpPosition->GetRotation();
 
-	CTextureProperties texturePropsBase(overlayDescriptor->m_LineTexture.c_str());
-	texturePropsBase.SetWrap(GL_CLAMP_TO_BORDER, GL_CLAMP_TO_EDGE);
-	texturePropsBase.SetMaxAnisotropy(4.f);
-
-	CTextureProperties texturePropsMask(overlayDescriptor->m_LineTextureMask.c_str());
-	texturePropsMask.SetWrap(GL_CLAMP_TO_BORDER, GL_CLAMP_TO_EDGE);
-	texturePropsMask.SetMaxAnisotropy(4.f);
-
-	overlay.m_AlwaysVisible = false;
-	overlay.m_Closed = true;
 	overlay.m_SimContext = &GetSimContext();
-	overlay.m_Thickness = overlayDescriptor->m_LineThickness;
-	overlay.m_TextureBase = g_Renderer.GetTextureManager().CreateTexture(texturePropsBase);
-	overlay.m_TextureMask = g_Renderer.GetTextureManager().CreateTexture(texturePropsMask);
 	overlay.m_Color = m_Color;
+	overlay.CreateOverlayTexture(overlayDescriptor);
 
-	if (buildingOverlay && fpShape == ICmpFootprint::SQUARE)
-	{
-		float s = sinf(-rotation.Y.ToFloat());
-		float c = cosf(-rotation.Y.ToFloat());
-		CVector2D unitX(c, s);
-		CVector2D unitZ(-s, c);
-
-		// Add half the line thickness to the radius so that we get an 'outside' stroke of the footprint shape
-		const float halfSizeX = fpSize0_fixed.ToFloat() / 2.f + overlay.m_Thickness / 2.f;
-		const float halfSizeZ = fpSize1_fixed.ToFloat() / 2.f + overlay.m_Thickness / 2.f;
-
-		std::vector<CVector2D> points;
-		points.push_back(CVector2D(origin + unitX * halfSizeX + unitZ * (-halfSizeZ)));
-		points.push_back(CVector2D(origin + unitX * (-halfSizeX) + unitZ * (-halfSizeZ)));
-		points.push_back(CVector2D(origin + unitX * (-halfSizeX) + unitZ * halfSizeZ));
-		points.push_back(CVector2D(origin + unitX * halfSizeX + unitZ * halfSizeZ));
-
-		SimRender::SubdividePoints(points, TERRAIN_TILE_SIZE / 3.f, overlay.m_Closed);
-		overlay.PushCoords(points);
-	}
+	if (fpShape == ICmpFootprint::SQUARE)
+		SimRender::ConstructTexturedLineBox(overlay, origin, cmpPosition->GetRotation(), fpSize0_fixed.ToFloat(), fpSize1_fixed.ToFloat());
 	else
-	{
-		const float radius = (buildingOverlay ? fpSize0_fixed.ToFloat() : overlayDescriptor->m_Radius) + overlay.m_Thickness / 3.f;
-
-		u32 numSteps = ceilf(float(2 * M_PI) * radius / (TERRAIN_TILE_SIZE / 3.f));
-		for (u32 i = 0; i < numSteps; ++i)
-		{
-			float angle = i * float(2 * M_PI) / numSteps;
-			float px = origin.X + radius * sinf(angle);
-			float pz = origin.Y + radius * cosf(angle);
-
-			overlay.PushCoords(px, pz);
-		}
-	}
-
-	ENSURE(overlay.m_TextureBase);
+		SimRender::ConstructTexturedLineCircle(overlay, origin, fpSize0_fixed.ToFloat());
 }
 
 void CCmpSelectable::UpdateDynamicOverlay(float frameOffset)
@@ -660,7 +570,7 @@ void CCmpSelectable::RenderSubmit(SceneCollector& collector)
 						// (see InvalidateStaticOverlay). Since they are expected to change rarely (if ever) during
 						// normal gameplay, this saves us doing all the work below on each frame.
 						m_BuildingOverlay = new SOverlayTexturedLine;
-						UpdateTexturedLineOverlay(&m_OverlayDescriptor, *m_BuildingOverlay, 0, true);
+						UpdateTexturedLineOverlay(&m_OverlayDescriptor, *m_BuildingOverlay, 0);
 					}
 					m_BuildingOverlay->m_Color = m_Color; // done separately so alpha changes don't require a full update call
 					collector.Submit(m_BuildingOverlay);
@@ -675,10 +585,6 @@ void CCmpSelectable::RenderSubmit(SceneCollector& collector)
 			default:
 				break;
 		}
-
-		for (const RangeOverlayData& rangeOverlay : m_RangeOverlayData)
-			if (rangeOverlay.second)
-				collector.Submit(rangeOverlay.second);
 	}
 
 	// Render bounding box debug overlays if we have a positive target alpha value. This ensures

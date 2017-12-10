@@ -18,7 +18,6 @@
 #ifndef INCLUDED_ICMPSELECTABLE
 #define INCLUDED_ICMPSELECTABLE
 
-#include "ps/CStrIntern.h"
 #include "simulation2/system/Interface.h"
 
 struct CColor;
@@ -26,28 +25,6 @@ struct CColor;
 class ICmpSelectable : public IComponent
 {
 public:
-
-	enum EOverlayType {
-		/// A single textured quad overlay, intended for entities that move around much, like units (e.g. foot soldiers, etc).
-		DYNAMIC_QUAD,
-		/// A more complex textured line overlay, composed of several textured line segments. Intended for entities that do not
-		/// move often, such as buildings (structures).
-		STATIC_OUTLINE,
-	};
-
-	struct SOverlayDescriptor
-	{
-		EOverlayType m_Type;
-		CStrIntern m_QuadTexture;
-		CStrIntern m_QuadTextureMask;
-		CStrIntern m_LineTexture;
-		CStrIntern m_LineTextureMask;
-		float m_LineThickness;
-		int m_Radius;
-
-		SOverlayDescriptor() : m_LineThickness(0) { }
-	};
-
 	/**
 	 * Returns true if the entity is only selectable in Atlas editor, e.g. a decorative visual actor.
 	 */
@@ -60,16 +37,6 @@ public:
 	 * @param selected whether the entity is selected; affects desaturation for always visible highlights.
 	 */
 	virtual void SetSelectionHighlight(const CColor& color, bool selected) = 0;
-
-	/**
-	 * Add a range overlay to this entity, for example for an aura or attack.
-	 */
-	virtual void AddRangeOverlay(float radius, const std::string& texture, const std::string& textureMask, float thickness) = 0;
-
-	/**
-	 * Delete all range overlays.
-	 */
-	virtual void ResetRangeOverlays() = 0;
 
 	/**
 	 * Enables or disables rendering of an entity's selectable.

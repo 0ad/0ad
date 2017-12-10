@@ -53,11 +53,12 @@ TS_ASSERT_EQUALS(cmpHeal.GetHealableClasses(), "Support Infantry");
 
 TS_ASSERT_EQUALS(cmpHeal.GetUnhealableClasses(), "Cavalry");
 
-TS_ASSERT_EQUALS(cmpHeal.GetLineTexture(), "heal_overlay_range.png");
-
-TS_ASSERT_EQUALS(cmpHeal.GetLineTextureMask(), "heal_overlay_range_mask.png");
-
-TS_ASSERT_EQUALS(cmpHeal.GetLineThickness(), 0.35);
+TS_ASSERT_UNEVAL_EQUALS(cmpHeal.GetRangeOverlays(), [{
+	"radius": 20 + 300,
+	"texture": "heal_overlay_range.png",
+	"textureMask": "heal_overlay_range_mask.png",
+	"thickness": 0.35
+}]);
 
 // Test PerformHeal
 let target = 70;

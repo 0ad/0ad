@@ -107,9 +107,7 @@ var g_SummaryTypes = {
 	}
 };
 
-/**
- * Translation: Unicode encoded infinity symbol indicating a division by zero in the summary screen.
- */
+// Translation: Unicode encoded infinity symbol indicating a division by zero in the summary screen.
 var g_InfinitySymbol = translate("\u221E");
 
 var g_Teams = [];

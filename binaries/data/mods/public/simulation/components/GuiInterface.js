@@ -891,11 +891,11 @@ GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 
 		cmpSelectable.SetSelectionHighlight({ "r": color.r, "g": color.g, "b": color.b, "a": cmd.alpha }, cmd.selected);
 
-		let cmpRangeVisualization = Engine.QueryInterface(ent, IID_RangeVisualization);
-		if (!cmpRangeVisualization || player != owner && player != -1)
+		let cmpRangeOverlayManager = Engine.QueryInterface(ent, IID_RangeOverlayManager);
+		if (!cmpRangeOverlayManager || player != owner && player != -1)
 			continue;
 
-		cmpRangeVisualization.SetEnabled(cmd.selected, this.enabledVisualRangeOverlayTypes, false);
+		cmpRangeOverlayManager.SetEnabled(cmd.selected, this.enabledVisualRangeOverlayTypes, false);
 	}
 };
 
@@ -948,9 +948,9 @@ GuiInterface.prototype.SetRangeOverlays = function(player, cmd)
 {
 	for (let ent of cmd.entities)
 	{
-		let cmpRangeVisualization = Engine.QueryInterface(ent, IID_RangeVisualization);
-		if (cmpRangeVisualization)
-			cmpRangeVisualization.SetEnabled(cmd.enabled, this.enabledVisualRangeOverlayTypes, true);
+		let cmpRangeOverlayManager = Engine.QueryInterface(ent, IID_RangeOverlayManager);
+		if (cmpRangeOverlayManager)
+			cmpRangeOverlayManager.SetEnabled(cmd.enabled, this.enabledVisualRangeOverlayTypes, true);
 	}
 };
 
@@ -1108,6 +1108,10 @@ GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
 		else
 			result = cmpBuildRestrictions.CheckPlacement();
 
+		let cmpRangeOverlayManager = Engine.QueryInterface(ent, IID_RangeOverlayManager);
+		if (cmpRangeOverlayManager)
+			cmpRangeOverlayManager.SetEnabled(true, this.enabledVisualRangeOverlayTypes);
+
 		// Set it to a red shade if this is an invalid location
 		let cmpVisual = Engine.QueryInterface(ent, IID_Visual);
 		if (cmpVisual)
@@ -1243,6 +1247,9 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 		// Create cache entries for templates we haven't seen before
 		for (let type in wallSet.templates)
 		{
+			if (type == "curves")
+				continue;
+
 			let tpl = wallSet.templates[type];
 			if (!(tpl in this.placementWallEntities))
 			{

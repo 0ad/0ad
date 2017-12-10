@@ -15,17 +15,26 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "precompiled.h"
+#ifndef INCLUDED_ICMPRANGEOVERLAYRENDERER
+#define INCLUDED_ICMPRANGEOVERLAYRENDERER
 
-#include "ICmpSelectable.h"
+#include "ps/CStrIntern.h"
+#include "simulation2/system/Interface.h"
 
-#include "simulation2/system/InterfaceScripted.h"
+class ICmpRangeOverlayRenderer : public IComponent
+{
+public:
+	/**
+	 * Add a range overlay to this entity, for example for an aura or attack.
+	 */
+	virtual void AddRangeOverlay(float radius, const std::string& texture, const std::string& textureMask, float thickness) = 0;
 
-#include "ps/Shapes.h"
+	/**
+	 * Delete all range overlays.
+	 */
+	virtual void ResetRangeOverlays() = 0;
 
-BEGIN_INTERFACE_WRAPPER(Selectable)
-DEFINE_INTERFACE_METHOD_2("SetSelectionHighlight", void, ICmpSelectable, SetSelectionHighlight, CColor, bool)
-END_INTERFACE_WRAPPER(Selectable)
+	DECLARE_INTERFACE_TYPE(RangeOverlayRenderer)
+};
 
-bool ICmpSelectable::ms_EnableDebugOverlays = false;
-bool ICmpSelectable::m_OverrideVisible = true;
+#endif // INCLUDED_ICMPRANGEOVERLAYRENDERER

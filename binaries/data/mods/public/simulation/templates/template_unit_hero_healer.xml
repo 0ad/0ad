@@ -19,6 +19,11 @@
     <Rate>2000</Rate>
     <UnhealableClasses datatype="tokens"/>
     <HealableClasses datatype="tokens">Human</HealableClasses>
+    <RangeOverlay>
+      <LineTexture>heal_overlay_range.png</LineTexture>
+      <LineTextureMask>heal_overlay_range_mask.png</LineTextureMask>
+      <LineThickness>0.35</LineThickness>
+    </RangeOverlay>
   </Heal>
   <Health>
     <Max>1000</Max>

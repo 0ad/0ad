@@ -37,10 +37,9 @@ Trigger.prototype.ConquestStartGameCount = function()
 
 	let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
 	for (let i = 1; i < numPlayers; ++i)
-	{
-		let filterEntity = ent => TriggerHelper.EntityMatchesClassList(ent, this.conquestClassFilter);
-		this.conquestEntitiesByPlayer[i] = [...cmpRangeManager.GetEntitiesByPlayer(i).filter(filterEntity)];
-	}
+		this.conquestEntitiesByPlayer[i] =
+			cmpRangeManager.GetEntitiesByPlayer(i).filter(ent =>
+				TriggerHelper.EntityMatchesClassList(ent, this.conquestClassFilter));
 
 	this.conquestDataInit = true;
 };

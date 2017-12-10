@@ -219,7 +219,7 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources, damag
 			ret.deathDamage[damageType] = getEntityValue("DeathDamage/" + damageType);
 	}
 
-	if (template.Auras)
+	if (template.Auras && auraTemplates)
 	{
 		ret.auras = {};
 		for (let auraID of template.Auras._string.split(/\s+/))
@@ -438,20 +438,32 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources, damag
 		};
 
 	if (template.WallSet)
+	{
 		ret.wallSet = {
 			"templates": {
 				"tower": template.WallSet.Templates.Tower,
 				"gate": template.WallSet.Templates.Gate,
+				"fort": template.WallSet.Templates.Fort || "structures/" + template.Identity.Civ + "_fortress",
 				"long": template.WallSet.Templates.WallLong,
 				"medium": template.WallSet.Templates.WallMedium,
-				"short": template.WallSet.Templates.WallShort,
+				"short": template.WallSet.Templates.WallShort
 			},
 			"maxTowerOverlap": +template.WallSet.MaxTowerOverlap,
-			"minTowerOverlap": +template.WallSet.MinTowerOverlap,
+			"minTowerOverlap": +template.WallSet.MinTowerOverlap
 		};
+		if (template.WallSet.Templates.WallEnd)
+			ret.wallSet.templates.end = template.WallSet.Templates.WallEnd;
+		if (template.WallSet.Templates.WallCurves)
+			ret.wallSet.templates.curves = template.WallSet.Templates.WallCurves.split(" ");
+	}
 
 	if (template.WallPiece)
-		ret.wallPiece = { "length": +template.WallPiece.Length };
+		ret.wallPiece = {
+			"length": +template.WallPiece.Length,
+			"angle": +(template.WallPiece.Orientation || 1) * Math.PI,
+			"indent": +(template.WallPiece.Indent || 0),
+			"bend": +(template.WallPiece.Bend || 0) * Math.PI
+		};
 
 	return ret;
 }

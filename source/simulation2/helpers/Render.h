@@ -18,20 +18,16 @@
 #ifndef INCLUDED_HELPER_RENDER
 #define INCLUDED_HELPER_RENDER
 
-/**
- * @file
- * Helper functions related to rendering
- */
-
-#include "maths/Vector2D.h"
-
 class CSimContext;
 class CVector2D;
 class CVector3D;
+class CFixedVector3D;
 class CMatrix3D;
 class CBoundingBoxAligned;
 class CBoundingBoxOriented;
+
 struct SOverlayLine;
+struct SOverlayTexturedLine;
 
 struct SDashedLine
 {
@@ -189,6 +185,16 @@ void ConstructDashedLine(const std::vector<CVector2D>& linePoints, SDashedLine& 
  *        extra subdivided points between the last and the first point.
  */
 void SubdividePoints(std::vector<CVector2D>& points, float maxSegmentLength, bool closed);
+
+/**
+ * Sets the coordinates of a rectangular textured overlay, for example used by selection rings of structures.
+ */
+void ConstructTexturedLineBox(SOverlayTexturedLine& overlay, const CVector2D& origin, const CFixedVector3D& rotation, const float sizeX, const float sizeZ);
+
+/**
+ * Sets the coordinates of a circular textured overlay, for example by selection rings of units or attack range visualization.
+ */
+void ConstructTexturedLineCircle(SOverlayTexturedLine& overlay, const CVector2D& origin, const float overlay_radius);
 
 } // namespace
 
