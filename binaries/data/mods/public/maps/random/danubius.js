@@ -228,14 +228,18 @@ if (gallicCC)
 			let rugRadius = mRadius * 0.6;
 			let goatRadius = mRadius * 0.8;
 
-			wallStyles.celt_ritual = {
-				"female": new WallElement("female", oFemale, PI, femaleRadius, 0, 2 * PI / femaleCount),
-				"skirmisher": new WallElement("skirmisher", oSkirmisher, PI, maleRadius, 0, 2 * PI / maleCount),
-				"healer": new WallElement("healer", oHealer, PI, maleRadius, 0, 2 * PI / maleCount),
-				"fanatic": new WallElement("fanatic", oNakedFanatic, PI, maleRadius, 0, 2 * PI / maleCount),
-				"bench": new WallElement("bench", aBench, PI/2, benchRadius, 0, 2 * PI / benchCount),
-				"rug": new WallElement("rug", aRug, 0, rugRadius, 0, 2 * PI / rugCount),
-				"goat": new WallElement("goat", oGoat, PI, goatRadius, 0, 2 * PI / goatCount),
+			let calcBend = entCount => Math.PI * 2 / entCount;
+			let maleBend = calcBend(maleCount);
+
+			g_WallStyles.celt_ritual = {
+				"overlap": 0,
+				"female":     { "angle": Math.PI, "length": femaleRadius, "indent": 0, "bend": calcBend(femaleCount), "templateName": oFemale },
+				"skirmisher": { "angle": Math.PI, "length": maleRadius, "indent": 0, "bend": maleBend, "templateName": oSkirmisher },
+				"healer":     { "angle": Math.PI, "length": maleRadius, "indent": 0, "bend": maleBend, "templateName": oHealer },
+				"fanatic":    { "angle": Math.PI, "length": maleRadius, "indent": 0, "bend": maleBend, "templateName": oNakedFanatic },
+				"bench":      { "angle": Math.PI / 2, "length": benchRadius, "indent": 0, "bend": calcBend(benchCount), "templateName": aBench },
+				"rug":        { "angle": 0,       "length": rugRadius, "indent": 0, "bend": calcBend(rugCount), "templateName": aRug },
+				"goat":       { "angle": Math.PI, "length": goatRadius, "indent": 0, "bend": calcBend(goatCount), "templateName": oGoat }
 			};
 
 			placeCustomFortress(mX, mZ, new Fortress("celt ritual females", new Array(femaleCount).fill("female")), "celt_ritual", 0, 0);
@@ -258,46 +262,45 @@ if (gallicCC)
 
 		// Place palisade fortress and some city buildings
 		// Use actors to avoid players capturing the buildings
-		wallStyles.gaul.house = new WallElement("house", oHouse, PI, 0, 4);
-		wallStyles.gaul.hut = new WallElement("hut", oHut, PI, 0, 4);
-		wallStyles.gaul.longhouse = new WallElement("longhouse", oLongHouse, PI, 0, 4);
-		wallStyles.gaul.tavern = new WallElement("tavern", oTavern, PI * 3/2, 0, 4);
-		wallStyles.gaul.temple = new WallElement("temple", oTemple, PI * 3/2, 0, 4);
-		wallStyles.gaul.defense_tower = new WallElement("defense_tower",
-			mapSize >= normalMapSize ? oTower : oPalisadeTower, PI/2, 0, 4);
-		wallStyles.gaul.palisade_tower = wallStyles.palisades.tower;
+		g_WallStyles.gaul = clone(g_WallStyles.gaul_stone);
+		g_WallStyles.gaul.house = { "angle": Math.PI, "length": 0, "indent": 4, "bend": 0, "templateName": oHouse };
+		g_WallStyles.gaul.hut = { "angle": Math.PI, "length": 0, "indent": 4, "bend": 0, "templateName": oHut };
+		g_WallStyles.gaul.longhouse = { "angle": Math.PI, "length": 0, "indent": 4, "bend": 0, "templateName": oLongHouse };
+		g_WallStyles.gaul.tavern = { "angle": Math.PI * 3/2, "length": 0, "indent": 4, "bend": 0, "templateName": oTavern };
+		g_WallStyles.gaul.temple = { "angle": Math.PI * 3/2, "length": 0, "indent": 4, "bend": 0, "templateName": oTemple };
+		g_WallStyles.gaul.defense_tower = { "angle": Math.PI / 2, "length": 0, "indent": 4, "bend": 0, "templateName": mapSize >= normalMapSize ? oTower : oPalisadeTower };
 
 		// Replace stone walls with palisade walls
-		for (let template of ["gate", "wallLong", "cornerIn", "cornerOut"])
-			wallStyles.gaul[template] = wallStyles.palisades[template];
+		for (let element of ["gate", "long", "short", "cornerIn", "cornerOut", "tower"])
+			g_WallStyles.gaul[element] = getWallElement(element, "palisade");
 
 		let wall = [
-			"gate", "hut", "palisade_tower", "wallLong", "wallLong",
-			"cornerIn", "defense_tower", "wallLong", "wallLong", "temple",
-			"palisade_tower", "wallLong", "house", "gate", "palisade_tower", "longhouse", "wallLong", "wallLong",
-			"cornerIn", "defense_tower", "wallLong", "tavern", "wallLong", "palisade_tower"];
+			"gate", "hut", "tower", "long", "long",
+			"cornerIn", "defense_tower", "long", "long", "temple",
+			"tower", "long", "house", "short", "tower", "gate", "tower", "longhouse", "long", "long",
+			"cornerIn", "defense_tower", "long", "tavern", "long", "tower"];
 		wall = wall.concat(wall);
-		placeCustomFortress(gX, gZ, new Fortress("Geto-Dacian Tribal Confederation", wall), "gaul", 0, PI);
+		placeCustomFortress(gX, gZ, new Fortress("Geto-Dacian Tribal Confederation", wall), "gaul", 0, Math.PI);
 
 		// Place spikes
-		wallStyles.palisades.tall_spikes = new WallElement("tall_spikes", oTallSpikes, PI/2, 2);
-		wallStyles.palisades.spikeIn = new WallElement("spikeIn", oAngleSpikes, -PI/4, 2.1, 0.7, PI/2);
-		wallStyles.palisades.spikeMid = new WallElement("spikeIn", oAngleSpikes, -PI/2, 0.7);
-		wallStyles.palisades.gateGap = new WallElement("gateGap", undefined, PI, 3.6);
+		g_WallStyles.palisade.spikes_tall = readyWallElement("other/palisades_tall_spikes", "gaia");
+		g_WallStyles.palisade.spike_single = readyWallElement("other/palisades_angle_spike", "gaia");
 
-		let fourSpikes = new Array(4).fill("tall_spikes");
-		let sixSpikes = new Array(6).fill("tall_spikes");
+		let threeSpikes = new Array(3).fill("spikes_tall");
+		let fiveSpikes = new Array(5).fill("spikes_tall");
 
 		let spikes = [
-			"gateGap",
-			"spikeMid", ...fourSpikes,
-			"spikeIn", ...sixSpikes, "spikeMid",
-			"gateGap", "spikeMid", ...fourSpikes,
-			"spikeIn", ...fourSpikes,
-			"spikeMid"
+			"gap_3.6",
+			"spike_single", ...threeSpikes,
+			"turn_0.25", "spike_single", "turn_0.25",
+			...fiveSpikes, "spike_single",
+			"gap_3.6", "spike_single", ...threeSpikes,
+			"turn_0.25", "spike_single", "turn_0.25",
+			...threeSpikes,
+			"spike_single"
 		];
 		spikes = spikes.concat(spikes);
-		placeCustomFortress(gX, gZ, new Fortress("spikes", spikes), "palisades", 0, PI);
+		placeCustomFortress(gX, gZ, new Fortress("spikes", spikes), "palisade", 0, PI);
 
 		// Place treasure, potentially inside buildings
 		for (let i = 0; i < gallicCCTreasureCount; ++i)
