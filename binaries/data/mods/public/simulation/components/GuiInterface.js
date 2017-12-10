@@ -1247,6 +1247,9 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 		// Create cache entries for templates we haven't seen before
 		for (let type in wallSet.templates)
 		{
+			if (type == "curves")
+				continue;
+
 			let tpl = wallSet.templates[type];
 			if (!(tpl in this.placementWallEntities))
 			{

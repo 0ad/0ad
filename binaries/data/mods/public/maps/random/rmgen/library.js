@@ -5,6 +5,8 @@ const SEA_LEVEL = 20.0;
 const HEIGHT_UNITS_PER_METRE = 92;
 const MAP_BORDER_WIDTH = 3;
 
+const g_DamageTypes = new DamageTypes();
+
 /**
  * Constants needed for heightmap_manipulation.js
  */

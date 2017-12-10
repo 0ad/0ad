@@ -228,6 +228,9 @@ function loadStructure(templateName)
 
 		for (let wSegm in structure.wallSet.templates)
 		{
+			if (wSegm == "fort" || wSegm == "curves")
+				continue;
+
 			let wPart = loadStructure(structure.wallSet.templates[wSegm]);
 			structure.wallset[wSegm] = wPart;
 
@@ -249,6 +252,15 @@ function loadStructure(templateName)
 			health.min = Math.min(health.min, wPart.health);
 			health.max = Math.max(health.max, wPart.health);
 		}
+
+		if (structure.wallSet.templates.curves)
+			for (let curve of structure.wallSet.templates.curves)
+			{
+				let wPart = loadStructure(curve);
+				health.min = Math.min(health.min, wPart.health);
+				health.max = Math.max(health.max, wPart.health);
+			}
+
 		if (health.min == health.max)
 			structure.health = health.min;
 		else
