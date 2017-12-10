@@ -1,36 +1,46 @@
 /**
- * Contains JS objects defined by the mod JSON files available.
- * @example
- *{
- *	"public":
+ * @file This GUI page displays all available mods and allows the player to enabled and launch a set of compatible mods.
+ */
+
+/**
+ * A mod is defined by a mod.json file, for example
  *	{
  *		"name": "0ad",
  *		"version": "0.0.16",
  *		"label": "0 A.D. - Empires Ascendant",
- *		"url": "http://wildfregames.com/",
+ *		"url": "http://wildfiregames.com/",
  *		"description": "A free, open-source, historical RTS game.",
  *		"dependencies": []
- *	},
- *	"foldername2": {
+ *	}
+ *
+ * Or:
+ *	{
  *		"name": "mod2",
  *		"label": "Mod 2",
  *		"version": "1.1",
  *		"description": "",
  *		"dependencies": ["0ad<=0.0.16", "rote"]
  *	}
- *}
+ *
+ * A mod is identified by the directory name.
+ * A mod must define the "name", "version", "label", "description" and "dependencies" property.
+ * The "url" property is optional.
+ *
+ * The property "name" can consist alphanumeric characters, underscore and dash.
+ * The name is used for version comparison of mod dependencies.
+ * The property "version" may only contain numbers and up to two periods.
+ * The property "label" is a human-readable name of the mod.
+ * The property "description" is a human-readable summary of the features of the mod.
+ * The property "url" is reference to a website about the mod.
+ * The property "dependencies" is an array of strings. Each string is either a modname or a mod version comparison.
+ * A mod version comparison is a modname, followed by an operator (=, <, >, <= or >=), followed by a mod version.
+ * This allows mods to express upwards and downwards compatibility.
+ */
+
+/**
+ * Mod definitions loaded from the files, including invalid mods.
  */
 var g_Mods = {};
-
-/**
- * Every mod needs to define these properties.
- */
-var g_RequiredProperties = ["name", "label", "description", "dependencies", "version"];
-
-/**
- * Version checks in mod dependencies can use these operators.
- */
-var g_CompareVersion = /(<=|>=|<|>|=)/;
 
 /**
  * Folder names of all mods that are or can be launched.
@@ -45,25 +55,28 @@ var g_ColorDependenciesNotMet = "255 100 100";
 function init()
 {
 	loadMods();
+	loadEnabledMods();
+	validateMods();
 	initGUIFilters();
 }
 
 function loadMods()
 {
-	let mods = Engine.GetAvailableMods();
-
-	for (let folder in mods)
-		if (g_RequiredProperties.every(prop => mods[folder][prop] !== undefined))
-			g_Mods[folder] = mods[folder];
-		else
-			warn("Skipping mod '" + mod + "' which does not define '" + property + "'.");
-
+	g_Mods = Engine.GetAvailableMods();
 	translateObjectKeys(g_Mods, ["label", "description"]);
-
 	deepfreeze(g_Mods);
+}
 
+function loadEnabledMods()
+{
 	g_ModsEnabled = Engine.ConfigDB_GetValue("user", "mod.enabledmods").split(/\s+/).filter(folder => !!g_Mods[folder]);
 	g_ModsDisabled = Object.keys(g_Mods).filter(folder => g_ModsEnabled.indexOf(folder) == -1);
+}
+
+function validateMods()
+{
+	for (let folder in g_Mods)
+		validateMod(folder, g_Mods[folder], true);
 }
 
 function initGUIFilters()
@@ -267,7 +280,7 @@ function areDependenciesMet(folder)
  */
 function isDependencyMet(dependency)
 {
-	let operator = dependency.match(g_CompareVersion);
+	let operator = dependency.match(g_RegExpComparison);
 	let [name, version] = operator ? dependency.split(operator[0]) : [dependency, undefined];
 
 	return g_ModsEnabled.some(folder =>
@@ -292,8 +305,6 @@ function versionSatisfied(version1, operator, version2)
 	for (let i = 0; i < Math.min(versionList1.length, versionList2.length); ++i)
 	{
 		let diff = +versionList1[i] - +versionList2[i];
-		if (isNaN(diff))
-			continue;
 
 		if (gt && diff > 0 || lt && diff < 0)
 			return true;
@@ -318,7 +329,7 @@ function sortEnabledMods()
 {
 	let dependencies = {};
 	for (let folder of g_ModsEnabled)
-		dependencies[folder] = g_Mods[folder].dependencies.map(d => d.split(g_CompareVersion)[0]);
+		dependencies[folder] = g_Mods[folder].dependencies.map(d => d.split(g_RegExpComparison)[0]);
 
 	g_ModsEnabled.sort((folder1, folder2) =>
 		dependencies[folder1].indexOf(g_Mods[folder2].name) != -1 ? 1 :
