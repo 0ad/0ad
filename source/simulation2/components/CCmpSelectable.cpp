@@ -494,60 +494,15 @@ void CCmpSelectable::UpdateTexturedLineOverlay(const SOverlayDescriptor* overlay
 	float rotY;
 	CVector2D origin;
 	cmpPosition->GetInterpolatedPosition2D(frameOffset, origin.X, origin.Y, rotY);
-	CFixedVector3D rotation = cmpPosition->GetRotation();
 
-	CTextureProperties texturePropsBase(overlayDescriptor->m_LineTexture.c_str());
-	texturePropsBase.SetWrap(GL_CLAMP_TO_BORDER, GL_CLAMP_TO_EDGE);
-	texturePropsBase.SetMaxAnisotropy(4.f);
-
-	CTextureProperties texturePropsMask(overlayDescriptor->m_LineTextureMask.c_str());
-	texturePropsMask.SetWrap(GL_CLAMP_TO_BORDER, GL_CLAMP_TO_EDGE);
-	texturePropsMask.SetMaxAnisotropy(4.f);
-
-	overlay.m_AlwaysVisible = false;
-	overlay.m_Closed = true;
 	overlay.m_SimContext = &GetSimContext();
-	overlay.m_Thickness = overlayDescriptor->m_LineThickness;
-	overlay.m_TextureBase = g_Renderer.GetTextureManager().CreateTexture(texturePropsBase);
-	overlay.m_TextureMask = g_Renderer.GetTextureManager().CreateTexture(texturePropsMask);
 	overlay.m_Color = m_Color;
+	overlay.CreateOverlayTexture(overlayDescriptor);
 
 	if (buildingOverlay && fpShape == ICmpFootprint::SQUARE)
-	{
-		float s = sinf(-rotation.Y.ToFloat());
-		float c = cosf(-rotation.Y.ToFloat());
-		CVector2D unitX(c, s);
-		CVector2D unitZ(-s, c);
-
-		// Add half the line thickness to the radius so that we get an 'outside' stroke of the footprint shape
-		const float halfSizeX = fpSize0_fixed.ToFloat() / 2.f + overlay.m_Thickness / 2.f;
-		const float halfSizeZ = fpSize1_fixed.ToFloat() / 2.f + overlay.m_Thickness / 2.f;
-
-		std::vector<CVector2D> points;
-		points.push_back(CVector2D(origin + unitX * halfSizeX + unitZ * (-halfSizeZ)));
-		points.push_back(CVector2D(origin + unitX * (-halfSizeX) + unitZ * (-halfSizeZ)));
-		points.push_back(CVector2D(origin + unitX * (-halfSizeX) + unitZ * halfSizeZ));
-		points.push_back(CVector2D(origin + unitX * halfSizeX + unitZ * halfSizeZ));
-
-		SimRender::SubdividePoints(points, TERRAIN_TILE_SIZE / 3.f, overlay.m_Closed);
-		overlay.PushCoords(points);
-	}
+		SimRender::ConstructTexturedLineBox(overlay, origin, cmpPosition->GetRotation(), fpSize0_fixed.ToFloat(), fpSize1_fixed.ToFloat());
 	else
-	{
-		const float radius = (buildingOverlay ? fpSize0_fixed.ToFloat() : overlayDescriptor->m_Radius) + overlay.m_Thickness / 3.f;
-
-		u32 numSteps = ceilf(float(2 * M_PI) * radius / (TERRAIN_TILE_SIZE / 3.f));
-		for (u32 i = 0; i < numSteps; ++i)
-		{
-			float angle = i * float(2 * M_PI) / numSteps;
-			float px = origin.X + radius * sinf(angle);
-			float pz = origin.Y + radius * cosf(angle);
-
-			overlay.PushCoords(px, pz);
-		}
-	}
-
-	ENSURE(overlay.m_TextureBase);
+		SimRender::ConstructTexturedLineCircle(overlay, origin, buildingOverlay ? fpSize0_fixed.ToFloat() : overlayDescriptor->m_Radius);
 }
 
 void CCmpSelectable::UpdateDynamicOverlay(float frameOffset)

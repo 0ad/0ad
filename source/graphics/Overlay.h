@@ -28,6 +28,7 @@
 class CTerrain;
 class CSimContext;
 class CTexturedLineRData;
+struct SOverlayDescriptor;
 
 /**
  * Line-based overlay, with world-space coordinates, rendered in the world
@@ -120,6 +121,11 @@ struct SOverlayTexturedLine
 	 * default value is returned.
 	 */
 	static LineCapType StrToLineCapType(const std::wstring& str);
+
+	/**
+	 * Creates the texture specified by the given overlay descriptor and assigns it to this overlay.
+	 */
+	void CreateOverlayTexture(const SOverlayDescriptor* overlayDescriptor);
 
 	void PushCoords(const float x, const float z) { m_Coords.push_back(x); m_Coords.push_back(z); }
 	void PushCoords(const CVector2D& v) { PushCoords(v.X, v.Y); }
