@@ -1291,27 +1291,34 @@ end
 -- tests
 --------------------------------------------------------------------------------
 
-function configure_cxxtestgen()
-	local lcxxtestrootfile = source_root.."test_root.cpp"
+function setup_tests()
 
-	-- Define the options used for cxxtestgen
-	local lcxxtestoptions = "--have-std"
-	local lcxxtestrootoptions = "--have-std"
+	local cxxtest = require "cxxtest"
 
-	if _OPTIONS["jenkins-tests"] then
-		lcxxtestrootoptions = lcxxtestrootoptions .. " --runner=XmlPrinter"
+	if os.istarget("windows") then
+		cxxtest.setpath(rootdir.."/build/bin/cxxtestgen.exe")
 	else
-		lcxxtestrootoptions = lcxxtestrootoptions .. " --runner=ErrorPrinter"
+		cxxtest.setpath(rootdir.."/libraries/source/cxxtest-4.4/bin/cxxtestgen")
 	end
 
-	-- Precompiled headers - the header is added to all generated .cpp files
-	-- note that the header isn't actually precompiled here, only #included
-	-- so that the build stage can use it as a precompiled header.
-	local include = " --include=precompiled.h"
-	-- This is required to build against SDL 2.0.4 on Windows
-	include = include .. " --include=lib/external_libraries/libsdl.h"
-	lcxxtestrootoptions = lcxxtestrootoptions .. include
-	lcxxtestoptions = lcxxtestoptions .. include
+	local runner = "ErrorPrinter"
+	if _OPTIONS["jenkins-tests"] then
+		runner = "XmlPrinter"
+	end
+
+	local includefiles = {
+		-- Precompiled headers - the header is added to all generated .cpp files
+		-- note that the header isn't actually precompiled here, only #included
+		-- so that the build stage can use it as a precompiled header.
+		"precompiled.h",
+		-- This is required to build against SDL 2.0.4 on Windows.
+		"lib/external_libraries/libsdl.h",
+	}
+
+	cxxtest.init(source_root, true, runner, includefiles)
+
+	local target_type = get_main_project_target_type()
+	project_create("test", target_type)
 
 	-- Find header files in 'test' subdirectories
 	local all_files = os.matchfiles(source_root .. "**/tests/*.h")
@@ -1327,24 +1334,7 @@ function configure_cxxtestgen()
 		end
 	end
 
-	local cxxtest = require "cxxtest"
-
-	if os.istarget("windows") then
-		cxxtest.path = rootdir.."/build/bin/cxxtestgen.exe"
-	else
-		cxxtest.path = rootdir.."/libraries/source/cxxtest-4.4/bin/cxxtestgen"
-	end
-
-	cxxtest.configure_project(lcxxtestrootfile, test_files, lcxxtestrootoptions, lcxxtestoptions)
-end
-
-
-function setup_tests()
-
-	local target_type = get_main_project_target_type()
-	project_create("test", target_type)
-
-	configure_cxxtestgen()
+	cxxtest.configure_project(test_files)
 
 	filter "system:not macosx"
 		linkgroups 'On'
