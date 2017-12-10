@@ -1,6 +1,7 @@
 <variant name="carry_metal">
   <animations>
-	<animation file="biped/new/male_carry_ore.dae" name="carry_metal" speed="20"/>
+	<animation file="biped/new/male_carry_ore.dae" name="Walk" speed="20"/>
+	<animation file="biped/new/male_carry_ore_idle.dae" name="Idle" speed="20"/>
   </animations>
   <props>
 	<prop actor="props/units/shuttle_metal.xml" attachpoint="weapon_R"/>

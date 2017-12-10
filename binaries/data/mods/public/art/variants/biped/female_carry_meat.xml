@@ -1,6 +1,7 @@
 <variant name="carry_meat">
   <animations>
-    <animation file="biped/new/fem_carry_meat.dae" name="carry_meat" speed="25"/>
+    <animation file="biped/new/fem_carry_meat_idle.dae" name="Idle" speed="25"/>
+    <animation file="biped/new/fem_carry_meat.dae" name="Walk" speed="25"/>
   </animations>
   <props>
 	<prop actor="props/units/shuttle_meat_female.xml" attachpoint="weapon_R"/>
