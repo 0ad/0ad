@@ -66,29 +66,6 @@ Auras.prototype.GetRange = function(name)
 	return undefined;
 };
 
-/**
- * Return the names of any range auras - used to render their ranges.
- */
-Auras.prototype.GetVisualAuraRangeNames = function()
-{
-	return this.GetAuraNames().filter(auraName => this.IsRangeAura(auraName) && this[auraName].isApplied);
-};
-
-Auras.prototype.GetLineTexture = function(name)
-{
-	return this.auras[name].rangeOverlay ? this.auras[name].rangeOverlay.lineTexture : "outline_border.png";
-};
-
-Auras.prototype.GetLineTextureMask = function(name)
-{
-	return this.auras[name].rangeOverlay ? this.auras[name].rangeOverlay.lineTextureMask : "outline_border_mask.png";
-};
-
-Auras.prototype.GetLineThickness = function(name)
-{
-	return this.auras[name].rangeOverlay ? this.auras[name].rangeOverlay.lineThickness : 0.2;
-};
-
 Auras.prototype.GetClasses = function(name)
 {
 	return this.auras[name].affects;
@@ -102,6 +79,35 @@ Auras.prototype.GetModifications = function(name)
 Auras.prototype.GetAffectedPlayers = function(name)
 {
 	return this.affectedPlayers[name];
+};
+
+Auras.prototype.GetRangeOverlays = function()
+{
+	let rangeOverlays = [];
+
+	for (let name of this.GetAuraNames())
+	{
+		if (!this.IsRangeAura(name) || !this[name].isApplied)
+			continue;
+
+		rangeOverlays.push(
+			this.auras[name].rangeOverlay ?
+				{
+					"radius": this.GetRange(name),
+					"texture":  this.auras[name].rangeOverlay.lineTexture,
+					"textureMask":  this.auras[name].rangeOverlay.lineTextureMask,
+					"thickness":  this.auras[name].rangeOverlay.lineThickness
+				} :
+				// Specify default in order not to specify it in about 40 auras
+				{
+					"radius": this.GetRange(name),
+					"texture":  "outline_border.png",
+					"textureMask":  "outline_border_mask.png",
+					"thickness":  0.2
+				});
+	}
+
+	return rangeOverlays;
 };
 
 Auras.prototype.CalculateAffectedPlayers = function(name)
@@ -278,7 +284,7 @@ Auras.prototype.Clean = function()
 		let cmpRangeVisualization = Engine.QueryInterface(this.entity, IID_RangeVisualization);
 		if (cmpRangeVisualization)
 		{
-			cmpRangeVisualization.UpdateVisualAuraRanges();
+			cmpRangeVisualization.UpdateRangeOverlays("Auras");
 			cmpRangeVisualization.RegenerateRangeVisualizations(false);
 		}
 	}

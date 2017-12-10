@@ -87,19 +87,17 @@ Heal.prototype.GetHealableClasses = function()
 	return this.template.HealableClasses._string || "";
 };
 
-Heal.prototype.GetLineTexture = function()
+Heal.prototype.GetRangeOverlays = function()
 {
-	return this.template.RangeOverlay ? this.template.RangeOverlay.LineTexture : "heal_overlay_range.png";
-};
+	if (!this.template.RangeOverlay)
+		return [];
 
-Heal.prototype.GetLineTextureMask = function()
-{
-	return this.template.RangeOverlay ? this.template.RangeOverlay.LineTextureMask : "heal_overlay_range_mask.png";
-};
-
-Heal.prototype.GetLineThickness = function()
-{
-	return this.template.RangeOverlay ? +this.template.RangeOverlay.LineThickness : 0.35;
+	return [{
+		"radius": this.GetRange().max,
+		"texture": this.template.RangeOverlay.LineTexture,
+		"textureMask": this.template.RangeOverlay.LineTextureMask,
+		"thickness": +this.template.RangeOverlay.LineThickness
+	}]
 };
 
 /**

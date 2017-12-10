@@ -797,7 +797,7 @@ function onSimulationUpdate()
 	handleNotifications();
 	updateGUIObjects();
 
-	for (let type of ["Attack", "Aura", "Heal"])
+	for (let type of ["Attack", "Auras", "Heal"])
 		Engine.GuiInterfaceCall("EnableVisualRangeOverlayType", {
 			"type": type,
 			"enabled": Engine.ConfigDB_GetValue("user", "gui.session." + type.toLowerCase() + "range") == "true"
@@ -1280,7 +1280,7 @@ function toggleConfigBool(configName)
 
 /**
  * Toggles the display of range overlays of selected entities for the given range type.
- * @param {string} type - for example "Aura"
+ * @param {string} type - for example "Auras"
  */
 function toggleRangeOverlay(type)
 {

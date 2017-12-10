@@ -7,7 +7,7 @@ RangeVisualization.prototype.Init = function()
 	this.enabled = false;
 	this.enabledRangeTypes = {
 		"Attack": false,
-		"Aura": false,
+		"Auras": false,
 		"Heal": false
 	};
 
@@ -22,42 +22,11 @@ RangeVisualization.prototype.Deserialize = function(data)
 	this.Init();
 };
 
-RangeVisualization.prototype.UpdateVisualAttackRanges = function()
+RangeVisualization.prototype.UpdateRangeOverlays = function(componentName)
 {
-	let cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-	if (cmpAttack)
-		this.rangeVisualizations.set("Attack", cmpAttack.GetRangeOverlays());
-};
-
-RangeVisualization.prototype.UpdateVisualAuraRanges = function()
-{
-	let cmpAuras = Engine.QueryInterface(this.entity, IID_Auras);
-	if (!cmpAuras)
-		return;
-
-	this.rangeVisualizations.set("Aura", []);
-
-	for (let auraName of cmpAuras.GetVisualAuraRangeNames())
-		this.rangeVisualizations.get("Aura").push({
-			"radius": cmpAuras.GetRange(auraName),
-			"texture": cmpAuras.GetLineTexture(auraName),
-			"textureMask": cmpAuras.GetLineTextureMask(auraName),
-			"thickness": cmpAuras.GetLineThickness(auraName),
-		});
-};
-
-RangeVisualization.prototype.UpdateVisualHealRanges = function()
-{
-	let cmpHeal = Engine.QueryInterface(this.entity, IID_Heal);
-	if (!cmpHeal)
-		return;
-
-	this.rangeVisualizations.set("Heal", [{
-		"radius": cmpHeal.GetRange().max,
-		"texture": cmpHeal.GetLineTexture(),
-		"textureMask": cmpHeal.GetLineTextureMask(),
-		"thickness": cmpHeal.GetLineThickness(),
-	}]);
+	let cmp = Engine.QueryInterface(this.entity, global["IID_" + componentName]);
+	if (cmp)
+		this.rangeVisualizations.set(componentName, cmp.GetRangeOverlays());
 };
 
 RangeVisualization.prototype.SetEnabled = function(enabled, enabledRangeTypes, forceUpdate)
@@ -95,7 +64,8 @@ RangeVisualization.prototype.OnOwnershipChanged = function(msg)
 	if (msg.to == -1)
 		return;
 	for (let type in this.enabledRangeTypes)
-		this["UpdateVisual" + type + "Ranges"]();
+		this.UpdateRangeOverlays(type);
+
 	this.RegenerateRangeVisualizations(false);
 };
 
@@ -106,7 +76,7 @@ RangeVisualization.prototype.OnValueModification = function(msg)
 	    msg.valueNames.indexOf("Attack/Ranged/MaxRange") == -1)
 		return;
 
-	this["UpdateVisual" + msg.component + "Ranges"]();
+	this.UpdateRangeOverlays(msg.component);
 	this.RegenerateRangeVisualizations(false);
 };
 
@@ -116,7 +86,7 @@ RangeVisualization.prototype.OnValueModification = function(msg)
 RangeVisualization.prototype.OnDeserialized = function(msg)
 {
 	for (let type in this.enabledRangeTypes)
-		this["UpdateVisual" + type + "Ranges"]();
+		this.UpdateRangeOverlays(type);
 };
 
 Engine.RegisterComponentType(IID_RangeVisualization, "RangeVisualization", RangeVisualization);
