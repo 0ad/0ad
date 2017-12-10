@@ -3,7 +3,8 @@
   <!-- We only want to include components which are necessary (for the visual previewing of an entity)
        and safe (i.e. won't do anything that affects the synchronised simulation state), so additions
        to this list should be carefully considered -->
-  <Attack merge=""/> <!-- Needed for the Actor Viewer -->
+  <!-- Attack is needed for the Actor Viewer and attack range overlay -->
+  <Attack merge=""/>
   <BuildRestrictions merge=""/>
   <Decay merge=""/>
   <Footprint merge=""/>
@@ -22,6 +23,9 @@
     <AlwaysVisible>true</AlwaysVisible>
     <Preview>true</Preview>
   </Visibility>
+  <!-- Displays attack range -->
+  <RangeOverlayRenderer merge=""/>
+  <RangeVisualization merge=""/>
   <!-- Previews should not cast shadows -->
   <VisualActor merge="">
     <DisableShadows/>

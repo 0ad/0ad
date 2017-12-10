@@ -1108,6 +1108,10 @@ GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
 		else
 			result = cmpBuildRestrictions.CheckPlacement();
 
+		let cmpRangeVisualization = Engine.QueryInterface(ent, IID_RangeVisualization);
+		if (cmpRangeVisualization)
+			cmpRangeVisualization.SetEnabled(true, this.enabledVisualRangeOverlayTypes);
+
 		// Set it to a red shade if this is an invalid location
 		let cmpVisual = Engine.QueryInterface(ent, IID_Visual);
 		if (cmpVisual)
