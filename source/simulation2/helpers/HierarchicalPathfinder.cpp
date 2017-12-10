@@ -411,10 +411,16 @@ void HierarchicalPathfinder::Update(Grid<NavcellData>* grid, const Grid<u8>& dir
 
 	for (int cj = 0; cj <  m_ChunksH; ++cj)
 	{
+		int j0 = cj * CHUNK_SIZE;
+		int j1 = std::min(j0 + CHUNK_SIZE, (int)dirtinessGrid.m_H);
 		for (int ci = 0; ci < m_ChunksW; ++ci)
 		{
-			if (!IsChunkDirty(ci, cj, dirtinessGrid))
+			// Skip chunks where no navcells are dirty.
+			int i0 = ci * CHUNK_SIZE;
+			int i1 = std::min(i0 + CHUNK_SIZE, (int)dirtinessGrid.m_W);
+			if (!dirtinessGrid.any_set_in_square(i0, j0, i1, j1))
 				continue;
+
 			for (const std::pair<std::string, pass_class_t>& passClassMask : m_PassClassMasks)
 			{
 				pass_class_t passClass = passClassMask.second;
@@ -446,23 +452,6 @@ void HierarchicalPathfinder::Update(Grid<NavcellData>* grid, const Grid<u8>& dir
 		m_DebugOverlayLines.clear();
 		AddDebugEdges(GetPassabilityClass("default"));
 	}
-}
-
-bool HierarchicalPathfinder::IsChunkDirty(int ci, int cj, const Grid<u8>& dirtinessGrid) const
-{
-	int i0 = ci * CHUNK_SIZE;
-	int j0 = cj * CHUNK_SIZE;
-	int i1 = std::min(i0 + CHUNK_SIZE, (int)dirtinessGrid.m_W);
-	int j1 = std::min(j0 + CHUNK_SIZE, (int)dirtinessGrid.m_H);
-	for (int j = j0; j < j1; ++j)
-	{
-		for (int i = i0; i < i1; ++i)
-		{
-			if (dirtinessGrid.get(i, j))
-				return true;
-		}
-	}
-	return false;
 }
 
 /**

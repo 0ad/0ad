@@ -20,9 +20,11 @@
 
 #include "simulation2/system/Interface.h"
 
-#include "simulation2/helpers/Grid.h"
 #include "simulation2/helpers/Player.h"
 #include "simulation2/components/ICmpPosition.h"
+
+template<typename T>
+class Grid;
 
 class ICmpTerritoryManager : public IComponent
 {

@@ -18,9 +18,10 @@
 #include "lib/ogl.h"
 
 #include "maths/Matrix3D.h"
-#include "simulation2/helpers/Grid.h"
 
 class CSimulation2;
+template<typename T>
+class Grid;
 
 /**
  * Maintains the territory boundary texture, used for
