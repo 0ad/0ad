@@ -70,11 +70,11 @@ RangeVisualization.prototype.SetEnabled = function(enabled, enabledRangeTypes, f
 
 RangeVisualization.prototype.RegenerateRangeVisualizations = function(forceUpdate)
 {
-	let cmpSelectable = Engine.QueryInterface(this.entity, IID_Selectable);
-	if (!cmpSelectable)
+	let cmpRangeOverlayRenderer = Engine.QueryInterface(this.entity, IID_RangeOverlayRenderer);
+	if (!cmpRangeOverlayRenderer)
 		return;
 
-	cmpSelectable.ResetRangeOverlays();
+	cmpRangeOverlayRenderer.ResetRangeOverlays();
 
 	if (!this.enabled && !forceUpdate)
 		return;
@@ -83,7 +83,7 @@ RangeVisualization.prototype.RegenerateRangeVisualizations = function(forceUpdat
 	for (let rangeOverlayType of this.rangeVisualizations.keys())
 		if (this.enabledRangeTypes[rangeOverlayType])
 			for (let rangeOverlay of this.rangeVisualizations.get(rangeOverlayType))
-				cmpSelectable.AddRangeOverlay(
+				cmpRangeOverlayRenderer.AddRangeOverlay(
 					rangeOverlay.radius,
 					rangeOverlay.texture,
 					rangeOverlay.textureMask,

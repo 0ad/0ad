@@ -17,15 +17,10 @@
 
 #include "precompiled.h"
 
-#include "ICmpSelectable.h"
-
+#include "ICmpRangeOverlayRenderer.h"
 #include "simulation2/system/InterfaceScripted.h"
 
-#include "ps/Shapes.h"
-
-BEGIN_INTERFACE_WRAPPER(Selectable)
-DEFINE_INTERFACE_METHOD_2("SetSelectionHighlight", void, ICmpSelectable, SetSelectionHighlight, CColor, bool)
-END_INTERFACE_WRAPPER(Selectable)
-
-bool ICmpSelectable::ms_EnableDebugOverlays = false;
-bool ICmpSelectable::m_OverrideVisible = true;
+BEGIN_INTERFACE_WRAPPER(RangeOverlayRenderer)
+DEFINE_INTERFACE_METHOD_4("AddRangeOverlay", void, ICmpRangeOverlayRenderer, AddRangeOverlay, float, std::string, std::string, float)
+DEFINE_INTERFACE_METHOD_0("ResetRangeOverlays", void, ICmpRangeOverlayRenderer, ResetRangeOverlays)
+END_INTERFACE_WRAPPER(RangeOverlayRenderer)

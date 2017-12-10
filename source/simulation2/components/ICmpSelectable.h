@@ -39,16 +39,6 @@ public:
 	virtual void SetSelectionHighlight(const CColor& color, bool selected) = 0;
 
 	/**
-	 * Add a range overlay to this entity, for example for an aura or attack.
-	 */
-	virtual void AddRangeOverlay(float radius, const std::string& texture, const std::string& textureMask, float thickness) = 0;
-
-	/**
-	 * Delete all range overlays.
-	 */
-	virtual void ResetRangeOverlays() = 0;
-
-	/**
 	 * Enables or disables rendering of an entity's selectable.
 	 * @param visible Whether the selectable should be visible.
 	 */
