@@ -2,7 +2,7 @@ Engine.LoadHelperScript("Player.js");
 Engine.LoadHelperScript("ValueModification.js");
 Engine.LoadComponentScript("interfaces/Auras.js");
 Engine.LoadComponentScript("interfaces/AuraManager.js");
-Engine.LoadComponentScript("interfaces/RangeVisualization.js");
+Engine.LoadComponentScript("interfaces/RangeOverlayManager.js");
 Engine.LoadComponentScript("interfaces/TechnologyManager.js");
 Engine.LoadComponentScript("Auras.js");
 Engine.LoadComponentScript("AuraManager.js");

@@ -281,11 +281,11 @@ Auras.prototype.Clean = function()
 
 	if (needVisualizationUpdate)
 	{
-		let cmpRangeVisualization = Engine.QueryInterface(this.entity, IID_RangeVisualization);
-		if (cmpRangeVisualization)
+		let cmpRangeOverlayManager = Engine.QueryInterface(this.entity, IID_RangeOverlayManager);
+		if (cmpRangeOverlayManager)
 		{
-			cmpRangeVisualization.UpdateRangeOverlays("Auras");
-			cmpRangeVisualization.RegenerateRangeVisualizations(false);
+			cmpRangeOverlayManager.UpdateRangeOverlays("Auras");
+			cmpRangeOverlayManager.RegenerateRangeOverlayManagers(false);
 		}
 	}
 };

@@ -24,8 +24,8 @@
     <Preview>true</Preview>
   </Visibility>
   <!-- Displays attack range -->
+  <RangeOverlayManager merge=""/>
   <RangeOverlayRenderer merge=""/>
-  <RangeVisualization merge=""/>
   <!-- Previews should not cast shadows -->
   <VisualActor merge="">
     <DisableShadows/>

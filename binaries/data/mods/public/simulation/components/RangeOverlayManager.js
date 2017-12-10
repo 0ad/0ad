@@ -1,8 +1,8 @@
-function RangeVisualization() {}
+function RangeOverlayManager() {}
 
-RangeVisualization.prototype.Schema = "<empty/>";
+RangeOverlayManager.prototype.Schema = "<empty/>";
 
-RangeVisualization.prototype.Init = function()
+RangeOverlayManager.prototype.Init = function()
 {
 	this.enabled = false;
 	this.enabledRangeTypes = {
@@ -15,29 +15,29 @@ RangeVisualization.prototype.Init = function()
 };
 
 // The GUI enables visualizations
-RangeVisualization.prototype.Serialize = null;
+RangeOverlayManager.prototype.Serialize = null;
 
-RangeVisualization.prototype.Deserialize = function(data)
+RangeOverlayManager.prototype.Deserialize = function(data)
 {
 	this.Init();
 };
 
-RangeVisualization.prototype.UpdateRangeOverlays = function(componentName)
+RangeOverlayManager.prototype.UpdateRangeOverlays = function(componentName)
 {
 	let cmp = Engine.QueryInterface(this.entity, global["IID_" + componentName]);
 	if (cmp)
 		this.rangeVisualizations.set(componentName, cmp.GetRangeOverlays());
 };
 
-RangeVisualization.prototype.SetEnabled = function(enabled, enabledRangeTypes, forceUpdate)
+RangeOverlayManager.prototype.SetEnabled = function(enabled, enabledRangeTypes, forceUpdate)
 {
 	this.enabled = enabled;
 	this.enabledRangeTypes = enabledRangeTypes;
 
-	this.RegenerateRangeVisualizations(forceUpdate);
+	this.RegenerateRangeOverlayManagers(forceUpdate);
 };
 
-RangeVisualization.prototype.RegenerateRangeVisualizations = function(forceUpdate)
+RangeOverlayManager.prototype.RegenerateRangeOverlayManagers = function(forceUpdate)
 {
 	let cmpRangeOverlayRenderer = Engine.QueryInterface(this.entity, IID_RangeOverlayRenderer);
 	if (!cmpRangeOverlayRenderer)
@@ -59,17 +59,17 @@ RangeVisualization.prototype.RegenerateRangeVisualizations = function(forceUpdat
 					rangeOverlay.thickness);
 };
 
-RangeVisualization.prototype.OnOwnershipChanged = function(msg)
+RangeOverlayManager.prototype.OnOwnershipChanged = function(msg)
 {
 	if (msg.to == -1)
 		return;
 	for (let type in this.enabledRangeTypes)
 		this.UpdateRangeOverlays(type);
 
-	this.RegenerateRangeVisualizations(false);
+	this.RegenerateRangeOverlayManagers(false);
 };
 
-RangeVisualization.prototype.OnValueModification = function(msg)
+RangeOverlayManager.prototype.OnValueModification = function(msg)
 {
 	if (msg.valueNames.indexOf("Heal/Range") == -1 &&
 	    msg.valueNames.indexOf("Attack/Ranged/MinRange") == -1 &&
@@ -77,16 +77,16 @@ RangeVisualization.prototype.OnValueModification = function(msg)
 		return;
 
 	this.UpdateRangeOverlays(msg.component);
-	this.RegenerateRangeVisualizations(false);
+	this.RegenerateRangeOverlayManagers(false);
 };
 
 /** 
- * RangeVisualization component is deserialized before the TechnologyManager, so need to update the ranges here
+ * RangeOverlayManager component is deserialized before the TechnologyManager, so need to update the ranges here
  */
-RangeVisualization.prototype.OnDeserialized = function(msg)
+RangeOverlayManager.prototype.OnDeserialized = function(msg)
 {
 	for (let type in this.enabledRangeTypes)
 		this.UpdateRangeOverlays(type);
 };
 
-Engine.RegisterComponentType(IID_RangeVisualization, "RangeVisualization", RangeVisualization);
+Engine.RegisterComponentType(IID_RangeOverlayManager, "RangeOverlayManager", RangeOverlayManager);
