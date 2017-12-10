@@ -273,13 +273,8 @@ public:
 					}
 
 					// Check if we reached a jump point
-#if ACCEPT_DIAGONAL_GAPS
-					if ((!TERRAIN_IS_PASSABLE(i, j - 1) && TERRAIN_IS_PASSABLE(i + 1, j - 1)) ||
-						(!TERRAIN_IS_PASSABLE(i, j + 1) && TERRAIN_IS_PASSABLE(i + 1, j + 1)))
-#else
 					if ((!TERRAIN_IS_PASSABLE(i - 1, j - 1) && TERRAIN_IS_PASSABLE(i, j - 1)) ||
 						(!TERRAIN_IS_PASSABLE(i - 1, j + 1) && TERRAIN_IS_PASSABLE(i, j + 1)))
-#endif
 					{
 						rows[j].SetRange(i0, i, false);
 						break;
@@ -482,57 +477,25 @@ void LongPathfinder::ProcessNeighbour(int pi, int pj, int i, int j, PathCost pg,
 
 // JPS functions scan navcells towards one direction
 // OnTheWay tests whether we are scanning towards the right direction, to avoid useless scans
-inline bool OnTheWay(int i, int j, int di, int dj, const PathGoal& goal)
+inline bool OnTheWay(int i, int j, int di, int dj, int iGoal, int jGoal)
 {
-	entity_pos_t hw, hh; // half width/height of goal bounding box
-	CFixedVector2D hbb = Geometry::GetHalfBoundingBox(goal.u, goal.v, CFixedVector2D(goal.hw, goal.hh));
-
-	switch (goal.type)
-	{
-	case PathGoal::POINT:
-		hw = fixed::Zero();
-		hh = fixed::Zero();
-		break;
-	case PathGoal::CIRCLE:
-	case PathGoal::INVERTED_CIRCLE:
-		hw = goal.hw;
-		hh = goal.hw;
-		break;
-	case PathGoal::SQUARE:
-	case PathGoal::INVERTED_SQUARE:
-		hw = hbb.X.Absolute();
-		hh = hbb.Y.Absolute();
-		break;
-	NODEFAULT;
-	}
-
 	if (dj != 0)
 	{
-		// Farthest goal point, z-direction
-		int gj = ((goal.z + (dj > 0 ? hh : -hh)) / Pathfinding::NAVCELL_SIZE).ToInt_RoundToNegInfinity();
-		if ((gj - j)*dj < 0) // we're not moving towards the goal
+		// We're not moving towards the goal
+		if ((jGoal - j) * dj < 0)
 			return false;
 	}
-	else
-	{
-		if (j < ((goal.z - hh) / Pathfinding::NAVCELL_SIZE).ToInt_RoundToNegInfinity() ||
-			j > ((goal.z + hh) / Pathfinding::NAVCELL_SIZE).ToInt_RoundToNegInfinity())
-			return false;
-	}
+	else if (j != jGoal)
+		return false;
 
 	if (di != 0)
 	{
-		// Farthest goal point, x-direction
-		int gi = ((goal.x + (di > 0 ? hw : -hw)) / Pathfinding::NAVCELL_SIZE).ToInt_RoundToNegInfinity();
-		if ((gi - i)*di < 0) // we're not moving towards the goal
+		// We're not moving towards the goal
+		if ((iGoal - i) * di < 0)
 			return false;
 	}
-	else
-	{
-		if (i < ((goal.x - hw) / Pathfinding::NAVCELL_SIZE).ToInt_RoundToNegInfinity() ||
-			i > ((goal.x + hw) / Pathfinding::NAVCELL_SIZE).ToInt_RoundToNegInfinity())
-			return false;
-	}
+	else if (i != iGoal)
+		return false;
 
 	return true;
 }
@@ -567,13 +530,8 @@ void LongPathfinder::AddJumpedHoriz(int i, int j, int di, PathCost g, Pathfinder
 				break;
 			}
 
-#if ACCEPT_DIAGONAL_GAPS
-			if	((!PASSABLE(ni, j - 1) && PASSABLE(ni + di, j - 1)) ||
-				(!PASSABLE(ni, j + 1) && PASSABLE(ni + di, j + 1)))
-#else
 			if	((!PASSABLE(ni - di, j - 1) && PASSABLE(ni, j - 1)) ||
 				(!PASSABLE(ni - di, j + 1) && PASSABLE(ni, j + 1)))
-#endif
 			{
 				ProcessNeighbour(i, j, ni, j, g, state);
 				break;
@@ -612,13 +570,8 @@ int LongPathfinder::HasJumpedHoriz(int i, int j, int di, PathfinderState& state,
 				return ni;
 			}
 
-#if ACCEPT_DIAGONAL_GAPS
-			if ((!PASSABLE(ni, j - 1) && PASSABLE(ni + di, j - 1)) ||
-				(!PASSABLE(ni, j + 1) && PASSABLE(ni + di, j + 1)))
-#else
 			if	((!PASSABLE(ni - di, j - 1) && PASSABLE(ni, j - 1)) ||
 				(!PASSABLE(ni - di, j + 1) && PASSABLE(ni, j + 1)))
-#endif
 				return ni;
 
 			ni += di;
@@ -655,13 +608,8 @@ void LongPathfinder::AddJumpedVert(int i, int j, int dj, PathCost g, PathfinderS
 				break;
 			}
 
-#if ACCEPT_DIAGONAL_GAPS
-			if	((!PASSABLE(i - 1, nj) && PASSABLE(i - 1, nj + dj)) ||
-				(!PASSABLE(i + 1, nj) && PASSABLE(i + 1, nj + dj)))
-#else
 			if	((!PASSABLE(i - 1, nj - dj) && PASSABLE(i - 1, nj)) ||
 				(!PASSABLE(i + 1, nj - dj) && PASSABLE(i + 1, nj)))
-#endif
 			{
 				ProcessNeighbour(i, j, i, nj, g, state);
 				break;
@@ -700,13 +648,8 @@ int LongPathfinder::HasJumpedVert(int i, int j, int dj, PathfinderState& state, 
 				return nj;
 			}
 
-#if ACCEPT_DIAGONAL_GAPS
-			if	((!PASSABLE(i - 1, nj) && PASSABLE(i - 1, nj + dj)) ||
-				(!PASSABLE(i + 1, nj) && PASSABLE(i + 1, nj + dj)))
-#else
 			if	((!PASSABLE(i - 1, nj - dj) && PASSABLE(i - 1, nj)) ||
 				(!PASSABLE(i + 1, nj - dj) && PASSABLE(i + 1, nj)))
-#endif
 				return nj;
 
 			nj += dj;
@@ -728,7 +671,7 @@ void LongPathfinder::AddJumpedDiag(int i, int j, int di, int dj, PathCost g, Pat
 
 	int ni = i + di;
 	int nj = j + dj;
-	bool detectGoal = OnTheWay(i, j, di, dj, state.goal);
+	bool detectGoal = OnTheWay(i, j, di, dj, state.iGoal, state.jGoal);
 	while (true)
 	{
 		// Stop if we hit an obstructed cell
@@ -737,10 +680,8 @@ void LongPathfinder::AddJumpedDiag(int i, int j, int di, int dj, PathCost g, Pat
 
 		// Stop if moving onto this cell caused us to
 		// touch the corner of an obstructed cell
-#if !ACCEPT_DIAGONAL_GAPS
 		if (!PASSABLE(ni - di, nj) || !PASSABLE(ni, nj - dj))
 			return;
-#endif
 
 		// Process this cell if it's at the goal
 		if (detectGoal && state.goal.NavcellContainsGoal(ni, nj))
@@ -750,17 +691,8 @@ void LongPathfinder::AddJumpedDiag(int i, int j, int di, int dj, PathCost g, Pat
 			return;
 		}
 
-#if ACCEPT_DIAGONAL_GAPS
-		if ((!PASSABLE(ni - di, nj) && PASSABLE(ni - di, nj + dj)) ||
-			(!PASSABLE(ni, nj - dj) && PASSABLE(ni + di, nj - dj)))
-		{
-			ProcessNeighbour(i, j, ni, nj, g, state);
-			return;
-		}
-#endif
-
-		int fi = HasJumpedHoriz(ni, nj, di, state, detectGoal ? OnTheWay(ni, nj, di, 0, state.goal) : false);
-		int fj = HasJumpedVert(ni, nj, dj, state, detectGoal ? OnTheWay(ni, nj, 0, dj, state.goal) : false);
+		int fi = HasJumpedHoriz(ni, nj, di, state, detectGoal && OnTheWay(ni, nj, di, 0, state.iGoal, state.jGoal));
+		int fj = HasJumpedVert(ni, nj, dj, state, detectGoal && OnTheWay(ni, nj, 0, dj, state.iGoal, state.jGoal));
 		if (fi != ni || fj != nj)
 		{
 			ProcessNeighbour(i, j, ni, nj, g, state);
@@ -779,8 +711,6 @@ void LongPathfinder::AddJumpedDiag(int i, int j, int di, int dj, PathCost g, Pat
 		nj += dj;
 	}
 }
-
-#undef PASSABLE
 
 void LongPathfinder::ComputeJPSPath(entity_pos_t x0, entity_pos_t z0, const PathGoal& origGoal, pass_class_t passClass, WaypointPath& path)
 {
@@ -815,6 +745,8 @@ void LongPathfinder::ComputeJPSPath(entity_pos_t x0, entity_pos_t z0, const Path
 	// region, transforming non-point goals to reachable point goals, etc.
 	m_PathfinderHier.MakeGoalReachable(i0, j0, state.goal, passClass);
 
+	ENSURE(state.goal.type == PathGoal::POINT);
+
 	// If we're already at the goal tile, then move directly to the exact goal coordinates
 	if (state.goal.NavcellContainsGoal(i0, j0))
 	{
@@ -823,6 +755,9 @@ void LongPathfinder::ComputeJPSPath(entity_pos_t x0, entity_pos_t z0, const Path
 	}
 
 	Pathfinding::NearestNavcell(state.goal.x, state.goal.z, state.iGoal, state.jGoal, m_GridSize, m_GridSize);
+
+	ENSURE((state.goal.x / Pathfinding::NAVCELL_SIZE).ToInt_RoundToNegInfinity() == state.iGoal);
+	ENSURE((state.goal.z / Pathfinding::NAVCELL_SIZE).ToInt_RoundToNegInfinity() == state.jGoal);
 
 	state.passClass = passClass;
 
@@ -876,58 +811,38 @@ void LongPathfinder::ComputeJPSPath(entity_pos_t x0, entity_pos_t z0, const Path
 		if (dpi != 0 && dpj == 0)
 		{
 			// Moving horizontally from predecessor
-#if ACCEPT_DIAGONAL_GAPS
-			if (!IS_PASSABLE(state.terrain->get(i, j-1), state.passClass))
-				AddJumpedDiag(i, j, -dpi, -1, g, state);
-			if (!IS_PASSABLE(state.terrain->get(i, j+1), state.passClass))
-				AddJumpedDiag(i, j, -dpi, +1, g, state);
-#else
-			if (!IS_PASSABLE(state.terrain->get(i + dpi, j-1), state.passClass))
+			if (!PASSABLE(i + dpi, j - 1))
 			{
 				AddJumpedDiag(i, j, -dpi, -1, g, state);
-				AddJumpedVert(i, j, -1, g, state, OnTheWay(i, j, 0, -1, state.goal));
+				AddJumpedVert(i, j, -1, g, state, OnTheWay(i, j, 0, -1, state.iGoal, state.jGoal));
 			}
-			if (!IS_PASSABLE(state.terrain->get(i + dpi, j+1), state.passClass))
+			if (!PASSABLE(i + dpi, j + 1))
 			{
 				AddJumpedDiag(i, j, -dpi, +1, g, state);
-				AddJumpedVert(i, j, +1, g, state, OnTheWay(i, j, 0, +1, state.goal));
+				AddJumpedVert(i, j, +1, g, state, OnTheWay(i, j, 0, +1, state.iGoal, state.jGoal));
 			}
-#endif
-			AddJumpedHoriz(i, j, -dpi, g, state, OnTheWay(i, j, -dpi, 0, state.goal));
+			AddJumpedHoriz(i, j, -dpi, g, state, OnTheWay(i, j, -dpi, 0, state.iGoal, state.jGoal));
 		}
 		else if (dpi == 0 && dpj != 0)
 		{
 			// Moving vertically from predecessor
-#if ACCEPT_DIAGONAL_GAPS
-			if (!IS_PASSABLE(state.terrain->get(i-1, j), state.passClass))
-				AddJumpedDiag(i, j, -1, -dpj, g, state);
-			if (!IS_PASSABLE(state.terrain->get(i+1, j), state.passClass))
-				AddJumpedDiag(i, j, +1, -dpj, g, state);
-#else
-			if (!IS_PASSABLE(state.terrain->get(i-1, j + dpj), state.passClass))
+			if (!PASSABLE(i - 1, j + dpj))
 			{
 				AddJumpedDiag(i, j, -1, -dpj, g, state);
-				AddJumpedHoriz(i, j, -1, g, state,OnTheWay(i, j, -1, 0, state.goal));
+				AddJumpedHoriz(i, j, -1, g, state,OnTheWay(i, j, -1, 0, state.iGoal, state.jGoal));
 			}
-			if (!IS_PASSABLE(state.terrain->get(i+1, j + dpj), state.passClass))
+			if (!PASSABLE(i + 1, j + dpj))
 			{
 				AddJumpedDiag(i, j, +1, -dpj, g, state);
-				AddJumpedHoriz(i, j, +1, g, state,OnTheWay(i, j, +1, 0, state.goal));
+				AddJumpedHoriz(i, j, +1, g, state,OnTheWay(i, j, +1, 0, state.iGoal, state.jGoal));
 			}
-#endif
-			AddJumpedVert(i, j, -dpj, g, state, OnTheWay(i, j, 0, -dpj, state.goal));
+			AddJumpedVert(i, j, -dpj, g, state, OnTheWay(i, j, 0, -dpj, state.iGoal, state.jGoal));
 		}
 		else if (dpi != 0 && dpj != 0)
 		{
 			// Moving diagonally from predecessor
-#if ACCEPT_DIAGONAL_GAPS
-			if (!IS_PASSABLE(state.terrain->get(i + dpi, j), state.passClass))
-				AddJumpedDiag(i, j, dpi, -dpj, g, state);
-			if (!IS_PASSABLE(state.terrain->get(i, j + dpj), state.passClass))
-				AddJumpedDiag(i, j, -dpi, dpj, g, state);
-#endif
-			AddJumpedHoriz(i, j, -dpi, g, state, OnTheWay(i, j, -dpi, 0, state.goal));
-			AddJumpedVert(i, j, -dpj, g, state, OnTheWay(i, j, 0, -dpj, state.goal));
+			AddJumpedHoriz(i, j, -dpi, g, state, OnTheWay(i, j, -dpi, 0, state.iGoal, state.jGoal));
+			AddJumpedVert(i, j, -dpj, g, state, OnTheWay(i, j, 0, -dpj, state.iGoal, state.jGoal));
 			AddJumpedDiag(i, j, -dpi, -dpj, g, state);
 		}
 		else
@@ -937,10 +852,10 @@ void LongPathfinder::ComputeJPSPath(entity_pos_t x0, entity_pos_t z0, const Path
 
 			// XXX - check passability?
 
-			bool passl = IS_PASSABLE(state.terrain->get(i-1, j), state.passClass);
-			bool passr = IS_PASSABLE(state.terrain->get(i+1, j), state.passClass);
-			bool passd = IS_PASSABLE(state.terrain->get(i, j-1), state.passClass);
-			bool passu = IS_PASSABLE(state.terrain->get(i, j+1), state.passClass);
+			bool passl = PASSABLE(i - 1, j);
+			bool passr = PASSABLE(i + 1, j);
+			bool passd = PASSABLE(i, j - 1);
+			bool passu = PASSABLE(i, j + 1);
 
 			if (passl && passd)
 				ProcessNeighbour(i, j, i-1, j-1, g, state);
@@ -987,6 +902,8 @@ void LongPathfinder::ComputeJPSPath(entity_pos_t x0, entity_pos_t z0, const Path
 	m_DebugSteps = state.steps;
 	m_DebugGoal = state.goal;
 }
+
+#undef PASSABLE
 
 void LongPathfinder::ImprovePathWaypoints(WaypointPath& path, pass_class_t passClass, entity_pos_t maxDist, entity_pos_t x0, entity_pos_t z0)
 {
