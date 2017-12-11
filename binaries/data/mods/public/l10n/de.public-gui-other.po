@@ -45,7 +45,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-12-06 09:04+0100\n"
-"PO-Revision-Date: 2017-12-07 14:16+0000\n"
+"PO-Revision-Date: 2017-12-09 17:43+0000\n"
 "Last-Translator: Raymond Vetter\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -1221,7 +1221,7 @@ msgid ""
 "This option will be removed in a future 0 A.D. release, to allow for more "
 "advanced graphics features. We advise upgrading your graphics card to a more"
 " recent, shader-compatible model."
-msgstr ""
+msgstr "%(warning)sEs scheint, dass du eine Grafikkarte benutzt, die kein Shading unterstützt (Fixed-Function-Modell). Diese Option wird in zukünftigen „0 A.D.“-Versionen entfernt werden, um bessere Grafikfeatures zu ermöglichen. Wir empfehlen, eine modernere, Shader-kompatible Grafikkarte einzusetzen."
 
 #. Translation: This is the second paragraph of a warning. The
 #. warning explains that the user is using “non-shader“ graphics,
