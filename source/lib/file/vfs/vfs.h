@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2017 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -140,9 +140,6 @@ struct IVFS
 	 * @param fileContents
 	 * @param size [bytes] of the contents, will match that of the file.
 	 * @return Status.
-	 *
-	 * rationale: disallowing partial writes simplifies file cache coherency
-	 * (we need only invalidate cached data when closing a newly written file).
 	 **/
 	virtual Status CreateFile(const VfsPath& pathname, const shared_ptr<u8>& fileContents, size_t size) = 0;
 
@@ -162,10 +159,6 @@ struct IVFS
 	 *
 	 * @param pathname
 	 * @param fileContents receives a smart pointer to the contents.
-	 *		  CAVEAT: this will be taken from the file cache if the VFS was
-	 * 		  created with cacheSize != 0 and size < cacheSize. There is no
-	 * 		  provision for Copy-on-Write, which means that such buffers
-	 * 		  must not be modified (this is enforced via mprotect).
 	 * @param size receives the size [bytes] of the file contents.
 	 * @return Status.
 	 **/
@@ -202,8 +195,7 @@ struct IVFS
 	virtual Status GetVirtualPath(const OsPath& realPathname, VfsPath& pathname) = 0;
 
 	/**
-	 * remove file from the virtual directory listing and evict its
-	 * data from the cache.
+	 * remove file from the virtual directory listing.
 	 **/
 	virtual Status RemoveFile(const VfsPath& pathname) = 0;
 
@@ -228,13 +220,9 @@ typedef shared_ptr<IVFS> PIVFS;
 /**
  * create an instance of a Virtual File System.
  *
- * @param cacheSize size [bytes] of memory to reserve for a file cache,
- * or zero to disable it. if small enough to fit, file contents are
- * stored here until no references remain and they are evicted.
- *
  * note: there is no limitation to a single instance, it may make sense
  * to create and destroy VFS instances during each unit test.
  **/
-LIB_API PIVFS CreateVfs(size_t cacheSize);
+LIB_API PIVFS CreateVfs();
 
 #endif	// #ifndef INCLUDED_VFS

@@ -2,19 +2,24 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="quiver hip">
+    <variant name="quiver back">
       <mesh>props/quiver_back.dae</mesh>
-            <props>
+      <props>
         <prop actor="props/units/weapons/quiver_arrows.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="quiver light">
-      <textures><texture file="props/quiver_light.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/quiver_light.png" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="quiver dark">
-      <textures><texture file="props/quiver_dark.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/quiver_dark.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
+  <material>basic_trans.xml</material>
 </actor>

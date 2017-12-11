@@ -638,7 +638,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 				Engine.QueryInterface(this.entity, IID_ResourceGatherer).CommitResources(dropsiteTypes);
 				// Stop showing the carried resource animation.
-				this.SetGathererAnimationOverride();
+				this.SetDefaultAnimationVariant();
 
 				// Our next order should always be a Gather,
 				// so just switch back to that order
@@ -1606,7 +1606,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		"WALKINGANDFIGHTING": {
 			"enter": function () {
 				// Show weapons rather than carried resources.
-				this.SetGathererAnimationOverride(true);
+				this.SetAnimationVariant("combat");
 
 				this.StartTimer(0, 1000);
 				this.SelectAnimation("move");
@@ -1671,7 +1671,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			"ESCORTING": {
 				"enter": function () {
 					// Show weapons rather than carried resources.
-					this.SetGathererAnimationOverride(true);
+					this.SetAnimationVariant("combat");
 
 					this.StartTimer(0, 1000);
 					this.SelectAnimation("move");
@@ -1805,7 +1805,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			"APPROACHING": {
 				"enter": function () {
 					// Show weapons rather than carried resources.
-					this.SetGathererAnimationOverride(true);
+					this.SetAnimationVariant("combat");
 
 					this.SelectAnimation("move");
 					this.StartTimer(1000, 1000);
@@ -1813,7 +1813,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 				"leave": function() {
 					// Show carried resources when walking.
-					this.SetGathererAnimationOverride();
+					this.SetDefaultAnimationVariant();
 
 					this.StopTimer();
 				},
@@ -2043,7 +2043,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			"CHASING": {
 				"enter": function () {
 					// Show weapons rather than carried resources.
-					this.SetGathererAnimationOverride(true);
+					this.SetAnimationVariant("combat");
 
 					this.SelectAnimation("move");
 					var cmpUnitAI = Engine.QueryInterface(this.order.data.target, IID_UnitAI);
@@ -2068,7 +2068,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					// Reset normal speed in case it was changed
 					this.SetMoveSpeed(this.GetWalkSpeed());
 					// Show carried resources when walking.
-					this.SetGathererAnimationOverride();
+					this.SetDefaultAnimationVariant();
 
 					this.StopTimer();
 				},
@@ -2315,6 +2315,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					// off to a different target.)
 					if (this.CheckTargetRange(this.gatheringTarget, IID_ResourceGatherer))
 					{
+						this.SetDefaultAnimationVariant();
 						var typename = "gather_" + this.order.data.type.specific;
 						this.SelectAnimation(typename, false, 1.0, typename);
 					}
@@ -2332,7 +2333,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					delete this.gatheringTarget;
 
 					// Show the carried resource, if we've gathered anything.
-					this.SetGathererAnimationOverride();
+					this.SetDefaultAnimationVariant();
 				},
 
 				"Timer": function(msg) {
@@ -2631,7 +2632,7 @@ UnitAI.prototype.UnitFsmSpec = {
 							cmpResourceGatherer.CommitResources(dropsiteTypes);
 
 							// Stop showing the carried resource animation.
-							this.SetGathererAnimationOverride();
+							this.SetDefaultAnimationVariant();
 
 							// Our next order should always be a Gather,
 							// so just switch back to that order
@@ -2799,7 +2800,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				{
 					let dropsiteTypes = cmpResourceDropsite.GetTypes();
 					cmpResourceGatherer.CommitResources(dropsiteTypes);
-					this.SetGathererAnimationOverride();
+					this.SetDefaultAnimationVariant();
 				}
 
 				// We finished building it.
@@ -2808,7 +2809,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				{
 					if (this.CanReturnResource(msg.data.newentity, true))
 					{
-						this.SetGathererAnimationOverride();
+						this.SetDefaultAnimationVariant();
 						this.PushOrderFront("ReturnResource", { "target": msg.data.newentity, "force": false });
 					}
 					return;
@@ -2827,7 +2828,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				{
 					if (this.CanReturnResource(msg.data.newentity, true))
 					{
-						this.SetGathererAnimationOverride();
+						this.SetDefaultAnimationVariant();
 						this.PushOrder("ReturnResource", { "target": msg.data.newentity, "force": false });
 					}
 					this.PerformGather(msg.data.newentity, true, false);
@@ -2973,7 +2974,7 @@ UnitAI.prototype.UnitFsmSpec = {
 									if (cmpResourceGatherer)
 									{
 										cmpResourceGatherer.CommitResources(dropsiteTypes);
-										this.SetGathererAnimationOverride();
+										this.SetDefaultAnimationVariant();
 									}
 								}
 
@@ -4244,37 +4245,51 @@ UnitAI.prototype.PlaySound = function(name)
 	}
 };
 
-UnitAI.prototype.SetGathererAnimationOverride = function(disable)
+/*
+ * Set a visualActor animation variant.
+ * By changing the animation variant, you can change animations based on unitAI state.
+ * If there are no specific variants or the variant doesn't exist in the actor,
+ * the actor fallbacks to any existing animation.
+ * @param type if present, switch to a specific animation variant.
+ */
+UnitAI.prototype.SetAnimationVariant = function(type)
 {
-	var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
-	if (!cmpResourceGatherer)
-		return;
-
-	var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+	let cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
 	if (!cmpVisual)
 		return;
 
-	// Remove the animation override, so that weapons are shown again.
-	if (disable)
+	cmpVisual.SetVariant("animationVariant", type);
+	return;
+};
+
+/*
+ * Reset the animation variant to default behavior
+ * Default behavior is to pick a resource-carrying variant if resources are being carried.
+ * Otherwise pick nothing in particular.
+ */
+UnitAI.prototype.SetDefaultAnimationVariant = function()
+{
+	let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
+	if (!cmpResourceGatherer)
 	{
-		cmpVisual.ResetMoveAnimation("walk");
+		this.SetAnimationVariant("");
 		return;
 	}
 
-	// Work out what we're carrying, in order to select an appropriate animation
-	var type = cmpResourceGatherer.GetLastCarriedType();
+	let type = cmpResourceGatherer.GetLastCarriedType();
 	if (type)
 	{
-		var typename = "carry_" + type.generic;
+		let typename = "carry_" + type.generic;
 
 		// Special case for meat
 		if (type.specific == "meat")
 			typename = "carry_" + type.specific;
 
-		cmpVisual.ReplaceMoveAnimation("walk", typename);
+		this.SetAnimationVariant(typename);
+		return;
 	}
-	else
-		cmpVisual.ResetMoveAnimation("walk");
+
+	this.SetAnimationVariant("");
 };
 
 UnitAI.prototype.SelectAnimation = function(name, once, speed, sound)

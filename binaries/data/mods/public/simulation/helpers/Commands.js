@@ -4,23 +4,14 @@ var g_DebugCommands = false;
 
 function ProcessCommand(player, cmd)
 {
+	let cmpPlayer = QueryPlayerIDInterface(player);
+	if (!cmpPlayer)
+		return;
+
 	let data = {
-		"cmpPlayerManager": Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager)
+		"cmpPlayer": cmpPlayer,
+		"controlAllUnits": cmpPlayer.CanControlAllUnits()
 	};
-
-	if (!data.cmpPlayerManager || player < 0)
-		return;
-
-	data.playerEnt = data.cmpPlayerManager.GetPlayerByID(player);
-
-	if (data.playerEnt == INVALID_ENTITY)
-		return;
-
-	data.cmpPlayer = Engine.QueryInterface(data.playerEnt, IID_Player);
-	if (!data.cmpPlayer)
-		return;
-
-	data.controlAllUnits = data.cmpPlayer.CanControlAllUnits();
 
 	if (cmd.entities)
 		data.entities = FilterEntityList(cmd.entities, player, data.controlAllUnits);
@@ -451,9 +442,7 @@ var g_Commands = {
 
 	"resign": function(player, cmd, data)
 	{
-		let cmpPlayer = QueryPlayerIDInterface(player);
-		if (cmpPlayer)
-			cmpPlayer.SetState("defeated", markForTranslation("%(player)s has resigned."));
+		data.cmpPlayer.SetState("defeated", markForTranslation("%(player)s has resigned."));
 	},
 
 	"garrison": function(player, cmd, data)
@@ -708,7 +697,7 @@ var g_Commands = {
 			{
 				var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 				cmpGUIInterface.PushNotification({
-					"players": [data.cmpPlayer.GetPlayerID()],
+					"players": [player],
 					"message": markForTranslation("Cannot upgrade as distance requirements are not verified or terrain is obstructed.")
 				});
 				continue;
@@ -718,7 +707,7 @@ var g_Commands = {
 			{
 				var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 				cmpGUIInterface.PushNotification({
-					"players": [data.cmpPlayer.GetPlayerID()],
+					"players": [player],
 					"message": markForTranslation("Cannot upgrade a garrisoned entity.")
 				});
 				continue;
@@ -751,7 +740,7 @@ var g_Commands = {
 		{
 			let cmpUpgrade = Engine.QueryInterface(ent, IID_Upgrade);
 			if (cmpUpgrade)
-				cmpUpgrade.CancelUpgrade(data.cmpPlayer.playerID);
+				cmpUpgrade.CancelUpgrade(player);
 		}
 	},
 

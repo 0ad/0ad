@@ -25,8 +25,6 @@
 #include "graphics/Overlay.h"
 #include "renderer/Scene.h"
 
-#define ACCEPT_DIAGONAL_GAPS 0
-
 /**
  * Represents the 2D coordinates of a tile.
  * The i/j components are packed into a single u32, since we usually use these

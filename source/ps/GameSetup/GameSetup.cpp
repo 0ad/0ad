@@ -27,13 +27,6 @@
 #include "lib/res/h_mgr.h"
 #include "lib/res/graphics/cursor.h"
 #include "lib/sysdep/cursor.h"
-#include "lib/sysdep/cpu.h"
-#include "lib/sysdep/gfx.h"
-#include "lib/sysdep/os_cpu.h"
-#include "lib/tex/tex.h"
-#if OS_WIN
-#include "lib/sysdep/os/win/wversion.h"
-#endif
 
 #include "graphics/CinemaManager.h"
 #include "graphics/FontMetrics.h"
@@ -337,56 +330,6 @@ void Render()
 	ogl_WarnIfError();
 }
 
-
-static size_t OperatingSystemFootprint()
-{
-#if OS_WIN
-	switch(wversion_Number())
-	{
-	case WVERSION_2K:
-	case WVERSION_XP:
-		return 150;
-	case WVERSION_XP64:
-		return 200;
-	default:	// newer Windows version: assume the worst, and don't warn
-	case WVERSION_VISTA:
-		return 300;
-	case WVERSION_7:
-		return 250;
-	}
-#else
-	return 200;
-#endif
-}
-
-static size_t ChooseCacheSize()
-{
-	// (all sizes in MiB and signed to allow temporarily negative computations)
-
-	const ssize_t total = (ssize_t)os_cpu_MemorySize();
-	// (NB: os_cpu_MemoryAvailable is useless on Linux because free memory
-	// is marked as "in use" by OS caches.)
-	const ssize_t os = (ssize_t)OperatingSystemFootprint();
-	const ssize_t game = 300;	// estimated working set
-
-	ssize_t cache = 400;	// upper bound: total size of our data
-
-	// the cache reserves contiguous address space, which is a precious
-	// resource on 32-bit systems, so don't use too much:
-	if(ARCH_IA32 || sizeof(void*) == 4)
-		cache = std::min(cache, (ssize_t)200);
-
-	// try to leave over enough memory for the OS and game
-	cache = std::min(cache, total-os-game);
-
-	// always provide at least this much to ensure correct operation
-	cache = std::max(cache, (ssize_t)64);
-
-	debug_printf("Cache: %d (total: %d) MiB\n", (int)cache, (int)total);
-	return size_t(cache)*MiB;
-}
-
-
 ErrorReactionInternal psDisplayError(const wchar_t* UNUSED(text), size_t UNUSED(flags))
 {
 	// If we're fullscreen, then sometimes (at least on some particular drivers on Linux)
@@ -488,8 +431,7 @@ static void InitVfs(const CmdLineArgs& args, int flags)
 		hooks.display_error = psDisplayError;
 	app_hooks_update(&hooks);
 
-	const size_t cacheSize = ChooseCacheSize();
-	g_VFS = CreateVfs(cacheSize);
+	g_VFS = CreateVfs();
 
 	const OsPath readonlyConfig = paths.RData()/"config"/"";
 	g_VFS->Mount(L"config/", readonlyConfig);

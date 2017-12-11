@@ -1,49 +1,77 @@
 local m = {}
 m._VERSION = "1.0.0-dev"
 
-m.path = nil
+m.exepath = nil
+m.rootfile = nil
+m.runner = "ErrorPrinter"
+m.options = ""
 
--- We need to create .cpp files from the .h files before they can be compiled.
--- This is done by the cxxtestgen utility.
+-- Premake module for CxxTest support (http://cxxtest.com/).
+-- The module can be used for generating a root file (that contains the entrypoint
+-- for the test executable) and source files for each test header.
 
--- We use a custom build rule for headers in order to generate the .cpp files.
--- This has several advantages over using pre-build commands:
--- - It cannot break when running parallel builds
--- - No new generation happens when the header files are untouched
+-- Set the executable path for cxxtestgen
+function m.setpath(exepath)
+	m.exepath = path.getabsolute(exepath)
+end
 
-function m.configure_project(rootfile, hdrfiles, rootoptions, testoptions)
-	if rootoptions == nil then
-		rootoptions = ''
+-- Pass all the necessary options to cxxtest (see http://cxxtest.com/guide.html)
+-- for a reference of available options, that should eventually be implemented in
+-- this module.
+function m.init(source_root, have_std, runner, includes)
+
+	m.rootfile = source_root.."test_root.cpp"
+	m.runner = runner
+
+	if m.have_std then
+		m.options = m.options.." --have-std"
 	end
-	if testoptions == nil then
-		testoptions = ''
+
+	for _,includefile in ipairs(includes) do
+		m.options = m.options.." --include="..includefile
 	end
 
-	local abspath = path.getabsolute(m.path)
-	local rootpath = path.getabsolute(rootfile)
+	-- With gmake, create a Utility project that generates the test root file
+	-- This is a workaround for https://github.com/premake/premake-core/issues/286
+	if _ACTION == "gmake" then
+		project "cxxtestroot"
+		kind "Utility"
+
+		-- Note: this command is not silent and clutters the output
+		-- Reported upstream: https://github.com/premake/premake-core/issues/954
+		prebuildmessage 'Generating test root file'
+		prebuildcommands { m.exepath.." --root "..m.options.." --runner="..m.runner.." -o "..path.getabsolute(m.rootfile) }
+		buildoutputs { m.rootfile }
+	end
+end
+
+-- Populate the test project that was created in premake5.lua.
+function m.configure_project(hdrfiles)
+
+	-- Generate the root file, or make sure the utility for generating
+	-- it is a dependancy with gmake.
+	if _ACTION == "gmake" then
+		dependson { "cxxtestroot" }
+	else
+		prebuildmessage 'Generating test root file'
+		prebuildcommands { m.exepath.." --root "..m.options.." --runner="..m.runner.." -o "..path.getabsolute(m.rootfile) }
+	end
 
 	-- Add headers
-
 	for _,hdrfile in ipairs(hdrfiles) do
 		files { hdrfile }
 	end
 
-	-- Generate the root file
-	prebuildmessage 'Generating test root file'
-	prebuildcommands { abspath.." --root "..rootoptions.." -o "..rootpath }
-
 	-- Generate the source files from headers
-
+	-- This doesn't work with xcode, see https://github.com/premake/premake-core/issues/940
 	filter { "files:**.h", "files:not **precompiled.h" }
 		buildmessage 'Generating %{file.basename}.cpp'
-		buildcommands { abspath.." --part "..testoptions.." -o %{file.directory}/%{file.basename}.cpp %{file.relpath}" }
+		buildcommands { m.exepath.." --part "..m.options.." -o %{file.directory}/%{file.basename}.cpp %{file.relpath}" }
 		buildoutputs { "%{file.directory}/%{file.basename}.cpp" }
 	filter {}
 
 	-- Add source files
-
-	files { rootfile }
-
+	files { m.rootfile }
 	for _,hdrfile in ipairs(hdrfiles) do
 		local srcfile = string.sub(hdrfile, 1, -3) .. ".cpp"
 		files { srcfile }

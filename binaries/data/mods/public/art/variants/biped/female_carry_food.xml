@@ -1,6 +1,7 @@
 <variant name="carry_food">
   <animations>
-    <animation file="biped/new/fem_carry_grain.dae" name="carry_food" speed="25"/>
+    <animation file="biped/new/fem_carry_grain_idle.dae" name="Idle" speed="25"/>
+    <animation file="biped/new/fem_carry_grain.dae" name="Walk" speed="25"/>
   </animations>
   <props>
 	<prop actor="props/units/shuttle_basket_back.xml" attachpoint="back"/>

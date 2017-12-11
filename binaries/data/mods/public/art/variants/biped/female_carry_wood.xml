@@ -1,6 +1,7 @@
 <variant name="carry_wood">
   <animations>
-    <animation file="biped/new/fem_carry_wood.dae" name="carry_wood" speed="25"/>
+    <animation file="biped/new/fem_carry_wood_idle.dae" name="Idle" speed="25"/>
+    <animation file="biped/new/fem_carry_wood.dae" name="Walk" speed="25"/>
   </animations>
   <props>
 	<prop actor="props/units/shuttle_wood.xml" attachpoint="weapon_R"/>
