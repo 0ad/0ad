@@ -388,6 +388,13 @@ var unitFilters = {
 			entState.unitAI.isIdle &&
 			!hasClass(entState, "Domestic");
 	},
+	"isWounded": entity => {
+		let entState = GetEntityState(entity);
+		return entState &&
+			hasClass(entState, "Unit") &&
+			entState.maxHitpoints &&
+			100 * entState.hitpoints <= entState.maxHitpoints * Engine.ConfigDB_GetValue("user", "gui.session.woundedunithotkeythreshold");
+	},
 	"isAnything": entity => {
 		return true;
 	}
@@ -405,6 +412,8 @@ function getPreferredEntities(ents)
 		filters = [unitFilters.isMilitary];
 	if (Engine.HotkeyIsPressed("selection.idleonly"))
 		filters = [unitFilters.isIdle];
+	if (Engine.HotkeyIsPressed("selection.woundedonly"))
+		filters = [unitFilters.isWounded];
 
 	var preferredEnts = [];
 	for (var i = 0; i < filters.length; ++i)
