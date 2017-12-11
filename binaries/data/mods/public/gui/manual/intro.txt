@@ -49,6 +49,8 @@ F11: Enable/disable real-time profiler (toggles through the displays of informat
 Shift + F11: Save current profiler data to "logs/profile.txt"
 F2: Take screenshot (in .png format, location is displayed in the top left of the GUI after the file has been saved, and can also be seen in the console/logs if you miss it there)
 Shift + F2: Take huge screenshot (6400px*4800px, in .bmp format, location is displayed in the top left of the GUI after the file has been saved, and can also be seen in the console/logs if you miss it there)
+Alt + S: Switch to the next tab.
+Alt + W: Switch to the previous tab.
 
 [font="sans-bold-14"]In Game
 [font="sans-14"]Double Left Click \[on unit]: Select all of your units of the same kind on the screen (even if they're different ranks)
@@ -87,6 +89,7 @@ Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, ... uni
 PageUp with units selected: Highlights the units/buildings guarded by the selection.
 PageDown with units/buildings selected: Highlights the units guarding the selection.
 Tab: See all status bars (which would also show the building progress)
+Ctrl + Tab: Toggle summary window.
 
 [font="sans-bold-14"]Modify mouse action
 [font="sans-14"]Ctrl + Right Click on building: Garrison
@@ -110,8 +113,8 @@ Ctrl + Right Click with units selected:
 [font="sans-bold-14"]Overlays
 [font="sans-14"]Alt + G: Hide/show the GUI
 Alt + D: Show/hide developer overlay (with developer options)
-Alt + W: Toggle wireframe mode (press once to get wireframes overlaid over the textured models, twice to get just the wireframes colored by the textures, thrice to get back to normal textured mode)
-Alt + S: Toggle unit silhouettes (might give a small performance boost)
+Alt + Shift + W: Toggle wireframe mode (press once to get wireframes overlaid over the textured models, twice to get just the wireframes colored by the textures, thrice to get back to normal textured mode)
+Alt + Shift + S: Toggle unit silhouettes (might give a small performance boost)
 Alt + Z: Toggle sky
 Alt + C: Toggle attack range visualizations of selected defensive structures
 Alt + V: Toggle aura range visualizations of selected units and structures

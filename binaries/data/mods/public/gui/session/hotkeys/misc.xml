@@ -28,6 +28,10 @@
 		<action on="Press">toggleTrade();</action>
 	</object>
 
+	<object hotkey="summary">
+		<action on="Press">openGameSummary();</action>
+	</object>
+
 	<object hotkey="silhouettes">
 		<action on="Press">toggleConfigBool("silhouettes");</action>
 	</object>

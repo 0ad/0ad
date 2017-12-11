@@ -239,7 +239,7 @@
 			</object>
 
 			<!-- Summary Button -->
-			<object name="summaryButton" type="button" style="StoneButton" size="65%-50 0 82%-50 100%">
+			<object name="summaryButton" type="button" style="StoneButton" size="65%-50 0 82%-50 100%" hotkey="summary">
 				<translatableAttribute id="caption">Summary</translatableAttribute>
 				<action on="Press">showReplaySummary();</action>
 			</object>

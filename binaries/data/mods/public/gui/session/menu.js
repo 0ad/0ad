@@ -58,6 +58,11 @@ var g_IsObjectivesOpen = false;
  */
 var g_BribeButtonsWaiting = {};
 
+/**
+ * Currently viewed summary panel.
+ */
+var g_SummarySelectedData = "";
+
 // Redefined every time someone makes a tribute (so we can save some data in a closure). Called in input.js handleInputBeforeGui.
 var g_FlushTributing = function() {};
 
@@ -1075,7 +1080,8 @@ function openGameSummary()
 		"gui": {
 			"isInGame": true
 		},
-		"callback": "resumeGame"
+		"selectedData": g_SummarySelectedData,
+		"callback": "resumeGameAndSaveSummarySelectedData"
 	});
 }
 
@@ -1121,6 +1127,12 @@ function pauseGame(pause = true, explicit = false)
 function resumeGame(explicit = false)
 {
 	pauseGame(false, explicit);
+}
+
+function resumeGameAndSaveSummarySelectedData(data)
+{
+    g_SummarySelectedData = data.summarySelectedData;
+    resumeGame(data.explicitResume);
 }
 
 /**

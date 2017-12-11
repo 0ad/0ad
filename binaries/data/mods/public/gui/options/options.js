@@ -160,6 +160,17 @@ function getHotloadData()
 	};
 }
 
+/*
+ * Show next/previous panel.
+ * @param direction - 1/-1 forward, backward panel.
+ */
+function selectNextTab(direction)
+{
+	g_SelectedCategory = (g_SelectedCategory + direction + Object.keys(g_Options).length) %
+		Object.keys(g_Options).length;
+	displayOptions();
+}
+
 function placeTabButtons()
 {
 	for (let category in g_Options)
@@ -171,6 +182,8 @@ function placeTabButtons()
 			break;
 		}
 
+		button.onMouseWheelUp = () => selectNextTab(1);
+		button.onMouseWheelDown = () => selectNextTab(-1);
 		button.hidden = false;
 
 		let size = button.size;

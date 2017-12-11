@@ -127,7 +127,8 @@ function showReplaySummary()
 			"isReplay": true,
 			"replayDirectory": g_ReplaysFiltered[selected].directory,
 			"replaySelectionData": createReplaySelectionData(g_ReplaysFiltered[selected].directory)
-		}
+		},
+		"selectedData": g_SummarySelectedData
 	});
 }
 

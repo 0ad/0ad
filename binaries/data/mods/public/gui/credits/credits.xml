@@ -14,6 +14,14 @@
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" z="0" sprite="ModernFade"/>
 
+	<object hotkey="tab.next">
+		<action on="Press">selectNextTab(1);</action>
+	</object>
+
+	<object hotkey="tab.prev">
+		<action on="Press">selectNextTab(-1);</action>
+	</object>
+
 	<object type="image" style="ModernDialog" size="50%-473 24 50%+473 100%-24">
 		<object style="ModernLabelText" name="dialogTitle" type="text" size="50%-128 -18 50%+128 14">
 			<translatableAttribute id="caption">0 A.D. Credits</translatableAttribute>

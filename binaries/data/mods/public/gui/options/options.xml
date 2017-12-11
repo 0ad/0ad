@@ -8,6 +8,14 @@
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" sprite="ModernFade"/>
 
+	<object hotkey="tab.next">
+		<action on="Press">selectNextTab(1);</action>
+	</object>
+
+	<object hotkey="tab.prev">
+		<action on="Press">selectNextTab(-1);</action>
+	</object>
+
 	<!-- Settings Window -->
 	<object name="options" type="image" style="ModernDialog" size="50%-350 50%-330 50%+350 50%+330">
 

@@ -125,11 +125,30 @@ var g_SelectedChart = {
 	"type": [0, 0]
 };
 
+/*
+ * Array of the panel button names.
+ */
+var g_PanelButtons = [];
+
+/*
+ * Remember the name of the currently opened view panel.
+ */
+var g_SelectedPanel = "";
+
 function init(data)
 {
 	// Fill globals
 	g_GameData = data;
 	g_ScorePanelsData = getScorePanelsData();
+	g_PanelButtons = Object.keys(g_ScorePanelsData).concat(["charts"]).map(panel => panel + "PanelButton");
+
+	g_SelectedPanel = g_PanelButtons[0];
+	if (data && data.selectedData)
+	{
+		g_SelectedPanel = data.selectedData.panel;
+		g_SelectedChart = data.selectedData.charts;
+	}
+
 	initTeamData();
 	calculateTeamCounterDataHelper();
 
@@ -137,7 +156,23 @@ function init(data)
 	initPlayerBoxPositions();
 	initGUICharts();
 	initGUILabelsAndButtons();
-	selectPanel(Engine.GetGUIObjectByName("scorePanelButton"));
+	selectPanel(Engine.GetGUIObjectByName(g_SelectedPanel));
+	for (let button of g_PanelButtons)
+	{
+		let tab = Engine.GetGUIObjectByName(button);
+		tab.onMouseWheelUp = () => selectNextTab(1);
+		tab.onMouseWheelDown = () => selectNextTab(-1);
+	}
+}
+
+/*
+ * Show next/previous panel.
+ * @param direction - 1/-1 forward, backward panel.
+ */
+function selectNextTab(direction)
+{
+	selectPanel(Engine.GetGUIObjectByName(g_PanelButtons[
+		(g_PanelButtons.indexOf(g_SelectedPanel) + direction + g_PanelButtons.length) % g_PanelButtons.length]));
 }
 
 function selectPanel(panel)
@@ -161,6 +196,8 @@ function selectPanel(panel)
 		updatePanelData(g_ScorePanelsData[panel.name.substr(0, panel.name.length - "PanelButton".length)]);
 	else
 		[0, 1].forEach(updateCategoryDropdown);
+
+	g_SelectedPanel = panel.name;
 }
 
 function initGUICharts()
@@ -395,11 +432,19 @@ function confirmStartReplay()
 
 function continueButton()
 {
+	let summarySelectedData = {
+		"panel": g_SelectedPanel,
+		"charts": g_SelectedChart
+	};
 	if (g_GameData.gui.isInGame)
-		Engine.PopGuiPageCB(0);
+		Engine.PopGuiPageCB({
+			"explicitResume": 0,
+			"summarySelectedData": summarySelectedData
+		});
 	else if (g_GameData.gui.isReplay)
 		Engine.SwitchGuiPage("page_replaymenu.xml", {
-			"replaySelectionData": g_GameData.gui.replaySelectionData
+			"replaySelectionData": g_GameData.gui.replaySelectionData,
+			"summarySelectedData": summarySelectedData
 		});
 	else if (Engine.HasXmppClient())
 		Engine.SwitchGuiPage("page_lobby.xml");
