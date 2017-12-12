@@ -153,19 +153,19 @@
 		</object>
 
 		<!-- BUTTONS -->
-		<object type="button" style="ModernButtonRed" size="16 100%-44 200 100%-16">
+		<object name="quitButton" type="button" style="ModernButtonRed" size="100%-576-4-184 100%-44 100%-576-4 100%-16">
 			<translatableAttribute id="caption">Quit</translatableAttribute>
 			<action on="Press">Engine.Exit();</action>
 		</object>
 
-		<object type="button" style="ModernButtonRed" size="100%-576-4-184 100%-44 100%-576-4 100%-16">
-			<translatableAttribute id="caption">Visit Website</translatableAttribute>
-			<action on="Press">visitModWebsite("modsEnabledList");</action>
-		</object>
-
-		<object type="button" style="ModernButtonRed" size="100%-576 100%-44 100%-392 100%-16" hotkey="cancel">
+		<object name="cancelButton" type="button" style="ModernButtonRed" size="100%-576-4-184 100%-44 100%-576-4 100%-16" hotkey="cancel">
 			<translatableAttribute id="caption">Cancel</translatableAttribute>
 			<action on="Press">closePage();</action>
+		</object>
+
+		<object type="button" style="ModernButtonRed" size="100%-576 100%-44 100%-392 100%-16">
+			<translatableAttribute id="caption">Visit Website</translatableAttribute>
+			<action on="Press">visitModWebsite("modsEnabledList");</action>
 		</object>
 
 		<object name="saveConfigurationButton" type="button" style="ModernButtonRed" size="100%-388 100%-44 100%-204 100%-16">
