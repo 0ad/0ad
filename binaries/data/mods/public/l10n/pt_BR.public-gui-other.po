@@ -34,8 +34,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-12-06 09:04+0100\n"
-"PO-Revision-Date: 2017-12-06 15:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-12-08 23:46+0000\n"
+"Last-Translator: Pedro Augustus Diniz Falcão Silva <pedro.falcao.ufcg@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1210,7 +1210,7 @@ msgid ""
 "This option will be removed in a future 0 A.D. release, to allow for more "
 "advanced graphics features. We advise upgrading your graphics card to a more"
 " recent, shader-compatible model."
-msgstr ""
+msgstr "%(warning)s Você parece estar usando gráficos sem shader (fixed function). Essa opção será removida em uma futura iteração do 0 A.D. para permitir opções gráficas mais avançadas. Recomendamos substituir sua placa de vídeo por um modelo mais recente que seja compatível com shaders."
 
 #. Translation: This is the second paragraph of a warning. The
 #. warning explains that the user is using “non-shader“ graphics,
@@ -1532,7 +1532,7 @@ msgstr "Espólios"
 
 #: gui/summary/layout.js:121
 msgid "Livestock bred"
-msgstr ""
+msgstr "Gado criado"
 
 #: gui/summary/layout.js:125
 #, javascript-format
@@ -2510,11 +2510,11 @@ msgstr "Prefere GLSL"
 
 #: gui/options/options.json[1].options[1].tooltip
 msgid "Enable Fog"
-msgstr ""
+msgstr "Ativar Neblina"
 
 #: gui/options/options.json[1].options[1].label
 msgid "Fog"
-msgstr ""
+msgstr "Neblina"
 
 #: gui/options/options.json[1].options[2].tooltip
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
@@ -2786,11 +2786,11 @@ msgstr "Muito Difícil"
 
 #: gui/options/options.json[3].options[2].tooltip
 msgid "Default difficulty of the AI."
-msgstr ""
+msgstr "Dificuldade padrão da IA."
 
 #: gui/options/options.json[3].options[2].label
 msgid "Default AI difficulty"
-msgstr ""
+msgstr "Dificuldade padrão da IA."
 
 #: gui/options/options.json[3].options[3].tooltip
 msgid ""
@@ -2804,7 +2804,7 @@ msgstr "Atribuir Jogadores"
 
 #: gui/options/options.json[3].label
 msgid "Game Setup"
-msgstr ""
+msgstr "Configuração de Jogo"
 
 #: gui/options/options.json[4].options[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby"

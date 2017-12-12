@@ -49,6 +49,11 @@ var g_SelectedReplayDirectory = "";
 var g_ReplaysLoaded = false;
 
 /**
+ * Remember the name of the currently opened view panel.
+ */
+var g_SummarySelectedData = "";
+
+/**
  * Initializes globals, loads replays and displays the list.
  */
 function init(data)
@@ -69,6 +74,9 @@ function init(data)
 
 	initHotkeyTooltips();
 	displayReplayList();
+
+	if (data && data.summarySelectedData)
+		g_SummarySelectedData = data.summarySelectedData;
 }
 
 /**

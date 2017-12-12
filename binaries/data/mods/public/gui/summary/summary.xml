@@ -5,6 +5,25 @@
 	<script directory="gui/common/"/>
 	<script directory="gui/summary/"/>
 
+	<object hotkey="summary">
+		<action on="Press">continueButton();</action>
+	</object>
+
+	<object hotkey="cancel">
+		<action on="Press">
+		if (g_GameData.gui.isInGame)
+			continueButton();
+		</action>
+	</object>
+
+	<object hotkey="tab.next">
+		<action on="Press">selectNextTab(1);</action>
+	</object>
+
+	<object hotkey="tab.prev">
+		<action on="Press">selectNextTab(-1);</action>
+	</object>
+
 	<object name="summaryWindow"
 		type="image"
 		style="ModernWindow"

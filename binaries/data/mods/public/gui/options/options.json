@@ -97,6 +97,14 @@
 				"max": 20
 			},
 			{
+				"type": "slider",
+				"label": "Wounded Unit Health",
+				"tooltip": "The wounded unit hotkey considers the selected units as wounded if their health percentage falls below this number",
+				"config": "gui.session.woundedunithotkeythreshold",
+				"min": 0,
+				"max": 100
+			},
+			{
 				"type": "boolean",
 				"label": "Chat Timestamp",
 				"tooltip": "Show time that messages are posted in the lobby, gamesetup and ingame chat.",

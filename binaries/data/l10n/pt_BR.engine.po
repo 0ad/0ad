@@ -12,14 +12,15 @@
 # Iago Leandro de Abreu <iago.abr@outlook.com>, 2015
 # Mateus Felipe Cordeiro Caetano Pinto <uuflor@gmail.com>, 2013
 # Micael Pereira Malaquias <micaelpmalaquias@hotmail.com>, 2014
+# Pedro Augustus Diniz Falcão Silva <pedro.falcao.ufcg@gmail.com>, 2017
 # PedroDognani <pedro_dognani_@hotmail.com>, 2015
 # Thiago Perrotta <inactive+thiagowfx@transifex.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2017-10-30 09:03+0100\n"
-"PO-Revision-Date: 2017-10-30 13:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2017-12-08 23:32+0000\n"
+"Last-Translator: Pedro Augustus Diniz Falcão Silva <pedro.falcao.ufcg@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -94,7 +95,7 @@ msgstr "O motor foi fechado pelo servidor"
 
 #: lobby/XmppClient.cpp:1057
 msgid "An I/O error occurred"
-msgstr ""
+msgstr "Ocorreu um erro de I/O."
 
 #: lobby/XmppClient.cpp:1059
 msgid "The connection was refused by the server"
@@ -120,7 +121,7 @@ msgstr "O server não exige encriptação TLS"
 
 #: lobby/XmppClient.cpp:1066
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr "Falha na autenticação. A senha e/ou conta estão incorretos/não existem"
+msgstr "Falha na autenticação. Senha incorreta ou conta inexistente"
 
 #: lobby/XmppClient.cpp:1067
 msgid "The user or system requested a disconnect"

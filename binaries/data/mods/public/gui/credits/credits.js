@@ -1,6 +1,7 @@
 var g_PanelNames = ["special", "programming", "art", "translators", "misc", "donators"];
 var g_ButtonNames = {};
 var g_PanelTexts = {};
+var g_SelectedPanel = 0;
 
 function init()
 {
@@ -21,9 +22,17 @@ function init()
 	selectPanel(0);
 }
 
+/*
+ * Show next/previous panel.
+ * @param direction - 1/-1 forward, backward panel.
+ */
+function selectNextTab(direction)
+{
+	selectPanel((g_SelectedPanel + direction + g_PanelNames.length) % g_PanelNames.length);
+}
+
 function placeButtons()
 {
-
 	for (let i = 0; i < g_PanelNames.length; ++i)
 	{
 		let button = Engine.GetGUIObjectByName("creditsPanelButton[" + i + "]");
@@ -32,6 +41,8 @@ function placeButtons()
 			warn("Could not display some credits.");
 			break;
 		}
+		button.onMouseWheelUp = () => selectNextTab(1);
+		button.onMouseWheelDown = () => selectNextTab(-1);
 		button.hidden = false;
 		let size = button.size;
 		size.top = i * 35;
@@ -84,6 +95,7 @@ function parseHelper(list)
 
 function selectPanel(i)
 {
+	g_SelectedPanel = i;
 	Engine.GetGUIObjectByName("creditsPanelButtons").children.forEach((button, j) => {
 		button.sprite = i == j ? "ModernTabVerticalForeground" : "ModernTabVerticalBackground";
 	});
