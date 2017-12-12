@@ -1,6 +1,11 @@
+var g_AIBehaviorList = [{
+	"Name": "random",
+	"Title": translateWithContext("AI Behavior", "Random")
+}].concat(g_Settings.AIBehaviors);
+
 var g_PlayerSlot;
 
-const g_AIDescriptions = [{
+var g_AIDescriptions = [{
 	"id": "",
 	"data": {
 		"name": translateWithContext("ai", "None"),
@@ -8,28 +13,37 @@ const g_AIDescriptions = [{
 	}
 }].concat(g_Settings.AIDescriptions);
 
+var g_AIControls = {
+	"aiSelection": {
+		"labels": g_AIDescriptions.map(ai => ai.data.name),
+		"selected": settings => g_AIDescriptions.findIndex(ai => ai.id == settings.id)
+	},
+	"aiDifficulty": {
+		"labels": prepareForDropdown(g_Settings.AIDifficulties).Title,
+		"selected": settings => settings.difficulty
+	},
+	"aiBehavior": {
+		"labels": prepareForDropdown(g_AIBehaviorList).Title,
+		"selected": settings => g_AIBehaviorList.findIndex(b => b.Name == settings.behavior)
+	}
+};
+
 function init(settings)
 {
 	// Remember the player ID that we change the AI settings for
 	g_PlayerSlot = settings.playerSlot;
 
-	let aiSelection = Engine.GetGUIObjectByName("aiSelection");
-	aiSelection.list = g_AIDescriptions.map(ai => ai.data.name);
-	aiSelection.selected = g_AIDescriptions.findIndex(ai => ai.id == settings.id);
-	aiSelection.hidden = !settings.isController;
+	for (let name in g_AIControls)
+	{
+		let control = Engine.GetGUIObjectByName(name);
+		control.list = g_AIControls[name].labels;
+		control.selected = g_AIControls[name].selected(settings);
+		control.hidden = !settings.isController;
 
-	let aiSelectionText = Engine.GetGUIObjectByName("aiSelectionText");
-	aiSelectionText.caption = aiSelection.list[aiSelection.selected];
-	aiSelectionText.hidden = settings.isController;
-
-	let aiDiff = Engine.GetGUIObjectByName("aiDifficulty");
-	aiDiff.list = prepareForDropdown(g_Settings.AIDifficulties).Title;
-	aiDiff.selected = settings.difficulty;
-	aiDiff.hidden = !settings.isController;
-
-	let aiDiffText = Engine.GetGUIObjectByName("aiDifficultyText");
-	aiDiffText.caption = aiDiff.list[aiDiff.selected];
-	aiDiffText.hidden = settings.isController;
+		let label = Engine.GetGUIObjectByName(name + "Text");
+		label.caption = control.list[control.selected];
+		label.hidden = settings.isController;
+	}
 }
 
 function selectAI(idx)
@@ -48,6 +62,7 @@ function returnAI(save = true)
 		"id": g_AIDescriptions[idx].id,
 		"name": g_AIDescriptions[idx].data.name,
 		"difficulty": Engine.GetGUIObjectByName("aiDifficulty").selected,
+		"behavior": g_AIBehaviorList[Engine.GetGUIObjectByName("aiBehavior").selected].Name,
 		"playerSlot": g_PlayerSlot
 	});
 }

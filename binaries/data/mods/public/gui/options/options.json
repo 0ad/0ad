@@ -369,7 +369,7 @@
 			},
 			{
 				"type": "dropdown",
-				"label": "Default AI difficulty",
+				"label": "Default AI Difficulty",
 				"tooltip": "Default difficulty of the AI.",
 				"config": "gui.gamesetup.aidifficulty",
 				"list": [
@@ -379,6 +379,18 @@
 					{ "value": 3, "label": "Medium" },
 					{ "value": 4, "label": "Hard" },
 					{ "value": 5, "label": "Very Hard" }
+				]
+			},
+			{
+				"type": "dropdown",
+				"label": "Default AI Behavior",
+				"tooltip": "Default behavior of the AI.",
+				"config": "gui.gamesetup.aibehavior",
+				"list": [
+					{ "value": "Random", "label": "Random" },
+					{ "value": "Generalist", "label": "Generalist" },
+					{ "value": "Aggressive", "label": "Aggressive" },
+					{ "value": "Defensive", "label": "Defensive" }
 				]
 			},
 			{

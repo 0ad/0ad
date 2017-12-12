@@ -37,6 +37,7 @@ function loadSettingsValues()
 	var settings = {
 		"AIDescriptions": loadAIDescriptions(),
 		"AIDifficulties": loadAIDifficulties(),
+		"AIBehaviors": loadAIBehaviors(),
 		"Ceasefire": loadCeasefire(),
 		"VictoryDurations": loadVictoryDuration(),
 		"GameSpeeds": loadSettingValuesFile("game_speeds.json"),
@@ -134,6 +135,25 @@ function loadAIDifficulties()
 		{
 			"Name": "very hard",
 			"Title": translateWithContext("aiDiff", "Very Hard")
+		}
+	];
+}
+
+function loadAIBehaviors()
+{
+	return [
+		{
+			"Name": "generalist",
+			"Title": translateWithContext("aiBehavior", "Generalist"),
+			"Default": true
+		},
+		{
+			"Name": "defensive",
+			"Title": translateWithContext("aiBehavior", "Defensive")
+		},
+		{
+			"Name": "aggressive",
+			"Title": translateWithContext("aiBehavior", "Aggressive")
 		}
 	];
 }
@@ -354,6 +374,17 @@ function translateAIDifficulty(index)
 {
 	let difficulty = g_Settings.AIDifficulties[index];
 	return difficulty ? difficulty.Title : translateWithContext("AI difficulty", "Unknown");
+}
+
+/**
+ * Returns title or placeholder.
+ *
+ * @param {string} aiBehavior - for example "defensive"
+ */
+function translateAIBehavior(aiBehavior)
+{
+	let behavior = g_Settings.AIBehaviors.find(b => b.Name == aiBehavior);
+	return behavior ? behavior.Title : translateWithContext("AI behavior", "Default");
 }
 
 /**

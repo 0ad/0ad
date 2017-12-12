@@ -30,7 +30,7 @@ public:
 	 * by @p id (corresponding to a subdirectory in simulation/ai/),
 	 * to control player @p player.
 	 */
-	virtual void AddPlayer(const std::wstring& id, player_id_t player, uint8_t difficulty) = 0;
+	virtual void AddPlayer(const std::wstring& id, player_id_t player, uint8_t difficulty, const std::wstring&) = 0;
 	virtual void SetRNGSeed(uint32_t seed) = 0;
 	virtual void TryLoadSharedComponent() = 0;
 	virtual void RunGamestateInit() = 0;
