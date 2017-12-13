@@ -154,11 +154,8 @@ function LoadPlayerSettings(settings, newPlayers)
 	// NOTE: We need to do the team locking here, as otherwise
 	// SetTeam can't ally the players.
 	if (settings.LockTeams)
-		for (var i = 0; i < numPlayers; ++i)
-		{
-			let cmpPlayer = QueryPlayerIDInterface(i);
-			cmpPlayer.SetLockTeams(true);
-		}
+		for (let i = 0; i < numPlayers; ++i)
+			QueryPlayerIDInterface(i).SetLockTeams(true);
 
 	// Disable the AIIinterface when no AI players are present
 	if (playerData && !playerData.some(v => v && !!v.AI))

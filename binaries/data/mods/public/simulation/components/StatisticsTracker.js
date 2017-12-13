@@ -482,9 +482,11 @@ StatisticsTracker.prototype.IncreaseFailedBribesCounter = function()
 
 StatisticsTracker.prototype.GetPercentMapExplored = function()
 {
-	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
-	return cmpRangeManager.GetPercentMapExplored(cmpPlayer.GetPlayerID());
+	let cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+	if (!cmpPlayer)
+		return 0;
+
+	return Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).GetPercentMapExplored(cmpPlayer.GetPlayerID());
 };
 
 /**
@@ -493,20 +495,19 @@ StatisticsTracker.prototype.GetPercentMapExplored = function()
  */
 StatisticsTracker.prototype.GetTeamPercentMapExplored = function()
 {
-	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-
-	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+	let cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
 	if (!cmpPlayer)
 		return 0;
 
-	var team = cmpPlayer.GetTeam();
+	let team = cmpPlayer.GetTeam();
+	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	// If teams are not locked, this statistic won't be displayed, so don't bother computing
 	if (team == -1 || !cmpPlayer.GetLockTeams())
 		return cmpRangeManager.GetPercentMapExplored(cmpPlayer.GetPlayerID());
 
-	var teamPlayers = [];
-	for (var i = 1; i < cmpPlayerManager.GetNumPlayers(); ++i)
+	let teamPlayers = [];
+	let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
+	for (let i = 1; i < numPlayers; ++i)
 	{
 		let cmpOtherPlayer = QueryPlayerIDInterface(i);
 		if (cmpOtherPlayer && cmpOtherPlayer.GetTeam() == team)
@@ -518,28 +519,27 @@ StatisticsTracker.prototype.GetTeamPercentMapExplored = function()
 
 StatisticsTracker.prototype.GetPercentMapControlled = function()
 {
-	var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
-	var cmpTerritoryManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TerritoryManager);
-	if (!cmpPlayer || !cmpTerritoryManager)
+	let cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+	if (!cmpPlayer)
 		return 0;
 
-	return cmpTerritoryManager.GetTerritoryPercentage(cmpPlayer.GetPlayerID());
+	return Engine.QueryInterface(SYSTEM_ENTITY, IID_TerritoryManager).GetTerritoryPercentage(cmpPlayer.GetPlayerID());
 };
 
 StatisticsTracker.prototype.GetTeamPercentMapControlled = function()
 {
-	var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
-	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	var cmpTerritoryManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TerritoryManager);
-	if (!cmpPlayer || !cmpTerritoryManager)
+	let cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+	if (!cmpPlayer)
 		return 0;
 
-	var team = cmpPlayer.GetTeam();
+	let team = cmpPlayer.GetTeam();
+	let cmpTerritoryManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TerritoryManager);
 	if (team == -1 || !cmpPlayer.GetLockTeams())
 		return cmpTerritoryManager.GetTerritoryPercentage(cmpPlayer.GetPlayerID());
 
-	var teamPercent = 0;
-	for (let i = 1; i < cmpPlayerManager.GetNumPlayers(); ++i)
+	let teamPercent = 0;
+	let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
+	for (let i = 1; i < numPlayers; ++i)
 	{
 		let cmpOtherPlayer = QueryPlayerIDInterface(i);
 		if (cmpOtherPlayer && cmpOtherPlayer.GetTeam() == team)

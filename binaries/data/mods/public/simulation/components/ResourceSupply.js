@@ -32,10 +32,10 @@ ResourceSupply.prototype.Init = function()
 	// Current resource amount (non-negative)
 	this.amount = this.GetMaxAmount();
 
-	this.gatherers = [];	// list of IDs for each players
-	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);	// system component so that's safe.
-	let numPlayers = cmpPlayerManager.GetNumPlayers();
-	for (let i = 0; i <= numPlayers; ++i)	// use "<=" because we want Gaia too.
+	// List of IDs for each player
+	this.gatherers = [];
+	let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers()
+	for (let i = 0; i < numPlayers; ++i)
 		this.gatherers.push([]);
 
 	this.infinite = !isFinite(+this.template.Amount);

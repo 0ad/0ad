@@ -55,18 +55,15 @@ GuiInterface.prototype.GetSimulationState = function()
 		"players": []
 	};
 
-	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	let numPlayers = cmpPlayerManager.GetNumPlayers();
-
+	let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
 	for (let i = 0; i < numPlayers; ++i)
 	{
-		let playerEnt = cmpPlayerManager.GetPlayerByID(i);
-		let cmpPlayerEntityLimits = Engine.QueryInterface(playerEnt, IID_EntityLimits);
-		let cmpPlayer = Engine.QueryInterface(playerEnt, IID_Player);
+		let cmpPlayer = QueryPlayerIDInterface(i);
+		let cmpPlayerEntityLimits = QueryPlayerIDInterface(i, IID_EntityLimits);
 
 		// Work out what phase we are in
 		let phase = "";
-		let cmpTechnologyManager = Engine.QueryInterface(playerEnt, IID_TechnologyManager);
+		let cmpTechnologyManager = QueryPlayerIDInterface(i, IID_TechnologyManager);
 		if (cmpTechnologyManager)
 		{
 			if (cmpTechnologyManager.IsTechnologyResearched("phase_city"))
@@ -162,8 +159,7 @@ GuiInterface.prototype.GetSimulationState = function()
 	// Add basic statistics to each player
 	for (let i = 0; i < numPlayers; ++i)
 	{
-		let playerEnt = cmpPlayerManager.GetPlayerByID(i);
-		let cmpPlayerStatisticsTracker = Engine.QueryInterface(playerEnt, IID_StatisticsTracker);
+		let cmpPlayerStatisticsTracker = QueryPlayerIDInterface(i, IID_StatisticsTracker);
 		if (cmpPlayerStatisticsTracker)
 			ret.players[i].statistics = cmpPlayerStatisticsTracker.GetBasicStatistics();
 	}
@@ -183,12 +179,10 @@ GuiInterface.prototype.GetExtendedSimulationState = function()
 	let ret = this.GetSimulationState();
 
 	// Add statistics to each player
-	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	let n = cmpPlayerManager.GetNumPlayers();
-	for (let i = 0; i < n; ++i)
+	let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
+	for (let i = 0; i < numPlayers; ++i)
 	{
-		let playerEnt = cmpPlayerManager.GetPlayerByID(i);
-		let cmpPlayerStatisticsTracker = Engine.QueryInterface(playerEnt, IID_StatisticsTracker);
+		let cmpPlayerStatisticsTracker = QueryPlayerIDInterface(i, IID_StatisticsTracker);
 		if (cmpPlayerStatisticsTracker)
 			ret.players[i].sequences = cmpPlayerStatisticsTracker.GetSequences();
 	}

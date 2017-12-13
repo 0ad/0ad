@@ -126,15 +126,12 @@ EndGameManager.prototype.AlliedVictoryCheck = function()
 		return;
 
 	let cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	if (!cmpGuiInterface || !cmpPlayerManager)
-		return;
-
 	cmpGuiInterface.DeleteTimeNotification(this.lastManStandingMessage);
 
 	// Proceed if only allies are remaining
 	let allies = [];
-	for (let playerID = 1; playerID < cmpPlayerManager.GetNumPlayers(); ++playerID)
+	let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
+	for (let playerID = 1; playerID < numPlayers; ++playerID)
 	{
 		let cmpPlayer = QueryPlayerIDInterface(playerID);
 		if (cmpPlayer.GetState() != "active")
