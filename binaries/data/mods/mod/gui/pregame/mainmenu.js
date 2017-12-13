@@ -1,4 +1,6 @@
 function init()
 {
-	Engine.SwitchGuiPage("page_modmod.xml", {});
+	Engine.SwitchGuiPage("page_modmod.xml", {
+		"cancelbutton": false
+	});
 }

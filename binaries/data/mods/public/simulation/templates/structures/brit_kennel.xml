@@ -1,74 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_special">
-  <Armour>
-    <Hack>10.0</Hack>
-    <Pierce>40.0</Pierce>
-    <Crush>5.0</Crush>
-    <Foundation>
-      <Hack>3.0</Hack>
-      <Pierce>8.0</Pierce>
-      <Crush>2.0</Crush>
-    </Foundation>
-  </Armour>
-  <BuildRestrictions>
-    <Category>Kennel</Category>
-  </BuildRestrictions>
-  <Cost>
-    <BuildTime>50</BuildTime>
-    <Resources>
-      <wood>50</wood>
-      <stone>50</stone>
-    </Resources>
-  </Cost>
-  <Footprint>
-    <Square width="8.0" depth="7.0"/>
-    <Height>5.0</Height>
-  </Footprint>
-  <GarrisonHolder>
-    <List>Dog</List>
-  </GarrisonHolder>
-  <Health>
-    <Max>500</Max>
-    <SpawnEntityOnDeath>decay|rubble/rubble_stone_2x2</SpawnEntityOnDeath>
-  </Health>
+<Entity parent="template_structure_military_kennel">
   <Identity>
     <Civ>brit</Civ>
-    <GenericName>Special Building</GenericName>
     <SpecificName>Kennel</SpecificName>
-    <Classes datatype="tokens">Kennel</Classes>
-    <VisibleClasses datatype="tokens">-City Town</VisibleClasses>
-    <Tooltip>Train Celtic war dogs.</Tooltip>
-    <Icon>structures/kennel.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
-  <Loot>
-    <stone>10</stone>
-  </Loot>
-  <Obstruction>
-    <Static width="7.5" depth="6.75"/>
-  </Obstruction>
-  <ProductionQueue>
-    <BatchTimeModifier>0.7</BatchTimeModifier>
-    <Entities datatype="tokens">
-      units/{civ}_war_dog_b
-    </Entities>
-  </ProductionQueue>
-  <Sound>
-    <SoundGroups>
-      <select>interface/select/building/sel_kennel.xml</select>
-      <constructed>interface/complete/building/complete_kennel.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
-    </SoundGroups>
-  </Sound>
-  <StatusBars>
-    <HeightOffset>8.0</HeightOffset>
-  </StatusBars>
-  <TerritoryInfluence>
-    <Radius>20</Radius>
-    <Weight>30000</Weight>
-  </TerritoryInfluence>
   <VisualActor>
     <Actor>structures/britons/kennel.xml</Actor>
-    <FoundationActor>structures/fndn_2x2.xml</FoundationActor>
   </VisualActor>
 </Entity>

@@ -67,56 +67,45 @@ EndGameManager.prototype.MarkPlayerAsWon = function(playerID, victoryString, def
 		return;
 	}
 
-	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	let numPlayers = cmpPlayerManager.GetNumPlayers();
-
 	this.skipAlliedVictoryCheck = true;
 
 	let winningPlayers = [];
 	let defeatedPlayers = [];
 
-	let cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+	let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
+	for (let i = 1; i < numPlayers; ++i)
+	{
+		let cmpPlayer = QueryPlayerIDInterface(i);
+		if (cmpPlayer.GetState() != "active")
+			continue;
 
-	// Group win/defeat messages
-	for (let won of [false, true])
-		for (let i = 1; i < numPlayers; ++i)
+		if (i == playerID || this.alliedVictory && cmpPlayer.IsMutualAlly(playerID))
 		{
-			let cmpPlayer = QueryPlayerIDInterface(i);
-			if (cmpPlayer.GetState() != "active")
-				continue;
-
-			let hasWon = playerID == i || this.alliedVictory && cmpPlayer.IsMutualAlly(playerID);
-
-			if (hasWon == won)
-			{
-				if (won)
-				{
-					cmpPlayer.SetState("won", undefined);
-					winningPlayers.push(i);
-				}
-				else
-				{
-					cmpPlayer.SetState("defeated", undefined);
-					defeatedPlayers.push(i);
-				}
-			}
+			cmpPlayer.SetState("won", undefined);
+			winningPlayers.push(i);
 		}
+		else
+		{
+			cmpPlayer.SetState("defeated", undefined);
+			defeatedPlayers.push(i);
+		}
+	}
 
-		if (winningPlayers.length)
-			cmpGUIInterface.PushNotification({
-				"type": "won",
-				"players": [winningPlayers[0]],
-				"allies" : winningPlayers,
-				"message": victoryString(winningPlayers.length)
-			});
+	let cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+	cmpGUIInterface.PushNotification({
+		"type": "won",
+		"players": [winningPlayers[0]],
+		"allies" : winningPlayers,
+		"message": victoryString(winningPlayers.length)
+	});
 
-		if (defeatedPlayers.length)
-			cmpGUIInterface.PushNotification({
-				"type": "defeat",
-				"players": [defeatedPlayers[0]],
-				"allies" : defeatedPlayers,
-				"message": defeatString(defeatedPlayers.length)
-			});
+	if (defeatedPlayers.length)
+		cmpGUIInterface.PushNotification({
+			"type": "defeat",
+			"players": [defeatedPlayers[0]],
+			"allies" : defeatedPlayers,
+			"message": defeatString(defeatedPlayers.length)
+		});
 
 	this.skipAlliedVictoryCheck = false;
 };

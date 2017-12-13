@@ -16,12 +16,17 @@ class Actor:
         self.material = ''
 
     def read(self, physical_path):
-        tree = xml.etree.ElementTree.parse(physical_path)
+        try:
+            tree = xml.etree.ElementTree.parse(physical_path)
+        except xml.etree.ElementTree.ParseError as err:
+            sys.stderr.write('Error in "%s": %s\n' % (physical_path, err.msg))
+            return False
         root = tree.getroot()
         for element in root.findall('.//material'):
             self.material = element.text
         for element in root.findall('.//texture'):
             self.textures.append(element.get('name'))
+        return True
 
 
 class Material:
@@ -32,10 +37,15 @@ class Material:
         self.required_textures = []
 
     def read(self, physical_path):
-        root = xml.etree.ElementTree.parse(physical_path).getroot()
+        try:
+            root = xml.etree.ElementTree.parse(physical_path).getroot()
+        except xml.etree.ElementTree.ParseError as err:
+            sys.stderr.write('Error in "%s": %s\n' % (physical_path, err.msg))
+            return False
         for element in root.findall('.//required_texture'):
             texture_name = element.get('name')
             self.required_textures.append(texture_name)
+        return True
 
 
 class Validator:
@@ -46,10 +56,11 @@ class Validator:
         self.vfs_root = vfs_root
         self.mods = mods
         self.materials = {}
+        self.invalid_materials = {}
         self.actors = []
 
     def get_physical_path(self, mod_name, vfs_path):
-        return os.path.join(self.vfs_root, mod_name, vfs_path)
+        return os.path.realpath(os.path.join(self.vfs_root, mod_name, vfs_path))
 
     def find_mod_files(self, mod_name, vfs_path, pattern):
         physical_path = self.get_physical_path(mod_name, vfs_path)
@@ -83,15 +94,17 @@ class Validator:
             if material_name in self.materials:
                 continue
             material = Material(material_file['mod_name'], material_file['vfs_path'])
-            material.read(self.get_physical_path(material_file['mod_name'], material_file['vfs_path']))
-            self.materials[material_name] = material
+            if material.read(self.get_physical_path(material_file['mod_name'], material_file['vfs_path'])):
+                self.materials[material_name] = material
+            else:
+                self.invalid_materials[material_name] = material
 
     def find_actors(self, vfs_path):
         actor_files = self.find_all_mods_files(vfs_path, re.compile(r'.*\.xml'))
         for actor_file in actor_files:
             actor = Actor(actor_file['mod_name'], actor_file['vfs_path'])
-            actor.read(self.get_physical_path(actor_file['mod_name'], actor_file['vfs_path']))
-            self.actors.append(actor)
+            if actor.read(self.get_physical_path(actor_file['mod_name'], actor_file['vfs_path'])):
+                self.actors.append(actor)
 
     def run(self):
         start_time = time.time()
@@ -103,6 +116,13 @@ class Validator:
 
         for actor in self.actors:
             if not actor.material:
+                continue
+            if actor.material not in self.materials and actor.material not in self.invalid_materials:
+                sys.stderr.write('Error in "%s": unknown material "%s"' % (
+                    self.get_physical_path(actor.mod_name, actor.vfs_path),
+                    actor.material
+                ))
+            if actor.material not in self.materials:
                 continue
             material = self.materials[actor.material]
             for required_texture in material.required_textures:

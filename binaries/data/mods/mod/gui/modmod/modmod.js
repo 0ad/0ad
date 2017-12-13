@@ -52,12 +52,13 @@ var g_ColorNoModSelected = "255 255 100";
 var g_ColorDependenciesMet = "100 255 100";
 var g_ColorDependenciesNotMet = "255 100 100";
 
-function init()
+function init(data)
 {
 	loadMods();
 	loadEnabledMods();
 	validateMods();
 	initGUIFilters();
+	initGUIButtons(data);
 }
 
 function loadMods()
@@ -85,6 +86,14 @@ function initGUIFilters()
 	Engine.GetGUIObjectByName("modGenericFilter").caption = translate("Filter");
 
 	displayModLists();
+}
+
+function initGUIButtons(data)
+{
+	// Either get back to the previous page or quit if there is no previous page
+	let cancelButton = !data || data.cancelbutton;
+	Engine.GetGUIObjectByName("cancelButton").hidden = !cancelButton;
+	Engine.GetGUIObjectByName("quitButton").hidden = cancelButton;
 }
 
 function saveMods()
