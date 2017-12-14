@@ -21,12 +21,9 @@ Trigger.prototype.CheckWonderVictory = function(data)
 	if (data.to <= 0)
 		return;
 
-	// Create new messages, and start timer to register defeat.
-	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	let numPlayers = cmpPlayerManager.GetNumPlayers();
-
 	// Add -1 to notify observers too
 	let players = [-1];
+	let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
 	for (let i = 1; i < numPlayers; ++i)
 	{
 		let cmpPlayer = QueryPlayerIDInterface(i);

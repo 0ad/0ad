@@ -296,8 +296,8 @@ Capturable.prototype.OnOwnershipChanged = function(msg)
 	else
 	{
 		// initialise the capture points when created
-		var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-		for (let i = 0; i < cmpPlayerManager.GetNumPlayers(); ++i)
+		let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
+		for (let i = 0; i < numPlayers; ++i)
 			if (i == msg.to)
 				this.cp[i] = this.maxCp;
 			else

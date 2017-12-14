@@ -476,9 +476,10 @@ Player.prototype.SetTeam = function(team)
 	this.team = team;
 
 	// Set all team members as allies
-	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	if (cmpPlayerManager && this.team != -1)
-		for (let i = 0; i < cmpPlayerManager.GetNumPlayers(); ++i)
+	if (this.team != -1)
+	{
+		let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
+		for (let i = 0; i < numPlayers; ++i)
 		{
 			let cmpPlayer = QueryPlayerIDInterface(i);
 			if (this.team != cmpPlayer.GetTeam())
@@ -487,6 +488,7 @@ Player.prototype.SetTeam = function(team)
 			this.SetAlly(i);
 			cmpPlayer.SetAlly(this.playerID);
 		}
+	}
 
 	Engine.BroadcastMessage(MT_DiplomacyChanged, {
 		"player": this.playerID,

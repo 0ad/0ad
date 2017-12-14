@@ -151,8 +151,7 @@ TriggerHelper.DefeatPlayer = function(playerID, defeatReason)
  */
 TriggerHelper.GetNumberOfPlayers = function()
 {
-	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	return cmpPlayerManager.GetNumPlayers();
+	return Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
 };
 
 /**
