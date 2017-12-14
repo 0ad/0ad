@@ -955,10 +955,9 @@ var g_PlayerMiscElements = {
 		"onPress": (playerIdx) => function() {
 			openAIConfig(playerIdx);
 		},
-		"tooltip": (playerIdx) => sprintf(translate("Configure AI: %(difficulty)s %(behavior)s %(name)s."), {
+		"tooltip": (playerIdx) => sprintf(translate("Configure AI: %(name)s - %(difficulty)s."), {
 			"name": translateAIName(g_GameAttributes.settings.PlayerData[playerIdx].AI),
-			"difficulty": translateAIDifficulty(g_GameAttributes.settings.PlayerData[playerIdx].AIDiff),
-			"behavior": translateAIBehavior(g_GameAttributes.settings.PlayerData[playerIdx].AIBehavior),
+			"difficulty": translateAIDifficulty(g_GameAttributes.settings.PlayerData[playerIdx].AIDiff)
 		}),
 	},
 };
@@ -1017,7 +1016,6 @@ function initDefaults()
 	g_DefaultPlayerData = clone(g_Settings.PlayerDefaults.slice(1));
 
 	let aiDifficulty = +Engine.ConfigDB_GetValue("user", "gui.gamesetup.aidifficulty");
-	let aiBehavior = Engine.ConfigDB_GetValue("user", "gui.gamesetup.aibehavior");
 
 	// Don't change the underlying defaults file, as Atlas uses that file too
 	for (let i in g_DefaultPlayerData)
@@ -1025,7 +1023,6 @@ function initDefaults()
 		g_DefaultPlayerData[i].Civ = "random";
 		g_DefaultPlayerData[i].Team = -1;
 		g_DefaultPlayerData[i].AIDiff = aiDifficulty;
-		g_DefaultPlayerData[i].AIBehavior = aiBehavior;
 	}
 
 	deepfreeze(g_DefaultPlayerData);
@@ -1927,12 +1924,9 @@ function launchGame()
 		}
 		g_GameAttributes.settings.PlayerData[i].Civ = chosenCiv;
 
-		// Pick a random behavior and one of the available botnames for the chosen civ
+		// Pick one of the available botnames for the chosen civ
 		if (g_GameAttributes.mapType === "scenario" || !g_GameAttributes.settings.PlayerData[i].AI)
 			continue;
-
-		if (g_GameAttributes.settings.PlayerData[i].AIBehavior == "random")
-			g_GameAttributes.settings.PlayerData[i].AIBehavior = pickRandom(g_Settings.AIBehaviors).Name;
 
 		let chosenName = pickRandom(g_CivData[chosenCiv].AINames);
 
@@ -2111,8 +2105,7 @@ function openAIConfig(playerSlot)
 		"isController": g_IsController,
 		"playerSlot": playerSlot,
 		"id": g_GameAttributes.settings.PlayerData[playerSlot].AI,
-		"difficulty": g_GameAttributes.settings.PlayerData[playerSlot].AIDiff,
-		"behavior": g_GameAttributes.settings.PlayerData[playerSlot].AIBehavior
+		"difficulty": g_GameAttributes.settings.PlayerData[playerSlot].AIDiff
 	});
 }
 
@@ -2128,7 +2121,6 @@ function AIConfigCallback(ai)
 
 	g_GameAttributes.settings.PlayerData[ai.playerSlot].AI = ai.id;
 	g_GameAttributes.settings.PlayerData[ai.playerSlot].AIDiff = ai.difficulty;
-	g_GameAttributes.settings.PlayerData[ai.playerSlot].AIBehavior = ai.behavior;
 
 	updateGameAttributes();
 }
@@ -2188,7 +2180,6 @@ function swapPlayers(guidToSwap, newSlot)
 		// Transfer the AI from the target slot to the current slot.
 		g_GameAttributes.settings.PlayerData[playerID - 1].AI = g_GameAttributes.settings.PlayerData[newSlot].AI;
 		g_GameAttributes.settings.PlayerData[playerID - 1].AIDiff = g_GameAttributes.settings.PlayerData[newSlot].AIDiff;
-		g_GameAttributes.settings.PlayerData[playerID - 1].AIBehavior = g_GameAttributes.settings.PlayerData[newSlot].AIBehavior;
 
 		// Swap civilizations and colors if they aren't fixed
 		if (g_GameAttributes.mapType != "scenario")
