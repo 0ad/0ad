@@ -195,7 +195,7 @@ for (var i=0; i < numPlayers; i++)
 log("Marking player territory larger than the city patch...");
 for (let i = 0; i < numPlayers; ++i)
 	createArea(
-		new ClumpPlacer(250, 0.95, 0.3, 0.1, Math.floor(playerX[i]), Math.floor(playerZ[i])),
+		new ClumpPlacer(250, 0.95, 0.3, 0.1, Math.floor(fractionToTiles(playerX[i])), Math.floor(fractionToTiles(playerZ[i]))),
 		paintClass(clPlayer));
 
 Engine.SetProgress(30);
