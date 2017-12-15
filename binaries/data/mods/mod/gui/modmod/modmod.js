@@ -289,7 +289,7 @@ function areDependenciesMet(folder)
  */
 function isDependencyMet(dependency)
 {
-	let operator = dependency.match(g_RegExpComparison);
+	let operator = dependency.match(g_RegExpComparisonOperator);
 	let [name, version] = operator ? dependency.split(operator[0]) : [dependency, undefined];
 
 	return g_ModsEnabled.some(folder =>
@@ -338,7 +338,7 @@ function sortEnabledMods()
 {
 	let dependencies = {};
 	for (let folder of g_ModsEnabled)
-		dependencies[folder] = g_Mods[folder].dependencies.map(d => d.split(g_RegExpComparison)[0]);
+		dependencies[folder] = g_Mods[folder].dependencies.map(d => d.split(g_RegExpComparisonOperator)[0]);
 
 	g_ModsEnabled.sort((folder1, folder2) =>
 		dependencies[folder1].indexOf(g_Mods[folder2].name) != -1 ? 1 :

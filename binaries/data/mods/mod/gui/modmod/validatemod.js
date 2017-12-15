@@ -38,7 +38,7 @@ const g_ModProperties = {
 /**
  * Tests if the string only contains alphanumeric characters and _ -
  */
-const g_RegExpName = /[a-z0-9\-\_]+/i;
+const g_RegExpName = /[a-zA-Z0-9\-\_]+/;
 
 /**
  * Tests if the version string consists only of numbers and at most two periods.
@@ -120,7 +120,7 @@ function validateVersion(folder, modData, notify)
 	let valid = modData.version.match(globalRegExp(g_RegExpVersion));
 
 	if (!valid && notify)
-		warn("mod name of " + folder + " may only contain numbers and at most 2 periods, but found '" + modData.version + "'!");
+		warn("mod version of " + folder + " may only contain numbers and at most 2 periods, but found '" + modData.version + "'!");
 
 	return valid;
 }
@@ -132,7 +132,7 @@ function validateDependencies(folder, modData, notify)
 	for (let dependency of modData.dependencies)
 	{
 		valid = valid && (
-			dependency.match(globalRegExp(g_RegExpVersion)) ||
+			dependency.match(globalRegExp(g_RegExpName)) ||
 			dependency.match(globalRegExp(g_RegExpComparison)));
 
 		if (!valid && notify)
