@@ -82,9 +82,9 @@ private:
 	{
 		NONCOPYABLE(CAIPlayer);
 	public:
-		CAIPlayer(CAIWorker& worker, const std::wstring& aiName, player_id_t player, u8 difficulty, const std::wstring& behavior,
+		CAIPlayer(CAIWorker& worker, const std::wstring& aiName, player_id_t player, u8 difficulty,
 				shared_ptr<ScriptInterface> scriptInterface) :
-			m_Worker(worker), m_AIName(aiName), m_Player(player), m_Difficulty(difficulty), m_Behavior(behavior),
+			m_Worker(worker), m_AIName(aiName), m_Player(player), m_Difficulty(difficulty),
 			m_ScriptInterface(scriptInterface), m_Obj(scriptInterface->GetJSRuntime())
 		{
 		}
@@ -148,8 +148,6 @@ private:
 			m_ScriptInterface->Eval(L"({})", &settings);
 			m_ScriptInterface->SetProperty(settings, "player", m_Player, false);
 			m_ScriptInterface->SetProperty(settings, "difficulty", m_Difficulty, false);
-			m_ScriptInterface->SetProperty(settings, "behavior", m_Behavior, false);
-
 			if (!m_UseSharedComponent)
 			{
 				ENSURE(m_Worker.m_HasLoadedEntityTemplates);
@@ -190,7 +188,6 @@ private:
 		std::wstring m_AIName;
 		player_id_t m_Player;
 		u8 m_Difficulty;
-		std::wstring m_Behavior;
 		bool m_UseSharedComponent;
 
 		// Take care to keep this declaration before heap rooted members. Destructors of heap rooted
@@ -480,9 +477,9 @@ public:
 		return true;
 	}
 
-	bool AddPlayer(const std::wstring& aiName, player_id_t player, u8 difficulty, const std::wstring& behavior)
+	bool AddPlayer(const std::wstring& aiName, player_id_t player, u8 difficulty)
 	{
-		shared_ptr<CAIPlayer> ai(new CAIPlayer(*this, aiName, player, difficulty, behavior, m_ScriptInterface));
+		shared_ptr<CAIPlayer> ai(new CAIPlayer(*this, aiName, player, difficulty, m_ScriptInterface));
 		if (!ai->Initialise())
 			return false;
 
@@ -498,7 +495,7 @@ public:
 	bool RunGamestateInit(const shared_ptr<ScriptInterface::StructuredClone>& gameState, const Grid<NavcellData>& passabilityMap, const Grid<u8>& territoryMap,
 		const std::map<std::string, pass_class_t>& nonPathfindingPassClassMasks, const std::map<std::string, pass_class_t>& pathfindingPassClassMasks)
 	{
-		// this will be run last by InitGame.js, passing the full game representation.
+		// this will be run last by InitGame.Js, passing the full game representation.
 		// For now it will run for the shared Component.
 		// This is NOT run during deserialization.
 		JSContext* cx = m_ScriptInterface->GetContext();
@@ -695,7 +692,6 @@ public:
 			serializer.String("name", m_Players[i]->m_AIName, 1, 256);
 			serializer.NumberI32_Unbounded("player", m_Players[i]->m_Player);
 			serializer.NumberU8_Unbounded("difficulty", m_Players[i]->m_Difficulty);
-			serializer.String("behavior", m_Players[i]->m_Behavior, 1, 256);
 
 			serializer.NumberU32_Unbounded("num commands", (u32)m_Players[i]->m_Commands.size());
 			for (size_t j = 0; j < m_Players[i]->m_Commands.size(); ++j)
@@ -767,12 +763,10 @@ public:
 			std::wstring name;
 			player_id_t player;
 			u8 difficulty;
-			std::wstring behavior;
 			deserializer.String("name", name, 1, 256);
 			deserializer.NumberI32_Unbounded("player", player);
 			deserializer.NumberU8_Unbounded("difficulty",difficulty);
-			deserializer.String("behavior", behavior, 1, 256);
-			if (!AddPlayer(name, player, difficulty, behavior))
+			if (!AddPlayer(name, player, difficulty))
 				throw PSERROR_Deserialize_ScriptError();
 
 			u32 numCommands;
@@ -1005,11 +999,11 @@ public:
 		m_JustDeserialized = true;
 	}
 
-	virtual void AddPlayer(const std::wstring& id, player_id_t player, u8 difficulty, const std::wstring& behavior)
+	virtual void AddPlayer(const std::wstring& id, player_id_t player, u8 difficulty)
 	{
 		LoadUsedEntityTemplates();
 
-		m_Worker.AddPlayer(id, player, difficulty, behavior);
+		m_Worker.AddPlayer(id, player, difficulty);
 
 		// AI players can cheat and see through FoW/SoD, since that greatly simplifies
 		// their implementation.

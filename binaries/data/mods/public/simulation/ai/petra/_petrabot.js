@@ -17,7 +17,7 @@ m.PetraBot = function PetraBot(settings)
 		"transports": 1	// transport plans start at 1 because 0 might be used as none
 	};
 
-	this.Config = new m.Config(settings.difficulty, settings.behavior);
+	this.Config = new m.Config(settings.difficulty);
 
 	this.savedEvents = {};
 };

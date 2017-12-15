@@ -1,13 +1,10 @@
 var PETRA = function(m)
 {
 
-m.Config = function(difficulty, behavior)
+m.Config = function(difficulty)
 {
 	// 0 is sandbox, 1 is very easy, 2 is easy, 3 is medium, 4 is hard and 5 is very hard.
 	this.difficulty = difficulty !== undefined ? difficulty : 3;
-
-	// for instance "generalist", "aggressive" or "defensive"
-	this.behavior = behavior || "generalist";
 
 	// debug level: 0=none, 1=sanity checks, 2=debug, 3=detailed debug, -100=serializatio debug
 	this.debug = 0;
@@ -127,9 +124,9 @@ m.Config.prototype.setConfig = function(gameState)
 	// initialize personality traits
 	if (this.difficulty > 1)
 	{
-		this.personality.aggressive = this.behavior === "aggressive" ? randFloat(0.7, 1) : randFloat(0, 0.6);
+		this.personality.aggressive = randFloat(0, 1);
 		this.personality.cooperative = randFloat(0, 1);
-		this.personality.defensive = this.behavior === "defensive" ? randFloat(0.7, 1) : randFloat(0, 0.6);
+		this.personality.defensive = randFloat(0, 1);
 	}
 	else
 	{
