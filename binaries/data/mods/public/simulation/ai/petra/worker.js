@@ -394,6 +394,7 @@ m.Worker.prototype.startGathering = function(gameState)
 
 	let findSupply = function(ent, supplies) {
 		let ret = false;
+		let gatherRates = ent.resourceGatherRates();
 		for (let i = 0; i < supplies.length; ++i)
 		{
 			// exhausted resource, remove it from this list
@@ -407,10 +408,13 @@ m.Worker.prototype.startGathering = function(gameState)
 			let inaccessibleTime = supplies[i].ent.getMetadata(PlayerID, "inaccessibleTime");
 			if (inaccessibleTime && gameState.ai.elapsedTime < inaccessibleTime)
 				continue;
+			let supplyType = supplies[i].ent.get("ResourceSupply/Type");
+			if (!gatherRates[supplyType])
+				continue;
 			// check if available resource is worth one additionnal gatherer (except for farms)
 			let nbGatherers = supplies[i].ent.resourceSupplyNumGatherers() + gameState.ai.HQ.GetTCGatherer(supplies[i].id);
-			if (supplies[i].ent.resourceSupplyType().specific !== "grain" &&
-				nbGatherers > 0 && supplies[i].ent.resourceSupplyAmount()/(1+nbGatherers) < 30)
+			if (supplies[i].ent.resourceSupplyType().specific !== "grain" && nbGatherers > 0 &&
+			    supplies[i].ent.resourceSupplyAmount()/(1+nbGatherers) < 30)
 				continue;
 			// not in ennemy territory
 			let territoryOwner = gameState.ai.HQ.territoryMap.getOwner(supplies[i].ent.position());
@@ -703,6 +707,7 @@ m.Worker.prototype.startHunting = function(gameState, position)
 		return false;
 	};
 
+	let gatherRates = this.ent.resourceGatherRates();
 	resources.forEach(function(supply)
 	{
 		if (!supply.position())
@@ -710,6 +715,10 @@ m.Worker.prototype.startHunting = function(gameState, position)
 
 		let inaccessibleTime = supply.getMetadata(PlayerID, "inaccessibleTime");
 		if (inaccessibleTime && gameState.ai.elapsedTime < inaccessibleTime)
+			return;
+
+		let supplyType = supply.get("ResourceSupply/Type");
+		if (!gatherRates[supplyType])
 			return;
 
 		if (m.IsSupplyFull(gameState, supply))
@@ -807,6 +816,7 @@ m.Worker.prototype.startFishing = function(gameState)
 	};
 
 	let exhausted = true;
+	let gatherRates = this.ent.resourceGatherRates();
 	resources.forEach(function(supply)
 	{
 		if (!supply.position())
@@ -817,6 +827,10 @@ m.Worker.prototype.startFishing = function(gameState)
 			return;
 
 		exhausted = false;
+
+		let supplyType = supply.get("ResourceSupply/Type");
+		if (!gatherRates[supplyType])
+			return;
 
 		if (m.IsSupplyFull(gameState, supply))
 			return;
@@ -863,10 +877,15 @@ m.Worker.prototype.gatherNearestField = function(gameState, baseID)
 	let ownFields = gameState.getOwnEntitiesByClass("Field", true).filter(API3.Filters.isBuilt()).filter(API3.Filters.byMetadata(PlayerID, "base", baseID));
 	let bestFarm;
 
+	let gatherRates = this.ent.resourceGatherRates();
 	for (let field of ownFields.values())
 	{
 		if (m.IsSupplyFull(gameState, field))
 			continue;
+		let supplyType = field.get("ResourceSupply/Type");
+		if (!gatherRates[supplyType])
+			continue;
+
 		let rate = 1;
 		let diminishing = field.getDiminishingReturns();
 		if (diminishing < 1)
