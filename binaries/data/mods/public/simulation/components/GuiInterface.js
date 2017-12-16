@@ -900,7 +900,7 @@ GuiInterface.prototype.EnableVisualRangeOverlayType = function(player, data)
 
 GuiInterface.prototype.GetEntitiesWithStatusBars = function()
 {
-	return [...this.entsWithAuraAndStatusBars];
+	return Array.from(this.entsWithAuraAndStatusBars);
 };
 
 GuiInterface.prototype.SetStatusBars = function(player, cmd)
