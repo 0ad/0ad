@@ -8,12 +8,12 @@ const g_ValidTestMods = {
 		"dependencies": []
 	},
 	"tm": {
-		"name": "terra_magna",
+		"name": "Terra_Magna",
 		"version": "0.0.22",
 		"label": "0 A.D. Terra Magna",
 		"url": "forum.wildfiregames.com",
 		"description": "Adds various civilizations to 0 A.D.",
-		"dependencies": ["0ad=0.0.23"]
+		"dependencies": ["0ad"]
 	},
 	"mil": {
 		"name": "millenniumad",
@@ -74,6 +74,13 @@ const g_TestModsInvalid = {
 		"label": "",
 		"description": "label may not be empty",
 		"dependencies": []
+	},
+	"broken8": {
+		"name": "broken8",
+		"version": "8",
+		"label": "8",
+		"description": "a version is an invalid dependency",
+		"dependencies": ["0.0.23"]
 	}
 };
 
