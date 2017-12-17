@@ -80,6 +80,48 @@ TriggerHelper.SpawnUnits = function(source, template, count, owner)
 };
 
 /**
+ * Can be used to spawn garrisoned units inside a building/ship.
+ *
+ * @param entity Entity id of the garrison holder in which units will be garrisoned
+ * @param template Name of the template
+ * @param count Number of units to spawn
+ * @param owner Player id of the owner of the new units. By default, the owner
+ * of the garrisonholder entity.
+ */
+TriggerHelper.SpawnGarrisonedUnits = function(entity, template, count, owner)
+{
+	let entities = [];
+	let cmpGarrisonHolder = Engine.QueryInterface(entity, IID_GarrisonHolder);
+
+	if (!cmpGarrisonHolder)
+	{
+		error("tried to create garrisoned entities inside a non-garrisonholder");
+		return entities;
+	}
+
+	if (owner == null)
+		owner = TriggerHelper.GetOwner(entity);
+
+	for (let i = 0; i < count; ++i)
+	{
+		let ent = Engine.AddEntity(template);
+		let cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
+		if (cmpOwnership)
+			cmpOwnership.SetOwner(owner);
+		if (cmpGarrisonHolder.PerformGarrison(ent))
+		{
+			if (Engine.QueryInterface(ent, IID_UnitAI))
+				Engine.QueryInterface(ent, IID_UnitAI).Autogarrison(entity);
+			entities.push(ent);
+		}
+		else
+			error("failed to garrison entity " + template + " inside " + entity);
+	}
+
+	return entities;
+};
+
+/**
  * Spawn units from all trigger points with this reference
  * If player is defined, only spaw units from the trigger points
  * that belong to that player
