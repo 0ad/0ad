@@ -64,12 +64,12 @@ m.EntityCollection.prototype.defreeze = function()
 
 m.EntityCollection.prototype.toIdArray = function()
 {
-	return [...this._entities.keys()];
+	return Array.from(this._entities.keys());
 };
 
 m.EntityCollection.prototype.toEntityArray = function()
 {
-	return [...this._entities.values()];
+	return Array.from(this._entities.values());
 };
 
 m.EntityCollection.prototype.values = function()

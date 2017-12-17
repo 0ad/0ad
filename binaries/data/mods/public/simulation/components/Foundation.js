@@ -132,7 +132,7 @@ Foundation.prototype.AddBuilder = function(builderEnt)
 	if (cmpVisual)
 		cmpVisual.SetVariable("numbuilders", this.builders.size);
 
-	Engine.PostMessage(this.entity, MT_FoundationBuildersChanged, { "to": [...this.builders.keys()] });
+	Engine.PostMessage(this.entity, MT_FoundationBuildersChanged, { "to": Array.from(this.builders.keys()) });
 };
 
 Foundation.prototype.RemoveBuilder = function(builderEnt)
@@ -148,7 +148,7 @@ Foundation.prototype.RemoveBuilder = function(builderEnt)
 	if (cmpVisual)
 		cmpVisual.SetVariable("numbuilders", this.builders.size);
 
-	Engine.PostMessage(this.entity, MT_FoundationBuildersChanged, { "to": [...this.builders.keys()] });
+	Engine.PostMessage(this.entity, MT_FoundationBuildersChanged, { "to": Array.from(this.builders.keys()) });
 };
 
 /**
