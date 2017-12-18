@@ -1,0 +1,130 @@
+<skeletons>
+  <standard_skeleton id="Zebu_Skeleton" title="Zebu Skeleton">
+    <bone name="zebu_armature">
+      <bone name="RearThigh_right">
+        <bone name="RearCalf_right">
+          <bone name="RearFoot_right"></bone>
+        </bone>
+      </bone>
+      <bone name="SpineBottom">
+        <bone name="Tail">
+          <bone name="TailTip"></bone>
+        </bone>
+      </bone>
+      <bone name="RearThigh_left">
+        <bone name="RearCalf_left">
+          <bone name="RearFoot_left"></bone>
+        </bone>
+      </bone>
+      <bone name="Spine">
+        <bone name="FrontLegTop_right">
+          <bone name="FrontThigh_right">
+            <bone name="FrontCalf_right">
+              <bone name="FrontFoot_right"></bone>
+            </bone>
+          </bone>
+        </bone>
+        <bone name="Neck">
+          <bone name="Head"></bone>
+        </bone>
+        <bone name="FrontLegTop_left">
+          <bone name="FrontThigh_left">
+            <bone name="FrontCalf_left">
+              <bone name="FrontFoot_left"></bone>
+            </bone>
+          </bone>
+        </bone>
+        <bone name="Body"></bone>
+      </bone>
+      <bone name="ear_right">
+        <bone name="eartip_right"></bone>
+      </bone>
+      <bone name="ear_left">
+        <bone name="eartip_left"></bone>
+      </bone>
+    </bone>
+  </standard_skeleton>
+  <skeleton target="Zebu_Skeleton" title="Zebu Skeleton">
+    <identifier>
+      <root>zebu_armature</root>
+    </identifier>
+    <bone name="zebu_armature">
+      <target>zebu_armature</target>
+      <bone name="RearThigh_right">
+        <target>RearThigh_right</target>
+        <bone name="RearCalf_right">
+          <target>RearCalf_right</target>
+          <bone name="RearFoot_right">
+            <target>RearFoot_right</target>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="SpineBottom">
+        <target>SpineBottom</target>
+        <bone name="Tail">
+          <target>Tail</target>
+          <bone name="TailTip">
+            <target>TailTip</target>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="RearThigh_left">
+        <target>RearThigh_left</target>
+        <bone name="RearCalf_left">
+          <target>RearCalf_left</target>
+          <bone name="RearFoot_left">
+            <target>RearFoot_left</target>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Spine">
+        <target>Spine</target>
+        <bone name="FrontLegTop_right">
+          <target>FrontLegTop_right</target>
+          <bone name="FrontThigh_right">
+            <target>FrontThigh_right</target>
+            <bone name="FrontCalf_right">
+              <target>FrontCalf_right</target>
+              <bone name="FrontFoot_right">
+                <target>FrontFoot_right</target>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+        <bone name="Neck">
+          <target>Neck</target>
+          <bone name="Head">
+            <target>Head</target>
+          </bone>
+        </bone>
+        <bone name="FrontLegTop_left">
+          <target>FrontLegTop_left</target>
+          <bone name="FrontThigh_left">
+            <target>FrontThigh_left</target>
+            <bone name="FrontCalf_left">
+              <target>FrontCalf_left</target>
+              <bone name="FrontFoot_left">
+                <target>FrontFoot_left</target>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+        <bone name="Body">
+          <target>Body</target>
+        </bone>
+      </bone>
+      <bone name="ear_right">
+        <target>ear_right</target>
+        <bone name="eartip_right">
+          <target>eartip_right</target>
+        </bone>
+      </bone>
+      <bone name="ear_left">
+        <target>ear_left</target>
+        <bone name="eartip_left">
+          <target>eartip_left</target>
+        </bone>
+      </bone>
+    </bone>
+  </skeleton>
+</skeletons>

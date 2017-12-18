@@ -2,11 +2,29 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Zebra">
+    <variant frequency="100" name="Zebu">
+      <animations>
+        <animation file="quadraped/zebu_idle01.dae" name="Idle" speed="90"/>
+        <animation file="quadraped/zebu_idle02.dae" name="Idle" speed="40"/>
+        <animation file="quadraped/zebu_walk.dae" name="Walk" speed="30"/>
+        <animation file="quadraped/zebu_walk.dae" name="Run" speed="45"/>
+        <animation file="quadraped/zebu_death_right_01.dae" name="Death" speed="100"/>
+        <animation file="quadraped/zebu_death_right_02.dae" name="Death" speed="100"/>
+        <animation file="quadraped/zebu_death_left_01.dae" name="Death" speed="100"/>
+        <animation file="quadraped/zebu_death_left_02.dae" name="Death" speed="100"/>
+      </animations>
       <mesh>skeletal/zebu.dae</mesh>
       <textures>
         <texture file="skeletal/animal_zebu.png" name="baseTex"/>
       </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="death">
+      <props>
+        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
+      </props>
     </variant>
   </group>
   <material>basic_trans.xml</material>
