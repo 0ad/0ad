@@ -51,7 +51,7 @@ TS_ASSERT_EQUALS(cmpVisionSharing.activated, false);
 cmpVisionSharing.activated = false;
 cmpVisionSharing.Activate();
 TS_ASSERT_EQUALS(cmpVisionSharing.activated, true);
-TS_ASSERT_UNEVAL_EQUALS(Array.from(cmpVisionSharing.shared), [1]);
+TS_ASSERT_UNEVAL_EQUALS(cmpVisionSharing.shared, new Set([1]));
 
 // Test CheckVisionSharings
 cmpVisionSharing.activated = true;
@@ -65,7 +65,7 @@ Engine.PostMessage = function(id, iid, message)
 TS_ASSERT(false); // One doesn't send message
 };
 cmpVisionSharing.CheckVisionSharings();
-TS_ASSERT_UNEVAL_EQUALS(Array.from(cmpVisionSharing.shared), [1]);
+TS_ASSERT_UNEVAL_EQUALS(cmpVisionSharing.shared, new Set([1]));
 
 cmpVisionSharing.shared = new Set([1, 2, 8]);
 AddMock(ent, IID_GarrisonHolder, {
@@ -76,7 +76,7 @@ Engine.PostMessage = function(id, iid, message)
 	TS_ASSERT_UNEVAL_EQUALS({ "entity": ent, "player": 8, "add": false }, message);
 };
 cmpVisionSharing.CheckVisionSharings();
-TS_ASSERT_UNEVAL_EQUALS(Array.from(cmpVisionSharing.shared), [1, 2]);
+TS_ASSERT_UNEVAL_EQUALS(cmpVisionSharing.shared, new Set([1, 2]));
 
 cmpVisionSharing.shared = new Set([1, 8]);
 AddMock(ent, IID_GarrisonHolder, {
@@ -87,7 +87,7 @@ Engine.PostMessage = function(id, iid, message)
 	TS_ASSERT_UNEVAL_EQUALS({ "entity": ent, "player": 2, "add": true }, message);
 };
 cmpVisionSharing.CheckVisionSharings();
-TS_ASSERT_UNEVAL_EQUALS(Array.from(cmpVisionSharing.shared), [1, 8, 2]); // take care of order or sort them
+TS_ASSERT_UNEVAL_EQUALS(cmpVisionSharing.shared, new Set([1, 8, 2])); // take care of order or sort them
 
 // Test IsBribable
 TS_ASSERT(cmpVisionSharing.IsBribable());
@@ -103,8 +103,8 @@ Engine.PostMessage = function(id, iid, message)
 	TS_ASSERT_UNEVAL_EQUALS({ "entity": ent, "player": 2, "add": false }, message);
 };
 cmpVisionSharing.RemoveSpy({ "id": 5 });
-TS_ASSERT_UNEVAL_EQUALS(Array.from(cmpVisionSharing.shared), [1, 5]);
-TS_ASSERT_UNEVAL_EQUALS(Array.from(cmpVisionSharing.spies), [[17, 5]]);
+TS_ASSERT_UNEVAL_EQUALS(cmpVisionSharing.shared, new Set([1, 5]));
+TS_ASSERT_UNEVAL_EQUALS(cmpVisionSharing.spies, new Map([[17, 5]]));
 Engine.PostMessage = function(id, iid, message) {};
 
 // Test AddSpy
@@ -121,8 +121,8 @@ AddMock(14, IID_TechnologyManager, {
 	"ApplyModificationsTemplate": (valueName, curValue, template) => curValue
 });
 
-TS_ASSERT_UNEVAL_EQUALS(Array.from(cmpVisionSharing.shared), [1, 2, 5]);
-TS_ASSERT_UNEVAL_EQUALS(Array.from(cmpVisionSharing.spies), [[5, 2], [17, 5]]);
+TS_ASSERT_UNEVAL_EQUALS(cmpVisionSharing.shared, new Set([1, 2, 5]));
+TS_ASSERT_UNEVAL_EQUALS(cmpVisionSharing.spies, new Map([[5, 2], [17, 5]]));
 TS_ASSERT_EQUALS(cmpVisionSharing.spyId, 20);
 
 AddMock(14, IID_TechnologyManager, {
@@ -138,8 +138,8 @@ AddMock(4, IID_StatisticsTracker, {
 	"IncreaseFailedBribesCounter": () => {}
 });
 cmpVisionSharing.AddSpy(4, 25);
-TS_ASSERT_UNEVAL_EQUALS(Array.from(cmpVisionSharing.shared), [1, 2, 5]);
-TS_ASSERT_UNEVAL_EQUALS(Array.from(cmpVisionSharing.spies), [[5, 2], [17, 5]]);
+TS_ASSERT_UNEVAL_EQUALS(cmpVisionSharing.shared, new Set([1, 2, 5]));
+TS_ASSERT_UNEVAL_EQUALS(cmpVisionSharing.spies, new Map([[5, 2], [17, 5]]));
 TS_ASSERT_EQUALS(cmpVisionSharing.spyId, 20);
 
 AddMock(14, IID_Player, {
@@ -150,8 +150,8 @@ AddMock(SYSTEM_ENTITY, IID_Timer, {
 	"SetTimeout": (ent, iid, funcname, time, data) => TS_ASSERT_EQUALS(time, 25 * 1000)
 });
 cmpVisionSharing.AddSpy(4, 25);
-TS_ASSERT_UNEVAL_EQUALS(Array.from(cmpVisionSharing.shared), [1, 2, 5, 4]);
-TS_ASSERT_UNEVAL_EQUALS(Array.from(cmpVisionSharing.spies), [[5, 2], [17, 5], [21, 4]]);
+TS_ASSERT_UNEVAL_EQUALS(cmpVisionSharing.shared, new Set([1, 2, 5, 4]));
+TS_ASSERT_UNEVAL_EQUALS(cmpVisionSharing.spies, new Map([[5, 2], [17, 5], [21, 4]]));
 TS_ASSERT_EQUALS(cmpVisionSharing.spyId, 21);
 
 cmpVisionSharing.spies = new Map([[5, 2], [17, 5]]);
@@ -164,8 +164,8 @@ AddMock(SYSTEM_ENTITY, IID_Timer, {
 	"SetTimeout": (ent, iid, funcname, time, data) => TS_ASSERT_EQUALS(time, 15 * 1000 * 60 / 48)
 });
 cmpVisionSharing.AddSpy(4);
-TS_ASSERT_UNEVAL_EQUALS(Array.from(cmpVisionSharing.shared), [1, 2, 5, 4]);
-TS_ASSERT_UNEVAL_EQUALS(Array.from(cmpVisionSharing.spies), [[5, 2], [17, 5], [21, 4]]);
+TS_ASSERT_UNEVAL_EQUALS(cmpVisionSharing.shared, new Set([1, 2, 5, 4]));
+TS_ASSERT_UNEVAL_EQUALS(cmpVisionSharing.spies, new Map([[5, 2], [17, 5], [21, 4]]));
 TS_ASSERT_EQUALS(cmpVisionSharing.spyId, 21);
 
 // Test ShareVisionWith
