@@ -21,6 +21,7 @@
 # Michał Karol, 2016-2017
 # Michał Karol, 2015
 # miragae <miragae@gmail.com>, 2014-2015
+# Norbert D <norbid1@tlen.pl>, 2017
 # Paweł Goca <siwers17@gmail.com>, 2015
 # Pawel Jarczak <keven204@o2.pl>, 2016
 # Piotr Lehmann <lejmus@o2.pl>, 2017
@@ -34,9 +35,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-06 09:04+0100\n"
-"PO-Revision-Date: 2017-12-06 15:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-12-11 09:05+0100\n"
+"PO-Revision-Date: 2017-12-14 09:05+0000\n"
+"Last-Translator: Norbert D <norbid1@tlen.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -179,14 +180,14 @@ msgstr "USUŃ"
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
 #: gui/options/options.js:297 gui/options/options.js:350
 #: gui/options/options.js:376 gui/pregame/mainmenu.js:252
-#: gui/replaymenu/replay_actions.js:170 gui/summary/summary.js:391
+#: gui/replaymenu/replay_actions.js:170 gui/summary/summary.js:389
 msgid "No"
 msgstr "Nie"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
 #: gui/options/options.js:297 gui/options/options.js:350
 #: gui/options/options.js:376 gui/pregame/mainmenu.js:252
-#: gui/replaymenu/replay_actions.js:170 gui/summary/summary.js:391
+#: gui/replaymenu/replay_actions.js:170 gui/summary/summary.js:389
 msgid "Yes"
 msgstr "Tak"
 
@@ -1270,7 +1271,7 @@ msgstr "Kompilacja: %(buildDate)s (%(revision)s)"
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Czy na pewno chcesz wyjść z 0 A.D.?"
 
-#: gui/pregame/mainmenu.js:251 gui/summary/summary.js:390
+#: gui/pregame/mainmenu.js:251 gui/summary/summary.js:388
 msgid "Confirmation"
 msgstr "Potwierdzenie"
 
@@ -1297,7 +1298,7 @@ msgstr "Szczegóły techniczne"
 msgid "Manual"
 msgstr "Poradnik"
 
-#: gui/reference/common/load.js:255
+#: gui/reference/common/load.js:267
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
 msgstr "%(health_min)s do %(health_max)s"
@@ -1698,48 +1699,50 @@ msgstr "Rozchód"
 msgid "Failed"
 msgstr "Niepowodzenie"
 
-#: gui/summary/summary.js:113
+#. Translation: Unicode encoded infinity symbol indicating a division by zero
+#. in the summary screen.
+#: gui/summary/summary.js:111
 msgid "∞"
 msgstr "∞"
 
-#: gui/summary/summary.js:389
+#: gui/summary/summary.js:387
 msgid "Are you sure you want to quit the lobby?"
 msgstr "Czy na pewno chcesz wyjść do lobby?"
 
-#: gui/summary/summary.js:444
+#: gui/summary/summary.js:442
 msgid "Current Scores"
 msgstr "Bieżąca Punktacja"
 
-#: gui/summary/summary.js:446
+#: gui/summary/summary.js:444
 msgid "Scores at the end of the game."
 msgstr "Wynik na końcu gry."
 
-#: gui/summary/summary.js:448
+#: gui/summary/summary.js:446
 msgid "You have been disconnected."
 msgstr "Nastąpiło rozłączenie."
 
-#: gui/summary/summary.js:450
+#: gui/summary/summary.js:448
 msgid "You have left the game."
 msgstr "Opuściłeś grę"
 
-#: gui/summary/summary.js:452
+#: gui/summary/summary.js:450
 msgid "You have won the battle!"
 msgstr "Zwycięstwo!"
 
-#: gui/summary/summary.js:454
+#: gui/summary/summary.js:452
 msgid "You have been defeated..."
 msgstr "Zostałeś pokonany..."
 
-#: gui/summary/summary.js:455
+#: gui/summary/summary.js:453
 msgid "You have abandoned the game."
 msgstr "Opuściłeś grę."
 
-#: gui/summary/summary.js:458
+#: gui/summary/summary.js:456
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Czas gry: %(time)s"
 
-#: gui/summary/summary.js:466
+#: gui/summary/summary.js:464
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
@@ -2197,6 +2200,14 @@ msgctxt "summary chart"
 msgid "Type"
 msgstr "Typ"
 
+#: mod.jsondescription
+msgid "A free, open-source, historical RTS game."
+msgstr "Darmowy, historyczny RTS o otwartym źródle"
+
+#: mod.jsonlabel
+msgid "0 A.D. Empires Ascendant"
+msgstr ""
+
 #: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
 msgid "Art lead"
 msgstr "Oprawa artystyczna"
@@ -2515,21 +2526,31 @@ msgstr "Czas wiadomości"
 
 #: gui/options/options.json[0].options[15].tooltip
 msgid ""
+"Display the attack range of selected defensive structures (can also be "
+"toggled in-game with the hotkey)."
+msgstr "Wyświetla zasięg ataku wybranych struktur obronnych (można również włączyć w grze za pomocą klawisza skrótu)."
+
+#: gui/options/options.json[0].options[15].label
+msgid "Attack Range Visualization"
+msgstr "Wizualizacja zasięgu ataku"
+
+#: gui/options/options.json[0].options[16].tooltip
+msgid ""
 "Display the range of auras of selected units and structures (can also be "
 "toggled in-game with the hotkey)."
 msgstr "Wyświetlaj zasięgi aur zaznaczonych jednostek lub struktur (może być zmienione w grze skrótem)"
 
-#: gui/options/options.json[0].options[15].label
+#: gui/options/options.json[0].options[16].label
 msgid "Aura Range Visualization"
 msgstr "Wizualizacja zasięgu aury"
 
-#: gui/options/options.json[0].options[16].tooltip
+#: gui/options/options.json[0].options[17].tooltip
 msgid ""
 "Display the healing range of selected units (can also be toggled in-game "
 "with the hotkey)."
 msgstr "Wyświetla zakres leczenia wybranych jednostek (można go także włączyć w grze za pomocą klawisza skrótu)."
 
-#: gui/options/options.json[0].options[16].label
+#: gui/options/options.json[0].options[17].label
 msgid "Heal Range Visualization"
 msgstr "Wizualizacja zasięgu leczenia"
 
@@ -2547,11 +2568,11 @@ msgstr "Wybierz GLSL"
 
 #: gui/options/options.json[1].options[1].tooltip
 msgid "Enable Fog"
-msgstr ""
+msgstr "Włącz mgłę"
 
 #: gui/options/options.json[1].options[1].label
 msgid "Fog"
-msgstr ""
+msgstr "Mgła"
 
 #: gui/options/options.json[1].options[2].tooltip
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"

@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-04 09:03+0100\n"
-"PO-Revision-Date: 2017-12-04 14:57+0000\n"
+"POT-Creation-Date: 2017-12-11 09:05+0100\n"
+"PO-Revision-Date: 2017-12-11 16:06+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -515,120 +515,125 @@ msgstr "Alt + Z: Toglaich na speuran"
 
 #: gui/manual/intro.txt:115
 msgid ""
+"Alt + C: Toggle attack range visualizations of selected defensive structures"
+msgstr ""
+
+#: gui/manual/intro.txt:116
+msgid ""
 "Alt + V: Toggle aura range visualizations of selected units and structures"
 msgstr "Alt + V: Toglaich samhlaidhean astair nan aura airson nan aonadan is togalaichean a chaidh a thaghadh"
 
-#: gui/manual/intro.txt:116
+#: gui/manual/intro.txt:117
 msgid "Alt + B: Toggle heal range visualizations of selected units"
 msgstr "Alt + B: Toglaich samhlaidhean astair an t-slànachaidh airson nan aonadan a chaidh a thaghadh"
 
-#: gui/manual/intro.txt:118
+#: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
 msgstr "[font=\"sans-bold-14\"]Gluasad a’ chamara"
 
-#: gui/manual/intro.txt:119
+#: gui/manual/intro.txt:120
 msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
 msgstr "[font=\"sans-14\"]W no \\[suas]: Panaich an sgrìn suas"
 
-#: gui/manual/intro.txt:120
+#: gui/manual/intro.txt:121
 msgid "S or \\[down]: Pan screen down"
 msgstr "S no \\[sìos]: Panaich an sgrìn sìos"
 
-#: gui/manual/intro.txt:121
+#: gui/manual/intro.txt:122
 msgid "A or \\[left]: Pan screen left"
 msgstr "A no \\[clì]: Panaich an sgrìn gu clì"
 
-#: gui/manual/intro.txt:122
+#: gui/manual/intro.txt:123
 msgid "D or \\[right]: Pan screen right"
 msgstr "D no \\[deas]: Panaich an sgrìn gu deas"
 
-#: gui/manual/intro.txt:123
+#: gui/manual/intro.txt:124
 msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
 msgstr "Ctrl + W no \\[suas]: Cuairtich an camara airson sealltainn suas"
 
-#: gui/manual/intro.txt:124
+#: gui/manual/intro.txt:125
 msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
 msgstr "Ctrl + S no \\[sìos]: Cuairtich an camara airson sealltainn sìos"
 
-#: gui/manual/intro.txt:125
+#: gui/manual/intro.txt:126
 msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
 msgstr "Ctrl + A no \\[clì]: Cuairtich an camara gu deiseil"
 
-#: gui/manual/intro.txt:126
+#: gui/manual/intro.txt:127
 msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
 msgstr "Ctrl + D no \\[deas]: Cuairtich an camara gu tuathal"
 
-#: gui/manual/intro.txt:127
+#: gui/manual/intro.txt:128
 msgid "Q: Rotate camera clockwise around terrain"
 msgstr "Q: Cuairtich an camara gu deiseil"
 
-#: gui/manual/intro.txt:128
+#: gui/manual/intro.txt:129
 msgid "E: Rotate camera anticlockwise around terrain"
 msgstr "E: Cuairtich an camara gu tuathail"
 
-#: gui/manual/intro.txt:129
+#: gui/manual/intro.txt:130
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
 msgstr "Shift + cuibhle na luchaige suas: Cuairtich an camara gu deiseil"
 
-#: gui/manual/intro.txt:130
+#: gui/manual/intro.txt:131
 msgid ""
 "Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
 msgstr "Shift + cuibhle na luchaige sìos: Cuairtich an camara gu tuathal"
 
-#: gui/manual/intro.txt:131
+#: gui/manual/intro.txt:132
 msgid ""
 "F: Follow the selected unit (move the camera to stop it from following the "
 "unit)"
 msgstr "F: Lean air an aonad air a thaghadh (gluais an camara ach nach lean e air an aonad tuilleadh)"
 
-#: gui/manual/intro.txt:132
+#: gui/manual/intro.txt:133
 msgid "R: Reset camera zoom/orientation"
 msgstr "R: Ath-shuidhich sùm/cuairteachadh a’ chamara"
 
-#: gui/manual/intro.txt:133
+#: gui/manual/intro.txt:134
 msgid "+: Zoom in (keep pressed for continuous zoom)"
 msgstr "+: Sùm a-steach (cum sìos e airson sùm gun sgur)"
 
-#: gui/manual/intro.txt:134
+#: gui/manual/intro.txt:135
 msgid "-: Zoom out (keep pressed for continuous zoom)"
 msgstr "-: Sùm a-mach (cum sìos e airson sùm gun sgur)"
 
-#: gui/manual/intro.txt:135
+#: gui/manual/intro.txt:136
 msgid "Alt + W: Toggle through wireframe modes"
 msgstr "Alt + W: Toglaich tro na modhan frèam-uèir"
 
-#: gui/manual/intro.txt:136
+#: gui/manual/intro.txt:137
 msgid "Middle Mouse Button: Keep pressed and move the mouse to pan"
 msgstr "Putan meadhanach na luchaige: Cùm sìos e is gluais an luchag airson panachadh"
 
-#: gui/manual/intro.txt:138
+#: gui/manual/intro.txt:139
 msgid "[font=\"sans-bold-14\"]During Building Placement"
 msgstr "[font=\"sans-bold-14\"]Fhad ’s a chuireas tu togalach ann"
 
-#: gui/manual/intro.txt:139
+#: gui/manual/intro.txt:140
 msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
 msgstr "[font=\"sans-14\"]\\[: Cuairtich an togalach 15 puingean gu tuathal"
 
-#: gui/manual/intro.txt:140
+#: gui/manual/intro.txt:141
 msgid "]: Rotate building 15 degrees clockwise"
 msgstr "]: Cuairtich an togalach 15 puingean gu deiseil"
 
-#: gui/manual/intro.txt:141
+#: gui/manual/intro.txt:142
 msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
 msgstr "Slaod le putan clì na luchaige: Cuairtich an togalach leis an luchag (thèid a’ bhonn a shuidheachadh nuair a leigeas tu às an luchag)"
 
-#: gui/manual/intro.txt:143
+#: gui/manual/intro.txt:144
 msgid "[font=\"sans-bold-14\"]When loading a saved game"
 msgstr "[font=\"sans-bold-14\"]Nuair a luchdaicheas tu geama air a shàbhaladh"
 
-#: gui/manual/intro.txt:144
+#: gui/manual/intro.txt:145
 msgid ""
 "[font=\"sans-14\"]Delete: delete the selected saved game asking confirmation"
 msgstr "[font=\"sans-14\"]Delete: sguab às an geama air a shàbhaladh a thagh thu ’s thèid dearbhadh iarraidh ort"
 
-#: gui/manual/intro.txt:145
+#: gui/manual/intro.txt:146
 msgid "Shift: do not ask confirmation when deleting a saved game"
 msgstr "Shift: na iarr dearbhadh nuair a thèid geama air a shàbhaladh a sguabadh às."
 

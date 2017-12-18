@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Albert, 2016
+# Emilio Romero <milioe25@yahoo.es>, 2017
 # hola jaaj <vespejo3@gmail.com>, 2017
 # ninovolador <ignacio.rodriguez.mo@gmail.com>, 2015
 # Javier Rojas <hekeine@gmail.com>, 2017
@@ -12,15 +13,16 @@
 # Master Dark <yochan003@hotmail.com>, 2016
 # Mihai Pantazi <malexandru_70@hotmail.com>, 2016-2017
 # Pedro Almendros González <pedro.al94@gmail.com>, 2015
+# Rafael Cuevas Montero <rafcumon@hotmail.com>, 2017
 # soloooy0 fg <juanjo.fg@hotmail.com>, 2017
 # Swyter <Swyterzone@gmail.com>, 2014-2017
 # vega93 <arkadas_llisa@hotmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-06 09:04+0100\n"
-"PO-Revision-Date: 2017-12-06 15:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-12-11 09:05+0100\n"
+"PO-Revision-Date: 2017-12-17 23:11+0000\n"
+"Last-Translator: Rafael Cuevas Montero <rafcumon@hotmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -157,14 +159,14 @@ msgstr "ELIMINAR"
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
 #: gui/options/options.js:297 gui/options/options.js:350
 #: gui/options/options.js:376 gui/pregame/mainmenu.js:252
-#: gui/replaymenu/replay_actions.js:170 gui/summary/summary.js:391
+#: gui/replaymenu/replay_actions.js:170 gui/summary/summary.js:389
 msgid "No"
 msgstr "No"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
 #: gui/options/options.js:297 gui/options/options.js:350
 #: gui/options/options.js:376 gui/pregame/mainmenu.js:252
-#: gui/replaymenu/replay_actions.js:170 gui/summary/summary.js:391
+#: gui/replaymenu/replay_actions.js:170 gui/summary/summary.js:389
 msgid "Yes"
 msgstr "Sí"
 
@@ -388,7 +390,7 @@ msgstr "desactivado"
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
 msgstr[0] "Durante el primer minuto, otros jugadores serán neutrales."
-msgstr[1] "Durante los primeros %(min)s minutos, otros jugadores serán neutrales."
+msgstr[1] "Durante los primeros %(min)s minutos, los otros jugadores serán neutrales."
 
 #: gui/common/gamedescription.js:319
 msgid "Map Name"
@@ -1109,19 +1111,19 @@ msgstr "Aceptar"
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s, Max: %(max)s"
-msgstr "Min: %(min)s, Max: %(max)s"
+msgstr "Mín: %(min)s, Máx: %(max)s"
 
 #: gui/options/options.js:99
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s"
-msgstr "Min: %(min)s"
+msgstr "Mín: %(min)s"
 
 #: gui/options/options.js:101
 #, javascript-format
 msgctxt "option number"
 msgid "Max: %(max)s"
-msgstr "Max: %(max)s"
+msgstr "Máx: %(max)s"
 
 #: gui/options/options.js:134
 #, javascript-format
@@ -1142,7 +1144,7 @@ msgstr "Cuidado"
 
 #: gui/options/options.js:348
 msgid "Some setting values are invalid! Are you sure to save them?"
-msgstr "¡Algunos valores de configuración no son válidos! ¿Estás seguro que quieres guardarlos?"
+msgstr "¡Algunos valores de configuración no son válidos! ¿Estás seguro de que quieres guardarlos?"
 
 #: gui/options/options.js:374
 msgid "You have unsaved changes, do you want to close this window?"
@@ -1222,7 +1224,7 @@ msgstr "Versión: %(buildDate)s (%(revision)s)"
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "¿Seguro que quieres salir de 0 A.D.?"
 
-#: gui/pregame/mainmenu.js:251 gui/summary/summary.js:390
+#: gui/pregame/mainmenu.js:251 gui/summary/summary.js:388
 msgid "Confirmation"
 msgstr "Confirmar decisión"
 
@@ -1249,7 +1251,7 @@ msgstr "Detalles técnicos"
 msgid "Manual"
 msgstr "Manual"
 
-#: gui/reference/common/load.js:255
+#: gui/reference/common/load.js:267
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
 msgstr "%(health_min)s a %(health_max)s"
@@ -1517,7 +1519,7 @@ msgstr "Saqueo"
 
 #: gui/summary/layout.js:121
 msgid "Livestock bred"
-msgstr ""
+msgstr "Ganado criado"
 
 #: gui/summary/layout.js:125
 #, javascript-format
@@ -1646,48 +1648,50 @@ msgstr "Resultado"
 msgid "Failed"
 msgstr "Fracaso"
 
-#: gui/summary/summary.js:113
+#. Translation: Unicode encoded infinity symbol indicating a division by zero
+#. in the summary screen.
+#: gui/summary/summary.js:111
 msgid "∞"
 msgstr "∞"
 
-#: gui/summary/summary.js:389
+#: gui/summary/summary.js:387
 msgid "Are you sure you want to quit the lobby?"
 msgstr "¿Seguro que quieres salir de la sala multijugador?"
 
-#: gui/summary/summary.js:444
+#: gui/summary/summary.js:442
 msgid "Current Scores"
 msgstr "Puntuación actual"
 
-#: gui/summary/summary.js:446
+#: gui/summary/summary.js:444
 msgid "Scores at the end of the game."
 msgstr "Puntuación al final de la partida."
 
-#: gui/summary/summary.js:448
+#: gui/summary/summary.js:446
 msgid "You have been disconnected."
 msgstr "Te han desconectado."
 
-#: gui/summary/summary.js:450
+#: gui/summary/summary.js:448
 msgid "You have left the game."
 msgstr "Has dejado la partida."
 
-#: gui/summary/summary.js:452
+#: gui/summary/summary.js:450
 msgid "You have won the battle!"
 msgstr "¡Has ganado la batalla!"
 
-#: gui/summary/summary.js:454
+#: gui/summary/summary.js:452
 msgid "You have been defeated..."
 msgstr "Has sido derrotado..."
 
-#: gui/summary/summary.js:455
+#: gui/summary/summary.js:453
 msgid "You have abandoned the game."
 msgstr "Has abandonado la partida."
 
-#: gui/summary/summary.js:458
+#: gui/summary/summary.js:456
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Tiempo de partida transcurrido: %(time)s"
 
-#: gui/summary/summary.js:466
+#: gui/summary/summary.js:464
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
@@ -2145,6 +2149,14 @@ msgctxt "summary chart"
 msgid "Type"
 msgstr "Tipo"
 
+#: mod.jsondescription
+msgid "A free, open-source, historical RTS game."
+msgstr "Un juego gratuito, open-source y un RTS histórico"
+
+#: mod.jsonlabel
+msgid "0 A.D. Empires Ascendant"
+msgstr "0 A.D. Empires Ascendant"
+
 #: gui/credits/texts/art.jsonContent[0].Content[0].Subtitle
 msgid "Art lead"
 msgstr "Director de diseño gráfico"
@@ -2179,7 +2191,7 @@ msgstr "Diseños 3D"
 
 #: gui/credits/texts/art.jsonContent[5].Content[1].Subtitle
 msgid "Additional music, percussion, djembe, sampling"
-msgstr "Música adicional, percusión, Yembe y muestreo musical"
+msgstr "Música adicional, percusión, yembe y muestreo musical"
 
 #: gui/credits/texts/art.jsonContent[5].Content[2].Subtitle
 msgid "Additional music"
@@ -2356,7 +2368,7 @@ msgstr "Pausar en segundo plano"
 msgid ""
 "If you disable it, the welcome screen will still appear once, each time a "
 "new version is available. You can always launch it from the main menu."
-msgstr "Si lo deshabilita, la pantalla de bienvenida seguirá apareciendo una vez, cada ver que haya disponible una nueva versión. Siempre puede ejecutarlo desde el menú principal."
+msgstr "Si lo deshabilita, la pantalla de inicio seguirá apareciendo una vez, cada vez que haya disponible una nueva versión. Siempre puede ejecutarlo desde el menú principal."
 
 #: gui/options/options.json[0].options[4].label
 msgid "Enable Welcome Screen"
@@ -2430,7 +2442,7 @@ msgstr "Desactivado"
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started"
-msgstr "Permitir que todo el mundo o sólo amigos se unan al juego como observadores después de que empezase"
+msgstr "Permitir que todo el mundo o solo amigos se unan al juego como observadores después de que empiece"
 
 #: gui/options/options.json[0].options[11].label
 msgid "Late Observer Joins"
@@ -2463,21 +2475,31 @@ msgstr "Mostrar fecha y hora"
 
 #: gui/options/options.json[0].options[15].tooltip
 msgid ""
+"Display the attack range of selected defensive structures (can also be "
+"toggled in-game with the hotkey)."
+msgstr "Mostrar el rango de ataque de las estructuras defensivas seleccionadas (también puede activarse en la partida con el atajo de teclado)."
+
+#: gui/options/options.json[0].options[15].label
+msgid "Attack Range Visualization"
+msgstr "Visualización del rango de ataque"
+
+#: gui/options/options.json[0].options[16].tooltip
+msgid ""
 "Display the range of auras of selected units and structures (can also be "
 "toggled in-game with the hotkey)."
 msgstr "Muestra el rango de auras de las unidades y estructuras seleccionadas (también se puede alternar en el juego con la tecla de acceso directo)."
 
-#: gui/options/options.json[0].options[15].label
+#: gui/options/options.json[0].options[16].label
 msgid "Aura Range Visualization"
 msgstr "Ver distancia de aura"
 
-#: gui/options/options.json[0].options[16].tooltip
+#: gui/options/options.json[0].options[17].tooltip
 msgid ""
 "Display the healing range of selected units (can also be toggled in-game "
 "with the hotkey)."
 msgstr "Muestra el rango de salud de las unidades seleccionadas (también se puede alternar en el juego con la tecla de acceso rápido)."
 
-#: gui/options/options.json[0].options[16].label
+#: gui/options/options.json[0].options[17].label
 msgid "Heal Range Visualization"
 msgstr "Ver distancia de curación"
 
@@ -2495,11 +2517,11 @@ msgstr "Utilizar GLSL"
 
 #: gui/options/options.json[1].options[1].tooltip
 msgid "Enable Fog"
-msgstr ""
+msgstr "Activar niebla"
 
 #: gui/options/options.json[1].options[1].label
 msgid "Fog"
-msgstr ""
+msgstr "Niebla"
 
 #: gui/options/options.json[1].options[2].tooltip
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
@@ -2515,7 +2537,7 @@ msgstr "Cantidad de efectos de sombreadores. Necesita REINICIAR EL JUEGO"
 
 #: gui/options/options.json[1].options[3].label
 msgid "Shader Effects"
-msgstr "Efectos de Sombreadores"
+msgstr "Efectos de Sombreado"
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Enable shadows"
@@ -2755,7 +2777,7 @@ msgstr "De prueba"
 
 #: gui/options/options.json[3].options[2].list[1].label
 msgid "Very Easy"
-msgstr "Muy fácil"
+msgstr "Muy Fácil"
 
 #: gui/options/options.json[3].options[2].list[2].label
 msgid "Easy"
@@ -2771,11 +2793,11 @@ msgstr "Muy difícil"
 
 #: gui/options/options.json[3].options[2].tooltip
 msgid "Default difficulty of the AI."
-msgstr ""
+msgstr "Dificultad de la IA por defecto."
 
 #: gui/options/options.json[3].options[2].label
 msgid "Default AI difficulty"
-msgstr ""
+msgstr "Dificultad de la IA por defecto"
 
 #: gui/options/options.json[3].options[3].tooltip
 msgid ""
@@ -2789,7 +2811,7 @@ msgstr "Asignar jugadores"
 
 #: gui/options/options.json[3].label
 msgid "Game Setup"
-msgstr ""
+msgstr "Instalación del juego"
 
 #: gui/options/options.json[4].options[0].tooltip
 msgid "Number of backlogged messages to load when joining the lobby"
@@ -2803,7 +2825,7 @@ msgstr "Historial de chat"
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
-msgstr "Muestra la calificación media de los jugadores participantes en una columna del panel de juego.."
+msgstr "Muestra la calificación media de los jugadores participantes en una columna del panel de juego."
 
 #: gui/options/options.json[4].options[1].label
 msgid "Game Rating Column"
@@ -2811,7 +2833,7 @@ msgstr "Columna de puntuación de juego."
 
 #: gui/options/options.json[4].tooltip
 msgid "These settings only affect the multiplayer."
-msgstr "Estas configuraciones sólo afectan al modo multijugador."
+msgstr "Estas configuraciones solo afectan al modo multijugador."
 
 #: gui/options/options.json[4].label
 msgid "Lobby"

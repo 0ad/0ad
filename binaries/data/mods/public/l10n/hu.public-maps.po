@@ -8,7 +8,7 @@
 # Balázs Úr <urbalazs@gmail.com>, 2015-2016
 # Bence Erős <ebence88@gmail.com>, 2015
 # Boross Péter <borosspet@web.de>, 2015-2016
-# Gyuris Gellért <gellert.gyuris@gmail.com>, 2014-2016
+# Gyuris Gellért <bubu@ujevangelizacio.hu>, 2014-2016
 # Kristóf Kófiás <kristof.kofias@gmail.com>, 2014
 # lkishalmi <laszlo.kishalmi@gmail.com>, 2015
 # Mátyás Demeter <mathias.demeter@gmail.com>, 2015
@@ -18,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-10-30 09:05+0100\n"
-"PO-Revision-Date: 2017-10-30 15:19+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-12-11 09:06+0100\n"
+"PO-Revision-Date: 2017-12-12 13:53+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -704,9 +704,9 @@ msgstr "Vulkanikus vidék"
 
 #: maps/random/wall_demo.jsonsettings.Description
 msgid ""
-"A demonstration of wall placement methods/code in random maps. Very large "
-"map size is recommended."
-msgstr "A falak elhelyezéséért felelős metódusok és kódok demója véletlenszerű térképeken. Nagyon nagy térképméret javasolt."
+"A demonstration of wall placement methods/code in random maps. Giant map "
+"size is recommended!"
+msgstr "A falak elhelyezéséért felelős metódusok és kódok demója véletlenszerű térképeken. Hatalmas térképméret javasolt."
 
 #: maps/random/wall_demo.jsonsettings.Name
 msgid "Wall Demo"
@@ -934,16 +934,16 @@ msgstr "Száraz talajt kell találnunk, a földjeinket hamarosan ellepi a víz!"
 msgid "The lakes start swallowing the land, we have to find shelter!"
 msgstr "A tavak elkezdik elnyelni a földet, menedéket kell keresnünk!"
 
-#: maps/random/survivalofthefittest_triggers.js:193
+#: maps/random/survivalofthefittest_triggers.js:190
 #, javascript-format
 msgid "The first wave will start in %(time)s!"
 msgstr "Az első hullám %(time)s percen belül fog indulni!"
 
-#: maps/random/survivalofthefittest_triggers.js:327
+#: maps/random/survivalofthefittest_triggers.js:324
 msgid "An enemy wave is attacking!"
 msgstr "Egy ellenséges hullám támad!"
 
-#: maps/random/survivalofthefittest_triggers.js:351
+#: maps/random/survivalofthefittest_triggers.js:348
 #, javascript-format
 msgid "%(player)s has been defeated (lost civic center)."
 msgstr "%(player)s vesztett (elvesztette a városházát)."
