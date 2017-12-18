@@ -5,12 +5,13 @@
       <author>Stanislas Daniel Claude Dolcini</author>
       <authoring_tool>Blender 2.79.0 commit date:2017-09-11, commit time:10:43, hash:5bd8ac9</authoring_tool>
     </contributor>
-    <created>2017-12-18T20:40:41</created>
-    <modified>2017-12-18T20:40:41</modified>
-    <unit name="inch" meter="0.0254"/>
+    <created>2017-12-18T20:46:13</created>
+    <modified>2017-12-18T20:46:13</modified>
+    <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
   <library_images/>
+  <library_effects/>
   <library_geometries>
     <geometry id="objCart_Body-mesh" name="objCart_Body">
       <mesh>
@@ -58,25 +59,25 @@
   <library_animations>
     <animation id="chariot_base_pose_matrix">
       <source id="chariot_base_pose_matrix-input">
-        <float_array id="chariot_base_pose_matrix-input-array" count="2">0 1.666667</float_array>
+        <float_array id="chariot_base_pose_matrix-input-array" count="5">0 0.2083333 1.041667 1.25 1.458333</float_array>
         <technique_common>
-          <accessor source="#chariot_base_pose_matrix-input-array" count="2" stride="1">
+          <accessor source="#chariot_base_pose_matrix-input-array" count="5" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="chariot_base_pose_matrix-output">
-        <float_array id="chariot_base_pose_matrix-output-array" count="32">1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1</float_array>
+        <float_array id="chariot_base_pose_matrix-output-array" count="80">1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 1.327609 0 1 0 0 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#chariot_base_pose_matrix-output-array" count="2" stride="16">
+          <accessor source="#chariot_base_pose_matrix-output-array" count="5" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="chariot_base_pose_matrix-interpolation">
-        <Name_array id="chariot_base_pose_matrix-interpolation-array" count="2">LINEAR LINEAR</Name_array>
+        <Name_array id="chariot_base_pose_matrix-interpolation-array" count="5">LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#chariot_base_pose_matrix-interpolation-array" count="2" stride="1">
+          <accessor source="#chariot_base_pose_matrix-interpolation-array" count="5" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -90,25 +91,25 @@
     </animation>
     <animation id="chariot_prop_horseleft_pose_matrix">
       <source id="chariot_prop_horseleft_pose_matrix-input">
-        <float_array id="chariot_prop_horseleft_pose_matrix-input-array" count="2">0 1.666667</float_array>
+        <float_array id="chariot_prop_horseleft_pose_matrix-input-array" count="5">0 0.2083333 1.041667 1.25 1.458333</float_array>
         <technique_common>
-          <accessor source="#chariot_prop_horseleft_pose_matrix-input-array" count="2" stride="1">
+          <accessor source="#chariot_prop_horseleft_pose_matrix-input-array" count="5" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="chariot_prop_horseleft_pose_matrix-output">
-        <float_array id="chariot_prop_horseleft_pose_matrix-output-array" count="32">1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1</float_array>
+        <float_array id="chariot_prop_horseleft_pose_matrix-output-array" count="80">1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 1.285852 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#chariot_prop_horseleft_pose_matrix-output-array" count="2" stride="16">
+          <accessor source="#chariot_prop_horseleft_pose_matrix-output-array" count="5" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="chariot_prop_horseleft_pose_matrix-interpolation">
-        <Name_array id="chariot_prop_horseleft_pose_matrix-interpolation-array" count="2">LINEAR LINEAR</Name_array>
+        <Name_array id="chariot_prop_horseleft_pose_matrix-interpolation-array" count="5">LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#chariot_prop_horseleft_pose_matrix-interpolation-array" count="2" stride="1">
+          <accessor source="#chariot_prop_horseleft_pose_matrix-interpolation-array" count="5" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -122,25 +123,25 @@
     </animation>
     <animation id="chariot_prop_horseright_pose_matrix">
       <source id="chariot_prop_horseright_pose_matrix-input">
-        <float_array id="chariot_prop_horseright_pose_matrix-input-array" count="2">0 1.666667</float_array>
+        <float_array id="chariot_prop_horseright_pose_matrix-input-array" count="5">0 0.2083333 1.041667 1.25 1.458333</float_array>
         <technique_common>
-          <accessor source="#chariot_prop_horseright_pose_matrix-input-array" count="2" stride="1">
+          <accessor source="#chariot_prop_horseright_pose_matrix-input-array" count="5" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="chariot_prop_horseright_pose_matrix-output">
-        <float_array id="chariot_prop_horseright_pose_matrix-output-array" count="32">1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1</float_array>
+        <float_array id="chariot_prop_horseright_pose_matrix-output-array" count="80">1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1 1 0 0 -1.111955 0 0 1 -2.38419e-7 0 -1 0 2.916215 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#chariot_prop_horseright_pose_matrix-output-array" count="2" stride="16">
+          <accessor source="#chariot_prop_horseright_pose_matrix-output-array" count="5" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="chariot_prop_horseright_pose_matrix-interpolation">
-        <Name_array id="chariot_prop_horseright_pose_matrix-interpolation-array" count="2">LINEAR LINEAR</Name_array>
+        <Name_array id="chariot_prop_horseright_pose_matrix-interpolation-array" count="5">LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#chariot_prop_horseright_pose_matrix-interpolation-array" count="2" stride="1">
+          <accessor source="#chariot_prop_horseright_pose_matrix-interpolation-array" count="5" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -154,25 +155,25 @@
     </animation>
     <animation id="chariot_chariot_pose_matrix">
       <source id="chariot_chariot_pose_matrix-input">
-        <float_array id="chariot_chariot_pose_matrix-input-array" count="2">0 1.666667</float_array>
+        <float_array id="chariot_chariot_pose_matrix-input-array" count="5">0 0.2083333 1.041667 1.25 1.458333</float_array>
         <technique_common>
-          <accessor source="#chariot_chariot_pose_matrix-input-array" count="2" stride="1">
+          <accessor source="#chariot_chariot_pose_matrix-input-array" count="5" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="chariot_chariot_pose_matrix-output">
-        <float_array id="chariot_chariot_pose_matrix-output-array" count="32">1 0 0 4.416e-5 0 1 0 0.4662066 0 0 1 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 1 0 0.4662066 0 0 1 -2.256784 0 0 0 1</float_array>
+        <float_array id="chariot_chariot_pose_matrix-output-array" count="80">1 0 0 4.416e-5 0 1 0 0.4662066 0 0 1 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 1 0 0.4662066 0 0 1 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 0.9870903 -0.1601645 0.4662066 0 0.1601645 0.9870903 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 0.9510565 -0.3090171 0.4662066 0 0.3090171 0.9510565 -2.256784 0 0 0 1 1 0 0 4.416e-5 0 0.9510565 -0.3090171 0.4662066 0 0.3090171 0.9510565 -2.256784 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#chariot_chariot_pose_matrix-output-array" count="2" stride="16">
+          <accessor source="#chariot_chariot_pose_matrix-output-array" count="5" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="chariot_chariot_pose_matrix-interpolation">
-        <Name_array id="chariot_chariot_pose_matrix-interpolation-array" count="2">LINEAR LINEAR</Name_array>
+        <Name_array id="chariot_chariot_pose_matrix-interpolation-array" count="5">LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#chariot_chariot_pose_matrix-interpolation-array" count="2" stride="1">
+          <accessor source="#chariot_chariot_pose_matrix-interpolation-array" count="5" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -186,25 +187,25 @@
     </animation>
     <animation id="chariot_prop_driver_pose_matrix">
       <source id="chariot_prop_driver_pose_matrix-input">
-        <float_array id="chariot_prop_driver_pose_matrix-input-array" count="2">0 1.666667</float_array>
+        <float_array id="chariot_prop_driver_pose_matrix-input-array" count="5">0 0.2083333 1.041667 1.25 1.458333</float_array>
         <technique_common>
-          <accessor source="#chariot_prop_driver_pose_matrix-input-array" count="2" stride="1">
+          <accessor source="#chariot_prop_driver_pose_matrix-input-array" count="5" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="chariot_prop_driver_pose_matrix-output">
-        <float_array id="chariot_prop_driver_pose_matrix-output-array" count="32">1 0 0 0.01785356 0 0 1 1.393452 0 -1 0 1.547728 0 0 0 1 1 0 0 0.01785356 0 0 1 1.393452 0 -1 0 1.547728 0 0 0 1</float_array>
+        <float_array id="chariot_prop_driver_pose_matrix-output-array" count="80">1 1.00551e-12 1.51441e-13 0.01785356 0 2.98023e-8 1 1.393452 0 -1 0 1.547728 0 0 0 1 1 1.00551e-12 1.51441e-13 0.01785356 0 2.98023e-8 1 1.393452 0 -1 0 1.547728 0 0 0 1 1 1.00551e-12 1.51441e-13 0.01785356 0 2.98023e-8 1 1.393452 0 -1 0 1.547728 0 0 0 1 1 1.00551e-12 1.51441e-13 0.01785356 0 2.98023e-8 1 1.393452 0 -1 0 1.547728 0 0 0 1 1 1.00551e-12 1.51441e-13 0.01785356 0 2.98023e-8 1 1.393452 0 -1 0 1.547728 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#chariot_prop_driver_pose_matrix-output-array" count="2" stride="16">
+          <accessor source="#chariot_prop_driver_pose_matrix-output-array" count="5" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="chariot_prop_driver_pose_matrix-interpolation">
-        <Name_array id="chariot_prop_driver_pose_matrix-interpolation-array" count="2">LINEAR LINEAR</Name_array>
+        <Name_array id="chariot_prop_driver_pose_matrix-interpolation-array" count="5">LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#chariot_prop_driver_pose_matrix-interpolation-array" count="2" stride="1">
+          <accessor source="#chariot_prop_driver_pose_matrix-interpolation-array" count="5" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -218,25 +219,25 @@
     </animation>
     <animation id="chariot_right_wheel_pose_matrix">
       <source id="chariot_right_wheel_pose_matrix-input">
-        <float_array id="chariot_right_wheel_pose_matrix-input-array" count="2">0 1.666667</float_array>
+        <float_array id="chariot_right_wheel_pose_matrix-input-array" count="5">0 0.2083333 1.041667 1.25 1.458333</float_array>
         <technique_common>
-          <accessor source="#chariot_right_wheel_pose_matrix-input-array" count="2" stride="1">
+          <accessor source="#chariot_right_wheel_pose_matrix-input-array" count="5" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="chariot_right_wheel_pose_matrix-output">
-        <float_array id="chariot_right_wheel_pose_matrix-output-array" count="32">1 -4.83571e-15 0 -1.631807 4.83571e-15 1 0 1.001959 0 0 1 -0.2314107 0 0 0 1 1 -4.83571e-15 0 -1.631807 4.83571e-15 1 0 1.001959 0 0 1 -0.2314107 0 0 0 1</float_array>
+        <float_array id="chariot_right_wheel_pose_matrix-output-array" count="80">1 1.51441e-13 -1.00551e-12 -1.631806 0 1 -2.98023e-8 1.001959 0 0 1 -0.2314107 0 0 0 1 1 1.51441e-13 -1.00551e-12 -1.631806 0 1 -2.98023e-8 1.001959 0 0 1 -0.2314107 0 0 0 1 1 -1.11767e-7 -1.00551e-12 -1.631806 1.11767e-7 1 -2.98023e-8 1.001959 -3.55271e-15 0 1 -0.2314107 0 0 0 1 1 1.51441e-13 -1.00551e-12 -1.631806 0 1 -2.98023e-8 1.001959 0 0 1 -0.2314107 0 0 0 1 1 1.51441e-13 -1.00551e-12 -1.631806 0 1 -2.98023e-8 1.001959 0 0 1 -0.2314107 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#chariot_right_wheel_pose_matrix-output-array" count="2" stride="16">
+          <accessor source="#chariot_right_wheel_pose_matrix-output-array" count="5" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="chariot_right_wheel_pose_matrix-interpolation">
-        <Name_array id="chariot_right_wheel_pose_matrix-interpolation-array" count="2">LINEAR LINEAR</Name_array>
+        <Name_array id="chariot_right_wheel_pose_matrix-interpolation-array" count="5">LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#chariot_right_wheel_pose_matrix-interpolation-array" count="2" stride="1">
+          <accessor source="#chariot_right_wheel_pose_matrix-interpolation-array" count="5" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -250,25 +251,25 @@
     </animation>
     <animation id="chariot_prop_rider_pose_matrix">
       <source id="chariot_prop_rider_pose_matrix-input">
-        <float_array id="chariot_prop_rider_pose_matrix-input-array" count="2">0 1.666667</float_array>
+        <float_array id="chariot_prop_rider_pose_matrix-input-array" count="5">0 0.2083333 1.041667 1.25 1.458333</float_array>
         <technique_common>
-          <accessor source="#chariot_prop_rider_pose_matrix-input-array" count="2" stride="1">
+          <accessor source="#chariot_prop_rider_pose_matrix-input-array" count="5" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="chariot_prop_rider_pose_matrix-output">
-        <float_array id="chariot_prop_rider_pose_matrix-output-array" count="32">1 0 0 0.0178535 0 0 1 1.393452 0 -1 0 -0.9140701 0 0 0 1 1 0 0 0.0178535 0 0 1 1.393452 0 -1 0 -0.9140701 0 0 0 1</float_array>
+        <float_array id="chariot_prop_rider_pose_matrix-output-array" count="80">1 1.00551e-12 1.51441e-13 0.0178535 0 2.98023e-8 1 1.393452 0 -1 0 -0.9140701 0 0 0 1 1 1.00551e-12 1.51441e-13 0.0178535 0 2.98023e-8 1 1.393452 0 -1 0 -0.9140701 0 0 0 1 1 1.00551e-12 1.51441e-13 0.0178535 0 2.98023e-8 1 1.393452 0 -1 0 -0.9140701 0 0 0 1 1 1.00551e-12 1.51441e-13 0.0178535 0 2.98023e-8 1 1.393452 0 -1 0 -0.9140701 0 0 0 1 1 1.00551e-12 1.51441e-13 0.0178535 0 2.98023e-8 1 1.393452 0 -1 0 -0.9140701 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#chariot_prop_rider_pose_matrix-output-array" count="2" stride="16">
+          <accessor source="#chariot_prop_rider_pose_matrix-output-array" count="5" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="chariot_prop_rider_pose_matrix-interpolation">
-        <Name_array id="chariot_prop_rider_pose_matrix-interpolation-array" count="2">LINEAR LINEAR</Name_array>
+        <Name_array id="chariot_prop_rider_pose_matrix-interpolation-array" count="5">LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#chariot_prop_rider_pose_matrix-interpolation-array" count="2" stride="1">
+          <accessor source="#chariot_prop_rider_pose_matrix-interpolation-array" count="5" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -282,25 +283,25 @@
     </animation>
     <animation id="chariot_left_wheel_pose_matrix">
       <source id="chariot_left_wheel_pose_matrix-input">
-        <float_array id="chariot_left_wheel_pose_matrix-input-array" count="2">0 1.666667</float_array>
+        <float_array id="chariot_left_wheel_pose_matrix-input-array" count="5">0 0.2083333 1.041667 1.25 1.458333</float_array>
         <technique_common>
-          <accessor source="#chariot_left_wheel_pose_matrix-input-array" count="2" stride="1">
+          <accessor source="#chariot_left_wheel_pose_matrix-input-array" count="5" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="chariot_left_wheel_pose_matrix-output">
-        <float_array id="chariot_left_wheel_pose_matrix-output-array" count="32">1 0 0 1.631816 0 1 0 1.001959 0 0 1 -0.2314105 0 0 0 1 1 0 0 1.631816 0 1 0 1.001959 0 0 1 -0.2314105 0 0 0 1</float_array>
+        <float_array id="chariot_left_wheel_pose_matrix-output-array" count="80">1 1.51441e-13 -1.00551e-12 1.631816 0 1 -2.98023e-8 1.001959 0 0 1 -0.2314105 0 0 0 1 1 1.51441e-13 -1.00551e-12 1.631816 0 1 -2.98023e-8 1.001959 0 0 1 -0.2314105 0 0 0 1 1 1.51441e-13 -1.00551e-12 1.631816 0 1 -2.98023e-8 1.001959 0 0 1 -0.2314105 0 0 0 1 1 1.51441e-13 -1.00551e-12 1.631816 0 1 -2.98023e-8 1.001959 0 0 1 -0.2314105 0 0 0 1 1 1.51441e-13 -1.00551e-12 1.631816 0 1 -2.98023e-8 1.001959 0 0 1 -0.2314105 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#chariot_left_wheel_pose_matrix-output-array" count="2" stride="16">
+          <accessor source="#chariot_left_wheel_pose_matrix-output-array" count="5" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="chariot_left_wheel_pose_matrix-interpolation">
-        <Name_array id="chariot_left_wheel_pose_matrix-interpolation-array" count="2">LINEAR LINEAR</Name_array>
+        <Name_array id="chariot_left_wheel_pose_matrix-interpolation-array" count="5">LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#chariot_left_wheel_pose_matrix-interpolation-array" count="2" stride="1">
+          <accessor source="#chariot_left_wheel_pose_matrix-interpolation-array" count="5" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -314,25 +315,25 @@
     </animation>
     <animation id="chariot_prop_trader_pose_matrix">
       <source id="chariot_prop_trader_pose_matrix-input">
-        <float_array id="chariot_prop_trader_pose_matrix-input-array" count="2">0 1.666667</float_array>
+        <float_array id="chariot_prop_trader_pose_matrix-input-array" count="5">0 0.2083333 1.041667 1.25 1.458333</float_array>
         <technique_common>
-          <accessor source="#chariot_prop_trader_pose_matrix-input-array" count="2" stride="1">
+          <accessor source="#chariot_prop_trader_pose_matrix-input-array" count="5" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="chariot_prop_trader_pose_matrix-output">
-        <float_array id="chariot_prop_trader_pose_matrix-output-array" count="32">1 0 0 2.231822 0 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 0 2.231822 0 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1</float_array>
+        <float_array id="chariot_prop_trader_pose_matrix-output-array" count="80">1 0 0 2.231822 0 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 0 2.231822 0 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 0 2.231822 0 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 0 2.231822 0 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1 1 0 0 2.231822 0 0 1 -2.38419e-7 0 -1 0 0.6526432 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#chariot_prop_trader_pose_matrix-output-array" count="2" stride="16">
+          <accessor source="#chariot_prop_trader_pose_matrix-output-array" count="5" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="chariot_prop_trader_pose_matrix-interpolation">
-        <Name_array id="chariot_prop_trader_pose_matrix-interpolation-array" count="2">LINEAR LINEAR</Name_array>
+        <Name_array id="chariot_prop_trader_pose_matrix-interpolation-array" count="5">LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#chariot_prop_trader_pose_matrix-interpolation-array" count="2" stride="1">
+          <accessor source="#chariot_prop_trader_pose_matrix-interpolation-array" count="5" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
