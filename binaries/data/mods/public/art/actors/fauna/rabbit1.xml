@@ -3,8 +3,49 @@
   <castshadow/>
   <group>
     <variant frequency="100" name="Base">
-      <mesh>gaia/temprabbit.dae</mesh>
-      <textures><texture file="skeletal/animal_rabbit_a.dds" name="baseTex"/></textures>
+      <animations>
+        <animation file="quadraped/rabbit_idle_01.dae" name="Idle" speed="100"/>
+        <animation file="quadraped/rabbit_idle_02.dae" name="Idle" speed="100"/>
+        <animation file="quadraped/rabbit_idle_03.dae" name="Idle" speed="100"/>
+        <animation file="quadraped/rabbit_walk.dae" name="walk" speed="20"/>
+        <animation file="quadraped/rabbit_walk.dae" name="run" speed="40"/>
+        <animation file="quadraped/rabbit_death.dae" name="Death" speed="100"/>
+      </animations>
+    </variant>
+  </group>
+  <group>
+    <variant name="Normal" frequency="100">
+      <mesh>skeletal/rabbit_01.dae</mesh>
+    </variant>
+    <variant name="Fat" frequency="100">
+      <mesh>skeletal/rabbit_02.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant name="Grey 1" frequency="100">
+      <textures>
+        <texture file="skeletal/animal_rabbit_04.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="Grey 2" frequency="100">
+      <textures>
+        <texture file="skeletal/animal_rabbit_03.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="White" frequency="1">
+      <textures>
+        <texture file="skeletal/animal_rabbit_05.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="Red" frequency="100">
+      <textures>
+        <texture file="skeletal/animal_rabbit_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="Red 2" frequency="100">
+      <textures>
+        <texture file="skeletal/animal_rabbit_01.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -15,4 +56,5 @@
       </props>
     </variant>
   </group>
+  <material>basic_trans.xml</material>
 </actor>
