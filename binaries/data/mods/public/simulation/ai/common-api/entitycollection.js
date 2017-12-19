@@ -146,30 +146,28 @@ m.EntityCollection.prototype.hasEntities = function()
 	return this._entities.size !== 0;
 };
 
-m.EntityCollection.prototype.move = function(x, z, queued)
+m.EntityCollection.prototype.move = function(x, z, queued = false)
 {
-	queued = queued || false;
 	Engine.PostCommand(PlayerID,{"type": "walk", "entities": this.toIdArray(), "x": x, "z": z, "queued": queued});
 	return this;
 };
 
-m.EntityCollection.prototype.moveToRange = function(x, z, min, max, queued)
+m.EntityCollection.prototype.moveToRange = function(x, z, min, max, queued = false)
 {
-	queued = queued || false;
-	Engine.PostCommand(PlayerID,{"type": "walk-to-range", "entities": this.toIdArray(), "x": x, "z": z, "min": min, "max": max, "queued": queued });
+	Engine.PostCommand(PlayerID,{"type": "walk-to-range", "entities": this.toIdArray(), "x": x, "z": z,
+		"min": min, "max": max, "queued": queued });
 	return this;
 };
 
-m.EntityCollection.prototype.attackMove = function(x, z, targetClasses, queued)
+m.EntityCollection.prototype.attackMove = function(x, z, targetClasses, allowCapture = true, queued = false)
 {
-	queued = queued || false;
-	Engine.PostCommand(PlayerID,{"type": "attack-walk", "entities": this.toIdArray(), "x": x, "z": z, "targetClasses": targetClasses, "queued": queued});
+	Engine.PostCommand(PlayerID,{"type": "attack-walk", "entities": this.toIdArray(), "x": x, "z": z,
+		"targetClasses": targetClasses, "allowCapture": allowCapture, "queued": queued});
 	return this;
 };
 
-m.EntityCollection.prototype.moveIndiv = function(x, z, queued)
+m.EntityCollection.prototype.moveIndiv = function(x, z, queued = false)
 {
-	queued = queued || false;
 	for (let id of this._entities.keys())
 		Engine.PostCommand(PlayerID,{"type": "walk", "entities": [id], "x": x, "z": z, "queued": queued});
 	return this;

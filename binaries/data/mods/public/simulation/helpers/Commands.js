@@ -165,8 +165,10 @@ var g_Commands = {
 
 	"attack-walk": function(player, cmd, data)
 	{
+		let allowCapture = cmd.allowCapture || cmd.allowCapture == null;
+
 		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
-			cmpUnitAI.WalkAndFight(cmd.x, cmd.z, cmd.targetClasses, cmd.queued);
+			cmpUnitAI.WalkAndFight(cmd.x, cmd.z, cmd.targetClasses, allowCapture, cmd.queued);
 		});
 	},
 
@@ -179,14 +181,16 @@ var g_Commands = {
 			warn("Invalid command: attack target is not owned by enemy of player "+player+": "+uneval(cmd));
 
 		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
-			cmpUnitAI.Attack(cmd.target, cmd.queued, allowCapture);
+			cmpUnitAI.Attack(cmd.target, allowCapture, cmd.queued);
 		});
 	},
 
 	"patrol": function(player, cmd, data)
 	{
+		let allowCapture = cmd.allowCapture || cmd.allowCapture == null;
+
 		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI =>
-			cmpUnitAI.Patrol(cmd.x, cmd.z, cmd.targetClasses, cmd.queued)
+			cmpUnitAI.Patrol(cmd.x, cmd.z, cmd.targetClasses, allowCapture, cmd.queued)
 		);
 	},
 
