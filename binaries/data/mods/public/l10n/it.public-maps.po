@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Antonio Buonomo <hyd.antonio@gmail.com>, 2017
 # Christian Bellagamba <christiandes00@gmail.com>, 2017
 # Claudio <claudiudurneac97@yahoo.it>, 2015
 # Tiber7 - Danilo B. Guttadauria <danilo.guttadauria@gmail.com>, 2016
@@ -19,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-10-30 09:05+0100\n"
-"PO-Revision-Date: 2017-10-30 15:19+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2017-12-11 09:06+0100\n"
+"PO-Revision-Date: 2017-12-13 10:28+0000\n"
+"Last-Translator: Antonio Buonomo <hyd.antonio@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -705,9 +706,9 @@ msgstr "Terre Vulcaniche"
 
 #: maps/random/wall_demo.jsonsettings.Description
 msgid ""
-"A demonstration of wall placement methods/code in random maps. Very large "
-"map size is recommended."
-msgstr "Una dimostrazione di posizionamento muri tramite metodi/codice nelle mappe casuali. Si raccomanda una mappa di grandi dimensioni."
+"A demonstration of wall placement methods/code in random maps. Giant map "
+"size is recommended!"
+msgstr "Una dimostrazione di metodi/codice di posizionamento delle pareti in mappe casuali. Si consiglia l'uso di mappe grandi dimensioni!"
 
 #: maps/random/wall_demo.jsonsettings.Name
 msgid "Wall Demo"
@@ -935,16 +936,16 @@ msgstr "Dobbiamo trovare terreno asciutto, tra poco le nostre terre saranno somm
 msgid "The lakes start swallowing the land, we have to find shelter!"
 msgstr "I laghi iniziano a inghiottire la terra, dobbiamo trovare un rifugio!"
 
-#: maps/random/survivalofthefittest_triggers.js:193
+#: maps/random/survivalofthefittest_triggers.js:190
 #, javascript-format
 msgid "The first wave will start in %(time)s!"
 msgstr "La prima ondata inizierà tra %(time)s!"
 
-#: maps/random/survivalofthefittest_triggers.js:327
+#: maps/random/survivalofthefittest_triggers.js:324
 msgid "An enemy wave is attacking!"
 msgstr "Un'ondata nemica sta attaccando!"
 
-#: maps/random/survivalofthefittest_triggers.js:351
+#: maps/random/survivalofthefittest_triggers.js:348
 #, javascript-format
 msgid "%(player)s has been defeated (lost civic center)."
 msgstr "%(player)s è stato sconfitto (Centro Civico distrutto)"

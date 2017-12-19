@@ -49,7 +49,7 @@ VisionSharing.prototype.CheckVisionSharings = function()
 	if (owner >= 0)
 	{
 		// The owner has vision
-		if (owner > 0)		
+		if (owner > 0)
 			shared.add(owner);
 
 		// Vision sharing due to garrisoned units
@@ -58,7 +58,7 @@ VisionSharing.prototype.CheckVisionSharings = function()
 		{
 			for (let ent of cmpGarrisonHolder.GetEntities())
 			{
-				let cmpEntOwnership = Engine.QueryInterface(ent, IID_Ownership); 
+				let cmpEntOwnership = Engine.QueryInterface(ent, IID_Ownership);
 				if (!cmpEntOwnership)
 					continue;
 				let entOwner = cmpEntOwnership.GetOwner();

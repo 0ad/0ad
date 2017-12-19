@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-04 09:03+0100\n"
-"PO-Revision-Date: 2017-12-04 14:57+0000\n"
+"POT-Creation-Date: 2017-12-11 09:05+0100\n"
+"PO-Revision-Date: 2017-12-11 16:06+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -527,120 +527,125 @@ msgstr "Alt + Z: Ενεργοποίηση/Απενεργοποίηση του ο
 
 #: gui/manual/intro.txt:115
 msgid ""
+"Alt + C: Toggle attack range visualizations of selected defensive structures"
+msgstr ""
+
+#: gui/manual/intro.txt:116
+msgid ""
 "Alt + V: Toggle aura range visualizations of selected units and structures"
 msgstr "Alt + V: Εναλλάσσει την εμφάνιση του εύρους της αύρας για τις επιλεγμένες μονάδες και κατασκευές"
 
-#: gui/manual/intro.txt:116
+#: gui/manual/intro.txt:117
 msgid "Alt + B: Toggle heal range visualizations of selected units"
 msgstr "Alt + B: Εναλλάσσει την εμφάνιση του εύρους θεραπείας για της επιλεγμένες μονάδες"
 
-#: gui/manual/intro.txt:118
+#: gui/manual/intro.txt:119
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
 msgstr "[font=\"sans-bold-14\"]Χειρισμός κάμερας"
 
-#: gui/manual/intro.txt:119
+#: gui/manual/intro.txt:120
 msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
 msgstr "[font=\"sans-14\"]W or \\[up]:Μετακίνηση οθόνης προς τα πάνω"
 
-#: gui/manual/intro.txt:120
+#: gui/manual/intro.txt:121
 msgid "S or \\[down]: Pan screen down"
 msgstr "S ή \\[κάτω]: Μετακίνηση οθόνης προς τα κάτω"
 
-#: gui/manual/intro.txt:121
+#: gui/manual/intro.txt:122
 msgid "A or \\[left]: Pan screen left"
 msgstr "Α ή \\[αριστερά]: Μετακίνηση οθόνης προς τα αριστερά"
 
-#: gui/manual/intro.txt:122
+#: gui/manual/intro.txt:123
 msgid "D or \\[right]: Pan screen right"
 msgstr "D ή \\[δεξιά]: Μετακίνηση οθόνης προς τα δεξιά"
 
-#: gui/manual/intro.txt:123
+#: gui/manual/intro.txt:124
 msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
 msgstr "Ctrl + W ή \\[πάνω]: Περιστροφή κάμερα προς τα πάνω"
 
-#: gui/manual/intro.txt:124
+#: gui/manual/intro.txt:125
 msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
 msgstr "Ctrl + S ή \\[κάτω]: Περιστροφή κάμερα προς τα κάτω"
 
-#: gui/manual/intro.txt:125
+#: gui/manual/intro.txt:126
 msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
 msgstr "Ctrl + Α ή \\[πλήκτρο αριστερά]: Περιστροφή κάμερας δεξιόστροφα"
 
-#: gui/manual/intro.txt:126
+#: gui/manual/intro.txt:127
 msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
 msgstr "Ctrl + D ή \\[πλήκτρο δεξιά]: Περιστροφή κάμερας δεξιόστροφα"
 
-#: gui/manual/intro.txt:127
+#: gui/manual/intro.txt:128
 msgid "Q: Rotate camera clockwise around terrain"
 msgstr "Q: Περιστροφή κάμερας δεξιόστροφα"
 
-#: gui/manual/intro.txt:128
+#: gui/manual/intro.txt:129
 msgid "E: Rotate camera anticlockwise around terrain"
 msgstr "Ε: Περιστροφή κάμερας αριστερόστροφα"
 
-#: gui/manual/intro.txt:129
+#: gui/manual/intro.txt:130
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
 msgstr "Shift + περιστροφή ροδέλας ποντικιού προς τα πάνω: Περιστροφή κάμερας δεξιόστροφα"
 
-#: gui/manual/intro.txt:130
+#: gui/manual/intro.txt:131
 msgid ""
 "Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
 msgstr "Shift + περιστροφή ροδέλας ποντικιού προς τα κάτω: Περιστροφή κάμερας αριστερόστροφα"
 
-#: gui/manual/intro.txt:131
+#: gui/manual/intro.txt:132
 msgid ""
 "F: Follow the selected unit (move the camera to stop it from following the "
 "unit)"
 msgstr "F: Παρακολούθηση επιλεγμένης μονάδας (μετακινήστε την κάμερα για να σταματήσει να ακολουθεί τη μονάδα)"
 
-#: gui/manual/intro.txt:132
+#: gui/manual/intro.txt:133
 msgid "R: Reset camera zoom/orientation"
 msgstr "R: Επανακίνηση της κάμερας στην αρχική της θέση"
 
-#: gui/manual/intro.txt:133
+#: gui/manual/intro.txt:134
 msgid "+: Zoom in (keep pressed for continuous zoom)"
 msgstr "+: Zoom in (Κρατήστε πιεσμένο για συνεχόμενο zoom)"
 
-#: gui/manual/intro.txt:134
+#: gui/manual/intro.txt:135
 msgid "-: Zoom out (keep pressed for continuous zoom)"
 msgstr "-: Zoom out (Κρατήστε πιεσμένο για συνεχόμενο zoom)"
 
-#: gui/manual/intro.txt:135
+#: gui/manual/intro.txt:136
 msgid "Alt + W: Toggle through wireframe modes"
 msgstr "Alt + W: Ενναλαγή ανάμεστα στα wireframe modes"
 
-#: gui/manual/intro.txt:136
+#: gui/manual/intro.txt:137
 msgid "Middle Mouse Button: Keep pressed and move the mouse to pan"
 msgstr "Μεσαίο κουμπί ποντικιού: Κρατήστε πατημένο και μετακινήστε το ποντίκι για να περιηγηθείτε"
 
-#: gui/manual/intro.txt:138
+#: gui/manual/intro.txt:139
 msgid "[font=\"sans-bold-14\"]During Building Placement"
 msgstr "[font=\"sans-bold-14\"]Κατα τη διάρκεια τοποθέτησης κτηρίου"
 
-#: gui/manual/intro.txt:139
+#: gui/manual/intro.txt:140
 msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
 msgstr "[font=\"sans-14\"]\\[:Περιστροφή κτιρίου κατά 15 μοίρες δεξιόστροφα"
 
-#: gui/manual/intro.txt:140
+#: gui/manual/intro.txt:141
 msgid "]: Rotate building 15 degrees clockwise"
 msgstr "]: Περιστροφή κτιρίου κατά 15 μοίρες δεξιόστροφα"
 
-#: gui/manual/intro.txt:141
+#: gui/manual/intro.txt:142
 msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
 msgstr "Αριστερό κλικ και σέρνεις: Περστροφή κτηρίου χρησιμοποιώντας το ποντίκι (θα τοποθετηθεί με απελευθέρωση του αριστερού κιλκ)"
 
-#: gui/manual/intro.txt:143
+#: gui/manual/intro.txt:144
 msgid "[font=\"sans-bold-14\"]When loading a saved game"
 msgstr "[font=\"sans-bold-14\"]Οταν φορτώνει ένα αποθηκευμένο παιχνίδι."
 
-#: gui/manual/intro.txt:144
+#: gui/manual/intro.txt:145
 msgid ""
 "[font=\"sans-14\"]Delete: delete the selected saved game asking confirmation"
 msgstr "[font=\"sans-14\"]Διαγραφή: διαγραφή των επιλεγμένων παιχνιδιών που ζητάνε επιβεβαίωση"
 
-#: gui/manual/intro.txt:145
+#: gui/manual/intro.txt:146
 msgid "Shift: do not ask confirmation when deleting a saved game"
 msgstr "Shift: Mήν ρωτάτε επιβεβαίωση όταν διαγράφεται ένα αποθηκευμένο παιχνίδι"
 
