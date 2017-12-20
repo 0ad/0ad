@@ -388,6 +388,17 @@ m.GameState.prototype.isPlayerEnemy = function(id)
 	return this.playerData.isEnemy[id];
 };
 
+/** Return the number of players currently enemies, not including gaia */
+m.GameState.prototype.getNumPlayerEnemies = function()
+{
+	let num = 0;
+	for (let i = 1; i < this.playerData.isEnemy.length; ++i)
+		if (this.playerData.isEnemy[i] &&
+		    this.sharedScript.playersData[i].state != "defeated")
+			++num;
+	return num;
+};
+
 m.GameState.prototype.getEnemies = function()
 {
 	let ret = [];

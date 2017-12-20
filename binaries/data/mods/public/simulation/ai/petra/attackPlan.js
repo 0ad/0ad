@@ -681,7 +681,9 @@ m.AttackPlan.prototype.assignUnits = function(gameState)
 	// Otherwise, assign only some idle workers if too much of them
 	let num = 0;
 	let numbase = {};
-	let keep = this.type === "Rush" ? Math.round(this.Config.popScaling * (12 + 4*this.Config.personality.defensive)) : 6;
+	let keep = this.type != "Rush" ?
+		6 + 4 * gameState.getNumPlayerEnemies() + 6 * this.Config.personality.defensive : 8;
+	keep = Math.round(this.Config.popScaling * keep);
 	for (let ent of gameState.getOwnEntitiesByRole("worker", true).values())
 	{
 		if (!ent.hasClass("CitizenSoldier") || !this.isAvailableUnit(gameState, ent))
