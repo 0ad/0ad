@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-11 09:05+0100\n"
-"PO-Revision-Date: 2017-12-11 15:23+0000\n"
+"POT-Creation-Date: 2017-12-18 09:20+0100\n"
+"PO-Revision-Date: 2017-12-18 15:43+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/wildfire-games/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -147,16 +147,16 @@ msgid "DELETE"
 msgstr "PAŠALINTI"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
-#: gui/options/options.js:297 gui/options/options.js:350
-#: gui/options/options.js:376 gui/pregame/mainmenu.js:252
-#: gui/replaymenu/replay_actions.js:170 gui/summary/summary.js:389
+#: gui/options/options.js:310 gui/options/options.js:363
+#: gui/options/options.js:389 gui/pregame/mainmenu.js:252
+#: gui/replaymenu/replay_actions.js:171 gui/summary/summary.js:426
 msgid "No"
 msgstr "Ne"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
-#: gui/options/options.js:297 gui/options/options.js:350
-#: gui/options/options.js:376 gui/pregame/mainmenu.js:252
-#: gui/replaymenu/replay_actions.js:170 gui/summary/summary.js:389
+#: gui/options/options.js:310 gui/options/options.js:363
+#: gui/options/options.js:389 gui/pregame/mainmenu.js:252
+#: gui/replaymenu/replay_actions.js:171 gui/summary/summary.js:426
 msgid "Yes"
 msgstr "Taip"
 
@@ -1100,7 +1100,7 @@ msgstr ""
 msgid "Loot:"
 msgstr ""
 
-#: gui/credits/credits.js:68
+#: gui/credits/credits.js:79
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr ""
@@ -1134,22 +1134,22 @@ msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr ""
 
-#: gui/options/options.js:295
+#: gui/options/options.js:308
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr ""
 
-#: gui/options/options.js:296 gui/options/options.js:349
-#: gui/options/options.js:375
+#: gui/options/options.js:309 gui/options/options.js:362
+#: gui/options/options.js:388
 msgid "Warning"
 msgstr "Įspėjimas"
 
-#: gui/options/options.js:348
+#: gui/options/options.js:361
 msgid "Some setting values are invalid! Are you sure to save them?"
 msgstr ""
 
-#: gui/options/options.js:374
+#: gui/options/options.js:387
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr ""
 
@@ -1227,7 +1227,7 @@ msgstr "Versija: %(buildDate)s (%(revision)s)"
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Ar tikrai nori išeiti iš 0 A.D.?"
 
-#: gui/pregame/mainmenu.js:251 gui/summary/summary.js:388
+#: gui/pregame/mainmenu.js:251 gui/summary/summary.js:425
 msgid "Confirmation"
 msgstr "Patvirtinimas"
 
@@ -1295,11 +1295,11 @@ msgstr ""
 msgid "No summary data available."
 msgstr ""
 
-#: gui/replaymenu/replay_actions.js:167
+#: gui/replaymenu/replay_actions.js:168
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr ""
 
-#: gui/replaymenu/replay_actions.js:169
+#: gui/replaymenu/replay_actions.js:170
 msgid "Delete replay"
 msgstr ""
 
@@ -1384,30 +1384,30 @@ msgstr ""
 msgid "Unrated games"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.js:193
+#: gui/replaymenu/replay_menu.js:201
 msgid "Filter replays by typing one or more, partial or complete playernames."
 msgstr ""
 
-#: gui/replaymenu/replay_menu.js:272
+#: gui/replaymenu/replay_menu.js:280
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.js:299
+#: gui/replaymenu/replay_menu.js:307
 msgid "yyyy-MM-dd HH:mm"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.js:329
+#: gui/replaymenu/replay_menu.js:337
 msgid "yyyy-MM"
 msgstr ""
 
-#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):54
+#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):73
 msgid "Score"
 msgstr "Rezultatas"
 
 #: gui/summary/layout.js:5 gui/summary/layout.js:23 gui/summary/layout.js:61
 #: gui/summary/layout.js:101 gui/summary/layout.js:151
-#: gui/summary/layout.js:183 gui/summary/summary.xml:(caption):103
+#: gui/summary/layout.js:183 gui/summary/summary.xml:(caption):122
 msgid "Player name"
 msgstr "Žaidėjo vardas"
 
@@ -1427,7 +1427,7 @@ msgstr ""
 msgid "Total score"
 msgstr ""
 
-#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):61
+#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):80
 msgid "Buildings"
 msgstr "Pastatai"
 
@@ -1470,7 +1470,7 @@ msgid ""
 "%(lost)s)"
 msgstr ""
 
-#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):68
+#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):87
 msgid "Units"
 msgstr "Vienetai"
 
@@ -1503,7 +1503,7 @@ msgstr "Pirkliai"
 msgid "Units Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 msgstr ""
 
-#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):75
+#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):94
 msgid "Resources"
 msgstr "Ištekliai"
 
@@ -1531,7 +1531,7 @@ msgstr ""
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
 msgstr ""
 
-#: gui/summary/layout.js:149 gui/summary/summary.xml:(caption):82
+#: gui/summary/layout.js:149 gui/summary/summary.xml:(caption):101
 msgid "Market"
 msgstr "Turgus"
 
@@ -1549,7 +1549,7 @@ msgstr ""
 msgid "Trade income"
 msgstr ""
 
-#: gui/summary/layout.js:181 gui/summary/summary.xml:(caption):89
+#: gui/summary/layout.js:181 gui/summary/summary.xml:(caption):108
 #: gui/credits/texts/misc.jsonTitle
 msgid "Miscellaneous"
 msgstr ""
@@ -1659,44 +1659,44 @@ msgstr ""
 msgid "∞"
 msgstr ""
 
-#: gui/summary/summary.js:387
+#: gui/summary/summary.js:424
 msgid "Are you sure you want to quit the lobby?"
 msgstr ""
 
-#: gui/summary/summary.js:442
+#: gui/summary/summary.js:487
 msgid "Current Scores"
 msgstr ""
 
-#: gui/summary/summary.js:444
+#: gui/summary/summary.js:489
 msgid "Scores at the end of the game."
 msgstr ""
 
-#: gui/summary/summary.js:446
+#: gui/summary/summary.js:491
 msgid "You have been disconnected."
 msgstr ""
 
-#: gui/summary/summary.js:448
+#: gui/summary/summary.js:493
 msgid "You have left the game."
 msgstr ""
 
-#: gui/summary/summary.js:450
+#: gui/summary/summary.js:495
 msgid "You have won the battle!"
 msgstr ""
 
-#: gui/summary/summary.js:452
+#: gui/summary/summary.js:497
 msgid "You have been defeated..."
 msgstr ""
 
-#: gui/summary/summary.js:453
+#: gui/summary/summary.js:498
 msgid "You have abandoned the game."
 msgstr ""
 
-#: gui/summary/summary.js:456
+#: gui/summary/summary.js:501
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr ""
 
-#: gui/summary/summary.js:464
+#: gui/summary/summary.js:509
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr ""
@@ -1709,13 +1709,13 @@ msgstr "Civilizacijos"
 msgid "Civilization Selection"
 msgstr "Civilizacijos pasirinkimas"
 
-#: gui/civinfo/civinfo.xml:(caption):117 gui/credits/credits.xml:(caption):37
-#: gui/options/options.xml:(caption):60
+#: gui/civinfo/civinfo.xml:(caption):117 gui/credits/credits.xml:(caption):45
+#: gui/options/options.xml:(caption):68
 #: gui/reference/structree/structree.xml:(caption):119
 msgid "Close"
 msgstr "Uždaryti"
 
-#: gui/credits/credits.xml:(caption):19
+#: gui/credits/credits.xml:(caption):27
 msgid "0 A.D. Credits"
 msgstr ""
 
@@ -1747,35 +1747,35 @@ msgstr ""
 msgid "Accept"
 msgstr "Sutikti"
 
-#: gui/options/options.xml:(caption):15
+#: gui/options/options.xml:(caption):23
 msgid "Game Options"
 msgstr ""
 
-#: gui/options/options.xml:(caption):42
+#: gui/options/options.xml:(caption):50
 msgid "Reset"
 msgstr ""
 
-#: gui/options/options.xml:(caption):48
+#: gui/options/options.xml:(caption):56
 msgid "Revert"
 msgstr ""
 
-#: gui/options/options.xml:(caption):54
+#: gui/options/options.xml:(caption):62
 msgid "Save"
 msgstr "Išsaugoti"
 
-#: gui/options/options.xml:(tooltip):43
+#: gui/options/options.xml:(tooltip):51
 msgid "Resets user settings to their game default"
 msgstr ""
 
-#: gui/options/options.xml:(tooltip):49
+#: gui/options/options.xml:(tooltip):57
 msgid "Reverts to previous saved settings"
 msgstr ""
 
-#: gui/options/options.xml:(tooltip):55
+#: gui/options/options.xml:(tooltip):63
 msgid "Saves changes"
 msgstr ""
 
-#: gui/options/options.xml:(tooltip):61
+#: gui/options/options.xml:(tooltip):69
 msgid "Unsaved changes affect this session only"
 msgstr ""
 
@@ -2058,7 +2058,7 @@ msgid "Reload Cache"
 msgstr ""
 
 #: gui/replaymenu/replay_menu.xml:(caption):243
-#: gui/summary/summary.xml:(caption):14
+#: gui/summary/summary.xml:(caption):33
 msgid "Summary"
 msgstr ""
 
@@ -2112,44 +2112,44 @@ msgstr ""
 msgid "Known Issues (web)"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):96
+#: gui/summary/summary.xml:(caption):115
 msgid "Charts"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):153
+#: gui/summary/summary.xml:(caption):172
 msgctxt "summary chart"
 msgid "Category:"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):163
+#: gui/summary/summary.xml:(caption):182
 msgctxt "summary chart"
 msgid "Value:"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):173
+#: gui/summary/summary.xml:(caption):192
 msgctxt "summary chart"
 msgid "Type:"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):192
+#: gui/summary/summary.xml:(caption):211
 msgid "Replay"
 msgstr ""
 
-#: gui/summary/summary.xml:(caption):197
+#: gui/summary/summary.xml:(caption):216
 msgid "Continue"
 msgstr ""
 
-#: gui/summary/summary.xml:(tooltip):159
+#: gui/summary/summary.xml:(tooltip):178
 msgctxt "summary chart"
 msgid "Category"
 msgstr ""
 
-#: gui/summary/summary.xml:(tooltip):169
+#: gui/summary/summary.xml:(tooltip):188
 msgctxt "summary chart"
 msgid "Value"
 msgstr ""
 
-#: gui/summary/summary.xml:(tooltip):180
+#: gui/summary/summary.xml:(tooltip):199
 msgctxt "summary chart"
 msgid "Type"
 msgstr ""
@@ -2471,40 +2471,50 @@ msgstr ""
 
 #: gui/options/options.json[0].options[14].tooltip
 msgid ""
-"Show time that messages are posted in the lobby, gamesetup and ingame chat."
+"The wounded unit hotkey considers the selected units as wounded if their "
+"health percentage falls below this number"
 msgstr ""
 
 #: gui/options/options.json[0].options[14].label
-msgid "Chat Timestamp"
+msgid "Wounded Unit Health"
 msgstr ""
 
 #: gui/options/options.json[0].options[15].tooltip
+msgid ""
+"Show time that messages are posted in the lobby, gamesetup and ingame chat."
+msgstr ""
+
+#: gui/options/options.json[0].options[15].label
+msgid "Chat Timestamp"
+msgstr ""
+
+#: gui/options/options.json[0].options[16].tooltip
 msgid ""
 "Display the attack range of selected defensive structures (can also be "
 "toggled in-game with the hotkey)."
 msgstr ""
 
-#: gui/options/options.json[0].options[15].label
+#: gui/options/options.json[0].options[16].label
 msgid "Attack Range Visualization"
 msgstr ""
 
-#: gui/options/options.json[0].options[16].tooltip
+#: gui/options/options.json[0].options[17].tooltip
 msgid ""
 "Display the range of auras of selected units and structures (can also be "
 "toggled in-game with the hotkey)."
 msgstr ""
 
-#: gui/options/options.json[0].options[16].label
+#: gui/options/options.json[0].options[17].label
 msgid "Aura Range Visualization"
 msgstr ""
 
-#: gui/options/options.json[0].options[17].tooltip
+#: gui/options/options.json[0].options[18].tooltip
 msgid ""
 "Display the healing range of selected units (can also be toggled in-game "
 "with the hotkey)."
 msgstr ""
 
-#: gui/options/options.json[0].options[17].label
+#: gui/options/options.json[0].options[18].label
 msgid "Heal Range Visualization"
 msgstr ""
 

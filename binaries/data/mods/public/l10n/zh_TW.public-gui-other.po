@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2017-12-11 09:05+0100\n"
-"PO-Revision-Date: 2017-12-11 15:23+0000\n"
+"POT-Creation-Date: 2017-12-18 09:20+0100\n"
+"PO-Revision-Date: 2017-12-18 15:43+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -145,16 +145,16 @@ msgid "DELETE"
 msgstr "刪除"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
-#: gui/options/options.js:297 gui/options/options.js:350
-#: gui/options/options.js:376 gui/pregame/mainmenu.js:252
-#: gui/replaymenu/replay_actions.js:170 gui/summary/summary.js:389
+#: gui/options/options.js:310 gui/options/options.js:363
+#: gui/options/options.js:389 gui/pregame/mainmenu.js:252
+#: gui/replaymenu/replay_actions.js:171 gui/summary/summary.js:426
 msgid "No"
 msgstr "否"
 
 #: gui/common/functions_utility_loadsave.js:89 gui/common/tooltips.js:287
-#: gui/options/options.js:297 gui/options/options.js:350
-#: gui/options/options.js:376 gui/pregame/mainmenu.js:252
-#: gui/replaymenu/replay_actions.js:170 gui/summary/summary.js:389
+#: gui/options/options.js:310 gui/options/options.js:363
+#: gui/options/options.js:389 gui/pregame/mainmenu.js:252
+#: gui/replaymenu/replay_actions.js:171 gui/summary/summary.js:426
 msgid "Yes"
 msgstr "是"
 
@@ -1072,7 +1072,7 @@ msgstr "%(component)s %(loot)s"
 msgid "Loot:"
 msgstr "寶藏："
 
-#: gui/credits/credits.js:68
+#: gui/credits/credits.js:79
 #, javascript-format
 msgid "%(nick)s - %(name)s"
 msgstr "%(nick)s - %(name)s"
@@ -1106,22 +1106,22 @@ msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "值：%(val)s（最小：%(min)s，最大：%(max)s）"
 
-#: gui/options/options.js:295
+#: gui/options/options.js:308
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "重置選項將會抹除您儲存的設定。您想要繼續嗎？"
 
-#: gui/options/options.js:296 gui/options/options.js:349
-#: gui/options/options.js:375
+#: gui/options/options.js:309 gui/options/options.js:362
+#: gui/options/options.js:388
 msgid "Warning"
 msgstr "警告"
 
-#: gui/options/options.js:348
+#: gui/options/options.js:361
 msgid "Some setting values are invalid! Are you sure to save them?"
 msgstr "部份設定值無效！您確定要儲存它們嗎？"
 
-#: gui/options/options.js:374
+#: gui/options/options.js:387
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "您有未儲存的變更，您想要關閉這個視窗嗎？"
 
@@ -1199,7 +1199,7 @@ msgstr "組建： %(buildDate)s (%(revision)s)"
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "您確定要退出 0 A.D.嗎？"
 
-#: gui/pregame/mainmenu.js:251 gui/summary/summary.js:388
+#: gui/pregame/mainmenu.js:251 gui/summary/summary.js:425
 msgid "Confirmation"
 msgstr "確認"
 
@@ -1267,11 +1267,11 @@ msgstr "不相容的重播"
 msgid "No summary data available."
 msgstr "無簡介可用。"
 
-#: gui/replaymenu/replay_actions.js:167
+#: gui/replaymenu/replay_actions.js:168
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr "您確定您想要永久刪除此重播嗎？"
 
-#: gui/replaymenu/replay_actions.js:169
+#: gui/replaymenu/replay_actions.js:170
 msgid "Delete replay"
 msgstr "刪除重播"
 
@@ -1352,30 +1352,30 @@ msgstr "排名的遊戲"
 msgid "Unrated games"
 msgstr "無排名的遊戲"
 
-#: gui/replaymenu/replay_menu.js:193
+#: gui/replaymenu/replay_menu.js:201
 msgid "Filter replays by typing one or more, partial or complete playernames."
 msgstr "輸入一個或多個，部份或完整的玩家名稱來過濾重播。"
 
-#: gui/replaymenu/replay_menu.js:272
+#: gui/replaymenu/replay_menu.js:280
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
 msgstr "玩家：%(numberOfPlayers)s"
 
-#: gui/replaymenu/replay_menu.js:299
+#: gui/replaymenu/replay_menu.js:307
 msgid "yyyy-MM-dd HH:mm"
 msgstr "yyyy-MM-dd HH:mm"
 
-#: gui/replaymenu/replay_menu.js:329
+#: gui/replaymenu/replay_menu.js:337
 msgid "yyyy-MM"
 msgstr "yyyy-MM"
 
-#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):54
+#: gui/summary/layout.js:3 gui/summary/summary.xml:(caption):73
 msgid "Score"
 msgstr "分數"
 
 #: gui/summary/layout.js:5 gui/summary/layout.js:23 gui/summary/layout.js:61
 #: gui/summary/layout.js:101 gui/summary/layout.js:151
-#: gui/summary/layout.js:183 gui/summary/summary.xml:(caption):103
+#: gui/summary/layout.js:183 gui/summary/summary.xml:(caption):122
 msgid "Player name"
 msgstr "玩家名稱"
 
@@ -1395,7 +1395,7 @@ msgstr "探索分數"
 msgid "Total score"
 msgstr "總分"
 
-#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):61
+#: gui/summary/layout.js:21 gui/summary/summary.xml:(caption):80
 msgid "Buildings"
 msgstr "建築物數"
 
@@ -1438,7 +1438,7 @@ msgid ""
 "%(lost)s)"
 msgstr "建築物統計 (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):68
+#: gui/summary/layout.js:59 gui/summary/summary.xml:(caption):87
 msgid "Units"
 msgstr "單位數"
 
@@ -1471,7 +1471,7 @@ msgstr "貿易商人"
 msgid "Units Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 msgstr "單位統計 (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
-#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):75
+#: gui/summary/layout.js:99 gui/summary/summary.xml:(caption):94
 msgid "Resources"
 msgstr "資源"
 
@@ -1499,7 +1499,7 @@ msgstr ""
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
 msgstr "資源統計 (%(gathered)s / %(used)s)"
 
-#: gui/summary/layout.js:149 gui/summary/summary.xml:(caption):82
+#: gui/summary/layout.js:149 gui/summary/summary.xml:(caption):101
 msgid "Market"
 msgstr "市集"
 
@@ -1517,7 +1517,7 @@ msgstr "貿易效率"
 msgid "Trade income"
 msgstr "貿易收入"
 
-#: gui/summary/layout.js:181 gui/summary/summary.xml:(caption):89
+#: gui/summary/layout.js:181 gui/summary/summary.xml:(caption):108
 #: gui/credits/texts/misc.jsonTitle
 msgid "Miscellaneous"
 msgstr "雜項"
@@ -1627,44 +1627,44 @@ msgstr ""
 msgid "∞"
 msgstr "∞"
 
-#: gui/summary/summary.js:387
+#: gui/summary/summary.js:424
 msgid "Are you sure you want to quit the lobby?"
 msgstr "您確定您想要退出大廳？"
 
-#: gui/summary/summary.js:442
+#: gui/summary/summary.js:487
 msgid "Current Scores"
 msgstr "目前分數"
 
-#: gui/summary/summary.js:444
+#: gui/summary/summary.js:489
 msgid "Scores at the end of the game."
 msgstr "遊戲結束時的分數。"
 
-#: gui/summary/summary.js:446
+#: gui/summary/summary.js:491
 msgid "You have been disconnected."
 msgstr "您已中斷連線。"
 
-#: gui/summary/summary.js:448
+#: gui/summary/summary.js:493
 msgid "You have left the game."
 msgstr "您已經離開遊戲。"
 
-#: gui/summary/summary.js:450
+#: gui/summary/summary.js:495
 msgid "You have won the battle!"
 msgstr "您已獲勝！"
 
-#: gui/summary/summary.js:452
+#: gui/summary/summary.js:497
 msgid "You have been defeated..."
 msgstr "您被擊敗..."
 
-#: gui/summary/summary.js:453
+#: gui/summary/summary.js:498
 msgid "You have abandoned the game."
 msgstr "您已放棄遊戲。"
 
-#: gui/summary/summary.js:456
+#: gui/summary/summary.js:501
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "遊戲時間已過：%(time)s"
 
-#: gui/summary/summary.js:464
+#: gui/summary/summary.js:509
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
@@ -1677,13 +1677,13 @@ msgstr "文明"
 msgid "Civilization Selection"
 msgstr "文明選擇"
 
-#: gui/civinfo/civinfo.xml:(caption):117 gui/credits/credits.xml:(caption):37
-#: gui/options/options.xml:(caption):60
+#: gui/civinfo/civinfo.xml:(caption):117 gui/credits/credits.xml:(caption):45
+#: gui/options/options.xml:(caption):68
 #: gui/reference/structree/structree.xml:(caption):119
 msgid "Close"
 msgstr "關閉"
 
-#: gui/credits/credits.xml:(caption):19
+#: gui/credits/credits.xml:(caption):27
 msgid "0 A.D. Credits"
 msgstr "0 A.D. 感謝名單"
 
@@ -1715,35 +1715,35 @@ msgstr "進階"
 msgid "Accept"
 msgstr "接受"
 
-#: gui/options/options.xml:(caption):15
+#: gui/options/options.xml:(caption):23
 msgid "Game Options"
 msgstr "遊戲選項"
 
-#: gui/options/options.xml:(caption):42
+#: gui/options/options.xml:(caption):50
 msgid "Reset"
 msgstr "重置"
 
-#: gui/options/options.xml:(caption):48
+#: gui/options/options.xml:(caption):56
 msgid "Revert"
 msgstr "還原"
 
-#: gui/options/options.xml:(caption):54
+#: gui/options/options.xml:(caption):62
 msgid "Save"
 msgstr "儲存"
 
-#: gui/options/options.xml:(tooltip):43
+#: gui/options/options.xml:(tooltip):51
 msgid "Resets user settings to their game default"
 msgstr "重置使用者設定為他們的遊戲預設值"
 
-#: gui/options/options.xml:(tooltip):49
+#: gui/options/options.xml:(tooltip):57
 msgid "Reverts to previous saved settings"
 msgstr "復原至先前儲存的設定"
 
-#: gui/options/options.xml:(tooltip):55
+#: gui/options/options.xml:(tooltip):63
 msgid "Saves changes"
 msgstr "儲存變更"
 
-#: gui/options/options.xml:(tooltip):61
+#: gui/options/options.xml:(tooltip):69
 msgid "Unsaved changes affect this session only"
 msgstr "未儲存的變更只影響本工作階段"
 
@@ -2026,7 +2026,7 @@ msgid "Reload Cache"
 msgstr "重新載入快取"
 
 #: gui/replaymenu/replay_menu.xml:(caption):243
-#: gui/summary/summary.xml:(caption):14
+#: gui/summary/summary.xml:(caption):33
 msgid "Summary"
 msgstr "摘要"
 
@@ -2080,44 +2080,44 @@ msgstr "未來請顯示此訊息"
 msgid "Known Issues (web)"
 msgstr "已知問題（網頁）"
 
-#: gui/summary/summary.xml:(caption):96
+#: gui/summary/summary.xml:(caption):115
 msgid "Charts"
 msgstr "圖表"
 
-#: gui/summary/summary.xml:(caption):153
+#: gui/summary/summary.xml:(caption):172
 msgctxt "summary chart"
 msgid "Category:"
 msgstr "分類："
 
-#: gui/summary/summary.xml:(caption):163
+#: gui/summary/summary.xml:(caption):182
 msgctxt "summary chart"
 msgid "Value:"
 msgstr "值："
 
-#: gui/summary/summary.xml:(caption):173
+#: gui/summary/summary.xml:(caption):192
 msgctxt "summary chart"
 msgid "Type:"
 msgstr "類型："
 
-#: gui/summary/summary.xml:(caption):192
+#: gui/summary/summary.xml:(caption):211
 msgid "Replay"
 msgstr "重玩"
 
-#: gui/summary/summary.xml:(caption):197
+#: gui/summary/summary.xml:(caption):216
 msgid "Continue"
 msgstr "繼續"
 
-#: gui/summary/summary.xml:(tooltip):159
+#: gui/summary/summary.xml:(tooltip):178
 msgctxt "summary chart"
 msgid "Category"
 msgstr "分類"
 
-#: gui/summary/summary.xml:(tooltip):169
+#: gui/summary/summary.xml:(tooltip):188
 msgctxt "summary chart"
 msgid "Value"
 msgstr "值"
 
-#: gui/summary/summary.xml:(tooltip):180
+#: gui/summary/summary.xml:(tooltip):199
 msgctxt "summary chart"
 msgid "Type"
 msgstr "類型"
@@ -2439,40 +2439,50 @@ msgstr "批次訓練數量"
 
 #: gui/options/options.json[0].options[14].tooltip
 msgid ""
+"The wounded unit hotkey considers the selected units as wounded if their "
+"health percentage falls below this number"
+msgstr ""
+
+#: gui/options/options.json[0].options[14].label
+msgid "Wounded Unit Health"
+msgstr ""
+
+#: gui/options/options.json[0].options[15].tooltip
+msgid ""
 "Show time that messages are posted in the lobby, gamesetup and ingame chat."
 msgstr "顯示訊息被張貼在大廳、遊戲設定或是遊戲中聊天的時間。"
 
-#: gui/options/options.json[0].options[14].label
+#: gui/options/options.json[0].options[15].label
 msgid "Chat Timestamp"
 msgstr "聊天時間戳記"
 
-#: gui/options/options.json[0].options[15].tooltip
+#: gui/options/options.json[0].options[16].tooltip
 msgid ""
 "Display the attack range of selected defensive structures (can also be "
 "toggled in-game with the hotkey)."
 msgstr ""
 
-#: gui/options/options.json[0].options[15].label
+#: gui/options/options.json[0].options[16].label
 msgid "Attack Range Visualization"
 msgstr ""
 
-#: gui/options/options.json[0].options[16].tooltip
+#: gui/options/options.json[0].options[17].tooltip
 msgid ""
 "Display the range of auras of selected units and structures (can also be "
 "toggled in-game with the hotkey)."
 msgstr "顯示選定單位與建築物的靈氣範圍（遊戲中也可以使用快捷鍵切換）"
 
-#: gui/options/options.json[0].options[16].label
+#: gui/options/options.json[0].options[17].label
 msgid "Aura Range Visualization"
 msgstr "靈氣範圍可見度"
 
-#: gui/options/options.json[0].options[17].tooltip
+#: gui/options/options.json[0].options[18].tooltip
 msgid ""
 "Display the healing range of selected units (can also be toggled in-game "
 "with the hotkey)."
 msgstr "顯示選定單位的醫療範圍（遊戲中也可以使用快捷鍵切換）。"
 
-#: gui/options/options.json[0].options[17].label
+#: gui/options/options.json[0].options[18].label
 msgid "Heal Range Visualization"
 msgstr "醫療範圍可見度"
 
