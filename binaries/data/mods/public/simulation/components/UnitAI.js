@@ -1111,6 +1111,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				{
 					this.patrolStartPosOrder = cmpPosition.GetPosition();
 					this.patrolStartPosOrder.targetClasses = this.order.data.targetClasses;
+					this.patrolStartPosOrder.allowCapture = this.order.data.allowCapture;
 				}
 
 				this.StartTimer(0, 1000);
@@ -1638,6 +1639,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				{
 					this.patrolStartPosOrder = cmpPosition.GetPosition();
 					this.patrolStartPosOrder.targetClasses = this.order.data.targetClasses;
+					this.patrolStartPosOrder.allowCapture = this.order.data.allowCapture;
 				}
 
 				this.StartTimer(0, 1000);
@@ -1655,7 +1657,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			"MoveCompleted": function() {
 				if (this.orderQueue.length == 1)
-					this.PushOrder("Patrol",this.patrolStartPosOrder);
+					this.PushOrder("Patrol", this.patrolStartPosOrder);
 
 				this.PushOrder(this.order.type, this.order.data);
 				this.FinishOrder();
@@ -5070,12 +5072,12 @@ UnitAI.prototype.WalkToTarget = function(target, queued)
  * to a player order, and so is forced.
  * If targetClasses is given, only entities matching the targetClasses can be attacked.
  */
-UnitAI.prototype.WalkAndFight = function(x, z, targetClasses, queued)
+UnitAI.prototype.WalkAndFight = function(x, z, targetClasses, allowCapture = true, queued = false)
 {
-	this.AddOrder("WalkAndFight", { "x": x, "z": z, "targetClasses": targetClasses, "force": true }, queued);
+	this.AddOrder("WalkAndFight", { "x": x, "z": z, "targetClasses": targetClasses, "allowCapture": allowCapture, "force": true }, queued);
 };
 
-UnitAI.prototype.Patrol = function(x, z, targetClasses, queued)
+UnitAI.prototype.Patrol = function(x, z, targetClasses, allowCapture = true, queued = false)
 {
 	if (!this.CanPatrol())
 	{
@@ -5083,7 +5085,7 @@ UnitAI.prototype.Patrol = function(x, z, targetClasses, queued)
 		return;
 	}
 
-	this.AddOrder("Patrol", { "x": x, "z": z, "targetClasses": targetClasses, "force": true }, queued);
+	this.AddOrder("Patrol", { "x": x, "z": z, "targetClasses": targetClasses, "allowCapture": allowCapture, "force": true }, queued);
 };
 
 /**
@@ -5104,7 +5106,7 @@ UnitAI.prototype.LeaveFoundation = function(target)
 /**
  * Adds attack order to the queue, forced by the player.
  */
-UnitAI.prototype.Attack = function(target, queued, allowCapture)
+UnitAI.prototype.Attack = function(target, allowCapture = true, queued = false)
 {
 	if (!this.CanAttack(target))
 	{
@@ -5541,7 +5543,7 @@ UnitAI.prototype.FindWalkAndFightTargets = function()
 					if (targetClasses.vetoEntities && targetClasses.vetoEntities[targ])
 						continue;
 				}
-				this.PushOrderFront("Attack", { "target": targ, "force": true, "allowCapture": true });
+				this.PushOrderFront("Attack", { "target": targ, "force": true, "allowCapture": this.order.data.allowCapture });
 				return true;
 			}
 		}
@@ -5567,7 +5569,7 @@ UnitAI.prototype.FindWalkAndFightTargets = function()
 			if (targetClasses.vetoEntities && targetClasses.vetoEntities[targ])
 				continue;
 		}
-		this.PushOrderFront("Attack", { "target": targ, "force": true, "allowCapture": true });
+		this.PushOrderFront("Attack", { "target": targ, "force": true, "allowCapture": this.order.data.allowCapture });
 		return true;
 	}
 

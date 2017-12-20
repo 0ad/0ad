@@ -748,8 +748,8 @@ m.Entity = m.Class({
 		return this;
 	},
 
-	"attackMove": function(x, z, targetClasses, queued = false) {
-		Engine.PostCommand(PlayerID,{"type": "attack-walk", "entities": [this.id()], "x": x, "z": z, "targetClasses": targetClasses, "queued": queued });
+	"attackMove": function(x, z, targetClasses, allowCapture = true, queued = false) {
+		Engine.PostCommand(PlayerID,{"type": "attack-walk", "entities": [this.id()], "x": x, "z": z, "targetClasses": targetClasses, "allowCapture": allowCapture, "queued": queued });
 		return this;
 	},
 
