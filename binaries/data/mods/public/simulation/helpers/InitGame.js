@@ -51,7 +51,7 @@ function InitGame(settings)
 		if (settings.PlayerData[i] && settings.PlayerData[i].AI && settings.PlayerData[i].AI != "")
 		{
 			let AIDiff = +settings.PlayerData[i].AIDiff;
-			cmpAIManager.AddPlayer(settings.PlayerData[i].AI, i, AIDiff);
+			cmpAIManager.AddPlayer(settings.PlayerData[i].AI, i, AIDiff, settings.PlayerData[i].AIBehavior || "random");
 			cmpPlayer.SetAI(true);
 			AIDiff = Math.min(AIDiff, rate.length - 1);
 			cmpPlayer.SetGatherRateMultiplier(rate[AIDiff]);

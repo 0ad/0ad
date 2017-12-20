@@ -102,19 +102,19 @@ function formatPlayerInfo(playerDataArray, playerStates)
 			{
 				if (isActive)
 					// Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
-					playerDescription = translate("%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s)");
+					playerDescription = translate("%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIbehavior)s %(AIname)s)");
 				else
 					// Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
-					playerDescription = translate("%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIname)s, %(state)s)");
+					playerDescription = translate("%(playerName)s (%(civ)s, %(AIdifficulty)s %(AIbehavior)s %(AIname)s, %(state)s)");
 			}
 			else
 			{
 				if (isActive)
 					// Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
-					playerDescription = translate("%(playerName)s (%(AIdifficulty)s %(AIname)s)");
+					playerDescription = translate("%(playerName)s (%(AIdifficulty)s %(AIbehavior)s %(AIname)s)");
 				else
 					// Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
-					playerDescription = translate("%(playerName)s (%(AIdifficulty)s %(AIname)s, %(state)s)");
+					playerDescription = translate("%(playerName)s (%(AIdifficulty)s %(AIbehavior)s %(AIname)s, %(state)s)");
 			}
 		}
 		else
@@ -174,7 +174,8 @@ function formatPlayerInfo(playerDataArray, playerStates)
 					translateWithContext("playerstate", "won"),
 
 			"AIname": isAI ? translateAIName(playerData.AI) : "",
-			"AIdifficulty": isAI ? translateAIDifficulty(playerData.AIDiff) : ""
+			"AIdifficulty": isAI ? translateAIDifficulty(playerData.AIDiff) : "",
+			"AIbehavior": isAI ? translateAIBehavior(playerData.AIBehavior) : ""
 		}));
 	}
 

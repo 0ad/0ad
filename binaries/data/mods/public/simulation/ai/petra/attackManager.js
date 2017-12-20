@@ -30,17 +30,17 @@ m.AttackManager.prototype.init = function(gameState)
 
 m.AttackManager.prototype.setRushes = function(allowed)
 {
-	if (this.Config.personality.aggressive > 0.8 && allowed > 2)
+	if (this.Config.personality.aggressive > this.Config.personalityCut.strong && allowed > 2)
 	{
 		this.maxRushes = 3;
 		this.rushSize = [ 16, 20, 24 ];
 	}
-	else if (this.Config.personality.aggressive > 0.6 && allowed > 1)
+	else if (this.Config.personality.aggressive > this.Config.personalityCut.medium && allowed > 1)
 	{
 		this.maxRushes = 2;
 		this.rushSize = [ 18, 22 ];
 	}
-	else if (this.Config.personality.aggressive > 0.3 && allowed > 0)
+	else if (this.Config.personality.aggressive > this.Config.personalityCut.weak && allowed > 0)
 	{
 		this.maxRushes = 1;
 		this.rushSize = [ 20 ];

@@ -25,7 +25,7 @@
 #include "ps/Filesystem.h"
 
 BEGIN_INTERFACE_WRAPPER(AIManager)
-DEFINE_INTERFACE_METHOD_3("AddPlayer", void, ICmpAIManager, AddPlayer, std::wstring, player_id_t, uint8_t)
+DEFINE_INTERFACE_METHOD_4("AddPlayer", void, ICmpAIManager, AddPlayer, std::wstring, player_id_t, uint8_t, std::wstring)
 DEFINE_INTERFACE_METHOD_1("SetRNGSeed", void, ICmpAIManager, SetRNGSeed, uint32_t)
 DEFINE_INTERFACE_METHOD_0("TryLoadSharedComponent", void, ICmpAIManager, TryLoadSharedComponent)
 DEFINE_INTERFACE_METHOD_0("RunGamestateInit", void, ICmpAIManager, RunGamestateInit)
