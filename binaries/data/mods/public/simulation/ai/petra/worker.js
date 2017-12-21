@@ -916,10 +916,6 @@ m.Worker.prototype.buildAnyField = function(gameState, baseID)
 {
 	if (!this.ent.isBuilder())
 		return false;
-	let template = gameState.getTemplate(gameState.applyCiv("structures/{civ}_field"));
-	if (!template)
-		return false;
-	let maxGatherers = template.maxGatherers();
 	let bestFarmEnt = false;
 	let bestFarmDist = 10000000;
 	let pos = this.ent.position();
@@ -927,8 +923,9 @@ m.Worker.prototype.buildAnyField = function(gameState, baseID)
 	{
 		if (found.getMetadata(PlayerID, "base") != baseID || !found.hasClass("Field"))
 			continue;
+		let fieldTemplate = gameState.getBuiltTemplate(found.templateName());
 		let current = found.getBuildersNb();
-		if (current === undefined || current >= maxGatherers)
+		if (current === undefined || current >= fieldTemplate.maxGatherers())
 			continue;
 		let dist = API3.SquareVectorDistance(found.position(), pos);
 		if (dist > bestFarmDist)

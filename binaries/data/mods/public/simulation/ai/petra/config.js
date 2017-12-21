@@ -127,7 +127,6 @@ m.Config.prototype.setConfig = function(gameState)
 {
 	if (this.difficulty > 0)
 	{
-
 		// Setup personality traits according to the user choice:
 		// The parameter used to define the personality is basically the aggressivity or (1-defensiveness)
 		// as they are anticorrelated, although some small smearing to decorelate them will be added.
